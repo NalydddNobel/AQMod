@@ -13,16 +13,16 @@ internal partial class EtOmniaVanitas {
     public void Transform(Player player) {
         SoundEngine.PlaySound(SoundID.Unlock);
 
-        var totalProgress = GetGameProgress();
+        var totalProgress = EtOmniaVanitasLoader.GetGameProgress();
         for (int i = (int)TierLock + 1; i <= (int)totalProgress; i++) {
             var progress = (GameProgression)i;
-            if (ProgressionToItem.TryGetValue(progress, out var item)) {
+            if (EtOmniaVanitasLoader.ProgressionToItem.TryGetValue(progress, out var item)) {
                 Item.Transform(item.Type);
                 return;
             }
         }
 
-        Item.Transform(EtOmniaVanitasInitializer.Tier1.Type);
+        Item.Transform(EtOmniaVanitasLoader.Tier1.Type);
     }
 
     //public override void OnCreated(ItemCreationContext context) {
@@ -36,9 +36,9 @@ internal partial class EtOmniaVanitas {
     //}
 
     public bool UpgradeIntoStrongest(bool playSound) {
-        for (int i = (int)GetGameProgress(); i > (int)TierLock; i--) {
+        for (int i = (int)EtOmniaVanitasLoader.GetGameProgress(); i > (int)TierLock; i--) {
             var progress = (GameProgression)i;
-            if (ProgressionToItem.TryGetValue(progress, out var item)) {
+            if (EtOmniaVanitasLoader.ProgressionToItem.TryGetValue(progress, out var item)) {
                 Item.Transform(item.Type);
                 if (playSound) {
                     SoundEngine.PlaySound(SoundID.Unlock);

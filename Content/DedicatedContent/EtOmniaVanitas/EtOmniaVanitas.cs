@@ -1,13 +1,12 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.Components;
 using Aequus.Common.Items.Tooltips;
-using Aequus.Common.UI;
 using Aequus.Core;
+using Aequus.Core.UI;
 using Humanizer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -23,23 +22,11 @@ namespace Aequus.Content.DedicatedContent.EtOmniaVanitas;
 [Autoload(false)]
 [WorkInProgress]
 internal partial class EtOmniaVanitas : InstancedModItem, IDedicatedItem, ITransformItem, ICooldownItem, IAddKeywords {
-    public readonly record struct ProgressionCheck(Func<bool> Check, GameProgression Progression);
     public readonly record struct ScaledStats(int Damage, int UseTime, float ShootSpeed, float AmmoConsumptionReduction, int Rarity, int CooldownTime, float ChargeShotDamageIncrease, int ChargeShotDefenseReduction, int ChargeShotDefenseReductionDuration, int FrostburnDebuff = BuffID.Frostburn);
 
-    public static HashSet<int> ValidItemTransformSlotContexts = new() {
-        ItemSlot.Context.InventoryItem,
-        ItemSlot.Context.BankItem,
-        ItemSlot.Context.ChestItem,
-        ItemSlot.Context.TrashItem,
-        ItemSlot.Context.GuideItem,
-        ItemSlot.Context.HotbarItem,
-        ItemSlot.Context.MouseItem,
-        ItemSlot.Context.PrefixItem,
-        ItemSlot.Context.VoidItem,
-    };
-    public static readonly List<ProgressionCheck> GameProgress = new();
-    public static readonly Dictionary<GameProgression, EtOmniaVanitas> ProgressionToItem = new();
     public static int DropChance { get; set; } = 100;
+
+    public static int MaxChargeProgress { get; set; } = 300;
 
     public readonly GameProgression TierLock;
     public readonly ScaledStats Stats;
@@ -69,9 +56,9 @@ internal partial class EtOmniaVanitas : InstancedModItem, IDedicatedItem, ITrans
 
     public override void SetStaticDefaults() {
         ItemID.Sets.gunProj[Type] = true;
-        ContentSamples.CreativeResearchItemPersistentIdOverride[Type] = EtOmniaVanitasInitializer.Tier1.Type;
-        ItemID.Sets.ShimmerCountsAsItem[Type] = EtOmniaVanitasInitializer.Tier1.Type;
-        ProgressionToItem.Add(TierLock, this);
+        ContentSamples.CreativeResearchItemPersistentIdOverride[Type] = EtOmniaVanitasLoader.Tier1.Type;
+        ItemID.Sets.ShimmerCountsAsItem[Type] = EtOmniaVanitasLoader.Tier1.Type;
+        EtOmniaVanitasLoader.ProgressionToItem.Add(TierLock, this);
     }
 
     public override void SetDefaults() {
@@ -82,7 +69,7 @@ internal partial class EtOmniaVanitas : InstancedModItem, IDedicatedItem, ITrans
         Item.channel = true;
         Item.noUseGraphic = true;
         if (!Main.gameMenu) {
-            _checkAutoUpgrade = GetGameProgress();
+            _checkAutoUpgrade = EtOmniaVanitasLoader.GetGameProgress();
         }
     }
 
@@ -111,7 +98,7 @@ internal partial class EtOmniaVanitas : InstancedModItem, IDedicatedItem, ITrans
     }
 
     public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
-        if (UISystem.CurrentItemSlot.Context == ItemSlot.Context.CreativeInfinite) {
+        if (UISystem.Slot.Context == ItemSlot.Context.CreativeInfinite) {
             return;
         }
         var iconPosition = position + new Vector2(TextureAssets.InventoryBack.Value.Width - 30f, TextureAssets.InventoryBack.Value.Height - 30f) / 2f * Main.inventoryScale;
@@ -141,15 +128,5 @@ internal partial class EtOmniaVanitas : InstancedModItem, IDedicatedItem, ITrans
     public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
         Projectile.NewProjectile(source, player.Center, Vector2.Normalize(velocity), Item.shoot, damage, knockback, player.whoAmI);
         return false;
-    }
-
-    public static GameProgression GetGameProgress() {
-        var value = GameProgression.Earlygame;
-        foreach (var g in GameProgress) {
-            if (g.Progression > value && g.Check.Invoke()) {
-                value = g.Progression;
-            }
-        }
-        return value;
     }
 }

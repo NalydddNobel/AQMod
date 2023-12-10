@@ -1,4 +1,5 @@
-﻿using Aequus.Common.UI.EventBars;
+﻿using Aequus.Common.UI;
+using Aequus.Common.UI.EventBars;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,24 +10,50 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Aequus.Common.UI;
+namespace Aequus.Core.UI;
 
+/// <summary>
+/// This type does not get loaded/registered when loaded on a Server.
+/// </summary>
 public partial class UISystem : ModSystem {
-    public static int bottomLeftInventoryOffsetX;
-    public static byte linkClickDelay;
-    public static byte specialLeftClickDelay;
-    public static byte disableItemLeftClick;
+    public static int BottomLeftInventoryOffset { get; set; }
 
-    public static ItemSlotContext CurrentItemSlot;
+    public static byte LinkClickDelay { get; set; }
 
-    public static HashSet<int> ValidOnlineLinkedSlotContext { get; private set; }
-    public static readonly List<UILayer> UserInterfaces = new();
+    public static byte SpecialLeftClickDelay { get; set; }
+
+    public static byte DisableItemSlotLeftClick { get; set; }
+
+    public static ItemSlotContext Slot { get; private set; }
+
+    public static readonly HashSet<int> OnlineLinkedContexts = new() {
+        ItemSlot.Context.EquipAccessory,
+        ItemSlot.Context.ModdedAccessorySlot,
+        ItemSlot.Context.EquipAccessoryVanity,
+        ItemSlot.Context.ModdedVanityAccessorySlot,
+        ItemSlot.Context.InventoryItem,
+        ItemSlot.Context.BankItem,
+        ItemSlot.Context.ChestItem,
+        ItemSlot.Context.VoidItem,
+    };
+
+    public static readonly HashSet<int> TransformSlotContexts = new() {
+        ItemSlot.Context.InventoryItem,
+        ItemSlot.Context.BankItem,
+        ItemSlot.Context.ChestItem,
+        ItemSlot.Context.TrashItem,
+        ItemSlot.Context.GuideItem,
+        ItemSlot.Context.HotbarItem,
+        ItemSlot.Context.MouseItem,
+        ItemSlot.Context.PrefixItem,
+        ItemSlot.Context.VoidItem,
+    };
 
     public static int BottomInventoryY => 260;
 
-    public static byte DisableItemLeftClick { get => disableItemLeftClick; set => disableItemLeftClick = Math.Max(disableItemLeftClick, value); }
+    public static byte DisableItemLeftClick { get => DisableItemSlotLeftClick; set => DisableItemSlotLeftClick = Math.Max(DisableItemSlotLeftClick, value); }
 
-    public static bool CanDoLeftClickItemActions => specialLeftClickDelay == 0;
+    public static bool CanDoLeftClickItemActions => SpecialLeftClickDelay == 0;
 
     public const float invBackColorMultipler = 0.785f;
     public static readonly Color invBackColor = new Color(63, 65, 151, 255);
@@ -34,106 +61,69 @@ public partial class UISystem : ModSystem {
 
     public static UserInterface TalkInterface { get; private set; }
 
-    public static void RegisterUserInterface(UILayer face) {
-        UserInterfaces.Add(face);
+    public override bool IsLoadingEnabled(Mod mod) {
+        return Main.netMode != NetmodeID.Server;
     }
 
     public override void Load() {
-        LoadHooks();
-        TalkInterface = new();
-        ValidOnlineLinkedSlotContext = new() {
-            ItemSlot.Context.EquipAccessory,
-            ItemSlot.Context.ModdedAccessorySlot,
-            ItemSlot.Context.EquipAccessoryVanity,
-            ItemSlot.Context.ModdedVanityAccessorySlot,
-            ItemSlot.Context.InventoryItem,
-            ItemSlot.Context.BankItem,
-            ItemSlot.Context.ChestItem,
-            ItemSlot.Context.VoidItem,
-        };
-    }
-    private void LoadHooks() {
         On_ItemSlot.LeftClick_ItemArray_int_int += Hook_DisableLeftClick;
         On_ItemSlot.Draw_SpriteBatch_ItemArray_int_int_Vector2_Color += ItemSlot_Draw;
+        TalkInterface = new();
     }
 
+    #region Hooks
     private static void Hook_DisableLeftClick(On_ItemSlot.orig_LeftClick_ItemArray_int_int orig, Item[] inv, int context, int slot) {
-        if (disableItemLeftClick == 0) {
+        if (DisableItemSlotLeftClick == 0) {
             orig(inv, context, slot);
         }
     }
 
     private static void ItemSlot_Draw(On_ItemSlot.orig_Draw_SpriteBatch_ItemArray_int_int_Vector2_Color orig, SpriteBatch spriteBatch, Item[] inv, int context, int slot, Vector2 position, Color lightColor) {
-        CurrentItemSlot = new(context, slot, inv, position, lightColor);
+        Slot = new(context, slot, inv, position, lightColor);
         orig(spriteBatch, inv, context, slot, position, lightColor);
 
-        if (inv[slot].IsAir) {
-            //SlotDecals.DrawEmptySlotDecals(spriteBatch, inv, context, slot, position, lightColor);
-        }
+        //if (inv[slot].IsAir) {
+        //    SlotDecals.DrawEmptySlotDecals(spriteBatch, inv, context, slot, position, lightColor);
+        //}
     }
-
-    public override void Unload() {
-        ValidOnlineLinkedSlotContext?.Clear();
-        ValidOnlineLinkedSlotContext = null;
-    }
+    #endregion
 
     public override void ClearWorld() {
         TalkInterface?.SetState(null);
-        if (Main.netMode != NetmodeID.Server) {
-            foreach (var i in UserInterfaces) {
-                i.OnClearWorld();
-            }
-        }
-    }
-
-    public override void PreUpdatePlayers() {
-        if (Main.netMode != NetmodeID.Server) {
-            foreach (var i in UserInterfaces) {
-                i.OnPreUpdatePlayers();
-            }
-        }
     }
 
     public override void UpdateUI(GameTime gameTime) {
-        bottomLeftInventoryOffsetX = 0;
-        foreach (var i in UserInterfaces) {
-            i.OnUIUpdate(gameTime);
-        }
+        BottomLeftInventoryOffset = 0;
         TalkInterface.Update(gameTime);
         if (Main.mouseItem != null && !Main.mouseItem.IsAir) {
-            specialLeftClickDelay = Math.Max(specialLeftClickDelay, (byte)20);
+            SpecialLeftClickDelay = Math.Max(SpecialLeftClickDelay, (byte)20);
         }
-        else if (specialLeftClickDelay > 0) {
-            specialLeftClickDelay--;
+        else if (SpecialLeftClickDelay > 0) {
+            SpecialLeftClickDelay--;
         }
-        if (linkClickDelay > 0) {
-            linkClickDelay--;
+        if (LinkClickDelay > 0) {
+            LinkClickDelay--;
         }
-        if (disableItemLeftClick > 0) {
-            disableItemLeftClick--;
+        if (DisableItemSlotLeftClick > 0) {
+            DisableItemSlotLeftClick--;
         }
     }
 
     public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers) {
-        bottomLeftInventoryOffsetX = 0;
-        ManageUserInterfaceLayer(layers, TalkInterface, InterfaceLayers.Inventory_28, "Aequus: NPC Talk Interface", InterfaceScaleType.UI);
-
-        foreach (var i in UserInterfaces) {
-            InsertInterfaceDrawMethod(layers, i.Layer, $"{i.Mod}: {i.Name}", () => {
-                return i.Draw(Main.spriteBatch);
-            }, i.ScaleType);
-        }
+        BottomLeftInventoryOffset = 0;
+        ManageUserInterface(layers, TalkInterface, InterfaceLayers.Inventory_28, "Aequus: NPC Talk Interface", InterfaceScaleType.UI);
 
         //InsertInterfaceDrawMethod(layers, InterfaceLayers.Ruler_6, "Aequus: Misc World Interface", () => {
         //    return true;
         //}, InterfaceScaleType.Game);
 
-        InsertInterfaceDrawMethod(layers, InterfaceLayers.Inventory_28, "Aequus: Inventory", () => {
+        Insert(layers, InterfaceLayers.Inventory_28, "Aequus: Inventory", () => {
             AequusEventBarLoader.Draw();
             return true;
         });
     }
-    private void ManageUserInterfaceLayer(List<GameInterfaceLayer> layers, UserInterface userInterface, string defaultLayer, string layerName, InterfaceScaleType scaleType = InterfaceScaleType.UI) {
+
+    internal static void ManageUserInterface(List<GameInterfaceLayer> layers, UserInterface userInterface, string defaultLayer, string layerName, InterfaceScaleType scaleType = InterfaceScaleType.UI) {
         int layer = -1;
         if (userInterface.CurrentState is AequusUIState aequusUIState) {
             if (!aequusUIState.ModifyInterfaceLayers(layers, ref scaleType)) {
@@ -151,7 +141,8 @@ public partial class UISystem : ModSystem {
             }, scaleType));
         }
     }
-    private void InsertInterfaceDrawMethod(List<GameInterfaceLayer> layers, string name, string yourName, GameInterfaceDrawMethod method, InterfaceScaleType scaleType = InterfaceScaleType.UI) {
+
+    internal static void Insert(List<GameInterfaceLayer> layers, string name, string yourName, GameInterfaceDrawMethod method, InterfaceScaleType scaleType = InterfaceScaleType.UI) {
         int index = layers.FindIndex((l) => l.Name.Equals(name));
         if (index != -1) {
             layers.Insert(index + 1, new LegacyGameInterfaceLayer(yourName, method, scaleType));
@@ -161,6 +152,7 @@ public partial class UISystem : ModSystem {
     public static void CloseAllInventoryRelatedUI() {
         CloseAllInventoryRelatedUI(Main.LocalPlayer);
     }
+
     public static void CloseAllInventoryRelatedUI(Player player) {
         player.chest = -1;
         player.sign = -1;

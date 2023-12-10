@@ -1,25 +1,34 @@
-﻿using Terraria;
+﻿using System;
+using System.Collections.Generic;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.DedicatedContent.EtOmniaVanitas;
 
-public class EtOmniaVanitasInitializer : ILoadable {
+public class EtOmniaVanitasLoader : ILoadable {
+    public readonly record struct ProgressionCheck(Func<bool> Check, GameProgression Progression);
+
     public static ModItem Tier1 { get; private set; }
 
+    public static readonly List<ProgressionCheck> GameProgress = new();
+
+
+    internal static readonly Dictionary<GameProgression, EtOmniaVanitas> ProgressionToItem = new();
+
     public void Load(Mod mod) {
-        EtOmniaVanitas.GameProgress.Add(new(() => NPC.downedBoss2, GameProgression.EvilBosses));
-        EtOmniaVanitas.GameProgress.Add(new(() => NPC.downedQueenBee, GameProgression.EvilBosses));
-        EtOmniaVanitas.GameProgress.Add(new(() => NPC.downedDeerclops, GameProgression.EvilBosses));
-        EtOmniaVanitas.GameProgress.Add(new(() => NPC.downedBoss3, GameProgression.Skeletron));
-        EtOmniaVanitas.GameProgress.Add(new(() => Main.hardMode, GameProgression.WallOfFleshEarlyHardmode));
-        EtOmniaVanitas.GameProgress.Add(new(() => NPC.downedQueenSlime, GameProgression.WallOfFleshEarlyHardmode));
-        EtOmniaVanitas.GameProgress.Add(new(() => NPC.downedMechBossAny, GameProgression.MechanicalBoss));
-        EtOmniaVanitas.GameProgress.Add(new(() => NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3, GameProgression.MechanicalBoss3));
-        EtOmniaVanitas.GameProgress.Add(new(() => NPC.downedPlantBoss, GameProgression.Plantera));
-        EtOmniaVanitas.GameProgress.Add(new(() => NPC.downedGolemBoss, GameProgression.Golem));
-        EtOmniaVanitas.GameProgress.Add(new(() => NPC.downedAncientCultist, GameProgression.LunaticCultistPillars));
-        EtOmniaVanitas.GameProgress.Add(new(() => NPC.downedMoonlord, GameProgression.MoonLord));
+        GameProgress.Add(new(() => NPC.downedBoss2, GameProgression.EvilBosses));
+        GameProgress.Add(new(() => NPC.downedQueenBee, GameProgression.EvilBosses));
+        GameProgress.Add(new(() => NPC.downedDeerclops, GameProgression.EvilBosses));
+        GameProgress.Add(new(() => NPC.downedBoss3, GameProgression.Skeletron));
+        GameProgress.Add(new(() => Main.hardMode, GameProgression.WallOfFleshEarlyHardmode));
+        GameProgress.Add(new(() => NPC.downedQueenSlime, GameProgression.WallOfFleshEarlyHardmode));
+        GameProgress.Add(new(() => NPC.downedMechBossAny, GameProgression.MechanicalBoss));
+        GameProgress.Add(new(() => NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3, GameProgression.MechanicalBoss3));
+        GameProgress.Add(new(() => NPC.downedPlantBoss, GameProgression.Plantera));
+        GameProgress.Add(new(() => NPC.downedGolemBoss, GameProgression.Golem));
+        GameProgress.Add(new(() => NPC.downedAncientCultist, GameProgression.LunaticCultistPillars));
+        GameProgress.Add(new(() => NPC.downedMoonlord, GameProgression.MoonLord));
 
         Tier1 = AddVanilla(mod, GameProgression.Earlygame, new() {
             Damage = 10,
@@ -137,7 +146,23 @@ public class EtOmniaVanitasInitializer : ILoadable {
     }
 
     public void Unload() {
-        EtOmniaVanitas.GameProgress.Clear();
-        EtOmniaVanitas.ProgressionToItem.Clear();
+        GameProgress.Clear();
+        ProgressionToItem.Clear();
+    }
+
+    public static bool TryGet(GameProgression progression, out ModItem modItem) {
+        bool value = ProgressionToItem.TryGetValue(progression, out var etOmniaVanitas);
+        modItem = etOmniaVanitas;
+        return value;
+    }
+
+    public static GameProgression GetGameProgress() {
+        var value = GameProgression.Earlygame;
+        foreach (var g in GameProgress) {
+            if (g.Progression > value && g.Check.Invoke()) {
+                value = g.Progression;
+            }
+        }
+        return value;
     }
 }

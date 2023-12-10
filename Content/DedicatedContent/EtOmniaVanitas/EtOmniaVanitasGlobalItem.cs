@@ -11,6 +11,6 @@ public class EtOmniaVanitasGlobalItem : GlobalItem {
             return;
         }
 
-        itemLoot.Add(ItemDropRule.Common(EtOmniaVanitasInitializer.Tier1.Type, EtOmniaVanitas.DropChance));
+        itemLoot.Add(ItemDropRule.Common(EtOmniaVanitasLoader.Tier1.Type, EtOmniaVanitas.DropChance));
     }
 }

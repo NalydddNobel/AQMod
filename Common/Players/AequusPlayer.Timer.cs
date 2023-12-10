@@ -44,3 +44,17 @@ public partial class AequusPlayer {
 
     public static Dictionary<string, TimerData> LocalTimers { get; internal set; } = new();
 }
+
+public static class PlayerTimerExtensions {
+    public static void SetTimer(this Player player, string name, int time) {
+        player.GetModPlayer<AequusPlayer>().SetTimer(name, time);
+    }
+
+    public static bool TimerActive(this Player player, string name) {
+        return player.GetModPlayer<AequusPlayer>().TimerActive(name);
+    }
+
+    public static bool TryGetTimer(this Player player, string name, out AequusPlayer.TimerData timer) {
+        return player.GetModPlayer<AequusPlayer>().TryGetTimer(name, out timer);
+    }
+}

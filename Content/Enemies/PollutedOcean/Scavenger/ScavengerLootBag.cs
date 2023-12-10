@@ -1,8 +1,8 @@
-﻿using Aequus.Common.UI;
-using Aequus.Content.DataSets;
+﻿using Aequus.Content.DataSets;
 using Aequus.Content.Enemies.PollutedOcean.Scavenger.UI;
 using Aequus.Content.Equipment.Accessories.Inventory.ScavengerBag;
 using Aequus.Core;
+using Aequus.Core.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

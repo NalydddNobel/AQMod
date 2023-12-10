@@ -5,7 +5,7 @@ using Terraria.ID;
 
 namespace Aequus.Content.DedicatedContent.EtOmniaVanitas;
 public class EtOmniaVanitasDropRule : CommonDrop {
-    public EtOmniaVanitasDropRule(int chanceDenominator, int amountDroppedMinimum = 1, int amountDroppedMaximum = 1, int chanceNumerator = 1) : base(EtOmniaVanitasInitializer.Tier1.Type, chanceDenominator, amountDroppedMinimum, amountDroppedMaximum, chanceNumerator) {
+    public EtOmniaVanitasDropRule(int chanceDenominator, int amountDroppedMinimum = 1, int amountDroppedMaximum = 1, int chanceNumerator = 1) : base(EtOmniaVanitasLoader.Tier1.Type, chanceDenominator, amountDroppedMinimum, amountDroppedMaximum, chanceNumerator) {
     }
 
     public override ItemDropAttemptResult TryDroppingItem(DropAttemptInfo info) {

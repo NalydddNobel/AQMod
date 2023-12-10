@@ -1,4 +1,4 @@
-﻿using Aequus.Common.UI;
+﻿using Aequus.Core.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -33,6 +33,6 @@ public static class UIHelper {
         if (!ignoreCreative && Main.LocalPlayer.difficulty == 3 && !Main.CreativeMenu.Blocked) {
             left += 48;
         }
-        return UISystem.bottomLeftInventoryOffsetX + left;
+        return UISystem.BottomLeftInventoryOffset + left;
     }
 }

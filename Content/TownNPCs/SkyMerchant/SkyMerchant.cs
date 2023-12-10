@@ -1,9 +1,9 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Components;
-using Aequus.Common.UI;
 using Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
 using Aequus.Content.TownNPCs.SkyMerchant.Emote;
 using Aequus.Content.TownNPCs.SkyMerchant.UI;
+using Aequus.Core.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

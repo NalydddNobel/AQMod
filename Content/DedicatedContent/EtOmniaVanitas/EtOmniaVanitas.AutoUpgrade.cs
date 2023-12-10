@@ -1,7 +1,6 @@
-﻿using Aequus.Common.UI;
+﻿using Aequus.Core.UI;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.UI;
 
 namespace Aequus.Content.DedicatedContent.EtOmniaVanitas;
 
@@ -9,7 +8,7 @@ internal partial class EtOmniaVanitas {
     private GameProgression _checkAutoUpgrade;
 
     private bool CheckAutoUpgrade(bool playSound = true) {
-        var newProgress = GetGameProgress();
+        var newProgress = EtOmniaVanitasLoader.GetGameProgress();
         if (_checkAutoUpgrade == newProgress) {
             return false;
         }
@@ -30,7 +29,7 @@ internal partial class EtOmniaVanitas {
     }
 
     private void CheckAutoUpgradeWhenDrawing() {
-        if (ValidItemTransformSlotContexts.Contains(UISystem.CurrentItemSlot.Context)) {
+        if (UISystem.TransformSlotContexts.Contains(UISystem.Slot.Context)) {
             CheckAutoUpgrade();
         }
     }

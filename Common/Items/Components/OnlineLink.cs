@@ -1,5 +1,5 @@
 ﻿using Aequus;
-using Aequus.Common.UI;
+using Aequus.Core.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -26,7 +26,7 @@ internal sealed class OnlineLinkGlobalItem : GlobalItem {
     private float _hoverAnimation;
 
     private bool CanShowButton(int context) {
-        return UISystem.ValidOnlineLinkedSlotContext.Contains(context);
+        return UISystem.OnlineLinkedContexts.Contains(context);
     }
 
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
@@ -46,7 +46,7 @@ internal sealed class OnlineLinkGlobalItem : GlobalItem {
     }
 
     public override void PostDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
-        if (item.ModItem is not IOnlineLink onlineLink || !CanShowButton(UISystem.CurrentItemSlot.Context)) {
+        if (item.ModItem is not IOnlineLink onlineLink || !CanShowButton(UISystem.Slot.Context)) {
             return;
         }
 
@@ -66,7 +66,7 @@ internal sealed class OnlineLinkGlobalItem : GlobalItem {
             _hoverAnimation = 0f;
         }
         var buttonTexture = AequusTextures.OnlineLink.Value;
-        int context = Math.Abs(UISystem.CurrentItemSlot.Context);
+        int context = Math.Abs(UISystem.Slot.Context);
         var buttonFrame = buttonTexture.Frame(verticalFrames: 2, frameY: 0);
         float hoverAnimation = Math.Max(_hoverAnimation, 0f);
         float buttonScale = 1f + 0.2f * hoverAnimation;
@@ -77,7 +77,7 @@ internal sealed class OnlineLinkGlobalItem : GlobalItem {
         }
         spriteBatch.Draw(buttonTexture, buttonPosition, buttonFrame, Main.inventoryBack * buttonOpacity, buttonRotation, buttonFrame.Size() / 2f, buttonScale, SpriteEffects.None, 0f);
 
-        if (!Utils.CenteredRectangle(buttonPosition, buttonTexture.Size() * buttonScale).Contains(Main.mouseX, Main.mouseY) || !UISystem.CanDoLeftClickItemActions || UISystem.linkClickDelay != 0) {
+        if (!Utils.CenteredRectangle(buttonPosition, buttonTexture.Size() * buttonScale).Contains(Main.mouseX, Main.mouseY) || !UISystem.CanDoLeftClickItemActions || UISystem.LinkClickDelay != 0) {
             if (_hoverAnimation > 0f) {
                 _hoverAnimation *= 0.9f;
                 _hoverAnimation -= 0.01f;
@@ -105,7 +105,7 @@ internal sealed class OnlineLinkGlobalItem : GlobalItem {
             }
             Main.mouseLeftRelease = false;
             Main.NewText(Language.GetTextValue("Mods.Aequus.Misc.OpenLink", onlineLink.Link), TextHelper.EventMessageColor);
-            UISystem.linkClickDelay = 60;
+            UISystem.LinkClickDelay = 60;
             Utils.OpenToURL(onlineLink.Link);
         }
     }

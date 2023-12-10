@@ -21,7 +21,7 @@ namespace Aequus.Core.Graphics {
             return true;
         }
 
-        public override void OnPreUpdatePlayers() {
+        public override void OnGameUpdate() {
             Drawer.Clear();
         }
 
