@@ -2,10 +2,9 @@
 using Aequus.Core.Assets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Text;
 using System;
-using System.Threading;
 using Terraria;
+using Terraria.UI;
 using Terraria.Utilities;
 
 namespace Aequus.Content.DedicatedContent.EtOmniaVanitas;
@@ -13,6 +12,8 @@ namespace Aequus.Content.DedicatedContent.EtOmniaVanitas;
 public class EtOmniaVanitasBar : UILayer {
     public static float Opacity { get; set; }
     public static float HitAnimation { get; set; }
+
+    public override InterfaceScaleType ScaleType => InterfaceScaleType.Game;
 
     public override string Layer => InterfaceLayers.EntityHealthBars_16;
 
@@ -46,15 +47,19 @@ public class EtOmniaVanitasBar : UILayer {
         var modPlayer = player.GetModPlayer<EtOmniaVanitasPlayer>();
         float progress = 1f - MathF.Pow(1f - modPlayer.chargeProgress / (float)EtOmniaVanitas.MaxChargeProgress, 1.5f);
 
+        var texture = AequusTextures.EtOmniaVanitasBar.Value;
+
         spriteBatch.End();
-        spriteBatch.BeginUI(immediate: true);
+        spriteBatch.BeginWorld(shader: true);
 
         AequusShaders.CircleBar.Value.Parameters["uOpacity"].SetValue(progress);
+        AequusShaders.CircleBar.Value.Parameters["uImageSizeX"].SetValue(texture.Width);
+        AequusShaders.CircleBar.Value.Parameters["uImageSizeY"].SetValue(texture.Height);
         AequusShaders.CircleBar.Value.Techniques[0].Passes["Main"].Apply();
 
-        var texture = AequusTextures.EtOmniaVanitasBar.Value;
-        var drawCoordinates = (player.Center - Main.screenPosition) / Main.UIScale;
-        float scale = 0.6f + HitAnimation * 0.05f;
+        float scale = 1.65f;
+        var drawCoordinates = (player.Center - Main.screenPosition + new Vector2(player.direction * -(player.width + texture.Width / 2f * scale), 0f)).Floor();
+        scale += HitAnimation * 0.7f;
         var origin = texture.Size() / 2f;
         float rotation = MathHelper.PiOver2;
         var barColor = Color.White * Opacity * 0.8f;
@@ -64,9 +69,9 @@ public class EtOmniaVanitasBar : UILayer {
         }
 
         spriteBatch.End();
-        spriteBatch.BeginUI(immediate: false);
+        spriteBatch.BeginWorld(shader: false);
 
-        float radius = 120f;
+        float radius = 7f;
         if (player.TryGetTimer(EtOmniaVanitasPlayer.TimerId, out var timer) && timer.Active) {
             const int SparklesToRender = 10;
             float time = Main.GlobalTimeWrappedHourly * 24f;
@@ -76,7 +81,7 @@ public class EtOmniaVanitasBar : UILayer {
             var verticalScale = new Vector2(0.5f, 1f);
             var horizontalScale = new Vector2(0.5f, 1.5f);
             float timerScale = MathF.Sin((1f - MathF.Pow(1f - timerProgress, 2f)) * MathHelper.Pi);
-            for (int i = 0; i < (int)(progress * 30); i++) {
+            for (int i = 0; i < 20; i++) {
                 var fastRandom = new FastRandom((int)time + i).WithModifier((ulong)(time + i));
                 float sparkleProgress = 1f / SparklesToRender * (i + 1) - time / SparklesToRender % (1f / SparklesToRender);
                 var color = Color.LightSkyBlue.HueAdd(fastRandom.NextFloat(-0.2f, 0.2f)) with { A = 0 } * MathF.Sin(sparkleProgress * MathHelper.Pi) * fastRandom.NextFloat(0.3f, 2f) * timerProgress;
@@ -86,12 +91,12 @@ public class EtOmniaVanitasBar : UILayer {
                 if (textureUVX > progress) {
                     continue;
                 }
-                var position = drawCoordinates + (sparkleRotation + MathHelper.PiOver2).ToRotationVector2() * (radius + (1f - sparkleProgress) * fastRandom.NextFloat(20f)) * scale;
-                spriteBatch.Draw(sparkleTexture, position, null, color, 0f, sparkleOrigin, verticalScale* sparkleScale, SpriteEffects.None, 0f);
-                spriteBatch.Draw(sparkleTexture, position, null, color, MathHelper.PiOver2, sparkleOrigin, horizontalScale *  sparkleScale, SpriteEffects.None, 0f);
+                var position = drawCoordinates + (sparkleRotation + MathHelper.PiOver2).ToRotationVector2() * (radius + (1f - sparkleProgress) * fastRandom.NextFloat(10f)) * scale;
+                spriteBatch.Draw(sparkleTexture, position, null, color, 0f, sparkleOrigin, verticalScale * sparkleScale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(sparkleTexture, position, null, color, MathHelper.PiOver2, sparkleOrigin, horizontalScale * sparkleScale, SpriteEffects.None, 0f);
             }
         }
-        if (player.TryGetTimer(EtOmniaVanitasPlayer.TimerId + "Complete", out var completeTimer) && completeTimer.Active) {
+        if (player.TryGetTimer(EtOmniaVanitasPlayer.TimerId_Complete, out var completeTimer) && completeTimer.Active) {
             var sparkleTexture = AequusTextures.Flare.Value;
             var sparkleOrigin = sparkleTexture.Size() / 2f;
             float sparkleProgress = MathF.Pow(completeTimer.TimePassed / completeTimer.MaxTime, 2f);
