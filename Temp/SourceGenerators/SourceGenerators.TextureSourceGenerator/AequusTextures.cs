@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 241)</summary>
+/// <summary>(Total Textures: 242)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -287,8 +287,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> RadonFishingBobberBuff = new("Aequus/Content/Fishing/Equipment/RadonFishingBobber/RadonFishingBobberBuff");
     /// <summary>Full Path: Content/Fishing/Equipment/RadonFishingBobber/RadonFishingBobberProj</summary>
     public static readonly RequestCache<Texture2D> RadonFishingBobberProj = new("Aequus/Content/Fishing/Equipment/RadonFishingBobber/RadonFishingBobberProj");
-    /// <summary>Full Path: Content/Fishing/SteampunkersRod</summary>
-    public static readonly RequestCache<Texture2D> SteampunkersRod = new("Aequus/Content/Fishing/SteampunkersRod");
+    /// <summary>Full Path: Content/Fishing/FishingPoles/SteampunkerFishingBobber</summary>
+    public static readonly RequestCache<Texture2D> SteampunkerFishingBobber = new("Aequus/Content/Fishing/FishingPoles/SteampunkerFishingBobber");
+    /// <summary>Full Path: Content/Fishing/FishingPoles/SteampunkerFishingPole</summary>
+    public static readonly RequestCache<Texture2D> SteampunkerFishingPole = new("Aequus/Content/Fishing/FishingPoles/SteampunkerFishingPole");
     /// <summary>Full Path: Content/Items/Material/CompressedTrash</summary>
     public static readonly RequestCache<Texture2D> CompressedTrash = new("Aequus/Content/Items/Material/CompressedTrash");
     /// <summary>Full Path: Content/Items/Material/Energy/Aquatic/AquaticEnergy</summary>

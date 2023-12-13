@@ -631,7 +631,7 @@
         </member>
         <member name="F:Aequus.Common.Projectiles.AequusProjectile.itemData">
             <summary>
-            Custom data to be used by items which utilize the <see cref="T:Aequus.Common.Items.Components.IManageProjectile"/> interface. This data is synced in multiplayer.
+            Custom data to be used by items which utilize the <see cref="T:Aequus.Common.Items.Components.IManageProjectile"/> interface or by channeled items. This data is synced in multiplayer.
             </summary>
         </member>
         <member name="F:Aequus.Common.Projectiles.AequusProjectile.noSpecialEffects">
@@ -982,7 +982,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 241)</summary>
+            <summary>(Total Textures: 242)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1404,8 +1404,11 @@
         <member name="F:Aequus.AequusTextures.RadonFishingBobberProj">
             <summary>Full Path: Content/Fishing/Equipment/RadonFishingBobber/RadonFishingBobberProj</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SteampunkersRod">
-            <summary>Full Path: Content/Fishing/SteampunkersRod</summary>
+        <member name="F:Aequus.AequusTextures.SteampunkerFishingBobber">
+            <summary>Full Path: Content/Fishing/FishingPoles/SteampunkerFishingBobber</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SteampunkerFishingPole">
+            <summary>Full Path: Content/Fishing/FishingPoles/SteampunkerFishingPole</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CompressedTrash">
             <summary>Full Path: Content/Items/Material/CompressedTrash</summary>
