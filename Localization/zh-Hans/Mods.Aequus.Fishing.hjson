@@ -1,6 +1,6 @@
 FishingPoles: {
 	SteampunkerFishingPole: {
-		// DisplayName: Steampunker's Rod
-		// Tooltip: Automatically pulls and recasts the fishing bobber
+		DisplayName: 蒸汽朋克人之杖
+		Tooltip: 能够自动收杆并重新投出钓鱼浮标
 	}
 }
