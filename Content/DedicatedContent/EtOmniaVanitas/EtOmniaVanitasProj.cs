@@ -92,6 +92,7 @@ public class EtOmniaVanitasProj : HeldProjBase {
         frame.Height -= 2;
         var drawCoordinates = Main.player[Projectile.owner].MountedCenter + Vector2.Normalize(Projectile.velocity) * 16f + new Vector2(0f, Main.player[Projectile.owner].gfxOffY - 2f) - Main.screenPosition;
         var gunDrawCoordinates = drawCoordinates;
+        gunDrawCoordinates.Y += 6f;
         float gunRotation = Projectile.rotation;
         int flipDir = Math.Abs(Projectile.rotation) > MathHelper.PiOver2 ? -1 : 1;
         var spriteEffects = flipDir == -1 ? SpriteEffects.FlipVertically : SpriteEffects.None;

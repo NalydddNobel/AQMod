@@ -885,6 +885,16 @@
             <para>Place SpecialTileDrawing.Add(i, j, Type); into ModTile.PostDraw(...) to add it to the rendering list.</para>
             </summary>
         </member>
+        <member name="T:Aequus.Core.UI.UILayerLoader">
+            <summary>
+            This type does not get loaded/registered when loaded on a Server.
+            </summary>
+        </member>
+        <member name="T:Aequus.Core.UI.UISystem">
+            <summary>
+            This type does not get loaded/registered when loaded on a Server.
+            </summary>
+        </member>
         <member name="T:Aequus.AequusSounds">
             <summary>(Total Sounds: 31)</summary>
         </member>
@@ -982,7 +992,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 242)</summary>
+            <summary>(Total Textures: 249)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1196,6 +1206,27 @@
         </member>
         <member name="F:Aequus.AequusTextures.DedicatedFaelingItem_Mask">
             <summary>Full Path: Content/DedicatedContent/DedicatedFaelingItem_Mask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EtOmniaVanitas">
+            <summary>Full Path: Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitas</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EtOmniaVanitasBar">
+            <summary>Full Path: Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitasBar</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EtOmniaVanitasExplosion">
+            <summary>Full Path: Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitasExplosion</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EtOmniaVanitasExplosionSmall">
+            <summary>Full Path: Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitasExplosionSmall</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EtOmniaVanitasParticle">
+            <summary>Full Path: Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitasParticle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EtOmniaVanitasTierIndicator">
+            <summary>Full Path: Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitasTierIndicator</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EtOmniaVanitas_Muzzle">
+            <summary>Full Path: Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitas_Muzzle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FamiliarPetBuff">
             <summary>Full Path: Content/DedicatedContent/Familiar/FamiliarPetBuff</summary>
