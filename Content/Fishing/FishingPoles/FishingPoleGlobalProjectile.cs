@@ -43,14 +43,14 @@ public class FishingPoleGlobalProjectile : GlobalProjectile {
     }
 
     public override void OnKill(Projectile projectile, int timeLeft) {
-        if (Main.player[projectile.owner].HeldItem.ModItem is InstancedFishingPole fishingPole && fishingPole.OnKill.Hook != null) {
-            fishingPole.OnKill.Hook(projectile, timeLeft);
+        if (Main.player[projectile.owner].HeldItem.ModItem is InstancedFishingPole fishingPole) {
+            fishingPole.OnKill.Hook?.Invoke(projectile, timeLeft);
         }
     }
 
     public override bool PreDraw(Projectile projectile, ref Color lightColor) {
         return (Main.player[projectile.owner].HeldItem.ModItem is InstancedFishingPole fishingPole) && fishingPole.PreDraw.Hook != null
-            ? fishingPole.PreDraw.Hook(projectile, lightColor)
+            ? fishingPole.PreDraw.Hook(projectile, ref lightColor)
             : true;
     }
 }
