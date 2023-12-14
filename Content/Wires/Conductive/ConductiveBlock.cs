@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Tiles;
+﻿using Aequus;
+using Aequus.Common.Tiles;
 using Aequus.Common.Tiles.Components;
 using Aequus.Core.Autoloading;
 using Aequus.Core.Graphics.Tiles;
@@ -14,7 +15,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Tiles.Conductive;
+namespace Aequus.Content.Wires.Conductive;
 
 [LegacyName("ConductiveBlockTile")]
 public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRenderer, ICustomPlaceSound, ITouchEffects, IAddRecipes {
@@ -51,25 +52,29 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
     public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
 
     public override void HitWire(int i, int j) {
-        ActivateEffect(i, j);
-        if (!Wiring.CheckMech(i, j, ConductiveSystem.PoweredLocation == Point.Zero ? ConductiveSystem.ActivationDelay : 0)) {
+        if (!Wiring.CheckMech(i, j, 60)) {
             return;
         }
+        ModContent.GetInstance<CircuitSystem>().HitCircuit(i, j);
+        //ActivateEffect(i, j);
+        //if (!Wiring.CheckMech(i, j, ConductiveSystem.PoweredLocation == Point.Zero ? ConductiveSystem.ActivationDelay : 0)) {
+        //    return;
+        //}
 
-        if (ConductiveSystem.PoweredLocation == Point.Zero) {
-            if (Main.netMode != NetmodeID.MultiplayerClient) {
-                Projectile.NewProjectile(new EntitySource_Wiring(i, j), new(i * 16f + 8f, j * 16f + 8f), Vector2.Zero, ModContent.ProjectileType<ConductiveProjectile>(), 20, 1f, Main.myPlayer);
-            }
+        //if (ConductiveSystem.PoweredLocation == Point.Zero) {
+        //    if (Main.netMode != NetmodeID.MultiplayerClient) {
+        //        Projectile.NewProjectile(new EntitySource_Wiring(i, j), new(i * 16f + 8f, j * 16f + 8f), Vector2.Zero, ModContent.ProjectileType<ConductiveProjectile>(), 20, 1f, Main.myPlayer);
+        //    }
 
-            var oldPoweredLocation = ConductiveSystem.PoweredLocation;
-            ConductiveSystem.PoweredLocation = new(i, j);
-            ConductiveSystem.PoweredLocation = oldPoweredLocation;
-            return;
-        }
+        //    var oldPoweredLocation = ConductiveSystem.PoweredLocation;
+        //    ConductiveSystem.PoweredLocation = new(i, j);
+        //    ConductiveSystem.PoweredLocation = oldPoweredLocation;
+        //    return;
+        //}
 
-        if (Main.tile[ConductiveSystem.PoweredLocation].TileType != Type) {
-            return;
-        }
+        //if (Main.tile[ConductiveSystem.PoweredLocation].TileType != Type) {
+        //    return;
+        //}
     }
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
@@ -134,7 +139,7 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
         var shockTexture = AequusTextures.BaseParticleTexture.Value;
         int amount = 12;
         for (int k = 0; k < amount; k++) {
-            float time = (Main.GlobalTimeWrappedHourly * fastRandom.NextFloat(1f, 5f)) % 3f;
+            float time = Main.GlobalTimeWrappedHourly * fastRandom.NextFloat(1f, 5f) % 3f;
             float vectorRotationWave = Main.GlobalTimeWrappedHourly * fastRandom.NextFloat(-1f, 1f);
             float rotation = fastRandom.NextFloat(MathHelper.TwoPi) + vectorRotationWave;
             float positionMagnitude = fastRandom.NextFloat(14f, 40f);

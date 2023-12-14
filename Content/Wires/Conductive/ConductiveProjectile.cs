@@ -7,7 +7,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Tiles.Conductive;
+namespace Aequus.Content.Wires.Conductive;
 
 public class ConductiveProjectile : ModProjectile {
     public override string Texture => AequusTextures.TemporaryBuffIcon;

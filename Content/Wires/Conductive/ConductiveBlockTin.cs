@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Tiles.Conductive;
+namespace Aequus.Content.Wires.Conductive;
 
 [LegacyName("ConductiveBlockTileTin")]
 public class ConductiveBlockTin : ConductiveBlock {

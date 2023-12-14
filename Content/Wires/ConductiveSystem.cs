@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Tiles.Conductive;
+namespace Aequus.Content.Wires;
 public class ConductiveSystem : ModSystem {
     public class ActivationEffect {
         public float electricAnimation;
@@ -49,6 +49,7 @@ public class ConductiveSystem : ModSystem {
     }
 
     public override void PreUpdateEntities() {
+        ModContent.GetInstance<CircuitSystem>().UpdateCircuits();
         if (ActivationPoints.Count < 0) {
             return;
         }

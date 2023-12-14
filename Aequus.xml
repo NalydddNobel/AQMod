@@ -1611,18 +1611,6 @@
         <member name="F:Aequus.AequusTextures.OmegaStaritePetItem">
             <summary>Full Path: Content/Pets/OmegaStarite/OmegaStaritePetItem</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.ConductiveBlock">
-            <summary>Full Path: Content/Tiles/Conductive/ConductiveBlock</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ConductiveBlockItem">
-            <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ConductiveBlockTin">
-            <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTin</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ConductiveBlockTinItem">
-            <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTinItem</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.TrashCompactor">
             <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor</summary>
         </member>
@@ -1700,6 +1688,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.NameTagBlip">
             <summary>Full Path: Content/UI/Map/NameTagBlip</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductiveBlock">
+            <summary>Full Path: Content/Wires/Conductive/ConductiveBlock</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductiveBlockItem">
+            <summary>Full Path: Content/Wires/Conductive/ConductiveBlockItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductiveBlockTin">
+            <summary>Full Path: Content/Wires/Conductive/ConductiveBlockTin</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductiveBlockTinItem">
+            <summary>Full Path: Content/Wires/Conductive/ConductiveBlockTinItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.icon">
             <summary>Full Path: icon</summary>
