@@ -35,6 +35,8 @@ public partial class AequusPlayer {
 
     public BackpackData[] backpacks;
 
+    public bool forceUseItem;
+
     [ResetEffects]
     public Item goldenKey;
     [ResetEffects]
@@ -101,6 +103,15 @@ public partial class AequusPlayer {
             returnValue |= aequusUI.HoverSlot(inventory, context, slot);
         }
         return returnValue;
+    }
+
+    private void SetControls_ForceItemUse() {
+        if (forceUseItem) {
+            Player.controlUseItem = true;
+            Player.releaseUseItem = true;
+            Player.itemAnimation = 0;
+        }
+        forceUseItem = false;
     }
 
     public bool UseGoldenKey(Item[] inv, int slot) {

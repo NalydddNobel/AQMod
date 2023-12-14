@@ -1,4 +1,4 @@
 ﻿AnyQuestFish.DisplayName: 任意任务鱼
-// AnyTrash.DisplayName: Any Fishing Junk
+AnyTrash.DisplayName: 任意鱼获垃圾
 AnyPaint.DisplayName: 任意画作
 Shellphone.DisplayName: "{$ItemName.ShellphoneDummy}"

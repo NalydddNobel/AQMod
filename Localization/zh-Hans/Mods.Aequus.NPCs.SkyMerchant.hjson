@@ -22,5 +22,5 @@ Dialogue: {
 
 Interface: {
 	RenameButton: 重命名物品
-	// PlaceHere: Place an item here to rename
+	PlaceHere: 在此处放置物品以重命名
 }
