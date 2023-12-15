@@ -1,12 +1,13 @@
 ﻿using Aequus.Common.Tiles;
+using Aequus.Content.Wires.Conductive;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Wires.Conductive;
+namespace Aequus.Content.Wires;
 
-public class ConductiveBlockLoader : ModSystem {
+public class ConductiveLoader : ModSystem {
     public override void Load() {
         var conductiveBlock = Add("Copper", ItemID.CopperBar, new(183, 88, 25), DustID.Copper);
         ModTypeLookup<ModTile>.RegisterLegacyNames(conductiveBlock, "ConductiveBlock", "ConductiveBlockTile");

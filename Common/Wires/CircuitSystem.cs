@@ -1,5 +1,6 @@
-﻿using Aequus.Common.Wires;
+﻿using Aequus.Content.Wires;
 using Aequus.Content.Wires.Conductive;
+using Aequus.Core.Graphics.Animations;
 using Aequus.Core.Networking;
 using Microsoft.Xna.Framework;
 using System;
@@ -10,7 +11,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Wires;
+namespace Aequus.Common.Wires;
 
 public class CircuitSystem : ModSystem {
     public readonly Queue<ElectricCircuit> ActiveCircuits = new(64);
@@ -140,7 +141,9 @@ public class CircuitSystem : ModSystem {
     }
 
     private void PlaceCircuitStep(ElectricCircuit circuit) {
-        LegacyConductiveSystem.ActivationPoints[circuit.Position] = new() { timeActive = 0, intensity = (1f - Math.Max(circuit.SplitCount / (float)MaxSplits, circuit.TurnCounts / (float)MaxTurns)) * 0.9f + 0.1f, };
+        var animation = AnimationSystem.GetValueOrAddDefault<ConductiveAnimation>(circuit.Position);
+        animation.timeActive = 0;
+        animation.intensity = (1f - Math.Max(circuit.SplitCount / (float)MaxSplits, circuit.TurnCounts / (float)MaxTurns)) * 0.9f + 0.1f;
 
         if (NextCircuits.TryGetValue(circuit.Position, out var competingCircuit)) {
             if (competingCircuit.SplitCount < circuit.SplitCount) {
@@ -174,7 +177,7 @@ public class CircuitSystem : ModSystem {
             }
         }
 
-        LegacyConductiveSystem.ActivationPoints[new(x, y)] = new() { timeActive = 0, intensity = 1f, };
+        AnimationSystem.GetValueOrAddDefault<ConductiveAnimation>(x, y).timeActive = 0;
         for (byte i = 0; i < ElectricCircuit.DirectionCount; i++) {
             ActiveCircuits.Enqueue(new(new(x, y), i));
         }
@@ -196,7 +199,7 @@ public class CircuitSystem : ModSystem {
         public override void Receive(BinaryReader reader, int sender) {
             var x = reader.ReadUInt16();
             var y = reader.ReadUInt16();
-            ModContent.GetInstance<CircuitSystem>().HitCircuit(x, y);
+            ModContent.GetInstance<CircuitSystem>().HitCircuit(x, y, quiet: true);
 
             if (Main.netMode == NetmodeID.Server) {
                 Send(x, y);

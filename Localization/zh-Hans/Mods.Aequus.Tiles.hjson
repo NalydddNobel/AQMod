@@ -1,7 +1,7 @@
-ConductiveBlock: {
-	MapEntry: 铜导线
-	ItemDisplayName: "{$Tiles.ConductiveBlock.MapEntry}"
-	ItemTooltip: 作为线路, 必须使用电或电线激活.
+ConductiveBlockCopper: {
+	// MapEntry: Copper Conductor
+	// ItemDisplayName: "{$Tiles.ConductiveBlockCopper.MapEntry}"
+	// ItemTooltip: Can activate mechanisms using electricty
 }
 
 ConductiveBlockTin: {
@@ -53,10 +53,4 @@ ObsidianCrabPot: {
 		使用熔岩鱼饵以在熔岩中捕鱼
 		{$Tiles.CrabPot.Copper.ItemTooltip}
 		'''
-}
-
-ConductiveBlockCopper: {
-	// MapEntry: Conductive Block Copper
-	// ItemDisplayName: Mods.Aequus.Tiles.ConductiveBlockCopper.ItemDisplayName
-	// ItemTooltip: ""
 }

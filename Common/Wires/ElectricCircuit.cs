@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Aequus.Content.Wires;
+namespace Aequus.Common.Wires;
 
 public readonly record struct ElectricCircuit(Point Position, byte Direction, byte SplitCount = 0, byte TurnCounts = 0) {
     public const byte Right = 0;

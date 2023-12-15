@@ -1,7 +1,7 @@
-ConductiveBlock: {
-	MapEntry: Conductor de Cobre
-	ItemDisplayName: "{$Tiles.ConductiveBlock.MapEntry}"
-	ItemTooltip: Se comporta como cables, puede ser activado con electricidad o con un cable
+ConductiveBlockCopper: {
+	// MapEntry: Copper Conductor
+	// ItemDisplayName: "{$Tiles.ConductiveBlockCopper.MapEntry}"
+	// ItemTooltip: Can activate mechanisms using electricty
 }
 
 ConductiveBlockTin: {
@@ -53,10 +53,4 @@ ObsidianCrabPot: {
 		Usa carnada de lava para atrapar peces en la lava
 		{$Tiles.CrabPot.Copper.ItemTooltip}
 		'''
-}
-
-ConductiveBlockCopper: {
-	// MapEntry: Conductive Block Copper
-	// ItemDisplayName: Mods.Aequus.Tiles.ConductiveBlockCopper.ItemDisplayName
-	// ItemTooltip: ""
 }
