@@ -2,12 +2,12 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Equipment.Accessories.Movement.SlimyBlueBalloon;
+namespace Aequus.Content.Equipment.Accessories.Balloons;
 
 [AutoloadEquip(EquipType.Balloon)]
 public class SlimyBlueBalloon : ModItem {
-    public static float MaxFallSpeedMultiplier = 0.5f;
-    public static float FallGravityMultiplier = 0.5f;
+    public static float MaxFallSpeedMultiplier { get; set; } = 0.5f;
+    public static float FallGravityMultiplier { get; set; } = 0.5f;
 
     public override void SetDefaults() {
         Item.DefaultToAccessory();

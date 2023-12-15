@@ -982,7 +982,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 242)</summary>
+            <summary>(Total Textures: 244)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1275,6 +1275,18 @@
         <member name="F:Aequus.AequusTextures.ScavengerLootBag_Outline">
             <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.PurpleBalloon">
+            <summary>Full Path: Content/Equipment/Accessories/Balloons/PurpleBalloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PurpleBalloon_Balloon">
+            <summary>Full Path: Content/Equipment/Accessories/Balloons/PurpleBalloon_Balloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SlimyBlueBalloon">
+            <summary>Full Path: Content/Equipment/Accessories/Balloons/SlimyBlueBalloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SlimyBlueBalloon_Balloon">
+            <summary>Full Path: Content/Equipment/Accessories/Balloons/SlimyBlueBalloon_Balloon</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.CosmicChest">
             <summary>Full Path: Content/Equipment/Accessories/GrandReward/CosmicChest</summary>
         </member>
@@ -1319,12 +1331,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.FlashwayShield_Shield">
             <summary>Full Path: Content/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield_Shield</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SlimyBlueBalloon">
-            <summary>Full Path: Content/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SlimyBlueBalloon_Balloon">
-            <summary>Full Path: Content/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon_Balloon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.WeightedHorseshoe">
             <summary>Full Path: Content/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoe</summary>

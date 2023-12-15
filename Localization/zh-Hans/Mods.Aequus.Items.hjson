@@ -57,6 +57,15 @@ FlashwayShield: {
 		'''
 }
 
+PurpleBalloon: {
+	// DisplayName: Matte Purple Balloon
+	/* Tooltip:
+		'''
+		{$ItemTooltip.ShinyRedBalloon}
+		{$SlimyBlueBalloon.Tooltip}
+		''' */
+}
+
 SlimyBlueBalloon: {
 	DisplayName: 黏糊糊的蓝色气球
 	Tooltip:

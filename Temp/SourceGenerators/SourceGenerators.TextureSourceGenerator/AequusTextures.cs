@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 242)</summary>
+/// <summary>(Total Textures: 244)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -201,6 +201,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ScavengerLootBag = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline</summary>
     public static readonly RequestCache<Texture2D> ScavengerLootBag_Outline = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline");
+    /// <summary>Full Path: Content/Equipment/Accessories/Balloons/PurpleBalloon</summary>
+    public static readonly RequestCache<Texture2D> PurpleBalloon = new("Aequus/Content/Equipment/Accessories/Balloons/PurpleBalloon");
+    /// <summary>Full Path: Content/Equipment/Accessories/Balloons/PurpleBalloon_Balloon</summary>
+    public static readonly RequestCache<Texture2D> PurpleBalloon_Balloon = new("Aequus/Content/Equipment/Accessories/Balloons/PurpleBalloon_Balloon");
+    /// <summary>Full Path: Content/Equipment/Accessories/Balloons/SlimyBlueBalloon</summary>
+    public static readonly RequestCache<Texture2D> SlimyBlueBalloon = new("Aequus/Content/Equipment/Accessories/Balloons/SlimyBlueBalloon");
+    /// <summary>Full Path: Content/Equipment/Accessories/Balloons/SlimyBlueBalloon_Balloon</summary>
+    public static readonly RequestCache<Texture2D> SlimyBlueBalloon_Balloon = new("Aequus/Content/Equipment/Accessories/Balloons/SlimyBlueBalloon_Balloon");
     /// <summary>Full Path: Content/Equipment/Accessories/GrandReward/CosmicChest</summary>
     public static readonly RequestCache<Texture2D> CosmicChest = new("Aequus/Content/Equipment/Accessories/GrandReward/CosmicChest");
     /// <summary>Full Path: Content/Equipment/Accessories/GrandReward/GrandReward</summary>
@@ -231,10 +239,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> FlashwayShield = new("Aequus/Content/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield");
     /// <summary>Full Path: Content/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield_Shield</summary>
     public static readonly RequestCache<Texture2D> FlashwayShield_Shield = new("Aequus/Content/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield_Shield");
-    /// <summary>Full Path: Content/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon</summary>
-    public static readonly RequestCache<Texture2D> SlimyBlueBalloon = new("Aequus/Content/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon");
-    /// <summary>Full Path: Content/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon_Balloon</summary>
-    public static readonly RequestCache<Texture2D> SlimyBlueBalloon_Balloon = new("Aequus/Content/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon_Balloon");
     /// <summary>Full Path: Content/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoe</summary>
     public static readonly RequestCache<Texture2D> WeightedHorseshoe = new("Aequus/Content/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoe");
     /// <summary>Full Path: Content/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
