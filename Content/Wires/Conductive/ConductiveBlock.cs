@@ -1,48 +1,34 @@
 ﻿using Aequus;
 using Aequus.Common.Tiles;
 using Aequus.Common.Tiles.Components;
-using Aequus.Core.Autoloading;
 using Aequus.Core.Graphics.Tiles;
-using Aequus.Core.Networking;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.IO;
 using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Wires.Conductive;
 
-[LegacyName("ConductiveBlockTile")]
-public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRenderer, ICustomPlaceSound, ITouchEffects, IAddRecipes {
-    public virtual int BarItem => ItemID.CopperBar;
-    public virtual Color MapColor => new(183, 88, 25);
+[Autoload(false)]
+internal class ConductiveBlock : InstancedTile, ISpecialTileRenderer, ICustomPlaceSound, ITouchEffects {
+    private Color _mapColor;
+    private int _dustType;
 
-    public override void Load() {
-        Mod.AddContent(new InstancedTileItem(this, value: Item.buyPrice(silver: 1)).WithRecipe((m) => {
-            m.CreateRecipe()
-                .AddIngredient(BarItem, 1)
-                .AddTile(TileID.Furnaces)
-                .Register();
-        }));
+    public ConductiveBlock(string name, Color mapColor, int dustType) : base($"ConductiveBlock{name}", $"{typeof(ConductiveBlock).NamespaceFilePath()}/ConductiveBlock{name}") {
+        _mapColor = mapColor;
+        _dustType = dustType;
     }
 
     public override void SetStaticDefaults() {
         Main.tileSolid[Type] = true;
         Main.tileBlockLight[Type] = true;
-        DustType = DustID.Copper;
+        DustType = _dustType;
         HitSound = AequusSounds.ConductiveBlock;
-        AddMapEntry(MapColor, CreateMapEntryName());
-    }
-
-    public void AddRecipes(Aequus aequus) {
-        //foreach (var tileId in TileSets.Mechanical) {
-        //    Main.tileMerge[Type][tileId] = true;
-        //}
+        AddMapEntry(_mapColor, CreateMapEntryName());
     }
 
     public override bool Slope(int i, int j) {
@@ -91,21 +77,6 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
         }
         return false;
     }
-
-    public void Send(int i, int j, BinaryWriter binaryWriter) {
-    }
-
-    public void Receive(int i, int j, BinaryReader binaryReader, int sender) {
-    }
-
-    //private static void ActivateEffect(int i, int j) {
-    //    if (Main.netMode == NetmodeID.Server) {
-    //        PacketSystem.Get<TileInteractionPacket>().Send(i, j);
-    //    }
-    //    else if (Main.netMode == NetmodeID.SinglePlayer) {
-    //        LegacyConductiveSystem.ActivationEffect.Activate(i, j, -LegacyConductiveSystem.ActivationEffect.GetDistance(i, j));
-    //    }
-    //}
 
     public void Render(int i, int j, byte layer) {
         if (!LegacyConductiveSystem.ActivationPoints.TryGetValue(new(i, j), out var effect)) {

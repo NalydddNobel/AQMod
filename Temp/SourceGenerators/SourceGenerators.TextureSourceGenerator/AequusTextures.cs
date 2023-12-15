@@ -477,10 +477,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> RenameBackIcon = new("Aequus/Content/TownNPCs/SkyMerchant/UI/RenameBackIcon");
     /// <summary>Full Path: Content/UI/Map/NameTagBlip</summary>
     public static readonly RequestCache<Texture2D> NameTagBlip = new("Aequus/Content/UI/Map/NameTagBlip");
-    /// <summary>Full Path: Content/Wires/Conductive/ConductiveBlock</summary>
-    public static readonly RequestCache<Texture2D> ConductiveBlock = new("Aequus/Content/Wires/Conductive/ConductiveBlock");
-    /// <summary>Full Path: Content/Wires/Conductive/ConductiveBlockItem</summary>
-    public static readonly RequestCache<Texture2D> ConductiveBlockItem = new("Aequus/Content/Wires/Conductive/ConductiveBlockItem");
+    /// <summary>Full Path: Content/Wires/Conductive/ConductiveBlockCopper</summary>
+    public static readonly RequestCache<Texture2D> ConductiveBlockCopper = new("Aequus/Content/Wires/Conductive/ConductiveBlockCopper");
+    /// <summary>Full Path: Content/Wires/Conductive/ConductiveBlockCopperItem</summary>
+    public static readonly RequestCache<Texture2D> ConductiveBlockCopperItem = new("Aequus/Content/Wires/Conductive/ConductiveBlockCopperItem");
     /// <summary>Full Path: Content/Wires/Conductive/ConductiveBlockTin</summary>
     public static readonly RequestCache<Texture2D> ConductiveBlockTin = new("Aequus/Content/Wires/Conductive/ConductiveBlockTin");
     /// <summary>Full Path: Content/Wires/Conductive/ConductiveBlockTinItem</summary>

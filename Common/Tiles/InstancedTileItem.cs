@@ -28,6 +28,7 @@ internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
     /// <param name="dropItem">Whether or not the <paramref name="modTile"/> should drop this item.</param>
     /// <param name="rarity">Item rarity.</param>
     /// <param name="value">Item value.</param>
+    /// <param name="researchSacrificeCount">Research count. Defaults to 1 or 100 depending on if the tile is <see cref="Main.tileFrameImportant"/>.</param>
     public InstancedTileItem(ModTile modTile, int style = 0, string nameSuffix = "", bool dropItem = true, int rarity = ItemRarityID.White, int value = 0, int? researchSacrificeCount = null) : base(modTile.Name + nameSuffix, modTile.Texture + nameSuffix + "Item") {
         _modTile = modTile;
         _dropItem = dropItem;

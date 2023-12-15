@@ -1,13 +1,13 @@
-ConductiveBlock: {
+ConductiveBlockCopper: {
 	MapEntry: Copper Conductor
-	ItemDisplayName: "{$Tiles.ConductiveBlock.MapEntry}"
-	ItemTooltip: Acts as wiring, must be activated with electricity or wire
+	ItemDisplayName: "{$Tiles.ConductiveBlockCopper.MapEntry}"
+	ItemTooltip: Can activate mechanisms using electricty
 }
 
 ConductiveBlockTin: {
 	MapEntry: Tin Conductor
 	ItemDisplayName: "{$Tiles.ConductiveBlockTin.MapEntry}"
-	ItemTooltip: "{$Tiles.ConductiveBlock.ItemTooltip}"
+	ItemTooltip: "{$Tiles.ConductiveBlockCopper.ItemTooltip}"
 }
 
 CrabPot: {

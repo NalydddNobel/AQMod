@@ -54,3 +54,9 @@ ObsidianCrabPot: {
 		{$Tiles.CrabPot.Copper.ItemTooltip}
 		'''
 }
+
+ConductiveBlockCopper: {
+	// MapEntry: Conductive Block Copper
+	// ItemDisplayName: Mods.Aequus.Tiles.ConductiveBlockCopper.ItemDisplayName
+	// ItemTooltip: ""
+}

@@ -6,7 +6,6 @@ SliceOnHitEffect.DisplayName: "{$Items.Slice.DisplayName}"
 SliceProj.DisplayName: "{$Items.Slice.DisplayName}"
 FurystarProj.DisplayName: "{$Items.Furystar.DisplayName}"
 FurystarBulletProj.DisplayName: "{$Items.Furystar.DisplayName}"
-ConductiveProjectile.DisplayName: Electricity
 BellowsProj.DisplayName: "{$Items.Bellows.DisplayName}"
 PumpinatorProj.DisplayName: "{$Items.Pumpinator.DisplayName}"
 SkyMerchantProjectile.DisplayName: "{$NPCs.SkyMerchant.DisplayName}"
