@@ -82,7 +82,7 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
         var drawCoordinates = (new Vector2(i * 16f, j * 16f) - Main.screenPosition + TileHelper.DrawOffset).Floor();
         var frame = new Rectangle(tile.TileFrameX, tile.TileFrameY, 16, 16);
         var color = Lighting.GetColor(i, j);
-        if (ConductiveSystem.ActivationPoints.TryGetValue(new(i, j), out var effect)) {
+        if (LegacyConductiveSystem.ActivationPoints.TryGetValue(new(i, j), out var effect)) {
             spriteBatch.Draw(TextureAssets.Tile[Type].Value, drawCoordinates, frame, color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             SpecialTileRenderer.AddSolid(i, j, TileRenderLayerID.PostDrawLiquids);
         }
@@ -93,25 +93,22 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
     }
 
     public void Send(int i, int j, BinaryWriter binaryWriter) {
-        binaryWriter.Write(-ConductiveSystem.ActivationEffect.GetDistance(i, j));
     }
 
     public void Receive(int i, int j, BinaryReader binaryReader, int sender) {
-        float distance = binaryReader.ReadSingle();
-        ConductiveSystem.ActivationEffect.Activate(i, j, distance);
     }
 
-    private static void ActivateEffect(int i, int j) {
-        if (Main.netMode == NetmodeID.Server) {
-            PacketSystem.Get<TileInteractionPacket>().Send(i, j);
-        }
-        else if (Main.netMode == NetmodeID.SinglePlayer) {
-            ConductiveSystem.ActivationEffect.Activate(i, j, -ConductiveSystem.ActivationEffect.GetDistance(i, j));
-        }
-    }
+    //private static void ActivateEffect(int i, int j) {
+    //    if (Main.netMode == NetmodeID.Server) {
+    //        PacketSystem.Get<TileInteractionPacket>().Send(i, j);
+    //    }
+    //    else if (Main.netMode == NetmodeID.SinglePlayer) {
+    //        LegacyConductiveSystem.ActivationEffect.Activate(i, j, -LegacyConductiveSystem.ActivationEffect.GetDistance(i, j));
+    //    }
+    //}
 
     public void Render(int i, int j, byte layer) {
-        if (!ConductiveSystem.ActivationPoints.TryGetValue(new(i, j), out var effect)) {
+        if (!LegacyConductiveSystem.ActivationPoints.TryGetValue(new(i, j), out var effect)) {
             return;
         }
 
@@ -121,8 +118,8 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
         var electricColor = new Color(255, 210, 120, 0) * effect.electricAnimation;
         var fastRandom = Helper.RandomTileCoordinates(i, j);
         float globalIntensity = effect.intensity;
-        for (int k = 0; k < ConductiveSystem.ElectricOffsets.Length; k++) {
-            Main.spriteBatch.Draw(TextureAssets.Tile[Type].Value, (drawCoordinates + ConductiveSystem.ElectricOffsets[k] * effect.electricAnimation).Floor(), frame, electricColor * 0.5f * globalIntensity, 0f, new Vector2(8f), 1f, SpriteEffects.None, 0f);
+        for (int k = 0; k < LegacyConductiveSystem.ElectricOffsets.Length; k++) {
+            Main.spriteBatch.Draw(TextureAssets.Tile[Type].Value, (drawCoordinates + LegacyConductiveSystem.ElectricOffsets[k] * effect.electricAnimation).Floor(), frame, electricColor * 0.5f * globalIntensity, 0f, new Vector2(8f), 1f, SpriteEffects.None, 0f);
         }
 
         if (Aequus.GameWorldActive && effect.electricAnimation > 0.1f && Main.rand.NextBool(10)) {
@@ -172,7 +169,7 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
     }
 
     public void Touch(int i, int j, Player player, AequusPlayer aequusPlayer) {
-        if (!ConductiveSystem.ActivationPoints.TryGetValue(new(i, j), out var effect) || effect.electricAnimation < 0.5f) {
+        if (!LegacyConductiveSystem.ActivationPoints.TryGetValue(new(i, j), out var effect) || effect.electricAnimation < 0.5f) {
             return;
         }
 

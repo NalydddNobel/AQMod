@@ -2,7 +2,7 @@
 
 namespace Aequus.Content.Wires;
 
-public readonly record struct ElectricCircuit(Point Position, byte Direction, byte SplitCount = 0) {
+public readonly record struct ElectricCircuit(Point Position, byte Direction, byte SplitCount = 0, byte TurnCounts = 0) {
     public const byte Right = 0;
     public const byte Left = 1;
     public const byte Up = 2;
@@ -10,7 +10,14 @@ public readonly record struct ElectricCircuit(Point Position, byte Direction, by
     public const byte Dead = 4;
     public const byte DirectionCount = 4;
 
-    public static readonly Point[] DirectionIds = new Point[] {
+    public Point PosForward => Position + DirectionValues[Direction];
+    public Point PosLeft => Position + DirectionValues[DirLeft];
+    public Point PosRight => Position + DirectionValues[DirRight];
+
+    public byte DirLeft => LeftTransform[Direction];
+    public byte DirRight => RightTransform[Direction];
+
+    public static readonly Point[] DirectionValues = new Point[] {
         new(1, 0),
         new(-1, 0),
         new(0, 1),

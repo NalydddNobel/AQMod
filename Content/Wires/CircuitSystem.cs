@@ -1,10 +1,13 @@
 ﻿using Aequus.Common.Wires;
 using Aequus.Content.Wires.Conductive;
+using Aequus.Core.Networking;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Wires;
@@ -15,42 +18,27 @@ public class CircuitSystem : ModSystem {
 
     private static readonly int[,] _wireDataCache = new int[5, 5];
 
-    public static int MaxSplits { get; set; } = 12;
+    public int MaxSplits { get; set; } = 12;
+    public int MaxTurns { get; set; } = 60;
 
-    private void CheckCircuitDirection(ElectricCircuit circuit, ushort wantedTileType, byte direction) {
-        var directionPosition = circuit.Position + ElectricCircuit.DirectionIds[direction];
-        var nextTile = Framing.GetTileSafely(directionPosition);
-        if (nextTile.TileType == wantedTileType) {
-            ConductiveSystem.ActivationPoints[directionPosition] = new() { timeActive = 0, intensity = 1f - (circuit.SplitCount / (MaxSplits * 2)), };
+    public float MechCooldownMultiplier { get; set; } = 0.5f;
 
-            if (NextCircuits.TryGetValue(directionPosition, out var competingCircuit)) {
-                if (competingCircuit.SplitCount < circuit.SplitCount) {
-                    return;
-                }
+    public float TickRate { get; set; } = 0.5f;
 
-                if (circuit.SplitCount > 2 && competingCircuit.SplitCount == circuit.SplitCount) {
-                    // Self Collision
-                    NextCircuits[directionPosition] = circuit with { Direction = ElectricCircuit.Dead };
-                    return;
-                }
-            }
-
-            if (circuit.Direction == direction) {
-                NextCircuits[directionPosition] = new(directionPosition, direction, circuit.SplitCount);
-            }
-            else if (circuit.SplitCount < MaxSplits) {
-                NextCircuits[directionPosition] = new(directionPosition, direction, (byte)Math.Min(circuit.SplitCount + 1, 100));
-            }
-        }
-    }
+    private float _tick;
 
     public void UpdateCircuits() {
-        if (Main.GameUpdateCount % 2 != 0) {
-            return;
+        _tick += TickRate;
+
+        WiringSystem.MechCooldownMultiplier = MechCooldownMultiplier;
+        while (_tick > 1f) {
+            _tick -= 1f;
+            UpdateCircuitsInner();
         }
+        WiringSystem.MechCooldownMultiplier = 1f;
+    }
 
-        WiringSystem.MechCooldownMultiplier = 0.05f;
-
+    private void UpdateCircuitsInner() {
         while (ActiveCircuits.TryDequeue(out var circuit)) {
             if (!WorldGen.InWorld(circuit.Position.X, circuit.Position.Y, 10)) {
                 continue;
@@ -62,9 +50,8 @@ public class CircuitSystem : ModSystem {
             }
 
             HitWires(circuit.Position.X, circuit.Position.Y);
-            CheckCircuitDirection(circuit, tile, circuit.Direction);
-            CheckCircuitDirection(circuit, tile, ElectricCircuit.LeftTransform[circuit.Direction]);
-            CheckCircuitDirection(circuit, tile, ElectricCircuit.RightTransform[circuit.Direction]);
+
+            StepCircuit(tile, circuit);
         }
 
         ActiveCircuits.EnsureCapacity(NextCircuits.Count);
@@ -72,11 +59,13 @@ public class CircuitSystem : ModSystem {
             ActiveCircuits.Enqueue(c.Value);
         }
         NextCircuits.Clear();
-
-        WiringSystem.MechCooldownMultiplier = 1f;
     }
 
     public void HitWires(int x, int y) {
+        if (Main.netMode == NetmodeID.MultiplayerClient) {
+            return;
+        }
+
         for (int i = -2; i < 3; i++) {
             for (int j = -2; j < 3; j++) {
                 var tile = Framing.GetTileSafely(x + i, y + j);
@@ -111,10 +100,107 @@ public class CircuitSystem : ModSystem {
         }
     }
 
-    public void HitCircuit(int x, int y) {
-        ConductiveSystem.ActivationPoints[new(x, y)] = new() { timeActive = 0, intensity = 1f, };
+    private void StepCircuit(ushort tile, in ElectricCircuit circuit) {
+        var forward = circuit.PosForward;
+        // If you can move forward, just go forward
+        if (CanMoveTo(tile, Main.tile[forward])) {
+            PlaceCircuitStep(circuit with { Position = forward, });
+            return;
+        }
+
+        // Otherwise we need to turn, dont continue if you've turned too much (possible infinite loop)
+        if (circuit.TurnCounts > MaxTurns) {
+            return;
+        }
+
+        var left = circuit.PosLeft;
+        var right = circuit.PosRight;
+        bool moveLeft = CanMoveTo(tile, Main.tile[left]);
+        bool moveRight = CanMoveTo(tile, Main.tile[right]);
+
+        var outputCircuit = circuit with { TurnCounts = (byte)(circuit.TurnCounts + 1) };
+
+        // If we can turn both directions, split
+        if (moveLeft && moveRight) {
+            if (circuit.SplitCount < MaxSplits) {
+                outputCircuit = outputCircuit with { SplitCount = (byte)(outputCircuit.SplitCount + 1) };
+                PlaceCircuitStep(outputCircuit with { Position = left, Direction = outputCircuit.DirLeft, });
+                PlaceCircuitStep(outputCircuit with { Position = right, Direction = outputCircuit.DirRight, });
+            }
+        }
+        // Otherwise turn in any potential direction
+        else if (moveLeft) {
+            PlaceCircuitStep(outputCircuit with { Position = left, Direction = outputCircuit.DirLeft, });
+        }
+        else if (moveRight) {
+            PlaceCircuitStep(outputCircuit with { Position = right, Direction = outputCircuit.DirRight, });
+        }
+
+        // Current dies if it reaches a dead end without any conductors to the left or right
+    }
+
+    private void PlaceCircuitStep(ElectricCircuit circuit) {
+        LegacyConductiveSystem.ActivationPoints[circuit.Position] = new() { timeActive = 0, intensity = (1f - Math.Max(circuit.SplitCount / (float)MaxSplits, circuit.TurnCounts / (float)MaxTurns)) * 0.9f + 0.1f, };
+
+        if (NextCircuits.TryGetValue(circuit.Position, out var competingCircuit)) {
+            if (competingCircuit.SplitCount < circuit.SplitCount) {
+                return;
+            }
+
+            if (circuit.SplitCount > 2 && competingCircuit.SplitCount == circuit.SplitCount) {
+                // Collision
+                NextCircuits[circuit.Position] = circuit with { Direction = ElectricCircuit.Dead };
+                return;
+            }
+        }
+
+        NextCircuits[circuit.Position] = circuit;
+    }
+
+    private static bool CanMoveTo(ushort wantedTile, Tile nextTile) {
+        return wantedTile == nextTile.TileType;
+    }
+
+    public override void PreUpdateEntities() {
+        UpdateCircuits();
+    }
+
+    public void HitCircuit(int x, int y, bool quiet = false) {
+        if (!quiet && Main.netMode != NetmodeID.SinglePlayer) {
+            PacketSystem.Get<HitCircuitPacket>().Send(x, y);
+
+            if (Main.netMode == NetmodeID.MultiplayerClient) {
+                return;
+            }
+        }
+
+        LegacyConductiveSystem.ActivationPoints[new(x, y)] = new() { timeActive = 0, intensity = 1f, };
         for (byte i = 0; i < ElectricCircuit.DirectionCount; i++) {
             ActiveCircuits.Enqueue(new(new(x, y), i));
+        }
+    }
+
+    public override void ClearWorld() {
+        NextCircuits.Clear();
+        ActiveCircuits.Clear();
+    }
+
+    public class HitCircuitPacket : PacketHandler {
+        public void Send(int x, int y) {
+            var packet = GetPacket();
+            packet.Write((ushort)x);
+            packet.Write((ushort)y);
+            packet.Send();
+        }
+
+        public override void Receive(BinaryReader reader, int sender) {
+            var x = reader.ReadUInt16();
+            var y = reader.ReadUInt16();
+            ModContent.GetInstance<CircuitSystem>().HitCircuit(x, y);
+
+            if (Main.netMode == NetmodeID.Server) {
+                Send(x, y);
+            }
         }
     }
 }

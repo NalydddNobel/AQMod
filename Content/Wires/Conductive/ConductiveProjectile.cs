@@ -22,14 +22,14 @@ public class ConductiveProjectile : ModProjectile {
         Projectile.SetDefaultNoInteractions();
         Projectile.width = 16;
         Projectile.height = 16;
-        Projectile.timeLeft = ConductiveSystem.ActivationDelay / 2;
-        _wireDataCache = new int[ConductiveSystem.WireMax * 2, ConductiveSystem.WireMax * 2];
+        Projectile.timeLeft = LegacyConductiveSystem.ActivationDelay / 2;
+        _wireDataCache = new int[LegacyConductiveSystem.WireMax * 2, LegacyConductiveSystem.WireMax * 2];
         activationPoints = new();
     }
 
     private void RunConductiveAction(int i, int j, Action<int, int, int, int, Tile> action, int fluff = 0) {
-        for (int k = -ConductiveSystem.WireMax + fluff; k < ConductiveSystem.WireMax - fluff; k++) {
-            for (int l = -ConductiveSystem.WireMax + fluff; l < ConductiveSystem.WireMax - fluff; l++) {
+        for (int k = -LegacyConductiveSystem.WireMax + fluff; k < LegacyConductiveSystem.WireMax - fluff; k++) {
+            for (int l = -LegacyConductiveSystem.WireMax + fluff; l < LegacyConductiveSystem.WireMax - fluff; l++) {
                 int x = i + k;
                 int y = j + l;
                 if (!WorldGen.InWorld(x, y, 10)) {
@@ -43,11 +43,11 @@ public class ConductiveProjectile : ModProjectile {
     }
 
     private void FillWireCache(int i, int j, int k, int l, Tile tileCache) {
-        _wireDataCache[k + ConductiveSystem.WireMax, l + ConductiveSystem.WireMax] = tileCache.Get<TileWallWireStateData>().WireData;
+        _wireDataCache[k + LegacyConductiveSystem.WireMax, l + LegacyConductiveSystem.WireMax] = tileCache.Get<TileWallWireStateData>().WireData;
     }
 
     private void RepairOldWires(int i, int j, int k, int l, Tile tileCache) {
-        int bitPack = _wireDataCache[k + ConductiveSystem.WireMax, l + ConductiveSystem.WireMax];
+        int bitPack = _wireDataCache[k + LegacyConductiveSystem.WireMax, l + LegacyConductiveSystem.WireMax];
         tileCache.RedWire = TileDataPacking.Unpack(bitPack, 0, 1) > 0;
         tileCache.BlueWire = TileDataPacking.Unpack(bitPack, 1, 1) > 0;
         tileCache.GreenWire = TileDataPacking.Unpack(bitPack, 2, 1) > 0;
@@ -85,20 +85,20 @@ public class ConductiveProjectile : ModProjectile {
 
             float cooldownMultiplier = WiringSystem.MechCooldownMultiplier;
             WiringSystem.MechCooldownMultiplier = 0.5f;
-            ConductiveSystem.PoweredLocation = Projectile.Center.ToTileCoordinates();
+            LegacyConductiveSystem.PoweredLocation = Projectile.Center.ToTileCoordinates();
 
-            RunConductiveAction(ConductiveSystem.PoweredLocation.X, ConductiveSystem.PoweredLocation.Y, FillWireCache);
-            RunConductiveAction(ConductiveSystem.PoweredLocation.X, ConductiveSystem.PoweredLocation.Y, CreateTemporaryWires, fluff: 1);
+            RunConductiveAction(LegacyConductiveSystem.PoweredLocation.X, LegacyConductiveSystem.PoweredLocation.Y, FillWireCache);
+            RunConductiveAction(LegacyConductiveSystem.PoweredLocation.X, LegacyConductiveSystem.PoweredLocation.Y, CreateTemporaryWires, fluff: 1);
             try {
-                Wiring.TripWire(ConductiveSystem.PoweredLocation.X, ConductiveSystem.PoweredLocation.Y, 1, 1);
+                Wiring.TripWire(LegacyConductiveSystem.PoweredLocation.X, LegacyConductiveSystem.PoweredLocation.Y, 1, 1);
             }
             catch (Exception ex) {
                 Mod.Logger.Error(ex);
             }
-            RunConductiveAction(ConductiveSystem.PoweredLocation.X, ConductiveSystem.PoweredLocation.Y, RepairOldWires);
+            RunConductiveAction(LegacyConductiveSystem.PoweredLocation.X, LegacyConductiveSystem.PoweredLocation.Y, RepairOldWires);
 
             WiringSystem.MechCooldownMultiplier = cooldownMultiplier;
-            ConductiveSystem.PoweredLocation = Point.Zero;
+            LegacyConductiveSystem.PoweredLocation = Point.Zero;
         }
     }
 
