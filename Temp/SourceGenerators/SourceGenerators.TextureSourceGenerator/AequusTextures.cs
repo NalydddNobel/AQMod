@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 242)</summary>
+/// <summary>(Total Textures: 248)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -485,6 +485,18 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ConductiveBlockTin = new("Aequus/Content/Wires/Conductive/ConductiveBlockTin");
     /// <summary>Full Path: Content/Wires/Conductive/ConductiveBlockTinItem</summary>
     public static readonly RequestCache<Texture2D> ConductiveBlockTinItem = new("Aequus/Content/Wires/Conductive/ConductiveBlockTinItem");
+    /// <summary>Full Path: Content/Wires/Conductive/Switch/ConductiveSwitchCopper</summary>
+    public static readonly RequestCache<Texture2D> ConductiveSwitchCopper = new("Aequus/Content/Wires/Conductive/Switch/ConductiveSwitchCopper");
+    /// <summary>Full Path: Content/Wires/Conductive/Switch/ConductiveSwitchCopperItem</summary>
+    public static readonly RequestCache<Texture2D> ConductiveSwitchCopperItem = new("Aequus/Content/Wires/Conductive/Switch/ConductiveSwitchCopperItem");
+    /// <summary>Full Path: Content/Wires/Conductive/Switch/ConductiveSwitchCopper_Highlight</summary>
+    public static readonly RequestCache<Texture2D> ConductiveSwitchCopper_Highlight = new("Aequus/Content/Wires/Conductive/Switch/ConductiveSwitchCopper_Highlight");
+    /// <summary>Full Path: Content/Wires/Conductive/Switch/ConductiveSwitchTin</summary>
+    public static readonly RequestCache<Texture2D> ConductiveSwitchTin = new("Aequus/Content/Wires/Conductive/Switch/ConductiveSwitchTin");
+    /// <summary>Full Path: Content/Wires/Conductive/Switch/ConductiveSwitchTinItem</summary>
+    public static readonly RequestCache<Texture2D> ConductiveSwitchTinItem = new("Aequus/Content/Wires/Conductive/Switch/ConductiveSwitchTinItem");
+    /// <summary>Full Path: Content/Wires/Conductive/Switch/ConductiveSwitchTin_Highlight</summary>
+    public static readonly RequestCache<Texture2D> ConductiveSwitchTin_Highlight = new("Aequus/Content/Wires/Conductive/Switch/ConductiveSwitchTin_Highlight");
     /// <summary>Full Path: icon</summary>
     public static readonly RequestCache<Texture2D> icon = new("Aequus/icon");
     /// <summary>Full Path: icon_small</summary>

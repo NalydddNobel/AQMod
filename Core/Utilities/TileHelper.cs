@@ -125,27 +125,24 @@ public static class TileHelper {
         var tile = Framing.GetTileSafely(i, j);
         var obj = TileObjectData.GetTileData(tile.TileType, 0);
         int coordinateFullHeight = obj?.CoordinateFullHeight ?? 18;
-        switch (GetGemFramingAnchor(i, j, invalidTiles)) {
-            case TileAnchorDirection.Bottom: {
-                    tile.TileFrameY = (short)(WorldGen.genRand.Next(0, 3) * coordinateFullHeight);
-                }
-                break;
-            case TileAnchorDirection.Top: {
-                    tile.TileFrameY = (short)(WorldGen.genRand.Next(3, 6) * coordinateFullHeight);
-                }
-                break;
-            case TileAnchorDirection.Left: {
-                    tile.TileFrameY = (short)(WorldGen.genRand.Next(6, 9) * coordinateFullHeight);
-                }
-                break;
-            case TileAnchorDirection.Right: {
-                    tile.TileFrameY = (short)(WorldGen.genRand.Next(9, 12) * coordinateFullHeight);
-                }
-                break;
-            default:
-                WorldGen.KillTile(i, j);
-                break;
+        short gemFrame = GemFrame(GetGemFramingAnchor(i, j, invalidTiles));
+
+        if (gemFrame == -1) {
+            WorldGen.KillTile(i, j);
         }
+        else {
+            Main.tile[i, j].TileFrameY = (short)((gemFrame + WorldGen.genRand.Next(0, 3)) * coordinateFullHeight);
+        }
+    }
+
+    public static short GemFrame(TileAnchorDirection anchorDirection) {
+        return anchorDirection switch {
+            TileAnchorDirection.Bottom => 0,
+            TileAnchorDirection.Top => 1,
+            TileAnchorDirection.Left => 2,
+            TileAnchorDirection.Right => 3,
+            _ => -1
+        };
     }
 
     public static void CutTilesRectangle(Rectangle box, TileCuttingContext context, bool[] tileCutIgnore) {

@@ -141,9 +141,11 @@ public class CircuitSystem : ModSystem {
     }
 
     private void PlaceCircuitStep(ElectricCircuit circuit) {
-        var animation = AnimationSystem.GetValueOrAddDefault<ConductiveAnimation>(circuit.Position);
-        animation.timeActive = 0;
-        animation.intensity = (1f - Math.Max(circuit.SplitCount / (float)MaxSplits, circuit.TurnCounts / (float)MaxTurns)) * 0.9f + 0.1f;
+        if (Main.netMode != NetmodeID.Server) {
+            var animation = AnimationSystem.GetValueOrAddDefault<ConductiveAnimation>(circuit.Position);
+            animation.timeActive = 0;
+            animation.intensity = (1f - Math.Max(circuit.SplitCount / (float)MaxSplits, circuit.TurnCounts / (float)MaxTurns)) * 0.9f + 0.1f;
+        }
 
         if (NextCircuits.TryGetValue(circuit.Position, out var competingCircuit)) {
             if (competingCircuit.SplitCount < circuit.SplitCount) {
@@ -168,19 +170,29 @@ public class CircuitSystem : ModSystem {
         UpdateCircuits();
     }
 
-    public void HitCircuit(int x, int y, bool quiet = false) {
+    public bool HitCircuit(int x, int y, bool quiet = false) {
+        if (!CanMoveTo(Main.tile[x, y].TileType, Main.tile[x, y])) {
+            return false;
+        }
+
         if (!quiet && Main.netMode != NetmodeID.SinglePlayer) {
             PacketSystem.Get<HitCircuitPacket>().Send(x, y);
 
             if (Main.netMode == NetmodeID.MultiplayerClient) {
-                return;
+                return true;
             }
         }
 
-        AnimationSystem.GetValueOrAddDefault<ConductiveAnimation>(x, y).timeActive = 0;
+        if (Main.netMode != NetmodeID.Server) {
+            var animation = AnimationSystem.GetValueOrAddDefault<ConductiveAnimation>(x, y);
+            animation.timeActive = 0;
+            animation.intensity = 1f;
+        }
         for (byte i = 0; i < ElectricCircuit.DirectionCount; i++) {
             ActiveCircuits.Enqueue(new(new(x, y), i));
         }
+
+        return true;
     }
 
     public override void ClearWorld() {

@@ -983,7 +983,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 242)</summary>
+            <summary>(Total Textures: 248)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1701,6 +1701,24 @@
         </member>
         <member name="F:Aequus.AequusTextures.ConductiveBlockTinItem">
             <summary>Full Path: Content/Wires/Conductive/ConductiveBlockTinItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductiveSwitchCopper">
+            <summary>Full Path: Content/Wires/Conductive/Switch/ConductiveSwitchCopper</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductiveSwitchCopperItem">
+            <summary>Full Path: Content/Wires/Conductive/Switch/ConductiveSwitchCopperItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductiveSwitchCopper_Highlight">
+            <summary>Full Path: Content/Wires/Conductive/Switch/ConductiveSwitchCopper_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductiveSwitchTin">
+            <summary>Full Path: Content/Wires/Conductive/Switch/ConductiveSwitchTin</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductiveSwitchTinItem">
+            <summary>Full Path: Content/Wires/Conductive/Switch/ConductiveSwitchTinItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductiveSwitchTin_Highlight">
+            <summary>Full Path: Content/Wires/Conductive/Switch/ConductiveSwitchTin_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.icon">
             <summary>Full Path: icon</summary>

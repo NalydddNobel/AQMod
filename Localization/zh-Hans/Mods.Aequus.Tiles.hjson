@@ -1,7 +1,7 @@
 ConductiveBlockCopper: {
 	// MapEntry: Copper Conductor
 	// ItemDisplayName: "{$Tiles.ConductiveBlockCopper.MapEntry}"
-	// ItemTooltip: Can activate mechanisms using electricty
+	// ItemTooltip: Transmits electricty
 }
 
 ConductiveBlockTin: {
@@ -53,4 +53,14 @@ ObsidianCrabPot: {
 		使用熔岩鱼饵以在熔岩中捕鱼
 		{$Tiles.CrabPot.Copper.ItemTooltip}
 		'''
+}
+
+ConductiveSwitchCopper: {
+	// ItemDisplayName: Copper Switch
+	// ItemTooltip: Creates electricity when used
+}
+
+ConductiveSwitchTin: {
+	// ItemDisplayName: Tin Switch
+	// ItemTooltip: "{$ConductiveSwitchCopper.ItemTooltip}"
 }
