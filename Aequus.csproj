@@ -41,13 +41,4 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Content\Wires\Conductive\Switch\ConductiveSwitchCopper.png" />
-    <None Remove="Content\Wires\Conductive\Switch\ConductiveSwitchCopperItem.png" />
-    <None Remove="Content\Wires\Conductive\Switch\ConductiveSwitchCopper_Highlight.png" />
-    <None Remove="Content\Wires\Conductive\Switch\ConductiveSwitchTin.png" />
-    <None Remove="Content\Wires\Conductive\Switch\ConductiveSwitchTinItem.png" />
-    <None Remove="Content\Wires\Conductive\Switch\ConductiveSwitchTin_Highlight.png" />
-  </ItemGroup>
-
 </Project>
