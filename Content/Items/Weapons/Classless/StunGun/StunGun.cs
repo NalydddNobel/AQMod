@@ -28,8 +28,8 @@ public class StunGun : ClasslessWeapon, ICooldownItem {
         Item.useAnimation = 10;
         Item.useTime = 10;
         Item.mana = 60;
-        Item.rare = ItemCommons.Rarity.SkyMerchantShopItem;
-        Item.value = ItemCommons.Price.SkyMerchantShopItem;
+        Item.rare = ItemDefaults.Rarity.SkyMerchantShopItem;
+        Item.value = ItemDefaults.Price.SkyMerchantShopItem;
         Item.shoot = ModContent.ProjectileType<StunGunProj>();
         Item.UseSound = SoundID.DD2_LightningBugZap;
         Item.shootSpeed = 12f;

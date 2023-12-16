@@ -19,7 +19,7 @@ public class PossessedShard : ModItem {
         Item.width = 14;
         Item.height = 14;
         Item.maxStack = Item.CommonMaxStack;
-        Item.rare = ItemCommons.Rarity.EarlyHardmodeMaterial;
+        Item.rare = ItemDefaults.Rarity.EarlyHardmodeMaterial;
         Item.value = Item.sellPrice(silver: 7);
     }
 

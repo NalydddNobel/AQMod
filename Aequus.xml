@@ -807,6 +807,18 @@
             Uses "uLightSource" as a 3rd color value.
             </summary>
         </member>
+        <member name="M:Aequus.Content.Equipment.Accessories.AccCrowns.Blood.Boosts.IStatTracker.Record(Terraria.Player)">
+            <summary>
+            Record stats for comparison later.
+            </summary>
+            <param name="player"></param>
+        </member>
+        <member name="M:Aequus.Content.Equipment.Accessories.AccCrowns.Blood.Boosts.IStatTracker.Measure(Terraria.Player)">
+            <summary>
+            Fill out <see cref="P:Aequus.Content.Equipment.Accessories.AccCrowns.Blood.Boosts.IStatTracker.Difference"/> and <see cref="P:Aequus.Content.Equipment.Accessories.AccCrowns.Blood.Boosts.IStatTracker.DifferenceText"/> with new player stats.
+            </summary>
+            <param name="player"></param>
+        </member>
         <member name="P:Aequus.Content.Fishing.CrabPots.TECrabPot.LavaEffectiveness">
             <summary>
             Multiplier to <see cref="P:Aequus.Content.Fishing.CrabPots.TECrabPot.ChancePerTick"/> for crab pots inside of lava. Defaults to 2 (chance is twice as rare)
@@ -982,7 +994,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 244)</summary>
+            <summary>(Total Textures: 254)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1274,6 +1286,36 @@
         </member>
         <member name="F:Aequus.AequusTextures.ScavengerLootBag_Outline">
             <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrownOfBlood">
+            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/CrownOfBlood</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrownOfBloodSlot">
+            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/CrownOfBloodSlot</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrownOfBlood_Crown">
+            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/CrownOfBlood_Crown</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Heart">
+            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/Heart</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Heart2">
+            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/Heart2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Heart_Template">
+            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/Heart_Template</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Symbol_Blood">
+            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/Symbol_Blood</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Symbol_Remains">
+            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/Symbol_Remains</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrownOfEarth">
+            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Earth/CrownOfEarth</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrownOfMoon">
+            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Moon/CrownOfMoon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PurpleBalloon">
             <summary>Full Path: Content/Equipment/Accessories/Balloons/PurpleBalloon</summary>

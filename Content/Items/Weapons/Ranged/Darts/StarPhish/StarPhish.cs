@@ -24,8 +24,8 @@ public class StarPhish : ModItem {
         Item.shootSpeed = 25f;
         Item.UseSound = SoundID.Item65;
         Item.noMelee = true;
-        Item.rare = ItemCommons.Rarity.PollutedOceanLoot;
-        Item.value = ItemCommons.Price.PollutedOceanLoot;
+        Item.rare = ItemDefaults.Rarity.PollutedOceanLoot;
+        Item.value = ItemDefaults.Price.PollutedOceanLoot;
     }
 
     public override void UseItemFrame(Player player) {

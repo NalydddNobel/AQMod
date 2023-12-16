@@ -16,7 +16,7 @@ GrandReward: {
 	Tooltip:
 		'''
 		Doubled droprates from enemies
-		{v}However, enemies no longer drop coins
+		{v}However, enemies no longer drop coins...
 		'''
 }
 
@@ -29,9 +29,24 @@ RadonFishingBobber: {
 		'''
 }
 
-CrownOfDarkness: {
-	DisplayName: Crown of Darkness
-	Tooltip: Grants the ability of your 1st accessory to all teammates
+CrownOfEarth: {
+	DisplayName: Earth Crown
+	Tooltip:
+		'''
+		Enhances your first three accessory slots, granting each item the 'Rooted' affix
+		{v}Only works while standing still...
+		'Grow roots and nurture your fragments'
+		'''
+}
+
+CrownOfMoon: {
+	DisplayName: Lunar Crown
+	Tooltip:
+		'''
+		Enhances your first accessory slot, granting the item the 'Lunic' affix
+		{v}Downside pending...
+		'Project a piece of yourself upon your allies'
+		'''
 }
 
 GoldenWind: {
@@ -521,3 +536,5 @@ Backpacks: {
 		BackpackDisabled: Backpack Off
 	}
 }
+
+BoostTooltips.NoEffect: Mods.Aequus.Items.BoostTooltips.NoEffect

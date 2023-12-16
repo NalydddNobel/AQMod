@@ -19,8 +19,8 @@ public class Slice : ModItem {
         Item.width = 20;
         Item.height = 20;
         Item.autoReuse = true;
-        Item.rare = ItemCommons.Rarity.SpaceStormLoot;
-        Item.value = ItemCommons.Price.SpaceStormLoot;
+        Item.rare = ItemDefaults.Rarity.SpaceStormLoot;
+        Item.value = ItemDefaults.Price.SpaceStormLoot;
         Item.scale = 0.9f;
     }
 

@@ -1,0 +1,184 @@
+// DisplayName: Blood Crown
+/* Tooltip:
+	'''
+	Enhances your first accessory slot, granting the item the 'Bloody' affix
+	{v}Damage taken reduces your maximum health...
+	'Give up your growth for stunted strength'
+	''' */
+// Affix: Bloody
+// Expert Accessories
+RoyalGel: Los slimes serán amistosos y lucharán por ti
+EoCShield: Permite embestir a un enemigo desde largas distancias
+WormScarf:
+	'''
+	{$ItemTooltip.WormScarf}
+	Permite esquivar un ataque cada 20 segundos 
+	Después de esquivar, dispara espinas dirigidas hacia enemigos cercanos que hacen 50 de daño
+	'''
+BrainOfConfusion:
+	'''
+	{$ItemTooltip.BrainOfConfusion}
+	Permite esquivar un ataque cada 20 segundos 
+	Reduce todo el daño por 17 
+	'''
+BoneGlove: Dispara sierras sangrientas que rebotan hacia enemigos
+HiveBackpack:
+	'''
+	Todas las abejas amistosas son más fuertes
+	Libera un súbdito abeja increíblemente fuerte cada 0.5 segundos
+	'''
+BoneHelm:
+	'''
+	Las manos sombrías hacen 50% más de daño
+	Invoca una Sombra vigía cada 20 segundos que ralentiza y daña a enemigos cercanos
+	'''
+VolatileGelatin: Dispara una gelatina sangrienta que explota al contacto
+SporeSac: Libera flores sangrientas a tu alrededor que atacan enemigos
+ShinyStone:
+	'''
+	Cura a aliados a tu alrededor
+	Aumenta bastante la regeneración de vida al no moverse
+	'''
+
+StatAffix: {
+	// None: This item has no effects detected
+	// Default: "{$Generic}"
+	// DefaultFlat: "{$GenericFlat}"
+	// DefaultCrit: "{$GenericCrit}"
+	// DefaultKB: "{$GenericKB}"
+	// DefaultSpeed: "{$GenericSpeed}"
+	// Generic: bonus damage
+	// GenericFlat: bonus flat damage
+	// GenericCrit: bonus critical strike chance
+	// GenericKB: bonus knockback
+	// GenericSpeed: bonus speed
+	// Melee: bonus melee damage
+	// MeleeFlat: bonus flat melee damage
+	// MeleeCrit: bonus melee critical strike chance
+	// MeleeKB: bonus melee knockback
+	// MeleeSpeed: bonus melee speed
+	// MeleeNoSpeed: "{$Melee}"
+	// MeleeNoSpeedFlat: "{$MeleeFlat}"
+	// MeleeNoSpeedCrit: "{$MeleeCrit}"
+	// MeleeNoSpeedKB: "{$MeleeKB}"
+	// MeleeNoSpeedSpeed: "{$MeleeSpeed}"
+	// Ranged: bonus ranged damage
+	// RangedFlat: bonus flat ranged damage
+	// RangedCrit: bonus ranged critical strike chance
+	// RangedKB: bonus ranged knockback
+	// RangedSpeed: bonus ranged item speed
+	// Magic: bonus magic damage
+	// MagicFlat: bonus flat magic damage
+	// MagicCrit: bonus magic critical strike chance
+	// MagicKB: bonus magic knockback
+	// MagicSpeed: bonus magic item speed
+	// Summon: bonus summon damage
+	// SummonFlat: bonus flat summon damage
+	// SummonCrit: bonus summon critical strike chance
+	// SummonKB: bonus summon knockback
+	// SummonSpeed: bonus summon item speed
+	// SummonMeleeSpeed: "{$Summon}"
+	// SummonMeleeSpeedFlat: "{$SummonFlat}"
+	// SummonMeleeSpeedCrit: "{$SummonCrit}"
+	// SummonMeleeSpeedKB: "{$SummonKB}"
+	// SummonMeleeSpeedSpeed: "{$SummonSpeed}"
+	// MagicSummonHybrid: bonus magic & summmon damage
+	// MagicSummonHybridFlat: bonus flat magic & flat summmon damage
+	// MagicSummonHybridCrit: bonus magic & summon critical strike chance
+	// MagicSummonHybridKB: bonus magic & summon knockback
+	// MagicSummonHybridSpeed: bonus magic & summon speed
+	// Throwing: bonus throwing damage
+	// ThrowingFlat: bonus flat throwing damage
+	// ThrowingCrit: bonus throwing critical strike chance
+	// ThrowingKB: bonus throwing knockback
+	// ThrowingSpeed: bonus throwing speed
+	// WingTime: seconds of bonus flight time
+	// MoveSpeed: bonus move speed
+	// ManaCost: reduced mana cost
+	// DamageReduction: bonus damage reduction
+	// LifeRegen: bonus max life regeneration per second
+	// MaxLife: bonus max life
+	// MaxMana: bonus max mana
+	// Defense: bonus defense
+	// JumpSpeedBoost: bonus jump speed boost
+	// ExtraFall: bonus fall resistance height
+	// FishingSkill: bonus fishing skill
+	// TileRangeX: bonus horizontal tile range
+	// TileRangeY: bonus vertical tile range
+
+	Aggro: {
+		// More: Enemies are much more likely to target you
+		// Less: Enemies are much less likely to target you
+	}
+
+	// MinionSlots: bonus minion slot(s)
+	// SentrySlots: bonus sentry slot(s)
+
+	ClimbingGear: {
+		// More: "{$ItemTooltip.TigerClimbingGear}"
+		// Less: "{$ItemTooltip.TigerClimbingGear}"
+	}
+
+	// BlockRange: Mods.Aequus.Items.CrownOfBlood.StatAffix.BlockRange
+	// GenericNoCrit: bonus damage damage
+	// GenericNoCritFlat: bonus flat damage damage
+	// GenericNoCritCrit: bonus damage critical strike chance
+	// GenericNoCritKB: bonus damage knockback
+	// GenericNoCritSpeed: bonus damage speed
+
+	CalamityMod: {
+		// Average: bonus average damage
+		// AverageFlat: bonus flat average damage
+		// AverageCrit: bonus average critical strike chance
+		// AverageKB: bonus average knockback
+		// AverageSpeed: bonus average speed
+		// Rogue: bonus rogue damage
+		// RogueFlat: bonus flat rogue damage
+		// RogueCrit: bonus rogue critical strike chance
+		// RogueKB: bonus rogue knockback
+		// RogueSpeed: bonus rogue speed
+		// Stealth: bonus stealth class damage
+		// StealthFlat: bonus flat stealth class damage
+		// StealthCrit: bonus stealth class critical strike chance
+		// StealthKB: bonus stealth class knockback
+		// StealthSpeed: bonus stealth class speed
+		// TrueMelee: bonus true melee damage
+		// TrueMeleeFlat: bonus flat true melee damage
+		// TrueMeleeCrit: bonus true melee critical strike chance
+		// TrueMeleeKB: bonus true melee knockback
+		// TrueMeleeSpeed: bonus true melee speed
+		// TrueMeleeNoSpeed: bonus true melee damage
+		// TrueMeleeNoSpeedFlat: bonus flat true melee damage
+		// TrueMeleeNoSpeedCrit: bonus true melee critical strike chance
+		// TrueMeleeNoSpeedKB: bonus true melee knockback
+		// TrueMeleeNoSpeedSpeed: bonus true melee speed
+	}
+
+	ThoriumMod: {
+		// Bard: bonus symphonic damage
+		// BardFlat: bonus flat symphonic damage
+		// BardCrit: bonus symphonic critical strike chance
+		// BardKB: bonus symphonic knockback
+		// BardSpeed: bonus symphonic speed
+		// Healer: bonus radiant damage
+		// HealerFlat: bonus flat radiant damage
+		// HealerCrit: bonus radiant critical strike chance
+		// HealerKB: bonus radiant knockback
+		// HealerSpeed: bonus radiant speed
+		// HealerTool: bonus radiant damage
+		// HealerToolFlat: bonus flat radiant damage
+		// HealerToolCrit: bonus radiant critical strike chance
+		// HealerToolKB: bonus radiant knockback
+		// HealerToolSpeed: bonus radiant speed
+		// HealerToolHybrid: bonus radiant damage
+		// HealerToolHybridFlat: bonus flat radiant damage
+		// HealerToolHybridCrit: bonus radiant critical strike chance
+		// HealerToolHybridKB: bonus radiant knockback
+		// HealerToolHybridSpeed: bonus radiant speed
+		// True: bonus true damage
+		// TrueFlat: bonus flat true damage
+		// TrueCrit: bonus true critical strike chance
+		// TrueKB: bonus true knockback
+		// TrueSpeed: bonus true speed
+	}
+}

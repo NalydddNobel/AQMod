@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 244)</summary>
+/// <summary>(Total Textures: 254)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -201,6 +201,26 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ScavengerLootBag = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline</summary>
     public static readonly RequestCache<Texture2D> ScavengerLootBag_Outline = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline");
+    /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/CrownOfBlood</summary>
+    public static readonly RequestCache<Texture2D> CrownOfBlood = new("Aequus/Content/Equipment/Accessories/AccCrowns/Blood/CrownOfBlood");
+    /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/CrownOfBloodSlot</summary>
+    public static readonly RequestCache<Texture2D> CrownOfBloodSlot = new("Aequus/Content/Equipment/Accessories/AccCrowns/Blood/CrownOfBloodSlot");
+    /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/CrownOfBlood_Crown</summary>
+    public static readonly RequestCache<Texture2D> CrownOfBlood_Crown = new("Aequus/Content/Equipment/Accessories/AccCrowns/Blood/CrownOfBlood_Crown");
+    /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/Heart</summary>
+    public static readonly RequestCache<Texture2D> Heart = new("Aequus/Content/Equipment/Accessories/AccCrowns/Blood/Heart");
+    /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/Heart2</summary>
+    public static readonly RequestCache<Texture2D> Heart2 = new("Aequus/Content/Equipment/Accessories/AccCrowns/Blood/Heart2");
+    /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/Heart_Template</summary>
+    public static readonly RequestCache<Texture2D> Heart_Template = new("Aequus/Content/Equipment/Accessories/AccCrowns/Blood/Heart_Template");
+    /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/Symbol_Blood</summary>
+    public static readonly RequestCache<Texture2D> Symbol_Blood = new("Aequus/Content/Equipment/Accessories/AccCrowns/Blood/Symbol_Blood");
+    /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/Symbol_Remains</summary>
+    public static readonly RequestCache<Texture2D> Symbol_Remains = new("Aequus/Content/Equipment/Accessories/AccCrowns/Blood/Symbol_Remains");
+    /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Earth/CrownOfEarth</summary>
+    public static readonly RequestCache<Texture2D> CrownOfEarth = new("Aequus/Content/Equipment/Accessories/AccCrowns/Earth/CrownOfEarth");
+    /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Moon/CrownOfMoon</summary>
+    public static readonly RequestCache<Texture2D> CrownOfMoon = new("Aequus/Content/Equipment/Accessories/AccCrowns/Moon/CrownOfMoon");
     /// <summary>Full Path: Content/Equipment/Accessories/Balloons/PurpleBalloon</summary>
     public static readonly RequestCache<Texture2D> PurpleBalloon = new("Aequus/Content/Equipment/Accessories/Balloons/PurpleBalloon");
     /// <summary>Full Path: Content/Equipment/Accessories/Balloons/PurpleBalloon_Balloon</summary>

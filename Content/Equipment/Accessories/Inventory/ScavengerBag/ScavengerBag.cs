@@ -30,8 +30,8 @@ public class ScavengerBag : ModItem, IStorageItem {
 
     public override void SetDefaults() {
         Item.DefaultToAccessory();
-        Item.rare = ItemCommons.Rarity.PollutedOceanLoot;
-        Item.value = ItemCommons.Price.PollutedOceanLoot;
+        Item.rare = ItemDefaults.Rarity.PollutedOceanLoot;
+        Item.value = ItemDefaults.Price.PollutedOceanLoot;
         HasValidInventory = true;
         Inventory = new Item[SlotAmount];
     }

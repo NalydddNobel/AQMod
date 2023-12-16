@@ -29,9 +29,24 @@ RadonFishingBobber: {
 		'''
 }
 
-CrownOfDarkness: {
-	DisplayName: Corona de la Oscuridad
-	Tooltip: Otorga la habilidad de tu primer accesorio a todo tu equipo
+CrownOfEarth: {
+	// DisplayName: Earth Crown
+	/* Tooltip:
+		'''
+		Enhances your first three accessory slots, granting each item the 'Rooted' affix
+		{v}Only works while standing still...
+		'Grow roots and nurture your fragments'
+		''' */
+}
+
+CrownOfMoon: {
+	// DisplayName: Lunar Crown
+	/* Tooltip:
+		'''
+		Enhances your first accessory slot, granting the item the 'Lunic' affix
+		{v}Downside pending...
+		'Project a piece of yourself upon your allies'
+		''' */
 }
 
 GoldenWind: {
@@ -521,3 +536,5 @@ Backpacks: {
 		BackpackDisabled: Mochila No Visible
 	}
 }
+
+// BoostTooltips.NoEffect: Mods.Aequus.Items.BoostTooltips.NoEffect

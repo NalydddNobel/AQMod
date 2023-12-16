@@ -15,8 +15,8 @@ public class GoldenWind : GoldenFeather {
 
     public override void SetDefaults() {
         Item.DefaultToAccessory();
-        Item.rare = ItemCommons.Rarity.SkyMerchantShopItem + 1;
-        Item.value = ItemCommons.Price.SkyMerchantShopItem;
+        Item.rare = ItemDefaults.Rarity.SkyMerchantShopItem + 1;
+        Item.value = ItemDefaults.Price.SkyMerchantShopItem;
     }
 
     public override void AddRecipes() {

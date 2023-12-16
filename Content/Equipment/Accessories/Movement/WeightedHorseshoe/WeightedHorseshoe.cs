@@ -17,8 +17,8 @@ public class WeightedHorseshoe : ModItem, IUpdateItemDye {
 
     public override void SetDefaults() {
         Item.DefaultToAccessory();
-        Item.rare = ItemCommons.Rarity.SkyMerchantShopItem;
-        Item.value = ItemCommons.Price.SkyMerchantShopItem;
+        Item.rare = ItemDefaults.Rarity.SkyMerchantShopItem;
+        Item.value = ItemDefaults.Price.SkyMerchantShopItem;
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {

@@ -63,6 +63,7 @@ public partial class AequusPlayer : ModPlayer {
 
     public override void UpdateEquips() {
         EquipmentModifierUpdate = true;
+        UpdateCrownOfBlood();
     }
 
     public override void PostUpdateEquips() {

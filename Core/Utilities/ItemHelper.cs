@@ -109,6 +109,10 @@ public static class ItemHelper {
         tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#"), tooltips.Count), line);
     }
 
+    public static int GetPrefixIndex(this List<TooltipLine> tooltips, int resultOffset = 0) {
+        return GetIndex(tooltips, "PrefixAccMeleeSpeed", resultOffset);
+    }
+
     public static int GetIndex(this List<TooltipLine> tooltips, string lineName, int resultOffset = 0) {
         int myIndex = FindLineIndex(lineName);
         int i = 0;
@@ -138,6 +142,11 @@ public static class ItemHelper {
 
     public static TooltipLine Find(this List<TooltipLine> tooltips, string name) {
         return tooltips.Find((t) => t != null && t.Mod != null && t.Name != null && t.Mod == "Terraria" && t.Name.Equals(name));
+    }
+
+    public static bool TryGetItemName(this List<TooltipLine> tooltips, out TooltipLine value) {
+        value = ItemName(tooltips);
+        return value != null;
     }
 
     public static TooltipLine ItemName(this List<TooltipLine> tooltips) {

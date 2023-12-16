@@ -20,7 +20,7 @@ public class Fluorescence : ModItem {
         Item.width = 12;
         Item.height = 12;
         Item.maxStack = Item.CommonMaxStack;
-        Item.rare = ItemCommons.Rarity.SpaceStormLoot - 1;
+        Item.rare = ItemDefaults.Rarity.SpaceStormLoot - 1;
         Item.value = Item.sellPrice(silver: 15);
         Item.GetGlobalItem<GravityGlobalItem>().itemGravityCheck = 255;
     }
