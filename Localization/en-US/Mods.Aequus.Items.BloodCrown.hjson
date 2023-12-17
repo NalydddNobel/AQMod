@@ -150,6 +150,8 @@ StatAffix: {
 		TrueMeleeNoSpeedCrit: bonus true melee critical strike chance
 		TrueMeleeNoSpeedKB: bonus true melee knockback
 		TrueMeleeNoSpeedSpeed: bonus true melee speed
+		RogueVelocity: bonus throwing velocity
+		MaxStealth: bonus max stealth
 	}
 
 	ThoriumMod: {
@@ -178,7 +180,6 @@ StatAffix: {
 		TrueCrit: bonus true critical strike chance
 		TrueKB: bonus true knockback
 		TrueSpeed: bonus true speed
-
 		LifeRecovery: bonus life recovery
 		HealBonus: bonus spell healing
 		MaxInspiration: bonus inspiration

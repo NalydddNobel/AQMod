@@ -41,5 +41,9 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 
-</Project>
+  <ItemGroup>
+    <AdditionalFiles Remove="Localization\es-ES\Mods.Aequus.Items.BloodCrown.hjson" />
+    <AdditionalFiles Remove="Localization\zh-Hans\Mods.Aequus.Items.BloodCrown.hjson" />
+  </ItemGroup>
+
 </Project>

@@ -52,6 +52,11 @@ StatAffix: {
 	// GenericCrit: bonus critical strike chance
 	// GenericKB: bonus knockback
 	// GenericSpeed: bonus speed
+	// GenericNoCrit: "{$Generic}"
+	// GenericNoCritFlat: "{$GenericFlat}"
+	// GenericNoCritCrit: "{$GenericCrit}"
+	// GenericNoCritKB: "{$GenericKB}"
+	// GenericNoCritSpeed: "{$GenericSpeed}"
 	// Melee: bonus melee damage
 	// MeleeFlat: bonus flat melee damage
 	// MeleeCrit: bonus melee critical strike chance
@@ -97,34 +102,27 @@ StatAffix: {
 	// ManaCost: reduced mana cost
 	// DamageReduction: bonus damage reduction
 	// LifeRegen: bonus max life regeneration per second
-	// MaxLife: bonus max life
-	// MaxMana: bonus max mana
+	// MaxLife: bonus life
+	// MaxMana: bonus mana
 	// Defense: bonus defense
 	// JumpSpeedBoost: bonus jump speed boost
 	// ExtraFall: bonus fall resistance height
 	// FishingSkill: bonus fishing skill
 	// TileRangeX: bonus horizontal tile range
 	// TileRangeY: bonus vertical tile range
+	// BlockRange: bonus block range
+	// MinionSlots: bonus minion slot(s)
+	// SentrySlots: bonus sentry slot(s)
 
 	Aggro: {
 		// More: Enemies are much more likely to target you
 		// Less: Enemies are much less likely to target you
 	}
 
-	// MinionSlots: bonus minion slot(s)
-	// SentrySlots: bonus sentry slot(s)
-
 	ClimbingGear: {
 		// More: "{$ItemTooltip.TigerClimbingGear}"
 		// Less: "{$ItemTooltip.TigerClimbingGear}"
 	}
-
-	// BlockRange: Mods.Aequus.Items.CrownOfBlood.StatAffix.BlockRange
-	// GenericNoCrit: bonus damage damage
-	// GenericNoCritFlat: bonus flat damage damage
-	// GenericNoCritCrit: bonus damage critical strike chance
-	// GenericNoCritKB: bonus damage knockback
-	// GenericNoCritSpeed: bonus damage speed
 
 	CalamityMod: {
 		// Average: bonus average damage
@@ -152,6 +150,8 @@ StatAffix: {
 		// TrueMeleeNoSpeedCrit: bonus true melee critical strike chance
 		// TrueMeleeNoSpeedKB: bonus true melee knockback
 		// TrueMeleeNoSpeedSpeed: bonus true melee speed
+		// RogueVelocity: Mods.Aequus.Items.BloodCrown.StatAffix.CalamityMod.RogueVelocity
+		// MaxStealth: Mods.Aequus.Items.BloodCrown.StatAffix.CalamityMod.MaxStealth
 	}
 
 	ThoriumMod: {
@@ -180,5 +180,8 @@ StatAffix: {
 		// TrueCrit: bonus true critical strike chance
 		// TrueKB: bonus true knockback
 		// TrueSpeed: bonus true speed
+		// LifeRecovery: bonus life recovery
+		// HealBonus: bonus spell healing
+		// MaxInspiration: bonus inspiration
 	}
 }
