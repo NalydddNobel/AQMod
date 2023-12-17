@@ -6,7 +6,7 @@ NameTag: "{$Misc.GameTipPretense} 有没有想过把地牢守卫当宠物养? �
 MonsterChest: "{$Misc.GameTipPretense} 小心周围的怪物箱...它们的锁被复仇亡灵封印了!"
 ScavengerBag: "{$Misc.GameTipPretense} 需要更多背包空间? 击杀拾荒骷髅时有几率获得拾荒者袋子!"
 NeutronYogurt: "{$Misc.GameTipPretense} 中子酸奶会使你更快的到达最大下落速度, 对于那些需要更快跳下平台的人来说很有用."
-// PylonDrones: "{$Misc.GameTipPretense} 物理学家会为你的城镇提供特殊的保护部队. 购买一架晶体无人机来保护你的镇民免受敌人和恶魔的攻击!"
-// PotionPrefixes: "{$Misc.GameTipPretense} 在炼金桌处使用特殊草药来增强你的药剂!"
+PylonDrones: "{$Misc.GameTipPretense} 物理学家会为你的城镇提供特殊的保护部队. 购买一架晶体无人机来保护你的镇民免受敌人和恶魔的攻击!"
+PotionPrefixes: "{$Misc.GameTipPretense} 在炼金桌处使用特殊草药来增强你的药剂!"
 TipAboutTipsOnDeath: "{$Misc.GameTipPretense} 在你死亡后, 我们会向你展示这些游戏提示! 我在想你在死亡后是否还在读这个..."
 TrashPSA: 不要把垃圾扔水里.
