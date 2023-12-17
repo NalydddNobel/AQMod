@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.NPCs;
+using Aequus.Content.CrossMod;
 using Aequus.Core.DataSets;
 using Newtonsoft.Json;
 using System.Collections.Generic;

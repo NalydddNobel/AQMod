@@ -30,7 +30,7 @@ public class RadonGrassStone : ModTile, IOnPlaceTile {
         MineResist = 3f;
         MinPick = 100;
 
-        IsRadonMoss = EnumerableHelper.CreateArray(false, TileLoader.TileCount);
+        IsRadonMoss = CollectionHelper.CreateArray(false, TileLoader.TileCount);
         IsRadonMoss[Type] = true;
         IsRadonMoss[ModContent.TileType<RadonGrassGrayBrick>()] = true;
     }

@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Particles;
 using Aequus.Core.Autoloading;
 using Microsoft.Xna.Framework;
@@ -26,10 +25,6 @@ public class WispLantern : ModItem {
     public static int DebuffRange { get; set; } = 480;
 
     private readonly List<Dust> _dustEffects = new();
-
-    public override void SetStaticDefaults() {
-        EquipBoostDatabase.Instance.SetNoEffect(Type);
-    }
 
     public override void SetDefaults() {
         Item.width = 16;

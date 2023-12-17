@@ -629,6 +629,18 @@
             Multiplier used to reduce velocity when above the dash's halting speed.
             </summary>
         </member>
+        <member name="M:Aequus.Common.Players.Stats.IStatComparison.Record(Terraria.Player)">
+            <summary>
+            Record stats for comparison later.
+            </summary>
+            <param name="player"></param>
+        </member>
+        <member name="M:Aequus.Common.Players.Stats.IStatComparison.Measure(Terraria.Player)">
+            <summary>
+            Fill out <see cref="P:Aequus.Common.Players.Stats.IStatComparison.Difference"/> and <see cref="P:Aequus.Common.Players.Stats.IStatComparison.DifferenceText"/> with new player stats.
+            </summary>
+            <param name="player"></param>
+        </member>
         <member name="F:Aequus.Common.Projectiles.AequusProjectile.itemData">
             <summary>
             Custom data to be used by items which utilize the <see cref="T:Aequus.Common.Items.Components.IManageProjectile"/> interface or by channeled items. This data is synced in multiplayer.
@@ -806,18 +818,6 @@
             <summary>
             Uses "uLightSource" as a 3rd color value.
             </summary>
-        </member>
-        <member name="M:Aequus.Content.Equipment.Accessories.AccCrowns.Blood.Boosts.IStatTracker.Record(Terraria.Player)">
-            <summary>
-            Record stats for comparison later.
-            </summary>
-            <param name="player"></param>
-        </member>
-        <member name="M:Aequus.Content.Equipment.Accessories.AccCrowns.Blood.Boosts.IStatTracker.Measure(Terraria.Player)">
-            <summary>
-            Fill out <see cref="P:Aequus.Content.Equipment.Accessories.AccCrowns.Blood.Boosts.IStatTracker.Difference"/> and <see cref="P:Aequus.Content.Equipment.Accessories.AccCrowns.Blood.Boosts.IStatTracker.DifferenceText"/> with new player stats.
-            </summary>
-            <param name="player"></param>
         </member>
         <member name="P:Aequus.Content.Fishing.CrabPots.TECrabPot.LavaEffectiveness">
             <summary>
@@ -1287,14 +1287,14 @@
         <member name="F:Aequus.AequusTextures.ScavengerLootBag_Outline">
             <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CrownOfBlood">
-            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/CrownOfBlood</summary>
+        <member name="F:Aequus.AequusTextures.BloodCrown">
+            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/BloodCrown</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BloodCrown_Crown">
+            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/BloodCrown_Crown</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrownOfBloodSlot">
             <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/CrownOfBloodSlot</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrownOfBlood_Crown">
-            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/CrownOfBlood_Crown</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Heart">
             <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/Heart</summary>

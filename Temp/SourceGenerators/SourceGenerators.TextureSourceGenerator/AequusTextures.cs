@@ -201,12 +201,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ScavengerLootBag = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline</summary>
     public static readonly RequestCache<Texture2D> ScavengerLootBag_Outline = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline");
-    /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/CrownOfBlood</summary>
-    public static readonly RequestCache<Texture2D> CrownOfBlood = new("Aequus/Content/Equipment/Accessories/AccCrowns/Blood/CrownOfBlood");
+    /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/BloodCrown</summary>
+    public static readonly RequestCache<Texture2D> BloodCrown = new("Aequus/Content/Equipment/Accessories/AccCrowns/Blood/BloodCrown");
+    /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/BloodCrown_Crown</summary>
+    public static readonly RequestCache<Texture2D> BloodCrown_Crown = new("Aequus/Content/Equipment/Accessories/AccCrowns/Blood/BloodCrown_Crown");
     /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/CrownOfBloodSlot</summary>
     public static readonly RequestCache<Texture2D> CrownOfBloodSlot = new("Aequus/Content/Equipment/Accessories/AccCrowns/Blood/CrownOfBloodSlot");
-    /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/CrownOfBlood_Crown</summary>
-    public static readonly RequestCache<Texture2D> CrownOfBlood_Crown = new("Aequus/Content/Equipment/Accessories/AccCrowns/Blood/CrownOfBlood_Crown");
     /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/Heart</summary>
     public static readonly RequestCache<Texture2D> Heart = new("Aequus/Content/Equipment/Accessories/AccCrowns/Blood/Heart");
     /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/Heart2</summary>

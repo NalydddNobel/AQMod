@@ -51,7 +51,6 @@ public partial class AequusPlayer : ModPlayer {
     }
 
     public override void PreUpdate() {
-        EquipmentModifierUpdate = false;
         BackpackLoader.UpdateBackpacks(Player, backpacks);
         UpdateTimers();
         UpdateItemFields();
@@ -62,8 +61,7 @@ public partial class AequusPlayer : ModPlayer {
     }
 
     public override void UpdateEquips() {
-        EquipmentModifierUpdate = true;
-        UpdateCrownOfBlood();
+        UpdateBloodCrown();
     }
 
     public override void PostUpdateEquips() {
@@ -83,7 +81,6 @@ public partial class AequusPlayer : ModPlayer {
 
     public override void PostUpdate() {
         UpdateDangers();
-        EquipmentModifierUpdate = false;
         timeSinceRespawn++;
     }
 

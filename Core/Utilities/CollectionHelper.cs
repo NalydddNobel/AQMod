@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Aequus;
 
-public static class EnumerableHelper {
+public static class CollectionHelper {
     public static T[] CloneArray<T>(this T[] array) {
         var array2 = new T[array.Length];
         array.CopyTo(array2, 0);

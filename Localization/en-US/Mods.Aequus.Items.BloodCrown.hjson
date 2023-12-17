@@ -102,8 +102,8 @@ StatAffix: {
 	ManaCost: reduced mana cost
 	DamageReduction: bonus damage reduction
 	LifeRegen: bonus max life regeneration per second
-	MaxLife: bonus max life
-	MaxMana: bonus max mana
+	MaxLife: bonus life
+	MaxMana: bonus mana
 	Defense: bonus defense
 	JumpSpeedBoost: bonus jump speed boost
 	ExtraFall: bonus fall resistance height
@@ -118,7 +118,6 @@ StatAffix: {
 		More: Enemies are much more likely to target you
 		Less: Enemies are much less likely to target you
 	}
-
 
 	ClimbingGear: {
 		More: "{$ItemTooltip.TigerClimbingGear}"
@@ -179,5 +178,9 @@ StatAffix: {
 		TrueCrit: bonus true critical strike chance
 		TrueKB: bonus true knockback
 		TrueSpeed: bonus true speed
+
+		LifeRecovery: bonus life recovery
+		HealBonus: bonus spell healing
+		MaxInspiration: bonus inspiration
 	}
 }

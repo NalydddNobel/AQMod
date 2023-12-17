@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 namespace Aequus;
 
 public static class PlayerHelper {
-    private static readonly Item[] _dummyInventory = EnumerableHelper.CreateArray(i => new Item(), Main.InventorySlotsTotal);
+    private static readonly Item[] _dummyInventory = CollectionHelper.CreateArray(i => new Item(), Main.InventorySlotsTotal);
 
     /// <summary>
     /// 

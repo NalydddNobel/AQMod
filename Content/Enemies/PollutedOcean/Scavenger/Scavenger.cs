@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Components;
+using Aequus.Content.CrossMod;
 using Aequus.Content.DataSets;
 using Aequus.Content.Equipment.Accessories.Inventory.ScavengerBag;
 using Aequus.Core.Autoloading;
@@ -53,11 +54,14 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         SetupAccessoryUsages();
         SetupDrawLookups();
         Main.npcFrameCount[Type] = 20;
+        NPCID.Sets.Skeletons[Type] = true;
         NPCID.Sets.NPCBestiaryDrawOffset[Type] = new() {
             Velocity = -1f,
             Scale = 1f,
         };
         NPCSets.PushableByTypeId.AddEntry(Type);
+
+        ThoriumMod.SupportsRepellant[Type] = ThoriumMod.RepellantType.Skeleton;
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
