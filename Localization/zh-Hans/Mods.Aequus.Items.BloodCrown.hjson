@@ -150,8 +150,8 @@ StatAffix: {
 		// TrueMeleeNoSpeedCrit: bonus true melee critical strike chance
 		// TrueMeleeNoSpeedKB: bonus true melee knockback
 		// TrueMeleeNoSpeedSpeed: bonus true melee speed
-		// RogueVelocity: Mods.Aequus.Items.BloodCrown.StatAffix.CalamityMod.RogueVelocity
-		// MaxStealth: Mods.Aequus.Items.BloodCrown.StatAffix.CalamityMod.MaxStealth
+		// RogueVelocity: bonus throwing velocity
+		// MaxStealth: bonus max stealth
 	}
 
 	ThoriumMod: {

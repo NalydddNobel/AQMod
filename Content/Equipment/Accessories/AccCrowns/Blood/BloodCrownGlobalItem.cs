@@ -1,8 +1,12 @@
 ﻿using Aequus.Common.Players.Stats;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.UI.Chat;
 
 namespace Aequus.Content.Equipment.Accessories.AccCrowns.Blood;
 
@@ -36,10 +40,25 @@ public class BloodCrownGlobalItem : GlobalItem {
             if (trackedStat.Suffix != null) {
                 text += " " + trackedStat.Suffix.Value;
             }
-            tooltips.Insert(prefixLine, new TooltipLine(Mod, "PrefixBloodCrown" + lineNum++, text) { IsModifier = true, IsModifierBad = trackedStat.Difference == StatDifference.Negative, });
+            AddTooltip(text, isModifierBad: trackedStat.Difference == StatDifference.Negative);
         }
         if (lineNum == 0) {
-            tooltips.Insert(prefixLine, new TooltipLine(Mod, "PrefixBloodCrown0", Language.GetTextValue(BloodCrown.CategoryKey + ".StatAffix.None")) { IsModifier = true, IsModifierBad = false, });
+            AddTooltip(Language.GetTextValue(BloodCrown.CategoryKey + ".StatAffix.None"));
         }
+
+        void AddTooltip(string text, bool isModifierBad = false) {
+            // Add padding for symbol.
+            text += TextHelper.AirCharacter;
+
+            tooltips.Insert(prefixLine, new TooltipLine(Mod, "PrefixBloodCrown" + lineNum++, text) { IsModifier = true, IsModifierBad = isModifierBad, });
+        }
+    }
+
+    public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset) {
+        if (line.Name.StartsWith("PrefixBloodCrown")) {
+            var lineMeasurement = ChatManager.GetStringSize(line.Font, line.Text, line.BaseScale);
+            Main.spriteBatch.Draw(AequusTextures.BloodSymbol, new Vector2(line.X + lineMeasurement.X - 6f, line.Y + lineMeasurement.Y / 2f - 2f), null, Colors.AlphaDarken(Color.White) * 0.75f, 0f, AequusTextures.BloodSymbol.Size() / 2f, 1f, SpriteEffects.None, 0f);
+        }
+        return true;
     }
 }

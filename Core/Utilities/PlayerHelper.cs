@@ -2,6 +2,7 @@
 using Aequus.Content.WorldEvents.Glimmer;
 using Aequus.Content.WorldEvents.SpaceStorm;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -12,6 +13,14 @@ namespace Aequus;
 
 public static class PlayerHelper {
     private static readonly Item[] _dummyInventory = CollectionHelper.CreateArray(i => new Item(), Main.InventorySlotsTotal);
+
+    public static int HeartCount(this Player player) {
+        return Math.Clamp(player.statLifeMax2 / 20, 1, 20);
+    }
+
+    public static float HealthPerHeart(this Player player) {
+        return player.statLifeMax2 / (float)HeartCount(player);
+    }
 
     /// <summary>
     /// 

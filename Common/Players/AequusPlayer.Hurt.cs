@@ -11,11 +11,13 @@ public partial class AequusPlayer {
     /// <summary>
     /// The lowest any respawn-time reducing items can go.
     /// </summary>
-    public static int MinimumRespawnTime = 180;
+    public static int MinimumRespawnTime { get; set; } = 180;
 
     public int respawnTimeModifier;
 
-    private List<Point> _edgeTilesCache = new();
+    public int timeSinceLastHit;
+
+    private readonly List<Point> _edgeTilesCache = new();
 
     private static int On_Player_GetRespawnTime(On_Player.orig_GetRespawnTime orig, Player player, bool pvp) {
         int time = orig(player, pvp);
@@ -30,12 +32,17 @@ public partial class AequusPlayer {
         Collision.GetEntityEdgeTiles(_edgeTilesCache, Player);
         foreach (Point touchedTile in _edgeTilesCache) {
             Tile tile = Framing.GetTileSafely(touchedTile);
-            if (!tile.HasTile || !tile.HasUnactuatedTile)
+            if (!tile.HasTile || !tile.HasUnactuatedTile) {
                 continue;
+            }
 
             if (TileLoader.GetTile(tile.TileType) is ITouchEffects touchEffects) {
                 touchEffects.Touch(touchedTile.X, touchedTile.Y, Player, this);
             }
         }
+    }
+
+    public override void OnHurt(Player.HurtInfo info) {
+        timeSinceLastHit = 0;
     }
 }

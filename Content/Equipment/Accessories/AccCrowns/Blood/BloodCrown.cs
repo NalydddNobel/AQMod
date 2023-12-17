@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.Components;
 using Aequus.Common.Players.Stats;
+using System;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -31,6 +32,11 @@ public class BloodCrown : ModItem, IHaveDownsideTip {
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
-        player.GetModPlayer<AequusPlayer>().accBloodCrown = true;
+        var modPlayer = player.GetModPlayer<BloodCrownPlayer>();
+        if (!modPlayer.accBloodCrownOld) {
+            modPlayer.bloodHeartRegen = -300;
+            modPlayer.BloodHearts = (int)Math.Max(modPlayer.BloodHearts, player.HeartCount() - player.statLife / player.HealthPerHeart());
+        }
+        modPlayer.accBloodCrown = true;
     }
 }

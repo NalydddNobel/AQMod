@@ -705,7 +705,7 @@
             <param name="modWall"></param>
             <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
         </member>
-        <member name="F:Aequus.AequusPlayer.MinimumRespawnTime">
+        <member name="P:Aequus.AequusPlayer.MinimumRespawnTime">
             <summary>
             The lowest any respawn-time reducing items can go.
             </summary>
@@ -994,7 +994,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 254)</summary>
+            <summary>(Total Textures: 253)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1290,11 +1290,14 @@
         <member name="F:Aequus.AequusTextures.BloodCrown">
             <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/BloodCrown</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.BloodCrownSlotDecal">
+            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/BloodCrownSlotDecal</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.BloodCrown_Crown">
             <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/BloodCrown_Crown</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CrownOfBloodSlot">
-            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/CrownOfBloodSlot</summary>
+        <member name="F:Aequus.AequusTextures.BloodSymbol">
+            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/BloodSymbol</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Heart">
             <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/Heart</summary>
@@ -1304,12 +1307,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.Heart_Template">
             <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/Heart_Template</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Symbol_Blood">
-            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/Symbol_Blood</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Symbol_Remains">
-            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/Symbol_Remains</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrownOfEarth">
             <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Earth/CrownOfEarth</summary>

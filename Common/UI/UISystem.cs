@@ -1,8 +1,10 @@
 ﻿using Aequus.Common.UI.EventBars;
+using Aequus.Content.UI.SlotDecals;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Terraria;
 using Terraria.GameInput;
 using Terraria.ID;
@@ -17,7 +19,7 @@ public partial class UISystem : ModSystem {
     public static byte specialLeftClickDelay;
     public static byte disableItemLeftClick;
 
-    public static ItemSlotContext CurrentItemSlot;
+    public static ItemSlotContext CurrentItemSlot { get; private set; }
 
     public static HashSet<int> ValidOnlineLinkedSlotContext { get; private set; }
     public static readonly List<UILayer> UserInterfaces = new();
@@ -67,8 +69,37 @@ public partial class UISystem : ModSystem {
         CurrentItemSlot = new(context, slot, inv, position, lightColor);
         orig(spriteBatch, inv, context, slot, position, lightColor);
 
-        if (inv[slot].IsAir) {
-            //SlotDecals.DrawEmptySlotDecals(spriteBatch, inv, context, slot, position, lightColor);
+        if (Main.playerInventory) {
+            float slotsDrawn = 0;
+            foreach (var decal in SlotDecalsLoader._registeredDecals) {
+                var key = (slot, context);
+
+                if (decal.CanDraw(slot, context)) {
+                    ref float opacity = ref CollectionsMarshal.GetValueRefOrAddDefault(decal.OpacityPerSlot, key, out _);
+                    if (opacity < 1f) {
+                        opacity += 0.08f;
+                        if (opacity > 1f) {
+                            opacity = 1f;
+                        }
+                    }
+                }
+                else if (decal.OpacityPerSlot.TryGetValue(key, out float opacity)) {
+                    opacity -= 0.033f;
+                    decal.OpacityPerSlot[key] = opacity;
+                    if (opacity <= 0f) {
+                        decal.OpacityPerSlot.Remove(key);
+                        continue;
+                    }
+                }
+                else {
+                    continue;
+                }
+
+                if (decal.OpacityPerSlot.TryGetValue(key, out float finalOpacity)) {
+                    spriteBatch.Draw(decal.texture.Value, CurrentItemSlot.Position + new Vector2(slotsDrawn * 8f + 4f, 4f), null, Colors.AlphaDarken(Color.White) * finalOpacity * 0.95f, 0f, decal.texture.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
+                    slotsDrawn += finalOpacity;
+                }
+            }
         }
     }
 
