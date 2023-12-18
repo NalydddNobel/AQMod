@@ -1287,6 +1287,24 @@
         <member name="F:Aequus.AequusTextures.SlimyBlueBalloon_Balloon">
             <summary>Full Path: Content/Equipment/Accessories/Balloons/SlimyBlueBalloon_Balloon</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.FlashwayShield">
+            <summary>Full Path: Content/Equipment/Accessories/FlashwayShield/FlashwayShield</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlashwayShield_Shield">
+            <summary>Full Path: Content/Equipment/Accessories/FlashwayShield/FlashwayShield_Shield</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldenFeather">
+            <summary>Full Path: Content/Equipment/Accessories/GoldenFeather/GoldenFeather</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldenFeatherBuff">
+            <summary>Full Path: Content/Equipment/Accessories/GoldenFeather/GoldenFeatherBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldenWind">
+            <summary>Full Path: Content/Equipment/Accessories/GoldenFeather/GoldenWind</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldenWindBuff">
+            <summary>Full Path: Content/Equipment/Accessories/GoldenFeather/GoldenWindBuff</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.CosmicChest">
             <summary>Full Path: Content/Equipment/Accessories/GrandReward/CosmicChest</summary>
         </member>
@@ -1315,40 +1333,22 @@
             <summary>Full Path: Content/Equipment/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ScavengerBag">
-            <summary>Full Path: Content/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBag</summary>
+            <summary>Full Path: Content/Equipment/Accessories/ScavengerBag/ScavengerBag</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ScavengerBagBuilderToggle">
-            <summary>Full Path: Content/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBagBuilderToggle</summary>
+            <summary>Full Path: Content/Equipment/Accessories/ScavengerBag/ScavengerBagBuilderToggle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ScavengerBag_Back">
-            <summary>Full Path: Content/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBag_Back</summary>
+            <summary>Full Path: Content/Equipment/Accessories/ScavengerBag/ScavengerBag_Back</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ScavengerBag_Strap">
-            <summary>Full Path: Content/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBag_Strap</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.FlashwayShield">
-            <summary>Full Path: Content/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.FlashwayShield_Shield">
-            <summary>Full Path: Content/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield_Shield</summary>
+            <summary>Full Path: Content/Equipment/Accessories/ScavengerBag/ScavengerBag_Strap</summary>
         </member>
         <member name="F:Aequus.AequusTextures.WeightedHorseshoe">
-            <summary>Full Path: Content/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoe</summary>
+            <summary>Full Path: Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoe</summary>
         </member>
         <member name="F:Aequus.AequusTextures.WeightedHorseshoeVisual">
-            <summary>Full Path: Content/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GoldenFeather">
-            <summary>Full Path: Content/Equipment/Accessories/Restoration/GoldenFeather/GoldenFeather</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GoldenFeatherBuff">
-            <summary>Full Path: Content/Equipment/Accessories/Restoration/GoldenFeather/GoldenFeatherBuff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GoldenWind">
-            <summary>Full Path: Content/Equipment/Accessories/Restoration/GoldenFeather/GoldenWind</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GoldenWindBuff">
-            <summary>Full Path: Content/Equipment/Accessories/Restoration/GoldenFeather/GoldenWindBuff</summary>
+            <summary>Full Path: Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BreadOfCthulhuMask">
             <summary>Full Path: Content/Equipment/Armor/Vanity/BreadOfCthulhuMask</summary>

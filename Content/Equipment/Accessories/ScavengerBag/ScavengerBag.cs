@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Aequus.Common.Players.Backpacks;
 
-namespace Aequus.Content.Equipment.Accessories.Inventory.ScavengerBag;
+namespace Aequus.Content.Equipment.Accessories.ScavengerBag;
 
 [AutoloadEquip(EquipType.Back)]
 public class ScavengerBag : ModItem, IStorageItem {

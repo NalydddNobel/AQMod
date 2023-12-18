@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Equipment.Accessories.Movement.FlashwayShield;
+namespace Aequus.Content.Equipment.Accessories.FlashwayShield;
 
 [AutoloadEquip(EquipType.Shield)]
 public class FlashwayShield : ModItem {

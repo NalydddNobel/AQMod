@@ -10,9 +10,9 @@ public class VanillaChangesConfig : ModConfig {
 
     [DefaultValue(true)]
     [ReloadRequired]
-    public bool MoveTreasureMagnet;
+    public bool MoveTreasureMagnet { get; set; }
 
     [DefaultValue(true)]
     [ReloadRequired]
-    public bool RestorationPotionRecipe;
+    public bool RestorationPotionRecipe { get; set; }
 }

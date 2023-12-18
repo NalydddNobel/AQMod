@@ -7,7 +7,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Equipment.Accessories.Movement.WeightedHorseshoe;
+namespace Aequus.Content.Equipment.Accessories.WeightedHorseshoe;
 
 public class WeightedHorseshoeVisual : ModProjectile {
     public RopeChain horseshoeAnvilRope;

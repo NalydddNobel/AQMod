@@ -209,6 +209,18 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SlimyBlueBalloon = new("Aequus/Content/Equipment/Accessories/Balloons/SlimyBlueBalloon");
     /// <summary>Full Path: Content/Equipment/Accessories/Balloons/SlimyBlueBalloon_Balloon</summary>
     public static readonly RequestCache<Texture2D> SlimyBlueBalloon_Balloon = new("Aequus/Content/Equipment/Accessories/Balloons/SlimyBlueBalloon_Balloon");
+    /// <summary>Full Path: Content/Equipment/Accessories/FlashwayShield/FlashwayShield</summary>
+    public static readonly RequestCache<Texture2D> FlashwayShield = new("Aequus/Content/Equipment/Accessories/FlashwayShield/FlashwayShield");
+    /// <summary>Full Path: Content/Equipment/Accessories/FlashwayShield/FlashwayShield_Shield</summary>
+    public static readonly RequestCache<Texture2D> FlashwayShield_Shield = new("Aequus/Content/Equipment/Accessories/FlashwayShield/FlashwayShield_Shield");
+    /// <summary>Full Path: Content/Equipment/Accessories/GoldenFeather/GoldenFeather</summary>
+    public static readonly RequestCache<Texture2D> GoldenFeather = new("Aequus/Content/Equipment/Accessories/GoldenFeather/GoldenFeather");
+    /// <summary>Full Path: Content/Equipment/Accessories/GoldenFeather/GoldenFeatherBuff</summary>
+    public static readonly RequestCache<Texture2D> GoldenFeatherBuff = new("Aequus/Content/Equipment/Accessories/GoldenFeather/GoldenFeatherBuff");
+    /// <summary>Full Path: Content/Equipment/Accessories/GoldenFeather/GoldenWind</summary>
+    public static readonly RequestCache<Texture2D> GoldenWind = new("Aequus/Content/Equipment/Accessories/GoldenFeather/GoldenWind");
+    /// <summary>Full Path: Content/Equipment/Accessories/GoldenFeather/GoldenWindBuff</summary>
+    public static readonly RequestCache<Texture2D> GoldenWindBuff = new("Aequus/Content/Equipment/Accessories/GoldenFeather/GoldenWindBuff");
     /// <summary>Full Path: Content/Equipment/Accessories/GrandReward/CosmicChest</summary>
     public static readonly RequestCache<Texture2D> CosmicChest = new("Aequus/Content/Equipment/Accessories/GrandReward/CosmicChest");
     /// <summary>Full Path: Content/Equipment/Accessories/GrandReward/GrandReward</summary>
@@ -227,30 +239,18 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ShimmerMonocle = new("Aequus/Content/Equipment/Accessories/Informational/Monocle/ShimmerMonocle");
     /// <summary>Full Path: Content/Equipment/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
     public static readonly RequestCache<Texture2D> ShimmerMonocleBuilderToggle = new("Aequus/Content/Equipment/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle");
-    /// <summary>Full Path: Content/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBag</summary>
-    public static readonly RequestCache<Texture2D> ScavengerBag = new("Aequus/Content/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBag");
-    /// <summary>Full Path: Content/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBagBuilderToggle</summary>
-    public static readonly RequestCache<Texture2D> ScavengerBagBuilderToggle = new("Aequus/Content/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBagBuilderToggle");
-    /// <summary>Full Path: Content/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBag_Back</summary>
-    public static readonly RequestCache<Texture2D> ScavengerBag_Back = new("Aequus/Content/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBag_Back");
-    /// <summary>Full Path: Content/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBag_Strap</summary>
-    public static readonly RequestCache<Texture2D> ScavengerBag_Strap = new("Aequus/Content/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBag_Strap");
-    /// <summary>Full Path: Content/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield</summary>
-    public static readonly RequestCache<Texture2D> FlashwayShield = new("Aequus/Content/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield");
-    /// <summary>Full Path: Content/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield_Shield</summary>
-    public static readonly RequestCache<Texture2D> FlashwayShield_Shield = new("Aequus/Content/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield_Shield");
-    /// <summary>Full Path: Content/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoe</summary>
-    public static readonly RequestCache<Texture2D> WeightedHorseshoe = new("Aequus/Content/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoe");
-    /// <summary>Full Path: Content/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
-    public static readonly RequestCache<Texture2D> WeightedHorseshoeVisual = new("Aequus/Content/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoeVisual");
-    /// <summary>Full Path: Content/Equipment/Accessories/Restoration/GoldenFeather/GoldenFeather</summary>
-    public static readonly RequestCache<Texture2D> GoldenFeather = new("Aequus/Content/Equipment/Accessories/Restoration/GoldenFeather/GoldenFeather");
-    /// <summary>Full Path: Content/Equipment/Accessories/Restoration/GoldenFeather/GoldenFeatherBuff</summary>
-    public static readonly RequestCache<Texture2D> GoldenFeatherBuff = new("Aequus/Content/Equipment/Accessories/Restoration/GoldenFeather/GoldenFeatherBuff");
-    /// <summary>Full Path: Content/Equipment/Accessories/Restoration/GoldenFeather/GoldenWind</summary>
-    public static readonly RequestCache<Texture2D> GoldenWind = new("Aequus/Content/Equipment/Accessories/Restoration/GoldenFeather/GoldenWind");
-    /// <summary>Full Path: Content/Equipment/Accessories/Restoration/GoldenFeather/GoldenWindBuff</summary>
-    public static readonly RequestCache<Texture2D> GoldenWindBuff = new("Aequus/Content/Equipment/Accessories/Restoration/GoldenFeather/GoldenWindBuff");
+    /// <summary>Full Path: Content/Equipment/Accessories/ScavengerBag/ScavengerBag</summary>
+    public static readonly RequestCache<Texture2D> ScavengerBag = new("Aequus/Content/Equipment/Accessories/ScavengerBag/ScavengerBag");
+    /// <summary>Full Path: Content/Equipment/Accessories/ScavengerBag/ScavengerBagBuilderToggle</summary>
+    public static readonly RequestCache<Texture2D> ScavengerBagBuilderToggle = new("Aequus/Content/Equipment/Accessories/ScavengerBag/ScavengerBagBuilderToggle");
+    /// <summary>Full Path: Content/Equipment/Accessories/ScavengerBag/ScavengerBag_Back</summary>
+    public static readonly RequestCache<Texture2D> ScavengerBag_Back = new("Aequus/Content/Equipment/Accessories/ScavengerBag/ScavengerBag_Back");
+    /// <summary>Full Path: Content/Equipment/Accessories/ScavengerBag/ScavengerBag_Strap</summary>
+    public static readonly RequestCache<Texture2D> ScavengerBag_Strap = new("Aequus/Content/Equipment/Accessories/ScavengerBag/ScavengerBag_Strap");
+    /// <summary>Full Path: Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoe</summary>
+    public static readonly RequestCache<Texture2D> WeightedHorseshoe = new("Aequus/Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoe");
+    /// <summary>Full Path: Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
+    public static readonly RequestCache<Texture2D> WeightedHorseshoeVisual = new("Aequus/Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual");
     /// <summary>Full Path: Content/Equipment/Armor/Vanity/BreadOfCthulhuMask</summary>
     public static readonly RequestCache<Texture2D> BreadOfCthulhuMask = new("Aequus/Content/Equipment/Armor/Vanity/BreadOfCthulhuMask");
     /// <summary>Full Path: Content/Equipment/Armor/Vanity/BreadOfCthulhuMask_Head</summary>
