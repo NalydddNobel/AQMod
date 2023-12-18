@@ -101,7 +101,6 @@ public class HotAirBalloonMount : ModMount {
         EasterEggs.Clear();
         EasterEggs["modzilla"] = new BalloonData(1, Color.White);
         EasterEggs["nalyddd"] = new DynamicColorBalloonData(0, () => Color.Lerp(Color.Violet, Color.BlueViolet, Helper.Oscillate(Main.GlobalTimeWrappedHourly, 1f)), () => Color.BlueViolet);
-        EasterEggs["moff"] = new EasterEggBalloonProvider(0, null, new(120, 120, 255));
     }
     #endregion
 

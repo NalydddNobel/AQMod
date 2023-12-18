@@ -7,19 +7,32 @@ I. Additions & Changes:
 - Ported Radon Moss, Radon Moss Fishing Bobber, Radon Moss Bricks and Radon Moss Brick Walls.
 - Ported Neutron Yogurt.
 - Ported Slice.
-- Ported almost every Dye.
-- Ported Mono and Omni Gems.
+- Ported The Christmas Spirit. (Resprited)
+- Ported Star Phish.
+- Ported Junk Jet. (Slight tweaks)
+- Ported the best Dyes in the mod.
+- Ported Mono & Omni Gems.
+- Ported the Phase Mirror & Phase Phone.
 - Ported all of the Energies.
-- Ported Fluorescence and Frozen Tears.
-- Ported all of the Relics and Trophies, even for un-ported bosses.
+- Ported Fluorescence & Frozen Tears.
+- Ported all of the Relics & Trophies.
+- Ported the Name Tag. (Resprited, Tweaked)
+- Ported the Grand Reward.
+- Ported many Dedicated Items.
 
 - New Item: Convergent Heart.
 - New Item: Copper & Tin Conductors, pre-Skeletron wiring, with a few unique effects!
+- New Item: Copper & Tin Sea Traps, lets you catch fish while away.
+- New Item: Obsidian Fish Trap, same as the Sea Traps, but works in lava.
+- New Item: Plastic Darts, an earlygame dart to use in the Blowpipe or Star Phish.
+- New Item: Trash Compactor, lets you compress trash, and decraft furniture.
+- New Item: Angler Lantern & Wisp Lantern, lets you see inside pots and emits light.
 
 Polluted Ocean:
 - From what was previously the Crab Crevice, this biome features new and familiar content, all with great amounts of effort put in!
-- Added the Scavenger, a Skeleton which can use armor and accessories
-- Added the Scavenger Bag, grants 10 inventory slots
+- Added the Scavenger, a Skeleton which can use armor and accessories.
+- Added the Scavenger Bag, grants 10 inventory slots.
+- Added the Black Jellyfish, an explosive threat!
 
 Sky Merchant:
 - Resprited.
@@ -37,6 +50,7 @@ Sky Merchant:
 - New Item: Furystar, reminiscent of the orignal Starfury! Using mana and all! (Well, it deals magic damage now.)
 
 II. Vanilla Changes:
+- Slime Crowns now have a 14.28% chance to spawn in Surface Chests.
 - Name Tags now have a 12.5% chance to spawn in Gold Chests underground.
 - Treasure Magnet no longer appears in Shadow Chests or Shadow Lock Boxes. It is instead sold by the Sky Merchant.
 - Changed the recipe for Restoration Potions, now crafted using Lesser Restoration Potions and Glowing Mushrooms.

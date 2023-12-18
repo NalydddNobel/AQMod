@@ -57,6 +57,15 @@ FlashwayShield: {
 		'''
 }
 
+PurpleBalloon: {
+	DisplayName: Matte Purple Balloon
+	Tooltip:
+		'''
+		{$ItemTooltip.ShinyRedBalloon}
+		{$SlimyBlueBalloon.Tooltip}
+		'''
+}
+
 SlimyBlueBalloon: {
 	DisplayName: Slimy Blue Balloon
 	Tooltip:
@@ -297,7 +306,7 @@ WispLantern: {
 		'''
 		Emits light when held or in your inventory
 		Reveals loot inside of pots when held
-		Use to greatly distrupt nearby enemies
+		Use to greatly disrupt nearby enemies
 		'''
 }
 

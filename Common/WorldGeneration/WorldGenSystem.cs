@@ -12,8 +12,14 @@ namespace Aequus.Common.WorldGeneration;
 public class WorldGenSystem : ModSystem {
     public static List<AequusGenStep> GenerationSteps = new();
 
+    public static readonly HashSet<int> PlacedItems = new();
+
     public override void Unload() {
         GenerationSteps.Clear();
+    }
+
+    public override void PreWorldGen() {
+        PlacedItems.Clear();
     }
 
     public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight) {
@@ -31,8 +37,7 @@ public class WorldGenSystem : ModSystem {
 
     public override void PostWorldGen() {
         // A hashset of items which have been placed atleast once.
-        var placedItems = new HashSet<int>();
-        var r = WorldGen.genRand;
+        var rand = WorldGen.genRand;
 
         for (int k = 0; k < Main.maxChests; k++) {
             Chest chest = Main.chest[k];
@@ -55,19 +60,26 @@ public class WorldGenSystem : ModSystem {
                 continue;
             }
 
-            if (tile.TileType == TileID.Containers) {
-                if (style == ChestType.Gold) {
+            var type = tile.TileType;
+            if (chest.y < Main.worldSurface) {
+                if (IsChest(style, type, ChestType.Wood)) {
+                    PostGenerationSteps.CheckSurfaceChest(chest);
+                }
+            }
+            else if (chest.y < Main.UnderworldLayer) {
+                if (IsChest(style, type, ChestType.Gold)) {
                     PostGenerationSteps.CheckUGGoldChest(chest);
                 }
-                if (style == ChestType.LockedShadow) {
+            }
+            else {
+                if (IsChest(style, type, ChestType.LockedShadow)) {
                     PostGenerationSteps.CheckShadowChest(chest);
                 }
-                continue;
-            }
-
-            if (Main.tile[chest.x, chest.y].TileType == TileID.Containers2) {
-                continue;
             }
         }
+
+
+        static bool IsChest(int chestStyle, int chestTileId, int wantedStyle, int wantedTileId = TileID.Containers) 
+            => wantedStyle == chestStyle && wantedTileId == chestTileId;
     }
 }

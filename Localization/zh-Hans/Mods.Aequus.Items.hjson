@@ -1,9 +1,9 @@
 CommonTooltips: {
-	// IncreasesInventorySlots: Grants {0} backpack slots
-	// Cooldown: Has a {0} second cooldown
-	// Shimmerable: Shimmer Ingredient
-	// ShimmerableToNPC: Shimmer Ingredient
-	// OmnidirectionMelee: Can be swung in any direction
+	IncreasesInventorySlots: 获得{0}格物品栏
+	Cooldown: 有{0}秒冷却时间
+	Shimmerable: 微光材料
+	ShimmerableToNPC: 微光材料
+	OmnidirectionMelee: 可以向任意方向挥舞
 	WorkInProgress: 此项物品正在进行中并且无法获得
 	DedicatedItem: 谢谢你, {0}!
 	DedicatedItemAnonymous: 专属物品
@@ -31,55 +31,64 @@ RadonFishingBobber: {
 
 CrownOfDarkness: {
 	DisplayName: 黑暗王冠
-	// Tooltip: Grants the ability of your 1st accessory to all teammates
+	Tooltip: 将你第一个饰品栏中饰品的效果赋予队友
 }
 
 GoldenWind: {
-	// DisplayName: Golden Wind
-	// Tooltip: "{$Items.GoldenFeather.Tooltip}"
+	DisplayName: 黄金之风
+	Tooltip: "{$Items.GoldenFeather.Tooltip}"
 }
 
 GoldenFeather: {
-	// DisplayName: Miraculous Feather
-	/* Tooltip:
+	DisplayName: 奇迹之羽
+	Tooltip:
 		'''
-		Regenerate {1} life per second for yourself and all players on your team
-		Respawn time for you and teammates is reduced by {0} seconds
-		''' */
+		每秒为你所处队伍中的所有玩家和你恢复{1}点生命值
+		你和你队友的重生速度缩短{0}秒
+		'''
 }
 
 FlashwayShield: {
-	// DisplayName: Flashway Shield
-	/* Tooltip:
+	DisplayName: 闪光盾
+	Tooltip:
 		'''
-		Allows the ability to dash
-		Double tap a direction
-		''' */
+		使你获得冲刺能力
+		双击方向键冲刺
+		'''
+}
+
+PurpleBalloon: {
+	DisplayName: 哑光紫色气球
+	Tooltip:
+		'''
+		{$ItemTooltip.ShinyRedBalloon}
+		{$SlimyBlueBalloon.Tooltip}
+		'''
 }
 
 SlimyBlueBalloon: {
-	// DisplayName: Slimy Blue Balloon
-	/* Tooltip:
+	DisplayName: 黏糊糊的蓝色气球
+	Tooltip:
 		'''
-		Slows falling speed
-		Hold down to fall at regular speed
-		''' */
+		减缓下落速度
+		长按下键以正常速度下落
+		'''
 }
 
 WeightedHorseshoe: {
-	// DisplayName: Weighted Horseshoe
-	/* Tooltip:
+	DisplayName: 重力马蹄铁
+	Tooltip:
 		'''
-		Doubled maximum fall speed
-		Damage and fall through enemies while at high speeds
-		'You should put a verlet chain on this, it won't be buggy!'
-		''' */
+		翻倍最大下落速度
+		在速度较高时会伤害并穿过敌人
+		'你应该在这上面使用韦尔莱链, 这样它就不会出错了!'
+		'''
 }
 
 //# Equipment: Informational
 ShimmerMonocle: {
-	// DisplayName: Shmonocle
-	// Tooltip: Displays if an item is a Shimmer Ingredient
+	DisplayName: 微光单片镜
+	Tooltip: 显示一个物品是否是微光材料
 }
 
 RichMansMonocle: {
@@ -88,8 +97,8 @@ RichMansMonocle: {
 }
 
 Calendar: {
-	// DisplayName: Calendar
-	// Tooltip: Shows you the date
+	DisplayName: 日历
+	Tooltip: 显示日期
 }
 
 //# Weapons: Melee
@@ -106,20 +115,20 @@ Slice: {
 	DisplayName: 利刃
 	Tooltip:
 		'''
-		Gains speed over time and inflicts frostbite on hit
+		持续获得速度加成, 击中敌人时会造成冻伤减益
 		{$CommonTooltips.OmnidirectionMelee}
-		'Not to be confused with Dice'
+		'不要和骰子混淆'
 		'''
 }
 
 //# Ranged Ammo
 PlasticDart: {
-	// DisplayName: Plastic Dart
-	/* Tooltip:
+	DisplayName: 塑料镖
+	Tooltip:
 		'''
-		Can be recollected after hitting a soft block
-		'Its flat head cannot deal much more than blunt damage'
-		''' */
+		在命中软方块后可以回收
+		'它扁平的头部无法造成更多伤害'
+		'''
 }
 
 //# Weapons: Ranged
@@ -138,34 +147,34 @@ JunkJet: {
 }
 
 SkyHunterCrossbow: {
-	// DisplayName: Sky Hunter Crossbow
-	/* Tooltip:
+	DisplayName: 天空猎手的十字弓
+	Tooltip:
 		'''
-		Fire connected arrows which can pick up items
-		<right> to zoom out
-		''' */
+		发射可以拾取物品的箭矢
+		右键缩放视域
+		'''
 }
 
 //# Weapons: Magic
 Furystar: {
-	// DisplayName: Furystar
-	/* Tooltip:
+	DisplayName: 怒星
+	Tooltip:
 		'''
-		Causes stars to rain from the sky
-		Attacks restores mana
-		''' */
+		使星星从天而降
+		攻击会回复魔力值
+		'''
 }
 
 //# Weapons: Classless
 StunGun: {
-	// DisplayName: Stun Gun
-	// Tooltip: Slow or stun enemies for {0} seconds
+	DisplayName: 电击枪
+	Tooltip: 使敌人减速或眩晕{0}秒
 }
 
 //# Potions
 NeutronYogurt: {
 	DisplayName: 中子酸奶
-	// Tooltip: Grants an enchanted fall with doubled acceleration
+	Tooltip: 获得具有加速度翻倍的附魔下落
 }
 
 DeathsEmbrace: {
@@ -212,12 +221,12 @@ CosmicEnergy: {
 }
 
 DemonicEnergy: {
-	// DisplayName: Eidolic Energy
+	DisplayName: 幻象能量
 	Tooltip: ""
 }
 
 OrganicEnergy: {
-	// DisplayName: Hearthic Energy
+	DisplayName: 心象能量
 	Tooltip: ""
 }
 
@@ -228,12 +237,12 @@ UltimateEnergy: {
 
 MonoGem: {
 	DisplayName: 单项宝石
-	// Tooltip: "'Cursed with the essence of obscurity'"
+	Tooltip: "'被晦涩的精华所诅咒'"
 }
 
 OmniGem: {
 	DisplayName: 全能宝石
-	// Tooltip: "'Enchanted with the presence of the Aether'"
+	Tooltip: "'被以太的存在所附魔'"
 }
 
 LesserRestorationPotion: {
@@ -252,62 +261,62 @@ SuperRestorationPotion: {
 }
 
 CosmicChest: {
-	// DisplayName: Fortunate Souvenir
+	DisplayName: 好运礼物
 	Tooltip: 永久性增加敌人的物品掉率
 }
 
 NetherStar: {
-	// DisplayName: Convergent Heart
+	DisplayName: 聚敛之心
 	Tooltip: "{$ItemTooltip.DemonHeart}"
 }
 
 CompressedTrash: {
-	// DisplayName: Compressed Trash
+	DisplayName: 压缩垃圾
 	Tooltip: ""
 }
 
 Fluorescence: {
 	DisplayName: 荧光
-	// Tooltip: "'Charged with rage, adrenaline, and tormented malice'"
+	Tooltip: "'充满了愤怒、肾上腺素和痛苦的恶意'"
 }
 
 FrozenTear: {
-	// DisplayName: Frozen Teardrop
-	// Tooltip: "'An exotic tear formed by melting the heart of a squid'"
+	DisplayName: 冰寒泪滴
+	Tooltip: "'一种由乌贼的心融化而成的奇异的眼泪'"
 }
 
 CrabsonBag: {
-	// DisplayName: Treasure Bag (Crabson)
-	// Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+	DisplayName: 宝藏袋 (巨蟹蛤)
+	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 }
 
 OmegaStariteBag: {
-	// DisplayName: Treasure Bag (Omega Starite)
-	// Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+	DisplayName: 宝藏袋 (终末之星)
+	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 }
 
 DustDevilBag: {
-	// DisplayName: Treasure Bag (Dust Devil)
-	// Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+	DisplayName: 宝藏袋 (沙尘恶魔)
+	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 }
 
 WispLantern: {
-	// DisplayName: Wisp Lantern
-	/* Tooltip:
+	DisplayName: 精灵灯笼
+	Tooltip:
 		'''
-		Emits light when held or in your inventory
-		Reveals loot inside of pots when held
-		Use to greatly distrupt nearby enemies
-		''' */
+		手持此物或放在物品栏中时会散发光芒
+		手持此物时会揭露罐子中的战利品
+		用于大幅度干扰附近的敌人
+		'''
 }
 
 AnglerLamp: {
-	// DisplayName: Angler Lamp
-	/* Tooltip:
+	DisplayName: 琵琶鱼灯
+	Tooltip:
 		'''
-		Emits light & reveals loot inside of nearby pots
-		Use gel to disrupt nearby enemies
-		''' */
+		散发光芒并揭露附近罐子中的战利品
+		使用凝胶干扰附近的敌人
+		'''
 }
 
 PhaseMirror: {
@@ -320,33 +329,33 @@ PhaseMirror: {
 }
 
 PhasePhone: {
-	DisplayName: Phase Phone
+	DisplayName: 相位手机
 	Tooltip:
 		'''
-		Displays everything
+		显示一切
 		{0}
-		Teleport to party members by clicking their head on the fullscreen map
-		<right> to toggle destination
+		通过在大地图上点击队友的头像来传送至对方位置
+		右键切换目的地
 		'''
 
 	Home: {
-		// DisplayName: Phase Phone (Home)
-		// Tooltip: Allows you to return home at will
+		DisplayName: 相位手机 (家)
+		Tooltip: 允许你随意回家
 	}
 
 	Spawn: {
-		// DisplayName: Phase Phone (Spawn)
-		// Tooltip: Allows you to return to spawn at will
+		DisplayName: 相位手机 (出生点)
+		Tooltip: 允许你随意回到出生点
 	}
 
 	Ocean: {
-		// DisplayName: Phase Phone (Ocean)
-		// Tooltip: Allows you to travel to the ocean at will
+		DisplayName: 相位手机 (海洋)
+		Tooltip: 允许你随意前往海洋
 	}
 
 	Underworld: {
-		// DisplayName: Phase Phone (Underworld)
-		// Tooltip: Allows you to travel to the underworld at will
+		DisplayName: 相位手机 (地狱)
+		Tooltip: 允许你随意前往地狱
 	}
 }
 
@@ -357,29 +366,29 @@ DedicatedFaelingItem: {
 
 Bellows: {
 	DisplayName: 风箱
-	/* Tooltip:
+	Tooltip:
 		'''
-		Pushes you
-		'Quite the pushover'
-		''' */
+		推动你
+		'还挺容易'
+		'''
 }
 
 Pumpinator: {
 	DisplayName: 泵风器
-	/* Tooltip:
+	Tooltip:
 		'''
-		Gradually changes the speed of the wind
-		Can push almost anything with its powerful gusts
-		''' */
+		逐次更改风速
+		强大的阵风几乎可以推动任何东西
+		'''
 }
 
 NameTag: {
-	// DisplayName: Rename Tag
-	/* Tooltip:
+	DisplayName: 重命名标签
+	Tooltip:
 		'''
-		Rename at the Sky Merchant
-		Use on villagers, critters, or enemies to rename them
-		''' */
+		可在天空商人处重命名
+		对着镇民、小动物或敌人使用以重命名名字
+		'''
 }
 
 //# Vanity Armors
@@ -420,13 +429,13 @@ SpaceSquidMask: {
 
 //# Tiles & Blocks
 MonsterChestItem: {
-	// DisplayName: Monster Chest
-	// Tooltip: Places a monster chest which will get immediately activated unless you have the Invisibility buff
+	DisplayName: 怪物箱
+	Tooltip: 放置一个怪物箱, 除非你拥有隐形增益, 否则它会立即激活
 }
 
 CircuitBreaker: {
-	// DisplayName: Circuit Switch
-	// Tooltip: Activates Conductive Blocks without needing wire
+	DisplayName: 电路开关
+	Tooltip: 无需电线即可激活导电方块
 }
 
 CrabsonRelic: {
@@ -491,24 +500,24 @@ UltraStariteTrophy: {
 
 //# Mounts
 BalloonKit: {
-	// DisplayName: Balloon Kit
-	/* Tooltip:
+	DisplayName: 气球装备
+	Tooltip:
 		'''
-		Allows you to ride a hot air balloon
-		'Skillfully crafted at Modzilla Corp Factories'
-		''' */
+		允许你骑乘一颗热气球
+		'在Modzilla的公司工厂精心制作而成'
+		'''
 }
 
 //# Backpacks
 ScavengerBag: {
-	// DisplayName: Scavenger Bag
-	// Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+	DisplayName: 拾荒者袋子
+	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
 }
 
 Backpacks: {
 	ScavengerBagBackpackData: {
-		// DisplayName: Backpack
-		// BackpackEnabled: Backpack On
-		// BackpackDisabled: Backpack Off
+		DisplayName: 背包
+		BackpackEnabled: 背包开启
+		BackpackDisabled: 背包关闭
 	}
 }

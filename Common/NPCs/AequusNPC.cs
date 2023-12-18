@@ -1,5 +1,4 @@
-﻿using Aequus.Common.NPCs.Components;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Reflection;
 using Terraria;
@@ -27,7 +26,7 @@ public partial class AequusNPC : GlobalNPC {
         }
         orig(npc);
     }
-    
+
     public override void Unload() {
         _resetEffects = null;
     }

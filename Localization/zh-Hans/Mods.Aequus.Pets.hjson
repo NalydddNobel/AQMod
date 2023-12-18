@@ -18,9 +18,9 @@ SwagEyePet: {
 
 LanternCatPet: {
 	BuffDisplayName: 黑光扇
-	BuffDescription: 召唤一只提供幸运的猫和一盏提供光照灯笼
+	BuffDescription: 召唤一只提供幸运的猫和一盏提供光照的灯笼
 	ItemDisplayName: 黑光扇
-	ItemTooltip: 召唤一只提供幸运的猫和一盏提供光照灯笼
+	ItemTooltip: 召唤一只提供幸运的猫和一盏提供光照的灯笼
 }
 
 UndeadMinerPet: {
@@ -33,7 +33,7 @@ UndeadMinerPet: {
 OmegaStaritePet: {
 	BuffDisplayName: 迷你终末之星
 	BuffDescription: 你所能想象的最小的类太阳系
-	// ItemDisplayName: Omega Core
+	ItemDisplayName: 终末核心
 	ItemTooltip:
 		'''
 		召唤一颗迷你终末之星

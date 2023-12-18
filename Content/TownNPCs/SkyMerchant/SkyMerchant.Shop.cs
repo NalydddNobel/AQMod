@@ -1,15 +1,14 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Items;
 using Aequus.Content.Configuration;
+using Aequus.Content.Equipment.Accessories.Balloons;
+using Aequus.Content.Equipment.Accessories.FlashwayShield;
+using Aequus.Content.Equipment.Accessories.GoldenFeather;
 using Aequus.Content.Equipment.Accessories.Informational.Calendar;
-using Aequus.Content.Equipment.Accessories.Movement.FlashwayShield;
-using Aequus.Content.Equipment.Accessories.Movement.SlimyBlueBalloon;
-using Aequus.Content.Equipment.Accessories.Movement.WeightedHorseshoe;
-using Aequus.Content.Equipment.Accessories.Restoration.GoldenFeather;
+using Aequus.Content.Equipment.Accessories.WeightedHorseshoe;
 using Aequus.Content.Equipment.Mounts.HotAirBalloon;
 using Aequus.Content.Items.Tools.Bellows;
 using Aequus.Content.Items.Tools.NameTag;
-using Aequus.Content.Items.Tools.Pumpinator;
 using Aequus.Content.Items.Weapons.Classless.StunGun;
 using Aequus.Content.Items.Weapons.Magic.Furystar;
 using Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
@@ -29,7 +28,6 @@ public partial class SkyMerchant {
         new NPCShop(Type, "Shop")
             .AddCustomValue<SkyHunterCrossbow>(ItemCommons.Price.SkyMerchantCustomPurchasePrice * 1.5)
             .AddCustomValue<Bellows>(ItemCommons.Price.SkyMerchantCustomPurchasePrice)
-            .AddCustomValue<Pumpinator>(ItemCommons.Price.SkyMerchantCustomPurchasePrice)
             .AddCustomValue<BalloonKit>(ItemCommons.Price.SkyMerchantCustomPurchasePrice * 7)
             .Add<NameTag>()
             .Add<Calendar>()
