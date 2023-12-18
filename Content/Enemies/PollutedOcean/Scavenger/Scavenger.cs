@@ -2,7 +2,7 @@
 using Aequus.Common.NPCs.Components;
 using Aequus.Content.CrossMod;
 using Aequus.Content.DataSets;
-using Aequus.Content.Equipment.Accessories.Inventory.ScavengerBag;
+using Aequus.Content.Equipment.Accessories.ScavengerBag;
 using Aequus.Core.Autoloading;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

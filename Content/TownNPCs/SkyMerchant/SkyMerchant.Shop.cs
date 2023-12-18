@@ -2,10 +2,10 @@
 using Aequus.Common.Items;
 using Aequus.Content.Configuration;
 using Aequus.Content.Equipment.Accessories.Balloons;
+using Aequus.Content.Equipment.Accessories.FlashwayShield;
+using Aequus.Content.Equipment.Accessories.GoldenFeather;
 using Aequus.Content.Equipment.Accessories.Informational.Calendar;
-using Aequus.Content.Equipment.Accessories.Movement.FlashwayShield;
-using Aequus.Content.Equipment.Accessories.Movement.WeightedHorseshoe;
-using Aequus.Content.Equipment.Accessories.Restoration.GoldenFeather;
+using Aequus.Content.Equipment.Accessories.WeightedHorseshoe;
 using Aequus.Content.Equipment.Mounts.HotAirBalloon;
 using Aequus.Content.Items.Tools.Bellows;
 using Aequus.Content.Items.Tools.NameTag;

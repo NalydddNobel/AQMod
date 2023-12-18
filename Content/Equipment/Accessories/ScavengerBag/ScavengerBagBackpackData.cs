@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Equipment.Accessories.Inventory.ScavengerBag;
+namespace Aequus.Content.Equipment.Accessories.ScavengerBag;
 
 public class ScavengerBagBackpackData : BackpackItemData {
     public override bool SupportsInfoAccessories => true;

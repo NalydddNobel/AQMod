@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Equipment.Accessories.Restoration.GoldenFeather;
+namespace Aequus.Content.Equipment.Accessories.GoldenFeather;
 
 public class GoldenFeather : ModItem {
     public static int RespawnTimeAmount { get; set; } = -300;

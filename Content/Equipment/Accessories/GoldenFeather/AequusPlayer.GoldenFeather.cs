@@ -1,6 +1,6 @@
 ﻿using Aequus.Core.Generator;
 using Terraria;
-using Aequus.Content.Equipment.Accessories.Restoration.GoldenFeather;
+using Aequus.Content.Equipment.Accessories.GoldenFeather;
 
 namespace Aequus;
 

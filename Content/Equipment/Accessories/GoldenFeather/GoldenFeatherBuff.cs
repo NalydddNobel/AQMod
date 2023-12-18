@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Equipment.Accessories.Restoration.GoldenFeather;
+namespace Aequus.Content.Equipment.Accessories.GoldenFeather;
 
 public class GoldenFeatherBuff : ModBuff {
     public override void SetStaticDefaults() {
