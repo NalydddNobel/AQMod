@@ -12,11 +12,24 @@ public class BloodCrownPlayer : ModPlayer {
     public override void ResetEffects() {
         accBloodCrownOld = accBloodCrown;
         accBloodCrown = false;
+        bloodCrownEndurance = 0f;
     }
 
     private void UpdateBloodCrownInner(Item equip) {
         var player = Player;
+
+        float damageReductionOld = player.endurance;
+
         player.ApplyEquipFunctional(equip, player.hideVisibleAccessory[BloodCrown.SlotId]);
+
+        // Move any extra "Endurance" (Damage Reduction) to a custom variable
+        // Prevents the vanilla "endurance" stat from having any chance to go over 1.
+        float damageReductionDifference = player.endurance - damageReductionOld;
+        if (damageReductionDifference > 0f) {
+            player.endurance = damageReductionOld;
+            bloodCrownEndurance += damageReductionDifference;
+        }
+
         if (equip.wingSlot != -1) {
             player.wingTimeMax *= 2;
         }
@@ -109,6 +122,14 @@ public class BloodCrownPlayer : ModPlayer {
         if (accBloodCrown) {
             BloodHearts += (int)(info.Damage / Player.HealthPerHeart());
         }
+    }
+    #endregion
+
+    #region Unique interactions
+    public float bloodCrownEndurance;
+
+    public override void ModifyHurt(ref Player.HurtModifiers modifiers) {
+        modifiers.FinalDamage *= Helper.CappedExponential(bloodCrownEndurance);
     }
     #endregion
 }

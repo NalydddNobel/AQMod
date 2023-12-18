@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Tiles;
 using Microsoft.Xna.Framework;
 using System;
+using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
@@ -9,22 +10,32 @@ using Terraria.Utilities;
 namespace Aequus;
 
 public static class Helper {
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Point WorldClamp(this Point value, int fluff = 0) {
         return new(Math.Clamp(value.X, fluff, Main.maxTilesX - fluff), Math.Clamp(value.Y, fluff, Main.maxTilesX - fluff));
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static float CappedExponential(float x, float k = 1f, float e = 4f) {
+        return MathF.Pow(e, k * x);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static float Oscillate(float time, float magnitude) {
         return Oscillate(time, 0f, magnitude);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static float Oscillate(float time, float minimum, float maximum) {
         return (float)(minimum + (Math.Sin(time) + 1f) / 2f * (maximum - minimum));
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Rectangle Frame(this Rectangle rectangle, int frameX, int frameY, int sizeOffsetX = 0, int sizeOffsetY = 0) {
         return new Rectangle(rectangle.X + (rectangle.Width - sizeOffsetX) * frameX, rectangle.Y + (rectangle.Width - sizeOffsetY) * frameY, rectangle.Width, rectangle.Height);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsFalling(Vector2 velocity, float gravDir) {
         return Math.Sign(velocity.Y) == Math.Sign(gravDir);
     }
