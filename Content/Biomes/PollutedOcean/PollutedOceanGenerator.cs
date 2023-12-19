@@ -256,6 +256,7 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
                 tile.HasTile = true;
                 tile.IsActuated = false;
                 tile.TileType = _polymerSand;
+                tile.WallType = _polymerSandstoneWall;
                 tile.LiquidAmount = 0;
                 //if (!Main.tile[i, j + 1].IsFullySolid() || (Main.tile[i, j - 1].IsFullySolid() && (!Main.tile[i - 1, j].IsFullySolid() || !Main.tile[i - 1, j + 1].IsFullySolid() || !Main.tile[i + 1, j].IsFullySolid() || !Main.tile[i + 1, j + 1].IsFullySolid()))) {
                 //    tile.TileType = _polymerSandstone;
@@ -275,9 +276,8 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
         for (int i = 0; i < Main.maxTilesX; i++) {
             for (int j = 0; j < Main.maxTilesY; j++) {
                 SetProgress(progress, (i * Main.maxTilesY + j) / (double)(Main.maxTilesX + Main.maxTilesY), Weight * 0.25f, Weight * 0.33f);
-                if (Main.tile[i, j].TileType == _polymerSand && Random.NextBool(Main.tile[i, j].HasTile ? 140 : 8)) {
-                    PunchHole(i, j, Random.Next(7, 24), Random.Next(7, 16));
-
+                if (Main.tile[i, j].TileType == _polymerSand && Random.NextBool(Main.tile[i, j].HasTile ? 160 : 15)) {
+                    PunchHole(i, j, Random.Next(7, 28), Random.Next(5, 18));
                 }
             }
         }
@@ -300,8 +300,9 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
             int endY = j + circleSizeY;
             progressX++;
             for (int y = j - circleSizeY; y < endY; y++) {
-                if (WorldGen.InWorld(x, y) && SafeTile[Main.tile[x, y].TileType]) {
+                if (WorldGen.InWorld(x, y) && ReplaceableWall[Main.tile[x, y].WallType] && SafeTile[Main.tile[x, y].TileType]) {
                     WorldGen.KillTile(x, y);
+                    WorldGen.KillWall(x, y);
                 }
             }
         }
