@@ -20,6 +20,7 @@ public class PolymerSand : MultiMergeTile {
     }
 
     public override void SetStaticDefaults() {
+        Main.tileSand[Type] = true;
         Main.tileSolid[Type] = true;
         Main.tileBlockLight[Type] = true;
         AddMerge(TileID.Sand);
