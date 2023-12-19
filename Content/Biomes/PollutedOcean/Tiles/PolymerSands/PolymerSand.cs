@@ -25,6 +25,8 @@ public class PolymerSand : MultiMergeTile {
         Main.tileBlockLight[Type] = true;
         AddMerge(TileID.Sand);
         AddMerge(TileID.HardenedSand);
+        Main.tileMerge[Type][ModContent.TileType<PolymerSandstone>()] = true;
+        Main.tileMerge[ModContent.TileType<PolymerSandstone>()][Type] = true;
 
         TileID.Sets.ChecksForMerge[Type] = true;
         TileID.Sets.Conversion.Sand[Type] = true;

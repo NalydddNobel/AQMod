@@ -1189,7 +1189,7 @@
             <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 278)</summary>
+            <summary>(Total Textures: 282)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1316,6 +1316,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.PolymerSandstoneWallItem">
             <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstoneWallItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PolymerStalactite1x1">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerStalactite1x1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PolymerStalactite1x2">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerStalactite1x2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PolymerStalagmite1x1">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerStalagmite1x1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PolymerStalagmite1x2">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerStalagmite1x2</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrashPots1x1_0">
             <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Pots/Gores/TrashPots1x1_0</summary>

@@ -26,7 +26,7 @@ public class PolymerSandstone : MultiMergeTile {
 
         TileID.Sets.ChecksForMerge[Type] = true;
         TileID.Sets.Conversion.Sandstone[Type] = true;
-        AddMapEntry(new Color(160, 149, 97));
+        AddMapEntry(new(160, 149, 97));
         DustType = DustID.Sand;
         HitSound = SoundID.Tink;
         MineResist = 1.5f;

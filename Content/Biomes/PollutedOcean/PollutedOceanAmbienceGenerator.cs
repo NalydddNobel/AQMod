@@ -14,6 +14,10 @@ internal class PollutedOceanAmbienceGenerator : AequusGenStep {
     private static ushort _pot2x2;
     private static ushort _ambient1x1;
     private static ushort _ambient2x2;
+    private static ushort _stalactite1x2;
+    private static ushort _stalagmite1x2;
+    private static ushort _stalactite1x1;
+    private static ushort _stalagmite1x1;
 
     public static bool Polluted(int x, int y) {
         if (WorldGen.SolidTile(x, y)) {
@@ -35,6 +39,10 @@ internal class PollutedOceanAmbienceGenerator : AequusGenStep {
         _pot2x2 = (ushort)ModContent.TileType<TrashPots2x2>();
         _ambient1x1 = (ushort)ModContent.TileType<PollutedOceanAmbient1x1>();
         _ambient2x2 = (ushort)ModContent.TileType<PollutedOceanAmbient2x2>();
+        _stalactite1x2 = (ushort)ModContent.TileType<PolymerStalactite1x2>();
+        _stalagmite1x2 = (ushort)ModContent.TileType<PolymerStalagmite1x2>();
+        _stalactite1x1 = (ushort)ModContent.TileType<PolymerStalactite1x1>();
+        _stalagmite1x1 = (ushort)ModContent.TileType<PolymerStalagmite1x1>();
 
         for (int i = 10; i < Main.maxTilesX - 10; i++) {
             for (int j = 10; j < Main.maxTilesY - 10; j++) {
@@ -61,6 +69,24 @@ internal class PollutedOceanAmbienceGenerator : AequusGenStep {
                         }
                         else {
                             WorldGen.PlaceTile(i, j, _ambient2x2);
+                        }
+                    }
+                    else if (Random.NextBool(3)) {
+                        if (Random.NextBool()) {
+                            WorldGen.PlaceTile(i, j, _stalagmite1x1, style: Random.Next(3));
+                        }
+                        else {
+                            WorldGen.PlaceTile(i, j, _stalagmite1x2, style: Random.Next(3));
+                        }
+                    }
+                }
+                else if (WorldGen.SolidTile(i, j - 1)) {
+                    if (Random.NextBool(3)) {
+                        if (Random.NextBool()) {
+                            WorldGen.PlaceTile(i, j, _stalactite1x1, style: Random.Next(3));
+                        }
+                        else {
+                            WorldGen.PlaceTile(i, j, _stalactite1x2, style: Random.Next(3));
                         }
                     }
                 }

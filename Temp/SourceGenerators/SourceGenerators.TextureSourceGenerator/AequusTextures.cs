@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 278)</summary>
+/// <summary>(Total Textures: 282)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -91,6 +91,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> PolymerSandstoneWall = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstoneWall");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstoneWallItem</summary>
     public static readonly RequestCache<Texture2D> PolymerSandstoneWallItem = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstoneWallItem");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerStalactite1x1</summary>
+    public static readonly RequestCache<Texture2D> PolymerStalactite1x1 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerStalactite1x1");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerStalactite1x2</summary>
+    public static readonly RequestCache<Texture2D> PolymerStalactite1x2 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerStalactite1x2");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerStalagmite1x1</summary>
+    public static readonly RequestCache<Texture2D> PolymerStalagmite1x1 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerStalagmite1x1");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerStalagmite1x2</summary>
+    public static readonly RequestCache<Texture2D> PolymerStalagmite1x2 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerStalagmite1x2");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Pots/Gores/TrashPots1x1_0</summary>
     public static readonly RequestCache<Texture2D> TrashPots1x1_0 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/Pots/Gores/TrashPots1x1_0");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Pots/Gores/TrashPots1x1_1</summary>
