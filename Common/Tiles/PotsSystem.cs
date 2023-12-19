@@ -1,12 +1,12 @@
 ﻿using Aequus.Content.DataSets;
 using Aequus.Core;
 using Aequus.Core.Graphics;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria.GameContent;
+using Terraria.ObjectData;
 using Terraria.Utilities;
 
 namespace Aequus.Common.Tiles;
@@ -93,6 +93,10 @@ public class PotsSystem : ModSystem {
     }
 
     private void DrawPreview(Point tileCoordinates, PotLootPreview preview) {
+        if (Main.hideUI) {
+            return;
+        }
+
         var seed = Helper.TileSeed(tileCoordinates) % 10000f;
 
         float scale = Math.Min(preview.Opacity, Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f + seed, 0.9f, 1f));
@@ -104,7 +108,14 @@ public class PotsSystem : ModSystem {
             scale *= 24f / largestSide;
         }
 
-        var drawCoordinates = new Vector2(tileCoordinates.X * 16f + 16f, tileCoordinates.Y * 16f + 20f) - Main.screenPosition;
+        int width = 2;
+        int height = 2;
+        var tileObjectData = TileObjectData.GetTileData(Main.tile[tileCoordinates.X, tileCoordinates.Y]);
+        if (tileObjectData != null) {
+            width = tileObjectData.Width;
+            height = tileObjectData.Height;
+        }
+        var drawCoordinates = new Vector2(tileCoordinates.X * 16f + width * 8f, tileCoordinates.Y * 16f + height * 8f + 4f) - Main.screenPosition;
         var itemWobbleOffset = new Vector2(Helper.Oscillate(Main.GlobalTimeWrappedHourly * 3f + seed * 0.9f, -1f, 1f), Helper.Oscillate(Main.GlobalTimeWrappedHourly * 1.2f + seed * 0.8f, -2f, 2f));
         float rotation = Helper.Oscillate(Main.GlobalTimeWrappedHourly * 4.2f, -0.1f, 0.1f);
         float opacity = 1f;

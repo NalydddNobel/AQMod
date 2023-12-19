@@ -58,6 +58,9 @@ public struct TileEntry : IDataEntry<int> {
         return entry.Id;
     }
 
+    public static explicit operator TileEntry(ushort id) {
+        return new(id);
+    }
     public static explicit operator TileEntry(int id) {
         return new(id);
     }

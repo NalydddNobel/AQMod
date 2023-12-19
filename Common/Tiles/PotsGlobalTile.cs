@@ -1,8 +1,8 @@
 ﻿using Aequus.Content.DataSets;
 using Aequus.Core;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
+using Terraria.ObjectData;
 
 namespace Aequus.Common.Tiles;
 
@@ -23,12 +23,21 @@ public class PotsGlobalTile : GlobalTile {
     }
 
     public override void PostDraw(int i, int j, int type, SpriteBatch spriteBatch) {
-        if (Main.tile[i, j].TileFrameX % 36 != 18 || Main.tile[i, j].TileFrameY % 36 != 18 || !TileSets.IsSmashablePot.Contains(type)) {
+        if (!TileSets.IsSmashablePot.Contains(type)) {
             return;
         }
 
-        i--;
-        j--;
+        int frameWidth = 36;
+        int frameHeight = 36;
+        var tileObjectData = TileObjectData.GetTileData(Main.tile[i, j]);
+        if (tileObjectData != null) {
+            frameWidth = tileObjectData.CoordinateFullWidth;
+            frameHeight = tileObjectData.CoordinateFullHeight;
+        }
+        if (Main.tile[i, j].TileFrameX % frameWidth != 0 || Main.tile[i, j].TileFrameY % frameHeight != 0) {
+            return;
+        }
+
         var point = new Point(i, j);
         if (PotsSystem.LootPreviews.TryGetValue(point, out var preview)) {
             return;
@@ -54,8 +63,29 @@ public class PotsGlobalTile : GlobalTile {
             }
             y2 -= num3;
 
-            PotsSystem.KillTile_DropItems.Invoke(null, new object[] { x2, y2, Main.tile[x2, y2], true, true });
-            PotsSystem.SpawnThingsFromPot.Invoke(null, new object[] { i, j, x2, y2, style });
+            int oldNetmode = Main.netMode;
+            if (Main.netMode == NetmodeID.MultiplayerClient) {
+                Main.netMode = NetmodeID.Server;
+            }
+            try {
+                PotsSystem.KillTile_DropItems.Invoke(null, new object[] { i, j, Main.tile[i, j], true, true });
+                if (Main.tile[i, j].TileType < TileID.Count) {
+                    PotsSystem.SpawnThingsFromPot.Invoke(null, new object[] { i, j, x2, y2, style });
+                }
+                else if (tileObjectData != null && tileObjectData.Width == 1 && tileObjectData.Height == 1) {
+                    TileLoader.GetItemDrops(i, j, Main.tile[i, j]);
+                }
+            }
+            catch {
+            }
+            finally {
+                Main.netMode = oldNetmode;
+            }
+
+            NewNPCCache.End();
+            NewProjectileCache.End();
+            NewItemCache.End();
+            GoreDisabler.End();
 
             PotsSystem.PotLootPreview newPreview;
             if (NewNPCCache.NPCs.Count > 0) {

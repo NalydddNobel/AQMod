@@ -4,6 +4,7 @@ using Aequus.Content.Configuration;
 using Aequus.Content.CrossMod;
 using Microsoft.Xna.Framework;
 using System;
+using System.Threading;
 using Terraria.IO;
 using Terraria.Utilities;
 using Terraria.WorldBuilding;
@@ -40,9 +41,9 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
     public static int Direction { get => direction; }
     public static POGenerationSide GenerationSide { get => generationSide; }
 
-    private ushort _polymerSand;
-    private ushort _polymerSandstone;
-    private ushort _polymerSandstoneWall;
+    internal static ushort _polymerSand;
+    internal static ushort _polymerSandstone;
+    internal static ushort _polymerSandstoneWall;
 
     private void GenerateTileArrays() {
         int length = TileLoader.TileCount;
@@ -98,8 +99,9 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
         }
 
         // Manual assignment
+        ReplaceableWall[WallID.None] = true;
         ReplaceableWall[WallID.LihzahrdBrickUnsafe] = false;
-        ReplaceableWall[_polymerSandstoneWall] = false;
+        ReplaceableWall[_polymerSandstoneWall] = true;
     }
 
     public override void PostSetupContent() {
@@ -276,8 +278,8 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
         for (int i = 0; i < Main.maxTilesX; i++) {
             for (int j = 0; j < Main.maxTilesY; j++) {
                 SetProgress(progress, (i * Main.maxTilesY + j) / (double)(Main.maxTilesX + Main.maxTilesY), Weight * 0.25f, Weight * 0.33f);
-                if (Main.tile[i, j].TileType == _polymerSand && Random.NextBool(Main.tile[i, j].HasTile ? 160 : 15)) {
-                    PunchHole(i, j, Random.Next(7, 28), Random.Next(5, 18));
+                if (Main.tile[i, j].TileType == _polymerSand && Random.NextBool(Main.tile[i, j].HasTile ? 200 : 10)) {
+                    PunchHole(i, j, Random.Next(7, 28), Random.Next(8, 18));
                 }
             }
         }

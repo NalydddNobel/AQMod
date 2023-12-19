@@ -1,7 +1,5 @@
 ﻿using Aequus.Content.Biomes.PollutedOcean.Background;
 using Aequus.Content.Biomes.PollutedOcean.Water;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Biomes.PollutedOcean;
 

@@ -41,13 +41,5 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Content\Bosses\Trophies\CrabsonTrophy.png" />
-    <None Remove="Content\Bosses\Trophies\DustDevilTrophy.png" />
-    <None Remove="Content\Bosses\Trophies\OmegaStariteTrophy.png" />
-    <None Remove="Content\Bosses\Trophies\RedSpriteTrophy.png" />
-    <None Remove="Content\Bosses\Trophies\SpaceSquidTrophy.png" />
-    <None Remove="Content\Bosses\Trophies\UltraStariteTrophy.png" />
-  </ItemGroup>
 
 </Project>

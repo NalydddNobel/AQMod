@@ -1189,7 +1189,7 @@
             <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 268)</summary>
+            <summary>(Total Textures: 278)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1293,6 +1293,12 @@
         <member name="F:Aequus.AequusTextures.PollutedOceanBestiaryIcon">
             <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBestiaryIcon</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanAmbient1x1">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PollutedOceanAmbient1x1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanAmbient2x2">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PollutedOceanAmbient2x2</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.PolymerSand">
             <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSand</summary>
         </member>
@@ -1310,6 +1316,30 @@
         </member>
         <member name="F:Aequus.AequusTextures.PolymerSandstoneWallItem">
             <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstoneWallItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashPots1x1_0">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Pots/Gores/TrashPots1x1_0</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashPots1x1_1">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Pots/Gores/TrashPots1x1_1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashPots1x1_2">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Pots/Gores/TrashPots1x1_2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashPots2x2_0">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Pots/Gores/TrashPots2x2_0</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashPots2x2_1">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Pots/Gores/TrashPots2x2_1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashPots2x2_2">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Pots/Gores/TrashPots2x2_2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashPots1x1">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Pots/TrashPots1x1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashPots2x2">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Pots/TrashPots2x2</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ScrapBlock">
             <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Scrap/ScrapBlock</summary>
