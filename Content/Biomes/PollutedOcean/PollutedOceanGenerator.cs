@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.WorldGeneration;
-using Aequus.Content.Biomes.PollutedOcean.Tiles;
+using Aequus.Content.Biomes.PollutedOcean.Tiles.PolymerSands;
 using Aequus.Content.Configuration;
 using Aequus.Content.CrossMod;
 using Microsoft.Xna.Framework;
@@ -43,6 +43,7 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
     public static int Direction { get => direction; }
     public static POGenerationSide GenerationSide { get => generationSide; }
 
+    private ushort _polymerSand;
     private ushort _polymerSandstone;
     private ushort _polymerSandstoneWall;
 
@@ -78,6 +79,8 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
 
         ReplaceableTile[TileID.MushroomGrass] = true;
 
+        ReplaceableTile[_polymerSand] = true;
+        SafeTile[_polymerSand] = true;
         ReplaceableTile[_polymerSandstone] = true;
         SafeTile[_polymerSandstone] = true;
     }
@@ -98,6 +101,7 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
     }
 
     public override void PostSetupContent() {
+        _polymerSand = (ushort)ModContent.TileType<PolymerSand>();
         _polymerSandstone = (ushort)ModContent.TileType<PolymerSandstone>();
         _polymerSandstoneWall = (ushort)ModContent.WallType<PolymerSandstoneWallHostile>();
         GenerateTileArrays();
@@ -209,7 +213,7 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
                     tile.TileType = _polymerSandstone;
                 }
                 else {
-                    tile.TileType = TileID.Sand;
+                    tile.TileType = _polymerSand;
                 }
                 tile.WallType = (ushort)ModContent.WallType<PolymerSandstoneWallHostile>();
             }

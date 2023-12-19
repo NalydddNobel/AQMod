@@ -1,4 +1,4 @@
-﻿ConductiveBlock: {
+ConductiveBlock: {
 	MapEntry: 铜导线
 	ItemDisplayName: "{$Tiles.ConductiveBlock.MapEntry}"
 	ItemTooltip: 作为线路, 必须使用电或电线激活.
@@ -53,4 +53,25 @@ ObsidianCrabPot: {
 		使用熔岩鱼饵以在熔岩中捕鱼
 		{$Tiles.CrabPot.Copper.ItemTooltip}
 		'''
+}
+
+ScrapBlock: {
+	// MapEntry: Junk Block
+	// ItemDisplayName: "{$Tiles.ScrapBlock.MapEntry}"
+	// ItemTooltip: ""
+}
+
+ScrapBrick: {
+	// ItemDisplayName: Scrap Brick
+	// ItemTooltip: ""
+}
+
+PolymerSandstone: {
+	// ItemDisplayName: Polymer Sandstone
+	// ItemTooltip: ""
+}
+
+PolymerSand: {
+	// ItemDisplayName: Mods.Aequus.Tiles.PolymerSand.ItemDisplayName
+	// ItemTooltip: ""
 }

@@ -15,8 +15,8 @@ Biomes: {
 	}
 
 	PollutedOceanBiome: {
-		// DisplayName: Polluted Ocean Biome
-		// TownNPCDialogueName: the Polluted Ocean Biome
+		// DisplayName: Polluted Ocean
+		// TownNPCDialogueName: the Polluted Ocean
 	}
 }
 

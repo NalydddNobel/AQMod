@@ -1,6 +1,2 @@
-DisplayName: 客户端设置
-
 ShowDeathTips: {
-	Label: "[i:Tombstone] 死亡提示"
-	Tooltip: 在重生时会显示[c/ffffbb:死亡提示].
 }

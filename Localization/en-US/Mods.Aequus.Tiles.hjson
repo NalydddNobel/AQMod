@@ -70,3 +70,8 @@ PolymerSandstone: {
 	ItemDisplayName: Polymer Sandstone
 	ItemTooltip: ""
 }
+
+PolymerSand: {
+	ItemDisplayName: Mods.Aequus.Tiles.PolymerSand.ItemDisplayName
+	ItemTooltip: ""
+}

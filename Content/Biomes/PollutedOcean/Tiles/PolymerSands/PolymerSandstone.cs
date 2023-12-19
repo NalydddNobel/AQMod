@@ -1,22 +1,19 @@
-﻿using Aequus.Common;
-using Aequus.Common.Tiles;
+﻿using Aequus.Common.Tiles;
 using Aequus.Content.Biomes.PollutedOcean.Tiles.Scrap;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Biomes.PollutedOcean.Tiles;
+namespace Aequus.Content.Biomes.PollutedOcean.Tiles.PolymerSands;
 
-[LegacyName("SedimentaryRockTile", "SedimentaryRock", "PolymerSand")]
+[LegacyName("SedimentaryRockTile", "SedimentaryRock")]
 public class PolymerSandstone : MultiMergeTile {
     public override void Load() {
         Mod.AddContent(new InstancedTileItem(this).WithRecipe((item) => {
             item.CreateRecipe(5)
-                .AddIngredient(ItemID.SandBlock, 5)
+                .AddIngredient(PolymerSand.Item)
                 .AddIngredient(ScrapBlock.Item)
-                .AddCondition(Condition.NearWater)
-                .AddCondition(AequusConditions.InPollutedOcean)
                 .Register();
         }));
     }
@@ -26,7 +23,7 @@ public class PolymerSandstone : MultiMergeTile {
         Main.tileBlockLight[Type] = true;
         AddMerge(TileID.Sand);
         AddMerge(TileID.HardenedSand);
-        
+
         TileID.Sets.ChecksForMerge[Type] = true;
         TileID.Sets.Conversion.Sandstone[Type] = true;
         AddMapEntry(new Color(160, 149, 97));

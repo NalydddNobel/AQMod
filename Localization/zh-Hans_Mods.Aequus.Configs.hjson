@@ -1,0 +1,68 @@
+// ColorImportant: c/ffffbb
+// ColorImportant2: c/ffcc99
+// ColorNote: c/aaacff
+
+ClientConfig: {
+	DisplayName: 客户端设置
+
+	ShowDeathTips: {
+		Label: "[i:Tombstone] 死亡提示"
+		Tooltip: 在重生时会显示[c/ffffbb:死亡提示].
+	}
+}
+
+VanillaChangesConfig: {
+	DisplayName: 原版更改
+	NoteExploit: "[{$ColorNote}:如若出于个人偏好或为防止意外利用, 请禁用该设置.]"
+
+	MoveTreasureMagnet: {
+		Label: "[i:TreasureMagnet] 移动宝藏磁石"
+		Tooltip:
+			'''
+			[{$ColorImportant}:启用后], [{$ColorImportant}:宝藏磁石]将会由[{$ColorImportant}:天空商人]出售,
+			并且[{$ColorImportant2}:暗影箱]或[{$ColorImportant2}:黑曜石锁盒]中的[{$ColorImportant}:不会再出现].
+
+			{$NoteExploit}
+			'''
+	}
+
+	RestorationPotionRecipe: {
+		Label: "[i:RestorationPotion] 恢复药水合成表"
+		Tooltip:
+			'''
+			[{$ColorImportant}:启用后], 原版的[{$ColorImportant}:恢复药水]的合成表会被[{$ColorImportant}:移除].
+			Aequus添加了使用两个[{$ColorImportant2}:弱效恢复药水]和一个[{$ColorImportant2}:发光魔符]的[{$ColorImportant}:替代合成].
+
+			[{$ColorNote}:如若出于个人偏好或为防止合成表被移除后出现的任何问题, 请禁用该设置.]
+			'''
+	}
+}
+
+GameplayConfig: {
+	// DisplayName: Gameplay Config
+
+	PollutedOceanSide: {
+		// Label: "[i:Aequus/TrashCompactor] Polluted Ocean Side"
+		/* Tooltip:
+			'''
+			Determines which side of the world the Polluted Ocean should generate.
+			{$POGenerationSide.Tooltip}
+
+			[{$ColorNote}:Utilize this config for personal preference, or to fix an issue with overlapping biomes.]
+			''' */
+	}
+}
+
+POGenerationSide: {
+	/* Tooltip:
+		'''
+		{$Automatic.Label}: Automatically changes the side [{$ColorImportant2}:depending on which mods are enabled].
+		{$DungeonSide.Label}: Generates on the Dungeon side of the world.
+		{$JungleSide.Label}: Generates on the Jungle side of the world.
+		{$CompleteRandom.Label}: Picks either side by random.
+		''' */
+	// Automatic.Label: "[{$ColorImportant}:Automatic]"
+	// DungeonSide.Label: "[{$ColorImportant}:Dungeon Side]"
+	// JungleSide.Label: "[{$ColorImportant}:Jungle Side]"
+	// CompleteRandom.Label: "[{$ColorImportant}:Complete Random]"
+}

@@ -1,10 +1,9 @@
 ﻿using Aequus.Common.Tiles;
-using Aequus.Content.Biomes.PollutedOcean.Tiles.Scrap;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Biomes.PollutedOcean.Tiles;
+namespace Aequus.Content.Biomes.PollutedOcean.Tiles.Scrap;
 
 public class ScrapBrick : ModTile {
     public override void Load() {

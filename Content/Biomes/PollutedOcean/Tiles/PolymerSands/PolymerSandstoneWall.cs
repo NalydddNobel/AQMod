@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Biomes.PollutedOcean.Tiles;
+namespace Aequus.Content.Biomes.PollutedOcean.Tiles.PolymerSands;
 
 [LegacyName("SedimentaryRockWall", "PolymerSandWall")]
 public class PolymerSandstoneWall : ModWall {

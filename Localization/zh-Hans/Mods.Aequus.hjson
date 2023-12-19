@@ -13,6 +13,11 @@ Biomes: {
 		DisplayName: 太空风暴
 		TownNPCDialogueName: 太空风暴
 	}
+
+	PollutedOceanBiome: {
+		// DisplayName: Polluted Ocean
+		// TownNPCDialogueName: the Polluted Ocean
+	}
 }
 
 InfoDisplays: {
