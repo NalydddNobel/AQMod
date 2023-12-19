@@ -28,8 +28,9 @@ public sealed class AnimationSystem : ModSystem {
             return anim;
         }
 
-        TileAnimations[xy] = new T();
-        return (T)TileAnimations[xy];
+        var value = new T();
+        TileAnimations[xy] = value;
+        return value;
     }
 
     public override void PreUpdateEntities() {

@@ -34,6 +34,8 @@ public class PolymerSand : MultiMergeTile {
         DustType = DustID.Sand;
         HitSound = SoundID.Dig;
         MineResist = 1f;
+
+        PollutedOceanSystem.BiomeTiles.Add(Type);
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;

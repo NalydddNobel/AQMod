@@ -1,6 +1,8 @@
 ﻿using Aequus.Common.WorldGeneration;
 using Aequus.Content.Biomes.PollutedOcean.Tiles;
 using Aequus.Content.Biomes.PollutedOcean.Tiles.Pots;
+using Aequus.Content.Biomes.PollutedOcean.Tiles.SeaPickles;
+using Terraria;
 using Terraria.IO;
 using Terraria.WorldBuilding;
 
@@ -18,6 +20,9 @@ internal class PollutedOceanAmbienceGenerator : AequusGenStep {
     private static ushort _stalagmite1x2;
     private static ushort _stalactite1x1;
     private static ushort _stalagmite1x1;
+    private static ushort _seaPickle1x1;
+    private static ushort _seaPickle1x2;
+    private static ushort _seaPickle2x2;
 
     public static bool Polluted(int x, int y) {
         if (WorldGen.SolidTile(x, y)) {
@@ -43,6 +48,9 @@ internal class PollutedOceanAmbienceGenerator : AequusGenStep {
         _stalagmite1x2 = (ushort)ModContent.TileType<PolymerStalagmite1x2>();
         _stalactite1x1 = (ushort)ModContent.TileType<PolymerStalactite1x1>();
         _stalagmite1x1 = (ushort)ModContent.TileType<PolymerStalagmite1x1>();
+        _seaPickle1x1 = (ushort)ModContent.TileType<SeaPickles1x1>();
+        _seaPickle1x2 = (ushort)ModContent.TileType<SeaPickles1x2>();
+        _seaPickle2x2 = (ushort)ModContent.TileType<SeaPickles2x2>();
 
         for (int i = 10; i < Main.maxTilesX - 10; i++) {
             for (int j = 10; j < Main.maxTilesY - 10; j++) {
@@ -78,6 +86,14 @@ internal class PollutedOceanAmbienceGenerator : AequusGenStep {
                         else {
                             WorldGen.PlaceTile(i, j, _stalagmite1x2, style: Random.Next(3));
                         }
+                    }
+                    else if (Main.tile[i, j].LiquidAmount == 255 && !Random.NextBool(4)) {
+                        ushort type = Random.Next(3) switch {
+                            2 => (ushort)ModContent.TileType<SeaPickles2x2>(),
+                            1 => (ushort)ModContent.TileType<SeaPickles1x2>(),
+                            _ => (ushort)ModContent.TileType<SeaPickles1x1>(),
+                        };
+                        WorldGen.PlaceTile(i, j, type, style: Random.Next(3));
                     }
                 }
                 else if (WorldGen.SolidTile(i, j - 1)) {
