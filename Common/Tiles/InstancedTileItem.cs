@@ -6,7 +6,7 @@ using Terraria.Localization;
 namespace Aequus.Common.Tiles;
 
 internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
-    private readonly ModTile _modTile;
+    protected readonly ModTile _modTile;
     private readonly int _style;
     private readonly bool _dropItem;
     private readonly int _rarity;
@@ -25,7 +25,9 @@ internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
     /// <param name="dropItem">Whether or not the <paramref name="modTile"/> should drop this item.</param>
     /// <param name="rarity">Item rarity.</param>
     /// <param name="value">Item value.</param>
-    public InstancedTileItem(ModTile modTile, int style = 0, string nameSuffix = "", bool dropItem = true, int rarity = ItemRarityID.White, int value = 0, int? researchSacrificeCount = null) : base(modTile.Name + nameSuffix, modTile.Texture + nameSuffix + "Item") {
+    /// <param name="researchSacrificeCount">Research count override.</param>
+    public InstancedTileItem(ModTile modTile, int style = 0, string nameSuffix = "", bool dropItem = true, int rarity = ItemRarityID.White, int value = 0, int? researchSacrificeCount = null) 
+        : base(modTile.Name + nameSuffix, (modTile is InstancedModTile instancedModTile ? instancedModTile._texture : modTile.Texture) + nameSuffix + "Item") {
         _modTile = modTile;
         _dropItem = dropItem;
         _style = style;

@@ -54,7 +54,6 @@ public class JunkJet : ModItem {
     public override void AddRecipes() {
         CreateRecipe()
             .AddIngredient<CompressedTrash>(3)
-            .AddIngredient<AquaticEnergy>()
             .AddTile<TrashCompactor>()
             .Register();
     }

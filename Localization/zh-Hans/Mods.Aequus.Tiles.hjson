@@ -1,4 +1,4 @@
-﻿ConductiveBlock: {
+ConductiveBlock: {
 	MapEntry: 铜导线
 	ItemDisplayName: "{$Tiles.ConductiveBlock.MapEntry}"
 	ItemTooltip: 作为线路, 必须使用电或电线激活.
@@ -53,4 +53,19 @@ ObsidianCrabPot: {
 		使用熔岩鱼饵以在熔岩中捕鱼
 		{$Tiles.CrabPot.Copper.ItemTooltip}
 		'''
+}
+
+Trophies: {
+	CrabsonTrophy.DisplayName: 巨蟹蛤纪念物
+	CrabsonRelic.DisplayName: 巨蟹蛤纪念章
+	OmegaStariteTrophy.DisplayName: 终末之星纪念章
+	OmegaStariteRelic.DisplayName: 终末之星纪念物
+	DustDevilTrophy.DisplayName: 沙尘恶魔纪念章
+	DustDevilRelic.DisplayName: 沙尘恶魔纪念物
+	UltraStariteTrophy.DisplayName: 终耀源星纪念章
+	UltraStariteRelic.DisplayName: 终耀源星纪念物
+	RedSpriteTrophy.DisplayName: 红色精灵纪念章
+	RedSpriteRelic.DisplayName: 红色精灵纪念物
+	SpaceSquidTrophy.DisplayName: 太空乌贼纪念章
+	SpaceSquidRelic.DisplayName: 太空乌贼纪念物
 }

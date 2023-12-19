@@ -55,8 +55,12 @@ public static class TextHelper {
         return self.GetCategoryText(suffix).Value;
     }
 
+    public static string GetCategoryKey(this ILocalizedModType self, string suffix, Func<string> defaultValueFactory = null) {
+        return $"Mods.{self.Mod.Name}.{self.LocalizationCategory}.{suffix}";
+    }
+
     public static LocalizedText GetCategoryText(this ILocalizedModType self, string suffix, Func<string> defaultValueFactory = null) {
-        return Language.GetOrRegister($"Mods.{self.Mod.Name}.{self.LocalizationCategory}.{suffix}", defaultValueFactory);
+        return Language.GetOrRegister(GetCategoryKey(self, suffix), defaultValueFactory);
     }
 
     public static LocalizedText DayOfWeek(DayOfWeek dayOfWeek) {
