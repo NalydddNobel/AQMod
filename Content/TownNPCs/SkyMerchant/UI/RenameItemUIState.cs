@@ -3,17 +3,14 @@ using Aequus.Common.UI;
 using Aequus.Common.UI.Elements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
-using Terraria.ID;
 using Terraria.Localization;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace Aequus.Content.TownNPCs.SkyMerchant.UI; 
+namespace Aequus.Content.TownNPCs.SkyMerchant.UI;
 
 public class RenameItemUIState : AequusUIState {
     public bool initItemSlot;

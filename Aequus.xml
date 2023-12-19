@@ -685,6 +685,7 @@
             <param name="dropItem">Whether or not the <paramref name="modTile"/> should drop this item.</param>
             <param name="rarity">Item rarity.</param>
             <param name="value">Item value.</param>
+            <param name="researchSacrificeCount">Research count override.</param>
         </member>
         <member name="M:Aequus.Common.Tiles.InstancedWallItem.#ctor(Terraria.ModLoader.ModWall,System.Boolean)">
             <summary>
@@ -907,6 +908,175 @@
             <para>Place SpecialTileDrawing.Add(i, j, Type); into ModTile.PostDraw(...) to add it to the rendering list.</para>
             </summary>
         </member>
+        <member name="M:Aequus.Core.Utilities.Helper.RandomTileCoordinates(System.Int32,System.Int32)">
+            <summary>
+            Gets a consistent <see cref="T:Terraria.Utilities.FastRandom"/> for these tile coordinates.
+            </summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.LightHelper.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Gets the mean of light surrounding a point
+            </summary>
+            <param name="x">The tile's X coordinate</param>
+            <param name="y">The tile's Y coordinate</param>
+            <param name="width">The width in tiles</param>
+            <param name="height">The width in tiles</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.LightHelper.GetLightingSection(Microsoft.Xna.Framework.Point,System.Int32,System.Int32)">
+            <summary>
+            Gets the mean of light surrounding a point
+            </summary>
+            <param name="tilePosition">The tile center</param>
+            <param name="width">The width in tiles</param>
+            <param name="height">The width in tiles</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.LightHelper.GetLightingSection(Microsoft.Xna.Framework.Point,System.Int32)">
+            <summary>
+            Gets the mean of light surrounding a point
+            </summary>
+            <param name="tilePosition">The tile center</param>
+            <param name="tilesSize">The size in tile coordinates</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.LightHelper.GetLightingSection(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Gets the mean of light surrounding a point
+            </summary>
+            <param name="x">The center tile X</param>
+            <param name="y">The center tile Y</param>
+            <param name="tilesSize">The size in tile coordinates</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.LightHelper.GetLightingSection(Microsoft.Xna.Framework.Vector2,System.Int32)">
+            <summary>
+            Gets the mean of light surrounding a point
+            </summary>
+            <param name="worldPosition">The center</param>
+            <param name="tilesSize">The size in tile coordinates</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.PlayerHelper.CheckPickPower(Terraria.Player,Terraria.Item,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="player">The player.</param>
+            <param name="pickaxe">The pickaxe.</param>
+            <param name="x">Tile X coordinate.</param>
+            <param name="y">Tile Y coordinate.</param>
+            <returns>Whether or not the player has enough pickaxe power to break this tile.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.PlayerHelper.GiveItem(Terraria.Player,Terraria.Item,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings)">
+            <summary>
+            Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
+            <para>Automatically syncs the item in multiplayer.</para>
+            <para>Note: May only work if <see cref="F:Terraria.Main.myPlayer"/> is the <paramref name="player"/>.</para>
+            </summary>
+            <param name="player">The player.</param>
+            <param name="item">The Item.</param>
+            <param name="source">Item source.</param>
+            <param name="getItemSettings">The Get Item settings.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.PlayerHelper.GiveItem(Terraria.Player,System.Int32,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings,System.Int32,System.Int32)">
+            <summary>
+            Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
+            <para>Automatically syncs the item in multiplayer.</para>
+            <para>Note: May only work if <see cref="F:Terraria.Main.myPlayer"/> is the <paramref name="player"/>.</para>
+            </summary>
+            <param name="player">The player.</param>
+            <param name="type">The Item Id.</param>
+            <param name="stack">The Item's stack.</param>
+            <param name="prefix">The Item's prefix.</param>
+            <param name="source">Item source.</param>
+            <param name="getItemSettings">The Get Item settings.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.PlayerHelper.GetPlayerFocusPosition(Terraria.Player)">
+            <summary>
+            Gets the "Player Focus". This is by default the player's centre, but when using the Drone, this returns the drone's position.
+            <para>This position is used to make Radon Fog disappear when approched by the player, or by their controlled drone.</para>
+            <para>This position also ignores camera panning effects, like screen shakes, scoping, ect.</para>
+            </summary>
+            <param name="player"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.PlayerHelper.SpawnEnchantmentDusts(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Terraria.Player,System.Boolean)">
+            <summary>
+            Spawns Flask and other "Enchantment" dusts, like the Magma Stone flames.
+            </summary>
+            <param name="position"></param>
+            <param name="velocity"></param>
+            <param name="player"></param>
+            <param name="showMagmaStone"></param>
+            <returns>A potential dust instance, if any spawn. If none spawn, the result will be null.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.PlayerHelper.WeirdNPCHitRestrictions(Terraria.NPC)">
+            <summary>
+            Checks weird damage restrictions for NPCs. This literally only checks for Fairies as of right now.
+            </summary>
+            <param name="npc"></param>
+            <returns>Whether the enemy should be immune to this hit (true = Do not hit)</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.TextHelper.GetDisplayName(Terraria.ModLoader.ILocalizedModType)">
+            <summary>
+            Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.TextHelper.GetDisplayName``1">
+            <summary>
+            Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.TextHelper.Seconds(System.Double)">
+            <summary>
+            Converts ticks to seconds, up to 1 decimal place.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.TextHelper.Broadcast(System.String,Microsoft.Xna.Framework.Color,System.Object[])">
+            <summary>
+            Broadcasts a message. Only does something when <see cref="F:Terraria.Main.netMode"/> is not equal to <see cref="F:Terraria.ID.NetmodeID.MultiplayerClient"/>.
+            </summary>
+            <param name="key"></param>
+            <param name="color"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.TextHelper.Broadcast(System.String,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Broadcasts a language key.
+            </summary>
+            <param name="text"></param>
+            <param name="color"></param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.TextHelper.BroadcastLiteral(System.String,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Broadcasts a literal key.
+            </summary>
+            <param name="text"></param>
+            <param name="color"></param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.TileHelper.KillLiquid(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Properly removes a liquid at the given tile coordinates.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="quiet"></param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.UIHelper.InventoryDrawCentered(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Draws something with its position set to the center of the inventory slot.
+            Only use in Pre/PostDraw hooks for items.
+            </summary>
+        </member>
         <member name="T:Aequus.AequusSounds">
             <summary>(Total Sounds: 36)</summary>
         </member>
@@ -1019,7 +1189,7 @@
             <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 267)</summary>
+            <summary>(Total Textures: 268)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1177,14 +1347,11 @@
         <member name="F:Aequus.AequusTextures.CrabsonMask_Head">
             <summary>Full Path: Content/Bosses/BossMasks/CrabsonMask_Head</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.DustDevilMaskFire">
-            <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskFire</summary>
+        <member name="F:Aequus.AequusTextures.DustDevilMask">
+            <summary>Full Path: Content/Bosses/BossMasks/DustDevilMask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilMaskFire_Head">
             <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskFire_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DustDevilMaskIce">
-            <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskIce</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilMaskIce_Head">
             <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskIce_Head</summary>
@@ -1192,83 +1359,20 @@
         <member name="F:Aequus.AequusTextures.OmegaStariteMask">
             <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteMask_Glow">
-            <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask_Glow</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteMask_Head">
             <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteMask_Head_Glow">
-            <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask_Head_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteMask">
             <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.RedSpriteMask_Glow">
-            <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask_Glow</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.RedSpriteMask_Head">
             <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RedSpriteMask_Head_Glow">
-            <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask_Head_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidMask">
             <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SpaceSquidMask_Glow">
-            <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask_Glow</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidMask_Head">
             <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SpaceSquidMask_Head_Glow">
-            <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask_Head_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BossRelicsTile">
-            <summary>Full Path: Content/Bosses/Tiles/BossRelicsTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BossTrophiesTile">
-            <summary>Full Path: Content/Bosses/Tiles/BossTrophiesTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabsonRelic">
-            <summary>Full Path: Content/Bosses/Tiles/Relics/CrabsonRelic</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DustDevilRelic">
-            <summary>Full Path: Content/Bosses/Tiles/Relics/DustDevilRelic</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteRelic">
-            <summary>Full Path: Content/Bosses/Tiles/Relics/OmegaStariteRelic</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RedSpriteRelic">
-            <summary>Full Path: Content/Bosses/Tiles/Relics/RedSpriteRelic</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SpaceSquidRelic">
-            <summary>Full Path: Content/Bosses/Tiles/Relics/SpaceSquidRelic</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.UltraStariteRelic">
-            <summary>Full Path: Content/Bosses/Tiles/Relics/UltraStariteRelic</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabsonTrophy">
-            <summary>Full Path: Content/Bosses/Tiles/Trophies/CrabsonTrophy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DustDevilTrophy">
-            <summary>Full Path: Content/Bosses/Tiles/Trophies/DustDevilTrophy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteTrophy">
-            <summary>Full Path: Content/Bosses/Tiles/Trophies/OmegaStariteTrophy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RedSpriteTrophy">
-            <summary>Full Path: Content/Bosses/Tiles/Trophies/RedSpriteTrophy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SpaceSquidTrophy">
-            <summary>Full Path: Content/Bosses/Tiles/Trophies/SpaceSquidTrophy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.UltraStariteTrophy">
-            <summary>Full Path: Content/Bosses/Tiles/Trophies/UltraStariteTrophy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Trophy">
-            <summary>Full Path: Content/Bosses/Tiles/Trophy</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonBag">
             <summary>Full Path: Content/Bosses/TreasureBags/CrabsonBag</summary>
@@ -1278,6 +1382,81 @@
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteBag">
             <summary>Full Path: Content/Bosses/TreasureBags/OmegaStariteBag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonRelic">
+            <summary>Full Path: Content/Bosses/Trophies/CrabsonRelic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonRelicItem">
+            <summary>Full Path: Content/Bosses/Trophies/CrabsonRelicItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonTrophy">
+            <summary>Full Path: Content/Bosses/Trophies/CrabsonTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonTrophyItem">
+            <summary>Full Path: Content/Bosses/Trophies/CrabsonTrophyItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilRelic">
+            <summary>Full Path: Content/Bosses/Trophies/DustDevilRelic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilRelicItem">
+            <summary>Full Path: Content/Bosses/Trophies/DustDevilRelicItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilTrophy">
+            <summary>Full Path: Content/Bosses/Trophies/DustDevilTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilTrophyItem">
+            <summary>Full Path: Content/Bosses/Trophies/DustDevilTrophyItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteRelic">
+            <summary>Full Path: Content/Bosses/Trophies/OmegaStariteRelic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteRelicItem">
+            <summary>Full Path: Content/Bosses/Trophies/OmegaStariteRelicItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteTrophy">
+            <summary>Full Path: Content/Bosses/Trophies/OmegaStariteTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteTrophyItem">
+            <summary>Full Path: Content/Bosses/Trophies/OmegaStariteTrophyItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteRelic">
+            <summary>Full Path: Content/Bosses/Trophies/RedSpriteRelic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteRelicItem">
+            <summary>Full Path: Content/Bosses/Trophies/RedSpriteRelicItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteTrophy">
+            <summary>Full Path: Content/Bosses/Trophies/RedSpriteTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteTrophyItem">
+            <summary>Full Path: Content/Bosses/Trophies/RedSpriteTrophyItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidRelic">
+            <summary>Full Path: Content/Bosses/Trophies/SpaceSquidRelic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidRelicItem">
+            <summary>Full Path: Content/Bosses/Trophies/SpaceSquidRelicItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidTrophy">
+            <summary>Full Path: Content/Bosses/Trophies/SpaceSquidTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidTrophyItem">
+            <summary>Full Path: Content/Bosses/Trophies/SpaceSquidTrophyItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Trophy">
+            <summary>Full Path: Content/Bosses/Trophies/Trophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStariteRelic">
+            <summary>Full Path: Content/Bosses/Trophies/UltraStariteRelic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStariteRelicItem">
+            <summary>Full Path: Content/Bosses/Trophies/UltraStariteRelicItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStariteTrophy">
+            <summary>Full Path: Content/Bosses/Trophies/UltraStariteTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStariteTrophyItem">
+            <summary>Full Path: Content/Bosses/Trophies/UltraStariteTrophyItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Baguette">
             <summary>Full Path: Content/DedicatedContent/Baguette/Baguette</summary>
@@ -1555,12 +1734,6 @@
         <member name="F:Aequus.AequusTextures.UltimateEnergy">
             <summary>Full Path: Content/Items/Material/Energy/Ultimate/UltimateEnergy</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Fluorescence">
-            <summary>Full Path: Content/Items/Material/Fluorescence</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.FrozenTear">
-            <summary>Full Path: Content/Items/Material/FrozenTear</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.MonoGem">
             <summary>Full Path: Content/Items/Material/MonoGem/MonoGem</summary>
         </member>
@@ -1660,6 +1833,9 @@
         <member name="F:Aequus.AequusTextures.Furystar">
             <summary>Full Path: Content/Items/Weapons/Magic/Furystar/Furystar</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.AncientCutlass">
+            <summary>Full Path: Content/Items/Weapons/Melee/AncientCutlass/AncientCutlass</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Dynaknife">
             <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/Dynaknife</summary>
         </member>
@@ -1672,14 +1848,11 @@
         <member name="F:Aequus.AequusTextures.Dynaknife_Glow">
             <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/Dynaknife_Glow</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.AncientCutlass">
-            <summary>Full Path: Content/Items/Weapons/Melee/Swords/AncientCutlass/AncientCutlass</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Slice">
-            <summary>Full Path: Content/Items/Weapons/Melee/Swords/Slice/Slice</summary>
+            <summary>Full Path: Content/Items/Weapons/Melee/Slice/Slice</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SliceBulletProj">
-            <summary>Full Path: Content/Items/Weapons/Melee/Swords/Slice/SliceBulletProj</summary>
+            <summary>Full Path: Content/Items/Weapons/Melee/Slice/SliceBulletProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Chain">
             <summary>Full Path: Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
@@ -1821,175 +1994,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.icon_workshop">
             <summary>Full Path: icon_workshop</summary>
-        </member>
-        <member name="M:Aequus.Helper.RandomTileCoordinates(System.Int32,System.Int32)">
-            <summary>
-            Gets a consistent <see cref="T:Terraria.Utilities.FastRandom"/> for these tile coordinates.
-            </summary>
-            <param name="i"></param>
-            <param name="j"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.LightHelper.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Gets the mean of light surrounding a point
-            </summary>
-            <param name="x">The tile's X coordinate</param>
-            <param name="y">The tile's Y coordinate</param>
-            <param name="width">The width in tiles</param>
-            <param name="height">The width in tiles</param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.LightHelper.GetLightingSection(Microsoft.Xna.Framework.Point,System.Int32,System.Int32)">
-            <summary>
-            Gets the mean of light surrounding a point
-            </summary>
-            <param name="tilePosition">The tile center</param>
-            <param name="width">The width in tiles</param>
-            <param name="height">The width in tiles</param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.LightHelper.GetLightingSection(Microsoft.Xna.Framework.Point,System.Int32)">
-            <summary>
-            Gets the mean of light surrounding a point
-            </summary>
-            <param name="tilePosition">The tile center</param>
-            <param name="tilesSize">The size in tile coordinates</param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.LightHelper.GetLightingSection(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Gets the mean of light surrounding a point
-            </summary>
-            <param name="x">The center tile X</param>
-            <param name="y">The center tile Y</param>
-            <param name="tilesSize">The size in tile coordinates</param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.LightHelper.GetLightingSection(Microsoft.Xna.Framework.Vector2,System.Int32)">
-            <summary>
-            Gets the mean of light surrounding a point
-            </summary>
-            <param name="worldPosition">The center</param>
-            <param name="tilesSize">The size in tile coordinates</param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.PlayerHelper.CheckPickPower(Terraria.Player,Terraria.Item,System.Int32,System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="player">The player.</param>
-            <param name="pickaxe">The pickaxe.</param>
-            <param name="x">Tile X coordinate.</param>
-            <param name="y">Tile Y coordinate.</param>
-            <returns>Whether or not the player has enough pickaxe power to break this tile.</returns>
-        </member>
-        <member name="M:Aequus.PlayerHelper.GiveItem(Terraria.Player,Terraria.Item,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings)">
-            <summary>
-            Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
-            <para>Automatically syncs the item in multiplayer.</para>
-            <para>Note: May only work if <see cref="F:Terraria.Main.myPlayer"/> is the <paramref name="player"/>.</para>
-            </summary>
-            <param name="player">The player.</param>
-            <param name="item">The Item.</param>
-            <param name="source">Item source.</param>
-            <param name="getItemSettings">The Get Item settings.</param>
-        </member>
-        <member name="M:Aequus.PlayerHelper.GiveItem(Terraria.Player,System.Int32,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings,System.Int32,System.Int32)">
-            <summary>
-            Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
-            <para>Automatically syncs the item in multiplayer.</para>
-            <para>Note: May only work if <see cref="F:Terraria.Main.myPlayer"/> is the <paramref name="player"/>.</para>
-            </summary>
-            <param name="player">The player.</param>
-            <param name="type">The Item Id.</param>
-            <param name="stack">The Item's stack.</param>
-            <param name="prefix">The Item's prefix.</param>
-            <param name="source">Item source.</param>
-            <param name="getItemSettings">The Get Item settings.</param>
-        </member>
-        <member name="M:Aequus.PlayerHelper.GetPlayerFocusPosition(Terraria.Player)">
-            <summary>
-            Gets the "Player Focus". This is by default the player's centre, but when using the Drone, this returns the drone's position.
-            <para>This position is used to make Radon Fog disappear when approched by the player, or by their controlled drone.</para>
-            <para>This position also ignores camera panning effects, like screen shakes, scoping, ect.</para>
-            </summary>
-            <param name="player"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.PlayerHelper.SpawnEnchantmentDusts(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Terraria.Player,System.Boolean)">
-            <summary>
-            Spawns Flask and other "Enchantment" dusts, like the Magma Stone flames.
-            </summary>
-            <param name="position"></param>
-            <param name="velocity"></param>
-            <param name="player"></param>
-            <param name="showMagmaStone"></param>
-            <returns>A potential dust instance, if any spawn. If none spawn, the result will be null.</returns>
-        </member>
-        <member name="M:Aequus.PlayerHelper.WeirdNPCHitRestrictions(Terraria.NPC)">
-            <summary>
-            Checks weird damage restrictions for NPCs. This literally only checks for Fairies as of right now.
-            </summary>
-            <param name="npc"></param>
-            <returns>Whether the enemy should be immune to this hit (true = Do not hit)</returns>
-        </member>
-        <member name="M:Aequus.TextHelper.GetDisplayName(Terraria.ModLoader.ILocalizedModType)">
-            <summary>
-            Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.TextHelper.GetDisplayName``1">
-            <summary>
-            Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.TextHelper.Seconds(System.Double)">
-            <summary>
-            Converts ticks to seconds, up to 1 decimal place.
-            </summary>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.TextHelper.Broadcast(System.String,Microsoft.Xna.Framework.Color,System.Object[])">
-            <summary>
-            Broadcasts a message. Only does something when <see cref="F:Terraria.Main.netMode"/> is not equal to <see cref="F:Terraria.ID.NetmodeID.MultiplayerClient"/>.
-            </summary>
-            <param name="key"></param>
-            <param name="color"></param>
-            <param name="args"></param>
-        </member>
-        <member name="M:Aequus.TextHelper.Broadcast(System.String,Microsoft.Xna.Framework.Color)">
-            <summary>
-            Broadcasts a language key.
-            </summary>
-            <param name="text"></param>
-            <param name="color"></param>
-        </member>
-        <member name="M:Aequus.TextHelper.BroadcastLiteral(System.String,Microsoft.Xna.Framework.Color)">
-            <summary>
-            Broadcasts a literal key.
-            </summary>
-            <param name="text"></param>
-            <param name="color"></param>
-        </member>
-        <member name="M:Aequus.TileHelper.KillLiquid(System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            Properly removes a liquid at the given tile coordinates.
-            </summary>
-            <param name="x"></param>
-            <param name="y"></param>
-            <param name="quiet"></param>
-        </member>
-        <member name="M:Aequus.UIHelper.InventoryDrawCentered(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2)">
-            <summary>
-            Draws something with its position set to the center of the inventory slot.
-            Only use in Pre/PostDraw hooks for items.
-            </summary>
         </member>
     </members>
 </doc>

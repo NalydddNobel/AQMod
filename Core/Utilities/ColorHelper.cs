@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using Terraria;
 
-namespace Aequus;
+namespace Aequus.Core.Utilities;
 
 public static class ColorHelper {
     public static Color ColorFurniture => new Color(191, 142, 111, 255);

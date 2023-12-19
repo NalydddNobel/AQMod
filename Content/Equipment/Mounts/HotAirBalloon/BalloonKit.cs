@@ -1,8 +1,4 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Aequus.Content.Equipment.Mounts.HotAirBalloon;
+﻿namespace Aequus.Content.Equipment.Mounts.HotAirBalloon;
 
 public class BalloonKit : ModItem {
     public override void SetDefaults() {

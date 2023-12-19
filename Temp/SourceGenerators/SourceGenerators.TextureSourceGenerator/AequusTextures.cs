@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 267)</summary>
+/// <summary>(Total Textures: 268)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -111,74 +111,80 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CrabsonMask = new("Aequus/Content/Bosses/BossMasks/CrabsonMask");
     /// <summary>Full Path: Content/Bosses/BossMasks/CrabsonMask_Head</summary>
     public static readonly RequestCache<Texture2D> CrabsonMask_Head = new("Aequus/Content/Bosses/BossMasks/CrabsonMask_Head");
-    /// <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskFire</summary>
-    public static readonly RequestCache<Texture2D> DustDevilMaskFire = new("Aequus/Content/Bosses/BossMasks/DustDevilMaskFire");
+    /// <summary>Full Path: Content/Bosses/BossMasks/DustDevilMask</summary>
+    public static readonly RequestCache<Texture2D> DustDevilMask = new("Aequus/Content/Bosses/BossMasks/DustDevilMask");
     /// <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskFire_Head</summary>
     public static readonly RequestCache<Texture2D> DustDevilMaskFire_Head = new("Aequus/Content/Bosses/BossMasks/DustDevilMaskFire_Head");
-    /// <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskIce</summary>
-    public static readonly RequestCache<Texture2D> DustDevilMaskIce = new("Aequus/Content/Bosses/BossMasks/DustDevilMaskIce");
     /// <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskIce_Head</summary>
     public static readonly RequestCache<Texture2D> DustDevilMaskIce_Head = new("Aequus/Content/Bosses/BossMasks/DustDevilMaskIce_Head");
     /// <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask</summary>
     public static readonly RequestCache<Texture2D> OmegaStariteMask = new("Aequus/Content/Bosses/BossMasks/OmegaStariteMask");
-    /// <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask_Glow</summary>
-    public static readonly RequestCache<Texture2D> OmegaStariteMask_Glow = new("Aequus/Content/Bosses/BossMasks/OmegaStariteMask_Glow");
     /// <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask_Head</summary>
     public static readonly RequestCache<Texture2D> OmegaStariteMask_Head = new("Aequus/Content/Bosses/BossMasks/OmegaStariteMask_Head");
-    /// <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask_Head_Glow</summary>
-    public static readonly RequestCache<Texture2D> OmegaStariteMask_Head_Glow = new("Aequus/Content/Bosses/BossMasks/OmegaStariteMask_Head_Glow");
     /// <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask</summary>
     public static readonly RequestCache<Texture2D> RedSpriteMask = new("Aequus/Content/Bosses/BossMasks/RedSpriteMask");
-    /// <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask_Glow</summary>
-    public static readonly RequestCache<Texture2D> RedSpriteMask_Glow = new("Aequus/Content/Bosses/BossMasks/RedSpriteMask_Glow");
     /// <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask_Head</summary>
     public static readonly RequestCache<Texture2D> RedSpriteMask_Head = new("Aequus/Content/Bosses/BossMasks/RedSpriteMask_Head");
-    /// <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask_Head_Glow</summary>
-    public static readonly RequestCache<Texture2D> RedSpriteMask_Head_Glow = new("Aequus/Content/Bosses/BossMasks/RedSpriteMask_Head_Glow");
     /// <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask</summary>
     public static readonly RequestCache<Texture2D> SpaceSquidMask = new("Aequus/Content/Bosses/BossMasks/SpaceSquidMask");
-    /// <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask_Glow</summary>
-    public static readonly RequestCache<Texture2D> SpaceSquidMask_Glow = new("Aequus/Content/Bosses/BossMasks/SpaceSquidMask_Glow");
     /// <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask_Head</summary>
     public static readonly RequestCache<Texture2D> SpaceSquidMask_Head = new("Aequus/Content/Bosses/BossMasks/SpaceSquidMask_Head");
-    /// <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask_Head_Glow</summary>
-    public static readonly RequestCache<Texture2D> SpaceSquidMask_Head_Glow = new("Aequus/Content/Bosses/BossMasks/SpaceSquidMask_Head_Glow");
-    /// <summary>Full Path: Content/Bosses/Tiles/BossRelicsTile</summary>
-    public static readonly RequestCache<Texture2D> BossRelicsTile = new("Aequus/Content/Bosses/Tiles/BossRelicsTile");
-    /// <summary>Full Path: Content/Bosses/Tiles/BossTrophiesTile</summary>
-    public static readonly RequestCache<Texture2D> BossTrophiesTile = new("Aequus/Content/Bosses/Tiles/BossTrophiesTile");
-    /// <summary>Full Path: Content/Bosses/Tiles/Relics/CrabsonRelic</summary>
-    public static readonly RequestCache<Texture2D> CrabsonRelic = new("Aequus/Content/Bosses/Tiles/Relics/CrabsonRelic");
-    /// <summary>Full Path: Content/Bosses/Tiles/Relics/DustDevilRelic</summary>
-    public static readonly RequestCache<Texture2D> DustDevilRelic = new("Aequus/Content/Bosses/Tiles/Relics/DustDevilRelic");
-    /// <summary>Full Path: Content/Bosses/Tiles/Relics/OmegaStariteRelic</summary>
-    public static readonly RequestCache<Texture2D> OmegaStariteRelic = new("Aequus/Content/Bosses/Tiles/Relics/OmegaStariteRelic");
-    /// <summary>Full Path: Content/Bosses/Tiles/Relics/RedSpriteRelic</summary>
-    public static readonly RequestCache<Texture2D> RedSpriteRelic = new("Aequus/Content/Bosses/Tiles/Relics/RedSpriteRelic");
-    /// <summary>Full Path: Content/Bosses/Tiles/Relics/SpaceSquidRelic</summary>
-    public static readonly RequestCache<Texture2D> SpaceSquidRelic = new("Aequus/Content/Bosses/Tiles/Relics/SpaceSquidRelic");
-    /// <summary>Full Path: Content/Bosses/Tiles/Relics/UltraStariteRelic</summary>
-    public static readonly RequestCache<Texture2D> UltraStariteRelic = new("Aequus/Content/Bosses/Tiles/Relics/UltraStariteRelic");
-    /// <summary>Full Path: Content/Bosses/Tiles/Trophies/CrabsonTrophy</summary>
-    public static readonly RequestCache<Texture2D> CrabsonTrophy = new("Aequus/Content/Bosses/Tiles/Trophies/CrabsonTrophy");
-    /// <summary>Full Path: Content/Bosses/Tiles/Trophies/DustDevilTrophy</summary>
-    public static readonly RequestCache<Texture2D> DustDevilTrophy = new("Aequus/Content/Bosses/Tiles/Trophies/DustDevilTrophy");
-    /// <summary>Full Path: Content/Bosses/Tiles/Trophies/OmegaStariteTrophy</summary>
-    public static readonly RequestCache<Texture2D> OmegaStariteTrophy = new("Aequus/Content/Bosses/Tiles/Trophies/OmegaStariteTrophy");
-    /// <summary>Full Path: Content/Bosses/Tiles/Trophies/RedSpriteTrophy</summary>
-    public static readonly RequestCache<Texture2D> RedSpriteTrophy = new("Aequus/Content/Bosses/Tiles/Trophies/RedSpriteTrophy");
-    /// <summary>Full Path: Content/Bosses/Tiles/Trophies/SpaceSquidTrophy</summary>
-    public static readonly RequestCache<Texture2D> SpaceSquidTrophy = new("Aequus/Content/Bosses/Tiles/Trophies/SpaceSquidTrophy");
-    /// <summary>Full Path: Content/Bosses/Tiles/Trophies/UltraStariteTrophy</summary>
-    public static readonly RequestCache<Texture2D> UltraStariteTrophy = new("Aequus/Content/Bosses/Tiles/Trophies/UltraStariteTrophy");
-    /// <summary>Full Path: Content/Bosses/Tiles/Trophy</summary>
-    public static readonly RequestCache<Texture2D> Trophy = new("Aequus/Content/Bosses/Tiles/Trophy");
     /// <summary>Full Path: Content/Bosses/TreasureBags/CrabsonBag</summary>
     public static readonly RequestCache<Texture2D> CrabsonBag = new("Aequus/Content/Bosses/TreasureBags/CrabsonBag");
     /// <summary>Full Path: Content/Bosses/TreasureBags/DustDevilBag</summary>
     public static readonly RequestCache<Texture2D> DustDevilBag = new("Aequus/Content/Bosses/TreasureBags/DustDevilBag");
     /// <summary>Full Path: Content/Bosses/TreasureBags/OmegaStariteBag</summary>
     public static readonly RequestCache<Texture2D> OmegaStariteBag = new("Aequus/Content/Bosses/TreasureBags/OmegaStariteBag");
+    /// <summary>Full Path: Content/Bosses/Trophies/CrabsonRelic</summary>
+    public static readonly RequestCache<Texture2D> CrabsonRelic = new("Aequus/Content/Bosses/Trophies/CrabsonRelic");
+    /// <summary>Full Path: Content/Bosses/Trophies/CrabsonRelicItem</summary>
+    public static readonly RequestCache<Texture2D> CrabsonRelicItem = new("Aequus/Content/Bosses/Trophies/CrabsonRelicItem");
+    /// <summary>Full Path: Content/Bosses/Trophies/CrabsonTrophy</summary>
+    public static readonly RequestCache<Texture2D> CrabsonTrophy = new("Aequus/Content/Bosses/Trophies/CrabsonTrophy");
+    /// <summary>Full Path: Content/Bosses/Trophies/CrabsonTrophyItem</summary>
+    public static readonly RequestCache<Texture2D> CrabsonTrophyItem = new("Aequus/Content/Bosses/Trophies/CrabsonTrophyItem");
+    /// <summary>Full Path: Content/Bosses/Trophies/DustDevilRelic</summary>
+    public static readonly RequestCache<Texture2D> DustDevilRelic = new("Aequus/Content/Bosses/Trophies/DustDevilRelic");
+    /// <summary>Full Path: Content/Bosses/Trophies/DustDevilRelicItem</summary>
+    public static readonly RequestCache<Texture2D> DustDevilRelicItem = new("Aequus/Content/Bosses/Trophies/DustDevilRelicItem");
+    /// <summary>Full Path: Content/Bosses/Trophies/DustDevilTrophy</summary>
+    public static readonly RequestCache<Texture2D> DustDevilTrophy = new("Aequus/Content/Bosses/Trophies/DustDevilTrophy");
+    /// <summary>Full Path: Content/Bosses/Trophies/DustDevilTrophyItem</summary>
+    public static readonly RequestCache<Texture2D> DustDevilTrophyItem = new("Aequus/Content/Bosses/Trophies/DustDevilTrophyItem");
+    /// <summary>Full Path: Content/Bosses/Trophies/OmegaStariteRelic</summary>
+    public static readonly RequestCache<Texture2D> OmegaStariteRelic = new("Aequus/Content/Bosses/Trophies/OmegaStariteRelic");
+    /// <summary>Full Path: Content/Bosses/Trophies/OmegaStariteRelicItem</summary>
+    public static readonly RequestCache<Texture2D> OmegaStariteRelicItem = new("Aequus/Content/Bosses/Trophies/OmegaStariteRelicItem");
+    /// <summary>Full Path: Content/Bosses/Trophies/OmegaStariteTrophy</summary>
+    public static readonly RequestCache<Texture2D> OmegaStariteTrophy = new("Aequus/Content/Bosses/Trophies/OmegaStariteTrophy");
+    /// <summary>Full Path: Content/Bosses/Trophies/OmegaStariteTrophyItem</summary>
+    public static readonly RequestCache<Texture2D> OmegaStariteTrophyItem = new("Aequus/Content/Bosses/Trophies/OmegaStariteTrophyItem");
+    /// <summary>Full Path: Content/Bosses/Trophies/RedSpriteRelic</summary>
+    public static readonly RequestCache<Texture2D> RedSpriteRelic = new("Aequus/Content/Bosses/Trophies/RedSpriteRelic");
+    /// <summary>Full Path: Content/Bosses/Trophies/RedSpriteRelicItem</summary>
+    public static readonly RequestCache<Texture2D> RedSpriteRelicItem = new("Aequus/Content/Bosses/Trophies/RedSpriteRelicItem");
+    /// <summary>Full Path: Content/Bosses/Trophies/RedSpriteTrophy</summary>
+    public static readonly RequestCache<Texture2D> RedSpriteTrophy = new("Aequus/Content/Bosses/Trophies/RedSpriteTrophy");
+    /// <summary>Full Path: Content/Bosses/Trophies/RedSpriteTrophyItem</summary>
+    public static readonly RequestCache<Texture2D> RedSpriteTrophyItem = new("Aequus/Content/Bosses/Trophies/RedSpriteTrophyItem");
+    /// <summary>Full Path: Content/Bosses/Trophies/SpaceSquidRelic</summary>
+    public static readonly RequestCache<Texture2D> SpaceSquidRelic = new("Aequus/Content/Bosses/Trophies/SpaceSquidRelic");
+    /// <summary>Full Path: Content/Bosses/Trophies/SpaceSquidRelicItem</summary>
+    public static readonly RequestCache<Texture2D> SpaceSquidRelicItem = new("Aequus/Content/Bosses/Trophies/SpaceSquidRelicItem");
+    /// <summary>Full Path: Content/Bosses/Trophies/SpaceSquidTrophy</summary>
+    public static readonly RequestCache<Texture2D> SpaceSquidTrophy = new("Aequus/Content/Bosses/Trophies/SpaceSquidTrophy");
+    /// <summary>Full Path: Content/Bosses/Trophies/SpaceSquidTrophyItem</summary>
+    public static readonly RequestCache<Texture2D> SpaceSquidTrophyItem = new("Aequus/Content/Bosses/Trophies/SpaceSquidTrophyItem");
+    /// <summary>Full Path: Content/Bosses/Trophies/Trophy</summary>
+    public static readonly RequestCache<Texture2D> Trophy = new("Aequus/Content/Bosses/Trophies/Trophy");
+    /// <summary>Full Path: Content/Bosses/Trophies/UltraStariteRelic</summary>
+    public static readonly RequestCache<Texture2D> UltraStariteRelic = new("Aequus/Content/Bosses/Trophies/UltraStariteRelic");
+    /// <summary>Full Path: Content/Bosses/Trophies/UltraStariteRelicItem</summary>
+    public static readonly RequestCache<Texture2D> UltraStariteRelicItem = new("Aequus/Content/Bosses/Trophies/UltraStariteRelicItem");
+    /// <summary>Full Path: Content/Bosses/Trophies/UltraStariteTrophy</summary>
+    public static readonly RequestCache<Texture2D> UltraStariteTrophy = new("Aequus/Content/Bosses/Trophies/UltraStariteTrophy");
+    /// <summary>Full Path: Content/Bosses/Trophies/UltraStariteTrophyItem</summary>
+    public static readonly RequestCache<Texture2D> UltraStariteTrophyItem = new("Aequus/Content/Bosses/Trophies/UltraStariteTrophyItem");
     /// <summary>Full Path: Content/DedicatedContent/Baguette/Baguette</summary>
     public static readonly RequestCache<Texture2D> Baguette = new("Aequus/Content/DedicatedContent/Baguette/Baguette");
     /// <summary>Full Path: Content/DedicatedContent/Baguette/BaguetteBuff</summary>
@@ -363,10 +369,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OrganicEnergyParticle = new("Aequus/Content/Items/Material/Energy/Organic/OrganicEnergyParticle");
     /// <summary>Full Path: Content/Items/Material/Energy/Ultimate/UltimateEnergy</summary>
     public static readonly RequestCache<Texture2D> UltimateEnergy = new("Aequus/Content/Items/Material/Energy/Ultimate/UltimateEnergy");
-    /// <summary>Full Path: Content/Items/Material/Fluorescence</summary>
-    public static readonly RequestCache<Texture2D> Fluorescence = new("Aequus/Content/Items/Material/Fluorescence");
-    /// <summary>Full Path: Content/Items/Material/FrozenTear</summary>
-    public static readonly RequestCache<Texture2D> FrozenTear = new("Aequus/Content/Items/Material/FrozenTear");
     /// <summary>Full Path: Content/Items/Material/MonoGem/MonoGem</summary>
     public static readonly RequestCache<Texture2D> MonoGem = new("Aequus/Content/Items/Material/MonoGem/MonoGem");
     /// <summary>Full Path: Content/Items/Material/MonoGem/MonoGemTile</summary>
@@ -433,6 +435,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> StunGun = new("Aequus/Content/Items/Weapons/Classless/StunGun/StunGun");
     /// <summary>Full Path: Content/Items/Weapons/Magic/Furystar/Furystar</summary>
     public static readonly RequestCache<Texture2D> Furystar = new("Aequus/Content/Items/Weapons/Magic/Furystar/Furystar");
+    /// <summary>Full Path: Content/Items/Weapons/Melee/AncientCutlass/AncientCutlass</summary>
+    public static readonly RequestCache<Texture2D> AncientCutlass = new("Aequus/Content/Items/Weapons/Melee/AncientCutlass/AncientCutlass");
     /// <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/Dynaknife</summary>
     public static readonly RequestCache<Texture2D> Dynaknife = new("Aequus/Content/Items/Weapons/Melee/DynaKnife/Dynaknife");
     /// <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/DynaknifeProj</summary>
@@ -441,12 +445,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> DynaknifeProj_Glow = new("Aequus/Content/Items/Weapons/Melee/DynaKnife/DynaknifeProj_Glow");
     /// <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/Dynaknife_Glow</summary>
     public static readonly RequestCache<Texture2D> Dynaknife_Glow = new("Aequus/Content/Items/Weapons/Melee/DynaKnife/Dynaknife_Glow");
-    /// <summary>Full Path: Content/Items/Weapons/Melee/Swords/AncientCutlass/AncientCutlass</summary>
-    public static readonly RequestCache<Texture2D> AncientCutlass = new("Aequus/Content/Items/Weapons/Melee/Swords/AncientCutlass/AncientCutlass");
-    /// <summary>Full Path: Content/Items/Weapons/Melee/Swords/Slice/Slice</summary>
-    public static readonly RequestCache<Texture2D> Slice = new("Aequus/Content/Items/Weapons/Melee/Swords/Slice/Slice");
-    /// <summary>Full Path: Content/Items/Weapons/Melee/Swords/Slice/SliceBulletProj</summary>
-    public static readonly RequestCache<Texture2D> SliceBulletProj = new("Aequus/Content/Items/Weapons/Melee/Swords/Slice/SliceBulletProj");
+    /// <summary>Full Path: Content/Items/Weapons/Melee/Slice/Slice</summary>
+    public static readonly RequestCache<Texture2D> Slice = new("Aequus/Content/Items/Weapons/Melee/Slice/Slice");
+    /// <summary>Full Path: Content/Items/Weapons/Melee/Slice/SliceBulletProj</summary>
+    public static readonly RequestCache<Texture2D> SliceBulletProj = new("Aequus/Content/Items/Weapons/Melee/Slice/SliceBulletProj");
     /// <summary>Full Path: Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
     public static readonly RequestCache<Texture2D> Chain = new("Aequus/Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain");
     /// <summary>Full Path: Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>

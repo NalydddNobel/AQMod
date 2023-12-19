@@ -3,9 +3,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Terraria;
 using Terraria.GameContent.Drawing;
-using Terraria.ModLoader;
 
 namespace Aequus.Core.Graphics.Tiles;
 

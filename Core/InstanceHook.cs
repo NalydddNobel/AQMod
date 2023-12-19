@@ -1,5 +1,4 @@
 ﻿using System;
-using Terraria.ModLoader;
 
 namespace Aequus.Core;
 

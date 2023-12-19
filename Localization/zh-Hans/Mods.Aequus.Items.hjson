@@ -275,30 +275,7 @@ CompressedTrash: {
 	Tooltip: ""
 }
 
-Fluorescence: {
-	DisplayName: 荧光
-	Tooltip: "'充满了愤怒、肾上腺素和痛苦的恶意'"
-}
-
-FrozenTear: {
-	DisplayName: 冰寒泪滴
-	Tooltip: "'一种由乌贼的心融化而成的奇异的眼泪'"
-}
-
-CrabsonBag: {
-	DisplayName: 宝藏袋 (巨蟹蛤)
-	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
-}
-
-OmegaStariteBag: {
-	DisplayName: 宝藏袋 (终末之星)
-	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
-}
-
-DustDevilBag: {
-	DisplayName: 宝藏袋 (沙尘恶魔)
-	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
-}
+TreasureBag.DisplayName: 宝藏袋 ({0})
 
 WispLantern: {
 	DisplayName: 精灵灯笼
@@ -402,14 +379,9 @@ CrabsonMask: {
 	Tooltip: ""
 }
 
-DustDevilMaskFire: {
-	DisplayName: 火焰沙尘恶魔面具
-	Tooltip: ""
-}
-
-DustDevilMaskIce: {
-	DisplayName: 冰霜沙尘恶魔面具
-	Tooltip: ""
+DustDevilMask: {
+	// DisplayName: Dust Devil Mask
+	// Tooltip: ""
 }
 
 OmegaStariteMask: {
@@ -436,71 +408,6 @@ PollutedOceanMusicBoxItem: {
 MonsterChestItem: {
 	DisplayName: 怪物箱
 	Tooltip: 放置一个怪物箱, 除非你拥有隐形增益, 否则它会立即激活
-}
-
-CircuitBreaker: {
-	DisplayName: 电路开关
-	Tooltip: 无需电线即可激活导电方块
-}
-
-CrabsonRelic: {
-	DisplayName: 巨蟹蛤纪念物
-	Tooltip: ""
-}
-
-DustDevilRelic: {
-	DisplayName: 沙尘恶魔纪念物
-	Tooltip: ""
-}
-
-OmegaStariteRelic: {
-	DisplayName: 终末之星纪念物
-	Tooltip: ""
-}
-
-RedSpriteRelic: {
-	DisplayName: 红色精灵纪念物
-	Tooltip: ""
-}
-
-SpaceSquidRelic: {
-	DisplayName: 太空乌贼纪念物
-	Tooltip: ""
-}
-
-UltraStariteRelic: {
-	DisplayName: 终耀源星纪念物
-	Tooltip: ""
-}
-
-CrabsonTrophy: {
-	DisplayName: 巨蟹蛤纪念章
-	Tooltip: ""
-}
-
-DustDevilTrophy: {
-	DisplayName: 沙尘恶魔纪念章
-	Tooltip: ""
-}
-
-OmegaStariteTrophy: {
-	DisplayName: 终末之星纪念章
-	Tooltip: ""
-}
-
-RedSpriteTrophy: {
-	DisplayName: 红色精灵纪念章
-	Tooltip: ""
-}
-
-SpaceSquidTrophy: {
-	DisplayName: 太空乌贼纪念章
-	Tooltip: ""
-}
-
-UltraStariteTrophy: {
-	DisplayName: 终耀源星纪念章
-	Tooltip: ""
 }
 
 //# Mounts

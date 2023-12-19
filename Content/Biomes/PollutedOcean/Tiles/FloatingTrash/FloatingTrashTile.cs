@@ -27,10 +27,10 @@ public class FloatingTrashTile : FloatingTrashBase, ITouchEffects {
 
         var random = Helper.RandomTileCoordinates(i, j);
         var randomItemTexture = random.Next(ItemLoader.ItemCount);
-        ItemHelper.GetItemDrawData(randomItemTexture, out var itemFrame);
+        Main.GetItemDrawFrame(randomItemTexture, out var itemTexture, out var itemFrame);
         
         var drawCoordinates = new Vector2(i * 16f + 8f + random.Next(-4, 4), j * 16f + Helper.Oscillate(Main.GlobalTimeWrappedHourly * random.NextFloat(0.5f, 1.12f), 5f, 11f) + TileHelper.GetWaterY(Main.tile[i,j].LiquidAmount)) - Main.screenPosition + TileHelper.DrawOffset;
-        spriteBatch.Draw(TextureAssets.Item[randomItemTexture].Value, drawCoordinates.Floor(), itemFrame, Lighting.GetColor(i, j), random.NextFloat(MathHelper.Pi), TextureAssets.Item[randomItemTexture].Size() / 2f, 1f, SpriteEffects.None, 0f);
+        spriteBatch.Draw(itemTexture, drawCoordinates.Floor(), itemFrame, Lighting.GetColor(i, j), random.NextFloat(MathHelper.Pi), itemFrame.Size() / 2f, 1f, SpriteEffects.None, 0f);
         return false;
     }
 }

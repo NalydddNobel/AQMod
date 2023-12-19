@@ -1,9 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Aequus.Content.Equipment.Accessories.GrandReward;
+﻿namespace Aequus.Content.Equipment.Accessories.GrandReward;
 
 public class CosmicChest : ModItem {
     public static float LuckIncrease { get; set; } = 0.05f;

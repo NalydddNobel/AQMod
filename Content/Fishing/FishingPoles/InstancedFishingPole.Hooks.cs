@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Core;
 using Microsoft.Xna.Framework;
-using Terraria;
 
 namespace Aequus.Content.Fishing.FishingPoles;
 

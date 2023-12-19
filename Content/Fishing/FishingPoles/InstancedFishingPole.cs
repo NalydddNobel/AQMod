@@ -1,9 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Microsoft.Xna.Framework;
 using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Fishing.FishingPoles;
 

@@ -1,8 +1,5 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Content.Items.Material;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Fishing.CrabPots;
 public class CrabPot : BaseCrabPot {

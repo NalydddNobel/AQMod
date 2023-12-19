@@ -1,15 +1,11 @@
-﻿using Aequus;
-using Aequus.Common.Items;
+﻿using Aequus.Common.Items;
 using Aequus.Common.Items.Components;
 using Aequus.Common.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.Utilities;
 
 namespace Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;

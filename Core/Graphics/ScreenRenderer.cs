@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using Terraria;
 
 namespace Aequus.Core.Graphics;
 

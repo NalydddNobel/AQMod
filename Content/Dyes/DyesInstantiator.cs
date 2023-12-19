@@ -5,10 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
-using Terraria;
 using Terraria.Graphics.Shaders;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Dyes;
 
@@ -61,7 +58,7 @@ public sealed class DyesInstantiator : ModSystem {
             .WithCustomRecipe((m) => {
                 m.CreateRecipe()
                 .AddIngredient(ItemID.BottledWater)
-                .AddIngredient<FrozenTear>()
+                .AddIngredient(ItemID.FrostCore)
                 .AddTile(TileID.DyeVat)
                 .Register();
             });
@@ -70,7 +67,7 @@ public sealed class DyesInstantiator : ModSystem {
             .WithCustomRecipe((m) => {
                 m.CreateRecipe()
                 .AddIngredient(ItemID.BottledWater)
-                .AddIngredient<Fluorescence>()
+                .AddIngredient(ItemID.AncientBattleArmorMaterial)
                 .AddTile(TileID.DyeVat)
                 .Register();
             });

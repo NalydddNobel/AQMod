@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.Systems;
 using Aequus.Content.Biomes.PollutedOcean;
 using System;
-using Terraria;
 using Terraria.Localization;
 
 namespace Aequus.Common;

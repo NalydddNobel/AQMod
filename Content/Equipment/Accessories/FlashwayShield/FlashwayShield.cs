@@ -1,7 +1,4 @@
 ﻿using Aequus.Common.Items;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.FlashwayShield;
 

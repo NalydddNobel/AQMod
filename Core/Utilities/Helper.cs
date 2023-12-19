@@ -4,10 +4,9 @@ using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace Aequus;
+namespace Aequus.Core.Utilities;
 
 public static class Helper {
     public static Point WorldClamp(this Point value, int fluff = 0) {
@@ -39,20 +38,20 @@ public static class Helper {
         return t.Namespace.Replace('.', '/');
     }
     public static string NamespaceFilePath(this object obj) {
-        return NamespaceFilePath(obj.GetType());
+        return obj.GetType().NamespaceFilePath();
     }
     public static string NamespaceFilePath<T>() {
-        return NamespaceFilePath(typeof(T));
+        return typeof(T).NamespaceFilePath();
     }
 
+    public static string GetFilePath(this Type t) {
+        return $"{t.NamespaceFilePath()}/{t.Name}";
+    }
     public static string GetFilePath(this object obj) {
         return GetFilePath(obj.GetType());
     }
     public static string GetFilePath<T>() {
         return GetFilePath(typeof(T));
-    }
-    public static string GetFilePath(Type t) {
-        return $"{NamespaceFilePath(t)}/{t.Name}";
     }
     #endregion
 
@@ -99,7 +98,7 @@ public static class Helper {
     }
 
     public static Item ReplaceFirst(this Chest chest, int itemId, int newItemId, int newStack = -1) {
-        var item = FindFirst(chest, itemId);
+        var item = chest.FindFirst(itemId);
         if (item == null) {
             return item;
         }
@@ -118,7 +117,7 @@ public static class Helper {
                 continue;
             }
             if (!chest.item[i].IsAir && chest.item[i].type == itemId) {
-                Remove(chest, i);
+                chest.Remove(i);
                 anyRemoved = true;
                 i--;
                 continue;
@@ -151,7 +150,7 @@ public static class Helper {
     public static bool TryStackingInto(this Item[] inv, int maxSlots, Item item, out int i) {
         i = -1;
         while (item.stack > 0) {
-            i = FindSuitableSlot(inv, maxSlots, item);
+            i = inv.FindSuitableSlot(maxSlots, item);
             if (i == -1) {
                 return false;
             }

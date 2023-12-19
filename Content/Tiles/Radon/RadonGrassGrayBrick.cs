@@ -1,8 +1,4 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Aequus.Content.Tiles.Radon;
+﻿namespace Aequus.Content.Tiles.Radon;
 
 [LegacyName("RadonMossBrickTile")]
 public class RadonGrassGrayBrick : RadonGrassStone {

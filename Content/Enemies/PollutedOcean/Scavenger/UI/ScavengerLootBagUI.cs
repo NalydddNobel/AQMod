@@ -1,12 +1,8 @@
 ﻿using Aequus.Common.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria;
 using Terraria.GameContent;
 using Terraria.GameInput;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.ModLoader.Config;
 using Terraria.UI;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger.UI;

@@ -2,9 +2,6 @@
 using Aequus.Common.UI.Inventory;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.Items.Tooltips;
 public class KeywordSystem : ModSystem {

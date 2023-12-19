@@ -1,8 +1,5 @@
 ﻿using Aequus.Common.Tiles;
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Tiles.Radon;
 

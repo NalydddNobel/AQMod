@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Terraria;
 
 namespace Aequus.Core.PhysicsObjects;
 

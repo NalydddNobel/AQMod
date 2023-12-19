@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using Terraria;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Common.Projectiles;

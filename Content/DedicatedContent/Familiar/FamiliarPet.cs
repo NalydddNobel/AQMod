@@ -1,8 +1,6 @@
 ﻿using Aequus.Content.CrossMod;
 using Aequus.Content.Pets;
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
 
 namespace Aequus.Content.DedicatedContent.Familiar;
 

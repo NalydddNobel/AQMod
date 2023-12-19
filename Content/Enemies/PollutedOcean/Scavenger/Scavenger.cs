@@ -8,13 +8,10 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Utilities;
 
@@ -270,7 +267,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         ScavengerLootBag.AddDropsToList(NPC, dropsRegisterList);
 
         dropsRegisterList.RemoveAll((i) => i.ModItem is ScavengerBag);
-        
+
         if (dropsRegisterList.Count <= 0) {
             return;
         }

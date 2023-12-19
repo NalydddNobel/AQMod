@@ -1,8 +1,4 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Aequus.Content.Equipment.Accessories.Balloons;
+﻿namespace Aequus.Content.Equipment.Accessories.Balloons;
 
 [AutoloadEquip(EquipType.Balloon)]
 public class PurpleBalloon : SlimyBlueBalloon {

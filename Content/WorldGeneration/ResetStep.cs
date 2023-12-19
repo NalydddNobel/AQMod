@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.WorldGeneration;
 using Aequus.Content.Configuration;
-using Terraria.ID;
 using Terraria.IO;
 using Terraria.WorldBuilding;
 

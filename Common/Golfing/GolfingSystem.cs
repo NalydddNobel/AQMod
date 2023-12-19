@@ -1,9 +1,6 @@
 ﻿using Aequus.Common.Players.Backpacks;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent.Golf;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.Physics;
 
 namespace Aequus.Common.Golfing;

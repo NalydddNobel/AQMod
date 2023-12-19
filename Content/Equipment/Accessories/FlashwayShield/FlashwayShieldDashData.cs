@@ -1,8 +1,5 @@
-﻿using Aequus;
-using Aequus.Common.Players;
-using Terraria;
+﻿using Aequus.Common.Players;
 using Terraria.Graphics.Shaders;
-using Terraria.ID;
 
 namespace Aequus.Content.Equipment.Accessories.FlashwayShield;
 

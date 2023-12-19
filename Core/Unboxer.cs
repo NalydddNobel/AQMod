@@ -1,6 +1,4 @@
-﻿using Terraria.ModLoader;
-
-namespace Aequus.Core;
+﻿namespace Aequus.Core;
 
 public abstract class Unboxer<T> : ILoadable {
     public static Unboxer<T> Instance { get; private set; }

@@ -4,9 +4,7 @@ using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
 namespace Aequus.Common.Items.Tooltips;

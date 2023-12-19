@@ -2,9 +2,7 @@
 using Aequus.Core.Graphics.Animations;
 using Aequus.Core.Networking;
 using System.IO;
-using Terraria;
 using Terraria.DataStructures;
-using Terraria.ID;
 
 namespace Aequus.Content.Fishing.CrabPots;
 public class PacketCrabPotUse : PacketHandler {

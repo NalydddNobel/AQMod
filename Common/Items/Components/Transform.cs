@@ -1,7 +1,4 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-
-namespace Aequus.Common.Items.Components;
+﻿namespace Aequus.Common.Items.Components;
 
 public interface ITransformItem {
     void Transform(Player player);

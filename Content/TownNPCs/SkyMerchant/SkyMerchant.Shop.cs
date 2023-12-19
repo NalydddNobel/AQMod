@@ -14,10 +14,7 @@ using Aequus.Content.Items.Weapons.Magic.Furystar;
 using Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.TownNPCs.SkyMerchant;
 

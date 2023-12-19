@@ -1,8 +1,6 @@
 ﻿using Aequus.Content.Biomes.PollutedOcean.Tiles.FloatingTrash;
 using Aequus.Content.Items.Material.OmniGem;
 using System.Collections.Generic;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.Tiles {
     public partial class AequusTile {

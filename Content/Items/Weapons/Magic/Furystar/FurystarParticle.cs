@@ -2,15 +2,13 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Terraria;
 using Terraria.Graphics.Renderers;
-using Terraria.ID;
 
 namespace Aequus.Content.Items.Weapons.Magic.Furystar;
 
 public class FurystarParticle : BaseParticle<FurystarParticle> {
     public float Animation;
-    
+
     protected override void SetDefaults() {
         SetTexture(AequusTextures.Flare2);
         Rotation = Main.rand.NextFloat(-0.05f, 0.05f);

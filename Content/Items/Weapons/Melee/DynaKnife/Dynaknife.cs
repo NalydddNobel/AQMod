@@ -1,12 +1,8 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Common.Particles;
-using Aequus.Content.Items.Weapons.Magic.Furystar;
 using Aequus.Core.Autoloading;
 using Microsoft.Xna.Framework;
 using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Weapons.Melee.DynaKnife;
 

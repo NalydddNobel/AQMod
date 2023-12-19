@@ -1,8 +1,9 @@
-using Terraria.ID;
-using Terraria;
-using Terraria.ModLoader;
-using System.IO;
+global using Aequus.Core.Utilities;
+global using Terraria;
+global using Terraria.ID;
+global using Terraria.ModLoader;
 using Aequus.Core.Networking;
+using System.IO;
 
 namespace Aequus;
 

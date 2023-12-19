@@ -1,6 +1,4 @@
 ﻿using Aequus.Core.Autoloading;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.Tiles;
 

@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Players.Backpacks;
 using Microsoft.Xna.Framework;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.ScavengerBag;
 

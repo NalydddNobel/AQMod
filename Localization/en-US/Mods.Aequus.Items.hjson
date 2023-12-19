@@ -275,30 +275,7 @@ CompressedTrash: {
 	Tooltip: ""
 }
 
-Fluorescence: {
-	DisplayName: Fluorescence
-	Tooltip: "'Charged with rage, adrenaline, and tormented malice'"
-}
-
-FrozenTear: {
-	DisplayName: Frozen Teardrop
-	Tooltip: "'An exotic tear formed by melting the heart of a squid'"
-}
-
-CrabsonBag: {
-	DisplayName: Treasure Bag (Crabson)
-	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
-}
-
-OmegaStariteBag: {
-	DisplayName: Treasure Bag (Omega Starite)
-	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
-}
-
-DustDevilBag: {
-	DisplayName: Treasure Bag (Dust Devil)
-	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
-}
+TreasureBag.DisplayName: Treasure Bag ({0})
 
 WispLantern: {
 	DisplayName: Wisp Lantern
@@ -402,13 +379,8 @@ CrabsonMask: {
 	Tooltip: ""
 }
 
-DustDevilMaskFire: {
-	DisplayName: Fiery Dust Devil Mask
-	Tooltip: ""
-}
-
-DustDevilMaskIce: {
-	DisplayName: Frosty Dust Devil Mask
+DustDevilMask: {
+	DisplayName: Dust Devil Mask
 	Tooltip: ""
 }
 
@@ -436,71 +408,6 @@ PollutedOceanMusicBoxItem: {
 MonsterChestItem: {
 	DisplayName: Monster Chest
 	Tooltip: Places a monster chest which will get immediately activated unless you have the Invisibility buff
-}
-
-CircuitBreaker: {
-	DisplayName: Circuit Switch
-	Tooltip: Activates Conductive Blocks without needing wire
-}
-
-CrabsonRelic: {
-	DisplayName: Crabson Relic
-	Tooltip: ""
-}
-
-DustDevilRelic: {
-	DisplayName: Dust Devil Relic
-	Tooltip: ""
-}
-
-OmegaStariteRelic: {
-	DisplayName: Omega Starite Relic
-	Tooltip: ""
-}
-
-RedSpriteRelic: {
-	DisplayName: Red Sprite Relic
-	Tooltip: ""
-}
-
-SpaceSquidRelic: {
-	DisplayName: Space Squid Relic
-	Tooltip: ""
-}
-
-UltraStariteRelic: {
-	DisplayName: Ultra Starite Relic
-	Tooltip: ""
-}
-
-CrabsonTrophy: {
-	DisplayName: Crabson Trophy
-	Tooltip: ""
-}
-
-DustDevilTrophy: {
-	DisplayName: Dust Devil Trophy
-	Tooltip: ""
-}
-
-OmegaStariteTrophy: {
-	DisplayName: Omega Starite Trophy
-	Tooltip: ""
-}
-
-RedSpriteTrophy: {
-	DisplayName: Red Sprite Trophy
-	Tooltip: ""
-}
-
-SpaceSquidTrophy: {
-	DisplayName: Space Squid Trophy
-	Tooltip: ""
-}
-
-UltraStariteTrophy: {
-	DisplayName: Ultra Starite Trophy
-	Tooltip: ""
 }
 
 //# Mounts

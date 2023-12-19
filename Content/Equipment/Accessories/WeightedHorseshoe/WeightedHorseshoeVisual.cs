@@ -1,11 +1,8 @@
-﻿using Aequus;
-using Aequus.Core.PhysicsObjects;
+﻿using Aequus.Core.PhysicsObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.WeightedHorseshoe;
 

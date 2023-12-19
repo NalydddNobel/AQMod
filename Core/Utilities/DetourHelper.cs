@@ -2,9 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Terraria.ModLoader;
 
-namespace Aequus;
+namespace Aequus.Core.Utilities;
 
 public static class DetourHelper {
     private class Loader : ILoadable {

@@ -5,9 +5,6 @@ using Aequus.Content.Items.Material.Energy.Cosmic;
 using Aequus.Content.Items.Material.Energy.Demonic;
 using Aequus.Content.Items.Material.Energy.Organic;
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Material.Energy.Ultimate;
 

@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Common.Items;
+﻿using Aequus.Common.Items;
 using Aequus.Content.DataSets;
 using Aequus.Content.Items.Material;
 using Aequus.Content.Items.Material.Energy.Aquatic;
@@ -7,11 +6,8 @@ using Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Weapons.Ranged.Misc.JunkJet;
 
@@ -58,7 +54,6 @@ public class JunkJet : ModItem {
     public override void AddRecipes() {
         CreateRecipe()
             .AddIngredient<CompressedTrash>(3)
-            .AddIngredient<AquaticEnergy>()
             .AddTile<TrashCompactor>()
             .Register();
     }

@@ -1,7 +1,6 @@
 ﻿using Aequus.Core.Autoloading;
 using Newtonsoft.Json;
 using System.Reflection;
-using Terraria.ModLoader;
 
 namespace Aequus.Core.DataSets;
 

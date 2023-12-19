@@ -1,7 +1,4 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Aequus.Content.Tiles.Radon;
+﻿using Aequus.Content.Tiles.Radon;
 
 namespace Aequus;
 

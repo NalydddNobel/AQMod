@@ -1,13 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.Chat;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
-namespace Aequus;
+namespace Aequus.Core.Utilities;
 
 public static class TextHelper {
     public const char AirCharacter = '⠀';
@@ -55,11 +52,15 @@ public static class TextHelper {
     }
 
     public static string GetCategoryTextValue(this ILocalizedModType self, string suffix) {
-        return GetCategoryText(self, suffix).Value;
+        return self.GetCategoryText(suffix).Value;
+    }
+
+    public static string GetCategoryKey(this ILocalizedModType self, string suffix, Func<string> defaultValueFactory = null) {
+        return $"Mods.{self.Mod.Name}.{self.LocalizationCategory}.{suffix}";
     }
 
     public static LocalizedText GetCategoryText(this ILocalizedModType self, string suffix, Func<string> defaultValueFactory = null) {
-        return Language.GetOrRegister($"Mods.{self.Mod.Name}.{self.LocalizationCategory}.{suffix}", defaultValueFactory);
+        return Language.GetOrRegister(GetCategoryKey(self, suffix), defaultValueFactory);
     }
 
     public static LocalizedText DayOfWeek(DayOfWeek dayOfWeek) {

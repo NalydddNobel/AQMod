@@ -1,7 +1,4 @@
 ﻿using Aequus.Content.Items.Material;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Weapons.Ranged.Darts.Ammo;
 

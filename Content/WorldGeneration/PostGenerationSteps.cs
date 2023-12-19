@@ -1,8 +1,5 @@
 ﻿using Aequus.Content.Configuration;
 using Aequus.Content.Items.Tools.NameTag;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.WorldGeneration;
 public class PostGenerationSteps {

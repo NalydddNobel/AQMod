@@ -1,9 +1,6 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Content.WorldGeneration;
 using System.Collections.Generic;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Terraria.WorldBuilding;
 
@@ -79,7 +76,7 @@ public class WorldGenSystem : ModSystem {
         }
 
 
-        static bool IsChest(int chestStyle, int chestTileId, int wantedStyle, int wantedTileId = TileID.Containers) 
+        static bool IsChest(int chestStyle, int chestTileId, int wantedStyle, int wantedTileId = TileID.Containers)
             => wantedStyle == chestStyle && wantedTileId == chestTileId;
     }
 }

@@ -275,30 +275,7 @@ CompressedTrash: {
 	Tooltip: ""
 }
 
-Fluorescence: {
-	DisplayName: Fluorescencia
-	Tooltip: "'Cargado con ira, adrenalina, y malicia atormentada'"
-}
-
-FrozenTear: {
-	DisplayName: Lagrima Congelada
-	Tooltip: "'Una lagrima exótica formada por el corazón derretido de un calamar'"
-}
-
-CrabsonBag: {
-	DisplayName: Bolsa del Tesoro (Crabson)
-	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
-}
-
-OmegaStariteBag: {
-	DisplayName: Bolsa del Tesoro (Omega Starite)
-	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
-}
-
-DustDevilBag: {
-	DisplayName: Bolsa del Tesoro (Demonio de Polvo)
-	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
-}
+TreasureBag.DisplayName: Bolsa del Tesoro ({0})
 
 WispLantern: {
 	DisplayName: Linterna Espiritual
@@ -402,14 +379,9 @@ CrabsonMask: {
 	Tooltip: ""
 }
 
-DustDevilMaskFire: {
-	DisplayName: Mascara ardiente del Demonio de Polvo
-	Tooltip: ""
-}
-
-DustDevilMaskIce: {
-	DisplayName: Mascara helada del Demonio de Polvo
-	Tooltip: ""
+DustDevilMask: {
+	// DisplayName: Dust Devil Mask
+	// Tooltip: ""
 }
 
 OmegaStariteMask: {
@@ -436,71 +408,6 @@ PollutedOceanMusicBoxItem: {
 MonsterChestItem: {
 	DisplayName: Cofre Monstruo
 	Tooltip: Coloca un cofre monstruo que se activara de inmediato a menos que seas invisible
-}
-
-CircuitBreaker: {
-	DisplayName: Palanca de Circuito
-	Tooltip: Activa bloques conductivos sin necesitar cables
-}
-
-CrabsonRelic: {
-	DisplayName: Reliquia de Crabson
-	Tooltip: ""
-}
-
-DustDevilRelic: {
-	DisplayName: Reliquia del Demonio de Polvo
-	Tooltip: ""
-}
-
-OmegaStariteRelic: {
-	DisplayName: Reliquia de Omega Starite
-	Tooltip: ""
-}
-
-RedSpriteRelic: {
-	DisplayName: Reliquia del Espectro Rojo
-	Tooltip: ""
-}
-
-SpaceSquidRelic: {
-	DisplayName: Reliquia del Calamar Espacial
-	Tooltip: ""
-}
-
-UltraStariteRelic: {
-	DisplayName: Reliquia de Ultra Starite
-	Tooltip: ""
-}
-
-CrabsonTrophy: {
-	DisplayName: Trofeo de Crabson
-	Tooltip: ""
-}
-
-DustDevilTrophy: {
-	DisplayName: Trofeo del Demonio de Polvo
-	Tooltip: ""
-}
-
-OmegaStariteTrophy: {
-	DisplayName: Trofeo de Omega Starite
-	Tooltip: ""
-}
-
-RedSpriteTrophy: {
-	DisplayName: Trofeo del Espectro Rojo
-	Tooltip: ""
-}
-
-SpaceSquidTrophy: {
-	DisplayName: Trofeo del Calamar Espacial
-	Tooltip: ""
-}
-
-UltraStariteTrophy: {
-	DisplayName: Trofeo de Ultra Starite
-	Tooltip: ""
 }
 
 //# Mounts

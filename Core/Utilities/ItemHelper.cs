@@ -1,17 +1,14 @@
-﻿using Aequus.Common.Items.Components;
-using System.Collections.Generic;
-using System;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.GameContent;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Aequus.Common.ItemPrefixes;
 using Aequus.Common.Tiles;
+using Terraria.GameContent;
 
-namespace Aequus;
+namespace Aequus.Core.Utilities;
 
 public static class ItemHelper {
     public static void Transform(this Item item, int newType) {
@@ -27,7 +24,7 @@ public static class ItemHelper {
     }
 
     public static void Transform<T>(this Item item) where T : ModItem {
-        Transform(item, ModContent.ItemType<T>());
+        item.Transform(ModContent.ItemType<T>());
     }
 
     #region Static Defaults
@@ -46,15 +43,6 @@ public static class ItemHelper {
     #region Drawing 
     public static Vector2 WorldDrawPos(Item item, Texture2D texture) {
         return new Vector2(item.position.X - Main.screenPosition.X + texture.Width / 2 + item.width / 2 - texture.Width / 2, item.position.Y - Main.screenPosition.Y + texture.Height / 2 + item.height - texture.Height + 2f);
-    }
-
-    [Obsolete]
-    public static void GetItemDrawData(int item, out Rectangle frame) {
-        frame = Main.itemAnimations[item] == null ? TextureAssets.Item[item].Value.Frame() : Main.itemAnimations[item].GetFrame(TextureAssets.Item[item].Value);
-    }
-    [Obsolete]
-    public static void GetItemDrawData(this Item item, out Rectangle frame) {
-        GetItemDrawData(item.type, out frame);
     }
     #endregion
 

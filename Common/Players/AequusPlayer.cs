@@ -1,10 +1,8 @@
 ﻿using Aequus.Common.Players.Backpacks;
 using Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
 using Microsoft.Xna.Framework;
-using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameInput;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace Aequus;

@@ -1,6 +1,4 @@
-﻿using Terraria.ModLoader;
-
-namespace Aequus.Core.CrossMod;
+﻿namespace Aequus.Core.CrossMod;
 
 internal interface IModSupport<TMod> where TMod : ModSupport<TMod> {
     public static Mod Instance { get; private set; }

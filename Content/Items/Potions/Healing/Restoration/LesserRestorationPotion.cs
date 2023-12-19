@@ -1,8 +1,5 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Core.Autoloading;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Potions.Healing.Restoration;
 
@@ -58,7 +55,7 @@ public class LesserRestorationPotion : ModItem, IApplyPotionDelay, IPostAddRecip
             if (recipe == null || recipe.createItem.type != ItemID.RestorationPotion) {
                 continue;
             }
-            
+
             // shrug
             if (recipe.requiredItem.Find((i) => i.type == ItemID.Bottle) != null) {
                 recipe.DisableRecipe();

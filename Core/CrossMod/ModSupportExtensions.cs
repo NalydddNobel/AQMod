@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Terraria.ModLoader;
 
 namespace Aequus.Core.CrossMod;
 

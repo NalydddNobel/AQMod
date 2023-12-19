@@ -1,7 +1,4 @@
 ﻿using Aequus.Content.Fishing.FishingPoles;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.NPCs;
 

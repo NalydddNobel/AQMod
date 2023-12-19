@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.ItemPrefixes;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.ItemPrefixes;
 public sealed class CooldownPrefixInitializer : ILoadable {

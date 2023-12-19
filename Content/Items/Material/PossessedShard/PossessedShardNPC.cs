@@ -1,15 +1,11 @@
-﻿using Aequus;
-using Aequus.Common.Renaming;
+﻿using Aequus.Common.Renaming;
 using Aequus.Core.Graphics.Primitives;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Material.PossessedShard;
 

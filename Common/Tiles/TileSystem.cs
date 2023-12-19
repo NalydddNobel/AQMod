@@ -1,5 +1,4 @@
 ﻿using Aequus.Content.Equipment.Accessories.Informational.Calendar;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.Tiles;
 

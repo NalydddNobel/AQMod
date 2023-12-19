@@ -1,8 +1,6 @@
 ﻿using Aequus.Common.Renaming;
 using System;
 using System.Reflection;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace Aequus.Common;
 

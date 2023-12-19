@@ -1,7 +1,4 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-
-namespace Aequus.Common.Projectiles;
+﻿namespace Aequus.Common.Projectiles;
 
 internal abstract class InstancedModProjectile : ModProjectile {
     private readonly string _name;

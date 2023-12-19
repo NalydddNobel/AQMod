@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Items.Components;
-using Terraria;
 
 namespace Aequus.Common.Players.Backpacks;
 

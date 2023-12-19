@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System.Diagnostics.CodeAnalysis;
-using Terraria.ID;
 
 namespace Aequus.Core.DataSets;
 
@@ -51,11 +50,11 @@ public struct ItemEntry : IDataEntry<int> {
         }
     }
 
-    public static implicit operator string (ItemEntry entry) {
+    public static implicit operator string(ItemEntry entry) {
         return entry.Name;
     }
 
-    public static implicit operator int (ItemEntry entry) {
+    public static implicit operator int(ItemEntry entry) {
         return entry.Id;
     }
 

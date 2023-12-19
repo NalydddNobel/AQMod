@@ -1,8 +1,5 @@
-﻿using System.IO;
+﻿using Microsoft.Xna.Framework;
 using System;
-using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 
 namespace Aequus.Common.NPCs;
 
@@ -89,7 +86,7 @@ public abstract class AIJellyfish : ModNPC {
 
     public virtual void HandleWetCollisions() {
         int i = (int)NPC.Center.X / 16;
-        int j = (int)(NPC.position.Y + (float)NPC.height) / 16;
+        int j = (int)(NPC.position.Y + NPC.height) / 16;
         var centerTile = Framing.GetTileSafely(i, j);
         var bottomTile = Framing.GetTileSafely(i, j + 1);
         if (centerTile.TopSlope) {
@@ -131,7 +128,7 @@ public abstract class AIJellyfish : ModNPC {
     }
 
     public virtual void WetMovement() {
-        NPC.velocity.X += (float)NPC.direction * 0.02f;
+        NPC.velocity.X += NPC.direction * 0.02f;
         NPC.rotation = NPC.velocity.X * 0.4f;
         if (NPC.velocity.X < -1f || NPC.velocity.X > 1f) {
             NPC.velocity.X *= 0.95f;
@@ -148,8 +145,8 @@ public abstract class AIJellyfish : ModNPC {
                 NPC.ai[0] = -1f;
             }
         }
-        int i = (int)(NPC.position.X + (float)(NPC.width / 2)) / 16;
-        int j = (int)(NPC.position.Y + (float)(NPC.height / 2)) / 16;
+        int i = (int)(NPC.position.X + NPC.width / 2) / 16;
+        int j = (int)(NPC.position.Y + NPC.height / 2) / 16;
         if (Framing.GetTileSafely(i, j - 1).LiquidAmount > 128) {
             if (Framing.GetTileSafely(i, j + 1).HasTile) {
                 NPC.ai[0] = -1f;
@@ -217,7 +214,7 @@ public abstract class AIJellyfish : ModNPC {
         }
 
         CastLights(InShockState ? 1.5f : 1f);
-        
+
         if (NPC.direction == 0) {
             NPC.TargetClosest();
         }

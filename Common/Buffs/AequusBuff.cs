@@ -1,6 +1,4 @@
 ﻿using Aequus.Common.Buffs.Components;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.Buffs;
 public partial class AequusBuff : GlobalBuff {

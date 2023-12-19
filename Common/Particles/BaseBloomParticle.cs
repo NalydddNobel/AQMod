@@ -1,9 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria;
 using Terraria.Graphics.Renderers;
 
-namespace Aequus.Common.Particles; 
+namespace Aequus.Common.Particles;
 
 public abstract class BaseBloomParticle<T> : BaseParticle<T> where T : BaseBloomParticle<T>, new() {
     public Color BloomColor;

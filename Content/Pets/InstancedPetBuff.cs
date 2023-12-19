@@ -1,7 +1,5 @@
 ﻿using Aequus.Common.Buffs;
-using Terraria;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Pets;
 

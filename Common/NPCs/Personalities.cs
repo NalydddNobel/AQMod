@@ -1,10 +1,8 @@
 ﻿using Aequus.Common.NPCs.Components;
 using System;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ModLoader;
 
-namespace Aequus.Common.NPCs; 
+namespace Aequus.Common.NPCs;
 
 public class Personalities : ILoadable {
     public void Load(Mod mod) {

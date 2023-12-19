@@ -1,12 +1,10 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.Components;
+using Aequus.Common.Players.Backpacks;
 using Aequus.Common.Renaming;
 using System.IO;
-using Terraria;
 using Terraria.Localization;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Aequus.Common.Players.Backpacks;
 
 namespace Aequus.Content.Equipment.Accessories.ScavengerBag;
 

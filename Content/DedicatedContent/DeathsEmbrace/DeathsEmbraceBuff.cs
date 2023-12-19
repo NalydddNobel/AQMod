@@ -1,7 +1,5 @@
-﻿using Terraria;
-using Terraria.DataStructures;
+﻿using Terraria.DataStructures;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.DedicatedContent.DeathsEmbrace;
 

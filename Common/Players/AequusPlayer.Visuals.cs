@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.Players;
 using Aequus.Core.Generator;
 using Microsoft.Xna.Framework;
-using Terraria;
 using Terraria.DataStructures;
 
 namespace Aequus;
