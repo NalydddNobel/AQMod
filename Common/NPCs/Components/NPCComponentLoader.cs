@@ -1,7 +1,4 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-
-namespace Aequus.Common.NPCs.Components;
+﻿namespace Aequus.Common.NPCs.Components;
 
 public class NPCComponentLoader : ILoadable {
     public void Load(Mod mod) {

@@ -1,11 +1,7 @@
-﻿using Aequus;
-using Aequus.Common.Items;
+﻿using Aequus.Common.Items;
 using Aequus.Common.Items.Components;
 using Microsoft.Xna.Framework;
 using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.WeightedHorseshoe;
 

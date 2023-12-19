@@ -1,8 +1,5 @@
 ﻿using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Core;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.Informational.Monocle;
 

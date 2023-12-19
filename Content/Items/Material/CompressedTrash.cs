@@ -1,8 +1,5 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Content.Tiles.CraftingStations.TrashCompactor;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Material;
 

@@ -1,7 +1,5 @@
 ﻿using Aequus.Common.NPCs.Components;
-using Terraria;
 using Terraria.Map;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.UI.Map;
 

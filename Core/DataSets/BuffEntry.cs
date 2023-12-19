@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System.Diagnostics.CodeAnalysis;
-using Terraria.ID;
 
 namespace Aequus.Core.DataSets;
 

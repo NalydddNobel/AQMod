@@ -1,7 +1,4 @@
 ﻿using Aequus.Common.Items.EquipmentBooster;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.Informational.Calendar;
 

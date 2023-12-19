@@ -4,12 +4,9 @@ using Aequus.Content.Items.Tools.MagicMirrors.PhaseMirror;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Tools.MagicMirrors.PhasePhone;
 
@@ -21,7 +18,7 @@ internal class InstancedPhasePhone : InstancedModItem, IPhaseMirror, ITransformI
 
     private readonly int _shellPhoneClone;
     private readonly string _nameSuffix;
-    
+
     private ModItem _shellPhoneConvert;
     private Func<int> _dustTypeFactory;
     private Func<Color> _customColorFactory;
@@ -35,7 +32,7 @@ internal class InstancedPhasePhone : InstancedModItem, IPhaseMirror, ITransformI
     public override LocalizedText DisplayName {
         get {
             if (!string.IsNullOrEmpty(_nameSuffix)) {
-                return this.GetCategoryText($"PhasePhone.{_nameSuffix}.DisplayName", ()=> $"Phase Phone ({_nameSuffix})");
+                return this.GetCategoryText($"PhasePhone.{_nameSuffix}.DisplayName", () => $"Phase Phone ({_nameSuffix})");
             }
             return base.DisplayName;
         }

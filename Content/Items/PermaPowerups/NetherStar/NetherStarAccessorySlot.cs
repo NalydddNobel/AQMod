@@ -1,6 +1,4 @@
-﻿using Terraria.ModLoader;
-
-namespace Aequus.Content.Items.PermaPowerups.NetherStar;
+﻿namespace Aequus.Content.Items.PermaPowerups.NetherStar;
 
 public class NetherStarAccessorySlot : ModAccessorySlot {
     public override bool IsEnabled() {

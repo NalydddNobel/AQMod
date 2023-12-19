@@ -1,9 +1,6 @@
 ﻿using Aequus.Common.Items;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
-namespace Aequus.Content.Bosses.Tiles.Relics; 
+namespace Aequus.Content.Bosses.Tiles.Relics;
 
 public class DustDevilRelic : ModItem {
     public override void SetStaticDefaults() {

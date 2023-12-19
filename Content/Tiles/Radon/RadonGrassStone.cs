@@ -3,10 +3,7 @@ using Aequus.Common.Tiles.Components;
 using Aequus.Content.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria;
 using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.Utilities;
 
 namespace Aequus.Content.Tiles.Radon;

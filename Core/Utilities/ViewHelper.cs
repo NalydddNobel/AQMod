@@ -1,11 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Runtime.CompilerServices;
-using Terraria;
 using Terraria.Graphics.CameraModifiers;
-using Terraria.ID;
 
-namespace Aequus;
+namespace Aequus.Core.Utilities;
 
 public static class ViewHelper {
     public const float Z_VIEW = -20f;

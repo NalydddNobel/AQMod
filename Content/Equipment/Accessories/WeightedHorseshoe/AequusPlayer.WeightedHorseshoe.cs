@@ -1,7 +1,5 @@
 ﻿using Aequus.Content.Equipment.Accessories.WeightedHorseshoe;
 using Aequus.Core.Generator;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace Aequus;
 

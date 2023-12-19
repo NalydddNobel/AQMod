@@ -1,8 +1,5 @@
 ﻿using Aequus.Content.Items.Material.OmniGem;
 using System.Collections.Generic;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.Tiles {
     public partial class AequusTile {

@@ -2,10 +2,7 @@
 using Aequus.Core.DataSets;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent.Bestiary;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.DataSets;
 

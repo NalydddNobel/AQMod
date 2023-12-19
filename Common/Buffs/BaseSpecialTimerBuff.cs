@@ -1,8 +1,4 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Aequus.Common.Buffs {
+﻿namespace Aequus.Common.Buffs {
     public abstract class BaseSpecialTimerBuff : ModBuff {
         public override void SetStaticDefaults() {
             BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;

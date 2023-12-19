@@ -1,7 +1,4 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-
-namespace Aequus.Core;
+﻿namespace Aequus.Core;
 
 public class GoreDisabler : ILoadable {
     public static bool DisableGores { get; private set; }

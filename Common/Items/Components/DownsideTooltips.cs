@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using Terraria;
-using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
 namespace Aequus.Common.Items.Components;

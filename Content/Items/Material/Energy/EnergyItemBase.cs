@@ -1,13 +1,9 @@
-﻿using Aequus;
-using Aequus.Common.Items;
+﻿using Aequus.Common.Items;
 using Aequus.Common.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Material.Energy;
 

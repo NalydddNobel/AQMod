@@ -1,8 +1,6 @@
 ﻿using Terraria.GameContent.Bestiary;
-using Terraria.ID;
-using Terraria.ModLoader;
 
-namespace Aequus.Common.NPCs; 
+namespace Aequus.Common.NPCs;
 
 /// <summary>
 /// Helper class for setting up bestiary entries.

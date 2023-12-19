@@ -1,8 +1,4 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Aequus.Content.Tiles.MonsterChest;
+﻿namespace Aequus.Content.Tiles.MonsterChest;
 
 public class MonsterChestItem : ModItem {
     public override string Texture => AequusTextures.Item(ItemID.GoldenChest);

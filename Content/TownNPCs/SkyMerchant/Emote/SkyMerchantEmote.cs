@@ -1,5 +1,4 @@
 ﻿using Terraria.GameContent.UI;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.TownNPCs.SkyMerchant.Emote;
 

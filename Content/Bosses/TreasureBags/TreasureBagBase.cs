@@ -1,11 +1,7 @@
-﻿using Aequus;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Creative;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Bosses.TreasureBags {
     public abstract class TreasureBagBase : ModItem {

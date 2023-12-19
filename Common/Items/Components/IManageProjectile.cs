@@ -1,7 +1,5 @@
 ﻿using Aequus.Common.Projectiles;
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.Items.Components;
 

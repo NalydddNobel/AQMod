@@ -1,8 +1,5 @@
 ﻿using Aequus.Common.Items;
 using System.Collections.Generic;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Tools.Bellows;
 

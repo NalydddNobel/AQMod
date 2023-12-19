@@ -2,13 +2,10 @@
 using Aequus.Content.WorldEvents.Glimmer;
 using Aequus.Content.WorldEvents.SpaceStorm;
 using Microsoft.Xna.Framework;
-using Terraria;
 using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
-namespace Aequus;
+namespace Aequus.Core.Utilities;
 
 public static class PlayerHelper {
     private static readonly Item[] _dummyInventory = EnumerableHelper.CreateArray(i => new Item(), Main.InventorySlotsTotal);
@@ -68,7 +65,7 @@ public static class PlayerHelper {
     /// <param name="source">Item source.</param>
     /// <param name="getItemSettings">The Get Item settings.</param>
     public static void GiveItem(this Player player, int type, IEntitySource source, GetItemSettings getItemSettings, int stack = 1, int prefix = 0) {
-        GiveItem(player, new Item(type, stack, prefix), source, getItemSettings);
+        player.GiveItem(new Item(type, stack, prefix), source, getItemSettings);
     }
 
     public static Chest GetCurrentChest(this Player player, bool ignoreVoidBag = false) {
@@ -257,7 +254,7 @@ public static class PlayerHelper {
     }
 
     public static bool RollCrit<T>(this Player player) where T : DamageClass {
-        return RollCrit(player, ModContent.GetInstance<T>());
+        return player.RollCrit(ModContent.GetInstance<T>());
     }
     public static bool RollCrit(this Player player, DamageClass damageClass) {
         return !damageClass.UseStandardCritCalcs ? false : Main.rand.Next(100) < player.GetTotalCritChance(damageClass);

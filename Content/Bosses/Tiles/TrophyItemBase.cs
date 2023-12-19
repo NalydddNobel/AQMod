@@ -1,8 +1,4 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Aequus.Content.Bosses.Tiles {
+﻿namespace Aequus.Content.Bosses.Tiles {
     public abstract class TrophyItemBase : ModItem {
         public abstract int TileStyle { get; }
 

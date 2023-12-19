@@ -5,9 +5,6 @@ using Aequus.Core.Autoloading;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Tools.AnglerLamp;
 

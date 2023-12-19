@@ -1,6 +1,4 @@
-﻿using Terraria.ID;
-
-namespace Aequus.Content.Bosses.TreasureBags;
+﻿namespace Aequus.Content.Bosses.TreasureBags;
 
 public class CrabsonBag : TreasureBagBase {
     protected override int InternalRarity => ItemRarityID.Blue;

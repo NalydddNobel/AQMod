@@ -1,11 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ID;
 
-namespace Aequus;
+namespace Aequus.Core.Utilities;
 
 public static class ProjectileHelper {
     public static void SetDefaultNoInteractions(this Projectile projectile) {
@@ -16,7 +14,7 @@ public static class ProjectileHelper {
     }
 
     public static void SetDefaultHeldProj(this Projectile projectile) {
-        SetDefaultNoInteractions(projectile);
+        projectile.SetDefaultNoInteractions();
     }
 
     public static float CappedMeleeScale(this Player player) {

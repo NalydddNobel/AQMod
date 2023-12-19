@@ -1,7 +1,4 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-
-namespace Aequus.Content.Fishing.Equipment.RadonFishingBobber;
+﻿namespace Aequus.Content.Fishing.Equipment.RadonFishingBobber;
 
 public class RadonFishingBobberBuff : ModBuff {
     public override void SetStaticDefaults() {

@@ -1,6 +1,4 @@
-﻿using Terraria.ModLoader;
-
-namespace Aequus;
+﻿namespace Aequus;
 
 public partial class AequusPlayer : ModPlayer {
     public override void ModifyLuck(ref float luck) {

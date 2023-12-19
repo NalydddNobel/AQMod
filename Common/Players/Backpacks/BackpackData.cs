@@ -1,11 +1,8 @@
 ﻿using Aequus.Common.Items.Components;
 using Microsoft.Xna.Framework;
 using System;
-using Terraria;
 using Terraria.GameContent.Events;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Common.Players.Backpacks;

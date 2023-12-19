@@ -1,8 +1,5 @@
 ﻿using Aequus.Content.Fishing.CrabPots;
 using System.IO;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Core;
 

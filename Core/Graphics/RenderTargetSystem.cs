@@ -2,9 +2,7 @@
 using Aequus.Content.Graphics;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.Graphics.Effects;
-using Terraria.ModLoader;
 
 namespace Aequus.Core.Graphics;
 

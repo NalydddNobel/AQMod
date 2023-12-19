@@ -1,9 +1,6 @@
-﻿using Aequus.Common;
-using Aequus.Common.Items;
+﻿using Aequus.Common.Items;
 using Aequus.Core.Autoloading;
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Bosses.BossMasks;
 

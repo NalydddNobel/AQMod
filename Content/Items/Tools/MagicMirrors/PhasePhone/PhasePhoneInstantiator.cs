@@ -1,9 +1,5 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Core;
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Tools.MagicMirrors.PhasePhone;
 

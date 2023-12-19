@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Common.Particles;
+﻿using Aequus.Common.Particles;
 using Aequus.Common.Tiles;
 using Aequus.Content.Dyes;
 using Aequus.Core.Graphics.Tiles;
@@ -7,13 +6,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Material.OmniGem;
 

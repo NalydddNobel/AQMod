@@ -2,7 +2,6 @@
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using Terraria.ModLoader;
 
 namespace Aequus.Core.Networking;
 

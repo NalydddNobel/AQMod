@@ -1,6 +1,4 @@
-﻿using Terraria.ModLoader;
-
-namespace Aequus.Core.CrossMod;
+﻿namespace Aequus.Core.CrossMod;
 
 /// <summary>
 /// Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls

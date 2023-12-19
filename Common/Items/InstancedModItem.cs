@@ -1,7 +1,4 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-
-namespace Aequus.Common.Items;
+﻿namespace Aequus.Common.Items;
 
 internal abstract class InstancedModItem : ModItem {
     private readonly string _name;

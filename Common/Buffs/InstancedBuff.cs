@@ -1,6 +1,4 @@
-﻿using Terraria.ModLoader;
-
-namespace Aequus.Common.Buffs;
+﻿namespace Aequus.Common.Buffs;
 
 internal abstract class InstancedBuff : ModBuff {
     private readonly string _name;

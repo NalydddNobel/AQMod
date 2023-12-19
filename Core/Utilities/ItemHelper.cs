@@ -1,16 +1,11 @@
-﻿using Aequus.Common.Items.Components;
-using System.Collections.Generic;
-using System;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.GameContent;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
 using Terraria.DataStructures;
-using Terraria.ID;
-using Aequus.Common.ItemPrefixes;
+using Terraria.GameContent;
 
-namespace Aequus;
+namespace Aequus.Core.Utilities;
 
 public static class ItemHelper {
     public static void Transform(this Item item, int newType) {
@@ -26,7 +21,7 @@ public static class ItemHelper {
     }
 
     public static void Transform<T>(this Item item) where T : ModItem {
-        Transform(item, ModContent.ItemType<T>());
+        item.Transform(ModContent.ItemType<T>());
     }
 
     #region Static Defaults

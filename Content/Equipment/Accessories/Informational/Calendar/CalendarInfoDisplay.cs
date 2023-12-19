@@ -1,8 +1,6 @@
 ﻿using Aequus.Common.Systems;
 using Microsoft.Xna.Framework;
-using Terraria;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.Informational.Calendar;
 

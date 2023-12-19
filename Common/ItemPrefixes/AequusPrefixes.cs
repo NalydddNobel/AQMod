@@ -3,9 +3,6 @@ using Aequus.Content.Items.Weapons.Classless;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.Utilities;
 
 namespace Aequus.Common.ItemPrefixes;

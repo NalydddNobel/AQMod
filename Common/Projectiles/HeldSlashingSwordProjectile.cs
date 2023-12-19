@@ -2,10 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
-using Terraria;
-using Terraria.ID;
 
-namespace Aequus.Common.Projectiles; 
+namespace Aequus.Common.Projectiles;
 
 public abstract class HeldSlashingSwordProjectile : HeldSwordProjectile {
     protected bool _halfWayMark;

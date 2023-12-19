@@ -1,6 +1,4 @@
 ﻿using Aequus.Common.Players.Backpacks;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.Items;
 

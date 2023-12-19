@@ -2,7 +2,6 @@
 using Aequus.Core.DataSets;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using Terraria.ID;
 
 namespace Aequus.Content.DataSets;
 

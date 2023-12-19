@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Systems;
 using System;
-using Terraria;
 using Terraria.Localization;
 
 namespace Aequus.Common;

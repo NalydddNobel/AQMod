@@ -1,8 +1,5 @@
 ﻿using Aequus.Common.Projectiles;
-using Microsoft.Xna.Framework;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Fishing.FishingPoles;
 

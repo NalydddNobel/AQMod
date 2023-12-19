@@ -1,8 +1,5 @@
-﻿using Aequus;
-using System.Linq;
-using Terraria;
+﻿using System.Linq;
 using Terraria.Graphics.Renderers;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.Particles;
 public class ParticleSystem : ModSystem {

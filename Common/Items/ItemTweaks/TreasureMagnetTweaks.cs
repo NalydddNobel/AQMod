@@ -1,7 +1,4 @@
 ﻿using Aequus.Content.Configuration;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.Items.ItemTweaks;
 

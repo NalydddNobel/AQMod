@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using Terraria;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.NPCs;
 public sealed class DropsGlobalNPC : GlobalNPC {

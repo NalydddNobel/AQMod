@@ -1,8 +1,6 @@
 ﻿using Aequus.Content.DataSets;
 using System.Collections.Generic;
 using System.Linq;
-using Terraria;
-using Terraria.ID;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Tiles.CraftingStations.TrashCompactor;
@@ -41,7 +39,7 @@ public struct TrashCompactorRecipe {
 
         // Only get recipes for items which can place a "Frame Important" (non-block) tile, and isn't a generic torch.
         if (item.createTile > -1 && Main.tileFrameImportant[item.createTile] && !TileID.Sets.Torch[item.createTile]) {
-        //if (true) {
+            //if (true) {
 
             if (item.createTile > -1) {
                 // Prevent decrafting for 1x1 tiles which are not light sources like Candles. (Bars, misc)

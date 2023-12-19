@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Items;
-using Terraria.ID;
 
 namespace Aequus.Content.Bosses.TreasureBags;
 

@@ -2,9 +2,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Runtime.CompilerServices;
-using Terraria;
 
-namespace Aequus;
+namespace Aequus.Core.Utilities;
 
 public static class RequestCacheExtensions {
     public static int Width(this RequestCache<Texture2D> asset) => asset.Value.Width;

@@ -1,17 +1,13 @@
 ﻿using Aequus.Common.Items.Components;
+using Aequus.Common.Players.Backpacks;
 using Aequus.Common.UI;
 using Aequus.Content.DataSets;
 using Aequus.Core.Generator;
-using Aequus.Core;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.UI;
-using Aequus.Common.Players.Backpacks;
 
 namespace Aequus;
 

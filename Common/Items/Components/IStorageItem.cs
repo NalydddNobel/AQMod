@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.Items.Tooltips;
 using Microsoft.Xna.Framework;
 using System;
-using Terraria;
 using Terraria.Localization;
 
 namespace Aequus.Common.Items.Components;

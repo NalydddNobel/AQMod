@@ -1,7 +1,4 @@
 ﻿using Aequus.Common.Items.Components;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Potions.Healing.Restoration;
 

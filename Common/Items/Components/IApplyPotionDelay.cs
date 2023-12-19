@@ -1,6 +1,4 @@
-﻿using Terraria;
-
-namespace Aequus.Common.Items.Components;
+﻿namespace Aequus.Common.Items.Components;
 
 public interface IApplyPotionDelay {
     bool ApplyPotionDelay(Player player);

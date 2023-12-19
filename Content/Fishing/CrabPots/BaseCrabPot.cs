@@ -1,19 +1,15 @@
-﻿using Aequus;
-using Aequus.Common.Tiles.Components;
+﻿using Aequus.Common.Tiles.Components;
 using Aequus.Core.Graphics.Animations;
 using Aequus.Core.Graphics.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
-using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent;
 using Terraria.GameContent.ObjectInteractions;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Fishing.CrabPots;

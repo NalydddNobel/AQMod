@@ -2,12 +2,9 @@
 using Aequus.Content.DataSets;
 using Microsoft.Xna.Framework;
 using System;
-using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
 

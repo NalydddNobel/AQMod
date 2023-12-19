@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Particles;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria;
 using Terraria.Graphics.Renderers;
 
 namespace Aequus.Content.Items.Material.OmniGem;

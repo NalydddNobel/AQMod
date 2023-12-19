@@ -1,6 +1,5 @@
-﻿using Aequus.Core.Generator;
-using Terraria.ModLoader;
-using Aequus.Content.Equipment.Accessories.Informational.Monocle;
+﻿using Aequus.Content.Equipment.Accessories.Informational.Monocle;
+using Aequus.Core.Generator;
 
 namespace Aequus;
 

@@ -1,9 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.NPCs;
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Material.PossessedShard;
 

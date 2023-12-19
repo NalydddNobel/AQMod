@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Material.PossessedShard;
 

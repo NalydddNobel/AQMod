@@ -1,8 +1,4 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Aequus.Content.DedicatedContent.Baguette;
+﻿namespace Aequus.Content.DedicatedContent.Baguette;
 
 public class BaguetteBuff : ModBuff {
     public override void SetStaticDefaults() {

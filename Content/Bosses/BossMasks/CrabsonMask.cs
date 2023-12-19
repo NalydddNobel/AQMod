@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Items;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Bosses.BossMasks;
 

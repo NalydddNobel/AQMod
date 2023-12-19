@@ -4,11 +4,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
-using Terraria;
 using Terraria.GameContent.Golf;
 using Terraria.GameContent.Metadata;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.Physics;
 
 namespace Aequus.Content.Items.Weapons.Ranged.Darts.Ammo;

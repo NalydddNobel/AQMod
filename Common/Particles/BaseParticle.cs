@@ -1,10 +1,7 @@
-﻿using Aequus;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using Terraria;
 using Terraria.Graphics.Renderers;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.Particles;
 

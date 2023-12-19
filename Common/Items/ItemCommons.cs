@@ -1,7 +1,4 @@
-﻿using Terraria;
-using Terraria.ID;
-
-namespace Aequus.Common.Items;
+﻿namespace Aequus.Common.Items;
 
 public static class ItemCommons {
     public class Rarity {

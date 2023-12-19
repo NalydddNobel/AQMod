@@ -1,7 +1,5 @@
 ﻿using Aequus.Common.Items;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.Tiles;
 

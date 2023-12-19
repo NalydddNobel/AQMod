@@ -1,17 +1,13 @@
-﻿using Aequus;
-using Aequus.Common.NPCs;
+﻿using Aequus.Common.NPCs;
 using Aequus.Core.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
-using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Tiles.MonsterChest;
 

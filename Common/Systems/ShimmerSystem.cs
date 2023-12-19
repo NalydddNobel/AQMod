@@ -1,12 +1,8 @@
-﻿using Aequus.Common.ItemPrefixes;
-using Aequus.Common.ItemPrefixes.Components;
+﻿using Aequus.Common.ItemPrefixes.Components;
 using Aequus.Common.Items;
 using Aequus.Content.DedicatedContent;
-using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Achievements;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.Systems;
 

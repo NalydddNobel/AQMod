@@ -1,9 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Runtime.CompilerServices;
-using Terraria;
 
-namespace Aequus;
+namespace Aequus.Core.Utilities;
 
 public static class LightHelper {
     public static readonly Vector3 ShadowOrb = new Vector3(0.6f, 0.1f, 1f);

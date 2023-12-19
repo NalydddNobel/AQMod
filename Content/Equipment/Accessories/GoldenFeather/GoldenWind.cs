@@ -1,8 +1,5 @@
 ﻿using Aequus.Common.Items;
-using Terraria;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.GoldenFeather;
 

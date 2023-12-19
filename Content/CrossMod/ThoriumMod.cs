@@ -1,7 +1,5 @@
 ﻿using Aequus.Content.DataSets;
 using Aequus.Core.CrossMod;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.CrossMod {
     internal class ThoriumMod : ModSupport<ThoriumMod> {

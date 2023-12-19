@@ -1,12 +1,8 @@
-﻿using Aequus;
-using Aequus.Content.Pets;
+﻿using Aequus.Content.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
 namespace Aequus.Content.DedicatedContent.SwagEye;

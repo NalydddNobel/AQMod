@@ -1,13 +1,9 @@
-﻿using Aequus;
-using Aequus.Common.Projectiles;
+﻿using Aequus.Common.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
-using Terraria;
 using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Weapons.Melee.Swords.Slice;
 

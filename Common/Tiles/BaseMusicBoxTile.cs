@@ -1,6 +1,4 @@
-﻿using Terraria;
-using Terraria.DataStructures;
-using Terraria.ModLoader;
+﻿using Terraria.DataStructures;
 using Terraria.ObjectData;
 
 namespace Aequus.Common.Tiles;

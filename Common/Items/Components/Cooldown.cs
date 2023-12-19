@@ -3,12 +3,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.Map;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.Items.Components;
 
@@ -61,7 +57,7 @@ public sealed class CooldownGlobalItem : GlobalItem {
         if (item.ModItem is not ICooldownItem cooldownItem) {
             return true;
         }
-        
+
         if (!UIHelper.CurrentlyDrawingHotbarSlot) {
             cooldownItem.CustomPreDraw(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
             return false;
@@ -87,7 +83,7 @@ public sealed class CooldownGlobalItem : GlobalItem {
 
 public static class CooldownExtensions {
     public static int GetCooldownTime<T>(this T modItem, bool ignorePrefixes = false) where T : ModItem, ICooldownItem {
-        return GetCooldownTime((ICooldownItem)modItem, ignorePrefixes ? 0 : modItem.Item.prefix);
+        return GetCooldownTime(modItem, ignorePrefixes ? 0 : modItem.Item.prefix);
     }
     public static int GetCooldownTime(this ICooldownItem cd, int prefix = 0) {
         double cooldown = cd.CooldownTime;

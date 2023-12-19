@@ -1,11 +1,8 @@
-﻿using Aequus.Core;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
-using Terraria;
 using Terraria.GameContent.Events;
-using Terraria.ID;
 using Terraria.UI;
 
 namespace Aequus.Common.UI.Elements {
@@ -56,7 +53,7 @@ namespace Aequus.Common.UI.Elements {
             if (showItemTooltipOnHover && canHover && IsMouseHovering) {
                 UIHelper.HoverItem(item, ItemSlot.Context.ShopItem);
             }
-            
+
             ItemSlotRenderer.Draw(spriteBatch, item, drawLoc);
             base.Draw(spriteBatch);
             Main.inventoryScale = oldScale;

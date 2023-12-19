@@ -2,8 +2,6 @@
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Reflection;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.CrossMod;
 

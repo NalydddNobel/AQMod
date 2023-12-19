@@ -1,13 +1,9 @@
-﻿using Aequus;
-using Aequus.Common.Items.Components;
+﻿using Aequus.Common.Items.Components;
 using Aequus.Common.Renaming;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Tools.NameTag;
 

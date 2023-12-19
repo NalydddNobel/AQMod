@@ -1,10 +1,7 @@
-﻿using Aequus;
-using Aequus.Content.Pets;
+﻿using Aequus.Content.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Terraria;
-using Terraria.ID;
 
 namespace Aequus.Content.DedicatedContent.LanternCat;
 

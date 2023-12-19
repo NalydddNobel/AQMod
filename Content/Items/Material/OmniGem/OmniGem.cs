@@ -1,14 +1,10 @@
-﻿using Aequus;
-using Aequus.Common.Items;
+﻿using Aequus.Common.Items;
 using Aequus.Content.Dyes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Material.OmniGem;
 

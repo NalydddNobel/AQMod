@@ -1,8 +1,6 @@
 ﻿using Aequus.Common.Renaming;
 using Microsoft.Xna.Framework;
-using Terraria;
 using Terraria.Map;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace Aequus.Content.UI.Map;

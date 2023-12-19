@@ -2,13 +2,10 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Runtime.CompilerServices;
-using Terraria;
 using Terraria.Enums;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus;
+namespace Aequus.Core.Utilities;
 
 public static class TileHelper {
     public static Vector2 DrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
