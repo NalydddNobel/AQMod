@@ -379,13 +379,9 @@ CrabsonMask: {
 	Tooltip: ""
 }
 
-DustDevilMaskFire: {
-	DisplayName: Fiery Dust Devil Mask
-	Tooltip: ""
-}
 
-DustDevilMaskIce: {
-	DisplayName: Frosty Dust Devil Mask
+DustDevilMask: {
+	DisplayName: Dust Devil Mask
 	Tooltip: ""
 }
 

@@ -1152,7 +1152,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 252)</summary>
+            <summary>(Total Textures: 245)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1247,14 +1247,11 @@
         <member name="F:Aequus.AequusTextures.CrabsonMask_Head">
             <summary>Full Path: Content/Bosses/BossMasks/CrabsonMask_Head</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.DustDevilMaskFire">
-            <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskFire</summary>
+        <member name="F:Aequus.AequusTextures.DustDevilMask">
+            <summary>Full Path: Content/Bosses/BossMasks/DustDevilMask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilMaskFire_Head">
             <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskFire_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DustDevilMaskIce">
-            <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskIce</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilMaskIce_Head">
             <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskIce_Head</summary>
@@ -1262,38 +1259,20 @@
         <member name="F:Aequus.AequusTextures.OmegaStariteMask">
             <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteMask_Glow">
-            <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask_Glow</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteMask_Head">
             <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteMask_Head_Glow">
-            <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask_Head_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteMask">
             <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.RedSpriteMask_Glow">
-            <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask_Glow</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.RedSpriteMask_Head">
             <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RedSpriteMask_Head_Glow">
-            <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask_Head_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidMask">
             <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SpaceSquidMask_Glow">
-            <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask_Glow</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidMask_Head">
             <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SpaceSquidMask_Head_Glow">
-            <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask_Head_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonBag">
             <summary>Full Path: Content/Bosses/TreasureBags/CrabsonBag</summary>

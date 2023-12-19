@@ -38,14 +38,14 @@ public static class Helper {
         return typeof(T).NamespaceFilePath();
     }
 
+    public static string GetFilePath(this Type t) {
+        return $"{t.NamespaceFilePath()}/{t.Name}";
+    }
     public static string GetFilePath(this object obj) {
         return GetFilePath(obj.GetType());
     }
     public static string GetFilePath<T>() {
         return GetFilePath(typeof(T));
-    }
-    public static string GetFilePath(Type t) {
-        return $"{t.NamespaceFilePath()}/{t.Name}";
     }
     #endregion
 

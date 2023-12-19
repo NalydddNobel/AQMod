@@ -1,12 +1,12 @@
-﻿using Aequus.Common.Items;
-
-namespace Aequus.Content.Equipment.Armor.Vanity;
+﻿namespace Aequus.Content.Equipment.Armor.Vanity;
 
 [AutoloadEquip(EquipType.Head)]
 public class BreadOfCthulhuMask : ModItem {
     public override void SetDefaults() {
-        Item.DefaultToHeadgear(16, 16, Item.headSlot);
-        Item.rare = ItemCommons.Rarity.BossMasks;
+        Item.width = 16;
+        Item.height = 16;
+        Item.rare = ItemRarityID.White;
+        Item.value = Item.sellPrice(silver: 10);
         Item.vanity = true;
     }
 }

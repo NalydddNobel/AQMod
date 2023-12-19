@@ -379,14 +379,9 @@ CrabsonMask: {
 	Tooltip: ""
 }
 
-DustDevilMaskFire: {
-	DisplayName: 火焰沙尘恶魔面具
-	Tooltip: ""
-}
-
-DustDevilMaskIce: {
-	DisplayName: 冰霜沙尘恶魔面具
-	Tooltip: ""
+DustDevilMask: {
+	// DisplayName: Dust Devil Mask
+	// Tooltip: ""
 }
 
 OmegaStariteMask: {

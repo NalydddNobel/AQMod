@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 252)</summary>
+/// <summary>(Total Textures: 245)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -69,38 +69,24 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CrabsonMask = new("Aequus/Content/Bosses/BossMasks/CrabsonMask");
     /// <summary>Full Path: Content/Bosses/BossMasks/CrabsonMask_Head</summary>
     public static readonly RequestCache<Texture2D> CrabsonMask_Head = new("Aequus/Content/Bosses/BossMasks/CrabsonMask_Head");
-    /// <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskFire</summary>
-    public static readonly RequestCache<Texture2D> DustDevilMaskFire = new("Aequus/Content/Bosses/BossMasks/DustDevilMaskFire");
+    /// <summary>Full Path: Content/Bosses/BossMasks/DustDevilMask</summary>
+    public static readonly RequestCache<Texture2D> DustDevilMask = new("Aequus/Content/Bosses/BossMasks/DustDevilMask");
     /// <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskFire_Head</summary>
     public static readonly RequestCache<Texture2D> DustDevilMaskFire_Head = new("Aequus/Content/Bosses/BossMasks/DustDevilMaskFire_Head");
-    /// <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskIce</summary>
-    public static readonly RequestCache<Texture2D> DustDevilMaskIce = new("Aequus/Content/Bosses/BossMasks/DustDevilMaskIce");
     /// <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskIce_Head</summary>
     public static readonly RequestCache<Texture2D> DustDevilMaskIce_Head = new("Aequus/Content/Bosses/BossMasks/DustDevilMaskIce_Head");
     /// <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask</summary>
     public static readonly RequestCache<Texture2D> OmegaStariteMask = new("Aequus/Content/Bosses/BossMasks/OmegaStariteMask");
-    /// <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask_Glow</summary>
-    public static readonly RequestCache<Texture2D> OmegaStariteMask_Glow = new("Aequus/Content/Bosses/BossMasks/OmegaStariteMask_Glow");
     /// <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask_Head</summary>
     public static readonly RequestCache<Texture2D> OmegaStariteMask_Head = new("Aequus/Content/Bosses/BossMasks/OmegaStariteMask_Head");
-    /// <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask_Head_Glow</summary>
-    public static readonly RequestCache<Texture2D> OmegaStariteMask_Head_Glow = new("Aequus/Content/Bosses/BossMasks/OmegaStariteMask_Head_Glow");
     /// <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask</summary>
     public static readonly RequestCache<Texture2D> RedSpriteMask = new("Aequus/Content/Bosses/BossMasks/RedSpriteMask");
-    /// <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask_Glow</summary>
-    public static readonly RequestCache<Texture2D> RedSpriteMask_Glow = new("Aequus/Content/Bosses/BossMasks/RedSpriteMask_Glow");
     /// <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask_Head</summary>
     public static readonly RequestCache<Texture2D> RedSpriteMask_Head = new("Aequus/Content/Bosses/BossMasks/RedSpriteMask_Head");
-    /// <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask_Head_Glow</summary>
-    public static readonly RequestCache<Texture2D> RedSpriteMask_Head_Glow = new("Aequus/Content/Bosses/BossMasks/RedSpriteMask_Head_Glow");
     /// <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask</summary>
     public static readonly RequestCache<Texture2D> SpaceSquidMask = new("Aequus/Content/Bosses/BossMasks/SpaceSquidMask");
-    /// <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask_Glow</summary>
-    public static readonly RequestCache<Texture2D> SpaceSquidMask_Glow = new("Aequus/Content/Bosses/BossMasks/SpaceSquidMask_Glow");
     /// <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask_Head</summary>
     public static readonly RequestCache<Texture2D> SpaceSquidMask_Head = new("Aequus/Content/Bosses/BossMasks/SpaceSquidMask_Head");
-    /// <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask_Head_Glow</summary>
-    public static readonly RequestCache<Texture2D> SpaceSquidMask_Head_Glow = new("Aequus/Content/Bosses/BossMasks/SpaceSquidMask_Head_Glow");
     /// <summary>Full Path: Content/Bosses/TreasureBags/CrabsonBag</summary>
     public static readonly RequestCache<Texture2D> CrabsonBag = new("Aequus/Content/Bosses/TreasureBags/CrabsonBag");
     /// <summary>Full Path: Content/Bosses/TreasureBags/DustDevilBag</summary>

@@ -379,14 +379,10 @@ CrabsonMask: {
 	Tooltip: ""
 }
 
-DustDevilMaskFire: {
-	DisplayName: Mascara ardiente del Demonio de Polvo
-	Tooltip: ""
-}
 
-DustDevilMaskIce: {
-	DisplayName: Mascara helada del Demonio de Polvo
-	Tooltip: ""
+DustDevilMask: {
+	// DisplayName: Dust Devil Mask
+	// Tooltip: ""
 }
 
 OmegaStariteMask: {
