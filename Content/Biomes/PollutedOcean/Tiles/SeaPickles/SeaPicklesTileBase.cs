@@ -1,0 +1,71 @@
+﻿using Aequus.Core.Graphics.Animations;
+using Terraria.GameContent;
+using Terraria.ObjectData;
+
+namespace Aequus.Content.Biomes.PollutedOcean.Tiles.SeaPickles;
+
+public abstract class SeaPicklesTileBase : ModTile {
+    protected float LightMagnitudeMultiplier = 1f;
+    protected int _frameHeight;
+
+    public override void SetStaticDefaults() {
+        Main.tileLighted[Type] = true;
+        Main.tileSolid[Type] = false;
+        Main.tileSolidTop[Type] = false;
+        Main.tileNoAttach[Type] = true;
+        Main.tileFrameImportant[Type] = true;
+
+        TileObjectData.newTile.StyleHorizontal = true;
+        TileObjectData.newTile.WaterDeath = false;
+        TileObjectData.newTile.LavaDeath = true;
+        TileObjectData.newTile.DrawYOffset = 2;
+
+        HitSound = SoundID.Dig;
+
+        AddMapEntry(new(120, 180, 40));
+
+        _frameHeight = TileObjectData.newTile.CoordinateFullHeight;
+    }
+
+    public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
+        if (Main.tile[i, j].LiquidAmount <= 0) {
+            r = g = b = 0f;
+            return;
+        }
+
+        i -= Main.tile[i, j].TileFrameX % 36 / 18;
+        j -= Main.tile[i, j].TileFrameY % 36 / 18;
+        var anim = AnimationSystem.GetValueOrAddDefault<SeaPickleLightTracker>(i, j);
+        anim.DespawnTimer = 0;
+        GetDrawData(i, j, out var pickleColor);
+
+        float lightMagnitude = anim.LightMagnitude * LightMagnitudeMultiplier;
+        var v3 = pickleColor.ToVector3() * lightMagnitude;
+        r = v3.X;
+        g = v3.Y;
+        b = v3.Z;
+    }
+
+    public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
+        var tile = Main.tile[i, j];
+        var texture = TextureAssets.Tile[Type].Value;
+        var frame = new Rectangle(tile.TileFrameX, tile.TileFrameY, 16, 16);
+        var drawCoordinates = new Vector2(i * 16f, j * 16f) - Main.screenPosition + TileHelper.DrawOffset;
+        var lightColor = Lighting.GetColor(i, j);
+        GetDrawData(i, j, out var pickleColor);
+        spriteBatch.Draw(texture, drawCoordinates, frame, lightColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+        spriteBatch.Draw(texture, drawCoordinates, frame with { Y = frame.Y + _frameHeight }, pickleColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+        return false;
+    }
+
+    public static void GetDrawData(int i, int j, out Color pickleColor) {
+        var tile = Main.tile[i, j];
+        int left = i - tile.TileFrameX % 36 / 18;
+        int top = j - tile.TileFrameY % 36 / 18;
+
+        pickleColor = new Color(255, 255, 30);
+        if (AnimationSystem.TryGet<SeaPickleLightTracker>(left, top, out var lightTracker)) {
+            pickleColor = lightTracker.SeaPickleColor;
+        }
+    }
+}

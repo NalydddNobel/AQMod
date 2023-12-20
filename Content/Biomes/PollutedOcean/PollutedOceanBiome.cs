@@ -23,6 +23,6 @@ public class PollutedOceanBiome : ModBiome {
     public override int Music => MusicSlotId ??= MusicLoader.GetMusicSlot(Mod, AequusSounds.PollutedOcean.ModPath());
 
     public override bool IsBiomeActive(Player player) {
-        return WorldGen.oceanDepths((int)player.position.X / 16, (int)Main.worldSurface) && BlockPresence >= BlockPresenceNeeded;
+        return (player.position.Y > Main.worldSurface * 16.0 || WorldGen.oceanDepths((int)player.position.X / 16, (int)Main.worldSurface)) && BlockPresence >= BlockPresenceNeeded;
     }
 }

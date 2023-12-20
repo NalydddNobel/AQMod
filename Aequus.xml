@@ -1189,7 +1189,7 @@
             <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 285)</summary>
+            <summary>(Total Textures: 286)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1259,6 +1259,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.SlashVanillaSmall">
             <summary>Full Path: Assets/Textures/SlashVanillaSmall</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SmallLightParticle">
+            <summary>Full Path: Assets/Textures/SmallLightParticle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Sparkles">
             <summary>Full Path: Assets/Textures/Sparkles</summary>
@@ -1366,13 +1369,13 @@
             <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Scrap/ScrapBrickItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SeaPickles1x1">
-            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/SeaPickles1x1</summary>
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/SeaPickles/SeaPickles1x1</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SeaPickles1x2">
-            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/SeaPickles1x2</summary>
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/SeaPickles/SeaPickles1x2</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SeaPickles2x2">
-            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/SeaPickles2x2</summary>
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/SeaPickles/SeaPickles2x2</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PollutedOceanDroplet">
             <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanDroplet</summary>

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 285)</summary>
+/// <summary>(Total Textures: 286)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -53,6 +53,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SlashVanilla = new("Aequus/Assets/Textures/SlashVanilla");
     /// <summary>Full Path: Assets/Textures/SlashVanillaSmall</summary>
     public static readonly RequestCache<Texture2D> SlashVanillaSmall = new("Aequus/Assets/Textures/SlashVanillaSmall");
+    /// <summary>Full Path: Assets/Textures/SmallLightParticle</summary>
+    public static readonly RequestCache<Texture2D> SmallLightParticle = new("Aequus/Assets/Textures/SmallLightParticle");
     /// <summary>Full Path: Assets/Textures/Sparkles</summary>
     public static readonly RequestCache<Texture2D> Sparkles = new("Aequus/Assets/Textures/Sparkles");
     /// <summary>Full Path: Assets/Textures/TileMerges/HardenedSand</summary>
@@ -123,12 +125,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ScrapBrick = new("Aequus/Content/Biomes/PollutedOcean/Tiles/Scrap/ScrapBrick");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Scrap/ScrapBrickItem</summary>
     public static readonly RequestCache<Texture2D> ScrapBrickItem = new("Aequus/Content/Biomes/PollutedOcean/Tiles/Scrap/ScrapBrickItem");
-    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/SeaPickles1x1</summary>
-    public static readonly RequestCache<Texture2D> SeaPickles1x1 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/SeaPickles1x1");
-    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/SeaPickles1x2</summary>
-    public static readonly RequestCache<Texture2D> SeaPickles1x2 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/SeaPickles1x2");
-    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/SeaPickles2x2</summary>
-    public static readonly RequestCache<Texture2D> SeaPickles2x2 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/SeaPickles2x2");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/SeaPickles/SeaPickles1x1</summary>
+    public static readonly RequestCache<Texture2D> SeaPickles1x1 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/SeaPickles/SeaPickles1x1");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/SeaPickles/SeaPickles1x2</summary>
+    public static readonly RequestCache<Texture2D> SeaPickles1x2 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/SeaPickles/SeaPickles1x2");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/SeaPickles/SeaPickles2x2</summary>
+    public static readonly RequestCache<Texture2D> SeaPickles2x2 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/SeaPickles/SeaPickles2x2");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanDroplet</summary>
     public static readonly RequestCache<Texture2D> PollutedOceanDroplet = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanDroplet");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanSplash</summary>

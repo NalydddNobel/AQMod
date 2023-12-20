@@ -24,13 +24,15 @@ public sealed class AnimationSystem : ModSystem {
     }
 
     public static T GetValueOrAddDefault<T>(Point16 xy) where T : ITileAnimation, new() {
-        if (TryGet(xy, out T anim)) {
-            return anim;
-        }
+        lock (TileAnimations) {
+            if (TryGet(xy, out T anim)) {
+                return anim;
+            }
 
-        var value = new T();
-        TileAnimations[xy] = value;
-        return value;
+            var value = new T();
+            TileAnimations[xy] = value;
+            return value;
+        }
     }
 
     public override void PreUpdateEntities() {

@@ -11,6 +11,7 @@ public class PollutedOceanSystem : ModSystem {
     }
 
     public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts) {
+        PollutedOceanBiome.BlockPresence = 0;
         foreach (var tile in BiomeTiles) {
             PollutedOceanBiome.BlockPresence += tileCounts[tile];
         }

@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.ExceptionServices;
 using Terraria.Graphics.Renderers;
 
 namespace Aequus.Common.Particles;
@@ -8,6 +10,7 @@ public class ParticleSystem : ModSystem {
     }
 
     private static ParticleRenderer[] layers;
+    internal static List<ParticleBatch> Batches { get; private set; } = new();
 
     public static T Fetch<T>() where T : BaseParticle<T>, new() {
         return ParticlePools<T>.Pool.RequestParticle();
@@ -41,6 +44,7 @@ public class ParticleSystem : ModSystem {
     }
 
     public override void Unload() {
+        Batches.Clear();
         layers = null;
     }
 
@@ -62,6 +66,9 @@ public class ParticleSystem : ModSystem {
         foreach (var l in layers) {
             l.Particles = l.Particles.Distinct().ToList();
             l.Update();
+        }
+        foreach (var batch in Batches) {
+            batch.Update();
         }
     }
 }
