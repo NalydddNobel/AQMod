@@ -63,6 +63,7 @@ PurpleBalloon: {
 		'''
 		{$ItemTooltip.ShinyRedBalloon}
 		{$SlimyBlueBalloon.Tooltip}
+		'Not to be confused with a Balloon in a Balloon'
 		'''
 }
 
