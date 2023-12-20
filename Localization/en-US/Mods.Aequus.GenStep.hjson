@@ -12,5 +12,5 @@ PollutedOcean: {
 	}
 }
 
-Reset.DisplayMessage: Mods.Aequus.GenStep.Reset.DisplayMessage
-PollutedOceanAmbience.DisplayMessage: Mods.Aequus.GenStep.PollutedOceanAmbience.DisplayMessage
+PollutedOceanAmbience.DisplayMessage: Exchanging goods and services...
+Reset.DisplayMessage: ""
