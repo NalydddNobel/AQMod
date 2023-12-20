@@ -694,10 +694,16 @@
             <param name="modWall"></param>
             <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
         </member>
-        <member name="F:Aequus.AequusPlayer.MinimumRespawnTime">
+        <member name="P:Aequus.AequusPlayer.MinimumRespawnTime">
             <summary>
             The lowest any respawn-time reducing items can go.
             </summary>
+        </member>
+        <member name="M:Aequus.AequusPlayer.SetAccRespawnTimeModifier(System.Int32)">
+            <summary>
+            Sets the respawn time modifier without allowing it to stack.
+            </summary>
+            <param name="amount"></param>
         </member>
         <member name="F:Aequus.AequusPlayer.lastSelectedItem">
             <summary>
@@ -1152,7 +1158,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 245)</summary>
+            <summary>(Total Textures: 248)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1732,6 +1738,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.Furystar">
             <summary>Full Path: Content/Items/Weapons/Magic/Furystar/Furystar</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpamMail">
+            <summary>Full Path: Content/Items/Weapons/Magic/SpamMail/SpamMail</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpamMailCritEffect">
+            <summary>Full Path: Content/Items/Weapons/Magic/SpamMail/SpamMailCritEffect</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpamMailProj">
+            <summary>Full Path: Content/Items/Weapons/Magic/SpamMail/SpamMailProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AncientCutlass">
             <summary>Full Path: Content/Items/Weapons/Melee/AncientCutlass/AncientCutlass</summary>

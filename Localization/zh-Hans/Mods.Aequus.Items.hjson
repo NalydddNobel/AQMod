@@ -428,3 +428,8 @@ Backpacks: {
 		BackpackDisabled: 背包关闭
 	}
 }
+
+SpamMail: {
+	// DisplayName: Spam Mail
+	// Tooltip: ""
+}

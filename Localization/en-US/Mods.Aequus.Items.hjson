@@ -380,7 +380,6 @@ CrabsonMask: {
 	Tooltip: ""
 }
 
-
 DustDevilMask: {
 	DisplayName: Dust Devil Mask
 	Tooltip: ""
@@ -429,4 +428,9 @@ Backpacks: {
 		BackpackEnabled: Backpack On
 		BackpackDisabled: Backpack Off
 	}
+}
+
+SpamMail: {
+	DisplayName: Spam Mail
+	Tooltip: ""
 }

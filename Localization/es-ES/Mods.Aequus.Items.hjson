@@ -63,6 +63,7 @@ PurpleBalloon: {
 		'''
 		{$ItemTooltip.ShinyRedBalloon}
 		{$SlimyBlueBalloon.Tooltip}
+		'Not to be confused with a Balloon in a Balloon'
 		''' */
 }
 
@@ -379,7 +380,6 @@ CrabsonMask: {
 	Tooltip: ""
 }
 
-
 DustDevilMask: {
 	// DisplayName: Dust Devil Mask
 	// Tooltip: ""
@@ -428,4 +428,9 @@ Backpacks: {
 		BackpackEnabled: Mochila Visible
 		BackpackDisabled: Mochila No Visible
 	}
+}
+
+SpamMail: {
+	// DisplayName: Spam Mail
+	// Tooltip: ""
 }

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 245)</summary>
+/// <summary>(Total Textures: 248)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -393,6 +393,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> StunGun = new("Aequus/Content/Items/Weapons/Classless/StunGun/StunGun");
     /// <summary>Full Path: Content/Items/Weapons/Magic/Furystar/Furystar</summary>
     public static readonly RequestCache<Texture2D> Furystar = new("Aequus/Content/Items/Weapons/Magic/Furystar/Furystar");
+    /// <summary>Full Path: Content/Items/Weapons/Magic/SpamMail/SpamMail</summary>
+    public static readonly RequestCache<Texture2D> SpamMail = new("Aequus/Content/Items/Weapons/Magic/SpamMail/SpamMail");
+    /// <summary>Full Path: Content/Items/Weapons/Magic/SpamMail/SpamMailCritEffect</summary>
+    public static readonly RequestCache<Texture2D> SpamMailCritEffect = new("Aequus/Content/Items/Weapons/Magic/SpamMail/SpamMailCritEffect");
+    /// <summary>Full Path: Content/Items/Weapons/Magic/SpamMail/SpamMailProj</summary>
+    public static readonly RequestCache<Texture2D> SpamMailProj = new("Aequus/Content/Items/Weapons/Magic/SpamMail/SpamMailProj");
     /// <summary>Full Path: Content/Items/Weapons/Melee/AncientCutlass/AncientCutlass</summary>
     public static readonly RequestCache<Texture2D> AncientCutlass = new("Aequus/Content/Items/Weapons/Melee/AncientCutlass/AncientCutlass");
     /// <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/Dynaknife</summary>

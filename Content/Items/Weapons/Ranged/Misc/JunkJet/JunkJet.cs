@@ -53,7 +53,7 @@ public class JunkJet : ModItem {
 
     public override void AddRecipes() {
         CreateRecipe()
-            .AddIngredient<CompressedTrash>(3)
+            .AddIngredient<CompressedTrash>(12)
             .AddTile<TrashCompactor>()
             .Register();
     }
