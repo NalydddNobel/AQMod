@@ -42,12 +42,14 @@ public class LesserRestorationPotion : ModItem, IApplyPotionDelay, IPostAddRecip
             .Register()
             .DisableDecraft();
 
-        Recipe.Create(ItemID.RestorationPotion, 1)
-            .AddIngredient(Type, 2)
-            .AddIngredient(ItemID.GlowingMushroom)
-            .AddTile(TileID.Bottles)
-            .Register()
-            .DisableDecraft();
+        if (VanillaChangesConfig.Instance.RestorationPotionRecipe) {
+            Recipe.Create(ItemID.RestorationPotion, 1)
+                .AddIngredient(Type, 2)
+                .AddIngredient(ItemID.GlowingMushroom)
+                .AddTile(TileID.Bottles)
+                .Register()
+                .DisableDecraft();
+        }
     }
 
     public void PostAddRecipes(Aequus aequus) {
