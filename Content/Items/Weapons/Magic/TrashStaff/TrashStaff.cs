@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Content.Items.Material;
-using Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 
 namespace Aequus.Content.Items.Weapons.Magic.TrashStaff;
 

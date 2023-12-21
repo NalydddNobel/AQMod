@@ -1,9 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Content.DataSets;
 using Aequus.Content.Items.Material;
-using Aequus.Content.Items.Material.Energy.Aquatic;
-using Aequus.Content.Tiles.CraftingStations.TrashCompactor;
-using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;
