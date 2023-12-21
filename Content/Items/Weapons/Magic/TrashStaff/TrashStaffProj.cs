@@ -23,7 +23,7 @@ public class TrashStaffProj : ModProjectile {
 
     public override void OnSpawn(IEntitySource source) {
         var player = Main.player[Projectile.owner];
-        if (player.GetWeaponCrit(player.HeldItem) > Main.rand.Next(100)) {
+        if (player.RollCrit(DamageClass.Magic)) {
             Projectile.ai[0] = 1f;
             Projectile.netUpdate = true;
         }
@@ -52,7 +52,9 @@ public class TrashStaffProj : ModProjectile {
                     Projectile.alpha = 0;
                 }
 
-                if (Projectile.frame <= Main.projFrames[Type] - 1 && Projectile.frameCounter++ > 3) {
+                Projectile.velocity *= 0.95f;
+
+                if (Projectile.ai[1] >= 0f && Projectile.frame <= Main.projFrames[Type] - 1 && Projectile.frameCounter++ > 3) {
                     Projectile.frame++;
                     Projectile.frameCounter = 0;
                 }
@@ -85,8 +87,9 @@ public class TrashStaffProj : ModProjectile {
     public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
         if (hit.Crit) {
             Projectile.ai[0] = 2f;
+            Projectile.ai[1] = -12f;
             Projectile.penetrate = -1;
-            Projectile.velocity = Vector2.Zero;
+            Projectile.velocity = -Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.6f, 0.6f)) * 0.3f;
             Projectile.rotation = 0f;
             Projectile.timeLeft = 60;
             Projectile.friendly = false;

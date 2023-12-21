@@ -27,4 +27,8 @@ public class TrashStaff : ModItem {
             .AddTile(TileID.Anvils)
             .Register();
     }
+
+    public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
+        velocity = velocity.RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f));
+    }
 }

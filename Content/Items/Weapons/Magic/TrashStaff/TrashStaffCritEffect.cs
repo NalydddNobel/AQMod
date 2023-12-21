@@ -37,7 +37,7 @@ public class TrashStaffCritEffect : ModProjectile {
             return;
         }
 
-        var target = Projectile.FindTargetWithinRange(180f);
+        var target = Projectile.FindTargetWithinRange(600f);
         if (target == null) {
             Projectile.timeLeft = 60;
             return;
