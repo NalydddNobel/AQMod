@@ -157,6 +157,11 @@ SkyHunterCrossbow: {
 }
 
 //# Weapons: Magic
+TrashStaff: {
+	// DisplayName: Spam Mail
+	// Tooltip: Critical strikes send virus mail to nearby enemies
+}
+
 Furystar: {
 	DisplayName: Estrella de furia
 	Tooltip:
@@ -428,9 +433,4 @@ Backpacks: {
 		BackpackEnabled: Mochila Visible
 		BackpackDisabled: Mochila No Visible
 	}
-}
-
-SpamMail: {
-	// DisplayName: Spam Mail
-	// Tooltip: ""
 }

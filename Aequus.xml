@@ -1158,7 +1158,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 248)</summary>
+            <summary>(Total Textures: 249)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1739,14 +1739,17 @@
         <member name="F:Aequus.AequusTextures.Furystar">
             <summary>Full Path: Content/Items/Weapons/Magic/Furystar/Furystar</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SpamMail">
-            <summary>Full Path: Content/Items/Weapons/Magic/SpamMail/SpamMail</summary>
+        <member name="F:Aequus.AequusTextures.TrashStaff">
+            <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaff</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SpamMailCritEffect">
-            <summary>Full Path: Content/Items/Weapons/Magic/SpamMail/SpamMailCritEffect</summary>
+        <member name="F:Aequus.AequusTextures.TrashStaffCritEffect">
+            <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaffCritEffect</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SpamMailProj">
-            <summary>Full Path: Content/Items/Weapons/Magic/SpamMail/SpamMailProj</summary>
+        <member name="F:Aequus.AequusTextures.TrashStaffCritEffectStrip">
+            <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaffCritEffectStrip</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashStaffProj">
+            <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaffProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AncientCutlass">
             <summary>Full Path: Content/Items/Weapons/Melee/AncientCutlass/AncientCutlass</summary>

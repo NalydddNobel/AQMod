@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 248)</summary>
+/// <summary>(Total Textures: 249)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -393,12 +393,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> StunGun = new("Aequus/Content/Items/Weapons/Classless/StunGun/StunGun");
     /// <summary>Full Path: Content/Items/Weapons/Magic/Furystar/Furystar</summary>
     public static readonly RequestCache<Texture2D> Furystar = new("Aequus/Content/Items/Weapons/Magic/Furystar/Furystar");
-    /// <summary>Full Path: Content/Items/Weapons/Magic/SpamMail/SpamMail</summary>
-    public static readonly RequestCache<Texture2D> SpamMail = new("Aequus/Content/Items/Weapons/Magic/SpamMail/SpamMail");
-    /// <summary>Full Path: Content/Items/Weapons/Magic/SpamMail/SpamMailCritEffect</summary>
-    public static readonly RequestCache<Texture2D> SpamMailCritEffect = new("Aequus/Content/Items/Weapons/Magic/SpamMail/SpamMailCritEffect");
-    /// <summary>Full Path: Content/Items/Weapons/Magic/SpamMail/SpamMailProj</summary>
-    public static readonly RequestCache<Texture2D> SpamMailProj = new("Aequus/Content/Items/Weapons/Magic/SpamMail/SpamMailProj");
+    /// <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaff</summary>
+    public static readonly RequestCache<Texture2D> TrashStaff = new("Aequus/Content/Items/Weapons/Magic/TrashStaff/TrashStaff");
+    /// <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaffCritEffect</summary>
+    public static readonly RequestCache<Texture2D> TrashStaffCritEffect = new("Aequus/Content/Items/Weapons/Magic/TrashStaff/TrashStaffCritEffect");
+    /// <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaffCritEffectStrip</summary>
+    public static readonly RequestCache<Texture2D> TrashStaffCritEffectStrip = new("Aequus/Content/Items/Weapons/Magic/TrashStaff/TrashStaffCritEffectStrip");
+    /// <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaffProj</summary>
+    public static readonly RequestCache<Texture2D> TrashStaffProj = new("Aequus/Content/Items/Weapons/Magic/TrashStaff/TrashStaffProj");
     /// <summary>Full Path: Content/Items/Weapons/Melee/AncientCutlass/AncientCutlass</summary>
     public static readonly RequestCache<Texture2D> AncientCutlass = new("Aequus/Content/Items/Weapons/Melee/AncientCutlass/AncientCutlass");
     /// <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/Dynaknife</summary>
