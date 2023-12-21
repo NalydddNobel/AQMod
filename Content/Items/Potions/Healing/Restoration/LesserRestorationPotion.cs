@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Items.Components;
+using Aequus.Content.Configuration;
 using Aequus.Core.Autoloading;
 
 namespace Aequus.Content.Items.Potions.Healing.Restoration;
@@ -50,6 +51,10 @@ public class LesserRestorationPotion : ModItem, IApplyPotionDelay, IPostAddRecip
     }
 
     public void PostAddRecipes(Aequus aequus) {
+        if (!VanillaChangesConfig.Instance.RestorationPotionRecipe) {
+            return;
+        }
+
         for (int i = 0; i < Recipe.numRecipes; i++) {
             var recipe = Main.recipe[i];
             if (recipe == null || recipe.createItem.type != ItemID.RestorationPotion) {
