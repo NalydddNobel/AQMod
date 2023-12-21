@@ -831,11 +831,6 @@
             This prevents some catches, like Jellyfishes being used as bait or being indicated as bait.
             </summary>
         </member>
-        <member name="T:Aequus.Core.CrossMod.ModCallSystem">
-            <summary>
-            Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
-            </summary>
-        </member>
         <member name="T:Aequus.Core.Graphics.MiscWorldUI">
             <summary>
             Used to render any World elements which need to be on the UI layer. This renders after Entity Healthbars are drawn.

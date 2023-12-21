@@ -3,7 +3,16 @@ using System.Collections.Generic;
 
 namespace Aequus.Core.CrossMod;
 
-internal class ModSupport<TMod> : ModSystem where TMod : ModSupport<TMod> {
+internal interface ISupportedMod<TMod> where TMod : SupportedMod<TMod> {
+    public static Mod Instance { get; private set; }
+    public static string ModName => typeof(TMod).Name;
+
+    public bool IsLoadingEnabled() {
+        return ModLoader.HasMod(typeof(TMod).Name);
+    }
+}
+
+internal class SupportedMod<TMod> : ModSystem where TMod : SupportedMod<TMod> {
     public static Mod Instance { get; private set; }
     public static string ModName => typeof(TMod).Name;
 
@@ -88,5 +97,36 @@ internal class ModSupport<TMod> : ModSystem where TMod : ModSupport<TMod> {
 
     public virtual void SafeUnload() {
 
+    }
+}
+
+internal static class SupportedModExtensions {
+    public static bool LoadingAllowed<TMod>(this ISupportedMod<TMod> modSupport) where TMod : SupportedMod<TMod> {
+        return modSupport.IsLoadingEnabled();
+    }
+
+    public static bool TryFind<T, TMod>(this ISupportedMod<TMod> modSupport, string name, out T value) where T : IModType where TMod : SupportedMod<TMod> {
+        var instance = SupportedMod<TMod>.Instance;
+        if (instance == null) {
+            value = default(T);
+            return false;
+        }
+        return instance.TryFind(name, out value);
+    }
+
+    public static bool AddItemToSet<TMod>(this ISupportedMod<TMod> modSupport, string name, HashSet<int> hashSet) where TMod : SupportedMod<TMod> {
+        if (!modSupport.TryFind<ModItem, TMod>(name, out var modItem)) {
+            return false;
+        }
+
+        hashSet.Add(modItem.Type);
+        return true;
+    }
+
+    public static int GetItem<TMod>(this ISupportedMod<TMod> modSupport, string name, int defaultItem = 0) where TMod : SupportedMod<TMod> {
+        return modSupport.TryFind<ModItem, TMod>(name, out var value) ? value.Type : defaultItem;
+    }
+    public static int GetNPC<TMod>(this ISupportedMod<TMod> modSupport, string name, int defaultNPC = 0) where TMod : SupportedMod<TMod> {
+        return modSupport.TryFind<ModNPC, TMod>(name, out var value) ? value.Type : defaultNPC;
     }
 }

@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Aequus.Content.CrossMod;
 
-internal class MrPlagueRaces : ModSupport<MrPlagueRaces> {
+internal class MrPlagueRaces : SupportedMod<MrPlagueRaces> {
     public static ModPlayer MrPlagueRacesPlayer { get; private set; }
     public static List<FieldInfo> RacePlayerFieldInfo { get; private set; }
 

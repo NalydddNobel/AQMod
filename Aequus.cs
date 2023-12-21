@@ -9,7 +9,7 @@ using System.IO;
 
 namespace Aequus;
 
-public class Aequus : Mod {
+public partial class Aequus : Mod {
     public static Aequus Instance { get; private set; }
 
     public static bool highQualityEffects = true;
@@ -21,10 +21,12 @@ public class Aequus : Mod {
 
     public override void Load() {
         Instance = this;
+        LoadModCalls();
     }
 
     public override void Unload() {
         Instance = null;
+        UnloadModCalls();
     }
 
     public override void HandlePacket(BinaryReader reader, int whoAmI) {
