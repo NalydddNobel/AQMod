@@ -20,7 +20,7 @@ public abstract class SeaPicklesTileBase : ModTile {
         TileObjectData.newTile.LavaDeath = true;
         TileObjectData.newTile.DrawYOffset = 2;
 
-        HitSound = SoundID.Dig;
+        HitSound = SoundID.NPCDeath1;
 
         AddMapEntry(new(120, 180, 40));
 
@@ -52,9 +52,14 @@ public abstract class SeaPicklesTileBase : ModTile {
         var frame = new Rectangle(tile.TileFrameX, tile.TileFrameY, 16, 16);
         var drawCoordinates = new Vector2(i * 16f, j * 16f) - Main.screenPosition + TileHelper.DrawOffset;
         var lightColor = Lighting.GetColor(i, j);
-        GetDrawData(i, j, out var pickleColor);
         spriteBatch.Draw(texture, drawCoordinates, frame, lightColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-        spriteBatch.Draw(texture, drawCoordinates, frame with { Y = frame.Y + _frameHeight }, pickleColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+
+        int left = i - tile.TileFrameX % 36 / 18;
+        int top = j - tile.TileFrameY % 36 / 18;
+        if (Main.tile[left, top].LiquidAmount > 0) {
+            GetDrawData(i, j, out var pickleColor);
+            spriteBatch.Draw(texture, drawCoordinates, frame with { Y = frame.Y + _frameHeight }, pickleColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+        }
         return false;
     }
 

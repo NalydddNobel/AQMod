@@ -68,6 +68,10 @@ public abstract class AequusGenStep : ModType, ILocalizedModType, IPostSetupCont
         }
     }
 
+    protected double IJLoopProgress(int i, int j) {
+        return (i * Main.maxTilesY + j) / (double)(Main.maxTilesX + Main.maxTilesY);
+    }
+
     /// <summary>
     /// Safely sets the progress bar.
     /// </summary>
