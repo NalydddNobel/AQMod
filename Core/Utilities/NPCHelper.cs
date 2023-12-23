@@ -117,8 +117,8 @@ public static class NPCHelper {
         return -1;
     }
 
-    internal static NPCShop AddCrossMod<T>(this NPCShop shop, string itemName, params Condition[] conditions) where T : ModSupport<T> {
-        if (!ModSupport<T>.TryFind<ModItem>(itemName, out var modItem)) {
+    internal static NPCShop AddCrossMod<T>(this NPCShop shop, string itemName, params Condition[] conditions) where T : SupportedMod<T> {
+        if (!SupportedMod<T>.TryFind<ModItem>(itemName, out var modItem)) {
             return shop;
         }
         return shop.Add(modItem.Type, conditions);

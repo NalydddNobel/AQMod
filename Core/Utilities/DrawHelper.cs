@@ -2,6 +2,7 @@
 using Aequus.Common.Particles;
 using Aequus.Content.Biomes.PollutedOcean.Tiles.SeaPickles;
 using Aequus.Content.Items.Material.MonoGem;
+using Aequus.Core.Assets;
 using Aequus.Core.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -89,6 +90,19 @@ public sealed class DrawHelper : ModSystem {
         }
 
         foreach (var pass in _basicEffect.CurrentTechnique.Passes) {
+            pass.Apply();
+        }
+    }
+    public static void ApplyUVEffect(Texture2D texture, Vector2 uvMultiplier, Vector2 uvAdd) {
+        GetWorldViewProjection(out var view, out var projection);
+
+        Main.instance.GraphicsDevice.Textures[0] = texture;
+        var effect = AequusShaders.UVVertexShader.Value;
+        effect.CurrentTechnique = effect.Techniques["UVWrap"];
+        effect.Parameters["XViewProjection"].SetValue(view * projection);
+        effect.Parameters["UVMultiplier"].SetValue(uvMultiplier);
+        effect.Parameters["UVAdd"].SetValue(uvAdd);
+        foreach (var pass in effect.CurrentTechnique.Passes) {
             pass.Apply();
         }
     }

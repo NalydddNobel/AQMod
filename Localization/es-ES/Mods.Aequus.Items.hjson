@@ -63,6 +63,7 @@ PurpleBalloon: {
 		'''
 		{$ItemTooltip.ShinyRedBalloon}
 		{$SlimyBlueBalloon.Tooltip}
+		'Not to be confused with a Balloon in a Balloon'
 		''' */
 }
 
@@ -156,6 +157,11 @@ SkyHunterCrossbow: {
 }
 
 //# Weapons: Magic
+TrashStaff: {
+	// DisplayName: Spam Mail
+	// Tooltip: Critical strikes send virus mail to nearby enemies
+}
+
 Furystar: {
 	DisplayName: Estrella de furia
 	Tooltip:
