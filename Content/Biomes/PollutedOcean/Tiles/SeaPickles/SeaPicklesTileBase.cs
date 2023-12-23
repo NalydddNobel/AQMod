@@ -65,9 +65,12 @@ public abstract class SeaPicklesTileBase : ModTile {
 
     public static void GetDrawData(int i, int j, out Color pickleColor) {
         var tile = Main.tile[i, j];
-        int left = i - tile.TileFrameX % 36 / 18;
-        int top = j - tile.TileFrameY % 36 / 18;
-
+        int left = i;
+        int top = j;
+        if (TileLoader.GetTile(tile.TileType) is SeaPicklesTileBase) {
+            left -= tile.TileFrameX % 36 / 18;
+            top -= tile.TileFrameY % 36 / 18;
+        }
         pickleColor = new Color(255, 255, 30);
         if (AnimationSystem.TryGet<SeaPickleLightTracker>(left, top, out var lightTracker)) {
             pickleColor = lightTracker.SeaPickleColor;

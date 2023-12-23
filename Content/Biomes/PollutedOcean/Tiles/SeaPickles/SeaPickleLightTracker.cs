@@ -49,6 +49,6 @@ public class SeaPickleLightTracker : ITileAnimation {
             SeaPickleColor = new Color(255, 255, 150).HueAdd(Helper.Oscillate(x * 0.03f, -0.2f, 0.3f));
         }
 
-        return DespawnTimer++ < 30;
+        return DespawnTimer++ < 300;
     }
 }
