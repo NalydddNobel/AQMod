@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Items.Components;
-using Aequus.Content.Items.Weapons.Classless;
+using Aequus.Content.Weapons.Classless;
 using System;
 using System.Collections.Generic;
 using System.Reflection;

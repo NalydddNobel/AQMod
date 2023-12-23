@@ -387,46 +387,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> NameTag = new("Aequus/Content/Items/Tools/NameTag/NameTag");
     /// <summary>Full Path: Content/Items/Tools/NameTag/NameTagBlank</summary>
     public static readonly RequestCache<Texture2D> NameTagBlank = new("Aequus/Content/Items/Tools/NameTag/NameTagBlank");
-    /// <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunEffect</summary>
-    public static readonly RequestCache<Texture2D> StunEffect = new("Aequus/Content/Items/Weapons/Classless/StunGun/StunEffect");
-    /// <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunGun</summary>
-    public static readonly RequestCache<Texture2D> StunGun = new("Aequus/Content/Items/Weapons/Classless/StunGun/StunGun");
-    /// <summary>Full Path: Content/Items/Weapons/Magic/Furystar/Furystar</summary>
-    public static readonly RequestCache<Texture2D> Furystar = new("Aequus/Content/Items/Weapons/Magic/Furystar/Furystar");
-    /// <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaff</summary>
-    public static readonly RequestCache<Texture2D> TrashStaff = new("Aequus/Content/Items/Weapons/Magic/TrashStaff/TrashStaff");
-    /// <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaffCritEffect</summary>
-    public static readonly RequestCache<Texture2D> TrashStaffCritEffect = new("Aequus/Content/Items/Weapons/Magic/TrashStaff/TrashStaffCritEffect");
-    /// <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaffCritEffectStrip</summary>
-    public static readonly RequestCache<Texture2D> TrashStaffCritEffectStrip = new("Aequus/Content/Items/Weapons/Magic/TrashStaff/TrashStaffCritEffectStrip");
-    /// <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaffProj</summary>
-    public static readonly RequestCache<Texture2D> TrashStaffProj = new("Aequus/Content/Items/Weapons/Magic/TrashStaff/TrashStaffProj");
-    /// <summary>Full Path: Content/Items/Weapons/Melee/AncientCutlass/AncientCutlass</summary>
-    public static readonly RequestCache<Texture2D> AncientCutlass = new("Aequus/Content/Items/Weapons/Melee/AncientCutlass/AncientCutlass");
-    /// <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/Dynaknife</summary>
-    public static readonly RequestCache<Texture2D> Dynaknife = new("Aequus/Content/Items/Weapons/Melee/DynaKnife/Dynaknife");
-    /// <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/DynaknifeProj</summary>
-    public static readonly RequestCache<Texture2D> DynaknifeProj = new("Aequus/Content/Items/Weapons/Melee/DynaKnife/DynaknifeProj");
-    /// <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/DynaknifeProj_Glow</summary>
-    public static readonly RequestCache<Texture2D> DynaknifeProj_Glow = new("Aequus/Content/Items/Weapons/Melee/DynaKnife/DynaknifeProj_Glow");
-    /// <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/Dynaknife_Glow</summary>
-    public static readonly RequestCache<Texture2D> Dynaknife_Glow = new("Aequus/Content/Items/Weapons/Melee/DynaKnife/Dynaknife_Glow");
-    /// <summary>Full Path: Content/Items/Weapons/Melee/Slice/Slice</summary>
-    public static readonly RequestCache<Texture2D> Slice = new("Aequus/Content/Items/Weapons/Melee/Slice/Slice");
-    /// <summary>Full Path: Content/Items/Weapons/Melee/Slice/SliceBulletProj</summary>
-    public static readonly RequestCache<Texture2D> SliceBulletProj = new("Aequus/Content/Items/Weapons/Melee/Slice/SliceBulletProj");
-    /// <summary>Full Path: Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
-    public static readonly RequestCache<Texture2D> Chain = new("Aequus/Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain");
-    /// <summary>Full Path: Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
-    public static readonly RequestCache<Texture2D> SkyHunterCrossbow = new("Aequus/Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow");
-    /// <summary>Full Path: Content/Items/Weapons/Ranged/Darts/Ammo/PlasticDart</summary>
-    public static readonly RequestCache<Texture2D> PlasticDart = new("Aequus/Content/Items/Weapons/Ranged/Darts/Ammo/PlasticDart");
-    /// <summary>Full Path: Content/Items/Weapons/Ranged/Darts/Ammo/PlasticDart_Outline</summary>
-    public static readonly RequestCache<Texture2D> PlasticDart_Outline = new("Aequus/Content/Items/Weapons/Ranged/Darts/Ammo/PlasticDart_Outline");
-    /// <summary>Full Path: Content/Items/Weapons/Ranged/Darts/StarPhish/StarPhish</summary>
-    public static readonly RequestCache<Texture2D> StarPhish = new("Aequus/Content/Items/Weapons/Ranged/Darts/StarPhish/StarPhish");
-    /// <summary>Full Path: Content/Items/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
-    public static readonly RequestCache<Texture2D> JunkJet = new("Aequus/Content/Items/Weapons/Ranged/Misc/JunkJet/JunkJet");
     /// <summary>Full Path: Content/Pets/Miner/UndeadMinerPet</summary>
     public static readonly RequestCache<Texture2D> UndeadMinerPet = new("Aequus/Content/Pets/Miner/UndeadMinerPet");
     /// <summary>Full Path: Content/Pets/Miner/UndeadMinerPetBuff</summary>
@@ -499,6 +459,46 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> RenameBackIcon = new("Aequus/Content/TownNPCs/SkyMerchant/UI/RenameBackIcon");
     /// <summary>Full Path: Content/UI/Map/NameTagBlip</summary>
     public static readonly RequestCache<Texture2D> NameTagBlip = new("Aequus/Content/UI/Map/NameTagBlip");
+    /// <summary>Full Path: Content/Weapons/Classless/StunGun/StunEffect</summary>
+    public static readonly RequestCache<Texture2D> StunEffect = new("Aequus/Content/Weapons/Classless/StunGun/StunEffect");
+    /// <summary>Full Path: Content/Weapons/Classless/StunGun/StunGun</summary>
+    public static readonly RequestCache<Texture2D> StunGun = new("Aequus/Content/Weapons/Classless/StunGun/StunGun");
+    /// <summary>Full Path: Content/Weapons/Magic/Furystar/Furystar</summary>
+    public static readonly RequestCache<Texture2D> Furystar = new("Aequus/Content/Weapons/Magic/Furystar/Furystar");
+    /// <summary>Full Path: Content/Weapons/Magic/TrashStaff/TrashStaff</summary>
+    public static readonly RequestCache<Texture2D> TrashStaff = new("Aequus/Content/Weapons/Magic/TrashStaff/TrashStaff");
+    /// <summary>Full Path: Content/Weapons/Magic/TrashStaff/TrashStaffCritEffect</summary>
+    public static readonly RequestCache<Texture2D> TrashStaffCritEffect = new("Aequus/Content/Weapons/Magic/TrashStaff/TrashStaffCritEffect");
+    /// <summary>Full Path: Content/Weapons/Magic/TrashStaff/TrashStaffCritEffectStrip</summary>
+    public static readonly RequestCache<Texture2D> TrashStaffCritEffectStrip = new("Aequus/Content/Weapons/Magic/TrashStaff/TrashStaffCritEffectStrip");
+    /// <summary>Full Path: Content/Weapons/Magic/TrashStaff/TrashStaffProj</summary>
+    public static readonly RequestCache<Texture2D> TrashStaffProj = new("Aequus/Content/Weapons/Magic/TrashStaff/TrashStaffProj");
+    /// <summary>Full Path: Content/Weapons/Melee/AncientCutlass/AncientCutlass</summary>
+    public static readonly RequestCache<Texture2D> AncientCutlass = new("Aequus/Content/Weapons/Melee/AncientCutlass/AncientCutlass");
+    /// <summary>Full Path: Content/Weapons/Melee/DynaKnife/Dynaknife</summary>
+    public static readonly RequestCache<Texture2D> Dynaknife = new("Aequus/Content/Weapons/Melee/DynaKnife/Dynaknife");
+    /// <summary>Full Path: Content/Weapons/Melee/DynaKnife/DynaknifeProj</summary>
+    public static readonly RequestCache<Texture2D> DynaknifeProj = new("Aequus/Content/Weapons/Melee/DynaKnife/DynaknifeProj");
+    /// <summary>Full Path: Content/Weapons/Melee/DynaKnife/DynaknifeProj_Glow</summary>
+    public static readonly RequestCache<Texture2D> DynaknifeProj_Glow = new("Aequus/Content/Weapons/Melee/DynaKnife/DynaknifeProj_Glow");
+    /// <summary>Full Path: Content/Weapons/Melee/DynaKnife/Dynaknife_Glow</summary>
+    public static readonly RequestCache<Texture2D> Dynaknife_Glow = new("Aequus/Content/Weapons/Melee/DynaKnife/Dynaknife_Glow");
+    /// <summary>Full Path: Content/Weapons/Melee/Slice/Slice</summary>
+    public static readonly RequestCache<Texture2D> Slice = new("Aequus/Content/Weapons/Melee/Slice/Slice");
+    /// <summary>Full Path: Content/Weapons/Melee/Slice/SliceBulletProj</summary>
+    public static readonly RequestCache<Texture2D> SliceBulletProj = new("Aequus/Content/Weapons/Melee/Slice/SliceBulletProj");
+    /// <summary>Full Path: Content/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
+    public static readonly RequestCache<Texture2D> Chain = new("Aequus/Content/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain");
+    /// <summary>Full Path: Content/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
+    public static readonly RequestCache<Texture2D> SkyHunterCrossbow = new("Aequus/Content/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow");
+    /// <summary>Full Path: Content/Weapons/Ranged/Darts/Ammo/PlasticDart</summary>
+    public static readonly RequestCache<Texture2D> PlasticDart = new("Aequus/Content/Weapons/Ranged/Darts/Ammo/PlasticDart");
+    /// <summary>Full Path: Content/Weapons/Ranged/Darts/Ammo/PlasticDart_Outline</summary>
+    public static readonly RequestCache<Texture2D> PlasticDart_Outline = new("Aequus/Content/Weapons/Ranged/Darts/Ammo/PlasticDart_Outline");
+    /// <summary>Full Path: Content/Weapons/Ranged/Darts/StarPhish/StarPhish</summary>
+    public static readonly RequestCache<Texture2D> StarPhish = new("Aequus/Content/Weapons/Ranged/Darts/StarPhish/StarPhish");
+    /// <summary>Full Path: Content/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
+    public static readonly RequestCache<Texture2D> JunkJet = new("Aequus/Content/Weapons/Ranged/Misc/JunkJet/JunkJet");
     /// <summary>Full Path: icon</summary>
     public static readonly RequestCache<Texture2D> icon = new("Aequus/icon");
     /// <summary>Full Path: icon_small</summary>
