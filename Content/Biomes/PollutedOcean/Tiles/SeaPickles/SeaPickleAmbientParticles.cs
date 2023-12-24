@@ -9,9 +9,9 @@ using Terraria.DataStructures;
 namespace Aequus.Content.Biomes.PollutedOcean.Tiles.SeaPickles;
 
 public class SeaPickleAmbientParticles : ParticleBatch {
-    private readonly Dictionary<Point16, List<Particle>> _particleAnchorPairs = new();
+    private readonly Dictionary<Point16, List<AmbientParticle>> _particleAnchorPairs = new();
 
-    public class Particle : IPoolable {
+    public class AmbientParticle : IPoolable {
         public Vector2 position;
         public Vector2 oldPosition;
 
@@ -30,7 +30,7 @@ public class SeaPickleAmbientParticles : ParticleBatch {
             return;
         }
 
-        var particle = InstancePool<Particle>.Get();
+        var particle = InstancePool<AmbientParticle>.Get();
         particle.animation = (short)Main.rand.Next(-120, 0);
         particle.scale = 0.25f;
         particle.position = Main.rand.NextVector2FromRectangle(new(where.X * 16, where.Y * 16, 16, 16));
