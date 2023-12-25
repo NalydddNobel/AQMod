@@ -232,3 +232,6 @@ dotnet_diagnostic.CS1591.severity = none
 
 # IDE0200: Remove unnecessary lambda expression
 dotnet_diagnostic.IDE0200.severity = none
+
+# CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+dotnet_diagnostic.CS8632.severity = silent

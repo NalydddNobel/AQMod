@@ -1,13 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
+﻿using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.UI.Chat;
 using Terraria.Utilities;
 
@@ -103,6 +98,9 @@ public abstract class MultiMergeTile : ModTile {
 
     #region Merging
     public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak) {
+        if (!WorldGen.InWorld(i, j, 20)) {
+            return false;
+        }
         var tile = Main.tile[i, j];
         var right = Main.tile[i + 1, j];
         var left = Main.tile[i - 1, j];
@@ -115,6 +113,7 @@ public abstract class MultiMergeTile : ModTile {
 
         try {
             for (int k = 0; k < Merges.Count; k++) {
+                EnsureCacheLength(Merges[k]);
                 SetMergeInfo(i, j, Merges[k], 0);
             }
             Merge(in tile, in right, Right, i, j);
@@ -138,10 +137,7 @@ public abstract class MultiMergeTile : ModTile {
                 }
             }
         }
-        catch {
-            for (int k = 0; k < Merges.Count; k++) {
-                EnsureCacheLength(Merges[k]);
-            }
+        catch (Exception ex) {
         }
         return true;
     }
@@ -155,7 +151,9 @@ public abstract class MultiMergeTile : ModTile {
     }
 
     private void Merge(in Tile tile, in Tile other, int index, int i, int j) {
-        SetMergeInfo(i, j, other.TileType, index, MergeInner(in tile, in other, index, i, j));
+        if (Merges.Contains(other.TileType)) {
+            SetMergeInfo(i, j, other.TileType, index, MergeInner(in tile, in other, index, i, j));
+        }
     }
 
     private bool MergeInner(in Tile tile, in Tile other, int index, int i, int j) {
@@ -290,7 +288,7 @@ public abstract class MultiMergeTile : ModTile {
     public static void EnsureCacheLength() {
         _mergeCache ??= Array.Empty<byte[]>();
         if (_mergeCache.Length != TileLoader.TileCount) {
-            EnumerableHelper.ResizeAndPopulate(ref _mergeCache, TileLoader.TileCount, () => new byte[Main.maxTilesX * Main.maxTilesY]);
+            EnumerableHelper.ResizeAndPopulate(ref _mergeCache, TileLoader.TileCount, () => Array.Empty<byte>());
         }
     }
 

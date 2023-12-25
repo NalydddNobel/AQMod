@@ -1,14 +1,21 @@
-﻿using Aequus.Core.Graphics.Animations;
+﻿using Aequus.Common.Tiles.Rubblemaker;
+using Aequus.Core.Graphics.Animations;
 using Terraria.GameContent;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Biomes.PollutedOcean.Tiles.SeaPickles;
 
-public abstract class SeaPicklesTileBase : ModTile {
+internal abstract class SeaPicklesTileBase : RubblemakerTile {
     protected float LightMagnitudeMultiplier = 1f;
     protected int _frameHeight;
 
-    public override void SetStaticDefaults() {
+    protected SeaPicklesTileBase() : base() {
+    }
+    protected SeaPicklesTileBase(string? name, string? texture, bool natural) : base(name, texture, natural) {
+    }
+
+    public override void SafeSetStaticDefaults() {
+        base.SafeSetStaticDefaults();
         Main.tileLighted[Type] = true;
         Main.tileSolid[Type] = false;
         Main.tileSolidTop[Type] = false;
@@ -50,7 +57,7 @@ public abstract class SeaPicklesTileBase : ModTile {
         var tile = Main.tile[i, j];
         var texture = TextureAssets.Tile[Type].Value;
         var frame = new Rectangle(tile.TileFrameX, tile.TileFrameY, 16, 16);
-        var drawCoordinates = new Vector2(i * 16f, j * 16f) - Main.screenPosition + TileHelper.DrawOffset;
+        var drawCoordinates = new Vector2(i * 16f, j * 16f + 2f) - Main.screenPosition + TileHelper.DrawOffset;
         var lightColor = Lighting.GetColor(i, j);
         spriteBatch.Draw(texture, drawCoordinates, frame, lightColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 

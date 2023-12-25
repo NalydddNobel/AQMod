@@ -11,7 +11,7 @@ namespace Aequus.Content.Biomes.PollutedOcean.Tiles.SeaPickles;
 public class SeaPickleAmbientParticles : ParticleBatch {
     private readonly Dictionary<Point16, List<AmbientParticle>> _particleAnchorPairs = new();
 
-    public class AmbientParticle : IPoolable {
+    private class AmbientParticle : IPoolable {
         public Vector2 position;
         public Vector2 oldPosition;
 
@@ -122,10 +122,14 @@ public class SeaPickleAmbientParticles : ParticleBatch {
 
                 var lightColor = Lighting.GetColor(pair.Key.ToPoint());
                 float intensity = Math.Min((lightColor.R + lightColor.G + lightColor.B) / 300f, 1f);
+
+                bloomColor *= intensity;
+                drawColor *= intensity;
                 foreach (var p in pair.Value) {
                     var frame = p._frame;
-                    spriteBatch.Draw(bloomTexture, p.position - Main.screenPosition, null, bloomColor * intensity * p.scale, 0f, bloomOrigin, p.scale, SpriteEffects.None, 0f);
-                    spriteBatch.Draw(texture, p.position - Main.screenPosition, frame, drawColor * intensity, 0f, origin, p.scale, SpriteEffects.None, 0f);
+                    var drawCoordinates = p.position - Main.screenPosition;
+                    spriteBatch.Draw(bloomTexture, drawCoordinates, null, bloomColor * p.scale, 0f, bloomOrigin, p.scale, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(texture, drawCoordinates, frame, drawColor, 0f, origin, p.scale, SpriteEffects.None, 0f);
                 }
             }
         }

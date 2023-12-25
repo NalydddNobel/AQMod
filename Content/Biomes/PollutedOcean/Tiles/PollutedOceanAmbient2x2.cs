@@ -1,22 +1,20 @@
-﻿using Terraria.ObjectData;
+﻿using Aequus.Common.Tiles.Rubblemaker;
+using Aequus.Content.Items.Material;
 
 namespace Aequus.Content.Biomes.PollutedOcean.Tiles;
 
-public class PollutedOceanAmbient2x2 : ModTile {
-    public override void SetStaticDefaults() {
-        Main.tileFrameImportant[Type] = true;
-        Main.tileNoAttach[Type] = true;
-        Main.tileLavaDeath[Type] = true;
-        Main.tileNoFail[Type] = true;
+internal class PollutedOceanAmbient2x2 : Rubble2x2 {
+    public PollutedOceanAmbient2x2() : base() { }
+    public PollutedOceanAmbient2x2(string name, string texture, bool natural) : base(name, texture, natural) { }
 
-        TileID.Sets.DisableSmartCursor[Type] = true;
+    public override int UseItem => ModContent.ItemType<CompressedTrash>();
 
-        TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
-        TileObjectData.newTile.DrawYOffset = 2;
-        TileObjectData.addTile(Type);
+    public override int[] Styles => new[] { 0, };
 
+    public override void SafeSetStaticDefaults() {
+        base.SafeSetStaticDefaults();
         HitSound = SoundID.Dig;
-
+        DustType = DustID.Stone;
         AddMapEntry(new Color(100, 100, 100));
     }
 }

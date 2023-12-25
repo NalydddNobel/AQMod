@@ -1,7 +1,8 @@
 ﻿namespace Aequus.Common.Tiles;
+
 internal class InstancedModTile : ModTile {
-    internal readonly string _name;
-    internal readonly string _texture;
+    internal string _name { get; set; }
+    internal string _texture { get; set; }
 
     public override string Name => _name;
 

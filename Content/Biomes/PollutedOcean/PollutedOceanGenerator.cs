@@ -2,9 +2,7 @@
 using Aequus.Content.Biomes.PollutedOcean.Tiles.PolymerSands;
 using Aequus.Content.Configuration;
 using Aequus.Content.CrossMod;
-using Microsoft.Xna.Framework;
 using System;
-using System.Threading;
 using Terraria.IO;
 using Terraria.Utilities;
 using Terraria.WorldBuilding;
