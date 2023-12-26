@@ -2,7 +2,7 @@
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Core.Autoloading;
+namespace Aequus.Core.Initialization;
 
 internal sealed class AutoloadSystem : ModSystem {
     public override void Load() {

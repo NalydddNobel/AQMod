@@ -1,4 +1,4 @@
-﻿using Aequus.Core;
+﻿using Aequus.Core.Initialization;
 using Aequus.Core.DataSets;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -86,7 +86,7 @@ public class BuffSets : DataSet {
     }
 
     public static void AddBuffConflicts(int buffID, int buffID2) {
-        ContentInitializationSteps.EnqueuePostSetupContent(() => {
+        LoadingSteps.EnqueuePostSetupContent(() => {
             AddBuffConflictsInner(buffID, buffID2);
             AddBuffConflictsInner(buffID2, buffID);
         });

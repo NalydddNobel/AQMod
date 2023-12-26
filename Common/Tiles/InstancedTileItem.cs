@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Core.Autoloading;
+using Aequus.Core.Initialization;
 using System;
 using Terraria.Localization;
 

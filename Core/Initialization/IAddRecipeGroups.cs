@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.Autoloading;
+﻿namespace Aequus.Core.Initialization;
 
 internal interface IAddRecipeGroups : ILoadable {
     void AddRecipeGroups(Aequus aequus);

@@ -1,4 +1,4 @@
-﻿using Aequus.Core.Autoloading;
+﻿using Aequus.Core.Initialization;
 using Newtonsoft.Json;
 using System.Reflection;
 

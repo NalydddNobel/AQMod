@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Content.Configuration;
-using Aequus.Core.Autoloading;
+using Aequus.Core.Initialization;
 
 namespace Aequus.Content.Items.Potions.Healing.Restoration;
 
