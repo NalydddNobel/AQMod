@@ -30,9 +30,6 @@ public partial class Aequus : Mod {
     public override void Unload() {
         Instance = null;
         UnloadModCalls();
-    }
-
-    public override void HandlePacket(BinaryReader reader, int whoAmI) {
-        PacketSystem.HandlePacket(reader, whoAmI);
+        UnloadPackets();
     }
 }

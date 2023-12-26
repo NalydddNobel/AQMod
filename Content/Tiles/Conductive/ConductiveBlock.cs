@@ -95,7 +95,7 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
 
     private static void ActivateEffect(int i, int j) {
         if (Main.netMode == NetmodeID.Server) {
-            PacketSystem.Get<TileInteractionPacket>().Send(i, j);
+            Aequus.GetPacket<TileInteractionPacket>().Send(i, j);
         }
         else if (Main.netMode == NetmodeID.SinglePlayer) {
             ConductiveSystem.ActivationEffect.Activate(i, j, -ConductiveSystem.ActivationEffect.GetDistance(i, j));
