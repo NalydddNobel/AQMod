@@ -31,6 +31,8 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
             AddMapEntry(Main.hslToRgb(new(i / (float)MapEntries, 1f, 0.66f)), Lang.GetItemName(ModContent.ItemType<OmniGem>()));
         }
         DustType = DustID.RainbowRod;
+
+        AequusTile.OnRandomTileUpdate += OnRandomTileUpdate;
     }
 
     public override ushort GetMapOption(int i, int j) {
@@ -197,6 +199,12 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
             }
         }
         return false;
+    }
+
+    private static void OnRandomTileUpdate(int i, int j, int type) {
+        if (Main.hardMode) {
+            Grow(i, j);
+        }
     }
 
     public static bool Grow(int i, int j) {

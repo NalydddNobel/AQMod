@@ -1,16 +1,21 @@
-﻿using Aequus;
+﻿using Aequus.Common.Tiles;
 using Aequus.Common.Tiles.Components;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria;
-using Terraria.GameContent;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Biomes.PollutedOcean.Tiles.FloatingTrash;
 
 public class FloatingTrashTile : FloatingTrashBase, ITouchEffects {
     public override string Texture => AequusTextures.Tile(TileID.Iron);
+
+    public override void SetStaticDefaults() {
+        base.SetStaticDefaults();
+        AequusTile.OnRandomTileUpdate += OnRandomTileUpdate;
+    }
+
+    private static void OnRandomTileUpdate(int i, int j, int type) {
+        if (Main.dayTime && WorldGen.oceanDepths(i, j) && Main.tile[i, j - 1].LiquidAmount > 0 && TileHelper.ScanUp(new(i, j - 1), 100, out var result, TileHelper.HasNoLiquid)) {
+            WorldGen.PlaceTile(result.X, result.Y + 1, ModContent.TileType<FloatingTrashTile>(), mute: true);
+        }
+    }
 
     public void Touch(int i, int j, Player player, AequusPlayer aequusPlayer) {
         var tile = Main.tile[i, j];
@@ -28,8 +33,8 @@ public class FloatingTrashTile : FloatingTrashBase, ITouchEffects {
         var random = Helper.RandomTileCoordinates(i, j);
         var randomItemTexture = random.Next(ItemLoader.ItemCount);
         Main.GetItemDrawFrame(randomItemTexture, out var itemTexture, out var itemFrame);
-        
-        var drawCoordinates = new Vector2(i * 16f + 8f + random.Next(-4, 4), j * 16f + Helper.Oscillate(Main.GlobalTimeWrappedHourly * random.NextFloat(0.5f, 1.12f), 5f, 11f) + TileHelper.GetWaterY(Main.tile[i,j].LiquidAmount)) - Main.screenPosition + TileHelper.DrawOffset;
+
+        var drawCoordinates = new Vector2(i * 16f + 8f + random.Next(-4, 4), j * 16f + Helper.Oscillate(Main.GlobalTimeWrappedHourly * random.NextFloat(0.5f, 1.12f), 5f, 11f) + TileHelper.GetWaterY(Main.tile[i, j].LiquidAmount)) - Main.screenPosition + TileHelper.DrawOffset;
         spriteBatch.Draw(itemTexture, drawCoordinates.Floor(), itemFrame, Lighting.GetColor(i, j), random.NextFloat(MathHelper.Pi), itemFrame.Size() / 2f, 1f, SpriteEffects.None, 0f);
         return false;
     }
