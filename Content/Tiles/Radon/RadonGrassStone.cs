@@ -1,15 +1,13 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Common.Tiles.Components;
 using Aequus.Content.Graphics;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria.Audio;
 using Terraria.Utilities;
 
 namespace Aequus.Content.Tiles.Radon;
 
 [LegacyName("RadonMossTile")]
-public class RadonGrassStone : ModTile, IOnPlaceTile {
+public class RadonGrassStone : ModTile, IOnPlaceTile, ITouchEffects {
     public static bool[] IsRadonMoss { get; private set; }
 
     public override void SetStaticDefaults() {
@@ -99,5 +97,11 @@ public class RadonGrassStone : ModTile, IOnPlaceTile {
             SoundEngine.PlaySound(SoundID.Dig, new Vector2(i * 16f + 8f, j * 16f + 8f));
         }
         return true;
+    }
+
+    public void Touch(int i, int j, Player player, AequusPlayer aequusPlayer) {
+        var modPlayer = player.GetModPlayer<RadonPlayer>();
+        modPlayer.exposureTime++;
+        modPlayer.exposureReduceDelay = RadonPlayer.TouchReduceDelay;
     }
 }

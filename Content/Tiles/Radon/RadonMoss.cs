@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Tiles;
-using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Terraria.ObjectData;
 
@@ -17,6 +16,8 @@ public class RadonMoss : ModTile {
     }
 
     public override void SetStaticDefaults() {
+        (Item as InstancedTileItem).WithPlacement(ModContent.GetInstance<RadonGrassStone>());
+
         Main.tileFrameImportant[Type] = true;
         Main.tileObsidianKill[Type] = true;
         Main.tileNoFail[Type] = true;

@@ -13,6 +13,7 @@ internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
     private readonly int _value;
     private readonly int? _sacrificeCount;
 
+    protected ModTile ModTileToPlace { get; private set; }
     private Action<ModItem> _setStaticDefaults;
     private Action<ModItem> _addRecipes;
 
@@ -29,6 +30,7 @@ internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
     public InstancedTileItem(ModTile modTile, int style = 0, string nameSuffix = "", bool dropItem = true, int rarity = ItemRarityID.White, int value = 0, int? researchSacrificeCount = null) 
         : base(modTile.Name + nameSuffix, (modTile is InstancedModTile instancedModTile ? instancedModTile._texture : modTile.Texture) + nameSuffix + "Item") {
         _modTile = modTile;
+        ModTileToPlace = modTile;
         _dropItem = dropItem;
         _style = style;
         _rarity = rarity;
@@ -43,6 +45,11 @@ internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
 
     public InstancedTileItem WithRecipe(Action<ModItem> addRecipeAction) {
         _addRecipes += addRecipeAction;
+        return this;
+    }
+
+    public InstancedTileItem WithPlacement(ModTile other) {
+        ModTileToPlace = other;
         return this;
     }
 
@@ -62,7 +69,7 @@ internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
     }
 
     public override void SetDefaults() {
-        Item.DefaultToPlaceableTile(_modTile.Type, _style);
+        Item.DefaultToPlaceableTile(ModTileToPlace.Type, _style);
         Item.rare = _rarity;
         Item.value = _value;
     }
