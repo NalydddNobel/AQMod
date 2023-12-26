@@ -6,11 +6,14 @@ global using Terraria.ID;
 global using Terraria.ModLoader;
 using Aequus.Core.Networking;
 using System.IO;
+using System.Reflection;
 
 namespace Aequus;
 
 public partial class Aequus : Mod {
     public static Aequus Instance { get; private set; }
+
+    public static Assembly TerrariaAssembly => typeof(Main).Assembly;
 
     public static bool highQualityEffects = true;
 
