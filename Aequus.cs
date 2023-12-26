@@ -4,8 +4,6 @@ global using Microsoft.Xna.Framework.Graphics;
 global using Terraria;
 global using Terraria.ID;
 global using Terraria.ModLoader;
-using Aequus.Core.Networking;
-using System.IO;
 using System.Reflection;
 
 namespace Aequus;
