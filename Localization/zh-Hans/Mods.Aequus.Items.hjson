@@ -433,3 +433,13 @@ Backpacks: {
 		BackpackDisabled: 背包关闭
 	}
 }
+
+BlackGlowstick: {
+	// DisplayName: Black Glowstick
+	// Tooltip: ""
+}
+
+SuperGlowstick: {
+	// DisplayName: Super Glowstick
+	// Tooltip: ""
+}

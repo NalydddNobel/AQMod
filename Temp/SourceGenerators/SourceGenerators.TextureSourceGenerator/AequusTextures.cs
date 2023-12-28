@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 249)</summary>
+/// <summary>(Total Textures: 251)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -371,6 +371,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Bellows = new("Aequus/Content/Items/Tools/Bellows/Bellows");
     /// <summary>Full Path: Content/Items/Tools/Bellows/BellowsProj</summary>
     public static readonly RequestCache<Texture2D> BellowsProj = new("Aequus/Content/Items/Tools/Bellows/BellowsProj");
+    /// <summary>Full Path: Content/Items/Tools/Glowsticks/BlackGlowstick/BlackGlowstick</summary>
+    public static readonly RequestCache<Texture2D> BlackGlowstick = new("Aequus/Content/Items/Tools/Glowsticks/BlackGlowstick/BlackGlowstick");
+    /// <summary>Full Path: Content/Items/Tools/Glowsticks/SuperGlowstick/SuperGlowstick</summary>
+    public static readonly RequestCache<Texture2D> SuperGlowstick = new("Aequus/Content/Items/Tools/Glowsticks/SuperGlowstick/SuperGlowstick");
     /// <summary>Full Path: Content/Items/Tools/MagicMirrors/PhaseMirror/PhaseMirror</summary>
     public static readonly RequestCache<Texture2D> PhaseMirror = new("Aequus/Content/Items/Tools/MagicMirrors/PhaseMirror/PhaseMirror");
     /// <summary>Full Path: Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhone</summary>

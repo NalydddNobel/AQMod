@@ -434,3 +434,13 @@ Backpacks: {
 		BackpackDisabled: Mochila No Visible
 	}
 }
+
+BlackGlowstick: {
+	// DisplayName: Black Glowstick
+	// Tooltip: ""
+}
+
+SuperGlowstick: {
+	// DisplayName: Super Glowstick
+	// Tooltip: ""
+}

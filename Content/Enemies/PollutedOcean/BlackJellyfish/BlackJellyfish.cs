@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Content.DataSets;
-using Microsoft.Xna.Framework;
+using Aequus.Content.Items.Tools.Glowsticks.BlackGlowstick;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
@@ -40,7 +40,7 @@ public partial class BlackJellyfish : AIJellyfish {
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
-        npcLoot.Add(ItemDropRule.Common(ItemID.Glowstick, minimumDropped: 1, maximumDropped: 4));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BlackGlowstick>(), minimumDropped: 1, maximumDropped: 4));
         npcLoot.Add(ItemDropRule.Common(ItemID.JellyfishNecklace, 100));
     }
     #endregion

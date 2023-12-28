@@ -206,6 +206,23 @@ Baguette: {
 }
 
 //# Misc
+BlackGlowstick: {
+	DisplayName: Black Glowstick
+	Tooltip: "Reveals wires and echo tiles"
+}
+
+SuperGlowstick: {
+	DisplayName: Super Glowstick
+	Tooltip:
+		'''
+		Glows, reveals ores, wires, and echo tiles, even if wet
+		Sticky, it allows you to stick to walls
+		Bouncy, increases your jump height
+		Floaty, grants featherfall
+		Can be infintely thrown
+		'''
+}
+
 PossessedShard: {
 	DisplayName: Possessed Shard
 	Tooltip: Dropped from possessed armors and tools

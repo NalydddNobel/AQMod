@@ -1153,7 +1153,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 249)</summary>
+            <summary>(Total Textures: 251)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1700,6 +1700,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.BellowsProj">
             <summary>Full Path: Content/Items/Tools/Bellows/BellowsProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackGlowstick">
+            <summary>Full Path: Content/Items/Tools/Glowsticks/BlackGlowstick/BlackGlowstick</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SuperGlowstick">
+            <summary>Full Path: Content/Items/Tools/Glowsticks/SuperGlowstick/SuperGlowstick</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PhaseMirror">
             <summary>Full Path: Content/Items/Tools/MagicMirrors/PhaseMirror/PhaseMirror</summary>
