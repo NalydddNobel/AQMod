@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 249)</summary>
+/// <summary>(Total Textures: 252)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -191,6 +191,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ScorchingDye = new("Aequus/Content/Dyes/Items/ScorchingDye");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
     public static readonly RequestCache<Texture2D> BlackJellyfish = new("Aequus/Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishBanner</summary>
+    public static readonly RequestCache<Texture2D> BlackJellyfishBanner = new("Aequus/Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishBanner");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishBannerItem</summary>
+    public static readonly RequestCache<Texture2D> BlackJellyfishBannerItem = new("Aequus/Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishBannerItem");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishVertexStrip</summary>
     public static readonly RequestCache<Texture2D> BlackJellyfishVertexStrip = new("Aequus/Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishVertexStrip");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish_Bag</summary>
@@ -399,6 +403,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OmegaStaritePetBuff = new("Aequus/Content/Pets/OmegaStarite/OmegaStaritePetBuff");
     /// <summary>Full Path: Content/Pets/OmegaStarite/OmegaStaritePetItem</summary>
     public static readonly RequestCache<Texture2D> OmegaStaritePetItem = new("Aequus/Content/Pets/OmegaStarite/OmegaStaritePetItem");
+    /// <summary>Full Path: Content/Tiles/Banners/OldMonsterBanners</summary>
+    public static readonly RequestCache<Texture2D> OldMonsterBanners = new("Aequus/Content/Tiles/Banners/OldMonsterBanners");
     /// <summary>Full Path: Content/Tiles/Conductive/ConductiveBlock</summary>
     public static readonly RequestCache<Texture2D> ConductiveBlock = new("Aequus/Content/Tiles/Conductive/ConductiveBlock");
     /// <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockItem</summary>

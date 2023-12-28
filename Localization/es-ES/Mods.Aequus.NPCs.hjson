@@ -15,6 +15,7 @@ MonsterChestSummon: {
 BlackJellyfish: {
 	DisplayName: Medusa Negra
 	Bestiary: Evolución en un ambiente tan contaminado es difícil, estas medusas descubrieron que obliterar a sus enemigos y así mismos sería la mejor forma de defender a su especie, su esperanza de vida varía entre un par de minutos a años.
+	// BannerName: Black Jellyfish Banner
 }
 
 Mirage.Bestiary: Durante la lluvia, nubes toxicas se forman y acumulan formando este monstruo acídico, desea ser un nimbo real, pero tiene problemas haciéndose amigo hasta de un muñeco de pruebas.

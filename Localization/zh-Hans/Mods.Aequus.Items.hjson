@@ -8,6 +8,7 @@ CommonTooltips: {
 	DedicatedItem: 谢谢你, {0}!
 	DedicatedItemAnonymous: 专属物品
 	UsesDarts: 使用种子和飞镖作为弹药
+	// Banner: "{$CommonItemTooltip.BannerBonus}{0}"
 }
 
 //# Equipment: Accessories
