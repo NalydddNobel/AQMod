@@ -49,7 +49,7 @@ public class MonoGemTile : BaseGemTile, ISpecialTileRenderer {
                 Color.White);
         }
 
-        SpecialTileRenderer.Add(i, j, TileRenderLayerID.PostDrawMasterRelics);
+        LegacySpecialTileRenderer.Add(i, j, TileRenderLayerID.PostDrawMasterRelics);
         return false;
     }
 

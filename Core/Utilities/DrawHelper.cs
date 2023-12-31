@@ -170,7 +170,7 @@ public sealed class DrawHelper : ModSystem {
     #region Hooks
     private static void On_Main_DrawDust(On_Main.orig_DrawDust orig, Main main) {
         orig(main);
-        var particleRenderer = ParticleSystem.GetLayer(ParticleLayer.AboveDust);
+        var particleRenderer = LegacyParticleSystem.GetLayer(ParticleLayer.AboveDust);
         if (particleRenderer.Particles.Count > 0) {
             Main.spriteBatch.BeginWorld();
             particleRenderer.Draw(Main.spriteBatch);
@@ -181,16 +181,16 @@ public sealed class DrawHelper : ModSystem {
 
     private static void On_Main_DrawItems(On_Main.orig_DrawItems orig, Main main) {
         orig(main);
-        ParticleSystem.GetLayer(ParticleLayer.AboveItems).Draw(Main.spriteBatch);
+        LegacyParticleSystem.GetLayer(ParticleLayer.AboveItems).Draw(Main.spriteBatch);
     }
 
     private static void On_Main_DrawNPCs(On_Main.orig_DrawNPCs orig, Main main, bool behindTiles) {
         if (!behindTiles) {
             orig(main, behindTiles);
-            ParticleSystem.GetLayer(ParticleLayer.AboveNPCs).Draw(Main.spriteBatch);
+            LegacyParticleSystem.GetLayer(ParticleLayer.AboveNPCs).Draw(Main.spriteBatch);
         }
         else {
-            ParticleSystem.GetLayer(ParticleLayer.BehindAllNPCsBehindTiles).Draw(Main.spriteBatch);
+            LegacyParticleSystem.GetLayer(ParticleLayer.BehindAllNPCsBehindTiles).Draw(Main.spriteBatch);
             orig(main, behindTiles);
         }
     }

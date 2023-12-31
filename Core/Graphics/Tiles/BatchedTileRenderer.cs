@@ -67,7 +67,7 @@ public sealed class BatchedTileRenderer : ModSystem {
 
     public override void PostDrawTiles() {
         foreach (var batch in _batches.Values) {
-            batch.Drawer.BatchedPostDraw(batch.Tiles, batch.Count);
+            batch.Drawer.PostDrawTilesBatch(batch.Tiles, batch.Count);
         }
     }
 }

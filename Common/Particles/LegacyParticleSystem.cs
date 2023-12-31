@@ -1,8 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Terraria.Graphics.Renderers;
 
 namespace Aequus.Common.Particles;
-public class ParticleSystem : ModSystem {
+
+[Obsolete]
+public class LegacyParticleSystem : ModSystem {
     internal class ParticlePools<T> where T : BaseParticle<T>, new() {
         public static ParticlePool<T> Pool;
     }

@@ -74,9 +74,9 @@ public class FurystarBulletProj : ModProjectile {
         var player = Main.player[Projectile.owner];
         var color = Color.Lerp(Color.Cyan, Color.Blue, Main.rand.NextFloat(0.15f, 0.85f));
         float scale = Main.rand.NextFloat(0.2f, 0.4f);
-        ParticleSystem.New<FurystarParticle>(ParticleLayer.AboveDust)
+        LegacyParticleSystem.New<FurystarParticle>(ParticleLayer.AboveDust)
             .Setup(Main.rand.NextVector2FromRectangle(target.getRect()), Projectile.velocity * 0.05f, color, scale);
-        ParticleSystem.New<FurystarParticle>(ParticleLayer.AboveDust)
+        LegacyParticleSystem.New<FurystarParticle>(ParticleLayer.AboveDust)
             .Setup(Main.rand.NextVector2FromRectangle(Main.player[Projectile.owner].getRect()), Vector2.Zero, color, scale);
         int healMana = 10;
         player.statMana = Math.Min(player.statMana + healMana, player.statManaMax2);

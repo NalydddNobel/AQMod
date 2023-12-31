@@ -95,7 +95,7 @@ public abstract class BaseParticle<T> : IPooledParticle, ILoadable where T : Bas
     }
 
     public void Load(Mod mod) {
-        ParticleSystem.ParticlePools<T>.Pool = new ParticlePool<T>(InitalPoolSize, CreateBaseInstance);
+        LegacyParticleSystem.ParticlePools<T>.Pool = new ParticlePool<T>(InitalPoolSize, CreateBaseInstance);
         OnLoad(mod);
     }
     public virtual void OnLoad(Mod mod) {
@@ -103,7 +103,7 @@ public abstract class BaseParticle<T> : IPooledParticle, ILoadable where T : Bas
 
     public void Unload() {
         try {
-            ParticleSystem.ParticlePools<T>.Pool = null;
+            LegacyParticleSystem.ParticlePools<T>.Pool = null;
         }
         catch {
         }

@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System.Reflection;
+﻿using System.Reflection;
 
 namespace Aequus.Core.Graphics;
 

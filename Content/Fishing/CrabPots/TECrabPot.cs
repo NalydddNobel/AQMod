@@ -41,7 +41,7 @@ public class TECrabPot : ModTileEntity {
 
     public static void PlacementEffects(int x, int y) {
         if (Main.netMode != NetmodeID.Server) {
-            AnimationSystem.GetValueOrAddDefault<AnimationPlaceCrabPot>(x, y);
+            TileAnimationSystem.GetValueOrAddDefault<AnimationPlaceCrabPot>(x, y);
         }
     }
 

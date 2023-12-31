@@ -8,7 +8,7 @@ public class VineDrawing : ILoadable {
     public static readonly Dictionary<int, int> VineLength = new();
 
     public static void DrawVine(int i, int j) {
-        SpecialTileRenderer.AddVanillaSpecialPoint(i, j, 5);
+        LegacySpecialTileRenderer.AddVanillaSpecialPoint(i, j, 5);
     }
 
     private static void On_TileDrawing_DrawMultiTileVinesInWind(On_TileDrawing.orig_DrawMultiTileVinesInWind orig, TileDrawing self, Vector2 screenPosition, Vector2 offSet, int topLeftX, int topLeftY, int sizeX, int sizeY) {

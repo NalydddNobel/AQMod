@@ -609,7 +609,7 @@
             <param name="npcId">The NPC type.</param>
             <param name="rule">The item drop rule.</param>
         </member>
-        <member name="M:Aequus.Common.Particles.ParticleSystem.New``1(Aequus.Common.Particles.ParticleLayer)">
+        <member name="M:Aequus.Common.Particles.LegacyParticleSystem.New``1(Aequus.Common.Particles.ParticleLayer)">
             <summary>
             Do not use on servers.
             </summary>
@@ -829,16 +829,6 @@
             <summary>
             Determines whether or not the item was from a catch.
             This prevents some catches, like Jellyfishes being used as bait or being indicated as bait.
-            </summary>
-        </member>
-        <member name="T:Aequus.Core.Graphics.MiscWorldUI">
-            <summary>
-            Used to render any World elements which need to be on the UI layer. This renders after Entity Healthbars are drawn.
-            </summary>
-        </member>
-        <member name="F:Aequus.Core.Graphics.MiscWorldUI.Drawer">
-            <summary>
-            A drawdata list to add into, if you know how Player Layers work, this should be familiar. Currently doesn't support shaders.
             </summary>
         </member>
         <member name="M:Aequus.Core.Graphics.RequestRenderer.ClearWorld">

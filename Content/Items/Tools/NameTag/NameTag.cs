@@ -53,15 +53,17 @@ public class NameTag : ModItem, ICustomNameTagPrice {
         return false;
     }
 
-    public static void NametagEffects(int i, string nameTag) {
-        if (Main.npc[i].TryGetGlobalNPC<RenameNPC>(out var npcNameTag)) {
-            npcNameTag.CustomName = nameTag;
-            npcNameTag.nameTagAnimation = 1f;
+    public static bool NametagEffects(int i, string nameTag) {
+        if (!Main.npc[i].TryGetGlobalNPC<RenameNPC>(out var renameNPC)) {
+            return false;
         }
+
+        renameNPC.CustomName = nameTag;
 
         SoundEngine.PlaySound(SoundID.Item92, Main.npc[i].Center);
 
         if (Main.netMode != NetmodeID.Server) {
+            RenameNPCBlips.Add(i, nameTag);
             for (int k = 0; k < 15; k++) {
                 var d = Dust.NewDustDirect(Main.npc[i].position, Main.npc[i].width, Main.npc[i].height, DustID.AncientLight, 0f, 0f, Scale: Main.rand.NextFloat(0.5f, 0.8f));
                 d.velocity *= 0.1f;
@@ -70,6 +72,8 @@ public class NameTag : ModItem, ICustomNameTagPrice {
                 d.noGravity = true;
             }
         }
+
+        return true;
     }
 
     public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {

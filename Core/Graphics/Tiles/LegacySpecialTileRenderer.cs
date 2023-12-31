@@ -1,5 +1,4 @@
 ﻿using Aequus.Content.Graphics;
-using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -7,7 +6,8 @@ using Terraria.GameContent.Drawing;
 
 namespace Aequus.Core.Graphics.Tiles;
 
-internal sealed class SpecialTileRenderer : ModSystem {
+[Obsolete]
+internal sealed class LegacySpecialTileRenderer : ModSystem {
     public static Action PreDrawNonSolidTiles;
     public static Action UpdateTileEffects;
     public static Action ClearTileEffects;

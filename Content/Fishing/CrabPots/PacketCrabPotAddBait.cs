@@ -30,7 +30,7 @@ public class PacketCrabPotAddBait : PacketHandler {
             Send(x, y, plr, bait, sender);
         }
         else {
-            AnimationSystem.GetValueOrAddDefault<AnimationOpenCrabPot>(x, y);
+            TileAnimationSystem.GetValueOrAddDefault<AnimationOpenCrabPot>(x, y);
         }
         if (crabPot.item.IsAir) {
             crabPot.ClearItem();

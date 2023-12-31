@@ -94,17 +94,17 @@ public abstract class AequusTownNPC : ModNPC, IModifyShoppingSettings, ITalkNPCU
             var drawPosition = (NPC.Top + new Vector2(0f, -6f - 20f * MathF.Pow(opacity, 3f)) - screenPos).Floor();
             var origin = texture.Size() / 2f;
             var clr = new Color(150, 150, 255, 222) * opacity;
-            MiscWorldUI.Drawer.Draw(AequusTextures.BloomStrong, drawPosition, null, Color.Black * opacity * 0.2f, 0f, AequusTextures.BloomStrong.Size() / 2f, 0.5f, SpriteEffects.None, 0f);
+            DrawLayers.WorldUI.Draw(AequusTextures.BloomStrong, drawPosition, null, Color.Black * opacity * 0.2f, 0f, AequusTextures.BloomStrong.Size() / 2f, 0.5f, SpriteEffects.None, 0f);
 
             if (scale > 1f) {
                 float auraOpacity = (scale - 1f) / 0.1f;
                 var spinningPoint = new Vector2(2f, 0f);
                 for (int i = 0; i < 4; i++) {
-                    MiscWorldUI.Drawer.Draw(texture, drawPosition + spinningPoint.RotatedBy(i * MathHelper.PiOver2), null, clr with { A = 0 } * auraOpacity, 0f, origin, scale, SpriteEffects.None, 0f);
+                    DrawLayers.WorldUI.Draw(texture, drawPosition + spinningPoint.RotatedBy(i * MathHelper.PiOver2), null, clr with { A = 0 } * auraOpacity, 0f, origin, scale, SpriteEffects.None, 0f);
                 }
             }
 
-            MiscWorldUI.Drawer.Draw(texture, drawPosition, null, clr, 0f, origin, scale, SpriteEffects.None, 0f);
+            DrawLayers.WorldUI.Draw(texture, drawPosition, null, clr, 0f, origin, scale, SpriteEffects.None, 0f);
         }
         return true;
     }

@@ -6,6 +6,8 @@ using Terraria.GameContent;
 namespace Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
 
 public partial class BlackJellyfish : AIJellyfish {
+    public const int LightningSegments = 36;
+
     private Vector2[] lightningDrawCoordinates;
     private float[] lightningDrawRotations;
 
@@ -20,6 +22,10 @@ public partial class BlackJellyfish : AIJellyfish {
         //origin.X += 1f;
         //origin.Y += 6f;
         drawColor = NPC.GetAlpha(NPC.GetNPCColorTintedByBuffs(drawColor));
+
+        spriteBatch.Draw(TextureAssets.Npc[Type].Value, drawCoordinates - screenPos, NPC.frame, drawColor * opacity * 0.92f, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+        spriteBatch.Draw(AequusTextures.BlackJellyfish_Bag, drawCoordinates - screenPos, NPC.frame, drawColor * opacity, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+
         if (!NPC.IsABestiaryIconDummy && NPC.ai[2] > 0f) {
             if (lightningDrawCoordinates == null) {
                 const int LightningSegments = 36;
@@ -42,6 +48,7 @@ public partial class BlackJellyfish : AIJellyfish {
                 lightningDrawCoordinates[i] = drawCoordinates + new Vector2(attackRange, 0f).RotatedBy(rotation) - screenPos + Main.rand.NextVector2Square(-attackProgress, attackProgress) * 6f;
                 lightningDrawRotations[i] = rotation - MathHelper.PiOver2;
             }
+
             var lightningColor = new Color(255, 200, 100, 10);
             float attackRangeNormalized = attackRange / AttackRange;
             if (NPC.ai[2] < shockAttackLength) {
@@ -51,24 +58,30 @@ public partial class BlackJellyfish : AIJellyfish {
                     color = lightningColor;
                 }
                 drawCoordinates += Main.rand.NextVector2Square(-attackProgress, attackProgress) * 4f - screenPos;
+
                 float npcScale = NPC.scale + attackProgress * 0.3f;
                 for (int i = 0; i < 4; i++) {
-                    MiscWorldUI.Drawer.Draw(TextureAssets.Npc[Type].Value, drawCoordinates + new Vector2(2f * NPC.scale, 0f).RotatedBy(i * MathHelper.PiOver2 + NPC.rotation), NPC.frame, lightningColor with { A = 60 } * attackProgress, NPC.rotation, origin, npcScale, SpriteEffects.None);
+                    Main.spriteBatch.Draw(TextureAssets.Npc[Type].Value, drawCoordinates + new Vector2(2f * NPC.scale, 0f).RotatedBy(i * MathHelper.PiOver2 + NPC.rotation), NPC.frame, lightningColor with { A = 60 } * attackProgress, NPC.rotation, origin, npcScale, SpriteEffects.None, 0f);
                 }
-                MiscWorldUI.Drawer.Draw(TextureAssets.Npc[Type].Value, drawCoordinates, NPC.frame, color * attackProgress, NPC.rotation, origin, npcScale, SpriteEffects.None);
+                Main.spriteBatch.Draw(TextureAssets.Npc[Type].Value, drawCoordinates, NPC.frame, color * attackProgress, NPC.rotation, origin, npcScale, SpriteEffects.None, 0f);
             }
-            else {
-                opacity = 0f;
-                MiscWorldUI.Drawer.Draw(AequusTextures.BloomStrong, drawCoordinates - screenPos, null, lightningColor * attackRangeNormalized, 0f, AequusTextures.BloomStrong.Size() / 2f, MathF.Pow(attackRange / AttackRange, 1.5f), SpriteEffects.None);
-                MiscWorldUI.Drawer.Draw(AequusTextures.Bloom, drawCoordinates - screenPos, null, lightningColor * attackRangeNormalized, 0f, AequusTextures.Bloom.Size() / 2f, MathF.Pow(attackRange / AttackRange, 3f) * 1.25f, SpriteEffects.None);
-            }
-            MiscWorldUI.Drawer.DrawBasicVertexLine(AequusTextures.BlackJellyfishVertexStrip, lightningDrawCoordinates, lightningDrawRotations,
-                p => lightningColor * attackRangeNormalized * NPC.Opacity,
-                p => Math.Max(attackRangeNormalized < 1f ? attackRangeNormalized : MathF.Pow(attackRangeNormalized, 1.5f), 0.25f) * NPC.Opacity * 8f
-            );
+
+            DrawLayers.AboveWater.Draw(() => {
+                if (NPC.ai[2] >= shockAttackLength) {
+                    Main.spriteBatch.Draw(AequusTextures.BloomStrong, drawCoordinates - screenPos, null, lightningColor * attackRangeNormalized, 0f, AequusTextures.BloomStrong.Size() / 2f, MathF.Pow(attackRange / AttackRange, 1.5f), SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(AequusTextures.Bloom, drawCoordinates - screenPos, null, lightningColor * attackRangeNormalized, 0f, AequusTextures.Bloom.Size() / 2f, MathF.Pow(attackRange / AttackRange, 3f) * 1.25f, SpriteEffects.None, 0f);
+                }
+
+                DrawHelper.DrawBasicVertexLine(AequusTextures.BlackJellyfishVertexStrip, lightningDrawCoordinates, lightningDrawRotations,
+                    p => lightningColor * attackRangeNormalized * NPC.Opacity,
+                    p => Math.Max(attackRangeNormalized < 1f ? attackRangeNormalized : MathF.Pow(attackRangeNormalized, 1.5f), 0.25f) * NPC.Opacity * 8f
+                );
+            });
         }
-        spriteBatch.Draw(TextureAssets.Npc[Type].Value, drawCoordinates - screenPos, NPC.frame, drawColor * opacity * 0.92f, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
-        spriteBatch.Draw(AequusTextures.BlackJellyfish_Bag, drawCoordinates - screenPos, NPC.frame, drawColor * opacity, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
         return false;
+    }
+
+    public void DrawFront() {
+
     }
 }

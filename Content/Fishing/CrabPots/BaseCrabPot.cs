@@ -217,7 +217,7 @@ public abstract class BaseCrabPot : ModTile, ISpecialTileRenderer, IModifyPlacem
             crabPot.ClearItem();
         }
 
-        AnimationSystem.GetValueOrAddDefault<AnimationOpenCrabPot>(left, top);
+        TileAnimationSystem.GetValueOrAddDefault<AnimationOpenCrabPot>(left, top);
         crabPot.biomeData = new(TECrabPot.GetWaterStyle(left, top));
         return true;
     }
@@ -274,7 +274,7 @@ public abstract class BaseCrabPot : ModTile, ISpecialTileRenderer, IModifyPlacem
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
         if (Main.tile[i, j].TileFrameX % 36 / 18 == 0 && Main.tile[i, j].TileFrameY % 42 / 18 == 0) {
-            SpecialTileRenderer.Add(i, j, TileRenderLayerID.PreDrawMasterRelics);
+            LegacySpecialTileRenderer.Add(i, j, TileRenderLayerID.PreDrawMasterRelics);
         }
         return false;
     }
@@ -299,10 +299,10 @@ public abstract class BaseCrabPot : ModTile, ISpecialTileRenderer, IModifyPlacem
         int yOffset = (int)TileHelper.GetWaterY(Main.tile[i, j].LiquidAmount) + (int)(MathF.Sin(Main.GameUpdateCount / 40f) * 2.5f);
 
         int crabPotAnimation = 0;
-        if (AnimationSystem.TryGet<AnimationOpenCrabPot>(new(left, top), out var openAnim)) {
+        if (TileAnimationSystem.TryGet<AnimationOpenCrabPot>(new(left, top), out var openAnim)) {
             crabPotAnimation = openAnim.RealFrame;
         }
-        if (AnimationSystem.TryGet<AnimationPlaceCrabPot>(new(left, top), out var placeAnim)) {
+        if (TileAnimationSystem.TryGet<AnimationPlaceCrabPot>(new(left, top), out var placeAnim)) {
             yOffset += placeAnim.DrawOffsetY;
         }
 

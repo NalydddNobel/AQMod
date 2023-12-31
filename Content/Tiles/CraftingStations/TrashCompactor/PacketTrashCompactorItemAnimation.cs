@@ -19,9 +19,11 @@ public class PacketTrashCompactorItemAnimation : PacketHandler {
         int totalAmount = reader.ReadInt32();
         int itemType = reader.ReadInt32();
 
-        TrashCompactor.UseItemAnimation(x, y, totalAmount, itemType);
         if (Main.netMode == NetmodeID.Server) {
             Send(x, y, totalAmount, itemType, ignoreClient: sender);
+        }
+        else {
+            TrashCompactor.UseItemAnimation(x, y, totalAmount, itemType);
         }
     }
 }

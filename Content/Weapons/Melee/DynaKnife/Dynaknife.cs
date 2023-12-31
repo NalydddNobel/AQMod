@@ -41,7 +41,7 @@ public class Dynaknife : ModItem, ICooldownItem {
         }
         player.velocity.X = 12f * dir;
         for (int i = 0; i < 16; i++) {
-            ParticleSystem.New<MovementParticle>(ParticleLayer.AboveDust)
+            LegacyParticleSystem.New<MovementParticle>(ParticleLayer.AboveDust)
                 .Setup(Main.rand.NextVector2FromRectangle(player.getRect()), new Vector2(dir * Main.rand.NextFloat(10f, 16f), 0f), Color.White, Main.rand.NextFloat(1f, 1.5f));
         }
     }

@@ -58,7 +58,7 @@ public class WispLantern : ModItem {
         for (int i = 0; i < 6; i++) {
             var color = Color.Lerp(Color.Teal, Color.LightSkyBlue, Main.rand.NextFloat(0.15f, 0.85f));
             float scale = Main.rand.NextFloat(0.5f, 0.9f);
-            ParticleSystem.New<WispLanternParticle>(ParticleLayer.AboveDust)
+            LegacyParticleSystem.New<WispLanternParticle>(ParticleLayer.AboveDust)
                 .Setup(Main.rand.NextVector2FromRectangle(Main.npc[npc].getRect()), Main.npc[npc].velocity * 0.05f, color, scale).npc = npc;
         }
     }

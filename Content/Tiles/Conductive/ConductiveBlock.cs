@@ -76,7 +76,7 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
         var color = Lighting.GetColor(i, j);
         if (ConductiveSystem.ActivationPoints.TryGetValue(new(i, j), out var effect)) {
             spriteBatch.Draw(TextureAssets.Tile[Type].Value, drawCoordinates, frame, color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-            SpecialTileRenderer.AddSolid(i, j, TileRenderLayerID.PostDrawLiquids);
+            LegacySpecialTileRenderer.AddSolid(i, j, TileRenderLayerID.PostDrawLiquids);
         }
         else {
             spriteBatch.Draw(TextureAssets.Tile[Type].Value, drawCoordinates, frame, color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);

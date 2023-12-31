@@ -53,10 +53,10 @@ public abstract class EnergyItemBase<T> : ModItem where T : EnergyParticle<T>, n
     public override void Update(ref float gravity, ref float maxFallSpeed) {
         if (Main.netMode != NetmodeID.Server) {
             if (Item.timeSinceItemSpawned % 24 == 0) {
-                ParticleSystem.New<T>(ParticleLayer.AboveItems).Setup(Item.position + new Vector2(Main.rand.Next(Item.width), Main.rand.NextFloat(8f, Item.height * 0.66f) - 8f), -Vector2.UnitY * Main.rand.NextFloat(0.1f, 0.22f), new Color(LightColor * 2f) with { A = 0 }, Main.rand.NextFloat(0.8f, 1.1f));
+                LegacyParticleSystem.New<T>(ParticleLayer.AboveItems).Setup(Item.position + new Vector2(Main.rand.Next(Item.width), Main.rand.NextFloat(8f, Item.height * 0.66f) - 8f), -Vector2.UnitY * Main.rand.NextFloat(0.1f, 0.22f), new Color(LightColor * 2f) with { A = 0 }, Main.rand.NextFloat(0.8f, 1.1f));
             }
             if (Item.timeSinceItemSpawned % 32 == 0) {
-                ParticleSystem.New<T>(ParticleLayer.AboveNPCs).Setup(Item.position + new Vector2(Main.rand.Next(Item.width), Main.rand.NextFloat(8f, Item.height * 0.66f) - 8f), -Vector2.UnitY * Main.rand.NextFloat(0.1f, 0.22f), new Color(LightColor * 0.75f) with { A = 0 }, Main.rand.NextFloat(0.8f, 1.1f));
+                LegacyParticleSystem.New<T>(ParticleLayer.AboveNPCs).Setup(Item.position + new Vector2(Main.rand.Next(Item.width), Main.rand.NextFloat(8f, Item.height * 0.66f) - 8f), -Vector2.UnitY * Main.rand.NextFloat(0.1f, 0.22f), new Color(LightColor * 0.75f) with { A = 0 }, Main.rand.NextFloat(0.8f, 1.1f));
             }
         }
         Lighting.AddLight(Item.Center, LightColor);

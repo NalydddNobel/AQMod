@@ -58,7 +58,7 @@ internal class InstancedRelicTile : InstancedModTile, ISpecialTileRenderer {
 
     public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
         if (drawData.tileFrameX % FrameWidth == 0 && drawData.tileFrameY % FrameHeight == 0) {
-            SpecialTileRenderer.Add(i, j, TileRenderLayerID.PostDrawMasterRelics);
+            LegacySpecialTileRenderer.Add(i, j, TileRenderLayerID.PostDrawMasterRelics);
         }
     }
 

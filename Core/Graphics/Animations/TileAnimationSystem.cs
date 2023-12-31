@@ -3,15 +3,15 @@ using Terraria.DataStructures;
 
 namespace Aequus.Core.Graphics.Animations;
 
-public sealed class AnimationSystem : ModSystem {
-    public static TrimmableDictionary<Point16, ITileAnimation> TileAnimations { get; private set; } = new();
+public sealed class TileAnimationSystem : ModSystem {
+    public static TrimmableDictionary<Point16, ITileAnimation> FromTile { get; private set; } = new();
 
     public static bool TryGet<T>(int x, int y, out T anim) where T : ITileAnimation {
         return TryGet(new(x, y), out anim);
     }
 
     public static bool TryGet<T>(Point16 xy, out T anim) where T : ITileAnimation {
-        if (TileAnimations.TryGetValue(xy, out var tileAnimation) && tileAnimation is T wantedTileAnimationType) {
+        if (FromTile.TryGetValue(xy, out var tileAnimation) && tileAnimation is T wantedTileAnimationType) {
             anim = wantedTileAnimationType;
             return true;
         }
@@ -28,8 +28,8 @@ public sealed class AnimationSystem : ModSystem {
             return anim;
         }
 
-        TileAnimations[xy] = new T();
-        return (T)TileAnimations[xy];
+        FromTile[xy] = new T();
+        return (T)FromTile[xy];
     }
 
     public override void PreUpdateEntities() {
@@ -38,25 +38,25 @@ public sealed class AnimationSystem : ModSystem {
             return;
         }
 
-        lock (TileAnimations) {
+        lock (FromTile) {
             try {
-                foreach (var anim in TileAnimations) {
+                foreach (var anim in FromTile) {
                     if (anim.Value?.Update(anim.Key.X, anim.Key.Y) != true) {
-                        TileAnimations.RemoveEnqueue(anim.Key);
+                        FromTile.RemoveEnqueue(anim.Key);
                     }
                 }
-                TileAnimations.RemoveAllQueued();
+                FromTile.RemoveAllQueued();
             }
             catch (Exception ex) {
                 Main.NewText(ex);
-                TileAnimations.Clear();
+                FromTile.Clear();
             }
         }
     }
 
     public override void ClearWorld() {
-        lock (TileAnimations) {
-            TileAnimations.Clear();
+        lock (FromTile) {
+            FromTile.Clear();
         }
     }
 }

@@ -67,7 +67,7 @@ public class AnglerLamp : ModItem {
         for (int i = 0; i < 6; i++) {
             var color = Color.Lerp(Color.Red, Color.Yellow, Main.rand.NextFloat(0.15f, 0.85f));
             float scale = Main.rand.NextFloat(0.4f, 0.76f);
-            ParticleSystem.New<AnglerLampParticle>(ParticleLayer.AboveDust)
+            LegacyParticleSystem.New<AnglerLampParticle>(ParticleLayer.AboveDust)
                 .Setup(Main.rand.NextVector2FromRectangle(Main.npc[npc].getRect()), Main.npc[npc].velocity * 0.05f, color, scale).npc = npc;
         }
     }

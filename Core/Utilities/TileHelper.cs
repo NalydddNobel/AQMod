@@ -91,7 +91,7 @@ public static class TileHelper {
     }
 
     public static bool IsSolidTileAnchor(this TileAnchorDirection tileAnchor) {
-        return tileAnchor != TileAnchorDirection.Invalid && tileAnchor != TileAnchorDirection.Wall;
+        return tileAnchor != TileAnchorDirection.None && tileAnchor != TileAnchorDirection.Wall;
     }
 
     public static TileAnchorDirection GetGemFramingAnchor(int i, int j, bool[] invalidTiles = null) {
@@ -115,7 +115,7 @@ public static class TileHelper {
             return TileAnchorDirection.Right;
         }
 
-        return TileAnchorDirection.Invalid;
+        return TileAnchorDirection.None;
     }
 
     public static void GemFraming(int i, int j, bool[] invalidTiles = null) {

@@ -11,6 +11,6 @@ public interface IBatchedTile : ILoadable {
 
     void BatchedPreDraw(List<BatchedTileDrawInfo> tiles, int count) {
     }
-    void BatchedPostDraw(List<BatchedTileDrawInfo> tiles, int count) {
+    void PostDrawTilesBatch(List<BatchedTileDrawInfo> tiles, int count) {
     }
 }

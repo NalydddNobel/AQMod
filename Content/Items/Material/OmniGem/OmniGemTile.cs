@@ -44,7 +44,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
 
     public override bool CreateDust(int i, int j, ref int type) {
         if (Main.netMode != NetmodeID.Server) {
-            ParticleSystem.New<OmniGemParticle>(ParticleLayer.AboveDust)
+            LegacyParticleSystem.New<OmniGemParticle>(ParticleLayer.AboveDust)
                 .Setup(
                     new Vector2(i * 16f + Main.rand.Next(16), j * 16f + Main.rand.Next(16)),
                     Main.rand.NextVector2Unit() * Main.rand.NextFloat(0.2f, 1f) * 3.3f,
@@ -116,7 +116,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
         Main.spriteBatch.BeginWorld(shader: false);
     }
 
-    public void BatchedPostDraw(List<BatchedTileDrawInfo> tiles, int count) {
+    public void PostDrawTilesBatch(List<BatchedTileDrawInfo> tiles, int count) {
         Main.spriteBatch.BeginWorld(shader: true);
 
         var effect = GameShaders.Armor.GetShaderFromItemId(DyesInstantiator.HueshiftDye.Type);

@@ -345,7 +345,7 @@ public class MonsterChestSummon : ModNPC {
         DrawChain(spriteBatch, chainTexture, startLocation, endLocation, velocity, chainWobble, chainBreak, opacityDistance, chainColor);
 
         if (NPC.localAI[1] < AnimationTimeChestLockBreak) {
-            DrawLock(endLocation + lockNPC.velocity, MathF.Pow(NPC.localAI[1] / 60f, 4f), lockNPC.Opacity, LockColor, MiscWorldUI.Drawer.Draw);
+            DrawLock(endLocation + lockNPC.velocity, MathF.Pow(NPC.localAI[1] / 60f, 4f), lockNPC.Opacity, LockColor, DrawLayers.AboveWater.Draw);
         }
         return false;
     }
