@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.Audio;
+﻿using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent.ObjectInteractions;
@@ -9,14 +7,20 @@ using Terraria.ObjectData;
 
 namespace Aequus.Common.Tiles;
 
-public abstract class BaseChest : BaseFurnitureTile.Furniture {
-    public override int FurnitureDust => DustID.WoodFurniture;
-    public sealed override bool DieInLava => false;
-    public override Color MapColor => ColorHelper.ColorFurniture;
+public abstract class BaseChest : ModTile {
+    private LocalizedText _nameCache;
 
-    public abstract int ChestItem { get; }
+    public ModItem Item { get; private set; }
 
-    public override void SetStaticDefaults() {
+    protected int FrameWidth { get; private set; }
+    protected int FrameHeight { get; private set; }
+
+    public override void Load() {
+        Item = new InstancedTileItem(this);
+        Mod.AddContent(Item);
+    }
+
+    public sealed override void SetStaticDefaults() {
         Main.tileSpelunker[Type] = true;
         Main.tileContainer[Type] = true;
         Main.tileShine2[Type] = true;
@@ -39,39 +43,17 @@ public abstract class BaseChest : BaseFurnitureTile.Furniture {
         TileObjectData.newTile.StyleHorizontal = true;
         TileObjectData.newTile.LavaDeath = false;
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
+
+        SafeSetStaticDefaults();
+
+        FrameWidth = TileObjectData.newTile.CoordinateFullWidth;
+        FrameHeight = TileObjectData.newTile.CoordinateFullHeight;
         TileObjectData.addTile(Type);
-
-        DustType = FurnitureDust;
-        AddMapEntry(MapColor, TextHelper.GetDisplayName(ItemLoader.GetItem(ChestItem)));
     }
+    public virtual void SafeSetStaticDefaults() { }
 
-    public override LocalizedText DefaultContainerName(int frameX, int frameY) {
-        return TextHelper.GetDisplayName(ItemLoader.GetItem(ChestItem));
-    }
-
-    public override ushort GetMapOption(int i, int j) {
-        return (ushort)(Main.tile[i, j].TileFrameX / 36);
-    }
-
-    public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) {
-        return true;
-    }
-
-    public override bool IsLockedChest(int i, int j) {
-        return Main.tile[i, j].TileFrameX / 36 == 1;
-    }
-
-    public static string MapChestName(string name, int i, int j) {
-        int left = i;
-        int top = j;
-        Tile tile = Main.tile[i, j];
-        if (tile.TileFrameX % 36 != 0) {
-            left--;
-        }
-
-        if (tile.TileFrameY != 0) {
-            top--;
-        }
+    protected string MapChestName(string name, int i, int j) {
+        GetTopLeft(i, j, out var left, out var top);
 
         int chest = Chest.FindChest(left, top);
         if (chest < 0) {
@@ -85,6 +67,22 @@ public abstract class BaseChest : BaseFurnitureTile.Furniture {
         return name + ": " + Main.chest[chest].name;
     }
 
+    public override LocalizedText DefaultContainerName(int frameX, int frameY) {
+        return _nameCache ??= Item.DisplayName;
+    }
+
+    public override ushort GetMapOption(int i, int j) {
+        return (ushort)(Main.tile[i, j].TileFrameX / FrameWidth);
+    }
+
+    public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) {
+        return true;
+    }
+
+    public override bool IsLockedChest(int i, int j) {
+        return Main.tile[i, j].TileFrameX / FrameWidth == 1;
+    }
+
     public override void NumDust(int i, int j, bool fail, ref int num) {
         num = fail ? 1 : 3;
     }
@@ -93,23 +91,14 @@ public abstract class BaseChest : BaseFurnitureTile.Furniture {
         Chest.DestroyChest(i, j);
     }
 
-    public virtual bool CheckLocked(int i, int j, int left, int top, Player player) {
+    public virtual bool UnlockChest(int i, int j, int left, int top, Player player) {
         return true;
     }
 
     public override bool RightClick(int i, int j) {
-        Player player = Main.LocalPlayer;
-        Tile tile = Main.tile[i, j];
+        var player = Main.LocalPlayer;
         Main.mouseRightRelease = false;
-        int left = i;
-        int top = j;
-        if (tile.TileFrameX % 36 != 0) {
-            left--;
-        }
-
-        if (tile.TileFrameY != 0) {
-            top--;
-        }
+        GetTopLeft(i, j, out var left, out var top);
 
         player.CloseSign();
         player.SetTalkNPC(-1);
@@ -126,7 +115,7 @@ public abstract class BaseChest : BaseFurnitureTile.Furniture {
             player.editedChestName = false;
         }
 
-        bool isLocked = Chest.IsLocked(left, top);
+        var isLocked = Chest.IsLocked(left, top);
         if (Main.netMode == NetmodeID.MultiplayerClient && !isLocked) {
             if (left == player.chestX && top == player.chestY && player.chest >= 0) {
                 player.chest = -1;
@@ -140,7 +129,7 @@ public abstract class BaseChest : BaseFurnitureTile.Furniture {
         }
         else {
             if (isLocked) {
-                if (CheckLocked(i, j, left, top, player) && Chest.Unlock(left, top)) {
+                if (UnlockChest(i, j, left, top, player) && Chest.Unlock(left, top)) {
                     if (Main.netMode == NetmodeID.MultiplayerClient) {
                         NetMessage.SendData(MessageID.LockAndUnlock, -1, -1, null, player.whoAmI, 1f, left, top);
                     }
@@ -168,23 +157,15 @@ public abstract class BaseChest : BaseFurnitureTile.Furniture {
     }
 
     public virtual int HoverItem(int i, int j, int left, int top) {
-        return ChestItem;
+        return Item.Type;
     }
 
     public override void MouseOver(int i, int j) {
-        Player player = Main.LocalPlayer;
-        Tile tile = Main.tile[i, j];
-        int left = i;
-        int top = j;
-        if (tile.TileFrameX % 36 != 0) {
-            left--;
-        }
+        var player = Main.LocalPlayer;
+        var tile = Main.tile[i, j];
+        GetTopLeft(i, j, in tile, out var left, out var top);
 
-        if (tile.TileFrameY != 0) {
-            top--;
-        }
-
-        int chest = Chest.FindChest(left, top);
+        var chest = Chest.FindChest(left, top);
         player.cursorItemIconID = -1;
         if (chest < 0) {
             player.cursorItemIconText = Language.GetTextValue("LegacyChestType.0");
@@ -204,32 +185,35 @@ public abstract class BaseChest : BaseFurnitureTile.Furniture {
 
     public override void MouseOverFar(int i, int j) {
         MouseOver(i, j);
-        Player player = Main.LocalPlayer;
+        var player = Main.LocalPlayer;
         if (player.cursorItemIconText == "") {
             player.cursorItemIconEnabled = false;
             player.cursorItemIconID = 0;
         }
     }
 
-    protected static void DrawBasicGlowmask(int i, int j, SpriteBatch spriteBatch, Texture2D texture, Color color) {
+    protected void DrawBasicGlowmask(int i, int j, SpriteBatch spriteBatch, Texture2D texture, Color color) {
         var tile = Main.tile[i, j];
         if (tile.IsTileInvisible) {
             return;
         }
 
         try {
-            int left = i;
-            int top = j;
-            if (tile.TileFrameX % 36 != 0) {
-                left--;
-            }
-            if (tile.TileFrameY != 0) {
-                top--;
-            }
+            GetTopLeft(i, j, out var left, out var top);
             int chest = Chest.FindChest(left, top);
             spriteBatch.Draw(texture, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + TileHelper.DrawOffset, new Rectangle(tile.TileFrameX, 38 * (chest == -1 ? 0 : Main.chest[chest].frame) + tile.TileFrameY, 16, 16), color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         }
         catch {
         }
+    }
+
+    protected void GetTopLeft(int i, int j, out int left, out int top) {
+        var tile = Main.tile[i, j];
+        left = i - tile.TileFrameX % FrameWidth / 18;
+        top = j - tile.TileFrameY % FrameHeight / 18;
+    }
+    protected void GetTopLeft(int i, int j, in Tile tileCache, out int left, out int top) {
+        left = i - tileCache.TileFrameX % FrameWidth / 18;
+        top = j - tileCache.TileFrameY % FrameHeight / 18;
     }
 }
