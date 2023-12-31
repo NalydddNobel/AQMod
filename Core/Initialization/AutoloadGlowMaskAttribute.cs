@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Core.Autoloading;
+namespace Aequus.Core.Initialization;
 
 [AttributeUsage(AttributeTargets.Class)]
 internal sealed class AutoloadGlowMaskAttribute : AutoloadXAttribute {

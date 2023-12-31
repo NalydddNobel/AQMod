@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Content.DataSets;
-using Microsoft.Xna.Framework;
+using Aequus.Content.Tiles.Banners;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
@@ -9,6 +9,7 @@ using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
 
+[AutoloadBanner]
 [ModBiomes(typeof(PollutedOceanBiome))]
 public partial class BlackJellyfish : AIJellyfish {
     public static int AttackRange => 60;

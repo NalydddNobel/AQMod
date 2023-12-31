@@ -4,13 +4,14 @@ global using Microsoft.Xna.Framework.Graphics;
 global using Terraria;
 global using Terraria.ID;
 global using Terraria.ModLoader;
-using Aequus.Core.Networking;
-using System.IO;
+using System.Reflection;
 
 namespace Aequus;
 
 public partial class Aequus : Mod {
     public static Aequus Instance { get; private set; }
+
+    public static Assembly TerrariaAssembly => typeof(Main).Assembly;
 
     public static bool highQualityEffects = true;
 
@@ -27,9 +28,6 @@ public partial class Aequus : Mod {
     public override void Unload() {
         Instance = null;
         UnloadModCalls();
-    }
-
-    public override void HandlePacket(BinaryReader reader, int whoAmI) {
-        PacketSystem.HandlePacket(reader, whoAmI);
+        UnloadPackets();
     }
 }

@@ -8,6 +8,7 @@ CommonTooltips: {
 	DedicatedItem: Thank you, {0}!
 	DedicatedItemAnonymous: Dedicated Item
 	UsesDarts: Uses seeds and darts as ammo
+	Banner: "{$CommonItemTooltip.BannerBonus}{0}"
 }
 
 //# Equipment: Accessories

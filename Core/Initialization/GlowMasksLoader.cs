@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria.GameContent;
 
-namespace Aequus.Core.Autoloading;
+namespace Aequus.Core.Initialization;
 
 public sealed class GlowMasksLoader : GlobalItem {
     internal static readonly Dictionary<string, short> PathToGlowMaskId = new();

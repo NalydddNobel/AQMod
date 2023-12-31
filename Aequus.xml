@@ -1590,6 +1590,12 @@
         <member name="F:Aequus.AequusTextures.BlackJellyfish">
             <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.BlackJellyfishBanner">
+            <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackJellyfishBannerItem">
+            <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishBannerItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.BlackJellyfishVertexStrip">
             <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishVertexStrip</summary>
         </member>
@@ -1907,6 +1913,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStaritePetItem">
             <summary>Full Path: Content/Pets/OmegaStarite/OmegaStaritePetItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OldMonsterBanners">
+            <summary>Full Path: Content/Tiles/Banners/OldMonsterBanners</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ConductiveBlock">
             <summary>Full Path: Content/Tiles/Conductive/ConductiveBlock</summary>

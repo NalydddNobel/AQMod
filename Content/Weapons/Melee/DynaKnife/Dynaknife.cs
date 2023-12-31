@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Common.Particles;
-using Aequus.Core.Autoloading;
+using Aequus.Core.Initialization;
 using Microsoft.Xna.Framework;
 using System;
 

@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -107,6 +107,10 @@ public sealed class RenamingSystem : ModSystem {
     public static int UpdateRate = 60;
     private static int _gameTime;
 
+    public override void Load() {
+        IOHooks.PreSaveWorld += EnsureTagCompoundContents;
+    }
+
     public override void ClearWorld() {
         SyncList.Clear();
         RenamedNPCs.Clear();
@@ -193,7 +197,7 @@ public sealed class RenamingSystem : ModSystem {
         }
     }
 
-    public static void EnsureTagCompoundContents() {
+    public static void EnsureTagCompoundContents(bool toCloud) {
         foreach (var marker in RenamedNPCs.Values) {
             if (marker.IsTrackingNPC && marker.IsTrackedNPCValid) {
                 marker.UpdateTagCompound(Main.npc[marker.TrackNPC]);

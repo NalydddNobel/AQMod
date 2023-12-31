@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Aequus.Core;
+namespace Aequus.Core.Initialization;
 
-internal class ContentInitializationSteps : ModSystem {
+internal class LoadingSteps : ModSystem {
     private static bool postSetupContent = false;
-    private static Queue<Action> _postSetupContentFactoryQueue = new();
+    private static readonly Queue<Action> _postSetupContentFactoryQueue = new();
 
     public static void EnqueuePostSetupContent(Action action) {
         if (postSetupContent) {
