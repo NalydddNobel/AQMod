@@ -1,8 +1,5 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Content.Biomes.PollutedOcean.Tiles.Scrap;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Biomes.PollutedOcean.Tiles.PolymerSands;
 
@@ -12,8 +9,9 @@ public class PolymerSand : MultiMergeTile {
     public override void Load() {
         Item = new InstancedTileItem(this).WithRecipe((item) => {
             item.CreateRecipe(5)
-                .AddIngredient(ItemID.SandBlock)
+                .AddIngredient(ItemID.SandBlock, 5)
                 .AddIngredient(ScrapBlock.Item)
+                .AddTile(TileID.Furnaces)
                 .Register();
         });
         Mod.AddContent(Item);

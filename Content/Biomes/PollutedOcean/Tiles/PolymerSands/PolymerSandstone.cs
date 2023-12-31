@@ -1,9 +1,4 @@
 ﻿using Aequus.Common.Tiles;
-using Aequus.Content.Biomes.PollutedOcean.Tiles.Scrap;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Biomes.PollutedOcean.Tiles.PolymerSands;
 
@@ -11,9 +6,10 @@ namespace Aequus.Content.Biomes.PollutedOcean.Tiles.PolymerSands;
 public class PolymerSandstone : MultiMergeTile {
     public override void Load() {
         Mod.AddContent(new InstancedTileItem(this).WithRecipe((item) => {
-            item.CreateRecipe(5)
+            item.CreateRecipe()
                 .AddIngredient(PolymerSand.Item)
-                .AddIngredient(ScrapBlock.Item)
+                .AddIngredient(ItemID.StoneBlock)
+                .AddTile(TileID.Solidifier)
                 .Register();
         }));
     }

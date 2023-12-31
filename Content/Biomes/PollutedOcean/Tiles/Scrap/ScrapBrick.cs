@@ -1,7 +1,4 @@
 ﻿using Aequus.Common.Tiles;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Biomes.PollutedOcean.Tiles.Scrap;
 

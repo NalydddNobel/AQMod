@@ -1,13 +1,9 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Common.Tiles.Components;
+using Aequus.Content.Items.Material;
 using Aequus.Core.Graphics.Tiles;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Biomes.PollutedOcean.Tiles.Scrap;
 
@@ -15,7 +11,12 @@ public class ScrapBlock : ModTile, ISpecialTileRenderer, ICustomPlaceSound, ITou
     public static ModItem Item { get; private set; }
 
     public override void Load() {
-        Item = new InstancedTileItem(this);
+        Item = new InstancedTileItem(this).WithRecipe((item) => {
+            item.CreateRecipe(10)
+                .AddIngredient(ModContent.ItemType<CompressedTrash>())
+                .AddTile(TileID.WorkBenches)
+                .Register();
+        });
         Mod.AddContent(Item);
     }
 
