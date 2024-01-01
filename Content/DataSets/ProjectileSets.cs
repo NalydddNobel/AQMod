@@ -2,32 +2,26 @@
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.DataSets;
 
-[DataID(typeof(ProjectileID))]
 public class ProjectileSets : DataSet {
-    public ProjectileSets() : base() {
-    }
+    public static Dictionary<ProjectileEntry, float> SpriteRotation { get; private set; } = new();
 
-    public static readonly Dictionary<int, float> SpriteRotation = new();
-    public static readonly HashSet<int> IsStar = new();
+    public static HashSet<ProjectileEntry> IsStar { get; private set; } = new();
 
     /// <summary>
     /// Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.
     /// </summary>
     [JsonProperty]
-    public static DataIDValueSet DealsHeatDamage;
+    public static HashSet<ProjectileEntry> DealsHeatDamage { get; private set; } = new();
 
     [JsonProperty]
-    public static DataIDValueSet PushableByTypeId;
-    [DataID(typeof(ProjAIStyleID))]
+    public static HashSet<ProjectileEntry> PushableByTypeId { get; private set; } = new();
+
     [JsonProperty]
-    public static DataIDValueSet PushableByAI;
+    public static HashSet<ProjectileAIEntry> PushableByAI { get; private set; } = new();
 
     public override void PostSetupContent() {
         for (int i = 0; i < ProjectileLoader.ProjectileCount; i++) {
@@ -36,7 +30,7 @@ public class ProjectileSets : DataSet {
                     name = name.Split('/')[^1];
                 }
                 if (name.Contains("Star") && !name.Contains("Start")) {
-                    IsStar.Add(i);
+                    IsStar.Add((ProjectileEntry)i);
                 }
             }
         }

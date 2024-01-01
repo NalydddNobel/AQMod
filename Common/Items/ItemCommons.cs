@@ -1,7 +1,4 @@
-﻿using Terraria;
-using Terraria.ID;
-
-namespace Aequus.Common.Items;
+﻿namespace Aequus.Common.Items;
 
 public static class ItemCommons {
     public class Rarity {
@@ -20,9 +17,9 @@ public static class ItemCommons {
         #region Vanilla
         public const int ShimmerPermaPowerup = ItemRarityID.LightPurple;
         public const int Banners = ItemRarityID.Blue;
-        public const int BossMasks = ItemRarityID.Blue;
         public const int DungeonLoot = ItemRarityID.Green;
         public const int JungleLoot = ItemRarityID.Green;
+        public const int EarlyHardmodeMaterial = ItemRarityID.Orange;
         public const int HardDungeonLoot = ItemRarityID.Yellow;
         #endregion
     }

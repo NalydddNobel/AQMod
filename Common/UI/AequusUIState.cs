@@ -1,13 +1,11 @@
-﻿using Aequus.Core.Autoloading;
+﻿using Aequus.Core.Initialization;
 using System.Collections.Generic;
-using Terraria;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace Aequus.Common.UI {
     public class AequusUIState : UIState, ILoadable, IPostSetupContent {
         public virtual UserInterface Interface => UISystem.TalkInterface;
-        
+
         public virtual int GetLayerIndex(List<GameInterfaceLayer> layers) {
             return -1;
         }

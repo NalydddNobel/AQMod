@@ -1,16 +1,11 @@
-﻿using Aequus;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using System;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace Aequus.Common.UI; 
+namespace Aequus.Common.UI;
 
 public class ItemSlotRenderer {
     public const int InventoryBackFramesX = 1;
@@ -205,7 +200,7 @@ public class ItemSlotRenderer {
         }
 
         if (context == 13 && item.potion) {
-            Color color3 = item.GetAlpha(color) * ((float)Main.LocalPlayer.potionDelay / (float)Main.LocalPlayer.potionDelayTime);
+            Color color3 = item.GetAlpha(color) * (Main.LocalPlayer.potionDelay / (float)Main.LocalPlayer.potionDelayTime);
             spriteBatch.Draw(TextureAssets.Cd.Value, itemCenter, null, color3, 0f, default(Vector2), scale, SpriteEffects.None, 0f);
         }
 

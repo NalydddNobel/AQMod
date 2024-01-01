@@ -1,11 +1,13 @@
 ﻿using Aequus.Common.Systems;
+using Aequus.Content.Biomes.PollutedOcean;
 using System;
-using Terraria;
 using Terraria.Localization;
 
 namespace Aequus.Common;
 
 public class AequusConditions {
+    public static readonly Condition InPollutedOcean = new Condition("Mods.Aequus.Condition.InPollutedOcean", () => Main.LocalPlayer.InModBiome<PollutedOceanBiome>());
+
     public static Condition BetweenDays(DayOfWeek firstDay, DayOfWeek lastDay) {
         var actualFirstDay = firstDay;
         var actualLastDay = lastDay;

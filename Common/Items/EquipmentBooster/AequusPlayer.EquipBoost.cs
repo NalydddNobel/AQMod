@@ -1,7 +1,4 @@
-﻿using Aequus.Common.Items.EquipmentBooster;
-using Terraria;
-
-namespace Aequus;
+﻿namespace Aequus;
 
 public partial class AequusPlayer {
     public static bool EquipmentModifierUpdate;

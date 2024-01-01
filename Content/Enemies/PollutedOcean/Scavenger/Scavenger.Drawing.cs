@@ -3,9 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ID;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger;
 
@@ -91,7 +89,7 @@ public partial class Scavenger {
         var armorSpriteEffects = NPC.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
         float opacity = NPC.Opacity * (1f - NPC.shimmerTransparency);
 
-        DrawHelper.DrawNPCStatusEffects(spriteBatch, NPC, screenPos);
+        NPCHelper.DrawNPCStatusEffects(spriteBatch, NPC, screenPos);
 
         DrawHelmet(spriteBatch, drawCoordinates, drawColor, AequusTextures.ScavengerBag_Back, bodyFrame, armorSpriteEffects);
 

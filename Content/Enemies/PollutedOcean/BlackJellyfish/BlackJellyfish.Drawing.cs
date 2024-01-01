@@ -1,9 +1,6 @@
 ﻿using Aequus.Common.NPCs;
-using Aequus.Common.UI;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Aequus.Core.Graphics;
 using System;
-using Terraria;
 using Terraria.GameContent;
 
 namespace Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
@@ -56,16 +53,16 @@ public partial class BlackJellyfish : AIJellyfish {
                 drawCoordinates += Main.rand.NextVector2Square(-attackProgress, attackProgress) * 4f - screenPos;
                 float npcScale = NPC.scale + attackProgress * 0.3f;
                 for (int i = 0; i < 4; i++) {
-                    MiscWorldInterfaceElements.Draw(TextureAssets.Npc[Type].Value, drawCoordinates + new Vector2(2f * NPC.scale, 0f).RotatedBy(i * MathHelper.PiOver2 + NPC.rotation), NPC.frame, lightningColor with { A = 60 } * attackProgress, NPC.rotation, origin, npcScale, SpriteEffects.None);
+                    MiscWorldUI.Drawer.Draw(TextureAssets.Npc[Type].Value, drawCoordinates + new Vector2(2f * NPC.scale, 0f).RotatedBy(i * MathHelper.PiOver2 + NPC.rotation), NPC.frame, lightningColor with { A = 60 } * attackProgress, NPC.rotation, origin, npcScale, SpriteEffects.None);
                 }
-                MiscWorldInterfaceElements.Draw(TextureAssets.Npc[Type].Value, drawCoordinates, NPC.frame, color * attackProgress, NPC.rotation, origin, npcScale, SpriteEffects.None);
+                MiscWorldUI.Drawer.Draw(TextureAssets.Npc[Type].Value, drawCoordinates, NPC.frame, color * attackProgress, NPC.rotation, origin, npcScale, SpriteEffects.None);
             }
             else {
                 opacity = 0f;
-                MiscWorldInterfaceElements.Draw(AequusTextures.BloomStrong, drawCoordinates - screenPos, null, lightningColor * attackRangeNormalized, 0f, AequusTextures.BloomStrong.Size() / 2f, MathF.Pow(attackRange / AttackRange, 1.5f), SpriteEffects.None);
-                MiscWorldInterfaceElements.Draw(AequusTextures.Bloom, drawCoordinates - screenPos, null, lightningColor * attackRangeNormalized, 0f, AequusTextures.Bloom.Size() / 2f, MathF.Pow(attackRange / AttackRange, 3f) * 1.25f, SpriteEffects.None);
+                MiscWorldUI.Drawer.Draw(AequusTextures.BloomStrong, drawCoordinates - screenPos, null, lightningColor * attackRangeNormalized, 0f, AequusTextures.BloomStrong.Size() / 2f, MathF.Pow(attackRange / AttackRange, 1.5f), SpriteEffects.None);
+                MiscWorldUI.Drawer.Draw(AequusTextures.Bloom, drawCoordinates - screenPos, null, lightningColor * attackRangeNormalized, 0f, AequusTextures.Bloom.Size() / 2f, MathF.Pow(attackRange / AttackRange, 3f) * 1.25f, SpriteEffects.None);
             }
-            MiscWorldInterfaceElements.DrawBasicVertexLine(AequusTextures.BlackJellyfishVertexStrip, lightningDrawCoordinates, lightningDrawRotations,
+            MiscWorldUI.Drawer.DrawBasicVertexLine(AequusTextures.BlackJellyfishVertexStrip, lightningDrawCoordinates, lightningDrawRotations,
                 p => lightningColor * attackRangeNormalized * NPC.Opacity,
                 p => Math.Max(attackRangeNormalized < 1f ? attackRangeNormalized : MathF.Pow(attackRangeNormalized, 1.5f), 0.25f) * NPC.Opacity * 8f
             );

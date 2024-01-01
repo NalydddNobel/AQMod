@@ -110,7 +110,7 @@ csharp_style_prefer_readonly_struct = true
 csharp_prefer_braces = true:suggestion
 csharp_prefer_simple_using_statement = false
 csharp_style_namespace_declarations = file_scoped:suggestion
-csharp_style_prefer_method_group_conversion = true:warning
+csharp_style_prefer_method_group_conversion = true:none
 csharp_style_prefer_top_level_statements = true
 
 # Expression-level preferences
@@ -229,3 +229,9 @@ dotnet_naming_style.begins_with_i.capitalization = pascal_case
 
 # CS1591: Missing XML comment for publicly visible type or member
 dotnet_diagnostic.CS1591.severity = none
+
+# IDE0200: Remove unnecessary lambda expression
+dotnet_diagnostic.IDE0200.severity = none
+
+# CS8632: The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+dotnet_diagnostic.CS8632.severity = silent

@@ -1,7 +1,4 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-
-namespace Aequus.Common.Items.EquipmentBooster;
+﻿namespace Aequus.Common.Items.EquipmentBooster;
 
 public class EquipBoostGlobalItem : GlobalItem {
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {

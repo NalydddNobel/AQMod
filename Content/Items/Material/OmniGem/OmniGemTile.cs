@@ -1,20 +1,15 @@
-﻿using Aequus;
-using Aequus.Common.Graphics.Rendering.Tiles;
-using Aequus.Common.Particles;
+﻿using Aequus.Common.Particles;
 using Aequus.Common.Tiles;
-using Aequus.Content.Items.Misc.Dyes.Hueshift;
-using Aequus.Core.Utilities;
+using Aequus.Content.Dyes;
+using Aequus.Core.Graphics.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Material.OmniGem;
 
@@ -36,6 +31,8 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
             AddMapEntry(Main.hslToRgb(new(i / (float)MapEntries, 1f, 0.66f)), Lang.GetItemName(ModContent.ItemType<OmniGem>()));
         }
         DustType = DustID.RainbowRod;
+
+        AequusTile.OnRandomTileUpdate += OnRandomTileUpdate;
     }
 
     public override ushort GetMapOption(int i, int j) {
@@ -84,9 +81,9 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
 
     public void BatchedPreDraw(List<BatchedTileDrawInfo> tiles, int count) {
         Main.spriteBatch.End();
-        Main.spriteBatch.Begin_World(shader: true);
+        Main.spriteBatch.BeginWorld(shader: true);
 
-        var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<HueshiftDye>());
+        var effect = GameShaders.Armor.GetShaderFromItemId(DyesInstantiator.HueshiftDye.Type);
 
         var maskTexture = AequusTextures.OmniGemTile_Mask.Value;
         var glowOffset = new Vector2(-1f, -1f);
@@ -118,13 +115,13 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
         }
 
         Main.spriteBatch.End();
-        Main.spriteBatch.Begin_World(shader: false);
+        Main.spriteBatch.BeginWorld(shader: false);
     }
 
     public void BatchedPostDraw(List<BatchedTileDrawInfo> tiles, int count) {
-        Main.spriteBatch.Begin_World(shader: true);
+        Main.spriteBatch.BeginWorld(shader: true);
 
-        var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<HueshiftDye>());
+        var effect = GameShaders.Armor.GetShaderFromItemId(DyesInstantiator.HueshiftDye.Type);
 
         var texture = AequusTextures.OmniGemTile_Mask.Value;
         var glowOffset = new Vector2(7f, 7f);
@@ -159,7 +156,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
         }
 
         Main.spriteBatch.End();
-        Main.spriteBatch.Begin_World(shader: true);
+        Main.spriteBatch.BeginWorld(shader: true);
 
         effect = GameShaders.Armor.GetShaderFromItemId(ItemID.StardustDye);
         texture = AequusTextures.BloomStrong;
@@ -202,6 +199,12 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
             }
         }
         return false;
+    }
+
+    private static void OnRandomTileUpdate(int i, int j, int type) {
+        if (Main.hardMode) {
+            Grow(i, j);
+        }
     }
 
     public static bool Grow(int i, int j) {

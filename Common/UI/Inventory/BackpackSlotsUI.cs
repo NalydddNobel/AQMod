@@ -1,14 +1,12 @@
 ﻿using Aequus.Common.Items.Tooltips;
-using Aequus.Common.Players;
-using Aequus.Content.Items.Equipment.Accessories.Inventory.ScavengerBag;
+using Aequus.Common.Players.Backpacks;
+using Aequus.Content.Equipment.Accessories.ScavengerBag;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Terraria;
 using Terraria.GameContent;
 using Terraria.GameInput;
 using Terraria.Localization;
-using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
 

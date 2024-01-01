@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using Terraria;
 
-namespace Aequus;
+namespace Aequus.Common.Projectiles;
 
 public partial class AequusProjectile {
     private void Load_JavelinFixes() {

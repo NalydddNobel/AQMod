@@ -1,18 +1,15 @@
 ﻿using Aequus.Common.UI;
 using Aequus.Content.DataSets;
 using Aequus.Content.Enemies.PollutedOcean.Scavenger.UI;
-using Aequus.Content.Items.Equipment.Accessories.Inventory.ScavengerBag;
+using Aequus.Content.Equipment.Accessories.ScavengerBag;
 using Aequus.Core;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger;
@@ -34,7 +31,7 @@ public class ScavengerLootBag : ModNPC {
             Hide = true,
         };
 
-        NPCSets.PushableByTypeId.Add(Type);
+        NPCSets.PushableByTypeId.AddEntry(Type);
     }
 
     public override void SetDefaults() {

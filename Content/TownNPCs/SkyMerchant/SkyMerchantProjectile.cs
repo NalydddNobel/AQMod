@@ -1,12 +1,10 @@
-﻿using Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
+﻿using Aequus.Common.Projectiles;
+using Aequus.Content.Weapons.Ranged.Bows.SkyHunterCrossbow;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Terraria;
 using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.TownNPCs.SkyMerchant;
 public class SkyMerchantProjectile : ModProjectile {

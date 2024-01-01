@@ -1,23 +1,23 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Components;
+using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Content.DataSets;
-using Aequus.Content.Items.Equipment.Accessories.Inventory.ScavengerBag;
-using Aequus.Core.Autoloading;
+using Aequus.Content.Equipment.Accessories.ScavengerBag;
+using Aequus.Core.Initialization;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
-using Terraria;
+using System.Linq;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Utilities;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger;
 
+[ModBiomes(typeof(PollutedOceanBiome))]
 public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateItemDropDatabase {
     public const int HeadSlot = 0;
     public const int BodySlot = 1;
@@ -56,13 +56,11 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
             Velocity = -1f,
             Scale = 1f,
         };
-        NPCSets.PushableByTypeId.Add(Type);
+        NPCSets.PushableByTypeId.AddEntry(Type);
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-        this.CreateEntry(database, bestiaryEntry)
-            .AddMainSpawn(BestiaryBuilder.CavernsBiome)
-            .AddSpawn(BestiaryBuilder.OceanBiome);
+        this.CreateEntry(database, bestiaryEntry);
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
@@ -132,16 +130,16 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
     }
 
     private void RandomizeArmor(UnifiedRandom random) {
-        SetItem(ref weapon, NPCSets.ScavengerWeapons, random);
+        SetItem(ref weapon, ScavengerEquipment.ScavengerWeapons.Select((i) => i.Id).ToList(), random);
         var options = new List<int>() { HeadSlot, BodySlot, LegSlot, AccSlot };
         while (options.Count > 0) {
             int choice = random.Next(options);
 
             bool value = choice switch {
-                HeadSlot => SetItem(ref armor[HeadSlot], NPCSets.ScavengerHelmets, random),
-                BodySlot => SetItem(ref armor[BodySlot], NPCSets.ScavengerBreastplates, random),
-                LegSlot => SetItem(ref armor[LegSlot], NPCSets.ScavengerLeggings, random),
-                AccSlot => SetItem(ref armor[AccSlot], NPCSets.ScavengerAccessories, random),
+                HeadSlot => SetItem(ref armor[HeadSlot], ScavengerEquipment.ScavengerHelmets.Select((i) => i.Id).ToList(), random),
+                BodySlot => SetItem(ref armor[BodySlot], ScavengerEquipment.ScavengerBreastplates.Select((i) => i.Id).ToList(), random),
+                LegSlot => SetItem(ref armor[LegSlot], ScavengerEquipment.ScavengerLeggings.Select((i) => i.Id).ToList(), random),
+                AccSlot => SetItem(ref armor[AccSlot], ScavengerEquipment.ScavengerAccessories.Select((i) => i.Id).ToList(), random),
                 _ => false
             };
 
@@ -269,7 +267,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         ScavengerLootBag.AddDropsToList(NPC, dropsRegisterList);
 
         dropsRegisterList.RemoveAll((i) => i.ModItem is ScavengerBag);
-        
+
         if (dropsRegisterList.Count <= 0) {
             return;
         }

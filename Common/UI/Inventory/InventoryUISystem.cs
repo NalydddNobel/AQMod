@@ -1,13 +1,8 @@
-﻿using Aequus.Common.Items.Components;
-using Aequus.Common.Items.Tooltips;
-using Aequus.Common.Players;
+﻿using Aequus.Common.Players.Backpacks;
 using Microsoft.Xna.Framework;
 using MonoMod.Cil;
 using System;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Gamepad;
 

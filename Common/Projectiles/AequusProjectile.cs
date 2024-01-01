@@ -1,16 +1,14 @@
 ﻿using Aequus.Common.Items.Components;
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ModLoader;
 
-namespace Aequus;
+namespace Aequus.Common.Projectiles;
 
 public partial class AequusProjectile : GlobalProjectile {
     protected override bool CloneNewInstances => true;
     public override bool InstancePerEntity => true;
 
     /// <summary>
-    /// Custom data to be used by items which utilize the <see cref="IManageProjectile"/> interface. This data is synced in multiplayer.
+    /// Custom data to be used by items which utilize the <see cref="IManageProjectile"/> interface or by channeled items. This data is synced in multiplayer.
     /// </summary>
     public int itemData;
 

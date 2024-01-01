@@ -1,8 +1,5 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Content.Items.Material.OmniGem;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Potions.Healing.Restoration;
 public class GreaterRestorationPotion : ModItem, IApplyPotionDelay {

@@ -3,10 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.GameInput;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace Aequus.Common.UI;

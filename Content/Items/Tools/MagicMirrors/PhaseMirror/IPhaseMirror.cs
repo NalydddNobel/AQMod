@@ -1,8 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using Terraria;
-using Terraria.ID;
 
 namespace Aequus.Content.Items.Tools.MagicMirrors.PhaseMirror {
     public interface IPhaseMirror {
@@ -38,7 +36,7 @@ namespace Aequus.Content.Items.Tools.MagicMirrors.PhaseMirror {
                 int curPiece = player.itemAnimation / 8;
                 int y = 0;
                 //Main.NewText($"{pieces}: {curPiece}");
-                if (curPiece < pieces-1 && curPiece >= pieces - 3) {
+                if (curPiece < pieces - 1 && curPiece >= pieces - 3) {
                     float progression = (player.itemAnimation - 40) / 16f;
                     y = (int)(hitbox.Height * (1f - progression)) - 6;
                     player.GetModPlayer<AequusPlayer>().CustomDrawShadow = (float)Math.Pow(1f - progression, 2f);

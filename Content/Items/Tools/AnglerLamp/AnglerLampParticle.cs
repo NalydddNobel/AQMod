@@ -3,8 +3,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria.Graphics.Renderers;
-using Terraria.ID;
-using Terraria;
 
 namespace Aequus.Content.Items.Tools.AnglerLamp;
 

@@ -1,15 +1,12 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Particles;
-using Aequus.Core.Autoloading;
+using Aequus.Core.Initialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Tools.AnglerLamp;
 
@@ -17,9 +14,9 @@ namespace Aequus.Content.Items.Tools.AnglerLamp;
 public class AnglerLamp : ModItem {
     public static int PotSightRange { get; set; } = 300;
 
-    public static Vector3 LightColor { get; set; } = new Vector3(0.5f, 0.38f, 0.12f);
-    public static float LightBrightness { get; set; } = 1.7f;
-    public static float LightUseBrightness { get; set; } = 2.5f;
+    public static Vector3 LightColor { get; set; } = new Vector3(1f, 0.76f, 0.24f);
+    public static float LightBrightness { get; set; } = LightHelper.ShadowOrbBrightness;
+    public static float LightUseBrightness { get; set; } = LightHelper.ShadowOrbBrightness * 2.5f;
 
     public static int MiscDebuffType { get; set; } = BuffID.Confused;
     public static int MiscDebuffTime { get; set; } = 240;

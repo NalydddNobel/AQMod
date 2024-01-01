@@ -2,15 +2,72 @@
 using Aequus.Content.WorldEvents.Glimmer;
 using Aequus.Content.WorldEvents.SpaceStorm;
 using Microsoft.Xna.Framework;
-using Terraria;
 using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
-namespace Aequus;
+namespace Aequus.Core.Utilities;
 
 public static class PlayerHelper {
+    private static readonly Item[] _dummyInventory = EnumerableHelper.CreateArray(i => new Item(), Main.InventorySlotsTotal);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="player">The player.</param>
+    /// <param name="pickaxe">The pickaxe.</param>
+    /// <param name="x">Tile X coordinate.</param>
+    /// <param name="y">Tile Y coordinate.</param>
+    /// <returns>Whether or not the player has enough pickaxe power to break this tile.</returns>
+    public static bool CheckPickPower(this Player player, Item pickaxe, int x, int y) {
+        var inv = player.inventory;
+        _dummyInventory[0] = pickaxe;
+        player.inventory = _dummyInventory;
+        bool value = false;
+        try {
+            value = player.HasEnoughPickPowerToHurtTile(x, y);
+        }
+        catch {
+        }
+        player.inventory = inv;
+        return value;
+    }
+
+    /// <summary>
+    /// Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
+    /// <para>Automatically syncs the item in multiplayer.</para>
+    /// <para>Note: May only work if <see cref="Main.myPlayer"/> is the <paramref name="player"/>.</para>
+    /// </summary>
+    /// <param name="player">The player.</param>
+    /// <param name="item">The Item.</param>
+    /// <param name="source">Item source.</param>
+    /// <param name="getItemSettings">The Get Item settings.</param>
+    public static void GiveItem(this Player player, Item item, IEntitySource source, GetItemSettings getItemSettings) {
+        item.Center = player.Center;
+        item = player.GetItem(player.whoAmI, item, getItemSettings);
+
+        if (item != null && !item.IsAir) {
+            int newItemIndex = Item.NewItem(source, player.getRect(), item);
+            Main.item[newItemIndex].newAndShiny = false;
+            if (Main.netMode == NetmodeID.MultiplayerClient) {
+                NetMessage.SendData(MessageID.SyncItem, number: newItemIndex, number2: 1f);
+            }
+        }
+    }
+    /// <summary>
+    /// Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
+    /// <para>Automatically syncs the item in multiplayer.</para>
+    /// <para>Note: May only work if <see cref="Main.myPlayer"/> is the <paramref name="player"/>.</para>
+    /// </summary>
+    /// <param name="player">The player.</param>
+    /// <param name="type">The Item Id.</param>
+    /// <param name="stack">The Item's stack.</param>
+    /// <param name="prefix">The Item's prefix.</param>
+    /// <param name="source">Item source.</param>
+    /// <param name="getItemSettings">The Get Item settings.</param>
+    public static void GiveItem(this Player player, int type, IEntitySource source, GetItemSettings getItemSettings, int stack = 1, int prefix = 0) {
+        player.GiveItem(new Item(type, stack, prefix), source, getItemSettings);
+    }
+
     public static Chest GetCurrentChest(this Player player, bool ignoreVoidBag = false) {
         if (player.chest > -1) {
             return Main.chest[player.chest];
@@ -197,7 +254,7 @@ public static class PlayerHelper {
     }
 
     public static bool RollCrit<T>(this Player player) where T : DamageClass {
-        return RollCrit(player, ModContent.GetInstance<T>());
+        return player.RollCrit(ModContent.GetInstance<T>());
     }
     public static bool RollCrit(this Player player, DamageClass damageClass) {
         return !damageClass.UseStandardCritCalcs ? false : Main.rand.Next(100) < player.GetTotalCritChance(damageClass);

@@ -1,0 +1,12 @@
+// DisplayName: Gameplay Config
+
+PollutedOceanSide: {
+	// Label: "[i:Aequus/TrashCompactor] Polluted Ocean Side"
+	/* Tooltip:
+		'''
+		Determines which side of the world the Polluted Ocean should generate.
+		{$POGenerationSide.Tooltip}
+
+		[{$ColorNote}:Utilize this config for personal preference, or to fix an issue with overlapping biomes.]
+		''' */
+}

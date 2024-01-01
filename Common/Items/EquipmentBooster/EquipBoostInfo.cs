@@ -1,5 +1,4 @@
 ﻿using System.Runtime.CompilerServices;
-using Terraria;
 
 namespace Aequus.Common.Items.EquipmentBooster;
 

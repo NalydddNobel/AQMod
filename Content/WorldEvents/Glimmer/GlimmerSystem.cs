@@ -1,6 +1,4 @@
-﻿using Terraria.ModLoader;
-
-namespace Aequus.Content.WorldEvents.Glimmer;
+﻿namespace Aequus.Content.WorldEvents.Glimmer;
 
 public class GlimmerSystem : ModSystem {
 }

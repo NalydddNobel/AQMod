@@ -1,7 +1,4 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-
-namespace Aequus.Content.Items.Potions.Buffs.NeutronYogurt;
+﻿namespace Aequus.Content.Items.Potions.Buffs.NeutronYogurt;
 
 public class NeutronYogurtBuff : ModBuff {
     public override void Update(NPC npc, ref int buffIndex) {

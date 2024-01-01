@@ -1,0 +1,39 @@
+NeutronYogurtBuff: {
+	DisplayName: "{$Items.NeutronYogurt.DisplayName}"
+	Description: Aceleración de caída duplicada
+}
+
+StunGunDebuff: {
+	DisplayName: Aturdido!
+	Description: No puedes moverte
+}
+
+RadonFishingBobberBuff: {
+	DisplayName: "{$Items.RadonMossFishingBobber.DisplayName}"
+	Description: Reduce aggro y la velocidad de aparición de enemigos mientras pescas
+}
+
+GoldenFeatherBuff: {
+	DisplayName: "{$Items.GoldenFeather.DisplayName}"
+	Description: ¡Un aliado te está dando regeneración de vida incrementada y tiempo reaparición reducido!
+}
+
+GoldenWindBuff: {
+	DisplayName: "{$Items.GoldenWind.DisplayName}"
+	Description: "{$Buffs.GoldenFeatherBuff.Description}"
+}
+
+HotAirBalloonBuff: {
+	DisplayName: Globo Aeroestatico
+	Description: Up, up, and away!!!
+}
+
+DeathsEmbraceBuff: {
+	DisplayName: "{$Items.DeathsEmbrace.DisplayName}"
+	Description: Por qué estás leyendo esto… vas a morir
+}
+
+BaguetteBuff: {
+	DisplayName: "{$Items.Baguette.DisplayName}"
+	Description: Mejoras supremas a todas las características y regeneración de vida muy incrementada
+}

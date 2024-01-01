@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using Terraria;
 
-namespace Aequus;
+namespace Aequus.Core.Utilities;
 
 public static class CollisionHelper {
     public static bool DeathrayHitbox(Vector2 center, Rectangle targetHitbox, float rotation, float length, float size, float startLength = 0f) {

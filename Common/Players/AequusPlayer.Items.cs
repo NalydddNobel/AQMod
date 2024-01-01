@@ -1,21 +1,19 @@
 ﻿using Aequus.Common.Items.Components;
-using Aequus.Common.Players;
+using Aequus.Common.Players.Backpacks;
 using Aequus.Common.UI;
 using Aequus.Content.DataSets;
 using Aequus.Core.Generator;
-using Aequus.Core;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace Aequus;
 
 public partial class AequusPlayer {
+    public byte disableItem;
+
     public int itemHits;
     /// <summary>
     /// Tracks <see cref="Player.selectedItem"/>
@@ -32,6 +30,8 @@ public partial class AequusPlayer {
 
     public BackpackData[] backpacks;
 
+    public bool forceUseItem;
+
     [ResetEffects]
     public Item goldenKey;
     [ResetEffects]
@@ -46,6 +46,10 @@ public partial class AequusPlayer {
     }
 
     public void UpdateItemFields() {
+        if (Player.itemAnimation == 0 && disableItem > 0) {
+            disableItem--;
+        }
+
         if (itemSwitch > 0) {
             itemUsage = 0;
             itemSwitch--;
@@ -94,6 +98,15 @@ public partial class AequusPlayer {
             returnValue |= aequusUI.HoverSlot(inventory, context, slot);
         }
         return returnValue;
+    }
+
+    private void SetControls_ForceItemUse() {
+        if (forceUseItem) {
+            Player.controlUseItem = true;
+            Player.releaseUseItem = true;
+            Player.itemAnimation = 0;
+        }
+        forceUseItem = false;
     }
 
     public bool UseGoldenKey(Item[] inv, int slot) {

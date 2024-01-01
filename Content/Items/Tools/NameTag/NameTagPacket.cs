@@ -1,7 +1,5 @@
-﻿using Aequus.Common.Net;
+﻿using Aequus.Core.Networking;
 using System.IO;
-using Terraria;
-using Terraria.ID;
 
 namespace Aequus.Content.Items.Tools.NameTag;
 

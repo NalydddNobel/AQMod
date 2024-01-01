@@ -1,14 +1,10 @@
-﻿using Aequus;
-using Aequus.Common.UI;
-using Aequus.Content.DataSets;
+﻿using Aequus.Content.DataSets;
+using Aequus.Core.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.UI.Chat;
 
@@ -117,13 +113,13 @@ public sealed class RenameNPC : GlobalNPC {
             for (int i = 0; i < 2; i++) {
                 float rotation = MathHelper.Pi * i;
 
-                MiscWorldInterfaceElements.Draw(texture, backgroundLocation + new Vector2(0f, backgroundScale.Y / -2f), null, Color.Black * backgroundOpacity, rotation, textureOrigin, realScale with { Y = 2f }, SpriteEffects.None, 0f);
-                MiscWorldInterfaceElements.Draw(texture, backgroundLocation + new Vector2(0f, backgroundScale.Y / 2f), null, Color.Black * backgroundOpacity, rotation, textureOrigin, realScale with { Y = 2f }, SpriteEffects.None, 0f);
-                MiscWorldInterfaceElements.Draw(texture, backgroundLocation, null, Color.Black * 0.5f * backgroundOpacity, rotation, textureOrigin, realScale, SpriteEffects.None, 0f);
+                MiscWorldUI.Drawer.Draw(texture, backgroundLocation + new Vector2(0f, backgroundScale.Y / -2f), null, Color.Black * backgroundOpacity, rotation, textureOrigin, realScale with { Y = 2f }, SpriteEffects.None, 0f);
+                MiscWorldUI.Drawer.Draw(texture, backgroundLocation + new Vector2(0f, backgroundScale.Y / 2f), null, Color.Black * backgroundOpacity, rotation, textureOrigin, realScale with { Y = 2f }, SpriteEffects.None, 0f);
+                MiscWorldUI.Drawer.Draw(texture, backgroundLocation, null, Color.Black * 0.5f * backgroundOpacity, rotation, textureOrigin, realScale, SpriteEffects.None, 0f);
             }
         }
         if (textOpacity > 0f) {
-            MiscWorldInterfaceElements.DrawColorCodedString(font, name, drawLocation, Color.White * textOpacity, 0f, textMeasurement / 2f, Vector2.One);
+            MiscWorldUI.Drawer.DrawColorCodedString(font, name, drawLocation, Color.White * textOpacity, 0f, textMeasurement / 2f, Vector2.One);
         }
 
         npc.nameOver = 0f;

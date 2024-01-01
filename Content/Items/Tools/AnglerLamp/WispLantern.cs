@@ -1,13 +1,10 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Particles;
-using Aequus.Core.Autoloading;
+using Aequus.Core.Initialization;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Tools.AnglerLamp;
 

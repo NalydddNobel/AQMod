@@ -1,15 +1,12 @@
-﻿using Aequus.Common.Rendering;
+﻿using Aequus.Core.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.DataStructures;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Renderers;
 using Terraria.Graphics.Shaders;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Material.MonoGem;
 
@@ -52,7 +49,7 @@ public class MonoGemRenderer : ScreenRenderer {
     }
 
     protected override void DrawOntoTarget(GraphicsDevice device, SpriteBatch spriteBatch) {
-        Main.spriteBatch.Begin_World(shader: false);
+        Main.spriteBatch.BeginWorld(shader: false);
 
         Particles.Draw(spriteBatch);
         foreach (var d in DrawData) {

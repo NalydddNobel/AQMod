@@ -1,14 +1,10 @@
-﻿using Aequus.Common.Graphics.Rendering.Tiles;
-using Aequus.Common.Tiles;
-using Aequus.Core.Utilities;
+﻿using Aequus.Common.Tiles;
+using Aequus.Core.Graphics.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Material.MonoGem;
 
@@ -34,7 +30,7 @@ public class MonoGemTile : BaseGemTile, ISpecialTileRenderer {
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
         GetRandomValues(i, j, out ulong seed, out float globalIntensity);
-        var drawPos = new Vector2(i * 16f, j * 16f) + DrawHelper.TileDrawOffset - Main.screenPosition;
+        var drawPos = new Vector2(i * 16f, j * 16f) + TileHelper.DrawOffset - Main.screenPosition;
 
         if (!Main.tile[i, j].IsTileInvisible) {
             Main.spriteBatch.Draw(

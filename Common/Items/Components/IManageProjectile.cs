@@ -1,6 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ModLoader;
+﻿using Aequus.Common.Projectiles;
+using Microsoft.Xna.Framework;
 
 namespace Aequus.Common.Items.Components;
 

@@ -1,8 +1,4 @@
-﻿using Aequus.Core.Utilities;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+﻿using System.Collections.Generic;
 using Terraria.ObjectData;
 
 namespace Aequus.Common.Tiles;

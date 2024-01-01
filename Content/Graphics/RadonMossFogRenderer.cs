@@ -1,12 +1,9 @@
-﻿using Aequus.Common.Rendering;
-using Aequus.Core.Utilities;
+﻿using Aequus.Core.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.DataStructures;
-using Terraria.ModLoader;
 using Terraria.Utilities;
 
 namespace Aequus.Content.Graphics;
@@ -58,7 +55,7 @@ public class RadonMossFogRenderer : ScreenRenderer {
                 int i = p.X;
                 int j = p.Y;
                 FastRandom rand = Helper.RandomTileCoordinates(i, j);
-                var lighting = DrawHelper.GetBrightestLight(new Point(i, j), 6);
+                var lighting = LightHelper.GetBrightestLight(new Point(i, j), 6);
                 float intensity = 1f - (lighting.R + lighting.G + lighting.B) / 765f;
                 intensity = MathHelper.Lerp(intensity, 1f, (float)MathHelper.Clamp(Vector2.Distance(new Vector2(i * 16f + 8f, j * 16f + 8f), myPosition) / 250f - Math.Abs(MathF.Sin(Main.GlobalTimeWrappedHourly * rand.NextFloat(0.1f, 0.6f))), 0f, 1f));
                 if (intensity <= 0f) {
@@ -77,7 +74,7 @@ public class RadonMossFogRenderer : ScreenRenderer {
         }
 
         if (DrawInfoCache.Count > 0) {
-            Main.spriteBatch.Begin_World(shader: false);
+            Main.spriteBatch.BeginWorld(shader: false);
 
             var texture = AequusTextures.Fog;
             var origin = AequusTextures.Fog.GetCenteredFrameOrigin(verticalFrames: 8);

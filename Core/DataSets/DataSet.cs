@@ -1,18 +1,17 @@
-﻿using Aequus.Core.Autoloading;
+﻿using Aequus.Core.Initialization;
 using Newtonsoft.Json;
-using ReLogic.Utilities;
-using System;
 using System.Reflection;
-using Terraria.ModLoader;
 
-namespace Aequus.Core.DataSets; 
+namespace Aequus.Core.DataSets;
 
 public abstract class DataSet : IModType, ILoadable, IPostSetupContent, IAddRecipes, IPostAddRecipes {
     private readonly BindingFlags _memberBindingFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
 
-    protected DataSetFileLoader File { get; private set; }
     [JsonIgnore]
-    public virtual string FilePath => this.GetFilePath();
+    protected MetadataFileLoader File { get; private set; }
+
+    [JsonIgnore]
+    public virtual string FilePath => $"{Mod.Name}/Assets/Metadata/{Name}";
 
     [JsonIgnore]
     public Mod Mod { get; set; }
@@ -25,40 +24,7 @@ public abstract class DataSet : IModType, ILoadable, IPostSetupContent, IAddReci
     public FieldInfo[] _fields;
 
     public DataSet() {
-        var type = GetType();
-        _fields = type.GetFields(_memberBindingFlags);
-        var typeIdAttribute = type.GetAttribute<DataIDAttribute>();
-        if (typeIdAttribute != null) {
-            var baseIdDictionary = typeIdAttribute.GetIdDictionary();
-            foreach (var f in _fields) {
-                if (f.IsInitOnly) {
-                    continue;
-                }
-
-                var fieldAttribute = f.GetCustomAttribute<DataIDAttribute>();
-
-                var idDictionary = fieldAttribute != null ? fieldAttribute.GetIdDictionary() : baseIdDictionary;
-
-                if (f.FieldType == typeof(DataIDValueSet)) {
-                    f.SetValue(this, new DataIDValueSet(idDictionary));
-                }
-                else if (f.FieldType == typeof(DataIDBoolArraySet)) {
-                    f.SetValue(this, new DataIDBoolArraySet(idDictionary));
-                }
-                else if (f.FieldType == typeof(DataIDKeyValueDictionary)) {
-                    var keyValueAttribute = f.GetCustomAttribute<DataIDKeyValueAttribute>();
-                    if (keyValueAttribute != null) {
-                        f.SetValue(this, new DataIDKeyValueDictionary(keyValueAttribute.GetKeyIdDictionary(), keyValueAttribute.GetValueIdDictionary()));
-                    }
-                    else {
-                        f.SetValue(this, new DataIDKeyValueDictionary(idDictionary, idDictionary));
-                    }
-                }
-                else if (f.FieldType.IsGenericType && f.FieldType.GetGenericTypeDefinition().IsAssignableFrom(typeof(DataIDKeyDictionary<>))) {
-                    f.SetValue(this, Activator.CreateInstance(f.FieldType, idDictionary));
-                }
-            }
-        }
+        _fields = GetType().GetFields(_memberBindingFlags);
     }
 
     public void Load(Mod mod) {

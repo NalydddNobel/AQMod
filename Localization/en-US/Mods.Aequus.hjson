@@ -1,0 +1,30 @@
+Biomes: {
+	DemonSiegeZone: {
+		DisplayName: Demon Siege Zone
+		TownNPCDialogueName: the Demon Siege Zone
+	}
+
+	GlimmerZone: {
+		DisplayName: Glimmer Zone
+		TownNPCDialogueName: the Glimmer Zone
+	}
+
+	SpaceStormZone: {
+		DisplayName: Space Storm Zone
+		TownNPCDialogueName: the Space Storm Zone
+	}
+
+	PollutedOceanBiome: {
+		DisplayName: Polluted Ocean
+		TownNPCDialogueName: the Polluted Ocean
+	}
+}
+
+InfoDisplays: {
+	CalendarInfoDisplay: {
+		DisplayName: "{$Items.Calendar.DisplayName}"
+		Tooltip: "{0} (Day {1})"
+	}
+}
+
+KeyUnbound: Unbound

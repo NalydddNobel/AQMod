@@ -1,0 +1,442 @@
+CommonTooltips: {
+	IncreasesInventorySlots: Otorga {0} ranuras de mochila
+	Cooldown: Tiene {0} segundos de recarga
+	Shimmerable: Ingrediente de Fulgor
+	ShimmerableToNPC: Ingrediente de Fulgor
+	OmnidirectionMelee: Puede usarse en cualquier dirección
+	WorkInProgress: Este objeto es un trabajo en proceso, su funcionalidad puede estar incompleta
+	DedicatedItem: Gracias, {0}!
+	DedicatedItemAnonymous: Objeto Dedicado
+	UsesDarts: Utiliza semillas y dardos como munición
+	// Banner: "{$CommonItemTooltip.BannerBonus}{0}"
+}
+
+//# Equipment: Accessories
+GrandReward: {
+	DisplayName: Grandiosa Recompensa
+	Tooltip:
+		'''
+		Duplica el índice de objetos que se sueltan los enemigos
+		{v}Pero, los enemigos no pueden soltar monedas
+		'''
+}
+
+RadonFishingBobber: {
+	DisplayName: Flotador de pesca de radón
+	Tooltip:
+		'''
+		{$ItemTooltip.FishingBobber}
+		{$Buffs.RadonFishingBobberBuff.Description}
+		'''
+}
+
+CrownOfDarkness: {
+	DisplayName: Corona de la Oscuridad
+	Tooltip: Otorga la habilidad de tu primer accesorio a todo tu equipo
+}
+
+GoldenWind: {
+	DisplayName: Viento Aureo
+	Tooltip: "{$Items.GoldenFeather.Tooltip}"
+}
+
+GoldenFeather: {
+	DisplayName: Pluma Milagrosa
+	Tooltip:
+		'''
+		Regenera {1} de vida por segundo para ti y todo tu equipo
+		El tiempo de reaparición para ti y tu equipo es reducido por {0} segundos
+		'''
+}
+
+FlashwayShield: {
+	DisplayName: Escudo destellante
+	Tooltip:
+		'''
+		Otorga la habilidad de embestir
+		Pulsa dos veces una dirección
+		'''
+}
+
+PurpleBalloon: {
+	// DisplayName: Matte Purple Balloon
+	/* Tooltip:
+		'''
+		{$ItemTooltip.ShinyRedBalloon}
+		{$SlimyBlueBalloon.Tooltip}
+		'Not to be confused with a Balloon in a Balloon'
+		''' */
+}
+
+SlimyBlueBalloon: {
+	DisplayName: Globo Azul Pegajoso
+	Tooltip:
+		'''
+		Disminuye la velocidad de caída
+		Mantén presionado Abajo para caer a velocidad normal
+		'''
+}
+
+WeightedHorseshoe: {
+	DisplayName: Herradura Pesada
+	Tooltip:
+		'''
+		Duplica la velocidad de caída
+		Daña enemigos al caer a través de ellos a altas velocidades
+		'¡Deberías usar una cadena de verlet, seguro no pasa nada!'
+		'''
+}
+
+//# Equipment: Informational
+ShimmerMonocle: {
+	DisplayName: Fulgóculo
+	Tooltip: Muestra si un objeto es un ingrediente de Fulgor
+}
+
+RichMansMonocle: {
+	DisplayName: Monóculo del Adinerado
+	Tooltip: Muestra los precios de objetos fuera de tiendas
+}
+
+Calendar: {
+	DisplayName: Calendario
+	Tooltip: Muestra la fecha
+}
+
+//# Weapons: Melee
+Dynaknife: {
+	// DisplayName: The Christmas Spirit
+	/* Tooltip:
+		'''
+		Hits apply a bomb which will explode on enemies
+		<right> to dash foward and attack
+		''' */
+}
+
+Slice: {
+	DisplayName: Rebanada
+	Tooltip:
+		'''
+		Gana velocidad con el tiempo e inflige congelación al impactar
+		{$CommonTooltips.OmnidirectionMelee}
+		'No confundir con tajar'
+		'''
+}
+
+//# Ranged Ammo
+PlasticDart: {
+	DisplayName: Dardo Plastico
+	Tooltip:
+		'''
+		Se puede recoger si golpea un bloque suave
+		'Su punta parece desafilada '
+		'''
+}
+
+//# Weapons: Ranged
+StarPhish: {
+	DisplayName: Star Phish
+	Tooltip: "{$CommonTooltips.UsesDarts}"
+}
+
+JunkJet: {
+	DisplayName: Junk Jet
+	Tooltip:
+		'''
+		Puede usar casi cualquier munición
+		{0}% probabilidad de no consumir munición
+		'''
+}
+
+SkyHunterCrossbow: {
+	DisplayName: Ballesta del Cazador del Cielo
+	Tooltip:
+		'''
+		Dispara flechas conectadas con una cuerda capaz de recoger objetos  
+		<right> para aumenta el alcance de la visión
+		'''
+}
+
+//# Weapons: Magic
+TrashStaff: {
+	// DisplayName: Spam Mail
+	// Tooltip: Critical strikes send virus mail to nearby enemies
+}
+
+Furystar: {
+	DisplayName: Estrella de furia
+	Tooltip:
+		'''
+		Hace que lluevan estrellas del cielo
+		Ataques restauran maná
+		'''
+}
+
+//# Weapons: Classless
+StunGun: {
+	DisplayName: Taser
+	Tooltip: Ralentiza o aturde enemigos por {0} segundos
+}
+
+//# Potions
+NeutronYogurt: {
+	DisplayName: Yogurt de Neutrones
+	Tooltip: Otorga doble aceleración de caída
+}
+
+DeathsEmbrace: {
+	DisplayName: Abrazo de la Muerte
+	Tooltip:
+		'''
+		No se consume cuando se usa
+		Aumenta un 20% el daño y la probabilidad de ataque crítico
+		Los ataques son un poco menos precisos
+		Los ataques hacen que vuelvas a tomar la poción automáticamente
+		{{Una vez que el efecto acabe, morirás instantáneamente...}}
+		'''
+}
+
+//# Foods
+Baguette: {
+	DisplayName: Baguette
+	Tooltip:
+		'''
+		Mejoras supremas a todas las características
+		regeneración de vida muy incrementada
+		'''
+}
+
+//# Misc
+PossessedShard: {
+	DisplayName: Fragmento Poseído
+	Tooltip: Dejado caer por Armaduras y Herramientas poseídas
+}
+
+AquaticEnergy: {
+	DisplayName: Energía Acuática
+	Tooltip: ""
+}
+
+AtmosphericEnergy: {
+	DisplayName: Energía Atmosférica
+	Tooltip: ""
+}
+
+CosmicEnergy: {
+	DisplayName: Energía Cósmica
+	Tooltip: ""
+}
+
+DemonicEnergy: {
+	DisplayName: Energía Eidolica
+	Tooltip: ""
+}
+
+OrganicEnergy: {
+	DisplayName: Energía Terrica
+	Tooltip: ""
+}
+
+UltimateEnergy: {
+	DisplayName: Energía Suprema
+	Tooltip: ""
+}
+
+MonoGem: {
+	DisplayName: Mono Gema
+	Tooltip: "'Maldita con la esencia de la oscuridad'"
+}
+
+OmniGem: {
+	DisplayName: Omni Gema
+	Tooltip: "'Encantada con la presencia del Éter'"
+}
+
+LesserRestorationPotion: {
+	DisplayName: Poción de recuperación menor
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+GreaterRestorationPotion: {
+	DisplayName: Poción de recuperación mayor
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+SuperRestorationPotion: {
+	DisplayName: Super Poción de recuperación
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+CosmicChest: {
+	DisplayName: Suvenir Afortunado
+	Tooltip: Permanentemente aumenta el índice de objetos que sueltan los enemigos
+}
+
+NetherStar: {
+	DisplayName: Corazón Convergente
+	Tooltip: "{$ItemTooltip.DemonHeart}"
+}
+
+CompressedTrash: {
+	DisplayName: Basura Comprimida
+	Tooltip: ""
+}
+
+TreasureBag.DisplayName: Bolsa del Tesoro ({0})
+
+WispLantern: {
+	DisplayName: Linterna Espiritual
+	Tooltip:
+		'''
+		Emite luz cuando sostenida o en tu inventario
+		Revela el botín dentro de vasijas cuando se sostiene
+		Usar para interrumpir enemigos cercanos
+		'''
+}
+
+AnglerLamp: {
+	DisplayName: Linterna de Pescador
+	Tooltip:
+		'''
+		Emite luz y revela el botín dentro de vasijas cuando se sostiene
+		Usar gel para interrumpir enemigos cercanos
+		'''
+}
+
+PhaseMirror: {
+	DisplayName: Espejo de Fase
+	Tooltip:
+		'''
+		Te permite regresar a tu hogar
+		Haz click en tus compañeros en el mapa para teletransportarte a ellos
+		'''
+}
+
+PhasePhone: {
+	DisplayName: Móvil de Fase
+	Tooltip:
+		'''
+		Lo muestra todo
+		{0}
+		Haz click en tus compañeros en el mapa para teletransportarte a ellos
+		<right> para cambiar el destino
+		'''
+
+	Home: {
+		DisplayName: Móvil de Fase (Hogar)
+		Tooltip: Te permite regresar a tu hogar
+	}
+
+	Spawn: {
+		DisplayName: Móvil de Fase (Punto de Resurrección)
+		Tooltip: Te permite regresar a tu punto de resurrección
+	}
+
+	Ocean: {
+		DisplayName: Móvil de Fase (Oceano)
+		Tooltip: Te permite viajar al Oceano
+	}
+
+	Underworld: {
+		DisplayName: Móvil de Fase (Inframundo)
+		Tooltip: Te permite viajar al inframundo
+	}
+}
+
+DedicatedFaelingItem: {
+	DisplayName: "{$ItemName.Shimmerfly}"
+	Tooltip: ""
+}
+
+Bellows: {
+	DisplayName: Fuelle
+	Tooltip:
+		'''
+		Te empuja
+		'Debes pesar un muy poco'
+		'''
+}
+
+Pumpinator: {
+	DisplayName: Pumpinador
+	Tooltip:
+		'''
+		Gradualmente cambia la velocidad del viento
+		Puede empujar casi cualquier cosa con su ráfaga
+		'''
+}
+
+NameTag: {
+	DisplayName: Etiqueta
+	Tooltip:
+		'''
+		Renombrar con el Mercader del Cielo 
+		Usar en aldeanos, criaturas, o enemigos para renombrarlos
+		'''
+}
+
+//# Vanity Armors
+BreadOfCthulhuMask: {
+	DisplayName: Mascara del Pan de Cthulhu
+	Tooltip: ""
+}
+
+CrabsonMask: {
+	DisplayName: Mascara de Crabson
+	Tooltip: ""
+}
+
+DustDevilMask: {
+	// DisplayName: Dust Devil Mask
+	// Tooltip: ""
+}
+
+OmegaStariteMask: {
+	DisplayName: Mascara de Omega Starite
+	Tooltip: ""
+}
+
+RedSpriteMask: {
+	DisplayName: Mascara del Espectro Rojo
+	Tooltip: ""
+}
+
+SpaceSquidMask: {
+	DisplayName: Mascara del Calamar Espacial
+	Tooltip: ""
+}
+
+//# Tiles & Blocks
+PollutedOceanMusicBoxItem: {
+	// DisplayName: Music Box (Polluted Ocean)
+	// Tooltip: ""
+}
+
+MonsterChestItem: {
+	DisplayName: Cofre Monstruo
+	Tooltip: Coloca un cofre monstruo que se activara de inmediato a menos que seas invisible
+}
+
+//# Mounts
+BalloonKit: {
+	DisplayName: Botiquin Aerostático
+	Tooltip:
+		'''
+		Te permite montar un Globo Aerostático
+		'Expertamente fabricado por Empresas Modzilla'
+		'''
+}
+
+//# Backpacks
+ScavengerBag: {
+	DisplayName: Bolsa Carroñera
+	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+}
+
+Backpacks: {
+	ScavengerBagBackpackData: {
+		DisplayName: Mochila
+		BackpackEnabled: Mochila Visible
+		BackpackDisabled: Mochila No Visible
+	}
+}

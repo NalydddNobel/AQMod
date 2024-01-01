@@ -1,9 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.UI.EventBars;
 

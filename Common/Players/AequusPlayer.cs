@@ -1,9 +1,8 @@
-﻿using Aequus.Common.Players;
-using Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
+﻿using Aequus.Common.Players.Backpacks;
+using Aequus.Content.Weapons.Ranged.Bows.SkyHunterCrossbow;
 using Microsoft.Xna.Framework;
-using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameInput;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace Aequus;
@@ -16,7 +15,8 @@ public partial class AequusPlayer : ModPlayer {
     public override void Load() {
         _resetEffects = new();
         _resetEffects.Generate();
-        LoadVisuals();
+        On_Player.UpdateVisibleAccessories += On_Player_UpdateVisibleAccessories;
+        On_PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
         On_ItemSlot.RightClick_ItemArray_int_int += ItemSlot_RightClick;
         On_ChestUI.QuickStack += On_ChestUI_QuickStack;
         On_Player.QuickStackAllChests += On_Player_QuickStackAllChests;
@@ -64,6 +64,7 @@ public partial class AequusPlayer : ModPlayer {
     }
 
     public override void PostUpdateEquips() {
+        UpdateCosmicChest();
         UpdateWeightedHorseshoe();
         UpdateNeutronYogurt();
         UpdateTeamEffects();
@@ -71,6 +72,7 @@ public partial class AequusPlayer : ModPlayer {
 
     public override void PostUpdateMiscEffects() {
         HandleTileEffects();
+        UpdateScrapBlockState();
         if ((transitionVelocity - Player.velocity).Length() < 0.01f) {
             transitionVelocity = Player.velocity;
         }

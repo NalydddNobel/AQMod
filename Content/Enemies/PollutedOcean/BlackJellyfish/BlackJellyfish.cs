@@ -1,23 +1,23 @@
 ﻿using Aequus.Common.NPCs;
+using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Content.DataSets;
-using Microsoft.Xna.Framework;
+using Aequus.Content.Tiles.Banners;
 using System;
-using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
 
+[AutoloadBanner]
+[ModBiomes(typeof(PollutedOceanBiome))]
 public partial class BlackJellyfish : AIJellyfish {
     public static int AttackRange => 60;
 
     #region Initialization
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = 4;
-        NPCSets.PushableByTypeId.Add(Type);
+        NPCSets.PushableByTypeId.AddEntry(Type);
     }
 
     public override void SetDefaults() {
@@ -37,9 +37,7 @@ public partial class BlackJellyfish : AIJellyfish {
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-        this.CreateEntry(database, bestiaryEntry)
-            .AddMainSpawn(BestiaryBuilder.CavernsBiome)
-            .AddSpawn(BestiaryBuilder.OceanBiome);
+        this.CreateEntry(database, bestiaryEntry);
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
@@ -49,7 +47,7 @@ public partial class BlackJellyfish : AIJellyfish {
     #endregion
 
     public float GetLightingIntensity() {
-        return GetLightingIntensity(DrawHelper.GetLightColor(NPC.Center));
+        return GetLightingIntensity(LightHelper.GetLightColor(NPC.Center));
     }
     public float GetLightingIntensity(Color lightColor) {
         return Math.Clamp(MathF.Pow(lightColor.ToVector3().Length(), 4f), 0.45f, 1f);

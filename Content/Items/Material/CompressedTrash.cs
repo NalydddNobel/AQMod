@@ -1,7 +1,5 @@
 ﻿using Aequus.Common.Items;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+using Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 
 namespace Aequus.Content.Items.Material;
 
@@ -22,7 +20,7 @@ public class CompressedTrash : ModItem {
     public override void AddRecipes() {
         CreateRecipe()
             .AddRecipeGroup(AequusRecipes.AnyTrash, 3)
-            .AddTile(TileID.Extractinator)
+            .AddTile<TrashCompactor>()
             .Register()
             .DisableDecraft();
     }

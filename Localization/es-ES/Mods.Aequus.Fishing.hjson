@@ -1,0 +1,6 @@
+FishingPoles: {
+	SteampunkerFishingPole: {
+		// DisplayName: Steampunker's Rod
+		// Tooltip: Automatically pulls and recasts the fishing bobber
+	}
+}
