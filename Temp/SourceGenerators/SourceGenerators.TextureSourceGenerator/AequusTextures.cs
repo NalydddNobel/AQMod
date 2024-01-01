@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 290)</summary>
+/// <summary>(Total Textures: 296)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -499,6 +499,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> TrashCompactor = new("Aequus/Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor");
     /// <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
     public static readonly RequestCache<Texture2D> TrashCompactorItem = new("Aequus/Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChest</summary>
+    public static readonly RequestCache<Texture2D> TrashChest = new("Aequus/Content/Tiles/Furniture/Trash/TrashChest");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChestItem</summary>
+    public static readonly RequestCache<Texture2D> TrashChestItem = new("Aequus/Content/Tiles/Furniture/Trash/TrashChestItem");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChest_Highlight</summary>
+    public static readonly RequestCache<Texture2D> TrashChest_Highlight = new("Aequus/Content/Tiles/Furniture/Trash/TrashChest_Highlight");
     /// <summary>Full Path: Content/Tiles/Radon/RadonGrassGrayBrick</summary>
     public static readonly RequestCache<Texture2D> RadonGrassGrayBrick = new("Aequus/Content/Tiles/Radon/RadonGrassGrayBrick");
     /// <summary>Full Path: Content/Tiles/Radon/RadonGrassStone</summary>

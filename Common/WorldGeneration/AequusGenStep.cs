@@ -1,5 +1,4 @@
-﻿using Aequus.Core.Autoloading;
-using Microsoft.Xna.Framework;
+﻿using Aequus.Core.Initialization;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.Generation;

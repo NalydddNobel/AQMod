@@ -41,5 +41,4 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 
-
 </Project>

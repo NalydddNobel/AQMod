@@ -90,3 +90,9 @@ PolymerSand: {
 	// ItemDisplayName: Polymer Sand
 	// ItemTooltip: ""
 }
+
+TrashChest: {
+	// MapEntry: Dumpster
+	// ItemDisplayName: "{$Tiles.TrashChest.MapEntry}"
+	// ItemTooltip: Each side of the dumpster can carry an entire chest of items
+}

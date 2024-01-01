@@ -103,7 +103,7 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
         if (Main.netMode == NetmodeID.Server) {
             var originalPoweredLocation = ConductiveSystem.PoweredLocation;
             ConductiveSystem.PoweredLocation = origin;
-            PacketSystem.Get<TileInteractionPacket>().Send(i, j);
+            Aequus.GetPacket<TileInteractionPacket>().Send(i, j);
             ConductiveSystem.PoweredLocation = originalPoweredLocation;
         }
         else if (Main.netMode == NetmodeID.SinglePlayer) {

@@ -680,6 +680,16 @@
             A base furntiure tile, Furniture in Aequus is handled on an individual ModTile basis instead of through a big multi-styled tile.
             </summary>
         </member>
+        <member name="M:Aequus.Common.Tiles.Components.IPlaceChestHook.PlaceChest(System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Return -2 to allow vanilla function to occur.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="style"></param>
+            <param name="notNearOtherChests"></param>
+            <returns></returns>
+        </member>
         <member name="M:Aequus.Common.Tiles.InstancedTileItem.#ctor(Terraria.ModLoader.ModTile,System.Int32,System.String,System.Boolean,System.Int32,System.Int32,System.Nullable{System.Int32})">
             <summary>
             
@@ -1195,7 +1205,7 @@
             <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 290)</summary>
+            <summary>(Total Textures: 296)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1934,6 +1944,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.TrashCompactorItem">
             <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashChest">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashChestItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChestItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashChest_Highlight">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChest_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonGrassGrayBrick">
             <summary>Full Path: Content/Tiles/Radon/RadonGrassGrayBrick</summary>

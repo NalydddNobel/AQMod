@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Tiles.Components;
 using Aequus.Core.Initialization;
+using System;
 
 namespace Aequus.Common.Tiles;
 
@@ -7,17 +8,24 @@ public partial class AequusTile : GlobalTile, IPostSetupContent {
     internal static bool[] All;
 
     public override void Load() {
-        LoadHooks();
-    }
-
-    #region Hooks
-    private static void LoadHooks() {
         On_WorldGen.PlaceTile += WorldGen_PlaceTile;
+        On_WorldGen.PlaceChest += On_WorldGen_PlaceChest;
         On_WorldGen.UpdateWorld_OvergroundTile += WorldGen_UpdateWorld_OvergroundTile;
         On_WorldGen.UpdateWorld_UndergroundTile += WorldGen_UpdateWorld_UndergroundTile;
         //On_WorldGen.QuickFindHome += WorldGen_QuickFindHome;
     }
 
+    private static int On_WorldGen_PlaceChest(On_WorldGen.orig_PlaceChest orig, int x, int y, ushort type, bool notNearOtherChests, int style) {
+        if (TileLoader.GetTile(type) is IPlaceChestHook placeChest) {
+            int result = placeChest.PlaceChest(x, y, style, notNearOtherChests);
+            if (result != -2) {
+                return Math.Clamp(result, -1, Main.maxChests);
+            }
+        }
+        return orig(x, y, type, notNearOtherChests, style);
+    }
+
+    #region Hooks
     private static void TryPlayCustomSound(int i, int j, ModTile modTile, bool forced, int plr, int style, bool PlaceTile) {
         if (modTile is ICustomPlaceSound customPlaceSound) {
             customPlaceSound.PlaySound(i, j, forced, plr, style, PlaceTile);

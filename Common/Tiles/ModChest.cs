@@ -1,13 +1,16 @@
-﻿using Terraria.Audio;
+﻿using System.Runtime.CompilerServices;
+using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.Localization;
 using Terraria.ObjectData;
+using Terraria.ID;
 
 namespace Aequus.Common.Tiles;
 
-public abstract class BaseChest : ModTile {
+public abstract class ModChest : ModTile {
     private LocalizedText _nameCache;
 
     public ModItem Item { get; private set; }
@@ -37,8 +40,8 @@ public abstract class BaseChest : ModTile {
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
         TileObjectData.newTile.Origin = new Point16(0, 1);
         TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
-        TileObjectData.newTile.HookCheckIfCanPlace = new PlacementHook(Chest.FindEmptyChest, -1, 0, true);
-        TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(Chest.AfterPlacement_Hook, -1, 0, false);
+        TileObjectData.newTile.HookCheckIfCanPlace = new PlacementHook(FindEmptyChest, -1, 0, true);
+        TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(AfterPlacement_Hook, -1, 0, false);
         TileObjectData.newTile.AnchorInvalidTiles = new int[] { TileID.MagicalIceBlock };
         TileObjectData.newTile.StyleHorizontal = true;
         TileObjectData.newTile.LavaDeath = false;
@@ -52,8 +55,15 @@ public abstract class BaseChest : ModTile {
     }
     public virtual void SafeSetStaticDefaults() { }
 
+    protected virtual int FindEmptyChest(int x, int y, int type, int style, int direction, int alternate) {
+        return Chest.FindEmptyChest(x, y, type, style, direction, alternate);
+    }
+    protected virtual int AfterPlacement_Hook(int x, int y, int type, int style, int direction, int alternate) {
+        return Chest.AfterPlacement_Hook(x, y, type, style, direction, alternate);
+    }
+
     protected string MapChestName(string name, int i, int j) {
-        GetTopLeft(i, j, out var left, out var top);
+        GetChestLocation(i, j, out var left, out var top);
 
         int chest = Chest.FindChest(left, top);
         if (chest < 0) {
@@ -98,7 +108,8 @@ public abstract class BaseChest : ModTile {
     public override bool RightClick(int i, int j) {
         var player = Main.LocalPlayer;
         Main.mouseRightRelease = false;
-        GetTopLeft(i, j, out var left, out var top);
+        var tile = Main.tile[i, j];
+        GetChestHoverLocation(i, j, Main.MouseWorld, in tile, out int chestX, out int chestY);
 
         player.CloseSign();
         player.SetTalkNPC(-1);
@@ -115,28 +126,28 @@ public abstract class BaseChest : ModTile {
             player.editedChestName = false;
         }
 
-        var isLocked = Chest.IsLocked(left, top);
+        var isLocked = Chest.IsLocked(chestX, chestY);
         if (Main.netMode == NetmodeID.MultiplayerClient && !isLocked) {
-            if (left == player.chestX && top == player.chestY && player.chest >= 0) {
+            if (chestX == player.chestX && chestY == player.chestY && player.chest >= 0) {
                 player.chest = -1;
                 Recipe.FindRecipes();
                 SoundEngine.PlaySound(SoundID.MenuClose);
             }
             else {
-                NetMessage.SendData(MessageID.RequestChestOpen, -1, -1, null, left, top);
+                NetMessage.SendData(MessageID.RequestChestOpen, -1, -1, null, chestX, chestY);
                 Main.stackSplit = 600;
             }
         }
         else {
             if (isLocked) {
-                if (UnlockChest(i, j, left, top, player) && Chest.Unlock(left, top)) {
+                if (UnlockChest(i, j, chestX, chestY, player) && Chest.Unlock(chestX, chestY)) {
                     if (Main.netMode == NetmodeID.MultiplayerClient) {
-                        NetMessage.SendData(MessageID.LockAndUnlock, -1, -1, null, player.whoAmI, 1f, left, top);
+                        NetMessage.SendData(MessageID.LockAndUnlock, -1, -1, null, player.whoAmI, 1f, chestX, chestY);
                     }
                 }
             }
             else {
-                int chest = Chest.FindChest(left, top);
+                int chest = Chest.FindChest(chestX, chestY);
                 if (chest >= 0) {
                     Main.stackSplit = 600;
                     if (chest == player.chest) {
@@ -145,7 +156,7 @@ public abstract class BaseChest : ModTile {
                     }
                     else {
                         SoundEngine.PlaySound(player.chest < 0 ? SoundID.MenuOpen : SoundID.MenuTick);
-                        player.OpenChest(left, top, chest);
+                        player.OpenChest(chestX, chestY, chest);
                     }
 
                     Recipe.FindRecipes();
@@ -163,9 +174,9 @@ public abstract class BaseChest : ModTile {
     public override void MouseOver(int i, int j) {
         var player = Main.LocalPlayer;
         var tile = Main.tile[i, j];
-        GetTopLeft(i, j, in tile, out var left, out var top);
+        GetChestHoverLocation(i, j, Main.MouseWorld, in tile, out int chestX, out int chestY);
 
-        var chest = Chest.FindChest(left, top);
+        var chest = Chest.FindChest(chestX, chestY);
         player.cursorItemIconID = -1;
         if (chest < 0) {
             player.cursorItemIconText = Language.GetTextValue("LegacyChestType.0");
@@ -174,7 +185,7 @@ public abstract class BaseChest : ModTile {
             string defaultName = TileLoader.DefaultContainerName(tile.TileType, tile.TileFrameX, tile.TileFrameY);
             player.cursorItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : defaultName;
             if (player.cursorItemIconText == defaultName) {
-                player.cursorItemIconID = HoverItem(i, j, left, top);
+                player.cursorItemIconID = HoverItem(i, j, chestX, chestY);
                 player.cursorItemIconText = "";
             }
         }
@@ -199,7 +210,7 @@ public abstract class BaseChest : ModTile {
         }
 
         try {
-            GetTopLeft(i, j, out var left, out var top);
+            GetChestLocation(i, j, out var left, out var top);
             int chest = Chest.FindChest(left, top);
             spriteBatch.Draw(texture, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + TileHelper.DrawOffset, new Rectangle(tile.TileFrameX, 38 * (chest == -1 ? 0 : Main.chest[chest].frame) + tile.TileFrameY, 16, 16), color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         }
@@ -207,13 +218,23 @@ public abstract class BaseChest : ModTile {
         }
     }
 
-    protected void GetTopLeft(int i, int j, out int left, out int top) {
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    protected void GetChestLocation(int i, int j, out int chestX, out int chestY) {
         var tile = Main.tile[i, j];
-        left = i - tile.TileFrameX % FrameWidth / 18;
-        top = j - tile.TileFrameY % FrameHeight / 18;
+        GetChestLocation(i, j, in tile, out chestX, out chestY);
     }
-    protected void GetTopLeft(int i, int j, in Tile tileCache, out int left, out int top) {
-        left = i - tileCache.TileFrameX % FrameWidth / 18;
-        top = j - tileCache.TileFrameY % FrameHeight / 18;
+    protected virtual void GetChestLocation(int i, int j, in Tile tileCache, out int chestX, out int chestY) {
+        chestX = i - tileCache.TileFrameX % FrameWidth / 18;
+        chestY = j - tileCache.TileFrameY % FrameHeight / 18;
+    }
+    protected void GetChestHoverLocation(int i, int j, Vector2 mouseWorld, in Tile tileCache, out int chestX, out int chestY) {
+        GetChestHoverLocation(i, j, mouseWorld.X / 16.0 % 1.0, mouseWorld.Y / 16.0 % 1.0, in tileCache, out chestX, out chestY);
+    }
+    protected virtual void GetChestHoverLocation(int i, int j, double mouseX, double mouseY, in Tile tileCache, out int chestX, out int chestY) {
+        GetChestLocation(i, j, in tileCache, out chestX, out chestY);
+    }
+
+    protected void SendChestUpdate(int x, int y, int style) {
+        NetMessage.SendData(MessageID.ChestUpdates, number: 100, number2: x, number3: y, number4: style, number5: 0, number6: Type);
     }
 }

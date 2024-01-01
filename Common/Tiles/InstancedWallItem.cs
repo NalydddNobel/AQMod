@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Core.Autoloading;
+using Aequus.Core.Initialization;
 using Terraria.Localization;
 
 namespace Aequus.Common.Tiles;
