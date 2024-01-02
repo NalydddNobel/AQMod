@@ -1,27 +1,27 @@
-// DisplayName: Cambios Vanilla
-// ColorImportant: c/ffffbb
-// ColorImportant2: c/ffcc99
-// ColorNote: c/aaacff
-// NoteExploit: "[{$ColorNote}:Desactiva esta configuración por preferencia personal, o para prevenir ventajas no deseadas.]"
+DisplayName: Cambios Vanilla
+ColorImportant: c/ffffbb
+ColorImportant2: c/ffcc99
+ColorNote: c/aaacff
+NoteExploit: "[{$ColorNote}:Desactiva esta configuración por preferencia personal, o para prevenir ventajas no deseadas.]"
 
 MoveTreasureMagnet: {
-	// Label: "[i:TreasureMagnet] Mover Imán de tesoros"
-	/* Tooltip:
+	Label: "[i:TreasureMagnet] Mover Imán de tesoros"
+	Tooltip:
 		'''
 		Cuando [{$ColorImportant}:Activo], el [{$ColorImportant}:Imán de tesoros] sera vendido por el [{$ColorImportant}:Mercader del cielo],
 		y [{$ColorImportant}:no aparecera] en [{$ColorImportant2}:Cofres de las sombras] o en [{$ColorImportant2}:Caja con cierre de obsidiana].
 
 		{$NoteExploit}
-		''' */
+		'''
 }
 
 RestorationPotionRecipe: {
-	// Label: "[i:RestorationPotion] Receta de Poción de recuperación"
-	/* Tooltip:
+	Label: "[i:RestorationPotion] Receta de Poción de recuperación"
+	Tooltip:
 		'''
 		Cuando [{$ColorImportant}:Activo], La receta Vanilla de la [{$ColorImportant}:Poción de recuperación] sera [{$ColorImportant}:removida].
 		Aequus añade una [{$ColorImportant}:receta alternativa], usando dos [{$ColorImportant2}:Pociónes de recuperación menor] y un [{$ColorImportant2}:Champiñón brillante].
 
 		[{$ColorNote}:Desactiva esta configuración por preferencia personal, o si se presenta un problema al remover esta receta.]
-		''' */
+		'''
 }

@@ -8,7 +8,7 @@ CommonTooltips: {
 	DedicatedItem: Gracias, {0}!
 	DedicatedItemAnonymous: Objeto Dedicado
 	UsesDarts: Utiliza semillas y dardos como munición
-	// Banner: "{$CommonItemTooltip.BannerBonus}{0}"
+	Banner: "{$CommonItemTooltip.BannerBonus}{0}"
 }
 
 //# Equipment: Accessories
@@ -59,13 +59,13 @@ FlashwayShield: {
 }
 
 PurpleBalloon: {
-	// DisplayName: Globo morado mate
-	/* Tooltip:
+	DisplayName: Globo morado mate
+	Tooltip:
 		'''
 		{$ItemTooltip.ShinyRedBalloon}
 		{$SlimyBlueBalloon.Tooltip}
 		'No confundir con el globo en un globo'
-		''' */
+		'''
 }
 
 SlimyBlueBalloon: {
@@ -105,12 +105,12 @@ Calendar: {
 
 //# Weapons: Melee
 Dynaknife: {
-	// DisplayName: El espíritu navideño
-	/* Tooltip:
+	DisplayName: El espíritu navideño
+	Tooltip:
 		'''
 		Ataques aplican una bomba que explota en el enemigo
 		<right> para embestir y atacar
-		''' */
+		'''
 }
 
 Slice: {
@@ -159,8 +159,8 @@ SkyHunterCrossbow: {
 
 //# Weapons: Magic
 TrashStaff: {
-	// DisplayName: Correo Spam
-	// Tooltip: Ataques críticos envían un virus a enemigos cercanos
+	DisplayName: Correo Spam
+	Tooltip: Ataques críticos envían un virus a enemigos cercanos
 }
 
 Furystar: {
@@ -387,8 +387,8 @@ CrabsonMask: {
 }
 
 DustDevilMask: {
-	// DisplayName: Mascara del Diablillo de Polvo
-	// Tooltip: ""
+	DisplayName: Mascara del Diablillo de Polvo
+	Tooltip: ""
 }
 
 OmegaStariteMask: {
