@@ -8,7 +8,7 @@ Wings: Doble tiempo de vuelo
 Defense: +{0} Defensa
 LessLikelyToTargetYou: Enemigos son mucho menos probable de atacarte
 MoreLikelyToTargetYou: Enemigos son mucho más probable de atacarte
-Magic Accessories
+//# Magic Accessories
 CelestialEmblem: Aumenta el daño de los ataques mágicos en un 30%
 MagicCuffs: Aumenta el maná máximo en 40
 CelestialCuffs: Aumenta el maná máximo en 40
@@ -21,7 +21,7 @@ ArcaneFlower:
 	{$BoostTooltips.ManaFlower}
 	{$BoostTooltips.LessLikelyToTargetYou}
 	'''
-Ranged Accessories
+//# Ranged Accessories
 SniperScope: Aumenta un 20% la probabilidad de ataque crítico y el daño de los ataques a distancia
 ReconScope:
 	'''
@@ -35,7 +35,7 @@ StalkersQuiver:
 	{$BoostTooltips.MagicQuiver}
 	{$BoostTooltips.LessLikelyToTargetYou}
 	'''
-Melee Accessories
+//# Melee Accessories
 FeralClaws: Aumenta un 24% la velocidad del cuerpo a cuerpo
 PowerGlove: "{$BoostTooltips.FeralClaws}"
 MechanicalGlove: El daño cuerpo a cuerpo y la velocidad aumentan un 24%
@@ -45,7 +45,7 @@ BerserkerGlove:
 	{$BoostTooltips.FeralClaws}
 	{$BoostTooltips.MoreLikelyToTargetYou}
 	'''
-Movement Accessories
+//# Movement Accessories
 FrogWebbing: "{$BoostTooltips.FrogLeg}"
 FrogGear: "{$BoostTooltips.FrogLeg}"
 FrogFlipper: "{$BoostTooltips.FrogLeg}"
@@ -68,7 +68,7 @@ TerrasparkBoots:
 	{$BoostTooltips.LavaCharm}
 	'''
 LavaWaders: "{$BoostTooltips.LavaCharm}"
-Misc
+//# Misc
 MoltenSkullRose: "{$BoostTooltips.LavaCharm}"
 MoltenCharm: "{$BoostTooltips.LavaCharm}"
 LavaSkull: "{$BoostTooltips.LavaCharm}"
@@ -98,7 +98,7 @@ BandofRegeneration: Regenera 2 de vida por segundo
 BandofStarpower: Aumenta el maná máximo en 40
 ManaRegenerationBand: Aumenta el maná máximo en 40
 LuckyHorseshoe: Aumenta la suerte
-Expert Accessories
+//# Expert Accessories
 RoyalGel: Los slimes serán amistosos y lucharán por ti
 EoCShield: Permite embestir a un enemigo desde largas distancias
 WormScarf:
