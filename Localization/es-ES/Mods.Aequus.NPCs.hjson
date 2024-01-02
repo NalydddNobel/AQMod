@@ -18,6 +18,11 @@ BlackJellyfish: {
 	// BannerName: Black Jellyfish Banner
 }
 
+HorseshoeCrab: {
+	// DisplayName: Horseshoe Crab
+	// Bestiary: These flat discs of a creature are oddities in both polluted and non-polluted waters. They feast on the germs and unopened pasta cans which litter the seafloor.
+}
+
 Mirage.Bestiary: Durante la lluvia, nubes toxicas se forman y acumulan formando este monstruo acídico, desea ser un nimbo real, pero tiene problemas haciéndose amigo hasta de un muñeco de pruebas.
 RadioConductor.Bestiary: Un Frankenstein tecnológico, esta elegante antigüedad electrónica puede dirigir y manipular ondas de radio para defenderse. Se asegurará de poner un espectáculo, quieras o no.
 Pillbug.Bestiary: Bendecido con Energía Acuática, estos insectos corretean y se alimentan de la contaminación como si no fuera nada.
@@ -25,3 +30,6 @@ Chromite.Bestiary: Estos insectos han desarrollado un camuflaje magnético incre
 Crabson.DisplayName: Crabson
 OmegaStarite.DisplayName: Omega Starite
 DustDevil.DisplayName: Demonio de Polvo
+// AdultHorseshoeCrab.DisplayName: Adult Horseshoe Crab
+// BabyHorseshoeCrab.DisplayName: Baby Horseshoe Crab
+// ElderHorseshoeCrab.DisplayName: Elder Horseshoe Crab

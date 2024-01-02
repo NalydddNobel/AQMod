@@ -94,5 +94,5 @@ PolymerSand: {
 TrashChest: {
 	MapEntry: Dumpster
 	ItemDisplayName: "{$Tiles.TrashChest.MapEntry}"
-	ItemTooltip: "Both sides of the dumpster are different chests"
+	ItemTooltip: Both sides of the dumpster are different chests
 }

@@ -1205,7 +1205,7 @@
             <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 296)</summary>
+            <summary>(Total Textures: 303)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1527,6 +1527,27 @@
         </member>
         <member name="F:Aequus.AequusTextures.UltraStariteTrophyItem">
             <summary>Full Path: Content/Bosses/Trophies/UltraStariteTrophyItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AdultHorseshoeCrab">
+            <summary>Full Path: Content/Critters/HorseshoeCrab/AdultHorseshoeCrab</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BabyHorseshoeCrab">
+            <summary>Full Path: Content/Critters/HorseshoeCrab/BabyHorseshoeCrab</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ElderHorseshoeCrab">
+            <summary>Full Path: Content/Critters/HorseshoeCrab/ElderHorseshoeCrab</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AdultHorseshoeCrabGoreHead">
+            <summary>Full Path: Content/Critters/HorseshoeCrab/Gore/AdultHorseshoeCrabGoreHead</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AdultHorseshoeCrabGoreTail">
+            <summary>Full Path: Content/Critters/HorseshoeCrab/Gore/AdultHorseshoeCrabGoreTail</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ElderHorseshoeCrabGoreHead">
+            <summary>Full Path: Content/Critters/HorseshoeCrab/Gore/ElderHorseshoeCrabGoreHead</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ElderHorseshoeCrabGoreTail">
+            <summary>Full Path: Content/Critters/HorseshoeCrab/Gore/ElderHorseshoeCrabGoreTail</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Baguette">
             <summary>Full Path: Content/DedicatedContent/Baguette/Baguette</summary>

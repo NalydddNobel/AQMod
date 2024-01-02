@@ -94,5 +94,5 @@ PolymerSand: {
 TrashChest: {
 	// MapEntry: Dumpster
 	// ItemDisplayName: "{$Tiles.TrashChest.MapEntry}"
-	// ItemTooltip: Each side of the dumpster can carry an entire chest of items
+	// ItemTooltip: Both sides of the dumpster are different chests
 }

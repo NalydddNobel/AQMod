@@ -18,6 +18,11 @@ BlackJellyfish: {
 	BannerName: 黑水母旗
 }
 
+HorseshoeCrab: {
+	// DisplayName: Horseshoe Crab
+	// Bestiary: These flat discs of a creature are oddities in both polluted and non-polluted waters. They feast on the germs and unopened pasta cans which litter the seafloor.
+}
+
 Mirage.Bestiary: 下雨时, 有毒的雾云形成并聚集在一起, 形成这种酸性怪物. 它希望自己能像真正的雨云一样, 但就连和目标假人交朋友都有困难.
 RadioConductor.Bestiary: 一种科技上的弗兰肯斯坦, 这一经典的历史电子产品可以引导和操纵无线电波来保护自己. 无论你喜欢与否, 它都一定会上演一出好戏.
 Pillbug.Bestiary: 被海蓝能量所祝福, 这些虫子到处乱爬, 以污染为食, 仿佛污染对它们来说不算什么.
@@ -25,3 +30,6 @@ Chromite.Bestiary: 这些类似甲虫的虫子已经发展出一种令人难以�
 Crabson.DisplayName: 巨蟹蛤
 OmegaStarite.DisplayName: 终末之星
 DustDevil.DisplayName: 沙尘恶魔
+// AdultHorseshoeCrab.DisplayName: Adult Horseshoe Crab
+// BabyHorseshoeCrab.DisplayName: Baby Horseshoe Crab
+// ElderHorseshoeCrab.DisplayName: Elder Horseshoe Crab

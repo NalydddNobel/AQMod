@@ -18,6 +18,11 @@ BlackJellyfish: {
 	BannerName: Black Jellyfish Banner
 }
 
+HorseshoeCrab: {
+	DisplayName: Horseshoe Crab
+	Bestiary: These flat discs of a creature are oddities in both polluted and non-polluted waters. They feast on the germs and unopened pasta cans which litter the seafloor.
+}
+
 Mirage.Bestiary: During the rain, toxic fog clouds form and bunch together forming this acidic monster. It wishes it could be like a real nimbus, but it has trouble even befriending a Target Dummy.
 RadioConductor.Bestiary: A technological frankenstein, this classy piece of historical electronics can direct and manipulate radio waves to defend itself. It will make sure to put up a show, whether you like it or not.
 Pillbug.Bestiary: Blessed with Aquatic Energy, these bugs scurry around and feed on the pollution like it means nothing to them.
@@ -25,3 +30,6 @@ Chromite.Bestiary: These beetle-like bugs have deveolped an incredibly advanced 
 Crabson.DisplayName: Crabson
 OmegaStarite.DisplayName: Omega Starite
 DustDevil.DisplayName: Dust Devil
+AdultHorseshoeCrab.DisplayName: Adult Horseshoe Crab
+BabyHorseshoeCrab.DisplayName: Baby Horseshoe Crab
+ElderHorseshoeCrab.DisplayName: Elder Horseshoe Crab

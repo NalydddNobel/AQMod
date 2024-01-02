@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 296)</summary>
+/// <summary>(Total Textures: 303)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -221,6 +221,20 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> UltraStariteTrophy = new("Aequus/Content/Bosses/Trophies/UltraStariteTrophy");
     /// <summary>Full Path: Content/Bosses/Trophies/UltraStariteTrophyItem</summary>
     public static readonly RequestCache<Texture2D> UltraStariteTrophyItem = new("Aequus/Content/Bosses/Trophies/UltraStariteTrophyItem");
+    /// <summary>Full Path: Content/Critters/HorseshoeCrab/AdultHorseshoeCrab</summary>
+    public static readonly RequestCache<Texture2D> AdultHorseshoeCrab = new("Aequus/Content/Critters/HorseshoeCrab/AdultHorseshoeCrab");
+    /// <summary>Full Path: Content/Critters/HorseshoeCrab/BabyHorseshoeCrab</summary>
+    public static readonly RequestCache<Texture2D> BabyHorseshoeCrab = new("Aequus/Content/Critters/HorseshoeCrab/BabyHorseshoeCrab");
+    /// <summary>Full Path: Content/Critters/HorseshoeCrab/ElderHorseshoeCrab</summary>
+    public static readonly RequestCache<Texture2D> ElderHorseshoeCrab = new("Aequus/Content/Critters/HorseshoeCrab/ElderHorseshoeCrab");
+    /// <summary>Full Path: Content/Critters/HorseshoeCrab/Gore/AdultHorseshoeCrabGoreHead</summary>
+    public static readonly RequestCache<Texture2D> AdultHorseshoeCrabGoreHead = new("Aequus/Content/Critters/HorseshoeCrab/Gore/AdultHorseshoeCrabGoreHead");
+    /// <summary>Full Path: Content/Critters/HorseshoeCrab/Gore/AdultHorseshoeCrabGoreTail</summary>
+    public static readonly RequestCache<Texture2D> AdultHorseshoeCrabGoreTail = new("Aequus/Content/Critters/HorseshoeCrab/Gore/AdultHorseshoeCrabGoreTail");
+    /// <summary>Full Path: Content/Critters/HorseshoeCrab/Gore/ElderHorseshoeCrabGoreHead</summary>
+    public static readonly RequestCache<Texture2D> ElderHorseshoeCrabGoreHead = new("Aequus/Content/Critters/HorseshoeCrab/Gore/ElderHorseshoeCrabGoreHead");
+    /// <summary>Full Path: Content/Critters/HorseshoeCrab/Gore/ElderHorseshoeCrabGoreTail</summary>
+    public static readonly RequestCache<Texture2D> ElderHorseshoeCrabGoreTail = new("Aequus/Content/Critters/HorseshoeCrab/Gore/ElderHorseshoeCrabGoreTail");
     /// <summary>Full Path: Content/DedicatedContent/Baguette/Baguette</summary>
     public static readonly RequestCache<Texture2D> Baguette = new("Aequus/Content/DedicatedContent/Baguette/Baguette");
     /// <summary>Full Path: Content/DedicatedContent/Baguette/BaguetteBuff</summary>
