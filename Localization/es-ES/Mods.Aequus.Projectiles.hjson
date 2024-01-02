@@ -6,7 +6,7 @@
 // SliceProj.DisplayName: "{$Items.Slice.DisplayName}"
 // FurystarProj.DisplayName: "{$Items.Furystar.DisplayName}"
 // FurystarBulletProj.DisplayName: "{$Items.Furystar.DisplayName}"
-// ConductiveProjectile.DisplayName: Electricity
+// ConductiveProjectile.DisplayName: Electricidad
 // BellowsProj.DisplayName: "{$Items.Bellows.DisplayName}"
 // PumpinatorProj.DisplayName: "{$Items.Pumpinator.DisplayName}"
 // SkyMerchantProjectile.DisplayName: "{$NPCs.SkyMerchant.DisplayName}"

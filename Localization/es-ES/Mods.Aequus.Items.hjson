@@ -59,12 +59,12 @@ FlashwayShield: {
 }
 
 PurpleBalloon: {
-	// DisplayName: Matte Purple Balloon
+	// DisplayName: Globo morado mate
 	/* Tooltip:
 		'''
 		{$ItemTooltip.ShinyRedBalloon}
 		{$SlimyBlueBalloon.Tooltip}
-		'Not to be confused with a Balloon in a Balloon'
+		'No confundir con el globo en un globo'
 		''' */
 }
 
@@ -105,11 +105,11 @@ Calendar: {
 
 //# Weapons: Melee
 Dynaknife: {
-	// DisplayName: The Christmas Spirit
+	// DisplayName: El espíritu navideño
 	/* Tooltip:
 		'''
-		Hits apply a bomb which will explode on enemies
-		<right> to dash foward and attack
+		Ataques aplican una bomba que explota en el enemigo
+		<right> para embestir y atacar
 		''' */
 }
 
@@ -159,8 +159,8 @@ SkyHunterCrossbow: {
 
 //# Weapons: Magic
 TrashStaff: {
-	// DisplayName: Spam Mail
-	// Tooltip: Critical strikes send virus mail to nearby enemies
+	// DisplayName: Correo Spam
+	// Tooltip: Ataques críticos envían un virus a enemigos cercanos
 }
 
 Furystar: {
@@ -387,7 +387,7 @@ CrabsonMask: {
 }
 
 DustDevilMask: {
-	// DisplayName: Dust Devil Mask
+	// DisplayName: Mascara del Diablillo de Polvo
 	// Tooltip: ""
 }
 
