@@ -10,9 +10,18 @@ public partial class AequusTile : GlobalTile, IPostSetupContent {
     public override void Load() {
         On_WorldGen.PlaceTile += WorldGen_PlaceTile;
         On_WorldGen.PlaceChest += On_WorldGen_PlaceChest;
+        On_WorldGen.PlaceChestDirect += On_WorldGen_PlaceChestDirect; ;
         On_WorldGen.UpdateWorld_OvergroundTile += WorldGen_UpdateWorld_OvergroundTile;
         On_WorldGen.UpdateWorld_UndergroundTile += WorldGen_UpdateWorld_UndergroundTile;
         //On_WorldGen.QuickFindHome += WorldGen_QuickFindHome;
+    }
+
+    private static void On_WorldGen_PlaceChestDirect(On_WorldGen.orig_PlaceChestDirect orig, int x, int y, ushort type, int style, int id) {
+        if (TileLoader.GetTile(type) is IPlaceChestHook placeChest && !placeChest.PlaceChestDirect(x, y, style, id)) {
+            return;
+        }
+
+        orig(x, y, type, style, id);
     }
 
     private static int On_WorldGen_PlaceChest(On_WorldGen.orig_PlaceChest orig, int x, int y, ushort type, bool notNearOtherChests, int style) {
@@ -21,6 +30,7 @@ public partial class AequusTile : GlobalTile, IPostSetupContent {
             if (result != -2) {
                 return Math.Clamp(result, -1, Main.maxChests);
             }
+            
         }
         return orig(x, y, type, notNearOtherChests, style);
     }

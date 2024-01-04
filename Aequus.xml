@@ -690,6 +690,16 @@
             <param name="notNearOtherChests"></param>
             <returns></returns>
         </member>
+        <member name="M:Aequus.Common.Tiles.Components.IPlaceChestHook.PlaceChestDirect(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Return true to allow vanilla function to occur.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="style"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:Aequus.Common.Tiles.InstancedTileItem.#ctor(Terraria.ModLoader.ModTile,System.Int32,System.String,System.Boolean,System.Int32,System.Int32,System.Nullable{System.Int32})">
             <summary>
             
@@ -762,12 +772,12 @@
             Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
             </summary>
         </member>
-        <member name="P:Aequus.Content.Biomes.PollutedOcean.PollutedOceanGenerator.SafeTile">
+        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedOceanGenerator.SafeTile">
             <summary>
-            Similar to <see cref="P:Aequus.Content.Biomes.PollutedOcean.PollutedOceanGenerator.ReplaceableTile"/>, except if tile Ids in this entry are false, the Crab Crevice will actively try to steer away from generating around them.
+            Similar to <see cref="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedOceanGenerator.ReplaceableTile"/>, except if tile Ids in this entry are false, the Crab Crevice will actively try to steer away from generating around them.
             </summary>
         </member>
-        <member name="P:Aequus.Content.Biomes.PollutedOcean.PollutedOceanGenerator.ReplaceableTile">
+        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedOceanGenerator.ReplaceableTile">
             <summary>
             Lookup for tile Ids which are safe to generate over.
             </summary>

@@ -132,16 +132,39 @@ public class TrashChest : ModChest, IPlaceChestHook {
             return -1;
         }
 
-        TileObject.Place(objectData);
+        ((IPlaceChestHook)this).PlaceChestDirect(x, y, style, -1);
         int chestId = -1;
         for (int i = 0; i < 2; i++) {
-            chestId = Chest.CreateChest(objectData.xCoord + i, objectData.yCoord);
-            if (chestId != 1 && Main.netMode == NetmodeID.MultiplayerClient) {
-                SendChestUpdate(x, y, style);
-                break;
+            int nextChestId = Chest.CreateChest(objectData.xCoord + i, objectData.yCoord);
+            if (nextChestId != -1) {
+                chestId = nextChestId;
             }
         }
+        if (chestId != 1 && Main.netMode == NetmodeID.MultiplayerClient) {
+            SendChestUpdate(x, y, style);
+        }
         return chestId;
+    }
+
+    bool IPlaceChestHook.PlaceChestDirect(int x, int y, int style, int id) {
+        // Adjust tile data
+        for (int i = 0; i < 3; i++) {
+            short frameX = (short)(18 * i + style * FrameWidth);
+            for (int j = 0; j < 2; j++) {
+                var tile = Main.tile[x + i, y + j];
+                tile.ClearTile();
+                tile.HasTile = true;
+                tile.TileType = Type;
+                tile.TileFrameX = frameX;
+                tile.TileFrameY = (short)(18 * j);
+            }
+        }
+
+        // Create chests
+        for (int i = 0; i < 2; i++) {
+            Chest.CreateChest(x + i, y, id);
+        }
+        return false;
     }
 
     public override bool CanKillTile(int i, int j, ref bool blockDamaged) {
@@ -167,5 +190,20 @@ public class TrashChest : ModChest, IPlaceChestHook {
         for (int k = 0; k < 3; k++) {
             Chest.DestroyChest(i + k, j);
         }
+    }
+
+    public bool GetChestIds(int i, int j, out int leftChestId, out int rightChestId) {
+        leftChestId = -1;
+        rightChestId = -1;
+        if (Main.tile[i, j].TileType != Type) {
+            return false;
+        }
+
+        int left = i - Main.tile[i, j].TileFrameX % FrameWidth / 18;
+        int top = j - Main.tile[i, j].TileFrameY % FrameHeight / 18;
+
+        leftChestId = Chest.FindChest(left, top);
+        rightChestId = Chest.FindChest(left + 1, top);
+        return leftChestId != -1 && rightChestId != -1;
     }
 }

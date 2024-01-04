@@ -7,7 +7,7 @@ using Terraria.IO;
 using Terraria.Utilities;
 using Terraria.WorldBuilding;
 
-namespace Aequus.Content.Biomes.PollutedOcean;
+namespace Aequus.Content.Biomes.PollutedOcean.Generation;
 
 public sealed class PollutedOceanGenerator : AequusGenStep {
     public override string InsertAfter => "Create Ocean Caves";
@@ -333,7 +333,7 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
                 if (Main.tile[i, j].TileType == _polymerSand) {
                     if (Main.tile[i, j].HasTile) {
                         Main.tile[i, j].WallType = _polymerSandstoneWall;
-                        if (!Main.tile[i, j + 1].IsFullySolid() || (Main.tile[i, j - 1].IsFullySolid() && (!Main.tile[i - 1, j].IsFullySolid() || !Main.tile[i - 1, j + 1].IsFullySolid() || !Main.tile[i + 1, j].IsFullySolid() || !Main.tile[i + 1, j + 1].IsFullySolid()))) {
+                        if (!Main.tile[i, j + 1].IsFullySolid() || Main.tile[i, j - 1].IsFullySolid() && (!Main.tile[i - 1, j].IsFullySolid() || !Main.tile[i - 1, j + 1].IsFullySolid() || !Main.tile[i + 1, j].IsFullySolid() || !Main.tile[i + 1, j + 1].IsFullySolid())) {
                             Main.tile[i, j].TileType = _polymerSandstone;
                         }
                     }

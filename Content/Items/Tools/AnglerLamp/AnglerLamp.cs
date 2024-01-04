@@ -1,6 +1,9 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Particles;
+using Aequus.Content.DataSets;
+using Aequus.Content.Weapons.Ranged.Darts.Ammo;
+using Aequus.Core.DataSets;
 using Aequus.Core.Initialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -29,7 +32,7 @@ public class AnglerLamp : ModItem {
     public float animation;
 
     public override void SetStaticDefaults() {
-        EquipBoostDatabase.Instance.SetNoEffect(Type);
+        LootDefinition.CreateFor(Loot.PollutedOceanPrimary, Type);
     }
 
     public override void SetDefaults() {

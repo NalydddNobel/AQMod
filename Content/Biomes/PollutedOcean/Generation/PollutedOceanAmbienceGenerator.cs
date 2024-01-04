@@ -1,17 +1,25 @@
-﻿using Aequus.Common.WorldGeneration;
+﻿using Aequus.Common.Tiles;
+using Aequus.Common.Tiles.Rubblemaker;
+using Aequus.Common.WorldGeneration;
 using Aequus.Content.Biomes.PollutedOcean.Tiles;
 using Aequus.Content.Biomes.PollutedOcean.Tiles.Pots;
 using Aequus.Content.Biomes.PollutedOcean.Tiles.SeaPickles;
+using Aequus.Content.DataSets;
+using Aequus.Content.Tiles.Furniture.Trash;
 using System;
 using Terraria.IO;
 using Terraria.WorldBuilding;
 
-namespace Aequus.Content.Biomes.PollutedOcean;
+namespace Aequus.Content.Biomes.PollutedOcean.Generation;
 internal class PollutedOceanAmbienceGenerator : AequusGenStep {
     public override string InsertAfter => "Pots";
 
     protected override double GenWeight => 50f;
 
+    public static int ChestsPlaced;
+
+    #region Tile Id Caches
+    // Cache the tile ids to prevent spam usage of ModContent.TileType<T>().
     private static ushort _pot1x1;
     private static ushort _pot2x2;
     private static ushort _ambient1x1;
@@ -23,6 +31,8 @@ internal class PollutedOceanAmbienceGenerator : AequusGenStep {
     private static ushort _seaPickle1x1;
     private static ushort _seaPickle1x2;
     private static ushort _seaPickle2x2;
+    private static ushort _chest;
+    #endregion
 
     public static bool Polluted(int x, int y) {
         if (WorldGen.SolidTile(x, y)) {
@@ -40,17 +50,22 @@ internal class PollutedOceanAmbienceGenerator : AequusGenStep {
     }
 
     public override void Apply(GenerationProgress progress, GameConfiguration config) {
+        #region Initialization
         _pot1x1 = (ushort)ModContent.TileType<TrashPots1x1>();
         _pot2x2 = (ushort)ModContent.TileType<TrashPots2x2>();
-        _ambient1x1 = (ushort)ModContent.TileType<PollutedOceanAmbient1x1>();
-        _ambient2x2 = (ushort)ModContent.TileType<PollutedOceanAmbient2x2>();
+        _ambient1x1 = RubblemakerTile.GetId<PollutedOceanAmbient1x1>();
+        _ambient2x2 = RubblemakerTile.GetId<PollutedOceanAmbient2x2>();
         _stalactite1x2 = (ushort)ModContent.TileType<PolymerStalactite1x2>();
         _stalagmite1x2 = (ushort)ModContent.TileType<PolymerStalagmite1x2>();
         _stalactite1x1 = (ushort)ModContent.TileType<PolymerStalactite1x1>();
         _stalagmite1x1 = (ushort)ModContent.TileType<PolymerStalagmite1x1>();
-        _seaPickle1x1 = (ushort)ModContent.TileType<SeaPickles1x1>();
-        _seaPickle1x2 = (ushort)ModContent.TileType<SeaPickles1x2>();
-        _seaPickle2x2 = (ushort)ModContent.TileType<SeaPickles2x2>();
+        _seaPickle1x1 = RubblemakerTile.GetId<SeaPickles1x1>();
+        _seaPickle1x2 = RubblemakerTile.GetId<SeaPickles1x2>();
+        _seaPickle2x2 = RubblemakerTile.GetId<SeaPickles2x2>();
+        _chest = (ushort)ModContent.TileType<TrashChest>();
+        #endregion
+
+        ChestsPlaced = 0;
 
         SetMessage(progress);
         for (int i = 10; i < Main.maxTilesX - 10; i++) {
@@ -59,12 +74,14 @@ internal class PollutedOceanAmbienceGenerator : AequusGenStep {
                     continue;
                 }
 
-                SetProgress(progress, IJLoopProgress(i,j), 0f, 0.5f);
+                SetProgress(progress, IJLoopProgress(i, j), 0f, 0.5f);
                 if (Random.NextBool(3000)) {
                     PlaceSeaPickleSetPiece(i, j, Random.Next(30, 50));
                 }
             }
         }
+
+        bool wantChest = false;
         for (int i = 10; i < Main.maxTilesX - 10; i++) {
             for (int j = 10; j < Main.maxTilesY - 10; j++) {
                 if (!Polluted(i, j)) {
@@ -77,29 +94,23 @@ internal class PollutedOceanAmbienceGenerator : AequusGenStep {
                     WorldGen.KillTile(i, j);
                 }
                 if (WorldGen.SolidTile(i, j + 1)) {
-                    if (Random.NextBool(3)) {
-                        if (Random.NextBool(4)) {
-                            WorldGen.PlaceTile(i, j, _pot1x1);
+                    if (wantChest || Random.NextBool(120)) {
+                        if (PlaceChest(i, j)) {
+                            ChestsPlaced++;
+                            wantChest = false;
                         }
                         else {
-                            WorldGen.PlaceTile(i, j, _pot2x2, style: Random.Next(2));
+                            wantChest = true;
                         }
+                    }
+                    if (Random.NextBool(3)) {
+                        PlacePot(i, j);
                     }
                     else if (Random.NextBool()) {
-                        if (Random.NextBool()) {
-                            WorldGen.PlaceTile(i, j, _ambient1x1);
-                        }
-                        else {
-                            WorldGen.PlaceTile(i, j, _ambient2x2);
-                        }
+                        PlaceAmbientTile(i, j);
                     }
                     else if (Random.NextBool(3)) {
-                        if (Random.NextBool()) {
-                            WorldGen.PlaceTile(i, j, _stalagmite1x1, style: Random.Next(3));
-                        }
-                        else {
-                            WorldGen.PlaceTile(i, j, _stalagmite1x2, style: Random.Next(3));
-                        }
+                        PlaceStalagmite(i, j);
                     }
                 }
                 else if (WorldGen.SolidTile(i, j - 1)) {
@@ -113,6 +124,48 @@ internal class PollutedOceanAmbienceGenerator : AequusGenStep {
                     }
                 }
             }
+        }
+    }
+
+    private static bool PlaceChest(int i, int j) {
+        int chestId = WorldGen.PlaceChest(i, j, TileID.Containers, notNearOtherChests: true, style: ChestType.TrashCan);
+        if (chestId == -1) {
+            return false;
+        }
+
+        Chest chest = Main.chest[chestId];
+        LootDefinition primaryLoot = Loot.PollutedOceanPrimary[ChestsPlaced % Loot.PollutedOceanPrimary.Count];
+        chest.AddItemLoot(primaryLoot);
+        if (Random.NextBool(5)) {
+            chest.AddItem();
+        }
+        return true;
+    }
+
+    private static void PlacePot(int i, int j) {
+        if (Random.NextBool(4)) {
+            WorldGen.PlaceTile(i, j, _pot1x1);
+        }
+        else {
+            WorldGen.PlaceTile(i, j, _pot2x2, style: Random.Next(2));
+        }
+    }
+
+    private static void PlaceAmbientTile(int i, int j) {
+        if (Random.NextBool()) {
+            WorldGen.PlaceTile(i, j, _ambient1x1);
+        }
+        else {
+            WorldGen.PlaceTile(i, j, _ambient2x2);
+        }
+    }
+
+    private static void PlaceStalagmite(int i, int j) {
+        if (Random.NextBool()) {
+            WorldGen.PlaceTile(i, j, _stalagmite1x1, style: Random.Next(3));
+        }
+        else {
+            WorldGen.PlaceTile(i, j, _stalagmite1x2, style: Random.Next(3));
         }
     }
 
