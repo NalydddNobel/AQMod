@@ -1155,7 +1155,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 252)</summary>
+            <summary>(Total Textures: 253)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1843,6 +1843,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.NameTagBlip">
             <summary>Full Path: Content/UI/Map/NameTagBlip</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ToolbeltBuilderToggle">
+            <summary>Full Path: Content/VanillaChanges/ToolbeltBuilderToggle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.StunEffect">
             <summary>Full Path: Content/Weapons/Classless/StunGun/StunEffect</summary>

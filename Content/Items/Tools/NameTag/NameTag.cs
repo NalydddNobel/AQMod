@@ -1,14 +1,12 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Common.Renaming;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria.Audio;
 using Terraria.DataStructures;
 
 namespace Aequus.Content.Items.Tools.NameTag;
 
 public class NameTag : ModItem, ICustomNameTagPrice {
-    public static int ChestSpawnrate = 8;
+    public static int ChestSpawnrate { get; set; } = 4;
 
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 5;

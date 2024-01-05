@@ -429,3 +429,9 @@ ScavengerBag: {
 	BackpackEnabled: 背包开启
 	BackpackDisabled: 背包关闭
 }
+
+Toolbelt: {
+	// Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+	// BackpackEnabled: Backpack On
+	// BackpackDisabled: Backpack Off
+}

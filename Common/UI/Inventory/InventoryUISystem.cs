@@ -19,7 +19,7 @@ public class InventoryUISystem : ModSystem {
     }
 
     private static void IL_Main_DrawEmoteAndBestiaryButton(ILContext il) {
-        MonoModHooks.DumpIL(ModContent.GetInstance<Aequus>(), il);
+        //MonoModHooks.DumpIL(ModContent.GetInstance<Aequus>(), il);
         var cursor = new ILCursor(il);
         if (!cursor.TryGotoNext((i) => i.MatchLdsfld(typeof(Main), nameof(Main.player)))) {
             throw new Exception($"Could not find {nameof(Main)}.{nameof(Main.player)} loading code.");

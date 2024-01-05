@@ -45,6 +45,7 @@
     <None Remove="Content\Enemies\PollutedOcean\BlackJellyfish\BlackJellyfishBanner.png" />
     <None Remove="Content\Enemies\PollutedOcean\BlackJellyfish\BlackJellyfishBannerItem.png" />
     <None Remove="Content\Tiles\Banners\OldMonsterBanners.png" />
+    <None Remove="Content\VanillaChanges\ToolbeltBuilderToggle.png" />
   </ItemGroup>
 
 </Project>

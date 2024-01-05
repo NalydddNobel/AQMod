@@ -30,7 +30,7 @@ public abstract class BackpackData : ModType, ILocalizedModType {
     public int slotsToRender;
     public float nextSlotAnimation;
 
-    public string LocalizationCategory => "Items.Backpacks";
+    public virtual string LocalizationCategory => "Items.Backpacks";
 
     public virtual LocalizedText DisplayName => this.GetLocalization("DisplayName", PrettyPrintName);
 

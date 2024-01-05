@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using System;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.IO;
 using Terraria.Utilities;
 
 namespace Aequus.Core.Utilities;
@@ -191,14 +192,17 @@ public static class Helper {
         return null;
     }
 
-    public static Item AddItem(this Chest chest, int item, int stack = 1, int prefix = 0) {
-        var emptySlot = chest.FindEmptySlot();
+    public static Item AddItem(this Chest chest, int item, int stack = 1, int prefix = -1) {
+        Item emptySlot = chest.FindEmptySlot();
+
         if (emptySlot != null) {
             emptySlot.SetDefaults(item);
             emptySlot.stack = stack;
-            if (prefix > 0)
+            if (prefix != 0) {
                 emptySlot.Prefix(prefix);
+            }
         }
+
         return emptySlot;
     }
 

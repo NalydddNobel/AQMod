@@ -25,3 +25,19 @@ RestorationPotionRecipe: {
 		[{$ColorNote}:Desactiva esta configuración por preferencia personal, o si se presenta un problema al remover esta receta.]
 		'''
 }
+
+MoveToolbelt: {
+	// Label: "[i:Toolbelt] Move Toolbelt"
+	/* Tooltip:
+		'''
+		When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Toolbelt] can be found in [{$ColorImportant}:Chests Underground],
+		and will [{$ColorImportant}:no longer be sold] by the [{$ColorImportant2}:Goblin Tinkerer].
+
+		{$NoteExploit}
+		''' */
+}
+
+SlimeCrownInSurfaceChests: {
+	// Label: "[i:SlimeCrown] Slime Crown in Surface Chests"
+	// Tooltip: When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Slime Crown] can be found in [{$ColorImportant}:Surface Chests].
+}
