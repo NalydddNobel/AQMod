@@ -1,5 +1,4 @@
 ﻿using Aequus.Core.Initialization;
-using Aequus.Tiles.Banners;
 using System;
 
 namespace Aequus.Content.Tiles.Banners;

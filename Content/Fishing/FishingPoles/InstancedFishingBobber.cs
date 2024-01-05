@@ -4,10 +4,7 @@ using Terraria.Localization;
 namespace Aequus.Content.Fishing.FishingPoles;
 
 internal class InstancedFishingBobber : InstancedModProjectile {
-    private InstancedFishingPole _pole;
-
-    public InstancedFishingBobber(string name) : base(name + "FishingBobber", typeof(InstancedFishingBobber).NamespaceFilePath() + $"/{name}FishingBobber") {
-    }
+    public InstancedFishingBobber(ModItem fishingPole) : base(fishingPole.Name + "Bobber", fishingPole.Texture + "Bobber") { }
 
     public override LocalizedText DisplayName => Language.GetText(this.GetLocalizationKey("DisplayName"));
 

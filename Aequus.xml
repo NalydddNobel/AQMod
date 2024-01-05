@@ -1598,11 +1598,11 @@
         <member name="F:Aequus.AequusTextures.RadonFishingBobberProj">
             <summary>Full Path: Content/Fishing/Equipment/RadonFishingBobber/RadonFishingBobberProj</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SteampunkerFishingBobber">
-            <summary>Full Path: Content/Fishing/FishingPoles/SteampunkerFishingBobber</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.SteampunkerFishingPole">
-            <summary>Full Path: Content/Fishing/FishingPoles/SteampunkerFishingPole</summary>
+            <summary>Full Path: Content/Fishing/FishingPoles/Steampunker/SteampunkerFishingPole</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SteampunkerFishingPoleBobber">
+            <summary>Full Path: Content/Fishing/FishingPoles/Steampunker/SteampunkerFishingPoleBobber</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CompressedTrash">
             <summary>Full Path: Content/Items/Material/CompressedTrash</summary>
