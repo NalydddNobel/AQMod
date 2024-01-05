@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Players.Backpacks;
+﻿using Aequus.Common.Backpacks;
 using Microsoft.Xna.Framework;
 using MonoMod.Cil;
 using System;
@@ -126,7 +126,7 @@ public class InventoryUISystem : ModSystem {
     }
 
     public override void UpdateUI(GameTime gameTime) {
-        if (!Main.LocalPlayer.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
+        if (!Main.LocalPlayer.TryGetModPlayer(out BackpackPlayer aequusPlayer)) {
             return;
         }
         BackpackLoader.AnimateBackpacks(aequusPlayer.backpacks, out int totalInventorySlots, out int activeBackpacks);

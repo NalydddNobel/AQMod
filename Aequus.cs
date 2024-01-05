@@ -4,12 +4,14 @@ global using Microsoft.Xna.Framework.Graphics;
 global using Terraria;
 global using Terraria.ID;
 global using Terraria.ModLoader;
+using log4net;
 using System.Reflection;
 
 namespace Aequus;
 
 public partial class Aequus : Mod {
     public static Aequus Instance { get; private set; }
+    public static ILog Log => Instance.Logger;
 
     public static Assembly TerrariaAssembly => typeof(Main).Assembly;
 

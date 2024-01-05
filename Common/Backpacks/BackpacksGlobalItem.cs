@@ -1,16 +1,14 @@
-﻿using Aequus.Common.Players.Backpacks;
-
-namespace Aequus.Common.Items;
+﻿namespace Aequus.Common.Backpacks;
 
 public sealed class BackpacksGlobalItem : GlobalItem {
     public override bool ItemSpace(Item item, Player player) {
-        if (!player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
+        if (!player.TryGetModPlayer(out BackpackPlayer backpackPlayer)) {
             return false;
         }
 
         if (!BackpackLoader.IgnoreBackpacks) {
-            for (int i = 0; i < aequusPlayer.backpacks.Length; i++) {
-                if (aequusPlayer.backpacks[i].IsActive(player) && BackpackLoader.ItemSpace(item, player, aequusPlayer.backpacks[i])) {
+            for (int i = 0; i < backpackPlayer.backpacks.Length; i++) {
+                if (backpackPlayer.backpacks[i].IsActive(player) && BackpackLoader.ItemSpace(item, player, backpackPlayer.backpacks[i])) {
                     return true;
                 }
             }
@@ -19,13 +17,13 @@ public sealed class BackpacksGlobalItem : GlobalItem {
     }
 
     public override bool OnPickup(Item item, Player player) {
-        if (!player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
+        if (!player.TryGetModPlayer(out BackpackPlayer backpackPlayer)) {
             return true;
         }
 
         BackpackLoader.IgnoreBackpacks = true;
         var itemSpace = player.ItemSpace(item);
         BackpackLoader.IgnoreBackpacks = false;
-        return !BackpackLoader.GrabItem(item, player, aequusPlayer.backpacks, itemSpace);
+        return !BackpackLoader.GrabItem(item, player, backpackPlayer.backpacks, itemSpace);
     }
 }

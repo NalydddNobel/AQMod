@@ -426,12 +426,6 @@ BalloonKit: {
 ScavengerBag: {
 	DisplayName: Scavenger Bag
 	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
-}
-
-Backpacks: {
-	ScavengerBagBackpackData: {
-		DisplayName: Backpack
-		BackpackEnabled: Backpack On
-		BackpackDisabled: Backpack Off
-	}
+	BackpackEnabled: Backpack On
+	BackpackDisabled: Backpack Off
 }

@@ -18,9 +18,6 @@ public class KeywordSystem : ModSystem {
         if (item.ModItem is IAddKeywords addSpecialTooltips) {
             addSpecialTooltips.AddSpecialTooltips();
         }
-        if (item.ModItem is IStorageItem storageItem && storageItem.Inventory != null) {
-            storageItem.AddKeywords(item);
-        }
         BackpackSlotsUI.AddBackpackWarningTip(item);
     }
 

@@ -2,5 +2,5 @@ DisplayName: Client Config
 
 ShowDeathTips: {
 	Label: "[i:Tombstone] Tips de Muerte"
-	Tooltip: "Los [c/ffffbb:Tips de Juego] se mostraran mientras Reapareces."
+	Tooltip: Los [c/ffffbb:Tips de Juego] se mostraran mientras Reapareces.
 }

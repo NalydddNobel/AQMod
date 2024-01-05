@@ -426,12 +426,6 @@ BalloonKit: {
 ScavengerBag: {
 	DisplayName: 拾荒者袋子
 	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
-}
-
-Backpacks: {
-	ScavengerBagBackpackData: {
-		DisplayName: 背包
-		BackpackEnabled: 背包开启
-		BackpackDisabled: 背包关闭
-	}
+	BackpackEnabled: 背包开启
+	BackpackDisabled: 背包关闭
 }

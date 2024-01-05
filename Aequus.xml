@@ -9,6 +9,15 @@
             Shorthand for a bunch of checks determining whether the game is unpaused.
             </summary>
         </member>
+        <member name="M:Aequus.Common.Backpacks.BackpackData.Deactivate(Terraria.Player)">
+            <summary>
+            Runs when the Backpack is no longer active. Use this hook to deposit items from the Backpack.
+            </summary>
+            <param name="player"></param>
+        </member>
+        <member name="M:Aequus.Common.Backpacks.BackpackData.PreDrawSlot(Microsoft.Xna.Framework.Vector2,System.Int32)">
+            <summary>Return false to override slot drawing.</summary>
+        </member>
         <member name="M:Aequus.Common.Golfing.GolfingSystem.SetGolfBallStatus(System.Boolean)">
             <summary>
             Sets all fake golf balls to be counted or not counted as golf balls.
@@ -37,12 +46,17 @@
         </member>
         <member name="P:Aequus.Common.Items.AequusRecipes.AnyPaints">
             <summary>
-            <see cref="T:Terraria.RecipeGroup"/> for trash items.
+            <see cref="T:Terraria.RecipeGroup"/> for paints.
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.AequusRecipes.AnyCoatings">
+            <summary>
+            <see cref="T:Terraria.RecipeGroup"/> for coatings.
             </summary>
         </member>
         <member name="P:Aequus.Common.Items.AequusRecipes.AnyTrash">
             <summary>
-            <see cref="T:Terraria.RecipeGroup"/> for paints.
+            <see cref="T:Terraria.RecipeGroup"/> for trash items.
             </summary>
         </member>
         <member name="T:Aequus.Common.Items.Components.IManageProjectile">
@@ -60,11 +74,6 @@
             <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreKillProjectile(Terraria.Projectile,Aequus.Common.Projectiles.AequusProjectile,System.Int32)"/></item>
             <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnKillProjectile(Terraria.Projectile,Aequus.Common.Projectiles.AequusProjectile,System.Int32)"/></item>
             </list>
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.Components.IStorageItem.HasValidInventory">
-            <summary>
-            Whether or not this backpack has a valid inventory. This is used to prevent duping exploits using Autopause and weird abusing instance crap.
             </summary>
         </member>
         <member name="M:Aequus.Common.Items.Components.IUpdateItemDye.Player_UpdateItemDye(Terraria.On_Player.orig_UpdateItemDye,Terraria.Player,System.Boolean,System.Boolean,Terraria.Item,Terraria.Item)">
@@ -616,13 +625,6 @@
             <typeparam name="T"></typeparam>
             <param name="layer"></param>
             <returns></returns>
-        </member>
-        <member name="M:Aequus.Common.Players.Backpacks.BackpackData.Deactivate(Terraria.Player,Aequus.AequusPlayer)">
-            <summary>
-            Runs when the Backpack is no longer active. Use this hook to deposit items from the Backpack.
-            </summary>
-            <param name="player"></param>
-            <param name="aequusPlayer"></param>
         </member>
         <member name="P:Aequus.Common.Players.CustomDashData.DashHaltSpeedMultiplier">
             <summary>

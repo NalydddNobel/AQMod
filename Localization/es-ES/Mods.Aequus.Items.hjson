@@ -426,12 +426,6 @@ BalloonKit: {
 ScavengerBag: {
 	DisplayName: Bolsa Carroñera
 	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
-}
-
-Backpacks: {
-	ScavengerBagBackpackData: {
-		DisplayName: Mochila
-		BackpackEnabled: Mochila Visible
-		BackpackDisabled: Mochila No Visible
-	}
+	BackpackEnabled: Mochila Visible
+	BackpackDisabled: Mochila No Visible
 }

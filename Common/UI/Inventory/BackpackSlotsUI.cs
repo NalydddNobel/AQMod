@@ -1,8 +1,6 @@
-﻿using Aequus.Common.Items.Tooltips;
-using Aequus.Common.Players.Backpacks;
+﻿using Aequus.Common.Backpacks;
+using Aequus.Common.Items.Tooltips;
 using Aequus.Content.Equipment.Accessories.ScavengerBag;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria.GameContent;
 using Terraria.GameInput;
@@ -31,22 +29,22 @@ public class BackpackSlotsUI : UILayer {
             return true;
         }
         var player = Main.LocalPlayer;
-        if (!player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
+        if (!player.TryGetModPlayer(out BackpackPlayer backpackPlayer)) {
             return true;
         }
 
         Main.inventoryScale = InventoryScale;
         var slotPositionOrigin = new Vector2(524f, 42f);
-        for (int k = 0; k < aequusPlayer.backpacks.Length; k++) {
-            if (aequusPlayer.backpacks[k].Inventory == null) {
+        for (int k = 0; k < backpackPlayer.backpacks.Length; k++) {
+            if (backpackPlayer.backpacks[k].Inventory == null) {
                 continue;
             }
-            DrawBackpack(player, aequusPlayer, aequusPlayer.backpacks[k], ref slotPositionOrigin);
+            DrawBackpack(player, backpackPlayer, backpackPlayer.backpacks[k], ref slotPositionOrigin);
         }
         return true;
     }
 
-    public void DrawBackpack(Player player, AequusPlayer aequusPlayer, BackpackData backpack, ref Vector2 slotPositionOrigin) {
+    public void DrawBackpack(Player player, BackpackPlayer backpackPlayer, BackpackData backpack, ref Vector2 slotPositionOrigin) {
         var slotTexture = AequusTextures.InventoryBack.Value;
         var favoriteTexture = AequusTextures.InventoryBackFavorited;
         var shinyTexture = AequusTextures.InventoryBackNewItem;
@@ -64,17 +62,19 @@ public class BackpackSlotsUI : UILayer {
 
             var position = slotPositionOrigin + GetSlotOffset(i);
 
-            Main.spriteBatch.Draw(slotTexture, position, null, slotColor, 0f, slotOrigin, Main.inventoryScale, SpriteEffects.None, 0f);
-            if (backpack.Inventory[i].favorited) {
-                Main.spriteBatch.Draw(favoriteTexture, position, null, favoritedSlotColor, 0f, slotOrigin, Main.inventoryScale, SpriteEffects.None, 0f);
+            if (backpack.PreDrawSlot(position, i)) {
+                Main.spriteBatch.Draw(slotTexture, position, null, slotColor, 0f, slotOrigin, Main.inventoryScale, SpriteEffects.None, 0f);
+                if (backpack.Inventory[i].favorited) {
+                    Main.spriteBatch.Draw(favoriteTexture, position, null, favoritedSlotColor, 0f, slotOrigin, Main.inventoryScale, SpriteEffects.None, 0f);
+                }
+                if (backpack.Inventory[i].newAndShiny) {
+                    Main.spriteBatch.Draw(shinyTexture, position, null, newAndShinySlotColor, 0f, slotOrigin, Main.inventoryScale, SpriteEffects.None, 0f);
+                }
             }
-            if (backpack.Inventory[i].newAndShiny) {
-                Main.spriteBatch.Draw(shinyTexture, position, null, newAndShinySlotColor, 0f, slotOrigin, Main.inventoryScale, SpriteEffects.None, 0f);
-            }
-            position -= slotOrigin * Main.inventoryScale;
+            var corner = position - slotOrigin * Main.inventoryScale;
 
-            int context = ItemSlot.Context.BankItem;
-            if (Main.mouseX >= position.X && Main.mouseX <= position.X + slotTexture.Width * Main.inventoryScale && Main.mouseY >= position.Y && Main.mouseY <= position.Y + slotTexture.Height * Main.inventoryScale && !PlayerInput.IgnoreMouseInterface) {
+            int context = ItemSlot.Context.VoidItem;
+            if (Main.mouseX >= corner.X && Main.mouseX <= corner.X + slotTexture.Width * Main.inventoryScale && Main.mouseY >= corner.Y && Main.mouseY <= corner.Y + slotTexture.Height * Main.inventoryScale && !PlayerInput.IgnoreMouseInterface) {
                 player.mouseInterface = true;
                 var invItemOld = backpack.Inventory[i];
                 HoveringBackpackSlotName = backpack.GetDisplayName(Main.LocalPlayer);
@@ -86,7 +86,8 @@ public class BackpackSlotsUI : UILayer {
                 }
                 ItemSlot.MouseHover(backpack.Inventory, context, i);
             }
-            ItemSlotRenderer.DrawFullItem(backpack.Inventory[i], context, i, Main.spriteBatch, position, position + slotOrigin * Main.inventoryScale, Main.inventoryScale, 32f, Color.White, Color.White);
+            ItemSlotRenderer.DrawFullItem(backpack.Inventory[i], context, i, Main.spriteBatch, corner, position, Main.inventoryScale, 32f, Color.White, Color.White);
+            backpack.PostDrawSlot(position, i);
         }
         if (backpack.nextSlotAnimation > 0f) {
             var position = slotPositionOrigin + GetSlotOffset((int)slotsDrawn);
@@ -106,7 +107,8 @@ public class BackpackSlotsUI : UILayer {
 
             var backpackText = backpack.GetDisplayName(player);
             var textOrigin = ChatManager.GetStringSize(FontAssets.MouseText.Value, backpackText, Vector2.One);
-            ChatManager.DrawColorCodedString(Main.spriteBatch, FontAssets.MouseText.Value, backpackText, slotPositionOrigin + new Vector2(-60f + 38f * MathF.Pow(opacity, 2f), textOrigin.Y / 2f - 42f), Main.inventoryBack * opacity, 0f, new Vector2(0f, textOrigin.Y / 2f), new Vector2(1f, opacity));
+            float textScale = Math.Min(45f * Math.Max(backpack.slotCount / 5 + 1, 1) / textOrigin.X, 1f); 
+            ChatManager.DrawColorCodedString(Main.spriteBatch, FontAssets.MouseText.Value, backpackText, slotPositionOrigin + new Vector2(-60f + 38f * MathF.Pow(opacity, 2f), textOrigin.Y / 2f - 42f), Main.inventoryBack * opacity, 0f, new Vector2(0f, textOrigin.Y / 2f), new Vector2(1f, opacity) * textScale);
             float xOffset = backpack.slotCount / 5 * SlotWidth * Main.inventoryScale + BackpackPadding;
             if (!visible) {
                 xOffset *= MathF.Pow(slotsDrawn / backpack.slotCount, 2f);
