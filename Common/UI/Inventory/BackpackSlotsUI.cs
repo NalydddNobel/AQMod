@@ -107,7 +107,7 @@ public class BackpackSlotsUI : UILayer {
 
             var backpackText = backpack.GetDisplayName(player);
             var textOrigin = ChatManager.GetStringSize(FontAssets.MouseText.Value, backpackText, Vector2.One);
-            float textScale = Math.Min(45f * Math.Max(backpack.slotCount / 5 + 1, 1) / textOrigin.X, 1f); 
+            float textScale = Math.Min(40f * Math.Max(backpack.slotCount / 5 + 1, 1) / textOrigin.X, 1f); 
             ChatManager.DrawColorCodedString(Main.spriteBatch, FontAssets.MouseText.Value, backpackText, slotPositionOrigin + new Vector2(-60f + 38f * MathF.Pow(opacity, 2f), textOrigin.Y / 2f - 42f), Main.inventoryBack * opacity, 0f, new Vector2(0f, textOrigin.Y / 2f), new Vector2(1f, opacity) * textScale);
             float xOffset = backpack.slotCount / 5 * SlotWidth * Main.inventoryScale + BackpackPadding;
             if (!visible) {

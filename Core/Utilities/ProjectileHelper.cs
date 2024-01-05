@@ -1,11 +1,14 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Aequus.Common.Projectiles;
 using System;
 using Terraria.GameContent;
 
 namespace Aequus.Core.Utilities;
 
 public static class ProjectileHelper {
+    public static bool IsChildOrNoSpecialEffects(this Projectile projectile) {
+        return projectile.GetGlobalProjectile<ProjectileItemData>().NoSpecialEffects || projectile.GetGlobalProjectile<ProjectileSource>().isProjectileChild;
+    }
+
     public static void SetDefaultNoInteractions(this Projectile projectile) {
         projectile.tileCollide = false;
         projectile.ignoreWater = true;

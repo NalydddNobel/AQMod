@@ -5,8 +5,8 @@ namespace Aequus.Content.Fishing.FishingPoles.Steampunker;
 
 public class SteampunkerFishingPole : ModFishingPole {
     public override bool BobberPreAI(Projectile bobber) {
-        if ((int)bobber.ai[0] == 0 && bobber.ai[1] < 0f && bobber.ai[1] > -30f && bobber.TryGetGlobalProjectile<AequusProjectile>(out var aequusProjectile)) {
-            aequusProjectile.itemData = 1;
+        if ((int)bobber.ai[0] == 0 && bobber.ai[1] < 0f && bobber.ai[1] > -30f && bobber.TryGetGlobalProjectile<ProjectileItemData>(out var aequusProjectile)) {
+            aequusProjectile.ItemData = 1;
             Main.player[bobber.owner].GetModPlayer<AequusPlayer>().forceUseItem = true;
         }
 
@@ -14,7 +14,7 @@ public class SteampunkerFishingPole : ModFishingPole {
     }
 
     public override void BobberOnKill(Projectile bobber, int timeLeft) {
-        if (bobber.TryGetGlobalProjectile<AequusProjectile>(out var aequusProjectile) && aequusProjectile.itemData == 1) {
+        if (bobber.TryGetGlobalProjectile<ProjectileItemData>(out var aequusProjectile) && aequusProjectile.ItemData == 1) {
             Main.player[bobber.owner].GetModPlayer<AequusPlayer>().forceUseItem = true;
         }
     }
