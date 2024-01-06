@@ -15,7 +15,7 @@
             </summary>
             <param name="player"></param>
         </member>
-        <member name="M:Aequus.Common.Backpacks.BackpackData.PreDrawSlot(Microsoft.Xna.Framework.Vector2,System.Int32)">
+        <member name="M:Aequus.Common.Backpacks.BackpackData.PreDrawSlot(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32)">
             <summary>Return false to override slot drawing.</summary>
         </member>
         <member name="M:Aequus.Common.Golfing.GolfingSystem.SetGolfBallStatus(System.Boolean)">
@@ -1155,7 +1155,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 253)</summary>
+            <summary>(Total Textures: 250)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1195,15 +1195,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.GenericExplosion">
             <summary>Full Path: Assets/Textures/GenericExplosion</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.InventoryBack">
-            <summary>Full Path: Assets/Textures/InventoryBack</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.InventoryBackFavorited">
-            <summary>Full Path: Assets/Textures/InventoryBackFavorited</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.InventoryBackNewItem">
-            <summary>Full Path: Assets/Textures/InventoryBackNewItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LightRayCircular">
             <summary>Full Path: Assets/Textures/LightRayCircular</summary>

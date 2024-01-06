@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Items.Components;
-using Aequus.Common.UI.Inventory;
+﻿using Aequus.Common.Backpacks;
+using Aequus.Common.Items.Components;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 

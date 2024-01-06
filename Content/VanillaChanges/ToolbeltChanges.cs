@@ -14,8 +14,16 @@ internal class ToolbeltChanges : GlobalItem {
     private static LocalizedText _tooltip;
 
     public static int Capacity { get; set; } = 5;
-    public static Color SlotColor { get; set; } = new Color(255, 200, 230);
+    public static float SlotHue { get; set; } = 0.4f;
     public static int SpawnRate { get; set; } = 7;
+
+#if DEBUG
+    public int capacity { get => Capacity; set => Capacity = value; }
+    public float slotHue { get => SlotHue; set => SlotHue = value; }
+#endif
+
+    public override bool InstancePerEntity => true;
+    protected override bool CloneNewInstances => true;
 
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
         return entity.type == ItemID.Toolbelt;
@@ -49,7 +57,7 @@ internal class ToolbeltChanges : GlobalItem {
 
         public override int Capacity => ToolbeltChanges.Capacity;
 
-        public override Color SlotColor => new Color(255, 180, 250);
+        public override float SlotHue => 0.275f;
 
         public override LocalizedText DisplayName => Language.GetOrRegister("ItemName.Toolbelt");
 
@@ -77,6 +85,19 @@ internal class ToolbeltChanges : GlobalItem {
 
         public override bool IsLoadingEnabled(Mod mod) {
             return VanillaChangesConfig.Instance.MoveToolbelt;
+        }
+
+        public override bool CanAcceptItem(int slot, Item incomingItem) {
+            return incomingItem.createTile > -1 || incomingItem.createWall > -1 || incomingItem.tileWand > -1;
+        }
+
+        public override void PostDrawSlot(SpriteBatch spriteBatch, Vector2 slotCenter, Vector2 slotTopLeft, int slot) {
+            if (Inventory[slot] != null && !Inventory[slot].IsAir) {
+                return;
+            }
+
+            Main.GetItemDrawFrame(ItemID.GrayBrickWall, out Texture2D itemTexture, out Rectangle frame);
+            spriteBatch.Draw(itemTexture, slotCenter, frame, Color.White with { A = 150 } * 0.5f, 0f, frame.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
         }
     }
     public class ToolbeltBuilderToggle : BuilderToggle {

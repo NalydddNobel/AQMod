@@ -4,7 +4,7 @@ namespace Aequus.Common.Backpacks;
 
 public abstract class BackpackModItem : ModItem {
     public abstract int Capacity { get; set; }
-    public abstract Color SlotColor { get; set; }
+    public abstract float SlotHue { get; set; }
 
     [CloneByReference]
     private ItemBackpackInstance _backpack;
@@ -41,7 +41,7 @@ public abstract class BackpackModItem : ModItem {
 
         public override bool SupportsInfoAccessories => true;
 
-        public override Color SlotColor => BackpackItem?.SlotColor ?? _parentItem.SlotColor;
+        public override float SlotHue => BackpackItem?.SlotHue ?? _parentItem.SlotHue;
 
         public override string Name => _parentItem.Name;
 

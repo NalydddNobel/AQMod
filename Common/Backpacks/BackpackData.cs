@@ -1,5 +1,6 @@
 ﻿using System;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.GameContent.Events;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
@@ -23,9 +24,7 @@ public abstract class BackpackData : ModType, ILocalizedModType {
     public virtual bool SupportsConsumeItem => true;
     public virtual bool SupportsGolfBalls => true;
 
-    public virtual Color SlotColor => Color.White;
-    public virtual Color FavoritedSlotColor => SlotColor.SaturationMultiply(0.5f) * 1.33f;
-    public virtual Color NewAndShinySlotColor => SlotColor.HueAdd(0.05f) * 1.25f;
+    public virtual float SlotHue => 0f;
 
     public int slotsToRender;
     public float nextSlotAnimation;
@@ -73,10 +72,8 @@ public abstract class BackpackData : ModType, ILocalizedModType {
     public virtual bool CanAcceptItem(int slot, Item incomingItem) => true;
 
     /// <summary>Return false to override slot drawing.</summary>
-    public virtual bool PreDrawSlot(Vector2 position, int slot) {
-        return true;
-    }
-    public virtual void PostDrawSlot(Vector2 position, int slot) { }
+    public virtual bool PreDrawSlot(SpriteBatch spriteBatch, Vector2 slotCenter, Vector2 slotTopLeft, int slot) => true;
+    public virtual void PostDrawSlot(SpriteBatch spriteBatch, Vector2 slotCenter, Vector2 slotTopLeft, int slot) { }
 
     public void SaveData(TagCompound tag) {
         SaveExtraData(tag);
@@ -146,5 +143,50 @@ public abstract class BackpackData : ModType, ILocalizedModType {
         Type = BackpackLoader.Count;
         BackpackLoader.Backpacks.Add(this);
         DisplayNameCache = DisplayName;
+    }
+
+    private float _hueRenderedWith;
+    public Texture2D InventoryBack { get; private set; }
+    public Texture2D InventoryBackFavorited { get; private set; }
+    public Texture2D InventoryBackNewItem { get; private set; }
+
+    public bool CheckTextures() {
+        float wantedHue = SlotHue;
+        if (_hueRenderedWith != wantedHue) {
+            GetHuedItemSlots(wantedHue);
+        }
+
+        return InventoryBack != null && InventoryBackFavorited != null && InventoryBackNewItem != null;
+    }
+
+    private void GetHuedItemSlots(float wantedHue) {
+        Main.QueueMainThreadAction(() => {
+            InventoryBack = HueSingleTexture2D(TextureAssets.InventoryBack.Value, wantedHue);
+            InventoryBackFavorited = HueSingleTexture2D(TextureAssets.InventoryBack10.Value, wantedHue);
+            InventoryBackNewItem = HueSingleTexture2D(TextureAssets.InventoryBack15.Value, wantedHue);
+        });
+    }
+
+    private static Texture2D HueSingleTexture2D(Texture2D baseTexture, float hue) {
+        Color[] textureColorsExtracted = new Color[baseTexture.Width * baseTexture.Height];
+        baseTexture.GetData(textureColorsExtracted);
+
+        for (int k = 0; k < textureColorsExtracted.Length; k++) {
+            Color color = textureColorsExtracted[k];
+            byte velocity = Math.Max(Math.Max(color.R, color.G), color.B);
+            textureColorsExtracted[k] = color.HueAdd(hue) with { A = color.A };
+        }
+
+        try {
+            Texture2D resultTexture = new Texture2D(Main.instance.GraphicsDevice, baseTexture.Width, baseTexture.Height);
+            resultTexture.SetData(textureColorsExtracted);
+            return resultTexture;
+        }
+        catch (Exception ex) {
+            Aequus.Log.Error(ex);
+
+            // return null if error occurs, this will retry rendering the textures next frame
+            return null;
+        }
     }
 }

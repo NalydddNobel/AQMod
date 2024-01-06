@@ -9,7 +9,7 @@ public class ScavengerBag : BackpackModItem {
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(Capacity);
 
     public override int Capacity { get; set; } = 15;
-    public override Color SlotColor { get; set; } = new Color(160, 140, 255);
+    public override float SlotHue { get; set; } = 0.2f;
 
     public override void SetDefaults() {
         base.SetDefaults();

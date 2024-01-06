@@ -1,5 +1,5 @@
 SkyMerchant: "{$Misc.GameTipPretense} Check high above for the Sky Merchant! He visits towns above the clouds, selling exotic goodies and equipment."
-SkyMerchantShopTip: "{$Misc.GameTipPretense} The Sky Merchant's shop changes depending on the Day of the Week."
+SkyMerchantShopTip: "{$Misc.GameTipPretense} The Sky Merchant's shop changes depending on the day of the week. Be sure to check the Calender!"
 SkyMerchantLocationTip: "{$Misc.GameTipPretense} The Sky Merchant follows the Sun's position in the sky. He'll be to the West during the morning, and East in the afternoon."
 Pumpinator: "{$Misc.GameTipPretense} Wishing for a nice breeze? Try the Pumpinator, sold by the Sky Merchant."
 NameTag: "{$Misc.GameTipPretense} Ever wanted to keep a real Dungeon Guardian as a pet? Try using a Name Tag on it!"
@@ -9,4 +9,11 @@ NeutronYogurt: "{$Misc.GameTipPretense} Neutron Yogurt makes you reach maximum f
 PylonDrones: "{$Misc.GameTipPretense} The Physicist offers special protection forces for your towns. Purchase a Pylon Drone to protect your villagers from Enemies and Evils!"
 PotionPrefixes: "{$Misc.GameTipPretense} Enhance your potions using Special Herbs at an Alchemy Table!"
 TipAboutTipsOnDeath: "{$Misc.GameTipPretense} We show you these Game Tips when you die! I wonder if you're reading this while dead..."
+CheckConfigs: "{$Misc.GameTipPretense} Be sure to check the configs in the Settings menu! There are quite a few things you can tweak and change in there."
+AnglerLantern: "{$Misc.GameTipPretense} The Angler Lantern found in the Polluted Ocean provides light and lets you peek into the loot of a pot... how mystical!"
+CrabPots: "{$Misc.GameTipPretense} Sea Traps are a useful tool for those interested in capturing fish without the hassle of reeling them in."
+SteampunkersRod: "{$Misc.GameTipPretense} If Sea Traps aren't your thing, there's rumored to be an engineer who can craft an auto-reeler..."
+TrashCompactor: "{$Misc.GameTipPretense} Washed away into the sea lays a convenient device capable of breaking down furniture into its components... and crushing junk into useful scrap parts."
+Dumpster: "{$Misc.GameTipPretense} Dumpsters can hold 2 chests worth of items at 25% less the horizontal space."
+Junk: "{$Misc.GameTipPretense} One man's trash is another man's treasure, a crafty man knows how to make the most of fishing junk."
 TrashPSA: Don't throw your trash into the water.

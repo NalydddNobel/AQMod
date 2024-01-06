@@ -9,4 +9,11 @@ NeutronYogurt: "{$Misc.GameTipPretense} 中子酸奶会使你更快的到达最�
 PylonDrones: "{$Misc.GameTipPretense} 物理学家会为你的城镇提供特殊的保护部队. 购买一架晶体无人机来保护你的镇民免受敌人和恶魔的攻击!"
 PotionPrefixes: "{$Misc.GameTipPretense} 在炼金桌处使用特殊草药来增强你的药剂!"
 TipAboutTipsOnDeath: "{$Misc.GameTipPretense} 在你死亡后, 我们会向你展示这些游戏提示! 我在想你在死亡后是否还在读这个..."
+// CheckConfigs: "{$Misc.GameTipPretense} Be sure to check the configs in the Settings menu! There are quite a few things you can tweak and change in there."
+// AnglerLantern: "{$Misc.GameTipPretense} The Angler Lantern found in the Polluted Ocean provides light and lets you peek into the loot of a pot... how mystical!"
+// CrabPots: "{$Misc.GameTipPretense} Sea Traps are a useful tool for those interested in capturing fish without the hassle of reeling them in."
+// SteampunkersRod: "{$Misc.GameTipPretense} If Sea Traps aren't your thing, there's rumored to be an engineer who can craft an auto-reeler..."
+// TrashCompactor: "{$Misc.GameTipPretense} Washed away into the sea lays a convenient device capable of breaking down furniture into its components... and crushing junk into useful scrap parts."
+// Dumpster: "{$Misc.GameTipPretense} Dumpsters can hold 2 chests worth of items at 25% less the horizontal space."
+// Junk: "{$Misc.GameTipPretense} One man's trash is another man's treasure, a crafty man knows how to make the most of fishing junk."
 TrashPSA: 不要把垃圾扔水里.
