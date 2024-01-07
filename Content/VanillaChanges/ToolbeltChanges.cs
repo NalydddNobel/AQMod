@@ -17,11 +17,6 @@ internal class ToolbeltChanges : GlobalItem {
     public static float SlotHue { get; set; } = 0.4f;
     public static int SpawnRate { get; set; } = 7;
 
-#if DEBUG
-    public int capacity { get => Capacity; set => Capacity = value; }
-    public float slotHue { get => SlotHue; set => SlotHue = value; }
-#endif
-
     public override bool InstancePerEntity => true;
     protected override bool CloneNewInstances => true;
 
