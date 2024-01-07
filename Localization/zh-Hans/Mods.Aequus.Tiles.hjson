@@ -1,0 +1,98 @@
+ConductiveBlock: {
+	MapEntry: 铜导线
+	ItemDisplayName: "{$Tiles.ConductiveBlock.MapEntry}"
+	ItemTooltip: 作为线路, 必须使用电或电线激活.
+}
+
+ConductiveBlockTin: {
+	MapEntry: 锡导线
+	ItemDisplayName: "{$Tiles.ConductiveBlockTin.MapEntry}"
+	ItemTooltip: "{$Tiles.ConductiveBlock.ItemTooltip}"
+}
+
+CrabPot: {
+	MapEntryCopper: 铜捕捞陷阱
+	MapEntryTin: 锡捕捞陷阱
+
+	Copper: {
+		ItemDisplayName: "{$Tiles.CrabPot.MapEntryCopper}"
+		ItemTooltip: 可以用来捕鱼以打发时间
+	}
+
+	Tin: {
+		ItemDisplayName: "{$Tiles.CrabPot.MapEntryTin}"
+		ItemTooltip: "{$Tiles.CrabPot.Copper.ItemTooltip}"
+	}
+}
+
+TrashCompactor: {
+	MapEntry: 垃圾压缩机
+	ItemDisplayName: "{$Tiles.TrashCompactor.MapEntry}"
+	ItemTooltip:
+		'''
+		用于压缩垃圾
+		将家具放入压缩机则会将其分解为合成它们的合成材料
+		'''
+}
+
+RadonMoss: {
+	ItemDisplayName: 氡苔藓
+	ItemTooltip: "'可能具有一点放射性'"
+}
+
+RadonMossBrick: {
+	ItemDisplayName: 氡苔藓砖
+	ItemTooltip: ""
+}
+
+ObsidianCrabPot: {
+	MapEntry: 黑曜石捕捞陷阱
+	ItemDisplayName: "{$Tiles.ObsidianCrabPot.MapEntry}"
+	ItemTooltip:
+		'''
+		使用熔岩鱼饵以在熔岩中捕鱼
+		{$Tiles.CrabPot.Copper.ItemTooltip}
+		'''
+}
+
+Trophies: {
+	CrabsonTrophy.DisplayName: 巨蟹蛤纪念物
+	CrabsonRelic.DisplayName: 巨蟹蛤纪念章
+	OmegaStariteTrophy.DisplayName: 终末之星纪念章
+	OmegaStariteRelic.DisplayName: 终末之星纪念物
+	DustDevilTrophy.DisplayName: 沙尘恶魔纪念章
+	DustDevilRelic.DisplayName: 沙尘恶魔纪念物
+	UltraStariteTrophy.DisplayName: 终耀源星纪念章
+	UltraStariteRelic.DisplayName: 终耀源星纪念物
+	RedSpriteTrophy.DisplayName: 红色精灵纪念章
+	RedSpriteRelic.DisplayName: 红色精灵纪念物
+	SpaceSquidTrophy.DisplayName: 太空乌贼纪念章
+	SpaceSquidRelic.DisplayName: 太空乌贼纪念物
+}
+
+ScrapBlock: {
+	// MapEntry: Junk Block
+	// ItemDisplayName: "{$Tiles.ScrapBlock.MapEntry}"
+	// ItemTooltip: ""
+}
+
+ScrapBrick: {
+	// ItemDisplayName: Scrap Brick
+	// ItemTooltip: ""
+}
+
+PolymerSandstone: {
+	// ItemDisplayName: Polymer Sandstone
+	// ItemTooltip: ""
+}
+
+PolymerSand: {
+	// ItemDisplayName: Polymer Sand
+	// ItemTooltip: ""
+}
+
+TrashChest: {
+	// MapEntry: Dumpster
+	// ItemDisplayName: "{$Tiles.TrashChest.MapEntry}"
+	// ItemTooltip: Both sides of the dumpster are different chests
+}

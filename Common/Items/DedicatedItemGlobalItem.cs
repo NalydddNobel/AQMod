@@ -1,19 +1,15 @@
 ﻿using Aequus.Content.DedicatedContent;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 using Terraria.UI.Chat;
-using Aequus.Core.Utilities;
 
 namespace Aequus.Common.Items;
 
-public class DedicatedItemGlobalItem : GlobalItem {
+public sealed class DedicatedItemGlobalItem : GlobalItem {
     public override bool AppliesToEntity(Item item, bool lateInstantiation) {
         return item.ModItem is IDedicatedItem;
     }

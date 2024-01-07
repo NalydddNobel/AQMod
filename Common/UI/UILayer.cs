@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace Aequus.Common.UI {
@@ -17,7 +16,6 @@ namespace Aequus.Common.UI {
         }
 
         public virtual void OnClearWorld() {
-
         }
         public virtual void OnPreUpdatePlayers() {
         }

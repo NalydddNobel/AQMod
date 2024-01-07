@@ -1,8 +1,4 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Aequus.Common.Items; 
+﻿namespace Aequus.Common.Items;
 
 public static class ItemCommons {
     public class Rarity {
@@ -19,11 +15,12 @@ public static class ItemCommons {
         public static int YinYangLoot = ItemRarityID.Red;
 
         #region Vanilla
-        public const int shimmerPermaPowerup = ItemRarityID.LightPurple;
-        public const int banners = ItemRarityID.Blue;
-        public const int bossMasks = ItemRarityID.Blue;
-        public const int dungeonLoot = ItemRarityID.Green;
-        public const int jungleLoot = ItemRarityID.Green;
+        public const int ShimmerPermaPowerup = ItemRarityID.LightPurple;
+        public const int Banners = ItemRarityID.Blue;
+        public const int DungeonLoot = ItemRarityID.Green;
+        public const int JungleLoot = ItemRarityID.Green;
+        public const int EarlyHardmodeMaterial = ItemRarityID.Orange;
+        public const int HardDungeonLoot = ItemRarityID.Yellow;
         #endregion
     }
 
@@ -31,6 +28,7 @@ public static class ItemCommons {
         public static int SkyMerchantShopItem = Item.sellPrice(gold: 1);
         public static int SkyMerchantCustomPurchasePrice = Item.buyPrice(gold: 5);
         public static int PollutedOceanLoot = Item.sellPrice(silver: 50);
+        public static int CrabsonLoot = Item.sellPrice(silver: 75);
         public static int GlimmerLoot = Item.sellPrice(gold: 1);
         public static int DemonSiegeLoot = Item.sellPrice(gold: 2);
         public static int OmegaStariteLoot = Item.sellPrice(gold: 3);

@@ -1,0 +1,42 @@
+FamiliarPet: {
+	ItemDisplayName: Pico Familiar
+	ItemTooltip: Invoca una mini versión de ti
+	BuffDisplayName: Familiar
+	BuffDescription: A pesar de todo, sigues siendo tu
+}
+
+SwagEyePet: {
+	ItemDisplayName: Ojo de Aspecto Swag
+	ItemTooltip:
+		'''
+		Invoca un Ojo Swag para que te siga
+		'glaze...'
+		'''
+	BuffDisplayName: Ojo de Aspecto Swag
+	BuffDescription: No saludes...
+}
+
+LanternCatPet: {
+	BuffDisplayName: Gato y Linterna
+	BuffDescription: El gato y la linterna te darán luz y suerte
+	ItemDisplayName: Abanico de luz negra
+	ItemTooltip: El gato y la linterna te darán luz y suerte
+}
+
+UndeadMinerPet: {
+	BuffDisplayName: Minero no muerto
+	BuffDescription: El minero no muerto minara por ti
+	ItemDisplayName: Casco de minero roto
+	ItemTooltip: Invoca un minero no muerto para darte luz y minar por ti
+}
+
+OmegaStaritePet: {
+	BuffDisplayName: Mini Omega Starite
+	BuffDescription: El sistema solar más pequeño imaginable, el omega ser
+	ItemDisplayName: Omega Nucleo
+	ItemTooltip:
+		'''
+		Invoca un Mini Omega Starite para darte luz
+		'Bola Encarnada '
+		'''
+}

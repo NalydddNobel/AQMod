@@ -1,15 +1,10 @@
-﻿using Aequus.Common.Systems;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Net;
-using Terraria;
 using Terraria.Chat;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
-namespace Aequus;
+namespace Aequus.Core.Utilities;
 
 public static class TextHelper {
     public const char AirCharacter = '⠀';
@@ -57,11 +52,15 @@ public static class TextHelper {
     }
 
     public static string GetCategoryTextValue(this ILocalizedModType self, string suffix) {
-        return GetCategoryText(self, suffix).Value;
+        return self.GetCategoryText(suffix).Value;
     }
 
-    public static LocalizedText GetCategoryText(this ILocalizedModType self, string suffix) {
-        return Language.GetText($"Mods.{self.Mod.Name}.{self.LocalizationCategory}.{suffix}");
+    public static string GetCategoryKey(this ILocalizedModType self, string suffix, Func<string> defaultValueFactory = null) {
+        return $"Mods.{self.Mod.Name}.{self.LocalizationCategory}.{suffix}";
+    }
+
+    public static LocalizedText GetCategoryText(this ILocalizedModType self, string suffix, Func<string> defaultValueFactory = null) {
+        return Language.GetOrRegister(GetCategoryKey(self, suffix), defaultValueFactory);
     }
 
     public static LocalizedText DayOfWeek(DayOfWeek dayOfWeek) {
@@ -327,8 +326,11 @@ public static class TextHelper {
     #endregion
 
     #region Numbers
+    public static string Percent(double value) {
+        return Decimals(value * 100f);
+    }
     public static string Decimals(double value) {
-        return (value).ToString("0.0", Language.ActiveCulture.CultureInfo.NumberFormat).Replace(".0", "");
+        return value.ToString("0.0", Language.ActiveCulture.CultureInfo.NumberFormat).Replace(".0", "");
     }
     #endregion
 }

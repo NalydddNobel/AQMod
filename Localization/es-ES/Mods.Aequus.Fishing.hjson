@@ -1,0 +1,6 @@
+FishingPoles: {
+	SteampunkerFishingPole: {
+		DisplayName: Caña de la steampunker
+		Tooltip: Automáticamente jala y lanza el anzuelo
+	}
+}

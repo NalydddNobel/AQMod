@@ -1,9 +1,5 @@
 ﻿using Aequus.Common.Particles;
-using Aequus.Core.Utilities;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using Terraria;
 using Terraria.Graphics.Renderers;
 
 namespace Aequus.Content.Items.Material.OmniGem;
@@ -41,7 +37,7 @@ public class OmniGemParticle : BaseBloomParticle<OmniGemParticle> {
     }
 
     public override void Draw(ref ParticleRendererSettings settings, SpriteBatch spritebatch) {
-        spritebatch.Draw(AequusTextures.BloomStrong, Position - Main.screenPosition, null, BloomColor * Scale * 0.1f, Rotation, AequusTextures.BloomStrong.Size()/2f, Scale * BloomScale * 3f, SpriteEffects.None, 0f);
+        spritebatch.Draw(AequusTextures.BloomStrong, Position - Main.screenPosition, null, BloomColor * Scale * 0.1f, Rotation, AequusTextures.BloomStrong.Size() / 2f, Scale * BloomScale * 3f, SpriteEffects.None, 0f);
         spritebatch.Draw(AequusTextures.Bloom, Position - Main.screenPosition, null, BloomColor * Scale, Rotation, bloomOrigin, Scale * BloomScale, SpriteEffects.None, 0f);
         spritebatch.Draw(texture, Position - Main.screenPosition, frame, Color * Scale, Rotation, origin, Scale, SpriteEffects.None, 0f);
     }

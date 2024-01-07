@@ -1,13 +1,19 @@
-using Terraria.ID;
-using Terraria;
-using Terraria.ModLoader;
-using System.IO;
-using Aequus.Common.Net;
+global using Aequus.Core.Utilities;
+global using Microsoft.Xna.Framework;
+global using Microsoft.Xna.Framework.Graphics;
+global using Terraria;
+global using Terraria.ID;
+global using Terraria.ModLoader;
+using log4net;
+using System.Reflection;
 
 namespace Aequus;
 
-public class Aequus : Mod {
+public partial class Aequus : Mod {
     public static Aequus Instance { get; private set; }
+    public static ILog Log => Instance.Logger;
+
+    public static Assembly TerrariaAssembly => typeof(Main).Assembly;
 
     public static bool highQualityEffects = true;
 
@@ -18,13 +24,12 @@ public class Aequus : Mod {
 
     public override void Load() {
         Instance = this;
+        LoadModCalls();
     }
 
     public override void Unload() {
         Instance = null;
-    }
-
-    public override void HandlePacket(BinaryReader reader, int whoAmI) {
-        PacketSystem.HandlePacket(reader, whoAmI);
+        UnloadModCalls();
+        UnloadPackets();
     }
 }

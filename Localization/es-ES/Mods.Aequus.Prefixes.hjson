@@ -1,0 +1,10 @@
+CooldownTip: "{0}% tiempo de recarga"
+Overscheduled.DisplayName: Sobreprogramado
+Constant.DisplayName: Constante
+Delayed.DisplayName: Atrasado
+Dependant.DisplayName: Confiable
+Late.DisplayName: Tarde
+Organized.DisplayName: Organizado
+Punctual.DisplayName: Puntual
+Steady.DisplayName: Estable
+Tardy.DisplayName: Tardío

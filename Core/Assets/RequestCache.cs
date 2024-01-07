@@ -1,6 +1,4 @@
 ﻿using ReLogic.Content;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace Aequus.Core.Assets;
 

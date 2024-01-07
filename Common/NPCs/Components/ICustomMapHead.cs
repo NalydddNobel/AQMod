@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria.Map;
+﻿using Terraria.Map;
 
 namespace Aequus.Common.NPCs.Components;
 

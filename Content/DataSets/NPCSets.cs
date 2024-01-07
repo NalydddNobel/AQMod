@@ -2,76 +2,74 @@
 using Aequus.Core.DataSets;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent.Bestiary;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.DataSets;
 
-[DataID(typeof(NPCID))]
 public partial class NPCSets : DataSet {
-    public static readonly HashSet<int> IsCorrupt = new();
-    public static readonly HashSet<int> IsCrimson = new();
-    public static readonly HashSet<int> IsHallow = new();
-    public static readonly HashSet<int> FromPillarEvent = new();
+    [JsonProperty]
+    public static HashSet<NPCEntry> IsCorrupt { get; private set; } = new();
+    [JsonProperty]
+    public static HashSet<NPCEntry> IsCrimson { get; private set; } = new();
+    [JsonProperty]
+    public static HashSet<NPCEntry> IsHallow { get; private set; } = new();
+    [JsonProperty]
+    public static HashSet<NPCEntry> FromPillarEvent { get; private set; } = new();
 
     [JsonProperty]
-    public static DataIDDictionary<bool> NameTagOverride;
+    public static Dictionary<NPCEntry, bool> NameTagOverride { get; private set; } = new();
 
     [JsonProperty]
-    public static DataIDValueSet StunnableByTypeId;
-    [DataID(typeof(NPCAIStyleID))]
+    public static HashSet<NPCEntry> StunnableByTypeId { get; private set; } = new();
     [JsonProperty]
-    public static DataIDValueSet StunnableByAI;
+    public static HashSet<NPCAIEntry> StunnableByAI { get; private set; } = new();
 
     /// <summary>
     /// NPCs in this set cannot get speed increases or decreases. This usually contains bosses, or other special NPCs like worm segments.
     /// </summary>
     [JsonProperty]
-    public static DataIDValueSet StatSpeedBlacklist;
+    public static HashSet<NPCEntry> StatSpeedBlacklist { get; private set; } = new();
 
     /// <summary>
     /// Used for Royal Gel's Crown of Blood combination.
     /// </summary>
     [JsonProperty]
-    public static DataIDValueSet FriendablePreHardmodeSlime;
+    public static HashSet<NPCEntry> FriendablePreHardmodeSlime { get; private set; } = new();
 
     /// <summary>
     /// Used for Volatile Gelatin's Crown of Blood combination.
     /// </summary>
     [JsonProperty]
-    public static DataIDValueSet FriendableHardmodeSlime;
+    public static HashSet<NPCEntry> FriendableHardmodeSlime { get; private set; } = new();
 
     /// <summary>
     /// Enemies in this set cannot become friendly. This usually contains bosses, or other special NPCs like worm segments.
     /// </summary>
     [JsonProperty]
-    public static DataIDValueSet Unfriendable;
+    public static HashSet<NPCEntry> Unfriendable { get; private set; } = new();
 
     /// <summary>
     /// NPCs in this set deal 'heat' contact damage. This damage can be resisted using the Frost Potion.
     /// </summary>
     [JsonProperty]
-    public static DataIDValueSet DealsHeatDamage;
+    public static HashSet<NPCEntry> DealsHeatDamage { get; private set; } = new();
 
     /// <summary>
     /// NPCs in this set cannot become Elites. This usually contains bosses.
     /// </summary>
     [JsonProperty]
-    public static DataIDValueSet PrefixBlacklist;
+    public static HashSet<NPCEntry> PrefixBlacklist { get; private set; } = new();
 
     [JsonProperty]
-    public static DataIDValueSet PushableByTypeId;
-    [DataID(typeof(NPCAIStyleID))]
+    public static HashSet<NPCEntry> PushableByTypeId { get; private set; } = new();
     [JsonProperty]
-    public static DataIDValueSet PushableByAI;
+    public static HashSet<NPCAIEntry> PushableByAI { get; private set; } = new();
 
     #region Bestiary
-    public static readonly List<IBestiaryInfoElement> CorruptionElements = new();
-    public static readonly List<IBestiaryInfoElement> CrimsonElements = new();
-    public static readonly List<IBestiaryInfoElement> HallowElements = new();
-    public static readonly List<IBestiaryInfoElement> PillarElements = new();
+    public static List<IBestiaryInfoElement> CorruptionElements { get; private set; } = new();
+    public static List<IBestiaryInfoElement> CrimsonElements { get; private set; } = new();
+    public static List<IBestiaryInfoElement> HallowElements { get; private set; } = new();
+    public static List<IBestiaryInfoElement> PillarElements { get; private set; } = new();
 
     private void LoadBestiaryElementTypes() {
         CorruptionElements.AddRange(new[] {
@@ -137,7 +135,7 @@ public partial class NPCSets : DataSet {
         for (int i = 0; i < NPCLoader.NPCCount; i++) {
             var npc = ContentSamples.NpcsByNetId[i];
             if (NPCHelper.IsImmune(i, BuffID.Slow)) {
-                StatSpeedBlacklist.Add(i);
+                StatSpeedBlacklist.Add((NPCEntry)i);
             }
         }
     }
@@ -151,16 +149,16 @@ public partial class NPCSets : DataSet {
 
             var info = bestiaryEntry.Info;
             if (CheckBestiary(info, CorruptionElements)) {
-                IsCorrupt.Add(i);
+                IsCorrupt.Add((NPCEntry)i);
             }
             if (CheckBestiary(info, CrimsonElements)) {
-                IsCrimson.Add(i);
+                IsCrimson.Add((NPCEntry)i);
             }
             if (CheckBestiary(info, HallowElements)) {
-                IsHallow.Add(i);
+                IsHallow.Add((NPCEntry)i);
             }
             if (CheckBestiary(info, PillarElements)) {
-                FromPillarEvent.Add(i);
+                FromPillarEvent.Add((NPCEntry)i);
             }
         }
     }

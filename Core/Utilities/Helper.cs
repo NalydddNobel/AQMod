@@ -1,15 +1,22 @@
 ﻿using Aequus.Common.Tiles;
-using Aequus.Core.Utilities;
-using Microsoft.Xna.Framework;
+using Aequus.Content.DataSets;
+using Aequus.Core.DataSets;
 using System;
-using Terraria;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ModLoader;
+using Terraria.IO;
 using Terraria.Utilities;
 
-namespace Aequus;
+namespace Aequus.Core.Utilities;
 
 public static class Helper {
+    public static bool TryReadInt(string s, out int value) {
+        return int.TryParse(s, NumberStyles.Integer, CultureInfo.InvariantCulture.NumberFormat, out value);
+    }
+
     public static Point WorldClamp(this Point value, int fluff = 0) {
         return new(Math.Clamp(value.X, fluff, Main.maxTilesX - fluff), Math.Clamp(value.Y, fluff, Main.maxTilesX - fluff));
     }
@@ -30,29 +37,43 @@ public static class Helper {
         return Math.Sign(velocity.Y) == Math.Sign(gravDir);
     }
 
+    public static string ModPath(this SoundStyle sound) {
+        return string.Join('/', sound.SoundPath.Split('/')[1..]);
+    }
+
     #region Type
     public static string NamespaceFilePath(this Type t) {
         return t.Namespace.Replace('.', '/');
     }
     public static string NamespaceFilePath(this object obj) {
-        return NamespaceFilePath(obj.GetType());
+        return obj.GetType().NamespaceFilePath();
     }
     public static string NamespaceFilePath<T>() {
-        return NamespaceFilePath(typeof(T));
+        return typeof(T).NamespaceFilePath();
     }
 
+    public static string GetFilePath(this Type t) {
+        return $"{t.NamespaceFilePath()}/{t.Name}";
+    }
     public static string GetFilePath(this object obj) {
         return GetFilePath(obj.GetType());
     }
     public static string GetFilePath<T>() {
         return GetFilePath(typeof(T));
     }
-    public static string GetFilePath(Type t) {
-        return $"{NamespaceFilePath(t)}/{t.Name}";
-    }
     #endregion
 
     #region RNG
+    public static KeyValuePair<TKey, TValue> NextPair<TKey, TValue>(this UnifiedRandom random, IDictionary<TKey, TValue> dictionary) {
+        return random.NextFromList(dictionary.ToArray());
+    }
+    public static TValue NextValue<TKey, TValue>(this UnifiedRandom random, IDictionary<TKey, TValue> dictionary) {
+        return random.NextFromList(dictionary.Values.ToArray());
+    }
+    public static TKey NextKey<TKey, TValue>(this UnifiedRandom random, IDictionary<TKey, TValue> dictionary) {
+        return random.NextFromList(dictionary.Keys.ToArray());
+    }
+
     public static float NextFloat(this ref FastRandom random, float min, float max) {
         return min + random.NextFloat() * (max - min);
     }
@@ -95,7 +116,7 @@ public static class Helper {
     }
 
     public static Item ReplaceFirst(this Chest chest, int itemId, int newItemId, int newStack = -1) {
-        var item = FindFirst(chest, itemId);
+        var item = chest.FindFirst(itemId);
         if (item == null) {
             return item;
         }
@@ -114,7 +135,7 @@ public static class Helper {
                 continue;
             }
             if (!chest.item[i].IsAir && chest.item[i].type == itemId) {
-                Remove(chest, i);
+                chest.Remove(i);
                 anyRemoved = true;
                 i--;
                 continue;
@@ -147,7 +168,7 @@ public static class Helper {
     public static bool TryStackingInto(this Item[] inv, int maxSlots, Item item, out int i) {
         i = -1;
         while (item.stack > 0) {
-            i = FindSuitableSlot(inv, maxSlots, item);
+            i = inv.FindSuitableSlot(maxSlots, item);
             if (i == -1) {
                 return false;
             }
@@ -194,14 +215,26 @@ public static class Helper {
         return null;
     }
 
-    public static Item AddItem(this Chest chest, int item, int stack = 1, int prefix = 0) {
+    public static void AddItemLoot(this Chest chest, LootDefinition loot, UnifiedRandom random = null) {
+        random ??= Main.rand;
+        chest.AddItem(loot.PrimaryItem.Item.Id, random.Next(loot.PrimaryItem.Stack), loot.PrimaryItem.Prefix);
+        if (loot.SecondaryItems != null) {
+            foreach (var secondaryItem in loot.SecondaryItems) {
+                chest.AddItem(secondaryItem.Item.Id, random.Next(secondaryItem.Stack), secondaryItem.Prefix);
+            }
+        }
+    }
+
+    public static Item AddItem(this Chest chest, int item, int stack = 1, int prefix = -1) {
         var emptySlot = chest.FindEmptySlot();
         if (emptySlot != null) {
             emptySlot.SetDefaults(item);
             emptySlot.stack = stack;
-            if (prefix > 0)
+            if (prefix != 0) {
                 emptySlot.Prefix(prefix);
+            }
         }
+
         return emptySlot;
     }
 

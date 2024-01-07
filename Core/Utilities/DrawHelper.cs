@@ -1,18 +1,49 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.NPCs;
+using Aequus.Common.Particles;
+using Aequus.Content.Biomes.PollutedOcean.Tiles.SeaPickles;
+using Aequus.Content.Items.Material.MonoGem;
+using Aequus.Core.Assets;
+using Aequus.Core.Graphics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Runtime.CompilerServices;
-using Terraria;
 using Terraria.GameContent;
+using Terraria.GameContent.Shaders;
+using Terraria.Graphics;
+using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
-using Terraria.ID;
 
-namespace Aequus;
+namespace Aequus.Core.Utilities;
 
-public static class DrawHelper {
+public sealed class DrawHelper : ModSystem {
     public delegate void Draw(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth);
 
-    public static Vector2 TileDrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
+    private static BasicEffect _basicEffect;
+    public static VertexStrip VertexStrip { get; private set; }
+
+    public static readonly RasterizerState RasterizerState_BestiaryUI = new() {
+        CullMode = CullMode.None,
+        ScissorTestEnable = true
+    };
+
+    public static SpriteBatchCache SpriteBatchCache { get; private set; }
+
+    public static Matrix WorldViewPointMatrix {
+        get {
+            var graphics = Main.graphics.GraphicsDevice;
+            var screenZoom = Main.GameViewMatrix.Zoom;
+            int width = graphics.Viewport.Width;
+            int height = graphics.Viewport.Height;
+
+            var zoom = Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) *
+                Matrix.CreateTranslation(width / 2f, height / -2f, 0) *
+                Matrix.CreateRotationZ(MathHelper.Pi) * Matrix.CreateScale(screenZoom.X, screenZoom.Y, 1f);
+            var projection = Matrix.CreateOrthographic(width, height, 0, 1000);
+            return zoom * projection;
+        }
+    }
+
+    public static int ColorOnlyShaderId => ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex;
+    public static ArmorShaderData ColorOnlyShader => GameShaders.Armor.GetSecondaryShader(ColorOnlyShaderId, Main.LocalPlayer);
 
     public static void DrawLine(Draw draw, Vector2 start, float rotation, float length, float width, Color color) {
         draw(TextureAssets.MagicPixel.Value, start, new Rectangle(0, 0, 1, 1), color, rotation, new Vector2(1f, 0.5f), new Vector2(length, width), SpriteEffects.None, 0f);
@@ -27,149 +58,156 @@ public static class DrawHelper {
         DrawLine(Main.spriteBatch.Draw, start, end, width, color);
     }
 
-    public static float GetWaterOffset(byte liquidAmount) {
-        return (1f - liquidAmount / 255f) * 16f;
+    public static void DrawBasicVertexLine(Texture2D texture, Vector2[] lineSegments, float[] lineRotations, VertexStrip.StripColorFunction getColor, VertexStrip.StripHalfWidthFunction getWidth, Vector2 offset = default, bool includeBacksides = true, bool tryStoppingOddBug = true) {
+        ApplyBasicEffect(texture);
+
+        VertexStrip.PrepareStripWithProceduralPadding(lineSegments, lineRotations, getColor, getWidth, offset, includeBacksides, tryStoppingOddBug);
+        VertexStrip.DrawTrail();
     }
 
-    #region Shaders
-    public static int ShaderColorOnlyIndex => ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex;
-    public static ArmorShaderData ShaderColorOnly => GameShaders.Armor.GetSecondaryShader(ShaderColorOnlyIndex, Main.LocalPlayer);
-    #endregion
+    public static void ApplyCurrentTechnique() {
+        Main.pixelShader.CurrentTechnique.Passes[0].Apply();
+    }
 
-    #region Colors
-    public static Color GetStringColor(int stringColorID) {
-        if (stringColorID == 27) {
+    public static void GetWorldViewProjection(out Matrix view, out Matrix projection) {
+        int width = Main.graphics.GraphicsDevice.Viewport.Width;
+        int height = Main.graphics.GraphicsDevice.Viewport.Height;
+        projection = Matrix.CreateOrthographic(width, height, 0, 1000);
+        view = Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) *
+            Matrix.CreateTranslation(width / 2f, height / -2f, 0) * Matrix.CreateRotationZ(MathHelper.Pi) *
+            Matrix.CreateScale(Main.GameViewMatrix.Zoom.X, Main.GameViewMatrix.Zoom.Y, 1f);
+    }
+
+    public static void ApplyBasicEffect(Texture2D texture = default, bool vertexColorsEnabled = true) {
+        GetWorldViewProjection(out var view, out var projection);
+
+        _basicEffect.VertexColorEnabled = vertexColorsEnabled;
+        _basicEffect.Projection = projection;
+        _basicEffect.View = view;
+
+        if (_basicEffect.TextureEnabled = texture != null) {
+            _basicEffect.Texture = texture;
+        }
+
+        foreach (var pass in _basicEffect.CurrentTechnique.Passes) {
+            pass.Apply();
+        }
+    }
+    public static void ApplyUVEffect(Texture2D texture, Vector2 uvMultiplier, Vector2 uvAdd) {
+        GetWorldViewProjection(out var view, out var projection);
+
+        Main.instance.GraphicsDevice.Textures[0] = texture;
+        var effect = AequusShaders.UVVertexShader.Value;
+        effect.CurrentTechnique = effect.Techniques["UVWrap"];
+        effect.Parameters["XViewProjection"].SetValue(view * projection);
+        effect.Parameters["UVMultiplier"].SetValue(uvMultiplier);
+        effect.Parameters["UVAdd"].SetValue(uvAdd);
+        foreach (var pass in effect.CurrentTechnique.Passes) {
+            pass.Apply();
+        }
+    }
+
+    public static Color GetYoyoStringColor(int stringColorId) {
+        if (stringColorId == 27) {
             return Main.DiscoColor;
         }
-        return WorldGen.paintColor(stringColorID);
+        return WorldGen.paintColor(stringColorId);
+    }
+
+    #region Dust
+    public static int LiquidTypeToDustId(int liquidType) {
+        return liquidType switch {
+            LiquidID.Shimmer => DustID.ShimmerSplash,
+            LiquidID.Honey => DustID.Honey,
+            LiquidID.Lava => DustID.Lava,
+            _ => Dust.dustWater(),
+        };
     }
     #endregion
 
-    #region Lighting
-    public static Color GetBrightestLight(Point tilePosition, int tilesSize) {
-        var lighting = Color.Black;
-        int realSize = tilesSize / 2;
-        tilePosition.WorldClamp(10 + realSize);
-        for (int i = tilePosition.X - realSize; i <= tilePosition.X + realSize; i++) {
-            for (int j = tilePosition.Y - realSize; j <= tilePosition.Y + realSize; j++) {
-                var v = Lighting.GetColor(i, j);
-                lighting.R = Math.Max(v.R, lighting.R);
-                lighting.G = Math.Max(v.G, lighting.G);
-                lighting.B = Math.Max(v.B, lighting.B);
-            }
-        }
-        return lighting;
+    #region Water
+    public static WaterShaderData WaterShader => (WaterShaderData)Filters.Scene["WaterDistortion"].GetShader();
+
+    public static void AddWaterRipple(Vector2 where, float r, float g, float b, Vector2 size, RippleShape shape = RippleShape.Square, float rotation = 0f) {
+        AddWaterRipple(where, new(r, g, b), size, shape, rotation);
     }
 
-    /// <summary>
-    /// Gets the mean of light surrounding a point
-    /// </summary>
-    /// <param name="x">The tile's X coordinate</param>
-    /// <param name="y">The tile's Y coordinate</param>
-    /// <param name="width">The width in tiles</param>
-    /// <param name="height">The width in tiles</param>
-    /// <returns></returns>
-    public static Color GetLightingSection(int x, int y, int width, int height) {
-        Vector3 lighting = Vector3.Zero;
-        float amount = 0f;
-        int largestSide = Math.Max(width, height);
-        x = Math.Clamp(x, largestSide, Main.maxTilesX - largestSide);
-        y = Math.Clamp(y, largestSide, Main.maxTilesY - largestSide);
-        for (int i = x; i < x + width; i++) {
-            for (int j = y; j < y + height; j++) {
-                lighting += Lighting.GetColor(i, j).ToVector3();
-                amount++;
-            }
-        }
-        if (amount == 0f)
-            return Color.White;
-        return new Color(lighting / amount);
-    }
-    /// <summary>
-    /// Gets the mean of light surrounding a point
-    /// </summary>
-    /// <param name="tilePosition">The tile center</param>
-    /// <param name="width">The width in tiles</param>
-    /// <param name="height">The width in tiles</param>
-    /// <returns></returns>
-    public static Color GetLightingSection(Point tilePosition, int width, int height) {
-        return GetLightingSection(tilePosition.X - width, tilePosition.Y, width, height);
-    }
-    /// <summary>
-    /// Gets the mean of light surrounding a point
-    /// </summary>
-    /// <param name="tilePosition">The tile center</param>
-    /// <param name="tilesSize">The size in tile coordinates</param>
-    /// <returns></returns>
-    public static Color GetLightingSection(Point tilePosition, int tilesSize = 10) {
-        Vector3 lighting = Vector3.Zero;
-        float amount = 0f;
-        int realSize = tilesSize / 2;
-        tilePosition.WorldClamp(10 + realSize);
-        for (int i = tilePosition.X - realSize; i <= tilePosition.X + realSize; i++) {
-            for (int j = tilePosition.Y - realSize; j <= tilePosition.Y + realSize; j++) {
-                lighting += Lighting.GetColor(i, j).ToVector3();
-                amount++;
-            }
-        }
-        if (amount == 0f)
-            return Color.White;
-        return new Color(lighting / amount);
-    }
-    /// <summary>
-    /// Gets the mean of light surrounding a point
-    /// </summary>
-    /// <param name="x">The center tile X</param>
-    /// <param name="y">The center tile Y</param>
-    /// <param name="tilesSize">The size in tile coordinates</param>
-    /// <returns></returns>
-    public static Color GetLightingSection(int x, int y, int tilesSize = 10) {
-        return GetLightingSection(new Point(x, y), tilesSize);
-    }
-    /// <summary>
-    /// Gets the mean of light surrounding a point
-    /// </summary>
-    /// <param name="worldPosition">The center</param>
-    /// <param name="tilesSize">The size in tile coordinates</param>
-    /// <returns></returns>
-    public static Color GetLightingSection(Vector2 worldPosition, int tilesSize = 10) {
-        return GetLightingSection(worldPosition.ToTileCoordinates(), tilesSize);
-    }
+    public static void AddWaterRipple(Vector2 where, Color waveData, Vector2 size, RippleShape shape = RippleShape.Square, float rotation = 0f) {
+        var w = WaterShader;
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Color GetLightColor(Vector2 worldCoordinates) {
-        return Lighting.GetColor(worldCoordinates.ToTileCoordinates());
+        w.QueueRipple(where, waveData, size, shape, rotation);
     }
     #endregion
 
-    #region spriteBatch.Begin
-    public static void Begin_Tiles(this SpriteBatch spriteBatch, bool shader = false) {
-        spriteBatch.Begin(!shader ? SpriteSortMode.Deferred : SpriteSortMode.Immediate, null, null, null, null, null, Matrix.Identity);
-    }
-
-    public static void Begin_UI(this SpriteBatch spriteBatch, bool immediate = false, bool useScissorRectangle = false, Matrix? matrix = null) {
-        RasterizerState rasterizer = null;
-        if (useScissorRectangle) {
-            rasterizer = new RasterizerState {
-                CullMode = CullMode.None,
-                ScissorTestEnable = true
-            };
+    #region Initialization
+    public override void Load() {
+        if (Main.dedServ) {
+            return;
         }
-        spriteBatch.Begin(!immediate ? SpriteSortMode.Deferred : SpriteSortMode.Immediate, null, null, null, rasterizer, null, matrix ?? Main.UIScaleMatrix);
+
+        SpriteBatchCache = new();
+        VertexStrip = new();
+        On_Main.DrawNPC += On_Main_DrawNPC;
+        On_Main.DrawNPCs += On_Main_DrawNPCs;
+        On_Main.DrawItems += On_Main_DrawItems;
+        On_Main.DrawDust += On_Main_DrawDust;
+        Main.QueueMainThreadAction(LoadShaders);
     }
 
-    public static void Begin_Dusts(this SpriteBatch spriteBatch, bool immediate = false, Matrix? overrideMatrix = null) {
-        spriteBatch.Begin(!immediate ? SpriteSortMode.Deferred : SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone, null, Main.Transform);
+    public override void Unload() {
+        SpriteBatchCache = null;
+        VertexStrip = null;
+        Main.QueueMainThreadAction(UnloadShaders);
     }
 
-    public static void Begin_World(this SpriteBatch spriteBatch, bool shader = false, Matrix? overrideMatrix = null) {
-        var matrix = overrideMatrix ?? Main.Transform;
-        if (!shader) {
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, matrix);
+    private static void LoadShaders() {
+        _basicEffect = new(Main.graphics.GraphicsDevice);
+    }
+    private static void UnloadShaders() {
+        _basicEffect = null;
+    }
+    #endregion
+
+    #region Hooks
+    private static void On_Main_DrawDust(On_Main.orig_DrawDust orig, Main main) {
+        orig(main);
+        var particleRenderer = ParticleSystem.GetLayer(ParticleLayer.AboveDust);
+        if (particleRenderer.Particles.Count > 0) {
+            Main.spriteBatch.BeginWorld();
+            particleRenderer.Draw(Main.spriteBatch);
+            Main.spriteBatch.End();
+        }
+        MonoGemRenderer.HandleScreenRender();
+    }
+
+    private static void On_Main_DrawItems(On_Main.orig_DrawItems orig, Main main) {
+        orig(main);
+        ParticleSystem.GetLayer(ParticleLayer.AboveItems).Draw(Main.spriteBatch);
+    }
+
+    private static void On_Main_DrawNPCs(On_Main.orig_DrawNPCs orig, Main main, bool behindTiles) {
+        if (!behindTiles) {
+            orig(main, behindTiles);
+            ParticleSystem.GetLayer(ParticleLayer.AboveNPCs).Draw(Main.spriteBatch);
         }
         else {
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.Default, Main.Rasterizer, null, matrix);
+            ParticleSystem.GetLayer(ParticleLayer.BehindAllNPCsBehindTiles).Draw(Main.spriteBatch);
+            orig(main, behindTiles);
         }
+    }
+
+    private static void On_Main_DrawNPC(On_Main.orig_DrawNPC orig, Main main, int iNPCIndex, bool behindTiles) {
+        if (!Main.npc[iNPCIndex].TryGetGlobalNPC<AequusNPC>(out var aequusNPC)) {
+            orig(main, iNPCIndex, behindTiles);
+            return;
+        }
+
+        Vector2 drawOffset = Vector2.Zero;
+        aequusNPC.DrawBehindNPC(iNPCIndex, behindTiles, ref drawOffset);
+        Main.npc[iNPCIndex].position += drawOffset;
+        orig(main, iNPCIndex, behindTiles);
+        Main.npc[iNPCIndex].position -= drawOffset;
+        aequusNPC.DrawAboveNPC(iNPCIndex, behindTiles);
     }
     #endregion
 }

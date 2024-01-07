@@ -1,0 +1,35 @@
+{
+  "ScavengerHelmets": [
+    "SilverHelmet",
+    "TungstenHelmet",
+    "GoldHelmet",
+    "PlatinumHelmet",
+    "MagicHat",
+    "DivingHelmet"
+  ],
+  "ScavengerBreastplates": [
+    "SilverChainmail",
+    "TungstenChainmail",
+    "GoldChainmail",
+    "PlatinumChainmail",
+    "Gi",
+    "GypsyRobe"
+  ],
+  "ScavengerLeggings": [
+    "SilverGreaves",
+    "TungstenGreaves",
+    "GoldGreaves",
+    "PlatinumGreaves"
+  ],
+  "ScavengerAccessories": [
+    "FrogLeg",
+    "BalloonPufferfish",
+    "TsunamiInABottle",
+    "SailfishBoots"
+  ],
+  "ScavengerWeapons": [
+    "FalconBlade",
+    "GoldBow",
+    "PlatinumBow"
+  ]
+}

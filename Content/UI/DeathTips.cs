@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.UI;
 using Aequus.Content.Configuration;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria;
 
 namespace Aequus.Content.UI;
 

@@ -1,0 +1,27 @@
+DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
+
+Scavenger: {
+	DisplayName: Carroñero
+	Bestiary: Alguna vez piratas vicios navegando los mares, sus huesos retienen la necesidad de robar y saquear.
+}
+
+ScavengerLootBag.DisplayName: Bolsa Carroñera
+
+MonsterChestSummon: {
+	DisplayName: Cofre Monstruo
+	Bestiary: N/A
+}
+
+BlackJellyfish: {
+	DisplayName: Medusa Negra
+	Bestiary: Evolución en un ambiente tan contaminado es difícil, estas medusas descubrieron que obliterar a sus enemigos y así mismos sería la mejor forma de defender a su especie, su esperanza de vida varía entre un par de minutos a años.
+	BannerName: Black Jellyfish Banner
+}
+
+Mirage.Bestiary: Durante la lluvia, nubes toxicas se forman y acumulan formando este monstruo acídico, desea ser un nimbo real, pero tiene problemas haciéndose amigo hasta de un muñeco de pruebas.
+RadioConductor.Bestiary: Un Frankenstein tecnológico, esta elegante antigüedad electrónica puede dirigir y manipular ondas de radio para defenderse. Se asegurará de poner un espectáculo, quieras o no.
+Pillbug.Bestiary: Bendecido con Energía Acuática, estos insectos corretean y se alimentan de la contaminación como si no fuera nada.
+Chromite.Bestiary: Estos insectos han desarrollado un camuflaje magnético increíblemente avanzado, tienden a adherirse a electrónicos y objetos metálicos, y en general son una molestia para cualquier casa familiar con un microondas. Podrían ser útil como carnada.
+Crabson.DisplayName: Crabson
+OmegaStarite.DisplayName: Omega Starite
+DustDevil.DisplayName: Demonio de Polvo

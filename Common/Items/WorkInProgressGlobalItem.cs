@@ -2,13 +2,11 @@
 using Microsoft.Xna.Framework;
 using ReLogic.Utilities;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.Items;
 
-public class WorkInProgressGlobalItem : GlobalItem {
+public sealed class WorkInProgressGlobalItem : GlobalItem {
     public override bool AppliesToEntity(Item item, bool lateInstantiation) {
         return item.ModItem != null && item.ModItem.GetType().GetAttribute<WorkInProgressAttribute>() != null;
     }

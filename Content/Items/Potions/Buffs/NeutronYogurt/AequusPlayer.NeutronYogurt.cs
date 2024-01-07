@@ -1,9 +1,6 @@
-﻿using Aequus.Common.Players.Attributes;
+﻿using Aequus.Core.Generator;
 using Microsoft.Xna.Framework;
-using rail;
 using System;
-using Terraria;
-using Terraria.ID;
 
 namespace Aequus;
 

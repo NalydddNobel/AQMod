@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Linq;
-using Terraria.ModLoader;
-using Terraria;
 
 namespace Aequus.Content.DedicatedContent;
 

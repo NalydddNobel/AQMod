@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.Players;
-using Aequus.Common.Players.Attributes;
-using System;
-using Terraria;
+using Aequus.Core.Generator;
+using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 
 namespace Aequus;
@@ -16,9 +15,7 @@ public partial class AequusPlayer {
     [ResetEffects]
     public int? DrawForceDye;
 
-    private void LoadVisuals() {
-        On_Player.UpdateVisibleAccessories += On_Player_UpdateVisibleAccessories;
-    }
+    private static bool customDrawing;
 
     private static void On_Player_UpdateVisibleAccessories(On_Player.orig_UpdateVisibleAccessories orig, Player player) {
         if (!player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
@@ -30,6 +27,47 @@ public partial class AequusPlayer {
         dashData?.PreUpdateVisibleAccessories(player, aequusPlayer);
         orig(player);
         dashData?.PostUpdateVisibleAccessories(player, aequusPlayer);
+    }
+    private static void PlayerDrawLayers_DrawPlayer_RenderAllLayers(On_PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers orig, ref PlayerDrawSet drawinfo) {
+        try {
+            if (customDrawing || !drawinfo.drawPlayer.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
+                orig(ref drawinfo);
+                return;
+            }
+            customDrawing = true;
+            aequusPlayer.ModifyDrawSet(ref drawinfo);
+            orig(ref drawinfo);
+        }
+        catch {
+
+        }
+        customDrawing = false;
+    }
+
+    private void ModifyDrawSet(ref PlayerDrawSet info) {
+        if (info.headOnlyRender) {
+            return;
+        }
+
+        if (DrawScale != null) {
+            var drawPlayer = info.drawPlayer;
+            var to = new Vector2((int)drawPlayer.position.X + drawPlayer.width / 2f, (int)drawPlayer.position.Y + drawPlayer.height);
+            to -= Main.screenPosition;
+            for (int i = 0; i < info.DrawDataCache.Count; i++) {
+                DrawData data = info.DrawDataCache[i];
+                data.position -= (data.position - to) * (1f - DrawScale.Value);
+                data.scale *= DrawScale.Value;
+                info.DrawDataCache[i] = data;
+            }
+        }
+        if (DrawForceDye != null) {
+            var drawPlayer = info.drawPlayer;
+            for (int i = 0; i < info.DrawDataCache.Count; i++) {
+                DrawData data = info.DrawDataCache[i];
+                data.shader = DrawForceDye.Value;
+                info.DrawDataCache[i] = data;
+            }
+        }
     }
 
     public override void FrameEffects() {

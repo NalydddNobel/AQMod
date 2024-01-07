@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using Terraria;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Common.Systems;

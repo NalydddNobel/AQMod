@@ -1,18 +1,16 @@
-﻿using Aequus.Common.UI;
+﻿using Aequus.Common.Renaming;
+using Aequus.Common.UI;
 using Aequus.Common.UI.Elements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
-using Terraria.ID;
 using Terraria.Localization;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace Aequus.Content.TownNPCs.SkyMerchant.UI; 
+namespace Aequus.Content.TownNPCs.SkyMerchant.UI;
 
 public class RenameItemUIState : AequusUIState {
     public bool initItemSlot;
@@ -101,12 +99,12 @@ public class RenameItemUIState : AequusUIState {
 
         if (slot.HasItem) {
             if (!initItemSlot) {
-                var nameTag = slot.item.GetGlobalItem<AequusItem>();
-                textBox.text = nameTag.HasNameTag ? nameTag.NameTag : slot.item.Name;
+                var nameTag = slot.item.GetGlobalItem<RenameItem>();
+                textBox.text = nameTag.HasCustomName ? nameTag.CustomName : slot.item.Name;
                 initItemSlot = true;
             }
 
-            int price = AequusItem.GetRenamePrice(slot.item);
+            int price = RenameItem.GetRenamePrice(slot.item);
             if (hover2) {
                 if (Main.mouseLeft && Main.mouseLeftRelease && price != -1) {
                     if (player.CanAfford(price, customCurrency: -1)) {
@@ -115,13 +113,13 @@ public class RenameItemUIState : AequusUIState {
                             SoundEngine.PlaySound(SoundID.MenuOpen);
                             SoundEngine.PlaySound(SoundID.Coins);
 
-                            var nameTag = slot.item.GetGlobalItem<AequusItem>();
+                            var nameTag = slot.item.GetGlobalItem<RenameItem>();
                             string itemName = textBox.text;
                             if (string.IsNullOrWhiteSpace(itemName)) {
                                 itemName = "";
                             }
-                            nameTag.NameTag = itemName;
-                            nameTag.CheckNameTag(slot.item);
+                            nameTag.CustomName = itemName;
+                            nameTag.UpdateCustomName(slot.item);
                             textBox.text = "";
                         }
                     }
@@ -169,50 +167,12 @@ public class RenameItemUIState : AequusUIState {
         }
 
         if (textBox.text != null) {
-            textBox.ShowText = ChatBoxDecodeText(textBox.text, Main.keyState.IsKeyDown(Keys.LeftControl));
+            textBox.ShowText = RenamingSystem.GetColoredDecodedText(textBox.text, pulse: true);
         }
-    }
-
-    public static string ChatBoxDecodeText(string text, bool showKeys = false) {
-        string newName = "";
-        for (int i = 0; i < text.Length; i++) {
-            if (text[i] == AequusItem.LanguageKeyChar) {
-                string keyText = "";
-                int j = i + 1;
-                for (; j < text.Length; j++) {
-                    if (text[j] == '|') {
-                        j++;
-                        break;
-                    }
-                    if (text[j] == ' ') {
-                        break;
-                    }
-                    keyText += text[j];
-                }
-                i = j - 1;
-                var langOrFormatedText = Language.GetText(keyText).FormatWith(Lang.CreateDialogSubstitutionObject());
-                var color = CorrectKeyColor;
-                if (langOrFormatedText == keyText || langOrFormatedText == "") {
-                    langOrFormatedText = keyText;
-                    color = IncorrectKeyColor;
-                }
-                if (langOrFormatedText != "") {
-                    langOrFormatedText = TextHelper.ColorCommand(showKeys ? keyText : langOrFormatedText, color, alphaPulse: true);
-                }
-                if (text[i] == '|') {
-                    langOrFormatedText += TextHelper.ColorCommand("|", Color.Gray, alphaPulse: true);
-                }
-                newName += TextHelper.ColorCommand("$", (color * 0.5f) with { A = color.A }) + langOrFormatedText;
-            }
-            else {
-                newName += text[i];
-            }
-        }
-        return newName;
     }
 
     private static bool CanSwapItem(Item slotItem, Item mouseItem) {
-        return mouseItem != null && !mouseItem.IsAir && AequusItem.CanRename(mouseItem)
+        return mouseItem != null && !mouseItem.IsAir && RenameItem.CanRename(mouseItem)
             ? true
             : slotItem != null && !slotItem.IsAir && (mouseItem == null || mouseItem.IsAir);
     }

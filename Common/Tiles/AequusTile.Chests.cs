@@ -1,8 +1,4 @@
-﻿using Aequus.Core.Autoloading;
-using Terraria.ID;
-using Terraria;
-using Terraria.ModLoader;
-using Aequus.Core.Utilities;
+﻿using Aequus.Core.Initialization;
 
 namespace Aequus.Common.Tiles;
 

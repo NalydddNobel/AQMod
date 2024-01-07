@@ -1,6 +1,4 @@
-﻿using Terraria;
-
-namespace Aequus.Common.Buffs.Components;
+﻿namespace Aequus.Common.Buffs.Components;
 
 internal interface IOnAddBuff {
     void PreAddBuff(NPC npc, ref int duration, ref bool quiet) {

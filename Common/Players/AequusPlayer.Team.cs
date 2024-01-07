@@ -1,6 +1,4 @@
-﻿using Aequus.Common.Players.Attributes;
-using Terraria;
-using Terraria.ModLoader;
+﻿using Aequus.Core.Generator;
 
 namespace Aequus;
 

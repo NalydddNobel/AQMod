@@ -1,5 +1,4 @@
 ﻿using Aequus.Core.Generator;
-using Terraria;
 
 namespace Aequus.Common.NPCs;
 

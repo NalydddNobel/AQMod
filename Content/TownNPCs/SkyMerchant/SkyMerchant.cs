@@ -1,19 +1,15 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Components;
 using Aequus.Common.UI;
-using Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
 using Aequus.Content.TownNPCs.SkyMerchant.Emote;
 using Aequus.Content.TownNPCs.SkyMerchant.UI;
-using Aequus.Core.Utilities;
+using Aequus.Content.Weapons.Ranged.Bows.SkyHunterCrossbow;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent.Bestiary;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.TownNPCs.SkyMerchant;
 

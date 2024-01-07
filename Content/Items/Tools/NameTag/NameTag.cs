@@ -1,16 +1,12 @@
-﻿using Aequus;
-using Aequus.Common.Items.Components;
-using Aequus.Content.DataSets;
-using Terraria;
+﻿using Aequus.Common.Items.Components;
+using Aequus.Common.Renaming;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Tools.NameTag;
 
 public class NameTag : ModItem, ICustomNameTagPrice {
-    public static int ChestSpawnrate = 8;
+    public static int ChestSpawnrate { get; set; } = 4;
 
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 5;
@@ -28,16 +24,12 @@ public class NameTag : ModItem, ICustomNameTagPrice {
         Item.maxStack = Item.CommonMaxStack;
     }
 
-    public static bool CanRename(NPC npc) {
-        if (NPCSets.NameTagOverride.TryGetValue(npc.netID, out bool canBeRenamedOverride)) {
-            return canBeRenamedOverride;
-        }
-
-        return npc.townNPC || NPCID.Sets.SpawnsWithCustomName[npc.type] || (!npc.boss && !NPCID.Sets.ShouldBeCountedAsBoss[npc.type] && !npc.immortal && !npc.dontTakeDamage && !npc.SpawnedFromStatue && (npc.realLife == -1 || npc.realLife == npc.whoAmI));
+    public override bool CanUseItem(Player player) {
+        return Item.TryGetGlobalItem<RenameItem>(out var itemNameTag) && itemNameTag.HasCustomName;
     }
 
     public override bool? UseItem(Player player) {
-        if (Main.myPlayer != player.whoAmI || !player.ItemTimeIsZero || !player.IsInTileInteractionRange(Player.tileTargetX, Player.tileTargetY, TileReachCheckSettings.Simple) || !Item.TryGetGlobalItem<AequusItem>(out var itemNameTag) || !itemNameTag.HasNameTag) {
+        if (Main.myPlayer != player.whoAmI || !player.ItemTimeIsZero || !player.IsInTileInteractionRange(Player.tileTargetX, Player.tileTargetY, TileReachCheckSettings.Simple) || !Item.TryGetGlobalItem<RenameItem>(out var itemNameTag) || !itemNameTag.HasCustomName) {
             return false;
         }
 
@@ -45,13 +37,13 @@ public class NameTag : ModItem, ICustomNameTagPrice {
         int screenMouseY = Main.mouseY + (int)Main.screenPosition.Y;
         for (int i = 0; i < Main.maxNPCs; i++) {
             var npc = Main.npc[i];
-            if (!npc.active || !npc.getRect().Contains(screenMouseX, screenMouseY) || !CanRename(npc) || !npc.TryGetGlobalNPC<NameTagGlobalNPC>(out var npcNameTag) || npcNameTag.Value == itemNameTag.NameTag) {
+            if (!npc.active || !npc.getRect().Contains(screenMouseX, screenMouseY) || !npc.TryGetGlobalNPC<RenameNPC>(out var npcNameTag) || npcNameTag.CustomName == itemNameTag.CustomName) {
                 continue;
             }
 
-            NametagEffects(i, itemNameTag.NameTag);
+            NametagEffects(i, itemNameTag.CustomName);
             if (Main.netMode != NetmodeID.SinglePlayer) {
-                ModContent.GetInstance<NameTagPacket>().Send(i, itemNameTag.NameTag);
+                ModContent.GetInstance<NameTagPacket>().Send(i, itemNameTag.CustomName);
             }
             return true;
         }
@@ -60,8 +52,8 @@ public class NameTag : ModItem, ICustomNameTagPrice {
     }
 
     public static void NametagEffects(int i, string nameTag) {
-        if (Main.npc[i].TryGetGlobalNPC<NameTagGlobalNPC>(out var npcNameTag)) {
-            npcNameTag.Value = nameTag;
+        if (Main.npc[i].TryGetGlobalNPC<RenameNPC>(out var npcNameTag)) {
+            npcNameTag.CustomName = nameTag;
             npcNameTag.nameTagAnimation = 1f;
         }
 
@@ -78,7 +70,24 @@ public class NameTag : ModItem, ICustomNameTagPrice {
         }
     }
 
-    public int GetNameTagPrice(AequusItem aequusItem) {
+    public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
+        if (!Item.TryGetGlobalItem<RenameItem>(out var itemNameTag) || !itemNameTag.HasCustomName) {
+            spriteBatch.Draw(AequusTextures.NameTagBlank, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
+            return false;
+        }
+        return true;
+    }
+
+    public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
+        if (!Item.TryGetGlobalItem<RenameItem>(out var itemNameTag) || !itemNameTag.HasCustomName) {
+            Main.GetItemDrawFrame(Item.type, out var texture, out var frame);
+            spriteBatch.Draw(AequusTextures.NameTagBlank, ItemHelper.WorldDrawPos(Item, texture), frame, lightColor, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
+            return false;
+        }
+        return true;
+    }
+
+    public int GetNameTagPrice() {
         return 0;
     }
 }
