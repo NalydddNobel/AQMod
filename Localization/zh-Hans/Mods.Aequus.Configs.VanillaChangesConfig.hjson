@@ -27,17 +27,17 @@ RestorationPotionRecipe: {
 }
 
 MoveToolbelt: {
-	// Label: "[i:Toolbelt] Move Toolbelt"
-	/* Tooltip:
+	Label: "[i:Toolbelt] 移动工具腰带"
+	Tooltip:
 		'''
-		When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Toolbelt] can be found in [{$ColorImportant}:Chests Underground],
-		and will [{$ColorImportant}:no longer be sold] by the [{$ColorImportant2}:Goblin Tinkerer].
+		[{$ColorImportant}:启用后], [{$ColorImportant}:工具腰带]可以在[{$ColorImportant}:地下宝箱]中发现,
+		并且[{$ColorImportant2}:哥布林工匠][{$ColorImportant}:不会再出售].
 
 		{$NoteExploit}
-		''' */
+		'''
 }
 
 SlimeCrownInSurfaceChests: {
-	// Label: "[i:SlimeCrown] Slime Crown in Surface Chests"
-	// Tooltip: When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Slime Crown] can be found in [{$ColorImportant}:Surface Chests].
+	Label: "[i:SlimeCrown] 地表宝箱中的史莱姆王冠"
+	Tooltip: [{$ColorImportant}:启用后], [{$ColorImportant}:史莱姆王冠]可以在[{$ColorImportant}:地表宝箱]中发现.
 }
