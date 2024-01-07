@@ -1,12 +1,13 @@
-﻿using Aequus.Common.Tiles;
+﻿using Aequus.Common.NPCs;
+using Aequus.Common.Tiles;
 using Terraria.Localization;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Bosses;
 
 internal class InstancedTrophyTile : InstancedModTile {
-    public InstancedTrophyTile(string name) : base($"{name}Trophy", $"{typeof(InstancedTrophyTile).NamespaceFilePath()}/Trophies/{name}Trophy") {
-    }
+    public InstancedTrophyTile(AequusBoss boss) : base($"{boss.Name}Trophy", boss.ItemPath("Trophy")) { }
+    public InstancedTrophyTile(string name) : base($"{name}Trophy", $"{typeof(InstancedTrophyTile).NamespaceFilePath()}/Trophies/{name}Trophy") { }
 
     public override void SetStaticDefaults() {
         Main.tileFrameImportant[Type] = true;

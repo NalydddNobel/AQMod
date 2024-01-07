@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Tiles;
+﻿using Aequus.Common.NPCs;
+using Aequus.Common.Tiles;
 using Aequus.Core.Graphics.Tiles;
 using System;
 using Terraria.DataStructures;
@@ -11,6 +12,9 @@ namespace Aequus.Content.Bosses;
 internal class InstancedRelicTile : InstancedModTile, ISpecialTileRenderer {
     private readonly IRelicRenderer _renderer;
 
+    public InstancedRelicTile(AequusBoss boss, IRelicRenderer renderer) : base($"{boss.Name}Relic", boss.ItemPath("Relic")) {
+        _renderer = renderer;
+    }
     public InstancedRelicTile(string name, IRelicRenderer renderer) : base($"{name}Relic", $"{typeof(InstancedTrophyTile).NamespaceFilePath()}/Trophies/{name}Relic") {
         _renderer = renderer;
     }

@@ -1,27 +1,21 @@
-﻿using Aequus.Common.Bosses;
-using Aequus.Common.Items;
-using Aequus.Common.NPCs;
+﻿using Aequus.Common.NPCs;
 using Aequus.Content.Items.Potions.Healing.Restoration;
-using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Bosses.Crabson;
 
+[AutoloadBossHead]
+[AutoloadBossMask]
 public class Crabson : AequusBoss {
     protected override bool CloneNewInstances => true;
 
     #region Initialization
     public const float BossChecklistProgression = 2.66f;
 
-    public override void Load() {
-        TreasureBagId = LoadItem(new BossBag(this, ItemCommons.Rarity.CrabsonLoot, preHardmode: true));
-        MaskId = LoadItem(new BossMask(this));
-        TrophyId = LoadItem(new BossTrophy(this, BossTrophiesTile.Crabson));
-        RelicId = LoadItem(new BossRelic(this, BossRelicsTile.Crabson));
-    }
+    public override bool PreHardmode => true;
+
+    public override int ItemRarity => ItemRarityID.Blue;
 
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = 4;
@@ -38,8 +32,6 @@ public class Crabson : AequusBoss {
             Velocity = 2f,
             Direction = -1,
         };
-
-        ExpertItemId = ItemID.EoCShield;
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -49,12 +41,7 @@ public class Crabson : AequusBoss {
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
-        AddMasterRelic(npcLoot);
-        AddExpertItem(npcLoot);
-        AddTrophy(npcLoot);
-        AddBossDropItems(npcLoot,
-            ItemDropRule.Common(MaskId, 7)
-        );
+        AddTreasureBagItem(npcLoot);
     }
 
     public override void SetDefaults() {
