@@ -36,5 +36,5 @@ MoveToolbelt: {
 
 SlimeCrownInSurfaceChests: {
 	Label: "[i:SlimeCrown] 地表宝箱中的史莱姆王冠"
-	Tooltip: [{$ColorImportant}:启用后], [{$ColorImportant}:史莱姆王冠]可以在[{$ColorImportant}:地表宝箱]中发现.
+	Tooltip: "[{$ColorImportant}:启用后], [{$ColorImportant}:史莱姆王冠]可以在[{$ColorImportant}:地表宝箱]中发现."
 }

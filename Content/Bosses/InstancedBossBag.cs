@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.NPCs;
 using System.Collections.Generic;
-using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
 
@@ -44,6 +43,8 @@ internal class InstancedBossBag : InstancedModItem {
         Item.expert = true;
     }
 
+    /* Removed code because tModLoader now handles this stuff automatically */
+    /* 
     public override void PostUpdate() {
         Lighting.AddLight(Item.Center, new Vector3(0.4f, 0.4f, 0.4f));
 
@@ -62,7 +63,7 @@ internal class InstancedBossBag : InstancedModItem {
             d.alpha = 0;
         }
     }
-
+    
     public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
         var texture = TextureAssets.Item[Item.type].Value;
 
@@ -106,7 +107,7 @@ internal class InstancedBossBag : InstancedModItem {
         return true;
     }
 
-    /* public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
+    public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
         Texture2D texture = TextureAssets.Item[Item.type].Value;
 
         float time = Main.GlobalTimeWrappedHourly;
@@ -133,7 +134,8 @@ internal class InstancedBossBag : InstancedModItem {
             spriteBatch.Draw(texture, position + new Vector2(0f, 4f).RotatedBy(radians) * time * Main.inventoryScale, frame, new Color(140, 120, 255, 77), 0f, origin, scale, SpriteEffects.None, 0);
         }
         return true;
-    } */
+    } 
+    */
 
     public override Color? GetAlpha(Color lightColor) {
         return Color.Lerp(lightColor, Color.White, 0.4f);

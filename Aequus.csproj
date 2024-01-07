@@ -41,4 +41,8 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Content\Bosses\Crabson\Sounds\CrabsonWalk.ogg" />
+  </ItemGroup>
+
 </Project>

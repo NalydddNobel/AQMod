@@ -1,15 +1,12 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Content.Items.Potions.Healing.Restoration;
 using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Content.Bosses.Crabson;
 
 [AutoloadBossHead]
 [AutoloadBossMask]
-public class Crabson : AequusBoss {
-    protected override bool CloneNewInstances => true;
-
+public partial class Crabson : AequusBoss {
     #region Initialization
     public const float BossChecklistProgression = 2.66f;
 

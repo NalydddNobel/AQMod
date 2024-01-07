@@ -32,7 +32,7 @@ public abstract class AequusBoss : ModNPC {
         Mod.AddContent(_trophy);
 
         RequestCache<Texture2D> relicTexture = new RequestCache<Texture2D>($"{this.NamespaceFilePath()}/Items/{Name}Relic");
-        ModTile relicTile = new InstancedRelicTile(Name, GetRelicRenderer(relicTexture));
+        ModTile relicTile = new InstancedRelicTile(this, GetRelicRenderer(relicTexture));
         _relic = new InstancedRelicItem(relicTile);
 
         Mod.AddContent(relicTile);
