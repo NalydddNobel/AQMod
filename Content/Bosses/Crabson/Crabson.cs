@@ -40,8 +40,8 @@ public class Crabson : AequusBoss {
             .AddSpawn(BestiaryBuilder.OceanBiome);
     }
 
-    public override void ModifyNPCLoot(NPCLoot npcLoot) {
-        AddTreasureBagItem(npcLoot);
+    public override void ModifyNPCLoot() {
+
     }
 
     public override void SetDefaults() {

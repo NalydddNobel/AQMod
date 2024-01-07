@@ -136,9 +136,9 @@ internal class PollutedOceanAmbienceGenerator : AequusGenStep {
         Chest chest = Main.chest[chestId];
         LootDefinition primaryLoot = Loot.PollutedOceanPrimary[ChestsPlaced % Loot.PollutedOceanPrimary.Count];
         chest.AddItemLoot(primaryLoot);
-        if (Random.NextBool(5)) {
-            chest.AddItem();
-        }
+        //if (Random.NextBool(5)) {
+        //    chest.AddItem();
+        //}
         return true;
     }
 

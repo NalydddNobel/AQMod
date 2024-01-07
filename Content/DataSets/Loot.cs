@@ -26,8 +26,8 @@ public struct LootDefinition {
     }
 
     [Conditional("DEBUG")]
-    internal static void CreateFor(Dictionary<ItemEntry, LootDefinition> lootPool, int primaryItem, int stack = 1, params ItemLootEntry[] secondaryItems) {
-        LoadingSteps.EnqueuePostSetupContent(() => lootPool[(ItemEntry)primaryItem] = Create(primaryItem, stack, secondaryItems));
+    internal static void CreateFor(List<LootDefinition> lootPool, int primaryItem, int stack = 1, params ItemLootEntry[] secondaryItems) {
+        LoadingSteps.EnqueuePostSetupContent(() => lootPool.Add(Create(primaryItem, stack, secondaryItems)));
     }
 }
 
