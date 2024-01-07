@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Items.Components;
-using Aequus.Common.UI.Inventory;
+﻿using Aequus.Common.Backpacks;
+using Aequus.Common.Items.Components;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
@@ -17,9 +17,6 @@ public class KeywordSystem : ModSystem {
     public static void AddItemKeywords(Item item) {
         if (item.ModItem is IAddKeywords addSpecialTooltips) {
             addSpecialTooltips.AddSpecialTooltips();
-        }
-        if (item.ModItem is IStorageItem storageItem && storageItem.Inventory != null) {
-            storageItem.AddKeywords(item);
         }
         BackpackSlotsUI.AddBackpackWarningTip(item);
     }

@@ -1,9 +1,9 @@
 ﻿using Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 using Terraria.GameContent.Creative;
 
-namespace Aequus.Common.Items;
+namespace Aequus.Content.VanillaChanges;
 
-public class ItemUnUnuser : GlobalItem {
+public class BoneBlockChanges : GlobalItem {
     public override void SetStaticDefaults() {
         CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[ItemID.BoneBlock] = 100;
         TrashCompactorRecipe.AddCustomRecipe(ItemID.Bone, (ItemID.BoneBlock, 1));

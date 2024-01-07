@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Players.Backpacks;
+﻿using Aequus.Common.Backpacks;
 using Microsoft.Xna.Framework;
 using MonoMod.Cil;
 using System;
@@ -19,7 +19,7 @@ public class InventoryUISystem : ModSystem {
     }
 
     private static void IL_Main_DrawEmoteAndBestiaryButton(ILContext il) {
-        MonoModHooks.DumpIL(ModContent.GetInstance<Aequus>(), il);
+        //MonoModHooks.DumpIL(ModContent.GetInstance<Aequus>(), il);
         var cursor = new ILCursor(il);
         if (!cursor.TryGotoNext((i) => i.MatchLdsfld(typeof(Main), nameof(Main.player)))) {
             throw new Exception($"Could not find {nameof(Main)}.{nameof(Main.player)} loading code.");
@@ -126,7 +126,7 @@ public class InventoryUISystem : ModSystem {
     }
 
     public override void UpdateUI(GameTime gameTime) {
-        if (!Main.LocalPlayer.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
+        if (!Main.LocalPlayer.TryGetModPlayer(out BackpackPlayer aequusPlayer)) {
             return;
         }
         BackpackLoader.AnimateBackpacks(aequusPlayer.backpacks, out int totalInventorySlots, out int activeBackpacks);

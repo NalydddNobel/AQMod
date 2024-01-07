@@ -1,30 +1,72 @@
 ﻿using Aequus.Common.Golfing;
-using Aequus.Common.Items.Components;
-using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Common.Players.Backpacks;
+namespace Aequus.Common.Backpacks;
 
 public class BackpackLoader {
+    public const string BackpacksSaveKey = "Backpacks";
+    
     public static readonly List<BackpackData> Backpacks = new();
     public static int Count => Backpacks.Count;
 
-    private static readonly List<Item> _extraCraftingItems = new();
-    internal static bool IgnoreBackpacks;
+    internal static bool IgnoreBackpacks { get; set; }
 
-    public static void SaveBackpacks(TagCompound tag, AequusPlayer aequusPlayer) {
-        for (int i = 0; i < aequusPlayer.backpacks.Length; i++) {
-            aequusPlayer.backpacks[i].SaveData(tag);
+    public static void InitializeBackpacks(ref BackpackData[] backpacks) {
+        backpacks = new BackpackData[Count];
+        for (int i = 0; i < backpacks.Length; i++) {
+            backpacks[i] = Backpacks[i].CreateInstance();
         }
     }
 
-    public static void LoadBackpacks(TagCompound tag, AequusPlayer aequusPlayer) {
-        for (int i = 0; i < aequusPlayer.backpacks.Length; i++) {
-            aequusPlayer.backpacks[i].LoadData(tag);
+    public static void SaveBackpacks(TagCompound tag, BackpackData[] backpacks, List<(string, TagCompound)> unloadedBackpacksList) {
+        // Create a tag which will contain all of the individual backpack tag compounds.
+        TagCompound backpacksSaveTag = new TagCompound();
+        
+        for (int i = 0; i < backpacks.Length; i++) {
+            // Create backpack tag compound, and save data to it
+            TagCompound backpackTag = new TagCompound();
+            backpacks[i].SaveData(backpackTag);
+
+            // If any data is saved, add this tag to the main tag.
+            if (backpackTag.Count != 0) {
+                backpacksSaveTag[backpacks[i].FullName] = backpackTag;
+            }
         }
+
+        // Save backpacks if any backpacks were saved.
+        if (backpacksSaveTag.Count != 0) {
+            tag[BackpacksSaveKey] = backpacksSaveTag;
+        }
+    }
+
+    public static void LoadBackpacks(TagCompound tag, BackpackData[] backpacks, List<(string, TagCompound)> unloadedBackpacksList) {
+        if (!tag.TryGet(BackpacksSaveKey, out TagCompound backpacksSaveTag)) {
+            return;
+        }
+
+        foreach (var pair in backpacksSaveTag) {
+            if (pair.Value is not TagCompound backpackTag) {
+                continue;
+            }
+
+            // Find backpack with matching name.
+            var backpack = Array.Find(backpacks, (b) => b.FullName.Equals(pair.Key));
+
+            // If found, load data.
+            if (backpack != null) {
+                backpack.LoadData(backpackTag);
+                continue;
+            }
+
+            // Otherwise add to unloaded backpacks list.
+            unloadedBackpacksList.Add((pair.Key, backpackTag));
+        }
+        LogUnloadedBackpacks(unloadedBackpacksList);
     }
 
     public static void UpdateBackpacks(Player player, BackpackData[] backpacks) {
@@ -39,7 +81,16 @@ public class BackpackLoader {
         }
     }
 
-    public static void ResetInfoAccessories(Player player, AequusPlayer aequusPlayer, BackpackData backpack) {
+    public static void UpdateInfoAccessories(Player player, BackpackData[] backpacks) {
+        var aequusPlayer = player.GetModPlayer<AequusPlayer>();
+        for (int i = 0; i < backpacks.Length; i++) {
+            if (!backpacks[i].SupportsInfoAccessories || !backpacks[i].IsActive(player)) {
+                continue;
+            }
+            UpdateSingleInfoAccessory(player, aequusPlayer, backpacks[i]);
+        }
+    }
+    private static void UpdateSingleInfoAccessory(Player player, AequusPlayer aequusPlayer, BackpackData backpack) {
         for (int i = 0; i < backpack.Inventory.Length; i++) {
             if (ItemID.Sets.WorksInVoidBag[backpack.Inventory[i].type]) {
                 ItemLoader.UpdateInventory(backpack.Inventory[i], player);
@@ -127,18 +178,18 @@ public class BackpackLoader {
     public static bool QuickStack(BackpackData backpack, Chest chest, Vector2 containerWorldPosition, ContainerTransferContext context) {
         bool anyTransfers = false;
         for (int i = 0; i < backpack.Inventory.Length; i++) {
-            var item = backpack.Inventory[i];
+            Item item = backpack.Inventory[i];
             if (item.IsAir || item.favorited) {
                 continue;
             }
 
             for (int j = 0; j < Chest.maxItems; j++) {
-                var chestItem = chest.item[j];
+                Item chestItem = chest.item[j];
                 if (chestItem.IsAir || chestItem.type != item.type) {
                     continue;
                 }
 
-                ItemLoader.TryStackItems(chestItem, item, out var numTransferred);
+                ItemLoader.TryStackItems(chestItem, item, out int numTransferred);
                 anyTransfers |= numTransferred > 0;
                 if (context.CanVisualizeTransfers && numTransferred > 0) {
                     Chest.VisualizeChestTransfer(Main.LocalPlayer.Center, containerWorldPosition, item, numTransferred);
@@ -191,19 +242,17 @@ public class BackpackLoader {
         return null;
     }
 
-    public static List<Item> GetExtraCraftingItems(AequusPlayer aequusPlayer) {
-        _extraCraftingItems.Clear();
-        for (int i = 0; i < aequusPlayer.backpacks.Length; i++) {
-            if (!aequusPlayer.backpacks[i].IsActive(aequusPlayer.Player)) {
+    public static IEnumerable<Item> GetExtraCraftingItems(Player player, BackpackData[] backpacks) {
+        for (int i = 0; i < backpacks.Length; i++) {
+            if (!backpacks[i].IsActive(player)) {
                 continue;
             }
-            for (int j = 0; j < aequusPlayer.backpacks[i].Inventory.Length; j++) {
-                if (!aequusPlayer.backpacks[i].Inventory[j].IsAir) {
-                    _extraCraftingItems.Add(aequusPlayer.backpacks[i].Inventory[j]);
+            for (int j = 0; j < backpacks[i].Inventory.Length; j++) {
+                if (!backpacks[i].Inventory[j].IsAir) {
+                    yield return backpacks[i].Inventory[j];
                 }
             }
         }
-        return _extraCraftingItems;
     }
 
     public static void AnimateBackpacks(BackpackData[] backpacks, out int totalInventorySlots, out int activeBackpacks) {
@@ -242,7 +291,7 @@ public class BackpackLoader {
             }
 
             for (int i = 0; i < backpacks[k].Inventory.Length; i++) {
-                var item = backpacks[k].Inventory[i];
+                Item item = backpacks[k].Inventory[i];
                 if (!item.IsAir && (projType == ProjectileID.DirtGolfBall && ProjectileID.Sets.IsAGolfBall[item.shoot] || (ProjectileLoader.GetProjectile(item.shoot) as IGolfBallProjectile)?.OverrideGolfBallId(player, item, projType) == true)) {
                     projType = item.shoot;
                 }
@@ -251,18 +300,23 @@ public class BackpackLoader {
         return false;
     }
 
-    public static void SetBackpack<T>(Player player, IStorageItem storageItem, int slotAmount) where T : BackpackItemData {
-        if (!player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
-            return;
-        }
-        storageItem.EnsureInventory(slotAmount);
-        (aequusPlayer.backpacks[ModContent.GetInstance<T>().Type] as T).BackpackItem = storageItem;
+    public static BackpackData Get(BackpackPlayer player, BackpackData backpack) {
+        return player.backpacks[backpack.Type];
     }
-
-    public static T Get<T>(AequusPlayer player) where T : BackpackData {
-        return (T)player.backpacks[ModContent.GetInstance<T>().Type];
+    public static BackpackData Get(Player player, BackpackData backpack) {
+        return Get(player.GetModPlayer<BackpackPlayer>(), backpack);
+    }
+    public static T Get<T>(BackpackPlayer player) where T : BackpackData {
+        return (T)Get(player, ModContent.GetInstance<T>());
     }
     public static T Get<T>(Player player) where T : BackpackData {
-        return Get<T>(player.GetModPlayer<AequusPlayer>());
+        return Get<T>(player.GetModPlayer<BackpackPlayer>());
+    }
+
+    [Conditional("DEBUG")]
+    private static void LogUnloadedBackpacks(List<(string, TagCompound)> unloadedBackpacksList) {
+        foreach (var backpack in unloadedBackpacksList) {
+            Aequus.Log.Debug($"{backpack.Item1}: {backpack.Item2}");
+        }
     }
 }

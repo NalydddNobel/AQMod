@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Linq;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.IO;
 using Terraria.Utilities;
 
 namespace Aequus.Core.Utilities;
@@ -224,7 +225,7 @@ public static class Helper {
         }
     }
 
-    public static Item AddItem(this Chest chest, int item, int stack = 1, int prefix = 0) {
+    public static Item AddItem(this Chest chest, int item, int stack = 1, int prefix = -1) {
         var emptySlot = chest.FindEmptySlot();
         if (emptySlot != null) {
             emptySlot.SetDefaults(item);
@@ -233,6 +234,7 @@ public static class Helper {
                 emptySlot.Prefix(prefix);
             }
         }
+
         return emptySlot;
     }
 

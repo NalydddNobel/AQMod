@@ -1,17 +1,17 @@
 Biomes: {
 	DemonSiegeZone: {
-		// DisplayName: Demon Siege Zone
-		// TownNPCDialogueName: the Demon Siege Zone
+		DisplayName: Zona del Asedio demoniaco
+		TownNPCDialogueName: La zona del Asedio demoniaco
 	}
 
 	GlimmerZone: {
-		// DisplayName: Glimmer Zone
-		// TownNPCDialogueName: the Glimmer Zone
+		DisplayName: Zona del Destello
+		TownNPCDialogueName: la zona del destello
 	}
 
 	SpaceStormZone: {
-		// DisplayName: Space Storm Zone
-		// TownNPCDialogueName: the Space Storm Zone
+		DisplayName: Space Storm Zone
+		TownNPCDialogueName: the Space Storm Zone
 	}
 
 	PollutedOceanBiome: {
@@ -22,9 +22,9 @@ Biomes: {
 
 InfoDisplays: {
 	CalendarInfoDisplay: {
-		// DisplayName: "{$Items.Calendar.DisplayName}"
-		// Tooltip: "{0} (Day {1})"
+		DisplayName: "{$Items.Calendar.DisplayName}"
+		Tooltip: "{0} (Dia {1})"
 	}
 }
 
-// KeyUnbound: Unbound
+KeyUnbound: Unbound

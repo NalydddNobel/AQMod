@@ -1,24 +1,43 @@
-// DisplayName: Vanilla Changes
-// NoteExploit: "[{$ColorNote}:Disable this config for personal preference, or to prevent unintended exploits.]"
+DisplayName: Cambios Vanilla
+ColorImportant: c/ffffbb
+ColorImportant2: c/ffcc99
+ColorNote: c/aaacff
+NoteExploit: "[{$ColorNote}:Desactiva esta configuración por preferencia personal, o para prevenir ventajas no deseadas.]"
 
 MoveTreasureMagnet: {
-	// Label: "[i:TreasureMagnet] Move Treasure Magnet"
+	Label: "[i:TreasureMagnet] Mover Imán de tesoros"
+	Tooltip:
+		'''
+		Cuando [{$ColorImportant}:Activo], el [{$ColorImportant}:Imán de tesoros] sera vendido por el [{$ColorImportant}:Mercader del cielo],
+		y [{$ColorImportant}:no aparecera] en [{$ColorImportant2}:Cofres de las sombras] o en [{$ColorImportant2}:Caja con cierre de obsidiana].
+
+		{$NoteExploit}
+		'''
+}
+
+RestorationPotionRecipe: {
+	Label: "[i:RestorationPotion] Receta de Poción de recuperación"
+	Tooltip:
+		'''
+		Cuando [{$ColorImportant}:Activo], La receta Vanilla de la [{$ColorImportant}:Poción de recuperación] sera [{$ColorImportant}:removida].
+		Aequus añade una [{$ColorImportant}:receta alternativa], usando dos [{$ColorImportant2}:Pociónes de recuperación menor] y un [{$ColorImportant2}:Champiñón brillante].
+
+		[{$ColorNote}:Desactiva esta configuración por preferencia personal, o si se presenta un problema al remover esta receta.]
+		'''
+}
+
+MoveToolbelt: {
+	// Label: "[i:Toolbelt] Move Toolbelt"
 	/* Tooltip:
 		'''
-		When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Treasure Magnet] will be sold by the [{$ColorImportant}:Sky Merchant],
-		[{$ColorImportant}:no longer spawning] in [{$ColorImportant2}:Shadow Chests] or [{$ColorImportant2}:Obsidian Lock Boxes].
+		When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Toolbelt] can be found in [{$ColorImportant}:Chests Underground],
+		and will [{$ColorImportant}:no longer be sold] by the [{$ColorImportant2}:Goblin Tinkerer].
 
 		{$NoteExploit}
 		''' */
 }
 
-RestorationPotionRecipe: {
-	// Label: "[i:RestorationPotion] Restoration Potion Recipe"
-	/* Tooltip:
-		'''
-		When [{$ColorImportant}:Enabled], the vanilla [{$ColorImportant}:Restoration Potion] recipe will be [{$ColorImportant}:removed].
-		Aequus adds an [{$ColorImportant}:alternative recipe], using two [{$ColorImportant2}:Lesser Restoration Potions] and a [{$ColorImportant2}:Glowing Mushroom].
-
-		[{$ColorNote}:Disable this config for personal preference, or if any issues arise from this recipe being removed.]
-		''' */
+SlimeCrownInSurfaceChests: {
+	// Label: "[i:SlimeCrown] Slime Crown in Surface Chests"
+	// Tooltip: When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Slime Crown] can be found in [{$ColorImportant}:Surface Chests].
 }
