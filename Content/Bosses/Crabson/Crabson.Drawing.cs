@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;
+using Terraria.GameContent;
 
 namespace Aequus.Content.Bosses.Crabson;
 
@@ -138,12 +139,21 @@ public partial class Crabson {
 
         public void Draw(NPC npc, SpriteBatch spriteBatch, Vector2 drawPosition, Vector2 screenPos, Vector2 offset, Vector2 eyeOffset) {
             var eyePosition = drawPosition + eyeOffset;
-            var eyeFrame = AequusTextures.Crabson_Eyes.Frame(verticalFrames: 8, frameY: GetFrame());
+            var eyeFrame = AequusTextures.Crabson_Eyes.Frame(horizontalFrames: 2, verticalFrames: 8, frameY: GetFrame());
             var eyeOrigin = eyeFrame.Size() / 2f;
+            float eyeOffsetX = 33f;
             spriteBatch.Draw(
                 AequusTextures.Crabson_Eyes,
-                eyePosition,
+                eyePosition + new Vector2(-eyeOffsetX, 0f),
                 eyeFrame,
+                Color.White,
+                npc.rotation,
+                eyeOrigin,
+                npc.scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(
+                AequusTextures.Crabson_Eyes,
+                eyePosition + new Vector2(eyeOffsetX, 0f),
+                eyeFrame with { X = eyeFrame.Width },
                 Color.White,
                 npc.rotation,
                 eyeOrigin,
@@ -278,9 +288,9 @@ public partial class Crabson {
     private CrabsonArmsDrawer _arms = new();
     private CrabsonEyeDrawer _eyes = new();
     private CrabsonLegsDrawer _legs = new();
-    private readonly CrabsonMood _mood = new();
+    private CrabsonMood _mood;
 
-    private void UpdateMood() {
+    private void UpdateDrawEffects() {
         _mood.OnAIUpdate();
     }
 
@@ -300,14 +310,86 @@ public partial class Crabson {
 
         Vector2 chainOffset = new(44f, -14f);
         Vector2 chainEndOffset = new(20f, 0f);
-        NPC leftArm = Main.npc[LeftArm];
-        NPC rightArm = Main.npc[RightArm];
         _arms.Clear();
-        _arms.AddArm(NPC, NPC.Center + chainOffset with { X = -chainOffset.X } + NPC.netOffset, leftArm.Center + chainEndOffset.RotatedBy(leftArm.rotation == 0f ? MathHelper.Pi : leftArm.rotation) + leftArm.netOffset);
-        _arms.AddArm(NPC, NPC.Center + chainOffset + NPC.netOffset, rightArm.Center + chainEndOffset.RotatedBy(rightArm.rotation) + rightArm.netOffset);
+        _arms.AddArm(NPC, NPC.Center + chainOffset with { X = -chainOffset.X } + NPC.netOffset, LeftArm.Center + chainEndOffset.RotatedBy(LeftArm.Rotation == 0f ? MathHelper.Pi : LeftArm.Rotation));
+        _arms.AddArm(NPC, NPC.Center + chainOffset + NPC.netOffset, RightArm.Center + chainEndOffset.RotatedBy(RightArm.Rotation));
     }
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
-        return base.PreDraw(spriteBatch, screenPos, drawColor);
+        if (NPC.IsABestiaryIconDummy) {
+            DrawBestiary(spriteBatch, screenPos, drawColor);
+            return false;
+        }
+
+        _arms.DrawArms(NPC, spriteBatch, screenPos);
+        DrawBody(spriteBatch, screenPos, new Vector2(), NPC.GetNPCColorTintedByBuffs(NPC.GetAlpha(drawColor)));
+        DrawClaw(LeftArm, spriteBatch, screenPos, NPC.GetNPCColorTintedByBuffs(NPC.GetAlpha(LightHelper.GetLightColor(LeftArm.Center))));
+        DrawClaw(RightArm, spriteBatch, screenPos, NPC.GetNPCColorTintedByBuffs(NPC.GetAlpha(LightHelper.GetLightColor(RightArm.Center))));
+        return false;
+    }
+
+    private void DrawBestiary(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+        Vector2 offset = new Vector2(120f, 58f) * NPC.scale;
+        NPC.direction = 1;
+        NPC.spriteDirection = 1;
+        DrawClaw(LeftArm, spriteBatch, screenPos + (offset with { X = -offset.X }), Color.White);
+        NPC.direction = -1;
+        NPC.spriteDirection = -1;
+        DrawClaw(RightArm, spriteBatch, screenPos + offset, Color.White);
+
+        DrawBody(
+            spriteBatch,
+            screenPos,
+            new(0f, 0f),
+            Color.White
+        );
+    }
+
+    private void DrawBody(SpriteBatch spriteBatch, Vector2 screenPos, Vector2 offset, Color bodyDrawColor) {
+        offset.Y -= 24;
+        var drawPosition = NPC.Center - screenPos + offset;
+        spriteBatch.Draw(
+            TextureAssets.Npc[NPC.type].Value,
+            drawPosition,
+            NPC.frame,
+            bodyDrawColor,
+            NPC.rotation,
+            NPC.frame.Size() / 2f,
+            NPC.scale, SpriteEffects.None, 0f);
+
+        _legs.Draw(NPC, spriteBatch, drawPosition, bodyDrawColor);
+        _eyes.Draw(NPC, spriteBatch, drawPosition, screenPos, offset, new Vector2(0f, -40f));
+    }
+
+    protected void DrawClaw(Arm arm, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+        var claw = AequusTextures.CrabsonClaw.Value;
+        var origin = new Vector2(claw.Width / 2f + 20f, claw.Height / 8f);
+        var drawCoords = arm.Center + new Vector2(arm.Direction * 10f, -20f) - screenPos;
+        if (NPC.ModNPC != null) {
+            drawCoords.Y += NPC.ModNPC.DrawOffsetY;
+        }
+        SpriteEffects spriteEffects;
+        bool flip;
+        if (arm.Rotation == 0f) {
+            spriteEffects = arm.Direction == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            flip = arm.Direction == 1;
+            if (!flip) {
+                origin.X = claw.Width - origin.X;
+            }
+        }
+        else {
+            spriteEffects = Math.Abs(arm.Rotation) > MathHelper.PiOver2 ? SpriteEffects.FlipVertically | SpriteEffects.FlipHorizontally : SpriteEffects.FlipHorizontally;
+            flip = spriteEffects.HasFlag(SpriteEffects.FlipVertically);
+        }
+
+        DrawClawManual(spriteBatch, claw, drawCoords, drawColor, origin, arm.Rotation, flip ? -arm.MouthOpen : arm.MouthOpen, NPC.scale, spriteEffects);
+    }
+
+    protected void DrawClawManual(SpriteBatch spriteBatch, Texture2D claw, Vector2 drawCoords, Color drawColor, Vector2 origin, float rotation, float mouthAnimation, float scale, SpriteEffects spriteEffects) {
+        int frameHeight = claw.Height / 4;
+        var clawFrame = new Rectangle(0, frameHeight, claw.Width, frameHeight - 2);
+        spriteBatch.Draw(claw, drawCoords, clawFrame, drawColor, -mouthAnimation + 0.1f * NPC.direction + rotation, origin, scale, spriteEffects, 0f);
+        spriteBatch.Draw(claw, drawCoords, clawFrame with { Y = 0, }, drawColor, mouthAnimation + 0.1f * NPC.direction + rotation, origin, scale, spriteEffects, 0f);
+        spriteBatch.Draw(claw, drawCoords, clawFrame with { Y = frameHeight * (Math.Abs(mouthAnimation) > 0.05f ? 3 : 2), }, drawColor, 0.1f * NPC.direction + rotation, origin, scale, spriteEffects, 0f);
     }
 }

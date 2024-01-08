@@ -21,9 +21,7 @@ public abstract class AequusBoss : ModNPC {
 
     public int State { get => (int)NPC.ai[0]; set => NPC.ai[0] = value; }
 
-    internal string ItemPath(string suffix) {
-        return $"{this.NamespaceFilePath()}/Items/{Name}{suffix}";
-    }
+    protected sealed override bool CloneNewInstances => true;
 
     public sealed override void Load() {
         _treasureBag = new InstancedBossBag(this);
@@ -57,8 +55,6 @@ public abstract class AequusBoss : ModNPC {
         return new BasicRelicRenderer(texture);
     }
 
-    protected override bool CloneNewInstances => true;
-
     protected NPCLoot npcLoot;
     public sealed override void ModifyNPCLoot(NPCLoot npcLoot) {
         this.npcLoot = npcLoot;
@@ -75,6 +71,7 @@ public abstract class AequusBoss : ModNPC {
     protected void AddTreasureBagItem(params IItemDropRule[] dropRules) {
         _treasureBag._rulesToRegister.AddRange(dropRules);
     }
+
     protected void AddNonExpertItem(params IItemDropRule[] dropRules) {
         var notExpertRule = new LeadingConditionRule(new Conditions.NotExpert());
         foreach (var dropRule in dropRules) {
@@ -87,6 +84,15 @@ public abstract class AequusBoss : ModNPC {
     protected void AddBossDrop(params IItemDropRule[] dropRules) {
         AddNonExpertItem(dropRules);
         AddTreasureBagItem(dropRules);
+    }
+
+    public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position) {
+        scale = 1.5f;
+        return null;
+    }
+
+    internal string ItemPath(string suffix) {
+        return $"{this.NamespaceFilePath()}/Items/{Name}{suffix}";
     }
 
     [AttributeUsage(AttributeTargets.Class)]

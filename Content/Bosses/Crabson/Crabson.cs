@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.NPCs;
+using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Content.Items.Potions.Healing.Restoration;
 using Terraria.GameContent.Bestiary;
 
@@ -6,7 +7,10 @@ namespace Aequus.Content.Bosses.Crabson;
 
 [AutoloadBossHead]
 [AutoloadBossMask]
+[ModBiomes(typeof(PollutedOceanBiome))]
 public partial class Crabson : AequusBoss {
+    public static int CrabsonBoss { get; internal set; }
+
     #region AI
     public const int STATE_INIT = 0;
     public const int STATE_DESTROY = 1;
@@ -16,11 +20,15 @@ public partial class Crabson : AequusBoss {
     public const int STATE_PEARLCRUSH = 5;
 
     public override void AI() {
-        UpdateMood();
+        UpdateDrawEffects();
+        CrabsonBoss = NPC.whoAmI;
 
         switch (State) {
             case STATE_INIT:
                 State = 1;
+                RightArm.Initialize(NPC, 1);
+                LeftArm.Initialize(NPC, -1);
+                NPC.TargetClosest();
                 break;
 
             case STATE_DESTROY:
@@ -78,6 +86,8 @@ public partial class Crabson : AequusBoss {
         NPC.defense = 14;
         NPC.boss = true;
         NPC.behindTiles = true;
+
+        _mood = new CrabsonMood();
     }
 
     public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment) {
