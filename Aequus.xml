@@ -564,11 +564,7 @@
             </summary>
         </member>
         <member name="M:Aequus.Common.NPCs.AequusBoss.AddBossDrop(Terraria.GameContent.ItemDropRules.IItemDropRule[])">
-            <summary>
-            Adds all of the listed rules to the boss's Classic/Journey mode loot pool, and to the boss's Treasure Bag's loot pool.
-            </summary>
-            <param name="npcLoot"></param>
-            <param name="dropRules"></param>
+            <summary>Adds all of the listed rules to the boss's Classic/Journey mode loot pool, and to the boss's Treasure Bag's loot pool.</summary>
         </member>
         <member name="F:Aequus.Common.NPCs.AIJellyfish.shockRampUpDistance">
             <summary>

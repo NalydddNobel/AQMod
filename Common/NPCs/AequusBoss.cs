@@ -2,6 +2,8 @@
 using Aequus.Core.Assets;
 using ReLogic.Utilities;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Common.NPCs;
@@ -16,6 +18,8 @@ public abstract class AequusBoss : ModNPC {
     public abstract bool PreHardmode { get; }
 
     public abstract int ItemRarity { get; }
+
+    public int State { get => (int)NPC.ai[0]; set => NPC.ai[0] = value; }
 
     internal string ItemPath(string suffix) {
         return $"{this.NamespaceFilePath()}/Items/{Name}{suffix}";
@@ -43,6 +47,10 @@ public abstract class AequusBoss : ModNPC {
             _bossMask = new InstancedBossMask(this);
             Mod.AddContent(_bossMask);
         }
+
+#if DEBUG
+        LoadStateNames();
+#endif
     }
 
     protected virtual IRelicRenderer GetRelicRenderer(RequestCache<Texture2D> texture) {
@@ -75,11 +83,7 @@ public abstract class AequusBoss : ModNPC {
         npcLoot.Add(notExpertRule);
     }
 
-    /// <summary>
-    /// Adds all of the listed rules to the boss's Classic/Journey mode loot pool, and to the boss's Treasure Bag's loot pool.
-    /// </summary>
-    /// <param name="npcLoot"></param>
-    /// <param name="dropRules"></param>
+    /// <summary>Adds all of the listed rules to the boss's Classic/Journey mode loot pool, and to the boss's Treasure Bag's loot pool.</summary>
     protected void AddBossDrop(params IItemDropRule[] dropRules) {
         AddNonExpertItem(dropRules);
         AddTreasureBagItem(dropRules);
@@ -87,4 +91,19 @@ public abstract class AequusBoss : ModNPC {
 
     [AttributeUsage(AttributeTargets.Class)]
     public class AutoloadBossMaskAttribute : Attribute { }
+
+#if DEBUG
+    [CloneByReference]
+    internal Dictionary<string, int> StateNameToId { get; private set; } = new();
+    internal Dictionary<int, string> StateIdToName { get; private set; } = new();
+
+    private void LoadStateNames() {
+        foreach (var field in ReflectionHelper.GetConstants(GetType()).Where((f) => f.FieldType == typeof(int))) {
+            string value = field.Name.ToLower().Replace("state_", "");
+            int id = (int)field.GetValue(null);
+            StateNameToId.Add(value, id);
+            StateIdToName.Add(id, value);
+        }
+    }
+#endif
 }

@@ -5,6 +5,14 @@ using System.Reflection;
 namespace Aequus.Core.Utilities;
 
 public static class ReflectionHelper {
+    public static IEnumerable<FieldInfo> GetConstants(Type t, BindingFlags flags = BindingFlags.Static | BindingFlags.Public) {
+        foreach (var f in t.GetFields(flags)) {
+            if (f.IsLiteral && !f.IsInitOnly) {
+                yield return f;
+            }
+        }
+    }
+
     public static IEnumerable<(T attributeInstance, MemberInfo memberInfo)> GetMembersWithAttribute<T>(Type t) where T : Attribute {
         var l = new List<(T, MemberInfo)>();
         foreach (var f in t.GetFields(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static)) {

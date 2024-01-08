@@ -7,6 +7,28 @@ namespace Aequus.Content.Bosses.Crabson;
 [AutoloadBossHead]
 [AutoloadBossMask]
 public partial class Crabson : AequusBoss {
+    #region AI
+    public const int STATE_INIT = 0;
+    public const int STATE_DESTROY = 1;
+    public const int STATE_TEST = 2;
+    public const int STATE_SUPERDUPERSLAP = 3;
+    public const int STATE_GASCAN = 4;
+    public const int STATE_PEARLCRUSH = 5;
+
+    public override void AI() {
+        UpdateMood();
+
+        switch (State) {
+            case STATE_INIT:
+                State = 1;
+                break;
+
+            case STATE_DESTROY:
+                break;
+        }
+    }
+    #endregion
+
     #region Initialization
     public const float BossChecklistProgression = 2.66f;
 
