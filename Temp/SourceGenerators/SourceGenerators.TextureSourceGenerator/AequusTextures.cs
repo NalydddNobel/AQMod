@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 250)</summary>
+/// <summary>(Total Textures: 223)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -301,44 +301,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SteampunkerFishingPoleBobber = new("Aequus/Content/Fishing/FishingPoles/Steampunker/SteampunkerFishingPoleBobber");
     /// <summary>Full Path: Content/Items/Material/CompressedTrash</summary>
     public static readonly RequestCache<Texture2D> CompressedTrash = new("Aequus/Content/Items/Material/CompressedTrash");
-    /// <summary>Full Path: Content/Items/Material/Energy/Aquatic/AquaticEnergy</summary>
-    public static readonly RequestCache<Texture2D> AquaticEnergy = new("Aequus/Content/Items/Material/Energy/Aquatic/AquaticEnergy");
-    /// <summary>Full Path: Content/Items/Material/Energy/Aquatic/AquaticEnergyParticle</summary>
-    public static readonly RequestCache<Texture2D> AquaticEnergyParticle = new("Aequus/Content/Items/Material/Energy/Aquatic/AquaticEnergyParticle");
-    /// <summary>Full Path: Content/Items/Material/Energy/Atmospheric/AtmosphericEnergy</summary>
-    public static readonly RequestCache<Texture2D> AtmosphericEnergy = new("Aequus/Content/Items/Material/Energy/Atmospheric/AtmosphericEnergy");
-    /// <summary>Full Path: Content/Items/Material/Energy/Atmospheric/AtmosphericEnergyParticle</summary>
-    public static readonly RequestCache<Texture2D> AtmosphericEnergyParticle = new("Aequus/Content/Items/Material/Energy/Atmospheric/AtmosphericEnergyParticle");
-    /// <summary>Full Path: Content/Items/Material/Energy/Cosmic/CosmicEnergy</summary>
-    public static readonly RequestCache<Texture2D> CosmicEnergy = new("Aequus/Content/Items/Material/Energy/Cosmic/CosmicEnergy");
-    /// <summary>Full Path: Content/Items/Material/Energy/Cosmic/CosmicEnergyParticle</summary>
-    public static readonly RequestCache<Texture2D> CosmicEnergyParticle = new("Aequus/Content/Items/Material/Energy/Cosmic/CosmicEnergyParticle");
-    /// <summary>Full Path: Content/Items/Material/Energy/Demonic/DemonicEnergy</summary>
-    public static readonly RequestCache<Texture2D> DemonicEnergy = new("Aequus/Content/Items/Material/Energy/Demonic/DemonicEnergy");
-    /// <summary>Full Path: Content/Items/Material/Energy/Demonic/DemonicEnergyParticle</summary>
-    public static readonly RequestCache<Texture2D> DemonicEnergyParticle = new("Aequus/Content/Items/Material/Energy/Demonic/DemonicEnergyParticle");
-    /// <summary>Full Path: Content/Items/Material/Energy/EnergyParticle</summary>
-    public static readonly RequestCache<Texture2D> EnergyParticle = new("Aequus/Content/Items/Material/Energy/EnergyParticle");
-    /// <summary>Full Path: Content/Items/Material/Energy/Organic/OrganicEnergy</summary>
-    public static readonly RequestCache<Texture2D> OrganicEnergy = new("Aequus/Content/Items/Material/Energy/Organic/OrganicEnergy");
-    /// <summary>Full Path: Content/Items/Material/Energy/Organic/OrganicEnergyParticle</summary>
-    public static readonly RequestCache<Texture2D> OrganicEnergyParticle = new("Aequus/Content/Items/Material/Energy/Organic/OrganicEnergyParticle");
-    /// <summary>Full Path: Content/Items/Material/Energy/Ultimate/UltimateEnergy</summary>
-    public static readonly RequestCache<Texture2D> UltimateEnergy = new("Aequus/Content/Items/Material/Energy/Ultimate/UltimateEnergy");
-    /// <summary>Full Path: Content/Items/Material/MonoGem/MonoGem</summary>
-    public static readonly RequestCache<Texture2D> MonoGem = new("Aequus/Content/Items/Material/MonoGem/MonoGem");
-    /// <summary>Full Path: Content/Items/Material/MonoGem/MonoGemTile</summary>
-    public static readonly RequestCache<Texture2D> MonoGemTile = new("Aequus/Content/Items/Material/MonoGem/MonoGemTile");
-    /// <summary>Full Path: Content/Items/Material/OmniGem/OmniGem</summary>
-    public static readonly RequestCache<Texture2D> OmniGem = new("Aequus/Content/Items/Material/OmniGem/OmniGem");
-    /// <summary>Full Path: Content/Items/Material/OmniGem/OmniGemTile</summary>
-    public static readonly RequestCache<Texture2D> OmniGemTile = new("Aequus/Content/Items/Material/OmniGem/OmniGemTile");
-    /// <summary>Full Path: Content/Items/Material/OmniGem/OmniGemTile_Mask</summary>
-    public static readonly RequestCache<Texture2D> OmniGemTile_Mask = new("Aequus/Content/Items/Material/OmniGem/OmniGemTile_Mask");
-    /// <summary>Full Path: Content/Items/Material/OmniGem/OmniGem_Mask</summary>
-    public static readonly RequestCache<Texture2D> OmniGem_Mask = new("Aequus/Content/Items/Material/OmniGem/OmniGem_Mask");
-    /// <summary>Full Path: Content/Items/Material/PossessedShard/PossessedShard</summary>
-    public static readonly RequestCache<Texture2D> PossessedShard = new("Aequus/Content/Items/Material/PossessedShard/PossessedShard");
     /// <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStar</summary>
     public static readonly RequestCache<Texture2D> NetherStar = new("Aequus/Content/Items/PermaPowerups/NetherStar/NetherStar");
     /// <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStarBackground</summary>
@@ -411,22 +373,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> TrashCompactor = new("Aequus/Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor");
     /// <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
     public static readonly RequestCache<Texture2D> TrashCompactorItem = new("Aequus/Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem");
-    /// <summary>Full Path: Content/Tiles/Radon/RadonGrassGrayBrick</summary>
-    public static readonly RequestCache<Texture2D> RadonGrassGrayBrick = new("Aequus/Content/Tiles/Radon/RadonGrassGrayBrick");
-    /// <summary>Full Path: Content/Tiles/Radon/RadonGrassStone</summary>
-    public static readonly RequestCache<Texture2D> RadonGrassStone = new("Aequus/Content/Tiles/Radon/RadonGrassStone");
-    /// <summary>Full Path: Content/Tiles/Radon/RadonMoss</summary>
-    public static readonly RequestCache<Texture2D> RadonMoss = new("Aequus/Content/Tiles/Radon/RadonMoss");
-    /// <summary>Full Path: Content/Tiles/Radon/RadonMossBrick</summary>
-    public static readonly RequestCache<Texture2D> RadonMossBrick = new("Aequus/Content/Tiles/Radon/RadonMossBrick");
-    /// <summary>Full Path: Content/Tiles/Radon/RadonMossBrickItem</summary>
-    public static readonly RequestCache<Texture2D> RadonMossBrickItem = new("Aequus/Content/Tiles/Radon/RadonMossBrickItem");
-    /// <summary>Full Path: Content/Tiles/Radon/RadonMossBrickWall</summary>
-    public static readonly RequestCache<Texture2D> RadonMossBrickWall = new("Aequus/Content/Tiles/Radon/RadonMossBrickWall");
-    /// <summary>Full Path: Content/Tiles/Radon/RadonMossBrickWallItem</summary>
-    public static readonly RequestCache<Texture2D> RadonMossBrickWallItem = new("Aequus/Content/Tiles/Radon/RadonMossBrickWallItem");
-    /// <summary>Full Path: Content/Tiles/Radon/RadonMossItem</summary>
-    public static readonly RequestCache<Texture2D> RadonMossItem = new("Aequus/Content/Tiles/Radon/RadonMossItem");
     /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Balloon</summary>
     public static readonly RequestCache<Texture2D> Content_TownNPCs_SkyMerchant_Balloon = new("Aequus/Content/TownNPCs/SkyMerchant/Balloon");
     /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Basket</summary>
