@@ -8,6 +8,7 @@ CommonTooltips: {
 	DedicatedItem: Gracias, {0}!
 	DedicatedItemAnonymous: Objeto Dedicado
 	UsesDarts: Utiliza semillas y dardos como munición
+	Banner: "{$CommonItemTooltip.BannerBonus}{0}"
 }
 
 //# Equipment: Accessories
@@ -58,13 +59,13 @@ FlashwayShield: {
 }
 
 PurpleBalloon: {
-	// DisplayName: Matte Purple Balloon
-	/* Tooltip:
+	DisplayName: Globo morado mate
+	Tooltip:
 		'''
 		{$ItemTooltip.ShinyRedBalloon}
 		{$SlimyBlueBalloon.Tooltip}
-		'Not to be confused with a Balloon in a Balloon'
-		''' */
+		'No confundir con el globo en un globo'
+		'''
 }
 
 SlimyBlueBalloon: {
@@ -104,12 +105,12 @@ Calendar: {
 
 //# Weapons: Melee
 Dynaknife: {
-	// DisplayName: The Christmas Spirit
-	/* Tooltip:
+	DisplayName: El espíritu navideño
+	Tooltip:
 		'''
-		Hits apply a bomb which will explode on enemies
-		<right> to dash foward and attack
-		''' */
+		Ataques aplican una bomba que explota en el enemigo
+		<right> para embestir y atacar
+		'''
 }
 
 Slice: {
@@ -158,8 +159,8 @@ SkyHunterCrossbow: {
 
 //# Weapons: Magic
 TrashStaff: {
-	// DisplayName: Spam Mail
-	// Tooltip: Critical strikes send virus mail to nearby enemies
+	DisplayName: Correo Spam
+	Tooltip: Ataques críticos envían un virus a enemigos cercanos
 }
 
 Furystar: {
@@ -386,8 +387,8 @@ CrabsonMask: {
 }
 
 DustDevilMask: {
-	// DisplayName: Dust Devil Mask
-	// Tooltip: ""
+	DisplayName: Mascara del Diablillo de Polvo
+	Tooltip: ""
 }
 
 OmegaStariteMask: {
@@ -425,12 +426,16 @@ BalloonKit: {
 ScavengerBag: {
 	DisplayName: Bolsa Carroñera
 	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+	BackpackEnabled: Mochila Visible
+	BackpackDisabled: Mochila No Visible
 }
 
-Backpacks: {
-	ScavengerBagBackpackData: {
-		DisplayName: Mochila
-		BackpackEnabled: Mochila Visible
-		BackpackDisabled: Mochila No Visible
-	}
+Toolbelt: {
+	/* Tooltip:
+		'''
+		{$CommonTooltips.IncreasesInventorySlots}
+		Can only hold tiles and walls
+		''' */
+	// BackpackEnabled: Toolbelt Pack On
+	// BackpackDisabled: Toolbelt Pack Off
 }

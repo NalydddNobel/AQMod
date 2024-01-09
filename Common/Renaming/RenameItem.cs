@@ -55,6 +55,7 @@ public sealed class RenameItem : GlobalItem {
 
     public override GlobalItem Clone(Item from, Item to) {
         var renameItem = (RenameItem)base.Clone(from, to);
+        renameItem._resetNameTag = false;
         renameItem.UpdateCustomName(to);
         return renameItem;
     }
@@ -64,6 +65,9 @@ public sealed class RenameItem : GlobalItem {
     }
 
     public override void PostUpdate(Item item) {
+        if (item.timeSinceItemSpawned % 60 == 0) {
+            _resetNameTag = false;
+        }
         UpdateCustomName(item);
     }
 

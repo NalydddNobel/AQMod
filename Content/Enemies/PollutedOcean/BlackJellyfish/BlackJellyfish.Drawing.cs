@@ -1,7 +1,5 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Core.Graphics;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria.GameContent;
 

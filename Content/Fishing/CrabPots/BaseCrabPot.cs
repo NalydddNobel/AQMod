@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Tiles.Components;
+﻿using Aequus.Common.Backpacks;
+using Aequus.Common.Tiles.Components;
 using Aequus.Core.Graphics.Animations;
 using Aequus.Core.Graphics.Tiles;
 using Microsoft.Xna.Framework;
@@ -154,7 +155,7 @@ public abstract class BaseCrabPot : ModTile, ISpecialTileRenderer, IModifyPlacem
     }
 
     public static Item GetBaitItem(Player player, int x, int y) {
-        var aequusPlayer = player.GetModPlayer<AequusPlayer>();
+        var backpackPlayer = player.GetModPlayer<BackpackPlayer>();
         int liquidType = GetLiquidType(x, y);
         var heldItem = player.HeldItemFixed();
         if (ValidBait(heldItem, liquidType)) {
@@ -176,9 +177,9 @@ public abstract class BaseCrabPot : ModTile, ISpecialTileRenderer, IModifyPlacem
         }
 
         // Backpack slots
-        for (int k = 0; k < aequusPlayer.backpacks.Length; k++) {
-            if (aequusPlayer.backpacks[k].IsActive(player) && aequusPlayer.backpacks[k].SupportsConsumeItem) {
-                var inventory = aequusPlayer.backpacks[k].Inventory;
+        for (int k = 0; k < backpackPlayer.backpacks.Length; k++) {
+            if (backpackPlayer.backpacks[k].IsActive(player) && backpackPlayer.backpacks[k].SupportsConsumeItem) {
+                var inventory = backpackPlayer.backpacks[k].Inventory;
                 for (int i = 0; i < inventory.Length; i++) {
                     if (ValidBait(inventory[i], liquidType)) {
                         return inventory[i];

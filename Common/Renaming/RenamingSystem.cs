@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using Terraria.DataStructures;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
@@ -60,8 +61,15 @@ public sealed class RenamingSystem : ModSystem {
     public static void DecodeText(string input, List<DecodedText> output) {
         string text = "";
         for (int i = 0; i < input.Length; i++) {
+            if (input[i] == '\\' && i < input.Length - 2 && input[i + 1] == 'n') {
+                FlushOldOutput();
+                text = "";
+                output.Add(new DecodedText("\\n", "\n", DecodeType.LanguageKey));
+                continue;
+            }
             if (input[i] == CommandChar) {
                 FlushOldOutput();
+                text = "";
 
                 string subString = input[i..];
                 int endIndex = subString.IndexOf(CommandEndChar);

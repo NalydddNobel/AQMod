@@ -15,6 +15,7 @@ MonsterChestSummon: {
 BlackJellyfish: {
 	DisplayName: 黑水母
 	Bestiary: 在污染的如此严重的环境中进化是困难的, 这些水母发现消灭它们的敌人以及它们本身是保护同类的最佳方法. 它们的寿命从几分钟到几年不等.
+	BannerName: 黑水母旗
 }
 
 Mirage.Bestiary: 下雨时, 有毒的雾云形成并聚集在一起, 形成这种酸性怪物. 它希望自己能像真正的雨云一样, 但就连和目标假人交朋友都有困难.

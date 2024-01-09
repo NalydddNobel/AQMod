@@ -14,7 +14,6 @@ internal sealed class SpecialTileRenderer : ModSystem {
 
     public static List<Point>[] DrawPoints { get; private set; }
     public static List<Point>[] SolidDrawPoints { get; private set; }
-    public static Dictionary<int, int> ModHangingVines { get; private set; }
 
     private static FieldInfo _addSpecialPointSpecialPositions;
     private static FieldInfo _addSpecialPointSpecialsCount;
@@ -38,7 +37,6 @@ internal sealed class SpecialTileRenderer : ModSystem {
         for (int i = 0; i < TileRenderLayerID.Count; i++) {
             DrawPoints[i] = new List<Point>();
         }
-        ModHangingVines = new Dictionary<int, int>();
         On_TileDrawing.DrawMasterTrophies += TileDrawing_DrawMasterTrophies;
         On_TileDrawing.DrawReverseVines += TileDrawing_DrawReverseVines;
         On_TileDrawing.PreDrawTiles += TileDrawing_PreDrawTiles;
@@ -90,7 +88,7 @@ internal sealed class SpecialTileRenderer : ModSystem {
         _specialPositions = (Point[][])_addSpecialPointSpecialPositions.GetValue(otherRenderer);
         _specialsCount = (int[])_addSpecialPointSpecialsCount.GetValue(otherRenderer);
     }
-    public static void AddSpecialPoint(int x, int y, int type) {
+    public static void AddVanillaSpecialPoint(int x, int y, int type) {
         if (_specialPositions == null) {
             return;
         }

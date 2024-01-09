@@ -8,6 +8,7 @@ CommonTooltips: {
 	DedicatedItem: Thank you, {0}!
 	DedicatedItemAnonymous: Dedicated Item
 	UsesDarts: Uses seeds and darts as ammo
+	Banner: "{$CommonItemTooltip.BannerBonus}{0}"
 }
 
 //# Equipment: Accessories
@@ -425,12 +426,16 @@ BalloonKit: {
 ScavengerBag: {
 	DisplayName: Scavenger Bag
 	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+	BackpackEnabled: Backpack On
+	BackpackDisabled: Backpack Off
 }
 
-Backpacks: {
-	ScavengerBagBackpackData: {
-		DisplayName: Backpack
-		BackpackEnabled: Backpack On
-		BackpackDisabled: Backpack Off
-	}
+Toolbelt: {
+	Tooltip:
+		'''
+		{$CommonTooltips.IncreasesInventorySlots}
+		Can only hold tiles and walls
+		'''
+	BackpackEnabled: Toolbelt Pack On
+	BackpackDisabled: Toolbelt Pack Off
 }

@@ -1,7 +1,5 @@
 ﻿using Aequus.Common.Golfing;
 using Aequus.Common.Projectiles;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
 using Terraria.GameContent.Golf;
@@ -67,7 +65,7 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
         }
     }
 
-    private void AI_ReturnToOwner(AequusProjectile aequusProjectile) {
+    private void AI_ReturnToOwner() {
         Projectile.alpha = 0;
         if (!Main.player[Projectile.owner].active || Main.player[Projectile.owner].DeadOrGhost) {
             Projectile.Kill();
@@ -79,7 +77,7 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
         Projectile.velocity = Vector2.Lerp(Projectile.velocity, Projectile.DirectionTo(Main.player[Projectile.owner].Center) * Math.Min(Projectile.ai[0], 32f), 0.1f);
         Projectile.rotation += Projectile.velocity.Length() * 0.05f;
         if (Projectile.Distance(Main.player[Projectile.owner].Center) < 40f) {
-            var item = new Item(aequusProjectile.parentAmmoType);
+            var item = new Item(Projectile.GetGlobalProjectile<ProjectileSource>().parentAmmoType);
             item = Main.player[Projectile.owner].GetItem(Projectile.owner, item, GetItemSettings.PickupItemFromWorld);
             if (item != null && !item.IsAir) {
                 int newItemIndex = Item.NewItem(Projectile.GetSource_FromThis(), Main.player[Projectile.owner].getRect(), item);
@@ -92,7 +90,7 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
         }
     }
 
-    private void AI_Stuck(AequusProjectile aequusProjectile) {
+    private void AI_Stuck() {
         if (Projectile.timeLeft < 550) {
             var dummyItem = new Item(ModContent.ItemType<PlasticDart>()) {
                 Bottom = Projectile.Bottom
@@ -115,7 +113,7 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
                 }
             }
 
-            if (allowGrabbing && !Projectile.noDropItem && aequusProjectile.parentAmmoType > ItemID.None && Main.player[Projectile.owner].active && !Main.player[Projectile.owner].DeadOrGhost) {
+            if (allowGrabbing && !Projectile.noDropItem && Projectile.GetGlobalProjectile<ProjectileSource>().parentAmmoType > ItemID.None && Main.player[Projectile.owner].active && !Main.player[Projectile.owner].DeadOrGhost) {
                 for (int i = 0; i < Main.maxPlayers; i++) {
                     if (!Main.player[i].active || Main.player[i].DeadOrGhost || Main.player[i].team != Main.player[Projectile.owner].team) {
                         continue;
@@ -222,7 +220,6 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
             Projectile.oldRot[i] = Projectile.oldRot[i - 1];
         }
 
-        var aequusProjectile = Projectile.GetGlobalProjectile<AequusProjectile>();
         if (Broken) {
             AI_BrokenOrStuck();
         }
@@ -236,11 +233,11 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
                 return false;
 
             case ReturningState:
-                AI_ReturnToOwner(aequusProjectile);
+                AI_ReturnToOwner();
                 return false;
 
             case StuckState:
-                AI_Stuck(aequusProjectile);
+                AI_Stuck();
                 return false;
 
             case BrokenState:
