@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Items.Components;
-using Aequus.Content.Items.Material.OmniGem;
 
 namespace Aequus.Content.Items.Potions.Healing.Restoration;
+
 public class GreaterRestorationPotion : ModItem, IApplyPotionDelay {
     public bool ApplyPotionDelay(Player player) {
         player.potionDelay = player.restorationDelayTime;
@@ -43,7 +43,7 @@ public class GreaterRestorationPotion : ModItem, IApplyPotionDelay {
         CreateRecipe(3)
             .AddIngredient(ItemID.BottledWater, 3)
             .AddIngredient(ItemID.PixieDust, 3)
-            .AddIngredient<OmniGem>()
+            .AddIngredient(ItemID.Sapphire)
             .AddTile(TileID.Bottles)
             .Register()
             .DisableDecraft();
