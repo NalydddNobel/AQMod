@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 220)</summary>
+/// <summary>(Total Textures: 231)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -289,6 +289,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ObsidianCrabPot_Back = new("Aequus/Content/Fishing/CrabPots/ObsidianCrabPot_Back");
     /// <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot_Highlight</summary>
     public static readonly RequestCache<Texture2D> ObsidianCrabPot_Highlight = new("Aequus/Content/Fishing/CrabPots/ObsidianCrabPot_Highlight");
+    /// <summary>Full Path: Content/Fishing/Equipment/RadonFishingBobber/RadonFishingBobber</summary>
+    public static readonly RequestCache<Texture2D> RadonFishingBobber = new("Aequus/Content/Fishing/Equipment/RadonFishingBobber/RadonFishingBobber");
+    /// <summary>Full Path: Content/Fishing/Equipment/RadonFishingBobber/RadonFishingBobberBuff</summary>
+    public static readonly RequestCache<Texture2D> RadonFishingBobberBuff = new("Aequus/Content/Fishing/Equipment/RadonFishingBobber/RadonFishingBobberBuff");
+    /// <summary>Full Path: Content/Fishing/Equipment/RadonFishingBobber/RadonFishingBobberProj</summary>
+    public static readonly RequestCache<Texture2D> RadonFishingBobberProj = new("Aequus/Content/Fishing/Equipment/RadonFishingBobber/RadonFishingBobberProj");
     /// <summary>Full Path: Content/Fishing/FishingPoles/Steampunker/SteampunkerFishingPole</summary>
     public static readonly RequestCache<Texture2D> SteampunkerFishingPole = new("Aequus/Content/Fishing/FishingPoles/Steampunker/SteampunkerFishingPole");
     /// <summary>Full Path: Content/Fishing/FishingPoles/Steampunker/SteampunkerFishingPoleBobber</summary>
@@ -367,6 +373,22 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> TrashCompactor = new("Aequus/Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor");
     /// <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
     public static readonly RequestCache<Texture2D> TrashCompactorItem = new("Aequus/Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem");
+    /// <summary>Full Path: Content/Tiles/Radon/RadonGrassGrayBrick</summary>
+    public static readonly RequestCache<Texture2D> RadonGrassGrayBrick = new("Aequus/Content/Tiles/Radon/RadonGrassGrayBrick");
+    /// <summary>Full Path: Content/Tiles/Radon/RadonGrassStone</summary>
+    public static readonly RequestCache<Texture2D> RadonGrassStone = new("Aequus/Content/Tiles/Radon/RadonGrassStone");
+    /// <summary>Full Path: Content/Tiles/Radon/RadonMoss</summary>
+    public static readonly RequestCache<Texture2D> RadonMoss = new("Aequus/Content/Tiles/Radon/RadonMoss");
+    /// <summary>Full Path: Content/Tiles/Radon/RadonMossBrick</summary>
+    public static readonly RequestCache<Texture2D> RadonMossBrick = new("Aequus/Content/Tiles/Radon/RadonMossBrick");
+    /// <summary>Full Path: Content/Tiles/Radon/RadonMossBrickItem</summary>
+    public static readonly RequestCache<Texture2D> RadonMossBrickItem = new("Aequus/Content/Tiles/Radon/RadonMossBrickItem");
+    /// <summary>Full Path: Content/Tiles/Radon/RadonMossBrickWall</summary>
+    public static readonly RequestCache<Texture2D> RadonMossBrickWall = new("Aequus/Content/Tiles/Radon/RadonMossBrickWall");
+    /// <summary>Full Path: Content/Tiles/Radon/RadonMossBrickWallItem</summary>
+    public static readonly RequestCache<Texture2D> RadonMossBrickWallItem = new("Aequus/Content/Tiles/Radon/RadonMossBrickWallItem");
+    /// <summary>Full Path: Content/Tiles/Radon/RadonMossItem</summary>
+    public static readonly RequestCache<Texture2D> RadonMossItem = new("Aequus/Content/Tiles/Radon/RadonMossItem");
     /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Balloon</summary>
     public static readonly RequestCache<Texture2D> Content_TownNPCs_SkyMerchant_Balloon = new("Aequus/Content/TownNPCs/SkyMerchant/Balloon");
     /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Basket</summary>
