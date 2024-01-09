@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 220)</summary>
+/// <summary>(Total Textures: 272)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -47,8 +47,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SlashVanilla = new("Aequus/Assets/Textures/SlashVanilla");
     /// <summary>Full Path: Assets/Textures/SlashVanillaSmall</summary>
     public static readonly RequestCache<Texture2D> SlashVanillaSmall = new("Aequus/Assets/Textures/SlashVanillaSmall");
+    /// <summary>Full Path: Assets/Textures/SmallLightParticle</summary>
+    public static readonly RequestCache<Texture2D> SmallLightParticle = new("Aequus/Assets/Textures/SmallLightParticle");
     /// <summary>Full Path: Assets/Textures/Sparkles</summary>
     public static readonly RequestCache<Texture2D> Sparkles = new("Aequus/Assets/Textures/Sparkles");
+    /// <summary>Full Path: Assets/Textures/TileMerges/HardenedSand</summary>
+    public static readonly RequestCache<Texture2D> HardenedSand = new("Aequus/Assets/Textures/TileMerges/HardenedSand");
+    /// <summary>Full Path: Assets/Textures/TileMerges/Sand</summary>
+    public static readonly RequestCache<Texture2D> Sand = new("Aequus/Assets/Textures/TileMerges/Sand");
     /// <summary>Full Path: Assets/Textures/TownNPCExclamation</summary>
     public static readonly RequestCache<Texture2D> TownNPCExclamation = new("Aequus/Assets/Textures/TownNPCExclamation");
     /// <summary>Full Path: Assets/Textures/Trail</summary>
@@ -59,10 +65,78 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Trail3 = new("Aequus/Assets/Textures/Trail3");
     /// <summary>Full Path: Assets/Textures/VignetteSmall</summary>
     public static readonly RequestCache<Texture2D> VignetteSmall = new("Aequus/Assets/Textures/VignetteSmall");
-    /// <summary>Full Path: Content/Bosses/BossMasks/CrabsonMask</summary>
-    public static readonly RequestCache<Texture2D> CrabsonMask = new("Aequus/Content/Bosses/BossMasks/CrabsonMask");
-    /// <summary>Full Path: Content/Bosses/BossMasks/CrabsonMask_Head</summary>
-    public static readonly RequestCache<Texture2D> CrabsonMask_Head = new("Aequus/Content/Bosses/BossMasks/CrabsonMask_Head");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Background/MapBG</summary>
+    public static readonly RequestCache<Texture2D> MapBG = new("Aequus/Content/Biomes/PollutedOcean/Background/MapBG");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Background/SurfaceBG_Far</summary>
+    public static readonly RequestCache<Texture2D> SurfaceBG_Far = new("Aequus/Content/Biomes/PollutedOcean/Background/SurfaceBG_Far");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBestiaryIcon</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanBestiaryIcon = new("Aequus/Content/Biomes/PollutedOcean/PollutedOceanBestiaryIcon");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PollutedOceanAmbient1x1</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanAmbient1x1 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PollutedOceanAmbient1x1");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PollutedOceanAmbient2x2</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanAmbient2x2 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PollutedOceanAmbient2x2");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSand</summary>
+    public static readonly RequestCache<Texture2D> PolymerSand = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSand");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandItem</summary>
+    public static readonly RequestCache<Texture2D> PolymerSandItem = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandItem");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstone</summary>
+    public static readonly RequestCache<Texture2D> PolymerSandstone = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstone");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstoneItem</summary>
+    public static readonly RequestCache<Texture2D> PolymerSandstoneItem = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstoneItem");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstoneWall</summary>
+    public static readonly RequestCache<Texture2D> PolymerSandstoneWall = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstoneWall");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstoneWallItem</summary>
+    public static readonly RequestCache<Texture2D> PolymerSandstoneWallItem = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstoneWallItem");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerStalactite1x1</summary>
+    public static readonly RequestCache<Texture2D> PolymerStalactite1x1 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerStalactite1x1");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerStalactite1x2</summary>
+    public static readonly RequestCache<Texture2D> PolymerStalactite1x2 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerStalactite1x2");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerStalagmite1x1</summary>
+    public static readonly RequestCache<Texture2D> PolymerStalagmite1x1 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerStalagmite1x1");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerStalagmite1x2</summary>
+    public static readonly RequestCache<Texture2D> PolymerStalagmite1x2 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerStalagmite1x2");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Pots/Gores/TrashPots1x1_0</summary>
+    public static readonly RequestCache<Texture2D> TrashPots1x1_0 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/Pots/Gores/TrashPots1x1_0");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Pots/Gores/TrashPots1x1_1</summary>
+    public static readonly RequestCache<Texture2D> TrashPots1x1_1 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/Pots/Gores/TrashPots1x1_1");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Pots/Gores/TrashPots1x1_2</summary>
+    public static readonly RequestCache<Texture2D> TrashPots1x1_2 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/Pots/Gores/TrashPots1x1_2");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Pots/Gores/TrashPots2x2_0</summary>
+    public static readonly RequestCache<Texture2D> TrashPots2x2_0 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/Pots/Gores/TrashPots2x2_0");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Pots/Gores/TrashPots2x2_1</summary>
+    public static readonly RequestCache<Texture2D> TrashPots2x2_1 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/Pots/Gores/TrashPots2x2_1");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Pots/Gores/TrashPots2x2_2</summary>
+    public static readonly RequestCache<Texture2D> TrashPots2x2_2 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/Pots/Gores/TrashPots2x2_2");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Pots/TrashPots1x1</summary>
+    public static readonly RequestCache<Texture2D> TrashPots1x1 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/Pots/TrashPots1x1");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Pots/TrashPots2x2</summary>
+    public static readonly RequestCache<Texture2D> TrashPots2x2 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/Pots/TrashPots2x2");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Scrap/ScrapBlock</summary>
+    public static readonly RequestCache<Texture2D> ScrapBlock = new("Aequus/Content/Biomes/PollutedOcean/Tiles/Scrap/ScrapBlock");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Scrap/ScrapBlockItem</summary>
+    public static readonly RequestCache<Texture2D> ScrapBlockItem = new("Aequus/Content/Biomes/PollutedOcean/Tiles/Scrap/ScrapBlockItem");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Scrap/ScrapBrick</summary>
+    public static readonly RequestCache<Texture2D> ScrapBrick = new("Aequus/Content/Biomes/PollutedOcean/Tiles/Scrap/ScrapBrick");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Scrap/ScrapBrickItem</summary>
+    public static readonly RequestCache<Texture2D> ScrapBrickItem = new("Aequus/Content/Biomes/PollutedOcean/Tiles/Scrap/ScrapBrickItem");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/SeaPickles/SeaPickles1x1</summary>
+    public static readonly RequestCache<Texture2D> SeaPickles1x1 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/SeaPickles/SeaPickles1x1");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/SeaPickles/SeaPickles1x2</summary>
+    public static readonly RequestCache<Texture2D> SeaPickles1x2 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/SeaPickles/SeaPickles1x2");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/SeaPickles/SeaPickles2x2</summary>
+    public static readonly RequestCache<Texture2D> SeaPickles2x2 = new("Aequus/Content/Biomes/PollutedOcean/Tiles/SeaPickles/SeaPickles2x2");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanDroplet</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanDroplet = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanDroplet");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanSplash</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanSplash = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanSplash");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanWater</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanWater = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanWater");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanWaterfall</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanWaterfall = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanWaterfall");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanWater_Block</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanWater_Block = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanWater_Block");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanWater_Slope</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanWater_Slope = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanWater_Slope");
     /// <summary>Full Path: Content/Bosses/BossMasks/DustDevilMask</summary>
     public static readonly RequestCache<Texture2D> DustDevilMask = new("Aequus/Content/Bosses/BossMasks/DustDevilMask");
     /// <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskFire_Head</summary>
@@ -81,20 +155,40 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SpaceSquidMask = new("Aequus/Content/Bosses/BossMasks/SpaceSquidMask");
     /// <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask_Head</summary>
     public static readonly RequestCache<Texture2D> SpaceSquidMask_Head = new("Aequus/Content/Bosses/BossMasks/SpaceSquidMask_Head");
-    /// <summary>Full Path: Content/Bosses/TreasureBags/CrabsonBag</summary>
-    public static readonly RequestCache<Texture2D> CrabsonBag = new("Aequus/Content/Bosses/TreasureBags/CrabsonBag");
+    /// <summary>Full Path: Content/Bosses/Crabson/Crabson</summary>
+    public static readonly RequestCache<Texture2D> Crabson = new("Aequus/Content/Bosses/Crabson/Crabson");
+    /// <summary>Full Path: Content/Bosses/Crabson/CrabsonClaw</summary>
+    public static readonly RequestCache<Texture2D> CrabsonClaw = new("Aequus/Content/Bosses/Crabson/CrabsonClaw");
+    /// <summary>Full Path: Content/Bosses/Crabson/CrabsonClaw_Head_Boss</summary>
+    public static readonly RequestCache<Texture2D> CrabsonClaw_Head_Boss = new("Aequus/Content/Bosses/Crabson/CrabsonClaw_Head_Boss");
+    /// <summary>Full Path: Content/Bosses/Crabson/Crabson_Chain</summary>
+    public static readonly RequestCache<Texture2D> Crabson_Chain = new("Aequus/Content/Bosses/Crabson/Crabson_Chain");
+    /// <summary>Full Path: Content/Bosses/Crabson/Crabson_Eyes</summary>
+    public static readonly RequestCache<Texture2D> Crabson_Eyes = new("Aequus/Content/Bosses/Crabson/Crabson_Eyes");
+    /// <summary>Full Path: Content/Bosses/Crabson/Crabson_Head_Boss</summary>
+    public static readonly RequestCache<Texture2D> Crabson_Head_Boss = new("Aequus/Content/Bosses/Crabson/Crabson_Head_Boss");
+    /// <summary>Full Path: Content/Bosses/Crabson/Crabson_Legs</summary>
+    public static readonly RequestCache<Texture2D> Crabson_Legs = new("Aequus/Content/Bosses/Crabson/Crabson_Legs");
+    /// <summary>Full Path: Content/Bosses/Crabson/Crabson_Pupil</summary>
+    public static readonly RequestCache<Texture2D> Crabson_Pupil = new("Aequus/Content/Bosses/Crabson/Crabson_Pupil");
+    /// <summary>Full Path: Content/Bosses/Crabson/Items/CrabsonBag</summary>
+    public static readonly RequestCache<Texture2D> CrabsonBag = new("Aequus/Content/Bosses/Crabson/Items/CrabsonBag");
+    /// <summary>Full Path: Content/Bosses/Crabson/Items/CrabsonMask</summary>
+    public static readonly RequestCache<Texture2D> CrabsonMask = new("Aequus/Content/Bosses/Crabson/Items/CrabsonMask");
+    /// <summary>Full Path: Content/Bosses/Crabson/Items/CrabsonMask_Head</summary>
+    public static readonly RequestCache<Texture2D> CrabsonMask_Head = new("Aequus/Content/Bosses/Crabson/Items/CrabsonMask_Head");
+    /// <summary>Full Path: Content/Bosses/Crabson/Items/CrabsonRelic</summary>
+    public static readonly RequestCache<Texture2D> CrabsonRelic = new("Aequus/Content/Bosses/Crabson/Items/CrabsonRelic");
+    /// <summary>Full Path: Content/Bosses/Crabson/Items/CrabsonRelicItem</summary>
+    public static readonly RequestCache<Texture2D> CrabsonRelicItem = new("Aequus/Content/Bosses/Crabson/Items/CrabsonRelicItem");
+    /// <summary>Full Path: Content/Bosses/Crabson/Items/CrabsonTrophy</summary>
+    public static readonly RequestCache<Texture2D> CrabsonTrophy = new("Aequus/Content/Bosses/Crabson/Items/CrabsonTrophy");
+    /// <summary>Full Path: Content/Bosses/Crabson/Items/CrabsonTrophyItem</summary>
+    public static readonly RequestCache<Texture2D> CrabsonTrophyItem = new("Aequus/Content/Bosses/Crabson/Items/CrabsonTrophyItem");
     /// <summary>Full Path: Content/Bosses/TreasureBags/DustDevilBag</summary>
     public static readonly RequestCache<Texture2D> DustDevilBag = new("Aequus/Content/Bosses/TreasureBags/DustDevilBag");
     /// <summary>Full Path: Content/Bosses/TreasureBags/OmegaStariteBag</summary>
     public static readonly RequestCache<Texture2D> OmegaStariteBag = new("Aequus/Content/Bosses/TreasureBags/OmegaStariteBag");
-    /// <summary>Full Path: Content/Bosses/Trophies/CrabsonRelic</summary>
-    public static readonly RequestCache<Texture2D> CrabsonRelic = new("Aequus/Content/Bosses/Trophies/CrabsonRelic");
-    /// <summary>Full Path: Content/Bosses/Trophies/CrabsonRelicItem</summary>
-    public static readonly RequestCache<Texture2D> CrabsonRelicItem = new("Aequus/Content/Bosses/Trophies/CrabsonRelicItem");
-    /// <summary>Full Path: Content/Bosses/Trophies/CrabsonTrophy</summary>
-    public static readonly RequestCache<Texture2D> CrabsonTrophy = new("Aequus/Content/Bosses/Trophies/CrabsonTrophy");
-    /// <summary>Full Path: Content/Bosses/Trophies/CrabsonTrophyItem</summary>
-    public static readonly RequestCache<Texture2D> CrabsonTrophyItem = new("Aequus/Content/Bosses/Trophies/CrabsonTrophyItem");
     /// <summary>Full Path: Content/Bosses/Trophies/DustDevilRelic</summary>
     public static readonly RequestCache<Texture2D> DustDevilRelic = new("Aequus/Content/Bosses/Trophies/DustDevilRelic");
     /// <summary>Full Path: Content/Bosses/Trophies/DustDevilRelicItem</summary>
@@ -341,6 +435,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> NameTag = new("Aequus/Content/Items/Tools/NameTag/NameTag");
     /// <summary>Full Path: Content/Items/Tools/NameTag/NameTagBlank</summary>
     public static readonly RequestCache<Texture2D> NameTagBlank = new("Aequus/Content/Items/Tools/NameTag/NameTagBlank");
+    /// <summary>Full Path: Content/Music/PollutedOceanMusicBox</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanMusicBox = new("Aequus/Content/Music/PollutedOceanMusicBox");
+    /// <summary>Full Path: Content/Music/PollutedOceanMusicBoxItem</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanMusicBoxItem = new("Aequus/Content/Music/PollutedOceanMusicBoxItem");
     /// <summary>Full Path: Content/Pets/Miner/UndeadMinerPet</summary>
     public static readonly RequestCache<Texture2D> UndeadMinerPet = new("Aequus/Content/Pets/Miner/UndeadMinerPet");
     /// <summary>Full Path: Content/Pets/Miner/UndeadMinerPetBuff</summary>
@@ -367,6 +465,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> TrashCompactor = new("Aequus/Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor");
     /// <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
     public static readonly RequestCache<Texture2D> TrashCompactorItem = new("Aequus/Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChest</summary>
+    public static readonly RequestCache<Texture2D> TrashChest = new("Aequus/Content/Tiles/Furniture/Trash/TrashChest");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChestItem</summary>
+    public static readonly RequestCache<Texture2D> TrashChestItem = new("Aequus/Content/Tiles/Furniture/Trash/TrashChestItem");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChest_Highlight</summary>
+    public static readonly RequestCache<Texture2D> TrashChest_Highlight = new("Aequus/Content/Tiles/Furniture/Trash/TrashChest_Highlight");
     /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Balloon</summary>
     public static readonly RequestCache<Texture2D> Content_TownNPCs_SkyMerchant_Balloon = new("Aequus/Content/TownNPCs/SkyMerchant/Balloon");
     /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Basket</summary>

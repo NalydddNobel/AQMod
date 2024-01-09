@@ -52,8 +52,10 @@ public class RopeChain {
 
     public List<Vector2> GetPoints() {
         List<Vector2> points = new List<Vector2>();
-        foreach (RopeSegment segment in segments)
+        foreach (RopeSegment segment in segments) {
             points.Add(segment.position);
+        }
+
         return points;
     }
 

@@ -20,7 +20,6 @@ public partial class Crabson : AequusBoss {
     public const int STATE_PEARLCRUSH = 5;
 
     public override void AI() {
-        UpdateDrawEffects();
         CrabsonBoss = NPC.whoAmI;
 
         switch (State) {
@@ -32,8 +31,12 @@ public partial class Crabson : AequusBoss {
                 break;
 
             case STATE_DESTROY:
+                RightArm.Position += NPC.DirectionTo(RightArm.GetIdlePosition(NPC)) * 4f;
+                LeftArm.Position += NPC.DirectionTo(LeftArm.GetIdlePosition(NPC)) * 4f;
                 break;
         }
+
+        UpdateDrawEffects();
     }
     #endregion
 

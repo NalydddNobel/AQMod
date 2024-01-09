@@ -1,98 +1,99 @@
-﻿using ReLogic.Utilities;
+﻿using Aequus.Core.PhysicsObjects;
+using ReLogic.Utilities;
 using System;
-using System.Collections.Generic;
 using Terraria.Audio;
 using Terraria.GameContent;
+using Terraria.GameContent.Animations;
 
 namespace Aequus.Content.Bosses.Crabson;
 
 public partial class Crabson {
-    public struct CrabsonArmsDrawer {
-        public record struct ArmPoint(Vector2 Position, Vector2 OldPosition, float Progress);
+    //public struct CrabsonArmsDrawer {
+    //    public record struct ArmPoint(Vector2 Position, Vector2 OldPosition, float Progress);
 
-        public List<ArmPoint> generatedPoints;
+    //    public List<ArmPoint> generatedPoints;
 
-        public Vector2 beizerPoint;
-        public float beizerPointTransition;
+    //    public Vector2 beizerPoint;
+    //    public float beizerPointTransition;
 
-        private static Vector2 BezierCurve(Vector2[] bezierPoints, float bezierProgress) {
-            if (bezierPoints.Length == 1) {
-                return bezierPoints[0];
-            }
-            else {
-                Vector2[] newBezierPoints = new Vector2[bezierPoints.Length - 1];
-                for (int i = 0; i < bezierPoints.Length - 1; i++) {
-                    newBezierPoints[i] = bezierPoints[i] * bezierProgress + bezierPoints[i + 1] * (1 - bezierProgress);
-                }
-                return BezierCurve(newBezierPoints, bezierProgress);
-            }
-        }
-        private static Vector2 BezierCurveDerivative(Vector2[] bezierPoints, float bezierProgress) {
-            if (bezierPoints.Length == 2) {
-                return bezierPoints[0] - bezierPoints[1];
-            }
-            else {
-                Vector2[] newBezierPoints = new Vector2[bezierPoints.Length - 1];
-                for (int i = 0; i < bezierPoints.Length - 1; i++) {
-                    newBezierPoints[i] = bezierPoints[i] * bezierProgress + bezierPoints[i + 1] * (1 - bezierProgress);
-                }
-                return BezierCurveDerivative(newBezierPoints, bezierProgress);
-            }
-        }
+    //    private static Vector2 BezierCurve(Vector2[] bezierPoints, float bezierProgress) {
+    //        if (bezierPoints.Length == 1) {
+    //            return bezierPoints[0];
+    //        }
+    //        else {
+    //            Vector2[] newBezierPoints = new Vector2[bezierPoints.Length - 1];
+    //            for (int i = 0; i < bezierPoints.Length - 1; i++) {
+    //                newBezierPoints[i] = bezierPoints[i] * bezierProgress + bezierPoints[i + 1] * (1 - bezierProgress);
+    //            }
+    //            return BezierCurve(newBezierPoints, bezierProgress);
+    //        }
+    //    }
+    //    private static Vector2 BezierCurveDerivative(Vector2[] bezierPoints, float bezierProgress) {
+    //        if (bezierPoints.Length == 2) {
+    //            return bezierPoints[0] - bezierPoints[1];
+    //        }
+    //        else {
+    //            Vector2[] newBezierPoints = new Vector2[bezierPoints.Length - 1];
+    //            for (int i = 0; i < bezierPoints.Length - 1; i++) {
+    //                newBezierPoints[i] = bezierPoints[i] * bezierProgress + bezierPoints[i + 1] * (1 - bezierProgress);
+    //            }
+    //            return BezierCurveDerivative(newBezierPoints, bezierProgress);
+    //        }
+    //    }
 
-        public CrabsonArmsDrawer() {
-            generatedPoints = new();
-            beizerPoint = Vector2.Zero;
-            beizerPointTransition = 0f;
-        }
+    //    public CrabsonArmsDrawer() {
+    //        generatedPoints = new();
+    //        beizerPoint = Vector2.Zero;
+    //        beizerPointTransition = 0f;
+    //    }
 
-        public void Clear() {
-            generatedPoints.Clear();
-        }
+    //    public void Clear() {
+    //        generatedPoints.Clear();
+    //    }
 
-        public void AddArm(NPC npc, Vector2 start, Vector2 end) {
-            if (Main.netMode == NetmodeID.Server) {
-                return;
-            }
+    //    public void AddArm(NPC npc, Vector2 start, Vector2 end) {
+    //        if (Main.netMode == NetmodeID.Server) {
+    //            return;
+    //        }
 
-            Vector2[] bezierPoints = { end, new Vector2(start.X + Math.Sign(start.X - npc.Center.X) * 100f, (end.Y + start.Y) / 2f + 100f), start };
+    //        Vector2[] bezierPoints = { end, new Vector2(start.X + Math.Sign(start.X - npc.Center.X) * 100f, (end.Y + start.Y) / 2f + 100f), start };
 
-            // Code is taken from Star Construct, which is from the Polarities mod
-            float bezierProgress = 0;
-            float bezierIncrement = 18 * npc.scale;
+    //        // Code is taken from Star Construct, which is from the Polarities mod
+    //        float bezierProgress = 0;
+    //        float bezierIncrement = 18 * npc.scale;
 
-            int loops = 0;
-            while (bezierProgress < 1 && loops < 150) {
-                int innerLoops = 0;
-                loops++;
-                var oldPos = BezierCurve(bezierPoints, bezierProgress);
+    //        int loops = 0;
+    //        while (bezierProgress < 1 && loops < 150) {
+    //            int innerLoops = 0;
+    //            loops++;
+    //            var oldPos = BezierCurve(bezierPoints, bezierProgress);
 
-                while ((oldPos - BezierCurve(bezierPoints, bezierProgress)).Length() < bezierIncrement && innerLoops < 1000) {
-                    bezierProgress += 0.1f / BezierCurveDerivative(bezierPoints, bezierProgress).Length();
-                    innerLoops++;
-                }
+    //            while ((oldPos - BezierCurve(bezierPoints, bezierProgress)).Length() < bezierIncrement && innerLoops < 1000) {
+    //                bezierProgress += 0.1f / BezierCurveDerivative(bezierPoints, bezierProgress).Length();
+    //                innerLoops++;
+    //            }
 
-                var newPos = BezierCurve(bezierPoints, bezierProgress);
-                generatedPoints.Add(new ArmPoint(newPos, oldPos, bezierProgress));
-            }
-        }
+    //            var newPos = BezierCurve(bezierPoints, bezierProgress);
+    //            generatedPoints.Add(new ArmPoint(newPos, oldPos, bezierProgress));
+    //        }
+    //    }
 
-        public void DrawArms(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos) {
-            var chain = AequusTextures.Crabson_Chain.Value;
-            foreach (var data in generatedPoints) {
-                var drawPos = (data.OldPosition + data.Position) / 2f;
-                var chainFrame = chain.Frame(verticalFrames: 3, frameY: data.Progress < 0.3f ? 2 : data.Progress < 0.6f ? 1 : 0);
-                spriteBatch.Draw(
-                    chain,
-                    drawPos - screenPos,
-                    chainFrame,
-                    LightHelper.GetLightColor(drawPos),
-                    (data.OldPosition - data.Position).ToRotation(),
-                    chainFrame.Size() / 2f,
-                    npc.scale, SpriteEffects.None, 0f);
-            }
-        }
-    }
+    //    public void DrawArms(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos) {
+    //        var chain = AequusTextures.Crabson_Chain.Value;
+    //        foreach (var data in generatedPoints) {
+    //            var drawPos = (data.OldPosition + data.Position) / 2f;
+    //            var chainFrame = chain.Frame(verticalFrames: 3, frameY: data.Progress < 0.3f ? 2 : data.Progress < 0.6f ? 1 : 0);
+    //            spriteBatch.Draw(
+    //                chain,
+    //                drawPos - screenPos,
+    //                chainFrame,
+    //                LightHelper.GetLightColor(drawPos),
+    //                (data.OldPosition - data.Position).ToRotation(),
+    //                chainFrame.Size() / 2f,
+    //                npc.scale, SpriteEffects.None, 0f);
+    //        }
+    //    }
+    //}
 
     public struct CrabsonEyeDrawer {
         public int frame;
@@ -285,12 +286,13 @@ public partial class Crabson {
         }
     }
 
-    private CrabsonArmsDrawer _arms = new();
     private CrabsonEyeDrawer _eyes = new();
     private CrabsonLegsDrawer _legs = new();
     private CrabsonMood _mood;
 
     private void UpdateDrawEffects() {
+        LeftArm.UpdateRope(NPC);
+        RightArm.UpdateRope(NPC);
         _mood.OnAIUpdate();
     }
 
@@ -310,9 +312,9 @@ public partial class Crabson {
 
         Vector2 chainOffset = new(44f, -14f);
         Vector2 chainEndOffset = new(20f, 0f);
-        _arms.Clear();
-        _arms.AddArm(NPC, NPC.Center + chainOffset with { X = -chainOffset.X } + NPC.netOffset, LeftArm.Center + chainEndOffset.RotatedBy(LeftArm.Rotation == 0f ? MathHelper.Pi : LeftArm.Rotation));
-        _arms.AddArm(NPC, NPC.Center + chainOffset + NPC.netOffset, RightArm.Center + chainEndOffset.RotatedBy(RightArm.Rotation));
+        //_arms.Clear();
+        //_arms.AddArm(NPC, NPC.Center + chainOffset with { X = -chainOffset.X } + NPC.netOffset, LeftArm.Center + chainEndOffset.RotatedBy(LeftArm.Rotation == 0f ? MathHelper.Pi : LeftArm.Rotation));
+        //_arms.AddArm(NPC, NPC.Center + chainOffset + NPC.netOffset, RightArm.Center + chainEndOffset.RotatedBy(RightArm.Rotation));
     }
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
@@ -321,11 +323,23 @@ public partial class Crabson {
             return false;
         }
 
-        _arms.DrawArms(NPC, spriteBatch, screenPos);
+        //_arms.DrawArms(NPC, spriteBatch, screenPos);
+        DrawArm(spriteBatch, screenPos, LeftArm);
+        DrawArm(spriteBatch, screenPos, RightArm);
         DrawBody(spriteBatch, screenPos, new Vector2(), NPC.GetNPCColorTintedByBuffs(NPC.GetAlpha(drawColor)));
         DrawClaw(LeftArm, spriteBatch, screenPos, NPC.GetNPCColorTintedByBuffs(NPC.GetAlpha(LightHelper.GetLightColor(LeftArm.Center))));
         DrawClaw(RightArm, spriteBatch, screenPos, NPC.GetNPCColorTintedByBuffs(NPC.GetAlpha(LightHelper.GetLightColor(RightArm.Center))));
         return false;
+    }
+
+    private void DrawArm(SpriteBatch spriteBatch, Vector2 screenPosition, Arm arm) {
+        Texture2D texture = AequusTextures.Crabson_Chain.Value;
+        for (int i = 1; i < arm.Rope.segments.Count; i++) {
+            RopeChain.RopeSegment segment = arm.Rope.segments[i];
+            Rectangle frame = texture.Frame(verticalFrames: 3, frameY: 0);
+            float rotation = (arm.Rope.segments[i - 1].position - segment.position).ToRotation();
+            spriteBatch.Draw(texture, segment.position - screenPosition, frame, LightHelper.GetLightColor(segment.position), rotation, frame.Size() / 2f, 1f, SpriteEffects.None, 0f);
+        }
     }
 
     private void DrawBestiary(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
@@ -382,7 +396,8 @@ public partial class Crabson {
             flip = spriteEffects.HasFlag(SpriteEffects.FlipVertically);
         }
 
-        DrawClawManual(spriteBatch, claw, drawCoords, drawColor, origin, arm.Rotation, flip ? -arm.MouthOpen : arm.MouthOpen, NPC.scale, spriteEffects);
+        float rotation = (arm.Rope.segments[^2].position - arm.Rope.segments[^1].position).ToRotation();
+        DrawClawManual(spriteBatch, claw, drawCoords, drawColor, origin, arm.Rotation + rotation, flip ? -arm.MouthOpen : arm.MouthOpen, NPC.scale, spriteEffects);
     }
 
     protected void DrawClawManual(SpriteBatch spriteBatch, Texture2D claw, Vector2 drawCoords, Color drawColor, Vector2 origin, float rotation, float mouthAnimation, float scale, SpriteEffects spriteEffects) {

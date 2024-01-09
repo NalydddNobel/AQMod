@@ -1,7 +1,5 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.Particles;
-using Aequus.Content.Biomes.PollutedOcean.Tiles.SeaPickles;
-using Aequus.Content.Items.Material.MonoGem;
 using Aequus.Core.Assets;
 using Aequus.Core.Graphics;
 using Terraria.GameContent;
