@@ -36,5 +36,14 @@ MoveToolbelt: {
 
 SlimeCrownInSurfaceChests: {
 	Label: "[i:SlimeCrown] 地表宝箱中的史莱姆王冠"
-	Tooltip: [{$ColorImportant}:启用后], [{$ColorImportant}:史莱姆王冠]可以在[{$ColorImportant}:地表宝箱]中发现.
+	Tooltip: "[{$ColorImportant}:启用后], [{$ColorImportant}:史莱姆王冠]可以在[{$ColorImportant}:地表宝箱]中发现."
+}
+
+MoveMagicConch: {
+	// Label: "[i:MagicConch] Move Magic Conch"
+	/* Tooltip:
+		'''
+		When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Magic Conch] can be found in the [{$ColorImportant}:Polluted Ocean],
+		and will [{$ColorImportant}:no longer be found] in the [{$ColorImportant2}:Underground Desert].
+		''' */
 }

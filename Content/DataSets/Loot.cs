@@ -25,13 +25,11 @@ public struct LootDefinition {
         return def;
     }
 
-    [Conditional("DEBUG")]
     internal static void CreateFor(List<LootDefinition> lootPool, int primaryItem, int stack = 1, params ItemLootEntry[] secondaryItems) {
         LoadingSteps.EnqueuePostSetupContent(() => lootPool.Add(Create(primaryItem, stack, secondaryItems)));
     }
 }
 
-public class Loot : DataSet {
-    [JsonProperty]
+public class Loot {
     public static readonly List<LootDefinition> PollutedOceanPrimary = new();
 }

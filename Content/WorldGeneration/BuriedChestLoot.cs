@@ -54,6 +54,7 @@ public class BuriedChestLoot : ModSystem {
 
             // UG Desert
             if (WallID.Sets.AllowsUndergroundDesertEnemiesToSpawn[wallId]) {
+                MagicConchChanges.ReplaceConch(chest);
                 continue;
             }
 

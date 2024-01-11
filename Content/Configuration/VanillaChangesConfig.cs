@@ -14,6 +14,10 @@ public class VanillaChangesConfig : ModConfig {
 
     [DefaultValue(true)]
     [ReloadRequired]
+    public bool MoveMagicConch { get; set; }
+
+    [DefaultValue(true)]
+    [ReloadRequired]
     public bool MoveTreasureMagnet { get; set; }
 
     [DefaultValue(true)]

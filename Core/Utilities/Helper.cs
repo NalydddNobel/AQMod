@@ -115,6 +115,14 @@ public static class Helper {
         return null;
     }
 
+    public static IEnumerable<Item> Where(this Chest chest, Predicate<Item> predicate) {
+        for (int i = 0; i < Chest.maxItems; i++) {
+            if (predicate(chest.item[i])) {
+                yield return chest.item[i];
+            }
+        }
+    }
+
     public static Item ReplaceFirst(this Chest chest, int itemId, int newItemId, int newStack = -1) {
         var item = chest.FindFirst(itemId);
         if (item == null) {

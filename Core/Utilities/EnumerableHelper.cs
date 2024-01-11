@@ -39,6 +39,11 @@ public static class EnumerableHelper {
         return arr;
     }
 
+    public static void RemoveAt<T>(ref T[] arr, int index) {
+        var list = arr.ToList();
+        list.RemoveAt(index);
+        arr = list.ToArray();
+    }
     public static bool Remove<T>(ref T[] arr, T value) {
         var list = arr.ToList();
         bool remove = list.Remove(value);
