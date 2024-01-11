@@ -153,6 +153,10 @@ public class BackpackLoader {
                     break;
                 }
             }
+
+            if (item.stack <= 0) {
+                break;
+            }
         }
 
         if (transferredToBackpack > 0) {
