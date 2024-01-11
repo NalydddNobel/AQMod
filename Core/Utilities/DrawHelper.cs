@@ -4,8 +4,6 @@ using Aequus.Content.Biomes.PollutedOcean.Tiles.SeaPickles;
 using Aequus.Content.Items.Material.MonoGem;
 using Aequus.Core.Assets;
 using Aequus.Core.Graphics;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using Terraria.GameContent.Shaders;
 using Terraria.Graphics;
@@ -177,7 +175,7 @@ public sealed class DrawHelper : ModSystem {
             particleRenderer.Draw(Main.spriteBatch);
             Main.spriteBatch.End();
         }
-        MonoGemRenderer.HandleScreenRender();
+        //MonoGemRenderer.HandleScreenRender();
     }
 
     private static void On_Main_DrawItems(On_Main.orig_DrawItems orig, Main main) {
