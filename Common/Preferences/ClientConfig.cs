@@ -50,7 +50,7 @@ namespace Aequus.Common.Preferences {
         public bool InfoDebugLogs { get; set; }
 
         [DefaultBackgroundColor]
-        [DefaultValue(false)]
+        [DefaultValue(true)]
         public bool ShowDeathTips { get; set; }
     }
 }

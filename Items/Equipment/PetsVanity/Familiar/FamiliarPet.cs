@@ -22,7 +22,7 @@ namespace Aequus.Items.Equipment.PetsVanity.Familiar {
             Projectile.friendly = true;
             Projectile.aiStyle = ProjAIStyleID.Pet;
             AIType = ProjectileID.BlackCat;
-            Projectile.scale = 0.5f;
+            Projectile.scale = 0.75f;
         }
 
         public void CopyPlayerAttributes(Player parent) {

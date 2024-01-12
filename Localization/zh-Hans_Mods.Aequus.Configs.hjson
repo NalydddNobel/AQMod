@@ -33,14 +33,14 @@ ClientConfig: {
 			'''
 	}
 
-	ShowDeathTips: {
-		Label: "[i:Tombstone] 死亡提示"
-		Tooltip: 在重生时会显示[c/ffffbb:死亡提示].
-	}
-
 	InfoDebugLogs: {
 		Label: "[i:5113] 信息调试日志"
 		Tooltip: 特定编程事件的确认日志记录, 仅对呆子有用...
+	}
+
+	ShowDeathTips: {
+		Label: "[i:Tombstone] 死亡提示"
+		Tooltip: 在重生时会显示[c/ffffbb:死亡提示].
 	}
 
 	Headers: {
