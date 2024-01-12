@@ -14,7 +14,7 @@ namespace Aequus.Items.Weapons.Melee.Swords.BattleAxe {
             Projectile.width = 90;
             Projectile.height = 90;
             Projectile.extraUpdates = 6;
-            swordWidth = 30;
+            swordWidth = 16;
             swordHeight = 60;
             gfxOutOffset = -18;
         }
@@ -35,7 +35,7 @@ namespace Aequus.Items.Weapons.Melee.Swords.BattleAxe {
         }
 
         public override bool? CanDamage() {
-            return AnimProgress > 0.05f && AnimProgress < 0.5f ? null : false;
+            return AnimProgress > 0.1f && AnimProgress < 0.5f ? null : false;
         }
 
         public override float SwingProgress(float progress) {
@@ -77,7 +77,6 @@ namespace Aequus.Items.Weapons.Melee.Swords.BattleAxe {
 
             DrawSwordAfterImages(texture, handPosition, frame, swishColor * 0.1f, rotationOffset, origin, effects);
             DrawSword(texture, handPosition, frame, drawColor, rotationOffset, origin, effects);
-            DrawDebug();
             return false;
         }
     }
