@@ -129,7 +129,7 @@ namespace Aequus.Items.Materials.PearlShards {
         public static bool TryGrow(int i, int j) {
             int gemX = i + WorldGen.genRand.Next(-1, 2);
             int gemY = j + WorldGen.genRand.Next(-1, 2);
-            if (TileHelper.ScanTilesSquare(gemX, gemY, 8, (i, j) => TileLoader.GetTile(Main.tile[i, j].TileType) is PearlsTile)) {
+            if (Framing.GetTileSafely(gemX, gemY).HasTile || TileHelper.ScanTilesSquare(gemX, gemY, 8, (i, j) => TileLoader.GetTile(Main.tile[i, j].TileType) is PearlsTile)) {
                 return false;
             }
 
