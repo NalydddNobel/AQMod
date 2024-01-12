@@ -38,6 +38,11 @@ ClientConfig: {
 		Tooltip: Confirmation logging for specific programming events, only useful for nerds...
 	}
 
+	ShowDeathTips: {
+		Label: "[i:Tombstone] Death Tips"
+		Tooltip: "[c/ffffbb:Game Tips] will be displayed while Respawning."
+	}
+
 	Headers: {
 		Graphics: -- Graphics --
 		General: -- General --

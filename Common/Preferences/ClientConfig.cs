@@ -48,5 +48,9 @@ namespace Aequus.Common.Preferences {
         [DefaultBackgroundColor]
         [DefaultValue(false)]
         public bool InfoDebugLogs { get; set; }
+
+        [DefaultBackgroundColor]
+        [DefaultValue(false)]
+        public bool ShowDeathTips { get; set; }
     }
 }
