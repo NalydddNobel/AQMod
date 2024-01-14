@@ -16,6 +16,9 @@
   </ItemGroup>
 		
   <ItemGroup>
+    <None Remove="Temp\SourceGenerators.Generator\**" />
+	<EmbeddedResource Remove="Temp\SourceGenerators.Generator\**" />
+	<Compile Remove="Temp\SourceGenerators.Generator\**" />
     <None Remove="SourceGenerators\**" />
 	<EmbeddedResource Remove="SourceGenerators\**" />
 	<Compile Remove="SourceGenerators\**" />
@@ -42,6 +45,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Textures\FlareSoft.png" />
+    <None Remove="Assets\Textures\LensFlare.png" />
     <None Remove="Content\Enemies\PollutedOcean\BlackJellyfish\BlackJellyfishBanner.png" />
     <None Remove="Content\Enemies\PollutedOcean\BlackJellyfish\BlackJellyfishBannerItem.png" />
     <None Remove="Content\Tiles\Banners\OldMonsterBanners.png" />

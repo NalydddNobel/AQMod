@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.NPCs;
-using Aequus.Common.Particles;
 using Aequus.Core.Assets;
 using Aequus.Core.Graphics;
 using Terraria.GameContent;
@@ -146,7 +145,6 @@ public sealed class DrawHelper : ModSystem {
         On_Main.DrawNPC += On_Main_DrawNPC;
         On_Main.DrawNPCs += On_Main_DrawNPCs;
         On_Main.DrawItems += On_Main_DrawItems;
-        On_Main.DrawDust += On_Main_DrawDust;
         Main.QueueMainThreadAction(LoadShaders);
     }
 
@@ -165,31 +163,13 @@ public sealed class DrawHelper : ModSystem {
     #endregion
 
     #region Hooks
-    private static void On_Main_DrawDust(On_Main.orig_DrawDust orig, Main main) {
-        orig(main);
-        var particleRenderer = ParticleSystem.GetLayer(ParticleLayer.AboveDust);
-        if (particleRenderer.Particles.Count > 0) {
-            Main.spriteBatch.BeginWorld();
-            particleRenderer.Draw(Main.spriteBatch);
-            Main.spriteBatch.End();
-        }
-        //MonoGemRenderer.HandleScreenRender();
-    }
 
     private static void On_Main_DrawItems(On_Main.orig_DrawItems orig, Main main) {
         orig(main);
-        ParticleSystem.GetLayer(ParticleLayer.AboveItems).Draw(Main.spriteBatch);
     }
 
     private static void On_Main_DrawNPCs(On_Main.orig_DrawNPCs orig, Main main, bool behindTiles) {
-        if (!behindTiles) {
-            orig(main, behindTiles);
-            ParticleSystem.GetLayer(ParticleLayer.AboveNPCs).Draw(Main.spriteBatch);
-        }
-        else {
-            ParticleSystem.GetLayer(ParticleLayer.BehindAllNPCsBehindTiles).Draw(Main.spriteBatch);
-            orig(main, behindTiles);
-        }
+        orig(main, behindTiles);
     }
 
     private static void On_Main_DrawNPC(On_Main.orig_DrawNPC orig, Main main, int iNPCIndex, bool behindTiles) {

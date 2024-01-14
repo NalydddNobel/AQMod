@@ -1,12 +1,13 @@
 ﻿using Aequus.Common.UI;
 using Aequus.Core.Graphics.Commands;
-using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria.UI;
 
 namespace Aequus.Core.Graphics {
     /// <summary>
     /// Used to render any World elements which need to be on the UI layer. This renders after Entity Healthbars are drawn.
     /// </summary>
+    [Obsolete]
     public class MiscWorldUI : UILayer {
         /// <summary>
         /// A drawdata list to add into, if you know how Player Layers work, this should be familiar. Currently doesn't support shaders.
