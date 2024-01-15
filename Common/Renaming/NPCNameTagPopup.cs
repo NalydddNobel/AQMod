@@ -1,5 +1,4 @@
-﻿using Aequus.Common.UI;
-using Aequus.Core;
+﻿using Aequus.Core;
 using Aequus.Core.UI;
 using System;
 using Terraria.GameContent;
@@ -87,5 +86,5 @@ public class NPCNameTagPopup : UILayer {
         public float Time;
     }
 
-    public NPCNameTagPopup() : base("Name Tag Popup", InterfaceLayers.EntityHealthBars_16, InterfaceScaleType.Game, InsertOffset: -1) { }
+    public NPCNameTagPopup() : base("Name Tag Popup", InterfaceLayerNames.EntityHealthBars_16, InterfaceScaleType.Game, InsertOffset: -1) { }
 }

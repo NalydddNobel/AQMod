@@ -1,4 +1,4 @@
-﻿using Aequus.Common.UI.EventBars;
+﻿using Aequus.Core.UI;
 using System;
 using System.Collections.Generic;
 using Terraria.GameInput;
@@ -93,12 +93,7 @@ public partial class UISystem : ModSystem {
 
     public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers) {
         bottomLeftInventoryOffsetX = 0;
-        ManageUserInterfaceLayer(layers, TalkInterface, InterfaceLayers.Inventory_28, "Aequus: NPC Talk Interface", InterfaceScaleType.UI);
-
-        InsertInterfaceDrawMethod(layers, InterfaceLayers.Inventory_28, "Aequus: Inventory", () => {
-            LegacyEventBarLoader.Draw();
-            return true;
-        });
+        ManageUserInterfaceLayer(layers, TalkInterface, InterfaceLayerNames.Inventory_28, "Aequus: NPC Talk Interface", InterfaceScaleType.UI);
     }
     private void ManageUserInterfaceLayer(List<GameInterfaceLayer> layers, UserInterface userInterface, string defaultLayer, string layerName, InterfaceScaleType scaleType = InterfaceScaleType.UI) {
         int layer = -1;
@@ -116,12 +111,6 @@ public partial class UISystem : ModSystem {
                 userInterface.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
                 return true;
             }, scaleType));
-        }
-    }
-    private void InsertInterfaceDrawMethod(List<GameInterfaceLayer> layers, string name, string yourName, GameInterfaceDrawMethod method, InterfaceScaleType scaleType = InterfaceScaleType.UI) {
-        int index = layers.FindIndex((l) => l.Name.Equals(name));
-        if (index != -1) {
-            layers.Insert(index + 1, new LegacyGameInterfaceLayer(yourName, method, scaleType));
         }
     }
 

@@ -1,5 +1,4 @@
-﻿using Aequus.Common.UI;
-using Aequus.Content.Configuration;
+﻿using Aequus.Content.Configuration;
 using Aequus.Core.UI;
 using Terraria.UI;
 
@@ -37,5 +36,5 @@ public class DeathTips : UILayer {
         return true;
     }
 
-    public DeathTips() : base("Death Tips", InterfaceLayers.PlayerChat_35, InterfaceScaleType.UI) { }
+    public DeathTips() : base("Death Tips", InterfaceLayerNames.PlayerChat_35, InterfaceScaleType.UI) { }
 }

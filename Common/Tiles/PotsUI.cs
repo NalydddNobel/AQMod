@@ -1,5 +1,4 @@
-﻿using Aequus.Common.UI;
-using Aequus.Core.UI;
+﻿using Aequus.Core.UI;
 using System;
 using Terraria.GameContent;
 using Terraria.UI;
@@ -72,5 +71,5 @@ public class PotsUI : UILayer {
         }
     }
 
-    public PotsUI() : base("Angler Lamp", InterfaceLayers.EntityHealthBars_16, InterfaceScaleType.Game) { }
+    public PotsUI() : base("Angler Lamp", InterfaceLayerNames.EntityHealthBars_16, InterfaceScaleType.Game) { }
 }

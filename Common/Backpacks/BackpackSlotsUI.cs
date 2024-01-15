@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Items.Tooltips;
 using Aequus.Common.UI;
-using Aequus.Common.UI.Inventory;
 using Aequus.Content.Equipment.Accessories.ScavengerBag;
 using Aequus.Core.UI;
 using System;
@@ -140,5 +139,5 @@ public class BackpackSlotsUI : UILayer {
         }
     }
 
-    public BackpackSlotsUI() : base("Backpack", InterfaceLayers.Inventory_28, InterfaceScaleType.UI) { }
+    public BackpackSlotsUI() : base("Backpack", InterfaceLayerNames.Inventory_28, InterfaceScaleType.UI) { }
 }

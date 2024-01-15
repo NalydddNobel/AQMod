@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.NPCs.Components;
 using Terraria.Map;
 
-namespace Aequus.Common.UI.Map;
+namespace Aequus.Core.UI.Map;
 
 public class CustomNPCHeadLayer : ModMapLayer {
     public override void Draw(ref MapOverlayDrawContext context, ref string text) {

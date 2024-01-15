@@ -1,5 +1,4 @@
-﻿using Aequus.Common.UI;
-using Aequus.Core;
+﻿using Aequus.Core;
 using Aequus.Core.UI;
 using System;
 using Terraria.UI;
@@ -81,5 +80,5 @@ public class TownNPCUI : UILayer {
         public bool Active;
     }
 
-    public TownNPCUI() : base("Town NPC UI", InterfaceLayers.EntityHealthBars_16, InterfaceScaleType.Game) { }
+    public TownNPCUI() : base("Town NPC UI", InterfaceLayerNames.EntityHealthBars_16, InterfaceScaleType.Game) { }
 }

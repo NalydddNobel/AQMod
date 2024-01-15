@@ -825,16 +825,6 @@
             This prevents some catches, like Jellyfishes being used as bait or being indicated as bait.
             </summary>
         </member>
-        <member name="T:Aequus.Core.Graphics.MiscWorldUI">
-            <summary>
-            Used to render any World elements which need to be on the UI layer. This renders after Entity Healthbars are drawn.
-            </summary>
-        </member>
-        <member name="F:Aequus.Core.Graphics.MiscWorldUI.Drawer">
-            <summary>
-            A drawdata list to add into, if you know how Player Layers work, this should be familiar. Currently doesn't support shaders.
-            </summary>
-        </member>
         <member name="T:Aequus.Core.Graphics.Tiles.BatchedTileDrawInfo">
             <summary>
             Tile draw info used internally with <see cref="T:Aequus.Core.Graphics.Tiles.BatchedTileRenderer"/>.

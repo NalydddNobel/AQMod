@@ -1,16 +1,15 @@
 ﻿using Aequus.Common.Backpacks;
-using Microsoft.Xna.Framework;
 using MonoMod.Cil;
 using System;
 using Terraria.GameContent;
 using Terraria.UI;
 using Terraria.UI.Gamepad;
 
-namespace Aequus.Common.UI.Inventory;
+namespace Aequus.Core.UI;
 
 public class InventoryUISystem : ModSystem {
-    public static int CoinsAmmoOffsetX;
-    public static int RightsideButtonsOffsetY;
+    public static int CoinsAmmoOffsetX { get; internal set; }
+    public static int RightsideButtonsOffsetY { get; internal set; }
 
     public override void Load() {
         IL_Main.DrawInventory += IL_Main_DrawInventory;
@@ -25,7 +24,7 @@ public class InventoryUISystem : ModSystem {
             throw new Exception($"Could not find {nameof(Main)}.{nameof(Main.player)} loading code.");
         }
         cursor.Index--;
-        cursor.EmitDelegate<Func<int, int>>((y) => y + ((Main.LocalPlayer.chest == -1 && Main.npcShop <= 0) || Main.recBigList ? RightsideButtonsOffsetY : 0));
+        cursor.EmitDelegate<Func<int, int>>((y) => y + (Main.LocalPlayer.chest == -1 && Main.npcShop <= 0 || Main.recBigList ? RightsideButtonsOffsetY : 0));
     }
 
     private static void MoveAchievementAdvisor(ILCursor cursor) {
