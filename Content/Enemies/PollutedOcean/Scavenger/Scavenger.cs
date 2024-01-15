@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.NPCs;
+using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
 using Aequus.Content.DataSets;
 using Aequus.Content.Equipment.Accessories.ScavengerBag;

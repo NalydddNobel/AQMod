@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.NPCs;
+using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.DataSets;
 using Aequus.Content.Tiles.Banners;
 using Aequus.Core.Graphics;

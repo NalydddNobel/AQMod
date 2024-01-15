@@ -1,11 +1,17 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 
 namespace Aequus.Core.Utilities;
 
 public static class ColorHelper {
-    public static Color ColorFurniture => new Color(191, 142, 111, 255);
-    public static Color ColorLightedFurniture => new Color(253, 221, 3, 255);
+    public static readonly Color ColorFurniture = new Color(191, 142, 111, 255);
+    public static readonly Color ColorLightedFurniture = new Color(253, 221, 3, 255);
+
+    public static readonly Color[] CoinColors = new Color[] {
+        Colors.CoinCopper,
+        Colors.CoinSilver,
+        Colors.CoinGold,
+        Colors.CoinPlatinum,
+    };
 
     public static Color MaxRGBA(this Color color, byte amt) {
         return color.MaxRGBA(amt, amt);

@@ -1,6 +1,7 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using Terraria.Chat;
 using Terraria.Localization;
 
@@ -10,12 +11,14 @@ public static class TextHelper {
     public const char AirCharacter = '⠀';
     public const string AirString = "⠀";
 
+    private record struct ColoredText(string Text, Color Color);
+
     #region Colors
-    public static Color BossSummonMessage => new(175, 75, 255);
-    public static Color EventMessageColor => new(50, 255, 130);
-    public static Color TownNPCArrived => new(50, 125, 255);
-    public static Color PrefixGood => new(120, 190, 120);
-    public static Color PrefixBad => new(190, 120, 120);
+    public static readonly Color BossSummonMessage = new Color(175, 75, 255);
+    public static readonly Color EventMessageColor = new Color(50, 255, 130);
+    public static readonly Color TownNPCArrived = new Color(50, 125, 255);
+    public static readonly Color PrefixGood = new Color(120, 190, 120);
+    public static readonly Color PrefixBad = new Color(190, 120, 120);
     #endregion
 
     #region Localization
@@ -67,48 +70,25 @@ public static class TextHelper {
         return Language.GetText("Mods.Aequus.Misc.DayOfTheWeek." + dayOfWeek.ToString());
     }
 
-    public static string PriceTextColored(long value, string noValue = "", bool alphaPulse = false) {
-        if (value < 1) {
-            return noValue;
-        }
-
-        List<string> list = new();
-        var coins = Utils.CoinsSplit(value);
-
-        for (int i = coins.Length - 1; i >= 0; i--) {
-
-            if (coins[i] < 1) {
-                continue;
-            }
-
-            var clr = i switch {
-                3 => Colors.CoinPlatinum,
-                2 => Colors.CoinGold,
-                1 => Colors.CoinSilver,
-                _ => Colors.CoinCopper,
-            };
-            list.Add(ColorCommand(coins[i].ToString() + " " + Lang.inter[18 - i], clr, alphaPulse));
-        }
-
-        return string.Join(' ', list);
+    public static string PriceTextColored(long value, string NoValueText = "", bool AlphaPulse = false) {
+        return string.Join(' ', GetPriceTextSegments(value, NoValueText).Select((t) => t.Color == Color.White ? t.Text : ColorCommand(t.Text, t.Color, AlphaPulse)));
     }
 
-    public static string PriceText(long value, string noValue = "") {
-        return string.Join(' ', PriceTextList(value));
+    public static string PriceText(long value, string NoValueText = "") {
+        return string.Join(' ', GetPriceTextSegments(value, NoValueText).Select((t) => t.Text));
     }
 
-    public static List<string> PriceTextList(long value, string noValue = "") {
-        // bad bad!
-        List<string> text = new();
+    private static IEnumerable<ColoredText> GetPriceTextSegments(long value, string NoValueText = "") {
         int platinum = 0;
         int gold = 0;
         int silver = 0;
         int copper = 0;
         int itemValue = (int)value;
+
         if (itemValue < 1) {
-            text.Add(noValue);
-            return text;
+            yield return new ColoredText(NoValueText, Color.White);
         }
+
         if (itemValue >= Item.platinum) {
             platinum = itemValue / Item.platinum;
             itemValue -= platinum * Item.platinum;
@@ -126,18 +106,17 @@ public static class TextHelper {
         }
 
         if (platinum > 0) {
-            text.Add(platinum + " " + Lang.inter[15].Value);
+            yield return new ColoredText(platinum + " " + Lang.inter[15].Value, Colors.CoinPlatinum);
         }
         if (gold > 0) {
-            text.Add(gold + " " + Lang.inter[16].Value);
+            yield return new ColoredText(gold + " " + Lang.inter[16].Value, Colors.CoinGold);
         }
         if (silver > 0) {
-            text.Add(silver + " " + Lang.inter[17].Value);
+            yield return new ColoredText(silver + " " + Lang.inter[17].Value, Colors.CoinSilver);
         }
         if (copper > 0) {
-            text.Add(copper + " " + Lang.inter[18].Value);
+            yield return new ColoredText(copper + " " + Lang.inter[18].Value, Colors.CoinCopper);
         }
-        return text;
     }
 
     public static string GetUseAnimationText(float useAnimation) {
@@ -331,6 +310,14 @@ public static class TextHelper {
     }
     public static string Decimals(double value) {
         return value.ToString("0.0", Language.ActiveCulture.CultureInfo.NumberFormat).Replace(".0", "");
+    }
+    #endregion
+
+    #region Debug
+    /// <summary>Registers a localization key if it doesn't exist. Only ran if compiled with a DEBUG symbol.</summary>
+    [Conditional("DEBUG")]
+    internal static void RegisterKey(string key) {
+        Language.GetOrRegister(key);
     }
     #endregion
 }
