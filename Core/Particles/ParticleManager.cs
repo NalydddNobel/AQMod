@@ -22,6 +22,7 @@ public class ParticleManager : ModSystem {
     }
 
     public override void PreUpdateEntities() {
+        DiagnosticsMenu.TrackNumber(DiagnosticsMenu.TrackerType.ParticleScenes, _activeSystems.Count);
         DiagnosticsMenu.StartStopwatch();
 
         if (_activeSystems.Count == 0) {

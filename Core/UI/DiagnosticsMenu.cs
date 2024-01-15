@@ -12,6 +12,7 @@ internal class DiagnosticsMenu : ModSystem {
         Count
     }
     public enum TrackerType : byte {
+        ParticleScenes,
         UILayers,
         Count
     }
