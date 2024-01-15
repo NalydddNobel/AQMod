@@ -1,4 +1,5 @@
 ﻿using Aequus.Core.Initialization;
+using Aequus.Core.UI;
 using System.Collections.Generic;
 using Terraria.UI;
 
@@ -43,7 +44,7 @@ namespace Aequus.Common.UI {
             }
             if (Main.playerInventory) {
                 foreach (var g in layers) {
-                    if (g.Name.Equals(InterfaceLayers.Inventory_28)) {
+                    if (g.Name.Equals(InterfaceLayerNames.Inventory_28)) {
                         g.Active = true;
                     }
                 }

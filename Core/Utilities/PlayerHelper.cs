@@ -1,8 +1,4 @@
-﻿using Aequus.Content.WorldEvents.DemonSiege;
-using Aequus.Content.WorldEvents.Glimmer;
-using Aequus.Content.WorldEvents.SpaceStorm;
-using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
+﻿using Terraria.DataStructures;
 using Terraria.Localization;
 
 namespace Aequus.Core.Utilities;
@@ -233,13 +229,13 @@ public static class PlayerHelper {
 
     #region Biomes
     public static bool ZoneGlimmer(this Player player) {
-        return player.InModBiome<GlimmerZone>();
+        return false;
     }
     public static bool ZoneDemonSiege(this Player player) {
-        return player.InModBiome<DemonSiegeZone>();
+        return false;
     }
-    public static bool ZoneSpaceStorm(this Player player) {
-        return player.InModBiome<SpaceStormZone>();
+    public static bool ZoneGaleStreams(this Player player) {
+        return false;
     }
     #endregion
 

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 220)</summary>
+/// <summary>(Total Textures: 222)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -29,16 +29,18 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Flare = new("Aequus/Assets/Textures/Flare");
     /// <summary>Full Path: Assets/Textures/Flare2</summary>
     public static readonly RequestCache<Texture2D> Flare2 = new("Aequus/Assets/Textures/Flare2");
+    /// <summary>Full Path: Assets/Textures/FlareSoft</summary>
+    public static readonly RequestCache<Texture2D> FlareSoft = new("Aequus/Assets/Textures/FlareSoft");
     /// <summary>Full Path: Assets/Textures/Fog</summary>
     public static readonly RequestCache<Texture2D> Fog = new("Aequus/Assets/Textures/Fog");
     /// <summary>Full Path: Assets/Textures/GenericExplosion</summary>
     public static readonly RequestCache<Texture2D> GenericExplosion = new("Aequus/Assets/Textures/GenericExplosion");
+    /// <summary>Full Path: Assets/Textures/LensFlare</summary>
+    public static readonly RequestCache<Texture2D> LensFlare = new("Aequus/Assets/Textures/LensFlare");
     /// <summary>Full Path: Assets/Textures/LightRayCircular</summary>
     public static readonly RequestCache<Texture2D> LightRayCircular = new("Aequus/Assets/Textures/LightRayCircular");
     /// <summary>Full Path: Assets/Textures/LightRayFlat</summary>
     public static readonly RequestCache<Texture2D> LightRayFlat = new("Aequus/Assets/Textures/LightRayFlat");
-    /// <summary>Full Path: Assets/Textures/Movement</summary>
-    public static readonly RequestCache<Texture2D> Movement = new("Aequus/Assets/Textures/Movement");
     /// <summary>Full Path: Assets/Textures/OnlineLink</summary>
     public static readonly RequestCache<Texture2D> OnlineLink = new("Aequus/Assets/Textures/OnlineLink");
     /// <summary>Full Path: Assets/Textures/Shatter</summary>
@@ -293,6 +295,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SteampunkerFishingPole = new("Aequus/Content/Fishing/FishingPoles/Steampunker/SteampunkerFishingPole");
     /// <summary>Full Path: Content/Fishing/FishingPoles/Steampunker/SteampunkerFishingPoleBobber</summary>
     public static readonly RequestCache<Texture2D> SteampunkerFishingPoleBobber = new("Aequus/Content/Fishing/FishingPoles/Steampunker/SteampunkerFishingPoleBobber");
+    /// <summary>Full Path: Content/Graphics/Particles/DashParticles</summary>
+    public static readonly RequestCache<Texture2D> DashParticles = new("Aequus/Content/Graphics/Particles/DashParticles");
     /// <summary>Full Path: Content/Items/Material/CompressedTrash</summary>
     public static readonly RequestCache<Texture2D> CompressedTrash = new("Aequus/Content/Items/Material/CompressedTrash");
     /// <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStar</summary>

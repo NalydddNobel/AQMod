@@ -5,8 +5,6 @@ using Aequus.Content.DataSets;
 using Aequus.Content.Weapons.Ranged.Darts.Ammo;
 using Aequus.Core.DataSets;
 using Aequus.Core.Initialization;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
@@ -63,15 +61,12 @@ public class AnglerLamp : ModItem {
             return;
         }
 
-        if (Main.netMode == NetmodeID.Server) {
-            return;
-        }
-
-        for (int i = 0; i < 6; i++) {
-            var color = Color.Lerp(Color.Red, Color.Yellow, Main.rand.NextFloat(0.15f, 0.85f));
-            float scale = Main.rand.NextFloat(0.4f, 0.76f);
-            ParticleSystem.New<AnglerLampParticle>(ParticleLayer.AboveDust)
-                .Setup(Main.rand.NextVector2FromRectangle(Main.npc[npc].getRect()), Main.npc[npc].velocity * 0.05f, color, scale).npc = npc;
+        int count = Math.Clamp(Math.Max(Main.npc[npc].width, Main.npc[npc].height) / 10, 3, 8);
+        foreach (var particle in ModContent.GetInstance<AnglerLampParticles>().NewMultiple(count)) {
+            particle.Location = Main.rand.NextVector2FromRectangle(Main.npc[npc].getRect());
+            particle.Color = Color.Lerp(Color.Red, Color.Yellow, Main.rand.NextFloat(0.15f, 0.85f));
+            particle.Scale = Main.rand.NextFloat(0.4f, 0.76f);
+            particle.NPCAnchor = npc;
         }
     }
 

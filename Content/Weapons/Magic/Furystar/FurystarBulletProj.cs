@@ -1,7 +1,4 @@
-﻿using Aequus.Common.Particles;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
+﻿using System;
 using Terraria.Audio;
 using Terraria.GameContent;
 
@@ -74,10 +71,18 @@ public class FurystarBulletProj : ModProjectile {
         var player = Main.player[Projectile.owner];
         var color = Color.Lerp(Color.Cyan, Color.Blue, Main.rand.NextFloat(0.15f, 0.85f));
         float scale = Main.rand.NextFloat(0.2f, 0.4f);
-        ParticleSystem.New<FurystarParticle>(ParticleLayer.AboveDust)
-            .Setup(Main.rand.NextVector2FromRectangle(target.getRect()), Projectile.velocity * 0.05f, color, scale);
-        ParticleSystem.New<FurystarParticle>(ParticleLayer.AboveDust)
-            .Setup(Main.rand.NextVector2FromRectangle(Main.player[Projectile.owner].getRect()), Vector2.Zero, color, scale);
+        var particle = ModContent.GetInstance<FurystarParticles>().New();
+        particle.Location = Main.rand.NextVector2FromRectangle(target.getRect());
+        particle.Velocity = Projectile.velocity * 0.05f;
+        particle.Color = color;
+        particle.Scale = scale;
+
+        particle = ModContent.GetInstance<FurystarParticles>().New();
+        particle.Location = Main.rand.NextVector2FromRectangle(Main.player[Projectile.owner].getRect());
+        particle.Velocity = Main.player[Projectile.owner].velocity * 0.05f;
+        particle.Color = color;
+        particle.Scale = scale;
+
         int healMana = 10;
         player.statMana = Math.Min(player.statMana + healMana, player.statManaMax2);
         CombatText.NewText(player.getRect(), CombatText.HealMana * 0.8f, healMana, dot: true);

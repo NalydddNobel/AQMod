@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace Aequus.Core.Utilities;
@@ -27,5 +28,15 @@ public static class ReflectionHelper {
     }
     public static T GetValue<T>(this FieldInfo field, object obj) {
         return (T)field.GetValue(obj);
+    }
+
+    public static bool HasMethodOverride(this Type t, string methodName, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Public) {
+        foreach (MethodInfo method in t.GetMethods(bindingFlags).Where(x => x.Name == methodName)) {
+            if (method.GetBaseDefinition().DeclaringType != method.DeclaringType) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

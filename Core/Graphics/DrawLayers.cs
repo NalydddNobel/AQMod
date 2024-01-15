@@ -1,41 +1,36 @@
-﻿using Aequus.Common.Particles;
-using Aequus.Content.Graphics;
+﻿using Aequus.Core.UI;
 using System;
-using Terraria.Graphics.Effects;
 
 namespace Aequus.Core.Graphics;
 
-public class DrawLayers : ModSystem {
-    public static Action<SpriteBatch> PostDrawLiquids { get; set; }
+[Autoload(Side = ModSide.Client)]
+public class DrawLayers : ILoadable {
+    public event Action<SpriteBatch> PostDrawDust;
+    public event Action<SpriteBatch> PostDrawLiquids;
 
-    public override void Load() {
-        On_OverlayManager.Draw += OverlayManager_Draw;
+    public static DrawLayers Instance { get; private set; }
+
+    public void Load(Mod mod) {
+        Instance = this;
+        On_Main.DrawDust += On_Main_DrawDust;
+        On_Main.DrawInfernoRings += On_Main_DrawInfernoRings;
     }
 
-    public override void Unload() {
-        PostDrawLiquids = null;
+    public void Unload() {
     }
 
-    #region Hooks
-    private static void OverlayManager_Draw(On_OverlayManager.orig_Draw orig, OverlayManager self, SpriteBatch spriteBatch, RenderLayers layer, bool beginSpriteBatch) {
-        if (layer == RenderLayers.ForegroundWater) {
-            if (beginSpriteBatch) {
-                spriteBatch.BeginWorld(shader: false);
-            }
-
-            ParticleSystem.GetLayer(ParticleLayer.AboveLiquid).Draw(spriteBatch);
-            PostDrawLiquids?.Invoke(spriteBatch);
-            if (RadonMossFogRenderer.Instance.IsReady) {
-                spriteBatch.End();
-                RadonMossFogRenderer.Instance.DrawOntoScreen(spriteBatch);
-                spriteBatch.BeginWorld(shader: false);
-            }
-
-            if (beginSpriteBatch) {
-                spriteBatch.End();
-            }
-        }
-        orig(self, spriteBatch, layer, beginSpriteBatch);
+    private static void On_Main_DrawDust(On_Main.orig_DrawDust orig, Main main) {
+        orig(main);
+        Instance.PostDrawDust?.Invoke(Main.spriteBatch);
     }
-    #endregion
+
+
+    private static void On_Main_DrawInfernoRings(On_Main.orig_DrawInfernoRings orig, Main self) {
+        orig(self);
+        DiagnosticsMenu.StartStopwatch();
+
+        Instance.PostDrawLiquids?.Invoke(Main.spriteBatch);
+
+        DiagnosticsMenu.EndStopwatch(DiagnosticsMenu.TimerType.PostDrawLiquids);
+    }
 }

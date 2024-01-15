@@ -618,14 +618,6 @@
             <param name="npcId">The NPC type.</param>
             <param name="rule">The item drop rule.</param>
         </member>
-        <member name="M:Aequus.Common.Particles.ParticleSystem.New``1(Aequus.Common.Particles.ParticleLayer)">
-            <summary>
-            Do not use on servers.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="layer"></param>
-            <returns></returns>
-        </member>
         <member name="P:Aequus.Common.Players.CustomDashData.DashHaltSpeedMultiplier">
             <summary>
             Multiplier used to reduce velocity when above the dash's halting speed.
@@ -833,21 +825,6 @@
             This prevents some catches, like Jellyfishes being used as bait or being indicated as bait.
             </summary>
         </member>
-        <member name="T:Aequus.Core.Graphics.MiscWorldUI">
-            <summary>
-            Used to render any World elements which need to be on the UI layer. This renders after Entity Healthbars are drawn.
-            </summary>
-        </member>
-        <member name="F:Aequus.Core.Graphics.MiscWorldUI.Drawer">
-            <summary>
-            A drawdata list to add into, if you know how Player Layers work, this should be familiar. Currently doesn't support shaders.
-            </summary>
-        </member>
-        <member name="M:Aequus.Core.Graphics.RequestRenderer.ClearWorld">
-            <summary>
-            Ran on world Load/Unload
-            </summary>
-        </member>
         <member name="T:Aequus.Core.Graphics.Tiles.BatchedTileDrawInfo">
             <summary>
             Tile draw info used internally with <see cref="T:Aequus.Core.Graphics.Tiles.BatchedTileRenderer"/>.
@@ -887,6 +864,49 @@
             <summary>
             Grants a ModTile the ability to render post-draw elements in a batch to reduce on Begin/End calls.
             <para>Place SpecialTileDrawing.Add(i, j, Type); into ModTile.PostDraw(...) to add it to the rendering list.</para>
+            </summary>
+        </member>
+        <member name="T:Aequus.Core.Particles.ParticleManager">
+            <summary>
+            Handles and updates particle systems.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.Particles.ParticleSystem`1.Activate">
+            <summary>
+            Allows the renderer to subscribe to various drawing actions.
+            This is ran when the particle system is activated.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.Particles.ParticleSystem`1.Deactivate">
+            <summary>
+            Allows the renderer to unsubscribe to various drawing actions.
+            This is ran when all particles are cleared from the system.
+            </summary>
+        </member>
+        <member name="T:Aequus.Core.UI.UILayer">
+            <summary>
+            Used to simplify UI implementation. Only loads in singleplayer or on multiplayer clients.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.UI.UILayer.#ctor(System.String,System.String,Terraria.UI.InterfaceScaleType,System.Int32)">
+            <param name="Name">Name of this layer.</param>
+            <param name="InsertLayer">Name of the layer to search the index of.</param>
+            <param name="ScaleType">Scale Type of this layer.</param>
+            <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
+        </member>
+        <member name="M:Aequus.Core.UI.UILayer.Activate">
+            <summary>
+            Activates the UI Layer.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.UI.UILayer.Deactivate">
+            <summary>
+            Deactivates the UI Layer. This does not instantly remove the layer, instead it will be removed on the next ui update.
+            </summary>
+        </member>
+        <member name="T:Aequus.Core.UI.UILayersSystem">
+            <summary>
+            Only loads in singleplayer or on multiplayer clients.
             </summary>
         </member>
         <member name="M:Aequus.Core.Utilities.Helper.RandomTileCoordinates(System.Int32,System.Int32)">
@@ -1155,7 +1175,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 220)</summary>
+            <summary>(Total Textures: 222)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1190,20 +1210,23 @@
         <member name="F:Aequus.AequusTextures.Flare2">
             <summary>Full Path: Assets/Textures/Flare2</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.FlareSoft">
+            <summary>Full Path: Assets/Textures/FlareSoft</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Fog">
             <summary>Full Path: Assets/Textures/Fog</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GenericExplosion">
             <summary>Full Path: Assets/Textures/GenericExplosion</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.LensFlare">
+            <summary>Full Path: Assets/Textures/LensFlare</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.LightRayCircular">
             <summary>Full Path: Assets/Textures/LightRayCircular</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LightRayFlat">
             <summary>Full Path: Assets/Textures/LightRayFlat</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Movement">
-            <summary>Full Path: Assets/Textures/Movement</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OnlineLink">
             <summary>Full Path: Assets/Textures/OnlineLink</summary>
@@ -1585,6 +1608,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.SteampunkerFishingPoleBobber">
             <summary>Full Path: Content/Fishing/FishingPoles/Steampunker/SteampunkerFishingPoleBobber</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DashParticles">
+            <summary>Full Path: Content/Graphics/Particles/DashParticles</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CompressedTrash">
             <summary>Full Path: Content/Items/Material/CompressedTrash</summary>

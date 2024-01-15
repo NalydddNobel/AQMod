@@ -1,19 +1,4 @@
 Biomes: {
-	DemonSiegeZone: {
-		DisplayName: Demon Siege Zone
-		TownNPCDialogueName: the Demon Siege Zone
-	}
-
-	GlimmerZone: {
-		DisplayName: Glimmer Zone
-		TownNPCDialogueName: the Glimmer Zone
-	}
-
-	SpaceStormZone: {
-		DisplayName: Space Storm Zone
-		TownNPCDialogueName: the Space Storm Zone
-	}
-
 	PollutedOceanBiome: {
 		DisplayName: Polluted Ocean
 		TownNPCDialogueName: the Polluted Ocean

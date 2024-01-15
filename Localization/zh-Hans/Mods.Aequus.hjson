@@ -1,25 +1,3 @@
-Biomes: {
-	DemonSiegeZone: {
-		DisplayName: 恶魔围攻
-		TownNPCDialogueName: 血巢
-	}
-
-	GlimmerZone: {
-		DisplayName: 柔光
-		TownNPCDialogueName: 柔光
-	}
-
-	SpaceStormZone: {
-		DisplayName: 太空风暴
-		TownNPCDialogueName: 太空风暴
-	}
-
-	PollutedOceanBiome: {
-		// DisplayName: Polluted Ocean
-		// TownNPCDialogueName: the Polluted Ocean
-	}
-}
-
 InfoDisplays: {
 	CalendarInfoDisplay: {
 		DisplayName: "{$Items.Calendar.DisplayName}"
