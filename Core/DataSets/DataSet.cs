@@ -82,9 +82,7 @@ public abstract class DataSet : IModType, ILoadable, IPostSetupContent, IAddReci
 
     public void PostAddRecipes(Aequus aequus) {
         PostAddRecipes();
-#if DEBUG
         File.CreateTempFile();
-#endif
     }
     public virtual void PostAddRecipes() {
     }

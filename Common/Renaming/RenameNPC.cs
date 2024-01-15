@@ -1,5 +1,7 @@
 ﻿using Aequus.Content.DataSets;
+using System.Diagnostics;
 using System.IO;
+using Terraria;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Common.Renaming;
@@ -54,12 +56,15 @@ public sealed class RenameNPC : GlobalNPC {
             CustomName = savedNameTag;
         }
 
-#if DEBUG
+        LogCustomName(npc);
+    }
+
+    [Conditional("DEBUG")]
+    private void LogCustomName(NPC npc) {
         if (HasCustomName) {
             Mod.Logger.Debug($"netID: {npc.netID}, {npc}");
             Mod.Logger.Debug(CustomName ?? "Null");
         }
-#endif
     }
 
     public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
