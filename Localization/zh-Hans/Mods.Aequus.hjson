@@ -1,3 +1,10 @@
+Biomes: {
+	PollutedOceanBiome: {
+		// DisplayName: Polluted Ocean
+		// TownNPCDialogueName: the Polluted Ocean
+	}
+}
+
 InfoDisplays: {
 	CalendarInfoDisplay: {
 		DisplayName: "{$Items.Calendar.DisplayName}"

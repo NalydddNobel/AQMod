@@ -1,9 +1,5 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Common.Items.EquipmentBooster;
-using Aequus.Common.Particles;
 using Aequus.Content.DataSets;
-using Aequus.Content.Weapons.Ranged.Darts.Ammo;
-using Aequus.Core.DataSets;
 using Aequus.Core.Initialization;
 using System;
 using System.Collections.Generic;

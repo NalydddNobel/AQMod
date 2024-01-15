@@ -1,6 +1,6 @@
-﻿using Aequus.Common.Particles;
-using Aequus.Core;
+﻿using Aequus.Core;
 using Aequus.Core.Graphics;
+using Aequus.Core.Particles;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -8,27 +8,13 @@ using Terraria.DataStructures;
 
 namespace Aequus.Content.Biomes.PollutedOcean.Tiles.SeaPickles;
 
-public class SeaPickleAmbientParticles : ParticleBatch {
+public class SeaPickleAmbientParticles : ParticleSystem {
     private readonly Dictionary<Point16, List<AmbientParticle>> _particleAnchorPairs = new();
 
-    private class AmbientParticle : IPoolable {
-        public Vector2 position;
-        public Vector2 oldPosition;
-
-        public Vector2 Velocity => position - oldPosition;
-
-        public short animation;
-        public float scale;
-
-        public Rectangle _frame;
-
-        public bool Resting { get; set; }
-    }
+    public override int ParticleCount => _particleAnchorPairs.Count;
 
     public void New(Point16 where) {
-        if (Main.netMode == NetmodeID.Server) {
-            return;
-        }
+        Activate();
 
         var particle = InstancePool<AmbientParticle>.Get();
         particle.animation = (short)Main.rand.Next(-120, 0);
@@ -38,10 +24,6 @@ public class SeaPickleAmbientParticles : ParticleBatch {
         particle._frame = new Rectangle(Main.rand.Next(2) * 8, Main.rand.Next(3) * 8, 6, 6);
 
         (CollectionsMarshal.GetValueRefOrAddDefault(_particleAnchorPairs, where, out _) ??= new()).Add(particle);
-    }
-
-    public override void Load() {
-        DrawLayers.PostDrawLiquids += Draw;
     }
 
     public override void Update() {
@@ -114,8 +96,6 @@ public class SeaPickleAmbientParticles : ParticleBatch {
         var bloomOrigin = bloomTexture.Size() / 2f;
         lock (_particleAnchorPairs) {
             foreach (var pair in _particleAnchorPairs) {
-                //var drawColor = new Color(20, 255, 150) * 0.6f; // Turquoise
-                //var drawColor = new Color(255, 255, 30) * 0.5f; // Yellow
                 SeaPicklesTileBase.GetDrawData(pair.Key.X, pair.Key.Y, out var drawColor);
 
                 var bloomColor = drawColor with { A = 0 } * 0.03f;
@@ -133,5 +113,27 @@ public class SeaPickleAmbientParticles : ParticleBatch {
                 }
             }
         }
+    }
+
+    public override void OnActivate() {
+        DrawLayers.Instance.PostDrawLiquids += Draw;
+    }
+
+    public override void Deactivate() {
+        DrawLayers.Instance.PostDrawLiquids -= Draw;
+    }
+
+    private class AmbientParticle : IPoolable {
+        public Vector2 position;
+        public Vector2 oldPosition;
+
+        public Vector2 Velocity => position - oldPosition;
+
+        public short animation;
+        public float scale;
+
+        public Rectangle _frame;
+
+        public bool Resting { get; set; }
     }
 }

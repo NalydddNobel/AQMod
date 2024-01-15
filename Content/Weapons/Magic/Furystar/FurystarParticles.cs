@@ -4,7 +4,7 @@ using System;
 
 namespace Aequus.Content.Weapons.Magic.Furystar;
 
-public class FurystarParticles : ParticleSystem<FurystarParticles.Particle> {
+public class FurystarParticles : ParticleArray<FurystarParticles.Particle> {
     public override int ParticleCount => 50;
 
     public override void Draw(SpriteBatch spriteBatch) {
@@ -70,7 +70,7 @@ public class FurystarParticles : ParticleSystem<FurystarParticles.Particle> {
         }
     }
 
-    public override void Activate() {
+    public override void OnActivate() {
         DrawLayers.Instance.PostDrawDust += Draw;
     }
 

@@ -4,7 +4,7 @@ using System;
 
 namespace Aequus.Content.Items.Tools.AnglerLamp;
 
-public class WispLanternParticles : ParticleSystem<WispLanternParticles.Particle> {
+public class WispLanternParticles : ParticleArray<WispLanternParticles.Particle> {
     public override int ParticleCount => 50;
 
     public override void Draw(SpriteBatch spriteBatch) {
@@ -87,7 +87,7 @@ public class WispLanternParticles : ParticleSystem<WispLanternParticles.Particle
         }
     }
 
-    public override void Activate() {
+    public override void OnActivate() {
         DrawLayers.Instance.PostDrawDust += Draw;
     }
 
