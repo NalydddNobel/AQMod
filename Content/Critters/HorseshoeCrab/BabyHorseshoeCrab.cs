@@ -2,8 +2,8 @@
 
 public class BabyHorseshoeCrab : HorseshoeCrab {
     public override void SetDefaults() {
-        NPC.width = 4;
-        NPC.height = 4;
+        NPC.width = 8;
+        NPC.height = 8;
         base.SetDefaults();
     }
 }
