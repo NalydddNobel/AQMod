@@ -1,20 +1,3 @@
-Biomes: {
-	DemonSiegeZone: {
-		DisplayName: Zona del Asedio demoniaco
-		TownNPCDialogueName: La zona del Asedio demoniaco
-	}
-
-	GlimmerZone: {
-		DisplayName: Zona del Destello
-		TownNPCDialogueName: la zona del destello
-	}
-
-	SpaceStormZone: {
-		DisplayName: Space Storm Zone
-		TownNPCDialogueName: the Space Storm Zone
-	}
-}
-
 InfoDisplays: {
 	CalendarInfoDisplay: {
 		DisplayName: "{$Items.Calendar.DisplayName}"
