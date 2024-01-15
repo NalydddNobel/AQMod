@@ -27,7 +27,7 @@ public class DashParticles : ParallelParticleSystem<DashParticles.Particle> {
                 Vector2 velocity = particle.Velocity;
                 Color color = LightHelper.GetLightColor(particle.Location) * 0.66f * particle.Opacity;
 
-                for (int i = 0; i < 7; i++) {
+                for (int i = 0; i < 3; i++) {
                     spriteBatch.Draw(texture, drawLocation - velocity * i, frame, color * 0.1f, rotation, origin, scale, SpriteEffects.None, 0f);
                 }
                 spriteBatch.Draw(texture, drawLocation, frame, color, rotation, origin, scale, SpriteEffects.None, 0f);

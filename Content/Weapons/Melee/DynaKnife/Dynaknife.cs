@@ -42,13 +42,15 @@ public class Dynaknife : ModItem, ICooldownItem {
         player.velocity.X = 12f * dir;
         player.RemoveAllGrapplingHooks();
 
-        Rectangle hitbox = player.getRect();
-        if (Cull2D.Rectangle(hitbox)) {
-            foreach (var particle in ModContent.GetInstance<DashParticles>().NewMultiple(16)) {
-                particle.Location = Main.rand.NextVector2FromRectangle(hitbox);
-                particle.Velocity = new Vector2(dir * Main.rand.NextFloat(10f, 16f), 0f);
-                particle.Rotation = particle.Velocity.ToRotation() + MathHelper.Pi;
-                particle.Scale = Main.rand.NextFloat(1f, 1.5f);
+        if (Main.netMode != NetmodeID.Server) {
+            Rectangle hitbox = player.getRect();
+            if (Cull2D.Rectangle(hitbox)) {
+                foreach (var particle in ModContent.GetInstance<DashParticles>().NewMultiple(16)) {
+                    particle.Location = Main.rand.NextVector2FromRectangle(hitbox);
+                    particle.Velocity = new Vector2(dir * Main.rand.NextFloat(10f, 16f), 0f);
+                    particle.Rotation = particle.Velocity.ToRotation() + MathHelper.Pi;
+                    particle.Scale = Main.rand.NextFloat(1f, 1.5f);
+                }
             }
         }
     }

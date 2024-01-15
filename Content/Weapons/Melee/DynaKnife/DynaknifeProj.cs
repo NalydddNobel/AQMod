@@ -59,13 +59,15 @@ public class DynaknifeProj : HeldSlashingSwordProjectile {
             SoundEngine.PlaySound(AequusSounds.UseDagger with { Volume = 0.4f }, Projectile.Center);
         }
 
-        Rectangle hitbox = Main.player[Projectile.owner].getRect();
-        if (Cull2D.Rectangle(hitbox) && Main.player[Projectile.owner].velocity.Length() > 6f && Main.player[Projectile.owner].altFunctionUse == 2 && (Main.player[Projectile.owner].itemTimeMax - Main.player[Projectile.owner].itemTime + 1) % 10 == 0) {
-            var particle = ModContent.GetInstance<DashParticles>().New();
-            particle.Location = Main.rand.NextVector2FromRectangle(hitbox) - Main.player[Projectile.owner].velocity;
-            particle.Velocity = new Vector2(Main.player[Projectile.owner].velocity.X * 0.8f, Main.player[Projectile.owner].velocity.Y * 0.4f);
-            particle.Rotation = particle.Velocity.ToRotation() + MathHelper.Pi;
-            particle.Scale = Main.rand.NextFloat(1f, 1.5f);
+        if (Main.netMode != NetmodeID.Server) {
+            Rectangle hitbox = Main.player[Projectile.owner].getRect();
+            if (Cull2D.Rectangle(hitbox) && Main.player[Projectile.owner].velocity.Length() > 6f && Main.player[Projectile.owner].altFunctionUse == 2 && (Main.player[Projectile.owner].itemTimeMax - Main.player[Projectile.owner].itemTime + 1) % 10 == 0) {
+                var particle = ModContent.GetInstance<DashParticles>().New();
+                particle.Location = Main.rand.NextVector2FromRectangle(hitbox) - Main.player[Projectile.owner].velocity;
+                particle.Velocity = new Vector2(Main.player[Projectile.owner].velocity.X * 0.8f, Main.player[Projectile.owner].velocity.Y * 0.4f);
+                particle.Rotation = particle.Velocity.ToRotation() + MathHelper.Pi;
+                particle.Scale = Main.rand.NextFloat(1f, 1.5f);
+            }
         }
     }
 
