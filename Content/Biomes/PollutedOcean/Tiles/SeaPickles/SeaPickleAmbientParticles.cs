@@ -27,6 +27,8 @@ public class SeaPickleAmbientParticles : ParticleSystem {
     }
 
     public override void Update() {
+        Active = false;
+
         lock (_particleAnchorPairs) {
             foreach (var p in _particleAnchorPairs) {
                 var tileAnchor = p.Key;
@@ -50,6 +52,8 @@ public class SeaPickleAmbientParticles : ParticleSystem {
                         i--;
                         continue;
                     }
+
+                    Active = true;
 
                     var velocity = particle.Velocity;
                     particle.oldPosition = particle.position;
