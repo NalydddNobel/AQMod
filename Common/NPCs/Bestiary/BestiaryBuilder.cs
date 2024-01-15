@@ -49,6 +49,11 @@ internal static class BestiaryBuilder {
         return new EntryEditor(key, database, bestiaryEntry, modNPC);
     }
 
+    public static EntryEditor CreateEntry(this ModNPC modNPC, string key, BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+        TextHelper.RegisterKey(key);
+        return new EntryEditor(key, database, bestiaryEntry, modNPC);
+    }
+
     public static void ReSort(ModNPC modNPC, int wantedBestiaryId) {
         int oldEntryID = ContentSamples.NpcBestiarySortingId[modNPC.Type];
         if (oldEntryID == wantedBestiaryId) {
