@@ -262,11 +262,13 @@ public class BackpackLoader {
     public static void AnimateBackpacks(BackpackData[] backpacks, out int totalInventorySlots, out int activeBackpacks) {
         totalInventorySlots = 0;
         activeBackpacks = 0;
+        bool anyBackpacks = false;
         for (int i = 0; i < backpacks.Length; i++) {
             if (!backpacks[i].IsActive(Main.LocalPlayer) || !backpacks[i].IsVisible() || backpacks[i].Inventory == null) {
                 if (backpacks[i].slotsToRender > 0) {
                     backpacks[i].slotsToRender--;
                     backpacks[i].nextSlotAnimation = 0f;
+                    anyBackpacks = true;
                 }
                 continue;
             }
@@ -285,6 +287,16 @@ public class BackpackLoader {
 
             totalInventorySlots += backpacks[i].Inventory.Length;
             activeBackpacks++;
+            anyBackpacks = true;
+        }
+
+        if (!anyBackpacks || !Main.playerInventory) {
+            return;
+        }
+
+        BackpackSlotsUI backpackUI = ModContent.GetInstance<BackpackSlotsUI>();
+        if (!backpackUI.Active) {
+            backpackUI.Activate();
         }
     }
 

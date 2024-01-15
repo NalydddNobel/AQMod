@@ -5,7 +5,7 @@ using Terraria.GameContent;
 
 namespace Aequus.Common.UI.EventBars;
 
-public class AequusEventBarLoader : ILoadable {
+public class LegacyEventBarLoader : ILoadable {
     public static byte ActiveBar { get; internal set; } = 255;
     public static bool PlayerSafe { get; internal set; }
 

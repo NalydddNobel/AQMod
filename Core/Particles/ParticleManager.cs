@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.Core.UI;
+using System.Collections.Generic;
 
 namespace Aequus.Core.Particles;
 
@@ -21,11 +22,12 @@ public class ParticleManager : ModSystem {
     }
 
     public override void PreUpdateEntities() {
+        DiagnosticsMenu.StartStopwatch();
+
         if (_activeSystems.Count == 0) {
+            DiagnosticsMenu.EndStopwatch(DiagnosticsMenu.TimerType.Particles);
             return;
         }
-
-        TimeLog.Start();
 
         LinkedListNode<IParticleSystem> systemNode = _activeSystems.First;
         do {
@@ -38,6 +40,6 @@ public class ParticleManager : ModSystem {
         }
         while ((systemNode = systemNode.Next) != null);
 
-        TimeLog.Log(TimeLog.Type.NewParticleUpdates);
+        DiagnosticsMenu.EndStopwatch(DiagnosticsMenu.TimerType.Particles);
     }
 }

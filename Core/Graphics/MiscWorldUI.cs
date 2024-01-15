@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.UI;
 using Aequus.Core.Graphics.Commands;
+using Aequus.Core.UI;
 using System;
 using Terraria.UI;
 
@@ -14,11 +15,8 @@ namespace Aequus.Core.Graphics {
         /// </summary>
         public static readonly DrawCommandHandler Drawer = new();
 
-        public override string Layer => InterfaceLayers.EntityHealthBars_16;
-        public override InterfaceScaleType ScaleType => InterfaceScaleType.Game;
-
-        public override bool Draw(SpriteBatch spriteBatch) {
-            Drawer.InvokeAll(spriteBatch);
+        protected override bool DrawSelf() {
+            Drawer.InvokeAll(Main.spriteBatch);
             return true;
         }
 
@@ -29,5 +27,7 @@ namespace Aequus.Core.Graphics {
         public override void OnClearWorld() {
             Drawer.Clear();
         }
+
+        public MiscWorldUI() : base("Remove", InterfaceLayers.EntityHealthBars_16, InterfaceScaleType.Game) { }
     }
 }

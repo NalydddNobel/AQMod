@@ -2,6 +2,7 @@
 using Aequus.Common.UI;
 using Aequus.Common.UI.Inventory;
 using Aequus.Content.Equipment.Accessories.ScavengerBag;
+using Aequus.Core.UI;
 using System;
 using Terraria.GameContent;
 using Terraria.GameInput;
@@ -16,11 +17,13 @@ public class BackpackSlotsUI : UILayer {
     public const float InventoryScale = 0.85f;
     public const int BackpackPadding = 6;
 
-    public override string Layer => InterfaceLayers.Inventory_28;
-
     public static string HoveringBackpackSlotName { get; set; }
 
-    public override bool Draw(SpriteBatch spriteBatch) {
+    public override bool OnUIUpdate(GameTime gameTime) {
+        return Main.playerInventory;
+    }
+
+    protected override bool DrawSelf() {
         HoveringBackpackSlotName = string.Empty;
         if (!Main.playerInventory) {
             return true;
@@ -136,4 +139,6 @@ public class BackpackSlotsUI : UILayer {
             }
         }
     }
+
+    public BackpackSlotsUI() : base("Backpack", InterfaceLayers.Inventory_28, InterfaceScaleType.UI) { }
 }

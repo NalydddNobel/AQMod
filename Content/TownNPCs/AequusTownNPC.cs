@@ -1,16 +1,11 @@
 ﻿using Aequus.Common.NPCs.Components;
-using Aequus.Core.Graphics;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria.GameContent;
 using static Terraria.GameContent.Profiles;
 
 namespace Aequus.Content.TownNPCs;
 
 public abstract class AequusTownNPC : ModNPC, IModifyShoppingSettings, ITalkNPCUpdate {
-    public bool ShowExclamation;
-    public float ExclamationOpacity;
+    public bool ShowExclamation { get; protected set; }
     public byte CheckExclamationTimer;
 
     public override void SetStaticDefaults() {
@@ -49,26 +44,17 @@ public abstract class AequusTownNPC : ModNPC, IModifyShoppingSettings, ITalkNPCU
 
     public override void AI() {
         base.AI();
+
         if (CheckExclamationTimer > 0) {
             CheckExclamationTimer--;
         }
         else {
+            CheckExclamationTimer = byte.MaxValue;
             ShowExclamation = CheckExclamation();
         }
 
-        if (ShowExclamation) {
-            ExclamationOpacity = MathHelper.Lerp(ExclamationOpacity, 1f, 0.1f);
-            ExclamationOpacity += 0.01f;
-            if (ExclamationOpacity > 1f) {
-                ExclamationOpacity = 1f;
-            }
-        }
-        else {
-            ExclamationOpacity = MathHelper.Lerp(ExclamationOpacity, 0f, 0.1f);
-            ExclamationOpacity -= 0.01f;
-            if (ExclamationOpacity < 0f) {
-                ExclamationOpacity = 0f;
-            }
+        if (Main.netMode != NetmodeID.Server) {
+            ModContent.GetInstance<TownNPCUI>().SetExclamation(NPC.whoAmI, ShowExclamation);
         }
     }
 
@@ -81,38 +67,11 @@ public abstract class AequusTownNPC : ModNPC, IModifyShoppingSettings, ITalkNPCU
 
     public virtual void TalkNPCUpdate(Player player) {
     }
-
-    protected virtual bool PreDrawExclamation(SpriteBatch spriteBatch, Vector2 screenPos, Color npcDrawColor) {
-        return true;
-    }
-
-    public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
-        if (ExclamationOpacity > 0f && !NPC.IsABestiaryIconDummy && PreDrawExclamation(spriteBatch, screenPos, drawColor)) {
-            var texture = AequusTextures.TownNPCExclamation;
-            float opacity = ExclamationOpacity;
-            float scale = Helper.Oscillate(Main.GlobalTimeWrappedHourly * 2.5f, 0.9f, 1.1f) * opacity;
-            var drawPosition = (NPC.Top + new Vector2(0f, -6f - 20f * MathF.Pow(opacity, 3f)) - screenPos).Floor();
-            var origin = texture.Size() / 2f;
-            var clr = new Color(150, 150, 255, 222) * opacity;
-            MiscWorldUI.Drawer.Draw(AequusTextures.BloomStrong, drawPosition, null, Color.Black * opacity * 0.2f, 0f, AequusTextures.BloomStrong.Size() / 2f, 0.5f, SpriteEffects.None, 0f);
-
-            if (scale > 1f) {
-                float auraOpacity = (scale - 1f) / 0.1f;
-                var spinningPoint = new Vector2(2f, 0f);
-                for (int i = 0; i < 4; i++) {
-                    MiscWorldUI.Drawer.Draw(texture, drawPosition + spinningPoint.RotatedBy(i * MathHelper.PiOver2), null, clr with { A = 0 } * auraOpacity, 0f, origin, scale, SpriteEffects.None, 0f);
-                }
-            }
-
-            MiscWorldUI.Drawer.Draw(texture, drawPosition, null, clr, 0f, origin, scale, SpriteEffects.None, 0f);
-        }
-        return true;
-    }
 }
 
 public abstract class AequusTownNPC<T> : AequusTownNPC where T : AequusTownNPC<T> {
-    public static int ShimmerHeadIndex;
-    public static StackedNPCProfile Profile;
+    public static int ShimmerHeadIndex { get; protected set; }
+    public static StackedNPCProfile Profile { get; protected set; }
 
     protected static string ShimmerTexture => $"{typeof(T).NamespaceFilePath()}/Shimmer/{typeof(T).Name}";
 

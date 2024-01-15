@@ -1,6 +1,4 @@
 ﻿using Aequus.Common.UI.EventBars;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria.GameInput;
@@ -17,7 +15,6 @@ public partial class UISystem : ModSystem {
     public static ItemSlotContext CurrentItemSlot;
 
     public static HashSet<int> ValidOnlineLinkedSlotContext { get; private set; }
-    public static readonly List<UILayer> UserInterfaces = new();
 
     public static int BottomInventoryY => 260;
 
@@ -30,10 +27,6 @@ public partial class UISystem : ModSystem {
     public static Color InventoryBackColor => invBackColor * invBackColorMultipler;
 
     public static UserInterface TalkInterface { get; private set; }
-
-    public static void RegisterUserInterface(UILayer face) {
-        UserInterfaces.Add(face);
-    }
 
     public override void Load() {
         LoadHooks();
@@ -76,26 +69,13 @@ public partial class UISystem : ModSystem {
 
     public override void ClearWorld() {
         TalkInterface?.SetState(null);
-        if (Main.netMode != NetmodeID.Server) {
-            foreach (var i in UserInterfaces) {
-                i.OnClearWorld();
-            }
-        }
     }
 
     public override void PreUpdatePlayers() {
-        if (Main.netMode != NetmodeID.Server) {
-            foreach (var i in UserInterfaces) {
-                i.OnPreUpdatePlayers();
-            }
-        }
     }
 
     public override void UpdateUI(GameTime gameTime) {
         bottomLeftInventoryOffsetX = 0;
-        foreach (var i in UserInterfaces) {
-            i.OnUIUpdate(gameTime);
-        }
         TalkInterface.Update(gameTime);
         if (Main.mouseItem != null && !Main.mouseItem.IsAir) {
             specialLeftClickDelay = Math.Max(specialLeftClickDelay, (byte)20);
@@ -115,18 +95,8 @@ public partial class UISystem : ModSystem {
         bottomLeftInventoryOffsetX = 0;
         ManageUserInterfaceLayer(layers, TalkInterface, InterfaceLayers.Inventory_28, "Aequus: NPC Talk Interface", InterfaceScaleType.UI);
 
-        foreach (var i in UserInterfaces) {
-            InsertInterfaceDrawMethod(layers, i.Layer, $"{i.Mod}: {i.Name}", () => {
-                return i.Draw(Main.spriteBatch);
-            }, i.ScaleType);
-        }
-
-        //InsertInterfaceDrawMethod(layers, InterfaceLayers.Ruler_6, "Aequus: Misc World Interface", () => {
-        //    return true;
-        //}, InterfaceScaleType.Game);
-
         InsertInterfaceDrawMethod(layers, InterfaceLayers.Inventory_28, "Aequus: Inventory", () => {
-            AequusEventBarLoader.Draw();
+            LegacyEventBarLoader.Draw();
             return true;
         });
     }

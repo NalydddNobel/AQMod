@@ -835,11 +835,6 @@
             A drawdata list to add into, if you know how Player Layers work, this should be familiar. Currently doesn't support shaders.
             </summary>
         </member>
-        <member name="M:Aequus.Core.Graphics.RequestRenderer.ClearWorld">
-            <summary>
-            Ran on world Load/Unload
-            </summary>
-        </member>
         <member name="T:Aequus.Core.Graphics.Tiles.BatchedTileDrawInfo">
             <summary>
             Tile draw info used internally with <see cref="T:Aequus.Core.Graphics.Tiles.BatchedTileRenderer"/>.
@@ -896,6 +891,32 @@
             <summary>
             Allows the renderer to unsubscribe to various drawing actions.
             This is ran when all particles are cleared from the system.
+            </summary>
+        </member>
+        <member name="T:Aequus.Core.UI.UILayer">
+            <summary>
+            Used to simplify UI implementation. Only loads in singleplayer or on multiplayer clients.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.UI.UILayer.#ctor(System.String,System.String,Terraria.UI.InterfaceScaleType,System.Int32)">
+            <param name="Name">Name of this layer.</param>
+            <param name="InsertLayer">Name of the layer to search the index of.</param>
+            <param name="ScaleType">Scale Type of this layer.</param>
+            <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
+        </member>
+        <member name="M:Aequus.Core.UI.UILayer.Activate">
+            <summary>
+            Activates the UI Layer.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.UI.UILayer.Deactivate">
+            <summary>
+            Deactivates the UI Layer. This does not instantly remove the layer, instead it will be removed on the next ui update.
+            </summary>
+        </member>
+        <member name="T:Aequus.Core.UI.UILayersSystem">
+            <summary>
+            Only loads in singleplayer or on multiplayer clients.
             </summary>
         </member>
         <member name="M:Aequus.Core.Utilities.Helper.RandomTileCoordinates(System.Int32,System.Int32)">

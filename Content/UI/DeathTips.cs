@@ -1,16 +1,25 @@
 ﻿using Aequus.Common.UI;
 using Aequus.Content.Configuration;
-using Microsoft.Xna.Framework.Graphics;
+using Aequus.Core.UI;
+using Terraria.UI;
 
 namespace Aequus.Content.UI;
 
 public class DeathTips : UILayer {
-    public override string Layer => InterfaceLayers.PlayerChat_35;
-
     public bool resetGameTips;
 
-    public override bool Draw(SpriteBatch spriteBatch) {
-        if (Main.gameMenu || !ClientConfig.Instance.ShowDeathTips) {
+    public override void OnPreUpdatePlayers() {
+        if (ClientConfig.Instance.ShowDeathTips && !Active && Main.LocalPlayer.dead && !Main.LocalPlayer.ghost) {
+            Activate();
+        }
+    }
+
+    public override bool OnUIUpdate(GameTime gameTime) {
+        return Main.LocalPlayer.dead && ClientConfig.Instance.ShowDeathTips;
+    }
+
+    protected override bool DrawSelf() {
+        if (Main.gameMenu) {
             return true;
         }
 
@@ -27,4 +36,6 @@ public class DeathTips : UILayer {
         Main.gameTips.Draw();
         return true;
     }
+
+    public DeathTips() : base("Death Tips", InterfaceLayers.PlayerChat_35, InterfaceScaleType.UI) { }
 }
