@@ -1,6 +1,6 @@
-﻿using Aequus.Common.Particles;
-using Aequus.Common.Projectiles;
-using Microsoft.Xna.Framework;
+﻿using Aequus.Common.Projectiles;
+using Aequus.Content.Graphics.Particles;
+using Aequus.Core;
 using System;
 using Terraria.Audio;
 
@@ -59,9 +59,15 @@ public class DynaknifeProj : HeldSlashingSwordProjectile {
             SoundEngine.PlaySound(AequusSounds.UseDagger with { Volume = 0.4f }, Projectile.Center);
         }
 
-        if (Main.player[Projectile.owner].velocity.Length() > 6f && Main.player[Projectile.owner].altFunctionUse == 2 && (Main.player[Projectile.owner].itemTimeMax - Main.player[Projectile.owner].itemTime + 1) % 10 == 0) {
-            ParticleSystem.New<MovementParticle>(ParticleLayer.AboveDust)
-                .Setup(Main.rand.NextVector2FromRectangle(Main.player[Projectile.owner].getRect()) - Main.player[Projectile.owner].velocity, new Vector2(Main.player[Projectile.owner].velocity.X * 0.8f, Main.player[Projectile.owner].velocity.Y * 0.4f), Color.White, Main.rand.NextFloat(1f, 1.5f));
+        if (Main.netMode != NetmodeID.Server) {
+            Rectangle hitbox = Main.player[Projectile.owner].getRect();
+            if (Cull2D.Rectangle(hitbox) && Main.player[Projectile.owner].velocity.Length() > 6f && Main.player[Projectile.owner].altFunctionUse == 2 && (Main.player[Projectile.owner].itemTimeMax - Main.player[Projectile.owner].itemTime + 1) % 10 == 0) {
+                var particle = ModContent.GetInstance<DashParticles>().New();
+                particle.Location = Main.rand.NextVector2FromRectangle(hitbox) - Main.player[Projectile.owner].velocity;
+                particle.Velocity = new Vector2(Main.player[Projectile.owner].velocity.X * 0.8f, Main.player[Projectile.owner].velocity.Y * 0.4f);
+                particle.Rotation = particle.Velocity.ToRotation() + MathHelper.Pi;
+                particle.Scale = Main.rand.NextFloat(1f, 1.5f);
+            }
         }
     }
 

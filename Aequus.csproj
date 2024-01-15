@@ -16,6 +16,9 @@
   </ItemGroup>
 		
   <ItemGroup>
+    <None Remove="Temp\SourceGenerators.Generator\**" />
+	<EmbeddedResource Remove="Temp\SourceGenerators.Generator\**" />
+	<Compile Remove="Temp\SourceGenerators.Generator\**" />
     <None Remove="SourceGenerators\**" />
 	<EmbeddedResource Remove="SourceGenerators\**" />
 	<Compile Remove="SourceGenerators\**" />

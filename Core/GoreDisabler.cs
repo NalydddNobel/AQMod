@@ -12,7 +12,7 @@ public class GoreDisabler : ILoadable {
         if (DisableGores) {
             return Main.maxGore;
         }
-
+        
         return orig(source, Position, Velocity, Type, Scale);
     }
 

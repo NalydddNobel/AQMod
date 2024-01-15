@@ -2,6 +2,7 @@
 using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Content.DataSets;
 using Aequus.Content.Tiles.Banners;
+using Aequus.Core.Graphics;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
@@ -18,6 +19,7 @@ public partial class BlackJellyfish : AIJellyfish {
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = 4;
         NPCSets.PushableByTypeId.AddEntry(Type);
+        DrawLayers.Instance.PostDrawLiquids += DrawExplodingJellyfishesLayer;
     }
 
     public override void SetDefaults() {

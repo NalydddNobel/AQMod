@@ -25,4 +25,11 @@ public class NeutronYogurt : ModItem {
         Item.buffType = ModContent.BuffType<NeutronYogurtBuff>();
         Item.buffTime = 28800;
     }
+
+    public override void AddRecipes() {
+        CreateRecipe()
+            .AddIngredient(ItemID.FallenStar, 5)
+            .AddTile(TileID.CookingPots)
+            .Register();
+    }
 }

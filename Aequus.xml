@@ -9,6 +9,15 @@
             Shorthand for a bunch of checks determining whether the game is unpaused.
             </summary>
         </member>
+        <member name="M:Aequus.Common.Backpacks.BackpackData.Deactivate(Terraria.Player)">
+            <summary>
+            Runs when the Backpack is no longer active. Use this hook to deposit items from the Backpack.
+            </summary>
+            <param name="player"></param>
+        </member>
+        <member name="M:Aequus.Common.Backpacks.BackpackData.PreDrawSlot(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32)">
+            <summary>Return false to override slot drawing.</summary>
+        </member>
         <member name="M:Aequus.Common.Golfing.GolfingSystem.SetGolfBallStatus(System.Boolean)">
             <summary>
             Sets all fake golf balls to be counted or not counted as golf balls.
@@ -37,12 +46,17 @@
         </member>
         <member name="P:Aequus.Common.Items.AequusRecipes.AnyPaints">
             <summary>
-            <see cref="T:Terraria.RecipeGroup"/> for trash items.
+            <see cref="T:Terraria.RecipeGroup"/> for paints.
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.AequusRecipes.AnyCoatings">
+            <summary>
+            <see cref="T:Terraria.RecipeGroup"/> for coatings.
             </summary>
         </member>
         <member name="P:Aequus.Common.Items.AequusRecipes.AnyTrash">
             <summary>
-            <see cref="T:Terraria.RecipeGroup"/> for paints.
+            <see cref="T:Terraria.RecipeGroup"/> for trash items.
             </summary>
         </member>
         <member name="T:Aequus.Common.Items.Components.IManageProjectile">
@@ -50,21 +64,16 @@
             Allows the item to grant various effects to fired projectiles. All of these methods are not instanced, do NOT use <see cref="P:Terraria.ModLoader.ModItem.Item"/> data.
             The methods granted by this interface are:
             <list type="bullet">
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreAIProjectile(Terraria.Projectile,Aequus.Common.Projectiles.AequusProjectile)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.AIProjectile(Terraria.Projectile,Aequus.Common.Projectiles.AequusProjectile)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PostAIProjectile(Terraria.Projectile,Aequus.Common.Projectiles.AequusProjectile)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreDrawProjectile(Terraria.Projectile,Aequus.Common.Projectiles.AequusProjectile,Microsoft.Xna.Framework.Color@)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PostDrawProjectile(Terraria.Projectile,Aequus.Common.Projectiles.AequusProjectile,Microsoft.Xna.Framework.Color@)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnHitNPCProjectile(Terraria.Projectile,Aequus.Common.Projectiles.AequusProjectile,Terraria.NPC,Terraria.NPC.HitInfo,System.Int32)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnTileCollideProjectile(Terraria.Projectile,Aequus.Common.Projectiles.AequusProjectile,Microsoft.Xna.Framework.Vector2)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreKillProjectile(Terraria.Projectile,Aequus.Common.Projectiles.AequusProjectile,System.Int32)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnKillProjectile(Terraria.Projectile,Aequus.Common.Projectiles.AequusProjectile,System.Int32)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreAIProjectile(Terraria.Projectile)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.AIProjectile(Terraria.Projectile)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PostAIProjectile(Terraria.Projectile)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreDrawProjectile(Terraria.Projectile,Microsoft.Xna.Framework.Color@)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PostDrawProjectile(Terraria.Projectile,Microsoft.Xna.Framework.Color@)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnHitNPCProjectile(Terraria.Projectile,Terraria.NPC,Terraria.NPC.HitInfo,System.Int32)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnTileCollideProjectile(Terraria.Projectile,Microsoft.Xna.Framework.Vector2)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreKillProjectile(Terraria.Projectile,System.Int32)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnKillProjectile(Terraria.Projectile,System.Int32)"/></item>
             </list>
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.Components.IStorageItem.HasValidInventory">
-            <summary>
-            Whether or not this backpack has a valid inventory. This is used to prevent duping exploits using Autopause and weird abusing instance crap.
             </summary>
         </member>
         <member name="M:Aequus.Common.Items.Components.IUpdateItemDye.Player_UpdateItemDye(Terraria.On_Player.orig_UpdateItemDye,Terraria.Player,System.Boolean,System.Boolean,Terraria.Item,Terraria.Item)">
@@ -614,39 +623,9 @@
             A list of <see cref="T:Terraria.ModLoader.ModBiome"/>s which will override Aequus biome spawns.
             </summary>
         </member>
-        <member name="M:Aequus.Common.Particles.ParticleSystem.New``1(Aequus.Common.Particles.ParticleLayer)">
-            <summary>
-            Do not use on servers.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="layer"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Common.Players.Backpacks.BackpackData.Deactivate(Terraria.Player,Aequus.AequusPlayer)">
-            <summary>
-            Runs when the Backpack is no longer active. Use this hook to deposit items from the Backpack.
-            </summary>
-            <param name="player"></param>
-            <param name="aequusPlayer"></param>
-        </member>
         <member name="P:Aequus.Common.Players.CustomDashData.DashHaltSpeedMultiplier">
             <summary>
             Multiplier used to reduce velocity when above the dash's halting speed.
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.Projectiles.AequusProjectile.itemData">
-            <summary>
-            Custom data to be used by items which utilize the <see cref="T:Aequus.Common.Items.Components.IManageProjectile"/> interface or by channeled items. This data is synced in multiplayer.
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.Projectiles.AequusProjectile.noSpecialEffects">
-            <summary>
-            If this is true, special effects should be disabled on the projectile. This is only set to true by Javelin-like projectiles.
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.Projectiles.AequusProjectile.isProjectileChild">
-            <summary>
-            Whether this projectile was spawned by another projectile. Use this to prevent effects occuring multiple times (Like ammo retrival)
             </summary>
         </member>
         <member name="F:Aequus.Common.Projectiles.HeldSlashingSwordProjectile.swordHeight">
@@ -669,6 +648,21 @@
             Outward offset, only effects rendering. Updated every game update.
             </summary>
         </member>
+        <member name="P:Aequus.Common.Projectiles.ProjectileItemData.ItemData">
+            <summary>
+            Custom data to be used by items which utilize the <see cref="T:Aequus.Common.Items.Components.IManageProjectile"/> interface or by channeled items. This data is synced in multiplayer.
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Projectiles.ProjectileItemData.NoSpecialEffects">
+            <summary>
+            If this is true, special effects should be disabled on the projectile. This is only set to true by Javelin-like projectiles.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.Projectiles.ProjectileSource.isProjectileChild">
+            <summary>
+            Whether this projectile was spawned by another projectile. Use this to prevent effects occuring multiple times (Like ammo retrival)
+            </summary>
+        </member>
         <member name="M:Aequus.Common.Projectiles.YoyoProjectileBase.IsYoyoGloveYoyo">
             <summary>
             Determines whether this projectile is the orbiting yoyo from the Yoyo Glove.
@@ -688,6 +682,16 @@
             <param name="y"></param>
             <param name="style"></param>
             <param name="notNearOtherChests"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Common.Tiles.Components.IPlaceChestHook.PlaceChestDirect(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Return true to allow vanilla function to occur.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="style"></param>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:Aequus.Common.Tiles.InstancedTileItem.#ctor(Terraria.ModLoader.ModTile,System.Int32,System.String,System.Boolean,System.Int32,System.Int32,System.Nullable{System.Int32})">
@@ -762,12 +766,12 @@
             Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
             </summary>
         </member>
-        <member name="P:Aequus.Content.Biomes.PollutedOcean.PollutedOceanGenerator.SafeTile">
+        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedOceanGenerator.SafeTile">
             <summary>
-            Similar to <see cref="P:Aequus.Content.Biomes.PollutedOcean.PollutedOceanGenerator.ReplaceableTile"/>, except if tile Ids in this entry are false, the Crab Crevice will actively try to steer away from generating around them.
+            Similar to <see cref="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedOceanGenerator.ReplaceableTile"/>, except if tile Ids in this entry are false, the Crab Crevice will actively try to steer away from generating around them.
             </summary>
         </member>
-        <member name="P:Aequus.Content.Biomes.PollutedOcean.PollutedOceanGenerator.ReplaceableTile">
+        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedOceanGenerator.ReplaceableTile">
             <summary>
             Lookup for tile Ids which are safe to generate over.
             </summary>
@@ -868,21 +872,6 @@
             This prevents some catches, like Jellyfishes being used as bait or being indicated as bait.
             </summary>
         </member>
-        <member name="T:Aequus.Core.Graphics.MiscWorldUI">
-            <summary>
-            Used to render any World elements which need to be on the UI layer. This renders after Entity Healthbars are drawn.
-            </summary>
-        </member>
-        <member name="F:Aequus.Core.Graphics.MiscWorldUI.Drawer">
-            <summary>
-            A drawdata list to add into, if you know how Player Layers work, this should be familiar. Currently doesn't support shaders.
-            </summary>
-        </member>
-        <member name="M:Aequus.Core.Graphics.RequestRenderer.ClearWorld">
-            <summary>
-            Ran on world Load/Unload
-            </summary>
-        </member>
         <member name="T:Aequus.Core.Graphics.Tiles.BatchedTileDrawInfo">
             <summary>
             Tile draw info used internally with <see cref="T:Aequus.Core.Graphics.Tiles.BatchedTileRenderer"/>.
@@ -922,6 +911,61 @@
             <summary>
             Grants a ModTile the ability to render post-draw elements in a batch to reduce on Begin/End calls.
             <para>Place SpecialTileDrawing.Add(i, j, Type); into ModTile.PostDraw(...) to add it to the rendering list.</para>
+            </summary>
+        </member>
+        <member name="T:Aequus.Core.Particles.ParallelParticleArray`1">
+            <summary>
+            A basic particle array system which updates particles in parallel.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:Aequus.Core.Particles.ParticleArray`1">
+            <summary>
+            A basic particle array system, initializes an array of a specified size on-load.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:Aequus.Core.Particles.ParticleManager">
+            <summary>
+            Handles and updates particle systems.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.Particles.ParticleSystem.OnActivate">
+            <summary>
+            Allows the renderer to subscribe to various drawing actions.
+            This is ran when the particle system is activated.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.Particles.ParticleSystem.Deactivate">
+            <summary>
+            Allows the renderer to unsubscribe to various drawing actions.
+            This is ran when all particles are cleared from the system.
+            </summary>
+        </member>
+        <member name="T:Aequus.Core.UI.UILayer">
+            <summary>
+            Used to simplify UI implementation. Only loads in singleplayer or on multiplayer clients.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.UI.UILayer.#ctor(System.String,System.String,Terraria.UI.InterfaceScaleType,System.Int32)">
+            <param name="Name">Name of this layer.</param>
+            <param name="InsertLayer">Name of the layer to search the index of.</param>
+            <param name="ScaleType">Scale Type of this layer.</param>
+            <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
+        </member>
+        <member name="M:Aequus.Core.UI.UILayer.Activate">
+            <summary>
+            Activates the UI Layer.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.UI.UILayer.Deactivate">
+            <summary>
+            Deactivates the UI Layer. This does not instantly remove the layer, instead it will be removed on the next ui update.
+            </summary>
+        </member>
+        <member name="T:Aequus.Core.UI.UILayersSystem">
+            <summary>
+            Only loads in singleplayer or on multiplayer clients.
             </summary>
         </member>
         <member name="M:Aequus.Core.Utilities.Helper.RandomTileCoordinates(System.Int32,System.Int32)">
@@ -1205,7 +1249,7 @@
             <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 303)</summary>
+            <summary>(Total Textures: 266)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1240,29 +1284,23 @@
         <member name="F:Aequus.AequusTextures.Flare2">
             <summary>Full Path: Assets/Textures/Flare2</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.FlareSoft">
+            <summary>Full Path: Assets/Textures/FlareSoft</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Fog">
             <summary>Full Path: Assets/Textures/Fog</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GenericExplosion">
             <summary>Full Path: Assets/Textures/GenericExplosion</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.InventoryBack">
-            <summary>Full Path: Assets/Textures/InventoryBack</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.InventoryBackFavorited">
-            <summary>Full Path: Assets/Textures/InventoryBackFavorited</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.InventoryBackNewItem">
-            <summary>Full Path: Assets/Textures/InventoryBackNewItem</summary>
+        <member name="F:Aequus.AequusTextures.LensFlare">
+            <summary>Full Path: Assets/Textures/LensFlare</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LightRayCircular">
             <summary>Full Path: Assets/Textures/LightRayCircular</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LightRayFlat">
             <summary>Full Path: Assets/Textures/LightRayFlat</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Movement">
-            <summary>Full Path: Assets/Textures/Movement</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OnlineLink">
             <summary>Full Path: Assets/Textures/OnlineLink</summary>
@@ -1528,27 +1566,6 @@
         <member name="F:Aequus.AequusTextures.UltraStariteTrophyItem">
             <summary>Full Path: Content/Bosses/Trophies/UltraStariteTrophyItem</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.AdultHorseshoeCrab">
-            <summary>Full Path: Content/Critters/HorseshoeCrab/AdultHorseshoeCrab</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BabyHorseshoeCrab">
-            <summary>Full Path: Content/Critters/HorseshoeCrab/BabyHorseshoeCrab</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ElderHorseshoeCrab">
-            <summary>Full Path: Content/Critters/HorseshoeCrab/ElderHorseshoeCrab</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AdultHorseshoeCrabGoreHead">
-            <summary>Full Path: Content/Critters/HorseshoeCrab/Gore/AdultHorseshoeCrabGoreHead</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AdultHorseshoeCrabGoreTail">
-            <summary>Full Path: Content/Critters/HorseshoeCrab/Gore/AdultHorseshoeCrabGoreTail</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ElderHorseshoeCrabGoreHead">
-            <summary>Full Path: Content/Critters/HorseshoeCrab/Gore/ElderHorseshoeCrabGoreHead</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ElderHorseshoeCrabGoreTail">
-            <summary>Full Path: Content/Critters/HorseshoeCrab/Gore/ElderHorseshoeCrabGoreTail</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Baguette">
             <summary>Full Path: Content/DedicatedContent/Baguette/Baguette</summary>
         </member>
@@ -1777,80 +1794,17 @@
         <member name="F:Aequus.AequusTextures.ObsidianCrabPot_Highlight">
             <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot_Highlight</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.RadonFishingBobber">
-            <summary>Full Path: Content/Fishing/Equipment/RadonFishingBobber/RadonFishingBobber</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonFishingBobberBuff">
-            <summary>Full Path: Content/Fishing/Equipment/RadonFishingBobber/RadonFishingBobberBuff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonFishingBobberProj">
-            <summary>Full Path: Content/Fishing/Equipment/RadonFishingBobber/RadonFishingBobberProj</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SteampunkerFishingBobber">
-            <summary>Full Path: Content/Fishing/FishingPoles/SteampunkerFishingBobber</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.SteampunkerFishingPole">
-            <summary>Full Path: Content/Fishing/FishingPoles/SteampunkerFishingPole</summary>
+            <summary>Full Path: Content/Fishing/FishingPoles/Steampunker/SteampunkerFishingPole</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SteampunkerFishingPoleBobber">
+            <summary>Full Path: Content/Fishing/FishingPoles/Steampunker/SteampunkerFishingPoleBobber</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DashParticles">
+            <summary>Full Path: Content/Graphics/Particles/DashParticles</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CompressedTrash">
             <summary>Full Path: Content/Items/Material/CompressedTrash</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AquaticEnergy">
-            <summary>Full Path: Content/Items/Material/Energy/Aquatic/AquaticEnergy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AquaticEnergyParticle">
-            <summary>Full Path: Content/Items/Material/Energy/Aquatic/AquaticEnergyParticle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AtmosphericEnergy">
-            <summary>Full Path: Content/Items/Material/Energy/Atmospheric/AtmosphericEnergy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AtmosphericEnergyParticle">
-            <summary>Full Path: Content/Items/Material/Energy/Atmospheric/AtmosphericEnergyParticle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CosmicEnergy">
-            <summary>Full Path: Content/Items/Material/Energy/Cosmic/CosmicEnergy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CosmicEnergyParticle">
-            <summary>Full Path: Content/Items/Material/Energy/Cosmic/CosmicEnergyParticle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DemonicEnergy">
-            <summary>Full Path: Content/Items/Material/Energy/Demonic/DemonicEnergy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DemonicEnergyParticle">
-            <summary>Full Path: Content/Items/Material/Energy/Demonic/DemonicEnergyParticle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EnergyParticle">
-            <summary>Full Path: Content/Items/Material/Energy/EnergyParticle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OrganicEnergy">
-            <summary>Full Path: Content/Items/Material/Energy/Organic/OrganicEnergy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OrganicEnergyParticle">
-            <summary>Full Path: Content/Items/Material/Energy/Organic/OrganicEnergyParticle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.UltimateEnergy">
-            <summary>Full Path: Content/Items/Material/Energy/Ultimate/UltimateEnergy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MonoGem">
-            <summary>Full Path: Content/Items/Material/MonoGem/MonoGem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MonoGemTile">
-            <summary>Full Path: Content/Items/Material/MonoGem/MonoGemTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmniGem">
-            <summary>Full Path: Content/Items/Material/OmniGem/OmniGem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmniGemTile">
-            <summary>Full Path: Content/Items/Material/OmniGem/OmniGemTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmniGemTile_Mask">
-            <summary>Full Path: Content/Items/Material/OmniGem/OmniGemTile_Mask</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmniGem_Mask">
-            <summary>Full Path: Content/Items/Material/OmniGem/OmniGem_Mask</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PossessedShard">
-            <summary>Full Path: Content/Items/Material/PossessedShard/PossessedShard</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NetherStar">
             <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStar</summary>
@@ -1975,30 +1929,6 @@
         <member name="F:Aequus.AequusTextures.TrashChest_Highlight">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChest_Highlight</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.RadonGrassGrayBrick">
-            <summary>Full Path: Content/Tiles/Radon/RadonGrassGrayBrick</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonGrassStone">
-            <summary>Full Path: Content/Tiles/Radon/RadonGrassStone</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonMoss">
-            <summary>Full Path: Content/Tiles/Radon/RadonMoss</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonMossBrick">
-            <summary>Full Path: Content/Tiles/Radon/RadonMossBrick</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonMossBrickItem">
-            <summary>Full Path: Content/Tiles/Radon/RadonMossBrickItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonMossBrickWall">
-            <summary>Full Path: Content/Tiles/Radon/RadonMossBrickWall</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonMossBrickWallItem">
-            <summary>Full Path: Content/Tiles/Radon/RadonMossBrickWallItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonMossItem">
-            <summary>Full Path: Content/Tiles/Radon/RadonMossItem</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Balloon">
             <summary>Full Path: Content/TownNPCs/SkyMerchant/Balloon</summary>
         </member>
@@ -2046,6 +1976,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.NameTagBlip">
             <summary>Full Path: Content/UI/Map/NameTagBlip</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ToolbeltBuilderToggle">
+            <summary>Full Path: Content/VanillaChanges/ToolbeltBuilderToggle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.StunEffect">
             <summary>Full Path: Content/Weapons/Classless/StunGun/StunEffect</summary>

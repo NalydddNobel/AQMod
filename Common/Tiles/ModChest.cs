@@ -15,8 +15,8 @@ public abstract class ModChest : ModTile {
 
     public ModItem Item { get; private set; }
 
-    protected int FrameWidth { get; private set; }
-    protected int FrameHeight { get; private set; }
+    public int FrameWidth { get; private set; }
+    public int FrameHeight { get; private set; }
 
     public override void Load() {
         Item = new InstancedTileItem(this);
@@ -82,7 +82,8 @@ public abstract class ModChest : ModTile {
     }
 
     public override ushort GetMapOption(int i, int j) {
-        return (ushort)(Main.tile[i, j].TileFrameX / FrameWidth);
+        return 0;
+        //return (ushort)(Main.tile[i, j].TileFrameX / FrameWidth);
     }
 
     public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) {

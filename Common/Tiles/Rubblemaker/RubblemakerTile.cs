@@ -1,9 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria.GameContent;
 
 namespace Aequus.Common.Tiles.Rubblemaker;
 
 internal abstract class RubblemakerTile : AutoloadedInstanceableModTile {
+    public static ushort GetId<T>() where T : RubblemakerTile {
+        return _registeredDict[typeof(T)].Item1.Type;
+    }
+    public static ushort GetRubblemakerId<T>() where T : RubblemakerTile {
+        return _registeredDict[typeof(T)].Item2.Type;
+    }
+    private static readonly Dictionary<Type, (RubblemakerTile, RubblemakerTile)> _registeredDict = new();
+
     public abstract int UseItem { get; }
 
     public abstract int[] Styles { get; }
@@ -28,6 +38,10 @@ internal abstract class RubblemakerTile : AutoloadedInstanceableModTile {
             var copy = CreateRubblemakerCopy();
             Mod.AddContent(copy);
             Load(copy);
+            // Manually register old names for rubblemaker tile variants
+            ModTypeLookup<ModTile>.RegisterLegacyNames(copy, LegacyNameAttribute.GetLegacyNamesOfType(GetType()).Select((s) => s + "Rubblemaker").ToArray());
+
+            _registeredDict[GetType()] = (this, copy);
         }
     }
 
@@ -45,5 +59,9 @@ internal abstract class RubblemakerTile : AutoloadedInstanceableModTile {
     }
 
     public virtual void SafeSetStaticDefaults() {
+    }
+
+    public override void Unload() {
+        _registeredDict.Clear();
     }
 }

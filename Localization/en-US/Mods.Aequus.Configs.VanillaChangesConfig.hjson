@@ -22,3 +22,28 @@ RestorationPotionRecipe: {
 		[{$ColorNote}:Disable this config for personal preference, or if any issues arise from this recipe being removed.]
 		'''
 }
+
+MoveToolbelt: {
+	Label: "[i:Toolbelt] Move Toolbelt"
+	Tooltip:
+		'''
+		When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Toolbelt] can be found in [{$ColorImportant}:Chests Underground],
+		and will [{$ColorImportant}:no longer be sold] by the [{$ColorImportant2}:Goblin Tinkerer].
+
+		{$NoteExploit}
+		'''
+}
+
+SlimeCrownInSurfaceChests: {
+	Label: "[i:SlimeCrown] Slime Crown in Surface Chests"
+	Tooltip: When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Slime Crown] can be found in [{$ColorImportant}:Surface Chests].
+}
+
+MoveMagicConch: {
+	Label: "[i:MagicConch] Move Magic Conch"
+	Tooltip:
+		'''
+		When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Magic Conch] can be found in the [{$ColorImportant}:Polluted Ocean],
+		and will [{$ColorImportant}:no longer be found] in the [{$ColorImportant2}:Underground Desert].
+		'''
+}

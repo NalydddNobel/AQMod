@@ -14,16 +14,34 @@ public partial class AequusRecipes {
     /// </summary>
     public static RecipeGroup Shellphone { get; private set; }
     /// <summary>
-    /// <see cref="RecipeGroup"/> for trash items.
+    /// <see cref="RecipeGroup"/> for paints.
     /// </summary>
     public static RecipeGroup AnyPaints { get; private set; }
     /// <summary>
-    /// <see cref="RecipeGroup"/> for paints.
+    /// <see cref="RecipeGroup"/> for coatings.
+    /// </summary>
+    public static RecipeGroup AnyCoatings { get; private set; }
+    /// <summary>
+    /// <see cref="RecipeGroup"/> for trash items.
     /// </summary>
     public static RecipeGroup AnyTrash { get; private set; }
 
-    private int[] GetItems(Predicate<Item> predicate, bool vanillaOnly = false) {
-        List<int> list = new();
+    public override void AddRecipeGroups() {
+        AnyQuestFish = NewGroup("AnyQuestFish", Main.anglerQuestItemNetIDs.CloneArray());
+        Shellphone = NewGroup("Shellphone", ItemID.ShellphoneDummy, ItemID.Shellphone, ItemID.ShellphoneHell, ItemID.ShellphoneOcean, ItemID.ShellphoneSpawn);
+        AnyTrash = NewGroup("AnyTrash", ItemID.OldShoe, ItemID.FishingSeaweed, ItemID.TinCan);
+        AnyPaints = NewGroup("AnyPaint", GetItems((i) => i.paint > PaintID.None));
+        AnyCoatings = NewGroup("AnyCoatings", GetItems((i) => i.paintCoating > PaintCoatingID.None));
+    }
+
+    private static RecipeGroup NewGroup(string name, params int[] items) {
+        RecipeGroup group = new RecipeGroup(() => Language.GetOrRegister("Mods.Aequus.Items.RecipeGroups." + name + ".DisplayName").Value, items);
+        RecipeGroup.RegisterGroup(name, group);
+        return group;
+    }
+
+    private static int[] GetItems(Predicate<Item> predicate, bool vanillaOnly = false) {
+        List<int> list = new List<int>();
         int count = vanillaOnly ? ItemID.Count : ItemLoader.ItemCount;
         for (int i = 0; i < count; i++) {
             if (predicate(ContentSamples.ItemsByType[i])) {
@@ -31,18 +49,5 @@ public partial class AequusRecipes {
             }
         }
         return list.ToArray();
-    }
-
-    public override void AddRecipeGroups() {
-        AnyQuestFish = NewGroup("AnyQuestFish", Main.anglerQuestItemNetIDs.CloneArray());
-        Shellphone = NewGroup("Shellphone", ItemID.ShellphoneDummy, ItemID.Shellphone, ItemID.ShellphoneHell, ItemID.ShellphoneOcean, ItemID.ShellphoneSpawn);
-        AnyTrash = NewGroup("AnyTrash", ItemID.OldShoe, ItemID.FishingSeaweed, ItemID.TinCan);
-        AnyPaints = NewGroup("AnyPaint", GetItems((i) => i.paint > PaintID.None));
-    }
-
-    private static RecipeGroup NewGroup(string name, params int[] items) {
-        RecipeGroup group = new(() => Language.GetOrRegister("Mods.Aequus.Items.RecipeGroups." + name + ".DisplayName").Value, items);
-        RecipeGroup.RegisterGroup(name, group);
-        return group;
     }
 }

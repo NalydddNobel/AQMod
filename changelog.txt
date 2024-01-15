@@ -4,22 +4,19 @@ I. Additions & Changes:
 - Completely remade the project from the ground up, many items have been tweaked or temporarily removed.
 - Ported the Rich Man's Monocle.
 - Ported Lesser, Greater, and Super Restoration Potions, with adjusted stats and recipes.
-- Ported Radon Moss, Radon Moss Fishing Bobber, Radon Moss Bricks and Radon Moss Brick Walls.
 - Ported Neutron Yogurt.
 - Ported Slice.
 - Ported The Christmas Spirit. (Resprited)
 - Ported Star Phish.
 - Ported Junk Jet. (Slight tweaks)
 - Ported the best Dyes in the mod.
-- Ported Mono & Omni Gems.
 - Ported the Phase Mirror & Phase Phone.
-- Ported all of the Energies.
-- Ported Fluorescence & Frozen Tears.
 - Ported all of the Relics & Trophies.
 - Ported the Name Tag. (Resprited, Tweaked)
 - Ported the Grand Reward.
 - Ported many Dedicated Items.
 
+- New Item: Steampunker's Rod.
 - New Item: Convergent Heart.
 
 Polluted Ocean:
@@ -34,6 +31,7 @@ Polluted Ocean:
 - New Item: Obsidian Fish Trap, same as the Sea Traps, but works in lava.
 - New Item: Plastic Darts, an earlygame dart to use in the Blowpipe or Star Phish.
 - New Item: Angler Lantern & Wisp Lantern, lets you see inside pots and emits light.
+- New Item: Dumpster, a 2x3 chest with 2 containers worth of space.
 
 Sky Merchant:
 - Resprited.
@@ -51,6 +49,9 @@ Sky Merchant:
 - New Item: Furystar, reminiscent of the orignal Starfury! Using mana and all! (Well, it deals magic damage now.)
 
 II. Vanilla Changes:
+- Toolbelt now spawns in Chests Underground
+	-- Grants +5 backpack slots, but they only store items
+	-- No longer sold by the Goblin Tinkerer
 - Celestial Magnet now shimmers into Treasure Magnet (configurable with the 'Move Treasure Magnet' config)
 - Starfury now shimmers into Furystar
 - Lucky Horseshoe now shimmers into the Weighted Horsehoe

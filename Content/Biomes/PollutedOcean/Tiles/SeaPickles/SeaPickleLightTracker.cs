@@ -41,7 +41,7 @@ public class SeaPickleLightTracker : ITileAnimation {
             }
         }
 
-        if (Main.rand.NextBool(120)) {
+        if (Main.netMode != NetmodeID.Server && Main.rand.NextBool(120)) {
             ModContent.GetInstance<SeaPickleAmbientParticles>().New(new(x, y));
         }
 

@@ -148,8 +148,6 @@ internal sealed class SpecialTileRenderer : ModSystem {
                 }
             }
             else {
-                RadonMossFogRenderer.Tiles.Clear();
-                RadonMossFogRenderer.DrawInfoCache.Clear();
                 for (int i = 0; i < SolidDrawPoints.Length; i++) {
                     SolidDrawPoints[i].Clear();
                 }

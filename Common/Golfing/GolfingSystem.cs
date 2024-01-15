@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Players.Backpacks;
+﻿using Aequus.Common.Backpacks;
 using System.Collections.Generic;
 using Terraria.GameContent.Golf;
 using Terraria.Physics;
@@ -47,7 +47,7 @@ public class GolfingSystem : ModSystem {
             }
         }
 
-        BackpackLoader.GetPreferredGolfBallToUse(player, player.GetModPlayer<AequusPlayer>().backpacks, ref projType);
+        BackpackLoader.GetPreferredGolfBallToUse(player, player.GetModPlayer<BackpackPlayer>().backpacks, ref projType);
     }
 
     /// <summary>

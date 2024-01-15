@@ -1,14 +1,12 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Common.Renaming;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria.Audio;
 using Terraria.DataStructures;
 
 namespace Aequus.Content.Items.Tools.NameTag;
 
 public class NameTag : ModItem, ICustomNameTagPrice {
-    public static int ChestSpawnrate = 8;
+    public static int ChestSpawnrate { get; set; } = 4;
 
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 5;
@@ -56,12 +54,13 @@ public class NameTag : ModItem, ICustomNameTagPrice {
     public static void NametagEffects(int i, string nameTag) {
         if (Main.npc[i].TryGetGlobalNPC<RenameNPC>(out var npcNameTag)) {
             npcNameTag.CustomName = nameTag;
-            npcNameTag.nameTagAnimation = 1f;
         }
 
         SoundEngine.PlaySound(SoundID.Item92, Main.npc[i].Center);
 
         if (Main.netMode != NetmodeID.Server) {
+            ModContent.GetInstance<NPCNameTagPopup>().ShowRenamePopup(i);
+
             for (int k = 0; k < 15; k++) {
                 var d = Dust.NewDustDirect(Main.npc[i].position, Main.npc[i].width, Main.npc[i].height, DustID.AncientLight, 0f, 0f, Scale: Main.rand.NextFloat(0.5f, 0.8f));
                 d.velocity *= 0.1f;

@@ -1,8 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.EquipmentBooster;
-using Aequus.Common.Particles;
 using Aequus.Core.Initialization;
-using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 
@@ -51,15 +49,14 @@ public class WispLantern : ModItem {
             return;
         }
 
-        if (Main.netMode == NetmodeID.Server) {
-            return;
-        }
-
-        for (int i = 0; i < 6; i++) {
-            var color = Color.Lerp(Color.Teal, Color.LightSkyBlue, Main.rand.NextFloat(0.15f, 0.85f));
-            float scale = Main.rand.NextFloat(0.5f, 0.9f);
-            ParticleSystem.New<WispLanternParticle>(ParticleLayer.AboveDust)
-                .Setup(Main.rand.NextVector2FromRectangle(Main.npc[npc].getRect()), Main.npc[npc].velocity * 0.05f, color, scale).npc = npc;
+        if (Main.netMode != NetmodeID.Server) {
+            int count = Math.Clamp(Math.Max(Main.npc[npc].width, Main.npc[npc].height) / 10, 3, 8);
+            foreach (var particle in ModContent.GetInstance<WispLanternParticles>().NewMultiple(count)) {
+                particle.Location = Main.rand.NextVector2FromRectangle(Main.npc[npc].getRect());
+                particle.Color = Color.Lerp(Color.Teal, Color.LightSkyBlue, Main.rand.NextFloat(0.15f, 0.85f));
+                particle.Scale = Main.rand.NextFloat(0.5f, 0.9f);
+                particle.NPCAnchor = npc;
+            }
         }
     }
 
