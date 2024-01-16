@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.NPCs;
+using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Biomes.PollutedOcean;
 using System;
 using Terraria.GameContent;
@@ -47,7 +48,7 @@ internal class HorseshoeCrab : InstancedModNPC, CritterCommons.ICritter {
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
         if (IsGolden) {
-            this.CreateGoldenCritterEntry(database, bestiaryEntry);
+            this.CreateEntry(BestiaryBuilder.GoldenCritterKey, database, bestiaryEntry);
         }
         else {
             this.CreateEntry(database, bestiaryEntry);

@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 
@@ -33,6 +34,7 @@ public sealed class MetadataFileLoader {
         }
     }
 
+    [Conditional("DEBUG")]
     public void CreateTempFile() {
         string createFile = $"{Main.SavePath.Replace("tModLoader-preview", "tModLoader")}/ModSources/{FilePath.Replace("Content/DataSets/", "Assets/Metadata/")}.Temp.json";
         _dataSet.Mod.Logger.Debug(createFile);

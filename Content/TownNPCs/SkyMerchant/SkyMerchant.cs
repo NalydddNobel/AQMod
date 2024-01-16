@@ -1,4 +1,4 @@
-﻿using Aequus.Common.NPCs;
+﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
 using Aequus.Common.UI;
 using Aequus.Content.TownNPCs.SkyMerchant.Emote;

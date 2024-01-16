@@ -1,49 +1,89 @@
 ﻿using Terraria.GameContent.Bestiary;
 
-namespace Aequus.Common.NPCs;
+namespace Aequus.Common.NPCs.Bestiary;
 
 /// <summary>
-/// Helper class for setting up bestiary entries.
+/// Helper class for initializing bestiary entries.
 /// </summary>
 internal static class BestiaryBuilder {
-    public struct Entry {
-        private readonly ModNPC modNPC;
-        private readonly BestiaryDatabase database;
-        private readonly BestiaryEntry entry;
+    public readonly struct EntryEditor {
+        private readonly ModNPC ModNPC;
+        private readonly BestiaryDatabase Database;
+        private readonly BestiaryEntry Entry;
 
-        public Entry(string flavorText, BestiaryDatabase database, BestiaryEntry bestiaryEntry, ModNPC modNPC) {
-            this.modNPC = modNPC;
-            this.database = database;
-            entry = bestiaryEntry;
-            bestiaryEntry.Info.Add(new FlavorTextBestiaryInfoElement(flavorText));
+        public EntryEditor(string languageKey, BestiaryDatabase database, BestiaryEntry bestiaryEntry, ModNPC modNPC) {
+            ModNPC = modNPC;
+            Database = database;
+            Entry = bestiaryEntry;
+            bestiaryEntry.Info.Add(new FlavorTextBestiaryInfoElement(languageKey));
         }
 
-        public Entry AddMainSpawn(SpawnConditionBestiaryInfoElement info) {
+        public EntryEditor AddMainSpawn(SpawnConditionBestiaryInfoElement info) {
             AddSpawn(info);
-            return UseAsBackground(info);
+            return PreferBackground(info);
         }
 
-        public Entry AddSpawn(SpawnConditionBestiaryInfoElement info) {
-            entry.Info.Add(info);
+        public EntryEditor AddSpawn(SpawnConditionBestiaryInfoElement info) {
+            Entry.Info.Add(info);
             return this;
         }
 
-        public Entry UseAsBackground(SpawnConditionBestiaryInfoElement info) {
-            entry.Info.Add(new BestiaryPortraitBackgroundProviderPreferenceInfoElement(info));
+        public EntryEditor PreferBackground(SpawnConditionBestiaryInfoElement info) {
+            Entry.Info.Add(new BestiaryPortraitBackgroundProviderPreferenceInfoElement(info));
             return this;
         }
 
-        public Entry QuickUnlock() {
-            return UseInfoProvider(new CommonEnemyUICollectionInfoProvider(modNPC.NPC.GetBestiaryCreditId(), true));
+        public EntryEditor QuickUnlock() {
+            return UseInfoProvider(new CommonEnemyUICollectionInfoProvider(ModNPC.NPC.GetBestiaryCreditId(), true));
         }
 
-        public Entry UseInfoProvider(CommonEnemyUICollectionInfoProvider infoProvider) {
-            entry.UIInfoProvider = infoProvider;
+        public EntryEditor UseInfoProvider(CommonEnemyUICollectionInfoProvider infoProvider) {
+            Entry.UIInfoProvider = infoProvider;
             return this;
         }
     }
 
-    #region Spawn Condition Elements
+    public static EntryEditor CreateEntry(this ModNPC modNPC, BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+        string key = modNPC.GetLocalizationKey("Bestiary");
+        TextHelper.RegisterKey(key);
+        return new EntryEditor(key, database, bestiaryEntry, modNPC);
+    }
+
+    public static EntryEditor CreateEntry(this ModNPC modNPC, string key, BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+        TextHelper.RegisterKey(key);
+        return new EntryEditor(key, database, bestiaryEntry, modNPC);
+    }
+
+    public static void ReSort(ModNPC modNPC, int wantedBestiaryId) {
+        int oldEntryID = ContentSamples.NpcBestiarySortingId[modNPC.Type];
+        if (oldEntryID == wantedBestiaryId) {
+            return;
+        }
+        if (oldEntryID < wantedBestiaryId) {
+            for (int i = oldEntryID + 1; i <= wantedBestiaryId; i++) {
+                for (int k = 1; k < NPCLoader.NPCCount; k++) {
+                    if (ContentSamples.NpcBestiarySortingId.TryGetValue(k, out int sort) && sort == i) {
+                        ContentSamples.NpcBestiarySortingId[k] = i - 1;
+                    }
+                }
+            }
+        }
+        else {
+            for (int i = oldEntryID - 1; i >= wantedBestiaryId; i--) {
+                for (int k = 1; k < NPCLoader.NPCCount; k++) {
+                    if (ContentSamples.NpcBestiarySortingId.TryGetValue(k, out int sort) && sort == i) {
+                        ContentSamples.NpcBestiarySortingId[k] = i + 1;
+                    }
+                }
+            }
+        }
+        ContentSamples.NpcBestiarySortingId[modNPC.Type] = wantedBestiaryId;
+    }
+
+    public const string GoldenCritterKey = "CommonBestiaryFlavor.GoldenCritter";
+    public const string GoldenBaitCritterKey = "CommonBestiaryFlavor.GoldenBaitCritter";
+
+    #region Spawn Condition Shortcuts (Since typing these out normally sucks)
     public static SpawnConditionBestiaryInfoElement DayTime => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.DayTime;
     public static SpawnConditionBestiaryInfoElement NightTime => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime;
 
@@ -80,53 +120,4 @@ internal static class BestiaryBuilder {
     public static SpawnConditionBestiaryInfoElement WindyDayEvent => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Events.WindyDay;
     public static SpawnConditionBestiaryInfoElement BloodMoon => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Events.BloodMoon;
     #endregion
-
-    public static Entry CreateEntry(this ModNPC modNPC, BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-        return new Entry("Mods.Aequus.NPCs." + modNPC.Name + ".Bestiary", database, bestiaryEntry, modNPC);
-    }
-    public static Entry CreateGoldenCritterEntry(this ModNPC modNPC, BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-        return new Entry("CommonBestiaryFlavor.GoldCritter", database, bestiaryEntry, modNPC);
-    }
-    public static Entry CreateGoldenBaitCritterEntry(this ModNPC modNPC, BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-        return new Entry("CommonBestiaryFlavor.GoldBaitCritter", database, bestiaryEntry, modNPC);
-    }
-
-    public static Entry CreateGaleStreamsEntry(this ModNPC modNPC, BestiaryDatabase database, BestiaryEntry bestiaryEntry, bool miniBoss = false) {
-        var entry = modNPC.CreateEntry(database, bestiaryEntry);
-        if (miniBoss) {
-            entry.QuickUnlock();
-        }
-        return entry;
-    }
-
-    public static int[] SetBiome<T>(this ModNPC modNPC) where T : ModBiome {
-        modNPC.SpawnModBiomes = new int[] { ModContent.GetInstance<T>().Type };
-        return modNPC.SpawnModBiomes;
-    }
-
-    public static void MoveBestiaryEntry(ModNPC modNPC, int sortingID) {
-        int oldEntryID = ContentSamples.NpcBestiarySortingId[modNPC.Type];
-        if (oldEntryID == sortingID) {
-            return;
-        }
-        if (oldEntryID < sortingID) {
-            for (int i = oldEntryID + 1; i <= sortingID; i++) {
-                for (int k = 1; k < NPCLoader.NPCCount; k++) {
-                    if (ContentSamples.NpcBestiarySortingId.TryGetValue(k, out int sort) && sort == i) {
-                        ContentSamples.NpcBestiarySortingId[k] = i - 1;
-                    }
-                }
-            }
-        }
-        else {
-            for (int i = oldEntryID - 1; i >= sortingID; i--) {
-                for (int k = 1; k < NPCLoader.NPCCount; k++) {
-                    if (ContentSamples.NpcBestiarySortingId.TryGetValue(k, out int sort) && sort == i) {
-                        ContentSamples.NpcBestiarySortingId[k] = i + 1;
-                    }
-                }
-            }
-        }
-        ContentSamples.NpcBestiarySortingId[modNPC.Type] = sortingID;
-    }
 }
