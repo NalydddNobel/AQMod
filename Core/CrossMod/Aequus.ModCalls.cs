@@ -1,6 +1,7 @@
 ﻿using Aequus.Core.CrossMod;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
@@ -115,16 +116,14 @@ public partial class Aequus {
         }
 
         // Test Mod calls
-#if DEBUG
-        //Call("");
-        //Call("Pleh");
-        //Call("ExpertDropsInClassicMode");
-        //Call("ExpertDropsInClassicMode", null);
-        //Call("ExpertDropsInClassicMode", true);
-        //Call("ExpertDropsInClassicMode", false);
-        //Call("ExpertDropsInClassicMode", 0);
-        //Call("ExpertDropsInClassicMode", 0f);
-#endif
+        //TestCall("");
+        //TestCall("Pleh");
+        //TestCall("ExpertDropsInClassicMode");
+        //TestCall("ExpertDropsInClassicMode", null);
+        //TestCall("ExpertDropsInClassicMode", true);
+        //TestCall("ExpertDropsInClassicMode", false);
+        //TestCall("ExpertDropsInClassicMode", 0);
+        //TestCall("ExpertDropsInClassicMode", 0f);
     }
 
     private void UnloadModCalls() {
@@ -132,26 +131,28 @@ public partial class Aequus {
     }
 
     public override object Call(params object[] args) {
-        var caller = Assembly.GetCallingAssembly();
+        Assembly caller = Assembly.GetCallingAssembly();
+
         if (args[0] is not string key) {
-            return null;
+            return new ArgumentException($"All mod calls must have a string identifier (argument 0, Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls for more info.). From Mod: {caller.Name()}.");
         }
 
         if (Calls.TryGetValue(key, out var call)) {
-            var obj = call.TryInvoke(caller, args);
-#if DEBUG
-            if (obj is Exception ex) {
-                Instance.Logger.Error(ex.Message + "\n" + ex.StackTrace);
-            }
-#endif
-            return obj;
+            object result = call.TryInvoke(caller, args);
+            return result;
         }
 
-        var notFoundException = new ArgumentException($"Mod Call: \"{key}\" was not found.");
-#if DEBUG
-        Instance.Logger.Error(notFoundException.Message + "\n" + notFoundException.StackTrace);
-#endif
+        var notFoundException = new ArgumentException($"Mod Call: \"{key}\" was not found. From Mod: {caller.Name()}.");
         return notFoundException;
+    }
+
+    [Conditional("DEBUG")]
+    private void TestCall(params object[] args) {
+        object result = Call(args);
+
+        if (result is Exception ex) {
+            Instance.Logger.Error(ex.Message + "\n" + ex.StackTrace);
+        }
     }
     #endregion
 }

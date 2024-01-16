@@ -66,11 +66,8 @@ internal class DiagnosticsMenu : ModSystem {
         }
     }
 
-    public override bool IsLoadingEnabled(Mod mod) =>
-#if DEBUG
-    true;
-#else
-        false;
+#if !DEBUG
+    public override bool IsLoadingEnabled(Mod mod) => false;
 #endif
 
     public override void Load() {
