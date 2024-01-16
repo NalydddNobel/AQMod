@@ -1,5 +1,6 @@
 ﻿using Aequus.Content.Biomes.PollutedOcean.Background;
 using Aequus.Content.Biomes.PollutedOcean.Water;
+using Aequus.Content.Critters.HorseshoeCrab;
 using Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
 using Aequus.Content.Enemies.PollutedOcean.Scavenger;
 using System.Collections.Generic;
@@ -32,6 +33,12 @@ public class PollutedOceanBiome : ModBiome {
     public static void PopulateSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
         pool.Clear();
 
+        float horseshoeCrabRate = 1f;
+        foreach (var pair in HorseshoeCrabInitializer.HorseshoeCrabs) {
+            pool[pair.Item1.Type] = horseshoeCrabRate;
+            pool[pair.Item2.Type] = 1f / NPC.goldCritterChance * horseshoeCrabRate;
+        }
+        
         pool[ModContent.NPCType<Scavenger>()] = 1f;
         pool[NPCID.DarkCaster] = 0.33f; // Radio Conductor
 
@@ -48,6 +55,5 @@ public class PollutedOceanBiome : ModBiome {
         }
 
         pool[NPCID.Buggy] = 0.1f; // Chromite
-        pool[NPCID.Sluggy] = 0.1f; // Horseshoe Crab
     }
 }

@@ -11,6 +11,8 @@ namespace Aequus.Content.Critters.HorseshoeCrab;
 
 [ModBiomes(typeof(PollutedOceanBiome))]
 internal class HorseshoeCrab : InstancedModNPC, CritterCommons.ICritter, IAddRecipes {
+    public const int GetUpTime = -30;
+
     public float tailRotation;
     public int closestPlayerOld;
     public int wallTime;
@@ -37,6 +39,7 @@ internal class HorseshoeCrab : InstancedModNPC, CritterCommons.ICritter, IAddRec
         NPC.defense = 0;
         NPC.HitSound = SoundID.NPCHit1;
         NPC.DeathSound = SoundID.NPCDeath1;
+        NPC.npcSlots = 0.5f;
 
         // Why re-invent the wheel? (or in this case, AI which walks along the edges of tiles)
         NPC.aiStyle = NPCAIStyleID.Snail;
@@ -56,8 +59,6 @@ internal class HorseshoeCrab : InstancedModNPC, CritterCommons.ICritter, IAddRec
     }
 
     public override void AI() {
-        const int GetUpTime = -30;
-
         if (wallTime < 0) {
             NPC.aiStyle = -1;
             NPC.directionY = 1;

@@ -1257,7 +1257,7 @@
             <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 276)</summary>
+            <summary>(Total Textures: 279)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1327,6 +1327,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.Sparkles">
             <summary>Full Path: Assets/Textures/Sparkles</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Static">
+            <summary>Full Path: Assets/Textures/Static</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HardenedSand">
             <summary>Full Path: Assets/Textures/TileMerges/HardenedSand</summary>
@@ -1573,6 +1576,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.UltraStariteTrophyItem">
             <summary>Full Path: Content/Bosses/Trophies/UltraStariteTrophyItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Chromite">
+            <summary>Full Path: Content/Critters/Chromite/Chromite</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ChromiteItem">
+            <summary>Full Path: Content/Critters/Chromite/ChromiteItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AdultHorseshoeCrab">
             <summary>Full Path: Content/Critters/HorseshoeCrab/AdultHorseshoeCrab</summary>

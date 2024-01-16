@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Aequus.Core.Initialization;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Aequus.Common.NPCs;
@@ -7,14 +9,56 @@ public class CritterCommons : GlobalNPC {
     public interface ICritter {
         bool IsGolden { get; }
     }
+    [AttributeUsage(AttributeTargets.Class)]
+    internal class AutoloadCatchItem : AutoloadXAttribute {
+        private readonly int _value;
+        private readonly int _rarity;
+        private readonly int _bait;
+        private readonly bool _lavaBait;
+
+        public AutoloadCatchItem(int value = 0, int rarity = 0, int baitPower = 0, bool lavaBait = false) {
+            _value = value;
+            _rarity = rarity;
+            _bait = baitPower;
+            _lavaBait = lavaBait;
+        }
+
+        internal override void Load(ModType modType) {
+            if (modType is not ModNPC modNPC) {
+                return;
+            }
+
+            InstancedModNPCItem catchItem = new InstancedModNPCItem(modNPC, _value, _rarity, _bait, _lavaBait);
+
+            modType.Mod.AddContent(catchItem);
+        }
+    }
+
+    private static readonly Dictionary<int, int> CatchItems = new();
 
     public override void SetStaticDefaults() {
         foreach (var npc in Mod.GetContent<ModNPC>().Where(n => n is ICritter)) {
             NPCID.Sets.CountsAsCritter[npc.Type] = true;
-            if ((npc as ICritter).IsGolden) {
+            NPCID.Sets.TakesDamageFromHostilesWithoutBeingFriendly[npc.Type] = true;
+            NPCID.Sets.TownCritter[npc.Type] = true;
+            ICritter critter = (npc as ICritter);
+            if (critter.IsGolden) {
                 NPCID.Sets.GoldCrittersCollection.Add(npc.Type);
-                NPCID.Sets.NormalGoldCritterBestiaryPriority.Add(npc.Type);
+                if (Mod.TryFind(npc.Name, out ModItem catchItem)) {
+                    Main.npcCatchable[npc.Type] = true;
+                    CatchItems[npc.Type] = catchItem.Type;
+                }
             }
+        }
+    }
+
+    public override void Unload() {
+        CatchItems.Clear();
+    }
+
+    public override void SetDefaults(NPC entity) {
+        if (CatchItems.TryGetValue(entity.type, out int catchItem)) {
+            entity.catchItem = catchItem;
         }
     }
 

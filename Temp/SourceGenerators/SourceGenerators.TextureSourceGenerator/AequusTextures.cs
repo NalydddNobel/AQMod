@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 276)</summary>
+/// <summary>(Total Textures: 279)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -53,6 +53,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SmallLightParticle = new("Aequus/Assets/Textures/SmallLightParticle");
     /// <summary>Full Path: Assets/Textures/Sparkles</summary>
     public static readonly RequestCache<Texture2D> Sparkles = new("Aequus/Assets/Textures/Sparkles");
+    /// <summary>Full Path: Assets/Textures/Static</summary>
+    public static readonly RequestCache<Texture2D> Static = new("Aequus/Assets/Textures/Static");
     /// <summary>Full Path: Assets/Textures/TileMerges/HardenedSand</summary>
     public static readonly RequestCache<Texture2D> HardenedSand = new("Aequus/Assets/Textures/TileMerges/HardenedSand");
     /// <summary>Full Path: Assets/Textures/TileMerges/Sand</summary>
@@ -217,6 +219,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> UltraStariteTrophy = new("Aequus/Content/Bosses/Trophies/UltraStariteTrophy");
     /// <summary>Full Path: Content/Bosses/Trophies/UltraStariteTrophyItem</summary>
     public static readonly RequestCache<Texture2D> UltraStariteTrophyItem = new("Aequus/Content/Bosses/Trophies/UltraStariteTrophyItem");
+    /// <summary>Full Path: Content/Critters/Chromite/Chromite</summary>
+    public static readonly RequestCache<Texture2D> Chromite = new("Aequus/Content/Critters/Chromite/Chromite");
+    /// <summary>Full Path: Content/Critters/Chromite/ChromiteItem</summary>
+    public static readonly RequestCache<Texture2D> ChromiteItem = new("Aequus/Content/Critters/Chromite/ChromiteItem");
     /// <summary>Full Path: Content/Critters/HorseshoeCrab/AdultHorseshoeCrab</summary>
     public static readonly RequestCache<Texture2D> AdultHorseshoeCrab = new("Aequus/Content/Critters/HorseshoeCrab/AdultHorseshoeCrab");
     /// <summary>Full Path: Content/Critters/HorseshoeCrab/BabyHorseshoeCrab</summary>
