@@ -20,7 +20,7 @@ public class HorseshoeCrabInitializer : ILoadable {
 
         void Add(string name, int size) {
             HorseshoeCrab normal = new HorseshoeCrab(name, size, blueBloodDustId, golden: false);
-            HorseshoeCrab golden = new HorseshoeCrab("Gold"+name, size, goldBloodDustId, golden: true);
+            HorseshoeCrab golden = new HorseshoeCrab("Gold" + name, size, goldBloodDustId, golden: true);
 
             mod.AddContent(normal);
             mod.AddContent(golden);
