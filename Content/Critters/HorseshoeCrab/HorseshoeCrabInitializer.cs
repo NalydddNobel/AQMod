@@ -7,6 +7,7 @@ public class HorseshoeCrabInitializer : ILoadable {
     /// Item1 is the normal Horseshoe Crab. Item2 is the Golden variant.
     /// </summary>
     public static readonly List<(ModNPC, ModNPC)> HorseshoeCrabs = new(3);
+    public static ModNPC BestiaryHorseshoeCrabAnchor { get; internal set; }
 
     public void Load(Mod mod) {
         // Horseshoe crabs have blue blood
@@ -24,11 +25,13 @@ public class HorseshoeCrabInitializer : ILoadable {
             mod.AddContent(normal);
             mod.AddContent(golden);
 
+            BestiaryHorseshoeCrabAnchor = normal;
             HorseshoeCrabs.Add((normal, golden));
         }
     }
 
     public void Unload() {
+        BestiaryHorseshoeCrabAnchor = null;
         HorseshoeCrabs.Clear();
     }
 }

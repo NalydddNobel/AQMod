@@ -54,7 +54,7 @@ internal static class BestiaryBuilder {
         return new EntryEditor(key, database, bestiaryEntry, modNPC);
     }
 
-    public static void ReSort(ModNPC modNPC, int wantedBestiaryId) {
+    public static void InsertEntry(ModNPC modNPC, int wantedBestiaryId) {
         int oldEntryID = ContentSamples.NpcBestiarySortingId[modNPC.Type];
         if (oldEntryID == wantedBestiaryId) {
             return;
@@ -80,8 +80,8 @@ internal static class BestiaryBuilder {
         ContentSamples.NpcBestiarySortingId[modNPC.Type] = wantedBestiaryId;
     }
 
-    public const string GoldenCritterKey = "CommonBestiaryFlavor.GoldenCritter";
-    public const string GoldenBaitCritterKey = "CommonBestiaryFlavor.GoldenBaitCritter";
+    public const string GoldenCritterKey = "CommonBestiaryFlavor.GoldCritter";
+    public const string GoldenBaitCritterKey = "CommonBestiaryFlavor.GoldBaitCritter";
 
     #region Spawn Condition Shortcuts (Since typing these out normally sucks)
     public static SpawnConditionBestiaryInfoElement DayTime => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.DayTime;

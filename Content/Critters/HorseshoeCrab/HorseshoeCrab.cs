@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Biomes.PollutedOcean;
+using Aequus.Core.Initialization;
 using System;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
@@ -9,7 +10,7 @@ using Terraria.Localization;
 namespace Aequus.Content.Critters.HorseshoeCrab;
 
 [ModBiomes(typeof(PollutedOceanBiome))]
-internal class HorseshoeCrab : InstancedModNPC, CritterCommons.ICritter {
+internal class HorseshoeCrab : InstancedModNPC, CritterCommons.ICritter, IAddRecipes {
     public float tailRotation;
     public int closestPlayerOld;
     public int wallTime;
@@ -27,10 +28,6 @@ internal class HorseshoeCrab : InstancedModNPC, CritterCommons.ICritter {
     public override LocalizedText DisplayName => this.GetCategoryText($"HorseshoeCrab.DisplayName{(IsGolden ? ".Golden" : "")}");
 
     public bool IsGolden => _golden;
-
-    public override void SetStaticDefaults() {
-        Main.npcFrameCount[Type] = 4;
-    }
 
     public override void SetDefaults() {
         NPC.width = _size;
@@ -51,7 +48,7 @@ internal class HorseshoeCrab : InstancedModNPC, CritterCommons.ICritter {
             this.CreateEntry(BestiaryBuilder.GoldenCritterKey, database, bestiaryEntry);
         }
         else {
-            this.CreateEntry(database, bestiaryEntry);
+            this.CreateEntry(this.GetCategoryKey("HorseshoeCrab.Bestiary"), database, bestiaryEntry);
         }
     }
 
@@ -199,5 +196,20 @@ internal class HorseshoeCrab : InstancedModNPC, CritterCommons.ICritter {
         for (int i = 0; i < hit.Damage / NPC.lifeMax * 20; i++) {
             Dust.NewDust(NPC.position, NPC.width, NPC.height, Main.rand.Next(_dustType), hit.HitDirection, -1f);
         }
+    }
+
+    public override void SetStaticDefaults() {
+        Main.npcFrameCount[Type] = 4;
+    }
+
+    public void AddRecipes(Aequus aequus) {
+        (ModNPC, ModNPC) pair = HorseshoeCrabInitializer.HorseshoeCrabs.Find(p => p.Item1 == this);
+
+        if (pair == default((ModNPC, ModNPC))) {
+            return;
+        }
+
+        BestiaryBuilder.InsertEntry(pair.Item2, ContentSamples.NpcBestiarySortingId[HorseshoeCrabInitializer.BestiaryHorseshoeCrabAnchor.Type]);
+        HorseshoeCrabInitializer.BestiaryHorseshoeCrabAnchor = pair.Item2;
     }
 }
