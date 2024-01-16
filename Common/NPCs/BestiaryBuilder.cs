@@ -84,6 +84,12 @@ internal static class BestiaryBuilder {
     public static Entry CreateEntry(this ModNPC modNPC, BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
         return new Entry("Mods.Aequus.NPCs." + modNPC.Name + ".Bestiary", database, bestiaryEntry, modNPC);
     }
+    public static Entry CreateGoldenCritterEntry(this ModNPC modNPC, BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+        return new Entry("CommonBestiaryFlavor.GoldCritter", database, bestiaryEntry, modNPC);
+    }
+    public static Entry CreateGoldenBaitCritterEntry(this ModNPC modNPC, BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+        return new Entry("CommonBestiaryFlavor.GoldBaitCritter", database, bestiaryEntry, modNPC);
+    }
 
     public static Entry CreateGaleStreamsEntry(this ModNPC modNPC, BestiaryDatabase database, BestiaryEntry bestiaryEntry, bool miniBoss = false) {
         var entry = modNPC.CreateEntry(database, bestiaryEntry);

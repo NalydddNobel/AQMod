@@ -43,6 +43,10 @@ internal class ModBiomesGlobalNPC : GlobalNPC {
     }
 
     public override void SetDefaults(NPC npc) {
+        if (npc.ModNPC.SpawnModBiomes != null) {
+            return;
+        }
+
         foreach (var attr in npc.ModNPC.GetType().GetCustomAttributes<ModBiomesAttribute>()) {
             int i;
             if (npc.ModNPC.SpawnModBiomes == null) {

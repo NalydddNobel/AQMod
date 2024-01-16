@@ -8,18 +8,32 @@ using Terraria.Localization;
 namespace Aequus.Content.Critters.HorseshoeCrab;
 
 [ModBiomes(typeof(PollutedOceanBiome))]
-public abstract class HorseshoeCrab : ModNPC {
+internal class HorseshoeCrab : InstancedModNPC, CritterCommons.ICritter {
     public float tailRotation;
     public int closestPlayerOld;
     public int wallTime;
 
-    public override LocalizedText DisplayName => this.GetCategoryText("HorseshoeCrab.DisplayName");
+    private readonly int[] _dustType;
+    private readonly int _size;
+    private readonly bool _golden;
+
+    public HorseshoeCrab(string name, int size, int[] dustType, bool golden = false) : base(name + "HorseshoeCrab", $"{typeof(HorseshoeCrab).NamespaceFilePath()}/{name}HorseshoeCrab") {
+        _size = size;
+        _dustType = dustType;
+        _golden = golden;
+    }
+
+    public override LocalizedText DisplayName => this.GetCategoryText($"HorseshoeCrab.DisplayName{(IsGolden ? ".Golden" : "")}");
+
+    public bool IsGolden => _golden;
 
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = 4;
     }
 
     public override void SetDefaults() {
+        NPC.width = _size;
+        NPC.height = _size;
         NPC.lifeMax = 5;
         NPC.damage = 0;
         NPC.defense = 0;
@@ -32,7 +46,12 @@ public abstract class HorseshoeCrab : ModNPC {
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-        this.CreateEntry(database, bestiaryEntry);
+        if (IsGolden) {
+            this.CreateGoldenCritterEntry(database, bestiaryEntry);
+        }
+        else {
+            this.CreateEntry(database, bestiaryEntry);
+        }
     }
 
     public override void FindFrame(int frameHeight) {
@@ -74,6 +93,10 @@ public abstract class HorseshoeCrab : ModNPC {
         tailRotation = Utils.AngleLerp(tailRotation, NPC.rotation, 0.1f);
         DrawOffsetY = 0f;
 
+        if (!NPC.noGravity || !NPC.TryGetGlobalNPC<AequusNPC>(out var aequusNPC)) {
+            return;
+        }
+
         float detectionRange = closestPlayerOld != -1 ? 250f : 100f;
         int closestPlayer = -1;
         NPC.TargetClosest(faceTarget: NPC.direction == 0);
@@ -97,10 +120,6 @@ public abstract class HorseshoeCrab : ModNPC {
             }
         }
 
-        if (!NPC.TryGetGlobalNPC<AequusNPC>(out var aequusNPC)) {
-            return;
-        }
-
         aequusNPC.statSpeedX += 1f;
         aequusNPC.statSpeedY += 1f;
         if (closestPlayer != -1) {
@@ -108,24 +127,27 @@ public abstract class HorseshoeCrab : ModNPC {
             aequusNPC.statSpeedY += 4f;
         }
 
-        // Snail "On Wall" state
-        if ((int)NPC.ai[1] == 1) {
+        // Snail is on wall or ceiling.
+        if ((int)NPC.ai[1] == 1 || ((int)NPC.ai[1] == 0 && NPC.directionY == -1)) {
             wallTime += (int)aequusNPC.statSpeedY;
+            float speedReduction = Math.Clamp(1f - wallTime / 350f, -0.2f, 1f);
             if (NPC.directionY == -1) {
-                aequusNPC.statSpeedY *= Math.Clamp(1f - wallTime / 350f, -0.2f, 1f);
+                aequusNPC.statSpeedY *= speedReduction;
             }
+            aequusNPC.statSpeedX *= Math.Max(speedReduction, 0f);
 
-            if (wallTime > 400 && Main.netMode != NetmodeID.MultiplayerClient) {
+            if (wallTime > 400) {
                 NPC.ai[1] = 0f;
                 NPC.ai[2] = 0f;
                 NPC.netUpdate = true;
 
                 NPC.position.X -= NPC.direction;
+                NPC.position.Y -= NPC.directionY;
                 //NPC.velocity.X -= NPC.direction * Main.rand.NextFloat(4f, 8f);
-                NPC.velocity.Y = 0f;
+                NPC.velocity = Vector2.Zero;
 
-                wallTime = GetUpTime - 30; 
-                if (Main.rand.NextBool()) {
+                wallTime = GetUpTime - 30;
+                if (Main.rand.NextBool() && Main.netMode != NetmodeID.MultiplayerClient) {
                     wallTime = -480;
                 }
             }
@@ -144,12 +166,12 @@ public abstract class HorseshoeCrab : ModNPC {
 
         Vector2 down = (NPC.rotation + MathHelper.PiOver2).ToRotationVector2();
         Vector2 offset = new Vector2(0f, NPC.gfxOffY + DrawOffsetY);
-        Vector2 bodyDrawCoordinates = NPC.Center + down * (NPC.height - frame.Height + 8f) / 2f + offset - screenPos;
-        Vector2 tailCoordinates = NPC.Center + down * (NPC.height - 2f) / 2f + offset - screenPos + down.RotatedBy(MathHelper.PiOver2 * NPC.spriteDirection) * frame.Size()/2f;
+        Vector2 bodyDrawCoordinates = NPC.Center + down * (NPC.height - frame.Height * NPC.scale + 8f) / 2f + offset - screenPos;
+        Vector2 tailCoordinates = NPC.Center + down * (NPC.height - 2f) / 2f + offset - screenPos + down.RotatedBy(MathHelper.PiOver2 * NPC.spriteDirection) * frame.Size() / 2f * NPC.scale;
 
-        spriteBatch.Draw(texture, tailCoordinates, frame with { Y = frame.Y + frame.Height * 2 }, drawColor, tailRotation, new Vector2(NPC.spriteDirection == 1 ? (frame.Width-4) : 4, frame.Height - 5f), NPC.scale, effects, 0f);
+        spriteBatch.Draw(texture, tailCoordinates, frame with { Y = frame.Y + frame.Height * 2 }, drawColor, tailRotation, new Vector2(NPC.spriteDirection == 1 ? (frame.Width - 4) : 4, frame.Height - 5f), NPC.scale, effects, 0f);
         spriteBatch.Draw(texture, bodyDrawCoordinates, frame, drawColor, NPC.rotation, frame.Size() / 2f, NPC.scale, effects, 0f);
-        
+
         //spriteBatch.Draw(AequusTextures.BaseParticleTexture, tailCoordinates, new(0, 0, 10, 10), Color.Red, NPC.rotation, new(5f, 5f), NPC.scale, effects, 0f);
         return false;
     }
@@ -159,12 +181,9 @@ public abstract class HorseshoeCrab : ModNPC {
             return;
         }
 
-        // Horseshoe crabs have blue blood
-        int dustId = DustID.BlueMoss;
-
         if (NPC.life <= 0) {
             for (int i = 0; i < 10; i++) {
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, dustId, hit.HitDirection * 2f, -2f);
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, Main.rand.Next(_dustType), hit.HitDirection * 2f, -2f);
             }
 
             var source = NPC.GetSource_Death();
@@ -177,7 +196,7 @@ public abstract class HorseshoeCrab : ModNPC {
             return;
         }
         for (int i = 0; i < hit.Damage / NPC.lifeMax * 20; i++) {
-            Dust.NewDust(NPC.position, NPC.width, NPC.height, dustId, hit.HitDirection, -1f);
+            Dust.NewDust(NPC.position, NPC.width, NPC.height, Main.rand.Next(_dustType), hit.HitDirection, -1f);
         }
     }
 }

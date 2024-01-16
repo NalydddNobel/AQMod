@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 273)</summary>
+/// <summary>(Total Textures: 276)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -223,6 +223,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> BabyHorseshoeCrab = new("Aequus/Content/Critters/HorseshoeCrab/BabyHorseshoeCrab");
     /// <summary>Full Path: Content/Critters/HorseshoeCrab/ElderHorseshoeCrab</summary>
     public static readonly RequestCache<Texture2D> ElderHorseshoeCrab = new("Aequus/Content/Critters/HorseshoeCrab/ElderHorseshoeCrab");
+    /// <summary>Full Path: Content/Critters/HorseshoeCrab/GoldAdultHorseshoeCrab</summary>
+    public static readonly RequestCache<Texture2D> GoldAdultHorseshoeCrab = new("Aequus/Content/Critters/HorseshoeCrab/GoldAdultHorseshoeCrab");
+    /// <summary>Full Path: Content/Critters/HorseshoeCrab/GoldBabyHorseshoeCrab</summary>
+    public static readonly RequestCache<Texture2D> GoldBabyHorseshoeCrab = new("Aequus/Content/Critters/HorseshoeCrab/GoldBabyHorseshoeCrab");
+    /// <summary>Full Path: Content/Critters/HorseshoeCrab/GoldElderHorseshoeCrab</summary>
+    public static readonly RequestCache<Texture2D> GoldElderHorseshoeCrab = new("Aequus/Content/Critters/HorseshoeCrab/GoldElderHorseshoeCrab");
     /// <summary>Full Path: Content/Critters/HorseshoeCrab/Gore/AdultHorseshoeCrabGoreHead</summary>
     public static readonly RequestCache<Texture2D> AdultHorseshoeCrabGoreHead = new("Aequus/Content/Critters/HorseshoeCrab/Gore/AdultHorseshoeCrabGoreHead");
     /// <summary>Full Path: Content/Critters/HorseshoeCrab/Gore/AdultHorseshoeCrabGoreTail</summary>

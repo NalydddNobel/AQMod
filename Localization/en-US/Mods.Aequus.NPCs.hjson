@@ -19,7 +19,11 @@ BlackJellyfish: {
 }
 
 HorseshoeCrab: {
-	DisplayName: Horseshoe Crab
+	DisplayName: {
+		$parentVal: Horseshoe Crab
+		Golden: Golden Horseshoe Crab
+	}
+
 	Bestiary: These flat discs of a creature are oddities in both polluted and non-polluted waters. They feast on the germs and unopened pasta cans which litter the seafloor.
 }
 

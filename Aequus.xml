@@ -776,6 +776,11 @@
             Lookup for tile Ids which are safe to generate over.
             </summary>
         </member>
+        <member name="F:Aequus.Content.Critters.HorseshoeCrab.HorseshoeCrabInitializer.HorseshoeCrabs">
+            <summary>
+            Item1 is the normal Horseshoe Crab. Item2 is the Golden variant.
+            </summary>
+        </member>
         <member name="P:Aequus.Content.DataSets.BuffSets.PlayerStatusDebuff">
             <summary>
             Set for compatibility with Thorium.
@@ -1249,7 +1254,7 @@
             <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 273)</summary>
+            <summary>(Total Textures: 276)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1574,6 +1579,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.ElderHorseshoeCrab">
             <summary>Full Path: Content/Critters/HorseshoeCrab/ElderHorseshoeCrab</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldAdultHorseshoeCrab">
+            <summary>Full Path: Content/Critters/HorseshoeCrab/GoldAdultHorseshoeCrab</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldBabyHorseshoeCrab">
+            <summary>Full Path: Content/Critters/HorseshoeCrab/GoldBabyHorseshoeCrab</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldElderHorseshoeCrab">
+            <summary>Full Path: Content/Critters/HorseshoeCrab/GoldElderHorseshoeCrab</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AdultHorseshoeCrabGoreHead">
             <summary>Full Path: Content/Critters/HorseshoeCrab/Gore/AdultHorseshoeCrabGoreHead</summary>

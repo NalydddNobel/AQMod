@@ -19,7 +19,11 @@ BlackJellyfish: {
 }
 
 HorseshoeCrab: {
-	// DisplayName: Horseshoe Crab
+	DisplayName: {
+		// $parentVal: Horseshoe Crab
+		// Golden: Golden Horseshoe Crab
+	}
+
 	// Bestiary: These flat discs of a creature are oddities in both polluted and non-polluted waters. They feast on the germs and unopened pasta cans which litter the seafloor.
 }
 
@@ -30,6 +34,3 @@ Chromite.Bestiary: Estos insectos han desarrollado un camuflaje magnético incre
 Crabson.DisplayName: Crabson
 OmegaStarite.DisplayName: Omega Starite
 DustDevil.DisplayName: Demonio de Polvo
-// AdultHorseshoeCrab.DisplayName: Adult Horseshoe Crab
-// BabyHorseshoeCrab.DisplayName: Baby Horseshoe Crab
-// ElderHorseshoeCrab.DisplayName: Elder Horseshoe Crab

@@ -44,4 +44,11 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Content\Critters\HorseshoeCrab\GoldAdultHorseshoeCrab.png" />
+    <None Remove="Content\Critters\HorseshoeCrab\GoldBabyHorseshoeCrab.png" />
+    <None Remove="Content\Critters\HorseshoeCrab\GoldElderHorseshoeCrab.png" />
+    <None Remove="Content\Critters\HorseshoeCrab\Gore\ElderHorseshoeCrab.png" />
+  </ItemGroup>
+
 </Project>
