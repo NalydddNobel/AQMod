@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using Terraria;
-using Terraria.ModLoader;
 
-namespace Aequus.Common.NPCs;
+namespace Aequus.Common.NPCs.Bestiary;
 
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
 internal class ModBiomesAttribute : Attribute {
