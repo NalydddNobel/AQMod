@@ -21,10 +21,12 @@ public struct BuffEntry : IDataEntry<int> {
 
     public BuffEntry(string name) {
         Name = name;
+        Id = 0;
         Initialize();
     }
 
     public BuffEntry(int id) {
+        Name = null;
         Id = id;
         Initialize();
     }

@@ -21,10 +21,12 @@ public struct NPCAIEntry : IDataEntry<int> {
 
     public NPCAIEntry(string name) {
         Name = name;
+        Id = 0;
         Initialize();
     }
 
     public NPCAIEntry(int id) {
+        Name = null;
         Id = id;
         Initialize();
     }
