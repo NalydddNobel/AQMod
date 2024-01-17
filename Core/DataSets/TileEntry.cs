@@ -21,10 +21,12 @@ public struct TileEntry : IDataEntry<int> {
 
     public TileEntry(string name) {
         Name = name;
+        Id = 0;
         Initialize();
     }
 
     public TileEntry(int id) {
+        Name = null;
         Id = id;
         Initialize();
     }

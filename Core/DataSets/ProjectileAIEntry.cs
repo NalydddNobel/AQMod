@@ -21,10 +21,12 @@ public struct ProjectileAIEntry : IDataEntry<int> {
 
     public ProjectileAIEntry(string name) {
         Name = name;
+        Id = 0;
         Initialize();
     }
 
     public ProjectileAIEntry(int id) {
+        Name = null;
         Id = id;
         Initialize();
     }

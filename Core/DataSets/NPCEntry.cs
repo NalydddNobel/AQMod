@@ -21,10 +21,12 @@ public struct NPCEntry : IDataEntry<int> {
 
     public NPCEntry(string name) {
         Name = name;
+        Id = 0;
         Initialize();
     }
 
     public NPCEntry(int id) {
+        Name = null;
         Id = id;
         Initialize();
     }
