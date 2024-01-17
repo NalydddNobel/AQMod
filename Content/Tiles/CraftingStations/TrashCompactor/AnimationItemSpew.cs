@@ -22,6 +22,8 @@ public struct AnimationItemSpew : IOverlayDrawer {
         TileOrigin = tileOrigin;
         TileLocation = location.ToTileCoordinates();
         ItemId = itemId;
+        AnimationTime = 0;
+        SpawnedParticles = false;
     }
 
     private void SpawnItemEffectParticles(Item itemInstance) {
