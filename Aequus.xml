@@ -606,9 +606,9 @@
             <para>Defaults to 0.2f.</para>
             </summary>
         </member>
-        <member name="T:Aequus.Common.NPCs.BestiaryBuilder">
+        <member name="T:Aequus.Common.NPCs.Bestiary.BestiaryBuilder">
             <summary>
-            Helper class for setting up bestiary entries.
+            Helper class for initializing bestiary entries.
             </summary>
         </member>
         <member name="M:Aequus.Common.NPCs.DropsGlobalNPC.AddNPCLoot(System.Int32,Terraria.GameContent.ItemDropRules.IItemDropRule)">
@@ -1063,6 +1063,9 @@
             </summary>
             <param name="text"></param>
             <param name="color"></param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.TextHelper.RegisterKey(System.String)">
+            <summary>Registers a localization key if it doesn't exist. Only ran if compiled with a DEBUG symbol.</summary>
         </member>
         <member name="M:Aequus.Core.Utilities.TileHelper.KillLiquid(System.Int32,System.Int32,System.Boolean)">
             <summary>
