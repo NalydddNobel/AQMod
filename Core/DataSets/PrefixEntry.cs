@@ -31,6 +31,7 @@ public struct PrefixEntry : IDataEntry<int> {
     }
 
     public PrefixEntry(int id) {
+        Name = null;
         Id = id;
         Initialize();
     }
