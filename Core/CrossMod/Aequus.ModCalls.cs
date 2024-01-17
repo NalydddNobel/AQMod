@@ -31,11 +31,6 @@ public partial class Aequus {
         return ModCompatabilityFlags.RemoveExpertExclusivity;
     }
 
-    [ModCall]
-    public static bool TestCall(Assembly caller, [Optional] bool? value, List<string> things) {
-        return false;
-    }
-
     #region Backend
     private class CallMethod {
         public readonly string MethodName;
