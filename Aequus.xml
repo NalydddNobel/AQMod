@@ -877,6 +877,11 @@
             This prevents some catches, like Jellyfishes being used as bait or being indicated as bait.
             </summary>
         </member>
+        <member name="T:Aequus.Content.Graphics.Particles.UnderwaterBubbleParticles">
+            <summary>
+            Bubble particles which only work underwater. Floats upwards.
+            </summary>
+        </member>
         <member name="T:Aequus.Core.Graphics.Tiles.BatchedTileDrawInfo">
             <summary>
             Tile draw info used internally with <see cref="T:Aequus.Core.Graphics.Tiles.BatchedTileRenderer"/>.
@@ -1146,10 +1151,25 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 36)</summary>
+            <summary>(Total Sounds: 41)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.PollutedOcean">
             <summary>Full Path: Assets/Music/PollutedOcean</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.BlackJellyfishCharge">
+            <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.BlackJellyfishCharge_Underwater">
+            <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge_Underwater</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.BlackJellyfishExplosion">
+            <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishExplosion</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.BlackJellyfishExplosion_Underwater">
+            <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishExplosion_Underwater</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.BlackJellyfishUnderwaterBubbles">
+            <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishUnderwaterBubbles</summary>
         </member>
         <member name="F:Aequus.AequusSounds.CrossbowReload">
             <summary>Full Path: Assets/Sounds/Items/CrossbowReload</summary>
@@ -1257,7 +1277,7 @@
             <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 279)</summary>
+            <summary>(Total Textures: 280)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1846,6 +1866,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.SteampunkerFishingPoleBobber">
             <summary>Full Path: Content/Fishing/FishingPoles/Steampunker/SteampunkerFishingPoleBobber</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BubbleParticles">
+            <summary>Full Path: Content/Graphics/Particles/BubbleParticles</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DashParticles">
             <summary>Full Path: Content/Graphics/Particles/DashParticles</summary>

@@ -2,8 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
+using Terraria.Social.WeGame;
 
 namespace Aequus;
 
@@ -18,20 +22,20 @@ public partial class Aequus {
     #endregion
 
     [ModCall]
-    public static bool ExpertDropsInClassicMode(Assembly caller, [Optional] bool? value) {
+    public static bool RemoveExpertExclusivity(Assembly caller, [Optional] bool? value) {
         if (value.HasValue) {
-            ModCommons.ExpertDropsInClassicMode = value.Value;
-            Instance.Logger.Info($"Expert Drops in Classic Mode set to {ModCommons.ExpertDropsInClassicMode} by {caller.Name()}.");
+            ModCompatabilityFlags.RemoveExpertExclusivity = value.Value;
+            Instance.Logger.Info($"Remove Expert Exclusivity set to {ModCompatabilityFlags.RemoveExpertExclusivity} by {caller.Name()}.");
         }
 
-        return ModCommons.ExpertDropsInClassicMode;
+        return ModCompatabilityFlags.RemoveExpertExclusivity;
     }
 
     #region Backend
     private class CallMethod {
         public readonly string MethodName;
-        private readonly MethodInfo _innerMethod;
-        private readonly ParameterInfo[] _parameters;
+        internal readonly MethodInfo _innerMethod;
+        internal readonly ParameterInfo[] _parameters;
 
         public CallMethod(MethodInfo method) {
             MethodName = method.Name;
@@ -99,6 +103,7 @@ public partial class Aequus {
         }
     }
 
+    private readonly Dictionary<string, (CallMethod, string[])> NonAliasCalls = new();
     private readonly Dictionary<string, CallMethod> Calls = new();
 
     private void LoadModCalls() {
@@ -109,12 +114,14 @@ public partial class Aequus {
             }
 
             var callMethod = new CallMethod(call);
+            NonAliasCalls.Add(callMethod.MethodName, (callMethod, modCallAttribute._aliases));
             Calls.Add(callMethod.MethodName, callMethod);
             foreach (var alias in modCallAttribute._aliases) {
                 Calls.Add(alias, callMethod);
             }
         }
 
+        GenerateWikiPage();
         // Test Mod calls
         //TestCall("");
         //TestCall("Pleh");
@@ -152,6 +159,68 @@ public partial class Aequus {
 
         if (result is Exception ex) {
             Instance.Logger.Error(ex.Message + "\n" + ex.StackTrace);
+        }
+    }
+
+    [Conditional("DEBUG")]
+    private void GenerateWikiPage() {
+        string path = $"{DebugPath}/ModSources/Aequus/Assets/Metadata/ModCallsWikiPage.Temp";
+        if (!Directory.Exists(Path.GetDirectoryName(path))) {
+            return;
+        }
+
+        try {
+            using StreamWriter w = new StreamWriter(File.Create(path));
+
+            w.Write("{{mod sub-page}}<!--DO NOT REMOVE THIS LINE! It is required for Mod sub-pages to work properly.-->\r\nMod Calls are special functions provided by tModLoader that mod creators can use to interact with Aequus in certain ways. They are accessible through <code>Mod.Call</code> and a given call name; for more details, see the [https://github.com/tModLoader/tModLoader/wiki/Expert-Cross-Mod-Content#call-aka-modcall-intermediate tModLoader wiki]. This page lists the mod call functions Aequus currently adds.\r\n");
+            w.Write("\r\nThis page expects you to have an understanding of Terraria mod coding, and how to utilize Mod.Call.\r\n");
+            w.Write("\r\nIf you would like to view the code for handling mod calls, you can find it [https://github.com/NalydddNobel/AQMod/blob/reboot/Core/CrossMod/Aequus.ModCalls.cs here]\r\n");
+            w.Write("\r\n== Important Information ==\r\nAll Calls are required to have atleast 1 parameter. A <code>string</code>, which is the name of the call.\r\n");
+            w.Write("\r\n== Examples ==\r\nThe simplest way to get an instance of Aequus:\r\n if (ModLoader.TryGetMod(\"Aequus\", out Mod aequus))\r\n }\r\n     // A call goes here\r\n }\r\n\r\nExample of some mod calls.\r\n aequus.Call(\"downedCrabson\", Mod); // Returns whether Crabson has been defeated.\r\n aequus.Call(\"downedCrabson\", Mod, true); // Sets Crabson to defeated.\r\n");
+            w.Write("\r\n== Mod Calls ==");
+            w.Write("\r\n{| class=\"terraria sortable lined align-center\"\r\n! class=unsortable | Call !! Parameters !! Result");
+            foreach (var call in NonAliasCalls) {
+                w.Write($"\r\n|-");
+                w.Write($"\r\n|| <div style=\"float:left;\">'''{call.Key}'''</div>");
+                // Should we write call aliases? They are technically supported but not preferred to be used.
+                if (call.Value.Item1._parameters.Length != 0) {
+                    w.Write($"\r\n|| <div style=\"float:left;\">{string.Join("</div>\r\n<br><div style=\"float:left;\">", call.Value.Item1._parameters.Where(p => p.ParameterType != typeof(Assembly)).Select(p => "• " + GetParameterInfo(p)))}</div>");
+                }
+                else {
+                    w.Write("\r\n|| <div style=\"float:left;\">None</div>");
+                }
+                w.Write($"\r\n|| {(call.Value.Item1._innerMethod.ReturnType == null ? "null" : call.Value.Item1._innerMethod.ReturnType.Name)}");
+            }
+            w.Write("\r\n|}");
+        }
+        catch { }
+        finally { }
+
+        static string GetParameterInfo(ParameterInfo p) {
+            string typeName = GetTypeName(p.ParameterType);
+            if (p.GetCustomAttribute<OptionalAttribute>() != null) {
+                typeName = "''(Optional)'' " + typeName;
+            }
+            return $"{typeName} ({p.Name})";
+        }
+
+        static string GetTypeName(Type type) {
+            string typeName;
+            if (type.IsGenericType) {
+                if (type.GetGenericTypeDefinition() == typeof(Nullable<>)) {
+                    return GetTypeName(type.GenericTypeArguments[0]);
+                }
+                else {
+                    typeName = type.Name[..type.Name.IndexOf('`')] + "{";
+                    // Recursion, yay!
+                    typeName += string.Join(", ", type.GenericTypeArguments.Select(g => GetTypeName(g)));
+                    typeName += "}";
+
+                    return typeName;
+                }
+            }
+
+            return type.Name;
         }
     }
     #endregion

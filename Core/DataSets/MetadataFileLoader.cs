@@ -36,9 +36,14 @@ public sealed class MetadataFileLoader {
 
     [Conditional("DEBUG")]
     public void CreateTempFile() {
-        string createFile = $"{Main.SavePath.Replace("tModLoader-preview", "tModLoader")}/ModSources/{FilePath.Replace("Content/DataSets/", "Assets/Metadata/")}.Temp.json";
+        string createFile = $"{Aequus.DebugPath}/ModSources/{FilePath.Replace("Content/DataSets/", "Assets/Metadata/")}.Temp.json";
         _dataSet.Mod.Logger.Debug(createFile);
         try {
+            // Only attempt to create the file if this Directory even exists.
+            if (!Directory.Exists(Path.GetDirectoryName(createFile))) {
+                return;
+            }
+
             var settings = new JsonSerializerSettings {
                 Formatting = Formatting.Indented,
             };
@@ -51,6 +56,8 @@ public sealed class MetadataFileLoader {
         }
         catch (Exception ex) {
             _dataSet.Mod.Logger.Error(ex);
+        }
+        finally {
         }
     }
 }

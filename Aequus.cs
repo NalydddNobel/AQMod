@@ -5,6 +5,7 @@ global using Terraria;
 global using Terraria.ID;
 global using Terraria.ModLoader;
 using log4net;
+using System.IO;
 using System.Reflection;
 
 namespace Aequus;
@@ -32,4 +33,6 @@ public partial class Aequus : Mod {
         UnloadModCalls();
         UnloadPackets();
     }
+
+    internal static string DebugPath => $"{Main.SavePath.Replace("tModLoader-preview", "tModLoader")}";
 }
