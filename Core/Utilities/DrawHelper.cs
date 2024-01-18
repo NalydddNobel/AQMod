@@ -109,6 +109,13 @@ public sealed class DrawHelper : ModSystem {
         return WorldGen.paintColor(stringColorId);
     }
 
+    public static bool BadRenderTarget(RenderTarget2D renderTarget2D) {
+        return renderTarget2D == null || renderTarget2D.IsDisposed || renderTarget2D.IsContentLost;
+    }
+    public static bool BadRenderTarget(RenderTarget2D renderTarget2D, int wantedWidth, int wantedHeight) {
+        return BadRenderTarget(renderTarget2D) || renderTarget2D.Width != wantedWidth || renderTarget2D.Height != wantedHeight;
+    }
+
     #region Dust
     public static int LiquidTypeToDustId(int liquidType) {
         return liquidType switch {
