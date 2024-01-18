@@ -1087,7 +1087,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 35)</summary>
+            <summary>(Total Sounds: 36)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishCharge">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -1100,6 +1100,9 @@
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishExplosion_Underwater">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishExplosion_Underwater</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.BlackJellyfishUnderwaterBubbles">
+            <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishUnderwaterBubbles</summary>
         </member>
         <member name="F:Aequus.AequusSounds.CrossbowReload">
             <summary>Full Path: Assets/Sounds/Items/CrossbowReload</summary>

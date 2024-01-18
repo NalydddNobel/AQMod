@@ -44,19 +44,4 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Assets\Shaders\BubbleMerge.fx" />
-    <None Remove="Assets\Sounds\Enemy\BlackJellyfish\BlackJellyfishCharge.ogg" />
-    <None Remove="Assets\Sounds\Enemy\BlackJellyfish\BlackJellyfishCharge_underwater.ogg" />
-    <None Remove="Assets\Sounds\Enemy\BlackJellyfish\BlackJellyfishExplosion.ogg" />
-    <None Remove="Assets\Sounds\Enemy\BlackJellyfish\BlackJellyfishExplosion_underwater.ogg" />
-    <None Remove="Assets\Textures\FlareSoft.png" />
-    <None Remove="Assets\Textures\LensFlare.png" />
-    <None Remove="Content\Enemies\PollutedOcean\BlackJellyfish\BlackJellyfishBanner.png" />
-    <None Remove="Content\Enemies\PollutedOcean\BlackJellyfish\BlackJellyfishBannerItem.png" />
-    <None Remove="Content\Graphics\Particles\BubbleParticles.png" />
-    <None Remove="Content\Tiles\Banners\OldMonsterBanners.png" />
-    <None Remove="Content\VanillaChanges\ToolbeltBuilderToggle.png" />
-  </ItemGroup>
-
 </Project>

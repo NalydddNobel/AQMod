@@ -139,6 +139,7 @@ public partial class BlackJellyfish : AIJellyfish {
         // Explosion Sound
         if (NPC.wet) {
             SoundEngine.PlaySound(AequusSounds.BlackJellyfishExplosion_Underwater with { PitchVariance = 0.1f }, NPC.Center);
+            SoundEngine.PlaySound(AequusSounds.BlackJellyfishUnderwaterBubbles with { PitchVariance = 0.2f }, NPC.Center);
         }
         else {
             SoundEngine.PlaySound(AequusSounds.BlackJellyfishExplosion with { PitchVariance = 0.1f }, NPC.Center);
