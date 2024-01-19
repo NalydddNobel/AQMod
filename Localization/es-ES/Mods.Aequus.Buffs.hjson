@@ -37,3 +37,8 @@ BaguetteBuff: {
 	DisplayName: "{$Items.Baguette.DisplayName}"
 	Description: Mejoras supremas a todas las características y regeneración de vida muy incrementada
 }
+
+FoodPoisoningDebuff: {
+	// DisplayName: Food Poisoning
+	// Description: No improvements to stats, and you can no longer eat food!
+}

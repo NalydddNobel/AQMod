@@ -1,4 +1,5 @@
 CommonTooltips: {
+	// BuffTimeRange: "{0}-{1} minute duration"
 	IncreasesInventorySlots: 获得{0}格物品栏
 	Cooldown: 有{0}秒冷却时间
 	Shimmerable: 微光材料
@@ -179,6 +180,15 @@ StunGun: {
 }
 
 //# Potions
+TaintedSeafood: {
+	// DisplayName: Tainted Seafood
+	/* Tooltip:
+		'''
+		May grant minor, medium, or major improvments to all stats
+		Has a small chance to instead grant food poisoning
+		''' */
+}
+
 NeutronYogurt: {
 	DisplayName: 中子酸奶
 	Tooltip: 获得具有加速度翻倍的附魔下落

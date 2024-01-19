@@ -1,8 +1,8 @@
 ﻿namespace Aequus.Content.Fishing;
 
 public class FishCatches : ILoadable {
-    public ModItem Killifish { get; private set; }
-    public ModItem Piraiba { get; private set; }
+    public static ModItem Killifish { get; private set; }
+    public static ModItem Piraiba { get; private set; }
 
     public void Load(Mod mod) {
         Killifish = new InstancedFishItem("Killifish", ItemRarityID.Blue, Item.silver * 15, InstancedFishItem.SeafoodDinnerRecipe);

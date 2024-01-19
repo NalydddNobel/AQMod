@@ -1,4 +1,4 @@
-﻿NeutronYogurtBuff: {
+NeutronYogurtBuff: {
 	DisplayName: "{$Items.NeutronYogurt.DisplayName}"
 	Description: 下落加速度翻倍
 }
@@ -36,4 +36,9 @@ DeathsEmbraceBuff: {
 BaguetteBuff: {
 	DisplayName: "{$Items.Baguette.DisplayName}"
 	Description: 各项属性和生命再生速度大幅度提升
+}
+
+FoodPoisoningDebuff: {
+	// DisplayName: Food Poisoning
+	// Description: No improvements to stats, and you can no longer eat food!
 }
