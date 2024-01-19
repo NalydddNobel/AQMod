@@ -1279,7 +1279,7 @@
             <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 271)</summary>
+            <summary>(Total Textures: 273)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1886,6 +1886,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.NeutronYogurtBuff">
             <summary>Full Path: Content/Potions/Buffs/NeutronYogurt/NeutronYogurtBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SentryBuff">
+            <summary>Full Path: Content/Potions/Buffs/Sentry/SentryBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SentryPotion">
+            <summary>Full Path: Content/Potions/Buffs/Sentry/SentryPotion</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FoodPoisoningDebuff">
             <summary>Full Path: Content/Potions/Food/TaintedSeafood/FoodPoisoningDebuff</summary>

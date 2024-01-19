@@ -180,6 +180,12 @@ StunGun: {
 }
 
 //# Potions
+SentryPotion: {
+	// DisplayName: Sentinel Potion
+	// Tooltip: Increases your maximum amount of sentries by {0}
+	// BuffName: Sentinel
+}
+
 TaintedSeafood: {
 	// DisplayName: Tainted Seafood
 	/* Tooltip:

@@ -44,11 +44,4 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Content\Fishing\Fish\Killifish.png" />
-    <None Remove="Content\Fishing\Fish\Piraiba.png" />
-    <None Remove="Content\Potions\Food\TaintedSeafood\FoodPoisoningDebuff.png" />
-    <None Remove="Content\Potions\Food\TaintedSeafood\TaintedSeafood.png" />
-  </ItemGroup>
-
 </Project>

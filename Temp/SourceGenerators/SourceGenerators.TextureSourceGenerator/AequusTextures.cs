@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 271)</summary>
+/// <summary>(Total Textures: 273)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -411,6 +411,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> NeutronYogurt = new("Aequus/Content/Potions/Buffs/NeutronYogurt/NeutronYogurt");
     /// <summary>Full Path: Content/Potions/Buffs/NeutronYogurt/NeutronYogurtBuff</summary>
     public static readonly RequestCache<Texture2D> NeutronYogurtBuff = new("Aequus/Content/Potions/Buffs/NeutronYogurt/NeutronYogurtBuff");
+    /// <summary>Full Path: Content/Potions/Buffs/Sentry/SentryBuff</summary>
+    public static readonly RequestCache<Texture2D> SentryBuff = new("Aequus/Content/Potions/Buffs/Sentry/SentryBuff");
+    /// <summary>Full Path: Content/Potions/Buffs/Sentry/SentryPotion</summary>
+    public static readonly RequestCache<Texture2D> SentryPotion = new("Aequus/Content/Potions/Buffs/Sentry/SentryPotion");
     /// <summary>Full Path: Content/Potions/Food/TaintedSeafood/FoodPoisoningDebuff</summary>
     public static readonly RequestCache<Texture2D> FoodPoisoningDebuff = new("Aequus/Content/Potions/Food/TaintedSeafood/FoodPoisoningDebuff");
     /// <summary>Full Path: Content/Potions/Food/TaintedSeafood/TaintedSeafood</summary>
