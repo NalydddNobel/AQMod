@@ -1272,7 +1272,7 @@
             <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 267)</summary>
+            <summary>(Total Textures: 269)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1822,6 +1822,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.SteampunkerFishingPoleBobber">
             <summary>Full Path: Content/Fishing/FishingPoles/Steampunker/SteampunkerFishingPoleBobber</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Killifish">
+            <summary>Full Path: Content/Fishing/Fish/Killifish</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Piraiba">
+            <summary>Full Path: Content/Fishing/Fish/Piraiba</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BubbleParticles">
             <summary>Full Path: Content/Graphics/Particles/BubbleParticles</summary>

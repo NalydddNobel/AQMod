@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Fishing.FishingPoles;
+﻿namespace Aequus.Content.Fishing;
 
 public abstract class ModFishingPole : ModItem {
     [CloneByReference]

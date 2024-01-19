@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Content.Fishing.FishingPoles;
+namespace Aequus.Content.Fishing;
 
 public class FishingPoleGlobalProjectile : GlobalProjectile {
     public override bool AppliesToEntity(Projectile entity, bool lateInstantiation) {

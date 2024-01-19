@@ -444,3 +444,13 @@ Toolbelt: {
 	// BackpackEnabled: Toolbelt Pack On
 	// BackpackDisabled: Toolbelt Pack Off
 }
+
+Killifish: {
+	// DisplayName: Killifish
+	// Tooltip: ""
+}
+
+Piraiba: {
+	// DisplayName: Piraiba
+	// Tooltip: ""
+}

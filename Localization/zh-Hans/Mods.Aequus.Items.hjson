@@ -444,3 +444,13 @@ Toolbelt: {
 	BackpackEnabled: 工具腰带开启
 	BackpackDisabled: 工具腰带关闭
 }
+
+Killifish: {
+	// DisplayName: Killifish
+	// Tooltip: ""
+}
+
+Piraiba: {
+	// DisplayName: Piraiba
+	// Tooltip: ""
+}
