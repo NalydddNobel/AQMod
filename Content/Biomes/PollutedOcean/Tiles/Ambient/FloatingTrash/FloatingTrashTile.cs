@@ -12,7 +12,7 @@ public class FloatingTrashTile : FloatingTrashBase, ITouchEffects {
     }
 
     private static void OnRandomTileUpdate(int i, int j, int type) {
-        if (Main.dayTime && WorldGen.oceanDepths(i, j) && Main.tile[i, j - 1].LiquidAmount > 0 && TileHelper.ScanUp(new(i, j - 1), 100, out var result, TileHelper.HasNoLiquid)) {
+        if (Main.dayTime && WorldGen.oceanDepths(i, j) && Main.tile[i, j - 1].LiquidAmount > 0 && TileHelper.ScanUp(new(i, j - 1), 100, out var result, TileHelper.HasNoLiquid) && !Framing.GetTileSafely(result.X, result.Y + 1).HasTile) {
             WorldGen.PlaceTile(result.X, result.Y + 1, ModContent.TileType<FloatingTrashTile>(), mute: true);
         }
     }

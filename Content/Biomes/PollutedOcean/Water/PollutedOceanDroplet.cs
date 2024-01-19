@@ -87,6 +87,7 @@ public class PollutedOceanDroplet : ModGore {
             if (gore.frame < 10) {
                 gore.frame = 10;
                 gore.frameCounter = 0;
+                return false;
                 SoundEngine.PlaySound(SoundID.Drip, gore.position);
             }
         }
@@ -94,6 +95,7 @@ public class PollutedOceanDroplet : ModGore {
             if (gore.frame < 10) {
                 gore.frame = 10;
                 gore.frameCounter = 0;
+                return false;
                 SoundEngine.PlaySound(SoundID.Drip, gore.position);
             }
             int tileX = (int)(gore.position.X + 8f) / 16;

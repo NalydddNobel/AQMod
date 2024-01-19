@@ -193,7 +193,7 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
         while (j < bottom);
     }
 
-    private void EmitSand(int x, int y, int size, int direction, out int notReplaceable) {
+    private static void EmitSand(int x, int y, int size, int direction, out int notReplaceable) {
         int startX = Math.Max(x - size, 1);
         int startY = Math.Max(y - size, 1);
         int endX = Math.Min(x + size, Main.maxTilesX - 1);
@@ -333,7 +333,7 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
                 if (Main.tile[i, j].TileType == _polymerSand) {
                     if (Main.tile[i, j].HasTile) {
                         Main.tile[i, j].WallType = _polymerSandstoneWall;
-                        if (!Main.tile[i, j + 1].IsFullySolid() || Main.tile[i, j - 1].IsFullySolid() && (!Main.tile[i - 1, j].IsFullySolid() || !Main.tile[i - 1, j + 1].IsFullySolid() || !Main.tile[i + 1, j].IsFullySolid() || !Main.tile[i + 1, j + 1].IsFullySolid())) {
+                        if (!Main.tile[i, j + 1].IsFullySolid() || Main.tile[i, j - Random.Next(1, 6)].IsFullySolid()) {
                             Main.tile[i, j].TileType = _polymerSandstone;
                         }
                     }
@@ -343,35 +343,37 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
                 }
             }
         }
-        for (int m = 0; m < 3; m++) {
-            for (int i = 0; i < Main.maxTilesX; i++) {
-                for (int j = 0; j < Main.maxTilesY; j++) {
-                    SetProgress(progress, m / 3f + (i * Main.maxTilesY + j) / (double)(Main.maxTilesX + Main.maxTilesY) * 0.33f, Weight * 0.75f, Weight * 1f);
-                    if (Main.tile[i, j].HasTile && Main.tile[i, j].WallType == _polymerSandstoneWall) {
-                        if (Main.tile[i, j].TileType == _polymerSandstone) {
-                            j++;
-                            for (int k = i - 1; k <= i + 1; k++) {
-                                for (int l = j - 1; l <= j + 1; l++) {
-                                    if (WorldGen.InWorld(k, l) && Main.tileSand[Main.tile[k, l].TileType]) {
-                                        if (Random.NextBool(5)) {
-                                            Main.tile[k, l].TileType = _polymerSandstone;
-                                        }
-                                    }
-                                }
-                            }
-                            if (WorldGen.InWorld(i, j) && Random.NextBool(40)) {
-                                GrowWormyWall(i, j);
-                            }
-                        }
-                        else if (Main.tileSand[Main.tile[i, j].TileType]) {
-                            if (!TileHelper.ScanTilesSquare(i, j, Random.Next(5, 12), TileHelper.IsNotSolid)) {
-                                Main.tile[i, j].TileType = TileID.HardenedSand;
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        
+        // Hardened Sand
+        //for (int m = 0; m < 3; m++) {
+        //    for (int i = 0; i < Main.maxTilesX; i++) {
+        //        for (int j = 0; j < Main.maxTilesY; j++) {
+        //            SetProgress(progress, m / 3f + (i * Main.maxTilesY + j) / (double)(Main.maxTilesX + Main.maxTilesY) * 0.33f, Weight * 0.75f, Weight * 1f);
+        //            if (Main.tile[i, j].HasTile && Main.tile[i, j].WallType == _polymerSandstoneWall) {
+        //                if (Main.tile[i, j].TileType == _polymerSandstone) {
+        //                    j++;
+        //                    for (int k = i - 1; k <= i + 1; k++) {
+        //                        for (int l = j - 1; l <= j + 1; l++) {
+        //                            if (WorldGen.InWorld(k, l) && Main.tileSand[Main.tile[k, l].TileType]) {
+        //                                if (Random.NextBool(5)) {
+        //                                    Main.tile[k, l].TileType = _polymerSandstone;
+        //                                }
+        //                            }
+        //                        }
+        //                    }
+        //                    if (WorldGen.InWorld(i, j) && Random.NextBool(40)) {
+        //                        GrowWormyWall(i, j);
+        //                    }
+        //                }
+        //                else if (Main.tileSand[Main.tile[i, j].TileType]) {
+        //                    if (!TileHelper.ScanTilesSquare(i, j, Random.Next(5, 12), TileHelper.IsNotSolid)) {
+        //                        Main.tile[i, j].TileType = TileID.HardenedSand;
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
     }
 
     private void GrowWormyWall(int x, int y) {

@@ -25,6 +25,7 @@ public class PolymerSand : MultiMergeTile {
         AddMerge(TileID.HardenedSand);
         AddMerge(ModContent.TileType<PolymerSandstone>());
 
+        TileID.Sets.CanBeClearedDuringOreRunner[Type] = false;
         TileID.Sets.ChecksForMerge[Type] = true;
         TileID.Sets.Conversion.Sand[Type] = true;
         AddMapEntry(new(117, 142, 154));

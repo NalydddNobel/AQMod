@@ -1,4 +1,4 @@
-﻿using Aequus.Core.UI;
+﻿using Aequus.Core.Debug;
 using System.Collections.Generic;
 
 namespace Aequus.Core.Particles;
