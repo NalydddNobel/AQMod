@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Common.Tiles.Components;
-using Aequus.Content.Items.Material;
+using Aequus.Content.Materials;
 using Aequus.Core.Graphics.Tiles;
 using Terraria.Audio;
 using Terraria.GameContent;

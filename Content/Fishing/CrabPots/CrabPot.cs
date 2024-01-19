@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Tiles;
-using Aequus.Content.Items.Material;
+using Aequus.Content.Materials;
 
 namespace Aequus.Content.Fishing.CrabPots;
 public class CrabPot : BaseCrabPot {
