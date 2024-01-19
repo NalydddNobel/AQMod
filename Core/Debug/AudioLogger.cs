@@ -7,16 +7,6 @@ namespace Aequus.Core.Debug;
 internal class AudioLogger : ModSystem {
     public static bool DisableLogs;
 
-    public override bool IsLoadingEnabled(Mod mod) {
-        return
-#if DEBUG
-            true
-#else
-            false
-#endif
-            ;
-    }
-
     public override void Load() {
         IL_SoundEngine.PlaySound_refSoundStyle_Nullable1_SoundUpdateCallback += IL_SoundEngine_PlaySound_refSoundStyle_Nullable1_SoundUpdateCallback;
     }
@@ -37,4 +27,6 @@ internal class AudioLogger : ModSystem {
             DisableLogs = false;
         }
     }
+
+    public override bool IsLoadingEnabled(Mod mod) => Aequus.DEBUG_MODE;
 }
