@@ -1,10 +1,8 @@
-﻿using Terraria.DataStructures;
-using Terraria.Enums;
-using Terraria.ObjectData;
+﻿using Terraria.ObjectData;
 
-namespace Aequus.Content.Biomes.PollutedOcean.Tiles;
+namespace Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient.Dripstones;
 
-public class PolymerStalactite1x1 : ModTile {
+public class PolymerStalagmite1x1 : ModTile {
     public override void SetStaticDefaults() {
         Main.tileSolid[Type] = false;
         Main.tileSolidTop[Type] = false;
@@ -15,11 +13,7 @@ public class PolymerStalactite1x1 : ModTile {
         TileObjectData.newTile.StyleHorizontal = true;
         TileObjectData.newTile.WaterDeath = false;
         TileObjectData.newTile.LavaDeath = false;
-        TileObjectData.newTile.DrawYOffset = -4;
-        TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide, 1, 1);
-        TileObjectData.newTile.AnchorBottom = AnchorData.Empty;
-        TileObjectData.newTile.Origin = new Point16(0, 0);
-
+        TileObjectData.newTile.DrawYOffset = 4;
         TileObjectData.addTile(Type);
 
         HitSound = SoundID.Dig;

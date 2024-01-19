@@ -3,7 +3,7 @@ using Aequus.Content.Biomes.PollutedOcean.Tiles.PolymerSands;
 using Terraria.GameContent;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Biomes.PollutedOcean.Tiles.SeaPickles;
+namespace Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient.SeaPickles;
 
 internal class SeaPickles1x1 : SeaPicklesTileBase {
     public SeaPickles1x1() : base() { }

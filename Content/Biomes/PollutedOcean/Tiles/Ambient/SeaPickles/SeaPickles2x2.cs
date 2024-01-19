@@ -2,7 +2,7 @@
 using Terraria.GameContent;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Biomes.PollutedOcean.Tiles.SeaPickles;
+namespace Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient.SeaPickles;
 
 internal class SeaPickles2x2 : SeaPicklesTileBase {
     public SeaPickles2x2() : base() { }

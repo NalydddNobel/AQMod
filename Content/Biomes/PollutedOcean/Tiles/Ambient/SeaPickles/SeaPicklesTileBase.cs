@@ -3,7 +3,7 @@ using Aequus.Core.Graphics.Animations;
 using Terraria.GameContent;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Biomes.PollutedOcean.Tiles.SeaPickles;
+namespace Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient.SeaPickles;
 
 internal abstract class SeaPicklesTileBase : RubblemakerTile {
     protected float LightMagnitudeMultiplier = 1f;
@@ -11,7 +11,7 @@ internal abstract class SeaPicklesTileBase : RubblemakerTile {
 
     protected SeaPicklesTileBase() : base() {
     }
-    protected SeaPicklesTileBase(string? name, string? texture, bool natural) : base(name, texture, natural) {
+    protected SeaPicklesTileBase(string name, string texture, bool natural) : base(name, texture, natural) {
     }
 
     public override void SafeSetStaticDefaults() {

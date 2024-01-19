@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Common.Tiles.Components;
 
-namespace Aequus.Content.Biomes.PollutedOcean.Tiles.FloatingTrash;
+namespace Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient.FloatingTrash;
 
 public class FloatingTrashTile : FloatingTrashBase, ITouchEffects {
     public override string Texture => AequusTextures.Tile(TileID.Iron);

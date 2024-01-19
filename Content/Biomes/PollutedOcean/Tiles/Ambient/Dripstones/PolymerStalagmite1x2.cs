@@ -1,15 +1,15 @@
 ﻿using Terraria.ObjectData;
 
-namespace Aequus.Content.Biomes.PollutedOcean.Tiles;
+namespace Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient.Dripstones;
 
-public class PolymerStalagmite1x1 : ModTile {
+public class PolymerStalagmite1x2 : ModTile {
     public override void SetStaticDefaults() {
         Main.tileSolid[Type] = false;
         Main.tileSolidTop[Type] = false;
         Main.tileNoAttach[Type] = true;
         Main.tileFrameImportant[Type] = true;
 
-        TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2);
         TileObjectData.newTile.StyleHorizontal = true;
         TileObjectData.newTile.WaterDeath = false;
         TileObjectData.newTile.LavaDeath = false;

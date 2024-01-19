@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Biomes.PollutedOcean.Tiles.FloatingTrash;
+namespace Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient.FloatingTrash;
 public abstract class FloatingTrashBase : ModTile {
     protected static bool UpdateActive(int i, int j) {
         var tile = Main.tile[i, j];

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Terraria.DataStructures;
 
-namespace Aequus.Content.Biomes.PollutedOcean.Tiles.SeaPickles;
+namespace Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient.SeaPickles;
 
 public class SeaPickleAmbientParticles : ParticleSystem {
     private readonly Dictionary<Point16, List<AmbientParticle>> _particleAnchorPairs = new();

@@ -1,6 +1,6 @@
 ﻿using Aequus.Core.Graphics.Animations;
 
-namespace Aequus.Content.Biomes.PollutedOcean.Tiles.SeaPickles;
+namespace Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient.SeaPickles;
 
 public class SeaPickleLightTracker : ITileAnimation {
     private bool noPlayer = true;
@@ -15,7 +15,7 @@ public class SeaPickleLightTracker : ITileAnimation {
         if (Main.rand.NextBool(noPlayer ? 20 : 240)) {
             noPlayer = true;
             int size = 120;
-            var rect = new Rectangle(x * 16 + 8 - size, y * 16 + 8 - size, size * 2, size*2);
+            var rect = new Rectangle(x * 16 + 8 - size, y * 16 + 8 - size, size * 2, size * 2);
             for (int i = 0; i < Main.maxPlayers; i++) {
                 if (Main.player[i].active && !Main.player[i].DeadOrGhost && (Main.player[i].Hitbox.Intersects(rect) || Collision.CanHitLine(new Vector2(x * 16f + 8f, y * 16f + 8f), 0, 0, Main.player[i].position, Main.player[i].width, Main.player[i].height))) {
                     noPlayer = false;
