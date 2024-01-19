@@ -1639,76 +1639,19 @@
             <summary>Full Path: Content/Graphics/Particles/DashParticles</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CompressedTrash">
-            <summary>Full Path: Content/Items/Material/CompressedTrash</summary>
+            <summary>Full Path: Content/Materials/CompressedTrash</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NetherStar">
-            <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStar</summary>
+            <summary>Full Path: Content/PermaPowerups/NetherStar/NetherStar</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NetherStarBackground">
-            <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStarBackground</summary>
+            <summary>Full Path: Content/PermaPowerups/NetherStar/NetherStarBackground</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NetherStarMask">
-            <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStarMask</summary>
+            <summary>Full Path: Content/PermaPowerups/NetherStar/NetherStarMask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NetherStar_Glow">
-            <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStar_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NeutronYogurt">
-            <summary>Full Path: Content/Items/Potions/Buffs/NeutronYogurt/NeutronYogurt</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NeutronYogurtBuff">
-            <summary>Full Path: Content/Items/Potions/Buffs/NeutronYogurt/NeutronYogurtBuff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GreaterRestorationPotion">
-            <summary>Full Path: Content/Items/Potions/Healing/Restoration/GreaterRestorationPotion</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SuperRestorationPotion">
-            <summary>Full Path: Content/Items/Potions/Healing/Restoration/SuperRestorationPotion</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AnglerLamp">
-            <summary>Full Path: Content/Items/Tools/AnglerLamp/AnglerLamp</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AnglerLampOff">
-            <summary>Full Path: Content/Items/Tools/AnglerLamp/AnglerLampOff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AnglerLamp_Glow">
-            <summary>Full Path: Content/Items/Tools/AnglerLamp/AnglerLamp_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.WispLantern">
-            <summary>Full Path: Content/Items/Tools/AnglerLamp/WispLantern</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.WispLantern_Glow">
-            <summary>Full Path: Content/Items/Tools/AnglerLamp/WispLantern_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Bellows">
-            <summary>Full Path: Content/Items/Tools/Bellows/Bellows</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BellowsProj">
-            <summary>Full Path: Content/Items/Tools/Bellows/BellowsProj</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhaseMirror">
-            <summary>Full Path: Content/Items/Tools/MagicMirrors/PhaseMirror/PhaseMirror</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhasePhone">
-            <summary>Full Path: Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhone</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhasePhoneHome">
-            <summary>Full Path: Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneHome</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhasePhoneOcean">
-            <summary>Full Path: Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneOcean</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhasePhoneSpawn">
-            <summary>Full Path: Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneSpawn</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhasePhoneUnderworld">
-            <summary>Full Path: Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneUnderworld</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NameTag">
-            <summary>Full Path: Content/Items/Tools/NameTag/NameTag</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NameTagBlank">
-            <summary>Full Path: Content/Items/Tools/NameTag/NameTagBlank</summary>
+            <summary>Full Path: Content/PermaPowerups/NetherStar/NetherStar_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UndeadMinerPet">
             <summary>Full Path: Content/Pets/Miner/UndeadMinerPet</summary>
@@ -1727,6 +1670,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStaritePetItem">
             <summary>Full Path: Content/Pets/OmegaStarite/OmegaStaritePetItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NeutronYogurt">
+            <summary>Full Path: Content/Potions/Buffs/NeutronYogurt/NeutronYogurt</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NeutronYogurtBuff">
+            <summary>Full Path: Content/Potions/Buffs/NeutronYogurt/NeutronYogurtBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GreaterRestorationPotion">
+            <summary>Full Path: Content/Potions/Healing/Restoration/GreaterRestorationPotion</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SuperRestorationPotion">
+            <summary>Full Path: Content/Potions/Healing/Restoration/SuperRestorationPotion</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OldMonsterBanners">
             <summary>Full Path: Content/Tiles/Banners/OldMonsterBanners</summary>
@@ -1748,6 +1703,51 @@
         </member>
         <member name="F:Aequus.AequusTextures.TrashCompactorItem">
             <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AnglerLamp">
+            <summary>Full Path: Content/Tools/AnglerLamp/AnglerLamp</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AnglerLampOff">
+            <summary>Full Path: Content/Tools/AnglerLamp/AnglerLampOff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AnglerLamp_Glow">
+            <summary>Full Path: Content/Tools/AnglerLamp/AnglerLamp_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WispLantern">
+            <summary>Full Path: Content/Tools/AnglerLamp/WispLantern</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WispLantern_Glow">
+            <summary>Full Path: Content/Tools/AnglerLamp/WispLantern_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Bellows">
+            <summary>Full Path: Content/Tools/Bellows/Bellows</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BellowsProj">
+            <summary>Full Path: Content/Tools/Bellows/BellowsProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhaseMirror">
+            <summary>Full Path: Content/Tools/MagicMirrors/PhaseMirror/PhaseMirror</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhone">
+            <summary>Full Path: Content/Tools/MagicMirrors/PhasePhone/PhasePhone</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhoneHome">
+            <summary>Full Path: Content/Tools/MagicMirrors/PhasePhone/PhasePhoneHome</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhoneOcean">
+            <summary>Full Path: Content/Tools/MagicMirrors/PhasePhone/PhasePhoneOcean</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhoneSpawn">
+            <summary>Full Path: Content/Tools/MagicMirrors/PhasePhone/PhasePhoneSpawn</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhoneUnderworld">
+            <summary>Full Path: Content/Tools/MagicMirrors/PhasePhone/PhasePhoneUnderworld</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NameTag">
+            <summary>Full Path: Content/Tools/NameTag/NameTag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NameTagBlank">
+            <summary>Full Path: Content/Tools/NameTag/NameTagBlank</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Balloon">
             <summary>Full Path: Content/TownNPCs/SkyMerchant/Balloon</summary>

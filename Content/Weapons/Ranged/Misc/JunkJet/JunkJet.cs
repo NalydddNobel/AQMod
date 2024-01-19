@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Content.DataSets;
-using Aequus.Content.Items.Material;
+using Aequus.Content.Materials;
 using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;

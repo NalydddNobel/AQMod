@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Content.Items.Material;
+using Aequus.Content.Materials;
 
 namespace Aequus.Content.Weapons.Magic.TrashStaff;
 

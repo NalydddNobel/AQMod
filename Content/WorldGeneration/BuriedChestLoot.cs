@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Content.Configuration;
-using Aequus.Content.Items.Tools.NameTag;
+using Aequus.Content.Tools.NameTag;
 using Aequus.Content.VanillaChanges;
 using Terraria.ObjectData;
 
