@@ -1,4 +1,5 @@
-﻿using ReLogic.Content;
+﻿using Aequus.Core.Initialization;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -88,11 +89,13 @@ public abstract class MultiMergeTile : ModTile {
 
         Merges.Add(with);
 
-        if (!Main.dedServ) {
-            if (_mergeTextures.Length <= with) {
-                Array.Resize(ref _mergeTextures, with + 1);
-            }
-            _mergeTextures[with] ??= ModContent.Request<Texture2D>($"{Path}{TileID.Search.GetName(with)}");
+        if (Main.netMode != NetmodeID.Server) {
+            LoadingSteps.EnqueuePostSetupContent(() => {
+                if (_mergeTextures.Length <= with) {
+                    Array.Resize(ref _mergeTextures, with + 1);
+                }
+                _mergeTextures[with] ??= ModContent.Request<Texture2D>($"{Path}{TileID.Search.GetName(with).Replace("Aequus/", "")}");
+            });
         }
     }
 

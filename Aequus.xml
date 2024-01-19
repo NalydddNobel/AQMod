@@ -1279,7 +1279,7 @@
             <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 279)</summary>
+            <summary>(Total Textures: 280)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1352,6 +1352,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.HardenedSand">
             <summary>Full Path: Assets/Textures/TileMerges/HardenedSand</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Assets_Textures_TileMerges_PolymerSandstone">
+            <summary>Full Path: Assets/Textures/TileMerges/PolymerSandstone</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Sand">
             <summary>Full Path: Assets/Textures/TileMerges/Sand</summary>
@@ -1437,7 +1440,7 @@
         <member name="F:Aequus.AequusTextures.PolymerSandItem">
             <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandItem</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PolymerSandstone">
+        <member name="F:Aequus.AequusTextures.Content_Biomes_PollutedOcean_Tiles_PolymerSands_PolymerSandstone">
             <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstone</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PolymerSandstoneItem">

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 279)</summary>
+/// <summary>(Total Textures: 280)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -55,6 +55,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Sparkles = new("Aequus/Assets/Textures/Sparkles");
     /// <summary>Full Path: Assets/Textures/TileMerges/HardenedSand</summary>
     public static readonly RequestCache<Texture2D> HardenedSand = new("Aequus/Assets/Textures/TileMerges/HardenedSand");
+    /// <summary>Full Path: Assets/Textures/TileMerges/PolymerSandstone</summary>
+    public static readonly RequestCache<Texture2D> Assets_Textures_TileMerges_PolymerSandstone = new("Aequus/Assets/Textures/TileMerges/PolymerSandstone");
     /// <summary>Full Path: Assets/Textures/TileMerges/Sand</summary>
     public static readonly RequestCache<Texture2D> Sand = new("Aequus/Assets/Textures/TileMerges/Sand");
     /// <summary>Full Path: Assets/Textures/TownNPCExclamation</summary>
@@ -112,7 +114,7 @@ public partial class AequusTextures {
     /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandItem</summary>
     public static readonly RequestCache<Texture2D> PolymerSandItem = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandItem");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstone</summary>
-    public static readonly RequestCache<Texture2D> PolymerSandstone = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstone");
+    public static readonly RequestCache<Texture2D> Content_Biomes_PollutedOcean_Tiles_PolymerSands_PolymerSandstone = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstone");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstoneItem</summary>
     public static readonly RequestCache<Texture2D> PolymerSandstoneItem = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstoneItem");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstoneWall</summary>
