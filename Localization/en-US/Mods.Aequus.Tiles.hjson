@@ -96,3 +96,13 @@ TrashChest: {
 	ItemDisplayName: "{$Tiles.TrashChest.MapEntry}"
 	ItemTooltip: Both sides of the dumpster are different chests
 }
+
+TrashTorch: {
+	ItemDisplayName: Mods.Aequus.Tiles.TrashTorch.ItemDisplayName
+	ItemTooltip: ""
+}
+
+TrashCampfire: {
+	ItemDisplayName: Mods.Aequus.Tiles.TrashCampfire.ItemDisplayName
+	ItemTooltip: ""
+}

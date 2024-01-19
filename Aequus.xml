@@ -1279,7 +1279,7 @@
             <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 273)</summary>
+            <summary>(Total Textures: 279)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1926,6 +1926,15 @@
         <member name="F:Aequus.AequusTextures.TrashCompactorItem">
             <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.TrashCampfire">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCampfire</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashCampfireItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCampfireItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashCampfire_Highlight">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCampfire_Highlight</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.TrashChest">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChest</summary>
         </member>
@@ -1934,6 +1943,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.TrashChest_Highlight">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChest_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashTorch">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTorch</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashTorchItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTorchItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashTorchItem_Flame">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTorchItem_Flame</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AnglerLamp">
             <summary>Full Path: Content/Tools/AnglerLamp/AnglerLamp</summary>

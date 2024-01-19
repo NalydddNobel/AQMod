@@ -2,6 +2,7 @@
 using Aequus.Content.Biomes.PollutedOcean.Water;
 using Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
 using Aequus.Content.Enemies.PollutedOcean.Scavenger;
+using Aequus.Content.Tiles.Furniture.Trash;
 using System.Collections.Generic;
 
 namespace Aequus.Content.Biomes.PollutedOcean;
@@ -24,6 +25,14 @@ public class PollutedOceanBiome : ModBiome {
 
     private int? MusicSlotId;
     public override int Music => MusicSlotId ??= MusicLoader.GetMusicSlot(Mod, AequusSounds.PollutedOcean.ModPath());
+
+    public override int BiomeTorchItemType => ModContent.GetInstance<TrashTorch>().Item.Type;
+    public override int BiomeCampfireItemType => ModContent.GetInstance<TrashTorch>().CampfireItem.Type;
+
+    public override float GetWeight(Player player) {
+        // Increase weight depending on how many tiles are nearby.
+        return BlockPresence / (BlockPresenceNeeded * 2f);
+    }
 
     public override bool IsBiomeActive(Player player) {
         return (player.position.Y > Main.worldSurface * 16.0 || WorldGen.oceanDepths((int)player.position.X / 16, (int)Main.worldSurface)) && BlockPresence >= BlockPresenceNeeded;

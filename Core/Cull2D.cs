@@ -13,4 +13,8 @@ public static class Cull2D {
             && input.Y + input.Height > Main.screenPosition.Y - paddingY
             && input.Y < Main.screenPosition.Y + Main.screenHeight + paddingY;
     }
+
+    public static bool Tile(int tileX, int tileY, int screenPixelsPaddingX = 32, int screenPixelsPaddingY = 32) {
+        return Vector2(new Vector2(tileX * 16f + 8f, tileY * 16f + 8f), screenPixelsPaddingX, screenPixelsPaddingY);
+    }
 }
