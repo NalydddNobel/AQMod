@@ -694,6 +694,28 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="T:Aequus.Common.Tiles.Components.IWaterVisibleWall">
+            <summary>
+            Allows modded walls to be seen behind water.
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Tiles.Components.IWaterVisibleWall.WaterMapEntry">
+            <summary>
+            The Entry Id for when this wall is behind water.
+            Use <see cref="M:Aequus.Common.Tiles.Components.WaterVisibleWall.CreateWaterEntry``1(``0,Microsoft.Xna.Framework.Color,Terraria.Localization.LocalizedText,System.Int32)"/> to generate an entry for this automatically.
+            <para>Defaults to 0, which uses the wall's first registered map color. (After AddRecipes, this is offset by the wall's map entry id.)</para>
+            </summary>
+        </member>
+        <member name="M:Aequus.Common.Tiles.Components.WaterVisibleWall.CreateWaterEntry``1(``0,Microsoft.Xna.Framework.Color,Terraria.Localization.LocalizedText,System.Int32)">
+            <summary>
+            Creates a map entry for the tile being covered in water.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="wall"></param>
+            <param name="baseColor"></param>
+            <param name="text"></param>
+            <param name="entryNumber">Offsets the map Id lookup by this value. Defaults to 1, meaning that it assumes that this is the 2nd registered color for this wall.</param>
+        </member>
         <member name="M:Aequus.Common.Tiles.InstancedTileItem.#ctor(Terraria.ModLoader.ModTile,System.Int32,System.String,System.Boolean,System.Int32,System.Int32,System.Nullable{System.Int32})">
             <summary>
             
@@ -719,6 +741,27 @@
             </summary>
             <param name="progress"></param>
             <param name="keySuffix"></param>
+        </member>
+        <member name="M:Aequus.Common.WorldGeneration.AequusGenStep.RectangleProgress(System.Int32,System.Int32)">
+            <summary>Determines the progress of an ij loop in a rectangle. Using 0-<see cref="F:Terraria.Main.maxTilesX"/> and 0-<see cref="F:Terraria.Main.maxTilesY"/> as the edges.</summary>
+            <param name="i"></param>
+            <param name="j"></param>
+        </member>
+        <member name="M:Aequus.Common.WorldGeneration.AequusGenStep.RectangleProgress(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>Determines the progress of an ij loop in a rectangle. Using 0-<see cref="F:Terraria.Main.maxTilesY"/> as the vertical edges.</summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <param name="leftSide">X coordinate of the Left edge of the rectangle.</param>
+            <param name="rightSide">X coordinate of the Right edge of the rectnagle.</param>
+        </member>
+        <member name="M:Aequus.Common.WorldGeneration.AequusGenStep.RectangleProgress(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>Determines the progress of an ij loop in a rectangle.</summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <param name="leftSide">X coordinate of the Left edge of the rectangle.</param>
+            <param name="rightSide">X coordinate of the Right edge of the rectnagle.</param>
+            <param name="topSide">Y coordinate of the Top Edge of the rectangle.</param>
+            <param name="bottomSide">Y coordinate of the Bottom Edge of the rectangle.</param>
         </member>
         <member name="M:Aequus.Common.WorldGeneration.AequusGenStep.SetProgress(Terraria.WorldBuilding.GenerationProgress,System.Double,System.Double,System.Double)">
             <summary>

@@ -77,8 +77,29 @@ public abstract class AequusGenStep : ModType, ILocalizedModType, IPostSetupCont
         }
     }
 
-    protected static double IJLoopProgress(int i, int j) {
-        return (i * Main.maxTilesY + j) / (double)(Main.maxTilesX + Main.maxTilesY);
+    /// <summary>Determines the progress of an ij loop in a rectangle. Using 0-<see cref="Main.maxTilesX"/> and 0-<see cref="Main.maxTilesY"/> as the edges.</summary>
+    /// <param name="i"></param>
+    /// <param name="j"></param>
+    protected static double RectangleProgress(int i, int j) {
+        return RectangleProgress(i, j, 0, Main.maxTilesX, 0, Main.maxTilesY);
+    }
+    /// <summary>Determines the progress of an ij loop in a rectangle. Using 0-<see cref="Main.maxTilesY"/> as the vertical edges.</summary>
+    /// <param name="i"></param>
+    /// <param name="j"></param>
+    /// <param name="leftSide">X coordinate of the Left edge of the rectangle.</param>
+    /// <param name="rightSide">X coordinate of the Right edge of the rectnagle.</param>
+    protected static double RectangleProgress(int i, int j, int leftSide, int rightSide) {
+        return RectangleProgress(i, j, leftSide, rightSide, 0, Main.maxTilesY);
+    }
+    /// <summary>Determines the progress of an ij loop in a rectangle.</summary>
+    /// <param name="i"></param>
+    /// <param name="j"></param>
+    /// <param name="leftSide">X coordinate of the Left edge of the rectangle.</param>
+    /// <param name="rightSide">X coordinate of the Right edge of the rectnagle.</param>
+    /// <param name="topSide">Y coordinate of the Top Edge of the rectangle.</param>
+    /// <param name="bottomSide">Y coordinate of the Bottom Edge of the rectangle.</param>
+    protected static double RectangleProgress(int i, int j, int leftSide, int rightSide, int topSide, int bottomSide) {
+        return (i * Main.maxTilesY + j) / (double)(rightSide - leftSide + (bottomSide - topSide));
     }
 
     /// <summary>

@@ -6,7 +6,6 @@ using System;
 using Terraria.IO;
 using Terraria.Utilities;
 using Terraria.WorldBuilding;
-using static tModPorter.ProgressUpdate;
 
 namespace Aequus.Content.Biomes.PollutedOcean.Generation;
 
@@ -15,6 +14,10 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
 
     private static int x;
     private static int y;
+    private static int Left;
+    private static int Right;
+    private static int LeftPadded;
+    private static int RightPadded;
     private static int direction;
     private static POGenerationSide generationSide;
 
@@ -46,71 +49,24 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
     internal static ushort _polymerSandstone;
     internal static ushort _polymerSandstoneWall;
 
-    private void GenerateTileArrays() {
-        int length = TileLoader.TileCount;
-        ReplaceableTile = EnumerableHelper.CreateArray(true, length);
-        SafeTile = EnumerableHelper.CreateArray(true, length);
+    public override void Apply(GenerationProgress progress, GameConfiguration config) {
+        generationSide = GetGenerationSide(Random);
+        SetGenerationParameters(generationSide);
 
-        for (int i = 0; i < length; i++) {
-            if (Main.tileDungeon[i]) {
-                ReplaceableTile[i] = false;
-                SafeTile[i] = false;
-            }
-            else if (!Main.tileSolid[i] || Main.tileFrameImportant[i] || TileID.Sets.Clouds[i] || !TileID.Sets.GeneralPlacementTiles[i] || !TileID.Sets.CanBeClearedDuringGeneration[i] || !TileID.Sets.CanBeClearedDuringOreRunner[i]) {
-                ReplaceableTile[i] = false;
-            }
-            else if (TileID.Sets.Stone[i]) {
-                if (TileID.Sets.Corrupt[i] || TileID.Sets.Crimson[i] || TileID.Sets.Hallow[i]) {
-                    ReplaceableTile[i] = false;
-                    SafeTile[i] = false;
-                }
-            }
-            if (TileID.Sets.Grass[i] || TileID.Sets.Ore[i]) {
-                ReplaceableTile[i] = true;
-            }
-        }
+        int height = (int)(Main.maxTilesY * CreviceHeightPercent);
+        int bottom = Math.Min(y + height, Main.UnderworldLayer - 130);
+        int endX = x;
+        float size = Main.maxTilesX / (float)WorldGen.WorldSizeSmallX;
+        int biomeSize = (int)(size * 200f);
+        int biomeSizeFlat = (int)(size * 150f);
 
-        // Manual assignment
-        ReplaceableTile[TileID.Traps] = false;
+        SetMessage(progress, Random.Next(9));
 
-        ReplaceableTile[TileID.LihzahrdBrick] = false;
-        SafeTile[TileID.LihzahrdBrick] = false;
-
-        ReplaceableTile[TileID.MushroomGrass] = true;
-
-        ReplaceableTile[TileID.Marble] = true;
-        ReplaceableTile[TileID.Granite] = true;
-        ReplaceableTile[TileID.MarbleBlock] = true;
-        ReplaceableTile[TileID.GraniteBlock] = true;
-        ReplaceableTile[TileID.HardenedSand] = true;
-        ReplaceableTile[_polymerSand] = true;
-        SafeTile[_polymerSand] = true;
-        ReplaceableTile[_polymerSandstone] = true;
-        SafeTile[_polymerSandstone] = true;
-    }
-
-    private void GenerateWallArrays() {
-        int length = WallLoader.WallCount;
-        ReplaceableWall = EnumerableHelper.CreateArray(true, length);
-
-        for (int i = 0; i < length; i++) {
-            if (Main.wallDungeon[i] || WallID.Sets.Corrupt[i] || WallID.Sets.Crimson[i] || WallID.Sets.Hallow[i]) {
-                ReplaceableWall[i] = false;
-            }
-        }
-
-        // Manual assignment
-        ReplaceableWall[WallID.None] = true;
-        ReplaceableWall[WallID.LihzahrdBrickUnsafe] = false;
-        ReplaceableWall[_polymerSandstoneWall] = true;
-    }
-
-    public override void PostSetupContent() {
-        _polymerSand = (ushort)ModContent.TileType<PolymerSand>();
-        _polymerSandstone = (ushort)ModContent.TileType<PolymerSandstone>();
-        _polymerSandstoneWall = (ushort)ModContent.WallType<PolymerSandstoneWallHostile>();
-        GenerateTileArrays();
-        GenerateWallArrays();
+        GenerateSandCaverns(progress, bottom, ref endX, biomeSize, biomeSizeFlat);
+        CalculateDimensions();
+        PunchHoles(progress);
+        AddRock(progress);
+        PunchOres(progress);
     }
 
     private static POGenerationSide GetGenerationSide(UnifiedRandom random) {
@@ -152,25 +108,6 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
                 airBlocks = 0;
             }
         }
-    }
-
-    public override void Apply(GenerationProgress progress, GameConfiguration config) {
-        generationSide = GetGenerationSide(Random);
-        SetGenerationParameters(generationSide);
-
-        int height = (int)(Main.maxTilesY * CreviceHeightPercent);
-        int bottom = Math.Min(y + height, Main.UnderworldLayer - 130);
-        int endX = x;
-        float size = Main.maxTilesX / (float)WorldGen.WorldSizeSmallX;
-        int biomeSize = (int)(size * 200f);
-        int biomeSizeFlat = (int)(size * 150f);
-
-        SetMessage(progress, Random.Next(9));
-
-        GenerateSandCaverns(progress, bottom, ref endX, biomeSize, biomeSizeFlat);
-        PunchHoles(progress);
-        AddRock(progress);
-        PunchOres(progress);
     }
 
     private void GenerateSandCaverns(GenerationProgress progress, int bottom, ref int endX, int biomeSize, int biomeSizeFlat) {
@@ -278,20 +215,51 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
         }
     }
 
+    private void CalculateDimensions() {
+        Left = 0;
+        Right = Main.maxTilesX;
+        for (int i = x; i < Main.maxTilesX; i++) {
+            if (!ScanDownForAnyPollutedOceanTiles(i)) {
+                Right = i;
+                break;
+            }
+        }
+        for (int i = x; i >= 0; i--) {
+            if (!ScanDownForAnyPollutedOceanTiles(i)) {
+                Left = i;
+                break;
+            }
+        }
+        LeftPadded = Math.Max(Left, 5);
+        RightPadded = Math.Min(Right, Main.maxTilesX - 5);
+
+        static bool ScanDownForAnyPollutedOceanTiles(int i) {
+            for (int j = (int)Main.worldSurface; j < Main.maxTilesY; j++) {
+                Tile tile = Main.tile[i, j];
+                ushort tileType = tile.TileType;
+                if (tileType == _polymerSand || tileType == _polymerSandstone || tile.WallType == _polymerSandstoneWall) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+    }
+
     private void PunchHoles(GenerationProgress progress) {
         SetSubMessage(progress, "Caves");
 
-        for (int i = 0; i < Main.maxTilesX; i++) {
+        for (int i = Left; i < Right; i++) {
             for (int j = 0; j < Main.maxTilesY; j++) {
-                SetProgress(progress, (i * Main.maxTilesY + j) / (double)(Main.maxTilesX + Main.maxTilesY), Weight * 0.25f, Weight * 0.33f);
+                SetProgress(progress, RectangleProgress(i, j, Left, Right), Weight * 0.25f, Weight * 0.33f);
                 if (Main.tile[i, j].TileType == _polymerSand && Random.NextBool(Main.tile[i, j].HasTile ? 200 : 10)) {
                     PunchHole(i, j, Random.Next(7, 28), Random.Next(8, 18));
                 }
             }
         }
-        for (int i = 0; i < Main.maxTilesX; i++) {
+        for (int i = Left; i < Right; i++) {
             for (int j = (int)Main.worldSurface; j < Main.maxTilesY; j++) {
-                SetProgress(progress, (i * Main.maxTilesY + j) / (double)(Main.maxTilesX + Main.maxTilesY), Weight * 0.33f, Weight * 0.5f);
+                SetProgress(progress, RectangleProgress(i, j, Left, Right), Weight * 0.33f, Weight * 0.5f);
                 if (Main.tile[i, j].TileType == _polymerSand && Random.NextBool(2000)) {
                     PunchWaterHole(i, j, Random.Next(80, 100));
                 }
@@ -343,29 +311,43 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
     private void AddRock(GenerationProgress progress) {
         SetSubMessage(progress, "Detailing");
 
-        for (int i = 5; i < Main.maxTilesX - 5; i++) {
+        int surface = (int)Main.worldSurface + SurfaceWallPadding + SurfaceWallPaddingNoise;
+
+        for (int i = LeftPadded; i < RightPadded; i++) {
+            for (int j = 5; j < surface; j++) {
+                SetProgress(progress, RectangleProgress(i, j, LeftPadded, RightPadded, 0, surface), Weight * 0.5f, Weight * 0.6f);
+                Tile tile = Main.tile[i, j];
+                ushort tileType = tile.TileType;
+                if (tileType == _polymerSand || tileType == _polymerSandstone || tile.WallType == _polymerSandstoneWall) {
+                    FillSurfaceWalls(i, j);
+                    break;
+                }
+            }
+        }
+
+        for (int i = LeftPadded; i < RightPadded; i++) {
             for (int j = 5; j < Main.maxTilesY - 5; j++) {
-                SetProgress(progress, (i * Main.maxTilesY + j) / (double)(Main.maxTilesX + Main.maxTilesY), Weight * 0.5f, Weight * 0.75f);
-                if (Main.tile[i, j].TileType == _polymerSand) {
-                    if (Main.tile[i, j].HasTile) {
-                        Main.tile[i, j].WallType = _polymerSandstoneWall;
+                SetProgress(progress, RectangleProgress(i, j, LeftPadded, RightPadded), Weight * 0.6f, Weight * 0.75f);
+                Tile tile = Main.tile[i, j];
+                ushort tileType = tile.TileType;
+                if (tile.TileType == _polymerSand) {
+                    if (tile.HasTile) {
+                        tile.WallType = _polymerSandstoneWall;
                         if (!Main.tile[i, j + 1].IsFullySolid() || Main.tile[i, j - Random.Next(3, 6)].IsFullySolid()) {
-                            Main.tile[i, j].TileType = _polymerSandstone;
+                            tile.TileType = _polymerSandstone;
                         }
                     }
                     else {
-                        Main.tile[i, j].WallType = WallID.None;
+                        tile.WallType = WallID.None;
                     }
                 }
             }
         }
 
-        int surface = (int)Main.worldSurface + SurfaceWallPadding + SurfaceWallPaddingNoise;
-
         for (int m = 0; m < 3; m++) {
-            for (int i = 0; i < Main.maxTilesX; i++) {
+            for (int i = Left; i < Right; i++) {
                 for (int j = 0; j < Main.maxTilesY; j++) {
-                    SetProgress(progress, m / 3f + (i * Main.maxTilesY + j) / (double)(Main.maxTilesX + Main.maxTilesY) * 0.33f, Weight * 0.75f, Weight * 0.85f);
+                    SetProgress(progress, m / 3f + RectangleProgress(i, j, Left, Right) * 0.33f, Weight * 0.75f, Weight * 0.85f);
                     if (Main.tile[i, j].HasTile && Main.tile[i, j].WallType == _polymerSandstoneWall) {
                         if (Main.tile[i, j].TileType == _polymerSandstone) {
                             j++;
@@ -378,10 +360,7 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
                                     }
                                 }
                             }
-                            if (j < surface) {
-                                FillSurfaceWalls(i, j);
-                            }
-                            else if (Random.NextBool(40)) {
+                            if (j >= surface && Random.NextBool(60)) {
                                 GrowWormyWall(i, j);
                             }
                         }
@@ -398,7 +377,7 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
 
     private static void FillSurfaceWalls(int i, int j) {
         int surface = (int)Main.worldSurface + SurfaceWallPadding + Random.Next(SurfaceWallPaddingNoise);
-        for (; j < surface && !Main.tile[i, j].IsFullySolid(); j++) {
+        for (; j < surface; j++) {
             if (Main.tile[i, j].WallType == WallID.None) {
                 Main.tile[i, j].WallType = _polymerSandstoneWall;
             }
@@ -455,9 +434,9 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
 
         int[] oreChoices = GetOreChoices();
 
-        for (int i = 0; i < Main.maxTilesX; i++) {
+        for (int i = Left; i < Right; i++) {
             for (int j = 0; j < Main.maxTilesY; j++) {
-                SetProgress(progress, IJLoopProgress(i, j), 0.85f * Weight, 1f * Weight);
+                SetProgress(progress, RectangleProgress(i, j, Left, Right), 0.85f * Weight, 1f * Weight);
                 if (Main.tile[i, j].TileType == _polymerSandstone && Random.NextBool(600) && !TileHelper.ScanTilesSquare(i, j, 5, TileHelper.IsNotSolid, 
                     (i, j) => Main.tile[i, j].HasTile && TileID.Sets.Ore[Main.tile[i, j].TileType])) {
                     PunchOre(i, j, Random.Next(oreChoices));
@@ -507,61 +486,70 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
         return oreChoices;
     }
 
-    /* 
-        private static void ShowSunkenSeaBGWallsThroughWater(ILContext context)
-        {
-            var cursor = new ILCursor(context);
+    private static void GenerateTileArrays() {
+        int length = TileLoader.TileCount;
+        ReplaceableTile = EnumerableHelper.CreateArray(true, length);
+        SafeTile = EnumerableHelper.CreateArray(true, length);
 
-            // Find the tile.active method which will place the cursor right before the code for using the tile's map entry
-            if (!cursor.TryGotoNext(MoveType.After, c => c.MatchCall<Tile>("active")))
-            {
-                LogFailure("Show Sunken Sea BG Walls Through Water", "Could not locate the tile.active method.");
-                return;
+        for (int i = 0; i < length; i++) {
+            if (Main.tileDungeon[i]) {
+                ReplaceableTile[i] = false;
+                SafeTile[i] = false;
             }
-
-            // Find the MapHelper.GetTileBaseOption method which will place the cursor right after the code for using the tile's map entry
-            if (!cursor.TryGotoNext(MoveType.After, c => c.MatchCall(typeof(MapHelper), "GetTileBaseOption")))
-            {
-                LogFailure("Show Sunken Sea BG Walls Through Water", "Could not locate the MapHelper.GetTileBaseOption method.");
-                return;
+            else if (!Main.tileSolid[i] || Main.tileFrameImportant[i] || TileID.Sets.Clouds[i] || !TileID.Sets.GeneralPlacementTiles[i] || !TileID.Sets.CanBeClearedDuringGeneration[i] || !TileID.Sets.CanBeClearedDuringOreRunner[i]) {
+                ReplaceableTile[i] = false;
             }
-
-            // Find the tile.invisibleWall method which will place the cursor right before the code for using the tile's wall map entry
-            if (!cursor.TryGotoNext(MoveType.After, c => c.MatchCall<Tile>("invisibleWall")))
-            {
-                LogFailure("Show Sunken Sea BG Walls Through Water", "Could not locate the tile.invisibleWall method.");
-                return;
-            }
-
-            // Find the tile.liquidType method which will place the cursor right before the code for using the water's map entry
-            if (!cursor.TryGotoNext(MoveType.After, c => c.MatchCall<Tile>("liquidType")))
-            {
-                LogFailure("Show Sunken Sea BG Walls Through Water", "Could not locate the tile.liquidType method.");
-                return;
-            }
-
-            var localVariableIndex = cursor.Instrs[cursor.Index].Operand;
-
-            // Move to after it updates the map tile to the water map entry
-            if (!cursor.TryGotoNext(MoveType.After, c => c.MatchStloc3()))
-            {
-                LogFailure("Show Sunken Sea BG Walls Through Water", "Could not locate to where it replaces the map entry with the water map entry");
-                return;
-            }
-
-            cursor.Emit(OpCodes.Ldloc, 0);
-            cursor.Emit(OpCodes.Ldloc, 3);
-            cursor.Emit(OpCodes.Ldloc, localVariableIndex);
-            cursor.EmitDelegate<Func<Tile, int, int, int>>((tile, mapEntry, liquidType) => 
-            { 
-                if (WallLoader.GetWall(tile.WallType) is WallVisibleThroughWater visibleThroughWater && liquidType == LiquidID.Water)
-                {
-                    return visibleThroughWater.WaterMapEntry;
+            else if (TileID.Sets.Stone[i]) {
+                if (TileID.Sets.Corrupt[i] || TileID.Sets.Crimson[i] || TileID.Sets.Hallow[i]) {
+                    ReplaceableTile[i] = false;
+                    SafeTile[i] = false;
                 }
-
-                return mapEntry;
-            });
-            cursor.Emit(OpCodes.Stloc_3);
+            }
+            if (TileID.Sets.Grass[i] || TileID.Sets.Ore[i]) {
+                ReplaceableTile[i] = true;
+            }
         }
-     */
+
+        // Manual assignment
+        ReplaceableTile[TileID.Traps] = false;
+
+        ReplaceableTile[TileID.LihzahrdBrick] = false;
+        SafeTile[TileID.LihzahrdBrick] = false;
+
+        ReplaceableTile[TileID.MushroomGrass] = true;
+
+        ReplaceableTile[TileID.Marble] = true;
+        ReplaceableTile[TileID.Granite] = true;
+        ReplaceableTile[TileID.MarbleBlock] = true;
+        ReplaceableTile[TileID.GraniteBlock] = true;
+        ReplaceableTile[TileID.HardenedSand] = true;
+        ReplaceableTile[_polymerSand] = true;
+        SafeTile[_polymerSand] = true;
+        ReplaceableTile[_polymerSandstone] = true;
+        SafeTile[_polymerSandstone] = true;
+    }
+
+    private static void GenerateWallArrays() {
+        int length = WallLoader.WallCount;
+        ReplaceableWall = EnumerableHelper.CreateArray(true, length);
+
+        for (int i = 0; i < length; i++) {
+            if (Main.wallDungeon[i] || WallID.Sets.Corrupt[i] || WallID.Sets.Crimson[i] || WallID.Sets.Hallow[i]) {
+                ReplaceableWall[i] = false;
+            }
+        }
+
+        // Manual assignment
+        ReplaceableWall[WallID.None] = true;
+        ReplaceableWall[WallID.LihzahrdBrickUnsafe] = false;
+        ReplaceableWall[_polymerSandstoneWall] = true;
+    }
+
+    public override void PostSetupContent() {
+        _polymerSand = (ushort)ModContent.TileType<PolymerSand>();
+        _polymerSandstone = (ushort)ModContent.TileType<PolymerSandstone>();
+        _polymerSandstoneWall = (ushort)ModContent.WallType<PolymerSandstoneWallHostile>();
+        GenerateTileArrays();
+        GenerateWallArrays();
+    }
 }
