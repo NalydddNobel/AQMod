@@ -6,6 +6,8 @@ public static class ColorHelper {
     public static readonly Color ColorFurniture = new Color(191, 142, 111, 255);
     public static readonly Color ColorLightedFurniture = new Color(253, 221, 3, 255);
 
+    public static readonly Color WaterColor = new Color(9, 61, 191);
+
     public static readonly Color[] CoinColors = new Color[] {
         Colors.CoinCopper,
         Colors.CoinSilver,
