@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Terraria.GameContent.Generation;
 using Terraria.IO;
+using Terraria.Localization;
 using Terraria.Utilities;
 using Terraria.WorldBuilding;
 
@@ -21,6 +22,8 @@ public abstract class AequusGenStep : ModType, ILocalizedModType, IPostSetupCont
 
     protected string name;
     public override string Name => name;
+
+    private string _genMessage;
 
     public AequusGenStep() {
         name = base.Name.Replace("Generator", "").Replace("Step", "");
@@ -63,7 +66,14 @@ public abstract class AequusGenStep : ModType, ILocalizedModType, IPostSetupCont
     /// <param name="keySuffix"></param>
     protected void SetMessage(GenerationProgress progress, object keySuffix = null) {
         if (progress != null) {
-            progress.Message = this.GetLocalizedValue($"DisplayMessage{(keySuffix == null ? "" : "." + keySuffix)}");
+            _genMessage = this.GetLocalizedValue($"DisplayMessage{(keySuffix == null ? "" : "." + keySuffix)}");
+            progress.Message = _genMessage;
+        }
+    }
+
+    protected void SetSubMessage(GenerationProgress progress, string key = null) {
+        if (progress != null) {
+            progress.Message = _genMessage + this.GetLocalizedValue(key);
         }
     }
 

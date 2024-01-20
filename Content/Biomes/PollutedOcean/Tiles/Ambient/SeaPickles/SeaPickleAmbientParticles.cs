@@ -102,7 +102,7 @@ public class SeaPickleAmbientParticles : ParticleSystem {
             foreach (var pair in _particleAnchorPairs) {
                 SeaPicklesTileBase.GetDrawData(pair.Key.X, pair.Key.Y, out var drawColor);
 
-                var bloomColor = drawColor with { A = 0 } * 0.03f;
+                var bloomColor = drawColor with { A = 0 } * 0.02f;
 
                 var lightColor = Lighting.GetColor(pair.Key.ToPoint());
                 float intensity = Math.Min((lightColor.R + lightColor.G + lightColor.B) / 300f, 1f);

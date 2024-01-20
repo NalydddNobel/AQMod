@@ -1,4 +1,5 @@
 ﻿using Aequus.Core.Graphics.Animations;
+using Terraria.DataStructures;
 
 namespace Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient.SeaPickles;
 
@@ -41,8 +42,8 @@ public class SeaPickleLightTracker : ITileAnimation {
             }
         }
 
-        if (Main.netMode != NetmodeID.Server && Main.rand.NextBool(120)) {
-            ModContent.GetInstance<SeaPickleAmbientParticles>().New(new(x, y));
+        if (Main.netMode != NetmodeID.Server && Main.rand.NextBool(300)) {
+            ModContent.GetInstance<SeaPickleAmbientParticles>().New(new Point16(x, y));
         }
 
         if (SeaPickleColor == Color.Transparent) {

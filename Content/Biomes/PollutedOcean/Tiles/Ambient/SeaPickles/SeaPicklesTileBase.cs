@@ -46,7 +46,7 @@ internal abstract class SeaPicklesTileBase : RubblemakerTile {
         anim.DespawnTimer = 0;
         GetDrawData(i, j, out var pickleColor);
 
-        float lightMagnitude = anim.LightMagnitude * LightMagnitudeMultiplier;
+        float lightMagnitude = anim.LightMagnitude * LightMagnitudeMultiplier * 0.75f;
         var v3 = pickleColor.ToVector3() * lightMagnitude;
         r = v3.X;
         g = v3.Y;
