@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Aequus.Core.Assets;
+using System;
 using Terraria.GameContent;
 
-namespace Aequus.Common.Backgrounds;
+namespace Aequus.Core.Graphics;
 
 public class CustomUndergroundBGDrawing : ModSystem {
     private static RenderTarget2D _backgroundTarget;
 
     private static void Main_OnPreDraw(GameTime obj) {
         if (Main.BackgroundEnabled) {
+            LightMap.Needed = true;
             SpriteBatch sb = Main.spriteBatch;
             GraphicsDevice g = Main.instance.GraphicsDevice;
             if (DrawHelper.BadRenderTarget(_backgroundTarget, Main.screenWidth, Main.screenHeight)) {
@@ -28,7 +30,9 @@ public class CustomUndergroundBGDrawing : ModSystem {
                 g.Clear(Color.Transparent);
 
                 sb.Begin();
+
                 PollutedOceanBGTest();
+
                 sb.End();
             }
             catch {
@@ -40,17 +44,27 @@ public class CustomUndergroundBGDrawing : ModSystem {
         }
     }
 
-    private static void On_Main_DrawBlack(On_Main.orig_DrawBlack orig, Main self, bool force) {
-        orig(self, force);
-    }
-
     private static void On_Main_DoDraw_WallsTilesNPCs(On_Main.orig_DoDraw_WallsTilesNPCs orig, Main main) {
         if (Main.BackgroundEnabled && Main.shimmerAlpha < 1f && !DrawHelper.BadRenderTarget(_backgroundTarget)) {
             float opacity = 1f - Main.shimmerAlpha;
             int topBounds = (int)(Main.worldSurface * 16f + 16f - Main.screenPosition.Y);
             int bottomBounds = (int)(Main.UnderworldLayer * 16f - Main.screenPosition.Y);
             Rectangle cropping = new Rectangle(0, Math.Max(topBounds, 0), _backgroundTarget.Width, Math.Min(_backgroundTarget.Height, bottomBounds));
-            Main.spriteBatch.Draw(_backgroundTarget, new Vector2(0f, cropping.Y), cropping, Color.White * opacity);
+            
+            if (LightMap.TargetAvailable) {
+                SpriteBatchCache cache = new SpriteBatchCache(Main.spriteBatch);
+                Main.spriteBatch.End();
+                Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+
+                Effect lightEffect = AequusShaders.Multiply.Value;
+                Main.graphics.GraphicsDevice.Textures[1] = LightMap.MapTarget;
+                lightEffect.CurrentTechnique.Passes[0].Apply();
+
+                Main.spriteBatch.Draw(_backgroundTarget, new Vector2(0f, cropping.Y), cropping, Color.White * opacity);
+
+                Main.spriteBatch.End();
+                cache.Begin(Main.spriteBatch);
+            }
 
             int offScreenRange = Main.drawToScreen ? 0 : Main.offScreenRange;
             if (Main.screenPosition.Y + Main.screenHeight > Main.worldSurface * 16 && Main.screenPosition.Y <= Main.worldSurface * 16 + 300f) {
@@ -90,7 +104,7 @@ public class CustomUndergroundBGDrawing : ModSystem {
             Main.Assets.Request<Texture2D>(TextureAssets.Underworld[9].Name);
         }
         DrawBackgroundLayerTest(TextureAssets.Underworld[9].Value, 0.00003f, Color.Cyan);
-        DrawBackgroundLayerTest(TextureAssets.Underworld[2].Value, 0.0001f, Color.DarkCyan);
+        DrawBackgroundLayerTest(TextureAssets.Underworld[2].Value, 0.0001f, Color.Cyan);
     }
 
     private static void DrawBackgroundLayerTest(Texture2D bgTexture, float horizontalScrollSpeed, Color color) {
@@ -146,11 +160,11 @@ public class CustomUndergroundBGDrawing : ModSystem {
 
     public override void Load() {
         On_Main.DoDraw_WallsTilesNPCs += On_Main_DoDraw_WallsTilesNPCs;
-        On_Main.DrawBlack += On_Main_DrawBlack;
         Main.OnPreDraw += Main_OnPreDraw;
     }
 
     public override void Unload() {
+        Main.OnPreDraw -= Main_OnPreDraw;
         _backgroundTarget = null;
     }
 }
