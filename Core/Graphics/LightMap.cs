@@ -9,22 +9,27 @@ public class LightMap : ModSystem {
 
     public static bool Needed { get; set; }
 
+    public static int LightmapX;
+    public static int LightmapY;
+    public static Vector2 LightmapScreenPosition;
     private static VertexPositionColor[] _lightMapVertices = Array.Empty<VertexPositionColor>();
     private static short[] _lightMapIndices = Array.Empty<short>();
 
     private static void Main_OnPreDraw(GameTime obj) {
         TargetAvailable = false;
         if (Needed) {
-            int width = Main.screenWidth / 16 + 3;
-            int height = Main.screenHeight / 16 + 3;
+            int offscreenTiles = 8;
+
+            int width = Main.screenWidth / 16 + offscreenTiles - 1;
+            int height = Main.screenHeight / 16 + offscreenTiles - 1;
             int totalLength = width * height * 6;
             if (_lightMapIndices.Length != totalLength) {
                 _lightMapIndices = new short[totalLength];
                 SetIndices(width, height);
             }
 
-            width = Main.screenWidth / 16 + 4;
-            height = Main.screenHeight / 16 + 4;
+            width = Main.screenWidth / 16 + offscreenTiles;
+            height = Main.screenHeight / 16 + offscreenTiles;
             totalLength = width * height;
 
             if (_lightMapVertices.Length != totalLength) {
@@ -37,10 +42,12 @@ public class LightMap : ModSystem {
             }
 
             GraphicsDevice g = Main.instance.GraphicsDevice;
-            if (DrawHelper.BadRenderTarget(MapTarget, Main.screenWidth + 32, Main.screenHeight + 32)) {
+            int targetWidth = Main.screenWidth + offscreenTiles * 8;
+            int targetHeight = Main.screenHeight + offscreenTiles * 8;
+            if (DrawHelper.BadRenderTarget(MapTarget, targetWidth, targetHeight)) {
                 try {
                     if (Main.IsGraphicsDeviceAvailable) {
-                        MapTarget = new RenderTarget2D(g, Main.screenWidth + 32, Main.screenHeight + 32, mipMap: false, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
+                        MapTarget = new RenderTarget2D(g, targetWidth, targetHeight, mipMap: false, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
                     }
                 }
                 catch {
@@ -54,13 +61,12 @@ public class LightMap : ModSystem {
                 g.SetRenderTarget(MapTarget);
                 g.Clear(Color.Transparent);
 
-
                 Effect effect = AequusShaders.VertexShader.Value;
                 effect.CurrentTechnique = effect.Techniques["Untextured"];
-                Vector2 offset = Main.screenPosition - Main.screenPosition.ToTileCoordinates().ToWorldCoordinates();
+
+                Vector2 offset = LightmapScreenPosition - Main.screenPosition;
                 Matrix m = DrawHelper.WorldViewPointMatrix;
-                //m.M31 += offset.X;
-                //m.M32 += offset.Y;
+                m = Matrix.Multiply(Matrix.CreateTranslation(offset.X + 8, offset.Y + 8, 0f), m);
                 effect.Parameters["XViewProjection"].SetValue(m);
                 foreach (var pass in effect.CurrentTechnique.Passes) {
                     pass.Apply();
@@ -114,13 +120,14 @@ public class LightMap : ModSystem {
     }
 
     private static void SampleLighting(int width, int height) {
-        int startX = (int)(Main.screenPosition.X / 16) - 1;
-        int startY = (int)(Main.screenPosition.Y / 16) - 1;
+        LightmapX = (int)(Main.screenPosition.X / 16) - 1;
+        LightmapY = (int)(Main.screenPosition.Y / 16) - 1;
+        LightmapScreenPosition = new Vector2(LightmapX, LightmapY) * 16f;
 
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                int x = startX + i;
-                int y = startY + j;
+                int x = LightmapX + i;
+                int y = LightmapY + j;
 
                 _lightMapVertices[i * height + j].Color = Lighting.GetColor(x - 2, y - 2);
             }

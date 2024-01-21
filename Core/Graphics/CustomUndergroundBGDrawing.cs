@@ -72,7 +72,6 @@ public class CustomUndergroundBGDrawing : ModSystem {
                 main.LoadBackground(291);
                 Texture2D transitionTexture = TextureAssets.Background[290].Value;
                 Texture2D fillTexture = TextureAssets.Background[291].Value;
-                //Main.NewText("blurp;");
                 DrawTransitionBGStripTest((int)Main.worldSurface, transitionTexture, fillTexture, opacity);
             }
             if (Main.screenPosition.Y + Main.screenHeight >= Main.UnderworldLayer * 16f - 400f) {
@@ -105,6 +104,8 @@ public class CustomUndergroundBGDrawing : ModSystem {
         }
         DrawBackgroundLayerTest(TextureAssets.Underworld[9].Value, 0.00003f, Color.Cyan);
         DrawBackgroundLayerTest(TextureAssets.Underworld[2].Value, 0.0001f, Color.Cyan);
+        //DrawBackgroundLayerTest(TextureAssets.MagicPixel.Value, 0.00003f, Color.Cyan);
+        //DrawBackgroundLayerTest(TextureAssets.MagicPixel.Value, 0.0001f, Color.Cyan);
     }
 
     private static void DrawBackgroundLayerTest(Texture2D bgTexture, float horizontalScrollSpeed, Color color) {
@@ -166,5 +167,20 @@ public class CustomUndergroundBGDrawing : ModSystem {
     public override void Unload() {
         Main.OnPreDraw -= Main_OnPreDraw;
         _backgroundTarget = null;
+    }
+}
+
+public class CustomDrawnUGBackground : ModUndergroundBackgroundStyle {
+    private int _noTextureSlot;
+
+    public override void Load() {
+        BackgroundTextureLoader.AddBackgroundTexture(Mod, AequusTextures.None.Path);
+        _noTextureSlot = BackgroundTextureLoader.GetBackgroundSlot(Mod, AequusTextures.None.ModPath);
+    }
+
+    public override void FillTextureArray(int[] textureSlots) {
+        for (int i = 0; i < textureSlots.Length; i++) {
+            textureSlots[i] = _noTextureSlot;
+        }
     }
 }

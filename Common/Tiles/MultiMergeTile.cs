@@ -3,8 +3,7 @@ using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using Terraria.GameContent;
-using Terraria.UI.Chat;
+using Terraria.GameContent.Drawing;
 using Terraria.Utilities;
 
 namespace Aequus.Common.Tiles;
@@ -18,6 +17,9 @@ public abstract class MultiMergeTile : ModTile {
     public const int BottomLeft = 5;
     public const int TopRight = 6;
     public const int TopLeft = 7;
+
+    public const int DummyEntry = TileID.Trees;
+    public static bool AnyMerges { get; internal set; }
 
     private record struct MergeRules(bool MergeWithHalfBlocks = false, bool MergeLeftSlope = false, bool MergeRightSlope = false, bool MergeTopSlope = false, bool MergeBottomSlope = false);
 
@@ -101,6 +103,8 @@ public abstract class MultiMergeTile : ModTile {
 
     #region Merging
     public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak) {
+        AnyMerges = false;
+
         if (!WorldGen.InWorld(i, j, 20)) {
             return false;
         }
@@ -139,13 +143,16 @@ public abstract class MultiMergeTile : ModTile {
                     MergeCorner(in tile, in topLeft, TopLeft, i, j);
                 }
             }
+
+            EnsureCacheLength(DummyEntry);
+            SetMergeInfo(i, j, DummyEntry, (byte)(AnyMerges ? 1 : 0));
         }
         catch (Exception ex) {
         }
         return true;
     }
 
-    private bool MergesWith(in Tile tile, in Tile other) {
+    private static bool MergesWith(in Tile tile, in Tile other) {
         return other.HasTile && Main.tileMerge[tile.TileType][other.TileType];
     }
 
@@ -155,7 +162,9 @@ public abstract class MultiMergeTile : ModTile {
 
     private void Merge(in Tile tile, in Tile other, int index, int i, int j) {
         if (Merges.Contains(other.TileType)) {
-            SetMergeInfo(i, j, other.TileType, index, MergeInner(in tile, in other, index, i, j));
+            bool merge = MergeInner(in tile, in other, index, i, j);
+            AnyMerges |= merge;
+            SetMergeInfo(i, j, other.TileType, index, merge);
         }
     }
 
@@ -291,7 +300,7 @@ public abstract class MultiMergeTile : ModTile {
     public static void EnsureCacheLength() {
         _mergeCache ??= Array.Empty<byte[]>();
         if (_mergeCache.Length != TileLoader.TileCount) {
-            EnumerableHelper.ResizeAndPopulate(ref _mergeCache, TileLoader.TileCount, () => Array.Empty<byte>());
+            EnumerableHelper.ResizeAndPopulate(ref _mergeCache, TileLoader.TileCount, Array.Empty<byte>);
         }
     }
 
@@ -305,21 +314,25 @@ public abstract class MultiMergeTile : ModTile {
     }
 
     public override void PostDraw(int i, int j, SpriteBatch spriteBatch) {
-        var lighting = LightHelper.GetLightingSection(i, j, 3);
+        if (!TileDrawing.IsVisible(Main.tile[i, j]) || GetMergeInfo(i, j, DummyEntry) == 0) {
+            return;
+        }
+
+        Color lighting = Lighting.GetColor(i, j);
+        if (lighting.R < 20 && lighting.G < 20 && lighting.B < 20) {
+            return;
+        }
+
+        //var d = Dust.NewDustPerfect(new Vector2(i, j).ToWorldCoordinates(), DustID.Torch);
+        //d.noGravity = true;
+        //d.velocity *= 0.1f;
+        //d.noLight = true;
+
         for (int k = 0; k < Merges.Count; k++) {
-            var frame = _frameLookups[GetMergeInfo(i, j, Merges[k])];
-#if DEBUG
-            try {
-#endif
-                if (frame.CanRender) {
-                    spriteBatch.Draw(_mergeTextures[Merges[k]].Value, new Vector2(i, j) * 16f - Main.screenPosition + TileHelper.DrawOffset, frame.GetFrame(Helper.RandomTileCoordinates(i, j)), lighting, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-                }
-#if DEBUG
+            IMergeFrame frame = _frameLookups[GetMergeInfo(i, j, Merges[k])];
+            if (frame.CanRender) {
+                spriteBatch.Draw(_mergeTextures[Merges[k]].Value, new Vector2(i, j) * 16f - Main.screenPosition + TileHelper.DrawOffset, frame.GetFrame(Helper.RandomTileCoordinates(i, j)), lighting, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             }
-            catch (Exception ex) {
-                ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.MouseText.Value, frame?.ToString() ?? "null", new Vector2(i, j) * 16f - Main.screenPosition, Main.errorColor, 0f, Vector2.Zero, Vector2.One);
-            }
-#endif
         }
     }
 }
