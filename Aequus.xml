@@ -920,6 +920,14 @@
             Bubble particles which only work underwater. Floats upwards.
             </summary>
         </member>
+        <member name="M:Aequus.Core.Graphics.SpriteBatchCache.InheritFrom(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
+            <summary>
+            Note: This calls <see cref="M:Microsoft.Xna.Framework.Graphics.SpriteBatch.End"/>, and then grabs all of the graphics device info and caches it into the various properties.
+            Use <see cref="M:Aequus.Core.Graphics.SpriteBatchCache.Begin(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.SpriteSortMode,Microsoft.Xna.Framework.Graphics.Effect,System.Nullable{Microsoft.Xna.Framework.Matrix})"/> to restart <paramref name="spriteBatch"/> back to its original state, with its <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteSortMode"/> needing to be respecified.
+            </summary>
+            <param name="spriteBatch"></param>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
         <member name="T:Aequus.Core.Graphics.Tiles.BatchedTileDrawInfo">
             <summary>
             Tile draw info used internally with <see cref="T:Aequus.Core.Graphics.Tiles.BatchedTileRenderer"/>.
@@ -960,6 +968,13 @@
             Grants a ModTile the ability to render post-draw elements in a batch to reduce on Begin/End calls.
             <para>Place SpecialTileDrawing.Add(i, j, Type); into ModTile.PostDraw(...) to add it to the rendering list.</para>
             </summary>
+        </member>
+        <member name="M:Aequus.Core.Graphics.CustomDrawnUGBackground.RenderBackground(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.GraphicsDevice)">
+            <summary>
+            Renders the background to the background render target.
+            </summary>
+            <param name="spriteBatch"></param>
+            <param name="graphicsDevice"></param>
         </member>
         <member name="T:Aequus.Core.Particles.ParallelParticleArray`1">
             <summary>

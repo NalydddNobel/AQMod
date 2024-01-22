@@ -116,6 +116,25 @@ public sealed class DrawHelper : ModSystem {
         return BadRenderTarget(renderTarget2D) || renderTarget2D.Width != wantedWidth || renderTarget2D.Height != wantedHeight;
     }
 
+    public static Vector2 ApplyZoom(Vector2 screenCoordinate, float zoomFactor) {
+        Vector2 screenCenter = new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
+        Vector2 difference = screenCoordinate - screenCenter;
+        float zoom = zoomFactor;
+        return screenCenter + difference * zoom;
+    }
+    public static float ApplyZoomY(float screenCoordinateY, float zoomFactor) {
+        float screenCenterY = Main.screenHeight / 2f;
+        float differenceY = screenCoordinateY - screenCenterY;
+        float zoom = zoomFactor;
+        return screenCenterY + differenceY * zoom;
+    }
+    public static float ApplyZoomX(float screenCoordinateX, float zoomFactor) {
+        float screenCenterX = Main.screenWidth / 2f;
+        float differenceX = screenCoordinateX - screenCenterX;
+        float zoom = zoomFactor;
+        return screenCenterX + differenceX * zoom;
+    }
+
     #region Dust
     public static int LiquidTypeToDustId(int liquidType) {
         return liquidType switch {
@@ -170,7 +189,6 @@ public sealed class DrawHelper : ModSystem {
     #endregion
 
     #region Hooks
-
     private static void On_Main_DrawItems(On_Main.orig_DrawItems orig, Main main) {
         orig(main);
     }
