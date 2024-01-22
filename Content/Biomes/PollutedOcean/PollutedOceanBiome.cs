@@ -12,6 +12,8 @@ public class PollutedOceanBiome : ModBiome {
 
     public static int BlockPresence { get; set; }
 
+    public static Vector3 CavernLight { get; set; } = Color.Cyan.ToVector3();
+
     public override string BestiaryIcon => AequusTextures.PollutedOceanBestiaryIcon.Path;
 
     public override string BackgroundPath => AequusTextures.MapBG.Path;

@@ -100,6 +100,7 @@ public abstract class ModTorch : ModTile {
             ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.ShimmerTorch;
             ItemID.Sets.SingleUseInGamepad[Type] = true;
             ItemID.Sets.Torches[Type] = true;
+            ItemID.Sets.WaterTorches[Type] = _modTorch.AllowWaterPlacement;
         }
 
         public override void SetDefaults() {

@@ -215,7 +215,7 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
         }
     }
 
-    private void CalculateDimensions() {
+    private static void CalculateDimensions() {
         Left = 0;
         Right = Main.maxTilesX;
         for (int i = x; i < Main.maxTilesX; i++) {
@@ -360,7 +360,7 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
                                     }
                                 }
                             }
-                            if (j >= surface && Random.NextBool(60)) {
+                            if (j >= surface && Random.NextBool(180)) {
                                 GrowWormyWall(i, j);
                             }
                         }

@@ -23,8 +23,10 @@ public class PollutedOceanUndergroundBG : CustomDrawnUGBackground {
             Main.Assets.Request<Texture2D>(TextureAssets.Underworld[9].Name);
         }
 
-        DrawBackgroundSimple(TextureAssets.Underworld[9].Value, 0.00003f, Color.Cyan);
-        DrawBackgroundSimple(TextureAssets.Underworld[2].Value, 0.0001f, Color.Cyan);
+        //DrawBackgroundSimple(TextureAssets.MagicPixel.Value, 0.00003f, Color.Cyan);
+        //DrawBackgroundSimple(TextureAssets.MagicPixel.Value, 0.0001f, Color.Cyan);
+        DrawBackgroundSimple(TextureAssets.Underworld[9].Value, 0.00003f, Color.White);
+        DrawBackgroundSimple(TextureAssets.Underworld[2].Value, 0.0001f, Color.White);
     }
 
     public override void RenderTopTransitionStrip(SpriteBatch spriteBatch, int worldY, float opacity) {

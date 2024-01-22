@@ -3,12 +3,15 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Runtime.CompilerServices;
 using Terraria.Enums;
+using Terraria.GameContent.Drawing;
 using Terraria.ObjectData;
 
 namespace Aequus.Core.Utilities;
 
 public static class TileHelper {
     public static Vector2 DrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
+
+    public static bool ShowEcho { get; internal set; }
 
     public static float GetWaterY(byte liquidAmount) {
         return (1f - liquidAmount / 255f) * 16f;
@@ -454,4 +457,11 @@ public static class TileHelper {
         }
     }
     #endregion
+
+    [Autoload(Side = ModSide.Client)]
+    private class TileHelper_InnerSystem_Client : ModSystem {
+        public override void PreUpdateEntities() {
+            ShowEcho = Main.ShouldShowInvisibleWalls();
+        }
+    }
 }
