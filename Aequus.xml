@@ -1337,7 +1337,7 @@
             <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 281)</summary>
+            <summary>(Total Textures: 282)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1434,6 +1434,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.VignetteSmall">
             <summary>Full Path: Assets/Textures/VignetteSmall</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BackgroundRainDroplets">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Background/BackgroundRainDroplets</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MapBG">
             <summary>Full Path: Content/Biomes/PollutedOcean/Background/MapBG</summary>
