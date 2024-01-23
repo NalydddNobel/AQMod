@@ -89,7 +89,7 @@ public partial class Scavenger {
         var armorSpriteEffects = NPC.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
         float opacity = NPC.Opacity * (1f - NPC.shimmerTransparency);
 
-        NPCHelper.DrawNPCStatusEffects(spriteBatch, NPC, screenPos);
+        ExtendNPC.DrawNPCStatusEffects(spriteBatch, NPC, screenPos);
 
         DrawHelmet(spriteBatch, drawCoordinates, drawColor, AequusTextures.ScavengerBag_Back, bodyFrame, armorSpriteEffects);
 

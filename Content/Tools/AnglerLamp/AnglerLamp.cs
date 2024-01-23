@@ -12,8 +12,8 @@ public class AnglerLamp : ModItem {
     public static int PotSightRange { get; set; } = 300;
 
     public static Vector3 LightColor { get; set; } = new Vector3(1f, 0.76f, 0.24f);
-    public static float LightBrightness { get; set; } = LightHelper.ShadowOrbBrightness;
-    public static float LightUseBrightness { get; set; } = LightHelper.ShadowOrbBrightness * 2.5f;
+    public static float LightBrightness { get; set; } = CommonLight.ShadowOrbBrightness;
+    public static float LightUseBrightness { get; set; } = CommonLight.ShadowOrbBrightness * 2.5f;
 
     public static int MiscDebuffType { get; set; } = BuffID.Confused;
     public static int MiscDebuffTime { get; set; } = 240;

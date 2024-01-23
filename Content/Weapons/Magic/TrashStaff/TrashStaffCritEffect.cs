@@ -67,7 +67,7 @@ public class TrashStaffCritEffect : ModProjectile {
     }
 
     public override bool PreDraw(ref Color lightColor) {
-        lightColor = LightHelper.GetLightColor(Projectile.Center);
+        lightColor = ExtendLight.Get(Projectile.Center);
         Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int trailLength);
         var drawCoordinates = Projectile.Center - Main.screenPosition;
         var drawColor = Color.Lerp(lightColor, Color.White, 0.6f) * Projectile.Opacity;

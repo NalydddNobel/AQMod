@@ -15,7 +15,7 @@ public abstract class BaseMusicBoxTile : ModTile {
         TileObjectData.newTile.DrawYOffset = 2;
         TileObjectData.addTile(Type);
 
-        AddMapEntry(new(200, 200, 200), TextHelper.GetDisplayName(ModContent.GetModItem(MusicBoxItemId)));
+        AddMapEntry(CommonColor.TILE_FURNITURE, ExtendLanguage.GetDisplayName(ModContent.GetModItem(MusicBoxItemId)));
     }
 
     public override void MouseOver(int i, int j) {

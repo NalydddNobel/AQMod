@@ -10,7 +10,7 @@ public class StunGunDebuff : ModBuff, IOnAddBuff/*, IAddRecipeGroups*/ {
 
     public override void SetStaticDefaults() {
         Main.debuff[Type] = true;
-        BuffSets.ModifiesMoveSpeed.AddEntry(Type);
+        BuffID.Sets.GrantImmunityWith[Type].Add(BuffID.Slow);
     }
 
     #region On Add Buff

@@ -62,7 +62,7 @@ public class BaseFurnitureTile {
     }
 
     public abstract class Bed : Furniture {
-        public override Color MapColor => ColorHelper.ColorFurniture;
+        public override Color MapColor => CommonColor.TILE_FURNITURE;
 
         public override void SetStaticDefaults() {
             FurnitureDefaults();
@@ -134,7 +134,7 @@ public class BaseFurnitureTile {
     }
 
     public abstract class Bookcase : Furniture {
-        public override Color MapColor => ColorHelper.ColorFurniture;
+        public override Color MapColor => CommonColor.TILE_FURNITURE;
 
         public override void SetStaticDefaults() {
             FurnitureDefaults();
@@ -158,7 +158,7 @@ public class BaseFurnitureTile {
     }
 
     public abstract class Candelabra : LightedFurniture {
-        public override Color MapColor => ColorHelper.ColorLightedFurniture;
+        public override Color MapColor => CommonColor.TILE_FURNITURE_LIGHTED;
 
         public override void SetStaticDefaults() {
             FurnitureDefaults();
@@ -209,7 +209,7 @@ public class BaseFurnitureTile {
     }
 
     public abstract class Candle : LightedFurniture {
-        public override Color MapColor => ColorHelper.ColorLightedFurniture;
+        public override Color MapColor => CommonColor.TILE_FURNITURE_LIGHTED;
 
         public override void SetStaticDefaults() {
             FurnitureDefaults();
@@ -263,7 +263,7 @@ public class BaseFurnitureTile {
     }
 
     public abstract class Chandelier : LightedFurniture {
-        public override Color MapColor => ColorHelper.ColorLightedFurniture;
+        public override Color MapColor => CommonColor.TILE_FURNITURE_LIGHTED;
 
         public override void SetStaticDefaults() {
             FurnitureDefaults();
@@ -327,7 +327,7 @@ public class BaseFurnitureTile {
     }
 
     public abstract class Chair : Furniture {
-        public override Color MapColor => ColorHelper.ColorFurniture;
+        public override Color MapColor => CommonColor.TILE_FURNITURE;
 
         protected virtual void AddMapEntry() {
             AddMapEntry(MapColor, Language.GetText("MapObject.Chair"));
@@ -408,7 +408,7 @@ public class BaseFurnitureTile {
     }
 
     public abstract class Clock : Furniture {
-        public override Color MapColor => ColorHelper.ColorFurniture;
+        public override Color MapColor => CommonColor.TILE_FURNITURE;
 
         public override void SetStaticDefaults() {
             FurnitureDefaults();
@@ -431,7 +431,7 @@ public class BaseFurnitureTile {
         }
 
         public override bool RightClick(int x, int y) {
-            Main.NewText($"Time: {TextHelper.WatchTime(Main.time, Main.dayTime)}", new Color(255, 240, 20));
+            Main.NewText($"Time: {ExtendLanguage.WatchTime(Main.time, Main.dayTime)}", new Color(255, 240, 20));
             return true;
         }
     }

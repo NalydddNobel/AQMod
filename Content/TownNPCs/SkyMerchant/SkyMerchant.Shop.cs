@@ -73,7 +73,7 @@ public partial class SkyMerchant {
             }
         }
 
-        int nextIndex = items.GetNextIndex();
+        int nextIndex = ExtendShop.FindNextIndex(items);
         foreach (var pair in dropRateInfo) {
             foreach (var dropRateInfoValue in pair.Value.DropRateInfo) {
                 if (nextIndex >= items.Length) {

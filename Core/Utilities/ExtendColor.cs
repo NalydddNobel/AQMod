@@ -2,23 +2,16 @@
 
 namespace Aequus.Core.Utilities;
 
-public static class ColorHelper {
-    public static readonly Color ColorFurniture = new Color(191, 142, 111, 255);
-    public static readonly Color ColorLightedFurniture = new Color(253, 221, 3, 255);
-
-    public static readonly Color[] CoinColors = new Color[] {
-        Colors.CoinCopper,
-        Colors.CoinSilver,
-        Colors.CoinGold,
-        Colors.CoinPlatinum,
-    };
-
+public static class ExtendColor {
+    /// <returns><paramref name="color"/>, with its R,G,B,A Maxed to the specified <paramref name="amt"/>.</returns>
     public static Color MaxRGBA(this Color color, byte amt) {
         return color.MaxRGBA(amt, amt);
     }
+    /// <returns><paramref name="color"/>, with R,G,B Maxed to the specified <paramref name="amt"/>, and <see cref="Color.A"/> maxed to <paramref name="a"/>.</returns>
     public static Color MaxRGBA(this Color color, byte amt, byte a) {
         return color.MaxRGBA(amt, amt, amt, a);
     }
+    /// <returns><paramref name="color"/>, with R,G,B,A Maxed to <paramref name="r"/>,<paramref name="g"/>,<paramref name="b"/>,<paramref name="a"/> accordingly.</returns>
     public static Color MaxRGBA(this Color color, byte r, byte g, byte b, byte a) {
         color.R = Math.Max(color.R, r);
         color.G = Math.Max(color.G, g);
@@ -27,7 +20,7 @@ public static class ColorHelper {
         return color;
     }
 
-    public static Color HueMultiply(this Color color, float multiplier) {
+    public static Color HueShift(this Color color, float multiplier) {
         var hsl = Main.rgbToHsl(color);
         float lerpValue = Math.Clamp(1f - multiplier, 0f, 1f);
         float shiftEnd = 0.7f;

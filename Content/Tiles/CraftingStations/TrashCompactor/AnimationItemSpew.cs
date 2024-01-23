@@ -86,7 +86,7 @@ public struct AnimationItemSpew : IOverlayDrawer {
             opacity *= 1f - MathF.Pow(fallProgress, 5f);
         }
 
-        lightColor = LightHelper.GetLightColor(drawLocation);
+        lightColor = ExtendLight.Get(drawLocation);
         scale = rng.NextFloat(0.6f, 0.8f);
     }
 

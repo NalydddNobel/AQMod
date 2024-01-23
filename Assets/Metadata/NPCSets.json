@@ -51,13 +51,6 @@
     "TeslaTurret",
     "StarCell"
   ],
-  "StatSpeedBlacklist": [
-    "CultistBoss",
-    "HallowBoss",
-    "Polarities/SunKnight",
-    "Polarities/IlluminantScourer",
-    "Polarities/Pegasus"
-  ],
   "FriendablePreHardmodeSlime": [],
   "FriendableHardmodeSlime": [],
   "Unfriendable": [

@@ -73,7 +73,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
     }
 
     public virtual void PostPopulateItemDropDatabase(Aequus aequus, ItemDropDatabase database) {
-        NPCHelper.InheritDropRules(NPCID.Skeleton, Type, database);
+        ExtendLoot.InheritDropRules(NPCID.Skeleton, Type, database);
     }
 
     public override void SetDefaults() {

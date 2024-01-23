@@ -82,7 +82,7 @@ public class OmegaStaritePet : ModPet {
             Projectile.Center = player.Center;
             Projectile.velocity *= 0.1f;
         }
-        Lighting.AddLight(Projectile.Center, LightHelper.ApplyLightBrightness(LightHelper.OmegaStarite, LightHelper.OmegaStariteBrightness));
+        Lighting.AddLight(Projectile.Center, ExtendLight.ApplyLightBrightness(CommonLight.OmegaStarite, CommonLight.OmegaStariteBrightness));
     }
 
     private void DrawGlowy(Texture2D texture, Vector2 drawCoordinates, Rectangle frame, Color color, float scale = 1f) {

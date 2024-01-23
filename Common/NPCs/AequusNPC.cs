@@ -11,7 +11,7 @@ public partial class AequusNPC : GlobalNPC {
     public override void Load() {
         Load_AutomaticResetEffects();
         On_NPC.UpdateCollision += NPC_UpdateCollision;
-        DetourHelper.AddHook(typeof(NPCLoader).GetMethod(nameof(NPCLoader.NPCAI)), typeof(AequusNPC).GetMethod(nameof(On_NPCLoader_NPCAI), BindingFlags.NonPublic | BindingFlags.Static));
+        HookManager.ApplyAndCacheHook(typeof(NPCLoader).GetMethod(nameof(NPCLoader.NPCAI)), typeof(AequusNPC).GetMethod(nameof(On_NPCLoader_NPCAI), BindingFlags.NonPublic | BindingFlags.Static));
     }
 
     private static void On_NPCLoader_NPCAI(Action<NPC> orig, NPC npc) {

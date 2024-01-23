@@ -35,7 +35,7 @@ public sealed class DedicatedItemGlobalItem : GlobalItem {
         var bloomOrigin = bloomTexture.Size() / 2f;
         var bloomScale = new Vector2(measurement.X / bloomTexture.Width + 2f, (measurement.Y / bloomTexture.Height + 0.1f) / 3f);
         float bloomPulse = Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f, 0f, 1f);
-        var bloomColor = (line.Color.SaturationSet(1f).HueMultiply(0.8f)) with { A = 0 } * 0.15f;
+        var bloomColor = (line.Color.SaturationSet(1f).HueShift(0.8f)) with { A = 0 } * 0.15f;
         var textCenter = coords - line.Origin / 2f + measurement / 2f + new Vector2(0f, -4f);
         Main.spriteBatch.Draw(
             bloomTexture,
