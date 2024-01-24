@@ -25,3 +25,9 @@ Chromite.Bestiary: Estos insectos han desarrollado un camuflaje magnético incre
 Crabson.DisplayName: Crabson
 OmegaStarite.DisplayName: Omega Starite
 DustDevil.DisplayName: Demonio de Polvo
+
+BloodMimic: {
+	// DisplayName: Blood Mimic
+	// BannerName: Blood Mimic Banner
+	// Bestiary: When the gruesome red moon shines, the festering corpses of slain looters may merge with the chests they tried to claim, corrupting and mutating the treasure within.
+}

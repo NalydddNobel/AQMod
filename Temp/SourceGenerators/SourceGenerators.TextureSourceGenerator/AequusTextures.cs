@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 225)</summary>
+/// <summary>(Total Textures: 258)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -453,8 +453,74 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> icon_small = new("Aequus/icon_small");
     /// <summary>Full Path: icon_workshop</summary>
     public static readonly RequestCache<Texture2D> icon_workshop = new("Aequus/icon_workshop");
-    /// <summary>Full Path: Old/Content/BloodMoon/BloodMimic</summary>
-    public static readonly RequestCache<Texture2D> BloodMimic = new("Aequus/Old/Content/BloodMoon/BloodMimic");
-    /// <summary>Full Path: Old/Ogscule</summary>
-    public static readonly RequestCache<Texture2D> Ogscule = new("Aequus/Old/Ogscule");
+    /// <summary>Full Path: Old/Content/Enemies/BloodMoon/BloodMimic</summary>
+    public static readonly RequestCache<Texture2D> BloodMimic = new("Aequus/Old/Content/Enemies/BloodMoon/BloodMimic");
+    /// <summary>Full Path: Old/Content/Enemies/BloodMoon/BloodMimicBanner</summary>
+    public static readonly RequestCache<Texture2D> BloodMimicBanner = new("Aequus/Old/Content/Enemies/BloodMoon/BloodMimicBanner");
+    /// <summary>Full Path: Old/Content/Enemies/BloodMoon/BloodMimicBannerItem</summary>
+    public static readonly RequestCache<Texture2D> BloodMimicBannerItem = new("Aequus/Old/Content/Enemies/BloodMoon/BloodMimicBannerItem");
+    /// <summary>Full Path: Old/Content/Enemies/BloodMoon/Gores/BloodMimicGoreEyeball</summary>
+    public static readonly RequestCache<Texture2D> BloodMimicGoreEyeball = new("Aequus/Old/Content/Enemies/BloodMoon/Gores/BloodMimicGoreEyeball");
+    /// <summary>Full Path: Old/Content/Enemies/BloodMoon/Gores/BloodMimicGoreLid</summary>
+    public static readonly RequestCache<Texture2D> BloodMimicGoreLid = new("Aequus/Old/Content/Enemies/BloodMoon/Gores/BloodMimicGoreLid");
+    /// <summary>Full Path: Old/Content/Enemies/BreadOfCthulhuBanner</summary>
+    public static readonly RequestCache<Texture2D> BreadOfCthulhuBanner = new("Aequus/Old/Content/Enemies/BreadOfCthulhuBanner");
+    /// <summary>Full Path: Old/Content/Enemies/CinderaBanner</summary>
+    public static readonly RequestCache<Texture2D> CinderaBanner = new("Aequus/Old/Content/Enemies/CinderaBanner");
+    /// <summary>Full Path: Old/Content/Enemies/CoconutCrabBanner</summary>
+    public static readonly RequestCache<Texture2D> CoconutCrabBanner = new("Aequus/Old/Content/Enemies/CoconutCrabBanner");
+    /// <summary>Full Path: Old/Content/Enemies/CrabFishBanner</summary>
+    public static readonly RequestCache<Texture2D> CrabFishBanner = new("Aequus/Old/Content/Enemies/CrabFishBanner");
+    /// <summary>Full Path: Old/Content/Enemies/HijivarchCrabBanner</summary>
+    public static readonly RequestCache<Texture2D> HijivarchCrabBanner = new("Aequus/Old/Content/Enemies/HijivarchCrabBanner");
+    /// <summary>Full Path: Old/Content/Enemies/HyperStariteBanner</summary>
+    public static readonly RequestCache<Texture2D> HyperStariteBanner = new("Aequus/Old/Content/Enemies/HyperStariteBanner");
+    /// <summary>Full Path: Old/Content/Enemies/MagmabubbleBanner</summary>
+    public static readonly RequestCache<Texture2D> MagmabubbleBanner = new("Aequus/Old/Content/Enemies/MagmabubbleBanner");
+    /// <summary>Full Path: Old/Content/Enemies/SoldierCrabBanner</summary>
+    public static readonly RequestCache<Texture2D> SoldierCrabBanner = new("Aequus/Old/Content/Enemies/SoldierCrabBanner");
+    /// <summary>Full Path: Old/Content/Enemies/StariteBanner</summary>
+    public static readonly RequestCache<Texture2D> StariteBanner = new("Aequus/Old/Content/Enemies/StariteBanner");
+    /// <summary>Full Path: Old/Content/Enemies/SuperStariteBanner</summary>
+    public static readonly RequestCache<Texture2D> SuperStariteBanner = new("Aequus/Old/Content/Enemies/SuperStariteBanner");
+    /// <summary>Full Path: Old/Content/Enemies/TrapperImpBanner</summary>
+    public static readonly RequestCache<Texture2D> TrapperImpBanner = new("Aequus/Old/Content/Enemies/TrapperImpBanner");
+    /// <summary>Full Path: Old/Content/Enemies/TrapSkeletonBanner</summary>
+    public static readonly RequestCache<Texture2D> TrapSkeletonBanner = new("Aequus/Old/Content/Enemies/TrapSkeletonBanner");
+    /// <summary>Full Path: Old/Content/Enemies/VraineBanner</summary>
+    public static readonly RequestCache<Texture2D> VraineBanner = new("Aequus/Old/Content/Enemies/VraineBanner");
+    /// <summary>Full Path: Old/Content/Enemies/WhiteSlimeBanner</summary>
+    public static readonly RequestCache<Texture2D> WhiteSlimeBanner = new("Aequus/Old/Content/Enemies/WhiteSlimeBanner");
+    /// <summary>Full Path: Old/Content/Equipment/Accessories/HighSteaks/HighSteaks</summary>
+    public static readonly RequestCache<Texture2D> HighSteaks = new("Aequus/Old/Content/Equipment/Accessories/HighSteaks/HighSteaks");
+    /// <summary>Full Path: Old/Content/Equipment/Accessories/HighSteaks/HighSteaks_Waist</summary>
+    public static readonly RequestCache<Texture2D> HighSteaks_Waist = new("Aequus/Old/Content/Equipment/Accessories/HighSteaks/HighSteaks_Waist");
+    /// <summary>Full Path: Old/Content/Equipment/Accessories/SpiritKeg/KegOSpirits</summary>
+    public static readonly RequestCache<Texture2D> KegOSpirits = new("Aequus/Old/Content/Equipment/Accessories/SpiritKeg/KegOSpirits");
+    /// <summary>Full Path: Old/Content/Equipment/Accessories/SpiritKeg/SaivoryKnife</summary>
+    public static readonly RequestCache<Texture2D> SaivoryKnife = new("Aequus/Old/Content/Equipment/Accessories/SpiritKeg/SaivoryKnife");
+    /// <summary>Full Path: Old/Content/Equipment/Accessories/SpiritKeg/SpiritBottle</summary>
+    public static readonly RequestCache<Texture2D> SpiritBottle = new("Aequus/Old/Content/Equipment/Accessories/SpiritKeg/SpiritBottle");
+    /// <summary>Full Path: Old/Content/Equipment/GrapplingHooks/EnemyGrappleHook/Meathook</summary>
+    public static readonly RequestCache<Texture2D> Meathook = new("Aequus/Old/Content/Equipment/GrapplingHooks/EnemyGrappleHook/Meathook");
+    /// <summary>Full Path: Old/Content/Equipment/GrapplingHooks/EnemyGrappleHook/MeathookProj</summary>
+    public static readonly RequestCache<Texture2D> MeathookProj = new("Aequus/Old/Content/Equipment/GrapplingHooks/EnemyGrappleHook/MeathookProj");
+    /// <summary>Full Path: Old/Content/Equipment/GrapplingHooks/EnemyGrappleHook/MeathookProj_Chain</summary>
+    public static readonly RequestCache<Texture2D> MeathookProj_Chain = new("Aequus/Old/Content/Equipment/GrapplingHooks/EnemyGrappleHook/MeathookProj_Chain");
+    /// <summary>Full Path: Old/Content/Equipment/GrapplingHooks/HealingGrappleHook/LeechHook</summary>
+    public static readonly RequestCache<Texture2D> LeechHook = new("Aequus/Old/Content/Equipment/GrapplingHooks/HealingGrappleHook/LeechHook");
+    /// <summary>Full Path: Old/Content/Equipment/GrapplingHooks/HealingGrappleHook/LeechHookProj</summary>
+    public static readonly RequestCache<Texture2D> LeechHookProj = new("Aequus/Old/Content/Equipment/GrapplingHooks/HealingGrappleHook/LeechHookProj");
+    /// <summary>Full Path: Old/Content/Equipment/GrapplingHooks/HealingGrappleHook/LeechHookProj_Chain</summary>
+    public static readonly RequestCache<Texture2D> LeechHookProj_Chain = new("Aequus/Old/Content/Equipment/GrapplingHooks/HealingGrappleHook/LeechHookProj_Chain");
+    /// <summary>Full Path: Old/Content/Materials/BloodyTearstone</summary>
+    public static readonly RequestCache<Texture2D> BloodyTearstone = new("Aequus/Old/Content/Materials/BloodyTearstone");
+    /// <summary>Full Path: Old/Content/Potions/Foods/SusSteak/SuspiciousLookingSteak</summary>
+    public static readonly RequestCache<Texture2D> SuspiciousLookingSteak = new("Aequus/Old/Content/Potions/Foods/SusSteak/SuspiciousLookingSteak");
+    /// <summary>Full Path: Old/Content/Potions/Resurrection/PotionOfResurrection</summary>
+    public static readonly RequestCache<Texture2D> PotionOfResurrection = new("Aequus/Old/Content/Potions/Resurrection/PotionOfResurrection");
+    /// <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow</summary>
+    public static readonly RequestCache<Texture2D> CrusadersCrossbow = new("Aequus/Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow");
+    /// <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj</summary>
+    public static readonly RequestCache<Texture2D> CrusadersCrossbowProj = new("Aequus/Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj");
 }

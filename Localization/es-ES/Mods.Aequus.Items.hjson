@@ -87,6 +87,35 @@ WeightedHorseshoe: {
 		'''
 }
 
+HighSteaks: {
+	// DisplayName: High Steaks
+	/* Tooltip:
+		'''
+		{0}% increased damage when performing a critical strike
+		{1}
+		''' */
+	// Downside: "{v}However, you pay {Price} upon crit"
+}
+
+KegOSpirits: {
+	// DisplayName: Keg O' Spirits
+	/* Tooltip:
+		'''
+		{$SaivoryKnife.Tooltip}
+		{$SpiritBottle.Tooltip@1}
+		''' */
+}
+
+SaivoryKnife: {
+	// DisplayName: Saivory Knife
+	// Tooltip: Increases the duration of your ghost minions by {0}
+}
+
+SpiritBottle: {
+	// DisplayName: Spirit Bottle
+	// Tooltip: Increases your maximum number of ghosts by {0}
+}
+
 //# Equipment: Informational
 ShimmerMonocle: {
 	DisplayName: Fulgóculo
@@ -101,6 +130,26 @@ RichMansMonocle: {
 Calendar: {
 	DisplayName: Calendario
 	Tooltip: Muestra la fecha
+}
+
+//# Equipment: Grappling Hooks
+LeechHook: {
+	// DisplayName: Leech Hook
+	/* Tooltip:
+		'''
+		Ignores {0} points of enemy Defense
+		Latches onto enemies, healing you
+		Damage the victim to restore extra life
+		''' */
+}
+
+Meathook: {
+	// DisplayName: Meathook
+	/* Tooltip:
+		'''
+		Allows you to grapple to enemies
+		Deal {0}% increased damage to the enemy you grapple onto
+		''' */
 }
 
 //# Weapons: Melee
@@ -157,6 +206,11 @@ SkyHunterCrossbow: {
 		'''
 }
 
+CrusadersCrossbow: {
+	// DisplayName: Crusaders Crossbow
+	// Tooltip: Shoots a bolt which can heal allies
+}
+
 //# Weapons: Magic
 TrashStaff: {
 	DisplayName: Correo Spam
@@ -194,6 +248,20 @@ DeathsEmbrace: {
 		Los ataques hacen que vuelvas a tomar la poción automáticamente
 		{{Una vez que el efecto acabe, morirás instantáneamente...}}
 		'''
+}
+
+SuspiciousLookingSteak: {
+	// DisplayName: Suspicious Looking Steak
+	// Tooltip: "'You are a terrible person'"
+}
+
+PotionOfResurrection: {
+	// DisplayName: Potion Of Resurrection
+	/* Tooltip:
+		'''
+		Teleports you to the location of your most recent death
+		'A drink favored by those who have experienced death recently'
+		''' */
 }
 
 //# Foods
@@ -280,6 +348,11 @@ NetherStar: {
 CompressedTrash: {
 	DisplayName: Basura Comprimida
 	Tooltip: ""
+}
+
+BloodyTearstone: {
+	// DisplayName: Bloody Tearstone
+	// Tooltip: ""
 }
 
 TreasureBag.DisplayName: Bolsa del Tesoro ({0})

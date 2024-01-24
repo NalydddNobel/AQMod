@@ -1,6 +1,12 @@
 ﻿using Aequus.Common.Items.DropRules;
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Tiles.Banners;
+using Aequus.Old.Content.Equipment.Accessories.HighSteaks;
+using Aequus.Old.Content.Equipment.Accessories.SpiritKeg;
+using Aequus.Old.Content.Equipment.GrapplingHooks.HealingGrappleHook;
+using Aequus.Old.Content.Potions.Foods.SusSteak;
+using Aequus.Old.Content.Potions.Resurrection;
+using Aequus.Old.Content.Weapons.Ranged.Bows.CrusadersCrossbow;
 using System;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -49,7 +55,7 @@ public class BloodMimic : LegacyAIMimic {
             chanceDenominator: 1,
             ModContent.ItemType<LeechHook>(),
             ModContent.ItemType<HighSteaks>(),
-            ModContent.ItemType<BloodiedBucket>(),
+            ModContent.ItemType<SaivoryKnife>(),
             ModContent.ItemType<CrusadersCrossbow>())
         );
         lastAliveRule.OnSuccess(ItemDropRule.OneFromOptions(
@@ -74,9 +80,9 @@ public class BloodMimic : LegacyAIMimic {
             for (int i = 0; i < 50; i++) {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hit.HitDirection * 2);
             }
-            NPC.DeathGore("BloodMimic_0");
-            NPC.DeathGore("BloodMimic_1");
-            NPC.DeathGore("BloodMimic_1").rotation += MathHelper.Pi;
+            NPC.NewGore(AequusTextures.BloodMimicGoreEyeball, NPC.Center, NPC.velocity);
+            NPC.NewGore(AequusTextures.BloodMimicGoreLid, NPC.position, NPC.velocity);
+            NPC.NewGore(AequusTextures.BloodMimicGoreLid, NPC.position, NPC.velocity).rotation += MathHelper.Pi;
         }
         for (int i = 0; i < 3; i++) {
             Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hit.HitDirection * 2);

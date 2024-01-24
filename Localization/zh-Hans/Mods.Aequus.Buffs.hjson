@@ -1,4 +1,4 @@
-﻿NeutronYogurtBuff: {
+NeutronYogurtBuff: {
 	DisplayName: "{$Items.NeutronYogurt.DisplayName}"
 	Description: 下落加速度翻倍
 }
