@@ -12,6 +12,7 @@ using Terraria.GameContent.ItemDropRules;
 namespace Aequus.Old.Content.Enemies.DemonSiege.LavaLegs;
 
 [AutoloadBanner(legacyId: 8)]
+[ModBiomes(typeof(DemonSiegeZone))]
 public class LeggedLava : ModNPC {
     public const int FRAME_IDLE0 = 0;
     public const int FRAME_IDLE1 = 1;

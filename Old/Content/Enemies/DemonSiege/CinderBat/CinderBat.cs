@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.DataSets;
+using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Tiles.Banners;
 using Aequus.Core.DataSets;
 using Aequus.Old.Content.Equipment.Accessories.WarHorn;
@@ -11,8 +12,9 @@ using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Old.Content.Enemies.DemonSiege.CinderBat;
 
-[AutoloadBanner(legacyId: 7)]
 [LegacyName("Cindera")]
+[AutoloadBanner(legacyId: 7)]
+[ModBiomes(typeof(DemonSiegeZone))]
 public class CinderBat : LegacyAIBat {
     public const int FRAME_FLY_0 = 0;
     public const int FRAME_FLY_1 = 1;
