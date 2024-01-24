@@ -4,6 +4,7 @@ using Terraria.Localization;
 
 namespace Aequus.Content.Equipment.Accessories.ScavengerBag;
 
+[LegacyName("AmmoBackpack")]
 [AutoloadEquip(EquipType.Back)]
 public class ScavengerBag : BackpackModItem {
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(Capacity);

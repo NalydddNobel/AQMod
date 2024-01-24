@@ -2,6 +2,8 @@
 
 namespace Aequus.Content.Equipment.Accessories.GrandReward;
 
+[LegacyName("BusinessCard", "ForgedCard")]
+[LegacyName("FaultyCoin", "FoolsGoldRing")]
 public class GrandReward : ModItem, IHaveDownsideTip {
     public static float LuckIncrease { get; set; } = 1f;
 

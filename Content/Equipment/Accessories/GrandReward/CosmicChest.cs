@@ -1,5 +1,6 @@
 ﻿namespace Aequus.Content.Equipment.Accessories.GrandReward;
 
+[LegacyName("GalaxyCommission", "Moro")]
 public class CosmicChest : ModItem {
     public static float LuckIncrease { get; set; } = 0.05f;
 

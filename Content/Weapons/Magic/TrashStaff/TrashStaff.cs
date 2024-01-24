@@ -3,6 +3,7 @@ using Aequus.Content.Materials;
 
 namespace Aequus.Content.Weapons.Magic.TrashStaff;
 
+[LegacyName("LiquidGun")]
 public class TrashStaff : ModItem {
     public override void SetStaticDefaults() {
         Item.staff[Type] = true;
