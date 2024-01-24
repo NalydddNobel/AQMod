@@ -168,7 +168,8 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
             for (int i = 0; i < 20; i++) {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hit.HitDirection, -2.5f);
             }
-            Gore.NewGore(source, NPC.position, NPC.velocity, Mod.Find<ModGore>(nameof(AequusTextures.ScavengerGoreHead)).Type, NPC.scale);
+
+            NPC.NewGore(AequusTextures.ScavengerGoreHead, NPC.position, NPC.velocity, Scale: NPC.scale);
             for (int i = 0; i < 2; i++) {
                 Gore.NewGore(source, NPC.position + new Vector2(0f, 20f), NPC.velocity, 43, NPC.scale);
                 Gore.NewGore(source, NPC.position + new Vector2(0f, 34f), NPC.velocity, 44, NPC.scale);
