@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Tiles;
-using Aequus.Core.Graphics.Tiles;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.Localization;
@@ -10,7 +9,7 @@ namespace Aequus.Content.Tiles.Banners;
 internal class InstancedBannerTile : InstancedModTile {
     private readonly ModNPC _modNPC;
 
-    public InstancedBannerTile(ModNPC modNPC) : base(modNPC.Name + "Banner", modNPC.Texture + "Banner") {
+    public InstancedBannerTile(ModNPC modNPC) : base(modNPC.Name + "Banner", $"{modNPC.NamespaceFilePath()}/Tiles/{modNPC.Name}Banner") {
         _modNPC = modNPC;
     }
 

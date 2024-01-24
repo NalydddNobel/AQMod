@@ -3,6 +3,7 @@ DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
 Scavenger: {
 	DisplayName: Scavenger
 	Bestiary: Once vicious pirates which sailed the seas, even their rotten bones still have the desire to steal and plunder.
+	BannerName: Scavenger Banner
 }
 
 ScavengerLootBag.DisplayName: Scavenger Bag

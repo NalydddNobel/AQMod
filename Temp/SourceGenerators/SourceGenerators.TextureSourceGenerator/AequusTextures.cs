@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 293)</summary>
+/// <summary>(Total Textures: 297)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -187,14 +187,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ScorchingDye = new("Aequus/Content/Dyes/Items/ScorchingDye");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
     public static readonly RequestCache<Texture2D> BlackJellyfish = new("Aequus/Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish");
-    /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishBanner</summary>
-    public static readonly RequestCache<Texture2D> BlackJellyfishBanner = new("Aequus/Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishBanner");
-    /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishBannerItem</summary>
-    public static readonly RequestCache<Texture2D> BlackJellyfishBannerItem = new("Aequus/Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishBannerItem");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishVertexStrip</summary>
     public static readonly RequestCache<Texture2D> BlackJellyfishVertexStrip = new("Aequus/Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishVertexStrip");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish_Bag</summary>
     public static readonly RequestCache<Texture2D> BlackJellyfish_Bag = new("Aequus/Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish_Bag");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBanner</summary>
+    public static readonly RequestCache<Texture2D> BlackJellyfishBanner = new("Aequus/Content/Enemies/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBanner");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBannerItem</summary>
+    public static readonly RequestCache<Texture2D> BlackJellyfishBannerItem = new("Aequus/Content/Enemies/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBannerItem");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Gores/ScavengerGoreHead</summary>
     public static readonly RequestCache<Texture2D> ScavengerGoreHead = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/Gores/ScavengerGoreHead");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Scavenger</summary>
@@ -207,6 +207,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ScavengerLootBag = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline</summary>
     public static readonly RequestCache<Texture2D> ScavengerLootBag_Outline = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerBanner</summary>
+    public static readonly RequestCache<Texture2D> ScavengerBanner = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerBanner");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerBannerItem</summary>
+    public static readonly RequestCache<Texture2D> ScavengerBannerItem = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerBannerItem");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatue</summary>
+    public static readonly RequestCache<Texture2D> ScavengerStatue = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatue");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatueItem</summary>
+    public static readonly RequestCache<Texture2D> ScavengerStatueItem = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatueItem");
     /// <summary>Full Path: Content/Equipment/Accessories/Balloons/PurpleBalloon</summary>
     public static readonly RequestCache<Texture2D> PurpleBalloon = new("Aequus/Content/Equipment/Accessories/Balloons/PurpleBalloon");
     /// <summary>Full Path: Content/Equipment/Accessories/Balloons/PurpleBalloon_Balloon</summary>
@@ -459,14 +467,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> icon_workshop = new("Aequus/icon_workshop");
     /// <summary>Full Path: Old/Content/Enemies/BloodMoon/BloodMimic</summary>
     public static readonly RequestCache<Texture2D> BloodMimic = new("Aequus/Old/Content/Enemies/BloodMoon/BloodMimic");
-    /// <summary>Full Path: Old/Content/Enemies/BloodMoon/BloodMimicBanner</summary>
-    public static readonly RequestCache<Texture2D> BloodMimicBanner = new("Aequus/Old/Content/Enemies/BloodMoon/BloodMimicBanner");
-    /// <summary>Full Path: Old/Content/Enemies/BloodMoon/BloodMimicBannerItem</summary>
-    public static readonly RequestCache<Texture2D> BloodMimicBannerItem = new("Aequus/Old/Content/Enemies/BloodMoon/BloodMimicBannerItem");
     /// <summary>Full Path: Old/Content/Enemies/BloodMoon/Gores/BloodMimicGoreEyeball</summary>
     public static readonly RequestCache<Texture2D> BloodMimicGoreEyeball = new("Aequus/Old/Content/Enemies/BloodMoon/Gores/BloodMimicGoreEyeball");
     /// <summary>Full Path: Old/Content/Enemies/BloodMoon/Gores/BloodMimicGoreLid</summary>
     public static readonly RequestCache<Texture2D> BloodMimicGoreLid = new("Aequus/Old/Content/Enemies/BloodMoon/Gores/BloodMimicGoreLid");
+    /// <summary>Full Path: Old/Content/Enemies/BloodMoon/Tiles/BloodMimicBanner</summary>
+    public static readonly RequestCache<Texture2D> BloodMimicBanner = new("Aequus/Old/Content/Enemies/BloodMoon/Tiles/BloodMimicBanner");
+    /// <summary>Full Path: Old/Content/Enemies/BloodMoon/Tiles/BloodMimicBannerItem</summary>
+    public static readonly RequestCache<Texture2D> BloodMimicBannerItem = new("Aequus/Old/Content/Enemies/BloodMoon/Tiles/BloodMimicBannerItem");
     /// <summary>Full Path: Old/Content/Enemies/BreadOfCthulhuBanner</summary>
     public static readonly RequestCache<Texture2D> BreadOfCthulhuBanner = new("Aequus/Old/Content/Enemies/BreadOfCthulhuBanner");
     /// <summary>Full Path: Old/Content/Enemies/CoconutCrabBanner</summary>
@@ -475,24 +483,24 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CrabFishBanner = new("Aequus/Old/Content/Enemies/CrabFishBanner");
     /// <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/CinderBat</summary>
     public static readonly RequestCache<Texture2D> CinderBat = new("Aequus/Old/Content/Enemies/DemonSiege/CinderBat/CinderBat");
-    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/CinderBatBanner</summary>
-    public static readonly RequestCache<Texture2D> CinderBatBanner = new("Aequus/Old/Content/Enemies/DemonSiege/CinderBat/CinderBatBanner");
-    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/CinderBatBannerItem</summary>
-    public static readonly RequestCache<Texture2D> CinderBatBannerItem = new("Aequus/Old/Content/Enemies/DemonSiege/CinderBat/CinderBatBannerItem");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/Tiles/CinderBatBanner</summary>
+    public static readonly RequestCache<Texture2D> CinderBatBanner = new("Aequus/Old/Content/Enemies/DemonSiege/CinderBat/Tiles/CinderBatBanner");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/Tiles/CinderBatBannerItem</summary>
+    public static readonly RequestCache<Texture2D> CinderBatBannerItem = new("Aequus/Old/Content/Enemies/DemonSiege/CinderBat/Tiles/CinderBatBannerItem");
     /// <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/Gores/LeggedLavaGoreFoot</summary>
     public static readonly RequestCache<Texture2D> LeggedLavaGoreFoot = new("Aequus/Old/Content/Enemies/DemonSiege/LavaLegs/Gores/LeggedLavaGoreFoot");
     /// <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/Gores/LeggedLavaGoreMuscle</summary>
     public static readonly RequestCache<Texture2D> LeggedLavaGoreMuscle = new("Aequus/Old/Content/Enemies/DemonSiege/LavaLegs/Gores/LeggedLavaGoreMuscle");
     /// <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLava</summary>
     public static readonly RequestCache<Texture2D> LeggedLava = new("Aequus/Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLava");
-    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLavaBanner</summary>
-    public static readonly RequestCache<Texture2D> LeggedLavaBanner = new("Aequus/Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLavaBanner");
-    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLavaBannerItem</summary>
-    public static readonly RequestCache<Texture2D> LeggedLavaBannerItem = new("Aequus/Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLavaBannerItem");
     /// <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLavaLegs</summary>
     public static readonly RequestCache<Texture2D> LeggedLavaLegs = new("Aequus/Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLavaLegs");
     /// <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLavaProj</summary>
     public static readonly RequestCache<Texture2D> LeggedLavaProj = new("Aequus/Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLavaProj");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/Tiles/LeggedLavaBanner</summary>
+    public static readonly RequestCache<Texture2D> LeggedLavaBanner = new("Aequus/Old/Content/Enemies/DemonSiege/LavaLegs/Tiles/LeggedLavaBanner");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/Tiles/LeggedLavaBannerItem</summary>
+    public static readonly RequestCache<Texture2D> LeggedLavaBannerItem = new("Aequus/Old/Content/Enemies/DemonSiege/LavaLegs/Tiles/LeggedLavaBannerItem");
     /// <summary>Full Path: Old/Content/Enemies/HijivarchCrabBanner</summary>
     public static readonly RequestCache<Texture2D> HijivarchCrabBanner = new("Aequus/Old/Content/Enemies/HijivarchCrabBanner");
     /// <summary>Full Path: Old/Content/Enemies/HyperStariteBanner</summary>

@@ -1320,7 +1320,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 37)</summary>
+            <summary>(Total Sounds: 45)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.PollutedOcean">
             <summary>Full Path: Assets/Music/PollutedOcean</summary>
@@ -1433,8 +1433,32 @@
         <member name="F:Aequus.AequusSounds.OmniGemBreak">
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
+        <member name="F:Aequus.AequusSounds.BeginDemonSiege">
+            <summary>Full Path: Old/Assets/Sounds/GoreNest/BeginDemonSiege</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.HighSteaks0">
+            <summary>Full Path: Old/Assets/Sounds/HighSteaks/HighSteaks0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.HighSteaks1">
+            <summary>Full Path: Old/Assets/Sounds/HighSteaks/HighSteaks1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.HighSteaksCriticalStrike">
+            <summary>Full Path: Old/Assets/Sounds/HighSteaks/HighSteaksCriticalStrike</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.Meathook0">
+            <summary>Full Path: Old/Assets/Sounds/Meathook/Meathook0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.Meathook1">
+            <summary>Full Path: Old/Assets/Sounds/Meathook/Meathook1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.MeathookConnect">
+            <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookConnect</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.MeathookPull">
+            <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookPull</summary>
+        </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 293)</summary>
+            <summary>(Total Textures: 297)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1706,17 +1730,17 @@
         <member name="F:Aequus.AequusTextures.BlackJellyfish">
             <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.BlackJellyfishBanner">
-            <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishBanner</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BlackJellyfishBannerItem">
-            <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishBannerItem</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.BlackJellyfishVertexStrip">
             <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishVertexStrip</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BlackJellyfish_Bag">
             <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish_Bag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackJellyfishBanner">
+            <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackJellyfishBannerItem">
+            <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBannerItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ScavengerGoreHead">
             <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Gores/ScavengerGoreHead</summary>
@@ -1735,6 +1759,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.ScavengerLootBag_Outline">
             <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerBanner">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerBannerItem">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerBannerItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerStatue">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatue</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerStatueItem">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatueItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PurpleBalloon">
             <summary>Full Path: Content/Equipment/Accessories/Balloons/PurpleBalloon</summary>
@@ -2114,17 +2150,17 @@
         <member name="F:Aequus.AequusTextures.BloodMimic">
             <summary>Full Path: Old/Content/Enemies/BloodMoon/BloodMimic</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.BloodMimicBanner">
-            <summary>Full Path: Old/Content/Enemies/BloodMoon/BloodMimicBanner</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BloodMimicBannerItem">
-            <summary>Full Path: Old/Content/Enemies/BloodMoon/BloodMimicBannerItem</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.BloodMimicGoreEyeball">
             <summary>Full Path: Old/Content/Enemies/BloodMoon/Gores/BloodMimicGoreEyeball</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BloodMimicGoreLid">
             <summary>Full Path: Old/Content/Enemies/BloodMoon/Gores/BloodMimicGoreLid</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BloodMimicBanner">
+            <summary>Full Path: Old/Content/Enemies/BloodMoon/Tiles/BloodMimicBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BloodMimicBannerItem">
+            <summary>Full Path: Old/Content/Enemies/BloodMoon/Tiles/BloodMimicBannerItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BreadOfCthulhuBanner">
             <summary>Full Path: Old/Content/Enemies/BreadOfCthulhuBanner</summary>
@@ -2139,10 +2175,10 @@
             <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/CinderBat</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CinderBatBanner">
-            <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/CinderBatBanner</summary>
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/Tiles/CinderBatBanner</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CinderBatBannerItem">
-            <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/CinderBatBannerItem</summary>
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/Tiles/CinderBatBannerItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LeggedLavaGoreFoot">
             <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/Gores/LeggedLavaGoreFoot</summary>
@@ -2153,17 +2189,17 @@
         <member name="F:Aequus.AequusTextures.LeggedLava">
             <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLava</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.LeggedLavaBanner">
-            <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLavaBanner</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.LeggedLavaBannerItem">
-            <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLavaBannerItem</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.LeggedLavaLegs">
             <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLavaLegs</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LeggedLavaProj">
             <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLavaProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LeggedLavaBanner">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/Tiles/LeggedLavaBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LeggedLavaBannerItem">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/Tiles/LeggedLavaBannerItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HijivarchCrabBanner">
             <summary>Full Path: Old/Content/Enemies/HijivarchCrabBanner</summary>

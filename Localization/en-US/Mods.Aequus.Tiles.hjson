@@ -79,3 +79,8 @@ GoreNest: {
 		Counts as a Demon/Crimson Altar for crafting
 		'''
 }
+
+ScavengerStatue: {
+	ItemDisplayName: Scavenger Statue
+	ItemTooltip: ""
+}

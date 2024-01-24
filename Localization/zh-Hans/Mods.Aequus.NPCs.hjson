@@ -3,6 +3,7 @@ DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
 Scavenger: {
 	DisplayName: 拾荒者
 	Bestiary: 曾经在海上航行的恶毒海盗, 即使是他们腐烂的骨头, 仍然有着偷窃和掠夺的欲望.
+	// BannerName: Scavenger Banner
 }
 
 ScavengerLootBag.DisplayName: 拾荒者袋子

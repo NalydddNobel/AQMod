@@ -79,3 +79,8 @@ GoreNest: {
 		视作恶魔/猩红祭坛
 		'''
 }
+
+ScavengerStatue: {
+	// ItemDisplayName: Scavenger Statue
+	// ItemTooltip: ""
+}

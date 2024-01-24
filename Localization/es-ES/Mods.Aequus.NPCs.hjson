@@ -3,6 +3,7 @@ DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
 Scavenger: {
 	DisplayName: Carroñero
 	Bestiary: Alguna vez piratas vicios navegando los mares, sus huesos retienen la necesidad de robar y saquear.
+	// BannerName: Scavenger Banner
 }
 
 ScavengerLootBag.DisplayName: Bolsa Carroñera
