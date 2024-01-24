@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 223)</summary>
+/// <summary>(Total Textures: 225)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -453,4 +453,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> icon_small = new("Aequus/icon_small");
     /// <summary>Full Path: icon_workshop</summary>
     public static readonly RequestCache<Texture2D> icon_workshop = new("Aequus/icon_workshop");
+    /// <summary>Full Path: Old/Content/BloodMoon/BloodMimic</summary>
+    public static readonly RequestCache<Texture2D> BloodMimic = new("Aequus/Old/Content/BloodMoon/BloodMimic");
+    /// <summary>Full Path: Old/Ogscule</summary>
+    public static readonly RequestCache<Texture2D> Ogscule = new("Aequus/Old/Ogscule");
 }

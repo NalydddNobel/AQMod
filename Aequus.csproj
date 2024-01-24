@@ -16,6 +16,8 @@
   </ItemGroup>
 		
   <ItemGroup>
+    <None Remove="Old\**" Condition="'$(Configuration)' == 'Debug'" />
+    <EmbeddedResource Remove="Old\**" Condition="'$(Configuration)' == 'Debug'" />
     <None Remove="Temp\SourceGenerators.Generator\**" />
 	<EmbeddedResource Remove="Temp\SourceGenerators.Generator\**" />
 	<Compile Remove="Temp\SourceGenerators.Generator\**" />
@@ -25,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-	<ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	<ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" Condition="'$(Configuration)' == 'Debug'" />
 	<AdditionalFiles Include="**\*.png" />
 	<AdditionalFiles Include="**\*.ogg" />
 	<AdditionalFiles Include="**\Localization\*.hjson" />
@@ -42,6 +44,10 @@
 
   <ItemGroup>
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
+	<AdditionalFiles Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
+    <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
+	<AdditionalFiles Remove="Old\**" Condition="'$(Configuration)' == 'Debug'" />
+	<Compile Remove="Old\**" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
-
+	
 </Project>
