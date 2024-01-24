@@ -42,13 +42,17 @@
     <CompilerGeneratedFilesOutputPath>Temp</CompilerGeneratedFilesOutputPath>
   </PropertyGroup>
 
+  <ItemGroup Condition="'$(Configuration)' == 'Debug'">
+	<AdditionalFiles Remove="Old\**" />
+	<Compile Remove="Old\**" />
+	<AdditionalFiles Include="Old\**\*.png" />
+	<AdditionalFiles Include="Old\**\*.ogg" />
+  </ItemGroup>
+	
   <ItemGroup>
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" />
 	<AdditionalFiles Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
-	<AdditionalFiles Remove="Old\**" Condition="'$(Configuration)' == 'Debug'" />
-	<Compile Remove="Old\**" Condition="'$(Configuration)' == 'Debug'" />
-	<AdditionalFiles Include="Old\**\*.png" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 	
 </Project>
