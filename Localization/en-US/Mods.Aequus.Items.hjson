@@ -365,6 +365,24 @@ BloodyTearstone: {
 	Tooltip: ""
 }
 
+UnholyCore: {
+	DisplayName: Unholy Core
+	Tooltip:
+		'''
+		Can be used at the Gore Nest
+		Decreases the length of the Demon Siege event
+		'''
+}
+
+UnholyCoreSmall: {
+	DisplayName: Dark Tearstone
+	Tooltip:
+		'''
+		Can be used at the Gore Nest
+		Dropped from mysterious entites around the Underworld
+		'''
+}
+
 TreasureBag.DisplayName: Treasure Bag ({0})
 
 WispLantern: {

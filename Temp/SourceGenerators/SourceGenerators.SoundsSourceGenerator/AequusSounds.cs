@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Sounds: 36)</summary>
+/// <summary>(Total Sounds: 44)</summary>
 [CompilerGenerated]
 public partial class AequusSounds {            
         /// <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -78,4 +78,20 @@ public partial class AequusSounds {
     public static readonly SoundStyle ConductiveBlock3 = new("Aequus/Assets/Sounds/Tile/ConductiveBlock3");
     /// <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
     public static readonly SoundStyle OmniGemBreak = new("Aequus/Assets/Sounds/Tile/OmniGemBreak");
+    /// <summary>Full Path: Old/Assets/Sounds/GoreNest/BeginDemonSiege</summary>
+    public static readonly SoundStyle BeginDemonSiege = new("Aequus/Old/Assets/Sounds/GoreNest/BeginDemonSiege");
+    /// <summary>Full Path: Old/Assets/Sounds/HighSteaks/HighSteaks0</summary>
+    public static readonly SoundStyle HighSteaks0 = new("Aequus/Old/Assets/Sounds/HighSteaks/HighSteaks0");
+    /// <summary>Full Path: Old/Assets/Sounds/HighSteaks/HighSteaks1</summary>
+    public static readonly SoundStyle HighSteaks1 = new("Aequus/Old/Assets/Sounds/HighSteaks/HighSteaks1");
+    /// <summary>Full Path: Old/Assets/Sounds/HighSteaks/HighSteaksCriticalStrike</summary>
+    public static readonly SoundStyle HighSteaksCriticalStrike = new("Aequus/Old/Assets/Sounds/HighSteaks/HighSteaksCriticalStrike");
+    /// <summary>Full Path: Old/Assets/Sounds/Meathook/Meathook0</summary>
+    public static readonly SoundStyle Meathook0 = new("Aequus/Old/Assets/Sounds/Meathook/Meathook0");
+    /// <summary>Full Path: Old/Assets/Sounds/Meathook/Meathook1</summary>
+    public static readonly SoundStyle Meathook1 = new("Aequus/Old/Assets/Sounds/Meathook/Meathook1");
+    /// <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookConnect</summary>
+    public static readonly SoundStyle MeathookConnect = new("Aequus/Old/Assets/Sounds/Meathook/MeathookConnect");
+    /// <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookPull</summary>
+    public static readonly SoundStyle MeathookPull = new("Aequus/Old/Assets/Sounds/Meathook/MeathookPull");
 }

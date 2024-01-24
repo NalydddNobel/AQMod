@@ -18,6 +18,14 @@ public static class ExtendLanguage {
         return GetDisplayName(ModContent.GetInstance<T>());
     }
 
+    public static LocalizedText GetDialogue(this ILocalizedModType localizedModType, string suffix) {
+        return localizedModType.GetLocalization($"Dialogue.{suffix}");
+    }
+
+    public static LocalizedText GetMapEntry<T>() where T : ModTile, ILocalizedModType {
+        return ModContent.GetInstance<T>().GetLocalization("MapEntry");
+    }
+
     /// <returns>Whether this key has a value. (<see cref="Language.GetTextValue(string)"/> doesnt return the key.)</returns>
     public static bool ContainsKey(string key) {
         return Language.GetTextValue(key) != key;

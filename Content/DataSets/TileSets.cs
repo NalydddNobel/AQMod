@@ -12,6 +12,11 @@ public class TileSets : DataSet {
     public static HashSet<TileEntry> Mechanical { get; private set; } = new();
     [JsonProperty]
     public static HashSet<TileEntry> IsSmashablePot { get; private set; } = new();
+    /// <summary>
+    /// Prevents tiles below this tile from being sloped.
+    /// </summary>
+    [JsonIgnore]
+    public static HashSet<ushort> PreventsSlopesBelow { get; private set; } = new();
 
     public override void PostSetupContent() {
         for (int i = 0; i < TileLoader.TileCount; i++) {

@@ -1,4 +1,4 @@
-﻿GameTipPretense: Aequus:
+GameTipPretense: Aequus:
 PriceFree: 免费!
 
 DayOfTheWeek: {
@@ -56,3 +56,4 @@ ClickLink:
 	双击以打开链接.
 	'''
 OpenLink: 正在浏览器上打开[c/AABBEE:{0}]...
+// TimeLeft: Time left: {0}

@@ -6,3 +6,10 @@ InfoDisplays: {
 }
 
 KeyUnbound: Unbound
+
+Biomes: {
+	DemonSiegeZone: {
+		DisplayName: ""
+		TownNPCDialogueName: ""
+	}
+}

@@ -7,6 +7,8 @@ public static class ExtendItem {
     /// <param name="item"></param>
     /// <param name="newType"></param>
     public static void Transform(this Item item, int newType) {
+        // TODO: Find a way to preserve global item content?
+
         var position = item.Bottom;
         int whoAmI = item.whoAmI;
         int prefix = item.prefix;

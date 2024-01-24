@@ -798,6 +798,11 @@
             Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.
             </summary>
         </member>
+        <member name="P:Aequus.Content.DataSets.TileSets.PreventsSlopesBelow">
+            <summary>
+            Prevents tiles below this tile from being sloped.
+            </summary>
+        </member>
         <member name="T:Aequus.Content.Dyes.ArmorShaderDataThirdColor">
             <summary>
             Uses "uLightSource" as a 3rd color value.
@@ -1315,7 +1320,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 36)</summary>
+            <summary>(Total Sounds: 44)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishCharge">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -1425,8 +1430,32 @@
         <member name="F:Aequus.AequusSounds.OmniGemBreak">
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
+        <member name="F:Aequus.AequusSounds.BeginDemonSiege">
+            <summary>Full Path: Old/Assets/Sounds/GoreNest/BeginDemonSiege</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.HighSteaks0">
+            <summary>Full Path: Old/Assets/Sounds/HighSteaks/HighSteaks0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.HighSteaks1">
+            <summary>Full Path: Old/Assets/Sounds/HighSteaks/HighSteaks1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.HighSteaksCriticalStrike">
+            <summary>Full Path: Old/Assets/Sounds/HighSteaks/HighSteaksCriticalStrike</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.Meathook0">
+            <summary>Full Path: Old/Assets/Sounds/Meathook/Meathook0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.Meathook1">
+            <summary>Full Path: Old/Assets/Sounds/Meathook/Meathook1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.MeathookConnect">
+            <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookConnect</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.MeathookPull">
+            <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookPull</summary>
+        </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 263)</summary>
+            <summary>(Total Textures: 291)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2130,14 +2159,32 @@
         <member name="F:Aequus.AequusTextures.CinderBatBannerItem">
             <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/CinderBatBannerItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.LeggedLavaGoreFoot">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/Gores/LeggedLavaGoreFoot</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LeggedLavaGoreMuscle">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/Gores/LeggedLavaGoreMuscle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LeggedLava">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLava</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LeggedLavaBanner">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLavaBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LeggedLavaBannerItem">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLavaBannerItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LeggedLavaLegs">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLavaLegs</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LeggedLavaProj">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLavaProj</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.HijivarchCrabBanner">
             <summary>Full Path: Old/Content/Enemies/HijivarchCrabBanner</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HyperStariteBanner">
             <summary>Full Path: Old/Content/Enemies/HyperStariteBanner</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MagmabubbleBanner">
-            <summary>Full Path: Old/Content/Enemies/MagmabubbleBanner</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SoldierCrabBanner">
             <summary>Full Path: Old/Content/Enemies/SoldierCrabBanner</summary>
@@ -2202,6 +2249,30 @@
         <member name="F:Aequus.AequusTextures.LeechHookProj_Chain">
             <summary>Full Path: Old/Content/Equipment/GrapplingHooks/HealingGrappleHook/LeechHookProj_Chain</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.UnholyCore">
+            <summary>Full Path: Old/Content/Events/DemonSiege/Spawners/UnholyCore</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UnholyCoreSmall">
+            <summary>Full Path: Old/Content/Events/DemonSiege/Spawners/UnholyCoreSmall</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonSiegeBestiaryIcon">
+            <summary>Full Path: Old/Content/Events/DemonSiege/Textures/DemonSiegeBestiaryIcon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonSiegeEventIcon">
+            <summary>Full Path: Old/Content/Events/DemonSiege/Textures/DemonSiegeEventIcon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoreNestAura">
+            <summary>Full Path: Old/Content/Events/DemonSiege/Textures/GoreNestAura</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoreNest">
+            <summary>Full Path: Old/Content/Events/DemonSiege/Tiles/GoreNest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoreNestItem">
+            <summary>Full Path: Old/Content/Events/DemonSiege/Tiles/GoreNestItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoreNest_Highlight">
+            <summary>Full Path: Old/Content/Events/DemonSiege/Tiles/GoreNest_Highlight</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.BloodyTearstone">
             <summary>Full Path: Old/Content/Materials/BloodyTearstone</summary>
         </member>
@@ -2211,11 +2282,74 @@
         <member name="F:Aequus.AequusTextures.PotionOfResurrection">
             <summary>Full Path: Old/Content/Potions/Resurrection/PotionOfResurrection</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.OccultistGoreBook">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreBook</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistGoreHead">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreHead</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistGoreWing">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreWing</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Old_Content_TownNPCs_OccultistNPC_Occultist">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Occultist</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistHostile">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/OccultistHostile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistHostile_Head">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/OccultistHostile_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistHostile_Sit">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/OccultistHostile_Sit</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistHostile_Sit_Glow">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/OccultistHostile_Sit_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistRune">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/OccultistRune</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistSleep">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/OccultistSleep</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistSleep_Glow">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/OccultistSleep_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Occultist_Glow">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Occultist_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Occultist_Head">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Occultist_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Old_Content_TownNPCs_OccultistNPC_Shimmer_Occultist">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Shimmer/Occultist</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.CrusadersCrossbow">
             <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrusadersCrossbowProj">
             <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj</summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.NotStackableCritDamage">
+            <summary>
+            Default Value: 0.15
+            <para>This is only added on the first stack of the accessory.</para>
+            </summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.WantedCost">
+            <summary>
+            The cost for performing a critical strike.
+            </summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Equipment.Accessories.SpiritKeg.SaivoryKnife.GhostLifespan">
+            <summary>
+            Default Value: 3600 (1 minute)
+            </summary>
+        </member>
+        <member name="T:Aequus.Old.Content.Events.DemonSiege.Tiles.GoreNestDummy">
+            <summary>
+            Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.
+            </summary>
         </member>
     </members>
 </doc>

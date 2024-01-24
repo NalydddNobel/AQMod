@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Tiles;
 using Microsoft.Xna.Framework;
 using System;
+using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.IO;
 using Terraria.Utilities;
@@ -224,6 +225,18 @@ public static class Helper {
     #endregion
 
     #region World
+    public static bool FrozenTimeActive() {
+        return CreativePowerManager.Instance.GetPower<CreativePowers.FreezeTime>().Enabled;
+    }
+
+    public static int GetTimeScale() {
+        if (FrozenTimeActive()) {
+            return 0;
+        }
+
+        return CreativePowerManager.Instance.GetPower<CreativePowers.ModifyTimeRate>().TargetTimeRate;
+    }
+
     public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
 
     public static bool ZoneSkyHeight(Entity entity) {

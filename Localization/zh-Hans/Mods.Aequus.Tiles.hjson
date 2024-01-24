@@ -69,3 +69,13 @@ Trophies: {
 	SpaceSquidTrophy.DisplayName: 太空乌贼纪念章
 	SpaceSquidRelic.DisplayName: 太空乌贼纪念物
 }
+
+GoreNest: {
+	MapEntry: 血巢
+	ItemDisplayName: "{$GoreNest.MapEntry}"
+	ItemTooltip:
+		'''
+		用于升级邪恶武器, 激活恶魔围攻
+		视作恶魔/猩红祭坛
+		'''
+}
