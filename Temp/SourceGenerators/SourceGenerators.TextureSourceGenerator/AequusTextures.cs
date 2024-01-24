@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 291)</summary>
+/// <summary>(Total Textures: 293)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -301,6 +301,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> DashParticles = new("Aequus/Content/Graphics/Particles/DashParticles");
     /// <summary>Full Path: Content/Materials/CompressedTrash</summary>
     public static readonly RequestCache<Texture2D> CompressedTrash = new("Aequus/Content/Materials/CompressedTrash");
+    /// <summary>Full Path: Content/Music/PollutedOceanMusicBox</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanMusicBox = new("Aequus/Content/Music/PollutedOceanMusicBox");
+    /// <summary>Full Path: Content/Music/PollutedOceanMusicBoxItem</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanMusicBoxItem = new("Aequus/Content/Music/PollutedOceanMusicBoxItem");
     /// <summary>Full Path: Content/PermaPowerups/NetherStar/NetherStar</summary>
     public static readonly RequestCache<Texture2D> NetherStar = new("Aequus/Content/PermaPowerups/NetherStar/NetherStar");
     /// <summary>Full Path: Content/PermaPowerups/NetherStar/NetherStarBackground</summary>

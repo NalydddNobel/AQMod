@@ -1320,7 +1320,10 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 44)</summary>
+            <summary>(Total Sounds: 37)</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.PollutedOcean">
+            <summary>Full Path: Assets/Music/PollutedOcean</summary>
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishCharge">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -1430,32 +1433,8 @@
         <member name="F:Aequus.AequusSounds.OmniGemBreak">
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
-        <member name="F:Aequus.AequusSounds.BeginDemonSiege">
-            <summary>Full Path: Old/Assets/Sounds/GoreNest/BeginDemonSiege</summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.HighSteaks0">
-            <summary>Full Path: Old/Assets/Sounds/HighSteaks/HighSteaks0</summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.HighSteaks1">
-            <summary>Full Path: Old/Assets/Sounds/HighSteaks/HighSteaks1</summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.HighSteaksCriticalStrike">
-            <summary>Full Path: Old/Assets/Sounds/HighSteaks/HighSteaksCriticalStrike</summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.Meathook0">
-            <summary>Full Path: Old/Assets/Sounds/Meathook/Meathook0</summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.Meathook1">
-            <summary>Full Path: Old/Assets/Sounds/Meathook/Meathook1</summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.MeathookConnect">
-            <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookConnect</summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.MeathookPull">
-            <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookPull</summary>
-        </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 291)</summary>
+            <summary>(Total Textures: 293)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1898,6 +1877,12 @@
         <member name="F:Aequus.AequusTextures.CompressedTrash">
             <summary>Full Path: Content/Materials/CompressedTrash</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanMusicBox">
+            <summary>Full Path: Content/Music/PollutedOceanMusicBox</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanMusicBoxItem">
+            <summary>Full Path: Content/Music/PollutedOceanMusicBoxItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.NetherStar">
             <summary>Full Path: Content/PermaPowerups/NetherStar/NetherStar</summary>
         </member>
@@ -2329,27 +2314,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.CrusadersCrossbowProj">
             <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj</summary>
-        </member>
-        <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.NotStackableCritDamage">
-            <summary>
-            Default Value: 0.15
-            <para>This is only added on the first stack of the accessory.</para>
-            </summary>
-        </member>
-        <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.WantedCost">
-            <summary>
-            The cost for performing a critical strike.
-            </summary>
-        </member>
-        <member name="P:Aequus.Old.Content.Equipment.Accessories.SpiritKeg.SaivoryKnife.GhostLifespan">
-            <summary>
-            Default Value: 3600 (1 minute)
-            </summary>
-        </member>
-        <member name="T:Aequus.Old.Content.Events.DemonSiege.Tiles.GoreNestDummy">
-            <summary>
-            Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.
-            </summary>
         </member>
     </members>
 </doc>
