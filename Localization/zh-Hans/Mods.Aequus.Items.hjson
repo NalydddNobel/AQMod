@@ -88,32 +88,32 @@ WeightedHorseshoe: {
 }
 
 HighSteaks: {
-	// DisplayName: High Steaks
-	/* Tooltip:
+	DisplayName: 高级牛排
+	Tooltip:
 		'''
-		{0}% increased damage when performing a critical strike
+		造成暴击时增加{0}%伤害
 		{1}
-		''' */
-	// Downside: "{v}However, you pay {Price} upon crit"
+		'''
+	Downside: "{v}然而, 你在暴击时会支付{Price}"
 }
 
 KegOSpirits: {
-	// DisplayName: Keg O' Spirits
-	/* Tooltip:
+	DisplayName: 魂灵桶
+	Tooltip:
 		'''
 		{$SaivoryKnife.Tooltip}
 		{$SpiritBottle.Tooltip@1}
-		''' */
+		'''
 }
 
 SaivoryKnife: {
-	// DisplayName: Saivory Knife
-	// Tooltip: Increases the duration of your ghost minions by {0}
+	DisplayName: 美味象牙刀
+	Tooltip: 延长{0}幽魂仆从的存在时间
 }
 
 SpiritBottle: {
-	// DisplayName: Spirit Bottle
-	// Tooltip: Increases your maximum number of ghosts by {0}
+	DisplayName: 魂灵瓶
+	Tooltip: 增加{0}格最大幽魂仆从栏位
 }
 
 WarHorn: {
@@ -217,8 +217,8 @@ SkyHunterCrossbow: {
 }
 
 CrusadersCrossbow: {
-	DisplayName: Crusaders Crossbow
-	Tooltip: Shoots a bolt which can heal allies
+	DisplayName: 十字军弩
+	Tooltip: 发射可以治疗队友的箭矢
 }
 
 //# Weapons: Magic
@@ -261,16 +261,16 @@ DeathsEmbrace: {
 }
 
 SuspiciousLookingSteak: {
-	DisplayName: Suspicious Looking Steak
+	DisplayName: 可疑牛排
 	Tooltip: "'你是个可怕的人'"
 }
 
 PotionOfResurrection: {
-	DisplayName: Potion Of Resurrection
+	DisplayName: 复活药水
 	Tooltip:
 		'''
-		Teleports you to the location of your most recent death
-		'A drink favored by those who have experienced death recently'
+		将你传送至上次死亡时的位置
+		'最近经历过死亡的人喜欢的饮料'
 		'''
 }
 
