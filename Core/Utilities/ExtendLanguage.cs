@@ -217,6 +217,11 @@ public static class ExtendLanguage {
     }
 
     /// <summary>Converts ticks to seconds, up to 1 decimal place.</summary>
+    public static string Minutes(double value) {
+        return Decimals(value / 3600.0);
+    }
+
+    /// <summary>Converts ticks to seconds, up to 1 decimal place.</summary>
     public static string Seconds(double value) {
         return Decimals(value / 60.0);
     }

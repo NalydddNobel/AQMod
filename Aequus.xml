@@ -1258,6 +1258,23 @@
             <param name="npc"></param>
             <returns>Whether the enemy should be immune to this hit (true = Do not hit)</returns>
         </member>
+        <member name="M:Aequus.Core.Utilities.ProjectileHelper.TryFindProjectileIdentity(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Attempts to find a projectile index using the identity and owner provided. Returns true if the projectile output is not -1.
+            </summary>
+            <param name="owner"></param>
+            <param name="identity"></param>
+            <param name="projectile"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ProjectileHelper.FindProjectileIdentity(System.Int32,System.Int32)">
+            <summary>
+            Attempts to find a projectile index using the identity and owner provided. Returns -1 otherwise.
+            </summary>
+            <param name="owner"></param>
+            <param name="identity"></param>
+            <returns></returns>
+        </member>
         <member name="M:Aequus.Core.Utilities.TextBroadcast.NewText(System.String,Microsoft.Xna.Framework.Color,System.Object[])">
             <summary>
             Broadcasts a message. Only does something when <see cref="F:Terraria.Main.netMode"/> is not equal to <see cref="F:Terraria.ID.NetmodeID.MultiplayerClient"/>.
@@ -1427,7 +1444,7 @@
             <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookPull</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 258)</summary>
+            <summary>(Total Textures: 263)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2116,14 +2133,20 @@
         <member name="F:Aequus.AequusTextures.BreadOfCthulhuBanner">
             <summary>Full Path: Old/Content/Enemies/BreadOfCthulhuBanner</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CinderaBanner">
-            <summary>Full Path: Old/Content/Enemies/CinderaBanner</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.CoconutCrabBanner">
             <summary>Full Path: Old/Content/Enemies/CoconutCrabBanner</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabFishBanner">
             <summary>Full Path: Old/Content/Enemies/CrabFishBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CinderBat">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/CinderBat</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CinderBatBanner">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/CinderBatBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CinderBatBannerItem">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/CinderBatBannerItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HijivarchCrabBanner">
             <summary>Full Path: Old/Content/Enemies/HijivarchCrabBanner</summary>
@@ -2169,6 +2192,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.SpiritBottle">
             <summary>Full Path: Old/Content/Equipment/Accessories/SpiritKeg/SpiritBottle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WarHorn">
+            <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHorn</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WarHornCooldown">
+            <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHornCooldown</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WarHornEffect">
+            <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHornEffect</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Meathook">
             <summary>Full Path: Old/Content/Equipment/GrapplingHooks/EnemyGrappleHook/Meathook</summary>

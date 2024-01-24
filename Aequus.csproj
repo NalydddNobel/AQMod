@@ -49,24 +49,5 @@
 	<AdditionalFiles Remove="Old\**" Condition="'$(Configuration)' == 'Debug'" />
 	<Compile Remove="Old\**" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Old\Assets\Sounds\Meathook\meathook0.ogg" />
-    <None Remove="Old\Assets\Sounds\Meathook\meathook1.ogg" />
-    <None Remove="Old\Assets\Sounds\Meathook\meathookConnect.ogg" />
-    <None Remove="Old\Assets\Sounds\Meathook\meathookPull.ogg" />
-    <None Remove="Old\Content\Equipment\Accessories\SpiritKeg\KegOSpirits.png" />
-    <None Remove="Old\Content\Equipment\Accessories\SpiritKeg\SaivoryKnife.png" />
-    <None Remove="Old\Content\Equipment\Accessories\SpiritKeg\SpiritBottle.png" />
-    <None Remove="Old\Content\Equipment\GrapplingHooks\LeechHook.png" />
-    <None Remove="Old\Content\Equipment\GrapplingHooks\LeechHookProj.png" />
-    <None Remove="Old\Content\Equipment\GrapplingHooks\LeechHookProj_Chain.png" />
-    <None Remove="Old\Content\Equipment\GrapplingHooks\Meathook.png" />
-    <None Remove="Old\Content\Equipment\GrapplingHooks\MeathookProj.png" />
-    <None Remove="Old\Content\Equipment\GrapplingHooks\MeathookProj_Chain.png" />
-    <None Remove="Old\Content\Materials\BloodyTearstone.png" />
-    <None Remove="Old\Content\Potions\Foods\SusSteak\SuspiciousLookingSteak.png" />
-    <None Remove="Old\Content\Potions\Resurrection\PotionOfResurrection.png" />
-  </ItemGroup>
 	
 </Project>

@@ -31,3 +31,9 @@ BloodMimic: {
 	BannerName: 血红模仿者旗
 	Bestiary: 当可怕的红月照耀时, 被杀的宝箱劫掠者溃烂的尸体可能会试图与他们曾经想掠夺的宝箱合并, 腐蚀并突变内部的宝藏.
 }
+
+CinderBat: {
+	DisplayName: 幻形蝠
+	Bestiary: 蝙蝠般的小恶魔, 以其丑陋的面孔和更丑陋的态度而闻名. 绝对没有私人恩怨.
+	BannerName: 幻形蝠旗
+}

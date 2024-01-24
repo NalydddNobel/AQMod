@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 258)</summary>
+/// <summary>(Total Textures: 263)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -465,12 +465,16 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> BloodMimicGoreLid = new("Aequus/Old/Content/Enemies/BloodMoon/Gores/BloodMimicGoreLid");
     /// <summary>Full Path: Old/Content/Enemies/BreadOfCthulhuBanner</summary>
     public static readonly RequestCache<Texture2D> BreadOfCthulhuBanner = new("Aequus/Old/Content/Enemies/BreadOfCthulhuBanner");
-    /// <summary>Full Path: Old/Content/Enemies/CinderaBanner</summary>
-    public static readonly RequestCache<Texture2D> CinderaBanner = new("Aequus/Old/Content/Enemies/CinderaBanner");
     /// <summary>Full Path: Old/Content/Enemies/CoconutCrabBanner</summary>
     public static readonly RequestCache<Texture2D> CoconutCrabBanner = new("Aequus/Old/Content/Enemies/CoconutCrabBanner");
     /// <summary>Full Path: Old/Content/Enemies/CrabFishBanner</summary>
     public static readonly RequestCache<Texture2D> CrabFishBanner = new("Aequus/Old/Content/Enemies/CrabFishBanner");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/CinderBat</summary>
+    public static readonly RequestCache<Texture2D> CinderBat = new("Aequus/Old/Content/Enemies/DemonSiege/CinderBat/CinderBat");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/CinderBatBanner</summary>
+    public static readonly RequestCache<Texture2D> CinderBatBanner = new("Aequus/Old/Content/Enemies/DemonSiege/CinderBat/CinderBatBanner");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/CinderBatBannerItem</summary>
+    public static readonly RequestCache<Texture2D> CinderBatBannerItem = new("Aequus/Old/Content/Enemies/DemonSiege/CinderBat/CinderBatBannerItem");
     /// <summary>Full Path: Old/Content/Enemies/HijivarchCrabBanner</summary>
     public static readonly RequestCache<Texture2D> HijivarchCrabBanner = new("Aequus/Old/Content/Enemies/HijivarchCrabBanner");
     /// <summary>Full Path: Old/Content/Enemies/HyperStariteBanner</summary>
@@ -501,6 +505,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SaivoryKnife = new("Aequus/Old/Content/Equipment/Accessories/SpiritKeg/SaivoryKnife");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/SpiritKeg/SpiritBottle</summary>
     public static readonly RequestCache<Texture2D> SpiritBottle = new("Aequus/Old/Content/Equipment/Accessories/SpiritKeg/SpiritBottle");
+    /// <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHorn</summary>
+    public static readonly RequestCache<Texture2D> WarHorn = new("Aequus/Old/Content/Equipment/Accessories/WarHorn/WarHorn");
+    /// <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHornCooldown</summary>
+    public static readonly RequestCache<Texture2D> WarHornCooldown = new("Aequus/Old/Content/Equipment/Accessories/WarHorn/WarHornCooldown");
+    /// <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHornEffect</summary>
+    public static readonly RequestCache<Texture2D> WarHornEffect = new("Aequus/Old/Content/Equipment/Accessories/WarHorn/WarHornEffect");
     /// <summary>Full Path: Old/Content/Equipment/GrapplingHooks/EnemyGrappleHook/Meathook</summary>
     public static readonly RequestCache<Texture2D> Meathook = new("Aequus/Old/Content/Equipment/GrapplingHooks/EnemyGrappleHook/Meathook");
     /// <summary>Full Path: Old/Content/Equipment/GrapplingHooks/EnemyGrappleHook/MeathookProj</summary>

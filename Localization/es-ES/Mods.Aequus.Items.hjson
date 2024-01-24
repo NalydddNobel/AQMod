@@ -512,3 +512,9 @@ Toolbelt: {
 	// BackpackEnabled: Toolbelt Pack On
 	// BackpackDisabled: Toolbelt Pack Off
 }
+
+WarHorn: {
+	// BoostTooltip: Mods.Aequus.Items.WarHorn.BoostTooltip
+	// DisplayName: War Horn
+	// Tooltip: ""
+}

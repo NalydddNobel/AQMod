@@ -37,3 +37,8 @@ BaguetteBuff: {
 	DisplayName: "{$Items.Baguette.DisplayName}"
 	Description: Supreme improvements to all stats and greatly improved life regeneration
 }
+
+WarHornCooldown: {
+	DisplayName: War Horn (Cooldown)
+	Description: The War Horn is on cooldown!
+}

@@ -31,3 +31,9 @@ BloodMimic: {
 	// BannerName: Blood Mimic Banner
 	// Bestiary: When the gruesome red moon shines, the festering corpses of slain looters may merge with the chests they tried to claim, corrupting and mutating the treasure within.
 }
+
+CinderBat: {
+	// Bestiary: A lesser bat-like demon, known for its ugly face and uglier attitude. Definitely doesn't have a complex.
+	// DisplayName: Cinder Bat
+	// BannerName: Cinder Bat Banner
+}

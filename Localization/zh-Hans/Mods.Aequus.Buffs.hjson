@@ -37,3 +37,8 @@ BaguetteBuff: {
 	DisplayName: "{$Items.Baguette.DisplayName}"
 	Description: 各项属性和生命再生速度大幅度提升
 }
+
+WarHornCooldown: {
+	DisplayName: 战争号角冷却
+	// Description: Mods.Aequus.Buffs.WarHornCooldown.Description
+}

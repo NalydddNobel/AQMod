@@ -1,4 +1,5 @@
 ﻿using Aequus.Old.Content.Weapons.Ranged.Bows.CrusadersCrossbow;
+using Terraria.Localization;
 
 namespace Aequus.Old.Content.Equipment.Accessories.SpiritKeg;
 
@@ -8,6 +9,8 @@ public class SaivoryKnife : ModItem {
     /// Default Value: 3600 (1 minute)
     /// </summary>
     public static int GhostLifespan { get; set; } = 3600;
+
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Minutes(GhostLifespan));
 
     public override void SetStaticDefaults() {
         ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<CrusadersCrossbow>();

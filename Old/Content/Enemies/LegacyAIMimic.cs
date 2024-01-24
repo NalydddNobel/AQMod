@@ -1,9 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Aequus.Old.Content.Enemies;
+﻿namespace Aequus.Old.Content.Enemies;
 
 public abstract class LegacyAIMimic : ModNPC {
     protected virtual int JumpTimer => NPC.ai[1] == 0f ? 12 : 20;

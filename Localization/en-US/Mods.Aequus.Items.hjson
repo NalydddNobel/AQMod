@@ -116,6 +116,16 @@ SpiritBottle: {
 	Tooltip: Increases your maximum number of ghosts by {0}
 }
 
+WarHorn: {
+	DisplayName: War Horn
+	Tooltip:
+		'''
+		Minions enter a frenzy for {0} seconds after landing a hit
+		This effect has a {1} second cooldown
+		Frenzied minions gain increased attack and movement speed
+		'''
+}
+
 //# Equipment: Informational
 ShimmerMonocle: {
 	DisplayName: Shmonocle
