@@ -34,6 +34,48 @@ public static class ProjectileHelper {
         }
     }
 
+    /// <summary>
+    /// Attempts to find a projectile index using the identity and owner provided. Returns true if the projectile output is not -1.
+    /// </summary>
+    /// <param name="owner"></param>
+    /// <param name="identity"></param>
+    /// <param name="projectile"></param>
+    /// <returns></returns>
+    public static bool TryFindProjectileIdentity(int owner, int identity, out int projectile) {
+        projectile = FindProjectileIdentity(owner, identity);
+        return projectile != -1;
+    }
+
+    /// <summary>
+    /// Attempts to find a projectile index using the identity and owner provided. Returns -1 otherwise.
+    /// </summary>
+    /// <param name="owner"></param>
+    /// <param name="identity"></param>
+    /// <returns></returns>
+    public static int FindProjectileIdentity(int owner, int identity) {
+        for (int i = 0; i < 1000; i++) {
+            if (Main.projectile[i].owner == owner && Main.projectile[i].identity == identity && Main.projectile[i].active) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    public static int FindProjectileIdentityOtherwiseFindPotentialSlot(int owner, int identity) {
+        int projectile = FindProjectileIdentity(owner, identity);
+        if (projectile == -1) {
+            for (int i = 0; i < 1000; i++) {
+                if (!Main.projectile[i].active) {
+                    projectile = i;
+                    break;
+                }
+            }
+        }
+        if (projectile == 1000) {
+            projectile = Projectile.FindOldestProjectile();
+        }
+        return projectile;
+    }
+
     #region Drawing
     public static Rectangle Frame(this Projectile projectile) {
         return TextureAssets.Projectile[projectile.type].Value.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame);

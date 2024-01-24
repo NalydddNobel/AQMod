@@ -25,3 +25,104 @@ Chromite.Bestiary: These beetle-like bugs have deveolped an incredibly advanced 
 Crabson.DisplayName: Crabson
 OmegaStarite.DisplayName: Omega Starite
 DustDevil.DisplayName: Dust Devil
+
+BloodMimic: {
+	DisplayName: Blood Mimic
+	BannerName: Blood Mimic Banner
+	Bestiary: When the gruesome red moon shines, the festering corpses of slain looters may merge with the chests they tried to claim, corrupting and mutating the treasure within.
+}
+
+CinderBat: {
+	Bestiary: A lesser bat-like demon, known for its ugly face and uglier attitude. Definitely doesn't have a complex.
+	DisplayName: Cinder Bat
+	BannerName: Cinder Bat Banner
+}
+
+LeggedLava: {
+	DisplayName: Legged Lava
+	Bestiary: Lava slimes touched by the Gore Nest's fleshy 'blessing' will grow spider-like legs. They hop about freely and spew shadowy energies, but are thankfully too heavy to climb on walls.
+	BannerName: Legged Lava Banner
+}
+
+Occultist: {
+	DisplayName: Occultist
+	Bestiary: A ex-cultist that's decided to bat for the winning team. She claims to be reformed, but still attempts to cast curses and hexes whenever she thinks nobody's looking.
+
+	TownNPCMood: {
+		Content: This place is pleasant enough. Could use more suffering, but beggars can't be choosers, you know?
+		NoHome: Hmm. Hm hm hm. I haven't got a place to stay at the moment.
+		FarFromHome: Oh, you've caught me snooping about, it seems! I'll be home by nightfall, promise.
+		LoveSpace: Plenty of room to practice my spells here... hahaha...
+		DislikeCrowded: I can't swing a cat around here without accidentally cursing someone! Not that I mind that part, but, you know.
+		HateCrowded: There's too many people here! I can't sneak around when there's eyes around every corner!
+		LoveBiome: "{BiomeName} is one of my favorite places to practice rituals! You should join me in one someday."
+		LikeBiome: The temperatures are a bit more agreeable in the Desert, I think.
+		DislikeBiome: Mm, yes, the Hallow. One of my favorite places to dump my trash.
+		HateBiome: "[HateBiomeQuote]|{BiomeName}+"
+		HateBiome_Snow: I-it's too c-cold here... Can't c-cast spells because my f-fingers are numb....
+		HateBiome_Evils: As a certified Good Person, {BiomeName} is no place for me to be! Obviously!
+		LoveNPC: "{NPCName}... now there's someone who respects and fears a good curse. Oh, the fun I could have with him! Hahaha!"
+		LikeNPC: "[LikeNPCQuote]|{NPCName}+"
+		LikeNPC_Clothier: "{NPCName} has never flinched away from my spells even once. I like that kind of resilience."
+		LikeNPC_Demolitionist: "{NPCName} sows so much chaos with his crafts! If only I could get him to let me enchant his bombs..."
+		DislikeNPC: "{NPCName} is such a goody two-shoes! That kind of attitude really grates on me!"
+		HateNPC: "{NPCName} is already cursed and she doesn't even CARE! What am I supposed to do with that?!"
+		LikeNPC_Princess: "{NPCName} is so... gullible! She latches on to every word I say, I love it!"
+		Princess_LovesNPC: "{NPCName} has been casting nice healing spells on me!"
+	}
+
+	Dialogue: {
+		0: Fool! By talking to me, you've triggered a trap hex that will force you to obey my commands! Now, please buy something.
+		1: Ahahaha... HAHAHAHA- oh. Um. Hello, fellow do-gooder?
+		2: Want to know what I look like under this cloak? Hahaha, in your dreams! Actually, don't dream about that, because I've set up a scrying rune above your bed and I will know.
+		3: Your dimension is so cold, I've got to bundle up this tight just to bear it here.
+		4: I love pineapples! -- I also like, uh... scissors!
+		Rare: Memorialist? Don't be ridiculous, I'm not memorizing anything. I have my spellbooks for that.
+
+		Night: {
+			0: The darkness suffocating the land... this is what I live for. Yes, I know it happens every day here, let me have this.
+			1: Excuse me, could you hold this voidsent flame real quick? I'll be right back~!
+		}
+
+		BloodMoon: {
+			0: Quiet, please! I'm having an inner council meeting!
+			1: There's no escape. Even the most eldritch of beings suffer under the red moon's light.
+			2: I've been thinking up a new curse. Want to be my test subject? Come here...
+			3: Go away! I don't need you right now! I don't need anyone!
+		}
+
+		Princess: I would love nothing more than to topple a monarchy from within. Hypothetically speaking, of course.
+		Cultists: Have you seen the cultists skulking about at the dungeon? Looks like they're preparing a pretty big ritual! I can't wait to see what happens, hahaha!
+		EarlyHardmode: The light and dark dance together again... fun times are ahead, I think!
+		Waffles: Strange, I would've expected to have met Yin by now... We had this super cool plan to ki- I mean befriend the Princess!
+		WindyDay: The wind keeps blowing out my candles! I appreciate that it's your birthday or whatever, world, but I need to work!
+		Rain: I think I know a ritual that would dispel this rain. Or was it for turning it into chocolate milk?
+		Thunderstorm: I'll have to try and catch some of this lightning. Nature's wrath is a surprisingly versatile spellcasting component!
+		Party: They didn't want me to hex the cake to regenerate. I promise I hadn't mixed in anything else! This time!
+		Graveyard: Oh, hello, ghosties! You'll make excellent fuel for my rituals...
+		Glimmer: What? No! Where did my darkness go? Put it back!
+		Awaken: AAAAAGGH!!!!!!!!
+	}
+}
+
+OccultistHostile: {
+	Dialogue: {
+		0: Can you hear them too? They're calling to us...
+		1: I would give anything to please the dark overlords... my mind, my body... yours as well...
+		2: I've met many 'chosen ones' before... all of them fell sooner or later. You will be no different...
+		3: Choke out the light, and spread the darkness... Simply join us like they have and you will see the truth...
+		LightsBane: If you would dare brandish the Light's Bane here, be prepared to meet some of my friends...
+		BloodButcherer: If you would dare brandish the Blood Butcherer here, be prepared to meet some of my friends...
+		DemonBow: The dark projections of a Demon Bow... would make a perfect vessel for our shadows...
+		TendonBow: The succulent stringiness of a Tendon Bow... would make a wonderful feast for us...
+		Vilethorn: Vilethorns... endless pricking pain, drawing blood for sacrifice... wonderful...
+		CrimsonRod: The Crimson Rod, pouring endless torrents of blood from on high... what a beautiful sight...
+		CorruptPot: There are legends of a corrupt pot that infests anything growing inside with evil... if only I could have it...
+		Mindfungus: The mindfungus, infesting both body and soul... how useful that would be for us...
+		Corruption: The dark weapons forged from the Corruption... only they hold the evils we seek...
+		Crimson: The dark weapons forged from the Crimson... only they hold the evils we seek...
+		Bunny: Hold on, did you hear that? Is there a rabbit around here?
+	}
+
+	ListenButton: Listen
+}

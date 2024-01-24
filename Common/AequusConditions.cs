@@ -15,11 +15,11 @@ public class AequusConditions {
             actualFirstDay = lastDay;
             actualLastDay = firstDay;
         }
-        return NewCondition(Language.GetText("Mods.Aequus.Condition.BetweenDays").WithFormatArgs(TextHelper.DayOfWeek(firstDay), TextHelper.DayOfWeek(lastDay)), () => TimeTrackerSystem.DayOfTheWeek >= firstDay && TimeTrackerSystem.DayOfTheWeek <= lastDay);
+        return NewCondition(Language.GetText("Mods.Aequus.Condition.BetweenDays").WithFormatArgs(ExtendLanguage.DayOfWeek(firstDay), ExtendLanguage.DayOfWeek(lastDay)), () => TimeTrackerSystem.DayOfTheWeek >= firstDay && TimeTrackerSystem.DayOfTheWeek <= lastDay);
     }
 
     public static Condition DayOfTheWeek(DayOfWeek dayOfWeek) {
-        return NewCondition(Language.GetText("Mods.Aequus.Condition.DayOfTheWeek").WithFormatArgs(TextHelper.DayOfWeek(dayOfWeek)), () => TimeTrackerSystem.DayOfTheWeek == dayOfWeek);
+        return NewCondition(Language.GetText("Mods.Aequus.Condition.DayOfTheWeek").WithFormatArgs(ExtendLanguage.DayOfWeek(dayOfWeek)), () => TimeTrackerSystem.DayOfTheWeek == dayOfWeek);
     }
 
     private static Condition NewCondition(string name, Func<bool> predicate) {

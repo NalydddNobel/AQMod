@@ -858,11 +858,6 @@
             </list>
             </summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.StatSpeedBlacklist">
-            <summary>
-            NPCs in this set cannot get speed increases or decreases. This usually contains bosses, or other special NPCs like worm segments.
-            </summary>
-        </member>
         <member name="P:Aequus.Content.DataSets.NPCSets.FriendablePreHardmodeSlime">
             <summary>
             Used for Royal Gel's Crown of Blood combination.
@@ -891,6 +886,11 @@
         <member name="P:Aequus.Content.DataSets.ProjectileSets.DealsHeatDamage">
             <summary>
             Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.DataSets.TileSets.PreventsSlopesBelow">
+            <summary>
+            Prevents tiles below this tile from being sloped.
             </summary>
         </member>
         <member name="T:Aequus.Content.Dyes.ArmorShaderDataThirdColor">
@@ -1031,6 +1031,280 @@
             Only loads in singleplayer or on multiplayer clients.
             </summary>
         </member>
+        <member name="M:Aequus.Core.Utilities.ExtendColor.MaxRGBA(Microsoft.Xna.Framework.Color,System.Byte)">
+            <returns><paramref name="color"/>, with its R,G,B,A Maxed to the specified <paramref name="amt"/>.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendColor.MaxRGBA(Microsoft.Xna.Framework.Color,System.Byte,System.Byte)">
+            <returns><paramref name="color"/>, with R,G,B Maxed to the specified <paramref name="amt"/>, and <see cref="P:Microsoft.Xna.Framework.Color.A"/> maxed to <paramref name="a"/>.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendColor.MaxRGBA(Microsoft.Xna.Framework.Color,System.Byte,System.Byte,System.Byte,System.Byte)">
+            <returns><paramref name="color"/>, with R,G,B,A Maxed to <paramref name="r"/>,<paramref name="g"/>,<paramref name="b"/>,<paramref name="a"/> accordingly.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendGore.NewGore(Aequus.Core.Assets.RequestCache{Microsoft.Xna.Framework.Graphics.Texture2D},Terraria.DataStructures.IEntitySource,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single)">
+            <summary>Spawns gore using a Texture. Removes the need for using silent string literals for getting gores.</summary>
+            <param name="Texture">The Gore texture. (Must be located in a "Gore/" directory)</param>
+            <param name="Source">The Source of the gore.</param>
+            <param name="Position">The Position to spawn the gore.</param>
+            <param name="Velocity">The Velocity to spawn the gore.</param>
+            <param name="Scale">The Scale of the gore.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendGore.NewGore(Terraria.NPC,Aequus.Core.Assets.RequestCache{Microsoft.Xna.Framework.Graphics.Texture2D},Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Terraria.DataStructures.IEntitySource,System.Single)">
+            <summary><inheritdoc cref="M:Aequus.Core.Utilities.ExtendGore.NewGore(Aequus.Core.Assets.RequestCache{Microsoft.Xna.Framework.Graphics.Texture2D},Terraria.DataStructures.IEntitySource,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single)"/></summary>
+            <param name="npc"></param>
+            <param name="Texture">The Gore texture. (Must be located in a "Gore/" directory)</param>
+            <param name="Position">The Position to spawn the gore.</param>
+            <param name="Velocity">The Velocity to spawn the gore.</param>
+            <param name="Source">The Source of the gore, if null, defaults to <see cref="M:Terraria.Entity.GetSource_FromThis(System.String)"/>.</param>
+            <param name="Scale">The Scale of the gore.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendItem.Transform(Terraria.Item,System.Int32)">
+            <summary>Attempts to transform an item into a different item id, while preserving its posiiton, prefix, and stack</summary>
+            <param name="item"></param>
+            <param name="newType"></param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendItem.WorldDrawPos(Terraria.Item,Microsoft.Xna.Framework.Rectangle)">
+            <param name="item"></param>
+            <param name="frame"></param>
+            <returns>Vanilla-based method for calculating the draw position for an item in the world.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendItem.StaticDefaultsToPotion(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])">
+            <summary>Registers this item as a drink (Potion).</summary>
+            <param name="modItem"></param>
+            <param name="colors">Particle colors for when this potion is consumed.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendItem.StaticDefaultsToFoodDrink(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])">
+            <summary>Registers this item as a drink. The difference between this and <see cref="M:Aequus.Core.Utilities.ExtendItem.StaticDefaultsToPotion(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])"/> is that drinks have held sprites.</summary>
+            <param name="modItem"></param>
+            <param name="colors">Particle colors for when this drink is consumed.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendItem.StaticDefaultsToFood(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])">
+            <summary>Registers this item as a food.</summary>
+            <param name="modItem"></param>
+            <param name="colors">Particle colors for when this food is eaten.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetDisplayName(Terraria.ModLoader.ILocalizedModType)">
+            <summary>Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetDisplayName``1">
+            <summary><inheritdoc cref="M:Aequus.Core.Utilities.ExtendLanguage.GetDisplayName(Terraria.ModLoader.ILocalizedModType)"/></summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLanguage.ContainsKey(System.String)">
+            <returns>Whether this key has a value. (<see cref="M:Terraria.Localization.Language.GetTextValue(System.String)"/> doesnt return the key.)</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLanguage.TryGet(System.String,Terraria.Localization.LocalizedText@)">
+            <returns>Whether the text exists. (<see cref="M:Terraria.Localization.Language.GetTextValue(System.String)"/> doesnt return the key.)</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLanguage.TryGetValue(System.String,System.String@)">
+            <returns><inheritdoc cref="M:Aequus.Core.Utilities.ExtendLanguage.TryGet(System.String,Terraria.Localization.LocalizedText@)"/></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetCategoryKey(Terraria.ModLoader.ILocalizedModType,System.String,System.Func{System.String})">
+            <returns>The Category Key. (Mods.ModName.Category.Suffix)</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetCategoryText(Terraria.ModLoader.ILocalizedModType,System.String,System.Func{System.String})">
+            <returns>A localized text using a category key. (Mods.ModName.Category.Suffix)</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetCategoryTextValue(Terraria.ModLoader.ILocalizedModType,System.String)">
+            <returns>A text value using a category key. (Mods.ModName.Category.Suffix)</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLanguage.DayOfWeek(System.DayOfWeek)">
+            <returns>Localized name of a <see cref="T:System.DayOfWeek"/> value.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLanguage.PriceText(System.Int64,System.String)">
+            <returns>Price Text for the specified value, or <paramref name="NoValueText"/> if value is less than or equal to 0.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLanguage.PriceTextColored(System.Int64,System.String,System.Boolean)">
+            <returns><inheritdoc cref="M:Aequus.Core.Utilities.ExtendLanguage.PriceText(System.Int64,System.String)"/> Colored using chat commands.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetUseAnimationText(System.Single)">
+            <param name="useAnimation">Item use animation.</param>
+            <returns>Localized use animation (speed) text based off vanilla thresholds.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetKnockbackText(System.Single)">
+            <param name="knockback">Weapon Knockback.</param>
+            <returns>Localized knockback text based off vanilla thresholds.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetKeybindKeys(Terraria.ModLoader.ModKeybind)">
+            <param name="keybind"></param>
+            <returns>An enumerable of each key for this keybind. Returns "Unbound Key" if no keys are assigned.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLanguage.WatchTime(System.Double,System.Boolean)">
+            <summary>Copied from example mod and doesnt put any effort to localize. Uses Terraria day/night cycle styled time data.</summary>
+            <param name="time">The Day/Night cycle time.</param>
+            <param name="dayTime">Whether it's day or night.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLanguage.Minutes(System.Double)">
+            <summary>Converts ticks to seconds, up to 1 decimal place.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLanguage.Seconds(System.Double)">
+            <summary>Converts ticks to seconds, up to 1 decimal place.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLanguage.Percent(System.Double)">
+            <summary>Converts value into percentage text, up to 1 decimal place.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLanguage.Decimals(System.Double)">
+            <summary>Converts value into decimal text, up to 1 decimal place.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLanguage.RegisterKey(System.String)">
+            <summary>Registers a localization key if it doesn't exist. Only ran if compiled with a DEBUG symbol.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLight.GetLightBrightness(Microsoft.Xna.Framework.Vector3)">
+            <param name="rgb">The RGB.</param>
+            <returns>Gets the Brightness of a Light Vector. (The largest X,Y,Z value.)</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLight.ApplyLightBrightness(Microsoft.Xna.Framework.Vector3,System.Single)">
+            <param name="rgb">The RGB.</param>
+            <param name="lightPower">The Light Magnitude</param>
+            <returns>Gets a Light Vector with a specified Light Magnitude. (Light Power)</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLight.GetBrightestLight(Microsoft.Xna.Framework.Point,System.Int32)">
+            <param name="tilePosition">The Center tile coordinates.</param>
+            <param name="tilesSize">The size, in tiles, this is divided by 2 for some dumb reason.</param>
+            <returns>The brightest light found within the specified area.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLight.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>Gets the mean of light surrounding a point.</summary>
+            <param name="x">The top left tile X</param>
+            <param name="y">The top left tile Y</param>
+            <param name="width">The width in tiles</param>
+            <param name="height">The width in tiles</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLight.GetLightingSection(Microsoft.Xna.Framework.Point,System.Int32)">
+            <summary><inheritdoc cref="M:Aequus.Core.Utilities.ExtendLight.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)"/></summary>
+            <param name="tilePosition">The tile top left position.</param>
+            <param name="tilesSize">The size in tile coordinates</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLight.GetLightingSection(System.Int32,System.Int32,System.Int32)">
+            <summary><inheritdoc cref="M:Aequus.Core.Utilities.ExtendLight.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)"/></summary>
+            <param name="x">The top left tile X</param>
+            <param name="y">The top left tile Y</param>
+            <param name="tilesSize">The size in tile coordinates</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLight.Get(Microsoft.Xna.Framework.Vector2)">
+            <param name="worldCoordinates">The World coordinates.</param>
+            <returns>The Light Color at a specified world coordinate.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLoot.InheritDropRules(System.Int32,System.Int32,Terraria.GameContent.ItemDropRules.ItemDropDatabase)">
+            <summary>Inherits all of the Drop Rules from a specified NPC Id. (<paramref name="parentNPCId"/>)</summary>
+            <param name="parentNPCId">The NPC Id to take the Drop Rules from.</param>
+            <param name="childNPCId">The NPC Id to give the Drop Rules to.</param>
+            <param name="database">Database instance. Set to null to use <see cref="F:Terraria.Main.ItemDropsDB"/>.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLoot.GetNPCLoot(System.Int32,Terraria.GameContent.ItemDropRules.ItemDropDatabase)">
+            <summary>Gets an <see cref="T:Terraria.ModLoader.NPCLoot"/> from an NPC Id.</summary>
+            <param name="npcId">The NPC Id.</param>
+            <param name="database">Database instance. Set to null to use <see cref="F:Terraria.Main.ItemDropsDB"/>.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLoot.GetDropRules(System.Int32,Terraria.GameContent.ItemDropRules.ItemDropDatabase)">
+            <summary>Gets Drop Rules registered to the specified NPC Id.</summary>
+            <param name="npcId">The NPC Id.</param>
+            <param name="database">Database instance. Set to null to use <see cref="F:Terraria.Main.ItemDropsDB"/>.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendNPC.SyncNPC(Terraria.NPC)">
+            <summary>Manually sends a <see cref="F:Terraria.ID.MessageID.SyncNPC"/> packet to sync this NPC.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendNPC.TryRetargeting(Terraria.NPC,System.Boolean)">
+            <summary>Runs <see cref="M:Terraria.NPC.TargetClosest(System.Boolean)"/>, and returns <see cref="P:Terraria.NPC.HasValidTarget"/>.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendNPC.IsProbablyACritter(Terraria.NPC)">
+            <returns>Whether or not this is most likely a critter, dependant on multiple checks of their stats and values in data sets.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendNPC.DrawNPCStatusEffects(Microsoft.Xna.Framework.Graphics.SpriteBatch,Terraria.NPC,Microsoft.Xna.Framework.Vector2)">
+            <summary>Replicates the drawing of misc vanilla status effects. This is used to support these effects on NPCs with custom rendering.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendNPC.ClearBuff(Terraria.NPC,System.Int32)">
+            <summary>Clears a buff of the specified ID from this NPC.</summary>
+            <param name="npc"></param>
+            <param name="buffId">The Buff Id to clear from this NPC.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendRecipe.NotDisabledAndConditionsMet(Terraria.Recipe)">
+            <returns><see langword="true"/>, if the recipe is not disabled, and conditions have been met. Otherwise <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendRecipe.FindIngredient(Terraria.Recipe,System.Int32)">
+            <summary>Finds an ingredient of a specified type in the recipe.</summary>
+            <param name="recipe"></param>
+            <param name="itemID">The Item Id to search for.</param>
+            <returns>An Item instance if it was found in the recipe. Otherwise <see langword="null"/>.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendRecipe.TryFindIngredient(Terraria.Recipe,System.Int32,Terraria.Item@)">
+            <summary><inheritdoc cref="M:Aequus.Core.Utilities.ExtendRecipe.FindIngredient(Terraria.Recipe,System.Int32)"/></summary>
+            <param name="recipe"></param>
+            <param name="itemID">The Item Id to search for.</param>
+            <param name="result">The Item instance.</param>
+            <returns><see langword="true"/>, if the Item was found in the recipe. Otherwise <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendRecipe.ReplaceItem(Terraria.Recipe,System.Int32,System.Int32,System.Int32)">
+            <summary>Replaces an item of a specified id with another item of a specified id.</summary>
+            <param name="recipe"></param>
+            <param name="oldItem">The Item Id to be replaced by <paramref name="newItem"/>.</param>
+            <param name="newItem">The Item Id to replace <paramref name="oldItem"/> with.</param>
+            <param name="newItemStack">Stack override for <paramref name="newItem"/>. A value of -1 will keep the stack of <paramref name="oldItem"/></param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendShop.FindNextIndex(Terraria.Item[])">
+            <summary>Finds the next null index in an item array. Items which are "Air" are empty slots which were added to not contain any items inside them.</summary>
+            <param name="itemList">The shop's item list.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Int32,Terraria.Condition[])">
+            <summary>Adds an item with a custom value. (<paramref name="customValue"/>)</summary>
+            <param name="shop"></param>
+            <param name="itemType">The Item Id to add.</param>
+            <param name="customValue">The custom value to assign.</param>
+            <param name="conditions">Conditions for this item.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendShop.AddCustomValue``1(Terraria.ModLoader.NPCShop,System.Int32,Terraria.Condition[])">
+            <summary><inheritdoc cref="M:Aequus.Core.Utilities.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Int32,Terraria.Condition[])"/></summary>
+            <typeparam name="T"></typeparam>
+            <param name="shop"></param>
+            <param name="customValue">The custom value to assign.</param>
+            <param name="conditions">Conditions for this item.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Double,Terraria.Condition[])">
+            <summary><inheritdoc cref="M:Aequus.Core.Utilities.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Int32,Terraria.Condition[])"/></summary>
+            <param name="itemType">The Item Id to add.</param>
+            <param name="shop"></param>
+            <param name="customValue">The custom value to assign.</param>
+            <param name="conditions">Conditions for this item.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendShop.AddCustomValue``1(Terraria.ModLoader.NPCShop,System.Double,Terraria.Condition[])">
+            <summary><inheritdoc cref="M:Aequus.Core.Utilities.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Int32,Terraria.Condition[])"/></summary>
+            <typeparam name="T"></typeparam>
+            <param name="shop"></param>
+            <param name="customValue">The custom value to assign.</param>
+            <param name="conditions">Conditions for this item.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendShop.AddCrossMod``1(Terraria.ModLoader.NPCShop,System.String,Terraria.Condition[])">
+            <summary>Attempts to add an item from another mod, if it exists and that mod is loaded.</summary>
+            <typeparam name="T">The Mod.</typeparam>
+            <param name="shop"></param>
+            <param name="itemName">The internal name of the item.</param>
+            <param name="conditions">Conditions for this item.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendTooltips.AddTooltip(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine},Terraria.ModLoader.TooltipLine)">
+            <summary>Inserts a new tooltip line to the end of the item's tooltip.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendTooltips.GetIndex(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine},System.String,System.Int32)">
+            <summary>
+            Attempts to find a suitable index to insert a tooltip using a pre-baked list of tooltip line names.
+            </summary>
+            <param name="tooltips"></param>
+            <param name="lineName">The line's name, make sure this matches one of the entries in <see cref="F:Aequus.Core.Utilities.ExtendTooltips.VanillaTooltipNames"/></param>
+            <param name="resultOffset">A flat offset to the line result.</param>
+            <returns>The best index to insert a new line into.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendTooltips.Find(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine},System.String)">
+            <returns>The <see cref="T:Terraria.ModLoader.TooltipLine"/> with a specified name. (And is marked as "Terraria")</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendTooltips.ItemName(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})">
+            <returns>The <see cref="T:Terraria.ModLoader.TooltipLine"/> for an Item's name.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendTooltips.RemoveKnockback(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})">
+            <summary>Removes the "Knockback" tooltip line, if it exists.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendTooltips.RemoveCritChance(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})">
+            <summary>Removes the "CritChance" tooltip line, if it exists.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendTooltips.RemoveCritChanceModifier(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})">
+            <summary>Removes the "PrefixCritChance" tooltip line, if it exists.</summary>
+        </member>
         <member name="M:Aequus.Core.Utilities.Helper.RandomTileCoordinates(System.Int32,System.Int32)">
             <summary>
             Gets a consistent <see cref="T:Terraria.Utilities.FastRandom"/> for these tile coordinates.
@@ -1039,48 +1313,14 @@
             <param name="j"></param>
             <returns></returns>
         </member>
-        <member name="M:Aequus.Core.Utilities.LightHelper.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Gets the mean of light surrounding a point
-            </summary>
-            <param name="x">The tile's X coordinate</param>
-            <param name="y">The tile's Y coordinate</param>
-            <param name="width">The width in tiles</param>
-            <param name="height">The width in tiles</param>
-            <returns></returns>
+        <member name="M:Aequus.Core.Utilities.HookManager.ApplyAndCacheHook(System.Type,System.Type,System.String,System.Reflection.BindingFlags,System.Reflection.BindingFlags)">
+            <summary><inheritdoc cref="M:Aequus.Core.Utilities.HookManager.ApplyAndCacheHook(System.Reflection.MethodInfo,System.Reflection.MethodInfo)"/></summary>
+            <exception cref="T:System.MissingMethodException"></exception>
         </member>
-        <member name="M:Aequus.Core.Utilities.LightHelper.GetLightingSection(Microsoft.Xna.Framework.Point,System.Int32,System.Int32)">
-            <summary>
-            Gets the mean of light surrounding a point
-            </summary>
-            <param name="tilePosition">The tile center</param>
-            <param name="width">The width in tiles</param>
-            <param name="height">The width in tiles</param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.LightHelper.GetLightingSection(Microsoft.Xna.Framework.Point,System.Int32)">
-            <summary>
-            Gets the mean of light surrounding a point
-            </summary>
-            <param name="tilePosition">The tile center</param>
-            <param name="tilesSize">The size in tile coordinates</param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.LightHelper.GetLightingSection(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Gets the mean of light surrounding a point
-            </summary>
-            <param name="x">The center tile X</param>
-            <param name="y">The center tile Y</param>
-            <param name="tilesSize">The size in tile coordinates</param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.LightHelper.GetLightingSection(Microsoft.Xna.Framework.Vector2,System.Int32)">
-            <summary>
-            Gets the mean of light surrounding a point
-            </summary>
-            <param name="worldPosition">The center</param>
-            <param name="tilesSize">The size in tile coordinates</param>
+        <member name="M:Aequus.Core.Utilities.HookManager.ApplyAndCacheHook(System.Reflection.MethodInfo,System.Reflection.MethodInfo)">
+            <summary>Applies a hook to a method, and caches it to prevent it from unloading.</summary>
+            <param name="source"></param>
+            <param name="target"></param>
             <returns></returns>
         </member>
         <member name="M:Aequus.Core.Utilities.PlayerHelper.CheckPickPower(Terraria.Player,Terraria.Item,System.Int32,System.Int32)">
@@ -1143,35 +1383,24 @@
             <param name="npc"></param>
             <returns>Whether the enemy should be immune to this hit (true = Do not hit)</returns>
         </member>
-        <member name="M:Aequus.Core.Utilities.TextHelper.GetDisplayName(Terraria.ModLoader.ILocalizedModType)">
+        <member name="M:Aequus.Core.Utilities.ProjectileHelper.TryFindProjectileIdentity(System.Int32,System.Int32,System.Int32@)">
             <summary>
-            Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.
+            Attempts to find a projectile index using the identity and owner provided. Returns true if the projectile output is not -1.
             </summary>
-            <typeparam name="T"></typeparam>
+            <param name="owner"></param>
+            <param name="identity"></param>
+            <param name="projectile"></param>
             <returns></returns>
         </member>
-        <member name="M:Aequus.Core.Utilities.TextHelper.GetDisplayName``1">
+        <member name="M:Aequus.Core.Utilities.ProjectileHelper.FindProjectileIdentity(System.Int32,System.Int32)">
             <summary>
-            Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.
+            Attempts to find a projectile index using the identity and owner provided. Returns -1 otherwise.
             </summary>
-            <typeparam name="T"></typeparam>
+            <param name="owner"></param>
+            <param name="identity"></param>
             <returns></returns>
         </member>
-        <member name="M:Aequus.Core.Utilities.TextHelper.Minutes(System.Double)">
-            <summary>
-            Converts ticks to seconds, up to 1 decimal place.
-            </summary>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.TextHelper.Seconds(System.Double)">
-            <summary>
-            Converts ticks to seconds, up to 1 decimal place.
-            </summary>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.TextHelper.Broadcast(System.String,Microsoft.Xna.Framework.Color,System.Object[])">
+        <member name="M:Aequus.Core.Utilities.TextBroadcast.NewText(System.String,Microsoft.Xna.Framework.Color,System.Object[])">
             <summary>
             Broadcasts a message. Only does something when <see cref="F:Terraria.Main.netMode"/> is not equal to <see cref="F:Terraria.ID.NetmodeID.MultiplayerClient"/>.
             </summary>
@@ -1179,22 +1408,19 @@
             <param name="color"></param>
             <param name="args"></param>
         </member>
-        <member name="M:Aequus.Core.Utilities.TextHelper.Broadcast(System.String,Microsoft.Xna.Framework.Color)">
+        <member name="M:Aequus.Core.Utilities.TextBroadcast.NewText(System.String,Microsoft.Xna.Framework.Color)">
             <summary>
             Broadcasts a language key.
             </summary>
             <param name="text"></param>
             <param name="color"></param>
         </member>
-        <member name="M:Aequus.Core.Utilities.TextHelper.BroadcastLiteral(System.String,Microsoft.Xna.Framework.Color)">
+        <member name="M:Aequus.Core.Utilities.TextBroadcast.NewTextLiteral(System.String,Microsoft.Xna.Framework.Color)">
             <summary>
             Broadcasts a literal key.
             </summary>
             <param name="text"></param>
             <param name="color"></param>
-        </member>
-        <member name="M:Aequus.Core.Utilities.TextHelper.RegisterKey(System.String)">
-            <summary>Registers a localization key if it doesn't exist. Only ran if compiled with a DEBUG symbol.</summary>
         </member>
         <member name="M:Aequus.Core.Utilities.TileHelper.KillLiquid(System.Int32,System.Int32,System.Boolean)">
             <summary>
@@ -1337,7 +1563,7 @@
             <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 282)</summary>
+            <summary>(Total Textures: 350)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2184,6 +2410,210 @@
         </member>
         <member name="F:Aequus.AequusTextures.icon_workshop">
             <summary>Full Path: icon_workshop</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BloodMimic">
+            <summary>Full Path: Old/Content/Enemies/BloodMoon/BloodMimic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BloodMimicBanner">
+            <summary>Full Path: Old/Content/Enemies/BloodMoon/BloodMimicBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BloodMimicBannerItem">
+            <summary>Full Path: Old/Content/Enemies/BloodMoon/BloodMimicBannerItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BloodMimicGoreEyeball">
+            <summary>Full Path: Old/Content/Enemies/BloodMoon/Gores/BloodMimicGoreEyeball</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BloodMimicGoreLid">
+            <summary>Full Path: Old/Content/Enemies/BloodMoon/Gores/BloodMimicGoreLid</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BreadOfCthulhuBanner">
+            <summary>Full Path: Old/Content/Enemies/BreadOfCthulhuBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CoconutCrabBanner">
+            <summary>Full Path: Old/Content/Enemies/CoconutCrabBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabFishBanner">
+            <summary>Full Path: Old/Content/Enemies/CrabFishBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CinderBat">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/CinderBat</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CinderBatBanner">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/CinderBatBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CinderBatBannerItem">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/CinderBatBannerItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LeggedLavaGoreFoot">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/Gores/LeggedLavaGoreFoot</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LeggedLavaGoreMuscle">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/Gores/LeggedLavaGoreMuscle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LeggedLava">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLava</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LeggedLavaBanner">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLavaBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LeggedLavaBannerItem">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLavaBannerItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LeggedLavaLegs">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLavaLegs</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LeggedLavaProj">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/LeggedLavaProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HijivarchCrabBanner">
+            <summary>Full Path: Old/Content/Enemies/HijivarchCrabBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HyperStariteBanner">
+            <summary>Full Path: Old/Content/Enemies/HyperStariteBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SoldierCrabBanner">
+            <summary>Full Path: Old/Content/Enemies/SoldierCrabBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StariteBanner">
+            <summary>Full Path: Old/Content/Enemies/StariteBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SuperStariteBanner">
+            <summary>Full Path: Old/Content/Enemies/SuperStariteBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrapperImpBanner">
+            <summary>Full Path: Old/Content/Enemies/TrapperImpBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrapSkeletonBanner">
+            <summary>Full Path: Old/Content/Enemies/TrapSkeletonBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.VraineBanner">
+            <summary>Full Path: Old/Content/Enemies/VraineBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WhiteSlimeBanner">
+            <summary>Full Path: Old/Content/Enemies/WhiteSlimeBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HighSteaks">
+            <summary>Full Path: Old/Content/Equipment/Accessories/HighSteaks/HighSteaks</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HighSteaks_Waist">
+            <summary>Full Path: Old/Content/Equipment/Accessories/HighSteaks/HighSteaks_Waist</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.KegOSpirits">
+            <summary>Full Path: Old/Content/Equipment/Accessories/SpiritKeg/KegOSpirits</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SaivoryKnife">
+            <summary>Full Path: Old/Content/Equipment/Accessories/SpiritKeg/SaivoryKnife</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpiritBottle">
+            <summary>Full Path: Old/Content/Equipment/Accessories/SpiritKeg/SpiritBottle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WarHorn">
+            <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHorn</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WarHornCooldown">
+            <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHornCooldown</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WarHornEffect">
+            <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHornEffect</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Meathook">
+            <summary>Full Path: Old/Content/Equipment/GrapplingHooks/EnemyGrappleHook/Meathook</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeathookProj">
+            <summary>Full Path: Old/Content/Equipment/GrapplingHooks/EnemyGrappleHook/MeathookProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeathookProj_Chain">
+            <summary>Full Path: Old/Content/Equipment/GrapplingHooks/EnemyGrappleHook/MeathookProj_Chain</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LeechHook">
+            <summary>Full Path: Old/Content/Equipment/GrapplingHooks/HealingGrappleHook/LeechHook</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LeechHookProj">
+            <summary>Full Path: Old/Content/Equipment/GrapplingHooks/HealingGrappleHook/LeechHookProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LeechHookProj_Chain">
+            <summary>Full Path: Old/Content/Equipment/GrapplingHooks/HealingGrappleHook/LeechHookProj_Chain</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UnholyCore">
+            <summary>Full Path: Old/Content/Events/DemonSiege/Spawners/UnholyCore</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UnholyCoreSmall">
+            <summary>Full Path: Old/Content/Events/DemonSiege/Spawners/UnholyCoreSmall</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonSiegeBestiaryIcon">
+            <summary>Full Path: Old/Content/Events/DemonSiege/Textures/DemonSiegeBestiaryIcon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonSiegeEventIcon">
+            <summary>Full Path: Old/Content/Events/DemonSiege/Textures/DemonSiegeEventIcon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoreNestAura">
+            <summary>Full Path: Old/Content/Events/DemonSiege/Textures/GoreNestAura</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoreNest">
+            <summary>Full Path: Old/Content/Events/DemonSiege/Tiles/GoreNest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoreNestItem">
+            <summary>Full Path: Old/Content/Events/DemonSiege/Tiles/GoreNestItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoreNest_Highlight">
+            <summary>Full Path: Old/Content/Events/DemonSiege/Tiles/GoreNest_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BloodyTearstone">
+            <summary>Full Path: Old/Content/Materials/BloodyTearstone</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SuspiciousLookingSteak">
+            <summary>Full Path: Old/Content/Potions/Foods/SusSteak/SuspiciousLookingSteak</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PotionOfResurrection">
+            <summary>Full Path: Old/Content/Potions/Resurrection/PotionOfResurrection</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistGoreBook">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreBook</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistGoreHead">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreHead</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistGoreWing">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreWing</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Old_Content_TownNPCs_OccultistNPC_Occultist">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Occultist</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistHostile">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/OccultistHostile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistHostile_Head">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/OccultistHostile_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistHostile_Sit">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/OccultistHostile_Sit</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistHostile_Sit_Glow">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/OccultistHostile_Sit_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistRune">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/OccultistRune</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistSleep">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/OccultistSleep</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistSleep_Glow">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/OccultistSleep_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Occultist_Glow">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Occultist_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Occultist_Head">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Occultist_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Old_Content_TownNPCs_OccultistNPC_Shimmer_Occultist">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Shimmer/Occultist</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrusadersCrossbow">
+            <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrusadersCrossbowProj">
+            <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj</summary>
         </member>
     </members>
 </doc>

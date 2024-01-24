@@ -9,7 +9,7 @@ public class FishingPoleGlobalProjectile : GlobalProjectile {
 
     public override void Load() {
         try {
-            DetourHelper.AddHook(typeof(ProjectileLoader), typeof(FishingPoleGlobalProjectile), nameof(ProjectileLoader.ModifyFishingLine));
+            HookManager.ApplyAndCacheHook(typeof(ProjectileLoader), typeof(FishingPoleGlobalProjectile), nameof(ProjectileLoader.ModifyFishingLine));
         }
         catch (Exception ex) {
             // Unimportant if this hook fails loading.

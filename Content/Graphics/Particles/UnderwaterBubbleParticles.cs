@@ -75,7 +75,7 @@ public class UnderwaterBubbleParticles : ParallelParticleArray<UnderwaterBubbleP
                 float scale = Helper.Oscillate(Main.GameUpdateCount / 60f + k, 0.9f, 1.1f);
                 Vector2 drawLocation = bubble.Location - Main.screenPosition;
                 Vector2 velocity = bubble.Velocity;
-                Color color = LightHelper.GetLightColor(bubble.Location) * Math.Max(minOpacity, bubble.Opacity);
+                Color color = ExtendLight.Get(bubble.Location) * Math.Max(minOpacity, bubble.Opacity);
 
                 spriteBatch.Draw(texture, drawLocation, frame, color, rotation, origin, scale, SpriteEffects.None, 0f);
             }

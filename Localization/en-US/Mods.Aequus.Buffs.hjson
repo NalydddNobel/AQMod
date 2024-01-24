@@ -38,6 +38,11 @@ BaguetteBuff: {
 	Description: Supreme improvements to all stats and greatly improved life regeneration
 }
 
+WarHornCooldown: {
+	DisplayName: War Horn (Cooldown)
+	Description: The War Horn is on cooldown!
+}
+
 FoodPoisoningDebuff: {
 	DisplayName: Food Poisoning
 	Description: No improvements to stats, and you can no longer eat food!

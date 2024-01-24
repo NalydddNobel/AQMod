@@ -3,6 +3,7 @@ using Aequus.Core.DataSets;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Terraria.ID;
 
 namespace Aequus.Content.DataSets;
 
@@ -66,17 +67,6 @@ public class BuffSets : DataSet {
             }
             if (BuffID.Sets.IsFedState[i] || BuffID.Sets.IsWellFed[i]) {
                 PotionPrefixBlacklist.Add((BuffEntry)i);
-            }
-        }
-    }
-
-    public override void AddRecipes() {
-        foreach (var buff in ModifiesMoveSpeed) {
-            foreach (var npcId in NPCSets.StatSpeedBlacklist) {
-                if (npcId <= 0) {
-                    continue;
-                }
-                NPCHelper.SetImmune(npcId, buff);
             }
         }
     }

@@ -279,7 +279,7 @@ public class EquipBoostDatabase : ModSystem {
             }
 
             string itemName = ItemID.Search.GetName(i);
-            if (TextHelper.TryGet("Mods.Aequus.Items.BoostTooltips." + itemName, out var localizedText)) {
+            if (ExtendLanguage.TryGet("Mods.Aequus.Items.BoostTooltips." + itemName, out var localizedText)) {
                 _entries[i] = new(localizedText);
             }
         }
@@ -291,7 +291,7 @@ public class EquipBoostDatabase : ModSystem {
             }
 
             string itemName = item.Name;
-            if (TextHelper.TryGet(ModItemKey(item), out var localizedText)) {
+            if (ExtendLanguage.TryGet(ModItemKey(item), out var localizedText)) {
                 SetEntry(item.Type, new(localizedText));
             }
         }

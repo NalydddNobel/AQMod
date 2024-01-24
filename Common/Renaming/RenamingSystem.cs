@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 using Terraria.DataStructures;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
@@ -52,7 +51,7 @@ public sealed class RenamingSystem : ModSystem {
 
         string result = "";
         foreach (var i in _decodedTextList) {
-            result += i.Type != DecodeType.None ? TextHelper.ColorCommand(i.Output, DecodeColors[i.Type], pulse) : i.Output;
+            result += i.Type != DecodeType.None ? ChatCommandInserts.ColorCommand(i.Output, DecodeColors[i.Type], pulse) : i.Output;
         }
 
         return result;

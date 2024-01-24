@@ -5,7 +5,7 @@ using Terraria.ObjectData;
 
 namespace Aequus.Common.Music;
 
-internal class InstancedMusicBox : InstancedTile {
+internal class InstancedMusicBox : InstancedModTile {
     protected ModItem MusicBoxItem { get; private set; }
 
     internal string _musicPath;
@@ -30,7 +30,7 @@ internal class InstancedMusicBox : InstancedTile {
         TileObjectData.newTile.DrawYOffset = 2;
         TileObjectData.addTile(Type);
 
-        AddMapEntry(ColorHelper.ColorFurniture, Language.GetText("MapObject.MusicBox"));
+        AddMapEntry(CommonColor.TILE_FURNITURE, Language.GetText("MapObject.MusicBox"));
 
         MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, _musicPath), MusicBoxItem.Type, Type);
     }

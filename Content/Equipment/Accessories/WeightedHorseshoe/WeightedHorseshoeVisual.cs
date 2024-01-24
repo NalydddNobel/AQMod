@@ -118,7 +118,7 @@ public class WeightedHorseshoeVisual : ModProjectile {
     }
 
     private Color GetStringColor(Vector2 stringStart, Vector2 stringEnd, Color baseColor) {
-        return (LightHelper.GetLightColor((stringStart + stringEnd) / 2f).MultiplyRGB(baseColor) * 0.75f) with { A = 255, };
+        return (ExtendLight.Get((stringStart + stringEnd) / 2f).MultiplyRGB(baseColor) * 0.75f) with { A = 255, };
     }
 
     public override bool PreDraw(ref Color lightColor) {

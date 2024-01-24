@@ -38,6 +38,11 @@ BaguetteBuff: {
 	Description: 各项属性和生命再生速度大幅度提升
 }
 
+WarHornCooldown: {
+	DisplayName: 战争号角 (冷却)
+	Description: 战争号角正处于冷却中!
+}
+
 FoodPoisoningDebuff: {
 	// DisplayName: Food Poisoning
 	// Description: No improvements to stats, and you can no longer eat food!

@@ -70,6 +70,16 @@ Trophies: {
 	SpaceSquidRelic.DisplayName: Space Squid Relic
 }
 
+GoreNest: {
+	MapEntry: Gore Nest
+	ItemDisplayName: "{$GoreNest.MapEntry}"
+	ItemTooltip:
+		'''
+		Used to upgrade evil weapons, activating the Demon Siege
+		Counts as a Demon/Crimson Altar for crafting
+		'''
+}
+
 ScrapBlock: {
 	MapEntry: Junk Block
 	ItemDisplayName: "{$Tiles.ScrapBlock.MapEntry}"

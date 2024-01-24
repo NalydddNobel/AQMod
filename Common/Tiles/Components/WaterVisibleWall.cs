@@ -20,7 +20,7 @@ public interface IWaterVisibleWall {
 }
 
 public class WaterVisibleWall : ModSystem {
-    private const float WaterOpacity = 0.5f;
+    private const float WATER_OPACITY = 0.5f;
 
     public override void Load() {
         IL_MapHelper.CreateMapTile += IL_MapHelper_CreateMapTile;
@@ -87,7 +87,7 @@ public class WaterVisibleWall : ModSystem {
     /// <param name="text"></param>
     /// <param name="entryNumber">Offsets the map Id lookup by this value. Defaults to 1, meaning that it assumes that this is the 2nd registered color for this wall.</param>
     public static void CreateWaterEntry<T>(T wall, Color baseColor, LocalizedText text = null, int entryNumber = 1) where T : ModWall, IWaterVisibleWall {
-        wall.AddMapEntry(Color.Lerp(baseColor, ColorHelper.WaterColor, WaterOpacity), text);
+        wall.AddMapEntry(Color.Lerp(baseColor, CommonColor.TILE_WATER, WATER_OPACITY), text);
         wall.WaterMapEntry = entryNumber;
     }
 }

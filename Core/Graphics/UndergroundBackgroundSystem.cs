@@ -198,7 +198,7 @@ public abstract class CustomDrawnUGBackground : ModUndergroundBackgroundStyle {
                 }
                 float x = bgStartX + transitionTextureWidth * l + m * 16 + 8;
                 Vector2 drawCoordinates = new Vector2(x - 8f + frameX, Y + 16f + 96f * UndergroundBackgroundSystem.TransitionStrips);
-                Color color = LightHelper.GetLightColor(drawCoordinates + Main.screenPosition) * opacity;
+                Color color = ExtendLight.Get(drawCoordinates + Main.screenPosition) * opacity;
                 Rectangle frame = new Rectangle(16 * m + frameX + 16, 0, 16, 16);
                 Main.spriteBatch.Draw(transitionTexture, drawCoordinates, frame, color, 0f, Vector2.Zero, 1f, spriteEffects, 0f);
             }

@@ -268,6 +268,7 @@ public static class Helper {
     public static bool FrozenTimeActive() {
         return CreativePowerManager.Instance.GetPower<CreativePowers.FreezeTime>().Enabled;
     }
+
     public static int GetTimeScale() {
         if (FrozenTimeActive()) {
             return 0;

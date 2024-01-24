@@ -101,7 +101,7 @@ internal sealed class OnlineLinkGlobalItem : GlobalItem {
                 return;
             }
             Main.mouseLeftRelease = false;
-            Main.NewText(Language.GetTextValue("Mods.Aequus.Misc.OpenLink", onlineLink.Link), TextHelper.EventMessageColor);
+            Main.NewText(Language.GetTextValue("Mods.Aequus.Misc.OpenLink", onlineLink.Link), CommonColor.TEXT_EVENT);
             UISystem.linkClickDelay = 60;
             Utils.OpenToURL(onlineLink.Link);
         }

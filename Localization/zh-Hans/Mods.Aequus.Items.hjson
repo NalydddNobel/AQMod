@@ -88,6 +88,45 @@ WeightedHorseshoe: {
 		'''
 }
 
+HighSteaks: {
+	DisplayName: 高级牛排
+	Tooltip:
+		'''
+		造成暴击时增加{0}%伤害
+		{1}
+		'''
+	Downside: "{v}然而, 你在暴击时会支付{Price}"
+}
+
+KegOSpirits: {
+	DisplayName: 魂灵桶
+	Tooltip:
+		'''
+		{$SaivoryKnife.Tooltip}
+		{$SpiritBottle.Tooltip@1}
+		'''
+}
+
+SaivoryKnife: {
+	DisplayName: 美味象牙刀
+	Tooltip: 延长{0}幽魂仆从的存在时间
+}
+
+SpiritBottle: {
+	DisplayName: 魂灵瓶
+	Tooltip: 增加{0}格最大幽魂仆从栏位
+}
+
+WarHorn: {
+	DisplayName: 战争号角
+	Tooltip:
+		'''
+		召唤物在击中敌人后会进入狂暴状态, 持续{0}秒
+		此效果有{1}秒冷却时间
+		狂暴的召唤物会获得更高的攻击和移动速度
+		'''
+}
+
 //# Equipment: Informational
 ShimmerMonocle: {
 	DisplayName: 微光单片镜
@@ -102,6 +141,26 @@ RichMansMonocle: {
 Calendar: {
 	DisplayName: 日历
 	Tooltip: 显示日期
+}
+
+//# Equipment: Grappling Hooks
+LeechHook: {
+	DisplayName: 水蛭钩
+	Tooltip:
+		'''
+		无视敌人{0}点的防御力
+		吸住敌人并治疗你
+		伤害被吸住的敌人以获得额外治疗
+		'''
+}
+
+Meathook: {
+	DisplayName: 血肉钩
+	Tooltip:
+		'''
+		你的钩爪会抓住敌人
+		你会对被你的钩爪抓住的敌怪额外造成{0}%伤害
+		'''
 }
 
 //# Weapons: Melee
@@ -158,6 +217,11 @@ SkyHunterCrossbow: {
 		'''
 }
 
+CrusadersCrossbow: {
+	DisplayName: 十字军弩
+	Tooltip: 发射可以治疗队友的箭矢
+}
+
 //# Weapons: Magic
 TrashStaff: {
 	DisplayName: 垃圾邮件
@@ -209,6 +273,20 @@ DeathsEmbrace: {
 		小幅度降低攻击的准确度
 		攻击时会使你自动饮用该药水
 		{{一旦增益消失, 你会立刻死亡...}}
+		'''
+}
+
+SuspiciousLookingSteak: {
+	DisplayName: 可疑牛排
+	Tooltip: "'你是个可怕的人'"
+}
+
+PotionOfResurrection: {
+	DisplayName: 复活药水
+	Tooltip:
+		'''
+		将你传送至上次死亡时的位置
+		'最近经历过死亡的人喜欢的饮料'
 		'''
 }
 
@@ -296,6 +374,29 @@ NetherStar: {
 CompressedTrash: {
 	DisplayName: 压缩垃圾
 	Tooltip: ""
+}
+
+BloodyTearstone: {
+	DisplayName: 血泪石
+	Tooltip: ""
+}
+
+UnholyCore: {
+	DisplayName: 不洁核心
+	Tooltip:
+		'''
+		可在血巢处使用
+		降低恶魔围攻事件的进攻时间
+		'''
+}
+
+UnholyCoreSmall: {
+	// DisplayName: Dark Tearstone
+	Tooltip:
+		'''
+		可在血巢处使用
+		掉落自地狱的神秘实体
+		'''
 }
 
 TreasureBag.DisplayName: 宝藏袋 ({0})

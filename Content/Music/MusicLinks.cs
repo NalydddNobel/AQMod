@@ -7,7 +7,7 @@ namespace Aequus.Content.Music;
 
 public class MusicLinks : DataSet {
     [JsonProperty]
-    public static Dictionary<string, string> Links = new();
+    public static Dictionary<string, string> Links { get; private set; } = new();
 
     public override void PostSetupContent() {
         foreach (var m in Mod.GetContent<InstancedMusicBoxItem>()) {

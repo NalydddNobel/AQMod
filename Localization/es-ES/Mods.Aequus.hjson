@@ -1,7 +1,12 @@
 Biomes: {
+	DemonSiegeZone: {
+		// DisplayName: ""
+		// TownNPCDialogueName: ""
+	}
+
 	PollutedOceanBiome: {
-		// DisplayName: Polluted Ocean
-		// TownNPCDialogueName: the Polluted Ocean
+		// DisplayName: Polluted Ocean Biome
+		// TownNPCDialogueName: the Polluted Ocean Biome
 	}
 }
 

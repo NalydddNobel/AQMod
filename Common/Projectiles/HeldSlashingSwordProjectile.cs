@@ -147,7 +147,7 @@ public abstract class HeldSlashingSwordProjectile : HeldSwordProjectile {
         var center = Main.player[Projectile.owner].Center;
         //Helper.DebugDust(center - AngleVector * 20f);
         //Helper.DebugDust(center + AngleVector * (swordHeight * Projectile.scale * baseSwordScale), DustID.CursedTorch);
-        return CollisionHelper.DeathrayHitbox(center - AngleVector * 20f, center + AngleVector * (swordHeight * Projectile.scale * baseSwordScale), targetHitbox, swordWidth * Projectile.scale * baseSwordScale);
+        return ExtendCollision.LineHitbox(center - AngleVector * 20f, center + AngleVector * (swordHeight * Projectile.scale * baseSwordScale), targetHitbox, swordWidth * Projectile.scale * baseSwordScale);
     }
 
     public void UpdatePlayerDirection(Player player) {

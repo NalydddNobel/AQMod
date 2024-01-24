@@ -8,7 +8,7 @@ public class IOHooks : ILoadable {
     public static PreSaveDelegate PreSaveWorld { get; internal set; }
 
     public void Load(Mod mod) {
-        DetourHelper.AddHook(Aequus.TerrariaAssembly.GetType("Terraria.ModLoader.IO.WorldIO").GetMethod("Save", BindingFlags.NonPublic | BindingFlags.Static), typeof(IOHooks).GetMethod(nameof(On_WorldIO_Save), BindingFlags.NonPublic | BindingFlags.Static));
+        HookManager.ApplyAndCacheHook(Aequus.TerrariaAssembly.GetType("Terraria.ModLoader.IO.WorldIO").GetMethod("Save", BindingFlags.NonPublic | BindingFlags.Static), typeof(IOHooks).GetMethod(nameof(On_WorldIO_Save), BindingFlags.NonPublic | BindingFlags.Static));
     }
 
     private static void On_WorldIO_Save(Action<string, bool> orig, string path, bool isCloudSave) {

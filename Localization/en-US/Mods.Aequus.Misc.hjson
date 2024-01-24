@@ -56,3 +56,4 @@ ClickLink:
 	Double Click to open the link.
 	'''
 OpenLink: Opening [c/AABBEE:{0}] on browser...
+TimeLeft: Time left: {0}

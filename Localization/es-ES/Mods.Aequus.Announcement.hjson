@@ -1,0 +1,26 @@
+DemonSiege: {
+	GiveItem: {
+		// 0: "{Player} accepted a contract with the devil..."
+		// 1: "{Player} begins to accept their fate..."
+		// 2: "{Player} fails to imagine what will happen to their {Item}..."
+		// 3: "{Player} didn't expect it to eat their {Item}..."
+		// 4: "{Player}'s beloved {Item} lured them to the darkness..."
+		// 5: Your {Item} is being corrupted even further...
+		// 6: Horrors beyond imagination surround your {Item}...
+		// 7: The Occultist grins at {Player}...
+	}
+
+	EventStart: {
+		// 0: ...The demons are not impressed by {Player}!
+		// 1: ...{Player}'s story ends here!
+		// 2: ...Your {Item} attracts unwanted attention!
+		// 3: ...{Player} wont expect what's approaching!
+		// 4: ...{Player} will be slain.
+		// 5: ...{Player} will face the consequences.
+		// 6: ...The horrors are here!
+		// 7: ...Doom and darkness approaches!
+	}
+
+	// FailEat: The Gore Nest consumes your {0}...
+	// Fail: The Gore Nest regurgitates your {0}...
+}

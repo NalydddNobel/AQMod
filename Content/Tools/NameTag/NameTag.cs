@@ -82,7 +82,7 @@ public class NameTag : ModItem, ICustomNameTagPrice {
     public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
         if (!Item.TryGetGlobalItem<RenameItem>(out var itemNameTag) || !itemNameTag.HasCustomName) {
             Main.GetItemDrawFrame(Item.type, out var texture, out var frame);
-            spriteBatch.Draw(AequusTextures.NameTagBlank, ItemHelper.WorldDrawPos(Item, texture), frame, lightColor, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(AequusTextures.NameTagBlank, ExtendItem.WorldDrawPos(Item, frame), frame, lightColor, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
             return false;
         }
         return true;
