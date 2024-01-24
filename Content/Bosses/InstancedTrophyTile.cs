@@ -9,6 +9,7 @@ internal class InstancedTrophyTile : InstancedModTile {
     }
 
     public override void SetStaticDefaults() {
+        Main.tileSpelunker[Type] = true;
         Main.tileFrameImportant[Type] = true;
         Main.tileLavaDeath[Type] = true;
         TileID.Sets.FramesOnKillWall[Type] = true;

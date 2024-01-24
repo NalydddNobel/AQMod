@@ -21,6 +21,7 @@ public class LegacyBossTrophiesTile : ModTile {
     public override string Texture => AequusTextures.Tile(TileID.Painting3X3);
 
     public override void SetStaticDefaults() {
+        Main.tileSpelunker[Type] = true;
         Main.tileFrameImportant[Type] = true;
         Main.tileLavaDeath[Type] = true;
         TileID.Sets.FramesOnKillWall[Type] = true;
