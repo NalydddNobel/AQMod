@@ -116,6 +116,16 @@ SpiritBottle: {
 	// Tooltip: Increases your maximum number of ghosts by {0}
 }
 
+WarHorn: {
+	DisplayName: 战争号角
+	Tooltip:
+		'''
+		召唤物在击中敌人后会进入狂暴状态, 持续{0}秒
+		此效果有{1}秒冷却时间
+		狂暴的召唤物会获得更高的攻击和移动速度
+		'''
+}
+
 //# Equipment: Informational
 ShimmerMonocle: {
 	DisplayName: 微光单片镜
@@ -511,14 +521,4 @@ Toolbelt: {
 		'''
 	BackpackEnabled: 工具腰带开启
 	BackpackDisabled: 工具腰带关闭
-}
-
-WarHorn: {
-	DisplayName: 战争号角
-	Tooltip:
-		'''
-		召唤物在击中敌人后会进入狂暴状态, 持续{0}秒
-		此效果有{1}秒冷却时间
-		狂暴的召唤物会获得更高的攻击和移动速度
-		'''
 }

@@ -40,5 +40,5 @@ BaguetteBuff: {
 
 WarHornCooldown: {
 	DisplayName: 战争号角冷却
-	// Description: Mods.Aequus.Buffs.WarHornCooldown.Description
+	// Description: The War Horn is on cooldown!
 }

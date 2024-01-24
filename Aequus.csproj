@@ -48,6 +48,7 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
 	<AdditionalFiles Remove="Old\**" Condition="'$(Configuration)' == 'Debug'" />
 	<Compile Remove="Old\**" Condition="'$(Configuration)' == 'Debug'" />
+	<AdditionalFiles Include="Old\**\*.png" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 	
 </Project>

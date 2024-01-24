@@ -33,7 +33,7 @@ BloodMimic: {
 }
 
 CinderBat: {
-	DisplayName: 幻形蝠
 	Bestiary: 蝙蝠般的小恶魔, 以其丑陋的面孔和更丑陋的态度而闻名. 绝对没有私人恩怨.
+	DisplayName: 幻形蝠
 	BannerName: 幻形蝠旗
 }

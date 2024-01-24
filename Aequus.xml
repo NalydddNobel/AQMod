@@ -1010,6 +1010,9 @@
             <param name="time">The Day/Night cycle time.</param>
             <param name="dayTime">Whether it's day or night.</param>
         </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLanguage.Minutes(System.Double)">
+            <summary>Converts ticks to seconds, up to 1 decimal place.</summary>
+        </member>
         <member name="M:Aequus.Core.Utilities.ExtendLanguage.Seconds(System.Double)">
             <summary>Converts ticks to seconds, up to 1 decimal place.</summary>
         </member>
@@ -1312,7 +1315,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 43)</summary>
+            <summary>(Total Sounds: 36)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishCharge">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -1421,27 +1424,6 @@
         </member>
         <member name="F:Aequus.AequusSounds.OmniGemBreak">
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.HighSteaks0">
-            <summary>Full Path: Old/Assets/Sounds/HighSteaks/HighSteaks0</summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.HighSteaks1">
-            <summary>Full Path: Old/Assets/Sounds/HighSteaks/HighSteaks1</summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.HighSteaksCriticalStrike">
-            <summary>Full Path: Old/Assets/Sounds/HighSteaks/HighSteaksCriticalStrike</summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.Meathook0">
-            <summary>Full Path: Old/Assets/Sounds/Meathook/Meathook0</summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.Meathook1">
-            <summary>Full Path: Old/Assets/Sounds/Meathook/Meathook1</summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.MeathookConnect">
-            <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookConnect</summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.MeathookPull">
-            <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookPull</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>(Total Textures: 263)</summary>
@@ -2234,22 +2216,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.CrusadersCrossbowProj">
             <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj</summary>
-        </member>
-        <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.NotStackableCritDamage">
-            <summary>
-            Default Value: 0.15
-            <para>This is only added on the first stack of the accessory.</para>
-            </summary>
-        </member>
-        <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.WantedCost">
-            <summary>
-            The cost for performing a critical strike.
-            </summary>
-        </member>
-        <member name="P:Aequus.Old.Content.Equipment.Accessories.SpiritKeg.SaivoryKnife.GhostLifespan">
-            <summary>
-            Default Value: 3600 (1 minute)
-            </summary>
         </member>
     </members>
 </doc>
