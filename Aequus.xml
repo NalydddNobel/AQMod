@@ -1458,7 +1458,7 @@
             <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookPull</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 297)</summary>
+            <summary>(Total Textures: 302)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1981,6 +1981,21 @@
         </member>
         <member name="F:Aequus.AequusTextures.TrashCompactorItem">
             <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MossStatues">
+            <summary>Full Path: Content/Tiles/Statues/MossStatues</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MossStatuesArgonItem">
+            <summary>Full Path: Content/Tiles/Statues/MossStatuesArgonItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MossStatuesKryptonItem">
+            <summary>Full Path: Content/Tiles/Statues/MossStatuesKryptonItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MossStatuesNeonItem">
+            <summary>Full Path: Content/Tiles/Statues/MossStatuesNeonItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MossStatuesXenonItem">
+            <summary>Full Path: Content/Tiles/Statues/MossStatuesXenonItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AnglerLamp">
             <summary>Full Path: Content/Tools/AnglerLamp/AnglerLamp</summary>

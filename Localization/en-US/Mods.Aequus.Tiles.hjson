@@ -84,3 +84,25 @@ ScavengerStatue: {
 	ItemDisplayName: Scavenger Statue
 	ItemTooltip: ""
 }
+
+MossStatues: {
+	Argon: {
+		ItemDisplayName: Argon Plant Statue
+		ItemTooltip: ""
+	}
+
+	Krypton: {
+		ItemDisplayName: Krypton Plant Statue
+		ItemTooltip: ""
+	}
+
+	Neon: {
+		ItemDisplayName: Neon Plant Statue
+		ItemTooltip: ""
+	}
+
+	Xenon: {
+		ItemDisplayName: Xenon Plant Statue
+		ItemTooltip: ""
+	}
+}

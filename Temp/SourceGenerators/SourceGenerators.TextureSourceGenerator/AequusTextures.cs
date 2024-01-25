@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 297)</summary>
+/// <summary>(Total Textures: 302)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -355,6 +355,16 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> TrashCompactor = new("Aequus/Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor");
     /// <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
     public static readonly RequestCache<Texture2D> TrashCompactorItem = new("Aequus/Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem");
+    /// <summary>Full Path: Content/Tiles/Statues/MossStatues</summary>
+    public static readonly RequestCache<Texture2D> MossStatues = new("Aequus/Content/Tiles/Statues/MossStatues");
+    /// <summary>Full Path: Content/Tiles/Statues/MossStatuesArgonItem</summary>
+    public static readonly RequestCache<Texture2D> MossStatuesArgonItem = new("Aequus/Content/Tiles/Statues/MossStatuesArgonItem");
+    /// <summary>Full Path: Content/Tiles/Statues/MossStatuesKryptonItem</summary>
+    public static readonly RequestCache<Texture2D> MossStatuesKryptonItem = new("Aequus/Content/Tiles/Statues/MossStatuesKryptonItem");
+    /// <summary>Full Path: Content/Tiles/Statues/MossStatuesNeonItem</summary>
+    public static readonly RequestCache<Texture2D> MossStatuesNeonItem = new("Aequus/Content/Tiles/Statues/MossStatuesNeonItem");
+    /// <summary>Full Path: Content/Tiles/Statues/MossStatuesXenonItem</summary>
+    public static readonly RequestCache<Texture2D> MossStatuesXenonItem = new("Aequus/Content/Tiles/Statues/MossStatuesXenonItem");
     /// <summary>Full Path: Content/Tools/AnglerLamp/AnglerLamp</summary>
     public static readonly RequestCache<Texture2D> AnglerLamp = new("Aequus/Content/Tools/AnglerLamp/AnglerLamp");
     /// <summary>Full Path: Content/Tools/AnglerLamp/AnglerLampOff</summary>

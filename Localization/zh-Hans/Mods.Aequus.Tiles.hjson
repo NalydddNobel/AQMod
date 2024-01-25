@@ -84,3 +84,25 @@ ScavengerStatue: {
 	// ItemDisplayName: Scavenger Statue
 	// ItemTooltip: ""
 }
+
+MossStatues: {
+	Argon: {
+		// ItemDisplayName: Mods.Aequus.Tiles.MossStatues.Argon.ItemDisplayName
+		// ItemTooltip: ""
+	}
+
+	Krypton: {
+		// ItemDisplayName: Mods.Aequus.Tiles.MossStatues.Krypton.ItemDisplayName
+		// ItemTooltip: ""
+	}
+
+	Neon: {
+		// ItemDisplayName: Mods.Aequus.Tiles.MossStatues.Neon.ItemDisplayName
+		// ItemTooltip: ""
+	}
+
+	Xenon: {
+		// ItemDisplayName: Mods.Aequus.Tiles.MossStatues.Xenon.ItemDisplayName
+		// ItemTooltip: ""
+	}
+}

@@ -40,7 +40,7 @@ internal class InstancedNPCStatue : InstancedModTile {
 
         DustType = DustID.Silver;
 
-        AddMapEntry(new Color(144, 148, 144), Language.GetText("MapObject.Statue"));
+        AddMapEntry(CommonColor.TILE_STATUE, Language.GetText("MapObject.Statue"));
     }
 
     public override void HitWire(int i, int j) {
