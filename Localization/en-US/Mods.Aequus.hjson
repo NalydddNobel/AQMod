@@ -9,7 +9,7 @@ KeyUnbound: Unbound
 
 Biomes: {
 	DemonSiegeZone: {
-		DisplayName: ""
+		DisplayName: "Gore Nest"
 		TownNPCDialogueName: ""
 	}
 }

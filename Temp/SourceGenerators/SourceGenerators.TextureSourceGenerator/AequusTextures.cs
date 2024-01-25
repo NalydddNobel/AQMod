@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 302)</summary>
+/// <summary>(Total Textures: 319)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -497,6 +497,42 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CinderBatBanner = new("Aequus/Old/Content/Enemies/DemonSiege/CinderBat/Tiles/CinderBatBanner");
     /// <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/Tiles/CinderBatBannerItem</summary>
     public static readonly RequestCache<Texture2D> CinderBatBannerItem = new("Aequus/Old/Content/Enemies/DemonSiege/CinderBat/Tiles/CinderBatBannerItem");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/ChainedSoul</summary>
+    public static readonly RequestCache<Texture2D> ChainedSoul = new("Aequus/Old/Content/Enemies/DemonSiege/Keeper/ChainedSoul");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/ChainedSoulProj</summary>
+    public static readonly RequestCache<Texture2D> ChainedSoulProj = new("Aequus/Old/Content/Enemies/DemonSiege/Keeper/ChainedSoulProj");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/ChainedSoul_Chain</summary>
+    public static readonly RequestCache<Texture2D> ChainedSoul_Chain = new("Aequus/Old/Content/Enemies/DemonSiege/Keeper/ChainedSoul_Chain");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/Gores/ChainedSoulGoreChain1</summary>
+    public static readonly RequestCache<Texture2D> ChainedSoulGoreChain1 = new("Aequus/Old/Content/Enemies/DemonSiege/Keeper/Gores/ChainedSoulGoreChain1");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/Gores/ChainedSoulGoreChain2</summary>
+    public static readonly RequestCache<Texture2D> ChainedSoulGoreChain2 = new("Aequus/Old/Content/Enemies/DemonSiege/Keeper/Gores/ChainedSoulGoreChain2");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/Gores/ChainedSoulGoreMouth</summary>
+    public static readonly RequestCache<Texture2D> ChainedSoulGoreMouth = new("Aequus/Old/Content/Enemies/DemonSiege/Keeper/Gores/ChainedSoulGoreMouth");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/Gores/ChainedSoulGoreMuscle</summary>
+    public static readonly RequestCache<Texture2D> ChainedSoulGoreMuscle = new("Aequus/Old/Content/Enemies/DemonSiege/Keeper/Gores/ChainedSoulGoreMuscle");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/Gores/ChainedSoulGoreTooth</summary>
+    public static readonly RequestCache<Texture2D> ChainedSoulGoreTooth = new("Aequus/Old/Content/Enemies/DemonSiege/Keeper/Gores/ChainedSoulGoreTooth");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/Gores/KeeperGoreEar</summary>
+    public static readonly RequestCache<Texture2D> KeeperGoreEar = new("Aequus/Old/Content/Enemies/DemonSiege/Keeper/Gores/KeeperGoreEar");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/Gores/KeeperGoreHead</summary>
+    public static readonly RequestCache<Texture2D> KeeperGoreHead = new("Aequus/Old/Content/Enemies/DemonSiege/Keeper/Gores/KeeperGoreHead");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/Gores/KeeperGoreHorn</summary>
+    public static readonly RequestCache<Texture2D> KeeperGoreHorn = new("Aequus/Old/Content/Enemies/DemonSiege/Keeper/Gores/KeeperGoreHorn");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/Gores/KeeperGoreWing</summary>
+    public static readonly RequestCache<Texture2D> KeeperGoreWing = new("Aequus/Old/Content/Enemies/DemonSiege/Keeper/Gores/KeeperGoreWing");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/KeeperImp</summary>
+    public static readonly RequestCache<Texture2D> KeeperImp = new("Aequus/Old/Content/Enemies/DemonSiege/Keeper/KeeperImp");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/KeeperImpTail</summary>
+    public static readonly RequestCache<Texture2D> KeeperImpTail = new("Aequus/Old/Content/Enemies/DemonSiege/Keeper/KeeperImpTail");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/KeeperImpWings</summary>
+    public static readonly RequestCache<Texture2D> KeeperImpWings = new("Aequus/Old/Content/Enemies/DemonSiege/Keeper/KeeperImpWings");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/KeeperImp_Glow</summary>
+    public static readonly RequestCache<Texture2D> KeeperImp_Glow = new("Aequus/Old/Content/Enemies/DemonSiege/Keeper/KeeperImp_Glow");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/Tiles/KeeperImpBanner</summary>
+    public static readonly RequestCache<Texture2D> KeeperImpBanner = new("Aequus/Old/Content/Enemies/DemonSiege/Keeper/Tiles/KeeperImpBanner");
+    /// <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/Tiles/KeeperImpBannerItem</summary>
+    public static readonly RequestCache<Texture2D> KeeperImpBannerItem = new("Aequus/Old/Content/Enemies/DemonSiege/Keeper/Tiles/KeeperImpBannerItem");
     /// <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/Gores/LeggedLavaGoreFoot</summary>
     public static readonly RequestCache<Texture2D> LeggedLavaGoreFoot = new("Aequus/Old/Content/Enemies/DemonSiege/LavaLegs/Gores/LeggedLavaGoreFoot");
     /// <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/Gores/LeggedLavaGoreMuscle</summary>
@@ -521,8 +557,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> StariteBanner = new("Aequus/Old/Content/Enemies/StariteBanner");
     /// <summary>Full Path: Old/Content/Enemies/SuperStariteBanner</summary>
     public static readonly RequestCache<Texture2D> SuperStariteBanner = new("Aequus/Old/Content/Enemies/SuperStariteBanner");
-    /// <summary>Full Path: Old/Content/Enemies/TrapperImpBanner</summary>
-    public static readonly RequestCache<Texture2D> TrapperImpBanner = new("Aequus/Old/Content/Enemies/TrapperImpBanner");
     /// <summary>Full Path: Old/Content/Enemies/TrapSkeletonBanner</summary>
     public static readonly RequestCache<Texture2D> TrapSkeletonBanner = new("Aequus/Old/Content/Enemies/TrapSkeletonBanner");
     /// <summary>Full Path: Old/Content/Enemies/VraineBanner</summary>

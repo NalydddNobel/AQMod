@@ -45,6 +45,14 @@ LeggedLava: {
 	BannerName: Legged Lava Banner
 }
 
+KeeperImp: {
+	DisplayName: Keeper
+	Bestiary: By capturing souls for itself, withering their bodies, and breaking their will, this imp has gained deadly pets that follow its command perfectly.
+	BannerName: Keeper Banner
+}
+
+ChainedSoul.DisplayName: Chained Soul
+
 Occultist: {
 	DisplayName: Occultist
 	Bestiary: A ex-cultist that's decided to bat for the winning team. She claims to be reformed, but still attempts to cast curses and hexes whenever she thinks nobody's looking.

@@ -45,6 +45,13 @@ LeggedLava: {
 	BannerName: 附腿熔岩旗
 }
 
+Keeper: {
+	// DisplayName: Keeper
+	// Bestiary: By capturing souls for itself, withering their bodies, and breaking their will, this imp has gained deadly pets that follow its command perfectly.
+}
+
+// ChainedSoul.DisplayName: Chained Soul
+
 Occultist: {
 	DisplayName: 秘术师
 	Bestiary: 一为决定为获胜队伍而战的前教徒. 她声称自己已经改过自新, 但每当她认为没人注意时, 她仍会试图施下诅咒和巫术.
@@ -126,4 +133,9 @@ OccultistHostile: {
 	}
 
 	ListenButton: 倾听
+}
+
+KeeperImp: {
+	// DisplayName: Keeper Imp
+	// BannerName: Keeper Imp Banner
 }

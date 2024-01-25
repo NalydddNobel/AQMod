@@ -1458,7 +1458,7 @@
             <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookPull</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 302)</summary>
+            <summary>(Total Textures: 319)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2195,6 +2195,60 @@
         <member name="F:Aequus.AequusTextures.CinderBatBannerItem">
             <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/Tiles/CinderBatBannerItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.ChainedSoul">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/ChainedSoul</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ChainedSoulProj">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/ChainedSoulProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ChainedSoul_Chain">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/ChainedSoul_Chain</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ChainedSoulGoreChain1">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/Gores/ChainedSoulGoreChain1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ChainedSoulGoreChain2">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/Gores/ChainedSoulGoreChain2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ChainedSoulGoreMouth">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/Gores/ChainedSoulGoreMouth</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ChainedSoulGoreMuscle">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/Gores/ChainedSoulGoreMuscle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ChainedSoulGoreTooth">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/Gores/ChainedSoulGoreTooth</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.KeeperGoreEar">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/Gores/KeeperGoreEar</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.KeeperGoreHead">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/Gores/KeeperGoreHead</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.KeeperGoreHorn">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/Gores/KeeperGoreHorn</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.KeeperGoreWing">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/Gores/KeeperGoreWing</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.KeeperImp">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/KeeperImp</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.KeeperImpTail">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/KeeperImpTail</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.KeeperImpWings">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/KeeperImpWings</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.KeeperImp_Glow">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/KeeperImp_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.KeeperImpBanner">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/Tiles/KeeperImpBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.KeeperImpBannerItem">
+            <summary>Full Path: Old/Content/Enemies/DemonSiege/Keeper/Tiles/KeeperImpBannerItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.LeggedLavaGoreFoot">
             <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/Gores/LeggedLavaGoreFoot</summary>
         </member>
@@ -2230,9 +2284,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.SuperStariteBanner">
             <summary>Full Path: Old/Content/Enemies/SuperStariteBanner</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.TrapperImpBanner">
-            <summary>Full Path: Old/Content/Enemies/TrapperImpBanner</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrapSkeletonBanner">
             <summary>Full Path: Old/Content/Enemies/TrapSkeletonBanner</summary>
@@ -2365,6 +2416,27 @@
         </member>
         <member name="F:Aequus.AequusTextures.CrusadersCrossbowProj">
             <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj</summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.NotStackableCritDamage">
+            <summary>
+            Default Value: 0.15
+            <para>This is only added on the first stack of the accessory.</para>
+            </summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.WantedCost">
+            <summary>
+            The cost for performing a critical strike.
+            </summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Equipment.Accessories.SpiritKeg.SaivoryKnife.GhostLifespan">
+            <summary>
+            Default Value: 3600 (1 minute)
+            </summary>
+        </member>
+        <member name="T:Aequus.Old.Content.Events.DemonSiege.Tiles.GoreNestDummy">
+            <summary>
+            Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.
+            </summary>
         </member>
     </members>
 </doc>
