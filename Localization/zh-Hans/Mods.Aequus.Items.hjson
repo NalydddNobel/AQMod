@@ -375,7 +375,7 @@ UnholyCore: {
 }
 
 UnholyCoreSmall: {
-	// DisplayName: Dark Tearstone
+	DisplayName: 暗黑泪石
 	Tooltip:
 		'''
 		可在血巢处使用
