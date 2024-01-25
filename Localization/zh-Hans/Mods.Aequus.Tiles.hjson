@@ -81,6 +81,6 @@ GoreNest: {
 }
 
 ScavengerStatue: {
-	// ItemDisplayName: Scavenger Statue
-	// ItemTooltip: ""
+	ItemDisplayName: 拾荒者雕像
+	ItemTooltip: ""
 }
