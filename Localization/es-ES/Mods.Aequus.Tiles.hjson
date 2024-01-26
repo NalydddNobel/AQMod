@@ -70,12 +70,12 @@ Trophies: {
 	SpaceSquidRelic.DisplayName: Reliquia del Calamar Espacial
 }
 
-GoreNest: {
-	// MapEntry: Gore Nest
-	// ItemDisplayName: "{$GoreNest.MapEntry}"
+OblivionAltar: {
+	// MapEntry: Oblivion Altar
+	// ItemDisplayName: "{$OblivionAltar.MapEntry}"
 	/* ItemTooltip:
 		'''
-		Used to upgrade evil weapons, activating the Demon Siege
+		<right> to upgrade evil weapons
 		Counts as a Demon/Crimson Altar for crafting
 		''' */
 }

@@ -1871,6 +1871,9 @@
         <member name="F:Aequus.AequusTextures.ScavengerBag_Strap">
             <summary>Full Path: Content/Equipment/Accessories/ScavengerBag/ScavengerBag_Strap</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.BottleOSpirits">
+            <summary>Full Path: Content/Equipment/Accessories/SpiritBottle/BottleOSpirits</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.WeightedHorseshoe">
             <summary>Full Path: Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoe</summary>
         </member>
@@ -2336,9 +2339,6 @@
         <member name="F:Aequus.AequusTextures.SaivoryKnife">
             <summary>Full Path: Old/Content/Equipment/Accessories/SpiritKeg/SaivoryKnife</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SpiritBottle">
-            <summary>Full Path: Old/Content/Equipment/Accessories/SpiritKeg/SpiritBottle</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.WarHorn">
             <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHorn</summary>
         </member>
@@ -2381,14 +2381,14 @@
         <member name="F:Aequus.AequusTextures.GoreNestAura">
             <summary>Full Path: Old/Content/Events/DemonSiege/Textures/GoreNestAura</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.GoreNest">
-            <summary>Full Path: Old/Content/Events/DemonSiege/Tiles/GoreNest</summary>
+        <member name="F:Aequus.AequusTextures.OblivionAltar">
+            <summary>Full Path: Old/Content/Events/DemonSiege/Tiles/OblivionAltar</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.GoreNestItem">
-            <summary>Full Path: Old/Content/Events/DemonSiege/Tiles/GoreNestItem</summary>
+        <member name="F:Aequus.AequusTextures.OblivionAltarItem">
+            <summary>Full Path: Old/Content/Events/DemonSiege/Tiles/OblivionAltarItem</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.GoreNest_Highlight">
-            <summary>Full Path: Old/Content/Events/DemonSiege/Tiles/GoreNest_Highlight</summary>
+        <member name="F:Aequus.AequusTextures.OblivionAltar_Highlight">
+            <summary>Full Path: Old/Content/Events/DemonSiege/Tiles/OblivionAltar_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BloodyTearstone">
             <summary>Full Path: Old/Content/Materials/BloodyTearstone</summary>
@@ -2463,10 +2463,8 @@
             Default Value: 3600 (1 minute)
             </summary>
         </member>
-        <member name="T:Aequus.Old.Content.Events.DemonSiege.Tiles.GoreNestDummy">
-            <summary>
-            Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.
-            </summary>
+        <member name="T:Aequus.Old.Content.Events.DemonSiege.Tiles.OblivionAltarDummy">
+            <summary>Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.</summary>
         </member>
     </members>
 </doc>

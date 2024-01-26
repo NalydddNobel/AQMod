@@ -6,7 +6,7 @@ public class UnholyCoreSmall : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 3;
         // Hack which makes this item get consumed after the event is over, instead of converting into another item
-        GoreNestConversions.Register(Type, Type);
+        AltarSacrifices.Register(Type, Type);
     }
 
     public override void SetDefaults() {

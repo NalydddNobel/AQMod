@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Events.DemonSiege;
+﻿using Aequus.Content.Equipment.Accessories.SpiritBottle;
+using Aequus.Content.Events.DemonSiege;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
@@ -11,7 +12,7 @@ public class DeathsEmbrace : ModItem, IDedicatedItem {
 
     public override void SetStaticDefaults() {
         ItemID.Sets.DrinkParticleColors[Type] = new Color[] { Color.Black * 0.66f, Color.DarkRed with { A = 180 } * 0.66f, };
-        GoreNestConversions.Register()
+        AltarSacrifices.Register(ModContent.ItemType<BottleOSpirits>(), Type);
         //DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ModContent.ItemType<SpiritBottle>(), Type, EventTier.PreHardmode) { Hide = true, });
         Item.ResearchUnlockCount = 1;
     }

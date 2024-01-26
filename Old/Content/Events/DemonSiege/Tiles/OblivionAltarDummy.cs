@@ -2,11 +2,9 @@
 
 namespace Aequus.Old.Content.Events.DemonSiege.Tiles;
 
-/// <summary>
-/// Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.
-/// </summary>
-public class GoreNestDummy : ModTile {
-    public override string Texture => AequusTextures.GoreNest.Path;
+/// <summary>Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.</summary>
+public class OblivionAltarDummy : ModTile {
+    public override string Texture => AequusTextures.OblivionAltar.Path;
 
     public override void SetStaticDefaults() {
         Main.tileFrameImportant[Type] = true;
@@ -23,6 +21,6 @@ public class GoreNestDummy : ModTile {
         DustType = DustID.Blood;
         AdjTiles = new int[] { TileID.DemonAltar };
         MineResist = 110;
-        AddMapEntry(new Color(175, 15, 15), ExtendLanguage.GetMapEntry<GoreNest>());
+        AddMapEntry(new Color(175, 15, 15), ExtendLanguage.GetMapEntry<OblivionAltar>());
     }
 }

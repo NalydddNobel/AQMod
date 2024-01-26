@@ -70,9 +70,9 @@ Trophies: {
 	SpaceSquidRelic.DisplayName: 太空乌贼纪念物
 }
 
-GoreNest: {
+OblivionAltar: {
 	MapEntry: 血巢
-	ItemDisplayName: "{$GoreNest.MapEntry}"
+	ItemDisplayName: "{$OblivionAltar.MapEntry}"
 	ItemTooltip:
 		'''
 		用于升级邪恶武器, 激活恶魔围攻

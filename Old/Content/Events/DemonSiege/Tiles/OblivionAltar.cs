@@ -4,9 +4,7 @@ using Aequus.Content.Events.DemonSiege;
 using Aequus.Core.Assets;
 using Aequus.Core.Graphics.Tiles;
 using Aequus.Old.Content.TownNPCs.OccultistNPC;
-using Aequus.Tiles.CraftingStations;
 using System;
-using System.Net.Sockets;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.ObjectInteractions;
@@ -14,8 +12,8 @@ using Terraria.ObjectData;
 
 namespace Aequus.Old.Content.Events.DemonSiege.Tiles;
 
-[LegacyName("GoreNestTile")]
-public class GoreNest : ModTile, ISpecialTileRenderer {
+[LegacyName("GoreNestTile", "GoreNest")]
+public class OblivionAltar : ModTile, ISpecialTileRenderer {
     public static int BiomeCount { get; set; }
     public static RequestCache<Effect> GoreNestPortal { get; private set; }
 
@@ -75,7 +73,7 @@ public class GoreNest : ModTile, ISpecialTileRenderer {
     }
 
     public override bool AutoSelect(int i, int j, Item item) {
-        return GoreNestConversions.OriginalToConversion.ContainsKey(item.type);
+        return AltarSacrifices.OriginalToConversion.ContainsKey(item.type);
     }
 
     public override bool RightClick(int i, int j) {
@@ -198,7 +196,7 @@ public class GoreNest : ModTile, ISpecialTileRenderer {
         Main.spriteBatch.Draw(texture, where, frame, Color.White * opacity, rotation, origin, scale, SpriteEffects.None, 0f);
 
         if (upgradeOpacity > 0f) {
-            GoreNestConversions.OriginalToConversion.TryGetValue(i.netID, out var upgrade);
+            AltarSacrifices.OriginalToConversion.TryGetValue(i.netID, out var upgrade);
             Main.instance.LoadItem(upgrade.NewItem);
 
             texture = TextureAssets.Item[upgrade.NewItem].Value;
@@ -224,16 +222,16 @@ public class GoreNest : ModTile, ISpecialTileRenderer {
     }
 
     public static Item GetUsableDemonSiegeItem(Player player) {
-        if (GoreNestConversions.OriginalToConversion.ContainsKey(player.HeldItemFixed().type)) {
+        if (AltarSacrifices.OriginalToConversion.ContainsKey(player.HeldItemFixed().type)) {
             return player.HeldItemFixed();
         }
         for (int i = 0; i < Main.InventoryItemSlotsCount; i++) {
-            if (GoreNestConversions.OriginalToConversion.TryGetValue(player.inventory[i].type, out var val) && val.OriginalItem != val.NewItem) {
+            if (AltarSacrifices.OriginalToConversion.TryGetValue(player.inventory[i].type, out var val) && val.OriginalItem != val.NewItem) {
                 return player.inventory[i];
             }
         }
         for (int i = 0; i < Main.InventoryItemSlotsCount; i++) {
-            if (GoreNestConversions.OriginalToConversion.TryGetValue(player.inventory[i].type, out var val)) {
+            if (AltarSacrifices.OriginalToConversion.TryGetValue(player.inventory[i].type, out var val)) {
                 return player.inventory[i];
             }
         }
@@ -244,7 +242,7 @@ public class GoreNest : ModTile, ISpecialTileRenderer {
         return IsGoreNest(p.X, p.Y);
     }
     public static bool IsGoreNest(int x, int y) {
-        return Main.tile[x, y].HasTile && Main.tile[x, y].TileType == ModContent.TileType<GoreNest>();
+        return Main.tile[x, y].HasTile && Main.tile[x, y].TileType == ModContent.TileType<OblivionAltar>();
     }
 
     void ISpecialTileRenderer.Render(int i, int j, byte layer) {

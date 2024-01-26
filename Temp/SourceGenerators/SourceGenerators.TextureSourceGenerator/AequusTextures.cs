@@ -261,6 +261,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ScavengerBag_Back = new("Aequus/Content/Equipment/Accessories/ScavengerBag/ScavengerBag_Back");
     /// <summary>Full Path: Content/Equipment/Accessories/ScavengerBag/ScavengerBag_Strap</summary>
     public static readonly RequestCache<Texture2D> ScavengerBag_Strap = new("Aequus/Content/Equipment/Accessories/ScavengerBag/ScavengerBag_Strap");
+    /// <summary>Full Path: Content/Equipment/Accessories/SpiritBottle/BottleOSpirits</summary>
+    public static readonly RequestCache<Texture2D> BottleOSpirits = new("Aequus/Content/Equipment/Accessories/SpiritBottle/BottleOSpirits");
     /// <summary>Full Path: Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoe</summary>
     public static readonly RequestCache<Texture2D> WeightedHorseshoe = new("Aequus/Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoe");
     /// <summary>Full Path: Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
@@ -571,8 +573,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> KegOSpirits = new("Aequus/Old/Content/Equipment/Accessories/SpiritKeg/KegOSpirits");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/SpiritKeg/SaivoryKnife</summary>
     public static readonly RequestCache<Texture2D> SaivoryKnife = new("Aequus/Old/Content/Equipment/Accessories/SpiritKeg/SaivoryKnife");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/SpiritKeg/SpiritBottle</summary>
-    public static readonly RequestCache<Texture2D> SpiritBottle = new("Aequus/Old/Content/Equipment/Accessories/SpiritKeg/SpiritBottle");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHorn</summary>
     public static readonly RequestCache<Texture2D> WarHorn = new("Aequus/Old/Content/Equipment/Accessories/WarHorn/WarHorn");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHornCooldown</summary>
@@ -601,12 +601,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> DemonSiegeEventIcon = new("Aequus/Old/Content/Events/DemonSiege/Textures/DemonSiegeEventIcon");
     /// <summary>Full Path: Old/Content/Events/DemonSiege/Textures/GoreNestAura</summary>
     public static readonly RequestCache<Texture2D> GoreNestAura = new("Aequus/Old/Content/Events/DemonSiege/Textures/GoreNestAura");
-    /// <summary>Full Path: Old/Content/Events/DemonSiege/Tiles/GoreNest</summary>
-    public static readonly RequestCache<Texture2D> GoreNest = new("Aequus/Old/Content/Events/DemonSiege/Tiles/GoreNest");
-    /// <summary>Full Path: Old/Content/Events/DemonSiege/Tiles/GoreNestItem</summary>
-    public static readonly RequestCache<Texture2D> GoreNestItem = new("Aequus/Old/Content/Events/DemonSiege/Tiles/GoreNestItem");
-    /// <summary>Full Path: Old/Content/Events/DemonSiege/Tiles/GoreNest_Highlight</summary>
-    public static readonly RequestCache<Texture2D> GoreNest_Highlight = new("Aequus/Old/Content/Events/DemonSiege/Tiles/GoreNest_Highlight");
+    /// <summary>Full Path: Old/Content/Events/DemonSiege/Tiles/OblivionAltar</summary>
+    public static readonly RequestCache<Texture2D> OblivionAltar = new("Aequus/Old/Content/Events/DemonSiege/Tiles/OblivionAltar");
+    /// <summary>Full Path: Old/Content/Events/DemonSiege/Tiles/OblivionAltarItem</summary>
+    public static readonly RequestCache<Texture2D> OblivionAltarItem = new("Aequus/Old/Content/Events/DemonSiege/Tiles/OblivionAltarItem");
+    /// <summary>Full Path: Old/Content/Events/DemonSiege/Tiles/OblivionAltar_Highlight</summary>
+    public static readonly RequestCache<Texture2D> OblivionAltar_Highlight = new("Aequus/Old/Content/Events/DemonSiege/Tiles/OblivionAltar_Highlight");
     /// <summary>Full Path: Old/Content/Materials/BloodyTearstone</summary>
     public static readonly RequestCache<Texture2D> BloodyTearstone = new("Aequus/Old/Content/Materials/BloodyTearstone");
     /// <summary>Full Path: Old/Content/Potions/Foods/SusSteak/SuspiciousLookingSteak</summary>

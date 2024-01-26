@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace Aequus.Content.Events.DemonSiege;
 
-public class GoreNestConversions : ModSystem {
+public class AltarSacrifices : ModSystem {
     public static readonly Dictionary<int, Conversion> OriginalToConversion = new();
     public static readonly Dictionary<int, List<int>> ConversionToOriginals = new();
 
@@ -25,7 +25,7 @@ public class GoreNestConversions : ModSystem {
 
             Recipe recipe = Recipe.Create(sacrifice.NewItem)
                 .AddIngredient(sacrifice.OriginalItem)
-                .AddTile<GoreNestDummy>()
+                .AddTile<OblivionAltarDummy>()
                 .Register()
                 .SortAfterFirstRecipesOf(sacrifice.OriginalItem);
 

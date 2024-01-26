@@ -110,7 +110,7 @@ public class DemonSiegeSystem : ModSystem {
             }
             return false;
         }
-        if (!GoreNestConversions.OriginalToConversion.TryGetValue(sacrifice.netID, out var sacrificeData)) {
+        if (!AltarSacrifices.OriginalToConversion.TryGetValue(sacrifice.netID, out var sacrificeData)) {
             if (checkIsValidSacrifice) {
                 return false;
             }
