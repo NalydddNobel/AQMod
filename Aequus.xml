@@ -793,6 +793,11 @@
             NPCs in this set cannot become Elites. This usually contains bosses.
             </summary>
         </member>
+        <member name="P:Aequus.Content.DataSets.ProjectileSets.OccultistIgnore">
+            <summary>
+            Projectiles in this set do not damage the <see cref="T:Aequus.Old.Content.TownNPCs.OccultistNPC.Occultist"/>.
+            </summary>
+        </member>
         <member name="P:Aequus.Content.DataSets.ProjectileSets.DealsHeatDamage">
             <summary>
             Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.
@@ -829,6 +834,13 @@
             <summary>
             Bubble particles which only work underwater. Floats upwards.
             </summary>
+        </member>
+        <member name="M:Aequus.Content.Tiles.Banners.BannerLoader.AddBannerBuff``1(Terraria.ModLoader.ModNPC)">
+            <summary>
+            Adds a banner buff for this NPC to <typeparamref name="TBannerNPC"/>'s registered banner. This is used grant a buff against Chained Souls when near the Keeper's Banner.
+            </summary>
+            <typeparam name="TBannerNPC"></typeparam>
+            <param name="npcWithoutBanner"></param>
         </member>
         <member name="T:Aequus.Core.Graphics.Tiles.BatchedTileDrawInfo">
             <summary>
@@ -1320,7 +1332,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 45)</summary>
+            <summary>(Total Sounds: 51)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.PollutedOcean">
             <summary>Full Path: Assets/Music/PollutedOcean</summary>
@@ -1339,6 +1351,24 @@
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishUnderwaterBubbles">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishUnderwaterBubbles</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.ChainedSoulAttack">
+            <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttack</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.ChainedSoulAttackExplode0">
+            <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttackExplode0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.ChainedSoulAttackExplode1">
+            <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttackExplode1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.ChainedSoulAttackExplode2">
+            <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttackExplode2</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.KeeperImpSummon">
+            <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/KeeperImpSummon</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.KeeperImpSummonTelegraph">
+            <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/KeeperImpSummonTelegraph</summary>
         </member>
         <member name="F:Aequus.AequusSounds.CrossbowReload">
             <summary>Full Path: Assets/Sounds/Items/CrossbowReload</summary>

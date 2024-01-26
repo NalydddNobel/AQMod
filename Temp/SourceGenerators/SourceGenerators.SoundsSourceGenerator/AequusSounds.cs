@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Sounds: 45)</summary>
+/// <summary>(Total Sounds: 51)</summary>
 [CompilerGenerated]
 public partial class AequusSounds {            
         /// <summary>Full Path: Assets/Music/PollutedOcean</summary>
@@ -18,6 +18,18 @@ public partial class AequusSounds {
     public static readonly SoundStyle BlackJellyfishExplosion_Underwater = new("Aequus/Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishExplosion_Underwater");
     /// <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishUnderwaterBubbles</summary>
     public static readonly SoundStyle BlackJellyfishUnderwaterBubbles = new("Aequus/Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishUnderwaterBubbles");
+    /// <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttack</summary>
+    public static readonly SoundStyle ChainedSoulAttack = new("Aequus/Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttack");
+    /// <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttackExplode0</summary>
+    public static readonly SoundStyle ChainedSoulAttackExplode0 = new("Aequus/Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttackExplode0");
+    /// <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttackExplode1</summary>
+    public static readonly SoundStyle ChainedSoulAttackExplode1 = new("Aequus/Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttackExplode1");
+    /// <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttackExplode2</summary>
+    public static readonly SoundStyle ChainedSoulAttackExplode2 = new("Aequus/Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttackExplode2");
+    /// <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/KeeperImpSummon</summary>
+    public static readonly SoundStyle KeeperImpSummon = new("Aequus/Assets/Sounds/Enemy/KeeperImp/KeeperImpSummon");
+    /// <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/KeeperImpSummonTelegraph</summary>
+    public static readonly SoundStyle KeeperImpSummonTelegraph = new("Aequus/Assets/Sounds/Enemy/KeeperImp/KeeperImpSummonTelegraph");
     /// <summary>Full Path: Assets/Sounds/Items/CrossbowReload</summary>
     public static readonly SoundStyle CrossbowReload = new("Aequus/Assets/Sounds/Items/CrossbowReload");
     /// <summary>Full Path: Assets/Sounds/Items/CrossbowShoot</summary>

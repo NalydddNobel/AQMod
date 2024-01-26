@@ -28,7 +28,7 @@ public class OccultistProj : ModProjectile {
         }
         if (Projectile.localAI[0] == 0) {
             Projectile.localAI[0] = 1f;
-            SoundEngine.PlaySound(SoundID.Item11 with { Pitch = 0.6f, Volume = 0.5f }, Projectile.Center);
+            SoundEngine.PlaySound(SoundID.Item8 with { Pitch = 0.6f, Volume = 0.5f }, Projectile.Center);
             for (int i = 0; i < 32; i++) {
                 var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleCrystalShard, Projectile.velocity.X, Projectile.velocity.Y, 100, Scale: Main.rand.NextFloat(0.7f, 1.5f));
                 d.noGravity = true;

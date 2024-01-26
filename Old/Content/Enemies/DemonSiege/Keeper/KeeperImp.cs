@@ -1,9 +1,10 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.DataSets;
-using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Tiles.Banners;
 using Aequus.Core.DataSets;
+using Aequus.Old.Content.Events.DemonSiege;
 using System;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -15,6 +16,8 @@ namespace Aequus.Old.Content.Enemies.DemonSiege.Keeper;
 public class KeeperImp : ModNPC {
     public const int TAIL_FRAME_COUNT = 15;
     public const int WING_FRAME_COUNT = 1;
+
+    public const int CHAINED_SOUL_RITUAL_TIME = 120;
 
     public override void SetStaticDefaults() {
         ItemID.Sets.KillsToBanner[BannerItem] = 25;
@@ -64,29 +67,55 @@ public class KeeperImp : ModNPC {
             NPC.velocity.Y -= 0.025f;
             return;
         }
+
+        int maximumTrappers = GetMaximumTrappers();
+        int trapperId = ModContent.NPCType<ChainedSoul>();
+        int whoAmI = NPC.whoAmI + 1;
+
         if ((int)NPC.ai[0] == 0) {
-            NPC.ai[0]++;
-            int count = Main.rand.Next(4) + 1;
-            if (Main.getGoodWorld) {
-                count *= 3;
-            }
-            int spawnX = (int)NPC.position.X + NPC.width / 2;
-            int spawnY = (int)NPC.position.Y + NPC.height / 2;
-            int type = ModContent.NPCType<ChainedSoul>();
-            for (int i = 0; i < count; i++) {
-                NPC.NewNPC(NPC.GetSource_FromAI(), spawnX, spawnY, type, NPC.whoAmI, 0f, NPC.whoAmI + 1f);
-            }
+            NPC.ai[0] = 1f;
+            SpawnInitialTrappers(maximumTrappers, trapperId, whoAmI);
+        }
+
+        if (Main.expertMode && NPC.ai[1] > 30f && NPC.ai[1] < 240f) {
+            TrapperSummonRitual(maximumTrappers, trapperId, whoAmI);
         }
 
         NPC.TargetClosest(faceTarget: false);
 
         if (NPC.HasValidTarget) {
             float speed = 7f;
+            // Trapper Ritual
+            if (NPC.ai[1] < 0f) {
+                float progress = Math.Abs(NPC.ai[1]) / CHAINED_SOUL_RITUAL_TIME;
+                if ((int)NPC.ai[1] == -90f) {
+                    SoundEngine.PlaySound(AequusSounds.KeeperImpSummonTelegraph, NPC.Center);
+                }
+                speed /= 4f;
+
+                int rate = (int)(4 * progress);
+                if (rate <= 0 || Math.Abs((int)NPC.ai[1]) % rate == 0) {
+                    Vector2 spawnPosition = NPC.Center + Main.rand.NextVector2Unit() * Main.rand.NextFloat(1f, 2f) * NPC.width * (1f - (1f - progress) * 0.5f);
+                    Vector2 spawnVelocity = NPC.Center - spawnPosition;
+                    Dust d = Dust.NewDustPerfect(spawnPosition, DustID.Torch, spawnVelocity / 10f + NPC.velocity);
+                    d.noGravity = true;
+                    d.scale = 1.5f * (1f - progress);
+                }
+            }
+
+            // Preparing to for trapper attack
             if (NPC.ai[1] > 240f) {
                 speed /= 2f;
             }
 
             NPC.ai[1]++;
+
+            // Summon new trapper
+            if ((int)NPC.ai[1] == 0f) {
+                SoundEngine.PlaySound(AequusSounds.KeeperImpSummon, NPC.Center);
+                NPC.NewNPC(NPC.GetSource_FromThis(), (int)NPC.Center.X, (int)NPC.Center.Y, trapperId, Start: NPC.whoAmI, ai1: whoAmI);
+            }
+
             if (NPC.ai[1] > 320f) {
                 NPC.ai[1] = 0f;
             }
@@ -113,6 +142,35 @@ public class KeeperImp : ModNPC {
         }
 
         NPC.rotation = NPC.velocity.X * 0.0314f;
+    }
+
+    private void SpawnInitialTrappers(int maximumTrappers, int trapperId, int whoAmI) {
+        int count = Main.rand.Next(maximumTrappers) + 1;
+        int spawnX = (int)NPC.position.X + NPC.width / 2;
+        int spawnY = (int)NPC.position.Y + NPC.height / 2;
+        for (int i = 0; i < count; i++) {
+            NPC.NewNPC(NPC.GetSource_FromAI(), spawnX, spawnY, trapperId, Start: NPC.whoAmI, ai1: whoAmI);
+        }
+    }
+
+    private void TrapperSummonRitual(int maximumTrappers, int trapperId, int whoAmI) {
+        int totalTrappers = 0;
+        for (int i = 0; i < Main.maxNPCs; i++) {
+            if (Main.npc[i].active && !Main.npc[i].friendly && Main.npc[i].type == trapperId && (int)Main.npc[i].ai[1] == whoAmI) {
+                totalTrappers++;
+            }
+        }
+
+        if (totalTrappers < maximumTrappers) {
+            if (Main.rand.NextBool(60 + 200 * totalTrappers)) {
+                NPC.ai[1] = -CHAINED_SOUL_RITUAL_TIME;
+                NPC.netUpdate = true;
+            }
+        }
+    }
+
+    private int GetMaximumTrappers() {
+        return Main.getGoodWorld ? 12 : 4;
     }
 
     public override void HitEffect(NPC.HitInfo hit) {

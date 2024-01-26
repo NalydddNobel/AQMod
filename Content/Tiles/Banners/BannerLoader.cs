@@ -1,5 +1,6 @@
 ﻿using Aequus.Core.Initialization;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Aequus.Content.Tiles.Banners;
 
@@ -18,6 +19,17 @@ public class BannerLoader : GlobalNPC {
         }
 
         LoadingSteps.EnqueuePostSetupContent(() => NPCToBannerItemId.Add(modNPC.Type, item));
+    }
+
+    /// <summary>
+    /// Adds a banner buff for this NPC to <typeparamref name="TBannerNPC"/>'s registered banner. This is used grant a buff against Chained Souls when near the Keeper's Banner.
+    /// </summary>
+    /// <typeparam name="TBannerNPC"></typeparam>
+    /// <param name="npcWithoutBanner"></param>
+    public static void AddBannerBuff<TBannerNPC>(ModNPC npcWithoutBanner) where TBannerNPC : ModNPC {
+        foreach (var b in ModContent.GetInstance<TBannerNPC>().Mod.GetContent<InstancedBannerTile>().Where(b => b._modNPC is TBannerNPC)) {
+            b.AddNPCBuff(npcWithoutBanner);
+        }
     }
 
     public override void Unload() {

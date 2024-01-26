@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Core.DataSets;
+using Aequus.Old.Content.Events.DemonSiege;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;
@@ -7,6 +8,9 @@ using Terraria.GameContent.Bestiary;
 namespace Aequus.Content.DataSets;
 
 public partial class NPCSets : DataSet {
+    [JsonProperty]
+    public static HashSet<NPCEntry> OccultistIgnore { get; private set; } = new();
+
     [JsonProperty]
     public static HashSet<NPCEntry> IsCorrupt { get; private set; } = new();
     [JsonProperty]
@@ -60,72 +64,59 @@ public partial class NPCSets : DataSet {
     public static HashSet<NPCAIEntry> PushableByAI { get; private set; } = new();
 
     #region Bestiary
-    public static List<IBestiaryInfoElement> CorruptionElements { get; private set; } = new();
-    public static List<IBestiaryInfoElement> CrimsonElements { get; private set; } = new();
-    public static List<IBestiaryInfoElement> HallowElements { get; private set; } = new();
-    public static List<IBestiaryInfoElement> PillarElements { get; private set; } = new();
+    [JsonIgnore]
+    public static List<IBestiaryInfoElement> CorruptionTags { get; private set; } = new();
+    [JsonIgnore]
+    public static List<IBestiaryInfoElement> CrimsonTags { get; private set; } = new();
+    [JsonIgnore]
+    public static List<IBestiaryInfoElement> HallowTags { get; private set; } = new();
+    [JsonIgnore]
+    public static List<IBestiaryInfoElement> PillarTags { get; private set; } = new();
+    [JsonIgnore]
+    public static List<IBestiaryInfoElement> UnderworldTags { get; private set; } = new();
 
     private void LoadBestiaryElementTypes() {
-        CorruptionElements.AddRange(new[] {
+        CorruptionTags.AddRange(new IBestiaryInfoElement[] {
             BestiaryBuilder.Corruption,
             BestiaryBuilder.UndergroundCorruption,
             BestiaryBuilder.CorruptionDesert,
             BestiaryBuilder.CorruptionUndergroundDesert,
             BestiaryBuilder.CorruptionIce,
         });
-        CrimsonElements.AddRange(new[] {
+        CrimsonTags.AddRange(new IBestiaryInfoElement[] {
             BestiaryBuilder.Crimson,
             BestiaryBuilder.UndergroundCrimson,
             BestiaryBuilder.CrimsonDesert,
             BestiaryBuilder.CrimsonUndergroundDesert,
             BestiaryBuilder.CrimsonIce,
         });
-        HallowElements.AddRange(new[] {
+        HallowTags.AddRange(new IBestiaryInfoElement[] {
             BestiaryBuilder.Hallow,
             BestiaryBuilder.UndergroundHallow,
             BestiaryBuilder.HallowDesert,
             BestiaryBuilder.HallowUndergroundDesert,
             BestiaryBuilder.HallowIce,
         });
-        PillarElements.AddRange(new[] {
+        PillarTags.AddRange(new IBestiaryInfoElement[] {
             BestiaryBuilder.SolarPillar,
             BestiaryBuilder.VortexPillar,
             BestiaryBuilder.NebulaPillar,
             BestiaryBuilder.StardustPillar,
         });
+        UnderworldTags.AddRange(new IBestiaryInfoElement[] {
+            BestiaryBuilder.Underworld,
+        });
     }
-    private bool CheckBestiary(List<IBestiaryInfoElement> info, List<IBestiaryInfoElement> compareInfo) {
-        foreach (var i in info) {
-            if (i is SpawnConditionBestiaryInfoElement spawn) {
-                foreach (var j in compareInfo) {
-                    if (j is not SpawnConditionBestiaryInfoElement compareSpawn) {
-                        continue;
-                    }
 
-                    if (spawn.GetDisplayNameKey() == compareSpawn.GetDisplayNameKey()) {
-                        return true;
-                    }
-                }
-                continue;
-            }
-
-            var type = i.GetType();
-            foreach (var compare in compareInfo) {
-                if (type == compare.GetType()) {
-                    return true;
-                }
-            }
-        }
-        return false;
+    private bool ContainsBestiaryTags(List<IBestiaryInfoElement> tags, List<IBestiaryInfoElement> searchTags) {
+        return tags != null && tags.Exists(t => t != null && searchTags.Exists(searchTag => t.GetType() == searchTag.GetType()));
     }
     #endregion
 
     #region Loading
-    public override void Load() {
+    public override void SetStaticDefaults() {
         LoadBestiaryElementTypes();
-    }
 
-    public override void PostSetupContent() {
         // Make all of these NPCs immune to the vanilla "Slow" debuff.
         NPCID.Sets.SpecificDebuffImmunity[NPCID.HallowBoss][BuffID.Slow] = true;
         NPCID.Sets.SpecificDebuffImmunity[NPCID.CultistBoss][BuffID.Slow] = true;
@@ -173,17 +164,20 @@ public partial class NPCSets : DataSet {
             }
 
             var info = bestiaryEntry.Info;
-            if (CheckBestiary(info, CorruptionElements)) {
+            if (ContainsBestiaryTags(info, CorruptionTags)) {
                 IsCorrupt.Add((NPCEntry)i);
             }
-            if (CheckBestiary(info, CrimsonElements)) {
+            if (ContainsBestiaryTags(info, CrimsonTags)) {
                 IsCrimson.Add((NPCEntry)i);
             }
-            if (CheckBestiary(info, HallowElements)) {
+            if (ContainsBestiaryTags(info, HallowTags)) {
                 IsHallow.Add((NPCEntry)i);
             }
-            if (CheckBestiary(info, PillarElements)) {
+            if (ContainsBestiaryTags(info, PillarTags)) {
                 FromPillarEvent.Add((NPCEntry)i);
+            }
+            if (ContainsBestiaryTags(info, UnderworldTags)) {
+                OccultistIgnore.Add((NPCEntry)i);
             }
         }
     }

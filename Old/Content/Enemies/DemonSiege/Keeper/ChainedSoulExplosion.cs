@@ -30,7 +30,7 @@ public class ChainedSoulExplosion : ModProjectile {
     }
 
     public override Color? GetAlpha(Color lightColor) {
-        return new Color(100, 10, 255, 50);
+        return new Color(100, 10, 255, 150);
     }
 
     public override bool PreDraw(ref Color lightColor) {

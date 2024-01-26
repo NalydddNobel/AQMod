@@ -1,6 +1,9 @@
 ﻿using Aequus.Content.DataSets;
+using Aequus.Content.Tiles.Banners;
 using Aequus.Core.DataSets;
+using System;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 
 namespace Aequus.Old.Content.Enemies.DemonSiege.Keeper;
@@ -18,6 +21,8 @@ public class ChainedSoul : ModNPC {
             NPCID.Sets.SpecificDebuffImmunity[Type][buff.Id] = true;
         }
         NPCSets.DealsHeatDamage.Add((NPCEntry)Type);
+
+        BannerLoader.AddBannerBuff<KeeperImp>(this);
     }
 
     public override void SetDefaults() {
@@ -37,7 +42,6 @@ public class ChainedSoul : ModNPC {
         NPC.npcSlots = 0.6f;
         NPC.lavaMovementSpeed = 1f;
         NPC.behindTiles = true;
-        Banner = ModContent.NPCType<KeeperImp>();
 
         if (Main.zenithWorld) {
             NPC.scale = 2f;
@@ -142,7 +146,6 @@ public class ChainedSoul : ModNPC {
                 if ((int)NPC.ai[0] == 0 && Collision.CanHitLine(NPC.position, NPC.width, NPC.height, Main.player[NPC.target].position, Main.player[NPC.target].width, Main.player[NPC.target].height)) {
                     NPC.ai[0] = 1f;
                     NPC.localAI[0] = 30f;
-                    SoundEngine.PlaySound(SoundID.NPCDeath13, NPC.Center);
                     if (Main.netMode != NetmodeID.MultiplayerClient) {
                         float projectileSpeed = 10f;
                         int projectileType = ModContent.ProjectileType<ChainedSoulProj>();
@@ -231,5 +234,27 @@ public class ChainedSoul : ModNPC {
 
     public override bool? CanFallThroughPlatforms() {
         return true;
+    }
+
+    public override void OnKill() {
+        Player closestPlayer = Main.player[Player.FindClosest(NPC.position, NPC.width, NPC.height)];
+
+        int heartCount = 2;
+        if (!closestPlayer.DeadOrGhost) {
+            float healthRatio = closestPlayer.statLife / (float)closestPlayer.statLifeMax2;
+            heartCount += (int)((1f - healthRatio) * 4f);
+        }
+        
+        if (Main.expertMode) {
+            heartCount /= 2;
+        }
+
+        heartCount = Math.Max(heartCount, 1);
+
+        IEntitySource source = NPC.GetSource_Death();
+        Rectangle hitbox = NPC.Hitbox;
+        for (int i = 0; i < heartCount; i++) {
+            Item.NewItem(source, hitbox, ItemID.Heart);
+        }
     }
 }
