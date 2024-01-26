@@ -87,22 +87,22 @@ ScavengerStatue: {
 
 MossStatues: {
 	Argon: {
-		// ItemDisplayName: Argon Plant Statue
-		// ItemTooltip: ""
+		ItemDisplayName: 氩植物雕像
+		ItemTooltip: ""
 	}
 
 	Krypton: {
-		// ItemDisplayName: Krypton Plant Statue
-		// ItemTooltip: ""
+		ItemDisplayName: 氪植物雕像
+		ItemTooltip: ""
 	}
 
 	Neon: {
-		// ItemDisplayName: Neon Plant Statue
-		// ItemTooltip: ""
+		ItemDisplayName: 氖植物雕像
+		ItemTooltip: ""
 	}
 
 	Xenon: {
-		// ItemDisplayName: Xenon Plant Statue
-		// ItemTooltip: ""
+		ItemDisplayName: 氙植物雕像
+		ItemTooltip: ""
 	}
 }

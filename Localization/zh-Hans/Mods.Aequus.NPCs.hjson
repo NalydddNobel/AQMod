@@ -46,12 +46,12 @@ LeggedLava: {
 }
 
 KeeperImp: {
-	// DisplayName: Keeper
-	// Bestiary: By capturing souls for itself, withering their bodies, and breaking their will, this imp has gained deadly pets that follow its command perfectly.
-	// BannerName: Keeper Banner
+	DisplayName: 看守者
+	Bestiary: 通过捕捉灵魂, 使它们的身体枯萎, 并破坏它们的意志, 这只小淘气获得了完全听从其命令的致命宠物.
+	BannerName: 看守者旗
 }
 
-// ChainedSoul.DisplayName: Chained Soul
+ChainedSoul.DisplayName: 链缚之魂
 
 Occultist: {
 	DisplayName: 秘术师

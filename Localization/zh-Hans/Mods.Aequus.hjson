@@ -9,7 +9,7 @@ KeyUnbound: 按键未绑定
 
 Biomes: {
 	DemonSiegeZone: {
-		DisplayName: ""
+		DisplayName: "血巢"
 		TownNPCDialogueName: ""
 	}
 }
