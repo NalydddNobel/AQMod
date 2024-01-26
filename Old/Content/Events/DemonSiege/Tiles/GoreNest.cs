@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Content.DataSets;
+using Aequus.Content.Events.DemonSiege;
 using Aequus.Core.Assets;
 using Aequus.Core.Graphics.Tiles;
 using Aequus.Old.Content.TownNPCs.OccultistNPC;
@@ -74,7 +75,7 @@ public class GoreNest : ModTile, ISpecialTileRenderer {
     }
 
     public override bool AutoSelect(int i, int j, Item item) {
-        return DemonSiegeSystem.RegisteredSacrifices.ContainsKey(item.type);
+        return GoreNestConversions.OriginalToConversion.ContainsKey(item.type);
     }
 
     public override bool RightClick(int i, int j) {
@@ -197,7 +198,7 @@ public class GoreNest : ModTile, ISpecialTileRenderer {
         Main.spriteBatch.Draw(texture, where, frame, Color.White * opacity, rotation, origin, scale, SpriteEffects.None, 0f);
 
         if (upgradeOpacity > 0f) {
-            DemonSiegeSystem.RegisteredSacrifices.TryGetValue(i.netID, out var upgrade);
+            GoreNestConversions.OriginalToConversion.TryGetValue(i.netID, out var upgrade);
             Main.instance.LoadItem(upgrade.NewItem);
 
             texture = TextureAssets.Item[upgrade.NewItem].Value;
@@ -223,16 +224,16 @@ public class GoreNest : ModTile, ISpecialTileRenderer {
     }
 
     public static Item GetUsableDemonSiegeItem(Player player) {
-        if (DemonSiegeSystem.RegisteredSacrifices.ContainsKey(player.HeldItemFixed().type)) {
+        if (GoreNestConversions.OriginalToConversion.ContainsKey(player.HeldItemFixed().type)) {
             return player.HeldItemFixed();
         }
         for (int i = 0; i < Main.InventoryItemSlotsCount; i++) {
-            if (DemonSiegeSystem.RegisteredSacrifices.TryGetValue(player.inventory[i].type, out var val) && val.OriginalItem != val.NewItem) {
+            if (GoreNestConversions.OriginalToConversion.TryGetValue(player.inventory[i].type, out var val) && val.OriginalItem != val.NewItem) {
                 return player.inventory[i];
             }
         }
         for (int i = 0; i < Main.InventoryItemSlotsCount; i++) {
-            if (DemonSiegeSystem.RegisteredSacrifices.TryGetValue(player.inventory[i].type, out var val)) {
+            if (GoreNestConversions.OriginalToConversion.TryGetValue(player.inventory[i].type, out var val)) {
                 return player.inventory[i];
             }
         }

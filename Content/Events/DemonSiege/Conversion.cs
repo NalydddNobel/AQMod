@@ -1,13 +1,13 @@
-﻿namespace Aequus.Old.Content.Events.DemonSiege;
+﻿namespace Aequus.Content.Events.DemonSiege;
 
-public struct SacrificeData {
+public struct Conversion {
     public readonly int OriginalItem;
     public readonly int NewItem;
     public EventTier Progression;
     public bool Hide;
     public bool DisableDecraft;
 
-    public SacrificeData(int oldItem, int newItem, EventTier progression) {
+    public Conversion(int oldItem, int newItem, EventTier progression) {
         OriginalItem = oldItem;
         NewItem = newItem;
         Progression = progression;

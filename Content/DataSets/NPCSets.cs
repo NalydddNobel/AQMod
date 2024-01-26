@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Core.DataSets;
-using Aequus.Old.Content.Events.DemonSiege;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;

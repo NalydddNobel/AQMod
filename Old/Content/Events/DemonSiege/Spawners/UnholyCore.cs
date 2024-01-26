@@ -1,9 +1,12 @@
-﻿namespace Aequus.Old.Content.Events.DemonSiege.Spawners;
+﻿using Aequus.Content.Events.DemonSiege;
+
+namespace Aequus.Old.Content.Events.DemonSiege.Spawners;
 
 public class UnholyCore : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 3;
-        DemonSiegeSystem.RegisterSacrifice(new SacrificeData(Type, Type, EventTier.PreHardmode));
+        // Hack which makes this item get consumed after the event is over, instead of converting into another item
+        GoreNestConversions.Register(Type, Type);
     }
 
     public override void SetDefaults() {
