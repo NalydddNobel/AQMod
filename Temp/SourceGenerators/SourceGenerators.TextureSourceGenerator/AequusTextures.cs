@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 319)</summary>
+/// <summary>(Total Textures: 329)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -609,10 +609,18 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OblivionAltar_Highlight = new("Aequus/Old/Content/Events/DemonSiege/Tiles/OblivionAltar_Highlight");
     /// <summary>Full Path: Old/Content/Materials/BloodyTearstone</summary>
     public static readonly RequestCache<Texture2D> BloodyTearstone = new("Aequus/Old/Content/Materials/BloodyTearstone");
+    /// <summary>Full Path: Old/Content/Particles/MonoDust</summary>
+    public static readonly RequestCache<Texture2D> MonoDust = new("Aequus/Old/Content/Particles/MonoDust");
+    /// <summary>Full Path: Old/Content/Particles/VoidDust</summary>
+    public static readonly RequestCache<Texture2D> VoidDust = new("Aequus/Old/Content/Particles/VoidDust");
     /// <summary>Full Path: Old/Content/Potions/Foods/SusSteak/SuspiciousLookingSteak</summary>
     public static readonly RequestCache<Texture2D> SuspiciousLookingSteak = new("Aequus/Old/Content/Potions/Foods/SusSteak/SuspiciousLookingSteak");
     /// <summary>Full Path: Old/Content/Potions/Resurrection/PotionOfResurrection</summary>
     public static readonly RequestCache<Texture2D> PotionOfResurrection = new("Aequus/Old/Content/Potions/Resurrection/PotionOfResurrection");
+    /// <summary>Full Path: Old/Content/StatusEffects/DamageOverTime/CorruptionHellfire</summary>
+    public static readonly RequestCache<Texture2D> CorruptionHellfire = new("Aequus/Old/Content/StatusEffects/DamageOverTime/CorruptionHellfire");
+    /// <summary>Full Path: Old/Content/StatusEffects/DamageOverTime/CrimsonHellfire</summary>
+    public static readonly RequestCache<Texture2D> CrimsonHellfire = new("Aequus/Old/Content/StatusEffects/DamageOverTime/CrimsonHellfire");
     /// <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreBook</summary>
     public static readonly RequestCache<Texture2D> OccultistGoreBook = new("Aequus/Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreBook");
     /// <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreHead</summary>
@@ -645,4 +653,16 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CrusadersCrossbow = new("Aequus/Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow");
     /// <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj</summary>
     public static readonly RequestCache<Texture2D> CrusadersCrossbowProj = new("Aequus/Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj");
+    /// <summary>Full Path: Old/Content/Weapons/Ranged/Demon/Deltoid</summary>
+    public static readonly RequestCache<Texture2D> Deltoid = new("Aequus/Old/Content/Weapons/Ranged/Demon/Deltoid");
+    /// <summary>Full Path: Old/Content/Weapons/Ranged/Demon/DeltoidArrow</summary>
+    public static readonly RequestCache<Texture2D> DeltoidArrow = new("Aequus/Old/Content/Weapons/Ranged/Demon/DeltoidArrow");
+    /// <summary>Full Path: Old/Content/Weapons/Ranged/Demon/Deltoid_Glow</summary>
+    public static readonly RequestCache<Texture2D> Deltoid_Glow = new("Aequus/Old/Content/Weapons/Ranged/Demon/Deltoid_Glow");
+    /// <summary>Full Path: Old/Content/Weapons/Ranged/Demon/HamaYumi</summary>
+    public static readonly RequestCache<Texture2D> HamaYumi = new("Aequus/Old/Content/Weapons/Ranged/Demon/HamaYumi");
+    /// <summary>Full Path: Old/Content/Weapons/Ranged/Demon/HamaYumiArrow</summary>
+    public static readonly RequestCache<Texture2D> HamaYumiArrow = new("Aequus/Old/Content/Weapons/Ranged/Demon/HamaYumiArrow");
+    /// <summary>Full Path: Old/Content/Weapons/Ranged/Demon/HamaYumi_Glow</summary>
+    public static readonly RequestCache<Texture2D> HamaYumi_Glow = new("Aequus/Old/Content/Weapons/Ranged/Demon/HamaYumi_Glow");
 }

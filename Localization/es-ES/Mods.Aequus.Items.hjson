@@ -540,3 +540,13 @@ Toolbelt: {
 	// BackpackEnabled: Toolbelt Pack On
 	// BackpackDisabled: Toolbelt Pack Off
 }
+
+Deltoid: {
+	// DisplayName: Deltoid
+	// Tooltip: ""
+}
+
+HamaYumi: {
+	// DisplayName: Hama Yumi
+	// Tooltip: ""
+}

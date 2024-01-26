@@ -42,3 +42,13 @@ WarHornCooldown: {
 	// DisplayName: War Horn (Cooldown)
 	// Description: The War Horn is on cooldown!
 }
+
+CorruptionHellfire: {
+	// DisplayName: Corruption Hellfire
+	// Description: Mods.Aequus.Buffs.CorruptionHellfire.Description
+}
+
+CrimsonHellfire: {
+	// DisplayName: Crimson Hellfire
+	// Description: Mods.Aequus.Buffs.CrimsonHellfire.Description
+}

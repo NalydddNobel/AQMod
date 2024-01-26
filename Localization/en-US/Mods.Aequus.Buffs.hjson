@@ -42,3 +42,13 @@ WarHornCooldown: {
 	DisplayName: War Horn (Cooldown)
 	Description: The War Horn is on cooldown!
 }
+
+CorruptionHellfire: {
+	DisplayName: Corruption Hellfire
+	Description: Your flesh burns from the sinister flames
+}
+
+CrimsonHellfire: {
+	DisplayName: Crimson Hellfire
+	Description: Your flesh burns from the sinister flames
+}

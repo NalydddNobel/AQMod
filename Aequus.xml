@@ -1332,7 +1332,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 51)</summary>
+            <summary>(Total Sounds: 52)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.PollutedOcean">
             <summary>Full Path: Assets/Music/PollutedOcean</summary>
@@ -1475,6 +1475,9 @@
         <member name="F:Aequus.AequusSounds.HighSteaksCriticalStrike">
             <summary>Full Path: Old/Assets/Sounds/HighSteaks/HighSteaksCriticalStrike</summary>
         </member>
+        <member name="F:Aequus.AequusSounds.InflictFireDebuff">
+            <summary>Full Path: Old/Assets/Sounds/InflictFireDebuff</summary>
+        </member>
         <member name="F:Aequus.AequusSounds.Meathook0">
             <summary>Full Path: Old/Assets/Sounds/Meathook/Meathook0</summary>
         </member>
@@ -1488,7 +1491,7 @@
             <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookPull</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 319)</summary>
+            <summary>(Total Textures: 329)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2393,11 +2396,23 @@
         <member name="F:Aequus.AequusTextures.BloodyTearstone">
             <summary>Full Path: Old/Content/Materials/BloodyTearstone</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.MonoDust">
+            <summary>Full Path: Old/Content/Particles/MonoDust</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.VoidDust">
+            <summary>Full Path: Old/Content/Particles/VoidDust</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.SuspiciousLookingSteak">
             <summary>Full Path: Old/Content/Potions/Foods/SusSteak/SuspiciousLookingSteak</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PotionOfResurrection">
             <summary>Full Path: Old/Content/Potions/Resurrection/PotionOfResurrection</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CorruptionHellfire">
+            <summary>Full Path: Old/Content/StatusEffects/DamageOverTime/CorruptionHellfire</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrimsonHellfire">
+            <summary>Full Path: Old/Content/StatusEffects/DamageOverTime/CrimsonHellfire</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OccultistGoreBook">
             <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreBook</summary>
@@ -2446,6 +2461,24 @@
         </member>
         <member name="F:Aequus.AequusTextures.CrusadersCrossbowProj">
             <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Deltoid">
+            <summary>Full Path: Old/Content/Weapons/Ranged/Demon/Deltoid</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DeltoidArrow">
+            <summary>Full Path: Old/Content/Weapons/Ranged/Demon/DeltoidArrow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Deltoid_Glow">
+            <summary>Full Path: Old/Content/Weapons/Ranged/Demon/Deltoid_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HamaYumi">
+            <summary>Full Path: Old/Content/Weapons/Ranged/Demon/HamaYumi</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HamaYumiArrow">
+            <summary>Full Path: Old/Content/Weapons/Ranged/Demon/HamaYumiArrow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HamaYumi_Glow">
+            <summary>Full Path: Old/Content/Weapons/Ranged/Demon/HamaYumi_Glow</summary>
         </member>
         <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.NotStackableCritDamage">
             <summary>

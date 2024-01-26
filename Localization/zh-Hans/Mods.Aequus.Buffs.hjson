@@ -42,3 +42,13 @@ WarHornCooldown: {
 	DisplayName: 战争号角 (冷却)
 	Description: 战争号角正处于冷却中!
 }
+
+CorruptionHellfire: {
+	DisplayName: 腐化狱火
+	// Description: Mods.Aequus.Buffs.CorruptionHellfire.Description
+}
+
+CrimsonHellfire: {
+	DisplayName: 猩红狱火
+	// Description: Mods.Aequus.Buffs.CrimsonHellfire.Description
+}

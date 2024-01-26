@@ -21,3 +21,7 @@ DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 // OccultistProjSpawner.DisplayName: "{$NPCs.Occultist.DisplayName}"
 // ChainedSoulExplosion.DisplayName: "{$NPCs.ChainedSoul.DisplayName}"
 // ChainedSoulProj.DisplayName: "{$NPCs.ChainedSoul.DisplayName}"
+// DeltoidArrow.DisplayName: Deltoid Arrow
+// DeltoidExplosion.DisplayName: Deltoid Explosion
+// HamaYumiArrow.DisplayName: Hama Yumi Arrow
+// HamaYumiExplosion.DisplayName: Hama Yumi Explosion

@@ -221,6 +221,16 @@ CrusadersCrossbow: {
 	Tooltip: 发射可以治疗队友的箭矢
 }
 
+Deltoid: {
+	DisplayName: 增量
+	// Tooltip: ""
+}
+
+HamaYumi: {
+	DisplayName: 破魔弓
+	// Tooltip: ""
+}
+
 //# Weapons: Magic
 TrashStaff: {
 	DisplayName: 垃圾邮件

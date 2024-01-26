@@ -42,6 +42,10 @@
     <CompilerGeneratedFilesOutputPath>Temp</CompilerGeneratedFilesOutputPath>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Optimize>False</Optimize>
+  </PropertyGroup>
+
   <ItemGroup Condition="'$(Configuration)' == 'Debug'">
 	<AdditionalFiles Remove="Old\**" />
 	<Compile Remove="Old\**" />
