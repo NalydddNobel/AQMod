@@ -102,7 +102,7 @@ KegOSpirits: {
 	Tooltip:
 		'''
 		{$SaivoryKnife.Tooltip}
-		{$SpiritBottle.Tooltip@1}
+		{$BottleOSpirits.Tooltip@1}
 		'''
 }
 
@@ -111,8 +111,8 @@ SaivoryKnife: {
 	Tooltip: Increases the duration of your ghost minions by {0}
 }
 
-SpiritBottle: {
-	DisplayName: Spirit Bottle
+BottleOSpirits: {
+	DisplayName: Bottle O' Spirits
 	Tooltip: Increases your maximum number of ghosts by {0}
 }
 

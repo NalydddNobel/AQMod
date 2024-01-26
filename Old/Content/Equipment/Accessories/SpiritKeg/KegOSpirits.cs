@@ -1,9 +1,10 @@
-﻿using Terraria.Localization;
+﻿using Aequus.Content.Equipment.Accessories.SpiritBottle;
+using Terraria.Localization;
 
 namespace Aequus.Old.Content.Equipment.Accessories.SpiritKeg;
 
 public class KegOSpirits : ModItem {
-    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Minutes(SaivoryKnife.GhostLifespan), SpiritBottle.IncreaseGhostSlots);
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Minutes(SaivoryKnife.GhostLifespan), BottleOSpirits.IncreaseGhostSlots);
 
     public override void SetDefaults() {
         Item.width = 24;
@@ -21,7 +22,7 @@ public class KegOSpirits : ModItem {
 
     public override void AddRecipes() {
         CreateRecipe()
-            .AddIngredient<SpiritBottle>()
+            .AddIngredient<BottleOSpirits>()
             .AddIngredient<SaivoryKnife>()
             .AddTile(TileID.TinkerersWorkbench)
             .Register()

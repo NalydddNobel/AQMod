@@ -102,7 +102,7 @@ KegOSpirits: {
 	Tooltip:
 		'''
 		{$SaivoryKnife.Tooltip}
-		{$SpiritBottle.Tooltip@1}
+		{$BottleOSpirits.Tooltip@1}
 		'''
 }
 
@@ -111,7 +111,7 @@ SaivoryKnife: {
 	Tooltip: 延长{0}幽魂仆从的存在时间
 }
 
-SpiritBottle: {
+BottleOSpirits: {
 	DisplayName: 魂灵瓶
 	Tooltip: 增加{0}格最大幽魂仆从栏位
 }
