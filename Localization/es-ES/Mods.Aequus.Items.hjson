@@ -221,6 +221,16 @@ CrusadersCrossbow: {
 	// Tooltip: Shoots a bolt which can heal allies
 }
 
+Deltoid: {
+	// DisplayName: Deltoid
+	// Tooltip: Ignites wooden arrows with crimson hellfire
+}
+
+HamaYumi: {
+	// DisplayName: Hama Yumi
+	// Tooltip: Arrows are temporarily buffed with a piercing corruption blast
+}
+
 //# Weapons: Magic
 TrashStaff: {
 	DisplayName: Correo Spam
@@ -541,12 +551,12 @@ Toolbelt: {
 	// BackpackDisabled: Toolbelt Pack Off
 }
 
-Deltoid: {
-	// DisplayName: Deltoid
+Cauterizer: {
+	// DisplayName: Cauterizer
 	// Tooltip: ""
 }
 
-HamaYumi: {
-	// DisplayName: Hama Yumi
+HellsBoon: {
+	// DisplayName: Hells Boon
 	// Tooltip: ""
 }

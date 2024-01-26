@@ -115,7 +115,7 @@ public abstract class HeldSwordProjectile : HeldProjBase {
         Main.player[Projectile.owner].ownedProjectileCounts[Type]--;
         var aequusPlayer = Main.player[Projectile.owner].GetModPlayer<AequusPlayer>();
         if (aequusPlayer.TryGetTimer(SwordSwingFlipTimer, out var timer)) {
-            timer.MaxTime = swingTimeMax;
+            timer.MaxTime = swingTimeMax + 8;
             if (timer.Active) {
                 timer.TimePassed = timer.MaxTime;
             }

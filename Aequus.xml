@@ -1491,7 +1491,7 @@
             <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookPull</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 329)</summary>
+            <summary>(Total Textures: 334)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2456,29 +2456,44 @@
         <member name="F:Aequus.AequusTextures.Old_Content_TownNPCs_OccultistNPC_Shimmer_Occultist">
             <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Shimmer/Occultist</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Cauterizer">
+            <summary>Full Path: Old/Content/Weapons/Demon/Melee/Cauterizer</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CauterizerSlash">
+            <summary>Full Path: Old/Content/Weapons/Demon/Melee/CauterizerSlash</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HellsBoon">
+            <summary>Full Path: Old/Content/Weapons/Demon/Melee/HellsBoon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HellsBoonProj">
+            <summary>Full Path: Old/Content/Weapons/Demon/Melee/HellsBoonProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HellsBoon_Glow">
+            <summary>Full Path: Old/Content/Weapons/Demon/Melee/HellsBoon_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Deltoid">
+            <summary>Full Path: Old/Content/Weapons/Demon/Ranged/Deltoid</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DeltoidArrow">
+            <summary>Full Path: Old/Content/Weapons/Demon/Ranged/DeltoidArrow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Deltoid_Glow">
+            <summary>Full Path: Old/Content/Weapons/Demon/Ranged/Deltoid_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HamaYumi">
+            <summary>Full Path: Old/Content/Weapons/Demon/Ranged/HamaYumi</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HamaYumiArrow">
+            <summary>Full Path: Old/Content/Weapons/Demon/Ranged/HamaYumiArrow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HamaYumi_Glow">
+            <summary>Full Path: Old/Content/Weapons/Demon/Ranged/HamaYumi_Glow</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.CrusadersCrossbow">
             <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrusadersCrossbowProj">
             <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Deltoid">
-            <summary>Full Path: Old/Content/Weapons/Ranged/Demon/Deltoid</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DeltoidArrow">
-            <summary>Full Path: Old/Content/Weapons/Ranged/Demon/DeltoidArrow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Deltoid_Glow">
-            <summary>Full Path: Old/Content/Weapons/Ranged/Demon/Deltoid_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HamaYumi">
-            <summary>Full Path: Old/Content/Weapons/Ranged/Demon/HamaYumi</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HamaYumiArrow">
-            <summary>Full Path: Old/Content/Weapons/Ranged/Demon/HamaYumiArrow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HamaYumi_Glow">
-            <summary>Full Path: Old/Content/Weapons/Ranged/Demon/HamaYumi_Glow</summary>
         </member>
         <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.NotStackableCritDamage">
             <summary>

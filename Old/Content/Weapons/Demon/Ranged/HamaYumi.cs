@@ -2,7 +2,7 @@
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Core.Initialization;
 
-namespace Aequus.Old.Content.Weapons.Ranged.Demon;
+namespace Aequus.Old.Content.Weapons.Demon.Ranged;
 
 [AutoloadGlowMask]
 public class HamaYumi : ModItem {

@@ -58,5 +58,10 @@
 	<AdditionalFiles Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
   </ItemGroup>
+	
+  <ItemGroup>
+    <None Remove="Old\Content\Weapons\Demon\Melee\Cauterizer.png" />
+    <None Remove="Old\Content\Weapons\Demon\Melee\CauterizerSlash.png" />
+  </ItemGroup>
 
 </Project>

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 329)</summary>
+/// <summary>(Total Textures: 334)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -649,20 +649,30 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Occultist_Head = new("Aequus/Old/Content/TownNPCs/OccultistNPC/Occultist_Head");
     /// <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Shimmer/Occultist</summary>
     public static readonly RequestCache<Texture2D> Old_Content_TownNPCs_OccultistNPC_Shimmer_Occultist = new("Aequus/Old/Content/TownNPCs/OccultistNPC/Shimmer/Occultist");
+    /// <summary>Full Path: Old/Content/Weapons/Demon/Melee/Cauterizer</summary>
+    public static readonly RequestCache<Texture2D> Cauterizer = new("Aequus/Old/Content/Weapons/Demon/Melee/Cauterizer");
+    /// <summary>Full Path: Old/Content/Weapons/Demon/Melee/CauterizerSlash</summary>
+    public static readonly RequestCache<Texture2D> CauterizerSlash = new("Aequus/Old/Content/Weapons/Demon/Melee/CauterizerSlash");
+    /// <summary>Full Path: Old/Content/Weapons/Demon/Melee/HellsBoon</summary>
+    public static readonly RequestCache<Texture2D> HellsBoon = new("Aequus/Old/Content/Weapons/Demon/Melee/HellsBoon");
+    /// <summary>Full Path: Old/Content/Weapons/Demon/Melee/HellsBoonProj</summary>
+    public static readonly RequestCache<Texture2D> HellsBoonProj = new("Aequus/Old/Content/Weapons/Demon/Melee/HellsBoonProj");
+    /// <summary>Full Path: Old/Content/Weapons/Demon/Melee/HellsBoon_Glow</summary>
+    public static readonly RequestCache<Texture2D> HellsBoon_Glow = new("Aequus/Old/Content/Weapons/Demon/Melee/HellsBoon_Glow");
+    /// <summary>Full Path: Old/Content/Weapons/Demon/Ranged/Deltoid</summary>
+    public static readonly RequestCache<Texture2D> Deltoid = new("Aequus/Old/Content/Weapons/Demon/Ranged/Deltoid");
+    /// <summary>Full Path: Old/Content/Weapons/Demon/Ranged/DeltoidArrow</summary>
+    public static readonly RequestCache<Texture2D> DeltoidArrow = new("Aequus/Old/Content/Weapons/Demon/Ranged/DeltoidArrow");
+    /// <summary>Full Path: Old/Content/Weapons/Demon/Ranged/Deltoid_Glow</summary>
+    public static readonly RequestCache<Texture2D> Deltoid_Glow = new("Aequus/Old/Content/Weapons/Demon/Ranged/Deltoid_Glow");
+    /// <summary>Full Path: Old/Content/Weapons/Demon/Ranged/HamaYumi</summary>
+    public static readonly RequestCache<Texture2D> HamaYumi = new("Aequus/Old/Content/Weapons/Demon/Ranged/HamaYumi");
+    /// <summary>Full Path: Old/Content/Weapons/Demon/Ranged/HamaYumiArrow</summary>
+    public static readonly RequestCache<Texture2D> HamaYumiArrow = new("Aequus/Old/Content/Weapons/Demon/Ranged/HamaYumiArrow");
+    /// <summary>Full Path: Old/Content/Weapons/Demon/Ranged/HamaYumi_Glow</summary>
+    public static readonly RequestCache<Texture2D> HamaYumi_Glow = new("Aequus/Old/Content/Weapons/Demon/Ranged/HamaYumi_Glow");
     /// <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow</summary>
     public static readonly RequestCache<Texture2D> CrusadersCrossbow = new("Aequus/Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow");
     /// <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj</summary>
     public static readonly RequestCache<Texture2D> CrusadersCrossbowProj = new("Aequus/Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj");
-    /// <summary>Full Path: Old/Content/Weapons/Ranged/Demon/Deltoid</summary>
-    public static readonly RequestCache<Texture2D> Deltoid = new("Aequus/Old/Content/Weapons/Ranged/Demon/Deltoid");
-    /// <summary>Full Path: Old/Content/Weapons/Ranged/Demon/DeltoidArrow</summary>
-    public static readonly RequestCache<Texture2D> DeltoidArrow = new("Aequus/Old/Content/Weapons/Ranged/Demon/DeltoidArrow");
-    /// <summary>Full Path: Old/Content/Weapons/Ranged/Demon/Deltoid_Glow</summary>
-    public static readonly RequestCache<Texture2D> Deltoid_Glow = new("Aequus/Old/Content/Weapons/Ranged/Demon/Deltoid_Glow");
-    /// <summary>Full Path: Old/Content/Weapons/Ranged/Demon/HamaYumi</summary>
-    public static readonly RequestCache<Texture2D> HamaYumi = new("Aequus/Old/Content/Weapons/Ranged/Demon/HamaYumi");
-    /// <summary>Full Path: Old/Content/Weapons/Ranged/Demon/HamaYumiArrow</summary>
-    public static readonly RequestCache<Texture2D> HamaYumiArrow = new("Aequus/Old/Content/Weapons/Ranged/Demon/HamaYumiArrow");
-    /// <summary>Full Path: Old/Content/Weapons/Ranged/Demon/HamaYumi_Glow</summary>
-    public static readonly RequestCache<Texture2D> HamaYumi_Glow = new("Aequus/Old/Content/Weapons/Ranged/Demon/HamaYumi_Glow");
 }

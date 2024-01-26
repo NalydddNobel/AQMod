@@ -223,12 +223,12 @@ CrusadersCrossbow: {
 
 Deltoid: {
 	DisplayName: Deltoid
-	Tooltip: "Ignites wooden arrows with crimson hellfire"
+	Tooltip: Ignites wooden arrows with crimson hellfire
 }
 
 HamaYumi: {
 	DisplayName: Hama Yumi
-	Tooltip: "Arrows are temporarily buffed with a piercing corruption blast"
+	Tooltip: Arrows are temporarily buffed with a piercing corruption blast
 }
 
 //# Weapons: Magic
@@ -549,4 +549,14 @@ Toolbelt: {
 		'''
 	BackpackEnabled: Toolbelt Pack On
 	BackpackDisabled: Toolbelt Pack Off
+}
+
+Cauterizer: {
+	DisplayName: Cauterizer
+	Tooltip: ""
+}
+
+HellsBoon: {
+	DisplayName: Hells Boon
+	Tooltip: ""
 }

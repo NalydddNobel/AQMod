@@ -25,3 +25,7 @@ DeltoidArrow.DisplayName: "{$Items.Deltoid.DisplayName}"
 DeltoidExplosion.DisplayName: "{$Items.Deltoid.DisplayName}"
 HamaYumiArrow.DisplayName: "{$Items.HamaYumi.DisplayName}"
 HamaYumiExplosion.DisplayName: "{$Items.HamaYumi.DisplayName}"
+CauterizerProj.DisplayName: Cauterizer Proj
+CauterizerSlash.DisplayName: Cauterizer Slash
+HellsBoonProj.DisplayName: Hells Boon Proj
+HellsBoonSpawner.DisplayName: Hells Boon Spawner

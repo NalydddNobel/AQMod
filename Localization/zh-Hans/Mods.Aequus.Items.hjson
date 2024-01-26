@@ -223,12 +223,12 @@ CrusadersCrossbow: {
 
 Deltoid: {
 	DisplayName: 增量
-	// Tooltip: ""
+	// Tooltip: Ignites wooden arrows with crimson hellfire
 }
 
 HamaYumi: {
 	DisplayName: 破魔弓
-	// Tooltip: ""
+	// Tooltip: Arrows are temporarily buffed with a piercing corruption blast
 }
 
 //# Weapons: Magic
@@ -549,4 +549,14 @@ Toolbelt: {
 		'''
 	BackpackEnabled: 工具腰带开启
 	BackpackDisabled: 工具腰带关闭
+}
+
+Cauterizer: {
+	// DisplayName: Cauterizer
+	// Tooltip: ""
+}
+
+HellsBoon: {
+	// DisplayName: Hells Boon
+	// Tooltip: ""
 }
