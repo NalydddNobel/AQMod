@@ -71,11 +71,11 @@ Trophies: {
 }
 
 OblivionAltar: {
-	MapEntry: 血巢
+	MapEntry: 遗境祭坛
 	ItemDisplayName: "{$OblivionAltar.MapEntry}"
 	ItemTooltip:
 		'''
-		用于升级邪恶武器, 激活恶魔围攻
+		右键升级邪恶武器
 		视作恶魔/猩红祭坛
 		'''
 }
