@@ -623,22 +623,22 @@
             Multiplier used to reduce velocity when above the dash's halting speed.
             </summary>
         </member>
-        <member name="F:Aequus.Common.Projectiles.HeldSlashingSwordProjectile.swordHeight">
+        <member name="F:Aequus.Common.Projectiles.LegacyHeldSlashingSwordProjectile.swordHeight">
             <summary>
             Stat which determines how far the sword's laser hitbox will reach, in pixels.
             </summary>
         </member>
-        <member name="F:Aequus.Common.Projectiles.HeldSlashingSwordProjectile.swordWidth">
+        <member name="F:Aequus.Common.Projectiles.LegacyHeldSlashingSwordProjectile.swordWidth">
             <summary>
             Stat which determines how wide the sword's laser hitbox will be, in pixels.
             </summary>
         </member>
-        <member name="F:Aequus.Common.Projectiles.HeldSlashingSwordProjectile.gfxOutOffset">
+        <member name="F:Aequus.Common.Projectiles.LegacyHeldSlashingSwordProjectile.gfxOutOffset">
             <summary>
             Outward offset, only effects rendering.
             </summary>
         </member>
-        <member name="F:Aequus.Common.Projectiles.HeldSlashingSwordProjectile.animationGFXOutOffset">
+        <member name="F:Aequus.Common.Projectiles.LegacyHeldSlashingSwordProjectile.animationGFXOutOffset">
             <summary>
             Outward offset, only effects rendering. Updated every game update.
             </summary>
@@ -1295,6 +1295,9 @@
             <param name="identity"></param>
             <returns></returns>
         </member>
+        <member name="M:Aequus.Core.Utilities.ProjectileHelper.UpdateShimmerReflection(Terraria.Projectile)">
+            <summary>Helper method which reflects a projectile against shimmer.</summary>
+        </member>
         <member name="M:Aequus.Core.Utilities.TextBroadcast.NewText(System.String,Microsoft.Xna.Framework.Color,System.Object[])">
             <summary>
             Broadcasts a message. Only does something when <see cref="F:Terraria.Main.netMode"/> is not equal to <see cref="F:Terraria.ID.NetmodeID.MultiplayerClient"/>.
@@ -1491,7 +1494,7 @@
             <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookPull</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 334)</summary>
+            <summary>(Total Textures: 340)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2165,12 +2168,6 @@
         <member name="F:Aequus.AequusTextures.Dynaknife_Glow">
             <summary>Full Path: Content/Weapons/Melee/DynaKnife/Dynaknife_Glow</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Slice">
-            <summary>Full Path: Content/Weapons/Melee/Slice/Slice</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SliceBulletProj">
-            <summary>Full Path: Content/Weapons/Melee/Slice/SliceBulletProj</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Chain">
             <summary>Full Path: Content/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
         </member>
@@ -2456,6 +2453,24 @@
         <member name="F:Aequus.AequusTextures.Old_Content_TownNPCs_OccultistNPC_Shimmer_Occultist">
             <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Shimmer/Occultist</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.BombarderRod">
+            <summary>Full Path: Old/Content/Weapons/Demon/Magic/BombarderRod</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BombarderRod_Glow">
+            <summary>Full Path: Old/Content/Weapons/Demon/Magic/BombarderRod_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Triacanthorn">
+            <summary>Full Path: Old/Content/Weapons/Demon/Magic/Triacanthorn</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TriacanthornBolt">
+            <summary>Full Path: Old/Content/Weapons/Demon/Magic/TriacanthornBolt</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TriacanthornProj">
+            <summary>Full Path: Old/Content/Weapons/Demon/Magic/TriacanthornProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Triacanthorn_Glow">
+            <summary>Full Path: Old/Content/Weapons/Demon/Magic/Triacanthorn_Glow</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Cauterizer">
             <summary>Full Path: Old/Content/Weapons/Demon/Melee/Cauterizer</summary>
         </member>
@@ -2488,6 +2503,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.HamaYumi_Glow">
             <summary>Full Path: Old/Content/Weapons/Demon/Ranged/HamaYumi_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Slice">
+            <summary>Full Path: Old/Content/Weapons/Melee/Slice/Slice</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SliceBulletProj">
+            <summary>Full Path: Old/Content/Weapons/Melee/Slice/SliceBulletProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrusadersCrossbow">
             <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow</summary>

@@ -3,7 +3,7 @@ using System;
 
 namespace Aequus.Common.Projectiles;
 
-public abstract class HeldSwordProjectile : HeldProjBase {
+public abstract class LegacyHeldSwordProjectile : HeldProjBase {
     public const string SwordSwingFlipTimer = "SwordSwingFlip";
 
     private bool _init;

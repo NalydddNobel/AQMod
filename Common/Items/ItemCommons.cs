@@ -25,17 +25,17 @@ public static class ItemCommons {
     }
 
     public class Price {
-        public static int SkyMerchantShopItem = Item.sellPrice(gold: 1);
-        public static int SkyMerchantCustomPurchasePrice = Item.buyPrice(gold: 5);
-        public static int PollutedOceanLoot = Item.sellPrice(silver: 50);
-        public static int CrabsonLoot = Item.sellPrice(silver: 75);
-        public static int GlimmerLoot = Item.sellPrice(gold: 1);
-        public static int DemonSiegeLoot = Item.sellPrice(gold: 2);
-        public static int OmegaStariteLoot = Item.sellPrice(gold: 3);
-        public static int SpaceStormLoot = Item.sellPrice(gold: 2, silver: 50);
-        public static int DustDevilLoot = Item.sellPrice(gold: 3);
-        public static int DemonSiegeTier2Loot = Item.sellPrice(gold: 8);
-        public static int UpriserLoot = Item.sellPrice(gold: 8, silver: 50);
-        public static int YinYangLoot = Item.sellPrice(gold: 10);
+        public static int SkyMerchantShopItem { get; set; } = Item.sellPrice(gold: 1);
+        public static int SkyMerchantCustomPurchasePrice { get; set; } = Item.buyPrice(gold: 5);
+        public static int PollutedOceanLoot { get; set; } = Item.sellPrice(silver: 50);
+        public static int CrabsonLoot { get; set; } = Item.sellPrice(silver: 75);
+        public static int GlimmerLoot { get; set; } = Item.sellPrice(gold: 1);
+        public static int DemonSiegeLoot { get; set; } = Item.sellPrice(gold: 2);
+        public static int OmegaStariteLoot { get; set; } = Item.sellPrice(gold: 3);
+        public static int SpaceStormLoot { get; set; } = Item.sellPrice(gold: 2, silver: 50);
+        public static int DustDevilLoot { get; set; } = Item.sellPrice(gold: 3);
+        public static int DemonSiegeTier2Loot { get; set; } = Item.sellPrice(gold: 8);
+        public static int UpriserLoot { get; set; } = Item.sellPrice(gold: 8, silver: 50);
+        public static int YinYangLoot { get; set; } = Item.sellPrice(gold: 10);
     }
 }

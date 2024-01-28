@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria.GameContent;
 
-namespace Aequus.Content.Weapons.Melee.Slice;
+namespace Aequus.Old.Content.Weapons.Melee.Slice;
 
 public class SliceBulletProj : ModProjectile {
     public override void SetStaticDefaults() {

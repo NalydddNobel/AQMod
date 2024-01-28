@@ -5,7 +5,7 @@ using Terraria.Audio;
 
 namespace Aequus.Old.Content.Weapons.Demon.Melee;
 
-public class CauterizerProj : HeldSlashingSwordProjectile {
+public class CauterizerProj : LegacyHeldSlashingSwordProjectile {
     public override string Texture => AequusTextures.Cauterizer.Path;
 
     public override void SetDefaults() {

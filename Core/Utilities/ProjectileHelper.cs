@@ -76,6 +76,21 @@ public static class ProjectileHelper {
         return projectile;
     }
 
+    /// <summary>Helper method which reflects a projectile against shimmer.</summary>
+    public static void UpdateShimmerReflection(this Projectile projectile) {
+        if (CanReflectAgainstShimmer(projectile)) {
+            projectile.netUpdate = true;
+        }
+    }
+
+    public static bool CanReflectAgainstShimmer(Entity entity) {
+        if (entity.shimmerWet && entity.velocity.Y > 0f) {
+            entity.velocity.Y = -entity.velocity.Y;
+            return true;
+        }
+        return false;
+    }
+
     #region Drawing
     public static Rectangle Frame(this Projectile projectile) {
         return TextureAssets.Projectile[projectile.type].Value.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame);

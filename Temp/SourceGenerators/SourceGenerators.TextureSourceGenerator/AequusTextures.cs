@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 334)</summary>
+/// <summary>(Total Textures: 340)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -455,10 +455,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> DynaknifeProj_Glow = new("Aequus/Content/Weapons/Melee/DynaKnife/DynaknifeProj_Glow");
     /// <summary>Full Path: Content/Weapons/Melee/DynaKnife/Dynaknife_Glow</summary>
     public static readonly RequestCache<Texture2D> Dynaknife_Glow = new("Aequus/Content/Weapons/Melee/DynaKnife/Dynaknife_Glow");
-    /// <summary>Full Path: Content/Weapons/Melee/Slice/Slice</summary>
-    public static readonly RequestCache<Texture2D> Slice = new("Aequus/Content/Weapons/Melee/Slice/Slice");
-    /// <summary>Full Path: Content/Weapons/Melee/Slice/SliceBulletProj</summary>
-    public static readonly RequestCache<Texture2D> SliceBulletProj = new("Aequus/Content/Weapons/Melee/Slice/SliceBulletProj");
     /// <summary>Full Path: Content/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
     public static readonly RequestCache<Texture2D> Chain = new("Aequus/Content/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain");
     /// <summary>Full Path: Content/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
@@ -649,6 +645,18 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Occultist_Head = new("Aequus/Old/Content/TownNPCs/OccultistNPC/Occultist_Head");
     /// <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Shimmer/Occultist</summary>
     public static readonly RequestCache<Texture2D> Old_Content_TownNPCs_OccultistNPC_Shimmer_Occultist = new("Aequus/Old/Content/TownNPCs/OccultistNPC/Shimmer/Occultist");
+    /// <summary>Full Path: Old/Content/Weapons/Demon/Magic/BombarderRod</summary>
+    public static readonly RequestCache<Texture2D> BombarderRod = new("Aequus/Old/Content/Weapons/Demon/Magic/BombarderRod");
+    /// <summary>Full Path: Old/Content/Weapons/Demon/Magic/BombarderRod_Glow</summary>
+    public static readonly RequestCache<Texture2D> BombarderRod_Glow = new("Aequus/Old/Content/Weapons/Demon/Magic/BombarderRod_Glow");
+    /// <summary>Full Path: Old/Content/Weapons/Demon/Magic/Triacanthorn</summary>
+    public static readonly RequestCache<Texture2D> Triacanthorn = new("Aequus/Old/Content/Weapons/Demon/Magic/Triacanthorn");
+    /// <summary>Full Path: Old/Content/Weapons/Demon/Magic/TriacanthornBolt</summary>
+    public static readonly RequestCache<Texture2D> TriacanthornBolt = new("Aequus/Old/Content/Weapons/Demon/Magic/TriacanthornBolt");
+    /// <summary>Full Path: Old/Content/Weapons/Demon/Magic/TriacanthornProj</summary>
+    public static readonly RequestCache<Texture2D> TriacanthornProj = new("Aequus/Old/Content/Weapons/Demon/Magic/TriacanthornProj");
+    /// <summary>Full Path: Old/Content/Weapons/Demon/Magic/Triacanthorn_Glow</summary>
+    public static readonly RequestCache<Texture2D> Triacanthorn_Glow = new("Aequus/Old/Content/Weapons/Demon/Magic/Triacanthorn_Glow");
     /// <summary>Full Path: Old/Content/Weapons/Demon/Melee/Cauterizer</summary>
     public static readonly RequestCache<Texture2D> Cauterizer = new("Aequus/Old/Content/Weapons/Demon/Melee/Cauterizer");
     /// <summary>Full Path: Old/Content/Weapons/Demon/Melee/CauterizerSlash</summary>
@@ -671,6 +679,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> HamaYumiArrow = new("Aequus/Old/Content/Weapons/Demon/Ranged/HamaYumiArrow");
     /// <summary>Full Path: Old/Content/Weapons/Demon/Ranged/HamaYumi_Glow</summary>
     public static readonly RequestCache<Texture2D> HamaYumi_Glow = new("Aequus/Old/Content/Weapons/Demon/Ranged/HamaYumi_Glow");
+    /// <summary>Full Path: Old/Content/Weapons/Melee/Slice/Slice</summary>
+    public static readonly RequestCache<Texture2D> Slice = new("Aequus/Old/Content/Weapons/Melee/Slice/Slice");
+    /// <summary>Full Path: Old/Content/Weapons/Melee/Slice/SliceBulletProj</summary>
+    public static readonly RequestCache<Texture2D> SliceBulletProj = new("Aequus/Old/Content/Weapons/Melee/Slice/SliceBulletProj");
     /// <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow</summary>
     public static readonly RequestCache<Texture2D> CrusadersCrossbow = new("Aequus/Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow");
     /// <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj</summary>

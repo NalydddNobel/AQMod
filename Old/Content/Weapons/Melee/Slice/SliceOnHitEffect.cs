@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria.Audio;
 
-namespace Aequus.Content.Weapons.Melee.Slice;
+namespace Aequus.Old.Content.Weapons.Melee.Slice;
 
 public class SliceOnHitEffect : ModProjectile {
     public override string Texture => AequusTextures.Flare.Path;

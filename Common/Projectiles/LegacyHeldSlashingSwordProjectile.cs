@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Aequus.Common.Projectiles;
 
-public abstract class HeldSlashingSwordProjectile : HeldSwordProjectile {
+public abstract class LegacyHeldSlashingSwordProjectile : LegacyHeldSwordProjectile {
     protected bool _halfWayMark;
 
     public int swingDirection;

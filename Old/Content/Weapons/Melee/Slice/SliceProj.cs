@@ -3,9 +3,9 @@ using System;
 using System.IO;
 using Terraria.Audio;
 
-namespace Aequus.Content.Weapons.Melee.Slice;
+namespace Aequus.Old.Content.Weapons.Melee.Slice;
 
-public class SliceProj : HeldSlashingSwordProjectile {
+public class SliceProj : LegacyHeldSlashingSwordProjectile {
     public override string Texture => AequusTextures.Slice.Path;
 
     public override void SetStaticDefaults() {
