@@ -1,5 +1,7 @@
 ﻿namespace Aequus.Content.Equipment.Accessories.SpiritBottle;
 
+// TODO -- Actually implement this item.
+[LegacyName("Malediction")]
 public class BottleOSpirits : ModItem {
     public override void SetDefaults() {
         Item.DefaultToAccessory();

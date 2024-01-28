@@ -4,6 +4,7 @@ using Aequus.Core.Initialization;
 
 namespace Aequus.Old.Content.Weapons.Demon.Magic;
 
+[LegacyName("Wabbajack")]
 [AutoloadGlowMask]
 public class Triacanthorn : ModItem {
     public override void SetStaticDefaults() {

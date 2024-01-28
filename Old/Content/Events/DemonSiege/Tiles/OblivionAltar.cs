@@ -17,15 +17,15 @@ public class OblivionAltar : ModTile, ISpecialTileRenderer {
     public static int BiomeCount { get; set; }
     public static RequestCache<Effect> GoreNestPortal { get; private set; }
 
-    public static ModItem Drop { get; private set; }
+    public static ModItem Item { get; private set; }
 
     public override void Load() {
         if (!Main.dedServ) {
             GoreNestPortal = new("Aequus/Old/Assets/Shaders/GoreNestPortal");
         }
 
-        Drop = new InstancedTileItem(this, rarity: ItemRarityID.Orange, value: Item.buyPrice(gold: 5));
-        Mod.AddContent(Drop);
+        Item = new InstancedTileItem(this, rarity: ItemRarityID.Orange, value: Terraria.Item.buyPrice(gold: 5));
+        Mod.AddContent(Item);
     }
 
     public override void SetStaticDefaults() {
@@ -48,7 +48,7 @@ public class OblivionAltar : ModTile, ISpecialTileRenderer {
     }
 
     public override void Unload() {
-        Drop = null;
+        Item = null;
         GoreNestPortal = null;
     }
 

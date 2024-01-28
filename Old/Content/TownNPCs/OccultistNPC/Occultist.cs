@@ -2,7 +2,11 @@
 using Aequus.Common.NPCs.Components;
 using Aequus.Common.Projectiles;
 using Aequus.Content.DataSets;
+using Aequus.Content.Equipment.Accessories.SpiritBottle;
 using Aequus.Core;
+using Aequus.Old.Content.Equipment.GrapplingHooks.EnemyGrappleHook;
+using Aequus.Old.Content.Events.DemonSiege.Spawners;
+using Aequus.Old.Content.Events.DemonSiege.Tiles;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -107,9 +111,14 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
     }
 
     public override void AddShops() {
-        NPCShop shop = new(Type);
-        shop
-            .Register();
+        NPCShop shop = new NPCShop(Type);
+        shop.Add(ModContent.ItemType<Meathook>());
+        shop.Add(ModContent.ItemType<UnholyCore>());
+        shop.Add(ModContent.ItemType<BottleOSpirits>());
+        shop.Add(ItemID.WhoopieCushion, Condition.BloodMoon);
+        shop.Add(ItemID.ShadowChest, Condition.DownedSkeletron);
+        shop.Add(OblivionAltar.Item.Type, Condition.Hardmode);
+        shop.Register();
     }
 
     public override bool CanTownNPCSpawn(int numTownNPCs) {
