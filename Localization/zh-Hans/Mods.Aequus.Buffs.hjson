@@ -45,10 +45,10 @@ WarHornCooldown: {
 
 CorruptionHellfire: {
 	DisplayName: 腐化狱火
-	// Description: Your flesh burns from the sinister flames
+	Description: 你的血肉被邪恶的火焰燃烧了
 }
 
 CrimsonHellfire: {
 	DisplayName: 猩红狱火
-	// Description: Your flesh burns from the sinister flames
+	Description: 你的血肉被邪恶的火焰燃烧了
 }

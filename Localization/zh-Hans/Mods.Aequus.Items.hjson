@@ -222,13 +222,13 @@ CrusadersCrossbow: {
 }
 
 Deltoid: {
-	DisplayName: 增量
-	// Tooltip: Ignites wooden arrows with crimson hellfire
+	DisplayName: 三角肌
+	Tooltip: 用猩红狱火点燃木箭
 }
 
 HamaYumi: {
 	DisplayName: 破魔弓
-	// Tooltip: Arrows are temporarily buffed with a piercing corruption blast
+	Tooltip: 箭矢会被穿透性腐化爆炸短暂增幅
 }
 
 //# Weapons: Magic
@@ -552,11 +552,11 @@ Toolbelt: {
 }
 
 Cauterizer: {
-	// DisplayName: Cauterizer
-	// Tooltip: ""
+	DisplayName: 灼烧者
+	Tooltip: ""
 }
 
 HellsBoon: {
-	// DisplayName: Hells Boon
-	// Tooltip: ""
+	DisplayName: 地狱之赐
+	Tooltip: ""
 }
