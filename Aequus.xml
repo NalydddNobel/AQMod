@@ -787,6 +787,15 @@
             NPCs in this set cannot become Elites. This usually contains bosses.
             </summary>
         </member>
+        <member name="M:Aequus.Content.DataSets.NPCSets.ContainsBestiaryTags(System.Collections.Generic.List{Terraria.GameContent.Bestiary.IBestiaryInfoElement},System.Collections.Generic.List{Terraria.GameContent.Bestiary.IFilterInfoProvider})">
+            <summary>
+            Compares bestiary tags by comparing <see cref="M:Terraria.GameContent.Bestiary.IFilterInfoProvider.GetDisplayNameKey"/> results.
+            Biome/Event/Time/Ect Tags utilize <see cref="T:Terraria.GameContent.Bestiary.IFilterInfoProvider"/>.
+            </summary>
+            <param name="tags"></param>
+            <param name="searchTags"></param>
+            <returns></returns>
+        </member>
         <member name="P:Aequus.Content.DataSets.ProjectileSets.OccultistIgnore">
             <summary>
             Projectiles in this set do not damage the <see cref="!:Old.Content.TownNPCs.OccultistNPC.Occultist"/>.

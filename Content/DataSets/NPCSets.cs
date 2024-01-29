@@ -1,12 +1,15 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Core.DataSets;
+using Aequus.Core.Utilities;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using Terraria.GameContent.Bestiary;
 
 namespace Aequus.Content.DataSets;
 
-public partial class NPCSets : DataSet {
+public class NPCSets : DataSet {
     [JsonProperty]
     public static HashSet<NPCEntry> OccultistIgnore { get; private set; } = new();
 
@@ -64,51 +67,59 @@ public partial class NPCSets : DataSet {
 
     #region Bestiary
     [JsonIgnore]
-    public static List<IBestiaryInfoElement> CorruptionTags { get; private set; } = new();
+    public static List<IFilterInfoProvider> CorruptionTags { get; private set; } = new();
     [JsonIgnore]
-    public static List<IBestiaryInfoElement> CrimsonTags { get; private set; } = new();
+    public static List<IFilterInfoProvider> CrimsonTags { get; private set; } = new();
     [JsonIgnore]
-    public static List<IBestiaryInfoElement> HallowTags { get; private set; } = new();
+    public static List<IFilterInfoProvider> HallowTags { get; private set; } = new();
     [JsonIgnore]
-    public static List<IBestiaryInfoElement> PillarTags { get; private set; } = new();
+    public static List<IFilterInfoProvider> PillarTags { get; private set; } = new();
     [JsonIgnore]
-    public static List<IBestiaryInfoElement> UnderworldTags { get; private set; } = new();
+    public static List<IFilterInfoProvider> UnderworldTags { get; private set; } = new();
 
     private void LoadBestiaryElementTypes() {
-        CorruptionTags.AddRange(new IBestiaryInfoElement[] {
+        CorruptionTags.AddRange(new IFilterInfoProvider[] {
             BestiaryBuilder.Corruption,
             BestiaryBuilder.UndergroundCorruption,
             BestiaryBuilder.CorruptionDesert,
             BestiaryBuilder.CorruptionUndergroundDesert,
             BestiaryBuilder.CorruptionIce,
         });
-        CrimsonTags.AddRange(new IBestiaryInfoElement[] {
+        CrimsonTags.AddRange(new IFilterInfoProvider[] {
             BestiaryBuilder.Crimson,
             BestiaryBuilder.UndergroundCrimson,
             BestiaryBuilder.CrimsonDesert,
             BestiaryBuilder.CrimsonUndergroundDesert,
             BestiaryBuilder.CrimsonIce,
         });
-        HallowTags.AddRange(new IBestiaryInfoElement[] {
+        HallowTags.AddRange(new IFilterInfoProvider[] {
             BestiaryBuilder.Hallow,
             BestiaryBuilder.UndergroundHallow,
             BestiaryBuilder.HallowDesert,
             BestiaryBuilder.HallowUndergroundDesert,
             BestiaryBuilder.HallowIce,
         });
-        PillarTags.AddRange(new IBestiaryInfoElement[] {
+        PillarTags.AddRange(new IFilterInfoProvider[] {
             BestiaryBuilder.SolarPillar,
             BestiaryBuilder.VortexPillar,
             BestiaryBuilder.NebulaPillar,
             BestiaryBuilder.StardustPillar,
         });
-        UnderworldTags.AddRange(new IBestiaryInfoElement[] {
+        UnderworldTags.AddRange(new IFilterInfoProvider[] {
             BestiaryBuilder.Underworld,
         });
     }
 
-    private bool ContainsBestiaryTags(List<IBestiaryInfoElement> tags, List<IBestiaryInfoElement> searchTags) {
-        return tags != null && tags.Exists(t => t != null && searchTags.Exists(searchTag => t.GetType() == searchTag.GetType()));
+    /// <summary>
+    /// Compares bestiary tags by comparing <see cref="IFilterInfoProvider.GetDisplayNameKey"/> results.
+    /// Biome/Event/Time/Ect Tags utilize <see cref="IFilterInfoProvider"/>.
+    /// </summary>
+    /// <param name="tags"></param>
+    /// <param name="searchTags"></param>
+    /// <returns></returns>
+    private static bool ContainsBestiaryTags(List<IBestiaryInfoElement> tags, List<IFilterInfoProvider> searchTags) {
+        return tags?.Where(t => t is IFilterInfoProvider).Select(t => (IFilterInfoProvider)t)
+            .Any(t => searchTags.Any(s => t.GetDisplayNameKey() == s.GetDisplayNameKey())) ?? false;
     }
     #endregion
 
@@ -157,12 +168,12 @@ public partial class NPCSets : DataSet {
 
     public override void AddRecipes() {
         for (int i = NPCID.NegativeIDCount + 1; i < NPCLoader.NPCCount; i++) {
-            var bestiaryEntry = Main.BestiaryDB.FindEntryByNPCID(i);
+            BestiaryEntry bestiaryEntry = Main.BestiaryDB.FindEntryByNPCID(i);
             if (bestiaryEntry == null || bestiaryEntry.Info == null) {
                 continue;
             }
 
-            var info = bestiaryEntry.Info;
+            List<IBestiaryInfoElement> info = bestiaryEntry.Info;
             if (ContainsBestiaryTags(info, CorruptionTags)) {
                 IsCorrupt.Add((NPCEntry)i);
             }

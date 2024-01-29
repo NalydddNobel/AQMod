@@ -12,12 +12,12 @@ public struct NPCEntry : IDataEntry<int> {
     public int Id { get; set; }
 
     [JsonIgnore]
-    public bool ValidEntry => Id <= NPCID.NegativeIDCount;
+    public bool ValidEntry => Id > NPCID.NegativeIDCount && Id < NPCLoader.NPCCount;
 
     [JsonIgnore]
     public bool VanillaEntry => Id < NPCID.Count;
 
-    private static int _uniqueIds;
+    private static int _uniqueIds = NPCID.NegativeIDCount;
 
     public NPCEntry(string name) {
         Name = name;

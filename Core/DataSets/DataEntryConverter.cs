@@ -6,6 +6,7 @@ namespace Aequus.Core.DataSets;
 
 public class DataEntryConverter<TEntry, T> : JsonConverter<IDataEntry<T>> where TEntry : IDataEntry<T>, new() {
     public override void WriteJson(JsonWriter writer, [AllowNull] IDataEntry<T> value, JsonSerializer serializer) {
+        value.Initialize();
         writer.WriteValue(value.Name);
         if (value.ValidEntry && value.VanillaEntry) {
             writer.WriteComment(value.Id.ToString());

@@ -3,6 +3,7 @@ using Aequus.Content.Configuration;
 using Aequus.Content.DataSets;
 using Aequus.Content.Tools.NameTag;
 using Aequus.Content.VanillaChanges;
+using System.Linq;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.WorldGeneration;
