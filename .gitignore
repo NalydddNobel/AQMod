@@ -9,4 +9,4 @@ Assets/Shaders/.compiler
 *.ase
 *.ini
 *.Temp
-*.Temp.json
+*.Temp.*

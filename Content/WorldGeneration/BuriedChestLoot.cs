@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Content.Configuration;
+using Aequus.Content.DataSets;
 using Aequus.Content.Tools.NameTag;
 using Aequus.Content.VanillaChanges;
 using Terraria.ObjectData;
@@ -32,7 +33,7 @@ public class BuriedChestLoot : ModSystem {
     public override void PostWorldGen() {
         for (int k = 0; k < Main.maxChests; k++) {
             Chest chest = Main.chest[k];
-            if (chest == null || !WorldGen.InWorld(chest.x, chest.y, 40)) {
+            if (chest == null || !WorldGen.InWorld(chest.x, chest.y, 40) || !CanAddLoot(chest)) {
                 continue;
             }
 
@@ -88,5 +89,20 @@ public class BuriedChestLoot : ModSystem {
                 CheckShadowChest(chest);
             }
         }
+    }
+
+    private static bool CanAddLoot(Chest chest) {
+        for (int m = 0; m < Chest.maxItems; m++) {
+            if (chest.item[m] == null || chest.item[m].IsAir) {
+                continue;
+            }
+
+            // Prevent Aequus from adjusting chest loot at all if it contains an important item
+            if (ItemSets.ImportantItem.Contains(chest.item[m].type)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

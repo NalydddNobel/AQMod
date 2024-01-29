@@ -7,26 +7,18 @@ namespace Aequus.Content.DataSets;
 
 public class ItemSets : DataSet {
     /// <summary>
+    /// Items in this set are potions.
+    /// </summary>
+    [JsonProperty]
+    public static List<ItemEntry> Potions { get; private set; } = new();
+    [JsonProperty]
+    public static List<ItemEntry> PillarFragmentsByColor { get; private set; } = new();
+
+    /// <summary>
     /// A few item results which are ignored by the Shimmer Monocle, so that common transmuations don't have crappy bloated tooltips.
     /// </summary>
     [JsonProperty]
     public static HashSet<ItemEntry> ShimmerTooltipResultIgnore { get; private set; } = new();
-    /// <summary>
-    /// Contains item ids which are classified as 'Health Pickups'.
-    /// </summary>
-    [JsonProperty]
-    public static HashSet<ItemEntry> IsHealthPickup { get; private set; } = new();
-    /// <summary>
-    /// Contains item ids which are classified as 'Mana Pickups'.
-    /// </summary>
-    [JsonProperty]
-    public static HashSet<ItemEntry> IsManaPickup { get; private set; } = new();
-    /// <summary>
-    /// Contains items ids which are classified as 'Pickups', which are generally items which do not appear in your inventory. Instead they grant some sort of effect.
-    /// <para>This set includes data from <see cref="IsHealthPickup"/> and <see cref="IsManaPickup"/>.</para>
-    /// </summary>
-    [JsonProperty]
-    public static HashSet<ItemEntry> IsPickup { get; private set; } = new();
     /// <summary>
     /// Items marked as important will have special properties:
     /// <list type="bullet">
@@ -37,8 +29,6 @@ public class ItemSets : DataSet {
     public static HashSet<ItemEntry> ImportantItem { get; private set; } = new();
     [JsonProperty]
     public static HashSet<ItemEntry> CannotRename { get; private set; } = new();
-    [JsonProperty]
-    public static List<ItemEntry> CelestialFragmentsByColor { get; private set; } = new();
     [JsonProperty]
     public static HashSet<ItemEntry> IsDungeonLockBox { get; private set; } = new();
     [JsonProperty]
@@ -51,9 +41,26 @@ public class ItemSets : DataSet {
     public static Dictionary<int, TrashCompactorRecipe> CustomTrashCompactorRecipes { get; private set; } = new();
 
     public override void AddRecipes() {
-        foreach (var item in ContentSamples.ItemsByType.Values) {
-            if (item == null || item.ammo <= ProjectileID.None || item.notAmmo || AmmoIdToProjectileId.ContainsKey(item.type)) {
+        int start = 0;
+        int end = ItemLoader.ItemCount;
+        for (int i = start; i < end; i++) {
+            Item item = new Item(i);
+            if (item == null) {
                 continue;
+            }
+
+            CheckPotion(item);
+            CheckAmmo(item);
+        }
+
+        static void CheckPotion(Item item) {
+            if (item.buffTime > 0 && item.buffType > 0 && item.consumable && item.maxStack >= 30 && item.damage <= 0 && !ItemID.Sets.IsFood[item.type] && !BuffID.Sets.IsFedState[item.buffType]) {
+                Potions.Add((ItemEntry)item.type);
+            }
+        }
+        static void CheckAmmo(Item item) {
+            if (item.ammo <= ProjectileID.None || item.notAmmo || AmmoIdToProjectileId.ContainsKey(item.type)) {
+                return;
             }
 
             // Custom case because rockets are weird.
@@ -64,13 +71,10 @@ public class ItemSets : DataSet {
                 else {
                     AmmoIdToProjectileId.Add((ItemEntry)item.type, (ProjectileEntry)ProjectileID.RocketI);
                 }
-                continue;
             }
-
-            AmmoIdToProjectileId.Add((ItemEntry)item.type, (ProjectileEntry)item.shoot);
+            else {
+                AmmoIdToProjectileId.Add((ItemEntry)item.type, (ProjectileEntry)item.shoot);
+            }
         }
-
-        IsPickup.AddRange(IsHealthPickup);
-        IsPickup.AddRange(IsManaPickup);
     }
 }

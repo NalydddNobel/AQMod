@@ -36,7 +36,7 @@ public sealed class DataSetFileLoader {
 
     [Conditional("DEBUG")]
     public void CreateTempFile() {
-        string createFile = $"{Aequus.DebugPath}/ModSources/{FilePath.Replace("Content/DataSets/", "Assets/Metadata/")}.Temp.json";
+        string createFile = $"{Aequus.DebugPath}/ModSources/{FilePath.Replace("Content/DataSets/", "Assets/Metadata/")}Temp.json";
         _dataSet.Mod.Logger.Debug(createFile);
         try {
             // Only attempt to create the file if this Directory even exists.
@@ -44,13 +44,13 @@ public sealed class DataSetFileLoader {
                 return;
             }
 
-            var settings = new JsonSerializerSettings {
+            JsonSerializerSettings settings = new JsonSerializerSettings {
                 Formatting = Formatting.Indented,
             };
-            var jsonData = JsonConvert.SerializeObject(_dataSet, settings);
+            string jsonData = JsonConvert.SerializeObject(_dataSet, settings);
             if (jsonData != null) {
-                var buffer = Encoding.UTF8.GetBytes(jsonData);
-                using var file = File.Create(createFile, buffer.Length);
+                byte[] buffer = Encoding.UTF8.GetBytes(jsonData);
+                using FileStream file = File.Create(createFile, buffer.Length);
                 file.Write(buffer, 0, buffer.Length);
             }
         }

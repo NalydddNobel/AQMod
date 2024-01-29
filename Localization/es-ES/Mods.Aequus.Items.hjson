@@ -560,3 +560,24 @@ HellsBoon: {
 	// DisplayName: Hells Boon
 	// Tooltip: ""
 }
+
+PotionCanteen: {
+	// DisplayNameAlt: Mods.Aequus.Items.PotionCanteen.DisplayNameAlt
+	// DisplayName: Potion Canteen
+	// Tooltip: ""
+}
+
+PotionCanteenEmpty: {
+	// DisplayName: Potion Canteen Empty
+	// Tooltip: ""
+}
+
+BombarderRod: {
+	// DisplayName: Bombarder Rod
+	// Tooltip: ""
+}
+
+Triacanthorn: {
+	// DisplayName: Triacanthorn
+	// Tooltip: ""
+}

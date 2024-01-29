@@ -12,28 +12,6 @@
     "PurificationPowder"
   ],
 
-  "IsHealthPickup": [
-    "Heart",
-    "CandyApple",
-    "CandyCane",
-    "Split/CrabHeart",
-    "Split/BlueCrabHeart"
-  ],
-
-  "IsManaPickup": [
-    "Star",
-    "SoulCake",
-    "SugarPlum",
-    "ManaCloakStar"
-  ],
-
-  "IsPickup": [
-    "ThoriumMod/InspirationNote",
-    "ThoriumMod/InspirationNoteNoble",
-    "ThoriumMod/InspirationNoteRhapsodist",
-    "ThoriumMod/InspirationNoteStatue"
-  ],
-
   "CelestialFragmentsByColor": [
     "FragmentSolar",
     "FragmentVortex",

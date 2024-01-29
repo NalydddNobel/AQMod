@@ -126,6 +126,17 @@ WarHorn: {
 		'''
 }
 
+PotionCanteenEmpty: {
+	DisplayName: "{$Items.PotionCanteen.DisplayName}"
+	Tooltip: "{$Items.PotionCanteen.Tooltip}"
+}
+
+PotionCanteen: {
+	DisplayName: Potion Canteen
+	DisplayNameAlt: Potion Canteen ({0})
+	Tooltip: Craft with a potion to allow infinite use
+}
+
 //# Equipment: Informational
 ShimmerMonocle: {
 	DisplayName: Shmonocle
@@ -243,6 +254,24 @@ Furystar: {
 		'''
 		Causes stars to rain from the sky
 		Attacks restores mana
+		'''
+}
+
+BombarderRod: {
+	DisplayName: Bombarder Rod
+	Tooltip:
+		'''
+		Critical strikes inflict crimson fire to nearby enemies
+		Imprecise at close range
+		'''
+}
+
+Triacanthorn: {
+	DisplayName: Triacanthorn
+	Tooltip:
+		'''
+		Summons splitting vile tendrils
+		Ignores 10 points of enemy Defense
 		'''
 }
 

@@ -18,6 +18,11 @@
         <member name="M:Aequus.Common.Backpacks.BackpackData.PreDrawSlot(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32)">
             <summary>Return false to override slot drawing.</summary>
         </member>
+        <member name="F:Aequus.Common.Buffs.BuffUI.DisableRightClick">
+            <summary>
+            Prevents the player from right clicking a certain buff type. This list is cleared right before the local player is updated.
+            </summary>
+        </member>
         <member name="M:Aequus.Common.Golfing.GolfingSystem.SetGolfBallStatus(System.Boolean)">
             <summary>
             Sets all fake golf balls to be counted or not counted as golf balls.
@@ -739,25 +744,14 @@
             Set for compatibility with Thorium.
             </summary>
         </member>
+        <member name="P:Aequus.Content.DataSets.ItemSets.Potions">
+            <summary>
+            Items in this set are potions.
+            </summary>
+        </member>
         <member name="P:Aequus.Content.DataSets.ItemSets.ShimmerTooltipResultIgnore">
             <summary>
             A few item results which are ignored by the Shimmer Monocle, so that common transmuations don't have crappy bloated tooltips.
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.ItemSets.IsHealthPickup">
-            <summary>
-            Contains item ids which are classified as 'Health Pickups'.
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.ItemSets.IsManaPickup">
-            <summary>
-            Contains item ids which are classified as 'Mana Pickups'.
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.ItemSets.IsPickup">
-            <summary>
-            Contains items ids which are classified as 'Pickups', which are generally items which do not appear in your inventory. Instead they grant some sort of effect.
-            <para>This set includes data from <see cref="P:Aequus.Content.DataSets.ItemSets.IsHealthPickup"/> and <see cref="P:Aequus.Content.DataSets.ItemSets.IsManaPickup"/>.</para>
             </summary>
         </member>
         <member name="P:Aequus.Content.DataSets.ItemSets.ImportantItem">
@@ -881,6 +875,11 @@
             <summary>
             Grants a ModTile the ability to render post-draw elements in a batch to reduce on Begin/End calls.
             <para>Place SpecialTileDrawing.Add(i, j, Type); into ModTile.PostDraw(...) to add it to the rendering list.</para>
+            </summary>
+        </member>
+        <member name="T:Aequus.Core.IDLoader`1">
+            <summary>
+            Helper for loading content which uses a legacy Id system.
             </summary>
         </member>
         <member name="T:Aequus.Core.Particles.ParticleManager">
@@ -1494,7 +1493,7 @@
             <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookPull</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 340)</summary>
+            <summary>(Total Textures: 343)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2332,6 +2331,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.HighSteaks_Waist">
             <summary>Full Path: Old/Content/Equipment/Accessories/HighSteaks/HighSteaks_Waist</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PotionCanteen">
+            <summary>Full Path: Old/Content/Equipment/Accessories/PotionCanteen/PotionCanteen</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PotionCanteenEmpty">
+            <summary>Full Path: Old/Content/Equipment/Accessories/PotionCanteen/PotionCanteenEmpty</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PotionCanteen_Liquid">
+            <summary>Full Path: Old/Content/Equipment/Accessories/PotionCanteen/PotionCanteen_Liquid</summary>
         </member>
         <member name="F:Aequus.AequusTextures.KegOSpirits">
             <summary>Full Path: Old/Content/Equipment/Accessories/SpiritKeg/KegOSpirits</summary>

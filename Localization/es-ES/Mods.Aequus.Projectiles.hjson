@@ -29,3 +29,6 @@ DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 // CauterizerSlash.DisplayName: Cauterizer Slash
 // HellsBoonProj.DisplayName: Hells Boon Proj
 // HellsBoonSpawner.DisplayName: Hells Boon Spawner
+// BombarderRodProj.DisplayName: Bombarder Rod Proj
+// TriacanthornBolt.DisplayName: Triacanthorn Bolt
+// TriacanthornProj.DisplayName: Triacanthorn Proj

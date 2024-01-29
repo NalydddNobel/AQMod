@@ -126,6 +126,17 @@ WarHorn: {
 		'''
 }
 
+PotionCanteenEmpty: {
+	DisplayName: "{$Items.PotionCanteen.DisplayName}"
+	Tooltip: "{$Items.PotionCanteen.Tooltip}"
+}
+
+PotionCanteen: {
+	DisplayName: 药水壶
+	DisplayNameAlt: "{0}壶"
+	// Tooltip: Craft with a potion to allow infinite use
+}
+
 //# Equipment: Informational
 ShimmerMonocle: {
 	DisplayName: 微光单片镜
@@ -243,6 +254,24 @@ Furystar: {
 		'''
 		使星星从天而降
 		攻击会回复魔力值
+		'''
+}
+
+BombarderRod: {
+	DisplayName: 轰炸者手杖
+	Tooltip:
+		'''
+		攻击造成暴击时对附近的敌人造成猩红减益
+		近距离时并不精准
+		'''
+}
+
+Triacanthorn: {
+	DisplayName: 三棘卷须
+	Tooltip:
+		'''
+		召唤会分裂的邪恶卷须
+		无视敌人10点的防御力
 		'''
 }
 
