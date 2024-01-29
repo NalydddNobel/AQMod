@@ -10,7 +10,7 @@ public class GenVarEditsStep : AequusGenStep {
     public override void Apply(GenerationProgress progress, GameConfiguration config) {
         if (GenVars.hellChestItem != null) {
             if (VanillaChangesConfig.Instance.MoveTreasureMagnet) {
-                EnumerableHelper.Remove(ref GenVars.hellChestItem, ItemID.TreasureMagnet);
+                ExtendArray.Remove(ref GenVars.hellChestItem, ItemID.TreasureMagnet);
             }
         }
     }

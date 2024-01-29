@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Aequus.Core.Utilities;
 
-public static class EnumerableHelper {
+public static class ExtendArray {
     public static T[] Copy<T>(this T[] array) {
         var array2 = new T[array.Length];
         array.CopyTo(array2, 0);
@@ -19,14 +21,16 @@ public static class EnumerableHelper {
         return arr;
     }
 
+    public static void RemoveAt<T>(ref T[] arr, int index) {
+        var list = arr.ToList();
+        list.RemoveAt(index);
+        arr = list.ToArray();
+    }
+
     public static bool Remove<T>(ref T[] arr, T value) {
         var list = arr.ToList();
         bool remove = list.Remove(value);
         arr = list.ToArray();
         return remove;
-    }
-
-    public static bool Match<T>(this IEnumerable<T> en, T en2) {
-        return en.Any((t) => t.Equals(en2));
     }
 }

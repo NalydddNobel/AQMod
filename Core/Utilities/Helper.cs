@@ -249,10 +249,10 @@ public static class Helper {
                 loot.Remove(l);
             }
             else if (l is OneFromOptionsDropRule oneFromOptions) {
-                EnumerableHelper.Remove(ref oneFromOptions.dropIds, itemId);
+                ExtendArray.Remove(ref oneFromOptions.dropIds, itemId);
             }
             else if (l is OneFromOptionsNotScaledWithLuckDropRule oneFromOptionsNotScaledWithLuck) {
-                EnumerableHelper.Remove(ref oneFromOptionsNotScaledWithLuck.dropIds, itemId);
+                ExtendArray.Remove(ref oneFromOptionsNotScaledWithLuck.dropIds, itemId);
             }
         }
     }
