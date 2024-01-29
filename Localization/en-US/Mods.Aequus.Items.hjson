@@ -193,6 +193,16 @@ Slice: {
 		'''
 }
 
+Cauterizer: {
+	DisplayName: Cauterizer
+	Tooltip: "{$CommonTooltips.OmnidirectionMelee}"
+}
+
+HellsBoon: {
+	DisplayName: Hells Boon
+	Tooltip: "Attack enemies with long range darkness and ash spikes"
+}
+
 //# Ranged Ammo
 PlasticDart: {
 	DisplayName: Plastic Dart
@@ -578,14 +588,4 @@ Toolbelt: {
 		'''
 	BackpackEnabled: Toolbelt Pack On
 	BackpackDisabled: Toolbelt Pack Off
-}
-
-Cauterizer: {
-	DisplayName: Cauterizer
-	Tooltip: ""
-}
-
-HellsBoon: {
-	DisplayName: Hells Boon
-	Tooltip: ""
 }

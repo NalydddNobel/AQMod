@@ -193,6 +193,17 @@ Slice: {
 		'''
 }
 
+
+Cauterizer: {
+	DisplayName: 灼烧者
+	Tooltip: "{$CommonTooltips.OmnidirectionMelee}"
+}
+
+HellsBoon: {
+	DisplayName: 地狱之赐
+	Tooltip: "用远距离黑暗和灰烬尖刺攻击敌人"
+}
+
 //# Ranged Ammo
 PlasticDart: {
 	DisplayName: 塑料镖
@@ -578,14 +589,4 @@ Toolbelt: {
 		'''
 	BackpackEnabled: 工具腰带开启
 	BackpackDisabled: 工具腰带关闭
-}
-
-Cauterizer: {
-	DisplayName: 灼烧者
-	Tooltip: ""
-}
-
-HellsBoon: {
-	DisplayName: 地狱之赐
-	Tooltip: ""
 }
