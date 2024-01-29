@@ -1,5 +1,4 @@
-﻿using Aequus.Old.Content.Events.DemonSiege.Tiles;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 namespace Aequus.Content.Events.DemonSiege;
@@ -14,7 +13,7 @@ public class AltarSacrifices : ModSystem {
 
     public static void Register(Conversion sacrifice) {
         OriginalToConversion[sacrifice.OriginalItem] = sacrifice;
-        (CollectionsMarshal.GetValueRefOrAddDefault(ConversionToOriginals, sacrifice.NewItem, out _) ??=new()).Add(sacrifice.OriginalItem);
+        (CollectionsMarshal.GetValueRefOrAddDefault(ConversionToOriginals, sacrifice.NewItem, out _) ??= new()).Add(sacrifice.OriginalItem);
     }
 
     public override void AddRecipes() {
@@ -25,7 +24,9 @@ public class AltarSacrifices : ModSystem {
 
             Recipe recipe = Recipe.Create(sacrifice.NewItem)
                 .AddIngredient(sacrifice.OriginalItem)
+#if !DEBUG
                 .AddTile<OblivionAltarDummy>()
+#endif
                 .Register()
                 .SortAfterFirstRecipesOf(sacrifice.OriginalItem);
 
