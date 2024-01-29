@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.WorldGeneration;
-using Aequus.Content.Configuration;
+using Aequus.Content.VanillaChanges;
 using Terraria.IO;
 using Terraria.WorldBuilding;
 
@@ -9,9 +9,7 @@ public class GenVarEditsStep : AequusGenStep {
 
     public override void Apply(GenerationProgress progress, GameConfiguration config) {
         if (GenVars.hellChestItem != null) {
-            if (VanillaChangesConfig.Instance.MoveTreasureMagnet) {
-                ExtendArray.Remove(ref GenVars.hellChestItem, ItemID.TreasureMagnet);
-            }
+            TreasureMagnetChanges.RemoveTreasureMagnetFromHellChestArray();
         }
     }
 }

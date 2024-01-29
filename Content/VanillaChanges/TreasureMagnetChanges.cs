@@ -1,8 +1,9 @@
 ﻿using Aequus.Content.Configuration;
+using Terraria.WorldBuilding;
 
-namespace Aequus.Common.Items.ItemTweaks;
+namespace Aequus.Content.VanillaChanges;
 
-public class TreasureMagnetTweaks : GlobalItem {
+public class TreasureMagnetChanges : GlobalItem {
     public override bool IsLoadingEnabled(Mod mod) {
         return VanillaChangesConfig.Instance.MoveTreasureMagnet;
     }
@@ -19,6 +20,18 @@ public class TreasureMagnetTweaks : GlobalItem {
     public override void ModifyItemLoot(Item item, ItemLoot itemLoot) {
         if (item.type == ItemID.ObsidianLockbox) {
             itemLoot.RemoveItemId(ItemID.TreasureMagnet);
+        }
+    }
+
+    public static void RemoveTreasureMagnetFromHellChestArray() {
+        if (VanillaChangesConfig.Instance.MoveTreasureMagnet) {
+            ExtendArray.Remove(ref GenVars.hellChestItem, ItemID.TreasureMagnet);
+        }
+    }
+
+    public static void CheckShadowChest(Chest chest) {
+        if (VanillaChangesConfig.Instance.MoveTreasureMagnet) {
+            chest.ReplaceFirst(ItemID.TreasureMagnet, ItemID.HellstoneBar, WorldGen.genRand.Next(10, 21));
         }
     }
 }
