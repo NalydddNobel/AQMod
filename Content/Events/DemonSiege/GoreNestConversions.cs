@@ -25,9 +25,9 @@ public class AltarSacrifices : ModSystem {
             Recipe recipe = Recipe.Create(sacrifice.NewItem)
                 .AddIngredient(sacrifice.OriginalItem)
 #if !DEBUG
-                .AddTile<OblivionAltarDummy>()
-#endif
+                .AddTile<Old.Content.Events.DemonSiege.Tiles.OblivionAltarDummy>()
                 .Register()
+#endif
                 .SortAfterFirstRecipesOf(sacrifice.OriginalItem);
 
             if (sacrifice.DisableDecraft) {
