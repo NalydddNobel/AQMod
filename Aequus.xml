@@ -1026,6 +1026,19 @@
             Only loads in singleplayer or on multiplayer clients.
             </summary>
         </member>
+        <member name="M:Aequus.Core.Utilities.ExtendArray.Copy``1(``0[])">
+            <returns>A new array with the same contents.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendArray.CreateArray``1(System.Func{System.Int32,``0},System.Int32)">
+            <returns>An array with the Length of <paramref name="length"/>, populated using <paramref name="dataFactory"/> (<see cref="T:System.Func`2"/>) where <see cref="T:System.Int32"/> is the index of the array being populated and <typeparamref name="T"/> is the value stored.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendArray.RemoveAt``1(``0[]@,System.Int32)">
+            <summary>Removes at <paramref name="index"/> and resizes <paramref name="arr"/> to fit.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendArray.Remove``1(``0[]@,``0)">
+            <summary>Removes <paramref name="value"/> from <paramref name="arr"/>, and resizes <paramref name="arr"/> to fit if necessary.</summary>
+            <returns>Whether anything was removed at all.</returns>
+        </member>
         <member name="M:Aequus.Core.Utilities.ExtendColor.MaxRGBA(Microsoft.Xna.Framework.Color,System.Byte)">
             <returns><paramref name="color"/>, with its R,G,B,A Maxed to the specified <paramref name="amt"/>.</returns>
         </member>
@@ -1034,6 +1047,10 @@
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendColor.MaxRGBA(Microsoft.Xna.Framework.Color,System.Byte,System.Byte,System.Byte,System.Byte)">
             <returns><paramref name="color"/>, with R,G,B,A Maxed to <paramref name="r"/>,<paramref name="g"/>,<paramref name="b"/>,<paramref name="a"/> accordingly.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendEnumerable.Match``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>Forces an Enumeration.</summary>
+            <returns>Whether an instance of <paramref name="en2"/> is in <paramref name="en"/>.</returns>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendGore.NewGore(Aequus.Core.Assets.RequestCache{Microsoft.Xna.Framework.Graphics.Texture2D},Terraria.DataStructures.IEntitySource,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single)">
             <summary>Spawns gore using a Texture. Removes the need for using silent string literals for getting gores.</summary>
@@ -1272,6 +1289,9 @@
             <param name="shop"></param>
             <param name="itemName">The internal name of the item.</param>
             <param name="conditions">Conditions for this item.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendSound.ModPath(Terraria.Audio.SoundStyle)">
+            <returns>The Sound's path with the first directory removed.</returns>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendTooltips.AddTooltip(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine},Terraria.ModLoader.TooltipLine)">
             <summary>Inserts a new tooltip line to the end of the item's tooltip.</summary>
