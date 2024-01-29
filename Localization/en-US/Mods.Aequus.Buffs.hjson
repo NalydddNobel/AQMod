@@ -52,3 +52,8 @@ CrimsonHellfire: {
 	DisplayName: Crimson Hellfire
 	Description: Your flesh burns from the sinister flames
 }
+
+IronLotusDebuff: {
+	DisplayName: "{$Items.IronLotus.DisplayName}"
+	Description: Mods.Aequus.Buffs.IronLotusDebuff.Description
+}

@@ -52,3 +52,8 @@ CrimsonHellfire: {
 	DisplayName: 猩红狱火
 	Description: 你的血肉被邪恶的火焰燃烧了
 }
+
+IronLotusDebuff: {
+	DisplayName: "{$Items.IronLotus.DisplayName}"
+	// Description: Mods.Aequus.Buffs.IronLotusDebuff.Description
+}

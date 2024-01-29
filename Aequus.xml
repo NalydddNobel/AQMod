@@ -1363,7 +1363,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 52)</summary>
+            <summary>(Total Sounds: 53)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.PollutedOcean">
             <summary>Full Path: Assets/Music/PollutedOcean</summary>
@@ -1442,6 +1442,9 @@
         </member>
         <member name="F:Aequus.AequusSounds.RopeRetract">
             <summary>Full Path: Assets/Sounds/Items/RopeRetract</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.StudiesOfTheInkblotUse">
+            <summary>Full Path: Assets/Sounds/Items/StudiesOfTheInkblotUse</summary>
         </member>
         <member name="F:Aequus.AequusSounds.UseDagger">
             <summary>Full Path: Assets/Sounds/Items/UseDagger</summary>
@@ -1522,7 +1525,7 @@
             <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookPull</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 347)</summary>
+            <summary>(Total Textures: 354)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1580,6 +1583,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.Shatter">
             <summary>Full Path: Assets/Textures/Shatter</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SlashForward">
+            <summary>Full Path: Assets/Textures/SlashForward</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SlashVanilla">
             <summary>Full Path: Assets/Textures/SlashVanilla</summary>
@@ -1746,6 +1752,18 @@
         <member name="F:Aequus.AequusTextures.FamiliarPetItem">
             <summary>Full Path: Content/DedicatedContent/Familiar/FamiliarPetItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.IronLotus">
+            <summary>Full Path: Content/DedicatedContent/IronLotus/IronLotus</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.IronLotusProj">
+            <summary>Full Path: Content/DedicatedContent/IronLotus/IronLotusProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.IronLotusProj_Edges">
+            <summary>Full Path: Content/DedicatedContent/IronLotus/IronLotusProj_Edges</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.IronLotusProj_EdgesAura">
+            <summary>Full Path: Content/DedicatedContent/IronLotus/IronLotusProj_EdgesAura</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.LanternCatPet">
             <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPet</summary>
         </member>
@@ -1769,6 +1787,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.MirrorsCall_Edges_Aura">
             <summary>Full Path: Content/DedicatedContent/MirrorsCall/MirrorsCall_Edges_Aura</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StudiesOfTheInkblot">
+            <summary>Full Path: Content/DedicatedContent/StudiesOfTheInkblot/StudiesOfTheInkblot</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StudiesOfTheInkblotProj">
+            <summary>Full Path: Content/DedicatedContent/StudiesOfTheInkblot/StudiesOfTheInkblotProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SwagEyePet">
             <summary>Full Path: Content/DedicatedContent/SwagEye/SwagEyePet</summary>

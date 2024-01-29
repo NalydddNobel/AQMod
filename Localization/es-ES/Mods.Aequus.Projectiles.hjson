@@ -32,4 +32,8 @@ DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 // BombarderRodProj.DisplayName: "{$Items.BombarderRod.DisplayName}"
 // TriacanthornBolt.DisplayName: "{$Items.Triacanthorn.DisplayName}"
 // TriacanthornProj.DisplayName: "{$Items.Triacanthorn.DisplayName}"
-// MirrorsCallProj.DisplayName: Mirrors Call Proj
+// MirrorsCallProj.DisplayName: "{$Items.MirrorsCall.DisplayName}"
+// IronLotusFlare.DisplayName: Iron Lotus Flare
+// IronLotusProj.DisplayName: Iron Lotus Proj
+// StudiesOfTheInkblotOrbiterProj.DisplayName: Studies Of The Inkblot Orbiter Proj
+// StudiesOfTheInkblotProj.DisplayName: Studies Of The Inkblot Proj

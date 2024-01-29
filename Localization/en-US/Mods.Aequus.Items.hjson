@@ -198,6 +198,15 @@ MirrorsCall: {
 	Tooltip: Strike the enemy from the comfort of your couch!
 }
 
+IronLotus: {
+	DisplayName: Iron Lotus
+	Tooltip:
+		'''
+		Brandish a spear which inflicts spreading flames
+		'Burn those who dare to care for me'
+		'''
+}
+
 Cauterizer: {
 	DisplayName: Cauterizer
 	Tooltip: "{$CommonTooltips.OmnidirectionMelee}"
@@ -269,6 +278,15 @@ Furystar: {
 		'''
 		Causes stars to rain from the sky
 		Attacks restores mana
+		'''
+}
+
+StudiesOfTheInkblot: {
+	DisplayName: Studies Of The Inkblot
+	Tooltip:
+		'''
+		Left Click for 'Rorschach in Danmaku'
+		Right Click for 'Subterranean Rose'
 		'''
 }
 

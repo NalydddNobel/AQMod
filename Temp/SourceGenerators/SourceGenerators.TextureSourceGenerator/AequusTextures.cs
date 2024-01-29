@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 347)</summary>
+/// <summary>(Total Textures: 354)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -45,6 +45,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OnlineLink = new("Aequus/Assets/Textures/OnlineLink");
     /// <summary>Full Path: Assets/Textures/Shatter</summary>
     public static readonly RequestCache<Texture2D> Shatter = new("Aequus/Assets/Textures/Shatter");
+    /// <summary>Full Path: Assets/Textures/SlashForward</summary>
+    public static readonly RequestCache<Texture2D> SlashForward = new("Aequus/Assets/Textures/SlashForward");
     /// <summary>Full Path: Assets/Textures/SlashVanilla</summary>
     public static readonly RequestCache<Texture2D> SlashVanilla = new("Aequus/Assets/Textures/SlashVanilla");
     /// <summary>Full Path: Assets/Textures/SlashVanillaSmall</summary>
@@ -155,6 +157,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> FamiliarPetBuff = new("Aequus/Content/DedicatedContent/Familiar/FamiliarPetBuff");
     /// <summary>Full Path: Content/DedicatedContent/Familiar/FamiliarPetItem</summary>
     public static readonly RequestCache<Texture2D> FamiliarPetItem = new("Aequus/Content/DedicatedContent/Familiar/FamiliarPetItem");
+    /// <summary>Full Path: Content/DedicatedContent/IronLotus/IronLotus</summary>
+    public static readonly RequestCache<Texture2D> IronLotus = new("Aequus/Content/DedicatedContent/IronLotus/IronLotus");
+    /// <summary>Full Path: Content/DedicatedContent/IronLotus/IronLotusProj</summary>
+    public static readonly RequestCache<Texture2D> IronLotusProj = new("Aequus/Content/DedicatedContent/IronLotus/IronLotusProj");
+    /// <summary>Full Path: Content/DedicatedContent/IronLotus/IronLotusProj_Edges</summary>
+    public static readonly RequestCache<Texture2D> IronLotusProj_Edges = new("Aequus/Content/DedicatedContent/IronLotus/IronLotusProj_Edges");
+    /// <summary>Full Path: Content/DedicatedContent/IronLotus/IronLotusProj_EdgesAura</summary>
+    public static readonly RequestCache<Texture2D> IronLotusProj_EdgesAura = new("Aequus/Content/DedicatedContent/IronLotus/IronLotusProj_EdgesAura");
     /// <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPet</summary>
     public static readonly RequestCache<Texture2D> LanternCatPet = new("Aequus/Content/DedicatedContent/LanternCat/LanternCatPet");
     /// <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPetBuff</summary>
@@ -171,6 +181,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> MirrorsCall_Edges = new("Aequus/Content/DedicatedContent/MirrorsCall/MirrorsCall_Edges");
     /// <summary>Full Path: Content/DedicatedContent/MirrorsCall/MirrorsCall_Edges_Aura</summary>
     public static readonly RequestCache<Texture2D> MirrorsCall_Edges_Aura = new("Aequus/Content/DedicatedContent/MirrorsCall/MirrorsCall_Edges_Aura");
+    /// <summary>Full Path: Content/DedicatedContent/StudiesOfTheInkblot/StudiesOfTheInkblot</summary>
+    public static readonly RequestCache<Texture2D> StudiesOfTheInkblot = new("Aequus/Content/DedicatedContent/StudiesOfTheInkblot/StudiesOfTheInkblot");
+    /// <summary>Full Path: Content/DedicatedContent/StudiesOfTheInkblot/StudiesOfTheInkblotProj</summary>
+    public static readonly RequestCache<Texture2D> StudiesOfTheInkblotProj = new("Aequus/Content/DedicatedContent/StudiesOfTheInkblot/StudiesOfTheInkblotProj");
     /// <summary>Full Path: Content/DedicatedContent/SwagEye/SwagEyePet</summary>
     public static readonly RequestCache<Texture2D> SwagEyePet = new("Aequus/Content/DedicatedContent/SwagEye/SwagEyePet");
     /// <summary>Full Path: Content/DedicatedContent/SwagEye/SwagEyePetBuff</summary>

@@ -193,6 +193,20 @@ Slice: {
 		'''
 }
 
+MirrorsCall: {
+	DisplayName: 镜之召
+	Tooltip: 从你舒适的沙发上打击敌人!
+}
+
+IronLotus: {
+	DisplayName: 铁莲花
+	Tooltip:
+		'''
+		挥舞会扩散火焰的长矛
+		'点燃那些胆敢在乎我的人'
+		'''
+}
+
 Cauterizer: {
 	DisplayName: 灼烧者
 	Tooltip: "{$CommonTooltips.OmnidirectionMelee}"
@@ -201,11 +215,6 @@ Cauterizer: {
 HellsBoon: {
 	DisplayName: 地狱之赐
 	Tooltip: 用远距离黑暗和灰烬尖刺攻击敌人
-}
-
-MirrorsCall: {
-	DisplayName: 镜之召
-	Tooltip: 从你舒适的沙发上打击敌人!
 }
 
 //# Ranged Ammo
@@ -269,6 +278,15 @@ Furystar: {
 		'''
 		使星星从天而降
 		攻击会回复魔力值
+		'''
+}
+
+StudiesOfTheInkblot: {
+	DisplayName: 墨迹研究学
+	Tooltip:
+		'''
+		左键释放'弹幕的墨迹测验'
+		右键释放'地底蔷薇'
 		'''
 }
 
