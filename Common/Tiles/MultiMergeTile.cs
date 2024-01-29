@@ -300,7 +300,7 @@ public abstract class MultiMergeTile : ModTile {
     public static void EnsureCacheLength() {
         _mergeCache ??= Array.Empty<byte[]>();
         if (_mergeCache.Length != TileLoader.TileCount) {
-            EnumerableHelper.ResizeAndPopulate(ref _mergeCache, TileLoader.TileCount, Array.Empty<byte>);
+            ExtendArray.ResizeAndPopulate(ref _mergeCache, TileLoader.TileCount, Array.Empty<byte>);
         }
     }
 

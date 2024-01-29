@@ -488,8 +488,8 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
 
     private static void GenerateTileArrays() {
         int length = TileLoader.TileCount;
-        ReplaceableTile = EnumerableHelper.CreateArray((i) => true, length);
-        SafeTile = EnumerableHelper.CreateArray((i) => true, length);
+        ReplaceableTile = ExtendArray.CreateArray((i) => true, length);
+        SafeTile = ExtendArray.CreateArray((i) => true, length);
 
         for (int i = 0; i < length; i++) {
             if (Main.tileDungeon[i]) {
@@ -531,7 +531,7 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
 
     private static void GenerateWallArrays() {
         int length = WallLoader.WallCount;
-        ReplaceableWall = EnumerableHelper.CreateArray((i) => true, length);
+        ReplaceableWall = ExtendArray.CreateArray((i) => true, length);
 
         for (int i = 0; i < length; i++) {
             if (Main.wallDungeon[i] || WallID.Sets.Corrupt[i] || WallID.Sets.Crimson[i] || WallID.Sets.Hallow[i]) {

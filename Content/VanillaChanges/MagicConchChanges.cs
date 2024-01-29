@@ -25,7 +25,7 @@ public class MagicConchChanges : GlobalItem {
                     if (alwaysAtleastOneSuccess.rules[i] is OneFromOptionsNotScaledWithLuckDropRule oneFromOptionsDropRule) {
                         for (int j = 0; j < oneFromOptionsDropRule.dropIds.Length; j++) {
                             if (oneFromOptionsDropRule.dropIds[j] == ItemID.MagicConch) {
-                                EnumerableHelper.RemoveAt(ref oneFromOptionsDropRule.dropIds, j);
+                                ExtendArray.RemoveAt(ref oneFromOptionsDropRule.dropIds, j);
                                 j--;
                             }
                         }
