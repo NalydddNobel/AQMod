@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 343)</summary>
+/// <summary>(Total Textures: 347)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -163,6 +163,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> LanternCatPetItem = new("Aequus/Content/DedicatedContent/LanternCat/LanternCatPetItem");
     /// <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPet_Lantern</summary>
     public static readonly RequestCache<Texture2D> LanternCatPet_Lantern = new("Aequus/Content/DedicatedContent/LanternCat/LanternCatPet_Lantern");
+    /// <summary>Full Path: Content/DedicatedContent/MirrorsCall/MirrorsCall</summary>
+    public static readonly RequestCache<Texture2D> MirrorsCall = new("Aequus/Content/DedicatedContent/MirrorsCall/MirrorsCall");
+    /// <summary>Full Path: Content/DedicatedContent/MirrorsCall/MirrorsCall_Aura</summary>
+    public static readonly RequestCache<Texture2D> MirrorsCall_Aura = new("Aequus/Content/DedicatedContent/MirrorsCall/MirrorsCall_Aura");
+    /// <summary>Full Path: Content/DedicatedContent/MirrorsCall/MirrorsCall_Edges</summary>
+    public static readonly RequestCache<Texture2D> MirrorsCall_Edges = new("Aequus/Content/DedicatedContent/MirrorsCall/MirrorsCall_Edges");
+    /// <summary>Full Path: Content/DedicatedContent/MirrorsCall/MirrorsCall_Edges_Aura</summary>
+    public static readonly RequestCache<Texture2D> MirrorsCall_Edges_Aura = new("Aequus/Content/DedicatedContent/MirrorsCall/MirrorsCall_Edges_Aura");
     /// <summary>Full Path: Content/DedicatedContent/SwagEye/SwagEyePet</summary>
     public static readonly RequestCache<Texture2D> SwagEyePet = new("Aequus/Content/DedicatedContent/SwagEye/SwagEyePet");
     /// <summary>Full Path: Content/DedicatedContent/SwagEye/SwagEyePetBuff</summary>

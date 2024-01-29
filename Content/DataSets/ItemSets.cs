@@ -10,7 +10,7 @@ public class ItemSets : DataSet {
     /// Items in this set are potions.
     /// </summary>
     [JsonProperty]
-    public static List<ItemEntry> Potions { get; private set; } = new();
+    public static HashSet<ItemEntry> Potions { get; private set; } = new();
     [JsonProperty]
     public static List<ItemEntry> PillarFragmentsByColor { get; private set; } = new();
 

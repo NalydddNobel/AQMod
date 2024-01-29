@@ -193,7 +193,6 @@ Slice: {
 		'''
 }
 
-
 Cauterizer: {
 	DisplayName: 灼烧者
 	Tooltip: "{$CommonTooltips.OmnidirectionMelee}"
@@ -201,7 +200,12 @@ Cauterizer: {
 
 HellsBoon: {
 	DisplayName: 地狱之赐
-	Tooltip: "用远距离黑暗和灰烬尖刺攻击敌人"
+	Tooltip: 用远距离黑暗和灰烬尖刺攻击敌人
+}
+
+MirrorsCall: {
+	DisplayName: 镜之召
+	Tooltip: 从你舒适的沙发上打击敌人!
 }
 
 //# Ranged Ammo

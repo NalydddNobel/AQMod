@@ -4,7 +4,9 @@ using Terraria.GameContent;
 
 namespace Aequus.Core.Utilities;
 
-public static class ProjectileHelper {
+public static class ExtendProjectile {
+    internal static readonly Projectile _dummyProjectile = new Projectile();
+
     public static bool IsChildOrNoSpecialEffects(this Projectile projectile) {
         return projectile.GetGlobalProjectile<ProjectileItemData>().NoSpecialEffects || projectile.GetGlobalProjectile<ProjectileSource>().isProjectileChild;
     }

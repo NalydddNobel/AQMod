@@ -1136,6 +1136,26 @@
             <param name="npc"></param>
             <param name="buffId">The Buff Id to clear from this NPC.</param>
         </member>
+        <member name="M:Aequus.Core.Utilities.ExtendProjectile.TryFindProjectileIdentity(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Attempts to find a projectile index using the identity and owner provided. Returns true if the projectile output is not -1.
+            </summary>
+            <param name="owner"></param>
+            <param name="identity"></param>
+            <param name="projectile"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendProjectile.FindProjectileIdentity(System.Int32,System.Int32)">
+            <summary>
+            Attempts to find a projectile index using the identity and owner provided. Returns -1 otherwise.
+            </summary>
+            <param name="owner"></param>
+            <param name="identity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendProjectile.UpdateShimmerReflection(Terraria.Projectile)">
+            <summary>Helper method which reflects a projectile against shimmer.</summary>
+        </member>
         <member name="M:Aequus.Core.Utilities.ExtendRecipe.NotDisabledAndConditionsMet(Terraria.Recipe)">
             <returns><see langword="true"/>, if the recipe is not disabled, and conditions have been met. Otherwise <see langword="false"/>.</returns>
         </member>
@@ -1305,26 +1325,6 @@
             </summary>
             <param name="npc"></param>
             <returns>Whether the enemy should be immune to this hit (true = Do not hit)</returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ProjectileHelper.TryFindProjectileIdentity(System.Int32,System.Int32,System.Int32@)">
-            <summary>
-            Attempts to find a projectile index using the identity and owner provided. Returns true if the projectile output is not -1.
-            </summary>
-            <param name="owner"></param>
-            <param name="identity"></param>
-            <param name="projectile"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ProjectileHelper.FindProjectileIdentity(System.Int32,System.Int32)">
-            <summary>
-            Attempts to find a projectile index using the identity and owner provided. Returns -1 otherwise.
-            </summary>
-            <param name="owner"></param>
-            <param name="identity"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ProjectileHelper.UpdateShimmerReflection(Terraria.Projectile)">
-            <summary>Helper method which reflects a projectile against shimmer.</summary>
         </member>
         <member name="M:Aequus.Core.Utilities.TextBroadcast.NewText(System.String,Microsoft.Xna.Framework.Color,System.Object[])">
             <summary>
@@ -1522,7 +1522,7 @@
             <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookPull</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 343)</summary>
+            <summary>(Total Textures: 347)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1757,6 +1757,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.LanternCatPet_Lantern">
             <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPet_Lantern</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MirrorsCall">
+            <summary>Full Path: Content/DedicatedContent/MirrorsCall/MirrorsCall</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MirrorsCall_Aura">
+            <summary>Full Path: Content/DedicatedContent/MirrorsCall/MirrorsCall_Aura</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MirrorsCall_Edges">
+            <summary>Full Path: Content/DedicatedContent/MirrorsCall/MirrorsCall_Edges</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MirrorsCall_Edges_Aura">
+            <summary>Full Path: Content/DedicatedContent/MirrorsCall/MirrorsCall_Edges_Aura</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SwagEyePet">
             <summary>Full Path: Content/DedicatedContent/SwagEye/SwagEyePet</summary>

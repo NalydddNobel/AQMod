@@ -193,6 +193,16 @@ Slice: {
 		'''
 }
 
+Cauterizer: {
+	// DisplayName: Cauterizer
+	// Tooltip: "{$CommonTooltips.OmnidirectionMelee}"
+}
+
+HellsBoon: {
+	// DisplayName: Hells Boon
+	// Tooltip: Attack enemies with long range darkness and ash spikes
+}
+
 //# Ranged Ammo
 PlasticDart: {
 	DisplayName: Dardo Plastico
@@ -580,12 +590,7 @@ Toolbelt: {
 	// BackpackDisabled: Toolbelt Pack Off
 }
 
-Cauterizer: {
-	// DisplayName: Cauterizer
-	// Tooltip: ""
-}
-
-HellsBoon: {
-	// DisplayName: Hells Boon
+MirrorsCall: {
+	// DisplayName: Mirrors Call
 	// Tooltip: ""
 }

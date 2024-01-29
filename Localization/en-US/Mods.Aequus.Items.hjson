@@ -193,6 +193,11 @@ Slice: {
 		'''
 }
 
+MirrorsCall: {
+	DisplayName: Mirror's Call
+	Tooltip: Strike the enemy from the comfort of your couch!
+}
+
 Cauterizer: {
 	DisplayName: Cauterizer
 	Tooltip: "{$CommonTooltips.OmnidirectionMelee}"
@@ -200,7 +205,7 @@ Cauterizer: {
 
 HellsBoon: {
 	DisplayName: Hells Boon
-	Tooltip: "Attack enemies with long range darkness and ash spikes"
+	Tooltip: Attack enemies with long range darkness and ash spikes
 }
 
 //# Ranged Ammo
