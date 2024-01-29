@@ -36,7 +36,7 @@ public sealed class MetadataFileLoader {
 
     [Conditional("DEBUG")]
     internal void CreateTempFile() {
-        string fileLocation = Path.Join(Aequus.DebugPath, "ModSources", FilePath.Replace($"Content/DataSets/", "Assets/Metadata/") + ".json").Replace('/', Path.DirectorySeparatorChar);
+        string fileLocation = Path.Join(Aequus.DEBUG_FILES_PATH, "ModSources", FilePath.Replace($"Content/DataSets/", "Assets/Metadata/") + ".json").Replace('/', Path.DirectorySeparatorChar);
         _dataSet.Mod.Logger.Debug(fileLocation);
         try {
             // Only attempt to create the file if this Directory even exists.
