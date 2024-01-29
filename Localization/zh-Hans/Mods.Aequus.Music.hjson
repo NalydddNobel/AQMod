@@ -1,3 +1,6 @@
-Authors.extra: 额外
 MusicBoxName: 音乐盒 ({0})
-PollutedOcean: 被污染的海洋
+
+//# Please do not translate anything below this, as these are Names of Musicians and their Songs
+
+Authors.extra: sevenxtra
+PollutedOcean: Polluted Ocean
