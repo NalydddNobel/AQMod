@@ -37,6 +37,12 @@ internal sealed class AutoloadSystem : ModSystem {
         orig(bestiaryDatabase, dropsDatabase);
     }
 
+    public override void SetStaticDefaults() {
+        foreach (var t in Aequus.Instance.GetContent<ISetStaticDefaults>()) {
+            t.SetStaticDefaults(Aequus.Instance);
+        }
+    }
+
     public override void PostSetupContent() {
         foreach (var t in Aequus.Instance.GetContent<IPostSetupContent>()) {
             t.PostSetupContent(Aequus.Instance);

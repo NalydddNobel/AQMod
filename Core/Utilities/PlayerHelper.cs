@@ -249,6 +249,9 @@ public static class PlayerHelper {
         return npc.aiStyle == NPCAIStyleID.Fairy && !(npc.ai[2] <= 1f);
     }
 
+    public static bool RollCrit(this Player player, Item item) {
+        return !item.DamageType.UseStandardCritCalcs ? false : Main.rand.Next(100) < player.GetWeaponCrit(item);
+    }
     public static bool RollCrit<T>(this Player player) where T : DamageClass {
         return player.RollCrit(ModContent.GetInstance<T>());
     }

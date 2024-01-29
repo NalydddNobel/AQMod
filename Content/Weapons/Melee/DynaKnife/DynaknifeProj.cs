@@ -6,7 +6,7 @@ using Terraria.Audio;
 
 namespace Aequus.Content.Weapons.Melee.DynaKnife;
 
-public class DynaknifeProj : HeldSlashingSwordProjectile {
+public class DynaknifeProj : LegacyHeldSlashingSwordProjectile {
     public override void SetDefaults() {
         base.SetDefaults();
         Projectile.width = 20;

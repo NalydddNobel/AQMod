@@ -6,6 +6,8 @@ using System.Linq;
 using Terraria.Localization;
 
 namespace Aequus.Old.Content.Equipment.Accessories.HighSteaks;
+
+[LegacyName("SteakEyes")]
 [AutoloadEquip(EquipType.Waist)]
 public class HighSteaks : ModItem, IHaveDownsideTip {
     /// <summary>

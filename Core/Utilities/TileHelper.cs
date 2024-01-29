@@ -239,13 +239,13 @@ public static class TileHelper {
         return (i, j) => Main.tile[i, j].WallType == type;
     }
     public static Utils.TileActionAttempt HasWallAction(params int[] types) {
-        return (i, j) => types.Any(Main.tile[i, j].WallType);
+        return (i, j) => types.Match(Main.tile[i, j].WallType);
     }
     public static Utils.TileActionAttempt HasTileAction(int type) {
         return (i, j) => Main.tile[i, j].HasTile && Main.tile[i, j].TileType == type;
     }
     public static Utils.TileActionAttempt HasTileAction(params int[] types) {
-        return (i, j) => Main.tile[i, j].HasTile && types.Any(Main.tile[i, j].TileType);
+        return (i, j) => Main.tile[i, j].HasTile && types.Match(Main.tile[i, j].TileType);
     }
 
     public static bool HasNoTileAndNoWall(Tile tile) {

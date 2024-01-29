@@ -3,6 +3,7 @@ DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
 Scavenger: {
 	DisplayName: 拾荒者
 	Bestiary: 曾经在海上航行的恶毒海盗, 即使是他们腐烂的骨头, 仍然有着偷窃和掠夺的欲望.
+	BannerName: 拾荒者旗帜
 }
 
 ScavengerLootBag.DisplayName: 拾荒者袋子
@@ -43,6 +44,14 @@ LeggedLava: {
 	Bestiary: 被血巢的血肉'祝福'触碰的岩浆史莱姆会长出蜘蛛般的腿. 它们自由的跳来跳去并喷吐暗影能量, 万幸的是, 它们太重了, 没法爬上墙壁.
 	BannerName: 附腿熔岩旗
 }
+
+KeeperImp: {
+	DisplayName: 看守者
+	Bestiary: 通过捕捉灵魂, 使它们的身体枯萎, 并破坏它们的意志, 这只小淘气获得了完全听从其命令的致命宠物.
+	BannerName: 看守者旗
+}
+
+ChainedSoul.DisplayName: 链缚之魂
 
 Occultist: {
 	DisplayName: 秘术师

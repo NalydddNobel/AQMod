@@ -1,8 +1,9 @@
 ﻿namespace Aequus.Core.Utilities;
 
 public static class CommonColor {
-    public static readonly Color TILE_FURNITURE = new Color(191, 142, 111, 255);
-    public static readonly Color TILE_FURNITURE_LIGHTED = new Color(253, 221, 3, 255);
+    public static readonly Color TILE_FURNITURE = new Color(191, 142, 111);
+    public static readonly Color TILE_FURNITURE_LIGHTED = new Color(253, 221, 3);
+    public static readonly Color TILE_STATUE = new Color(144, 148, 144);
 
     public static readonly Color TILE_WATER = new Color(9, 61, 191);
 

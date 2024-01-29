@@ -9,6 +9,11 @@ namespace Aequus.Content.DataSets;
 public class ProjectileSets : DataSet {
     public static Dictionary<ProjectileEntry, float> SpriteRotation { get; private set; } = new();
 
+    /// <summary>
+    /// Projectiles in this set do not damage the <see cref="Old.Content.TownNPCs.OccultistNPC.Occultist"/>.
+    /// </summary>
+    [JsonProperty]
+    public static HashSet<ProjectileEntry> OccultistIgnore { get; private set; } = new();
     public static HashSet<ProjectileEntry> IsStar { get; private set; } = new();
 
     /// <summary>

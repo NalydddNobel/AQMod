@@ -103,7 +103,7 @@ KegOSpirits: {
 	/* Tooltip:
 		'''
 		{$SaivoryKnife.Tooltip}
-		{$SpiritBottle.Tooltip@1}
+		{$BottleOSpirits.Tooltip@1}
 		''' */
 }
 
@@ -112,8 +112,8 @@ SaivoryKnife: {
 	// Tooltip: Increases the duration of your ghost minions by {0}
 }
 
-SpiritBottle: {
-	// DisplayName: Spirit Bottle
+BottleOSpirits: {
+	// DisplayName: Bottle O' Spirits
 	// Tooltip: Increases your maximum number of ghosts by {0}
 }
 
@@ -125,6 +125,17 @@ WarHorn: {
 		This effect has a {1} second cooldown
 		Frenzied minions gain increased attack and movement speed
 		''' */
+}
+
+PotionCanteenEmpty: {
+	// DisplayName: "{$Items.PotionCanteen.DisplayName}"
+	// Tooltip: "{$Items.PotionCanteen.Tooltip}"
+}
+
+PotionCanteen: {
+	// DisplayName: Potion Canteen
+	// DisplayNameAlt: Potion Canteen ({0})
+	// Tooltip: Craft with a potion to allow infinite use
 }
 
 //# Equipment: Informational
@@ -222,6 +233,16 @@ CrusadersCrossbow: {
 	// Tooltip: Shoots a bolt which can heal allies
 }
 
+Deltoid: {
+	// DisplayName: Deltoid
+	// Tooltip: Ignites wooden arrows with crimson hellfire
+}
+
+HamaYumi: {
+	// DisplayName: Hama Yumi
+	// Tooltip: Arrows are temporarily buffed with a piercing corruption blast
+}
+
 //# Weapons: Magic
 TrashStaff: {
 	DisplayName: Correo Spam
@@ -235,6 +256,24 @@ Furystar: {
 		Hace que lluevan estrellas del cielo
 		Ataques restauran maná
 		'''
+}
+
+BombarderRod: {
+	// DisplayName: Bombarder Rod
+	/* Tooltip:
+		'''
+		Critical strikes inflict crimson fire to nearby enemies
+		Imprecise at close range
+		''' */
+}
+
+Triacanthorn: {
+	// DisplayName: Triacanthorn
+	/* Tooltip:
+		'''
+		Summons splitting vile tendrils
+		Ignores 10 points of enemy Defense
+		''' */
 }
 
 //# Weapons: Classless

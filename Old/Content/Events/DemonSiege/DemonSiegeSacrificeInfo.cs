@@ -1,4 +1,5 @@
-﻿using Aequus.Core;
+﻿using Aequus.Content.Events.DemonSiege;
+using Aequus.Core;
 using Aequus.Core.Networking;
 using Aequus.Old.Content.Events.DemonSiege.Spawners;
 using Aequus.Old.Content.Events.DemonSiege.Tiles;
@@ -55,7 +56,7 @@ public class DemonSiegeSacrificeInfo {
     public int DetermineLength() {
         int time = 0;
         foreach (var i in Items) {
-            if (DemonSiegeSystem.RegisteredSacrifices.TryGetValue(i.netID, out var value)) {
+            if (AltarSacrifices.OriginalToConversion.TryGetValue(i.netID, out var value)) {
                 int newTime = 7200 * (int)(value.Progression + 1);
                 if (unholyCoreUsed) {
                     newTime = (int)(newTime * 0.75f);
@@ -73,7 +74,7 @@ public class DemonSiegeSacrificeInfo {
         return new Rectangle(TileX, TileY, 3, 4);
     }
     public bool OnValidTile() {
-        return GoreNest.IsGoreNest(TileX, TileY);
+        return OblivionAltar.IsGoreNest(TileX, TileY);
     }
 
     public void Update() {
@@ -173,7 +174,7 @@ public class DemonSiegeSacrificeInfo {
             var source = new EntitySource_TileBreak(TileX, TileY, "Aequus:GoreNest");
             //AequusText.Broadcast("Should be spawning these items: " + AequusText.ItemText(Items[0].type), Color.Red);
             foreach (var i in Items) {
-                DemonSiegeSystem.RegisteredSacrifices.TryGetValue(i.type, out var value);
+                AltarSacrifices.OriginalToConversion.TryGetValue(i.type, out var value);
                 if (i.type == value.NewItem) {
                     continue;
                 }
@@ -214,7 +215,7 @@ public class DemonSiegeSacrificeInfo {
         string itemList = "";
         var source = new EntitySource_TileBreak(TileX, TileY, "GoreNest_MPFail");
         foreach (var i in Items) {
-            if (DemonSiegeSystem.RegisteredSacrifices.TryGetValue(i.type, out var val) && val.OriginalItem == val.NewItem) {
+            if (AltarSacrifices.OriginalToConversion.TryGetValue(i.type, out var val) && val.OriginalItem == val.NewItem) {
                 continue;
             }
             if (!clientOnly) {
@@ -237,7 +238,7 @@ public class DemonSiegeSacrificeInfo {
     public void OnFail_EatItems(bool clientOnly) {
         string itemList = "";
         foreach (var i in Items) {
-            if (DemonSiegeSystem.RegisteredSacrifices.TryGetValue(i.type, out var val) && val.OriginalItem != val.NewItem/* || val.OriginalItem == ModContent.ItemType<VoidRing>()*/) {
+            if (AltarSacrifices.OriginalToConversion.TryGetValue(i.type, out var val) && val.OriginalItem != val.NewItem/* || val.OriginalItem == ModContent.ItemType<VoidRing>()*/) {
                 continue;
             }
             if (itemList != "") {

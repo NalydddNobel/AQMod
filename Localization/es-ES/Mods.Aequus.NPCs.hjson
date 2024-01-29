@@ -3,6 +3,7 @@ DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
 Scavenger: {
 	DisplayName: Carroñero
 	Bestiary: Alguna vez piratas vicios navegando los mares, sus huesos retienen la necesidad de robar y saquear.
+	// BannerName: Scavenger Banner
 }
 
 ScavengerLootBag.DisplayName: Bolsa Carroñera
@@ -43,6 +44,14 @@ LeggedLava: {
 	// Bestiary: Lava slimes touched by the Gore Nest's fleshy 'blessing' will grow spider-like legs. They hop about freely and spew shadowy energies, but are thankfully too heavy to climb on walls.
 	// BannerName: Legged Lava Banner
 }
+
+KeeperImp: {
+	// DisplayName: Keeper
+	// Bestiary: By capturing souls for itself, withering their bodies, and breaking their will, this imp has gained deadly pets that follow its command perfectly.
+	// BannerName: Keeper Banner
+}
+
+// ChainedSoul.DisplayName: Chained Soul
 
 Occultist: {
 	// DisplayName: Occultist

@@ -4,6 +4,8 @@ public class DemonSiegePlayer : ModPlayer {
     public Point GoreNest { get; private set; }
 
     public override void PreUpdate() {
+        GoreNest = Point.Zero;
+
         Vector2 center = Player.Center;
         float closestDistance = float.MaxValue;
         foreach (var s in DemonSiegeSystem.ActiveSacrifices) {

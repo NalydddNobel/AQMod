@@ -70,14 +70,41 @@ Trophies: {
 	SpaceSquidRelic.DisplayName: Space Squid Relic
 }
 
-GoreNest: {
-	MapEntry: Gore Nest
-	ItemDisplayName: "{$GoreNest.MapEntry}"
+OblivionAltar: {
+	MapEntry: Oblivion Altar
+	ItemDisplayName: "{$OblivionAltar.MapEntry}"
 	ItemTooltip:
 		'''
-		Used to upgrade evil weapons, activating the Demon Siege
+		<right> to upgrade evil weapons
 		Counts as a Demon/Crimson Altar for crafting
 		'''
+}
+
+ScavengerStatue: {
+	ItemDisplayName: Scavenger Statue
+	ItemTooltip: ""
+}
+
+MossStatues: {
+	Argon: {
+		ItemDisplayName: Argon Plant Statue
+		ItemTooltip: ""
+	}
+
+	Krypton: {
+		ItemDisplayName: Krypton Plant Statue
+		ItemTooltip: ""
+	}
+
+	Neon: {
+		ItemDisplayName: Neon Plant Statue
+		ItemTooltip: ""
+	}
+
+	Xenon: {
+		ItemDisplayName: Xenon Plant Statue
+		ItemTooltip: ""
+	}
 }
 
 ScrapBlock: {

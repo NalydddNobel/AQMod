@@ -27,7 +27,7 @@ public partial class AequusRecipes {
     public static RecipeGroup AnyTrash { get; private set; }
 
     public override void AddRecipeGroups() {
-        AnyQuestFish = NewGroup("AnyQuestFish", Main.anglerQuestItemNetIDs.CloneArray());
+        AnyQuestFish = NewGroup("AnyQuestFish", Main.anglerQuestItemNetIDs.Copy());
         Shellphone = NewGroup("Shellphone", ItemID.ShellphoneDummy, ItemID.Shellphone, ItemID.ShellphoneHell, ItemID.ShellphoneOcean, ItemID.ShellphoneSpawn);
         AnyTrash = NewGroup("AnyTrash", ItemID.OldShoe, ItemID.FishingSeaweed, ItemID.TinCan);
         AnyPaints = NewGroup("AnyPaint", GetItems((i) => i.paint > PaintID.None));

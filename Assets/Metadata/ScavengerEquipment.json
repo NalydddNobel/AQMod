@@ -1,35 +1,58 @@
 {
   "ScavengerHelmets": [
-    "SilverHelmet",
-    "TungstenHelmet",
-    "GoldHelmet",
-    "PlatinumHelmet",
-    "MagicHat",
+    "SilverHelmet"
+    /*91*/,
+    "TungstenHelmet"
+    /*693*/,
+    "GoldHelmet"
+    /*92*/,
+    "PlatinumHelmet"
+    /*696*/,
+    "MagicHat"
+    /*2275*/,
     "DivingHelmet"
+    /*268*/
   ],
   "ScavengerBreastplates": [
-    "SilverChainmail",
-    "TungstenChainmail",
-    "GoldChainmail",
-    "PlatinumChainmail",
-    "Gi",
+    "SilverChainmail"
+    /*82*/,
+    "TungstenChainmail"
+    /*694*/,
+    "GoldChainmail"
+    /*83*/,
+    "PlatinumChainmail"
+    /*697*/,
+    "Gi"
+    /*2277*/,
     "GypsyRobe"
+    /*2279*/
   ],
   "ScavengerLeggings": [
-    "SilverGreaves",
-    "TungstenGreaves",
-    "GoldGreaves",
+    "SilverGreaves"
+    /*78*/,
+    "TungstenGreaves"
+    /*695*/,
+    "GoldGreaves"
+    /*79*/,
     "PlatinumGreaves"
+    /*698*/
   ],
   "ScavengerAccessories": [
-    "FrogLeg",
-    "BalloonPufferfish",
-    "TsunamiInABottle",
+    "FrogLeg"
+    /*2423*/,
+    "BalloonPufferfish"
+    /*3225*/,
+    "TsunamiInABottle"
+    /*3201*/,
     "SailfishBoots"
+    /*3200*/
   ],
   "ScavengerWeapons": [
-    "FalconBlade",
-    "GoldBow",
+    "FalconBlade"
+    /*2608*/,
+    "GoldBow"
+    /*3516*/,
     "PlatinumBow"
+    /*3480*/
   ]
 }

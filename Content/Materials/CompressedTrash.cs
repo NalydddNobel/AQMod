@@ -3,6 +3,7 @@ using Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 
 namespace Aequus.Content.Materials;
 
+[LegacyName("ItemScrap")]
 public class CompressedTrash : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 25;

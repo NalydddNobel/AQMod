@@ -1,15 +1,3 @@
-Biomes: {
-	DemonSiegeZone: {
-		DisplayName: ""
-		TownNPCDialogueName: ""
-	}
-
-	PollutedOceanBiome: {
-		DisplayName: Polluted Ocean Biome
-		TownNPCDialogueName: the Polluted Ocean Biome
-	}
-}
-
 InfoDisplays: {
 	CalendarInfoDisplay: {
 		DisplayName: "{$Items.Calendar.DisplayName}"
@@ -18,3 +6,15 @@ InfoDisplays: {
 }
 
 KeyUnbound: Unbound
+
+Biomes: {
+	PollutedOceanBiome: {
+		DisplayName: Polluted Ocean Biome
+		TownNPCDialogueName: the Polluted Ocean Biome
+	}
+		
+	DemonSiegeZone: {
+		DisplayName: Gore Nest
+		TownNPCDialogueName: ""
+	}
+}

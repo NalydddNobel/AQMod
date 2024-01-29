@@ -3,6 +3,7 @@ using Terraria.Localization;
 
 namespace Aequus.Content.Equipment.Accessories.GoldenFeather;
 
+[LegacyName("AloeVera")]
 public class GoldenWind : GoldenFeather {
     public static new int LifeRegenerationAmount { get; set; } = 3;
 

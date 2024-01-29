@@ -35,22 +35,22 @@ public sealed class MetadataFileLoader {
     }
 
     [Conditional("DEBUG")]
-    public void CreateTempFile() {
-        string createFile = $"{Aequus.DEBUG_FILES_PATH}/ModSources/{FilePath.Replace("Content/DataSets/", "Assets/Metadata/")}.Temp.json";
-        _dataSet.Mod.Logger.Debug(createFile);
+    internal void CreateTempFile() {
+        string fileLocation = Path.Join(Aequus.DebugPath, "ModSources", FilePath.Replace($"Content/DataSets/", "Assets/Metadata/") + ".json").Replace('/', Path.DirectorySeparatorChar);
+        _dataSet.Mod.Logger.Debug(fileLocation);
         try {
             // Only attempt to create the file if this Directory even exists.
-            if (!Directory.Exists(Path.GetDirectoryName(createFile))) {
+            if (!Directory.Exists(Path.GetDirectoryName(fileLocation))) {
                 return;
             }
 
-            var settings = new JsonSerializerSettings {
+            JsonSerializerSettings settings = new JsonSerializerSettings {
                 Formatting = Formatting.Indented,
             };
-            var jsonData = JsonConvert.SerializeObject(_dataSet, settings);
+            string jsonData = JsonConvert.SerializeObject(_dataSet, settings);
             if (jsonData != null) {
-                var buffer = Encoding.UTF8.GetBytes(jsonData);
-                using var file = File.Create(createFile, buffer.Length);
+                byte[] buffer = Encoding.UTF8.GetBytes(jsonData);
+                using FileStream file = File.Create(fileLocation, buffer.Length);
                 file.Write(buffer, 0, buffer.Length);
             }
         }

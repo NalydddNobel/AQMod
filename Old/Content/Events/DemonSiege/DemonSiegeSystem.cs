@@ -1,5 +1,5 @@
-﻿using Aequus.Core.Networking;
-using Aequus.Old.Content.Events.DemonSiege.Tiles;
+﻿using Aequus.Content.Events.DemonSiege;
+using Aequus.Core.Networking;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,33 +12,10 @@ public class DemonSiegeSystem : ModSystem {
 
     public static readonly Dictionary<Point, DemonSiegeSacrificeInfo> ActiveSacrifices = new();
     public static readonly List<Point> SacrificeRemovalQueue = new();
-    public static readonly Dictionary<int, SacrificeData> RegisteredSacrifices = new();
-    public static readonly Dictionary<int, List<int>> SacrificeResultItemIDToOriginalItemID = new();
 
-    public static int DemonSiegePause;
-
-    public override void AddRecipes() {
-        foreach (var sacrifice in RegisteredSacrifices.Values) {
-            if (sacrifice.Hide || sacrifice.OriginalItem == sacrifice.NewItem) {
-                continue;
-            }
-
-            Recipe recipe = Recipe.Create(sacrifice.NewItem);
-
-            recipe.AddIngredient(sacrifice.OriginalItem)
-                .AddTile<GoreNestDummy>()
-                .Register()
-                .SortAfterFirstRecipesOf(sacrifice.OriginalItem);
-
-            if (sacrifice.DisableDecraft) {
-                recipe.DisableDecraft();
-            }
-        }
-    }
+    public static int DemonSiegePause { get; set; }
 
     public override void Unload() {
-        RegisteredSacrifices.Clear();
-        SacrificeResultItemIDToOriginalItemID.Clear();
         ActiveSacrifices.Clear();
         SacrificeRemovalQueue.Clear();
     }
@@ -63,8 +40,10 @@ public class DemonSiegeSystem : ModSystem {
     }
 
     public override void PostUpdateNPCs() {
-        if (DemonSiegePause > 0)
+        if (DemonSiegePause > 0) {
             DemonSiegePause--;
+        }
+
         foreach (var s in ActiveSacrifices) {
             s.Value.TileX = s.Key.X;
             s.Value.TileY = s.Key.Y;
@@ -119,16 +98,6 @@ public class DemonSiegeSystem : ModSystem {
         DrawSacrificeRings();
     }
 
-    public static void RegisterSacrifice(SacrificeData sacrifice) {
-        RegisteredSacrifices[sacrifice.OriginalItem] = sacrifice;
-        if (SacrificeResultItemIDToOriginalItemID.TryGetValue(sacrifice.NewItem, out var list)) {
-            list.Add(sacrifice.OriginalItem);
-        }
-        else {
-            SacrificeResultItemIDToOriginalItemID[sacrifice.NewItem] = new() { sacrifice.OriginalItem };
-        }
-    }
-
     public static bool NewInvasion(int x, int y, Item sacrifice, int player = byte.MaxValue, bool checkIsValidSacrifice = true, bool allowAdding = true, bool allowAdding_IgnoreMax = false) {
         sacrifice = sacrifice.Clone();
         sacrifice.stack = 1;
@@ -141,11 +110,11 @@ public class DemonSiegeSystem : ModSystem {
             }
             return false;
         }
-        if (!RegisteredSacrifices.TryGetValue(sacrifice.netID, out var sacrificeData)) {
+        if (!AltarSacrifices.OriginalToConversion.TryGetValue(sacrifice.netID, out var sacrificeData)) {
             if (checkIsValidSacrifice) {
                 return false;
             }
-            sacrificeData = new SacrificeData(sacrifice.netID, sacrifice.netID + 1, EventTier.PreHardmode);
+            sacrificeData = new Conversion(sacrifice.netID, sacrifice.netID + 1, EventTier.PreHardmode);
         }
         var s = new DemonSiegeSacrificeInfo(x, y) {
             player = (byte)player

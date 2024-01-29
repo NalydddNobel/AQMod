@@ -6,6 +6,7 @@ using System;
 
 namespace Aequus.Content.Weapons.Melee.DynaKnife;
 
+[LegacyName("CrystalDagger", "Mallet")]
 [AutoloadGlowMask]
 public class Dynaknife : ModItem, ICooldownItem {
     public int CooldownTime => 120;

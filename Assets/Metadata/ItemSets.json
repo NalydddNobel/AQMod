@@ -1,49 +1,110 @@
-﻿{
+{
+  "Potions": [
+    "ObsidianSkinPotion"
+    /*288*/,
+    "RegenerationPotion"
+    /*289*/,
+    "SwiftnessPotion"
+    /*290*/,
+    "GillsPotion"
+    /*291*/,
+    "IronskinPotion"
+    /*292*/,
+    "ManaRegenerationPotion"
+    /*293*/,
+    "MagicPowerPotion"
+    /*294*/,
+    "FeatherfallPotion"
+    /*295*/,
+    "SpelunkerPotion"
+    /*296*/,
+    "InvisibilityPotion"
+    /*297*/,
+    "ShinePotion"
+    /*298*/,
+    "NightOwlPotion"
+    /*299*/,
+    "BattlePotion"
+    /*300*/,
+    "ThornsPotion"
+    /*301*/,
+    "WaterWalkingPotion"
+    /*302*/,
+    "ArcheryPotion"
+    /*303*/,
+    "HunterPotion"
+    /*304*/,
+    "GravitationPotion"
+    /*305*/,
+    "MiningPotion"
+    /*2322*/,
+    "HeartreachPotion"
+    /*2323*/,
+    "CalmingPotion"
+    /*2324*/,
+    "BuilderPotion"
+    /*2325*/,
+    "TitanPotion"
+    /*2326*/,
+    "FlipperPotion"
+    /*2327*/,
+    "SummoningPotion"
+    /*2328*/,
+    "TrapsightPotion"
+    /*2329*/,
+    "AmmoReservationPotion"
+    /*2344*/,
+    "LifeforcePotion"
+    /*2345*/,
+    "EndurancePotion"
+    /*2346*/,
+    "RagePotion"
+    /*2347*/,
+    "InfernoPotion"
+    /*2348*/,
+    "WrathPotion"
+    /*2349*/,
+    "FishingPotion"
+    /*2354*/,
+    "SonarPotion"
+    /*2355*/,
+    "CratePotion"
+    /*2356*/,
+    "WarmthPotion"
+    /*2359*/,
+    "LuckPotionLesser"
+    /*4477*/,
+    "LuckPotion"
+    /*4478*/,
+    "LuckPotionGreater"
+    /*4479*/,
+    "BiomeSightPotion"
+    /*5211*/,
+    "Aequus/NeutronYogurt"
+  ],
+  "PillarFragmentsByColor": [],
   "ShimmerTooltipResultIgnore": [
-    "DirtBlock",
-    "StoneBlock",
-    "SnowBlock",
-    "SandBlock",
-    "EbonsandBlock",
-    "CrimsandBlock",
-    "PearlsandBlock",
-    "Hive",
-    "Wood",
+    "DirtBlock"
+    /*2*/,
+    "StoneBlock"
+    /*3*/,
+    "SnowBlock"
+    /*593*/,
+    "SandBlock"
+    /*169*/,
+    "EbonsandBlock"
+    /*370*/,
+    "CrimsandBlock"
+    /*1246*/,
+    "PearlsandBlock"
+    /*408*/,
+    "Hive"
+    /*1124*/,
+    "Wood"
+    /*9*/,
     "PurificationPowder"
+    /*66*/
   ],
-
-  "IsHealthPickup": [
-    "Heart",
-    "CandyApple",
-    "CandyCane",
-    "Split/CrabHeart",
-    "Split/BlueCrabHeart"
-  ],
-
-  "IsManaPickup": [
-    "Star",
-    "SoulCake",
-    "SugarPlum",
-    "ManaCloakStar"
-  ],
-
-  "IsPickup": [
-    "ThoriumMod/InspirationNote",
-    "ThoriumMod/InspirationNoteNoble",
-    "ThoriumMod/InspirationNoteRhapsodist",
-    "ThoriumMod/InspirationNoteStatue"
-  ],
-
-  "CelestialFragmentsByColor": [
-    "FragmentSolar",
-    "FragmentVortex",
-    "FragmentNebula",
-    "FragmentStardust",
-    "ThoriumMod/WhiteDwarfFragment",
-    "ThoriumMod/ShootingStarFragment",
-    "ThoriumMod/CelestialFragment"
-  ],
-
   "ImportantItem": [
     "CalamityMod/GladiatorsLocket",
     "CalamityMod/UnstableGraniteCore",
@@ -54,87 +115,87 @@
     "CalamityMod/CorruptionEffigy",
     "CalamityMod/CrimsonEffigy"
   ],
-
+  "CannotRename": [],
   "IsDungeonLockBox": [
-    "LockBox",
+    "LockBox"
+    /*3085*/,
     "Split/DungeonEnvelope"
   ],
-
   "IsHellLockBox": [
     "ObsidianLockbox"
+    /*4879*/
   ],
-
   "AmmoIdToProjectileId": {
-    "Gel": "Flames",
-    "WoodenArrow": "WoodenArrowFriendly",
-    "FlamingArrow": "FireArrow",
-    "UnholyArrow": "UnholyArrow",
-    "JestersArrow": "JestersArrow",
-    "FallenStar": "StarCannonStar",
-    "MusketBall": "Bullet",
-    "MeteorShot": "MeteorShot",
-    "HellfireArrow": "HellfireArrow",
-    "SilverBullet": "SilverBullet",
-    "Seed": "Seed",
-    "CrystalBullet": "CrystalBullet",
-    "HolyArrow": "HolyArrow",
-    "CursedArrow": "CursedArrow",
-    "CursedBullet": "CursedBullet",
-    "RocketI": "RocketI",
-    "RocketII": "RocketII",
-    "RocketIII": "RocketIII",
-    "RocketIV": "RocketIV",
-    "GreenSolution": "PureSpray",
-    "BlueSolution": "HallowSpray",
-    "PurpleSolution": "CorruptSpray",
-    "DarkBlueSolution": "MushroomSpray",
-    "RedSolution": "CrimsonSpray",
-    "Flare": "Flare",
-    "Snowball": "SnowBallFriendly",
-    "FrostburnArrow": "FrostburnArrow",
-    "ChlorophyteBullet": "ChlorophyteBullet",
-    "ChlorophyteArrow": "ChlorophyteArrow",
-    "StyngerBolt": "Stynger",
-    "HighVelocityBullet": "BulletHighVelocity",
-    "PoisonDart": "PoisonDartBlowgun",
-    "IchorArrow": "IchorArrow",
-    "IchorBullet": "IchorBullet",
-    "VenomArrow": "VenomArrow",
-    "VenomBullet": "VenomBullet",
-    "PartyBullet": "PartyBullet",
-    "NanoBullet": "NanoBullet",
-    "ExplodingBullet": "ExplosiveBullet",
-    "GoldenBullet": "GoldenBullet",
-    "BlueFlare": "BlueFlare",
-    "CandyCorn": "CandyCorn",
-    "ExplosiveJackOLantern": "JackOLantern",
-    "Stake": "Stake",
-    "BoneArrow": "BoneArrowFromMerchant",
-    "CrystalDart": "CrystalDart",
-    "CursedDart": "CursedDart",
-    "IchorDart": "IchorDart",
-    "EndlessQuiver": "WoodenArrowFriendly",
-    "EndlessMusketPouch": "Bullet",
-    "Nail": "NailFriendly",
-    "MoonlordBullet": "MoonlordBullet",
-    "MoonlordArrow": "MoonlordArrow",
-    "ClusterRocketI": "ClusterRocketI",
-    "ClusterRocketII": "ClusterRocketII",
-    "WetRocket": "WetRocket",
-    "LavaRocket": "LavaRocket",
-    "HoneyRocket": "HoneyRocket",
-    "MiniNukeI": "MiniNukeRocketI",
-    "MiniNukeII": "MiniNukeRocketII",
-    "DryRocket": "DryRocket",
-    "TungstenBullet": "Bullet",
-    "ShimmerArrow": "ShimmerArrow",
-    "SpelunkerFlare": "SpelunkerFlare",
-    "CursedFlare": "CursedFlare",
-    "RainbowFlare": "RainbowFlare",
-    "ShimmerFlare": "ShimmerFlare",
-    "SandSolution": "SandSpray",
-    "SnowSolution": "SnowSpray",
-    "DirtSolution": "DirtSpray",
+    "Gel": "Flames"/*85*/,
+    "WoodenArrow": "WoodenArrowFriendly"/*1*/,
+    "FlamingArrow": "FireArrow"/*2*/,
+    "UnholyArrow": "UnholyArrow"/*4*/,
+    "JestersArrow": "JestersArrow"/*5*/,
+    "FallenStar": "StarCannonStar"/*955*/,
+    "MusketBall": "Bullet"/*14*/,
+    "MeteorShot": "MeteorShot"/*36*/,
+    "HellfireArrow": "HellfireArrow"/*41*/,
+    "SilverBullet": "SilverBullet"/*981*/,
+    "Seed": "Seed"/*51*/,
+    "CrystalBullet": "CrystalBullet"/*89*/,
+    "HolyArrow": "HolyArrow"/*91*/,
+    "CursedArrow": "CursedArrow"/*103*/,
+    "CursedBullet": "CursedBullet"/*104*/,
+    "RocketI": "RocketI"/*134*/,
+    "RocketII": "RocketII"/*137*/,
+    "RocketIII": "RocketIII"/*140*/,
+    "RocketIV": "RocketIV"/*143*/,
+    "GreenSolution": "PureSpray"/*145*/,
+    "BlueSolution": "HallowSpray"/*146*/,
+    "PurpleSolution": "CorruptSpray"/*147*/,
+    "DarkBlueSolution": "MushroomSpray"/*148*/,
+    "RedSolution": "CrimsonSpray"/*149*/,
+    "Flare": "Flare"/*163*/,
+    "Snowball": "SnowBallFriendly"/*166*/,
+    "FrostburnArrow": "FrostburnArrow"/*172*/,
+    "ChlorophyteBullet": "ChlorophyteBullet"/*207*/,
+    "ChlorophyteArrow": "ChlorophyteArrow"/*225*/,
+    "StyngerBolt": "Stynger"/*246*/,
+    "HighVelocityBullet": "BulletHighVelocity"/*242*/,
+    "PoisonDart": "PoisonDartBlowgun"/*267*/,
+    "IchorArrow": "IchorArrow"/*278*/,
+    "IchorBullet": "IchorBullet"/*279*/,
+    "VenomArrow": "VenomArrow"/*282*/,
+    "VenomBullet": "VenomBullet"/*283*/,
+    "PartyBullet": "PartyBullet"/*284*/,
+    "NanoBullet": "NanoBullet"/*285*/,
+    "ExplodingBullet": "ExplosiveBullet"/*286*/,
+    "GoldenBullet": "GoldenBullet"/*287*/,
+    "BlueFlare": "BlueFlare"/*310*/,
+    "CandyCorn": "CandyCorn"/*311*/,
+    "ExplosiveJackOLantern": "JackOLantern"/*312*/,
+    "Stake": "Stake"/*323*/,
+    "BoneArrow": "BoneArrowFromMerchant"/*474*/,
+    "CrystalDart": "CrystalDart"/*477*/,
+    "CursedDart": "CursedDart"/*478*/,
+    "IchorDart": "IchorDart"/*479*/,
+    "EndlessQuiver": "WoodenArrowFriendly"/*1*/,
+    "EndlessMusketPouch": "Bullet"/*14*/,
+    "Nail": "NailFriendly"/*514*/,
+    "MoonlordBullet": "MoonlordBullet"/*638*/,
+    "MoonlordArrow": "MoonlordArrow"/*639*/,
+    "ClusterRocketI": "ClusterRocketI"/*776*/,
+    "ClusterRocketII": "ClusterRocketII"/*780*/,
+    "WetRocket": "WetRocket"/*784*/,
+    "LavaRocket": "LavaRocket"/*787*/,
+    "HoneyRocket": "HoneyRocket"/*790*/,
+    "MiniNukeI": "MiniNukeRocketI"/*793*/,
+    "MiniNukeII": "MiniNukeRocketII"/*796*/,
+    "DryRocket": "DryRocket"/*799*/,
+    "TungstenBullet": "Bullet"/*14*/,
+    "ShimmerArrow": "ShimmerArrow"/*1006*/,
+    "SpelunkerFlare": "SpelunkerFlare"/*1008*/,
+    "CursedFlare": "CursedFlare"/*1009*/,
+    "RainbowFlare": "RainbowFlare"/*1010*/,
+    "ShimmerFlare": "ShimmerFlare"/*1011*/,
+    "SandSolution": "SandSpray"/*1015*/,
+    "SnowSolution": "SnowSpray"/*1016*/,
+    "DirtSolution": "DirtSpray"/*1017*/,
     "CalamityMod/AccelerationRound": "CalamityMod/AccelerationRoundProj",
     "CalamityMod/ArcticArrow": "CalamityMod/ArcticArrowProj",
     "CalamityMod/AstralSolution": "CalamityMod/PlagueBeeSmall",
@@ -179,9 +240,10 @@
     "Split/NocturnalHoloclip": "Split/TracingHolowave",
     "Split/PiercingBullet": "Split/PiercingBullet",
     "Split/TracingArrow": "Split/TracingArrow",
-    "SandBlock": "SandBallGun",
-    "EbonsandBlock": "EbonsandBallFalling",
-    "CrimsandBlock": "CrimsandBallFalling",
-    "PearlsandBlock": "PearlSandBallFalling"
+    "SandBlock": "SandBallGun"/*42*/,
+    "EbonsandBlock": "EbonsandBallFalling"/*56*/,
+    "CrimsandBlock": "CrimsandBallFalling"/*241*/,
+    "PearlsandBlock": "PearlSandBallFalling"/*67*/,
+    "Aequus/PlasticDart": "Aequus/PlasticDartProjectile"
   }
 }

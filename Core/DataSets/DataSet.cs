@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Aequus.Core.DataSets;
 
-public abstract class DataSet : IModType, ILoadable, IPostSetupContent, IAddRecipes, IPostAddRecipes {
+public abstract class DataSet : IModType, ILoadable, ISetStaticDefaults,  IPostSetupContent, IAddRecipes, IPostAddRecipes {
     private readonly BindingFlags _memberBindingFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
 
     [JsonIgnore]
@@ -65,6 +65,12 @@ public abstract class DataSet : IModType, ILoadable, IPostSetupContent, IAddReci
         }
     }
     public virtual void OnUnload() {
+    }
+
+    public void SetStaticDefaults(Aequus aequus) {
+        SetStaticDefaults();
+    }
+    public virtual void SetStaticDefaults() {
     }
 
     public void PostSetupContent(Aequus aequus) {

@@ -3,6 +3,7 @@ DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
 Scavenger: {
 	DisplayName: Scavenger
 	Bestiary: Once vicious pirates which sailed the seas, even their rotten bones still have the desire to steal and plunder.
+	BannerName: Scavenger Banner
 }
 
 ScavengerLootBag.DisplayName: Scavenger Bag
@@ -43,6 +44,14 @@ LeggedLava: {
 	Bestiary: Lava slimes touched by the Gore Nest's fleshy 'blessing' will grow spider-like legs. They hop about freely and spew shadowy energies, but are thankfully too heavy to climb on walls.
 	BannerName: Legged Lava Banner
 }
+
+KeeperImp: {
+	DisplayName: Keeper
+	Bestiary: By capturing souls for itself, withering their bodies, and breaking their will, this imp has gained deadly pets that follow its command perfectly.
+	BannerName: Keeper Banner
+}
+
+ChainedSoul.DisplayName: Chained Soul
 
 Occultist: {
 	DisplayName: Occultist

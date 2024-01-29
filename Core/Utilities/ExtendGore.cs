@@ -12,7 +12,7 @@ public static class ExtendGore {
     /// <param name="Velocity">The Velocity to spawn the gore.</param>
     /// <param name="Scale">The Scale of the gore.</param>
     internal static Gore NewGore(RequestCache<Texture2D> Texture, IEntitySource Source, Vector2 Position, Vector2 Velocity, float Scale = 1f) {
-        return Gore.NewGoreDirect(Source, Position, Velocity, Aequus.Instance.Find<ModGore>(Texture.Name)?.Type ?? 0, Scale);
+        return Gore.NewGoreDirect(Source, Position, Velocity, GetModdedGoreType(Texture), Scale);
     }
     /// <summary><inheritdoc cref="NewGore(RequestCache{Texture2D}, IEntitySource, Vector2, Vector2, float)"/></summary>
     /// <param name="npc"></param>
@@ -23,5 +23,9 @@ public static class ExtendGore {
     /// <param name="Scale">The Scale of the gore.</param>
     internal static Gore NewGore(this NPC npc, RequestCache<Texture2D> Texture, Vector2 Position, Vector2 Velocity, IEntitySource Source = null, float Scale = 1f) {
         return NewGore(Texture, Source ?? npc.GetSource_FromThis(), Position, Velocity, Scale);
+    }
+
+    internal static int GetModdedGoreType(RequestCache<Texture2D> Texture) {
+        return Aequus.Instance.Find<ModGore>(Texture.Name)?.Type ?? 0;
     }
 }

@@ -15,8 +15,10 @@ public sealed partial class AequusSounds : ILoadable {
     public static SoundStyle ScrapBlockPlaced { get; private set; }
     public static SoundStyle ConductiveBlockBreak { get; private set; }
     public static SoundStyle ConductiveBlockPlaced { get; private set; }
+    public static SoundStyle ChainedSoulAttackExplode { get; private set; }
 
     public void Load(Mod mod) {
+        ChainedSoulAttackExplode = GetMultisound(ChainedSoulAttackExplode0, 3) with { Pitch = 0f, PitchVariance = 0.1f, MaxInstances = 3 };
         ShardHit = GetMultisound(ShardHit0, 2) with { Volume = 0.5f, Pitch = -0.2f, PitchVariance = 0.15f, };
         JunkJetShoot = GetMultisound(JunkJetShoot0, 2) with { Volume = 0.66f, PitchVariance = 0.15f, MaxInstances = 3, };
         SwordHit = GetMultisound(SwordHit0, 4) with { Volume = 0.7f, PitchVariance = 0.1f, MaxInstances = 3 };

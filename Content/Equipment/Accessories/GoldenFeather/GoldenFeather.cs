@@ -3,6 +3,7 @@ using Terraria.Localization;
 
 namespace Aequus.Content.Equipment.Accessories.GoldenFeather;
 
+[LegacyName("BloodCrystal", "BloodCurcleav")]
 public class GoldenFeather : ModItem {
     public static int RespawnTimeAmount { get; set; } = -300;
     public static int LifeRegenerationAmount { get; set; } = 1;

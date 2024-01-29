@@ -8,6 +8,7 @@ using Terraria.Localization;
 
 namespace Aequus.Content.Weapons.Ranged.Misc.JunkJet;
 
+[LegacyName("Slingshot")]
 public class JunkJet : ModItem {
     public struct AmmoData {
         public int ProjectileId;

@@ -1,3 +1,6 @@
-// Authors.extra: extra
-// MusicBoxName: Music Box ({0})
-// PollutedOcean: Polluted Ocean
+MusicBoxName: Music Box ({0})
+
+//# Please do not translate anything below this, as these are Names of Musicians and their Songs
+
+Authors.extra: sevenxtra
+PollutedOcean: Polluted Ocean

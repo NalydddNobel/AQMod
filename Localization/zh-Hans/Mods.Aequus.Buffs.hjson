@@ -47,3 +47,13 @@ FoodPoisoningDebuff: {
 	// DisplayName: Food Poisoning
 	// Description: No improvements to stats, and you can no longer eat food!
 }
+
+CorruptionHellfire: {
+	DisplayName: 腐化狱火
+	Description: 你的血肉被邪恶的火焰燃烧了
+}
+
+CrimsonHellfire: {
+	DisplayName: 猩红狱火
+	Description: 你的血肉被邪恶的火焰燃烧了
+}

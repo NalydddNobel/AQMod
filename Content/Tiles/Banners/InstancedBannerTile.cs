@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Tiles;
-using Aequus.Core.Graphics.Tiles;
+using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.Localization;
@@ -8,10 +8,12 @@ using Terraria.ObjectData;
 namespace Aequus.Content.Tiles.Banners;
 
 internal class InstancedBannerTile : InstancedModTile {
-    private readonly ModNPC _modNPC;
+    internal readonly ModNPC _modNPC;
+    private readonly List<ModNPC> _bannerBuffNPCs = new();
 
-    public InstancedBannerTile(ModNPC modNPC) : base(modNPC.Name + "Banner", modNPC.Texture + "Banner") {
+    public InstancedBannerTile(ModNPC modNPC) : base(modNPC.Name + "Banner", $"{modNPC.NamespaceFilePath()}/Tiles/{modNPC.Name}Banner") {
         _modNPC = modNPC;
+        _bannerBuffNPCs.Add(modNPC);
     }
 
     public override void SetStaticDefaults() {
@@ -42,13 +44,19 @@ internal class InstancedBannerTile : InstancedModTile {
         int npcType = _modNPC.Type;
         int bannerItem = NPCLoader.GetNPC(npcType).BannerItem;
         if (ItemID.Sets.BannerStrength.IndexInRange(bannerItem) && ItemID.Sets.BannerStrength[bannerItem].Enabled) {
-            Main.SceneMetrics.NPCBannerBuff[npcType] = true;
-            Main.SceneMetrics.hasBanner = true;
+            foreach (var npcToBuffAgainst in _bannerBuffNPCs) {
+                Main.SceneMetrics.NPCBannerBuff[npcToBuffAgainst.Type] = true;
+                Main.SceneMetrics.hasBanner = true;
+            }
         }
     }
 
     //public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
     //}
+
+    public void AddNPCBuff(ModNPC modNPC) {
+        _bannerBuffNPCs.Add(modNPC);
+    }
 
     public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects) {
         if (i % 2 == 1) {

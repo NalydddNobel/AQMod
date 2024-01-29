@@ -1,10 +1,17 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
+using Aequus.Common.Projectiles;
+using Aequus.Content.DataSets;
+using Aequus.Content.Equipment.Accessories.SpiritBottle;
 using Aequus.Core;
+using Aequus.Old.Content.Equipment.GrapplingHooks.EnemyGrappleHook;
+using Aequus.Old.Content.Events.DemonSiege.Spawners;
+using Aequus.Old.Content.Events.DemonSiege.Tiles;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
@@ -104,9 +111,14 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
     }
 
     public override void AddShops() {
-        NPCShop shop = new(Type);
-        shop
-            .Register();
+        NPCShop shop = new NPCShop(Type);
+        shop.Add(ModContent.ItemType<Meathook>());
+        shop.Add(ModContent.ItemType<UnholyCore>());
+        shop.Add(ModContent.ItemType<BottleOSpirits>());
+        shop.Add(ItemID.WhoopieCushion, Condition.BloodMoon);
+        shop.Add(ItemID.ShadowChest, Condition.DownedSkeletron);
+        shop.Add(OblivionAltar.Item.Type, Condition.Hardmode);
+        shop.Register();
     }
 
     public override bool CanTownNPCSpawn(int numTownNPCs) {
@@ -477,6 +489,26 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
             $"Mods.Aequus.TownNPCMood.Occultist.HateBiome_{(player.ZoneSnow ? "Snow" : "Evils")}", (s) => new { BiomeName = s[1], });
         DialogueHack.ReplaceKeys(ref settings.HappinessReport, "[LikeNPCQuote]|",
             $"Mods.Aequus.TownNPCMood.Occultist.LikeNPC_{(player.isNearNPC(NPCID.Demolitionist) ? "Demolitionist" : "Clothier")}", (s) => new { NPCName = s[1], });
+    }
+
+    public override bool? CanBeHitByProjectile(Projectile projectile) {
+        if (ProjectileSets.OccultistIgnore.Contains(projectile.type)) {
+            return false;
+        }
+
+        // Check if the enemy which shot this projectile can hit the Occultist.
+        // Enemies which can't hit the occultist all spawn in the Underworld, or are from the Demon Siege.
+        if (projectile.TryGetGlobalProjectile(out ProjectileSource sources) && sources.HasNPCOwner) {
+            if (!NPCLoader.CanHitNPC(Main.npc[sources.parentNPCIndex], NPC)) {
+                return false;
+            }
+        }
+
+        return null;
+    }
+
+    public override bool CanBeHitByNPC(NPC attacker) {
+        return !NPCSets.OccultistIgnore.Contains(attacker.type);
     }
 }
 

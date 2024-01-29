@@ -103,7 +103,7 @@ KegOSpirits: {
 	Tooltip:
 		'''
 		{$SaivoryKnife.Tooltip}
-		{$SpiritBottle.Tooltip@1}
+		{$BottleOSpirits.Tooltip@1}
 		'''
 }
 
@@ -112,7 +112,7 @@ SaivoryKnife: {
 	Tooltip: 延长{0}幽魂仆从的存在时间
 }
 
-SpiritBottle: {
+BottleOSpirits: {
 	DisplayName: 魂灵瓶
 	Tooltip: 增加{0}格最大幽魂仆从栏位
 }
@@ -125,6 +125,17 @@ WarHorn: {
 		此效果有{1}秒冷却时间
 		狂暴的召唤物会获得更高的攻击和移动速度
 		'''
+}
+
+PotionCanteenEmpty: {
+	DisplayName: "{$Items.PotionCanteen.DisplayName}"
+	Tooltip: "{$Items.PotionCanteen.Tooltip}"
+}
+
+PotionCanteen: {
+	DisplayName: 药水壶
+	DisplayNameAlt: "{0}壶"
+	// Tooltip: Craft with a potion to allow infinite use
 }
 
 //# Equipment: Informational
@@ -222,6 +233,16 @@ CrusadersCrossbow: {
 	Tooltip: 发射可以治疗队友的箭矢
 }
 
+Deltoid: {
+	DisplayName: 三角肌
+	Tooltip: 用猩红狱火点燃木箭
+}
+
+HamaYumi: {
+	DisplayName: 破魔弓
+	Tooltip: 箭矢会被穿透性腐化爆炸短暂增幅
+}
+
 //# Weapons: Magic
 TrashStaff: {
 	DisplayName: 垃圾邮件
@@ -234,6 +255,24 @@ Furystar: {
 		'''
 		使星星从天而降
 		攻击会回复魔力值
+		'''
+}
+
+BombarderRod: {
+	DisplayName: 轰炸者手杖
+	Tooltip:
+		'''
+		攻击造成暴击时对附近的敌人造成猩红减益
+		近距离时并不精准
+		'''
+}
+
+Triacanthorn: {
+	DisplayName: 三棘卷须
+	Tooltip:
+		'''
+		召唤会分裂的邪恶卷须
+		无视敌人10点的防御力
 		'''
 }
 
@@ -391,7 +430,7 @@ UnholyCore: {
 }
 
 UnholyCoreSmall: {
-	// DisplayName: Dark Tearstone
+	DisplayName: 暗黑泪石
 	Tooltip:
 		'''
 		可在血巢处使用
@@ -570,4 +609,14 @@ Killifish: {
 Piraiba: {
 	// DisplayName: Piraiba
 	// Tooltip: ""
+}
+
+Cauterizer: {
+	DisplayName: 灼烧者
+	Tooltip: ""
+}
+
+HellsBoon: {
+	DisplayName: 地狱之赐
+	Tooltip: ""
 }

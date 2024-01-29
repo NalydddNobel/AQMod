@@ -2,20 +2,16 @@ Version 3.0 Changes ------------------------------------------------------------
 
 I. Additions & Changes:
 - Completely remade the project from the ground up, many items have been tweaked or temporarily removed.
-- Ported the Rich Man's Monocle.
-- Ported Lesser, Greater, and Super Restoration Potions, with adjusted stats and recipes.
-- Ported Neutron Yogurt.
-- Ported Slice.
-- Ported The Christmas Spirit. (Resprited)
-- Ported Star Phish.
-- Ported Junk Jet. (Slight tweaks)
-- Ported the best Dyes in the mod.
-- Ported the Phase Mirror & Phase Phone.
-- Ported all of the Relics & Trophies.
-- Ported the Name Tag. (Resprited, Tweaked)
-- Ported the Grand Reward.
-- Ported many Dedicated Items.
+- Music is now integrated into the main mod!
+- Soul Gems can no longer be filled with souls from enemies from the Underworld or Demon Siege.
+- The Occultist is now immune to enemies from the Underworld or Demon Siege.
+- Adjusted Lesser, Greater, and Super Restoration Potions stats & recipes.
+- Resprited The Christmas Spirit.
+- Slightly tweaked the Junk Jet, and it can use more types of ammo.
+- Resprited & Renamed the Cosmic Chest to Fortunate Souvenir
+- Reworked Bottle O' Spirits to do      something...
 
+- New Item: Argon, Krypton, Neon, & Xenon Plant Statues.
 - New Item: Steampunker's Rod.
 - New Item: Convergent Heart.
 
@@ -48,6 +44,23 @@ Sky Merchant:
 - New Item: Stun Gun, allows you to stun enemies, making them heavily vulnerable.
 - New Item: Furystar, reminiscent of the orignal Starfury! Using mana and all! (Well, it deals magic damage now.)
 
+Demon Siege:
+- Gore Nest
+	-- Renamed to "Oblivion Altar"
+	-- No longer dropped by Wall of Flesh
+	-- Can now be crafted at a Demon Altar
+
+- Keeper Imps
+	-- Renamed Keeper Imp to just "Keeper"
+	-- Will now spawn new Chained Souls if its low
+	-- Chained Souls now drop hearts (1-4 in classic/journey  |  1-2 in expert/master)
+	-- Added new sound effects
+
+- Cinder Bat
+	-- No longer drops Ancient Hell Beams Dye
+
+- All demon siege enemies no longer drop Demonic Energy, and instead drop Empty Soul Gems
+
 II. Vanilla Changes:
 - Toolbelt now spawns in Chests Underground
 	-- Grants +5 backpack slots, but they only store items
@@ -61,3 +74,40 @@ II. Vanilla Changes:
 - Treasure Magnet no longer appears in Shadow Chests or Shadow Lock Boxes. It is instead sold by the Sky Merchant.
 - Changed the recipe for Restoration Potions, now crafted using Lesser Restoration Potions and Glowing Mushrooms.
 - The new Scavenger Skeletons can drop the Portable Cement Mixer, Paint Sprayer, Extendo Grip, and Brick Layer items. Adding an alt way to obtain them other than the Traveling Merchant.
+
+III. Removals
+- Removed Bloody Tearstones
+- Removed most of the "Ancient" dyes, and a few bad ones.
+- Removed the Heartshatter Necklace
+- Removed Steak Eyes
+- Removed Florid Jewel
+- Removed Lustrous Soulgem
+- Removed Bontalon Ring
+- Removed Phoenix Ring
+- Removed Black Plague
+- Removed Aloe Vera
+- Removed Forged Card
+- Removed Faulty Coin
+- Removed Fool's Gold Ring
+- Removed Halting Machine & Halting Magnet
+- Removed Ammo Backpack
+- Removed Sentry 6502 & Sentinel 6510
+- Removed Little Inferno, again
+- Removed Mendshroom, again
+- Removed Crystal Dagger
+- Removed Mallet
+- Removed Slingshot & Slingsaber
+- Removed Liquid Gun, again
+- Removed Crabax, again
+- Removed Silk Pickaxe & Silk Hammer, again
+- Removed Galaxy Commision & Moro, again
+- Removed Horrific Energy & Frolic Energy, again
+- Removed Shutterstocker Clips, again
+- Removed Impenetrable Coating, again
+- Removed Tub of Cookie Dough, again
+- Removed Ultra Starite Banner, again
+- Removed White Phial, again
+
+IV. Fixes
+- Fixed a few enemy names on banners not matching the actual enemy's name
+- Trophies and Paintings now glow when using the Spelunker Potion
