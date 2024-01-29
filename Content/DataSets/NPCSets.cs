@@ -77,7 +77,21 @@ public class NPCSets : DataSet {
     [JsonIgnore]
     public static List<IFilterInfoProvider> UnderworldTags { get; private set; } = new();
 
-    private void LoadBestiaryElementTypes() {
+    /// <summary>
+    /// Compares bestiary tags by comparing <see cref="IFilterInfoProvider.GetDisplayNameKey"/> results.
+    /// Biome/Event/Time/Ect Tags utilize <see cref="IFilterInfoProvider"/>.
+    /// </summary>
+    /// <param name="tags"></param>
+    /// <param name="searchTags"></param>
+    /// <returns></returns>
+    private static bool ContainsBestiaryTags(List<IBestiaryInfoElement> tags, List<IFilterInfoProvider> searchTags) {
+        return tags?.Where(t => t is IFilterInfoProvider).Select(t => (IFilterInfoProvider)t)
+            .Any(t => searchTags.Any(s => t.GetDisplayNameKey() == s.GetDisplayNameKey())) ?? false;
+    }
+    #endregion
+
+    #region Loading
+    public override void SetStaticDefaults() {
         CorruptionTags.AddRange(new IFilterInfoProvider[] {
             BestiaryBuilder.Corruption,
             BestiaryBuilder.UndergroundCorruption,
@@ -108,26 +122,9 @@ public class NPCSets : DataSet {
         UnderworldTags.AddRange(new IFilterInfoProvider[] {
             BestiaryBuilder.Underworld,
         });
-    }
-
-    /// <summary>
-    /// Compares bestiary tags by comparing <see cref="IFilterInfoProvider.GetDisplayNameKey"/> results.
-    /// Biome/Event/Time/Ect Tags utilize <see cref="IFilterInfoProvider"/>.
-    /// </summary>
-    /// <param name="tags"></param>
-    /// <param name="searchTags"></param>
-    /// <returns></returns>
-    private static bool ContainsBestiaryTags(List<IBestiaryInfoElement> tags, List<IFilterInfoProvider> searchTags) {
-        return tags?.Where(t => t is IFilterInfoProvider).Select(t => (IFilterInfoProvider)t)
-            .Any(t => searchTags.Any(s => t.GetDisplayNameKey() == s.GetDisplayNameKey())) ?? false;
-    }
-    #endregion
-
-    #region Loading
-    public override void SetStaticDefaults() {
-        LoadBestiaryElementTypes();
 
         // Make all of these NPCs immune to the vanilla "Slow" debuff.
+        // Debuffs which modify movement speed should inherit this immunity.
         NPCID.Sets.SpecificDebuffImmunity[NPCID.HallowBoss][BuffID.Slow] = true;
         NPCID.Sets.SpecificDebuffImmunity[NPCID.CultistBoss][BuffID.Slow] = true;
         NPCID.Sets.SpecificDebuffImmunity[NPCID.BloodEelBody][BuffID.Slow] = true;
@@ -194,10 +191,10 @@ public class NPCSets : DataSet {
     #endregion
 
     #region Methods
-    public bool IsUnholy(int npcId) {
+    public static bool IsUnholy(int npcId) {
         return IsCorrupt.Contains(npcId) || IsCrimson.Contains(npcId);
     }
-    public bool IsHoly(int npcId) {
+    public static bool IsHoly(int npcId) {
         return IsHallow.Contains(npcId);
     }
     #endregion
