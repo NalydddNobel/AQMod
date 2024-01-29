@@ -126,6 +126,17 @@ WarHorn: {
 		''' */
 }
 
+PotionCanteenEmpty: {
+	// DisplayName: "{$Items.PotionCanteen.DisplayName}"
+	// Tooltip: "{$Items.PotionCanteen.Tooltip}"
+}
+
+PotionCanteen: {
+	// DisplayName: Potion Canteen
+	// DisplayNameAlt: Potion Canteen ({0})
+	// Tooltip: Craft with a potion to allow infinite use
+}
+
 //# Equipment: Informational
 ShimmerMonocle: {
 	DisplayName: Fulgóculo
@@ -244,6 +255,24 @@ Furystar: {
 		Hace que lluevan estrellas del cielo
 		Ataques restauran maná
 		'''
+}
+
+BombarderRod: {
+	// DisplayName: Bombarder Rod
+	/* Tooltip:
+		'''
+		Critical strikes inflict crimson fire to nearby enemies
+		Imprecise at close range
+		''' */
+}
+
+Triacanthorn: {
+	// DisplayName: Triacanthorn
+	/* Tooltip:
+		'''
+		Summons splitting vile tendrils
+		Ignores 10 points of enemy Defense
+		''' */
 }
 
 //# Weapons: Classless
@@ -558,26 +587,5 @@ Cauterizer: {
 
 HellsBoon: {
 	// DisplayName: Hells Boon
-	// Tooltip: ""
-}
-
-PotionCanteen: {
-	// DisplayNameAlt: Mods.Aequus.Items.PotionCanteen.DisplayNameAlt
-	// DisplayName: Potion Canteen
-	// Tooltip: ""
-}
-
-PotionCanteenEmpty: {
-	// DisplayName: Potion Canteen Empty
-	// Tooltip: ""
-}
-
-BombarderRod: {
-	// DisplayName: Bombarder Rod
-	// Tooltip: ""
-}
-
-Triacanthorn: {
-	// DisplayName: Triacanthorn
 	// Tooltip: ""
 }

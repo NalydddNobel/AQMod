@@ -19,7 +19,9 @@ public class PotionCanteenEmpty : ModItem {
             .AddIngredient(ItemID.PixieDust, 30)
             .Register();
 
-        foreach (Item item in ContentSamples.ItemsByType.Values.Where(i => ItemSets.Potions.Contains(i.type))) {
+        foreach (Item item in ContentSamples.ItemsByType.Values.Where(
+            i => ItemSets.Potions.Contains(i.type) && i.buffType != BuffID.Lucky)) {
+
             Recipe r = Recipe.Create(ModContent.ItemType<PotionCanteen>());
             r.AddIngredient(Type);
             r.AddIngredient(item.type, PotionRequirement);

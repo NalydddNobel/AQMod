@@ -25,10 +25,10 @@ DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 // DeltoidExplosion.DisplayName: "{$Items.Deltoid.DisplayName}"
 // HamaYumiArrow.DisplayName: "{$Items.HamaYumi.DisplayName}"
 // HamaYumiExplosion.DisplayName: "{$Items.HamaYumi.DisplayName}"
-// CauterizerProj.DisplayName: Cauterizer Proj
-// CauterizerSlash.DisplayName: Cauterizer Slash
-// HellsBoonProj.DisplayName: Hells Boon Proj
-// HellsBoonSpawner.DisplayName: Hells Boon Spawner
-// BombarderRodProj.DisplayName: Bombarder Rod Proj
-// TriacanthornBolt.DisplayName: Triacanthorn Bolt
-// TriacanthornProj.DisplayName: Triacanthorn Proj
+// CauterizerProj.DisplayName: "{$Items.Cauterizer.DisplayName}"
+// CauterizerSlash.DisplayName: "{$Items.Cauterizer.DisplayName}"
+// HellsBoonProj.DisplayName: "{$Items.HellsBoon.DisplayName}"
+// HellsBoonSpawner.DisplayName: "{$Items.HellsBoon.DisplayName}"
+// BombarderRodProj.DisplayName: "{$Items.BombarderRod.DisplayName}"
+// TriacanthornBolt.DisplayName: "{$Items.Triacanthorn.DisplayName}"
+// TriacanthornProj.DisplayName: "{$Items.Triacanthorn.DisplayName}"

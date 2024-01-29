@@ -54,7 +54,7 @@ public class ItemSets : DataSet {
         }
 
         static void CheckPotion(Item item) {
-            if (item.buffTime > 0 && item.buffType > 0 && item.consumable && item.maxStack >= 30 && item.damage <= 0 && !ItemID.Sets.IsFood[item.type] && !BuffID.Sets.IsFedState[item.buffType]) {
+            if (item.buffTime > 0 && item.buffType > 0 && item.consumable && item.maxStack >= 30 && item.damage <= 0 && item.healLife <= 0 && item.healMana <= 0 && !Main.persistentBuff[item.buffType] && !BuffID.Sets.IsAFlaskBuff[item.buffType] && !ItemID.Sets.IsFood[item.type] && !BuffID.Sets.IsFedState[item.buffType]) {
                 Potions.Add((ItemEntry)item.type);
             }
         }

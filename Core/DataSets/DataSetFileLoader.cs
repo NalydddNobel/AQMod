@@ -36,7 +36,7 @@ public sealed class DataSetFileLoader {
 
     [Conditional("DEBUG")]
     public void CreateTempFile() {
-        string createFile = $"{Aequus.DebugPath}/ModSources/{FilePath.Replace("Content/DataSets/", "Assets/Metadata/")}Temp.json";
+        string createFile = $"{Aequus.DebugPath}/ModSources/{FilePath.Replace("Content/DataSets/", "Assets/Metadata/")}.Temp.json";
         _dataSet.Mod.Logger.Debug(createFile);
         try {
             // Only attempt to create the file if this Directory even exists.
