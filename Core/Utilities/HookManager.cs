@@ -8,8 +8,8 @@ namespace Aequus.Core.Utilities;
 public class HookManager : ILoadable {
     /// <summary><inheritdoc cref="ApplyAndCacheHook(MethodInfo, MethodInfo)"/></summary>
     /// <exception cref="MissingMethodException"></exception>
-    public static Hook ApplyAndCacheHook(Type sourceType, Type targetType, string methodName, BindingFlags sourceBindingFlags = BindingFlags.Public | BindingFlags.Static, BindingFlags targetBindingFlags = BindingFlags.NonPublic | BindingFlags.Static) {
-        string targetMethodName = $"{sourceType.Name}_{methodName}";
+    public static Hook ApplyAndCacheHook(Type sourceType, Type targetType, String methodName, BindingFlags sourceBindingFlags = BindingFlags.Public | BindingFlags.Static, BindingFlags targetBindingFlags = BindingFlags.NonPublic | BindingFlags.Static) {
+        String targetMethodName = $"{sourceType.Name}_{methodName}";
         var sourceMethod = sourceType.GetMethod(methodName, sourceBindingFlags) ?? throw new Exception($"Detour source method \"{targetMethodName}\" was not found.");
         var targetMethod = targetType.GetMethod(targetMethodName, targetBindingFlags);
         return targetMethod == null ? throw new MissingMethodException($"Detour target method \"{targetMethodName}\" not found.") : ApplyAndCacheHook(sourceMethod, targetMethod);

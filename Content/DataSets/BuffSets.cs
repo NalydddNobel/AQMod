@@ -39,17 +39,17 @@ public class BuffSets : DataSet {
     public static Dictionary<BuffEntry, List<BuffEntry>> BuffConflicts { get; private set; } = new();
 
     [JsonProperty]
-    public static Dictionary<BuffEntry, bool> IsFireDebuff { get; private set; } = new();
+    public static Dictionary<BuffEntry, System.Boolean> IsFireDebuff { get; private set; } = new();
 
     public override void PostSetupContent() {
-        for (int i = 0; i < BuffLoader.BuffCount; i++) {
+        for (System.Int32 i = 0; i < BuffLoader.BuffCount; i++) {
             if (Main.debuff[i]) {
                 PotionPrefixBlacklist.Add((BuffEntry)i);
                 if (BuffID.Sets.NurseCannotRemoveDebuff[i]) {
                     NotTypicalDebuff.Add((BuffEntry)i);
                 }
                 else if ((i < BuffID.NeutralHunger || i > BuffID.Starving) && !BuffID.Sets.IsATagBuff[i] && !BuffID.Sets.TimeLeftDoesNotDecrease[i]) {
-                    if (BuffID.Search.TryGetName(i, out string name)) {
+                    if (BuffID.Search.TryGetName(i, out System.String name)) {
                         if (name.Contains('/')) {
                             name = name.Split('/')[^1];
                         }
@@ -70,11 +70,11 @@ public class BuffSets : DataSet {
         }
     }
 
-    private static void AddBuffConflictsInner(int buffID, int conflictor) {
+    private static void AddBuffConflictsInner(System.Int32 buffID, System.Int32 conflictor) {
         (CollectionsMarshal.GetValueRefOrAddDefault(BuffConflicts, (BuffEntry)buffID, out _) ??= new()).Add((BuffEntry)conflictor);
     }
 
-    public static void AddBuffConflicts(int buffID, int buffID2) {
+    public static void AddBuffConflicts(System.Int32 buffID, System.Int32 buffID2) {
         LoadingSteps.EnqueuePostSetupContent(() => {
             AddBuffConflictsInner(buffID, buffID2);
             AddBuffConflictsInner(buffID2, buffID);

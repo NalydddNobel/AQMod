@@ -25,12 +25,12 @@ public class BossItemInstantiator : ModSystem {
         AddBossTrophy("SpaceSquid", new BasicRelicRenderer(AequusTextures.SpaceSquidRelic), LegacyBossRelicsTile.SpaceSquid);
         AddBossMask("SpaceSquid");
 
-        void AddBossContent(string name, int internalRarity, bool preHardmode, IRelicRenderer relicRenderer, int legacyTrophyId = -1) {
+        void AddBossContent(System.String name, System.Int32 internalRarity, System.Boolean preHardmode, IRelicRenderer relicRenderer, System.Int32 legacyTrophyId = -1) {
             Mod.AddContent(new InstancedBossBag(name, internalRarity, preHardmode));
             AddBossTrophy(name, relicRenderer);
         }
 
-        void AddBossTrophy(string name, IRelicRenderer renderer, int legacyTrophyId = -1) {
+        void AddBossTrophy(System.String name, IRelicRenderer renderer, System.Int32 legacyTrophyId = -1) {
             var modRelic = new InstancedRelicTile(name, renderer);
             var modTrophy = new InstancedTrophyTile(name);
 
@@ -45,7 +45,7 @@ public class BossItemInstantiator : ModSystem {
             }
         }
 
-        void AddBossMask(string name) {
+        void AddBossMask(System.String name) {
             Mod.AddContent(new InstancedBossMask(name));
         }
 #pragma warning restore CS0618 // Type or member is obsolete

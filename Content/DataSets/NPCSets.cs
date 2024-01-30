@@ -1,9 +1,7 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Core.DataSets;
-using Aequus.Core.Utilities;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using Terraria.GameContent.Bestiary;
 
@@ -23,7 +21,7 @@ public class NPCSets : DataSet {
     public static HashSet<NPCEntry> FromPillarEvent { get; private set; } = new();
 
     [JsonProperty]
-    public static Dictionary<NPCEntry, bool> NameTagOverride { get; private set; } = new();
+    public static Dictionary<NPCEntry, System.Boolean> NameTagOverride { get; private set; } = new();
 
     [JsonProperty]
     public static HashSet<NPCEntry> StunnableByTypeId { get; private set; } = new();
@@ -84,7 +82,7 @@ public class NPCSets : DataSet {
     /// <param name="tags"></param>
     /// <param name="searchTags"></param>
     /// <returns></returns>
-    private static bool ContainsBestiaryTags(List<IBestiaryInfoElement> tags, List<IFilterInfoProvider> searchTags) {
+    private static System.Boolean ContainsBestiaryTags(List<IBestiaryInfoElement> tags, List<IFilterInfoProvider> searchTags) {
         return tags?.Where(t => t is IFilterInfoProvider).Select(t => (IFilterInfoProvider)t)
             .Any(t => searchTags.Any(s => t.GetDisplayNameKey() == s.GetDisplayNameKey())) ?? false;
     }
@@ -164,7 +162,7 @@ public class NPCSets : DataSet {
     }
 
     public override void AddRecipes() {
-        for (int i = NPCID.NegativeIDCount + 1; i < NPCLoader.NPCCount; i++) {
+        for (System.Int32 i = NPCID.NegativeIDCount + 1; i < NPCLoader.NPCCount; i++) {
             BestiaryEntry bestiaryEntry = Main.BestiaryDB.FindEntryByNPCID(i);
             if (bestiaryEntry == null || bestiaryEntry.Info == null) {
                 continue;
@@ -191,10 +189,10 @@ public class NPCSets : DataSet {
     #endregion
 
     #region Methods
-    public static bool IsUnholy(int npcId) {
+    public static System.Boolean IsUnholy(System.Int32 npcId) {
         return IsCorrupt.Contains(npcId) || IsCrimson.Contains(npcId);
     }
-    public static bool IsHoly(int npcId) {
+    public static System.Boolean IsHoly(System.Int32 npcId) {
         return IsHallow.Contains(npcId);
     }
     #endregion

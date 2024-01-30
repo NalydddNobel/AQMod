@@ -6,15 +6,15 @@ namespace Aequus.Core.Graphics.Primitives;
 public class UVVertexStrip : VertexStripClone {
     public static readonly UVVertexStrip Instance = new();
 
-    protected float uvMultiplier;
-    protected float uvAdd;
+    protected Single uvMultiplier;
+    protected Single uvAdd;
 
-    public void PrepareUV(float multiplier = 1f, float add = 0f) {
+    public void PrepareUV(Single multiplier = 1f, Single add = 0f) {
         uvMultiplier = multiplier;
         uvAdd = add;
     }
 
-    protected override void AddVertex(Vector2 pos, float rot, int indexOnVertexArray, Color color, float width, float textureUV) {
+    protected override void AddVertex(Vector2 pos, Single rot, Int32 indexOnVertexArray, Color color, Single width, Single textureUV) {
         base.AddVertex(pos, rot, indexOnVertexArray, color, width, textureUV * 10f % 1f);
     }
 }

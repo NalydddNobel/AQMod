@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.Components;
 using Aequus.Content.Tools.MagicMirrors.PhaseMirror;
-using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;
@@ -12,26 +11,26 @@ namespace Aequus.Content.Tools.MagicMirrors.PhasePhone;
 
 [Autoload(false)]
 internal class InstancedPhasePhone : InstancedModItem, IPhaseMirror, ITransformItem {
-    public List<(int, int, Dust)> DustEffectCache { get; set; }
+    public List<(Int32, Int32, Dust)> DustEffectCache { get; set; }
 
-    public int UseAnimationMax => 64;
+    public Int32 UseAnimationMax => 64;
 
-    private readonly int _shellPhoneClone;
-    private readonly string _nameSuffix;
+    private readonly Int32 _shellPhoneClone;
+    private readonly String _nameSuffix;
 
     private ModItem _shellPhoneConvert;
-    private Func<int> _dustTypeFactory;
+    private Func<Int32> _dustTypeFactory;
     private Func<Color> _customColorFactory;
     private Action<Player> _teleportAction;
 
-    public InstancedPhasePhone(string nameSuffix, int shellPhone) : base($"PhasePhone{nameSuffix}", $"{typeof(InstancedPhasePhone).NamespaceFilePath()}/PhasePhone{nameSuffix}") {
+    public InstancedPhasePhone(String nameSuffix, Int32 shellPhone) : base($"PhasePhone{nameSuffix}", $"{typeof(InstancedPhasePhone).NamespaceFilePath()}/PhasePhone{nameSuffix}") {
         _nameSuffix = nameSuffix;
         _shellPhoneClone = shellPhone;
     }
 
     public override LocalizedText DisplayName {
         get {
-            if (!string.IsNullOrEmpty(_nameSuffix)) {
+            if (!String.IsNullOrEmpty(_nameSuffix)) {
                 return this.GetCategoryText($"PhasePhone.{_nameSuffix}.DisplayName", () => $"Phase Phone ({_nameSuffix})");
             }
             return base.DisplayName;
@@ -40,7 +39,7 @@ internal class InstancedPhasePhone : InstancedModItem, IPhaseMirror, ITransformI
 
     public override LocalizedText Tooltip {
         get {
-            if (!string.IsNullOrEmpty(_nameSuffix)) {
+            if (!String.IsNullOrEmpty(_nameSuffix)) {
                 return this.GetCategoryText("PhasePhone.Tooltip").WithFormatArgs(this.GetCategoryText($"PhasePhone.{_nameSuffix}.Tooltip", () => $""));
             }
             return base.Tooltip.WithFormatArgs("");
@@ -52,11 +51,11 @@ internal class InstancedPhasePhone : InstancedModItem, IPhaseMirror, ITransformI
         return this;
     }
 
-    public InstancedPhasePhone WithDust(int dustId) {
+    public InstancedPhasePhone WithDust(Int32 dustId) {
         _dustTypeFactory += () => dustId;
         return this;
     }
-    public InstancedPhasePhone WithDynamicDust(Func<int> dustFactory) {
+    public InstancedPhasePhone WithDynamicDust(Func<Int32> dustFactory) {
         _dustTypeFactory += dustFactory;
         return this;
     }
@@ -121,7 +120,7 @@ internal class InstancedPhasePhone : InstancedModItem, IPhaseMirror, ITransformI
         }
     }
 
-    public void GetPhaseMirrorDust(Player player, Item item, IPhaseMirror me, out int dustType, out Color dustColor) {
+    public void GetPhaseMirrorDust(Player player, Item item, IPhaseMirror me, out Int32 dustType, out Color dustColor) {
         dustType = _dustTypeFactory?.Invoke() ?? DustID.MagicMirror;
         dustColor = _customColorFactory?.Invoke() ?? default;
     }

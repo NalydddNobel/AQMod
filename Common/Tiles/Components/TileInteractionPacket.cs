@@ -4,7 +4,7 @@ using System.IO;
 namespace Aequus.Common.Tiles.Components;
 
 public class TileInteractionPacket : PacketHandler {
-    public void Send(int i, int j, int toClient = -1, int ignoreClient = -1) {
+    public void Send(System.Int32 i, System.Int32 j, System.Int32 toClient = -1, System.Int32 ignoreClient = -1) {
         var packet = GetPacket();
         packet.Write(i);
         packet.Write(j);
@@ -15,10 +15,10 @@ public class TileInteractionPacket : PacketHandler {
         packet.Send(toClient, ignoreClient);
     }
 
-    public override void Receive(BinaryReader reader, int sender) {
-        int i = reader.ReadInt32();
-        int j = reader.ReadInt32();
-        ushort type = reader.ReadUInt16();
+    public override void Receive(BinaryReader reader, System.Int32 sender) {
+        System.Int32 i = reader.ReadInt32();
+        System.Int32 j = reader.ReadInt32();
+        System.UInt16 type = reader.ReadUInt16();
         if (TileLoader.GetTile(type) is INetTileInteraction netTileInteractions) {
             netTileInteractions.Receive(i, j, reader, sender);
         }

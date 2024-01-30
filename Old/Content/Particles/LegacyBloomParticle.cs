@@ -4,7 +4,7 @@ using Aequus.Core.Particles;
 namespace Aequus.Old.Content.Particles;
 
 public class LegacyBloomParticle : ParallelParticleSystem<LegacyBloomParticle.Particle> {
-    public override int ParticleCount => 2000;
+    public override System.Int32 ParticleCount => 2000;
 
     public override void Draw(SpriteBatch spriteBatch) {
         spriteBatch.BeginDusts();
@@ -13,7 +13,7 @@ public class LegacyBloomParticle : ParallelParticleSystem<LegacyBloomParticle.Pa
         Texture2D bloomTexture = AequusTextures.BloomStrong;
         Vector2 bloomOrigin = bloomTexture.Size() / 2f;
         lock (this) {
-            for (int k = 0; k < Particles.Length; k++) {
+            for (System.Int32 k = 0; k < Particles.Length; k++) {
                 Particle particle = Particles[k];
 
                 if (particle == null || !particle.Active) {
@@ -23,8 +23,8 @@ public class LegacyBloomParticle : ParallelParticleSystem<LegacyBloomParticle.Pa
                 Rectangle frame = texture.Frame(verticalFrames: 3, frameY: particle.Frame);
                 Vector2 origin = frame.Size() / 2f;
 
-                float rotation = particle.Rotation;
-                float scale = particle.Scale;
+                System.Single rotation = particle.Rotation;
+                System.Single scale = particle.Scale;
                 Vector2 drawLocation = particle.Location - Main.screenPosition;
                 Vector2 velocity = particle.Velocity;
                 spriteBatch.Draw(bloomTexture, drawLocation, null, particle.BloomColor, 0f, bloomOrigin, particle.BloomScale * scale, SpriteEffects.None, 0f);
@@ -35,8 +35,8 @@ public class LegacyBloomParticle : ParallelParticleSystem<LegacyBloomParticle.Pa
         spriteBatch.End();
     }
 
-    protected override void UpdateParallel(int start, int end) {
-        for (int i = start; i < end; i++) {
+    protected override void UpdateParallel(System.Int32 start, System.Int32 end) {
+        for (System.Int32 i = start; i < end; i++) {
             Particle particle = Particles[i];
             if (particle == null || !particle.Active) {
                 continue;
@@ -44,10 +44,10 @@ public class LegacyBloomParticle : ParallelParticleSystem<LegacyBloomParticle.Pa
             Active = true;
 
             particle.Velocity *= 0.9f;
-            float velo = particle.Velocity.Length();
+            System.Single velo = particle.Velocity.Length();
             particle.Rotation += velo * 0.0314f;
             particle.Scale -= 0.05f - velo / 1000f;
-            if (particle.Scale <= 0.1f || float.IsNaN(particle.Scale)) {
+            if (particle.Scale <= 0.1f || System.Single.IsNaN(particle.Scale)) {
                 particle.Active = false;
                 continue;
             }
@@ -69,13 +69,13 @@ public class LegacyBloomParticle : ParallelParticleSystem<LegacyBloomParticle.Pa
     }
 
     public class Particle : IParticle {
-        private bool _active;
-        public bool Active {
+        private System.Boolean _active;
+        public System.Boolean Active {
             get => _active;
             set {
                 if (!_active) {
                     Opacity = 1f;
-                    Frame = (byte)Main.rand.Next(3);
+                    Frame = (System.Byte)Main.rand.Next(3);
                 }
                 _active = value;
             }
@@ -84,17 +84,17 @@ public class LegacyBloomParticle : ParallelParticleSystem<LegacyBloomParticle.Pa
         public Vector2 Location;
         public Vector2 Velocity;
 
-        public float Rotation;
-        public float Scale;
-        public float Opacity;
+        public System.Single Rotation;
+        public System.Single Scale;
+        public System.Single Opacity;
 
-        public byte Frame;
+        public System.Byte Frame;
 
         public Color Color;
 
         public Color BloomColor;
-        public float BloomScale = 1f;
+        public System.Single BloomScale = 1f;
 
-        public bool dontEmitLight;
+        public System.Boolean dontEmitLight;
     }
 }

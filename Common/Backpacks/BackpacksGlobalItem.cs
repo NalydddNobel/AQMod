@@ -1,13 +1,13 @@
 ﻿namespace Aequus.Common.Backpacks;
 
 public sealed class BackpacksGlobalItem : GlobalItem {
-    public override bool ItemSpace(Item item, Player player) {
+    public override System.Boolean ItemSpace(Item item, Player player) {
         if (!player.TryGetModPlayer(out BackpackPlayer backpackPlayer)) {
             return false;
         }
 
         if (!BackpackLoader.IgnoreBackpacks) {
-            for (int i = 0; i < backpackPlayer.backpacks.Length; i++) {
+            for (System.Int32 i = 0; i < backpackPlayer.backpacks.Length; i++) {
                 if (backpackPlayer.backpacks[i].IsActive(player) && BackpackLoader.ItemSpace(item, player, backpackPlayer.backpacks[i])) {
                     return true;
                 }
@@ -16,7 +16,7 @@ public sealed class BackpacksGlobalItem : GlobalItem {
         return false;
     }
 
-    public override bool OnPickup(Item item, Player player) {
+    public override System.Boolean OnPickup(Item item, Player player) {
         if (!player.TryGetModPlayer(out BackpackPlayer backpackPlayer)) {
             return true;
         }

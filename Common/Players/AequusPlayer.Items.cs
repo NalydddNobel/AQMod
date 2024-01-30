@@ -4,7 +4,6 @@ using Aequus.Common.UI;
 using Aequus.Content.DataSets;
 using Aequus.Core.Generator;
 using System;
-using System.Collections.Generic;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.UI;
@@ -12,23 +11,23 @@ using Terraria.UI;
 namespace Aequus;
 
 public partial class AequusPlayer {
-    public byte disableItem;
+    public Byte disableItem;
 
-    public int itemHits;
+    public Int32 itemHits;
     /// <summary>
     /// Tracks <see cref="Player.selectedItem"/>
     /// </summary>
-    public int lastSelectedItem = -1;
+    public Int32 lastSelectedItem = -1;
     /// <summary>
     /// Increments when the player uses an item. Does not increment when the player is using the alt function of an item.
     /// </summary>
-    public ushort itemUsage;
+    public UInt16 itemUsage;
     /// <summary>
     /// A short lived timer which gets set to 30 when the player has a different selected item.
     /// </summary>
-    public ushort itemSwitch;
+    public UInt16 itemSwitch;
 
-    public bool forceUseItem;
+    public Boolean forceUseItem;
 
     [ResetEffects]
     public Item goldenKey;
@@ -55,14 +54,14 @@ public partial class AequusPlayer {
     public override void PostItemCheck() {
         if (Player.selectedItem != lastSelectedItem) {
             lastSelectedItem = Player.selectedItem;
-            itemSwitch = Math.Max((ushort)30, itemSwitch);
+            itemSwitch = Math.Max((UInt16)30, itemSwitch);
             itemUsage = 0;
             itemHits = 0;
         }
     }
 
-    public override bool HoverSlot(Item[] inventory, int context, int slot) {
-        bool returnValue = false;
+    public override Boolean HoverSlot(Item[] inventory, Int32 context, Int32 slot) {
+        Boolean returnValue = false;
         if (inventory[slot].ModItem is IHoverSlot hoverSlot) {
             returnValue |= hoverSlot.HoverSlot(inventory, context, slot);
         }
@@ -85,7 +84,7 @@ public partial class AequusPlayer {
         forceUseItem = false;
     }
 
-    public bool UseGoldenKey(Item[] inv, int slot) {
+    public Boolean UseGoldenKey(Item[] inv, Int32 slot) {
         if (goldenKey == null) {
             return false;
         }
@@ -131,7 +130,7 @@ public partial class AequusPlayer {
         return false;
     }
 
-    public bool UseShadowKey(Item[] inv, int slot) {
+    public Boolean UseShadowKey(Item[] inv, Int32 slot) {
         if (shadowKey == null) {
             return false;
         }
@@ -178,7 +177,7 @@ public partial class AequusPlayer {
     }
 
     #region Hooks
-    private static void ItemSlot_RightClick(On_ItemSlot.orig_RightClick_ItemArray_int_int orig, Item[] inv, int context, int slot) {
+    private static void ItemSlot_RightClick(On_ItemSlot.orig_RightClick_ItemArray_int_int orig, Item[] inv, Int32 context, Int32 slot) {
         if (Main.mouseRight && Main.mouseRightRelease) {
             var player = Main.LocalPlayer;
             var aequus = player.GetModPlayer<AequusPlayer>();
@@ -205,7 +204,7 @@ public partial class AequusPlayer {
             return;
         }
 
-        for (int i = 0; i < backpackPlayer.backpacks.Length; i++) {
+        for (Int32 i = 0; i < backpackPlayer.backpacks.Length; i++) {
             if (!backpackPlayer.backpacks[i].IsActive(player) || !backpackPlayer.backpacks[i].SupportsQuickStack) {
                 continue;
             }
@@ -213,7 +212,7 @@ public partial class AequusPlayer {
         }
     }
 
-    private static void On_ChestUI_QuickStack(On_ChestUI.orig_QuickStack orig, ContainerTransferContext context, bool voidStack) {
+    private static void On_ChestUI_QuickStack(On_ChestUI.orig_QuickStack orig, ContainerTransferContext context, Boolean voidStack) {
         orig(context, voidStack);
         if (voidStack || !Main.LocalPlayer.TryGetModPlayer(out BackpackPlayer backpackPlayer)) {
             return;
@@ -223,9 +222,9 @@ public partial class AequusPlayer {
         var containerWorldPosition = context.GetContainerWorldPosition();
 
         var chest = player.GetCurrentChest();
-        bool anyTransfers = false;
+        Boolean anyTransfers = false;
         if (chest != null) {
-            for (int i = 0; i < backpackPlayer.backpacks.Length; i++) {
+            for (Int32 i = 0; i < backpackPlayer.backpacks.Length; i++) {
                 if (!backpackPlayer.backpacks[i].IsActive(player) || !backpackPlayer.backpacks[i].SupportsQuickStack) {
                     continue;
                 }
@@ -238,11 +237,11 @@ public partial class AequusPlayer {
         }
     }
 
-    private static bool On_Player_ConsumeItem(On_Player.orig_ConsumeItem orig, Player player, int type, bool reverseOrder, bool includeVoidBag) {
-        bool consumedItem = orig(player, type, reverseOrder, includeVoidBag);
+    private static Boolean On_Player_ConsumeItem(On_Player.orig_ConsumeItem orig, Player player, Int32 type, Boolean reverseOrder, Boolean includeVoidBag) {
+        Boolean consumedItem = orig(player, type, reverseOrder, includeVoidBag);
 
         if (!consumedItem && includeVoidBag && player.TryGetModPlayer(out BackpackPlayer backpackPlayer)) {
-            for (int i = 0; i < backpackPlayer.backpacks.Length; i++) {
+            for (Int32 i = 0; i < backpackPlayer.backpacks.Length; i++) {
                 if (!backpackPlayer.backpacks[i].IsActive(player) || !backpackPlayer.backpacks[i].SupportsConsumeItem) {
                     continue;
                 }
@@ -259,7 +258,7 @@ public partial class AequusPlayer {
         var item = orig(player);
 
         if (item == null && player.TryGetModPlayer(out BackpackPlayer backpackPlayer)) {
-            for (int i = 0; i < backpackPlayer.backpacks.Length && item == null; i++) {
+            for (Int32 i = 0; i < backpackPlayer.backpacks.Length && item == null; i++) {
                 if (!backpackPlayer.backpacks[i].IsActive(player) || !backpackPlayer.backpacks[i].SupportsConsumeItem) {
                     continue;
                 }
@@ -274,7 +273,7 @@ public partial class AequusPlayer {
         var item = orig(player);
 
         if (item == null && player.TryGetModPlayer(out BackpackPlayer backpackPlayer)) {
-            for (int i = 0; i < backpackPlayer.backpacks.Length && item == null; i++) {
+            for (Int32 i = 0; i < backpackPlayer.backpacks.Length && item == null; i++) {
                 if (!backpackPlayer.backpacks[i].IsActive(player) || !backpackPlayer.backpacks[i].SupportsConsumeItem) {
                     continue;
                 }
@@ -289,7 +288,7 @@ public partial class AequusPlayer {
         var item = orig(player);
 
         if (item == null && player.TryGetModPlayer(out BackpackPlayer backpackPlayer)) {
-            for (int i = 0; i < backpackPlayer.backpacks.Length && item == null; i++) {
+            for (Int32 i = 0; i < backpackPlayer.backpacks.Length && item == null; i++) {
                 if (!backpackPlayer.backpacks[i].IsActive(player) || !backpackPlayer.backpacks[i].SupportsConsumeItem) {
                     continue;
                 }

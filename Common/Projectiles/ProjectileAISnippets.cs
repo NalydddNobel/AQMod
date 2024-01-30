@@ -1,18 +1,16 @@
-﻿using Microsoft.Xna.Framework;
-
-namespace Aequus.Common.Projectiles;
+﻿namespace Aequus.Common.Projectiles;
 
 public class ProjectileAISnippets {
-    public static void GenericPetGroundMovement(Projectile projectile, Vector2 to, float moveSpeed = 0.08f, float moveSpeedCap = 6.5f) {
-        bool flag8 = false;
-        bool flag9 = false;
-        bool flag11 = false;
-        float num68 = moveSpeed;
-        float num69 = moveSpeedCap;
+    public static void GenericPetGroundMovement(Projectile projectile, Vector2 to, System.Single moveSpeed = 0.08f, System.Single moveSpeedCap = 6.5f) {
+        System.Boolean flag8 = false;
+        System.Boolean flag9 = false;
+        System.Boolean flag11 = false;
+        System.Single num68 = moveSpeed;
+        System.Single num69 = moveSpeedCap;
         if (to.X < projectile.position.X + projectile.width / 2f - 16) {
             flag8 = true;
         }
-        else if (to.X > projectile.position.X + (float)(projectile.width / 2f) + 16) {
+        else if (to.X > projectile.position.X + (System.Single)(projectile.width / 2f) + 16) {
             flag9 = true;
         }
         if (flag8) {
@@ -38,15 +36,15 @@ public class ProjectileAISnippets {
             }
         }
         if (flag8 || flag9) {
-            int num70 = (int)(projectile.position.X + projectile.width / 2) / 16;
-            int j2 = (int)(projectile.position.Y + projectile.height / 2) / 16;
+            System.Int32 num70 = (System.Int32)(projectile.position.X + projectile.width / 2) / 16;
+            System.Int32 j2 = (System.Int32)(projectile.position.Y + projectile.height / 2) / 16;
             if (flag8) {
                 num70--;
             }
             if (flag9) {
                 num70++;
             }
-            num70 += (int)projectile.velocity.X;
+            num70 += (System.Int32)projectile.velocity.X;
             if (WorldGen.SolidTile(num70, j2)) {
                 flag11 = true;
             }
@@ -54,19 +52,19 @@ public class ProjectileAISnippets {
         Collision.StepUp(ref projectile.position, ref projectile.velocity, projectile.width, projectile.height, ref projectile.stepSpeed, ref projectile.gfxOffY);
         if (projectile.velocity.Y == 0f) {
             if (flag11) {
-                int num72 = (int)(projectile.position.X + projectile.width / 2) / 16;
-                int num73 = (int)(projectile.position.Y + projectile.height) / 16;
+                System.Int32 num72 = (System.Int32)(projectile.position.X + projectile.width / 2) / 16;
+                System.Int32 num73 = (System.Int32)(projectile.position.Y + projectile.height) / 16;
                 if (WorldGen.SolidTileAllowBottomSlope(num72, num73) || Main.tile[num72, num73].IsHalfBlock || Main.tile[num72, num73].Slope > 0) {
                     try {
-                        num72 = (int)(projectile.position.X + projectile.width / 2) / 16;
-                        num73 = (int)(projectile.position.Y + projectile.height / 2) / 16;
+                        num72 = (System.Int32)(projectile.position.X + projectile.width / 2) / 16;
+                        num73 = (System.Int32)(projectile.position.Y + projectile.height / 2) / 16;
                         if (flag8) {
                             num72--;
                         }
                         if (flag9) {
                             num72++;
                         }
-                        num72 += (int)projectile.velocity.X;
+                        num72 += (System.Int32)projectile.velocity.X;
                         if (!WorldGen.SolidTile(num72, num73 - 1) && !WorldGen.SolidTile(num72, num73 - 2)) {
                             projectile.velocity.Y = -5.1f;
                         }

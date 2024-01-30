@@ -18,14 +18,14 @@ public sealed class ResetEffectsGenerator<T> {
             }
 
             gen.Emit(OpCodes.Ldarg_0);
-            if (f.FieldType == typeof(bool)) {
-                gen.Emit((bool)(attr.resetValue ?? false) ? OpCodes.Ldc_I4_1 : OpCodes.Ldc_I4_0);
+            if (f.FieldType == typeof(Boolean)) {
+                gen.Emit((Boolean)(attr.resetValue ?? false) ? OpCodes.Ldc_I4_1 : OpCodes.Ldc_I4_0);
             }
-            else if (f.FieldType == typeof(int)) {
-                gen.Emit(OpCodes.Ldc_I4, (int)(attr.resetValue ?? 0));
+            else if (f.FieldType == typeof(Int32)) {
+                gen.Emit(OpCodes.Ldc_I4, (Int32)(attr.resetValue ?? 0));
             }
-            else if (f.FieldType == typeof(float)) {
-                gen.Emit(OpCodes.Ldc_R4, (float)(attr.resetValue ?? 0f));
+            else if (f.FieldType == typeof(Single)) {
+                gen.Emit(OpCodes.Ldc_R4, (Single)(attr.resetValue ?? 0f));
             }
             else if (!f.FieldType.IsValueType || Nullable.GetUnderlyingType(f.FieldType) != null) {
                 gen.Emit(OpCodes.Ldnull);

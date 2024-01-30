@@ -24,35 +24,35 @@ public class OblivionCraftingStation : ModTile, ISpecialTileRenderer {
 
         TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
         TileObjectData.newTile.LavaDeath = false;
-        TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 18 };
+        TileObjectData.newTile.CoordinateHeights = new Int32[] { 16, 16, 18 };
         TileObjectData.addTile(Type);
         DustType = DustID.Ash;
-        AdjTiles = new int[] { TileID.DemonAltar };
+        AdjTiles = new Int32[] { TileID.DemonAltar };
         MinPick = 110;
         AddMapEntry(new Color(100, 40, 50), Item.DisplayName);
     }
 
-    public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
+    public override void DrawEffects(Int32 i, Int32 j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
         if (drawData.tileCache.TileFrameX % 48 == 0 && drawData.tileCache.TileFrameY % 48 == 0) {
             SpecialTileRenderer.Add(i, j, TileRenderLayerID.PostDrawMasterRelics);
         }
     }
 
-    public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) {
+    public override void SetDrawPositions(Int32 i, Int32 j, ref Int32 width, ref Int32 offsetY, ref Int32 height, ref Int16 tileFrameX, ref Int16 tileFrameY) {
         tileFrameX += 54;
     }
 
-    public void Render(int i, int j, byte layer) {
+    public void Render(Int32 i, Int32 j, Byte layer) {
         Vector2 portalPosition = new Vector2(i * 16f + 24f, j * 16f + 16f) - Main.screenPosition;
-        float portalAnimation = Main.GlobalTimeWrappedHourly * 5f;
-        float portalSquishMagnitude = 0.1f;
+        Single portalAnimation = Main.GlobalTimeWrappedHourly * 5f;
+        Single portalSquishMagnitude = 0.1f;
         Vector2 portalHoveringPosition = portalPosition + new Vector2(0f, Helper.Oscillate(Main.GlobalTimeWrappedHourly, -2f, 2f));
 
         Texture2D portalTexture = AequusTextures.OblivionCraftingStation_Portal.Value;
         Main.spriteBatch.Draw(portalTexture, portalHoveringPosition, null, Color.White, 0f, portalTexture.Size() / 2f, new Vector2(1f + MathF.Sin(portalAnimation) * portalSquishMagnitude, 1f + MathF.Cos(portalAnimation) * portalSquishMagnitude), SpriteEffects.None, 0f);
 
         Texture2D stickTexture = AequusTextures.OblivionCraftingStation_Stick.Value;
-        Rectangle stickFrame = stickTexture.Frame(verticalFrames: 10, frameY: (int)Main.GameUpdateCount / 6 % 10);
+        Rectangle stickFrame = stickTexture.Frame(verticalFrames: 10, frameY: (Int32)Main.GameUpdateCount / 6 % 10);
         stickFrame.Height -= 2;
         Vector2 stickOrigin = stickFrame.Size() / 2f;
         Color stickColor = Lighting.GetColor(i + 1, j + 1);

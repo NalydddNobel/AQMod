@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
+﻿using System;
 using Terraria.GameContent;
 
 namespace Aequus.Content.Tools.Bellows;
@@ -18,7 +16,7 @@ public class BellowsProj : ModProjectile {
         Projectile.timeLeft = 68 * (1 + Projectile.extraUpdates);
     }
 
-    public override bool? CanCutTiles() {
+    public override Boolean? CanCutTiles() {
         return false;
     }
 
@@ -49,7 +47,7 @@ public class BellowsProj : ModProjectile {
             }
             player.velocity -= v * GetPushForce(player, player.HeldItemFixed());
             if (player.velocity.X < 4f) {
-                player.fallStart = (int)player.position.Y / 16;
+                player.fallStart = (Int32)player.position.Y / 16;
             }
             //if (Math.Abs(player.velocity.X) > player.accRunSpeed) {
             //    player.velocity.X *= 0.9f;
@@ -79,24 +77,24 @@ public class BellowsProj : ModProjectile {
             }
         }
     }
-    public float GetPushForce(Player player, Item item) {
-        float force = item.knockBack;
+    public Single GetPushForce(Player player, Item item) {
+        Single force = item.knockBack;
         if (player.mount != null && player.mount.Active && player.mount._data.usesHover) {
             force *= Bellows.MountPushForcePenalty;
         }
         force /= Math.Max(player.velocity.Length() / 8f, 1f);
-        return float.IsNaN(force) ? 0f : force * 1.8f;
+        return Single.IsNaN(force) ? 0f : force * 1.8f;
     }
 
-    public override bool PreDraw(ref Color lightColor) {
-        Projectile.GetDrawInfo(out var texture, out var _, out var frame, out var origin, out int _);
+    public override Boolean PreDraw(ref Color lightColor) {
+        Projectile.GetDrawInfo(out var texture, out var _, out var frame, out var origin, out Int32 _);
 
         var player = Main.player[Projectile.owner];
         var difference = -Projectile.velocity;
         var dir = Vector2.Normalize(difference);
         var drawCoords = player.MountedCenter + dir * -20f;
         drawCoords.Y += 2f + Projectile.gfxOffY;
-        float rotation = difference.ToRotation() + (player.direction == -1 ? 0f : MathHelper.Pi);
+        Single rotation = difference.ToRotation() + (player.direction == -1 ? 0f : MathHelper.Pi);
         var spriteEffects = player.direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
         Main.EntitySpriteDraw(texture, drawCoords - Main.screenPosition, frame, ExtendLight.Get(drawCoords),
              rotation, origin, 1f, spriteEffects, 0);

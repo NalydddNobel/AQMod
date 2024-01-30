@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Aequus.Content.Tools.Bellows;
 
 public class Bellows : ModItem {
-    public static float MountPushForcePenalty = 0.33f;
+    public static System.Single MountPushForcePenalty = 0.33f;
 
     public override void SetDefaults() {
         Item.width = 20;

@@ -5,8 +5,8 @@ using static Terraria.GameContent.Profiles;
 namespace Aequus.Content.TownNPCs;
 
 public abstract class AequusTownNPC : ModNPC, IModifyShoppingSettings, ITalkNPCUpdate {
-    public bool ShowExclamation { get; protected set; }
-    public byte CheckExclamationTimer;
+    public System.Boolean ShowExclamation { get; protected set; }
+    public System.Byte CheckExclamationTimer;
 
     public override void SetStaticDefaults() {
         Main.npcFrameCount[NPC.type] = 25;
@@ -38,7 +38,7 @@ public abstract class AequusTownNPC : ModNPC, IModifyShoppingSettings, ITalkNPCU
         AnimationType = NPCID.Guide;
     }
 
-    protected virtual bool CheckExclamation() {
+    protected virtual System.Boolean CheckExclamation() {
         return false;
     }
 
@@ -49,7 +49,7 @@ public abstract class AequusTownNPC : ModNPC, IModifyShoppingSettings, ITalkNPCU
             CheckExclamationTimer--;
         }
         else {
-            CheckExclamationTimer = byte.MaxValue;
+            CheckExclamationTimer = System.Byte.MaxValue;
             ShowExclamation = CheckExclamation();
         }
 
@@ -58,7 +58,7 @@ public abstract class AequusTownNPC : ModNPC, IModifyShoppingSettings, ITalkNPCU
         }
     }
 
-    public override void OnChatButtonClicked(bool firstButton, ref string shopName) {
+    public override void OnChatButtonClicked(System.Boolean firstButton, ref System.String shopName) {
         CheckExclamationTimer = 0;
     }
 
@@ -70,10 +70,10 @@ public abstract class AequusTownNPC : ModNPC, IModifyShoppingSettings, ITalkNPCU
 }
 
 public abstract class AequusTownNPC<T> : AequusTownNPC where T : AequusTownNPC<T> {
-    public static int ShimmerHeadIndex { get; protected set; }
+    public static System.Int32 ShimmerHeadIndex { get; protected set; }
     public static StackedNPCProfile Profile { get; protected set; }
 
-    protected static string ShimmerTexture => $"{typeof(T).NamespaceFilePath()}/Shimmer/{typeof(T).Name}";
+    protected static System.String ShimmerTexture => $"{typeof(T).NamespaceFilePath()}/Shimmer/{typeof(T).Name}";
 
     public override void Load() {
         ShimmerHeadIndex = Mod.AddNPCHeadTexture(Type, ShimmerTexture + "_Head");

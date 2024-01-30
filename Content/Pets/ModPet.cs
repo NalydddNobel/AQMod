@@ -6,14 +6,14 @@ public abstract class ModPet : ModProjectile {
     internal InstancedPetBuff PetBuff { get; set; }
     internal InstancedPetItem PetItem { get; set; }
 
-    protected override bool CloneNewInstances => true;
+    protected override System.Boolean CloneNewInstances => true;
 
     internal abstract InstancedPetBuff CreatePetBuff();
     internal virtual InstancedPetItem CreatePetItem() {
         return new(this);
     }
 
-    public override string LocalizationCategory => "Pets";
+    public override System.String LocalizationCategory => "Pets";
 
     public override LocalizedText DisplayName => Language.GetText(this.GetLocalizationKey("DisplayName"));
 
@@ -24,8 +24,8 @@ public abstract class ModPet : ModProjectile {
         Mod.AddContent(PetItem);
     }
 
-    public override bool PreAI() {
-        ref bool active = ref PetBuff._petFlag(Main.player[Projectile.owner]);
+    public override System.Boolean PreAI() {
+        ref System.Boolean active = ref PetBuff._petFlag(Main.player[Projectile.owner]);
         if (Main.player[Projectile.owner].dead) {
             active = false;
         }

@@ -9,13 +9,13 @@ public partial class AequusPlayer {
     /// Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
     /// </summary>
     [ResetEffects()]
-    public float dropRolls;
+    public System.Single dropRolls;
     [ResetEffects]
-    public bool accGrandRewardDownside;
+    public System.Boolean accGrandRewardDownside;
 
     [SaveData("CosmicChest")]
     [SaveDataAttribute.IsListedBoolean]
-    public bool usedCosmicChest;
+    public System.Boolean usedCosmicChest;
 
     private void UpdateCosmicChest() {
         if (usedCosmicChest) {

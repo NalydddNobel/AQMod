@@ -4,9 +4,9 @@ using Terraria.Audio;
 namespace Aequus.Old.Content.Equipment.Accessories.HighSteaks;
 
 public class HighSteaksPlayer : ModPlayer {
-    public float highSteaksDamage;
-    public int highSteaksCost;
-    public bool highSteaksHidden;
+    public System.Single highSteaksDamage;
+    public System.Int32 highSteaksCost;
+    public System.Boolean highSteaksHidden;
 
     public override void ResetEffects() {
         highSteaksHidden = false;
@@ -20,7 +20,7 @@ public class HighSteaksPlayer : ModPlayer {
         }
     }
 
-    public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
+    public override void OnHitNPC(NPC target, NPC.HitInfo hit, System.Int32 damageDone) {
         if (hit.Crit) {
             UseHighSteaks(target);
         }
@@ -46,12 +46,12 @@ public class HighSteaksPlayer : ModPlayer {
                 // since we checked earlier if the inventory has the desired amount of coins.
                 Player.BuyItem(highSteaksCost);
             }
-            HighSteaksMoneyConsumeEffect.CoinAnimations.Add(Main.rand.Next((int)(MathHelper.TwoPi * 100f)) * 100);
+            HighSteaksMoneyConsumeEffect.CoinAnimations.Add(Main.rand.Next((System.Int32)(MathHelper.TwoPi * 100f)) * 100);
         }
     }
 
-    private bool CanAffordWithInventoryMoney(long wantedValue) {
-        long count = Utils.CoinsCount(out _, Player.inventory, 58, 57, 56, 55, 54);
+    private System.Boolean CanAffordWithInventoryMoney(System.Int64 wantedValue) {
+        System.Int64 count = Utils.CoinsCount(out _, Player.inventory, 58, 57, 56, 55, 54);
         return count >= wantedValue;
     }
 }

@@ -3,7 +3,7 @@
 namespace Aequus.Old.Content.Equipment.GrapplingHooks.EnemyGrappleHook;
 
 public class MeathookDebuff : ModBuff {
-    public override string Texture => AequusTextures.TemporaryDebuffIcon;
+    public override System.String Texture => AequusTextures.TemporaryDebuffIcon;
 
     public override void SetStaticDefaults() {
         Main.debuff[Type] = true;

@@ -5,9 +5,9 @@ namespace Aequus.Content.Weapons.Classless;
 
 public abstract class ClasslessWeapon : ModItem {
     // Poopy
-    public override int ChoosePrefix(UnifiedRandom rand) {
+    public override System.Int32 ChoosePrefix(UnifiedRandom rand) {
         var prefixes = PrefixLoader.GetPrefixesInCategory(PrefixCategory.Custom);
-        List<int> list = new() {
+        List<System.Int32> list = new() {
             PrefixID.Broken,
             PrefixID.Annoying,
             PrefixID.Damaged,

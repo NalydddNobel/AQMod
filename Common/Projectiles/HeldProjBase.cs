@@ -1,7 +1,7 @@
 ﻿namespace Aequus.Common.Projectiles;
 
 public abstract class HeldProjBase : ModProjectile {
-    public float armRotation;
+    public System.Single armRotation;
     protected virtual void SetArmRotation(Player player) {
         if (armRotation > 1.1f) {
             player.bodyFrame.Y = 56;

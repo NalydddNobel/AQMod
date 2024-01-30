@@ -8,7 +8,7 @@ public partial class AequusBuff : GlobalBuff {
     }
 
     #region Hooks
-    private static void NPC_AddBuff(On_NPC.orig_AddBuff orig, NPC npc, int type, int time, bool quiet) {
+    private static void NPC_AddBuff(On_NPC.orig_AddBuff orig, NPC npc, System.Int32 type, System.Int32 time, System.Boolean quiet) {
         var onAddBuff = BuffLoader.GetBuff(type) as IOnAddBuff;
         onAddBuff?.PreAddBuff(npc, ref time, ref quiet);
         //if (Main.debuff[type] || BuffSets.ProbablyFireDebuff.Contains(type)) {
@@ -38,7 +38,7 @@ public partial class AequusBuff : GlobalBuff {
         onAddBuff?.PostAddBuff(npc, time, quiet);
     }
 
-    private static void Player_AddBuff(On_Player.orig_AddBuff orig, Player player, int type, int timeToAdd, bool quiet, bool foodHack) {
+    private static void Player_AddBuff(On_Player.orig_AddBuff orig, Player player, System.Int32 type, System.Int32 timeToAdd, System.Boolean quiet, System.Boolean foodHack) {
         var onAddBuff = BuffLoader.GetBuff(type) as IOnAddBuff;
         onAddBuff?.PreAddBuff(player, ref timeToAdd, ref quiet, ref foodHack);
         //if (BuffSets.BuffConflicts.TryGetValue(EmpoweredBuffBase.GetDepoweredBuff(type), out var l) && l != null) {

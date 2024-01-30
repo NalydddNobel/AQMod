@@ -1,42 +1,40 @@
 ﻿using Aequus.Common.Tiles;
-using Microsoft.Xna.Framework;
 using System;
 using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.IO;
 using Terraria.Utilities;
 
 namespace Aequus.Core.Utilities;
 
 public static class Helper {
-    public static Point WorldClamp(this Point value, int fluff = 0) {
+    public static Point WorldClamp(this Point value, Int32 fluff = 0) {
         return new(Math.Clamp(value.X, fluff, Main.maxTilesX - fluff), Math.Clamp(value.Y, fluff, Main.maxTilesX - fluff));
     }
 
-    public static float Oscillate(float time, float magnitude) {
+    public static Single Oscillate(Single time, Single magnitude) {
         return Oscillate(time, 0f, magnitude);
     }
 
-    public static float Oscillate(float time, float minimum, float maximum) {
-        return (float)(minimum + (Math.Sin(time) + 1f) / 2f * (maximum - minimum));
+    public static Single Oscillate(Single time, Single minimum, Single maximum) {
+        return (Single)(minimum + (Math.Sin(time) + 1f) / 2f * (maximum - minimum));
     }
 
-    public static Rectangle Frame(this Rectangle rectangle, int frameX, int frameY, int sizeOffsetX = 0, int sizeOffsetY = 0) {
+    public static Rectangle Frame(this Rectangle rectangle, Int32 frameX, Int32 frameY, Int32 sizeOffsetX = 0, Int32 sizeOffsetY = 0) {
         return new Rectangle(rectangle.X + (rectangle.Width - sizeOffsetX) * frameX, rectangle.Y + (rectangle.Width - sizeOffsetY) * frameY, rectangle.Width, rectangle.Height);
     }
 
-    public static bool IsFalling(Vector2 velocity, float gravDir) {
+    public static Boolean IsFalling(Vector2 velocity, Single gravDir) {
         return Math.Sign(velocity.Y) == Math.Sign(gravDir);
     }
 
-    public static int FindTarget(Vector2 position, int width = 2, int height = 2, float maxRange = 800f, object me = null, Func<int, bool> validCheck = null) {
-        float num = maxRange;
-        int result = -1;
+    public static Int32 FindTarget(Vector2 position, Int32 width = 2, Int32 height = 2, Single maxRange = 800f, Object me = null, Func<Int32, Boolean> validCheck = null) {
+        Single num = maxRange;
+        Int32 result = -1;
         var center = position + new Vector2(width / 2f, height / 2f);
-        for (int i = 0; i < 200; i++) {
+        for (Int32 i = 0; i < 200; i++) {
             NPC nPC = Main.npc[i];
             if (nPC.CanBeChasedBy(me) && (validCheck == null || validCheck.Invoke(i))) {
-                float num2 = Vector2.Distance(center, Main.npc[i].Center);
+                Single num2 = Vector2.Distance(center, Main.npc[i].Center);
                 if (num2 < num) {
                     num = num2;
                     result = i;
@@ -46,14 +44,14 @@ public static class Helper {
         return result;
     }
 
-    public static int FindTargetWithLineOfSight(Vector2 position, int width = 2, int height = 2, float maxRange = 800f, object me = null, Func<int, bool> validCheck = null) {
-        float num = maxRange;
-        int result = -1;
+    public static Int32 FindTargetWithLineOfSight(Vector2 position, Int32 width = 2, Int32 height = 2, Single maxRange = 800f, Object me = null, Func<Int32, Boolean> validCheck = null) {
+        Single num = maxRange;
+        Int32 result = -1;
         var center = position + new Vector2(width / 2f, height / 2f);
-        for (int i = 0; i < 200; i++) {
+        for (Int32 i = 0; i < 200; i++) {
             NPC nPC = Main.npc[i];
             if (nPC.CanBeChasedBy(me) && (validCheck == null || validCheck.Invoke(i))) {
-                float num2 = Vector2.Distance(center, Main.npc[i].Center);
+                Single num2 = Vector2.Distance(center, Main.npc[i].Center);
                 if (num2 < num && Collision.CanHit(position, width, height, nPC.position, nPC.width, nPC.height)) {
                     num = num2;
                     result = i;
@@ -64,41 +62,41 @@ public static class Helper {
     }
 
     #region Type
-    public static string NamespaceFilePath(this Type t) {
+    public static String NamespaceFilePath(this Type t) {
         return t.Namespace.Replace('.', '/');
     }
-    public static string NamespaceFilePath(this object obj) {
+    public static String NamespaceFilePath(this Object obj) {
         return obj.GetType().NamespaceFilePath();
     }
-    public static string NamespaceFilePath<T>() {
+    public static String NamespaceFilePath<T>() {
         return typeof(T).NamespaceFilePath();
     }
 
-    public static string GetFilePath(this Type t) {
+    public static String GetFilePath(this Type t) {
         return $"{t.NamespaceFilePath()}/{t.Name}";
     }
-    public static string GetFilePath(this object obj) {
+    public static String GetFilePath(this Object obj) {
         return GetFilePath(obj.GetType());
     }
-    public static string GetFilePath<T>() {
+    public static String GetFilePath<T>() {
         return GetFilePath(typeof(T));
     }
     #endregion
 
     #region RNG
-    public static float NextFloat(this ref FastRandom random, float min, float max) {
+    public static Single NextFloat(this ref FastRandom random, Single min, Single max) {
         return min + random.NextFloat() * (max - min);
     }
-    public static float NextFloat(this ref FastRandom random, float max) {
+    public static Single NextFloat(this ref FastRandom random, Single max) {
         return random.NextFloat() * max;
     }
 
-    public static ulong TileSeed(int i, int j) {
-        ulong x = (ulong)i;
-        ulong y = (ulong)j;
+    public static UInt64 TileSeed(Int32 i, Int32 j) {
+        UInt64 x = (UInt64)i;
+        UInt64 y = (UInt64)j;
         return x * x + y * y * x + x;
     }
-    public static ulong TileSeed(Point point) {
+    public static UInt64 TileSeed(Point point) {
         return TileSeed(point.X, point.Y);
     }
 
@@ -108,18 +106,18 @@ public static class Helper {
     /// <param name="i"></param>
     /// <param name="j"></param>
     /// <returns></returns>
-    public static FastRandom RandomTileCoordinates(int i, int j) {
+    public static FastRandom RandomTileCoordinates(Int32 i, Int32 j) {
         return new(TileSeed(i, j));
     }
     #endregion
 
     #region Chests & Loot
-    public static bool IsGenericUndergroundChest(Chest chest) {
+    public static Boolean IsGenericUndergroundChest(Chest chest) {
         return ChestType.GenericUndergroundChest.Contains(new TileKey(Main.tile[chest.x, chest.y].TileType, TileHelper.GetStyle(chest.x, chest.y, coordinateFullWidthBackup: 36)));
     }
 
-    public static Item FindFirst(this Chest chest, int itemId) {
-        for (int i = 0; i < Chest.maxItems; i++) {
+    public static Item FindFirst(this Chest chest, Int32 itemId) {
+        for (Int32 i = 0; i < Chest.maxItems; i++) {
             if (chest.item[i] != null && !chest.item[i].IsAir && chest.item[i].type == itemId) {
                 return chest.item[i];
             }
@@ -127,21 +125,21 @@ public static class Helper {
         return null;
     }
 
-    public static Item ReplaceFirst(this Chest chest, int itemId, int newItemId, int newStack = -1) {
+    public static Item ReplaceFirst(this Chest chest, Int32 itemId, Int32 newItemId, Int32 newStack = -1) {
         var item = chest.FindFirst(itemId);
         if (item == null) {
             return item;
         }
 
-        int stack = newStack <= 0 ? item.stack : newStack;
+        Int32 stack = newStack <= 0 ? item.stack : newStack;
         item.SetDefaults(newItemId);
         item.stack = stack;
         return item;
     }
 
-    public static bool RemoveAllItemIds(this Chest chest, int itemId) {
-        bool anyRemoved = false;
-        for (int i = 0; i < Chest.maxItems; i++) {
+    public static Boolean RemoveAllItemIds(this Chest chest, Int32 itemId) {
+        Boolean anyRemoved = false;
+        for (Int32 i = 0; i < Chest.maxItems; i++) {
             if (chest.item[i] == null) {
                 chest.item[i] = new();
                 continue;
@@ -156,20 +154,20 @@ public static class Helper {
         return anyRemoved;
     }
 
-    public static bool Remove(this Chest chest, int index) {
+    public static Boolean Remove(this Chest chest, Int32 index) {
         chest.item[index] = new();
-        for (int i = index; i < Chest.maxItems - 1; i++) {
+        for (Int32 i = index; i < Chest.maxItems - 1; i++) {
             chest.item[i] = chest.item[i + 1];
         }
         return true;
     }
 
-    public static bool IsSynced(this Chest chest) {
+    public static Boolean IsSynced(this Chest chest) {
         if (chest.item == null) {
             return false;
         }
 
-        for (int i = 0; i < Chest.maxItems; i++) {
+        for (Int32 i = 0; i < Chest.maxItems; i++) {
             if (chest.item[i] == null) {
                 return false;
             }
@@ -177,7 +175,7 @@ public static class Helper {
         return true;
     }
 
-    public static bool TryStackingInto(this Item[] inv, int maxSlots, Item item, out int i) {
+    public static Boolean TryStackingInto(this Item[] inv, Int32 maxSlots, Item item, out Int32 i) {
         i = -1;
         while (item.stack > 0) {
             i = inv.FindSuitableSlot(maxSlots, item);
@@ -189,7 +187,7 @@ public static class Helper {
                 inv[i] = item.Clone();
                 return true;
             }
-            int stack = inv[i].stack + item.stack;
+            Int32 stack = inv[i].stack + item.stack;
             if (stack > inv[i].maxStack) {
                 item.stack = stack - inv[i].maxStack;
                 inv[i].stack = inv[i].maxStack;
@@ -201,14 +199,14 @@ public static class Helper {
         return false;
     }
 
-    public static int FindSuitableSlot(this Item[] inv, int maxSlots, Item item) {
+    public static Int32 FindSuitableSlot(this Item[] inv, Int32 maxSlots, Item item) {
         if (item.stack != item.maxStack) {
-            for (int i = 0; i < Chest.maxItems; i++) {
+            for (Int32 i = 0; i < Chest.maxItems; i++) {
                 if (inv[i].type == item.type && inv[i].stack < inv[i].maxStack && inv[i].prefix == item.prefix && ItemLoader.CanStack(item, inv[i]))
                     return i;
             }
         }
-        for (int i = 0; i < Chest.maxItems; i++) {
+        for (Int32 i = 0; i < Chest.maxItems; i++) {
             if (inv[i].IsAir)
                 return i;
         }
@@ -216,7 +214,7 @@ public static class Helper {
     }
 
     public static Item FindEmptySlot(this Chest chest) {
-        for (int i = 0; i < Chest.maxItems; i++) {
+        for (Int32 i = 0; i < Chest.maxItems; i++) {
             if (chest.item[i] == null) {
                 chest.item[i] = new();
             }
@@ -227,7 +225,7 @@ public static class Helper {
         return null;
     }
 
-    public static Item AddItem(this Chest chest, int item, int stack = 1, int prefix = -1) {
+    public static Item AddItem(this Chest chest, Int32 item, Int32 stack = 1, Int32 prefix = -1) {
         Item emptySlot = chest.FindEmptySlot();
 
         if (emptySlot != null) {
@@ -241,9 +239,9 @@ public static class Helper {
         return emptySlot;
     }
 
-    public static void RemoveItemId(this ILoot loot, int itemId) {
+    public static void RemoveItemId(this ILoot loot, Int32 itemId) {
         var dropRules = loot.Get(includeGlobalDrops: false);
-        for (int i = 0; i < dropRules.Count; i++) {
+        for (Int32 i = 0; i < dropRules.Count; i++) {
             IItemDropRule l = dropRules[i];
             if (l is CommonDrop commonDrop && commonDrop.itemId == itemId) {
                 loot.Remove(l);
@@ -259,11 +257,11 @@ public static class Helper {
     #endregion
 
     #region World
-    public static bool FrozenTimeActive() {
+    public static Boolean FrozenTimeActive() {
         return CreativePowerManager.Instance.GetPower<CreativePowers.FreezeTime>().Enabled;
     }
 
-    public static int GetTimeScale() {
+    public static Int32 GetTimeScale() {
         if (FrozenTimeActive()) {
             return 0;
         }
@@ -271,15 +269,15 @@ public static class Helper {
         return CreativePowerManager.Instance.GetPower<CreativePowers.ModifyTimeRate>().TargetTimeRate;
     }
 
-    public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
+    public static Double ZoneSkyHeightY => Main.worldSurface * 0.35;
 
-    public static bool ZoneSkyHeight(Entity entity) {
+    public static Boolean ZoneSkyHeight(Entity entity) {
         return ZoneSkyHeight(entity.position.Y);
     }
-    public static bool ZoneSkyHeight(float worldY) {
-        return ZoneSkyHeight((int)worldY / 16);
+    public static Boolean ZoneSkyHeight(Single worldY) {
+        return ZoneSkyHeight((Int32)worldY / 16);
     }
-    public static bool ZoneSkyHeight(int tileY) {
+    public static Boolean ZoneSkyHeight(Int32 tileY) {
         return tileY < ZoneSkyHeightY;
     }
     #endregion

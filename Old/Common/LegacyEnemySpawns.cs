@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Aequus.Old.Common;
 
 public class LegacyEnemySpawns : GlobalNPC {
-    public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
+    public override void EditSpawnPool(IDictionary<System.Int32, System.Single> pool, NPCSpawnInfo spawnInfo) {
         if (spawnInfo.Player.InModBiome<DemonSiegeZone>()) {
             DemonSiegeZone.AddEnemies(pool, spawnInfo);
             return;
@@ -18,7 +18,7 @@ public class LegacyEnemySpawns : GlobalNPC {
             return;
         }
 
-        bool surface = spawnInfo.SpawnTileY < Main.worldSurface;
+        System.Boolean surface = spawnInfo.SpawnTileY < Main.worldSurface;
 
         // Meteor Spawns
         //if (spawnInfo.Sky && !Main.dayTime && spawnInfo.Player.Center.InOuterX(outer: 3)) {
@@ -63,7 +63,7 @@ public class LegacyEnemySpawns : GlobalNPC {
         //AddHardmodeTierEnemies(pool, spawnInfo);
     }
 
-    public static bool CanEditSpawnPool(NPCSpawnInfo spawnInfo) {
+    public static System.Boolean CanEditSpawnPool(NPCSpawnInfo spawnInfo) {
         if (spawnInfo.Player.ZoneOverworldHeight || spawnInfo.Player.ZoneSkyHeight) {
             if (Main.eclipse || Main.pumpkinMoon || Main.snowMoon) {
                 return true;

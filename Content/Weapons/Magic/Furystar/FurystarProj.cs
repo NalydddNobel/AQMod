@@ -1,13 +1,11 @@
 ﻿using Aequus.Common.Projectiles;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria.DataStructures;
 
 namespace Aequus.Content.Weapons.Magic.Furystar;
 
 public class FurystarProj : HeldProjBase {
-    public override string Texture => ModContent.GetInstance<Furystar>().Texture;
+    public override String Texture => ModContent.GetInstance<Furystar>().Texture;
 
     public override void SetDefaults() {
         Projectile.SetDefaultHeldProj();
@@ -38,7 +36,7 @@ public class FurystarProj : HeldProjBase {
 
         if (!player.CCed) {
             Projectile.Center = player.Center;
-            float rotationBase = 0f;
+            Single rotationBase = 0f;
             var heldItem = player.HeldItemFixed();
             if (Main.myPlayer == Projectile.owner && heldItem.shoot == Type) {
                 var mouseWorld = Main.MouseWorld;
@@ -58,7 +56,7 @@ public class FurystarProj : HeldProjBase {
                         Projectile.Kill();
                         return;
                     }
-                    for (int i = 0; i < Furystar.MaxExtraStars; i++) {
+                    for (Int32 i = 0; i < Furystar.MaxExtraStars; i++) {
                         var position = new Vector2(mouseWorld.X + player.direction * -600f + Main.rand.NextFloat(-260f, 260f), player.position.Y - 400f);
                         var velocity = Vector2.Normalize(mouseWorld - position) * heldItem.shootSpeed;
                         var starFuryVector = mouseWorld;
@@ -66,9 +64,9 @@ public class FurystarProj : HeldProjBase {
                         while (starFuryVector.Y > position.Y && WorldGen.SolidTile(starFuryVector.ToTileCoordinates())) {
                             starFuryVector += toMouse * 16f;
                         }
-                        int projectileType = ModContent.ProjectileType<FurystarBulletProj>();
-                        int damage = player.GetWeaponDamage(heldItem);
-                        float knockback = player.GetWeaponKnockback(heldItem);
+                        Int32 projectileType = ModContent.ProjectileType<FurystarBulletProj>();
+                        Int32 damage = player.GetWeaponDamage(heldItem);
+                        Single knockback = player.GetWeaponKnockback(heldItem);
                         CombinedHooks.ModifyShootStats(player, heldItem, ref position, ref velocity, ref projectileType, ref damage, ref knockback);
                         var source = player.GetSource_ItemUse_WithPotentialAmmo(heldItem, 0, "Aequus: Furystar");
                         if (CombinedHooks.Shoot(player, heldItem, (EntitySource_ItemUse_WithAmmo)source, position, velocity, projectileType, damage, knockback)) {
@@ -92,10 +90,10 @@ public class FurystarProj : HeldProjBase {
                 Projectile.netUpdate = true;
             }
 
-            float wantedRotation = Helper.Oscillate(Projectile.localAI[1], rotationBase - 0.3f, rotationBase + 0.3f);
+            Single wantedRotation = Helper.Oscillate(Projectile.localAI[1], rotationBase - 0.3f, rotationBase + 0.3f);
             Projectile.rotation = Projectile.rotation.AngleLerp(wantedRotation, 0.33f);
-            DrawOffsetX = (int)(wantedRotation * 4f);
-            DrawOriginOffsetY = (int)Math.Abs(wantedRotation * 5f);
+            DrawOffsetX = (Int32)(wantedRotation * 4f);
+            DrawOriginOffsetY = (Int32)Math.Abs(wantedRotation * 5f);
             player.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, Projectile.rotation * 0.45f + MathHelper.Pi + 0.7f * player.direction);
             var particleBox = Utils.CenteredRectangle(player.MountedCenter + new Vector2((player.width / 2f + 6f) * player.direction, -player.height / 2f - 20f), new(20f));
             if (Main.rand.NextBool(12)) {
@@ -111,9 +109,9 @@ public class FurystarProj : HeldProjBase {
         }
     }
 
-    public override bool PreDraw(ref Color lightColor) {
+    public override Boolean PreDraw(ref Color lightColor) {
         var player = Main.player[Projectile.owner];
-        Projectile.GetDrawInfo(out var texture, out var _, out var frame, out var _, out int _);
+        Projectile.GetDrawInfo(out var texture, out var _, out var frame, out var _, out Int32 _);
         var origin = new Vector2(10f, frame.Height - 10f);
         var armPosition = Main.GetPlayerArmPosition(Projectile);
         var drawPosition = armPosition - Main.screenPosition + new Vector2(DrawOffsetX, DrawOriginOffsetY);

@@ -3,13 +3,13 @@
 namespace Aequus.Old.Content.Equipment.Accessories.WarHorn;
 
 public class WarHornMinionGlobalProjectile : GlobalProjectile {
-    private static bool _loop;
+    private static System.Boolean _loop;
 
-    public ushort warHornFrenzyTime;
+    public System.UInt16 warHornFrenzyTime;
 
-    public override bool InstancePerEntity => true;
+    public override System.Boolean InstancePerEntity => true;
 
-    public override bool AppliesToEntity(Projectile entity, bool lateInstantiation) {
+    public override System.Boolean AppliesToEntity(Projectile entity, System.Boolean lateInstantiation) {
         return entity.minion || entity.sentry;
     }
 
@@ -34,22 +34,22 @@ public class WarHornMinionGlobalProjectile : GlobalProjectile {
         }
     }
 
-    public override bool PreDraw(Projectile projectile, ref Color lightColor) {
+    public override System.Boolean PreDraw(Projectile projectile, ref Color lightColor) {
         if (warHornFrenzyTime == 0) {
             return true;
         }
 
-        float frenzyOpacity = warHornFrenzyTime < 60 ? warHornFrenzyTime / 60f : 1f;
+        System.Single frenzyOpacity = warHornFrenzyTime < 60 ? warHornFrenzyTime / 60f : 1f;
 
         var texture = AequusTextures.WarHornEffect.Value;
 
         var color = Color.Red;
         var drawCoords = projectile.Center - Main.screenPosition;
         var textureOrigin = texture.Size() / 2f;
-        float scale = projectile.scale * 0.5f;
-        int swishTimeMax = 20;
-        int swishTime = warHornFrenzyTime % swishTimeMax;
-        float swishOpacity = frenzyOpacity;
+        System.Single scale = projectile.scale * 0.5f;
+        System.Int32 swishTimeMax = 20;
+        System.Int32 swishTime = warHornFrenzyTime % swishTimeMax;
+        System.Single swishOpacity = frenzyOpacity;
         if (swishTime < 8) {
             swishOpacity *= swishTime / 8f;
         }
@@ -58,8 +58,8 @@ public class WarHornMinionGlobalProjectile : GlobalProjectile {
         }
 
         Main.EntitySpriteDraw(AequusTextures.BloomStrong, drawCoords, null, color, 0f, AequusTextures.BloomStrong.Size() / 2f, scale, SpriteEffects.None, 0);
-        for (int i = -1; i <= 1; i += 2) {
-            Main.EntitySpriteDraw(texture, drawCoords + new Vector2(i * projectile.Frame().Width * (1f - warHornFrenzyTime % swishTimeMax / (float)swishTimeMax), 0f), null, color with { A = 128 } * swishOpacity, MathHelper.PiOver2 * i, textureOrigin, scale * 0.5f, SpriteEffects.None, 0);
+        for (System.Int32 i = -1; i <= 1; i += 2) {
+            Main.EntitySpriteDraw(texture, drawCoords + new Vector2(i * projectile.Frame().Width * (1f - warHornFrenzyTime % swishTimeMax / (System.Single)swishTimeMax), 0f), null, color with { A = 128 } * swishOpacity, MathHelper.PiOver2 * i, textureOrigin, scale * 0.5f, SpriteEffects.None, 0);
         }
 
         return true;
@@ -67,17 +67,17 @@ public class WarHornMinionGlobalProjectile : GlobalProjectile {
 }
 
 public class WarHornActivatorGlobalProjectile : GlobalProjectile {
-    private int _sourceMinion = -1;
+    private System.Int32 _sourceMinion = -1;
 
-    public override bool InstancePerEntity => true;
+    public override System.Boolean InstancePerEntity => true;
 
-    public override bool AppliesToEntity(Projectile entity, bool lateInstantiation) {
+    public override System.Boolean AppliesToEntity(Projectile entity, System.Boolean lateInstantiation) {
         return entity.minion || entity.sentry || ProjectileID.Sets.MinionShot[entity.type] || ProjectileID.Sets.SentryShot[entity.type];
     }
 
     public override void AI(Projectile projectile) {
         if (_sourceMinion != -1) {
-            int proj = ExtendProjectile.FindProjectileIdentity(projectile.owner, _sourceMinion);
+            System.Int32 proj = ExtendProjectile.FindProjectileIdentity(projectile.owner, _sourceMinion);
             if (proj == -1 || !Main.projectile[proj].active || Main.projectile[proj].owner != projectile.owner || !Main.projectile[proj].TryGetGlobalProjectile<WarHornMinionGlobalProjectile>(out _)) {
                 _sourceMinion = -1;
             }
@@ -95,8 +95,8 @@ public class WarHornActivatorGlobalProjectile : GlobalProjectile {
         }
     }
 
-    public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone) {
-        if (target.SpawnedFromStatue || target.immortal 
+    public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, System.Int32 damageDone) {
+        if (target.SpawnedFromStatue || target.immortal
             || !Main.player[projectile.owner].TryGetModPlayer(out AequusPlayer aequusPlayer)
             || aequusPlayer.accWarHorn <= 0 || Main.player[projectile.owner].HasBuff<WarHornCooldown>()) {
             return;
@@ -105,7 +105,7 @@ public class WarHornActivatorGlobalProjectile : GlobalProjectile {
     }
 
     public void ActivateWarhorn(Projectile projectile) {
-        int proj;
+        System.Int32 proj;
         if (projectile.minion || projectile.sentry) {
             proj = projectile.whoAmI;
         }
@@ -118,8 +118,8 @@ public class WarHornActivatorGlobalProjectile : GlobalProjectile {
             if (minion.warHornFrenzyTime <= 30) {
                 // Play Sound
             }
-            minion.warHornFrenzyTime = (ushort)(240 * Main.player[projectile.owner].GetModPlayer<AequusPlayer>().accWarHorn);
-            for (int i = 0; i < 20; i++) {
+            minion.warHornFrenzyTime = (System.UInt16)(240 * Main.player[projectile.owner].GetModPlayer<AequusPlayer>().accWarHorn);
+            for (System.Int32 i = 0; i < 20; i++) {
                 var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height,
                     DustID.RedTorch, Scale: Main.rand.NextFloat(0.8f, 1.5f));
                 d.noGravity = true;

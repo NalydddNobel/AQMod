@@ -7,15 +7,15 @@ namespace Aequus.Common.NPCs.Bestiary;
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
 internal class ModBiomesAttribute : Attribute {
     public readonly Type[] _modBiomeTypes;
-    public readonly int[] _modBiomeIds;
+    public readonly Int32[] _modBiomeIds;
 
     public ModBiomesAttribute(params Type[] modBiomeTypes) {
         _modBiomeTypes = modBiomeTypes;
-        _modBiomeIds = new int[modBiomeTypes.Length];
+        _modBiomeIds = new Int32[modBiomeTypes.Length];
     }
 
     public void CacheIds() {
-        int i = 0;
+        Int32 i = 0;
         try {
             for (; i < _modBiomeTypes.Length; i++) {
                 _modBiomeIds[i] = ModContent.GetContent<ModBiome>().Where((mb) => mb.GetType().Equals(_modBiomeTypes[i])).First().Type;
@@ -28,7 +28,7 @@ internal class ModBiomesAttribute : Attribute {
 }
 
 internal class ModBiomesGlobalNPC : GlobalNPC {
-    public override bool AppliesToEntity(NPC npc, bool lateInstantiation) {
+    public override Boolean AppliesToEntity(NPC npc, Boolean lateInstantiation) {
         return npc.ModNPC != null && npc.ModNPC.GetType().GetCustomAttributes<ModBiomesAttribute>().Any();
     }
 
@@ -42,10 +42,10 @@ internal class ModBiomesGlobalNPC : GlobalNPC {
 
     public override void SetDefaults(NPC npc) {
         foreach (var attr in npc.ModNPC.GetType().GetCustomAttributes<ModBiomesAttribute>()) {
-            int i;
+            Int32 i;
             if (npc.ModNPC.SpawnModBiomes == null) {
                 i = 0;
-                npc.ModNPC.SpawnModBiomes = new int[attr._modBiomeTypes.Length];
+                npc.ModNPC.SpawnModBiomes = new Int32[attr._modBiomeTypes.Length];
             }
             else {
                 var arr = npc.ModNPC.SpawnModBiomes;
@@ -54,7 +54,7 @@ internal class ModBiomesGlobalNPC : GlobalNPC {
                 npc.ModNPC.SpawnModBiomes = arr;
             }
 
-            int k = 0;
+            Int32 k = 0;
             do {
                 npc.ModNPC.SpawnModBiomes[i] = attr._modBiomeIds[k];
                 i++;

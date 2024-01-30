@@ -3,14 +3,14 @@
 namespace Aequus.Common.Items.EquipmentBooster;
 
 public class EquipBoostInfo {
-    public readonly int Slot;
+    public readonly System.Int32 Slot;
     public EquipBoostType Boost;
 
-    public bool HasAnyBoost => Boost > 0;
-    public bool HasAbilityBoost => HasFlag(EquipBoostType.Abilities);
-    public bool HasDefenseBoost => HasFlag(EquipBoostType.Defense);
+    public System.Boolean HasAnyBoost => Boost > 0;
+    public System.Boolean HasAbilityBoost => HasFlag(EquipBoostType.Abilities);
+    public System.Boolean HasDefenseBoost => HasFlag(EquipBoostType.Defense);
 
-    public EquipBoostInfo(int slot) {
+    public EquipBoostInfo(System.Int32 slot) {
         Slot = slot;
     }
 
@@ -18,10 +18,10 @@ public class EquipBoostInfo {
         Boost = EquipBoostType.None;
     }
 
-    public void ApplyModifier(Item equipItem, Player player, AequusPlayer aequus, bool hideVisual = false) {
+    public void ApplyModifier(Item equipItem, Player player, AequusPlayer aequus, System.Boolean hideVisual = false) {
         equipItem.GetGlobalItem<EquipBoostGlobalItem>().equipEmpowerment = this;
         if (HasAbilityBoost) {
-            int defense = equipItem.defense;
+            System.Int32 defense = equipItem.defense;
             if (EquipBoostDatabase.Instance.SpecialUpdate.TryGetValue(equipItem.type, out var value)) {
                 value(equipItem, player, hideVisual);
             }
@@ -46,7 +46,7 @@ public class EquipBoostInfo {
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public bool HasFlag(EquipBoostType flag) {
+    public System.Boolean HasFlag(EquipBoostType flag) {
         return Boost.HasFlag(flag);
     }
 }

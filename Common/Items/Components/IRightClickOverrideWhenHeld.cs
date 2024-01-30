@@ -1,5 +1,5 @@
 ﻿namespace Aequus.Common.Items.Components;
 
 public interface IRightClickOverrideWhenHeld {
-    bool RightClickOverrideWhileHeld(ref Item heldItem, Item[] inv, int context, int slot, Player player, AequusPlayer aequus);
+    System.Boolean RightClickOverrideWhileHeld(ref Item heldItem, Item[] inv, System.Int32 context, System.Int32 slot, Player player, AequusPlayer aequus);
 }

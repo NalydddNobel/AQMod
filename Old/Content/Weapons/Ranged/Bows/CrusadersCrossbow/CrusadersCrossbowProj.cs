@@ -26,10 +26,10 @@ public class CrusadersCrossbowProj : ModProjectile {
         Projectile.velocity.Y += 0.1f;
         Projectile.rotation = Projectile.velocity.ToRotation();
         if (Main.netMode != NetmodeID.SinglePlayer && Main.myPlayer == Projectile.owner) {
-            int playerToHeal = GetBestPlayerWithin(new Rectangle((int)Projectile.position.X - 40, (int)Projectile.position.Y - 40, 80 + Projectile.width, 80 + Projectile.height), Projectile.owner);
+            Int32 playerToHeal = GetBestPlayerWithin(new Rectangle((Int32)Projectile.position.X - 40, (Int32)Projectile.position.Y - 40, 80 + Projectile.width, 80 + Projectile.height), Projectile.owner);
             if (playerToHeal != -1 && playerToHeal != Projectile.owner) {
                 if (Main.player[playerToHeal].team == Main.player[Projectile.owner].team) {
-                    int healing = Main.DamageVar(Projectile.damage / 2f);
+                    Int32 healing = Main.DamageVar(Projectile.damage / 2f);
                     Main.player[playerToHeal].HealEffect(healing, broadcast: false);
                     Main.player[playerToHeal].statLife += healing;
                     if (Main.player[playerToHeal].statLife > Main.player[playerToHeal].statLifeMax2) {
@@ -44,10 +44,10 @@ public class CrusadersCrossbowProj : ModProjectile {
         }
     }
 
-    private static int GetBestPlayerWithin(Rectangle Hitbox, int myPlayer) {
-        int lowestHealth = int.MaxValue;
-        int chosenPlayer = -1;
-        for (int i = 0; i < Main.maxPlayers; i++) {
+    private static Int32 GetBestPlayerWithin(Rectangle Hitbox, Int32 myPlayer) {
+        Int32 lowestHealth = Int32.MaxValue;
+        Int32 chosenPlayer = -1;
+        for (Int32 i = 0; i < Main.maxPlayers; i++) {
             if (i != myPlayer
                 && Main.player[i].active && !Main.player[i].DeadOrGhost
                 && Main.player[i].team == Main.player[myPlayer].team
@@ -61,20 +61,20 @@ public class CrusadersCrossbowProj : ModProjectile {
         return chosenPlayer;
     }
 
-    public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
+    public override Boolean TileCollideStyle(ref Int32 width, ref Int32 height, ref Boolean fallThrough, ref Vector2 hitboxCenterFrac) {
         width = 2;
         height = 2;
         return true;
     }
 
-    public override bool PreDraw(ref Color lightColor) {
+    public override Boolean PreDraw(ref Color lightColor) {
         var texture = TextureAssets.Projectile[Type].Value;
         var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f) - Main.screenPosition;
         var drawColor = Projectile.GetAlpha(lightColor);
 
         Main.spriteBatch.GraphicsDevice.Textures[0] = AequusTextures.Trail.Value;
         DrawHelper.VertexStrip.PrepareStrip(Projectile.oldPos, Projectile.oldRot,
-            (p) => Projectile.GetAlpha(Color.White) with { A = 0 } * 0.9f * (float)Math.Pow(1f - p, 2f),
+            (p) => Projectile.GetAlpha(Color.White) with { A = 0 } * 0.9f * (Single)Math.Pow(1f - p, 2f),
             (p) => 6f * (1f - p),
             Projectile.Size / 2f - Main.screenPosition);
         DrawHelper.VertexStrip.DrawTrail();

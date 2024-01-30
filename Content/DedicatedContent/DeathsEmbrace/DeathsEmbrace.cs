@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Aequus.Content.DedicatedContent.DeathsEmbrace;
 
 public class DeathsEmbrace : ModItem, IDedicatedItem {
-    public string DedicateeName => "bubbyboytoo";
+    public System.String DedicateeName => "bubbyboytoo";
 
     public Color TextColor => new Color(20, 70, 30);
 

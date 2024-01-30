@@ -2,7 +2,6 @@
 using Aequus.Content.Tiles.Banners;
 using Aequus.Core.DataSets;
 using System;
-using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 
@@ -48,8 +47,8 @@ public class ChainedSoul : ModNPC {
         }
     }
 
-    public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment) {
-        NPC.lifeMax = (int)(NPC.lifeMax * (1f + 0.1f * numPlayers));
+    public override void ApplyDifficultyAndPlayerScaling(Int32 numPlayers, Single balance, Single bossAdjustment) {
+        NPC.lifeMax = (Int32)(NPC.lifeMax * (1f + 0.1f * numPlayers));
     }
 
     public override void HitEffect(NPC.HitInfo hit) {
@@ -57,12 +56,12 @@ public class ChainedSoul : ModNPC {
             return;
         }
 
-        int count = 1;
+        Int32 count = 1;
         if (NPC.life <= 0) {
             count = 14;
 
-            for (int i = -1; i <= 1; i += 2) {
-                for (int j = -1; j <= 1; j++) {
+            for (Int32 i = -1; i <= 1; i += 2) {
+                for (Int32 j = -1; j <= 1; j++) {
                     NPC.NewGore(AequusTextures.ChainedSoulGoreTooth, NPC.Center + new Vector2(10f * i, 4f * j - 10f), NPC.velocity);
                 }
                 NPC.NewGore(AequusTextures.ChainedSoulGoreMouth, NPC.position, NPC.velocity);
@@ -73,19 +72,19 @@ public class ChainedSoul : ModNPC {
             if (keeperLocationForDrawing != Vector2.Zero) {
                 Vector2 difference = keeperLocationForDrawing - NPC.Center;
 
-                int length = (int)(difference.Length() / trapperChain.Height);
+                Int32 length = (Int32)(difference.Length() / trapperChain.Height);
                 Vector2 chainSegment = difference / length;
 
-                int[] options = new int[] {
+                Int32[] options = new Int32[] {
                     ExtendGore.GetModdedGoreType(AequusTextures.ChainedSoulGoreChain1),
                     ExtendGore.GetModdedGoreType(AequusTextures.ChainedSoulGoreChain2),
                 };
-                for (int i = length; i > 0; i--) {
+                for (Int32 i = length; i > 0; i--) {
                     Gore.NewGoreDirect(NPC.GetSource_Death(), NPC.Center + chainSegment * i, Main.rand.NextVector2Unit(), Main.rand.Next(options));
                 }
             }
         }
-        for (int i = 0; i < count; i++) {
+        for (Int32 i = 0; i < count; i++) {
             var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Torch);
             d.velocity = (d.position - NPC.Center) / 8f;
             if (Main.rand.NextBool(3)) {
@@ -95,18 +94,18 @@ public class ChainedSoul : ModNPC {
                 d.noGravity = true;
             }
         }
-        for (int i = 0; i < count * 2; i++) {
+        for (Int32 i = 0; i < count * 2; i++) {
             Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.FoodPiece, newColor: Color.DarkRed);
         }
     }
 
     public override void AI() {
-        if ((int)NPC.ai[0] == -1) {
+        if ((Int32)NPC.ai[0] == -1) {
             NPC.velocity.X *= 0.98f;
             NPC.velocity.Y -= 0.025f;
             return;
         }
-        int npcOwner = (int)NPC.ai[1] - 1;
+        Int32 npcOwner = (Int32)NPC.ai[1] - 1;
         if (npcOwner == -1 || !Main.npc[npcOwner].active) {
             NPC.life = -1;
             NPC.HitEffect();
@@ -116,19 +115,19 @@ public class ChainedSoul : ModNPC {
         keeperLocationForDrawing = Main.npc[npcOwner].Center;
         NPC.TargetClosest(faceTarget: false);
         if (NPC.HasValidTarget) {
-            int count = 0;
-            int index = 0;
-            for (int i = 0; i < Main.maxNPCs; i++) {
+            Int32 count = 0;
+            Int32 index = 0;
+            for (Int32 i = 0; i < Main.maxNPCs; i++) {
                 if (i == NPC.whoAmI) {
                     count++;
                     index = count;
                 }
-                else if (Main.npc[i].active && Main.npc[i].type == NPC.type && (int)Main.npc[i].ai[1] == (int)NPC.ai[1]) {
+                else if (Main.npc[i].active && Main.npc[i].type == NPC.type && (Int32)Main.npc[i].ai[1] == (Int32)NPC.ai[1]) {
                     count++;
                 }
             }
             var center = NPC.Center;
-            float rotation = MathHelper.TwoPi / count;
+            Single rotation = MathHelper.TwoPi / count;
             rotation *= index;
             NPC.rotation = rotation;
             var gotoPosition = Main.npc[npcOwner].Center + new Vector2(0f, NPC.height * -2.5f).RotatedBy(rotation);
@@ -143,13 +142,13 @@ public class ChainedSoul : ModNPC {
                 NPC.noTileCollide = false;
             }
             if (Main.npc[npcOwner].ai[1] > 280f) {
-                if ((int)NPC.ai[0] == 0 && Collision.CanHitLine(NPC.position, NPC.width, NPC.height, Main.player[NPC.target].position, Main.player[NPC.target].width, Main.player[NPC.target].height)) {
+                if ((Int32)NPC.ai[0] == 0 && Collision.CanHitLine(NPC.position, NPC.width, NPC.height, Main.player[NPC.target].position, Main.player[NPC.target].width, Main.player[NPC.target].height)) {
                     NPC.ai[0] = 1f;
                     NPC.localAI[0] = 30f;
                     if (Main.netMode != NetmodeID.MultiplayerClient) {
-                        float projectileSpeed = 10f;
-                        int projectileType = ModContent.ProjectileType<ChainedSoulProj>();
-                        int damage = 20;
+                        Single projectileSpeed = 10f;
+                        Int32 projectileType = ModContent.ProjectileType<ChainedSoulProj>();
+                        Int32 damage = 20;
                         if (Main.expertMode) {
                             damage = 15;
                         }
@@ -176,7 +175,7 @@ public class ChainedSoul : ModNPC {
         NPC.rotation += NPC.velocity.X * 0.0314f;
     }
 
-    public override void FindFrame(int frameHeight) {
+    public override void FindFrame(Int32 frameHeight) {
         if (NPC.localAI[0] > 0f) {
             NPC.frameCounter = 0.0;
             NPC.frame.Y = 0;
@@ -193,25 +192,25 @@ public class ChainedSoul : ModNPC {
         }
     }
 
-    public override void DrawBehind(int index) {
+    public override void DrawBehind(Int32 index) {
     }
 
-    public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+    public override Boolean PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
         if (!NPC.IsABestiaryIconDummy) {
             Texture2D chainTexture = AequusTextures.ChainedSoul_Chain;
-            int npcOwner = (int)NPC.ai[1] - 1;
-            int height = chainTexture.Height - 2;
+            Int32 npcOwner = (Int32)NPC.ai[1] - 1;
+            Int32 height = chainTexture.Height - 2;
             Vector2 npcCenter = NPC.Center;
             Vector2 trapImpCenter = Main.npc[npcOwner].Center;
             Vector2 velocity = npcCenter - trapImpCenter;
-            int length = (int)(velocity.Length() / height);
+            Int32 length = (Int32)(velocity.Length() / height);
             velocity.Normalize();
             velocity *= height;
-            float rotation = velocity.ToRotation() + MathHelper.PiOver2;
+            Single rotation = velocity.ToRotation() + MathHelper.PiOver2;
             Vector2 origin = new Vector2(chainTexture.Width / 2f, chainTexture.Height / 2f);
-            for (int j = 1; j < length; j++) {
+            for (Int32 j = 1; j < length; j++) {
                 Vector2 position = trapImpCenter + velocity * j;
-                Color color = Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f));
+                Color color = Lighting.GetColor((Int32)(position.X / 16), (Int32)(position.Y / 16f));
                 if (j < 6) {
                     color *= 1f / 6f * j;
                 }
@@ -225,26 +224,26 @@ public class ChainedSoul : ModNPC {
         Texture2D texture = TextureAssets.Npc[Type].Value;
         Vector2 orig = new Vector2(NPC.frame.Width / 2f, NPC.frame.Height / 2f);
 
-        for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver2 - 0.001f) {
+        for (Single f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver2 - 0.001f) {
             spriteBatch.Draw(texture, drawPosition - screenPos + f.ToRotationVector2() * 2f, NPC.frame, Color.Orange with { A = 0 } * 0.7f, NPC.rotation, orig, NPC.scale, SpriteEffects.None, 0f);
         }
         spriteBatch.Draw(texture, drawPosition - screenPos, NPC.frame, drawColor, NPC.rotation, orig, NPC.scale, SpriteEffects.None, 0f);
         return false;
     }
 
-    public override bool? CanFallThroughPlatforms() {
+    public override Boolean? CanFallThroughPlatforms() {
         return true;
     }
 
     public override void OnKill() {
         Player closestPlayer = Main.player[Player.FindClosest(NPC.position, NPC.width, NPC.height)];
 
-        int heartCount = 2;
+        Int32 heartCount = 2;
         if (!closestPlayer.DeadOrGhost) {
-            float healthRatio = closestPlayer.statLife / (float)closestPlayer.statLifeMax2;
-            heartCount += (int)((1f - healthRatio) * 4f);
+            Single healthRatio = closestPlayer.statLife / (Single)closestPlayer.statLifeMax2;
+            heartCount += (Int32)((1f - healthRatio) * 4f);
         }
-        
+
         if (Main.expertMode) {
             heartCount /= 2;
         }
@@ -253,7 +252,7 @@ public class ChainedSoul : ModNPC {
 
         IEntitySource source = NPC.GetSource_Death();
         Rectangle hitbox = NPC.Hitbox;
-        for (int i = 0; i < heartCount; i++) {
+        for (Int32 i = 0; i < heartCount; i++) {
             Item.NewItem(source, hitbox, ItemID.Heart);
         }
     }

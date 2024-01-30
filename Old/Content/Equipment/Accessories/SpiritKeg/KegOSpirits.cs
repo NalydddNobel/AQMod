@@ -14,7 +14,7 @@ public class KegOSpirits : ModItem {
         Item.value = Item.sellPrice(gold: 3);
     }
 
-    public override void UpdateAccessory(Player player, bool hideVisual) {
+    public override void UpdateAccessory(Player player, System.Boolean hideVisual) {
         //var aequus = player.Aequus();
         //aequus.ghostLifespan += 3600;
         //aequus.ghostSlotsMax++;

@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Items;
-using Aequus.Old.Content.Equipment.GrapplingHooks.HealingGrappleHook;
+﻿using Aequus.Old.Content.Equipment.GrapplingHooks.HealingGrappleHook;
 
 namespace Aequus.Old.Content.Weapons.Ranged.Bows.CrusadersCrossbow;
 
@@ -32,7 +31,7 @@ public class CrusadersCrossbow : ModItem {
         return new Vector2(-4f, 0f);
     }
 
-    public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
+    public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref System.Int32 type, ref System.Int32 damage, ref System.Single knockback) {
         if (type == ProjectileID.WoodenArrowFriendly) {
             type = ModContent.ProjectileType<CrusadersCrossbowProj>();
         }

@@ -14,16 +14,16 @@ public class HighSteaks : ModItem, IHaveDownsideTip {
     /// Default Value: 0.15
     /// <para>This is only added on the first stack of the accessory.</para>
     /// </summary>
-    public static float NotStackableCritDamage { get; set; } = 0.15f;
-    public static float StackableCritDamage { get; set; } = 0.1f;
+    public static Single NotStackableCritDamage { get; set; } = 0.15f;
+    public static Single StackableCritDamage { get; set; } = 0.1f;
 
-    public static int ExpertModeCost { get; set; } = Item.silver * 3;
-    public static int ClassicModeCost { get; set; } = Item.silver;
+    public static Int32 ExpertModeCost { get; set; } = Item.silver * 3;
+    public static Int32 ClassicModeCost { get; set; } = Item.silver;
 
     /// <summary>
     /// The cost for performing a critical strike.
     /// </summary>
-    public static int WantedCost => Main.expertMode ? ExpertModeCost : ClassicModeCost;
+    public static Int32 WantedCost => Main.expertMode ? ExpertModeCost : ClassicModeCost;
 
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Percent(NotStackableCritDamage + StackableCritDamage), this.GetLocalization("Downside"));
 
@@ -37,7 +37,7 @@ public class HighSteaks : ModItem, IHaveDownsideTip {
         Item.value = Item.sellPrice(gold: 1);
     }
 
-    public override void UpdateAccessory(Player player, bool hideVisual) {
+    public override void UpdateAccessory(Player player, Boolean hideVisual) {
         var highSteaksPlayer = player.GetModPlayer<HighSteaksPlayer>();
         highSteaksPlayer.highSteaksHidden = hideVisual;
         highSteaksPlayer.highSteaksDamage = Math.Max(highSteaksPlayer.highSteaksDamage, NotStackableCritDamage) + StackableCritDamage;
@@ -50,8 +50,8 @@ public class HighSteaks : ModItem, IHaveDownsideTip {
     }
 
     public override void ModifyTooltips(List<TooltipLine> tooltips) {
-        const string REPLACE = "{Price}";
-        string replaceValue = ExtendLanguage.PriceTextColored(WantedCost, AlphaPulse: true);
+        const String REPLACE = "{Price}";
+        String replaceValue = ExtendLanguage.PriceTextColored(WantedCost, AlphaPulse: true);
 
         foreach (var t in tooltips.Where(t => t.Name.StartsWith("Tooltip") && t.Text.Contains(REPLACE))) {
             t.Text = t.Text.Replace(REPLACE, replaceValue);

@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Terraria.Graphics.Effects;
 
 namespace Aequus.Core.Graphics.GameOverlays;
@@ -14,7 +13,7 @@ public abstract class OverlayDrawLayer : AequusOverlay {
         Draws.Add(anim);
     }
 
-    public bool Remove(IOverlayDrawer anim) {
+    public System.Boolean Remove(IOverlayDrawer anim) {
         return Draws.Remove(anim);
     }
 
@@ -23,7 +22,7 @@ public abstract class OverlayDrawLayer : AequusOverlay {
     }
 
     public void Update() {
-        for (int i = 0; i < Draws.Count; i++) {
+        for (System.Int32 i = 0; i < Draws.Count; i++) {
             if (!Draws[i].Update()) {
                 Draws.RemoveAt(i);
                 i--;
@@ -31,7 +30,7 @@ public abstract class OverlayDrawLayer : AequusOverlay {
         }
     }
 
-    public override bool SpecialVisuals(Player player) {
+    public override System.Boolean SpecialVisuals(Player player) {
         Update();
         return Draws.Count > 0;
     }

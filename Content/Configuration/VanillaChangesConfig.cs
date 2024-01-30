@@ -10,17 +10,17 @@ public class VanillaChangesConfig : ModConfig {
 
     [DefaultValue(true)]
     [ReloadRequired]
-    public bool SlimeCrownInSurfaceChests { get; set; }
+    public System.Boolean SlimeCrownInSurfaceChests { get; set; }
 
     [DefaultValue(true)]
     [ReloadRequired]
-    public bool MoveTreasureMagnet { get; set; }
+    public System.Boolean MoveTreasureMagnet { get; set; }
 
     [DefaultValue(true)]
     [ReloadRequired]
-    public bool MoveToolbelt { get; set; }
+    public System.Boolean MoveToolbelt { get; set; }
 
     [DefaultValue(true)]
     [ReloadRequired]
-    public bool RestorationPotionRecipe { get; set; }
+    public System.Boolean RestorationPotionRecipe { get; set; }
 }

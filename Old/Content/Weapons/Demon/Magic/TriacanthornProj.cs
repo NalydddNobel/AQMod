@@ -6,7 +6,7 @@ using Terraria.Audio;
 namespace Aequus.Old.Content.Weapons.Demon.Magic;
 
 public class TriacanthornProj : ModProjectile {
-    private float _glowy;
+    private System.Single _glowy;
 
     public override void SetStaticDefaults() {
         ProjectileID.Sets.TrailCacheLength[Projectile.type] = 18;
@@ -52,13 +52,13 @@ public class TriacanthornProj : ModProjectile {
                 Projectile.alpha -= 40;
                 _glowy = 1f - Projectile.alpha / 255f;
                 if (Projectile.alpha <= 0) {
-                    for (int i = 0; i < 6; i++) {
+                    for (System.Int32 i = 0; i < 6; i++) {
                         var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.SilverFlame, newColor: CorruptionHellfire.FireColor, Scale: Main.rand.NextFloat(0.3f, 1f));
                         d.color *= d.scale * 2f;
                         d.velocity *= d.scale;
                         d.noGravity = true;
                     }
-                    for (int i = 0; i < 2; i++) {
+                    for (System.Int32 i = 0; i < 2; i++) {
                         var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.SilverFlame, newColor: CorruptionHellfire.FireColor, Scale: Main.rand.NextFloat(0.4f, 1f));
                         d.color *= d.scale * 2f;
                         d.velocity *= d.scale;
@@ -75,10 +75,10 @@ public class TriacanthornProj : ModProjectile {
                 var v = Vector2.Normalize(Projectile.velocity);
                 if (Main.myPlayer == Projectile.owner) {
                     Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center + v * 10f, Projectile.velocity,
-                        Type, Projectile.damage, Projectile.knockBack, Projectile.owner, Projectile.ai[0] - 0.8f, (int)(Projectile.ai[1] + 1f) % 2);
-                    int index = -(int)(Projectile.ai[0] / 0.8f);
+                        Type, Projectile.damage, Projectile.knockBack, Projectile.owner, Projectile.ai[0] - 0.8f, (System.Int32)(Projectile.ai[1] + 1f) % 2);
+                    System.Int32 index = -(System.Int32)(Projectile.ai[0] / 0.8f);
                     if (index % 8 == 0) {
-                        int i = (index % 16 == 0 ? -1 : 1) * Projectile.direction;
+                        System.Int32 i = (index % 16 == 0 ? -1 : 1) * Projectile.direction;
                         var p = Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(), Projectile.Center, v.RotatedBy(MathHelper.PiOver4 / 2f * i) * 5f,
                             ModContent.ProjectileType<TriacanthornBolt>(), Projectile.damage / 2, Projectile.knockBack / 2f, Projectile.owner);
                     }
@@ -86,7 +86,7 @@ public class TriacanthornProj : ModProjectile {
                 Projectile.ai[0] = -21f;
             }
         }
-        else if ((int)Projectile.ai[0] == -20) {
+        else if ((System.Int32)Projectile.ai[0] == -20) {
             Projectile.localAI[0] = Projectile.ai[0];
             Projectile.ai[1] = 2f;
             if (Projectile.alpha == 0) {
@@ -94,11 +94,11 @@ public class TriacanthornProj : ModProjectile {
                 SoundEngine.PlaySound(SoundID.Item74, Projectile.Center);
             }
         }
-        Projectile.frame = (int)Projectile.ai[1];
+        Projectile.frame = (System.Int32)Projectile.ai[1];
         Lighting.AddLight(Projectile.Center, CorruptionHellfire.BloomColor.ToVector3() * Projectile.scale);
     }
 
-    public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
+    public override void OnHitNPC(NPC target, NPC.HitInfo hit, System.Int32 damageDone) {
         target.AddBuff(ModContent.BuffType<CorruptionHellfire>(), 120);
     }
 
@@ -106,9 +106,9 @@ public class TriacanthornProj : ModProjectile {
         target.AddBuff(ModContent.BuffType<CorruptionHellfire>(), 120);
     }
 
-    public override bool PreDraw(ref Color lightColor) {
-        Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int _);
-        float opacity = Projectile.Opacity;
+    public override System.Boolean PreDraw(ref Color lightColor) {
+        Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out System.Int32 _);
+        System.Single opacity = Projectile.Opacity;
         if (Projectile.localAI[0] + 1f > -16f) {
             opacity *= (-Projectile.localAI[0] + 1f) / 17f;
         }

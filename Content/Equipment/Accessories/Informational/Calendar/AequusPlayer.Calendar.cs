@@ -4,5 +4,5 @@ namespace Aequus;
 
 public partial class AequusPlayer {
     [ResetEffects]
-    public bool accDayCalendar;
+    public System.Boolean accDayCalendar;
 }

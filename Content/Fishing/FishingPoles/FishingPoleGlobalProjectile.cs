@@ -3,7 +3,7 @@
 namespace Aequus.Content.Fishing.FishingPoles;
 
 public class FishingPoleGlobalProjectile : GlobalProjectile {
-    public override bool AppliesToEntity(Projectile entity, bool lateInstantiation) {
+    public override Boolean AppliesToEntity(Projectile entity, Boolean lateInstantiation) {
         return entity.bobber;
     }
 
@@ -17,11 +17,11 @@ public class FishingPoleGlobalProjectile : GlobalProjectile {
         }
     }
 
-    public override bool InstancePerEntity => true;
+    public override Boolean InstancePerEntity => true;
 
     #region Hooks
-    private delegate void ProjectileLoader_ModifyFishingLine_orig(Projectile projectile, ref float polePosX, ref float polePosY, ref Color lineColor);
-    private static void ProjectileLoader_ModifyFishingLine(ProjectileLoader_ModifyFishingLine_orig orig, Projectile projectile, ref float polePosX, ref float polePosY, ref Color lineColor) {
+    private delegate void ProjectileLoader_ModifyFishingLine_orig(Projectile projectile, ref Single polePosX, ref Single polePosY, ref Color lineColor);
+    private static void ProjectileLoader_ModifyFishingLine(ProjectileLoader_ModifyFishingLine_orig orig, Projectile projectile, ref Single polePosX, ref Single polePosY, ref Color lineColor) {
         if (Main.player[projectile.owner].HeldItem.ModItem is ModFishingPole fishingPole) {
             fishingPole.GetDrawData(projectile, ref polePosX, ref polePosY, ref lineColor);
         }
@@ -29,17 +29,17 @@ public class FishingPoleGlobalProjectile : GlobalProjectile {
     }
     #endregion
 
-    public override bool PreAI(Projectile projectile) {
+    public override Boolean PreAI(Projectile projectile) {
         return Main.player[projectile.owner].HeldItem.ModItem is ModFishingPole fishingPole ? fishingPole.BobberPreAI(projectile) : true;
     }
 
-    public override void OnKill(Projectile projectile, int timeLeft) {
+    public override void OnKill(Projectile projectile, Int32 timeLeft) {
         if (Main.player[projectile.owner].HeldItem.ModItem is ModFishingPole fishingPole) {
             fishingPole.BobberOnKill(projectile, timeLeft);
         }
     }
 
-    public override bool PreDraw(Projectile projectile, ref Color lightColor) {
+    public override Boolean PreDraw(Projectile projectile, ref Color lightColor) {
         return Main.player[projectile.owner].HeldItem.ModItem is ModFishingPole fishingPole ? fishingPole.BobberPreDraw(projectile, ref lightColor) : true;
     }
 }

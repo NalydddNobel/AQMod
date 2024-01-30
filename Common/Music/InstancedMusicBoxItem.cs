@@ -1,13 +1,11 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Common.Tiles;
-using Terraria;
-using Terraria.ID;
 using Terraria.Localization;
 
 namespace Aequus.Common.Music;
 
 internal sealed class InstancedMusicBoxItem : InstancedTileItem, IOnlineLink {
-    public string Link { get; internal set; }
+    public System.String Link { get; internal set; }
     public InstancedMusicBox _musicBox;
 
     internal InstancedMusicBoxItem(InstancedMusicBox musicBox) : base(musicBox, style: 0, nameSuffix: null, dropItem: true, rarity: ItemRarityID.LightRed, value: Item.sellPrice(gold: 2), researchSacrificeCount: null) {

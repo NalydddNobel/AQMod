@@ -1,6 +1,4 @@
 ﻿using Aequus.Common.UI;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria.Localization;
@@ -8,21 +6,21 @@ using Terraria.Localization;
 namespace Aequus.Common.Items.Components;
 
 public interface IOnlineLink {
-    string Link { get; }
+    String Link { get; }
 }
 
 internal sealed class OnlineLinkGlobalItem : GlobalItem {
-    public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
+    public override Boolean AppliesToEntity(Item entity, Boolean lateInstantiation) {
         return entity.ModItem is IOnlineLink;
     }
 
-    public override bool InstancePerEntity => true;
-    protected override bool CloneNewInstances => true;
+    public override Boolean InstancePerEntity => true;
+    protected override Boolean CloneNewInstances => true;
 
-    private uint _pressedTime;
-    private float _hoverAnimation;
+    private UInt32 _pressedTime;
+    private Single _hoverAnimation;
 
-    private bool CanShowButton(int context) {
+    private Boolean CanShowButton(Int32 context) {
         return UISystem.ValidOnlineLinkedSlotContext.Contains(context);
     }
 
@@ -31,7 +29,7 @@ internal sealed class OnlineLinkGlobalItem : GlobalItem {
             return;
         }
 
-        for (int i = 1; i < tooltips.Count; i++) {
+        for (Int32 i = 1; i < tooltips.Count; i++) {
             if (tooltips[i].Name == "ItemName" || tooltips[i].Mod != "Terraria") {
                 continue;
             }
@@ -42,7 +40,7 @@ internal sealed class OnlineLinkGlobalItem : GlobalItem {
         tooltips.Insert(Math.Min(1, tooltips.Count), new(Mod, "OnlineLink", Language.GetTextValue("Mods.Aequus.Misc.ClickLink", onlineLink.Link)));
     }
 
-    public override void PostDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
+    public override void PostDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, Single scale) {
         if (item.ModItem is not IOnlineLink onlineLink || !CanShowButton(UISystem.CurrentItemSlot.Context)) {
             return;
         }
@@ -63,12 +61,12 @@ internal sealed class OnlineLinkGlobalItem : GlobalItem {
             _hoverAnimation = 0f;
         }
         var buttonTexture = AequusTextures.OnlineLink.Value;
-        int context = Math.Abs(UISystem.CurrentItemSlot.Context);
+        Int32 context = Math.Abs(UISystem.CurrentItemSlot.Context);
         var buttonFrame = buttonTexture.Frame(verticalFrames: 2, frameY: 0);
-        float hoverAnimation = Math.Max(_hoverAnimation, 0f);
-        float buttonScale = 1f + 0.2f * hoverAnimation;
-        float buttonRotation = MathF.Sin(hoverAnimation * MathHelper.TwoPi) * 0.2f;
-        float buttonOpacity = 1f;
+        Single hoverAnimation = Math.Max(_hoverAnimation, 0f);
+        Single buttonScale = 1f + 0.2f * hoverAnimation;
+        Single buttonRotation = MathF.Sin(hoverAnimation * MathHelper.TwoPi) * 0.2f;
+        Single buttonOpacity = 1f;
         if (_hoverAnimation < -1f) {
             buttonOpacity += (_hoverAnimation + 1f) * 0.5f;
         }

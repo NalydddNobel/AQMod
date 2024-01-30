@@ -46,7 +46,7 @@ public class TrashStaffCritEffect : ModProjectile {
         Projectile.velocity = Vector2.Lerp(Projectile.velocity, Projectile.DirectionTo(target.Center) * 10f, 0.01f + Math.Min(Projectile.localAI[0] * 0.001f, 0.08f));
     }
 
-    public override bool? CanDamage() {
+    public override Boolean? CanDamage() {
         return Projectile.localAI[0] > 7f;
     }
 
@@ -54,7 +54,7 @@ public class TrashStaffCritEffect : ModProjectile {
         modifiers.DisableCrit();
     }
 
-    public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
+    public override void OnHitNPC(NPC target, NPC.HitInfo hit, Int32 damageDone) {
         Projectile.friendly = false;
         Projectile.velocity = Projectile.DirectionTo(target.Center) * Math.Max(Projectile.velocity.Length() * 1.1f, 8f);
         Projectile.timeLeft = 60;
@@ -62,17 +62,17 @@ public class TrashStaffCritEffect : ModProjectile {
         Projectile.netUpdate = true;
     }
 
-    public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI) {
+    public override void DrawBehind(Int32 index, List<Int32> behindNPCsAndTiles, List<Int32> behindNPCs, List<Int32> behindProjectiles, List<Int32> overPlayers, List<Int32> overWiresUI) {
         overPlayers.Add(index);
     }
 
-    public override bool PreDraw(ref Color lightColor) {
+    public override Boolean PreDraw(ref Color lightColor) {
         lightColor = ExtendLight.Get(Projectile.Center);
-        Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int trailLength);
+        Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out Int32 trailLength);
         var drawCoordinates = Projectile.Center - Main.screenPosition;
         var drawColor = Color.Lerp(lightColor, Color.White, 0.6f) * Projectile.Opacity;
 
-        float scale = Projectile.scale * Projectile.Opacity;
+        Single scale = Projectile.scale * Projectile.Opacity;
 
         //Main.spriteBatch.End();
         //Main.spriteBatch.BeginWorld(shader: true);
@@ -88,7 +88,7 @@ public class TrashStaffCritEffect : ModProjectile {
         //Main.spriteBatch.BeginWorld(shader: false);
 
         var spriteEffects = SpriteEffects.None;
-        float rotation = Projectile.rotation;
+        Single rotation = Projectile.rotation;
         if (Math.Abs(MathHelper.WrapAngle(rotation)) >= MathHelper.PiOver2) {
             spriteEffects = SpriteEffects.FlipHorizontally;
             rotation -= MathHelper.Pi;

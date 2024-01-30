@@ -6,6 +6,6 @@ public interface IParticleSystem : ILoadable {
     void Activate();
     void Deactivate();
 
-    int ParticleCount { get; }
-    bool Active { get; }
+    System.Int32 ParticleCount { get; }
+    System.Boolean Active { get; }
 }

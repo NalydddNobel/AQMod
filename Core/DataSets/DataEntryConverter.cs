@@ -13,9 +13,9 @@ public class DataEntryConverter<TEntry, T> : JsonConverter<IDataEntry<T>> where 
         }
     }
 
-    public override IDataEntry<T> ReadJson(JsonReader reader, Type objectType, [AllowNull] IDataEntry<T> existingValue, bool hasExistingValue, JsonSerializer serializer) {
+    public override IDataEntry<T> ReadJson(JsonReader reader, Type objectType, [AllowNull] IDataEntry<T> existingValue, Boolean hasExistingValue, JsonSerializer serializer) {
         var entry = new TEntry {
-            Name = (string)reader.Value
+            Name = (String)reader.Value
         };
         entry.Initialize();
         return entry;

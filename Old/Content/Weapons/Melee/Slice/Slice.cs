@@ -1,13 +1,12 @@
 ﻿using Aequus.Common.Items;
-using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 
 namespace Aequus.Old.Content.Weapons.Melee.Slice;
 
 public class Slice : ModItem {
-    public static float ProjectilePiercingPenalty { get; set; } = 0.5f;
-    public static int ProjectileDebuffDuration { get; set; } = 480;
-    public static int SwordDebuffDuration { get; set; } = 1000;
+    public static System.Single ProjectilePiercingPenalty { get; set; } = 0.5f;
+    public static System.Int32 ProjectileDebuffDuration { get; set; } = 480;
+    public static System.Int32 SwordDebuffDuration { get; set; } = 1000;
 
     public override void SetDefaults() {
         Item.LazyCustomSwordDefaults<SliceProj>(30);
@@ -21,7 +20,7 @@ public class Slice : ModItem {
         Item.scale = 0.9f;
     }
 
-    public override bool? UseItem(Player player) {
+    public override System.Boolean? UseItem(Player player) {
         return null;
     }
 
@@ -29,11 +28,11 @@ public class Slice : ModItem {
         return lightColor.MaxRGBA(120);
     }
 
-    public override bool MeleePrefix() {
+    public override System.Boolean MeleePrefix() {
         return true;
     }
 
-    public override bool AltFunctionUse(Player player) {
+    public override System.Boolean AltFunctionUse(Player player) {
         return false;
     }
 
@@ -47,7 +46,7 @@ public class Slice : ModItem {
             .Clone().ReplaceItem(ItemID.CobaltSword, ItemID.PalladiumSword).Register();
     }
 
-    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
+    public override System.Boolean Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, System.Int32 type, System.Int32 damage, System.Single knockback) {
         return true;
     }
 }

@@ -6,7 +6,7 @@ using Terraria.Audio;
 namespace Aequus.Old.Content.Weapons.Demon.Melee;
 
 public class CauterizerProj : LegacyHeldSlashingSwordProjectile {
-    public override string Texture => AequusTextures.Cauterizer.Path;
+    public override String Texture => AequusTextures.Cauterizer.Path;
 
     public override void SetDefaults() {
         base.SetDefaults();
@@ -27,8 +27,8 @@ public class CauterizerProj : LegacyHeldSlashingSwordProjectile {
             SoundEngine.PlaySound(SoundID.Item1.WithPitchOffset(-1f), Projectile.Center);
         }
         if (AnimProgress > 0.3f && AnimProgress < 0.6f) {
-            int amt = !Aequus.highQualityEffects ? 1 : Main.rand.Next(4) + 1;
-            for (int i = 0; i < amt; i++) {
+            Int32 amt = !Aequus.highQualityEffects ? 1 : Main.rand.Next(4) + 1;
+            for (Int32 i = 0; i < amt; i++) {
                 var velocity = AngleVector.RotatedBy(MathHelper.PiOver2 * -swingDirection) * Main.rand.NextFloat(2f, 8f);
                 var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), DustID.SilverFlame, velocity, newColor: Color.Orange with { A = 0 });
                 d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
@@ -42,60 +42,60 @@ public class CauterizerProj : LegacyHeldSlashingSwordProjectile {
         }
     }
 
-    public override void UpdateSwing(float progress, float interpolatedSwingProgress) {
+    public override void UpdateSwing(Single progress, Single interpolatedSwingProgress) {
         if (progress == 0.5f && Main.myPlayer == Projectile.owner) {
             Projectile.NewProjectile(Main.player[Projectile.owner].GetSource_HeldItem(), Projectile.Center,
                 AngleVector * Projectile.velocity.Length() * 9f,
-                ModContent.ProjectileType<CauterizerSlash>(), (int)(Projectile.damage * 0.75f), Projectile.knockBack / 4f, Projectile.owner);
+                ModContent.ProjectileType<CauterizerSlash>(), (Int32)(Projectile.damage * 0.75f), Projectile.knockBack / 4f, Projectile.owner);
         }
     }
 
-    public override Vector2 GetOffsetVector(float progress) {
+    public override Vector2 GetOffsetVector(Single progress) {
         return progress < 0.5f
             ? base.GetOffsetVector(progress)
             : BaseAngleVector.RotatedBy((progress * (MathHelper.Pi * 1.5f) - MathHelper.PiOver2 * 1.5f) * -swingDirection * (0.8f + 0.2f * Math.Min(Main.player[Projectile.owner].GetModPlayer<AequusPlayer>().itemUsage / 300f, 1f)));
     }
 
-    public override float SwingProgress(float progress) {
+    public override Single SwingProgress(Single progress) {
         return SwingProgressAequus(progress);
     }
-    public override float GetScale(float progress) {
-        float scale = base.GetScale(progress);
+    public override Single GetScale(Single progress) {
+        Single scale = base.GetScale(progress);
         if (progress > 0.1f && progress < 0.9f) {
-            return scale + 0.25f * (float)Math.Pow(Math.Sin((progress - 0.1f) / 0.9f * MathHelper.Pi), 2f);
+            return scale + 0.25f * (Single)Math.Pow(Math.Sin((progress - 0.1f) / 0.9f * MathHelper.Pi), 2f);
         }
         return scale;
     }
-    public override float GetVisualOuter(float progress, float swingProgress) {
+    public override Single GetVisualOuter(Single progress, Single swingProgress) {
         return 0f;
     }
 
-    public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
+    public override void OnHitNPC(NPC target, NPC.HitInfo hit, Int32 damageDone) {
         base.OnHitNPC(target, hit, damageDone);
         freezeFrame = 4;
         target.AddBuff(ModContent.BuffType<CrimsonHellfire>(), 240);
     }
 
-    public override bool PreDraw(ref Color lightColor) {
+    public override Boolean PreDraw(ref Color lightColor) {
         var center = Main.player[Projectile.owner].Center;
         var drawColor = Projectile.GetAlpha(lightColor) * Projectile.Opacity;
         var glowColor = new Color(255, 155, 80, 0);
-        float animProgress = AnimProgress;
-        float swishProgress = 0f;
-        float intensity = 0f;
+        Single animProgress = AnimProgress;
+        Single swishProgress = 0f;
+        Single intensity = 0f;
         if (animProgress > 0.3f && animProgress < 0.65f) {
             swishProgress = (animProgress - 0.3f) / 0.35f;
-            intensity = (float)Math.Sin(MathF.Pow(swishProgress, 2f) * MathHelper.Pi);
+            intensity = (Single)Math.Sin(MathF.Pow(swishProgress, 2f) * MathHelper.Pi);
         }
 
-        GetSwordDrawInfo(out var texture, out var handPosition, out var frame, out float rotationOffset, out var origin, out var effects);
-        float size = texture.Size().Length();
+        GetSwordDrawInfo(out var texture, out var handPosition, out var frame, out Single rotationOffset, out var origin, out var effects);
+        Single size = texture.Size().Length();
         if (Aequus.highQualityEffects) {
             DrawSwordAfterImages(texture, handPosition, frame, glowColor * 0.4f * Projectile.Opacity, rotationOffset, origin, effects,
                 loopProgress: 0.17f, interpolationValue: -0.01f);
 
-            float auraOffsetMagnitude = (2f + intensity * 4f) * Projectile.scale * baseSwordScale;
-            for (float i = 0; i < MathHelper.TwoPi; i += MathHelper.PiOver2) {
+            Single auraOffsetMagnitude = (2f + intensity * 4f) * Projectile.scale * baseSwordScale;
+            for (Single i = 0; i < MathHelper.TwoPi; i += MathHelper.PiOver2) {
                 DrawSword(texture, handPosition + i.ToRotationVector2() * auraOffsetMagnitude, frame, glowColor * 0.33f * Projectile.Opacity, rotationOffset, origin, effects);
             }
         }

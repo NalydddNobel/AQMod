@@ -4,5 +4,5 @@ namespace Aequus;
 
 public partial class AequusPlayer {
     [ResetEffects]
-    public int potSightRange;
+    public System.Int32 potSightRange;
 }

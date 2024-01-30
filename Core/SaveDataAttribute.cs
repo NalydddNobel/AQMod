@@ -11,13 +11,13 @@ public sealed class SaveDataAttribute : Attribute {
     public class IsListedBooleanAttribute : Attribute {
     }
 
-    public string Name;
+    public String Name;
 
-    public SaveDataAttribute(string name) {
+    public SaveDataAttribute(String name) {
         Name = name;
     }
 
-    public bool SaveData(TagCompound tag, object me, MemberInfo info) {
+    public Boolean SaveData(TagCompound tag, Object me, MemberInfo info) {
         if (info is FieldInfo field) {
             var f = field.GetValue(me);
             if (f != null) {
@@ -35,11 +35,11 @@ public sealed class SaveDataAttribute : Attribute {
         return false;
     }
 
-    public bool LoadData(TagCompound tag, object me, MemberInfo info) {
+    public Boolean LoadData(TagCompound tag, Object me, MemberInfo info) {
         if (!tag.ContainsKey(Name)) {
             return false;
         }
-        object obj = tag.Get<object>(Name);
+        Object obj = tag.Get<Object>(Name);
         if (obj == null) {
             return false; // wtf tagcompound lies
         }
@@ -59,17 +59,17 @@ public sealed class SaveDataAttribute : Attribute {
         return false;
     }
 
-    public static void SaveData(TagCompound tag, object me) {
-        var list = new List<string>();
+    public static void SaveData(TagCompound tag, Object me) {
+        var list = new List<String>();
         foreach (var m in ReflectionHelper.GetMembersWithAttribute<SaveDataAttribute>(me.GetType())) {
             if (m.memberInfo.GetCustomAttribute<IsListedBooleanAttribute>() != null) {
                 if (m.memberInfo is FieldInfo field) {
-                    if ((bool)field.GetValue(me) == false) {
+                    if ((Boolean)field.GetValue(me) == false) {
                         continue;
                     }
                 }
                 if (m.memberInfo is PropertyInfo property) {
-                    if ((bool)property.GetValue(me) == false) {
+                    if ((Boolean)property.GetValue(me) == false) {
                         continue;
                     }
                 }
@@ -84,8 +84,8 @@ public sealed class SaveDataAttribute : Attribute {
         }
     }
 
-    public static void LoadData(TagCompound tag, object me) {
-        var listAttrs = new Dictionary<string, MemberInfo>();
+    public static void LoadData(TagCompound tag, Object me) {
+        var listAttrs = new Dictionary<String, MemberInfo>();
         foreach (var m in ReflectionHelper.GetMembersWithAttribute<SaveDataAttribute>(me.GetType())) {
             if (m.memberInfo.GetCustomAttribute<IsListedBooleanAttribute>() != null) {
                 listAttrs.Add(m.attributeInstance.Name, m.memberInfo);
@@ -94,7 +94,7 @@ public sealed class SaveDataAttribute : Attribute {
                 m.attributeInstance.LoadData(tag, me, m.memberInfo);
             }
         }
-        if (tag.TryGet<List<string>>("List", out var list)) {
+        if (tag.TryGet<List<String>>("List", out var list)) {
             foreach (var l in listAttrs) {
                 if (list.Contains(l.Key)) {
                     if (l.Value is FieldInfo field) {

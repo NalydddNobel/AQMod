@@ -4,10 +4,10 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Weapons.Demon.Melee; 
+namespace Aequus.Old.Content.Weapons.Demon.Melee;
 
 public class HellsBoonProj : ModProjectile {
-    private const int GO_OUT_TIME = 15;
+    private const Int32 GO_OUT_TIME = 15;
 
     public override void SetStaticDefaults() {
         Main.projFrames[Projectile.type] = 4;
@@ -28,7 +28,7 @@ public class HellsBoonProj : ModProjectile {
         Projectile.idStaticNPCHitCooldown = 10;
     }
 
-    public override bool? CanCutTiles() => Projectile.ai[1] > 15f && Projectile.ai[1] < 15f + GO_OUT_TIME;
+    public override Boolean? CanCutTiles() => Projectile.ai[1] > 15f && Projectile.ai[1] < 15f + GO_OUT_TIME;
 
     public override void AI() {
         if (Projectile.frameCounter == 0) {
@@ -43,10 +43,10 @@ public class HellsBoonProj : ModProjectile {
         if (Projectile.ai[1] > 15f) {
             if (Projectile.ai[1] < 15f + GO_OUT_TIME) {
                 Projectile.ai[1] += Main.rand.NextFloat(1f, 2.5f);
-                if (Main.netMode != NetmodeID.Server && (int)Projectile.ai[1] >= 15 + GO_OUT_TIME) {
+                if (Main.netMode != NetmodeID.Server && (Int32)Projectile.ai[1] >= 15 + GO_OUT_TIME) {
                     SoundEngine.PlaySound(SoundID.Tink with { Volume = 0.5f, Pitch = 0.05f }, Projectile.Center);
                 }
-                float progress = (Projectile.ai[1] - 15f) / GO_OUT_TIME;
+                Single progress = (Projectile.ai[1] - 15f) / GO_OUT_TIME;
                 Projectile.ai[0] = MathHelper.Lerp(0f, 80f, progress);
                 Projectile.timeLeft += Main.rand.Next(12);
             }
@@ -57,7 +57,7 @@ public class HellsBoonProj : ModProjectile {
             }
             Projectile.ai[1] += Main.rand.NextFloat(1f) + 0.01f;
             if (Main.rand.NextBool(6)) {
-                int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, Main.rand.NextBool() ? 36 : 17);
+                Int32 d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, Main.rand.NextBool() ? 36 : 17);
                 Main.dust[d].velocity = Projectile.velocity * 2f;
                 Main.dust[d].noGravity = true;
             }
@@ -66,14 +66,14 @@ public class HellsBoonProj : ModProjectile {
         Projectile.rotation = Projectile.velocity.ToRotation();
     }
 
-    public override void OnKill(int timeLeft) {
+    public override void OnKill(Int32 timeLeft) {
         if (Main.netMode == NetmodeID.Server) {
             return;
         }
 
         SoundEngine.PlaySound(SoundID.Dig with { Volume = 0.25f, Pitch = 0.5f }, Projectile.Center);
 
-        for (int i = 0; i < 10; i++) {
+        for (Int32 i = 0; i < 10; i++) {
             var d = Dust.NewDustDirect(Projectile.position - Vector2.Normalize(Projectile.velocity) * Main.rand.NextFloat(90f), Projectile.width, Projectile.height, Main.rand.NextBool() ? 36 : 17, Scale: Main.rand.NextFloat(0.6f, 1f));
             if (Main.rand.NextBool()) {
                 d.noGravity = true;
@@ -81,11 +81,11 @@ public class HellsBoonProj : ModProjectile {
         }
     }
 
-    public override bool PreDraw(ref Color lightColor) {
+    public override Boolean PreDraw(ref Color lightColor) {
         lightColor = ExtendLight.Get(Projectile.Center);
         var texture = TextureAssets.Projectile[Type].Value;
-        int frameWidth = texture.Width / Main.projFrames[Projectile.type];
-        int frameHeight = (int)Projectile.ai[0] + 8;
+        Int32 frameWidth = texture.Width / Main.projFrames[Projectile.type];
+        Int32 frameHeight = (Int32)Projectile.ai[0] + 8;
         if (frameHeight > texture.Height) {
             frameHeight = texture.Height;
         }
@@ -107,7 +107,7 @@ public class HellsBoonProj : ModProjectile {
         //    Main.spriteBatch.BeginWorld(shader: false); ;
         //}
         //else {
-        float alpha = 0f;
+        Single alpha = 0f;
         if (Projectile.ai[1] > 15f) {
             if (Projectile.ai[1] < 15f + GO_OUT_TIME) {
                 alpha = (Projectile.ai[1] - 15f) / GO_OUT_TIME;
@@ -122,13 +122,13 @@ public class HellsBoonProj : ModProjectile {
         return false;
     }
 
-    public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI) {
+    public override void DrawBehind(Int32 index, List<Int32> behindNPCsAndTiles, List<Int32> behindNPCs, List<Int32> behindProjectiles, List<Int32> overPlayers, List<Int32> overWiresUI) {
         behindNPCsAndTiles.Add(index);
     }
 }
 
 public class HellsBoonSpawner : ModProjectile {
-    public override string Texture => AequusTextures.TemporaryBuffIcon;
+    public override String Texture => AequusTextures.TemporaryBuffIcon;
 
     public override void SetDefaults() {
         Projectile.width = 2;
@@ -138,7 +138,7 @@ public class HellsBoonSpawner : ModProjectile {
         Projectile.timeLeft = 2;
     }
 
-    public override bool? CanDamage() {
+    public override Boolean? CanDamage() {
         return false;
     }
 
@@ -146,8 +146,8 @@ public class HellsBoonSpawner : ModProjectile {
         if (Main.myPlayer != Projectile.owner) {
             return;
         }
-        int size = (int)(35f * Main.player[Projectile.owner].GetAttackSpeed(DamageClass.Melee));
-        int projectileCount = size / 4;
+        Int32 size = (Int32)(35f * Main.player[Projectile.owner].GetAttackSpeed(DamageClass.Melee));
+        Int32 projectileCount = size / 4;
         var tilePos = Projectile.Center.ToTileCoordinates();
         var sizeCorner = new Point(tilePos.X - size / 2, tilePos.Y - size / 2);
 
@@ -155,10 +155,10 @@ public class HellsBoonSpawner : ModProjectile {
         sizeCorner.Y = Math.Clamp(sizeCorner.Y, size + 5, Main.maxTilesY - size - 5);
 
         var validSpots = new List<Point>();
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                int tileX = sizeCorner.X + i;
-                int tileY = sizeCorner.Y + j;
+        for (Int32 i = 0; i < size; i++) {
+            for (Int32 j = 0; j < size; j++) {
+                Int32 tileX = sizeCorner.X + i;
+                Int32 tileY = sizeCorner.Y + j;
                 if (Main.tile[tileX, tileY].IsSolid()) {
                     if (Main.tile[tileX + 1, tileY].IsSolid() &&
                         Main.tile[tileX - 1, tileY].IsSolid() &&
@@ -181,8 +181,8 @@ public class HellsBoonSpawner : ModProjectile {
             projectileCount = validSpots.Count;
         }
         var source = Projectile.GetSource_FromAI();
-        for (int i = 0; i < projectileCount; i++) {
-            int random = Main.rand.Next(validSpots.Count);
+        for (Int32 i = 0; i < projectileCount; i++) {
+            Int32 random = Main.rand.Next(validSpots.Count);
             var spawnPosition = new Vector2(validSpots[random].X * 16 + 8f, validSpots[random].Y * 16f + 8f);
             Projectile.NewProjectile(source, spawnPosition, Vector2.Normalize(Projectile.Center - spawnPosition).RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f)), ModContent.ProjectileType<HellsBoonProj>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
         }

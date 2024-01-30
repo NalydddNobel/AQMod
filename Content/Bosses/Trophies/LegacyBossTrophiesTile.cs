@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.Localization;
 using Terraria.ObjectData;
@@ -9,16 +7,16 @@ namespace Aequus.Content.Bosses.Trophies;
 
 [LegacyName("Trophies", "BossTrophiesTile")]
 public class LegacyBossTrophiesTile : ModTile {
-    public const int OmegaStarite = 0;
-    public const int Crabson = 1;
-    public const int RedSprite = 2;
-    public const int SpaceSquid = 3;
-    public const int DustDevil = 4;
-    public const int UltraStarite = 5;
+    public const System.Int32 OmegaStarite = 0;
+    public const System.Int32 Crabson = 1;
+    public const System.Int32 RedSprite = 2;
+    public const System.Int32 SpaceSquid = 3;
+    public const System.Int32 DustDevil = 4;
+    public const System.Int32 UltraStarite = 5;
 
-    public static Dictionary<int, ModTile> LegacyConverter { get; private set; } = new();
+    public static Dictionary<System.Int32, ModTile> LegacyConverter { get; private set; } = new();
 
-    public override string Texture => AequusTextures.Tile(TileID.Painting3X3);
+    public override System.String Texture => AequusTextures.Tile(TileID.Painting3X3);
 
     public override void SetStaticDefaults() {
         Main.tileSpelunker[Type] = true;
@@ -38,12 +36,12 @@ public class LegacyBossTrophiesTile : ModTile {
         LegacyConverter.Clear();
     }
 
-    public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
+    public override void DrawEffects(System.Int32 i, System.Int32 j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
         if (drawData.tileFrameX % 54 == 0 && drawData.tileFrameY % 54 == 0) {
-            int legacyConvertId = drawData.tileFrameX / 54;
+            System.Int32 legacyConvertId = drawData.tileFrameX / 54;
 
-            ushort type;
-            bool active;
+            System.UInt16 type;
+            System.Boolean active;
             if (LegacyConverter.TryGetValue(legacyConvertId, out var modTrophyInstance)) {
                 type = modTrophyInstance.Type;
                 active = true;
@@ -54,8 +52,8 @@ public class LegacyBossTrophiesTile : ModTile {
                 active = false;
             }
 
-            for (int x = i; x < i + 3; x++) {
-                for (int y = j; y < j + 3; y++) {
+            for (System.Int32 x = i; x < i + 3; x++) {
+                for (System.Int32 y = j; y < j + 3; y++) {
                     var tile = Framing.GetTileSafely(x, y);
                     if (tile.HasTile && tile.TileType == Type) {
                         tile.TileType = type;

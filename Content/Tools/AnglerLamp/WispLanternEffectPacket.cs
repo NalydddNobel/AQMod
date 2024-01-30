@@ -4,14 +4,14 @@ using System.IO;
 namespace Aequus.Content.Tools.AnglerLamp;
 
 public class WispLanternEffectPacket : PacketHandler {
-    public void Send(int npc) {
+    public void Send(System.Int32 npc) {
         var packet = GetPacket();
         packet.Write(npc);
         packet.Send();
     }
 
-    public override void Receive(BinaryReader reader, int sender) {
-        int npc = reader.ReadInt32();
+    public override void Receive(BinaryReader reader, System.Int32 sender) {
+        System.Int32 npc = reader.ReadInt32();
         if (!Main.npc[npc].active) {
             return;
         }

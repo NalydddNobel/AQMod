@@ -9,5 +9,5 @@ public class ClientConfig : ModConfig {
     public static ClientConfig Instance;
 
     [DefaultValue(true)]
-    public bool ShowDeathTips;
+    public System.Boolean ShowDeathTips;
 }

@@ -11,27 +11,27 @@ public class EquipBoostDatabase : ModSystem {
 
     private EquipBoostEntry[] _entries;
     public EquipBoostEntry[] Entries => _entries;
-    public readonly Dictionary<int, Action<Item, Player, bool>> SpecialUpdate = new();
-    public readonly Dictionary<int, Action<IEntitySource, Item, Projectile>> OnSpawnProjectile = new();
+    public readonly Dictionary<Int32, Action<Item, Player, Boolean>> SpecialUpdate = new();
+    public readonly Dictionary<Int32, Action<IEntitySource, Item, Projectile>> OnSpawnProjectile = new();
 
-    public static LocalizedText VanillaItemTooltip(int itemId) {
+    public static LocalizedText VanillaItemTooltip(Int32 itemId) {
         return Language.GetText($"Mods.Aequus.Items.BoostTooltips.{ItemID.Search.GetName(itemId)}");
     }
-    public static string ModItemKey(ModItem modItem) {
+    public static String ModItemKey(ModItem modItem) {
         return modItem.GetLocalizationKey($"{(modItem.Mod is Aequus ? "" : "Aequus_")}BoostTooltip");
     }
     public static LocalizedText ModItemTooltip(ModItem modItem) {
         return Language.GetOrRegister(ModItemKey(modItem));
     }
 
-    public bool HasEntry(int itemId) {
+    public Boolean HasEntry(Int32 itemId) {
         if (TryGetEntry(itemId, out var entry)) {
             return !entry.Invalid;
         }
         return false;
     }
 
-    public bool TryGetEntry(int itemId, out EquipBoostEntry entry) {
+    public Boolean TryGetEntry(Int32 itemId, out EquipBoostEntry entry) {
         entry = default;
         if (!_entries.IndexInRange(itemId)) {
             return false;
@@ -41,7 +41,7 @@ public class EquipBoostDatabase : ModSystem {
         return true;
     }
 
-    public void SetEntry(int itemId, EquipBoostEntry entry) {
+    public void SetEntry(Int32 itemId, EquipBoostEntry entry) {
         if (Entries.Length <= itemId) {
             Array.Resize(ref _entries, itemId + 1);
         }
@@ -49,10 +49,10 @@ public class EquipBoostDatabase : ModSystem {
         Entries[itemId] = entry;
     }
 
-    public void SetVanillaEntry(int itemId, EquipBoostEntry.CustomUpdateMethod customUpdateMethod) {
+    public void SetVanillaEntry(Int32 itemId, EquipBoostEntry.CustomUpdateMethod customUpdateMethod) {
         SetEntry(itemId, new(VanillaItemTooltip(itemId), customUpdateMethod));
     }
-    public void SetVanillaEntry(int itemId) {
+    public void SetVanillaEntry(Int32 itemId) {
         SetVanillaEntry(itemId, null);
     }
 
@@ -69,14 +69,14 @@ public class EquipBoostDatabase : ModSystem {
         SetEntry(modItem, customUpdateMethod: null);
     }
 
-    public void SetNoEffect(int itemId) {
+    public void SetNoEffect(Int32 itemId) {
         SetEntry(itemId, NoEffect);
     }
 
     #region Loading
-    private bool _autoloadedEntries;
+    private Boolean _autoloadedEntries;
 
-    private static bool NoEffectBoost(Player player, Item item) {
+    private static Boolean NoEffectBoost(Player player, Item item) {
         return false;
     }
 
@@ -273,24 +273,24 @@ public class EquipBoostDatabase : ModSystem {
         }
         _autoloadedEntries = true;
 
-        for (int i = 0; i < ItemID.Count; i++) {
+        for (Int32 i = 0; i < ItemID.Count; i++) {
             if (HasEntry(i)) {
                 continue;
             }
 
-            string itemName = ItemID.Search.GetName(i);
+            String itemName = ItemID.Search.GetName(i);
             if (ExtendLanguage.TryGet("Mods.Aequus.Items.BoostTooltips." + itemName, out var localizedText)) {
                 _entries[i] = new(localizedText);
             }
         }
 
-        for (int i = ItemID.Count; i < ItemLoader.ItemCount; i++) {
+        for (Int32 i = ItemID.Count; i < ItemLoader.ItemCount; i++) {
             var item = ItemLoader.GetItem(i);
             if (HasEntry(item.Type)) {
                 continue;
             }
 
-            string itemName = item.Name;
+            String itemName = item.Name;
             if (ExtendLanguage.TryGet(ModItemKey(item), out var localizedText)) {
                 SetEntry(item.Type, new(localizedText));
             }

@@ -1,11 +1,10 @@
 ﻿using Aequus.Content.CrossMod;
 using Aequus.Content.Pets;
-using Microsoft.Xna.Framework;
 
 namespace Aequus.Content.DedicatedContent.Familiar;
 
 public class FamiliarPet : ModPet {
-    public override string Texture => AequusTextures.NPC(NPCID.Guide);
+    public override System.String Texture => AequusTextures.NPC(NPCID.Guide);
 
     private Player dummyPlayer;
 
@@ -82,12 +81,12 @@ public class FamiliarPet : ModPet {
         }
     }
 
-    public override bool PreAI() {
+    public override System.Boolean PreAI() {
         UpdateTick();
         return base.PreAI();
     }
 
-    public override bool PreDraw(ref Color lightColor) {
+    public override System.Boolean PreDraw(ref Color lightColor) {
         if (dummyPlayer == null) {
             return false;
         }

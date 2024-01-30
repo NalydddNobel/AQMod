@@ -9,18 +9,18 @@ namespace Aequus.Content.Graphics.Particles;
 /// Bubble particles which only work underwater. Floats upwards.
 /// </summary>
 public class UnderwaterBubbleParticles : ParallelParticleSystem<UnderwaterBubbleParticles.Bubble> {
-    public const int FRAME_COUNT_X = 9;
-    public const int FRAME_COUNT_Y = 5;
+    public const Int32 FRAME_COUNT_X = 9;
+    public const Int32 FRAME_COUNT_Y = 5;
 
-    public const int FRAME_Y_CULLABLE_OUTLINE = 0;
-    public const int FRAME_Y_HIGHLIGHTS = 1;
-    public const int FRAME_Y_CULL_MASK = 2;
-    public const int FRAME_Y_CULL_OUTLINE_MIXING = 3; // Unused
-    public const int FRAME_Y_BASIC = 4;
+    public const Int32 FRAME_Y_CULLABLE_OUTLINE = 0;
+    public const Int32 FRAME_Y_HIGHLIGHTS = 1;
+    public const Int32 FRAME_Y_CULL_MASK = 2;
+    public const Int32 FRAME_Y_CULL_OUTLINE_MIXING = 3; // Unused
+    public const Int32 FRAME_Y_BASIC = 4;
 
-    public override int ParticleCount => 100;
+    public override Int32 ParticleCount => 100;
 
-    public static bool AllowMergeDrawing => Aequus.highQualityEffects;
+    public static Boolean AllowMergeDrawing => Aequus.highQualityEffects;
 
     public override void Draw(SpriteBatch spriteBatch) {
         if (!AllowMergeDrawing) {
@@ -49,7 +49,7 @@ public class UnderwaterBubbleParticles : ParallelParticleSystem<UnderwaterBubble
         catch {
 
         }
-        
+
         spriteBatch.End();
 
         spriteBatch.BeginDusts();
@@ -58,10 +58,10 @@ public class UnderwaterBubbleParticles : ParallelParticleSystem<UnderwaterBubble
         //spriteBatch.BeginDusts();
     }
 
-    private void DrawAll(SpriteBatch spriteBatch, int frameY, float minOpacity = 0f) {
+    private void DrawAll(SpriteBatch spriteBatch, Int32 frameY, Single minOpacity = 0f) {
         Texture2D texture = AequusTextures.BubbleParticles;
         lock (this) {
-            for (int k = 0; k < Particles.Length; k++) {
+            for (Int32 k = 0; k < Particles.Length; k++) {
                 Bubble bubble = Particles[k];
 
                 if (bubble == null || !bubble.Active) {
@@ -71,8 +71,8 @@ public class UnderwaterBubbleParticles : ParallelParticleSystem<UnderwaterBubble
                 Rectangle frame = texture.Frame(FRAME_COUNT_X, FRAME_COUNT_Y, bubble.Frame, frameY);
                 Vector2 origin = frame.Size() / 2f;
 
-                float rotation = 0f;
-                float scale = Helper.Oscillate(Main.GameUpdateCount / 60f + k, 0.9f, 1.1f);
+                Single rotation = 0f;
+                Single scale = Helper.Oscillate(Main.GameUpdateCount / 60f + k, 0.9f, 1.1f);
                 Vector2 drawLocation = bubble.Location - Main.screenPosition;
                 Vector2 velocity = bubble.Velocity;
                 Color color = ExtendLight.Get(bubble.Location) * Math.Max(minOpacity, bubble.Opacity);
@@ -82,15 +82,15 @@ public class UnderwaterBubbleParticles : ParallelParticleSystem<UnderwaterBubble
         }
     }
 
-    protected override void UpdateParallel(int start, int end) {
-        for (int i = start; i < end; i++) {
+    protected override void UpdateParallel(Int32 start, Int32 end) {
+        for (Int32 i = start; i < end; i++) {
             Bubble bubble = Particles[i];
             if (bubble == null || !bubble.Active) {
                 continue;
             }
             Active = true;
 
-            float opacity = bubble.Opacity;
+            Single opacity = bubble.Opacity;
             if (Main.rand.NextBool(240)) {
                 bubble.Frame--;
             }
@@ -133,7 +133,7 @@ public class UnderwaterBubbleParticles : ParallelParticleSystem<UnderwaterBubble
         SpriteBatch sb = Main.spriteBatch;
         GraphicsDevice g = Main.instance.GraphicsDevice;
         if (DrawHelper.BadRenderTarget(_mergeTarget, Main.screenWidth, Main.screenHeight) || DrawHelper.BadRenderTarget(_bubbleOutlineTarget, Main.screenWidth, Main.screenHeight)) {
-            try { 
+            try {
                 if (Main.IsGraphicsDeviceAvailable) {
                     _mergeTarget = new RenderTarget2D(g, Main.screenWidth, Main.screenHeight, mipMap: false, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
                     _bubbleOutlineTarget = new RenderTarget2D(g, Main.screenWidth, Main.screenHeight, mipMap: false, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
@@ -155,7 +155,7 @@ public class UnderwaterBubbleParticles : ParallelParticleSystem<UnderwaterBubble
             DrawAll(sb, FRAME_Y_CULL_MASK, minOpacity: 1f);
             sb.End();
 
-            g.SetRenderTarget(_bubbleOutlineTarget); 
+            g.SetRenderTarget(_bubbleOutlineTarget);
             g.Clear(Color.Transparent);
 
             sb.BeginDusts();
@@ -172,8 +172,8 @@ public class UnderwaterBubbleParticles : ParallelParticleSystem<UnderwaterBubble
     #endregion
 
     public class Bubble : IParticle {
-        private bool _active;
-        public bool Active {
+        private Boolean _active;
+        public Boolean Active {
             get => _active;
             set {
                 if (!_active) {
@@ -186,9 +186,9 @@ public class UnderwaterBubbleParticles : ParallelParticleSystem<UnderwaterBubble
         public Vector2 Location;
         public Vector2 Velocity;
 
-        public float UpLift;
-        public float Opacity;
+        public Single UpLift;
+        public Single Opacity;
 
-        public byte Frame;
+        public Byte Frame;
     }
 }

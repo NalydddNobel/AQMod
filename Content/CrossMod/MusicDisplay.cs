@@ -9,10 +9,10 @@ internal class MusicDisplay : SupportedMod<MusicDisplay> {
     public override void PostSetupContent() {
         RegisterMusic("PollutedOcean", "extra");
 
-        static void RegisterMusic(string musicName, string musicAuthor) {
+        static void RegisterMusic(System.String musicName, System.String musicAuthor) {
             Instance.Call(
                 "AddMusic",
-                (short)MusicLoader.GetMusicSlot($"Aequus/Assets/Music/{musicName}"), // Music Id, must be casted to a short
+                (System.Int16)MusicLoader.GetMusicSlot($"Aequus/Assets/Music/{musicName}"), // Music Id, must be casted to a short
                 Language.GetText($"Mods.Aequus.Music.{musicName}"), // Name of the song.
                 Language.GetText($"Mods.Aequus.Music.Authors.{musicAuthor}"), // Name of the author
                 "Aequus" // Name of the mod, this will not have any translations.

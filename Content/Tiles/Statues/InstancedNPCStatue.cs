@@ -26,7 +26,7 @@ internal class InstancedNPCStatue : InstancedModTile {
 
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
         TileObjectData.newTile.Height = 3;
-        TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 18 };
+        TileObjectData.newTile.CoordinateHeights = new System.Int32[] { 16, 16, 18 };
         TileObjectData.newTile.Direction = TileObjectDirection.PlaceLeft;
         TileObjectData.newTile.StyleWrapLimit = 2;
         TileObjectData.newTile.StyleMultiplier = 2;
@@ -43,33 +43,33 @@ internal class InstancedNPCStatue : InstancedModTile {
         AddMapEntry(CommonColor.TILE_STATUE, Language.GetText("MapObject.Statue"));
     }
 
-    public override void HitWire(int i, int j) {
+    public override void HitWire(System.Int32 i, System.Int32 j) {
         TileObjectData objectData = TileObjectData.GetTileData(Main.tile[i, j]);
-        int width = objectData.Width;
-        int height = objectData.Height;
-        int coordinateWidth = objectData.CoordinateFullWidth;
-        int coordinateHeight = objectData.CoordinateFullHeight;
+        System.Int32 width = objectData.Width;
+        System.Int32 height = objectData.Height;
+        System.Int32 coordinateWidth = objectData.CoordinateFullWidth;
+        System.Int32 coordinateHeight = objectData.CoordinateFullHeight;
 
-        int x = i - Main.tile[i, j].TileFrameX % coordinateWidth / 18;
-        int y = j - Main.tile[i, j].TileFrameY % coordinateHeight / 18;
+        System.Int32 x = i - Main.tile[i, j].TileFrameX % coordinateWidth / 18;
+        System.Int32 y = j - Main.tile[i, j].TileFrameY % coordinateHeight / 18;
 
-        for (int k = y; k < y + width; k++) {
-            for (int l = x; l < x + height; l++) {
+        for (System.Int32 k = y; k < y + width; k++) {
+            for (System.Int32 l = x; l < x + height; l++) {
                 Wiring.SkipWire(l, k);
             }
         }
 
-        float spawnX = (x + width * 0.5f) * 16;
-        float spawnY = (y + height * 0.65f) * 16;
+        System.Single spawnX = (x + width * 0.5f) * 16;
+        System.Single spawnY = (y + height * 0.65f) * 16;
 
         IEntitySource entitySource = new EntitySource_TileUpdate(x, y, context: Name);
-        int statueNPCId = _modNPC.Type;
+        System.Int32 statueNPCId = _modNPC.Type;
 
         if (!Wiring.CheckMech(x, y, 30) || !NPC.MechSpawn(spawnX, spawnY, statueNPCId)) {
             return;
         }
 
-        int npcIndex = NPC.NewNPC(entitySource, (int)spawnX, (int)spawnY - 12, statueNPCId);
+        System.Int32 npcIndex = NPC.NewNPC(entitySource, (System.Int32)spawnX, (System.Int32)spawnY - 12, statueNPCId);
         if (npcIndex > -1) {
             NPC spawnedNPC = Main.npc[npcIndex];
             spawnedNPC.value = 0f;

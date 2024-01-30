@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 namespace Aequus.Core.Networking;
 
 public abstract class PacketHandler : ModType {
-    public byte Type { get; internal set; }
+    public Byte Type { get; internal set; }
 
     protected sealed override void Register() {
         if (GetType().GetMethod("Send", BindingFlags.Public | BindingFlags.Instance) == null) {
@@ -20,7 +20,7 @@ public abstract class PacketHandler : ModType {
         SetStaticDefaults();
     }
 
-    public abstract void Receive(BinaryReader reader, int sender);
+    public abstract void Receive(BinaryReader reader, Int32 sender);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public ModPacket GetPacket() {

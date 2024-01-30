@@ -4,9 +4,9 @@ using Terraria.DataStructures;
 namespace Aequus.Old.Content.TownNPCs.OccultistNPC;
 
 public class OccultistProjSpawner : ModProjectile {
-    public override string Texture => AequusTextures.TemporaryBuffIcon;
+    public override System.String Texture => AequusTextures.TemporaryBuffIcon;
 
-    public int NPCIndex { get => (int)Projectile.ai[0] - 1; set => Projectile.ai[0] = value + 1; }
+    public System.Int32 NPCIndex { get => (System.Int32)Projectile.ai[0] - 1; set => Projectile.ai[0] = value + 1; }
 
     public override void SetDefaults() {
         Projectile.width = 16;
@@ -37,8 +37,8 @@ public class OccultistProjSpawner : ModProjectile {
         }
         Projectile.Center = Main.npc[NPCIndex].Center;
 
-        int timeBetweenShots = 6;
-        if ((int)Projectile.ai[1] % timeBetweenShots == 0) {
+        System.Int32 timeBetweenShots = 6;
+        if ((System.Int32)Projectile.ai[1] % timeBetweenShots == 0) {
             var v = Vector2.Normalize(Projectile.velocity).RotatedBy(Projectile.ai[1] / timeBetweenShots / 5f * MathHelper.TwoPi);
             if (Main.myPlayer == Projectile.owner)
                 Projectile.NewProjectile(Main.npc[NPCIndex].GetSource_FromAI(), Projectile.Center + v * 48f, v * 5f, ModContent.ProjectileType<OccultistProj>(), Projectile.damage / 2, Projectile.knockBack / 2f, Projectile.owner);
@@ -48,10 +48,10 @@ public class OccultistProjSpawner : ModProjectile {
         Projectile.ai[1]++;
     }
 
-    public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI) {
+    public override void DrawBehind(System.Int32 index, List<System.Int32> behindNPCsAndTiles, List<System.Int32> behindNPCs, List<System.Int32> behindProjectiles, List<System.Int32> overPlayers, List<System.Int32> overWiresUI) {
     }
 
-    public override bool PreDraw(ref Color lightColor) {
+    public override System.Boolean PreDraw(ref Color lightColor) {
         return false;
     }
 }

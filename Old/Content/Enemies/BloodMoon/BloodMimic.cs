@@ -15,11 +15,11 @@ namespace Aequus.Old.Content.Enemies.BloodMoon;
 
 [AutoloadBanner(legacyId: 17)]
 public class BloodMimic : LegacyAIMimic {
-    private const int SPAWNRECTANGLE_SIZE = 20;
+    private const Int32 SPAWNRECTANGLE_SIZE = 20;
 
-    public bool spawnedGroup;
+    public Boolean spawnedGroup;
 
-    protected override int JumpTimer => NPC.ai[1] == 0f ? 5 : 10;
+    protected override Int32 JumpTimer => NPC.ai[1] == 0f ? 5 : 10;
 
     public override void SetStaticDefaults() {
         Main.npcFrameCount[NPC.type] = 6;
@@ -77,14 +77,14 @@ public class BloodMimic : LegacyAIMimic {
         }
 
         if (NPC.life <= 0) {
-            for (int i = 0; i < 50; i++) {
+            for (Int32 i = 0; i < 50; i++) {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hit.HitDirection * 2);
             }
             NPC.NewGore(AequusTextures.BloodMimicGoreEyeball, NPC.Center, NPC.velocity);
             NPC.NewGore(AequusTextures.BloodMimicGoreLid, NPC.position, NPC.velocity);
             NPC.NewGore(AequusTextures.BloodMimicGoreLid, NPC.position, NPC.velocity).rotation += MathHelper.Pi;
         }
-        for (int i = 0; i < 3; i++) {
+        for (Int32 i = 0; i < 3; i++) {
             Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hit.HitDirection * 2);
         }
     }
@@ -156,26 +156,26 @@ public class BloodMimic : LegacyAIMimic {
         base.AI();
     }
 
-    public void SpawnGroup(int tileX, int tileY) {
+    public void SpawnGroup(Int32 tileX, Int32 tileY) {
         if (Main.netMode == NetmodeID.MultiplayerClient) {
             return;
         }
-        int spawnCount = Main.rand.Next(3, 8);
+        Int32 spawnCount = Main.rand.Next(3, 8);
         var player = Main.player[Player.FindClosest(new Vector2(tileX, tileY) * 16f, 16, 16)];
-        Rectangle playerSights = new Rectangle((int)player.position.X / 16 - NPC.safeRangeX, (int)player.position.Y / 16 - NPC.safeRangeY, NPC.safeRangeX * 2, NPC.safeRangeY * 2);
+        Rectangle playerSights = new Rectangle((Int32)player.position.X / 16 - NPC.safeRangeX, (Int32)player.position.Y / 16 - NPC.safeRangeY, NPC.safeRangeX * 2, NPC.safeRangeY * 2);
         var source = NPC.GetSource_FromThis();
 
-        if ((int)NPC.ai[1] == 0) {
+        if ((Int32)NPC.ai[1] == 0) {
             NPC.ai[1] = Main.rand.Next(3, 8);
         }
 
-        if ((int)NPC.ai[1] > 1) {
+        if ((Int32)NPC.ai[1] > 1) {
             var checkTangle = new Rectangle(tileX - SPAWNRECTANGLE_SIZE, tileY - SPAWNRECTANGLE_SIZE, SPAWNRECTANGLE_SIZE * 2, SPAWNRECTANGLE_SIZE * 2);
-            for (int i = 0; i < 50; i++) {
-                int x = Main.rand.Next(checkTangle.X, checkTangle.X + checkTangle.Width);
-                int y = Main.rand.Next(checkTangle.Y, checkTangle.Y + checkTangle.Height);
+            for (Int32 i = 0; i < 50; i++) {
+                Int32 x = Main.rand.Next(checkTangle.X, checkTangle.X + checkTangle.Width);
+                Int32 y = Main.rand.Next(checkTangle.Y, checkTangle.Y + checkTangle.Height);
 
-                for (int k = 0; !Main.tile[x, y].IsSolid() && k < 20; k++) {
+                for (Int32 k = 0; !Main.tile[x, y].IsSolid() && k < 20; k++) {
                     y++;
                 }
 
@@ -186,22 +186,22 @@ public class BloodMimic : LegacyAIMimic {
                         continue;
                 }
 
-                for (int k = 0; k < 2; k++) {
-                    for (int l = 0; l < 2; l++) {
+                for (Int32 k = 0; k < 2; k++) {
+                    for (Int32 l = 0; l < 2; l++) {
                         if (Main.tile[x + k, y + l].IsSolid()) {
                             goto Continue;
                         }
                     }
                 }
 
-                for (int k = 0; k < 2; k++) {
+                for (Int32 k = 0; k < 2; k++) {
                     if (!Main.tile[x + k, y + 2].IsSolid() || Main.tile[x + k, y + 2].IsHalfBlock || Main.tile[x + k, y + 2].Slope != 0) {
                         goto Continue;
                     }
                 }
 
                 var npcChecktangle = new Rectangle(x * 16, y * 16, 32, 32);
-                for (int m = 0; m < Main.maxNPCs; m++) {
+                for (Int32 m = 0; m < Main.maxNPCs; m++) {
                     if (Main.npc[m].active && Main.npc[m].type == Type && npcChecktangle.Contains(Main.npc[m].Hitbox)) {
                         goto Continue;
                     }

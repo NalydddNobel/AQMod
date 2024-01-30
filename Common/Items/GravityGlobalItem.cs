@@ -5,21 +5,21 @@ using Terraria.DataStructures;
 namespace Aequus.Common.Items;
 
 public sealed class GravityGlobalItem : GlobalItem {
-    public override bool InstancePerEntity => true;
+    public override Boolean InstancePerEntity => true;
 
-    protected override bool CloneNewInstances => true;
+    protected override Boolean CloneNewInstances => true;
 
     /// <summary>
     /// How long the item should float for. Set to 255 for permanent duration.
     /// </summary>
-    public byte itemGravityCheck = 0;
-    public float itemGravityMultiplier = 1f;
+    public Byte itemGravityCheck = 0;
+    public Single itemGravityMultiplier = 1f;
 
-    public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
+    public override Boolean AppliesToEntity(Item entity, Boolean lateInstantiation) {
         return !ItemID.Sets.ItemNoGravity[entity.type];
     }
 
-    public void SetNoGrav(Item item, byte duration) {
+    public void SetNoGrav(Item item, Byte duration) {
         var aequus = item.GetGlobalItem<GravityGlobalItem>();
         if (aequus.itemGravityCheck > Math.Max(duration - 15, 15)) {
             return;
@@ -49,7 +49,7 @@ public sealed class GravityGlobalItem : GlobalItem {
         }
     }
 
-    public override void Update(Item item, ref float gravity, ref float maxFallSpeed) {
+    public override void Update(Item item, ref Single gravity, ref Single maxFallSpeed) {
         if (gravity <= 0f || itemGravityCheck == 0) {
             return;
         }

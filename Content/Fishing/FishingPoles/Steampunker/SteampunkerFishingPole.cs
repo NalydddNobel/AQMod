@@ -4,8 +4,8 @@ using Terraria.DataStructures;
 namespace Aequus.Content.Fishing.FishingPoles.Steampunker;
 
 public class SteampunkerFishingPole : ModFishingPole {
-    public override bool BobberPreAI(Projectile bobber) {
-        if ((int)bobber.ai[0] == 0 && bobber.ai[1] < 0f && bobber.ai[1] > -30f && bobber.TryGetGlobalProjectile<ProjectileItemData>(out var aequusProjectile)) {
+    public override System.Boolean BobberPreAI(Projectile bobber) {
+        if ((System.Int32)bobber.ai[0] == 0 && bobber.ai[1] < 0f && bobber.ai[1] > -30f && bobber.TryGetGlobalProjectile<ProjectileItemData>(out var aequusProjectile)) {
             aequusProjectile.ItemData = 1;
             Main.player[bobber.owner].GetModPlayer<AequusPlayer>().forceUseItem = true;
         }
@@ -13,7 +13,7 @@ public class SteampunkerFishingPole : ModFishingPole {
         return true;
     }
 
-    public override void BobberOnKill(Projectile bobber, int timeLeft) {
+    public override void BobberOnKill(Projectile bobber, System.Int32 timeLeft) {
         if (bobber.TryGetGlobalProjectile<ProjectileItemData>(out var aequusProjectile) && aequusProjectile.ItemData == 1) {
             Main.player[bobber.owner].GetModPlayer<AequusPlayer>().forceUseItem = true;
         }
@@ -32,7 +32,7 @@ public class SteampunkerFishingPole : ModFishingPole {
         Item.shoot = Bobber.Type;
     }
 
-    public override void GetDrawData(Projectile bobber, ref float polePosX, ref float polePosY, ref Color lineColor) {
+    public override void GetDrawData(Projectile bobber, ref System.Single polePosX, ref System.Single polePosY, ref Color lineColor) {
         polePosX += 50f * Main.player[bobber.owner].direction;
         polePosY -= 30f;
         lineColor = Color.LightGray;

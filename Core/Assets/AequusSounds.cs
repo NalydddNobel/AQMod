@@ -3,7 +3,7 @@
 namespace Aequus;
 
 public sealed partial class AequusSounds : ILoadable {
-    private static SoundStyle GetMultisound(SoundStyle zero, int variants) {
+    private static SoundStyle GetMultisound(SoundStyle zero, System.Int32 variants) {
         return new(zero.SoundPath[..^1], 0, variants);
     }
 

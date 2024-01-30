@@ -4,7 +4,7 @@ namespace Aequus.Core;
 
 public class World : ModSystem {
     [SaveData("DemonT1")]
-    public static bool DownedDemonSiegeT1;
+    public static System.Boolean DownedDemonSiegeT1;
 
     public override void SaveWorldData(TagCompound tag) {
         SaveDataAttribute.SaveData(tag, this);

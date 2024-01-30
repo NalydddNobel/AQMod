@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace Aequus.Content.Fishing.CrabPots;
 
 public class CrabPotLootTable : ILoadable {
-    public static Dictionary<int, List<CrabPotCatchRule>> Table { get; private set; } = new();
+    public static Dictionary<System.Int32, List<CrabPotCatchRule>> Table { get; private set; } = new();
 
     public void Load(Mod mod) {
         Add(WaterStyleID.Purity, new(ItemID.Bass, 1));
@@ -46,7 +46,7 @@ public class CrabPotLootTable : ILoadable {
         Add(WaterStyleID.Honey, new(ItemID.Honeyfin, 1));
     }
 
-    public static void Add(int waterStyle, CrabPotCatchRule rule) {
+    public static void Add(System.Int32 waterStyle, CrabPotCatchRule rule) {
         (CollectionsMarshal.GetValueRefOrAddDefault(Table, waterStyle, out _) ??= new()).Add(rule);
     }
 

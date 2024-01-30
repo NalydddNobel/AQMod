@@ -1,18 +1,17 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria.Audio;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger;
 
 public partial class Scavenger {
-    public delegate void AccessoryUpdate(Scavenger scavenger, bool attacking);
+    public delegate void AccessoryUpdate(Scavenger scavenger, Boolean attacking);
 
-    public static readonly Dictionary<int, AccessoryUpdate> CustomAccessoryUsage = new();
+    public static readonly Dictionary<Int32, AccessoryUpdate> CustomAccessoryUsage = new();
 
-    public float accessoryUseData;
-    public float acceleration;
-    public float runSpeedCap;
+    public Single accessoryUseData;
+    public Single acceleration;
+    public Single runSpeedCap;
 
     public static AccessoryUpdate AccessoryUsageBottleJump<T>() where T : ExtraJump {
         var extraJump = ModContent.GetInstance<T>();
@@ -30,7 +29,7 @@ public partial class Scavenger {
                 npc.velocity.Y = -8f;
                 npc.netUpdate = true;
 
-                bool playSound = true;
+                Boolean playSound = true;
                 extraJump.OnStarted(s.playerDummy, ref playSound);
                 if (playSound) {
                     SoundEngine.PlaySound(SoundID.DoubleJump, npc.Center);
@@ -43,7 +42,7 @@ public partial class Scavenger {
         };
     }
 
-    public static AccessoryUpdate AccessoryUsageBoots(int dustID) {
+    public static AccessoryUpdate AccessoryUsageBoots(Int32 dustID) {
         return (s, attacking) => {
             var npc = s.NPC;
             if (npc.direction != Math.Sign(npc.velocity.X)) {
@@ -60,7 +59,7 @@ public partial class Scavenger {
             if (s.accessoryUseData % 10 == 0) {
                 SoundEngine.PlaySound(SoundID.Run, npc.Center);
             }
-            for (int i = 0; i < 4; i++) {
+            for (Int32 i = 0; i < 4; i++) {
                 var d = Dust.NewDustDirect(new Vector2(npc.position.X - 4f, npc.position.Y), npc.width + 8, npc.height, dustID, (0f - npc.velocity.X) * 0.5f, npc.velocity.Y * 0.5f, 100, Scale: 1.5f + Main.rand.Next(-5, 3) * 0.1f);
                 d.noGravity = true;
                 d.velocity *= 0.2f;

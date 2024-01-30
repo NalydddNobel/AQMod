@@ -36,7 +36,7 @@ public class Triacanthorn : ModItem {
         return lightColor.MaxRGBA(200);
     }
 
-    public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
+    public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref System.Int32 type, ref System.Int32 damage, ref System.Single knockback) {
         position += Vector2.Normalize(velocity) * 34f;
     }
 }

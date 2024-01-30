@@ -1,7 +1,7 @@
 ﻿namespace Aequus.Core.CrossMod;
 
 public class ModCallSystem : ModSystem {
-    public static object HandleModCall(object[] args) {
+    public static System.Object HandleModCall(System.Object[] args) {
         return null;
     }
 }

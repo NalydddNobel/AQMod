@@ -7,20 +7,20 @@ namespace Aequus.Old.Common.EventBars;
 
 // Replica of vanilla's invasion progress bars.
 public class AequusEventBarLoader : UILayer {
-    private static byte _activeBarReal;
-    public static byte ActiveBar { get; internal set; } = 255;
-    public static bool PlayerSafe { get; internal set; }
+    private static System.Byte _activeBarReal;
+    public static System.Byte ActiveBar { get; internal set; } = 255;
+    public static System.Boolean PlayerSafe { get; internal set; }
 
     private static readonly List<IEventBar> _progressBars = new();
 
-    private static float _invasionProgressAlpha = 0f;
-    private static float _invasionProgress = 0f;
+    private static System.Single _invasionProgressAlpha = 0f;
+    private static System.Single _invasionProgress = 0f;
 
-    public static int Count => _progressBars.Count;
+    public static System.Int32 Count => _progressBars.Count;
 
     public override void OnPreUpdatePlayers() {
-        _activeBarReal = byte.MaxValue;
-        for (byte i = 0; i < _progressBars.Count; i++) {
+        _activeBarReal = System.Byte.MaxValue;
+        for (System.Byte i = 0; i < _progressBars.Count; i++) {
             IEventBar b = _progressBars[i];
             if (b.IsActive()) {
                 _activeBarReal = i;
@@ -30,20 +30,20 @@ public class AequusEventBarLoader : UILayer {
         }
     }
 
-    protected override bool DrawSelf() {
+    protected override System.Boolean DrawSelf() {
         if (_progressBars == null || (Main.invasionProgressAlpha > 0f && _invasionProgressAlpha <= 0f)) {
-            ActiveBar = byte.MaxValue;
+            ActiveBar = System.Byte.MaxValue;
             Deactivate();
             return true;
         }
         Main.invasionProgressAlpha = 0f;
-        if (ActiveBar != byte.MaxValue) {
-            if (_activeBarReal == byte.MaxValue) {
+        if (ActiveBar != System.Byte.MaxValue) {
+            if (_activeBarReal == System.Byte.MaxValue) {
                 if (_invasionProgressAlpha > 0f) {
                     _invasionProgressAlpha -= 0.05f;
                 }
                 else {
-                    ActiveBar = byte.MaxValue;
+                    ActiveBar = System.Byte.MaxValue;
                     Deactivate();
                     return true;
                 }
@@ -58,35 +58,35 @@ public class AequusEventBarLoader : UILayer {
             var texture = bar.Icon.Value;
             var eventName = bar.DisplayName.Value;
             var nameBGColor = bar.BackgroundColor;
-            float alpha = 0.5f + _invasionProgressAlpha * 0.5f;
-            int num11 = (int)(200f * alpha);
-            int num12 = (int)(45f * alpha);
+            System.Single alpha = 0.5f + _invasionProgressAlpha * 0.5f;
+            System.Int32 num11 = (System.Int32)(200f * alpha);
+            System.Int32 num12 = (System.Int32)(45f * alpha);
             var vector3 = new Vector2(Main.screenWidth - 120, Main.screenHeight - 40);
 
             if (!bar.PreDraw(texture, eventName, nameBGColor, alpha)) {
                 return true;
             }
 
-            Utils.DrawInvBG(Main.spriteBatch, new Rectangle((int)vector3.X - num11 / 2, (int)vector3.Y - num12 / 2, num11, num12), new Color(63, 65, 151, 255) * 0.785f);
+            Utils.DrawInvBG(Main.spriteBatch, new Rectangle((System.Int32)vector3.X - num11 / 2, (System.Int32)vector3.Y - num12 / 2, num11, num12), new Color(63, 65, 151, 255) * 0.785f);
 
             _invasionProgress = bar.GetEventProgress();
 
-            string progressText = bar.GetProgressText(_invasionProgress);
+            System.String progressText = bar.GetProgressText(_invasionProgress);
 
             Texture2D colorBar = TextureAssets.ColorBar.Value;
             var font = FontAssets.MouseText.Value;
             var pixel = TextureAssets.MagicPixel.Value;
             Main.spriteBatch.Draw(colorBar, vector3, null, Color.White * _invasionProgressAlpha, 0f, new Vector2(colorBar.Width / 2, 0f), alpha, SpriteEffects.None, 0f);
-            float num13 = MathHelper.Clamp(_invasionProgress, 0f, 1f);
+            System.Single num13 = MathHelper.Clamp(_invasionProgress, 0f, 1f);
             Vector2 textMeasurement = font.MeasureString(progressText);
-            float num2 = alpha;
-            float textOffsetX = 0f;
+            System.Single num2 = alpha;
+            System.Single textOffsetX = 0f;
             if (textMeasurement.Y > 22f) {
                 num2 *= 22f / textMeasurement.Y;
             }
 
-            float num3 = 169f * alpha;
-            float num4 = 8f * alpha;
+            System.Single num3 = 169f * alpha;
+            System.Single num4 = 8f * alpha;
             Vector2 vector5 = vector3 + Vector2.UnitY * num4 + Vector2.UnitX * 1f;
             Utils.DrawBorderString(Main.spriteBatch, progressText, vector5 + new Vector2(0f, -4f), Color.White * _invasionProgressAlpha, num2, 0.5f, 1f);
             vector5 += Vector2.UnitX * (num13 - 0.5f) * num3;
@@ -95,7 +95,7 @@ public class AequusEventBarLoader : UILayer {
             Main.spriteBatch.Draw(pixel, vector5, new Rectangle(0, 0, 1, 1), Color.Black * _invasionProgressAlpha, 0f, new Vector2(0f, 0.5f), new Vector2(num3 * (1f - num13), num4), SpriteEffects.None, 0f);
 
             Vector2 textOrig = font.MeasureString(eventName);
-            float xOff = 120f;
+            System.Single xOff = 120f;
             if (textOrig.X > 200f) {
                 xOff += textOrig.X - 200f;
             }
@@ -108,13 +108,13 @@ public class AequusEventBarLoader : UILayer {
             Utils.DrawBorderString(Main.spriteBatch, eventName, rectangle.Right() + Vector2.UnitX * alpha * -22f + new Vector2(textOffsetX, 0f), Color.White * _invasionProgressAlpha, alpha * 0.9f, 1f, 0.4f);
         }
         else if (_invasionProgressAlpha <= 0f) {
-            ActiveBar = byte.MaxValue;
+            ActiveBar = System.Byte.MaxValue;
             Deactivate();
         }
         return true;
     }
 
-    public static IEventBar GetProgressBar(int type) {
+    public static IEventBar GetProgressBar(System.Int32 type) {
         return _progressBars[type];
     }
 

@@ -23,12 +23,12 @@ public class Cauterizer : ModItem {
         return lightColor.MaxRGBA(200);
     }
 
-    public override bool? UseItem(Player player) {
+    public override System.Boolean? UseItem(Player player) {
         //Item.FixSwing(player);
         return null;
     }
 
-    public override bool MeleePrefix() {
+    public override System.Boolean MeleePrefix() {
         return true;
     }
 }

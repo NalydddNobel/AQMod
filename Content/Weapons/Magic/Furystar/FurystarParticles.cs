@@ -5,7 +5,7 @@ using System;
 namespace Aequus.Content.Weapons.Magic.Furystar;
 
 public class FurystarParticles : ParticleSystem<FurystarParticles.Particle> {
-    public override int ParticleCount => 50;
+    public override Int32 ParticleCount => 50;
 
     public override void Draw(SpriteBatch spriteBatch) {
         spriteBatch.BeginDusts();
@@ -18,7 +18,7 @@ public class FurystarParticles : ParticleSystem<FurystarParticles.Particle> {
         Rectangle lensFlareFrame = lensFlare.Frame();
         Vector2 lensFlareOrigin = lensFlareFrame.Size() / 2f;
         lock (this) {
-            for (int k = 0; k < Particles.Length; k++) {
+            for (Int32 k = 0; k < Particles.Length; k++) {
                 Particle particle = Particles[k];
 
                 if (particle == null || !particle.Active) {
@@ -26,8 +26,8 @@ public class FurystarParticles : ParticleSystem<FurystarParticles.Particle> {
                 }
 
 
-                float rotation = particle.Rotation;
-                float scale = particle.Scale;
+                Single rotation = particle.Rotation;
+                Single scale = particle.Scale;
                 Vector2 drawLocation = particle.Location - Main.screenPosition;
                 Color color = particle.Color;
 
@@ -43,7 +43,7 @@ public class FurystarParticles : ParticleSystem<FurystarParticles.Particle> {
     }
 
     public override void Update() {
-        for (int i = 0; i < Particles.Length; i++) {
+        for (Int32 i = 0; i < Particles.Length; i++) {
             Particle particle = Particles[i];
             if (particle == null || !particle.Active) {
                 continue;
@@ -79,8 +79,8 @@ public class FurystarParticles : ParticleSystem<FurystarParticles.Particle> {
     }
 
     public class Particle : IParticle {
-        private bool _active;
-        public bool Active {
+        private Boolean _active;
+        public Boolean Active {
             get => _active;
             set {
                 if (value) {
@@ -94,12 +94,12 @@ public class FurystarParticles : ParticleSystem<FurystarParticles.Particle> {
         public Vector2 Location;
         public Vector2 Velocity;
 
-        public float Rotation;
+        public Single Rotation;
 
-        public float Scale;
+        public Single Scale;
 
         public Color Color;
 
-        public float Animation;
+        public Single Animation;
     }
 }

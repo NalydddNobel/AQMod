@@ -8,7 +8,7 @@ public class SaivoryKnife : ModItem {
     /// <summary>
     /// Default Value: 3600 (1 minute)
     /// </summary>
-    public static int GhostLifespan { get; set; } = 3600;
+    public static System.Int32 GhostLifespan { get; set; } = 3600;
 
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Minutes(GhostLifespan));
 
@@ -24,7 +24,7 @@ public class SaivoryKnife : ModItem {
         Item.value = Item.sellPrice(gold: 1);
     }
 
-    public override void UpdateAccessory(Player player, bool hideVisual) {
+    public override void UpdateAccessory(Player player, System.Boolean hideVisual) {
         //player.Aequus().ghostLifespan += GhostLifespan;
     }
 }

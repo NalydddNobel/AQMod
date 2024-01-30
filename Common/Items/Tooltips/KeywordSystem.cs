@@ -1,12 +1,11 @@
 ﻿using Aequus.Common.Backpacks;
 using Aequus.Common.Items.Components;
-using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 namespace Aequus.Common.Items.Tooltips;
 public class KeywordSystem : ModSystem {
-    public static int HoveredItemID { get; internal set; }
-    public static int LastHoveredItemID { get; internal set; }
+    public static System.Int32 HoveredItemID { get; internal set; }
+    public static System.Int32 LastHoveredItemID { get; internal set; }
 
     public static readonly List<Keyword> Tooltips = new();
 

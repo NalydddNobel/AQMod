@@ -6,7 +6,7 @@ using Terraria.Physics;
 namespace Aequus.Common.Golfing;
 
 public class GolfingSystem : ModSystem {
-    public static List<int> FakeGolfBalls { get; private set; } = new();
+    public static List<System.Int32> FakeGolfBalls { get; private set; } = new();
 
     public override void Load() {
         On_Player.GetPreferredGolfBallToUse += On_Player_GetPreferredGolfBallToUse;
@@ -21,14 +21,14 @@ public class GolfingSystem : ModSystem {
         }
     }
 
-    private static BallStepResult On_GolfHelper_StepGolfBall(On_GolfHelper.orig_StepGolfBall orig, Entity entity, ref float angularVelocity) {
+    private static BallStepResult On_GolfHelper_StepGolfBall(On_GolfHelper.orig_StepGolfBall orig, Entity entity, ref System.Single angularVelocity) {
         if (entity is Projectile projectile && projectile.ModProjectile is IGolfBallProjectile golfBallProjectile && golfBallProjectile.StepGolfBall(ref angularVelocity, out var result)) {
             return result;
         }
         return orig(entity, ref angularVelocity);
     }
 
-    private static void On_Player_GetPreferredGolfBallToUse(On_Player.orig_GetPreferredGolfBallToUse orig, Player player, out int projType) {
+    private static void On_Player_GetPreferredGolfBallToUse(On_Player.orig_GetPreferredGolfBallToUse orig, Player player, out System.Int32 projType) {
         orig(player, out projType);
         var heldItem = player.HeldItem;
         if (!heldItem.IsAir && heldItem.shoot == projType) {
@@ -40,7 +40,7 @@ public class GolfingSystem : ModSystem {
             return;
         }
 
-        for (int i = 0; i < Main.InventorySlotsTotal; i++) {
+        for (System.Int32 i = 0; i < Main.InventorySlotsTotal; i++) {
             var item = player.inventory[i];
             if (!item.IsAir && (ProjectileLoader.GetProjectile(item.shoot) as IGolfBallProjectile)?.OverrideGolfBallId(player, item, projType) == true) {
                 projType = item.shoot;
@@ -54,7 +54,7 @@ public class GolfingSystem : ModSystem {
     /// Sets all fake golf balls to be counted or not counted as golf balls.
     /// </summary>
     /// <param name="value"></param>
-    public static void SetGolfBallStatus(bool value) {
+    public static void SetGolfBallStatus(System.Boolean value) {
         foreach (var i in FakeGolfBalls) {
             ProjectileID.Sets.IsAGolfBall[i] = value;
         }

@@ -8,14 +8,14 @@ public static class ExtendNPC {
         NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, npc.whoAmI);
     }
 
-    /// <summary>Runs <see cref="NPC.TargetClosest(bool)"/>, and returns <see cref="NPC.HasValidTarget"/>.</summary>
-    public static bool TryRetargeting(this NPC npc, bool faceTarget = true) {
+    /// <summary>Runs <see cref="NPC.TargetClosest(System.Boolean)"/>, and returns <see cref="NPC.HasValidTarget"/>.</summary>
+    public static System.Boolean TryRetargeting(this NPC npc, System.Boolean faceTarget = true) {
         npc.TargetClosest(faceTarget: faceTarget);
         return npc.HasValidTarget;
     }
 
     /// <returns>Whether or not this is most likely a critter, dependant on multiple checks of their stats and values in data sets.</returns>
-    public static bool IsProbablyACritter(this NPC npc) {
+    public static System.Boolean IsProbablyACritter(this NPC npc) {
         return NPCID.Sets.CountsAsCritter[npc.type] || (npc.lifeMax < 5 && npc.lifeMax != 1 && npc.damage <= 0);
     }
 
@@ -33,8 +33,8 @@ public static class ExtendNPC {
     /// <summary>Clears a buff of the specified ID from this NPC.</summary>
     /// <param name="npc"></param>
     /// <param name="buffId">The Buff Id to clear from this NPC.</param>
-    public static bool ClearBuff(this NPC npc, int buffId) {
-        int index = npc.FindBuffIndex(buffId);
+    public static System.Boolean ClearBuff(this NPC npc, System.Int32 buffId) {
+        System.Int32 index = npc.FindBuffIndex(buffId);
         if (index != -1) {
             npc.DelBuff(buffId);
             return true;

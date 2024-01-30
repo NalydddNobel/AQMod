@@ -11,7 +11,7 @@ internal static class BestiaryBuilder {
         private readonly BestiaryDatabase Database;
         private readonly BestiaryEntry Entry;
 
-        public EntryEditor(string languageKey, BestiaryDatabase database, BestiaryEntry bestiaryEntry, ModNPC modNPC) {
+        public EntryEditor(System.String languageKey, BestiaryDatabase database, BestiaryEntry bestiaryEntry, ModNPC modNPC) {
             ModNPC = modNPC;
             Database = database;
             Entry = bestiaryEntry;
@@ -44,34 +44,34 @@ internal static class BestiaryBuilder {
     }
 
     public static EntryEditor CreateEntry(this ModNPC modNPC, BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-        string key = modNPC.GetLocalizationKey("Bestiary");
+        System.String key = modNPC.GetLocalizationKey("Bestiary");
         ExtendLanguage.RegisterKey(key);
         return new EntryEditor(key, database, bestiaryEntry, modNPC);
     }
 
-    public static EntryEditor CreateEntry(this ModNPC modNPC, string key, BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+    public static EntryEditor CreateEntry(this ModNPC modNPC, System.String key, BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
         ExtendLanguage.RegisterKey(key);
         return new EntryEditor(key, database, bestiaryEntry, modNPC);
     }
 
-    public static void ReSort(ModNPC modNPC, int wantedBestiaryId) {
-        int oldEntryID = ContentSamples.NpcBestiarySortingId[modNPC.Type];
+    public static void ReSort(ModNPC modNPC, System.Int32 wantedBestiaryId) {
+        System.Int32 oldEntryID = ContentSamples.NpcBestiarySortingId[modNPC.Type];
         if (oldEntryID == wantedBestiaryId) {
             return;
         }
         if (oldEntryID < wantedBestiaryId) {
-            for (int i = oldEntryID + 1; i <= wantedBestiaryId; i++) {
-                for (int k = 1; k < NPCLoader.NPCCount; k++) {
-                    if (ContentSamples.NpcBestiarySortingId.TryGetValue(k, out int sort) && sort == i) {
+            for (System.Int32 i = oldEntryID + 1; i <= wantedBestiaryId; i++) {
+                for (System.Int32 k = 1; k < NPCLoader.NPCCount; k++) {
+                    if (ContentSamples.NpcBestiarySortingId.TryGetValue(k, out System.Int32 sort) && sort == i) {
                         ContentSamples.NpcBestiarySortingId[k] = i - 1;
                     }
                 }
             }
         }
         else {
-            for (int i = oldEntryID - 1; i >= wantedBestiaryId; i--) {
-                for (int k = 1; k < NPCLoader.NPCCount; k++) {
-                    if (ContentSamples.NpcBestiarySortingId.TryGetValue(k, out int sort) && sort == i) {
+            for (System.Int32 i = oldEntryID - 1; i >= wantedBestiaryId; i--) {
+                for (System.Int32 k = 1; k < NPCLoader.NPCCount; k++) {
+                    if (ContentSamples.NpcBestiarySortingId.TryGetValue(k, out System.Int32 sort) && sort == i) {
                         ContentSamples.NpcBestiarySortingId[k] = i + 1;
                     }
                 }

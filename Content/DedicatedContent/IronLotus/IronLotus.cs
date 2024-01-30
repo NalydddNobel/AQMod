@@ -1,7 +1,7 @@
 ﻿namespace Aequus.Content.DedicatedContent.IronLotus;
 
 public class IronLotus : ModItem, IDedicatedItem {
-    public string DedicateeName => "Blossom";
+    public System.String DedicateeName => "Blossom";
 
     public Color TextColor => new Color(110, 60, 30, 255);
 
@@ -19,12 +19,12 @@ public class IronLotus : ModItem, IDedicatedItem {
         Item.autoReuse = true;
     }
 
-    public override bool? UseItem(Player player) {
+    public override System.Boolean? UseItem(Player player) {
         //Item.FixSwing(player);
         return null;
     }
 
-    public override bool MeleePrefix() {
+    public override System.Boolean MeleePrefix() {
         return true;
     }
 }

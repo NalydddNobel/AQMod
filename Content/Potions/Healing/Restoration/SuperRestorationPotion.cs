@@ -3,7 +3,7 @@
 namespace Aequus.Content.Potions.Healing.Restoration;
 
 public class SuperRestorationPotion : ModItem, IApplyPotionDelay {
-    public bool ApplyPotionDelay(Player player) {
+    public System.Boolean ApplyPotionDelay(Player player) {
         player.potionDelay = player.restorationDelayTime;
         player.AddBuff(BuffID.PotionSickness, player.potionDelay);
         return true;

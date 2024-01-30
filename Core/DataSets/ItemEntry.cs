@@ -3,76 +3,76 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Aequus.Core.DataSets;
 
-[JsonConverter(typeof(DataEntryConverter<ItemEntry, int>))]
-public struct ItemEntry : IDataEntry<int> {
+[JsonConverter(typeof(DataEntryConverter<ItemEntry, System.Int32>))]
+public struct ItemEntry : IDataEntry<System.Int32> {
     [JsonProperty]
-    public string Name { get; set; }
+    public System.String Name { get; set; }
 
     [JsonIgnore]
-    public int Id { get; set; }
+    public System.Int32 Id { get; set; }
 
     [JsonIgnore]
-    public bool ValidEntry => Id > ItemID.None;
+    public System.Boolean ValidEntry => Id > ItemID.None;
 
     [JsonIgnore]
-    public bool VanillaEntry => Id < ItemID.Count;
+    public System.Boolean VanillaEntry => Id < ItemID.Count;
 
-    private static int _uniqueIds;
+    private static System.Int32 _uniqueIds;
 
-    public ItemEntry(string name) {
+    public ItemEntry(System.String name) {
         Name = name;
         Id = 0;
         Initialize();
     }
 
-    public ItemEntry(int id) {
+    public ItemEntry(System.Int32 id) {
         Name = null;
         Id = id;
         Initialize();
     }
 
-    public override bool Equals([NotNullWhen(true)] object obj) {
+    public override System.Boolean Equals([NotNullWhen(true)] System.Object obj) {
         return obj is not ItemEntry otherEntry ? false : otherEntry.Id.Equals(Id);
     }
 
-    public override int GetHashCode() {
+    public override System.Int32 GetHashCode() {
         return Id;
     }
 
-    public override string ToString() {
+    public override System.String ToString() {
         return Name;
     }
 
     public void Initialize() {
-        if (!string.IsNullOrEmpty(Name)) {
-            Id = ItemID.Search.TryGetId(Name, out int id) ? id : _uniqueIds--;
+        if (!System.String.IsNullOrEmpty(Name)) {
+            Id = ItemID.Search.TryGetId(Name, out System.Int32 id) ? id : _uniqueIds--;
         }
         else if (ValidEntry) {
-            Name = ItemID.Search.TryGetName(Id, out string name) ? name : "Unknown";
+            Name = ItemID.Search.TryGetName(Id, out System.String name) ? name : "Unknown";
         }
     }
 
-    public static implicit operator string(ItemEntry entry) {
+    public static implicit operator System.String(ItemEntry entry) {
         return entry.Name;
     }
 
-    public static implicit operator int(ItemEntry entry) {
+    public static implicit operator System.Int32(ItemEntry entry) {
         return entry.Id;
     }
 
-    public static explicit operator ItemEntry(int id) {
+    public static explicit operator ItemEntry(System.Int32 id) {
         return new(id);
     }
 
-    public static explicit operator ItemEntry(string name) {
+    public static explicit operator ItemEntry(System.String name) {
         return new(name);
     }
 
-    public static bool operator ==(ItemEntry left, ItemEntry right) {
+    public static System.Boolean operator ==(ItemEntry left, ItemEntry right) {
         return left.Equals(right);
     }
 
-    public static bool operator !=(ItemEntry left, ItemEntry right) {
+    public static System.Boolean operator !=(ItemEntry left, ItemEntry right) {
         return !(left == right);
     }
 }

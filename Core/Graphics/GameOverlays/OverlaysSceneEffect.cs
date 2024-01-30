@@ -10,14 +10,14 @@ public sealed class OverlaysSceneEffect : ModSceneEffect {
         RegisteredOverlays.Clear();
     }
 
-    public override void SpecialVisuals(Player player, bool isActive) {
+    public override void SpecialVisuals(Player player, System.Boolean isActive) {
         if (Main.myPlayer != player.whoAmI) {
             return;
         }
 
         foreach (var overlay in RegisteredOverlays) {
-            bool inZone = overlay.SpecialVisuals(player);
-            string biomeName = overlay.EffectKey;
+            System.Boolean inZone = overlay.SpecialVisuals(player);
+            System.String biomeName = overlay.EffectKey;
 
             if (inZone == (Overlays.Scene[biomeName].Mode != OverlayMode.Inactive)) {
                 continue;

@@ -3,13 +3,13 @@
 namespace Aequus.Common.Backpacks;
 
 public abstract class BackpackModItem : ModItem {
-    public abstract int Capacity { get; set; }
-    public abstract float SlotHue { get; set; }
+    public abstract System.Int32 Capacity { get; set; }
+    public abstract System.Single SlotHue { get; set; }
 
     [CloneByReference]
     private ItemBackpackInstance _backpack;
 
-    protected override bool CloneNewInstances => true;
+    protected override System.Boolean CloneNewInstances => true;
 
     public override void Load() {
         _backpack = new ItemBackpackInstance(this);
@@ -20,7 +20,7 @@ public abstract class BackpackModItem : ModItem {
         Item.DefaultToAccessory();
     }
 
-    public override void UpdateAccessory(Player player, bool hideVisual) {
+    public override void UpdateAccessory(Player player, System.Boolean hideVisual) {
         if (!player.TryGetModPlayer(out BackpackPlayer backpackPlayer)) {
             return;
         }
@@ -33,27 +33,27 @@ public abstract class BackpackModItem : ModItem {
         public BuilderToggle _toggle;
         public BackpackModItem BackpackItem;
 
-        private string _nameCache;
+        private System.String _nameCache;
 
         public override LocalizedText DisplayName => _parentItem.DisplayName;
 
-        public override int Capacity => BackpackItem?.Capacity ?? 0;
+        public override System.Int32 Capacity => BackpackItem?.Capacity ?? 0;
 
-        public override bool SupportsInfoAccessories => true;
+        public override System.Boolean SupportsInfoAccessories => true;
 
-        public override float SlotHue => BackpackItem?.SlotHue ?? _parentItem.SlotHue;
+        public override System.Single SlotHue => BackpackItem?.SlotHue ?? _parentItem.SlotHue;
 
-        public override string Name => _parentItem.Name;
+        public override System.String Name => _parentItem.Name;
 
         public ItemBackpackInstance(BackpackModItem parentItem) {
             _parentItem = parentItem;
         }
 
-        public override string GetDisplayName(Player player) {
+        public override System.String GetDisplayName(Player player) {
             if (BackpackItem != null) {
                 _nameCache = BackpackItem.Item.Name;
             }
-            if (!string.IsNullOrEmpty(_nameCache)) {
+            if (!System.String.IsNullOrEmpty(_nameCache)) {
                 return _nameCache;
             }
             return base.GetDisplayName(player);
@@ -63,11 +63,11 @@ public abstract class BackpackModItem : ModItem {
             BackpackItem = null;
         }
 
-        public override bool IsActive(Player player) {
+        public override System.Boolean IsActive(Player player) {
             return BackpackItem != null;
         }
 
-        public override bool IsVisible() {
+        public override System.Boolean IsVisible() {
             return _toggle.CurrentState == 0;
         }
 
@@ -86,9 +86,9 @@ public abstract class BackpackModItem : ModItem {
         private readonly BackpackData _backpack;
         private readonly BackpackModItem _backpackItem;
 
-        public override string Name => _backpack.Name;
+        public override System.String Name => _backpack.Name;
 
-        public override string Texture => _backpackItem.Texture + "BuilderToggle";
+        public override System.String Texture => _backpackItem.Texture + "BuilderToggle";
 
         public BackpackBuilderToggle(BackpackModItem backpackItem, BackpackData backpack) {
             _backpack = backpack;
@@ -103,11 +103,11 @@ public abstract class BackpackModItem : ModItem {
             BuilderSlotTextOffCache = _backpackItem.GetLocalization("BackpackDisabled", () => "Backpack Off");
         }
 
-        public override bool Active() {
+        public override System.Boolean Active() {
             return BackpackLoader.Get(Main.LocalPlayer, _backpack).IsActive(Main.LocalPlayer);
         }
 
-        public override string DisplayValue() {
+        public override System.String DisplayValue() {
             return (CurrentState == 0 ? BuilderSlotTextOnCache : BuilderSlotTextOffCache).Value;
         }
 

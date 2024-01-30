@@ -5,16 +5,16 @@ using Terraria.GameContent.Drawing;
 namespace Aequus.Common.Tiles;
 
 public class VineDrawing : ILoadable {
-    public static readonly Dictionary<int, int> VineLength = new();
+    public static readonly Dictionary<System.Int32, System.Int32> VineLength = new();
 
-    public static void DrawVine(int i, int j) {
+    public static void DrawVine(System.Int32 i, System.Int32 j) {
         SpecialTileRenderer.AddVanillaSpecialPoint(i, j, 5);
     }
 
-    private static void On_TileDrawing_DrawMultiTileVinesInWind(On_TileDrawing.orig_DrawMultiTileVinesInWind orig, TileDrawing self, Vector2 screenPosition, Vector2 offSet, int topLeftX, int topLeftY, int sizeX, int sizeY) {
+    private static void On_TileDrawing_DrawMultiTileVinesInWind(On_TileDrawing.orig_DrawMultiTileVinesInWind orig, TileDrawing self, Vector2 screenPosition, Vector2 offSet, System.Int32 topLeftX, System.Int32 topLeftY, System.Int32 sizeX, System.Int32 sizeY) {
         // Turn these into IL edits later?
 
-        if (VineLength.TryGetValue(Main.tile[topLeftX, topLeftY].TileType, out int value)) {
+        if (VineLength.TryGetValue(Main.tile[topLeftX, topLeftY].TileType, out System.Int32 value)) {
             sizeY = value;
         }
 

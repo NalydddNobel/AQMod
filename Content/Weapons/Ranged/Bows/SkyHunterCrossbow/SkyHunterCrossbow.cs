@@ -9,8 +9,8 @@ using Terraria.Utilities;
 namespace Aequus.Content.Weapons.Ranged.Bows.SkyHunterCrossbow;
 
 public class SkyHunterCrossbow : ModItem, IManageProjectile {
-    public static int ItemPickupHitSquareSize { get; set; } = 64;
-    public static int MaximumDistance { get; set; } = 600;
+    public static Int32 ItemPickupHitSquareSize { get; set; } = 64;
+    public static Int32 MaximumDistance { get; set; } = 600;
 
     public override void SetDefaults() {
         Item.width = 24;
@@ -34,7 +34,7 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
     }
 
     #region Projectiles
-    public bool PreAIProjectile(Projectile projectile) {
+    public Boolean PreAIProjectile(Projectile projectile) {
         ProjectileSource projectileSource = projectile.GetGlobalProjectile<ProjectileSource>();
         ProjectileItemData aequusProjectile = projectile.GetGlobalProjectile<ProjectileItemData>();
         if (projectileSource.isProjectileChild) {
@@ -60,7 +60,7 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
             projectile.idStaticNPCHitCooldown = 20;
         }
         var difference = Main.player[projectile.owner].Center - projectile.Center;
-        float distance = difference.Length();
+        Single distance = difference.Length();
         if (aequusProjectile.ItemData >= 0) {
             aequusProjectile.ItemData++;
             ProjectileTryPickupItems(projectile);
@@ -76,7 +76,7 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
             return true;
         }
 
-        float speed = Math.Max(Main.player[projectile.owner].velocity.Length() * 2f, 60f) / projectile.MaxUpdates;
+        Single speed = Math.Max(Main.player[projectile.owner].velocity.Length() * 2f, 60f) / projectile.MaxUpdates;
         projectile.friendly = false;
         projectile.hostile = false;
         projectile.extraUpdates = 4;
@@ -128,7 +128,7 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
 
     private static void ProjectileTryPickupItems(Projectile projectile) {
         var hitbox = Utils.CenteredRectangle(projectile.Center, new Vector2(ItemPickupHitSquareSize));
-        for (int i = 0; i < Main.maxItems; i++) {
+        for (Int32 i = 0; i < Main.maxItems; i++) {
             if (Main.item[i] != null && Main.item[i].active && Main.item[i].noGrabDelay <= 0 && Main.player[projectile.owner].ItemSpace(Main.item[i]).CanTakeItem && Main.item[i].Hitbox.Intersects(hitbox)) {
                 Main.item[i].Center = Main.player[projectile.owner].Center;
                 Main.item[i].velocity = Main.player[projectile.owner].velocity;
@@ -140,7 +140,7 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
         }
     }
 
-    public bool PreDrawProjectile(Projectile projectile, ref Color lightColor) {
+    public Boolean PreDrawProjectile(Projectile projectile, ref Color lightColor) {
         if (projectile.IsChildOrNoSpecialEffects()) {
             return true;
         }
@@ -149,28 +149,28 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
         return true;
     }
 
-    public static void DrawChain(Vector2 startPosition, Vector2 endPosition, float opacity, int animationTimer, int randomSeed, int projectileTimeLeft = int.MaxValue) {
+    public static void DrawChain(Vector2 startPosition, Vector2 endPosition, Single opacity, Int32 animationTimer, Int32 randomSeed, Int32 projectileTimeLeft = Int32.MaxValue) {
         var chainTexture = AequusTextures.Chain;
         var difference = startPosition - endPosition;
         var chainVelocity = Vector2.Normalize(difference) * chainTexture.Height();
         var chainOrigin = chainTexture.Size() / 2f;
-        float minDistance = MathF.Pow(chainTexture.Height(), 2);
+        Single minDistance = MathF.Pow(chainTexture.Height(), 2);
         var shakeVector = Vector2.Normalize(chainVelocity).RotatedBy(MathHelper.PiOver2);
         var random = new FastRandom(randomSeed);
-        float intensity = 0f;
+        Single intensity = 0f;
         if (projectileTimeLeft < 30) {
             intensity = (30 - projectileTimeLeft) / 30f;
         }
         if (animationTimer > 0 && animationTimer < 40) {
             intensity = Math.Max(intensity, (40f - animationTimer) / 40f);
         }
-        for (int i = 0; i < 200; i++) {
+        for (Int32 i = 0; i < 200; i++) {
             var offset = Vector2.Zero;
-            float rotation = chainVelocity.ToRotation();
-            float chainDistance = Vector2.Distance(endPosition, startPosition);
+            Single rotation = chainVelocity.ToRotation();
+            Single chainDistance = Vector2.Distance(endPosition, startPosition);
             if (intensity > 0f && chainDistance > 8f) {
-                float shakeMultiplier = Math.Min((chainDistance - 8f) / 200f, 1f);
-                float shakeValue = MathF.Sin(Main.GlobalTimeWrappedHourly * 33f + i * 0.3f) * intensity;
+                Single shakeMultiplier = Math.Min((chainDistance - 8f) / 200f, 1f);
+                Single shakeValue = MathF.Sin(Main.GlobalTimeWrappedHourly * 33f + i * 0.3f) * intensity;
                 offset += shakeVector * shakeValue * 12f * shakeMultiplier;
                 rotation -= shakeValue * 0.4f;
             }
@@ -182,7 +182,7 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
         }
     }
 
-    public bool OnTileCollideProjectile(Projectile projectile, Vector2 oldVelocity) {
+    public Boolean OnTileCollideProjectile(Projectile projectile, Vector2 oldVelocity) {
         //if (aequusProjectile.IsChildOrNoSpecialEffects) {
         //    return true;
         //}
@@ -196,14 +196,14 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
         return true;
     }
 
-    public void OnHitNPCProjectile(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone) {
+    public void OnHitNPCProjectile(Projectile projectile, NPC target, NPC.HitInfo hit, Int32 damageDone) {
         if (projectile.IsChildOrNoSpecialEffects()) {
             return;
         }
 
         if (projectile.penetrate == 1) {
             if (Main.myPlayer == projectile.owner) {
-                int p = Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.Center, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, projectile.owner, projectile.ai[0], projectile.ai[1], projectile.ai[2]);
+                Int32 p = Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.Center, projectile.velocity, projectile.type, projectile.damage, projectile.knockBack, projectile.owner, projectile.ai[0], projectile.ai[1], projectile.ai[2]);
                 Main.projectile[p].localAI[0] = projectile.localAI[0];
                 Main.projectile[p].localAI[1] = projectile.localAI[1];
                 Main.projectile[p].localAI[2] = projectile.localAI[2];
@@ -215,7 +215,7 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
         }
     }
 
-    public void OnKillProjectile(Projectile projectile, ProjectileItemData aequusProjectile, int timeLeft) {
+    public void OnKillProjectile(Projectile projectile, ProjectileItemData aequusProjectile, Int32 timeLeft) {
         if (Main.dedServ || aequusProjectile.ItemData <= -3 || projectile.IsChildOrNoSpecialEffects()) {
             return;
         }
@@ -223,12 +223,12 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
         BreakRopeParticles(projectile, 14f, 3f);
     }
 
-    public static void BreakRopeParticles(Projectile projectile, float ropeSegmentDistance, float ropeSegmentSize) {
+    public static void BreakRopeParticles(Projectile projectile, Single ropeSegmentDistance, Single ropeSegmentSize) {
         var projectileCenter = projectile.Center;
         var chainPosition = Main.player[projectile.owner].MountedCenter;
         var chainDifference = projectileCenter - chainPosition;
         var chainVelocity = Vector2.Normalize(chainDifference) * ropeSegmentDistance;
-        for (int i = 0; i < 200; i++) {
+        for (Int32 i = 0; i < 200; i++) {
             var d = Dust.NewDustPerfect(chainPosition + Main.rand.NextVector2Square(-ropeSegmentSize, ropeSegmentSize), DustID.Rope);
             d.noGravity = true;
             d.fadeIn = d.scale + 0.2f;

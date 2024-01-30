@@ -3,9 +3,9 @@
 namespace Aequus.Content.Fishing.CrabPots;
 
 public struct CrabPotBiomeData {
-    public int LiquidStyle { get; private set; }
+    public System.Int32 LiquidStyle { get; private set; }
 
-    public CrabPotBiomeData(int liquidStyle) {
+    public CrabPotBiomeData(System.Int32 liquidStyle) {
         LiquidStyle = liquidStyle;
     }
 
@@ -30,16 +30,16 @@ public struct CrabPotBiomeData {
             return crabPot;
         }
 
-        if (tag.TryGet("liquid", out int liquidStyleId)) {
+        if (tag.TryGet("liquid", out System.Int32 liquidStyleId)) {
             crabPot.LiquidStyle = liquidStyleId;
         }
-        else if (tag.TryGet("modLiquid", out string name)) {
+        else if (tag.TryGet("modLiquid", out System.String name)) {
             crabPot.LiquidStyle = GetWaterStyle(name);
         }
         return crabPot;
     }
 
-    internal static int GetWaterStyle(string name) {
+    internal static System.Int32 GetWaterStyle(System.String name) {
         var split = name.Split('/');
         if (ModLoader.TryGetMod(split[0], out var mod) && mod.TryFind<ModWaterStyle>(name, out var waterStyle)) {
             return waterStyle.Slot;

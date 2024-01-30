@@ -1,45 +1,43 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
+﻿using System;
 using System.IO;
 
 namespace Aequus.Common.Projectiles;
 
 public abstract class LegacyHeldSlashingSwordProjectile : LegacyHeldSwordProjectile {
-    protected bool _halfWayMark;
+    protected Boolean _halfWayMark;
 
-    public int swingDirection;
+    public Int32 swingDirection;
 
     /// <summary>
     /// Stat which determines how far the sword's laser hitbox will reach, in pixels.
     /// </summary>
-    public int swordHeight;
+    public Int32 swordHeight;
     /// <summary>
     /// Stat which determines how wide the sword's laser hitbox will be, in pixels.
     /// </summary>
-    public int swordWidth;
+    public Int32 swordWidth;
     /// <summary>
     /// Outward offset, only effects rendering.
     /// </summary>
-    public int gfxOutOffset;
+    public Int32 gfxOutOffset;
     /// <summary>
     /// Outward offset, only effects rendering. Updated every game update.
     /// </summary>
-    public int animationGFXOutOffset;
+    public Int32 animationGFXOutOffset;
 
-    public bool playedSound;
+    public Boolean playedSound;
 
-    public int freezeFrame;
+    public Int32 freezeFrame;
 
-    protected float rotationOffset;
-    protected float lastAnimProgress;
+    protected Single rotationOffset;
+    protected Single lastAnimProgress;
 
     private Vector2 angleVector;
     public Vector2 AngleVector { get => angleVector; set => angleVector = Vector2.Normalize(value); }
-    public int GFXOutOffset => gfxOutOffset + animationGFXOutOffset;
+    public Int32 GFXOutOffset => gfxOutOffset + animationGFXOutOffset;
 
 
-    public virtual bool ShouldUpdatePlayerDirection() {
+    public virtual Boolean ShouldUpdatePlayerDirection() {
         return AnimProgress > 0.4f && AnimProgress < 0.6f;
     }
 
@@ -49,11 +47,11 @@ public abstract class LegacyHeldSlashingSwordProjectile : LegacyHeldSwordProject
         swordWidth = 30;
     }
 
-    public override bool? CanDamage() {
+    public override Boolean? CanDamage() {
         return AnimProgress > 0.4f && AnimProgress < 0.6f && freezeFrame <= 0 ? null : false;
     }
 
-    protected override void UpdateSword(Player player, AequusPlayer aequus, float progress) {
+    protected override void UpdateSword(Player player, AequusPlayer aequus, Single progress) {
         var arm = Main.GetPlayerArmPosition(Projectile);
         if (!_halfWayMark && progress >= 0.5f) {
             if (Projectile.numUpdates != -1 || freezeFrame > 0) {
@@ -63,7 +61,7 @@ public abstract class LegacyHeldSlashingSwordProjectile : LegacyHeldSwordProject
             _halfWayMark = true;
         }
         lastAnimProgress = progress;
-        InterpolateSword(progress, out var angleVector, out float swingProgress, out float scale, out float outer);
+        InterpolateSword(progress, out var angleVector, out Single swingProgress, out Single scale, out Single outer);
         if (freezeFrame <= 0) {
             AngleVector = angleVector;
         }
@@ -82,7 +80,7 @@ public abstract class LegacyHeldSlashingSwordProjectile : LegacyHeldSwordProject
             SetArmRotation(player);
         }
         Projectile.scale = scale;
-        animationGFXOutOffset = (int)outer;
+        animationGFXOutOffset = (Int32)outer;
 
         if (freezeFrame == 0) {
             swingTime--;
@@ -126,24 +124,24 @@ public abstract class LegacyHeldSlashingSwordProjectile : LegacyHeldSwordProject
 
     }
 
-    public virtual void UpdateSwing(float progress, float interpolatedSwingProgress) {
+    public virtual void UpdateSwing(Single progress, Single interpolatedSwingProgress) {
     }
 
-    public virtual Vector2 GetOffsetVector(float progress) {
+    public virtual Vector2 GetOffsetVector(Single progress) {
         return BaseAngleVector.RotatedBy((progress * MathHelper.Pi - MathHelper.PiOver2) * -swingDirection);
     }
 
-    public virtual float GetVisualOuter(float progress, float swingProgress) {
+    public virtual Single GetVisualOuter(Single progress, Single swingProgress) {
         return animationGFXOutOffset;
     }
 
-    public void InterpolateSword(float progress, out Vector2 offsetVector, out float swingProgress, out float scale, out float outer) {
+    public void InterpolateSword(Single progress, out Vector2 offsetVector, out Single swingProgress, out Single scale, out Single outer) {
         swingProgress = SwingProgress(progress);
         offsetVector = GetOffsetVector(swingProgress);
         scale = GetScale(swingProgress);
-        outer = (int)GetVisualOuter(progress, swingProgress);
+        outer = (Int32)GetVisualOuter(progress, swingProgress);
     }
-    public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
+    public override Boolean? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
         var center = Main.player[Projectile.owner].Center;
         //Helper.DebugDust(center - AngleVector * 20f);
         //Helper.DebugDust(center + AngleVector * (swordHeight * Projectile.scale * baseSwordScale), DustID.CursedTorch);
@@ -161,7 +159,7 @@ public abstract class LegacyHeldSlashingSwordProjectile : LegacyHeldSwordProject
         }
     }
 
-    protected virtual void UpdateArmRotation(Player player, float progress, float swingProgress) {
+    protected virtual void UpdateArmRotation(Player player, Single progress, Single swingProgress) {
         var diff = Main.player[Projectile.owner].MountedCenter - Projectile.Center;
         if (Math.Sign(diff.X) == -player.direction) {
             var v = diff;
@@ -179,7 +177,7 @@ public abstract class LegacyHeldSlashingSwordProjectile : LegacyHeldSwordProject
     }
 
     public override void SendExtraAI(BinaryWriter writer) {
-        writer.Write((byte)freezeFrame);
+        writer.Write((Byte)freezeFrame);
         writer.Write(swingDirection == -1);
         base.SendExtraAI(writer);
     }
@@ -201,7 +199,7 @@ public abstract class LegacyHeldSlashingSwordProjectile : LegacyHeldSwordProject
         DrawHelper.DrawLine(center + AngleVector.RotatedBy(MathHelper.PiOver2) * swordWidth * Projectile.scale * baseSwordScale / 2f + AngleVector * swordHeight * Projectile.scale * baseSwordScale - Main.screenPosition, center + AngleVector.RotatedBy(MathHelper.PiOver2) * swordWidth * Projectile.scale * baseSwordScale / 2f - Main.screenPosition, 4f, Color.Orange);
     }
 
-    public void GetSwordDrawInfo(out Texture2D texture, out Vector2 handPosition, out Rectangle frame, out float rotationOffset, out Vector2 origin, out SpriteEffects effects) {
+    public void GetSwordDrawInfo(out Texture2D texture, out Vector2 handPosition, out Rectangle frame, out Single rotationOffset, out Vector2 origin, out SpriteEffects effects) {
         Projectile.GetDrawInfo(out texture, out _, out frame, out _, out _);
         handPosition = Main.GetPlayerArmPosition(Projectile) - new Vector2(0f, Main.player[Projectile.owner].gfxOffY);
         rotationOffset = this.rotationOffset;
@@ -219,7 +217,7 @@ public abstract class LegacyHeldSlashingSwordProjectile : LegacyHeldSwordProject
         }
     }
 
-    protected void DrawSword(Texture2D texture, Vector2 handPosition, Rectangle frame, Color color, float rotationOffset, Vector2 origin, SpriteEffects effects) {
+    protected void DrawSword(Texture2D texture, Vector2 handPosition, Rectangle frame, Color color, Single rotationOffset, Vector2 origin, SpriteEffects effects) {
         Main.EntitySpriteDraw(
             texture,
             handPosition - Main.screenPosition + AngleVector * GFXOutOffset,
@@ -233,10 +231,10 @@ public abstract class LegacyHeldSlashingSwordProjectile : LegacyHeldSwordProject
         );
     }
 
-    protected void DrawSwordAfterImages(Texture2D texture, Vector2 handPosition, Rectangle frame, Color color, float rotationOffset, Vector2 origin, SpriteEffects effects, float loopProgress = 0.07f, float interpolationValue = -0.01f) {
-        float trailAlpha = 1f;
-        for (float f = lastAnimProgress; f > 0.05f && f < 0.95f && trailAlpha > 0f; f += interpolationValue) {
-            InterpolateSword(f, out var offsetVector, out float _, out float scale, out float outer);
+    protected void DrawSwordAfterImages(Texture2D texture, Vector2 handPosition, Rectangle frame, Color color, Single rotationOffset, Vector2 origin, SpriteEffects effects, Single loopProgress = 0.07f, Single interpolationValue = -0.01f) {
+        Single trailAlpha = 1f;
+        for (Single f = lastAnimProgress; f > 0.05f && f < 0.95f && trailAlpha > 0f; f += interpolationValue) {
+            InterpolateSword(f, out var offsetVector, out Single _, out Single scale, out Single outer);
             Main.EntitySpriteDraw(
                 texture,
                 handPosition - Main.screenPosition + offsetVector * GFXOutOffset,
@@ -252,7 +250,7 @@ public abstract class LegacyHeldSlashingSwordProjectile : LegacyHeldSwordProject
         }
     }
 
-    protected void DrawSwordTipFlare(Vector2 handPosition, float swordTipLength, Vector2 flareSize, Color flareColor, float bloomScale, Color bloomColor) {
+    protected void DrawSwordTipFlare(Vector2 handPosition, Single swordTipLength, Vector2 flareSize, Color flareColor, Single bloomScale, Color bloomColor) {
         var flare = AequusTextures.Flare.Value;
         var flareOrigin = flare.Size() / 2f;
         var flarePosition = handPosition - Main.screenPosition + AngleVector * swordTipLength * baseSwordScale;

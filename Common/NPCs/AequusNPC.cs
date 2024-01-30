@@ -1,12 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Reflection;
 
 namespace Aequus.Common.NPCs;
 
 public partial class AequusNPC : GlobalNPC {
-    public override bool InstancePerEntity => true;
-    protected override bool CloneNewInstances => true;
+    public override Boolean InstancePerEntity => true;
+    protected override Boolean CloneNewInstances => true;
 
     public override void Load() {
         Load_AutomaticResetEffects();
@@ -34,13 +33,13 @@ public partial class AequusNPC : GlobalNPC {
         statSpeedY = 1f;
     }
 
-    public void DrawBehindNPC(int i, bool behindTiles, ref Vector2 drawOffset) {
+    public void DrawBehindNPC(Int32 i, Boolean behindTiles, ref Vector2 drawOffset) {
         var npc = Main.npc[i];
         var sb = Main.spriteBatch;
         DrawBehindNPC_StunGun(npc, sb, ref drawOffset);
     }
 
-    public void DrawAboveNPC(int i, bool behindTiles) {
+    public void DrawAboveNPC(Int32 i, Boolean behindTiles) {
         var npc = Main.npc[i];
         var sb = Main.spriteBatch;
         DrawAboveNPC_StunGun(npc, sb);

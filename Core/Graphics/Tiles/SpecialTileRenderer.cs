@@ -1,6 +1,4 @@
-﻿using Aequus.Content.Graphics;
-using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria.GameContent.Drawing;
@@ -19,7 +17,7 @@ internal sealed class SpecialTileRenderer : ModSystem {
     private static FieldInfo _addSpecialPointSpecialsCount;
     private static TileDrawing _rendererCache;
     private static Point[][] _specialPositions;
-    private static int[] _specialsCount;
+    private static Int32[] _specialsCount;
 
     public override void Load() {
         if (Main.dedServ) {
@@ -30,11 +28,11 @@ internal sealed class SpecialTileRenderer : ModSystem {
         _addSpecialPointSpecialsCount = typeof(TileDrawing).GetField("_specialsCount", BindingFlags.NonPublic | BindingFlags.Instance);
 
         SolidDrawPoints = new List<Point>[TileRenderLayerID.Count];
-        for (int i = 0; i < TileRenderLayerID.Count; i++) {
+        for (Int32 i = 0; i < TileRenderLayerID.Count; i++) {
             SolidDrawPoints[i] = new List<Point>();
         }
         DrawPoints = new List<Point>[TileRenderLayerID.Count];
-        for (int i = 0; i < TileRenderLayerID.Count; i++) {
+        for (Int32 i = 0; i < TileRenderLayerID.Count; i++) {
             DrawPoints[i] = new List<Point>();
         }
         On_TileDrawing.DrawMasterTrophies += TileDrawing_DrawMasterTrophies;
@@ -86,9 +84,9 @@ internal sealed class SpecialTileRenderer : ModSystem {
         }
 
         _specialPositions = (Point[][])_addSpecialPointSpecialPositions.GetValue(otherRenderer);
-        _specialsCount = (int[])_addSpecialPointSpecialsCount.GetValue(otherRenderer);
+        _specialsCount = (Int32[])_addSpecialPointSpecialsCount.GetValue(otherRenderer);
     }
-    public static void AddVanillaSpecialPoint(int x, int y, int type) {
+    public static void AddVanillaSpecialPoint(Int32 x, Int32 y, Int32 type) {
         if (_specialPositions == null) {
             return;
         }
@@ -96,21 +94,21 @@ internal sealed class SpecialTileRenderer : ModSystem {
         _specialPositions[type][_specialsCount[type]++] = new Point(x, y);
     }
 
-    public static void Add(Point p, byte renderLayer) {
+    public static void Add(Point p, Byte renderLayer) {
         DrawPoints[renderLayer].Add(p);
     }
-    public static void Add(int i, int j, byte renderLayer) {
+    public static void Add(Int32 i, Int32 j, Byte renderLayer) {
         Add(new Point(i, j), renderLayer);
     }
 
-    public static void AddSolid(Point p, byte renderLayer) {
+    public static void AddSolid(Point p, Byte renderLayer) {
         SolidDrawPoints[renderLayer].Add(p);
     }
-    public static void AddSolid(int i, int j, byte renderLayer) {
+    public static void AddSolid(Int32 i, Int32 j, Byte renderLayer) {
         AddSolid(new Point(i, j), renderLayer);
     }
 
-    public static bool AnyInLayer(byte layerId) {
+    public static Boolean AnyInLayer(Byte layerId) {
         return DrawPoints[layerId].Count > 0 || SolidDrawPoints[layerId].Count > 0;
     }
 
@@ -126,18 +124,18 @@ internal sealed class SpecialTileRenderer : ModSystem {
         Render(TileRenderLayerID.PostDrawVines);
     }
 
-    private static void TileDrawing_PreDrawTiles(On_TileDrawing.orig_PreDrawTiles orig, TileDrawing tileRenderer, bool solidLayer, bool forRenderTargets, bool intoRenderTargets) {
+    private static void TileDrawing_PreDrawTiles(On_TileDrawing.orig_PreDrawTiles orig, TileDrawing tileRenderer, Boolean solidLayer, Boolean forRenderTargets, Boolean intoRenderTargets) {
         CheckRenderer(tileRenderer);
         orig(tileRenderer, solidLayer, forRenderTargets, intoRenderTargets);
         if (intoRenderTargets || Lighting.UpdateEveryFrame) {
             if (!solidLayer) {
                 PreDrawNonSolidTiles?.Invoke();
-                for (int i = 0; i < DrawPoints.Length; i++) {
+                for (Int32 i = 0; i < DrawPoints.Length; i++) {
                     DrawPoints[i].Clear();
                 }
             }
             else {
-                for (int i = 0; i < SolidDrawPoints.Length; i++) {
+                for (Int32 i = 0; i < SolidDrawPoints.Length; i++) {
                     SolidDrawPoints[i].Clear();
                 }
             }
@@ -150,19 +148,19 @@ internal sealed class SpecialTileRenderer : ModSystem {
         }
     }
 
-    public static void Render(byte layer) {
+    public static void Render(Byte layer) {
         if (SolidDrawPoints == null || DrawPoints == null) {
             return;
         }
 
         try {
-            for (int i = 0; i < SolidDrawPoints[layer].Count; i++) {
+            for (Int32 i = 0; i < SolidDrawPoints[layer].Count; i++) {
                 Point p = SolidDrawPoints[layer][i];
                 if (Main.tile[p].HasTile && ModContent.GetModTile(Main.tile[p].TileType) is ISpecialTileRenderer renderer) {
                     renderer.Render(p.X, p.Y, layer);
                 }
             }
-            for (int i = 0; i < DrawPoints[layer].Count; i++) {
+            for (Int32 i = 0; i < DrawPoints[layer].Count; i++) {
                 Point p = DrawPoints[layer][i];
                 if (Main.tile[p].HasTile && ModContent.GetModTile(Main.tile[p].TileType) is ISpecialTileRenderer renderer) {
                     renderer.Render(p.X, p.Y, layer);

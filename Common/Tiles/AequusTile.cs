@@ -4,7 +4,7 @@ using Aequus.Core.Initialization;
 namespace Aequus.Common.Tiles;
 
 public partial class AequusTile : GlobalTile, IPostSetupContent {
-    internal static bool[] All;
+    internal static System.Boolean[] All;
 
     public override void Load() {
         LoadHooks();
@@ -18,14 +18,14 @@ public partial class AequusTile : GlobalTile, IPostSetupContent {
         //On_WorldGen.QuickFindHome += WorldGen_QuickFindHome;
     }
 
-    private static void TryPlayCustomSound(int i, int j, ModTile modTile, bool forced, int plr, int style, bool PlaceTile) {
+    private static void TryPlayCustomSound(System.Int32 i, System.Int32 j, ModTile modTile, System.Boolean forced, System.Int32 plr, System.Int32 style, System.Boolean PlaceTile) {
         if (modTile is ICustomPlaceSound customPlaceSound) {
             customPlaceSound.PlaySound(i, j, forced, plr, style, PlaceTile);
         }
     }
 
-    private static bool WorldGen_PlaceTile(On_WorldGen.orig_PlaceTile orig, int i, int j, int Type, bool mute, bool forced, int plr, int style) {
-        bool muteOld = mute;
+    private static System.Boolean WorldGen_PlaceTile(On_WorldGen.orig_PlaceTile orig, System.Int32 i, System.Int32 j, System.Int32 Type, System.Boolean mute, System.Boolean forced, System.Int32 plr, System.Int32 style) {
+        System.Boolean muteOld = mute;
         var modTile = TileLoader.GetTile(Type);
 
         if (modTile is ICustomPlaceSound) {
@@ -52,13 +52,13 @@ public partial class AequusTile : GlobalTile, IPostSetupContent {
     #endregion
 
     public void PostSetupContent(Aequus aequus) {
-        All = new bool[TileLoader.TileCount];
-        for (int i = 0; i < All.Length; i++) {
+        All = new System.Boolean[TileLoader.TileCount];
+        for (System.Int32 i = 0; i < All.Length; i++) {
             All[i] = true;
         }
     }
 
-    public override void RightClick(int i, int j, int type) {
+    public override void RightClick(System.Int32 i, System.Int32 j, System.Int32 type) {
         CheckCustomKeys(i, j, type);
     }
 }

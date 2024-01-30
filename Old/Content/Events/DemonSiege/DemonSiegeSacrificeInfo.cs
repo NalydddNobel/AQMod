@@ -14,31 +14,31 @@ using Terraria.ModLoader.IO;
 namespace Aequus.Old.Content.Events.DemonSiege;
 
 public class DemonSiegeSacrificeInfo {
-    public int TileX { get; internal set; }
-    public int TileY { get; internal set; }
+    public Int32 TileX { get; internal set; }
+    public Int32 TileY { get; internal set; }
 
     public Vector2 WorldCenter => new Vector2(TileX * 16f + 24f, TileY * 16f);
 
-    public int MaxItems = 1;
-    public float Range = 800f;
-    public int TimeLeftMax = 3600;
-    public int TimeLeft = 3600;
-    public int PreStart = 300;
-    public int NetUpdate;
-    public byte player;
+    public Int32 MaxItems = 1;
+    public Single Range = 800f;
+    public Int32 TimeLeftMax = 3600;
+    public Int32 TimeLeft = 3600;
+    public Int32 PreStart = 300;
+    public Int32 NetUpdate;
+    public Byte player;
 
-    public bool unholyCoreUsed;
+    public Boolean unholyCoreUsed;
 
     public readonly List<Item> Items;
 
-    private float _auraScale;
-    private bool _playedSound;
-    internal bool _visible;
+    private Single _auraScale;
+    private Boolean _playedSound;
+    internal Boolean _visible;
 
-    public float AuraScale => MathF.Pow(_auraScale, 2f);
-    public bool Renderable => _visible;
+    public Single AuraScale => MathF.Pow(_auraScale, 2f);
+    public Boolean Renderable => _visible;
 
-    public DemonSiegeSacrificeInfo(int x, int y) {
+    public DemonSiegeSacrificeInfo(Int32 x, Int32 y) {
         TileX = x;
         TileY = y;
         Items = new List<Item>();
@@ -53,13 +53,13 @@ public class DemonSiegeSacrificeInfo {
             unholyCoreUsed = true;
         }
     }
-    public int DetermineLength() {
-        int time = 0;
+    public Int32 DetermineLength() {
+        Int32 time = 0;
         foreach (var i in Items) {
             if (AltarSacrifices.OriginalToConversion.TryGetValue(i.netID, out var value)) {
-                int newTime = 7200 * (int)(value.Progression + 1);
+                Int32 newTime = 7200 * (Int32)(value.Progression + 1);
                 if (unholyCoreUsed) {
-                    newTime = (int)(newTime * 0.75f);
+                    newTime = (Int32)(newTime * 0.75f);
                 }
                 if (!NPC.downedBoss3) {
                     newTime *= 2;
@@ -73,7 +73,7 @@ public class DemonSiegeSacrificeInfo {
     public Rectangle ProtectedTiles() {
         return new Rectangle(TileX, TileY, 3, 4);
     }
-    public bool OnValidTile() {
+    public Boolean OnValidTile() {
         return OblivionAltar.IsGoreNest(TileX, TileY);
     }
 
@@ -86,7 +86,7 @@ public class DemonSiegeSacrificeInfo {
             _playedSound = true;
             if (Main.netMode != NetmodeID.Server) {
                 if (player != 255) {
-                    string text = Language.GetTextValueWith("Mods.Aequus.Announcement.DemonSiege.GiveItem." + Main.rand.Next(8), new {
+                    String text = Language.GetTextValueWith("Mods.Aequus.Announcement.DemonSiege.GiveItem." + Main.rand.Next(8), new {
                         Player = Main.player[player].name,
                         Item = Items[0].Name
                     });
@@ -147,7 +147,7 @@ public class DemonSiegeSacrificeInfo {
         }
 
         if (Main.netMode != NetmodeID.Server && player != 255) {
-            string text = Language.GetTextValueWith("Mods.Aequus.Announcement.DemonSiege.EventStart." + Main.rand.Next(8), new {
+            String text = Language.GetTextValueWith("Mods.Aequus.Announcement.DemonSiege.EventStart." + Main.rand.Next(8), new {
                 Player = Main.player[player].name,
                 Item = Items[0].Name
             });
@@ -156,7 +156,7 @@ public class DemonSiegeSacrificeInfo {
         }
     }
     public void InnerUpdate_TimeLeft(Vector2 center) {
-        for (int i = 0; i < Main.maxPlayers; i++) {
+        for (Int32 i = 0; i < Main.maxPlayers; i++) {
             if (Main.player[i].active && !Main.player[i].dead && Main.player[i].Distance(center) < Range) {
                 TimeLeft -= Helper.GetTimeScale();
                 return;
@@ -180,7 +180,7 @@ public class DemonSiegeSacrificeInfo {
                 }
 
                 var item = value.Convert(i);
-                int newItem = Item.NewItem(source, itemSpawn, item);
+                Int32 newItem = Item.NewItem(source, itemSpawn, item);
                 Main.item[newItem].velocity += Main.rand.NextVector2Unit(-MathHelper.PiOver4 * 3f, MathHelper.PiOver2) * Main.rand.NextFloat(1f, 3f);
                 if (Main.netMode == NetmodeID.Server) {
                     NetMessage.SendData(MessageID.SyncItem, -1, -1, null, newItem, 1f);
@@ -192,7 +192,7 @@ public class DemonSiegeSacrificeInfo {
             NPC.SetEventFlagCleared(ref World.DownedDemonSiegeT1, -1);
         }
         if (Main.netMode != NetmodeID.Server) {
-            for (int i = 0; i < 40; i++) {
+            for (Int32 i = 0; i < 40; i++) {
                 var d = Dust.NewDustPerfect(itemSpawn + Main.rand.NextVector2Unit() * Main.rand.NextFloat(20f, 100f), DustID.SilverFlame,
                     newColor: new Color(158, 70 + Main.rand.Next(-10, 30), 10, 25) * Main.rand.NextFloat(0.9f, 1.5f), Scale: Main.rand.NextFloat(1f, 2.5f));
                 d.velocity = (d.position - itemSpawn) / 20f;
@@ -201,7 +201,7 @@ public class DemonSiegeSacrificeInfo {
             SoundEngine.PlaySound(SoundID.DD2_KoboldExplosion, new Vector2(TileX * 16f + 24f, TileY * 16f));
         }
     }
-    public void InnerUpdate_OnFail(bool clientOnly = false) {
+    public void InnerUpdate_OnFail(Boolean clientOnly = false) {
         if (!clientOnly && Main.netMode == NetmodeID.MultiplayerClient) {
             return;
         }
@@ -211,15 +211,15 @@ public class DemonSiegeSacrificeInfo {
 
         DemonSiegeSystem.SacrificeRemovalQueue.Add(new Point(TileX, TileY));
     }
-    public void OnFail_PukeItems(bool clientOnly) {
-        string itemList = "";
+    public void OnFail_PukeItems(Boolean clientOnly) {
+        String itemList = "";
         var source = new EntitySource_TileBreak(TileX, TileY, "GoreNest_MPFail");
         foreach (var i in Items) {
             if (AltarSacrifices.OriginalToConversion.TryGetValue(i.type, out var val) && val.OriginalItem == val.NewItem) {
                 continue;
             }
             if (!clientOnly) {
-                int newItem = Item.NewItem(source, new Vector2(TileX * 16f + 32f, TileY * 16f - 20f), i);
+                Int32 newItem = Item.NewItem(source, new Vector2(TileX * 16f + 32f, TileY * 16f - 20f), i);
                 Main.item[newItem].velocity += Main.rand.NextVector2Unit(-MathHelper.PiOver4 * 3f, MathHelper.PiOver2) * Main.rand.NextFloat(1f, 3f);
                 if (Main.netMode == NetmodeID.Server) {
                     NetMessage.SendData(MessageID.SyncItem, number: newItem, number2: 1f);
@@ -231,12 +231,12 @@ public class DemonSiegeSacrificeInfo {
 
             itemList += i.Name;
         }
-        if (!clientOnly && !string.IsNullOrEmpty(itemList)) {
+        if (!clientOnly && !String.IsNullOrEmpty(itemList)) {
             TextBroadcast.NewText("Mods.Aequus.Announcement.DemonSiege.Fail", DemonSiegeSystem.TextColor, itemList);
         }
     }
-    public void OnFail_EatItems(bool clientOnly) {
-        string itemList = "";
+    public void OnFail_EatItems(Boolean clientOnly) {
+        String itemList = "";
         foreach (var i in Items) {
             if (AltarSacrifices.OriginalToConversion.TryGetValue(i.type, out var val) && val.OriginalItem != val.NewItem/* || val.OriginalItem == ModContent.ItemType<VoidRing>()*/) {
                 continue;
@@ -247,11 +247,11 @@ public class DemonSiegeSacrificeInfo {
 
             itemList += ChatCommandInserts.ItemCommand(i.type);
         }
-        if (!clientOnly && !string.IsNullOrEmpty(itemList)) {
+        if (!clientOnly && !String.IsNullOrEmpty(itemList)) {
             TextBroadcast.NewText("Mods.Aequus.Announcement.DemonSiege.FailEat", new Color(255, 210, 25, 255), itemList);
         }
     }
-    public void SummonBoss1(bool voidRing) {
+    public void SummonBoss1(Boolean voidRing) {
         if (Main.netMode != NetmodeID.MultiplayerClient) {
             var worldPosition = WorldCenter;
             //NPC.SpawnBoss((int)worldPosition.X, (int)worldPosition.Y, ModContent.NPCType<Arcubus>(), Player.FindClosest(worldPosition, 2, 2));
@@ -264,24 +264,24 @@ public class DemonSiegeSacrificeInfo {
     public class DemonSiegeStatusPacket : PacketHandler {
         public void Send(DemonSiegeSacrificeInfo sacrifice) {
             ModPacket p = GetPacket();
-            p.Write((ushort)sacrifice.TileX);
-            p.Write((ushort)sacrifice.TileY);
-            p.Write((ushort)sacrifice.PreStart);
-            p.Write((ushort)sacrifice.TimeLeft);
-            p.Write((ushort)sacrifice.TimeLeftMax);
-            p.Write((byte)sacrifice.MaxItems);
+            p.Write((UInt16)sacrifice.TileX);
+            p.Write((UInt16)sacrifice.TileY);
+            p.Write((UInt16)sacrifice.PreStart);
+            p.Write((UInt16)sacrifice.TimeLeft);
+            p.Write((UInt16)sacrifice.TimeLeftMax);
+            p.Write((Byte)sacrifice.MaxItems);
             p.Write(sacrifice.Range);
             p.Write(sacrifice.player);
-            p.Write((byte)sacrifice.Items.Count);
-            for (int i = 0; i < sacrifice.Items.Count; i++) {
+            p.Write((Byte)sacrifice.Items.Count);
+            for (Int32 i = 0; i < sacrifice.Items.Count; i++) {
                 ItemIO.Send(sacrifice.Items[i], p, true, false);
             }
             p.Send();
         }
 
-        public override void Receive(BinaryReader reader, int sender) {
-            int x = reader.ReadUInt16();
-            int y = reader.ReadUInt16();
+        public override void Receive(BinaryReader reader, Int32 sender) {
+            Int32 x = reader.ReadUInt16();
+            Int32 y = reader.ReadUInt16();
             DemonSiegeSacrificeInfo sacrifice;
             if (DemonSiegeSystem.ActiveSacrifices.TryGetValue(new Point(x, y), out var value)) {
                 sacrifice = value;
@@ -300,9 +300,9 @@ public class DemonSiegeSacrificeInfo {
             sacrifice.MaxItems = reader.ReadByte();
             sacrifice.Range = reader.ReadSingle();
             sacrifice.player = reader.ReadByte();
-            int itemCount = reader.ReadByte();
+            Int32 itemCount = reader.ReadByte();
             sacrifice.Items.Clear();
-            for (int i = 0; i < itemCount; i++) {
+            for (Int32 i = 0; i < itemCount; i++) {
                 sacrifice.Items.Add(ItemIO.Receive(reader, true, false));
             }
         }

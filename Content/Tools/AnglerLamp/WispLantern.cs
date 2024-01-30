@@ -8,17 +8,17 @@ namespace Aequus.Content.Tools.AnglerLamp;
 
 [AutoloadGlowMask]
 public class WispLantern : ModItem {
-    public static int PotSightRange { get; set; } = 900;
+    public static Int32 PotSightRange { get; set; } = 900;
 
     public static Vector3 LightColor { get; set; } = Vector3.Normalize(new Vector3(0.75f, 1.35f, 1.5f));
-    public static float LightBrightness { get; set; } = 3.6f;
-    public static float LightUseBrightness { get; set; } = 4.5f;
+    public static Single LightBrightness { get; set; } = 3.6f;
+    public static Single LightUseBrightness { get; set; } = 4.5f;
 
-    public static int MiscDebuffType { get; set; } = BuffID.Confused;
-    public static int MiscDebuffTime { get; set; } = 480;
-    public static int[] FireDebuffTypes { get; set; } = new int[] { BuffID.OnFire3, BuffID.Frostburn2, BuffID.ShadowFlame };
-    public static int FireDebuffTime { get; set; } = 720;
-    public static int DebuffRange { get; set; } = 480;
+    public static Int32 MiscDebuffType { get; set; } = BuffID.Confused;
+    public static Int32 MiscDebuffTime { get; set; } = 480;
+    public static Int32[] FireDebuffTypes { get; set; } = new Int32[] { BuffID.OnFire3, BuffID.Frostburn2, BuffID.ShadowFlame };
+    public static Int32 FireDebuffTime { get; set; } = 720;
+    public static Int32 DebuffRange { get; set; } = 480;
 
     private readonly List<Dust> _dustEffects = new();
 
@@ -43,14 +43,14 @@ public class WispLantern : ModItem {
         return player.MountedCenter + new Vector2(player.direction * 19f - 0.5f, -2f * player.gravDir + player.gfxOffY);
     }
 
-    public static void LanternHitEffect(int npc, bool quiet = false) {
+    public static void LanternHitEffect(Int32 npc, Boolean quiet = false) {
         if (Main.netMode != NetmodeID.SinglePlayer && !quiet) {
             ModContent.GetInstance<WispLanternEffectPacket>().Send(npc);
             return;
         }
 
         if (Main.netMode != NetmodeID.Server) {
-            int count = Math.Clamp(Math.Max(Main.npc[npc].width, Main.npc[npc].height) / 10, 3, 8);
+            Int32 count = Math.Clamp(Math.Max(Main.npc[npc].width, Main.npc[npc].height) / 10, 3, 8);
             foreach (var particle in ModContent.GetInstance<WispLanternParticles>().NewMultiple(count)) {
                 particle.Location = Main.rand.NextVector2FromRectangle(Main.npc[npc].getRect());
                 particle.Color = Color.Lerp(Color.Teal, Color.LightSkyBlue, Main.rand.NextFloat(0.15f, 0.85f));
@@ -60,10 +60,10 @@ public class WispLantern : ModItem {
         }
     }
 
-    public override bool? UseItem(Player player) {
+    public override Boolean? UseItem(Player player) {
         var lampPosition = GetLampPosition(player);
         _dustEffects.Clear();
-        for (int i = 0; i < 12; i++) {
+        for (Int32 i = 0; i < 12; i++) {
             var d = Dust.NewDustPerfect(lampPosition, 156);
             d.velocity = (i / 13f * MathHelper.TwoPi).ToRotationVector2() * 2f;
             d.noGravity = true;
@@ -77,17 +77,17 @@ public class WispLantern : ModItem {
             return true;
         }
 
-        for (int i = 0; i < Main.maxNPCs; i++) {
+        for (Int32 i = 0; i < Main.maxNPCs; i++) {
             var npc = Main.npc[i];
             if (npc.active && npc.damage > 0) {
-                float distance = player.Distance(npc.Center);
+                Single distance = player.Distance(npc.Center);
                 if (distance >= DebuffRange) {
                     continue;
                 }
 
                 npc.AddBuff(MiscDebuffType, MiscDebuffTime);
                 if (CanBurnNPC(npc)) {
-                    for (int j = 0; j < FireDebuffTypes.Length; j++) {
+                    for (Int32 j = 0; j < FireDebuffTypes.Length; j++) {
                         npc.AddBuff(FireDebuffTypes[j], FireDebuffTime);
                     }
                 }
@@ -97,8 +97,8 @@ public class WispLantern : ModItem {
             }
         }
 
-        bool HasFireDebuff(NPC npc) {
-            for (int i = 0; i < FireDebuffTypes.Length; i++) {
+        Boolean HasFireDebuff(NPC npc) {
+            for (Int32 i = 0; i < FireDebuffTypes.Length; i++) {
                 if (npc.HasBuff(FireDebuffTypes[i])) {
                     return true;
                 }
@@ -106,7 +106,7 @@ public class WispLantern : ModItem {
             return false;
         }
 
-        bool CanBurnNPC(NPC npc) {
+        Boolean CanBurnNPC(NPC npc) {
             if (npc.dontTakeDamage || !player.CanNPCBeHitByPlayerOrPlayerProjectile(npc)) {
                 return false;
             }
@@ -120,13 +120,13 @@ public class WispLantern : ModItem {
     }
 
     public override void HoldItem(Player player) {
-        int animationEndTime = 8;
+        Int32 animationEndTime = 8;
         if (player.itemTime > animationEndTime) {
             var lampPosition = GetLampPosition(player);
-            float animationProgress = (player.itemTime - animationEndTime) / (float)(player.itemTimeMax - animationEndTime);
-            float outwards = MathF.Sin((1f - MathF.Pow(animationProgress, 2f)) * 2.2f) * 24f;
-            float positionLerp = 1f - MathF.Pow(1f - animationProgress, 3f);
-            for (int i = 0; i < _dustEffects.Count; i++) {
+            Single animationProgress = (player.itemTime - animationEndTime) / (Single)(player.itemTimeMax - animationEndTime);
+            Single outwards = MathF.Sin((1f - MathF.Pow(animationProgress, 2f)) * 2.2f) * 24f;
+            Single positionLerp = 1f - MathF.Pow(1f - animationProgress, 3f);
+            for (Int32 i = 0; i < _dustEffects.Count; i++) {
                 if (!_dustEffects[i].active) {
                     _dustEffects.RemoveAt(i);
                     i--;
@@ -134,7 +134,7 @@ public class WispLantern : ModItem {
                 else {
                     _dustEffects[i].rotation = _dustEffects[i].rotation.AngleLerp(0f, animationProgress);
                     _dustEffects[i].scale = Math.Max(_dustEffects[i].scale, 0.33f);
-                    _dustEffects[i].position = Vector2.Lerp(_dustEffects[i].position, lampPosition + (i / (float)_dustEffects.Count * MathHelper.TwoPi).ToRotationVector2() * outwards, positionLerp);
+                    _dustEffects[i].position = Vector2.Lerp(_dustEffects[i].position, lampPosition + (i / (Single)_dustEffects.Count * MathHelper.TwoPi).ToRotationVector2() * outwards, positionLerp);
                 }
             }
         }
@@ -145,9 +145,9 @@ public class WispLantern : ModItem {
         player.aggro += 400;
         player.GetModPlayer<AequusPlayer>().potSightRange += PotSightRange;
 
-        float brightness = LightBrightness;
+        Single brightness = LightBrightness;
         if (player.itemTime > 0) {
-            float animationProgress = player.itemTime / (float)player.itemTimeMax;
+            Single animationProgress = player.itemTime / (Single)player.itemTimeMax;
             brightness = MathHelper.Lerp(brightness, LightUseBrightness, animationProgress);
         }
         Lighting.AddLight(player.Center, LightColor * brightness);

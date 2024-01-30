@@ -7,12 +7,12 @@ using Terraria.Audio;
 
 namespace Aequus.Content.TownNPCs.SkyMerchant;
 public class SkyMerchantProjectile : ModProjectile {
-    public override string Texture => AequusTextures.Projectile(ProjectileID.WoodenArrowFriendly);
+    public override String Texture => AequusTextures.Projectile(ProjectileID.WoodenArrowFriendly);
 
-    private bool _playedSound;
-    public bool retreat;
-    public int animationTimer;
-    public bool _playedRetreatSound;
+    private Boolean _playedSound;
+    public Boolean retreat;
+    public Int32 animationTimer;
+    public Boolean _playedRetreatSound;
 
     public override void SetDefaults() {
         Projectile.CloneDefaults(ProjectileID.WoodenArrowFriendly);
@@ -22,7 +22,7 @@ public class SkyMerchantProjectile : ModProjectile {
         Projectile.penetrate = -1;
     }
 
-    public override bool PreAI() {
+    public override Boolean PreAI() {
         if (animationTimer != -1 && !retreat) {
             animationTimer++;
         }
@@ -37,7 +37,7 @@ public class SkyMerchantProjectile : ModProjectile {
         }
 
         var difference = Main.npc[projectileSource.parentNPCIndex].Center - Projectile.Center;
-        float distance = difference.Length();
+        Single distance = difference.Length();
         if (distance > SkyHunterCrossbow.MaximumDistance) {
             retreat = true;
             Projectile.netUpdate = true;
@@ -58,7 +58,7 @@ public class SkyMerchantProjectile : ModProjectile {
             _playedRetreatSound = true;
         }
 
-        float speed = Math.Max(Main.npc[Projectile.owner].velocity.Length() * 2f, 60f) / Projectile.MaxUpdates;
+        Single speed = Math.Max(Main.npc[Projectile.owner].velocity.Length() * 2f, 60f) / Projectile.MaxUpdates;
         Projectile.friendly = false;
         Projectile.hostile = false;
         Projectile.timeLeft = Math.Clamp(Projectile.timeLeft, 22, 44);
@@ -90,13 +90,13 @@ public class SkyMerchantProjectile : ModProjectile {
     public override void AI() {
     }
 
-    public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
+    public override void OnHitNPC(NPC target, NPC.HitInfo hit, Int32 damageDone) {
         Projectile.tileCollide = false;
         animationTimer = -4;
         Projectile.netUpdate = true;
     }
 
-    public override bool OnTileCollide(Vector2 oldVelocity) {
+    public override Boolean OnTileCollide(Vector2 oldVelocity) {
         Projectile.tileCollide = false;
         animationTimer = -4;
         Projectile.netUpdate = true;
@@ -113,7 +113,7 @@ public class SkyMerchantProjectile : ModProjectile {
         animationTimer = reader.ReadInt32();
     }
 
-    public override bool PreDraw(ref Color lightColor) {
+    public override Boolean PreDraw(ref Color lightColor) {
         if (!Projectile.TryGetGlobalProjectile(out ProjectileSource projectileSource) || !projectileSource.HasNPCOwner) {
             return false;
         }
@@ -122,7 +122,7 @@ public class SkyMerchantProjectile : ModProjectile {
         return true;
     }
 
-    public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI) {
+    public override void DrawBehind(Int32 index, List<Int32> behindNPCsAndTiles, List<Int32> behindNPCs, List<Int32> behindProjectiles, List<Int32> overPlayers, List<Int32> overWiresUI) {
         behindNPCs.Add(index);
     }
 }

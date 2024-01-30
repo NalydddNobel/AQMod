@@ -1,32 +1,31 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 
 namespace Aequus.Common.Projectiles;
 
 public abstract class LegacyHeldSwordProjectile : HeldProjBase {
-    public const string SwordSwingFlipTimer = "SwordSwingFlip";
+    public const String SwordSwingFlipTimer = "SwordSwingFlip";
 
-    private bool _init;
+    private Boolean _init;
 
-    public int swingTime;
-    public int swingTimeMax;
+    public Int32 swingTime;
+    public Int32 swingTimeMax;
 
-    protected float baseSwordScale;
+    protected Single baseSwordScale;
     public Vector2 BaseAngleVector { get => Vector2.Normalize(Projectile.velocity); set => Projectile.velocity = Vector2.Normalize(value); }
-    public virtual float AnimProgress => Math.Clamp(1f - swingTime / (float)swingTimeMax, 0f, 1f);
+    public virtual Single AnimProgress => Math.Clamp(1f - swingTime / (Single)swingTimeMax, 0f, 1f);
 
-    public int hitsLeft;
+    public Int32 hitsLeft;
 
-    public int TimesSwinged {
+    public Int32 TimesSwinged {
         get {
             return Main.player[Projectile.owner].GetModPlayer<AequusPlayer>().itemUsage / 60;
         }
         set {
-            Main.player[Projectile.owner].GetModPlayer<AequusPlayer>().itemUsage = (ushort)(value * 60);
+            Main.player[Projectile.owner].GetModPlayer<AequusPlayer>().itemUsage = (UInt16)(value * 60);
         }
     }
 
-    public virtual int AmountAllowedActive => 1;
+    public virtual Int32 AmountAllowedActive => 1;
 
     public override void SetDefaults() {
         Projectile.SetDefaultHeldProj();
@@ -54,13 +53,13 @@ public abstract class LegacyHeldSwordProjectile : HeldProjBase {
             _init = true;
         }
 
-        int amountAllowedActive = AmountAllowedActive;
+        Int32 amountAllowedActive = AmountAllowedActive;
         if ((amountAllowedActive > 0 && player.ownedProjectileCounts[Type] > amountAllowedActive) || swingTime <= 0) {
             Projectile.Kill();
         }
 
         if (!player.frozen && !player.stoned) {
-            float progress = AnimProgress;
+            Single progress = AnimProgress;
             UpdateSword(player, aequus, progress);
         }
         else {
@@ -68,15 +67,15 @@ public abstract class LegacyHeldSwordProjectile : HeldProjBase {
         }
     }
 
-    public virtual float SwingProgress(float progress) {
+    public virtual Single SwingProgress(Single progress) {
         return progress;
     }
 
-    public virtual float GetScale(float progress) {
+    public virtual Single GetScale(Single progress) {
         return baseSwordScale;
     }
 
-    protected abstract void UpdateSword(Player player, AequusPlayer aequus, float progress);
+    protected abstract void UpdateSword(Player player, AequusPlayer aequus, Single progress);
 
     private void DoInitialize(Player player, AequusPlayer aequus) {
         if (player.whoAmI == Projectile.owner) {
@@ -103,15 +102,15 @@ public abstract class LegacyHeldSwordProjectile : HeldProjBase {
     protected virtual void Initialize(Player player, AequusPlayer aequus) {
     }
 
-    public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
+    public override void OnHitNPC(NPC target, NPC.HitInfo hit, Int32 damageDone) {
         hitsLeft--;
     }
 
-    public override bool? CanHitNPC(NPC target) {
+    public override Boolean? CanHitNPC(NPC target) {
         return hitsLeft > 0 ? null : false;
     }
 
-    public override void OnKill(int timeLeft) {
+    public override void OnKill(Int32 timeLeft) {
         Main.player[Projectile.owner].ownedProjectileCounts[Type]--;
         var aequusPlayer = Main.player[Projectile.owner].GetModPlayer<AequusPlayer>();
         if (aequusPlayer.TryGetTimer(SwordSwingFlipTimer, out var timer)) {
@@ -130,33 +129,33 @@ public abstract class LegacyHeldSwordProjectile : HeldProjBase {
     }
 
     #region Swing Progress methods
-    public static float SwingProgressStariteSword(float progress) {
+    public static Single SwingProgressStariteSword(Single progress) {
         return MathF.Max(MathF.Sqrt(MathF.Sqrt(MathF.Sqrt(SwingProgressAequus(progress)))), MathHelper.Lerp(progress, 1f, progress));
     }
 
-    public static float SwingProgressSplit(float progress) {
+    public static Single SwingProgressSplit(Single progress) {
         return progress >= 0.5f ? 0.5f + (0.5f - MathF.Pow(2f, 20f * (0.5f - (progress - 0.5f)) - 10f) / 2f) : MathF.Pow(2f, 20f * progress - 10f) / 2f;
     }
-    public static float SwingProgressAequus(float progress, float pow = 2f) {
+    public static Single SwingProgressAequus(Single progress, Single pow = 2f) {
         if (progress > 0.5f) {
             return 0.5f - SwingProgressAequus(0.5f - (progress - 0.5f), pow) + 0.5f;
         }
-        return ((float)Math.Sin(Math.Pow(progress, pow) * MathHelper.TwoPi - MathHelper.PiOver2) + 1f) / 2f;
+        return ((Single)Math.Sin(Math.Pow(progress, pow) * MathHelper.TwoPi - MathHelper.PiOver2) + 1f) / 2f;
     }
-    public static float SwingProgressBoring(float progress, float pow = 2f, float startSwishing = 0.15f) {
-        float oldProg = progress;
-        float max = 1f - startSwishing;
+    public static Single SwingProgressBoring(Single progress, Single pow = 2f, Single startSwishing = 0.15f) {
+        Single oldProg = progress;
+        Single max = 1f - startSwishing;
         if (progress < startSwishing) {
-            progress *= (float)Math.Pow(progress / startSwishing, pow);
+            progress *= (Single)Math.Pow(progress / startSwishing, pow);
         }
         else if (progress > max) {
             progress -= max;
             progress = startSwishing - progress;
-            progress *= (float)Math.Pow(progress / startSwishing, pow);
+            progress *= (Single)Math.Pow(progress / startSwishing, pow);
             progress = startSwishing - progress;
             progress += max;
         }
-        return MathHelper.Clamp((float)Math.Sin(progress * MathHelper.Pi - MathHelper.PiOver2) / 2f + 0.5f, 0f, oldProg);
+        return MathHelper.Clamp((Single)Math.Sin(progress * MathHelper.Pi - MathHelper.PiOver2) / 2f + 0.5f, 0f, oldProg);
     }
     #endregion
 }

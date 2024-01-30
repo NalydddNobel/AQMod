@@ -9,6 +9,6 @@ public class BottleOSpirits : ModItem {
         Item.value = Item.buyPrice(gold: 20);
     }
 
-    public override void UpdateAccessory(Player player, bool hideVisual) {
+    public override void UpdateAccessory(Player player, System.Boolean hideVisual) {
     }
 }

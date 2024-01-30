@@ -1,5 +1,5 @@
 ﻿namespace Aequus.Core.Graphics.Tiles;
 
 internal interface ISpecialTileRenderer {
-    void Render(int i, int j, byte layer);
+    void Render(System.Int32 i, System.Int32 j, System.Byte layer);
 }

@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Aequus.Core.PhysicsObjects;
@@ -7,18 +6,18 @@ namespace Aequus.Core.PhysicsObjects;
 // Credit to https://github.com/Blockaroz for this implementation
 public class RopeChain {
     public List<RopeSegment> segments;
-    public int accuracy;
-    public float segmentLength;
+    public Int32 accuracy;
+    public Single segmentLength;
     public Vector2 gravity;
-    public bool twoPoint;
-    public float damping;
-    public bool tileCollide;
+    public Boolean twoPoint;
+    public Single damping;
+    public Boolean tileCollide;
     public Vector2 StartPos { get; set; }
     public Vector2 EndPos { get; set; }
 
-    public RopeChain(Vector2 startPoint, int segmentCount, float segmentLength, Vector2 gravity, float damping = 0f, int accuracy = 15, bool tileCollide = false) {
+    public RopeChain(Vector2 startPoint, Int32 segmentCount, Single segmentLength, Vector2 gravity, Single damping = 0f, Int32 accuracy = 15, Boolean tileCollide = false) {
         segments = new List<RopeSegment>();
-        for (int i = 0; i < segmentCount; i++) {
+        for (Int32 i = 0; i < segmentCount; i++) {
             segments.Add(new RopeSegment(startPoint + gravity.SafeNormalize(Vector2.Zero) * i));
         }
 
@@ -33,10 +32,10 @@ public class RopeChain {
         this.tileCollide = tileCollide;
     }
 
-    public RopeChain(Vector2 startPoint, Vector2 endPoint, int segmentCount, float segmentLength, Vector2 gravity, float damping = 0f, int accuracy = 15, bool tileCollide = false) {
+    public RopeChain(Vector2 startPoint, Vector2 endPoint, Int32 segmentCount, Single segmentLength, Vector2 gravity, Single damping = 0f, Int32 accuracy = 15, Boolean tileCollide = false) {
         segments = new List<RopeSegment>();
-        for (int i = 0; i < segmentCount; i++) {
-            segments.Add(new RopeSegment(Vector2.Lerp(startPoint, endPoint, (float)i / (segmentCount - 1))));
+        for (Int32 i = 0; i < segmentCount; i++) {
+            segments.Add(new RopeSegment(Vector2.Lerp(startPoint, endPoint, (Single)i / (segmentCount - 1))));
         }
 
         StartPos = startPoint;
@@ -64,7 +63,7 @@ public class RopeChain {
             segments[^1].position = EndPos;
         }
 
-        for (int i = 0; i < segments.Count; i++) {
+        for (Int32 i = 0; i < segments.Count; i++) {
             if (segments[i].position.HasNaNs()) {
                 segments[i].position = segments[0].position;
             }
@@ -76,14 +75,14 @@ public class RopeChain {
             segments[i].position += velocity;
         }
 
-        for (int i = 0; i < accuracy; i++)
+        for (Int32 i = 0; i < accuracy; i++)
             ConstrainPoints();
     }
 
     private void ConstrainPoints() {
-        for (int i = 0; i < segments.Count - 1; i++) {
-            float dist = (segments[i].position - segments[i + 1].position).Length();
-            float error = MathF.Abs(dist - segmentLength);
+        for (Int32 i = 0; i < segments.Count - 1; i++) {
+            Single dist = (segments[i].position - segments[i + 1].position).Length();
+            Single error = MathF.Abs(dist - segmentLength);
             Vector2 changeDirection = Vector2.Zero;
 
             if (dist > segmentLength) {

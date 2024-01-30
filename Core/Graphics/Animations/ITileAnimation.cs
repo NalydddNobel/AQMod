@@ -1,5 +1,5 @@
 ﻿namespace Aequus.Core.Graphics.Animations;
 
 public interface ITileAnimation {
-    bool Update(int x, int y);
+    System.Boolean Update(System.Int32 x, System.Int32 y);
 }

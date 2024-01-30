@@ -1,14 +1,14 @@
 ﻿namespace Aequus.Common.Wires;
 
 public class WiringSystem : ModSystem {
-    public static float MechCooldownMultiplier { get; set; }
+    public static System.Single MechCooldownMultiplier { get; set; }
 
     public override void Load() {
         On_Wiring.CheckMech += On_Wiring_CheckMech;
     }
 
-    private static bool On_Wiring_CheckMech(On_Wiring.orig_CheckMech orig, int i, int j, int time) {
-        return orig(i, j, (int)(time * MechCooldownMultiplier));
+    private static System.Boolean On_Wiring_CheckMech(On_Wiring.orig_CheckMech orig, System.Int32 i, System.Int32 j, System.Int32 time) {
+        return orig(i, j, (System.Int32)(time * MechCooldownMultiplier));
     }
 
     public override void ClearWorld() {

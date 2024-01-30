@@ -6,7 +6,7 @@ using Terraria.GameContent;
 namespace Aequus.Old.Content.Equipment.Accessories.HighSteaks;
 
 public class HighSteaksMoneyConsumeEffect : PlayerDrawLayer {
-    public static readonly List<float> CoinAnimations = new();
+    public static readonly List<Single> CoinAnimations = new();
 
     public override void Unload() {
         CoinAnimations?.Clear();
@@ -27,14 +27,14 @@ public class HighSteaksMoneyConsumeEffect : PlayerDrawLayer {
             return;
         }
 
-        for (int i = 0; i < CoinAnimations.Count; i++) {
-            float animationTime = CoinAnimations[i] % 100f;
-            float rotation = CoinAnimations[i] / 100f;
-            ulong seed = (ulong)rotation;
+        for (Int32 i = 0; i < CoinAnimations.Count; i++) {
+            Single animationTime = CoinAnimations[i] % 100f;
+            Single rotation = CoinAnimations[i] / 100f;
+            UInt64 seed = (UInt64)rotation;
             var drawLocation = drawInfo.Position + new Vector2(drawInfo.drawPlayer.width / 2f, drawInfo.drawPlayer.height / 2f) + rotation.ToRotationVector2() * animationTime * Utils.RandomInt(ref seed, 40, 64) / 10f;
-            float opacity = (float)Math.Pow(animationTime > 8 ? 1f - (animationTime - 8f) / 16f : 1f, 2f);
+            Single opacity = (Single)Math.Pow(animationTime > 8 ? 1f - (animationTime - 8f) / 16f : 1f, 2f);
             var texture = TextureAssets.Coin[1];
-            var frame = texture.Value.Frame(verticalFrames: 8, frameY: (int)((Main.GameUpdateCount / 10 + CoinAnimations[i] / 5) % 8));
+            var frame = texture.Value.Frame(verticalFrames: 8, frameY: (Int32)((Main.GameUpdateCount / 10 + CoinAnimations[i] / 5) % 8));
             drawInfo.DrawDataCache.Add(
                 new DrawData(texture.Value, (drawLocation - Main.screenPosition).Floor(), frame, ExtendLight.Get(drawLocation) * opacity, 0f, frame.Size() / 2f, 1f, drawInfo.drawPlayer.direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0) { shader = 0, });
             CoinAnimations[i]++;

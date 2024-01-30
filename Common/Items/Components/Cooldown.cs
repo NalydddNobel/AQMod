@@ -1,6 +1,4 @@
 ﻿using Aequus.Common.ItemPrefixes;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
@@ -9,16 +7,16 @@ using Terraria.Localization;
 namespace Aequus.Common.Items.Components;
 
 public interface ICooldownItem {
-    int CooldownTime { get; }
-    string TimerId => GetType().Name;
+    Int32 CooldownTime { get; }
+    String TimerId => GetType().Name;
 
-    void CustomPreDraw(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
+    void CustomPreDraw(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, Single scale) {
         spriteBatch.Draw(TextureAssets.Item[item.type].Value, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
     }
 }
 
 public sealed class CooldownGlobalItem : GlobalItem {
-    public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
+    public override Boolean AppliesToEntity(Item entity, Boolean lateInstantiation) {
         return entity.ModItem is ICooldownItem;
     }
 
@@ -30,12 +28,12 @@ public sealed class CooldownGlobalItem : GlobalItem {
         tooltips.AddTooltip(new(Mod, "CooldownTip", Language.GetTextValue("Mods.Aequus.Items.CommonTooltips.Cooldown", ExtendLanguage.Seconds(cooldownItem.GetCooldownTime(item.prefix)))));
     }
 
-    private static void DrawBackground(float time, float timeMax, SpriteBatch spriteBatch, Vector2 position) {
-        float progress = Math.Clamp(time / timeMax, 0f, 1f);
+    private static void DrawBackground(Single time, Single timeMax, SpriteBatch spriteBatch, Vector2 position) {
+        Single progress = Math.Clamp(time / timeMax, 0f, 1f);
         var texture = TextureAssets.InventoryBack16.Value;
         var frame = texture.Frame();
         var cooldownFrame = frame;
-        int frameRemoveY = cooldownFrame.Height - (int)(cooldownFrame.Height * (1f - progress));
+        Int32 frameRemoveY = cooldownFrame.Height - (Int32)(cooldownFrame.Height * (1f - progress));
 
         var slotColor = new Color(150, 150, 150, 0);
         if (time < 30f) {
@@ -53,7 +51,7 @@ public sealed class CooldownGlobalItem : GlobalItem {
         spriteBatch.Draw(texture, position, cooldownFrame, Utils.MultiplyRGBA(slotColor, Main.inventoryBack), 0f, cooldownFrame.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
     }
 
-    public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
+    public override Boolean PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, Single scale) {
         if (item.ModItem is not ICooldownItem cooldownItem) {
             return true;
         }
@@ -67,11 +65,11 @@ public sealed class CooldownGlobalItem : GlobalItem {
             spriteBatch.Draw(AequusTextures.Bloom, position, null, Color.Black * Math.Min(timer.TimePassed / 5f, 1f) * (1f - timer.TimePassed / timer.MaxTime), 0f, AequusTextures.Bloom.Size() / 2f, Main.inventoryScale * 0.8f, SpriteEffects.None, 0f);
             DrawBackground(timer.TimePassed, timer.MaxTime, spriteBatch, position);
 
-            float shakeIntensity = 1f - Math.Min(timer.TimePassed / 15f, 1f);
+            Single shakeIntensity = 1f - Math.Min(timer.TimePassed / 15f, 1f);
             position += Main.rand.NextVector2Square(-shakeIntensity * 7f, shakeIntensity * 7f) * Main.inventoryScale;
-            float shakeAnim = timer.TimePassed % 120f;
+            Single shakeAnim = timer.TimePassed % 120f;
             if (shakeAnim > 100f) {
-                float shakeAmount = (shakeAnim - 100f) * 0.15f * Main.inventoryScale;
+                Single shakeAmount = (shakeAnim - 100f) * 0.15f * Main.inventoryScale;
                 position += Main.rand.NextVector2Square(-shakeAmount, shakeAmount) * Main.inventoryScale;
             }
         }
@@ -82,28 +80,28 @@ public sealed class CooldownGlobalItem : GlobalItem {
 }
 
 public static class CooldownExtensions {
-    public static int GetCooldownTime<T>(this T modItem, bool ignorePrefixes = false) where T : ModItem, ICooldownItem {
+    public static Int32 GetCooldownTime<T>(this T modItem, Boolean ignorePrefixes = false) where T : ModItem, ICooldownItem {
         return GetCooldownTime(modItem, ignorePrefixes ? 0 : modItem.Item.prefix);
     }
-    public static int GetCooldownTime(this ICooldownItem cd, int prefix = 0) {
-        double cooldown = cd.CooldownTime;
+    public static Int32 GetCooldownTime(this ICooldownItem cd, Int32 prefix = 0) {
+        Double cooldown = cd.CooldownTime;
         if (PrefixLoader.GetPrefix(prefix) is CooldownPrefix cooldownPrefix) {
             cooldown *= cooldownPrefix.cooldownMultiplier;
         }
-        return (int)cooldown;
+        return (Int32)cooldown;
     }
 
-    public static bool TryGetCooldown<T>(this T modItem, Player player, out AequusPlayer.TimerData timer) where T : ModItem, ICooldownItem {
+    public static Boolean TryGetCooldown<T>(this T modItem, Player player, out AequusPlayer.TimerData timer) where T : ModItem, ICooldownItem {
         return TryGetCooldown((ICooldownItem)modItem, player, out timer);
     }
-    public static bool TryGetCooldown(this ICooldownItem cd, Player player, out AequusPlayer.TimerData timer) {
+    public static Boolean TryGetCooldown(this ICooldownItem cd, Player player, out AequusPlayer.TimerData timer) {
         return AequusPlayer.LocalTimers.TryGetValue(cd.TimerId, out timer);
     }
 
-    public static bool HasCooldown<T>(this T modItem, Player player) where T : ModItem, ICooldownItem {
+    public static Boolean HasCooldown<T>(this T modItem, Player player) where T : ModItem, ICooldownItem {
         return HasCooldown((ICooldownItem)modItem, player);
     }
-    public static bool HasCooldown(this ICooldownItem cd, Player player) {
+    public static Boolean HasCooldown(this ICooldownItem cd, Player player) {
         return player.GetModPlayer<AequusPlayer>().TimerActive(cd.TimerId);
     }
 

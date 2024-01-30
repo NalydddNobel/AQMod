@@ -9,25 +9,25 @@ using Terraria.Physics;
 namespace Aequus.Content.Weapons.Ranged.Darts.Ammo;
 
 public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
-    public const byte InitState = 0;
-    public const byte DefaultState = 1;
-    public const byte BrokenState = 2;
-    public const byte StuckState = 3;
-    public const byte ReturningState = 4;
-    public const byte TakenState = 5;
-    public const byte GolfTeeState = 6;
+    public const Byte InitState = 0;
+    public const Byte DefaultState = 1;
+    public const Byte BrokenState = 2;
+    public const Byte StuckState = 3;
+    public const Byte ReturningState = 4;
+    public const Byte TakenState = 5;
+    public const Byte GolfTeeState = 6;
 
-    public static float ShootOffsetAmount = 8f;
-    public static float Gravity = 0.1f;
-    public static float TerminalVelocity = 32f;
+    public static Single ShootOffsetAmount = 8f;
+    public static Single Gravity = 0.1f;
+    public static Single TerminalVelocity = 32f;
 
-    public byte State { get; set; }
+    public Byte State { get; set; }
 
-    public bool Broken => State >= BrokenState;
+    public Boolean Broken => State >= BrokenState;
 
-    public bool CanBeHitByGolfClub => State == GolfTeeState || State == StuckState;
+    public Boolean CanBeHitByGolfClub => State == GolfTeeState || State == StuckState;
 
-    public override string Texture => ModContent.GetInstance<PlasticDart>().Texture;
+    public override String Texture => ModContent.GetInstance<PlasticDart>().Texture;
 
     public override void SetStaticDefaults() {
         ProjectileID.Sets.TrailCacheLength[Type] = 15;
@@ -42,13 +42,13 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
         Projectile.localNPCHitCooldown = 1;
     }
 
-    public override bool? CanDamage() {
+    public override Boolean? CanDamage() {
         return Broken || Projectile.damage <= 0 ? false : null;
     }
 
     private void AI_TeeState() {
         Projectile.rotation = 0f;
-        for (int k = 0; k < Main.maxProjectiles; k++) {
+        for (Int32 k = 0; k < Main.maxProjectiles; k++) {
             if (Main.projectile[k].active && Main.projectile[k].type == Type && Main.projectile[k].damage == 0 && k != Projectile.whoAmI && Main.projectile[k].owner == Projectile.owner) {
                 Main.projectile[k].Kill();
                 return;
@@ -80,7 +80,7 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
             var item = new Item(Projectile.GetGlobalProjectile<ProjectileSource>().parentAmmoType);
             item = Main.player[Projectile.owner].GetItem(Projectile.owner, item, GetItemSettings.PickupItemFromWorld);
             if (item != null && !item.IsAir) {
-                int newItemIndex = Item.NewItem(Projectile.GetSource_FromThis(), Main.player[Projectile.owner].getRect(), item);
+                Int32 newItemIndex = Item.NewItem(Projectile.GetSource_FromThis(), Main.player[Projectile.owner].getRect(), item);
                 Main.item[newItemIndex].newAndShiny = false;
                 if (Main.netMode == NetmodeID.MultiplayerClient) {
                     NetMessage.SendData(MessageID.SyncItem, number: newItemIndex, number2: 1f);
@@ -96,14 +96,14 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
                 Bottom = Projectile.Bottom
             };
 
-            bool allowGrabbing = true;
+            Boolean allowGrabbing = true;
             if (Projectile.alpha <= 0) {
-                for (int i = 0; i < Main.maxPlayers; i++) {
+                for (Int32 i = 0; i < Main.maxPlayers; i++) {
                     if (!Main.player[i].active || Main.player[i].DeadOrGhost || !GolfHelper.IsPlayerHoldingClub(Main.player[i])) {
                         continue;
                     }
 
-                    int grabRange = Main.player[i].GetItemGrabRange(dummyItem) * 2;
+                    Int32 grabRange = Main.player[i].GetItemGrabRange(dummyItem) * 2;
                     if (Main.player[i].Distance(Projectile.Center) > grabRange) {
                         continue;
                     }
@@ -114,12 +114,12 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
             }
 
             if (allowGrabbing && !Projectile.noDropItem && Projectile.GetGlobalProjectile<ProjectileSource>().parentAmmoType > ItemID.None && Main.player[Projectile.owner].active && !Main.player[Projectile.owner].DeadOrGhost) {
-                for (int i = 0; i < Main.maxPlayers; i++) {
+                for (Int32 i = 0; i < Main.maxPlayers; i++) {
                     if (!Main.player[i].active || Main.player[i].DeadOrGhost || Main.player[i].team != Main.player[Projectile.owner].team) {
                         continue;
                     }
 
-                    int grabRange = Main.player[i].GetItemGrabRange(dummyItem);
+                    Int32 grabRange = Main.player[i].GetItemGrabRange(dummyItem);
                     if (Main.player[i].Distance(Projectile.Center) > grabRange) {
                         continue;
                     }
@@ -157,8 +157,8 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
 
         if (Math.Abs(Projectile.velocity.X) > 0.5f) {
             // Emit particles and get the tile Id for physics values
-            int d = -1;
-            ushort tilePhysicsType = ushort.MaxValue;
+            Int32 d = -1;
+            UInt16 tilePhysicsType = UInt16.MaxValue;
             if (Main.tile[bottomTile].HasUnactuatedTile && WorldGen.SolidTile(bottomTile)) {
                 d = WorldGen.KillTile_MakeTileDust(bottomTile.X, bottomTile.Y, Main.tile[bottomTile]);
                 Main.dust[d].position = Projectile.Bottom;
@@ -177,7 +177,7 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
             }
 
             // Reduce horizontal dart speed by tile dampening resistence
-            if (tilePhysicsType != ushort.MaxValue) {
+            if (tilePhysicsType != UInt16.MaxValue) {
                 Projectile.velocity.X *= TileMaterials.GetByTileId(tilePhysicsType).GolfPhysics.ImpactDampeningResistanceEfficiency;
             }
         }
@@ -194,7 +194,7 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
         Projectile.timeLeft = Math.Min(Projectile.timeLeft, Projectile.noDropItem ? 120 : 600);
     }
 
-    private bool AI_Initialize() {
+    private Boolean AI_Initialize() {
         if (Projectile.damage == 0) {
             var tileCoordinates = Projectile.Center.ToTileCoordinates();
             var tile = Framing.GetTileSafely(tileCoordinates);
@@ -209,14 +209,14 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
         return true;
     }
 
-    public override bool PreAI() {
+    public override Boolean PreAI() {
         if (Projectile.timeLeft < 60) {
             Projectile.Opacity = Projectile.timeLeft / 60f;
         }
 
         Projectile.oldRot[0] = Projectile.rotation;
         Projectile.oldRot[1] = Projectile.velocity.ToRotation();
-        for (int i = Projectile.oldRot.Length - 1; i > 1; i--) {
+        for (Int32 i = Projectile.oldRot.Length - 1; i > 1; i--) {
             Projectile.oldRot[i] = Projectile.oldRot[i - 1];
         }
 
@@ -256,7 +256,7 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
         Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
     }
 
-    public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
+    public override void OnHitNPC(NPC target, NPC.HitInfo hit, Int32 damageDone) {
         State = BrokenState;
         Projectile.damage = 0;
         Projectile.velocity = -Projectile.velocity * 0.3f;
@@ -267,7 +267,7 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
         Projectile.netUpdate = true;
     }
 
-    public override bool OnTileCollide(Vector2 oldVelocity) {
+    public override Boolean OnTileCollide(Vector2 oldVelocity) {
         if (Broken) {
             return false;
         }
@@ -278,7 +278,7 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
         // Scan forward for the impact position
         var scanEnd = Projectile.Center;
         var scanDirection = Vector2.Normalize(oldVelocity) * 2f;
-        int scans = 0;
+        Int32 scans = 0;
         do {
             scanEnd += scanDirection;
             scans++;
@@ -327,7 +327,7 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
             Projectile golfClubHelper = null;
             var offset = Vector2.Normalize(shotVector) * ShootOffsetAmount;
             Projectile.position += offset;
-            for (int i = 0; i < Main.maxProjectiles; i++) {
+            for (Int32 i = 0; i < Main.maxProjectiles; i++) {
                 var p = Main.projectile[i];
                 if (p.active && p.owner == Projectile.owner && p.type == ProjectileID.GolfClubHelper) {
                     golfClubHelper = p;
@@ -352,7 +352,7 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
         }
     }
 
-    public override bool PreDraw(ref Color lightColor) {
+    public override Boolean PreDraw(ref Color lightColor) {
         var player = Main.player[Projectile.owner];
         Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out _);
         var drawCoordinates = Projectile.position + offset + new Vector2(0f, Projectile.gfxOffY) - Main.screenPosition;
@@ -391,7 +391,7 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
         State = reader.ReadByte();
     }
 
-    bool IGolfBallProjectile.PreHit(Vector2 shotVector) {
+    Boolean IGolfBallProjectile.PreHit(Vector2 shotVector) {
         if (!CanBeHitByGolfClub) {
             return false;
         }
@@ -410,15 +410,15 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
         State = DefaultState;
     }
 
-    bool IGolfBallProjectile.StepGolfBall(ref float angularVelocity, out BallStepResult result) {
+    Boolean IGolfBallProjectile.StepGolfBall(ref Single angularVelocity, out BallStepResult result) {
         var tileCoordinates = Projectile.Center.ToTileCoordinates();
         if (!WorldGen.InWorld(tileCoordinates.X, tileCoordinates.Y, 2)) {
             result = BallStepResult.OutOfBounds();
             return true;
         }
 
-        float delta = Projectile.velocity.Length() / 2f;
-        for (float progress = 0f; progress < 1f; progress += delta) {
+        Single delta = Projectile.velocity.Length() / 2f;
+        for (Single progress = 0f; progress < 1f; progress += delta) {
             delta = Math.Min(1f - progress, delta);
             if (Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height)) {
                 result = BallStepResult.Resting();
@@ -436,7 +436,7 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
         return true;
     }
 
-    private static void StepVelocity(ref Vector2 velocity, float delta = 1f) {
+    private static void StepVelocity(ref Vector2 velocity, Single delta = 1f) {
         velocity.Y += Gravity * delta;
         if (velocity.Y > TerminalVelocity) {
             velocity.Y = TerminalVelocity;

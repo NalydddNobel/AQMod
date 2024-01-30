@@ -1,6 +1,6 @@
 ﻿namespace Aequus.Common.Tiles;
 
-public enum TileAnchorDirection : byte {
+public enum TileAnchorDirection : System.Byte {
     Invalid = 0,
     Wall,
     Bottom,

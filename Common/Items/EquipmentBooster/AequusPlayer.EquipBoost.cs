@@ -1,7 +1,7 @@
 ﻿namespace Aequus;
 
 public partial class AequusPlayer {
-    public static bool EquipmentModifierUpdate;
+    public static System.Boolean EquipmentModifierUpdate;
 
     private void PostUpdateEquips_EmpoweredEquipAbilities() {
         //if (accCrownOfBloodItemClone == null || accCrownOfBloodItemClone.IsAir || !EquipBoostDatabase.Instance.Entries.IndexInRange(accCrownOfBloodItemClone.type)) {

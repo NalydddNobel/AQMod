@@ -1,8 +1,8 @@
 ﻿using Aequus.Core.Generator;
 
-namespace Aequus; 
+namespace Aequus;
 
 public partial class AequusPlayer {
     [ResetEffects]
-    public int accWarHorn;
+    public System.Int32 accWarHorn;
 }

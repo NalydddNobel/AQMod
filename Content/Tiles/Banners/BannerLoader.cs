@@ -5,9 +5,9 @@ using System.Linq;
 namespace Aequus.Content.Tiles.Banners;
 
 public class BannerLoader : GlobalNPC {
-    public static readonly Dictionary<int, ModItem> NPCToBannerItemId = new();
+    public static readonly Dictionary<System.Int32, ModItem> NPCToBannerItemId = new();
 
-    public static void RegisterBanner(ModNPC modNPC, int legacyId = -1) {
+    public static void RegisterBanner(ModNPC modNPC, System.Int32 legacyId = -1) {
         var tile = new InstancedBannerTile(modNPC);
         var item = new InstancedBannerItem(modNPC, tile);
         var mod = modNPC.Mod;
@@ -15,7 +15,7 @@ public class BannerLoader : GlobalNPC {
         mod.AddContent(item);
 
         if (legacyId > -1) {
-            MonsterBanners.StyleToNewBannerTileConversion.Add((byte)legacyId, tile);
+            MonsterBanners.StyleToNewBannerTileConversion.Add((System.Byte)legacyId, tile);
         }
 
         LoadingSteps.EnqueuePostSetupContent(() => NPCToBannerItemId.Add(modNPC.Type, item));
@@ -36,7 +36,7 @@ public class BannerLoader : GlobalNPC {
         NPCToBannerItemId.Clear();
     }
 
-    public override bool AppliesToEntity(NPC entity, bool lateInstantiation) {
+    public override System.Boolean AppliesToEntity(NPC entity, System.Boolean lateInstantiation) {
         return NPCToBannerItemId.ContainsKey(entity.type);
     }
 

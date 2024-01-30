@@ -4,7 +4,7 @@ using System.Linq;
 namespace Aequus.Old.Content.Equipment.Accessories.PotionCanteen;
 
 public class PotionCanteenEmpty : ModItem {
-    public static int PotionRequirement { get; set; } = 15;
+    public static System.Int32 PotionRequirement { get; set; } = 15;
 
     public override void SetDefaults() {
         Item.DefaultToAccessory(20, 20);

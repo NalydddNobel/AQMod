@@ -8,8 +8,8 @@ using Terraria.UI.Gamepad;
 namespace Aequus.Core.UI;
 
 public class InventoryUISystem : ModSystem {
-    public static int CoinsAmmoOffsetX { get; internal set; }
-    public static int RightsideButtonsOffsetY { get; internal set; }
+    public static Int32 CoinsAmmoOffsetX { get; internal set; }
+    public static Int32 RightsideButtonsOffsetY { get; internal set; }
 
     public override void Load() {
         IL_Main.DrawInventory += IL_Main_DrawInventory;
@@ -24,7 +24,7 @@ public class InventoryUISystem : ModSystem {
             throw new Exception($"Could not find {nameof(Main)}.{nameof(Main.player)} loading code.");
         }
         cursor.Index--;
-        cursor.EmitDelegate<Func<int, int>>((y) => y + (Main.LocalPlayer.chest == -1 && Main.npcShop <= 0 || Main.recBigList ? RightsideButtonsOffsetY : 0));
+        cursor.EmitDelegate<Func<Int32, Int32>>((y) => y + (Main.LocalPlayer.chest == -1 && Main.npcShop <= 0 || Main.recBigList ? RightsideButtonsOffsetY : 0));
     }
 
     private static void MoveAchievementAdvisor(ILCursor cursor) {
@@ -35,10 +35,10 @@ public class InventoryUISystem : ModSystem {
             throw new Exception($"Could not find {nameof(Main)}.{nameof(Main.spriteBatch)} loading code.");
         }
         cursor.Index += 2;
-        cursor.EmitDelegate<Func<int, int>>((x) => x + CoinsAmmoOffsetX);
+        cursor.EmitDelegate<Func<Int32, Int32>>((x) => x + CoinsAmmoOffsetX);
     }
 
-    private static void MoveSlots(ILCursor cursor, string weirdHardcodedNameLeftover, float hardcodedTextXValue, int hardcodedSlotXValue) {
+    private static void MoveSlots(ILCursor cursor, String weirdHardcodedNameLeftover, Single hardcodedTextXValue, Int32 hardcodedSlotXValue) {
         // Find the "Coins" text
         if (!cursor.TryGotoNext((i) => i.MatchLdstr(weirdHardcodedNameLeftover))) {
             throw new Exception($"Could not find '{weirdHardcodedNameLeftover}' loaded string.");
@@ -49,14 +49,14 @@ public class InventoryUISystem : ModSystem {
             throw new Exception($"Could not find '{weirdHardcodedNameLeftover}' text X value.");
         }
         cursor.Index++;
-        cursor.EmitDelegate<Func<float, float>>((i) => i + CoinsAmmoOffsetX);
+        cursor.EmitDelegate<Func<Single, Single>>((i) => i + CoinsAmmoOffsetX);
 
         // Find the number 497, another hardcoded value but this time for rendering the Coins slot
         if (!cursor.TryGotoNext((i) => i.MatchLdcI4(hardcodedSlotXValue))) {
             throw new Exception($"Could not find '{weirdHardcodedNameLeftover}' slot X value.");
         }
         cursor.Index++;
-        cursor.EmitDelegate<Func<int, int>>((x) => x + CoinsAmmoOffsetX);
+        cursor.EmitDelegate<Func<Int32, Int32>>((x) => x + CoinsAmmoOffsetX);
     }
 
     private static void MoveChestIcons(ILCursor cursor) {
@@ -81,7 +81,7 @@ public class InventoryUISystem : ModSystem {
             throw new Exception($"Could not find y value for chest stack drawing.");
         }
         cursor.Index++;
-        cursor.EmitDelegate<Func<int, int>>((y) => y + RightsideButtonsOffsetY);
+        cursor.EmitDelegate<Func<Int32, Int32>>((y) => y + RightsideButtonsOffsetY);
 
         if (!cursor.TryGotoNext((i) => i.MatchCall(typeof(UILinkPointNavigator), nameof(UILinkPointNavigator.SetPosition)))) {
             throw new Exception($"Could not find {nameof(UILinkPointNavigator)}.{nameof(UILinkPointNavigator.SetPosition)} method.");
@@ -108,7 +108,7 @@ public class InventoryUISystem : ModSystem {
             throw new Exception($"Could not find y value for chest sort drawing.");
         }
         cursor.Index++;
-        cursor.EmitDelegate<Func<int, int>>((y) => y + RightsideButtonsOffsetY);
+        cursor.EmitDelegate<Func<Int32, Int32>>((y) => y + RightsideButtonsOffsetY);
     }
 
     private static void IL_Main_DrawInventory(ILContext il) {
@@ -128,22 +128,22 @@ public class InventoryUISystem : ModSystem {
         if (!Main.LocalPlayer.TryGetModPlayer(out BackpackPlayer aequusPlayer)) {
             return;
         }
-        BackpackLoader.AnimateBackpacks(aequusPlayer.backpacks, out int totalInventorySlots, out int activeBackpacks);
+        BackpackLoader.AnimateBackpacks(aequusPlayer.backpacks, out Int32 totalInventorySlots, out Int32 activeBackpacks);
 
-        int coinsAmmoOffsetWantedX = 0;
+        Int32 coinsAmmoOffsetWantedX = 0;
         if (totalInventorySlots > 0) {
-            coinsAmmoOffsetWantedX = (int)(((totalInventorySlots - 1) / 5 + 1) * BackpackSlotsUI.SlotWidth * BackpackSlotsUI.InventoryScale) + BackpackSlotsUI.BackpackPadding * activeBackpacks;
+            coinsAmmoOffsetWantedX = (Int32)(((totalInventorySlots - 1) / 5 + 1) * BackpackSlotsUI.SlotWidth * BackpackSlotsUI.InventoryScale) + BackpackSlotsUI.BackpackPadding * activeBackpacks;
         }
 
         if (CoinsAmmoOffsetX < coinsAmmoOffsetWantedX) {
-            CoinsAmmoOffsetX = (int)MathHelper.Lerp(CoinsAmmoOffsetX, coinsAmmoOffsetWantedX, 0.33f);
+            CoinsAmmoOffsetX = (Int32)MathHelper.Lerp(CoinsAmmoOffsetX, coinsAmmoOffsetWantedX, 0.33f);
             CoinsAmmoOffsetX++;
             if (CoinsAmmoOffsetX > coinsAmmoOffsetWantedX) {
                 CoinsAmmoOffsetX = coinsAmmoOffsetWantedX;
             }
         }
         else if (CoinsAmmoOffsetX > coinsAmmoOffsetWantedX) {
-            CoinsAmmoOffsetX = (int)MathHelper.Lerp(CoinsAmmoOffsetX, coinsAmmoOffsetWantedX, 0.1f);
+            CoinsAmmoOffsetX = (Int32)MathHelper.Lerp(CoinsAmmoOffsetX, coinsAmmoOffsetWantedX, 0.1f);
             CoinsAmmoOffsetX--;
             if (CoinsAmmoOffsetX < coinsAmmoOffsetWantedX) {
                 CoinsAmmoOffsetX = coinsAmmoOffsetWantedX;

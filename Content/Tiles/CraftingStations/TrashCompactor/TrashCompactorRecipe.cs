@@ -8,10 +8,10 @@ namespace Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 public struct TrashCompactorRecipe {
     public static readonly TrashCompactorRecipe None = default(TrashCompactorRecipe);
 
-    public TrashCompactorRecipe(int ingredient, params (int, int)[] results) : this(new Item(ingredient), results.Select((i) => new Item(i.Item1, i.Item2)).ToList()) {
+    public TrashCompactorRecipe(System.Int32 ingredient, params (System.Int32, System.Int32)[] results) : this(new Item(ingredient), results.Select((i) => new Item(i.Item1, i.Item2)).ToList()) {
     }
 
-    public TrashCompactorRecipe(int ingredient, params Item[] results) : this(new Item(ingredient), results.ToList()) {
+    public TrashCompactorRecipe(System.Int32 ingredient, params Item[] results) : this(new Item(ingredient), results.ToList()) {
     }
 
     public TrashCompactorRecipe(Recipe recipe) : this(recipe.createItem, recipe.requiredItem) {
@@ -25,7 +25,7 @@ public struct TrashCompactorRecipe {
     public readonly List<Item> Results;
     public readonly Item Ingredient;
 
-    public bool Invalid => Ingredient == null || Results == null || Results.Count <= 0;
+    public System.Boolean Invalid => Ingredient == null || Results == null || Results.Count <= 0;
 
     public static TrashCompactorRecipe FromItem(Item item) {
         if (ItemSets.CustomTrashCompactorRecipes.TryGetValue(item.type, out var recipeOverride)) {
@@ -50,7 +50,7 @@ public struct TrashCompactorRecipe {
             }
 
             var resultList = None;
-            for (int i = 0; i < Recipe.numRecipes; i++) {
+            for (System.Int32 i = 0; i < Recipe.numRecipes; i++) {
                 if (Main.recipe[i] == null || Main.recipe[i].createItem.type != item.type || !Main.recipe[i].NotDisabledAndConditionsMet()) {
                     continue;
                 }
@@ -69,11 +69,11 @@ public struct TrashCompactorRecipe {
         return None;
     }
 
-    public int GetIngredientQuantity(Item ingredient) {
+    public System.Int32 GetIngredientQuantity(Item ingredient) {
         return ingredient.stack / Ingredient.stack;
     }
 
-    public static void AddCustomRecipe(int ingredient, params (int, int)[] results) {
+    public static void AddCustomRecipe(System.Int32 ingredient, params (System.Int32, System.Int32)[] results) {
         ItemSets.CustomTrashCompactorRecipes[ingredient] = new(ingredient, results);
     }
 }

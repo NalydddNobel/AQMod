@@ -7,10 +7,10 @@ namespace Aequus.Core.Graphics.Tiles;
 /// <para>Place SpecialTileDrawing.Add(i, j, Type); into ModTile.PostDraw(...) to add it to the rendering list.</para>
 /// </summary>
 public interface IBatchedTile : ILoadable {
-    bool SolidLayerTile { get; }
+    System.Boolean SolidLayerTile { get; }
 
-    void BatchedPreDraw(List<BatchedTileDrawInfo> tiles, int count) {
+    void BatchedPreDraw(List<BatchedTileDrawInfo> tiles, System.Int32 count) {
     }
-    void BatchedPostDraw(List<BatchedTileDrawInfo> tiles, int count) {
+    void BatchedPostDraw(List<BatchedTileDrawInfo> tiles, System.Int32 count) {
     }
 }

@@ -5,7 +5,7 @@ using Terraria.UI;
 namespace Aequus.Content.UI;
 
 public class DeathTips : UILayer {
-    public bool resetGameTips;
+    public System.Boolean resetGameTips;
 
     public override void OnPreUpdatePlayers() {
         if (ClientConfig.Instance.ShowDeathTips && !Active && Main.LocalPlayer.dead && !Main.LocalPlayer.ghost) {
@@ -13,11 +13,11 @@ public class DeathTips : UILayer {
         }
     }
 
-    public override bool OnUIUpdate(GameTime gameTime) {
+    public override System.Boolean OnUIUpdate(GameTime gameTime) {
         return Main.LocalPlayer.dead && ClientConfig.Instance.ShowDeathTips;
     }
 
-    protected override bool DrawSelf() {
+    protected override System.Boolean DrawSelf() {
         if (Main.gameMenu) {
             return true;
         }

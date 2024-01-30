@@ -14,10 +14,10 @@ namespace Aequus.Old.Content.Enemies.DemonSiege.Keeper;
 [AutoloadBanner]
 [ModBiomes(typeof(DemonSiegeZone))]
 public class KeeperImp : ModNPC {
-    public const int TAIL_FRAME_COUNT = 15;
-    public const int WING_FRAME_COUNT = 1;
+    public const Int32 TAIL_FRAME_COUNT = 15;
+    public const Int32 WING_FRAME_COUNT = 1;
 
-    public const int CHAINED_SOUL_RITUAL_TIME = 120;
+    public const Int32 CHAINED_SOUL_RITUAL_TIME = 120;
 
     public override void SetStaticDefaults() {
         ItemID.Sets.KillsToBanner[BannerItem] = 25;
@@ -53,8 +53,8 @@ public class KeeperImp : ModNPC {
         }
     }
 
-    public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment) {
-        NPC.lifeMax = (int)(NPC.lifeMax * (1f + 0.1f * numPlayers));
+    public override void ApplyDifficultyAndPlayerScaling(Int32 numPlayers, Single balance, Single bossAdjustment) {
+        NPC.lifeMax = (Int32)(NPC.lifeMax * (1f + 0.1f * numPlayers));
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -62,17 +62,17 @@ public class KeeperImp : ModNPC {
     }
 
     public override void AI() {
-        if ((int)NPC.ai[0] == -1) {
+        if ((Int32)NPC.ai[0] == -1) {
             NPC.velocity.X *= 0.98f;
             NPC.velocity.Y -= 0.025f;
             return;
         }
 
-        int maximumTrappers = GetMaximumTrappers();
-        int trapperId = ModContent.NPCType<ChainedSoul>();
-        int whoAmI = NPC.whoAmI + 1;
+        Int32 maximumTrappers = GetMaximumTrappers();
+        Int32 trapperId = ModContent.NPCType<ChainedSoul>();
+        Int32 whoAmI = NPC.whoAmI + 1;
 
-        if ((int)NPC.ai[0] == 0) {
+        if ((Int32)NPC.ai[0] == 0) {
             NPC.ai[0] = 1f;
             SpawnInitialTrappers(maximumTrappers, trapperId, whoAmI);
         }
@@ -84,17 +84,17 @@ public class KeeperImp : ModNPC {
         NPC.TargetClosest(faceTarget: false);
 
         if (NPC.HasValidTarget) {
-            float speed = 7f;
+            Single speed = 7f;
             // Trapper Ritual
             if (NPC.ai[1] < 0f) {
-                float progress = Math.Abs(NPC.ai[1]) / CHAINED_SOUL_RITUAL_TIME;
-                if ((int)NPC.ai[1] == -90f) {
+                Single progress = Math.Abs(NPC.ai[1]) / CHAINED_SOUL_RITUAL_TIME;
+                if ((Int32)NPC.ai[1] == -90f) {
                     SoundEngine.PlaySound(AequusSounds.KeeperImpSummonTelegraph, NPC.Center);
                 }
                 speed /= 4f;
 
-                int rate = (int)(4 * progress);
-                if (rate <= 0 || Math.Abs((int)NPC.ai[1]) % rate == 0) {
+                Int32 rate = (Int32)(4 * progress);
+                if (rate <= 0 || Math.Abs((Int32)NPC.ai[1]) % rate == 0) {
                     Vector2 spawnPosition = NPC.Center + Main.rand.NextVector2Unit() * Main.rand.NextFloat(1f, 2f) * NPC.width * (1f - (1f - progress) * 0.5f);
                     Vector2 spawnVelocity = NPC.Center - spawnPosition;
                     Dust d = Dust.NewDustPerfect(spawnPosition, DustID.Torch, spawnVelocity / 10f + NPC.velocity);
@@ -111,9 +111,9 @@ public class KeeperImp : ModNPC {
             NPC.ai[1]++;
 
             // Summon new trapper
-            if ((int)NPC.ai[1] == 0f) {
+            if ((Int32)NPC.ai[1] == 0f) {
                 SoundEngine.PlaySound(AequusSounds.KeeperImpSummon, NPC.Center);
-                NPC.NewNPC(NPC.GetSource_FromThis(), (int)NPC.Center.X, (int)NPC.Center.Y, trapperId, Start: NPC.whoAmI, ai1: whoAmI);
+                NPC.NewNPC(NPC.GetSource_FromThis(), (Int32)NPC.Center.X, (Int32)NPC.Center.Y, trapperId, Start: NPC.whoAmI, ai1: whoAmI);
             }
 
             if (NPC.ai[1] > 320f) {
@@ -144,19 +144,19 @@ public class KeeperImp : ModNPC {
         NPC.rotation = NPC.velocity.X * 0.0314f;
     }
 
-    private void SpawnInitialTrappers(int maximumTrappers, int trapperId, int whoAmI) {
-        int count = Main.rand.Next(maximumTrappers) + 1;
-        int spawnX = (int)NPC.position.X + NPC.width / 2;
-        int spawnY = (int)NPC.position.Y + NPC.height / 2;
-        for (int i = 0; i < count; i++) {
+    private void SpawnInitialTrappers(Int32 maximumTrappers, Int32 trapperId, Int32 whoAmI) {
+        Int32 count = Main.rand.Next(maximumTrappers) + 1;
+        Int32 spawnX = (Int32)NPC.position.X + NPC.width / 2;
+        Int32 spawnY = (Int32)NPC.position.Y + NPC.height / 2;
+        for (Int32 i = 0; i < count; i++) {
             NPC.NewNPC(NPC.GetSource_FromAI(), spawnX, spawnY, trapperId, Start: NPC.whoAmI, ai1: whoAmI);
         }
     }
 
-    private void TrapperSummonRitual(int maximumTrappers, int trapperId, int whoAmI) {
-        int totalTrappers = 0;
-        for (int i = 0; i < Main.maxNPCs; i++) {
-            if (Main.npc[i].active && !Main.npc[i].friendly && Main.npc[i].type == trapperId && (int)Main.npc[i].ai[1] == whoAmI) {
+    private void TrapperSummonRitual(Int32 maximumTrappers, Int32 trapperId, Int32 whoAmI) {
+        Int32 totalTrappers = 0;
+        for (Int32 i = 0; i < Main.maxNPCs; i++) {
+            if (Main.npc[i].active && !Main.npc[i].friendly && Main.npc[i].type == trapperId && (Int32)Main.npc[i].ai[1] == whoAmI) {
                 totalTrappers++;
             }
         }
@@ -169,7 +169,7 @@ public class KeeperImp : ModNPC {
         }
     }
 
-    private int GetMaximumTrappers() {
+    private Int32 GetMaximumTrappers() {
         return Main.getGoodWorld ? 12 : 4;
     }
 
@@ -178,11 +178,11 @@ public class KeeperImp : ModNPC {
             return;
         }
 
-        int count = 1;
+        Int32 count = 1;
         if (NPC.life <= 0) {
             count = 28;
 
-            for (int i = -1; i <= 1; i += 2) {
+            for (Int32 i = -1; i <= 1; i += 2) {
                 NPC.NewGore(AequusTextures.KeeperGoreHorn, NPC.Center + new Vector2(12f * i, -20f), NPC.velocity);
                 NPC.NewGore(AequusTextures.KeeperGoreEar, NPC.Center + new Vector2(12f * i, 0f), NPC.velocity);
                 NPC.NewGore(AequusTextures.KeeperGoreEar, NPC.Center + new Vector2(12f * i, 20f), NPC.velocity);
@@ -191,7 +191,7 @@ public class KeeperImp : ModNPC {
 
             NPC.NewGore(AequusTextures.KeeperGoreHead, NPC.position, NPC.velocity);
         }
-        for (int i = 0; i < count; i++) {
+        for (Int32 i = 0; i < count; i++) {
             var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Torch);
             d.velocity = (d.position - NPC.Center) / 8f;
             if (Main.rand.NextBool(3)) {
@@ -201,7 +201,7 @@ public class KeeperImp : ModNPC {
                 d.noGravity = true;
             }
         }
-        for (int i = 0; i < count * 2; i++) {
+        for (Int32 i = 0; i < count * 2; i++) {
             Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.FoodPiece, newColor: Color.DarkRed);
         }
     }
@@ -210,7 +210,7 @@ public class KeeperImp : ModNPC {
         npcLoot.Add(ItemDropRule.Common(ItemID.ObsidianRose, chanceDenominator: 25));
     }
 
-    public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+    public override Boolean PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
         Vector2 drawPosition = new Vector2(NPC.position.X + NPC.width / 2f, NPC.position.Y + NPC.height / 2f);
         drawPosition.Y -= 10.5f;
 
@@ -227,9 +227,9 @@ public class KeeperImp : ModNPC {
     }
     public void DrawTail(SpriteBatch spriteBatch, Vector2 drawPosition, Vector2 screenPos, Color drawColor) {
         Texture2D tailTexture = AequusTextures.KeeperImpTail.Value;
-        int frameTime = (int)(Main.GlobalTimeWrappedHourly * 15f);
-        int animation = frameTime % (TAIL_FRAME_COUNT * 2);
-        int frame;
+        Int32 frameTime = (Int32)(Main.GlobalTimeWrappedHourly * 15f);
+        Int32 animation = frameTime % (TAIL_FRAME_COUNT * 2);
+        Int32 frame;
         if (animation > TAIL_FRAME_COUNT) {
             frame = TAIL_FRAME_COUNT - animation % TAIL_FRAME_COUNT;
         }
@@ -237,7 +237,7 @@ public class KeeperImp : ModNPC {
             frame = animation % TAIL_FRAME_COUNT;
         }
         SpriteEffects effects = SpriteEffects.None;
-        int frameHeight = tailTexture.Height / TAIL_FRAME_COUNT;
+        Int32 frameHeight = tailTexture.Height / TAIL_FRAME_COUNT;
         Rectangle tailFrame = new Rectangle(0, frameHeight * frame, tailTexture.Width, frameHeight - 2);
         Vector2 tailOrig = new Vector2(tailFrame.Width / 2f, 4f);
         Vector2 offset = new Vector2(0f, 8f).RotatedBy(NPC.rotation);
@@ -248,13 +248,13 @@ public class KeeperImp : ModNPC {
         Texture2D wingsTexture = AequusTextures.KeeperImpWings.Value;
         Rectangle wingFrame = new Rectangle(0, 0, wingsTexture.Width / 2 - 2, wingsTexture.Height);
         Vector2 wingOrig = new Vector2(wingFrame.Width, 4f);
-        float wingRotation = NPC.rotation + (float)Math.Sin(Main.GlobalTimeWrappedHourly * 25f) * 0.314f;
+        Single wingRotation = NPC.rotation + (Single)Math.Sin(Main.GlobalTimeWrappedHourly * 25f) * 0.314f;
         Vector2 wingOffset = new Vector2(-8f, 0f).RotatedBy(NPC.rotation);
         spriteBatch.Draw(wingsTexture, drawPosition - screenPos + wingOffset + new Vector2(0f, 6f), wingFrame, drawColor, wingRotation, wingOrig, NPC.scale, SpriteEffects.None, 0f);
         spriteBatch.Draw(wingsTexture, drawPosition - screenPos - wingOffset + new Vector2(0f, 6f), new Rectangle(wingFrame.Width + 2, wingFrame.Y, wingFrame.Width, wingFrame.Height), drawColor, -wingRotation, new Vector2(wingFrame.Width - wingOrig.X, wingOrig.Y), NPC.scale, SpriteEffects.None, 0f);
     }
 
-    public override bool? CanFallThroughPlatforms() {
+    public override Boolean? CanFallThroughPlatforms() {
         return Main.player[NPC.target].dead
             ? true
             : Main.player[NPC.target].position.Y

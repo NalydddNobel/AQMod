@@ -5,12 +5,12 @@ namespace Aequus.Common.Backpacks;
 
 public class BackpackPlayer : ModPlayer {
     public BackpackData[] backpacks;
-    private readonly List<(string, TagCompound)> _unloadedBackpacks = new();
+    private readonly List<(System.String, TagCompound)> _unloadedBackpacks = new();
 
     public override void Initialize() {
         BackpackLoader.InitializeBackpacks(ref backpacks);
         backpacks = new BackpackData[BackpackLoader.Count];
-        for (int i = 0; i < backpacks.Length; i++) {
+        for (System.Int32 i = 0; i < backpacks.Length; i++) {
             backpacks[i] = BackpackLoader.Backpacks[i].CreateInstance();
             backpacks[i].Type = i;
             backpacks[i].Inventory = new Item[backpacks[i].Capacity];

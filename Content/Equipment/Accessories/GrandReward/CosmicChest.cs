@@ -2,7 +2,7 @@
 
 [LegacyName("GalaxyCommission", "Moro", "GhostlyGrave")]
 public class CosmicChest : ModItem {
-    public static float LuckIncrease { get; set; } = 0.05f;
+    public static System.Single LuckIncrease { get; set; } = 0.05f;
 
     public override void SetStaticDefaults() {
         ItemID.Sets.ShimmerTransformToItem[ModContent.ItemType<GrandReward>()] = Type;
@@ -21,7 +21,7 @@ public class CosmicChest : ModItem {
         Item.value = Item.sellPrice(gold: 2);
     }
 
-    public override bool? UseItem(Player player) {
+    public override System.Boolean? UseItem(Player player) {
         var aequusPlayer = player.GetModPlayer<AequusPlayer>();
         if (aequusPlayer.usedCosmicChest) {
             return false;

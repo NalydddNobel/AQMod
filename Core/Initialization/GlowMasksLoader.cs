@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
+﻿using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +7,10 @@ using Terraria.GameContent;
 namespace Aequus.Core.Initialization;
 
 public sealed class GlowMasksLoader : GlobalItem {
-    internal static readonly Dictionary<string, short> PathToGlowMaskId = new();
-    internal static readonly Dictionary<int, short> ItemIdToGlowMaskId = new();
+    internal static readonly Dictionary<String, Int16> PathToGlowMaskId = new();
+    internal static readonly Dictionary<Int32, Int16> ItemIdToGlowMaskId = new();
 
-    public static bool TryGetId(string texture, out short id) {
+    public static Boolean TryGetId(String texture, out Int16 id) {
         id = -1;
         if (ItemIdToGlowMaskId != null && PathToGlowMaskId.TryGetValue(texture, out var index)) {
             id = index;
@@ -20,19 +19,19 @@ public sealed class GlowMasksLoader : GlobalItem {
         return false;
     }
 
-    public static short GetId(int itemID) {
-        return ItemIdToGlowMaskId != null && ItemIdToGlowMaskId.TryGetValue(itemID, out var index) ? index : (short)-1;
+    public static Int16 GetId(Int32 itemID) {
+        return ItemIdToGlowMaskId != null && ItemIdToGlowMaskId.TryGetValue(itemID, out var index) ? index : (Int16)(- 1);
     }
 
-    public static short GetId(string texture) {
-        return PathToGlowMaskId != null && PathToGlowMaskId.TryGetValue(texture, out var index) ? index : (short)-1;
+    public static Int16 GetId(String texture) {
+        return PathToGlowMaskId != null && PathToGlowMaskId.TryGetValue(texture, out var index) ? index : (Int16)(-1);
     }
 
-    internal static short AddGlowmask(string texture) {
+    internal static Int16 AddGlowmask(String texture) {
         var customTexture = ModContent.Request<Texture2D>(texture, AssetRequestMode.ImmediateLoad);
         customTexture.Value.Name = texture;
 
-        short glowmaskId = (short)TextureAssets.GlowMask.Length;
+        Int16 glowmaskId = (Int16)TextureAssets.GlowMask.Length;
 
         PathToGlowMaskId.Add(texture, glowmaskId);
 
@@ -45,13 +44,13 @@ public sealed class GlowMasksLoader : GlobalItem {
     public override void Unload() {
         if (TextureAssets.GlowMask != null) {
             TextureAssets.GlowMask = TextureAssets.GlowMask.Where(delegate (Asset<Texture2D> tex) {
-                bool? obj;
+                Boolean? obj;
                 if (tex == null) {
                     obj = null;
                 }
                 else {
-                    string name = tex.Name;
-                    obj = name != null ? new bool?(!name.StartsWith("Aequus/")) : null;
+                    String name = tex.Name;
+                    obj = name != null ? new Boolean?(!name.StartsWith("Aequus/")) : null;
                 }
                 return obj ?? true;
             }).ToArray();
@@ -65,7 +64,7 @@ public sealed class GlowMasksLoader : GlobalItem {
             return;
         }
 
-        short id = GetId(item.type);
+        Int16 id = GetId(item.type);
         if (id > 0) {
             item.glowMask = id;
         }

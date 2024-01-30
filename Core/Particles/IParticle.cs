@@ -1,5 +1,5 @@
 ﻿namespace Aequus.Core.Particles;
 
 public interface IParticle {
-    bool Active { get; set; }
+    System.Boolean Active { get; set; }
 }

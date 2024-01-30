@@ -1,8 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.UI;
 using Aequus.Core;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +13,7 @@ namespace Aequus.Content.DedicatedContent;
 
 [WorkInProgress]
 public class DedicatedFaelingItem : ModItem {
-    public int dedicatedItemId;
+    public Int32 dedicatedItemId;
 
     public override void SetStaticDefaults() {
         ContentSamples.CreativeResearchItemPersistentIdOverride[Type] = ItemID.Shimmerfly;
@@ -23,7 +21,7 @@ public class DedicatedFaelingItem : ModItem {
 
     public override void SetDefaults() {
         Item.CloneDefaults(ItemID.Shimmerfly);
-        Item.makeNPC = (short)ModContent.NPCType<DedicatedFaeling>();
+        Item.makeNPC = (Int16)ModContent.NPCType<DedicatedFaeling>();
     }
 
     public override void OnSpawn(IEntitySource source) {
@@ -38,7 +36,7 @@ public class DedicatedFaelingItem : ModItem {
         }
     }
 
-    public override bool PreDrawTooltipLine(DrawableTooltipLine line, ref int yOffset) {
+    public override Boolean PreDrawTooltipLine(DrawableTooltipLine line, ref Int32 yOffset) {
         if (line.Name != "DedicatedItem") {
             return true;
         }
@@ -57,28 +55,28 @@ public class DedicatedFaelingItem : ModItem {
         return (dedicatedItem.FaelingColor * 2f) with { A = 220 };
     }
 
-    public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
+    public override Boolean PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, Single scale) {
         spriteBatch.Draw(TextureAssets.Item[Type].Value, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
         if (ItemLoader.GetItem(dedicatedItemId) is IDedicatedItem dedicatedItem) {
             var glowColor = GetGlowColor(dedicatedItem);
             spriteBatch.Draw(AequusTextures.DedicatedFaelingItem_Mask, position, frame, glowColor, 0f, origin, scale, SpriteEffects.None, 0f);
 
-            ulong seed = (ulong)(Math.Abs(Main.LocalPlayer.name.GetHashCode()) + UISystem.CurrentItemSlot.Slot);
+            UInt64 seed = (UInt64)(Math.Abs(Main.LocalPlayer.name.GetHashCode()) + UISystem.CurrentItemSlot.Slot);
             var sparkleTexture = AequusTextures.Sparkles;
             var sparkleOrigin = new Vector2(6f, 5f);
-            int size = (int)(TextureAssets.InventoryBack.Value.Width * 0.8f) / 4;
-            for (int i = 0; i < 20; i++) {
-                float uniqueTimer = (i * 0.1f + Main.GlobalTimeWrappedHourly * 0.3f) % 2f;
+            Int32 size = (Int32)(TextureAssets.InventoryBack.Value.Width * 0.8f) / 4;
+            for (Int32 i = 0; i < 20; i++) {
+                Single uniqueTimer = (i * 0.1f + Main.GlobalTimeWrappedHourly * 0.3f) % 2f;
                 var spriteEffects = Utils.RandomInt(ref seed, 2) == 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
                 var sparkleFrame = sparkleTexture.Frame(verticalFrames: 5, frameY: Utils.RandomInt(ref seed, 5));
                 var sparklePosition = position + new Vector2(Utils.RandomInt(ref seed, size), Utils.RandomInt(ref seed, size)).RotatedBy(Main.GlobalTimeWrappedHourly * 0.5f + Utils.RandomInt(ref seed, 100) / 100f * MathHelper.TwoPi);
-                float sparkleScaleMultiplier = Utils.RandomInt(ref seed, 100) / 200f + 0.8f;
+                Single sparkleScaleMultiplier = Utils.RandomInt(ref seed, 100) / 200f + 0.8f;
                 if (uniqueTimer > 1f) {
                     continue;
                 }
 
                 sparkleFrame.Height -= 2;
-                float sparkleScale = MathF.Sin(uniqueTimer * MathHelper.Pi);
+                Single sparkleScale = MathF.Sin(uniqueTimer * MathHelper.Pi);
                 Main.spriteBatch.Draw(
                     sparkleTexture,
                     sparklePosition,
@@ -95,7 +93,7 @@ public class DedicatedFaelingItem : ModItem {
         return false;
     }
 
-    public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
+    public override Boolean PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref Single rotation, ref Single scale, Int32 whoAmI) {
         var drawCoordinates = Item.Center - Main.screenPosition;
         Main.GetItemDrawFrame(Type, out var texture, out var frame);
         var origin = frame.Size() / 2f;
@@ -107,10 +105,10 @@ public class DedicatedFaelingItem : ModItem {
     }
 
     // TODO - Make the item sparkle when dropped
-    public override void Update(ref float gravity, ref float maxFallSpeed) {
+    public override void Update(ref Single gravity, ref Single maxFallSpeed) {
     }
 
-    public override bool CanStack(Item source) {
+    public override Boolean CanStack(Item source) {
         return dedicatedItemId == (source.ModItem as DedicatedFaelingItem).dedicatedItemId;
     }
 
@@ -122,7 +120,7 @@ public class DedicatedFaelingItem : ModItem {
     }
 
     public override void LoadData(TagCompound tag) {
-        if (tag.TryGet("DedicatedName", out string name)) {
+        if (tag.TryGet("DedicatedName", out String name)) {
             dedicatedItemId = IDedicatedItem.GetItemIdFromName(name);
         }
     }

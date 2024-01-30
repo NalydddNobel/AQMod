@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Core.Assets;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria.Graphics.Shaders;
 
@@ -8,8 +7,8 @@ namespace Aequus.Content.Dyes;
 
 [Autoload(false)]
 internal sealed class InstancedDyeItem : InstancedModItem {
-    public readonly int _rarity;
-    public readonly int _value;
+    public readonly Int32 _rarity;
+    public readonly Int32 _value;
     private Func<ArmorShaderData> _shaderDataFactory;
 
     private Action<ModItem> customRecipes;
@@ -32,13 +31,13 @@ internal sealed class InstancedDyeItem : InstancedModItem {
         return this;
     }
 
-    public InstancedDyeItem(string name, Func<ArmorShaderData> shaderDataFactory, int itemRarity = ItemRarityID.Blue, int value = Item.silver * 50) : base(name, $"{Helper.NamespaceFilePath(typeof(InstancedDyeItem))}/Items/{name}") {
+    public InstancedDyeItem(String name, Func<ArmorShaderData> shaderDataFactory, Int32 itemRarity = ItemRarityID.Blue, Int32 value = Item.silver * 50) : base(name, $"{Helper.NamespaceFilePath(typeof(InstancedDyeItem))}/Items/{name}") {
         _shaderDataFactory = shaderDataFactory;
         _rarity = itemRarity;
         _value = value;
     }
 
-    public override string LocalizationCategory => "Misc.Dyes";
+    public override String LocalizationCategory => "Misc.Dyes";
 
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 3;

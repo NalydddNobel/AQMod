@@ -7,7 +7,7 @@ namespace Aequus.Old.Content.Weapons.Demon.Melee;
 
 [AutoloadGlowMask]
 public class HellsBoon : ModItem {
-    private int slashTimer;
+    private System.Int32 slashTimer;
 
     public override void SetStaticDefaults() {
         AltarSacrifices.Register(ItemID.LightsBane, Type);
@@ -35,7 +35,7 @@ public class HellsBoon : ModItem {
         return lightColor.MaxRGBA(50);
     }
 
-    public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone) {
+    public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, System.Int32 damageDone) {
         target.AddBuff(ModContent.BuffType<CorruptionHellfire>(), 240);
     }
 
@@ -58,7 +58,7 @@ public class HellsBoon : ModItem {
             return;
         }
 
-        int target = Helper.FindTargetWithLineOfSight(player.Center, maxRange: 196f);
+        System.Int32 target = Helper.FindTargetWithLineOfSight(player.Center, maxRange: 196f);
         Vector2 spawnLocation;
         Vector2 velocity;
         if (target != -1) {
@@ -70,8 +70,8 @@ public class HellsBoon : ModItem {
             velocity = new Vector2(player.direction * Main.rand.NextFloat(1f), player.gravDir);
         }
 
-        int damage = player.GetWeaponDamage(Item) / 2;
-        float ai0 = 1f;
+        System.Int32 damage = player.GetWeaponDamage(Item) / 2;
+        System.Single ai0 = 1f;
         if (player.RollCrit(Item)) {
             damage *= 2;
             ai0 = 2f;
@@ -80,12 +80,12 @@ public class HellsBoon : ModItem {
         Projectile.NewProjectile(player.GetSource_ItemUse(Item), spawnLocation, Vector2.Normalize(velocity).RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f)) * 0.001f, ProjectileID.LightsBane, damage, player.GetWeaponKnockback(Item), player.whoAmI, ai0);
     }
 
-    public override bool? UseItem(Player player) {
+    public override System.Boolean? UseItem(Player player) {
         return base.UseItem(player);
     }
 
-    public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
-        damage = (int)(damage * 0.5f);
+    public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref System.Int32 type, ref System.Int32 damage, ref System.Single knockback) {
+        damage = (System.Int32)(damage * 0.5f);
         position = Main.MouseWorld;
         player.LimitPointToPlayerReachableArea(ref position);
     }

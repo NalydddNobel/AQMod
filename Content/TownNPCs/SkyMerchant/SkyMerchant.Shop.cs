@@ -21,7 +21,7 @@ namespace Aequus.Content.TownNPCs.SkyMerchant;
 
 public partial class SkyMerchant {
     public override void AddShops() {
-        int celestialMagnetAltId = VanillaChangesConfig.Instance.MoveTreasureMagnet ? ItemID.TreasureMagnet : ItemID.CelestialMagnet;
+        Int32 celestialMagnetAltId = VanillaChangesConfig.Instance.MoveTreasureMagnet ? ItemID.TreasureMagnet : ItemID.CelestialMagnet;
 
         new NPCShop(Type, "Shop")
             .AddCustomValue<SkyHunterCrossbow>(ItemCommons.Price.SkyMerchantCustomPurchasePrice * 1.5)
@@ -40,14 +40,14 @@ public partial class SkyMerchant {
             .Register();
     }
 
-    public override void ModifyActiveShop(string shopName, Item[] items) {
+    public override void ModifyActiveShop(String shopName, Item[] items) {
     }
 
     #region Town NPC loot
     private struct TownNPCDropData {
         public List<DropRateInfo> DropRateInfo;
-        public int NPCType;
-        public int NPCWhoAmI;
+        public Int32 NPCType;
+        public Int32 NPCWhoAmI;
 
         public TownNPCDropData(NPC npc) {
             NPCType = npc.type;
@@ -56,10 +56,10 @@ public partial class SkyMerchant {
         }
     }
 
-    public void ModifyActiveShop_TownNPCLoot(string shopName, Item[] items) {
-        Dictionary<int, TownNPCDropData> dropRateInfo = new();
+    public void ModifyActiveShop_TownNPCLoot(String shopName, Item[] items) {
+        Dictionary<Int32, TownNPCDropData> dropRateInfo = new();
         DropRateInfoChainFeed dropRateInfoChainFeed = new(1f);
-        for (int i = 0; i < Main.maxNPCs; i++) {
+        for (Int32 i = 0; i < Main.maxNPCs; i++) {
             if (Main.npc[i].active && Main.npc[i].townNPC && !dropRateInfo.ContainsKey(Main.npc[i].type)) {
                 var drops = Main.ItemDropsDB.GetRulesForNPCID(Main.npc[i].type, includeGlobalDrops: false);
                 if (drops == null) {
@@ -73,7 +73,7 @@ public partial class SkyMerchant {
             }
         }
 
-        int nextIndex = ExtendShop.FindNextIndex(items);
+        Int32 nextIndex = ExtendShop.FindNextIndex(items);
         foreach (var pair in dropRateInfo) {
             foreach (var dropRateInfoValue in pair.Value.DropRateInfo) {
                 if (nextIndex >= items.Length) {
@@ -86,7 +86,7 @@ public partial class SkyMerchant {
             }
         }
 
-        static bool CheckConditions(TownNPCDropData townNPCDropData, DropRateInfo dropRateInfoValue) {
+        static Boolean CheckConditions(TownNPCDropData townNPCDropData, DropRateInfo dropRateInfoValue) {
             if (dropRateInfoValue.conditions != null) {
                 DropAttemptInfo dropAttemptInfo = new() {
                     npc = Main.npc[townNPCDropData.NPCWhoAmI],

@@ -8,21 +8,21 @@ namespace Aequus.Core;
 /// </summary>
 public class IDLoader<T> where T : class {
     private static readonly IdDictionary _idDictionary = (IdDictionary)typeof(T).GetField("Search").GetValue(null);
-    private static readonly int _vanillaCount = (int)typeof(T).GetField("Count").GetValue(null);
+    private static readonly System.Int32 _vanillaCount = (System.Int32)typeof(T).GetField("Count").GetValue(null);
 
-    public static int LoadId(TagCompound tag, string name, int defaultValue = -1) {
-        if (tag.TryGet(name, out int id)) {
+    public static System.Int32 LoadId(TagCompound tag, System.String name, System.Int32 defaultValue = -1) {
+        if (tag.TryGet(name, out System.Int32 id)) {
             return id;
         }
 
-        if (!tag.TryGet(name, out string idName) || !_idDictionary.TryGetId(idName, out int foundId)) {
+        if (!tag.TryGet(name, out System.String idName) || !_idDictionary.TryGetId(idName, out System.Int32 foundId)) {
             return defaultValue;
         }
 
         return foundId;
     }
 
-    public static void SaveId(TagCompound tag, string name, int id) {
+    public static void SaveId(TagCompound tag, System.String name, System.Int32 id) {
         if (id < _vanillaCount) {
             tag[name] = id;
         }

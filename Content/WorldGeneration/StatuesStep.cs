@@ -6,25 +6,25 @@ using Terraria.WorldBuilding;
 namespace Aequus.Content.WorldGeneration;
 
 public class StatuesStep : AequusGenStep {
-    public override string InsertAfter => "Moss";
+    public override System.String InsertAfter => "Moss";
 
     public override void Apply(GenerationProgress progress, GameConfiguration config) {
-        const int MaximumIterations = 100000;
+        const System.Int32 MaximumIterations = 100000;
 
-        int statuesWanted = 2 + Main.maxTilesX / WorldGen.WorldSizeSmallX;
-        int statuesPlaced = 0;
-        int iterations = 0;
+        System.Int32 statuesWanted = 2 + Main.maxTilesX / WorldGen.WorldSizeSmallX;
+        System.Int32 statuesPlaced = 0;
+        System.Int32 iterations = 0;
 
-        int statueType = ModContent.TileType<MossStatues>();
+        System.Int32 statueType = ModContent.TileType<MossStatues>();
         do {
-            int x = Random.Next(50, Main.maxTilesX - 50);
-            int y = Random.Next((int)Main.worldSurface, Main.UnderworldLayer);
+            System.Int32 x = Random.Next(50, Main.maxTilesX - 50);
+            System.Int32 y = Random.Next((System.Int32)Main.worldSurface, Main.UnderworldLayer);
             Tile tile = Main.tile[x, y];
             if (!tile.HasUnactuatedTile) {
                 continue;
             }
 
-            int style = tile.TileType switch {
+            System.Int32 style = tile.TileType switch {
                 TileID.ArgonMoss => MossStatues.STYLE_ARGON,
                 TileID.KryptonMoss => MossStatues.STYLE_KRYPTON,
                 TileID.VioletMoss => MossStatues.STYLE_NEON,

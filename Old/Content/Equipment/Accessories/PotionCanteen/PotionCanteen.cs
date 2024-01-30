@@ -10,10 +10,10 @@ using Terraria.ModLoader.IO;
 namespace Aequus.Old.Content.Equipment.Accessories.PotionCanteen;
 
 public class PotionCanteen : ModItem {
-    public int itemIDLookup;
-    public int buffID;
+    public Int32 itemIDLookup;
+    public Int32 buffID;
 
-    public bool HasBuff => buffID > 0;
+    public Boolean HasBuff => buffID > 0;
 
     public static LocalizedText AltName { get; private set; }
 
@@ -44,7 +44,7 @@ public class PotionCanteen : ModItem {
         SetPotionDefaults();
     }
 
-    public override void UpdateAccessory(Player player, bool hideVisual) {
+    public override void UpdateAccessory(Player player, Boolean hideVisual) {
         if (buffID > 0) {
             if (Main.myPlayer == player.whoAmI) {
                 BuffUI.DisableRightClick.Add(buffID);
@@ -53,7 +53,7 @@ public class PotionCanteen : ModItem {
         }
     }
 
-    public string GetName(string originalName) {
+    public String GetName(String originalName) {
         return originalName.Replace(Lang.GetItemNameValue(Type), AltName.Format(Lang.GetBuffName(buffID)));
     }
 
@@ -71,7 +71,7 @@ public class PotionCanteen : ModItem {
     }
 
     private Rectangle GetLiquidFrame(Texture2D liquidTexture) {
-        return liquidTexture.Frame(verticalFrames: 16, frameY: (int)Main.GameUpdateCount / 7 % 15);
+        return liquidTexture.Frame(verticalFrames: 16, frameY: (Int32)Main.GameUpdateCount / 7 % 15);
     }
 
     private Color GetLiquidColor() {
@@ -86,13 +86,13 @@ public class PotionCanteen : ModItem {
             //        minBrightness = colorBrightness;
             //    }
             //}
-            float time = Main.GlobalTimeWrappedHourly;
-            colorResult = Color.Lerp(clrs[(int)time % clrs.Length], clrs[(int)(time + 1) % clrs.Length], time % 1f);
+            Single time = Main.GlobalTimeWrappedHourly;
+            colorResult = Color.Lerp(clrs[(Int32)time % clrs.Length], clrs[(Int32)(time + 1) % clrs.Length], time % 1f);
         }
         return colorResult * 1.1f;
     }
 
-    public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
+    public override Boolean PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, Single scale) {
         spriteBatch.Draw(AequusTextures.PotionCanteenEmpty, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
         if (!HasBuff) {
             return true;
@@ -100,13 +100,13 @@ public class PotionCanteen : ModItem {
         var liquidTexture = AequusTextures.PotionCanteen_Liquid.Value;
         var liquidFrame = GetLiquidFrame(liquidTexture);
         var liquidColor = GetLiquidColor();
-        float a = drawColor.A > 0 ? drawColor.A / 255f : Main.inventoryBack.A / 255f;
+        Single a = drawColor.A > 0 ? drawColor.A / 255f : Main.inventoryBack.A / 255f;
         spriteBatch.Draw(liquidTexture, position, liquidFrame, liquidColor * a, 0f, origin, scale, SpriteEffects.None, 0f);
         spriteBatch.Draw(TextureAssets.Item[Type].Value, position, frame, liquidColor with { A = 255 }, 0f, origin, scale, SpriteEffects.None, 0f);
         return false;
     }
 
-    public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
+    public override Boolean PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref Single rotation, ref Single scale, Int32 whoAmI) {
         Main.GetItemDrawFrame(Type, out Texture2D texture, out Rectangle frame);
         var position = Item.Center - Main.screenPosition;
         var origin = frame.Size() / 2f;
@@ -136,7 +136,7 @@ public class PotionCanteen : ModItem {
         SetPotionDefaults();
     }
 
-    public void OnPickupText(int index, PopupTextContext context, int stack, bool noStack, bool longText) {
+    public void OnPickupText(Int32 index, PopupTextContext context, Int32 stack, Boolean noStack, Boolean longText) {
         SetPotionDefaults();
         Main.popupText[index].name = GetName(Main.popupText[index].name);
     }

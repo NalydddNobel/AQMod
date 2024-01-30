@@ -8,8 +8,8 @@ using Terraria.GameContent;
 namespace Aequus.Old.Content.Equipment.GrapplingHooks.EnemyGrappleHook;
 
 public class MeathookProj : ModProjectile {
-    private bool _playedChainSound;
-    public int ConnectedNPC { get; set; } = -1;
+    private Boolean _playedChainSound;
+    public Int32 ConnectedNPC { get; set; } = -1;
 
     public override void SetStaticDefaults() {
         ProjectileID.Sets.SingleGrappleHook[Type] = true;
@@ -34,7 +34,7 @@ public class MeathookProj : ModProjectile {
         hitbox = Utils.CenteredRectangle(hitbox.Center.ToVector2(), hitbox.Size() * 6f);
     }
 
-    public override bool PreAI() {
+    public override Boolean PreAI() {
         if (Projectile.position.HasNaNs()) {
             Projectile.Kill();
         }
@@ -44,7 +44,7 @@ public class MeathookProj : ModProjectile {
         var player = Main.player[Projectile.owner];
         if (ConnectedNPC != -1 && !player.dead) {
             Projectile.ai[0] = 2f;
-            for (int i = 0; i < Main.maxProjectiles; i++) {
+            for (Int32 i = 0; i < Main.maxProjectiles; i++) {
                 if (i != Projectile.whoAmI && Main.projectile[i].active && Main.projectile[i].aiStyle == ProjAIStyleID.Hook && Main.projectile[i].owner == Projectile.owner) {
                     Main.projectile[i].Kill();
                 }
@@ -57,9 +57,9 @@ public class MeathookProj : ModProjectile {
             Main.npc[ConnectedNPC].AddBuff(ModContent.BuffType<MeathookDebuff>(), 20, quiet: true);
 
             Projectile.Center = Main.npc[ConnectedNPC].Center;
-            float distance = Projectile.Distance(player.Center);
+            Single distance = Projectile.Distance(player.Center);
             if (player.grapCount < 10) {
-                float size = Main.npc[ConnectedNPC].Size.Length();
+                Single size = Main.npc[ConnectedNPC].Size.Length();
                 if (distance < size * 6f) {
                     if (!_playedChainSound) {
                         SoundEngine.PlaySound(AequusSounds.MeathookPull with { Volume = 0.8f, Pitch = -0.1f, PitchVariance = 0.1f, }, Main.npc[ConnectedNPC].Center);
@@ -80,30 +80,30 @@ public class MeathookProj : ModProjectile {
             }
             return false;
         }
-        if ((int)Projectile.ai[0] == 1) {
+        if ((Int32)Projectile.ai[0] == 1) {
             Projectile.damage = 0;
         }
         return true;
     }
 
-    public override bool? CanHitNPC(NPC target) {
+    public override Boolean? CanHitNPC(NPC target) {
         return target.immortal ? false : null;
     }
 
-    public override bool? CanUseGrapple(Player player) {
-        for (int l = 0; l < Main.maxProjectiles; l++) {
+    public override Boolean? CanUseGrapple(Player player) {
+        for (Int32 l = 0; l < Main.maxProjectiles; l++) {
             if (Main.projectile[l].active && Main.projectile[l].owner == Main.myPlayer && Main.projectile[l].type == Projectile.type) {
-                return (int)Main.projectile[l].ai[0] == 2;
+                return (Int32)Main.projectile[l].ai[0] == 2;
             }
         }
         return true;
     }
 
-    public override void UseGrapple(Player player, ref int type) {
-        int hooksOut = 0;
-        int oldestHookIndex = -1;
-        int oldestHookTimeLeft = 100000;
-        for (int i = 0; i < 1000; i++) {
+    public override void UseGrapple(Player player, ref Int32 type) {
+        Int32 hooksOut = 0;
+        Int32 oldestHookIndex = -1;
+        Int32 oldestHookTimeLeft = 100000;
+        for (Int32 i = 0; i < 1000; i++) {
             if (Main.projectile[i].active && Main.projectile[i].owner == Projectile.whoAmI && Main.projectile[i].type == Projectile.type) {
                 hooksOut++;
                 if (Main.projectile[i].timeLeft < oldestHookTimeLeft) {
@@ -116,19 +116,19 @@ public class MeathookProj : ModProjectile {
             Main.projectile[oldestHookIndex].Kill();
     }
 
-    public override float GrappleRange() {
+    public override Single GrappleRange() {
         return 480f;
     }
 
-    public override void NumGrappleHooks(Player player, ref int numHooks) {
+    public override void NumGrappleHooks(Player player, ref Int32 numHooks) {
         numHooks = 1;
     }
 
-    public override void GrappleRetreatSpeed(Player player, ref float speed) {
+    public override void GrappleRetreatSpeed(Player player, ref Single speed) {
         speed = 12f;
     }
 
-    public override void GrapplePullSpeed(Player player, ref float speed) {
+    public override void GrapplePullSpeed(Player player, ref Single speed) {
         speed = ConnectedNPC > 0 ? 12f : 12f;
     }
 
@@ -137,7 +137,7 @@ public class MeathookProj : ModProjectile {
         modifiers.Knockback *= 0.25f;
     }
 
-    public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
+    public override void OnHitNPC(NPC target, NPC.HitInfo hit, Int32 damageDone) {
         Projectile.ai[0] = 0f;
         ConnectedNPC = target.whoAmI;
         Projectile.tileCollide = false;
@@ -145,13 +145,13 @@ public class MeathookProj : ModProjectile {
         SoundEngine.PlaySound(OldAequusSounds.Meathook, target.Center);
     }
 
-    public override bool PreDrawExtras() {
+    public override Boolean PreDrawExtras() {
         return false;
     }
 
-    public override bool PreDraw(ref Color lightColor) {
+    public override Boolean PreDraw(ref Color lightColor) {
         var player = Main.player[Projectile.owner];
-        float playerLength = (player.Center - Projectile.Center).Length();
+        Single playerLength = (player.Center - Projectile.Center).Length();
         OldDrawHelper.DrawChain(AequusTextures.MeathookProj_Chain, Projectile.Center, player.Center, Main.screenPosition);
         var texture = TextureAssets.Projectile[Type].Value;
         var drawPosition = Projectile.Center - Main.screenPosition;

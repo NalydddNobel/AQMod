@@ -1,5 +1,4 @@
 ﻿using Aequus.Core.DataSets;
-using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using Terraria.GameContent;
@@ -7,7 +6,7 @@ using Terraria.GameContent;
 namespace Aequus.Content.DataSets;
 
 public class ProjectileSets : DataSet {
-    public static Dictionary<ProjectileEntry, float> SpriteRotation { get; private set; } = new();
+    public static Dictionary<ProjectileEntry, System.Single> SpriteRotation { get; private set; } = new();
 
     /// <summary>
     /// Projectiles in this set do not damage the <see cref="Old.Content.TownNPCs.OccultistNPC.Occultist"/>.
@@ -29,8 +28,8 @@ public class ProjectileSets : DataSet {
     public static HashSet<ProjectileAIEntry> PushableByAI { get; private set; } = new();
 
     public override void PostSetupContent() {
-        for (int i = 0; i < ProjectileLoader.ProjectileCount; i++) {
-            if (ProjectileID.Search.TryGetName(i, out string name)) {
+        for (System.Int32 i = 0; i < ProjectileLoader.ProjectileCount; i++) {
+            if (ProjectileID.Search.TryGetName(i, out System.String name)) {
                 if (name.Contains('/')) {
                     name = name.Split('/')[^1];
                 }
@@ -41,7 +40,7 @@ public class ProjectileSets : DataSet {
         }
     }
 
-    public static float GetSpriteRotation(int projectileId) {
+    public static System.Single GetSpriteRotation(System.Int32 projectileId) {
         if (SpriteRotation.TryGetValue(projectileId, out var rotation)) {
             return rotation;
         }
@@ -52,7 +51,7 @@ public class ProjectileSets : DataSet {
 
         Main.instance.LoadProjectile(projectileId);
         var texture = TextureAssets.Projectile[projectileId].Value;
-        int height = texture.Height / Main.projFrames[projectileId];
+        System.Int32 height = texture.Height / Main.projFrames[projectileId];
         // Projectile sprites which are tall are assumed to be facing upwards.
         if (texture.Width < height) {
             return MathHelper.PiOver2;

@@ -6,16 +6,16 @@ using Terraria.GameContent;
 namespace Aequus.Content.DedicatedContent.MirrorsCall;
 
 public class MirrorsCallProj : LegacyHeldSwordProjectile {
-    public override string Texture => ModContent.GetInstance<MirrorsCall>().Texture;
+    public override String Texture => ModContent.GetInstance<MirrorsCall>().Texture;
 
-    public override int AmountAllowedActive => -1;
+    public override Int32 AmountAllowedActive => -1;
 
     public override void SetDefaults() {
         base.SetDefaults();
         Projectile.width = 400;
         Projectile.height = 400;
         Projectile.ownerHitCheck = true;
-        hitsLeft = int.MaxValue;
+        hitsLeft = Int32.MaxValue;
     }
 
     protected override void Initialize(Player player, AequusPlayer aequus) {
@@ -23,8 +23,8 @@ public class MirrorsCallProj : LegacyHeldSwordProjectile {
         if (npc != null) {
             BaseAngleVector = Projectile.DirectionTo(npc.Center);
         }
-        float scaleIncrease = 1f + Main.rand.NextFloat(-0.4f, 0.1f);
-        Projectile.Resize((int)(Projectile.width * scaleIncrease), (int)(Projectile.height * scaleIncrease));
+        Single scaleIncrease = 1f + Main.rand.NextFloat(-0.4f, 0.1f);
+        Projectile.Resize((Int32)(Projectile.width * scaleIncrease), (Int32)(Projectile.height * scaleIncrease));
         Projectile.scale += scaleIncrease - 1f;
 
         Projectile.ai[0] = Main.rand.NextFloat(100f, 190f);
@@ -33,7 +33,7 @@ public class MirrorsCallProj : LegacyHeldSwordProjectile {
         swingTimeMax *= 6;
     }
 
-    protected override void UpdateSword(Player player, AequusPlayer aequus, float progress) {
+    protected override void UpdateSword(Player player, AequusPlayer aequus, Single progress) {
         Projectile.rotation = Projectile.velocity.ToRotation();
         Projectile.Center = player.Center + BaseAngleVector * Projectile.ai[0];
         swingTime--;
@@ -47,21 +47,21 @@ public class MirrorsCallProj : LegacyHeldSwordProjectile {
         }
     }
 
-    public override bool PreDraw(ref Color lightColor) {
+    public override Boolean PreDraw(ref Color lightColor) {
         Main.instance.LoadProjectile(ProjectileID.NightsEdge);
-        float progress = SwingProgressAequus(AnimProgress);
+        Single progress = SwingProgressAequus(AnimProgress);
         var texture = TextureAssets.Projectile[ProjectileID.NightsEdge].Value;
         var swordPosition = Projectile.Center - Main.screenPosition;
-        float opacity = MathF.Sin(progress * MathHelper.Pi);
+        Single opacity = MathF.Sin(progress * MathHelper.Pi);
         var frame = texture.Frame(verticalFrames: 4, frameY: 0);
         var origin = frame.Size() / 2f;
         var rainbowColor = ExtendColor.GetLastPrismColor(Main.LocalPlayer, Projectile.localAI[0] + progress * 2f) with { A = 0 };
         var scale = new Vector2(1f, 1.5f) * Projectile.scale;
         var swordTexture = AequusTextures.MirrorsCall_Aura;
         var swordOrigin = new Vector2(0f, swordTexture.Height());
-        float dir = Projectile.direction * Projectile.ai[1];
-        float slashRotation = Projectile.rotation + (-2f + progress * 4f) * dir;
-        float swingOutwards = 60f + 70f * opacity;
+        Single dir = Projectile.direction * Projectile.ai[1];
+        Single slashRotation = Projectile.rotation + (-2f + progress * 4f) * dir;
+        Single swingOutwards = 60f + 70f * opacity;
         var slashPosition = swordPosition + slashRotation.ToRotationVector2() * swingOutwards * Projectile.scale;
 
         Main.EntitySpriteDraw(
@@ -77,9 +77,9 @@ public class MirrorsCallProj : LegacyHeldSwordProjectile {
         );
 
         if (swingTime < swingTimeMax - 1) {
-            for (int i = 1; i < 7; i++) {
-                float interpolatedProgress = progress - 1f / swingTimeMax * i;
-                float interpolatedSlashRotation = Projectile.rotation + (-2f + interpolatedProgress * 4f) * dir;
+            for (Int32 i = 1; i < 7; i++) {
+                Single interpolatedProgress = progress - 1f / swingTimeMax * i;
+                Single interpolatedSlashRotation = Projectile.rotation + (-2f + interpolatedProgress * 4f) * dir;
                 var interpolatedSlashPosition = swordPosition + interpolatedSlashRotation.ToRotationVector2() * swingOutwards * Projectile.scale;
 
                 Main.EntitySpriteDraw(
@@ -96,7 +96,7 @@ public class MirrorsCallProj : LegacyHeldSwordProjectile {
             }
         }
 
-        for (float f = 0f; f < 1f; f += 0.125f) {
+        for (Single f = 0f; f < 1f; f += 0.125f) {
             var spinningPoint = (f * MathHelper.TwoPi + Main.GlobalTimeWrappedHourly * 5f).ToRotationVector2();
             Main.EntitySpriteDraw(
                 texture,

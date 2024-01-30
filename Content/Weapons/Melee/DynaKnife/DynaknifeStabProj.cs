@@ -1,19 +1,17 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria.Audio;
 
 namespace Aequus.Content.Weapons.Melee.DynaKnife;
 
 public class DynaknifeStabProj : ModProjectile {
-    public const int ExplodeDelay = 120;
+    public const Int32 ExplodeDelay = 120;
 
     public Vector2 normalOffset;
 
-    public int NPC { get => (int)Projectile.ai[0]; set => Projectile.ai[0] = value; }
+    public Int32 NPC { get => (Int32)Projectile.ai[0]; set => Projectile.ai[0] = value; }
 
-    public override string Texture => AequusTextures.DynaknifeProj.Path;
+    public override String Texture => AequusTextures.DynaknifeProj.Path;
 
     public override void SetDefaults() {
         Projectile.width = 100;
@@ -42,12 +40,12 @@ public class DynaknifeStabProj : ModProjectile {
             }
             Projectile.Center = npc.Center;
             var dustPosition = Projectile.Center + normalOffset * Main.npc[NPC].Size / 2f;
-            float dustVelocity = 16f * MathF.Pow(Projectile.timeLeft / (float)ExplodeDelay, 2f);
+            Single dustVelocity = 16f * MathF.Pow(Projectile.timeLeft / (Single)ExplodeDelay, 2f);
             var d = Dust.NewDustPerfect(dustPosition, DustID.Torch, normalOffset.RotatedBy(Main.rand.NextFloat(-0.2f, 0.2f)) * Main.rand.NextFloat(dustVelocity));
             d.noGravity = true;
             d.fadeIn = d.scale + 0.2f;
             if (Projectile.timeLeft <= 40) {
-                float distance = Main.rand.NextFloat(Projectile.timeLeft * 2f);
+                Single distance = Main.rand.NextFloat(Projectile.timeLeft * 2f);
                 var v = Main.rand.NextVector2Unit();
                 d = Dust.NewDustPerfect(dustPosition + v * distance, DustID.Torch, v * -distance * Main.rand.NextFloat(0.1f));
                 d.noGravity = true;
@@ -62,15 +60,15 @@ public class DynaknifeStabProj : ModProjectile {
             Projectile.friendly = true;
             SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
             var dustPosition = Projectile.Center;
-            for (int i = 0; i < Projectile.width; i++) {
-                float distance = Main.rand.NextFloat(Projectile.width / 2f);
+            for (Int32 i = 0; i < Projectile.width; i++) {
+                Single distance = Main.rand.NextFloat(Projectile.width / 2f);
                 var v = Main.rand.NextVector2Unit();
                 var d = Dust.NewDustPerfect(dustPosition + v * distance, DustID.Smoke, v * distance * Main.rand.NextFloat(0.1f), Scale: Main.rand.NextFloat(2f));
                 d.noGravity = true;
                 d.fadeIn = d.scale + 0.2f;
             }
-            for (int i = 0; i < Projectile.width; i++) {
-                float distance = Main.rand.NextFloat(Projectile.width / 2f);
+            for (Int32 i = 0; i < Projectile.width; i++) {
+                Single distance = Main.rand.NextFloat(Projectile.width / 2f);
                 var v = Main.rand.NextVector2Unit();
                 var d = Dust.NewDustPerfect(dustPosition + v * distance, DustID.Torch, v * distance * Main.rand.NextFloat(0.2f), Scale: Main.rand.NextFloat(2f));
                 d.noGravity = true;
@@ -80,7 +78,7 @@ public class DynaknifeStabProj : ModProjectile {
         }
     }
 
-    public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI) {
+    public override void DrawBehind(Int32 index, List<Int32> behindNPCsAndTiles, List<Int32> behindNPCs, List<Int32> behindProjectiles, List<Int32> overPlayers, List<Int32> overWiresUI) {
         if (Projectile.localAI[0] > 0f) {
             overPlayers.Add(index);
             Projectile.hide = true;
@@ -90,14 +88,14 @@ public class DynaknifeStabProj : ModProjectile {
         Projectile.hide = false;
     }
 
-    public override bool PreDraw(ref Color lightColor) {
+    public override Boolean PreDraw(ref Color lightColor) {
         Projectile.GetDrawInfo(out var texture, out _, out var frame, out var origin, out _);
 
         var npc = Main.npc[NPC];
         var drawPosition = npc.Center + new Vector2(0f, npc.gfxOffY) + normalOffset * Main.npc[NPC].Size / 2f;
         var effects = SpriteEffects.None;
-        float rotation = normalOffset.ToRotation() + MathHelper.PiOver4 * 5f;
-        float opacity = 1f;
+        Single rotation = normalOffset.ToRotation() + MathHelper.PiOver4 * 5f;
+        Single opacity = 1f;
         if (Projectile.localAI[0] > 0f) {
             Main.EntitySpriteDraw(AequusTextures.Flare, drawPosition - Main.screenPosition, null, Color.Red with { A = 100 } * Projectile.scale, MathHelper.PiOver2, AequusTextures.Flare.Size() / 2f, new Vector2(0.5f, Projectile.localAI[0] * 0.5f) * Projectile.scale, SpriteEffects.None, 0);
             opacity = 1f - Projectile.localAI[0] / 10f;
@@ -105,7 +103,7 @@ public class DynaknifeStabProj : ModProjectile {
             drawPosition += normalOffset * Projectile.localAI[0] * 3f;
         }
         if (Projectile.timeLeft < 15) {
-            float bloomOpacity = opacity * (1f - (Projectile.timeLeft - 5f) / 10f);
+            Single bloomOpacity = opacity * (1f - (Projectile.timeLeft - 5f) / 10f);
             Main.EntitySpriteDraw(AequusTextures.BloomStrong, drawPosition - Main.screenPosition, null, Color.Red with { A = 0 } * bloomOpacity, rotation, AequusTextures.BloomStrong.Size() / 2f, Projectile.scale * bloomOpacity * 0.4f, effects, 0);
         }
 

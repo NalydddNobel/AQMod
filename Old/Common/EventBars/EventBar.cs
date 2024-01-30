@@ -10,15 +10,15 @@ public abstract class EventBar : IEventBar {
     public Color backgroundColor;
     Color IEventBar.BackgroundColor => backgroundColor;
 
-    public abstract bool IsActive();
+    public abstract System.Boolean IsActive();
 
-    public abstract float GetEventProgress();
+    public abstract System.Single GetEventProgress();
 
-    public virtual string GetProgressText(float progress) {
-        return Language.GetTextValue("Game.WaveCleared", $"{(int)(progress * 100)}%");
+    public virtual System.String GetProgressText(System.Single progress) {
+        return Language.GetTextValue("Game.WaveCleared", $"{(System.Int32)(progress * 100)}%");
     }
 
-    public virtual bool PreDraw(Texture2D texture, string eventName, Color nameBGColor, float alpha) {
+    public virtual System.Boolean PreDraw(Texture2D texture, System.String eventName, Color nameBGColor, System.Single alpha) {
         return true;
     }
 }

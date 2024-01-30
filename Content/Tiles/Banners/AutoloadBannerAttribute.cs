@@ -5,9 +5,9 @@ namespace Aequus.Content.Tiles.Banners;
 
 [AttributeUsage(AttributeTargets.Class)]
 internal class AutoloadBannerAttribute : AutoloadXAttribute {
-    private readonly int _legacyId;
+    private readonly Int32 _legacyId;
 
-    public AutoloadBannerAttribute(int legacyId = -1) {
+    public AutoloadBannerAttribute(Int32 legacyId = -1) {
         _legacyId = legacyId;
     }
 

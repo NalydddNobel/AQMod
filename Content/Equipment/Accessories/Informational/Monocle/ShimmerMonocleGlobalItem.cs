@@ -1,5 +1,4 @@
 ﻿using Aequus.Content.DataSets;
-using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria.Localization;
@@ -7,7 +6,7 @@ using Terraria.Localization;
 namespace Aequus.Content.Equipment.Accessories.Informational.Monocle;
 
 public sealed class ShimmerMonocleGlobalItem : GlobalItem {
-    public static Dictionary<int, Func<Item, string>> CustomShimmerTip { get; private set; } = new();
+    public static Dictionary<Int32, Func<Item, String>> CustomShimmerTip { get; private set; } = new();
 
     public static Color TipColor { get; set; } = Color.Lerp(Color.White, Color.BlueViolet, 0.33f);
 
@@ -15,7 +14,7 @@ public sealed class ShimmerMonocleGlobalItem : GlobalItem {
         CustomShimmerTip[ItemID.GelBalloon] = (i) => NPC.unlockedSlimeRainbowSpawn ? null : Language.GetTextValue("Mods.Aequus.Items.CommonTooltips.ShimmerableToNPC", Lang.GetNPCNameValue(NPCID.TownSlimeRainbow));
     }
 
-    public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
+    public override Boolean AppliesToEntity(Item entity, Boolean lateInstantiation) {
         return (ItemID.Sets.ShimmerTransformToItem[entity.type] > 0 || CustomShimmerTip.ContainsKey(entity.type)) && !ItemSets.ShimmerTooltipResultIgnore.Contains(ItemID.Sets.ShimmerTransformToItem[entity.type]);
     }
 
@@ -24,7 +23,7 @@ public sealed class ShimmerMonocleGlobalItem : GlobalItem {
             return;
         }
 
-        int itemId = ItemID.Sets.ShimmerCountsAsItem[item.type] != -1 ? ItemID.Sets.ShimmerCountsAsItem[item.type] : item.type;
+        Int32 itemId = ItemID.Sets.ShimmerCountsAsItem[item.type] != -1 ? ItemID.Sets.ShimmerCountsAsItem[item.type] : item.type;
         if (CustomShimmerTip.TryGetValue(item.type, out var getCustomShimmerTip)) {
             var customShimmerTip = getCustomShimmerTip(item);
             if (customShimmerTip != null) {

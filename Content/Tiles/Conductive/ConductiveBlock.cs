@@ -1,10 +1,7 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Common.Tiles.Components;
-using Aequus.Core.Initialization;
 using Aequus.Core.Graphics.Tiles;
-using Aequus.Core.Networking;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Aequus.Core.Initialization;
 using System;
 using System.IO;
 using Terraria.Audio;
@@ -15,7 +12,7 @@ namespace Aequus.Content.Tiles.Conductive;
 
 [LegacyName("ConductiveBlockTile")]
 public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRenderer, ICustomPlaceSound, ITouchEffects, IAddRecipes {
-    public virtual int BarItem => ItemID.CopperBar;
+    public virtual Int32 BarItem => ItemID.CopperBar;
     public virtual Color MapColor => new(183, 88, 25);
 
     public override void Load() {
@@ -44,13 +41,13 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
         //}
     }
 
-    public override bool Slope(int i, int j) {
+    public override Boolean Slope(Int32 i, Int32 j) {
         return false;
     }
 
-    public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
+    public override void NumDust(Int32 i, Int32 j, Boolean fail, ref Int32 num) => num = fail ? 1 : 3;
 
-    public override void HitWire(int i, int j) {
+    public override void HitWire(Int32 i, Int32 j) {
         ActivateEffect(i, j);
         if (!Wiring.CheckMech(i, j, ConductiveSystem.PoweredLocation == Point.Zero ? ConductiveSystem.ActivationDelay : 0)) {
             return;
@@ -72,7 +69,7 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
         }
     }
 
-    public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
+    public override Boolean PreDraw(Int32 i, Int32 j, SpriteBatch spriteBatch) {
         var tile = Main.tile[i, j];
         var drawCoordinates = (new Vector2(i * 16f, j * 16f) - Main.screenPosition + TileHelper.DrawOffset).Floor();
         var frame = new Rectangle(tile.TileFrameX, tile.TileFrameY, 16, 16);
@@ -87,16 +84,16 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
         return false;
     }
 
-    public void Send(int i, int j, BinaryWriter binaryWriter) {
+    public void Send(Int32 i, Int32 j, BinaryWriter binaryWriter) {
         binaryWriter.Write(-ConductiveSystem.ActivationEffect.GetDistance(i, j));
     }
 
-    public void Receive(int i, int j, BinaryReader binaryReader, int sender) {
-        float distance = binaryReader.ReadSingle();
+    public void Receive(Int32 i, Int32 j, BinaryReader binaryReader, Int32 sender) {
+        Single distance = binaryReader.ReadSingle();
         ConductiveSystem.ActivationEffect.Activate(i, j, distance);
     }
 
-    private static void ActivateEffect(int i, int j) {
+    private static void ActivateEffect(Int32 i, Int32 j) {
         if (Main.netMode == NetmodeID.Server) {
             Aequus.GetPacket<TileInteractionPacket>().Send(i, j);
         }
@@ -105,7 +102,7 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
         }
     }
 
-    public void Render(int i, int j, byte layer) {
+    public void Render(Int32 i, Int32 j, Byte layer) {
         if (!ConductiveSystem.ActivationPoints.TryGetValue(new(i, j), out var effect)) {
             return;
         }
@@ -115,8 +112,8 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
         var frame = new Rectangle(tile.TileFrameX, tile.TileFrameY, 16, 16);
         var electricColor = new Color(255, 210, 120, 0) * effect.electricAnimation;
         var fastRandom = Helper.RandomTileCoordinates(i, j);
-        float globalIntensity = effect.intensity;
-        for (int k = 0; k < ConductiveSystem.ElectricOffsets.Length; k++) {
+        Single globalIntensity = effect.intensity;
+        for (Int32 k = 0; k < ConductiveSystem.ElectricOffsets.Length; k++) {
             Main.spriteBatch.Draw(TextureAssets.Tile[Type].Value, (drawCoordinates + ConductiveSystem.ElectricOffsets[k] * effect.electricAnimation).Floor(), frame, electricColor * 0.5f * globalIntensity, 0f, new Vector2(8f), 1f, SpriteEffects.None, 0f);
         }
 
@@ -132,22 +129,22 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
         }
 
         var shockTexture = AequusTextures.BaseParticleTexture.Value;
-        int amount = 12;
-        for (int k = 0; k < amount; k++) {
-            float time = (Main.GlobalTimeWrappedHourly * fastRandom.NextFloat(1f, 5f)) % 3f;
-            float vectorRotationWave = Main.GlobalTimeWrappedHourly * fastRandom.NextFloat(-1f, 1f);
-            float rotation = fastRandom.NextFloat(MathHelper.TwoPi) + vectorRotationWave;
-            float positionMagnitude = fastRandom.NextFloat(14f, 40f);
-            float colorMultiplier = fastRandom.NextFloat(0.5f, 1f);
-            int frameY = fastRandom.Next(3);
-            float scale = fastRandom.NextFloat(1f, 2f);
-            float intensity = Math.Min(MathF.Pow(effect.electricAnimation, k) * 2f, 1f);
+        Int32 amount = 12;
+        for (Int32 k = 0; k < amount; k++) {
+            Single time = (Main.GlobalTimeWrappedHourly * fastRandom.NextFloat(1f, 5f)) % 3f;
+            Single vectorRotationWave = Main.GlobalTimeWrappedHourly * fastRandom.NextFloat(-1f, 1f);
+            Single rotation = fastRandom.NextFloat(MathHelper.TwoPi) + vectorRotationWave;
+            Single positionMagnitude = fastRandom.NextFloat(14f, 40f);
+            Single colorMultiplier = fastRandom.NextFloat(0.5f, 1f);
+            Int32 frameY = fastRandom.Next(3);
+            Single scale = fastRandom.NextFloat(1f, 2f);
+            Single intensity = Math.Min(MathF.Pow(effect.electricAnimation, k) * 2f, 1f);
             if (time > 1f) {
                 continue;
             }
 
             var shockFrame = shockTexture.Frame(verticalFrames: 3, frameY: frameY);
-            float wave = MathF.Sin(time * MathHelper.Pi);
+            Single wave = MathF.Sin(time * MathHelper.Pi);
             Main.spriteBatch.Draw(shockTexture,
                 (drawCoordinates + new Vector2((1f - MathF.Pow(1f - time, 2f)) * positionMagnitude, 0f).RotatedBy(rotation)).Floor(),
                 shockFrame,
@@ -160,13 +157,13 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
         }
     }
 
-    public void PlaySound(int i, int j, bool forced, int plr, int style, bool PlaceTile) {
+    public void PlaySound(Int32 i, Int32 j, Boolean forced, Int32 plr, Int32 style, Boolean PlaceTile) {
         if (PlaceTile) {
             SoundEngine.PlaySound(AequusSounds.ConductiveBlockPlaced, new Vector2(i * 16f + 8f, j * 16f + 8f));
         }
     }
 
-    public void Touch(int i, int j, Player player, AequusPlayer aequusPlayer) {
+    public void Touch(Int32 i, Int32 j, Player player, AequusPlayer aequusPlayer) {
         if (!ConductiveSystem.ActivationPoints.TryGetValue(new(i, j), out var effect) || effect.electricAnimation < 0.5f) {
             return;
         }

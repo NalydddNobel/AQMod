@@ -5,22 +5,22 @@ namespace Aequus.Core.CrossMod;
 
 internal interface ISupportedMod<TMod> where TMod : SupportedMod<TMod> {
     public static Mod Instance { get; private set; }
-    public static string ModName => typeof(TMod).Name;
+    public static String ModName => typeof(TMod).Name;
 
-    public bool IsLoadingEnabled() {
+    public Boolean IsLoadingEnabled() {
         return ModLoader.HasMod(typeof(TMod).Name);
     }
 }
 
 internal class SupportedMod<TMod> : ModSystem where TMod : SupportedMod<TMod> {
     public static Mod Instance { get; private set; }
-    public static string ModName => typeof(TMod).Name;
+    public static String ModName => typeof(TMod).Name;
 
-    public static bool IsLoadingEnabled() {
+    public static Boolean IsLoadingEnabled() {
         return ModLoader.HasMod(ModName);
     }
 
-    public static object Call(params object[] args) {
+    public static Object Call(params Object[] args) {
         try {
             var value = Instance?.Call(args);
             if (value is Exception ex) {
@@ -34,7 +34,7 @@ internal class SupportedMod<TMod> : ModSystem where TMod : SupportedMod<TMod> {
 
         return null;
     }
-    public static bool TryCall<T>(out T value, params object[] args) {
+    public static Boolean TryCall<T>(out T value, params Object[] args) {
         var callValue = Call(args);
         if (callValue is T output) {
             value = output;
@@ -44,7 +44,7 @@ internal class SupportedMod<TMod> : ModSystem where TMod : SupportedMod<TMod> {
         return false;
     }
 
-    public static bool TryFind<T>(string name, out T value) where T : IModType {
+    public static Boolean TryFind<T>(String name, out T value) where T : IModType {
         var instance = Instance;
         if (instance == null) {
             value = default(T);
@@ -53,7 +53,7 @@ internal class SupportedMod<TMod> : ModSystem where TMod : SupportedMod<TMod> {
         return instance.TryFind(name, out value);
     }
 
-    public static bool AddItem(string name, HashSet<int> hashSet) {
+    public static Boolean AddItem(String name, HashSet<Int32> hashSet) {
         if (!TryFind<ModItem>(name, out var modItem)) {
             return false;
         }
@@ -62,18 +62,18 @@ internal class SupportedMod<TMod> : ModSystem where TMod : SupportedMod<TMod> {
         return true;
     }
 
-    public static bool TryGetItem(string name, out ModItem value) {
+    public static Boolean TryGetItem(String name, out ModItem value) {
         return TryFind(name, out value);
     }
-    public static int TryGetItem(string name, int defaultItem = 0) {
+    public static Int32 TryGetItem(String name, Int32 defaultItem = 0) {
         return TryGetItem(name, out var value) ? value.Type : defaultItem;
     }
 
-    public static int GetNPC(string name, int defaultNPC = 0) {
+    public static Int32 GetNPC(String name, Int32 defaultNPC = 0) {
         return TryFind<ModNPC>(name, out var value) ? value.Type : defaultNPC;
     }
 
-    public override bool IsLoadingEnabled(Mod mod) {
+    public override Boolean IsLoadingEnabled(Mod mod) {
         //mod.Logger.Debug($"{ModName} is {(ModLoader.HasMod(ModName) ? "Enabled" : "Disabled")}");
         return IsLoadingEnabled();
     }
@@ -101,11 +101,11 @@ internal class SupportedMod<TMod> : ModSystem where TMod : SupportedMod<TMod> {
 }
 
 internal static class SupportedModExtensions {
-    public static bool LoadingAllowed<TMod>(this ISupportedMod<TMod> modSupport) where TMod : SupportedMod<TMod> {
+    public static Boolean LoadingAllowed<TMod>(this ISupportedMod<TMod> modSupport) where TMod : SupportedMod<TMod> {
         return modSupport.IsLoadingEnabled();
     }
 
-    public static bool TryFind<T, TMod>(this ISupportedMod<TMod> modSupport, string name, out T value) where T : IModType where TMod : SupportedMod<TMod> {
+    public static Boolean TryFind<T, TMod>(this ISupportedMod<TMod> modSupport, String name, out T value) where T : IModType where TMod : SupportedMod<TMod> {
         var instance = SupportedMod<TMod>.Instance;
         if (instance == null) {
             value = default(T);
@@ -114,7 +114,7 @@ internal static class SupportedModExtensions {
         return instance.TryFind(name, out value);
     }
 
-    public static bool AddItemToSet<TMod>(this ISupportedMod<TMod> modSupport, string name, HashSet<int> hashSet) where TMod : SupportedMod<TMod> {
+    public static Boolean AddItemToSet<TMod>(this ISupportedMod<TMod> modSupport, String name, HashSet<Int32> hashSet) where TMod : SupportedMod<TMod> {
         if (!modSupport.TryFind<ModItem, TMod>(name, out var modItem)) {
             return false;
         }
@@ -123,10 +123,10 @@ internal static class SupportedModExtensions {
         return true;
     }
 
-    public static int GetItem<TMod>(this ISupportedMod<TMod> modSupport, string name, int defaultItem = 0) where TMod : SupportedMod<TMod> {
+    public static Int32 GetItem<TMod>(this ISupportedMod<TMod> modSupport, String name, Int32 defaultItem = 0) where TMod : SupportedMod<TMod> {
         return modSupport.TryFind<ModItem, TMod>(name, out var value) ? value.Type : defaultItem;
     }
-    public static int GetNPC<TMod>(this ISupportedMod<TMod> modSupport, string name, int defaultNPC = 0) where TMod : SupportedMod<TMod> {
+    public static Int32 GetNPC<TMod>(this ISupportedMod<TMod> modSupport, String name, Int32 defaultNPC = 0) where TMod : SupportedMod<TMod> {
         return modSupport.TryFind<ModNPC, TMod>(name, out var value) ? value.Type : defaultNPC;
     }
 }

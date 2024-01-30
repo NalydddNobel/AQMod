@@ -3,14 +3,14 @@
 [AutoloadEquip(EquipType.Balloon)]
 public class PurpleBalloon : SlimyBlueBalloon {
     public override void SetDefaults() {
-        int balloonSlot = Item.balloonSlot;
+        System.Int32 balloonSlot = Item.balloonSlot;
         Item.CloneDefaults(ItemID.ShinyRedBalloon);
         Item.balloonSlot = balloonSlot;
         Item.rare++;
-        Item.value = (int)(Item.value * 1.5f);
+        Item.value = (System.Int32)(Item.value * 1.5f);
     }
 
-    public override void UpdateAccessory(Player player, bool hideVisual) {
+    public override void UpdateAccessory(Player player, System.Boolean hideVisual) {
         player.jumpBoost = true;
         base.UpdateAccessory(player, hideVisual);
     }

@@ -1,21 +1,20 @@
 ﻿using Aequus.Common.Players;
 using Aequus.Core.Generator;
-using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 
 namespace Aequus;
 
 public partial class AequusPlayer {
     [ResetEffects]
-    public bool visualAfterImages;
+    public System.Boolean visualAfterImages;
     [ResetEffects]
-    public float? CustomDrawShadow;
+    public System.Single? CustomDrawShadow;
     [ResetEffects]
-    public float? DrawScale;
+    public System.Single? DrawScale;
     [ResetEffects]
-    public int? DrawForceDye;
+    public System.Int32? DrawForceDye;
 
-    private static bool customDrawing;
+    private static System.Boolean customDrawing;
 
     private static void On_Player_UpdateVisibleAccessories(On_Player.orig_UpdateVisibleAccessories orig, Player player) {
         if (!player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
@@ -51,9 +50,9 @@ public partial class AequusPlayer {
 
         if (DrawScale != null) {
             var drawPlayer = info.drawPlayer;
-            var to = new Vector2((int)drawPlayer.position.X + drawPlayer.width / 2f, (int)drawPlayer.position.Y + drawPlayer.height);
+            var to = new Vector2((System.Int32)drawPlayer.position.X + drawPlayer.width / 2f, (System.Int32)drawPlayer.position.Y + drawPlayer.height);
             to -= Main.screenPosition;
-            for (int i = 0; i < info.DrawDataCache.Count; i++) {
+            for (System.Int32 i = 0; i < info.DrawDataCache.Count; i++) {
                 DrawData data = info.DrawDataCache[i];
                 data.position -= (data.position - to) * (1f - DrawScale.Value);
                 data.scale *= DrawScale.Value;
@@ -62,7 +61,7 @@ public partial class AequusPlayer {
         }
         if (DrawForceDye != null) {
             var drawPlayer = info.drawPlayer;
-            for (int i = 0; i < info.DrawDataCache.Count; i++) {
+            for (System.Int32 i = 0; i < info.DrawDataCache.Count; i++) {
                 DrawData data = info.DrawDataCache[i];
                 data.shader = DrawForceDye.Value;
                 info.DrawDataCache[i] = data;
@@ -82,7 +81,7 @@ public partial class AequusPlayer {
     public override void ModifyDrawInfo(ref PlayerDrawSet drawInfo) {
         if (CustomDrawShadow != null) {
             drawInfo.shadow = CustomDrawShadow.Value;
-            float shadow = 1f - CustomDrawShadow.Value;
+            System.Single shadow = 1f - CustomDrawShadow.Value;
             drawInfo.colorArmorBody *= shadow;
             drawInfo.colorArmorHead *= shadow;
             drawInfo.colorArmorLegs *= shadow;

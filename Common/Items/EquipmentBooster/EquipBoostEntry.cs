@@ -3,9 +3,9 @@
 namespace Aequus.Common.Items.EquipmentBooster;
 
 public struct EquipBoostEntry {
-    public delegate bool CustomUpdateMethod(Player player, Item item);
+    public delegate System.Boolean CustomUpdateMethod(Player player, Item item);
 
-    public bool Invalid => Tooltip == null;
+    public System.Boolean Invalid => Tooltip == null;
 
     public LocalizedText Tooltip { get; internal set; }
     public readonly CustomUpdateMethod CustomEquipUpdate;

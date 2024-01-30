@@ -5,7 +5,6 @@ global using Terraria;
 global using Terraria.ID;
 global using Terraria.ModLoader;
 using log4net;
-using System.IO;
 using System.Reflection;
 
 namespace Aequus;
@@ -16,12 +15,12 @@ public partial class Aequus : Mod {
 
     public static Assembly TerrariaAssembly => typeof(Main).Assembly;
 
-    public static bool highQualityEffects = true;
+    public static System.Boolean highQualityEffects = true;
 
     /// <summary>
     /// Shorthand for a bunch of checks determining whether the game is unpaused.
     /// </summary>
-    public static bool GameWorldActive => (Main.instance.IsActive && !Main.gamePaused && !Main.gameInactive) || Main.netMode != NetmodeID.SinglePlayer;
+    public static System.Boolean GameWorldActive => (Main.instance.IsActive && !Main.gamePaused && !Main.gameInactive) || Main.netMode != NetmodeID.SinglePlayer;
 
     public override void Load() {
         Instance = this;
@@ -34,5 +33,5 @@ public partial class Aequus : Mod {
         UnloadPackets();
     }
 
-    internal static string DebugPath => $"{Main.SavePath.Replace("tModLoader-preview", "tModLoader")}";
+    internal static System.String DebugPath => $"{Main.SavePath.Replace("tModLoader-preview", "tModLoader")}";
 }

@@ -5,7 +5,7 @@ using System;
 namespace Aequus.Content.Tools.AnglerLamp;
 
 public class AnglerLampParticles : ParticleSystem<AnglerLampParticles.Particle> {
-    public override int ParticleCount => 50;
+    public override Int32 ParticleCount => 50;
 
     public override void Draw(SpriteBatch spriteBatch) {
         spriteBatch.BeginDusts();
@@ -14,19 +14,19 @@ public class AnglerLampParticles : ParticleSystem<AnglerLampParticles.Particle> 
         Rectangle frame = texture.Frame();
         Vector2 origin = frame.Size() / 2f;
         lock (this) {
-            for (int k = 0; k < Particles.Length; k++) {
+            for (Int32 k = 0; k < Particles.Length; k++) {
                 Particle particle = Particles[k];
 
                 if (particle == null || !particle.Active) {
                     continue;
                 }
 
-                float animation = particle.Animation;
+                Single animation = particle.Animation;
                 Vector2 drawLocation = particle.Location - Main.screenPosition;
                 Color color = particle.Color with { A = 100 } * 0.8f;
                 Color whiteColor = Color.White with { A = 0 } * Math.Min(animation, 1f);
-                float rotation = particle.Rotation;
-                float scale = particle.Scale * 0.66f;
+                Single rotation = particle.Rotation;
+                Single scale = particle.Scale * 0.66f;
 
                 if (animation < 4f) {
                     var backDrawPosition = drawLocation + Main.rand.NextVector2Square(-4f + animation, 4f - animation) * 0.5f;
@@ -44,7 +44,7 @@ public class AnglerLampParticles : ParticleSystem<AnglerLampParticles.Particle> 
     }
 
     public override void Update() {
-        for (int i = 0; i < Particles.Length; i++) {
+        for (Int32 i = 0; i < Particles.Length; i++) {
             Particle particle = Particles[i];
             if (particle == null || !particle.Active) {
                 continue;
@@ -87,8 +87,8 @@ public class AnglerLampParticles : ParticleSystem<AnglerLampParticles.Particle> 
     }
 
     public class Particle : IParticle {
-        private bool _active;
-        public bool Active {
+        private Boolean _active;
+        public Boolean Active {
             get => _active;
             set {
                 if (value) {
@@ -101,19 +101,19 @@ public class AnglerLampParticles : ParticleSystem<AnglerLampParticles.Particle> 
             }
         }
 
-        public int NPCAnchor;
+        public Int32 NPCAnchor;
         public Vector2 NPCOffset;
         public Vector2 Location;
 
-        public float Rotation;
+        public Single Rotation;
 
-        public float Scale;
+        public Single Scale;
 
-        public float Opacity;
+        public Single Opacity;
 
         public Color Color;
 
-        public float Animation;
+        public Single Animation;
     }
 
     /*

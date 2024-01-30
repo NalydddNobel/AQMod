@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Tiles.Components;
 using Aequus.Core.Generator;
-using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 
@@ -10,16 +9,16 @@ public partial class AequusPlayer {
     /// <summary>
     /// The lowest any respawn-time reducing items can go.
     /// </summary>
-    public static int MinimumRespawnTime { get; set; } = 180;
+    public static Int32 MinimumRespawnTime { get; set; } = 180;
 
     [ResetEffects]
-    public int respawnTimeModifier;
+    public Int32 respawnTimeModifier;
 
     /// <summary>
     /// Sets the respawn time modifier without allowing it to stack.
     /// </summary>
     /// <param name="amount"></param>
-    public void SetAccRespawnTimeModifier(int amount) {
+    public void SetAccRespawnTimeModifier(Int32 amount) {
         if (amount < 0) {
             if (respawnTimeModifier <= amount) {
                 return;
@@ -37,8 +36,8 @@ public partial class AequusPlayer {
 
     private readonly List<Point> _edgeTilesCache = new();
 
-    private static int On_Player_GetRespawnTime(On_Player.orig_GetRespawnTime orig, Player player, bool pvp) {
-        int time = orig(player, pvp);
+    private static Int32 On_Player_GetRespawnTime(On_Player.orig_GetRespawnTime orig, Player player, Boolean pvp) {
+        Int32 time = orig(player, pvp);
         if (time <= MinimumRespawnTime || !player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
             return time;
         }

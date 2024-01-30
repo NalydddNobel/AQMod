@@ -3,76 +3,76 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Aequus.Core.DataSets;
 
-[JsonConverter(typeof(DataEntryConverter<NPCAIEntry, int>))]
-public struct NPCAIEntry : IDataEntry<int> {
+[JsonConverter(typeof(DataEntryConverter<NPCAIEntry, System.Int32>))]
+public struct NPCAIEntry : IDataEntry<System.Int32> {
     [JsonProperty]
-    public string Name { get; set; }
+    public System.String Name { get; set; }
 
     [JsonIgnore]
-    public int Id { get; set; }
+    public System.Int32 Id { get; set; }
 
     [JsonIgnore]
-    public bool ValidEntry => Id >= 0;
+    public System.Boolean ValidEntry => Id >= 0;
 
     [JsonIgnore]
-    public bool VanillaEntry => Id >= 0;
+    public System.Boolean VanillaEntry => Id >= 0;
 
-    private static int _uniqueIds = -1;
+    private static System.Int32 _uniqueIds = -1;
 
-    public NPCAIEntry(string name) {
+    public NPCAIEntry(System.String name) {
         Name = name;
         Id = 0;
         Initialize();
     }
 
-    public NPCAIEntry(int id) {
+    public NPCAIEntry(System.Int32 id) {
         Name = null;
         Id = id;
         Initialize();
     }
 
-    public override bool Equals([NotNullWhen(true)] object obj) {
+    public override System.Boolean Equals([NotNullWhen(true)] System.Object obj) {
         return obj is not NPCAIEntry otherEntry ? false : otherEntry.Id.Equals(Id);
     }
 
-    public override int GetHashCode() {
+    public override System.Int32 GetHashCode() {
         return Id;
     }
 
-    public override string ToString() {
+    public override System.String ToString() {
         return Name;
     }
 
     public void Initialize() {
-        if (!string.IsNullOrEmpty(Name)) {
-            Id = NPCAIStyleID.Search.TryGetId(Name, out int id) ? id : _uniqueIds--;
+        if (!System.String.IsNullOrEmpty(Name)) {
+            Id = NPCAIStyleID.Search.TryGetId(Name, out System.Int32 id) ? id : _uniqueIds--;
         }
         else if (ValidEntry) {
-            Name = NPCAIStyleID.Search.TryGetName(Id, out string name) ? name : "Unknown";
+            Name = NPCAIStyleID.Search.TryGetName(Id, out System.String name) ? name : "Unknown";
         }
     }
 
-    public static implicit operator string(NPCAIEntry entry) {
+    public static implicit operator System.String(NPCAIEntry entry) {
         return entry.Name;
     }
 
-    public static implicit operator int(NPCAIEntry entry) {
+    public static implicit operator System.Int32(NPCAIEntry entry) {
         return entry.Id;
     }
 
-    public static explicit operator NPCAIEntry(int id) {
+    public static explicit operator NPCAIEntry(System.Int32 id) {
         return new(id);
     }
 
-    public static explicit operator NPCAIEntry(string name) {
+    public static explicit operator NPCAIEntry(System.String name) {
         return new(name);
     }
 
-    public static bool operator ==(NPCAIEntry left, NPCAIEntry right) {
+    public static System.Boolean operator ==(NPCAIEntry left, NPCAIEntry right) {
         return left.Equals(right);
     }
 
-    public static bool operator !=(NPCAIEntry left, NPCAIEntry right) {
+    public static System.Boolean operator !=(NPCAIEntry left, NPCAIEntry right) {
         return !(left == right);
     }
 }

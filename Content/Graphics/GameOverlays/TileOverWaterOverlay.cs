@@ -1,6 +1,5 @@
 ﻿using Aequus.Core.Graphics.GameOverlays;
 using Aequus.Core.Graphics.Tiles;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria.Graphics.Effects;
 
 namespace Aequus.Content.Graphics.GameOverlays;
@@ -9,7 +8,7 @@ public sealed class TileOverWaterOverlay : AequusOverlay {
     private TileOverWaterOverlay() : base(EffectPriority.Medium, RenderLayers.ForegroundWater) {
     }
 
-    public override bool SpecialVisuals(Player player) {
+    public override System.Boolean SpecialVisuals(Player player) {
         return SpecialTileRenderer.AnyInLayer(TileRenderLayerID.PostDrawLiquids);
     }
 

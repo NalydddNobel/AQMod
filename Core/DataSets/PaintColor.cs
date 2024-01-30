@@ -1,6 +1,6 @@
 ﻿namespace Aequus.Core.DataSets;
 
-public enum PaintColor : byte {
+public enum PaintColor : System.Byte {
     White,
     Red,
     Orange,
