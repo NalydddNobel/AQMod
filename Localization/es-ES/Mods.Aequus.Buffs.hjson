@@ -54,6 +54,6 @@ CrimsonHellfire: {
 }
 
 IronLotusDebuff: {
-	// DisplayName: Iron Lotus Debuff
+	// DisplayName: "{$Items.IronLotus.DisplayName}"
 	// Description: Mods.Aequus.Buffs.IronLotusDebuff.Description
 }

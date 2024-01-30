@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Core.Initialization;
-using System;
 using Terraria.Localization;
 
 namespace Aequus.Common.Tiles;
@@ -13,12 +12,6 @@ internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
     private readonly int _value;
     private readonly int? _sacrificeCount;
 
-    private Action<ModItem> _setStaticDefaults;
-    private Action<ModItem> _addRecipes;
-
-    /// <summary>
-    /// 
-    /// </summary>
     /// <param name="modTile"></param>
     /// <param name="style"></param>
     /// <param name="nameSuffix">Extra text added to the end of the name.</param>
@@ -26,7 +19,7 @@ internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
     /// <param name="rarity">Item rarity.</param>
     /// <param name="value">Item value.</param>
     /// <param name="researchSacrificeCount">Research count override.</param>
-    public InstancedTileItem(ModTile modTile, int style = 0, string nameSuffix = "", bool dropItem = true, int rarity = ItemRarityID.White, int value = 0, int? researchSacrificeCount = null) 
+    public InstancedTileItem(ModTile modTile, int style = 0, string nameSuffix = "", bool dropItem = true, int rarity = ItemRarityID.White, int value = 0, int? researchSacrificeCount = null)
         : base(modTile.Name + nameSuffix, (modTile is InstancedModTile instancedModTile ? instancedModTile._texture : modTile.Texture) + nameSuffix + "Item") {
         _modTile = modTile;
         _dropItem = dropItem;
@@ -34,16 +27,6 @@ internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
         _rarity = rarity;
         _value = value;
         _sacrificeCount = researchSacrificeCount;
-    }
-
-    public InstancedTileItem WithStaticDefaults(Action<ModItem> setStaticDefaultsAction) {
-        _setStaticDefaults += setStaticDefaultsAction;
-        return this;
-    }
-
-    public InstancedTileItem WithRecipe(Action<ModItem> addRecipeAction) {
-        _addRecipes += addRecipeAction;
-        return this;
     }
 
     public override string LocalizationCategory => "Tiles";
@@ -54,7 +37,6 @@ internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
 
     public override void SetStaticDefaults() {
         ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = !_dropItem;
-        _setStaticDefaults?.Invoke(this);
     }
 
     public void PostSetupContent(Aequus aequus) {
@@ -68,7 +50,6 @@ internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
     }
 
     public override void AddRecipes() {
-        _addRecipes?.Invoke(this);
         if (Mod.TryFind<ModItem>(_modTile.Name + "Wall", out var wallItem)) {
             CreateRecipe()
                 .AddIngredient(wallItem, 4)

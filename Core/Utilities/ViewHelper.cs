@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Runtime.CompilerServices;
 using Terraria.Graphics.CameraModifiers;
 
@@ -17,8 +16,15 @@ public static class ViewHelper {
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void PunchCameraTo(Vector2 position, float strength = 2f, float vibrationsPerSecond = 4f, int frames = 10) {
-        if (Main.netMode != NetmodeID.Server) {
-            PunchCamera(Vector2.Normalize(position - ScreenCenter), strength, vibrationsPerSecond, frames);
+        if (Main.netMode == NetmodeID.Server) {
+            return;
+        }
+
+        Vector2 difference = ScreenCenter - position;
+        float distance = difference.Length();
+        float intensity = 1f - distance / 150f / strength;
+        if (intensity > 0f) {
+            PunchCamera(Vector2.Normalize(difference), strength * intensity, vibrationsPerSecond, frames);
         }
     }
 

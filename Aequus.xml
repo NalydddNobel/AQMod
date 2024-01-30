@@ -675,9 +675,6 @@
             </summary>
         </member>
         <member name="M:Aequus.Common.Tiles.InstancedTileItem.#ctor(Terraria.ModLoader.ModTile,System.Int32,System.String,System.Boolean,System.Int32,System.Int32,System.Nullable{System.Int32})">
-            <summary>
-            
-            </summary>
             <param name="modTile"></param>
             <param name="style"></param>
             <param name="nameSuffix">Extra text added to the end of the name.</param>
@@ -692,6 +689,39 @@
             </summary>
             <param name="modWall"></param>
             <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
+        </member>
+        <member name="M:Aequus.Common.WorldGeneration.AequusGenStep.SetMessage(Terraria.WorldBuilding.GenerationProgress,System.Object)">
+            <summary>
+            Safely sets the progress message.
+            </summary>
+            <param name="progress"></param>
+            <param name="keySuffix"></param>
+        </member>
+        <member name="M:Aequus.Common.WorldGeneration.AequusGenStep.RectangleProgress(System.Int32,System.Int32)">
+            <summary>Determines the progress of an ij loop in a rectangle. Using 0-<see cref="F:Terraria.Main.maxTilesX"/> and 0-<see cref="F:Terraria.Main.maxTilesY"/> as the edges.</summary>
+            <param name="i"></param>
+            <param name="j"></param>
+        </member>
+        <member name="M:Aequus.Common.WorldGeneration.AequusGenStep.RectangleProgress(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>Determines the progress of an ij loop in a rectangle. Using 0-<see cref="F:Terraria.Main.maxTilesY"/> as the vertical edges.</summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <param name="leftSide">X coordinate of the Left edge of the rectangle.</param>
+            <param name="rightSide">X coordinate of the Right edge of the rectnagle.</param>
+        </member>
+        <member name="M:Aequus.Common.WorldGeneration.AequusGenStep.RectangleProgress(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>Determines the progress of an ij loop in a rectangle.</summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <param name="leftSide">X coordinate of the Left edge of the rectangle.</param>
+            <param name="rightSide">X coordinate of the Right edge of the rectnagle.</param>
+            <param name="topSide">Y coordinate of the Top Edge of the rectangle.</param>
+            <param name="bottomSide">Y coordinate of the Bottom Edge of the rectangle.</param>
+        </member>
+        <member name="M:Aequus.Common.WorldGeneration.AequusGenStep.SetProgress(Terraria.WorldBuilding.GenerationProgress,System.Double,System.Double,System.Double)">
+            <summary>
+            Safely sets the progress bar.
+            </summary>
         </member>
         <member name="P:Aequus.AequusPlayer.MinimumRespawnTime">
             <summary>
@@ -798,7 +828,7 @@
         </member>
         <member name="P:Aequus.Content.DataSets.ProjectileSets.OccultistIgnore">
             <summary>
-            Projectiles in this set do not damage the <see cref="!:Old.Content.TownNPCs.OccultistNPC.Occultist"/>.
+            Projectiles in this set do not damage the <see cref="T:Aequus.Old.Content.TownNPCs.OccultistNPC.Occultist"/>.
             </summary>
         </member>
         <member name="P:Aequus.Content.DataSets.ProjectileSets.DealsHeatDamage">
@@ -1525,7 +1555,7 @@
             <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookPull</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 354)</summary>
+            <summary>(Total Textures: 372)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2484,6 +2514,60 @@
         <member name="F:Aequus.AequusTextures.CrimsonHellfire">
             <summary>Full Path: Old/Content/StatusEffects/DamageOverTime/CrimsonHellfire</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.GoreNestStalagmite">
+            <summary>Full Path: Old/Content/Tiles/Ambient/GoreNestStalagmite</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AshTombstones">
+            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstones</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AshTombstonesCrossGraveMarkerItem">
+            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesCrossGraveMarkerItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AshTombstonesGraveMarkerItem">
+            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesGraveMarkerItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AshTombstonesGravestoneItem">
+            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesGravestoneItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AshTombstonesHeadstoneItem">
+            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesHeadstoneItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AshTombstonesObeliskItem">
+            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesObeliskItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AshTombstonesTombstoneItem">
+            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesTombstoneItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AshTombstones_Glow">
+            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstones_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AshTombstones_Highlight">
+            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstones_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OblivionChest">
+            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionChest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OblivionChestItem">
+            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionChestItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OblivionChest_Glow">
+            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionChest_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OblivionChest_Highlight">
+            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionChest_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OblivionCraftingStation">
+            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OblivionCraftingStationItem">
+            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStationItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OblivionCraftingStation_Portal">
+            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation_Portal</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OblivionCraftingStation_Stick">
+            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation_Stick</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.OccultistGoreBook">
             <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreBook</summary>
         </member>
@@ -2588,6 +2672,25 @@
         </member>
         <member name="F:Aequus.AequusTextures.CrusadersCrossbowProj">
             <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj</summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.NotStackableCritDamage">
+            <summary>
+            Default Value: 0.15
+            <para>This is only added on the first stack of the accessory.</para>
+            </summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.WantedCost">
+            <summary>
+            The cost for performing a critical strike.
+            </summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Equipment.Accessories.SpiritKeg.SaivoryKnife.GhostLifespan">
+            <summary>
+            Default Value: 3600 (1 minute)
+            </summary>
+        </member>
+        <member name="T:Aequus.Old.Content.Events.DemonSiege.Tiles.OblivionAltarDummy">
+            <summary>Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.</summary>
         </member>
     </members>
 </doc>

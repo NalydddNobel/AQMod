@@ -13,3 +13,10 @@ Biomes: {
 		// TownNPCDialogueName: ""
 	}
 }
+
+GenStep: {
+	// GenVarEdits.DisplayMessage: ""
+	// Statues.DisplayMessage: Placing More Statues...
+	// GoreNestsGeneration.DisplayMessage: Making the Underworld more evil...
+	// LavaCleanup.DisplayMessage: Cleaning up lava
+}

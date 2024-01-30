@@ -33,7 +33,14 @@ DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 // TriacanthornBolt.DisplayName: "{$Items.Triacanthorn.DisplayName}"
 // TriacanthornProj.DisplayName: "{$Items.Triacanthorn.DisplayName}"
 // MirrorsCallProj.DisplayName: "{$Items.MirrorsCall.DisplayName}"
-// IronLotusFlare.DisplayName: Iron Lotus Flare
-// IronLotusProj.DisplayName: Iron Lotus Proj
-// StudiesOfTheInkblotOrbiterProj.DisplayName: Studies Of The Inkblot Orbiter Proj
-// StudiesOfTheInkblotProj.DisplayName: Studies Of The Inkblot Proj
+// IronLotusFlare.DisplayName: "{$Items.IronLotus.DisplayName}"
+// IronLotusProj.DisplayName: "{$Items.IronLotus.DisplayName}"
+// StudiesOfTheInkblotOrbiterProj.DisplayName: "{$Items.StudiesOfTheInkblot.DisplayName}"
+// StudiesOfTheInkblotProj.DisplayName: "{$Items.StudiesOfTheInkblot.DisplayName}"
+// AshTombstoneExplosion.DisplayName: Ash Grave
+// AshTombstonesTombstone.DisplayName: "{$Projectiles.AshTombstoneExplosion.DisplayName}"
+// AshTombstonesGraveMarker.DisplayName: "{$Projectiles.AshTombstoneExplosion.DisplayName}"
+// AshTombstonesCrossGraveMarker.DisplayName: "{$Projectiles.AshTombstoneExplosion.DisplayName}"
+// AshTombstonesHeadstone.DisplayName: "{$Projectiles.AshTombstoneExplosion.DisplayName}"
+// AshTombstonesGravestone.DisplayName: "{$Projectiles.AshTombstoneExplosion.DisplayName}"
+// AshTombstonesObelisk.DisplayName: "{$Projectiles.AshTombstoneExplosion.DisplayName}"

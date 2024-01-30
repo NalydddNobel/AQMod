@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 354)</summary>
+/// <summary>(Total Textures: 372)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -645,6 +645,42 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CorruptionHellfire = new("Aequus/Old/Content/StatusEffects/DamageOverTime/CorruptionHellfire");
     /// <summary>Full Path: Old/Content/StatusEffects/DamageOverTime/CrimsonHellfire</summary>
     public static readonly RequestCache<Texture2D> CrimsonHellfire = new("Aequus/Old/Content/StatusEffects/DamageOverTime/CrimsonHellfire");
+    /// <summary>Full Path: Old/Content/Tiles/Ambient/GoreNestStalagmite</summary>
+    public static readonly RequestCache<Texture2D> GoreNestStalagmite = new("Aequus/Old/Content/Tiles/Ambient/GoreNestStalagmite");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstones</summary>
+    public static readonly RequestCache<Texture2D> AshTombstones = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstones");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesCrossGraveMarkerItem</summary>
+    public static readonly RequestCache<Texture2D> AshTombstonesCrossGraveMarkerItem = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstonesCrossGraveMarkerItem");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesGraveMarkerItem</summary>
+    public static readonly RequestCache<Texture2D> AshTombstonesGraveMarkerItem = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstonesGraveMarkerItem");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesGravestoneItem</summary>
+    public static readonly RequestCache<Texture2D> AshTombstonesGravestoneItem = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstonesGravestoneItem");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesHeadstoneItem</summary>
+    public static readonly RequestCache<Texture2D> AshTombstonesHeadstoneItem = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstonesHeadstoneItem");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesObeliskItem</summary>
+    public static readonly RequestCache<Texture2D> AshTombstonesObeliskItem = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstonesObeliskItem");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesTombstoneItem</summary>
+    public static readonly RequestCache<Texture2D> AshTombstonesTombstoneItem = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstonesTombstoneItem");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstones_Glow</summary>
+    public static readonly RequestCache<Texture2D> AshTombstones_Glow = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstones_Glow");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstones_Highlight</summary>
+    public static readonly RequestCache<Texture2D> AshTombstones_Highlight = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstones_Highlight");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionChest</summary>
+    public static readonly RequestCache<Texture2D> OblivionChest = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/OblivionChest");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionChestItem</summary>
+    public static readonly RequestCache<Texture2D> OblivionChestItem = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/OblivionChestItem");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionChest_Glow</summary>
+    public static readonly RequestCache<Texture2D> OblivionChest_Glow = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/OblivionChest_Glow");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionChest_Highlight</summary>
+    public static readonly RequestCache<Texture2D> OblivionChest_Highlight = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/OblivionChest_Highlight");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation</summary>
+    public static readonly RequestCache<Texture2D> OblivionCraftingStation = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStationItem</summary>
+    public static readonly RequestCache<Texture2D> OblivionCraftingStationItem = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStationItem");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation_Portal</summary>
+    public static readonly RequestCache<Texture2D> OblivionCraftingStation_Portal = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation_Portal");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation_Stick</summary>
+    public static readonly RequestCache<Texture2D> OblivionCraftingStation_Stick = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation_Stick");
     /// <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreBook</summary>
     public static readonly RequestCache<Texture2D> OccultistGoreBook = new("Aequus/Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreBook");
     /// <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreHead</summary>

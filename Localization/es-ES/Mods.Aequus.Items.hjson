@@ -198,6 +198,15 @@ MirrorsCall: {
 	// Tooltip: Strike the enemy from the comfort of your couch!
 }
 
+IronLotus: {
+	// DisplayName: Iron Lotus
+	/* Tooltip:
+		'''
+		Brandish a spear which inflicts spreading flames
+		'Burn those who dare to care for me'
+		''' */
+}
+
 Cauterizer: {
 	// DisplayName: Cauterizer
 	// Tooltip: "{$CommonTooltips.OmnidirectionMelee}"
@@ -270,6 +279,15 @@ Furystar: {
 		Hace que lluevan estrellas del cielo
 		Ataques restauran maná
 		'''
+}
+
+StudiesOfTheInkblot: {
+	// DisplayName: Studies Of The Inkblot
+	/* Tooltip:
+		'''
+		Left Click for 'Rorschach in Danmaku'
+		Right Click for 'Subterranean Rose'
+		''' */
 }
 
 BombarderRod: {
@@ -593,14 +611,4 @@ Toolbelt: {
 		''' */
 	// BackpackEnabled: Toolbelt Pack On
 	// BackpackDisabled: Toolbelt Pack Off
-}
-
-IronLotus: {
-	// DisplayName: Iron Lotus
-	// Tooltip: ""
-}
-
-StudiesOfTheInkblot: {
-	// DisplayName: Studies Of The Inkblot
-	// Tooltip: ""
 }

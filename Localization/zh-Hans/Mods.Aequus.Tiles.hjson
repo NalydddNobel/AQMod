@@ -106,3 +106,51 @@ MossStatues: {
 		ItemTooltip: ""
 	}
 }
+
+OblivionChest: {
+	// MapEntry: Oblivion Chest
+	// ItemDisplayName: Mods.Aequus.Tiles.OblivionChest.ItemDisplayName
+	// ItemTooltip: ""
+}
+
+OblivionCraftingStation: {
+	// ItemDisplayName: Mods.Aequus.Tiles.OblivionCraftingStation.ItemDisplayName
+	// ItemTooltip: ""
+}
+
+AshTombstones: {
+	Tombstone: {
+		// ItemDisplayName: Mods.Aequus.Tiles.AshTombstones.Tombstone.ItemDisplayName
+		// ItemTooltip: ""
+	}
+
+	GraveMarker: {
+		// ItemDisplayName: Mods.Aequus.Tiles.AshTombstones.GraveMarker.ItemDisplayName
+		// ItemTooltip: ""
+	}
+
+	CrossGraveMarker: {
+		// ItemDisplayName: Mods.Aequus.Tiles.AshTombstones.CrossGraveMarker.ItemDisplayName
+		// ItemTooltip: ""
+	}
+
+	Headstone: {
+		// ItemDisplayName: Mods.Aequus.Tiles.AshTombstones.Headstone.ItemDisplayName
+		// ItemTooltip: ""
+	}
+
+	Gravestone: {
+		// ItemDisplayName: Mods.Aequus.Tiles.AshTombstones.Gravestone.ItemDisplayName
+		// ItemTooltip: ""
+	}
+
+	Obelisk: {
+		// ItemDisplayName: Mods.Aequus.Tiles.AshTombstones.Obelisk.ItemDisplayName
+		// ItemTooltip: ""
+	}
+}
+
+OblivionChestTrapped: {
+	// ItemDisplayName: Mods.Aequus.Tiles.OblivionChestTrapped.ItemDisplayName
+	// ItemTooltip: ""
+}
