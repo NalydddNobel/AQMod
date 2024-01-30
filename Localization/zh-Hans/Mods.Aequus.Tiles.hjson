@@ -120,7 +120,7 @@ OblivionChestTrapped: {
 
 OblivionCraftingStation: {
 	ItemDisplayName: 遗境再塑机
-	Tooltip: "{$CommonItemTooltip.SpecialCrafting}"
+	// ItemTooltip: "{$CommonItemTooltip.SpecialCrafting}"
 }
 
 AshTombstones: {

@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.WorldGeneration;
 using Aequus.Content.Tiles.Statues;
+using System;
 using Terraria.IO;
 using Terraria.WorldBuilding;
 
@@ -8,8 +9,11 @@ namespace Aequus.Content.WorldGeneration;
 public class StatuesStep : AequusGenStep {
     public override string InsertAfter => "Moss";
 
+    protected override double GenWeight => 72f;
+
     public override void Apply(GenerationProgress progress, GameConfiguration config) {
         const int MaximumIterations = 100000;
+        SetMessage(progress);
 
         int statuesWanted = 2 + Main.maxTilesX / WorldGen.WorldSizeSmallX;
         int statuesPlaced = 0;
@@ -17,6 +21,8 @@ public class StatuesStep : AequusGenStep {
 
         int statueType = ModContent.TileType<MossStatues>();
         do {
+            SetProgress(progress, Math.Max(statuesPlaced / (double)statuesWanted, iterations / (double)MaximumIterations));
+
             int x = Random.Next(50, Main.maxTilesX - 50);
             int y = Random.Next((int)Main.worldSurface, Main.UnderworldLayer);
             Tile tile = Main.tile[x, y];

@@ -60,9 +60,9 @@ public class PotionCanteen : ModItem {
     public override void ModifyTooltips(List<TooltipLine> tooltips) {
         if (buffID > 0) {
             foreach (var t in tooltips) {
-                if (t.Name == "ItemName" && buffID > 0) {
-                    t.Text = GetName(t.Text);
-                }
+                //if (t.Name == "ItemName" && buffID > 0) {
+                //    t.Text = GetName(t.Text);
+                //}
                 if (t.Name == "Tooltip0") {
                     t.Text = Lang.GetBuffDescription(buffID);
                 }

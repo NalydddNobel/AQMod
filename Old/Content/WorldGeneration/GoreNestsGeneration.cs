@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Renaming;
 using Aequus.Common.WorldGeneration;
-using Aequus.Content.Tiles;
 using Aequus.Old.Content.Events.DemonSiege.Tiles;
 using Aequus.Old.Content.Tiles.Ambient;
 using Aequus.Old.Content.Tiles.Furniture.Oblivion;
@@ -13,12 +12,17 @@ namespace Aequus.Old.Content.WorldGeneration;
 public class GoreNestsGeneration : AequusGenStep {
     public override string InsertAfter => "Underworld";
 
+    protected override double GenWeight => 4000f;
+
+    public bool[] SafeTile { get; private set; }
+    public bool[] SafeWall { get; private set; }
+
     public override void Apply(GenerationProgress progress, GameConfiguration config) {
         SetMessage(progress);
 
         GetGenerationValues(out int minY, out int maxY, out int wantedGoreNests);
         int goreNestCount = 0;
-        int loops = 1000000;
+        int loops = 300000;
         for (int i = 0; i < loops; i++) {
             SetProgress(progress, i / (double)loops);
             int x = WorldGen.genRand.Next(80, Main.maxTilesX - 80);
@@ -26,45 +30,15 @@ public class GoreNestsGeneration : AequusGenStep {
             try {
                 if (TryGrowGoreNest(x, y)) {
                     goreNestCount++;
-                    loops = 10000;
+                    loops = 80000;
                     if (goreNestCount > wantedGoreNests) {
                         break;
                     }
                 }
             }
             catch {
-
             }
         }
-    }
-
-    public bool[] SafeTile { get; private set; }
-    public bool[] SafeWall { get; private set; }
-
-    private void PopulateSets() {
-        SafeTile = ExtendArray.CreateArray((i) => true, TileLoader.TileCount);
-        SafeWall = ExtendArray.CreateArray((i) => true, WallLoader.WallCount);
-
-        for (int t = 0; t < TileLoader.TileCount; t++) {
-            if (Main.tileDungeon[t]) {
-                SafeTile[t] = false;
-            }
-        }
-        for (int w = 0; w < WallLoader.WallCount; w++) {
-            if (Main.wallDungeon[w]) {
-                SafeWall[w] = false;
-            }
-        }
-
-        SafeTile[TileID.LihzahrdBrick] = false;
-        SafeTile[TileID.ObsidianBrick] = false;
-        SafeTile[TileID.HellstoneBrick] = false;
-        SafeTile[ModContent.TileType<OblivionAltar>()] = false;
-
-        SafeWall[WallID.ObsidianBrick] = false;
-        SafeWall[WallID.ObsidianBrickUnsafe] = false;
-        SafeWall[WallID.HellstoneBrick] = false;
-        SafeWall[WallID.HellstoneBrickUnsafe] = false;
     }
 
     public static void GetGenerationValues(out int minY, out int maxY, out int wantedGoreNests) {
@@ -77,11 +51,13 @@ public class GoreNestsGeneration : AequusGenStep {
             maxY = Main.UnderworldLayer + 150;
         }
 
+        wantedGoreNests = 1;
+
         if (Main.zenithWorld) {
-            wantedGoreNests = Main.maxTilesX / 300;
+            wantedGoreNests += Main.maxTilesX / WorldGen.WorldSizeSmallX * 15;
         }
         else {
-            wantedGoreNests = Main.maxTilesX / 1500;
+            wantedGoreNests += Main.maxTilesX / WorldGen.WorldSizeSmallX * 3;
         }
     }
 
@@ -99,7 +75,7 @@ public class GoreNestsGeneration : AequusGenStep {
         }
 
         var structure = new Rectangle(x - 60, y - 60, 120, 90).Fluffize(5);
-        if (!GenVars.structures.CanPlace(structure, SafeTile) || AnyBlacklistedTiles(x, y)) {
+        if (!GenVars.structures.CanPlace(structure) || AnyBlacklistedTiles(x, y)) {
             return false;
         }
 
@@ -109,17 +85,19 @@ public class GoreNestsGeneration : AequusGenStep {
                 int x2 = x + i;
                 int y2 = y + j;
                 Tile tile = Main.tile[x2, y2];
-                tile.HasTile = false;
                 if (Main.tile[x2, y2].HasTile || Main.tile[x2, y2].LiquidAmount > 0) {
                     return false;
                 }
+
+                tile.HasTile = false;
             }
         }
         y += 3;
         for (int i = 0; i < 3; i++) {
             int x2 = x + i;
-            if (!Main.tile[x2, y].HasTile || !Main.tileSolid[Main.tile[x2, y].TileType] || Main.tileCut[Main.tile[x2, y].TileType])
+            if (!Main.tile[x2, y].HasTile || !Main.tileSolid[Main.tile[x2, y].TileType] || Main.tileCut[Main.tile[x2, y].TileType]) {
                 return false;
+            }
         }
         for (int i = 0; i < 3; i++) {
             int x2 = x + i;
@@ -283,7 +261,7 @@ public class GoreNestsGeneration : AequusGenStep {
     private static void FillChest(Chest chest) {
         int slot = 0;
         chest.item[slot].SetDefaults(WorldGen.crimson ? ItemID.LightsBane : ItemID.BloodButcherer); // Opposite evil sword
-        chest.item[slot++].GetGlobalItem<RenameItem>().CustomName = "$Mods.Aequus.GoreNestTombstones.Names." + WorldGen.genRand.Next(11) + "|$Mods.Aequus.GoreNestTombstones.Sword";
+        //chest.item[slot++].GetGlobalItem<RenameItem>().CustomName = "$Mods.Aequus.Names." + WorldGen.genRand.Next(11) + "|$Mods.Aequus.GoreNestTombstones.Sword";
         if (WorldGen.genRand.NextBool()) {
             chest.item[slot++].SetDefaults(Utils.SelectRandom(WorldGen.genRand, ItemID.SilverPickaxe, ItemID.TungstenPickaxe, ItemID.GoldPickaxe, ItemID.PlatinumPickaxe));
         }
@@ -314,5 +292,31 @@ public class GoreNestsGeneration : AequusGenStep {
         if (WorldGen.genRand.NextBool()) {
             chest.item[slot++].SetDefaults(Utils.SelectRandom(WorldGen.genRand, ItemID.StarStatue, ItemID.HeartStatue, ItemID.AngelStatue));
         }
+    }
+
+    public override void PostSetupContent() {
+        SafeTile = ExtendArray.CreateArray((i) => true, TileLoader.TileCount);
+        SafeWall = ExtendArray.CreateArray((i) => true, WallLoader.WallCount);
+
+        for (int t = 0; t < TileLoader.TileCount; t++) {
+            if (Main.tileDungeon[t]) {
+                SafeTile[t] = false;
+            }
+        }
+        for (int w = 0; w < WallLoader.WallCount; w++) {
+            if (Main.wallDungeon[w]) {
+                SafeWall[w] = false;
+            }
+        }
+
+        SafeTile[TileID.LihzahrdBrick] = false;
+        SafeTile[TileID.ObsidianBrick] = false;
+        SafeTile[TileID.HellstoneBrick] = false;
+        SafeTile[ModContent.TileType<OblivionAltar>()] = false;
+
+        SafeWall[WallID.ObsidianBrick] = false;
+        SafeWall[WallID.ObsidianBrickUnsafe] = false;
+        SafeWall[WallID.HellstoneBrick] = false;
+        SafeWall[WallID.HellstoneBrickUnsafe] = false;
     }
 }

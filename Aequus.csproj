@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\tModLoader.targets" />
-	
+
   <PropertyGroup>
     <AssemblyName>Aequus</AssemblyName>
     <TargetFramework>net6.0</TargetFramework>
@@ -25,7 +25,7 @@
 	<EmbeddedResource Remove="SourceGenerators\**" />
 	<Compile Remove="SourceGenerators\**" />
   </ItemGroup>
-
+	
   <ItemGroup>
 	<ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	<AdditionalFiles Include="**\*.png" />
@@ -41,7 +41,7 @@
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <CompilerGeneratedFilesOutputPath>Temp</CompilerGeneratedFilesOutputPath>
   </PropertyGroup>
-
+	
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <Optimize>False</Optimize>
   </PropertyGroup>
@@ -58,19 +58,5 @@
 	<AdditionalFiles Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
   </ItemGroup>
-	
-  <ItemGroup>
-    <None Remove="Assets\Textures\SlashForward.png" />
-    <None Remove="Old\Content\Tiles\Ambient\GoreNestStalagmite.png" />
-    <None Remove="Old\Content\Tiles\Furniture\Oblivion\AshTombstones_Highlight.png" />
-    <None Remove="Old\Content\Tiles\Furniture\Oblivion\OblivionChest.png" />
-    <None Remove="Old\Content\Tiles\Furniture\Oblivion\OblivionChestItem.png" />
-    <None Remove="Old\Content\Tiles\Furniture\Oblivion\OblivionChest_Glow.png" />
-    <None Remove="Old\Content\Tiles\Furniture\Oblivion\OblivionChest_Highlight.png" />
-    <None Remove="Old\Content\Tiles\Furniture\Oblivion\OblivionCraftingStation.png" />
-    <None Remove="Old\Content\Tiles\Furniture\Oblivion\OblivionCraftingStationItem.png" />
-    <None Remove="Old\Content\Tiles\Furniture\Oblivion\OblivionCraftingStation_Portal.png" />
-    <None Remove="Old\Content\Tiles\Furniture\Oblivion\OblivionCraftingStation_Stick.png" />
-  </ItemGroup>
-
+		
 </Project>

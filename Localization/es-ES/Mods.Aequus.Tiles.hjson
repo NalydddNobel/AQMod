@@ -109,48 +109,48 @@ MossStatues: {
 
 OblivionChest: {
 	// MapEntry: Oblivion Chest
-	// ItemDisplayName: Mods.Aequus.Tiles.OblivionChest.ItemDisplayName
+	// ItemDisplayName: "{$Tiles.OblivionChest.MapEntry}"
+	// ItemTooltip: ""
+}
+
+OblivionChestTrapped: {
+	// ItemDisplayName: Trapped Oblivion Chest
 	// ItemTooltip: ""
 }
 
 OblivionCraftingStation: {
-	// ItemDisplayName: Mods.Aequus.Tiles.OblivionCraftingStation.ItemDisplayName
-	// ItemTooltip: ""
+	// ItemDisplayName: Oblivion Reformatory
+	// ItemTooltip: "{$CommonItemTooltip.SpecialCrafting}"
 }
 
 AshTombstones: {
 	Tombstone: {
-		// ItemDisplayName: Mods.Aequus.Tiles.AshTombstones.Tombstone.ItemDisplayName
+		// ItemDisplayName: Ash Tombstone
 		// ItemTooltip: ""
 	}
 
 	GraveMarker: {
-		// ItemDisplayName: Mods.Aequus.Tiles.AshTombstones.GraveMarker.ItemDisplayName
+		// ItemDisplayName: Ash Grave Marker
 		// ItemTooltip: ""
 	}
 
 	CrossGraveMarker: {
-		// ItemDisplayName: Mods.Aequus.Tiles.AshTombstones.CrossGraveMarker.ItemDisplayName
+		// ItemDisplayName: Ash Cross Grave Marker
 		// ItemTooltip: ""
 	}
 
 	Headstone: {
-		// ItemDisplayName: Mods.Aequus.Tiles.AshTombstones.Headstone.ItemDisplayName
+		// ItemDisplayName: Ash Hellstone
 		// ItemTooltip: ""
 	}
 
 	Gravestone: {
-		// ItemDisplayName: Mods.Aequus.Tiles.AshTombstones.Gravestone.ItemDisplayName
+		// ItemDisplayName: Ash Gravestone
 		// ItemTooltip: ""
 	}
 
 	Obelisk: {
-		// ItemDisplayName: Mods.Aequus.Tiles.AshTombstones.Obelisk.ItemDisplayName
+		// ItemDisplayName: Ash Obelisk
 		// ItemTooltip: ""
 	}
-}
-
-OblivionChestTrapped: {
-	// ItemDisplayName: Mods.Aequus.Tiles.OblivionChestTrapped.ItemDisplayName
-	// ItemTooltip: ""
 }
