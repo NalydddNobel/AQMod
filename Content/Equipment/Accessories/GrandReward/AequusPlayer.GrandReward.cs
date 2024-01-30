@@ -1,6 +1,6 @@
 ﻿using Aequus.Content.Equipment.Accessories.GrandReward;
-using Aequus.Core;
-using Aequus.Core.Generator;
+using Aequus.Core.CodeGeneration;
+using Aequus.Core.IO;
 
 namespace Aequus;
 
@@ -14,7 +14,6 @@ public partial class AequusPlayer {
     public bool accGrandRewardDownside;
 
     [SaveData("CosmicChest")]
-    [SaveDataAttribute.IsListedBoolean]
     public bool usedCosmicChest;
 
     private void UpdateCosmicChest() {

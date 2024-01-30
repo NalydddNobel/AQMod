@@ -1,6 +1,6 @@
-﻿using Aequus.Common.Items;
-using Aequus.Common.Items.Components;
+﻿using Aequus.Common.Items.Components;
 using Aequus.Content.Tools.MagicMirrors.PhaseMirror;
+using Aequus.Core.ContentGeneration;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

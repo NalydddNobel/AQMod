@@ -2,8 +2,7 @@
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.DataSets;
 using Aequus.Content.Graphics.Particles;
-using Aequus.Content.Tiles.Banners;
-using Aequus.Core;
+using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics;
 using System;
 using Terraria.Audio;

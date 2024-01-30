@@ -10,6 +10,7 @@ using System.IO;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Aequus.Core.ContentGeneration;
 
 namespace Aequus.Content.Tiles.Conductive;
 

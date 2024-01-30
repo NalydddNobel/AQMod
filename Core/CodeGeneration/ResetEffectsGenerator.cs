@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Reflection.Emit;
 
-namespace Aequus.Core.Generator;
+namespace Aequus.Core.CodeGeneration;
 
 public sealed class ResetEffectsGenerator<T> {
     private Action<T> ResetEffects;

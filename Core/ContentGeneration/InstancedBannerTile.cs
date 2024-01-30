@@ -5,7 +5,7 @@ using Terraria.Enums;
 using Terraria.Localization;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Tiles.Banners;
+namespace Aequus.Core.ContentGeneration;
 
 internal class InstancedBannerTile : InstancedModTile {
     internal readonly ModNPC _modNPC;

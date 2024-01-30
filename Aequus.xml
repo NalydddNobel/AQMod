@@ -4,10 +4,17 @@
         <name>Aequus</name>
     </assembly>
     <members>
+        <member name="P:Aequus.Aequus.Log">
+            <summary>Shorthand for <see cref="P:Aequus.Aequus.Instance"/>.Logger.</summary>
+        </member>
+        <member name="P:Aequus.Aequus.TerrariaAssembly">
+            <summary>Shorthand for typeof(<see cref="T:Terraria.Main"/>).Assembly.</summary>
+        </member>
+        <member name="P:Aequus.Aequus.HighQualityEffects">
+            <summary>Shorthand for checking if <see cref="F:Terraria.Main.gfxQuality"/> is greater than 0.</summary>
+        </member>
         <member name="P:Aequus.Aequus.GameWorldActive">
-            <summary>
-            Shorthand for a bunch of checks determining whether the game is unpaused.
-            </summary>
+            <summary>Shorthand for a bunch of checks determining whether the game is unpaused.</summary>
         </member>
         <member name="M:Aequus.Common.Backpacks.BackpackData.Deactivate(Terraria.Player)">
             <summary>
@@ -674,22 +681,6 @@
             A base furntiure tile, Furniture in Aequus is handled on an individual ModTile basis instead of through a big multi-styled tile.
             </summary>
         </member>
-        <member name="M:Aequus.Common.Tiles.InstancedTileItem.#ctor(Terraria.ModLoader.ModTile,System.Int32,System.String,System.Boolean,System.Int32,System.Int32,System.Nullable{System.Int32})">
-            <param name="modTile"></param>
-            <param name="style"></param>
-            <param name="nameSuffix">Extra text added to the end of the name.</param>
-            <param name="dropItem">Whether or not the <paramref name="modTile"/> should drop this item.</param>
-            <param name="rarity">Item rarity.</param>
-            <param name="value">Item value.</param>
-            <param name="researchSacrificeCount">Research count override.</param>
-        </member>
-        <member name="M:Aequus.Common.Tiles.InstancedWallItem.#ctor(Terraria.ModLoader.ModWall,System.Boolean)">
-            <summary>
-            
-            </summary>
-            <param name="modWall"></param>
-            <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
-        </member>
         <member name="M:Aequus.Common.WorldGeneration.AequusGenStep.SetMessage(Terraria.WorldBuilding.GenerationProgress,System.Object)">
             <summary>
             Safely sets the progress message.
@@ -868,12 +859,27 @@
             Bubble particles which only work underwater. Floats upwards.
             </summary>
         </member>
-        <member name="M:Aequus.Content.Tiles.Banners.BannerLoader.AddBannerBuff``1(Terraria.ModLoader.ModNPC)">
+        <member name="T:Aequus.Core.Collections.DictionaryRemoveQueue`2">
             <summary>
-            Adds a banner buff for this NPC to <typeparamref name="TBannerNPC"/>'s registered banner. This is used grant a buff against Chained Souls when near the Keeper's Banner.
+            A Dictionary with a removal queue. Allows for removals to occur in an iteration.
+            Call <see cref="M:Aequus.Core.Collections.DictionaryRemoveQueue`2.RemoveAllQueued"/> to remove all queued entries from the Dictionary.
             </summary>
-            <typeparam name="TBannerNPC"></typeparam>
-            <param name="npcWithoutBanner"></param>
+        </member>
+        <member name="M:Aequus.Core.ContentGeneration.InstancedTileItem.#ctor(Terraria.ModLoader.ModTile,System.Int32,System.String,System.Boolean,System.Int32,System.Int32,System.Nullable{System.Int32})">
+            <param name="modTile"></param>
+            <param name="style"></param>
+            <param name="nameSuffix">Extra text added to the end of the name.</param>
+            <param name="dropItem">Whether or not the <paramref name="modTile"/> should drop this item.</param>
+            <param name="rarity">Item rarity.</param>
+            <param name="value">Item value.</param>
+            <param name="researchSacrificeCount">Research count override.</param>
+        </member>
+        <member name="M:Aequus.Core.ContentGeneration.InstancedWallItem.#ctor(Terraria.ModLoader.ModWall,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="modWall"></param>
+            <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
         </member>
         <member name="T:Aequus.Core.Graphics.Tiles.BatchedTileDrawInfo">
             <summary>
@@ -916,9 +922,46 @@
             <para>Place SpecialTileDrawing.Add(i, j, Type); into ModTile.PostDraw(...) to add it to the rendering list.</para>
             </summary>
         </member>
-        <member name="T:Aequus.Core.IDLoader`1">
+        <member name="M:Aequus.Core.Initialization.BannerLoader.AddBannerBuff``1(Terraria.ModLoader.ModNPC)">
+            <summary>
+            Adds a banner buff for this NPC to <typeparamref name="TBannerNPC"/>'s registered banner. This is used grant a buff against Chained Souls when near the Keeper's Banner.
+            </summary>
+            <typeparam name="TBannerNPC"></typeparam>
+            <param name="npcWithoutBanner"></param>
+        </member>
+        <member name="T:Aequus.Core.IO.IDLoader`1">
             <summary>
             Helper for loading content which uses a legacy Id system.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.Particles.ParticleArray`1.New">
+            <returns>A single particle instance.</returns>
+        </member>
+        <member name="M:Aequus.Core.Particles.ParticleArray`1.NewMultiple(System.Int32)">
+            <summary>
+            Gets multiple particle instances, used to reduce <see cref="M:Aequus.Core.Particles.ParticleArray`1.CheckInit"/> calls. Unlike <see cref="M:Aequus.Core.Particles.ParticleArray`1.NewMultipleReduced(System.Int32,System.Int32)"/>, 
+            <paramref name="count"/> is NOT multiplied by <see cref="F:Terraria.Main.gfxQuality"/>.
+            </summary>
+            <param name="count">The amount of particles wanted.</param>
+        </member>
+        <member name="M:Aequus.Core.Particles.ParticleArray`1.NewMultipleReduced(System.Int32,System.Int32)">
+            <summary>
+            Gets multiple particle instances, used to reduce <see cref="M:Aequus.Core.Particles.ParticleArray`1.CheckInit"/> calls. <paramref name="count"/> is multiplied by <see cref="F:Terraria.Main.gfxQuality"/>, 
+            but returns atleast <paramref name="minimum"/> amount of particles.
+            </summary>
+            <param name="count">The amount of particles wanted. This is multiplied <see cref="F:Terraria.Main.gfxQuality"/>.</param>
+            <param name="minimum">The minimum amount of particles to return. <paramref name="count"/> is multiplied by <see cref="F:Terraria.Main.gfxQuality"/>, which reduces it depending on quality settings.</param>
+        </member>
+        <member name="M:Aequus.Core.Particles.ParticleArray`1.Activate">
+            <summary>
+            Allows the renderer to subscribe to various drawing actions.
+            This is ran when the particle system is activated.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.Particles.ParticleArray`1.Deactivate">
+            <summary>
+            Allows the renderer to unsubscribe to various drawing actions.
+            This is ran when all particles are cleared from the system.
             </summary>
         </member>
         <member name="T:Aequus.Core.Particles.ParticleManager">
@@ -926,17 +969,8 @@
             Handles and updates particle systems.
             </summary>
         </member>
-        <member name="M:Aequus.Core.Particles.ParticleSystem`1.Activate">
-            <summary>
-            Allows the renderer to subscribe to various drawing actions.
-            This is ran when the particle system is activated.
-            </summary>
-        </member>
-        <member name="M:Aequus.Core.Particles.ParticleSystem`1.Deactivate">
-            <summary>
-            Allows the renderer to unsubscribe to various drawing actions.
-            This is ran when all particles are cleared from the system.
-            </summary>
+        <member name="T:Aequus.Core.PhysicsBehaviors.VICollisonNode">
+            <summary>A Verlet Integrated node with Tile Collision.</summary>
         </member>
         <member name="T:Aequus.Core.UI.UILayer">
             <summary>

@@ -1,7 +1,7 @@
 ﻿using ReLogic.Reflection;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Core;
+namespace Aequus.Core.IO;
 
 /// <summary>
 /// Helper for loading content which uses a legacy Id system.

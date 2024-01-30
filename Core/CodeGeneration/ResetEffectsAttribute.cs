@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Core.Generator;
+namespace Aequus.Core.CodeGeneration;
 
 [AttributeUsage(AttributeTargets.Field)]
 public sealed class ResetEffectsAttribute : Attribute {

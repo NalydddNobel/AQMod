@@ -1,5 +1,6 @@
-﻿namespace Aequus.Common.Projectiles;
+﻿namespace Aequus.Core.ContentGeneration;
 
+[Autoload(false)]
 internal abstract class InstancedModProjectile : ModProjectile {
     private readonly string _name;
     private readonly string _texture;

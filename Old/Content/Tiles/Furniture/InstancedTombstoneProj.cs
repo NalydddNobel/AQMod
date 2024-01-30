@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Projectiles;
+﻿using Aequus.Core.ContentGeneration;
 using Terraria.Audio;
 
 namespace Aequus.Old.Content.Tiles.Furniture;

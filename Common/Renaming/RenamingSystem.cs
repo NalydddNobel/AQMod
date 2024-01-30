@@ -1,4 +1,4 @@
-﻿using Aequus.Core;
+﻿using Aequus.Core.IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -115,7 +115,7 @@ public sealed class RenamingSystem : ModSystem {
     private static int _gameTime;
 
     public override void Load() {
-        IOHooks.PreSaveWorld += EnsureTagCompoundContents;
+        SaveActions.PreSaveWorld += EnsureTagCompoundContents;
     }
 
     public override void ClearWorld() {

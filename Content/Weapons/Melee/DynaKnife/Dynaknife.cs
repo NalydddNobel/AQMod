@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Content.Graphics.Particles;
-using Aequus.Core;
 using Aequus.Core.Initialization;
 using System;
 

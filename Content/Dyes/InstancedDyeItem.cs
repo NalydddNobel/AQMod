@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Items;
-using Aequus.Core.Assets;
+﻿using Aequus.Core.Assets;
+using Aequus.Core.ContentGeneration;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria.Graphics.Shaders;

@@ -1,8 +1,8 @@
-﻿using Aequus.Common.Items;
-using Terraria.Localization;
+﻿using Terraria.Localization;
 
-namespace Aequus.Common.Tiles;
+namespace Aequus.Core.ContentGeneration;
 
+[Autoload(false)]
 internal class InstancedWallItem : InstancedModItem {
     private readonly ModWall _modWall;
     private readonly bool _dropItem;

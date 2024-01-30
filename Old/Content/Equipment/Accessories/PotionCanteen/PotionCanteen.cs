@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Buffs;
 using Aequus.Common.Items.EquipmentBooster;
-using Aequus.Core;
+using Aequus.Core.IO;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;

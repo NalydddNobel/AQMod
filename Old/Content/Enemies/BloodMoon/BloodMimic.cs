@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items.DropRules;
 using Aequus.Common.NPCs.Bestiary;
-using Aequus.Content.Tiles.Banners;
+using Aequus.Core.ContentGeneration;
 using Aequus.Old.Content.Equipment.Accessories.HighSteaks;
 using Aequus.Old.Content.Equipment.Accessories.SpiritKeg;
 using Aequus.Old.Content.Equipment.GrapplingHooks.HealingGrappleHook;

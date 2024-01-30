@@ -1,6 +1,6 @@
-﻿namespace Aequus.Common.ItemPrefixes;
+﻿namespace Aequus.Core.ContentGeneration;
 
-public class InstancedPrefix : ModPrefix {
+public class InstancedModPrefix : ModPrefix {
     public readonly record struct StatModifiers(float? DamageMultiplier = default, float? KnockbackMultiplier = default, float? UseTimeMultiplier = default, float? ScaleMultiplier = default, float? ShootSpeedMultiplier = default, float? ManaMultiplier = default, int? CritBonus = default);
 
     private readonly string _name;
@@ -12,7 +12,7 @@ public class InstancedPrefix : ModPrefix {
 
     // ref float damageMult, ref float knockbackMult, ref float useTimeMult, ref float scaleMult, ref float shootSpeedMult, ref float manaMult, ref int critBonus
 
-    public InstancedPrefix(string name, float priceMultiplier, StatModifiers statModifiers = default) {
+    public InstancedModPrefix(string name, float priceMultiplier, StatModifiers statModifiers = default) {
         _name = name;
         this.priceMultiplier = priceMultiplier;
         this.statModifiers = statModifiers;

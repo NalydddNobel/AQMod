@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Aequus.Core;
-public class TrimmableDictionary<TKey, TValue> : IDictionary<TKey, TValue> {
+namespace Aequus.Core.Collections;
+
+/// <summary>
+/// A Dictionary with a removal queue. Allows for removals to occur in an iteration.
+/// Call <see cref="RemoveAllQueued"/> to remove all queued entries from the Dictionary.
+/// </summary>
+public class DictionaryRemoveQueue<TKey, TValue> : IDictionary<TKey, TValue> {
     private readonly Dictionary<TKey, TValue> _dictionary = new();
     private readonly Queue<TKey> _removeQueue = new();
 
@@ -79,7 +84,7 @@ public class TrimmableDictionary<TKey, TValue> : IDictionary<TKey, TValue> {
         return ((IEnumerable)_dictionary).GetEnumerator();
     }
 
-    public static implicit operator Dictionary<TKey, TValue>(TrimmableDictionary<TKey, TValue> dictionary) {
+    public static implicit operator Dictionary<TKey, TValue>(DictionaryRemoveQueue<TKey, TValue> dictionary) {
         return dictionary._dictionary;
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Aequus.Content.DataSets;
-using Aequus.Content.Tiles.Banners;
 using Aequus.Core.DataSets;
+using Aequus.Core.Initialization;
 using System;
 using Terraria.Audio;
 using Terraria.DataStructures;

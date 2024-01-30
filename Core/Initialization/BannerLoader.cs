@@ -1,8 +1,9 @@
-﻿using Aequus.Core.Initialization;
+﻿using Aequus.Content.Tiles.Banners;
+using Aequus.Core.ContentGeneration;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Aequus.Content.Tiles.Banners;
+namespace Aequus.Core.Initialization;
 
 public class BannerLoader : GlobalNPC {
     public static readonly Dictionary<int, ModItem> NPCToBannerItemId = new();

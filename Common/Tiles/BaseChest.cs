@@ -1,4 +1,5 @@
-﻿using Aequus.Core.Initialization;
+﻿using Aequus.Core.ContentGeneration;
+using Aequus.Core.Initialization;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;

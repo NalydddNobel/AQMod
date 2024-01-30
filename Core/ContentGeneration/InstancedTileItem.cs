@@ -1,9 +1,9 @@
-﻿using Aequus.Common.Items;
-using Aequus.Core.Initialization;
+﻿using Aequus.Core.Initialization;
 using Terraria.Localization;
 
-namespace Aequus.Common.Tiles;
+namespace Aequus.Core.ContentGeneration;
 
+[Autoload(false)]
 internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
     protected readonly ModTile _modTile;
     private readonly int _style;

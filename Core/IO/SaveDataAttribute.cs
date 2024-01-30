@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Core;
+namespace Aequus.Core.IO;
 
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
 public sealed class SaveDataAttribute : Attribute {
@@ -62,22 +62,7 @@ public sealed class SaveDataAttribute : Attribute {
     public static void SaveData(TagCompound tag, object me) {
         var list = new List<string>();
         foreach (var m in ReflectionHelper.GetMembersWithAttribute<SaveDataAttribute>(me.GetType())) {
-            if (m.memberInfo.GetCustomAttribute<IsListedBooleanAttribute>() != null) {
-                if (m.memberInfo is FieldInfo field) {
-                    if ((bool)field.GetValue(me) == false) {
-                        continue;
-                    }
-                }
-                if (m.memberInfo is PropertyInfo property) {
-                    if ((bool)property.GetValue(me) == false) {
-                        continue;
-                    }
-                }
-                list.Add(m.attributeInstance.Name);
-            }
-            else {
-                m.attributeInstance.SaveData(tag, me, m.memberInfo);
-            }
+            m.attributeInstance.SaveData(tag, me, m.memberInfo);
         }
         if (list.Count > 0) {
             tag["List"] = list;
@@ -85,26 +70,8 @@ public sealed class SaveDataAttribute : Attribute {
     }
 
     public static void LoadData(TagCompound tag, object me) {
-        var listAttrs = new Dictionary<string, MemberInfo>();
         foreach (var m in ReflectionHelper.GetMembersWithAttribute<SaveDataAttribute>(me.GetType())) {
-            if (m.memberInfo.GetCustomAttribute<IsListedBooleanAttribute>() != null) {
-                listAttrs.Add(m.attributeInstance.Name, m.memberInfo);
-            }
-            else {
-                m.attributeInstance.LoadData(tag, me, m.memberInfo);
-            }
-        }
-        if (tag.TryGet<List<string>>("List", out var list)) {
-            foreach (var l in listAttrs) {
-                if (list.Contains(l.Key)) {
-                    if (l.Value is FieldInfo field) {
-                        field.SetValue(me, true);
-                    }
-                    else if (l.Value is PropertyInfo property) {
-                        property.SetValue(me, true);
-                    }
-                }
-            }
+            m.attributeInstance.LoadData(tag, me, m.memberInfo);
         }
     }
 }

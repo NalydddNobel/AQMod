@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Content.Materials;
+using Aequus.Core.ContentGeneration;
 using Aequus.Core.Initialization;
 
 namespace Aequus.Content.Fishing.CrabPots;

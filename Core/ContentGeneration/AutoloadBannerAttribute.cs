@@ -1,7 +1,7 @@
 ﻿using Aequus.Core.Initialization;
 using System;
 
-namespace Aequus.Content.Tiles.Banners;
+namespace Aequus.Core.ContentGeneration;
 
 [AttributeUsage(AttributeTargets.Class)]
 internal class AutoloadBannerAttribute : AutoloadXAttribute {

@@ -1,10 +1,10 @@
-﻿using Aequus.Common.Tiles;
-using Terraria.DataStructures;
+﻿using Terraria.DataStructures;
 using Terraria.Localization;
 using Terraria.ObjectData;
 
-namespace Aequus.Common.Music;
+namespace Aequus.Core.ContentGeneration;
 
+[Autoload(false)]
 internal class InstancedMusicBox : InstancedModTile {
     protected ModItem MusicBoxItem { get; private set; }
 

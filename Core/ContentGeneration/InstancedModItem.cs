@@ -1,5 +1,6 @@
-﻿namespace Aequus.Common.Items;
+﻿namespace Aequus.Core.ContentGeneration;
 
+[Autoload(false)]
 internal abstract class InstancedModItem : ModItem {
     protected readonly string _name;
     protected readonly string _texture;

@@ -1,7 +1,6 @@
-﻿using Aequus.Common.Items;
-using Terraria.Localization;
+﻿using Terraria.Localization;
 
-namespace Aequus.Content.Tiles.Banners;
+namespace Aequus.Core.ContentGeneration;
 
 internal class InstancedBannerItem : InstancedModItem {
     private readonly ModNPC _npc;

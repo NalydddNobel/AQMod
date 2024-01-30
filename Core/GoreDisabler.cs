@@ -8,7 +8,7 @@ public class GoreDisabler : ILoadable {
         DisableGores = false;
     }
 
-    private int On_Gore_NewGore_IEntitySource_Vector2_Vector2_int_float(On_Gore.orig_NewGore_IEntitySource_Vector2_Vector2_int_float orig, Terraria.DataStructures.IEntitySource source, Microsoft.Xna.Framework.Vector2 Position, Microsoft.Xna.Framework.Vector2 Velocity, int Type, float Scale) {
+    private static int On_Gore_NewGore_IEntitySource_Vector2_Vector2_int_float(On_Gore.orig_NewGore_IEntitySource_Vector2_Vector2_int_float orig, Terraria.DataStructures.IEntitySource source, Microsoft.Xna.Framework.Vector2 Position, Microsoft.Xna.Framework.Vector2 Velocity, int Type, float Scale) {
         if (DisableGores) {
             return Main.maxGore;
         }

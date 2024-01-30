@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Tiles.Components;
-using Aequus.Core.Generator;
+using Aequus.Core.CodeGeneration;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

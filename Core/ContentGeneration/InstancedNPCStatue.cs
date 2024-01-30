@@ -1,10 +1,9 @@
-﻿using Aequus.Common.Tiles;
-using Terraria.DataStructures;
+﻿using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.Localization;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Tiles.Statues;
+namespace Aequus.Core.ContentGeneration;
 
 internal class InstancedNPCStatue : InstancedModTile {
     private readonly ModNPC _modNPC;

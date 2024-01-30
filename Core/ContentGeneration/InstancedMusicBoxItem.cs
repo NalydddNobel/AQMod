@@ -1,11 +1,9 @@
 ﻿using Aequus.Common.Items.Components;
-using Aequus.Common.Tiles;
-using Terraria;
-using Terraria.ID;
 using Terraria.Localization;
 
-namespace Aequus.Common.Music;
+namespace Aequus.Core.ContentGeneration;
 
+[Autoload(false)]
 internal sealed class InstancedMusicBoxItem : InstancedTileItem, IOnlineLink {
     public string Link { get; internal set; }
     public InstancedMusicBox _musicBox;

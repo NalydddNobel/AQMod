@@ -1,4 +1,6 @@
-﻿namespace Aequus.Common.Tiles;
+﻿namespace Aequus.Core.ContentGeneration;
+
+[Autoload(false)]
 internal class InstancedModTile : ModTile {
     internal readonly string _name;
     internal readonly string _texture;
