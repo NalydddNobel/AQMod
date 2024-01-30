@@ -127,7 +127,7 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
             d.noGravity = true;
         }
 
-        if (!Aequus.highQualityEffects) {
+        if (!Aequus.HighQualityEffects) {
             return;
         }
 

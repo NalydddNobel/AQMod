@@ -46,7 +46,7 @@ public class Dynaknife : ModItem, ICooldownItem {
         if (Main.netMode != NetmodeID.Server) {
             Rectangle hitbox = player.getRect();
             if (Cull2D.Rectangle(hitbox)) {
-                foreach (var particle in ModContent.GetInstance<DashParticles>().NewMultiple(16)) {
+                foreach (var particle in ModContent.GetInstance<DashParticles>().NewMultipleReduced(16, 8)) {
                     particle.Location = Main.rand.NextVector2FromRectangle(hitbox);
                     particle.Velocity = new Vector2(dir * Main.rand.NextFloat(10f, 16f), 0f);
                     particle.Rotation = particle.Velocity.ToRotation() + MathHelper.Pi;

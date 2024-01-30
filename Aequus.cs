@@ -5,7 +5,6 @@ global using Terraria;
 global using Terraria.ID;
 global using Terraria.ModLoader;
 using log4net;
-using System.IO;
 using System.Reflection;
 
 namespace Aequus;
@@ -16,7 +15,7 @@ public partial class Aequus : Mod {
 
     public static Assembly TerrariaAssembly => typeof(Main).Assembly;
 
-    public static bool highQualityEffects = true;
+    public static bool HighQualityEffects => Main.gfxQuality > 0f;
 
     /// <summary>
     /// Shorthand for a bunch of checks determining whether the game is unpaused.

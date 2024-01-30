@@ -4,7 +4,7 @@ using System;
 
 namespace Aequus.Content.Weapons.Magic.Furystar;
 
-public class FurystarParticles : ParticleSystem<FurystarParticles.Particle> {
+public class FurystarParticles : ParticleArray<FurystarParticles.Particle> {
     public override int ParticleCount => 50;
 
     public override void Draw(SpriteBatch spriteBatch) {

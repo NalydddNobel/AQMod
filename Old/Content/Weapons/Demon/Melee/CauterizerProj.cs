@@ -27,7 +27,7 @@ public class CauterizerProj : LegacyHeldSlashingSwordProjectile {
             SoundEngine.PlaySound(SoundID.Item1.WithPitchOffset(-1f), Projectile.Center);
         }
         if (AnimProgress > 0.3f && AnimProgress < 0.6f) {
-            int amt = !Aequus.highQualityEffects ? 1 : Main.rand.Next(4) + 1;
+            int amt = (int)Math.Max((Main.rand.Next(4) + 1) * Main.gfxQuality, 1f);
             for (int i = 0; i < amt; i++) {
                 var velocity = AngleVector.RotatedBy(MathHelper.PiOver2 * -swingDirection) * Main.rand.NextFloat(2f, 8f);
                 var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), DustID.SilverFlame, velocity, newColor: Color.Orange with { A = 0 });
@@ -90,7 +90,7 @@ public class CauterizerProj : LegacyHeldSlashingSwordProjectile {
 
         GetSwordDrawInfo(out var texture, out var handPosition, out var frame, out float rotationOffset, out var origin, out var effects);
         float size = texture.Size().Length();
-        if (Aequus.highQualityEffects) {
+        if (Aequus.HighQualityEffects) {
             DrawSwordAfterImages(texture, handPosition, frame, glowColor * 0.4f * Projectile.Opacity, rotationOffset, origin, effects,
                 loopProgress: 0.17f, interpolationValue: -0.01f);
 

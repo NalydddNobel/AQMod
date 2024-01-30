@@ -1,15 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Aequus.Core.Particles;
 
 [Autoload(Side = ModSide.Client)]
-public abstract class ParticleSystem<T> : IParticleSystem where T : IParticle, new() {
+public abstract class ParticleArray<T> : IParticleSystem where T : IParticle, new() {
     protected Mod Mod { get; private set; }
     protected T[] Particles;
 
     public abstract int ParticleCount { get; }
     public bool Active { get; protected set; }
 
+    /// <returns>A single particle instance.</returns>
     public T New() {
         CheckInit();
 
@@ -24,6 +26,11 @@ public abstract class ParticleSystem<T> : IParticleSystem where T : IParticle, n
         return Particles[^1];
     }
 
+    /// <summary>
+    /// Gets multiple particle instances, used to reduce <see cref="CheckInit"/> calls. Unlike <see cref="NewMultipleReduced(int, int)"/>, 
+    /// <paramref name="count"/> is NOT multiplied by <see cref="Main.gfxQuality"/>.
+    /// </summary>
+    /// <param name="count">The amount of particles wanted.</param>
     public IEnumerable<T> NewMultiple(int count) {
         if (Main.netMode == NetmodeID.Server) {
             yield break;
@@ -41,6 +48,16 @@ public abstract class ParticleSystem<T> : IParticleSystem where T : IParticle, n
                 }
             }
         }
+    }
+
+    /// <summary>
+    /// Gets multiple particle instances, used to reduce <see cref="CheckInit"/> calls. <paramref name="count"/> is multiplied by <see cref="Main.gfxQuality"/>, 
+    /// but returns atleast <paramref name="minimum"/> amount of particles.
+    /// </summary>
+    /// <param name="count">The amount of particles wanted. This is multiplied <see cref="Main.gfxQuality"/>.</param>
+    /// <param name="minimum">The minimum amount of particles to return. <paramref name="count"/> is multiplied by <see cref="Main.gfxQuality"/>, which reduces it depending on quality settings.</param>
+    public IEnumerable<T> NewMultipleReduced(int count, int minimum = 1) {
+        return NewMultiple(Math.Clamp((int)(count * Main.gfxQuality), minimum, count));
     }
 
     private void CheckInit() {

@@ -115,7 +115,7 @@ public class SliceProj : LegacyHeldSlashingSwordProjectile {
         }
 
         GetSwordDrawInfo(out var texture, out var handPosition, out var frame, out float rotationOffset, out var origin, out var effects);
-        if (Aequus.highQualityEffects) {
+        if (Aequus.HighQualityEffects) {
             DrawSwordAfterImages(texture, handPosition, frame, glowColor * 0.4f * Projectile.Opacity, rotationOffset, origin, effects,
                 loopProgress: 0.07f, interpolationValue: -0.01f);
 

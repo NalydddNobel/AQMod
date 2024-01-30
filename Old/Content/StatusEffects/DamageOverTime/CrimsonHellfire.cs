@@ -61,7 +61,7 @@ public class CrimsonHellfireNPC : GlobalNPC {
     public override void PostAI(NPC npc) {
         if (hasDebuff && Main.netMode != NetmodeID.Server) {
             int amt = Math.Max((int)(npc.Size.Length() / 32f), 1);
-            foreach (var p in ModContent.GetInstance<LegacyBloomParticle>().NewMultiple(amt)) {
+            foreach (var p in ModContent.GetInstance<LegacyBloomParticle>().NewMultipleReduced(amt)) {
                 p.Location = Main.rand.NextVector2FromRectangle(npc.Hitbox);
                 p.Velocity = -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f));
                 p.Color = CrimsonHellfire.FireColor;

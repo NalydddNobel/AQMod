@@ -8,7 +8,7 @@ namespace Aequus.Content.Graphics.Particles;
 /// <summary>
 /// Bubble particles which only work underwater. Floats upwards.
 /// </summary>
-public class UnderwaterBubbleParticles : ParallelParticleSystem<UnderwaterBubbleParticles.Bubble> {
+public class UnderwaterBubbleParticles : ParallelParticleArray<UnderwaterBubbleParticles.Bubble> {
     public const int FRAME_COUNT_X = 9;
     public const int FRAME_COUNT_Y = 5;
 
@@ -20,7 +20,7 @@ public class UnderwaterBubbleParticles : ParallelParticleSystem<UnderwaterBubble
 
     public override int ParticleCount => 100;
 
-    public static bool AllowMergeDrawing => Aequus.highQualityEffects;
+    public static bool AllowMergeDrawing => Aequus.HighQualityEffects;
 
     public override void Draw(SpriteBatch spriteBatch) {
         if (!AllowMergeDrawing) {

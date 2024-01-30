@@ -3,7 +3,7 @@ using Aequus.Core.Particles;
 
 namespace Aequus.Content.Graphics.Particles;
 
-public class DashParticles : ParallelParticleSystem<DashParticles.Particle> {
+public class DashParticles : ParallelParticleArray<DashParticles.Particle> {
     public override int ParticleCount => 100;
 
     public override void Draw(SpriteBatch spriteBatch) {
