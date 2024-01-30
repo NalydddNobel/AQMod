@@ -1,10 +1,11 @@
-﻿using Terraria.DataStructures;
+﻿using Microsoft.Xna.Framework;
+using Terraria.DataStructures;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Equipment.Accessories.Informational.Calendar;
 
 public class CalendarTile : ModTile {
-    public static System.Boolean Nearby;
+    public static bool Nearby;
 
     public override void SetStaticDefaults() {
         Main.tileFrameImportant[Type] = true;
@@ -12,7 +13,7 @@ public class CalendarTile : ModTile {
         TileID.Sets.FramesOnKillWall[Type] = true;
         TileID.Sets.DisableSmartCursor[Type] = true;
         TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3Wall);
-        TileObjectData.newTile.CoordinateHeights = new System.Int32[] { 16, 16 };
+        TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16 };
         TileObjectData.newTile.Width = 2;
         TileObjectData.newTile.Height = 2;
         TileObjectData.newTile.Origin = new Point16(0, 1);
@@ -23,7 +24,7 @@ public class CalendarTile : ModTile {
         AddMapEntry(new Color(85, 85, 85), Lang.GetItemName(ModContent.ItemType<Calendar>()));
     }
 
-    public override void NearbyEffects(System.Int32 i, System.Int32 j, System.Boolean closer) {
+    public override void NearbyEffects(int i, int j, bool closer) {
         Nearby = true;
     }
 }

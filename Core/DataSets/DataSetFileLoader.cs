@@ -8,9 +8,9 @@ namespace Aequus.Core.DataSets;
 
 public sealed class DataSetFileLoader {
     private readonly DataSet _dataSet;
-    public readonly String FilePath;
-    public readonly String ModFileStreamPath;
-    public readonly String FileData;
+    public readonly string FilePath;
+    public readonly string ModFileStreamPath;
+    public readonly string FileData;
 
     public DataSetFileLoader(DataSet dataSet) {
         _dataSet = dataSet;
@@ -25,7 +25,7 @@ public sealed class DataSetFileLoader {
 
     public void ApplyToDataSet() {
         try {
-            if (!String.IsNullOrEmpty(FileData)) {
+            if (!string.IsNullOrEmpty(FileData)) {
                 JsonConvert.DeserializeObject(FileData, _dataSet.GetType());
             }
         }
@@ -36,7 +36,7 @@ public sealed class DataSetFileLoader {
 
     [Conditional("DEBUG")]
     internal void CreateTempFile() {
-        String fileLocation = Path.Join(Aequus.DebugPath, "ModSources", FilePath.Replace($"Content/DataSets/", "Assets/Metadata/") + ".json").Replace('/', Path.DirectorySeparatorChar);
+        string fileLocation = Path.Join(Aequus.DebugPath, "ModSources", FilePath.Replace($"Content/DataSets/", "Assets/Metadata/") + ".json").Replace('/', Path.DirectorySeparatorChar);
         _dataSet.Mod.Logger.Debug(fileLocation);
         try {
             // Only attempt to create the file if this Directory even exists.
@@ -47,9 +47,9 @@ public sealed class DataSetFileLoader {
             JsonSerializerSettings settings = new JsonSerializerSettings {
                 Formatting = Formatting.Indented,
             };
-            String jsonData = JsonConvert.SerializeObject(_dataSet, settings);
+            string jsonData = JsonConvert.SerializeObject(_dataSet, settings);
             if (jsonData != null) {
-                Byte[] buffer = Encoding.UTF8.GetBytes(jsonData);
+                byte[] buffer = Encoding.UTF8.GetBytes(jsonData);
                 using FileStream file = File.Create(fileLocation, buffer.Length);
                 file.Write(buffer, 0, buffer.Length);
             }

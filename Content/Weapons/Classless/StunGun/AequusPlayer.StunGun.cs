@@ -4,9 +4,9 @@ namespace Aequus;
 
 public partial class AequusPlayer {
     [ResetEffects]
-    public System.Boolean stunGun;
+    public bool stunGun;
     [ResetEffects]
-    public System.Boolean stunGunVisual;
+    public bool stunGunVisual;
 
 
 }

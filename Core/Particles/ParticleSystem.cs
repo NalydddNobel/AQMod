@@ -7,13 +7,13 @@ public abstract class ParticleSystem<T> : IParticleSystem where T : IParticle, n
     protected Mod Mod { get; private set; }
     protected T[] Particles;
 
-    public abstract System.Int32 ParticleCount { get; }
-    public System.Boolean Active { get; protected set; }
+    public abstract int ParticleCount { get; }
+    public bool Active { get; protected set; }
 
     public T New() {
         CheckInit();
 
-        for (System.Int32 i = 0; i < Particles.Length; i++) {
+        for (int i = 0; i < Particles.Length; i++) {
             T p = Particles[i] ??= new();
             if (!p.Active) {
                 p.Active = true;
@@ -24,19 +24,19 @@ public abstract class ParticleSystem<T> : IParticleSystem where T : IParticle, n
         return Particles[^1];
     }
 
-    public IEnumerable<T> NewMultiple(System.Int32 count) {
+    public IEnumerable<T> NewMultiple(int count) {
         if (Main.netMode == NetmodeID.Server) {
             yield break;
         }
         CheckInit();
 
-        for (System.Int32 i = 0; i < Particles.Length; i++) {
+        for (int i = 0; i < Particles.Length; i++) {
             T p = Particles[i] ??= new();
             if (!p.Active) {
                 p.Active = true;
                 yield return p;
 
-                if (--count == 0) {
+                if(--count == 0) {
                     yield break;
                 }
             }

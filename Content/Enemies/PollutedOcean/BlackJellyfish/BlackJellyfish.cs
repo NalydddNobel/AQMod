@@ -15,7 +15,7 @@ namespace Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
 
 [AutoloadBanner]
 public partial class BlackJellyfish : AIJellyfish {
-    public static Int32 AttackRange => 60;
+    public static int AttackRange => 60;
 
     #region Initialization
     public override void SetStaticDefaults() {
@@ -54,7 +54,7 @@ public partial class BlackJellyfish : AIJellyfish {
 
     public override void AI() {
         if (Main.netMode != NetmodeID.Server) {
-            Single lightingIntensity = GetLightingIntensity();
+            float lightingIntensity = GetLightingIntensity();
             if (lightingIntensity <= 0.75f) {
                 NPC.ShowNameOnHover = false;
                 NPC.nameOver = 0f;
@@ -104,7 +104,7 @@ public partial class BlackJellyfish : AIJellyfish {
             NPC.ai[2] *= 0.75f;
         }
 
-        if ((Int32)NPC.ai[2] == shockAttackLength) {
+        if ((int)NPC.ai[2] == shockAttackLength) {
             if (Main.netMode != NetmodeID.Server && Cull2D.Rectangle(NPC.getRect(), 240, 240)) {
                 ShockEffects();
             }
@@ -127,7 +127,7 @@ public partial class BlackJellyfish : AIJellyfish {
             NPC.dontTakeDamage = true;
         }
 
-        if ((Int32)NPC.ai[2] > shockAttackLength + 14f && Main.netMode != NetmodeID.MultiplayerClient) {
+        if ((int)NPC.ai[2] > shockAttackLength + 14f && Main.netMode != NetmodeID.MultiplayerClient) {
             NPC.active = false;
             if (Main.netMode == NetmodeID.Server) {
                 NetMessage.SendData(MessageID.SyncNPC, number: NPC.whoAmI);
@@ -146,7 +146,7 @@ public partial class BlackJellyfish : AIJellyfish {
         }
 
         // Dusts
-        for (Int32 i = 0; i < 30; i++) {
+        for (int i = 0; i < 30; i++) {
             Vector2 randomVector = Main.rand.NextVector2Unit();
             Dust d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.MartianSaucerSpark, Alpha: 0, Scale: Main.rand.NextFloat(0.8f, 1.8f));
             d.rotation = 0f;
@@ -154,7 +154,7 @@ public partial class BlackJellyfish : AIJellyfish {
             d.fadeIn = d.scale + Main.rand.NextFloat(0.8f);
             d.noGravity = true;
         }
-        for (Int32 i = 0; i < 60; i++) {
+        for (int i = 0; i < 60; i++) {
             Vector2 randomVector = Main.rand.NextVector2Unit();
             Dust d = Dust.NewDustPerfect(NPC.Center + randomVector * Main.rand.NextFloat(0.8f, 1f) * NPC.ai[2] / shockAttackLength * AttackRange, DustID.MartianSaucerSpark, Alpha: 0, Scale: Main.rand.NextFloat(0.8f, 2.5f));
             d.rotation = 0f;
@@ -167,7 +167,7 @@ public partial class BlackJellyfish : AIJellyfish {
             UnderwaterBubbleParticles bubbleParticles = ModContent.GetInstance<UnderwaterBubbleParticles>();
             foreach (var particle in bubbleParticles.NewMultiple(32)) {
                 particle.Location = NPC.Center;
-                particle.Frame = (Byte)Main.rand.Next(3);
+                particle.Frame = (byte)Main.rand.Next(3);
                 particle.Velocity = Main.rand.NextVector2Unit() * Main.rand.NextFloat(0.01f, 0.4f);
                 particle.UpLift = (1f - particle.Velocity.X) * 0.003f;
                 particle.Opacity = Main.rand.NextFloat(0.8f, 1f);
@@ -187,18 +187,18 @@ public partial class BlackJellyfish : AIJellyfish {
         ViewHelper.PunchCameraTo(NPC.Center, strength: 6f, frames: 60);
     }
 
-    public override Boolean CanHitPlayer(Player target, ref Int32 cooldownSlot) {
+    public override bool CanHitPlayer(Player target, ref int cooldownSlot) {
         return NPC.ai[2] >= shockAttackLength && NPC.ai[2] < shockAttackLength + 4f;
     }
 
-    public override Boolean CanShock() {
+    public override bool CanShock() {
         return false;
     }
 
-    public Single GetLightingIntensity() {
+    public float GetLightingIntensity() {
         return GetLightingIntensity(ExtendLight.Get(NPC.Center));
     }
-    public static Single GetLightingIntensity(Color lightColor) {
+    public static float GetLightingIntensity(Color lightColor) {
         return Math.Clamp(MathF.Pow(lightColor.ToVector3().Length(), 4f), 0.45f, 1f);
     }
 }

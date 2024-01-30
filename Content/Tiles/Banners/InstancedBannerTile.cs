@@ -35,14 +35,14 @@ internal class InstancedBannerTile : InstancedModTile {
         }
     }
 
-    public override void NearbyEffects(System.Int32 i, System.Int32 j, System.Boolean closer) {
+    public override void NearbyEffects(int i, int j, bool closer) {
         if (!closer) {
             return;
         }
 
-        System.Int32 style = Main.tile[i, j].TileFrameX / 18;
-        System.Int32 npcType = _modNPC.Type;
-        System.Int32 bannerItem = NPCLoader.GetNPC(npcType).BannerItem;
+        int style = Main.tile[i, j].TileFrameX / 18;
+        int npcType = _modNPC.Type;
+        int bannerItem = NPCLoader.GetNPC(npcType).BannerItem;
         if (ItemID.Sets.BannerStrength.IndexInRange(bannerItem) && ItemID.Sets.BannerStrength[bannerItem].Enabled) {
             foreach (var npcToBuffAgainst in _bannerBuffNPCs) {
                 Main.SceneMetrics.NPCBannerBuff[npcToBuffAgainst.Type] = true;
@@ -58,13 +58,13 @@ internal class InstancedBannerTile : InstancedModTile {
         _bannerBuffNPCs.Add(modNPC);
     }
 
-    public override void SetSpriteEffects(System.Int32 i, System.Int32 j, ref SpriteEffects spriteEffects) {
+    public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects) {
         if (i % 2 == 1) {
             spriteEffects = SpriteEffects.FlipHorizontally;
         }
     }
 
-    public override System.Boolean PreDraw(System.Int32 i, System.Int32 j, SpriteBatch spriteBatch) {
+    public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
         if (Main.tile[i, j].TileFrameX % 18 == 0 && Main.tile[i, j].TileFrameY % 54 == 0) {
             VineDrawing.DrawVine(i, j);
         }

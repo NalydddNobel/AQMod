@@ -3,6 +3,8 @@ using Aequus.Content.DataSets;
 using Aequus.Content.Enemies.PollutedOcean.Scavenger.UI;
 using Aequus.Content.Equipment.Accessories.ScavengerBag;
 using Aequus.Core;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,11 +15,11 @@ using Terraria.ModLoader.IO;
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger;
 
 public class ScavengerLootBag : ModNPC {
-    public const Int32 SmartCursorInteractionDistance = 54;
-    public static Int32 BackpackDropRate = 4;
+    public const int SmartCursorInteractionDistance = 54;
+    public static int BackpackDropRate = 4;
 
     public Item[] drops;
-    public Int32 playerOpened;
+    public int playerOpened;
 
     #region Initialization
     public override void SetStaticDefaults() {
@@ -51,11 +53,11 @@ public class ScavengerLootBag : ModNPC {
     }
     #endregion
 
-    public override Boolean CanChat() {
+    public override bool CanChat() {
         return playerOpened == -1;
     }
 
-    public override String GetChat() {
+    public override string GetChat() {
         return "";
     }
 
@@ -65,13 +67,13 @@ public class ScavengerLootBag : ModNPC {
         }
 
         if (NPC.life <= 0) {
-            for (Int32 i = 0; i < 8; i++) {
+            for (int i = 0; i < 8; i++) {
                 var g = Gore.NewGoreDirect(NPC.GetSource_FromThis(), new Vector2(NPC.position.X, NPC.Center.Y - 10f), Vector2.Zero, 1218);
                 g.velocity = new Vector2(Main.rand.Next(1, 10) * 0.3f * 2.5f * hit.HitDirection, 0f - (3f + Main.rand.Next(4) * 0.3f));
             }
         }
         else {
-            for (Int32 i = 0; i < 3; i++) {
+            for (int i = 0; i < 3; i++) {
                 var g = Gore.NewGoreDirect(NPC.GetSource_FromThis(), new Vector2(NPC.position.X, NPC.Center.Y - 10f), Vector2.Zero, 1218);
                 g.velocity = new Vector2(Main.rand.Next(1, 10) * 0.3f * 2f * hit.HitDirection, 0f - (2.5f + Main.rand.Next(4) * 0.3f));
             }
@@ -93,7 +95,7 @@ public class ScavengerLootBag : ModNPC {
         }
 
         playerOpened = -1;
-        for (Int32 i = 0; i < Main.maxPlayers; i++) {
+        for (int i = 0; i < Main.maxPlayers; i++) {
             if (Main.player[i].active && Main.player[i].talkNPC == NPC.whoAmI) {
                 playerOpened = i;
                 if (Main.myPlayer == i && UISystem.TalkInterface.CurrentState is not ScavengerLootBagUI) {
@@ -104,7 +106,7 @@ public class ScavengerLootBag : ModNPC {
                 break;
             }
         }
-        for (Int32 i = playerOpened + 1; i < Main.maxPlayers; i++) {
+        for (int i = playerOpened + 1; i < Main.maxPlayers; i++) {
             if (Main.player[i].active && Main.player[i].talkNPC == NPC.whoAmI) {
                 Main.player[i].SetTalkNPC(-1, fromNet: Main.netMode == NetmodeID.MultiplayerClient);
                 continue;
@@ -117,7 +119,7 @@ public class ScavengerLootBag : ModNPC {
         boundingBox.Width += 8;
     }
 
-    public override void FindFrame(Int32 frameHeight) {
+    public override void FindFrame(int frameHeight) {
         if (playerOpened > -1) {
             if (NPC.frame.Y < frameHeight * (Main.npcFrameCount[Type] - 1)) {
                 NPC.frameCounter++;
@@ -150,11 +152,11 @@ public class ScavengerLootBag : ModNPC {
         }
     }
 
-    public override Boolean PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+    public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
         var drawCoordinates = NPC.Center - screenPos + new Vector2(0f, NPC.gfxOffY - 1f);
         var rectangle = NPC.getRect();
         NPCLoader.ModifyHoverBoundingBox(NPC, ref rectangle);
-        Boolean hovering = false;
+        bool hovering = false;
         if (!NPC.IsABestiaryIconDummy) {
             if (Main.instance.currentNPCShowingChatBubble == NPC.whoAmI) {
                 hovering = true;
@@ -177,7 +179,7 @@ public class ScavengerLootBag : ModNPC {
 
     public override void SendExtraAI(BinaryWriter writer) {
         writer.Write(drops.Length);
-        for (Int32 i = 0; i < drops.Length; i++) {
+        for (int i = 0; i < drops.Length; i++) {
             if (drops[i] == null || drops[i].IsAir) {
                 writer.Write(false);
                 continue;
@@ -188,11 +190,11 @@ public class ScavengerLootBag : ModNPC {
     }
 
     public override void ReceiveExtraAI(BinaryReader reader) {
-        Int32 length = reader.ReadInt32();
+        int length = reader.ReadInt32();
         if (drops.Length != length) {
             drops = new Item[length];
         }
-        for (Int32 i = 0; i < length; i++) {
+        for (int i = 0; i < length; i++) {
             if (drops[i] == null) {
                 drops[i] = new();
             }

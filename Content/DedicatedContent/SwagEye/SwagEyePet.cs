@@ -1,4 +1,6 @@
 ﻿using Aequus.Content.Pets;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria.GameContent;
 using Terraria.UI.Chat;
@@ -21,14 +23,14 @@ public class SwagEyePet : ModPet {
         Projectile.height = 32;
     }
 
-    public override Boolean PreAI() {
+    public override bool PreAI() {
         base.PreAI();
         Projectile.localAI[0]--;
         if (Main.netMode != NetmodeID.Server) {
-            for (Int32 i = 0; i < Main.maxPlayers; i++) {
-                if (Main.player[i].chatOverhead.timeLeft > 0 && !String.IsNullOrEmpty(Main.player[i].chatOverhead.chatText) && Main.player[i].chatOverhead.chatText.ToLower().Contains("hi torra")) {
+            for (int i = 0; i < Main.maxPlayers; i++) {
+                if (Main.player[i].chatOverhead.timeLeft > 0 && !string.IsNullOrEmpty(Main.player[i].chatOverhead.chatText) && Main.player[i].chatOverhead.chatText.ToLower().Contains("hi torra")) {
                     if (Main.player[i].chatOverhead.timeLeft == 300) {
-                        String playerName = Main.player[i].name;
+                        string playerName = Main.player[i].name;
                         if (Main.myPlayer == i) {
                             playerName = Environment.UserName;
                         }
@@ -43,7 +45,7 @@ public class SwagEyePet : ModPet {
         Main.player[Projectile.owner].eater = false;
 
         Projectile.ai[0]++;
-        if ((Int32)Projectile.ai[0] % 2 == 0)
+        if ((int)Projectile.ai[0] % 2 == 0)
             return true;
 
         Projectile.spriteDirection = Math.Sign(Projectile.velocity.X);
@@ -54,13 +56,13 @@ public class SwagEyePet : ModPet {
         Projectile.spriteDirection = Math.Sign(Projectile.velocity.X);
     }
 
-    public override Boolean PreDraw(ref Color lightColor) {
+    public override bool PreDraw(ref Color lightColor) {
         var drawCoords = Projectile.Center;
 
         Main.instance.LoadProjectile(ProjectileID.Blizzard);
         var texture = TextureAssets.Projectile[ProjectileID.Blizzard].Value;
-        Single icicleDistance = !Projectile.isAPreviewDummy ? 80f : 48f;
-        for (Int32 i = 0; i < 6; i++) {
+        float icicleDistance = !Projectile.isAPreviewDummy ? 80f : 48f;
+        for (int i = 0; i < 6; i++) {
             var rotation = i + MathHelper.TwoPi / 6f + Main.GameUpdateCount * 0.05f;
             var frame = texture.Frame(verticalFrames: 5, frameY: (Projectile.identity + i) % 5);
             var icicleDrawCoords = drawCoords + rotation.ToRotationVector2() * icicleDistance * Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f + i * MathHelper.Pi / 3f, 0.8f, 1f) * Projectile.scale;
@@ -72,12 +74,12 @@ public class SwagEyePet : ModPet {
         }
         else {
             if (Projectile.localAI[0] > 0f) {
-                Int32 i = (Int32)Projectile.localAI[1];
-                String playerName = Main.player[i].name;
+                int i = (int)Projectile.localAI[1];
+                string playerName = Main.player[i].name;
                 if (Main.myPlayer == i) {
                     playerName = Environment.UserName;
                 }
-                String text = $"OMG HI {playerName.ToUpper()}!!!!!!";
+                string text = $"OMG HI {playerName.ToUpper()}!!!!!!";
                 var font = FontAssets.MouseText.Value;
                 ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, text, Projectile.Center + new Vector2(0f, -Projectile.height) - Main.screenPosition,
                     new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, 255), 0f, new Vector2(font.MeasureString(text).X / 2f, 0f), Vector2.One * Main.UIScale);

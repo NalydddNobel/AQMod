@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Items;
+using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 
 namespace Aequus.Content.Weapons.Ranged.Darts.StarPhish;
@@ -31,12 +32,12 @@ public class StarPhish : ModItem {
         return new Vector2(4f, -4f);
     }
 
-    public override System.Boolean Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, System.Int32 type, System.Int32 damage, System.Single knockback) {
-        System.Int32 amt = Main.rand.Next(35, 50);
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
+        int amt = Main.rand.Next(35, 50);
         var direction = Vector2.Normalize(velocity);
         var offset = new Vector2(-6f + -2f * player.direction, -10f);
-        System.Int32 dustId = Dust.dustWater();
-        for (System.Int32 i = 0; i < amt; i++) {
+        int dustId = Dust.dustWater();
+        for (int i = 0; i < amt; i++) {
             var d = Dust.NewDustDirect(player.MountedCenter + direction * 36f + offset, 10, 10, dustId);
             d.velocity = direction.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * Main.rand.NextFloat(2f, 5f);
             d.noGravity = true;

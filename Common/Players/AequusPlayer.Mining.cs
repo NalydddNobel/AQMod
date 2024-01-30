@@ -1,7 +1,7 @@
 ﻿namespace Aequus;
 
 public partial class AequusPlayer {
-    private static void On_Player_PlaceThing_PaintScrapper_LongMoss(On_Player.orig_PlaceThing_PaintScrapper_LongMoss orig, Player player, System.Int32 x, System.Int32 y) {
+    private static void On_Player_PlaceThing_PaintScrapper_LongMoss(On_Player.orig_PlaceThing_PaintScrapper_LongMoss orig, Player player, int x, int y) {
         //if (Main.tile[x, y].TileType == ModContent.TileType<RadonMoss>()) {
         //    player.cursorItemIconEnabled = true;
         //    if (!player.ItemTimeIsZero || player.itemAnimation <= 0 || !player.controlUseItem) {

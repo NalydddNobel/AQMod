@@ -1,11 +1,12 @@
 ﻿using Aequus.Common.Items;
+using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 
 namespace Aequus.Content.Weapons.Magic.Furystar;
 
 public class Furystar : ModItem {
-    public static System.Single ExtraStarChance = 0.25f;
-    public static System.Int32 MaxExtraStars = 5;
+    public static float ExtraStarChance = 0.25f;
+    public static int MaxExtraStars = 5;
 
     public override void SetStaticDefaults() {
         Item.staff[Type] = true;
@@ -44,7 +45,7 @@ public class Furystar : ModItem {
     public override void UseStyle(Player player, Rectangle heldItemFrame) {
     }
 
-    public override System.Boolean Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, System.Int32 type, System.Int32 damage, System.Single knockback) {
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
         //var mouseWorld = Main.MouseWorld;
         //position = mouseWorld + new Vector2(Main.rand.NextFloat(-360f, 360f), -1000f);
         //velocity = Vector2.Normalize(mouseWorld - position) * velocity.Length();

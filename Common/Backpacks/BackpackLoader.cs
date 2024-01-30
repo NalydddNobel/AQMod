@@ -9,25 +9,25 @@ using Terraria.ModLoader.IO;
 namespace Aequus.Common.Backpacks;
 
 public class BackpackLoader {
-    public const String BackpacksSaveKey = "Backpacks";
-
+    public const string BackpacksSaveKey = "Backpacks";
+    
     public static readonly List<BackpackData> Backpacks = new();
-    public static Int32 Count => Backpacks.Count;
+    public static int Count => Backpacks.Count;
 
-    internal static Boolean IgnoreBackpacks { get; set; }
+    internal static bool IgnoreBackpacks { get; set; }
 
     public static void InitializeBackpacks(ref BackpackData[] backpacks) {
         backpacks = new BackpackData[Count];
-        for (Int32 i = 0; i < backpacks.Length; i++) {
+        for (int i = 0; i < backpacks.Length; i++) {
             backpacks[i] = Backpacks[i].CreateInstance();
         }
     }
 
-    public static void SaveBackpacks(TagCompound tag, BackpackData[] backpacks, List<(String, TagCompound)> unloadedBackpacksList) {
+    public static void SaveBackpacks(TagCompound tag, BackpackData[] backpacks, List<(string, TagCompound)> unloadedBackpacksList) {
         // Create a tag which will contain all of the individual backpack tag compounds.
         TagCompound backpacksSaveTag = new TagCompound();
-
-        for (Int32 i = 0; i < backpacks.Length; i++) {
+        
+        for (int i = 0; i < backpacks.Length; i++) {
             // Create backpack tag compound, and save data to it
             TagCompound backpackTag = new TagCompound();
             backpacks[i].SaveData(backpackTag);
@@ -44,7 +44,7 @@ public class BackpackLoader {
         }
     }
 
-    public static void LoadBackpacks(TagCompound tag, BackpackData[] backpacks, List<(String, TagCompound)> unloadedBackpacksList) {
+    public static void LoadBackpacks(TagCompound tag, BackpackData[] backpacks, List<(string, TagCompound)> unloadedBackpacksList) {
         if (!tag.TryGet(BackpacksSaveKey, out TagCompound backpacksSaveTag)) {
             return;
         }
@@ -70,20 +70,20 @@ public class BackpackLoader {
     }
 
     public static void UpdateBackpacks(Player player, BackpackData[] backpacks) {
-        for (Int32 i = 0; i < backpacks.Length; i++) {
+        for (int i = 0; i < backpacks.Length; i++) {
             backpacks[i].Update(player);
         }
     }
 
     public static void ResetEffects(Player player, BackpackData[] backpacks) {
-        for (Int32 i = 0; i < backpacks.Length; i++) {
+        for (int i = 0; i < backpacks.Length; i++) {
             backpacks[i].ResetEffects(player);
         }
     }
 
     public static void UpdateInfoAccessories(Player player, BackpackData[] backpacks) {
         var aequusPlayer = player.GetModPlayer<AequusPlayer>();
-        for (Int32 i = 0; i < backpacks.Length; i++) {
+        for (int i = 0; i < backpacks.Length; i++) {
             if (!backpacks[i].SupportsInfoAccessories || !backpacks[i].IsActive(player)) {
                 continue;
             }
@@ -91,7 +91,7 @@ public class BackpackLoader {
         }
     }
     private static void UpdateSingleInfoAccessory(Player player, AequusPlayer aequusPlayer, BackpackData backpack) {
-        for (Int32 i = 0; i < backpack.Inventory.Length; i++) {
+        for (int i = 0; i < backpack.Inventory.Length; i++) {
             if (ItemID.Sets.WorksInVoidBag[backpack.Inventory[i].type]) {
                 ItemLoader.UpdateInventory(backpack.Inventory[i], player);
                 player.RefreshInfoAccsFromItemType(backpack.Inventory[i]);
@@ -110,12 +110,12 @@ public class BackpackLoader {
         }
     }
 
-    public static Boolean CanAcceptItem(Player player, BackpackData backpackData, Item item, Item backpackItem, Int32 slot) {
+    public static bool CanAcceptItem(Player player, BackpackData backpackData, Item item, Item backpackItem, int slot) {
         return player.CanItemSlotAccept(backpackItem, item) && backpackData.CanAcceptItem(slot, item);
     }
 
-    public static Boolean ItemSpace(Item item, Player player, BackpackData backpackData) {
-        for (Int32 i = 0; i < backpackData.Inventory.Length; i++) {
+    public static bool ItemSpace(Item item, Player player, BackpackData backpackData) {
+        for (int i = 0; i < backpackData.Inventory.Length; i++) {
             if (CanAcceptItem(player, backpackData, item, backpackData.Inventory[i], i)) {
                 return true;
             }
@@ -123,13 +123,13 @@ public class BackpackLoader {
         return false;
     }
 
-    public static Boolean GrabItem(Item item, Player player, BackpackData[] backpacks, Player.ItemSpaceStatus itemSpace) {
-        Int32 transferredToBackpack = 0;
-        for (Int32 i = 0; i < backpacks.Length; i++) {
+    public static bool GrabItem(Item item, Player player, BackpackData[] backpacks, Player.ItemSpaceStatus itemSpace) {
+        int transferredToBackpack = 0;
+        for (int i = 0; i < backpacks.Length; i++) {
             if (!backpacks[i].IsActive(player)) {
                 continue;
             }
-            for (Int32 j = 0; j < backpacks[i].Inventory.Length; j++) {
+            for (int j = 0; j < backpacks[i].Inventory.Length; j++) {
                 if (!CanAcceptItem(player, backpacks[i], item, backpacks[i].Inventory[j], i)) {
                     continue;
                 }
@@ -145,7 +145,7 @@ public class BackpackLoader {
                 }
 
                 if (backpacks[i].Inventory[j].type == item.type) {
-                    ItemLoader.TryStackItems(backpacks[i].Inventory[j], item, out Int32 transferred);
+                    ItemLoader.TryStackItems(backpacks[i].Inventory[j], item, out int transferred);
                     transferredToBackpack += transferred;
                 }
 
@@ -172,28 +172,28 @@ public class BackpackLoader {
     }
 
     public static void QuickStackToNearbyChest(Vector2 location, BackpackData backpack) {
-        for (Int32 i = 0; i < backpack.Inventory.Length; i++) {
+        for (int i = 0; i < backpack.Inventory.Length; i++) {
             if (!backpack.Inventory[i].IsAir && !backpack.Inventory[i].favorited && !backpack.Inventory[i].IsACoin) {
                 backpack.Inventory[i] = Chest.PutItemInNearbyChest(backpack.Inventory[i], location);
             }
         }
     }
 
-    public static Boolean QuickStack(BackpackData backpack, Chest chest, Vector2 containerWorldPosition, ContainerTransferContext context) {
-        Boolean anyTransfers = false;
-        for (Int32 i = 0; i < backpack.Inventory.Length; i++) {
+    public static bool QuickStack(BackpackData backpack, Chest chest, Vector2 containerWorldPosition, ContainerTransferContext context) {
+        bool anyTransfers = false;
+        for (int i = 0; i < backpack.Inventory.Length; i++) {
             Item item = backpack.Inventory[i];
             if (item.IsAir || item.favorited) {
                 continue;
             }
 
-            for (Int32 j = 0; j < Chest.maxItems; j++) {
+            for (int j = 0; j < Chest.maxItems; j++) {
                 Item chestItem = chest.item[j];
                 if (chestItem.IsAir || chestItem.type != item.type) {
                     continue;
                 }
 
-                ItemLoader.TryStackItems(chestItem, item, out Int32 numTransferred);
+                ItemLoader.TryStackItems(chestItem, item, out int numTransferred);
                 anyTransfers |= numTransferred > 0;
                 if (context.CanVisualizeTransfers && numTransferred > 0) {
                     Chest.VisualizeChestTransfer(Main.LocalPlayer.Center, containerWorldPosition, item, numTransferred);
@@ -207,8 +207,8 @@ public class BackpackLoader {
         return anyTransfers;
     }
 
-    public static void ConsumeItem(Player player, BackpackData backpack, Int32 type, Boolean reverseOrder) {
-        for (Int32 i = 0; i < backpack.Inventory.Length; i++) {
+    public static void ConsumeItem(Player player, BackpackData backpack, int type, bool reverseOrder) {
+        for (int i = 0; i < backpack.Inventory.Length; i++) {
             if (!backpack.Inventory[i].IsAir && backpack.Inventory[i].type == type && ItemLoader.ConsumeItem(backpack.Inventory[i], player)) {
                 backpack.Inventory[i].stack--;
                 if (backpack.Inventory[i].stack <= 0) {
@@ -219,7 +219,7 @@ public class BackpackLoader {
     }
 
     public static Item GetQuickManaItem(Player player, BackpackData backpack) {
-        for (Int32 i = 0; i < backpack.Inventory.Length; i++) {
+        for (int i = 0; i < backpack.Inventory.Length; i++) {
             if (backpack.Inventory[i].stack > 0 && backpack.Inventory[i].type > ItemID.None && backpack.Inventory[i].healMana > 0 && (player.potionDelay == 0 || !backpack.Inventory[i].potion) && CombinedHooks.CanUseItem(player, backpack.Inventory[i])) {
                 return backpack.Inventory[i];
             }
@@ -229,7 +229,7 @@ public class BackpackLoader {
 
     // TODO: Make this respect HP restoration priority?
     public static Item GetQuickHealItem(Player player, BackpackData backpack) {
-        for (Int32 i = 0; i < backpack.Inventory.Length; i++) {
+        for (int i = 0; i < backpack.Inventory.Length; i++) {
             if (backpack.Inventory[i].stack > 0 && backpack.Inventory[i].type > ItemID.None && backpack.Inventory[i].potion && backpack.Inventory[i].healLife > 0 && CombinedHooks.CanUseItem(player, backpack.Inventory[i])) {
                 return backpack.Inventory[i];
             }
@@ -238,7 +238,7 @@ public class BackpackLoader {
     }
 
     public static Item GetQuickMountItem(Player player, BackpackData backpack) {
-        for (Int32 i = 0; i < backpack.Inventory.Length; i++) {
+        for (int i = 0; i < backpack.Inventory.Length; i++) {
             if (backpack.Inventory[i].mountType > MountID.None && !MountID.Sets.Cart[backpack.Inventory[i].mountType] && CombinedHooks.CanUseItem(player, backpack.Inventory[i])) {
                 return backpack.Inventory[i];
             }
@@ -247,11 +247,11 @@ public class BackpackLoader {
     }
 
     public static IEnumerable<Item> GetExtraCraftingItems(Player player, BackpackData[] backpacks) {
-        for (Int32 i = 0; i < backpacks.Length; i++) {
+        for (int i = 0; i < backpacks.Length; i++) {
             if (!backpacks[i].IsActive(player)) {
                 continue;
             }
-            for (Int32 j = 0; j < backpacks[i].Inventory.Length; j++) {
+            for (int j = 0; j < backpacks[i].Inventory.Length; j++) {
                 if (!backpacks[i].Inventory[j].IsAir) {
                     yield return backpacks[i].Inventory[j];
                 }
@@ -259,11 +259,11 @@ public class BackpackLoader {
         }
     }
 
-    public static void AnimateBackpacks(BackpackData[] backpacks, out Int32 totalInventorySlots, out Int32 activeBackpacks) {
+    public static void AnimateBackpacks(BackpackData[] backpacks, out int totalInventorySlots, out int activeBackpacks) {
         totalInventorySlots = 0;
         activeBackpacks = 0;
-        Boolean anyBackpacks = false;
-        for (Int32 i = 0; i < backpacks.Length; i++) {
+        bool anyBackpacks = false;
+        for (int i = 0; i < backpacks.Length; i++) {
             if (!backpacks[i].IsActive(Main.LocalPlayer) || !backpacks[i].IsVisible() || backpacks[i].Inventory == null) {
                 if (backpacks[i].slotsToRender > 0) {
                     backpacks[i].slotsToRender--;
@@ -300,13 +300,13 @@ public class BackpackLoader {
         }
     }
 
-    public static Boolean GetPreferredGolfBallToUse(Player player, BackpackData[] backpacks, ref Int32 projType) {
-        for (Int32 k = 0; k < backpacks.Length; k++) {
+    public static bool GetPreferredGolfBallToUse(Player player, BackpackData[] backpacks, ref int projType) {
+        for (int k = 0; k < backpacks.Length; k++) {
             if (!backpacks[k].IsActive(player) || !backpacks[k].SupportsGolfBalls) {
                 continue;
             }
 
-            for (Int32 i = 0; i < backpacks[k].Inventory.Length; i++) {
+            for (int i = 0; i < backpacks[k].Inventory.Length; i++) {
                 Item item = backpacks[k].Inventory[i];
                 if (!item.IsAir && (projType == ProjectileID.DirtGolfBall && ProjectileID.Sets.IsAGolfBall[item.shoot] || (ProjectileLoader.GetProjectile(item.shoot) as IGolfBallProjectile)?.OverrideGolfBallId(player, item, projType) == true)) {
                     projType = item.shoot;
@@ -330,7 +330,7 @@ public class BackpackLoader {
     }
 
     [Conditional("DEBUG")]
-    private static void LogUnloadedBackpacks(List<(String, TagCompound)> unloadedBackpacksList) {
+    private static void LogUnloadedBackpacks(List<(string, TagCompound)> unloadedBackpacksList) {
         foreach (var backpack in unloadedBackpacksList) {
             Aequus.Log.Debug($"{backpack.Item1}: {backpack.Item2}");
         }

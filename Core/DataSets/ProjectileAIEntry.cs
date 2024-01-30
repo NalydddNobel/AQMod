@@ -3,76 +3,76 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Aequus.Core.DataSets;
 
-[JsonConverter(typeof(DataEntryConverter<ProjectileAIEntry, System.Int32>))]
-public struct ProjectileAIEntry : IDataEntry<System.Int32> {
+[JsonConverter(typeof(DataEntryConverter<ProjectileAIEntry, int>))]
+public struct ProjectileAIEntry : IDataEntry<int> {
     [JsonProperty]
-    public System.String Name { get; set; }
+    public string Name { get; set; }
 
     [JsonIgnore]
-    public System.Int32 Id { get; set; }
+    public int Id { get; set; }
 
     [JsonIgnore]
-    public System.Boolean ValidEntry => Id >= 0;
+    public bool ValidEntry => Id >= 0;
 
     [JsonIgnore]
-    public System.Boolean VanillaEntry => Id >= 0;
+    public bool VanillaEntry => Id >= 0;
 
-    private static System.Int32 _uniqueIds;
+    private static int _uniqueIds;
 
-    public ProjectileAIEntry(System.String name) {
+    public ProjectileAIEntry(string name) {
         Name = name;
         Id = 0;
         Initialize();
     }
 
-    public ProjectileAIEntry(System.Int32 id) {
+    public ProjectileAIEntry(int id) {
         Name = null;
         Id = id;
         Initialize();
     }
 
-    public override System.Boolean Equals([NotNullWhen(true)] System.Object obj) {
+    public override bool Equals([NotNullWhen(true)] object obj) {
         return obj is not ProjectileAIEntry otherEntry ? false : otherEntry.Id.Equals(Id);
     }
 
-    public override System.Int32 GetHashCode() {
+    public override int GetHashCode() {
         return Id;
     }
 
-    public override System.String ToString() {
+    public override string ToString() {
         return Name;
     }
 
     public void Initialize() {
-        if (!System.String.IsNullOrEmpty(Name)) {
-            Id = ProjAIStyleID.Search.TryGetId(Name, out System.Int32 id) ? id : _uniqueIds--;
+        if (!string.IsNullOrEmpty(Name)) {
+            Id = ProjAIStyleID.Search.TryGetId(Name, out int id) ? id : _uniqueIds--;
         }
         else if (ValidEntry) {
-            Name = ProjAIStyleID.Search.TryGetName(Id, out System.String name) ? name : "Unknown";
+            Name = ProjAIStyleID.Search.TryGetName(Id, out string name) ? name : "Unknown";
         }
     }
 
-    public static implicit operator System.String(ProjectileAIEntry entry) {
+    public static implicit operator string(ProjectileAIEntry entry) {
         return entry.Name;
     }
 
-    public static implicit operator System.Int32(ProjectileAIEntry entry) {
+    public static implicit operator int(ProjectileAIEntry entry) {
         return entry.Id;
     }
 
-    public static explicit operator ProjectileAIEntry(System.Int32 id) {
+    public static explicit operator ProjectileAIEntry(int id) {
         return new(id);
     }
 
-    public static explicit operator ProjectileAIEntry(System.String name) {
+    public static explicit operator ProjectileAIEntry(string name) {
         return new(name);
     }
 
-    public static System.Boolean operator ==(ProjectileAIEntry left, ProjectileAIEntry right) {
+    public static bool operator ==(ProjectileAIEntry left, ProjectileAIEntry right) {
         return left.Equals(right);
     }
 
-    public static System.Boolean operator !=(ProjectileAIEntry left, ProjectileAIEntry right) {
+    public static bool operator !=(ProjectileAIEntry left, ProjectileAIEntry right) {
         return !(left == right);
     }
 }

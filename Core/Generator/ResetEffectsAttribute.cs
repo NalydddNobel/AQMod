@@ -4,9 +4,9 @@ namespace Aequus.Core.Generator;
 
 [AttributeUsage(AttributeTargets.Field)]
 public sealed class ResetEffectsAttribute : Attribute {
-    internal Object resetValue;
+    internal object resetValue;
 
-    public ResetEffectsAttribute(Object resetValue = null) {
+    public ResetEffectsAttribute(object resetValue = null) {
         this.resetValue = resetValue;
     }
 }

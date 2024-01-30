@@ -19,7 +19,7 @@ public class AequusPrefixes : GlobalItem {
     }
 
     #region Hooks
-    private static Boolean On_PrefixLoader_CanRoll(Func<Item, Int32, Boolean> orig, Item item, Int32 prefix) {
+    private static bool On_PrefixLoader_CanRoll(Func<Item, int, bool> orig, Item item, int prefix) {
         if (item.ModItem is ClasslessWeapon && prefix < PrefixID.Count) {
             return true;
         }
@@ -27,7 +27,7 @@ public class AequusPrefixes : GlobalItem {
     }
     #endregion
 
-    public override Int32 ChoosePrefix(Item item, UnifiedRandom rand) {
+    public override int ChoosePrefix(Item item, UnifiedRandom rand) {
         if (item.ModItem is ICooldownItem && rand.NextBool(4)) {
             return rand.Next(RegisteredCooldownPrefixes).Type;
         }

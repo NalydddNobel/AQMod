@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.DataStructures;
@@ -8,33 +10,33 @@ using Terraria.Utilities;
 namespace Aequus.Content.Equipment.Mounts.HotAirBalloon;
 
 public class HotAirBalloonMount : ModMount {
-    public const Int32 BalloonFrames = 2;
+    public const int BalloonFrames = 2;
 
     #region Balloon Data and Easter Eggs
-    public static readonly Dictionary<String, IBalloonProvider> EasterEggs = new();
+    public static readonly Dictionary<string, IBalloonProvider> EasterEggs = new();
 
     public interface IBalloonProvider {
         IBalloonData GetBalloonData(Player player);
     }
 
     public interface IBalloonData {
-        Int32 Frame { get; }
+        int Frame { get; }
         Color DrawColor();
         Color? FlameColor();
     }
 
     public struct BalloonData : IBalloonData, IBalloonProvider {
-        public Int32 frame;
+        public int frame;
         public Color color;
         public Color? flameColor;
 
-        public BalloonData(Int32 frame, Color color, Color? flameColor = null) {
+        public BalloonData(int frame, Color color, Color? flameColor = null) {
             this.frame = frame;
             this.color = color;
             this.flameColor = flameColor;
         }
 
-        public Int32 Frame => frame;
+        public int Frame => frame;
 
         public Color DrawColor() {
             return color;
@@ -50,17 +52,17 @@ public class HotAirBalloonMount : ModMount {
     }
 
     public struct DynamicColorBalloonData : IBalloonData, IBalloonProvider {
-        public Int32 frame;
+        public int frame;
         public Func<Color> color;
         public Func<Color> flameColor;
 
-        public DynamicColorBalloonData(Int32 frame, Func<Color> color, Func<Color> flameColor = null) {
+        public DynamicColorBalloonData(int frame, Func<Color> color, Func<Color> flameColor = null) {
             this.frame = frame;
             this.color = color;
             this.flameColor = flameColor;
         }
 
-        public Int32 Frame => frame;
+        public int Frame => frame;
 
         public Color DrawColor() {
             return color();
@@ -76,11 +78,11 @@ public class HotAirBalloonMount : ModMount {
     }
 
     public struct EasterEggBalloonProvider : IBalloonProvider {
-        public Int32 frame;
+        public int frame;
         public Color? color;
         public Color? flameColor;
 
-        public EasterEggBalloonProvider(Int32 frame, Color? color, Color? flameColor = null) {
+        public EasterEggBalloonProvider(int frame, Color? color, Color? flameColor = null) {
             this.frame = frame;
             this.color = color;
             this.flameColor = flameColor;
@@ -169,9 +171,9 @@ public class HotAirBalloonMount : ModMount {
     }
 
     private static BalloonData GetRandomBalloon(Player player) {
-        Single hue = Main.rand.Next(20) / 20f;
-        Single luminosity = 0.4f + Main.rand.Next(7) / 10f;
-        Single saturation = 0.75f + Main.rand.Next(3) * 0.125f;
+        float hue = Main.rand.Next(20) / 20f;
+        float luminosity = 0.4f + Main.rand.Next(7) / 10f;
+        float saturation = 0.75f + Main.rand.Next(3) * 0.125f;
         return new(0, Main.hslToRgb(hue, saturation, luminosity, a: 255));
     }
 
@@ -189,9 +191,9 @@ public class HotAirBalloonMount : ModMount {
 
     private void SpawnMountDust(Player player) {
         var dustSpawn = player.position;
-        Int32 boxHeight = 12;
+        int boxHeight = 12;
         dustSpawn.Y -= boxHeight;
-        for (Int32 i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             var d = Dust.NewDustDirect(dustSpawn, player.width, boxHeight, MountData.spawnDust);
             d.velocity *= 0.1f;
             d.velocity.Y += Main.rand.NextFloat(-4f, -0.25f);
@@ -202,7 +204,7 @@ public class HotAirBalloonMount : ModMount {
     }
 
     private void SpawnDismountDust(Player player) {
-        for (Int32 i = 0; i < 40; i++) {
+        for (int i = 0; i < 40; i++) {
             var d = Dust.NewDustDirect(player.position, player.width, player.height, MountData.spawnDust);
             d.scale *= 1.2f;
             d.velocity *= 0.5f;
@@ -211,7 +213,7 @@ public class HotAirBalloonMount : ModMount {
         }
     }
 
-    public override void SetMount(Player player, ref Boolean skipDust) {
+    public override void SetMount(Player player, ref bool skipDust) {
         player.mount._mountSpecificData = GetBalloonData(player);
         if (!Main.dedServ) {
             SpawnMountDust(player);
@@ -220,21 +222,21 @@ public class HotAirBalloonMount : ModMount {
         }
     }
 
-    public override void Dismount(Player player, ref Boolean skipDust) {
+    public override void Dismount(Player player, ref bool skipDust) {
         if (!Main.dedServ) {
             SpawnDismountDust(player);
             skipDust = true;
         }
     }
 
-    public override Boolean Draw(List<DrawData> playerDrawData, Int32 drawType, Player drawPlayer, ref Texture2D texture, ref Texture2D glowTexture, ref Vector2 drawPosition, ref Rectangle frame, ref Color drawColor, ref Color glowColor, ref Single rotation, ref SpriteEffects spriteEffects, ref Vector2 drawOrigin, ref Single drawScale, Single shadow) {
+    public override bool Draw(List<DrawData> playerDrawData, int drawType, Player drawPlayer, ref Texture2D texture, ref Texture2D glowTexture, ref Vector2 drawPosition, ref Rectangle frame, ref Color drawColor, ref Color glowColor, ref float rotation, ref SpriteEffects spriteEffects, ref Vector2 drawOrigin, ref float drawScale, float shadow) {
         if (drawType == 0) {
             var balloonTexture = AequusTextures.HotAirBalloonMount;
-            Int32 balloonFrameY = 0;
+            int balloonFrameY = 0;
             var color = Color.White;
 
             var flameColor = Color.Orange;
-            if (drawPlayer.team != (Int32)Team.None) {
+            if (drawPlayer.team != (int)Team.None) {
                 flameColor = Main.teamColor[drawPlayer.team];
             }
             if (drawPlayer.mount._mountSpecificData is IBalloonData val) {
@@ -250,7 +252,7 @@ public class HotAirBalloonMount : ModMount {
             var balloonDrawPos = drawPosition + new Vector2(drawPlayer.width / 2f - 10f, -balloonFrame.Height / 2f - frame.Height + 33f);
             balloonDrawPos.X -= MountData.xOffset * drawPlayer.direction;
             var lightColor = ExtendLight.GetBrightestLight((balloonDrawPos + Main.screenPosition).ToTileCoordinates(), 8);
-            Single lightIntensity = (lightColor.R + lightColor.G + lightColor.B) / 3f / 255f * 0.9f;
+            float lightIntensity = (lightColor.R + lightColor.G + lightColor.B) / 3f / 255f * 0.9f;
             var balloonColor = lightColor.MultiplyRGB(color);
             if (Aequus.highQualityEffects) {
                 playerDrawData.Add(new(balloonTexture, balloonDrawPos, balloonFrame, balloonColor, rotation, balloonFrame.Size() / 2f, 1f, spriteEffects, 0) { shader = drawPlayer.cMount });
@@ -260,11 +262,11 @@ public class HotAirBalloonMount : ModMount {
                     playerDrawData.Add(new(AequusTextures.HotAirBalloonMount_Glow, balloonDrawPos, null, balloonFlameColor, rotation, balloonFrame.Size() / 2f, 1f, spriteEffects, 0) { shader = drawPlayer.cMount });
                     var random = new FastRandom(drawPlayer.name.GetHashCode());
                     var dustTexture = AequusTextures.BaseParticleTexture.Value;
-                    for (Int32 i = 0; i < 10; i++) {
+                    for (int i = 0; i < 10; i++) {
                         var dustFrame = dustTexture.Frame(verticalFrames: 3, frameY: random.Next(3));
-                        Single time = Main.GlobalTimeWrappedHourly * random.NextFloat(0.9f, 1.1f);
-                        Single wrappedTime = time % 1f;
-                        Single wrappedTimeReverse = 1f - wrappedTime;
+                        float time = Main.GlobalTimeWrappedHourly * random.NextFloat(0.9f, 1.1f);
+                        float wrappedTime = time % 1f;
+                        float wrappedTimeReverse = 1f - wrappedTime;
                         var dustPosition = balloonDrawPos + new Vector2(random.NextFloat(-6f, 6f), balloonFrame.Height / 2f - 20f * wrappedTime - random.NextFloat(10f, 18f)).RotatedBy(random.NextFloat(-0.25f, 0.25f));
                         playerDrawData.Add(new(dustTexture, dustPosition, dustFrame, balloonFlameColor * wrappedTimeReverse * 0.5f, time, dustFrame.Size() / 2f, MathF.Sin(wrappedTime * MathHelper.PiOver2) * random.NextFloat(2f, 3f), spriteEffects, 0) { shader = drawPlayer.cMount });
                     }

@@ -4,11 +4,11 @@ using System.Linq;
 namespace Aequus.Core.Assets;
 
 public class RequestCache<T> where T : class {
-    public readonly System.String Path;
-    public readonly System.String ModPath;
+    public readonly string Path;
+    public readonly string ModPath;
 
-    private System.String _name;
-    public System.String Name { get => _name ??= Path.Split('/').Last().Trim(); }
+    private string _name;
+    public string Name { get => _name ??= Path.Split('/').Last().Trim(); }
 
     protected Asset<T> _asset;
     public Asset<T> Asset => _asset ??= ModContent.Request<T>(Path, AssetRequestMode.ImmediateLoad);
@@ -18,7 +18,7 @@ public class RequestCache<T> where T : class {
 
     public T Value => Asset.Value;
 
-    public RequestCache(System.String path) {
+    public RequestCache(string path) {
         Path = path;
         ModPath = path[7..];
     }

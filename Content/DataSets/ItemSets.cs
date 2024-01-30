@@ -38,12 +38,12 @@ public class ItemSets : DataSet {
     public static Dictionary<ItemEntry, ProjectileEntry> AmmoIdToProjectileId { get; private set; }
 
     [JsonIgnore]
-    public static Dictionary<System.Int32, TrashCompactorRecipe> CustomTrashCompactorRecipes { get; private set; } = new();
+    public static Dictionary<int, TrashCompactorRecipe> CustomTrashCompactorRecipes { get; private set; } = new();
 
     public override void AddRecipes() {
-        System.Int32 start = 0;
-        System.Int32 end = ItemLoader.ItemCount;
-        for (System.Int32 i = start; i < end; i++) {
+        int start = 0;
+        int end = ItemLoader.ItemCount;
+        for (int i = start; i < end; i++) {
             Item item = new Item(i);
             if (item == null) {
                 continue;
@@ -65,7 +65,7 @@ public class ItemSets : DataSet {
 
             // Custom case because rockets are weird.
             if (item.ammo == AmmoID.Rocket) {
-                if (ProjectileID.Search.TryGetId(ItemID.Search.GetName(item.type), out System.Int32 rocketID)) {
+                if (ProjectileID.Search.TryGetId(ItemID.Search.GetName(item.type), out int rocketID)) {
                     AmmoIdToProjectileId.Add((ItemEntry)item.type, (ProjectileEntry)rocketID);
                 }
                 else {

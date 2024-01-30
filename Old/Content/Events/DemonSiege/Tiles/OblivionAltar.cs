@@ -14,7 +14,7 @@ namespace Aequus.Old.Content.Events.DemonSiege.Tiles;
 
 [LegacyName("GoreNestTile", "GoreNest")]
 public class OblivionAltar : ModTile, ISpecialTileRenderer {
-    public static Int32 BiomeCount { get; set; }
+    public static int BiomeCount { get; set; }
     public static RequestCache<Effect> GoreNestPortal { get; private set; }
 
     public static ModItem Item { get; private set; }
@@ -38,11 +38,11 @@ public class OblivionAltar : ModTile, ISpecialTileRenderer {
 
         TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
         TileObjectData.newTile.LavaDeath = false;
-        TileObjectData.newTile.AnchorInvalidTiles = new[] { (Int32)TileID.MagicalIceBlock, };
-        TileObjectData.newTile.CoordinateHeights = new Int32[] { 16, 16, 18 };
+        TileObjectData.newTile.AnchorInvalidTiles = new[] { (int)TileID.MagicalIceBlock, };
+        TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 18 };
         TileObjectData.addTile(Type);
         DustType = DustID.Blood;
-        AdjTiles = new Int32[] { TileID.DemonAltar };
+        AdjTiles = new int[] { TileID.DemonAltar };
         MinPick = 110;
         AddMapEntry(new Color(175, 15, 15), CreateMapEntryName());
     }
@@ -52,14 +52,14 @@ public class OblivionAltar : ModTile, ISpecialTileRenderer {
         GoreNestPortal = null;
     }
 
-    public override Boolean HasSmartInteract(Int32 i, Int32 j, SmartInteractScanSettings settings) {
+    public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) {
         if (DemonSiegeSystem.ActiveSacrifices.TryGetValue(TopLeft(i, j), out var s) && s.PreStart <= 0) {
             return false;
         }
         return GetUsableDemonSiegeItem(settings.player) != null;
     }
 
-    public override void MouseOver(Int32 i, Int32 j) {
+    public override void MouseOver(int i, int j) {
         if (DemonSiegeSystem.ActiveSacrifices.TryGetValue(TopLeft(i, j), out var s) && s.PreStart <= 0) {
             return;
         }
@@ -72,11 +72,11 @@ public class OblivionAltar : ModTile, ISpecialTileRenderer {
         }
     }
 
-    public override Boolean AutoSelect(Int32 i, Int32 j, Item item) {
+    public override bool AutoSelect(int i, int j, Item item) {
         return AltarSacrifices.OriginalToConversion.ContainsKey(item.type);
     }
 
-    public override Boolean RightClick(Int32 i, Int32 j) {
+    public override bool RightClick(int i, int j) {
         var topLeft = TopLeft(i, j);
         var item = GetUsableDemonSiegeItem(Main.LocalPlayer);
         if (item == null) {
@@ -93,7 +93,7 @@ public class OblivionAltar : ModTile, ISpecialTileRenderer {
         }
         return true;
     }
-    public static Boolean ConsumeGoreNestItem(Item item) {
+    public static bool ConsumeGoreNestItem(Item item) {
         //if (item.type != ModContent.ItemType<VoidRing>())
         //{
         //    return false;
@@ -105,7 +105,7 @@ public class OblivionAltar : ModTile, ISpecialTileRenderer {
         return true;
     }
 
-    public override void DrawEffects(Int32 i, Int32 j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
+    public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
         if (drawData.tileFrameX % 48 != 0 || drawData.tileFrameY % 48 != 0) {
             return;
         }
@@ -126,8 +126,8 @@ public class OblivionAltar : ModTile, ISpecialTileRenderer {
         if (DemonSiegeSystem.ActiveSacrifices.TryGetValue(ij, out var invasion)) {
             InnerDrawPorter_DoDust(position + Main.screenPosition, invasion);
 
-            Single opacity = 1f;
-            Single upgradeOpacity = 0f;
+            float opacity = 1f;
+            float upgradeOpacity = 0f;
             if (invasion.PreStart > 0) {
                 if (invasion.PreStart < 60) {
                     opacity = 1f - invasion.PreStart / 60f;
@@ -137,7 +137,7 @@ public class OblivionAltar : ModTile, ISpecialTileRenderer {
                 }
             }
             if (invasion.TimeLeft < 360) {
-                Single time = (360 - invasion.TimeLeft) / 30f;
+                float time = (360 - invasion.TimeLeft) / 30f;
                 upgradeOpacity = Helper.Oscillate(time, 1f, 0f);
                 opacity = Helper.Oscillate(time, 0f, 1f);
             }
@@ -145,9 +145,9 @@ public class OblivionAltar : ModTile, ISpecialTileRenderer {
                 InnerDrawPortalItem(invasion.Items[0], position, opacity, upgradeOpacity);
             }
             else if (invasion.Items.Count != 0) {
-                Single outwards = 40f + invasion.Items.Count * 4f + Helper.Oscillate(Main.GlobalTimeWrappedHourly * 2.5f, -4f, 4f);
-                Single rotationAmount = MathHelper.TwoPi / invasion.Items.Count;
-                for (Int32 i = 0; i < invasion.Items.Count; i++) {
+                float outwards = 40f + invasion.Items.Count * 4f + Helper.Oscillate(Main.GlobalTimeWrappedHourly * 2.5f, -4f, 4f);
+                float rotationAmount = MathHelper.TwoPi / invasion.Items.Count;
+                for (int i = 0; i < invasion.Items.Count; i++) {
                     InnerDrawPortalItem(invasion.Items[i], position + (rotationAmount * i).ToRotationVector2() * outwards, opacity, upgradeOpacity);
                 }
             }
@@ -181,16 +181,16 @@ public class OblivionAltar : ModTile, ISpecialTileRenderer {
             }
         }
     }
-    public static void InnerDrawPortalItem(Item i, Vector2 where, Single opacity, Single upgradeOpacity, Single rotation = 0f) {
+    public static void InnerDrawPortalItem(Item i, Vector2 where, float opacity, float upgradeOpacity, float rotation = 0f) {
         Main.GetItemDrawFrame(i.type, out Texture2D texture, out Rectangle frame);
-        Single scale = 1f;
-        Int32 largest = texture.Width > texture.Height ? texture.Width : texture.Height;
+        float scale = 1f;
+        int largest = texture.Width > texture.Height ? texture.Width : texture.Height;
         if (largest > 32) {
             scale = 32f / largest;
         }
         var origin = frame.Size() / 2f;
         var backColor = Color.Lerp(Color.Red * 0.5f, Color.OrangeRed * 0.75f, Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f, 0f, 1f));
-        for (Int32 k = 0; k < 4; k++) {
+        for (int k = 0; k < 4; k++) {
             Main.spriteBatch.Draw(texture, where + (k * MathHelper.PiOver2 + rotation).ToRotationVector2() * 2f, frame, backColor, rotation, origin, scale, SpriteEffects.None, 0f);
         }
         Main.spriteBatch.Draw(texture, where, frame, Color.White * opacity, rotation, origin, scale, SpriteEffects.None, 0f);
@@ -210,14 +210,14 @@ public class OblivionAltar : ModTile, ISpecialTileRenderer {
             origin = frame.Size() / 2f;
             backColor = Color.Lerp(Color.Red * 0.6f, Color.OrangeRed * 0.8f, Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f, 0f, 1f));
 
-            for (Int32 k = 0; k < 4; k++) {
+            for (int k = 0; k < 4; k++) {
                 Main.spriteBatch.Draw(texture, where + (k * MathHelper.PiOver2 + rotation).ToRotationVector2() * 2f, frame, backColor * upgradeOpacity, rotation, origin, scale, SpriteEffects.None, 0f);
             }
             Main.spriteBatch.Draw(texture, where, frame, Color.White * upgradeOpacity, rotation, origin, scale, SpriteEffects.None, 0f);
         }
     }
 
-    public static Point TopLeft(Int32 x, Int32 y) {
+    public static Point TopLeft(int x, int y) {
         return new Point(x - Main.tile[x, y].TileFrameX / 18, y - Main.tile[x, y].TileFrameY / 18);
     }
 
@@ -225,12 +225,12 @@ public class OblivionAltar : ModTile, ISpecialTileRenderer {
         if (AltarSacrifices.OriginalToConversion.ContainsKey(player.HeldItemFixed().type)) {
             return player.HeldItemFixed();
         }
-        for (Int32 i = 0; i < Main.InventoryItemSlotsCount; i++) {
+        for (int i = 0; i < Main.InventoryItemSlotsCount; i++) {
             if (AltarSacrifices.OriginalToConversion.TryGetValue(player.inventory[i].type, out var val) && val.OriginalItem != val.NewItem) {
                 return player.inventory[i];
             }
         }
-        for (Int32 i = 0; i < Main.InventoryItemSlotsCount; i++) {
+        for (int i = 0; i < Main.InventoryItemSlotsCount; i++) {
             if (AltarSacrifices.OriginalToConversion.TryGetValue(player.inventory[i].type, out var val)) {
                 return player.inventory[i];
             }
@@ -238,21 +238,21 @@ public class OblivionAltar : ModTile, ISpecialTileRenderer {
         return null;
     }
 
-    public static Boolean IsGoreNest(Point p) {
+    public static bool IsGoreNest(Point p) {
         return IsGoreNest(p.X, p.Y);
     }
-    public static Boolean IsGoreNest(Int32 x, Int32 y) {
+    public static bool IsGoreNest(int x, int y) {
         return Main.tile[x, y].HasTile && Main.tile[x, y].TileType == ModContent.TileType<OblivionAltar>();
     }
 
-    void ISpecialTileRenderer.Render(Int32 i, Int32 j, Byte layer) {
+    void ISpecialTileRenderer.Render(int i, int j, byte layer) {
         OccultistHostile.CheckSpawn(i, j, Main.myPlayer);
         InnerDrawPortal(new Point(i, j), new Vector2(i * 16f + 24f, j * 16f + 8f + Helper.Oscillate(Main.GlobalTimeWrappedHourly / 4f, -5f, 5f) - 40f) - Main.screenPosition);
     }
 
-    public override void RandomUpdate(Int32 i, Int32 j) {
-        Int32 x = i + WorldGen.genRand.Next(-10, 10);
-        Int32 y = j + WorldGen.genRand.Next(-10, 10);
+    public override void RandomUpdate(int i, int j) {
+        int x = i + WorldGen.genRand.Next(-10, 10);
+        int y = j + WorldGen.genRand.Next(-10, 10);
         if (!WorldGen.InWorld(x, y, 5)) {
             return;
         }

@@ -4,17 +4,17 @@ namespace Aequus;
 
 public partial class AequusPlayer {
     [ResetEffects]
-    public System.Boolean petLanternLuckCat;
+    public bool petLanternLuckCat;
     [ResetEffects]
-    public System.Boolean petOmegaStarite;
+    public bool petOmegaStarite;
     [ResetEffects]
-    public System.Boolean petSwagEye;
+    public bool petSwagEye;
     [ResetEffects]
-    public System.Boolean petFamiliar;
+    public bool petFamiliar;
     [ResetEffects]
-    public System.Boolean petUndeadMiner;
+    public bool petUndeadMiner;
 
-    private void ModifyLuck_LanternCat(ref System.Single luck) {
+    private void ModifyLuck_LanternCat(ref float luck) {
         if (petLanternLuckCat) {
             luck += 0.05f;
         }

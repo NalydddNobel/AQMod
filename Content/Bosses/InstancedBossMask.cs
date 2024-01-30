@@ -4,7 +4,7 @@ namespace Aequus.Content.Bosses;
 
 [AutoloadEquip(EquipType.Head)]
 internal class InstancedBossMask : InstancedModItem {
-    public InstancedBossMask(System.String name) : base($"{name}Mask", $"{typeof(InstancedBossMask).NamespaceFilePath()}/BossMasks/{name}Mask") {
+    public InstancedBossMask(string name) : base($"{name}Mask", $"{typeof(InstancedBossMask).NamespaceFilePath()}/BossMasks/{name}Mask") {
     }
 
     public override void SetDefaults() {

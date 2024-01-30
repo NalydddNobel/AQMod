@@ -8,7 +8,7 @@ namespace Aequus;
 public partial class AequusPlayer : ModPlayer {
     public Vector2 transitionVelocity;
 
-    public System.Int32 timeSinceRespawn;
+    public int timeSinceRespawn;
 
     public override void Load() {
         _resetEffects = new();
@@ -76,7 +76,7 @@ public partial class AequusPlayer : ModPlayer {
         timeSinceRespawn++;
     }
 
-    public override void ModifyZoom(ref System.Single zoom) {
+    public override void ModifyZoom(ref float zoom) {
         if (zoom < 0.5f) {
             if (Player.HeldItem.ModItem is SkyHunterCrossbow && (PlayerInput.UsingGamepad || Main.mouseRight)) {
                 zoom = 0.5f;
@@ -88,8 +88,8 @@ public partial class AequusPlayer : ModPlayer {
     private struct MiscDamageHit {
         public DamageClass DamageClass;
         public Rectangle DamagingHitbox;
-        public System.Double Damage;
-        public System.Single Knockback;
+        public double Damage;
+        public float Knockback;
     }
     #endregion
 }

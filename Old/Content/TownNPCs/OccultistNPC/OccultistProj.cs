@@ -5,7 +5,7 @@ using Terraria.Audio;
 namespace Aequus.Old.Content.TownNPCs.OccultistNPC;
 
 public class OccultistProj : ModProjectile {
-    public override String Texture => AequusTextures.Projectile(ProjectileID.DemonScythe);
+    public override string Texture => AequusTextures.Projectile(ProjectileID.DemonScythe);
 
     public override void SetDefaults() {
         Projectile.width = 48;
@@ -29,7 +29,7 @@ public class OccultistProj : ModProjectile {
         if (Projectile.localAI[0] == 0) {
             Projectile.localAI[0] = 1f;
             SoundEngine.PlaySound(SoundID.Item8 with { Pitch = 0.6f, Volume = 0.5f }, Projectile.Center);
-            for (Int32 i = 0; i < 32; i++) {
+            for (int i = 0; i < 32; i++) {
                 var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleCrystalShard, Projectile.velocity.X, Projectile.velocity.Y, 100, Scale: Main.rand.NextFloat(0.7f, 1.5f));
                 d.noGravity = true;
             }
@@ -59,20 +59,20 @@ public class OccultistProj : ModProjectile {
         Projectile.rotation += 0.7f;
     }
 
-    public override void DrawBehind(Int32 index, List<Int32> behindNPCsAndTiles, List<Int32> behindNPCs, List<Int32> behindProjectiles, List<Int32> overPlayers, List<Int32> overWiresUI) {
+    public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI) {
     }
 
-    public override void OnKill(Int32 timeLeft) {
+    public override void OnKill(int timeLeft) {
         SoundEngine.PlaySound(SoundID.Item10, Projectile.Center);
-        for (Int32 i = 0; i < 32; i++) {
+        for (int i = 0; i < 32; i++) {
             var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleCrystalShard, Projectile.velocity.X, Projectile.velocity.Y, 100, Scale: Main.rand.NextFloat(0.7f, 1.5f));
             d.noGravity = true;
         }
     }
 
-    public override Boolean PreDraw(ref Color lightColor) {
+    public override bool PreDraw(ref Color lightColor) {
         lightColor = new Color(255, 222, 211, 200) * Projectile.Opacity;
-        Projectile.GetDrawInfo(out var t, out var off, out var frame, out var origin, out Int32 _);
+        Projectile.GetDrawInfo(out var t, out var off, out var frame, out var origin, out int _);
         Main.EntitySpriteDraw(t, Projectile.position + off - Main.screenPosition, frame, lightColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
         return false;
     }

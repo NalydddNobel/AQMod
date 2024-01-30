@@ -4,7 +4,7 @@ namespace Aequus.Common.Tiles;
 
 public abstract class BaseMusicBoxItem : ModItem {
     public abstract SoundStyle Music { get; }
-    public abstract System.Int32 MusicBoxTileId { get; }
+    public abstract int MusicBoxTileId { get; }
 
     public override void SetStaticDefaults() {
         ItemID.Sets.CanGetPrefixes[Type] = false;

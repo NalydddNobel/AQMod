@@ -7,20 +7,20 @@ using Terraria.Localization;
 namespace Aequus.Content.VanillaChanges;
 
 public class ToolbeltChanges : GlobalItem {
-    public override System.Boolean IsLoadingEnabled(Mod mod) {
+    public override bool IsLoadingEnabled(Mod mod) {
         return VanillaChangesConfig.Instance.MoveToolbelt;
     }
 
     private static LocalizedText _tooltip;
 
-    public static System.Int32 Capacity { get; set; } = 5;
-    public static System.Single SlotHue { get; set; } = 0.4f;
-    public static System.Int32 SpawnRate { get; set; } = 7;
+    public static int Capacity { get; set; } = 5;
+    public static float SlotHue { get; set; } = 0.4f;
+    public static int SpawnRate { get; set; } = 7;
 
-    public override System.Boolean InstancePerEntity => true;
-    protected override System.Boolean CloneNewInstances => true;
+    public override bool InstancePerEntity => true;
+    protected override bool CloneNewInstances => true;
 
-    public override System.Boolean AppliesToEntity(Item entity, System.Boolean lateInstantiation) {
+    public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
         return entity.type == ItemID.Toolbelt;
     }
 
@@ -28,7 +28,7 @@ public class ToolbeltChanges : GlobalItem {
         _tooltip = Language.GetOrRegister("Mods.Aequus.Items.Toolbelt.Tooltip").WithFormatArgs(Capacity);
     }
 
-    public override void UpdateAccessory(Item item, Player player, System.Boolean hideVisual) {
+    public override void UpdateAccessory(Item item, Player player, bool hideVisual) {
         if (!player.TryGetModPlayer(out BackpackPlayer backpackPlayer)) {
             return;
         }
@@ -48,19 +48,19 @@ public class ToolbeltChanges : GlobalItem {
     public class ToolbeltBackpack : BackpackData {
         public Item Toolbelt { get; internal set; }
 
-        private System.String _nameCache;
+        private string _nameCache;
 
-        public override System.Int32 Capacity => ToolbeltChanges.Capacity;
+        public override int Capacity => ToolbeltChanges.Capacity;
 
-        public override System.Single SlotHue => 0.275f;
+        public override float SlotHue => 0.275f;
 
         public override LocalizedText DisplayName => Language.GetOrRegister("ItemName.Toolbelt");
 
-        public override System.String GetDisplayName(Player player) {
+        public override string GetDisplayName(Player player) {
             if (Toolbelt != null) {
                 _nameCache = Toolbelt.Name;
             }
-            if (!System.String.IsNullOrEmpty(_nameCache)) {
+            if (!string.IsNullOrEmpty(_nameCache)) {
                 return _nameCache;
             }
             return base.GetDisplayName(player);
@@ -70,23 +70,23 @@ public class ToolbeltChanges : GlobalItem {
             Toolbelt = null;
         }
 
-        public override System.Boolean IsActive(Player player) {
+        public override bool IsActive(Player player) {
             return Toolbelt != null;
         }
 
-        public override System.Boolean IsVisible() {
+        public override bool IsVisible() {
             return ModContent.GetInstance<ToolbeltBuilderToggle>().CurrentState == 0;
         }
 
-        public override System.Boolean IsLoadingEnabled(Mod mod) {
+        public override bool IsLoadingEnabled(Mod mod) {
             return VanillaChangesConfig.Instance.MoveToolbelt;
         }
 
-        public override System.Boolean CanAcceptItem(System.Int32 slot, Item incomingItem) {
+        public override bool CanAcceptItem(int slot, Item incomingItem) {
             return incomingItem.createTile > -1 || incomingItem.createWall > -1 || incomingItem.tileWand > -1;
         }
 
-        public override void PostDrawSlot(SpriteBatch spriteBatch, Vector2 slotCenter, Vector2 slotTopLeft, System.Int32 slot) {
+        public override void PostDrawSlot(SpriteBatch spriteBatch, Vector2 slotCenter, Vector2 slotTopLeft, int slot) {
             if (Inventory[slot] != null && !Inventory[slot].IsAir) {
                 return;
             }
@@ -99,11 +99,11 @@ public class ToolbeltChanges : GlobalItem {
         private LocalizedText _on;
         private LocalizedText _off;
 
-        public override System.Boolean Active() {
+        public override bool Active() {
             return BackpackLoader.Get<ToolbeltBackpack>(Main.LocalPlayer).IsActive(Main.LocalPlayer);
         }
 
-        public override System.String DisplayValue() {
+        public override string DisplayValue() {
             return (CurrentState == 0 ? _on : _off).Value;
         }
 
@@ -116,7 +116,7 @@ public class ToolbeltChanges : GlobalItem {
             _off = Language.GetOrRegister("Mods.Aequus.Items.Toolbelt.BackpackDisabled");
         }
 
-        public override System.Boolean IsLoadingEnabled(Mod mod) {
+        public override bool IsLoadingEnabled(Mod mod) {
             return VanillaChangesConfig.Instance.MoveToolbelt;
         }
     }

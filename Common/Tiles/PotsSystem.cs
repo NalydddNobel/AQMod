@@ -8,9 +8,9 @@ namespace Aequus.Common.Tiles;
 
 // TODO -- Make the angler lantern systems no longer need to use a global tile to get on-screen pots for optimization
 public class PotsSystem : ModSystem {
-    public record PotLootPreview(Texture2D Texture, Rectangle? Frame, System.Int32 Stack, System.Boolean Dangerous) {
+    public record PotLootPreview(Texture2D Texture, Rectangle? Frame, int Stack, bool Dangerous) {
         public Color NPCColor;
-        public System.Single Opacity;
+        public float Opacity;
     }
 
     public static Dictionary<Point, PotLootPreview> LootPreviews { get; private set; } = new();
@@ -26,12 +26,12 @@ public class PotsSystem : ModSystem {
         On_WorldGen.SpawnThingsFromPot += On_WorldGen_SpawnThingsFromPot;
     }
 
-    private static void On_WorldGen_SpawnThingsFromPot(On_WorldGen.orig_SpawnThingsFromPot orig, System.Int32 i, System.Int32 j, System.Int32 x2, System.Int32 y2, System.Int32 style) {
+    private static void On_WorldGen_SpawnThingsFromPot(On_WorldGen.orig_SpawnThingsFromPot orig, int i, int j, int x2, int y2, int style) {
         var mainRand = Main.rand;
         var genRand = WorldGen._genRand;
 
         try {
-            var randomizer = new UnifiedRandom((System.Int32)Helper.TileSeed(x2, y2));
+            var randomizer = new UnifiedRandom((int)Helper.TileSeed(x2, y2));
             Main.rand = randomizer;
             WorldGen._genRand = randomizer;
 
@@ -66,9 +66,9 @@ public class PotsSystem : ModSystem {
 
         lock (LootPreviews) {
             var aequusPlayer = Main.LocalPlayer.GetModPlayer<AequusPlayer>();
-            System.Int32 effectRange = aequusPlayer.potSightRange;
+            int effectRange = aequusPlayer.potSightRange;
             foreach (var preview in LootPreviews) {
-                if (!Main.tile[preview.Key].HasTile || !TileSets.IsSmashablePot.Contains((System.Int32)Main.tile[preview.Key].TileType) || !InPotSightRange(Main.LocalPlayer, preview.Key, effectRange)) {
+                if (!Main.tile[preview.Key].HasTile || !TileSets.IsSmashablePot.Contains((int)Main.tile[preview.Key].TileType) || !InPotSightRange(Main.LocalPlayer, preview.Key, effectRange)) {
                     preview.Value.Opacity -= 0.04f;
                     if (preview.Value.Opacity <= 0f) {
                         RemoveQueue.Enqueue(preview.Key);
@@ -94,7 +94,7 @@ public class PotsSystem : ModSystem {
         }
     }
 
-    public static System.Boolean InPotSightRange(Player player, Point potCoordinates, System.Int32 range) {
+    public static bool InPotSightRange(Player player, Point potCoordinates, int range) {
         return range > 0 && Vector2.Distance(player.Center, new Vector2(potCoordinates.X * 16f + 16f, potCoordinates.Y * 16f + 16f)) < range;
     }
 }

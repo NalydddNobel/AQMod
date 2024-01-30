@@ -1,15 +1,17 @@
 ﻿using Aequus.Common.Items;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using Terraria.Localization;
 
 namespace Aequus.Content.Bosses;
 
 internal class InstancedBossBag : InstancedModItem {
-    private readonly System.Int32 InternalRarity;
-    private readonly System.Boolean PreHardmode;
-    private System.String _bossName;
+    private readonly int InternalRarity;
+    private readonly bool PreHardmode;
+    private string _bossName;
 
-    public InstancedBossBag(System.String name, System.Int32 internalRarity, System.Boolean preHardmode = false) : base($"{name}Bag", $"{typeof(InstancedBossBag).NamespaceFilePath()}/TreasureBags/{name}Bag") {
+    public InstancedBossBag(string name, int internalRarity, bool preHardmode = false) : base($"{name}Bag", $"{typeof(InstancedBossBag).NamespaceFilePath()}/TreasureBags/{name}Bag") {
         _bossName = name;
         InternalRarity = internalRarity;
         PreHardmode = preHardmode;
@@ -34,7 +36,7 @@ internal class InstancedBossBag : InstancedModItem {
         Item.expert = true;
     }
 
-    public override System.Boolean CanRightClick() => true;
+    public override bool CanRightClick() => true;
 
     public override Color? GetAlpha(Color lightColor) {
         return Color.Lerp(lightColor, Color.White, 0.4f);
@@ -47,7 +49,7 @@ internal class InstancedBossBag : InstancedModItem {
             var center = Item.Center + new Vector2(0f, Item.height * -0.1f);
 
             var direction = Main.rand.NextVector2CircularEdge(Item.width * 0.6f, Item.height * 0.6f);
-            System.Single distance = 0.3f + Main.rand.NextFloat() * 0.5f;
+            float distance = 0.3f + Main.rand.NextFloat() * 0.5f;
             var velocity = new Vector2(0f, -Main.rand.NextFloat() * 0.3f - 1.5f);
 
             var d = Dust.NewDustPerfect(center + direction * distance, DustID.SilverFlame, velocity);
@@ -59,7 +61,7 @@ internal class InstancedBossBag : InstancedModItem {
         }
     }
 
-    public override System.Boolean PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref System.Single rotation, ref System.Single scale, System.Int32 whoAmI) {
+    public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
         var texture = TextureAssets.Item[Item.type].Value;
 
         Rectangle frame;
@@ -75,8 +77,8 @@ internal class InstancedBossBag : InstancedModItem {
         var offset = new Vector2(Item.width / 2 - origin.X, Item.height - frame.Height);
         var drawPos = Item.position - Main.screenPosition + origin + offset;
 
-        System.Single time = Main.GlobalTimeWrappedHourly;
-        System.Single timer = Item.timeSinceItemSpawned / 240f + time * 0.04f;
+        float time = Main.GlobalTimeWrappedHourly;
+        float timer = Item.timeSinceItemSpawned / 240f + time * 0.04f;
 
         time %= 4f;
         time /= 2f;
@@ -87,14 +89,14 @@ internal class InstancedBossBag : InstancedModItem {
 
         time = time * 0.5f + 0.5f;
 
-        for (System.Single i = 0f; i < 1f; i += 0.25f) {
-            System.Single radians = (i + timer) * MathHelper.TwoPi;
+        for (float i = 0f; i < 1f; i += 0.25f) {
+            float radians = (i + timer) * MathHelper.TwoPi;
 
             spriteBatch.Draw(texture, drawPos + new Vector2(0f, 8f).RotatedBy(radians) * time, frame, new Color(90, 70, 255, 50), rotation, origin, scale, SpriteEffects.None, 0);
         }
 
-        for (System.Single i = 0f; i < 1f; i += 0.34f) {
-            System.Single radians = (i + timer) * MathHelper.TwoPi;
+        for (float i = 0f; i < 1f; i += 0.34f) {
+            float radians = (i + timer) * MathHelper.TwoPi;
 
             spriteBatch.Draw(texture, drawPos + new Vector2(0f, 4f).RotatedBy(radians) * time, frame, new Color(140, 120, 255, 77), rotation, origin, scale, SpriteEffects.None, 0);
         }

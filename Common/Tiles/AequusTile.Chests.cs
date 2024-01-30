@@ -3,14 +3,14 @@
 namespace Aequus.Common.Tiles;
 
 public partial class AequusTile : GlobalTile, IPostSetupContent {
-    public static void CheckCustomKeys(System.Int32 i, System.Int32 j, System.Int32 type) {
+    public static void CheckCustomKeys(int i, int j, int type) {
         if (type == TileID.Containers) {
             var player = Main.LocalPlayer;
             if (!player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
                 return;
             }
 
-            System.Boolean unlockedChest = TileHelper.GetStyle(i, j, coordinateFullWidthBackup: 36) switch {
+            bool unlockedChest = TileHelper.GetStyle(i, j, coordinateFullWidthBackup: 36) switch {
                 ChestType.LockedShadow => TryUnlockingWithKey(i, j, aequusPlayer.shadowKey),
                 ChestType.LockedGreenDungeon => TryUnlockingWithKey(i, j, aequusPlayer.goldenKey),
                 ChestType.LockedPinkDungeon => TryUnlockingWithKey(i, j, aequusPlayer.goldenKey),
@@ -21,7 +21,7 @@ public partial class AequusTile : GlobalTile, IPostSetupContent {
         }
     }
 
-    private static System.Boolean TryUnlockingWithKey(System.Int32 i, System.Int32 j, Item key) {
+    private static bool TryUnlockingWithKey(int i, int j, Item key) {
         if (key == null || key.IsAir) {
             return false;
         }

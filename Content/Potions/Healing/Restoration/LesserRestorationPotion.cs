@@ -5,9 +5,9 @@ using Aequus.Core.Initialization;
 namespace Aequus.Content.Potions.Healing.Restoration;
 
 public class LesserRestorationPotion : ModItem, IApplyPotionDelay, IPostAddRecipes {
-    public override System.String Texture => AequusTextures.Item(ItemID.LesserRestorationPotion);
+    public override string Texture => AequusTextures.Item(ItemID.LesserRestorationPotion);
 
-    public System.Boolean ApplyPotionDelay(Player player) {
+    public bool ApplyPotionDelay(Player player) {
         player.potionDelay = player.restorationDelayTime;
         player.AddBuff(BuffID.PotionSickness, player.potionDelay);
         return true;
@@ -57,7 +57,7 @@ public class LesserRestorationPotion : ModItem, IApplyPotionDelay, IPostAddRecip
             return;
         }
 
-        for (System.Int32 i = 0; i < Recipe.numRecipes; i++) {
+        for (int i = 0; i < Recipe.numRecipes; i++) {
             var recipe = Main.recipe[i];
             if (recipe == null || recipe.createItem.type != ItemID.RestorationPotion) {
                 continue;

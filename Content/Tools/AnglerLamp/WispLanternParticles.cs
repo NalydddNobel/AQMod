@@ -5,7 +5,7 @@ using System;
 namespace Aequus.Content.Tools.AnglerLamp;
 
 public class WispLanternParticles : ParticleSystem<WispLanternParticles.Particle> {
-    public override Int32 ParticleCount => 50;
+    public override int ParticleCount => 50;
 
     public override void Draw(SpriteBatch spriteBatch) {
         spriteBatch.BeginDusts();
@@ -18,22 +18,22 @@ public class WispLanternParticles : ParticleSystem<WispLanternParticles.Particle
         Rectangle lensFlareFrame = lensFlare.Frame();
         Vector2 lensFlareOrigin = lensFlareFrame.Size() / 2f;
         lock (this) {
-            for (Int32 k = 0; k < Particles.Length; k++) {
+            for (int k = 0; k < Particles.Length; k++) {
                 Particle particle = Particles[k];
 
                 if (particle == null || !particle.Active) {
                     continue;
                 }
 
-                Single animation = particle.Animation;
+                float animation = particle.Animation;
                 Vector2 drawLocation = particle.Location - Main.screenPosition;
                 Color color = particle.Color with { A = 100 };
                 Color whiteColor = Color.White with { A = 0 } * Math.Min(animation, 1f);
-                Single rotation = particle.Rotation;
-                Single scale = particle.Scale * 0.8f;
+                float rotation = particle.Rotation;
+                float scale = particle.Scale * 0.8f;
 
                 if (animation < 0.4f) {
-                    Single backFlareScale = MathF.Sin(animation / 0.4f * MathHelper.Pi);
+                    float backFlareScale = MathF.Sin(animation / 0.4f * MathHelper.Pi);
                     spriteBatch.Draw(texture, drawLocation, frame, color * 0.5f, 0f, origin, new Vector2(1.5f, 0.5f) * backFlareScale, SpriteEffects.None, 0f);
                 }
                 if (animation < 4f) {
@@ -53,7 +53,7 @@ public class WispLanternParticles : ParticleSystem<WispLanternParticles.Particle
     }
 
     public override void Update() {
-        for (Int32 i = 0; i < Particles.Length; i++) {
+        for (int i = 0; i < Particles.Length; i++) {
             Particle particle = Particles[i];
             if (particle == null || !particle.Active) {
                 continue;
@@ -96,8 +96,8 @@ public class WispLanternParticles : ParticleSystem<WispLanternParticles.Particle
     }
 
     public class Particle : IParticle {
-        private Boolean _active;
-        public Boolean Active {
+        private bool _active;
+        public bool Active {
             get => _active;
             set {
                 if (value) {
@@ -111,19 +111,19 @@ public class WispLanternParticles : ParticleSystem<WispLanternParticles.Particle
             }
         }
 
-        public Int32 NPCAnchor;
+        public int NPCAnchor;
         public Vector2 NPCOffset;
         public Vector2 Location;
 
-        public Single Rotation;
+        public float Rotation;
 
-        public Single Scale;
+        public float Scale;
 
-        public Single Opacity;
+        public float Opacity;
 
         public Color Color;
 
-        public Single Animation;
+        public float Animation;
     }
 
     /*

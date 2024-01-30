@@ -9,7 +9,7 @@ public class GoldenWindBuff : ModBuff {
         Main.persistentBuff[Type] = true;
     }
 
-    public override void Update(Player player, ref Int32 buffIndex) {
+    public override void Update(Player player, ref int buffIndex) {
         if (!player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
             return;
         }
@@ -17,7 +17,7 @@ public class GoldenWindBuff : ModBuff {
         aequusPlayer.SetAccRespawnTimeModifier(GoldenFeather.RespawnTimeAmount);
     }
 
-    public override Boolean RightClick(Int32 buffIndex) {
+    public override bool RightClick(int buffIndex) {
         return false;
     }
 }

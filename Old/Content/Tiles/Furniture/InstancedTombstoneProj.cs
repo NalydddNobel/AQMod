@@ -7,14 +7,14 @@ internal class InstancedTombstoneProj : InstancedModProjectile {
     [CloneByReference]
     public readonly ModTile Tile;
 
-    public readonly System.Int32 Style;
+    public readonly int Style;
 
-    protected InstancedTombstoneProj(ModTile tile, System.Int32 style = 0, System.String name = "") : base(tile.Name + name, tile.Texture) {
+    protected InstancedTombstoneProj(ModTile tile, int style = 0, string name = "") : base(tile.Name + name, tile.Texture) {
         Tile = tile;
         Style = style;
     }
 
-    public virtual System.String GetTombstoneText() {
+    public virtual string GetTombstoneText() {
         return Projectile.miscText;
     }
 
@@ -36,8 +36,8 @@ internal class InstancedTombstoneProj : InstancedModProjectile {
             return;
         }
 
-        System.Int32 x = (System.Int32)((Projectile.position.X + Projectile.width / 2) / 16f);
-        System.Int32 y = (System.Int32)((Projectile.position.Y + Projectile.height - 4f) / 16f);
+        int x = (int)((Projectile.position.X + Projectile.width / 2) / 16f);
+        int y = (int)((Projectile.position.Y + Projectile.height - 4f) / 16f);
         if (Main.tile[x, y].HasTile) {
             return;
         }
@@ -45,7 +45,7 @@ internal class InstancedTombstoneProj : InstancedModProjectile {
         if (TileObject.CanPlace(x, y, Tile.Type, Style, Projectile.direction, out TileObject objectData) && TileObject.Place(objectData)) {
             NetMessage.SendObjectPlacement(-1, x, y, objectData.type, objectData.style, objectData.alternate, objectData.random, Projectile.direction);
             SoundEngine.PlaySound(SoundID.Dig, Projectile.Center);
-            System.Int32 sign = Sign.ReadSign(x, y);
+            int sign = Sign.ReadSign(x, y);
             if (sign >= 0) {
                 Sign.TextSign(sign, GetTombstoneText());
                 NetMessage.SendData(MessageID.ReadSign, number: sign, number3: new BitsByte(b1: true));
@@ -54,7 +54,7 @@ internal class InstancedTombstoneProj : InstancedModProjectile {
         }
     }
 
-    public override System.Boolean OnTileCollide(Vector2 oldVelocity) {
+    public override bool OnTileCollide(Vector2 oldVelocity) {
         if (Projectile.velocity.X != oldVelocity.X) {
             Projectile.velocity.X = oldVelocity.X * -0.75f;
         }

@@ -4,6 +4,7 @@ using Aequus.Old.Common.EventBars;
 using Aequus.Old.Content.Enemies.DemonSiege.CinderBat;
 using Aequus.Old.Content.Enemies.DemonSiege.Keeper;
 using Aequus.Old.Content.Enemies.DemonSiege.LavaLegs;
+using System.Collections;
 using System.Collections.Generic;
 using Terraria.GameContent;
 using Terraria.Graphics.Effects;
@@ -12,16 +13,16 @@ using Terraria.Graphics.Shaders;
 namespace Aequus.Old.Content.Events.DemonSiege;
 
 public class DemonSiegeZone : ModBiome, IPostSetupContent {
-    public const System.String ScreenFilterKey = "Aequus:DemonSiegeFilter";
+    public const string ScreenFilterKey = "Aequus:DemonSiegeFilter";
 
-    public override System.Int32 Music => MusicID.Monsoon;
+    public override int Music => MusicID.Monsoon;
 
     public override SceneEffectPriority Priority => SceneEffectPriority.Event;
 
-    public override System.String BestiaryIcon => AequusTextures.DemonSiegeBestiaryIcon.Path;
+    public override string BestiaryIcon => AequusTextures.DemonSiegeBestiaryIcon.Path;
 
-    public override System.String BackgroundPath => "Terraria/Images/MapBG3";
-    public override System.String MapBackground => BackgroundPath;
+    public override string BackgroundPath => "Terraria/Images/MapBG3";
+    public override string MapBackground => BackgroundPath;
 
     public override void Load() {
         if (!Main.dedServ) {
@@ -36,7 +37,7 @@ public class DemonSiegeZone : ModBiome, IPostSetupContent {
         }
         On_Main.DrawUnderworldBackground += Main_DrawUnderworldBackground;
     }
-    private static void Main_DrawUnderworldBackground(On_Main.orig_DrawUnderworldBackground orig, Main self, System.Boolean flat) {
+    private static void Main_DrawUnderworldBackground(On_Main.orig_DrawUnderworldBackground orig, Main self, bool flat) {
         orig(self, flat);
 
         if (DemonSiegeSystem.ActiveSacrifices.Count > 0) {
@@ -49,7 +50,7 @@ public class DemonSiegeZone : ModBiome, IPostSetupContent {
                 }
                 var origin = texture.Size() / 2f;
                 var drawCoords = (center - Main.screenPosition).Floor();
-                System.Single scale = v.Range * 6f / texture.Width();
+                float scale = v.Range * 6f / texture.Width();
                 Main.spriteBatch.Draw(texture, drawCoords, null, Color.Black * v.AuraScale,
                     0f, origin, scale, SpriteEffects.None, 0f);
             }
@@ -59,13 +60,13 @@ public class DemonSiegeZone : ModBiome, IPostSetupContent {
         }
     }
 
+    
 
-
-    public override System.Boolean IsBiomeActive(Player player) {
+    public override bool IsBiomeActive(Player player) {
         return player.GetModPlayer<DemonSiegePlayer>().GoreNest.X != 0;
     }
 
-    public override void SpecialVisuals(Player player, System.Boolean isActive) {
+    public override void SpecialVisuals(Player player, bool isActive) {
         if (isActive) {
             if (!Filters.Scene[ScreenFilterKey].Active) {
                 Filters.Scene.Activate(ScreenFilterKey, player.GetModPlayer<DemonSiegePlayer>().GoreNest.ToWorldCoordinates(), null);
@@ -76,7 +77,7 @@ public class DemonSiegeZone : ModBiome, IPostSetupContent {
         }
     }
 
-    public static void AddEnemies(IDictionary<System.Int32, System.Single> pool, NPCSpawnInfo spawnInfo) {
+    public static void AddEnemies(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
         pool.Clear();
         pool.Add(ModContent.NPCType<CinderBat>(), 1f);
         pool.Add(ModContent.NPCType<LeggedLava>(), 1f);

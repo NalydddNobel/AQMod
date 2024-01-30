@@ -6,9 +6,9 @@ using Terraria.ObjectData;
 namespace Aequus.Content.Tiles.Banners;
 
 internal class MonsterBanners : ModTile {
-    public static readonly Dictionary<System.Byte, ModTile> StyleToNewBannerTileConversion = new();
+    public static readonly Dictionary<byte, ModTile> StyleToNewBannerTileConversion = new();
 
-    public override System.String Texture => this.NamespaceFilePath() + "/OldMonsterBanners";
+    public override string Texture => this.NamespaceFilePath() + "/OldMonsterBanners";
 
     public override void SetStaticDefaults() {
         Main.tileFrameImportant[Type] = true;
@@ -25,11 +25,11 @@ internal class MonsterBanners : ModTile {
         TileID.Sets.DisableSmartCursor[Type] = true;
     }
 
-    public override System.Boolean PreDraw(System.Int32 i, System.Int32 j, SpriteBatch spriteBatch) {
+    public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
         if (Main.tile[i, j].TileFrameX % 18 == 0 && Main.tile[i, j].TileFrameY % 54 == 0) {
-            System.Int32 style = Main.tile[i, j].TileFrameX / 18;
-            if (StyleToNewBannerTileConversion.TryGetValue((System.Byte)style, out var newTile)) {
-                for (System.Int32 y = j; y < j + 3; y++) {
+            int style = Main.tile[i, j].TileFrameX / 18;
+            if (StyleToNewBannerTileConversion.TryGetValue((byte)style, out var newTile)) {
+                for (int y = j; y < j + 3; y++) {
                     Main.tile[i, j].TileFrameX = 0;
                     Main.tile[i, j].TileType = newTile.Type;
                 }

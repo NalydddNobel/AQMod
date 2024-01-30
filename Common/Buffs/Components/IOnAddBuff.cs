@@ -1,13 +1,13 @@
 ﻿namespace Aequus.Common.Buffs.Components;
 
 internal interface IOnAddBuff {
-    void PreAddBuff(NPC npc, ref System.Int32 duration, ref System.Boolean quiet) {
+    void PreAddBuff(NPC npc, ref int duration, ref bool quiet) {
     }
-    void PostAddBuff(NPC npc, System.Int32 duration, System.Boolean quiet) {
+    void PostAddBuff(NPC npc, int duration, bool quiet) {
     }
 
-    void PreAddBuff(Player player, ref System.Int32 duration, ref System.Boolean quiet, ref System.Boolean foodHack) {
+    void PreAddBuff(Player player, ref int duration, ref bool quiet, ref bool foodHack) {
     }
-    void PostAddBuff(Player player, System.Int32 duration, System.Boolean quiet, System.Boolean foodHack) {
+    void PostAddBuff(Player player, int duration, bool quiet, bool foodHack) {
     }
 }

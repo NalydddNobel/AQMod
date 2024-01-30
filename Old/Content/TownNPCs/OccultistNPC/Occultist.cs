@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
@@ -22,18 +23,18 @@ namespace Aequus.Old.Content.TownNPCs.OccultistNPC;
 
 [AutoloadHead()]
 public class Occultist : ModNPC, IModifyShoppingSettings {
-    public const Byte STATE_Passive = 0;
-    public const Byte STATE_Sleeping = 1;
-    public const Byte STATE_SleepFalling = 2;
+    public const byte STATE_Passive = 0;
+    public const byte STATE_Sleeping = 1;
+    public const byte STATE_SleepFalling = 2;
 
-    public const Int32 CHANCE_SLEEP = (Int32)Main.dayLength * 5; // 270,000
+    public const int CHANCE_SLEEP = (int)Main.dayLength * 5; // 270,000
 
-    public Byte state;
+    public byte state;
 
-    private Boolean _dayTimeSwap;
-    private Boolean _saidGhostDialogue;
+    private bool _dayTimeSwap;
+    private bool _saidGhostDialogue;
 
-    public override List<String> SetNPCNameList() {
+    public override List<string> SetNPCNameList() {
         return new() {
             "Abadeer",
             "Cally",
@@ -120,11 +121,11 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
         shop.Register();
     }
 
-    public override Boolean CanTownNPCSpawn(Int32 numTownNPCs) {
+    public override bool CanTownNPCSpawn(int numTownNPCs) {
         return World.DownedDemonSiegeT1;
     }
 
-    public override String GetChat() {
+    public override string GetChat() {
         if (state > 0) {
             return this.GetDialogue("Awaken").Value;
         }
@@ -133,12 +134,12 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
     }
 
     public IEnumerable<LocalizedText> GetAvailableChat(Player localPlayer) {
-        const Int32 BASIC_LINES_COUNT = 5;
-        const Int32 NIGHT_LINES_COUNT = 2;
-        const Int32 BLOODMOON_LINES_COUNT = 3;
-        const Int32 RARE_LINE_CHANCE = 7;
+        const int BASIC_LINES_COUNT = 5;
+        const int NIGHT_LINES_COUNT = 2;
+        const int BLOODMOON_LINES_COUNT = 3;
+        const int RARE_LINE_CHANCE = 7;
 
-        Boolean downedHardmodeBoss = NPC.downedMechBossAny || NPC.downedQueenSlime || NPC.downedPlantBoss || NPC.downedGolemBoss || NPC.downedMoonlord;
+        bool downedHardmodeBoss = NPC.downedMechBossAny || NPC.downedQueenSlime || NPC.downedPlantBoss || NPC.downedGolemBoss || NPC.downedMoonlord;
         if (Main.hardMode) {
             if (!downedHardmodeBoss) {
                 yield return this.GetDialogue("EarlyHardmode");
@@ -154,12 +155,12 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
         }
         if (!Main.dayTime) {
             if (Main.bloodMoon) {
-                for (Int32 i = 0; i < BLOODMOON_LINES_COUNT; i++) {
+                for (int i = 0; i < BLOODMOON_LINES_COUNT; i++) {
                     yield return this.GetDialogue($"BloodMoon.{i}");
                 }
             }
             else {
-                for (Int32 i = 0; i < NIGHT_LINES_COUNT; i++) {
+                for (int i = 0; i < NIGHT_LINES_COUNT; i++) {
                     yield return this.GetDialogue($"Night.{i}");
                 }
             }
@@ -168,7 +169,7 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
             //}
         }
 
-        for (Int32 i = 0; i < BASIC_LINES_COUNT; i++) {
+        for (int i = 0; i < BASIC_LINES_COUNT; i++) {
             yield return this.GetDialogue(i.ToString());
         }
 
@@ -196,28 +197,28 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
         }
     }
 
-    public override void SetChatButtons(ref String button, ref String button2) {
+    public override void SetChatButtons(ref string button, ref string button2) {
         button = Language.GetTextValue("LegacyInterface.28");
     }
 
-    public override void OnChatButtonClicked(Boolean firstButton, ref String shopName) {
+    public override void OnChatButtonClicked(bool firstButton, ref string shopName) {
         if (firstButton) {
             shopName = "Shop";
         }
     }
 
-    public override Boolean CanGoToStatue(Boolean toKingStatue) {
+    public override bool CanGoToStatue(bool toKingStatue) {
         return !toKingStatue;
     }
 
-    private Boolean WakeFromFalling() {
+    private bool WakeFromFalling() {
         var tile = Framing.GetTileSafely(NPC.Bottom.ToTileCoordinates());
         return (NPC.collideY && NPC.velocity.Y == 0f)
             || tile.IsSolid() || tile.SolidTopType()
             || NPC.localAI[0] > 100f;
     }
 
-    public override Boolean PreAI() {
+    public override bool PreAI() {
         if (NPC.shimmering) {
             if (state == STATE_Sleeping) {
                 state = STATE_SleepFalling;
@@ -241,7 +242,7 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
                     NPC.ai[3] = 0f;
                     state = STATE_Passive;
                     NPC.netUpdate = true;
-                    if (Main.netMode != NetmodeID.Server && Main.LocalPlayer.talkNPC == NPC.whoAmI && !String.IsNullOrEmpty(Main.npcChatText)) {
+                    if (Main.netMode != NetmodeID.Server && Main.LocalPlayer.talkNPC == NPC.whoAmI && !string.IsNullOrEmpty(Main.npcChatText)) {
                         Main.npcChatCornerItem = 0;
                         NPCLoader.GetChat(NPC, ref Main.npcChatText);
                     }
@@ -285,7 +286,7 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
                 state = STATE_SleepFalling;
                 return false;
             }
-            for (Int32 i = 0; i < Main.maxPlayers; i++) {
+            for (int i = 0; i < Main.maxPlayers; i++) {
                 if (Main.player[i].active && (Main.player[i].talkNPC == NPC.whoAmI || Main.player[i].Distance(NPC.Center) < 100f && Main.player[i].ghost)) {
                     NPC.ai[0]++;
                     return false;
@@ -329,13 +330,13 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
         NPC.netUpdate = true;
         NPC.velocity *= 0.1f;
 
-        Boolean PlayerCollision() {
+        bool PlayerCollision() {
             Rectangle myHitbox = NPC.Hitbox;
 
             Rectangle ghostDetectionHitbox = NPC.Hitbox;
             ghostDetectionHitbox.Inflate(32, 32);
 
-            for (Int32 i = 0; i < Main.maxPlayers; i++) {
+            for (int i = 0; i < Main.maxPlayers; i++) {
                 if (Main.player[i].active) {
                     if (Main.player[i].ghost && Main.player[i].Hitbox.Intersects(ghostDetectionHitbox)) {
                         return true;
@@ -349,7 +350,7 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
         }
     }
     public override void AI() {
-        if ((Int32)NPC.ai[0] == 14) {
+        if ((int)NPC.ai[0] == 14) {
             NPC.ai[1] += 0.9f;
             if (Main.GameUpdateCount % 7 == 0) {
                 var d = Dust.NewDustDirect(NPC.position + new Vector2(0f, NPC.height - 4), NPC.width, 4, DustID.PurpleCrystalShard, 0f, -4f);
@@ -387,8 +388,8 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
             return;
         }
 
-        Int32 dustAmount = Math.Clamp(hit.Damage / 3, NPC.life > 0 ? 1 : 40, 40);
-        for (Int32 k = 0; k < dustAmount; k++) {
+        int dustAmount = Math.Clamp(hit.Damage / 3, NPC.life > 0 ? 1 : 40, 40);
+        for (int k = 0; k < dustAmount; k++) {
             Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, NPC.velocity.X, NPC.velocity.Y, newColor: Color.Violet);
         }
         if (NPC.life <= 0) {
@@ -402,26 +403,26 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
         }
     }
 
-    public override void TownNPCAttackStrength(ref Int32 damage, ref Single knockback) {
+    public override void TownNPCAttackStrength(ref int damage, ref float knockback) {
         damage = 20;
         knockback = 8f;
     }
 
-    public override void TownNPCAttackCooldown(ref Int32 cooldown, ref Int32 randExtraCooldown) {
+    public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown) {
         cooldown = 60;
         randExtraCooldown = 2;
     }
 
-    public override void TownNPCAttackMagic(ref Single auraLightMultiplier) {
+    public override void TownNPCAttackMagic(ref float auraLightMultiplier) {
         auraLightMultiplier = 0f;
     }
 
-    public override void TownNPCAttackProj(ref Int32 projType, ref Int32 attackDelay) {
+    public override void TownNPCAttackProj(ref int projType, ref int attackDelay) {
         projType = ModContent.ProjectileType<OccultistProjSpawner>();
         attackDelay = 12;
     }
 
-    public override void TownNPCAttackProjSpeed(ref Single multiplier, ref Single gravityCorrection, ref Single randomOffset) {
+    public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset) {
         multiplier = 6f;
         randomOffset = 1.5f;
     }
@@ -434,7 +435,7 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
         state = reader.ReadByte();
     }
 
-    public override Boolean PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+    public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
         SpriteEffects spriteEffect = NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
         if (state == STATE_Sleeping || state == STATE_SleepFalling) {
@@ -448,9 +449,9 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
                 spriteBatch.Draw(sleepingGlow.Value, NPC.Top + new Vector2(0f, 4f) - screenPos, sleepingFrame, Color.White, NPC.rotation, sleepingOrigin, NPC.scale, spriteEffect, 0f);
             }
             else if (state == STATE_SleepFalling) {
-                Int32 frameY = 1;
+                int frameY = 1;
                 if (NPC.collideY && NPC.velocity.Y == 0f) {
-                    frameY += 1 + (Int32)(NPC.ai[0] / 6);
+                    frameY += 1 + (int)(NPC.ai[0] / 6);
                     NPC.rotation = 0f;
                 }
                 var sleepingFrame = sleepingTexture.Frame(verticalFrames: 19, frameY: frameY);
@@ -472,11 +473,11 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
 
         spriteBatch.Draw(texture, NPC.position + offset - screenPos, frame, NPC.GetNPCColorTintedByBuffs(drawColor), NPC.rotation, origin, NPC.scale, spriteEffect, 0f);
         spriteBatch.Draw(AequusTextures.Occultist_Glow.Value, NPC.position + offset - screenPos, frame, NPC.GetNPCColorTintedByBuffs(Color.White), NPC.rotation, origin, NPC.scale, spriteEffect, 0f);
-        if ((Int32)NPC.ai[0] == 14) {
+        if ((int)NPC.ai[0] == 14) {
             var bloomFrame = AequusTextures.Bloom.Frame(verticalFrames: 2);
             spriteBatch.Draw(AequusTextures.Bloom, NPC.position + offset - screenPos + new Vector2(2f * -NPC.spriteDirection, NPC.height / 2f + 6f).RotatedBy(NPC.rotation),
                 bloomFrame, Color.BlueViolet * 0.5f, NPC.rotation, AequusTextures.Bloom.Size() / 2f, NPC.scale * 0.5f, spriteEffect, 0f);
-            var auraFrame = TextureAssets.Extra[51].Value.Frame(verticalFrames: 4, frameY: (Int32)(Main.GlobalTimeWrappedHourly * 9f) % 4);
+            var auraFrame = TextureAssets.Extra[51].Value.Frame(verticalFrames: 4, frameY: (int)(Main.GlobalTimeWrappedHourly * 9f) % 4);
             spriteBatch.Draw(TextureAssets.Extra[51].Value, NPC.position + offset - screenPos + new Vector2(4f * -NPC.spriteDirection, NPC.height / 2f + 8f).RotatedBy(NPC.rotation),
                 auraFrame, Color.BlueViolet * 0.7f, NPC.rotation, new Vector2(auraFrame.Width / 2f, auraFrame.Height), NPC.scale, spriteEffect, 0f);
         }
@@ -490,7 +491,7 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
             $"Mods.Aequus.TownNPCMood.Occultist.LikeNPC_{(player.isNearNPC(NPCID.Demolitionist) ? "Demolitionist" : "Clothier")}", (s) => new { NPCName = s[1], });
     }
 
-    public override Boolean? CanBeHitByProjectile(Projectile projectile) {
+    public override bool? CanBeHitByProjectile(Projectile projectile) {
         if (ProjectileSets.OccultistIgnore.Contains(projectile.type)) {
             return false;
         }
@@ -506,7 +507,7 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
         return null;
     }
 
-    public override Boolean CanBeHitByNPC(NPC attacker) {
+    public override bool CanBeHitByNPC(NPC attacker) {
         return !NPCSets.OccultistIgnore.Contains(attacker.type);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Aequus.Core.Graphics.Animations;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent.Shaders;
@@ -6,27 +7,27 @@ using Terraria.GameContent.Shaders;
 namespace Aequus.Content.Fishing.CrabPots;
 
 public class AnimationPlaceCrabPot : ITileAnimation {
-    public Single AnimationTime;
-    public Int32 DrawOffsetY;
+    public float AnimationTime;
+    public int DrawOffsetY;
 
-    public Boolean Update(Int32 x, Int32 y) {
+    public bool Update(int x, int y) {
         if (AnimationTime == 0f) {
-            Int32 topY = y;
-            for (; topY > 0 && Main.tile[x, topY].LiquidAmount == Byte.MaxValue; topY--) {
+            int topY = y;
+            for (; topY > 0 && Main.tile[x, topY].LiquidAmount == byte.MaxValue; topY--) {
             }
 
             DrawHelper.AddWaterRipple(new Vector2(x + 1f, y + 1f) * 16f, 0.33f, 0.6f, 0f, new Vector2(48f, 48f), RippleShape.Circle, 0f);
 
-            Single waterLineY = TileHelper.GetWaterY(Main.tile[x, y].LiquidAmount);
+            float waterLineY = TileHelper.GetWaterY(Main.tile[x, y].LiquidAmount);
 
             var dustPosition = new Vector2(x * 16f, topY * 16f + waterLineY);
-            Int32 dustW = 32;
-            Int32 dustH = 16;
-            Int32 liquidType = Main.tile[x, topY].LiquidType;
-            Int32 dustType = DrawHelper.LiquidTypeToDustId(liquidType);
+            int dustW = 32;
+            int dustH = 16;
+            int liquidType = Main.tile[x, topY].LiquidType;
+            int dustType = DrawHelper.LiquidTypeToDustId(liquidType);
             switch (liquidType) {
                 case LiquidID.Water:
-                    for (Int32 l = 0; l < 30; l++) {
+                    for (int l = 0; l < 30; l++) {
                         var d = Dust.NewDustDirect(dustPosition, dustW, dustH, dustType);
                         d.velocity.Y -= 4f;
                         d.velocity.X *= 2.5f;
@@ -37,7 +38,7 @@ public class AnimationPlaceCrabPot : ITileAnimation {
                     break;
 
                 case LiquidID.Lava:
-                    for (Int32 i = 0; i < 10; i++) {
+                    for (int i = 0; i < 10; i++) {
                         var d = Dust.NewDustDirect(dustPosition, dustW, dustH, dustType);
                         d.velocity.Y -= 1.5f;
                         d.velocity.X *= 2.5f;
@@ -59,18 +60,18 @@ public class AnimationPlaceCrabPot : ITileAnimation {
         }
 
         AnimationTime += 0.05f;
-        Single tileY = -MathF.Sin(AnimationTime * MathHelper.PiOver2 * 3f + MathHelper.PiOver2);
+        float tileY = -MathF.Sin(AnimationTime * MathHelper.PiOver2 * 3f + MathHelper.PiOver2);
         if (tileY > 0f) {
             if (tileY < 1f) {
                 tileY = 1f - MathF.Pow(1f - tileY, 2f);
             }
             tileY *= 0.5f;
         }
-        Single reboundTime = 0.4f;
+        float reboundTime = 0.4f;
         if (AnimationTime > 1f) {
             tileY *= 1f - (AnimationTime - 1f) / reboundTime;
         }
-        DrawOffsetY = (Int32)(tileY * 8f);
+        DrawOffsetY = (int)(tileY * 8f);
         return AnimationTime < 1f + reboundTime;
     }
 }

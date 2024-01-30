@@ -4,7 +4,7 @@ using Terraria.ObjectData;
 namespace Aequus.Common.Tiles;
 
 public abstract class BaseMusicBoxTile : ModTile {
-    public abstract System.Int32 MusicBoxItemId { get; }
+    public abstract int MusicBoxItemId { get; }
 
     public override void SetStaticDefaults() {
         Main.tileFrameImportant[Type] = true;
@@ -18,7 +18,7 @@ public abstract class BaseMusicBoxTile : ModTile {
         AddMapEntry(CommonColor.TILE_FURNITURE, ExtendLanguage.GetDisplayName(ModContent.GetModItem(MusicBoxItemId)));
     }
 
-    public override void MouseOver(System.Int32 i, System.Int32 j) {
+    public override void MouseOver(int i, int j) {
         Player player = Main.LocalPlayer;
         player.noThrow = 2;
         player.cursorItemIconEnabled = true;

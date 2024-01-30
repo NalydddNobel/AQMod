@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Wires;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;
@@ -6,10 +7,10 @@ using Terraria.Audio;
 namespace Aequus.Content.Tiles.Conductive;
 
 public class ConductiveProjectile : ModProjectile {
-    public override String Texture => AequusTextures.TemporaryBuffIcon;
+    public override string Texture => AequusTextures.TemporaryBuffIcon;
 
     public List<Point> activationPoints;
-    private Int32[,] _wireDataCache;
+    private int[,] _wireDataCache;
 
     public override void SetStaticDefaults() {
     }
@@ -19,15 +20,15 @@ public class ConductiveProjectile : ModProjectile {
         Projectile.width = 16;
         Projectile.height = 16;
         Projectile.timeLeft = ConductiveSystem.ActivationDelay / 2;
-        _wireDataCache = new Int32[ConductiveSystem.WireMax * 2, ConductiveSystem.WireMax * 2];
+        _wireDataCache = new int[ConductiveSystem.WireMax * 2, ConductiveSystem.WireMax * 2];
         activationPoints = new();
     }
 
-    private void RunConductiveAction(Int32 i, Int32 j, Action<Int32, Int32, Int32, Int32, Tile> action, Int32 fluff = 0) {
-        for (Int32 k = -ConductiveSystem.WireMax + fluff; k < ConductiveSystem.WireMax - fluff; k++) {
-            for (Int32 l = -ConductiveSystem.WireMax + fluff; l < ConductiveSystem.WireMax - fluff; l++) {
-                Int32 x = i + k;
-                Int32 y = j + l;
+    private void RunConductiveAction(int i, int j, Action<int, int, int, int, Tile> action, int fluff = 0) {
+        for (int k = -ConductiveSystem.WireMax + fluff; k < ConductiveSystem.WireMax - fluff; k++) {
+            for (int l = -ConductiveSystem.WireMax + fluff; l < ConductiveSystem.WireMax - fluff; l++) {
+                int x = i + k;
+                int y = j + l;
                 if (!WorldGen.InWorld(x, y, 10)) {
                     continue;
                 }
@@ -38,24 +39,24 @@ public class ConductiveProjectile : ModProjectile {
         }
     }
 
-    private void FillWireCache(Int32 i, Int32 j, Int32 k, Int32 l, Tile tileCache) {
+    private void FillWireCache(int i, int j, int k, int l, Tile tileCache) {
         _wireDataCache[k + ConductiveSystem.WireMax, l + ConductiveSystem.WireMax] = tileCache.Get<TileWallWireStateData>().WireData;
     }
 
-    private void RepairOldWires(Int32 i, Int32 j, Int32 k, Int32 l, Tile tileCache) {
-        Int32 bitPack = _wireDataCache[k + ConductiveSystem.WireMax, l + ConductiveSystem.WireMax];
+    private void RepairOldWires(int i, int j, int k, int l, Tile tileCache) {
+        int bitPack = _wireDataCache[k + ConductiveSystem.WireMax, l + ConductiveSystem.WireMax];
         tileCache.RedWire = TileDataPacking.Unpack(bitPack, 0, 1) > 0;
         tileCache.BlueWire = TileDataPacking.Unpack(bitPack, 1, 1) > 0;
         tileCache.GreenWire = TileDataPacking.Unpack(bitPack, 2, 1) > 0;
         tileCache.YellowWire = TileDataPacking.Unpack(bitPack, 3, 1) > 0;
     }
 
-    private void CreateTemporaryWires(Int32 i, Int32 j, Int32 k, Int32 l, Tile tileCache) {
+    private void CreateTemporaryWires(int i, int j, int k, int l, Tile tileCache) {
         if (tileCache.TileType != Main.tile[i, j].TileType) {
             return;
         }
-        for (Int32 m = -1; m < 2; m++) {
-            for (Int32 n = -1; n < 2; n++) {
+        for (int m = -1; m < 2; m++) {
+            for (int n = -1; n < 2; n++) {
                 var tile = Framing.GetTileSafely(i + k + m, j + l + n);
                 tile.RedWire = true;
                 tile.BlueWire = false;
@@ -68,7 +69,7 @@ public class ConductiveProjectile : ModProjectile {
     public override void AI() {
         if (Projectile.ai[0] == 0f) {
             if (Main.netMode != NetmodeID.Server) {
-                Single shortenedVolume = 1f - Projectile.Distance(Main.LocalPlayer.Center) / 240f;
+                float shortenedVolume = 1f - Projectile.Distance(Main.LocalPlayer.Center) / 240f;
                 if (shortenedVolume > 0f) {
                     SoundEngine.PlaySound(SoundID.DD2_LightningAuraZap with { Pitch = -0.2f, Volume = shortenedVolume }, Projectile.Center);
                 }
@@ -79,7 +80,7 @@ public class ConductiveProjectile : ModProjectile {
                 return;
             }
 
-            Single cooldownMultiplier = WiringSystem.MechCooldownMultiplier;
+            float cooldownMultiplier = WiringSystem.MechCooldownMultiplier;
             WiringSystem.MechCooldownMultiplier = 0.5f;
             ConductiveSystem.PoweredLocation = Projectile.Center.ToTileCoordinates();
 
@@ -98,7 +99,7 @@ public class ConductiveProjectile : ModProjectile {
         }
     }
 
-    public override Boolean PreDraw(ref Color lightColor) {
+    public override bool PreDraw(ref Color lightColor) {
         return false;
     }
 }

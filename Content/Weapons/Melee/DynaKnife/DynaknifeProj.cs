@@ -18,11 +18,11 @@ public class DynaknifeProj : LegacyHeldSlashingSwordProjectile {
         hitsLeft = 1;
     }
 
-    public override Boolean? CanDamage() {
+    public override bool? CanDamage() {
         return null;
     }
 
-    public override void OnHitNPC(NPC target, NPC.HitInfo hit, Int32 damageDone) {
+    public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
         base.OnHitNPC(target, hit, damageDone);
         Projectile.NewProjectile(
             Projectile.GetSource_OnHit(target),
@@ -71,29 +71,29 @@ public class DynaknifeProj : LegacyHeldSlashingSwordProjectile {
         }
     }
 
-    public override void UpdateSwing(Single progress, Single interpolatedSwingProgress) {
+    public override void UpdateSwing(float progress, float interpolatedSwingProgress) {
     }
 
-    public override Vector2 GetOffsetVector(Single progress) {
+    public override Vector2 GetOffsetVector(float progress) {
         return base.GetOffsetVector(progress).RotatedBy(swingDirection * 0.8f);
     }
 
-    public override Single SwingProgress(Single progress) {
+    public override float SwingProgress(float progress) {
         return 1f - MathF.Pow(1f - progress, 3f);
     }
 
-    public override Single GetScale(Single progress) {
+    public override float GetScale(float progress) {
         return base.GetScale(progress);
     }
 
-    public override Single GetVisualOuter(Single progress, Single swingProgress) {
+    public override float GetVisualOuter(float progress, float swingProgress) {
         return 0f;
     }
 
-    public override Boolean PreDraw(ref Color lightColor) {
+    public override bool PreDraw(ref Color lightColor) {
         var glowColor = new Color(120, 20, 36, 66);
         var drawColor = Projectile.GetAlpha(lightColor) * Projectile.Opacity;
-        Single animProgress = AnimProgress;
+        float animProgress = AnimProgress;
         //float swishProgress = 0f;
         //float intensity = 0f;
         //if (animProgress > 0f) {
@@ -101,7 +101,7 @@ public class DynaknifeProj : LegacyHeldSlashingSwordProjectile {
         //    intensity = (float)Math.Sin(MathF.Pow(swishProgress, 2f) * MathHelper.Pi);
         //}
 
-        GetSwordDrawInfo(out var texture, out var handPosition, out var frame, out Single rotOffset, out var origin, out var effects);
+        GetSwordDrawInfo(out var texture, out var handPosition, out var frame, out float rotOffset, out var origin, out var effects);
         origin.X = Math.Clamp(origin.X, 4f, frame.Width - 4f);
         DrawSword(texture, handPosition, frame, Projectile.GetAlpha(lightColor) * Projectile.Opacity, rotOffset, origin, effects);
         DrawSword(AequusTextures.DynaknifeProj_Glow, handPosition, frame, Color.White with { A = 0 } * Projectile.Opacity, rotOffset, origin, effects);

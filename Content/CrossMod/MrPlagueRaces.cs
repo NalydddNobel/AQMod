@@ -1,4 +1,5 @@
 ﻿using Aequus.Core.CrossMod;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -28,7 +29,7 @@ internal class MrPlagueRaces : SupportedMod<MrPlagueRaces> {
         }
     }
 
-    public static System.Boolean TryGetMrPlagueRacePlayer(Player player, out ModPlayer racePlayer) {
+    public static bool TryGetMrPlagueRacePlayer(Player player, out ModPlayer racePlayer) {
         return player.TryGetModPlayer(MrPlagueRacesPlayer, out racePlayer);
     }
 

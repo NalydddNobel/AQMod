@@ -6,7 +6,7 @@ using Terraria.Audio;
 namespace Aequus.Old.Content.Weapons.Demon.Melee;
 
 public class CauterizerSlash : ModProjectile {
-    private System.Boolean _didEffects;
+    private bool _didEffects;
 
     public override void SetStaticDefaults() {
         ProjectileID.Sets.TrailCacheLength[Type] = 10;
@@ -69,29 +69,29 @@ public class CauterizerSlash : ModProjectile {
         }
     }
 
-    public override System.Boolean? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
-        System.Single _ = System.Single.NaN;
+    public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
+        float _ = float.NaN;
         var normal = new Vector2(1f, 0f).RotatedBy(Projectile.rotation);
         return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(),
             Projectile.Center + normal * -46f, Projectile.Center + normal * 46f, 32f * Projectile.scale, ref _);
     }
 
-    public override void OnHitNPC(NPC target, NPC.HitInfo hit, System.Int32 damageDone) {
+    public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
         if (Main.rand.NextBool()) {
             target.AddBuff(ModContent.BuffType<CrimsonHellfire>(), 180);
         }
 
         // Only give penetration penalty if you're not attacking the Wall of Flesh or one of its minon.
         if (target.type != NPCID.LeechHead && target.type != NPCID.LeechBody && target.type != NPCID.LeechTail && target.type != NPCID.TheHungry && target.type != NPCID.TheHungryII && target.type != NPCID.WallofFlesh && target.type != NPCID.WallofFleshEye) {
-            Projectile.damage = (System.Int32)(Projectile.damage * 0.8f);
+            Projectile.damage = (int)(Projectile.damage * 0.8f);
         }
     }
 
-    public override System.Boolean PreDraw(ref Color lightColor) {
-        Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out System.Int32 trailLength);
+    public override bool PreDraw(ref Color lightColor) {
+        Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int trailLength);
         Main.EntitySpriteDraw(AequusTextures.Bloom, Projectile.position + offset - Main.screenPosition, null, new Color(255, 40, 20, 50) * Projectile.Opacity * 0.8f, Projectile.rotation, AequusTextures.Bloom.Size() / 2f, new Vector2(1.5f, 1f) * Projectile.scale, SpriteEffects.FlipHorizontally, 0);
-        for (System.Int32 i = 0; i < trailLength; i++) {
-            System.Single progress = 1f - i / trailLength;
+        for (int i = 0; i < trailLength; i++) {
+            float progress = 1f - i / trailLength;
             Main.EntitySpriteDraw(texture, Projectile.oldPos[i] + offset - Main.screenPosition, null, new Color(128, 20, 10, 30) * Projectile.Opacity * progress * 0.5f, Projectile.oldRot[i], origin, Projectile.scale * (1.5f - progress * 0.4f), SpriteEffects.FlipHorizontally, 0);
         }
         Main.EntitySpriteDraw(texture, Projectile.position + offset - Main.screenPosition, null, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, new Vector2(Projectile.scale, Projectile.scale * 1.5f), SpriteEffects.FlipHorizontally, 0);

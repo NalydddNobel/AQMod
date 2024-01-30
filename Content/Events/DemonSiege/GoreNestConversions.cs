@@ -4,10 +4,10 @@ using System.Runtime.InteropServices;
 namespace Aequus.Content.Events.DemonSiege;
 
 public class AltarSacrifices : ModSystem {
-    public static readonly Dictionary<System.Int32, Conversion> OriginalToConversion = new();
-    public static readonly Dictionary<System.Int32, List<System.Int32>> ConversionToOriginals = new();
+    public static readonly Dictionary<int, Conversion> OriginalToConversion = new();
+    public static readonly Dictionary<int, List<int>> ConversionToOriginals = new();
 
-    public static void Register(System.Int32 from, System.Int32 to, EventTier tier = EventTier.PreHardmode) {
+    public static void Register(int from, int to, EventTier tier = EventTier.PreHardmode) {
         Register(new Conversion(from, to, tier));
     }
 

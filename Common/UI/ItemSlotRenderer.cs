@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria.GameContent;
 using Terraria.UI;
 using Terraria.UI.Chat;
@@ -6,10 +8,10 @@ using Terraria.UI.Chat;
 namespace Aequus.Common.UI;
 
 public class ItemSlotRenderer {
-    public const Int32 InventoryBackFramesX = 1;
-    public static Int32 InventoryBackFramesY = 3;
+    public const int InventoryBackFramesX = 1;
+    public static int InventoryBackFramesY = 3;
 
-    public static Rectangle InventoryBackFrame(Texture2D back, Int32 frameX = 0, Int32 frameY = 0) {
+    public static Rectangle InventoryBackFrame(Texture2D back, int frameX = 0, int frameY = 0) {
         return back.Frame(horizontalFrames: InventoryBackFramesX, verticalFrames: InventoryBackFramesY, frameX: frameX, frameY: frameY);
     }
 
@@ -21,12 +23,12 @@ public class ItemSlotRenderer {
         public Rectangle frame;
         public Color drawColor;
         public Color color;
-        public Single scale;
-        public Single scale2;
+        public float scale;
+        public float scale2;
     }
 
     [Obsolete("Vanilla now draws items differently. This method is now out of date.")]
-    public static ItemDrawData GetDrawData(Item item, Vector2 position, Color? color = null, Int32 maxSize = 32) {
+    public static ItemDrawData GetDrawData(Item item, Vector2 position, Color? color = null, int maxSize = 32) {
         Main.instance.LoadItem(item.type);
 
         var data = new ItemDrawData {
@@ -42,23 +44,23 @@ public class ItemSlotRenderer {
 
         data.drawColor = item.GetAlpha(data.color);
         if (color != null) {
-            Single r = data.drawColor.R / 255f;
-            Single g = data.drawColor.G / 255f;
-            Single b = data.drawColor.B / 255f;
-            Single a = data.drawColor.A / 255f;
+            float r = data.drawColor.R / 255f;
+            float g = data.drawColor.G / 255f;
+            float b = data.drawColor.B / 255f;
+            float a = data.drawColor.A / 255f;
 
             var color2 = color.Value;
-            Single r2 = color2.R / 255f;
-            Single g2 = color2.G / 255f;
-            Single b2 = color2.B / 255f;
-            Single a2 = color2.A / 255f;
+            float r2 = color2.R / 255f;
+            float g2 = color2.G / 255f;
+            float b2 = color2.B / 255f;
+            float a2 = color2.A / 255f;
 
             data.drawColor = new Color(r * r2, g * g2, b * b2, a * a2);
         }
 
-        Single scale = 1f;
+        float scale = 1f;
         if (data.frame.Width > maxSize || data.frame.Height > maxSize) {
-            scale = data.frame.Width <= data.frame.Height ? (Single)maxSize / data.frame.Height : (Single)maxSize / data.frame.Width;
+            scale = data.frame.Width <= data.frame.Height ? (float)maxSize / data.frame.Height : (float)maxSize / data.frame.Width;
         }
 
         data.scale = scale * Main.inventoryScale;
@@ -71,7 +73,7 @@ public class ItemSlotRenderer {
         return data;
     }
 
-    public static void Draw(SpriteBatch spriteBatch, Texture2D texture, Vector2 position, Item item, Rectangle frame, Color drawColor, Color lightColor, Vector2 origin, Single scale, Single scale2) {
+    public static void Draw(SpriteBatch spriteBatch, Texture2D texture, Vector2 position, Item item, Rectangle frame, Color drawColor, Color lightColor, Vector2 origin, float scale, float scale2) {
         Texture2D itemTexture = texture;
         if (ItemLoader.PreDrawInInventory(item, spriteBatch, position, frame, drawColor, item.GetColor(Main.inventoryBack), origin, scale * scale2)) {
             spriteBatch.Draw(itemTexture, position, frame, drawColor, 0f, origin, scale * scale2, SpriteEffects.None, 0f);
@@ -82,14 +84,14 @@ public class ItemSlotRenderer {
         if (ItemID.Sets.TrapSigned[item.type])
             spriteBatch.Draw(TextureAssets.Wire.Value, position + new Vector2(40f, 40f) * Main.inventoryScale, new Rectangle(4, 58, 8, 8), Main.inventoryBack, 0f, new Vector2(4f), 1f, SpriteEffects.None, 0f);
     }
-    public static void Draw(SpriteBatch spriteBatch, Item item, Vector2 position, Color? color = null, Int32 maxSize = 32) {
+    public static void Draw(SpriteBatch spriteBatch, Item item, Vector2 position, Color? color = null, int maxSize = 32) {
         Draw(spriteBatch, GetDrawData(item, position, color, maxSize));
     }
     public static void Draw(SpriteBatch spriteBatch, ItemDrawData data) {
         Draw(spriteBatch, data.texture, data.drawPos, data.item, data.frame, data.drawColor, data.color, data.origin, data.scale, data.scale2);
     }
 
-    public static void DrawFullItem(Item item, Int32 context, Int32 slot, SpriteBatch spriteBatch, Vector2 position, Vector2 itemCenter, Single scale, Single sizeLimit, Color itemDrawColor, Color color) {
+    public static void DrawFullItem(Item item, int context, int slot, SpriteBatch spriteBatch, Vector2 position, Vector2 itemCenter, float scale, float sizeLimit, Color itemDrawColor, Color color) {
         ItemSlot.DrawItemIcon(item, context, spriteBatch, itemCenter, scale, sizeLimit, itemDrawColor);
 
         if (ItemID.Sets.TrapSigned[item.type]) {
@@ -132,10 +134,10 @@ public class ItemSlotRenderer {
             ChatManager.DrawColorCodedStringWithShadow(spriteBatch, FontAssets.ItemStack.Value, item.stack.ToString(), position + new Vector2(10f, 26f) * scale, color, 0f, Vector2.Zero, new Vector2(scale), -1f, scale);
         }
 
-        Int32 ammoCount = -1;
+        int ammoCount = -1;
         if (context == 13) {
             if (item.DD2Summon) {
-                for (Int32 i = 0; i < Main.InventorySlotsTotal; i++) {
+                for (int i = 0; i < Main.InventorySlotsTotal; i++) {
                     if (Main.LocalPlayer.inventory[i].type == ItemID.DD2EnergyCrystal) {
                         ammoCount += Main.LocalPlayer.inventory[i].stack;
                     }
@@ -148,7 +150,7 @@ public class ItemSlotRenderer {
 
             if (item.useAmmo > 0) {
                 ammoCount = 0;
-                for (Int32 j = 0; j < Main.InventorySlotsTotal; j++) {
+                for (int j = 0; j < Main.InventorySlotsTotal; j++) {
                     if (Main.LocalPlayer.inventory[j].stack > 0 && ItemLoader.CanChooseAmmo(item, Main.LocalPlayer.inventory[j], Main.LocalPlayer)) {
                         ammoCount += Main.LocalPlayer.inventory[j].stack;
                     }
@@ -157,7 +159,7 @@ public class ItemSlotRenderer {
 
             if (item.fishingPole > 0) {
                 ammoCount = 0;
-                for (Int32 k = 0; k < Main.InventorySlotsTotal; k++) {
+                for (int k = 0; k < Main.InventorySlotsTotal; k++) {
                     if (Main.LocalPlayer.inventory[k].bait > 0) {
                         ammoCount += Main.LocalPlayer.inventory[k].stack;
                     }
@@ -165,9 +167,9 @@ public class ItemSlotRenderer {
             }
 
             if (item.tileWand > 0) {
-                Int32 tileWand = item.tileWand;
+                int tileWand = item.tileWand;
                 ammoCount = 0;
-                for (Int32 l = 0; l < Main.InventorySlotsTotal; l++) {
+                for (int l = 0; l < Main.InventorySlotsTotal; l++) {
                     if (Main.LocalPlayer.inventory[l].type == tileWand) {
                         ammoCount += Main.LocalPlayer.inventory[l].stack;
                     }
@@ -176,7 +178,7 @@ public class ItemSlotRenderer {
 
             if (item.type == ItemID.Wrench || item.type == ItemID.GreenWrench || item.type == ItemID.BlueWrench || item.type == ItemID.YellowWrench || item.type == ItemID.MulticolorWrench || item.type == ItemID.WireKite) {
                 ammoCount = 0;
-                for (Int32 m = 0; m < Main.InventorySlotsTotal; m++) {
+                for (int m = 0; m < Main.InventorySlotsTotal; m++) {
                     if (Main.LocalPlayer.inventory[m].type == ItemID.Wire) {
                         ammoCount += Main.LocalPlayer.inventory[m].stack;
                     }
@@ -189,7 +191,7 @@ public class ItemSlotRenderer {
         }
 
         if (context == 13) {
-            String text = String.Concat(slot + 1);
+            string text = string.Concat(slot + 1);
             if (text == "10") {
                 text = "0";
             }
@@ -198,7 +200,7 @@ public class ItemSlotRenderer {
         }
 
         if (context == 13 && item.potion) {
-            Color color3 = item.GetAlpha(color) * (Main.LocalPlayer.potionDelay / (Single)Main.LocalPlayer.potionDelayTime);
+            Color color3 = item.GetAlpha(color) * (Main.LocalPlayer.potionDelay / (float)Main.LocalPlayer.potionDelayTime);
             spriteBatch.Draw(TextureAssets.Cd.Value, itemCenter, null, color3, 0f, default(Vector2), scale, SpriteEffects.None, 0f);
         }
 
@@ -209,9 +211,9 @@ public class ItemSlotRenderer {
         }
     }
 
-    public static void DrawUIBack(SpriteBatch spriteBatch, Texture2D texture, Vector2 position, Rectangle itemFrame, Single itemScale, Color color, Single progress = 1f) {
+    public static void DrawUIBack(SpriteBatch spriteBatch, Texture2D texture, Vector2 position, Rectangle itemFrame, float itemScale, Color color, float progress = 1f) {
         var backFrame = InventoryBackFrame(texture, frameY: 0);
-        Int32 frameY = (Int32)(backFrame.Height * progress);
+        int frameY = (int)(backFrame.Height * progress);
         var uiFrame = new Rectangle(0, backFrame.Height - frameY, backFrame.Width, frameY);
         position.Y += (backFrame.Height - frameY) * Main.inventoryScale;
         spriteBatch.Draw(texture, position, uiFrame, color, 0f, backFrame.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);

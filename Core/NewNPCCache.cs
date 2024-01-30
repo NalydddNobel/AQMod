@@ -4,14 +4,14 @@ namespace Aequus.Core;
 
 public sealed class NewNPCCache : ILoadable {
     public static readonly List<NPC> NPCs = new();
-    public static System.Boolean QueueNPCs { get; private set; }
+    public static bool QueueNPCs { get; private set; }
 
     public void Load(Mod mod) {
         On_NPC.NewNPC += On_NPC_NewNPC;
         QueueNPCs = false;
     }
 
-    private static System.Int32 On_NPC_NewNPC(On_NPC.orig_NewNPC orig, Terraria.DataStructures.IEntitySource source, System.Int32 X, System.Int32 Y, System.Int32 Type, System.Int32 Start, System.Single ai0, System.Single ai1, System.Single ai2, System.Single ai3, System.Int32 Target) {
+    private static int On_NPC_NewNPC(On_NPC.orig_NewNPC orig, Terraria.DataStructures.IEntitySource source, int X, int Y, int Type, int Start, float ai0, float ai1, float ai2, float ai3, int Target) {
         if (QueueNPCs) {
             var npc = new NPC();
             npc.SetDefaults(Type);

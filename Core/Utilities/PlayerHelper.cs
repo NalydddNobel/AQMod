@@ -14,11 +14,11 @@ public static class PlayerHelper {
     /// <param name="x">Tile X coordinate.</param>
     /// <param name="y">Tile Y coordinate.</param>
     /// <returns>Whether or not the player has enough pickaxe power to break this tile.</returns>
-    public static System.Boolean CheckPickPower(this Player player, Item pickaxe, System.Int32 x, System.Int32 y) {
+    public static bool CheckPickPower(this Player player, Item pickaxe, int x, int y) {
         var inv = player.inventory;
         _dummyInventory[0] = pickaxe;
         player.inventory = _dummyInventory;
-        System.Boolean value = false;
+        bool value = false;
         try {
             value = player.HasEnoughPickPowerToHurtTile(x, y);
         }
@@ -42,7 +42,7 @@ public static class PlayerHelper {
         item = player.GetItem(player.whoAmI, item, getItemSettings);
 
         if (item != null && !item.IsAir) {
-            System.Int32 newItemIndex = Item.NewItem(source, player.getRect(), item);
+            int newItemIndex = Item.NewItem(source, player.getRect(), item);
             Main.item[newItemIndex].newAndShiny = false;
             if (Main.netMode == NetmodeID.MultiplayerClient) {
                 NetMessage.SendData(MessageID.SyncItem, number: newItemIndex, number2: 1f);
@@ -60,11 +60,11 @@ public static class PlayerHelper {
     /// <param name="prefix">The Item's prefix.</param>
     /// <param name="source">Item source.</param>
     /// <param name="getItemSettings">The Get Item settings.</param>
-    public static void GiveItem(this Player player, System.Int32 type, IEntitySource source, GetItemSettings getItemSettings, System.Int32 stack = 1, System.Int32 prefix = 0) {
+    public static void GiveItem(this Player player, int type, IEntitySource source, GetItemSettings getItemSettings, int stack = 1, int prefix = 0) {
         player.GiveItem(new Item(type, stack, prefix), source, getItemSettings);
     }
 
-    public static Chest GetCurrentChest(this Player player, System.Boolean ignoreVoidBag = false) {
+    public static Chest GetCurrentChest(this Player player, bool ignoreVoidBag = false) {
         if (player.chest > -1) {
             return Main.chest[player.chest];
         }
@@ -105,7 +105,7 @@ public static class PlayerHelper {
         return player.Center;
     }
 
-    public static System.Boolean IsFalling(this Player player) {
+    public static bool IsFalling(this Player player) {
         return Helper.IsFalling(player.velocity, player.gravDir);
     }
 
@@ -117,7 +117,7 @@ public static class PlayerHelper {
     /// <param name="player"></param>
     /// <param name="showMagmaStone"></param>
     /// <returns>A potential dust instance, if any spawn. If none spawn, the result will be null.</returns>
-    public static Dust SpawnEnchantmentDusts(Vector2 position, Vector2 velocity, Player player, System.Boolean showMagmaStone = true) {
+    public static Dust SpawnEnchantmentDusts(Vector2 position, Vector2 velocity, Player player, bool showMagmaStone = true) {
         if (player.magmaStone && showMagmaStone && Main.rand.NextBool(3)) {
             var d = Dust.NewDustPerfect(position, DustID.Torch, velocity * 2f, Alpha: 100, Scale: 2.5f);
             d.noGravity = true;
@@ -228,13 +228,13 @@ public static class PlayerHelper {
     }
 
     #region Biomes
-    public static System.Boolean ZoneGlimmer(this Player player) {
+    public static bool ZoneGlimmer(this Player player) {
         return false;
     }
-    public static System.Boolean ZoneDemonSiege(this Player player) {
+    public static bool ZoneDemonSiege(this Player player) {
         return false;
     }
-    public static System.Boolean ZoneGaleStreams(this Player player) {
+    public static bool ZoneGaleStreams(this Player player) {
         return false;
     }
     #endregion
@@ -245,28 +245,28 @@ public static class PlayerHelper {
     /// </summary>
     /// <param name="npc"></param>
     /// <returns>Whether the enemy should be immune to this hit (true = Do not hit)</returns>
-    public static System.Boolean WeirdNPCHitRestrictions(NPC npc) {
+    public static bool WeirdNPCHitRestrictions(NPC npc) {
         return npc.aiStyle == NPCAIStyleID.Fairy && !(npc.ai[2] <= 1f);
     }
 
-    public static System.Boolean RollCrit(this Player player, Item item) {
+    public static bool RollCrit(this Player player, Item item) {
         return !item.DamageType.UseStandardCritCalcs ? false : Main.rand.Next(100) < player.GetWeaponCrit(item);
     }
-    public static System.Boolean RollCrit<T>(this Player player) where T : DamageClass {
+    public static bool RollCrit<T>(this Player player) where T : DamageClass {
         return player.RollCrit(ModContent.GetInstance<T>());
     }
-    public static System.Boolean RollCrit(this Player player, DamageClass damageClass) {
+    public static bool RollCrit(this Player player, DamageClass damageClass) {
         return !damageClass.UseStandardCritCalcs ? false : Main.rand.Next(100) < player.GetTotalCritChance(damageClass);
     }
     #endregion
 
     #region Death Messages
     // Change these if tmodloader eventually adds proper custom death messages
-    public static PlayerDeathReason CustomDeathReason(System.String key, params System.Object[] args) {
+    public static PlayerDeathReason CustomDeathReason(string key, params object[] args) {
         return PlayerDeathReason.ByCustomReason(Language.GetTextValue(key, args));
     }
 
-    public static PlayerDeathReason CustomDeathReason(System.String key) {
+    public static PlayerDeathReason CustomDeathReason(string key) {
         return PlayerDeathReason.ByCustomReason(Language.GetTextValue(key));
     }
     #endregion

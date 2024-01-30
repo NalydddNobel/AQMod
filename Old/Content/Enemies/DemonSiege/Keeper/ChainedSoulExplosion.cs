@@ -1,7 +1,7 @@
 ﻿namespace Aequus.Old.Content.Enemies.DemonSiege.Keeper;
 
 public class ChainedSoulExplosion : ModProjectile {
-    public override System.String Texture => AequusTextures.GenericExplosion.Path;
+    public override string Texture => AequusTextures.GenericExplosion.Path;
 
     public override void SetStaticDefaults() {
         Main.projFrames[Type] = 7;
@@ -33,8 +33,8 @@ public class ChainedSoulExplosion : ModProjectile {
         return new Color(100, 10, 255, 150);
     }
 
-    public override System.Boolean PreDraw(ref Color lightColor) {
-        Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out System.Int32 _);
+    public override bool PreDraw(ref Color lightColor) {
+        Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int _);
         Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, frame, Projectile.GetAlpha(lightColor), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
         return false;
     }

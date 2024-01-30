@@ -4,21 +4,21 @@ using System.Reflection;
 
 namespace Aequus.Core.DataSets;
 
-public abstract class DataSet : IModType, ILoadable, ISetStaticDefaults, IPostSetupContent, IAddRecipes, IPostAddRecipes {
+public abstract class DataSet : IModType, ILoadable, ISetStaticDefaults,  IPostSetupContent, IAddRecipes, IPostAddRecipes {
     private readonly BindingFlags _memberBindingFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
 
     [JsonIgnore]
     protected DataSetFileLoader File { get; private set; }
 
     [JsonIgnore]
-    public virtual System.String FilePath => $"{Mod.Name}/Assets/Metadata/{Name}";
+    public virtual string FilePath => $"{Mod.Name}/Assets/Metadata/{Name}";
 
     [JsonIgnore]
     public Mod Mod { get; set; }
     [JsonIgnore]
-    public virtual System.String Name => GetType().Name;
+    public virtual string Name => GetType().Name;
     [JsonIgnore]
-    public System.String FullName => Mod.Name + "/" + Name;
+    public string FullName => Mod.Name + "/" + Name;
 
     [JsonIgnore]
     public FieldInfo[] _fields;
@@ -46,7 +46,7 @@ public abstract class DataSet : IModType, ILoadable, ISetStaticDefaults, IPostSe
             _fields = null;
         }
 
-        static void InvokeClear(System.Object obj) {
+        static void InvokeClear(object obj) {
             if (obj == null) {
                 return;
             }

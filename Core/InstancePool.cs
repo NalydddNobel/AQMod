@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Security.Authentication.ExtendedProtection;
 
 namespace Aequus.Core;
 public interface IPoolable {
-    System.Boolean Resting { get; set; }
+    bool Resting { get; set; }
 }
 
 public static class InstancePool<T> where T : IPoolable, new() {

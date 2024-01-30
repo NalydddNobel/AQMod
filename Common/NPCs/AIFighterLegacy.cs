@@ -1,18 +1,19 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 
 namespace Aequus.Common.NPCs;
 
 public abstract class AIFighterLegacy : ModNPC {
-    public virtual Boolean WiderNPC => false;
-    public virtual Single SpeedCap => 2f;
-    public virtual Single Acceleration => 0.07f;
-    public virtual Boolean KnocksOnDoors => false;
-    public virtual Boolean OpenDoor() {
+    public virtual bool WiderNPC => false;
+    public virtual float SpeedCap => 2f;
+    public virtual float Acceleration => 0.07f;
+    public virtual bool KnocksOnDoors => false;
+    public virtual bool OpenDoor() {
         NPC.ai[1] += 2f;
         return NPC.ai[1] > 10f;
     }
 
-    public virtual Boolean JumpCheck(Int32 tileX, Int32 tileY) {
+    public virtual bool JumpCheck(int tileX, int tileY) {
         if (NPC.height >= 32 && Main.tile[tileX, tileY - 2].HasUnactuatedTile && Main.tileSolid[Main.tile[tileX, tileY - 2].TileType]) {
             if (Main.tile[tileX, tileY - 3].HasUnactuatedTile && Main.tileSolid[Main.tile[tileX, tileY - 3].TileType]) {
                 NPC.velocity.Y = -8f;
@@ -47,9 +48,9 @@ public abstract class AIFighterLegacy : ModNPC {
     }
 
     public override void AI() {
-        Int32 targetDelay = 60;
-        Boolean knocksOnDoors = KnocksOnDoors;
-        Int32 npcTypeForSomeReason = NPC.type;
+        int targetDelay = 60;
+        bool knocksOnDoors = KnocksOnDoors;
+        int npcTypeForSomeReason = NPC.type;
 
         NPC.TargetClosest(faceTarget: true);
         PostUpdateDirection();
@@ -72,12 +73,12 @@ public abstract class AIFighterLegacy : ModNPC {
             }
         }
 
-        Boolean tileChecks = false;
+        bool tileChecks = false;
         if (NPC.velocity.Y == 0f) {
-            Int32 num77 = (Int32)(NPC.position.Y + NPC.height + 7f) / 16;
-            Int32 num189 = (Int32)NPC.position.X / 16;
-            Int32 num79 = (Int32)(NPC.position.X + NPC.width) / 16;
-            for (Int32 num80 = num189; num80 <= num79; num80++) {
+            int num77 = (int)(NPC.position.Y + NPC.height + 7f) / 16;
+            int num189 = (int)NPC.position.X / 16;
+            int num79 = (int)(NPC.position.X + NPC.width) / 16;
+            for (int num80 = num189; num80 <= num79; num80++) {
                 if (Main.tile[num80, num77] == null) {
                     return;
                 }
@@ -89,14 +90,14 @@ public abstract class AIFighterLegacy : ModNPC {
             }
         }
         if (NPC.velocity.Y >= 0f) {
-            Int32 direction = Math.Sign(NPC.velocity.X);
+            int direction = Math.Sign(NPC.velocity.X);
 
             Vector2 position3 = NPC.position;
             position3.X += NPC.velocity.X;
-            Int32 num82 = (Int32)((position3.X + NPC.width / 2 + (NPC.width / 2 + 1) * direction) / 16f);
-            Int32 num83 = (Int32)((position3.Y + NPC.height - 1f) / 16f);
+            int num82 = (int)((position3.X + NPC.width / 2 + (NPC.width / 2 + 1) * direction) / 16f);
+            int num83 = (int)((position3.Y + NPC.height - 1f) / 16f);
             if (num82 * 16 < position3.X + NPC.width && num82 * 16 + 16 > position3.X && (Main.tile[num82, num83].HasUnactuatedTile && !Main.tile[num82, num83].TopSlope && !Main.tile[num82, num83 - 1].TopSlope && Main.tileSolid[Main.tile[num82, num83].TileType] && !Main.tileSolidTop[Main.tile[num82, num83].TileType] || Main.tile[num82, num83 - 1].IsHalfBlock && Main.tile[num82, num83 - 1].HasUnactuatedTile) && (!Main.tile[num82, num83 - 1].HasUnactuatedTile || !Main.tileSolid[Main.tile[num82, num83 - 1].TileType] || Main.tileSolidTop[Main.tile[num82, num83 - 1].TileType] || Main.tile[num82, num83 - 1].IsHalfBlock && (!Main.tile[num82, num83 - 4].HasUnactuatedTile || !Main.tileSolid[Main.tile[num82, num83 - 4].TileType] || Main.tileSolidTop[Main.tile[num82, num83 - 4].TileType])) && (!Main.tile[num82, num83 - 2].HasUnactuatedTile || !Main.tileSolid[Main.tile[num82, num83 - 2].TileType] || Main.tileSolidTop[Main.tile[num82, num83 - 2].TileType]) && (!Main.tile[num82, num83 - 3].HasUnactuatedTile || !Main.tileSolid[Main.tile[num82, num83 - 3].TileType] || Main.tileSolidTop[Main.tile[num82, num83 - 3].TileType]) && (!Main.tile[num82 - direction, num83 - 3].HasUnactuatedTile || !Main.tileSolid[Main.tile[num82 - direction, num83 - 3].TileType])) {
-                Single num84 = num83 * 16;
+                float num84 = num83 * 16;
                 if (Main.tile[num82, num83].IsHalfBlock) {
                     num84 += 8f;
                 }
@@ -105,8 +106,8 @@ public abstract class AIFighterLegacy : ModNPC {
                     num84 -= 8f;
                 }
                 if (num84 < position3.Y + NPC.height) {
-                    Single num85 = position3.Y + NPC.height - num84;
-                    Single num86 = 16.1f;
+                    float num85 = position3.Y + NPC.height - num84;
+                    float num86 = 16.1f;
                     if (NPC.type == NPCID.BlackRecluse || NPC.type == NPCID.WallCreeper || NPC.type == NPCID.JungleCreeper || NPC.type == NPCID.BloodCrawler || NPC.type == NPCID.DesertScorpionWalk) {
                         num86 += 8f;
                     }
@@ -125,10 +126,10 @@ public abstract class AIFighterLegacy : ModNPC {
             }
         }
         if (tileChecks) {
-            Int32 tileX = (Int32)((NPC.position.X + NPC.width / 2 + 15 * NPC.direction) / 16f);
-            Int32 tileY = (Int32)((NPC.position.Y + NPC.height - 15f) / 16f);
+            int tileX = (int)((NPC.position.X + NPC.width / 2 + 15 * NPC.direction) / 16f);
+            int tileY = (int)((NPC.position.Y + NPC.height - 15f) / 16f);
             if (WiderNPC) {
-                tileX = (Int32)((NPC.position.X + NPC.width / 2 + (NPC.width / 2 + 16) * NPC.direction) / 16f);
+                tileX = (int)((NPC.position.X + NPC.width / 2 + (NPC.width / 2 + 16) * NPC.direction) / 16f);
             }
 
             if (knocksOnDoors && Main.tile[tileX, tileY - 1].HasUnactuatedTile && (TileLoader.IsClosedDoor(Main.tile[tileX, tileY - 1]) || Main.tile[tileX, tileY - 1].TileType == 388)) {
@@ -137,11 +138,11 @@ public abstract class AIFighterLegacy : ModNPC {
                 if (NPC.ai[2] >= 60f) {
                     NPC.velocity.X = 0.5f * -NPC.direction;
                     NPC.ai[2] = 0f;
-                    Boolean opensDoors = OpenDoor();
+                    bool opensDoors = OpenDoor();
                     WorldGen.KillTile(tileX, tileY - 1, fail: true);
                     if (opensDoors && Main.netMode != NetmodeID.MultiplayerClient) {
                         if (TileLoader.OpenDoorID(Main.tile[tileX, tileY - 1]) >= 0) {
-                            Boolean openedDoor = WorldGen.OpenDoor(tileX, tileY - 1, NPC.direction);
+                            bool openedDoor = WorldGen.OpenDoor(tileX, tileY - 1, NPC.direction);
                             if (!openedDoor) {
                                 NPC.ai[3] = targetDelay;
                                 NPC.netUpdate = true;
@@ -151,7 +152,7 @@ public abstract class AIFighterLegacy : ModNPC {
                             }
                         }
                         if (Main.tile[tileX, tileY - 1].TileType == 388) {
-                            Boolean openedTallGate = WorldGen.ShiftTallGate(tileX, tileY - 1, closing: false);
+                            bool openedTallGate = WorldGen.ShiftTallGate(tileX, tileY - 1, closing: false);
                             if (!openedTallGate) {
                                 NPC.ai[3] = targetDelay;
                                 NPC.netUpdate = true;

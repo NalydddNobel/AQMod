@@ -1,4 +1,6 @@
-﻿using Terraria.Graphics.Shaders;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria.Graphics.Shaders;
 
 namespace Aequus.Content.Dyes;
 
@@ -8,11 +10,11 @@ namespace Aequus.Content.Dyes;
 public sealed class ArmorShaderDataThirdColor : ArmorShaderData {
     public Vector3 _thirdColor;
 
-    public ArmorShaderDataThirdColor(Ref<Effect> shader, System.String passName, Vector3 thirdColor) : base(shader, passName) {
+    public ArmorShaderDataThirdColor(Ref<Effect> shader, string passName, Vector3 thirdColor) : base(shader, passName) {
         _thirdColor = thirdColor;
     }
 
-    public ArmorShaderDataThirdColor(Ref<Effect> shader, System.String passName, Color thirdColor) : base(shader, passName) {
+    public ArmorShaderDataThirdColor(Ref<Effect> shader, string passName, Color thirdColor) : base(shader, passName) {
         _thirdColor = thirdColor.ToVector3();
     }
 

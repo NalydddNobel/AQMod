@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Aequus.Core.Utilities;
 
 public static class ExtendTooltips {
-    internal static readonly String[] VanillaTooltipNames = new[] {
+    internal static readonly string[] VanillaTooltipNames = new[] {
         "ItemName",
         "Favorite", "FavoriteDesc",
         "Social", "SocialDesc",
@@ -35,15 +35,15 @@ public static class ExtendTooltips {
         "SpecialPrice", "Price",
     };
 
-    private static Int32 FindLineIndex(String name) {
-        if (String.IsNullOrEmpty(name)) {
+    private static int FindLineIndex(string name) {
+        if (string.IsNullOrEmpty(name)) {
             return 0;
         }
 
         if (name.StartsWith("Tooltip")) {
             name = "Tooltip#";
         }
-        for (Int32 i = 0; i < VanillaTooltipNames.Length; i++) {
+        for (int i = 0; i < VanillaTooltipNames.Length; i++) {
             if (name == VanillaTooltipNames[i]) {
                 return i;
             }
@@ -63,15 +63,15 @@ public static class ExtendTooltips {
     /// <param name="lineName">The line's name, make sure this matches one of the entries in <see cref="VanillaTooltipNames"/></param>
     /// <param name="resultOffset">A flat offset to the line result.</param>
     /// <returns>The best index to insert a new line into.</returns>
-    public static Int32 GetIndex(this List<TooltipLine> tooltips, String lineName, Int32 resultOffset = 0) {
-        Int32 myIndex = FindLineIndex(lineName);
-        Int32 i = 0;
+    public static int GetIndex(this List<TooltipLine> tooltips, string lineName, int resultOffset = 0) {
+        int myIndex = FindLineIndex(lineName);
+        int i = 0;
         for (; i < tooltips.Count; i++) {
             if (tooltips[i].Mod != "Terraria") {
                 continue;
             }
 
-            Int32 index = FindLineIndex(tooltips[i].Name);
+            int index = FindLineIndex(tooltips[i].Name);
             if (index >= myIndex) {
                 if (index != myIndex) {
                     if (resultOffset > 0) {
@@ -94,7 +94,7 @@ public static class ExtendTooltips {
     }
 
     /// <returns>The <see cref="TooltipLine"/> with a specified name. (And is marked as "Terraria")</returns>
-    public static TooltipLine Find(this List<TooltipLine> tooltips, String name) {
+    public static TooltipLine Find(this List<TooltipLine> tooltips, string name) {
         return tooltips.Find((t) => t != null && t.Mod.Equals("Terraria") && t.Name.Equals(name));
     }
 

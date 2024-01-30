@@ -11,14 +11,14 @@ namespace Aequus.Content.Weapons.Ranged.Misc.JunkJet;
 [LegacyName("Slingshot")]
 public class JunkJet : ModItem {
     public struct AmmoData {
-        public Int32 ProjectileId;
-        public Int32 ProjectileCount;
-        public Int32 Damage;
-        public Single Knockback;
-        public Single ShootSpeed;
-        public Single AttackSpeedMultiplier;
-        public Single BaseSpread;
-        public Single MaxSpread;
+        public int ProjectileId;
+        public int ProjectileCount;
+        public int Damage;
+        public float Knockback;
+        public float ShootSpeed;
+        public float AttackSpeedMultiplier;
+        public float BaseSpread;
+        public float MaxSpread;
 
         public AmmoData() {
             ProjectileId = 0;
@@ -32,9 +32,9 @@ public class JunkJet : ModItem {
         }
     }
 
-    public static Single AmmoReserveChance { get; set; } = 0.5f;
+    public static float AmmoReserveChance { get; set; } = 0.5f;
 
-    public static readonly Dictionary<Int32, AmmoData> AmmoOverrides = new();
+    public static readonly Dictionary<int, AmmoData> AmmoOverrides = new();
 
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Percent(AmmoReserveChance));
 
@@ -80,15 +80,15 @@ public class JunkJet : ModItem {
     }
     #endregion
 
-    public override Boolean? CanChooseAmmo(Item ammo, Player player) {
+    public override bool? CanChooseAmmo(Item ammo, Player player) {
         return ammo.ammo > 0 && (AmmoOverrides.ContainsKey(ammo.ammo) || ammo.damage > 0 && !ammo.IsACoin && ammo.DamageType.CountsAsClass(DamageClass.Ranged));
     }
 
-    public override Boolean CanConsumeAmmo(Item ammo, Player player) {
+    public override bool CanConsumeAmmo(Item ammo, Player player) {
         return Main.rand.NextFloat() < AmmoReserveChance;
     }
 
-    public static void GetAmmoData(Int32 bulletItem, Int32 projectileId, out AmmoData ammoData) {
+    public static void GetAmmoData(int bulletItem, int projectileId, out AmmoData ammoData) {
         if (AmmoOverrides.TryGetValue(bulletItem, out var value)) {
             ammoData = value;
             if (value.ProjectileId == ProjectileID.None) {
@@ -106,20 +106,20 @@ public class JunkJet : ModItem {
     }
 
     // Doesn't have entity source, so we cannot get the ammo's item id
-    public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref Int32 type, ref Int32 damage, ref Single knockback) {
+    public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
     }
 
-    public override Boolean Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, Int32 type, Int32 damage, Single knockback) {
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
         GetAmmoData(source.AmmoItemIdUsed, type, out var ammoData);
         SetStaticDefaults();
         if (ammoData.AttackSpeedMultiplier != 1f) {
-            player.itemTime = (Int32)(player.itemTimeMax * ammoData.AttackSpeedMultiplier);
+            player.itemTime = (int)(player.itemTimeMax * ammoData.AttackSpeedMultiplier);
         }
         if (ammoData.ShootSpeed != 0f) {
             velocity += Vector2.Normalize(velocity) * ammoData.ShootSpeed;
         }
-        for (Int32 i = 0; i < ammoData.ProjectileCount; i++) {
-            Single spread = ammoData.BaseSpread + ammoData.MaxSpread * (ammoData.ProjectileCount <= 1 ? 1f : i / (Single)(ammoData.ProjectileCount - 1));
+        for (int i = 0; i < ammoData.ProjectileCount; i++) {
+            float spread = ammoData.BaseSpread + ammoData.MaxSpread * (ammoData.ProjectileCount <= 1 ? 1f : i / (float)(ammoData.ProjectileCount - 1));
             var p = Projectile.NewProjectileDirect(source, position, velocity.RotatedBy(Main.rand.NextFloat(-spread, spread)), ammoData.ProjectileId, damage + ammoData.Damage, knockback + ammoData.Knockback, player.whoAmI);
             p.timeLeft = Math.Min(p.timeLeft, 600);
             p.noDropItem = true;

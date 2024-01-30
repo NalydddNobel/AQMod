@@ -3,7 +3,7 @@
 namespace Aequus.Content.DedicatedContent.IronLotus;
 
 public class IronLotusFlare : ModProjectile {
-    public override String Texture => AequusTextures.Flare.Path;
+    public override string Texture => AequusTextures.Flare.Path;
 
     public override void SetDefaults() {
         Projectile.width = 200;
@@ -19,7 +19,7 @@ public class IronLotusFlare : ModProjectile {
 
     public override void AI() {
         base.AI();
-        for (Int32 i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
             var d = Dust.NewDustDirect(Projectile.Center - new Vector2(10f), 20, 20, DustID.Flare, Scale: Main.rand.NextFloat(0.3f, 2f));
             d.noGravity = true;
             d.velocity += Projectile.DirectionTo(d.position) * 2f;
@@ -28,9 +28,9 @@ public class IronLotusFlare : ModProjectile {
         }
     }
 
-    public override Boolean PreDraw(ref Color lightColor) {
-        Projectile.GetDrawInfo(out var texture, out var off, out var frame, out var origin, out Int32 _);
-        Single scale = Projectile.scale * (Single)Math.Sin(Projectile.timeLeft / 14f * MathHelper.Pi);
+    public override bool PreDraw(ref Color lightColor) {
+        Projectile.GetDrawInfo(out var texture, out var off, out var frame, out var origin, out int _);
+        float scale = Projectile.scale * (float)Math.Sin(Projectile.timeLeft / 14f * MathHelper.Pi);
         var color = Color.Lerp(Color.Red, Color.Yellow, scale * 0.5f) with { A = 30 };
         var flareColor = Color.Lerp(Color.Yellow, Color.White, scale * 0.66f) with { A = 30 };
         var drawCoords = Projectile.position + off - Main.screenPosition;

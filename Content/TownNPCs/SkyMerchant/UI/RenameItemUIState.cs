@@ -1,6 +1,8 @@
 ﻿using Aequus.Common.Renaming;
 using Aequus.Common.UI;
 using Aequus.Common.UI.Elements;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -11,7 +13,7 @@ using Terraria.UI.Chat;
 namespace Aequus.Content.TownNPCs.SkyMerchant.UI;
 
 public class RenameItemUIState : AequusUIState {
-    public System.Boolean initItemSlot;
+    public bool initItemSlot;
     public AequusTextboxElement textBox;
     public AequusItemSlotElement slot;
 
@@ -36,7 +38,7 @@ public class RenameItemUIState : AequusUIState {
 
         textBox = new(color: new Color(50, 106, 46, 255), maxText: 64, textOffsetY: 5);
         textBox.Left.Set(slot.Left.Pixels, slot.Left.Percent);
-        textBox.Top.Set(slot.Top.Pixels + (System.Int32)(back.Height * 0.9f) + 4, slot.Top.Percent);
+        textBox.Top.Set(slot.Top.Pixels + (int)(back.Height * 0.9f) + 4, slot.Top.Percent);
         textBox.Width.Set(480, 0f);
         textBox.Height.Set(32, 0f);
 
@@ -63,17 +65,17 @@ public class RenameItemUIState : AequusUIState {
         base.DrawSelf(spriteBatch);
         var player = Main.LocalPlayer;
         Main.hidePlayerCraftingMenu = true;
-        System.Single itemSlotScale = 0.9f;
+        float itemSlotScale = 0.9f;
 
         var dimensions = GetDimensions();
         var slotDimensions = slot.GetDimensions();
         var back = TextureAssets.InventoryBack3.Value;
-        System.Int32 slotX = (System.Int32)(slot.Left.GetValue(slotDimensions.Width) + (System.Int32)(back.Width * itemSlotScale + 4));
+        int slotX = (int)(slot.Left.GetValue(slotDimensions.Width) + (int)(back.Width * itemSlotScale + 4));
         Main.spriteBatch.Draw(back, new Vector2(slotDimensions.X, slotDimensions.Y), null, new Color(255, 255, 255, 255), 0f, new Vector2(0f, 0f), itemSlotScale, SpriteEffects.None, 0f);
         Main.spriteBatch.Draw(AequusTextures.RenameBackIcon, new Vector2(slotDimensions.X, slotDimensions.Y), null, new Color(255, 255, 255, 255), 0f, new Vector2(0f, 0f), itemSlotScale, SpriteEffects.None, 0f);
         Main.spriteBatch.Draw(back, new Vector2(slotX, slotDimensions.Y), null, new Color(255, 255, 255, 255), 0f, new Vector2(0f, 0f), itemSlotScale, SpriteEffects.None, 0f);
-        System.Boolean hover;
-        System.Boolean hover2 = Main.mouseX > slotDimensions.X && Main.mouseX < slotDimensions.X + back.Width * 0.8f && Main.mouseY > slotDimensions.Y && Main.mouseY < slotDimensions.Y + back.Height * 0.8f;
+        bool hover;
+        bool hover2 = Main.mouseX > slotDimensions.X && Main.mouseX < slotDimensions.X + back.Width * 0.8f && Main.mouseY > slotDimensions.Y && Main.mouseY < slotDimensions.Y + back.Height * 0.8f;
         if (hover2) {
             Main.HoverItem = new();
             Main.hoverItemName = Language.GetTextValue("Mods.Aequus.NPCs.SkyMerchant.Interface.RenameButton");
@@ -102,7 +104,7 @@ public class RenameItemUIState : AequusUIState {
                 initItemSlot = true;
             }
 
-            System.Int32 price = RenameItem.GetRenamePrice(slot.item);
+            int price = RenameItem.GetRenamePrice(slot.item);
             if (hover2) {
                 if (Main.mouseLeft && Main.mouseLeftRelease && price != -1) {
                     if (player.CanAfford(price, customCurrency: -1)) {
@@ -112,8 +114,8 @@ public class RenameItemUIState : AequusUIState {
                             SoundEngine.PlaySound(SoundID.Coins);
 
                             var nameTag = slot.item.GetGlobalItem<RenameItem>();
-                            System.String itemName = textBox.text;
-                            if (System.String.IsNullOrWhiteSpace(itemName)) {
+                            string itemName = textBox.text;
+                            if (string.IsNullOrWhiteSpace(itemName)) {
                                 itemName = "";
                             }
                             nameTag.CustomName = itemName;
@@ -130,15 +132,15 @@ public class RenameItemUIState : AequusUIState {
                 UIHelper.HoverItem(slot.item, ItemSlot.Context.ShopItem);
             }
             //textBox.Draw(Main.spriteBatch);
-            System.Single oldScale = Main.inventoryScale;
+            float oldScale = Main.inventoryScale;
             Main.inventoryScale = 0.9f;
             ItemSlotRenderer.Draw(Main.spriteBatch, slot.item, new Vector2(slotX, slotDimensions.Y));
             Main.inventoryScale = oldScale;
 
-            System.String costText = Language.GetTextValue("LegacyInterface.46") + ": ";
-            System.String coinsText = "";
+            string costText = Language.GetTextValue("LegacyInterface.46") + ": ";
+            string coinsText = "";
             if (price > 0) {
-                System.Int32[] coins = Utils.CoinsSplit(price);
+                int[] coins = Utils.CoinsSplit(price);
                 if (coins[3] > 0) {
                     coinsText = coinsText + "[c/" + Colors.AlphaDarken(Colors.CoinPlatinum).Hex3() + ":" + coins[3] + " " + Language.GetTextValue("LegacyInterface.15") + "] ";
                 }
@@ -169,7 +171,7 @@ public class RenameItemUIState : AequusUIState {
         }
     }
 
-    private static System.Boolean CanSwapItem(Item slotItem, Item mouseItem) {
+    private static bool CanSwapItem(Item slotItem, Item mouseItem) {
         return mouseItem != null && !mouseItem.IsAir && RenameItem.CanRename(mouseItem)
             ? true
             : slotItem != null && !slotItem.IsAir && (mouseItem == null || mouseItem.IsAir);

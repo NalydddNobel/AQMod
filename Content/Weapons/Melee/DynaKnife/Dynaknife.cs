@@ -9,7 +9,7 @@ namespace Aequus.Content.Weapons.Melee.DynaKnife;
 [LegacyName("CrystalDagger", "Mallet")]
 [AutoloadGlowMask]
 public class Dynaknife : ModItem, ICooldownItem {
-    public Int32 CooldownTime => 120;
+    public int CooldownTime => 120;
 
     public override void SetDefaults() {
         Item.width = 24;
@@ -29,14 +29,14 @@ public class Dynaknife : ModItem, ICooldownItem {
         Item.scale = 1.1f;
     }
 
-    public override Boolean AltFunctionUse(Player player) {
+    public override bool AltFunctionUse(Player player) {
         return !this.HasCooldown(player);
     }
 
     public void RClickUse(Player player) {
         this.SetCooldown(player);
 
-        Int32 dir = player.direction;
+        int dir = player.direction;
         if (Main.myPlayer == player.whoAmI) {
             dir = Math.Sign(Main.MouseWorld.X - player.Center.X);
         }
@@ -56,7 +56,7 @@ public class Dynaknife : ModItem, ICooldownItem {
         }
     }
 
-    public override Boolean? UseItem(Player player) {
+    public override bool? UseItem(Player player) {
         if (player.altFunctionUse != 2) {
             return null;
         }

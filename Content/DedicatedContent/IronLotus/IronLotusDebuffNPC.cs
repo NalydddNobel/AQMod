@@ -1,11 +1,11 @@
 ﻿namespace Aequus.Content.DedicatedContent.IronLotus;
 
 public class IronLotusDebuffNPC : GlobalNPC {
-    public System.Boolean hasDebuff;
+    public bool hasDebuff;
 
-    public override System.Boolean InstancePerEntity => true;
+    public override bool InstancePerEntity => true;
 
-    public override System.Boolean AppliesToEntity(NPC entity, System.Boolean lateInstantiation) {
+    public override bool AppliesToEntity(NPC entity, bool lateInstantiation) {
         return !entity.buffImmune[ModContent.BuffType<IronLotusDebuff>()];
     }
 
@@ -18,21 +18,21 @@ public class IronLotusDebuffNPC : GlobalNPC {
             return;
         }
 
-        System.Int32 debuff = npc.FindBuffIndex(ModContent.BuffType<IronLotusDebuff>());
+        int debuff = npc.FindBuffIndex(ModContent.BuffType<IronLotusDebuff>());
         if (debuff == -1) {
             return;
         }
 
-        System.Int32 plr = Player.FindClosest(npc.position, npc.width, npc.height);
-        for (System.Int32 i = 0; i < Main.maxNPCs; i++) {
+        int plr = Player.FindClosest(npc.position, npc.width, npc.height);
+        for (int i = 0; i < Main.maxNPCs; i++) {
             if (Main.npc[i].active && (Main.npc[i].type == NPCID.TargetDummy || Main.npc[i].CanBeChasedBy(Main.player[plr])) && Main.npc[i].Distance(npc.Center) < 100f) {
                 Main.npc[i].AddBuff(ModContent.BuffType<IronLotusDebuff>(), npc.buffTime[debuff]);
             }
         }
 
         if (Main.netMode != NetmodeID.Server) {
-            System.Int32 amt = (System.Int32)(npc.Size.Length() / 32f);
-            for (System.Int32 i = 0; i < amt; i++) {
+            int amt = (int)(npc.Size.Length() / 32f);
+            for (int i = 0; i < amt; i++) {
                 Dust dust = Dust.NewDustDirect(npc.position, npc.width, npc.height, DustID.RedTorch, npc.velocity.X, npc.velocity.Y, 100, Color.Red with { A = 0 }, 3f);
                 dust.noGravity = true;
                 //ParticleSystem.New<MonoBloomParticle>(ParticleLayer.BehindPlayers).Setup(
@@ -46,7 +46,7 @@ public class IronLotusDebuffNPC : GlobalNPC {
         }
     }
 
-    public override void UpdateLifeRegen(NPC npc, ref System.Int32 damage) {
+    public override void UpdateLifeRegen(NPC npc, ref int damage) {
         if (!hasDebuff) {
             return;
         }

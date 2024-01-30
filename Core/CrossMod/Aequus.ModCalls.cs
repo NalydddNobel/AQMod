@@ -5,7 +5,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
+using Terraria.Social.WeGame;
 
 namespace Aequus;
 
@@ -14,13 +16,13 @@ namespace Aequus;
 public partial class Aequus {
     #region Fargos
     [ModCall]
-    public static Boolean AbominationnClearEvents(Boolean canClearEvents) {
+    public static bool AbominationnClearEvents(bool canClearEvents) {
         return false;
     }
     #endregion
 
     [ModCall]
-    public static Boolean RemoveExpertExclusivity(Assembly caller, [Optional] Boolean? value) {
+    public static bool RemoveExpertExclusivity(Assembly caller, [Optional] bool? value) {
         if (value.HasValue) {
             ModCompatabilityFlags.RemoveExpertExclusivity = value.Value;
             Instance.Logger.Info($"Remove Expert Exclusivity set to {ModCompatabilityFlags.RemoveExpertExclusivity} by {caller.Name()}.");
@@ -31,7 +33,7 @@ public partial class Aequus {
 
     #region Backend
     private class CallMethod {
-        public readonly String MethodName;
+        public readonly string MethodName;
         internal readonly MethodInfo _innerMethod;
         internal readonly ParameterInfo[] _parameters;
 
@@ -43,11 +45,11 @@ public partial class Aequus {
 
         // Note: Exceptions are RETURNED to the caller
         // This lets them handle or ignore the exceptions themselves without needing a try-catch case.
-        public Object TryInvoke(Assembly caller, Object[] args) {
-            Int32 argumentIndex = 1;
+        public object TryInvoke(Assembly caller, object[] args) {
+            int argumentIndex = 1;
             // TODO -- Make this not initialize a new array for each call?
-            Object[] methodParameters = new Object[_parameters.Length];
-            for (Int32 i = 0; i < _parameters.Length; i++) {
+            object[] methodParameters = new object[_parameters.Length];
+            for (int i = 0; i < _parameters.Length; i++) {
                 var wantedType = _parameters[i].ParameterType;
                 // Set method's "Assembly" parameter to the caller.
                 if (wantedType == typeof(Assembly)) {
@@ -55,7 +57,7 @@ public partial class Aequus {
                     continue;
                 }
 
-                Boolean outOfBounds = argumentIndex >= args.Length;
+                bool outOfBounds = argumentIndex >= args.Length;
                 // Check if parameter is Optional
                 if (_parameters[i].GetCustomAttribute<OptionalAttribute>() != null && (outOfBounds || args[argumentIndex] == null)) {
                     // Set it to default value
@@ -101,8 +103,8 @@ public partial class Aequus {
         }
     }
 
-    private readonly Dictionary<String, (CallMethod, String[])> NonAliasCalls = new();
-    private readonly Dictionary<String, CallMethod> Calls = new();
+    private readonly Dictionary<string, (CallMethod, string[])> NonAliasCalls = new();
+    private readonly Dictionary<string, CallMethod> Calls = new();
 
     private void LoadModCalls() {
         foreach (var call in typeof(Aequus).GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static)) {
@@ -135,15 +137,15 @@ public partial class Aequus {
         Calls.Clear();
     }
 
-    public override Object Call(params Object[] args) {
+    public override object Call(params object[] args) {
         Assembly caller = Assembly.GetCallingAssembly();
 
-        if (args[0] is not String key) {
+        if (args[0] is not string key) {
             return new ArgumentException($"All mod calls must have a string identifier (argument 0, Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls for more info.). From Mod: {caller.Name()}.");
         }
 
         if (Calls.TryGetValue(key, out var call)) {
-            Object result = call.TryInvoke(caller, args);
+            object result = call.TryInvoke(caller, args);
             return result;
         }
 
@@ -152,8 +154,8 @@ public partial class Aequus {
     }
 
     [Conditional("DEBUG")]
-    private void TestCall(params Object[] args) {
-        Object result = Call(args);
+    private void TestCall(params object[] args) {
+        object result = Call(args);
 
         if (result is Exception ex) {
             Instance.Logger.Error(ex.Message + "\n" + ex.StackTrace);
@@ -162,7 +164,7 @@ public partial class Aequus {
 
     [Conditional("DEBUG")]
     private void GenerateWikiPage() {
-        String path = $"{DebugPath}/ModSources/Aequus/Assets/Metadata/ModCallsWikiPage.Temp";
+        string path = $"{DebugPath}/ModSources/Aequus/Assets/Metadata/ModCallsWikiPage.Temp";
         if (!Directory.Exists(Path.GetDirectoryName(path))) {
             return;
         }
@@ -182,7 +184,7 @@ public partial class Aequus {
                 w.Write($"\r\n|| <div style=\"float:left;\">'''{call.Key}'''</div>");
                 // Should we write call aliases? They are technically supported but not preferred to be used.
                 if (call.Value.Item1._parameters.Length != 0) {
-                    w.Write($"\r\n|| <div style=\"float:left;\">{String.Join("</div>\r\n<br><div style=\"float:left;\">", call.Value.Item1._parameters.Where(p => p.ParameterType != typeof(Assembly)).Select(p => "• " + GetParameterInfo(p)))}</div>");
+                    w.Write($"\r\n|| <div style=\"float:left;\">{string.Join("</div>\r\n<br><div style=\"float:left;\">", call.Value.Item1._parameters.Where(p => p.ParameterType != typeof(Assembly)).Select(p => "• " + GetParameterInfo(p)))}</div>");
                 }
                 else {
                     w.Write("\r\n|| <div style=\"float:left;\">None</div>");
@@ -194,16 +196,16 @@ public partial class Aequus {
         catch { }
         finally { }
 
-        static String GetParameterInfo(ParameterInfo p) {
-            String typeName = GetTypeName(p.ParameterType);
+        static string GetParameterInfo(ParameterInfo p) {
+            string typeName = GetTypeName(p.ParameterType);
             if (p.GetCustomAttribute<OptionalAttribute>() != null) {
                 typeName = "''(Optional)'' " + typeName;
             }
             return $"{typeName} ({p.Name})";
         }
 
-        static String GetTypeName(Type type) {
-            String typeName;
+        static string GetTypeName(Type type) {
+            string typeName;
             if (type.IsGenericType) {
                 if (type.GetGenericTypeDefinition() == typeof(Nullable<>)) {
                     return GetTypeName(type.GenericTypeArguments[0]);
@@ -211,7 +213,7 @@ public partial class Aequus {
                 else {
                     typeName = type.Name[..type.Name.IndexOf('`')] + "{";
                     // Recursion, yay!
-                    typeName += String.Join(", ", type.GenericTypeArguments.Select(g => GetTypeName(g)));
+                    typeName += string.Join(", ", type.GenericTypeArguments.Select(g => GetTypeName(g)));
                     typeName += "}";
 
                     return typeName;
@@ -226,15 +228,15 @@ public partial class Aequus {
 
 [AttributeUsage(AttributeTargets.Method)]
 internal class ModCallAttribute : Attribute {
-    public readonly String[] _aliases;
+    public readonly string[] _aliases;
 
-    public ModCallAttribute(params String[] aliases) {
+    public ModCallAttribute(params string[] aliases) {
         _aliases = aliases;
     }
 }
 
 internal static class ModCallExtensions {
-    public static String Name(this Assembly ass) {
+    public static string Name(this Assembly ass) {
         return ass.GetName().Name ?? "Unknown";
     }
 }

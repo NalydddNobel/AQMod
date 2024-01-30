@@ -56,7 +56,7 @@ public class LeggedLavaProj : ModProjectile {
         }
     }
 
-    public override Boolean TileCollideStyle(ref Int32 width, ref Int32 height, ref Boolean fallThrough, ref Vector2 hitboxCenterFrac) {
+    public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
         fallThrough = Main.player[Player.FindClosest(Projectile.position, Projectile.width, Projectile.height)].position.Y
             > Projectile.position.Y + Projectile.height;
         return true;
@@ -64,7 +64,7 @@ public class LeggedLavaProj : ModProjectile {
 
     private void CollisionEffects(Vector2 velocity) {
         Vector2 spawnPos = Projectile.position + velocity;
-        for (Int32 i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {
             var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.DemonTorch);
             d.velocity = new Vector2(0f, 2f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
             d.scale *= 0.6f;
@@ -73,8 +73,8 @@ public class LeggedLavaProj : ModProjectile {
         }
     }
 
-    public override Boolean OnTileCollide(Vector2 oldVelocity) {
-        Boolean doEffects = false;
+    public override bool OnTileCollide(Vector2 oldVelocity) {
+        bool doEffects = false;
         if (oldVelocity.X != Projectile.velocity.X && Math.Abs(oldVelocity.Y) > 2f) {
             doEffects = true;
             Projectile.position.X += Projectile.velocity.X * 0.9f;
@@ -94,7 +94,7 @@ public class LeggedLavaProj : ModProjectile {
         return false;
     }
 
-    public override void OnKill(Int32 timeLeft) {
+    public override void OnKill(int timeLeft) {
         if (Main.netMode == NetmodeID.Server) {
             return;
         }
@@ -103,7 +103,7 @@ public class LeggedLavaProj : ModProjectile {
             SoundEngine.PlaySound(SoundID.Item85 with { Pitch = 1f }, Projectile.Center);
         }
 
-        for (Int32 i = 0; i < 18; i++) {
+        for (int i = 0; i < 18; i++) {
             var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.DemonTorch);
             d.velocity = new Vector2(0f, 3f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
             d.scale *= 0.6f;
@@ -112,8 +112,8 @@ public class LeggedLavaProj : ModProjectile {
         }
     }
 
-    public override Boolean PreDraw(ref Color lightColor) {
-        Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out Int32 _);
+    public override bool PreDraw(ref Color lightColor) {
+        Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int _);
         Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, frame, Projectile.GetAlpha(lightColor), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
         return false;
     }

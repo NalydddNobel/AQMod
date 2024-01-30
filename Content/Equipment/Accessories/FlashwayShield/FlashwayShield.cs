@@ -5,7 +5,7 @@ namespace Aequus.Content.Equipment.Accessories.FlashwayShield;
 [LegacyName("FlashwayNecklace", "HeartshatterNecklace")]
 [AutoloadEquip(EquipType.Shield)]
 public class FlashwayShield : ModItem {
-    public static System.Single DashSpeed { get; set; } = 14.5f;
+    public static float DashSpeed { get; set; } = 14.5f;
 
     public override void SetDefaults() {
         Item.DefaultToAccessory();
@@ -14,7 +14,7 @@ public class FlashwayShield : ModItem {
         Item.defense = 2;
     }
 
-    public override void UpdateAccessory(Player player, System.Boolean hideVisual) {
+    public override void UpdateAccessory(Player player, bool hideVisual) {
         if (player.dashType != 0 || player.dashDelay != 0) {
             return;
         }

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using Microsoft.Xna.Framework;
+using System.IO;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Common.Renaming;
@@ -6,18 +7,18 @@ namespace Aequus.Common.Renaming;
 public sealed class RenamedNPCMarker {
     public static readonly Vector2 BoxSize = new Vector2(2160f, 1440f);
 
-    public System.Int32 type;
-    public System.String customName;
-    public System.Int32 tileX;
-    public System.Int32 tileY;
+    public int type;
+    public string customName;
+    public int tileX;
+    public int tileY;
     public TagCompound MiscData { get; private set; }
 
     public Rectangle SpawnBox { get; private set; }
 
-    public System.Boolean IsTrackingNPC => TrackNPC != -1;
-    public System.Boolean IsTrackedNPCValid => Main.npc[TrackNPC].active && Main.npc[TrackNPC].type == type && Main.npc[TrackNPC].TryGetGlobalNPC<RenameNPC>(out var renameNPC) && renameNPC.CustomName == customName;
+    public bool IsTrackingNPC => TrackNPC != -1;
+    public bool IsTrackedNPCValid => Main.npc[TrackNPC].active && Main.npc[TrackNPC].type == type && Main.npc[TrackNPC].TryGetGlobalNPC<RenameNPC>(out var renameNPC) && renameNPC.CustomName == customName;
 
-    public System.Int32 TrackNPC { get; internal set; } = -1;
+    public int TrackNPC { get; internal set; } = -1;
 
     public void Recalculate() {
         SpawnBox = Utils.CenteredRectangle(new Point(tileX, tileY).ToWorldCoordinates(), BoxSize);
@@ -64,16 +65,16 @@ public sealed class RenamedNPCMarker {
             tileY = npc.Center.ToTileCoordinates().Y,
         };
 
-        if (NPCID.Sets.SpecialSpawningRules.TryGetValue(npc.netID, out System.Int32 value)) {
+        if (NPCID.Sets.SpecialSpawningRules.TryGetValue(npc.netID, out int value)) {
             switch (value) {
                 case 0: {
-                        marker.tileX = (System.Int32)npc.ai[0];
-                        marker.tileY = (System.Int32)npc.ai[1];
+                        marker.tileX = (int)npc.ai[0];
+                        marker.tileY = (int)npc.ai[1];
                     }
                     break;
             }
         }
-        if (NPCID.Sets.RespawnEnemyID.TryGetValue(npc.netID, out System.Int32 respawnId) && respawnId == 0) {
+        if (NPCID.Sets.RespawnEnemyID.TryGetValue(npc.netID, out int respawnId) && respawnId == 0) {
             marker.type = respawnId;
         }
 
@@ -85,7 +86,7 @@ public sealed class RenamedNPCMarker {
     }
 
     public void SetupNPC(NPC npc) {
-        if (NPCID.Sets.SpecialSpawningRules.TryGetValue(npc.netID, out System.Int32 value)) {
+        if (NPCID.Sets.SpecialSpawningRules.TryGetValue(npc.netID, out int value)) {
             switch (value) {
                 case 0: {
                         Point point = npc.Center.ToTileCoordinates();

@@ -6,7 +6,7 @@ public class BaguetteBuff : ModBuff {
         BuffID.Sets.IsWellFed[Type] = true;
     }
 
-    public override void Update(Player player, ref System.Int32 buffIndex) {
+    public override void Update(Player player, ref int buffIndex) {
         player.wellFed = true;
         player.lifeRegen += 4;
         player.statDefense += 10;

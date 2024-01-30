@@ -1,26 +1,27 @@
-﻿using Terraria.Graphics.Effects;
+﻿using Microsoft.Xna.Framework;
+using Terraria.Graphics.Effects;
 
 namespace Aequus.Core.Graphics.GameOverlays;
 public abstract class AequusOverlay : Overlay, ILoadable {
     public Mod Mod { get; private set; }
 
-    public System.String Name => GetType().Name;
+    public string Name => GetType().Name;
 
-    public System.String EffectKey { get; private set; }
-    protected System.Boolean active;
+    public string EffectKey { get; private set; }
+    protected bool active;
 
     protected AequusOverlay(EffectPriority priority, RenderLayers layer) : base(priority, layer) {
     }
 
-    public override void Activate(Vector2 position, params System.Object[] args) {
+    public override void Activate(Vector2 position, params object[] args) {
         active = true;
     }
 
-    public override void Deactivate(params System.Object[] args) {
+    public override void Deactivate(params object[] args) {
         active = false;
     }
 
-    public override System.Boolean IsVisible() {
+    public override bool IsVisible() {
         return active;
     }
 
@@ -30,7 +31,7 @@ public abstract class AequusOverlay : Overlay, ILoadable {
     public virtual void OnModLoad() {
     }
 
-    public virtual System.Boolean SpecialVisuals(Player player) {
+    public virtual bool SpecialVisuals(Player player) {
         return true;
     }
 

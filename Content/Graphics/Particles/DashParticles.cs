@@ -4,14 +4,14 @@ using Aequus.Core.Particles;
 namespace Aequus.Content.Graphics.Particles;
 
 public class DashParticles : ParallelParticleSystem<DashParticles.Particle> {
-    public override System.Int32 ParticleCount => 100;
+    public override int ParticleCount => 100;
 
     public override void Draw(SpriteBatch spriteBatch) {
         spriteBatch.BeginDusts();
 
         Texture2D texture = AequusTextures.DashParticles;
         lock (this) {
-            for (System.Int32 k = 0; k < Particles.Length; k++) {
+            for (int k = 0; k < Particles.Length; k++) {
                 Particle particle = Particles[k];
 
                 if (particle == null || !particle.Active) {
@@ -21,13 +21,13 @@ public class DashParticles : ParallelParticleSystem<DashParticles.Particle> {
                 Rectangle frame = texture.Frame(verticalFrames: 3, frameY: particle.Frame);
                 Vector2 origin = frame.Size() / 2f;
 
-                System.Single rotation = particle.Rotation;
-                System.Single scale = particle.Scale;
+                float rotation = particle.Rotation;
+                float scale = particle.Scale;
                 Vector2 drawLocation = particle.Location - Main.screenPosition;
                 Vector2 velocity = particle.Velocity;
                 Color color = ExtendLight.Get(particle.Location) * 0.66f * particle.Opacity;
 
-                for (System.Int32 i = 0; i < 3; i++) {
+                for (int i = 0; i < 3; i++) {
                     spriteBatch.Draw(texture, drawLocation - velocity * i, frame, color * 0.1f, rotation, origin, scale, SpriteEffects.None, 0f);
                 }
                 spriteBatch.Draw(texture, drawLocation, frame, color, rotation, origin, scale, SpriteEffects.None, 0f);
@@ -37,15 +37,15 @@ public class DashParticles : ParallelParticleSystem<DashParticles.Particle> {
         spriteBatch.End();
     }
 
-    protected override void UpdateParallel(System.Int32 start, System.Int32 end) {
-        for (System.Int32 i = start; i < end; i++) {
+    protected override void UpdateParallel(int start, int end) {
+        for (int i = start; i < end; i++) {
             Particle particle = Particles[i];
             if (particle == null || !particle.Active) {
                 continue;
             }
             Active = true;
 
-            System.Single opacity = particle.Opacity;
+            float opacity = particle.Opacity;
             if (opacity <= 0f) {
                 particle.Active = false;
                 continue;
@@ -71,13 +71,13 @@ public class DashParticles : ParallelParticleSystem<DashParticles.Particle> {
     }
 
     public class Particle : IParticle {
-        private System.Boolean _active;
-        public System.Boolean Active {
+        private bool _active;
+        public bool Active {
             get => _active;
             set {
                 if (!_active) {
                     Opacity = 1f;
-                    Frame = (System.Byte)Main.rand.Next(3);
+                    Frame = (byte)Main.rand.Next(3);
                 }
                 _active = value;
             }
@@ -86,11 +86,11 @@ public class DashParticles : ParallelParticleSystem<DashParticles.Particle> {
         public Vector2 Location;
         public Vector2 Velocity;
 
-        public System.Single Rotation;
-        public System.Single Scale;
-        public System.Single Opacity;
+        public float Rotation;
+        public float Scale;
+        public float Opacity;
 
-        public System.Byte Frame;
+        public byte Frame;
 
     }
 }

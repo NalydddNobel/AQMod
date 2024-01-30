@@ -5,10 +5,10 @@ namespace Aequus;
 
 public partial class AequusPlayer {
     [ResetEffects]
-    public System.Boolean accMonocle;
+    public bool accMonocle;
     [ResetEffects]
-    public System.Boolean accShimmerMonocle;
+    public bool accShimmerMonocle;
 
-    public System.Boolean ShowMonocle => accMonocle && ModContent.GetInstance<MonocleBuilderToggle>().CurrentState == 0;
-    public System.Boolean ShowShimmerMonocle => accShimmerMonocle && ModContent.GetInstance<ShimmerMonocleBuilderToggle>().CurrentState == 0;
+    public bool ShowMonocle => accMonocle && ModContent.GetInstance<MonocleBuilderToggle>().CurrentState == 0;
+    public bool ShowShimmerMonocle => accShimmerMonocle && ModContent.GetInstance<ShimmerMonocleBuilderToggle>().CurrentState == 0;
 }

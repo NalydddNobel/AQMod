@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Renaming;
 using Aequus.Common.WorldGeneration;
+using Aequus.Content.Tiles;
 using Aequus.Old.Content.Events.DemonSiege.Tiles;
 using Aequus.Old.Content.Tiles.Ambient;
 using Aequus.Old.Content.Tiles.Furniture.Oblivion;
@@ -10,18 +11,18 @@ using Terraria.WorldBuilding;
 namespace Aequus.Old.Content.WorldGeneration;
 
 public class GoreNestsGeneration : AequusGenStep {
-    public override System.String InsertAfter => "Underworld";
+    public override string InsertAfter => "Underworld";
 
     public override void Apply(GenerationProgress progress, GameConfiguration config) {
         SetMessage(progress);
 
-        GetGenerationValues(out System.Int32 minY, out System.Int32 maxY, out System.Int32 wantedGoreNests);
-        System.Int32 goreNestCount = 0;
-        System.Int32 loops = 1000000;
-        for (System.Int32 i = 0; i < loops; i++) {
-            SetProgress(progress, i / (System.Double)loops);
-            System.Int32 x = WorldGen.genRand.Next(80, Main.maxTilesX - 80);
-            System.Int32 y = WorldGen.genRand.Next(minY, maxY);
+        GetGenerationValues(out int minY, out int maxY, out int wantedGoreNests);
+        int goreNestCount = 0;
+        int loops = 1000000;
+        for (int i = 0; i < loops; i++) {
+            SetProgress(progress, i / (double)loops);
+            int x = WorldGen.genRand.Next(80, Main.maxTilesX - 80);
+            int y = WorldGen.genRand.Next(minY, maxY);
             try {
                 if (TryGrowGoreNest(x, y)) {
                     goreNestCount++;
@@ -37,19 +38,19 @@ public class GoreNestsGeneration : AequusGenStep {
         }
     }
 
-    public System.Boolean[] SafeTile { get; private set; }
-    public System.Boolean[] SafeWall { get; private set; }
+    public bool[] SafeTile { get; private set; }
+    public bool[] SafeWall { get; private set; }
 
     private void PopulateSets() {
         SafeTile = ExtendArray.CreateArray((i) => true, TileLoader.TileCount);
         SafeWall = ExtendArray.CreateArray((i) => true, WallLoader.WallCount);
 
-        for (System.Int32 t = 0; t < TileLoader.TileCount; t++) {
+        for (int t = 0; t < TileLoader.TileCount; t++) {
             if (Main.tileDungeon[t]) {
                 SafeTile[t] = false;
             }
         }
-        for (System.Int32 w = 0; w < WallLoader.WallCount; w++) {
+        for (int w = 0; w < WallLoader.WallCount; w++) {
             if (Main.wallDungeon[w]) {
                 SafeWall[w] = false;
             }
@@ -66,10 +67,10 @@ public class GoreNestsGeneration : AequusGenStep {
         SafeWall[WallID.HellstoneBrickUnsafe] = false;
     }
 
-    public static void GetGenerationValues(out System.Int32 minY, out System.Int32 maxY, out System.Int32 wantedGoreNests) {
+    public static void GetGenerationValues(out int minY, out int maxY, out int wantedGoreNests) {
         if (Main.remixWorld) {
-            minY = (System.Int32)(Main.worldSurface * 0.2);
-            maxY = (System.Int32)Main.worldSurface;
+            minY = (int)(Main.worldSurface * 0.2);
+            maxY = (int)Main.worldSurface;
         }
         else {
             minY = Main.UnderworldLayer + 75;
@@ -84,7 +85,7 @@ public class GoreNestsGeneration : AequusGenStep {
         }
     }
 
-    private System.Boolean TryGrowGoreNest(System.Int32 x, System.Int32 y) {
+    private bool TryGrowGoreNest(int x, int y) {
         if (Main.tile[x, y].HasTile) {
             if (!Main.tile[x, y - 1].HasTile) {
                 y--;
@@ -103,10 +104,10 @@ public class GoreNestsGeneration : AequusGenStep {
         }
 
         y -= 2;
-        for (System.Int32 i = 0; i < 3; i++) {
-            for (System.Int32 j = 0; j < 3; j++) {
-                System.Int32 x2 = x + i;
-                System.Int32 y2 = y + j;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                int x2 = x + i;
+                int y2 = y + j;
                 Tile tile = Main.tile[x2, y2];
                 tile.HasTile = false;
                 if (Main.tile[x2, y2].HasTile || Main.tile[x2, y2].LiquidAmount > 0) {
@@ -115,13 +116,13 @@ public class GoreNestsGeneration : AequusGenStep {
             }
         }
         y += 3;
-        for (System.Int32 i = 0; i < 3; i++) {
-            System.Int32 x2 = x + i;
+        for (int i = 0; i < 3; i++) {
+            int x2 = x + i;
             if (!Main.tile[x2, y].HasTile || !Main.tileSolid[Main.tile[x2, y].TileType] || Main.tileCut[Main.tile[x2, y].TileType])
                 return false;
         }
-        for (System.Int32 i = 0; i < 3; i++) {
-            System.Int32 x2 = x + i;
+        for (int i = 0; i < 3; i++) {
+            int x2 = x + i;
             Tile tile = Main.tile[x2, y];
             tile.Slope = 0;
             tile.IsHalfBlock = false;
@@ -140,9 +141,9 @@ public class GoreNestsGeneration : AequusGenStep {
         return true;
     }
 
-    private System.Boolean AnyBlacklistedTiles(System.Int32 x, System.Int32 y) {
-        for (System.Int32 i = x - 25; i < x + 25; i++) {
-            for (System.Int32 j = y - 25; j < y + 25; j++) {
+    private bool AnyBlacklistedTiles(int x, int y) {
+        for (int i = x - 25; i < x + 25; i++) {
+            for (int j = y - 25; j < y + 25; j++) {
                 if (Main.tile[i, j].HasTile && !SafeTile[Main.tile[i, j].TileType]) {
                     return true;
                 }
@@ -151,10 +152,10 @@ public class GoreNestsGeneration : AequusGenStep {
         return false;
     }
 
-    private void GenerateSurroundingGoreNestHill(System.Int32 x, System.Int32 y) {
+    private void GenerateSurroundingGoreNestHill(int x, int y) {
         HillSpawnAsh(x, y);
-        System.Int32 k = 0;
-        System.Int32 maxY = y + 40;
+        int k = 0;
+        int maxY = y + 40;
         while (y < maxY) {
             if (WorldGen.genRand.NextBool(3)) {
                 y++;
@@ -172,7 +173,7 @@ public class GoreNestsGeneration : AequusGenStep {
         HillTryToSmoothyGoIntoRegularGeneration(x, y, k, -1);
     }
 
-    private void HillTryToSmoothyGoIntoRegularGeneration(System.Int32 x, System.Int32 y, System.Int32 k, System.Int32 dir) {
+    private void HillTryToSmoothyGoIntoRegularGeneration(int x, int y, int k, int dir) {
         k *= dir;
         if (y < Main.maxTilesY) {
             y = Main.maxTilesY - 1;
@@ -202,8 +203,8 @@ public class GoreNestsGeneration : AequusGenStep {
         }
     }
 
-    private void HillSpawnAsh(System.Int32 x, System.Int32 y, System.Boolean kill = true) {
-        System.Int32 l = 0;
+    private void HillSpawnAsh(int x, int y, bool kill = true) {
+        int l = 0;
         var tileId = Main.remixWorld ? TileID.Mud : TileID.Ash;
         while (true) {
             l++;
@@ -235,16 +236,16 @@ public class GoreNestsGeneration : AequusGenStep {
         }
     }
 
-    private static void GenerateChests(System.Int32 x, System.Int32 y) {
+    private static void GenerateChests(int x, int y) {
         if (Main.remixWorld) {
             return;
         }
 
         var genTangle = new Rectangle(x - 40, y - 20, 80, 40);
-        for (System.Int32 i = 0; i < 1250; i++) {
+        for (int i = 0; i < 1250; i++) {
             var v = WorldGen.genRand.NextVector2FromRectangle(genTangle).ToPoint();
             if (!Main.tile[v.X, v.Y].HasTile) {
-                System.Int32 c = WorldGen.PlaceChest(v.X, v.Y, type: (System.UInt16)ModContent.TileType<OblivionChest>());
+                int c = WorldGen.PlaceChest(v.X, v.Y, type: (ushort)ModContent.TileType<OblivionChest>());
                 if (c != -1) {
                     FillChest(Main.chest[c]);
                     break;
@@ -253,24 +254,24 @@ public class GoreNestsGeneration : AequusGenStep {
         }
     }
 
-    private static void GenerateAmbientTiles(System.Int32 x, System.Int32 y) {
+    private static void GenerateAmbientTiles(int x, int y) {
         var genTangle = new Rectangle(x - 40, y - 20, 80, 40);
-        for (System.Int32 i = 0; i < 1250; i++) {
+        for (int i = 0; i < 1250; i++) {
             var v = WorldGen.genRand.NextVector2FromRectangle(genTangle).ToPoint();
             WorldGen.PlaceTile(v.X, v.Y, ModContent.TileType<GoreNestStalagmite>(), style: WorldGen.genRand.Next(6));
         }
     }
 
-    private void GenerateSigns(System.Int32 x, System.Int32 y) {
+    private void GenerateSigns(int x, int y) {
         var genTangle = new Rectangle(x - 60, y - 20, 120, 40);
-        for (System.Int32 i = 0; i < 1250; i++) {
+        for (int i = 0; i < 1250; i++) {
             var v = WorldGen.genRand.NextVector2FromRectangle(genTangle).ToPoint();
             if (!Main.tile[v.X, v.Y].HasTile) {
                 WorldGen.PlaceTile(v.X, v.Y, ModContent.TileType<AshTombstones>(), style: WorldGen.genRand.Next(6));
                 if (Main.tile[v.X, v.Y].HasTile) {
-                    System.Int32 sign = Sign.ReadSign(v.X, v.Y);
+                    int sign = Sign.ReadSign(v.X, v.Y);
                     if (sign >= 0) {
-                        System.String text = Language.GetTextValueWith("Mods.Aequus.GoreNestTombstones." + WorldGen.genRand.Next(4), new { Name = Language.GetTextValue("Mods.Aequus.Names." + WorldGen.genRand.Next(10)) });
+                        string text = Language.GetTextValueWith("Mods.Aequus.GoreNestTombstones." + WorldGen.genRand.Next(4), new { Name = Language.GetTextValue("Mods.Aequus.Names." + WorldGen.genRand.Next(10)) });
                         Sign.TextSign(sign, text + Language.GetTextValue("Mods.Aequus.GoreNestTombstones.Hint." + WorldGen.genRand.Next(6)));
                     }
                     i += 400;
@@ -280,7 +281,7 @@ public class GoreNestsGeneration : AequusGenStep {
     }
 
     private static void FillChest(Chest chest) {
-        System.Int32 slot = 0;
+        int slot = 0;
         chest.item[slot].SetDefaults(WorldGen.crimson ? ItemID.LightsBane : ItemID.BloodButcherer); // Opposite evil sword
         chest.item[slot++].GetGlobalItem<RenameItem>().CustomName = "$Mods.Aequus.GoreNestTombstones.Names." + WorldGen.genRand.Next(11) + "|$Mods.Aequus.GoreNestTombstones.Sword";
         if (WorldGen.genRand.NextBool()) {
@@ -303,7 +304,7 @@ public class GoreNestsGeneration : AequusGenStep {
             chest.item[slot++].SetDefaults(ItemID.MagicMirror);
         }
         else {
-            System.Int32 recallStack = WorldGen.genRand.Next(10);
+            int recallStack = WorldGen.genRand.Next(10);
             if (recallStack > 0) {
                 chest.item[slot].SetDefaults(ItemID.RecallPotion);
                 chest.item[slot++].stack = recallStack;

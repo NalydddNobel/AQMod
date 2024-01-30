@@ -3,6 +3,8 @@ using Aequus.Common.Tiles.Components;
 using Aequus.Content.Graphics.GameOverlays;
 using Aequus.Core.Graphics.Animations;
 using Aequus.Core.Graphics.Tiles;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.IO;
@@ -14,58 +16,56 @@ using Terraria.ObjectData;
 namespace Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 
 public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction {
-    public const Int32 FrameCount = 14;
+    public const int FrameCount = 14;
 
     public override void Load() {
         Mod.AddContent(new InstancedTileItem(this, rarity: ItemRarityID.Blue, value: Item.sellPrice(gold: 1)));
     }
 
     public override void SetStaticDefaults() {
-        Main.tileFrameImportant[this.Type] = true;
+        Main.tileFrameImportant[Type] = true;
         TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
         TileObjectData.newTile.LavaDeath = false;
-        TileObjectData.newTile.AnchorInvalidTiles = new[] { (Int32)TileID.MagicalIceBlock, };
+        TileObjectData.newTile.AnchorInvalidTiles = new[] { (int)TileID.MagicalIceBlock, };
         TileObjectData.newTile.DrawYOffset = 2;
-        TileObjectData.newTile.CoordinateHeights = new Int32[] { 16, 16, 16 };
-        TileObjectData.addTile(this.Type);
-        this.DustType = DustID.Stone;
-        this.AdjTiles = new Int32[] { TileID.Extractinator };
-        this.AddMapEntry(new Color(65, 115, 75), this.CreateMapEntryName());
+        TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 16 };
+        TileObjectData.addTile(Type);
+        DustType = DustID.Stone;
+        AdjTiles = new int[] { TileID.Extractinator };
+        AddMapEntry(new(65, 115, 75), CreateMapEntryName());
     }
 
-    public override void NumDust(Int32 i, Int32 j, Boolean fail, ref Int32 num) {
-        num = 0;
-    }
+    public override void NumDust(int i, int j, bool fail, ref int num) => num = 0;
 
-    public static void UseItemAnimation(Int32 i, Int32 j, Int32 totalAmount, Int32 itemType) {
+    public static void UseItemAnimation(int i, int j, int totalAmount, int itemType) {
         var spawnLocation = new Vector2(i + 0.5f, j + 2.5f) * 16f;
-        for (Int32 l = 0; l < Math.Min(totalAmount, 4); l++) {
+        for (int l = 0; l < Math.Min(totalAmount, 4); l++) {
             ModContent.GetInstance<DrawsOverTilesNPCs>().Add(new AnimationItemSpew(spawnLocation + Main.rand.NextVector2Square(-4f, 4f), new(i, j), itemType) {
                 AnimationTime = Main.rand.Next(-10, 2) * l - 45
             });
         }
     }
 
-    private static void TransformItemResults(Item item, ref Int32 dropItem, ref Int64 stack) {
+    private static void TransformItemResults(Item item, ref int dropItem, ref long stack) {
         if (item.makeNPC > 0) {
             dropItem = ItemID.FleshBlock;
             stack *= 4;
         }
     }
 
-    private static void ResetTileAnimation(Int32 i, Int32 j) {
-        AnimationTrashCompactor tileAnimation = AnimationSystem.GetValueOrAddDefault<AnimationTrashCompactor>(i, j);
+    private static void ResetTileAnimation(int i, int j) {
+        var tileAnimation = AnimationSystem.GetValueOrAddDefault<AnimationTrashCompactor>(i, j);
         tileAnimation.FrameTime = 1;
         tileAnimation.Frame = 0;
         //tileAnimation.ShakeTime = Math.Max(tileAnimation.ShakeTime, MathHelper.Clamp(resultItems.Count * 2, 4f, 8f));
     }
 
-    private static void UseExtractinator(Int32 i, Int32 j, Item item, TrashCompactorRecipe recipeResults, Player player) {
+    private static void UseExtractinator(int i, int j, Item item, TrashCompactorRecipe recipeResults, Player player) {
         if (recipeResults.Invalid) {
             return;
         }
 
-        Int32 quantity = Main.keyState.IsKeyUp(Keys.LeftShift) ? 1 : recipeResults.GetIngredientQuantity(item);
+        int quantity = Main.keyState.IsKeyUp(Keys.LeftShift) ? 1 : recipeResults.GetIngredientQuantity(item);
         item.stack -= quantity * recipeResults.Ingredient.stack;
         if (item.stack <= 0) {
             item.TurnToAir();
@@ -75,17 +75,17 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction
             ModContent.GetInstance<TileInteractionPacket>().Send(i, j);
         }
 
-        for (Int32 k = 0; k < recipeResults.Results.Count; k++) {
+        for (int k = 0; k < recipeResults.Results.Count; k++) {
             var result = recipeResults.Results[k];
-            Int64 totalAmount = result.stack * (Int64)quantity;
-            Int32 dropType = result.type;
+            long totalAmount = result.stack * (long)quantity;
+            int dropType = result.type;
 
             TransformItemResults(result, ref dropType, ref totalAmount);
 
-            Int64 amount = totalAmount;
-            Int32 maxStack = Math.Max(result.maxStack, 1);
+            long amount = totalAmount;
+            int maxStack = Math.Max(result.maxStack, 1);
             while (amount > 0) {
-                var dropAmount = (Int32)Math.Min(amount, maxStack);
+                var dropAmount = (int)Math.Min(amount, maxStack);
                 if (dropAmount > 0) {
                     player.GiveItem(
                         source: new EntitySource_TileInteraction(player, i, j, "Aequus: Extractinator"),
@@ -96,9 +96,9 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction
                 amount -= dropAmount;
             }
 
-            UseItemAnimation(i, j, (Int32)totalAmount, dropType);
+            UseItemAnimation(i, j, (int)totalAmount, dropType);
             if (Main.netMode != NetmodeID.SinglePlayer) {
-                ModContent.GetInstance<PacketTrashCompactorItemAnimation>().Send(i, j, (Int32)totalAmount, dropType);
+                ModContent.GetInstance<PacketTrashCompactorItemAnimation>().Send(i, j, (int)totalAmount, dropType);
             }
         }
 
@@ -106,7 +106,7 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction
         SoundEngine.PlaySound(SoundID.Item22, new Vector2(i, j) * 16f);
     }
 
-    public override void MouseOver(Int32 i, Int32 j) {
+    public override void MouseOver(int i, int j) {
         var player = Main.LocalPlayer;
         var heldItem = player.HeldItemFixed();
         var recipeResults = TrashCompactorRecipe.FromItem(heldItem);
@@ -128,34 +128,34 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction
         }
     }
 
-    public override void AnimateTile(ref Int32 frame, ref Int32 frameCounter) {
+    public override void AnimateTile(ref int frame, ref int frameCounter) {
         if (++frameCounter > 6) {
             frameCounter = 0;
             frame = ++frame % FrameCount;
         }
     }
 
-    public override void AnimateIndividualTile(Int32 type, Int32 i, Int32 j, ref Int32 frameXOffset, ref Int32 frameYOffset) {
+    public override void AnimateIndividualTile(int type, int i, int j, ref int frameXOffset, ref int frameYOffset) {
     }
 
-    public override Boolean PreDraw(Int32 i, Int32 j, SpriteBatch spriteBatch) {
+    public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
         if (Main.tile[i, j].TileFrameX == 0 && Main.tile[i, j].TileFrameY == 0) {
             SpecialTileRenderer.Add(i, j, TileRenderLayerID.PostDrawVines);
         }
         return false;
     }
 
-    public void Render(Int32 i, Int32 j, Byte layer) {
+    public void Render(int i, int j, byte layer) {
         var texture = TextureAssets.Tile[Type].Value;
         var drawOffset = new Vector2(0f, 2f);
-        Int32 frame = 0;
+        int frame = 0;
         if (AnimationSystem.TryGet<AnimationTrashCompactor>(i, j, out var tileAnimation)) {
             drawOffset += tileAnimation.Shake;
             frame = tileAnimation.Frame;
         }
 
-        for (Int32 k = i; k < i + 3; k++) {
-            for (Int32 l = j; l < j + 3; l++) {
+        for (int k = i; k < i + 3; k++) {
+            for (int l = j; l < j + 3; l++) {
                 if (Main.tile[k, l].IsTileInvisible) {
                     continue;
                 }
@@ -165,7 +165,7 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction
         }
     }
 
-    public void Receive(Int32 i, Int32 j, BinaryReader binaryReader, Int32 sender) {
+    public void Receive(int i, int j, BinaryReader binaryReader, int sender) {
         if (Main.netMode == NetmodeID.Server) {
             ModContent.GetInstance<TileInteractionPacket>().Send(i, j, ignoreClient: sender);
         }

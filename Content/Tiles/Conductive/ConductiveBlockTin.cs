@@ -1,8 +1,10 @@
-﻿namespace Aequus.Content.Tiles.Conductive;
+﻿using Microsoft.Xna.Framework;
+
+namespace Aequus.Content.Tiles.Conductive;
 
 [LegacyName("ConductiveBlockTileTin")]
 public class ConductiveBlockTin : ConductiveBlock {
-    public override System.Int32 BarItem => ItemID.TinBar;
+    public override int BarItem => ItemID.TinBar;
     public override Color MapColor => new(187, 165, 124);
 
     public override void SetStaticDefaults() {

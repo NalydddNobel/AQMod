@@ -4,9 +4,9 @@ using Terraria.ModLoader.IO;
 namespace Aequus.Common.Systems;
 
 public class TimeTrackerSystem : ModSystem {
-    public static Int32 daysPassed;
+    public static int daysPassed;
 
-    public static Int32 WeekDay { get; private set; }
+    public static int WeekDay { get; private set; }
 
     public static DayOfWeek DayOfTheWeek => (DayOfWeek)WeekDay;
 
@@ -15,11 +15,11 @@ public class TimeTrackerSystem : ModSystem {
         On_Main.UpdateTime_StartNight += On_Main_UpdateTime_StartNight;
     }
 
-    private static void On_Main_UpdateTime_StartNight(On_Main.orig_UpdateTime_StartNight orig, ref Boolean stopEvents) {
+    private static void On_Main_UpdateTime_StartNight(On_Main.orig_UpdateTime_StartNight orig, ref bool stopEvents) {
         orig(ref stopEvents);
     }
 
-    private static void On_Main_UpdateTime_StartDay(On_Main.orig_UpdateTime_StartDay orig, ref Boolean stopEvents) {
+    private static void On_Main_UpdateTime_StartDay(On_Main.orig_UpdateTime_StartDay orig, ref bool stopEvents) {
         daysPassed++;
         orig(ref stopEvents);
     }
@@ -33,14 +33,14 @@ public class TimeTrackerSystem : ModSystem {
     }
 
     public override void LoadWorldData(TagCompound tag) {
-        if (tag.TryGet("DaysPassed", out Int32 value)) {
+        if (tag.TryGet("DaysPassed", out int value)) {
             daysPassed = value;
         }
     }
 
     public override void PostUpdateTime() {
         if (Main.zenithWorld) {
-            WeekDay = (Int32)DateTime.Now.DayOfWeek;
+            WeekDay = (int)DateTime.Now.DayOfWeek;
         }
         else {
             WeekDay = daysPassed % 7;

@@ -1,4 +1,6 @@
 ﻿using Aequus.Core.PhysicsObjects;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria.GameContent;
 
@@ -26,11 +28,11 @@ public class WeightedHorseshoeVisual : ModProjectile {
         if (aequusPlayer.showHorseshoeAnvilRope) {
             Projectile.timeLeft = 2;
         }
-        Single chainLength = 46f;
+        float chainLength = 46f;
         Vector2 anvilAnchor = player.MountedCenter - player.velocity + new Vector2(0f, player.height / 2f - 12f + player.gfxOffY);
         Vector2 gravity = new Vector2(0f, 0.1f);
-        Single distance = Projectile.Distance(anvilAnchor);
-        Boolean canHitLine = Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, player.position, player.width, player.height);
+        float distance = Projectile.Distance(anvilAnchor);
+        bool canHitLine = Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, player.position, player.width, player.height);
         if (distance > chainLength * 3f) {
             Projectile.Center = player.Center;
             horseshoeAnvilRope = null; // Reset segments
@@ -48,13 +50,13 @@ public class WeightedHorseshoeVisual : ModProjectile {
         horseshoeAnvilRope.gravity = gravity;
         horseshoeAnvilRope.damping = Utils.GetLerpValue(20, 0, player.velocity.Length(), true) * 0.05f;
         horseshoeAnvilRope.Update();
-        Single wantedRotation = (Projectile.Center - horseshoeAnvilRope.segments[horseshoeAnvilRope.segments.Count / 5].position).ToRotation();
+        float wantedRotation = (Projectile.Center - horseshoeAnvilRope.segments[horseshoeAnvilRope.segments.Count / 5].position).ToRotation();
         Projectile.rotation = Projectile.rotation.AngleTowards(wantedRotation, 0.1f);
 
         var groundTileCoordinates = Projectile.Bottom.ToTileCoordinates();
         var groundTile = Framing.GetTileSafely(groundTileCoordinates);
         if (groundTile.HasUnactuatedTile && Main.tileSolid[groundTile.TileType] && Math.Abs(Projectile.velocity.X) > 0.2f && Main.rand.NextBool(2)) {
-            Int32 d = WorldGen.KillTile_MakeTileDust(groundTileCoordinates.X, groundTileCoordinates.Y, groundTile);
+            int d = WorldGen.KillTile_MakeTileDust(groundTileCoordinates.X, groundTileCoordinates.Y, groundTile);
             Main.dust[d].position = Projectile.Bottom;
             Main.dust[d].position.X += Main.rand.NextFloat(-4f, 4f);
             Main.dust[d].position.Y += Main.rand.NextFloat(-2f, 2f);
@@ -90,20 +92,20 @@ public class WeightedHorseshoeVisual : ModProjectile {
         Projectile.position.Y = collisionVector.Y;
         Projectile.velocity.X = collisionVector.Z;
         Projectile.velocity.Y = collisionVector.W;
-        Collision.StepUp(ref Projectile.position, ref Projectile.velocity, Projectile.width, Projectile.height, ref Projectile.stepSpeed, ref Projectile.gfxOffY, (Int32)player.gravDir, player.controlUp);
-        Single terminalVelocity = Math.Max(6f, player.velocity.Y + 0.1f);
+        Collision.StepUp(ref Projectile.position, ref Projectile.velocity, Projectile.width, Projectile.height, ref Projectile.stepSpeed, ref Projectile.gfxOffY, (int)player.gravDir, player.controlUp);
+        float terminalVelocity = Math.Max(6f, player.velocity.Y + 0.1f);
         if (Projectile.velocity.Y > terminalVelocity) {
             Projectile.velocity.Y = terminalVelocity;
         }
     }
 
-    public override Boolean OnTileCollide(Vector2 oldVelocity) {
+    public override bool OnTileCollide(Vector2 oldVelocity) {
         if (Projectile.velocity.Y != oldVelocity.Y && oldVelocity.Y > 7f) {
             var groundTileCoordinates = (Projectile.Bottom + oldVelocity).ToTileCoordinates();
             var groundTile = Framing.GetTileSafely(groundTileCoordinates);
             if (groundTile.HasUnactuatedTile && Main.tileSolid[groundTile.TileType]) {
-                for (Int32 i = 0; i < 15; i++) {
-                    Int32 d = WorldGen.KillTile_MakeTileDust(groundTileCoordinates.X, groundTileCoordinates.Y, groundTile);
+                for (int i = 0; i < 15; i++) {
+                    int d = WorldGen.KillTile_MakeTileDust(groundTileCoordinates.X, groundTileCoordinates.Y, groundTile);
                     Main.dust[d].position = Projectile.Bottom;
                     Main.dust[d].position.X += Main.rand.NextFloat(-4f, 4f);
                     Main.dust[d].position.Y += Main.rand.NextFloat(-2f, 2f);
@@ -119,7 +121,7 @@ public class WeightedHorseshoeVisual : ModProjectile {
         return (ExtendLight.Get((stringStart + stringEnd) / 2f).MultiplyRGB(baseColor) * 0.75f) with { A = 255, };
     }
 
-    public override Boolean PreDraw(ref Color lightColor) {
+    public override bool PreDraw(ref Color lightColor) {
         if (horseshoeAnvilRope == null) {
             return false;
         }
@@ -128,7 +130,7 @@ public class WeightedHorseshoeVisual : ModProjectile {
         var aequusPlayer = player.GetModPlayer<AequusPlayer>();
         Main.instance.PrepareDrawnEntityDrawing(Projectile, aequusPlayer.cHorseshoeAnvil, null);
         var stringColor = DrawHelper.GetYoyoStringColor(player.stringColor);
-        for (Int32 i = 1; i < horseshoeAnvilRope.segments.Count; i++) {
+        for (int i = 1; i < horseshoeAnvilRope.segments.Count; i++) {
             var start = horseshoeAnvilRope.segments[i].position;
             var end = horseshoeAnvilRope.segments[i - 1].position;
             DrawHelper.DrawLine(Main.EntitySpriteDraw, start - Main.screenPosition, end - Main.screenPosition, 2f, GetStringColor(start, end, stringColor));

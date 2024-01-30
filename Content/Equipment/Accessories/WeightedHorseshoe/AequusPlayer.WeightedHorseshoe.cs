@@ -7,9 +7,9 @@ public partial class AequusPlayer {
     [ResetEffects]
     public Item accWeightedHorseshoe;
     [ResetEffects]
-    public System.Boolean showHorseshoeAnvilRope;
+    public bool showHorseshoeAnvilRope;
     [ResetEffects]
-    public System.Int32 cHorseshoeAnvil;
+    public int cHorseshoeAnvil;
 
     private void WeightedHorseshoe_FallDamageAdjustments(ref MiscDamageHit hitInfo) {
         if (Player.mount.IsConsideredASlimeMount) {
@@ -22,7 +22,7 @@ public partial class AequusPlayer {
         }
     }
 
-    private void WeightedHorseshoe_OnHitNPCs(System.Int32 amountHit, MiscDamageHit hitInfo) {
+    private void WeightedHorseshoe_OnHitNPCs(int amountHit, MiscDamageHit hitInfo) {
         if (amountHit == 0) {
             return;
         }
@@ -50,7 +50,7 @@ public partial class AequusPlayer {
             Knockback = WeightedHorseshoe.EnemyFallKnockback
         };
         WeightedHorseshoe_FallDamageAdjustments(ref hitInfo);
-        System.Int32 amountDamaged = Player.CollideWithNPCs(hitInfo.DamagingHitbox, Player.GetTotalDamage(hitInfo.DamageClass).ApplyTo((System.Single)hitInfo.Damage), Player.GetTotalKnockback(hitInfo.DamageClass).ApplyTo(hitInfo.Knockback), 10, 4, hitInfo.DamageClass);
+        int amountDamaged = Player.CollideWithNPCs(hitInfo.DamagingHitbox, Player.GetTotalDamage(hitInfo.DamageClass).ApplyTo((float)hitInfo.Damage), Player.GetTotalKnockback(hitInfo.DamageClass).ApplyTo(hitInfo.Knockback), 10, 4, hitInfo.DamageClass);
         WeightedHorseshoe_OnHitNPCs(amountDamaged, hitInfo);
     }
 }

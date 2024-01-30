@@ -14,13 +14,13 @@ namespace Aequus.Old.Content.Tiles.Furniture.Oblivion;
 
 [LegacyName("Tombstones", "AshTombstonesTile")]
 public class AshTombstones : ModTile {
-    public const Int32 STYLE_AshTombstone = 0;
-    public const Int32 STYLE_AshGraveMarker = 1;
-    public const Int32 STYLE_AshCrossGraveMarker = 2;
-    public const Int32 STYLE_AshHeadstone = 3;
-    public const Int32 STYLE_AshGravestone = 4;
-    public const Int32 STYLE_AshObelisk = 5;
-    public const Int32 STYLE_COUNT = 6;
+    public const int STYLE_AshTombstone = 0;
+    public const int STYLE_AshGraveMarker = 1;
+    public const int STYLE_AshCrossGraveMarker = 2;
+    public const int STYLE_AshHeadstone = 3;
+    public const int STYLE_AshGravestone = 4;
+    public const int STYLE_AshObelisk = 5;
+    public const int STYLE_COUNT = 6;
 
     private static ModItem[] _tombstones;
 
@@ -35,7 +35,7 @@ public class AshTombstones : ModTile {
         Add("Gravestone", STYLE_AshGravestone, ItemID.Gravestone);
         Add("Obelisk", STYLE_AshObelisk, ItemID.Obelisk);
 
-        ModItem Add(String name, Int32 style, Int32 ingredient) {
+        ModItem Add(string name, int style, int ingredient) {
             ModItem item = new InstancedTileItem(this, style, name, rarity: ItemRarityID.Green, researchSacrificeCount: 2);
             _tombstones[style] = item;
 
@@ -66,17 +66,17 @@ public class AshTombstones : ModTile {
         TileID.Sets.HasOutlines[Type] = true;
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
         TileObjectData.newTile.Origin = new Point16(0, 1);
-        TileObjectData.newTile.CoordinateHeights = new Int32[2] { 16, 18 };
+        TileObjectData.newTile.CoordinateHeights = new int[2] { 16, 18 };
         TileObjectData.newTile.StyleHorizontal = true;
         TileObjectData.newTile.LavaDeath = false;
         TileObjectData.addTile(Type);
         AddMapEntry(new Color(100, 20, 10, 255), LocalizedText.Empty, MapEntryName);
         DustType = 37;
-        AdjTiles = new Int32[] { TileID.Tombstones };
+        AdjTiles = new int[] { TileID.Tombstones };
     }
 
-    private static String MapEntryName(String name, Int32 i, Int32 j) {
-        Int32 style = Math.Clamp(Main.tile[i, j].TileFrameX / 36, 0, STYLE_COUNT);
+    private static string MapEntryName(string name, int i, int j) {
+        int style = Math.Clamp(Main.tile[i, j].TileFrameX / 36, 0, STYLE_COUNT);
 
         return Lang.GetItemName(_tombstones[style].Type).Value;
     }
@@ -85,33 +85,33 @@ public class AshTombstones : ModTile {
         TombstoneProjectiles.Clear();
     }
 
-    public override Boolean HasSmartInteract(Int32 i, Int32 j, SmartInteractScanSettings settings) {
+    public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) {
         return true;
     }
 
-    public override Boolean RightClick(Int32 i, Int32 j) {
+    public override bool RightClick(int i, int j) {
         return true;
     }
 
-    public override void NumDust(Int32 i, Int32 j, Boolean fail, ref Int32 num) {
+    public override void NumDust(int i, int j, bool fail, ref int num) {
         num = fail ? 1 : 3;
     }
 
-    public override void KillMultiTile(Int32 i, Int32 j, Int32 frameX, Int32 frameY) {
+    public override void KillMultiTile(int i, int j, int frameX, int frameY) {
         Sign.KillSign(i, j);
     }
 
-    public override void MouseOverFar(Int32 i, Int32 j) {
+    public override void MouseOverFar(int i, int j) {
         MouseOver(i, j);
     }
 
-    public override void ModifyLight(Int32 i, Int32 j, ref Single r, ref Single g, ref Single b) {
+    public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
         r = 0.04f;
         g = 0.02f;
         b = 0.001f;
     }
 
-    public override void PostDraw(Int32 i, Int32 j, SpriteBatch spriteBatch) {
+    public override void PostDraw(int i, int j, SpriteBatch spriteBatch) {
         if (Main.tile[i, j].IsTileInvisible) {
             return;
         }
@@ -127,14 +127,14 @@ public class AshTombstones : ModTile {
 }
 
 internal class InstancedAshTombstoneProj : InstancedTombstoneProj {
-    public InstancedAshTombstoneProj(ModTile tile, Int32 style, String name) : base(tile, style, name) { }
+    public InstancedAshTombstoneProj(ModTile tile, int style, string name) : base(tile, style, name) { }
 
     public override void SetStaticDefaults() {
         ProjectileID.Sets.TrailingMode[Type] = 2;
         ProjectileID.Sets.TrailCacheLength[Type] = 10;
     }
 
-    public override String GetTombstoneText() {
+    public override string GetTombstoneText() {
         return Language.GetTextValue("Mods.Aequus.DeathMessage.AshTombstone." + Main.rand.Next(13), base.GetTombstoneText());
     }
 
@@ -152,17 +152,17 @@ internal class InstancedAshTombstoneProj : InstancedTombstoneProj {
         if (WorldGen.InWorld(tileCoords.X, tileCoords.Y, 5) && Main.tile[tileCoords].LiquidAmount > 0) {
             Projectile.velocity.Y -= 0.7f;
         }
-        if ((Int32)Projectile.ai[0] == 0) {
+        if ((int)Projectile.ai[0] == 0) {
             Projectile.ai[0] = 6f;
         }
         base.AI();
     }
 
-    public override Boolean? CanDamage() {
+    public override bool? CanDamage() {
         return Projectile.velocity.Length() > 1f ? null : false;
     }
 
-    public override Boolean OnTileCollide(Vector2 oldVelocity) {
+    public override bool OnTileCollide(Vector2 oldVelocity) {
         if (Math.Abs(Projectile.velocity.Y) < 0.2f) {
             Projectile.ai[0] = -1f;
             return base.OnTileCollide(oldVelocity);
@@ -195,9 +195,9 @@ internal class InstancedAshTombstoneProj : InstancedTombstoneProj {
         return false;
     }
 
-    public void DrawGrave(Vector2 drawCoordinates, Texture2D tileTexture, Single rotation, Color color) {
-        for (Int32 i = 0; i < 2; i++) {
-            for (Int32 j = 0; j < 2; j++) {
+    public void DrawGrave(Vector2 drawCoordinates, Texture2D tileTexture, float rotation, Color color) {
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
                 Rectangle frame = new(18 * (Style * 2 + i), 18 * j, 16, j == 1 ? 18 : 16);
                 var tileSegmentCoords = drawCoordinates + new Vector2(frame.Width * (i - 1), frame.Height * (j - 1)).RotatedBy(rotation);
                 Main.spriteBatch.Draw(
@@ -217,10 +217,10 @@ internal class InstancedAshTombstoneProj : InstancedTombstoneProj {
     public override void PostDraw(Color lightColor) {
         var tileTexture = TextureAssets.Tile[Tile.Type].Value;
         var glowTexture = AequusTextures.AshTombstones_Glow.Value;
-        Int32 trailLength = ProjectileID.Sets.TrailCacheLength[Type];
+        int trailLength = ProjectileID.Sets.TrailCacheLength[Type];
         var positionOffset = Projectile.Size / 2f;
-        for (Int32 i = 0; i < trailLength; i++) {
-            Single progress = 1f - i / (Single)trailLength;
+        for (int i = 0; i < trailLength; i++) {
+            float progress = 1f - i / (float)trailLength;
             DrawGrave(Projectile.oldPos[i] + positionOffset - Main.screenPosition, tileTexture, Projectile.oldRot[i], Color.Orange with { A = 0 } * progress);
         }
         var drawCoordinates = Projectile.Center - Main.screenPosition;
@@ -230,7 +230,7 @@ internal class InstancedAshTombstoneProj : InstancedTombstoneProj {
 }
 
 public class AshTombstoneExplosion : ModProjectile {
-    public override String Texture => AequusTextures.GenericExplosion.Path;
+    public override string Texture => AequusTextures.GenericExplosion.Path;
 
     public override void SetStaticDefaults() {
         Main.projFrames[Type] = 7;
@@ -261,7 +261,7 @@ public class AshTombstoneExplosion : ModProjectile {
                 p.Scale = 2f;
                 p.BloomScale = 0.5f;
                 p.dontEmitLight = false;
-                p.Frame = (Byte)Main.rand.Next(3);
+                p.Frame = (byte)Main.rand.Next(3);
                 p.Rotation = Main.rand.NextFloat(MathHelper.TwoPi);
             }
         }
@@ -278,8 +278,8 @@ public class AshTombstoneExplosion : ModProjectile {
         }
     }
 
-    public override Boolean PreDraw(ref Color lightColor) {
-        Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out Int32 _);
+    public override bool PreDraw(ref Color lightColor) {
+        Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int _);
         Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, frame, Projectile.GetAlpha(lightColor), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
         return false;
     }

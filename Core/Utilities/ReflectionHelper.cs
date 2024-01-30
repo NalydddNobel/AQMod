@@ -23,14 +23,14 @@ public static class ReflectionHelper {
         return l;
     }
 
-    public static T GetValue<T>(this PropertyInfo property, Object obj) {
+    public static T GetValue<T>(this PropertyInfo property, object obj) {
         return (T)property.GetValue(obj);
     }
-    public static T GetValue<T>(this FieldInfo field, Object obj) {
+    public static T GetValue<T>(this FieldInfo field, object obj) {
         return (T)field.GetValue(obj);
     }
 
-    public static Boolean HasMethodOverride(this Type t, String methodName, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Public) {
+    public static bool HasMethodOverride(this Type t, string methodName, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Public) {
         foreach (MethodInfo method in t.GetMethods(bindingFlags).Where(x => x.Name == methodName)) {
             if (method.GetBaseDefinition().DeclaringType != method.DeclaringType) {
                 return true;

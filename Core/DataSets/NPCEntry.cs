@@ -3,76 +3,76 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Aequus.Core.DataSets;
 
-[JsonConverter(typeof(DataEntryConverter<NPCEntry, System.Int32>))]
-public struct NPCEntry : IDataEntry<System.Int32> {
+[JsonConverter(typeof(DataEntryConverter<NPCEntry, int>))]
+public struct NPCEntry : IDataEntry<int> {
     [JsonProperty]
-    public System.String Name { get; set; }
+    public string Name { get; set; }
 
     [JsonIgnore]
-    public System.Int32 Id { get; set; }
+    public int Id { get; set; }
 
     [JsonIgnore]
-    public System.Boolean ValidEntry => Id > NPCID.NegativeIDCount && Id < NPCLoader.NPCCount;
+    public bool ValidEntry => Id > NPCID.NegativeIDCount && Id < NPCLoader.NPCCount;
 
     [JsonIgnore]
-    public System.Boolean VanillaEntry => Id < NPCID.Count;
+    public bool VanillaEntry => Id < NPCID.Count;
 
-    private static System.Int32 _uniqueIds = NPCID.NegativeIDCount;
+    private static int _uniqueIds = NPCID.NegativeIDCount;
 
-    public NPCEntry(System.String name) {
+    public NPCEntry(string name) {
         Name = name;
         Id = 0;
         Initialize();
     }
 
-    public NPCEntry(System.Int32 id) {
+    public NPCEntry(int id) {
         Name = null;
         Id = id;
         Initialize();
     }
 
-    public override System.Boolean Equals([NotNullWhen(true)] System.Object obj) {
+    public override bool Equals([NotNullWhen(true)] object obj) {
         return obj is not NPCEntry otherEntry ? false : otherEntry.Id.Equals(Id);
     }
 
-    public override System.Int32 GetHashCode() {
+    public override int GetHashCode() {
         return Id;
     }
 
-    public override System.String ToString() {
+    public override string ToString() {
         return Name;
     }
 
     public void Initialize() {
-        if (!System.String.IsNullOrEmpty(Name)) {
-            Id = NPCID.Search.TryGetId(Name, out System.Int32 id) ? id : _uniqueIds--;
+        if (!string.IsNullOrEmpty(Name)) {
+            Id = NPCID.Search.TryGetId(Name, out int id) ? id : _uniqueIds--;
         }
         else if (ValidEntry) {
-            Name = NPCID.Search.TryGetName(Id, out System.String name) ? name : "Unknown";
+            Name = NPCID.Search.TryGetName(Id, out string name) ? name : "Unknown";
         }
     }
 
-    public static implicit operator System.String(NPCEntry entry) {
+    public static implicit operator string(NPCEntry entry) {
         return entry.Name;
     }
 
-    public static implicit operator System.Int32(NPCEntry entry) {
+    public static implicit operator int(NPCEntry entry) {
         return entry.Id;
     }
 
-    public static explicit operator NPCEntry(System.Int32 id) {
+    public static explicit operator NPCEntry(int id) {
         return new(id);
     }
 
-    public static explicit operator NPCEntry(System.String name) {
+    public static explicit operator NPCEntry(string name) {
         return new(name);
     }
 
-    public static System.Boolean operator ==(NPCEntry left, NPCEntry right) {
+    public static bool operator ==(NPCEntry left, NPCEntry right) {
         return left.Equals(right);
     }
 
-    public static System.Boolean operator !=(NPCEntry left, NPCEntry right) {
+    public static bool operator !=(NPCEntry left, NPCEntry right) {
         return !(left == right);
     }
 }

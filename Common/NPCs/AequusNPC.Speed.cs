@@ -1,12 +1,13 @@
 ﻿using Aequus.Core.Generator;
+using Microsoft.Xna.Framework;
 
 namespace Aequus.Common.NPCs;
 
 public partial class AequusNPC : GlobalNPC {
     [ResetEffects(1f)]
-    public System.Single statSpeedX = 1f;
+    public float statSpeedX = 1f;
     [ResetEffects(1f)]
-    public System.Single statSpeedY = 1f;
+    public float statSpeedY = 1f;
 
     private static void NPC_UpdateCollision(On_NPC.orig_UpdateCollision orig, NPC npc) {
         if (!npc.TryGetGlobalNPC<AequusNPC>(out var aequusNPC)) {

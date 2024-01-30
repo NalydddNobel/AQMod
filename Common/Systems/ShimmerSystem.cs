@@ -14,7 +14,7 @@ public class ShimmerSystem : ModSystem {
     }
 
     #region Hooks
-    private static System.Boolean On_ShimmerTransforms_IsItemTransformLocked(On_ShimmerTransforms.orig_IsItemTransformLocked orig, System.Int32 type) {
+    private static bool On_ShimmerTransforms_IsItemTransformLocked(On_ShimmerTransforms.orig_IsItemTransformLocked orig, int type) {
         if (AequusRecipes.ShimmerTransformLocks.TryGetValue(type, out var condition)) {
             return !condition.IsMet();
         }
@@ -22,7 +22,7 @@ public class ShimmerSystem : ModSystem {
         return orig(type);
     }
 
-    private static System.Boolean On_Item_CanShimmer(On_Item.orig_CanShimmer orig, Item item) {
+    private static bool On_Item_CanShimmer(On_Item.orig_CanShimmer orig, Item item) {
         if (ItemLoader.GetItem(item.type) is IDedicatedItem) {
             return true;
         }
@@ -32,14 +32,14 @@ public class ShimmerSystem : ModSystem {
 
     private static void On_Item_GetShimmered(On_Item.orig_GetShimmered orig, Item item) {
         if (ItemLoader.GetItem(item.type) is IDedicatedItem) {
-            System.Int32 maximumSpawnable = 50;
-            System.Int32 highestNPCSlotIndexWeWillPick = 200;
-            System.Int32 slotsAvailable = NPC.GetAvailableAmountOfNPCsToSpawnUpToSlot(item.stack, highestNPCSlotIndexWeWillPick);
+            int maximumSpawnable = 50;
+            int highestNPCSlotIndexWeWillPick = 200;
+            int slotsAvailable = NPC.GetAvailableAmountOfNPCsToSpawnUpToSlot(item.stack, highestNPCSlotIndexWeWillPick);
             while (maximumSpawnable > 0 && slotsAvailable > 0 && item.stack > 0) {
                 maximumSpawnable--;
                 slotsAvailable--;
                 item.stack--;
-                System.Int32 npc = NPC.NewNPC(item.GetSource_FromThis(), (System.Int32)item.Bottom.X, (System.Int32)item.Bottom.Y, ModContent.NPCType<DedicatedFaeling>());
+                int npc = NPC.NewNPC(item.GetSource_FromThis(), (int)item.Bottom.X, (int)item.Bottom.Y, ModContent.NPCType<DedicatedFaeling>());
                 if (npc >= 0) {
                     Main.npc[npc].shimmerTransparency = 1f;
                     NetMessage.SendData(MessageID.ShimmerActions, -1, -1, null, 2, npc);
@@ -53,7 +53,7 @@ public class ShimmerSystem : ModSystem {
             return;
         }
         if (item.prefix >= PrefixID.Count && PrefixLoader.GetPrefix(item.prefix) is IRemovedByShimmerPrefix shimmerablePrefix && shimmerablePrefix.CanBeRemovedByShimmer) {
-            System.Int32 oldStack = item.stack;
+            int oldStack = item.stack;
             item.SetDefaults(item.netID);
             item.stack = oldStack;
             item.prefix = 0;
@@ -81,7 +81,7 @@ public class ShimmerSystem : ModSystem {
             Item.ShimmerEffect(item.Center);
         }
         else {
-            NetMessage.SendData(146, -1, -1, null, 0, (System.Int32)item.Center.X, (System.Int32)item.Center.Y);
+            NetMessage.SendData(146, -1, -1, null, 0, (int)item.Center.X, (int)item.Center.Y);
             NetMessage.SendData(145, -1, -1, null, item.whoAmI, 1f);
         }
         AchievementsHelper.NotifyProgressionEvent(27);

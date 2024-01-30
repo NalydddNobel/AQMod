@@ -1,11 +1,12 @@
-﻿using Terraria.DataStructures;
+﻿using Microsoft.Xna.Framework;
+using Terraria.DataStructures;
 
 namespace Aequus.Content.Potions.Buffs.NeutronYogurt;
 
 public class NeutronYogurt : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 20;
-        Main.RegisterItemAnimation(Type, new DrawAnimationVertical(System.Int32.MaxValue, 3));
+        Main.RegisterItemAnimation(Type, new DrawAnimationVertical(int.MaxValue, 3));
         ItemID.Sets.DrinkParticleColors[Type] = new[] { Color.HotPink, Color.Yellow };
     }
 

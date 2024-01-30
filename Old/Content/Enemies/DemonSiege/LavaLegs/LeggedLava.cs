@@ -14,18 +14,18 @@ namespace Aequus.Old.Content.Enemies.DemonSiege.LavaLegs;
 [AutoloadBanner(legacyId: 8)]
 [ModBiomes(typeof(DemonSiegeZone))]
 public class LeggedLava : ModNPC {
-    public const Int32 FRAME_IDLE0 = 0;
-    public const Int32 FRAME_IDLE1 = 1;
-    public const Int32 FRAME_JUMPUP = 2;
-    public const Int32 FRAME_JUMPGOINGDOWN = 3;
-    public const Int32 FRAME_JUMPDOWN = 4;
+    public const int FRAME_IDLE0 = 0;
+    public const int FRAME_IDLE1 = 1;
+    public const int FRAME_JUMPUP = 2;
+    public const int FRAME_JUMPGOINGDOWN = 3;
+    public const int FRAME_JUMPDOWN = 4;
 
-    public const Int32 FRAME_JUMPRECOIL0 = 5;
-    public const Int32 FRAME_JUMPRECOIL1 = 6;
-    public const Int32 FRAME_JUMPRECOIL2 = 7;
-    public const Int32 FRAME_JUMPRECOIL3 = 8;
-    public const Int32 FRAME_JUMPRECOIL4 = 9;
-    public const Int32 FRAME_JUMPRECOIL5 = 10;
+    public const int FRAME_JUMPRECOIL0 = 5;
+    public const int FRAME_JUMPRECOIL1 = 6;
+    public const int FRAME_JUMPRECOIL2 = 7;
+    public const int FRAME_JUMPRECOIL3 = 8;
+    public const int FRAME_JUMPRECOIL4 = 9;
+    public const int FRAME_JUMPRECOIL5 = 10;
 
     public override void SetStaticDefaults() {
         Main.npcFrameCount[NPC.type] = 11;
@@ -63,8 +63,8 @@ public class LeggedLava : ModNPC {
         }
     }
 
-    public override void ApplyDifficultyAndPlayerScaling(Int32 numPlayers, Single balance, Single bossAdjustment) {
-        NPC.lifeMax = (Int32)(NPC.lifeMax * (1f + 0.1f * numPlayers));
+    public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment) {
+        NPC.lifeMax = (int)(NPC.lifeMax * (1f + 0.1f * numPlayers));
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -76,15 +76,15 @@ public class LeggedLava : ModNPC {
             return;
         }
 
-        Int32 count = 1;
+        int count = 1;
         if (NPC.life <= 0) {
             count = 20;
-            for (Int32 i = -1; i <= 1; i++) {
+            for (int i = -1; i <= 1; i++) {
                 NPC.NewGore(AequusTextures.LeggedLavaGoreFoot, NPC.Center + new Vector2(12f * i, 10f), NPC.velocity);
                 NPC.NewGore(AequusTextures.LeggedLavaGoreMuscle, NPC.Center + new Vector2(12f * i, 0f), NPC.velocity);
             }
         }
-        for (Int32 i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++) {
             var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Torch);
             d.velocity = (d.position - NPC.Center) / 8f;
             if (Main.rand.NextBool(3)) {
@@ -94,18 +94,18 @@ public class LeggedLava : ModNPC {
                 d.noGravity = true;
             }
         }
-        for (Int32 i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++) {
             Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.FoodPiece, newColor: Color.DarkRed);
         }
     }
 
-    private Boolean checkPlayerSights(Int32 chances = 4) {
+    private bool checkPlayerSights(int chances = 4) {
         if (Collision.CanHitLine(NPC.position, NPC.width, NPC.height, Main.player[NPC.target].position, Main.player[NPC.target].width, Main.player[NPC.target].width)) {
             return true;
         }
         else {
             NPC.ai[2]++;
-            if ((Int32)NPC.ai[2] > chances) {
+            if ((int)NPC.ai[2] > chances) {
                 NPC.ai[1] = 3f;
                 NPC.ai[2] = 0f;
                 return false;
@@ -115,11 +115,11 @@ public class LeggedLava : ModNPC {
     }
 
     private void TeleportEffect() {
-        for (Int32 i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {
             var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Torch);
             d.velocity = new Vector2(0f, 5f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
         }
-        for (Int32 i = 0; i < 30; i++) {
+        for (int i = 0; i < 30; i++) {
             var d = Dust.NewDustDirect(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Torch);
             d.noGravity = true;
             d.velocity.Y *= 0.2f;
@@ -131,7 +131,7 @@ public class LeggedLava : ModNPC {
     public override void AI() {
         if (NPC.velocity.Y == 0f)
             NPC.velocity.X *= 0.8f;
-        if ((Int32)NPC.ai[1] == 3) {
+        if ((int)NPC.ai[1] == 3) {
             NPC.ai[2]++;
             if (NPC.ai[2] > 60f) {
                 NPC.TargetClosest();
@@ -146,13 +146,13 @@ public class LeggedLava : ModNPC {
                     return;
                 }
 
-                Int32 cX = 0;
-                Int32 cY = 0;
-                Int32 playerX = (Int32)((target.position.X + target.width / 2f) / 16f);
-                Int32 playerY = (Int32)((target.position.Y + target.height / 2f) / 16f);
-                for (Int32 i = 0; i < 1000; i++) {
-                    Int32 x = playerX + Main.rand.Next(-40, 40);
-                    Int32 y = playerY + Main.rand.Next(-20, 20);
+                int cX = 0;
+                int cY = 0;
+                int playerX = (int)((target.position.X + target.width / 2f) / 16f);
+                int playerY = (int)((target.position.Y + target.height / 2f) / 16f);
+                for (int i = 0; i < 1000; i++) {
+                    int x = playerX + Main.rand.Next(-40, 40);
+                    int y = playerY + Main.rand.Next(-20, 20);
                     if (i >= 999) {
                         cX = x;
                         cY = y;
@@ -175,8 +175,8 @@ public class LeggedLava : ModNPC {
                         continue;
                     if (!Main.tile[x, y + 1].HasTile || !Main.tileSolid[Main.tile[x, y + 1].TileType])
                         continue;
-                    Int32 xOff = x - playerX;
-                    Int32 yOff = y - playerY;
+                    int xOff = x - playerX;
+                    int yOff = y - playerY;
                     if (Math.Sqrt(xOff * xOff + yOff * yOff) < 4.0)
                         continue;
                     cX = x;
@@ -194,15 +194,15 @@ public class LeggedLava : ModNPC {
                 NPC.ai[2] = 0f;
                 TeleportEffect();
             }
-            for (Int32 i = 0; i < 3; i++) {
-                Int32 d = Dust.NewDust(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Torch);
+            for (int i = 0; i < 3; i++) {
+                int d = Dust.NewDust(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Torch);
                 Main.dust[d].noGravity = true;
                 Main.dust[d].velocity.Y *= 0.2f;
                 Main.dust[d].velocity.X *= 3f;
                 Main.dust[d].scale *= Main.rand.NextFloat(0.5f, 2f);
             }
         }
-        else if ((Int32)NPC.ai[1] == 1) {
+        else if ((int)NPC.ai[1] == 1) {
             NPC.localAI[0]++;
             if (NPC.localAI[0] >= 36f) {
                 NPC.localAI[0] = 0f;
@@ -212,30 +212,30 @@ public class LeggedLava : ModNPC {
         }
         else {
             if (NPC.collideY) {
-                if ((Int32)NPC.ai[1] == 0) {
+                if ((int)NPC.ai[1] == 0) {
                     NPC.ai[1] = 1f;
                     NPC.netUpdate = true;
                     return;
                 }
             }
-            Boolean incrementTimer = true;
+            bool incrementTimer = true;
             if (NPC.ai[0] <= -20f) {
                 if (NPC.velocity.Y == 0f) {
-                    Int32 timer = (Int32)(-NPC.ai[0] - 20);
-                    if (timer <= 40 && (Int32)NPC.ai[1] != 2) {
+                    int timer = (int)(-NPC.ai[0] - 20);
+                    if (timer <= 40 && (int)NPC.ai[1] != 2) {
                         NPC.ai[1] = 2f;
                         checkPlayerSights(chances: 6);
                         if (Main.netMode != NetmodeID.MultiplayerClient) {
-                            Int32 projectileType = ModContent.ProjectileType<LeggedLavaProj>();
+                            int projectileType = ModContent.ProjectileType<LeggedLavaProj>();
                             var spawnPosition = NPC.Center;
-                            Int32 damage = 20;
-                            Single speed = 7f;
+                            int damage = 20;
+                            float speed = 7f;
                             if (Main.expertMode) {
                                 damage = 15;
                                 speed = 11f;
                             }
                             SoundEngine.PlaySound(SoundID.Item85, spawnPosition);
-                            for (Int32 i = 0; i < 3; i++) {
+                            for (int i = 0; i < 3; i++) {
                                 var velocity = new Vector2(0f, -1f).RotatedBy(-0.314f + 0.314f * i) * speed;
                                 Projectile.NewProjectile(NPC.GetSource_FromAI(), spawnPosition, velocity, projectileType, damage, 1f, Main.myPlayer);
                             }
@@ -245,16 +245,16 @@ public class LeggedLava : ModNPC {
                         NPC.ai[1] = 0f;
                         checkPlayerSights(chances: 6);
                         if (Main.netMode != NetmodeID.MultiplayerClient) {
-                            Int32 projectileType = ModContent.ProjectileType<LeggedLavaProj>();
+                            int projectileType = ModContent.ProjectileType<LeggedLavaProj>();
                             var spawnPosition = NPC.Center;
-                            Int32 damage = 15;
-                            Single speed = 6f;
+                            int damage = 15;
+                            float speed = 6f;
                             if (Main.expertMode) {
                                 damage = 20;
                                 speed = 9f;
                             }
                             SoundEngine.PlaySound(SoundID.Item85, spawnPosition);
-                            for (Int32 i = 0; i < 3; i++) {
+                            for (int i = 0; i < 3; i++) {
                                 var velocity = new Vector2(0f, -1f).RotatedBy(-0.314f + 0.314f * i) * speed;
                                 Projectile.NewProjectile(NPC.GetSource_FromAI(), spawnPosition, velocity, projectileType, damage, 1f, Main.myPlayer);
                             }
@@ -266,7 +266,7 @@ public class LeggedLava : ModNPC {
                 }
             }
             else {
-                Int32 jumpTime = (Int32)(NPC.ai[0] % 1000f);
+                int jumpTime = (int)(NPC.ai[0] % 1000f);
                 if (jumpTime > 40f) {
                     incrementTimer = false;
                     if (NPC.velocity.Y >= 0f) {
@@ -289,7 +289,7 @@ public class LeggedLava : ModNPC {
             Dust.NewDust(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Torch);
     }
 
-    public override void FindFrame(Int32 frameHeight) {
+    public override void FindFrame(int frameHeight) {
         if (NPC.velocity.Y != 0 && !NPC.collideY) {
             if (Math.Abs(NPC.velocity.Y) < 2f) {
                 NPC.frame.Y = frameHeight * FRAME_JUMPGOINGDOWN;
@@ -301,11 +301,11 @@ public class LeggedLava : ModNPC {
                 NPC.frame.Y = frameHeight * FRAME_JUMPDOWN;
             }
         }
-        else if ((Int32)NPC.ai[1] == 1) {
-            NPC.frame.Y = frameHeight * (FRAME_JUMPRECOIL0 + (Int32)(NPC.localAI[0] / 6f));
+        else if ((int)NPC.ai[1] == 1) {
+            NPC.frame.Y = frameHeight * (FRAME_JUMPRECOIL0 + (int)(NPC.localAI[0] / 6f));
         }
         else {
-            Int32 jumpTime = (Int32)(NPC.ai[0] % 1000f);
+            int jumpTime = (int)(NPC.ai[0] % 1000f);
             NPC.frameCounter += 1.0d;
             if (NPC.frameCounter >= 6.0d) {
                 NPC.frameCounter = 0.0d;
@@ -320,7 +320,7 @@ public class LeggedLava : ModNPC {
         npcLoot.Add(ItemDropRule.Common(ItemID.LavaCharm, chanceDenominator: 25));
     }
 
-    public override Boolean PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+    public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
         var texture = TextureAssets.Npc[Type].Value;
         var legsTexture = AequusTextures.LeggedLavaLegs.Value;
         var drawPosition = new Vector2(NPC.position.X + NPC.width / 2f, NPC.position.Y + NPC.height / 2f);
@@ -328,8 +328,8 @@ public class LeggedLava : ModNPC {
         var orig = new Vector2(NPC.frame.Width / 2f, NPC.frame.Height / 2f);
 
         if (NPC.ai[0] < -20f) {
-            Int32 timer = (Int32)(-NPC.ai[0] - 20);
-            Single progress = 0f;
+            int timer = (int)(-NPC.ai[0] - 20);
+            float progress = 0f;
             if (timer > 40) {
                 progress = (timer - 40f) / 40f;
             }
@@ -338,7 +338,7 @@ public class LeggedLava : ModNPC {
             }
             progress = 1f - progress;
             var spotlight = AequusTextures.BloomStrong;
-            var color = Color.Lerp(Color.Red, Color.OrangeRed, ((Single)Math.Sin(Main.GlobalTimeWrappedHourly * 25f) + 1f) / 2f);
+            var color = Color.Lerp(Color.Red, Color.OrangeRed, ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 25f) + 1f) / 2f);
             color *= progress;
             var spotlightOrigin = spotlight.Size() / 2f;
             Main.spriteBatch.Draw(spotlight, drawPosition + new Vector2(0f, 2f) - screenPos, null, color, NPC.rotation, spotlightOrigin, (NPC.scale * progress + 0.1f) * 0.6f, SpriteEffects.None, 0f);
@@ -349,7 +349,7 @@ public class LeggedLava : ModNPC {
         return false;
     }
 
-    public override Boolean? CanFallThroughPlatforms() {
+    public override bool? CanFallThroughPlatforms() {
         if (Main.player[NPC.target].dead) {
             return true;
         }

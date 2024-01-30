@@ -5,8 +5,8 @@ using Terraria.Localization;
 namespace Aequus.Old.Content.Equipment.GrapplingHooks.HealingGrappleHook;
 
 public class LeechHook : ModItem {
-    public static System.Int32 ArmorPenetration { get; set; } = 5;
-    public static System.Int32 HealAmount { get; set; } = 1;
+    public static int ArmorPenetration { get; set; } = 5;
+    public static int HealAmount { get; set; } = 1;
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ArmorPenetration);
 
     public override void SetStaticDefaults() {
@@ -33,7 +33,7 @@ public class LeechHook : ModItem {
         tooltips.RemoveKnockback();
     }
 
-    public override System.Boolean WeaponPrefix() {
+    public override bool WeaponPrefix() {
         return true;
     }
 

@@ -12,18 +12,18 @@ using Terraria.UI.Chat;
 namespace Aequus.Common.Backpacks;
 
 public class BackpackSlotsUI : UILayer {
-    public const Int32 SlotWidth = 56;
-    public const Single InventoryScale = 0.85f;
-    public const Int32 BackpackPadding = 6;
+    public const int SlotWidth = 56;
+    public const float InventoryScale = 0.85f;
+    public const int BackpackPadding = 6;
 
-    public static String HoveringBackpackSlotName { get; set; }
+    public static string HoveringBackpackSlotName { get; set; }
 
-    public override Boolean OnUIUpdate(GameTime gameTime) {
+    public override bool OnUIUpdate(GameTime gameTime) {
         return Main.playerInventory;
     }
 
-    protected override Boolean DrawSelf() {
-        HoveringBackpackSlotName = String.Empty;
+    protected override bool DrawSelf() {
+        HoveringBackpackSlotName = string.Empty;
         if (!Main.playerInventory) {
             return true;
         }
@@ -34,7 +34,7 @@ public class BackpackSlotsUI : UILayer {
 
         Main.inventoryScale = InventoryScale;
         var slotPositionOrigin = new Vector2(524f, 42f);
-        for (Int32 k = 0; k < backpackPlayer.backpacks.Length; k++) {
+        for (int k = 0; k < backpackPlayer.backpacks.Length; k++) {
             if (backpackPlayer.backpacks[k].Inventory == null) {
                 continue;
             }
@@ -52,11 +52,11 @@ public class BackpackSlotsUI : UILayer {
         var favoriteTexture = backpack.InventoryBackFavorited;
         var shinyTexture = backpack.InventoryBackNewItem;
         var slotOrigin = slotTexture.Size() / 2f;
-        Single slotsDrawn = 0f;
+        float slotsDrawn = 0f;
         var slotColor = Main.inventoryBack;
-        Boolean visible = backpack.IsActive(player) && backpack.IsVisible();
+        bool visible = backpack.IsActive(player) && backpack.IsVisible();
         for (; slotsDrawn < backpack.slotsToRender; slotsDrawn++) {
-            Int32 i = (Int32)slotsDrawn;
+            int i = (int)slotsDrawn;
             if (!backpack.Inventory.IndexInRange(i) || backpack.Inventory[i] == null) {
                 continue;
             }
@@ -64,7 +64,7 @@ public class BackpackSlotsUI : UILayer {
             var position = slotPositionOrigin + GetSlotOffset(i);
             var corner = position - slotOrigin * Main.inventoryScale;
 
-            Int32 context = ItemSlot.Context.VoidItem;
+            int context = ItemSlot.Context.VoidItem;
             if (Main.mouseX >= corner.X && Main.mouseX <= corner.X + slotTexture.Width * Main.inventoryScale && Main.mouseY >= corner.Y && Main.mouseY <= corner.Y + slotTexture.Height * Main.inventoryScale && !PlayerInput.IgnoreMouseInterface) {
                 player.mouseInterface = true;
                 var invItemOld = backpack.Inventory[i];
@@ -93,13 +93,13 @@ public class BackpackSlotsUI : UILayer {
             backpack.PostDrawSlot(Main.spriteBatch, position, corner, i);
         }
         if (backpack.nextSlotAnimation > 0f) {
-            var position = slotPositionOrigin + GetSlotOffset((Int32)slotsDrawn);
+            var position = slotPositionOrigin + GetSlotOffset((int)slotsDrawn);
             slotsDrawn += backpack.nextSlotAnimation;
-            Single rotation = 0f; /* InventoryUISystem.ExtraInventorySlotAnimation * MathHelper.TwoPi */
+            float rotation = 0f; /* InventoryUISystem.ExtraInventorySlotAnimation * MathHelper.TwoPi */
             Main.spriteBatch.Draw(slotTexture, position, null, slotColor * backpack.nextSlotAnimation, rotation, slotOrigin, Main.inventoryScale * backpack.nextSlotAnimation, SpriteEffects.None, 0f);
         }
         if (slotsDrawn > 0f) {
-            Single opacity;
+            float opacity;
             if (!visible) {
                 opacity = Math.Min(InventoryUISystem.CoinsAmmoOffsetX / 50f, 1f);
             }
@@ -110,9 +110,9 @@ public class BackpackSlotsUI : UILayer {
 
             var backpackText = backpack.GetDisplayName(player);
             var textOrigin = ChatManager.GetStringSize(FontAssets.MouseText.Value, backpackText, Vector2.One);
-            Single textScale = Math.Min(40f * Math.Max(backpack.slotCount / 5 + 1, 1) / textOrigin.X, 1f);
+            float textScale = Math.Min(40f * Math.Max(backpack.slotCount / 5 + 1, 1) / textOrigin.X, 1f);
             ChatManager.DrawColorCodedString(Main.spriteBatch, FontAssets.MouseText.Value, backpackText, slotPositionOrigin + new Vector2(-60f + 38f * MathF.Pow(opacity, 2f), textOrigin.Y / 2f - 42f), Main.inventoryBack * opacity, 0f, new Vector2(0f, textOrigin.Y / 2f), new Vector2(1f, opacity) * textScale);
-            Single xOffset = backpack.slotCount / 5 * SlotWidth * Main.inventoryScale + BackpackPadding;
+            float xOffset = backpack.slotCount / 5 * SlotWidth * Main.inventoryScale + BackpackPadding;
             if (!visible) {
                 xOffset *= MathF.Pow(slotsDrawn / backpack.slotCount, 2f);
             }
@@ -120,12 +120,12 @@ public class BackpackSlotsUI : UILayer {
         }
     }
 
-    private static Vector2 GetSlotOffset(Int32 index) {
+    private static Vector2 GetSlotOffset(int index) {
         return new Vector2(index / 5 * SlotWidth * Main.inventoryScale, index % 5 * SlotWidth * Main.inventoryScale);
     }
 
     public static void AddBackpackWarningTip(Item item) {
-        if (!String.IsNullOrEmpty(HoveringBackpackSlotName)) {
+        if (!string.IsNullOrEmpty(HoveringBackpackSlotName)) {
             Keyword tooltip = new Keyword(HoveringBackpackSlotName, Color.Lerp(Color.SaddleBrown * 1.5f, Color.White, 0.75f), ModContent.ItemType<ScavengerBag>());
             if (item.buffType > 0 && item.buffTime > 0) {
                 tooltip.AddLine(Language.GetTextValue("Mods.Aequus.Misc.BagWarningQuickBuff"));

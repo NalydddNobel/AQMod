@@ -8,8 +8,8 @@ public interface IEventBar {
     LocalizedText DisplayName { get; set; }
     Color BackgroundColor { get; }
 
-    System.Boolean IsActive();
-    System.Single GetEventProgress();
-    System.String GetProgressText(System.Single progress);
-    System.Boolean PreDraw(Texture2D texture, System.String eventName, Color nameBGColor, System.Single alpha);
+    bool IsActive();
+    float GetEventProgress();
+    string GetProgressText(float progress);
+    bool PreDraw(Texture2D texture, string eventName, Color nameBGColor, float alpha);
 }

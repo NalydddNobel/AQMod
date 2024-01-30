@@ -1,6 +1,7 @@
 ﻿using Aequus.Content.DataSets;
 using System.Diagnostics;
 using System.IO;
+using Terraria;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Common.Renaming;
@@ -8,17 +9,17 @@ namespace Aequus.Common.Renaming;
 [LegacyName("NPCNameTag")]
 [LegacyName("NameTagGlobalNPC")]
 public sealed class RenameNPC : GlobalNPC {
-    public System.Boolean HasCustomName => !System.String.IsNullOrEmpty(CustomName);
+    public bool HasCustomName => !string.IsNullOrEmpty(CustomName);
 
-    public System.String CustomName { get; set; } = System.String.Empty;
+    public string CustomName { get; set; } = string.Empty;
 
-    public override System.Boolean InstancePerEntity => true;
+    public override bool InstancePerEntity => true;
 
-    public override System.Boolean AppliesToEntity(NPC entity, System.Boolean lateInstantiation) {
+    public override bool AppliesToEntity(NPC entity, bool lateInstantiation) {
         return CanRename(entity);
     }
 
-    public override System.Boolean PreAI(NPC npc) {
+    public override bool PreAI(NPC npc) {
         if (npc.realLife != -1 && Main.npc[npc.realLife].TryGetGlobalNPC<RenameNPC>(out var nameTag)) {
             CustomName = nameTag.CustomName;
         }
@@ -42,16 +43,16 @@ public sealed class RenameNPC : GlobalNPC {
         var position = npc.position;
 
         // Workaround for vanilla entities not saving and loading properly
-        if (npc.netID == 0 && tag.TryGet("ID", out System.Int32 netID)) {
+        if (npc.netID == 0 && tag.TryGet("ID", out int netID)) {
             npc.netID = netID;
             npc.type = netID;
             npc.CloneDefaults(netID);
         }
 
         npc.position = position;
-        npc.timeLeft = (System.Int32)(NPC.activeTime * 1.25f);
+        npc.timeLeft = (int)(NPC.activeTime * 1.25f);
         npc.wet = Collision.WetCollision(npc.position, npc.width, npc.height);
-        if (tag.TryGet("NameTag", out System.String savedNameTag)) {
+        if (tag.TryGet("NameTag", out string savedNameTag)) {
             CustomName = savedNameTag;
         }
 
@@ -74,8 +75,8 @@ public sealed class RenameNPC : GlobalNPC {
         CustomName = binaryReader.ReadString();
     }
 
-    public static System.Boolean CanRename(NPC npc) {
-        if (NPCSets.NameTagOverride.TryGetValue(npc.netID, out System.Boolean canBeRenamedOverride)) {
+    public static bool CanRename(NPC npc) {
+        if (NPCSets.NameTagOverride.TryGetValue(npc.netID, out bool canBeRenamedOverride)) {
             return canBeRenamedOverride;
         }
 
@@ -84,7 +85,7 @@ public sealed class RenameNPC : GlobalNPC {
         }
 
         // Respawn Id used by the Coin Loss Revenge system. If the id is 0, this enemy cannot utilize that system, nor can it utilize nametag saving/loading.
-        if (NPCID.Sets.RespawnEnemyID.TryGetValue(npc.netID, out System.Int32 respawnId) && respawnId == 0) {
+        if (NPCID.Sets.RespawnEnemyID.TryGetValue(npc.netID, out int respawnId) && respawnId == 0) {
             return false;
         }
 

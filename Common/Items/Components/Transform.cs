@@ -7,13 +7,13 @@ public interface ITransformItem {
         Transform(player);
     }
 
-    void SlotTransform(Item[] inventory, System.Int32 context, System.Int32 slot) {
+    void SlotTransform(Item[] inventory, int context, int slot) {
         Transform(Main.LocalPlayer);
     }
 }
 
 internal sealed class TransformGlobalItem : GlobalItem {
-    public override System.Boolean AppliesToEntity(Item entity, System.Boolean lateInstantiation) {
+    public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
         return entity.ModItem is ITransformItem;
     }
 

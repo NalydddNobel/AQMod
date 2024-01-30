@@ -8,12 +8,12 @@ public class GrapplingHooksNPC : GlobalNPC {
         Meathook.CheckMeathookDamage(npc, ref modifiers);
     }
 
-    public override void OnHitByItem(NPC npc, Player player, Item item, NPC.HitInfo hit, System.Int32 damageDone) {
+    public override void OnHitByItem(NPC npc, Player player, Item item, NPC.HitInfo hit, int damageDone) {
         Meathook.CheckMeathookSound(npc);
         LeechHook.CheckLeechHook(player, npc);
     }
 
-    public override void OnHitByProjectile(NPC npc, Projectile projectile, NPC.HitInfo hit, System.Int32 damageDone) {
+    public override void OnHitByProjectile(NPC npc, Projectile projectile, NPC.HitInfo hit, int damageDone) {
         Meathook.CheckMeathookSound(npc);
         if (projectile.TryGetOwner(out Player owner)) {
             LeechHook.CheckLeechHook(owner, npc);

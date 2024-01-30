@@ -1,15 +1,16 @@
 ﻿using Aequus.Core.Graphics.Animations;
+using Microsoft.Xna.Framework;
 using System;
 
 namespace Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 
 public class AnimationTrashCompactor : ITileAnimation {
     public Vector2 Shake;
-    public Single ShakeTime;
-    public Int32 Frame;
-    public Int32 FrameTime;
+    public float ShakeTime;
+    public int Frame;
+    public int FrameTime;
 
-    public Boolean Update(Int32 x, Int32 y) {
+    public bool Update(int x, int y) {
         if (Frame != 0 || FrameTime != 0) {
             ModContent.GetInstance<TrashCompactor>().AnimateTile(ref Frame, ref FrameTime);
         }

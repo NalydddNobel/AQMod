@@ -1,14 +1,16 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria.Audio;
 
 namespace Aequus.Old.Content.Weapons.Melee.Slice;
 
 public class SliceOnHitEffect : ModProjectile {
-    public override String Texture => AequusTextures.Flare.Path;
+    public override string Texture => AequusTextures.Flare.Path;
 
-    private Boolean _playedSound;
+    private bool _playedSound;
 
-    public static Int32 SpawnOnNPC(Projectile projectile, NPC target) {
+    public static int SpawnOnNPC(Projectile projectile, NPC target) {
         var v = Main.rand.NextVector2Unit();
         var size = target.Size;
         size.X = Math.Max(size.X, 120f);
@@ -32,14 +34,14 @@ public class SliceOnHitEffect : ModProjectile {
             SoundEngine.PlaySound(AequusSounds.SwordHit, Projectile.Center);
         }
         if (Projectile.numUpdates == -1 && Projectile.ai[0] > 0f) {
-            var npc = Main.npc[(Int32)Projectile.ai[0] - 1];
+            var npc = Main.npc[(int)Projectile.ai[0] - 1];
             Projectile.position += npc.position - npc.oldPosition;
         }
     }
 
-    public override Boolean PreDraw(ref Color lightColor) {
-        Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out Int32 _);
-        Single intensity = MathF.Pow(MathF.Sin(Projectile.timeLeft / 16f * MathHelper.Pi), 2f);
+    public override bool PreDraw(ref Color lightColor) {
+        Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int _);
+        float intensity = MathF.Pow(MathF.Sin(Projectile.timeLeft / 16f * MathHelper.Pi), 2f);
         var color = new Color(100, 200, 255, 40) * intensity;
         Main.EntitySpriteDraw(
             texture,

@@ -9,14 +9,14 @@ namespace Aequus.Core.UI;
 /// </summary>
 [Autoload(Side = ModSide.Client)]
 public abstract class UILayer : GameInterfaceLayer, ILoadable {
-    public readonly String InsertLayer;
-    public readonly Int32 InsertOffset;
+    public readonly string InsertLayer;
+    public readonly int InsertOffset;
 
     /// <param name="Name">Name of this layer.</param>
     /// <param name="InsertLayer">Name of the layer to search the index of.</param>
     /// <param name="ScaleType">Scale Type of this layer.</param>
     /// <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
-    protected UILayer(String Name, String InsertLayer, InterfaceScaleType ScaleType, Int32 InsertOffset = 1) : base("Aequus: " + Name, ScaleType) {
+    protected UILayer(string Name, string InsertLayer, InterfaceScaleType ScaleType, int InsertOffset = 1) : base("Aequus: " + Name, ScaleType) {
         this.InsertLayer = InsertLayer;
         this.InsertOffset = InsertOffset;
     }
@@ -26,7 +26,7 @@ public abstract class UILayer : GameInterfaceLayer, ILoadable {
 
     public virtual void OnClearWorld() { }
     public virtual void OnPreUpdatePlayers() { }
-    public virtual Boolean OnUIUpdate(GameTime gameTime) => true;
+    public virtual bool OnUIUpdate(GameTime gameTime) => true;
 
     protected virtual void OnActivate() { }
     protected virtual void OnDeactivate() { }
@@ -104,7 +104,7 @@ public class UILayersSystem : ModSystem {
 
     public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers) {
         foreach (var i in _activeInterfaces) {
-            Int32 index = layers.FindIndex((l) => l.Name.Equals(i.InsertLayer));
+            int index = layers.FindIndex((l) => l.Name.Equals(i.InsertLayer));
             if (index != -1) {
                 layers.Insert(index + i.InsertOffset, i);
             }

@@ -1,4 +1,5 @@
-﻿using Terraria.GameContent.Golf;
+﻿using Microsoft.Xna.Framework;
+using Terraria.GameContent.Golf;
 using Terraria.Physics;
 
 namespace Aequus.Common.Golfing;
@@ -12,18 +13,18 @@ public interface IGolfBallProjectile {
     /// <param name="golfBall">The golf ball item.</param>
     /// <param name="projType">The projectile Id of the previously chosen golf ball.</param>
     /// <returns></returns>
-    System.Boolean OverrideGolfBallId(Player player, Item golfBall, System.Int32 projType) {
+    bool OverrideGolfBallId(Player player, Item golfBall, int projType) {
         return projType == ProjectileID.DirtGolfBall;
     }
 
-    System.Int32 GolfBallHitDustId => 31;
+    int GolfBallHitDustId => 31;
 
-    System.Boolean PreHit(Vector2 shotVector) {
+    bool PreHit(Vector2 shotVector) {
         return true;
     }
     void OnHit(Vector2 velocity, GolfHelper.ShotStrength shotStrength);
 
-    System.Boolean StepGolfBall(ref System.Single angularVelocity, out BallStepResult result) {
+    bool StepGolfBall(ref float angularVelocity, out BallStepResult result) {
         result = default;
         return false;
     }

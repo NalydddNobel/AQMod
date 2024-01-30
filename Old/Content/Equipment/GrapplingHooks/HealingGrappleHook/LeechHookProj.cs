@@ -1,5 +1,6 @@
 ﻿using Aequus.Old.Content.Equipment.GrapplingHooks.EnemyGrappleHook;
 using System;
+using System.IO;
 using Terraria.GameContent;
 
 namespace Aequus.Old.Content.Equipment.GrapplingHooks.HealingGrappleHook;
@@ -27,7 +28,7 @@ public class LeechHookProj : MeathookProj {
         hitbox = Utils.CenteredRectangle(hitbox.Center.ToVector2(), hitbox.Size() * 3.5f);
     }
 
-    public override Boolean PreAI() {
+    public override bool PreAI() {
         if (Projectile.originalDamage <= 0) {
             Projectile.originalDamage = Projectile.damage;
         }
@@ -48,7 +49,7 @@ public class LeechHookProj : MeathookProj {
             if (Main.myPlayer == Projectile.owner && Main.GameUpdateCount % 20 == 0) {
                 player.Heal(2);
             }
-            for (Int32 i = 0; i < Main.maxProjectiles; i++) {
+            for (int i = 0; i < Main.maxProjectiles; i++) {
                 if (i != Projectile.whoAmI && Main.projectile[i].active && Main.projectile[i].aiStyle == ProjAIStyleID.Hook && Main.projectile[i].owner == Projectile.owner) {
                     Main.projectile[i].Kill();
                 }
@@ -65,19 +66,19 @@ public class LeechHookProj : MeathookProj {
         return true;
     }
 
-    public override Boolean? CanHitNPC(NPC target) {
+    public override bool? CanHitNPC(NPC target) {
         return target.immortal ? false : null;
     }
 
-    public override Single GrappleRange() {
+    public override float GrappleRange() {
         return 272f;
     }
 
-    public override void GrappleRetreatSpeed(Player player, ref Single speed) {
+    public override void GrappleRetreatSpeed(Player player, ref float speed) {
         speed = 14f;
     }
 
-    public override void GrapplePullSpeed(Player player, ref Single speed) {
+    public override void GrapplePullSpeed(Player player, ref float speed) {
         speed = 10f;
     }
 
@@ -85,20 +86,20 @@ public class LeechHookProj : MeathookProj {
         modifiers.Knockback *= 0.25f;
     }
 
-    public override void OnHitNPC(NPC target, NPC.HitInfo hit, Int32 damageDone) {
+    public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
         Projectile.ai[0] = 0f;
         ConnectedNPC = target.whoAmI;
         Projectile.tileCollide = false;
         Projectile.netUpdate = true;
     }
 
-    public override Boolean PreDrawExtras() {
+    public override bool PreDrawExtras() {
         return false;
     }
 
-    public override Boolean PreDraw(ref Color lightColor) {
+    public override bool PreDraw(ref Color lightColor) {
         var player = Main.player[Projectile.owner];
-        Single playerLength = (player.Center - Projectile.Center).Length();
+        float playerLength = (player.Center - Projectile.Center).Length();
         var texture = TextureAssets.Projectile[Type].Value;
         var drawPosition = Projectile.Center - Main.screenPosition;
         DrawChain(AequusTextures.LeechHookProj_Chain, Projectile.Center, player.Center);
@@ -107,18 +108,18 @@ public class LeechHookProj : MeathookProj {
     }
 
     public void DrawChain(Texture2D chain, Vector2 currentPosition, Vector2 endPosition) {
-        Single range = GrappleRange();
-        Int32 height = chain.Height - 2;
+        float range = GrappleRange();
+        int height = chain.Height - 2;
         var velocity = endPosition - currentPosition;
         velocity.Normalize();
         velocity *= height;
-        Single rotation = velocity.ToRotation() + MathHelper.PiOver2;
+        float rotation = velocity.ToRotation() + MathHelper.PiOver2;
         var origin = new Vector2(chain.Width / 2f, chain.Height / 2f);
-        Single progress = 0f;
-        for (Int32 i = 0; i < 650; i++) {
+        float progress = 0f;
+        for (int i = 0; i < 650; i++) {
             var diff = endPosition - currentPosition;
-            Single length = diff.Length();
-            Single scale = Projectile.scale;
+            float length = diff.Length();
+            float scale = Projectile.scale;
             var color = ExtendLight.Get(currentPosition);
             if (progress > 0.25f) {
                 scale *= Math.Max(1f - (progress - 0.25f) / 0.75f, 0.35f);

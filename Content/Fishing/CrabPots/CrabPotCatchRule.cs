@@ -2,18 +2,18 @@
 
 namespace Aequus.Content.Fishing.CrabPots;
 
-public record struct CrabPotCatchRule(System.Int32 ItemId, System.Int32 ChanceDenominator, System.Int32 ChanceNumerator = 1, System.Int32 MinStack = 1, System.Int32 MaxStack = 1, CrabPotCatchRule.CrabPotCondition Condition = null) {
-    public delegate System.Boolean CrabPotCondition(System.Int32 x, System.Int32 y);
+public record struct CrabPotCatchRule(int ItemId, int ChanceDenominator, int ChanceNumerator = 1, int MinStack = 1, int MaxStack = 1, CrabPotCatchRule.CrabPotCondition Condition = null) {
+    public delegate bool CrabPotCondition(int x, int y);
 
-    public System.Boolean PassesCondition(System.Int32 x, System.Int32 y) {
+    public bool PassesCondition(int x, int y) {
         return Condition?.Invoke(x, y) != false;
     }
 
-    public System.Boolean RollChance(UnifiedRandom random) {
+    public bool RollChance(UnifiedRandom random) {
         return random.Next(ChanceDenominator) <= ChanceNumerator;
     }
 
-    public System.Int32 RollStack(UnifiedRandom random) {
+    public int RollStack(UnifiedRandom random) {
         return random.Next(MinStack, MaxStack);
     }
 }

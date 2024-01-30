@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria.GameContent;
 
 namespace Aequus.Content.Weapons.Classless.StunGun;
 
 public class StunGunProj : ModProjectile {
-    public override String Texture => AequusTextures.Extra(ExtrasID.RainbowRodTrailShape);
+    public override string Texture => AequusTextures.Extra(ExtrasID.RainbowRodTrailShape);
 
     public override void SetStaticDefaults() {
         ProjectileID.Sets.TrailCacheLength[Type] = 100;
@@ -22,7 +23,7 @@ public class StunGunProj : ModProjectile {
         Projectile.timeLeft = 400;
     }
 
-    public override Boolean TileCollideStyle(ref Int32 width, ref Int32 height, ref Boolean fallThrough, ref Vector2 hitboxCenterFrac) {
+    public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
         width = 2;
         height = 2;
         return true;
@@ -60,7 +61,7 @@ public class StunGunProj : ModProjectile {
             Projectile.velocity = velocity.RotatedBy(Main.rand.NextFloat(-0.4f, 0.4f));
         }
         if (Projectile.friendly) {
-            Int32 target = Projectile.FindTargetWithLineOfSight(100f);
+            int target = Projectile.FindTargetWithLineOfSight(100f);
             if (target != -1) {
                 velocity = Vector2.Lerp(velocity, Projectile.DirectionTo(Main.npc[target].Center) * 16f, 0.3f);
                 Projectile.ai[0] = velocity.X;
@@ -82,7 +83,7 @@ public class StunGunProj : ModProjectile {
         }
     }
 
-    public override Boolean OnTileCollide(Vector2 oldVelocity) {
+    public override bool OnTileCollide(Vector2 oldVelocity) {
         OnHitAnythingAtAll();
         return false;
     }
@@ -91,7 +92,7 @@ public class StunGunProj : ModProjectile {
         modifiers.SetMaxDamage(target.lifeMax / 5);
     }
 
-    public override void OnHitNPC(NPC target, NPC.HitInfo hit, Int32 damageDone) {
+    public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
         if (target.reflectsProjectiles || target.type == NPCID.ShimmerSlime) {
             target.ReflectProjectile(Projectile);
             Projectile.penetrate = 2;
@@ -111,8 +112,8 @@ public class StunGunProj : ModProjectile {
         Projectile.Center = target.Center;
     }
 
-    public override Boolean PreDraw(ref Color lightColor) {
-        Single opacity = Projectile.Opacity;
+    public override bool PreDraw(ref Color lightColor) {
+        float opacity = Projectile.Opacity;
         DrawHelper.DrawBasicVertexLine(TextureAssets.MagicPixel.Value, Projectile.oldPos, Projectile.oldRot,
             (p) => Color.Cyan with { A = 0 } * opacity * p,
             (p) => 2f + MathF.Sin(p * MathHelper.Pi) * (2f * opacity),

@@ -1,4 +1,6 @@
-﻿using ReLogic.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
@@ -6,10 +8,10 @@ using Terraria.GameContent;
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger;
 
 public partial class Scavenger {
-    public static readonly HashSet<Int32> HeadSkinOverride = new();
-    public static readonly HashSet<Int32> BackArmSkinOverride = new();
+    public static readonly HashSet<int> HeadSkinOverride = new();
+    public static readonly HashSet<int> BackArmSkinOverride = new();
 
-    private record struct DrawInfo(SpriteBatch spriteBatch, Vector2 drawCoordinates, Color drawColor, Rectangle bodyFrame, Int32 frameWidth, Int32 frameHeight, Single Opacity, SpriteEffects ArmorSpriteEffects);
+    private record struct DrawInfo(SpriteBatch spriteBatch, Vector2 drawCoordinates, Color drawColor, Rectangle bodyFrame, int frameWidth, int frameHeight, float Opacity, SpriteEffects ArmorSpriteEffects);
 
     private void SetupDrawLookups() {
         HeadSkinOverride.Add(ArmorIDs.Head.SilverHelmet);
@@ -24,7 +26,7 @@ public partial class Scavenger {
         spriteBatch.Draw(helmetTexture, drawCoordinates, bodyFrame, drawColor, NPC.rotation, bodyFrame.Size() / 2f, NPC.scale, ArmorSpriteEffects, 0f);
     }
 
-    private void DrawBody(SpriteBatch spriteBatch, Vector2 drawCoordinates, Color drawColor, Texture2D bodyTexture, Rectangle bodyFrame, Int32 frameWidth, Int32 frameHeight, SpriteEffects ArmorSpriteEffects, Boolean drawBackArm = true) {
+    private void DrawBody(SpriteBatch spriteBatch, Vector2 drawCoordinates, Color drawColor, Texture2D bodyTexture, Rectangle bodyFrame, int frameWidth, int frameHeight, SpriteEffects ArmorSpriteEffects, bool drawBackArm = true) {
         var bodyOffset = Main.OffsetsPlayerHeadgear[bodyFrame.Y / frameHeight] + new Vector2(0f, -2f);
         spriteBatch.Draw(bodyTexture, drawCoordinates + bodyOffset, new(frameWidth * 3, frameHeight * 3, frameWidth, frameHeight), drawColor, NPC.rotation, bodyFrame.Size() / 2f, NPC.scale, ArmorSpriteEffects, 0f);
 
@@ -33,14 +35,14 @@ public partial class Scavenger {
         spriteBatch.Draw(bodyTexture, drawCoordinates + bodyOffset, new(0, frameHeight, frameWidth, frameHeight), drawColor, NPC.rotation, bodyFrame.Size() / 2f, NPC.scale, ArmorSpriteEffects, 0f);
     }
 
-    private void DrawFrontArm(SpriteBatch spriteBatch, Vector2 drawCoordinates, Color drawColor, Texture2D bodyTexture, Rectangle bodyFrame, Int32 frameWidth, Int32 frameHeight, SpriteEffects ArmorSpriteEffects, Boolean layerFront = false) {
+    private void DrawFrontArm(SpriteBatch spriteBatch, Vector2 drawCoordinates, Color drawColor, Texture2D bodyTexture, Rectangle bodyFrame, int frameWidth, int frameHeight, SpriteEffects ArmorSpriteEffects, bool layerFront = false) {
         var bodyOffset = Main.OffsetsPlayerHeadgear[bodyFrame.Y / frameHeight] + new Vector2(0f, -2f);
         if (!layerFront) {
             spriteBatch.Draw(bodyTexture, drawCoordinates + bodyOffset, new(frameWidth * 3, frameHeight, frameWidth, frameHeight), drawColor, NPC.rotation, bodyFrame.Size() / 2f, NPC.scale, ArmorSpriteEffects, 0f);
         }
     }
 
-    private Boolean PrepareDraw(Int32 item, Func<Item, Int32> getSlot, Action<Int32> load, out Int32 slotId) {
+    private bool PrepareDraw(int item, Func<Item, int> getSlot, Action<int> load, out int slotId) {
         if (armor[item] == null) {
             slotId = 0;
             return false;
@@ -53,31 +55,31 @@ public partial class Scavenger {
         return true;
     }
 
-    private void DrawBodyFull(Int32 item, Func<Item, Int32> getSlot, Action<Int32> load, Asset<Texture2D>[] textureArr, DrawInfo drawInfo) {
-        if (!PrepareDraw(item, getSlot, load, out Int32 slotId)) {
+    private void DrawBodyFull(int item, Func<Item, int> getSlot, Action<int> load, Asset<Texture2D>[] textureArr, DrawInfo drawInfo) {
+        if (!PrepareDraw(item, getSlot, load, out int slotId)) {
             return;
         }
         DrawBody(drawInfo.spriteBatch, drawInfo.drawCoordinates, drawInfo.drawColor, textureArr[slotId].Value, drawInfo.bodyFrame, drawInfo.frameWidth, drawInfo.frameHeight, drawInfo.ArmorSpriteEffects);
     }
 
-    private void DrawFrontArmFull(Int32 item, Func<Item, Int32> getSlot, Action<Int32> load, Asset<Texture2D>[] textureArr, DrawInfo drawInfo, Boolean layerFront) {
-        if (!PrepareDraw(item, getSlot, load, out Int32 slotId)) {
+    private void DrawFrontArmFull(int item, Func<Item, int> getSlot, Action<int> load, Asset<Texture2D>[] textureArr, DrawInfo drawInfo, bool layerFront) {
+        if (!PrepareDraw(item, getSlot, load, out int slotId)) {
             return;
         }
         DrawFrontArm(drawInfo.spriteBatch, drawInfo.drawCoordinates, drawInfo.drawColor, textureArr[slotId].Value, drawInfo.bodyFrame, drawInfo.frameWidth, drawInfo.frameHeight, drawInfo.ArmorSpriteEffects, layerFront);
     }
 
-    private void DrawHelmetFull(Int32 item, Func<Item, Int32> getSlot, Action<Int32> load, Asset<Texture2D>[] textureArr, DrawInfo drawInfo) {
-        if (!PrepareDraw(item, getSlot, load, out Int32 slotId)) {
+    private void DrawHelmetFull(int item, Func<Item, int> getSlot, Action<int> load, Asset<Texture2D>[] textureArr, DrawInfo drawInfo) {
+        if (!PrepareDraw(item, getSlot, load, out int slotId)) {
             return;
         }
         DrawHelmet(drawInfo.spriteBatch, drawInfo.drawCoordinates, drawInfo.drawColor, textureArr[slotId].Value, drawInfo.bodyFrame, drawInfo.ArmorSpriteEffects);
     }
 
-    public override Boolean PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+    public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
         drawColor = NPC.GetNPCColorTintedByBuffs(drawColor);
-        Int32 x = 40;
-        Int32 y = 56;
+        int x = 40;
+        int y = 56;
         var bodyFrame = (NPC.frame.Y / NPC.frame.Height) switch {
             0 => new Rectangle(0, y * 5, x, y),
             _ => new Rectangle(0, y * (NPC.frame.Y / NPC.frame.Height + 5), x, y)
@@ -85,7 +87,7 @@ public partial class Scavenger {
         var positionOffset = Main.OffsetsPlayerHeadgear[bodyFrame.Y / y];
         var drawCoordinates = NPC.Center - screenPos + new Vector2(0f, NPC.gfxOffY - 4f);
         var armorSpriteEffects = NPC.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-        Single opacity = NPC.Opacity * (1f - NPC.shimmerTransparency);
+        float opacity = NPC.Opacity * (1f - NPC.shimmerTransparency);
 
         ExtendNPC.DrawNPCStatusEffects(spriteBatch, NPC, screenPos);
 
@@ -127,7 +129,7 @@ public partial class Scavenger {
         DrawFrontArmFull(SLOT_BODY, (i) => i.bodySlot, Main.instance.LoadArmorBody, TextureAssets.ArmorBodyComposite, drawInfo, layerFront: true);
         DrawFrontArmFull(SLOT_ACCS, (i) => i.handOnSlot, Main.instance.LoadAccHandsOn, TextureAssets.AccHandsOn, drawInfo, layerFront: true);
 
-        Boolean hideShoes = armor[SLOT_LEGS].legSlot > 0 && ArmorIDs.Legs.Sets.OverridesLegs[armor[SLOT_LEGS].legSlot];
+        bool hideShoes = armor[SLOT_LEGS].legSlot > 0 && ArmorIDs.Legs.Sets.OverridesLegs[armor[SLOT_LEGS].legSlot];
         if (hideShoes || armor[SLOT_ACCS].shoeSlot <= 0 || !ArmorIDs.Shoe.Sets.OverridesLegs[armor[SLOT_ACCS].shoeSlot]) {
             DrawHelmetFull(SLOT_LEGS, (i) => i.legSlot, Main.instance.LoadArmorLegs, TextureAssets.ArmorLeg, drawInfo);
         }

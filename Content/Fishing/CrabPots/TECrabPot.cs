@@ -1,5 +1,6 @@
 ﻿using Aequus.Core;
 using Aequus.Core.Graphics.Animations;
+using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 using Terraria.DataStructures;
@@ -10,44 +11,44 @@ using Terraria.Utilities;
 namespace Aequus.Content.Fishing.CrabPots;
 
 public class TECrabPot : ModTileEntity {
-    public static Int32 ChancePerTick { get; set; } = 100000;
+    public static int ChancePerTick { get; set; } = 100000;
 
     /// <summary>
     /// Multiplier to <see cref="ChancePerTick"/> for crab pots inside of lava. Defaults to 2 (chance is twice as rare)
     /// </summary>
-    public static Double LavaEffectiveness { get; set; } = 2.0;
+    public static double LavaEffectiveness { get; set; } = 2.0;
 
     /// <summary>
     /// Determines how effective bait is. Defaults to 0.5 (50% effectiveness)
     /// <para>Bait divides <see cref="ChancePerTick"/> by its bait power multiplied by this value. So a 50 bait power bait would divide <see cref="ChancePerTick"/> by 25 by default.</para>
     /// </summary>
-    public static Double BaitEffectiveness { get; set; } = 0.5;
+    public static double BaitEffectiveness { get; set; } = 0.5;
 
     public Item item = new();
     /// <summary>
     /// Determines whether or not the item was from a catch.
     /// This prevents some catches, like Jellyfishes being used as bait or being indicated as bait.
     /// </summary>
-    public Boolean caught;
+    public bool caught;
 
     public CrabPotBiomeData biomeData;
 
-    public static Int32 WaterStyle => LiquidsSystem.WaterStyle;
+    public static int WaterStyle => LiquidsSystem.WaterStyle;
 
-    public override Boolean IsTileValidForEntity(Int32 x, Int32 y) {
+    public override bool IsTileValidForEntity(int x, int y) {
         return Main.tile[x, y].HasTile && Main.tile[x, y].TileFrameX % 36 == 0 && Main.tile[x, y].TileFrameY == 0 && TileLoader.GetTile(Main.tile[x, y].TileType) is BaseCrabPot;
     }
 
-    public static void PlacementEffects(Int32 x, Int32 y) {
+    public static void PlacementEffects(int x, int y) {
         if (Main.netMode != NetmodeID.Server) {
             AnimationSystem.GetValueOrAddDefault<AnimationPlaceCrabPot>(x, y);
         }
     }
 
-    public override Int32 Hook_AfterPlacement(Int32 i, Int32 j, Int32 type, Int32 style, Int32 direction, Int32 alternate) {
+    public override int Hook_AfterPlacement(int i, int j, int type, int style, int direction, int alternate) {
         var tileData = TileObjectData.GetTileData(type, style, alternate);
-        Int32 x = i - tileData.Origin.X;
-        Int32 y = j - tileData.Origin.Y;
+        int x = i - tileData.Origin.X;
+        int y = j - tileData.Origin.Y;
         var biomeData = new CrabPotBiomeData(GetWaterStyle(x, y));
         if (Main.netMode == NetmodeID.MultiplayerClient) {
             NetMessage.SendTileSquare(Main.myPlayer, x, y, tileData.Width, tileData.Height);
@@ -55,7 +56,7 @@ public class TECrabPot : ModTileEntity {
             return -1;
         }
 
-        Int32 id = Place(x, y);
+        int id = Place(x, y);
         ((TECrabPot)ByID[id]).biomeData = biomeData;
         PlacementEffects(x, y);
         return id;
@@ -96,14 +97,14 @@ public class TECrabPot : ModTileEntity {
             return;
         }
 
-        for (Int32 i = 0; i < 5; i++) {
-            Int32 fishChoice = random.Next(rules.Count);
+        for (int i = 0; i < 5; i++) {
+            int fishChoice = random.Next(rules.Count);
             var rule = rules[fishChoice];
             if (!rule.PassesCondition(Position.X, Position.Y) || !rule.RollChance(random)) {
                 continue;
             }
 
-            Int32 stack = rule.RollStack(random);
+            int stack = rule.RollStack(random);
             item = new(rule.ItemId, stack);
             caught = true;
             return;
@@ -116,12 +117,12 @@ public class TECrabPot : ModTileEntity {
         }
 
         caught = false;
-        Int32 chance = ChancePerTick;
+        int chance = ChancePerTick;
         if (biomeData.LiquidStyle == WaterStyleID.Lava) {
-            chance = (Int32)Math.Max(chance * LavaEffectiveness, 1f);
+            chance = (int)Math.Max(chance * LavaEffectiveness, 1f);
         }
         if (!item.IsAir && item.bait > 0) {
-            chance /= (Int32)Math.Max(item.bait * BaitEffectiveness, 1f);
+            chance /= (int)Math.Max(item.bait * BaitEffectiveness, 1f);
         }
 
         if (Main.rand.NextBool(chance)) {
@@ -142,7 +143,7 @@ public class TECrabPot : ModTileEntity {
         }
     }
 
-    public static Int32 GetWaterStyle(Int32 x, Int32 y) {
+    public static int GetWaterStyle(int x, int y) {
         return Framing.GetTileSafely(x, y).LiquidType switch {
             LiquidID.Shimmer => 14,
             LiquidID.Honey => WaterStyleID.Honey,

@@ -5,12 +5,12 @@ namespace Aequus.Content.Equipment.Accessories.GoldenFeather;
 
 [LegacyName("BloodCrystal", "BloodCurcleav")]
 public class GoldenFeather : ModItem {
-    public static System.Int32 RespawnTimeAmount { get; set; } = -300;
-    public static System.Int32 LifeRegenerationAmount { get; set; } = 1;
+    public static int RespawnTimeAmount { get; set; } = -300;
+    public static int LifeRegenerationAmount { get; set; } = 1;
 
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Seconds(-RespawnTimeAmount), ExtendLanguage.Decimals(LifeRegenerationAmount / 2f));
 
-    public virtual System.Int32 BuffType => ModContent.BuffType<GoldenFeatherBuff>();
+    public virtual int BuffType => ModContent.BuffType<GoldenFeatherBuff>();
 
     public override void SetDefaults() {
         Item.DefaultToAccessory();
@@ -18,7 +18,7 @@ public class GoldenFeather : ModItem {
         Item.value = ItemCommons.Price.SkyMerchantShopItem;
     }
 
-    public override void UpdateAccessory(Player player, System.Boolean hideVisual) {
+    public override void UpdateAccessory(Player player, bool hideVisual) {
         player.GetModPlayer<AequusPlayer>().accGoldenFeather = Item;
     }
 }

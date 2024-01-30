@@ -10,7 +10,7 @@ public class TextBroadcast {
     /// <param name="key"></param>
     /// <param name="color"></param>
     /// <param name="args"></param>
-    internal static void NewText(System.String key, Color color, params System.Object[] args) {
+    internal static void NewText(string key, Color color, params object[] args) {
         if (Main.netMode == NetmodeID.SinglePlayer) {
             Main.NewText(Language.GetTextValue(key, args), color);
         }
@@ -24,7 +24,7 @@ public class TextBroadcast {
     /// </summary>
     /// <param name="text"></param>
     /// <param name="color"></param>
-    public static void NewText(System.String text, Color color) {
+    public static void NewText(string text, Color color) {
         NewTextLiteral(text, color);
     }
 
@@ -33,7 +33,7 @@ public class TextBroadcast {
     /// </summary>
     /// <param name="text"></param>
     /// <param name="color"></param>
-    public static void NewTextLiteral(System.String text, Color color) {
+    public static void NewTextLiteral(string text, Color color) {
         if (Main.netMode != NetmodeID.Server) {
             Main.NewText(Language.GetTextValue(text), color);
             return;

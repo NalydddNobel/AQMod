@@ -15,14 +15,14 @@ public class CommonLight {
 
     public static Vector3 OmegaStarite { get; set; } = new Vector3(0.1f, 0.6f, 1f);
 
-    public const System.Single ShadowOrbBrightness = 0.9f;
-    public const System.Single FairyBrightness = 0.9f;
-    public const System.Single FlickerwickBrightness = 1f;
-    public const System.Single WispInABottleBrightness = 1.5f;
-    public const System.Single SuspiciousLookingTentacleBrightness = 2f;
-    public const System.Single PumpkinScentedCandleBrightness = 1.5f;
-    public const System.Single ToyGolemBrightness = 1.5f;
-    public const System.Single FairyPrincessBrightness = 1.5f;
+    public const float ShadowOrbBrightness = 0.9f;
+    public const float FairyBrightness = 0.9f;
+    public const float FlickerwickBrightness = 1f;
+    public const float WispInABottleBrightness = 1.5f;
+    public const float SuspiciousLookingTentacleBrightness = 2f;
+    public const float PumpkinScentedCandleBrightness = 1.5f;
+    public const float ToyGolemBrightness = 1.5f;
+    public const float FairyPrincessBrightness = 1.5f;
 
-    public static System.Single OmegaStariteBrightness { get; set; } = 1f;
+    public static float OmegaStariteBrightness { get; set; } = 1f;
 }

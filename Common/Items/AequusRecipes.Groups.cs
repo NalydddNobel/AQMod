@@ -34,16 +34,16 @@ public partial class AequusRecipes {
         AnyCoatings = NewGroup("AnyCoatings", GetItems((i) => i.paintCoating > PaintCoatingID.None));
     }
 
-    private static RecipeGroup NewGroup(String name, params Int32[] items) {
+    private static RecipeGroup NewGroup(string name, params int[] items) {
         RecipeGroup group = new RecipeGroup(() => Language.GetOrRegister("Mods.Aequus.Items.RecipeGroups." + name + ".DisplayName").Value, items);
         RecipeGroup.RegisterGroup(name, group);
         return group;
     }
 
-    private static Int32[] GetItems(Predicate<Item> predicate, Boolean vanillaOnly = false) {
-        List<Int32> list = new List<Int32>();
-        Int32 count = vanillaOnly ? ItemID.Count : ItemLoader.ItemCount;
-        for (Int32 i = 0; i < count; i++) {
+    private static int[] GetItems(Predicate<Item> predicate, bool vanillaOnly = false) {
+        List<int> list = new List<int>();
+        int count = vanillaOnly ? ItemID.Count : ItemLoader.ItemCount;
+        for (int i = 0; i < count; i++) {
             if (predicate(ContentSamples.ItemsByType[i])) {
                 list.Add(i);
             }

@@ -30,11 +30,11 @@ public class PaintSets : DataSet {
         GolfBalls.Add(PaintColor.White, (ItemEntry)ItemID.GolfBall);
         AutogenerateColorLookup(GolfBalls, "GolfBallDyed", "");
 
-        static void AutogenerateColorLookup(Dictionary<PaintColor, ItemEntry> dictionary, System.String prefix, System.String suffix) {
-            for (System.Int32 i = 0; i < (System.Int32)PaintColor.Count; i++) {
+        static void AutogenerateColorLookup(Dictionary<PaintColor, ItemEntry> dictionary, string prefix, string suffix) {
+            for (int i = 0; i < (int)PaintColor.Count; i++) {
                 var key = (PaintColor)i;
-                System.String name = prefix + key.ToString() + suffix;
-                if (ItemID.Search.TryGetId(name, out System.Int32 id)) {
+                string name = prefix + key.ToString() + suffix;
+                if (ItemID.Search.TryGetId(name, out int id)) {
                     dictionary.Add(key, (ItemEntry)id);
                 }
             }

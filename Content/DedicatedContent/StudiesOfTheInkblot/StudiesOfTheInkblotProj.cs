@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReLogic.Content;
+using System;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 
@@ -25,7 +26,7 @@ public class StudiesOfTheInkblotProj : ModProjectile {
     }
 
     public override void AI() {
-        if ((Int32)Projectile.ai[0] >= 100f) {
+        if ((int)Projectile.ai[0] >= 100f) {
             Projectile.ai[0]++;
             if (Projectile.ai[0] > 120f && Projectile.localAI[1] <= 0f) {
                 Projectile.position.X -= 40f;
@@ -58,20 +59,20 @@ public class StudiesOfTheInkblotProj : ModProjectile {
             if (Projectile.alpha > 0)
                 Projectile.alpha -= 25;
             Projectile.localAI[0] *= 0.8f;
-            Single colorMultiplier = 1 - Projectile.alpha / 255f;
+            float colorMultiplier = 1 - Projectile.alpha / 255f;
             Lighting.AddLight(Projectile.Center, Projectile.GetAlpha(default(Color)).ToVector3() * Projectile.scale * 0.5f * colorMultiplier);
         }
     }
 
-    public override Boolean PreDraw(ref Color lightColor) {
+    public override bool PreDraw(ref Color lightColor) {
         if (Projectile.alpha > 255) {
             return false;
         }
         if (Projectile.ai[1] == 0f) {
             Projectile.ai[1] = 20f;
         }
-        Single colorMultiplier = 1 - Projectile.alpha / 255f;
-        Single colorMultiplierSquared = colorMultiplier * colorMultiplier;
+        float colorMultiplier = 1 - Projectile.alpha / 255f;
+        float colorMultiplierSquared = colorMultiplier * colorMultiplier;
         var texture = TextureAssets.Projectile[Type].Value;
         var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
         var spotlight = AequusTextures.Bloom;
@@ -85,7 +86,7 @@ public class StudiesOfTheInkblotProj : ModProjectile {
 
         if (Projectile.ai[0] > 120f) {
             var explosionTexture = AequusTextures.GenericExplosion.Value;
-            Int32 explosionFrameNumber = (Int32)((Projectile.ai[0] - 120f) / 4f);
+            int explosionFrameNumber = (int)((Projectile.ai[0] - 120f) / 4f);
             var explosionFrame = explosionTexture.Frame(verticalFrames: 7, frameY: explosionFrameNumber);
             var explosionOrigin = explosionFrame.Size() / 2f;
             Main.spriteBatch.Draw(explosionTexture, Projectile.position + offset - Main.screenPosition, explosionFrame, (Projectile.frame == 1 ? Color.Red : Color.Blue) with { A = 120 }, 0f, explosionOrigin, Projectile.scale * 1.5f, SpriteEffects.None, 0f);
@@ -93,7 +94,7 @@ public class StudiesOfTheInkblotProj : ModProjectile {
         return false;
     }
 
-    public static Color FrameToColor(Int32 frame) {
+    public static Color FrameToColor(int frame) {
         switch (frame) {
             default:
                 return new Color(255, 255, 255, 255);
@@ -114,7 +115,7 @@ public class StudiesOfTheInkblotProj : ModProjectile {
 }
 
 public class StudiesOfTheInkblotOrbiterProj : ModProjectile {
-    public override String Texture => ModContent.GetInstance<StudiesOfTheInkblotProj>().Texture;
+    public override string Texture => ModContent.GetInstance<StudiesOfTheInkblotProj>().Texture;
 
     public override void SetStaticDefaults() {
         Main.projFrames[Projectile.type] = 7;
@@ -133,7 +134,7 @@ public class StudiesOfTheInkblotOrbiterProj : ModProjectile {
         Projectile.penetrate = -1;
     }
 
-    public override Boolean? CanDamage() {
+    public override bool? CanDamage() {
         return false;
     }
 
@@ -141,19 +142,19 @@ public class StudiesOfTheInkblotOrbiterProj : ModProjectile {
         return StudiesOfTheInkblotProj.FrameToColor(Projectile.frame);
     }
 
-    public static Vector2 GetPosition(Single X, Single Y, Single T, Vector2 playerOrigin) {
-        return playerOrigin + new Vector2((Single)Math.Sin(T) * X, (Single)Math.Cos(T) * Y);
+    public static Vector2 GetPosition(float X, float Y, float T, Vector2 playerOrigin) {
+        return playerOrigin + new Vector2((float)Math.Sin(T) * X, (float)Math.Cos(T) * Y);
     }
 
-    public static Int32 X = 100;
-    public static Int32 Y = 215;
+    public static int X = 100;
+    public static int Y = 215;
 
-    public static void Spawn4(EntitySource_ItemUse_WithAmmo source, Int32 plr) {
+    public static void Spawn4(EntitySource_ItemUse_WithAmmo source, int plr) {
         var center = Main.player[plr].Center;
-        Int32 damage = Main.player[plr].HeldItem.damage;
-        Single kb = Main.player[plr].HeldItem.knockBack;
-        Int32 type = ModContent.ProjectileType<StudiesOfTheInkblotOrbiterProj>();
-        Int32 p = Projectile.NewProjectile(source, center, Vector2.Zero, type, damage, kb, plr);
+        int damage = Main.player[plr].HeldItem.damage;
+        float kb = Main.player[plr].HeldItem.knockBack;
+        int type = ModContent.ProjectileType<StudiesOfTheInkblotOrbiterProj>();
+        int p = Projectile.NewProjectile(source, center, Vector2.Zero, type, damage, kb, plr);
         Main.projectile[p].localAI[0] = X;
         Main.projectile[p].localAI[1] = Y;
         p = Projectile.NewProjectile(source, center, Vector2.Zero, type, damage, kb, plr);
@@ -168,13 +169,13 @@ public class StudiesOfTheInkblotOrbiterProj : ModProjectile {
     }
 
     public override void AI() {
-        Int32 time = (Int32)Main.GameUpdateCount / 120;
+        int time = (int)Main.GameUpdateCount / 120;
         if (Main.player[Projectile.owner].HeldItem.type == ModContent.ItemType<StudiesOfTheInkblot>())
             Projectile.timeLeft = 4;
 
         if (Main.myPlayer == Projectile.owner) {
-            if ((Int32)Projectile.localAI[0] == 0) {
-                for (Int32 i = 0; i < Main.maxProjectiles; i++) {
+            if ((int)Projectile.localAI[0] == 0) {
+                for (int i = 0; i < Main.maxProjectiles; i++) {
                     if (Main.projectile[i].active && Main.projectile[i].type == Projectile.type && Main.projectile[i].owner == Projectile.owner) {
                         if (i % 2 == 1) {
                             Projectile.localAI[0] = 215f;
@@ -187,7 +188,7 @@ public class StudiesOfTheInkblotOrbiterProj : ModProjectile {
                     }
                 }
             }
-            Projectile.Center = Main.player[Projectile.owner].Center + new Vector2((Single)Math.Sin(Projectile.ai[0]) * Projectile.localAI[0], (Single)Math.Cos(Projectile.ai[0]) * Projectile.localAI[1]);
+            Projectile.Center = Main.player[Projectile.owner].Center + new Vector2((float)Math.Sin(Projectile.ai[0]) * Projectile.localAI[0], (float)Math.Cos(Projectile.ai[0]) * Projectile.localAI[1]);
         }
         if (Projectile.localAI[0] == Y) {
             time += 120;
@@ -202,12 +203,12 @@ public class StudiesOfTheInkblotOrbiterProj : ModProjectile {
         Lighting.AddLight(Projectile.Center, color.ToVector3());
     }
 
-    public override Boolean PreDraw(ref Color lightColor) {
+    public override bool PreDraw(ref Color lightColor) {
         if (Projectile.alpha > 255) {
             return false;
         }
-        Single colorMultiplier = 1 - Projectile.alpha / 255f;
-        Single colorMultiplierSquared = colorMultiplier * colorMultiplier;
+        float colorMultiplier = 1 - Projectile.alpha / 255f;
+        float colorMultiplierSquared = colorMultiplier * colorMultiplier;
         var texture = TextureAssets.Projectile[Type].Value;
         var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
         var spotlight = AequusTextures.Bloom;

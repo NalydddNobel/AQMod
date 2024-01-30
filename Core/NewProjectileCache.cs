@@ -4,14 +4,14 @@ namespace Aequus.Core;
 
 public sealed class NewProjectileCache : ILoadable {
     public static readonly List<Projectile> Projectiles = new();
-    public static System.Boolean QueueProjectiles { get; private set; }
+    public static bool QueueProjectiles { get; private set; }
 
     public void Load(Mod mod) {
         On_Projectile.NewProjectile_IEntitySource_float_float_float_float_int_int_float_int_float_float_float += On_Projectile_NewProjectile_IEntitySource_float_float_float_float_int_int_float_int_float_float_float;
         QueueProjectiles = false;
     }
 
-    private static System.Int32 On_Projectile_NewProjectile_IEntitySource_float_float_float_float_int_int_float_int_float_float_float(On_Projectile.orig_NewProjectile_IEntitySource_float_float_float_float_int_int_float_int_float_float_float orig, Terraria.DataStructures.IEntitySource spawnSource, System.Single X, System.Single Y, System.Single SpeedX, System.Single SpeedY, System.Int32 Type, System.Int32 Damage, System.Single KnockBack, System.Int32 Owner, System.Single ai0, System.Single ai1, System.Single ai2) {
+    private static int On_Projectile_NewProjectile_IEntitySource_float_float_float_float_int_int_float_int_float_float_float(On_Projectile.orig_NewProjectile_IEntitySource_float_float_float_float_int_int_float_int_float_float_float orig, Terraria.DataStructures.IEntitySource spawnSource, float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, int Owner, float ai0, float ai1, float ai2) {
         if (QueueProjectiles) {
             var projectile = new Projectile();
             projectile.SetDefaults(Type);

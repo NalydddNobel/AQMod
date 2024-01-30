@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria.GameContent.UI;
 
@@ -7,28 +8,28 @@ namespace Aequus.Content.Equipment.Accessories.Informational.Monocle;
 public sealed class MonocleGlobalItem : GlobalItem {
     private TooltipLine GetMonoclePriceTip(Item item, Player player) {
         player.GetItemExpectedPrice(item, out var calcForSelling, out var calcForBuying);
-        Int64 value = item.isAShopItem || item.buyOnce ? calcForBuying : calcForSelling;
+        long value = item.isAShopItem || item.buyOnce ? calcForBuying : calcForSelling;
         if (item.shopSpecialCurrency != -1) {
-            String[] text = new String[1];
-            Int32 line = 0;
+            string[] text = new string[1];
+            int line = 0;
             CustomCurrencyManager.GetPriceText(item.shopSpecialCurrency, text, ref line, value);
             return new TooltipLine(Mod, "SpecialPrice", text[0]) { OverrideColor = Color.White, };
         }
         else if (value > 0) {
-            String text = "";
-            Int64 platinum = 0;
-            Int64 gold = 0;
-            Int64 silver = 0;
-            Int64 copper = 0;
-            Int64 itemValue = value * item.stack;
+            string text = "";
+            long platinum = 0;
+            long gold = 0;
+            long silver = 0;
+            long copper = 0;
+            long itemValue = value * item.stack;
             if (!item.buy) {
                 itemValue = value / 5;
                 if (itemValue < 1) {
                     itemValue = 1;
                 }
-                Int64 num3 = itemValue;
+                long num3 = itemValue;
                 itemValue *= item.stack;
-                Int32 amount = Main.shopSellbackHelper.GetAmount(item);
+                int amount = Main.shopSellbackHelper.GetAmount(item);
                 if (amount > 0) {
                     itemValue += (-num3 + calcForBuying) * Math.Min(amount, item.stack);
                 }

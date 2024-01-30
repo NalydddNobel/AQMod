@@ -1,13 +1,14 @@
-﻿using Terraria.Localization;
+﻿using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace Aequus.Content.Equipment.Accessories.Informational.Monocle;
 
 public class ShimmerMonocleBuilderToggle : BuilderToggle {
-    public override System.Boolean Active() {
+    public override bool Active() {
         return Main.LocalPlayer.TryGetModPlayer<AequusPlayer>(out var aequusPlayer) && aequusPlayer.accShimmerMonocle;
     }
 
-    public override System.String DisplayValue() {
+    public override string DisplayValue() {
         return Language.GetTextValue("Mods.Aequus.Misc.ShimmerMonocleToggle" + (CurrentState == 0 ? "On" : "Off"));
     }
 

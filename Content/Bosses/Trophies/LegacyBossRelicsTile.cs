@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -10,20 +12,20 @@ namespace Aequus.Content.Bosses.Trophies;
 [LegacyName("BossRelics", "BossRelicsTile")]
 [Obsolete("Replaced with instanced Mod Tiles for each relic.")]
 public class LegacyBossRelicsTile : ModTile {
-    public override String Texture => AequusTextures.Tile(TileID.MasterTrophyBase);
+    public override string Texture => AequusTextures.Tile(TileID.MasterTrophyBase);
 
-    private const Int32 FrameWidth = 18 * 3;
-    private const Int32 FrameHeight = 18 * 4;
+    private const int FrameWidth = 18 * 3;
+    private const int FrameHeight = 18 * 4;
 
-    public const Int32 OmegaStarite = 0;
-    public const Int32 Crabson = 1;
-    public const Int32 RedSprite = 2;
-    public const Int32 SpaceSquid = 3;
-    public const Int32 DustDevil = 4;
-    public const Int32 UltraStarite = 5;
-    public const Int32 FrameCount = 6;
+    public const int OmegaStarite = 0;
+    public const int Crabson = 1;
+    public const int RedSprite = 2;
+    public const int SpaceSquid = 3;
+    public const int DustDevil = 4;
+    public const int UltraStarite = 5;
+    public const int FrameCount = 6;
 
-    public static Dictionary<Int32, ModTile> LegacyConverter { get; private set; } = new();
+    public static Dictionary<int, ModTile> LegacyConverter { get; private set; } = new();
 
     public override void SetStaticDefaults() {
         Main.tileShine[Type] = 400;
@@ -45,7 +47,7 @@ public class LegacyBossRelicsTile : ModTile {
         TileObjectData.addAlternate(1);
         TileObjectData.addTile(Type);
 
-        AdjTiles = new Int32[] { TileID.MasterTrophyBase, };
+        AdjTiles = new int[] { TileID.MasterTrophyBase, };
 
         AddMapEntry(new Color(233, 207, 94, 255), Language.GetText("MapObject.Relic"));
     }
@@ -54,16 +56,16 @@ public class LegacyBossRelicsTile : ModTile {
         LegacyConverter.Clear();
     }
 
-    public override Boolean CreateDust(Int32 i, Int32 j, ref Int32 type) {
+    public override bool CreateDust(int i, int j, ref int type) {
         return false;
     }
 
-    public override void DrawEffects(Int32 i, Int32 j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
+    public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
         if (drawData.tileFrameX % FrameWidth == 0 && drawData.tileFrameY % FrameHeight == 0) {
-            Int32 legacyConvertId = drawData.tileFrameX / FrameWidth;
+            int legacyConvertId = drawData.tileFrameX / FrameWidth;
 
-            UInt16 type;
-            Boolean active;
+            ushort type;
+            bool active;
             if (LegacyConverter.TryGetValue(legacyConvertId, out var modRelicInstance)) {
                 type = modRelicInstance.Type;
                 active = true;
@@ -74,8 +76,8 @@ public class LegacyBossRelicsTile : ModTile {
                 active = false;
             }
 
-            for (Int32 x = i; x < i + 3; x++) {
-                for (Int32 y = j; y < j + 4; y++) {
+            for (int x = i; x < i + 3; x++) {
+                for (int y = j; y < j + 4; y++) {
                     var tile = Framing.GetTileSafely(x, y);
                     if (tile.HasTile && tile.TileType == Type) {
                         tile.TileType = type;

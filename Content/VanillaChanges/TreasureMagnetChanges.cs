@@ -4,11 +4,11 @@ using Terraria.WorldBuilding;
 namespace Aequus.Content.VanillaChanges;
 
 public class TreasureMagnetChanges : GlobalItem {
-    public override System.Boolean IsLoadingEnabled(Mod mod) {
+    public override bool IsLoadingEnabled(Mod mod) {
         return VanillaChangesConfig.Instance.MoveTreasureMagnet;
     }
 
-    public override System.Boolean AppliesToEntity(Item entity, System.Boolean lateInstantiation) {
+    public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
         return entity.type == ItemID.TreasureMagnet;
     }
 

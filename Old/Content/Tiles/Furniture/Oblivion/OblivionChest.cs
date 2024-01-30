@@ -9,7 +9,7 @@ public class OblivionChest : BaseChest {
         AddMapEntry(Color.Red.SaturationMultiply(0.7f), CreateMapEntryName(), MapChestName);
     }
 
-    public override void PostDraw(System.Int32 i, System.Int32 j, SpriteBatch spriteBatch) {
+    public override void PostDraw(int i, int j, SpriteBatch spriteBatch) {
         DrawBasicGlowmask(i, j, spriteBatch, AequusTextures.OblivionChest_Glow, Color.White);
     }
 }

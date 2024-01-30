@@ -1,4 +1,6 @@
 ﻿using Aequus.Common.UI;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using Terraria.GameInput;
 using Terraria.UI;
@@ -24,7 +26,7 @@ public class ScavengerLootBagUI : AequusUIState {
         }
     }
 
-    private Vector2 GetSlotPosition(System.Int32 i) {
+    private Vector2 GetSlotPosition(int i) {
         return new Vector2(74f + 42f * (i % 10), 260f + 42f * (i / 10));
     }
 
@@ -41,11 +43,11 @@ public class ScavengerLootBagUI : AequusUIState {
         var slotTexture = TextureAssets.InventoryBack5.Value;
         var slotOrigin = slotTexture.Size() / 2f;
         var slotColor = Main.inventoryBack;
-        System.Int32 context = ItemSlot.Context.ChestItem;
-        for (System.Int32 i = 0; i < Chest.maxItems; i++) {
+        int context = ItemSlot.Context.ChestItem;
+        for (int i = 0; i < Chest.maxItems; i++) {
             var slotPosition = GetSlotPosition(i);
 
-            System.Boolean invalidSlot = !lootBag.drops.IndexInRange(i) || lootBag.drops[i].IsAir;
+            bool invalidSlot = !lootBag.drops.IndexInRange(i) || lootBag.drops[i].IsAir;
             Main.spriteBatch.Draw(slotTexture, slotPosition + slotOrigin * Main.inventoryScale, null, slotColor * (invalidSlot ? 0.5f : 1f), 0f, slotOrigin, Main.inventoryScale, SpriteEffects.None, 0f);
 
             if (invalidSlot) {

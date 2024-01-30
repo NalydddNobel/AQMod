@@ -5,16 +5,16 @@ using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Common.NPCs;
 public sealed class DropsGlobalNPC : GlobalNPC {
-    private static Boolean _rerolling;
+    private static bool _rerolling;
 
-    private static readonly Dictionary<Int32, List<IItemDropRule>> _dropRules = new();
+    private static readonly Dictionary<int, List<IItemDropRule>> _dropRules = new();
 
     /// <summary>
     /// Allows you to add a drop rule to an NPC. Please only call this in SetStaticDefaults/PostSetupContent.
     /// </summary>
     /// <param name="npcId">The NPC type.</param>
     /// <param name="rule">The item drop rule.</param>
-    internal static void AddNPCLoot(Int32 npcId, IItemDropRule rule) {
+    internal static void AddNPCLoot(int npcId, IItemDropRule rule) {
         (CollectionsMarshal.GetValueRefOrAddDefault(_dropRules, npcId, out _) ??= new()).Add(rule);
     }
 
@@ -49,7 +49,7 @@ public sealed class DropsGlobalNPC : GlobalNPC {
             return result;
         }
 
-        Single rolls = 0f;
+        float rolls = 0f;
         if (info.player != null) {
             rolls += info.player.GetModPlayer<AequusPlayer>().dropRolls;
         }

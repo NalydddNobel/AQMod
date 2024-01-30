@@ -2,7 +2,7 @@
 
 public static class ExtendRecipe {
     /// <returns><see langword="true"/>, if the recipe is not disabled, and conditions have been met. Otherwise <see langword="false"/>.</returns>
-    public static System.Boolean NotDisabledAndConditionsMet(this Recipe recipe) {
+    public static bool NotDisabledAndConditionsMet(this Recipe recipe) {
         if (recipe.Disabled) {
             return false;
         }
@@ -20,15 +20,15 @@ public static class ExtendRecipe {
     /// <param name="recipe"></param>
     /// <param name="itemID">The Item Id to search for.</param>
     /// <returns>An Item instance if it was found in the recipe. Otherwise <see langword="null"/>.</returns>
-    public static Item FindIngredient(this Recipe recipe, System.Int32 itemID) {
+    public static Item FindIngredient(this Recipe recipe, int itemID) {
         return recipe.requiredItem.Find((item) => item != null && !item.IsAir && item.type == itemID);
     }
-    /// <summary><inheritdoc cref="FindIngredient(Recipe, System.Int32)"/></summary>
+    /// <summary><inheritdoc cref="FindIngredient(Recipe, int)"/></summary>
     /// <param name="recipe"></param>
     /// <param name="itemID">The Item Id to search for.</param>
     /// <param name="result">The Item instance.</param>
     /// <returns><see langword="true"/>, if the Item was found in the recipe. Otherwise <see langword="false"/>.</returns>
-    public static System.Boolean TryFindIngredient(this Recipe recipe, System.Int32 itemID, out Item result) {
+    public static bool TryFindIngredient(this Recipe recipe, int itemID, out Item result) {
         result = recipe.FindIngredient(itemID);
         return result != null;
     }
@@ -38,10 +38,10 @@ public static class ExtendRecipe {
     /// <param name="oldItem">The Item Id to be replaced by <paramref name="newItem"/>.</param>
     /// <param name="newItem">The Item Id to replace <paramref name="oldItem"/> with.</param>
     /// <param name="newItemStack">Stack override for <paramref name="newItem"/>. A value of -1 will keep the stack of <paramref name="oldItem"/></param>
-    public static Recipe ReplaceItem(this Recipe recipe, System.Int32 oldItem, System.Int32 newItem, System.Int32 newItemStack = -1) {
-        for (System.Int32 i = 0; i < recipe.requiredItem.Count; i++) {
+    public static Recipe ReplaceItem(this Recipe recipe, int oldItem, int newItem, int newItemStack = -1) {
+        for (int i = 0; i < recipe.requiredItem.Count; i++) {
             if (recipe.requiredItem[i].type == oldItem) {
-                System.Int32 stack = newItemStack <= 0 ? recipe.requiredItem[i].stack : newItemStack;
+                int stack = newItemStack <= 0 ? recipe.requiredItem[i].stack : newItemStack;
                 recipe.requiredItem[i].SetDefaults(newItem);
                 recipe.requiredItem[i].stack = stack;
                 break;

@@ -1,16 +1,18 @@
 ﻿using Aequus.Content.Weapons.Classless.StunGun;
 using Aequus.Core.Generator;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Aequus.Common.NPCs;
 
 public partial class AequusNPC {
     [ResetEffects]
-    public System.Boolean stunGun;
+    public bool stunGun;
     [ResetEffects]
-    public System.Boolean stunGunVisual;
-    public System.Boolean stunGunOld;
-    public System.Boolean stunned_NoTileCollide;
-    public System.Boolean stunned_NoGravity;
+    public bool stunGunVisual;
+    public bool stunGunOld;
+    public bool stunned_NoTileCollide;
+    public bool stunned_NoGravity;
 
     private void DrawBehindNPC_StunGun(NPC npc, SpriteBatch spriteBatch, ref Vector2 drawOffset) {
         if (stunGunVisual) {
@@ -25,8 +27,8 @@ public partial class AequusNPC {
         }
     }
 
-    private System.Boolean AI_StunGun(NPC npc) {
-        System.Boolean updateFields = stunGunOld != stunGun;
+    private bool AI_StunGun(NPC npc) {
+        bool updateFields = stunGunOld != stunGun;
         stunGunOld = stunGun;
         if (stunGun) {
             if (updateFields) {

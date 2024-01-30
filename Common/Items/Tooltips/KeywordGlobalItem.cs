@@ -1,4 +1,6 @@
-﻿using ReLogic.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,17 +20,17 @@ public partial class KeywordGlobalItem : GlobalItem {
         KeywordSystem.HoveredItemID = item.type;
     }
 
-    private Int32 GetVanillaTooltipBoxWidth(IEnumerable<TooltipLine> lines, DynamicSpriteFont font) {
-        Int32 max = 0;
+    private int GetVanillaTooltipBoxWidth(IEnumerable<TooltipLine> lines, DynamicSpriteFont font) {
+        int max = 0;
         foreach (var l in lines) {
-            max = Math.Max(max, (Int32)ChatManager.GetStringSize(font, l.Text, Vector2.One).X);
+            max = Math.Max(max, (int)ChatManager.GetStringSize(font, l.Text, Vector2.One).X);
         }
         return max;
     }
 
-    private void DrawKeyword(SpriteBatch spriteBatch, DynamicSpriteFont font, Int32 i, Int32 vanillaTooltipBoxY, Int32 vanillaTooltipBoxWidth, ref Int32 lineStartX, ref Int32 lineStartY, ref Int32 lineDirX, ref Int32 lineDirY, ref Int32 largestBoxWidth, ref Int32 previousBoxHeight) {
+    private void DrawKeyword(SpriteBatch spriteBatch, DynamicSpriteFont font, int i, int vanillaTooltipBoxY, int vanillaTooltipBoxWidth, ref int lineStartX, ref int lineStartY, ref int lineDirX, ref int lineDirY, ref int largestBoxWidth, ref int previousBoxHeight) {
         var keyword = KeywordSystem.Tooltips[i];
-        Int32 boxHeight = keyword.lineTotalHeight + 40;
+        int boxHeight = keyword.lineTotalHeight + 40;
         if (i > 0) {
             if (lineDirY != -1) {
                 if (lineStartY + previousBoxHeight + boxHeight > Main.screenHeight) {
@@ -50,17 +52,17 @@ public partial class KeywordGlobalItem : GlobalItem {
         }
         previousBoxHeight = boxHeight;
 
-        Int32 lineX = lineStartX + vanillaTooltipBoxWidth + 26;
+        int lineX = lineStartX + vanillaTooltipBoxWidth + 26;
         // Recalculate tooltip box if needed
         if (KeywordSystem.Tooltips[i].recalculate) {
             KeywordSystem.Tooltips[i].Recalculate(font);
         }
 
         // Header values for proper placement
-        Single headerHalfMeasurementX = ChatManager.GetStringSize(font, KeywordSystem.Tooltips[i].header, Vector2.One).X / 2f;
-        Single headerMinX = headerHalfMeasurementX + 6f;
+        float headerHalfMeasurementX = ChatManager.GetStringSize(font, KeywordSystem.Tooltips[i].header, Vector2.One).X / 2f;
+        float headerMinX = headerHalfMeasurementX + 6f;
 
-        Int32 boxWidth = Math.Max(KeywordSystem.Tooltips[i].lineMaxWidth, (Int32)headerHalfMeasurementX * 2 + 10 + (keyword.itemIconId > 0 ? 32 : 0));
+        int boxWidth = Math.Max(KeywordSystem.Tooltips[i].lineMaxWidth, (int)headerHalfMeasurementX * 2 + 10 + (keyword.itemIconId > 0 ? 32 : 0));
         largestBoxWidth = Math.Max(boxWidth, largestBoxWidth);
         // Swap box direction to the other side if we're trying to draw outside of the screen
         if (lineX + boxWidth > Main.screenWidth) {
@@ -76,14 +78,14 @@ public partial class KeywordGlobalItem : GlobalItem {
         }
 
         // Draw item icon, if there is one
-        Int32 itemIconId = keyword.itemIconId;
+        int itemIconId = keyword.itemIconId;
         if (itemIconId > 0) {
             // offset the header's minimum X position
             headerMinX += 32f;
 
             Main.GetItemDrawFrame(itemIconId, out var texture, out var frame);
-            Single scale = 1f;
-            Int32 largestSide = Math.Max(texture.Width, texture.Height);
+            float scale = 1f;
+            int largestSide = Math.Max(texture.Width, texture.Height);
             if (largestSide > 32f) {
                 scale = 32f / largestSide;
             }
@@ -103,8 +105,8 @@ public partial class KeywordGlobalItem : GlobalItem {
         );
 
         // Draw lines
-        Int32 textLineY = lineStartY + 32;
-        for (Int32 j = 0; j < keyword.tooltipLines.Count; j++) {
+        int textLineY = lineStartY + 32;
+        for (int j = 0; j < keyword.tooltipLines.Count; j++) {
             ChatManager.DrawColorCodedStringWithShadow(
                 spriteBatch,
                 font,
@@ -119,7 +121,7 @@ public partial class KeywordGlobalItem : GlobalItem {
         }
     }
 
-    public override Boolean PreDrawTooltip(Item item, ReadOnlyCollection<TooltipLine> lines, ref Int32 x, ref Int32 y) {
+    public override bool PreDrawTooltip(Item item, ReadOnlyCollection<TooltipLine> lines, ref int x, ref int y) {
         CheckLinesInit(item);
 
         // Exit if there are no lines to render, or if the player is holding up (this hopefully prevents conflicts with SLR's keyword system)
@@ -130,15 +132,15 @@ public partial class KeywordGlobalItem : GlobalItem {
         var spriteBatch = Main.spriteBatch;
         var font = FontAssets.MouseText.Value;
 
-        Int32 vanillaTooltipBoxWidth = GetVanillaTooltipBoxWidth(lines, font);
+        int vanillaTooltipBoxWidth = GetVanillaTooltipBoxWidth(lines, font);
 
-        Int32 lineStartX = x;
-        Int32 lineStartY = y;
-        Int32 lineDirX = 1;
-        Int32 lineDirY = 1;
-        Int32 largestBoxWidth = 0;
-        Int32 previousBoxHeight = 0;
-        for (Int32 i = 0; i < KeywordSystem.Tooltips.Count; i++) {
+        int lineStartX = x;
+        int lineStartY = y;
+        int lineDirX = 1;
+        int lineDirY = 1;
+        int largestBoxWidth = 0;
+        int previousBoxHeight = 0;
+        for (int i = 0; i < KeywordSystem.Tooltips.Count; i++) {
             DrawKeyword(spriteBatch, font, i, y, vanillaTooltipBoxWidth, ref lineStartX, ref lineStartY, ref lineDirX, ref lineDirY, ref largestBoxWidth, ref previousBoxHeight);
         }
         return true;

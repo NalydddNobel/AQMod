@@ -1,3 +1,5 @@
-﻿namespace Aequus.Common.UI;
+﻿using Microsoft.Xna.Framework;
 
-public record struct ItemSlotContext(System.Int32 Context, System.Int32 Slot, Item[] Inventory, Vector2 Position, Color LightColor);
+namespace Aequus.Common.UI;
+
+public record struct ItemSlotContext(int Context, int Slot, Item[] Inventory, Vector2 Position, Color LightColor);

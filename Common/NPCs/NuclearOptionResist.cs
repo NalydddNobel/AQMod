@@ -1,11 +1,11 @@
 ﻿namespace Aequus.Common.NPCs;
 
 internal class NuclearOptionResist : GlobalNPC {
-    public override System.Boolean IsLoadingEnabled(Mod mod) {
+    public override bool IsLoadingEnabled(Mod mod) {
         return ModLoader.HasMod("HeavensMechanic");
     }
 
-    public override System.Boolean AppliesToEntity(NPC npc, System.Boolean lateInstantiation) {
+    public override bool AppliesToEntity(NPC npc, bool lateInstantiation) {
         return npc.ModNPC?.Equals(Mod) ?? false;
     }
 
@@ -23,7 +23,7 @@ internal class NuclearOptionResist : GlobalNPC {
         }
     }
 
-    public override void OnHitByProjectile(NPC npc, Projectile projectile, NPC.HitInfo hit, System.Int32 damageDone) {
+    public override void OnHitByProjectile(NPC npc, Projectile projectile, NPC.HitInfo hit, int damageDone) {
         if (projectile.TryGetGlobalProjectile<NuclearOptionResistProjectile>(out _)) {
             npc.life = npc.lifeMax;
         }
@@ -37,17 +37,17 @@ internal class NuclearOptionResist : GlobalNPC {
 }
 
 internal class NuclearOptionResistProjectile : GlobalProjectile {
-    public static System.Boolean Active;
+    public static bool Active;
 
-    public override System.Boolean IsLoadingEnabled(Mod mod) {
+    public override bool IsLoadingEnabled(Mod mod) {
         return ModLoader.HasMod("HeavensMechanic");
     }
 
-    public override System.Boolean AppliesToEntity(Projectile projectile, System.Boolean lateInstantiation) {
+    public override bool AppliesToEntity(Projectile projectile, bool lateInstantiation) {
         return projectile.ModProjectile?.Name?.Equals("NuclearOptionProj") ?? false;
     }
 
-    public override System.Boolean PreAI(Projectile projectile) {
+    public override bool PreAI(Projectile projectile) {
         Active = true;
         return true;
     }

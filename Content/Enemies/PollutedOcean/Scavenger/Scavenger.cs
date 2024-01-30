@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
+using Aequus.Common.Tiles;
 using Aequus.Content.DataSets;
 using Aequus.Content.Equipment.Accessories.ScavengerBag;
 using Aequus.Content.Tiles.Banners;
@@ -21,31 +22,31 @@ namespace Aequus.Content.Enemies.PollutedOcean.Scavenger;
 [AutoloadBanner]
 [AutoloadStatue]
 public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateItemDropDatabase {
-    public const System.Int32 SLOT_HEAD = 0;
-    public const System.Int32 SLOT_BODY = 1;
-    public const System.Int32 SLOT_LEGS = 2;
-    public const System.Int32 SLOT_ACCS = 3;
-    public const System.Int32 ARMOR_COUNT = 4;
+    public const int SLOT_HEAD = 0;
+    public const int SLOT_BODY = 1;
+    public const int SLOT_LEGS = 2;
+    public const int SLOT_ACCS = 3;
+    public const int ARMOR_COUNT = 4;
 
-    public static System.Int32 ExtraEquipChance { get; set; } = 2;
-    public static System.Int32 ItemDropChance { get; set; } = 4;
-    public static System.Int32 TravelingMerchantBuilderItemChance { get; set; } = 20;
+    public static int ExtraEquipChance { get; set; } = 2;
+    public static int ItemDropChance { get; set; } = 4;
+    public static int TravelingMerchantBuilderItemChance { get; set; } = 20;
 
-    private System.Int32 serverWhoAmI = Main.maxPlayers;
+    private int serverWhoAmI = Main.maxPlayers;
     private Player playerDummy;
     public Item[] armor;
     public Item weapon;
-    public System.Int32 attackAnimation;
+    public int attackAnimation;
 
-    public override System.Single SpeedCap => base.SpeedCap + runSpeedCap;
+    public override float SpeedCap => base.SpeedCap + runSpeedCap;
 
-    public override System.Single Acceleration => base.Acceleration + acceleration;
+    public override float Acceleration => base.Acceleration + acceleration;
 
     #region Initialization
     public Scavenger() {
         weapon = new();
         armor = new Item[ARMOR_COUNT];
-        for (System.Int32 i = 0; i < armor.Length; i++) {
+        for (int i = 0; i < armor.Length; i++) {
             armor[i] = new();
         }
     }
@@ -120,7 +121,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         PassDownStatsToPlayer();
     }
 
-    private System.Boolean SetItem(ref Item item, System.Int32 itemId, System.Int32 stack = 1) {
+    private bool SetItem(ref Item item, int itemId, int stack = 1) {
         if (itemId <= 0) {
             item.TurnToAir();
             return false;
@@ -130,17 +131,17 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         return true;
     }
 
-    private System.Boolean SetItem(ref Item item, List<System.Int32> itemList, UnifiedRandom random) {
+    private bool SetItem(ref Item item, List<int> itemList, UnifiedRandom random) {
         return SetItem(ref item, Main.rand.Next(itemList));
     }
 
     private void RandomizeArmor(UnifiedRandom random) {
         SetItem(ref weapon, ScavengerEquipment.ScavengerWeapons.Select((i) => i.Id).ToList(), random);
-        var options = new List<System.Int32>() { SLOT_HEAD, SLOT_BODY, SLOT_LEGS, SLOT_ACCS };
+        var options = new List<int>() { SLOT_HEAD, SLOT_BODY, SLOT_LEGS, SLOT_ACCS };
         while (options.Count > 0) {
-            System.Int32 choice = random.Next(options);
+            int choice = random.Next(options);
 
-            System.Boolean value = choice switch {
+            bool value = choice switch {
                 SLOT_HEAD => SetItem(ref armor[SLOT_HEAD], ScavengerEquipment.ScavengerHelmets.Select((i) => i.Id).ToList(), random),
                 SLOT_BODY => SetItem(ref armor[SLOT_BODY], ScavengerEquipment.ScavengerBreastplates.Select((i) => i.Id).ToList(), random),
                 SLOT_LEGS => SetItem(ref armor[SLOT_LEGS], ScavengerEquipment.ScavengerLeggings.Select((i) => i.Id).ToList(), random),
@@ -169,25 +170,25 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         var source = NPC.GetSource_FromThis();
 
         if (NPC.life <= 0) {
-            for (System.Int32 i = 0; i < 20; i++) {
+            for (int i = 0; i < 20; i++) {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hit.HitDirection, -2.5f);
             }
 
             NPC.NewGore(AequusTextures.ScavengerGoreHead, NPC.position, NPC.velocity, Scale: NPC.scale);
-            for (System.Int32 i = 0; i < 2; i++) {
+            for (int i = 0; i < 2; i++) {
                 Gore.NewGore(source, NPC.position + new Vector2(0f, 20f), NPC.velocity, 43, NPC.scale);
                 Gore.NewGore(source, NPC.position + new Vector2(0f, 34f), NPC.velocity, 44, NPC.scale);
             }
         }
         else {
-            for (System.Int32 i = 0; i < hit.Damage / (System.Double)NPC.lifeMax * 50f; i++) {
+            for (int i = 0; i < hit.Damage / (double)NPC.lifeMax * 50f; i++) {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, hit.HitDirection, -1f);
             }
         }
     }
 
-    private System.Boolean DoAttack() {
-        System.Single attackDistance = 200f;
+    private bool DoAttack() {
+        float attackDistance = 200f;
         var target = Main.player[NPC.target];
         if (NPC.velocity.Y == 0f && NPC.Distance(target.Center) < attackDistance && Collision.CanHitLine(NPC.position, NPC.width, NPC.height, target.position, target.width, target.height)) {
             NPC.velocity.X *= 0.9f;
@@ -197,7 +198,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
             if (attackAnimation > 60) {
                 attackAnimation = 0;
                 if (weapon.shoot > ProjectileID.None && Main.netMode != NetmodeID.MultiplayerClient) {
-                    System.Int32 p = Projectile.NewProjectile(NPC.GetSource_FromThis(), NPC.Center, NPC.DirectionTo(target.Center) * weapon.shootSpeed, weapon.shoot, weapon.damage, weapon.knockBack, Main.myPlayer);
+                    int p = Projectile.NewProjectile(NPC.GetSource_FromThis(), NPC.Center, NPC.DirectionTo(target.Center) * weapon.shootSpeed, weapon.shoot, weapon.damage, weapon.knockBack, Main.myPlayer);
                     Main.projectile[p].friendly = false;
                     Main.projectile[p].hostile = true;
                     Main.projectile[p].noDropItem = true;
@@ -221,7 +222,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         runSpeedCap = 0f;
         playerDummy.ResetEffects();
         NPC.defense = NPC.defDefense;
-        for (System.Int32 i = 0; i < armor.Length; i++) {
+        for (int i = 0; i < armor.Length; i++) {
             NPC.defense += armor[i].defense;
         }
         PassDownStatsToPlayer();
@@ -241,7 +242,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         }
 
         //bool attacking = DoAttack();
-        System.Boolean attacking = false;
+        bool attacking = false;
         if (!armor[SLOT_ACCS].IsAir && CustomAccessoryUsage.TryGetValue(armor[SLOT_ACCS].type, out var accessoryUpdate)) {
             accessoryUpdate(this, attacking);
         }
@@ -253,7 +254,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         base.AI();
     }
 
-    public override void FindFrame(System.Int32 frameHeight) {
+    public override void FindFrame(int frameHeight) {
         base.FindFrame(frameHeight);
     }
 
@@ -264,7 +265,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         //}
 
         var dropsRegisterList = new List<Item>();
-        for (System.Int32 i = 0; i < armor.Length; i++) {
+        for (int i = 0; i < armor.Length; i++) {
             if (armor[i] != null && !armor[i].IsAir && Main.rand.NextBool(ItemDropChance)) {
                 dropsRegisterList.Add(armor[i].Clone());
             }
@@ -278,7 +279,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
             return;
         }
 
-        System.Int32 bag = NPC.NewNPC(NPC.GetSource_Death(), (System.Int32)NPC.Center.X, (System.Int32)NPC.Center.Y, ModContent.NPCType<ScavengerLootBag>());
+        int bag = NPC.NewNPC(NPC.GetSource_Death(), (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<ScavengerLootBag>());
         if (bag == Main.maxNPCs || Main.npc[bag].ModNPC is not ScavengerLootBag lootBagNPC) {
             return;
         }
@@ -306,7 +307,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         TrySaveItem("Acc", armor[SLOT_ACCS]);
         TrySaveItem("Weapon", weapon);
 
-        void TrySaveItem(System.String name, Item item) {
+        void TrySaveItem(string name, Item item) {
             if (item != null && !item.IsAir) {
                 tag[name] = item;
             }
@@ -320,7 +321,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         TryLoadItem("Acc", ref armor[SLOT_ACCS]);
         TryLoadItem("Weapon", ref weapon);
 
-        void TryLoadItem(System.String name, ref Item item) {
+        void TryLoadItem(string name, ref Item item) {
             if (tag.TryGet<Item>(name, out var loadedItem)) {
                 item = loadedItem;
             }
@@ -333,7 +334,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         writer.Write(accessoryUseData);
         writer.Write(weapon.type);
         writer.Write(weapon.stack);
-        for (System.Int32 i = 0; i < armor.Length; i++) {
+        for (int i = 0; i < armor.Length; i++) {
             writer.Write(armor[i].type);
             writer.Write(armor[i].stack);
         }
@@ -344,13 +345,13 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         attackAnimation = reader.ReadInt32();
         accessoryUseData = reader.ReadSingle();
         SetItem(ref weapon, reader.ReadInt32(), reader.ReadInt32());
-        for (System.Int32 i = 0; i < armor.Length; i++) {
+        for (int i = 0; i < armor.Length; i++) {
             SetItem(ref armor[i], reader.ReadInt32(), reader.ReadInt32());
         }
     }
     #endregion
 
-    public System.Boolean PreDropItems(Player closestPlayer) {
+    public bool PreDropItems(Player closestPlayer) {
         return false;
     }
 }

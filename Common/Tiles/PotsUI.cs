@@ -8,11 +8,11 @@ using Terraria.Utilities;
 namespace Aequus.Common.Tiles;
 
 public class PotsUI : UILayer {
-    public override Boolean OnUIUpdate(GameTime gameTime) {
+    public override bool OnUIUpdate(GameTime gameTime) {
         return PotsSystem.LootPreviews.Count > 0;
     }
 
-    protected override Boolean DrawSelf() {
+    protected override bool DrawSelf() {
         lock (PotsSystem.LootPreviews) {
             foreach (var preview in PotsSystem.LootPreviews) {
                 DrawPreview(preview.Key, preview.Value);
@@ -24,20 +24,20 @@ public class PotsUI : UILayer {
     private static void DrawPreview(Point tileCoordinates, PotsSystem.PotLootPreview preview) {
         var seed = Helper.TileSeed(tileCoordinates) % 10000f;
 
-        Single scale = Math.Min(preview.Opacity, Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f + seed, 0.9f, 1f));
-        Single pulseScale = scale;
+        float scale = Math.Min(preview.Opacity, Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f + seed, 0.9f, 1f));
+        float pulseScale = scale;
 
         var frame = preview.Frame ?? preview.Texture.Bounds;
-        Int32 largestSide = Math.Max(frame.Width, frame.Height);
+        int largestSide = Math.Max(frame.Width, frame.Height);
         if (largestSide > 24f) {
             scale *= 24f / largestSide;
         }
 
         var drawCoordinates = new Vector2(tileCoordinates.X * 16f + 16f, tileCoordinates.Y * 16f + 20f) - Main.screenPosition;
         var itemWobbleOffset = new Vector2(Helper.Oscillate(Main.GlobalTimeWrappedHourly * 3f + seed * 0.9f, -1f, 1f), Helper.Oscillate(Main.GlobalTimeWrappedHourly * 1.2f + seed * 0.8f, -2f, 2f));
-        Single rotation = Helper.Oscillate(Main.GlobalTimeWrappedHourly * 4.2f, -0.1f, 0.1f);
-        Single opacity = 1f;
-        Boolean dangerView = preview.Dangerous && Main.LocalPlayer.dangerSense;
+        float rotation = Helper.Oscillate(Main.GlobalTimeWrappedHourly * 4.2f, -0.1f, 0.1f);
+        float opacity = 1f;
+        bool dangerView = preview.Dangerous && Main.LocalPlayer.dangerSense;
         if (dangerView) {
             opacity *= Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f + seed, 0.3f, 1f);
         }
@@ -48,11 +48,11 @@ public class PotsUI : UILayer {
             Main.spriteBatch.Draw(preview.Texture, drawCoordinates + itemWobbleOffset, frame, preview.NPCColor * 0.75f * opacity * pulseScale * preview.Opacity, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
         }
 
-        Int32 sparkleCount = Aequus.highQualityEffects ? 6 : 3;
+        int sparkleCount = Aequus.highQualityEffects ? 6 : 3;
         var sparkleColor = preview.Dangerous ? Color.Red : Color.Orange;
-        for (Int32 i = 0; i < sparkleCount; i++) {
-            Single timer = seed + (i * (seed + 500) + Main.GlobalTimeWrappedHourly * 1.1f) + i / (Single)sparkleCount;
-            var random = new FastRandom((Int32)timer);
+        for (int i = 0; i < sparkleCount; i++) {
+            float timer = seed + (i * (seed + 500) + Main.GlobalTimeWrappedHourly * 1.1f) + i / (float)sparkleCount;
+            var random = new FastRandom((int)timer);
             timer %= 1f;
             if (timer > 1f) {
                 continue;
@@ -62,7 +62,7 @@ public class PotsUI : UILayer {
             random.NextSeed();
             var sparkleOffset = new Vector2(random.NextFloat(-12f, 12f), random.NextFloat(-12f, 12f) + 4f);
             var sparkleFrame = AequusTextures.BaseParticleTexture.Frame(verticalFrames: 3, frameY: random.Next(3));
-            Single sparkleFade = MathF.Sin(timer * MathHelper.Pi);
+            float sparkleFade = MathF.Sin(timer * MathHelper.Pi);
             Main.spriteBatch.Draw(AequusTextures.BaseParticleTexture, drawCoordinates + new Vector2(0f, -timer * 4f) + sparkleOffset, sparkleFrame, sparkleColor with { A = 0 } * sparkleFade * 0.45f * preview.Opacity, 0f, sparkleFrame.Size() / 2f, sparkleFade * random.NextFloat(1f, 1.5f), SpriteEffects.None, 0f);
         }
 

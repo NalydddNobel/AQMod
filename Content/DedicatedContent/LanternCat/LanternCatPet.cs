@@ -1,11 +1,13 @@
 ﻿using Aequus.Content.Pets;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 
 namespace Aequus.Content.DedicatedContent.LanternCat;
 
 public class LanternCatPet : ModPet {
-    private Int32 frame;
-    private Double frameCounter;
+    private int frame;
+    private double frameCounter;
 
     public override void SetStaticDefaults() {
         Main.projFrames[Type] = 10;
@@ -22,12 +24,12 @@ public class LanternCatPet : ModPet {
         AIType = ProjectileID.BlackCat;
     }
 
-    public override Boolean PreAI() {
+    public override bool PreAI() {
         if (!base.PreAI()) {
             return false;
         }
         Lighting.AddLight(Projectile.Top, new Vector3(0.8f, 0.6f, 0.2f));
-        if ((Int32)Projectile.ai[0] == 1) {
+        if ((int)Projectile.ai[0] == 1) {
             frameCounter++;
             if (frameCounter > 6.0d) {
                 frameCounter = 0.0d;
@@ -44,7 +46,7 @@ public class LanternCatPet : ModPet {
             frame = 3;
         }
         else {
-            Single speedX = Math.Abs(Projectile.velocity.X);
+            float speedX = Math.Abs(Projectile.velocity.X);
             if (speedX < 0.1f) {
                 frameCounter = 0.0d;
                 frame = 0;
@@ -63,11 +65,11 @@ public class LanternCatPet : ModPet {
         return true;
     }
 
-    public override Boolean PreDraw(ref Color lightColor) {
+    public override bool PreDraw(ref Color lightColor) {
         Projectile.frame = this.frame;
         var lantern = AequusTextures.LanternCatPet_Lantern.Value;
         var lanternPosition = Projectile.Center + (new Vector2(24f * -Projectile.spriteDirection, -24f + MathF.Sin(Main.GlobalTimeWrappedHourly * 2f) * 8f) + new Vector2(Projectile.velocity.X * 2f, Projectile.velocity.Y * -0.1f - Math.Abs(Projectile.velocity.X) * 0.5f)) * Projectile.scale;
-        Single lanternRotation = Projectile.velocity.X * 0.1f * Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f, 0.5f, 1f);
+        float lanternRotation = Projectile.velocity.X * 0.1f * Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f, 0.5f, 1f);
         var spriteEffects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
         Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out _);
         Main.EntitySpriteDraw(

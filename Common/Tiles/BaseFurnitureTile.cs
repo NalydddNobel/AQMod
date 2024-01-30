@@ -1,4 +1,5 @@
-﻿using Terraria.DataStructures;
+﻿using Microsoft.Xna.Framework;
+using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.Localization;
@@ -11,12 +12,12 @@ public class BaseFurnitureTile {
     /// A base furntiure tile, Furniture in Aequus is handled on an individual ModTile basis instead of through a big multi-styled tile.
     /// </summary>
     public abstract class Furniture : ModTile {
-        public abstract System.Int32 FurnitureDust { get; }
-        public virtual System.Boolean DieInLava => true;
+        public abstract int FurnitureDust { get; }
+        public virtual bool DieInLava => true;
         public abstract Color MapColor { get; }
-        private System.Int32 _itemDropCache;
+        private int _itemDropCache;
 
-        public System.Int32 ItemDrop {
+        public int ItemDrop {
             get {
                 if (_itemDropCache == 0) {
                     _itemDropCache = TileLoader.GetItemDropFromTypeAndStyle(Type, 0);
@@ -32,7 +33,7 @@ public class BaseFurnitureTile {
         }
     }
     public abstract class LightedFurniture : Furniture {
-        public virtual System.Boolean DieInWater => false;
+        public virtual bool DieInWater => false;
         public abstract Vector3 LightColor { get; }
 
         protected override void FurnitureDefaults() {
@@ -55,7 +56,7 @@ public class BaseFurnitureTile {
             TileID.Sets.DisableSmartCursor[Type] = true;
         }
 
-        public override void NumDust(System.Int32 i, System.Int32 j, System.Boolean fail, ref System.Int32 num) {
+        public override void NumDust(int i, int j, bool fail, ref int num) {
             num = fail ? 1 : 3;
         }
     }
@@ -69,26 +70,26 @@ public class BaseFurnitureTile {
             TileID.Sets.CanBeSleptIn[Type] = true;
             TileID.Sets.IsValidSpawnPoint[Type] = true;
             TileID.Sets.DisableSmartCursor[Type] = true;
-            AdjTiles = new System.Int32[] { TileID.Beds };
+            AdjTiles = new int[] { TileID.Beds };
             TileObjectData.newTile.CopyFrom(TileObjectData.Style4x2);
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
             TileObjectData.addTile(Type);
             AddMapEntry(MapColor, Lang.GetItemName(ItemID.Bed));
         }
 
-        public override System.Boolean HasSmartInteract(System.Int32 i, System.Int32 j, SmartInteractScanSettings settings) {
+        public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) {
             return true;
         }
 
-        public override void NumDust(System.Int32 i, System.Int32 j, System.Boolean fail, ref System.Int32 num) {
+        public override void NumDust(int i, int j, bool fail, ref int num) {
             num = fail ? 1 : 3;
         }
 
-        public override System.Boolean RightClick(System.Int32 i, System.Int32 j) {
+        public override bool RightClick(int i, int j) {
             var player = Main.LocalPlayer;
             var tile = Main.tile[i, j];
-            System.Int32 spawnX = i - tile.TileFrameX / 18 + (tile.TileFrameX >= 72 ? 5 : 2);
-            System.Int32 spawnY = j + 2;
+            int spawnX = i - tile.TileFrameX / 18 + (tile.TileFrameX >= 72 ? 5 : 2);
+            int spawnY = j + 2;
             if (tile.TileFrameY % 38 != 0) {
                 spawnY--;
             }
@@ -103,18 +104,18 @@ public class BaseFurnitureTile {
                 player.FindSpawn();
                 if (player.SpawnX == spawnX && player.SpawnY == spawnY) {
                     player.RemoveSpawn();
-                    Main.NewText(Language.GetTextValue("Game.SpawnPointRemoved"), System.Byte.MaxValue, 240, 20);
+                    Main.NewText(Language.GetTextValue("Game.SpawnPointRemoved"), byte.MaxValue, 240, 20);
                 }
                 else if (Player.CheckSpawn(spawnX, spawnY)) {
                     player.ChangeSpawn(spawnX, spawnY);
-                    Main.NewText(Language.GetTextValue("Game.SpawnPointSet"), System.Byte.MaxValue, 240, 20);
+                    Main.NewText(Language.GetTextValue("Game.SpawnPointSet"), byte.MaxValue, 240, 20);
                 }
             }
 
             return true;
         }
 
-        public override void MouseOver(System.Int32 i, System.Int32 j) {
+        public override void MouseOver(int i, int j) {
             Player player = Main.LocalPlayer;
 
             if (!Player.IsHoveringOverABottomSideOfABed(i, j)) {
@@ -148,10 +149,10 @@ public class BaseFurnitureTile {
             AddMapEntry(MapColor, Lang.GetItemName(ItemID.Bookcase));
 
             TileID.Sets.DisableSmartCursor[Type] = true;
-            AdjTiles = new System.Int32[] { TileID.Bookcases };
+            AdjTiles = new int[] { TileID.Bookcases };
         }
 
-        public override void NumDust(System.Int32 i, System.Int32 j, System.Boolean fail, ref System.Int32 num) {
+        public override void NumDust(int i, int j, bool fail, ref int num) {
             num = fail ? 1 : 3;
         }
     }
@@ -177,15 +178,15 @@ public class BaseFurnitureTile {
             AddMapEntry(MapColor, Lang.GetItemName(ItemID.Candelabra));
         }
 
-        public override void NumDust(System.Int32 i, System.Int32 j, System.Boolean fail, ref System.Int32 num) {
+        public override void NumDust(int i, int j, bool fail, ref int num) {
             num = fail ? 1 : 3;
         }
 
-        public override void HitWire(System.Int32 i, System.Int32 j) {
+        public override void HitWire(int i, int j) {
             Tile tile = Main.tile[i, j];
-            System.Int32 topX = i - tile.TileFrameX / 18 % 2;
-            System.Int32 topY = j - tile.TileFrameY / 18 % 2;
-            System.Int16 frameAdjustment = (System.Int16)(tile.TileFrameX >= 36 ? -36 : 36);
+            int topX = i - tile.TileFrameX / 18 % 2;
+            int topY = j - tile.TileFrameY / 18 % 2;
+            short frameAdjustment = (short)(tile.TileFrameX >= 36 ? -36 : 36);
             Main.tile[topX, topY].TileFrameX += frameAdjustment;
             Main.tile[topX, topY + 1].TileFrameX += frameAdjustment;
             Main.tile[topX + 1, topY].TileFrameX += frameAdjustment;
@@ -197,7 +198,7 @@ public class BaseFurnitureTile {
             NetMessage.SendTileSquare(-1, i, topY + 1, 3, TileChangeType.None);
         }
 
-        public override void ModifyLight(System.Int32 i, System.Int32 j, ref System.Single r, ref System.Single g, ref System.Single b) {
+        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
             Tile tile = Main.tile[i, j];
             if (tile.TileFrameX < 36) {
                 r = LightColor.X;
@@ -230,29 +231,29 @@ public class BaseFurnitureTile {
             AddMapEntry(MapColor, Lang.GetItemName(ItemID.Candle));
         }
 
-        public override void MouseOver(System.Int32 i, System.Int32 j) {
+        public override void MouseOver(int i, int j) {
             var player = Main.LocalPlayer;
             player.noThrow = 2;
             player.cursorItemIconEnabled = true;
             player.cursorItemIconID = ItemDrop;
         }
 
-        public override System.Boolean RightClick(System.Int32 i, System.Int32 j) {
+        public override bool RightClick(int i, int j) {
             WorldGen.KillTile(i, j);
             return true;
         }
 
-        public override void HitWire(System.Int32 i, System.Int32 j) {
+        public override void HitWire(int i, int j) {
             Tile tile = Main.tile[i, j];
-            System.Int32 topX = i - tile.TileFrameX / 18 % 1;
-            System.Int32 topY = j - tile.TileFrameY / 18 % 1;
-            System.Int16 frameAdjustment = (System.Int16)(tile.TileFrameX >= 18 ? -18 : 18);
+            int topX = i - tile.TileFrameX / 18 % 1;
+            int topY = j - tile.TileFrameY / 18 % 1;
+            short frameAdjustment = (short)(tile.TileFrameX >= 18 ? -18 : 18);
             Main.tile[topX, topY].TileFrameX += frameAdjustment;
             Wiring.SkipWire(topX, topY);
             NetMessage.SendTileSquare(-1, i, topY + 1, 3, TileChangeType.None);
         }
 
-        public override void ModifyLight(System.Int32 i, System.Int32 j, ref System.Single r, ref System.Single g, ref System.Single b) {
+        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
             if (Main.tile[i, j].TileFrameX < 18) {
                 r = LightColor.X;
                 g = LightColor.Y;
@@ -286,15 +287,15 @@ public class BaseFurnitureTile {
             AddMapEntry(MapColor, Language.GetText("MapObject.Chandelier"));
         }
 
-        public override void NumDust(System.Int32 i, System.Int32 j, System.Boolean fail, ref System.Int32 num) {
+        public override void NumDust(int i, int j, bool fail, ref int num) {
             num = fail ? 1 : 3;
         }
 
-        public override void HitWire(System.Int32 i, System.Int32 j) {
+        public override void HitWire(int i, int j) {
             Tile tile = Main.tile[i, j];
-            System.Int32 topX = i - tile.TileFrameX / 18 % 3;
-            System.Int32 topY = j - tile.TileFrameY / 18 % 3;
-            System.Int16 frameAdjustment = (System.Int16)(tile.TileFrameX >= 54 ? -54 : 54);
+            int topX = i - tile.TileFrameX / 18 % 3;
+            int topY = j - tile.TileFrameY / 18 % 3;
+            short frameAdjustment = (short)(tile.TileFrameX >= 54 ? -54 : 54);
             Main.tile[topX, topY].TileFrameX += frameAdjustment;
             Main.tile[topX, topY + 1].TileFrameX += frameAdjustment;
             Main.tile[topX, topY + 2].TileFrameX += frameAdjustment;
@@ -316,7 +317,7 @@ public class BaseFurnitureTile {
             NetMessage.SendTileSquare(-1, i, topY + 1, 3, TileChangeType.None);
         }
 
-        public override void ModifyLight(System.Int32 i, System.Int32 j, ref System.Single r, ref System.Single g, ref System.Single b) {
+        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
             if (Main.tile[i, j].TileFrameX < 54) {
                 r = LightColor.X;
                 g = LightColor.Y;
@@ -354,18 +355,18 @@ public class BaseFurnitureTile {
 
             AddMapEntry();
 
-            AdjTiles = new System.Int32[] { TileID.Chairs };
+            AdjTiles = new int[] { TileID.Chairs };
         }
 
-        public override void NumDust(System.Int32 i, System.Int32 j, System.Boolean fail, ref System.Int32 num) {
+        public override void NumDust(int i, int j, bool fail, ref int num) {
             num = fail ? 1 : 3;
         }
 
-        public override System.Boolean HasSmartInteract(System.Int32 i, System.Int32 j, SmartInteractScanSettings settings) {
+        public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) {
             return true;
         }
 
-        public override void MouseOver(System.Int32 i, System.Int32 j) {
+        public override void MouseOver(int i, int j) {
             Player player = Main.LocalPlayer;
             if (player.IsWithinSnappngRangeToTile(i, j, 40)) {
                 player.noThrow = 2;
@@ -375,7 +376,7 @@ public class BaseFurnitureTile {
             }
         }
 
-        public override System.Boolean RightClick(System.Int32 i, System.Int32 j) {
+        public override bool RightClick(int i, int j) {
             Player player = Main.LocalPlayer;
             if (player.IsWithinSnappngRangeToTile(i, j, 40)) {
                 player.GamepadEnableGrappleCooldown();
@@ -391,11 +392,11 @@ public class BaseFurnitureTile {
             AddMapEntry(MapColor, Language.GetText("MapObject.Toilet"));
         }
 
-        public override void HitWire(System.Int32 i, System.Int32 j) {
+        public override void HitWire(int i, int j) {
             Tile tile = Main.tile[i, j];
 
-            System.Int32 spawnX = i;
-            System.Int32 spawnY = j - tile.TileFrameY % 40 / 18;
+            int spawnX = i;
+            int spawnY = j - tile.TileFrameY % 40 / 18;
 
             Wiring.SkipWire(spawnX, spawnY);
             Wiring.SkipWire(spawnX, spawnY + 1);
@@ -420,16 +421,16 @@ public class BaseFurnitureTile {
             TileObjectData.addTile(Type);
 
             AddMapEntry(MapColor, Lang.GetItemName(ItemID.GrandfatherClock));
-            AdjTiles = new System.Int32[] { TileID.GrandfatherClocks };
+            AdjTiles = new int[] { TileID.GrandfatherClocks };
 
             TileID.Sets.DisableSmartCursor[Type] = true;
         }
 
-        public override void NumDust(System.Int32 i, System.Int32 j, System.Boolean fail, ref System.Int32 num) {
+        public override void NumDust(int i, int j, bool fail, ref int num) {
             num = fail ? 1 : 3;
         }
 
-        public override System.Boolean RightClick(System.Int32 x, System.Int32 y) {
+        public override bool RightClick(int x, int y) {
             Main.NewText($"Time: {ExtendLanguage.WatchTime(Main.time, Main.dayTime)}", new Color(255, 240, 20));
             return true;
         }

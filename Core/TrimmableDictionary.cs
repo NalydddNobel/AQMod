@@ -13,9 +13,9 @@ public class TrimmableDictionary<TKey, TValue> : IDictionary<TKey, TValue> {
 
     public ICollection<TValue> Values => ((IDictionary<TKey, TValue>)_dictionary).Values;
 
-    public System.Int32 Count => ((ICollection<KeyValuePair<TKey, TValue>>)_dictionary).Count;
+    public int Count => ((ICollection<KeyValuePair<TKey, TValue>>)_dictionary).Count;
 
-    public System.Boolean IsReadOnly => ((ICollection<KeyValuePair<TKey, TValue>>)_dictionary).IsReadOnly;
+    public bool IsReadOnly => ((ICollection<KeyValuePair<TKey, TValue>>)_dictionary).IsReadOnly;
 
     public void Add(TKey key, TValue value) {
         ((IDictionary<TKey, TValue>)_dictionary).Add(key, value);
@@ -29,15 +29,15 @@ public class TrimmableDictionary<TKey, TValue> : IDictionary<TKey, TValue> {
         ((ICollection<KeyValuePair<TKey, TValue>>)_dictionary).Clear();
     }
 
-    public System.Boolean Contains(KeyValuePair<TKey, TValue> item) {
+    public bool Contains(KeyValuePair<TKey, TValue> item) {
         return ((ICollection<KeyValuePair<TKey, TValue>>)_dictionary).Contains(item);
     }
 
-    public System.Boolean ContainsKey(TKey key) {
+    public bool ContainsKey(TKey key) {
         return ((IDictionary<TKey, TValue>)_dictionary).ContainsKey(key);
     }
 
-    public void CopyTo(KeyValuePair<TKey, TValue>[] array, System.Int32 arrayIndex) {
+    public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex) {
         ((ICollection<KeyValuePair<TKey, TValue>>)_dictionary).CopyTo(array, arrayIndex);
     }
 
@@ -45,11 +45,11 @@ public class TrimmableDictionary<TKey, TValue> : IDictionary<TKey, TValue> {
         return ((IEnumerable<KeyValuePair<TKey, TValue>>)_dictionary).GetEnumerator();
     }
 
-    public System.Boolean Remove(TKey key) {
+    public bool Remove(TKey key) {
         return ((IDictionary<TKey, TValue>)_dictionary).Remove(key);
     }
 
-    public System.Boolean Remove(KeyValuePair<TKey, TValue> item) {
+    public bool Remove(KeyValuePair<TKey, TValue> item) {
         return ((ICollection<KeyValuePair<TKey, TValue>>)_dictionary).Remove(item);
     }
 
@@ -61,7 +61,7 @@ public class TrimmableDictionary<TKey, TValue> : IDictionary<TKey, TValue> {
         return _removeQueue.Dequeue();
     }
 
-    public System.Boolean TryRemoveDequeue(out TKey key) {
+    public bool TryRemoveDequeue(out TKey key) {
         return _removeQueue.TryDequeue(out key);
     }
 
@@ -71,7 +71,7 @@ public class TrimmableDictionary<TKey, TValue> : IDictionary<TKey, TValue> {
         }
     }
 
-    public System.Boolean TryGetValue(TKey key, [MaybeNullWhen(false)] out TValue value) {
+    public bool TryGetValue(TKey key, [MaybeNullWhen(false)] out TValue value) {
         return ((IDictionary<TKey, TValue>)_dictionary).TryGetValue(key, out value);
     }
 

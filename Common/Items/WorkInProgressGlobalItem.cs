@@ -1,4 +1,5 @@
 ﻿using Aequus.Core;
+using Microsoft.Xna.Framework;
 using ReLogic.Utilities;
 using System.Collections.Generic;
 using Terraria.Localization;
@@ -6,7 +7,7 @@ using Terraria.Localization;
 namespace Aequus.Common.Items;
 
 public sealed class WorkInProgressGlobalItem : GlobalItem {
-    public override System.Boolean AppliesToEntity(Item item, System.Boolean lateInstantiation) {
+    public override bool AppliesToEntity(Item item, bool lateInstantiation) {
         return item.ModItem != null && item.ModItem.GetType().GetAttribute<WorkInProgressAttribute>() != null;
     }
 

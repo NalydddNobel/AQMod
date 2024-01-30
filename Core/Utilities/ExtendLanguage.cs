@@ -6,7 +6,7 @@ using Terraria.Localization;
 
 namespace Aequus.Core.Utilities;
 public static class ExtendLanguage {
-    private record struct ColoredText(String Text, Color Color);
+    private record struct ColoredText(string Text, Color Color);
 
     /// <summary>Gets a <see cref="ILocalizedModType"/>'s "DisplayName" value.</summary>
     public static LocalizedText GetDisplayName(ILocalizedModType localizedModType) {
@@ -18,7 +18,7 @@ public static class ExtendLanguage {
         return GetDisplayName(ModContent.GetInstance<T>());
     }
 
-    public static LocalizedText GetDialogue(this ILocalizedModType localizedModType, String suffix) {
+    public static LocalizedText GetDialogue(this ILocalizedModType localizedModType, string suffix) {
         return localizedModType.GetLocalization($"Dialogue.{suffix}");
     }
 
@@ -26,35 +26,35 @@ public static class ExtendLanguage {
         return ModContent.GetInstance<T>().GetLocalization("MapEntry");
     }
 
-    /// <returns>Whether this key has a value. (<see cref="Language.GetTextValue(String)"/> doesnt return the key.)</returns>
-    public static Boolean ContainsKey(String key) {
+    /// <returns>Whether this key has a value. (<see cref="Language.GetTextValue(string)"/> doesnt return the key.)</returns>
+    public static bool ContainsKey(string key) {
         return Language.GetTextValue(key) != key;
     }
 
-    /// <returns>Whether the text exists. (<see cref="Language.GetTextValue(String)"/> doesnt return the key.)</returns>
-    public static Boolean TryGet(String key, out LocalizedText text) {
+    /// <returns>Whether the text exists. (<see cref="Language.GetTextValue(string)"/> doesnt return the key.)</returns>
+    public static bool TryGet(string key, out LocalizedText text) {
         text = Language.GetText(key);
         return text.Key != text.Value;
     }
-    /// <returns><inheritdoc cref="TryGet(String, out LocalizedText)"/></returns>
-    public static Boolean TryGetValue(String key, out String text) {
-        Boolean value = TryGet(key, out var localizedText);
+    /// <returns><inheritdoc cref="TryGet(string, out LocalizedText)"/></returns>
+    public static bool TryGetValue(string key, out string text) {
+        bool value = TryGet(key, out var localizedText);
         text = localizedText.Value;
         return value;
     }
 
     /// <returns>The Category Key. (Mods.ModName.Category.Suffix)</returns>
-    public static String GetCategoryKey(this ILocalizedModType self, String suffix, Func<String> defaultValueFactory = null) {
+    public static string GetCategoryKey(this ILocalizedModType self, string suffix, Func<string> defaultValueFactory = null) {
         return $"Mods.{self.Mod.Name}.{self.LocalizationCategory}.{suffix}";
     }
 
     /// <returns>A localized text using a category key. (Mods.ModName.Category.Suffix)</returns>
-    public static LocalizedText GetCategoryText(this ILocalizedModType self, String suffix, Func<String> defaultValueFactory = null) {
+    public static LocalizedText GetCategoryText(this ILocalizedModType self, string suffix, Func<string> defaultValueFactory = null) {
         return Language.GetOrRegister(GetCategoryKey(self, suffix), defaultValueFactory);
     }
 
     /// <returns>A text value using a category key. (Mods.ModName.Category.Suffix)</returns>
-    public static String GetCategoryTextValue(this ILocalizedModType self, String suffix) {
+    public static string GetCategoryTextValue(this ILocalizedModType self, string suffix) {
         return self.GetCategoryText(suffix).Value;
     }
 
@@ -64,21 +64,21 @@ public static class ExtendLanguage {
     }
 
     /// <returns>Price Text for the specified value, or <paramref name="NoValueText"/> if value is less than or equal to 0.</returns>
-    public static String PriceText(Int64 value, String NoValueText = "") {
-        return String.Join(' ', GetPriceTextSegments(value, NoValueText).Select((t) => t.Text));
+    public static string PriceText(long value, string NoValueText = "") {
+        return string.Join(' ', GetPriceTextSegments(value, NoValueText).Select((t) => t.Text));
     }
 
-    /// <returns><inheritdoc cref="PriceText(Int64, String)"/> Colored using chat commands.</returns>
-    public static String PriceTextColored(Int64 value, String NoValueText = "", Boolean AlphaPulse = false) {
-        return String.Join(' ', GetPriceTextSegments(value, NoValueText).Select((t) => t.Color == Color.White ? t.Text : ChatCommandInserts.ColorCommand(t.Text, t.Color, AlphaPulse)));
+    /// <returns><inheritdoc cref="PriceText(long, string)"/> Colored using chat commands.</returns>
+    public static string PriceTextColored(long value, string NoValueText = "", bool AlphaPulse = false) {
+        return string.Join(' ', GetPriceTextSegments(value, NoValueText).Select((t) => t.Color == Color.White ? t.Text : ChatCommandInserts.ColorCommand(t.Text, t.Color, AlphaPulse)));
     }
 
-    private static IEnumerable<ColoredText> GetPriceTextSegments(Int64 value, String NoValueText = "") {
-        Int32 platinum = 0;
-        Int32 gold = 0;
-        Int32 silver = 0;
-        Int32 copper = 0;
-        Int32 itemValue = (Int32)value;
+    private static IEnumerable<ColoredText> GetPriceTextSegments(long value, string NoValueText = "") {
+        int platinum = 0;
+        int gold = 0;
+        int silver = 0;
+        int copper = 0;
+        int itemValue = (int)value;
 
         if (itemValue < 1) {
             yield return new ColoredText(NoValueText, Color.White);
@@ -116,7 +116,7 @@ public static class ExtendLanguage {
 
     /// <param name="useAnimation">Item use animation.</param>
     /// <returns>Localized use animation (speed) text based off vanilla thresholds.</returns>
-    public static String GetUseAnimationText(Single useAnimation) {
+    public static string GetUseAnimationText(float useAnimation) {
         if (useAnimation <= 8) {
             return Language.GetTextValue("LegacyTooltip.6");
         }
@@ -143,7 +143,7 @@ public static class ExtendLanguage {
 
     /// <param name="knockback">Weapon Knockback.</param>
     /// <returns>Localized knockback text based off vanilla thresholds.</returns>
-    public static String GetKnockbackText(Single knockback) {
+    public static string GetKnockbackText(float knockback) {
         if (knockback == 0f) {
             return Language.GetTextValue("LegacyTooltip.14");
         }
@@ -173,8 +173,8 @@ public static class ExtendLanguage {
 
     /// <param name="keybind"></param>
     /// <returns>An enumerable of each key for this keybind. Returns "Unbound Key" if no keys are assigned.</returns>
-    public static IEnumerable<String> GetKeybindKeys(ModKeybind keybind) {
-        List<String> keys = keybind.GetAssignedKeys();
+    public static IEnumerable<string> GetKeybindKeys(ModKeybind keybind) {
+        List<string> keys = keybind.GetAssignedKeys();
 
         if (keys.Count == 0) {
             yield return Language.GetTextValue("Mods.Aequus.KeyUnbound");
@@ -189,8 +189,8 @@ public static class ExtendLanguage {
     /// <summary>Copied from example mod and doesnt put any effort to localize. Uses Terraria day/night cycle styled time data.</summary>
     /// <param name="time">The Day/Night cycle time.</param>
     /// <param name="dayTime">Whether it's day or night.</param>
-    public static String WatchTime(Double time, Boolean dayTime) {
-        String text = "AM";
+    public static string WatchTime(double time, bool dayTime) {
+        string text = "AM";
         if (!dayTime) {
             time += 54000.0;
         }
@@ -205,10 +205,10 @@ public static class ExtendLanguage {
             text = "PM";
         }
 
-        Int32 intTime = (Int32)time;
-        Double deltaTime = time - intTime;
-        deltaTime = (Int32)(deltaTime * 60.0);
-        String text2 = String.Concat(deltaTime);
+        int intTime = (int)time;
+        double deltaTime = time - intTime;
+        deltaTime = (int)(deltaTime * 60.0);
+        string text2 = string.Concat(deltaTime);
         if (deltaTime < 10.0) {
             text2 = "0" + text2;
         }
@@ -225,28 +225,28 @@ public static class ExtendLanguage {
     }
 
     /// <summary>Converts ticks to seconds, up to 1 decimal place.</summary>
-    public static String Minutes(Double value) {
+    public static string Minutes(double value) {
         return Decimals(value / 3600.0);
     }
 
     /// <summary>Converts ticks to seconds, up to 1 decimal place.</summary>
-    public static String Seconds(Double value) {
+    public static string Seconds(double value) {
         return Decimals(value / 60.0);
     }
 
     /// <summary>Converts value into percentage text, up to 1 decimal place.</summary>
-    public static String Percent(Double value) {
+    public static string Percent(double value) {
         return Decimals(value * 100f);
     }
 
     /// <summary>Converts value into decimal text, up to 1 decimal place.</summary>
-    public static String Decimals(Double value) {
+    public static string Decimals(double value) {
         return value.ToString("0.0", Language.ActiveCulture.CultureInfo.NumberFormat).Replace(".0", "");
     }
 
     /// <summary>Registers a localization key if it doesn't exist. Only ran if compiled with a DEBUG symbol.</summary>
     [Conditional("DEBUG")]
-    internal static void RegisterKey(String key) {
+    internal static void RegisterKey(string key) {
         Language.GetOrRegister(key);
     }
 }

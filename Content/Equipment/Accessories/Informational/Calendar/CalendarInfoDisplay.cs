@@ -9,12 +9,12 @@ public class CalendarInfoDisplay : InfoDisplay {
     public override void Load() {
     }
 
-    public override System.Boolean Active() {
+    public override bool Active() {
         return CalendarTile.Nearby || Main.LocalPlayer.GetModPlayer<AequusPlayer>().accDayCalendar;
     }
 
-    public override System.String DisplayValue(ref Color displayColor, ref Color displayShadowColor) {
+    public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor) {
         Tooltip ??= this.GetLocalization("Tooltip");
-        return System.String.Format(Tooltip.Value, ExtendLanguage.DayOfWeek(TimeTrackerSystem.DayOfTheWeek).Value, TimeTrackerSystem.daysPassed);
+        return string.Format(Tooltip.Value, ExtendLanguage.DayOfWeek(TimeTrackerSystem.DayOfTheWeek).Value, TimeTrackerSystem.daysPassed);
     }
 }

@@ -1,16 +1,16 @@
 ﻿namespace Aequus.Common.Projectiles;
 
 internal abstract class InstancedModProjectile : ModProjectile {
-    private readonly System.String _name;
-    private readonly System.String _texture;
+    private readonly string _name;
+    private readonly string _texture;
 
-    public override System.String Name => _name;
+    public override string Name => _name;
 
-    public override System.String Texture => _texture;
+    public override string Texture => _texture;
 
-    protected override System.Boolean CloneNewInstances => true;
+    protected override bool CloneNewInstances => true;
 
-    public InstancedModProjectile(System.String name, System.String texture) {
+    public InstancedModProjectile(string name, string texture) {
         _name = name;
         _texture = texture;
     }

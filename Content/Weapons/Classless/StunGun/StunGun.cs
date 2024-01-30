@@ -1,16 +1,18 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.Components;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria.Localization;
 
 namespace Aequus.Content.Weapons.Classless.StunGun;
 
 public class StunGun : ClasslessWeapon, ICooldownItem {
-    public static Single VisualTimer => Main.GlobalTimeWrappedHourly * 5f;
-    public static Int32 DebuffTime { get; set; } = 180;
-    public static Int32 CooldownTime { get; set; } = 480;
+    public static float VisualTimer => Main.GlobalTimeWrappedHourly * 5f;
+    public static int DebuffTime { get; set; } = 180;
+    public static int CooldownTime { get; set; } = 480;
 
-    Int32 ICooldownItem.CooldownTime => CooldownTime;
+    int ICooldownItem.CooldownTime => CooldownTime;
 
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Seconds(DebuffTime), ExtendLanguage.Seconds(CooldownTime));
 
@@ -32,11 +34,11 @@ public class StunGun : ClasslessWeapon, ICooldownItem {
         Item.shootsEveryUse = true;
     }
 
-    public override Boolean CanUseItem(Player player) {
+    public override bool CanUseItem(Player player) {
         return !this.HasCooldown(player);
     }
 
-    public override Boolean? UseItem(Player player) {
+    public override bool? UseItem(Player player) {
         this.SetCooldown(player);
         return true;
     }
@@ -46,21 +48,21 @@ public class StunGun : ClasslessWeapon, ICooldownItem {
     }
 
     #region Debuff Effect
-    public static Single GetVisualTime(Single time, Boolean front) {
+    public static float GetVisualTime(float time, bool front) {
         return front ? time % MathHelper.Pi + MathHelper.Pi - MathHelper.PiOver2 : time % MathHelper.Pi - MathHelper.PiOver2;
     }
 
-    public static Vector2 GetVisualOffset(Int32 entityWidth, Single time, Int32 randomizer = 0) {
+    public static Vector2 GetVisualOffset(int entityWidth, float time, int randomizer = 0) {
         return new Vector2(entityWidth * 1.1f * MathF.Sin(time), MathF.Sin(Main.GlobalTimeWrappedHourly * 10.8f + randomizer));
     }
 
-    public static Single GetVisualScale(Single entitySize) {
+    public static float GetVisualScale(float entitySize) {
         return MathF.Max(entitySize / 50f, 1f);
     }
 
-    public static void DrawDebuffVisual(NPC npc, SpriteBatch spriteBatch, Single waveTime) {
+    public static void DrawDebuffVisual(NPC npc, SpriteBatch spriteBatch, float waveTime) {
         var drawLocation = npc.Center + GetVisualOffset(npc.width, waveTime, npc.whoAmI);
-        Single scale = GetVisualScale(npc.Size.Length());
+        float scale = GetVisualScale(npc.Size.Length());
         spriteBatch.Draw(AequusTextures.StunEffect, drawLocation - Main.screenPosition, null, Color.White with { A = 0 }, 0f, AequusTextures.StunEffect.Size() / 2f, (0.9f + MathF.Sin(Main.GlobalTimeWrappedHourly) * 0.1f) * scale, SpriteEffects.None, 0f);
     }
     #endregion

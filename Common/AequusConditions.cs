@@ -19,11 +19,11 @@ public class AequusConditions {
         return NewCondition(Language.GetText("Mods.Aequus.Condition.DayOfTheWeek").WithFormatArgs(ExtendLanguage.DayOfWeek(dayOfWeek)), () => TimeTrackerSystem.DayOfTheWeek == dayOfWeek);
     }
 
-    private static Condition NewCondition(String name, Func<Boolean> predicate) {
+    private static Condition NewCondition(string name, Func<bool> predicate) {
         return NewCondition(Language.GetOrRegister("Mods.Aequus.Condition." + name), predicate);
     }
 
-    private static Condition NewCondition(LocalizedText name, Func<Boolean> predicate) {
+    private static Condition NewCondition(LocalizedText name, Func<bool> predicate) {
         return new(name, predicate);
     }
 }

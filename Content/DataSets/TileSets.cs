@@ -16,10 +16,10 @@ public class TileSets : DataSet {
     /// Prevents tiles below this tile from being sloped.
     /// </summary>
     [JsonIgnore]
-    public static HashSet<System.UInt16> PreventsSlopesBelow { get; private set; } = new();
+    public static HashSet<ushort> PreventsSlopesBelow { get; private set; } = new();
 
     public override void PostSetupContent() {
-        for (System.Int32 i = 0; i < TileLoader.TileCount; i++) {
+        for (int i = 0; i < TileLoader.TileCount; i++) {
             if (TileID.Sets.Torch[i] || TileID.Sets.OpenDoorID[i] > -1 || TileID.Sets.CloseDoorID[i] > -1) {
                 Mechanical.Add((TileEntry)i);
             }

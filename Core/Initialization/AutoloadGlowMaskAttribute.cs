@@ -4,15 +4,15 @@ namespace Aequus.Core.Initialization;
 
 [AttributeUsage(AttributeTargets.Class)]
 internal sealed class AutoloadGlowMaskAttribute : AutoloadXAttribute {
-    public readonly String[] CustomGlowmasks;
-    public readonly Boolean AutoAssignID;
+    public readonly string[] CustomGlowmasks;
+    public readonly bool AutoAssignID;
 
     public AutoloadGlowMaskAttribute() {
         AutoAssignID = true;
         CustomGlowmasks = null;
     }
 
-    public AutoloadGlowMaskAttribute(params String[] glowmasks) {
+    public AutoloadGlowMaskAttribute(params string[] glowmasks) {
         AutoAssignID = false;
         CustomGlowmasks = glowmasks;
     }
@@ -22,7 +22,7 @@ internal sealed class AutoloadGlowMaskAttribute : AutoloadXAttribute {
             return;
         }
 
-        String modItemTexture = m.Texture;
+        string modItemTexture = m.Texture;
         // Check if this item will be registering multiple glowmasks
         if (CustomGlowmasks != null) {
             foreach (var customGlowmaskPath in CustomGlowmasks) {
@@ -32,7 +32,7 @@ internal sealed class AutoloadGlowMaskAttribute : AutoloadXAttribute {
         }
 
         // Otherwise, get a _Glow texture using the item's Texture property
-        Int16 glowmaskId = GlowMasksLoader.AddGlowmask(modItemTexture + "_Glow");
+        short glowmaskId = GlowMasksLoader.AddGlowmask(modItemTexture + "_Glow");
 
         // Assign an ItemID for this glowmask to be connected with, so it is automatically applied
         if (AutoAssignID) {

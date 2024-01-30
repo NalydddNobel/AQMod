@@ -7,7 +7,7 @@ namespace Aequus.Core.Utilities;
 public static class ExtendProjectile {
     internal static readonly Projectile _dummyProjectile = new Projectile();
 
-    public static Boolean IsChildOrNoSpecialEffects(this Projectile projectile) {
+    public static bool IsChildOrNoSpecialEffects(this Projectile projectile) {
         return projectile.GetGlobalProjectile<ProjectileItemData>().NoSpecialEffects || projectile.GetGlobalProjectile<ProjectileSource>().isProjectileChild;
     }
 
@@ -22,17 +22,17 @@ public static class ExtendProjectile {
         projectile.SetDefaultNoInteractions();
     }
 
-    public static Single CappedMeleeScale(this Player player) {
+    public static float CappedMeleeScale(this Player player) {
         var item = player.HeldItem;
         return Math.Clamp(player.GetAdjustedItemScale(item), 0.5f * item.scale, 2f * item.scale);
     }
 
     public static void MeleeScale(Projectile proj) {
-        Single scale = Main.player[proj.owner].CappedMeleeScale();
+        float scale = Main.player[proj.owner].CappedMeleeScale();
         if (scale != 1f) {
             proj.scale *= scale;
-            proj.width = (Int32)(proj.width * proj.scale);
-            proj.height = (Int32)(proj.height * proj.scale);
+            proj.width = (int)(proj.width * proj.scale);
+            proj.height = (int)(proj.height * proj.scale);
         }
     }
 
@@ -43,7 +43,7 @@ public static class ExtendProjectile {
     /// <param name="identity"></param>
     /// <param name="projectile"></param>
     /// <returns></returns>
-    public static Boolean TryFindProjectileIdentity(Int32 owner, Int32 identity, out Int32 projectile) {
+    public static bool TryFindProjectileIdentity(int owner, int identity, out int projectile) {
         projectile = FindProjectileIdentity(owner, identity);
         return projectile != -1;
     }
@@ -54,18 +54,18 @@ public static class ExtendProjectile {
     /// <param name="owner"></param>
     /// <param name="identity"></param>
     /// <returns></returns>
-    public static Int32 FindProjectileIdentity(Int32 owner, Int32 identity) {
-        for (Int32 i = 0; i < 1000; i++) {
+    public static int FindProjectileIdentity(int owner, int identity) {
+        for (int i = 0; i < 1000; i++) {
             if (Main.projectile[i].owner == owner && Main.projectile[i].identity == identity && Main.projectile[i].active) {
                 return i;
             }
         }
         return -1;
     }
-    public static Int32 FindProjectileIdentityOtherwiseFindPotentialSlot(Int32 owner, Int32 identity) {
-        Int32 projectile = FindProjectileIdentity(owner, identity);
+    public static int FindProjectileIdentityOtherwiseFindPotentialSlot(int owner, int identity) {
+        int projectile = FindProjectileIdentity(owner, identity);
         if (projectile == -1) {
-            for (Int32 i = 0; i < 1000; i++) {
+            for (int i = 0; i < 1000; i++) {
                 if (!Main.projectile[i].active) {
                     projectile = i;
                     break;
@@ -85,7 +85,7 @@ public static class ExtendProjectile {
         }
     }
 
-    public static Boolean CanReflectAgainstShimmer(Entity entity) {
+    public static bool CanReflectAgainstShimmer(Entity entity) {
         if (entity.shimmerWet && entity.velocity.Y > 0f) {
             entity.velocity.Y = -entity.velocity.Y;
             return true;
@@ -98,7 +98,7 @@ public static class ExtendProjectile {
         return TextureAssets.Projectile[projectile.type].Value.Frame(1, Main.projFrames[projectile.type], 0, projectile.frame);
     }
 
-    public static void GetDrawInfo(this Projectile projectile, out Texture2D texture, out Vector2 offset, out Rectangle frame, out Vector2 origin, out Int32 trailLength) {
+    public static void GetDrawInfo(this Projectile projectile, out Texture2D texture, out Vector2 offset, out Rectangle frame, out Vector2 origin, out int trailLength) {
         texture = TextureAssets.Projectile[projectile.type].Value;
         offset = projectile.Size / 2f;
         frame = projectile.Frame();

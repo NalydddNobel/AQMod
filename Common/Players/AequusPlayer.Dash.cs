@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Players;
+using Microsoft.Xna.Framework;
 using System;
 
 namespace Aequus;
@@ -10,7 +11,7 @@ public partial class AequusPlayer {
         DashData = ModContent.GetInstance<T>();
     }
 
-    private void DoCommonDashHandle(Player player, out Int32 dir, out Boolean dashing, CustomDashData dashData) {
+    private void DoCommonDashHandle(Player player, out int dir, out bool dashing, CustomDashData dashData) {
         dir = 0;
         dashing = false;
         if (player.dashTime > 0) {
@@ -53,12 +54,12 @@ public partial class AequusPlayer {
                 dashData.OnUpdateDashDelay(player, aequusPlayer);
             }
             else if (player.dashDelay < 0) {
-                Single dashSpeed = dashData.DashHaltSpeed;
-                Single dashSpeedPenalty = dashData.DashHaltSpeedMultiplier;
-                Single movementSpeed = Math.Max(player.accRunSpeed, player.maxRunSpeed);
-                Single movementSpeedPenalty = 0.96f;
+                float dashSpeed = dashData.DashHaltSpeed;
+                float dashSpeedPenalty = dashData.DashHaltSpeedMultiplier;
+                float movementSpeed = Math.Max(player.accRunSpeed, player.maxRunSpeed);
+                float movementSpeedPenalty = 0.96f;
 
-                Int32 dashDelay = dashData.DashDelay;
+                int dashDelay = dashData.DashDelay;
                 player.doorHelper.AllowOpeningDoorsByVelocityAloneForATime(dashDelay * 3);
                 player.vortexStealthActive = false;
                 dashData.OnUpdateRampDown(player, aequusPlayer);
@@ -80,7 +81,7 @@ public partial class AequusPlayer {
                 dashData.OnApplyDash(player, aequusPlayer);
             }
             else {
-                aequusPlayer.DoCommonDashHandle(player, out Int32 direction, out Boolean dashing, dashData);
+                aequusPlayer.DoCommonDashHandle(player, out int direction, out bool dashing, dashData);
                 if (dashing) {
                     player.velocity.X = dashData.DashSpeed * direction;
 

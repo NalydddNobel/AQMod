@@ -1,6 +1,8 @@
-﻿namespace Aequus.Core.Graphics.GameOverlays;
+﻿using Microsoft.Xna.Framework.Graphics;
+
+namespace Aequus.Core.Graphics.GameOverlays;
 
 public interface IOverlayDrawer {
-    System.Boolean Update();
+    bool Update();
     void Draw(SpriteBatch spriteBatch);
 }

@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Aequus.Content.Tools.MagicMirrors.PhaseMirror;
 
 public class PhaseMirror : ModItem, IPhaseMirror {
-    public List<(System.Int32, System.Int32, Dust)> DustEffectCache { get; set; }
-    public System.Int32 UseAnimationMax => 64;
+    public List<(int, int, Dust)> DustEffectCache { get; set; }
+    public int UseAnimationMax => 64;
 
     public override void SetStaticDefaults() {
         ItemID.Sets.WorksInVoidBag[Type] = true;
@@ -32,7 +33,7 @@ public class PhaseMirror : ModItem, IPhaseMirror {
         player.GetModPlayer<AequusPlayer>().infiniteWormhole = true;
     }
 
-    public void GetPhaseMirrorDust(Player player, Item item, IPhaseMirror me, out System.Int32 dustType, out Color dustColor) {
+    public void GetPhaseMirrorDust(Player player, Item item, IPhaseMirror me, out int dustType, out Color dustColor) {
         dustType = DustID.MagicMirror;
         dustColor = Color.White;
     }

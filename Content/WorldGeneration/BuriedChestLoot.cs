@@ -8,7 +8,7 @@ using Terraria.ObjectData;
 
 namespace Aequus.Content.WorldGeneration;
 public class BuriedChestLoot : ModSystem {
-    public static System.Int32 SlimeCrownSpawnrate { get; set; } = 7;
+    public static int SlimeCrownSpawnrate { get; set; } = 7;
 
     public static void CheckSurfaceChest(Chest chest) {
         if (VanillaChangesConfig.Instance.SlimeCrownInSurfaceChests && WorldGen.genRand.NextBool(SlimeCrownSpawnrate) && !chest.item.Any(i => i.type == ItemID.SlimeCrown)) {
@@ -30,17 +30,17 @@ public class BuriedChestLoot : ModSystem {
     }
 
     public override void PostWorldGen() {
-        for (System.Int32 k = 0; k < Main.maxChests; k++) {
+        for (int k = 0; k < Main.maxChests; k++) {
             Chest chest = Main.chest[k];
             if (chest == null || !WorldGen.InWorld(chest.x, chest.y, 40) || !CanAddLoot(chest)) {
                 continue;
             }
 
             Tile tile = Main.tile[chest.x, chest.y];
-            System.UInt16 wallId = tile.WallType;
+            ushort wallId = tile.WallType;
             TileObjectData tileObjectData = TileObjectData.GetTileData(tile);
-            System.UInt16 type = tile.TileType;
-            System.Int32 style = TileHelper.GetStyle(tile, tileObjectData, coordinateFullWidthBackup: 36);
+            ushort type = tile.TileType;
+            int style = TileHelper.GetStyle(tile, tileObjectData, coordinateFullWidthBackup: 36);
 
             // Pyramid
             if (wallId == WallID.SandstoneBrick) {
@@ -90,8 +90,8 @@ public class BuriedChestLoot : ModSystem {
         }
     }
 
-    private static System.Boolean CanAddLoot(Chest chest) {
-        for (System.Int32 m = 0; m < Chest.maxItems; m++) {
+    private static bool CanAddLoot(Chest chest) {
+        for (int m = 0; m < Chest.maxItems; m++) {
             if (chest.item[m] == null || chest.item[m].IsAir) {
                 continue;
             }

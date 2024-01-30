@@ -1,13 +1,14 @@
 ﻿using Aequus.Common.Items;
+using Microsoft.Xna.Framework;
 
 namespace Aequus.Content.Bosses.BossMasks;
 
 internal class DustDevilMask : InstancedModItem {
-    public DustDevilMask(System.String name) : base($"{name}Mask", typeof(DustDevilMask).GetFilePath()) {
+    public DustDevilMask(string name) : base($"{name}Mask", typeof(DustDevilMask).GetFilePath()) {
     }
 
-    private System.Int32 _fireSide;
-    private System.Int32 _iceSide;
+    private int _fireSide;
+    private int _iceSide;
 
     public override void Load() {
         if (Main.netMode != NetmodeID.MultiplayerClient) {
@@ -29,7 +30,7 @@ internal class DustDevilMask : InstancedModItem {
         return Color.Lerp(Color.White, lightColor, 0.5f);
     }
 
-    public override void DrawArmorColor(Player drawPlayer, System.Single shadow, ref Color color, ref System.Int32 glowMask, ref Color glowMaskColor) {
+    public override void DrawArmorColor(Player drawPlayer, float shadow, ref Color color, ref int glowMask, ref Color glowMaskColor) {
         color = Color.Lerp(Color.White, color, 0.5f);
     }
 

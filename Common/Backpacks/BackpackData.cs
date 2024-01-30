@@ -8,40 +8,40 @@ using Terraria.ModLoader.IO;
 namespace Aequus.Common.Backpacks;
 
 public abstract class BackpackData : ModType, ILocalizedModType {
-    private const String InventoryTagKey = "Inventory";
+    private const string InventoryTagKey = "Inventory";
 
-    public Int32 Type { get; internal set; }
+    public int Type { get; internal set; }
 
     public Item[] Inventory { get; internal set; }
-    public Int32 slotCount;
+    public int slotCount;
 
-    protected Boolean activeOld;
+    protected bool activeOld;
 
-    public abstract Int32 Capacity { get; }
+    public abstract int Capacity { get; }
 
-    public virtual Boolean SupportsInfoAccessories => false;
-    public virtual Boolean SupportsQuickStack => true;
-    public virtual Boolean SupportsConsumeItem => true;
-    public virtual Boolean SupportsGolfBalls => true;
+    public virtual bool SupportsInfoAccessories => false;
+    public virtual bool SupportsQuickStack => true;
+    public virtual bool SupportsConsumeItem => true;
+    public virtual bool SupportsGolfBalls => true;
 
-    public virtual Single SlotHue => 0f;
+    public virtual float SlotHue => 0f;
 
-    public Int32 slotsToRender;
-    public Single nextSlotAnimation;
+    public int slotsToRender;
+    public float nextSlotAnimation;
 
-    public virtual String LocalizationCategory => "Items.Backpacks";
+    public virtual string LocalizationCategory => "Items.Backpacks";
 
     public virtual LocalizedText DisplayName => this.GetLocalization("DisplayName", PrettyPrintName);
 
     protected LocalizedText DisplayNameCache { get; private set; }
 
-    public virtual String GetDisplayName(Player player) {
+    public virtual string GetDisplayName(Player player) {
         return BackpackLoader.Backpacks[Type].DisplayNameCache.Value;
     }
 
-    public abstract Boolean IsActive(Player player);
+    public abstract bool IsActive(Player player);
 
-    public virtual Boolean IsVisible() {
+    public virtual bool IsVisible() {
         return true;
     }
 
@@ -60,7 +60,7 @@ public abstract class BackpackData : ModType, ILocalizedModType {
     public virtual void ResetEffects(Player player) {
     }
 
-    protected virtual void OnUpdateItem(Player player, AequusPlayer aequusPlayer, Int32 slot) {
+    protected virtual void OnUpdateItem(Player player, AequusPlayer aequusPlayer, int slot) {
     }
 
     public virtual BackpackData CreateInstance() => (BackpackData)MemberwiseClone();
@@ -69,16 +69,16 @@ public abstract class BackpackData : ModType, ILocalizedModType {
 
     protected virtual void LoadExtraData(TagCompound tag) { }
 
-    public virtual Boolean CanAcceptItem(Int32 slot, Item incomingItem) => true;
+    public virtual bool CanAcceptItem(int slot, Item incomingItem) => true;
 
     /// <summary>Return false to override slot drawing.</summary>
-    public virtual Boolean PreDrawSlot(SpriteBatch spriteBatch, Vector2 slotCenter, Vector2 slotTopLeft, Int32 slot) => true;
-    public virtual void PostDrawSlot(SpriteBatch spriteBatch, Vector2 slotCenter, Vector2 slotTopLeft, Int32 slot) { }
+    public virtual bool PreDrawSlot(SpriteBatch spriteBatch, Vector2 slotCenter, Vector2 slotTopLeft, int slot) => true;
+    public virtual void PostDrawSlot(SpriteBatch spriteBatch, Vector2 slotCenter, Vector2 slotTopLeft, int slot) { }
 
     public void SaveData(TagCompound tag) {
         SaveExtraData(tag);
         if (Inventory != null) {
-            for (Int32 i = 0; i < Inventory.Length; i++) {
+            for (int i = 0; i < Inventory.Length; i++) {
                 // Save inventory if there's atleast 1 item inside the backpack
                 if (Inventory[i] != null && !Inventory[i].IsAir) {
                     tag[InventoryTagKey] = Inventory;
@@ -95,7 +95,7 @@ public abstract class BackpackData : ModType, ILocalizedModType {
         LoadExtraData(tag);
     }
 
-    public void UpdateItem(Player player, AequusPlayer aequusPlayer, Int32 slot) {
+    public void UpdateItem(Player player, AequusPlayer aequusPlayer, int slot) {
         if (Inventory[slot].type == ItemID.DD2EnergyCrystal && !DD2Event.Ongoing) {
             Inventory[slot].TurnToAir();
         }
@@ -104,7 +104,7 @@ public abstract class BackpackData : ModType, ILocalizedModType {
 
     public void Update(Player player) {
         OnUpdate(player);
-        Boolean isActive = IsActive(player);
+        bool isActive = IsActive(player);
         if (activeOld != isActive) {
             if (activeOld) {
                 Deactivate(player);
@@ -112,14 +112,14 @@ public abstract class BackpackData : ModType, ILocalizedModType {
             else {
                 Activate(player);
 
-                Int32 capacity = Capacity;
+                int capacity = Capacity;
                 if (Inventory == null) {
                     Inventory = new Item[capacity];
                 }
                 else {
                     if (capacity < Inventory.Length) {
                         IEntitySource source = new EntitySource_Misc("Aequus: Backpack");
-                        for (Int32 i = capacity; i < Inventory.Length; i++) {
+                        for (int i = capacity; i < Inventory.Length; i++) {
                             player.QuickSpawnItem(source, Inventory[i], Inventory[i].stack);
                         }
                     }
@@ -129,7 +129,7 @@ public abstract class BackpackData : ModType, ILocalizedModType {
                     Inventory = arr;
                 }
 
-                for (Int32 i = 0; i < Inventory.Length; i++) {
+                for (int i = 0; i < Inventory.Length; i++) {
                     Inventory[i] ??= new();
                 }
 
@@ -145,13 +145,13 @@ public abstract class BackpackData : ModType, ILocalizedModType {
         DisplayNameCache = DisplayName;
     }
 
-    private Single _hueRenderedWith;
+    private float _hueRenderedWith;
     public Texture2D InventoryBack { get; private set; }
     public Texture2D InventoryBackFavorited { get; private set; }
     public Texture2D InventoryBackNewItem { get; private set; }
 
-    public Boolean CheckTextures() {
-        Single wantedHue = SlotHue;
+    public bool CheckTextures() {
+        float wantedHue = SlotHue;
         if (_hueRenderedWith != wantedHue) {
             GetHuedItemSlots(wantedHue);
         }
@@ -159,7 +159,7 @@ public abstract class BackpackData : ModType, ILocalizedModType {
         return InventoryBack != null && InventoryBackFavorited != null && InventoryBackNewItem != null;
     }
 
-    private void GetHuedItemSlots(Single wantedHue) {
+    private void GetHuedItemSlots(float wantedHue) {
         Main.QueueMainThreadAction(() => {
             InventoryBack = HueSingleTexture2D(TextureAssets.InventoryBack.Value, wantedHue);
             InventoryBackFavorited = HueSingleTexture2D(TextureAssets.InventoryBack10.Value, wantedHue);
@@ -167,13 +167,13 @@ public abstract class BackpackData : ModType, ILocalizedModType {
         });
     }
 
-    private static Texture2D HueSingleTexture2D(Texture2D baseTexture, Single hue) {
+    private static Texture2D HueSingleTexture2D(Texture2D baseTexture, float hue) {
         Color[] textureColorsExtracted = new Color[baseTexture.Width * baseTexture.Height];
         baseTexture.GetData(textureColorsExtracted);
 
-        for (Int32 k = 0; k < textureColorsExtracted.Length; k++) {
+        for (int k = 0; k < textureColorsExtracted.Length; k++) {
             Color color = textureColorsExtracted[k];
-            Byte velocity = Math.Max(Math.Max(color.R, color.G), color.B);
+            byte velocity = Math.Max(Math.Max(color.R, color.G), color.B);
             textureColorsExtracted[k] = color.HueAdd(hue) with { A = color.A };
         }
 

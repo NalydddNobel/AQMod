@@ -1,4 +1,6 @@
-﻿using ReLogic.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -14,9 +16,9 @@ public partial class SkyMerchant {
         public readonly Asset<Texture2D> Aiming;
         public readonly Asset<Texture2D> CrossbowArm;
 
-        private readonly Boolean _valid = false;
+        private readonly bool _valid = false;
 
-        public Boolean Valid => _valid;
+        public bool Valid => _valid;
 
         public TextureDrawSet(Asset<Texture2D> balloon, Asset<Texture2D> basket, Asset<Texture2D> aiming, Asset<Texture2D> crossbowArm) {
             Balloon = balloon;
@@ -42,11 +44,11 @@ public partial class SkyMerchant {
         ShimmerDrawSet = default;
     }
 
-    private void DrawAnchored(SpriteBatch spriteBatch, Texture2D texture, Vector2 position, Vector2 offset, Rectangle? frame, Color color, Single rotation, Vector2 origin, Single scale, SpriteEffects spriteEffects, Single layerDepth) {
+    private void DrawAnchored(SpriteBatch spriteBatch, Texture2D texture, Vector2 position, Vector2 offset, Rectangle? frame, Color color, float rotation, Vector2 origin, float scale, SpriteEffects spriteEffects, float layerDepth) {
         spriteBatch.Draw(texture, position + offset.RotatedBy(NPC.rotation) * NPC.scale, frame, color, rotation, origin, scale, spriteEffects, 0f);
     }
 
-    public override Boolean PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+    public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
         if (NPC.IsABestiaryIconDummy) {
             drawSet = !NPC.IsShimmerVariant ? DefaultDrawSet : ShimmerDrawSet;
             state = MovementState.Ballooning;
@@ -59,13 +61,13 @@ public partial class SkyMerchant {
         }
         var drawCoordinates = NPC.Center - screenPos + new Vector2(0f, DrawOffsetY + NPC.gfxOffY + 8f);
         var texture = TextureAssets.Npc[Type].Value;
-        Single opacity = NPC.Opacity;
+        float opacity = NPC.Opacity;
         if (state == MovementState.Ballooning) {
             DrawAnchored(spriteBatch, drawSet.Balloon.Value, drawCoordinates, new Vector2(0f, -96f), null, drawColor * opacity * balloonOpacity, NPC.rotation, drawSet.Balloon.Size() / 2f, NPC.scale, SpriteEffects.None, 0f);
             var npcColor = NPC.GetNPCColorTintedByBuffs(drawColor) * opacity * (1f - NPC.shimmerTransparency);
             var drawOffset = new Vector2(0f, -18f);
-            Int32 direction = NPC.spriteDirection;
-            Single armRotation = 0f;
+            int direction = NPC.spriteDirection;
+            float armRotation = 0f;
             if (target == -1) {
                 DrawAnchored(spriteBatch, texture, drawCoordinates, drawOffset, NPC.frame, npcColor, NPC.rotation, NPC.frame.Size() / 2f, NPC.scale, direction == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
             }
@@ -83,13 +85,13 @@ public partial class SkyMerchant {
         return true;
     }
 
-    public void DrawMapHead(ref MapOverlayDrawContext context, ref String text) {
-        Single opacity = 1f - NPC.Distance(Main.LocalPlayer.Center) / 900f;
+    public void DrawMapHead(ref MapOverlayDrawContext context, ref string text) {
+        float opacity = 1f - NPC.Distance(Main.LocalPlayer.Center) / 900f;
         if (opacity < 0f) {
             return;
         }
 
-        if (context.Draw(AequusTextures.SkyMerchant_CustomHead, (NPC.Center.Floor() / 16f), Color.White * opacity, new SpriteFrame(1, 2, 0, (Byte)(NPC.spriteDirection == -1 ? 0 : 1)), 1f, 1f, Alignment.Center).IsMouseOver && opacity > 0.33f) {
+        if (context.Draw(AequusTextures.SkyMerchant_CustomHead, (NPC.Center.Floor() / 16f), Color.White * opacity, new SpriteFrame(1, 2, 0, (byte)(NPC.spriteDirection == -1 ? 0 : 1)), 1f, 1f, Alignment.Center).IsMouseOver && opacity > 0.33f) {
             text = NPC.FullName;
         }
     }

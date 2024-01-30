@@ -5,24 +5,24 @@ namespace Aequus;
 
 public partial class AequusPlayer {
     public class TimerData {
-        public Single TimePassed;
-        public Int32 MaxTime;
-        public String Name;
+        public float TimePassed;
+        public int MaxTime;
+        public string Name;
 
-        public Boolean Active => TimePassed < MaxTime;
+        public bool Active => TimePassed < MaxTime;
     }
 
-    public Dictionary<String, TimerData> Timers;
+    public Dictionary<string, TimerData> Timers;
 
-    public Boolean TryGetTimer(String name, out TimerData timer) {
+    public bool TryGetTimer(string name, out TimerData timer) {
         return Timers.TryGetValue(name, out timer);
     }
 
-    public Boolean TimerActive(String name) {
+    public bool TimerActive(string name) {
         return TryGetTimer(name, out var timer) && timer.Active;
     }
 
-    public void SetTimer(String name, Int32 time) {
+    public void SetTimer(string name, int time) {
         if (TryGetTimer(name, out var timer)) {
             if (!timer.Active) {
                 timer.MaxTime = 0;
@@ -41,5 +41,5 @@ public partial class AequusPlayer {
         }
     }
 
-    public static Dictionary<String, TimerData> LocalTimers { get; internal set; } = new();
+    public static Dictionary<string, TimerData> LocalTimers { get; internal set; } = new();
 }

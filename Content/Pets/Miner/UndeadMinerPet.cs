@@ -1,4 +1,6 @@
 ﻿using Aequus.Common.Projectiles;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
 using Terraria.Audio;
@@ -7,13 +9,13 @@ using Terraria.GameContent;
 namespace Aequus.Content.Pets.Miner;
 
 public class UndeadMinerPet : ModPet {
-    public Int32 swingPick;
-    public Int32 tileX;
-    public Int32 tileY;
+    public int swingPick;
+    public int tileX;
+    public int tileY;
 
-    public Int32 SwingTime => 24;
-    public Int32 frame;
-    public Single frameCounter;
+    public int SwingTime => 24;
+    public int frame;
+    public float frameCounter;
 
     public override void SetStaticDefaults() {
         Main.projFrames[Type] = 15;
@@ -30,26 +32,26 @@ public class UndeadMinerPet : ModPet {
         AIType = ProjectileID.BlackCat;
     }
 
-    public override Boolean PreAI() {
+    public override bool PreAI() {
         if (!base.PreAI()) {
             return false;
         }
 
         Lighting.AddLight(Projectile.Top, new Vector3(0.4f, 0.3f, 0.1f));
         var tileCoords = ((Projectile.Center + Main.player[Projectile.owner].Center) / 2f).ToTileCoordinates();
-        Single closest = Single.MaxValue;
+        float closest = float.MaxValue;
         var pick = Main.player[Projectile.owner].GetBestPickaxe();
         pick ??= ContentSamples.ItemsByType[ItemID.CopperPickaxe];
-        for (Int32 j = 10; j > -10; j--) {
-            for (Int32 i = -10; i < 10; i++) {
-                Int32 checkTileX = tileCoords.X + i;
-                Int32 checkTileY = tileCoords.Y + j;
+        for (int j = 10; j > -10; j--) {
+            for (int i = -10; i < 10; i++) {
+                int checkTileX = tileCoords.X + i;
+                int checkTileY = tileCoords.Y + j;
                 if (WorldGen.InWorld(checkTileX, checkTileY, 50) && Main.tile[checkTileX, checkTileY].IsFullySolid()
                     && Main.tileSpelunker[Main.tile[checkTileX, checkTileY].TileType]
                     && Main.player[Projectile.owner].CheckPickPower(pick, checkTileX, checkTileY)
                     && WorldGen.CanKillTile(checkTileX, checkTileY)) {
                     var worldCoords = new Vector2(checkTileX * 16f, checkTileY * 16f);
-                    Single c = Vector2.Distance(Projectile.Center, worldCoords);
+                    float c = Vector2.Distance(Projectile.Center, worldCoords);
                     if (c < closest && Collision.CanHitLine(Projectile.position + Main.rand.NextVector2Unit() * Main.rand.NextFloat(6f), Projectile.width, Projectile.height, worldCoords + Vector2.Normalize(Projectile.Center - worldCoords).RotatedBy(Main.rand.NextFloat(-0.25f, 0.25f)) * Main.rand.Next(8, 20), 16, 16)) {
                         tileX = checkTileX;
                         tileY = checkTileY;
@@ -146,21 +148,21 @@ public class UndeadMinerPet : ModPet {
         tileY = reader.ReadInt32();
     }
 
-    public override Boolean TileCollideStyle(ref Int32 width, ref Int32 height, ref Boolean fallThrough, ref Vector2 hitboxCenterFrac) {
+    public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
         if (tileY > 0 && tileY * 16 + 8 > Projectile.position.Y) {
             fallThrough = true;
         }
         return true;
     }
 
-    public override Boolean PreDraw(ref Color lightColor) {
-        Projectile.GetDrawInfo(out var texture, out var offset, out var _, out var origin, out Int32 _);
+    public override bool PreDraw(ref Color lightColor) {
+        Projectile.GetDrawInfo(out var texture, out var offset, out var _, out var origin, out int _);
         var frame = texture.Frame(verticalFrames: Main.projFrames[Type], frameY: this.frame);
         Main.EntitySpriteDraw(texture, Projectile.position + offset + new Vector2(0f, DrawOriginOffsetY) - Main.screenPosition, frame, ExtendLight.Get(Projectile.Center), Projectile.rotation, origin, Projectile.scale, Projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
         if (swingPick > 0) {
-            Single rotation = (MathHelper.Pi + 0.1f) / SwingTime * swingPick - MathHelper.PiOver2;
+            float rotation = (MathHelper.Pi + 0.1f) / SwingTime * swingPick - MathHelper.PiOver2;
             var pick = Main.player[Projectile.owner].GetBestPickaxe();
-            Int32 pickaxeItemID = pick == null ? ItemID.CopperPickaxe : pick.type;
+            int pickaxeItemID = pick == null ? ItemID.CopperPickaxe : pick.type;
             Main.GetItemDrawFrame(pickaxeItemID, out var itemTexture, out var itemFrame);
             var pickaxeDrawCoords = GetPickaxeHandPosition();
             if (Projectile.spriteDirection == -1) {

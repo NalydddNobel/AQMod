@@ -3,21 +3,21 @@
 namespace Aequus.Common.Items.DropRules;
 
 public class ConditionLastAlive : IItemDropRuleCondition, IProvideItemConditionDescription {
-    private readonly System.Int32 type;
+    private readonly int type;
 
-    public ConditionLastAlive(System.Int32 type) {
+    public ConditionLastAlive(int type) {
         this.type = type;
     }
 
-    public System.Boolean CanDrop(DropAttemptInfo info) {
+    public bool CanDrop(DropAttemptInfo info) {
         return NPC.CountNPCS(type) <= 1;
     }
 
-    public System.Boolean CanShowItemDropInUI() {
+    public bool CanShowItemDropInUI() {
         return true;
     }
 
-    public System.String GetConditionDescription() {
+    public string GetConditionDescription() {
         return null;
     }
 }

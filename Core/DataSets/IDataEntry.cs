@@ -1,10 +1,10 @@
 ﻿namespace Aequus.Core.DataSets;
 
 public interface IDataEntry {
-    System.String Name { get; set; }
+    string Name { get; set; }
 
-    System.Boolean ValidEntry { get; }
-    System.Boolean VanillaEntry { get; }
+    bool ValidEntry { get; }
+    bool VanillaEntry { get; }
 
     void Initialize();
 }

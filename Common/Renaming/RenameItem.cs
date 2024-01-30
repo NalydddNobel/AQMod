@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Content.DataSets;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.IO;
@@ -8,23 +9,23 @@ using Terraria.ModLoader.IO;
 namespace Aequus.Common.Renaming;
 
 public sealed class RenameItem : GlobalItem {
-    public static System.Int32 RenamePrice { get; set; } = Item.buyPrice(silver: 25);
+    public static int RenamePrice { get; set; } = Item.buyPrice(silver: 25);
 
-    public System.Boolean HasCustomName => !System.String.IsNullOrEmpty(CustomName);
+    public bool HasCustomName => !string.IsNullOrEmpty(CustomName);
 
-    public System.String CustomName { get; set; } = System.String.Empty;
+    public string CustomName { get; set; } = string.Empty;
 
-    private System.Boolean _resetNameTag;
+    private bool _resetNameTag;
 
-    public override System.Boolean InstancePerEntity => true;
+    public override bool InstancePerEntity => true;
 
-    protected override System.Boolean CloneNewInstances => true;
+    protected override bool CloneNewInstances => true;
 
-    public override System.Boolean AppliesToEntity(Item entity, System.Boolean lateInstantiation) {
+    public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
         return CanRename(entity);
     }
 
-    public System.String GetDecodedName() {
+    public string GetDecodedName() {
         return CustomName.Length == 0 ? CustomName : RenamingSystem.GetPlainDecodedText(CustomName);
     }
 
@@ -36,7 +37,7 @@ public sealed class RenameItem : GlobalItem {
 
             _resetNameTag = true;
 
-            if (CustomName == System.String.Empty) {
+            if (CustomName == string.Empty) {
                 item.ClearNameOverride();
             }
             else {
@@ -59,7 +60,7 @@ public sealed class RenameItem : GlobalItem {
         return renameItem;
     }
 
-    public override System.Boolean CanStack(Item destination, Item source) {
+    public override bool CanStack(Item destination, Item source) {
         return !destination.TryGetGlobalItem<RenameItem>(out var nameTag1) || !source.TryGetGlobalItem<RenameItem>(out var nameTag2) || nameTag1.CustomName == nameTag2.CustomName;
     }
 
@@ -71,7 +72,7 @@ public sealed class RenameItem : GlobalItem {
     }
 
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
-        if (HasCustomName && CustomName != System.String.Empty) {
+        if (HasCustomName && CustomName != string.Empty) {
             foreach (var t in tooltips) {
                 if (t.Mod == "Terraria" && t.Name == "ItemName") {
                     t.Text = GetDecodedName();
@@ -86,13 +87,13 @@ public sealed class RenameItem : GlobalItem {
     }
 
     public override void SaveData(Item item, TagCompound tag) {
-        if (!System.String.IsNullOrEmpty(CustomName)) {
+        if (!string.IsNullOrEmpty(CustomName)) {
             tag["CustomName"] = CustomName;
         }
     }
 
     public override void LoadData(Item item, TagCompound tag) {
-        if (tag.TryGet("CustomName", out System.String customName)) {
+        if (tag.TryGet("CustomName", out string customName)) {
             CustomName = customName;
         }
     }
@@ -105,14 +106,14 @@ public sealed class RenameItem : GlobalItem {
         CustomName = reader.ReadString();
     }
 
-    public static System.Int32 GetRenamePrice(Item item) {
+    public static int GetRenamePrice(Item item) {
         if (item.ModItem is ICustomNameTagPrice customNameTagPrice) {
             return customNameTagPrice.GetNameTagPrice();
         }
         return RenamePrice;
     }
 
-    public static System.Boolean CanRename(Item item) {
+    public static bool CanRename(Item item) {
         return !item.IsACoin && !ItemSets.CannotRename.Contains(item.type);
     }
 }

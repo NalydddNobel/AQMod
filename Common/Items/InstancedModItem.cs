@@ -1,32 +1,32 @@
 ﻿namespace Aequus.Common.Items;
 
 internal abstract class InstancedModItem : ModItem {
-    protected readonly System.String _name;
-    protected readonly System.String _texture;
+    protected readonly string _name;
+    protected readonly string _texture;
 
-    public override System.String Name => _name;
+    public override string Name => _name;
 
-    public override System.String Texture => _texture;
+    public override string Texture => _texture;
 
-    protected override System.Boolean CloneNewInstances => true;
+    protected override bool CloneNewInstances => true;
 
-    private void TryAlternativeTexturePaths(ref System.String texture) {
+    private void TryAlternativeTexturePaths(ref string texture) {
         if (ModContent.HasAsset(texture)) {
             return;
         }
 
-        System.Int32 i = texture.LastIndexOf('/');
-        System.String name = texture[(i + 1)..];
-        System.String path = texture[..i];
+        int i = texture.LastIndexOf('/');
+        string name = texture[(i + 1)..];
+        string path = texture[..i];
 
-        System.String itemsFolder = path + "/Items/" + name;
+        string itemsFolder = path + "/Items/" + name;
         if (ModContent.HasAsset(itemsFolder)) {
             texture = itemsFolder;
             return;
         }
     }
 
-    public InstancedModItem(System.String name, System.String texture) {
+    public InstancedModItem(string name, string texture) {
         _name = name;
         _texture = texture;
         if (!Main.dedServ) {

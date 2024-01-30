@@ -1,9 +1,11 @@
-﻿namespace Aequus.Content.DedicatedContent.Baguette;
+﻿using Microsoft.Xna.Framework;
+
+namespace Aequus.Content.DedicatedContent.Baguette;
 
 public class Baguette : ModItem, IDedicatedItem {
-    public System.String DedicateeName => "niker";
+    public string DedicateeName => "niker";
 
-    public System.String DisplayedDedicateeName => null;
+    public string DisplayedDedicateeName => null;
 
     public Color TextColor => new Color(127, 92, 32);
 

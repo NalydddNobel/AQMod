@@ -5,14 +5,14 @@ using Terraria.ModLoader.IO;
 namespace Aequus.Common.Renaming;
 
 public sealed class RenamedNPCMarkerManager : GlobalNPC {
-    public override Boolean InstancePerEntity => true;
+    public override bool InstancePerEntity => true;
 
-    protected override Boolean CloneNewInstances => true;
+    protected override bool CloneNewInstances => true;
 
-    public Int32 MarkerId { get; internal set; } = 0;
+    public int MarkerId { get; internal set; } = 0;
 
-    public override Boolean AppliesToEntity(NPC entity, Boolean lateInstantiation) {
-        return RenameNPC.CanRename(entity) && !NPCLoader.SavesAndLoads(entity) && (!NPCID.Sets.RespawnEnemyID.TryGetValue(entity.type, out Int32 respawnId) || respawnId != 0);
+    public override bool AppliesToEntity(NPC entity, bool lateInstantiation) {
+        return RenameNPC.CanRename(entity) && !NPCLoader.SavesAndLoads(entity) && (!NPCID.Sets.RespawnEnemyID.TryGetValue(entity.type, out int respawnId) || respawnId != 0);
     }
 
     public override void AI(NPC npc) {
@@ -68,7 +68,7 @@ public sealed class RenamedNPCMarkerManager : GlobalNPC {
         }
     }
 
-    public override Boolean PreKill(NPC npc) {
+    public override bool PreKill(NPC npc) {
         if (Main.netMode != NetmodeID.MultiplayerClient) {
             RenamingSystem.Remove(MarkerId);
         }

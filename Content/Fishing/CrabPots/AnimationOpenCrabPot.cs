@@ -1,14 +1,15 @@
 ﻿using Aequus.Core.Graphics.Animations;
+using Microsoft.Xna.Framework;
 using Terraria.Audio;
 
 namespace Aequus.Content.Fishing.CrabPots;
 
 public class AnimationOpenCrabPot : ITileAnimation {
-    public System.Int32 Frame;
-    public System.Int32 FrameCount;
-    public System.Int32 RealFrame;
+    public int Frame;
+    public int FrameCount;
+    public int RealFrame;
 
-    public System.Boolean Update(System.Int32 x, System.Int32 y) {
+    public bool Update(int x, int y) {
         if (FrameCount == 0 && Frame == 0) {
             SoundEngine.PlaySound(SoundID.DoorOpen, new Vector2(x, y).ToWorldCoordinates());
         }

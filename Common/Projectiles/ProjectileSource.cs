@@ -6,21 +6,21 @@ using Terraria.ModLoader.IO;
 namespace Aequus.Common.Projectiles;
 
 public class ProjectileSource : GlobalProjectile {
-    public System.Int16 parentNPCIndex;
-    public System.Int32 parentItemType;
-    public System.Int32 parentAmmoType;
+    public short parentNPCIndex;
+    public int parentItemType;
+    public int parentAmmoType;
     /// <summary>
     /// Whether this projectile was spawned by another projectile. Use this to prevent effects occuring multiple times (Like ammo retrival)
     /// </summary>
-    public System.Boolean isProjectileChild;
+    public bool isProjectileChild;
 
-    public System.Boolean HasNPCOwner => parentNPCIndex != -1;
+    public bool HasNPCOwner => parentNPCIndex != -1;
 
     [CloneByReference]
     public IManageProjectile ProjectileManager { get; private set; }
 
-    public override System.Boolean InstancePerEntity => true;
-    protected override System.Boolean CloneNewInstances => true;
+    public override bool InstancePerEntity => true;
+    protected override bool CloneNewInstances => true;
 
     public override void SetDefaults(Projectile entity) {
         parentItemType = 0;
@@ -40,7 +40,7 @@ public class ProjectileSource : GlobalProjectile {
                 parentItemType = parentItem.type;
             }
             else if (parentSource.Entity is NPC parentNPC) {
-                parentNPCIndex = (System.Int16)parentNPC.whoAmI;
+                parentNPCIndex = (short)parentNPC.whoAmI;
             }
         }
         if (source is EntitySource_ItemUse_WithAmmo withAmmo) {
@@ -53,7 +53,7 @@ public class ProjectileSource : GlobalProjectile {
         }
     }
 
-    public override System.Boolean PreAI(Projectile projectile) {
+    public override bool PreAI(Projectile projectile) {
         if (parentNPCIndex > -1 && !Main.npc[parentNPCIndex].active) {
             parentNPCIndex = -1;
         }
@@ -71,7 +71,7 @@ public class ProjectileSource : GlobalProjectile {
         ProjectileManager?.PostAIProjectile(projectile);
     }
 
-    public override System.Boolean PreDraw(Projectile projectile, ref Color lightColor) {
+    public override bool PreDraw(Projectile projectile, ref Color lightColor) {
         return ProjectileManager?.PreDrawProjectile(projectile, ref lightColor) ?? true;
     }
 
@@ -79,19 +79,19 @@ public class ProjectileSource : GlobalProjectile {
         ProjectileManager?.PostDrawProjectile(projectile, lightColor);
     }
 
-    public override System.Boolean OnTileCollide(Projectile projectile, Vector2 oldVelocity) {
+    public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity) {
         return ProjectileManager?.OnTileCollideProjectile(projectile, oldVelocity) ?? true;
     }
 
-    public override System.Boolean PreKill(Projectile projectile, System.Int32 timeLeft) {
+    public override bool PreKill(Projectile projectile, int timeLeft) {
         return ProjectileManager?.PreKillProjectile(projectile, timeLeft) ?? true;
     }
 
-    public override void OnKill(Projectile projectile, System.Int32 timeLeft) {
+    public override void OnKill(Projectile projectile, int timeLeft) {
         ProjectileManager?.OnKillProjectile(projectile, timeLeft);
     }
 
-    public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, System.Int32 damageDone) {
+    public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone) {
         ProjectileManager?.OnHitNPCProjectile(projectile, target, hit, damageDone);
     }
 

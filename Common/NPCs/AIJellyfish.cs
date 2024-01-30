@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 
 namespace Aequus.Common.NPCs;
 
 public abstract class AIJellyfish : ModNPC {
-    public virtual Boolean CanShock() {
+    public virtual bool CanShock() {
         return Main.expertMode;
     }
 
@@ -13,47 +14,47 @@ public abstract class AIJellyfish : ModNPC {
     /// <para><see cref="shockEndRampUp"/> is used to increase the duration of the attack.</para>
     /// <para>Defaults to 150.</para>
     /// </summary>
-    public Int32 shockRampUpDistance = 150;
+    public int shockRampUpDistance = 150;
     /// <summary>
     /// Decreases the cooldown of the shock attack when within <see cref="shockRampUpDistance"/>.
     /// <para>Defaults to 2f.</para>
     /// </summary>
-    public Single shockStartRampUp = 2f;
+    public float shockStartRampUp = 2f;
     /// <summary>
     /// Increases the duration of the shock attack when within <see cref="shockRampUpDistance"/>.
     /// <para>Defaults to 0.25f.</para>
     /// </summary>
-    public Single shockEndRampUp = 0.25f;
+    public float shockEndRampUp = 0.25f;
 
     /// <summary>
     /// The duration of the shock attack's cooldown.
     /// <para>Defaults to 420. (7 seconds)</para>
     /// </summary>
-    public Int32 shockAttackCooldown = 420;
+    public int shockAttackCooldown = 420;
     /// <summary>
     /// The duration of the shock attack.
     /// <para>Defaults to 120. (2 seconds)</para>
     /// </summary>
-    public Int32 shockAttackLength = 120;
+    public int shockAttackLength = 120;
 
     /// <summary>
     /// Defaults to 7.
     /// </summary>
-    public Single dashSpeed = 7f;
+    public float dashSpeed = 7f;
     /// <summary>
     /// Multiplier on velocity when it wants to slow down for a dash attack.
     /// <para>Defaults to 0.98f.</para>
     /// </summary>
-    public Single dashAttackSlowdown = 0.98f;
+    public float dashAttackSlowdown = 0.98f;
     /// <summary>
     /// How slow the Jellyfish must be moving in order for it to be allowed to dash.
     /// <para>Defaults to 0.2f.</para>
     /// </summary>
-    public Single dashAttackSpeedThreshold = 0.2f;
+    public float dashAttackSpeedThreshold = 0.2f;
 
-    public Boolean InShockState => NPC.wet && NPC.ai[1] == 1f;
+    public bool InShockState => NPC.wet && NPC.ai[1] == 1f;
 
-    public virtual void CastLights(Single lightIntensity) {
+    public virtual void CastLights(float lightIntensity) {
     }
 
     public virtual void UpdateShockState() {
@@ -84,8 +85,8 @@ public abstract class AIJellyfish : ModNPC {
     }
 
     public virtual void HandleWetCollisions() {
-        Int32 i = (Int32)NPC.Center.X / 16;
-        Int32 j = (Int32)(NPC.position.Y + NPC.height) / 16;
+        int i = (int)NPC.Center.X / 16;
+        int j = (int)(NPC.position.Y + NPC.height) / 16;
         var centerTile = Framing.GetTileSafely(i, j);
         var bottomTile = Framing.GetTileSafely(i, j + 1);
         if (centerTile.TopSlope) {
@@ -144,8 +145,8 @@ public abstract class AIJellyfish : ModNPC {
                 NPC.ai[0] = -1f;
             }
         }
-        Int32 i = (Int32)(NPC.position.X + NPC.width / 2) / 16;
-        Int32 j = (Int32)(NPC.position.Y + NPC.height / 2) / 16;
+        int i = (int)(NPC.position.X + NPC.width / 2) / 16;
+        int j = (int)(NPC.position.Y + NPC.height / 2) / 16;
         if (Framing.GetTileSafely(i, j - 1).LiquidAmount > 128) {
             if (Framing.GetTileSafely(i, j + 1).HasTile) {
                 NPC.ai[0] = -1f;
@@ -162,11 +163,11 @@ public abstract class AIJellyfish : ModNPC {
         }
     }
 
-    public virtual Boolean HandleDashAttack() {
+    public virtual bool HandleDashAttack() {
         NPC.TargetClosest(faceTarget: false);
         if (Main.player[NPC.target].wet && !Main.player[NPC.target].dead && Collision.CanHit(NPC.position, NPC.width, NPC.height, Main.player[NPC.target].position, Main.player[NPC.target].width, Main.player[NPC.target].height)) {
             NPC.localAI[2] = 1f;
-            NPC.rotation = (Single)Math.Atan2(NPC.velocity.Y, NPC.velocity.X) + MathHelper.PiOver2;
+            NPC.rotation = (float)Math.Atan2(NPC.velocity.Y, NPC.velocity.X) + MathHelper.PiOver2;
             NPC.velocity *= dashAttackSlowdown;
             if (NPC.velocity.X > -dashAttackSpeedThreshold && NPC.velocity.X < dashAttackSpeedThreshold && NPC.velocity.Y > -dashAttackSpeedThreshold && NPC.velocity.Y < dashAttackSpeedThreshold) {
                 NPC.TargetClosest();

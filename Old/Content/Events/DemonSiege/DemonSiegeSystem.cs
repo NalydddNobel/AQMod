@@ -13,7 +13,7 @@ public class DemonSiegeSystem : ModSystem {
     public static readonly Dictionary<Point, DemonSiegeSacrificeInfo> ActiveSacrifices = new();
     public static readonly List<Point> SacrificeRemovalQueue = new();
 
-    public static Int32 DemonSiegePause { get; set; }
+    public static int DemonSiegePause { get; set; }
 
     public override void Unload() {
         ActiveSacrifices.Clear();
@@ -31,7 +31,7 @@ public class DemonSiegeSystem : ModSystem {
         }
 
         var screenCenter = Main.screenPosition + new Vector2(Main.screenWidth, Main.screenHeight) / 2f;
-        Single screenSize = MathF.Sqrt(Main.screenWidth * Main.screenWidth + Main.screenHeight + Main.screenHeight);
+        float screenSize = MathF.Sqrt(Main.screenWidth * Main.screenWidth + Main.screenHeight + Main.screenHeight);
         foreach (var sacrifice in ActiveSacrifices) {
             var v = sacrifice.Value;
             var center = v.WorldCenter;
@@ -65,7 +65,7 @@ public class DemonSiegeSystem : ModSystem {
 
         var auraTexture = AequusTextures.GoreNestAura.Value;
         var screenCenter = Main.screenPosition + new Vector2(Main.screenWidth, Main.screenHeight) / 2f;
-        Single screenSize = MathF.Sqrt(Main.screenWidth * Main.screenWidth + Main.screenHeight + Main.screenHeight);
+        float screenSize = MathF.Sqrt(Main.screenWidth * Main.screenWidth + Main.screenHeight + Main.screenHeight);
         Main.spriteBatch.BeginWorld(shader: false);
         try {
             foreach (var sacrifice in ActiveSacrifices) {
@@ -76,14 +76,14 @@ public class DemonSiegeSystem : ModSystem {
                 }
                 var origin = auraTexture.Size() / 2f;
                 var drawCoords = (center - Main.screenPosition).Floor();
-                Single scale = v.Range * 2f / auraTexture.Width;
-                Single opacity = 1f;
+                float scale = v.Range * 2f / auraTexture.Width;
+                float opacity = 1f;
 
                 if (v.TimeLeft < 360) {
                     opacity = v.TimeLeft / 360f;
                 }
 
-                Single auraScale = v.AuraScale;
+                float auraScale = v.AuraScale;
                 var color = Color.Lerp(Color.Red * 0.75f, Color.OrangeRed, Helper.Oscillate(Main.GlobalTimeWrappedHourly * 2.5f, 0.1f, 1f)) * opacity;
                 Main.spriteBatch.Draw(auraTexture, drawCoords, null, color,
                     0f, origin, scale * auraScale, SpriteEffects.None, 0f);
@@ -98,7 +98,7 @@ public class DemonSiegeSystem : ModSystem {
         DrawSacrificeRings();
     }
 
-    public static Boolean NewInvasion(Int32 x, Int32 y, Item sacrifice, Int32 player = Byte.MaxValue, Boolean checkIsValidSacrifice = true, Boolean allowAdding = true, Boolean allowAdding_IgnoreMax = false) {
+    public static bool NewInvasion(int x, int y, Item sacrifice, int player = byte.MaxValue, bool checkIsValidSacrifice = true, bool allowAdding = true, bool allowAdding_IgnoreMax = false) {
         sacrifice = sacrifice.Clone();
         sacrifice.stack = 1;
         if (ActiveSacrifices.TryGetValue(new Point(x, y), out var value)) {
@@ -117,7 +117,7 @@ public class DemonSiegeSystem : ModSystem {
             sacrificeData = new Conversion(sacrifice.netID, sacrifice.netID + 1, EventTier.PreHardmode);
         }
         var s = new DemonSiegeSacrificeInfo(x, y) {
-            player = (Byte)player
+            player = (byte)player
         };
         s.Items.Add(sacrifice);
         if (Main.netMode != NetmodeID.SinglePlayer) {
@@ -131,19 +131,19 @@ public class DemonSiegeSystem : ModSystem {
     }
 
     public class StartDemonSiegePacket : PacketHandler {
-        public void Send(Int32 x, Int32 y, Int32 player, Item item) {
+        public void Send(int x, int y, int player, Item item) {
             ModPacket p = GetPacket();
-            p.Write((UInt16)x);
-            p.Write((UInt16)y);
-            p.Write((Byte)player);
+            p.Write((ushort)x);
+            p.Write((ushort)y);
+            p.Write((byte)player);
             ItemIO.Send(item, p, writeStack: true, writeFavorite: false);
             p.Send(ignoreClient: player);
         }
 
-        public override void Receive(BinaryReader reader, Int32 sender) {
-            UInt16 X = reader.ReadUInt16();
-            UInt16 Y = reader.ReadUInt16();
-            Byte Player = reader.ReadByte();
+        public override void Receive(BinaryReader reader, int sender) {
+            ushort X = reader.ReadUInt16();
+            ushort Y = reader.ReadUInt16();
+            byte Player = reader.ReadByte();
             Item Item = ItemIO.Receive(reader, readStack: true, readFavorite: false);
             DemonSiegeSacrificeInfo s = new DemonSiegeSacrificeInfo(X, Y) {
                 player = Player,
@@ -159,16 +159,16 @@ public class DemonSiegeSystem : ModSystem {
     }
 
     public class RemoveDemonSiegePacket : PacketHandler {
-        public void Send(Int32 x, Int32 y) {
+        public void Send(int x, int y) {
             ModPacket p = GetPacket();
-            p.Write((UInt16)x);
-            p.Write((UInt16)y);
+            p.Write((ushort)x);
+            p.Write((ushort)y);
             p.Send();
         }
 
-        public override void Receive(BinaryReader reader, Int32 sender) {
-            UInt16 X = reader.ReadUInt16();
-            UInt16 Y = reader.ReadUInt16();
+        public override void Receive(BinaryReader reader, int sender) {
+            ushort X = reader.ReadUInt16();
+            ushort Y = reader.ReadUInt16();
 
             lock (ActiveSacrifices) {
                 try {

@@ -30,13 +30,13 @@ public class ObsidianCrabPot : BaseCrabPot {
         TileObjectData.newTile.LavaDeath = false;
         TileObjectData.newTile.WaterPlacement = LiquidPlacement.OnlyInLiquid;
         TileObjectData.newTile.LavaPlacement = LiquidPlacement.OnlyInLiquid;
-        TileObjectData.newTile.CoordinateHeights = new Int32[] { 16, 24 };
+        TileObjectData.newTile.CoordinateHeights = new int[] { 16, 24 };
         TileObjectData.newTile.DrawYOffset = -16;
         DustType = DustID.Obsidian;
         AddMapEntry(new(123, 90, 68), CreateMapEntryName());
     }
 
-    protected override void CustomPreDraw(Int32 x, Int32 y, Int32 waterYOffset, SpriteBatch spriteBatch, TECrabPot crabPot) {
+    protected override void CustomPreDraw(int x, int y, int waterYOffset, SpriteBatch spriteBatch, TECrabPot crabPot) {
         if (!crabPot.item.IsAir && Aequus.GameWorldActive) {
             var d = Dust.NewDustPerfect(new Vector2(x + 0.5f, y - 1.4f).ToWorldCoordinates(), crabPot.caught ? DustID.Frost : DustID.Torch, Scale: 2f);
             d.noGravity = true;

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Aequus.Core.Graphics.Tiles;
 
@@ -14,10 +15,10 @@ public record struct BatchedTileDrawInfo(Tile Tile, Point Position);
 /// </summary>
 public sealed class BatchedTileRenderer : ModSystem {
     internal class SpecialTileBatch {
-        public readonly System.Boolean SolidLayer;
+        public readonly bool SolidLayer;
         public List<BatchedTileDrawInfo> Tiles;
         public IBatchedTile Drawer;
-        public System.Int32 Count;
+        public int Count;
 
         public SpecialTileBatch(IBatchedTile batchedTile) {
             SolidLayer = batchedTile.SolidLayerTile;
@@ -27,7 +28,7 @@ public sealed class BatchedTileRenderer : ModSystem {
         }
     }
 
-    internal static Dictionary<System.Int32, SpecialTileBatch> _batches = new(12);
+    internal static Dictionary<int, SpecialTileBatch> _batches = new(12);
 
     public override void SetStaticDefaults() {
         foreach (var renderer in Mod.GetContent<IBatchedTile>()) {
@@ -44,14 +45,14 @@ public sealed class BatchedTileRenderer : ModSystem {
     /// <summary>
     /// Registers a delegate for use with special tile drawing for selected type.
     /// </summary>
-    public static void Register(System.Int32 type, IBatchedTile renderer) {
+    public static void Register(int type, IBatchedTile renderer) {
         _batches.TryAdd(type, new SpecialTileBatch(renderer));
     }
 
     /// <summary>
     /// Adds the tile at position to draw buffer.
     /// </summary>
-    public static void Add(System.Int32 i, System.Int32 j, System.Int32 type) {
+    public static void Add(int i, int j, int type) {
         if (_batches.TryGetValue(type, out var batch)) {
             var info = new BatchedTileDrawInfo(Main.tile[i, j], new(i, j));
             if (batch.Tiles.Count <= batch.Count) {

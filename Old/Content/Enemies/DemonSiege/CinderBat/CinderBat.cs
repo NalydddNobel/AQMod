@@ -16,20 +16,20 @@ namespace Aequus.Old.Content.Enemies.DemonSiege.CinderBat;
 [AutoloadBanner(legacyId: 7)]
 [ModBiomes(typeof(DemonSiegeZone))]
 public class CinderBat : LegacyAIBat {
-    public const Int32 FRAME_FLY_0 = 0;
-    public const Int32 FRAME_FLY_1 = 1;
-    public const Int32 FRAME_FLY_2 = 2;
-    public const Int32 FRAME_FLY_3 = 3;
+    public const int FRAME_FLY_0 = 0;
+    public const int FRAME_FLY_1 = 1;
+    public const int FRAME_FLY_2 = 2;
+    public const int FRAME_FLY_3 = 3;
 
-    public const Int32 FRAME_OPEN_MOUTH_0 = 4;
-    public const Int32 FRAME_OPEN_MOUTH_1 = 5;
-    public const Int32 FRAME_OPEN_MOUTH_2 = 6;
-    public const Int32 FRAME_OPEN_MOUTH_3 = 7;
+    public const int FRAME_OPEN_MOUTH_0 = 4;
+    public const int FRAME_OPEN_MOUTH_1 = 5;
+    public const int FRAME_OPEN_MOUTH_2 = 6;
+    public const int FRAME_OPEN_MOUTH_3 = 7;
 
-    public const Int32 FRAME_CHOMP_PRE = 8;
-    public const Int32 FRAME_CHOMP_0 = 9;
-    public const Int32 FRAME_CHOMP_1 = 10;
-    public const Int32 FRAME_CHOMP_2 = 11;
+    public const int FRAME_CHOMP_PRE = 8;
+    public const int FRAME_CHOMP_0 = 9;
+    public const int FRAME_CHOMP_1 = 10;
+    public const int FRAME_CHOMP_2 = 11;
 
     public override void SetStaticDefaults() {
         Main.npcFrameCount[NPC.type] = 12;
@@ -71,8 +71,8 @@ public class CinderBat : LegacyAIBat {
         }
     }
 
-    public override void ApplyDifficultyAndPlayerScaling(Int32 numPlayers, Single balance, Single bossAdjustment) {
-        NPC.lifeMax = (Int32)(NPC.lifeMax * (1f + 0.1f * numPlayers));
+    public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment) {
+        NPC.lifeMax = (int)(NPC.lifeMax * (1f + 0.1f * numPlayers));
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -84,10 +84,10 @@ public class CinderBat : LegacyAIBat {
             return;
         }
 
-        Int32 count = 1;
+        int count = 1;
         if (NPC.life <= 0)
             count = 35;
-        for (Int32 i = 0; i < count; i++) {
+        for (int i = 0; i < count; i++) {
             var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Torch);
             d.velocity = (d.position - NPC.Center) / 8f;
             if (Main.rand.NextBool(3)) {
@@ -99,16 +99,16 @@ public class CinderBat : LegacyAIBat {
         }
     }
 
-    protected override Single MaxSpeedX => 6f;
-    protected override Single SpeedYMax => 2f;
-    protected override Single SpeedY => 0.125f;
+    protected override float MaxSpeedX => 6f;
+    protected override float SpeedYMax => 2f;
+    protected override float SpeedY => 0.125f;
 
-    protected override Boolean PreCheckCollisions() {
+    protected override bool PreCheckCollisions() {
         NPC.TargetClosest();
         return true;
     }
 
-    protected override Boolean ShouldApplyWaterEffects() {
+    protected override bool ShouldApplyWaterEffects() {
         return NPC.HasValidTarget && NPC.position.Y > Main.player[NPC.target].position.Y + Main.player[NPC.target].height;
     }
 
@@ -117,7 +117,7 @@ public class CinderBat : LegacyAIBat {
     }
 
     public override void AI() {
-        Boolean canHitPlayer = false;
+        bool canHitPlayer = false;
         if (NPC.HasValidTarget) {
             var target = Main.player[NPC.target];
             canHitPlayer = Collision.CanHitLine(NPC.position, NPC.width, NPC.height, target.position, target.width, target.height);
@@ -134,7 +134,7 @@ public class CinderBat : LegacyAIBat {
             }
         }
         else {
-            if ((Int32)NPC.ai[3] == 301) {
+            if ((int)NPC.ai[3] == 301) {
                 NPC.ai[3] = 0f;
                 NPC.noTileCollide = false;
             }
@@ -143,12 +143,12 @@ public class CinderBat : LegacyAIBat {
             }
         }
 
-        if ((Int32)NPC.ai[0] <= 120f) {
+        if ((int)NPC.ai[0] <= 120f) {
             NPC.knockBackResist = 0.2f;
             base.AI();
             var target = Main.player[NPC.target];
             var differenceY = target.position.Y + target.height / 2f - (NPC.position.Y + NPC.height / 2f);
-            Single differenceYAbs = Math.Abs(differenceY);
+            float differenceYAbs = Math.Abs(differenceY);
             if (differenceYAbs < target.height + NPC.height) {
                 NPC.ai[0]++;
             }
@@ -177,13 +177,13 @@ public class CinderBat : LegacyAIBat {
                 NPC.rotation = 0f;
                 NPC.ai[0] = 301f;
                 SoundEngine.PlaySound(SoundID.DD2_FlameburstTowerShot, NPC.Center);
-                for (Int32 i = 0; i < 5; i++) {
-                    Int32 d = Dust.NewDust(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Torch);
+                for (int i = 0; i < 5; i++) {
+                    int d = Dust.NewDust(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Torch);
                     Main.dust[d].noGravity = true;
                     Main.dust[d].scale = Main.rand.NextFloat(0.9f, 3f);
                 }
-                for (Int32 i = 0; i < 2; i++) {
-                    Int32 d = Dust.NewDust(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Smoke);
+                for (int i = 0; i < 2; i++) {
+                    int d = Dust.NewDust(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Smoke);
                     Main.dust[d].noGravity = true;
                     Main.dust[d].scale = Main.rand.NextFloat(0.9f, 3f);
                 }
@@ -196,17 +196,17 @@ public class CinderBat : LegacyAIBat {
                 NPC.direction = -NPC.direction;
                 NPC.velocity.X = -NPC.oldVelocity.X * 0.5f;
                 SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode, NPC.Center);
-                for (Int32 i = 0; i < 30; i++) {
-                    Int32 d = Dust.NewDust(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Torch);
+                for (int i = 0; i < 30; i++) {
+                    int d = Dust.NewDust(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Torch);
                     Main.dust[d].noGravity = true;
                     Main.dust[d].scale = Main.rand.NextFloat(0.9f, 3f);
                 }
-                for (Int32 i = 0; i < 10; i++) {
-                    Int32 d = Dust.NewDust(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Smoke);
+                for (int i = 0; i < 10; i++) {
+                    int d = Dust.NewDust(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Smoke);
                     Main.dust[d].noGravity = true;
                     Main.dust[d].scale = Main.rand.NextFloat(0.9f, 3f);
                 }
-                for (Int32 i = 0; i < 2; i++) {
+                for (int i = 0; i < 2; i++) {
                     Gore.NewGore(NPC.GetSource_FromAI(), NPC.Center + NPC.velocity, NPC.velocity * 0.2f, 61 + Main.rand.Next(3));
                 }
             }
@@ -233,24 +233,24 @@ public class CinderBat : LegacyAIBat {
             if (NPC.ai[0] == 801f) {
                 SoundEngine.PlaySound(SoundID.Item1, NPC.Center);
                 NPC.ai[0] = 0f;
-                for (Int32 i = 0; i < 10; i++) {
-                    Int32 d = Dust.NewDust(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Torch);
+                for (int i = 0; i < 10; i++) {
+                    int d = Dust.NewDust(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Torch);
                     Main.dust[d].noGravity = true;
                     Main.dust[d].scale = Main.rand.NextFloat(0.9f, 3f);
                 }
-                for (Int32 i = 0; i < 5; i++) {
-                    Int32 d = Dust.NewDust(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Smoke);
+                for (int i = 0; i < 5; i++) {
+                    int d = Dust.NewDust(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Smoke);
                     Main.dust[d].noGravity = true;
                     Main.dust[d].scale = Main.rand.NextFloat(0.9f, 3f);
                 }
                 Gore.NewGore(NPC.GetSource_FromAI(), NPC.Center + NPC.velocity, NPC.velocity * 0.1f, 61 + Main.rand.Next(3));
             }
-            Int32 d2 = Dust.NewDust(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Torch);
+            int d2 = Dust.NewDust(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Torch);
             Main.dust[d2].noGravity = true;
             Main.dust[d2].scale = Main.rand.NextFloat(0.9f, 2f);
         }
         else {
-            if ((Int32)NPC.ai[0] == 802) {
+            if ((int)NPC.ai[0] == 802) {
                 NPC.velocity *= 0.98f;
                 if (Math.Abs(NPC.velocity.X) < MaxSpeedX / 4f) {
                     NPC.ai[0] = -50f;
@@ -269,21 +269,21 @@ public class CinderBat : LegacyAIBat {
         }
 
         if (Main.rand.NextBool(3)) {
-            Int32 d3 = Dust.NewDust(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Torch);
+            int d3 = Dust.NewDust(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Torch);
             Main.dust[d3].noGravity = Main.rand.NextBool();
         }
     }
 
-    private static Byte GetIntensity() {
-        return (Byte)(150 + (Int32)((Math.Sin(Main.GlobalTimeWrappedHourly * 5f) + 1.0) / 2.0 * 80.0));
+    private static byte GetIntensity() {
+        return (byte)(150 + (int)((Math.Sin(Main.GlobalTimeWrappedHourly * 5f) + 1.0) / 2.0 * 80.0));
     }
 
     public override Color? GetAlpha(Color drawColor) {
-        Byte i = GetIntensity();
+        byte i = GetIntensity();
         return new Color(i * 2, i * 2, i * 2, i);
     }
 
-    public override void FindFrame(Int32 frameHeight) {
+    public override void FindFrame(int frameHeight) {
         if (NPC.ai[0] <= 120f) {
             NPC.frameCounter++;
             if (NPC.frameCounter > 5.0) {
@@ -305,13 +305,13 @@ public class CinderBat : LegacyAIBat {
         }
         else if (NPC.ai[0] < 800f) {
             var difference = NPC.Center - Main.player[NPC.target].Center;
-            Single length = difference.Length();
-            if ((Int32)NPC.frameCounter > 0 || length < NPC.width * 1.5f) {
-                if ((Int32)NPC.frameCounter == 0) {
+            float length = difference.Length();
+            if ((int)NPC.frameCounter > 0 || length < NPC.width * 1.5f) {
+                if ((int)NPC.frameCounter == 0) {
                     NPC.frame.Y = frameHeight * FRAME_CHOMP_0;
                 }
                 else {
-                    if ((Int32)NPC.frameCounter / 4 % 2 == 0) {
+                    if ((int)NPC.frameCounter / 4 % 2 == 0) {
                         NPC.frame.Y = frameHeight * FRAME_CHOMP_1;
                     }
                     else {
@@ -364,21 +364,21 @@ public class CinderBat : LegacyAIBat {
         //    .Add<AncientHellBeamDye>(chance: 16, stack: 1)
     }
 
-    public override Boolean PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+    public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
         var texture = TextureAssets.Npc[Type].Value;
         var origin = NPC.frame.Size() / 2f;
         var offset = new Vector2(NPC.width / 2f, NPC.height / 2f + NPC.gfxOffY);
 
         drawColor = NPC.GetAlpha(drawColor);
 
-        Byte intensity = GetIntensity();
-        if ((Int32)NPC.ai[0] > 300 && (Int32)NPC.ai[0] < 800) {
+        byte intensity = GetIntensity();
+        if ((int)NPC.ai[0] > 300 && (int)NPC.ai[0] < 800) {
             intensity = 0;
         }
 
         var effects = NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
         if (intensity > 150) {
-            Single value = (intensity - 150) / 33f;
+            float value = (intensity - 150) / 33f;
             var c = drawColor * 0.08f * value;
             if (Aequus.highQualityEffects) {
                 var spotlight = AequusTextures.BloomStrong;
@@ -398,7 +398,7 @@ public class CinderBat : LegacyAIBat {
         return false;
     }
 
-    public override Boolean? CanFallThroughPlatforms() {
+    public override bool? CanFallThroughPlatforms() {
         return Main.player[NPC.target].dead ? true : Main.player[NPC.target].position.Y > NPC.position.Y + NPC.height;
     }
 }

@@ -6,8 +6,8 @@ using Terraria.Localization;
 namespace Aequus.Old.Content.Equipment.GrapplingHooks.EnemyGrappleHook;
 
 public class Meathook : ModItem {
-    public const System.String IMMUNE_TIMER = "Meathook Immunity";
-    public static System.Single DamageBonus { get; set; } = 0.1f;
+    public const string IMMUNE_TIMER = "Meathook Immunity";
+    public static float DamageBonus { get; set; } = 0.1f;
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Percent(DamageBonus));
 
     public override void SetDefaults() {
@@ -24,7 +24,7 @@ public class Meathook : ModItem {
         tooltips.RemoveKnockback();
     }
 
-    public override System.Boolean WeaponPrefix() {
+    public override bool WeaponPrefix() {
         return true;
     }
 

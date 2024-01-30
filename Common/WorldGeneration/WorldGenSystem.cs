@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.Common.Tiles;
+using Aequus.Content.WorldGeneration;
+using System.Collections.Generic;
+using Terraria.ObjectData;
 using Terraria.WorldBuilding;
 
 namespace Aequus.Common.WorldGeneration;
@@ -6,7 +9,7 @@ namespace Aequus.Common.WorldGeneration;
 public class WorldGenSystem : ModSystem {
     public static readonly List<AequusGenStep> GenerationSteps = new();
 
-    public static readonly HashSet<System.Int32> PlacedItems = new();
+    public static readonly HashSet<int> PlacedItems = new();
 
     public override void Unload() {
         GenerationSteps.Clear();
@@ -16,10 +19,10 @@ public class WorldGenSystem : ModSystem {
         PlacedItems.Clear();
     }
 
-    public override void ModifyWorldGenTasks(List<GenPass> tasks, ref System.Double totalWeight) {
+    public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight) {
         foreach (var step in GenerationSteps) {
-            System.String sortAfter = step.InsertAfter;
-            System.Int32 index = tasks.FindIndex((pass) => pass.Name.Equals(sortAfter));
+            string sortAfter = step.InsertAfter;
+            int index = tasks.FindIndex((pass) => pass.Name.Equals(sortAfter));
             if (index == -1) {
                 step.EmergencyOnStepNotFound(tasks);
             }

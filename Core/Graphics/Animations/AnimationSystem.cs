@@ -6,11 +6,11 @@ namespace Aequus.Core.Graphics.Animations;
 public sealed class AnimationSystem : ModSystem {
     public static TrimmableDictionary<Point16, ITileAnimation> TileAnimations { get; private set; } = new();
 
-    public static Boolean TryGet<T>(Int32 x, Int32 y, out T anim) where T : ITileAnimation {
+    public static bool TryGet<T>(int x, int y, out T anim) where T : ITileAnimation {
         return TryGet(new(x, y), out anim);
     }
 
-    public static Boolean TryGet<T>(Point16 xy, out T anim) where T : ITileAnimation {
+    public static bool TryGet<T>(Point16 xy, out T anim) where T : ITileAnimation {
         if (TileAnimations.TryGetValue(xy, out var tileAnimation) && tileAnimation is T wantedTileAnimationType) {
             anim = wantedTileAnimationType;
             return true;
@@ -19,7 +19,7 @@ public sealed class AnimationSystem : ModSystem {
         return false;
     }
 
-    public static T GetValueOrAddDefault<T>(Int32 x, Int32 y) where T : ITileAnimation, new() {
+    public static T GetValueOrAddDefault<T>(int x, int y) where T : ITileAnimation, new() {
         return GetValueOrAddDefault<T>(new(x, y));
     }
 

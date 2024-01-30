@@ -9,12 +9,12 @@ public partial class Aequus {
     public static readonly List<PacketHandler> PacketHandlers = new();
 
     public static void RegisterPacket(PacketHandler handler) {
-        var limit = Byte.MaxValue;
+        var limit = byte.MaxValue;
         if (PacketHandlers.Count > limit) {
             throw new IndexOutOfRangeException($"Packet Handler limit ({limit}) has been reached.");
         }
 
-        handler.Type = (Byte)PacketHandlers.Count;
+        handler.Type = (byte)PacketHandlers.Count;
         PacketHandlers.Add(handler);
     }
 
@@ -22,7 +22,7 @@ public partial class Aequus {
         PacketHandlers.Clear();
     }
 
-    public override void HandlePacket(BinaryReader reader, Int32 whoAmI) {
+    public override void HandlePacket(BinaryReader reader, int whoAmI) {
         var type = reader.ReadByte();
         if (PacketHandlers.IndexInRange(type)) {
             PacketHandlers[type].Receive(reader, whoAmI);

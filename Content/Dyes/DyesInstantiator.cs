@@ -7,13 +7,13 @@ namespace Aequus.Content.Dyes;
 public sealed class DyesInstantiator : ModSystem {
     public static ModItem HueshiftDye { get; private set; }
 
-    private InstancedDyeItem RegisterDye(String name, Func<ArmorShaderData> shaderDataFactory, Int32 itemRarity = ItemRarityID.Blue, Int32 value = Item.silver * 50) {
+    private InstancedDyeItem RegisterDye(string name, Func<ArmorShaderData> shaderDataFactory, int itemRarity = ItemRarityID.Blue, int value = Item.silver * 50) {
         var item = new InstancedDyeItem(name, shaderDataFactory, itemRarity, value);
         Mod.AddContent(item);
         return item;
     }
 
-    private InstancedDyeItem RegisterDye(String name, String pass, Ref<Effect> effect, Int32 itemRarity = ItemRarityID.Blue, Int32 value = Item.silver * 50, Single useOpacity = 1f, Color? useColor = null) {
+    private InstancedDyeItem RegisterDye(string name, string pass, Ref<Effect> effect, int itemRarity = ItemRarityID.Blue, int value = Item.silver * 50, float useOpacity = 1f, Color? useColor = null) {
         return RegisterDye(name, () => new ArmorShaderData(effect, pass).UseOpacity(useOpacity).UseColor(useColor ?? Color.Transparent), itemRarity, value);
     }
 

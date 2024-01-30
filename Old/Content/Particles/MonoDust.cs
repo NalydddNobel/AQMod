@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
+using Terraria;
+using Terraria.ModLoader;
 
 namespace Aequus.Old.Content.Particles;
 
 public class MonoDust : ModDust {
-    public virtual Single VelocityMultiplier => 0.9f;
-    public virtual Single ScaleSubtraction => 0.05f;
+    public virtual float VelocityMultiplier => 0.9f;
+    public virtual float ScaleSubtraction => 0.05f;
 
     public override void OnSpawn(Dust dust) {
         dust.noGravity = true;
@@ -13,9 +16,9 @@ public class MonoDust : ModDust {
 
     public override Color? GetAlpha(Dust dust, Color lightColor) => dust.color;
 
-    public override Boolean Update(Dust dust) {
+    public override bool Update(Dust dust) {
         dust.velocity *= VelocityMultiplier;
-        Single speed = dust.velocity.Length();
+        float speed = dust.velocity.Length();
         dust.rotation += speed * 0.0314f;
         dust.scale -= ScaleSubtraction - speed / 1000f;
         if (dust.scale <= 0.1f) {

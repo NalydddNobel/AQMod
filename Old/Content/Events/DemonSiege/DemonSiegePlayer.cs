@@ -7,9 +7,9 @@ public class DemonSiegePlayer : ModPlayer {
         GoreNest = Point.Zero;
 
         Vector2 center = Player.Center;
-        System.Single closestDistance = System.Single.MaxValue;
+        float closestDistance = float.MaxValue;
         foreach (var s in DemonSiegeSystem.ActiveSacrifices) {
-            System.Single distance = Vector2.Distance(center, new Vector2(s.Value.TileX * 16f + 24f, s.Value.TileY * 16f));
+            float distance = Vector2.Distance(center, new Vector2(s.Value.TileX * 16f + 24f, s.Value.TileY * 16f));
             if (distance < s.Value.Range && distance < closestDistance) {
                 closestDistance = distance;
                 GoreNest = s.Key;

@@ -7,22 +7,22 @@ using Terraria.UI;
 namespace Aequus.Common.UI;
 
 public partial class UISystem : ModSystem {
-    public static Int32 bottomLeftInventoryOffsetX;
-    public static Byte linkClickDelay;
-    public static Byte specialLeftClickDelay;
-    public static Byte disableItemLeftClick;
+    public static int bottomLeftInventoryOffsetX;
+    public static byte linkClickDelay;
+    public static byte specialLeftClickDelay;
+    public static byte disableItemLeftClick;
 
     public static ItemSlotContext CurrentItemSlot;
 
-    public static HashSet<Int32> ValidOnlineLinkedSlotContext { get; private set; }
+    public static HashSet<int> ValidOnlineLinkedSlotContext { get; private set; }
 
-    public static Int32 BottomInventoryY => 260;
+    public static int BottomInventoryY => 260;
 
-    public static Byte DisableItemLeftClick { get => disableItemLeftClick; set => disableItemLeftClick = Math.Max(disableItemLeftClick, value); }
+    public static byte DisableItemLeftClick { get => disableItemLeftClick; set => disableItemLeftClick = Math.Max(disableItemLeftClick, value); }
 
-    public static Boolean CanDoLeftClickItemActions => specialLeftClickDelay == 0;
+    public static bool CanDoLeftClickItemActions => specialLeftClickDelay == 0;
 
-    public const Single invBackColorMultipler = 0.785f;
+    public const float invBackColorMultipler = 0.785f;
     public static readonly Color invBackColor = new Color(63, 65, 151, 255);
     public static Color InventoryBackColor => invBackColor * invBackColorMultipler;
 
@@ -47,13 +47,13 @@ public partial class UISystem : ModSystem {
         On_ItemSlot.Draw_SpriteBatch_ItemArray_int_int_Vector2_Color += ItemSlot_Draw;
     }
 
-    private static void Hook_DisableLeftClick(On_ItemSlot.orig_LeftClick_ItemArray_int_int orig, Item[] inv, Int32 context, Int32 slot) {
+    private static void Hook_DisableLeftClick(On_ItemSlot.orig_LeftClick_ItemArray_int_int orig, Item[] inv, int context, int slot) {
         if (disableItemLeftClick == 0) {
             orig(inv, context, slot);
         }
     }
 
-    private static void ItemSlot_Draw(On_ItemSlot.orig_Draw_SpriteBatch_ItemArray_int_int_Vector2_Color orig, SpriteBatch spriteBatch, Item[] inv, Int32 context, Int32 slot, Vector2 position, Color lightColor) {
+    private static void ItemSlot_Draw(On_ItemSlot.orig_Draw_SpriteBatch_ItemArray_int_int_Vector2_Color orig, SpriteBatch spriteBatch, Item[] inv, int context, int slot, Vector2 position, Color lightColor) {
         CurrentItemSlot = new(context, slot, inv, position, lightColor);
         orig(spriteBatch, inv, context, slot, position, lightColor);
 
@@ -78,7 +78,7 @@ public partial class UISystem : ModSystem {
         bottomLeftInventoryOffsetX = 0;
         TalkInterface.Update(gameTime);
         if (Main.mouseItem != null && !Main.mouseItem.IsAir) {
-            specialLeftClickDelay = Math.Max(specialLeftClickDelay, (Byte)20);
+            specialLeftClickDelay = Math.Max(specialLeftClickDelay, (byte)20);
         }
         else if (specialLeftClickDelay > 0) {
             specialLeftClickDelay--;
@@ -95,8 +95,8 @@ public partial class UISystem : ModSystem {
         bottomLeftInventoryOffsetX = 0;
         ManageUserInterfaceLayer(layers, TalkInterface, InterfaceLayerNames.Inventory_28, "Aequus: NPC Talk Interface", InterfaceScaleType.UI);
     }
-    private void ManageUserInterfaceLayer(List<GameInterfaceLayer> layers, UserInterface userInterface, String defaultLayer, String layerName, InterfaceScaleType scaleType = InterfaceScaleType.UI) {
-        Int32 layer = -1;
+    private void ManageUserInterfaceLayer(List<GameInterfaceLayer> layers, UserInterface userInterface, string defaultLayer, string layerName, InterfaceScaleType scaleType = InterfaceScaleType.UI) {
+        int layer = -1;
         if (userInterface.CurrentState is AequusUIState aequusUIState) {
             if (!aequusUIState.ModifyInterfaceLayers(layers, ref scaleType)) {
                 return;
@@ -132,7 +132,7 @@ public partial class UISystem : ModSystem {
         }
     }
 
-    public static void HoverItem(Item item, Int32 context = -1) {
+    public static void HoverItem(Item item, int context = -1) {
         Main.hoverItemName = item.Name;
         Main.HoverItem = item.Clone();
         Main.HoverItem.tooltipContext = context;

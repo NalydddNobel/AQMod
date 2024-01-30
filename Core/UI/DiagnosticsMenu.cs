@@ -6,20 +6,20 @@ using Terraria.UI.Chat;
 namespace Aequus.Core.UI;
 
 internal class DiagnosticsMenu : ModSystem {
-    public enum TimerType : System.Byte {
+    public enum TimerType : byte {
         Particles,
         PostDrawLiquids,
         Count
     }
-    public enum TrackerType : System.Byte {
+    public enum TrackerType : byte {
         ParticleScenes,
         UILayers,
         Count
     }
 
     private static Stopwatch _stopwatch;
-    private static readonly System.Double[] _durations = new System.Double[(System.Int32)TimerType.Count];
-    private static readonly System.Int32[] _trackedNumbers = new System.Int32[(System.Int32)TrackerType.Count];
+    private static readonly double[] _durations = new double[(int)TimerType.Count];
+    private static readonly int[] _trackedNumbers = new int[(int)TrackerType.Count];
 
     [Conditional("DEBUG")]
     public static void StartStopwatch() {
@@ -28,13 +28,13 @@ internal class DiagnosticsMenu : ModSystem {
     [Conditional("DEBUG")]
     public static void EndStopwatch(TimerType diag) {
         _stopwatch.Stop();
-        System.Byte index = (System.Byte)diag;
+        byte index = (byte)diag;
         _durations[index] = _stopwatch.Elapsed.TotalMilliseconds;
     }
 
     [Conditional("DEBUG")]
-    public static void TrackNumber(TrackerType diag, System.Int32 value) {
-        System.Byte index = (System.Byte)diag;
+    public static void TrackNumber(TrackerType diag, int value) {
+        byte index = (byte)diag;
         _trackedNumbers[index] = value;
     }
 
@@ -45,21 +45,21 @@ internal class DiagnosticsMenu : ModSystem {
 
         DynamicSpriteFont font = FontAssets.MouseText.Value;
 
-        System.Single wordX = 20f;
-        System.Single numberX = 180f;
-        System.Single y = 660f;
-        System.Single yOffset = 20f;
+        float wordX = 20f;
+        float numberX = 180f;
+        float y = 660f;
+        float yOffset = 20f;
         ChatManager.DrawColorCodedString(spriteBatch, font, "Aequus", new Vector2(wordX, y), Color.White, 0f, Vector2.Zero, Vector2.One);
 
-        for (System.Int32 i = 0; i < _durations.Length; i++) {
-            System.String name = ((TimerType)i).ToString();
+        for (int i = 0; i < _durations.Length; i++) {
+            string name = ((TimerType)i).ToString();
             y += yOffset;
             spriteBatch.DrawString(font, name + ":", new Vector2(wordX, y), Color.White);
             spriteBatch.DrawString(font, $"{_durations[i]:F2}ms", new Vector2(numberX, y), Color.White);
         }
 
-        for (System.Int32 i = 0; i < _trackedNumbers.Length; i++) {
-            System.String name = ((TrackerType)i).ToString();
+        for (int i = 0; i < _trackedNumbers.Length; i++) {
+            string name = ((TrackerType)i).ToString();
             y += yOffset;
             spriteBatch.DrawString(font, name + ":", new Vector2(wordX, y), Color.White);
             spriteBatch.DrawString(font, _trackedNumbers[i].ToString(), new Vector2(numberX, y), Color.White);
@@ -67,7 +67,7 @@ internal class DiagnosticsMenu : ModSystem {
     }
 
 #if !DEBUG
-    public override System.Boolean IsLoadingEnabled(Mod mod) => false;
+    public override bool IsLoadingEnabled(Mod mod) => false;
 #endif
 
     public override void Load() {

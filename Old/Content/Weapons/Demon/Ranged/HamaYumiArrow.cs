@@ -51,25 +51,25 @@ public class HamaYumiArrow : ModProjectile {
         Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
     }
 
-    public override void OnHitNPC(NPC target, NPC.HitInfo hit, System.Int32 damageDone) {
+    public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
         target.AddBuff(ModContent.BuffType<CorruptionHellfire>(), 120);
         if (Main.myPlayer == Projectile.owner) {
             Projectile.NewProjectile(Projectile.GetSource_Death(), target.Center, Vector2.Normalize(Projectile.velocity) * 0.01f, ModContent.ProjectileType<HamaYumiExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner, target.whoAmI + 1);
         }
-        Projectile.damage = (System.Int32)(Projectile.damage * 0.75f);
+        Projectile.damage = (int)(Projectile.damage * 0.75f);
     }
 
     public override void OnHitPlayer(Player target, Player.HurtInfo info) {
         target.AddBuff(ModContent.BuffType<CorruptionHellfire>(), 120);
     }
 
-    public override System.Boolean TileCollideStyle(ref System.Int32 width, ref System.Int32 height, ref System.Boolean fallThrough, ref Vector2 hitboxCenterFrac) {
+    public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
         width = 2;
         height = 2;
         return true;
     }
 
-    public override System.Boolean OnTileCollide(Vector2 oldVelocity) {
+    public override bool OnTileCollide(Vector2 oldVelocity) {
         if (Main.netMode != NetmodeID.Server) {
             SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
         }
@@ -79,13 +79,13 @@ public class HamaYumiArrow : ModProjectile {
         return true;
     }
 
-    public override void OnKill(System.Int32 timeLeft) {
+    public override void OnKill(int timeLeft) {
         if (Main.myPlayer == Projectile.owner) {
-            Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, Projectile.velocity * 2f, (System.Int32)Projectile.ai[0], (System.Int32)Projectile.ai[1], Projectile.knockBack, Projectile.owner);
+            Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, Projectile.velocity * 2f, (int)Projectile.ai[0], (int)Projectile.ai[1], Projectile.knockBack, Projectile.owner);
         }
     }
 
-    public override System.Boolean PreDraw(ref Color lightColor) {
+    public override bool PreDraw(ref Color lightColor) {
         var texture = TextureAssets.Projectile[Type].Value;
         var origin = new Vector2(texture.Width / 2f, 8f);
 
@@ -99,7 +99,7 @@ public class HamaYumiArrow : ModProjectile {
 
         Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, frame, Color.White * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
 
-        System.Single opacity = 1f;
+        float opacity = 1f;
         if (Projectile.timeLeft < 12) {
             opacity = Projectile.timeLeft / 12f;
         }
@@ -110,7 +110,7 @@ public class HamaYumiArrow : ModProjectile {
 }
 
 public class HamaYumiExplosion : ModProjectile {
-    public override System.String Texture => AequusTextures.GenericExplosion.Path;
+    public override string Texture => AequusTextures.GenericExplosion.Path;
 
     public override void SetStaticDefaults() {
         Main.projFrames[Type] = 7;
@@ -128,8 +128,8 @@ public class HamaYumiExplosion : ModProjectile {
         return CorruptionHellfire.BloomColor with { A = 30 } * 5;
     }
 
-    public override System.Boolean? CanHitNPC(NPC target) {
-        return target.whoAmI + 1 == (System.Int32)Projectile.ai[0] ? false : null;
+    public override bool? CanHitNPC(NPC target) {
+        return target.whoAmI + 1 == (int)Projectile.ai[0] ? false : null;
     }
 
     public override void AI() {
@@ -146,9 +146,9 @@ public class HamaYumiExplosion : ModProjectile {
                 p.BloomScale = 0.3f;
                 p.Rotation = Main.rand.NextFloat(MathHelper.TwoPi);
                 p.dontEmitLight = false;
-                p.Frame = (System.Byte)Main.rand.Next(3);
+                p.Frame = (byte)Main.rand.Next(3);
             }
-            for (System.Int32 i = 0; i < 15; i++) {
+            for (int i = 0; i < 15; i++) {
                 var v = Main.rand.NextVector2Unit();
                 Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<VoidDust>(), v * Main.rand.NextFloat(1f, 12f), 0,
                     new Color(175, 50, 255), Main.rand.NextFloat(0.4f, 1.5f));
@@ -164,8 +164,8 @@ public class HamaYumiExplosion : ModProjectile {
         }
     }
 
-    public override System.Boolean PreDraw(ref Color lightColor) {
-        Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out System.Int32 _);
+    public override bool PreDraw(ref Color lightColor) {
+        Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int _);
         Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, frame, Projectile.GetAlpha(lightColor), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
         return false;
     }

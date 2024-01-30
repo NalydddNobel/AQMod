@@ -20,7 +20,7 @@ public class TriacanthornBolt : ModProjectile {
     }
 
     public override void AI() {
-        System.Int32 target = Projectile.FindTargetWithLineOfSight(400f);
+        int target = Projectile.FindTargetWithLineOfSight(400f);
         var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.CorruptionThorns, Projectile.velocity.Y * 0.3f, Projectile.velocity.Y * 0.3f);
         d.velocity *= 0.2f;
         d.noGravity = true;

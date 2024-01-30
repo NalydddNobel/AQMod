@@ -4,5 +4,5 @@ public class GenericDamageClassNoCrit : DamageClass {
         return StatInheritanceData.None;
     }
 
-    public override System.Boolean UseStandardCritCalcs => false;
+    public override bool UseStandardCritCalcs => false;
 }

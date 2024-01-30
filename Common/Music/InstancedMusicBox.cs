@@ -8,10 +8,10 @@ namespace Aequus.Common.Music;
 internal class InstancedMusicBox : InstancedModTile {
     protected ModItem MusicBoxItem { get; private set; }
 
-    internal System.String _musicPath;
-    internal System.String _musicName;
+    internal string _musicPath;
+    internal string _musicName;
 
-    public InstancedMusicBox(System.String musicPath, System.String musicName) : base($"{musicName}MusicBox", $"Aequus/Content/Music/{musicName}MusicBox") {
+    public InstancedMusicBox(string musicPath, string musicName) : base($"{musicName}MusicBox", $"Aequus/Content/Music/{musicName}MusicBox") {
         _musicPath = musicPath;
         _musicName = musicName;
     }
@@ -35,7 +35,7 @@ internal class InstancedMusicBox : InstancedModTile {
         MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, _musicPath), MusicBoxItem.Type, Type);
     }
 
-    public override void MouseOver(System.Int32 i, System.Int32 j) {
+    public override void MouseOver(int i, int j) {
         Player player = Main.LocalPlayer;
         player.noThrow = 2;
         player.cursorItemIconEnabled = true;

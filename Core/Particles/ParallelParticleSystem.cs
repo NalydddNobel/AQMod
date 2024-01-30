@@ -8,9 +8,9 @@ public abstract class ParallelParticleSystem<T> : ParticleSystem<T> where T : IP
         FastParallel.For(0, Particles.Length, UpdateCallback, this);
     }
 
-    internal void UpdateCallback(System.Int32 fromInclusive, System.Int32 toExclusive, System.Object context) {
+    internal void UpdateCallback(int fromInclusive, int toExclusive, object context) {
         ((ParallelParticleSystem<T>)context).UpdateParallel(fromInclusive, toExclusive);
     }
 
-    protected abstract void UpdateParallel(System.Int32 start, System.Int32 end);
+    protected abstract void UpdateParallel(int start, int end);
 }
