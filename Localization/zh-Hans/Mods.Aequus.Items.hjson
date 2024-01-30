@@ -134,7 +134,7 @@ PotionCanteenEmpty: {
 PotionCanteen: {
 	DisplayName: 药水壶
 	DisplayNameAlt: "{0}壶"
-	// Tooltip: Craft with a potion to allow infinite use
+	Tooltip: 与药水进行合成后能够无限使用
 }
 
 //# Equipment: Informational
