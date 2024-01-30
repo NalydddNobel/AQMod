@@ -6,17 +6,3 @@ InfoDisplays: {
 }
 
 KeyUnbound: 按键未绑定
-
-Biomes: {
-	DemonSiegeZone: {
-		DisplayName: 血巢
-		TownNPCDialogueName: ""
-	}
-}
-
-GenStep: {
-	// GenVarEdits.DisplayMessage: ""
-	// Statues.DisplayMessage: Placing More Statues...
-	// GoreNestsGeneration.DisplayMessage: Making the Underworld more evil...
-	// LavaCleanup.DisplayMessage: Cleaning up lava
-}
