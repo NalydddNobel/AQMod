@@ -3,7 +3,7 @@
 namespace Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg;
 
 public class KegOSpirits : ModItem {
-    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Minutes(SaivoryKnife.GhostLifespan), 0);
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Minutes(SaivoryKnife.GhostLifespan), BottleOSpirits.GhostSlotIncrease);
 
     public override void SetDefaults() {
         Item.width = 24;

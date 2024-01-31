@@ -1,9 +1,14 @@
 ﻿using Aequus.Content.Events.DemonSiege;
+using Terraria.Localization;
 
 namespace Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg;
 
 [LegacyName("Malediction", "CartilageRing", "NaturesCruelty")]
 public class BottleOSpirits : ModItem {
+    public static int GhostSlotIncrease { get; set; } = 1;
+
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(GhostSlotIncrease);
+
     public override void SetStaticDefaults() {
         AltarSacrifices.Register(ModContent.ItemType<BottleOSpirits>(), Type);
     }
@@ -15,5 +20,6 @@ public class BottleOSpirits : ModItem {
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
+        player.GetModPlayer<AequusPlayer>().ghostSlotsMax++;
     }
 }
