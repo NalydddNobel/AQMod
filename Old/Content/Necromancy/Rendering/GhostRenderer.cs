@@ -1,4 +1,5 @@
-﻿using ReLogic.Content;
+﻿using Aequus.Core.Graphics;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,31 +21,42 @@ public class GhostRenderer : ModSystem {
     private static RenderTarget2D _helperTarget;
 
     public static bool WasPrepared { get; private set; }
-    public static bool Requested { get; private set; }
+    private static bool _requestedOld;
+    public static bool Requested { get; set; }
 
     protected static void DrawOntoTarget(GraphicsDevice device, SpriteBatch spriteBatch) {
         if (!Requested) {
+            if (_requestedOld) {
+                _requestedOld = false;
+                DrawLayers.Instance.PostDrawDust -= DrawOntoScreen;
+            }
             return;
         }
 
+        if (!_requestedOld) {
+            _requestedOld = true;
+            DrawLayers.Instance.PostDrawDust += DrawOntoScreen;
+        }
         Rendering = true;
 
         Requested = false;
         ExtendRenderTarget.CheckRenderTarget2D(ref _helperTarget, Main.screenWidth, Main.screenHeight);
+        RenderTargetBinding[] bindings = device.GetRenderTargets();
+        device.SetRenderTarget(_helperTarget);
 
         for (int i = 0; i < Colors.Length; i++) {
             RenderData render = Colors[i];
             try {
-                device.Clear(Color.Transparent);
                 if (!render.ContainsContents()) {
                     render.CheckSettingAdoption();
                     continue;
                 }
+                device.Clear(Color.Transparent);
 
                 if (!render.CheckRenderTarget(out bool request)) {
                     if (request && OrphanedRenderTargets.Count < ColorTargetID.Count) {
                         RenderTarget2D target = null;
-                        ExtendRenderTarget.CheckRenderTarget2D(ref target, Main.screenWidth, Main.screenHeight);
+                        ExtendRenderTarget.CheckRenderTarget2D(ref target, Main.screenWidth / 2, Main.screenHeight / 2);
                         OrphanedRenderTargets.Add(target);
                     }
                     continue;
@@ -71,6 +83,8 @@ public class GhostRenderer : ModSystem {
             catch {
             }
         }
+
+        device.SetRenderTargets(bindings);
         Rendering = false;
     }
 
@@ -81,11 +95,12 @@ public class GhostRenderer : ModSystem {
                     continue;
                 }
 
-                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.Default, Main.Rasterizer, null, Matrix.Identity);
+                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.Default, Main.Rasterizer, null, Main.Transform);
 
-                var drawData = new DrawData(render.renderTargetCache, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), Color.White * Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f, 0.6f, 1f));
+                var drawData = new DrawData(render.renderTargetCache, Main.screenLastPosition- Main.screenPosition, null, Color.White * Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f, 0.6f, 1f), 0f, Vector2.Zero, 2f, SpriteEffects.None, 0f);
                 OutlineShader.Value.Parameters["uColor"].SetValue(render.getDrawColor().ToVector3());
                 OutlineShader.Value.Parameters["uImageSize0"].SetValue(new Vector2(Main.screenWidth, Main.screenHeight));
+                OutlineShader.Value.CurrentTechnique.Passes[0].Apply();
 
                 drawData.Draw(spriteBatch);
 

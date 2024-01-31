@@ -109,7 +109,7 @@ KegOSpirits: {
 
 SaivoryKnife: {
 	// DisplayName: Saivory Knife
-	// Tooltip: Increases the duration of your ghost minions by {0}
+	// Tooltip: Increases the duration of your ghost minions by {0} minute
 }
 
 BottleOSpirits: {

@@ -428,11 +428,13 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
                 GhostRenderer.ChainedUpNPCs.Add((npc, Main.npc[ghostChainsNPC]));
             }
             if (!GhostRenderer.Rendering) {
+                GhostRenderer.Requested = true;
                 GhostRenderer.GetColorTarget(Main.player[zombieOwner], renderLayer).NPCs.Add(npc);
             }
         }
         return true;
     }
+
     public void DrawHealthbar(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos) {
         if (Main.HealthBarDrawSettings == 0 || npc.life < 0) {
             return;
@@ -473,6 +475,14 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
         int team = Main.player[zombieOwner].team;
         var color = GhostRenderer.GetColorTarget(Main.player[zombieOwner], renderLayer).getDrawColor() with { A = 100 };
         return Color.Lerp(color, (color * 0.5f) with { A = 255 }, 1f - lifeRatio);
+    }
+
+    public override void OnKill(NPC npc) {
+        if (npc.SpawnedFromStatue || npc.friendly || npc.lifeMax < 5) {
+            return;
+        }
+
+        CreateGhost(npc);
     }
 
     public bool CheckCanConvertIntoGhost(NPC npc) {
@@ -684,7 +694,21 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
 
     public int DespawnPriority(NPC npc) {
         float priority = 10000f;
-        return (int)(zombieTimer / (float)zombieTimerMax * priority);
+
+        if (npc.damage < 10) {
+            return npc.damage;
+        }
+
+        float priorityMultiplier = zombieTimer / (float)zombieTimerMax;
+
+        float fallOff = 1200f;
+        float distance = npc.Distance(Main.player[zombieOwner].Center);
+
+        if (distance > fallOff) {
+            priorityMultiplier *= Math.Max((distance - fallOff) / fallOff, 0.1f);
+        }
+
+        return (int)(priorityMultiplier * priority);
     }
 
     public void Send(BinaryWriter writer) {

@@ -27,13 +27,23 @@ public class NecromancyDebuff : ModBuff {
     public static void Apply<T>(NPC npc, int time, int player) where T : NecromancyDebuff {
         npc = npc.realLife == -1 ? npc : Main.npc[npc.realLife];
 
-        float tier = ModContent.GetInstance<T>().Tier;
+        int buffId = ModContent.BuffType<T>();
+        NecromancyDebuff buff = ModContent.GetInstance<T>();
+
+        float tier = buff.Tier;
         bool cheat = tier >= 100;
         if (cheat) {
-            npc.buffImmune[ModContent.BuffType<T>()] = false;
+            npc.buffImmune[buffId] = false;
         }
-        npc.AddBuff(ModContent.BuffType<T>(), time);
+        npc.AddBuff(buffId, time);
         npc.GetGlobalNPC<NecromancyNPC>().zombieOwner = player;
+
+        // Do a single tick update when applying the debuff
+        int index = npc.FindBuffIndex(buffId);
+        if (index != -1) {
+            buff.Update(npc, ref index);
+        }
+
         if (Main.netMode == NetmodeID.MultiplayerClient) {
             Aequus.GetPacket<SyncNecromancyOwnerPacket>().Send(npc.whoAmI, player);
         }

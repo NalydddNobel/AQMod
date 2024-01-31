@@ -33,11 +33,13 @@ public class RenderData {
             return;
         }
 
-        spriteBatch.BeginWorld(shader: false);
+        spriteBatch.BeginWorld(shader: false, Matrix.Identity);
         try {
             foreach (var n in NPCs) {
                 if (n.active) {
+                    n.position += n.netOffset;
                     Main.instance.DrawNPC(n.whoAmI, n.behindTiles);
+                    n.position -= n.netOffset;
                 }
             }
             foreach (var p in Projs) {
