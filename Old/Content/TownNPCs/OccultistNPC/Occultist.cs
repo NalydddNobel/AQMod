@@ -2,11 +2,11 @@
 using Aequus.Common.NPCs.Components;
 using Aequus.Common.Projectiles;
 using Aequus.Content.DataSets;
-using Aequus.Content.Equipment.Accessories.SpiritBottle;
 using Aequus.Core;
 using Aequus.Old.Content.Equipment.GrapplingHooks.EnemyGrappleHook;
 using Aequus.Old.Content.Events.DemonSiege.Spawners;
 using Aequus.Old.Content.Events.DemonSiege.Tiles;
+using Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg;
 using System;
 using System.Collections.Generic;
 using System.IO;

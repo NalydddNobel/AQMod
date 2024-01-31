@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Projectiles;
-using Aequus.Old.Content.StatusEffects.DamageOverTime;
 using System;
 using Terraria.Audio;
 

@@ -9,6 +9,7 @@ CommonTooltips: {
 	DedicatedItemAnonymous: 专属物品
 	UsesDarts: 使用种子和飞镖作为弹药
 	Banner: "{$CommonItemTooltip.BannerBonus}{0}"
+	// NecromancyStaff: Slain enemies will convert into ghost minions
 }
 
 //# Equipment: Accessories
@@ -135,6 +136,30 @@ PotionCanteen: {
 	DisplayName: 药水壶
 	DisplayNameAlt: "{0}壶"
 	Tooltip: 与药水进行合成后能够无限使用
+}
+
+SouljointCuffs: {
+	DisplayName: 魂结镣铐
+	Tooltip: 幽魂仆从在近战击中敌人时会链在敌人身上
+}
+
+PandorasBox: {
+	DisplayName: 潘多拉魔盒
+	Tooltip:
+		'''
+		敌人会受到更多来自王权减益的伤害
+		幽魂仆从的弹幕速度翻倍
+		'''
+}
+
+RitualisticSkull: {
+	DisplayName: 仪式颅骨
+	Tooltip: 将你的所有召唤栏位转化为幽魂栏位
+}
+
+ShadowVeer: {
+	DisplayName: 影行者
+	Tooltip: 幽魂仆从会对被标记的敌人进行暗影冲刺
 }
 
 //# Equipment: Informational
@@ -308,6 +333,51 @@ Triacanthorn: {
 		'''
 }
 
+//# Weapons: Summon
+Insurgency: {
+	DisplayName: 叛乱
+	Tooltip:
+		'''
+		消耗强大敌人的灵魂, 会立即击杀弱小的敌人
+		被诅咒的敌人会释放会攻击附近敌人的灵魂
+		{$CommonTooltips.NecromancyStaff}
+		'寂静'
+		'''
+}
+
+Revenant: {
+	DisplayName: 亡魂
+	Tooltip:
+		'''
+		消耗强大敌人的灵魂, 会立即击杀弱小的敌人
+		{$CommonTooltips.NecromancyStaff}
+		'''
+}
+
+CorruptionSceptre: {
+	// DisplayName: Corruption Sceptre
+	Tooltip:
+		'''
+		消耗弱小敌人的灵魂
+		{$CommonTooltips.NecromancyStaff}
+		'''
+}
+
+CrimsonSceptre: {
+	// DisplayName: Crimson Sceptre
+	Tooltip: "{$Items.CorruptionSceptre.Tooltip}"
+}
+
+Osiris: {
+	DisplayName: 欧西里斯
+	Tooltip:
+		'''
+		消耗极强敌人的灵魂
+		{$CommonTooltips.NecromancyStaff}
+		击中敌人时会爆裂成一群蝗虫群
+		'''
+}
+
 //# Weapons: Classless
 StunGun: {
 	DisplayName: 电击枪
@@ -435,6 +505,20 @@ CompressedTrash: {
 BloodyTearstone: {
 	DisplayName: 血泪石
 	Tooltip: ""
+}
+
+SoulGem: {
+	DisplayName: 空灵魂宝石
+	Tooltip: 无法使用, 直到其捕获敌人的灵魂
+}
+
+SoulGemFilled: {
+	DisplayName: 灵魂宝石
+	/* Tooltip:
+		'''
+		Used to craft necromantic equipment
+		Dropped by the darkest of demons...
+		''' */
 }
 
 UnholyCore: {

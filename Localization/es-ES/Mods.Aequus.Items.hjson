@@ -9,6 +9,7 @@ CommonTooltips: {
 	DedicatedItemAnonymous: Objeto Dedicado
 	UsesDarts: Utiliza semillas y dardos como munición
 	Banner: "{$CommonItemTooltip.BannerBonus}{0}"
+	// NecromancyStaff: Slain enemies will convert into ghost minions
 }
 
 //# Equipment: Accessories
@@ -135,6 +136,30 @@ PotionCanteen: {
 	// DisplayName: Potion Canteen
 	// DisplayNameAlt: Potion Canteen ({0})
 	// Tooltip: Craft with a potion to allow infinite use
+}
+
+SouljointCuffs: {
+	// DisplayName: Souljoint Cuffs
+	// Tooltip: Ghost minions become attached to an enemy after dealing a melee hit
+}
+
+PandorasBox: {
+	// DisplayName: Pandoras Box
+	/* Tooltip:
+		'''
+		Enemies take extra damage from scepter debuffs
+		Ghost minion projectiles travel at twice the speed
+		''' */
+}
+
+RitualisticSkull: {
+	// DisplayName: Ritualistic Skull
+	// Tooltip: Converts all but one of your minion slots into ghost slots
+}
+
+ShadowVeer: {
+	// DisplayName: Shadow Veer
+	// Tooltip: Ghost minions will do shadow dashes at targeted enemies
 }
 
 //# Equipment: Informational
@@ -303,8 +328,53 @@ Triacanthorn: {
 	// DisplayName: Triacanthorn
 	/* Tooltip:
 		'''
-		Summons splitting vile tendrils
+		Cast splitting vile tendrils
 		Ignores 10 points of enemy Defense
+		''' */
+}
+
+//# Weapons: Summon
+Insurgency: {
+	// DisplayName: Insurgency
+	/* Tooltip:
+		'''
+		Drains the soul of very powerful enemies, instantly killing weakened enemies
+		While accursed, they release spirits that attack nearby enemies
+		{$CommonTooltips.NecromancyStaff}
+		'Silence'
+		''' */
+}
+
+Revenant: {
+	// DisplayName: Revenant
+	/* Tooltip:
+		'''
+		Drains the soul of strong enemies, instantly killing weakened enemies
+		{$CommonTooltips.NecromancyStaff}
+		''' */
+}
+
+CorruptionSceptre: {
+	// DisplayName: Corruption Sceptre
+	/* Tooltip:
+		'''
+		Drains the soul of weak enemies
+		{$CommonTooltips.NecromancyStaff}
+		''' */
+}
+
+CrimsonSceptre: {
+	// DisplayName: Crimson Sceptre
+	// Tooltip: "{$Items.CorruptionSceptre.Tooltip}"
+}
+
+Osiris: {
+	// DisplayName: Osiris
+	/* Tooltip:
+		'''
+		Drains the soul of powerful enemies
+		{$CommonTooltips.NecromancyStaff}
+		Bursts into a swarm of locusts on hit
 		''' */
 }
 
@@ -435,6 +505,20 @@ CompressedTrash: {
 BloodyTearstone: {
 	// DisplayName: Bloody Tearstone
 	// Tooltip: ""
+}
+
+SoulGem: {
+	// DisplayName: Empty Soul Gem
+	// Tooltip: Unusable until it captures the soul of an enemy
+}
+
+SoulGemFilled: {
+	// DisplayName: Soul Gem
+	/* Tooltip:
+		'''
+		Used to craft necromantic equipment
+		Dropped by the darkest of demons...
+		''' */
 }
 
 UnholyCore: {

@@ -57,3 +57,28 @@ IronLotusDebuff: {
 	DisplayName: "{$Items.IronLotus.DisplayName}"
 	Description: Mods.Aequus.Buffs.IronLotusDebuff.Description
 }
+
+LocustDebuff: {
+	DisplayName: Mods.Aequus.Buffs.LocustDebuff.DisplayName
+	Description: Mods.Aequus.Buffs.LocustDebuff.Description
+}
+
+InsurgentDebuff: {
+	DisplayName: "{$Items.Insurgency.DisplayName}"
+	Description: Mods.Aequus.Buffs.InsurgentDebuff.Description
+}
+
+RevenantDebuff: {
+	DisplayName: "{$Items.Revenant.DisplayName}"
+	Description: Mods.Aequus.Buffs.RevenantDebuff.Description
+}
+
+NecromancyDebuff: {
+	DisplayName: Mods.Aequus.Buffs.NecromancyDebuff.DisplayName
+	Description: Mods.Aequus.Buffs.NecromancyDebuff.Description
+}
+
+OsirisDebuff: {
+	DisplayName: "{$Items.Osiris.DisplayName}"
+	Description: Mods.Aequus.Buffs.OsirisDebuff.Description
+}

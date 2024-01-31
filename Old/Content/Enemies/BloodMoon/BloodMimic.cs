@@ -2,8 +2,8 @@
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Core.ContentGeneration;
 using Aequus.Old.Content.Equipment.Accessories.HighSteaks;
-using Aequus.Old.Content.Equipment.Accessories.SpiritKeg;
 using Aequus.Old.Content.Equipment.GrapplingHooks.HealingGrappleHook;
+using Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg;
 using Aequus.Old.Content.Potions.Foods.SusSteak;
 using Aequus.Old.Content.Potions.Resurrection;
 using Aequus.Old.Content.Weapons.Ranged.Bows.CrusadersCrossbow;

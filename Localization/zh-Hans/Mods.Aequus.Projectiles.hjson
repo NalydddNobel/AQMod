@@ -44,3 +44,12 @@ StudiesOfTheInkblotProj.DisplayName: "{$Items.StudiesOfTheInkblot.DisplayName}"
 // AshTombstonesHeadstone.DisplayName: "{$Projectiles.AshTombstoneExplosion.DisplayName}"
 // AshTombstonesGravestone.DisplayName: "{$Projectiles.AshTombstoneExplosion.DisplayName}"
 // AshTombstonesObelisk.DisplayName: "{$Projectiles.AshTombstoneExplosion.DisplayName}"
+InsurgencyProj.DisplayName: "{$Items.Insurgency.DisplayName}"
+InsurgentBolt.DisplayName: "{$Items.Insurgency.DisplayName}"
+RevenantProj.DisplayName: "{$Items.Revenant.DisplayName}"
+CorruptionSceptreProj.DisplayName: "{$Items.CorruptionSceptre.DisplayName}"
+CrimsonSceptreProj.DisplayName: "{$Items.CrimsonSceptre.DisplayName}"
+// LocustLarge.DisplayName: Locust
+LocustSmall.DisplayName: "{$Projectiles.LocustLarge.DisplayName}"
+OsirisProj.DisplayName: "{$Items.Osiris.DisplayName}"
+// GhostHitbox.DisplayName: Ghost Minion

@@ -16,6 +16,15 @@
         <member name="P:Aequus.Aequus.GameWorldActive">
             <summary>Shorthand for a bunch of checks determining whether the game is unpaused.</summary>
         </member>
+        <member name="M:Aequus.Aequus.ConditionBetweenDays(System.DayOfWeek,System.DayOfWeek)">
+            <param name="firstDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:Aequus.Common.Systems.TimeTrackerSystem.DayOfTheWeek"/>.</param>
+            <param name="lastDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:Aequus.Common.Systems.TimeTrackerSystem.DayOfTheWeek"/>.</param>
+            <returns>A condition for a specific time range between two days of the week.</returns>
+        </member>
+        <member name="M:Aequus.Aequus.ConditionDayOfTheWeek(System.DayOfWeek)">
+            <param name="dayOfWeek">The <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:Aequus.Common.Systems.TimeTrackerSystem.DayOfTheWeek"/>.</param>
+            <returns>A condition for a specific day of the week.</returns>
+        </member>
         <member name="M:Aequus.Common.Backpacks.BackpackData.Deactivate(Terraria.Player)">
             <summary>
             Runs when the Backpack is no longer active. Use this hook to deposit items from the Backpack.
@@ -103,6 +112,102 @@
             <summary>
             How long the item should float for. Set to 255 for permanent duration.
             </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.SkyMerchantShopItem">
+            <summary><see cref="F:Terraria.ID.ItemRarityID.Blue"/></summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.PollutedOceanLoot">
+            <summary><see cref="F:Terraria.ID.ItemRarityID.Blue"/></summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.CrabsonLoot">
+            <summary><see cref="F:Terraria.ID.ItemRarityID.Blue"/></summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.JungleLoot">
+            <summary><see cref="F:Terraria.ID.ItemRarityID.LightPurple"/></summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.GlimmerLoot">
+            <summary><see cref="F:Terraria.ID.ItemRarityID.Green"/></summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.DungeonLoot">
+            <summary><see cref="F:Terraria.ID.ItemRarityID.Green"/></summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.DemonSiegeTier1Loot">
+            <summary><see cref="F:Terraria.ID.ItemRarityID.Orange"/></summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.OmegaStariteLoot">
+            <summary><see cref="F:Terraria.ID.ItemRarityID.LightRed"/></summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.EarlyHardmodeMaterial">
+            <summary><see cref="F:Terraria.ID.ItemRarityID.Orange"/></summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.HardSandstormBlizzardLoot">
+            <summary><see cref="F:Terraria.ID.ItemRarityID.LightRed"/></summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.SpaceStormLoot">
+            <summary><see cref="F:Terraria.ID.ItemRarityID.Pink"/></summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.DustDevilLoot">
+            <summary><see cref="F:Terraria.ID.ItemRarityID.LightPurple"/></summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.HardDungeonLoot">
+            <summary><see cref="F:Terraria.ID.ItemRarityID.Yellow"/></summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.DemonSiegeTier2Loot">
+            <summary><see cref="F:Terraria.ID.ItemRarityID.Yellow"/></summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.UpriserLoot">
+            <summary><see cref="F:Terraria.ID.ItemRarityID.Red"/></summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.YinYangLoot">
+            <summary><see cref="F:Terraria.ID.ItemRarityID.Red"/></summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.ShimmerPermaPowerup">
+            <summary><see cref="F:Terraria.ID.ItemRarityID.LightPurple"/></summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Price.SkyMerchantShopItem">
+            <summary>1 Gold</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Price.SkyMerchantCustomPurchasePrice">
+            <summary>5 Gold</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Price.PollutedOceanLoot">
+            <summary>50 Silver</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Price.CrabsonLoot">
+            <summary>75 Silver</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Price.GlimmerLoot">
+            <summary>1 Gold</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Price.DungeonLoot">
+            <summary>1 Gold 75 Silver</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Price.DemonSiegeLoot">
+            <summary>2 Gold</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Price.OmegaStariteLoot">
+            <summary>3 Gold</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Price.HardSandstormBlizzardLoot">
+            <summary>2 Gold</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Price.SpaceStormLoot">
+            <summary>3 Gold</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Price.DustDevilLoot">
+            <summary>3 Gold 50 Silver</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Price.HardDungeonLoot">
+            <summary>6 Gold</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Price.DemonSiegeTier2Loot">
+            <summary>8 Gold</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Price.UpriserLoot">
+            <summary>8 Gold 50 Silver</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Price.YinYangLoot">
+            <summary>10 Gold</summary>
         </member>
         <member name="T:Aequus.Common.Items.ItemSortingPriority.Materials">
             <summary>
@@ -564,11 +669,6 @@
             17
             </summary>
         </member>
-        <member name="T:Aequus.Common.ModZone">
-            <summary>
-            A <see cref="T:Terraria.ModLoader.ModBiome"/> with special properties to instead act as a "zone" rather than a proper biome.
-            </summary>
-        </member>
         <member name="F:Aequus.Common.NPCs.AIJellyfish.shockRampUpDistance">
             <summary>
             When the target is within this range, the delay for activating the electric state is dramatically decreased.
@@ -880,6 +980,15 @@
             </summary>
             <param name="modWall"></param>
             <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
+        </member>
+        <member name="E:Aequus.Core.Graphics.DrawLayers.WorldBehindTiles">
+            <summary>Invoked before NPCs behind tiles are drawn.</summary>
+        </member>
+        <member name="E:Aequus.Core.Graphics.DrawLayers.PostDrawDust">
+            <summary>Invoked after Dusts have been drawn.</summary>
+        </member>
+        <member name="E:Aequus.Core.Graphics.DrawLayers.PostDrawLiquids">
+            <summary>Invoked after Liquids and Inferno Rings have been drawn, but before Wire Overlays are drawn.</summary>
         </member>
         <member name="T:Aequus.Core.Graphics.Tiles.BatchedTileDrawInfo">
             <summary>
@@ -1427,7 +1536,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 53)</summary>
+            <summary>(Total Sounds: 54)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.PollutedOcean">
             <summary>Full Path: Assets/Music/PollutedOcean</summary>
@@ -1588,8 +1697,11 @@
         <member name="F:Aequus.AequusSounds.MeathookPull">
             <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookPull</summary>
         </member>
+        <member name="F:Aequus.AequusSounds.RecruitZombie">
+            <summary>Full Path: Old/Assets/Sounds/RecruitZombie</summary>
+        </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 372)</summary>
+            <summary>(Total Textures: 396)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1671,6 +1783,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.Trail3">
             <summary>Full Path: Assets/Textures/Trail3</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrailShootingStar">
+            <summary>Full Path: Assets/Textures/TrailShootingStar</summary>
         </member>
         <member name="F:Aequus.AequusTextures.VignetteSmall">
             <summary>Full Path: Assets/Textures/VignetteSmall</summary>
@@ -2004,9 +2119,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.ScavengerBag_Strap">
             <summary>Full Path: Content/Equipment/Accessories/ScavengerBag/ScavengerBag_Strap</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BottleOSpirits">
-            <summary>Full Path: Content/Equipment/Accessories/SpiritBottle/BottleOSpirits</summary>
         </member>
         <member name="F:Aequus.AequusTextures.WeightedHorseshoe">
             <summary>Full Path: Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoe</summary>
@@ -2470,12 +2582,6 @@
         <member name="F:Aequus.AequusTextures.PotionCanteen_Liquid">
             <summary>Full Path: Old/Content/Equipment/Accessories/PotionCanteen/PotionCanteen_Liquid</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.KegOSpirits">
-            <summary>Full Path: Old/Content/Equipment/Accessories/SpiritKeg/KegOSpirits</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SaivoryKnife">
-            <summary>Full Path: Old/Content/Equipment/Accessories/SpiritKeg/SaivoryKnife</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.WarHorn">
             <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHorn</summary>
         </member>
@@ -2530,6 +2636,84 @@
         <member name="F:Aequus.AequusTextures.BloodyTearstone">
             <summary>Full Path: Old/Content/Materials/BloodyTearstone</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.SoulGem">
+            <summary>Full Path: Old/Content/Materials/SoulGem/SoulGem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SoulGemTile">
+            <summary>Full Path: Old/Content/Materials/SoulGem/SoulGemTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SoulChains">
+            <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/Chains/SoulChains</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SouljointCuffs">
+            <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/Chains/SouljointCuffs</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PandorasBox">
+            <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/PandorasBox</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PharaohsCurse">
+            <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/PharaohsCurse</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RitualisticSkull">
+            <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/RitualisticSkull</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShadowVeer">
+            <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/ShadowVeer</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BottleOSpirits">
+            <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/SpiritKeg/BottleOSpirits</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.KegOSpirits">
+            <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/SpiritKeg/KegOSpirits</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SaivoryKnife">
+            <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/SpiritKeg/SaivoryKnife</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Insurgency">
+            <summary>Full Path: Old/Content/Necromancy/Sceptres/Dungeon/Insurgency</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.InsurgencyProj">
+            <summary>Full Path: Old/Content/Necromancy/Sceptres/Dungeon/InsurgencyProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Insurgency_Glow">
+            <summary>Full Path: Old/Content/Necromancy/Sceptres/Dungeon/Insurgency_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Revenant">
+            <summary>Full Path: Old/Content/Necromancy/Sceptres/Dungeon/Revenant</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Revenant_Glow">
+            <summary>Full Path: Old/Content/Necromancy/Sceptres/Dungeon/Revenant_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CorruptionSceptre">
+            <summary>Full Path: Old/Content/Necromancy/Sceptres/Evil/CorruptionSceptre</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CorruptionSceptreProj">
+            <summary>Full Path: Old/Content/Necromancy/Sceptres/Evil/CorruptionSceptreProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CorruptionSceptre_Glow">
+            <summary>Full Path: Old/Content/Necromancy/Sceptres/Evil/CorruptionSceptre_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrimsonSceptre">
+            <summary>Full Path: Old/Content/Necromancy/Sceptres/Evil/CrimsonSceptre</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrimsonSceptre_Glow">
+            <summary>Full Path: Old/Content/Necromancy/Sceptres/Evil/CrimsonSceptre_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LocustLarge">
+            <summary>Full Path: Old/Content/Necromancy/Sceptres/Forbidden/LocustLarge</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LocustSmall">
+            <summary>Full Path: Old/Content/Necromancy/Sceptres/Forbidden/LocustSmall</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Osiris">
+            <summary>Full Path: Old/Content/Necromancy/Sceptres/Forbidden/Osiris</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Osiris_Glow">
+            <summary>Full Path: Old/Content/Necromancy/Sceptres/Forbidden/Osiris_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GhostDrainDust">
+            <summary>Full Path: Old/Content/Particles/GhostDrainDust</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.MonoDust">
             <summary>Full Path: Old/Content/Particles/MonoDust</summary>
         </member>
@@ -2541,12 +2725,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.PotionOfResurrection">
             <summary>Full Path: Old/Content/Potions/Resurrection/PotionOfResurrection</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CorruptionHellfire">
-            <summary>Full Path: Old/Content/StatusEffects/DamageOverTime/CorruptionHellfire</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrimsonHellfire">
-            <summary>Full Path: Old/Content/StatusEffects/DamageOverTime/CrimsonHellfire</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GoreNestStalagmite">
             <summary>Full Path: Old/Content/Tiles/Ambient/GoreNestStalagmite</summary>
@@ -2644,6 +2822,12 @@
         <member name="F:Aequus.AequusTextures.Old_Content_TownNPCs_OccultistNPC_Shimmer_Occultist">
             <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Shimmer/Occultist</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CorruptionHellfire">
+            <summary>Full Path: Old/Content/Weapons/Demon/CorruptionHellfire</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrimsonHellfire">
+            <summary>Full Path: Old/Content/Weapons/Demon/CrimsonHellfire</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.BombarderRod">
             <summary>Full Path: Old/Content/Weapons/Demon/Magic/BombarderRod</summary>
         </member>
@@ -2718,13 +2902,13 @@
             The cost for performing a critical strike.
             </summary>
         </member>
-        <member name="P:Aequus.Old.Content.Equipment.Accessories.SpiritKeg.SaivoryKnife.GhostLifespan">
+        <member name="T:Aequus.Old.Content.Events.DemonSiege.Tiles.OblivionAltarDummy">
+            <summary>Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.</summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg.SaivoryKnife.GhostLifespan">
             <summary>
             Default Value: 3600 (1 minute)
             </summary>
-        </member>
-        <member name="T:Aequus.Old.Content.Events.DemonSiege.Tiles.OblivionAltarDummy">
-            <summary>Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.</summary>
         </member>
     </members>
 </doc>
