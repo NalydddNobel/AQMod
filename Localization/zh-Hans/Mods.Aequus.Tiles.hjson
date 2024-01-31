@@ -28,11 +28,7 @@ CrabPot: {
 TrashCompactor: {
 	MapEntry: 垃圾压缩机
 	ItemDisplayName: "{$Tiles.TrashCompactor.MapEntry}"
-	ItemTooltip:
-		'''
-		用于压缩垃圾
-		将家具放入压缩机则会将其分解为合成它们的合成材料
-		'''
+	ItemTooltip: 可以拆解家具和垃圾
 }
 
 RadonMoss: {
@@ -114,13 +110,13 @@ OblivionChest: {
 }
 
 OblivionChestTrapped: {
-	// ItemDisplayName: Trapped Oblivion Chest
+	ItemDisplayName: 遗境陷阱箱
 	ItemTooltip: ""
 }
 
 OblivionCraftingStation: {
 	ItemDisplayName: 遗境再塑机
-	// ItemTooltip: "{$CommonItemTooltip.SpecialCrafting}"
+	ItemTooltip: "{$CommonItemTooltip.SpecialCrafting}"
 }
 
 AshTombstones: {
