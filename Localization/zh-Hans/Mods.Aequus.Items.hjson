@@ -9,9 +9,9 @@ CommonTooltips: {
 	DedicatedItemAnonymous: 专属物品
 	UsesDarts: 使用种子和飞镖作为弹药
 	Banner: "{$CommonItemTooltip.BannerBonus}{0}"
-	// NecromancyStaff: Slain enemies will convert into ghost minions
-	// StatGhostDuration: Increases the duration of your ghost minions by {0} seconds
-	// StatGhostSlots: Increases your max number of ghosts by {0}
+	NecromancyStaff: 被击杀敌人会转化为幽魂仆从
+	StatGhostDuration: 延长{0}秒幽魂仆从的存在时间
+	StatGhostSlots: 增加{0}格最大幽魂仆从栏位
 }
 
 //# Equipment: Accessories
@@ -19,7 +19,7 @@ GrandReward: {
 	DisplayName: 豪华奖励
 	Tooltip:
 		'''
-		敌人会掉落额外的战利品，这些战利品会带有闪光
+		敌人会掉落额外的战利品, 这些战利品会带有闪光
 		{v}...但敌人不再掉落钱币
 		'''
 }
@@ -111,7 +111,7 @@ KegOSpirits: {
 
 SaivoryKnife: {
 	DisplayName: 美味象牙刀
-	Tooltip: 延长{0}幽魂仆从的存在时间
+	Tooltip: 延长{0}分钟幽魂仆从的存在时间
 }
 
 BottleOSpirits: {
@@ -149,7 +149,7 @@ PandorasBox: {
 	DisplayName: 潘多拉魔盒
 	Tooltip:
 		'''
-		敌人会受到更多来自王权减益的伤害
+		敌人会受到更多来自权杖减益的伤害
 		幽魂仆从的弹幕速度翻倍
 		'''
 }
@@ -184,7 +184,7 @@ Calendar: {
 GravetenderHood: {
 	DisplayName: 守墓人兜帽
 	Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
-	Setbonus: Summon a wisp which empowers your closest ghost minion
+	Setbonus: 召唤一缕能够强化与你最近的幽魂仆从的游魂
 }
 
 GravetenderRobes: {
@@ -346,7 +346,7 @@ Triacanthorn: {
 	DisplayName: 三棘卷须
 	Tooltip:
 		'''
-		召唤会分裂的邪恶卷须
+		施放出会分裂的邪恶卷须
 		无视敌人10点的防御力
 		'''
 }
@@ -373,7 +373,7 @@ Revenant: {
 }
 
 CorruptionSceptre: {
-	// DisplayName: Corruption Sceptre
+	DisplayName: 腐化权杖
 	Tooltip:
 		'''
 		消耗弱小敌人的灵魂
@@ -382,7 +382,7 @@ CorruptionSceptre: {
 }
 
 CrimsonSceptre: {
-	// DisplayName: Crimson Sceptre
+	DisplayName: 猩红权杖
 	Tooltip: "{$Items.CorruptionSceptre.Tooltip}"
 }
 
@@ -526,17 +526,17 @@ BloodyTearstone: {
 }
 
 SoulGem: {
-	DisplayName: 空灵魂宝石
+	DisplayName: 空白灵魂宝石
 	Tooltip: 无法使用, 直到其捕获敌人的灵魂
 }
 
 SoulGemFilled: {
 	DisplayName: 灵魂宝石
-	/* Tooltip:
+	Tooltip:
 		'''
-		Used to craft necromantic equipment
-		Dropped by the darkest of demons...
-		''' */
+		用于制作死灵装备
+		掉落自最黑暗的恶魔...
+		'''
 }
 
 UnholyCore: {

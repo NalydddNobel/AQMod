@@ -113,7 +113,7 @@ Occultist: {
 		Awaken: AAAAAGGH!!!!!!!!
 	}
 
-	// Census.SpawnCondition: After the Demon Siege has been defeated
+	Census.SpawnCondition: 在击败恶魔围攻后
 }
 
 OccultistHostile: {

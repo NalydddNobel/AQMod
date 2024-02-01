@@ -6,6 +6,6 @@ ShowDeathTips: {
 }
 
 ShowNecromancyOutlines: {
-	// Label: "[i:Insurgency] Show Necromancy Outlines"
-	// Tooltip: "[c/ffffbb:Ghost minions] will have outlines to make them stand out."
+	Label: "[i:Insurgency] 显示死灵轮廓"
+	Tooltip: "[c/ffffbb:幽魂仆从]将会有令其显眼的轮廓."
 }
