@@ -19,11 +19,11 @@ Avalon: {
 Fargowiltas: {
 	Fargowiltas: {
 		Stats: {
-			// MaxGhostSlots: Mods.Aequus.CrossMod.Fargowiltas.Fargowiltas.Stats.MaxGhostSlots
-			// GhostDuration: Mods.Aequus.CrossMod.Fargowiltas.Fargowiltas.Stats.GhostDuration
-			// SceptreDebuffMultiplier: Mods.Aequus.CrossMod.Fargowiltas.Fargowiltas.Stats.SceptreDebuffMultiplier
-			// DropRolls: Mods.Aequus.CrossMod.Fargowiltas.Fargowiltas.Stats.DropRolls
-			// RespawnReduction: Mods.Aequus.CrossMod.Fargowiltas.Fargowiltas.Stats.RespawnReduction
+			// MaxGhostSlots: Ghost Slots: {0}
+			// GhostDuration: Ghost Duration: {0} minutes
+			// SceptreDebuffMultiplier: Sceptre Debuff Damage: {0}%
+			// DropRolls: Drop Rerolls: {0}
+			// RespawnReduction: Reduced Respawn: {0} seconds
 		}
 	}
 }

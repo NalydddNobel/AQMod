@@ -855,6 +855,33 @@
             Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
             </summary>
         </member>
+        <member name="T:Aequus.Content.CrossMod.BossChecklist">
+            <summary><see href="link">https://github.com/JavidPack/BossChecklist/wiki/%5B1.4.4%5D-Boss-Log-Entry-Mod-Call#arguments</see></summary>
+        </member>
+        <member name="T:Aequus.Content.CrossMod.BossChecklist.BossEntry">
+            <param name="InternalName">The Internal Name for this boss. Try to not change it as it may break other mods.</param>
+            <param name="Progression">View <see href="link">https://github.com/JavidPack/BossChecklist/wiki/Boss-Progression-Values</see> for a catalogue of vanilla entry sorting.</param>
+            <param name="DownedFlag">The Downed Flag for this boss.</param>
+        </member>
+        <member name="M:Aequus.Content.CrossMod.BossChecklist.BossEntry.#ctor(System.String,System.Single,System.Func{System.Boolean})">
+            <param name="InternalName">The Internal Name for this boss. Try to not change it as it may break other mods.</param>
+            <param name="Progression">View <see href="link">https://github.com/JavidPack/BossChecklist/wiki/Boss-Progression-Values</see> for a catalogue of vanilla entry sorting.</param>
+            <param name="DownedFlag">The Downed Flag for this boss.</param>
+        </member>
+        <member name="P:Aequus.Content.CrossMod.BossChecklist.BossEntry.InternalName">
+            <summary>The Internal Name for this boss. Try to not change it as it may break other mods.</summary>
+        </member>
+        <member name="P:Aequus.Content.CrossMod.BossChecklist.BossEntry.Progression">
+            <summary>View <see href="link">https://github.com/JavidPack/BossChecklist/wiki/Boss-Progression-Values</see> for a catalogue of vanilla entry sorting.</summary>
+        </member>
+        <member name="P:Aequus.Content.CrossMod.BossChecklist.BossEntry.DownedFlag">
+            <summary>The Downed Flag for this boss.</summary>
+        </member>
+        <member name="T:Aequus.Content.CrossMod.BossChecklist.PortraitRenderDelegate">
+            <param name="spriteBatch">The SpriteBatch.</param>
+            <param name="sourceRectangle">The bounds of the portrait.</param>
+            <param name="displayColor">The Color of the entry. It is usually Black when hidden, and White when not hidden.</param>
+        </member>
         <member name="P:Aequus.Content.DataSets.BuffSets.PlayerStatusDebuff">
             <summary>
             Set for compatibility with Thorium.
@@ -991,6 +1018,9 @@
             </summary>
             <param name="modWall"></param>
             <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
+        </member>
+        <member name="P:Aequus.Core.CrossMod.SupportedMod`1.Instance">
+            <summary>The Supported Mod's instance. This property is <see langword="null" /> when the mod is not enabled.</summary>
         </member>
         <member name="E:Aequus.Core.Graphics.DrawLayers.WorldBehindTiles">
             <summary>Invoked before NPCs behind tiles are drawn.</summary>

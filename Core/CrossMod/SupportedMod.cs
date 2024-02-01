@@ -13,6 +13,7 @@ internal interface ISupportedMod<TMod> where TMod : SupportedMod<TMod> {
 }
 
 internal class SupportedMod<TMod> : ModSystem, ISupportedMod<TMod>, ILocalizedModType where TMod : SupportedMod<TMod> {
+    /// <summary>The Supported Mod's instance. This property is <see langword="null" /> when the mod is not enabled.</summary>
     public static Mod Instance { get; private set; }
     public static string ModName => typeof(TMod).Name;
 
