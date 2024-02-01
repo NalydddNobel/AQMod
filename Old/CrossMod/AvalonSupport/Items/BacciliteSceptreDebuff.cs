@@ -1,15 +1,18 @@
-﻿using Aequus.Old.Content.Necromancy.Rendering;
+﻿using Aequus.Old.Content.Necromancy;
+using Aequus.Old.Content.Necromancy.Rendering;
 using Aequus.Old.Content.Necromancy.Sceptres.Evil;
 using System;
 
-namespace Aequus.Old.Content.Necromancy.Sceptres.Dungeon;
+namespace Aequus.Old.CrossMod.AvalonSupport.Items;
 
-public class RevenantDebuff : NecromancyDebuff {
+public class BacciliteSceptreDebuff : NecromancyDebuff {
     public override string Texture => AequusTextures.TemporaryDebuffIcon;
 
-    public override float Tier => 2f;
+    public override float Tier => 1f;
     public override int DamageSet => 40;
-    public override float GhostSpeedBoost => 1f;
+    public override float GhostSpeedBoost => 0.275f;
+
+    public override string LocalizationCategory => "CrossMod.Avalon.Buffs";
 
     public override void Update(NPC npc, ref int buffIndex) {
         int damageOverTime = 24;
@@ -25,6 +28,6 @@ public class RevenantDebuff : NecromancyDebuff {
         zombie.ghostDamage = DamageSet;
         zombie.ghostSpeed = GhostSpeedBoost;
         zombie.DebuffTier(Tier);
-        zombie.RenderLayer(ColorTargetID.Revenant);
+        zombie.RenderLayer(ColorTargetID.BoogerGreen);
     }
 }

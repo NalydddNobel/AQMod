@@ -8,7 +8,7 @@ public class NecromancyDebuff : ModBuff {
 
     public virtual float Tier => 1f;
     public virtual int DamageSet => 20;
-    public virtual float BaseSpeed => 0.25f;
+    public virtual float GhostSpeedBoost => 0.25f;
 
     public override void SetStaticDefaults() {
         Main.debuff[Type] = true;
@@ -19,7 +19,7 @@ public class NecromancyDebuff : ModBuff {
         var zombie = npc.GetGlobalNPC<NecromancyNPC>();
         zombie.ghostDebuffDOT = 16;
         zombie.ghostDamage = DamageSet;
-        zombie.ghostSpeed = BaseSpeed;
+        zombie.ghostSpeed = GhostSpeedBoost;
         zombie.DebuffTier(Tier);
         zombie.RenderLayer(ColorTargetID.ZombieScepter);
     }

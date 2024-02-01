@@ -9,7 +9,7 @@ public class InsurgentDebuff : NecromancyDebuff {
 
     public override float Tier => 4f;
     public override int DamageSet => 125;
-    public override float BaseSpeed => 1.5f;
+    public override float GhostSpeedBoost => 1.5f;
 
     public override void Update(NPC npc, ref int buffIndex) {
         int damageOverTime = 100;
@@ -23,7 +23,7 @@ public class InsurgentDebuff : NecromancyDebuff {
         var zombie = npc.GetGlobalNPC<NecromancyNPC>();
         zombie.ghostDebuffDOT = damageOverTime;
         zombie.ghostDamage = DamageSet;
-        zombie.ghostSpeed = BaseSpeed;
+        zombie.ghostSpeed = GhostSpeedBoost;
         zombie.DebuffTier(Tier);
         zombie.RenderLayer(ColorTargetID.Insurgency);
 

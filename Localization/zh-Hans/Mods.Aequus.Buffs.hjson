@@ -82,3 +82,8 @@ OsirisDebuff: {
 	DisplayName: "{$Items.Osiris.DisplayName}"
 	Description: Mods.Aequus.Buffs.OsirisDebuff.Description
 }
+
+CrimsonSceptreDebuff: {
+	// DisplayName: Crimson Sceptre Debuff
+	// Description: Mods.Aequus.Buffs.CrimsonSceptreDebuff.Description
+}

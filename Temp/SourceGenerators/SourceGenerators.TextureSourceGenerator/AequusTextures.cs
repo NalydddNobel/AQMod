@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 396)</summary>
+/// <summary>(Total Textures: 398)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -799,4 +799,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CrusadersCrossbow = new("Aequus/Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow");
     /// <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj</summary>
     public static readonly RequestCache<Texture2D> CrusadersCrossbowProj = new("Aequus/Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj");
+    /// <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre</summary>
+    public static readonly RequestCache<Texture2D> BacciliteSceptre = new("Aequus/Old/CrossMod/AvalonSupport/Items/BacciliteSceptre");
+    /// <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre_Glow</summary>
+    public static readonly RequestCache<Texture2D> BacciliteSceptre_Glow = new("Aequus/Old/CrossMod/AvalonSupport/Items/BacciliteSceptre_Glow");
 }

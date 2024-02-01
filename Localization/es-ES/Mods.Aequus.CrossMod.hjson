@@ -1,0 +1,17 @@
+Avalon: {
+	Buffs: {
+		BacciliteSceptreDebuff: {
+			// DisplayName: Baccilite Sceptre Debuff
+			// Description: Mods.Aequus.CrossMod.Avalon.Buffs.BacciliteSceptreDebuff.Description
+		}
+	}
+
+	Items: {
+		BacciliteSceptre: {
+			// DisplayName: Baccilite Sceptre
+			// Tooltip: ""
+		}
+	}
+
+	// Projectiles.BacciliteSceptreProj.DisplayName: Baccilite Sceptre Proj
+}

@@ -1,15 +1,14 @@
 ﻿using Aequus.Old.Content.Necromancy.Rendering;
-using Aequus.Old.Content.Necromancy.Sceptres.Evil;
 using System;
 
-namespace Aequus.Old.Content.Necromancy.Sceptres.Dungeon;
+namespace Aequus.Old.Content.Necromancy.Sceptres.Evil;
 
-public class RevenantDebuff : NecromancyDebuff {
+public class CrimsonSceptreDebuff : NecromancyDebuff {
     public override string Texture => AequusTextures.TemporaryDebuffIcon;
 
-    public override float Tier => 2f;
+    public override float Tier => 1f;
     public override int DamageSet => 40;
-    public override float GhostSpeedBoost => 1f;
+    public override float GhostSpeedBoost => 0.3f;
 
     public override void Update(NPC npc, ref int buffIndex) {
         int damageOverTime = 24;
@@ -25,6 +24,6 @@ public class RevenantDebuff : NecromancyDebuff {
         zombie.ghostDamage = DamageSet;
         zombie.ghostSpeed = GhostSpeedBoost;
         zombie.DebuffTier(Tier);
-        zombie.RenderLayer(ColorTargetID.Revenant);
+        zombie.RenderLayer(ColorTargetID.CrimsonSceptre);
     }
 }

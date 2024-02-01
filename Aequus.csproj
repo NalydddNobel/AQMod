@@ -59,31 +59,4 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
   </ItemGroup>
 	
-  <ItemGroup>
-    <None Remove="Assets\Textures\TrailShootingStar.png" />
-    <None Remove="Old\Assets\Shaders\NecromancyOutline.fx" />
-    <None Remove="Old\Assets\Sounds\recruitZombie.ogg" />
-    <None Remove="Old\Content\Necromancy\Equipment\Accessories\Chains\SoulChains.png" />
-    <None Remove="Old\Content\Necromancy\Equipment\Accessories\PandorasBox.png" />
-    <None Remove="Old\Content\Necromancy\Equipment\Accessories\PharaohsCurse.png" />
-    <None Remove="Old\Content\Necromancy\Equipment\Accessories\RitualisticSkull.png" />
-    <None Remove="Old\Content\Necromancy\Equipment\Accessories\ShadowVeer.png" />
-    <None Remove="Old\Content\Necromancy\Equipment\Accessories\SouljointCuffs.png" />
-    <None Remove="Old\Content\Necromancy\Sceptres\Dungeon\Insurgency.png" />
-    <None Remove="Old\Content\Necromancy\Sceptres\Dungeon\InsurgencyProj.png" />
-    <None Remove="Old\Content\Necromancy\Sceptres\Dungeon\Insurgency_Glow.png" />
-    <None Remove="Old\Content\Necromancy\Sceptres\Dungeon\Revenant.png" />
-    <None Remove="Old\Content\Necromancy\Sceptres\Dungeon\Revenant_Glow.png" />
-    <None Remove="Old\Content\Necromancy\Sceptres\Evil\CorruptionSceptre.png" />
-    <None Remove="Old\Content\Necromancy\Sceptres\Evil\CorruptionSceptreProj.png" />
-    <None Remove="Old\Content\Necromancy\Sceptres\Evil\CorruptionSceptre_Glow.png" />
-    <None Remove="Old\Content\Necromancy\Sceptres\Evil\CrimsonSceptre.png" />
-    <None Remove="Old\Content\Necromancy\Sceptres\Evil\CrimsonSceptre_Glow.png" />
-    <None Remove="Old\Content\Necromancy\Sceptres\Forbidden\LocustLarge.png" />
-    <None Remove="Old\Content\Necromancy\Sceptres\Forbidden\LocustSmall.png" />
-    <None Remove="Old\Content\Necromancy\Sceptres\Forbidden\Osiris.png" />
-    <None Remove="Old\Content\Necromancy\Sceptres\Forbidden\Osiris_Glow.png" />
-    <None Remove="Old\Content\Particles\GhostDrainDust.png" />
-  </ItemGroup>
-	
 </Project>

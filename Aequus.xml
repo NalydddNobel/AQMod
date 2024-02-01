@@ -1701,7 +1701,7 @@
             <summary>Full Path: Old/Assets/Sounds/RecruitZombie</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 396)</summary>
+            <summary>(Total Textures: 398)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2890,6 +2890,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.CrusadersCrossbowProj">
             <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BacciliteSceptre">
+            <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BacciliteSceptre_Glow">
+            <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre_Glow</summary>
         </member>
         <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.NotStackableCritDamage">
             <summary>

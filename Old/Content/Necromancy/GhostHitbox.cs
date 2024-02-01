@@ -55,7 +55,7 @@ public class GhostHitbox : ModProjectile {
     }
 
     public override bool? CanHitNPC(NPC target) {
-        return NPCLoader.CanHitNPC(Main.npc[NPC], target);
+        return NPCLoader.CanHitNPC(Main.npc[NPC], target) ? null : false;
     }
 
     public override bool CanHitPlayer(Player target) {

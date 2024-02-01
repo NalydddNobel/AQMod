@@ -8,13 +8,13 @@ public class OsirisDebuff : NecromancyDebuff {
 
     public override float Tier => 3f;
     public override int DamageSet => 75;
-    public override float BaseSpeed => 1.25f;
+    public override float GhostSpeedBoost => 1.25f;
 
     public override void Update(NPC npc, ref int buffIndex) {
         var zombie = npc.GetGlobalNPC<NecromancyNPC>();
         zombie.ghostDebuffDOT = 40;
         zombie.ghostDamage = DamageSet;
-        zombie.ghostSpeed = BaseSpeed;
+        zombie.ghostSpeed = GhostSpeedBoost;
         zombie.DebuffTier(Tier);
         zombie.RenderLayer(ColorTargetID.Osiris);
     }

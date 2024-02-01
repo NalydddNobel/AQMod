@@ -138,6 +138,7 @@ public class GhostRenderer : ModSystem {
                 new RenderData(() => new Color(255, 100, 255, 255)), // Friendship Magick
                 new RenderData(() => Color.BlueViolet), // Demon Purple
                 new RenderData(() => Color.Blue), // Dungeon Dark Blue
+                new RenderData(() => Color.LimeGreen), // Booger Green
                 new RenderData(() => Main.teamColor[0]), // PVP Team White
                 new RenderData(() => Main.teamColor[1]), // PVP Team Red
                 new RenderData(() => Main.teamColor[2]), // PVP Team Green
