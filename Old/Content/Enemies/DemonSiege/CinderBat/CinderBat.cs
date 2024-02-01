@@ -4,6 +4,7 @@ using Aequus.Core.ContentGeneration;
 using Aequus.Core.DataSets;
 using Aequus.Old.Content.Equipment.Accessories.WarHorn;
 using Aequus.Old.Content.Events.DemonSiege;
+using Aequus.Old.Content.Materials.SoulGem;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -63,8 +64,6 @@ public class CinderBat : LegacyAIBat {
         NPC.knockBackResist = 0.4f;
         NPC.gfxOffY = -6f;
         NPC.lavaMovementSpeed = 1f;
-
-        //this.SetBiome<DemonSiegeZone>();
 
         if (Main.zenithWorld) {
             NPC.scale = 0.5f;
@@ -350,6 +349,7 @@ public class CinderBat : LegacyAIBat {
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoulGem>(), 3));
         npcLoot.Add(ItemDropRule.OneFromOptions(
             chanceDenominator: 6,
             ModContent.ItemType<WarHorn>(),

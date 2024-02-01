@@ -7,7 +7,7 @@ public class CrimsonSceptreDebuff : NecromancyDebuff {
     public override string Texture => AequusTextures.TemporaryDebuffIcon;
 
     public override float Tier => 1f;
-    public override int DamageSet => 40;
+    public override int DamageSet => 20;
     public override float GhostSpeedBoost => 0.3f;
 
     public override void Update(NPC npc, ref int buffIndex) {

@@ -79,7 +79,7 @@ RevenantDebuff: {
 }
 
 NecromancyDebuff: {
-	DisplayName: Mods.Aequus.Buffs.NecromancyDebuff.DisplayName
+	DisplayName: "{$Items.CorruptionSceptre.DisplayName}"
 	Description: Mods.Aequus.Buffs.NecromancyDebuff.Description
 }
 
@@ -89,8 +89,8 @@ OsirisDebuff: {
 }
 
 CrimsonSceptreDebuff: {
-	// DisplayName: "{$Items.CrimsonSceptre.DisplayName}"
-	// Description: Mods.Aequus.Buffs.CrimsonSceptreDebuff.Description
+	DisplayName: "{$Items.CrimsonSceptre.DisplayName}"
+	Description: Mods.Aequus.Buffs.CrimsonSceptreDebuff.Description
 }
 
 GravetenderMinionBuff: {

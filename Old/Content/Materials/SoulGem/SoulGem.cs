@@ -18,25 +18,14 @@ public class SoulGem : ModItem {
         Item.value = Item.buyPrice(gold: 1, silver: 50);
     }
 
-    public static Item FindItemInInvOrVoidBag(Player player, Predicate<Item> search, out bool inVoidBag) {
-        var i = Array.Find(player.inventory, search);
-        inVoidBag = false;
-        if (i != null) {
-            return i;
-        }
-
-        inVoidBag = true;
-        return player.IsVoidVaultEnabled ? Array.Find(player.bank4.item, search) : null;
-    }
-
     public static void TryFillSoulGems(Player player) {
-        var soulGem = FindItemInInvOrVoidBag(player, (item) => item.ModItem is SoulGem soulGemBase, out bool inVoidBag);
+        var soulGem = player.FindItemInInvOrVoidBag((item) => !item.IsAir && item.ModItem is SoulGem soulGemBase, out bool inVoidBag);
         if (soulGem != null) {
             if (Main.myPlayer == player.whoAmI) {
                 soulGem.stack--;
                 Item newSoulGem = null;
                 if (!inVoidBag) {
-                    var canStack = Array.Find(player.inventory, (item) => item.type == (soulGem.ModItem as SoulGem).TransformID && item.stack < item.maxStack);
+                    var canStack = Array.Find(player.inventory, (item) => !item.IsAir && item.type == (soulGem.ModItem as SoulGem).TransformID && item.stack < item.maxStack);
                     if (canStack != null) {
                         newSoulGem = canStack;
                         newSoulGem.stack++;
@@ -47,7 +36,7 @@ public class SoulGem : ModItem {
                     }
                 }
                 if (newSoulGem == null && inVoidBag) {
-                    var canStack = Array.Find(player.bank4.item, (item) => item.type == (soulGem.ModItem as SoulGem).TransformID && item.stack < item.maxStack);
+                    var canStack = Array.Find(player.bank4.item, (item) => !item.IsAir && item.type == (soulGem.ModItem as SoulGem).TransformID && item.stack < item.maxStack);
                     if (canStack != null) {
                         newSoulGem = canStack;
                         newSoulGem.stack++;

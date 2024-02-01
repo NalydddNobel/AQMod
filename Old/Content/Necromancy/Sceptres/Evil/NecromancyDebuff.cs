@@ -13,6 +13,7 @@ public class NecromancyDebuff : ModBuff {
     public override void SetStaticDefaults() {
         Main.debuff[Type] = true;
         Main.buffNoSave[Type] = true;
+        BuffID.Sets.IsATagBuff[Type] = true;
     }
 
     public override void Update(NPC npc, ref int buffIndex) {
