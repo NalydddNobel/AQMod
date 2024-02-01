@@ -1,5 +1,5 @@
 {
-  "OccultistIgnore": [
+  "Soulless": [
     "FireImp"
     /*24*/,
     "BoneSerpentHead"
@@ -352,6 +352,98 @@
     /*175*/,
     "Tim"
     /*45*/,
+    "PrimeCannon"
+    /*128*/,
+    "PrimeSaw"
+    /*129*/,
+    "PrimeVice"
+    /*130*/,
+    "PrimeLaser"
+    /*131*/,
+    "SkeletronHand"
+    /*36*/,
+    "LeechBody"
+    /*118*/,
+    "LeechTail"
+    /*119*/,
+    "TheDestroyerBody"
+    /*135*/,
+    "TheDestroyerTail"
+    /*136*/,
+    "StardustWormBody"
+    /*403*/,
+    "StardustWormTail"
+    /*404*/,
+    "StardustCellSmall"
+    /*406*/,
+    "StardustSpiderSmall"
+    /*410*/,
+    "CultistDevote"
+    /*438*/,
+    "CultistDragonBody1"
+    /*455*/,
+    "CultistDragonBody2"
+    /*456*/,
+    "CultistDragonBody3"
+    /*457*/,
+    "CultistDragonBody4"
+    /*458*/,
+    "CultistDragonTail"
+    /*459*/,
+    "MothronEgg"
+    /*478*/,
+    "MothronSpawn"
+    /*479*/,
+    "TargetDummy"
+    /*488*/,
+    "PirateShipCannon"
+    /*492*/,
+    "LunarTowerNebula"
+    /*507*/,
+    "LunarTowerSolar"
+    /*517*/,
+    "LunarTowerStardust"
+    /*493*/,
+    "LunarTowerVortex"
+    /*422*/,
+    "AncientLight"
+    /*522*/,
+    "AncientDoom"
+    /*523*/,
+    "AncientCultistSquidhead"
+    /*521*/,
+    "DemonTaxCollector"
+    /*534*/,
+    "WindyBalloon"
+    /*594*/,
+    "BloodNautilus"
+    /*618*/,
+    "PirateGhost"
+    /*662*/,
+    "GoldenSlime"
+    /*667*/,
+    "ShimmerSlime"
+    /*676*/,
+    "WallofFleshEye"
+    /*114*/,
+    "TheHungry"
+    /*115*/,
+    "TheHungryII"
+    /*116*/,
+    "WyvernLegs"
+    /*88*/,
+    "WyvernBody"
+    /*89*/,
+    "WyvernBody2"
+    /*90*/,
+    "WyvernBody3"
+    /*91*/,
+    "WyvernTail"
+    /*92*/,
+    "GolemFistLeft"
+    /*247*/,
+    "GolemFistRight"
+    /*248*/,
     "Polarities/Hydra",
     "Polarities/HydraHead",
     "Polarities/MantleOWar"

@@ -1,68 +1,68 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Core.DataSets;
-using Aequus.Core.Utilities;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using Terraria.GameContent.Bestiary;
 
 namespace Aequus.Content.DataSets;
 
 public class NPCSets : DataSet {
-    /// <summary>NPC Ids in this set cannot damage the Occultist, or have their souls trapped into Soul Gems.</summary>
+    /// <summary>
+    /// NPC Ids in this set cannot damage the Occultist, or have their souls trapped into Soul Gems.
+    /// Automatically populated with all NPC Ids which have the Underworld or Gore Nest as bestiary tags.
+    /// </summary>
     [JsonProperty]
     public static HashSet<NPCEntry> Soulless { get; private set; } = new();
 
+    /// <summary>Automatically populated with all NPC Ids which have the Corruption as bestiary tags.</summary>
     [JsonProperty]
     public static HashSet<NPCEntry> IsCorrupt { get; private set; } = new();
+    /// <summary>Automatically populated with all NPC Ids which have the Crimson as bestiary tags.</summary>
     [JsonProperty]
     public static HashSet<NPCEntry> IsCrimson { get; private set; } = new();
+    /// <summary>Automatically populated with all NPC Ids which have the Hallow as bestiary tags.</summary>
     [JsonProperty]
     public static HashSet<NPCEntry> IsHallow { get; private set; } = new();
+    /// <summary>Automatically populated with all NPC Ids which have a Pillar as a bestiary tag.</summary>
     [JsonProperty]
     public static HashSet<NPCEntry> FromPillarEvent { get; private set; } = new();
 
+    /// <summary>Entries in this set can completely override the Name Tag conditional check with their own value.</summary>
     [JsonProperty]
     public static Dictionary<NPCEntry, bool> NameTagOverride { get; private set; } = new();
 
+    /// <summary>Entries in this set are able to be stunned by the Stun Gun (<see cref="Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
     [JsonProperty]
     public static HashSet<NPCEntry> StunnableByTypeId { get; private set; } = new();
+    /// <summary>Enemies with an AI Type in this set are able to be stunned by the Stun Gun (<see cref="Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
     [JsonProperty]
     public static HashSet<NPCAIEntry> StunnableByAI { get; private set; } = new();
 
-    /// <summary>
-    /// Used for Royal Gel's Crown of Blood combination.
-    /// </summary>
+    /// <summary>Used for Royal Gel's Crown of Blood combination.</summary>
     [JsonProperty]
     public static HashSet<NPCEntry> FriendablePreHardmodeSlime { get; private set; } = new();
 
-    /// <summary>
-    /// Used for Volatile Gelatin's Crown of Blood combination.
-    /// </summary>
+    /// <summary>Used for Volatile Gelatin's Crown of Blood combination.</summary>
     [JsonProperty]
     public static HashSet<NPCEntry> FriendableHardmodeSlime { get; private set; } = new();
 
-    /// <summary>
-    /// Enemies in this set cannot become friendly. This usually contains bosses, or other special NPCs like worm segments.
-    /// </summary>
+    /// <summary>Enemies in this set cannot become friendly through necromancy.</summary>
     [JsonProperty]
     public static HashSet<NPCEntry> Unfriendable { get; private set; } = new();
 
-    /// <summary>
-    /// NPCs in this set deal 'heat' contact damage. This damage can be resisted using the Frost Potion.
-    /// </summary>
+    /// <summary>NPCs in this set deal 'heat' contact damage. This damage can be resisted using the Frost Potion.</summary>
     [JsonProperty]
     public static HashSet<NPCEntry> DealsHeatDamage { get; private set; } = new();
 
-    /// <summary>
-    /// NPCs in this set cannot become Elites. This usually contains bosses.
-    /// </summary>
+    /// <summary>NPCs in this set cannot be given Elite affixes.</summary>
     [JsonProperty]
     public static HashSet<NPCEntry> PrefixBlacklist { get; private set; } = new();
 
+    /// <summary>Entries in this set are able to be pushed by the Pumpinator.</summary>
     [JsonProperty]
     public static HashSet<NPCEntry> PushableByTypeId { get; private set; } = new();
+    /// <summary>Enemies with an AI Type in this set are able to be pushed by the Pumpinator.</summary>
     [JsonProperty]
     public static HashSet<NPCAIEntry> PushableByAI { get; private set; } = new();
 

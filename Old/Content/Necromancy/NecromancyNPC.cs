@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.NPCs;
+using Aequus.Content.DataSets;
 using Aequus.Core.Initialization;
 using Aequus.Old.Content.Necromancy.Networking;
 using Aequus.Old.Content.Necromancy.Rendering;
@@ -493,10 +494,10 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
     }
 
     public bool CheckCanConvertIntoGhost(NPC npc) {
-        if (zombieOwner < 0 || zombieOwner > Main.maxPlayers || !Main.player[zombieOwner].active || Main.player[zombieOwner].dead || Main.player[zombieOwner].ghost) {
+        if (npc.boss || NPCSets.Unfriendable.Contains(npc.netID) || zombieOwner < 0 || zombieOwner > Main.maxPlayers || !Main.player[zombieOwner].active || Main.player[zombieOwner].dead || Main.player[zombieOwner].ghost) {
             return false;
         }
-
+        NPCID.PrimeCannon
         if (conversionChance > 0 && Main.rand.NextBool(conversionChance)) {
             return true;
         }
