@@ -126,7 +126,24 @@
     /*353*/,
     "Aequus/BaguetteBuff",
     "Aequus/StunGunDebuff",
-    "Aequus/IronLotusDebuff"
+    "Aequus/IronLotusDebuff",
+    "Avalon/BenevolentWard",
+    "Avalon/BrokenWeaponry",
+    "Avalon/CaesiumPoison",
+    "Avalon/Coalesced",
+    "Avalon/CoughCooldown",
+    "Avalon/CurseofDelirium",
+    "Avalon/IcySlowdown",
+    "Avalon/ImmortalityCooldown",
+    "Avalon/Lacerated",
+    "Avalon/LotusCurse",
+    "Avalon/Pathogen",
+    "Avalon/SanguineSacrifice",
+    "Avalon/Scrambled",
+    "Avalon/Unloaded",
+    "Avalon/Wormed",
+    "Avalon/StaminaDrain",
+    "Avalon/WardCurse"
   ],
   "NotTypicalDebuff": [
     "PotionSickness"
@@ -160,12 +177,24 @@
     "Starving"
     /*334*/,
     "ShadowCandle"
-    /*350*/
+    /*350*/,
+    "Avalon/BenevolentWard",
+    "Avalon/CoughCooldown",
+    "Avalon/CurseofDelirium",
+    "Avalon/ImmortalityCooldown",
+    "Avalon/Scrambled",
+    "Avalon/StaminaDrain",
+    "Avalon/WardCurse"
   ],
-  "DontChangeDuration": [],
-  "CooldownDebuff": [],
+  "DontChangeDuration": [
+    "Avalon/CoughCooldown"
+  ],
+  "CooldownDebuff": [
+    "Avalon/CoughCooldown"
+  ],
   "PlayerStatusDebuff": [],
   "PlayerDoTDebuff": [
+    "Unknown",
     "Unknown",
     "Unknown"
   ],

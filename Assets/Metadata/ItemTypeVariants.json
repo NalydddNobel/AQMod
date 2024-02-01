@@ -1,12 +1,16 @@
 {
   "RottenChunk": [
-    "RottenChunk",
-    "Vertebrae",
+    "RottenChunk"
+    /*68*/,
+    "Vertebrae"
+    /*1330*/,
     "Avalon/YuckyBit"
   ],
   "DemoniteBar": [
-    "DemoniteBar",
-    "CrimtaneBar",
+    "DemoniteBar"
+    /*57*/,
+    "CrimtaneBar"
+    /*1257*/,
     "Avalon/BacciliteBar"
   ]
 }
