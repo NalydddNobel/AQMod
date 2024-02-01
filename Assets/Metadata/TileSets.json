@@ -139,7 +139,28 @@
     "WireBulb"
     /*429*/,
     "Torches"
-    /*4*/
+    /*4*/,
+    "Avalon/CrystalStoneDoorClosed",
+    "Avalon/CrystalStoneDoorOpen",
+    "Avalon/BleachedEbonyDoorClosed",
+    "Avalon/BleachedEbonyDoorOpen",
+    "Avalon/BrownTorch",
+    "Avalon/ContagionTorch",
+    "Avalon/CoughwoodDoorClosed",
+    "Avalon/CoughwoodDoorOpen",
+    "Avalon/CyanTorch",
+    "Avalon/HeartstoneDoorClosed",
+    "Avalon/HeartstoneDoorOpen",
+    "Avalon/LimeTorch",
+    "Avalon/OrangeDungeonDoorClosed",
+    "Avalon/OrangeDungeonDoorOpen",
+    "Avalon/PathogenTorch",
+    "Avalon/PurpleDungeonDoorClosed",
+    "Avalon/PurpleDungeonDoorOpen",
+    "Avalon/ResistantWoodDoorClosed",
+    "Avalon/ResistantWoodDoorOpen",
+    "Avalon/YellowDungeonDoorClosed",
+    "Avalon/YellowDungeonDoorOpen"
   ],
   "IsSmashablePot": [
     "Pots"

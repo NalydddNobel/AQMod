@@ -31,7 +31,9 @@
     "Lavafly"
     /*654*/,
     "MagmaSnail"
-    /*655*/
+    /*655*/,
+    "Avalon/Blaze",
+    "Avalon/BoneFish"
   ],
   "IsCorrupt": [
     "Slimeling"
@@ -67,7 +69,9 @@
     "DesertDjinn"
     /*533*/,
     "SandsharkCorrupt"
-    /*543*/
+    /*543*/,
+    "Avalon/CursedFlamer",
+    "Avalon/Shadlopod"
   ],
   "IsCrimson": [
     "Crimera"
@@ -161,7 +165,8 @@
     "EmpressButterfly"
     /*661*/,
     "Princess"
-    /*663*/
+    /*663*/,
+    "Avalon/Hallowor"
   ],
   "FromPillarEvent": [
     "StardustWormHead"

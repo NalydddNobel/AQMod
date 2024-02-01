@@ -858,24 +858,10 @@
         <member name="T:Aequus.Content.CrossMod.BossChecklist">
             <summary><see href="link">https://github.com/JavidPack/BossChecklist/wiki/%5B1.4.4%5D-Boss-Log-Entry-Mod-Call#arguments</see></summary>
         </member>
-        <member name="T:Aequus.Content.CrossMod.BossChecklist.BossEntry">
-            <param name="InternalName">The Internal Name for this boss. Try to not change it as it may break other mods.</param>
-            <param name="Progression">View <see href="link">https://github.com/JavidPack/BossChecklist/wiki/Boss-Progression-Values</see> for a catalogue of vanilla entry sorting.</param>
-            <param name="DownedFlag">The Downed Flag for this boss.</param>
-        </member>
         <member name="M:Aequus.Content.CrossMod.BossChecklist.BossEntry.#ctor(System.String,System.Single,System.Func{System.Boolean})">
-            <param name="InternalName">The Internal Name for this boss. Try to not change it as it may break other mods.</param>
-            <param name="Progression">View <see href="link">https://github.com/JavidPack/BossChecklist/wiki/Boss-Progression-Values</see> for a catalogue of vanilla entry sorting.</param>
-            <param name="DownedFlag">The Downed Flag for this boss.</param>
-        </member>
-        <member name="P:Aequus.Content.CrossMod.BossChecklist.BossEntry.InternalName">
-            <summary>The Internal Name for this boss. Try to not change it as it may break other mods.</summary>
-        </member>
-        <member name="P:Aequus.Content.CrossMod.BossChecklist.BossEntry.Progression">
-            <summary>View <see href="link">https://github.com/JavidPack/BossChecklist/wiki/Boss-Progression-Values</see> for a catalogue of vanilla entry sorting.</summary>
-        </member>
-        <member name="P:Aequus.Content.CrossMod.BossChecklist.BossEntry.DownedFlag">
-            <summary>The Downed Flag for this boss.</summary>
+            <param name="internalName">The Internal Name for this boss. Try to not change it as it may break other mods.</param>
+            <param name="progression">View <see href="link">https://github.com/JavidPack/BossChecklist/wiki/Boss-Progression-Values</see> for a catalogue of vanilla entry sorting.</param>
+            <param name="downedFlag">The Downed Flag for this boss.</param>
         </member>
         <member name="T:Aequus.Content.CrossMod.BossChecklist.PortraitRenderDelegate">
             <param name="spriteBatch">The SpriteBatch.</param>
@@ -957,7 +943,7 @@
         </member>
         <member name="P:Aequus.Content.DataSets.ProjectileSets.OccultistIgnore">
             <summary>
-            Projectiles in this set do not damage the <see cref="T:Aequus.Old.Content.TownNPCs.OccultistNPC.Occultist"/>.
+            Projectiles in this set do not damage the <see cref="!:Old.Content.TownNPCs.OccultistNPC.Occultist"/>.
             </summary>
         </member>
         <member name="P:Aequus.Content.DataSets.ProjectileSets.DealsHeatDamage">
@@ -2955,25 +2941,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.BacciliteSceptre_Glow">
             <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre_Glow</summary>
-        </member>
-        <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.NotStackableCritDamage">
-            <summary>
-            Default Value: 0.15
-            <para>This is only added on the first stack of the accessory.</para>
-            </summary>
-        </member>
-        <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.WantedCost">
-            <summary>
-            The cost for performing a critical strike.
-            </summary>
-        </member>
-        <member name="T:Aequus.Old.Content.Events.DemonSiege.Tiles.OblivionAltarDummy">
-            <summary>Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.</summary>
-        </member>
-        <member name="P:Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg.SaivoryKnife.GhostLifespan">
-            <summary>
-            Default Value: 3600 (1 minute)
-            </summary>
         </member>
     </members>
 </doc>
