@@ -13,7 +13,7 @@ public partial class AequusPlayer {
     public static int MinimumRespawnTime { get; set; } = 180;
 
     [ResetEffects]
-    public int respawnTimeModifier;
+    public int respawnTimeModifierFlat;
 
     /// <summary>
     /// Sets the respawn time modifier without allowing it to stack.
@@ -21,17 +21,17 @@ public partial class AequusPlayer {
     /// <param name="amount"></param>
     public void SetAccRespawnTimeModifier(int amount) {
         if (amount < 0) {
-            if (respawnTimeModifier <= amount) {
+            if (respawnTimeModifierFlat <= amount) {
                 return;
             }
 
-            respawnTimeModifier += amount;
+            respawnTimeModifierFlat += amount;
         }
         else {
-            if (respawnTimeModifier >= amount) {
+            if (respawnTimeModifierFlat >= amount) {
                 return;
             }
-            respawnTimeModifier += amount;
+            respawnTimeModifierFlat += amount;
         }
     }
 
@@ -42,7 +42,7 @@ public partial class AequusPlayer {
         if (time <= MinimumRespawnTime || !player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
             return time;
         }
-        return Math.Max(time + aequusPlayer.respawnTimeModifier, MinimumRespawnTime);
+        return Math.Max(time + aequusPlayer.respawnTimeModifierFlat, MinimumRespawnTime);
     }
 
     private void HandleTileEffects() {

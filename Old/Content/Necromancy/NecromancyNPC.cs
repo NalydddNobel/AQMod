@@ -416,9 +416,10 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
     public override void UpdateLifeRegen(NPC npc, ref int damage) {
         if (ghostDebuffDOT > 0) {
             float multiplier = 1f;
-            if (zombieOwner > 0 && zombieOwner < Main.maxPlayers) {
-                multiplier += Main.player[zombieOwner].GetModPlayer<AequusPlayer>().zombieDebuffMultiplier;
+            if (zombieOwner > 0 && zombieOwner < Main.maxPlayers && Main.player[zombieOwner].active) {
+                multiplier = Main.player[zombieOwner].GetModPlayer<AequusPlayer>().zombieDebuffMultiplier;
             }
+
             if (npc.lifeRegen > 0) {
                 npc.lifeRegen = 0;
             }

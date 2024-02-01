@@ -5,7 +5,7 @@ namespace Aequus;
 public partial class AequusPlayer {
     [ResetEffects]
     public int ghostShadowDash;
-    [ResetEffects]
+    [ResetEffects(1f)]
     public float zombieDebuffMultiplier;
     [ResetEffects]
     public int ghostProjExtraUpdates;

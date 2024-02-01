@@ -15,3 +15,15 @@ Avalon: {
 
 	// Projectiles.BacciliteSceptreProj.DisplayName: "{Avalon.Items.BacciliteSceptre.DisplayName}"
 }
+
+Fargowiltas: {
+	Fargowiltas: {
+		Stats: {
+			// MaxGhostSlots: Mods.Aequus.CrossMod.Fargowiltas.Fargowiltas.Stats.MaxGhostSlots
+			// GhostDuration: Mods.Aequus.CrossMod.Fargowiltas.Fargowiltas.Stats.GhostDuration
+			// SceptreDebuffMultiplier: Mods.Aequus.CrossMod.Fargowiltas.Fargowiltas.Stats.SceptreDebuffMultiplier
+			// DropRolls: Mods.Aequus.CrossMod.Fargowiltas.Fargowiltas.Stats.DropRolls
+			// RespawnReduction: Mods.Aequus.CrossMod.Fargowiltas.Fargowiltas.Stats.RespawnReduction
+		}
+	}
+}
