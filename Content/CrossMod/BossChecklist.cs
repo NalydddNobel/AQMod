@@ -12,13 +12,28 @@ internal class BossChecklist : SupportedMod<BossChecklist> {
         BossEntry ProvideEntry();
     }
 
-    /// <param name="InternalName">The Internal Name for this boss. Try to not change it as it may break other mods.</param>
-    /// <param name="Progression">View <see href="link">https://github.com/JavidPack/BossChecklist/wiki/Boss-Progression-Values</see> for a catalogue of vanilla entry sorting.</param>
-    /// <param name="DownedFlag">The Downed Flag for this boss.</param>
-    public record struct BossEntry(string InternalName, float Progression, Func<bool> DownedFlag) {
-        public List<int> BossIds { get; set; } = new();
-        public List<int> SpawnItems { get; set; } = new();
-        public List<int> Collectibles { get; set; } = new();
+    public struct BossEntry {
+        /// <param name="internalName">The Internal Name for this boss. Try to not change it as it may break other mods.</param>
+        /// <param name="progression">View <see href="link">https://github.com/JavidPack/BossChecklist/wiki/Boss-Progression-Values</see> for a catalogue of vanilla entry sorting.</param>
+        /// <param name="downedFlag">The Downed Flag for this boss.</param>
+        public BossEntry(string internalName, float progression, Func<bool> downedFlag) {
+            InternalName = internalName;
+            Progression = progression;
+            DownedFlag = downedFlag;
+            BossIds = new();
+            SpawnItems = new();
+            Collectibles = new();
+            CustomPortrait = null;
+        }
+
+        public readonly string InternalName;
+        public readonly float Progression;
+        public readonly Func<bool> DownedFlag;
+
+        public readonly List<int> BossIds;
+        public readonly List<int> SpawnItems;
+        public readonly List<int> Collectibles;
+
         public PortraitRenderDelegate CustomPortrait { get; set; }
     }
 
