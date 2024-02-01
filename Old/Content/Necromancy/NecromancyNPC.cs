@@ -183,6 +183,9 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
         }
     }
     public override void OnSpawn(NPC npc, IEntitySource source) {
+        if (source is EntitySource_Parent parentSource) {
+            InheritFromParent(npc, parentSource.Entity);
+        }
     }
 
     public override Color? GetAlpha(NPC npc, Color drawColor) {
@@ -429,6 +432,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
             }
             if (!GhostRenderer.Rendering) {
                 GhostRenderer.Requested = true;
+                ModContent.GetInstance<NecromancyInterface>().Activate();
                 GhostRenderer.GetColorTarget(Main.player[zombieOwner], renderLayer).NPCs.Add(npc);
             }
         }

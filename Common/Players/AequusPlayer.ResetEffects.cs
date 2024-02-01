@@ -6,6 +6,10 @@ public partial class AequusPlayer {
     private static ResetEffectsGenerator<AequusPlayer> _resetEffects;
 
     public override void ResetEffects() {
+#if RELEASE
+        ResetEffects_LegacyNecromancy();
+#endif
+
         if (Player.dashDelay == 0) {
             DashData = null;
         }

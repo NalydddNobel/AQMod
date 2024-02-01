@@ -1,17 +1,17 @@
 Avalon: {
 	Buffs: {
 		BacciliteSceptreDebuff: {
-			// DisplayName: Baccilite Sceptre Debuff
+			// DisplayName: "{Avalon.Items.BacciliteSceptre.DisplayName}"
 			// Description: Mods.Aequus.CrossMod.Avalon.Buffs.BacciliteSceptreDebuff.Description
 		}
 	}
 
 	Items: {
 		BacciliteSceptre: {
-			// DisplayName: Baccilite Sceptre
-			// Tooltip: ""
+			// DisplayName: Apoptosis Sceptre
+			// Tooltip: "{$Items.CorruptionSceptre.Tooltip}"
 		}
 	}
 
-	// Projectiles.BacciliteSceptreProj.DisplayName: Baccilite Sceptre Proj
+	// Projectiles.BacciliteSceptreProj.DisplayName: "{Avalon.Items.BacciliteSceptre.DisplayName}"
 }

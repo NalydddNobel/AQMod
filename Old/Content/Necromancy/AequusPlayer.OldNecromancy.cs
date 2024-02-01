@@ -16,14 +16,14 @@ public partial class AequusPlayer {
     [ResetEffects]
     public int ghostSlots;
     public int ghostSlotsOld;
-    [ResetEffects(1)]
+    [ResetEffects(2)]
     public int ghostSlotsMax;
     [ResetEffects(3600)]
     public int ghostLifespan;
 
     public int gravetenderGhost;
 
-    private void ResetEffects_UpdateLegacyNecromancy() {
+    private void ResetEffects_LegacyNecromancy() {
         ghostSlotsOld = ghostSlots;
     }
 }

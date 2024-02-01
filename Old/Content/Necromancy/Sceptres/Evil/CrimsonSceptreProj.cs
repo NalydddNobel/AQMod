@@ -42,6 +42,11 @@ public class CrimsonSceptreProj : CorruptionSceptreProj {
         Projectile.rotation = Projectile.velocity.ToRotation();
     }
 
+    public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
+        Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
+        NecromancyDebuff.Apply<CrimsonSceptreDebuff>(target, 600, Projectile.owner);
+    }
+
     public override void OnKill(int timeLeft) {
         var center = Projectile.Center;
         for (int i = 0; i < 12; i++) {

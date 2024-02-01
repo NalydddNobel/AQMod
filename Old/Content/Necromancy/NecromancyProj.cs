@@ -42,8 +42,8 @@ public class NecromancyProj : GlobalProjectile {
     }
 
     public override void OnSpawn(Projectile projectile, IEntitySource source) {
-        if (source is EntitySource_Death death) {
-            ZombieCheck(death.Entity, projectile);
+        if (source is EntitySource_Parent parent) {
+            ZombieCheck(parent.Entity, projectile);
         }
     }
 

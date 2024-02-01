@@ -12,6 +12,9 @@ public class NecromancyInterface : UILayer {
                 }
             }
         }
+        else {
+            Deactivate();
+        }
         return true;
     }
 
