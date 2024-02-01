@@ -60,6 +60,9 @@ public partial class AequusPlayer : ModPlayer {
         UpdateWeightedHorseshoe();
         UpdateNeutronYogurt();
         UpdateTeamEffects();
+#if !DEBUG
+        UpdateLegacyNecromancyAccs();
+#endif
     }
 
     public override void PostUpdateMiscEffects() {

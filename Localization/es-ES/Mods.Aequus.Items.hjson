@@ -696,3 +696,13 @@ Toolbelt: {
 	// BackpackEnabled: Toolbelt Pack On
 	// BackpackDisabled: Toolbelt Pack Off
 }
+
+GravetenderHood: {
+	// DisplayName: Gravetender Hood
+	// Tooltip: ""
+}
+
+GravetenderRobes: {
+	// DisplayName: Gravetender Robes
+	// Tooltip: ""
+}

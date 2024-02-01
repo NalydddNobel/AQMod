@@ -21,9 +21,17 @@ public partial class AequusPlayer {
     [ResetEffects(3600)]
     public int ghostLifespan;
 
+    [ResetEffects(-1)]
     public int gravetenderGhost;
 
     private void ResetEffects_LegacyNecromancy() {
         ghostSlotsOld = ghostSlots;
+    }
+
+    private void UpdateLegacyNecromancyAccs() {
+        if (accRitualSkull) {
+            ghostSlots += Player.maxMinions;
+            Player.maxMinions = 1;
+        }
     }
 }

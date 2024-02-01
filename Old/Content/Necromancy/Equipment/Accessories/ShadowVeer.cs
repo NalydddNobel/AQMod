@@ -1,4 +1,7 @@
-﻿namespace Aequus.Old.Content.Necromancy.Equipment.Accessories;
+﻿using Aequus.Content.DataSets;
+using System.Linq;
+
+namespace Aequus.Old.Content.Necromancy.Equipment.Accessories;
 
 public class ShadowVeer : ModItem {
     public override void SetStaticDefaults() {
@@ -18,16 +21,13 @@ public class ShadowVeer : ModItem {
     }
 
     public override void AddRecipes() {
-        CreateRecipe()
-            .AddIngredient(ItemID.Cobweb, 100)
-            .AddIngredient(ItemID.DemoniteBar, 10)
-            .AddTile(TileID.DemonAltar)
-            .Register()
-            .SortBeforeFirstRecipesOf(ItemID.MasterNinjaGear)
-
-            .Clone()
-            .ReplaceItem(ItemID.DemoniteBar, ItemID.CrimtaneBar)
-            .Register()
-            .SortBeforeFirstRecipesOf(ItemID.MasterNinjaGear);
+        foreach (int demoniteBar in ItemTypeVariants.DemoniteBar.Where(i => i.ValidEntry)) {
+            CreateRecipe()
+                .AddIngredient(ItemID.Cobweb, 100)
+                .AddIngredient(demoniteBar, 3)
+                .AddTile(TileID.DemonAltar)
+                .Register()
+                .SortBeforeFirstRecipesOf(ItemID.MasterNinjaGear);
+        }
     }
 }

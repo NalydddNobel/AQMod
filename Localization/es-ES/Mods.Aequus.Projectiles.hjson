@@ -53,3 +53,4 @@ DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 // LocustSmall.DisplayName: "{$Projectiles.LocustLarge.DisplayName}"
 // OsirisProj.DisplayName: "{$Items.Osiris.DisplayName}"
 // GhostHitbox.DisplayName: Ghost Minion
+// GravetenderWisp.DisplayName: Gravetender Wisp

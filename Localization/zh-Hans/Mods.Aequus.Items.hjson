@@ -178,6 +178,22 @@ Calendar: {
 	Tooltip: 显示日期
 }
 
+//# Equipment: Armor
+GravetenderHood: {
+	DisplayName: 守墓人兜帽
+	Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
+	Setbonus: Summon a wisp which empowers your closest ghost minion
+}
+
+GravetenderRobes: {
+	DisplayName: 守墓人长袍
+	Tooltip: 
+		'''
+		{$CommonTooltips.StatGhostDuration}
+		{$CommonTooltips.StatGhostSlots}
+		'''
+}
+
 //# Equipment: Grappling Hooks
 LeechHook: {
 	DisplayName: 水蛭钩

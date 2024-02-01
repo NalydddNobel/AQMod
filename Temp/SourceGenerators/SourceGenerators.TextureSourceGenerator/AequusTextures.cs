@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 398)</summary>
+/// <summary>(Total Textures: 404)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -651,6 +651,18 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> KegOSpirits = new("Aequus/Old/Content/Necromancy/Equipment/Accessories/SpiritKeg/KegOSpirits");
     /// <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/SpiritKeg/SaivoryKnife</summary>
     public static readonly RequestCache<Texture2D> SaivoryKnife = new("Aequus/Old/Content/Necromancy/Equipment/Accessories/SpiritKeg/SaivoryKnife");
+    /// <summary>Full Path: Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderHood</summary>
+    public static readonly RequestCache<Texture2D> GravetenderHood = new("Aequus/Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderHood");
+    /// <summary>Full Path: Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderHood_Head</summary>
+    public static readonly RequestCache<Texture2D> GravetenderHood_Head = new("Aequus/Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderHood_Head");
+    /// <summary>Full Path: Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderMinionBuff</summary>
+    public static readonly RequestCache<Texture2D> GravetenderMinionBuff = new("Aequus/Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderMinionBuff");
+    /// <summary>Full Path: Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderRobes</summary>
+    public static readonly RequestCache<Texture2D> GravetenderRobes = new("Aequus/Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderRobes");
+    /// <summary>Full Path: Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderRobes_Body</summary>
+    public static readonly RequestCache<Texture2D> GravetenderRobes_Body = new("Aequus/Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderRobes_Body");
+    /// <summary>Full Path: Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderWisp</summary>
+    public static readonly RequestCache<Texture2D> GravetenderWisp = new("Aequus/Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderWisp");
     /// <summary>Full Path: Old/Content/Necromancy/Sceptres/Dungeon/Insurgency</summary>
     public static readonly RequestCache<Texture2D> Insurgency = new("Aequus/Old/Content/Necromancy/Sceptres/Dungeon/Insurgency");
     /// <summary>Full Path: Old/Content/Necromancy/Sceptres/Dungeon/InsurgencyProj</summary>

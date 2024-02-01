@@ -87,3 +87,8 @@ CrimsonSceptreDebuff: {
 	DisplayName: "{$Items.CrimsonSceptre.DisplayName}"
 	Description: Mods.Aequus.Buffs.CrimsonSceptreDebuff.Description
 }
+
+GravetenderMinionBuff: {
+	DisplayName: Gravetender
+	Description: The wisp will increase the power of your ghosts!
+}

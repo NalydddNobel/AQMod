@@ -6,7 +6,7 @@ public partial class AequusPlayer {
     private static ResetEffectsGenerator<AequusPlayer> _resetEffects;
 
     public override void ResetEffects() {
-#if RELEASE
+#if !DEBUG
         ResetEffects_LegacyNecromancy();
 #endif
 

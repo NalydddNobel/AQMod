@@ -87,3 +87,8 @@ CrimsonSceptreDebuff: {
 	// DisplayName: "{$Items.CrimsonSceptre.DisplayName}"
 	// Description: Mods.Aequus.Buffs.CrimsonSceptreDebuff.Description
 }
+
+GravetenderMinionBuff: {
+	DisplayName: 守墓人
+	Description: 魂灵会强化你幽魂仆从的力量!
+}

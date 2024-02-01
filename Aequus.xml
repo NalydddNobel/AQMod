@@ -883,6 +883,14 @@
             </list>
             </summary>
         </member>
+        <member name="T:Aequus.Content.DataSets.ItemTypeVariants">
+            <summary>
+            Dataset with lists of all supported variants of an item. 
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.DataSets.ItemTypeVariants.RottenChunk">
+            <summary><see cref="F:Terraria.ID.ItemID.RottenChunk"/>, <see cref="F:Terraria.ID.ItemID.Vertebrae"/>, Avalon/YuckyBit.</summary>
+        </member>
         <member name="P:Aequus.Content.DataSets.NPCSets.FriendablePreHardmodeSlime">
             <summary>
             Used for Royal Gel's Crown of Blood combination.
@@ -1701,7 +1709,7 @@
             <summary>Full Path: Old/Assets/Sounds/RecruitZombie</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 398)</summary>
+            <summary>(Total Textures: 404)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2668,6 +2676,24 @@
         </member>
         <member name="F:Aequus.AequusTextures.SaivoryKnife">
             <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/SpiritKeg/SaivoryKnife</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GravetenderHood">
+            <summary>Full Path: Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderHood</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GravetenderHood_Head">
+            <summary>Full Path: Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderHood_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GravetenderMinionBuff">
+            <summary>Full Path: Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderMinionBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GravetenderRobes">
+            <summary>Full Path: Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderRobes</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GravetenderRobes_Body">
+            <summary>Full Path: Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderRobes_Body</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GravetenderWisp">
+            <summary>Full Path: Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderWisp</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Insurgency">
             <summary>Full Path: Old/Content/Necromancy/Sceptres/Dungeon/Insurgency</summary>
