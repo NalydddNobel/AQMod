@@ -907,6 +907,9 @@
         <member name="P:Aequus.Content.DataSets.ItemTypeVariants.DemoniteBar">
             <summary><see cref="F:Terraria.ID.ItemID.DemoniteBar"/>, <see cref="F:Terraria.ID.ItemID.CrimtaneBar"/>, Avalon/BacciliteBar.</summary>
         </member>
+        <member name="P:Aequus.Content.DataSets.NPCSets.Soulless">
+            <summary>NPC Ids in this set cannot damage the Occultist, or have their souls trapped into Soul Gems.</summary>
+        </member>
         <member name="P:Aequus.Content.DataSets.NPCSets.FriendablePreHardmodeSlime">
             <summary>
             Used for Royal Gel's Crown of Blood combination.
@@ -943,7 +946,7 @@
         </member>
         <member name="P:Aequus.Content.DataSets.ProjectileSets.OccultistIgnore">
             <summary>
-            Projectiles in this set do not damage the <see cref="!:Old.Content.TownNPCs.OccultistNPC.Occultist"/>.
+            Projectiles in this set do not damage the <see cref="T:Aequus.Old.Content.TownNPCs.OccultistNPC.Occultist"/>.
             </summary>
         </member>
         <member name="P:Aequus.Content.DataSets.ProjectileSets.DealsHeatDamage">
@@ -1336,6 +1339,66 @@
             <param name="npc"></param>
             <param name="buffId">The Buff Id to clear from this NPC.</param>
         </member>
+        <member name="M:Aequus.Core.Utilities.ExtendPlayer.CheckPickPower(Terraria.Player,Terraria.Item,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="player">The player.</param>
+            <param name="pickaxe">The pickaxe.</param>
+            <param name="x">Tile X coordinate.</param>
+            <param name="y">Tile Y coordinate.</param>
+            <returns>Whether or not the player has enough pickaxe power to break this tile.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendPlayer.GiveItem(Terraria.Player,Terraria.Item,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings)">
+            <summary>
+            Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
+            <para>Automatically syncs the item in multiplayer.</para>
+            <para>Note: May only work if <see cref="F:Terraria.Main.myPlayer"/> is the <paramref name="player"/>.</para>
+            </summary>
+            <param name="player">The player.</param>
+            <param name="item">The Item.</param>
+            <param name="source">Item source.</param>
+            <param name="getItemSettings">The Get Item settings.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendPlayer.GiveItem(Terraria.Player,System.Int32,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings,System.Int32,System.Int32)">
+            <summary>
+            Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
+            <para>Automatically syncs the item in multiplayer.</para>
+            <para>Note: May only work if <see cref="F:Terraria.Main.myPlayer"/> is the <paramref name="player"/>.</para>
+            </summary>
+            <param name="player">The player.</param>
+            <param name="type">The Item Id.</param>
+            <param name="stack">The Item's stack.</param>
+            <param name="prefix">The Item's prefix.</param>
+            <param name="source">Item source.</param>
+            <param name="getItemSettings">The Get Item settings.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendPlayer.GetPlayerFocusPosition(Terraria.Player)">
+            <summary>
+            Gets the "Player Focus". This is by default the player's centre, but when using the Drone, this returns the drone's position.
+            <para>This position is used to make Radon Fog disappear when approched by the player, or by their controlled drone.</para>
+            <para>This position also ignores camera panning effects, like screen shakes, scoping, ect.</para>
+            </summary>
+            <param name="player"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendPlayer.SpawnEnchantmentDusts(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Terraria.Player,System.Boolean)">
+            <summary>
+            Spawns Flask and other "Enchantment" dusts, like the Magma Stone flames.
+            </summary>
+            <param name="position"></param>
+            <param name="velocity"></param>
+            <param name="player"></param>
+            <param name="showMagmaStone"></param>
+            <returns>A potential dust instance, if any spawn. If none spawn, the result will be null.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendPlayer.WeirdNPCHitRestrictions(Terraria.NPC)">
+            <summary>
+            Checks weird damage restrictions for NPCs. This literally only checks for Fairies as of right now.
+            </summary>
+            <param name="npc"></param>
+            <returns>Whether the enemy should be immune to this hit (true = Do not hit)</returns>
+        </member>
         <member name="M:Aequus.Core.Utilities.ExtendProjectile.TryFindProjectileIdentity(System.Int32,System.Int32,System.Int32@)">
             <summary>
             Attempts to find a projectile index using the identity and owner provided. Returns true if the projectile output is not -1.
@@ -1465,66 +1528,6 @@
             <param name="source"></param>
             <param name="target"></param>
             <returns></returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.PlayerHelper.CheckPickPower(Terraria.Player,Terraria.Item,System.Int32,System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="player">The player.</param>
-            <param name="pickaxe">The pickaxe.</param>
-            <param name="x">Tile X coordinate.</param>
-            <param name="y">Tile Y coordinate.</param>
-            <returns>Whether or not the player has enough pickaxe power to break this tile.</returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.PlayerHelper.GiveItem(Terraria.Player,Terraria.Item,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings)">
-            <summary>
-            Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
-            <para>Automatically syncs the item in multiplayer.</para>
-            <para>Note: May only work if <see cref="F:Terraria.Main.myPlayer"/> is the <paramref name="player"/>.</para>
-            </summary>
-            <param name="player">The player.</param>
-            <param name="item">The Item.</param>
-            <param name="source">Item source.</param>
-            <param name="getItemSettings">The Get Item settings.</param>
-        </member>
-        <member name="M:Aequus.Core.Utilities.PlayerHelper.GiveItem(Terraria.Player,System.Int32,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings,System.Int32,System.Int32)">
-            <summary>
-            Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
-            <para>Automatically syncs the item in multiplayer.</para>
-            <para>Note: May only work if <see cref="F:Terraria.Main.myPlayer"/> is the <paramref name="player"/>.</para>
-            </summary>
-            <param name="player">The player.</param>
-            <param name="type">The Item Id.</param>
-            <param name="stack">The Item's stack.</param>
-            <param name="prefix">The Item's prefix.</param>
-            <param name="source">Item source.</param>
-            <param name="getItemSettings">The Get Item settings.</param>
-        </member>
-        <member name="M:Aequus.Core.Utilities.PlayerHelper.GetPlayerFocusPosition(Terraria.Player)">
-            <summary>
-            Gets the "Player Focus". This is by default the player's centre, but when using the Drone, this returns the drone's position.
-            <para>This position is used to make Radon Fog disappear when approched by the player, or by their controlled drone.</para>
-            <para>This position also ignores camera panning effects, like screen shakes, scoping, ect.</para>
-            </summary>
-            <param name="player"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.PlayerHelper.SpawnEnchantmentDusts(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Terraria.Player,System.Boolean)">
-            <summary>
-            Spawns Flask and other "Enchantment" dusts, like the Magma Stone flames.
-            </summary>
-            <param name="position"></param>
-            <param name="velocity"></param>
-            <param name="player"></param>
-            <param name="showMagmaStone"></param>
-            <returns>A potential dust instance, if any spawn. If none spawn, the result will be null.</returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.PlayerHelper.WeirdNPCHitRestrictions(Terraria.NPC)">
-            <summary>
-            Checks weird damage restrictions for NPCs. This literally only checks for Fairies as of right now.
-            </summary>
-            <param name="npc"></param>
-            <returns>Whether the enemy should be immune to this hit (true = Do not hit)</returns>
         </member>
         <member name="M:Aequus.Core.Utilities.TextBroadcast.NewText(System.String,Microsoft.Xna.Framework.Color,System.Object[])">
             <summary>
@@ -2941,6 +2944,25 @@
         </member>
         <member name="F:Aequus.AequusTextures.BacciliteSceptre_Glow">
             <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre_Glow</summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.NotStackableCritDamage">
+            <summary>
+            Default Value: 0.15
+            <para>This is only added on the first stack of the accessory.</para>
+            </summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.WantedCost">
+            <summary>
+            The cost for performing a critical strike.
+            </summary>
+        </member>
+        <member name="T:Aequus.Old.Content.Events.DemonSiege.Tiles.OblivionAltarDummy">
+            <summary>Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.</summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg.SaivoryKnife.GhostLifespan">
+            <summary>
+            Default Value: 3600 (1 minute)
+            </summary>
         </member>
     </members>
 </doc>

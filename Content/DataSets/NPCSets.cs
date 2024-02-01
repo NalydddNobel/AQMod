@@ -10,8 +10,9 @@ using Terraria.GameContent.Bestiary;
 namespace Aequus.Content.DataSets;
 
 public class NPCSets : DataSet {
+    /// <summary>NPC Ids in this set cannot damage the Occultist, or have their souls trapped into Soul Gems.</summary>
     [JsonProperty]
-    public static HashSet<NPCEntry> OccultistIgnore { get; private set; } = new();
+    public static HashSet<NPCEntry> Soulless { get; private set; } = new();
 
     [JsonProperty]
     public static HashSet<NPCEntry> IsCorrupt { get; private set; } = new();
@@ -184,7 +185,7 @@ public class NPCSets : DataSet {
                 FromPillarEvent.Add((NPCEntry)i);
             }
             if (ContainsBestiaryTags(info, UnderworldTags)) {
-                OccultistIgnore.Add((NPCEntry)i);
+                Soulless.Add((NPCEntry)i);
             }
         }
     }

@@ -18,19 +18,8 @@ public class SoulGem : ModItem {
         Item.value = Item.buyPrice(gold: 1, silver: 50);
     }
 
-    public static Item FindItemInInvOrVoidBag(Player player, Predicate<Item> search, out bool inVoidBag) {
-        var i = Array.Find(player.inventory, search);
-        inVoidBag = false;
-        if (i != null) {
-            return i;
-        }
-
-        inVoidBag = true;
-        return player.IsVoidVaultEnabled ? Array.Find(player.bank4.item, search) : null;
-    }
-
     public static void TryFillSoulGems(Player player) {
-        var soulGem = FindItemInInvOrVoidBag(player, (item) => item.ModItem is SoulGem soulGemBase, out bool inVoidBag);
+        var soulGem = player.FindItemInInvOrVoidBag((item) => item.ModItem is SoulGem soulGemBase, out bool inVoidBag);
         if (soulGem != null) {
             if (Main.myPlayer == player.whoAmI) {
                 soulGem.stack--;

@@ -1,9 +1,10 @@
-﻿using Terraria.DataStructures;
+﻿using System;
+using Terraria.DataStructures;
 using Terraria.Localization;
 
 namespace Aequus.Core.Utilities;
 
-public static class PlayerHelper {
+public static class ExtendPlayer {
     private static readonly Item[] _dummyInventory = ExtendArray.CreateArray(i => new Item(), Main.InventorySlotsTotal);
 
     /// <summary>
@@ -225,6 +226,17 @@ public static class PlayerHelper {
 
     public static IEntitySource GetSource_HeldItem(this Player player) {
         return player.GetSource_ItemUse(player.HeldItemFixed());
+    }
+
+    public static Item FindItemInInvOrVoidBag(this Player player, Predicate<Item> search, out bool inVoidBag) {
+        var i = Array.Find(player.inventory, search);
+        inVoidBag = false;
+        if (i != null) {
+            return i;
+        }
+
+        inVoidBag = true;
+        return player.IsVoidVaultEnabled ? Array.Find(player.bank4.item, search) : null;
     }
 
     #region Biomes

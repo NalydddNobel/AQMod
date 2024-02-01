@@ -35,7 +35,7 @@ public class CauterizerProj : LegacyHeldSlashingSwordProjectile {
                 d.fadeIn = d.scale + 0.1f;
                 d.noGravity = true;
                 if (Projectile.numUpdates == -1) {
-                    PlayerHelper.SpawnEnchantmentDusts(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), velocity, Main.player[Projectile.owner]);
+                    ExtendPlayer.SpawnEnchantmentDusts(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), velocity, Main.player[Projectile.owner]);
                 }
             }
         }

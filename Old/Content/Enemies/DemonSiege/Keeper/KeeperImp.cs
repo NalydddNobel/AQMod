@@ -3,6 +3,7 @@ using Aequus.Content.DataSets;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.DataSets;
 using Aequus.Old.Content.Events.DemonSiege;
+using Aequus.Old.Content.Materials.SoulGem;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -207,6 +208,7 @@ public class KeeperImp : ModNPC {
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoulGem>(), 3));
         npcLoot.Add(ItemDropRule.Common(ItemID.ObsidianRose, chanceDenominator: 25));
     }
 

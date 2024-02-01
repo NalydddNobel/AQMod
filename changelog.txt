@@ -59,6 +59,7 @@ Demon Siege:
 	-- No longer drops Ancient Hell Beams Dye
 
 - All demon siege enemies no longer drop Demonic Energy, and instead drop Empty Soul Gems
+- Empty Soul Gems can now only be filled by non-Underworld/Demon Siege enemies
 
 II. Vanilla Changes:
 - Toolbelt now spawns in Chests Underground

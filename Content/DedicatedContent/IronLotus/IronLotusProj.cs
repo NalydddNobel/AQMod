@@ -49,7 +49,7 @@ public class IronLotusProj : LegacyHeldSlashingSwordProjectile {
             float particleDistance = (swordHeight + 40f) * Projectile.scale;
             float particleRandomRotation = 0.3f;
             for (int i = 0; i < 15; i++) {
-                PlayerHelper.SpawnEnchantmentDusts(Main.player[Projectile.owner].Center + AngleVector.RotatedBy(Main.rand.NextFloat(-particleRandomRotation, particleRandomRotation)) * Main.rand.NextFloat(particleDistance), AngleVector, Main.player[Projectile.owner], showMagmaStone: false);
+                ExtendPlayer.SpawnEnchantmentDusts(Main.player[Projectile.owner].Center + AngleVector.RotatedBy(Main.rand.NextFloat(-particleRandomRotation, particleRandomRotation)) * Main.rand.NextFloat(particleDistance), AngleVector, Main.player[Projectile.owner], showMagmaStone: false);
                 var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector.RotatedBy(Main.rand.NextFloat(-particleRandomRotation, particleRandomRotation)) * Main.rand.NextFloat(particleDistance), DustID.Torch, Scale: Main.rand.NextFloat(0.5f, 2f));
                 d.velocity += AngleVector;
                 d.velocity *= 4f;

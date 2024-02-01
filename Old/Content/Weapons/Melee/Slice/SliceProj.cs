@@ -55,7 +55,7 @@ public class SliceProj : LegacyHeldSlashingSwordProjectile {
                 d.fadeIn = d.scale + 0.1f;
                 d.noGravity = true;
                 if (i == 0) {
-                    PlayerHelper.SpawnEnchantmentDusts(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), velocity, Main.player[Projectile.owner]);
+                    ExtendPlayer.SpawnEnchantmentDusts(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), velocity, Main.player[Projectile.owner]);
                 }
             }
         }

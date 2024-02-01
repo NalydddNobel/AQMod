@@ -508,7 +508,7 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
     }
 
     public override bool CanBeHitByNPC(NPC attacker) {
-        return !NPCSets.OccultistIgnore.Contains(attacker.type);
+        return !NPCSets.Soulless.Contains(attacker.type);
     }
 }
 
