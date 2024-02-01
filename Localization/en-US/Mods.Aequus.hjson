@@ -6,15 +6,3 @@ InfoDisplays: {
 }
 
 KeyUnbound: Unbound
-
-Biomes: {
-	PollutedOceanBiome: {
-		DisplayName: Polluted Ocean Biome
-		TownNPCDialogueName: the Polluted Ocean Biome
-	}
-		
-	DemonSiegeZone: {
-		DisplayName: Gore Nest
-		TownNPCDialogueName: ""
-	}
-}

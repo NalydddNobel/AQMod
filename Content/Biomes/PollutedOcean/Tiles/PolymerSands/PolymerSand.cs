@@ -1,5 +1,7 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Content.Biomes.PollutedOcean.Tiles.Scrap;
+using Aequus.Core.ContentGeneration;
+using Aequus.Core.Initialization;
 
 namespace Aequus.Content.Biomes.PollutedOcean.Tiles.PolymerSands;
 
@@ -7,14 +9,16 @@ public class PolymerSand : MultiMergeTile {
     public static ModItem Item { get; private set; }
 
     public override void Load() {
-        Item = new InstancedTileItem(this).WithRecipe((item) => {
-            item.CreateRecipe(5)
+        Item = new InstancedTileItem(this);
+        Mod.AddContent(Item);
+
+        LoadingSteps.EnqueueAddRecipes(() => {
+            Item.CreateRecipe(5)
                 .AddIngredient(ItemID.SandBlock, 5)
                 .AddIngredient(ScrapBlock.Item)
                 .AddTile(TileID.Furnaces)
                 .Register();
         });
-        Mod.AddContent(Item);
     }
 
     public override void SetStaticDefaults() {

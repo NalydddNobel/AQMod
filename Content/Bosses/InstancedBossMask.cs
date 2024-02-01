@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Core.ContentGeneration;
 
 namespace Aequus.Content.Bosses;
 

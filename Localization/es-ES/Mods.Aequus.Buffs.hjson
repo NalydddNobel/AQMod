@@ -57,3 +57,43 @@ CrimsonHellfire: {
 	// DisplayName: Crimson Hellfire
 	// Description: Your flesh burns from the sinister flames
 }
+
+IronLotusDebuff: {
+	// DisplayName: "{$Items.IronLotus.DisplayName}"
+	// Description: Mods.Aequus.Buffs.IronLotusDebuff.Description
+}
+
+LocustDebuff: {
+	// DisplayName: Mods.Aequus.Buffs.LocustDebuff.DisplayName
+	// Description: Mods.Aequus.Buffs.LocustDebuff.Description
+}
+
+InsurgentDebuff: {
+	// DisplayName: "{$Items.Insurgency.DisplayName}"
+	// Description: Mods.Aequus.Buffs.InsurgentDebuff.Description
+}
+
+RevenantDebuff: {
+	// DisplayName: "{$Items.Revenant.DisplayName}"
+	// Description: Mods.Aequus.Buffs.RevenantDebuff.Description
+}
+
+NecromancyDebuff: {
+	// DisplayName: "{$Items.CorruptionSceptre.DisplayName}"
+	// Description: Mods.Aequus.Buffs.NecromancyDebuff.Description
+}
+
+OsirisDebuff: {
+	// DisplayName: "{$Items.Osiris.DisplayName}"
+	// Description: Mods.Aequus.Buffs.OsirisDebuff.Description
+}
+
+CrimsonSceptreDebuff: {
+	// DisplayName: "{$Items.CrimsonSceptre.DisplayName}"
+	// Description: Mods.Aequus.Buffs.CrimsonSceptreDebuff.Description
+}
+
+GravetenderMinionBuff: {
+	// DisplayName: Gravetender
+	// Description: The wisp will increase the power of your ghosts!
+}

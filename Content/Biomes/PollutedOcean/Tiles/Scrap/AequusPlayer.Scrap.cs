@@ -1,12 +1,7 @@
 ﻿using Aequus.Content.Biomes.PollutedOcean.Tiles.Scrap;
-using Aequus.Core.Generator;
-using Microsoft.Xna.Framework;
+using Aequus.Core.CodeGeneration;
 using System;
-using Terraria;
 using Terraria.DataStructures;
-using Terraria.GameContent.ObjectInteractions;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.Utilities;
 
 namespace Aequus;

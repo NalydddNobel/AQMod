@@ -9,5 +9,8 @@ public class ClientConfig : ModConfig {
     public static ClientConfig Instance;
 
     [DefaultValue(true)]
-    public bool ShowDeathTips;
+    public bool ShowDeathTips { get; set; }
+
+    [DefaultValue(true)]
+    public bool ShowNecromancyOutlines { get; set; }
 }

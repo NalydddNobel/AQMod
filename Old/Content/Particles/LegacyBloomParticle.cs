@@ -3,7 +3,7 @@ using Aequus.Core.Particles;
 
 namespace Aequus.Old.Content.Particles;
 
-public class LegacyBloomParticle : ParallelParticleSystem<LegacyBloomParticle.Particle> {
+public class LegacyBloomParticle : ParallelParticleArray<LegacyBloomParticle.Particle> {
     public override int ParticleCount => 2000;
 
     public override void Draw(SpriteBatch spriteBatch) {

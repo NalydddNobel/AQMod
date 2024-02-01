@@ -1,4 +1,6 @@
-﻿using Terraria.Audio;
+﻿using Aequus.Core.ContentGeneration;
+using Aequus.Core.Initialization;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent.ObjectInteractions;
@@ -17,16 +19,17 @@ internal class InstancedCampfireTile : InstancedModTile {
     }
 
     public override void Load() {
-        Item = new InstancedTileItem(this)
-            .WithRecipe(m => {
-                m.CreateRecipe()
+        Item = new InstancedTileItem(this);
+
+        Mod.AddContent(Item);
+
+        LoadingSteps.EnqueueAddRecipes(() => {
+            Item.CreateRecipe()
                 .AddRecipeGroup(RecipeGroupID.Wood, 10)
                 .AddIngredient(_modTorch.Type, 5)
                 .Register()
                 .SortAfterFirstRecipesOf(ItemID.RainbowCampfire);
-            });
-
-        Mod.AddContent(Item);
+        });
     }
 
     public override void SetStaticDefaults() {

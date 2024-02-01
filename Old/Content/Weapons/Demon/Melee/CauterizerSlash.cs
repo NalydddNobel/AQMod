@@ -1,6 +1,5 @@
 ﻿using Aequus.Content.DataSets;
 using Aequus.Core.DataSets;
-using Aequus.Old.Content.StatusEffects.DamageOverTime;
 using Terraria.Audio;
 
 namespace Aequus.Old.Content.Weapons.Demon.Melee;

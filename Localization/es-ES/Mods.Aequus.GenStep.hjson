@@ -1,3 +1,7 @@
+// GenVarEdits.DisplayMessage: ""
+// Statues.DisplayMessage: Placing More Statues...
+// GoreNestsGeneration.DisplayMessage: Making the Underworld more evil...
+// LavaCleanup.DisplayMessage: Cleaning up lava
 PollutedOcean: {
 	DisplayMessage: {
 		// 0: Creating a landfill

@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Players;
-using Aequus.Core.Generator;
+using Aequus.Core.CodeGeneration;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 

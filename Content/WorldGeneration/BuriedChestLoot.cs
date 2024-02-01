@@ -26,9 +26,7 @@ public class BuriedChestLoot : ModSystem {
     }
 
     public static void CheckShadowChest(Chest chest) {
-        if (VanillaChangesConfig.Instance.MoveTreasureMagnet) {
-            chest.ReplaceFirst(ItemID.TreasureMagnet, ItemID.HellstoneBar, WorldGen.genRand.Next(10, 21));
-        }
+        TreasureMagnetChanges.CheckShadowChest(chest);
     }
 
     public override void PostWorldGen() {

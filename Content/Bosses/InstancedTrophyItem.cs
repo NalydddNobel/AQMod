@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Tiles;
+﻿using Aequus.Core.ContentGeneration;
 using Terraria.Localization;
 
 namespace Aequus.Content.Bosses;

@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Core.Initialization;
-using Aequus.Old.Content.StatusEffects.DamageOverTime;
 
 namespace Aequus.Old.Content.Weapons.Demon.Melee;
 

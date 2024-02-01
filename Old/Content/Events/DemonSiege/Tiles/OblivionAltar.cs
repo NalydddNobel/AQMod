@@ -1,7 +1,7 @@
-﻿using Aequus.Common.Tiles;
-using Aequus.Content.DataSets;
+﻿using Aequus.Content.DataSets;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Core.Assets;
+using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics.Tiles;
 using Aequus.Old.Content.TownNPCs.OccultistNPC;
 using System;

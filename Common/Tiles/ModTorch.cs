@@ -1,4 +1,5 @@
-﻿using Terraria.DataStructures;
+﻿using Aequus.Core.ContentGeneration;
+using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.Localization;
 using Terraria.ObjectData;

@@ -1,4 +1,4 @@
-﻿using Aequus.Core.Generator;
+﻿using Aequus.Core.CodeGeneration;
 using Microsoft.Xna.Framework;
 
 namespace Aequus.Common.NPCs;

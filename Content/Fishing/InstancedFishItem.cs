@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Items;
+using Aequus.Core.ContentGeneration;
 using System;
 
 namespace Aequus.Content.Fishing;

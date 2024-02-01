@@ -234,7 +234,7 @@ public static class ExtendLanguage {
         return Decimals(value / 60.0);
     }
 
-    /// <summary>Converts value into percentage text, up to 1 decimal place.</summary>
+    /// <summary>Converts a decimal value into percentage text, up to 1 decimal place.</summary>
     public static string Percent(double value) {
         return Decimals(value * 100f);
     }

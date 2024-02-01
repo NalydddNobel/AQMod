@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Aequus.Core.Collections;
+using System;
 using Terraria.DataStructures;
 
 namespace Aequus.Core.Graphics.Animations;
 
 public sealed class AnimationSystem : ModSystem {
-    public static TrimmableDictionary<Point16, ITileAnimation> TileAnimations { get; private set; } = new();
+    public static DictionaryRemoveQueue<Point16, ITileAnimation> TileAnimations { get; private set; } = new();
 
     public static bool TryGet<T>(int x, int y, out T anim) where T : ITileAnimation {
         return TryGet(new(x, y), out anim);

@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Music;
+﻿using Aequus.Core.ContentGeneration;
 using Aequus.Core.DataSets;
 using Newtonsoft.Json;
 using System.Collections.Generic;

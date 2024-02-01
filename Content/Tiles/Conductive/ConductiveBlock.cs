@@ -10,6 +10,7 @@ using System.IO;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Aequus.Core.ContentGeneration;
 
 namespace Aequus.Content.Tiles.Conductive;
 
@@ -19,12 +20,15 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
     public virtual Color MapColor => new(183, 88, 25);
 
     public override void Load() {
-        Mod.AddContent(new InstancedTileItem(this, value: Item.buyPrice(silver: 1)).WithRecipe((m) => {
-            m.CreateRecipe()
+        ModItem item = new InstancedTileItem(this, value: Item.buyPrice(silver: 1));
+        Mod.AddContent(item);
+
+        LoadingSteps.EnqueueAddRecipes(() => {
+            item.CreateRecipe()
                 .AddIngredient(BarItem, 1)
                 .AddTile(TileID.Furnaces)
                 .Register();
-        }));
+        });
     }
 
     public override void SetStaticDefaults() {
@@ -133,7 +137,7 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
             d.noGravity = true;
         }
 
-        if (!Aequus.highQualityEffects) {
+        if (!Aequus.HighQualityEffects) {
             return;
         }
 

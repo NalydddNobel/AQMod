@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 400)</summary>
+/// <summary>(Total Textures: 461)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -47,6 +47,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OnlineLink = new("Aequus/Assets/Textures/OnlineLink");
     /// <summary>Full Path: Assets/Textures/Shatter</summary>
     public static readonly RequestCache<Texture2D> Shatter = new("Aequus/Assets/Textures/Shatter");
+    /// <summary>Full Path: Assets/Textures/SlashForward</summary>
+    public static readonly RequestCache<Texture2D> SlashForward = new("Aequus/Assets/Textures/SlashForward");
     /// <summary>Full Path: Assets/Textures/SlashVanilla</summary>
     public static readonly RequestCache<Texture2D> SlashVanilla = new("Aequus/Assets/Textures/SlashVanilla");
     /// <summary>Full Path: Assets/Textures/SlashVanillaSmall</summary>
@@ -69,6 +71,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Trail2 = new("Aequus/Assets/Textures/Trail2");
     /// <summary>Full Path: Assets/Textures/Trail3</summary>
     public static readonly RequestCache<Texture2D> Trail3 = new("Aequus/Assets/Textures/Trail3");
+    /// <summary>Full Path: Assets/Textures/TrailShootingStar</summary>
+    public static readonly RequestCache<Texture2D> TrailShootingStar = new("Aequus/Assets/Textures/TrailShootingStar");
     /// <summary>Full Path: Assets/Textures/VignetteSmall</summary>
     public static readonly RequestCache<Texture2D> VignetteSmall = new("Aequus/Assets/Textures/VignetteSmall");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/Background/BackgroundRainDroplets</summary>
@@ -239,6 +243,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> FamiliarPetBuff = new("Aequus/Content/DedicatedContent/Familiar/FamiliarPetBuff");
     /// <summary>Full Path: Content/DedicatedContent/Familiar/FamiliarPetItem</summary>
     public static readonly RequestCache<Texture2D> FamiliarPetItem = new("Aequus/Content/DedicatedContent/Familiar/FamiliarPetItem");
+    /// <summary>Full Path: Content/DedicatedContent/IronLotus/IronLotus</summary>
+    public static readonly RequestCache<Texture2D> IronLotus = new("Aequus/Content/DedicatedContent/IronLotus/IronLotus");
+    /// <summary>Full Path: Content/DedicatedContent/IronLotus/IronLotusProj</summary>
+    public static readonly RequestCache<Texture2D> IronLotusProj = new("Aequus/Content/DedicatedContent/IronLotus/IronLotusProj");
+    /// <summary>Full Path: Content/DedicatedContent/IronLotus/IronLotusProj_Edges</summary>
+    public static readonly RequestCache<Texture2D> IronLotusProj_Edges = new("Aequus/Content/DedicatedContent/IronLotus/IronLotusProj_Edges");
+    /// <summary>Full Path: Content/DedicatedContent/IronLotus/IronLotusProj_EdgesAura</summary>
+    public static readonly RequestCache<Texture2D> IronLotusProj_EdgesAura = new("Aequus/Content/DedicatedContent/IronLotus/IronLotusProj_EdgesAura");
     /// <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPet</summary>
     public static readonly RequestCache<Texture2D> LanternCatPet = new("Aequus/Content/DedicatedContent/LanternCat/LanternCatPet");
     /// <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPetBuff</summary>
@@ -247,6 +259,18 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> LanternCatPetItem = new("Aequus/Content/DedicatedContent/LanternCat/LanternCatPetItem");
     /// <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPet_Lantern</summary>
     public static readonly RequestCache<Texture2D> LanternCatPet_Lantern = new("Aequus/Content/DedicatedContent/LanternCat/LanternCatPet_Lantern");
+    /// <summary>Full Path: Content/DedicatedContent/MirrorsCall/MirrorsCall</summary>
+    public static readonly RequestCache<Texture2D> MirrorsCall = new("Aequus/Content/DedicatedContent/MirrorsCall/MirrorsCall");
+    /// <summary>Full Path: Content/DedicatedContent/MirrorsCall/MirrorsCall_Aura</summary>
+    public static readonly RequestCache<Texture2D> MirrorsCall_Aura = new("Aequus/Content/DedicatedContent/MirrorsCall/MirrorsCall_Aura");
+    /// <summary>Full Path: Content/DedicatedContent/MirrorsCall/MirrorsCall_Edges</summary>
+    public static readonly RequestCache<Texture2D> MirrorsCall_Edges = new("Aequus/Content/DedicatedContent/MirrorsCall/MirrorsCall_Edges");
+    /// <summary>Full Path: Content/DedicatedContent/MirrorsCall/MirrorsCall_Edges_Aura</summary>
+    public static readonly RequestCache<Texture2D> MirrorsCall_Edges_Aura = new("Aequus/Content/DedicatedContent/MirrorsCall/MirrorsCall_Edges_Aura");
+    /// <summary>Full Path: Content/DedicatedContent/StudiesOfTheInkblot/StudiesOfTheInkblot</summary>
+    public static readonly RequestCache<Texture2D> StudiesOfTheInkblot = new("Aequus/Content/DedicatedContent/StudiesOfTheInkblot/StudiesOfTheInkblot");
+    /// <summary>Full Path: Content/DedicatedContent/StudiesOfTheInkblot/StudiesOfTheInkblotProj</summary>
+    public static readonly RequestCache<Texture2D> StudiesOfTheInkblotProj = new("Aequus/Content/DedicatedContent/StudiesOfTheInkblot/StudiesOfTheInkblotProj");
     /// <summary>Full Path: Content/DedicatedContent/SwagEye/SwagEyePet</summary>
     public static readonly RequestCache<Texture2D> SwagEyePet = new("Aequus/Content/DedicatedContent/SwagEye/SwagEyePet");
     /// <summary>Full Path: Content/DedicatedContent/SwagEye/SwagEyePetBuff</summary>
@@ -345,8 +369,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ScavengerBag_Back = new("Aequus/Content/Equipment/Accessories/ScavengerBag/ScavengerBag_Back");
     /// <summary>Full Path: Content/Equipment/Accessories/ScavengerBag/ScavengerBag_Strap</summary>
     public static readonly RequestCache<Texture2D> ScavengerBag_Strap = new("Aequus/Content/Equipment/Accessories/ScavengerBag/ScavengerBag_Strap");
-    /// <summary>Full Path: Content/Equipment/Accessories/SpiritBottle/BottleOSpirits</summary>
-    public static readonly RequestCache<Texture2D> BottleOSpirits = new("Aequus/Content/Equipment/Accessories/SpiritBottle/BottleOSpirits");
     /// <summary>Full Path: Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoe</summary>
     public static readonly RequestCache<Texture2D> WeightedHorseshoe = new("Aequus/Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoe");
     /// <summary>Full Path: Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
@@ -685,10 +707,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> PotionCanteenEmpty = new("Aequus/Old/Content/Equipment/Accessories/PotionCanteen/PotionCanteenEmpty");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/PotionCanteen/PotionCanteen_Liquid</summary>
     public static readonly RequestCache<Texture2D> PotionCanteen_Liquid = new("Aequus/Old/Content/Equipment/Accessories/PotionCanteen/PotionCanteen_Liquid");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/SpiritKeg/KegOSpirits</summary>
-    public static readonly RequestCache<Texture2D> KegOSpirits = new("Aequus/Old/Content/Equipment/Accessories/SpiritKeg/KegOSpirits");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/SpiritKeg/SaivoryKnife</summary>
-    public static readonly RequestCache<Texture2D> SaivoryKnife = new("Aequus/Old/Content/Equipment/Accessories/SpiritKeg/SaivoryKnife");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHorn</summary>
     public static readonly RequestCache<Texture2D> WarHorn = new("Aequus/Old/Content/Equipment/Accessories/WarHorn/WarHorn");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHornCooldown</summary>
@@ -725,6 +743,70 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OblivionAltar_Highlight = new("Aequus/Old/Content/Events/DemonSiege/Tiles/OblivionAltar_Highlight");
     /// <summary>Full Path: Old/Content/Materials/BloodyTearstone</summary>
     public static readonly RequestCache<Texture2D> BloodyTearstone = new("Aequus/Old/Content/Materials/BloodyTearstone");
+    /// <summary>Full Path: Old/Content/Materials/SoulGem/SoulGem</summary>
+    public static readonly RequestCache<Texture2D> SoulGem = new("Aequus/Old/Content/Materials/SoulGem/SoulGem");
+    /// <summary>Full Path: Old/Content/Materials/SoulGem/SoulGemTile</summary>
+    public static readonly RequestCache<Texture2D> SoulGemTile = new("Aequus/Old/Content/Materials/SoulGem/SoulGemTile");
+    /// <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/Chains/SoulChains</summary>
+    public static readonly RequestCache<Texture2D> SoulChains = new("Aequus/Old/Content/Necromancy/Equipment/Accessories/Chains/SoulChains");
+    /// <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/Chains/SouljointCuffs</summary>
+    public static readonly RequestCache<Texture2D> SouljointCuffs = new("Aequus/Old/Content/Necromancy/Equipment/Accessories/Chains/SouljointCuffs");
+    /// <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/PandorasBox</summary>
+    public static readonly RequestCache<Texture2D> PandorasBox = new("Aequus/Old/Content/Necromancy/Equipment/Accessories/PandorasBox");
+    /// <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/PharaohsCurse</summary>
+    public static readonly RequestCache<Texture2D> PharaohsCurse = new("Aequus/Old/Content/Necromancy/Equipment/Accessories/PharaohsCurse");
+    /// <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/RitualisticSkull</summary>
+    public static readonly RequestCache<Texture2D> RitualisticSkull = new("Aequus/Old/Content/Necromancy/Equipment/Accessories/RitualisticSkull");
+    /// <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/ShadowVeer</summary>
+    public static readonly RequestCache<Texture2D> ShadowVeer = new("Aequus/Old/Content/Necromancy/Equipment/Accessories/ShadowVeer");
+    /// <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/SpiritKeg/BottleOSpirits</summary>
+    public static readonly RequestCache<Texture2D> BottleOSpirits = new("Aequus/Old/Content/Necromancy/Equipment/Accessories/SpiritKeg/BottleOSpirits");
+    /// <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/SpiritKeg/KegOSpirits</summary>
+    public static readonly RequestCache<Texture2D> KegOSpirits = new("Aequus/Old/Content/Necromancy/Equipment/Accessories/SpiritKeg/KegOSpirits");
+    /// <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/SpiritKeg/SaivoryKnife</summary>
+    public static readonly RequestCache<Texture2D> SaivoryKnife = new("Aequus/Old/Content/Necromancy/Equipment/Accessories/SpiritKeg/SaivoryKnife");
+    /// <summary>Full Path: Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderHood</summary>
+    public static readonly RequestCache<Texture2D> GravetenderHood = new("Aequus/Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderHood");
+    /// <summary>Full Path: Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderHood_Head</summary>
+    public static readonly RequestCache<Texture2D> GravetenderHood_Head = new("Aequus/Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderHood_Head");
+    /// <summary>Full Path: Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderMinionBuff</summary>
+    public static readonly RequestCache<Texture2D> GravetenderMinionBuff = new("Aequus/Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderMinionBuff");
+    /// <summary>Full Path: Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderRobes</summary>
+    public static readonly RequestCache<Texture2D> GravetenderRobes = new("Aequus/Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderRobes");
+    /// <summary>Full Path: Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderRobes_Body</summary>
+    public static readonly RequestCache<Texture2D> GravetenderRobes_Body = new("Aequus/Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderRobes_Body");
+    /// <summary>Full Path: Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderWisp</summary>
+    public static readonly RequestCache<Texture2D> GravetenderWisp = new("Aequus/Old/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderWisp");
+    /// <summary>Full Path: Old/Content/Necromancy/Sceptres/Dungeon/Insurgency</summary>
+    public static readonly RequestCache<Texture2D> Insurgency = new("Aequus/Old/Content/Necromancy/Sceptres/Dungeon/Insurgency");
+    /// <summary>Full Path: Old/Content/Necromancy/Sceptres/Dungeon/InsurgencyProj</summary>
+    public static readonly RequestCache<Texture2D> InsurgencyProj = new("Aequus/Old/Content/Necromancy/Sceptres/Dungeon/InsurgencyProj");
+    /// <summary>Full Path: Old/Content/Necromancy/Sceptres/Dungeon/Insurgency_Glow</summary>
+    public static readonly RequestCache<Texture2D> Insurgency_Glow = new("Aequus/Old/Content/Necromancy/Sceptres/Dungeon/Insurgency_Glow");
+    /// <summary>Full Path: Old/Content/Necromancy/Sceptres/Dungeon/Revenant</summary>
+    public static readonly RequestCache<Texture2D> Revenant = new("Aequus/Old/Content/Necromancy/Sceptres/Dungeon/Revenant");
+    /// <summary>Full Path: Old/Content/Necromancy/Sceptres/Dungeon/Revenant_Glow</summary>
+    public static readonly RequestCache<Texture2D> Revenant_Glow = new("Aequus/Old/Content/Necromancy/Sceptres/Dungeon/Revenant_Glow");
+    /// <summary>Full Path: Old/Content/Necromancy/Sceptres/Evil/CorruptionSceptre</summary>
+    public static readonly RequestCache<Texture2D> CorruptionSceptre = new("Aequus/Old/Content/Necromancy/Sceptres/Evil/CorruptionSceptre");
+    /// <summary>Full Path: Old/Content/Necromancy/Sceptres/Evil/CorruptionSceptreProj</summary>
+    public static readonly RequestCache<Texture2D> CorruptionSceptreProj = new("Aequus/Old/Content/Necromancy/Sceptres/Evil/CorruptionSceptreProj");
+    /// <summary>Full Path: Old/Content/Necromancy/Sceptres/Evil/CorruptionSceptre_Glow</summary>
+    public static readonly RequestCache<Texture2D> CorruptionSceptre_Glow = new("Aequus/Old/Content/Necromancy/Sceptres/Evil/CorruptionSceptre_Glow");
+    /// <summary>Full Path: Old/Content/Necromancy/Sceptres/Evil/CrimsonSceptre</summary>
+    public static readonly RequestCache<Texture2D> CrimsonSceptre = new("Aequus/Old/Content/Necromancy/Sceptres/Evil/CrimsonSceptre");
+    /// <summary>Full Path: Old/Content/Necromancy/Sceptres/Evil/CrimsonSceptre_Glow</summary>
+    public static readonly RequestCache<Texture2D> CrimsonSceptre_Glow = new("Aequus/Old/Content/Necromancy/Sceptres/Evil/CrimsonSceptre_Glow");
+    /// <summary>Full Path: Old/Content/Necromancy/Sceptres/Forbidden/LocustLarge</summary>
+    public static readonly RequestCache<Texture2D> LocustLarge = new("Aequus/Old/Content/Necromancy/Sceptres/Forbidden/LocustLarge");
+    /// <summary>Full Path: Old/Content/Necromancy/Sceptres/Forbidden/LocustSmall</summary>
+    public static readonly RequestCache<Texture2D> LocustSmall = new("Aequus/Old/Content/Necromancy/Sceptres/Forbidden/LocustSmall");
+    /// <summary>Full Path: Old/Content/Necromancy/Sceptres/Forbidden/Osiris</summary>
+    public static readonly RequestCache<Texture2D> Osiris = new("Aequus/Old/Content/Necromancy/Sceptres/Forbidden/Osiris");
+    /// <summary>Full Path: Old/Content/Necromancy/Sceptres/Forbidden/Osiris_Glow</summary>
+    public static readonly RequestCache<Texture2D> Osiris_Glow = new("Aequus/Old/Content/Necromancy/Sceptres/Forbidden/Osiris_Glow");
+    /// <summary>Full Path: Old/Content/Particles/GhostDrainDust</summary>
+    public static readonly RequestCache<Texture2D> GhostDrainDust = new("Aequus/Old/Content/Particles/GhostDrainDust");
     /// <summary>Full Path: Old/Content/Particles/MonoDust</summary>
     public static readonly RequestCache<Texture2D> MonoDust = new("Aequus/Old/Content/Particles/MonoDust");
     /// <summary>Full Path: Old/Content/Particles/VoidDust</summary>
@@ -733,10 +815,42 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SuspiciousLookingSteak = new("Aequus/Old/Content/Potions/Foods/SusSteak/SuspiciousLookingSteak");
     /// <summary>Full Path: Old/Content/Potions/Resurrection/PotionOfResurrection</summary>
     public static readonly RequestCache<Texture2D> PotionOfResurrection = new("Aequus/Old/Content/Potions/Resurrection/PotionOfResurrection");
-    /// <summary>Full Path: Old/Content/StatusEffects/DamageOverTime/CorruptionHellfire</summary>
-    public static readonly RequestCache<Texture2D> CorruptionHellfire = new("Aequus/Old/Content/StatusEffects/DamageOverTime/CorruptionHellfire");
-    /// <summary>Full Path: Old/Content/StatusEffects/DamageOverTime/CrimsonHellfire</summary>
-    public static readonly RequestCache<Texture2D> CrimsonHellfire = new("Aequus/Old/Content/StatusEffects/DamageOverTime/CrimsonHellfire");
+    /// <summary>Full Path: Old/Content/Tiles/Ambient/GoreNestStalagmite</summary>
+    public static readonly RequestCache<Texture2D> GoreNestStalagmite = new("Aequus/Old/Content/Tiles/Ambient/GoreNestStalagmite");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstones</summary>
+    public static readonly RequestCache<Texture2D> AshTombstones = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstones");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesCrossGraveMarkerItem</summary>
+    public static readonly RequestCache<Texture2D> AshTombstonesCrossGraveMarkerItem = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstonesCrossGraveMarkerItem");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesGraveMarkerItem</summary>
+    public static readonly RequestCache<Texture2D> AshTombstonesGraveMarkerItem = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstonesGraveMarkerItem");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesGravestoneItem</summary>
+    public static readonly RequestCache<Texture2D> AshTombstonesGravestoneItem = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstonesGravestoneItem");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesHeadstoneItem</summary>
+    public static readonly RequestCache<Texture2D> AshTombstonesHeadstoneItem = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstonesHeadstoneItem");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesObeliskItem</summary>
+    public static readonly RequestCache<Texture2D> AshTombstonesObeliskItem = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstonesObeliskItem");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesTombstoneItem</summary>
+    public static readonly RequestCache<Texture2D> AshTombstonesTombstoneItem = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstonesTombstoneItem");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstones_Glow</summary>
+    public static readonly RequestCache<Texture2D> AshTombstones_Glow = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstones_Glow");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstones_Highlight</summary>
+    public static readonly RequestCache<Texture2D> AshTombstones_Highlight = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstones_Highlight");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionChest</summary>
+    public static readonly RequestCache<Texture2D> OblivionChest = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/OblivionChest");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionChestItem</summary>
+    public static readonly RequestCache<Texture2D> OblivionChestItem = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/OblivionChestItem");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionChest_Glow</summary>
+    public static readonly RequestCache<Texture2D> OblivionChest_Glow = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/OblivionChest_Glow");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionChest_Highlight</summary>
+    public static readonly RequestCache<Texture2D> OblivionChest_Highlight = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/OblivionChest_Highlight");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation</summary>
+    public static readonly RequestCache<Texture2D> OblivionCraftingStation = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStationItem</summary>
+    public static readonly RequestCache<Texture2D> OblivionCraftingStationItem = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStationItem");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation_Portal</summary>
+    public static readonly RequestCache<Texture2D> OblivionCraftingStation_Portal = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation_Portal");
+    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation_Stick</summary>
+    public static readonly RequestCache<Texture2D> OblivionCraftingStation_Stick = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation_Stick");
     /// <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreBook</summary>
     public static readonly RequestCache<Texture2D> OccultistGoreBook = new("Aequus/Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreBook");
     /// <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreHead</summary>
@@ -765,6 +879,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Occultist_Head = new("Aequus/Old/Content/TownNPCs/OccultistNPC/Occultist_Head");
     /// <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Shimmer/Occultist</summary>
     public static readonly RequestCache<Texture2D> Old_Content_TownNPCs_OccultistNPC_Shimmer_Occultist = new("Aequus/Old/Content/TownNPCs/OccultistNPC/Shimmer/Occultist");
+    /// <summary>Full Path: Old/Content/Weapons/Demon/CorruptionHellfire</summary>
+    public static readonly RequestCache<Texture2D> CorruptionHellfire = new("Aequus/Old/Content/Weapons/Demon/CorruptionHellfire");
+    /// <summary>Full Path: Old/Content/Weapons/Demon/CrimsonHellfire</summary>
+    public static readonly RequestCache<Texture2D> CrimsonHellfire = new("Aequus/Old/Content/Weapons/Demon/CrimsonHellfire");
     /// <summary>Full Path: Old/Content/Weapons/Demon/Magic/BombarderRod</summary>
     public static readonly RequestCache<Texture2D> BombarderRod = new("Aequus/Old/Content/Weapons/Demon/Magic/BombarderRod");
     /// <summary>Full Path: Old/Content/Weapons/Demon/Magic/BombarderRod_Glow</summary>
@@ -807,4 +925,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CrusadersCrossbow = new("Aequus/Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow");
     /// <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj</summary>
     public static readonly RequestCache<Texture2D> CrusadersCrossbowProj = new("Aequus/Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj");
+    /// <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre</summary>
+    public static readonly RequestCache<Texture2D> BacciliteSceptre = new("Aequus/Old/CrossMod/AvalonSupport/Items/BacciliteSceptre");
+    /// <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre_Glow</summary>
+    public static readonly RequestCache<Texture2D> BacciliteSceptre_Glow = new("Aequus/Old/CrossMod/AvalonSupport/Items/BacciliteSceptre_Glow");
 }

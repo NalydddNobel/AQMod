@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Backpacks;
-using Aequus.Core;
+using Aequus.Core.IO;
 using Terraria.ModLoader.IO;
 
 namespace Aequus;

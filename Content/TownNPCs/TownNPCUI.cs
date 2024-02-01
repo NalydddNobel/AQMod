@@ -1,4 +1,4 @@
-﻿using Aequus.Core;
+﻿using Aequus.Core.Collections;
 using Aequus.Core.UI;
 using System;
 using Terraria.UI;
@@ -6,7 +6,7 @@ using Terraria.UI;
 namespace Aequus.Content.TownNPCs;
 
 public class TownNPCUI : UILayer {
-    private readonly TrimmableDictionary<int, Exclamation> NPCExclamations = new();
+    private readonly DictionaryRemoveQueue<int, Exclamation> NPCExclamations = new();
 
     public void SetExclamation(int npcIndex, bool active) {
         if (NPCExclamations.TryGetValue(npcIndex, out Exclamation existingExclamation)) {

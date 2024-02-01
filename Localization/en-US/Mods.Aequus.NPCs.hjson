@@ -112,6 +112,8 @@ Occultist: {
 		Glimmer: What? No! Where did my darkness go? Put it back!
 		Awaken: AAAAAGGH!!!!!!!!
 	}
+
+	Census.SpawnCondition: After the Demon Siege has been defeated
 }
 
 OccultistHostile: {

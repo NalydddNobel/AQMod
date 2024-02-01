@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.DataSets;
-using Aequus.Content.Tiles.Banners;
+using Aequus.Core.ContentGeneration;
 using Aequus.Core.DataSets;
 using Aequus.Old.Content.Events.DemonSiege;
 using System;
@@ -11,7 +11,7 @@ using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Old.Content.Enemies.DemonSiege.Keeper;
 
-[AutoloadBanner]
+[AutoloadBanner(legacyId: 9)]
 [ModBiomes(typeof(DemonSiegeZone))]
 public class KeeperImp : ModNPC {
     public const int TAIL_FRAME_COUNT = 15;

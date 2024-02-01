@@ -107,6 +107,54 @@ MossStatues: {
 	}
 }
 
+OblivionChest: {
+	// MapEntry: Oblivion Chest
+	// ItemDisplayName: "{$Tiles.OblivionChest.MapEntry}"
+	// ItemTooltip: ""
+}
+
+OblivionChestTrapped: {
+	// ItemDisplayName: Trapped Oblivion Chest
+	// ItemTooltip: ""
+}
+
+OblivionCraftingStation: {
+	// ItemDisplayName: Oblivion Reformatory
+	// ItemTooltip: "{$CommonItemTooltip.SpecialCrafting}"
+}
+
+AshTombstones: {
+	Tombstone: {
+		// ItemDisplayName: Ash Tombstone
+		// ItemTooltip: ""
+	}
+
+	GraveMarker: {
+		// ItemDisplayName: Ash Grave Marker
+		// ItemTooltip: ""
+	}
+
+	CrossGraveMarker: {
+		// ItemDisplayName: Ash Cross Grave Marker
+		// ItemTooltip: ""
+	}
+
+	Headstone: {
+		// ItemDisplayName: Ash Hellstone
+		// ItemTooltip: ""
+	}
+
+	Gravestone: {
+		// ItemDisplayName: Ash Gravestone
+		// ItemTooltip: ""
+	}
+
+	Obelisk: {
+		// ItemDisplayName: Ash Obelisk
+		// ItemTooltip: ""
+	}
+}
+
 ScrapBlock: {
 	// MapEntry: Junk Block
 	// ItemDisplayName: "{$Tiles.ScrapBlock.MapEntry}"

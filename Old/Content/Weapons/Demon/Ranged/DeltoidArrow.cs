@@ -1,7 +1,6 @@
 ﻿using Aequus.Content.DataSets;
 using Aequus.Core.DataSets;
 using Aequus.Old.Content.Particles;
-using Aequus.Old.Content.StatusEffects.DamageOverTime;
 using Terraria.Audio;
 using Terraria.GameContent;
 

@@ -6,6 +6,7 @@ using Aequus.Content.DataSets;
 using Aequus.Content.Equipment.Accessories.ScavengerBag;
 using Aequus.Content.Tiles.Banners;
 using Aequus.Content.Tiles.Statues;
+using Aequus.Core.ContentGeneration;
 using Aequus.Core.Initialization;
 using System.Collections.Generic;
 using System.IO;

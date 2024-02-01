@@ -1,9 +1,8 @@
-﻿using Aequus.Core.Initialization;
-using Aequus.Core.DataSets;
+﻿using Aequus.Core.DataSets;
+using Aequus.Core.Initialization;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using Terraria.ID;
 
 namespace Aequus.Content.DataSets;
 
@@ -60,7 +59,7 @@ public class BuffSets : DataSet {
                             NotTypicalDebuff.Add((BuffEntry)i);
                         }
                         else if (name.Contains("Fire") || name.Contains("fire") || name.Contains("Burn") || name.Contains("Flame") || name.Contains("flame") || name.Contains("Inferno") || name.Contains("Blaze")) {
-                            IsFireDebuff.Add((BuffEntry)i, true);
+                            IsFireDebuff.TryAdd((BuffEntry)i, true);
                         }
                     }
                 }

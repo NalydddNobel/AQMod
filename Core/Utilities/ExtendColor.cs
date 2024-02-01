@@ -57,4 +57,17 @@ public static class ExtendColor {
         hsl.Y = saturation;
         return Main.hslToRgb(hsl);
     }
+
+    public static Color GetLastPrismColor(Projectile projectile, float index, float luminance = 0.5f, float alphaMultiplier = 0f) {
+        float lastPrismHue = projectile.GetLastPrismHue(index % 6f, ref luminance, ref alphaMultiplier);
+        float lastPrismHue2 = projectile.GetLastPrismHue((index + 1f) % 6f, ref luminance, ref alphaMultiplier);
+        return Main.hslToRgb(MathHelper.Lerp(lastPrismHue, lastPrismHue2, Math.Abs(index) % 1f), 1f, luminance);
+    }
+    public static Color GetLastPrismColor(int player, float position) {
+        ExtendProjectile._dummyProjectile.owner = player;
+        return GetLastPrismColor(ExtendProjectile._dummyProjectile, position);
+    }
+    public static Color GetLastPrismColor(Player player, float position) {
+        return GetLastPrismColor(player.whoAmI, position);
+    }
 }

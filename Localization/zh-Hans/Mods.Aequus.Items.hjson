@@ -10,6 +10,9 @@ CommonTooltips: {
 	DedicatedItemAnonymous: 专属物品
 	UsesDarts: 使用种子和飞镖作为弹药
 	Banner: "{$CommonItemTooltip.BannerBonus}{0}"
+	// NecromancyStaff: Slain enemies will convert into ghost minions
+	// StatGhostDuration: Increases the duration of your ghost minions by {0} seconds
+	// StatGhostSlots: Increases your max number of ghosts by {0}
 }
 
 //# Equipment: Accessories
@@ -135,7 +138,31 @@ PotionCanteenEmpty: {
 PotionCanteen: {
 	DisplayName: 药水壶
 	DisplayNameAlt: "{0}壶"
-	// Tooltip: Craft with a potion to allow infinite use
+	Tooltip: 与药水进行合成后能够无限使用
+}
+
+SouljointCuffs: {
+	DisplayName: 魂结镣铐
+	Tooltip: 幽魂仆从在近战击中敌人时会链在敌人身上
+}
+
+PandorasBox: {
+	DisplayName: 潘多拉魔盒
+	Tooltip:
+		'''
+		敌人会受到更多来自王权减益的伤害
+		幽魂仆从的弹幕速度翻倍
+		'''
+}
+
+RitualisticSkull: {
+	DisplayName: 仪式颅骨
+	Tooltip: 将你的所有召唤栏位转化为幽魂栏位
+}
+
+ShadowVeer: {
+	DisplayName: 影行者
+	Tooltip: 幽魂仆从会对被标记的敌人进行暗影冲刺
 }
 
 //# Equipment: Informational
@@ -152,6 +179,22 @@ RichMansMonocle: {
 Calendar: {
 	DisplayName: 日历
 	Tooltip: 显示日期
+}
+
+//# Equipment: Armor
+GravetenderHood: {
+	DisplayName: 守墓人兜帽
+	Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
+	Setbonus: Summon a wisp which empowers your closest ghost minion
+}
+
+GravetenderRobes: {
+	DisplayName: 守墓人长袍
+	Tooltip:
+		'''
+		{$CommonTooltips.StatGhostDuration}
+		{$CommonTooltips.StatGhostSlots}
+		'''
 }
 
 //# Equipment: Grappling Hooks
@@ -194,6 +237,19 @@ Slice: {
 		'''
 }
 
+MirrorsCall: {
+	DisplayName: 镜之召
+	Tooltip: 从你舒适的沙发上打击敌人!
+}
+
+IronLotus: {
+	DisplayName: 铁莲花
+	Tooltip:
+		'''
+		挥舞会扩散火焰的长矛
+		'点燃那些胆敢在乎我的人'
+		'''
+}
 
 Cauterizer: {
 	DisplayName: 灼烧者
@@ -202,7 +258,7 @@ Cauterizer: {
 
 HellsBoon: {
 	DisplayName: 地狱之赐
-	Tooltip: "用远距离黑暗和灰烬尖刺攻击敌人"
+	Tooltip: 用远距离黑暗和灰烬尖刺攻击敌人
 }
 
 //# Ranged Ammo
@@ -269,6 +325,15 @@ Furystar: {
 		'''
 }
 
+StudiesOfTheInkblot: {
+	DisplayName: 墨迹研究学
+	Tooltip:
+		'''
+		左键释放'弹幕的墨迹测验'
+		右键释放'地底蔷薇'
+		'''
+}
+
 BombarderRod: {
 	DisplayName: 轰炸者手杖
 	Tooltip:
@@ -284,6 +349,51 @@ Triacanthorn: {
 		'''
 		召唤会分裂的邪恶卷须
 		无视敌人10点的防御力
+		'''
+}
+
+//# Weapons: Summon
+Insurgency: {
+	DisplayName: 叛乱
+	Tooltip:
+		'''
+		消耗强大敌人的灵魂, 会立即击杀弱小的敌人
+		被诅咒的敌人会释放会攻击附近敌人的灵魂
+		{$CommonTooltips.NecromancyStaff}
+		'寂静'
+		'''
+}
+
+Revenant: {
+	DisplayName: 亡魂
+	Tooltip:
+		'''
+		消耗强大敌人的灵魂, 会立即击杀弱小的敌人
+		{$CommonTooltips.NecromancyStaff}
+		'''
+}
+
+CorruptionSceptre: {
+	// DisplayName: Corruption Sceptre
+	Tooltip:
+		'''
+		消耗弱小敌人的灵魂
+		{$CommonTooltips.NecromancyStaff}
+		'''
+}
+
+CrimsonSceptre: {
+	// DisplayName: Crimson Sceptre
+	Tooltip: "{$Items.CorruptionSceptre.Tooltip}"
+}
+
+Osiris: {
+	DisplayName: 欧西里斯
+	Tooltip:
+		'''
+		消耗极强敌人的灵魂
+		{$CommonTooltips.NecromancyStaff}
+		击中敌人时会爆裂成一群蝗虫群
 		'''
 }
 
@@ -429,6 +539,20 @@ CompressedTrash: {
 BloodyTearstone: {
 	DisplayName: 血泪石
 	Tooltip: ""
+}
+
+SoulGem: {
+	DisplayName: 空灵魂宝石
+	Tooltip: 无法使用, 直到其捕获敌人的灵魂
+}
+
+SoulGemFilled: {
+	DisplayName: 灵魂宝石
+	/* Tooltip:
+		'''
+		Used to craft necromantic equipment
+		Dropped by the darkest of demons...
+		''' */
 }
 
 UnholyCore: {

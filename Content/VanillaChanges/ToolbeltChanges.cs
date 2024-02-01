@@ -6,7 +6,7 @@ using Terraria.Localization;
 
 namespace Aequus.Content.VanillaChanges;
 
-internal class ToolbeltChanges : GlobalItem {
+public class ToolbeltChanges : GlobalItem {
     public override bool IsLoadingEnabled(Mod mod) {
         return VanillaChangesConfig.Instance.MoveToolbelt;
     }

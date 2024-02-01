@@ -4,3 +4,8 @@ ShowDeathTips: {
 	Label: "[i:Tombstone] 死亡提示"
 	Tooltip: 在重生时会显示[c/ffffbb:死亡提示].
 }
+
+ShowNecromancyOutlines: {
+	// Label: "[i:Insurgency] Show Necromancy Outlines"
+	// Tooltip: "[c/ffffbb:Ghost minions] will have outlines to make them stand out."
+}

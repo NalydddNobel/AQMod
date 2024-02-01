@@ -12,11 +12,11 @@ namespace Aequus.Common.WorldGeneration;
 public abstract class AequusGenStep : ModType, ILocalizedModType, IPostSetupContent {
     public abstract string InsertAfter { get; }
 
-    public double Weight { get; private set; }
+    public double Weight { get; private set; } = 1f;
 
     public static UnifiedRandom Random => WorldGen.genRand;
 
-    protected virtual double GenWeight { get; }
+    protected virtual double GenWeight => 1f;
 
     public string LocalizationCategory => "GenStep";
 
@@ -99,7 +99,8 @@ public abstract class AequusGenStep : ModType, ILocalizedModType, IPostSetupCont
     /// <param name="topSide">Y coordinate of the Top Edge of the rectangle.</param>
     /// <param name="bottomSide">Y coordinate of the Bottom Edge of the rectangle.</param>
     protected static double RectangleProgress(int i, int j, int leftSide, int rightSide, int topSide, int bottomSide) {
-        return (i * Main.maxTilesY + j) / (double)(rightSide - leftSide + (bottomSide - topSide));
+        int tilesYDifference = bottomSide - topSide;
+        return (i * tilesYDifference + j) / (double)(rightSide - leftSide + tilesYDifference);
     }
 
     /// <summary>
@@ -107,7 +108,7 @@ public abstract class AequusGenStep : ModType, ILocalizedModType, IPostSetupCont
     /// </summary>
     protected void SetProgress(GenerationProgress progress, double progressValue, double prevProgress = 0f, double wantedProgress = 1f) {
         if (progress != null) {
-            progress.Value = (prevProgress + (wantedProgress - prevProgress) * Math.Clamp(progressValue, 0f, 1f)) / Weight;
+            progress.Value = (prevProgress + (wantedProgress - prevProgress) * Math.Clamp(progressValue, 0f, 1f));
         }
     }
 

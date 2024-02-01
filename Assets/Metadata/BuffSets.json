@@ -125,7 +125,8 @@
     "Shimmer"
     /*353*/,
     "Aequus/BaguetteBuff",
-    "Aequus/StunGunDebuff"
+    "Aequus/StunGunDebuff",
+    "Aequus/IronLotusDebuff"
   ],
   "NotTypicalDebuff": [
     "PotionSickness"
@@ -164,7 +165,10 @@
   "DontChangeDuration": [],
   "CooldownDebuff": [],
   "PlayerStatusDebuff": [],
-  "PlayerDoTDebuff": [],
+  "PlayerDoTDebuff": [
+    "Unknown",
+    "Unknown"
+  ],
   "ModifiesMoveSpeed": [],
   "DemonSiegeImmune": [],
   "BuffConflicts": {},

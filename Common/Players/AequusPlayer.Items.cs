@@ -2,7 +2,7 @@
 using Aequus.Common.Items.Components;
 using Aequus.Common.UI;
 using Aequus.Content.DataSets;
-using Aequus.Core.Generator;
+using Aequus.Core.CodeGeneration;
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;

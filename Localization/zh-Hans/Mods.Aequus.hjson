@@ -18,15 +18,3 @@ InfoDisplays: {
 }
 
 KeyUnbound: 按键未绑定
-
-Biomes: {
-	DemonSiegeZone: {
-		DisplayName: 血巢
-		TownNPCDialogueName: ""
-	}
-
-	PollutedOceanBiome: {
-		// DisplayName: Polluted Ocean Biome
-		// TownNPCDialogueName: the Polluted Ocean Biome
-	}
-}

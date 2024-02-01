@@ -29,7 +29,7 @@ public class DemonSiegeZone : ModBiome, IPostSetupContent {
             Filters.Scene[ScreenFilterKey] = new(new ScreenShaderData("FilterBloodMoon").UseColor(1f, -0.46f, -0.2f), EffectPriority.High);
             if (!Main.dedServ) {
                 AequusEventBarLoader.AddBar(new DemonSiegeBar() {
-                    DisplayName = DisplayName,
+                    DisplayName = this.GetLocalization("EventName"),
                     Icon = AequusTextures.DemonSiegeEventIcon,
                     backgroundColor = new Color(180, 100, 20, 128),
                 });

@@ -189,7 +189,7 @@ public class DemonSiegeSacrificeInfo {
             DemonSiegeSystem.SacrificeRemovalQueue.Add(new Point(TileX, TileY));
 
             // Mark this event as cleared, and initiate a Lantern Night tommorow night.
-            NPC.SetEventFlagCleared(ref World.DownedDemonSiegeT1, -1);
+            NPC.SetEventFlagCleared(ref WorldFlags.DownedDemonSiegeT1, -1);
         }
         if (Main.netMode != NetmodeID.Server) {
             for (int i = 0; i < 40; i++) {

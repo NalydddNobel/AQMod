@@ -20,7 +20,7 @@ public class UnderwaterBubbleParticles : ParallelParticleArray<UnderwaterBubbleP
 
     public override int ParticleCount => 100;
 
-    public static bool AllowMergeDrawing => Aequus.highQualityEffects;
+    public static bool AllowMergeDrawing => Aequus.HighQualityEffects;
 
     public override void Draw(SpriteBatch spriteBatch) {
         if (!AllowMergeDrawing) {

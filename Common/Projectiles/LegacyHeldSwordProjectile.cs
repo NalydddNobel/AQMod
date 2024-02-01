@@ -80,7 +80,7 @@ public abstract class LegacyHeldSwordProjectile : HeldProjBase {
 
     private void DoInitialize(Player player, AequusPlayer aequus) {
         if (player.whoAmI == Projectile.owner) {
-            ProjectileHelper.MeleeScale(Projectile);
+            ExtendProjectile.MeleeScale(Projectile);
         }
 
         swingTimeMax = player.itemAnimationMax;

@@ -1,3 +1,7 @@
+﻿GenVarEdits.DisplayMessage: ""
+Statues.DisplayMessage: 正在放置更多雕像...
+GoreNestsGeneration.DisplayMessage: 正在使地狱更加邪恶...
+LavaCleanup.DisplayMessage: 正在清理熔岩
 PollutedOcean: {
 	DisplayMessage: {
 		// 0: Creating a landfill
