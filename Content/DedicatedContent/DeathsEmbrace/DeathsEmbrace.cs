@@ -1,6 +1,4 @@
-﻿using Aequus.Content.Events.DemonSiege;
-using Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Aequus.Content.DedicatedContent.DeathsEmbrace;
 
