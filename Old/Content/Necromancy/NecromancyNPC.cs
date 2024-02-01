@@ -497,7 +497,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
         if (npc.boss || NPCSets.Unfriendable.Contains(npc.netID) || zombieOwner < 0 || zombieOwner > Main.maxPlayers || !Main.player[zombieOwner].active || Main.player[zombieOwner].dead || Main.player[zombieOwner].ghost) {
             return false;
         }
-        NPCID.PrimeCannon
+
         if (conversionChance > 0 && Main.rand.NextBool(conversionChance)) {
             return true;
         }
