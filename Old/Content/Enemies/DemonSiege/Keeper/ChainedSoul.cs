@@ -21,6 +21,7 @@ public class ChainedSoul : ModNPC {
             NPCID.Sets.SpecificDebuffImmunity[Type][buff.Id] = true;
         }
         NPCSets.DealsHeatDamage.Add((NPCEntry)Type);
+        NPCSets.Soulless.Add((NPCEntry)Type);
 
         BannerLoader.AddBannerBuff<KeeperImp>(this);
     }

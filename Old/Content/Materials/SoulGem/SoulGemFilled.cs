@@ -4,8 +4,6 @@ using Terraria.GameContent;
 namespace Aequus.Old.Content.Materials.SoulGem;
 
 public class SoulGemFilled : ModItem {
-    public override string Texture => ModContent.GetInstance<SoulGem>().Texture;
-
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 25;
         ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<SoulGem>();

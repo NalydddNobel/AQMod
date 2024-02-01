@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 404)</summary>
+/// <summary>(Total Textures: 405)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -631,6 +631,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> BloodyTearstone = new("Aequus/Old/Content/Materials/BloodyTearstone");
     /// <summary>Full Path: Old/Content/Materials/SoulGem/SoulGem</summary>
     public static readonly RequestCache<Texture2D> SoulGem = new("Aequus/Old/Content/Materials/SoulGem/SoulGem");
+    /// <summary>Full Path: Old/Content/Materials/SoulGem/SoulGemFilled</summary>
+    public static readonly RequestCache<Texture2D> SoulGemFilled = new("Aequus/Old/Content/Materials/SoulGem/SoulGemFilled");
     /// <summary>Full Path: Old/Content/Materials/SoulGem/SoulGemTile</summary>
     public static readonly RequestCache<Texture2D> SoulGemTile = new("Aequus/Old/Content/Materials/SoulGem/SoulGemTile");
     /// <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/Chains/SoulChains</summary>

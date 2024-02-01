@@ -1731,7 +1731,7 @@
             <summary>Full Path: Old/Assets/Sounds/RecruitZombie</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 404)</summary>
+            <summary>(Total Textures: 405)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2668,6 +2668,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.SoulGem">
             <summary>Full Path: Old/Content/Materials/SoulGem/SoulGem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SoulGemFilled">
+            <summary>Full Path: Old/Content/Materials/SoulGem/SoulGemFilled</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SoulGemTile">
             <summary>Full Path: Old/Content/Materials/SoulGem/SoulGemTile</summary>
