@@ -891,6 +891,9 @@
         <member name="P:Aequus.Content.DataSets.ItemTypeVariants.RottenChunk">
             <summary><see cref="F:Terraria.ID.ItemID.RottenChunk"/>, <see cref="F:Terraria.ID.ItemID.Vertebrae"/>, Avalon/YuckyBit.</summary>
         </member>
+        <member name="P:Aequus.Content.DataSets.ItemTypeVariants.DemoniteBar">
+            <summary><see cref="F:Terraria.ID.ItemID.DemoniteBar"/>, <see cref="F:Terraria.ID.ItemID.CrimtaneBar"/>, Avalon/BacciliteBar.</summary>
+        </member>
         <member name="P:Aequus.Content.DataSets.NPCSets.FriendablePreHardmodeSlime">
             <summary>
             Used for Royal Gel's Crown of Blood combination.
@@ -1240,7 +1243,7 @@
             <summary>Converts ticks to seconds, up to 1 decimal place.</summary>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendLanguage.Percent(System.Double)">
-            <summary>Converts value into percentage text, up to 1 decimal place.</summary>
+            <summary>Converts a decimal value into percentage text, up to 1 decimal place.</summary>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendLanguage.Decimals(System.Double)">
             <summary>Converts value into decimal text, up to 1 decimal place.</summary>

@@ -24,7 +24,7 @@ public class GravetenderWisp : LegacyMinionTemplate {
     }
 
     public override Color? GetAlpha(Color lightColor) {
-        return new Color(200, 200, 200, 40);
+        return new Color(255, 255, 255, 100);
     }
 
     public override bool? CanCutTiles() {
@@ -71,9 +71,11 @@ public class GravetenderWisp : LegacyMinionTemplate {
         else {
             Projectile.velocity *= 0.95f;
         }
-        AequusNPC aequusNPC = Main.npc[aequus.gravetenderGhost].GetGlobalNPC<AequusNPC>();
-        if (Projectile.numUpdates == -1) {
-            Projectile.position += (aequus.gravetenderGhost > -1 ? Main.npc[aequus.gravetenderGhost].velocity * new Vector2(aequusNPC.statSpeedX, aequusNPC.statSpeedY) : Main.player[Projectile.owner].velocity) * 0.97f;
+        if (aequus.gravetenderGhost > -1) {
+            AequusNPC aequusNPC = Main.npc[aequus.gravetenderGhost].GetGlobalNPC<AequusNPC>();
+            if (Projectile.numUpdates == -1) {
+                Projectile.position += (aequus.gravetenderGhost > -1 ? Main.npc[aequus.gravetenderGhost].velocity * new Vector2(aequusNPC.statSpeedX, aequusNPC.statSpeedY) : Main.player[Projectile.owner].velocity) * 0.97f;
+            }
         }
 
         Lighting.AddLight(Projectile.Center, new Vector3(0.2f, 0f, 0.05f));
@@ -100,7 +102,7 @@ public class GravetenderWisp : LegacyMinionTemplate {
         var effects = Projectile.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
         Main.instance.PrepareDrawnEntityDrawing(Projectile, Main.player[Projectile.owner].cHead, null);
         for (int i = 0; i < trailLength; i++) {
-            float p = i / (float)trailLength;
+            float p = 1f - i / (float)trailLength;
             Main.EntitySpriteDraw(t, Projectile.oldPos[i] + off, frame, c * 0.6f * p * p, Projectile.oldRot[i], origin, Projectile.scale * (0.8f + 0.2f * p), effects, 0);
         }
 

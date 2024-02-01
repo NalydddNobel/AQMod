@@ -89,6 +89,6 @@ CrimsonSceptreDebuff: {
 }
 
 GravetenderMinionBuff: {
-	// DisplayName: Gravetender Minion Buff
-	// Description: Mods.Aequus.Buffs.GravetenderMinionBuff.Description
+	// DisplayName: Gravetender
+	// Description: The wisp will increase the power of your ghosts!
 }

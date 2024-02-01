@@ -1,12 +1,18 @@
 ﻿using Aequus.Content.DataSets;
 using Aequus.Old.Common.PlayerLayers;
 using System.Linq;
+using Terraria.Localization;
 
 namespace Aequus.Old.Content.Necromancy.Equipment.Armor.SetGravetender;
 
 [LegacyName("NecromancerRobe", "SeraphimRobes")]
 [AutoloadEquip(EquipType.Body)]
 public class GravetenderRobes : ModItem {
+    public static int GhostLifespanIncrease { get; set; } = 1800;
+    public static int GhostSlotsIncrease { get; set; } = 1;
+
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Seconds(GhostLifespanIncrease), GhostSlotsIncrease);
+
     public override void SetStaticDefaults() {
         ForceDrawShirt.BodyShowShirt.Add(Item.bodySlot);
     }

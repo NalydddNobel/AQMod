@@ -1,11 +1,16 @@
 ﻿using Aequus.Content.DataSets;
 using System.Linq;
+using Terraria.Localization;
 
 namespace Aequus.Old.Content.Necromancy.Equipment.Armor.SetGravetender;
 
 [LegacyName("NecromancerHood", "SeraphimHood")]
 [AutoloadEquip(EquipType.Head)]
 public class GravetenderHood : ModItem {
+    public static float SummonDamageIncrease { get; set; } = 0.1f;
+
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Percent(SummonDamageIncrease));
+
     public override void SetDefaults() {
         Item.defense = 2;
         Item.width = 20;
@@ -22,6 +27,11 @@ public class GravetenderHood : ModItem {
 
     public override void UpdateArmorSet(Player player) {
         player.setBonus = this.GetLocalizedValue("Setbonus");
+        player.AddBuff(ModContent.BuffType<GravetenderMinionBuff>(), 4, quiet: true);
+        int wispMinion = ModContent.ProjectileType<GravetenderWisp>();
+        if (player.ownedProjectileCounts[wispMinion] == 0 && Main.myPlayer == player.whoAmI) {
+            Projectile.NewProjectile(player.GetSource_Accessory(Item), player.Center, player.velocity, wispMinion, 0, 0f, player.whoAmI);
+        }
         var aequus = player.GetModPlayer<AequusPlayer>();
 
         int closestNPC = -1;

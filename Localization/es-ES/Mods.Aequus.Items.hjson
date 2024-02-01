@@ -10,6 +10,8 @@ CommonTooltips: {
 	UsesDarts: Utiliza semillas y dardos como munición
 	Banner: "{$CommonItemTooltip.BannerBonus}{0}"
 	// NecromancyStaff: Slain enemies will convert into ghost minions
+	// StatGhostDuration: Increases the duration of your ghost minions by {0} seconds
+	// StatGhostSlots: Increases your max number of ghosts by {0}
 }
 
 //# Equipment: Accessories
@@ -176,6 +178,22 @@ RichMansMonocle: {
 Calendar: {
 	DisplayName: Calendario
 	Tooltip: Muestra la fecha
+}
+
+//# Equipment: Armor
+GravetenderHood: {
+	// DisplayName: Gravetender Hood
+	// Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
+	// Setbonus: Summon a wisp which empowers your closest ghost minion
+}
+
+GravetenderRobes: {
+	// DisplayName: Gravetender Robes
+	/* Tooltip:
+		'''
+		{$CommonTooltips.StatGhostDuration}
+		{$CommonTooltips.StatGhostSlots}
+		''' */
 }
 
 //# Equipment: Grappling Hooks
@@ -695,14 +713,4 @@ Toolbelt: {
 		''' */
 	// BackpackEnabled: Toolbelt Pack On
 	// BackpackDisabled: Toolbelt Pack Off
-}
-
-GravetenderHood: {
-	// DisplayName: Gravetender Hood
-	// Tooltip: ""
-}
-
-GravetenderRobes: {
-	// DisplayName: Gravetender Robes
-	// Tooltip: ""
 }

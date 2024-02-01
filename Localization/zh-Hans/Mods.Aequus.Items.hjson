@@ -10,6 +10,8 @@ CommonTooltips: {
 	UsesDarts: 使用种子和飞镖作为弹药
 	Banner: "{$CommonItemTooltip.BannerBonus}{0}"
 	// NecromancyStaff: Slain enemies will convert into ghost minions
+	// StatGhostDuration: Increases the duration of your ghost minions by {0} seconds
+	// StatGhostSlots: Increases your max number of ghosts by {0}
 }
 
 //# Equipment: Accessories
@@ -187,7 +189,7 @@ GravetenderHood: {
 
 GravetenderRobes: {
 	DisplayName: 守墓人长袍
-	Tooltip: 
+	Tooltip:
 		'''
 		{$CommonTooltips.StatGhostDuration}
 		{$CommonTooltips.StatGhostSlots}

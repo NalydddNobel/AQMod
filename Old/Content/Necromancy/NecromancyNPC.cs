@@ -245,11 +245,13 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
             aequusNPC.statSpeedX += ghostSpeed;
             aequusNPC.statSpeedY += ghostSpeed;
             aequus.ghostSlots += slotsConsumed;
-            zombieTimer--;
             if (aequus.gravetenderGhost == npc.whoAmI) {
                 aequusNPC.statSpeedX *= 1.33f;
                 aequusNPC.statSpeedY *= 1.33f;
                 statFreezeLifespan = true;
+            }
+            if (!statFreezeLifespan) {
+                zombieTimer--;
             }
 
             if (ShouldDespawnZombie(npc)) {
