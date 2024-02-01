@@ -1,5 +1,10 @@
-﻿DemonSiegeZone: {
+DemonSiegeZone: {
 	DisplayName: 血巢
 	EventName: 恶魔围攻
 	TownNPCDialogueName: ""
+}
+
+PollutedOceanBiome: {
+	// DisplayName: Polluted Ocean Biome
+	// TownNPCDialogueName: the Polluted Ocean Biome
 }

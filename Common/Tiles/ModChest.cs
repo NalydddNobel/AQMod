@@ -20,7 +20,7 @@ public abstract class ModChest : ModTile {
     public int FrameWidth { get; private set; }
     public int FrameHeight { get; private set; }
 
-    public bool LoadTrappedChest { get; set; } = true;
+    public virtual bool LoadTrappedChest => true;
 
     public override void Load() {
         DropItem = new InstancedTileItem(this, value: Item.sellPrice(silver: 1));

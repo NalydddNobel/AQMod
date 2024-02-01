@@ -3,3 +3,8 @@ DemonSiegeZone: {
 	// EventName: Demon Siege
 	// TownNPCDialogueName: ""
 }
+
+PollutedOceanBiome: {
+	// DisplayName: Polluted Ocean Biome
+	// TownNPCDialogueName: the Polluted Ocean Biome
+}

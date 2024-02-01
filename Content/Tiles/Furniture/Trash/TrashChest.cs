@@ -8,6 +8,8 @@ using Terraria.ObjectData;
 namespace Aequus.Content.Tiles.Furniture.Trash;
 
 public class TrashChest : ModChest, IPlaceChestHook {
+    public override bool LoadTrappedChest => false;
+
     public override void SafeSetStaticDefaults() {
         TileObjectData.newTile.Width = 3;
         TileObjectData.newTile.Origin = new(1, 1);
