@@ -2,7 +2,6 @@
 using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Core.IO;
 using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
 using Terraria.Localization;
@@ -60,37 +59,39 @@ public class PotionCanteen : ModItem {
     }
 
     public override void ModifyTooltips(List<TooltipLine> tooltips) {
-        if (buffID > 0) {
-            foreach (var t in tooltips) {
-                if (t.Name == "Tooltip0") {
-                    if (itemIDLookup > 0 && !Main.keyState.IsKeyDown(Keys.LeftShift) && !Main.keyState.IsKeyDown(Keys.RightShift)) {
-                        ItemTooltip tooltip = Lang.GetTooltip(itemIDLookup);
-                        if (tooltip.Lines > 0) {
+        if (buffID <= 0) {
+            return;
+        }
 
-                            t.Text = "";
-                            for (int i = 0; i < tooltip.Lines; i++) {
-                                string line = tooltip.GetLine(i);
-                                if (string.IsNullOrEmpty(line)) {
-                                    continue;
-                                }
+        foreach (TooltipLine t in tooltips) {
+            if (t.Name == "Tooltip0") {
+                if (itemIDLookup > 0 && !Main.keyState.IsKeyDown(Keys.LeftShift) && !Main.keyState.IsKeyDown(Keys.RightShift)) {
+                    ItemTooltip tooltip = Lang.GetTooltip(itemIDLookup);
+                    if (tooltip.Lines > 0) {
 
-                                if (!string.IsNullOrEmpty(t.Text)) {
-                                    t.Text += '\n';
-                                }
-                                t.Text += tooltip.GetLine(i);
+                        t.Text = "";
+                        for (int i = 0; i < tooltip.Lines; i++) {
+                            string line = tooltip.GetLine(i);
+                            if (string.IsNullOrEmpty(line)) {
+                                continue;
                             }
 
-                            continue;
+                            if (!string.IsNullOrEmpty(t.Text)) {
+                                t.Text += '\n';
+                            }
+                            t.Text += tooltip.GetLine(i);
                         }
-                    }
 
-                    t.Text = Lang.GetBuffDescription(buffID);
+                        continue;
+                    }
                 }
+
+                t.Text = Lang.GetBuffDescription(buffID);
             }
         }
     }
 
-    private Rectangle GetLiquidFrame(Texture2D liquidTexture) {
+    private static Rectangle GetLiquidFrame(Texture2D liquidTexture) {
         return liquidTexture.Frame(verticalFrames: 16, frameY: (int)Main.GameUpdateCount / 7 % 15);
     }
 
@@ -98,14 +99,6 @@ public class PotionCanteen : ModItem {
         var clrs = ItemID.Sets.DrinkParticleColors[itemIDLookup];
         Color colorResult = Color.White;
         if (clrs != null && clrs.Length > 0) {
-            //int minBrightness = 0;
-            //for (int i = 0; i < clrs.Length; i++) {
-            //    int colorBrightness = clrs[i].R + clrs[i].G + clrs[i].B;
-            //    if (colorBrightness > minBrightness) {
-            //        colorResult = clrs[i];
-            //        minBrightness = colorBrightness;
-            //    }
-            //}
             float time = Main.GlobalTimeWrappedHourly;
             colorResult = Color.Lerp(clrs[(int)time % clrs.Length], clrs[(int)(time + 1) % clrs.Length], time % 1f);
         }
@@ -154,10 +147,5 @@ public class PotionCanteen : ModItem {
         buffID = IDLoader<BuffID>.LoadId(tag, "Buff");
         itemIDLookup = IDLoader<ItemID>.LoadId(tag, "Item");
         SetPotionDefaults();
-    }
-
-    public void OnPickupText(int index, PopupTextContext context, int stack, bool noStack, bool longText) {
-        SetPotionDefaults();
-        Main.popupText[index].name = GetName(Main.popupText[index].name);
     }
 }
