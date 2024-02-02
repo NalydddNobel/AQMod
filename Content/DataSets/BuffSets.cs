@@ -18,14 +18,10 @@ public class BuffSets : DataSet {
     public static HashSet<BuffEntry> DontChangeDuration { get; private set; } = new();
     [JsonProperty]
     public static HashSet<BuffEntry> CooldownDebuff { get; private set; } = new();
-    /// <summary>
-    /// Set for compatibility with Thorium.
-    /// </summary>
+    /// <summary>Set for compatibility with Thorium.</summary>
     [JsonProperty]
     public static HashSet<BuffEntry> PlayerStatusDebuff { get; private set; } = new();
-    /// <summary>
-    /// Set for compatibility with Thorium.
-    /// </summary>
+    /// <summary>Set for compatibility with Thorium.</summary>
     [JsonProperty]
     public static HashSet<BuffEntry> PlayerDoTDebuff { get; private set; } = new();
 
@@ -33,13 +29,13 @@ public class BuffSets : DataSet {
     public static List<BuffEntry> ModifiesMoveSpeed { get; private set; } = new();
 
     [JsonProperty]
-    public static List<BuffEntry> DemonSiegeImmune { get; private set; } = new();
-
-    [JsonProperty]
     public static Dictionary<BuffEntry, List<BuffEntry>> BuffConflicts { get; private set; } = new();
 
     [JsonProperty]
     public static Dictionary<BuffEntry, bool> IsFireDebuff { get; private set; } = new();
+
+    [JsonProperty]
+    internal static List<BuffEntry> DemonSiegeImmune { get; private set; } = new();
 
     public override void PostSetupContent() {
         for (int i = 0; i < BuffLoader.BuffCount; i++) {

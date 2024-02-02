@@ -1,11 +1,13 @@
 ﻿using Aequus.Common.Buffs;
 using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Core.IO;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
+using Terraria.UI;
 
 namespace Aequus.Old.Content.Equipment.Accessories.PotionCanteen;
 
@@ -27,9 +29,9 @@ public class PotionCanteen : ModItem {
         Item.buffType = buffID;
         Item.rare = ItemRarityID.Orange;
         if (itemIDLookup > 0) {
-            Item.rare += ContentSamples.ItemsByType[itemIDLookup].rare;
+            Item.rare = ContentSamples.ItemsByType[itemIDLookup].rare;
         }
-        Item.rare = Math.Min(Item.rare, ItemRarityID.Purple);
+
         Item.Prefix(Item.prefix);
         Item.ClearNameOverride();
         if (!Main.dedServ && buffID > 0 && AltName != null) {
@@ -60,10 +62,28 @@ public class PotionCanteen : ModItem {
     public override void ModifyTooltips(List<TooltipLine> tooltips) {
         if (buffID > 0) {
             foreach (var t in tooltips) {
-                //if (t.Name == "ItemName" && buffID > 0) {
-                //    t.Text = GetName(t.Text);
-                //}
                 if (t.Name == "Tooltip0") {
+                    if (itemIDLookup > 0 && !Main.keyState.IsKeyDown(Keys.LeftShift) && !Main.keyState.IsKeyDown(Keys.RightShift)) {
+                        ItemTooltip tooltip = Lang.GetTooltip(itemIDLookup);
+                        if (tooltip.Lines > 0) {
+
+                            t.Text = "";
+                            for (int i = 0; i < tooltip.Lines; i++) {
+                                string line = tooltip.GetLine(i);
+                                if (string.IsNullOrEmpty(line)) {
+                                    continue;
+                                }
+
+                                if (!string.IsNullOrEmpty(t.Text)) {
+                                    t.Text += '\n';
+                                }
+                                t.Text += tooltip.GetLine(i);
+                            }
+
+                            continue;
+                        }
+                    }
+
                     t.Text = Lang.GetBuffDescription(buffID);
                 }
             }
