@@ -82,7 +82,7 @@ public class RevenantParticle : ParallelParticleArray<RevenantParticle.Particle>
         }
     }
 
-    public override void Activate() {
+    public override void OnActivate() {
         DrawLayers.Instance.PostDrawDust += Draw;
     }
 

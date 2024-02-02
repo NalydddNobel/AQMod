@@ -730,6 +730,11 @@
             <param name="npcId">The NPC type.</param>
             <param name="rule">The item drop rule.</param>
         </member>
+        <member name="F:Aequus.Common.NPCs.SpawningSystem.OverrideAequusBiomes">
+            <summary>
+            A list of <see cref="T:Terraria.ModLoader.ModBiome"/>s which will override Aequus biome spawns.
+            </summary>
+        </member>
         <member name="P:Aequus.Common.Players.CustomDashData.DashHaltSpeedMultiplier">
             <summary>
             Multiplier used to reduce velocity when above the dash's halting speed.
@@ -780,6 +785,48 @@
             <summary>
             A base furntiure tile, Furniture in Aequus is handled on an individual ModTile basis instead of through a big multi-styled tile.
             </summary>
+        </member>
+        <member name="M:Aequus.Common.Tiles.Components.IPlaceChestHook.PlaceChest(System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Return -2 to allow vanilla function to occur.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="style"></param>
+            <param name="notNearOtherChests"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Common.Tiles.Components.IPlaceChestHook.PlaceChestDirect(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Return true to allow vanilla function to occur.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="style"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Aequus.Common.Tiles.Components.IWaterVisibleWall">
+            <summary>
+            Allows modded walls to be seen behind water.
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Tiles.Components.IWaterVisibleWall.WaterMapEntry">
+            <summary>
+            The Entry Id for when this wall is behind water.
+            Use <see cref="M:Aequus.Common.Tiles.Components.WaterVisibleWall.CreateWaterEntry``1(``0,Microsoft.Xna.Framework.Color,Terraria.Localization.LocalizedText,System.Int32)"/> to generate an entry for this automatically.
+            <para>Defaults to 0, which uses the wall's first registered map color. (After AddRecipes, this is offset by the wall's map entry id.)</para>
+            </summary>
+        </member>
+        <member name="M:Aequus.Common.Tiles.Components.WaterVisibleWall.CreateWaterEntry``1(``0,Microsoft.Xna.Framework.Color,Terraria.Localization.LocalizedText,System.Int32)">
+            <summary>
+            Creates a map entry for the tile being covered in water.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="wall"></param>
+            <param name="baseColor"></param>
+            <param name="text"></param>
+            <param name="entryNumber">Offsets the map Id lookup by this value. Defaults to 1, meaning that it assumes that this is the 2nd registered color for this wall.</param>
         </member>
         <member name="M:Aequus.Common.WorldGeneration.AequusGenStep.SetMessage(Terraria.WorldBuilding.GenerationProgress,System.Object)">
             <summary>
@@ -853,6 +900,16 @@
         <member name="F:Aequus.AequusPlayer.dropRolls">
             <summary>
             Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedOceanGenerator.SafeTile">
+            <summary>
+            Similar to <see cref="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedOceanGenerator.ReplaceableTile"/>, except if tile Ids in this entry are false, the Crab Crevice will actively try to steer away from generating around them.
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedOceanGenerator.ReplaceableTile">
+            <summary>
+            Lookup for tile Ids which are safe to generate over.
             </summary>
         </member>
         <member name="T:Aequus.Content.CrossMod.BossChecklist">
@@ -966,7 +1023,7 @@
         </member>
         <member name="P:Aequus.Content.DataSets.ProjectileSets.OccultistIgnore">
             <summary>
-            Projectiles in this set do not damage the <see cref="!:Old.Content.TownNPCs.OccultistNPC.Occultist"/>.
+            Projectiles in this set do not damage the <see cref="T:Aequus.Old.Content.TownNPCs.OccultistNPC.Occultist"/>.
             </summary>
         </member>
         <member name="P:Aequus.Content.DataSets.ProjectileSets.DealsHeatDamage">
@@ -1040,6 +1097,14 @@
         <member name="E:Aequus.Core.Graphics.DrawLayers.PostDrawLiquids">
             <summary>Invoked after Liquids and Inferno Rings have been drawn, but before Wire Overlays are drawn.</summary>
         </member>
+        <member name="M:Aequus.Core.Graphics.SpriteBatchCache.InheritFrom(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
+            <summary>
+            Note: This calls <see cref="M:Microsoft.Xna.Framework.Graphics.SpriteBatch.End"/>, and then grabs all of the graphics device info and caches it into the various properties.
+            Use <see cref="M:Aequus.Core.Graphics.SpriteBatchCache.Begin(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.SpriteSortMode,Microsoft.Xna.Framework.Graphics.Effect,System.Nullable{Microsoft.Xna.Framework.Matrix})"/> to restart <paramref name="spriteBatch"/> back to its original state, with its <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteSortMode"/> needing to be respecified.
+            </summary>
+            <param name="spriteBatch"></param>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
         <member name="T:Aequus.Core.Graphics.Tiles.BatchedTileDrawInfo">
             <summary>
             Tile draw info used internally with <see cref="T:Aequus.Core.Graphics.Tiles.BatchedTileRenderer"/>.
@@ -1081,6 +1146,13 @@
             <para>Place SpecialTileDrawing.Add(i, j, Type); into ModTile.PostDraw(...) to add it to the rendering list.</para>
             </summary>
         </member>
+        <member name="M:Aequus.Core.Graphics.CustomDrawnUGBackground.RenderBackground(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.GraphicsDevice)">
+            <summary>
+            Renders the background to the background render target.
+            </summary>
+            <param name="spriteBatch"></param>
+            <param name="graphicsDevice"></param>
+        </member>
         <member name="M:Aequus.Core.Initialization.BannerLoader.AddBannerBuff``1(Terraria.ModLoader.ModNPC)">
             <summary>
             Adds a banner buff for this NPC to <typeparamref name="TBannerNPC"/>'s registered banner. This is used grant a buff against Chained Souls when near the Keeper's Banner.
@@ -1092,6 +1164,18 @@
             <summary>
             Helper for loading content which uses a legacy Id system.
             </summary>
+        </member>
+        <member name="T:Aequus.Core.Particles.ParallelParticleArray`1">
+            <summary>
+            A basic particle array system which updates particles in parallel.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:Aequus.Core.Particles.ParticleArray`1">
+            <summary>
+            A basic particle array system, initializes an array of a specified size on-load.
+            </summary>
+            <typeparam name="T"></typeparam>
         </member>
         <member name="M:Aequus.Core.Particles.ParticleArray`1.New">
             <returns>A single particle instance.</returns>
@@ -1111,7 +1195,7 @@
             <param name="count">The amount of particles wanted. This is multiplied <see cref="F:Terraria.Main.gfxQuality"/>.</param>
             <param name="minimum">The minimum amount of particles to return. <paramref name="count"/> is multiplied by <see cref="F:Terraria.Main.gfxQuality"/>, which reduces it depending on quality settings.</param>
         </member>
-        <member name="M:Aequus.Core.Particles.ParticleArray`1.Activate">
+        <member name="M:Aequus.Core.Particles.ParticleArray`1.OnActivate">
             <summary>
             Allows the renderer to subscribe to various drawing actions.
             This is ran when the particle system is activated.
@@ -1126,6 +1210,18 @@
         <member name="T:Aequus.Core.Particles.ParticleManager">
             <summary>
             Handles and updates particle systems.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.Particles.ParticleSystem.OnActivate">
+            <summary>
+            Allows the renderer to subscribe to various drawing actions.
+            This is ran when the particle system is activated.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.Particles.ParticleSystem.Deactivate">
+            <summary>
+            Allows the renderer to unsubscribe to various drawing actions.
+            This is ran when all particles are cleared from the system.
             </summary>
         </member>
         <member name="T:Aequus.Core.PhysicsBehaviors.VICollisonNode">
@@ -1586,7 +1682,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 54)</summary>
+            <summary>(Total Sounds: 58)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.PollutedOcean">
             <summary>Full Path: Assets/Music/PollutedOcean</summary>
@@ -1720,6 +1816,18 @@
         <member name="F:Aequus.AequusSounds.OmniGemBreak">
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
+        <member name="F:Aequus.AequusSounds.ScrapBlock0">
+            <summary>Full Path: Assets/Sounds/Tile/ScrapBlock0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.ScrapBlock1">
+            <summary>Full Path: Assets/Sounds/Tile/ScrapBlock1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.ScrapBlock2">
+            <summary>Full Path: Assets/Sounds/Tile/ScrapBlock2</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.ScrapBlock3">
+            <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
+        </member>
         <member name="F:Aequus.AequusSounds.BeginDemonSiege">
             <summary>Full Path: Old/Assets/Sounds/GoreNest/BeginDemonSiege</summary>
         </member>
@@ -1751,7 +1859,7 @@
             <summary>Full Path: Old/Assets/Sounds/RecruitZombie</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 405)</summary>
+            <summary>(Total Textures: 462)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1804,6 +1912,9 @@
         <member name="F:Aequus.AequusTextures.LightRayFlat">
             <summary>Full Path: Assets/Textures/LightRayFlat</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.None">
+            <summary>Full Path: Assets/Textures/None</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.OnlineLink">
             <summary>Full Path: Assets/Textures/OnlineLink</summary>
         </member>
@@ -1819,8 +1930,20 @@
         <member name="F:Aequus.AequusTextures.SlashVanillaSmall">
             <summary>Full Path: Assets/Textures/SlashVanillaSmall</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.SmallLightParticle">
+            <summary>Full Path: Assets/Textures/SmallLightParticle</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Sparkles">
             <summary>Full Path: Assets/Textures/Sparkles</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HardenedSand">
+            <summary>Full Path: Assets/Textures/TileMerges/HardenedSand</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Assets_Textures_TileMerges_PolymerSandstone">
+            <summary>Full Path: Assets/Textures/TileMerges/PolymerSandstone</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Sand">
+            <summary>Full Path: Assets/Textures/TileMerges/Sand</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TownNPCExclamation">
             <summary>Full Path: Assets/Textures/TownNPCExclamation</summary>
@@ -1839,6 +1962,117 @@
         </member>
         <member name="F:Aequus.AequusTextures.VignetteSmall">
             <summary>Full Path: Assets/Textures/VignetteSmall</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BackgroundRainDroplets">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Background/BackgroundRainDroplets</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MapBG">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Background/MapBG</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SurfaceBG_Far">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Background/SurfaceBG_Far</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanBestiaryIcon">
+            <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBestiaryIcon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PolymerStalactite1x1">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Ambient/Dripstones/PolymerStalactite1x1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PolymerStalactite1x2">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Ambient/Dripstones/PolymerStalactite1x2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PolymerStalagmite1x1">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Ambient/Dripstones/PolymerStalagmite1x1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PolymerStalagmite1x2">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Ambient/Dripstones/PolymerStalagmite1x2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanAmbient1x1">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Ambient/PollutedOceanAmbient1x1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanAmbient2x2">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Ambient/PollutedOceanAmbient2x2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashPots1x1_0">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Ambient/Pots/Gores/TrashPots1x1_0</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashPots1x1_1">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Ambient/Pots/Gores/TrashPots1x1_1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashPots1x1_2">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Ambient/Pots/Gores/TrashPots1x1_2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashPots2x2_0">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Ambient/Pots/Gores/TrashPots2x2_0</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashPots2x2_1">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Ambient/Pots/Gores/TrashPots2x2_1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashPots2x2_2">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Ambient/Pots/Gores/TrashPots2x2_2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashPots1x1">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Ambient/Pots/TrashPots1x1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashPots2x2">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Ambient/Pots/TrashPots2x2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SeaPickles1x1">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Ambient/SeaPickles/SeaPickles1x1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SeaPickles1x2">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Ambient/SeaPickles/SeaPickles1x2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SeaPickles2x2">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Ambient/SeaPickles/SeaPickles2x2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PolymerSand">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSand</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PolymerSandItem">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Content_Biomes_PollutedOcean_Tiles_PolymerSands_PolymerSandstone">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstone</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PolymerSandstoneItem">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstoneItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PolymerSandstoneWall">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstoneWall</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PolymerSandstoneWallItem">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSands/PolymerSandstoneWallItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScrapBlock">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Scrap/ScrapBlock</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScrapBlockItem">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Scrap/ScrapBlockItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScrapBrick">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Scrap/ScrapBrick</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScrapBrickItem">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Scrap/ScrapBrickItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanDroplet">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanDroplet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanSplash">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanSplash</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanWater">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanWater</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanWaterfall">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanWaterfall</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanWater_Block">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanWater_Block</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanWater_Slope">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanWater_Slope</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonMask">
             <summary>Full Path: Content/Bosses/BossMasks/CrabsonMask</summary>
@@ -2233,6 +2467,12 @@
         <member name="F:Aequus.AequusTextures.SteampunkerFishingPoleBobber">
             <summary>Full Path: Content/Fishing/FishingPoles/Steampunker/SteampunkerFishingPoleBobber</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Killifish">
+            <summary>Full Path: Content/Fishing/Fish/Killifish</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Piraiba">
+            <summary>Full Path: Content/Fishing/Fish/Piraiba</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.BubbleParticles">
             <summary>Full Path: Content/Graphics/Particles/BubbleParticles</summary>
         </member>
@@ -2284,6 +2524,18 @@
         <member name="F:Aequus.AequusTextures.NeutronYogurtBuff">
             <summary>Full Path: Content/Potions/Buffs/NeutronYogurt/NeutronYogurtBuff</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.SentryBuff">
+            <summary>Full Path: Content/Potions/Buffs/Sentry/SentryBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SentryPotion">
+            <summary>Full Path: Content/Potions/Buffs/Sentry/SentryPotion</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FoodPoisoningDebuff">
+            <summary>Full Path: Content/Potions/Food/TaintedSeafood/FoodPoisoningDebuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TaintedSeafood">
+            <summary>Full Path: Content/Potions/Food/TaintedSeafood/TaintedSeafood</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.GreaterRestorationPotion">
             <summary>Full Path: Content/Potions/Healing/Restoration/GreaterRestorationPotion</summary>
         </member>
@@ -2310,6 +2562,33 @@
         </member>
         <member name="F:Aequus.AequusTextures.TrashCompactorItem">
             <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashCampfire">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCampfire</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashCampfireItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCampfireItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashCampfire_Highlight">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCampfire_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashChest">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashChestItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChestItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashChest_Highlight">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChest_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashTorch">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTorch</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashTorchItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTorchItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashTorchItem_Flame">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTorchItem_Flame</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MossStatues">
             <summary>Full Path: Content/Tiles/Statues/MossStatues</summary>
@@ -2967,6 +3246,25 @@
         </member>
         <member name="F:Aequus.AequusTextures.BacciliteSceptre_Glow">
             <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre_Glow</summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.NotStackableCritDamage">
+            <summary>
+            Default Value: 0.15
+            <para>This is only added on the first stack of the accessory.</para>
+            </summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.WantedCost">
+            <summary>
+            The cost for performing a critical strike.
+            </summary>
+        </member>
+        <member name="T:Aequus.Old.Content.Events.DemonSiege.Tiles.OblivionAltarDummy">
+            <summary>Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.</summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg.SaivoryKnife.GhostLifespan">
+            <summary>
+            Default Value: 3600 (1 minute)
+            </summary>
         </member>
     </members>
 </doc>

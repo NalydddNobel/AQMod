@@ -121,7 +121,7 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
             if (k % 80 == 0) {
                 AddProtectedStructure(endX, j, (int)(size * 1.5f), (int)(size * 1.5f), 20);
             }
-            SetProgress(progress, 1f - p, 0f, Weight * 0.25f);
+            SetProgress(progress, 1f - p, 0f, 0.25f);
             EmitSand(endX, j, size, direction, out int notReplaceable);
             if (notReplaceable > 150) {
                 endX += direction * Random.Next(10);
@@ -251,7 +251,7 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
 
         for (int i = Left; i < Right; i++) {
             for (int j = 0; j < Main.maxTilesY; j++) {
-                SetProgress(progress, RectangleProgress(i, j, Left, Right), Weight * 0.25f, Weight * 0.33f);
+                SetProgress(progress, RectangleProgress(i, j, Left, Right), 0.25f, 0.33f);
                 if (Main.tile[i, j].TileType == _polymerSand && Random.NextBool(Main.tile[i, j].HasTile ? 200 : 10)) {
                     PunchHole(i, j, Random.Next(7, 28), Random.Next(8, 18));
                 }
@@ -259,7 +259,7 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
         }
         for (int i = Left; i < Right; i++) {
             for (int j = (int)Main.worldSurface; j < Main.maxTilesY; j++) {
-                SetProgress(progress, RectangleProgress(i, j, Left, Right), Weight * 0.33f, Weight * 0.5f);
+                SetProgress(progress, RectangleProgress(i, j, Left, Right), 0.33f, 0.5f);
                 if (Main.tile[i, j].TileType == _polymerSand && Random.NextBool(2000)) {
                     PunchWaterHole(i, j, Random.Next(80, 100));
                 }
@@ -315,7 +315,7 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
 
         for (int i = LeftPadded; i < RightPadded; i++) {
             for (int j = 5; j < surface; j++) {
-                SetProgress(progress, RectangleProgress(i, j, LeftPadded, RightPadded, 0, surface), Weight * 0.5f, Weight * 0.6f);
+                SetProgress(progress, RectangleProgress(i, j, LeftPadded, RightPadded, 0, surface), 0.5f, 0.6f);
                 Tile tile = Main.tile[i, j];
                 ushort tileType = tile.TileType;
                 if (tileType == _polymerSand || tileType == _polymerSandstone || tile.WallType == _polymerSandstoneWall) {
@@ -327,7 +327,7 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
 
         for (int i = LeftPadded; i < RightPadded; i++) {
             for (int j = 5; j < Main.maxTilesY - 5; j++) {
-                SetProgress(progress, RectangleProgress(i, j, LeftPadded, RightPadded), Weight * 0.6f, Weight * 0.75f);
+                SetProgress(progress, RectangleProgress(i, j, LeftPadded, RightPadded), 0.6f, 0.75f);
                 Tile tile = Main.tile[i, j];
                 ushort tileType = tile.TileType;
                 if (tile.TileType == _polymerSand) {
@@ -347,7 +347,7 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
         for (int m = 0; m < 3; m++) {
             for (int i = Left; i < Right; i++) {
                 for (int j = 0; j < Main.maxTilesY; j++) {
-                    SetProgress(progress, m / 3f + RectangleProgress(i, j, Left, Right) * 0.33f, Weight * 0.75f, Weight * 0.85f);
+                    SetProgress(progress, m / 3f + RectangleProgress(i, j, Left, Right) * 0.33f, 0.75f, 0.85f);
                     if (Main.tile[i, j].HasTile && Main.tile[i, j].WallType == _polymerSandstoneWall) {
                         if (Main.tile[i, j].TileType == _polymerSandstone) {
                             j++;
@@ -436,7 +436,7 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
 
         for (int i = Left; i < Right; i++) {
             for (int j = 0; j < Main.maxTilesY; j++) {
-                SetProgress(progress, RectangleProgress(i, j, Left, Right), 0.85f * Weight, 1f * Weight);
+                SetProgress(progress, RectangleProgress(i, j, Left, Right), 0.85f, 1f);
                 if (Main.tile[i, j].TileType == _polymerSandstone && Random.NextBool(600) && !TileHelper.ScanTilesSquare(i, j, 5, TileHelper.IsNotSolid, 
                     (i, j) => Main.tile[i, j].HasTile && TileID.Sets.Ore[Main.tile[i, j].TileType])) {
                     PunchOre(i, j, Random.Next(oreChoices));

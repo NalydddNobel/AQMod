@@ -11,7 +11,7 @@ namespace Aequus.Core.Particles;
 public abstract class ParticleArray<T> : IParticleSystem where T : IParticle, new() {
     protected Mod Mod { get; private set; }
 
-        protected T[] Particles;
+    protected T[] Particles;
 
     public abstract int ParticleCount { get; }
     public bool Active { get; protected set; }
@@ -67,6 +67,8 @@ public abstract class ParticleArray<T> : IParticleSystem where T : IParticle, ne
 
     private void CheckInit() {
         if (!Active) {
+            Particles ??= new T[ParticleCount];
+
             Activate();
             ModContent.GetInstance<ParticleManager>()._activeSystems.AddLast(this);
         }

@@ -60,7 +60,7 @@ public class LegacyBloomParticle : ParallelParticleArray<LegacyBloomParticle.Par
         }
     }
 
-    public override void Activate() {
+    public override void OnActivate() {
         DrawLayers.Instance.PostDrawDust += Draw;
     }
 
