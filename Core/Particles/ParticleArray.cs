@@ -3,10 +3,7 @@ using System.Collections.Generic;
 
 namespace Aequus.Core.Particles;
 
-/// <summary>
-/// A basic particle array system, initializes an array of a specified size on-load.
-/// </summary>
-/// <typeparam name="T"></typeparam>
+/// <summary>A basic particle array system, initializes an array of a specified size on-load.</summary>
 [Autoload(Side = ModSide.Client)]
 public abstract class ParticleArray<T> : IParticleSystem where T : IParticle, new() {
     protected Mod Mod { get; private set; }

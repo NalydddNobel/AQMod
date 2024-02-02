@@ -926,14 +926,10 @@
             <param name="displayColor">The Color of the entry. It is usually Black when hidden, and White when not hidden.</param>
         </member>
         <member name="P:Aequus.Content.DataSets.BuffSets.PlayerStatusDebuff">
-            <summary>
-            Set for compatibility with Thorium.
-            </summary>
+            <summary>Set for compatibility with Thorium.</summary>
         </member>
         <member name="P:Aequus.Content.DataSets.BuffSets.PlayerDoTDebuff">
-            <summary>
-            Set for compatibility with Thorium.
-            </summary>
+            <summary>Set for compatibility with Thorium.</summary>
         </member>
         <member name="P:Aequus.Content.DataSets.ItemSets.Potions">
             <summary>
@@ -1172,10 +1168,7 @@
             <typeparam name="T"></typeparam>
         </member>
         <member name="T:Aequus.Core.Particles.ParticleArray`1">
-            <summary>
-            A basic particle array system, initializes an array of a specified size on-load.
-            </summary>
-            <typeparam name="T"></typeparam>
+            <summary>A basic particle array system, initializes an array of a specified size on-load.</summary>
         </member>
         <member name="M:Aequus.Core.Particles.ParticleArray`1.New">
             <returns>A single particle instance.</returns>
