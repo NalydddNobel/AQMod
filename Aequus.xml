@@ -1582,10 +1582,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 54)</summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.PollutedOcean">
-            <summary>Full Path: Assets/Music/PollutedOcean</summary>
+            <summary>(Total Sounds: 53)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishCharge">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
