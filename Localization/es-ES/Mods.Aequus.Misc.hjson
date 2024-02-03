@@ -51,10 +51,4 @@ ShimmerMonocleToggleOn: Notas de Fulgor Activas
 ShimmerMonocleToggleOff: Notas de Fulgor Inactivas
 BagWarningQuickBuff: ¡La mochila no soporta el Potenciar Rapido!
 BagWarningAmmo: ¡La mochila no soporta Munición    !
-ClickLink:
-	'''
-	Escucha la música en y[c/AABBEE:{0}]!
-	Doble click para abrir el link
-	'''
-OpenLink: Abriendo [c/AABBEE:{0}] en el buscador...
 // TimeLeft: Time left: {0}

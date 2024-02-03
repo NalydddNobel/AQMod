@@ -681,12 +681,6 @@ SpaceSquidMask: {
 	Tooltip: ""
 }
 
-//# Tiles & Blocks
-MonsterChestItem: {
-	DisplayName: Cofre Monstruo
-	Tooltip: Coloca un cofre monstruo que se activara de inmediato a menos que seas invisible
-}
-
 //# Mounts
 BalloonKit: {
 	DisplayName: Botiquin Aerostático

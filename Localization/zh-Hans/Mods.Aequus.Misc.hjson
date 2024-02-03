@@ -51,10 +51,4 @@ ShimmerMonocleToggleOn: 微光备注开启
 ShimmerMonocleToggleOff: 微光备注关闭
 BagWarningQuickBuff: 背包不支持快捷增益!
 BagWarningAmmo: 背包不支持弹药!
-ClickLink:
-	'''
-	在[c/AABBEE:{0}]听音乐!
-	双击以打开链接.
-	'''
-OpenLink: 正在浏览器上打开[c/AABBEE:{0}]...
 TimeLeft: 剩余时间: {0}

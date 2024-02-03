@@ -681,12 +681,6 @@ SpaceSquidMask: {
 	Tooltip: ""
 }
 
-//# Tiles & Blocks
-MonsterChestItem: {
-	DisplayName: 怪物箱
-	Tooltip: 放置一个怪物箱, 除非你拥有隐形增益, 否则它会立即激活
-}
-
 //# Mounts
 BalloonKit: {
 	DisplayName: 气球装备

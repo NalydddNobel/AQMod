@@ -681,12 +681,6 @@ SpaceSquidMask: {
 	Tooltip: ""
 }
 
-//# Tiles & Blocks
-MonsterChestItem: {
-	DisplayName: Monster Chest
-	Tooltip: Places a monster chest which will get immediately activated unless you have the Invisibility buff
-}
-
 //# Mounts
 BalloonKit: {
 	DisplayName: Balloon Kit

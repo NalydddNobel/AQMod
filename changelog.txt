@@ -2,7 +2,6 @@ Version 3.0 Changes ------------------------------------------------------------
 
 I. Additions & Changes:
 - Completely remade the project from the ground up, many items have been tweaked or temporarily removed.
-- Music is now integrated into the main mod!
 - Soul Gems can no longer be filled with souls from enemies from the Underworld or Demon Siege.
 - The Occultist is now immune to enemies from the Underworld or Demon Siege.
 - Adjusted Lesser, Greater, and Super Restoration Potions stats & recipes.
