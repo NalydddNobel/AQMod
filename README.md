@@ -1,6 +1,6 @@
 <img src="icon.png" alt="Mod Icon" align="right" />
 
-# Aequus Music
+# Aequus
 The official repository for Aequus, a mod for tModLoader.
 
 ### The MIT Lisence will not grant you protections when using non-code content from this repository in commercial, personal, or trademark use.
