@@ -26,7 +26,7 @@ public class PollutedOceanBiome : ModBiome {
     public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
 
     private int? MusicSlotId;
-    public override int Music => MusicSlotId ??= MusicLoader.GetMusicSlot(Mod, AequusSounds.PollutedOcean.ModPath());
+    public override int Music => MusicSlotId ??= MusicLoader.GetMusicSlot("AequusMusic/Assets/Music/PollutedOcean");
 
     public override int BiomeTorchItemType => ModContent.GetInstance<TrashTorch>().Item.Type;
     public override int BiomeCampfireItemType => ModContent.GetInstance<TrashTorch>().CampfireItem.Type;

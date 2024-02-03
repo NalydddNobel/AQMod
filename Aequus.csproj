@@ -27,6 +27,7 @@
   </ItemGroup>
 	
   <ItemGroup>
+	<ProjectReference Include="..\AequusMusic\AequusMusic.csproj" />
 	<ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	<AdditionalFiles Include="**\*.png" />
 	<AdditionalFiles Include="**\*.ogg" />
@@ -62,5 +63,5 @@
 	<AdditionalFiles Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
   </ItemGroup>
-	
+
 </Project>

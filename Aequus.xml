@@ -1675,10 +1675,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 58)</summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.PollutedOcean">
-            <summary>Full Path: Assets/Music/PollutedOcean</summary>
+            <summary>(Total Sounds: 57)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishCharge">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -1852,7 +1849,7 @@
             <summary>Full Path: Old/Assets/Sounds/RecruitZombie</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 462)</summary>
+            <summary>(Total Textures: 459)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1907,9 +1904,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.None">
             <summary>Full Path: Assets/Textures/None</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OnlineLink">
-            <summary>Full Path: Assets/Textures/OnlineLink</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Shatter">
             <summary>Full Path: Assets/Textures/Shatter</summary>
@@ -2474,12 +2468,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.CompressedTrash">
             <summary>Full Path: Content/Materials/CompressedTrash</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PollutedOceanMusicBox">
-            <summary>Full Path: Content/Music/PollutedOceanMusicBox</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PollutedOceanMusicBoxItem">
-            <summary>Full Path: Content/Music/PollutedOceanMusicBoxItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NetherStar">
             <summary>Full Path: Content/PermaPowerups/NetherStar/NetherStar</summary>
