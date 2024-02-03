@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 405)</summary>
+/// <summary>(Total Textures: 402)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -41,8 +41,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> LightRayCircular = new("Aequus/Assets/Textures/LightRayCircular");
     /// <summary>Full Path: Assets/Textures/LightRayFlat</summary>
     public static readonly RequestCache<Texture2D> LightRayFlat = new("Aequus/Assets/Textures/LightRayFlat");
-    /// <summary>Full Path: Assets/Textures/OnlineLink</summary>
-    public static readonly RequestCache<Texture2D> OnlineLink = new("Aequus/Assets/Textures/OnlineLink");
     /// <summary>Full Path: Assets/Textures/Shatter</summary>
     public static readonly RequestCache<Texture2D> Shatter = new("Aequus/Assets/Textures/Shatter");
     /// <summary>Full Path: Assets/Textures/SlashForward</summary>
@@ -333,10 +331,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> DashParticles = new("Aequus/Content/Graphics/Particles/DashParticles");
     /// <summary>Full Path: Content/Materials/CompressedTrash</summary>
     public static readonly RequestCache<Texture2D> CompressedTrash = new("Aequus/Content/Materials/CompressedTrash");
-    /// <summary>Full Path: Content/Music/PollutedOceanMusicBox</summary>
-    public static readonly RequestCache<Texture2D> PollutedOceanMusicBox = new("Aequus/Content/Music/PollutedOceanMusicBox");
-    /// <summary>Full Path: Content/Music/PollutedOceanMusicBoxItem</summary>
-    public static readonly RequestCache<Texture2D> PollutedOceanMusicBoxItem = new("Aequus/Content/Music/PollutedOceanMusicBoxItem");
     /// <summary>Full Path: Content/PermaPowerups/NetherStar/NetherStar</summary>
     public static readonly RequestCache<Texture2D> NetherStar = new("Aequus/Content/PermaPowerups/NetherStar/NetherStar");
     /// <summary>Full Path: Content/PermaPowerups/NetherStar/NetherStarBackground</summary>

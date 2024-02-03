@@ -869,14 +869,10 @@
             <param name="displayColor">The Color of the entry. It is usually Black when hidden, and White when not hidden.</param>
         </member>
         <member name="P:Aequus.Content.DataSets.BuffSets.PlayerStatusDebuff">
-            <summary>
-            Set for compatibility with Thorium.
-            </summary>
+            <summary>Set for compatibility with Thorium.</summary>
         </member>
         <member name="P:Aequus.Content.DataSets.BuffSets.PlayerDoTDebuff">
-            <summary>
-            Set for compatibility with Thorium.
-            </summary>
+            <summary>Set for compatibility with Thorium.</summary>
         </member>
         <member name="P:Aequus.Content.DataSets.ItemSets.Potions">
             <summary>
@@ -966,7 +962,7 @@
         </member>
         <member name="P:Aequus.Content.DataSets.ProjectileSets.OccultistIgnore">
             <summary>
-            Projectiles in this set do not damage the <see cref="!:Old.Content.TownNPCs.OccultistNPC.Occultist"/>.
+            Projectiles in this set do not damage the <see cref="T:Aequus.Old.Content.TownNPCs.OccultistNPC.Occultist"/>.
             </summary>
         </member>
         <member name="P:Aequus.Content.DataSets.ProjectileSets.DealsHeatDamage">
@@ -1751,7 +1747,7 @@
             <summary>Full Path: Old/Assets/Sounds/RecruitZombie</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 405)</summary>
+            <summary>(Total Textures: 402)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1803,9 +1799,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.LightRayFlat">
             <summary>Full Path: Assets/Textures/LightRayFlat</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OnlineLink">
-            <summary>Full Path: Assets/Textures/OnlineLink</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Shatter">
             <summary>Full Path: Assets/Textures/Shatter</summary>
@@ -2241,12 +2234,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.CompressedTrash">
             <summary>Full Path: Content/Materials/CompressedTrash</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PollutedOceanMusicBox">
-            <summary>Full Path: Content/Music/PollutedOceanMusicBox</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PollutedOceanMusicBoxItem">
-            <summary>Full Path: Content/Music/PollutedOceanMusicBoxItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NetherStar">
             <summary>Full Path: Content/PermaPowerups/NetherStar/NetherStar</summary>
@@ -2967,6 +2954,25 @@
         </member>
         <member name="F:Aequus.AequusTextures.BacciliteSceptre_Glow">
             <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre_Glow</summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.NotStackableCritDamage">
+            <summary>
+            Default Value: 0.15
+            <para>This is only added on the first stack of the accessory.</para>
+            </summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.WantedCost">
+            <summary>
+            The cost for performing a critical strike.
+            </summary>
+        </member>
+        <member name="T:Aequus.Old.Content.Events.DemonSiege.Tiles.OblivionAltarDummy">
+            <summary>Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.</summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg.SaivoryKnife.GhostLifespan">
+            <summary>
+            Default Value: 3600 (1 minute)
+            </summary>
         </member>
     </members>
 </doc>
