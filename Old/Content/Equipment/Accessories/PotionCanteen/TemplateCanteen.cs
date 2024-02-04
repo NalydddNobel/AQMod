@@ -25,7 +25,8 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer {
 
     public ModItem EmptyCanteenItem { get; private set; }
 
-    public static LocalizedText AltName { get; private set; }
+    [CloneByReference]
+    public LocalizedText AltName { get; private set; }
 
     /// <summary>Determines if this canteen has any buffs at all.</summary>
     public bool HasBuffs => Buffs != null && Buffs.Any(e => e.BuffId > 0);
@@ -154,7 +155,7 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer {
 
         Color colorResult = Color.White;
         if (_potionColors != null && _potionColors.Length > 0) {
-            float time = Main.GlobalTimeWrappedHourly;
+            float time = Main.GlobalTimeWrappedHourly * Buffs.Length;
             if (HasBuffs) {
                 for (int i = 0; i < Buffs.Length; i++) {
                     time += Buffs[i].BuffId;

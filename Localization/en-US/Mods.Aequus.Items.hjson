@@ -129,6 +129,17 @@ WarHorn: {
 		'''
 }
 
+HallowCanteen: {
+	DisplayName: Magic Canteen
+	DisplayNameAlt: Magic Canteen ({0})
+	Tooltip: Craft with two potions to allow infinite use
+}
+
+HallowCanteenEmpty: {
+	DisplayName: "{$Items.HallowCanteen.DisplayName}"
+	Tooltip: "{$Items.HallowCanteen.Tooltip}"
+}
+
 PotionCanteenEmpty: {
 	DisplayName: "{$Items.PotionCanteen.DisplayName}"
 	Tooltip: "{$Items.PotionCanteen.Tooltip}"
