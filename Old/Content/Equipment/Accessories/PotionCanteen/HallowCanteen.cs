@@ -56,7 +56,7 @@ public class HallowCanteen : TemplateCanteen {
     public override void AddRecipes() {
         CreateRecipe()
             .AddIngredient(ModContent.ItemType<PotionCanteen>())
-            .AddIngredient(ItemID.CrystalShard, 20)
+            .AddIngredient(ItemID.CrystalShard, 50)
             .AddIngredient(ItemID.PixieDust, 30)
             .Register();
 

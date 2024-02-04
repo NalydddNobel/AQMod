@@ -175,7 +175,7 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer {
         Mod.AddContent(EmptyCanteenItem);
     }
 
-    public sealed override void SetStaticDefaults() {
+    public override void SetStaticDefaults() {
         AltName = this.GetLocalization("DisplayNameAlt");
         ItemID.Sets.ShimmerTransformToItem[Type] = EmptyCanteenItem.Type;
         ContentSamples.CreativeResearchItemPersistentIdOverride[EmptyCanteenItem.Type] = Type;

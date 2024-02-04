@@ -9,6 +9,11 @@ public class PotionCanteen : TemplateCanteen {
     public override int PotionsContained => 1;
     public override int PotionRecipeRequirement => 15;
 
+    public override void SetStaticDefaults() {
+        base.SetStaticDefaults();
+        //LootDefinition.CreateFor(Loot.PollutedOceanPrimary, Type);
+    }
+
     public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
         spriteBatch.Draw(AequusTextures.PotionCanteenEmpty, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
         if (!HasBuffs) {
