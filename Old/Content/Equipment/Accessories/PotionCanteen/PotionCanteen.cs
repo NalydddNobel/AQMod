@@ -1,120 +1,22 @@
-﻿using Aequus.Common.Buffs;
-using Aequus.Common.Items.EquipmentBooster;
-using Aequus.Core.IO;
-using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
-using Terraria.GameContent;
-using Terraria.Localization;
-using Terraria.ModLoader.IO;
-using Terraria.UI;
+﻿using Terraria.GameContent;
 
 namespace Aequus.Old.Content.Equipment.Accessories.PotionCanteen;
 
-public class PotionCanteen : ModItem {
-    public int itemIDLookup;
-    public int buffID;
+public class PotionCanteen : TemplateCanteen {
+    public override int Rarity => ItemRarityID.Blue;
+    public override int Value => Item.buyPrice(gold: 5);
 
-    public bool HasBuff => buffID > 0;
-
-    public static LocalizedText AltName { get; private set; }
-
-    public override void SetStaticDefaults() {
-        EquipBoostDatabase.Instance.SetNoEffect(Type);
-        AltName = this.GetLocalization("DisplayNameAlt");
-        ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<PotionCanteenEmpty>();
-    }
-
-    public void SetPotionDefaults() {
-        Item.buffType = buffID;
-        Item.rare = ItemRarityID.Orange;
-        if (itemIDLookup > 0) {
-            Item.rare = ContentSamples.ItemsByType[itemIDLookup].rare;
-        }
-
-        Item.Prefix(Item.prefix);
-        Item.ClearNameOverride();
-        if (!Main.dedServ && buffID > 0 && AltName != null) {
-            Item.SetNameOverride(GetName(Item.AffixName()));
-        }
-    }
-
-    public override void SetDefaults() {
-        Item.DefaultToAccessory(20, 20);
-        Item.value = Item.buyPrice(gold: 10);
-        Item.rare = ItemRarityID.Orange;
-        SetPotionDefaults();
-    }
-
-    public override void UpdateAccessory(Player player, bool hideVisual) {
-        if (buffID > 0) {
-            if (Main.myPlayer == player.whoAmI) {
-                BuffUI.DisableRightClick.Add(buffID);
-            }
-            player.AddBuff(buffID, 1, quiet: true);
-        }
-    }
-
-    public string GetName(string originalName) {
-        return originalName.Replace(Lang.GetItemNameValue(Type), AltName.Format(Lang.GetBuffName(buffID)));
-    }
-
-    public override void ModifyTooltips(List<TooltipLine> tooltips) {
-        if (buffID <= 0) {
-            return;
-        }
-
-        foreach (TooltipLine t in tooltips) {
-            if (t.Name == "Tooltip0") {
-                if (itemIDLookup > 0 && !Main.keyState.IsKeyDown(Keys.LeftShift) && !Main.keyState.IsKeyDown(Keys.RightShift)) {
-                    ItemTooltip tooltip = Lang.GetTooltip(itemIDLookup);
-                    if (tooltip.Lines > 0) {
-
-                        t.Text = "";
-                        for (int i = 0; i < tooltip.Lines; i++) {
-                            string line = tooltip.GetLine(i);
-                            if (string.IsNullOrEmpty(line)) {
-                                continue;
-                            }
-
-                            if (!string.IsNullOrEmpty(t.Text)) {
-                                t.Text += '\n';
-                            }
-                            t.Text += tooltip.GetLine(i);
-                        }
-
-                        continue;
-                    }
-                }
-
-                t.Text = Lang.GetBuffDescription(buffID);
-            }
-        }
-    }
-
-    private static Rectangle GetLiquidFrame(Texture2D liquidTexture) {
-        return liquidTexture.Frame(verticalFrames: 16, frameY: (int)Main.GameUpdateCount / 7 % 15);
-    }
-
-    private Color GetLiquidColor() {
-        var clrs = ItemID.Sets.DrinkParticleColors[itemIDLookup];
-        Color colorResult = Color.White;
-        if (clrs != null && clrs.Length > 0) {
-            float time = Main.GlobalTimeWrappedHourly;
-            colorResult = Color.Lerp(clrs[(int)time % clrs.Length], clrs[(int)(time + 1) % clrs.Length], time % 1f);
-        }
-        return colorResult * 1.1f;
-    }
+    public override int PotionsContained => 1;
+    public override int PotionRecipeRequirement => 15;
 
     public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
         spriteBatch.Draw(AequusTextures.PotionCanteenEmpty, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
-        if (!HasBuff) {
+        if (!HasBuffs) {
             return true;
         }
-        var liquidTexture = AequusTextures.PotionCanteen_Liquid.Value;
-        var liquidFrame = GetLiquidFrame(liquidTexture);
-        var liquidColor = GetLiquidColor();
+
+        var liquidColor = GetPotionColors();
         float a = drawColor.A > 0 ? drawColor.A / 255f : Main.inventoryBack.A / 255f;
-        spriteBatch.Draw(liquidTexture, position, liquidFrame, liquidColor * a, 0f, origin, scale, SpriteEffects.None, 0f);
         spriteBatch.Draw(TextureAssets.Item[Type].Value, position, frame, liquidColor with { A = 255 }, 0f, origin, scale, SpriteEffects.None, 0f);
         return false;
     }
@@ -124,28 +26,10 @@ public class PotionCanteen : ModItem {
         var position = Item.Center - Main.screenPosition;
         var origin = frame.Size() / 2f;
         spriteBatch.Draw(AequusTextures.PotionCanteenEmpty, position, frame, lightColor, rotation, origin, scale, SpriteEffects.None, 0f);
-        if (HasBuff) {
-            var liquidTexture = AequusTextures.PotionCanteen_Liquid.Value;
-            var liquidFrame = GetLiquidFrame(liquidTexture);
-            var liquidColor = GetLiquidColor();
-            spriteBatch.Draw(liquidTexture, position, liquidFrame, liquidColor, rotation, origin, scale, SpriteEffects.None, 0f);
+        if (HasBuffs) {
+            var liquidColor = GetPotionColors();
             spriteBatch.Draw(texture, position, frame, ExtendLight.Get(Item.Center).MultiplyRGBA(liquidColor), rotation, origin, scale, SpriteEffects.None, 0f);
         }
         return false;
-    }
-
-    public override void SaveData(TagCompound tag) {
-        if (!HasBuff) {
-            return;
-        }
-
-        IDLoader<BuffID>.SaveId(tag, "Buff", buffID);
-        IDLoader<ItemID>.SaveId(tag, "Item", itemIDLookup);
-    }
-
-    public override void LoadData(TagCompound tag) {
-        buffID = IDLoader<BuffID>.LoadId(tag, "Buff");
-        itemIDLookup = IDLoader<ItemID>.LoadId(tag, "Item");
-        SetPotionDefaults();
     }
 }

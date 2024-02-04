@@ -1,5 +1,9 @@
 ﻿using Aequus.Core.Initialization;
 using Newtonsoft.Json;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace Aequus.Core.DataSets;
@@ -27,12 +31,41 @@ public abstract class DataSet : IModType, ILoadable, ISetStaticDefaults,  IPostS
         _fields = GetType().GetFields(_memberBindingFlags);
     }
 
+    public virtual void Load() {
+    }
+    public virtual void SetStaticDefaults() {
+    }
+    public virtual void PostSetupContent() {
+    }
+    public virtual void AddRecipes() {
+    }
+    public virtual void PostAddRecipes() {
+    }
+    public virtual void OnUnload() {
+    }
+
     public void Load(Mod mod) {
         Mod = mod;
         File = new(this);
         Load();
     }
-    public virtual void Load() {
+
+    public void SetStaticDefaults(Aequus aequus) {
+        SetStaticDefaults();
+    }
+
+    public void PostSetupContent(Aequus aequus) {
+        File.ApplyToDataSet();
+        PostSetupContent();
+    }
+
+    public void AddRecipes(Aequus aequus) {
+        AddRecipes();
+    }
+
+    public void PostAddRecipes(Aequus aequus) {
+        PostAddRecipes();
+        File.CreateTempFile();
     }
 
     public void Unload() {
@@ -40,7 +73,7 @@ public abstract class DataSet : IModType, ILoadable, ISetStaticDefaults,  IPostS
 
         // Automatically clear data sets
         if (_fields != null) {
-            foreach (var f in _fields) {
+            foreach (FieldInfo f in _fields) {
                 InvokeClear(f.GetValue(this));
             }
             _fields = null;
@@ -63,33 +96,5 @@ public abstract class DataSet : IModType, ILoadable, ISetStaticDefaults,  IPostS
 
             m.Invoke(obj, null);
         }
-    }
-    public virtual void OnUnload() {
-    }
-
-    public void SetStaticDefaults(Aequus aequus) {
-        SetStaticDefaults();
-    }
-    public virtual void SetStaticDefaults() {
-    }
-
-    public void PostSetupContent(Aequus aequus) {
-        File.ApplyToDataSet();
-        PostSetupContent();
-    }
-    public virtual void PostSetupContent() {
-    }
-
-    public void AddRecipes(Aequus aequus) {
-        AddRecipes();
-    }
-    public virtual void AddRecipes() {
-    }
-
-    public void PostAddRecipes(Aequus aequus) {
-        PostAddRecipes();
-        File.CreateTempFile();
-    }
-    public virtual void PostAddRecipes() {
     }
 }

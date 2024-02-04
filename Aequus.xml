@@ -1849,7 +1849,7 @@
             <summary>Full Path: Old/Assets/Sounds/RecruitZombie</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 459)</summary>
+            <summary>(Total Textures: 460)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2883,14 +2883,17 @@
         <member name="F:Aequus.AequusTextures.HighSteaks_Waist">
             <summary>Full Path: Old/Content/Equipment/Accessories/HighSteaks/HighSteaks_Waist</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.HallowCanteen">
+            <summary>Full Path: Old/Content/Equipment/Accessories/PotionCanteen/HallowCanteen</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HallowCanteenEmpty">
+            <summary>Full Path: Old/Content/Equipment/Accessories/PotionCanteen/HallowCanteenEmpty</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.PotionCanteen">
             <summary>Full Path: Old/Content/Equipment/Accessories/PotionCanteen/PotionCanteen</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PotionCanteenEmpty">
             <summary>Full Path: Old/Content/Equipment/Accessories/PotionCanteen/PotionCanteenEmpty</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PotionCanteen_Liquid">
-            <summary>Full Path: Old/Content/Equipment/Accessories/PotionCanteen/PotionCanteen_Liquid</summary>
         </member>
         <member name="F:Aequus.AequusTextures.WarHorn">
             <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHorn</summary>
@@ -3238,6 +3241,9 @@
             <summary>
             The cost for performing a critical strike.
             </summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Equipment.Accessories.PotionCanteen.TemplateCanteen.HasBuffs">
+            <summary>Determines if this canteen has any buffs at all.</summary>
         </member>
         <member name="T:Aequus.Old.Content.Events.DemonSiege.Tiles.OblivionAltarDummy">
             <summary>Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.</summary>

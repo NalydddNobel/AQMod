@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.ItemPrefixes.Components;
 using Aequus.Common.Items;
+using Aequus.Common.Items.Components;
 using Aequus.Content.DedicatedContent;
 using Terraria.GameContent;
 using Terraria.GameContent.Achievements;
@@ -31,7 +32,12 @@ public class ShimmerSystem : ModSystem {
     }
 
     private static void On_Item_GetShimmered(On_Item.orig_GetShimmered orig, Item item) {
-        if (ItemLoader.GetItem(item.type) is IDedicatedItem) {
+        ModItem modItem = ItemLoader.GetItem(item.type);
+        if (modItem is IOnShimmer onShimmer) {
+            onShimmer.OnShimmer();
+        }
+
+        if (modItem is IDedicatedItem) {
             int maximumSpawnable = 50;
             int highestNPCSlotIndexWeWillPick = 200;
             int slotsAvailable = NPC.GetAvailableAmountOfNPCsToSpawnUpToSlot(item.stack, highestNPCSlotIndexWeWillPick);
@@ -52,6 +58,7 @@ public class ShimmerSystem : ModSystem {
             TransmutateItem(item);
             return;
         }
+
         if (item.prefix >= PrefixID.Count && PrefixLoader.GetPrefix(item.prefix) is IRemovedByShimmerPrefix shimmerablePrefix && shimmerablePrefix.CanBeRemovedByShimmer) {
             int oldStack = item.stack;
             item.SetDefaults(item.netID);
@@ -62,6 +69,7 @@ public class ShimmerSystem : ModSystem {
             TransmutateItem(item);
             return;
         }
+
         orig(item);
     }
     #endregion
