@@ -3,11 +3,7 @@ using System.Diagnostics;
 using Terraria.GameContent;
 using Terraria.UI.Chat;
 
-<<<<<<<< HEAD:Core/Debug/DiagnosticsMenu.cs
-namespace Aequus.Core.Debug;
-========
 namespace Aequus.Core.Debugging;
->>>>>>>> reboot:Core/Debugging/DiagnosticsMenu.cs
 
 internal class DiagnosticsMenu : ModSystem {
     public enum TimerType : byte {
