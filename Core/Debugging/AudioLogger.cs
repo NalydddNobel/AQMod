@@ -2,7 +2,7 @@
 using System;
 using Terraria.Audio;
 
-namespace Aequus.Core.Debug;
+namespace Aequus.Core.Debugging;
 
 internal class AudioLogger : ModSystem {
     public static bool DisableLogs;
