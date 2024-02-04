@@ -35,5 +35,12 @@ public partial class Aequus : Mod {
         UnloadPackets();
     }
 
+    internal const bool DEBUG_MODE =
+#if DEBUG
+            true;
+#else
+        false;
+#endif
+
     internal static string DebugPath => $"{Main.SavePath.Replace("tModLoader-preview", "tModLoader")}";
 }
