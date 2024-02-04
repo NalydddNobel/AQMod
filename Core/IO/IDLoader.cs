@@ -1,4 +1,6 @@
 ﻿using ReLogic.Reflection;
+using System;
+using System.Globalization;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Core.IO;
@@ -8,18 +10,20 @@ namespace Aequus.Core.IO;
 /// </summary>
 public class IDLoader<T> where T : class {
     private static readonly IdDictionary _idDictionary = (IdDictionary)typeof(T).GetField("Search").GetValue(null);
-    private static readonly int _vanillaCount = (int)typeof(T).GetField("Count").GetValue(null);
+    private static readonly int _vanillaCount = Convert.ToInt32(typeof(T).GetField("Count").GetValue(null));
 
     public static int LoadId(TagCompound tag, string name, int defaultValue = -1) {
-        if (tag.TryGet(name, out int id)) {
-            return id;
+        if (tag.TryGet(name, out object value)) {
+            if (value is string idName && _idDictionary.TryGetId(idName, out int foundId)) {
+                return foundId;
+            }
+
+            if (value is IConvertible convertible) {
+                return convertible.ToInt32(CultureInfo.InvariantCulture);
+            }
         }
 
-        if (!tag.TryGet(name, out string idName) || !_idDictionary.TryGetId(idName, out int foundId)) {
-            return defaultValue;
-        }
-
-        return foundId;
+        return defaultValue;
     }
 
     public static void SaveId(TagCompound tag, string name, int id) {

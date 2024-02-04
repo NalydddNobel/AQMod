@@ -2963,6 +2963,9 @@
             The cost for performing a critical strike.
             </summary>
         </member>
+        <member name="P:Aequus.Old.Content.Equipment.Accessories.PotionCanteen.TemplateCanteen.HasBuffs">
+            <summary>Determines if this canteen has any buffs at all.</summary>
+        </member>
         <member name="T:Aequus.Old.Content.Events.DemonSiege.Tiles.OblivionAltarDummy">
             <summary>Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.</summary>
         </member>
