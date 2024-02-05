@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 403)</summary>
+/// <summary>(Total Textures: 404)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -697,6 +697,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> PotionCanteen = new("Aequus/Old/Content/Potions/PotionCanteen/PotionCanteen");
     /// <summary>Full Path: Old/Content/Potions/PotionCanteen/PotionCanteenEmpty</summary>
     public static readonly RequestCache<Texture2D> PotionCanteenEmpty = new("Aequus/Old/Content/Potions/PotionCanteen/PotionCanteenEmpty");
+    /// <summary>Full Path: Old/Content/Potions/Prefixes/SplashPotions/SplashPrefixItem</summary>
+    public static readonly RequestCache<Texture2D> SplashPrefixItem = new("Aequus/Old/Content/Potions/Prefixes/SplashPotions/SplashPrefixItem");
     /// <summary>Full Path: Old/Content/Potions/Resurrection/PotionOfResurrection</summary>
     public static readonly RequestCache<Texture2D> PotionOfResurrection = new("Aequus/Old/Content/Potions/Resurrection/PotionOfResurrection");
     /// <summary>Full Path: Old/Content/Tiles/Ambient/GoreNestStalagmite</summary>

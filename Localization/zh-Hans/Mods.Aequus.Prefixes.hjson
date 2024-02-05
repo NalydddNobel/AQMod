@@ -8,3 +8,10 @@ Organized.DisplayName: 轮契
 Punctual.DisplayName: 准时
 Steady.DisplayName: 稳定
 Tardy.DisplayName: 迟缓
+
+SplashPrefix: {
+	DisplayName: 可泼溅的
+	Ability: +可投掷
+	ItemName: 海鳝花粉
+	ItemTooltip: 允许投掷药水
+}

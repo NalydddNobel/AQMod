@@ -2,6 +2,7 @@
 using Aequus.Core.DataSets;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Aequus.Content.DataSets;
 
@@ -51,6 +52,10 @@ public class ItemSets : DataSet {
 
             CheckPotion(item);
             CheckAmmo(item);
+        }
+
+        foreach (int potion in Potions.Where(e => e.ValidEntry)) {
+            ItemID.Sets.CanGetPrefixes[potion] = true;
         }
 
         static void CheckPotion(Item item) {

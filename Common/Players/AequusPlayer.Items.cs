@@ -182,7 +182,10 @@ public partial class AequusPlayer {
         if (Main.mouseRight && Main.mouseRightRelease) {
             var player = Main.LocalPlayer;
             var aequus = player.GetModPlayer<AequusPlayer>();
-            if (Main.mouseItem.ModItem is IRightClickOverrideWhenHeld rightClickOverride && rightClickOverride.RightClickOverrideWhileHeld(ref Main.mouseItem, inv, context, slot, player, aequus)) {
+            if (!Main.mouseItem.IsAir && Main.mouseItem.ModItem is IRightClickOverrideWhenHeld rightClickOverride && rightClickOverride.RightClickOverrideWhileHeld(ref Main.mouseItem, inv, context, slot, player, aequus)) {
+                Main.mouseRightRelease = false;
+                // Set stack split delay to 3 seconds (so you don't instantly pick up the item with rclick)
+                Main.stackSplit = 180;
                 return;
             }
 

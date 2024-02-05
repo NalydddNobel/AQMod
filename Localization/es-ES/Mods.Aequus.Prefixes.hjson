@@ -8,3 +8,9 @@ Organized.DisplayName: Organizado
 Punctual.DisplayName: Puntual
 Steady.DisplayName: Estable
 Tardy.DisplayName: Tardío
+
+SplashPrefix: {
+	// DisplayName: Splash Prefix
+	// ItemName: Mods.Aequus.Prefixes.SplashPrefix.ItemName
+	// ItemTooltip: Mods.Aequus.Prefixes.SplashPrefix.ItemTooltip
+}
