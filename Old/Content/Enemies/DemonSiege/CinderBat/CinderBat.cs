@@ -41,10 +41,10 @@ public class CinderBat : LegacyAIBat {
             Position = new Vector2(4f, 12f)
         });
 
-        foreach (BuffEntry buff in BuffSets.DemonSiegeImmune) {
-            NPCID.Sets.SpecificDebuffImmunity[Type][buff.Id] = true;
+        foreach (int buff in BuffSets.DemonSiegeImmune) {
+            NPCID.Sets.SpecificDebuffImmunity[Type][buff] = true;
         }
-        NPCSets.DealsHeatDamage.Add((NPCEntry)Type);
+        NPCSets.DealsHeatDamage.Add(Type);
     }
 
     public override void SetDefaults() {

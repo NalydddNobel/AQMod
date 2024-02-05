@@ -13,8 +13,8 @@ public class BombarderRodProj : ModProjectile {
         Main.projFrames[Type] = Main.projFrames[ProjectileID.Flamelash];
         ProjectileID.Sets.TrailCacheLength[Type] = 16;
         ProjectileID.Sets.TrailingMode[Type] = 2;
-        ProjectileSets.PushableByTypeId.Add((ProjectileEntry)Type);
-        ProjectileSets.DealsHeatDamage.Add((ProjectileEntry)Type);
+        ProjectileSets.PushableByTypeId.Add(Type);
+        ProjectileSets.DealsHeatDamage.Add(Type);
     }
 
     public override void SetDefaults() {

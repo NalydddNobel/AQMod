@@ -1,5 +1,4 @@
 ﻿using Aequus.Content.DataSets;
-using Aequus.Core.DataSets;
 
 namespace Aequus.Old.Content.Weapons.Demon.Magic;
 
@@ -7,7 +6,7 @@ public class TriacanthornBolt : ModProjectile {
     public override void SetStaticDefaults() {
         ProjectileID.Sets.TrailCacheLength[Type] = 15;
         ProjectileID.Sets.TrailingMode[Type] = 15;
-        ProjectileSets.PushableByTypeId.Add((ProjectileEntry)Type);
+        ProjectileSets.PushableByTypeId.Add(Type);
     }
 
     public override void SetDefaults() {

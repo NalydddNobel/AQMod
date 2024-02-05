@@ -40,7 +40,7 @@ public struct Entry<T> : IEntry where T : class {
     public string Name => IDCommons<T>.Search.TryGetName(Id, out string name) ? name : 
         _unloadedNames.IndexInRange(-Id + InvalidEntryOffset) ? _unloadedNames[-Id + InvalidEntryOffset] : "Unknown";
 
-    public bool ValidEntry => Id > 0 && Id < IDCommons<T>.Count;
+    public bool ValidEntry => Id > IDCommons<T>.StartCount;
 
     /// <summary><inheritdoc cref="IEntry.VanillaEntry"/> Automatically determined by checking if <see cref="Id"/> is less than <typeparamref name="T"/>.Count.</summary>
     public bool VanillaEntry => Id < IDCommons<T>.Count;

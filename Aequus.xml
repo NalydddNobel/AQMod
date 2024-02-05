@@ -964,7 +964,7 @@
             <summary>Rotation offset of projectile sprites so it can be rotated correctly.</summary>
         </member>
         <member name="P:Aequus.Content.DataSets.ProjectileSets.OccultistIgnore">
-            <summary>Projectiles in this set do not damage the <see cref="!:Old.Content.TownNPCs.OccultistNPC.Occultist"/>.</summary>
+            <summary>Projectiles in this set do not damage the <see cref="T:Aequus.Old.Content.TownNPCs.OccultistNPC.Occultist"/>.</summary>
         </member>
         <member name="P:Aequus.Content.DataSets.ProjectileSets.IsStar">
             <summary>Whether or not this projectile is a "Star", this is automatically populated with anything that has "Star" in their internal name.</summary>
@@ -2994,6 +2994,28 @@
         </member>
         <member name="F:Aequus.AequusTextures.BacciliteSceptre_Glow">
             <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre_Glow</summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.NotStackableCritDamage">
+            <summary>
+            Default Value: 0.15
+            <para>This is only added on the first stack of the accessory.</para>
+            </summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.WantedCost">
+            <summary>
+            The cost for performing a critical strike.
+            </summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Equipment.Accessories.PotionCanteen.TemplateCanteen.HasBuffs">
+            <summary>Determines if this canteen has any buffs at all.</summary>
+        </member>
+        <member name="T:Aequus.Old.Content.Events.DemonSiege.Tiles.OblivionAltarDummy">
+            <summary>Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.</summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg.SaivoryKnife.GhostLifespan">
+            <summary>
+            Default Value: 3600 (1 minute)
+            </summary>
         </member>
     </members>
 </doc>

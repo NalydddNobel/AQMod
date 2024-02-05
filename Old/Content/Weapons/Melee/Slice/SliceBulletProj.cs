@@ -1,6 +1,4 @@
 ﻿using Aequus.Content.DataSets;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria.GameContent;
 
@@ -8,7 +6,7 @@ namespace Aequus.Old.Content.Weapons.Melee.Slice;
 
 public class SliceBulletProj : ModProjectile {
     public override void SetStaticDefaults() {
-        ProjectileSets.PushableByTypeId.AddEntry(Type);
+        ProjectileSets.PushableByTypeId.Add(Type);
     }
 
     public override void SetDefaults() {

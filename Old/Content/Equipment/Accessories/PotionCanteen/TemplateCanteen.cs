@@ -247,7 +247,7 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer {
     }
 
     public override void AddRecipes() {
-        ItemEntry[] validPotions = ItemSets.Potions.Where(i => i.ValidEntry && ContentSamples.ItemsByType[i.Id].buffType != BuffID.Lucky).ToArray();
+        int[] validPotions = ItemSets.Potions.Where(i => i.ValidEntry && ContentSamples.ItemsByType[i.Id].buffType != BuffID.Lucky).Select(e => e.Id).ToArray();
         int potionCount = PotionsContained;
 
         // Examples use an array of length 3.
@@ -278,7 +278,7 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer {
             canteen.InitializeBuffs();
 
             for (int i = 0; i < indices.Length; i++) {
-                ItemEntry potion = validPotions[indices[i]];
+                int potion = validPotions[indices[i]];
 
                 r.AddIngredient(potion, PotionRecipeRequirement);
 
