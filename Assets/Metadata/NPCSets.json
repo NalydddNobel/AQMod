@@ -33,7 +33,15 @@
     "MagmaSnail"
     /*655*/,
     "Avalon/Blaze",
-    "Avalon/BoneFish"
+    "Avalon/BoneFish",
+    "CalValEX/ProvFly",
+    "SpiritMod/BlazingSkull",
+    "SpiritMod/Infernon",
+    "SpiritMod/ChainedSinner",
+    "SpiritMod/HellEater",
+    "StormDiversMod/HellMiniBoss",
+    "StormDiversMod/HellMiniBossMinion",
+    "StormDiversMod/HellSoul"
   ],
   "IsCorrupt": [
     "Slimeling"
@@ -71,7 +79,20 @@
     "SandsharkCorrupt"
     /*543*/,
     "Avalon/CursedFlamer",
-    "Avalon/Shadlopod"
+    "Avalon/Shadlopod",
+    "CalValEX/NeuroFly",
+    "SpiritMod/Ebonkoi",
+    "SpiritMod/Maggotfly",
+    "SpiritMod/PurpleClubberfish",
+    "SpiritMod/Rotslug",
+    "SpiritMod/Toxikarp",
+    "SpiritMod/Cystal",
+    "SpiritMod/Vilemoth",
+    "SpiritMod/VileWasp",
+    "SpiritMod/Masticator",
+    "SpiritMod/Teratoma",
+    "StarlightRiver/Dweller",
+    "StarlightRiver/SoulNibbler"
   ],
   "IsCrimson": [
     "Crimera"
@@ -111,7 +132,14 @@
     "SandsharkCrimson"
     /*544*/,
     "BloodMummy"
-    /*630*/
+    /*630*/,
+    "CalValEX/PerfoGrub",
+    "SpiritMod/CrimsonTrapper",
+    "SpiritMod/Spewer",
+    "SpiritMod/Bladetongue",
+    "SpiritMod/CrismonTigerfish",
+    "SpiritMod/Hemoglob",
+    "SpiritMod/Hemoglorb"
   ],
   "IsHallow": [
     "Nurse"
@@ -166,7 +194,10 @@
     /*661*/,
     "Princess"
     /*663*/,
-    "Avalon/Hallowor"
+    "Avalon/Hallowor",
+    "CalValEX/CrystalFly",
+    "SpiritMod/CrystalSerpent",
+    "SpiritMod/Prismite"
   ],
   "FromPillarEvent": [
     "StardustWormHead"
@@ -220,7 +251,14 @@
     "LunarTowerSolar"
     /*517*/,
     "SolarSpearman"
-    /*518*/
+    /*518*/,
+    "StormDiversMod/NebulaDerp",
+    "StormDiversMod/ScanDrone",
+    "StormDiversMod/SolarDerp",
+    "StormDiversMod/StardustDerp",
+    "StormDiversMod/StardustMiniDerp",
+    "StormDiversMod/StormDerp",
+    "StormDiversMod/VortexCannon"
   ],
   "NameTagOverride": {
     "EaterofWorldsBody": false,

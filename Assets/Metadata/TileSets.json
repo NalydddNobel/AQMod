@@ -160,7 +160,26 @@
     "Avalon/ResistantWoodDoorClosed",
     "Avalon/ResistantWoodDoorOpen",
     "Avalon/YellowDungeonDoorClosed",
-    "Avalon/YellowDungeonDoorOpen"
+    "Avalon/YellowDungeonDoorOpen",
+    "CalValEX/OldAstralDoorClosed",
+    "CalValEX/OldAstralDoorOpen",
+    "CalValEX/AuricDoorClosed",
+    "CalValEX/AuricDoorOpen",
+    "CalValEX/BloodstoneDoorClosed",
+    "CalValEX/BloodstoneDoorOpen",
+    "CalValEX/NecroticTorchPlaced",
+    "CalValEX/PhantowaxDoorClosed",
+    "CalValEX/PhantowaxDoorOpen",
+    "SpiritMod/AcidDoorClosed",
+    "SpiritMod/AcidDoorOpen",
+    "SpiritMod/DriftwoodDoorClosed",
+    "SpiritMod/DriftwoodDoorOpen",
+    "SpiritMod/ReachDoorClosed",
+    "SpiritMod/ReachDoorOpen",
+    "SpiritMod/SpiritDoorClosed",
+    "SpiritMod/SpiritDoorOpen",
+    "StarlightRiver/VitricDoorClosed",
+    "StarlightRiver/VitricDoorOpen"
   ],
   "IsSmashablePot": [
     "Pots"
