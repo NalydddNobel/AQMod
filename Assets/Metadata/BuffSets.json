@@ -765,13 +765,8 @@
   ],
   "PlayerStatusDebuff": [],
   "PlayerDoTDebuff": [
-    "Unknown",
-    "Unknown",
-    "Unknown",
-    "Unknown",
-    "Unknown"
+    "Aequus/IronLotusDebuff"
   ],
-  "ModifiesMoveSpeed": [],
   "BuffConflicts": {},
   "IsFireDebuff": {
     "OnFire": true,

@@ -7,9 +7,6 @@ using System.Runtime.InteropServices;
 namespace Aequus.Content.DataSets;
 
 public class BuffSets : DataSet {
-    public BuffSets() : base() {
-    }
-
     [JsonProperty]
     public static HashSet<BuffEntry> PotionPrefixBlacklist { get; private set; } = new();
     [JsonProperty]
@@ -23,10 +20,7 @@ public class BuffSets : DataSet {
     public static HashSet<BuffEntry> PlayerStatusDebuff { get; private set; } = new();
     /// <summary>Set for compatibility with Thorium.</summary>
     [JsonProperty]
-    public static HashSet<BuffEntry> PlayerDoTDebuff { get; private set; } = new();
-
-    [JsonProperty]
-    public static List<BuffEntry> ModifiesMoveSpeed { get; private set; } = new();
+    public static HashSet<Entry<BuffID>> PlayerDoTDebuff { get; private set; } = new();
 
     [JsonProperty]
     public static Dictionary<BuffEntry, List<BuffEntry>> BuffConflicts { get; private set; } = new();

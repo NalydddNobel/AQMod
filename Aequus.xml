@@ -1027,6 +1027,48 @@
         <member name="P:Aequus.Core.CrossMod.SupportedMod`1.Instance">
             <summary>The Supported Mod's instance. This property is <see langword="null" /> when the mod is not enabled.</summary>
         </member>
+        <member name="P:Aequus.Core.DataSets.IEntry.Name">
+            <summary>Name for the content entry.</summary>
+        </member>
+        <member name="P:Aequus.Core.DataSets.IEntry.Id">
+            <summary>ID for the content.</summary>
+        </member>
+        <member name="P:Aequus.Core.DataSets.IEntry.ValidEntry">
+            <summary>Whether this is a valid entry. Entries for content from other mods will be marked as Invalid if the mod is not enabled.</summary>
+        </member>
+        <member name="P:Aequus.Core.DataSets.IEntry.VanillaEntry">
+            <summary>Whether this is a vanilla entry.</summary>
+        </member>
+        <member name="M:Aequus.Core.DataSets.IEntry.SetName(System.String)">
+            <summary>Set <see cref="P:Aequus.Core.DataSets.IEntry.Id"/> using <paramref name="name"/>. Called when loading the .json metadata files.</summary>
+            <param name="name">Name of the content.</param>
+        </member>
+        <member name="M:Aequus.Core.DataSets.IEntry.SetId(System.Int32)">
+            <summary>Set <see cref="P:Aequus.Core.DataSets.IEntry.Id"/> directly. Use this to update the name or other values if needed.</summary>
+            <param name="id">The Content's Id.</param>
+        </member>
+        <member name="T:Aequus.Core.DataSets.Entry`1">
+            <summary>
+            Represents an entry for a piece of content which uses an Id system.
+            <para>
+            <typeparamref name="T"/> should be one of the "X-ID" classes, like <see cref="T:Terraria.ID.ItemID"/>, <see cref="T:Terraria.ID.BuffID"/>, ect.
+            The ID class must also have an <see cref="T:ReLogic.Reflection.IdDictionary"/> named "Search", and a value for the total amount of vanilla entries labled "Count" (which can also be converted into an <see cref="T:System.Int32"/>)
+            </para>
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Aequus.Core.DataSets.Entry`1.Name">
+            <summary><inheritdoc cref="P:Aequus.Core.DataSets.IEntry.Name"/> Automatically grabbed from <typeparamref name="T"/>.Search.GetName(<see cref="P:Aequus.Core.DataSets.Entry`1.Id"/>). Returns "Unknown" or a name of an invalid entry if no name exists.</summary>
+        </member>
+        <member name="P:Aequus.Core.DataSets.Entry`1.VanillaEntry">
+            <summary><inheritdoc cref="P:Aequus.Core.DataSets.IEntry.VanillaEntry"/> Automatically determined by checking if <see cref="P:Aequus.Core.DataSets.Entry`1.Id"/> is less than <typeparamref name="T"/>.Count.</summary>
+        </member>
+        <member name="F:Aequus.Core.DataSets.IDCommons`1.Count">
+            <summary>The vanilla count.</summary>
+        </member>
+        <member name="F:Aequus.Core.DataSets.IDCommons`1.StartCount">
+            <summary>The starting Id. This is usually 0, but in some cases like <see cref="T:Terraria.ID.NPCID"/> it will be equal to <see cref="F:Terraria.ID.NPCID.NegativeIDCount"/>.</summary>
+        </member>
         <member name="E:Aequus.Core.Graphics.DrawLayers.WorldBehindTiles">
             <summary>Invoked before NPCs behind tiles are drawn.</summary>
         </member>
@@ -1085,9 +1127,7 @@
             <param name="npcWithoutBanner"></param>
         </member>
         <member name="T:Aequus.Core.IO.IDLoader`1">
-            <summary>
-            Helper for loading content which uses a legacy Id system.
-            </summary>
+            <summary>Helper for loading content which uses a legacy Id system.</summary>
         </member>
         <member name="M:Aequus.Core.Particles.ParticleArray`1.New">
             <returns>A single particle instance.</returns>
