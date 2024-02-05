@@ -960,20 +960,20 @@
             <param name="searchTags"></param>
             <returns></returns>
         </member>
+        <member name="P:Aequus.Content.DataSets.ProjectileSets.SpriteRotation">
+            <summary>Rotation offset of projectile sprites so it can be rotated correctly.</summary>
+        </member>
         <member name="P:Aequus.Content.DataSets.ProjectileSets.OccultistIgnore">
-            <summary>
-            Projectiles in this set do not damage the <see cref="!:Old.Content.TownNPCs.OccultistNPC.Occultist"/>.
-            </summary>
+            <summary>Projectiles in this set do not damage the <see cref="!:Old.Content.TownNPCs.OccultistNPC.Occultist"/>.</summary>
+        </member>
+        <member name="P:Aequus.Content.DataSets.ProjectileSets.IsStar">
+            <summary>Whether or not this projectile is a "Star", this is automatically populated with anything that has "Star" in their internal name.</summary>
         </member>
         <member name="P:Aequus.Content.DataSets.ProjectileSets.DealsHeatDamage">
-            <summary>
-            Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.
-            </summary>
+            <summary>Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.</summary>
         </member>
         <member name="P:Aequus.Content.DataSets.TileSets.PreventsSlopesBelow">
-            <summary>
-            Prevents tiles below this tile from being sloped.
-            </summary>
+            <summary>Prevents tiles below this tile from being sloped.</summary>
         </member>
         <member name="T:Aequus.Content.Dyes.ArmorShaderDataThirdColor">
             <summary>

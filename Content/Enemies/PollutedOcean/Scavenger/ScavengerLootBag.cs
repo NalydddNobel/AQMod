@@ -3,8 +3,6 @@ using Aequus.Content.DataSets;
 using Aequus.Content.Enemies.PollutedOcean.Scavenger.UI;
 using Aequus.Content.Equipment.Accessories.ScavengerBag;
 using Aequus.Core;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -31,7 +29,7 @@ public class ScavengerLootBag : ModNPC {
             Hide = true,
         };
 
-        NPCSets.PushableByTypeId.AddEntry(Type);
+        NPCSets.PushableByTypeId.Add(Type);
     }
 
     public override void SetDefaults() {
