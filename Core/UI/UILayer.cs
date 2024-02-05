@@ -27,7 +27,9 @@ public abstract class UILayer : GameInterfaceLayer, ILoadable {
 
     public virtual void OnClearWorld() { }
     public virtual void OnPreUpdatePlayers() { }
-    public virtual bool OnUIUpdate(GameTime gameTime) => true;
+    public virtual bool OnUIUpdate(GameTime gameTime) {
+        return true;
+    }
 
     protected virtual void OnActivate() { }
     protected virtual void OnDeactivate() { }
