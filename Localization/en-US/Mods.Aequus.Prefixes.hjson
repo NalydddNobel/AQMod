@@ -8,16 +8,37 @@ Organized.DisplayName: Organized
 Punctual.DisplayName: Punctual
 Steady.DisplayName: Steady
 Tardy.DisplayName: Tardy
-
-PotionPrefixTooltip: "Hold and press <right> while hovering over a potion to apply"
+PotionPrefixTooltip: Hold and press <right> while hovering over a potion to apply
 
 SplashPrefix: {
 	DisplayName: Splashable
-	Ability: "+Throwable"
+	Ability: +Throwable
 	ItemName: Moray Pollen
-	ItemTooltip: 
+	ItemTooltip:
 		'''
 		Allows for potions to be thrown
+		{$Prefixes.PotionPrefixTooltip}
+		'''
+}
+
+BoundedPrefix: {
+	DisplayName: Bounded
+	Ability: +Beyond Death
+	ItemName: Manacle Pollen
+	ItemTooltip:
+		'''
+		Allows potion buffs to stay after death
+		{$Prefixes.PotionPrefixTooltip}
+		'''
+}
+
+StuffedPrefix: {
+	DisplayName: Stuffed
+	Ability: x{0} duration
+	ItemName: Moonflower Pollen
+	ItemTooltip:
+		'''
+		Doubles the duration of potions
 		{$Prefixes.PotionPrefixTooltip}
 		'''
 }

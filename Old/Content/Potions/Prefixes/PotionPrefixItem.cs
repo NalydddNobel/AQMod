@@ -29,7 +29,7 @@ internal class PotionPrefixItem : InstancedModItem, IRightClickOverrideWhenHeld 
         Item potion = inv[slot];
         int wantedPrefix = _parent.Type;
 
-        if (!ItemSets.Potions.Contains(potion.type) || potion.prefix == wantedPrefix) {
+        if (!ItemSets.Potions.Contains(potion.type) || !potion.CanApplyPrefix(wantedPrefix) || potion.prefix == wantedPrefix) {
             return false;
         }
 
@@ -38,7 +38,9 @@ internal class PotionPrefixItem : InstancedModItem, IRightClickOverrideWhenHeld 
 
             Item pickupItem = potion.Clone();
             pickupItem.stack = difference;
+            pickupItem.newAndShiny = true;
 
+            potion.ResetPrefix();
             potion.Prefix(wantedPrefix);
 
             player.GetItem(player.whoAmI, pickupItem, GetItemSettings.ItemCreatedFromItemUsage);
@@ -54,6 +56,10 @@ internal class PotionPrefixItem : InstancedModItem, IRightClickOverrideWhenHeld 
             heldItem.stack -= potion.stack;
             if (heldItem.stack <= 0) {
                 heldItem.TurnToAir();
+            }
+
+            if (potion.TryGetGlobalItem(out PotionPrefixGlobalItem potionPrefixItem)) {
+                potionPrefixItem._reforgeAnimation = Main.GlobalTimeWrappedHourly;
             }
         }
         return true;

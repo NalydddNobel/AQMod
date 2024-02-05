@@ -22,4 +22,8 @@ public static class IDCommons<T> where T : class {
         object value = negativeIdField.GetValue(null);
         return value == null ? 0 : Convert.ToInt32(value);
     }
+
+    public static string GetStringIdentifier(int id) {
+        return id < Count ? id.ToString() : Search.GetName(id);
+    }
 }

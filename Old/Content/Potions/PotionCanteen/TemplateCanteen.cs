@@ -104,8 +104,8 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer {
         }
 
         for (int i = 0; i < Buffs.Length; i++) {
-            IDLoader<BuffID>.SaveId(tag, $"Buff{i}", Buffs[i].BuffId);
-            IDLoader<ItemID>.SaveId(tag, $"Item{i}", Buffs[i].ItemId);
+            IDLoader<BuffID>.SaveToTag(tag, $"Buff{i}", Buffs[i].BuffId);
+            IDLoader<ItemID>.SaveToTag(tag, $"Item{i}", Buffs[i].ItemId);
         }
     }
 
@@ -113,13 +113,13 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer {
         InitializeBuffs();
 
         if (tag.ContainsKey("BuffID") && tag.ContainsKey("ItemID")) {
-            Buffs[0].BuffId = IDLoader<BuffID>.LoadId(tag, "BuffID");
-            Buffs[0].ItemId = IDLoader<ItemID>.LoadId(tag, "ItemID");
+            Buffs[0].BuffId = IDLoader<BuffID>.LoadFromTag(tag, "BuffID");
+            Buffs[0].ItemId = IDLoader<ItemID>.LoadFromTag(tag, "ItemID");
         }
         else {
             for (int i = 0; i < Buffs.Length; i++) {
-                Buffs[i].BuffId = IDLoader<BuffID>.LoadId(tag, $"Buff{i}", 0);
-                Buffs[i].ItemId = IDLoader<ItemID>.LoadId(tag, $"Item{i}", 0);
+                Buffs[i].BuffId = IDLoader<BuffID>.LoadFromTag(tag, $"Buff{i}", 0);
+                Buffs[i].ItemId = IDLoader<ItemID>.LoadFromTag(tag, $"Item{i}", 0);
             }
         }
 

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 404)</summary>
+/// <summary>(Total Textures: 410)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -697,8 +697,20 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> PotionCanteen = new("Aequus/Old/Content/Potions/PotionCanteen/PotionCanteen");
     /// <summary>Full Path: Old/Content/Potions/PotionCanteen/PotionCanteenEmpty</summary>
     public static readonly RequestCache<Texture2D> PotionCanteenEmpty = new("Aequus/Old/Content/Potions/PotionCanteen/PotionCanteenEmpty");
+    /// <summary>Full Path: Old/Content/Potions/Prefixes/BoundedPotions/BoundedPrefixGlint</summary>
+    public static readonly RequestCache<Texture2D> BoundedPrefixGlint = new("Aequus/Old/Content/Potions/Prefixes/BoundedPotions/BoundedPrefixGlint");
+    /// <summary>Full Path: Old/Content/Potions/Prefixes/BoundedPotions/BoundedPrefixItem</summary>
+    public static readonly RequestCache<Texture2D> BoundedPrefixItem = new("Aequus/Old/Content/Potions/Prefixes/BoundedPotions/BoundedPrefixItem");
+    /// <summary>Full Path: Old/Content/Potions/Prefixes/EmpoweredPotions/MistralPollen</summary>
+    public static readonly RequestCache<Texture2D> MistralPollen = new("Aequus/Old/Content/Potions/Prefixes/EmpoweredPotions/MistralPollen");
+    /// <summary>Full Path: Old/Content/Potions/Prefixes/SplashPotions/SplashPrefixGlint</summary>
+    public static readonly RequestCache<Texture2D> SplashPrefixGlint = new("Aequus/Old/Content/Potions/Prefixes/SplashPotions/SplashPrefixGlint");
     /// <summary>Full Path: Old/Content/Potions/Prefixes/SplashPotions/SplashPrefixItem</summary>
     public static readonly RequestCache<Texture2D> SplashPrefixItem = new("Aequus/Old/Content/Potions/Prefixes/SplashPotions/SplashPrefixItem");
+    /// <summary>Full Path: Old/Content/Potions/Prefixes/StuffedPotions/StuffedPrefixGlint</summary>
+    public static readonly RequestCache<Texture2D> StuffedPrefixGlint = new("Aequus/Old/Content/Potions/Prefixes/StuffedPotions/StuffedPrefixGlint");
+    /// <summary>Full Path: Old/Content/Potions/Prefixes/StuffedPotions/StuffedPrefixItem</summary>
+    public static readonly RequestCache<Texture2D> StuffedPrefixItem = new("Aequus/Old/Content/Potions/Prefixes/StuffedPotions/StuffedPrefixItem");
     /// <summary>Full Path: Old/Content/Potions/Resurrection/PotionOfResurrection</summary>
     public static readonly RequestCache<Texture2D> PotionOfResurrection = new("Aequus/Old/Content/Potions/Resurrection/PotionOfResurrection");
     /// <summary>Full Path: Old/Content/Tiles/Ambient/GoreNestStalagmite</summary>

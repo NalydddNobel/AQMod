@@ -41,7 +41,7 @@ public class ItemSets : DataSet {
     [JsonIgnore]
     public static Dictionary<int, TrashCompactorRecipe> CustomTrashCompactorRecipes { get; private set; } = new();
 
-    public override void AddRecipes() {
+    public override void PostSetupContent() {
         int start = 0;
         int end = ItemLoader.ItemCount;
         for (int i = start; i < end; i++) {
@@ -97,5 +97,8 @@ public class ItemSets : DataSet {
                 AmmoIdToProjectileId.Add(item.type, item.shoot);
             }
         }
+    }
+
+    public override void AddRecipes() {
     }
 }

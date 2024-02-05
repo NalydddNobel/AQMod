@@ -18,7 +18,7 @@ public class SplashPrefix : PotionPrefix {
     }
 
     public override bool CanRoll(Item item) {
-        return base.CanRoll(item) && item.shoot == ProjectileID.None;
+        return base.CanRoll(item) && ContentSamples.ItemsByType[item.type].shoot == ProjectileID.None;
     }
 
     public override void ModifyValue(ref float valueMult) {

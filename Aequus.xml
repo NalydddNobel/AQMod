@@ -1796,7 +1796,7 @@
             <summary>Full Path: Old/Assets/Sounds/RecruitZombie</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 404)</summary>
+            <summary>(Total Textures: 410)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2833,8 +2833,26 @@
         <member name="F:Aequus.AequusTextures.PotionCanteenEmpty">
             <summary>Full Path: Old/Content/Potions/PotionCanteen/PotionCanteenEmpty</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.BoundedPrefixGlint">
+            <summary>Full Path: Old/Content/Potions/Prefixes/BoundedPotions/BoundedPrefixGlint</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BoundedPrefixItem">
+            <summary>Full Path: Old/Content/Potions/Prefixes/BoundedPotions/BoundedPrefixItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MistralPollen">
+            <summary>Full Path: Old/Content/Potions/Prefixes/EmpoweredPotions/MistralPollen</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SplashPrefixGlint">
+            <summary>Full Path: Old/Content/Potions/Prefixes/SplashPotions/SplashPrefixGlint</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.SplashPrefixItem">
             <summary>Full Path: Old/Content/Potions/Prefixes/SplashPotions/SplashPrefixItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StuffedPrefixGlint">
+            <summary>Full Path: Old/Content/Potions/Prefixes/StuffedPotions/StuffedPrefixGlint</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StuffedPrefixItem">
+            <summary>Full Path: Old/Content/Potions/Prefixes/StuffedPotions/StuffedPrefixItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PotionOfResurrection">
             <summary>Full Path: Old/Content/Potions/Resurrection/PotionOfResurrection</summary>
