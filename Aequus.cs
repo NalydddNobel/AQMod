@@ -39,7 +39,7 @@ public partial class Aequus : Mod {
 #if DEBUG
             true;
 #else
-            false;
+        false;
 #endif
 
     internal static string DEBUG_FILES_PATH => $"{Main.SavePath.Replace("tModLoader-preview", "tModLoader")}";

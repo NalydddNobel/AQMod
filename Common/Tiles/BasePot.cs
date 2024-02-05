@@ -23,7 +23,7 @@ public abstract class BasePot : ModTile {
 
         TileID.Sets.DisableSmartCursor[Type] = true;
 
-        TileSets.IsSmashablePot.Add((TileEntry)Type);
+        TileSets.IsSmashablePot.Add(Type);
 
         SetupTileObjectData();
         _multiTile = TileObjectData.newTile.Width > 1 || TileObjectData.newTile.Height > 1;

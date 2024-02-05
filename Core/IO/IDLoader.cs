@@ -1,20 +1,16 @@
-﻿using ReLogic.Reflection;
+﻿using Aequus.Core.DataSets;
 using System;
 using System.Globalization;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Core.IO;
 
-/// <summary>
-/// Helper for loading content which uses a legacy Id system.
-/// </summary>
+/// <summary>Helper for loading content which uses a legacy Id system.</summary>
 public class IDLoader<T> where T : class {
-    private static readonly IdDictionary _idDictionary = (IdDictionary)typeof(T).GetField("Search").GetValue(null);
-    private static readonly int _vanillaCount = Convert.ToInt32(typeof(T).GetField("Count").GetValue(null));
-
-    public static int LoadId(TagCompound tag, string name, int defaultValue = -1) {
+    #region Tag Compound
+    public static int LoadFromTag(TagCompound tag, string name, int defaultValue = -1) {
         if (tag.TryGet(name, out object value)) {
-            if (value is string idName && _idDictionary.TryGetId(idName, out int foundId)) {
+            if (value is string idName && IDCommons<T>.Search.TryGetId(idName, out int foundId)) {
                 return foundId;
             }
 
@@ -26,12 +22,13 @@ public class IDLoader<T> where T : class {
         return defaultValue;
     }
 
-    public static void SaveId(TagCompound tag, string name, int id) {
-        if (id < _vanillaCount) {
+    public static void SaveToTag(TagCompound tag, string name, int id) {
+        if (id < IDCommons<T>.Count) {
             tag[name] = id;
         }
         else {
-            tag[name] = _idDictionary.GetName(id);
+            tag[name] = IDCommons<T>.Search.GetName(id);
         }
     }
+    #endregion
 }

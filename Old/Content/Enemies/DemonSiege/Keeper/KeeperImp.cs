@@ -26,10 +26,10 @@ public class KeeperImp : ModNPC {
         NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new() {
             Position = new Vector2(1f, 12f)
         });
-        foreach (BuffEntry buff in BuffSets.DemonSiegeImmune) {
-            NPCID.Sets.SpecificDebuffImmunity[Type][buff.Id] = true;
+        foreach (int buff in BuffSets.DemonSiegeImmune) {
+            NPCID.Sets.SpecificDebuffImmunity[Type][buff] = true;
         }
-        NPCSets.DealsHeatDamage.Add((NPCEntry)Type);
+        NPCSets.DealsHeatDamage.Add(Type);
     }
 
     public override void SetDefaults() {

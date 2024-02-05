@@ -19,8 +19,8 @@ public class CrimsonHellfire : ModBuff, IOnAddBuff {
     public override void SetStaticDefaults() {
         Main.debuff[Type] = true;
         Main.buffNoSave[Type] = true;
-        BuffSets.DemonSiegeImmune.Add((BuffEntry)Type);
-        BuffSets.PlayerDoTDebuff.Add((BuffEntry)Type);
+        BuffSets.DemonSiegeImmune.Add(Type);
+        BuffSets.PlayerDoTDebuff.Add(Type);
     }
 
     public override bool ReApply(NPC npc, int time, int buffIndex) {

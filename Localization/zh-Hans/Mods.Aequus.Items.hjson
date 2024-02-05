@@ -131,14 +131,14 @@ WarHorn: {
 }
 
 HallowCanteen: {
-	// DisplayName: Magic Canteen
-	// DisplayNameAlt: Magic Canteen ({0})
-	// Tooltip: Craft with two potions to allow infinite use
+	DisplayName: 魔力壶
+	DisplayNameAlt: 魔力壶 ({0})
+	Tooltip: 与两种药水进行合成后能够无限使用
 }
 
 HallowCanteenEmpty: {
-	// DisplayName: "{$Items.HallowCanteen.DisplayName}"
-	// Tooltip: "{$Items.HallowCanteen.Tooltip}"
+	DisplayName: "{$Items.HallowCanteen.DisplayName}"
+	Tooltip: "{$Items.HallowCanteen.Tooltip}"
 }
 
 PotionCanteenEmpty: {

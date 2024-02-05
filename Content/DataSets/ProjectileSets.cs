@@ -1,5 +1,4 @@
 ﻿using Aequus.Core.DataSets;
-using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using Terraria.GameContent;
@@ -7,26 +6,25 @@ using Terraria.GameContent;
 namespace Aequus.Content.DataSets;
 
 public class ProjectileSets : DataSet {
-    public static Dictionary<ProjectileEntry, float> SpriteRotation { get; private set; } = new();
+    /// <summary>Rotation offset of projectile sprites so it can be rotated correctly.</summary>
+    public static Dictionary<Entry<ProjectileID>, float> SpriteRotation { get; private set; } = new();
 
-    /// <summary>
-    /// Projectiles in this set do not damage the <see cref="Old.Content.TownNPCs.OccultistNPC.Occultist"/>.
-    /// </summary>
+    /// <summary>Projectiles in this set do not damage the <see cref="Old.Content.TownNPCs.OccultistNPC.Occultist"/>.</summary>
     [JsonProperty]
-    public static HashSet<ProjectileEntry> OccultistIgnore { get; private set; } = new();
-    public static HashSet<ProjectileEntry> IsStar { get; private set; } = new();
+    public static HashSet<Entry<ProjectileID>> OccultistIgnore { get; private set; } = new();
 
-    /// <summary>
-    /// Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.
-    /// </summary>
-    [JsonProperty]
-    public static HashSet<ProjectileEntry> DealsHeatDamage { get; private set; } = new();
+    /// <summary>Whether or not this projectile is a "Star", this is automatically populated with anything that has "Star" in their internal name.</summary>
+    public static HashSet<Entry<ProjectileID>> IsStar { get; private set; } = new();
 
+    /// <summary>Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.</summary>
     [JsonProperty]
-    public static HashSet<ProjectileEntry> PushableByTypeId { get; private set; } = new();
+    public static HashSet<Entry<ProjectileID>> DealsHeatDamage { get; private set; } = new();
 
     [JsonProperty]
-    public static HashSet<ProjectileAIEntry> PushableByAI { get; private set; } = new();
+    public static HashSet<Entry<ProjectileID>> PushableByTypeId { get; private set; } = new();
+
+    [JsonProperty]
+    public static HashSet<Entry<ProjectileID>> PushableByAI { get; private set; } = new();
 
     public override void PostSetupContent() {
         for (int i = 0; i < ProjectileLoader.ProjectileCount; i++) {
@@ -35,7 +33,7 @@ public class ProjectileSets : DataSet {
                     name = name.Split('/')[^1];
                 }
                 if (name.Contains("Star") && !name.Contains("Start")) {
-                    IsStar.Add((ProjectileEntry)i);
+                    IsStar.Add(i);
                 }
             }
         }

@@ -1,14 +1,6 @@
-﻿using Aequus.Common.Buffs;
-using Aequus.Common.Buffs.Components;
-using Aequus.Content.DataSets;
-using Aequus.Core.DataSets;
-using Aequus.Old.Content.Particles;
+﻿using Aequus.Content.DataSets;
 using Aequus.Old.Content.Weapons.Demon;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Aequus.Old.Content.Necromancy.Sceptres.Forbidden;
 
@@ -24,7 +16,7 @@ public class LocustDebuff : ModBuff {
     public override void SetStaticDefaults() {
         Main.debuff[Type] = true;
         Main.buffNoSave[Type] = true;
-        BuffSets.PlayerDoTDebuff.Add((BuffEntry)Type);
+        BuffSets.PlayerDoTDebuff.Add(Type);
     }
 
     public override bool ReApply(NPC npc, int time, int buffIndex) {

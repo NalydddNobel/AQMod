@@ -20,5 +20,5 @@ public enum PaintColor : byte {
     Shadow,
     Negative,
     Rainbow,
-    Count,
+    Count
 }

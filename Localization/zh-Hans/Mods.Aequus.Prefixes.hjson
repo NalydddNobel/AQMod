@@ -8,3 +8,33 @@ Organized.DisplayName: 轮契
 Punctual.DisplayName: 准时
 Steady.DisplayName: 稳定
 Tardy.DisplayName: 迟缓
+// PotionPrefixTooltip: Hold and press <right> while hovering over a potion to apply
+
+SplashPrefix: {
+	DisplayName: 可泼溅的
+	Ability: +可投掷
+	ItemName: 海鳝花粉
+	ItemTooltip: 允许投掷药水
+}
+
+BoundedPrefix: {
+	// DisplayName: Bounded
+	// Ability: +Beyond Death
+	// ItemName: Manacle Pollen
+	/* ItemTooltip:
+		'''
+		Allows potion buffs to stay after death
+		{$Prefixes.PotionPrefixTooltip}
+		''' */
+}
+
+StuffedPrefix: {
+	// DisplayName: Stuffed
+	// Ability: x{0} duration
+	// ItemName: Moonflower Pollen
+	/* ItemTooltip:
+		'''
+		Doubles the duration of potions
+		{$Prefixes.PotionPrefixTooltip}
+		''' */
+}

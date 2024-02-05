@@ -62,7 +62,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
             Scale = 1f,
         };
         NPCID.Sets.StatueSpawnedDropRarity[Type] = 0.05f;
-        NPCSets.PushableByTypeId.AddEntry(Type);
+        NPCSets.PushableByTypeId.Add(Type);
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

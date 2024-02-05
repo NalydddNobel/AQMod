@@ -1,5 +1,4 @@
 ﻿using Aequus.Content.DataSets;
-using Aequus.Core.DataSets;
 using System;
 
 namespace Aequus.Old.Content.Necromancy.Sceptres.Forbidden;
@@ -8,7 +7,7 @@ public class LocustSmall : ModProjectile {
     public override void SetStaticDefaults() {
         Main.projFrames[Type] = 2;
         ProjectileID.Sets.MinionShot[Type] = true;
-        ProjectileSets.PushableByTypeId.Add((ProjectileEntry)Type);
+        ProjectileSets.PushableByTypeId.Add(Type);
     }
 
     public override void SetDefaults() {

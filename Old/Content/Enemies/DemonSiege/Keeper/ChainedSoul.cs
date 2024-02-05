@@ -17,11 +17,11 @@ public class ChainedSoul : ModNPC {
             Hide = true,
         };
         NPCID.Sets.CantTakeLunchMoney[Type] = true;
-        foreach (BuffEntry buff in BuffSets.DemonSiegeImmune) {
-            NPCID.Sets.SpecificDebuffImmunity[Type][buff.Id] = true;
+        foreach (int buff in BuffSets.DemonSiegeImmune) {
+            NPCID.Sets.SpecificDebuffImmunity[Type][buff] = true;
         }
-        NPCSets.DealsHeatDamage.Add((NPCEntry)Type);
-        NPCSets.Soulless.Add((NPCEntry)Type);
+        NPCSets.DealsHeatDamage.Add(Type);
+        NPCSets.Soulless.Add(Type);
 
         BannerLoader.AddBannerBuff<KeeperImp>(this);
     }

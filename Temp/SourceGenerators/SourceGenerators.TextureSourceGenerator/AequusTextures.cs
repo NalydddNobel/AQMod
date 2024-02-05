@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 460)</summary>
+/// <summary>(Total Textures: 467)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -695,14 +695,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> HighSteaks = new("Aequus/Old/Content/Equipment/Accessories/HighSteaks/HighSteaks");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/HighSteaks/HighSteaks_Waist</summary>
     public static readonly RequestCache<Texture2D> HighSteaks_Waist = new("Aequus/Old/Content/Equipment/Accessories/HighSteaks/HighSteaks_Waist");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/PotionCanteen/HallowCanteen</summary>
-    public static readonly RequestCache<Texture2D> HallowCanteen = new("Aequus/Old/Content/Equipment/Accessories/PotionCanteen/HallowCanteen");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/PotionCanteen/HallowCanteenEmpty</summary>
-    public static readonly RequestCache<Texture2D> HallowCanteenEmpty = new("Aequus/Old/Content/Equipment/Accessories/PotionCanteen/HallowCanteenEmpty");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/PotionCanteen/PotionCanteen</summary>
-    public static readonly RequestCache<Texture2D> PotionCanteen = new("Aequus/Old/Content/Equipment/Accessories/PotionCanteen/PotionCanteen");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/PotionCanteen/PotionCanteenEmpty</summary>
-    public static readonly RequestCache<Texture2D> PotionCanteenEmpty = new("Aequus/Old/Content/Equipment/Accessories/PotionCanteen/PotionCanteenEmpty");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHorn</summary>
     public static readonly RequestCache<Texture2D> WarHorn = new("Aequus/Old/Content/Equipment/Accessories/WarHorn/WarHorn");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHornCooldown</summary>
@@ -811,6 +803,28 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> VoidDust = new("Aequus/Old/Content/Particles/VoidDust");
     /// <summary>Full Path: Old/Content/Potions/Foods/SusSteak/SuspiciousLookingSteak</summary>
     public static readonly RequestCache<Texture2D> SuspiciousLookingSteak = new("Aequus/Old/Content/Potions/Foods/SusSteak/SuspiciousLookingSteak");
+    /// <summary>Full Path: Old/Content/Potions/PotionCanteen/HallowCanteen</summary>
+    public static readonly RequestCache<Texture2D> HallowCanteen = new("Aequus/Old/Content/Potions/PotionCanteen/HallowCanteen");
+    /// <summary>Full Path: Old/Content/Potions/PotionCanteen/HallowCanteenEmpty</summary>
+    public static readonly RequestCache<Texture2D> HallowCanteenEmpty = new("Aequus/Old/Content/Potions/PotionCanteen/HallowCanteenEmpty");
+    /// <summary>Full Path: Old/Content/Potions/PotionCanteen/PotionCanteen</summary>
+    public static readonly RequestCache<Texture2D> PotionCanteen = new("Aequus/Old/Content/Potions/PotionCanteen/PotionCanteen");
+    /// <summary>Full Path: Old/Content/Potions/PotionCanteen/PotionCanteenEmpty</summary>
+    public static readonly RequestCache<Texture2D> PotionCanteenEmpty = new("Aequus/Old/Content/Potions/PotionCanteen/PotionCanteenEmpty");
+    /// <summary>Full Path: Old/Content/Potions/Prefixes/BoundedPotions/BoundedPrefixGlint</summary>
+    public static readonly RequestCache<Texture2D> BoundedPrefixGlint = new("Aequus/Old/Content/Potions/Prefixes/BoundedPotions/BoundedPrefixGlint");
+    /// <summary>Full Path: Old/Content/Potions/Prefixes/BoundedPotions/BoundedPrefixItem</summary>
+    public static readonly RequestCache<Texture2D> BoundedPrefixItem = new("Aequus/Old/Content/Potions/Prefixes/BoundedPotions/BoundedPrefixItem");
+    /// <summary>Full Path: Old/Content/Potions/Prefixes/EmpoweredPotions/MistralPollen</summary>
+    public static readonly RequestCache<Texture2D> MistralPollen = new("Aequus/Old/Content/Potions/Prefixes/EmpoweredPotions/MistralPollen");
+    /// <summary>Full Path: Old/Content/Potions/Prefixes/SplashPotions/SplashPrefixGlint</summary>
+    public static readonly RequestCache<Texture2D> SplashPrefixGlint = new("Aequus/Old/Content/Potions/Prefixes/SplashPotions/SplashPrefixGlint");
+    /// <summary>Full Path: Old/Content/Potions/Prefixes/SplashPotions/SplashPrefixItem</summary>
+    public static readonly RequestCache<Texture2D> SplashPrefixItem = new("Aequus/Old/Content/Potions/Prefixes/SplashPotions/SplashPrefixItem");
+    /// <summary>Full Path: Old/Content/Potions/Prefixes/StuffedPotions/StuffedPrefixGlint</summary>
+    public static readonly RequestCache<Texture2D> StuffedPrefixGlint = new("Aequus/Old/Content/Potions/Prefixes/StuffedPotions/StuffedPrefixGlint");
+    /// <summary>Full Path: Old/Content/Potions/Prefixes/StuffedPotions/StuffedPrefixItem</summary>
+    public static readonly RequestCache<Texture2D> StuffedPrefixItem = new("Aequus/Old/Content/Potions/Prefixes/StuffedPotions/StuffedPrefixItem");
     /// <summary>Full Path: Old/Content/Potions/Resurrection/PotionOfResurrection</summary>
     public static readonly RequestCache<Texture2D> PotionOfResurrection = new("Aequus/Old/Content/Potions/Resurrection/PotionOfResurrection");
     /// <summary>Full Path: Old/Content/Tiles/Ambient/GoreNestStalagmite</summary>

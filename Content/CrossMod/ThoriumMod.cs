@@ -4,9 +4,6 @@ using Aequus.Core.CrossMod;
 namespace Aequus.Content.CrossMod; 
 
 internal class ThoriumMod : SupportedMod<ThoriumMod> {
-    public override void SafeLoad(Mod mod) {
-    }
-
     public override void AddRecipes() {
         foreach (int buffId in BuffSets.PlayerDoTDebuff) {
             if (buffId >= BuffID.Count && BuffLoader.GetBuff(buffId)?.Mod == Aequus.Instance) {
@@ -18,8 +15,5 @@ internal class ThoriumMod : SupportedMod<ThoriumMod> {
                 Call("AddPlayerStatusBuffID", buffId);
             }
         }
-    }
-
-    public override void SafeUnload() {
     }
 }

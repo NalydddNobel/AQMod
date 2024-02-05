@@ -12,7 +12,7 @@ using Terraria.Localization;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
 
-namespace Aequus.Old.Content.Equipment.Accessories.PotionCanteen;
+namespace Aequus.Old.Content.Potions.PotionCanteen;
 
 public abstract class TemplateCanteen : ModItem, IOnShimmer {
     public abstract int Rarity { get; }
@@ -104,8 +104,8 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer {
         }
 
         for (int i = 0; i < Buffs.Length; i++) {
-            IDLoader<BuffID>.SaveId(tag, $"Buff{i}", Buffs[i].BuffId);
-            IDLoader<ItemID>.SaveId(tag, $"Item{i}", Buffs[i].ItemId);
+            IDLoader<BuffID>.SaveToTag(tag, $"Buff{i}", Buffs[i].BuffId);
+            IDLoader<ItemID>.SaveToTag(tag, $"Item{i}", Buffs[i].ItemId);
         }
     }
 
@@ -113,13 +113,13 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer {
         InitializeBuffs();
 
         if (tag.ContainsKey("BuffID") && tag.ContainsKey("ItemID")) {
-            Buffs[0].BuffId = IDLoader<BuffID>.LoadId(tag, "BuffID");
-            Buffs[0].ItemId = IDLoader<ItemID>.LoadId(tag, "ItemID");
+            Buffs[0].BuffId = IDLoader<BuffID>.LoadFromTag(tag, "BuffID");
+            Buffs[0].ItemId = IDLoader<ItemID>.LoadFromTag(tag, "ItemID");
         }
         else {
             for (int i = 0; i < Buffs.Length; i++) {
-                Buffs[i].BuffId = IDLoader<BuffID>.LoadId(tag, $"Buff{i}", 0);
-                Buffs[i].ItemId = IDLoader<ItemID>.LoadId(tag, $"Item{i}", 0);
+                Buffs[i].BuffId = IDLoader<BuffID>.LoadFromTag(tag, $"Buff{i}", 0);
+                Buffs[i].ItemId = IDLoader<ItemID>.LoadFromTag(tag, $"Item{i}", 0);
             }
         }
 
@@ -247,7 +247,7 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer {
     }
 
     public override void AddRecipes() {
-        ItemEntry[] validPotions = ItemSets.Potions.Where(i => i.ValidEntry && ContentSamples.ItemsByType[i.Id].buffType != BuffID.Lucky).ToArray();
+        int[] validPotions = ItemSets.Potions.Where(i => i.ValidEntry && ContentSamples.ItemsByType[i.Id].buffType != BuffID.Lucky).Select(e => e.Id).ToArray();
         int potionCount = PotionsContained;
 
         // Examples use an array of length 3.
@@ -278,7 +278,7 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer {
             canteen.InitializeBuffs();
 
             for (int i = 0; i < indices.Length; i++) {
-                ItemEntry potion = validPotions[indices[i]];
+                int potion = validPotions[indices[i]];
 
                 r.AddIngredient(potion, PotionRecipeRequirement);
 

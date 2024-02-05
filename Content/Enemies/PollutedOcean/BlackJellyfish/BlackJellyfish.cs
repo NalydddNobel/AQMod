@@ -21,7 +21,7 @@ public partial class BlackJellyfish : AIJellyfish {
     #region Initialization
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = 4;
-        NPCSets.PushableByTypeId.AddEntry(Type);
+        NPCSets.PushableByTypeId.Add(Type);
         DrawLayers.Instance.PostDrawLiquids += DrawExplodingJellyfishesLayer;
     }
 

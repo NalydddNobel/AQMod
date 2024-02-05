@@ -1,4 +1,4 @@
-﻿using Aequus.Core.Debug;
+﻿using Aequus.Core.Debugging;
 using System;
 
 namespace Aequus.Core.Graphics;
