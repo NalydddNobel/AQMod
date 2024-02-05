@@ -1,7 +1,7 @@
 ﻿using Aequus.Core.Assets;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Equipment.Accessories.PotionCanteen;
+namespace Aequus.Old.Content.Potions.PotionCanteen;
 
 public class HallowCanteen : TemplateCanteen {
     public override int Rarity => ItemRarityID.LightRed;

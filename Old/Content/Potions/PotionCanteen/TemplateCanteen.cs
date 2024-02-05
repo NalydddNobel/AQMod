@@ -12,7 +12,7 @@ using Terraria.Localization;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
 
-namespace Aequus.Old.Content.Equipment.Accessories.PotionCanteen;
+namespace Aequus.Old.Content.Potions.PotionCanteen;
 
 public abstract class TemplateCanteen : ModItem, IOnShimmer {
     public abstract int Rarity { get; }

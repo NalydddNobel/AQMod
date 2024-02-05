@@ -2647,18 +2647,6 @@
         <member name="F:Aequus.AequusTextures.HighSteaks_Waist">
             <summary>Full Path: Old/Content/Equipment/Accessories/HighSteaks/HighSteaks_Waist</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.HallowCanteen">
-            <summary>Full Path: Old/Content/Equipment/Accessories/PotionCanteen/HallowCanteen</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HallowCanteenEmpty">
-            <summary>Full Path: Old/Content/Equipment/Accessories/PotionCanteen/HallowCanteenEmpty</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PotionCanteen">
-            <summary>Full Path: Old/Content/Equipment/Accessories/PotionCanteen/PotionCanteen</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PotionCanteenEmpty">
-            <summary>Full Path: Old/Content/Equipment/Accessories/PotionCanteen/PotionCanteenEmpty</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.WarHorn">
             <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHorn</summary>
         </member>
@@ -2820,6 +2808,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.SuspiciousLookingSteak">
             <summary>Full Path: Old/Content/Potions/Foods/SusSteak/SuspiciousLookingSteak</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HallowCanteen">
+            <summary>Full Path: Old/Content/Potions/PotionCanteen/HallowCanteen</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HallowCanteenEmpty">
+            <summary>Full Path: Old/Content/Potions/PotionCanteen/HallowCanteenEmpty</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PotionCanteen">
+            <summary>Full Path: Old/Content/Potions/PotionCanteen/PotionCanteen</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PotionCanteenEmpty">
+            <summary>Full Path: Old/Content/Potions/PotionCanteen/PotionCanteenEmpty</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PotionOfResurrection">
             <summary>Full Path: Old/Content/Potions/Resurrection/PotionOfResurrection</summary>
@@ -3006,9 +3006,6 @@
             The cost for performing a critical strike.
             </summary>
         </member>
-        <member name="P:Aequus.Old.Content.Equipment.Accessories.PotionCanteen.TemplateCanteen.HasBuffs">
-            <summary>Determines if this canteen has any buffs at all.</summary>
-        </member>
         <member name="T:Aequus.Old.Content.Events.DemonSiege.Tiles.OblivionAltarDummy">
             <summary>Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.</summary>
         </member>
@@ -3016,6 +3013,9 @@
             <summary>
             Default Value: 3600 (1 minute)
             </summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Potions.PotionCanteen.TemplateCanteen.HasBuffs">
+            <summary>Determines if this canteen has any buffs at all.</summary>
         </member>
     </members>
 </doc>
