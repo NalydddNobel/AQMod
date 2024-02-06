@@ -7,13 +7,15 @@ namespace Aequus.Old.Content.Potions.Prefixes;
 public class PotionsPlayerSyncPacket : PacketHandler {
     private readonly List<int> _potionData = new();
 
-    public void Send(Player player, PotionsPlayer boundedPotions, int toWho = -1, int fromWho = -1) {
+    public void Send(Player player, PotionsPlayer potionPlayer, int toWho = -1, int fromWho = -1) {
         ModPacket packet = GetPacket();
+
         packet.Write((byte)player.whoAmI);
 
-        lock (boundedPotions.BoundedPotionIds) {
+        lock (potionPlayer) {
+            packet.Write(potionPlayer.empoweredPotionId);
 
-            int count = boundedPotions.BoundedPotionIds.Count;
+            int count = potionPlayer.BoundedPotionIds.Count;
 
             // We pray that Player.MaxBuffs is the same between clients.
             if (Player.MaxBuffs < byte.MaxValue) {
@@ -24,7 +26,7 @@ public class PotionsPlayerSyncPacket : PacketHandler {
             }
 
             for (int i = 0; i < count; i++) {
-                packet.Write(boundedPotions.BoundedPotionIds[i]);
+                packet.Write(potionPlayer.BoundedPotionIds[i]);
             }
         }
 
@@ -33,6 +35,8 @@ public class PotionsPlayerSyncPacket : PacketHandler {
 
     public override void Receive(BinaryReader reader, int sender) {
         byte plr = reader.ReadByte();
+
+        int empoweredPotionId = reader.ReadInt32();
 
         // Second praying session
         int count;
@@ -53,12 +57,13 @@ public class PotionsPlayerSyncPacket : PacketHandler {
             _potionData.Add(reader.ReadInt32());
         }
 
-        if (!Main.player[plr].active || !Main.player[plr].TryGetModPlayer(out PotionsPlayer boundedPotions)) {
+        if (!Main.player[plr].active || !Main.player[plr].TryGetModPlayer(out PotionsPlayer potionPlayer)) {
             return;
         }
 
         // Add potion data received from packet.
-        boundedPotions.BoundedPotionIds.Clear();
-        boundedPotions.BoundedPotionIds.AddRange(_potionData);
+        potionPlayer.BoundedPotionIds.Clear();
+        potionPlayer.BoundedPotionIds.AddRange(_potionData);
+        potionPlayer.empoweredPotionId = empoweredPotionId;
     }
 }

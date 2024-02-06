@@ -6,10 +6,13 @@ using Terraria.ModLoader.IO;
 namespace Aequus.Old.Content.Potions.Prefixes;
 
 public class PotionsPlayer : ModPlayer {
+    public static bool UsingQuickBuffHack { get; private set; }
+
     public readonly List<int> BoundedPotionIds = new();
     public int empoweredPotionId;
 
     public override void Load() {
+        On_Player.QuickBuff += OnQuickBuff;
         On_Player.DelBuff += OnDeleteBuff;
     }
 
@@ -57,6 +60,7 @@ public class PotionsPlayer : ModPlayer {
 
         copy.BoundedPotionIds.Clear();
         copy.BoundedPotionIds.AddRange(BoundedPotionIds);
+        copy.empoweredPotionId = empoweredPotionId;
     }
 
     public override void SyncPlayer(int toWho, int fromWho, bool newPlayer) {
@@ -66,7 +70,7 @@ public class PotionsPlayer : ModPlayer {
     public override void SendClientChanges(ModPlayer clientPlayer) {
         PotionsPlayer clone = (PotionsPlayer)clientPlayer;
 
-        if (!BoundPotionsMatch(clone)) {
+        if (!BoundPotionsMatch(clone) || clone.empoweredPotionId != empoweredPotionId) {
             SyncPlayer(toWho: -1, fromWho: Main.myPlayer, newPlayer: false);
         }
     }
@@ -87,6 +91,12 @@ public class PotionsPlayer : ModPlayer {
     #endregion
 
     #region Hooks
+    private static void OnQuickBuff(On_Player.orig_QuickBuff orig, Player player) {
+        UsingQuickBuffHack = true;
+        orig(player);
+        UsingQuickBuffHack = false;
+    }
+
     private static void OnDeleteBuff(On_Player.orig_DelBuff orig, Player player, int b) {
         int buffType = player.buffType[b];
 

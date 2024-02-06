@@ -1,6 +1,7 @@
 ﻿using Aequus.Content.DataSets;
 using Aequus.Old.Content.Potions.Prefixes.BoundedPotions;
 using Aequus.Old.Content.Potions.Prefixes.EmpoweredPotions;
+using Aequus.Old.Content.Potions.Prefixes.SplashPotions;
 using System;
 
 namespace Aequus.Old.Content.Potions.Prefixes;
@@ -11,6 +12,23 @@ public class PotionPrefixGlobalItem : GlobalItem {
 
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
         return ItemSets.Potions.Contains(entity.type);
+    }
+
+    public override bool CanUseItem(Item item, Player player) {
+        if (PotionsPlayer.UsingQuickBuffHack && item.prefix >= PrefixID.Count && item.buffType > 0 && item.buffTime > 0) {
+            ModPrefix prefix = PrefixLoader.GetPrefix(item.prefix);
+            // Prevent the player from quick-buffing any other empowered potions
+            // if they already have an empowered potion active
+            if (prefix is EmpoweredPrefix && player.TryGetModPlayer(out PotionsPlayer potionPlayer) && potionPlayer.empoweredPotionId != 0) {
+                return false;
+            }
+
+            // Prevent using the potion if it's a splash potion
+            if (prefix is SplashPrefix) {
+                return false;
+            }
+        }
+        return base.CanUseItem(item, player);
     }
 
     public override bool? UseItem(Item item, Player player) {
