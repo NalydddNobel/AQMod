@@ -12,6 +12,9 @@ CommonTooltips: {
 	// NecromancyStaff: Slain enemies will convert into ghost minions
 	// StatGhostDuration: Increases the duration of your ghost minions by {0} seconds
 	// StatGhostSlots: Increases your max number of ghosts by {0}
+	// StatWingTime: Increases flight time by {0} seconds
+	// DecreaseAggro: Enemies are less likely to target you
+	// IncreaseAggro: Enemies are more likely to target you
 }
 
 //# Equipment: Accessories

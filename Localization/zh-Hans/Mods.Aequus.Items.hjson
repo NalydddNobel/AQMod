@@ -12,6 +12,9 @@ CommonTooltips: {
 	NecromancyStaff: 被击杀敌人会转化为幽魂仆从
 	StatGhostDuration: 延长{0}秒幽魂仆从的存在时间
 	StatGhostSlots: 增加{0}格最大幽魂仆从栏位
+	// StatWingTime: Increases flight time by {0} seconds
+	// DecreaseAggro: Enemies are less likely to target you
+	// IncreaseAggro: Enemies are more likely to target you
 }
 
 //# Equipment: Accessories

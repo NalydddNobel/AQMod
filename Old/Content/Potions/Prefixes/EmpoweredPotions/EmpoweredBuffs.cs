@@ -15,27 +15,37 @@ public class EmpoweredBuffs : DataSet {
     public record struct EmpoweredOverride(float Percent = 1f, Action<Player> CustomAction = null, LocalizedText Tooltip = null);
 
     public override void Load() {
-        Blacklist.Add(BuffID.Featherfall);
-        Blacklist.Add(BuffID.Spelunker);
-        Blacklist.Add(BuffID.BiomeSight);
-        Blacklist.Add(BuffID.Invisibility);
-        Blacklist.Add(BuffID.NightOwl);
-        Blacklist.Add(BuffID.Battle);
-        Blacklist.Add(BuffID.WaterWalking);
-        Blacklist.Add(BuffID.Hunter);
         Blacklist.Add(BuffID.Gravitation);
-        Blacklist.Add(BuffID.Honey);
-        Blacklist.Add(BuffID.Heartreach);
-        Blacklist.Add(BuffID.Calm);
         Blacklist.Add(BuffID.Sonar);
-        Blacklist.Add(BuffID.Crate);
-        Blacklist.Add(BuffID.Flipper);
-        Blacklist.Add(BuffID.AmmoReservation);
-        Blacklist.Add(BuffID.Warmth);
+        Blacklist.Add(BuffID.BiomeSight);
+        Blacklist.Add(BuffID.Hunter);
+        Blacklist.Add(BuffID.Honey);
         Blacklist.Add(BuffID.Inferno);
 
+        Override.Add(BuffID.WaterWalking, new(CustomAction: (p) => {
+            Tile standingTile = Framing.GetTileSafely(p.Bottom);
+            if (!standingTile.IsSolid() && standingTile.LiquidAmount > 0) {
+                p.moveSpeed += 0.5f;
+                p.runAcceleration *= 1.5f;
+            }
+        }));
+        Override.Add(BuffID.Warmth, new(CustomAction: (p) => {
+            p.buffImmune[BuffID.Chilled] = true;
+            p.buffImmune[BuffID.Frozen] = true;
+        }));
+        Override.Add(BuffID.Invisibility, new(CustomAction: (p) => p.aggro -= 400, Tooltip: Language.GetText("Mods.Aequus.Items.CommonTooltips.DecreaseAggro").WithFormatArgs(1)));
+        Override.Add(BuffID.Featherfall, new(CustomAction: (p) => p.GetModPlayer<AequusPlayer>().wingTime += 60, Tooltip: Language.GetText("Mods.Aequus.Items.CommonTooltips.StatWingTime").WithFormatArgs(1)));
         Override.Add(BuffID.ObsidianSkin, new(Tooltip: Language.GetText("CommonItemTooltip.IncreasesDefenseBy").WithFormatArgs(8)));
-        Override.Add(BuffID.Gills, new(CustomAction: (p) => p.accMerman = true, Tooltip: Language.GetText("ItemTooltip.NeptunesShell")));
+        Override.Add(BuffID.Flipper, new(CustomAction: (p) => {
+            if (p.wet) {
+                p.moveSpeed += 0.25f;
+            }
+        }));
+        Override.Add(BuffID.Gills, new(CustomAction: (p) => {
+            if (p.wet) {
+                p.statDefense += 16;
+            }
+        }));
         Override.Add(BuffID.ManaRegeneration, new(CustomAction: (p) => p.statManaMax += 100, Tooltip: Language.GetText("CommonItemTooltip.IncreasesMaxManaBy").WithFormatArgs(100)));
         Override.Add(BuffID.Titan, new(CustomAction: (p) => p.GetKnockback<GenericDamageClass>() += 1f));
         Override.Add(BuffID.Dangersense, new(CustomAction: (p) => p.InfoAccMechShowWires = true, Tooltip: Language.GetText("ItemTooltip.MechanicalLens")));

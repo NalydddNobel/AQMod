@@ -27,6 +27,9 @@ public sealed class ResetEffectsGenerator<T> {
             else if (f.FieldType == typeof(float)) {
                 gen.Emit(OpCodes.Ldc_R4, (float)(attr.resetValue ?? 0f));
             }
+            else if (f.FieldType == typeof(StatModifier)) {
+                gen.Emit(OpCodes.Ldsfld, typeof(StatModifier).GetField(nameof(StatModifier.Default), BindingFlags.Public | BindingFlags.Static));
+            }
             else if (!f.FieldType.IsValueType || Nullable.GetUnderlyingType(f.FieldType) != null) {
                 gen.Emit(OpCodes.Ldnull);
             }
