@@ -2,7 +2,9 @@
 using Aequus.Old.Content.Potions.Prefixes.BoundedPotions;
 using Aequus.Old.Content.Potions.Prefixes.EmpoweredPotions;
 using Aequus.Old.Content.Potions.Prefixes.SplashPotions;
+using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 
 namespace Aequus.Old.Content.Potions.Prefixes;
 public class PotionPrefixGlobalItem : GlobalItem {
@@ -38,6 +40,14 @@ public class PotionPrefixGlobalItem : GlobalItem {
         }
 
         return null;
+    }
+
+    public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
+        if (item.prefix >= PrefixID.Count && PrefixLoader.GetPrefix(item.prefix) is EmpoweredPrefix) {
+            if (EmpoweredBuffs.Override.TryGetValue(item.buffType, out var buffOverride) && buffOverride.Tooltip != null) {
+                tooltips.AddTooltip(new TooltipLine(Mod, "TooltipEmpowered", buffOverride.Tooltip.Value));
+            }
+        }
     }
 
     public override void PostDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {

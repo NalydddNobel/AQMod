@@ -42,6 +42,7 @@ StuffedPrefix: {
 EmpoweredPrefix: {
 	DisplayName: 增强的
 	Ability: x{0}强度
+	Downside: "{StuffedPrefix.Ability}"
 	ItemName: 寒风花粉
 	ItemTooltip:
 		'''

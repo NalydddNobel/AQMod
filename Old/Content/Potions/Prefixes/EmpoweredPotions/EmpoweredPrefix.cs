@@ -24,7 +24,7 @@ public class EmpoweredPrefix : PotionPrefix {
     public override IEnumerable<TooltipLine> GetTooltipLines(Item item) {
         float percent = 1f;
         if (EmpoweredBuffs.Override.TryGetValue(item.buffType, out var buffOverride)) {
-            percent = buffOverride.Percentage;
+            percent = buffOverride.Percent;
         }
 
         yield return new TooltipLine(Mod, "PrefixEmpowered", this.GetLocalization("Ability")

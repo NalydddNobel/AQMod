@@ -15,7 +15,7 @@ public class PotionPrefixGlobalBuff : GlobalBuff {
         // We check the buffType array to make sure the buff wasn't deleted already.
         // If it was, we really don't want to risk deleting another buff, so just don't run the empowered update code
         if (type == potionPlayer.empoweredPotionId && player.buffType.IndexInRange(buffIndex) && player.buffType[buffIndex] == type) {
-            if (EmpoweredBuffs.Override.TryGetValue(type, out var buffOverride)) {
+            if (EmpoweredBuffs.Override.TryGetValue(type, out var buffOverride) && buffOverride.CustomAction != null) {
                 buffOverride.CustomAction(player);
             }
             else if (type >= BuffID.Count) {
@@ -27,19 +27,25 @@ public class PotionPrefixGlobalBuff : GlobalBuff {
     }
 
     public override void ModifyBuffText(int type, ref string buffName, ref string tip, ref int rare) {
-        if (Main.LocalPlayer.TryGetModPlayer(out PotionsPlayer potionPlayer)) {
-            string prefix = "";
-            foreach (var s in GetPrefixes(type, Main.LocalPlayer, potionPlayer)) {
-                if (!string.IsNullOrEmpty(prefix)) {
-                    prefix += ", ";
-                }
+        if (!Main.LocalPlayer.TryGetModPlayer(out PotionsPlayer potionPlayer)) {
+            return;
+        }
 
-                prefix += s;
-            }
-
+        string prefix = "";
+        foreach (var s in GetPrefixes(type, Main.LocalPlayer, potionPlayer)) {
             if (!string.IsNullOrEmpty(prefix)) {
-                buffName = prefix + " " + buffName;
+                prefix += ", ";
             }
+
+            prefix += s;
+        }
+
+        if (!string.IsNullOrEmpty(prefix)) {
+            buffName = prefix + " " + buffName;
+        }
+
+        if (potionPlayer.empoweredPotionId == type && EmpoweredBuffs.Override.TryGetValue(type, out var buffOverride) && buffOverride.Tooltip != null) {
+            tip += "\n" + buffOverride.Tooltip.Value;
         }
     }
 
