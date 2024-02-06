@@ -8,6 +8,8 @@ public abstract class PotionPrefix : ModPrefix, IRemovedByShimmerPrefix {
     public ModItem Item { get; private set; }
     public Asset<Texture2D> GlintTexture { get; private set; }
 
+    public override PrefixCategory Category => PrefixCategory.Custom;
+
     public override void Load() {
         Item = new PotionPrefixItem(this);
 
