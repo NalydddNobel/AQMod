@@ -11,14 +11,14 @@ Tardy.DisplayName: 迟缓
 PotionPrefixTooltip: 当光标悬停在要应用的药水上时长按并点击右键
 
 SplashPrefix: {
-	DisplayName: 泼溅
+	DisplayName: 可泼溅的
 	Ability: +可投掷
 	ItemName: 海鳝花粉
 	ItemTooltip: 允许投掷药水
 }
 
 BoundedPrefix: {
-	DisplayName: 绑定
+	DisplayName: 绑定的
 	Ability: +超越死亡
 	ItemName: 镣铐花粉
 	ItemTooltip:
@@ -29,7 +29,7 @@ BoundedPrefix: {
 }
 
 StuffedPrefix: {
-	DisplayName: 填充
+	DisplayName: 填充的
 	Ability: x{0}持续时间
 	ItemName: 月光花粉
 	ItemTooltip:
@@ -40,12 +40,12 @@ StuffedPrefix: {
 }
 
 EmpoweredPrefix: {
-	// DisplayName: Empowered
-	// Ability: x{0} strength
-	// ItemName: Mistral Pollen
-	/* ItemTooltip:
+	DisplayName: 增强的
+	Ability: x{0}强度
+	ItemName: 寒风花粉
+	ItemTooltip:
 		'''
-		Doubles the duration of potions
+		翻倍药水的持续时间
 		{$Prefixes.PotionPrefixTooltip}
-		''' */
+		'''
 }
