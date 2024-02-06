@@ -38,3 +38,14 @@ StuffedPrefix: {
 		{$Prefixes.PotionPrefixTooltip}
 		''' */
 }
+
+EmpoweredPrefix: {
+	// DisplayName: Empowered
+	// Ability: x{0} strength
+	// ItemName: Mistral Pollen
+	/* ItemTooltip:
+		'''
+		Doubles the duration of potions
+		{$Prefixes.PotionPrefixTooltip}
+		''' */
+}

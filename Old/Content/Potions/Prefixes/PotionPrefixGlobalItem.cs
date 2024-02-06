@@ -1,5 +1,6 @@
 ﻿using Aequus.Content.DataSets;
 using Aequus.Old.Content.Potions.Prefixes.BoundedPotions;
+using Aequus.Old.Content.Potions.Prefixes.EmpoweredPotions;
 using System;
 
 namespace Aequus.Old.Content.Potions.Prefixes;
@@ -13,26 +14,12 @@ public class PotionPrefixGlobalItem : GlobalItem {
     }
 
     public override bool? UseItem(Item item, Player player) {
-        if (item.buffType > 0 && item.buffTime > 0 && player.TryGetModPlayer(out PotionsPlayer boundedPotions)) {
-            if (PrefixLoader.GetPrefix(item.prefix) is BoundedPrefix && !Main.persistentBuff[item.buffType]) {
-                boundedPotions.BoundedPotionIds.Add(item.buffType);
-
-                // Cap buff time so you can't abuse Stuffed potions.
-                int buffIndex = player.FindBuffIndex(item.buffType);
-                if (buffIndex != -1) {
-                    player.buffTime[buffIndex] = Math.Min(player.buffTime[buffIndex], item.buffTime);
-                }
-            }
-            else {
-                boundedPotions.BoundedPotionIds.Remove(item.buffType);
-            }
+        if (item.buffType > 0 && item.buffTime > 0 && player.TryGetModPlayer(out PotionsPlayer potionPlayer)) {
+            BoundedPrefix.CheckUseItem(item, player, potionPlayer);
+            EmpoweredPrefix.CheckUseItem(item, player, potionPlayer);
         }
 
         return null;
-    }
-
-    public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
-        return true;
     }
 
     public override void PostDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {

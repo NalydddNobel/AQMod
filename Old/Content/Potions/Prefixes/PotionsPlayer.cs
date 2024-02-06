@@ -7,6 +7,11 @@ namespace Aequus.Old.Content.Potions.Prefixes;
 
 public class PotionsPlayer : ModPlayer {
     public readonly List<int> BoundedPotionIds = new();
+    public int empoweredPotionId;
+
+    public override void Load() {
+        On_Player.DelBuff += OnDeleteBuff;
+    }
 
     public override void UpdateDead() {
         foreach (var buff in BoundedPotionIds) {
@@ -14,6 +19,7 @@ public class PotionsPlayer : ModPlayer {
             // Since if they were already persistant, you wouldn't be able to make the potion anyway.
             Main.persistentBuff[buff] = true;
         }
+        empoweredPotionId = 0;
     }
 
     public override void ResetEffects() {
@@ -77,6 +83,22 @@ public class PotionsPlayer : ModPlayer {
         }
 
         return true;
+    }
+    #endregion
+
+    #region Hooks
+    private static void OnDeleteBuff(On_Player.orig_DelBuff orig, Player player, int b) {
+        int buffType = player.buffType[b];
+
+        // Clear bounded and empowered data for this buff Id
+        if (player.TryGetModPlayer(out PotionsPlayer potions)) {
+            potions.BoundedPotionIds.Remove(buffType);
+            if (buffType == potions.empoweredPotionId) {
+                potions.empoweredPotionId = 0;
+            }
+        }
+
+        orig(player, b);
     }
     #endregion
 }

@@ -1090,6 +1090,14 @@
         <member name="E:Aequus.Core.Graphics.DrawLayers.PostDrawLiquids">
             <summary>Invoked after Liquids and Inferno Rings have been drawn, but before Wire Overlays are drawn.</summary>
         </member>
+        <member name="M:Aequus.Core.Graphics.SpriteBatchCache.InheritFrom(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
+            <summary>
+            Note: This calls <see cref="M:Microsoft.Xna.Framework.Graphics.SpriteBatch.End"/>, and then grabs all of the graphics device info and caches it into the various properties.
+            Use <see cref="M:Aequus.Core.Graphics.SpriteBatchCache.Begin(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.SpriteSortMode,Microsoft.Xna.Framework.Graphics.Effect,System.Nullable{Microsoft.Xna.Framework.Matrix})"/> to restart <paramref name="spriteBatch"/> back to its original state, with its <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteSortMode"/> needing to be respecified.
+            </summary>
+            <param name="spriteBatch"></param>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
         <member name="T:Aequus.Core.Graphics.Tiles.BatchedTileDrawInfo">
             <summary>
             Tile draw info used internally with <see cref="T:Aequus.Core.Graphics.Tiles.BatchedTileRenderer"/>.
@@ -1796,7 +1804,7 @@
             <summary>Full Path: Old/Assets/Sounds/RecruitZombie</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 410)</summary>
+            <summary>(Total Textures: 411)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2839,8 +2847,11 @@
         <member name="F:Aequus.AequusTextures.BoundedPrefixItem">
             <summary>Full Path: Old/Content/Potions/Prefixes/BoundedPotions/BoundedPrefixItem</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.MistralPollen">
-            <summary>Full Path: Old/Content/Potions/Prefixes/EmpoweredPotions/MistralPollen</summary>
+        <member name="F:Aequus.AequusTextures.EmpoweredPrefixGlint">
+            <summary>Full Path: Old/Content/Potions/Prefixes/EmpoweredPotions/EmpoweredPrefixGlint</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EmpoweredPrefixItem">
+            <summary>Full Path: Old/Content/Potions/Prefixes/EmpoweredPotions/EmpoweredPrefixItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SplashPrefixGlint">
             <summary>Full Path: Old/Content/Potions/Prefixes/SplashPotions/SplashPrefixGlint</summary>
