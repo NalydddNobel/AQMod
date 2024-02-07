@@ -836,6 +836,11 @@
             A base furntiure tile, Furniture in Aequus is handled on an individual ModTile basis instead of through a big multi-styled tile.
             </summary>
         </member>
+        <member name="M:Aequus.Common.Tiles.Components.IRandomUpdateOverride.PreRandomUpdate(System.Int32,System.Int32)">
+            <param name="i"></param>
+            <param name="j"></param>
+            <returns>Whether to override random update logic. Returns false by default.</returns>
+        </member>
         <member name="M:Aequus.Common.WorldGeneration.AequusGenStep.SetMessage(Terraria.WorldBuilding.GenerationProgress,System.Object)">
             <summary>
             Safely sets the progress message.
@@ -2974,6 +2979,9 @@
         <member name="F:Aequus.AequusTextures.OblivionCraftingStation_Stick">
             <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation_Stick</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.HangingPot">
+            <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPot</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.HangingPotManacleItem">
             <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPotManacleItem</summary>
         </member>
@@ -2985,9 +2993,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.HangingPotMorayItem">
             <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPotMorayItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HangingPots">
-            <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPots</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ManacleSeeds">
             <summary>Full Path: Old/Content/Tiles/Herbs/Manacle/ManacleSeeds</summary>

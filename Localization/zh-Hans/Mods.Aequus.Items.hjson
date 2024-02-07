@@ -135,7 +135,7 @@ WarHorn: {
 HallowCanteen: {
 	DisplayName: 魔力壶
 	DisplayNameAlt: 魔力壶 ({0})
-	Tooltip: 
+	Tooltip:
 		'''
 		能够无限使用两种药水
 		光标悬停在堆叠数量为15的药水上并点击右键
@@ -145,7 +145,7 @@ HallowCanteen: {
 PotionCanteen: {
 	DisplayName: 药水壶
 	DisplayNameAlt: "{0}壶"
-	Tooltip: 
+	Tooltip:
 		'''
 		能够无限使用一种药水
 		光标悬停在堆叠数量为15的药水上并点击右键

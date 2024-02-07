@@ -172,3 +172,25 @@ PlanterBox: {
 		// ItemTooltip: ""
 	}
 }
+
+HangingPot: {
+	Moray: {
+		// ItemDisplayName: Mods.Aequus.Tiles.HangingPot.Moray.ItemDisplayName
+		// ItemTooltip: ""
+	}
+
+	Mistral: {
+		// ItemDisplayName: Mods.Aequus.Tiles.HangingPot.Mistral.ItemDisplayName
+		// ItemTooltip: ""
+	}
+
+	Manacle: {
+		// ItemDisplayName: Mods.Aequus.Tiles.HangingPot.Manacle.ItemDisplayName
+		// ItemTooltip: ""
+	}
+
+	Moonflower: {
+		// ItemDisplayName: Mods.Aequus.Tiles.HangingPot.Moonflower.ItemDisplayName
+		// ItemTooltip: ""
+	}
+}

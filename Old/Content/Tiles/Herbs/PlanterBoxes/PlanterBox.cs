@@ -1,19 +1,23 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequus.Common.Tiles.Components;
+using Aequus.Core.ContentGeneration;
 using Aequus.Core.Initialization;
+using Mono.Cecil.Cil;
+using MonoMod.Cil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.ObjectData;
-using Terraria.ID;
 
 namespace Aequus.Old.Content.Tiles.Herbs.PlanterBoxes;
 
-public sealed class PlanterBox : ModTile, IPostSetupContent, IAddRecipes {
+public sealed class PlanterBox : ModTile, IRandomUpdateOverride, IPostSetupContent, IAddRecipes {
     public const int STYLE_MORAY = 0;
     public const int STYLE_MISTRAL = 1;
     public const int STYLE_MANACLE = 2;
     public const int STYLE_MOONFLOWER = 3;
     public const int STYLE_COUNT = 4;
+
+    private static bool _loop;
 
     public List<PlanterBoxItemInfo> RegisteredPlanterBoxItems { get; private set; } = new();
 
@@ -51,6 +55,33 @@ public sealed class PlanterBox : ModTile, IPostSetupContent, IAddRecipes {
 
         return base.TileFrame(i, j, ref resetFrame, ref noBreak);
     }
+
+    //public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak) {
+    //    Tile tile = Main.tile[i, j];
+    //    tile.TileType = TileID.PlanterBox;
+
+    //    if (!_loop) {
+    //        _loop = true;
+
+    //        try {
+    //            WorldGen.TileFrame(i, j, resetFrame, noBreak);
+    //        }
+    //        catch {
+    //        }
+
+    //        _loop = false;
+    //    }
+
+    //    // Reframe the other two tiles next to us
+    //    if (resetFrame && i > 5 && i < Main.maxTilesX - 5) {
+    //        WorldGen.TileFrame(i - 1, j, false, true);
+    //        WorldGen.TileFrame(i + 1, j, false, true);
+    //    }
+
+    //    tile.TileType = Type;
+
+    //    return true;
+    //}
 
     public override void NumDust(int i, int j, bool fail, ref int num) {
         num = fail ? 6 : 3;
@@ -98,7 +129,26 @@ public sealed class PlanterBox : ModTile, IPostSetupContent, IAddRecipes {
         }
     }
 
+    //bool IRandomUpdateOverride.PreRandomUpdate(int i, int j) {
+    //    Main.tile[i, j].TileType = TileID.PlanterBox;
+    //    return false;
+    //}
+
+    //void IRandomUpdateOverride.PostRandomUpdate(int i, int j) {
+    //    Main.tile[i, j].TileType = Type;
+    //}
+
     public override void Load() {
+        // Planter boxes are so shoe-horned into the game that it's stupid to
+        // fix every single difference between our modded planter box and vanilla ones
+
+        //On_WorldGen.CheckAlch += CheckAlchPlanterBoxHack;
+        //On_WorldGen.CheckBanner += CheckBannerPlanterBoxHack;
+        //IL_WorldGen.PlantCheck += IL_WorldGen_PlantCheck;
+        // Terraria only uses this in PlaceTile, but this detour may be useful if other mods use it?
+        //On_WorldGen.IsFitToPlaceFlowerIn += IsFitToPlaceFlowerInPlanterBoxHack;
+        //IL_WorldGen.PlaceTile += PlaceTileILEdit_AbsolutelyNotScary;
+
         AddItem("Moray", ItemID.BlinkrootPlanterBox, Aequus.ConditionDownedAquaticBoss);
         AddItem("Mistral", ItemID.FireBlossomPlanterBox, Aequus.ConditionDownedTrueAtmosphereBoss);
         AddItem("Manacle", ItemID.ShiverthornPlanterBox, Aequus.ConditionDownedDemonBoss);
@@ -119,8 +169,9 @@ public sealed class PlanterBox : ModTile, IPostSetupContent, IAddRecipes {
         Main.tileTable[Type] = true;
         Main.tileSolid[Type] = true;
         Main.tileSolidTop[Type] = true;
-        Main.tileMerge[Type][TileID.PlanterBox] = true;
-        Main.tileMerge[TileID.PlanterBox][Type] = true;
+
+        //Main.tileMerge[Type][TileID.PlanterBox] = true;
+        //Main.tileMerge[TileID.PlanterBox][Type] = true;
 
         // Dumb hack, but this self-merge means that we dont need to check tileMerge
         // AND if the type is equal to our modded planter box type, we can just check tileMerge.
@@ -186,6 +237,78 @@ public sealed class PlanterBox : ModTile, IPostSetupContent, IAddRecipes {
             }
         }
     }
+
+    #region Hooks
+    private void IL_WorldGen_PlantCheck(ILContext il) {
+        ILCursor cursor = new ILCursor(il);
+
+        while (cursor.TryGotoNext(i => i.MatchLdcI4(TileID.PlanterBox))) {
+            // Move down to branch statement
+            cursor.Index++;
+
+            // Push TileID.PlanterBox if type equals our modded planter box.
+            cursor.EmitDelegate((int type, int checkAgainstType) => type == ModContent.TileType<PlanterBox>() ? TileID.PlanterBox : checkAgainstType);
+        }
+    }
+
+    private void PlaceTileILEdit_AbsolutelyNotScary(ILContext il) {
+        ILCursor cursor = new ILCursor(il);
+
+        if (!cursor.TryGotoNext(i => i.MatchCall(typeof(WorldGen), nameof(WorldGen.IsFitToPlaceFlowerIn)))) {
+            Mod.Logger.Error("Error locating WorldGen.IsFitToPlaceFlowerIn in WorldGen.PlaceTile for planter boxes.");
+            return;
+        }
+
+        cursor.Index++; // Move index onto the branch operation
+
+        // a boolean is already on the stack from the previous IsFitToPlaceFlowerIn call.
+        cursor.Emit(OpCodes.Ldarg_0); // Push i
+        cursor.Emit(OpCodes.Ldarg_1); // Push j
+        cursor.Emit(OpCodes.Ldloc_0); // Push num (Type)
+
+        // Check if the return value was already true, or if the type is equal to our modded planter box.
+        cursor.EmitDelegate((bool returnValue, int i, int j, int type) => returnValue || type == ModContent.TileType<PlanterBox>());
+
+        // It will now fall into the flower planting code if the type is equal to our modded planter box.
+
+        // We now fall down into the check for the planter box type
+        if (!cursor.TryGotoNext(i => i.MatchLdcI4(TileID.PlanterBox))) {
+            Mod.Logger.Error("Error locating instruction for pushing TileID.PlanterBox onto the stack in WorldGen.PlaceTile.");
+            return;
+        }
+
+        // Move down to branch statement
+        cursor.Index++;
+
+        // Push TileID.PlanterBox if type equals our modded planter box.
+        cursor.EmitDelegate((int type, int checkAgainstType) => type == ModContent.TileType<PlanterBox>() ? TileID.PlanterBox : type);
+    }
+
+    private bool IsFitToPlaceFlowerInPlanterBoxHack(On_WorldGen.orig_IsFitToPlaceFlowerIn orig, int x, int y, int typeAttemptedToPlace) {
+        return y < 1 || y > Main.maxTilesY - 1 || Main.tile[x, y + 1].TileType != Type
+            ? orig(x, y, typeAttemptedToPlace) : true;
+    }
+
+    private void CheckBannerPlanterBoxHack(On_WorldGen.orig_CheckBanner orig, int x, int j, byte type) {
+        TileID.Sets.Platforms[Type] = true;
+        orig(x, j, type);
+        TileID.Sets.Platforms[Type] = false;
+    }
+
+    private void CheckAlchPlanterBoxHack(On_WorldGen.orig_CheckAlch orig, int x, int y) {
+        Tile soil = Main.tile[x, y + 1];
+        ushort soilType = soil.TileType;
+        if (soilType == Type) {
+            soil.TileType = TileID.PlanterBox;
+        }
+
+        orig(x, y);
+
+        if (soilType == Type) {
+            soil.TileType = soilType;
+        }
+    }
+    #endregion
 
     public record struct PlanterBoxItemInfo(ModItem ModItem, int ShopSortingItemIdTarget, Condition SellCondition);
 }

@@ -1,37 +1,44 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.Common.Tiles.Components;
 
-namespace Aequus.Common.Tiles; 
+namespace Aequus.Common.Tiles;
 
 public partial class AequusTile {
-    public static readonly HashSet<int> NoVanillaRandomTickUpdates = new();
-
-    private static bool DisableRandomTickUpdate(int i, int j) {
-        var tile = Framing.GetTileSafely(i, j);
-        if (tile.HasTile && NoVanillaRandomTickUpdates.Contains(tile.TileType)) {
-            TileLoader.RandomUpdate(i, j, Main.tile[i, j].TileType);
-            WallLoader.RandomUpdate(i, j, Main.tile[i, j].WallType);
-            return false;
-        }
-        return true;
-    }
-
     private static void WorldGen_UpdateWorld_UndergroundTile(On_WorldGen.orig_UpdateWorld_UndergroundTile orig, int i, int j, bool checkNPCSpawns, int wallDist) {
-        if (!DisableRandomTickUpdate(i, j)) {
+        Tile tile = Main.tile[i, j];
+        ushort tileType = tile.TileType;
+
+        if (tileType < TileID.Count) {
+            orig(i, j, checkNPCSpawns, wallDist);
             return;
         }
-        orig(i, j, checkNPCSpawns, wallDist);
+
+        ModTile modTile = TileLoader.GetTile(tileType);
+        IRandomUpdateOverride randomUpdateOverride = modTile as IRandomUpdateOverride;
+        if (randomUpdateOverride?.PreRandomUpdate(i, j) != true) {
+            orig(i, j, checkNPCSpawns, wallDist);
+        }
+
+        randomUpdateOverride?.PostRandomUpdate(i, j);
     }
 
     private static void WorldGen_UpdateWorld_OvergroundTile(On_WorldGen.orig_UpdateWorld_OvergroundTile orig, int i, int j, bool checkNPCSpawns, int wallDist) {
-        if (!DisableRandomTickUpdate(i, j)) {
+        Tile tile = Main.tile[i, j];
+        ushort tileType = tile.TileType;
+
+        if (tileType < TileID.Count) {
+            orig(i, j, checkNPCSpawns, wallDist);
             return;
         }
-        orig(i, j, checkNPCSpawns, wallDist);
+
+        ModTile modTile = TileLoader.GetTile(tileType);
+        IRandomUpdateOverride randomUpdateOverride = modTile as IRandomUpdateOverride;
+        if (randomUpdateOverride?.PreRandomUpdate(i, j) != true) {
+            orig(i, j, checkNPCSpawns, wallDist);
+        }
+
+        randomUpdateOverride?.PostRandomUpdate(i, j);
     }
 
     public override void RandomUpdate(int i, int j, int type) {
-        //if (Main.hardMode) {
-        //    OmniGemTile.Grow(i, j);
-        //}
     }
 }

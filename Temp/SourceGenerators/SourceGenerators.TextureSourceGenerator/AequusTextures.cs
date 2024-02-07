@@ -751,6 +751,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OblivionCraftingStation_Portal = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation_Portal");
     /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation_Stick</summary>
     public static readonly RequestCache<Texture2D> OblivionCraftingStation_Stick = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation_Stick");
+    /// <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPot</summary>
+    public static readonly RequestCache<Texture2D> HangingPot = new("Aequus/Old/Content/Tiles/Herbs/HangingPots/HangingPot");
     /// <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPotManacleItem</summary>
     public static readonly RequestCache<Texture2D> HangingPotManacleItem = new("Aequus/Old/Content/Tiles/Herbs/HangingPots/HangingPotManacleItem");
     /// <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPotMistralItem</summary>
@@ -759,8 +761,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> HangingPotMoonflowerItem = new("Aequus/Old/Content/Tiles/Herbs/HangingPots/HangingPotMoonflowerItem");
     /// <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPotMorayItem</summary>
     public static readonly RequestCache<Texture2D> HangingPotMorayItem = new("Aequus/Old/Content/Tiles/Herbs/HangingPots/HangingPotMorayItem");
-    /// <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPots</summary>
-    public static readonly RequestCache<Texture2D> HangingPots = new("Aequus/Old/Content/Tiles/Herbs/HangingPots/HangingPots");
     /// <summary>Full Path: Old/Content/Tiles/Herbs/Manacle/ManacleSeeds</summary>
     public static readonly RequestCache<Texture2D> ManacleSeeds = new("Aequus/Old/Content/Tiles/Herbs/Manacle/ManacleSeeds");
     /// <summary>Full Path: Old/Content/Tiles/Herbs/Manacle/ManacleTile</summary>

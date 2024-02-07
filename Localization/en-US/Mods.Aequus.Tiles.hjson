@@ -172,3 +172,25 @@ PlanterBox: {
 		ItemTooltip: ""
 	}
 }
+
+HangingPot: {
+	Moray: {
+		ItemDisplayName: Hanging Moray
+		ItemTooltip: ""
+	}
+
+	Mistral: {
+		ItemDisplayName: Hanging Mistral
+		ItemTooltip: ""
+	}
+
+	Manacle: {
+		ItemDisplayName: Hanging Manacle
+		ItemTooltip: ""
+	}
+
+	Moonflower: {
+		ItemDisplayName: Hanging Moonflower
+		ItemTooltip: ""
+	}
+}
