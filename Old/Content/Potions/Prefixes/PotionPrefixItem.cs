@@ -48,11 +48,12 @@ internal class PotionPrefixItem : InstancedModItem, IRightClickOverrideWhenHeld 
             potion.stack = heldItem.stack;
         }
         else {
+            potion.ResetPrefix();
             potion.Prefix(wantedPrefix);
         }
 
         if (potion.prefix == wantedPrefix) {
-            SoundEngine.PlaySound(SoundID.Item37);
+            SoundEngine.PlaySound(AequusSounds.PotionPrefix with { Volume = 0.75f, PitchVariance = 0.2f });
             heldItem.stack -= potion.stack;
             if (heldItem.stack <= 0) {
                 heldItem.TurnToAir();

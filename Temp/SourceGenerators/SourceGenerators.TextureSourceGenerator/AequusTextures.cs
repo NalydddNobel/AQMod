@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 467)</summary>
+/// <summary>(Total Textures: 468)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -815,8 +815,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> BoundedPrefixGlint = new("Aequus/Old/Content/Potions/Prefixes/BoundedPotions/BoundedPrefixGlint");
     /// <summary>Full Path: Old/Content/Potions/Prefixes/BoundedPotions/BoundedPrefixItem</summary>
     public static readonly RequestCache<Texture2D> BoundedPrefixItem = new("Aequus/Old/Content/Potions/Prefixes/BoundedPotions/BoundedPrefixItem");
-    /// <summary>Full Path: Old/Content/Potions/Prefixes/EmpoweredPotions/MistralPollen</summary>
-    public static readonly RequestCache<Texture2D> MistralPollen = new("Aequus/Old/Content/Potions/Prefixes/EmpoweredPotions/MistralPollen");
+    /// <summary>Full Path: Old/Content/Potions/Prefixes/EmpoweredPotions/EmpoweredPrefixGlint</summary>
+    public static readonly RequestCache<Texture2D> EmpoweredPrefixGlint = new("Aequus/Old/Content/Potions/Prefixes/EmpoweredPotions/EmpoweredPrefixGlint");
+    /// <summary>Full Path: Old/Content/Potions/Prefixes/EmpoweredPotions/EmpoweredPrefixItem</summary>
+    public static readonly RequestCache<Texture2D> EmpoweredPrefixItem = new("Aequus/Old/Content/Potions/Prefixes/EmpoweredPotions/EmpoweredPrefixItem");
     /// <summary>Full Path: Old/Content/Potions/Prefixes/SplashPotions/SplashPrefixGlint</summary>
     public static readonly RequestCache<Texture2D> SplashPrefixGlint = new("Aequus/Old/Content/Potions/Prefixes/SplashPotions/SplashPrefixGlint");
     /// <summary>Full Path: Old/Content/Potions/Prefixes/SplashPotions/SplashPrefixItem</summary>

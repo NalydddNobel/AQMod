@@ -97,6 +97,9 @@
             </list>
             </summary>
         </member>
+        <member name="M:Aequus.Common.Items.Components.IOnShimmer.OnShimmer">
+            <returns>true to run normal shimmer behavior.</returns>
+        </member>
         <member name="M:Aequus.Common.Items.Components.IRightClickOverrideWhenHeld.RightClickOverrideWhileHeld(Terraria.Item@,Terraria.Item[],System.Int32,System.Int32,Terraria.Player,Aequus.AequusPlayer)">
             <summary>
             
@@ -792,6 +795,10 @@
             Determines whether this projectile is the orbiting yoyo from the Yoyo Glove.
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:Aequus.Common.Systems.ShimmerSystem.GetShimmeredEffects(Terraria.Item)">
+            <summary>Emulates all vanilla shimmer on-transmutation effects. Including getting the achievement, the sound, particles, networking, ect.</summary>
+            <param name="item"></param>
         </member>
         <member name="T:Aequus.Common.Tiles.BaseFurnitureTile.Furniture">
             <summary>
@@ -1727,7 +1734,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 57)</summary>
+            <summary>(Total Sounds: 60)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishCharge">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -1761,6 +1768,12 @@
         </member>
         <member name="F:Aequus.AequusSounds.KeeperImpSummonTelegraph">
             <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/KeeperImpSummonTelegraph</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.CanteenBuzzer">
+            <summary>Full Path: Assets/Sounds/Items/CanteenBuzzer</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.CanteenUse">
+            <summary>Full Path: Assets/Sounds/Items/CanteenUse</summary>
         </member>
         <member name="F:Aequus.AequusSounds.CrossbowReload">
             <summary>Full Path: Assets/Sounds/Items/CrossbowReload</summary>
@@ -1800,6 +1813,9 @@
         </member>
         <member name="F:Aequus.AequusSounds.ShardHit1">
             <summary>Full Path: Assets/Sounds/Items/PossessedShard/ShardHit1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.PotionPrefix">
+            <summary>Full Path: Assets/Sounds/Items/PotionPrefix</summary>
         </member>
         <member name="F:Aequus.AequusSounds.RopeRetract">
             <summary>Full Path: Assets/Sounds/Items/RopeRetract</summary>
@@ -1901,7 +1917,7 @@
             <summary>Full Path: Old/Assets/Sounds/RecruitZombie</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 467)</summary>
+            <summary>(Total Textures: 468)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -3115,8 +3131,11 @@
         <member name="F:Aequus.AequusTextures.BoundedPrefixItem">
             <summary>Full Path: Old/Content/Potions/Prefixes/BoundedPotions/BoundedPrefixItem</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.MistralPollen">
-            <summary>Full Path: Old/Content/Potions/Prefixes/EmpoweredPotions/MistralPollen</summary>
+        <member name="F:Aequus.AequusTextures.EmpoweredPrefixGlint">
+            <summary>Full Path: Old/Content/Potions/Prefixes/EmpoweredPotions/EmpoweredPrefixGlint</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EmpoweredPrefixItem">
+            <summary>Full Path: Old/Content/Potions/Prefixes/EmpoweredPotions/EmpoweredPrefixItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SplashPrefixGlint">
             <summary>Full Path: Old/Content/Potions/Prefixes/SplashPotions/SplashPrefixGlint</summary>
@@ -3323,7 +3342,7 @@
             Default Value: 3600 (1 minute)
             </summary>
         </member>
-        <member name="P:Aequus.Old.Content.Potions.PotionCanteen.TemplateCanteen.HasBuffs">
+        <member name="M:Aequus.Old.Content.Potions.PotionCanteen.TemplateCanteen.HasBuffs">
             <summary>Determines if this canteen has any buffs at all.</summary>
         </member>
     </members>

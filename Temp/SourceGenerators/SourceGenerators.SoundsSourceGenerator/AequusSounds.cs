@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Sounds: 57)</summary>
+/// <summary>(Total Sounds: 60)</summary>
 [CompilerGenerated]
 public partial class AequusSounds {            
         /// <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -28,6 +28,10 @@ public partial class AequusSounds {
     public static readonly SoundStyle KeeperImpSummon = new("Aequus/Assets/Sounds/Enemy/KeeperImp/KeeperImpSummon");
     /// <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/KeeperImpSummonTelegraph</summary>
     public static readonly SoundStyle KeeperImpSummonTelegraph = new("Aequus/Assets/Sounds/Enemy/KeeperImp/KeeperImpSummonTelegraph");
+    /// <summary>Full Path: Assets/Sounds/Items/CanteenBuzzer</summary>
+    public static readonly SoundStyle CanteenBuzzer = new("Aequus/Assets/Sounds/Items/CanteenBuzzer");
+    /// <summary>Full Path: Assets/Sounds/Items/CanteenUse</summary>
+    public static readonly SoundStyle CanteenUse = new("Aequus/Assets/Sounds/Items/CanteenUse");
     /// <summary>Full Path: Assets/Sounds/Items/CrossbowReload</summary>
     public static readonly SoundStyle CrossbowReload = new("Aequus/Assets/Sounds/Items/CrossbowReload");
     /// <summary>Full Path: Assets/Sounds/Items/CrossbowShoot</summary>
@@ -54,6 +58,8 @@ public partial class AequusSounds {
     public static readonly SoundStyle ShardHit0 = new("Aequus/Assets/Sounds/Items/PossessedShard/ShardHit0");
     /// <summary>Full Path: Assets/Sounds/Items/PossessedShard/ShardHit1</summary>
     public static readonly SoundStyle ShardHit1 = new("Aequus/Assets/Sounds/Items/PossessedShard/ShardHit1");
+    /// <summary>Full Path: Assets/Sounds/Items/PotionPrefix</summary>
+    public static readonly SoundStyle PotionPrefix = new("Aequus/Assets/Sounds/Items/PotionPrefix");
     /// <summary>Full Path: Assets/Sounds/Items/RopeRetract</summary>
     public static readonly SoundStyle RopeRetract = new("Aequus/Assets/Sounds/Items/RopeRetract");
     /// <summary>Full Path: Assets/Sounds/Items/StudiesOfTheInkblotUse</summary>

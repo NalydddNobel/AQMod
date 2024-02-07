@@ -13,6 +13,10 @@ public class StuffedPrefix : PotionPrefix {
         item.buffTime = ContentSamples.ItemsByType[item.type].buffTime * 2;
     }
 
+    public override bool CanRoll(Item item) {
+        return base.CanRoll(item) && item.buffType != BuffID.Lucky;
+    }
+
     public override void ModifyValue(ref float valueMult) {
         valueMult = 1.5f;
     }

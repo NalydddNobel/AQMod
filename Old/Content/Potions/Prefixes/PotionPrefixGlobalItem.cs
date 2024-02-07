@@ -1,6 +1,8 @@
 ﻿using Aequus.Content.DataSets;
 using Aequus.Old.Content.Potions.Prefixes.BoundedPotions;
-using System;
+using Aequus.Old.Content.Potions.Prefixes.EmpoweredPotions;
+using Aequus.Old.Content.Potions.Prefixes.SplashPotions;
+using System.Collections.Generic;
 
 namespace Aequus.Old.Content.Potions.Prefixes;
 public class PotionPrefixGlobalItem : GlobalItem {
@@ -12,27 +14,38 @@ public class PotionPrefixGlobalItem : GlobalItem {
         return ItemSets.Potions.Contains(entity.type);
     }
 
-    public override bool? UseItem(Item item, Player player) {
-        if (item.buffType > 0 && item.buffTime > 0 && player.TryGetModPlayer(out PotionsPlayer boundedPotions)) {
-            if (PrefixLoader.GetPrefix(item.prefix) is BoundedPrefix && !Main.persistentBuff[item.buffType]) {
-                boundedPotions.BoundedPotionIds.Add(item.buffType);
+    public override bool CanUseItem(Item item, Player player) {
+        if (PotionsPlayer.UsingQuickBuffHack && item.prefix >= PrefixID.Count && item.buffType > 0 && item.buffTime > 0) {
+            ModPrefix prefix = PrefixLoader.GetPrefix(item.prefix);
+            // Prevent the player from quick-buffing any other empowered potions
+            // if they already have an empowered potion active
+            if (prefix is EmpoweredPrefix && player.TryGetModPlayer(out PotionsPlayer potionPlayer) && potionPlayer.empoweredPotionId != 0) {
+                return false;
+            }
 
-                // Cap buff time so you can't abuse Stuffed potions.
-                int buffIndex = player.FindBuffIndex(item.buffType);
-                if (buffIndex != -1) {
-                    player.buffTime[buffIndex] = Math.Min(player.buffTime[buffIndex], item.buffTime);
-                }
+            // Prevent using the potion if it's a splash potion
+            if (prefix is SplashPrefix) {
+                return false;
             }
-            else {
-                boundedPotions.BoundedPotionIds.Remove(item.buffType);
-            }
+        }
+        return base.CanUseItem(item, player);
+    }
+
+    public override bool? UseItem(Item item, Player player) {
+        if (item.buffType > 0 && item.buffTime > 0 && player.TryGetModPlayer(out PotionsPlayer potionPlayer)) {
+            BoundedPrefix.CheckUseItem(item, player, potionPlayer);
+            EmpoweredPrefix.CheckUseItem(item, player, potionPlayer);
         }
 
         return null;
     }
 
-    public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
-        return true;
+    public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
+        if (item.prefix >= PrefixID.Count && PrefixLoader.GetPrefix(item.prefix) is EmpoweredPrefix) {
+            if (EmpoweredBuffs.Override.TryGetValue(item.buffType, out var buffOverride) && buffOverride.Tooltip != null) {
+                tooltips.AddTooltip(new TooltipLine(Mod, "TooltipEmpowered", buffOverride.Tooltip.Value));
+            }
+        }
     }
 
     public override void PostDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {

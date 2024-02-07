@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.Weapons.Ranged.Bows.SkyHunterCrossbow;
+using Aequus.Core.CodeGeneration;
 using Terraria.DataStructures;
 using Terraria.GameInput;
 using Terraria.UI;
@@ -9,6 +10,9 @@ public partial class AequusPlayer : ModPlayer {
     public Vector2 transitionVelocity;
 
     public int timeSinceRespawn;
+
+    [ResetEffects]
+    public StatModifier wingTime;
 
     public override void Load() {
         _resetEffects = new();
@@ -60,6 +64,7 @@ public partial class AequusPlayer : ModPlayer {
         UpdateWeightedHorseshoe();
         UpdateNeutronYogurt();
         UpdateTeamEffects();
+        Player.wingTimeMax = (int)wingTime.ApplyTo(Player.wingTimeMax);
 #if !DEBUG
         UpdateLegacyNecromancyAccs();
 #endif

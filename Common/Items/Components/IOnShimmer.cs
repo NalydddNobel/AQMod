@@ -7,5 +7,6 @@ using System.Threading.Tasks;
 namespace Aequus.Common.Items.Components;
 
 public interface IOnShimmer {
-    void OnShimmer();
+    /// <returns>true to run normal shimmer behavior.</returns>
+    bool OnShimmer();
 }

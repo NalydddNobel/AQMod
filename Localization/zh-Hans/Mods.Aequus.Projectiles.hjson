@@ -54,4 +54,4 @@ LocustSmall.DisplayName: "{$Projectiles.LocustLarge.DisplayName}"
 OsirisProj.DisplayName: "{$Items.Osiris.DisplayName}"
 GhostHitbox.DisplayName: 幽魂仆从
 GravetenderWisp.DisplayName: 守墓人游魂
-// SplashPotionProj.DisplayName: Potion
+SplashPotionProj.DisplayName: 药水

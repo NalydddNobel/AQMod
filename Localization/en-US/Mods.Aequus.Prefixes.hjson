@@ -42,3 +42,15 @@ StuffedPrefix: {
 		{$Prefixes.PotionPrefixTooltip}
 		'''
 }
+
+EmpoweredPrefix: {
+	DisplayName: Empowered
+	Ability: x{0} strength
+	Downside: "{$StuffedPrefix.Ability}"
+	ItemName: Mistral Pollen
+	ItemTooltip:
+		'''
+		Increases the strength of potions
+		{$Prefixes.PotionPrefixTooltip}
+		'''
+}

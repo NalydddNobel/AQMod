@@ -16,8 +16,9 @@ public class PotionCanteen : TemplateCanteen {
     }
 
     public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
+        base.PreDrawInInventory(spriteBatch, position, frame, drawColor, itemColor, origin, scale);
         spriteBatch.Draw(AequusTextures.PotionCanteenEmpty, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
-        if (!HasBuffs) {
+        if (!HasBuffs()) {
             return true;
         }
 
@@ -32,9 +33,9 @@ public class PotionCanteen : TemplateCanteen {
         var position = Item.Center - Main.screenPosition;
         var origin = frame.Size() / 2f;
         spriteBatch.Draw(AequusTextures.PotionCanteenEmpty, position, frame, lightColor, rotation, origin, scale, SpriteEffects.None, 0f);
-        if (HasBuffs) {
+        if (HasBuffs()) {
             var liquidColor = GetPotionColors();
-            spriteBatch.Draw(texture, position, frame, ExtendLight.Get(Item.Center).MultiplyRGBA(liquidColor), rotation, origin, scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, position, frame, lightColor.MultiplyRGBA(liquidColor), rotation, origin, scale, SpriteEffects.None, 0f);
         }
         return false;
     }
