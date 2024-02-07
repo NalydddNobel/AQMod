@@ -16,6 +16,42 @@
         <member name="P:Aequus.Aequus.GameWorldActive">
             <summary>Shorthand for a bunch of checks determining whether the game is unpaused.</summary>
         </member>
+        <member name="F:Aequus.Aequus.ConditionDownedAquaticBoss">
+            <summary>Whether ??? was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionDownedCosmicBoss">
+            <summary>Whether Ultra Starite was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionDownedTrueCosmicBoss">
+            <summary>Whether Omega Starite was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionDownedDemonBoss">
+            <summary>Whether the Demon Siege was completed atleast once.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionDownedTrueDemonBoss">
+            <summary>Whether Upriser (Unimplemented) was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionDownedAtmosphereBossFlame">
+            <summary>Whether Red Sprite was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionDownedAtmosphereBossFrost">
+            <summary>Whether Space Squid was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionDownedTrueAtmosphereBoss">
+            <summary>Whether Dust Devil was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionDownedOrganicBossMight">
+            <summary>Whether ??? was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionDownedOrganicBossSight">
+            <summary>Whether ??? was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionDownedOrganicBossFright">
+            <summary>Whether ??? was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionDownedTrueFinalBoss">
+            <summary>Whether ??? was defeated.</summary>
+        </member>
         <member name="M:Aequus.Aequus.ConditionBetweenDays(System.DayOfWeek,System.DayOfWeek)">
             <param name="firstDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:Aequus.Common.Systems.TimeTrackerSystem.DayOfTheWeek"/>.</param>
             <param name="lastDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:Aequus.Common.Systems.TimeTrackerSystem.DayOfTheWeek"/>.</param>
@@ -96,6 +132,9 @@
             <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnKillProjectile(Terraria.Projectile,System.Int32)"/></item>
             </list>
             </summary>
+        </member>
+        <member name="M:Aequus.Common.Items.Components.IOnShimmer.OnShimmer">
+            <returns>true to run normal shimmer behavior.</returns>
         </member>
         <member name="M:Aequus.Common.Items.Components.IRightClickOverrideWhenHeld.RightClickOverrideWhileHeld(Terraria.Item@,Terraria.Item[],System.Int32,System.Int32,Terraria.Player,Aequus.AequusPlayer)">
             <summary>
@@ -787,6 +826,10 @@
             Determines whether this projectile is the orbiting yoyo from the Yoyo Glove.
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:Aequus.Common.Systems.ShimmerSystem.GetShimmeredEffects(Terraria.Item)">
+            <summary>Emulates all vanilla shimmer on-transmutation effects. Including getting the achievement, the sound, particles, networking, ect.</summary>
+            <param name="item"></param>
         </member>
         <member name="T:Aequus.Common.Tiles.BaseFurnitureTile.Furniture">
             <summary>
@@ -1813,7 +1856,7 @@
             <summary>Full Path: Old/Assets/Sounds/RecruitZombie</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 411)</summary>
+            <summary>(Total Textures: 434)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2931,6 +2974,75 @@
         <member name="F:Aequus.AequusTextures.OblivionCraftingStation_Stick">
             <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation_Stick</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.HangingPotManacleItem">
+            <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPotManacleItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HangingPotMistralItem">
+            <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPotMistralItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HangingPotMoonflowerItem">
+            <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPotMoonflowerItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HangingPotMorayItem">
+            <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPotMorayItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HangingPots">
+            <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPots</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ManacleSeeds">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Manacle/ManacleSeeds</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ManacleTile">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Manacle/ManacleTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MistralSeeds">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Mistral/MistralSeeds</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MistralTile">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Mistral/MistralTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MistralTile_Pinwheel">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Mistral/MistralTile_Pinwheel</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MoonflowerSeeds">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Moonflower/MoonflowerSeeds</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MoonflowerTile">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Moonflower/MoonflowerTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MoonflowerTileEffect">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Moonflower/MoonflowerTileEffect</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MoraySeeds">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Moray/MoraySeeds</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MoraySeeds_Glow">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Moray/MoraySeeds_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MorayTile">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Moray/MorayTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MorayTile_Glow">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Moray/MorayTile_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PlanterBox">
+            <summary>Full Path: Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBox</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PlanterBoxGlow">
+            <summary>Full Path: Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxGlow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PlanterBoxManacleItem">
+            <summary>Full Path: Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxManacleItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PlanterBoxMistralItem">
+            <summary>Full Path: Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxMistralItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PlanterBoxMoonflowerItem">
+            <summary>Full Path: Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxMoonflowerItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PlanterBoxMorayItem">
+            <summary>Full Path: Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxMorayItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.OccultistGoreBook">
             <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreBook</summary>
         </member>
@@ -3067,8 +3179,25 @@
             Default Value: 3600 (1 minute)
             </summary>
         </member>
-        <member name="P:Aequus.Old.Content.Potions.PotionCanteen.TemplateCanteen.HasBuffs">
+        <member name="M:Aequus.Old.Content.Potions.PotionCanteen.TemplateCanteen.HasBuffs">
             <summary>Determines if this canteen has any buffs at all.</summary>
+        </member>
+        <member name="M:Aequus.Old.Content.Tiles.Herbs.HerbBase.GetDropParams(System.Int32,Terraria.Player,Terraria.Item,System.Int32@,System.Int32@)">
+            <param name="growthStage">The growth stage (style) of this plant.</param>
+            <param name="closestPlayer">The closest player to the plant.</param>
+            <param name="playerHeldItem">The player's held item.</param>
+            <param name="plant">The plant item id to drop.</param>
+            <param name="seeds">The seed item id to drop.</param>
+        </member>
+        <member name="M:Aequus.Old.Content.Tiles.Herbs.HerbBase.GetDropStacks(System.Int32,Terraria.Player,Terraria.Item,System.Boolean,System.Int32,System.Int32,System.Int32@,System.Int32@)">
+            <param name="growthStage">The growth stage (style) of this plant.</param>
+            <param name="closestPlayer">The closest player to the plant.</param>
+            <param name="playerHeldItem">The player's held item.</param>
+            <param name="staffOfRegrowth">If the player is holding the Staff of Regrowth or Axe of Regrowth.</param>
+            <param name="plant">The plant item id to drop.</param>
+            <param name="seeds">The seed item id to drop.</param>
+            <param name="plantStack">The amount of plants to drop.</param>
+            <param name="seedStack">The amount of seeds to drop.</param>
         </member>
     </members>
 </doc>

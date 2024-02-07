@@ -154,3 +154,25 @@ AshTombstones: {
 		// ItemTooltip: ""
 	}
 }
+
+PlanterBox: {
+	Moray: {
+		// ItemDisplayName: Moray Planter Box
+		// ItemTooltip: ""
+	}
+
+	Moonflower: {
+		// ItemDisplayName: Moonflower Planter Box
+		// ItemTooltip: ""
+	}
+
+	Manacle: {
+		// ItemDisplayName: Manacle Planter Box
+		// ItemTooltip: ""
+	}
+
+	Mistral: {
+		// ItemDisplayName: Mistral Planter Box
+		// ItemTooltip: ""
+	}
+}

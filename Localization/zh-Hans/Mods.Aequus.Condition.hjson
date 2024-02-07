@@ -1,2 +1,15 @@
 DayOfTheWeek: 当处于{0}
 BetweenDays: 在{0}-{1}之间
+// InPollutedOcean: Mods.Aequus.Condition.InPollutedOcean
+// DownedAquaticBoss: Mods.Aequus.Condition.DownedAquaticBoss
+// DownedCosmicBoss: After defeating Ultra Starite
+// DownedTrueCosmicBoss: After defeating Omega Starite
+// DownedDemonBoss: After completing a Demon Siege
+// DownedTrueDemonBoss: Mods.Aequus.Condition.DownedTrueDemonBoss
+// DownedAtmosphereBossFlame: After matching against the Red Sprite
+// DownedAtmosphereBossFrost: After matching against the Space Squid
+// DownedTrueAtmosphereBoss: After defeating Dust Devil
+// DownedOrganicBossMight: Mods.Aequus.Condition.DownedOrganicBossMight
+// DownedOrganicBossSight: Mods.Aequus.Condition.DownedOrganicBossSight
+// DownedOrganicBossFright: Mods.Aequus.Condition.DownedOrganicBossFright
+// DownedTrueFinalBoss: Mods.Aequus.Condition.DownedTrueFinalBoss
