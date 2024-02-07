@@ -35,7 +35,11 @@ public class EmpoweredBuffs : DataSet {
         }));
         Override.Add(BuffID.Invisibility, new(CustomAction: (p) => p.aggro -= 400, Tooltip: Language.GetText("Mods.Aequus.Items.CommonTooltips.DecreaseAggro").WithFormatArgs(1)));
         Override.Add(BuffID.Featherfall, new(CustomAction: (p) => p.GetModPlayer<AequusPlayer>().wingTime += 60, Tooltip: Language.GetText("Mods.Aequus.Items.CommonTooltips.StatWingTime").WithFormatArgs(1)));
-        Override.Add(BuffID.ObsidianSkin, new(Tooltip: Language.GetText("CommonItemTooltip.IncreasesDefenseBy").WithFormatArgs(8)));
+        Override.Add(BuffID.ObsidianSkin, new(CustomAction: (p) => {
+            if (p.wet) {
+                p.statDefense += 20;
+            }
+        }, Tooltip: Language.GetText("CommonItemTooltip.IncreasesDefenseBy").WithFormatArgs(20)));
         Override.Add(BuffID.Flipper, new(CustomAction: (p) => {
             if (p.wet) {
                 p.moveSpeed += 0.25f;
@@ -43,9 +47,9 @@ public class EmpoweredBuffs : DataSet {
         }));
         Override.Add(BuffID.Gills, new(CustomAction: (p) => {
             if (p.wet) {
-                p.statDefense += 16;
+                p.statDefense += 20;
             }
-        }));
+        }, Tooltip: Language.GetText("CommonItemTooltip.IncreasesDefenseBy").WithFormatArgs(20)));
         Override.Add(BuffID.ManaRegeneration, new(CustomAction: (p) => p.statManaMax += 100, Tooltip: Language.GetText("CommonItemTooltip.IncreasesMaxManaBy").WithFormatArgs(100)));
         Override.Add(BuffID.Titan, new(CustomAction: (p) => p.GetKnockback<GenericDamageClass>() += 1f));
         Override.Add(BuffID.Dangersense, new(CustomAction: (p) => p.InfoAccMechShowWires = true, Tooltip: Language.GetText("ItemTooltip.MechanicalLens")));

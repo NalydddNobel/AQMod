@@ -12,7 +12,7 @@ CommonTooltips: {
 	NecromancyStaff: 被击杀敌人会转化为幽魂仆从
 	StatGhostDuration: 延长{0}秒幽魂仆从的存在时间
 	StatGhostSlots: 增加{0}格最大幽魂仆从栏位
-	// StatWingTime: Increases flight time by {0} seconds
+	// StatWingTime: Increases flight duration
 	// DecreaseAggro: Enemies are less likely to target you
 	// IncreaseAggro: Enemies are more likely to target you
 }
@@ -135,23 +135,21 @@ WarHorn: {
 HallowCanteen: {
 	DisplayName: 魔力壶
 	DisplayNameAlt: 魔力壶 ({0})
-	Tooltip: 与两种药水进行合成后能够无限使用
-}
-
-HallowCanteenEmpty: {
-	DisplayName: "{$Items.HallowCanteen.DisplayName}"
-	Tooltip: "{$Items.HallowCanteen.Tooltip}"
-}
-
-PotionCanteenEmpty: {
-	DisplayName: "{$Items.PotionCanteen.DisplayName}"
-	Tooltip: "{$Items.PotionCanteen.Tooltip}"
+	/* Tooltip: 
+		'''
+		Allows infinite usage of two potions
+		Hover over with a stack of 15 potions and press <right>
+		''' */
 }
 
 PotionCanteen: {
 	DisplayName: 药水壶
 	DisplayNameAlt: "{0}壶"
-	Tooltip: 与药水进行合成后能够无限使用
+	/* Tooltip: 
+		'''
+		Allows infinite usage of a potion
+		Hover over with a stack of 15 potions and press <right>
+		''' */
 }
 
 SouljointCuffs: {

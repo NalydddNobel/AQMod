@@ -2,8 +2,6 @@
 using Aequus.Old.Content.Potions.Prefixes.BoundedPotions;
 using Aequus.Old.Content.Potions.Prefixes.EmpoweredPotions;
 using Aequus.Old.Content.Potions.Prefixes.SplashPotions;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 
 namespace Aequus.Old.Content.Potions.Prefixes;

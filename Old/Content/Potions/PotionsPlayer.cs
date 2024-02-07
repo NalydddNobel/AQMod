@@ -1,4 +1,5 @@
 ﻿using Aequus.Core.DataSets;
+using Aequus.Core.IO;
 using Aequus.Old.Content.Potions.Prefixes;
 using Aequus.Old.Content.Potions.Prefixes.EmpoweredPotions;
 using System.Collections.Generic;
@@ -55,10 +56,14 @@ public class PotionsPlayer : ModPlayer {
 
     #region Save & Load
     const string TAG_BOUNDED = "Bounded";
+    const string TAG_EMPOWERED = "Empowered";
 
     public override void SaveData(TagCompound tag) {
         if (BoundedPotionIds.Count > 0) {
             tag[TAG_BOUNDED] = BoundedPotionIds.Select(IDCommons<BuffID>.GetStringIdentifier).ToList();
+        }
+        if (empoweredPotionId > 0) {
+            IDLoader<ItemID>.SaveToTag(tag, TAG_EMPOWERED, empoweredPotionId);
         }
     }
 
@@ -72,6 +77,8 @@ public class PotionsPlayer : ModPlayer {
                 }
             }
         }
+
+        empoweredPotionId = IDLoader<ItemID>.LoadFromTag(tag, TAG_EMPOWERED, 0);
     }
     #endregion
 

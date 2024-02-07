@@ -488,6 +488,7 @@
     "StormDiversMod/YouCantEscapeDebuff"
   ],
   "DontChangeDuration": [
+    "Lucky",
     "Avalon/CoughCooldown",
     "SpiritMod/FrigidCooldown",
     "SpiritMod/RogueCooldown",

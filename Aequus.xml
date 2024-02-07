@@ -1642,7 +1642,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 53)</summary>
+            <summary>(Total Sounds: 56)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishCharge">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -1676,6 +1676,12 @@
         </member>
         <member name="F:Aequus.AequusSounds.KeeperImpSummonTelegraph">
             <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/KeeperImpSummonTelegraph</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.CanteenBuzzer">
+            <summary>Full Path: Assets/Sounds/Items/CanteenBuzzer</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.CanteenUse">
+            <summary>Full Path: Assets/Sounds/Items/CanteenUse</summary>
         </member>
         <member name="F:Aequus.AequusSounds.CrossbowReload">
             <summary>Full Path: Assets/Sounds/Items/CrossbowReload</summary>
@@ -1715,6 +1721,9 @@
         </member>
         <member name="F:Aequus.AequusSounds.ShardHit1">
             <summary>Full Path: Assets/Sounds/Items/PossessedShard/ShardHit1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.PotionPrefix">
+            <summary>Full Path: Assets/Sounds/Items/PotionPrefix</summary>
         </member>
         <member name="F:Aequus.AequusSounds.RopeRetract">
             <summary>Full Path: Assets/Sounds/Items/RopeRetract</summary>

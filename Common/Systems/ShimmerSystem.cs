@@ -33,8 +33,9 @@ public class ShimmerSystem : ModSystem {
 
     private static void On_Item_GetShimmered(On_Item.orig_GetShimmered orig, Item item) {
         ModItem modItem = ItemLoader.GetItem(item.type);
-        if (modItem is IOnShimmer onShimmer) {
-            onShimmer.OnShimmer();
+
+        if (modItem is IOnShimmer onShimmer && !onShimmer.OnShimmer()) {
+            return;
         }
 
         if (modItem is IDedicatedItem) {
@@ -55,7 +56,7 @@ public class ShimmerSystem : ModSystem {
             if (item.stack <= 0) {
                 item.TurnToAir();
             }
-            TransmutateItem(item);
+            GetShimmeredEffects(item);
             return;
         }
 
@@ -66,7 +67,7 @@ public class ShimmerSystem : ModSystem {
             item.prefix = 0;
             item.shimmered = true;
 
-            TransmutateItem(item);
+            GetShimmeredEffects(item);
             return;
         }
 
@@ -74,7 +75,9 @@ public class ShimmerSystem : ModSystem {
     }
     #endregion
 
-    public static void TransmutateItem(Item item) {
+    /// <summary>Emulates all vanilla shimmer on-transmutation effects. Including getting the achievement, the sound, particles, networking, ect.</summary>
+    /// <param name="item"></param>
+    public static void GetShimmeredEffects(Item item) {
         if (item.stack > 0) {
             item.shimmerTime = 1f;
         }

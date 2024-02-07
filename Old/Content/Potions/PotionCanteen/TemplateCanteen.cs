@@ -1,20 +1,22 @@
 ﻿using Aequus.Common.Buffs;
 using Aequus.Common.Items.Components;
+using Aequus.Common.Systems;
 using Aequus.Content.DataSets;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.DataSets;
 using Aequus.Core.IO;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
 
 namespace Aequus.Old.Content.Potions.PotionCanteen;
 
-public abstract class TemplateCanteen : ModItem, IOnShimmer {
+public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
     public abstract int Rarity { get; }
     public abstract int Value { get; }
     public abstract int PotionsContained { get; }
@@ -28,10 +30,14 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer {
     [CloneByReference]
     public LocalizedText AltName { get; private set; }
 
-    /// <summary>Determines if this canteen has any buffs at all.</summary>
-    public bool HasBuffs => Buffs != null && Buffs.Any(e => e.BuffId > 0);
+    private int _warningAnimation;
 
     protected override bool CloneNewInstances => true;
+
+    /// <summary>Determines if this canteen has any buffs at all.</summary>
+    public bool HasBuffs() {
+        return Buffs != null && Buffs.Any(e => e.BuffId > 0);
+    }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
         for (int i = 0; i < Buffs.Length; i++) {
@@ -79,27 +85,40 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer {
                     }
                 }
 
-                if (vanillaLine) {
-                    t.Text = "";
-                    vanillaLine = false;
-                }
-                else if (!string.IsNullOrEmpty(t.Text)) {
-                    t.Text += '\n';
-                }
+                if (Buffs[k].BuffId > 0) {
+                    if (vanillaLine) {
+                        t.Text = "";
+                        vanillaLine = false;
+                    }
+                    else if (!string.IsNullOrEmpty(t.Text)) {
+                        t.Text += '\n';
+                    }
 
-                t.Text += Lang.GetBuffDescription(Buffs[k].BuffId);
+                    t.Text += Lang.GetBuffDescription(Buffs[k].BuffId);
+                }
             }
         }
     }
 
-    public void OnShimmer() {
+    public bool OnShimmer() {
         // Remove the name override,
         // so it is not inherited by the empty canteen
         Item.ClearNameOverride();
+
+        if (!HasBuffs()) {
+            return true;
+        }
+
+        // Remove buffs
+        Buffs = null;
+        InitializeBuffs();
+        Item.shimmered = true;
+        ShimmerSystem.GetShimmeredEffects(Item);
+        return false;
     }
 
     public override void SaveData(TagCompound tag) {
-        if (!HasBuffs) {
+        if (!HasBuffs()) {
             return;
         }
 
@@ -126,17 +145,119 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer {
         SetPotionDefaults();
     }
 
+    public override void NetSend(BinaryWriter writer) {
+        InitializeBuffs();
+
+        // PotionsContained is the total amount of buffs, and should be the same across clients.
+        // If it isn't going to be consistent, the canteen should be manually synced instead of using this implementation.
+        int count = PotionsContained;
+
+        for (int i = 0; i < count; i++) {
+            Buff buff = Buffs[i];
+
+            if (buff.BuffId == 0) {
+                writer.Write(0); // Signals a quicker end to the array
+                break;
+            }
+
+            writer.Write(buff.BuffId);
+            writer.Write(buff.ItemId);
+        }
+    }
+
+    public override void NetReceive(BinaryReader reader) {
+        InitializeBuffs();
+
+        int count = PotionsContained;
+
+        for (int i = 0; i < count; i++) {
+            Buff buff = Buffs[i];
+
+            int type = reader.ReadInt32();
+            if (type == 0) {
+                // End of array signal.
+                break;
+            }
+
+            Buffs[i].BuffId = type;
+            Buffs[i].ItemId = reader.ReadInt32();
+        }
+    }
+
+    public bool HoverSlot(Item[] inventory, int context, int slot) {
+        Item heldItem = Main.mouseItem;
+
+        if (_warningAnimation > 0 || !Main.mouseRight || !Main.mouseRightRelease || heldItem == null || heldItem.IsAir) {
+            return false;
+        }
+
+        Main.mouseRightRelease = false;
+        Main.stackSplit = 180;
+        InitializeBuffs();
+
+        int consumePotions = PotionRecipeRequirement;
+        int buffType = heldItem.buffType;
+
+        if (buffType == 0 || heldItem.buffTime <= 0 || !heldItem.consumable || heldItem.stack < consumePotions || heldItem.maxStack < 30 || Buffs.Any(b => b.BuffId == buffType) || BuffSets.DontChangeDuration.Contains(heldItem.buffType) || !ItemSets.Potions.Contains(heldItem.type)) {
+            _warningAnimation = 80;
+            SoundEngine.PlaySound(AequusSounds.CanteenBuzzer with { Volume = 0.5f });
+
+            return false;
+        }
+
+        int i = 0;
+        // Iterate through each buff and check if it has an id of 0
+        for (; i < Buffs.Length && Buffs[i].BuffId != 0; i++) { }
+
+        // If there's no empty buffs left
+        if (i == Buffs.Length) {
+            // We're going to push this new buff into the last index
+            i--;
+            // Copy everything forward by 1 index
+            for (int j = 0; j < Buffs.Length - 1; j++) {
+                Buffs[j] = Buffs[j + 1];
+            }
+        }
+
+        Buffs[i].BuffId = heldItem.buffType;
+        Buffs[i].ItemId = heldItem.type;
+
+        heldItem.stack -= consumePotions;
+        if (heldItem.stack <= 0) {
+            heldItem.TurnToAir();
+        }
+
+        _potionColors = null;
+        Item.NetStateChanged();
+
+        SoundEngine.PlaySound(AequusSounds.CanteenUse with { Volume = 0.75f, PitchVariance = 0.2f });
+
+        return true;
+    }
+
+    public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
+        if (_warningAnimation > 0) {
+            _warningAnimation--;
+
+            if (_warningAnimation % 20 > 10) {
+                Texture2D texture = TextureAssets.InventoryBack13.Value;
+                spriteBatch.Draw(texture, position, null, Color.Red, 0f, texture.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
+            }
+        }
+        return true;
+    }
+
     #region Colors
     [CloneByReference]
     protected Color[] _potionColors;
 
     protected Color GetPotionColors() {
-        if (!HasBuffs) {
+        if (!HasBuffs()) {
             return Color.White;
         }
 
         // Initialize colors if they are null.
-        if (_potionColors == null && HasBuffs) {
+        if (_potionColors == null && HasBuffs()) {
             List<Color> colors = new List<Color>();
 
             for (int i = 0; i < Buffs.Length; i++) {
@@ -156,7 +277,7 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer {
         Color colorResult = Color.White;
         if (_potionColors != null && _potionColors.Length > 0) {
             float time = Main.GlobalTimeWrappedHourly * Buffs.Length;
-            if (HasBuffs) {
+            if (HasBuffs()) {
                 for (int i = 0; i < Buffs.Length; i++) {
                     time += Buffs[i].BuffId;
                 }
@@ -169,16 +290,8 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer {
     #endregion
 
     #region Initialization
-    public sealed override void Load() {
-        EmptyCanteenItem = new EmptyCanteen(this);
-
-        Mod.AddContent(EmptyCanteenItem);
-    }
-
     public override void SetStaticDefaults() {
         AltName = this.GetLocalization("DisplayNameAlt");
-        ItemID.Sets.ShimmerTransformToItem[Type] = EmptyCanteenItem.Type;
-        ContentSamples.CreativeResearchItemPersistentIdOverride[EmptyCanteenItem.Type] = Type;
     }
 
     public sealed override void SetDefaults() {
@@ -229,7 +342,7 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer {
     }
 
     public string GetName(string originalName) {
-        if (!HasBuffs) {
+        if (!HasBuffs()) {
             return originalName;
         }
 
@@ -246,6 +359,7 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer {
         }
     }
 
+    /*
     public override void AddRecipes() {
         int[] validPotions = ItemSets.Potions.Where(i => i.ValidEntry && ContentSamples.ItemsByType[i.Id].buffType != BuffID.Lucky).Select(e => e.Id).ToArray();
         int potionCount = PotionsContained;
@@ -292,21 +406,8 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer {
             r.DisableDecraft();
         }
     }
+    */
     #endregion
 
     public record struct Buff(int ItemId, int BuffId);
-
-    private class EmptyCanteen : InstancedModItem {
-        private readonly TemplateCanteen _parent;
-
-        public EmptyCanteen(TemplateCanteen canteen) : base(canteen.Name + "Empty", canteen.Texture + "Empty") {
-            _parent = canteen;
-        }
-
-        public override void SetDefaults() {
-            Item.DefaultToAccessory();
-            Item.rare = _parent.Rarity;
-            Item.value = _parent.Value;
-        }
-    }
 }
