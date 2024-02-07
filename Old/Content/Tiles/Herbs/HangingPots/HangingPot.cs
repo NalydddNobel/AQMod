@@ -1,4 +1,5 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequus.Common.Tiles;
+using Aequus.Core.ContentGeneration;
 using Aequus.Core.Initialization;
 using Aequus.Old.Content.Potions.Prefixes.BoundedPotions;
 using Aequus.Old.Content.Potions.Prefixes.EmpoweredPotions;
@@ -7,6 +8,7 @@ using Aequus.Old.Content.Potions.Prefixes.StuffedPotions;
 using System;
 using Terraria.DataStructures;
 using Terraria.Enums;
+using Terraria.GameContent.Drawing;
 using Terraria.ObjectData;
 
 namespace Aequus.Old.Content.Tiles.Herbs.HangingPots;
@@ -55,6 +57,8 @@ internal class HangingPot : ModTile {
         TileObjectData.addAlternate(0);
         TileObjectData.addTile(Type);
 
+        VineDrawing.VineLength[Type] = new(2, 3);
+
         AddMapEntry(Color.White);
         DustType = -1;
     }
@@ -71,5 +75,12 @@ internal class HangingPot : ModTile {
         if (WorldGen.IsBelowANonHammeredPlatform(x, topLeftY)) {
             offsetY -= 8;
         }
+    }
+
+    public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
+        if (Main.tile[i, j].TileFrameX % 36 == 0 && Main.tile[i, j].TileFrameY % 54 == 0) {
+            VineDrawing.DrawVine(i, j);
+        }
+        return false;
     }
 }

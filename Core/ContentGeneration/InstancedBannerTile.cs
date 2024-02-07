@@ -31,7 +31,7 @@ internal class InstancedBannerTile : InstancedModTile {
         TileID.Sets.DisableSmartCursor[Type] = true;
         AddMapEntry(new Color(13, 88, 130), Language.GetText("MapObject.Banners"));
         if (!Main.dedServ) {
-            VineDrawing.VineLength[Type] = 3;
+            VineDrawing.VineLength[Type] = new(1, 3);
         }
     }
 
