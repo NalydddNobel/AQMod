@@ -1,5 +1,5 @@
 GravetenderArmor: "{$Misc.GameTipPretense} Aspiring necromancers would seek out crafting the Gravetender Armor, requiring rotten materials and Ecto Mist"
-StackingDebuffs: "{$Misc.GameTipPretense} Certain debuffs can be inflicted multiple times to enemies, stacking their damage over time."
+StackingDebuffs: "{$Misc.GameTipPretense} Certain debuffs can be inflicted multiple times to the same enemy, stacking their damage over time."
 SoulGems: "{$Misc.GameTipPretense} Soul Gems can only capture souls from enemies which do not reside in the Underworld."
 PhaseMirror: "{$Misc.GameTipPretense} When playing with friends, be sure to snatch the Phase Mirror from the Physicist. It allows you to use Wormholes infinitely."
 Meathook: "{$Misc.GameTipPretense} The Meathook allows you to grapple onto enemies, weakening them for bonus damage!"
