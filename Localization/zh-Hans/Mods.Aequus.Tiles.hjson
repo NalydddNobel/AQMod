@@ -153,45 +153,45 @@ AshTombstones: {
 
 PlanterBox: {
 	Moray: {
-		// ItemDisplayName: Moray Planter Box
-		// ItemTooltip: ""
+		ItemDisplayName: 海鳝种植箱
+		ItemTooltip: ""
 	}
 
 	Moonflower: {
-		// ItemDisplayName: Moonflower Planter Box
-		// ItemTooltip: ""
+		ItemDisplayName: 月光花种植箱
+		ItemTooltip: ""
 	}
 
 	Manacle: {
-		// ItemDisplayName: Manacle Planter Box
-		// ItemTooltip: ""
+		ItemDisplayName: 镣铐种植箱
+		ItemTooltip: ""
 	}
 
 	Mistral: {
-		// ItemDisplayName: Mistral Planter Box
-		// ItemTooltip: ""
+		ItemDisplayName: 寒风种植箱
+		ItemTooltip: ""
 	}
 }
 
 HangingPot: {
 	Moray: {
-		// ItemDisplayName: Hanging Moray
-		// ItemTooltip: ""
+		ItemDisplayName: 海鳝吊盆
+		ItemTooltip: ""
 	}
 
 	Mistral: {
-		// ItemDisplayName: Hanging Mistral
-		// ItemTooltip: ""
+		ItemDisplayName: 寒风吊盆
+		ItemTooltip: ""
 	}
 
 	Manacle: {
-		// ItemDisplayName: Hanging Manacle
-		// ItemTooltip: ""
+		ItemDisplayName: 镣铐吊盆
+		ItemTooltip: ""
 	}
 
 	Moonflower: {
-		// ItemDisplayName: Hanging Moonflower
-		// ItemTooltip: ""
+		ItemDisplayName: 月光花吊盆
+		ItemTooltip: ""
 	}
 }
 
