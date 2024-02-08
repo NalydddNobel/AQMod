@@ -126,18 +126,18 @@ public class Moonflower : ModHerb, IDrawWindyGrass {
         Main.tileLighted[Type] = true;
         TileObjectData.newTile.CoordinateWidth = 26;
         TileObjectData.newTile.CoordinateHeights = new int[] { 30 };
-        TileObjectData.newTile.DrawYOffset = -14;
+        TileObjectData.newTile.DrawYOffset = -12;
         TileObjectData.newTile.AnchorValidTiles = new int[] {
             TileID.Meteorite,
         };
 
-        RandomTick.UpdateByType[TileID.Meteorite] += GrowMoonflower;
+        RandomTick.AddUpdateByType(GrowMoonflower, TileID.Meteorite);
 
         AddMapEntry(new Color(186, 122, 255), CreateMapEntryName());
     }
 
     public static void GrowMoonflower(int i, int j, int type) {
-        if (!Main.tile[i, j - 1].HasTile && WorldGen.genRand.NextBool(100)) {
+        if (!Main.tile[i, j - 1].HasTile && WorldGen.genRand.NextBool(100) && !TileHelper.ScanTilesSquare(i, j, 20, TileHelper.HasTileAction(ModContent.TileType<Moonflower>()))) {
             WorldGen.PlaceTile(i, j - 1, ModContent.TileType<Moonflower>());
         }
     }

@@ -841,6 +841,9 @@
             <param name="j"></param>
             <returns>Whether to override random update logic. Returns false by default.</returns>
         </member>
+        <member name="F:Aequus.Common.Tiles.RandomTick.UpdateByType">
+            <summary>Lookup for update tick actions to perform less type checks.</summary>
+        </member>
         <member name="M:Aequus.Common.WorldGeneration.AequusGenStep.SetMessage(Terraria.WorldBuilding.GenerationProgress,System.Object)">
             <summary>
             Safely sets the progress message.
@@ -3007,14 +3010,14 @@
         <member name="F:Aequus.AequusTextures.ManacleTile">
             <summary>Full Path: Old/Content/Tiles/Herbs/Manacle/ManacleTile</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Mistral">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Mistral/Mistral</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.MistralSeeds">
             <summary>Full Path: Old/Content/Tiles/Herbs/Mistral/MistralSeeds</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.MistralTile">
-            <summary>Full Path: Old/Content/Tiles/Herbs/Mistral/MistralTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MistralTile_Pinwheel">
-            <summary>Full Path: Old/Content/Tiles/Herbs/Mistral/MistralTile_Pinwheel</summary>
+        <member name="F:Aequus.AequusTextures.Mistral_Pinwheel">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Mistral/Mistral_Pinwheel</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Moonflower">
             <summary>Full Path: Old/Content/Tiles/Herbs/Moonflower/Moonflower</summary>

@@ -275,7 +275,9 @@ public sealed class PlanterBox : ModTile, IRandomUpdateOverride, IPostSetupConte
         // Insert a check for our modded planter box in the chain of type checks.
         cursor.EmitLdarg0();
         cursor.EmitLdarg1();
-        cursor.EmitDelegate((int x, int y) => Main.tile[x, y].TileType == ModContent.TileType<PlanterBox>());
+        cursor.EmitDelegate((int x, int y) => {
+            return Main.tile[x, y + 1].TileType != ModContent.TileType<PlanterBox>();
+        });
         cursor.EmitBrfalse(branchLabel);
 
         MonoModHooks.DumpIL(Mod, il);
@@ -304,7 +306,9 @@ public sealed class PlanterBox : ModTile, IRandomUpdateOverride, IPostSetupConte
         // Insert a check for our modded planter box in the chain of type checks.
         cursor.EmitLdarg0();
         cursor.EmitLdarg1();
-        cursor.EmitDelegate((int x, int y) => Main.tile[x, y].TileType == ModContent.TileType<PlanterBox>());
+        cursor.EmitDelegate((int x, int y) => {
+            return Main.tile[x, y + 1].TileType != ModContent.TileType<PlanterBox>();
+        });
         cursor.EmitBrfalse(branchLabel);
 
         MonoModHooks.DumpIL(Mod, il);

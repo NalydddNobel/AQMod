@@ -765,12 +765,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ManacleSeeds = new("Aequus/Old/Content/Tiles/Herbs/Manacle/ManacleSeeds");
     /// <summary>Full Path: Old/Content/Tiles/Herbs/Manacle/ManacleTile</summary>
     public static readonly RequestCache<Texture2D> ManacleTile = new("Aequus/Old/Content/Tiles/Herbs/Manacle/ManacleTile");
+    /// <summary>Full Path: Old/Content/Tiles/Herbs/Mistral/Mistral</summary>
+    public static readonly RequestCache<Texture2D> Mistral = new("Aequus/Old/Content/Tiles/Herbs/Mistral/Mistral");
     /// <summary>Full Path: Old/Content/Tiles/Herbs/Mistral/MistralSeeds</summary>
     public static readonly RequestCache<Texture2D> MistralSeeds = new("Aequus/Old/Content/Tiles/Herbs/Mistral/MistralSeeds");
-    /// <summary>Full Path: Old/Content/Tiles/Herbs/Mistral/MistralTile</summary>
-    public static readonly RequestCache<Texture2D> MistralTile = new("Aequus/Old/Content/Tiles/Herbs/Mistral/MistralTile");
-    /// <summary>Full Path: Old/Content/Tiles/Herbs/Mistral/MistralTile_Pinwheel</summary>
-    public static readonly RequestCache<Texture2D> MistralTile_Pinwheel = new("Aequus/Old/Content/Tiles/Herbs/Mistral/MistralTile_Pinwheel");
+    /// <summary>Full Path: Old/Content/Tiles/Herbs/Mistral/Mistral_Pinwheel</summary>
+    public static readonly RequestCache<Texture2D> Mistral_Pinwheel = new("Aequus/Old/Content/Tiles/Herbs/Mistral/Mistral_Pinwheel");
     /// <summary>Full Path: Old/Content/Tiles/Herbs/Moonflower/Moonflower</summary>
     public static readonly RequestCache<Texture2D> Moonflower = new("Aequus/Old/Content/Tiles/Herbs/Moonflower/Moonflower");
     /// <summary>Full Path: Old/Content/Tiles/Herbs/Moonflower/MoonflowerEffect</summary>

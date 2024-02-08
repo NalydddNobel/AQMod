@@ -725,3 +725,8 @@ MoonflowerSeeds: {
 	DisplayName: Moonflower Seeds
 	Tooltip: ""
 }
+
+MistralSeeds: {
+	DisplayName: Mistral Seeds
+	Tooltip: ""
+}
