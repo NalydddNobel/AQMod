@@ -1,15 +1,15 @@
 DayOfTheWeek: 当处于{0}
 BetweenDays: 在{0}-{1}之间
-// InPollutedOcean: Mods.Aequus.Condition.InPollutedOcean
-// DownedAquaticBoss: Mods.Aequus.Condition.DownedAquaticBoss
-// DownedCosmicBoss: After defeating Ultra Starite
-// DownedTrueCosmicBoss: After defeating Omega Starite
-// DownedDemonBoss: After completing a Demon Siege
-// DownedTrueDemonBoss: Mods.Aequus.Condition.DownedTrueDemonBoss
-// DownedAtmosphereBossFlame: After matching against the Red Sprite
-// DownedAtmosphereBossFrost: After matching against the Space Squid
-// DownedTrueAtmosphereBoss: After defeating Dust Devil
-// DownedOrganicBossMight: Mods.Aequus.Condition.DownedOrganicBossMight
-// DownedOrganicBossSight: Mods.Aequus.Condition.DownedOrganicBossSight
-// DownedOrganicBossFright: Mods.Aequus.Condition.DownedOrganicBossFright
-// DownedTrueFinalBoss: Mods.Aequus.Condition.DownedTrueFinalBoss
+InPollutedOcean: Mods.Aequus.Condition.InPollutedOcean
+DownedAquaticBoss: Mods.Aequus.Condition.DownedAquaticBoss
+DownedCosmicBoss: 在击败终耀源星后
+DownedTrueCosmicBoss: 在击败终末之星后
+DownedDemonBoss: 在完成一次恶魔围攻后
+DownedTrueDemonBoss: Mods.Aequus.Condition.DownedTrueDemonBoss
+DownedAtmosphereBossFlame: 在与红色精灵相匹配后
+DownedAtmosphereBossFrost: 在与太空乌贼相匹配后
+DownedTrueAtmosphereBoss: 在击败沙尘恶魔后
+DownedOrganicBossMight: Mods.Aequus.Condition.DownedOrganicBossMight
+DownedOrganicBossSight: Mods.Aequus.Condition.DownedOrganicBossSight
+DownedOrganicBossFright: Mods.Aequus.Condition.DownedOrganicBossFright
+DownedTrueFinalBoss: Mods.Aequus.Condition.DownedTrueFinalBoss
