@@ -38,7 +38,8 @@ public class GravetenderRobes : ModItem {
                 .AddTile(TileID.Loom)
                 .AddCondition(Condition.InGraveyard)
                 .Register()
-                .SortBeforeFirstRecipesOf(ItemID.GravediggerShovel);
+                .SortBeforeFirstRecipesOf(ItemID.GravediggerShovel)
+                .DisableDecraft();
         }
     }
 }
