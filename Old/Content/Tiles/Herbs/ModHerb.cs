@@ -1,15 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.Core.ContentGeneration;
+using System.Collections.Generic;
 using Terraria.GameContent.Metadata;
 using Terraria.ObjectData;
 
 namespace Aequus.Old.Content.Tiles.Herbs;
 
-public abstract class HerbBase : ModTile {
+public abstract class ModHerb : ModTile {
+    public const int STAGE_IMMATURE = 0;
+    public const int STAGE_MATURE = 1;
+    public const int STAGE_BLOOMING = 2;
+
     protected short FrameWidth { get; private set; }
+
+    public ModItem SeedItem { get; private set; }
+
+    public override void Load() {
+        SeedItem = new InstancedSeedItem(this);
+        Mod.AddContent(SeedItem);
+    }
 
     public override bool CanPlace(int i, int j) {
         Tile tile = Main.tile[i, j];
         return !tile.HasTile || tile.TileType != Type;
+    }
+
+    public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) {
+        if (GetGrowthStage(i, j) == STAGE_BLOOMING) {
+            tileFrameX = (short)(FrameWidth * STAGE_BLOOMING);
+        }
     }
 
     public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects) {
@@ -19,11 +37,12 @@ public abstract class HerbBase : ModTile {
     }
 
     public override IEnumerable<Item> GetItemDrops(int i, int j) {
-        int growthStage = Main.tile[i, j].TileFrameX / FrameWidth;
+        int growthStage = GetGrowthStage(i, j);
         Player closestPlayer = Main.player[Player.FindClosest(new Vector2(i * 16, j * 16), 16, 16)];
         Item item = closestPlayer.HeldItem;
 
-        GetDropParams(growthStage, closestPlayer, item, out int plant, out int seeds);
+        int seeds = SeedItem.Type;
+        GetDropParams(growthStage, closestPlayer, item, out int plant);
 
         if (closestPlayer.active && (item.type == ItemID.StaffofRegrowth || item.type == ItemID.AcornAxe)) {
             if (growthStage == 1) {
@@ -51,7 +70,7 @@ public abstract class HerbBase : ModTile {
     /// <param name="playerHeldItem">The player's held item.</param>
     /// <param name="plant">The plant item id to drop.</param>
     /// <param name="seeds">The seed item id to drop.</param>
-    protected abstract void GetDropParams(int growthStage, Player closestPlayer, Item playerHeldItem, out int plant, out int seeds);
+    protected abstract void GetDropParams(int growthStage, Player closestPlayer, Item playerHeldItem, out int plant);
     /// <param name="growthStage">The growth stage (style) of this plant.</param>
     /// <param name="closestPlayer">The closest player to the plant.</param>
     /// <param name="playerHeldItem">The player's held item.</param>
@@ -78,7 +97,7 @@ public abstract class HerbBase : ModTile {
 
         // Will naturally take a bit to grow from stage 1 to 2
         // Stage 2 to 3 is determined by the derived class
-        if (tile.TileFrameX == 0) {
+        if (tile.TileFrameX == 0 && WorldGen.genRand.NextBool(10)) {
             tile.TileFrameX += FrameWidth;
             NetMessage.SendTileSquare(-1, i, j, 1);
         }
@@ -91,6 +110,7 @@ public abstract class HerbBase : ModTile {
         Main.tileWaterDeath[Type] = false;
         Main.tileObsidianKill[Type] = true;
 
+        TileID.Sets.SwaysInWindBasic[Type] = true;
         TileID.Sets.ReplaceTileBreakUp[Type] = true;
         TileID.Sets.IgnoredInHouseScore[Type] = true;
         TileID.Sets.IgnoredByGrowingSaplings[Type] = true;
@@ -113,4 +133,31 @@ public abstract class HerbBase : ModTile {
     }
 
     protected abstract void SafeSetStaticDefaults();
+
+    protected abstract bool IsBlooming(int i, int j);
+
+    public int GetGrowthStage(int i, int j) {
+        int style = Main.tile[i, j].TileFrameX / 18;
+
+        return style switch {
+            STAGE_BLOOMING => STAGE_BLOOMING,
+            STAGE_MATURE => IsBlooming(i, j) ? STAGE_BLOOMING : STAGE_MATURE,
+            _ => STAGE_IMMATURE
+        };
+    }
+
+    internal class InstancedSeedItem : InstancedModItem {
+        [CloneByReference]
+        private readonly ModTile _parent;
+
+        public InstancedSeedItem(ModHerb tile) : base(tile.Name + "Seeds", tile.Texture + "Seeds") {
+            _parent = tile;
+        }
+
+        public override void SetDefaults() {
+            Item.CloneDefaults(ItemID.DaybloomSeeds);
+            Item.createTile = _parent.Type;
+            Item.placeStyle = 0;
+        }
+    }
 }

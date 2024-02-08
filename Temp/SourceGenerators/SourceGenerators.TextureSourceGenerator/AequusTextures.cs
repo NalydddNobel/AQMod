@@ -771,12 +771,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> MistralTile = new("Aequus/Old/Content/Tiles/Herbs/Mistral/MistralTile");
     /// <summary>Full Path: Old/Content/Tiles/Herbs/Mistral/MistralTile_Pinwheel</summary>
     public static readonly RequestCache<Texture2D> MistralTile_Pinwheel = new("Aequus/Old/Content/Tiles/Herbs/Mistral/MistralTile_Pinwheel");
+    /// <summary>Full Path: Old/Content/Tiles/Herbs/Moonflower/Moonflower</summary>
+    public static readonly RequestCache<Texture2D> Moonflower = new("Aequus/Old/Content/Tiles/Herbs/Moonflower/Moonflower");
+    /// <summary>Full Path: Old/Content/Tiles/Herbs/Moonflower/MoonflowerEffect</summary>
+    public static readonly RequestCache<Texture2D> MoonflowerEffect = new("Aequus/Old/Content/Tiles/Herbs/Moonflower/MoonflowerEffect");
     /// <summary>Full Path: Old/Content/Tiles/Herbs/Moonflower/MoonflowerSeeds</summary>
     public static readonly RequestCache<Texture2D> MoonflowerSeeds = new("Aequus/Old/Content/Tiles/Herbs/Moonflower/MoonflowerSeeds");
-    /// <summary>Full Path: Old/Content/Tiles/Herbs/Moonflower/MoonflowerTile</summary>
-    public static readonly RequestCache<Texture2D> MoonflowerTile = new("Aequus/Old/Content/Tiles/Herbs/Moonflower/MoonflowerTile");
-    /// <summary>Full Path: Old/Content/Tiles/Herbs/Moonflower/MoonflowerTileEffect</summary>
-    public static readonly RequestCache<Texture2D> MoonflowerTileEffect = new("Aequus/Old/Content/Tiles/Herbs/Moonflower/MoonflowerTileEffect");
     /// <summary>Full Path: Old/Content/Tiles/Herbs/Moray/MoraySeeds</summary>
     public static readonly RequestCache<Texture2D> MoraySeeds = new("Aequus/Old/Content/Tiles/Herbs/Moray/MoraySeeds");
     /// <summary>Full Path: Old/Content/Tiles/Herbs/Moray/MoraySeeds_Glow</summary>

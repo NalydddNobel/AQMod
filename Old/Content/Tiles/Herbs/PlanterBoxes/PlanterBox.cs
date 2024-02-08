@@ -6,6 +6,8 @@ using MonoMod.Cil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ObjectData;
 
 namespace Aequus.Old.Content.Tiles.Herbs.PlanterBoxes;
@@ -149,6 +151,10 @@ public sealed class PlanterBox : ModTile, IRandomUpdateOverride, IPostSetupConte
         //On_WorldGen.IsFitToPlaceFlowerIn += IsFitToPlaceFlowerInPlanterBoxHack;
         //IL_WorldGen.PlaceTile += PlaceTileILEdit_AbsolutelyNotScary;
 
+        On_Player.FigureOutWhatToPlace += On_Player_FigureOutWhatToPlace;
+        IL_WorldGen.CanCutTile += IL_WorldGen_CanCutTile;
+        IL_WorldGen.TryKillingReplaceableTile += IL_WorldGen_TryKillingReplaceableTile;
+
         AddItem("Moray", ItemID.BlinkrootPlanterBox, Aequus.ConditionDownedAquaticBoss);
         AddItem("Mistral", ItemID.FireBlossomPlanterBox, Aequus.ConditionDownedTrueAtmosphereBoss);
         AddItem("Manacle", ItemID.ShiverthornPlanterBox, Aequus.ConditionDownedDemonBoss);
@@ -178,6 +184,8 @@ public sealed class PlanterBox : ModTile, IRandomUpdateOverride, IPostSetupConte
         Main.tileMerge[Type][Type] = true;
 
         TileID.Sets.DisableSmartCursor[Type] = true;
+        TileID.Sets.DoesntGetReplacedWithTileReplacement[Type] = true;
+        TileID.Sets.DoesntPlaceWithTileReplacement[Type] = true;
 
         //TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
         //TileObjectData.newTile.AnchorLeft = AnchorData.Empty;
@@ -239,6 +247,69 @@ public sealed class PlanterBox : ModTile, IRandomUpdateOverride, IPostSetupConte
     }
 
     #region Hooks
+    private static void On_Player_FigureOutWhatToPlace(On_Player.orig_FigureOutWhatToPlace orig, Player self, Tile targetTile, Item sItem, out int tileToCreate, out int previewPlaceStyle, out bool? overrideCanPlace, out int? forcedRandom) {
+        orig(self, targetTile, sItem, out tileToCreate, out previewPlaceStyle, out overrideCanPlace, out forcedRandom);
+        
+        if (targetTile.HasTile && TileLoader.GetTile(targetTile.TileType) is ModHerb modHerb && modHerb.GetGrowthStage(Player.tileTargetX, Player.tileTargetY) != ModHerb.STAGE_BLOOMING) {
+            overrideCanPlace = false;
+        }
+    }
+
+    private void IL_WorldGen_TryKillingReplaceableTile(ILContext il) {
+        ILCursor cursor = new ILCursor(il);
+
+        // The first time we load the 2nd argument is right before the check for planter boxes.
+        if (!cursor.TryGotoNext(i => i.MatchLdarg2())) {
+            Mod.Logger.Error("Error locating ldarg2 in WorldGen.TryKillingReplaceableTile."); return;
+        }
+
+        // Grab the label for the branch statement which is actually right after ldarg2 
+        ILLabel branchLabel = null;
+        if (!cursor.TryGotoNext(i => i.MatchBeq(out branchLabel)) || branchLabel == null) {
+            Mod.Logger.Error("Error locating beq in WorldGen.TryKillingReplaceableTile."); return;
+        }
+
+        // Increment the index, we have now fallen into the chain of type checks
+        cursor.Index++;
+
+        // Insert a check for our modded planter box in the chain of type checks.
+        cursor.EmitLdarg0();
+        cursor.EmitLdarg1();
+        cursor.EmitDelegate((int x, int y) => Main.tile[x, y].TileType == ModContent.TileType<PlanterBox>());
+        cursor.EmitBrfalse(branchLabel);
+
+        MonoModHooks.DumpIL(Mod, il);
+    }
+
+    private void IL_WorldGen_CanCutTile(ILContext il) {
+        ILCursor cursor = new ILCursor(il);
+
+        // First ldsfld is for the null check, the 2nd one is a type check.
+        if (!cursor.TryGotoNext(i => i.MatchLdsflda(typeof(Main), nameof(Main.tile))) || !cursor.TryGotoNext(i => i.MatchLdsflda(typeof(Main), nameof(Main.tile)))) {
+            Mod.Logger.Error("Error locating the 2nd ldsflda of Main.tile in WorldGen.CanCutTile."); return;
+        }
+
+        // Keep track of the index where the type check chain starts so we can return to it later.
+        int index = cursor.Index;
+
+        // Go forward a bit to capture the label which is used in the type checks.
+        ILLabel branchLabel = null;
+        if (!cursor.TryGotoNext(i => i.MatchBeq(out branchLabel)) || branchLabel == null) {
+            Mod.Logger.Error("Error locating the tile check's beq in WorldGen.CanCutTile."); return;
+        }
+
+        // Set the index back now that we have the label.
+        cursor.Index = index;
+
+        // Insert a check for our modded planter box in the chain of type checks.
+        cursor.EmitLdarg0();
+        cursor.EmitLdarg1();
+        cursor.EmitDelegate((int x, int y) => Main.tile[x, y].TileType == ModContent.TileType<PlanterBox>());
+        cursor.EmitBrfalse(branchLabel);
+
+        MonoModHooks.DumpIL(Mod, il);
+    }
+
     private void IL_WorldGen_PlantCheck(ILContext il) {
         ILCursor cursor = new ILCursor(il);
 

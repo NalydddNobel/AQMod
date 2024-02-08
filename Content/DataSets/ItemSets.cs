@@ -34,6 +34,11 @@ public class ItemSets : DataSet {
     public static HashSet<Entry<ItemID>> IsDungeonLockBox { get; private set; } = new();
     [JsonProperty]
     public static HashSet<Entry<ItemID>> IsHellLockBox { get; private set; } = new();
+    [JsonProperty]
+    public static HashSet<Entry<ItemID>> IsStaffOfRegrowth { get; private set; } = new() {
+        ItemID.StaffofRegrowth,
+        ItemID.AcornAxe,
+    };
 
     [JsonProperty]
     public static Dictionary<Entry<ItemID>, Entry<ProjectileID>> AmmoIdToProjectileId { get; private set; } = new();

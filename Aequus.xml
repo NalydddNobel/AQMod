@@ -1187,6 +1187,10 @@
             <para>Place SpecialTileDrawing.Add(i, j, Type); into ModTile.PostDraw(...) to add it to the rendering list.</para>
             </summary>
         </member>
+        <member name="M:Aequus.Core.Graphics.Tiles.IDrawWindyGrass.DrawWindyGrass(Aequus.Core.Graphics.Tiles.TileDrawCall)">
+            <param name="drawInfo"></param>
+            <returns>Whether to run vanilla rendering. Return false to prevent vanilla rendering.</returns>
+        </member>
         <member name="M:Aequus.Core.Initialization.BannerLoader.AddBannerBuff``1(Terraria.ModLoader.ModNPC)">
             <summary>
             Adds a banner buff for this NPC to <typeparamref name="TBannerNPC"/>'s registered banner. This is used grant a buff against Chained Souls when near the Keeper's Banner.
@@ -1690,7 +1694,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 56)</summary>
+            <summary>(Total Sounds: 57)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishCharge">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -1826,6 +1830,9 @@
         </member>
         <member name="F:Aequus.AequusSounds.ConductiveBlock3">
             <summary>Full Path: Assets/Sounds/Tile/ConductiveBlock3</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.MoonflowerBreak">
+            <summary>Full Path: Assets/Sounds/Tile/MoonflowerBreak</summary>
         </member>
         <member name="F:Aequus.AequusSounds.OmniGemBreak">
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
@@ -3009,14 +3016,14 @@
         <member name="F:Aequus.AequusTextures.MistralTile_Pinwheel">
             <summary>Full Path: Old/Content/Tiles/Herbs/Mistral/MistralTile_Pinwheel</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Moonflower">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Moonflower/Moonflower</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MoonflowerEffect">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Moonflower/MoonflowerEffect</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.MoonflowerSeeds">
             <summary>Full Path: Old/Content/Tiles/Herbs/Moonflower/MoonflowerSeeds</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MoonflowerTile">
-            <summary>Full Path: Old/Content/Tiles/Herbs/Moonflower/MoonflowerTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MoonflowerTileEffect">
-            <summary>Full Path: Old/Content/Tiles/Herbs/Moonflower/MoonflowerTileEffect</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MoraySeeds">
             <summary>Full Path: Old/Content/Tiles/Herbs/Moray/MoraySeeds</summary>
@@ -3187,14 +3194,14 @@
         <member name="M:Aequus.Old.Content.Potions.PotionCanteen.TemplateCanteen.HasBuffs">
             <summary>Determines if this canteen has any buffs at all.</summary>
         </member>
-        <member name="M:Aequus.Old.Content.Tiles.Herbs.HerbBase.GetDropParams(System.Int32,Terraria.Player,Terraria.Item,System.Int32@,System.Int32@)">
+        <member name="M:Aequus.Old.Content.Tiles.Herbs.ModHerb.GetDropParams(System.Int32,Terraria.Player,Terraria.Item,System.Int32@)">
             <param name="growthStage">The growth stage (style) of this plant.</param>
             <param name="closestPlayer">The closest player to the plant.</param>
             <param name="playerHeldItem">The player's held item.</param>
             <param name="plant">The plant item id to drop.</param>
             <param name="seeds">The seed item id to drop.</param>
         </member>
-        <member name="M:Aequus.Old.Content.Tiles.Herbs.HerbBase.GetDropStacks(System.Int32,Terraria.Player,Terraria.Item,System.Boolean,System.Int32,System.Int32,System.Int32@,System.Int32@)">
+        <member name="M:Aequus.Old.Content.Tiles.Herbs.ModHerb.GetDropStacks(System.Int32,Terraria.Player,Terraria.Item,System.Boolean,System.Int32,System.Int32,System.Int32@,System.Int32@)">
             <param name="growthStage">The growth stage (style) of this plant.</param>
             <param name="closestPlayer">The closest player to the plant.</param>
             <param name="playerHeldItem">The player's held item.</param>

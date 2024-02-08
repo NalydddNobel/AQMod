@@ -720,3 +720,8 @@ Toolbelt: {
 	// BackpackEnabled: Toolbelt Pack On
 	// BackpackDisabled: Toolbelt Pack Off
 }
+
+MoonflowerSeeds: {
+	// DisplayName: Moonflower Seeds
+	// Tooltip: ""
+}

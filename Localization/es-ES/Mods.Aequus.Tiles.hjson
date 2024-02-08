@@ -179,22 +179,24 @@ PlanterBox: {
 
 HangingPot: {
 	Moray: {
-		// ItemDisplayName: Mods.Aequus.Tiles.HangingPot.Moray.ItemDisplayName
+		// ItemDisplayName: Hanging Moray
 		// ItemTooltip: ""
 	}
 
 	Mistral: {
-		// ItemDisplayName: Mods.Aequus.Tiles.HangingPot.Mistral.ItemDisplayName
+		// ItemDisplayName: Hanging Mistral
 		// ItemTooltip: ""
 	}
 
 	Manacle: {
-		// ItemDisplayName: Mods.Aequus.Tiles.HangingPot.Manacle.ItemDisplayName
+		// ItemDisplayName: Hanging Manacle
 		// ItemTooltip: ""
 	}
 
 	Moonflower: {
-		// ItemDisplayName: Mods.Aequus.Tiles.HangingPot.Moonflower.ItemDisplayName
+		// ItemDisplayName: Hanging Moonflower
 		// ItemTooltip: ""
 	}
 }
+
+// Moonflower.MapEntry: Moonflower

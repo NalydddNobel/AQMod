@@ -194,3 +194,5 @@ HangingPot: {
 		ItemTooltip: ""
 	}
 }
+
+Moonflower.MapEntry: Moonflower
