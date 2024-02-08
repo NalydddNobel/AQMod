@@ -730,3 +730,8 @@ MistralSeeds: {
 	// DisplayName: Mistral Seeds
 	// Tooltip: ""
 }
+
+ManacleSeeds: {
+	// DisplayName: Manacle Seeds
+	// Tooltip: ""
+}

@@ -35,7 +35,7 @@ BoundedPrefix: {
 StuffedPrefix: {
 	// DisplayName: Stuffed
 	// Ability: x{0} duration
-	// ItemName: Moonflower Pollen
+	// ItemName: Stellar Cubes
 	/* ItemTooltip:
 		'''
 		Doubles the duration of potions

@@ -7,29 +7,64 @@ namespace Aequus;
 
 public partial class Aequus {
     /// <summary>Whether ??? was defeated.</summary>
-    public static readonly Condition ConditionDownedAquaticBoss = new Condition("Mods.Aequus.Condition.DownedAquaticBoss", () => true);
+    public static readonly Condition ConditionDownedAquaticBoss = new Condition("Mods.Aequus.Condition.DownedAquaticBoss", () => WorldState.DownedAquaticBoss);
+    /// <summary>Whether ??? was not defeated.</summary>
+    public static readonly Condition ConditionNotDownedAquaticBoss = new Condition("Mods.Aequus.Condition.NotDownedAquaticBoss", () => !WorldState.DownedAquaticBoss);
+    
     /// <summary>Whether Ultra Starite was defeated.</summary>
-    public static readonly Condition ConditionDownedCosmicBoss = new Condition("Mods.Aequus.Condition.DownedCosmicBoss", () => true);
+    public static readonly Condition ConditionDownedCosmicBoss = new Condition("Mods.Aequus.Condition.DownedCosmicBoss", () => WorldState.DownedCosmicBoss);
+    /// <summary>Whether Ultra Starite not was defeated.</summary>
+    public static readonly Condition ConditionNotDownedCosmicBoss = new Condition("Mods.Aequus.Condition.NotDownedCosmicBoss", () => !WorldState.DownedCosmicBoss);
+    
     /// <summary>Whether Omega Starite was defeated.</summary>
-    public static readonly Condition ConditionDownedTrueCosmicBoss = new Condition("Mods.Aequus.Condition.DownedTrueCosmicBoss", () => true);
+    public static readonly Condition ConditionDownedTrueCosmicBoss = new Condition("Mods.Aequus.Condition.DownedTrueCosmicBoss", () => WorldState.DownedTrueCosmicBoss);
+    /// <summary>Whether Omega Starite not was defeated.</summary>
+    public static readonly Condition ConditionNotDownedTrueCosmicBoss = new Condition("Mods.Aequus.Condition.NotDownedTrueCosmicBoss", () => !WorldState.DownedTrueCosmicBoss);
+    
     /// <summary>Whether the Demon Siege was completed atleast once.</summary>
-    public static readonly Condition ConditionDownedDemonBoss = new Condition("Mods.Aequus.Condition.DownedDemonBoss", () => WorldFlags.DownedDemonSiegeT1);
+    public static readonly Condition ConditionDownedDemonBoss = new Condition("Mods.Aequus.Condition.DownedDemonBoss", () => WorldState.DownedDemonBoss);
+    /// <summary>Whether the Demon Siege not was completed atleast once.</summary>
+    public static readonly Condition ConditionNotDownedDemonBoss = new Condition("Mods.Aequus.Condition.NotDownedDemonBoss", () => !WorldState.DownedDemonBoss);
+    
     /// <summary>Whether Upriser (Unimplemented) was defeated.</summary>
-    public static readonly Condition ConditionDownedTrueDemonBoss = new Condition("Mods.Aequus.Condition.DownedTrueDemonBoss", () => true);
+    public static readonly Condition ConditionDownedTrueDemonBoss = new Condition("Mods.Aequus.Condition.DownedTrueDemonBoss", () => WorldState.DownedTrueDemonBoss);
+    /// <summary>Whether Upriser (Unimplemented) not was defeated.</summary>
+    public static readonly Condition ConditionNotDownedTrueDemonBoss = new Condition("Mods.Aequus.Condition.NotDownedTrueDemonBoss", () => !WorldState.DownedTrueDemonBoss);
+    
     /// <summary>Whether Red Sprite was defeated.</summary>
-    public static readonly Condition ConditionDownedAtmosphereBossFlame = new Condition("Mods.Aequus.Condition.DownedAtmosphereBossFlame", () => true);
+    public static readonly Condition ConditionDownedAtmosphereBossFlame = new Condition("Mods.Aequus.Condition.DownedAtmosphereBossFlame", () => WorldState.DownedAtmoBossFlame);
+    /// <summary>Whether Red Sprite was not defeated.</summary>
+    public static readonly Condition ConditionNotDownedAtmosphereBossFlame = new Condition("Mods.Aequus.Condition.NotDownedAtmosphereBossFlame", () => !WorldState.DownedAtmoBossFlame);
+    
     /// <summary>Whether Space Squid was defeated.</summary>
-    public static readonly Condition ConditionDownedAtmosphereBossFrost = new Condition("Mods.Aequus.Condition.DownedAtmosphereBossFrost", () => true);
+    public static readonly Condition ConditionDownedAtmosphereBossFrost = new Condition("Mods.Aequus.Condition.DownedAtmosphereBossFrost", () => WorldState.DownedAtmoBossFrost);
+    /// <summary>Whether Space Squid was not defeated.</summary>
+    public static readonly Condition ConditionNotDownedAtmosphereBossFrost = new Condition("Mods.Aequus.Condition.NotDownedAtmosphereBossFrost", () => !WorldState.DownedAtmoBossFrost);
+    
     /// <summary>Whether Dust Devil was defeated.</summary>
-    public static readonly Condition ConditionDownedTrueAtmosphereBoss = new Condition("Mods.Aequus.Condition.DownedTrueAtmosphereBoss", () => true);
+    public static readonly Condition ConditionDownedTrueAtmosphereBoss = new Condition("Mods.Aequus.Condition.DownedTrueAtmosphereBoss", () => WorldState.DownedTrueAtmoBoss);
+    /// <summary>Whether Dust Devil was not defeated.</summary>
+    public static readonly Condition ConditionNotDownedTrueAtmosphereBoss = new Condition("Mods.Aequus.Condition.NotDownedTrueAtmosphereBoss", () => !WorldState.DownedTrueAtmoBoss);
+   
     /// <summary>Whether ??? was defeated.</summary>
-    public static readonly Condition ConditionDownedOrganicBossMight = new Condition("Mods.Aequus.Condition.DownedOrganicBossMight", () => true);
+    public static readonly Condition ConditionDownedOrganicBossMight = new Condition("Mods.Aequus.Condition.DownedOrganicBossMight", () => WorldState.DownedOrganicBossMight);
+    /// <summary>Whether ??? was not defeated.</summary>
+    public static readonly Condition ConditionNotDownedOrganicBossMight = new Condition("Mods.Aequus.Condition.NotDownedOrganicBossMight", () => !WorldState.DownedOrganicBossMight);
+   
     /// <summary>Whether ??? was defeated.</summary>
-    public static readonly Condition ConditionDownedOrganicBossSight = new Condition("Mods.Aequus.Condition.DownedOrganicBossSight", () => true);
+    public static readonly Condition ConditionDownedOrganicBossSight = new Condition("Mods.Aequus.Condition.DownedOrganicBossSight", () => WorldState.DownedOrganicBossSight);
+    /// <summary>Whether ??? was not defeated.</summary>
+    public static readonly Condition ConditionNotDownedOrganicBossSight = new Condition("Mods.Aequus.Condition.NotDownedOrganicBossSight", () => !WorldState.DownedOrganicBossSight);
+    
     /// <summary>Whether ??? was defeated.</summary>
-    public static readonly Condition ConditionDownedOrganicBossFright = new Condition("Mods.Aequus.Condition.DownedOrganicBossFright", () => true);
+    public static readonly Condition ConditionDownedOrganicBossFright = new Condition("Mods.Aequus.Condition.DownedOrganicBossFright", () => WorldState.DownedOrganicBossFright);
+    /// <summary>Whether ??? was not defeated.</summary>
+    public static readonly Condition ConditionNotDownedOrganicBossFright = new Condition("Mods.Aequus.Condition.NotDownedOrganicBossFright", () => !WorldState.DownedOrganicBossFright);
+    
     /// <summary>Whether ??? was defeated.</summary>
-    public static readonly Condition ConditionDownedTrueFinalBoss = new Condition("Mods.Aequus.Condition.DownedTrueFinalBoss", () => true);
+    public static readonly Condition ConditionDownedTrueFinalBoss = new Condition("Mods.Aequus.Condition.DownedTrueFinalBoss", () => WorldState.DownedTrueFinalBoss);
+    /// <summary>Whether ??? was not defeated.</summary>
+    public static readonly Condition ConditionNotDownedTrueFinalBoss = new Condition("Mods.Aequus.Condition.NotDownedTrueFinalBoss", () => !WorldState.DownedTrueFinalBoss);
 
     /// <param name="firstDay">A <see cref="DayOfWeek"/> to compare against <see cref="TimeTrackerSystem.DayOfTheWeek"/>.</param>
     /// <param name="lastDay">A <see cref="DayOfWeek"/> to compare against <see cref="TimeTrackerSystem.DayOfTheWeek"/>.</param>

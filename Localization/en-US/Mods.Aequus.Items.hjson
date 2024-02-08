@@ -204,7 +204,7 @@ GravetenderRobes: {
 	Tooltip:
 		'''
 		{$CommonTooltips.StatGhostDuration}
-		{$CommonTooltips.StatGhostSlots}
+		{$CommonTooltips.StatGhostSlots@1}
 		'''
 }
 
@@ -728,5 +728,10 @@ MoonflowerSeeds: {
 
 MistralSeeds: {
 	DisplayName: Mistral Seeds
+	Tooltip: ""
+}
+
+ManacleSeeds: {
+	DisplayName: Manacle Seeds
 	Tooltip: ""
 }

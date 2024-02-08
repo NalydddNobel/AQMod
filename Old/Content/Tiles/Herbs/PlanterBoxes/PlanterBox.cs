@@ -6,8 +6,6 @@ using MonoMod.Cil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ObjectData;
 
 namespace Aequus.Old.Content.Tiles.Herbs.PlanterBoxes;
@@ -18,8 +16,6 @@ public sealed class PlanterBox : ModTile, IRandomUpdateOverride, IPostSetupConte
     public const int STYLE_MANACLE = 2;
     public const int STYLE_MOONFLOWER = 3;
     public const int STYLE_COUNT = 4;
-
-    private static bool _loop;
 
     public List<PlanterBoxItemInfo> RegisteredPlanterBoxItems { get; private set; } = new();
 
@@ -249,7 +245,7 @@ public sealed class PlanterBox : ModTile, IRandomUpdateOverride, IPostSetupConte
     #region Hooks
     private static void On_Player_FigureOutWhatToPlace(On_Player.orig_FigureOutWhatToPlace orig, Player self, Tile targetTile, Item sItem, out int tileToCreate, out int previewPlaceStyle, out bool? overrideCanPlace, out int? forcedRandom) {
         orig(self, targetTile, sItem, out tileToCreate, out previewPlaceStyle, out overrideCanPlace, out forcedRandom);
-        
+
         if (targetTile.HasTile && TileLoader.GetTile(targetTile.TileType) is ModHerb modHerb && modHerb.GetGrowthStage(Player.tileTargetX, Player.tileTargetY) != ModHerb.STAGE_BLOOMING) {
             overrideCanPlace = false;
         }
@@ -275,9 +271,7 @@ public sealed class PlanterBox : ModTile, IRandomUpdateOverride, IPostSetupConte
         // Insert a check for our modded planter box in the chain of type checks.
         cursor.EmitLdarg0();
         cursor.EmitLdarg1();
-        cursor.EmitDelegate((int x, int y) => {
-            return Main.tile[x, y + 1].TileType != ModContent.TileType<PlanterBox>();
-        });
+        cursor.EmitDelegate((int x, int y) => Main.tile[x, y + 1].TileType != ModContent.TileType<PlanterBox>());
         cursor.EmitBrfalse(branchLabel);
 
         MonoModHooks.DumpIL(Mod, il);
@@ -306,9 +300,7 @@ public sealed class PlanterBox : ModTile, IRandomUpdateOverride, IPostSetupConte
         // Insert a check for our modded planter box in the chain of type checks.
         cursor.EmitLdarg0();
         cursor.EmitLdarg1();
-        cursor.EmitDelegate((int x, int y) => {
-            return Main.tile[x, y + 1].TileType != ModContent.TileType<PlanterBox>();
-        });
+        cursor.EmitDelegate((int x, int y) => Main.tile[x, y + 1].TileType != ModContent.TileType<PlanterBox>());
         cursor.EmitBrfalse(branchLabel);
 
         MonoModHooks.DumpIL(Mod, il);

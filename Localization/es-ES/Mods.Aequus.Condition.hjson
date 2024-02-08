@@ -1,15 +1,27 @@
 DayOfTheWeek: Cuando sea {0}
 BetweenDays: Entre {0}-{1}
-// InPollutedOcean: Mods.Aequus.Condition.InPollutedOcean
+// InPollutedOcean: In the Polluted Ocean biome
 // DownedAquaticBoss: Mods.Aequus.Condition.DownedAquaticBoss
+// NotDownedAquaticBoss: Mods.Aequus.Condition.NotDownedAquaticBoss
 // DownedCosmicBoss: After defeating Ultra Starite
+// NotDownedCosmicBoss: Before defeating Ultra Starite
 // DownedTrueCosmicBoss: After defeating Omega Starite
-// DownedDemonBoss: After completing a Demon Siege
+// NotDownedTrueCosmicBoss: Before defeating Omega Starite
+// DownedDemonBoss: After completing your first Demon Siege
+// NotDownedDemonBoss: Before completing your first Demon Siege
 // DownedTrueDemonBoss: Mods.Aequus.Condition.DownedTrueDemonBoss
+// NotDownedTrueDemonBoss: Mods.Aequus.Condition.NotDownedTrueDemonBoss
 // DownedAtmosphereBossFlame: After matching against the Red Sprite
+// NotDownedAtmosphereBossFlame: Before matching against the Red Sprite
 // DownedAtmosphereBossFrost: After matching against the Space Squid
-// DownedTrueAtmosphereBoss: After defeating Dust Devil
+// NotDownedAtmosphereBossFrost: Before matching against the Space Squid
+// DownedTrueAtmosphereBoss: After defeating the Dust Devil
+// NotDownedTrueAtmosphereBoss: Before defeating the Dust Devil
 // DownedOrganicBossMight: Mods.Aequus.Condition.DownedOrganicBossMight
+// NotDownedOrganicBossMight: Mods.Aequus.Condition.NotDownedOrganicBossMight
 // DownedOrganicBossSight: Mods.Aequus.Condition.DownedOrganicBossSight
+// NotDownedOrganicBossSight: Mods.Aequus.Condition.NotDownedOrganicBossSight
 // DownedOrganicBossFright: Mods.Aequus.Condition.DownedOrganicBossFright
+// NotDownedOrganicBossFright: Mods.Aequus.Condition.NotDownedOrganicBossFright
 // DownedTrueFinalBoss: Mods.Aequus.Condition.DownedTrueFinalBoss
+// NotDownedTrueFinalBoss: Mods.Aequus.Condition.NotDownedTrueFinalBoss

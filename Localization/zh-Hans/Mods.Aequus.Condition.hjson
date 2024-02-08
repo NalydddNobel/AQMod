@@ -2,14 +2,26 @@ DayOfTheWeek: 当处于{0}
 BetweenDays: 在{0}-{1}之间
 InPollutedOcean: Mods.Aequus.Condition.InPollutedOcean
 DownedAquaticBoss: Mods.Aequus.Condition.DownedAquaticBoss
+// NotDownedAquaticBoss: Mods.Aequus.Condition.NotDownedAquaticBoss
 DownedCosmicBoss: 在击败终耀源星后
+// NotDownedCosmicBoss: Before defeating Ultra Starite
 DownedTrueCosmicBoss: 在击败终末之星后
+// NotDownedTrueCosmicBoss: Before defeating Omega Starite
 DownedDemonBoss: 在完成一次恶魔围攻后
+// NotDownedDemonBoss: Before completing your first Demon Siege
 DownedTrueDemonBoss: Mods.Aequus.Condition.DownedTrueDemonBoss
+// NotDownedTrueDemonBoss: Mods.Aequus.Condition.NotDownedTrueDemonBoss
 DownedAtmosphereBossFlame: 在与红色精灵相匹配后
+// NotDownedAtmosphereBossFlame: Before matching against the Red Sprite
 DownedAtmosphereBossFrost: 在与太空乌贼相匹配后
+// NotDownedAtmosphereBossFrost: Before matching against the Space Squid
 DownedTrueAtmosphereBoss: 在击败沙尘恶魔后
+// NotDownedTrueAtmosphereBoss: Before defeating the Dust Devil
 DownedOrganicBossMight: Mods.Aequus.Condition.DownedOrganicBossMight
+// NotDownedOrganicBossMight: Mods.Aequus.Condition.NotDownedOrganicBossMight
 DownedOrganicBossSight: Mods.Aequus.Condition.DownedOrganicBossSight
+// NotDownedOrganicBossSight: Mods.Aequus.Condition.NotDownedOrganicBossSight
 DownedOrganicBossFright: Mods.Aequus.Condition.DownedOrganicBossFright
+// NotDownedOrganicBossFright: Mods.Aequus.Condition.NotDownedOrganicBossFright
 DownedTrueFinalBoss: Mods.Aequus.Condition.DownedTrueFinalBoss
+// NotDownedTrueFinalBoss: Mods.Aequus.Condition.NotDownedTrueFinalBoss

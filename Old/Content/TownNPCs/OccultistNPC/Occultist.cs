@@ -122,7 +122,7 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
     }
 
     public override bool CanTownNPCSpawn(int numTownNPCs) {
-        return WorldFlags.DownedDemonSiegeT1;
+        return WorldState.DownedDemonBoss;
     }
 
     public override string GetChat() {

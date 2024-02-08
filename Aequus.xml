@@ -19,38 +19,74 @@
         <member name="F:Aequus.Aequus.ConditionDownedAquaticBoss">
             <summary>Whether ??? was defeated.</summary>
         </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedAquaticBoss">
+            <summary>Whether ??? was not defeated.</summary>
+        </member>
         <member name="F:Aequus.Aequus.ConditionDownedCosmicBoss">
             <summary>Whether Ultra Starite was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedCosmicBoss">
+            <summary>Whether Ultra Starite not was defeated.</summary>
         </member>
         <member name="F:Aequus.Aequus.ConditionDownedTrueCosmicBoss">
             <summary>Whether Omega Starite was defeated.</summary>
         </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedTrueCosmicBoss">
+            <summary>Whether Omega Starite not was defeated.</summary>
+        </member>
         <member name="F:Aequus.Aequus.ConditionDownedDemonBoss">
             <summary>Whether the Demon Siege was completed atleast once.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedDemonBoss">
+            <summary>Whether the Demon Siege not was completed atleast once.</summary>
         </member>
         <member name="F:Aequus.Aequus.ConditionDownedTrueDemonBoss">
             <summary>Whether Upriser (Unimplemented) was defeated.</summary>
         </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedTrueDemonBoss">
+            <summary>Whether Upriser (Unimplemented) not was defeated.</summary>
+        </member>
         <member name="F:Aequus.Aequus.ConditionDownedAtmosphereBossFlame">
             <summary>Whether Red Sprite was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedAtmosphereBossFlame">
+            <summary>Whether Red Sprite was not defeated.</summary>
         </member>
         <member name="F:Aequus.Aequus.ConditionDownedAtmosphereBossFrost">
             <summary>Whether Space Squid was defeated.</summary>
         </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedAtmosphereBossFrost">
+            <summary>Whether Space Squid was not defeated.</summary>
+        </member>
         <member name="F:Aequus.Aequus.ConditionDownedTrueAtmosphereBoss">
             <summary>Whether Dust Devil was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedTrueAtmosphereBoss">
+            <summary>Whether Dust Devil was not defeated.</summary>
         </member>
         <member name="F:Aequus.Aequus.ConditionDownedOrganicBossMight">
             <summary>Whether ??? was defeated.</summary>
         </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedOrganicBossMight">
+            <summary>Whether ??? was not defeated.</summary>
+        </member>
         <member name="F:Aequus.Aequus.ConditionDownedOrganicBossSight">
             <summary>Whether ??? was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedOrganicBossSight">
+            <summary>Whether ??? was not defeated.</summary>
         </member>
         <member name="F:Aequus.Aequus.ConditionDownedOrganicBossFright">
             <summary>Whether ??? was defeated.</summary>
         </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedOrganicBossFright">
+            <summary>Whether ??? was not defeated.</summary>
+        </member>
         <member name="F:Aequus.Aequus.ConditionDownedTrueFinalBoss">
             <summary>Whether ??? was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedTrueFinalBoss">
+            <summary>Whether ??? was not defeated.</summary>
         </member>
         <member name="M:Aequus.Aequus.ConditionBetweenDays(System.DayOfWeek,System.DayOfWeek)">
             <param name="firstDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:Aequus.Common.Systems.TimeTrackerSystem.DayOfTheWeek"/>.</param>
@@ -1696,6 +1732,9 @@
             Only use in Pre/PostDraw hooks for items.
             </summary>
         </member>
+        <member name="P:Aequus.Core.WorldState.RemixWorldSafeUnderworldRange">
+            <summary>Returns a point with the beginning (left) (X) and end (right) (Y) of the 'safe' underworld in remix worlds. This does not represent a point in 2D space, but rather two X coordinates.</summary>
+        </member>
         <member name="T:Aequus.AequusSounds">
             <summary>(Total Sounds: 57)</summary>
         </member>
@@ -1871,7 +1910,7 @@
             <summary>Full Path: Old/Assets/Sounds/RecruitZombie</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 434)</summary>
+            <summary>(Total Textures: 435)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -3004,11 +3043,14 @@
         <member name="F:Aequus.AequusTextures.HangingPotMorayItem">
             <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPotMorayItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Manacle">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Manacle/Manacle</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.ManacleSeeds">
             <summary>Full Path: Old/Content/Tiles/Herbs/Manacle/ManacleSeeds</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.ManacleTile">
-            <summary>Full Path: Old/Content/Tiles/Herbs/Manacle/ManacleTile</summary>
+        <member name="F:Aequus.AequusTextures.Manacle_Glow">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Manacle/Manacle_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Mistral">
             <summary>Full Path: Old/Content/Tiles/Herbs/Mistral/Mistral</summary>

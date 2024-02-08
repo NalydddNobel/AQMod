@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 434)</summary>
+/// <summary>(Total Textures: 435)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -761,10 +761,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> HangingPotMoonflowerItem = new("Aequus/Old/Content/Tiles/Herbs/HangingPots/HangingPotMoonflowerItem");
     /// <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPotMorayItem</summary>
     public static readonly RequestCache<Texture2D> HangingPotMorayItem = new("Aequus/Old/Content/Tiles/Herbs/HangingPots/HangingPotMorayItem");
+    /// <summary>Full Path: Old/Content/Tiles/Herbs/Manacle/Manacle</summary>
+    public static readonly RequestCache<Texture2D> Manacle = new("Aequus/Old/Content/Tiles/Herbs/Manacle/Manacle");
     /// <summary>Full Path: Old/Content/Tiles/Herbs/Manacle/ManacleSeeds</summary>
     public static readonly RequestCache<Texture2D> ManacleSeeds = new("Aequus/Old/Content/Tiles/Herbs/Manacle/ManacleSeeds");
-    /// <summary>Full Path: Old/Content/Tiles/Herbs/Manacle/ManacleTile</summary>
-    public static readonly RequestCache<Texture2D> ManacleTile = new("Aequus/Old/Content/Tiles/Herbs/Manacle/ManacleTile");
+    /// <summary>Full Path: Old/Content/Tiles/Herbs/Manacle/Manacle_Glow</summary>
+    public static readonly RequestCache<Texture2D> Manacle_Glow = new("Aequus/Old/Content/Tiles/Herbs/Manacle/Manacle_Glow");
     /// <summary>Full Path: Old/Content/Tiles/Herbs/Mistral/Mistral</summary>
     public static readonly RequestCache<Texture2D> Mistral = new("Aequus/Old/Content/Tiles/Herbs/Mistral/Mistral");
     /// <summary>Full Path: Old/Content/Tiles/Herbs/Mistral/MistralSeeds</summary>
