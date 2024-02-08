@@ -1,4 +1,5 @@
-﻿using Aequus.Core.Graphics.Tiles;
+﻿using Aequus.Common.Tiles;
+using Aequus.Core.Graphics.Tiles;
 using Aequus.Old.Content.Potions.Prefixes.StuffedPotions;
 using System;
 using Terraria.Audio;
@@ -6,6 +7,8 @@ using Terraria.GameContent.Drawing;
 using Terraria.ObjectData;
 
 namespace Aequus.Old.Content.Tiles.Herbs.Moonflower;
+
+[LegacyName("MoonflowerTile")]
 public class Moonflower : ModHerb, IDrawWindyGrass {
     public static double BloomTimeMin { get; set; } = Main.nightLength / 2 - 3600;
     public static double BloomTimeMax { get; set; } = Main.nightLength / 2 + 3600;
@@ -128,6 +131,14 @@ public class Moonflower : ModHerb, IDrawWindyGrass {
             TileID.Meteorite,
         };
 
+        RandomTick.UpdateByType[TileID.Meteorite] += GrowMoonflower;
+
         AddMapEntry(new Color(186, 122, 255), CreateMapEntryName());
+    }
+
+    public static void GrowMoonflower(int i, int j, int type) {
+        if (!Main.tile[i, j - 1].HasTile && WorldGen.genRand.NextBool(100)) {
+            WorldGen.PlaceTile(i, j - 1, ModContent.TileType<Moonflower>());
+        }
     }
 }
