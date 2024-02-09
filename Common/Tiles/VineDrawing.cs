@@ -4,7 +4,7 @@ using Terraria.GameContent.Drawing;
 
 namespace Aequus.Common.Tiles;
 
-public class VineDrawing : ILoadable {
+public class VineDrawing : ILoad {
     public static readonly Dictionary<int, Point> VineLength = new();
 
     public static void DrawVine(int i, int j) {

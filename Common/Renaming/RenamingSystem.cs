@@ -20,13 +20,13 @@ public sealed class RenamingSystem : ModSystem {
     };
 
     private static void LanguageKeyCommand(string fullCommand, string commandInput, List<DecodedText> output) {
-        string languageText = Language.GetTextValue(commandInput, Lang.CreateDialogSubstitutionObject());
+        string languageText = Language.GetTextValue(commandInput, LanguageDatabase.CreateDialogSubstitutionObject());
 
         output.Add(new DecodedText(fullCommand, languageText, commandInput == languageText ? DecodeType.FailedCommand : DecodeType.LanguageKey));
     }
     #endregion
 
-    public static Dictionary<DecodeType, Color> DecodeColors { get; private set; } = new() {
+    public static Dictionary<DecodeType, Color> DecodeTCommonColor { get; private set; } = new() {
         [DecodeType.None] = Color.White,
         [DecodeType.FailedCommand] = new Color(255, 120, 120),
         [DecodeType.LanguageKey] = new Color(255, 255, 80),
@@ -51,7 +51,7 @@ public sealed class RenamingSystem : ModSystem {
 
         string result = "";
         foreach (var i in _decodedTextList) {
-            result += i.Type != DecodeType.None ? ChatCommandInserts.ColorCommand(i.Output, DecodeColors[i.Type], pulse) : i.Output;
+            result += i.Type != DecodeType.None ? ChatCommandInserts.ColorCommand(i.Output, DecodeTCommonColor[i.Type], pulse) : i.Output;
         }
 
         return result;

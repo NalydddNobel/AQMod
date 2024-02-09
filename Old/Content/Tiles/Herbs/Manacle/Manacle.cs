@@ -108,7 +108,7 @@ public class Manacle : ModHerb, IDrawWindyGrass {
 
     protected override void SafeSetStaticDefaults() {
         // Set the seed as lava immune
-        ItemID.Sets.IsLavaImmuneRegardlessOfRarity[SeedItem.Type] = true;
+        ItemSets.IsLavaImmuneRegardlessOfRarity[SeedItem.Type] = true;
 
         TileObjectData.newTile.LavaDeath = false;
         TileObjectData.newTile.LavaPlacement = LiquidPlacement.Allowed;

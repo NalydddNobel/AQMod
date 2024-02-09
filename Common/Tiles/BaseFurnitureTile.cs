@@ -52,7 +52,7 @@ public class BaseFurnitureTile {
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
             TileObjectData.addTile(Type);
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair);
-            AddMapEntry(MapColor, Lang.GetItemName(ItemID.Bathtub));
+            AddMapEntry(MapColor, LanguageDatabase.GetItemName(ItemID.Bathtub));
             TileID.Sets.DisableSmartCursor[Type] = true;
         }
 
@@ -74,7 +74,7 @@ public class BaseFurnitureTile {
             TileObjectData.newTile.CopyFrom(TileObjectData.Style4x2);
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
             TileObjectData.addTile(Type);
-            AddMapEntry(MapColor, Lang.GetItemName(ItemID.Bed));
+            AddMapEntry(MapColor, LanguageDatabase.GetItemName(ItemID.Bed));
         }
 
         public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) {
@@ -146,7 +146,7 @@ public class BaseFurnitureTile {
             TileObjectData.addTile(Type);
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
 
-            AddMapEntry(MapColor, Lang.GetItemName(ItemID.Bookcase));
+            AddMapEntry(MapColor, LanguageDatabase.GetItemName(ItemID.Bookcase));
 
             TileID.Sets.DisableSmartCursor[Type] = true;
             AdjTiles = new int[] { TileID.Bookcases };
@@ -175,7 +175,7 @@ public class BaseFurnitureTile {
             TileObjectData.addTile(Type);
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
 
-            AddMapEntry(MapColor, Lang.GetItemName(ItemID.Candelabra));
+            AddMapEntry(MapColor, LanguageDatabase.GetItemName(ItemID.Candelabra));
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num) {
@@ -228,7 +228,7 @@ public class BaseFurnitureTile {
             TileObjectData.addTile(Type);
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
 
-            AddMapEntry(MapColor, Lang.GetItemName(ItemID.Candle));
+            AddMapEntry(MapColor, LanguageDatabase.GetItemName(ItemID.Candle));
         }
 
         public override void MouseOver(int i, int j) {
@@ -420,7 +420,7 @@ public class BaseFurnitureTile {
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16, 16, 16 };
             TileObjectData.addTile(Type);
 
-            AddMapEntry(MapColor, Lang.GetItemName(ItemID.GrandfatherClock));
+            AddMapEntry(MapColor, LanguageDatabase.GetItemName(ItemID.GrandfatherClock));
             AdjTiles = new int[] { TileID.GrandfatherClocks };
 
             TileID.Sets.DisableSmartCursor[Type] = true;

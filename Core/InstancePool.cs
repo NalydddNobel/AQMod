@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Security.Authentication.ExtendedProtection;
 
 namespace Aequus.Core;
 public interface IPoolable {

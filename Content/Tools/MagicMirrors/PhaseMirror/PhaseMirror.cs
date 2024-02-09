@@ -8,7 +8,7 @@ public class PhaseMirror : ModItem, IPhaseMirror {
     public int UseAnimationMax => 64;
 
     public override void SetStaticDefaults() {
-        ItemID.Sets.WorksInVoidBag[Type] = true;
+        ItemSets.WorksInVoidBag[Type] = true;
     }
 
     public override void SetDefaults() {

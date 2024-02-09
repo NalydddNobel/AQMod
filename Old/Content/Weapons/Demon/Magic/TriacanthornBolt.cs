@@ -6,7 +6,7 @@ public class TriacanthornBolt : ModProjectile {
     public override void SetStaticDefaults() {
         ProjectileID.Sets.TrailCacheLength[Type] = 15;
         ProjectileID.Sets.TrailingMode[Type] = 15;
-        ProjectileSets.PushableByTypeId.Add(Type);
+        ProjectileMetadata.PushableByTypeId.Add(Type);
     }
 
     public override void SetDefaults() {

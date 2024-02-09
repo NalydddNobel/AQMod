@@ -104,7 +104,7 @@ public sealed class DedicatedItemGlobalItem : GlobalItem {
 
         float brightness = Main.mouseTextColor / 255f;
         float brightnessProgress = (Main.mouseTextColor - 190f) / (byte.MaxValue - 190f);
-        color = Colors.AlphaDarken(color) with { A = 0 };
+        color = TCommonColor.AlphaDarken(color) with { A = 0 };
         var font = FontAssets.MouseText.Value;
         ChatManager.DrawColorCodedStringShadow(Main.spriteBatch, font, text, coords, Color.Black, rotation, origin, baseScale);
         for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver2 + 0.01f) {

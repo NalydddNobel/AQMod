@@ -6,8 +6,8 @@ namespace Aequus.Old.Content.Materials.SoulGem;
 public class SoulGemFilled : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 25;
-        ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<SoulGem>();
-        ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.Amber;
+        ItemSets.ShimmerTransformToItem[Type] = ModContent.ItemType<SoulGem>();
+        ItemSets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.Amber;
     }
 
     public override void SetDefaults() {

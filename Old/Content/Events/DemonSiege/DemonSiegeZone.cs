@@ -85,6 +85,6 @@ public class DemonSiegeZone : ModBiome, IPostSetupContent {
     }
 
     void IPostSetupContent.PostSetupContent(Aequus aequus) {
-        NPCSets.UnderworldTags.Add(ModBiomeBestiaryInfoElement);
+        NPCMetadata.UnderworldTags.Add(ModBiomeBestiaryInfoElement);
     }
 }

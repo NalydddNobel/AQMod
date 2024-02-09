@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 
 namespace Aequus.Content.DataSets;
 
-public class BuffSets : DataSet {
+public class BuffMetadata : MetadataSet {
     [JsonProperty]
     public static HashSet<Entry<BuffID>> PotionPrefixBlacklist { get; private set; } = new();
     [JsonProperty]
@@ -35,10 +35,10 @@ public class BuffSets : DataSet {
         for (int i = 0; i < BuffLoader.BuffCount; i++) {
             if (Main.debuff[i]) {
                 PotionPrefixBlacklist.Add(i);
-                if (BuffID.Sets.NurseCannotRemoveDebuff[i]) {
+                if (BuffSets.NurseCannotRemoveDebuff[i]) {
                     NotTypicalDebuff.Add(i);
                 }
-                else if ((i < BuffID.NeutralHunger || i > BuffID.Starving) && !BuffID.Sets.IsATagBuff[i] && !BuffID.Sets.TimeLeftDoesNotDecrease[i]) {
+                else if ((i < BuffID.NeutralHunger || i > BuffID.Starving) && !BuffSets.IsATagBuff[i] && !BuffSets.TimeLeftDoesNotDecrease[i]) {
                     if (BuffID.Search.TryGetName(i, out string name)) {
                         if (name.Contains('/')) {
                             name = name.Split('/')[^1];
@@ -54,7 +54,7 @@ public class BuffSets : DataSet {
                     }
                 }
             }
-            if (BuffID.Sets.IsFedState[i] || BuffID.Sets.IsWellFed[i]) {
+            if (BuffSets.IsFedState[i] || BuffSets.IsWellFed[i]) {
                 PotionPrefixBlacklist.Add(i);
             }
         }

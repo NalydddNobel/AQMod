@@ -56,12 +56,12 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         SetupAccessoryUsages();
         SetupDrawLookups();
         Main.npcFrameCount[Type] = 20;
-        NPCID.Sets.NPCBestiaryDrawOffset[Type] = new() {
+        NPCSets.NPCBestiaryDrawOffset[Type] = new() {
             Velocity = -1f,
             Scale = 1f,
         };
-        NPCID.Sets.StatueSpawnedDropRarity[Type] = 0.05f;
-        NPCSets.PushableByTypeId.Add(Type);
+        NPCSets.StatueSpawnedDropRarity[Type] = 0.05f;
+        NPCMetadata.PushableByTypeId.Add(Type);
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

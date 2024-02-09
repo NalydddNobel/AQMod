@@ -3,7 +3,7 @@
 public class ChatCommandInserts {
     public static string ColorCommandStart(Color color, bool alphaPulse = false) {
         if (alphaPulse) {
-            color = Colors.AlphaDarken(color);
+            color = TCommonColor.AlphaDarken(color);
         }
         return $"[c/{color.Hex3()}:";
     }

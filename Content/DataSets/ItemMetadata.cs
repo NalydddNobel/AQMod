@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Aequus.Content.DataSets;
 
-public class ItemSets : DataSet {
+public class ItemMetadata : MetadataSet {
     /// <summary>
     /// Items in this set are potions.
     /// </summary>
@@ -60,11 +60,11 @@ public class ItemSets : DataSet {
         }
 
         foreach (int potion in Potions.Where(e => e.ValidEntry)) {
-            ItemID.Sets.CanGetPrefixes[potion] = true;
+            ItemSets.CanGetPrefixes[potion] = true;
         }
 
         static void CheckPotion(Item item) {
-            if (item.buffTime > 0 && item.buffType > 0 && item.consumable && item.maxStack >= 30 && item.damage <= 0 && item.healLife <= 0 && item.healMana <= 0 && !Main.persistentBuff[item.buffType] && !BuffID.Sets.IsAFlaskBuff[item.buffType] && !ItemID.Sets.IsFood[item.type] && !BuffID.Sets.IsFedState[item.buffType]) {
+            if (item.buffTime > 0 && item.buffType > 0 && item.consumable && item.maxStack >= 30 && item.damage <= 0 && item.healLife <= 0 && item.healMana <= 0 && !Main.persistentBuff[item.buffType] && !BuffSets.IsAFlaskBuff[item.buffType] && !ItemSets.IsFood[item.type] && !BuffSets.IsFedState[item.buffType]) {
                 Potions.Add(item.type);
             }
         }

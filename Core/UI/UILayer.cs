@@ -9,7 +9,7 @@ namespace Aequus.Core.UI;
 /// Used to simplify UI implementation. Only loads in singleplayer or on multiplayer clients.
 /// </summary>
 [Autoload(Side = ModSide.Client)]
-public abstract class UILayer : GameInterfaceLayer, ILoadable {
+public abstract class UILayer : GameInterfaceLayer, ILoad {
     public readonly string InsertLayer;
     public readonly int InsertOffset;
 

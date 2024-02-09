@@ -17,7 +17,7 @@ public class PhasePhoneInstantiator : ModSystem {
         var phasePhoneSpawn = new InstancedPhasePhone("Spawn", ItemID.ShellphoneSpawn)
             .WithTeleportLocation((player) => player.Shellphone_Spawn())
             .WithDust(DustID.RainbowMk2)
-            .WithDustColors(() => Main.rand.Next(4) switch {
+            .WithDustTCommonColor(() => Main.rand.Next(4) switch {
                 2 => Color.Yellow,
                 3 => Color.White,
                 _ => new(100, 255, 100),

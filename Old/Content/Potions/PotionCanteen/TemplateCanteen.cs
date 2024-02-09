@@ -61,7 +61,7 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
             bool holdingShift = !Main.keyState.IsKeyDown(Keys.LeftShift) && !Main.keyState.IsKeyDown(Keys.RightShift);
             for (int k = 0; k < Buffs.Length; k++) {
                 if (!holdingShift && Buffs[k].ItemId > 0) {
-                    ItemTooltip tooltip = Lang.GetTooltip(Buffs[k].ItemId);
+                    ItemTooltip tooltip = LanguageDatabase.GetTooltip(Buffs[k].ItemId);
                     if (tooltip.Lines > 0) {
 
                         if (vanillaLine) {
@@ -94,7 +94,7 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
                         t.Text += '\n';
                     }
 
-                    t.Text += Lang.GetBuffDescription(Buffs[k].BuffId);
+                    t.Text += LanguageDatabase.GetBuffDescription(Buffs[k].BuffId);
                 }
             }
         }
@@ -198,7 +198,7 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
         int consumePotions = PotionRecipeRequirement;
         int buffType = heldItem.buffType;
 
-        if (buffType == 0 || heldItem.buffTime <= 0 || !heldItem.consumable || heldItem.stack < consumePotions || heldItem.maxStack < 30 || Buffs.Any(b => b.BuffId == buffType) || BuffSets.DontChangeDuration.Contains(heldItem.buffType) || !ItemSets.Potions.Contains(heldItem.type)) {
+        if (buffType == 0 || heldItem.buffTime <= 0 || !heldItem.consumable || heldItem.stack < consumePotions || heldItem.maxStack < 30 || Buffs.Any(b => b.BuffId == buffType) || BuffMetadata.DontChangeDuration.Contains(heldItem.buffType) || !ItemMetadata.Potions.Contains(heldItem.type)) {
             _warningAnimation = 80;
             SoundEngine.PlaySound(AequusSounds.CanteenBuzzer with { Volume = 0.5f });
 
@@ -227,7 +227,7 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
             heldItem.TurnToAir();
         }
 
-        _potionColors = null;
+        _potionTCommonColor = null;
         Item.NetStateChanged();
 
         SoundEngine.PlaySound(AequusSounds.CanteenUse with { Volume = 0.75f, PitchVariance = 0.2f });
@@ -247,42 +247,42 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
         return true;
     }
 
-    #region Colors
+    #region TCommonColor
     [CloneByReference]
-    protected Color[] _potionColors;
+    protected Color[] _potionTCommonColor;
 
-    protected Color GetPotionColors() {
+    protected Color GetPotionTCommonColor() {
         if (!HasBuffs()) {
             return Color.White;
         }
 
-        // Initialize colors if they are null.
-        if (_potionColors == null && HasBuffs()) {
-            List<Color> colors = new List<Color>();
+        // Initialize TCommonColor if they are null.
+        if (_potionTCommonColor == null && HasBuffs()) {
+            List<Color> TCommonColor = new List<Color>();
 
             for (int i = 0; i < Buffs.Length; i++) {
                 if (Buffs[i].ItemId <= 0) {
                     continue;
                 }
 
-                Color[] drinkColors = ItemID.Sets.DrinkParticleColors[Buffs[i].ItemId];
-                if (drinkColors != null) {
-                    colors.AddRange(drinkColors);
+                Color[] drinkTCommonColor = ItemSets.DrinkParticleColors[Buffs[i].ItemId];
+                if (drinkTCommonColor != null) {
+                    TCommonColor.AddRange(drinkTCommonColor);
                 }
             }
 
-            _potionColors = colors.ToArray();
+            _potionTCommonColor = TCommonColor.ToArray();
         }
 
         Color colorResult = Color.White;
-        if (_potionColors != null && _potionColors.Length > 0) {
+        if (_potionTCommonColor != null && _potionTCommonColor.Length > 0) {
             float time = Main.GlobalTimeWrappedHourly * Buffs.Length;
             if (HasBuffs()) {
                 for (int i = 0; i < Buffs.Length; i++) {
                     time += Buffs[i].BuffId;
                 }
             }
-            colorResult = Color.Lerp(_potionColors[(int)time % _potionColors.Length], _potionColors[(int)(time + 1) % _potionColors.Length], time % 1f);
+            colorResult = Color.Lerp(_potionTCommonColor[(int)time % _potionTCommonColor.Length], _potionTCommonColor[(int)(time + 1) % _potionTCommonColor.Length], time % 1f);
         }
 
         return colorResult * 1.1f;
@@ -348,12 +348,12 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
 
         string buffText = AltName.Format(string.Join(", ", GetBuffNames()));
 
-        return originalName.Replace(Lang.GetItemNameValue(Type), buffText);
+        return originalName.Replace(LanguageDatabase.GetItemNameValue(Type), buffText);
 
         IEnumerable<string> GetBuffNames() {
             for (int i = 0; i < Buffs.Length; i++) {
                 if (Buffs[i].BuffId > 0) {
-                    yield return Lang.GetBuffName(Buffs[i].BuffId);
+                    yield return LanguageDatabase.GetBuffName(Buffs[i].BuffId);
                 }
             }
         }

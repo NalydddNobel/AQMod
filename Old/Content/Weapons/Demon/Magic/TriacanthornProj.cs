@@ -11,7 +11,7 @@ public class TriacanthornProj : ModProjectile {
         ProjectileID.Sets.TrailCacheLength[Projectile.type] = 18;
         ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
         Main.projFrames[Type] = 3;
-        ProjectileSets.DealsHeatDamage.Add(Type);
+        ProjectileMetadata.DealsHeatDamage.Add(Type);
     }
 
     public override void SetDefaults() {

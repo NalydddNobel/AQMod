@@ -7,7 +7,7 @@ namespace Aequus.Content.DataSets;
 /// <summary>
 /// Dataset with lists of all supported variants of an item. 
 /// </summary>
-public class ItemTypeVariants : DataSet {
+public class ItemTypeVariantMetadata : MetadataSet {
     /// <summary><see cref="ItemID.RottenChunk"/>, <see cref="ItemID.Vertebrae"/>, Avalon/YuckyBit.</summary>
     [JsonProperty]
     public static List<Entry<ItemID>> RottenChunk { get; private set; } = new();

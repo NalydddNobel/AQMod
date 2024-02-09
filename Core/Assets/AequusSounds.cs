@@ -2,7 +2,7 @@
 
 namespace Aequus;
 
-public sealed partial class AequusSounds : ILoadable {
+public sealed partial class AequusSounds : ILoad {
     private static SoundStyle GetMultisound(SoundStyle zero, int variants) {
         return new(zero.SoundPath[..^1], 0, variants);
     }

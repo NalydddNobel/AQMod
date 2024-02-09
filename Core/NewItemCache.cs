@@ -2,7 +2,7 @@
 
 namespace Aequus.Core;
 
-public sealed class NewItemCache : ILoadable {
+public sealed class NewItemCache : ILoad {
     public static readonly List<Item> DroppedItems = new();
     public static bool QueueItems { get; private set; }
 

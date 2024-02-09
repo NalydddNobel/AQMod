@@ -5,7 +5,7 @@ namespace Aequus.Old.Content.Potions.Resurrection;
 
 public class PotionOfResurrection : ModItem {
     public override void SetStaticDefaults() {
-        ItemID.Sets.DrinkParticleColors[Type] = new Color[] { Color.Red, Color.DarkRed, };
+        ItemSets.DrinkParticleColors[Type] = new Color[] { Color.Red, Color.DarkRed, };
         Item.ResearchUnlockCount = 20;
     }
 

@@ -28,7 +28,7 @@ public struct TrashCompactorRecipe {
     public bool Invalid => Ingredient == null || Results == null || Results.Count <= 0;
 
     public static TrashCompactorRecipe FromItem(Item item) {
-        if (ItemSets.CustomTrashCompactorRecipes.TryGetValue(item.type, out var recipeOverride)) {
+        if (ItemMetadata.CustomTrashCompactorRecipes.TryGetValue(item.type, out var recipeOverride)) {
             return recipeOverride;
         }
 
@@ -74,6 +74,6 @@ public struct TrashCompactorRecipe {
     }
 
     public static void AddCustomRecipe(int ingredient, params (int, int)[] results) {
-        ItemSets.CustomTrashCompactorRecipes[ingredient] = new(ingredient, results);
+        ItemMetadata.CustomTrashCompactorRecipes[ingredient] = new(ingredient, results);
     }
 }

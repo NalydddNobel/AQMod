@@ -8,14 +8,14 @@ using System.Reflection;
 
 namespace Aequus.Core.DataSets;
 
-public abstract class DataSet : IModType, ILoadable, ISetStaticDefaults,  IPostSetupContent, IAddRecipes, IPostAddRecipes {
+public abstract class MetadataSet : IModType, ILoad, ISetStaticDefaults,  IPostSetupContent, IAddRecipes, IPostAddRecipes {
     private readonly BindingFlags _memberBindingFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
 
     [JsonIgnore]
-    protected DataSetFileLoader File { get; private set; }
+    protected MetadataFile File { get; private set; }
 
     [JsonIgnore]
-    public virtual string FilePath => $"{Mod.Name}/Assets/Metadata/{Name}";
+    public virtual string FilePath => $"{Mod.Name}/Assets/Metadata/{Name.Replace("Metadata", "")}";
 
     [JsonIgnore]
     public Mod Mod { get; set; }
@@ -27,7 +27,7 @@ public abstract class DataSet : IModType, ILoadable, ISetStaticDefaults,  IPostS
     [JsonIgnore]
     public FieldInfo[] _fields;
 
-    public DataSet() {
+    public MetadataSet() {
         _fields = GetType().GetFields(_memberBindingFlags);
     }
 
@@ -55,7 +55,7 @@ public abstract class DataSet : IModType, ILoadable, ISetStaticDefaults,  IPostS
     }
 
     public void PostSetupContent(Aequus aequus) {
-        File.ApplyToDataSet();
+        File.Apply();
         PostSetupContent();
     }
 
@@ -65,7 +65,7 @@ public abstract class DataSet : IModType, ILoadable, ISetStaticDefaults,  IPostS
 
     public void PostAddRecipes(Aequus aequus) {
         PostAddRecipes();
-        File.CreateTempFile();
+        File.Gen();
     }
 
     public void Unload() {

@@ -79,7 +79,7 @@ public class AshTombstones : ModTile {
     private static string MapEntryName(string name, int i, int j) {
         int style = Math.Clamp(Main.tile[i, j].TileFrameX / 36, 0, STYLE_COUNT);
 
-        return Lang.GetItemName(_tombstones[style].Type).Value;
+        return LanguageDatabase.GetItemName(_tombstones[style].Type).Value;
     }
 
     public override void Unload() {

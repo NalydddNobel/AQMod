@@ -13,7 +13,7 @@ public class SaivoryKnife : ModItem {
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Minutes(GhostLifespan));
 
     public override void SetStaticDefaults() {
-        ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<CrusadersCrossbow>();
+        ItemSets.ShimmerTransformToItem[Type] = ModContent.ItemType<CrusadersCrossbow>();
     }
 
     public override void SetDefaults() {

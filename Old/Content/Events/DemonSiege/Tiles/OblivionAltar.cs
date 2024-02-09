@@ -34,7 +34,7 @@ public class OblivionAltar : ModTile, ISpecialTileRenderer {
         TileID.Sets.DisableSmartCursor[Type] = true;
         TileID.Sets.PreventsTileRemovalIfOnTopOfIt[Type] = true;
         TileID.Sets.PreventsSandfall[Type] = true;
-        TileSets.PreventsSlopesBelow.Add(Type);
+        TileMetadata.PreventsSlopesBelow.Add(Type);
 
         TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
         TileObjectData.newTile.LavaDeath = false;

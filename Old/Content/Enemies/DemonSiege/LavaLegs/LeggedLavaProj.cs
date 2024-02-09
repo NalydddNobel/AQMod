@@ -7,7 +7,7 @@ namespace Aequus.Old.Content.Enemies.DemonSiege.LavaLegs;
 
 public class LeggedLavaProj : ModProjectile {
     public override void SetStaticDefaults() {
-        ProjectileSets.PushableByTypeId.Add(Type);
+        ProjectileMetadata.PushableByTypeId.Add(Type);
     }
 
     public override void SetDefaults() {

@@ -47,7 +47,7 @@ public class HallowCanteen : TemplateCanteen {
     }
 
     private void DrawLiquid(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color color, float rotation, Vector2 origin, float scale) {
-        var liquidColor = GetPotionColors();
+        var liquidColor = GetPotionTCommonColor();
 
         AequusShaders.LuminentMultiply.Value.CurrentTechnique.Passes[0].Apply();
 

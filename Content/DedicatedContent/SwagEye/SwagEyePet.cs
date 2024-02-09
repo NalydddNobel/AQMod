@@ -13,7 +13,7 @@ public class SwagEyePet : ModPet {
         Main.projPet[Projectile.type] = true;
         ProjectileID.Sets.CharacterPreviewAnimations[Type] = new() { Offset = new(0f, -8f) };
 
-        ItemID.Sets.ShimmerTransformToItem[ItemID.SuspiciousLookingEye] = PetItem.Type;
+        ItemSets.ShimmerTransformToItem[ItemID.SuspiciousLookingEye] = PetItem.Type;
     }
 
     public override void SetDefaults() {

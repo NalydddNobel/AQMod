@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Aequus.Old.Content.Necromancy.Aggression;
 
-public class AggressionType : ILoadable {
+public class AggressionType : ILoad {
     public static Dictionary<string, IEnemyAggressor> AggressorFromName { get; private set; }
     public static IEnemyAggressor BloodMoon { get; private set; }
     public static IEnemyAggressor Eclipse { get; private set; }
@@ -95,7 +95,7 @@ public class AggressionType : ILoadable {
         }
     }
 
-    void ILoadable.Load(Mod mod) {
+    void ILoad.Load(Mod mod) {
     }
 
     internal static void LoadAggressions() {
@@ -119,7 +119,7 @@ public class AggressionType : ILoadable {
         };
     }
 
-    void ILoadable.Unload() {
+    void ILoad.Unload() {
         AggressorFromName?.Clear();
         AggressorFromName = null;
         BloodMoon = null;

@@ -21,7 +21,7 @@ public class CalendarTile : ModTile {
         TileObjectData.newTile.StyleWrapLimit = 36;
         TileObjectData.addTile(Type);
         DustType = DustID.BubbleBurst_White;
-        AddMapEntry(new Color(85, 85, 85), Lang.GetItemName(ModContent.ItemType<Calendar>()));
+        AddMapEntry(new Color(85, 85, 85), LanguageDatabase.GetItemName(ModContent.ItemType<Calendar>()));
     }
 
     public override void NearbyEffects(int i, int j, bool closer) {

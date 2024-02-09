@@ -10,13 +10,13 @@ public abstract class AequusTownNPC : ModNPC, IModifyShoppingSettings, ITalkNPCU
 
     public override void SetStaticDefaults() {
         Main.npcFrameCount[NPC.type] = 25;
-        NPCID.Sets.ExtraFramesCount[NPC.type] = 9;
-        NPCID.Sets.AttackFrameCount[NPC.type] = 4;
-        NPCID.Sets.DangerDetectRange[NPC.type] = 400;
+        NPCSets.ExtraFramesCount[NPC.type] = 9;
+        NPCSets.AttackFrameCount[NPC.type] = 4;
+        NPCSets.DangerDetectRange[NPC.type] = 400;
 
-        NPCID.Sets.ShimmerTownTransform[Type] = true;
+        NPCSets.ShimmerTownTransform[Type] = true;
 
-        NPCID.Sets.NPCBestiaryDrawOffset[Type] = new() {
+        NPCSets.NPCBestiaryDrawOffset[Type] = new() {
             Velocity = 1f,
             Direction = -1,
             Scale = 1f,

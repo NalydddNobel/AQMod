@@ -5,7 +5,7 @@ namespace Aequus.Content.Equipment.Accessories.Informational.Calendar;
 public class Calendar : ModItem {
     public override void SetStaticDefaults() {
         EquipBoostDatabase.Instance.SetNoEffect(Type);
-        ItemID.Sets.WorksInVoidBag[Type] = true;
+        ItemSets.WorksInVoidBag[Type] = true;
     }
 
     public override void SetDefaults() {

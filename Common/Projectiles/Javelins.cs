@@ -1,6 +1,6 @@
 ﻿namespace Aequus.Common.Projectiles;
 
-public class Javelins : ILoadable {
+public class Javelins : ILoad {
     private static void On_Projectile_KillOldestJavelin(On_Projectile.orig_KillOldestJavelin orig, int protectedProjectileIndex, int projectileType, int targetNPCIndex, Point[] bufferForScan) {
         if (protectedProjectileIndex >= 0 && protectedProjectileIndex < Main.maxProjectiles) {
             Main.projectile[protectedProjectileIndex].netUpdate = true;
@@ -9,9 +9,9 @@ public class Javelins : ILoadable {
         orig(protectedProjectileIndex, projectileType, targetNPCIndex, bufferForScan);
     }
 
-    void ILoadable.Load(Mod mod) {
+    void ILoad.Load(Mod mod) {
         On_Projectile.KillOldestJavelin += On_Projectile_KillOldestJavelin;
     }
 
-    void ILoadable.Unload() { }
+    void ILoad.Unload() { }
 }

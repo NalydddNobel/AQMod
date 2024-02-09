@@ -23,13 +23,13 @@ public class ScavengerLootBag : ModNPC {
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = 3;
 
-        NPCID.Sets.DontDoHardmodeScaling[Type] = true;
-        NPCID.Sets.CantTakeLunchMoney[Type] = true;
-        NPCID.Sets.NPCBestiaryDrawOffset[Type] = new() {
+        NPCSets.DontDoHardmodeScaling[Type] = true;
+        NPCSets.CantTakeLunchMoney[Type] = true;
+        NPCSets.NPCBestiaryDrawOffset[Type] = new() {
             Hide = true,
         };
 
-        NPCSets.PushableByTypeId.Add(Type);
+        NPCMetadata.PushableByTypeId.Add(Type);
     }
 
     public override void SetDefaults() {

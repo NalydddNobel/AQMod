@@ -13,15 +13,15 @@ public class ChainedSoul : ModNPC {
 
     public override void SetStaticDefaults() {
         Main.npcFrameCount[NPC.type] = 3;
-        NPCID.Sets.NPCBestiaryDrawOffset[Type] = new() {
+        NPCSets.NPCBestiaryDrawOffset[Type] = new() {
             Hide = true,
         };
-        NPCID.Sets.CantTakeLunchMoney[Type] = true;
-        foreach (int buff in BuffSets.DemonSiegeImmune) {
-            NPCID.Sets.SpecificDebuffImmunity[Type][buff] = true;
+        NPCSets.CantTakeLunchMoney[Type] = true;
+        foreach (int buff in BuffMetadata.DemonSiegeImmune) {
+            NPCSets.SpecificDebuffImmunity[Type][buff] = true;
         }
-        NPCSets.DealsHeatDamage.Add(Type);
-        NPCSets.Soulless.Add(Type);
+        NPCMetadata.DealsHeatDamage.Add(Type);
+        NPCMetadata.Soulless.Add(Type);
 
         BannerLoader.AddBannerBuff<KeeperImp>(this);
     }

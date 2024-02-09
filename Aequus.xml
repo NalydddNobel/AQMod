@@ -967,23 +967,23 @@
             <param name="sourceRectangle">The bounds of the portrait.</param>
             <param name="displayColor">The Color of the entry. It is usually Black when hidden, and White when not hidden.</param>
         </member>
-        <member name="P:Aequus.Content.DataSets.BuffSets.PlayerStatusDebuff">
+        <member name="P:Aequus.Content.DataSets.BuffMetadata.PlayerStatusDebuff">
             <summary>Set for compatibility with Thorium.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.BuffSets.PlayerDoTDebuff">
+        <member name="P:Aequus.Content.DataSets.BuffMetadata.PlayerDoTDebuff">
             <summary>Set for compatibility with Thorium.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.ItemSets.Potions">
+        <member name="P:Aequus.Content.DataSets.ItemMetadata.Potions">
             <summary>
             Items in this set are potions.
             </summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.ItemSets.ShimmerTooltipResultIgnore">
+        <member name="P:Aequus.Content.DataSets.ItemMetadata.ShimmerTooltipResultIgnore">
             <summary>
             A few item results which are ignored by the Shimmer Monocle, so that common transmuations don't have crappy bloated tooltips.
             </summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.ItemSets.ImportantItem">
+        <member name="P:Aequus.Content.DataSets.ItemMetadata.ImportantItem">
             <summary>
             Items marked as important will have special properties:
             <list type="bullet">
@@ -991,66 +991,66 @@
             </list>
             </summary>
         </member>
-        <member name="T:Aequus.Content.DataSets.ItemTypeVariants">
+        <member name="T:Aequus.Content.DataSets.ItemTypeVariantMetadata">
             <summary>
             Dataset with lists of all supported variants of an item. 
             </summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.ItemTypeVariants.RottenChunk">
+        <member name="P:Aequus.Content.DataSets.ItemTypeVariantMetadata.RottenChunk">
             <summary><see cref="F:Terraria.ID.ItemID.RottenChunk"/>, <see cref="F:Terraria.ID.ItemID.Vertebrae"/>, Avalon/YuckyBit.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.ItemTypeVariants.DemoniteBar">
+        <member name="P:Aequus.Content.DataSets.ItemTypeVariantMetadata.DemoniteBar">
             <summary><see cref="F:Terraria.ID.ItemID.DemoniteBar"/>, <see cref="F:Terraria.ID.ItemID.CrimtaneBar"/>, Avalon/BacciliteBar.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.Soulless">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.Soulless">
             <summary>
             NPC Ids in this set cannot damage the Occultist, or have their souls trapped into Soul Gems.
             Automatically populated with all NPC Ids which have the Underworld or Gore Nest as bestiary tags.
             </summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.IsCorrupt">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.IsCorrupt">
             <summary>Automatically populated with all NPC Ids which have the Corruption as bestiary tags.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.IsCrimson">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.IsCrimson">
             <summary>Automatically populated with all NPC Ids which have the Crimson as bestiary tags.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.IsHallow">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.IsHallow">
             <summary>Automatically populated with all NPC Ids which have the Hallow as bestiary tags.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.FromPillarEvent">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.FromPillarEvent">
             <summary>Automatically populated with all NPC Ids which have a Pillar as a bestiary tag.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.NameTagOverride">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.NameTagOverride">
             <summary>Entries in this set can completely override the Name Tag conditional check with their own value.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.StunnableByTypeId">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.StunnableByTypeId">
             <summary>Entries in this set are able to be stunned by the Stun Gun (<see cref="T:Aequus.Content.Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.StunnableByAI">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.StunnableByAI">
             <summary>Enemies with an AI Type in this set are able to be stunned by the Stun Gun (<see cref="T:Aequus.Content.Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.FriendablePreHardmodeSlime">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.FriendablePreHardmodeSlime">
             <summary>Used for Royal Gel's Crown of Blood combination.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.FriendableHardmodeSlime">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.FriendableHardmodeSlime">
             <summary>Used for Volatile Gelatin's Crown of Blood combination.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.Unfriendable">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.Unfriendable">
             <summary>Enemies in this set cannot become friendly through necromancy.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.DealsHeatDamage">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.DealsHeatDamage">
             <summary>NPCs in this set deal 'heat' contact damage. This damage can be resisted using the Frost Potion.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.PrefixBlacklist">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.PrefixBlacklist">
             <summary>NPCs in this set cannot be given Elite affixes.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.PushableByTypeId">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.PushableByTypeId">
             <summary>Entries in this set are able to be pushed by the Pumpinator.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.PushableByAI">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.PushableByAI">
             <summary>Enemies with an AI Type in this set are able to be pushed by the Pumpinator.</summary>
         </member>
-        <member name="M:Aequus.Content.DataSets.NPCSets.ContainsBestiaryTags(System.Collections.Generic.List{Terraria.GameContent.Bestiary.IBestiaryInfoElement},System.Collections.Generic.List{Terraria.GameContent.Bestiary.IFilterInfoProvider})">
+        <member name="M:Aequus.Content.DataSets.NPCMetadata.ContainsBestiaryTags(System.Collections.Generic.List{Terraria.GameContent.Bestiary.IBestiaryInfoElement},System.Collections.Generic.List{Terraria.GameContent.Bestiary.IFilterInfoProvider})">
             <summary>
             Compares bestiary tags by comparing <see cref="M:Terraria.GameContent.Bestiary.IFilterInfoProvider.GetDisplayNameKey"/> results.
             Biome/Event/Time/Ect Tags utilize <see cref="T:Terraria.GameContent.Bestiary.IFilterInfoProvider"/>.
@@ -1059,19 +1059,19 @@
             <param name="searchTags"></param>
             <returns></returns>
         </member>
-        <member name="P:Aequus.Content.DataSets.ProjectileSets.SpriteRotation">
+        <member name="P:Aequus.Content.DataSets.ProjectileMetadata.SpriteRotation">
             <summary>Rotation offset of projectile sprites so it can be rotated correctly.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.ProjectileSets.OccultistIgnore">
+        <member name="P:Aequus.Content.DataSets.ProjectileMetadata.OccultistIgnore">
             <summary>Projectiles in this set do not damage the <see cref="T:Aequus.Old.Content.TownNPCs.OccultistNPC.Occultist"/>.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.ProjectileSets.IsStar">
+        <member name="P:Aequus.Content.DataSets.ProjectileMetadata.IsStar">
             <summary>Whether or not this projectile is a "Star", this is automatically populated with anything that has "Star" in their internal name.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.ProjectileSets.DealsHeatDamage">
+        <member name="P:Aequus.Content.DataSets.ProjectileMetadata.DealsHeatDamage">
             <summary>Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.TileSets.PreventsSlopesBelow">
+        <member name="P:Aequus.Content.DataSets.TileMetadata.PreventsSlopesBelow">
             <summary>Prevents tiles below this tile from being sloped.</summary>
         </member>
         <member name="T:Aequus.Content.Dyes.ArmorShaderDataThirdColor">
@@ -1360,17 +1360,17 @@
         <member name="M:Aequus.Core.Utilities.ExtendItem.StaticDefaultsToPotion(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])">
             <summary>Registers this item as a drink (Potion).</summary>
             <param name="modItem"></param>
-            <param name="colors">Particle colors for when this potion is consumed.</param>
+            <param name="TCommonColor">Particle TCommonColor for when this potion is consumed.</param>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendItem.StaticDefaultsToFoodDrink(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])">
             <summary>Registers this item as a drink. The difference between this and <see cref="M:Aequus.Core.Utilities.ExtendItem.StaticDefaultsToPotion(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])"/> is that drinks have held sprites.</summary>
             <param name="modItem"></param>
-            <param name="colors">Particle colors for when this drink is consumed.</param>
+            <param name="TCommonColor">Particle TCommonColor for when this drink is consumed.</param>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendItem.StaticDefaultsToFood(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])">
             <summary>Registers this item as a food.</summary>
             <param name="modItem"></param>
-            <param name="colors">Particle colors for when this food is eaten.</param>
+            <param name="TCommonColor">Particle TCommonColor for when this food is eaten.</param>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetDisplayName(Terraria.ModLoader.ILocalizedModType)">
             <summary>Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.</summary>

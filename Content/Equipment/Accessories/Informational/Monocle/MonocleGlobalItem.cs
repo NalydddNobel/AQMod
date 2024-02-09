@@ -54,36 +54,36 @@ public sealed class MonocleGlobalItem : GlobalItem {
             }
 
             if (platinum > 0) {
-                text = text + platinum + " " + Lang.inter[15].Value + " ";
+                text = text + platinum + " " + LanguageDatabase.inter[15].Value + " ";
             }
             if (gold > 0) {
-                text = text + gold + " " + Lang.inter[16].Value + " ";
+                text = text + gold + " " + LanguageDatabase.inter[16].Value + " ";
             }
             if (silver > 0) {
-                text = text + silver + " " + Lang.inter[17].Value + " ";
+                text = text + silver + " " + LanguageDatabase.inter[17].Value + " ";
             }
             if (copper > 0) {
-                text = text + copper + " " + Lang.inter[18].Value + " ";
+                text = text + copper + " " + LanguageDatabase.inter[18].Value + " ";
             }
 
-            TooltipLine t = new(Mod, "Price", Lang.tip[item.buy ? 50 : 49].Value + " " + text);
+            TooltipLine t = new(Mod, "Price", LanguageDatabase.tip[item.buy ? 50 : 49].Value + " " + text);
 
             if (platinum > 0) {
-                t.OverrideColor = Colors.CoinPlatinum;
+                t.OverrideColor = TCommonColor.CoinPlatinum;
             }
             else if (gold > 0) {
-                t.OverrideColor = Colors.CoinGold;
+                t.OverrideColor = TCommonColor.CoinGold;
             }
             else if (silver > 0) {
-                t.OverrideColor = Colors.CoinSilver;
+                t.OverrideColor = TCommonColor.CoinSilver;
             }
             else if (copper > 0) {
-                t.OverrideColor = Colors.CoinCopper;
+                t.OverrideColor = TCommonColor.CoinCopper;
             }
             return t;
         }
         else if (item.type != ItemID.DefenderMedal) {
-            return new(Mod, "Price", Lang.tip[51].Value) { OverrideColor = new(120, 120, 120) };
+            return new(Mod, "Price", LanguageDatabase.tip[51].Value) { OverrideColor = new(120, 120, 120) };
         }
         return null;
     }

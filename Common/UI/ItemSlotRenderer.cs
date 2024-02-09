@@ -81,7 +81,7 @@ public class ItemSlotRenderer {
                 spriteBatch.Draw(itemTexture, position, frame, item.GetColor(Main.inventoryBack), 0f, origin, scale * scale2, SpriteEffects.None, 0f);
         }
         ItemLoader.PostDrawInInventory(item, spriteBatch, position, frame, drawColor, item.GetColor(lightColor), origin, scale * scale2);
-        if (ItemID.Sets.TrapSigned[item.type])
+        if (ItemSets.TrapSigned[item.type])
             spriteBatch.Draw(TextureAssets.Wire.Value, position + new Vector2(40f, 40f) * Main.inventoryScale, new Rectangle(4, 58, 8, 8), Main.inventoryBack, 0f, new Vector2(4f), 1f, SpriteEffects.None, 0f);
     }
     public static void Draw(SpriteBatch spriteBatch, Item item, Vector2 position, Color? color = null, int maxSize = 32) {
@@ -94,11 +94,11 @@ public class ItemSlotRenderer {
     public static void DrawFullItem(Item item, int context, int slot, SpriteBatch spriteBatch, Vector2 position, Vector2 itemCenter, float scale, float sizeLimit, Color itemDrawColor, Color color) {
         ItemSlot.DrawItemIcon(item, context, spriteBatch, itemCenter, scale, sizeLimit, itemDrawColor);
 
-        if (ItemID.Sets.TrapSigned[item.type]) {
+        if (ItemSets.TrapSigned[item.type]) {
             spriteBatch.Draw(TextureAssets.Wire.Value, position + new Vector2(40f, 40f) * Main.inventoryScale, new Rectangle(4, 58, 8, 8), color, 0f, new Vector2(4f), 1f, SpriteEffects.None, 0f);
         }
 
-        if (ItemID.Sets.DrawUnsafeIndicator[item.type]) {
+        if (ItemSets.DrawUnsafeIndicator[item.type]) {
             Vector2 vector2 = new Vector2(-4f, -4f) * scale;
             Texture2D value6 = TextureAssets.Extra[258].Value;
             Rectangle rectangle2 = value6.Frame();

@@ -4,7 +4,7 @@ public class SuspiciousLookingSteak : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 5;
         this.StaticDefaultsToFood(Color.Red, Color.DarkRed);
-        ItemID.Sets.DrinkParticleColors[Type] = new Color[] { Color.Red, };
+        ItemSets.DrinkParticleColors[Type] = new Color[] { Color.Red, };
     }
 
     public override void SetDefaults() {
