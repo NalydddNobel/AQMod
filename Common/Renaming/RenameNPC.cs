@@ -76,16 +76,16 @@ public sealed class RenameNPC : GlobalNPC {
     }
 
     public static bool CanRename(NPC npc) {
-        if (NPCSets.NameTagOverride.TryGetValue(npc.netID, out bool canBeRenamedOverride)) {
+        if (NPCMetadata.NameTagOverride.TryGetValue(npc.netID, out bool canBeRenamedOverride)) {
             return canBeRenamedOverride;
         }
 
-        if (!npc.townNPC && !NPCID.Sets.SpawnsWithCustomName[npc.type] && (npc.boss || NPCID.Sets.ShouldBeCountedAsBoss[npc.type] || npc.immortal || npc.dontTakeDamage || npc.SpawnedFromStatue || (npc.realLife != -1 && npc.realLife != npc.whoAmI))) {
+        if (!npc.townNPC && !NPCSets.SpawnsWithCustomName[npc.type] && (npc.boss || NPCSets.ShouldBeCountedAsBoss[npc.type] || npc.immortal || npc.dontTakeDamage || npc.SpawnedFromStatue || (npc.realLife != -1 && npc.realLife != npc.whoAmI))) {
             return false;
         }
 
         // Respawn Id used by the Coin Loss Revenge system. If the id is 0, this enemy cannot utilize that system, nor can it utilize nametag saving/loading.
-        if (NPCID.Sets.RespawnEnemyID.TryGetValue(npc.netID, out int respawnId) && respawnId == 0) {
+        if (NPCSets.RespawnEnemyID.TryGetValue(npc.netID, out int respawnId) && respawnId == 0) {
             return false;
         }
 

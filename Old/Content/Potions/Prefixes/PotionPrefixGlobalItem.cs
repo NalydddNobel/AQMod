@@ -11,7 +11,7 @@ public class PotionPrefixGlobalItem : GlobalItem {
     public override bool InstancePerEntity => true;
 
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
-        return ItemSets.Potions.Contains(entity.type);
+        return ItemMetadata.Potions.Contains(entity.type);
     }
 
     public override bool CanUseItem(Item item, Player player) {

@@ -7,8 +7,8 @@ namespace Aequus.Old.Content.Enemies.DemonSiege.Keeper;
 
 public class ChainedSoulProj : ModProjectile {
     public override void SetStaticDefaults() {
-        ProjectileSets.PushableByTypeId.Add(Type);
-        ProjectileSets.DealsHeatDamage.Add(Type);
+        ProjectileMetadata.PushableByTypeId.Add(Type);
+        ProjectileMetadata.DealsHeatDamage.Add(Type);
     }
 
     public override void SetDefaults() {

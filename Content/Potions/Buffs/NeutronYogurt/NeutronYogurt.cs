@@ -7,7 +7,7 @@ public class NeutronYogurt : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 20;
         Main.RegisterItemAnimation(Type, new DrawAnimationVertical(int.MaxValue, 3));
-        ItemID.Sets.DrinkParticleColors[Type] = new[] { Color.HotPink, Color.Yellow };
+        ItemSets.DrinkParticleColors[Type] = new[] { Color.HotPink, Color.Yellow };
     }
 
     public override void SetDefaults() {

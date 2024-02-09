@@ -15,10 +15,10 @@ public class OccultistHostile : Occultist {
 
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = 25;
-        NPCID.Sets.ActsLikeTownNPC[Type] = true;
-        NPCID.Sets.NoTownNPCHappiness[Type] = true;
-        NPCID.Sets.SpawnsWithCustomName[Type] = false;
-        NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new() {
+        NPCSets.ActsLikeTownNPC[Type] = true;
+        NPCSets.NoTownNPCHappiness[Type] = true;
+        NPCSets.SpawnsWithCustomName[Type] = false;
+        NPCSets.NPCBestiaryDrawOffset.Add(Type, new() {
             Hide = true,
         });
     }

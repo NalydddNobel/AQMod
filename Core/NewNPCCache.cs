@@ -2,7 +2,7 @@
 
 namespace Aequus.Core;
 
-public sealed class NewNPCCache : ILoadable {
+public sealed class NewNPCCache : ILoad {
     public static readonly List<NPC> NPCs = new();
     public static bool QueueNPCs { get; private set; }
 

@@ -8,7 +8,7 @@ public class DeathsEmbrace : ModItem, IDedicatedItem {
     public Color TextColor => new Color(20, 70, 30);
 
     public override void SetStaticDefaults() {
-        ItemID.Sets.DrinkParticleColors[Type] = new Color[] { Color.Black * 0.66f, Color.DarkRed with { A = 180 } * 0.66f, };
+        ItemSets.DrinkParticleColors[Type] = new Color[] { Color.Black * 0.66f, Color.DarkRed with { A = 180 } * 0.66f, };
     }
 
     public override void SetDefaults() {
@@ -24,7 +24,7 @@ public class DeathsEmbrace : ModItem, IDedicatedItem {
     public override void ModifyTooltips(List<TooltipLine> tooltips) {
         foreach (var t in tooltips) {
             if (t.Mod == "Terraria" && t.Name.StartsWith("Tooltip")) {
-                t.Text = t.Text.Replace("{{", $"[c/{Colors.AlphaDarken(Color.Lerp(Color.Red, Color.White, 0.5f)).Hex3()}:").Replace("}}", $"]");
+                t.Text = t.Text.Replace("{{", $"[c/{TCommonColor.AlphaDarken(Color.Lerp(Color.Red, Color.White, 0.5f)).Hex3()}:").Replace("}}", $"]");
             }
         }
     }

@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace Aequus.Content.DataSets;
 
-public class PaintSets : DataSet {
+public class PaintMetadata : MetadataSet {
     [JsonProperty]
     public static Dictionary<PaintColor, Entry<ItemID>> Paints { get; private set; } = new();
     [JsonProperty]

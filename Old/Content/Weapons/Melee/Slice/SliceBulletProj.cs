@@ -6,7 +6,7 @@ namespace Aequus.Old.Content.Weapons.Melee.Slice;
 
 public class SliceBulletProj : ModProjectile {
     public override void SetStaticDefaults() {
-        ProjectileSets.PushableByTypeId.Add(Type);
+        ProjectileMetadata.PushableByTypeId.Add(Type);
     }
 
     public override void SetDefaults() {

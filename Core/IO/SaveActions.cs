@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Aequus.Core.IO;
 
-public class SaveActions : ILoadable {
+public class SaveActions : ILoad {
     public delegate void PreSaveDelegate(bool toCloud);
     public static PreSaveDelegate PreSaveWorld { get; internal set; }
 

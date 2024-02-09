@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace Aequus.Content.Fishing.CrabPots;
 
-public class CrabPotLootTable : ILoadable {
+public class CrabPotLootTable : ILoad {
     public static Dictionary<int, List<CrabPotCatchRule>> Table { get; private set; } = new();
 
     public void Load(Mod mod) {

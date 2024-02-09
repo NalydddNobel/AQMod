@@ -25,6 +25,6 @@ public abstract class PotionPrefix : ModPrefix, IRemovedByShimmerPrefix {
     }
 
     public override bool CanRoll(Item item) {
-        return ItemSets.Potions.Contains(item.type);
+        return ItemMetadata.Potions.Contains(item.type);
     }
 }

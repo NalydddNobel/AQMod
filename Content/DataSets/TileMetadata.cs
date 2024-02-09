@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Aequus.Content.DataSets;
 
-public class TileSets : DataSet {
+public class TileMetadata : MetadataSet {
     [JsonProperty]
     public static HashSet<Entry<TileID>> IsSmashablePot { get; private set; } = new();
     /// <summary>Prevents tiles below this tile from being sloped.</summary>

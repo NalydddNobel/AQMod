@@ -7,7 +7,7 @@ namespace Aequus.Content.Materials;
 public class CompressedTrash : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 25;
-        ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.PlatinumBar;
+        ItemSets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.PlatinumBar;
     }
 
     public override void SetDefaults() {

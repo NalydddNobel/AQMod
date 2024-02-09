@@ -29,7 +29,7 @@ internal class PotionPrefixItem : InstancedModItem, IRightClickOverrideWhenHeld 
         Item potion = inv[slot];
         int wantedPrefix = _parent.Type;
 
-        if (!ItemSets.Potions.Contains(potion.type) || !potion.CanApplyPrefix(wantedPrefix) || potion.prefix == wantedPrefix) {
+        if (!ItemMetadata.Potions.Contains(potion.type) || !potion.CanApplyPrefix(wantedPrefix) || potion.prefix == wantedPrefix) {
             return false;
         }
 

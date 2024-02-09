@@ -3,14 +3,14 @@
 namespace Aequus.Content.DedicatedContent.StudiesOfTheInkblot;
 
 public class StudiesOfTheInkblot : ModItem, IDedicatedItem {
-    public const string ALTERNATE_COLORS_TIMER = nameof(StudiesOfTheInkblot);
+    public const string ALTERNATE_TCommonColor_TIMER = nameof(StudiesOfTheInkblot);
 
     public string DedicateeName => "starlight.mp4";
 
     public Color TextColor => new Color(110, 110, 128, 255);
 
     public override void SetStaticDefaults() {
-        ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
+        ItemSets.ItemsThatAllowRepeatedRightClick[Type] = true;
     }
 
     private void DefaultUse() {
@@ -54,7 +54,7 @@ public class StudiesOfTheInkblot : ModItem, IDedicatedItem {
     public override void HoldItem(Player player) {
         var aequus = player.GetModPlayer<AequusPlayer>();
         if (Main.myPlayer == player.whoAmI) {
-            if (player.ownedProjectileCounts[Item.shoot] == 0 && !player.ItemAnimationActive && !aequus.TimerActive(ALTERNATE_COLORS_TIMER)) {
+            if (player.ownedProjectileCounts[Item.shoot] == 0 && !player.ItemAnimationActive && !aequus.TimerActive(ALTERNATE_TCommonColor_TIMER)) {
                 for (int i = 0; i < Main.maxProjectiles; i++) {
                     if (Main.projectile[i].active && Main.projectile[i].type == Item.shoot && Main.projectile[i].owner == player.whoAmI) {
                         Main.projectile[i].Kill();
@@ -75,19 +75,19 @@ public class StudiesOfTheInkblot : ModItem, IDedicatedItem {
                 }
             }
             int rand = Main.rand.Next(62);
-            bool alternateColors = aequus.TimerActive(ALTERNATE_COLORS_TIMER);
+            bool alternateTCommonColor = aequus.TimerActive(ALTERNATE_TCommonColor_TIMER);
             for (int i = 0; i < 62; i++) {
                 int p = Projectile.NewProjectile(source, position, new Vector2(speed * 0.3f, 0f).RotatedBy(MathHelper.TwoPi / 62f * i),
                     ModContent.ProjectileType<StudiesOfTheInkblotProj>(), damage * 3, knockback, player.whoAmI, 100f + 40f * (1f / 62f * ((i + rand) % 62f)), speed * 0.5f);
                 Main.projectile[p].localAI[0] = 1.5f;
-                Main.projectile[p].frame = alternateColors ? 1 : 5;
+                Main.projectile[p].frame = alternateTCommonColor ? 1 : 5;
             }
             
-            if (alternateColors && aequus.TryGetTimer(ALTERNATE_COLORS_TIMER, out var timer)) {
+            if (alternateTCommonColor && aequus.TryGetTimer(ALTERNATE_TCommonColor_TIMER, out var timer)) {
                 timer.TimePassed = timer.MaxTime - 1;
             }
             else {
-                aequus.SetTimer(ALTERNATE_COLORS_TIMER, Item.useTime * 2);
+                aequus.SetTimer(ALTERNATE_TCommonColor_TIMER, Item.useTime * 2);
             }
             DefaultUse();
         }

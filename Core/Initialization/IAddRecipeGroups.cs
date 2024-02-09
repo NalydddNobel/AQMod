@@ -1,5 +1,5 @@
 ﻿namespace Aequus.Core.Initialization;
 
-internal interface IAddRecipeGroups : ILoadable {
+internal interface IAddRecipeGroups : ILoad {
     void AddRecipeGroups(Aequus aequus);
 }

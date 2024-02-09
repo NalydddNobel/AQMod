@@ -6,13 +6,13 @@ using System.Text;
 
 namespace Aequus.Core.DataSets;
 
-public sealed class DataSetFileLoader {
-    private readonly DataSet _dataSet;
+public sealed class MetadataFile {
+    private readonly MetadataSet _dataSet;
     public readonly string FilePath;
     public readonly string ModFileStreamPath;
     public readonly string FileData;
 
-    public DataSetFileLoader(DataSet dataSet) {
+    public MetadataFile(MetadataSet dataSet) {
         _dataSet = dataSet;
         FilePath = dataSet.FilePath;
         ModFileStreamPath = $"{FilePath}.json"[(dataSet.Mod.Name.Length + 1)..];
@@ -23,7 +23,7 @@ public sealed class DataSetFileLoader {
         }
     }
 
-    public void ApplyToDataSet() {
+    public void Apply() {
         try {
             if (!string.IsNullOrEmpty(FileData)) {
                 JsonConvert.DeserializeObject(FileData, _dataSet.GetType());
@@ -35,7 +35,7 @@ public sealed class DataSetFileLoader {
     }
 
     [Conditional("DEBUG")]
-    internal void CreateTempFile() {
+    internal void Gen() {
         string fileLocation = Path.Join(Aequus.DebugPath, "ModSources", FilePath.Replace($"Content/DataSets/", "Assets/Metadata/") + ".json").Replace('/', Path.DirectorySeparatorChar);
         _dataSet.Mod.Logger.Debug(fileLocation);
         try {

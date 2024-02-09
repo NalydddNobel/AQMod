@@ -1,9 +1,3 @@
-global using Aequus.Core.Utilities;
-global using Microsoft.Xna.Framework;
-global using Microsoft.Xna.Framework.Graphics;
-global using Terraria;
-global using Terraria.ID;
-global using Terraria.ModLoader;
 using log4net;
 using System.Reflection;
 

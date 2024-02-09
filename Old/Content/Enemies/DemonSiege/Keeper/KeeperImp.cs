@@ -21,15 +21,15 @@ public class KeeperImp : ModNPC {
     public const int CHAINED_SOUL_RITUAL_TIME = 120;
 
     public override void SetStaticDefaults() {
-        ItemID.Sets.KillsToBanner[BannerItem] = 25;
-        NPCID.Sets.CantTakeLunchMoney[Type] = true;
-        NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new() {
+        ItemSets.KillsToBanner[BannerItem] = 25;
+        NPCSets.CantTakeLunchMoney[Type] = true;
+        NPCSets.NPCBestiaryDrawOffset.Add(Type, new() {
             Position = new Vector2(1f, 12f)
         });
-        foreach (int buff in BuffSets.DemonSiegeImmune) {
-            NPCID.Sets.SpecificDebuffImmunity[Type][buff] = true;
+        foreach (int buff in BuffMetadata.DemonSiegeImmune) {
+            NPCSets.SpecificDebuffImmunity[Type][buff] = true;
         }
-        NPCSets.DealsHeatDamage.Add(Type);
+        NPCMetadata.DealsHeatDamage.Add(Type);
     }
 
     public override void SetDefaults() {

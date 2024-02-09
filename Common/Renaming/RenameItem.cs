@@ -114,6 +114,6 @@ public sealed class RenameItem : GlobalItem {
     }
 
     public static bool CanRename(Item item) {
-        return !item.IsACoin && !ItemSets.CannotRename.Contains(item.type);
+        return !item.IsACoin && !ItemMetadata.CannotRename.Contains(item.type);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Aequus.Old.Core.Assets;
 
-public class OldAequusSounds : ILoadable {
+public class OldAequusSounds : ILoad {
     public static SoundStyle HighSteaks { get; private set; }
     public static SoundStyle Meathook { get; private set; }
 

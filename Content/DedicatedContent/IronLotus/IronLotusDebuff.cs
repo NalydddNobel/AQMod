@@ -10,7 +10,7 @@ public class IronLotusDebuff : ModBuff {
 
     public override void SetStaticDefaults() {
         Main.debuff[Type] = true;
-        BuffSets.PlayerDoTDebuff.Add(Type);
+        BuffMetadata.PlayerDoTDebuff.Add(Type);
     }
 
     public override void Update(NPC npc, ref int buffIndex) {

@@ -4,7 +4,7 @@ using System;
 namespace Aequus.Core.Graphics;
 
 [Autoload(Side = ModSide.Client)]
-public class DrawLayers : ILoadable {
+public class DrawLayers : ILoad {
     /// <summary>Invoked before NPCs behind tiles are drawn.</summary>
     public event Action<SpriteBatch> WorldBehindTiles;
     /// <summary>Invoked after Dusts have been drawn.</summary>

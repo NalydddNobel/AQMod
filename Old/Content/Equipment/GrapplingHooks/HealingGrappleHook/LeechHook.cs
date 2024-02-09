@@ -10,7 +10,7 @@ public class LeechHook : ModItem {
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ArmorPenetration);
 
     public override void SetStaticDefaults() {
-        ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<HighSteaks>();
+        ItemSets.ShimmerTransformToItem[Type] = ModContent.ItemType<HighSteaks>();
     }
 
     public override void SetDefaults() {

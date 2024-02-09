@@ -3,6 +3,6 @@
 public class WarHornCooldown : ModBuff {
     public override void SetStaticDefaults() {
         Main.debuff[Type] = true;
-        BuffID.Sets.NurseCannotRemoveDebuff[Type] = true;
+        BuffSets.NurseCannotRemoveDebuff[Type] = true;
     }
 }

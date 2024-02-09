@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Aequus.Core.Utilities;
 
-public class HookManager : ILoadable {
+public class HookManager : ILoad {
     /// <summary><inheritdoc cref="ApplyAndCacheHook(MethodInfo, MethodInfo)"/></summary>
     /// <exception cref="MissingMethodException"></exception>
     public static Hook ApplyAndCacheHook(Type sourceType, Type targetType, string methodName, BindingFlags sourceBindingFlags = BindingFlags.Public | BindingFlags.Static, BindingFlags targetBindingFlags = BindingFlags.NonPublic | BindingFlags.Static) {

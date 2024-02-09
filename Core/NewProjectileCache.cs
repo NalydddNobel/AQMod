@@ -2,7 +2,7 @@
 
 namespace Aequus.Core;
 
-public sealed class NewProjectileCache : ILoadable {
+public sealed class NewProjectileCache : ILoad {
     public static readonly List<Projectile> Projectiles = new();
     public static bool QueueProjectiles { get; private set; }
 

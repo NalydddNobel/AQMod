@@ -54,22 +54,22 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
 
     public override void SetStaticDefaults() {
         Main.npcFrameCount[NPC.type] = 25;
-        NPCID.Sets.ExtraFramesCount[NPC.type] = 9;
-        NPCID.Sets.AttackFrameCount[NPC.type] = 4;
-        NPCID.Sets.DangerDetectRange[NPC.type] = 400;
-        NPCID.Sets.AttackType[NPC.type] = 2;
-        NPCID.Sets.AttackTime[NPC.type] = 10;
-        NPCID.Sets.AttackAverageChance[NPC.type] = 10;
-        NPCID.Sets.HatOffsetY[NPC.type] = 2;
+        NPCSets.ExtraFramesCount[NPC.type] = 9;
+        NPCSets.AttackFrameCount[NPC.type] = 4;
+        NPCSets.DangerDetectRange[NPC.type] = 400;
+        NPCSets.AttackType[NPC.type] = 2;
+        NPCSets.AttackTime[NPC.type] = 10;
+        NPCSets.AttackAverageChance[NPC.type] = 10;
+        NPCSets.HatOffsetY[NPC.type] = 2;
 
-        NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new() {
+        NPCSets.NPCBestiaryDrawOffset.Add(Type, new() {
             Velocity = 1f,
             Direction = -1,
             Scale = 1f,
         });
 
-        NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
-        NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Lovestruck] = true;
+        NPCSets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
+        NPCSets.SpecificDebuffImmunity[Type][BuffID.Lovestruck] = true;
 
         NPC.Happiness
             .SetBiomeAffection<DesertBiome>(AffectionLevel.Like)
@@ -492,7 +492,7 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
     }
 
     public override bool? CanBeHitByProjectile(Projectile projectile) {
-        if (ProjectileSets.OccultistIgnore.Contains(projectile.type)) {
+        if (ProjectileMetadata.OccultistIgnore.Contains(projectile.type)) {
             return false;
         }
 
@@ -508,7 +508,7 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
     }
 
     public override bool CanBeHitByNPC(NPC attacker) {
-        return !NPCSets.Soulless.Contains(attacker.type);
+        return !NPCMetadata.Soulless.Contains(attacker.type);
     }
 }
 

@@ -5,7 +5,7 @@ using Terraria.GameContent;
 
 namespace Aequus.Content.DataSets;
 
-public class ProjectileSets : DataSet {
+public class ProjectileMetadata : MetadataSet {
     /// <summary>Rotation offset of projectile sprites so it can be rotated correctly.</summary>
     public static Dictionary<Entry<ProjectileID>, float> SpriteRotation { get; private set; } = new();
 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger;
 
-public partial class ScavengerEquipment : DataSet {
+public partial class ScavengerEquipment : MetadataSet {
     [JsonProperty]
     public static List<Entry<ItemID>> ScavengerHelmets { get; private set; } = new();
     [JsonProperty]

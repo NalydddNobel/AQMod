@@ -16,7 +16,7 @@ public static class ExtendNPC {
 
     /// <returns>Whether or not this is most likely a critter, dependant on multiple checks of their stats and values in data sets.</returns>
     public static bool IsProbablyACritter(this NPC npc) {
-        return NPCID.Sets.CountsAsCritter[npc.type] || (npc.lifeMax < 5 && npc.lifeMax != 1 && npc.damage <= 0);
+        return NPCSets.CountsAsCritter[npc.type] || (npc.lifeMax < 5 && npc.lifeMax != 1 && npc.damage <= 0);
     }
 
     #region Drawing

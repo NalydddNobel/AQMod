@@ -243,7 +243,7 @@ internal class TrappedChest : InstancedModTile, IAddRecipes {
     }
 
     public override void SetStaticDefaults() {
-        ItemID.Sets.TrapSigned[_item.Type] = true;
+        ItemSets.TrapSigned[_item.Type] = true;
 
         Main.tileSpelunker[Type] = true;
         Main.tileShine2[Type] = true;

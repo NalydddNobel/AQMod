@@ -5,7 +5,7 @@ namespace Aequus.Old.Content.Weapons.Ranged.Bows.CrusadersCrossbow;
 
 public class CrusadersCrossbow : ModItem {
     public override void SetStaticDefaults() {
-        ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<LeechHook>();
+        ItemSets.ShimmerTransformToItem[Type] = ModContent.ItemType<LeechHook>();
     }
 
     public override void SetDefaults() {

@@ -110,7 +110,7 @@ public partial class AequusPlayer {
             Recipe.FindRecipes();
             return true;
         }
-        if (ItemSets.IsDungeonLockBox.Contains(inv[slot].type)) {
+        if (ItemMetadata.IsDungeonLockBox.Contains(inv[slot].type)) {
             if ((goldenKey.consumable || goldenKey.type == ItemID.GoldenKey) && ItemLoader.ConsumeItem(goldenKey, Player)) {
                 goldenKey.stack--;
                 if (goldenKey.stack < 0) {
@@ -156,7 +156,7 @@ public partial class AequusPlayer {
             Recipe.FindRecipes();
             return true;
         }
-        if (ItemSets.IsHellLockBox.Contains(inv[slot].type)) {
+        if (ItemMetadata.IsHellLockBox.Contains(inv[slot].type)) {
             if (shadowKey.consumable && ItemLoader.ConsumeItem(shadowKey, Player)) {
                 shadowKey.stack--;
                 if (shadowKey.stack < 0) {

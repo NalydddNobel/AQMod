@@ -7,7 +7,7 @@ using Terraria.GameContent.Bestiary;
 
 namespace Aequus.Content.DataSets;
 
-public class NPCSets : DataSet {
+public class NPCMetadata : MetadataSet {
     /// <summary>
     /// NPC Ids in this set cannot damage the Occultist, or have their souls trapped into Soul Gems.
     /// Automatically populated with all NPC Ids which have the Underworld or Gore Nest as bestiary tags.
@@ -126,42 +126,42 @@ public class NPCSets : DataSet {
 
         // Make all of these NPCs immune to the vanilla "Slow" debuff.
         // Debuffs which modify movement speed should inherit this immunity.
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.HallowBoss][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.CultistBoss][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.BloodEelBody][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.BloodEelTail][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.BoneSerpentBody][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.BoneSerpentTail][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.CultistDragonBody1][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.CultistDragonBody2][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.CultistDragonBody3][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.CultistDragonBody4][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.CultistDragonTail][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.DevourerBody][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.DevourerTail][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.DiggerBody][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.DiggerTail][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.DuneSplicerBody][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.DuneSplicerTail][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.EaterofWorldsBody][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.EaterofWorldsTail][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.GiantWormBody][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.GiantWormTail][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.LeechBody][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.LeechTail][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.SeekerBody][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.SeekerTail][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.SolarCrawltipedeBody][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.SolarCrawltipedeTail][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.StardustWormBody][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.StardustWormTail][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.TombCrawlerBody][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.TombCrawlerTail][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.WyvernBody][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.WyvernBody2][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.WyvernBody3][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.WyvernLegs][BuffID.Slow] = true;
-        NPCID.Sets.SpecificDebuffImmunity[NPCID.WyvernTail][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.HallowBoss][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.CultistBoss][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.BloodEelBody][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.BloodEelTail][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.BoneSerpentBody][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.BoneSerpentTail][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.CultistDragonBody1][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.CultistDragonBody2][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.CultistDragonBody3][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.CultistDragonBody4][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.CultistDragonTail][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.DevourerBody][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.DevourerTail][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.DiggerBody][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.DiggerTail][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.DuneSplicerBody][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.DuneSplicerTail][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.EaterofWorldsBody][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.EaterofWorldsTail][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.GiantWormBody][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.GiantWormTail][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.LeechBody][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.LeechTail][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.SeekerBody][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.SeekerTail][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.SolarCrawltipedeBody][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.SolarCrawltipedeTail][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.StardustWormBody][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.StardustWormTail][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.TombCrawlerBody][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.TombCrawlerTail][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.WyvernBody][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.WyvernBody2][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.WyvernBody3][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.WyvernLegs][BuffID.Slow] = true;
+        NPCSets.SpecificDebuffImmunity[NPCID.WyvernTail][BuffID.Slow] = true;
     }
 
     public override void AddRecipes() {

@@ -6,7 +6,7 @@ public class IronLotus : ModItem, IDedicatedItem {
     public Color TextColor => new Color(110, 60, 30, 255);
 
     public override void SetStaticDefaults() {
-        ItemID.Sets.Spears[Type] = true;
+        ItemSets.Spears[Type] = true;
     }
 
     public override void SetDefaults() {

@@ -73,10 +73,10 @@ public sealed class DrawHelper : ModSystem {
             Matrix.CreateScale(Main.GameViewMatrix.Zoom.X, Main.GameViewMatrix.Zoom.Y, 1f);
     }
 
-    public static void ApplyBasicEffect(Texture2D texture = default, bool vertexColorsEnabled = true) {
+    public static void ApplyBasicEffect(Texture2D texture = default, bool vertexTCommonColorEnabled = true) {
         GetWorldViewProjection(out var view, out var projection);
 
-        _basicEffect.VertexColorEnabled = vertexColorsEnabled;
+        _basicEffect.VertexColorEnabled = vertexTCommonColorEnabled;
         _basicEffect.Projection = projection;
         _basicEffect.View = view;
 

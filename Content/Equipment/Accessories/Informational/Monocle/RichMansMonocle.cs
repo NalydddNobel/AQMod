@@ -5,8 +5,8 @@ namespace Aequus.Content.Equipment.Accessories.Informational.Monocle;
 public class RichMansMonocle : ModItem {
     public override void SetStaticDefaults() {
         EquipBoostDatabase.Instance.SetNoEffect(Type);
-        ItemID.Sets.WorksInVoidBag[Type] = true;
-        ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<ShimmerMonocle>();
+        ItemSets.WorksInVoidBag[Type] = true;
+        ItemSets.ShimmerTransformToItem[Type] = ModContent.ItemType<ShimmerMonocle>();
     }
 
     public override void SetDefaults() {

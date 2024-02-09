@@ -96,7 +96,7 @@ public partial class Scavenger {
         if (armor[SLOT_ACCS].balloonSlot > 0) {
             Main.instance.LoadAccBalloon(armor[SLOT_ACCS].balloonSlot);
             var balloonTexture = TextureAssets.AccBalloon[armor[SLOT_ACCS].balloonSlot].Value;
-            if (!ArmorIDs.Balloon.Sets.UsesTorsoFraming[armor[SLOT_ACCS].balloonSlot]) {
+            if (!BalloonEquipSets.UsesTorsoFraming[armor[SLOT_ACCS].balloonSlot]) {
                 var balloonFrame = balloonTexture.Frame(verticalFrames: 4, frameY: DateTime.Now.Millisecond % 800 / 200);
                 spriteBatch.Draw(balloonTexture, drawCoordinates + new Vector2((NPC.width / 2f - 6f) * NPC.spriteDirection, -8f) * NPC.scale, balloonFrame, drawColor, 0f, balloonFrame.Size() / 2f, NPC.scale, armorSpriteEffects, 0f);
             }
@@ -105,9 +105,9 @@ public partial class Scavenger {
             }
         }
 
-        if (armor[SLOT_LEGS].legSlot <= 0 || !ArmorIDs.Legs.Sets.HidesTopSkin[armor[SLOT_LEGS].legSlot]) {
+        if (armor[SLOT_LEGS].legSlot <= 0 || !LegEquipSets.HidesTopSkin[armor[SLOT_LEGS].legSlot]) {
             var legsFrame = bodyFrame;
-            if ((armor[SLOT_ACCS].shoeSlot > 0 && ArmorIDs.Shoe.Sets.OverridesLegs[armor[SLOT_ACCS].shoeSlot]) || (armor[SLOT_LEGS].legSlot > 0 && ArmorIDs.Legs.Sets.HidesBottomSkin[armor[SLOT_LEGS].legSlot])) {
+            if ((armor[SLOT_ACCS].shoeSlot > 0 && ShoeEquipSets.OverridesLegs[armor[SLOT_ACCS].shoeSlot]) || (armor[SLOT_LEGS].legSlot > 0 && LegEquipSets.HidesBottomSkin[armor[SLOT_LEGS].legSlot])) {
                 legsFrame.Height -= 14;
             }
             spriteBatch.Draw(TextureAssets.Npc[Type].Value, drawCoordinates, legsFrame, drawColor, NPC.rotation, NPC.frame.Size() / 2f, NPC.scale, armorSpriteEffects, 0f);
@@ -120,7 +120,7 @@ public partial class Scavenger {
         if (!armor[SLOT_BODY].IsAir) {
             spriteBatch.Draw(AequusTextures.ScavengerBag_Strap.Value, drawCoordinates + new Vector2(positionOffset.X + NPC.spriteDirection * 3f, 4f + positionOffset.Y).RotatedBy(NPC.rotation) * NPC.scale, null, drawColor, NPC.rotation, AequusTextures.ScavengerBag_Strap.Size() / 2f, NPC.scale, armorSpriteEffects, 0f);
         }
-        if (armor[SLOT_HEAD].headSlot <= 0 || (!HeadSkinOverride.Contains(armor[SLOT_HEAD].headSlot) && ArmorIDs.Head.Sets.DrawHead[armor[SLOT_HEAD].headSlot])) {
+        if (armor[SLOT_HEAD].headSlot <= 0 || (!HeadSkinOverride.Contains(armor[SLOT_HEAD].headSlot) && HelmetEquipSets.DrawHead[armor[SLOT_HEAD].headSlot])) {
             spriteBatch.Draw(AequusTextures.ScavengerHead.Value, drawCoordinates + new Vector2(positionOffset.X, -2f + positionOffset.Y).RotatedBy(NPC.rotation) * NPC.scale, null, drawColor, NPC.rotation, AequusTextures.ScavengerHead.Size() / 2f, NPC.scale, armorSpriteEffects, 0f);
         }
         DrawBodyFull(SLOT_ACCS, (i) => i.handOnSlot, Main.instance.LoadAccHandsOn, TextureAssets.AccHandsOn, drawInfo);
@@ -129,8 +129,8 @@ public partial class Scavenger {
         DrawFrontArmFull(SLOT_BODY, (i) => i.bodySlot, Main.instance.LoadArmorBody, TextureAssets.ArmorBodyComposite, drawInfo, layerFront: true);
         DrawFrontArmFull(SLOT_ACCS, (i) => i.handOnSlot, Main.instance.LoadAccHandsOn, TextureAssets.AccHandsOn, drawInfo, layerFront: true);
 
-        bool hideShoes = armor[SLOT_LEGS].legSlot > 0 && ArmorIDs.Legs.Sets.OverridesLegs[armor[SLOT_LEGS].legSlot];
-        if (hideShoes || armor[SLOT_ACCS].shoeSlot <= 0 || !ArmorIDs.Shoe.Sets.OverridesLegs[armor[SLOT_ACCS].shoeSlot]) {
+        bool hideShoes = armor[SLOT_LEGS].legSlot > 0 && LegEquipSets.OverridesLegs[armor[SLOT_LEGS].legSlot];
+        if (hideShoes || armor[SLOT_ACCS].shoeSlot <= 0 || !ShoeEquipSets.OverridesLegs[armor[SLOT_ACCS].shoeSlot]) {
             DrawHelmetFull(SLOT_LEGS, (i) => i.legSlot, Main.instance.LoadArmorLegs, TextureAssets.ArmorLeg, drawInfo);
         }
         if (!hideShoes) {
