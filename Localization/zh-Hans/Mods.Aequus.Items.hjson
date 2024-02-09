@@ -204,7 +204,7 @@ GravetenderRobes: {
 	Tooltip:
 		'''
 		{$CommonTooltips.StatGhostDuration}
-		{$CommonTooltips.StatGhostSlots}
+		{$CommonTooltips.StatGhostSlots@1}
 		'''
 }
 
@@ -722,16 +722,16 @@ Toolbelt: {
 }
 
 MoonflowerSeeds: {
-	// DisplayName: Moonflower Seeds
-	// Tooltip: ""
+	DisplayName: 月光花种
+	Tooltip: ""
 }
 
 MistralSeeds: {
-	// DisplayName: Mistral Seeds
-	// Tooltip: ""
+	DisplayName: 寒风花种
+	Tooltip: ""
 }
 
 ManacleSeeds: {
-	// DisplayName: Manacle Seeds
-	// Tooltip: ""
+	DisplayName: 镣铐花种
+	Tooltip: ""
 }
