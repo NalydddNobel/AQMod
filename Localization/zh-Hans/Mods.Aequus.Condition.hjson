@@ -1,27 +1,27 @@
 DayOfTheWeek: 当处于{0}
 BetweenDays: 在{0}-{1}之间
-InPollutedOcean: Mods.Aequus.Condition.InPollutedOcean
+InPollutedOcean: 位于被污染的海洋生物群落时
 DownedAquaticBoss: Mods.Aequus.Condition.DownedAquaticBoss
-// NotDownedAquaticBoss: Mods.Aequus.Condition.NotDownedAquaticBoss
+NotDownedAquaticBoss: Mods.Aequus.Condition.NotDownedAquaticBoss
 DownedCosmicBoss: 在击败终耀源星后
-// NotDownedCosmicBoss: Before defeating Ultra Starite
+NotDownedCosmicBoss: 在击败终耀源星之前
 DownedTrueCosmicBoss: 在击败终末之星后
-// NotDownedTrueCosmicBoss: Before defeating Omega Starite
+NotDownedTrueCosmicBoss: 在击败终末之星之前
 DownedDemonBoss: 在完成一次恶魔围攻后
-// NotDownedDemonBoss: Before completing your first Demon Siege
+NotDownedDemonBoss: 在完成你的首次恶魔围攻之前
 DownedTrueDemonBoss: Mods.Aequus.Condition.DownedTrueDemonBoss
-// NotDownedTrueDemonBoss: Mods.Aequus.Condition.NotDownedTrueDemonBoss
+NotDownedTrueDemonBoss: Mods.Aequus.Condition.NotDownedTrueDemonBoss
 DownedAtmosphereBossFlame: 在与红色精灵相匹配后
-// NotDownedAtmosphereBossFlame: Before matching against the Red Sprite
+NotDownedAtmosphereBossFlame: 在与红色精灵相匹配之前
 DownedAtmosphereBossFrost: 在与太空乌贼相匹配后
-// NotDownedAtmosphereBossFrost: Before matching against the Space Squid
+NotDownedAtmosphereBossFrost: 在与太空乌贼相匹配之前
 DownedTrueAtmosphereBoss: 在击败沙尘恶魔后
-// NotDownedTrueAtmosphereBoss: Before defeating the Dust Devil
+NotDownedTrueAtmosphereBoss: 在击败沙尘恶魔之前
 DownedOrganicBossMight: Mods.Aequus.Condition.DownedOrganicBossMight
-// NotDownedOrganicBossMight: Mods.Aequus.Condition.NotDownedOrganicBossMight
+NotDownedOrganicBossMight: Mods.Aequus.Condition.NotDownedOrganicBossMight
 DownedOrganicBossSight: Mods.Aequus.Condition.DownedOrganicBossSight
-// NotDownedOrganicBossSight: Mods.Aequus.Condition.NotDownedOrganicBossSight
+NotDownedOrganicBossSight: Mods.Aequus.Condition.NotDownedOrganicBossSight
 DownedOrganicBossFright: Mods.Aequus.Condition.DownedOrganicBossFright
-// NotDownedOrganicBossFright: Mods.Aequus.Condition.NotDownedOrganicBossFright
+NotDownedOrganicBossFright: Mods.Aequus.Condition.NotDownedOrganicBossFright
 DownedTrueFinalBoss: Mods.Aequus.Condition.DownedTrueFinalBoss
-// NotDownedTrueFinalBoss: Mods.Aequus.Condition.NotDownedTrueFinalBoss
+NotDownedTrueFinalBoss: Mods.Aequus.Condition.NotDownedTrueFinalBoss
