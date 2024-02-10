@@ -735,3 +735,13 @@ ManacleSeeds: {
 	DisplayName: 镣铐花种
 	Tooltip: ""
 }
+
+CosmicMonolith: {
+	// DisplayName: Cosmic Monolith
+	// Tooltip: ""
+}
+
+UltimateSword: {
+	// DisplayName: Ultimate Sword
+	// Tooltip: ""
+}

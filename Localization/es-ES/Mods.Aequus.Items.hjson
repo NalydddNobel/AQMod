@@ -204,7 +204,7 @@ GravetenderRobes: {
 	/* Tooltip:
 		'''
 		{$CommonTooltips.StatGhostDuration}
-		{$CommonTooltips.StatGhostSlots}
+		{$CommonTooltips.StatGhostSlots@1}
 		''' */
 }
 
@@ -733,5 +733,15 @@ MistralSeeds: {
 
 ManacleSeeds: {
 	// DisplayName: Manacle Seeds
+	// Tooltip: ""
+}
+
+CosmicMonolith: {
+	// DisplayName: Cosmic Monolith
+	// Tooltip: ""
+}
+
+UltimateSword: {
+	// DisplayName: Ultimate Sword
 	// Tooltip: ""
 }

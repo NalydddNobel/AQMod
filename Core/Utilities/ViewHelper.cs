@@ -1,10 +1,15 @@
-﻿using System;
+﻿using Aequus.Old.Common.Graphics.Camera;
+using System;
 using System.Runtime.CompilerServices;
 using Terraria.Graphics.CameraModifiers;
 
 namespace Aequus.Core.Utilities;
 
 public static class ViewHelper {
+    public static Vector2 ScaledMouseScreen => Vector2.Transform(Main.ReverseGravitySupport(Main.MouseScreen, 0f), Matrix.Invert(Main.GameViewMatrix.ZoomMatrix));
+    
+    public static Vector2 ScaledMouseworld => ScaledMouseScreen + Main.screenPosition;
+
     public const float Z_VIEW = -20f;
 
     public static Vector2 ScreenCenter {
@@ -12,6 +17,25 @@ public static class ViewHelper {
         get {
             return Main.screenPosition + new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
         }
+    }
+
+    [Obsolete("Replace with non-legacy screen shake", Aequus.DEBUG_MODE)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void LegacyScreenShake(float intensity, float multiplyPerTick = 0.9f, Vector2 where = default) {
+#if !DEBUG
+        if (where != default(Vector2)) {
+            float distance = Vector2.Distance(where, Main.screenPosition + new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f)) / 1200f;
+            if (float.IsNaN(distance) || distance >= 1f) {
+                return;
+            }
+
+            intensity *= 1f - distance;
+        }
+
+        if (Main.netMode != NetmodeID.Server) {
+            Main.instance.CameraModifiers.Add(new LegacyScreenShakeModifier(intensity, multiplyPerTick));
+        }
+#endif
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

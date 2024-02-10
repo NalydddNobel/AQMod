@@ -55,3 +55,7 @@ OsirisProj.DisplayName: "{$Items.Osiris.DisplayName}"
 GhostHitbox.DisplayName: Ghost Minion
 GravetenderWisp.DisplayName: Gravetender Wisp
 SplashPotionProj.DisplayName: Potion
+OmegaStariteBullet.DisplayName: Cosmic Bullet
+OmegaStariteDeathray.DisplayName: Cosmic Deathray
+OmegaStariteProj.DisplayName: "{$NPCs.OmegaStarite.DisplayName}"
+UltimateSwordProj.DisplayName: "{$Items.UltimateSword.DisplayName}"

@@ -1736,7 +1736,7 @@
             <summary>Returns a point with the beginning (left) (X) and end (right) (Y) of the 'safe' underworld in remix worlds. This does not represent a point in 2D space, but rather two X coordinates.</summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 57)</summary>
+            <summary>(Total Sounds: 63)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishCharge">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -1909,8 +1909,26 @@
         <member name="F:Aequus.AequusSounds.RecruitZombie">
             <summary>Full Path: Old/Assets/Sounds/RecruitZombie</summary>
         </member>
+        <member name="F:Aequus.AequusSounds.OmegaStariteDeathRay">
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteDeathRay</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.OmegaStariteHit0">
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteHit0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.OmegaStariteHit1">
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteHit1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.OmegaStariteHit2">
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteHit2</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.OmegaStariteKilled">
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteKilled</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.OmegaStariteStarBullets">
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
+        </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 435)</summary>
+            <summary>(Total Textures: 456)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1962,6 +1980,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.LightRayFlat">
             <summary>Full Path: Assets/Textures/LightRayFlat</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.None">
+            <summary>Full Path: Assets/Textures/None</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Pixel">
+            <summary>Full Path: Assets/Textures/Pixel</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Shatter">
             <summary>Full Path: Assets/Textures/Shatter</summary>
@@ -2635,6 +2659,21 @@
         <member name="F:Aequus.AequusTextures.icon_workshop">
             <summary>Full Path: icon_workshop</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.OmegaStarite">
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/OmegaStarite</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStarite_Head_Boss">
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/OmegaStarite_Head_Boss</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteBullet">
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Projectiles/OmegaStariteBullet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteDeathray">
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Projectiles/OmegaStariteDeathray</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteProj">
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Projectiles/OmegaStariteProj</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.BloodMimic">
             <summary>Full Path: Old/Content/Enemies/BloodMoon/BloodMimic</summary>
         </member>
@@ -2824,6 +2863,30 @@
         <member name="F:Aequus.AequusTextures.OblivionAltar_Highlight">
             <summary>Full Path: Old/Content/Events/DemonSiege/Tiles/OblivionAltar_Highlight</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CosmicMonolith">
+            <summary>Full Path: Old/Content/Events/Glimmer/CosmicMonolith/CosmicMonolith</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CosmicMonolithTile">
+            <summary>Full Path: Old/Content/Events/Glimmer/CosmicMonolith/CosmicMonolithTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GlimmerSky">
+            <summary>Full Path: Old/Content/Events/Glimmer/Sky/GlimmerSky</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GlimmerBestiaryIcon">
+            <summary>Full Path: Old/Content/Events/Glimmer/Textures/GlimmerBestiaryIcon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GlimmerEventIcon">
+            <summary>Full Path: Old/Content/Events/Glimmer/Textures/GlimmerEventIcon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GlimmerMapBackground">
+            <summary>Full Path: Old/Content/Events/Glimmer/Textures/GlimmerMapBackground</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GlimmerMenu">
+            <summary>Full Path: Old/Content/MainMenu/GlimmerMenu</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GlimmerMenu_Glow">
+            <summary>Full Path: Old/Content/MainMenu/GlimmerMenu_Glow</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.BloodyTearstone">
             <summary>Full Path: Old/Content/Materials/BloodyTearstone</summary>
         </member>
@@ -2923,11 +2986,17 @@
         <member name="F:Aequus.AequusTextures.Osiris_Glow">
             <summary>Full Path: Old/Content/Necromancy/Sceptres/Forbidden/Osiris_Glow</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CosmicCrystalDust">
+            <summary>Full Path: Old/Content/Particles/CosmicCrystalDust</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.GhostDrainDust">
             <summary>Full Path: Old/Content/Particles/GhostDrainDust</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MonoDust">
             <summary>Full Path: Old/Content/Particles/MonoDust</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MonoSparkleDust">
+            <summary>Full Path: Old/Content/Particles/MonoSparkleDust</summary>
         </member>
         <member name="F:Aequus.AequusTextures.VoidDust">
             <summary>Full Path: Old/Content/Particles/VoidDust</summary>
@@ -2973,6 +3042,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.PotionOfResurrection">
             <summary>Full Path: Old/Content/Potions/Resurrection/PotionOfResurrection</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlueFire">
+            <summary>Full Path: Old/Content/StatusEffects/BlueFire</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GoreNestStalagmite">
             <summary>Full Path: Old/Content/Tiles/Ambient/GoreNestStalagmite</summary>
@@ -3205,6 +3277,15 @@
         <member name="F:Aequus.AequusTextures.SliceBulletProj">
             <summary>Full Path: Old/Content/Weapons/Melee/Slice/SliceBulletProj</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.UltimateSword">
+            <summary>Full Path: Old/Content/Weapons/Melee/UltimateSword/UltimateSword</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltimateSwordBuff">
+            <summary>Full Path: Old/Content/Weapons/Melee/UltimateSword/UltimateSwordBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltimateSword_Glow">
+            <summary>Full Path: Old/Content/Weapons/Melee/UltimateSword/UltimateSword_Glow</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.CrusadersCrossbow">
             <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow</summary>
         </member>
@@ -3216,6 +3297,68 @@
         </member>
         <member name="F:Aequus.AequusTextures.BacciliteSceptre_Glow">
             <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre_Glow</summary>
+        </member>
+        <member name="T:Aequus.Old.Common.Graphics.Camera.CameraFocus">
+            <summary>
+            Manages screen panning
+            </summary>
+        </member>
+        <member name="P:Aequus.Old.Common.Graphics.Camera.CameraFocus.Context">
+            <summary>
+            A context string for the current focus
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.target">
+            <summary>
+            The target position for the camera in the world
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.cameraPosition">
+            <summary>
+            The camera's position 
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.priority">
+            <summary>
+            A priority for determining whether or not a new camera focus can be added
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.speed">
+            <summary>
+            The speed of the camera
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.cameraProgress">
+            <summary>
+            The progress of the camera from its original position to its destination
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.hold">
+            <summary>
+            How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Old.Common.Graphics.Camera.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Old.Common.Graphics.Camera.CameraPriority,System.Single,System.Int32)"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.returning">
+            <summary>
+            Whether or not the camera is returning
+            </summary>
+        </member>
+        <member name="M:Aequus.Old.Common.Graphics.Camera.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Old.Common.Graphics.Camera.CameraPriority,System.Single,System.Int32)">
+            <summary>
+            Sets the camera target to a position, may return false if your priority is below a current target's priority
+            </summary>
+            <param name="key">Context key, only really useful for 3rd party mods</param>
+            <param name="target">A world coordinate to point the camera at</param>
+            <param name="priority">The priority of this camera target. If there is a current camera target, and its priority is above, it will prevent you from setting a target and this method will return false</param>
+            <param name="speed">The speed of the camera, the exact time it will get there is: <code>speed / 50</code>So 6 speed means it will get into position in 8 frames. Clamped between 6 and 25</param>
+            <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Old.Common.Graphics.Camera.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Old.Common.Graphics.Camera.CameraPriority,System.Single,System.Int32)"/></param>
+            <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
+        </member>
+        <member name="M:Aequus.Old.Content.Bosses.OmegaStarite.OmegaStariteRing.#ctor(System.IO.BinaryReader)">
+            <summary>
+            Creates a Ring through a net package
+            </summary>
+            <param name="reader"></param>
         </member>
         <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.NotStackableCritDamage">
             <summary>

@@ -5,6 +5,7 @@ namespace Aequus;
 
 public partial class Aequus : Mod {
     public static Aequus Instance { get; private set; }
+    public static Mod MusicMod { get; private set; }
 
     /// <summary>Shorthand for <see cref="Instance"/>.Logger.</summary>
     public static ILog Log => Instance.Logger;
@@ -20,11 +21,13 @@ public partial class Aequus : Mod {
 
     public override void Load() {
         Instance = this;
+        MusicMod = ModLoader.GetMod("AequusMusic");
         LoadModCalls();
     }
 
     public override void Unload() {
         Instance = null;
+        MusicMod = null;
         UnloadModCalls();
         UnloadPackets();
     }

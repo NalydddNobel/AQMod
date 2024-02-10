@@ -101,7 +101,7 @@ public class PotionPrefixGlobalBuff : GlobalBuff {
             }
 
             spriteBatch.End();
-            DrawHelper.SpriteBatchCache.Begin(spriteBatch, SpriteSortMode.Deferred);
+            DrawHelper.SpriteBatchCache.Begin(spriteBatch, SpriteSortMode.Deferred, transform: Main.UIScaleMatrix);
         }
         return true;
     }

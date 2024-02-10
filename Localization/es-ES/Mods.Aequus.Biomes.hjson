@@ -3,3 +3,13 @@ DemonSiegeZone: {
 	// EventName: Demon Siege
 	// TownNPCDialogueName: ""
 }
+
+GlimmerZone: {
+	// DisplayName: Glimmer Zone
+	// TownNPCDialogueName: the Glimmer Zone
+}
+
+PeacefulGlimmerZone: {
+	// DisplayName: Peaceful Glimmer Zone
+	// TownNPCDialogueName: the Peaceful Glimmer Zone
+}

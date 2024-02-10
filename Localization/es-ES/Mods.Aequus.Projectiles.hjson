@@ -55,3 +55,7 @@ DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 // GhostHitbox.DisplayName: Ghost Minion
 // GravetenderWisp.DisplayName: Gravetender Wisp
 // SplashPotionProj.DisplayName: Potion
+// OmegaStariteBullet.DisplayName: Omega Starite Bullet
+// OmegaStariteDeathray.DisplayName: Omega Starite Deathray
+// OmegaStariteProj.DisplayName: Omega Starite Proj
+// UltimateSwordProj.DisplayName: Ultimate Sword Proj

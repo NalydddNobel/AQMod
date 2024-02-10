@@ -9,3 +9,13 @@ ShowNecromancyOutlines: {
 	// Label: "[i:Insurgency] Show Necromancy Outlines"
 	// Tooltip: "[c/ffffbb:Ghost minions] will have outlines to make them stand out."
 }
+
+FlashIntensity: {
+	// Label: Flash Intensity
+	// Tooltip: ""
+}
+
+FlashLoops: {
+	// Label: Flash Loops
+	// Tooltip: ""
+}

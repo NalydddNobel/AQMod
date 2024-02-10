@@ -55,3 +55,7 @@ OsirisProj.DisplayName: "{$Items.Osiris.DisplayName}"
 GhostHitbox.DisplayName: 幽魂仆从
 GravetenderWisp.DisplayName: 守墓人游魂
 SplashPotionProj.DisplayName: 药水
+// OmegaStariteBullet.DisplayName: Omega Starite Bullet
+// OmegaStariteDeathray.DisplayName: Omega Starite Deathray
+// OmegaStariteProj.DisplayName: Omega Starite Proj
+// UltimateSwordProj.DisplayName: Ultimate Sword Proj

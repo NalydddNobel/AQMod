@@ -735,3 +735,13 @@ ManacleSeeds: {
 	DisplayName: Manacle Seeds
 	Tooltip: ""
 }
+
+CosmicMonolith: {
+	DisplayName: Mods.Aequus.Items.CosmicMonolith.DisplayName
+	Tooltip: ""
+}
+
+UltimateSword: {
+	DisplayName: Mods.Aequus.Items.UltimateSword.DisplayName
+	Tooltip: ""
+}
