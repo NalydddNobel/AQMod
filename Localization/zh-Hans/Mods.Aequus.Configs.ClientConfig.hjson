@@ -11,11 +11,11 @@ ShowNecromancyOutlines: {
 }
 
 FlashIntensity: {
-	// Label: Flash Intensity
-	// Tooltip: ""
+	Label: "[i:CosmicMonolith] 闪光强度"
+	Tooltip: ""
 }
 
 FlashLoops: {
-	// Label: Flash Loops
-	// Tooltip: ""
+	Label: "[i:CosmicMonolith] 闪光循环"
+	Tooltip: ""
 }
