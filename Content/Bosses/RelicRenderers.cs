@@ -30,7 +30,9 @@ public record class BasicRelicRenderer(RequestCache<Texture2D> Texture) : IRelic
     }
 }
 
-public record class OmegaStariteRelicRenderer(RequestCache<Texture2D> Texture, int FrameCount) : IRelicRenderer {
+public record class OmegaStariteRelicRenderer(RequestCache<Texture2D> Texture) : IRelicRenderer {
+    public int FrameCount { get; set; } = 5;
+
     public void DrawRelic(int x, int y, Vector2 drawCoordinates, Color drawColor, SpriteEffects spriteEffects, float glow) {
         var tile = Main.tile[x, y];
         var baseFrame = new Rectangle(tile.TileFrameX, 0, 48, 48);

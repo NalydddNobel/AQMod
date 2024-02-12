@@ -1,7 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
+﻿using Terraria.DataStructures;
 
-namespace Aequus.Content.Potions.Buffs.NeutronYogurt;
+namespace Aequus.Old.Content.Potions.NeutronYogurt;
 
 public class NeutronYogurt : ModItem {
     public override void SetStaticDefaults() {
@@ -24,12 +23,5 @@ public class NeutronYogurt : ModItem {
         Item.value = Item.sellPrice(silver: 2);
         Item.buffType = ModContent.BuffType<NeutronYogurtBuff>();
         Item.buffTime = 28800;
-    }
-
-    public override void AddRecipes() {
-        CreateRecipe()
-            .AddIngredient(ItemID.FallenStar, 5)
-            .AddTile(TileID.CookingPots)
-            .Register();
     }
 }

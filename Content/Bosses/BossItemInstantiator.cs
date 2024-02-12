@@ -11,9 +11,6 @@ public class BossItemInstantiator : ModSystem {
         //AddBossContent("Crabson", ItemCommons.Rarity.CrabsonLoot, preHardmode: true, new BasicRelicRenderer(AequusTextures.CrabsonRelic), LegacyBossRelicsTile.Crabson);
         //AddBossMask("Crabson");
 
-        AddBossContent("OmegaStarite", ItemCommons.Rarity.OmegaStariteLoot, preHardmode: true, new OmegaStariteRelicRenderer(AequusTextures.OmegaStariteRelic, 5), LegacyBossRelicsTile.OmegaStarite);
-        AddBossMask("OmegaStarite");
-
         AddBossContent("DustDevil", ItemCommons.Rarity.DustDevilLoot, preHardmode: true, new BasicRelicRenderer(AequusTextures.DustDevilRelic), LegacyBossRelicsTile.DustDevil);
         Mod.AddContent(new DustDevilMask("DustDevil"));
 

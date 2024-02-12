@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Bestiary;
+using Aequus.Content.Bosses.Trophies;
 using Aequus.Content.DataSets;
 using Aequus.Core;
 using Aequus.Core.ContentGeneration;
@@ -21,7 +22,7 @@ namespace Aequus.Old.Content.Bosses.Cosmic.UltraStarite;
 
 [ModBiomes(typeof(GlimmerZone))]
 [AutoloadBossHead]
-[AutoloadTrophies]
+[AutoloadTrophies(LegacyBossTrophiesTile.UltraStarite)]
 public class UltraStarite : ModNPC {
     public const float BossProgression = 4.61f;
 
@@ -55,16 +56,16 @@ public class UltraStarite : ModNPC {
         //SnowgraveCorpse.NPCBlacklist.Add(Type);
     }
 
-    //public override void ModifyNPCLoot(NPCLoot npcLoot) {
-    //    this.CreateLoot(npcLoot)
-    //        .AddRelic<UltraStariteRelic>()
-    //        .Add(new GuaranteedFlawlesslyRule(ModContent.ItemType<UltraStariteTrophy>(), 10))
-    //        .Add<StariteMaterial>(chance: 1, stack: (8, 15))
-    //        .Add<CosmicMonolith>(chance: 4, stack: 1)
-    //        .Add<ManaCursor>(chance: 4, stack: 1)
-    //        .Add(ItemID.Megaphone, chance: 50, stack: 1)
-    //        .Add<NeutronYogurt>(chance: 1, stack: (1, 2));
-    //}
+    public override void ModifyNPCLoot(NPCLoot npcLoot) {
+        //this.CreateLoot(npcLoot)
+        //    .AddRelic<UltraStariteRelic>()
+        //    .Add(new GuaranteedFlawlesslyRule(ModContent.ItemType<UltraStariteTrophy>(), 10))
+        //    .Add<StariteMaterial>(chance: 1, stack: (8, 15))
+        //    .Add<CosmicMonolith>(chance: 4, stack: 1)
+        //    .Add<ManaCursor>(chance: 4, stack: 1)
+        //    .Add(ItemID.Megaphone, chance: 50, stack: 1)
+        //    .Add<NeutronYogurt>(chance: 1, stack: (1, 2));
+    }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
         this.CreateEntry(database, bestiaryEntry)

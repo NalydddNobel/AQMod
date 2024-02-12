@@ -3,8 +3,11 @@ using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
 using Aequus.Core.ContentGeneration;
 using Aequus.Old.Content.Events.Glimmer;
+using Aequus.Old.Content.Materials;
 using Aequus.Old.Content.Particles;
+using Aequus.Old.Content.Potions.NeutronYogurt;
 using Aequus.Old.Content.StatusEffects;
+using Aequus.Old.Content.Vanity;
 using Aequus.Old.Core.Utilities;
 using ReLogic.Content;
 using System;
@@ -12,6 +15,7 @@ using System.IO;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Old.Content.Enemies.Glimmer.Proto;
 
@@ -37,10 +41,9 @@ public class Starite : ModNPC, ITrackTimeBetweenHits {
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
-        //this.CreateLoot(npcLoot)
-        //    .Add<StariteMaterial>(chance: 2, stack: 1)
-        //    .Add<CelesitalEightBall>(chance: 50, stack: 1)
-        //    .Add<NeutronYogurt>(chance: 5, stack: 1);
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<StariteMaterial>(), chanceDenominator: 2));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CelestialEightBall>(), chanceDenominator: 50));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<NeutronYogurt>(), chanceDenominator: 5));
     }
 
     public override void SetDefaults() {

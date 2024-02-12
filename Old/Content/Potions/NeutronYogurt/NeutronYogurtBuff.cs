@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Potions.Buffs.NeutronYogurt;
+﻿namespace Aequus.Old.Content.Potions.NeutronYogurt;
 
 public class NeutronYogurtBuff : ModBuff {
     public override void Update(NPC npc, ref int buffIndex) {
@@ -8,6 +8,6 @@ public class NeutronYogurtBuff : ModBuff {
     }
 
     public override void Update(Player player, ref int buffIndex) {
-        player.GetModPlayer<AequusPlayer>().buffNeutronYogurt = true;
+        player.GetModPlayer<AequusPlayer>().buffNeutronYogurt++;
     }
 }

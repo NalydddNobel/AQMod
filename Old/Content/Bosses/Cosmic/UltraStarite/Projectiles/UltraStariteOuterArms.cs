@@ -17,7 +17,12 @@ public class UltraStariteOuterArms : EnemyAttachedProjBase {
     }
 
     public override bool? CanDamage() {
-        return (int)Main.npc[AttachedNPC].ai[0] != UltraStarite.STATE_DEATHRAY && (int)Main.npc[AttachedNPC].ai[0] != 5;
+        if (!Main.npc.IndexInRange(AttachedNPC)) {
+            return false;
+        }
+
+        NPC npc = Main.npc[AttachedNPC];
+        return (int)npc.ai[0] != UltraStarite.STATE_DEATHRAY && (int)npc.ai[0] != UltraStarite.STATE_DEATHRAY_TRANSITION_END;
     }
 
     protected override bool CheckAttachmentConditions(NPC npc) {

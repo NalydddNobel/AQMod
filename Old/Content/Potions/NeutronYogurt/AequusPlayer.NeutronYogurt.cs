@@ -1,24 +1,24 @@
 ﻿using Aequus.Core.CodeGeneration;
-using Microsoft.Xna.Framework;
 using System;
 
 namespace Aequus;
 
 public partial class AequusPlayer {
-    [ResetEffects]
-    public bool buffNeutronYogurt;
+    [ResetEffects(1f)]
+    public float buffNeutronYogurt;
 
     public void UpdateNeutronYogurt() {
-        if (!buffNeutronYogurt || (Player.slowFall && !Player.controlDown)) {
+        if (buffNeutronYogurt <= 1f || (Player.slowFall && !Player.controlDown)) {
             return;
         }
 
+        int velocityYDirection = Math.Sign(Player.velocity.Y);
         int gravityDirection = Math.Sign(Player.gravDir);
-        if (Math.Sign(Player.velocity.Y) != gravityDirection) {
+        if (velocityYDirection != gravityDirection) {
             return;
         }
 
-        Player.gravity *= 2f;
+        Player.gravity *= buffNeutronYogurt;
         if (Player.grappling[0] != -1 || (Player.mount.Active && (Player.mount.CanFly() || (Player.mount._data.swimSpeed > 0f && Player.wet)))) {
             return;
         }

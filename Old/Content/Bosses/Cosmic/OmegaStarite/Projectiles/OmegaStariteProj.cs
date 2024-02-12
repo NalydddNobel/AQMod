@@ -17,7 +17,7 @@ public class OmegaStariteProj : EnemyAttachedProjBase {
     }
 
     public override bool? CanDamage() {
-        return Projectile.ai[1] > 0;
+        return Projectile.ai[1] > 0 && Main.npc.IndexInRange(AttachedNPC) && Main.npc[AttachedNPC].ai[0] >= 0f ? null : false;
     }
 
     protected override bool CheckAttachmentConditions(NPC npc) {

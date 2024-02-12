@@ -6,11 +6,14 @@ using System;
 namespace Aequus.Core.ContentGeneration;
 
 [AttributeUsage(AttributeTargets.Class)]
-internal class AutoloadTrophiesAttribute : AutoloadXAttribute {
+internal sealed class AutoloadTrophiesAttribute : AutoloadXAttribute {
     private readonly int _legacyId;
 
-    public AutoloadTrophiesAttribute(int legacyId = -1) {
+    private Type _relicRendererType;
+
+    public AutoloadTrophiesAttribute(int legacyId = -1, Type relicRenderer = null) {
         _legacyId = legacyId;
+        _relicRendererType = relicRenderer;
     }
 
     internal override void Load(ModType modType) {
@@ -19,8 +22,18 @@ internal class AutoloadTrophiesAttribute : AutoloadXAttribute {
         }
 
         string texturePath = $"{modNPC.NamespaceFilePath()}/Items/{modNPC.Name}Relic";
-        IRelicRenderer renderer = new BasicRelicRenderer(new RequestCache<Texture2D>(texturePath));
+        RequestCache<Texture2D> requestCache = new RequestCache<Texture2D>(texturePath);
+
+        IRelicRenderer renderer;
+        if (_relicRendererType != null ) {
+            renderer = (IRelicRenderer)Activator.CreateInstance(_relicRendererType, new object[] { requestCache });
+        }
+        else {
+            renderer = new BasicRelicRenderer(requestCache);
+        }
 
         BossItemInstantiator.AddTrophies(modNPC, renderer, _legacyId);
     }
+
+    // Adding relics & trophies to drop pools is handled in AutoNPCDefaults.ModifyNPCLoot
 }

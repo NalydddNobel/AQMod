@@ -1928,7 +1928,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 464)</summary>
+            <summary>(Total Textures: 466)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2085,18 +2085,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilTrophyItem">
             <summary>Full Path: Content/Bosses/Trophies/DustDevilTrophyItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteRelic">
-            <summary>Full Path: Content/Bosses/Trophies/OmegaStariteRelic</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteRelicItem">
-            <summary>Full Path: Content/Bosses/Trophies/OmegaStariteRelicItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteTrophy">
-            <summary>Full Path: Content/Bosses/Trophies/OmegaStariteTrophy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteTrophyItem">
-            <summary>Full Path: Content/Bosses/Trophies/OmegaStariteTrophyItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteRelic">
             <summary>Full Path: Content/Bosses/Trophies/RedSpriteRelic</summary>
@@ -2440,12 +2428,6 @@
         <member name="F:Aequus.AequusTextures.OmegaStaritePetItem">
             <summary>Full Path: Content/Pets/OmegaStarite/OmegaStaritePetItem</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.NeutronYogurt">
-            <summary>Full Path: Content/Potions/Buffs/NeutronYogurt/NeutronYogurt</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NeutronYogurtBuff">
-            <summary>Full Path: Content/Potions/Buffs/NeutronYogurt/NeutronYogurtBuff</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.GreaterRestorationPotion">
             <summary>Full Path: Content/Potions/Healing/Restoration/GreaterRestorationPotion</summary>
         </member>
@@ -2646,6 +2628,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.icon_workshop">
             <summary>Full Path: icon_workshop</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteRelic">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteRelic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteRelicItem">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteRelicItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteTrophy">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteTrophyItem">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteTrophyItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStarite">
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/OmegaStarite</summary>
@@ -2923,6 +2917,9 @@
         <member name="F:Aequus.AequusTextures.SoulGemTile">
             <summary>Full Path: Old/Content/Materials/SoulGem/SoulGemTile</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.StariteMaterial">
+            <summary>Full Path: Old/Content/Materials/StariteMaterial</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.SoulChains">
             <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/Chains/SoulChains</summary>
         </member>
@@ -3027,6 +3024,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.SuspiciousLookingSteak">
             <summary>Full Path: Old/Content/Potions/Foods/SusSteak/SuspiciousLookingSteak</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NeutronYogurt">
+            <summary>Full Path: Old/Content/Potions/NeutronYogurt/NeutronYogurt</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NeutronYogurtBuff">
+            <summary>Full Path: Old/Content/Potions/NeutronYogurt/NeutronYogurtBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HallowCanteen">
             <summary>Full Path: Old/Content/Potions/PotionCanteen/HallowCanteen</summary>
@@ -3237,6 +3240,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.Old_Content_TownNPCs_OccultistNPC_Shimmer_Occultist">
             <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Shimmer/Occultist</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CelestialEightBall">
+            <summary>Full Path: Old/Content/Vanity/CelestialEightBall</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CorruptionHellfire">
             <summary>Full Path: Old/Content/Weapons/Demon/CorruptionHellfire</summary>

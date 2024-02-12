@@ -1,7 +1,10 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Bestiary;
+using Aequus.Content.Bosses;
+using Aequus.Content.Bosses.Trophies;
 using Aequus.Content.DataSets;
 using Aequus.Core;
+using Aequus.Core.ContentGeneration;
 using Aequus.Old.Common.Graphics;
 using Aequus.Old.Common.Graphics.Camera;
 using Aequus.Old.Content.Bosses.Cosmic.OmegaStarite.Projectiles;
@@ -22,6 +25,7 @@ namespace Aequus.Old.Content.Bosses.Cosmic.OmegaStarite;
 
 [ModBiomes(typeof(GlimmerZone))]
 [AutoloadBossHead()]
+[AutoloadTrophies(LegacyBossTrophiesTile.OmegaStarite, typeof(OmegaStariteRelicRenderer))]
 public class OmegaStarite : AequusBoss {
     public const float BossProgression = 6.99f;
 
@@ -1045,7 +1049,7 @@ public class OmegaStarite : AequusBoss {
     }
 
     public override bool CanHitPlayer(Player target, ref int cooldownSlot) {
-        return NPC.ai[0] != -1;
+        return NPC.ai[0] >= 0;
     }
 
     public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position) {
@@ -1266,7 +1270,7 @@ public class OmegaStarite : AequusBoss {
                 Main.spriteBatch.Draw(spotlight, drawPos, null, spotlightColor * intensity2, NPC.rotation, spotlightOrig, deathSpotlightScale * 2f, SpriteEffects.None, 0f);
             }
 
-            var shineColor = new Color(200, 40, 150, 0) * raysScaler * NPC.Opacity;
+            var shineColor = new Color(200, 40, 150, 0) * Math.Min(raysScaler, 1f) * NPC.Opacity;
 
             var lightRay = AequusTextures.LightRayFlat;
             var lightRayOrigin = lightRay.Size() / 2f;
@@ -1274,8 +1278,8 @@ public class OmegaStarite : AequusBoss {
             var r = new FastRandom((int)NPC.localAI[0]);
 
             int i = 0;
-            for (int k = 0; k < 4; k++) {
-                float f = k * MathHelper.PiOver2 + Main.GlobalTimeWrappedHourly * 0.12f + NPC.localAI[0];
+            for (int k = 0; k < 24; k++) {
+                float f = k + Main.GlobalTimeWrappedHourly * 0.12f + NPC.localAI[0];
                 var rayScale = new Vector2(Helper.Oscillate(r.NextFloat(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * r.NextFloat(1f, 5f) * 0.1f, 0.3f, 1f) * r.NextFloat(0.5f, 2.25f));
                 rayScale.X *= 0.02f;
                 rayScale.X *= (float)Math.Pow(raysScaler, Math.Min(rayScale.Y, 1f));

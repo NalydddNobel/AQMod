@@ -5,13 +5,16 @@ using Aequus.Core.ContentGeneration;
 using Aequus.Old.Common.Graphics;
 using Aequus.Old.Content.Critters;
 using Aequus.Old.Content.Events.Glimmer;
+using Aequus.Old.Content.Materials;
 using Aequus.Old.Content.Particles;
+using Aequus.Old.Content.Potions.NeutronYogurt;
 using Aequus.Old.Content.StatusEffects;
 using Aequus.Old.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.Utilities;
 
 namespace Aequus.Old.Content.Enemies.Glimmer.Hyper;
@@ -47,10 +50,9 @@ public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
-        //this.CreateLoot(npcLoot)
-        //    .Add<StariteMaterial>(chance: 1, stack: (2, 4))
-        //    .Add(ItemID.Megaphone, chance: 50, stack: 1)
-        //    .Add<NeutronYogurt>(chance: 1, stack: (1, 2));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<StariteMaterial>(), minimumDropped: 2, maximumDropped: 4));
+        npcLoot.Add(ItemDropRule.Common(ItemID.Megaphone, chanceDenominator: 50));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<NeutronYogurt>(), minimumDropped: 1, maximumDropped: 2));
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
