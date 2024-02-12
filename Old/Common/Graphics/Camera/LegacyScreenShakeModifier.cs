@@ -19,7 +19,7 @@ public class LegacyScreenShakeModifier : ICameraModifier {
     }
 
     public void Update(ref CameraInfo cameraPosition) {
-        cameraPosition.CameraPosition = (new Vector2(Main.rand.NextFloat(-_intensity, _intensity), Main.rand.NextFloat(-_intensity, _intensity)) * 0.5f).Floor();
+        cameraPosition.CameraPosition += (new Vector2(Main.rand.NextFloat(-_intensity, _intensity), Main.rand.NextFloat(-_intensity, _intensity)) * 0.5f).Floor();
         _intensity *= MultiplyPerTick;
     }
 }

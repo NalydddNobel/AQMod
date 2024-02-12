@@ -1928,7 +1928,7 @@
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 456)</summary>
+            <summary>(Total Textures: 465)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2674,6 +2674,12 @@
         <member name="F:Aequus.AequusTextures.OmegaStariteProj">
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Projectiles/OmegaStariteProj</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.DwarfStarite">
+            <summary>Full Path: Old/Content/Critters/DwarfStarite</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DwarfStariteItem">
+            <summary>Full Path: Old/Content/Critters/DwarfStariteItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.BloodMimic">
             <summary>Full Path: Old/Content/Enemies/BloodMoon/BloodMimic</summary>
         </member>
@@ -2782,6 +2788,24 @@
         <member name="F:Aequus.AequusTextures.LeggedLavaBannerItem">
             <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/Tiles/LeggedLavaBannerItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.HyperStarite">
+            <summary>Full Path: Old/Content/Enemies/Glimmer/HyperStarite</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Starite">
+            <summary>Full Path: Old/Content/Enemies/Glimmer/Starite</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SuperStarite">
+            <summary>Full Path: Old/Content/Enemies/Glimmer/SuperStarite</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SuperStariteBullet">
+            <summary>Full Path: Old/Content/Enemies/Glimmer/SuperStariteBullet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStarite">
+            <summary>Full Path: Old/Content/Enemies/Glimmer/UltraStarite/UltraStarite</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStarite_Head_Boss">
+            <summary>Full Path: Old/Content/Enemies/Glimmer/UltraStarite/UltraStarite_Head_Boss</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.HijivarchCrabBanner">
             <summary>Full Path: Old/Content/Enemies/HijivarchCrabBanner</summary>
         </member>
@@ -2871,6 +2895,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.GlimmerSky">
             <summary>Full Path: Old/Content/Events/Glimmer/Sky/GlimmerSky</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GalacticStarfruit">
+            <summary>Full Path: Old/Content/Events/Glimmer/Spawners/GalacticStarfruit</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GlimmerBestiaryIcon">
             <summary>Full Path: Old/Content/Events/Glimmer/Textures/GlimmerBestiaryIcon</summary>

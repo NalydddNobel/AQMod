@@ -137,3 +137,9 @@ OccultistHostile: {
 
 	// ListenButton: Listen
 }
+
+// DwarfStarite.DisplayName: Dwarf Starite
+// HyperStarite.DisplayName: Hyper Starite
+// Starite.DisplayName: Starite
+// SuperStarite.DisplayName: Super Starite
+// UltraStarite.DisplayName: Ultra Starite

@@ -745,3 +745,13 @@ UltimateSword: {
 	DisplayName: Mods.Aequus.Items.UltimateSword.DisplayName
 	Tooltip: ""
 }
+
+DwarfStariteItem: {
+	DisplayName: Mods.Aequus.Items.DwarfStariteItem.DisplayName
+	Tooltip: ""
+}
+
+GalacticStarfruit: {
+	DisplayName: Mods.Aequus.Items.GalacticStarfruit.DisplayName
+	Tooltip: ""
+}

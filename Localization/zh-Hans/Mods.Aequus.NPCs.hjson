@@ -137,3 +137,28 @@ OccultistHostile: {
 
 	ListenButton: 倾听
 }
+
+DwarfStarite: {
+	DisplayName: 矮化源星
+	Bestiary: 如果一颗星源没有收集到足够的能量来进化, 那么它会逐渐萎缩成一个光点. 它的力量萎缩到了无用的地步, 尽管如此, 它仍然通过漫无目的的漂浮来享受着摸鱼生活.
+}
+
+UltraStarite: {
+	DisplayName: 终耀源星
+	Bestiary: 处于成长最后阶段的精英星源可以将能量集中到致命的激光束上. 你认为天要塌下来了是可以理解的!
+}
+
+HyperStarite: {
+	DisplayName: 巨耀源星
+	Bestiary: 随着能量的进一步过剩, 星源获得了能够分离部分自身并将其作为危险武器在轨道上挥舞的能力.
+}
+
+SuperStarite: {
+	DisplayName: 极耀源星
+	Bestiary: 聚集了足够能量的星源最终会进化为这种装甲形态. 它们更加坚硬并且能将过剩的能量作为弹幕发射.
+}
+
+Starite: {
+	DisplayName: 源星
+	Bestiary: 生命星尘的一个碎片, 被不可知的力量赋予了生命. 如果没有充满天空的奇异光线所赋予的能量, 它们就无法长久的生存.
+}

@@ -8,6 +8,7 @@ using Aequus.Old.Content.Bosses.OmegaStarite.Projectiles;
 using Aequus.Old.Content.Events.Glimmer;
 using Aequus.Old.Content.Particles;
 using Aequus.Old.Content.StatusEffects;
+using Aequus.Old.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,9 +16,6 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
-using Terraria.Localization;
 using Terraria.Utilities;
 
 namespace Aequus.Old.Content.Bosses.OmegaStarite;
@@ -60,7 +58,7 @@ public class OmegaStarite : AequusBoss {
         NPCSets.SpecificDebuffImmunity[Type][BuffID.Frostburn] = true;
         NPCSets.SpecificDebuffImmunity[Type][BuffID.Frostburn2] = true;
         NPCSets.SpecificDebuffImmunity[Type][BuffID.Bleeding] = true;
-        //NPCSets.SpecificDebuffImmunity[Type][ModContent.BuffType<BlueFire>()] = true;
+        NPCSets.SpecificDebuffImmunity[Type][ModContent.BuffType<BlueFire>()] = true;
         //NPCSets.SpecificDebuffImmunity[Type][ModContent.BuffType<BattleAxeBleeding>()] = true;
         Main.npcFrameCount[NPC.type] = 14;
 
@@ -103,8 +101,7 @@ public class OmegaStarite : AequusBoss {
         return new Color(255, 255, 255, 240);
     }
 
-    public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: balance -> balance (bossAdjustment is different, see the docs for details) */
-    {
+    public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment) {
         if (Main.expertMode) {
             starDamageMultiplier *= 0.8f;
         }
@@ -1111,7 +1108,7 @@ public class OmegaStarite : AequusBoss {
                 Main.musicFade[i] = Math.Min(Main.musicFade[i], val);
             }
 
-            ScreenFlash.Flash.Set(NPC.Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.2f, 0.8f));
+            ScreenFlash.Instance.Set(NPC.Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.2f, 0.8f));
             ViewHelper.LegacyScreenShake(intensity * 2.25f);
 
             int range = (int)intensity + 4;
@@ -1215,9 +1212,9 @@ public class OmegaStarite : AequusBoss {
             //Main.spriteBatch.BeginWorld(shader: true);
 
             if ((NPC.position - NPC.oldPos[1]).Length() > 0.01f) {
-                DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, NPC.oldPos, NPC.oldRot,
+                DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, NPC.oldPos, OldDrawHelper.GenerateRotationArr(NPC.oldPos),
                     (p) => GlimmerZone.BlueColor * (1f - p),
-                    (p) => DIAMETER / 2f - p * (DIAMETER / 2f),
+                    (p) => 20 * (1f-p),
                     -Main.screenPosition + NPC.Size / 2f);
             }
             else {

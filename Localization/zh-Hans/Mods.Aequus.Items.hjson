@@ -737,11 +737,21 @@ ManacleSeeds: {
 }
 
 CosmicMonolith: {
-	// DisplayName: Cosmic Monolith
+	// DisplayName: Mods.Aequus.Items.CosmicMonolith.DisplayName
 	// Tooltip: ""
 }
 
 UltimateSword: {
-	// DisplayName: Ultimate Sword
+	// DisplayName: Mods.Aequus.Items.UltimateSword.DisplayName
+	// Tooltip: ""
+}
+
+DwarfStariteItem: {
+	// DisplayName: Dwarf Starite Item
+	// Tooltip: ""
+}
+
+GalacticStarfruit: {
+	// DisplayName: Galactic Starfruit
 	// Tooltip: ""
 }

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 456)</summary>
+/// <summary>(Total Textures: 465)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -503,6 +503,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OmegaStariteDeathray = new("Aequus/Old/Content/Bosses/OmegaStarite/Projectiles/OmegaStariteDeathray");
     /// <summary>Full Path: Old/Content/Bosses/OmegaStarite/Projectiles/OmegaStariteProj</summary>
     public static readonly RequestCache<Texture2D> OmegaStariteProj = new("Aequus/Old/Content/Bosses/OmegaStarite/Projectiles/OmegaStariteProj");
+    /// <summary>Full Path: Old/Content/Critters/DwarfStarite</summary>
+    public static readonly RequestCache<Texture2D> DwarfStarite = new("Aequus/Old/Content/Critters/DwarfStarite");
+    /// <summary>Full Path: Old/Content/Critters/DwarfStariteItem</summary>
+    public static readonly RequestCache<Texture2D> DwarfStariteItem = new("Aequus/Old/Content/Critters/DwarfStariteItem");
     /// <summary>Full Path: Old/Content/Enemies/BloodMoon/BloodMimic</summary>
     public static readonly RequestCache<Texture2D> BloodMimic = new("Aequus/Old/Content/Enemies/BloodMoon/BloodMimic");
     /// <summary>Full Path: Old/Content/Enemies/BloodMoon/Gores/BloodMimicGoreEyeball</summary>
@@ -575,6 +579,18 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> LeggedLavaBanner = new("Aequus/Old/Content/Enemies/DemonSiege/LavaLegs/Tiles/LeggedLavaBanner");
     /// <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/Tiles/LeggedLavaBannerItem</summary>
     public static readonly RequestCache<Texture2D> LeggedLavaBannerItem = new("Aequus/Old/Content/Enemies/DemonSiege/LavaLegs/Tiles/LeggedLavaBannerItem");
+    /// <summary>Full Path: Old/Content/Enemies/Glimmer/HyperStarite</summary>
+    public static readonly RequestCache<Texture2D> HyperStarite = new("Aequus/Old/Content/Enemies/Glimmer/HyperStarite");
+    /// <summary>Full Path: Old/Content/Enemies/Glimmer/Starite</summary>
+    public static readonly RequestCache<Texture2D> Starite = new("Aequus/Old/Content/Enemies/Glimmer/Starite");
+    /// <summary>Full Path: Old/Content/Enemies/Glimmer/SuperStarite</summary>
+    public static readonly RequestCache<Texture2D> SuperStarite = new("Aequus/Old/Content/Enemies/Glimmer/SuperStarite");
+    /// <summary>Full Path: Old/Content/Enemies/Glimmer/SuperStariteBullet</summary>
+    public static readonly RequestCache<Texture2D> SuperStariteBullet = new("Aequus/Old/Content/Enemies/Glimmer/SuperStariteBullet");
+    /// <summary>Full Path: Old/Content/Enemies/Glimmer/UltraStarite/UltraStarite</summary>
+    public static readonly RequestCache<Texture2D> UltraStarite = new("Aequus/Old/Content/Enemies/Glimmer/UltraStarite/UltraStarite");
+    /// <summary>Full Path: Old/Content/Enemies/Glimmer/UltraStarite/UltraStarite_Head_Boss</summary>
+    public static readonly RequestCache<Texture2D> UltraStarite_Head_Boss = new("Aequus/Old/Content/Enemies/Glimmer/UltraStarite/UltraStarite_Head_Boss");
     /// <summary>Full Path: Old/Content/Enemies/HijivarchCrabBanner</summary>
     public static readonly RequestCache<Texture2D> HijivarchCrabBanner = new("Aequus/Old/Content/Enemies/HijivarchCrabBanner");
     /// <summary>Full Path: Old/Content/Enemies/HyperStariteBanner</summary>
@@ -635,6 +651,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CosmicMonolithTile = new("Aequus/Old/Content/Events/Glimmer/CosmicMonolith/CosmicMonolithTile");
     /// <summary>Full Path: Old/Content/Events/Glimmer/Sky/GlimmerSky</summary>
     public static readonly RequestCache<Texture2D> GlimmerSky = new("Aequus/Old/Content/Events/Glimmer/Sky/GlimmerSky");
+    /// <summary>Full Path: Old/Content/Events/Glimmer/Spawners/GalacticStarfruit</summary>
+    public static readonly RequestCache<Texture2D> GalacticStarfruit = new("Aequus/Old/Content/Events/Glimmer/Spawners/GalacticStarfruit");
     /// <summary>Full Path: Old/Content/Events/Glimmer/Textures/GlimmerBestiaryIcon</summary>
     public static readonly RequestCache<Texture2D> GlimmerBestiaryIcon = new("Aequus/Old/Content/Events/Glimmer/Textures/GlimmerBestiaryIcon");
     /// <summary>Full Path: Old/Content/Events/Glimmer/Textures/GlimmerEventIcon</summary>

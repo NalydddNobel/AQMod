@@ -137,3 +137,28 @@ OccultistHostile: {
 
 	ListenButton: Listen
 }
+
+DwarfStarite: {
+	DisplayName: Dwarf Starite
+	Bestiary: If a starite cannot gather enough energy to evolve, it will eventually wither into just a speck of light. Its powers atrophied into uselessness, it nonetheless enjoys its retirement by floating aimlessly.
+}
+
+UltraStarite: {
+	DisplayName: Ultra Starite
+	Bestiary: Elite starites in their final stage of growth can focus their energy into deadly laser beams. You'd be forgiven for thinking the sky was falling!
+}
+
+HyperStarite: {
+	DisplayName: Hyper Starite
+	Bestiary: With an even further excess of energy, the starite gains the ability to detach its segments and swing them in an orbit as dangerous weapons.
+}
+
+SuperStarite: {
+	DisplayName: Super Starite
+	Bestiary: Starites that gather enough energy eventually evolve into this armored form. They're much hardier, and can also fire off excess energy as simple projectiles.
+}
+
+Starite: {
+	DisplayName: Starite
+	Bestiary: A piece of animate stardust, given life by some unknowable force. They cannot survive for long without a source of energy, granted by the strange lights that fill the sky.
+}

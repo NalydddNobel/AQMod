@@ -5,11 +5,11 @@ DemonSiegeZone: {
 }
 
 GlimmerZone: {
-	// DisplayName: Glimmer Zone
-	// TownNPCDialogueName: the Glimmer Zone
+	// DisplayName: Glimmer
+	// TownNPCDialogueName: the Glimmer
 }
 
 PeacefulGlimmerZone: {
-	// DisplayName: Peaceful Glimmer Zone
-	// TownNPCDialogueName: the Peaceful Glimmer Zone
+	// DisplayName: Peaceful Glimmer
+	// TownNPCDialogueName: the Glimmer
 }

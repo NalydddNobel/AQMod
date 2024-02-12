@@ -14,7 +14,7 @@ public class ScreenFlash : ModSceneEffect {
 
     public static Filter FlashFilter { get => Filters.Scene[FlashFilterName]; set => Filters.Scene[FlashFilterName] = value; }
 
-    public static ScreenFlashData Flash { get; private set; }
+    public static ScreenFlashData Instance { get; private set; }
 
     public override SceneEffectPriority Priority => SceneEffectPriority.BossHigh;
 
@@ -25,7 +25,7 @@ public class ScreenFlash : ModSceneEffect {
     public override void Load() {
         LoadFlashShader();
         FlashFilter = new Filter(new ScreenShaderData(new Ref<Effect>(FlashShader.Value), "FlashCoordinatePass"), EffectPriority.VeryHigh);
-        Flash = new ScreenFlashData();
+        Instance = new ScreenFlashData();
     }
     private void LoadFlashShader() {
         UsingOldFlashShader = false;
@@ -41,22 +41,22 @@ public class ScreenFlash : ModSceneEffect {
     }
 
     public override void Unload() {
-        Flash = null;
+        Instance = null;
     }
 
     public override void SpecialVisuals(Player player, bool isActive) {
-        if (Flash.FlashLocation != Vector2.Zero) {
+        if (Instance.FlashLocation != Vector2.Zero) {
             try {
-                FlashFilter.GetShader().UseTargetPosition(Flash.FlashLocation);
-                FlashFilter.GetShader().UseIntensity(Math.Max(Flash.Intensity * ClientConfig.Instance.FlashIntensity, 0f));
+                FlashFilter.GetShader().UseTargetPosition(Instance.FlashLocation);
+                FlashFilter.GetShader().UseIntensity(Math.Max(Instance.Intensity * ClientConfig.Instance.FlashIntensity, 0f));
                 if (!FlashFilter.IsActive()) {
-                    Filters.Scene.Activate(FlashFilterName, Flash.FlashLocation).GetShader()
-                    .UseOpacity(1f).UseTargetPosition(Flash.FlashLocation);
+                    Filters.Scene.Activate(FlashFilterName, Instance.FlashLocation).GetShader()
+                    .UseOpacity(1f).UseTargetPosition(Instance.FlashLocation);
                 }
-                float intensity = Math.Max(Flash.Intensity - Flash.Intensity * Flash.Multiplier, 0.01f);
-                Flash.Intensity -= intensity;
-                if (Flash.Intensity <= 0f) {
-                    Flash.Clear();
+                float intensity = Math.Max(Instance.Intensity - Instance.Intensity * Instance.Multiplier, 0.01f);
+                Instance.Intensity -= intensity;
+                if (Instance.Intensity <= 0f) {
+                    Instance.Clear();
                 }
 
                 if (!UsingOldFlashShader) {
@@ -64,7 +64,7 @@ public class ScreenFlash : ModSceneEffect {
                 }
             }
             catch {
-                Flash.Clear();
+                Instance.Clear();
             }
         }
         else {
