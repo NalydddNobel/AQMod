@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using Terraria;
 
-namespace Aequus.Old.Content.Bosses.OmegaStarite;
+namespace Aequus.Old.Content.Bosses.Cosmic.OmegaStarite;
 
 public class OmegaStariteRing : ICloneable {
     public const int SEGMENTS_1 = 5;

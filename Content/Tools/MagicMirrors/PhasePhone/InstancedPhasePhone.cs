@@ -12,6 +12,7 @@ namespace Aequus.Content.Tools.MagicMirrors.PhasePhone;
 
 [Autoload(false)]
 internal class InstancedPhasePhone : InstancedModItem, IPhaseMirror, ITransformItem {
+    [CloneByReference]
     public List<(int, int, Dust)> DustEffectCache { get; set; }
 
     public int UseAnimationMax => 64;

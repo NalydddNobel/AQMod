@@ -5,6 +5,7 @@ namespace Aequus.Core.ContentGeneration;
 
 [Autoload(false)]
 internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
+    [CloneByReference]
     protected readonly ModTile _modTile;
     private readonly int _style;
     private readonly bool _dropItem;

@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Bosses.OmegaStarite.Projectiles;
+namespace Aequus.Old.Content.Bosses.Cosmic.OmegaStarite.Projectiles;
 
 public class OmegaStariteDeathray : ModProjectile {
     public float rotationOffset;

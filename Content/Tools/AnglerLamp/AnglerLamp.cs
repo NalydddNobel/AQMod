@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Core.Initialization;
 using System;
 using System.Collections.Generic;
@@ -21,13 +20,10 @@ public class AnglerLamp : ModItem {
     public static int FireDebuffTime { get; set; } = 180;
     public static int DebuffRange { get; set; } = 240;
 
+    [CloneByReference]
     private readonly List<Dust> _dustEffects = new();
 
     public float animation;
-
-    public override void SetStaticDefaults() {
-        EquipBoostDatabase.Instance.SetNoEffect(Type);
-    }
 
     public override void SetDefaults() {
         Item.width = 16;

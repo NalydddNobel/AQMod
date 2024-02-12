@@ -1,9 +1,9 @@
-﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Aequus.Content.Tools.MagicMirrors.PhaseMirror;
 
 public class PhaseMirror : ModItem, IPhaseMirror {
+    [CloneByReference]
     public List<(int, int, Dust)> DustEffectCache { get; set; }
     public int UseAnimationMax => 64;
 

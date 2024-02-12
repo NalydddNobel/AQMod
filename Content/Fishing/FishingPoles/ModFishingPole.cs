@@ -1,16 +1,15 @@
 ﻿namespace Aequus.Content.Fishing.FishingPoles;
 
 public abstract class ModFishingPole : ModItem {
-    [CloneByReference]
-    protected ModProjectile Bobber { get; private set; }
+    protected ModProjectile _bobber;
 
     protected override bool CloneNewInstances => true;
 
     public override string LocalizationCategory => "Fishing.FishingPoles";
 
     public sealed override void Load() {
-        Bobber = new InstancedFishingBobber(this);
-        Mod.AddContent(Bobber);
+        _bobber = new InstancedFishingBobber(this);
+        Mod.AddContent(_bobber);
     }
 
     public virtual bool BobberPreAI(Projectile bobber) => true;

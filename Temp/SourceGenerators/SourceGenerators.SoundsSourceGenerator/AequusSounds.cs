@@ -120,16 +120,16 @@ public partial class AequusSounds {
     public static readonly SoundStyle MeathookPull = new("Aequus/Old/Assets/Sounds/Meathook/MeathookPull");
     /// <summary>Full Path: Old/Assets/Sounds/RecruitZombie</summary>
     public static readonly SoundStyle RecruitZombie = new("Aequus/Old/Assets/Sounds/RecruitZombie");
-    /// <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteDeathRay</summary>
-    public static readonly SoundStyle OmegaStariteDeathRay = new("Aequus/Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteDeathRay");
-    /// <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteHit0</summary>
-    public static readonly SoundStyle OmegaStariteHit0 = new("Aequus/Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteHit0");
-    /// <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteHit1</summary>
-    public static readonly SoundStyle OmegaStariteHit1 = new("Aequus/Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteHit1");
-    /// <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteHit2</summary>
-    public static readonly SoundStyle OmegaStariteHit2 = new("Aequus/Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteHit2");
-    /// <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteKilled</summary>
-    public static readonly SoundStyle OmegaStariteKilled = new("Aequus/Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteKilled");
-    /// <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
-    public static readonly SoundStyle OmegaStariteStarBullets = new("Aequus/Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets");
+    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteDeathRay</summary>
+    public static readonly SoundStyle OmegaStariteDeathRay = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteDeathRay");
+    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit0</summary>
+    public static readonly SoundStyle OmegaStariteHit0 = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit0");
+    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit1</summary>
+    public static readonly SoundStyle OmegaStariteHit1 = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit1");
+    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit2</summary>
+    public static readonly SoundStyle OmegaStariteHit2 = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit2");
+    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteKilled</summary>
+    public static readonly SoundStyle OmegaStariteKilled = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteKilled");
+    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
+    public static readonly SoundStyle OmegaStariteStarBullets = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets");
 }

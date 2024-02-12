@@ -2,8 +2,9 @@
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.DataSets;
 using Aequus.Core;
+using Aequus.Core.ContentGeneration;
 using Aequus.Old.Common.Graphics;
-using Aequus.Old.Content.Enemies.Glimmer.UltraStarite.Projectiles;
+using Aequus.Old.Content.Bosses.Cosmic.UltraStarite.Projectiles;
 using Aequus.Old.Content.Events.Glimmer;
 using Aequus.Old.Content.Particles;
 using Aequus.Old.Content.StatusEffects;
@@ -16,10 +17,11 @@ using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.Utilities;
 
-namespace Aequus.Old.Content.Enemies.Glimmer.UltraStarite;
+namespace Aequus.Old.Content.Bosses.Cosmic.UltraStarite;
 
 [ModBiomes(typeof(GlimmerZone))]
 [AutoloadBossHead]
+[AutoloadTrophies]
 public class UltraStarite : ModNPC {
     public const float BossProgression = 4.61f;
 
@@ -485,7 +487,7 @@ public class UltraStarite : ModNPC {
                 var pos = NPC.oldPos[i] + offset - screenPos;
                 float progress = 1f - i / trailLength;
                 Color color = new Color(30, 25, 140, 4) * (mult * (NPCSets.TrailCacheLength[NPC.type] - i)) * 0.6f;
-                if (i >= armTrailLength || i > 1 && Math.Abs((NPC.oldRot[i] - NPC.oldRot[i - 1])) < 0.05f) {
+                if (i >= armTrailLength || i > 1 && Math.Abs(NPC.oldRot[i] - NPC.oldRot[i - 1]) < 0.05f) {
                     continue;
                 }
 
@@ -573,7 +575,7 @@ public class UltraStarite : ModNPC {
                 time %= MathHelper.TwoPi;
                 float waveFunction = (float)Math.Sin(time);
 
-                lengthMultiplier = MathHelper.Lerp(lengthMultiplier, lengthMultiplier - 1f * (1f - Math.Abs(((float)Math.Sin(time * 0.5f + MathHelper.Pi))) * 0.2f) + 1f, lerpValue);
+                lengthMultiplier = MathHelper.Lerp(lengthMultiplier, lengthMultiplier - 1f * (1f - Math.Abs((float)Math.Sin(time * 0.5f + MathHelper.Pi)) * 0.2f) + 1f, lerpValue);
                 rotation = MathHelper.Lerp(rotation, NPC.rotation + waveFunction * 0.275f, lerpValue);
             }
             else {

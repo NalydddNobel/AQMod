@@ -1,5 +1,5 @@
 ﻿using Aequus.Old.Content.Bosses;
-using Aequus.Old.Content.Bosses.OmegaStarite;
+using Aequus.Old.Content.Bosses.Cosmic.OmegaStarite;
 using Aequus.Old.Content.Events.Glimmer.CosmicMonolith;
 using Aequus.Old.Content.Events.Glimmer.Peaceful;
 using Aequus.Old.Content.Events.Glimmer.Sky;

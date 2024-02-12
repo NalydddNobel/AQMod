@@ -1910,25 +1910,25 @@
             <summary>Full Path: Old/Assets/Sounds/RecruitZombie</summary>
         </member>
         <member name="F:Aequus.AequusSounds.OmegaStariteDeathRay">
-            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteDeathRay</summary>
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteDeathRay</summary>
         </member>
         <member name="F:Aequus.AequusSounds.OmegaStariteHit0">
-            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteHit0</summary>
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit0</summary>
         </member>
         <member name="F:Aequus.AequusSounds.OmegaStariteHit1">
-            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteHit1</summary>
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit1</summary>
         </member>
         <member name="F:Aequus.AequusSounds.OmegaStariteHit2">
-            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteHit2</summary>
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit2</summary>
         </member>
         <member name="F:Aequus.AequusSounds.OmegaStariteKilled">
-            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteKilled</summary>
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteKilled</summary>
         </member>
         <member name="F:Aequus.AequusSounds.OmegaStariteStarBullets">
-            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 465)</summary>
+            <summary>(Total Textures: 464)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2124,18 +2124,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.Trophy">
             <summary>Full Path: Content/Bosses/Trophies/Trophy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.UltraStariteRelic">
-            <summary>Full Path: Content/Bosses/Trophies/UltraStariteRelic</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.UltraStariteRelicItem">
-            <summary>Full Path: Content/Bosses/Trophies/UltraStariteRelicItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.UltraStariteTrophy">
-            <summary>Full Path: Content/Bosses/Trophies/UltraStariteTrophy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.UltraStariteTrophyItem">
-            <summary>Full Path: Content/Bosses/Trophies/UltraStariteTrophyItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Baguette">
             <summary>Full Path: Content/DedicatedContent/Baguette/Baguette</summary>
@@ -2660,19 +2648,37 @@
             <summary>Full Path: icon_workshop</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStarite">
-            <summary>Full Path: Old/Content/Bosses/OmegaStarite/OmegaStarite</summary>
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/OmegaStarite</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStarite_Head_Boss">
-            <summary>Full Path: Old/Content/Bosses/OmegaStarite/OmegaStarite_Head_Boss</summary>
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/OmegaStarite_Head_Boss</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteBullet">
-            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Projectiles/OmegaStariteBullet</summary>
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Projectiles/OmegaStariteBullet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteDeathray">
-            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Projectiles/OmegaStariteDeathray</summary>
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Projectiles/OmegaStariteDeathray</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteProj">
-            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Projectiles/OmegaStariteProj</summary>
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Projectiles/OmegaStariteProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStariteRelic">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/Items/UltraStariteRelic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStariteRelicItem">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/Items/UltraStariteRelicItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStariteTrophy">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/Items/UltraStariteTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStariteTrophyItem">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/Items/UltraStariteTrophyItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStarite">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/UltraStarite</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStarite_Head_Boss">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/UltraStarite_Head_Boss</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DwarfStarite">
             <summary>Full Path: Old/Content/Critters/DwarfStarite</summary>
@@ -2811,15 +2817,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.SuperStariteBannerItem">
             <summary>Full Path: Old/Content/Enemies/Glimmer/Super/Tiles/SuperStariteBannerItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.UltraStarite">
-            <summary>Full Path: Old/Content/Enemies/Glimmer/UltraStarite/UltraStarite</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.UltraStarite_Head_Boss">
-            <summary>Full Path: Old/Content/Enemies/Glimmer/UltraStarite/UltraStarite_Head_Boss</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SoldierCrabBanner">
-            <summary>Full Path: Old/Content/Enemies/SoldierCrabBanner</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrapSkeletonBanner">
             <summary>Full Path: Old/Content/Enemies/TrapSkeletonBanner</summary>
@@ -3381,7 +3378,7 @@
             <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Old.Common.Graphics.Camera.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Old.Common.Graphics.Camera.CameraPriority,System.Single,System.Int32)"/></param>
             <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
         </member>
-        <member name="M:Aequus.Old.Content.Bosses.OmegaStarite.OmegaStariteRing.#ctor(System.IO.BinaryReader)">
+        <member name="M:Aequus.Old.Content.Bosses.Cosmic.OmegaStarite.OmegaStariteRing.#ctor(System.IO.BinaryReader)">
             <summary>
             Creates a Ring through a net package
             </summary>

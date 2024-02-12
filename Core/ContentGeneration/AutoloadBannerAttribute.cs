@@ -13,7 +13,7 @@ internal class AutoloadBannerAttribute : AutoloadXAttribute {
 
     internal override void Load(ModType modType) {
         if (modType is not ModNPC modNPC) {
-            throw new Exception("AutoloadBannerAttribute can only be applied to ModNPCs.");
+            throw new Exception($"{nameof(AutoloadBannerAttribute)} can only be applied to ModNPCs.");
         }
 
         BannerLoader.RegisterBanner(modNPC, _legacyId);

@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.DataSets;
-using Aequus.Old.Content.Bosses.OmegaStarite;
+using Aequus.Old.Content.Bosses.Cosmic.OmegaStarite;
 using Terraria.Audio;
 
 namespace Aequus.Old.Content.Events.Glimmer.Spawners;

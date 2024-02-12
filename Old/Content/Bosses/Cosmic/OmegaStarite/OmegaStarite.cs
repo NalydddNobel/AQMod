@@ -4,7 +4,7 @@ using Aequus.Content.DataSets;
 using Aequus.Core;
 using Aequus.Old.Common.Graphics;
 using Aequus.Old.Common.Graphics.Camera;
-using Aequus.Old.Content.Bosses.OmegaStarite.Projectiles;
+using Aequus.Old.Content.Bosses.Cosmic.OmegaStarite.Projectiles;
 using Aequus.Old.Content.Events.Glimmer;
 using Aequus.Old.Content.Particles;
 using Aequus.Old.Content.StatusEffects;
@@ -18,7 +18,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.Utilities;
 
-namespace Aequus.Old.Content.Bosses.OmegaStarite;
+namespace Aequus.Old.Content.Bosses.Cosmic.OmegaStarite;
 
 [ModBiomes(typeof(GlimmerZone))]
 [AutoloadBossHead()]
@@ -1214,7 +1214,7 @@ public class OmegaStarite : AequusBoss {
             if ((NPC.position - NPC.oldPos[1]).Length() > 0.01f) {
                 DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, NPC.oldPos, OldDrawHelper.GenerateRotationArr(NPC.oldPos),
                     (p) => GlimmerColors.Blue * (1f - p),
-                    (p) => 20 * (1f-p),
+                    (p) => 20 * (1f - p),
                     -Main.screenPosition + NPC.Size / 2f);
             }
             else {
@@ -1275,7 +1275,7 @@ public class OmegaStarite : AequusBoss {
 
             int i = 0;
             for (int k = 0; k < 4; k++) {
-                float f = (k * MathHelper.PiOver2 + Main.GlobalTimeWrappedHourly * 0.12f + NPC.localAI[0]);
+                float f = k * MathHelper.PiOver2 + Main.GlobalTimeWrappedHourly * 0.12f + NPC.localAI[0];
                 var rayScale = new Vector2(Helper.Oscillate(r.NextFloat(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * r.NextFloat(1f, 5f) * 0.1f, 0.3f, 1f) * r.NextFloat(0.5f, 2.25f));
                 rayScale.X *= 0.02f;
                 rayScale.X *= (float)Math.Pow(raysScaler, Math.Min(rayScale.Y, 1f));

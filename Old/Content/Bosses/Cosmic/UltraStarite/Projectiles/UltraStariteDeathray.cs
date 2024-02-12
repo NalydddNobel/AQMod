@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Aequus.Old.Content.Enemies.Glimmer.UltraStarite.Projectiles;
+namespace Aequus.Old.Content.Bosses.Cosmic.UltraStarite.Projectiles;
 public class UltraStariteDeathray : EnemyAttachedProjBase {
     public const float DEATHRAY_SIZE = 60f;
     public const float DEATHRAY_LENGTH = 1000f;

@@ -8,8 +8,8 @@ namespace Aequus.Content.Bosses;
 public class BossItemInstantiator : ModSystem {
     public override void Load() {
 #pragma warning disable CS0618 // Type or member is obsolete
-        AddBossContent("Crabson", ItemCommons.Rarity.CrabsonLoot, preHardmode: true, new BasicRelicRenderer(AequusTextures.CrabsonRelic), LegacyBossRelicsTile.Crabson);
-        AddBossMask("Crabson");
+        //AddBossContent("Crabson", ItemCommons.Rarity.CrabsonLoot, preHardmode: true, new BasicRelicRenderer(AequusTextures.CrabsonRelic), LegacyBossRelicsTile.Crabson);
+        //AddBossMask("Crabson");
 
         AddBossContent("OmegaStarite", ItemCommons.Rarity.OmegaStariteLoot, preHardmode: true, new OmegaStariteRelicRenderer(AequusTextures.OmegaStariteRelic, 5), LegacyBossRelicsTile.OmegaStarite);
         AddBossMask("OmegaStarite");
@@ -17,37 +17,43 @@ public class BossItemInstantiator : ModSystem {
         AddBossContent("DustDevil", ItemCommons.Rarity.DustDevilLoot, preHardmode: true, new BasicRelicRenderer(AequusTextures.DustDevilRelic), LegacyBossRelicsTile.DustDevil);
         Mod.AddContent(new DustDevilMask("DustDevil"));
 
-        AddBossTrophy("UltraStarite", new BasicRelicRenderer(AequusTextures.UltraStariteRelic), LegacyBossRelicsTile.UltraStarite);
-
-        AddBossTrophy("RedSprite", new BasicRelicRenderer(AequusTextures.RedSpriteRelic), LegacyBossRelicsTile.RedSprite);
+        AddLegacyTrophy("RedSprite", new BasicRelicRenderer(AequusTextures.RedSpriteRelic), LegacyBossRelicsTile.RedSprite);
         AddBossMask("RedSprite");
 
-        AddBossTrophy("SpaceSquid", new BasicRelicRenderer(AequusTextures.SpaceSquidRelic), LegacyBossRelicsTile.SpaceSquid);
+        AddLegacyTrophy("SpaceSquid", new BasicRelicRenderer(AequusTextures.SpaceSquidRelic), LegacyBossRelicsTile.SpaceSquid);
         AddBossMask("SpaceSquid");
 
         void AddBossContent(string name, int internalRarity, bool preHardmode, IRelicRenderer relicRenderer, int legacyTrophyId = -1) {
             Mod.AddContent(new InstancedBossBag(name, internalRarity, preHardmode));
-            AddBossTrophy(name, relicRenderer);
+            AddLegacyTrophy(name, relicRenderer, legacyTrophyId);
         }
 
-        void AddBossTrophy(string name, IRelicRenderer renderer, int legacyTrophyId = -1) {
-            var modRelic = new InstancedRelicTile(name, renderer);
-            var modTrophy = new InstancedTrophyTile(name);
-
-            Mod.AddContent(modTrophy);
-            Mod.AddContent(modRelic);
-            Mod.AddContent(new InstancedTrophyItem(modTrophy));
-            Mod.AddContent(new InstancedRelicItem(modRelic));
-
-            if (legacyTrophyId > -1) {
-                LegacyBossTrophiesTile.LegacyConverter[legacyTrophyId] = modTrophy;
-                LegacyBossRelicsTile.LegacyConverter[legacyTrophyId] = modRelic;
-            }
-        }
-
-        void AddBossMask(string name) {
-            Mod.AddContent(new InstancedBossMask(name));
-        }
+        void AddBossMask(string name) => Mod.AddContent(new InstancedBossMask(name));
 #pragma warning restore CS0618 // Type or member is obsolete
+    }
+
+    private void AddTrophiesDirect(InstancedRelicTile relic, InstancedTrophyTile trophy, int legacyTrophyId) {
+        Mod.AddContent(trophy);
+        Mod.AddContent(relic);
+        Mod.AddContent(new InstancedTrophyItem(trophy));
+        Mod.AddContent(new InstancedRelicItem(relic));
+
+        if (legacyTrophyId > -1) {
+            LegacyBossTrophiesTile.LegacyConverter[legacyTrophyId] = trophy;
+            LegacyBossRelicsTile.LegacyConverter[legacyTrophyId] = relic;
+        }
+    }
+
+    private void AddLegacyTrophy(string name, IRelicRenderer renderer, int legacyTrophyId = -1) {
+        var modRelic = new InstancedRelicTile(name, renderer);
+        var modTrophy = new InstancedTrophyTile(name);
+        AddTrophiesDirect(modRelic, modTrophy, legacyTrophyId);
+    }
+
+    public static void AddTrophies(ModNPC modNPC, IRelicRenderer renderer, int legacyId) {
+        var modRelic = new InstancedRelicTile(modNPC, renderer);
+        var modTrophy = new InstancedTrophyTile(modNPC);
+
+        ModContent.GetInstance<BossItemInstantiator>().AddTrophiesDirect(modRelic, modTrophy, legacyId);
     }
 }
