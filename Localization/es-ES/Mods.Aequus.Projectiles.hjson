@@ -59,8 +59,8 @@ DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 // OmegaStariteDeathray.DisplayName: Cosmic Deathray
 // OmegaStariteProj.DisplayName: "{$NPCs.OmegaStarite.DisplayName}"
 // UltimateSwordProj.DisplayName: "{$Items.UltimateSword.DisplayName}"
-// HyperStariteProj.DisplayName: Hyper Starite Proj
-// SuperStariteBullet.DisplayName: Super Starite Bullet
-// SuperStariteProj.DisplayName: Super Starite Proj
-// UltraStariteDeathray.DisplayName: Ultra Starite Deathray
-// UltraStariteOuterArms.DisplayName: Ultra Starite Outer Arms
+// HyperStariteProj.DisplayName: "{$NPCs.HyperStarite.DisplayName}"
+// SuperStariteBullet.DisplayName: "{$NPCs.SuperStarite.DisplayName}"
+// SuperStariteProj.DisplayName: "{$NPCs.SuperStarite.DisplayName}"
+// UltraStariteDeathray.DisplayName: Cosmic Ray
+// UltraStariteOuterArms.DisplayName: "{$NPCs.UltraStarite.DisplayName}"

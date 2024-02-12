@@ -31,7 +31,7 @@ public class OmegaStariteBullet : ModProjectile {
         }
         Projectile.rotation = Projectile.velocity.ToRotation();
         if (Main.rand.NextBool(12)) {
-            int d = Dust.NewDust(Projectile.Center + new Vector2(5f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + Projectile.velocity.ToRotation()), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerZone.CosmicEnergyColor, 0.75f);
+            int d = Dust.NewDust(Projectile.Center + new Vector2(5f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + Projectile.velocity.ToRotation()), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerColors.CosmicEnergy, 0.75f);
             Main.dust[d].velocity = Projectile.velocity * 0.1f;
         }
     }
@@ -40,12 +40,12 @@ public class OmegaStariteBullet : ModProjectile {
         var texture = TextureAssets.Projectile[Projectile.type].Value;
         var orig = texture.Size() / 2f;
         var drawPos = Projectile.Center - Main.screenPosition;
-        var drawColor = GlimmerZone.CosmicEnergyColor;
+        var drawColor = GlimmerColors.CosmicEnergy;
         drawColor.A = 0;
         var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
 
         DrawHelper.DrawBasicVertexLine(AequusTextures.Trail2, Projectile.oldPos, Projectile.oldRot,
-            (p) => GlimmerZone.CosmicEnergyColor with { A = 0 } * (1f - p),
+            (p) => GlimmerColors.CosmicEnergy with { A = 0 } * (1f - p),
             (p) => Projectile.width - p * Projectile.width,
             -Main.screenPosition + Projectile.Size / 2f);
 
@@ -79,7 +79,7 @@ public class OmegaStariteBullet : ModProjectile {
         float veloRot = Projectile.velocity.ToRotation();
         var velo = Projectile.velocity * 0.5f;
         for (int i = 0; i < 25; i++) {
-            int d = Dust.NewDust(Projectile.Center + new Vector2(6f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + veloRot), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerZone.CosmicEnergyColor, 0.75f);
+            int d = Dust.NewDust(Projectile.Center + new Vector2(6f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + veloRot), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerColors.CosmicEnergy, 0.75f);
             Main.dust[d].velocity = velo;
         }
     }

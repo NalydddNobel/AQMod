@@ -8,7 +8,6 @@ using Aequus.Old.Content.Events.Glimmer;
 using Aequus.Old.Content.Particles;
 using Aequus.Old.Content.StatusEffects;
 using Aequus.Old.Core.Utilities;
-using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;

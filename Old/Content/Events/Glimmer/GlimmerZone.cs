@@ -13,9 +13,6 @@ public class GlimmerZone : ModBiome {
     public const float HyperStariteSpawn = 0.4f;
     public const float UltraStariteSpawn = 0.2f;
 
-    public static Color BlueColor => Main.tenthAnniversaryWorld ? Color.Pink with { A = 0 } : new Color(35, 85, 255, 0);
-    public static Color CosmicEnergyColor { get; set; } = new Color(200, 10, 255, 0);
-
     public static Point TileLocation { get; set; }
 
     public static int omegaStarite { get; set; }

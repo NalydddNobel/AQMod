@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
+using Aequus.Core.ContentGeneration;
 using Aequus.Old.Common.Graphics;
 using Aequus.Old.Content.Critters;
 using Aequus.Old.Content.Events.Glimmer;
@@ -26,7 +27,7 @@ public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
     public const int STATE_GOODBYE = -1;
     public const int STATE_DEAD = -2;
 
-    public static readonly Color SpotlightColor = new Color(100, 100, 10, 0);
+    public static Color SpotlightColor => GlimmerColors.Yellow * 0.4f;
 
     public int State { get => (int)NPC.ai[0]; set => NPC.ai[0] = value; }
     public float ArmsLength { get => NPC.ai[3]; set => NPC.ai[3] = value; }
@@ -367,7 +368,7 @@ public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
         }
 
         bool dying = State == STATE_DEAD;
-        Main.spriteBatch.Draw(bloom, new Vector2((int)(NPC.position.X + offset.X - screenPos.X), (int)(NPC.position.Y + offset.Y - screenPos.Y)), bloomFrame, Main.tenthAnniversaryWorld ? Color.HotPink with { A = 0 } : SpotlightColor, 0f, bloomOrigin, NPC.scale * 2, SpriteEffects.None, 0f);
+        Main.spriteBatch.Draw(bloom, new Vector2((int)(NPC.position.X + offset.X - screenPos.X), (int)(NPC.position.Y + offset.Y - screenPos.Y)), bloomFrame, SpotlightColor, 0f, bloomOrigin, NPC.scale * 2, SpriteEffects.None, 0f);
         if (!dying && !NPC.IsABestiaryIconDummy) {
             Main.spriteBatch.End();
             Main.spriteBatch.BeginWorld(shader: true);
@@ -386,8 +387,10 @@ public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
                 Color color = new Color(45, 35, 60, 0) * (mult * (NPCSets.TrailCacheLength[NPC.type] - i));
                 Main.spriteBatch.Draw(texture, pos.Floor(), coreFrame, color, 0f, origin, NPC.scale * progress * progress, SpriteEffects.None, 0f);
                 color = new Color(30, 25, 140, 4) * (mult * (NPCSets.TrailCacheLength[NPC.type] - i)) * 0.6f;
-                if (i > armTrailLength || i > 1 && Math.Abs(NPC.oldRot[i] - NPC.oldRot[i - 1]) < 0.002f)
+                if (i > armTrailLength || i > 1 && Math.Abs(NPC.oldRot[i] - NPC.oldRot[i - 1]) < 0.002f) {
                     continue;
+                }
+
                 for (int j = 0; j < 5; j++) {
                     float rotation = NPC.oldRot[i] + MathHelper.TwoPi / 5f * j;
                     var armPos = NPC.position + offset + (rotation - MathHelper.PiOver2).ToRotationVector2() * (armLength + oldArmsLength[i]) - screenPos;
@@ -400,7 +403,7 @@ public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
                 Vector2[] array = armPositions[j].ToArray();
                 float[] rotationsArray = OldDrawHelper.GenerateRotationArr(array);
                 DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, armPositions[j].ToArray(), rotationsArray,
-                    (p) => (Main.tenthAnniversaryWorld ? Color.HotPink : Color.Blue) with { A = 0 },
+                    (p) => GlimmerColors.Blue with { A = 0 },
                     (p) => 50f
                 );
             }
@@ -432,8 +435,9 @@ public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
                 armPos += new Vector2(Main.rand.NextFloat(NPC.ai[2] / 4f), Main.rand.NextFloat(NPC.ai[2] / 4f));
             Main.spriteBatch.Draw(texture, armPos.Floor(), armSegmentFrame, Color.White, rotation, origin, NPC.scale, SpriteEffects.None, 0f);
         }
-        if (dying)
+        if (dying) {
             offset += new Vector2(Main.rand.NextFloat(NPC.ai[2] / 4f), Main.rand.NextFloat(NPC.ai[2] / 4f));
+        }
 
         Main.spriteBatch.Draw(texture, new Vector2((int)(NPC.position.X + offset.X - screenPos.X), (int)(NPC.position.Y + offset.Y - screenPos.Y)), coreFrame, new Color(255, 255, 255, 255), 0f, origin, NPC.scale, SpriteEffects.None, 0f);
         if (dying) {
@@ -443,8 +447,8 @@ public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
     }
 
     public void DrawDeathExplosion(Vector2 drawPos) {
-        float scale = (float)Math.Min(NPC.scale * (-NPC.ai[2] / 60f), 1f) * 3f;
-        var shineColor = (Main.tenthAnniversaryWorld ? Color.HotPink with { A = 0 } : new Color(200, 40, 150, 0)) * scale * NPC.Opacity;
+        float scale = (float)Math.Min(NPC.scale * (-NPC.ai[2] / 60f), 1f) * 2f;
+        var shineColor = GlimmerColors.Pink * scale * NPC.Opacity;
 
         Texture2D lightRay = AequusTextures.LightRayFlat;
         var lightRayOrigin = lightRay.Size() / 2f;

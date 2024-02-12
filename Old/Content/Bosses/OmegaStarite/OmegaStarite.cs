@@ -404,9 +404,9 @@ public class OmegaStarite : AequusBoss {
                             const int width = (int)(DIAMETER * 2f);
                             const int height = 900;
                             Vector2 dustPos = center + new Vector2(-width / 2f, 0f);
-                            Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerZone.CosmicEnergyColor, 2f);
-                            Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerZone.CosmicEnergyColor, 2f);
-                            Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerZone.CosmicEnergyColor, 2f);
+                            Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerColors.CosmicEnergy, 2f);
+                            Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerColors.CosmicEnergy, 2f);
+                            Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerColors.CosmicEnergy, 2f);
                         }
                     }
                 }
@@ -1213,7 +1213,7 @@ public class OmegaStarite : AequusBoss {
 
             if ((NPC.position - NPC.oldPos[1]).Length() > 0.01f) {
                 DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, NPC.oldPos, OldDrawHelper.GenerateRotationArr(NPC.oldPos),
-                    (p) => GlimmerZone.BlueColor * (1f - p),
+                    (p) => GlimmerColors.Blue * (1f - p),
                     (p) => 20 * (1f-p),
                     -Main.screenPosition + NPC.Size / 2f);
             }

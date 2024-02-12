@@ -25,7 +25,7 @@ public class SuperStariteBullet : ModProjectile {
     }
 
     public override Color? GetAlpha(Color lightColor) {
-        return GlimmerZone.CosmicEnergyColor;
+        return GlimmerColors.CosmicEnergy;
     }
 
     public override void AI() {
@@ -73,7 +73,7 @@ public class SuperStariteBullet : ModProjectile {
     public override void OnKill(int timeLeft) {
         SoundEngine.PlaySound(SoundID.Item9 with { Volume = 0.35f, Pitch = 0.25f, PitchVariance = 0.1f }, Projectile.Center);
         for (int i = 0; i < 20; i++) {
-            var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), newColor: GlimmerZone.CosmicEnergyColor);
+            var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), newColor: GlimmerColors.CosmicEnergy);
             d.color = new Color(d.color.R + Main.rand.Next(-100, 0), d.color.G + Main.rand.Next(-100, 0), d.color.B, d.color.A);
             d.velocity *= Main.rand.NextFloat(0.4f, 1.5f);
             d.velocity += -Projectile.oldVelocity * Main.rand.NextFloat(0.5f, 2f);

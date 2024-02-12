@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
+using Aequus.Core.ContentGeneration;
 using Aequus.Old.Content.Events.Glimmer;
 using Aequus.Old.Content.Particles;
 using Aequus.Old.Content.StatusEffects;
@@ -340,7 +341,7 @@ public class Starite : ModNPC, ITrackTimeBetweenHits {
         for (int i = 0; i < 7; i++) {
             Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Enchanted_Pink, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);
         }
-        var blueDustColor = Main.tenthAnniversaryWorld ? Color.Pink with { A = 0 } : new Color(40, 160, 255, 0);
+        var blueDustColor = GlimmerColors.Blue;
         for (float f = 0f; f < 1f; f += 0.125f) {
             Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (4f + Main.rand.NextFloat() * 4f), 150, blueDustColor).noGravity = true;
         }

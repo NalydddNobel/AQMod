@@ -519,10 +519,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> BloodMimicBannerItem = new("Aequus/Old/Content/Enemies/BloodMoon/Tiles/BloodMimicBannerItem");
     /// <summary>Full Path: Old/Content/Enemies/BreadOfCthulhuBanner</summary>
     public static readonly RequestCache<Texture2D> BreadOfCthulhuBanner = new("Aequus/Old/Content/Enemies/BreadOfCthulhuBanner");
-    /// <summary>Full Path: Old/Content/Enemies/CoconutCrabBanner</summary>
-    public static readonly RequestCache<Texture2D> CoconutCrabBanner = new("Aequus/Old/Content/Enemies/CoconutCrabBanner");
-    /// <summary>Full Path: Old/Content/Enemies/CrabFishBanner</summary>
-    public static readonly RequestCache<Texture2D> CrabFishBanner = new("Aequus/Old/Content/Enemies/CrabFishBanner");
     /// <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/CinderBat</summary>
     public static readonly RequestCache<Texture2D> CinderBat = new("Aequus/Old/Content/Enemies/DemonSiege/CinderBat/CinderBat");
     /// <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/Tiles/CinderBatBanner</summary>
@@ -579,28 +575,32 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> LeggedLavaBanner = new("Aequus/Old/Content/Enemies/DemonSiege/LavaLegs/Tiles/LeggedLavaBanner");
     /// <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/Tiles/LeggedLavaBannerItem</summary>
     public static readonly RequestCache<Texture2D> LeggedLavaBannerItem = new("Aequus/Old/Content/Enemies/DemonSiege/LavaLegs/Tiles/LeggedLavaBannerItem");
-    /// <summary>Full Path: Old/Content/Enemies/Glimmer/HyperStarite</summary>
-    public static readonly RequestCache<Texture2D> HyperStarite = new("Aequus/Old/Content/Enemies/Glimmer/HyperStarite");
-    /// <summary>Full Path: Old/Content/Enemies/Glimmer/Starite</summary>
-    public static readonly RequestCache<Texture2D> Starite = new("Aequus/Old/Content/Enemies/Glimmer/Starite");
-    /// <summary>Full Path: Old/Content/Enemies/Glimmer/SuperStarite</summary>
-    public static readonly RequestCache<Texture2D> SuperStarite = new("Aequus/Old/Content/Enemies/Glimmer/SuperStarite");
-    /// <summary>Full Path: Old/Content/Enemies/Glimmer/SuperStariteBullet</summary>
-    public static readonly RequestCache<Texture2D> SuperStariteBullet = new("Aequus/Old/Content/Enemies/Glimmer/SuperStariteBullet");
+    /// <summary>Full Path: Old/Content/Enemies/Glimmer/Hyper/HyperStarite</summary>
+    public static readonly RequestCache<Texture2D> HyperStarite = new("Aequus/Old/Content/Enemies/Glimmer/Hyper/HyperStarite");
+    /// <summary>Full Path: Old/Content/Enemies/Glimmer/Hyper/Tiles/HyperStariteBanner</summary>
+    public static readonly RequestCache<Texture2D> HyperStariteBanner = new("Aequus/Old/Content/Enemies/Glimmer/Hyper/Tiles/HyperStariteBanner");
+    /// <summary>Full Path: Old/Content/Enemies/Glimmer/Hyper/Tiles/HyperStariteBannerItem</summary>
+    public static readonly RequestCache<Texture2D> HyperStariteBannerItem = new("Aequus/Old/Content/Enemies/Glimmer/Hyper/Tiles/HyperStariteBannerItem");
+    /// <summary>Full Path: Old/Content/Enemies/Glimmer/Proto/Starite</summary>
+    public static readonly RequestCache<Texture2D> Starite = new("Aequus/Old/Content/Enemies/Glimmer/Proto/Starite");
+    /// <summary>Full Path: Old/Content/Enemies/Glimmer/Proto/Tiles/StariteBanner</summary>
+    public static readonly RequestCache<Texture2D> StariteBanner = new("Aequus/Old/Content/Enemies/Glimmer/Proto/Tiles/StariteBanner");
+    /// <summary>Full Path: Old/Content/Enemies/Glimmer/Proto/Tiles/StariteBannerItem</summary>
+    public static readonly RequestCache<Texture2D> StariteBannerItem = new("Aequus/Old/Content/Enemies/Glimmer/Proto/Tiles/StariteBannerItem");
+    /// <summary>Full Path: Old/Content/Enemies/Glimmer/Super/SuperStarite</summary>
+    public static readonly RequestCache<Texture2D> SuperStarite = new("Aequus/Old/Content/Enemies/Glimmer/Super/SuperStarite");
+    /// <summary>Full Path: Old/Content/Enemies/Glimmer/Super/SuperStariteBullet</summary>
+    public static readonly RequestCache<Texture2D> SuperStariteBullet = new("Aequus/Old/Content/Enemies/Glimmer/Super/SuperStariteBullet");
+    /// <summary>Full Path: Old/Content/Enemies/Glimmer/Super/Tiles/SuperStariteBanner</summary>
+    public static readonly RequestCache<Texture2D> SuperStariteBanner = new("Aequus/Old/Content/Enemies/Glimmer/Super/Tiles/SuperStariteBanner");
+    /// <summary>Full Path: Old/Content/Enemies/Glimmer/Super/Tiles/SuperStariteBannerItem</summary>
+    public static readonly RequestCache<Texture2D> SuperStariteBannerItem = new("Aequus/Old/Content/Enemies/Glimmer/Super/Tiles/SuperStariteBannerItem");
     /// <summary>Full Path: Old/Content/Enemies/Glimmer/UltraStarite/UltraStarite</summary>
     public static readonly RequestCache<Texture2D> UltraStarite = new("Aequus/Old/Content/Enemies/Glimmer/UltraStarite/UltraStarite");
     /// <summary>Full Path: Old/Content/Enemies/Glimmer/UltraStarite/UltraStarite_Head_Boss</summary>
     public static readonly RequestCache<Texture2D> UltraStarite_Head_Boss = new("Aequus/Old/Content/Enemies/Glimmer/UltraStarite/UltraStarite_Head_Boss");
-    /// <summary>Full Path: Old/Content/Enemies/HijivarchCrabBanner</summary>
-    public static readonly RequestCache<Texture2D> HijivarchCrabBanner = new("Aequus/Old/Content/Enemies/HijivarchCrabBanner");
-    /// <summary>Full Path: Old/Content/Enemies/HyperStariteBanner</summary>
-    public static readonly RequestCache<Texture2D> HyperStariteBanner = new("Aequus/Old/Content/Enemies/HyperStariteBanner");
     /// <summary>Full Path: Old/Content/Enemies/SoldierCrabBanner</summary>
     public static readonly RequestCache<Texture2D> SoldierCrabBanner = new("Aequus/Old/Content/Enemies/SoldierCrabBanner");
-    /// <summary>Full Path: Old/Content/Enemies/StariteBanner</summary>
-    public static readonly RequestCache<Texture2D> StariteBanner = new("Aequus/Old/Content/Enemies/StariteBanner");
-    /// <summary>Full Path: Old/Content/Enemies/SuperStariteBanner</summary>
-    public static readonly RequestCache<Texture2D> SuperStariteBanner = new("Aequus/Old/Content/Enemies/SuperStariteBanner");
     /// <summary>Full Path: Old/Content/Enemies/TrapSkeletonBanner</summary>
     public static readonly RequestCache<Texture2D> TrapSkeletonBanner = new("Aequus/Old/Content/Enemies/TrapSkeletonBanner");
     /// <summary>Full Path: Old/Content/Enemies/VraineBanner</summary>

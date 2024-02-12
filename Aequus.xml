@@ -2698,12 +2698,6 @@
         <member name="F:Aequus.AequusTextures.BreadOfCthulhuBanner">
             <summary>Full Path: Old/Content/Enemies/BreadOfCthulhuBanner</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CoconutCrabBanner">
-            <summary>Full Path: Old/Content/Enemies/CoconutCrabBanner</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabFishBanner">
-            <summary>Full Path: Old/Content/Enemies/CrabFishBanner</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.CinderBat">
             <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/CinderBat</summary>
         </member>
@@ -2789,16 +2783,34 @@
             <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/Tiles/LeggedLavaBannerItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HyperStarite">
-            <summary>Full Path: Old/Content/Enemies/Glimmer/HyperStarite</summary>
+            <summary>Full Path: Old/Content/Enemies/Glimmer/Hyper/HyperStarite</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HyperStariteBanner">
+            <summary>Full Path: Old/Content/Enemies/Glimmer/Hyper/Tiles/HyperStariteBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HyperStariteBannerItem">
+            <summary>Full Path: Old/Content/Enemies/Glimmer/Hyper/Tiles/HyperStariteBannerItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Starite">
-            <summary>Full Path: Old/Content/Enemies/Glimmer/Starite</summary>
+            <summary>Full Path: Old/Content/Enemies/Glimmer/Proto/Starite</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StariteBanner">
+            <summary>Full Path: Old/Content/Enemies/Glimmer/Proto/Tiles/StariteBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StariteBannerItem">
+            <summary>Full Path: Old/Content/Enemies/Glimmer/Proto/Tiles/StariteBannerItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SuperStarite">
-            <summary>Full Path: Old/Content/Enemies/Glimmer/SuperStarite</summary>
+            <summary>Full Path: Old/Content/Enemies/Glimmer/Super/SuperStarite</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SuperStariteBullet">
-            <summary>Full Path: Old/Content/Enemies/Glimmer/SuperStariteBullet</summary>
+            <summary>Full Path: Old/Content/Enemies/Glimmer/Super/SuperStariteBullet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SuperStariteBanner">
+            <summary>Full Path: Old/Content/Enemies/Glimmer/Super/Tiles/SuperStariteBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SuperStariteBannerItem">
+            <summary>Full Path: Old/Content/Enemies/Glimmer/Super/Tiles/SuperStariteBannerItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltraStarite">
             <summary>Full Path: Old/Content/Enemies/Glimmer/UltraStarite/UltraStarite</summary>
@@ -2806,20 +2818,8 @@
         <member name="F:Aequus.AequusTextures.UltraStarite_Head_Boss">
             <summary>Full Path: Old/Content/Enemies/Glimmer/UltraStarite/UltraStarite_Head_Boss</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.HijivarchCrabBanner">
-            <summary>Full Path: Old/Content/Enemies/HijivarchCrabBanner</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HyperStariteBanner">
-            <summary>Full Path: Old/Content/Enemies/HyperStariteBanner</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.SoldierCrabBanner">
             <summary>Full Path: Old/Content/Enemies/SoldierCrabBanner</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.StariteBanner">
-            <summary>Full Path: Old/Content/Enemies/StariteBanner</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SuperStariteBanner">
-            <summary>Full Path: Old/Content/Enemies/SuperStariteBanner</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrapSkeletonBanner">
             <summary>Full Path: Old/Content/Enemies/TrapSkeletonBanner</summary>

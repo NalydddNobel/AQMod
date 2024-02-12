@@ -52,6 +52,10 @@ public class SuperStarite : ModNPC, ITrackTimeBetweenHits {
         NPC.npcSlots = 1.5f;
     }
 
+    public override Color? GetAlpha(Color drawColor) {
+        return Color.White;
+    }
+
     public override void HitEffect(NPC.HitInfo hit) {
         float x = Math.Abs(NPC.velocity.X) * hit.HitDirection;
         if (NPC.life <= 0) {
@@ -174,11 +178,15 @@ public class SuperStarite : ModNPC, ITrackTimeBetweenHits {
         if (NPC.ai[0] == -1f) {
             NPC.noTileCollide = true;
             NPC.velocity.X *= 0.965f;
-            if (NPC.velocity.Y > 0f)
+            if (NPC.velocity.Y > 0f) {
                 NPC.velocity.Y *= 0.985f;
+            }
+
             NPC.velocity.Y -= 0.055f;
-            if (NPC.timeLeft > 100)
+            if (NPC.timeLeft > 100) {
                 NPC.timeLeft = 100;
+            }
+
             return;
         }
         if (NPC.ai[0] == 0f) {
@@ -294,8 +302,9 @@ public class SuperStarite : ModNPC, ITrackTimeBetweenHits {
             NPC.velocity *= 0.995f;
             NPC.rotation += 0.0314f;
         }
-        if (doRotate)
+        if (doRotate) {
             NPC.rotation += NPC.velocity.Length() * 0.0157f;
+        }
     }
 
     public override bool? CanFallThroughPlatforms() {
@@ -310,17 +319,24 @@ public class SuperStarite : ModNPC, ITrackTimeBetweenHits {
     }
 
     public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo) {
-        if (Main.rand.NextBool(Main.expertMode ? 1 : 2))
+        if (Main.rand.NextBool(Main.expertMode ? 1 : 2)) {
             target.AddBuff(ModContent.BuffType<BlueFire>(), 240);
-        if (Main.rand.NextBool(Main.expertMode ? 1 : 4))
+        }
+
+        if (Main.rand.NextBool(Main.expertMode ? 1 : 4)) {
             target.AddBuff(BuffID.Blackout, 600);
-        if (Main.rand.NextBool(Main.expertMode ? 4 : 12))
+        }
+
+        if (Main.rand.NextBool(Main.expertMode ? 4 : 12)) {
             target.AddBuff(BuffID.Silenced, 120);
+        }
     }
 
     public override bool CheckDead() {
-        if (NPC.ai[0] == -2f)
+        if (NPC.ai[0] == -2f) {
             return true;
+        }
+
         NPC.ai[0] = -2f;
         NPC.ai[1] = 0f;
         NPC.ai[2] = 0f;
@@ -337,36 +353,30 @@ public class SuperStarite : ModNPC, ITrackTimeBetweenHits {
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
         var texture = TextureAssets.Npc[Type].Value;
-        var origin = NPC.frame.Size() / 2f;
+        var origin = new Vector2(59f, 64f);
         var offset = new Vector2(NPC.width / 2f, NPC.height / 2f);
         float mult = 1f / NPCSets.TrailCacheLength[NPC.type];
-        float rotation = NPC.rotation - MathHelper.PiOver4 / 2.5f;
-        float rotationOffset = MathHelper.PiOver2;
-        float armsOffset = 28f * NPC.scale;
+        float rotation = NPC.rotation;
         var coreFrame = new Rectangle(NPC.frame.X, NPC.frame.Y + NPC.frame.Height, NPC.frame.Width, NPC.frame.Height);
+
+        Color trailColor = GlimmerColors.Red * 0.27f;
+        Color bloomColor = GlimmerColors.Yellow;
+        drawColor = NPC.GetNPCColorTintedByBuffs(NPC.GetAlpha(drawColor));
+
         if (!NPC.IsABestiaryIconDummy) {
             for (int i = 0; i < NPCSets.TrailCacheLength[NPC.type]; i++) {
-                var trailColor = Main.tenthAnniversaryWorld ? Color.HotPink * 0.3f : new Color(70, 30, 30, 0);
-
                 trailColor *= mult * (NPCSets.TrailCacheLength[NPC.type] - i);
-                for (int j = 0; j < 5; j++) {
-                    Vector2 circularOffset = (j / 5f * MathHelper.TwoPi).ToRotationVector2();
-                    Main.spriteBatch.Draw(texture, NPC.oldPos[i] + offset + circularOffset * armsOffset - screenPos, NPC.frame, trailColor, NPC.oldRot[i] + rotationOffset - MathHelper.PiOver4 / 2.5f + MathHelper.TwoPi / 5f * j, origin, NPC.scale, SpriteEffects.None, 0f);
-                }
+                Main.spriteBatch.Draw(texture, NPC.oldPos[i] + offset - screenPos, NPC.frame, trailColor, NPC.oldRot[i], origin, NPC.scale, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(texture, NPC.oldPos[i] + offset - screenPos, coreFrame, trailColor, 0f, origin, NPC.scale, SpriteEffects.None, 0f);
             }
         }
 
-        for (int j = 0; j < 5; j++) {
-            Vector2 circularOffset = (j / 5f * MathHelper.TwoPi).ToRotationVector2();
-            Main.spriteBatch.Draw(texture, NPC.position + offset + circularOffset * armsOffset - screenPos, NPC.frame, new Color(255, 255, 255, 255), rotation + rotationOffset + MathHelper.TwoPi / 5f * j, origin, NPC.scale, SpriteEffects.None, 0f);
-        }
+        Main.spriteBatch.Draw(texture, NPC.position + offset - screenPos + new Vector2(1f, 4f), NPC.frame, drawColor, rotation, origin, NPC.scale, SpriteEffects.None, 0f);
 
         var bloom = AequusTextures.Bloom;
-        var bloomColor = Main.tenthAnniversaryWorld ? Color.HotPink : Color.Yellow;
         Main.spriteBatch.Draw(bloom, NPC.position + offset - screenPos, null, bloomColor * 0.5f, 0f, bloom.Size() / 2f, NPC.scale * 0.6f, SpriteEffects.None, 0f);
         Main.spriteBatch.Draw(bloom, NPC.position + offset - screenPos, null, bloomColor * 0.25f, 0f, bloom.Size() / 2f, NPC.scale * 0.9f, SpriteEffects.None, 0f);
-        Main.spriteBatch.Draw(texture, NPC.position + offset - screenPos, coreFrame, new Color(255, 255, 255, 255), 0f, origin, NPC.scale, SpriteEffects.None, 0f);
+        Main.spriteBatch.Draw(texture, NPC.position + offset - screenPos, coreFrame, drawColor, 0f, NPC.frame.Size()/2f, NPC.scale, SpriteEffects.None, 0f);
         if ((int)NPC.ai[0] == -2) {
             DrawDeathExplosion(NPC.position + offset - screenPos);
         }
@@ -374,7 +384,7 @@ public class SuperStarite : ModNPC, ITrackTimeBetweenHits {
     }
 
     public void DrawDeathExplosion(Vector2 drawPos) {
-        float scale = (float)Math.Min(NPC.scale * (-NPC.ai[3] / 60f), 1f) * 3f;
+        float scale = (float)Math.Min(NPC.scale * (-NPC.ai[3] / 60f), 1f) * 1.5f;
         var shineColor = new Color(200, 40, 150, 0) * scale * NPC.Opacity;
 
         Texture2D lightRay = AequusTextures.LightRayFlat;

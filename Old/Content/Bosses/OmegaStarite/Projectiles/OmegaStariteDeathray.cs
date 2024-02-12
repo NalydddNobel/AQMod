@@ -69,7 +69,7 @@ public class OmegaStariteDeathray : ModProjectile {
         Vector2 normalizedRotation = new Vector2(1f, 0f).RotatedBy(Projectile.rotation);
         Vector2 basePosition = drawPosition + normalizedRotation * OmegaStarite.DIAMETER;
         Vector2 origin = frame.Size() / 2f;
-        Color beamColor = GlimmerZone.CosmicEnergyColor * 0.065f;
+        Color beamColor = GlimmerColors.CosmicEnergy * 0.065f;
         float rotation = Projectile.rotation - MathHelper.PiOver2;
         float baseScale = GetLaserScale();
         Main.spriteBatch.Draw(texture, basePosition, frame, beamColor, rotation, origin, new Vector2(1f * baseScale, 1f * baseScale), SpriteEffects.None, 0f);

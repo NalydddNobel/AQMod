@@ -747,11 +747,11 @@ UltimateSword: {
 }
 
 DwarfStariteItem: {
-	// DisplayName: Dwarf Starite Item
+	// DisplayName: Mods.Aequus.Items.DwarfStariteItem.DisplayName
 	// Tooltip: ""
 }
 
 GalacticStarfruit: {
-	// DisplayName: Galactic Starfruit
+	// DisplayName: Mods.Aequus.Items.GalacticStarfruit.DisplayName
 	// Tooltip: ""
 }

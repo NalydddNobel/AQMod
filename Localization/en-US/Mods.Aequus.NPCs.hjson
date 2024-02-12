@@ -151,14 +151,17 @@ UltraStarite: {
 HyperStarite: {
 	DisplayName: Hyper Starite
 	Bestiary: With an even further excess of energy, the starite gains the ability to detach its segments and swing them in an orbit as dangerous weapons.
+	BannerName: Hyper Starite Banner
 }
 
 SuperStarite: {
 	DisplayName: Super Starite
 	Bestiary: Starites that gather enough energy eventually evolve into this armored form. They're much hardier, and can also fire off excess energy as simple projectiles.
+	BannerName: Super Starite Banner
 }
 
 Starite: {
 	DisplayName: Starite
 	Bestiary: A piece of animate stardust, given life by some unknowable force. They cannot survive for long without a source of energy, granted by the strange lights that fill the sky.
+	BannerName: Starite Banner
 }
