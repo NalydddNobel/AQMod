@@ -94,11 +94,11 @@ GravetenderMinionBuff: {
 }
 
 BlueFire: {
-	// DisplayName: Mana Blaze
-	// Description: The celestial heat rips at your health and mana!
+	DisplayName: 魔力烈焰
+	Description: 你的生命和魔力被星界高热撕裂了!
 }
 
 UltimateSwordBuff: {
-	// DisplayName: Mods.Aequus.Buffs.UltimateSwordBuff.DisplayName
-	// Description: Mods.Aequus.Buffs.UltimateSwordBuff.Description
+	DisplayName: Mods.Aequus.Buffs.UltimateSwordBuff.DisplayName
+	Description: Mods.Aequus.Buffs.UltimateSwordBuff.Description
 }

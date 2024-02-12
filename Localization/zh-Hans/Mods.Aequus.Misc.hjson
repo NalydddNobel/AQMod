@@ -44,7 +44,7 @@ Dyes: {
 	}
 }
 
-// BlocksDistance: Distance: {0} blocks away
+BlocksDistance: 距离: {0}格物块
 Contains: 包含: {0}
 MonocleToggleOn: 单片眼镜开启
 MonocleToggleOff: 单片眼镜关闭
