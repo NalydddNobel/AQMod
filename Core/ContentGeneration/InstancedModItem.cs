@@ -144,6 +144,9 @@ internal class InstancedCaughtNPCItem : InstancedModItem, IPostSetupContent {
         _parent = parent;
     }
 
+    public override LocalizedText DisplayName => _parent.DisplayName;
+    public override LocalizedText Tooltip => LocalizedText.Empty;
+
     public override void Load() {
         ModTypeLookup<ModItem>.RegisterLegacyNames(this, $"{Name}Item");
     }
