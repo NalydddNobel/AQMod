@@ -44,6 +44,7 @@ Dyes: {
 	}
 }
 
+BlocksDistance: Distance: {0} blocks away
 Contains: Contains: {0}
 MonocleToggleOn: Monocle On
 MonocleToggleOff: Monocle Off

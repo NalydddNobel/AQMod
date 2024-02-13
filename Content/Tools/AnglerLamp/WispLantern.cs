@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Core.Initialization;
 using System;
 using System.Collections.Generic;
@@ -20,11 +19,8 @@ public class WispLantern : ModItem {
     public static int FireDebuffTime { get; set; } = 720;
     public static int DebuffRange { get; set; } = 480;
 
+    [CloneByReference]
     private readonly List<Dust> _dustEffects = new();
-
-    public override void SetStaticDefaults() {
-        EquipBoostDatabase.Instance.SetNoEffect(Type);
-    }
 
     public override void SetDefaults() {
         Item.width = 16;

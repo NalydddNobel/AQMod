@@ -54,14 +54,15 @@ public class GravetenderHood : ModItem {
     }
 
     public override void AddRecipes() {
-        foreach (int rottenChunk in ItemTypeVariants.RottenChunk.Where(i => i.ValidEntry)) {
+        foreach (int rottenChunk in ItemTypeVariantMetadata.RottenChunk.Where(i => i.ValidEntry)) {
             CreateRecipe()
                 .AddIngredient(ItemID.Cobweb, 50)
                 .AddIngredient(rottenChunk, 5)
                 .AddTile(TileID.Loom)
                 .AddCondition(Condition.InGraveyard)
                 .Register()
-                .SortBeforeFirstRecipesOf(ItemID.GravediggerShovel);
+                .SortBeforeFirstRecipesOf(ItemID.GravediggerShovel)
+                .DisableDecraft();
         }
     }
 }

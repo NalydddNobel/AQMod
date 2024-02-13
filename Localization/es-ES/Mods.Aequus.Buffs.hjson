@@ -97,3 +97,13 @@ GravetenderMinionBuff: {
 	// DisplayName: Gravetender
 	// Description: The wisp will increase the power of your ghosts!
 }
+
+BlueFire: {
+	// DisplayName: Mana Blaze
+	// Description: The celestial heat rips at your health and mana!
+}
+
+UltimateSwordBuff: {
+	// DisplayName: Mods.Aequus.Buffs.UltimateSwordBuff.DisplayName
+	// Description: Mods.Aequus.Buffs.UltimateSwordBuff.Description
+}

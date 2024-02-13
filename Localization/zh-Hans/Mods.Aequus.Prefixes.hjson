@@ -31,7 +31,7 @@ BoundedPrefix: {
 StuffedPrefix: {
 	DisplayName: 填充的
 	Ability: x{0}持续时间
-	ItemName: 月光花粉
+	ItemName: 星界立方
 	ItemTooltip:
 		'''
 		翻倍药水的持续时间
@@ -41,12 +41,12 @@ StuffedPrefix: {
 
 EmpoweredPrefix: {
 	DisplayName: 增强的
-	Ability: x{0}强度
+	Ability: x{0}效力
 	Downside: "{$StuffedPrefix.Ability}"
 	ItemName: 寒风花粉
 	ItemTooltip:
 		'''
-		翻倍药水的持续时间
+		强化药水的效力
 		{$Prefixes.PotionPrefixTooltip}
 		'''
 }

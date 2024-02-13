@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.Localization;
@@ -8,6 +7,7 @@ using Terraria.ObjectData;
 namespace Aequus.Content.Bosses.Trophies;
 
 [LegacyName("Trophies", "BossTrophiesTile")]
+[Obsolete("Replaced with instanced Mod Tiles for each trophy.")]
 public class LegacyBossTrophiesTile : ModTile {
     public const int OmegaStarite = 0;
     public const int Crabson = 1;

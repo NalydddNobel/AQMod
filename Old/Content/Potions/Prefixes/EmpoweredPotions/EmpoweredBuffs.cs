@@ -6,7 +6,7 @@ using Terraria.Localization;
 
 namespace Aequus.Old.Content.Potions.Prefixes.EmpoweredPotions;
 
-public class EmpoweredBuffs : DataSet {
+public class EmpoweredBuffs : MetadataSet {
     [JsonProperty]
     public static HashSet<Entry<BuffID>> Blacklist { get; private set; } = new();
     [JsonIgnore]

@@ -271,7 +271,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
 
             Zombie.PlayerOwner = zombieOwner;
 
-            npc.GivenName = Main.player[zombieOwner].name + "'s " + Lang.GetNPCName(npc.netID);
+            npc.GivenName = Main.player[zombieOwner].name + "'s " + LanguageDatabase.GetNPCName(npc.netID);
             npc.friendly = true;
             npc.boss = false;
             npc.alpha = Math.Max(npc.alpha, 60);
@@ -430,7 +430,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
     }
 
     public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
-        if (isZombie && !npc.IsABestiaryIconDummy && npc.lifeMax > 1 && !NPCID.Sets.ProjectileNPC[npc.type]) {
+        if (isZombie && !npc.IsABestiaryIconDummy && npc.lifeMax > 1 && !NPCSets.ProjectileNPC[npc.type]) {
             if (ghostChainsNPC > 0) {
                 GhostRenderer.ChainedUpNPCs.Add((npc, Main.npc[ghostChainsNPC]));
             }
@@ -494,7 +494,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
     }
 
     public bool CheckCanConvertIntoGhost(NPC npc) {
-        if (npc.boss || NPCSets.Unfriendable.Contains(npc.netID) || zombieOwner < 0 || zombieOwner > Main.maxPlayers || !Main.player[zombieOwner].active || Main.player[zombieOwner].dead || Main.player[zombieOwner].ghost) {
+        if (npc.boss || NPCMetadata.Unfriendable.Contains(npc.netID) || zombieOwner < 0 || zombieOwner > Main.maxPlayers || !Main.player[zombieOwner].active || Main.player[zombieOwner].dead || Main.player[zombieOwner].ghost) {
             return false;
         }
 
@@ -663,7 +663,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
         }
         for (int i = 0; i < Main.maxNPCs; i++) {
             if (Main.npc[i].active && Main.npc[i].CanBeChasedBy(entity) &&
-                !NPCID.Sets.CountsAsCritter[Main.npc[i].type]) {
+                !NPCSets.CountsAsCritter[Main.npc[i].type]) {
                 float c = entity.Distance(Main.npc[i].Center);
                 if (i == closestToPlayer) {
                     c /= 4f * prioritizePlayerMultiplier;

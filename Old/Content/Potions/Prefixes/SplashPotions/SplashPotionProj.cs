@@ -27,7 +27,7 @@ public class SplashPotionProj : ModProjectile {
 
     public override void OnSpawn(IEntitySource source) {
         if (source is not EntitySource_ItemUse itemUse || itemUse.Item == null || itemUse.Item.IsAir) {
-            ItemType = Main.rand.Next(ItemSets.Potions.Where(e => e.ValidEntry).Select(e => e.Id).ToArray());
+            ItemType = Main.rand.Next(ItemMetadata.Potions.Where(e => e.ValidEntry).Select(e => e.Id).ToArray());
             return;
         }
 
@@ -195,8 +195,8 @@ public class SplashPotionProj : ModProjectile {
     }
 
     private Color GetPotionColor() {
-        Color[] colors = ItemID.Sets.DrinkParticleColors.IndexInRange(ItemType) ? ItemID.Sets.DrinkParticleColors[ItemType] : null;
+        Color[] TCommonColor = ItemSets.DrinkParticleColors.IndexInRange(ItemType) ? ItemSets.DrinkParticleColors[ItemType] : null;
 
-        return colors == null || colors.Length == 0 ? Color.White : Main.rand.Next(colors);
+        return TCommonColor == null || TCommonColor.Length == 0 ? Color.White : Main.rand.Next(TCommonColor);
     }
 }

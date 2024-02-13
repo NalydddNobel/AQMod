@@ -17,6 +17,10 @@ internal class PotionPrefixItem : InstancedModItem, IRightClickOverrideWhenHeld 
     public override LocalizedText DisplayName => _parent.GetLocalization("ItemName");
     public override LocalizedText Tooltip => _parent.GetLocalization("ItemTooltip");
 
+    public override void SetStaticDefaults() {
+        Item.ResearchUnlockCount = 25;
+    }
+
     public override void SetDefaults() {
         Item.width = 16;
         Item.height = 16;
@@ -29,7 +33,7 @@ internal class PotionPrefixItem : InstancedModItem, IRightClickOverrideWhenHeld 
         Item potion = inv[slot];
         int wantedPrefix = _parent.Type;
 
-        if (!ItemSets.Potions.Contains(potion.type) || !potion.CanApplyPrefix(wantedPrefix) || potion.prefix == wantedPrefix) {
+        if (!ItemMetadata.Potions.Contains(potion.type) || !potion.CanApplyPrefix(wantedPrefix) || potion.prefix == wantedPrefix) {
             return false;
         }
 

@@ -13,10 +13,10 @@ public static class CommonColor {
     public static readonly Color TEXT_PREFIX_GOOD = new Color(120, 190, 120);
     public static readonly Color TEXT_PREFIX_BAD = new Color(190, 120, 120);
 
-    public static readonly Color[] COIN_COLORS = new Color[] {
-        Colors.CoinCopper,      // 0
-        Colors.CoinSilver,      // 1
-        Colors.CoinGold,        // 2
-        Colors.CoinPlatinum,    // 3
+    public static readonly Color[] COIN_TCommonColor = new Color[] {
+        TCommonColor.CoinCopper,      // 0
+        TCommonColor.CoinSilver,      // 1
+        TCommonColor.CoinGold,        // 2
+        TCommonColor.CoinPlatinum,    // 3
     };
 }

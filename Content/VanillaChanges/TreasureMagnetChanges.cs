@@ -13,8 +13,8 @@ public class TreasureMagnetChanges : GlobalItem {
     }
 
     public override void SetStaticDefaults() {
-        ItemID.Sets.ShimmerTransformToItem[ItemID.TreasureMagnet] = ItemID.CelestialMagnet;
-        ItemID.Sets.ShimmerTransformToItem[ItemID.CelestialMagnet] = ItemID.TreasureMagnet;
+        ItemSets.ShimmerTransformToItem[ItemID.TreasureMagnet] = ItemID.CelestialMagnet;
+        ItemSets.ShimmerTransformToItem[ItemID.CelestialMagnet] = ItemID.TreasureMagnet;
     }
 
     public override void ModifyItemLoot(Item item, ItemLoot itemLoot) {

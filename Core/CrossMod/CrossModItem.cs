@@ -4,6 +4,7 @@ using Terraria.Localization;
 namespace Aequus.Core.CrossMod;
 
 public abstract class CrossModItem : ModItem {
+    public virtual void SafeSetStaticDefaults() { }
     protected virtual void SafeAddRecipes() { }
 
     public string CrossModName { get; init; }
@@ -13,6 +14,14 @@ public abstract class CrossModItem : ModItem {
     }
 
     public override string LocalizationCategory => $"CrossMod.{CrossModName}.Items";
+
+    public sealed override void SetStaticDefaults() {
+        SafeSetStaticDefaults();
+
+        if (!ModLoader.HasMod(CrossModName)) {
+            Item.ResearchUnlockCount = 0;
+        }
+    }
 
     public sealed override void AddRecipes() {
         if (ModLoader.HasMod(CrossModName)) {

@@ -22,7 +22,7 @@ public class AequusPrefixes : GlobalItem {
 
     #region Hooks
     private static bool On_Item_CanHavePrefixes(On_Item.orig_CanHavePrefixes orig, Item self) {
-        if (ItemSets.Potions.Contains(self.type)) {
+        if (ItemMetadata.Potions.Contains(self.type)) {
             return true;
         }
 

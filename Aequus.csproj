@@ -63,5 +63,25 @@
 	<AdditionalFiles Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
   </ItemGroup>
-
+	
+  <ItemGroup>
+    <None Remove="Assets\Textures\None.png" />
+    <None Remove="Assets\Textures\Pixel.png" />
+    <None Remove="Old\Assets\Shaders\Flash.fx" />
+    <None Remove="Old\Assets\Shaders\GlimmerBackgroundShaders.fx" />
+    <None Remove="Old\Content\Bosses\OmegaStarite\Sounds\OmegaStariteHit0.ogg" />
+    <None Remove="Old\Content\Bosses\OmegaStarite\Sounds\OmegaStariteHit1.ogg" />
+    <None Remove="Old\Content\Bosses\OmegaStarite\Sounds\OmegaStariteHit2.ogg" />
+    <None Remove="Old\Content\Critters\DwarfStarite.png" />
+    <None Remove="Old\Content\Critters\DwarfStariteItem.png" />
+    <None Remove="Old\Content\Enemies\Glimmer\Hyper\Tiles\HyperStariteBanner.png" />
+    <None Remove="Old\Content\Enemies\Glimmer\Proto\Tiles\StariteBanner.png" />
+    <None Remove="Old\Content\Enemies\Glimmer\SuperStariteBullet.png" />
+    <None Remove="Old\Content\Enemies\Glimmer\Super\Tiles\SuperStariteBanner.png" />
+    <None Remove="Old\Content\Events\Glimmer\Spawners\GalacticStarfruit.png" />
+    <None Remove="Old\Content\Particles\CosmicCrystalDust.png" />
+    <None Remove="Old\Content\Particles\MonoSparkleDust.png" />
+    <None Remove="Old\Content\StatusEffects\BlueFire.png" />
+  </ItemGroup>
+	
 </Project>

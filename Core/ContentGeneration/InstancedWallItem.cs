@@ -23,7 +23,7 @@ internal class InstancedWallItem : InstancedModItem, IPostSetupContent {
 
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 400;
-        ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = !_dropItem;
+        ItemSets.DisableAutomaticPlaceableDrop[Type] = !_dropItem;
     }
 
     public void PostSetupContent(Aequus aequus) {

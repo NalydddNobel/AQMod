@@ -12,6 +12,7 @@ namespace Aequus.Content.Tools.MagicMirrors.PhasePhone;
 
 [Autoload(false)]
 internal class InstancedPhasePhone : InstancedModItem, IPhaseMirror, ITransformItem {
+    [CloneByReference]
     public List<(int, int, Dust)> DustEffectCache { get; set; }
 
     public int UseAnimationMax => 64;
@@ -61,7 +62,7 @@ internal class InstancedPhasePhone : InstancedModItem, IPhaseMirror, ITransformI
         return this;
     }
 
-    public InstancedPhasePhone WithDustColors(Func<Color> colorFactory) {
+    public InstancedPhasePhone WithDustTCommonColor(Func<Color> colorFactory) {
         _customColorFactory += colorFactory;
         return this;
     }
@@ -74,8 +75,8 @@ internal class InstancedPhasePhone : InstancedModItem, IPhaseMirror, ITransformI
     public override void SetStaticDefaults() {
         var loader = ModContent.GetInstance<PhasePhoneInstantiator>();
         ContentSamples.CreativeResearchItemPersistentIdOverride[Type] = loader.PhasePhone.Type;
-        ItemID.Sets.ShimmerCountsAsItem[Type] = loader.PhasePhone.Type;
-        ItemID.Sets.WorksInVoidBag[Type] = true;
+        ItemSets.ShimmerCountsAsItem[Type] = loader.PhasePhone.Type;
+        ItemSets.WorksInVoidBag[Type] = true;
     }
 
     public override void SetDefaults() {

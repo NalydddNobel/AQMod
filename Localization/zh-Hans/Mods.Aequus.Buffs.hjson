@@ -97,3 +97,13 @@ GravetenderMinionBuff: {
 	DisplayName: 守墓人
 	Description: 魂灵会强化你幽魂仆从的力量!
 }
+
+BlueFire: {
+	DisplayName: 魔力烈焰
+	Description: 你的生命和魔力被星界高热撕裂了!
+}
+
+UltimateSwordBuff: {
+	DisplayName: Mods.Aequus.Buffs.UltimateSwordBuff.DisplayName
+	Description: Mods.Aequus.Buffs.UltimateSwordBuff.Description
+}

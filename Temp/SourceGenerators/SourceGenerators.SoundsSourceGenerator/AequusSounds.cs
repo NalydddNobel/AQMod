@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Sounds: 60)</summary>
+/// <summary>(Total Sounds: 67)</summary>
 [CompilerGenerated]
 public partial class AequusSounds {            
         /// <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -96,6 +96,8 @@ public partial class AequusSounds {
     public static readonly SoundStyle ConductiveBlock2 = new("Aequus/Assets/Sounds/Tile/ConductiveBlock2");
     /// <summary>Full Path: Assets/Sounds/Tile/ConductiveBlock3</summary>
     public static readonly SoundStyle ConductiveBlock3 = new("Aequus/Assets/Sounds/Tile/ConductiveBlock3");
+    /// <summary>Full Path: Assets/Sounds/Tile/MoonflowerBreak</summary>
+    public static readonly SoundStyle MoonflowerBreak = new("Aequus/Assets/Sounds/Tile/MoonflowerBreak");
     /// <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
     public static readonly SoundStyle OmniGemBreak = new("Aequus/Assets/Sounds/Tile/OmniGemBreak");
     /// <summary>Full Path: Assets/Sounds/Tile/ScrapBlock0</summary>
@@ -126,4 +128,16 @@ public partial class AequusSounds {
     public static readonly SoundStyle MeathookPull = new("Aequus/Old/Assets/Sounds/Meathook/MeathookPull");
     /// <summary>Full Path: Old/Assets/Sounds/RecruitZombie</summary>
     public static readonly SoundStyle RecruitZombie = new("Aequus/Old/Assets/Sounds/RecruitZombie");
+    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteDeathRay</summary>
+    public static readonly SoundStyle OmegaStariteDeathRay = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteDeathRay");
+    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit0</summary>
+    public static readonly SoundStyle OmegaStariteHit0 = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit0");
+    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit1</summary>
+    public static readonly SoundStyle OmegaStariteHit1 = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit1");
+    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit2</summary>
+    public static readonly SoundStyle OmegaStariteHit2 = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit2");
+    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteKilled</summary>
+    public static readonly SoundStyle OmegaStariteKilled = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteKilled");
+    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
+    public static readonly SoundStyle OmegaStariteStarBullets = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets");
 }

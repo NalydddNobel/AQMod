@@ -4,7 +4,7 @@ using Terraria.GameContent;
 
 namespace Aequus.Common.NPCs;
 
-public class Personalities : ILoadable {
+public class Personalities : ILoad {
     public void Load(Mod mod) {
         On_ShopHelper.GetShoppingSettings += ShopHelper_GetShoppingSettings;
     }

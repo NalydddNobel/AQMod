@@ -155,6 +155,54 @@ AshTombstones: {
 	}
 }
 
+PlanterBox: {
+	Moray: {
+		// ItemDisplayName: Moray Planter Box
+		// ItemTooltip: ""
+	}
+
+	Moonflower: {
+		// ItemDisplayName: Moonflower Planter Box
+		// ItemTooltip: ""
+	}
+
+	Manacle: {
+		// ItemDisplayName: Manacle Planter Box
+		// ItemTooltip: ""
+	}
+
+	Mistral: {
+		// ItemDisplayName: Mistral Planter Box
+		// ItemTooltip: ""
+	}
+}
+
+HangingPot: {
+	Moray: {
+		// ItemDisplayName: Hanging Moray
+		// ItemTooltip: ""
+	}
+
+	Mistral: {
+		// ItemDisplayName: Hanging Mistral
+		// ItemTooltip: ""
+	}
+
+	Manacle: {
+		// ItemDisplayName: Hanging Manacle
+		// ItemTooltip: ""
+	}
+
+	Moonflower: {
+		// ItemDisplayName: Hanging Moonflower
+		// ItemTooltip: ""
+	}
+}
+
+// Moonflower.MapEntry: Moonflower
+// Mistral.MapEntry: Mistral
+// Manacle.MapEntry: Manacle
+
 ScrapBlock: {
 	// MapEntry: Junk Block
 	// ItemDisplayName: "{$Tiles.ScrapBlock.MapEntry}"

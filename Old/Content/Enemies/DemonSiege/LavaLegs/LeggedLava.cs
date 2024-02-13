@@ -31,15 +31,15 @@ public class LeggedLava : ModNPC {
     public override void SetStaticDefaults() {
         Main.npcFrameCount[NPC.type] = 11;
 
-        ItemID.Sets.KillsToBanner[BannerItem] = 25;
-        NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new() {
+        ItemSets.KillsToBanner[BannerItem] = 25;
+        NPCSets.NPCBestiaryDrawOffset.Add(Type, new() {
             Position = new Vector2(1f, 0f)
         });
 
-        foreach (int buff in BuffSets.DemonSiegeImmune) {
-            NPCID.Sets.SpecificDebuffImmunity[Type][buff] = true;
+        foreach (int buff in BuffMetadata.DemonSiegeImmune) {
+            NPCSets.SpecificDebuffImmunity[Type][buff] = true;
         }
-        NPCSets.DealsHeatDamage.Add(Type);
+        NPCMetadata.DealsHeatDamage.Add(Type);
     }
 
     public override void SetDefaults() {

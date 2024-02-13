@@ -11,6 +11,7 @@ namespace Aequus.Common.Items.Components;
 public interface ICooldownItem {
     int CooldownTime { get; }
     string TimerId => GetType().Name;
+    bool ShowCooldownTip => true;
 
     void CustomPreDraw(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
         spriteBatch.Draw(TextureAssets.Item[item.type].Value, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
@@ -23,7 +24,7 @@ public sealed class CooldownGlobalItem : GlobalItem {
     }
 
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
-        if (item.ModItem is not ICooldownItem cooldownItem) {
+        if (item.ModItem is not ICooldownItem cooldownItem || !cooldownItem.ShowCooldownTip) {
             return;
         }
 

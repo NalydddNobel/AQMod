@@ -142,16 +142,16 @@ public class RenameItemUIState : AequusUIState {
             if (price > 0) {
                 int[] coins = Utils.CoinsSplit(price);
                 if (coins[3] > 0) {
-                    coinsText = coinsText + "[c/" + Colors.AlphaDarken(Colors.CoinPlatinum).Hex3() + ":" + coins[3] + " " + Language.GetTextValue("LegacyInterface.15") + "] ";
+                    coinsText = coinsText + "[c/" + TCommonColor.AlphaDarken(TCommonColor.CoinPlatinum).Hex3() + ":" + coins[3] + " " + Language.GetTextValue("LegacyInterface.15") + "] ";
                 }
                 if (coins[2] > 0) {
-                    coinsText = coinsText + "[c/" + Colors.AlphaDarken(Colors.CoinGold).Hex3() + ":" + coins[2] + " " + Language.GetTextValue("LegacyInterface.16") + "] ";
+                    coinsText = coinsText + "[c/" + TCommonColor.AlphaDarken(TCommonColor.CoinGold).Hex3() + ":" + coins[2] + " " + Language.GetTextValue("LegacyInterface.16") + "] ";
                 }
                 if (coins[1] > 0) {
-                    coinsText = coinsText + "[c/" + Colors.AlphaDarken(Colors.CoinSilver).Hex3() + ":" + coins[1] + " " + Language.GetTextValue("LegacyInterface.17") + "] ";
+                    coinsText = coinsText + "[c/" + TCommonColor.AlphaDarken(TCommonColor.CoinSilver).Hex3() + ":" + coins[1] + " " + Language.GetTextValue("LegacyInterface.17") + "] ";
                 }
                 if (coins[0] > 0) {
-                    coinsText = coinsText + "[c/" + Colors.AlphaDarken(Colors.CoinCopper).Hex3() + ":" + coins[0] + " " + Language.GetTextValue("LegacyInterface.18") + "] ";
+                    coinsText = coinsText + "[c/" + TCommonColor.AlphaDarken(TCommonColor.CoinCopper).Hex3() + ":" + coins[0] + " " + Language.GetTextValue("LegacyInterface.18") + "] ";
                 }
             }
             else {

@@ -50,13 +50,8 @@ public partial class AequusPlayer : ModPlayer {
     }
 
     public override void PreUpdate() {
-        EquipmentModifierUpdate = false;
         UpdateTimers();
         UpdateItemFields();
-    }
-
-    public override void UpdateEquips() {
-        EquipmentModifierUpdate = true;
     }
 
     public override void PostUpdateEquips() {
@@ -81,7 +76,6 @@ public partial class AequusPlayer : ModPlayer {
 
     public override void PostUpdate() {
         UpdateDangers();
-        EquipmentModifierUpdate = false;
         timeSinceRespawn++;
     }
 

@@ -21,8 +21,8 @@ internal class InstancedBossBag : InstancedModItem {
     public override LocalizedText Tooltip => Language.GetText("CommonItemTooltip.RightClickToOpen");
 
     public override void SetStaticDefaults() {
-        ItemID.Sets.BossBag[Type] = true;
-        ItemID.Sets.PreHardmodeLikeBossBag[Type] = PreHardmode;
+        ItemSets.BossBag[Type] = true;
+        ItemSets.PreHardmodeLikeBossBag[Type] = PreHardmode;
 
         Item.ResearchUnlockCount = 3;
     }

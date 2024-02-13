@@ -55,3 +55,12 @@ DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 // GhostHitbox.DisplayName: Ghost Minion
 // GravetenderWisp.DisplayName: Gravetender Wisp
 // SplashPotionProj.DisplayName: Potion
+// OmegaStariteBullet.DisplayName: Cosmic Bullet
+// OmegaStariteDeathray.DisplayName: Cosmic Deathray
+// OmegaStariteProj.DisplayName: "{$NPCs.OmegaStarite.DisplayName}"
+// UltimateSwordProj.DisplayName: "{$Items.UltimateSword.DisplayName}"
+// HyperStariteProj.DisplayName: "{$NPCs.HyperStarite.DisplayName}"
+// SuperStariteBullet.DisplayName: "{$NPCs.SuperStarite.DisplayName}"
+// SuperStariteProj.DisplayName: "{$NPCs.SuperStarite.DisplayName}"
+// UltraStariteDeathray.DisplayName: Cosmic Ray
+// UltraStariteOuterArms.DisplayName: "{$NPCs.UltraStarite.DisplayName}"

@@ -1,10 +1,7 @@
 ﻿using Aequus.Content.DataSets;
-using Aequus.Core.DataSets;
-using System.Collections;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.Localization;
-using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Terraria.Utilities;
 
@@ -23,7 +20,7 @@ public abstract class BasePot : ModTile {
 
         TileID.Sets.DisableSmartCursor[Type] = true;
 
-        TileSets.IsSmashablePot.Add(Type);
+        TileMetadata.IsSmashablePot.Add(Type);
 
         SetupTileObjectData();
         _multiTile = TileObjectData.newTile.Width > 1 || TileObjectData.newTile.Height > 1;
@@ -40,11 +37,17 @@ public abstract class BasePot : ModTile {
         TileObjectData.newTile.StyleWrapLimit = 3;
     }
 
-    protected virtual bool PreDropEffects(int i, int j) => true;
+    protected virtual bool PreDropEffects(int i, int j) {
+        return true;
+    }
 
-    protected virtual bool DoSpecialBiomeTorch(ref int itemID) => false;
+    protected virtual bool DoSpecialBiomeTorch(ref int itemID) {
+        return false;
+    }
 
-    protected virtual int ChooseGlowstick(int i, int j) => ItemID.Glowstick;
+    protected virtual int ChooseGlowstick(int i, int j) {
+        return ItemID.Glowstick;
+    }
 
     protected virtual string GoreName(int i, int j, int frameX, int frameY) {
         return $"{Name}_";

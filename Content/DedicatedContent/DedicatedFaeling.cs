@@ -14,12 +14,12 @@ public class DedicatedFaeling : ModNPC {
     public override string Texture => AequusTextures.NPC(NPCID.Shimmerfly);
 
     public override void SetStaticDefaults() {
-        NPCID.Sets.NPCBestiaryDrawOffset[Type] = new() {
+        NPCSets.NPCBestiaryDrawOffset[Type] = new() {
             Hide = true,
         };
-        NPCID.Sets.CountsAsCritter[Type] = true;
-        NPCID.Sets.TrailingMode[Type] = NPCID.Sets.TrailingMode[NPCID.Shimmerfly];
-        NPCID.Sets.TrailCacheLength[Type] = NPCID.Sets.TrailCacheLength[NPCID.Shimmerfly];
+        NPCSets.CountsAsCritter[Type] = true;
+        NPCSets.TrailingMode[Type] = NPCSets.TrailingMode[NPCID.Shimmerfly];
+        NPCSets.TrailCacheLength[Type] = NPCSets.TrailCacheLength[NPCID.Shimmerfly];
     }
 
     public override void SetDefaults() {

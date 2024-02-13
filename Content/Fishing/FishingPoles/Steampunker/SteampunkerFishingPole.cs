@@ -29,7 +29,7 @@ public class SteampunkerFishingPole : ModFishingPole {
         Item.shootSpeed = 10f;
         Item.rare = ItemRarityID.LightPurple;
         Item.value = Item.buyPrice(gold: 50);
-        Item.shoot = Bobber.Type;
+        Item.shoot = _bobber.Type;
     }
 
     public override void GetDrawData(Projectile bobber, ref float polePosX, ref float polePosY, ref Color lineColor) {

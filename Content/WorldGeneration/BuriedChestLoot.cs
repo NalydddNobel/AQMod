@@ -98,7 +98,7 @@ public class BuriedChestLoot : ModSystem {
             }
 
             // Prevent Aequus from adjusting chest loot at all if it contains an important item
-            if (ItemSets.ImportantItem.Contains(chest.item[m].type)) {
+            if (ItemMetadata.ImportantItem.Contains(chest.item[m].type)) {
                 return false;
             }
         }

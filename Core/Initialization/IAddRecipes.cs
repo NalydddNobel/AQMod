@@ -1,5 +1,5 @@
 ﻿namespace Aequus.Core.Initialization;
 
-internal interface IAddRecipes : ILoadable {
+internal interface IAddRecipes : ILoad {
     void AddRecipes(Aequus aequus);
 }

@@ -8,7 +8,7 @@ public class SoulGem : ModItem {
     public virtual int TransformID => ModContent.ItemType<SoulGemFilled>();
 
     public override void SetStaticDefaults() {
-        ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.Amber;
+        ItemSets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.Amber;
         Item.ResearchUnlockCount = 25;
     }
 
@@ -55,7 +55,7 @@ public class SoulGem : ModItem {
 
                 if (newSoulGem == null) {
                     newSoulGem = player.QuickSpawnItemDirect(player.GetSource_OpenItem(soulGem.type), (soulGem.ModItem as SoulGem).TransformID);
-                    newSoulGem.newAndShiny = !ItemID.Sets.NeverAppearsAsNewInInventory[soulGem.type];
+                    newSoulGem.newAndShiny = !ItemSets.NeverAppearsAsNewInInventory[soulGem.type];
                 }
                 else {
                     if (newSoulGem.type != (soulGem.ModItem as SoulGem).TransformID) {

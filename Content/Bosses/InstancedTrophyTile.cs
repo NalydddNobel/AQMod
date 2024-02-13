@@ -5,8 +5,8 @@ using Terraria.ObjectData;
 namespace Aequus.Content.Bosses;
 
 internal class InstancedTrophyTile : InstancedModTile {
-    public InstancedTrophyTile(string name) : base($"{name}Trophy", $"{typeof(InstancedTrophyTile).NamespaceFilePath()}/Trophies/{name}Trophy") {
-    }
+    public InstancedTrophyTile(ModNPC modNPC) : base($"{modNPC.Name}Trophy", $"{modNPC.NamespaceFilePath()}/Items/{modNPC.Name}Trophy") { }
+    public InstancedTrophyTile(string name) : base($"{name}Trophy", $"{typeof(InstancedTrophyTile).NamespaceFilePath()}/Trophies/{name}Trophy") { }
 
     public override void SetStaticDefaults() {
         Main.tileSpelunker[Type] = true;

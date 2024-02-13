@@ -1,6 +1,6 @@
 ﻿namespace Aequus.Core;
 
-public class GoreDisabler : ILoadable {
+public class GoreDisabler : ILoad {
     public static bool DisableGores { get; private set; }
 
     public void Load(Mod mod) {

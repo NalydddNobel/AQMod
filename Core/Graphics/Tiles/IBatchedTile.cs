@@ -6,7 +6,7 @@ namespace Aequus.Core.Graphics.Tiles;
 /// Grants a ModTile the ability to render post-draw elements in a batch to reduce on Begin/End calls.
 /// <para>Place SpecialTileDrawing.Add(i, j, Type); into ModTile.PostDraw(...) to add it to the rendering list.</para>
 /// </summary>
-public interface IBatchedTile : ILoadable {
+public interface IBatchedTile : ILoad {
     bool SolidLayerTile { get; }
 
     void BatchedPreDraw(List<BatchedTileDrawInfo> tiles, int count) {

@@ -55,3 +55,12 @@ OsirisProj.DisplayName: "{$Items.Osiris.DisplayName}"
 GhostHitbox.DisplayName: 幽魂仆从
 GravetenderWisp.DisplayName: 守墓人游魂
 SplashPotionProj.DisplayName: 药水
+OmegaStariteBullet.DisplayName: 宇宙星幕
+OmegaStariteDeathray.DisplayName: 最终射线
+OmegaStariteProj.DisplayName: "{$NPCs.OmegaStarite.DisplayName}"
+UltimateSwordProj.DisplayName: "{$Items.UltimateSword.DisplayName}"
+// HyperStariteProj.DisplayName: "{$NPCs.HyperStarite.DisplayName}"
+// SuperStariteBullet.DisplayName: "{$NPCs.SuperStarite.DisplayName}"
+// SuperStariteProj.DisplayName: "{$NPCs.SuperStarite.DisplayName}"
+// UltraStariteDeathray.DisplayName: Cosmic Ray
+// UltraStariteOuterArms.DisplayName: "{$NPCs.UltraStarite.DisplayName}"

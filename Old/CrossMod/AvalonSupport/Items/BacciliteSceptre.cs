@@ -8,7 +8,7 @@ namespace Aequus.Old.CrossMod.AvalonSupport.Items;
 
 [AutoloadGlowMask]
 public class BacciliteSceptre : CrossModItem {
-    public override void SetStaticDefaults() {
+    public override void SafeSetStaticDefaults() {
         Item.staff[Type] = true;
     }
 

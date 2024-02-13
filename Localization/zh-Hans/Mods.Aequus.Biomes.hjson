@@ -4,7 +4,17 @@ DemonSiegeZone: {
 	TownNPCDialogueName: ""
 }
 
+GlimmerZone: {
+	DisplayName: 柔光
+	TownNPCDialogueName: 柔光
+}
+
+PeacefulGlimmerZone: {
+	DisplayName: 宁静柔光
+	TownNPCDialogueName: 柔光
+}
+
 PollutedOceanBiome: {
-	// DisplayName: Polluted Ocean Biome
-	// TownNPCDialogueName: the Polluted Ocean Biome
+	// DisplayName: Polluted Ocean
+	// TownNPCDialogueName: the Polluted Ocean
 }

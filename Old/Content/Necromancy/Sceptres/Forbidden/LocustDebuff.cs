@@ -16,7 +16,7 @@ public class LocustDebuff : ModBuff {
     public override void SetStaticDefaults() {
         Main.debuff[Type] = true;
         Main.buffNoSave[Type] = true;
-        BuffSets.PlayerDoTDebuff.Add(Type);
+        BuffMetadata.PlayerDoTDebuff.Add(Type);
     }
 
     public override bool ReApply(NPC npc, int time, int buffIndex) {

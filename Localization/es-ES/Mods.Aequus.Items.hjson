@@ -136,23 +136,21 @@ WarHorn: {
 HallowCanteen: {
 	// DisplayName: Magic Canteen
 	// DisplayNameAlt: Magic Canteen ({0})
-	// Tooltip: Craft with two potions to allow infinite use
-}
-
-HallowCanteenEmpty: {
-	// DisplayName: "{$Items.HallowCanteen.DisplayName}"
-	// Tooltip: "{$Items.HallowCanteen.Tooltip}"
-}
-
-PotionCanteenEmpty: {
-	// DisplayName: "{$Items.PotionCanteen.DisplayName}"
-	// Tooltip: "{$Items.PotionCanteen.Tooltip}"
+	/* Tooltip:
+		'''
+		Allows infinite usage of two potions
+		Hover over with a stack of 15 potions and press <right>
+		''' */
 }
 
 PotionCanteen: {
 	// DisplayName: Potion Canteen
 	// DisplayNameAlt: Potion Canteen ({0})
-	// Tooltip: Craft with a potion to allow infinite use
+	/* Tooltip:
+		'''
+		Allows infinite usage of a potion
+		Hover over with a stack of 15 potions and press <right>
+		''' */
 }
 
 SouljointCuffs: {
@@ -207,7 +205,7 @@ GravetenderRobes: {
 	/* Tooltip:
 		'''
 		{$CommonTooltips.StatGhostDuration}
-		{$CommonTooltips.StatGhostSlots}
+		{$CommonTooltips.StatGhostSlots@1}
 		''' */
 }
 
@@ -737,6 +735,74 @@ Toolbelt: {
 		''' */
 	// BackpackEnabled: Toolbelt Pack On
 	// BackpackDisabled: Toolbelt Pack Off
+}
+
+MoonflowerSeeds: {
+	// DisplayName: Moonflower Seeds
+	// Tooltip: ""
+}
+
+MistralSeeds: {
+	// DisplayName: Mistral Seeds
+	// Tooltip: ""
+}
+
+ManacleSeeds: {
+	// DisplayName: Manacle Seeds
+	// Tooltip: ""
+}
+
+CosmicMonolith: {
+	// DisplayName: Mods.Aequus.Items.CosmicMonolith.DisplayName
+	// Tooltip: ""
+}
+
+UltimateSword: {
+	// DisplayName: Mods.Aequus.Items.UltimateSword.DisplayName
+	// Tooltip: ""
+}
+
+DwarfStariteItem: {
+	// DisplayName: Mods.Aequus.Items.DwarfStariteItem.DisplayName
+	// Tooltip: ""
+}
+
+GalacticStarfruit: {
+	// DisplayName: Mods.Aequus.Items.GalacticStarfruit.DisplayName
+	// Tooltip: ""
+}
+
+StariteMaterial: {
+	// DisplayName: Mods.Aequus.Items.StariteMaterial.DisplayName
+	// Tooltip: ""
+}
+
+CelestialEightBall: {
+	// DisplayName: Mods.Aequus.Items.CelestialEightBall.DisplayName
+	// Tooltip: ""
+
+	Answer: {
+		// 0: Yes
+		// 1: My sources say no
+		// 2: It is certain
+		// 3: It is decidedly so
+		// 4: Without a doubt
+		// 5: Yes definitely
+		// 6: You may rely on it
+		// 7: As I see it yes
+		// 8: Most likely
+		// 9: Outlook good
+		// 10: Signs point to yes
+		// 11: Don't count on it
+		// 12: My reply is no
+		// 13: Outlook not so good
+		// 14: Very doubtful
+		// 15: Reply hazy try again
+		// 16: Ask again later
+		// 17: Better not tell you now
+		// 18: Cannot predict now
+		// 19: Concentrate and ask again
+	}
 }
 
 Killifish: {

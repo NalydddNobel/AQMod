@@ -11,6 +11,9 @@ namespace Aequus.Content.Bosses;
 internal class InstancedRelicTile : InstancedModTile, ISpecialTileRenderer {
     private readonly IRelicRenderer _renderer;
 
+    public InstancedRelicTile(ModNPC modNPC, IRelicRenderer renderer) : base($"{modNPC.Name}Relic", $"{modNPC.NamespaceFilePath()}/Items/{modNPC.Name}Relic") {
+        _renderer = renderer;
+    }
     public InstancedRelicTile(string name, IRelicRenderer renderer) : base($"{name}Relic", $"{typeof(InstancedTrophyTile).NamespaceFilePath()}/Trophies/{name}Relic") {
         _renderer = renderer;
     }
@@ -74,7 +77,7 @@ internal class InstancedRelicTile : InstancedModTile, ISpecialTileRenderer {
         var relicEffects = tile.TileFrameY / FrameHeight != 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
         float offset = (float)Math.Sin(Main.GlobalTimeWrappedHourly * MathHelper.TwoPi / 5f);
-        var drawCoordinates = worldCoordinates - Main.screenPosition + new Vector2(0f, -30f) + new Vector2(0f, offset * 4f);
+        var drawCoordinates = worldCoordinates - Main.screenPosition + new Vector2(0f, -44f) + new Vector2(0f, offset * 4f);
 
         _renderer.DrawRelic(i, j, drawCoordinates, relicColor, relicEffects, offset);
     }

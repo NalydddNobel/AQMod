@@ -98,7 +98,7 @@ public class JunkJet : ModItem {
         }
 
         ammoData = new();
-        if (ItemSets.AmmoIdToProjectileId.TryGetValue(bulletItem, out var projectileConversion)) {
+        if (ItemMetadata.AmmoIdToProjectileId.TryGetValue(bulletItem, out var projectileConversion)) {
             ammoData.ProjectileId = projectileConversion;
             return;
         }

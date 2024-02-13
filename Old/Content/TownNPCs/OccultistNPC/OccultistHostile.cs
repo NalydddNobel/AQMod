@@ -15,10 +15,10 @@ public class OccultistHostile : Occultist {
 
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = 25;
-        NPCID.Sets.ActsLikeTownNPC[Type] = true;
-        NPCID.Sets.NoTownNPCHappiness[Type] = true;
-        NPCID.Sets.SpawnsWithCustomName[Type] = false;
-        NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new() {
+        NPCSets.ActsLikeTownNPC[Type] = true;
+        NPCSets.NoTownNPCHappiness[Type] = true;
+        NPCSets.SpawnsWithCustomName[Type] = false;
+        NPCSets.NPCBestiaryDrawOffset.Add(Type, new() {
             Hide = true,
         });
     }
@@ -53,7 +53,7 @@ public class OccultistHostile : Occultist {
             NPC.direction = dir;
         }
         
-        if (WorldFlags.DownedDemonSiegeT1) {
+        if (WorldState.DownedDemonBoss) {
             NPC.ai[0] = 0f;
             NPC.ai[1] = 0f;
             NPC.Transform(ModContent.NPCType<Occultist>());
@@ -135,7 +135,7 @@ public class OccultistHostile : Occultist {
     }
 
     public static void CheckSpawn(int x, int y, int plr) {
-        if (WorldFlags.DownedDemonSiegeT1 || Main.player[plr].Distance(new Vector2(x * 16f, y * 16f)) <= 800f || Main.hardMode || NPC.AnyNPCs(ModContent.NPCType<OccultistHostile>())) {
+        if (WorldState.DownedDemonBoss || Main.player[plr].Distance(new Vector2(x * 16f, y * 16f)) <= 800f || Main.hardMode || NPC.AnyNPCs(ModContent.NPCType<OccultistHostile>())) {
             return;
         }
 

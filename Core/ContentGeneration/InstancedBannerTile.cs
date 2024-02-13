@@ -31,7 +31,7 @@ internal class InstancedBannerTile : InstancedModTile {
         TileID.Sets.DisableSmartCursor[Type] = true;
         AddMapEntry(new Color(13, 88, 130), Language.GetText("MapObject.Banners"));
         if (!Main.dedServ) {
-            VineDrawing.VineLength[Type] = 3;
+            VineDrawing.VineLength[Type] = new(1, 3);
         }
     }
 
@@ -43,7 +43,7 @@ internal class InstancedBannerTile : InstancedModTile {
         int style = Main.tile[i, j].TileFrameX / 18;
         int npcType = _modNPC.Type;
         int bannerItem = NPCLoader.GetNPC(npcType).BannerItem;
-        if (ItemID.Sets.BannerStrength.IndexInRange(bannerItem) && ItemID.Sets.BannerStrength[bannerItem].Enabled) {
+        if (ItemSets.BannerStrength.IndexInRange(bannerItem) && ItemSets.BannerStrength[bannerItem].Enabled) {
             foreach (var npcToBuffAgainst in _bannerBuffNPCs) {
                 Main.SceneMetrics.NPCBannerBuff[npcToBuffAgainst.Type] = true;
                 Main.SceneMetrics.hasBanner = true;

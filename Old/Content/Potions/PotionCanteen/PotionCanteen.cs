@@ -22,7 +22,7 @@ public class PotionCanteen : TemplateCanteen {
             return true;
         }
 
-        var liquidColor = GetPotionColors();
+        var liquidColor = GetPotionTCommonColor();
         float a = drawColor.A > 0 ? drawColor.A / 255f : Main.inventoryBack.A / 255f;
         spriteBatch.Draw(TextureAssets.Item[Type].Value, position, frame, liquidColor with { A = 255 }, 0f, origin, scale, SpriteEffects.None, 0f);
         return false;
@@ -34,7 +34,7 @@ public class PotionCanteen : TemplateCanteen {
         var origin = frame.Size() / 2f;
         spriteBatch.Draw(AequusTextures.PotionCanteenEmpty, position, frame, lightColor, rotation, origin, scale, SpriteEffects.None, 0f);
         if (HasBuffs()) {
-            var liquidColor = GetPotionColors();
+            var liquidColor = GetPotionTCommonColor();
             spriteBatch.Draw(texture, position, frame, lightColor.MultiplyRGBA(liquidColor), rotation, origin, scale, SpriteEffects.None, 0f);
         }
         return false;

@@ -4,7 +4,7 @@ namespace Aequus.Old.Content.Materials.SoulGem;
 
 public class SoulGemGlobalNPC : GlobalNPC {
     public override bool AppliesToEntity(NPC entity, bool lateInstantiation) {
-        return !NPCSets.Soulless.Contains(entity.type);
+        return !NPCMetadata.Soulless.Contains(entity.type);
     }
 
     public override bool SpecialOnKill(NPC npc) {

@@ -21,6 +21,7 @@ public class AnglerLamp : ModItem {
     public static int FireDebuffTime { get; set; } = 180;
     public static int DebuffRange { get; set; } = 240;
 
+    [CloneByReference]
     private readonly List<Dust> _dustEffects = new();
 
     public float animation;

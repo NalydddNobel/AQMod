@@ -58,14 +58,14 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
 
     public override void SetStaticDefaults() {
         base.SetStaticDefaults();
-        NPCID.Sets.AttackType[Type] = 1;
-        NPCID.Sets.AttackTime[Type] = 60;
-        NPCID.Sets.AttackAverageChance[Type] = 20;
-        NPCID.Sets.DangerDetectRange[Type] = 632;
-        NPCID.Sets.HatOffsetY[Type] = 0;
-        NPCID.Sets.NoTownNPCHappiness[Type] = true;
-        NPCID.Sets.SpawnsWithCustomName[Type] = true;
-        NPCID.Sets.FaceEmote[Type] = ModContent.EmoteBubbleType<SkyMerchantEmote>();
+        NPCSets.AttackType[Type] = 1;
+        NPCSets.AttackTime[Type] = 60;
+        NPCSets.AttackAverageChance[Type] = 20;
+        NPCSets.DangerDetectRange[Type] = 632;
+        NPCSets.HatOffsetY[Type] = 0;
+        NPCSets.NoTownNPCHappiness[Type] = true;
+        NPCSets.SpawnsWithCustomName[Type] = true;
+        NPCSets.FaceEmote[Type] = ModContent.EmoteBubbleType<SkyMerchantEmote>();
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -101,7 +101,7 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
 
     private void BalloonAttack() {
         NPC.ai[1]++;
-        if (Main.netMode != NetmodeID.MultiplayerClient && NPC.ai[1] > 0f && Main.rand.NextBool(NPCID.Sets.AttackAverageChance[Type])) {
+        if (Main.netMode != NetmodeID.MultiplayerClient && NPC.ai[1] > 0f && Main.rand.NextBool(NPCSets.AttackAverageChance[Type])) {
             var velocity = NPC.DirectionTo(Main.npc[target].Center + Main.npc[target].velocity * 10f);
             NPC.velocity -= velocity * 1f;
             float speed = 18f;
@@ -187,7 +187,7 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
                 NPC.velocity.Y += (1f - balloonOpacity) * 0.3f;
             }
 
-            int attackRange = NPCID.Sets.DangerDetectRange[Type] == -1 ? 200 : NPCID.Sets.DangerDetectRange[Type];
+            int attackRange = NPCSets.DangerDetectRange[Type] == -1 ? 200 : NPCSets.DangerDetectRange[Type];
             float closestDistance = attackRange;
             for (int i = 0; i < Main.maxNPCs; i++) {
                 if (Main.npc[i].active && !Main.npc[i].friendly && Main.npc[i].damage > 0 && (Main.npc[i].noTileCollide || Collision.CanHit(NPC.Center, 0, 0, Main.npc[i].Center, 0, 0)) && NPCLoader.CanHitNPC(Main.npc[i], NPC)) {
@@ -328,7 +328,7 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
         if (NPC.AnyNPCs(NPCID.Demolitionist) && Main.rand.NextBool(5)) {
             key = "Demolitionist";
         }
-        return this.GetLocalization("Dialogue." + key).FormatWith(Lang.CreateDialogSubstitutionObject(NPC));
+        return this.GetLocalization("Dialogue." + key).FormatWith(LanguageDatabase.CreateDialogSubstitutionObject(NPC));
     }
     #endregion
 

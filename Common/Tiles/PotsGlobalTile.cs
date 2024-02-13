@@ -8,7 +8,7 @@ namespace Aequus.Common.Tiles;
 
 public class PotsGlobalTile : GlobalTile {
     public override bool? IsTileDangerous(int i, int j, int type, Player player) {
-        if (!TileSets.IsSmashablePot.Contains(type)) {
+        if (!TileMetadata.IsSmashablePot.Contains(type)) {
             return null;
         }
 
@@ -23,7 +23,7 @@ public class PotsGlobalTile : GlobalTile {
     }
 
     public override void PostDraw(int i, int j, int type, SpriteBatch spriteBatch) {
-        if (!TileSets.IsSmashablePot.Contains(type)) {
+        if (!TileMetadata.IsSmashablePot.Contains(type)) {
             return;
         }
 

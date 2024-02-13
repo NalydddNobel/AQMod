@@ -13,9 +13,9 @@ CommonTooltips: {
 	NecromancyStaff: 被击杀敌人会转化为幽魂仆从
 	StatGhostDuration: 延长{0}秒幽魂仆从的存在时间
 	StatGhostSlots: 增加{0}格最大幽魂仆从栏位
-	// StatWingTime: Increases flight duration
-	// DecreaseAggro: Enemies are less likely to target you
-	// IncreaseAggro: Enemies are more likely to target you
+	StatWingTime: 延长飞行时间
+	DecreaseAggro: 敌人不大可能以你为攻击目标
+	IncreaseAggro: 敌人更有可能以你为攻击目标
 }
 
 //# Equipment: Accessories
@@ -136,21 +136,21 @@ WarHorn: {
 HallowCanteen: {
 	DisplayName: 魔力壶
 	DisplayNameAlt: 魔力壶 ({0})
-	/* Tooltip: 
+	Tooltip:
 		'''
-		Allows infinite usage of two potions
-		Hover over with a stack of 15 potions and press <right>
-		''' */
+		能够无限使用两种药水
+		光标悬停在堆叠数量为15的药水上并点击右键
+		'''
 }
 
 PotionCanteen: {
 	DisplayName: 药水壶
 	DisplayNameAlt: "{0}壶"
-	/* Tooltip: 
+	Tooltip:
 		'''
-		Allows infinite usage of a potion
-		Hover over with a stack of 15 potions and press <right>
-		''' */
+		能够无限使用一种药水
+		光标悬停在堆叠数量为15的药水上并点击右键
+		'''
 }
 
 SouljointCuffs: {
@@ -205,7 +205,7 @@ GravetenderRobes: {
 	Tooltip:
 		'''
 		{$CommonTooltips.StatGhostDuration}
-		{$CommonTooltips.StatGhostSlots}
+		{$CommonTooltips.StatGhostSlots@1}
 		'''
 }
 
@@ -735,6 +735,74 @@ Toolbelt: {
 		'''
 	BackpackEnabled: 工具腰带开启
 	BackpackDisabled: 工具腰带关闭
+}
+
+MoonflowerSeeds: {
+	DisplayName: 月光花种
+	Tooltip: ""
+}
+
+MistralSeeds: {
+	DisplayName: 寒风花种
+	Tooltip: ""
+}
+
+ManacleSeeds: {
+	DisplayName: 镣铐花种
+	Tooltip: ""
+}
+
+CosmicMonolith: {
+	DisplayName: Mods.Aequus.Items.CosmicMonolith.DisplayName
+	Tooltip: ""
+}
+
+UltimateSword: {
+	DisplayName: Mods.Aequus.Items.UltimateSword.DisplayName
+	Tooltip: ""
+}
+
+DwarfStariteItem: {
+	// DisplayName: Mods.Aequus.Items.DwarfStariteItem.DisplayName
+	// Tooltip: ""
+}
+
+GalacticStarfruit: {
+	// DisplayName: Mods.Aequus.Items.GalacticStarfruit.DisplayName
+	// Tooltip: ""
+}
+
+StariteMaterial: {
+	// DisplayName: Mods.Aequus.Items.StariteMaterial.DisplayName
+	// Tooltip: ""
+}
+
+CelestialEightBall: {
+	// DisplayName: Mods.Aequus.Items.CelestialEightBall.DisplayName
+	// Tooltip: ""
+
+	Answer: {
+		0: 是的
+		1: 我的消息来源说不
+		2: 有迹象表明是的
+		3: 确实如此
+		4: 毫无疑问
+		5: 当然可以
+		6: 你可以相信它
+		7: 如我所见, 是的
+		8: 有希望
+		9: 前景很好
+		10: 有迹象表明是的
+		11: 别想了
+		12: 我的回答是否
+		13: 前景不妙
+		14: 令人疑惑
+		15: 再试一次吧
+		16: 待会再问
+		17: 时候未到
+		18: 现在没法预测
+		19: 请集中你的精神再问一次
+	}
 }
 
 Killifish: {

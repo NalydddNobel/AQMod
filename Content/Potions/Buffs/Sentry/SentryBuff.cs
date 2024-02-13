@@ -8,7 +8,7 @@ public class SentryBuff : ModBuff {
     public override LocalizedText Description => ModContent.GetInstance<SentryPotion>().Tooltip;
 
     public override void SetStaticDefaults() {
-        BuffSets.AddBuffConflicts(Type, BuffID.Summoning);
+        BuffMetadata.AddBuffConflicts(Type, BuffID.Summoning);
     }
 
     public override void Update(Player player, ref int buffIndex) {

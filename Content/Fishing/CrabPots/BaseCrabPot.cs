@@ -137,7 +137,7 @@ public abstract class BaseCrabPot : ModTile, ISpecialTileRenderer, IModifyPlacem
         if (item.IsAir || item.bait <= 0) {
             return false;
         }
-        if (liquidType == LiquidID.Lava && !ItemID.Sets.IsLavaBait[item.type]) {
+        if (liquidType == LiquidID.Lava && !ItemSets.IsLavaBait[item.type]) {
             return false;
         }
         return true;
@@ -312,7 +312,7 @@ public abstract class BaseCrabPot : ModTile, ISpecialTileRenderer, IModifyPlacem
         DrawCrabPot(left, top, spriteBatch, TextureAssets.Tile[Type].Value, data, yOffset, crabPotAnimation, (x, y, rgb) => rgb);
 
         if (Main.InSmartCursorHighlightArea(i, j, out var actuallySelected)) {
-            DrawCrabPot(left, top, spriteBatch, _highlightTexture.Value, data, yOffset, crabPotAnimation, (x, y, rgb) => Colors.GetSelectionGlowColor(actuallySelected, (rgb.R + rgb.G + rgb.B) / 3));
+            DrawCrabPot(left, top, spriteBatch, _highlightTexture.Value, data, yOffset, crabPotAnimation, (x, y, rgb) => TCommonColor.GetSelectionGlowColor(actuallySelected, (rgb.R + rgb.G + rgb.B) / 3));
         }
         if (TileEntity.ByPosition.TryGetValue(new(left, top), out var tileEntity) && tileEntity is TECrabPot crabPot) {
             CustomPreDraw(left, top, yOffset, spriteBatch, crabPot);

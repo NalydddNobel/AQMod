@@ -151,6 +151,54 @@ AshTombstones: {
 	}
 }
 
+PlanterBox: {
+	Moray: {
+		ItemDisplayName: 海鳝花种植箱
+		ItemTooltip: ""
+	}
+
+	Moonflower: {
+		ItemDisplayName: 月光花种植箱
+		ItemTooltip: ""
+	}
+
+	Manacle: {
+		ItemDisplayName: 镣铐花种植箱
+		ItemTooltip: ""
+	}
+
+	Mistral: {
+		ItemDisplayName: 寒风花种植箱
+		ItemTooltip: ""
+	}
+}
+
+HangingPot: {
+	Moray: {
+		ItemDisplayName: 海鳝花吊盆
+		ItemTooltip: ""
+	}
+
+	Mistral: {
+		ItemDisplayName: 寒风花吊盆
+		ItemTooltip: ""
+	}
+
+	Manacle: {
+		ItemDisplayName: 镣铐花吊盆
+		ItemTooltip: ""
+	}
+
+	Moonflower: {
+		ItemDisplayName: 月光花吊盆
+		ItemTooltip: ""
+	}
+}
+
+Moonflower.MapEntry: 月光花
+Mistral.MapEntry: 寒风花
+Manacle.MapEntry: 镣铐花
+
 ScrapBlock: {
 	// MapEntry: Junk Block
 	// ItemDisplayName: "{$Tiles.ScrapBlock.MapEntry}"

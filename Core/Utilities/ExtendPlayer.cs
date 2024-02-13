@@ -7,6 +7,10 @@ namespace Aequus.Core.Utilities;
 public static class ExtendPlayer {
     private static readonly Item[] _dummyInventory = ExtendArray.CreateArray(i => new Item(), Main.InventorySlotsTotal);
 
+    public static Point GetSpawn(this Player player) => new Point(GetSpawnX(player), GetSpawnY(player));
+    public static int GetSpawnY(this Player player) => player.SpawnY > 0 ? player.SpawnY : Main.spawnTileY;
+    public static int GetSpawnX(this Player player) => player.SpawnX > 0 ? player.SpawnX : Main.spawnTileX;
+
     /// <summary>
     /// 
     /// </summary>

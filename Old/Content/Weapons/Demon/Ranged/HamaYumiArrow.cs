@@ -12,8 +12,8 @@ public class HamaYumiArrow : ModProjectile {
         Main.projFrames[Type] = 2;
         ProjectileID.Sets.TrailCacheLength[Type] = 10;
         ProjectileID.Sets.TrailingMode[Type] = 2;
-        ProjectileSets.PushableByTypeId.Add(Type);
-        ProjectileSets.DealsHeatDamage.Add(Type);
+        ProjectileMetadata.PushableByTypeId.Add(Type);
+        ProjectileMetadata.DealsHeatDamage.Add(Type);
     }
 
     public override void SetDefaults() {

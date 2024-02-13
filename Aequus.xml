@@ -16,6 +16,78 @@
         <member name="P:Aequus.Aequus.GameWorldActive">
             <summary>Shorthand for a bunch of checks determining whether the game is unpaused.</summary>
         </member>
+        <member name="F:Aequus.Aequus.ConditionDownedAquaticBoss">
+            <summary>Whether ??? was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedAquaticBoss">
+            <summary>Whether ??? was not defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionDownedCosmicBoss">
+            <summary>Whether Ultra Starite was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedCosmicBoss">
+            <summary>Whether Ultra Starite not was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionDownedTrueCosmicBoss">
+            <summary>Whether Omega Starite was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedTrueCosmicBoss">
+            <summary>Whether Omega Starite not was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionDownedDemonBoss">
+            <summary>Whether the Demon Siege was completed atleast once.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedDemonBoss">
+            <summary>Whether the Demon Siege not was completed atleast once.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionDownedTrueDemonBoss">
+            <summary>Whether Upriser (Unimplemented) was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedTrueDemonBoss">
+            <summary>Whether Upriser (Unimplemented) not was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionDownedAtmosphereBossFlame">
+            <summary>Whether Red Sprite was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedAtmosphereBossFlame">
+            <summary>Whether Red Sprite was not defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionDownedAtmosphereBossFrost">
+            <summary>Whether Space Squid was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedAtmosphereBossFrost">
+            <summary>Whether Space Squid was not defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionDownedTrueAtmosphereBoss">
+            <summary>Whether Dust Devil was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedTrueAtmosphereBoss">
+            <summary>Whether Dust Devil was not defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionDownedOrganicBossMight">
+            <summary>Whether ??? was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedOrganicBossMight">
+            <summary>Whether ??? was not defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionDownedOrganicBossSight">
+            <summary>Whether ??? was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedOrganicBossSight">
+            <summary>Whether ??? was not defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionDownedOrganicBossFright">
+            <summary>Whether ??? was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedOrganicBossFright">
+            <summary>Whether ??? was not defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionDownedTrueFinalBoss">
+            <summary>Whether ??? was defeated.</summary>
+        </member>
+        <member name="F:Aequus.Aequus.ConditionNotDownedTrueFinalBoss">
+            <summary>Whether ??? was not defeated.</summary>
+        </member>
         <member name="M:Aequus.Aequus.ConditionBetweenDays(System.DayOfWeek,System.DayOfWeek)">
             <param name="firstDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:Aequus.Common.Systems.TimeTrackerSystem.DayOfTheWeek"/>.</param>
             <param name="lastDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:Aequus.Common.Systems.TimeTrackerSystem.DayOfTheWeek"/>.</param>
@@ -825,6 +897,11 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:Aequus.Common.Tiles.Components.IRandomUpdateOverride.PreRandomUpdate(System.Int32,System.Int32)">
+            <param name="i"></param>
+            <param name="j"></param>
+            <returns>Whether to override random update logic. Returns false by default.</returns>
+        </member>
         <member name="T:Aequus.Common.Tiles.Components.IWaterVisibleWall">
             <summary>
             Allows modded walls to be seen behind water.
@@ -846,6 +923,9 @@
             <param name="baseColor"></param>
             <param name="text"></param>
             <param name="entryNumber">Offsets the map Id lookup by this value. Defaults to 1, meaning that it assumes that this is the 2nd registered color for this wall.</param>
+        </member>
+        <member name="F:Aequus.Common.Tiles.RandomTick.UpdateByType">
+            <summary>Lookup for update tick actions to perform less type checks.</summary>
         </member>
         <member name="M:Aequus.Common.WorldGeneration.AequusGenStep.SetMessage(Terraria.WorldBuilding.GenerationProgress,System.Object)">
             <summary>
@@ -944,23 +1024,23 @@
             <param name="sourceRectangle">The bounds of the portrait.</param>
             <param name="displayColor">The Color of the entry. It is usually Black when hidden, and White when not hidden.</param>
         </member>
-        <member name="P:Aequus.Content.DataSets.BuffSets.PlayerStatusDebuff">
+        <member name="P:Aequus.Content.DataSets.BuffMetadata.PlayerStatusDebuff">
             <summary>Set for compatibility with Thorium.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.BuffSets.PlayerDoTDebuff">
+        <member name="P:Aequus.Content.DataSets.BuffMetadata.PlayerDoTDebuff">
             <summary>Set for compatibility with Thorium.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.ItemSets.Potions">
+        <member name="P:Aequus.Content.DataSets.ItemMetadata.Potions">
             <summary>
             Items in this set are potions.
             </summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.ItemSets.ShimmerTooltipResultIgnore">
+        <member name="P:Aequus.Content.DataSets.ItemMetadata.ShimmerTooltipResultIgnore">
             <summary>
             A few item results which are ignored by the Shimmer Monocle, so that common transmuations don't have crappy bloated tooltips.
             </summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.ItemSets.ImportantItem">
+        <member name="P:Aequus.Content.DataSets.ItemMetadata.ImportantItem">
             <summary>
             Items marked as important will have special properties:
             <list type="bullet">
@@ -968,66 +1048,66 @@
             </list>
             </summary>
         </member>
-        <member name="T:Aequus.Content.DataSets.ItemTypeVariants">
+        <member name="T:Aequus.Content.DataSets.ItemTypeVariantMetadata">
             <summary>
             Dataset with lists of all supported variants of an item. 
             </summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.ItemTypeVariants.RottenChunk">
+        <member name="P:Aequus.Content.DataSets.ItemTypeVariantMetadata.RottenChunk">
             <summary><see cref="F:Terraria.ID.ItemID.RottenChunk"/>, <see cref="F:Terraria.ID.ItemID.Vertebrae"/>, Avalon/YuckyBit.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.ItemTypeVariants.DemoniteBar">
+        <member name="P:Aequus.Content.DataSets.ItemTypeVariantMetadata.DemoniteBar">
             <summary><see cref="F:Terraria.ID.ItemID.DemoniteBar"/>, <see cref="F:Terraria.ID.ItemID.CrimtaneBar"/>, Avalon/BacciliteBar.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.Soulless">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.Soulless">
             <summary>
             NPC Ids in this set cannot damage the Occultist, or have their souls trapped into Soul Gems.
             Automatically populated with all NPC Ids which have the Underworld or Gore Nest as bestiary tags.
             </summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.IsCorrupt">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.IsCorrupt">
             <summary>Automatically populated with all NPC Ids which have the Corruption as bestiary tags.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.IsCrimson">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.IsCrimson">
             <summary>Automatically populated with all NPC Ids which have the Crimson as bestiary tags.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.IsHallow">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.IsHallow">
             <summary>Automatically populated with all NPC Ids which have the Hallow as bestiary tags.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.FromPillarEvent">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.FromPillarEvent">
             <summary>Automatically populated with all NPC Ids which have a Pillar as a bestiary tag.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.NameTagOverride">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.NameTagOverride">
             <summary>Entries in this set can completely override the Name Tag conditional check with their own value.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.StunnableByTypeId">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.StunnableByTypeId">
             <summary>Entries in this set are able to be stunned by the Stun Gun (<see cref="T:Aequus.Content.Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.StunnableByAI">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.StunnableByAI">
             <summary>Enemies with an AI Type in this set are able to be stunned by the Stun Gun (<see cref="T:Aequus.Content.Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.FriendablePreHardmodeSlime">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.FriendablePreHardmodeSlime">
             <summary>Used for Royal Gel's Crown of Blood combination.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.FriendableHardmodeSlime">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.FriendableHardmodeSlime">
             <summary>Used for Volatile Gelatin's Crown of Blood combination.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.Unfriendable">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.Unfriendable">
             <summary>Enemies in this set cannot become friendly through necromancy.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.DealsHeatDamage">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.DealsHeatDamage">
             <summary>NPCs in this set deal 'heat' contact damage. This damage can be resisted using the Frost Potion.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.PrefixBlacklist">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.PrefixBlacklist">
             <summary>NPCs in this set cannot be given Elite affixes.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.PushableByTypeId">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.PushableByTypeId">
             <summary>Entries in this set are able to be pushed by the Pumpinator.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.NPCSets.PushableByAI">
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.PushableByAI">
             <summary>Enemies with an AI Type in this set are able to be pushed by the Pumpinator.</summary>
         </member>
-        <member name="M:Aequus.Content.DataSets.NPCSets.ContainsBestiaryTags(System.Collections.Generic.List{Terraria.GameContent.Bestiary.IBestiaryInfoElement},System.Collections.Generic.List{Terraria.GameContent.Bestiary.IFilterInfoProvider})">
+        <member name="M:Aequus.Content.DataSets.NPCMetadata.ContainsBestiaryTags(System.Collections.Generic.List{Terraria.GameContent.Bestiary.IBestiaryInfoElement},System.Collections.Generic.List{Terraria.GameContent.Bestiary.IFilterInfoProvider})">
             <summary>
             Compares bestiary tags by comparing <see cref="M:Terraria.GameContent.Bestiary.IFilterInfoProvider.GetDisplayNameKey"/> results.
             Biome/Event/Time/Ect Tags utilize <see cref="T:Terraria.GameContent.Bestiary.IFilterInfoProvider"/>.
@@ -1036,19 +1116,19 @@
             <param name="searchTags"></param>
             <returns></returns>
         </member>
-        <member name="P:Aequus.Content.DataSets.ProjectileSets.SpriteRotation">
+        <member name="P:Aequus.Content.DataSets.ProjectileMetadata.SpriteRotation">
             <summary>Rotation offset of projectile sprites so it can be rotated correctly.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.ProjectileSets.OccultistIgnore">
+        <member name="P:Aequus.Content.DataSets.ProjectileMetadata.OccultistIgnore">
             <summary>Projectiles in this set do not damage the <see cref="T:Aequus.Old.Content.TownNPCs.OccultistNPC.Occultist"/>.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.ProjectileSets.IsStar">
+        <member name="P:Aequus.Content.DataSets.ProjectileMetadata.IsStar">
             <summary>Whether or not this projectile is a "Star", this is automatically populated with anything that has "Star" in their internal name.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.ProjectileSets.DealsHeatDamage">
+        <member name="P:Aequus.Content.DataSets.ProjectileMetadata.DealsHeatDamage">
             <summary>Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.</summary>
         </member>
-        <member name="P:Aequus.Content.DataSets.TileSets.PreventsSlopesBelow">
+        <member name="P:Aequus.Content.DataSets.TileMetadata.PreventsSlopesBelow">
             <summary>Prevents tiles below this tile from being sloped.</summary>
         </member>
         <member name="T:Aequus.Content.Dyes.ArmorShaderDataThirdColor">
@@ -1202,6 +1282,10 @@
             Grants a ModTile the ability to render post-draw elements in a batch to reduce on Begin/End calls.
             <para>Place SpecialTileDrawing.Add(i, j, Type); into ModTile.PostDraw(...) to add it to the rendering list.</para>
             </summary>
+        </member>
+        <member name="M:Aequus.Core.Graphics.Tiles.IDrawWindyGrass.DrawWindyGrass(Aequus.Core.Graphics.Tiles.TileDrawCall)">
+            <param name="drawInfo"></param>
+            <returns>Whether to run vanilla rendering. Return false to prevent vanilla rendering.</returns>
         </member>
         <member name="M:Aequus.Core.Graphics.CustomDrawnUGBackground.RenderBackground(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.GraphicsDevice)">
             <summary>
@@ -1361,17 +1445,17 @@
         <member name="M:Aequus.Core.Utilities.ExtendItem.StaticDefaultsToPotion(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])">
             <summary>Registers this item as a drink (Potion).</summary>
             <param name="modItem"></param>
-            <param name="colors">Particle colors for when this potion is consumed.</param>
+            <param name="TCommonColor">Particle TCommonColor for when this potion is consumed.</param>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendItem.StaticDefaultsToFoodDrink(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])">
             <summary>Registers this item as a drink. The difference between this and <see cref="M:Aequus.Core.Utilities.ExtendItem.StaticDefaultsToPotion(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])"/> is that drinks have held sprites.</summary>
             <param name="modItem"></param>
-            <param name="colors">Particle colors for when this drink is consumed.</param>
+            <param name="TCommonColor">Particle TCommonColor for when this drink is consumed.</param>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendItem.StaticDefaultsToFood(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])">
             <summary>Registers this item as a food.</summary>
             <param name="modItem"></param>
-            <param name="colors">Particle colors for when this food is eaten.</param>
+            <param name="TCommonColor">Particle TCommonColor for when this food is eaten.</param>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetDisplayName(Terraria.ModLoader.ILocalizedModType)">
             <summary>Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.</summary>
@@ -1733,8 +1817,11 @@
             Only use in Pre/PostDraw hooks for items.
             </summary>
         </member>
+        <member name="P:Aequus.Core.WorldState.RemixWorldSafeUnderworldRange">
+            <summary>Returns a point with the beginning (left) (X) and end (right) (Y) of the 'safe' underworld in remix worlds. This does not represent a point in 2D space, but rather two X coordinates.</summary>
+        </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 60)</summary>
+            <summary>(Total Sounds: 67)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishCharge">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -1871,6 +1958,9 @@
         <member name="F:Aequus.AequusSounds.ConductiveBlock3">
             <summary>Full Path: Assets/Sounds/Tile/ConductiveBlock3</summary>
         </member>
+        <member name="F:Aequus.AequusSounds.MoonflowerBreak">
+            <summary>Full Path: Assets/Sounds/Tile/MoonflowerBreak</summary>
+        </member>
         <member name="F:Aequus.AequusSounds.OmniGemBreak">
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
@@ -1916,8 +2006,26 @@
         <member name="F:Aequus.AequusSounds.RecruitZombie">
             <summary>Full Path: Old/Assets/Sounds/RecruitZombie</summary>
         </member>
+        <member name="F:Aequus.AequusSounds.OmegaStariteDeathRay">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteDeathRay</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.OmegaStariteHit0">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.OmegaStariteHit1">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.OmegaStariteHit2">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit2</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.OmegaStariteKilled">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteKilled</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.OmegaStariteStarBullets">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
+        </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 468)</summary>
+            <summary>(Total Textures: 522)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1972,6 +2080,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.None">
             <summary>Full Path: Assets/Textures/None</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Pixel">
+            <summary>Full Path: Assets/Textures/Pixel</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Shatter">
             <summary>Full Path: Assets/Textures/Shatter</summary>
@@ -2195,18 +2306,6 @@
         <member name="F:Aequus.AequusTextures.DustDevilTrophyItem">
             <summary>Full Path: Content/Bosses/Trophies/DustDevilTrophyItem</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteRelic">
-            <summary>Full Path: Content/Bosses/Trophies/OmegaStariteRelic</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteRelicItem">
-            <summary>Full Path: Content/Bosses/Trophies/OmegaStariteRelicItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteTrophy">
-            <summary>Full Path: Content/Bosses/Trophies/OmegaStariteTrophy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteTrophyItem">
-            <summary>Full Path: Content/Bosses/Trophies/OmegaStariteTrophyItem</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.RedSpriteRelic">
             <summary>Full Path: Content/Bosses/Trophies/RedSpriteRelic</summary>
         </member>
@@ -2233,18 +2332,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.Trophy">
             <summary>Full Path: Content/Bosses/Trophies/Trophy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.UltraStariteRelic">
-            <summary>Full Path: Content/Bosses/Trophies/UltraStariteRelic</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.UltraStariteRelicItem">
-            <summary>Full Path: Content/Bosses/Trophies/UltraStariteRelicItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.UltraStariteTrophy">
-            <summary>Full Path: Content/Bosses/Trophies/UltraStariteTrophy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.UltraStariteTrophyItem">
-            <summary>Full Path: Content/Bosses/Trophies/UltraStariteTrophyItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Baguette">
             <summary>Full Path: Content/DedicatedContent/Baguette/Baguette</summary>
@@ -2567,12 +2654,6 @@
         <member name="F:Aequus.AequusTextures.OmegaStaritePetItem">
             <summary>Full Path: Content/Pets/OmegaStarite/OmegaStaritePetItem</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.NeutronYogurt">
-            <summary>Full Path: Content/Potions/Buffs/NeutronYogurt/NeutronYogurt</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NeutronYogurtBuff">
-            <summary>Full Path: Content/Potions/Buffs/NeutronYogurt/NeutronYogurtBuff</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.SentryBuff">
             <summary>Full Path: Content/Potions/Buffs/Sentry/SentryBuff</summary>
         </member>
@@ -2813,6 +2894,57 @@
         <member name="F:Aequus.AequusTextures.icon_workshop">
             <summary>Full Path: icon_workshop</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteRelic">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteRelic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteRelicItem">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteRelicItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteTrophy">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteTrophyItem">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteTrophyItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStarite">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/OmegaStarite</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStarite_Head_Boss">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/OmegaStarite_Head_Boss</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteBullet">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Projectiles/OmegaStariteBullet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteDeathray">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Projectiles/OmegaStariteDeathray</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteProj">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Projectiles/OmegaStariteProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStariteRelic">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/Items/UltraStariteRelic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStariteRelicItem">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/Items/UltraStariteRelicItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStariteTrophy">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/Items/UltraStariteTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStariteTrophyItem">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/Items/UltraStariteTrophyItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStarite">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/UltraStarite</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStarite_Head_Boss">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/UltraStarite_Head_Boss</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DwarfStarite">
+            <summary>Full Path: Old/Content/Critters/DwarfStarite</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DwarfStariteItem">
+            <summary>Full Path: Old/Content/Critters/DwarfStariteItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.BloodMimic">
             <summary>Full Path: Old/Content/Enemies/BloodMoon/BloodMimic</summary>
         </member>
@@ -2830,12 +2962,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.BreadOfCthulhuBanner">
             <summary>Full Path: Old/Content/Enemies/BreadOfCthulhuBanner</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CoconutCrabBanner">
-            <summary>Full Path: Old/Content/Enemies/CoconutCrabBanner</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabFishBanner">
-            <summary>Full Path: Old/Content/Enemies/CrabFishBanner</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CinderBat">
             <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/CinderBat</summary>
@@ -2921,20 +3047,35 @@
         <member name="F:Aequus.AequusTextures.LeggedLavaBannerItem">
             <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/Tiles/LeggedLavaBannerItem</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.HijivarchCrabBanner">
-            <summary>Full Path: Old/Content/Enemies/HijivarchCrabBanner</summary>
+        <member name="F:Aequus.AequusTextures.HyperStarite">
+            <summary>Full Path: Old/Content/Enemies/Glimmer/Hyper/HyperStarite</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HyperStariteBanner">
-            <summary>Full Path: Old/Content/Enemies/HyperStariteBanner</summary>
+            <summary>Full Path: Old/Content/Enemies/Glimmer/Hyper/Tiles/HyperStariteBanner</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SoldierCrabBanner">
-            <summary>Full Path: Old/Content/Enemies/SoldierCrabBanner</summary>
+        <member name="F:Aequus.AequusTextures.HyperStariteBannerItem">
+            <summary>Full Path: Old/Content/Enemies/Glimmer/Hyper/Tiles/HyperStariteBannerItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Starite">
+            <summary>Full Path: Old/Content/Enemies/Glimmer/Proto/Starite</summary>
         </member>
         <member name="F:Aequus.AequusTextures.StariteBanner">
-            <summary>Full Path: Old/Content/Enemies/StariteBanner</summary>
+            <summary>Full Path: Old/Content/Enemies/Glimmer/Proto/Tiles/StariteBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StariteBannerItem">
+            <summary>Full Path: Old/Content/Enemies/Glimmer/Proto/Tiles/StariteBannerItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SuperStarite">
+            <summary>Full Path: Old/Content/Enemies/Glimmer/Super/SuperStarite</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SuperStariteBullet">
+            <summary>Full Path: Old/Content/Enemies/Glimmer/Super/SuperStariteBullet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SuperStariteBanner">
-            <summary>Full Path: Old/Content/Enemies/SuperStariteBanner</summary>
+            <summary>Full Path: Old/Content/Enemies/Glimmer/Super/Tiles/SuperStariteBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SuperStariteBannerItem">
+            <summary>Full Path: Old/Content/Enemies/Glimmer/Super/Tiles/SuperStariteBannerItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrapSkeletonBanner">
             <summary>Full Path: Old/Content/Enemies/TrapSkeletonBanner</summary>
@@ -3002,6 +3143,33 @@
         <member name="F:Aequus.AequusTextures.OblivionAltar_Highlight">
             <summary>Full Path: Old/Content/Events/DemonSiege/Tiles/OblivionAltar_Highlight</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CosmicMonolith">
+            <summary>Full Path: Old/Content/Events/Glimmer/CosmicMonolith/CosmicMonolith</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CosmicMonolithTile">
+            <summary>Full Path: Old/Content/Events/Glimmer/CosmicMonolith/CosmicMonolithTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GlimmerSky">
+            <summary>Full Path: Old/Content/Events/Glimmer/Sky/GlimmerSky</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GalacticStarfruit">
+            <summary>Full Path: Old/Content/Events/Glimmer/Spawners/GalacticStarfruit</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GlimmerBestiaryIcon">
+            <summary>Full Path: Old/Content/Events/Glimmer/Textures/GlimmerBestiaryIcon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GlimmerEventIcon">
+            <summary>Full Path: Old/Content/Events/Glimmer/Textures/GlimmerEventIcon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GlimmerMapBackground">
+            <summary>Full Path: Old/Content/Events/Glimmer/Textures/GlimmerMapBackground</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GlimmerMenu">
+            <summary>Full Path: Old/Content/MainMenu/GlimmerMenu</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GlimmerMenu_Glow">
+            <summary>Full Path: Old/Content/MainMenu/GlimmerMenu_Glow</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.BloodyTearstone">
             <summary>Full Path: Old/Content/Materials/BloodyTearstone</summary>
         </member>
@@ -3013,6 +3181,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.SoulGemTile">
             <summary>Full Path: Old/Content/Materials/SoulGem/SoulGemTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StariteMaterial">
+            <summary>Full Path: Old/Content/Materials/StariteMaterial</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SoulChains">
             <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/Chains/SoulChains</summary>
@@ -3101,17 +3272,29 @@
         <member name="F:Aequus.AequusTextures.Osiris_Glow">
             <summary>Full Path: Old/Content/Necromancy/Sceptres/Forbidden/Osiris_Glow</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CosmicCrystalDust">
+            <summary>Full Path: Old/Content/Particles/CosmicCrystalDust</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.GhostDrainDust">
             <summary>Full Path: Old/Content/Particles/GhostDrainDust</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MonoDust">
             <summary>Full Path: Old/Content/Particles/MonoDust</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.MonoSparkleDust">
+            <summary>Full Path: Old/Content/Particles/MonoSparkleDust</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.VoidDust">
             <summary>Full Path: Old/Content/Particles/VoidDust</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SuspiciousLookingSteak">
             <summary>Full Path: Old/Content/Potions/Foods/SusSteak/SuspiciousLookingSteak</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NeutronYogurt">
+            <summary>Full Path: Old/Content/Potions/NeutronYogurt/NeutronYogurt</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NeutronYogurtBuff">
+            <summary>Full Path: Old/Content/Potions/NeutronYogurt/NeutronYogurtBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HallowCanteen">
             <summary>Full Path: Old/Content/Potions/PotionCanteen/HallowCanteen</summary>
@@ -3151,6 +3334,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.PotionOfResurrection">
             <summary>Full Path: Old/Content/Potions/Resurrection/PotionOfResurrection</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlueFire">
+            <summary>Full Path: Old/Content/StatusEffects/BlueFire</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GoreNestStalagmite">
             <summary>Full Path: Old/Content/Tiles/Ambient/GoreNestStalagmite</summary>
@@ -3206,6 +3392,78 @@
         <member name="F:Aequus.AequusTextures.OblivionCraftingStation_Stick">
             <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation_Stick</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.HangingPot">
+            <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPot</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HangingPotManacleItem">
+            <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPotManacleItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HangingPotMistralItem">
+            <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPotMistralItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HangingPotMoonflowerItem">
+            <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPotMoonflowerItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HangingPotMorayItem">
+            <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPotMorayItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Manacle">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Manacle/Manacle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ManacleSeeds">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Manacle/ManacleSeeds</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Manacle_Glow">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Manacle/Manacle_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Mistral">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Mistral/Mistral</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MistralSeeds">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Mistral/MistralSeeds</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Mistral_Pinwheel">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Mistral/Mistral_Pinwheel</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Moonflower">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Moonflower/Moonflower</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MoonflowerEffect">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Moonflower/MoonflowerEffect</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MoonflowerSeeds">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Moonflower/MoonflowerSeeds</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MoraySeeds">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Moray/MoraySeeds</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MoraySeeds_Glow">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Moray/MoraySeeds_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MorayTile">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Moray/MorayTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MorayTile_Glow">
+            <summary>Full Path: Old/Content/Tiles/Herbs/Moray/MorayTile_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PlanterBox">
+            <summary>Full Path: Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBox</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PlanterBoxGlow">
+            <summary>Full Path: Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxGlow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PlanterBoxManacleItem">
+            <summary>Full Path: Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxManacleItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PlanterBoxMistralItem">
+            <summary>Full Path: Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxMistralItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PlanterBoxMoonflowerItem">
+            <summary>Full Path: Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxMoonflowerItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PlanterBoxMorayItem">
+            <summary>Full Path: Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxMorayItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.OccultistGoreBook">
             <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreBook</summary>
         </member>
@@ -3247,6 +3505,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.Old_Content_TownNPCs_OccultistNPC_Shimmer_Occultist">
             <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Shimmer/Occultist</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CelestialEightBall">
+            <summary>Full Path: Old/Content/Vanity/CelestialEightBall</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CorruptionHellfire">
             <summary>Full Path: Old/Content/Weapons/Demon/CorruptionHellfire</summary>
@@ -3311,6 +3572,15 @@
         <member name="F:Aequus.AequusTextures.SliceBulletProj">
             <summary>Full Path: Old/Content/Weapons/Melee/Slice/SliceBulletProj</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.UltimateSword">
+            <summary>Full Path: Old/Content/Weapons/Melee/UltimateSword/UltimateSword</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltimateSwordBuff">
+            <summary>Full Path: Old/Content/Weapons/Melee/UltimateSword/UltimateSwordBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltimateSword_Glow">
+            <summary>Full Path: Old/Content/Weapons/Melee/UltimateSword/UltimateSword_Glow</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.CrusadersCrossbow">
             <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow</summary>
         </member>
@@ -3322,6 +3592,68 @@
         </member>
         <member name="F:Aequus.AequusTextures.BacciliteSceptre_Glow">
             <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre_Glow</summary>
+        </member>
+        <member name="T:Aequus.Old.Common.Graphics.Camera.CameraFocus">
+            <summary>
+            Manages screen panning
+            </summary>
+        </member>
+        <member name="P:Aequus.Old.Common.Graphics.Camera.CameraFocus.Context">
+            <summary>
+            A context string for the current focus
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.target">
+            <summary>
+            The target position for the camera in the world
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.cameraPosition">
+            <summary>
+            The camera's position 
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.priority">
+            <summary>
+            A priority for determining whether or not a new camera focus can be added
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.speed">
+            <summary>
+            The speed of the camera
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.cameraProgress">
+            <summary>
+            The progress of the camera from its original position to its destination
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.hold">
+            <summary>
+            How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Old.Common.Graphics.Camera.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Old.Common.Graphics.Camera.CameraPriority,System.Single,System.Int32)"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.returning">
+            <summary>
+            Whether or not the camera is returning
+            </summary>
+        </member>
+        <member name="M:Aequus.Old.Common.Graphics.Camera.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Old.Common.Graphics.Camera.CameraPriority,System.Single,System.Int32)">
+            <summary>
+            Sets the camera target to a position, may return false if your priority is below a current target's priority
+            </summary>
+            <param name="key">Context key, only really useful for 3rd party mods</param>
+            <param name="target">A world coordinate to point the camera at</param>
+            <param name="priority">The priority of this camera target. If there is a current camera target, and its priority is above, it will prevent you from setting a target and this method will return false</param>
+            <param name="speed">The speed of the camera, the exact time it will get there is: <code>speed / 50</code>So 6 speed means it will get into position in 8 frames. Clamped between 6 and 25</param>
+            <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Old.Common.Graphics.Camera.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Old.Common.Graphics.Camera.CameraPriority,System.Single,System.Int32)"/></param>
+            <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
+        </member>
+        <member name="M:Aequus.Old.Content.Bosses.Cosmic.OmegaStarite.OmegaStariteRing.#ctor(System.IO.BinaryReader)">
+            <summary>
+            Creates a Ring through a net package
+            </summary>
+            <param name="reader"></param>
         </member>
         <member name="P:Aequus.Old.Content.Equipment.Accessories.HighSteaks.HighSteaks.NotStackableCritDamage">
             <summary>
@@ -3344,6 +3676,23 @@
         </member>
         <member name="M:Aequus.Old.Content.Potions.PotionCanteen.TemplateCanteen.HasBuffs">
             <summary>Determines if this canteen has any buffs at all.</summary>
+        </member>
+        <member name="M:Aequus.Old.Content.Tiles.Herbs.ModHerb.GetDropParams(System.Int32,Terraria.Player,Terraria.Item,System.Int32@)">
+            <param name="growthStage">The growth stage (style) of this plant.</param>
+            <param name="closestPlayer">The closest player to the plant.</param>
+            <param name="playerHeldItem">The player's held item.</param>
+            <param name="plant">The plant item id to drop.</param>
+            <param name="seeds">The seed item id to drop.</param>
+        </member>
+        <member name="M:Aequus.Old.Content.Tiles.Herbs.ModHerb.GetDropStacks(System.Int32,Terraria.Player,Terraria.Item,System.Boolean,System.Int32,System.Int32,System.Int32@,System.Int32@)">
+            <param name="growthStage">The growth stage (style) of this plant.</param>
+            <param name="closestPlayer">The closest player to the plant.</param>
+            <param name="playerHeldItem">The player's held item.</param>
+            <param name="staffOfRegrowth">If the player is holding the Staff of Regrowth or Axe of Regrowth.</param>
+            <param name="plant">The plant item id to drop.</param>
+            <param name="seeds">The seed item id to drop.</param>
+            <param name="plantStack">The amount of plants to drop.</param>
+            <param name="seedStack">The amount of seeds to drop.</param>
         </member>
     </members>
 </doc>
