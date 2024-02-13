@@ -746,16 +746,6 @@ UltimateSword: {
 	// Tooltip: ""
 }
 
-DwarfStariteItem: {
-	// DisplayName: Mods.Aequus.Items.DwarfStariteItem.DisplayName
-	// Tooltip: ""
-}
-
-DwarfStarite: {
-	// DisplayName: Dwarf Starite
-	// Tooltip: ""
-}
-
 GalacticStarfruit: {
 	// DisplayName: Mods.Aequus.Items.GalacticStarfruit.DisplayName
 	// Tooltip: ""

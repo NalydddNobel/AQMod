@@ -85,7 +85,7 @@ public class UltraStarite : ModNPC {
         NPC.noTileCollide = true;
         NPC.knockBackResist = 0f;
         NPC.value = Item.buyPrice(silver: 50);
-        NPC.npcSlots = 3f;
+        NPC.npcSlots = 8f;
 
         oldArmsLength = new float[NPCSets.TrailCacheLength[Type]];
     }

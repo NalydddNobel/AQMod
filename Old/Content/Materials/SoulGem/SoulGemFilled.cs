@@ -7,7 +7,7 @@ public class SoulGemFilled : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 25;
         ItemSets.ShimmerTransformToItem[Type] = ModContent.ItemType<SoulGem>();
-        ItemSets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.Amber;
+        ItemSets.SortingPriorityMaterials[Type] = ItemSets.SortingPriorityMaterials[ItemID.Amber];
     }
 
     public override void SetDefaults() {

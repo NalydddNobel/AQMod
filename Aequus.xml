@@ -251,6 +251,15 @@
         <member name="P:Aequus.Common.Items.ItemCommons.Rarity.ShimmerPermaPowerup">
             <summary><see cref="F:Terraria.ID.ItemRarityID.LightPurple"/></summary>
         </member>
+        <member name="F:Aequus.Common.Items.ItemCommons.Rarity.WallOfFleshLoot">
+            <summary><see cref="F:Terraria.ID.ItemRarityID.LightRed"/></summary>
+        </member>
+        <member name="F:Aequus.Common.Items.ItemCommons.Rarity.PlanteraLoot">
+            <summary><see cref="F:Terraria.ID.ItemRarityID.Yellow"/></summary>
+        </member>
+        <member name="F:Aequus.Common.Items.ItemCommons.Rarity.MoonLordLoot">
+            <summary><see cref="F:Terraria.ID.ItemRarityID.Red"/></summary>
+        </member>
         <member name="P:Aequus.Common.Items.ItemCommons.Price.SkyMerchantShopItem">
             <summary>1 Gold</summary>
         </member>
@@ -295,466 +304,6 @@
         </member>
         <member name="P:Aequus.Common.Items.ItemCommons.Price.YinYangLoot">
             <summary>10 Gold</summary>
-        </member>
-        <member name="T:Aequus.Common.Items.ItemSortingPriority.Materials">
-            <summary>
-            <see cref="F:Terraria.ID.ItemID.Sets.SortingPriorityMaterials"/>
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Amethyst">
-            <summary>
-            37
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Topaz">
-            <summary>
-            38
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Sapphire">
-            <summary>
-            39
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Emerald">
-            <summary>
-            40
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Ruby">
-            <summary>
-            41
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Diamond">
-            <summary>
-            42
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Amber">
-            <summary>
-            43
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.CopperOre">
-            <summary>
-            44
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.CopperBar">
-            <summary>
-            45
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.TinOre">
-            <summary>
-            46
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.TinBar">
-            <summary>
-            47
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.IronOre">
-            <summary>
-            48
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.IronBar">
-            <summary>
-            49
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.LeadOre">
-            <summary>
-            50
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.LeadBar">
-            <summary>
-            51
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SilverOre">
-            <summary>
-            52
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SilverBar">
-            <summary>
-            53
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.TungstenOre">
-            <summary>
-            54
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.TungstenBar">
-            <summary>
-            55
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.GoldOre">
-            <summary>
-            56
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.GoldBar">
-            <summary>
-            57
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.PlatinumOre">
-            <summary>
-            58
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.PlatinumBar">
-            <summary>
-            59
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Meteorite">
-            <summary>
-            60
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.MeteoriteBar">
-            <summary>
-            61
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.DemoniteOre">
-            <summary>
-            62
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.DemoniteBar">
-            <summary>
-            63
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.ShadowScale">
-            <summary>
-            64
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.CrimtaneOre">
-            <summary>
-            65
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.CrimtaneBar">
-            <summary>
-            66
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.TissueSample">
-            <summary>
-            67
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SturdyFossil">
-            <summary>
-            68
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Hellstone">
-            <summary>
-            69
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.HellstoneBar">
-            <summary>
-            70
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SoulOfLight">
-            <summary>
-            71
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SoulOfNight">
-            <summary>
-            72
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SoulOfFlight">
-            <summary>
-            73
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SoulOfSight">
-            <summary>
-            74
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SoulOfFright">
-            <summary>
-            75
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SoulOfMight">
-            <summary>
-            76
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.CobaltOre">
-            <summary>
-            77
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.CobaltBar">
-            <summary>
-            78
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.PalladiumOre">
-            <summary>
-            79
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.PalladiumBar">
-            <summary>
-            80
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.MythrilOre">
-            <summary>
-            81
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.MythrilBar">
-            <summary>
-            82
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.OrichalcumOre">
-            <summary>
-            83
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.OrichalcumBar">
-            <summary>
-            84
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.AdamantiteOre">
-            <summary>
-            85
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.AdamantiteBar">
-            <summary>
-            86
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.TitaniumOre">
-            <summary>
-            87
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.TitaniumBar">
-            <summary>
-            88
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.HallowedBar">
-            <summary>
-            89
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.ChlorophyeOre">
-            <summary>
-            90
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.ChlorophyeBar">
-            <summary>
-            91
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.ShroomiteBar">
-            <summary>
-            92
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Ectoplasm">
-            <summary>
-            93
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SpectreBar">
-            <summary>
-            94
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.StardustFragment">
-            <summary>
-            95
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.NebulaFragment">
-            <summary>
-            96
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.VortexFragment">
-            <summary>
-            97
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SolarFragment">
-            <summary>
-            98
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Luminite">
-            <summary>
-            99
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.LuminiteBar">
-            <summary>
-            100
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.FrozenTechnology">
-            <summary>
-            10
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.OmniGem">
-            <summary>
-            43 (<see cref="P:Aequus.Common.Items.ItemSortingPriority.Materials.Amber"/>)
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SoulGem">
-            <summary>
-            43 (<see cref="P:Aequus.Common.Items.ItemSortingPriority.Materials.Amber"/>)
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Energies">
-            <summary>
-            70 (<see cref="P:Aequus.Common.Items.ItemSortingPriority.Materials.HellstoneBar"/>)
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.UltimateEnergy">
-            <summary>
-            88 (<see cref="P:Aequus.Common.Items.ItemSortingPriority.Materials.TitaniumBar"/>)
-            </summary>
-        </member>
-        <member name="T:Aequus.Common.Items.ItemSortingPriority.BossSpawns">
-            <summary>
-            <see cref="F:Terraria.ID.ItemID.Sets.SortingPriorityBossSpawns"/>
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.SuspiciousLookingEye">
-            <summary>
-            1
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.SlimeCrown">
-            <summary>
-            2
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.WormFood">
-            <summary>
-            3
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.BloodySpine">
-            <summary>
-            3
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.GoblinBattleStandard">
-            <summary>
-            4
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.DeerThing">
-            <summary>
-            5
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.Abeemination">
-            <summary>
-            5
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.GelatinCrystal">
-            <summary>
-            6
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.MechanicalEye">
-            <summary>
-            7
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.MechanicalWorm">
-            <summary>
-            8
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.MechanicalSkull">
-            <summary>
-            9
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.TreasureMap">
-            <summary>
-            10, this is a Terraria error, the Pirate Map is not sorted properly. Instead it is the Treasure Map, a placeable reward from the Angler.
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.PirateMap">
-            <summary>
-            -1, check <see cref="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.TreasureMap"/> for info.
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.TruffleWorm">
-            <summary>
-            11
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.SnowGlobe">
-            <summary>
-            12
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.PumpkinMoonMedallion">
-            <summary>
-            13
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.NaughtyPresent">
-            <summary>
-            14
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.LihzahrdPowerCell">
-            <summary>
-            15
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.SolarTablet">
-            <summary>
-            16
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.BloodyTear">
-            <summary>
-            16
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.CelestialSigil">
-            <summary>
-            17
-            </summary>
         </member>
         <member name="F:Aequus.Common.NPCs.AIJellyfish.shockRampUpDistance">
             <summary>
@@ -1928,7 +1477,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 465)</summary>
+            <summary>(Total Textures: 472)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2904,6 +2453,27 @@
         </member>
         <member name="F:Aequus.AequusTextures.BloodyTearstone">
             <summary>Full Path: Old/Content/Materials/BloodyTearstone</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AquaticEnergy">
+            <summary>Full Path: Old/Content/Materials/Energies/AquaticEnergy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AtmosphericEnergy">
+            <summary>Full Path: Old/Content/Materials/Energies/AtmosphericEnergy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CosmicEnergy">
+            <summary>Full Path: Old/Content/Materials/Energies/CosmicEnergy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonicEnergy">
+            <summary>Full Path: Old/Content/Materials/Energies/DemonicEnergy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EnergyDust">
+            <summary>Full Path: Old/Content/Materials/Energies/EnergyDust</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OrganicEnergy">
+            <summary>Full Path: Old/Content/Materials/Energies/OrganicEnergy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltimateEnergy">
+            <summary>Full Path: Old/Content/Materials/Energies/UltimateEnergy</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SoulGem">
             <summary>Full Path: Old/Content/Materials/SoulGem/SoulGem</summary>

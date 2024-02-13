@@ -1,29 +1,50 @@
 ﻿using Aequus.Core;
 using Aequus.Core.Networking;
 using Aequus.Old.Content.Events.Glimmer.Peaceful;
+using MonoMod.Cil;
 using System;
 using System.IO;
 using Terraria.Enums;
+using Terraria.GameContent.Achievements;
 using Terraria.GameContent.Creative;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
+using Terraria.UI;
 
 namespace Aequus.Old.Content.Events.Glimmer;
 public class GlimmerSystem : ModSystem {
-    public static int EndEventDelay;
+    public static int EndEventDelay { get; set; }
+
+    public override void Load() {
+        On_Main.UpdateTime_StartNight += On_Main_UpdateTime_StartNight;
+        //IL_Main.UpdateTime_StartNight += IL_Main_UpdateTime_StartNight;
+    }
+
+    private static void On_Main_UpdateTime_StartNight(On_Main.orig_UpdateTime_StartNight orig, ref bool stopEvents) {
+        orig(ref stopEvents);
+
+        if (!stopEvents) {
+            OnTransitionToNight();
+        }
+    }
 
     public static void OnTransitionToNight() {
         int chance = 9;
         if (Main.tenthAnniversaryWorld) {
             chance = 6;
         }
-        if (WorldState.DownedTrueCosmicBoss) {
-            chance *= 4;
-        }
-        if (Main.GetMoonPhase() != MoonPhase.Full && !Main.bloodMoon && NPC.AnyNPCs(NPCID.Dryad)) {
+
+        if (Main.GetMoonPhase() != MoonPhase.Full && NPC.downedBoss2 && !Main.bloodMoon) {
             if (!WorldGen.spawnEye && Main.rand.NextBool(chance)) {
-                BeginEvent();
+                for (int i = 0; i < Main.maxPlayers; i++) {
+                    if (Main.player[i].active && Main.player[i].ConsumedLifeCrystals > 1) {
+                        BeginEvent();
+                        break;
+                    }
+                }
             }
+
             if (!GlimmerZone.EventTechnicallyActive && Main.rand.NextBool()) {
                 PeacefulGlimmerZone.TileLocationX = Main.rand.Next(100, Main.maxTilesX - 100);
             }
@@ -41,8 +62,9 @@ public class GlimmerSystem : ModSystem {
     }
 
     public override void PreUpdatePlayers() {
-        if (GlimmerSceneEffect.cantTouchThis > 0)
+        if (GlimmerSceneEffect.cantTouchThis > 0) {
             GlimmerSceneEffect.cantTouchThis--;
+        }
 
         if (GlimmerZone.EventTechnicallyActive) {
             bool endEvent = Main.dayTime;

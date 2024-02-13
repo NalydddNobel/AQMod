@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 465)</summary>
+/// <summary>(Total Textures: 472)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -657,6 +657,20 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> GlimmerMenu_Glow = new("Aequus/Old/Content/MainMenu/GlimmerMenu_Glow");
     /// <summary>Full Path: Old/Content/Materials/BloodyTearstone</summary>
     public static readonly RequestCache<Texture2D> BloodyTearstone = new("Aequus/Old/Content/Materials/BloodyTearstone");
+    /// <summary>Full Path: Old/Content/Materials/Energies/AquaticEnergy</summary>
+    public static readonly RequestCache<Texture2D> AquaticEnergy = new("Aequus/Old/Content/Materials/Energies/AquaticEnergy");
+    /// <summary>Full Path: Old/Content/Materials/Energies/AtmosphericEnergy</summary>
+    public static readonly RequestCache<Texture2D> AtmosphericEnergy = new("Aequus/Old/Content/Materials/Energies/AtmosphericEnergy");
+    /// <summary>Full Path: Old/Content/Materials/Energies/CosmicEnergy</summary>
+    public static readonly RequestCache<Texture2D> CosmicEnergy = new("Aequus/Old/Content/Materials/Energies/CosmicEnergy");
+    /// <summary>Full Path: Old/Content/Materials/Energies/DemonicEnergy</summary>
+    public static readonly RequestCache<Texture2D> DemonicEnergy = new("Aequus/Old/Content/Materials/Energies/DemonicEnergy");
+    /// <summary>Full Path: Old/Content/Materials/Energies/EnergyDust</summary>
+    public static readonly RequestCache<Texture2D> EnergyDust = new("Aequus/Old/Content/Materials/Energies/EnergyDust");
+    /// <summary>Full Path: Old/Content/Materials/Energies/OrganicEnergy</summary>
+    public static readonly RequestCache<Texture2D> OrganicEnergy = new("Aequus/Old/Content/Materials/Energies/OrganicEnergy");
+    /// <summary>Full Path: Old/Content/Materials/Energies/UltimateEnergy</summary>
+    public static readonly RequestCache<Texture2D> UltimateEnergy = new("Aequus/Old/Content/Materials/Energies/UltimateEnergy");
     /// <summary>Full Path: Old/Content/Materials/SoulGem/SoulGem</summary>
     public static readonly RequestCache<Texture2D> SoulGem = new("Aequus/Old/Content/Materials/SoulGem/SoulGem");
     /// <summary>Full Path: Old/Content/Materials/SoulGem/SoulGemFilled</summary>

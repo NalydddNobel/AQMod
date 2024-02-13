@@ -1,11 +1,9 @@
-﻿using Aequus.Common.Items;
-
-namespace Aequus.Old.Content.Materials;
+﻿namespace Aequus.Old.Content.Materials;
 
 [LegacyName("BloodyTearFragment")]
 public class BloodyTearstone : ModItem {
     public override void SetStaticDefaults() {
-        ItemSets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.DemoniteOre;
+        ItemSets.SortingPriorityMaterials[Type] = ItemSets.SortingPriorityMaterials[ItemID.Amber];
         Item.ResearchUnlockCount = 25;
     }
 

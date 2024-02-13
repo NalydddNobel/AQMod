@@ -52,6 +52,13 @@ public static class ItemCommons {
 
         /// <summary><see cref="ItemRarityID.LightPurple"/></summary>
         public static int ShimmerPermaPowerup { get; set; } = ItemRarityID.LightPurple;
+
+        /// <summary><see cref="ItemRarityID.LightRed"/></summary>
+        public static readonly int WallOfFleshLoot = ItemRarityID.LightRed;
+        /// <summary><see cref="ItemRarityID.Yellow"/></summary>
+        public static readonly int PlanteraLoot = ItemRarityID.Yellow;
+        /// <summary><see cref="ItemRarityID.Red"/></summary>
+        public static readonly int MoonLordLoot = ItemRarityID.Red;
     }
 
     public class Price {

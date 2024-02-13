@@ -8,7 +8,7 @@ public class SoulGem : ModItem {
     public virtual int TransformID => ModContent.ItemType<SoulGemFilled>();
 
     public override void SetStaticDefaults() {
-        ItemSets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.Amber;
+        ItemSets.SortingPriorityMaterials[Type] = ItemSets.SortingPriorityMaterials[ItemID.Amber];
         Item.ResearchUnlockCount = 25;
     }
 
