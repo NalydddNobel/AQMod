@@ -151,17 +151,17 @@ UltraStarite: {
 HyperStarite: {
 	DisplayName: 巨耀源星
 	Bestiary: 随着能量的进一步过剩, 星源获得了能够分离部分自身并将其作为危险武器在轨道上挥舞的能力.
-	// BannerName: Hyper Starite Banner
+	BannerName: 巨耀源星旗
 }
 
 SuperStarite: {
 	DisplayName: 极耀源星
 	Bestiary: 聚集了足够能量的星源最终会进化为这种装甲形态. 它们更加坚硬并且能将过剩的能量作为弹幕发射.
-	// BannerName: Super Starite Banner
+	BannerName: 极耀源星旗
 }
 
 Starite: {
 	DisplayName: 源星
 	Bestiary: 生命星尘的一个碎片, 被不可知的力量赋予了生命. 如果没有充满天空的奇异光线所赋予的能量, 它们就无法长久的生存.
-	// BannerName: Starite Banner
+	BannerName: 源星旗
 }
