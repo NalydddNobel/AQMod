@@ -747,8 +747,8 @@ UltimateSword: {
 }
 
 DwarfStariteItem: {
-	// DisplayName: Mods.Aequus.Items.DwarfStariteItem.DisplayName
-	// Tooltip: ""
+	DisplayName: Mods.Aequus.Items.DwarfStariteItem.DisplayName
+	Tooltip: ""
 }
 
 DwarfStarite: {
@@ -757,18 +757,18 @@ DwarfStarite: {
 }
 
 GalacticStarfruit: {
-	// DisplayName: Mods.Aequus.Items.GalacticStarfruit.DisplayName
-	// Tooltip: ""
+	DisplayName: Mods.Aequus.Items.GalacticStarfruit.DisplayName
+	Tooltip: ""
 }
 
 StariteMaterial: {
-	// DisplayName: Mods.Aequus.Items.StariteMaterial.DisplayName
-	// Tooltip: ""
+	DisplayName: Mods.Aequus.Items.StariteMaterial.DisplayName
+	Tooltip: ""
 }
 
 CelestialEightBall: {
-	// DisplayName: Mods.Aequus.Items.CelestialEightBall.DisplayName
-	// Tooltip: ""
+	DisplayName: Mods.Aequus.Items.CelestialEightBall.DisplayName
+	Tooltip: ""
 
 	Answer: {
 		0: 是的

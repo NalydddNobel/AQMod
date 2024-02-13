@@ -59,8 +59,8 @@ OmegaStariteBullet.DisplayName: 宇宙星幕
 OmegaStariteDeathray.DisplayName: 最终射线
 OmegaStariteProj.DisplayName: "{$NPCs.OmegaStarite.DisplayName}"
 UltimateSwordProj.DisplayName: "{$Items.UltimateSword.DisplayName}"
-// HyperStariteProj.DisplayName: "{$NPCs.HyperStarite.DisplayName}"
-// SuperStariteBullet.DisplayName: "{$NPCs.SuperStarite.DisplayName}"
-// SuperStariteProj.DisplayName: "{$NPCs.SuperStarite.DisplayName}"
-// UltraStariteDeathray.DisplayName: Cosmic Ray
-// UltraStariteOuterArms.DisplayName: "{$NPCs.UltraStarite.DisplayName}"
+HyperStariteProj.DisplayName: "{$NPCs.HyperStarite.DisplayName}"
+SuperStariteBullet.DisplayName: "{$NPCs.SuperStarite.DisplayName}"
+SuperStariteProj.DisplayName: "{$NPCs.SuperStarite.DisplayName}"
+UltraStariteDeathray.DisplayName: 宇宙射线
+UltraStariteOuterArms.DisplayName: "{$NPCs.UltraStarite.DisplayName}"
