@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 466)</summary>
+/// <summary>(Total Textures: 465)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -505,8 +505,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> UltraStarite_Head_Boss = new("Aequus/Old/Content/Bosses/Cosmic/UltraStarite/UltraStarite_Head_Boss");
     /// <summary>Full Path: Old/Content/Critters/DwarfStarite</summary>
     public static readonly RequestCache<Texture2D> DwarfStarite = new("Aequus/Old/Content/Critters/DwarfStarite");
-    /// <summary>Full Path: Old/Content/Critters/DwarfStariteItem</summary>
-    public static readonly RequestCache<Texture2D> DwarfStariteItem = new("Aequus/Old/Content/Critters/DwarfStariteItem");
     /// <summary>Full Path: Old/Content/Enemies/BloodMoon/BloodMimic</summary>
     public static readonly RequestCache<Texture2D> BloodMimic = new("Aequus/Old/Content/Enemies/BloodMoon/BloodMimic");
     /// <summary>Full Path: Old/Content/Enemies/BloodMoon/Gores/BloodMimicGoreEyeball</summary>

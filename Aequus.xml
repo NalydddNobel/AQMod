@@ -1928,7 +1928,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 466)</summary>
+            <summary>(Total Textures: 465)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2676,9 +2676,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.DwarfStarite">
             <summary>Full Path: Old/Content/Critters/DwarfStarite</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DwarfStariteItem">
-            <summary>Full Path: Old/Content/Critters/DwarfStariteItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BloodMimic">
             <summary>Full Path: Old/Content/Enemies/BloodMoon/BloodMimic</summary>

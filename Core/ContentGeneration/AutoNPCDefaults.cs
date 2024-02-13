@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Core.ContentGeneration;
 
 public sealed class AutoNPCDefaults : GlobalNPC {
+    internal static readonly Dictionary<int, short> _npcToCritter = new();
+
+    public override void SetDefaults(NPC npc) {
+        if (_npcToCritter.TryGetValue(npc.type, out short critter)) {
+            npc.catchItem = critter;
+        }
+    }
+
     public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot) {
         if (npc.ModNPC == null) {
             return;
