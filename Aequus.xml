@@ -2025,7 +2025,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 522)</summary>
+            <summary>(Total Textures: 526)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2134,6 +2134,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.MapBG">
             <summary>Full Path: Content/Biomes/PollutedOcean/Background/MapBG</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OceanCreviceBG_0">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Background/OceanCreviceBG_0</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OceanCreviceBG_1">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Background/OceanCreviceBG_1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OceanCreviceBG_2">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Background/OceanCreviceBG_2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OceanCreviceBG_3">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Background/OceanCreviceBG_3</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SurfaceBG_Far">
             <summary>Full Path: Content/Biomes/PollutedOcean/Background/SurfaceBG_Far</summary>

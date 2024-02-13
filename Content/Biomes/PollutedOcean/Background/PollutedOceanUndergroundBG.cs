@@ -19,18 +19,22 @@ public class PollutedOceanUndergroundBG : CustomDrawnUGBackground {
             return;
         }
 
-        if (!TextureAssets.Underworld[2].IsLoaded) {
-            Main.Assets.Request<Texture2D>(TextureAssets.Underworld[2].Name);
-        }
-        if (!TextureAssets.Underworld[9].IsLoaded) {
-            Main.Assets.Request<Texture2D>(TextureAssets.Underworld[9].Name);
-        }
+        //if (!TextureAssets.Underworld[2].IsLoaded) {
+        //    Main.Assets.Request<Texture2D>(TextureAssets.Underworld[2].Name);
+        //}
+        //if (!TextureAssets.Underworld[9].IsLoaded) {
+        //    Main.Assets.Request<Texture2D>(TextureAssets.Underworld[9].Name);
+        //}
 
         //DrawBackgroundSimple(TextureAssets.MagicPixel.Value, 0.00003f, Color.Cyan);
         //DrawBackgroundSimple(TextureAssets.MagicPixel.Value, 0.0001f, Color.Cyan);
-        DrawBackgroundSimple(TextureAssets.Underworld[9].Value, 0.00003f, Color.White);
+        int largestSide = Math.Max(Main.screenWidth, Main.screenHeight);
+
+        Main.spriteBatch.Draw(AequusTextures.OceanCreviceBG_3, new Rectangle(0, 0, largestSide, largestSide), Color.White);
+        DrawBackgroundSimple(AequusTextures.OceanCreviceBG_2, 0.00001f, Color.White, upScale: 2f);
+        DrawBackgroundSimple(AequusTextures.OceanCreviceBG_1, 0.00003f, Color.White, upScale: 1.5f);
         UpdateAndDrawRain(Main.spriteBatch, Main.gameTimeCache);
-        DrawBackgroundSimple(TextureAssets.Underworld[2].Value, 0.0001f, Color.White);
+        DrawBackgroundSimple(AequusTextures.OceanCreviceBG_0, 0.0001f, Color.White, upScale: 1f);
     }
 
     public override void RenderTopTransitionStrip(SpriteBatch spriteBatch, int worldY, float opacity) {

@@ -139,10 +139,6 @@ public class UndergroundBackgroundSystem : ModSystem {
     }
     #endregion
 
-    public override bool IsLoadingEnabled(Mod mod) {
-        return Aequus.DEBUG_MODE;
-    }
-
     public override void Load() {
         BackgroundTextureLoader.AddBackgroundTexture(Mod, AequusTextures.None.Path);
         EmptyBackgroundSlot = BackgroundTextureLoader.GetBackgroundSlot(Mod, AequusTextures.None.ModPath);

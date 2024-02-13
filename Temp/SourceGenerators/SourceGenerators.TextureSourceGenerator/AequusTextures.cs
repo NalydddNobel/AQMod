@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 522)</summary>
+/// <summary>(Total Textures: 526)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -79,6 +79,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> BackgroundRainDroplets = new("Aequus/Content/Biomes/PollutedOcean/Background/BackgroundRainDroplets");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/Background/MapBG</summary>
     public static readonly RequestCache<Texture2D> MapBG = new("Aequus/Content/Biomes/PollutedOcean/Background/MapBG");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Background/OceanCreviceBG_0</summary>
+    public static readonly RequestCache<Texture2D> OceanCreviceBG_0 = new("Aequus/Content/Biomes/PollutedOcean/Background/OceanCreviceBG_0");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Background/OceanCreviceBG_1</summary>
+    public static readonly RequestCache<Texture2D> OceanCreviceBG_1 = new("Aequus/Content/Biomes/PollutedOcean/Background/OceanCreviceBG_1");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Background/OceanCreviceBG_2</summary>
+    public static readonly RequestCache<Texture2D> OceanCreviceBG_2 = new("Aequus/Content/Biomes/PollutedOcean/Background/OceanCreviceBG_2");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Background/OceanCreviceBG_3</summary>
+    public static readonly RequestCache<Texture2D> OceanCreviceBG_3 = new("Aequus/Content/Biomes/PollutedOcean/Background/OceanCreviceBG_3");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/Background/SurfaceBG_Far</summary>
     public static readonly RequestCache<Texture2D> SurfaceBG_Far = new("Aequus/Content/Biomes/PollutedOcean/Background/SurfaceBG_Far");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBestiaryIcon</summary>
