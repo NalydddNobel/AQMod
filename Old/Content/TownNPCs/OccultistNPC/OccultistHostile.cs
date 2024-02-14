@@ -1,17 +1,22 @@
 ﻿using Aequus.Core;
+using Aequus.Core.ContentGeneration;
 using Aequus.Core.Networking;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Sockets;
 using Terraria.DataStructures;
+using Terraria.GameContent.UI;
 using Terraria.Localization;
 
 namespace Aequus.Old.Content.TownNPCs.OccultistNPC;
 
 public class OccultistHostile : Occultist {
     public override LocalizedText DisplayName => ModContent.GetInstance<Occultist>().DisplayName;
+
+    public override void Load() {
+        Mod.AddContent(new InstancedNPCEmote(this, EmoteID.Category.Town, () => WorldState._metOccultist));
+    }
 
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = 25;
@@ -37,6 +42,8 @@ public class OccultistHostile : Occultist {
     }
 
     public override bool PreAI() {
+        WorldState._metOccultist = true;
+
         if (Main.netMode != NetmodeID.Server && Main.GameUpdateCount % 180 == 0) {
             for (int i = 0; i < 50; i++) {
                 var p = NPC.Center + new Vector2(NPC.direction * -50, -30f) + Main.rand.NextVector2Unit() * Main.rand.NextFloat(15f, 60f);
@@ -52,7 +59,7 @@ public class OccultistHostile : Occultist {
         if (NPC.direction != dir) {
             NPC.direction = dir;
         }
-        
+
         if (WorldState.DownedDemonBoss) {
             NPC.ai[0] = 0f;
             NPC.ai[1] = 0f;

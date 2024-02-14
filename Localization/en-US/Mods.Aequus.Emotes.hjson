@@ -1,1 +1,3 @@
-SkyMerchantEmote.Command: skymerchant
+SkyMerchant.Command: skymerchant
+Occultist.Command: occultistgood
+OccultistHostile.Command: occultist

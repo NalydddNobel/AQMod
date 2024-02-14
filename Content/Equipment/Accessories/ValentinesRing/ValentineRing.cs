@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Items;
-using rail;
 using System.Collections.Generic;
 using System.IO;
 using Terraria.Localization;

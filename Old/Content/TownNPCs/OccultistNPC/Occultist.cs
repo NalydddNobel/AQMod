@@ -3,6 +3,7 @@ using Aequus.Common.NPCs.Components;
 using Aequus.Common.Projectiles;
 using Aequus.Content.DataSets;
 using Aequus.Core;
+using Aequus.Core.ContentGeneration;
 using Aequus.Old.Content.Equipment.GrapplingHooks.EnemyGrappleHook;
 using Aequus.Old.Content.Events.DemonSiege.Spawners;
 using Aequus.Old.Content.Events.DemonSiege.Tiles;
@@ -11,12 +12,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Events;
 using Terraria.GameContent.Personalities;
+using Terraria.GameContent.UI;
 using Terraria.Localization;
 
 namespace Aequus.Old.Content.TownNPCs.OccultistNPC;
@@ -50,6 +51,10 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
     internal void SetupShopQuotes(Mod shopQuotes) {
         shopQuotes.Call("AddNPC", Mod, Type);
         shopQuotes.Call("SetColor", Type, Color.Lerp(Color.White, Color.DarkRed, 0.5f) * 1.5f);
+    }
+
+    public override void Load() {
+        Mod.AddContent(new InstancedNPCEmote(this, EmoteID.Category.Town, () => WorldState.DownedDemonBoss));
     }
 
     public override void SetStaticDefaults() {
@@ -219,6 +224,8 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
     }
 
     public override bool PreAI() {
+        WorldState._metOccultist = true;
+
         if (NPC.shimmering) {
             if (state == STATE_Sleeping) {
                 state = STATE_SleepFalling;

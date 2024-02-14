@@ -1288,6 +1288,9 @@
         <member name="P:Aequus.Core.WorldState.RemixWorldSafeUnderworldRange">
             <summary>Returns a point with the beginning (left) (X) and end (right) (Y) of the 'safe' underworld in remix worlds. This does not represent a point in 2D space, but rather two X coordinates.</summary>
         </member>
+        <member name="F:Aequus.Core.WorldState._metOccultist">
+            <summary>Whether the Occultist has been met. This determines if the Hostile Occultist emote can be used.</summary>
+        </member>
         <member name="T:Aequus.AequusSounds">
             <summary>(Total Sounds: 63)</summary>
         </member>
@@ -1481,7 +1484,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 477)</summary>
+            <summary>(Total Textures: 483)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2090,7 +2093,7 @@
             <summary>Full Path: Content/TownNPCs/SkyMerchant/Basket</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SkyMerchantEmote">
-            <summary>Full Path: Content/TownNPCs/SkyMerchant/Emote/SkyMerchantEmote</summary>
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Emotes/SkyMerchantEmote</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Shimmer_Balloon">
             <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
@@ -2785,6 +2788,18 @@
         <member name="F:Aequus.AequusTextures.PlanterBoxMorayItem">
             <summary>Full Path: Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxMorayItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CarpenterEmote">
+            <summary>Full Path: Old/Content/TownNPCs/CarpenterNPC/Emotes/CarpenterEmote</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LobsterEmote">
+            <summary>Full Path: Old/Content/TownNPCs/LobsterNPC/Emotes/LobsterEmote</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistEmote">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Emotes/OccultistEmote</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistHostileEmote">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Emotes/OccultistHostileEmote</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.OccultistGoreBook">
             <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreBook</summary>
         </member>
@@ -2826,6 +2841,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.Old_Content_TownNPCs_OccultistNPC_Shimmer_Occultist">
             <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Shimmer/Occultist</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicistEmote">
+            <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Emotes/PhysicistEmote</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicistPetEmote">
+            <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Emotes/PhysicistPetEmote</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CelestialEightBall">
             <summary>Full Path: Old/Content/Vanity/CelestialEightBall</summary>

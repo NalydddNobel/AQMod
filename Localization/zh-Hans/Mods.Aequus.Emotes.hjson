@@ -1,1 +1,3 @@
-SkyMerchantEmote.Command: skymerchant
+SkyMerchant.Command: skymerchant
+// Occultist.Command: occultist
+// OccultistHostile.Command: occultisthostile

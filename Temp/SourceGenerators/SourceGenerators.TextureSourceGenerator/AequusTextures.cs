@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 477)</summary>
+/// <summary>(Total Textures: 483)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -411,8 +411,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Content_TownNPCs_SkyMerchant_Balloon = new("Aequus/Content/TownNPCs/SkyMerchant/Balloon");
     /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Basket</summary>
     public static readonly RequestCache<Texture2D> Content_TownNPCs_SkyMerchant_Basket = new("Aequus/Content/TownNPCs/SkyMerchant/Basket");
-    /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Emote/SkyMerchantEmote</summary>
-    public static readonly RequestCache<Texture2D> SkyMerchantEmote = new("Aequus/Content/TownNPCs/SkyMerchant/Emote/SkyMerchantEmote");
+    /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Emotes/SkyMerchantEmote</summary>
+    public static readonly RequestCache<Texture2D> SkyMerchantEmote = new("Aequus/Content/TownNPCs/SkyMerchant/Emotes/SkyMerchantEmote");
     /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
     public static readonly RequestCache<Texture2D> Content_TownNPCs_SkyMerchant_Shimmer_Balloon = new("Aequus/Content/TownNPCs/SkyMerchant/Shimmer/Balloon");
     /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/Basket</summary>
@@ -875,6 +875,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> PlanterBoxMoonflowerItem = new("Aequus/Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxMoonflowerItem");
     /// <summary>Full Path: Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxMorayItem</summary>
     public static readonly RequestCache<Texture2D> PlanterBoxMorayItem = new("Aequus/Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxMorayItem");
+    /// <summary>Full Path: Old/Content/TownNPCs/CarpenterNPC/Emotes/CarpenterEmote</summary>
+    public static readonly RequestCache<Texture2D> CarpenterEmote = new("Aequus/Old/Content/TownNPCs/CarpenterNPC/Emotes/CarpenterEmote");
+    /// <summary>Full Path: Old/Content/TownNPCs/LobsterNPC/Emotes/LobsterEmote</summary>
+    public static readonly RequestCache<Texture2D> LobsterEmote = new("Aequus/Old/Content/TownNPCs/LobsterNPC/Emotes/LobsterEmote");
+    /// <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Emotes/OccultistEmote</summary>
+    public static readonly RequestCache<Texture2D> OccultistEmote = new("Aequus/Old/Content/TownNPCs/OccultistNPC/Emotes/OccultistEmote");
+    /// <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Emotes/OccultistHostileEmote</summary>
+    public static readonly RequestCache<Texture2D> OccultistHostileEmote = new("Aequus/Old/Content/TownNPCs/OccultistNPC/Emotes/OccultistHostileEmote");
     /// <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreBook</summary>
     public static readonly RequestCache<Texture2D> OccultistGoreBook = new("Aequus/Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreBook");
     /// <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreHead</summary>
@@ -903,6 +911,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Occultist_Head = new("Aequus/Old/Content/TownNPCs/OccultistNPC/Occultist_Head");
     /// <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Shimmer/Occultist</summary>
     public static readonly RequestCache<Texture2D> Old_Content_TownNPCs_OccultistNPC_Shimmer_Occultist = new("Aequus/Old/Content/TownNPCs/OccultistNPC/Shimmer/Occultist");
+    /// <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Emotes/PhysicistEmote</summary>
+    public static readonly RequestCache<Texture2D> PhysicistEmote = new("Aequus/Old/Content/TownNPCs/PhysicistNPC/Emotes/PhysicistEmote");
+    /// <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Emotes/PhysicistPetEmote</summary>
+    public static readonly RequestCache<Texture2D> PhysicistPetEmote = new("Aequus/Old/Content/TownNPCs/PhysicistNPC/Emotes/PhysicistPetEmote");
     /// <summary>Full Path: Old/Content/Vanity/CelestialEightBall</summary>
     public static readonly RequestCache<Texture2D> CelestialEightBall = new("Aequus/Old/Content/Vanity/CelestialEightBall");
     /// <summary>Full Path: Old/Content/Weapons/Demon/CorruptionHellfire</summary>
