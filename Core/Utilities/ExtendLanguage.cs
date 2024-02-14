@@ -69,8 +69,8 @@ public static class ExtendLanguage {
     }
 
     /// <returns><inheritdoc cref="PriceText(long, string)"/> Colored using chat commands.</returns>
-    public static string PriceTextColored(long value, string NoValueText = "", bool AlphaPulse = false) {
-        return string.Join(' ', GetPriceTextSegments(value, NoValueText).Select((t) => t.Color == Color.White ? t.Text : ChatCommandInserts.ColorCommand(t.Text, t.Color, AlphaPulse)));
+    public static string PriceTextColored(long value, string NoValueText = "", bool pulse = false) {
+        return string.Join(' ', GetPriceTextSegments(value, NoValueText).Select((t) => t.Color == Color.White ? t.Text : ChatTagWriter.Color(pulse ? Colors.AlphaDarken(t.Color) : t.Color, t.Text)));
     }
 
     private static IEnumerable<ColoredText> GetPriceTextSegments(long value, string NoValueText = "") {

@@ -51,7 +51,7 @@ public sealed class RenamingSystem : ModSystem {
 
         string result = "";
         foreach (var i in _decodedTextList) {
-            result += i.Type != DecodeType.None ? ChatCommandInserts.ColorCommand(i.Output, DecodeTCommonColor[i.Type], pulse) : i.Output;
+            result += i.Type != DecodeType.None ? ChatTagWriter.Color(Colors.AlphaDarken(DecodeTCommonColor[i.Type]), i.Output) : i.Output;
         }
 
         return result;

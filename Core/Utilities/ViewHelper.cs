@@ -1,5 +1,4 @@
-﻿using Aequus.Old.Common.Graphics.Camera;
-using System;
+﻿using System;
 using System.Runtime.CompilerServices;
 using Terraria.Graphics.CameraModifiers;
 
@@ -33,7 +32,7 @@ public static class ViewHelper {
         }
 
         if (Main.netMode != NetmodeID.Server) {
-            Main.instance.CameraModifiers.Add(new LegacyScreenShakeModifier(intensity, multiplyPerTick));
+            Main.instance.CameraModifiers.Add(new Old.Common.Graphics.Camera.LegacyScreenShakeModifier(intensity, multiplyPerTick));
         }
 #endif
     }

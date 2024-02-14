@@ -7,9 +7,10 @@ using System.Linq;
 namespace Aequus.Content.DataSets;
 
 public class ItemMetadata : MetadataSet {
-    /// <summary>
-    /// Items in this set are potions.
-    /// </summary>
+    /// <summary>Items in this set are fishing junk.</summary>
+    [JsonProperty]
+    public static List<Entry<ItemID>> FishingJunk { get; private set; }
+    /// <summary>Items in this set are potions.</summary>
     [JsonProperty]
     public static HashSet<Entry<ItemID>> Potions { get; private set; } = new();
     [JsonProperty]

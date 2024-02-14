@@ -522,10 +522,11 @@
         <member name="P:Aequus.Content.DataSets.BuffMetadata.PlayerDoTDebuff">
             <summary>Set for compatibility with Thorium.</summary>
         </member>
+        <member name="P:Aequus.Content.DataSets.ItemMetadata.FishingJunk">
+            <summary>Items in this set are fishing junk.</summary>
+        </member>
         <member name="P:Aequus.Content.DataSets.ItemMetadata.Potions">
-            <summary>
-            Items in this set are potions.
-            </summary>
+            <summary>Items in this set are potions.</summary>
         </member>
         <member name="P:Aequus.Content.DataSets.ItemMetadata.ShimmerTooltipResultIgnore">
             <summary>
@@ -852,6 +853,9 @@
             <summary>
             Only loads in singleplayer or on multiplayer clients.
             </summary>
+        </member>
+        <member name="T:Aequus.Core.Utilities.ChatTagWriter">
+            <summary>Contains helper methods for generating chat tag strings. For item and glyphs, <see cref="T:Terraria.GameContent.UI.Chat.ItemTagHandler"/> and <see cref="T:Terraria.GameContent.UI.Chat.GlyphTagHandler"/> have static helper methods.</summary>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendArray.Copy``1(``0[])">
             <returns>A new array with the same contents.</returns>
@@ -1477,7 +1481,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 472)</summary>
+            <summary>(Total Textures: 477)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1776,6 +1780,15 @@
         <member name="F:Aequus.AequusTextures.BlackJellyfishBannerItem">
             <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBannerItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.OilSlime">
+            <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/OilSlime</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OilSlimeBanner">
+            <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/Tiles/OilSlimeBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OilSlimeBannerItem">
+            <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/Tiles/OilSlimeBannerItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.ScavengerGoreHead">
             <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Gores/ScavengerGoreHead</summary>
         </member>
@@ -1874,6 +1887,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.ScavengerBag_Strap">
             <summary>Full Path: Content/Equipment/Accessories/ScavengerBag/ScavengerBag_Strap</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ValentineRing">
+            <summary>Full Path: Content/Equipment/Accessories/ValentinesRing/ValentineRing</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ValentineRingBuff">
+            <summary>Full Path: Content/Equipment/Accessories/ValentinesRing/ValentineRingBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.WeightedHorseshoe">
             <summary>Full Path: Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoe</summary>

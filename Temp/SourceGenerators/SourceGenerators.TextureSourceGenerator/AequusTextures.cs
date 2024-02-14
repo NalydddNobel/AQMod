@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 472)</summary>
+/// <summary>(Total Textures: 477)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -205,6 +205,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> BlackJellyfishBanner = new("Aequus/Content/Enemies/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBanner");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBannerItem</summary>
     public static readonly RequestCache<Texture2D> BlackJellyfishBannerItem = new("Aequus/Content/Enemies/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBannerItem");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/OilSlime</summary>
+    public static readonly RequestCache<Texture2D> OilSlime = new("Aequus/Content/Enemies/PollutedOcean/OilSlime/OilSlime");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/Tiles/OilSlimeBanner</summary>
+    public static readonly RequestCache<Texture2D> OilSlimeBanner = new("Aequus/Content/Enemies/PollutedOcean/OilSlime/Tiles/OilSlimeBanner");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/Tiles/OilSlimeBannerItem</summary>
+    public static readonly RequestCache<Texture2D> OilSlimeBannerItem = new("Aequus/Content/Enemies/PollutedOcean/OilSlime/Tiles/OilSlimeBannerItem");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Gores/ScavengerGoreHead</summary>
     public static readonly RequestCache<Texture2D> ScavengerGoreHead = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/Gores/ScavengerGoreHead");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Scavenger</summary>
@@ -271,6 +277,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ScavengerBag_Back = new("Aequus/Content/Equipment/Accessories/ScavengerBag/ScavengerBag_Back");
     /// <summary>Full Path: Content/Equipment/Accessories/ScavengerBag/ScavengerBag_Strap</summary>
     public static readonly RequestCache<Texture2D> ScavengerBag_Strap = new("Aequus/Content/Equipment/Accessories/ScavengerBag/ScavengerBag_Strap");
+    /// <summary>Full Path: Content/Equipment/Accessories/ValentinesRing/ValentineRing</summary>
+    public static readonly RequestCache<Texture2D> ValentineRing = new("Aequus/Content/Equipment/Accessories/ValentinesRing/ValentineRing");
+    /// <summary>Full Path: Content/Equipment/Accessories/ValentinesRing/ValentineRingBuff</summary>
+    public static readonly RequestCache<Texture2D> ValentineRingBuff = new("Aequus/Content/Equipment/Accessories/ValentinesRing/ValentineRingBuff");
     /// <summary>Full Path: Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoe</summary>
     public static readonly RequestCache<Texture2D> WeightedHorseshoe = new("Aequus/Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoe");
     /// <summary>Full Path: Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>

@@ -18,6 +18,16 @@ CommonTooltips: {
 }
 
 //# Equipment: Accessories
+ValentineRing: {
+	DisplayName: Valentine's Gift
+	Tooltip: Gift to a friend to grant them and yourself increased regneration and damage
+	Tooltip2: Increased regneration and damage for yourself and the gifter
+	GiftTooltip: From yours truly, {0}
+	BuffName: Valentine
+	BuffDescription: Increased life regeneration and damage
+	BuffDescription2: You are being buffed by {0}!
+}
+
 GrandReward: {
 	DisplayName: Grand Reward
 	Tooltip:

@@ -19,8 +19,18 @@ BlackJellyfish: {
 	BannerName: Black Jellyfish Banner
 }
 
+OilSlime: {
+	// DisplayName: Opaque Slime
+	// Bestiary: These viscous slimes are formed of modern oils and waste, allowing them to be more durable than regular slimes. Vulnerable to fire.
+	// BannerName: Opaque Slime Banner
+}
+
+RadioConductor: {
+	// DisplayName: Conductor
+	Bestiary: Un Frankenstein tecnológico, esta elegante antigüedad electrónica puede dirigir y manipular ondas de radio para defenderse. Se asegurará de poner un espectáculo, quieras o no.
+}
+
 Mirage.Bestiary: Durante la lluvia, nubes toxicas se forman y acumulan formando este monstruo acídico, desea ser un nimbo real, pero tiene problemas haciéndose amigo hasta de un muñeco de pruebas.
-RadioConductor.Bestiary: Un Frankenstein tecnológico, esta elegante antigüedad electrónica puede dirigir y manipular ondas de radio para defenderse. Se asegurará de poner un espectáculo, quieras o no.
 Pillbug.Bestiary: Bendecido con Energía Acuática, estos insectos corretean y se alimentan de la contaminación como si no fuera nada.
 Chromite.Bestiary: Estos insectos han desarrollado un camuflaje magnético increíblemente avanzado, tienden a adherirse a electrónicos y objetos metálicos, y en general son una molestia para cualquier casa familiar con un microondas. Podrían ser útil como carnada.
 Crabson.DisplayName: Crabson

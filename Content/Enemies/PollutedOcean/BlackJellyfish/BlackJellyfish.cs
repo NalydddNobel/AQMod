@@ -20,7 +20,9 @@ public partial class BlackJellyfish : AIJellyfish {
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = 4;
         NPCMetadata.PushableByTypeId.Add(Type);
-        DrawLayers.Instance.PostDrawLiquids += DrawExplodingJellyfishesLayer;
+        if (Main.netMode != NetmodeID.Server) {
+            DrawLayers.Instance.PostDrawLiquids += DrawExplodingJellyfishesLayer;
+        }
     }
 
     public override void SetDefaults() {

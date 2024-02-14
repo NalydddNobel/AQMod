@@ -51,7 +51,7 @@ public class HighSteaks : ModItem, IHaveDownsideTip {
 
     public override void ModifyTooltips(List<TooltipLine> tooltips) {
         const string REPLACE = "{Price}";
-        string replaceValue = ExtendLanguage.PriceTextColored(WantedCost, AlphaPulse: true);
+        string replaceValue = ExtendLanguage.PriceTextColored(WantedCost, pulse: true);
 
         foreach (var t in tooltips.Where(t => t.Name.StartsWith("Tooltip") && t.Text.Contains(REPLACE))) {
             t.Text = t.Text.Replace(REPLACE, replaceValue);

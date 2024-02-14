@@ -25,7 +25,18 @@
     "SpiritMod/HellEater",
     "StormDiversMod/HellMiniBoss",
     "StormDiversMod/HellMiniBossMinion",
-    "StormDiversMod/HellSoul"
+    "StormDiversMod/HellSoul",
+    "ThoriumMod/BoneFlayer",
+    "ThoriumMod/Beholder",
+    "ThoriumMod/FallenBeholder",
+    "ThoriumMod/RedHag",
+    "ThoriumMod/EpiDermon",
+    "ThoriumMod/HellBringerMimic",
+    "ThoriumMod/InfernalHound",
+    "ThoriumMod/MoltenMortar",
+    "ThoriumMod/SoulCorrupter",
+    "ThoriumMod/UnderworldPot1",
+    "ThoriumMod/WeaponMaster"
   ],
   "IsCorrupt": [
     "Slimeling",
@@ -59,7 +70,16 @@
     "SpiritMod/Masticator",
     "SpiritMod/Teratoma",
     "StarlightRiver/Dweller",
-    "StarlightRiver/SoulNibbler"
+    "StarlightRiver/SoulNibbler",
+    "ThoriumMod/ChilledSpitter",
+    "ThoriumMod/Freezer",
+    "ThoriumMod/FrostWurmHead",
+    "ThoriumMod/HorrificCharger",
+    "ThoriumMod/SnowEater",
+    "ThoriumMod/SoulCorrupter",
+    "ThoriumMod/TheInnocent",
+    "ThoriumMod/TheStarved",
+    "ThoriumMod/VileFloater"
   ],
   "IsCrimson": [
     "Crimera",
@@ -87,7 +107,16 @@
     "SpiritMod/Bladetongue",
     "SpiritMod/CrismonTigerfish",
     "SpiritMod/Hemoglob",
-    "SpiritMod/Hemoglorb"
+    "SpiritMod/Hemoglorb",
+    "ThoriumMod/Blister",
+    "ThoriumMod/BlisterPod",
+    "ThoriumMod/Clot",
+    "ThoriumMod/Coldling",
+    "ThoriumMod/Coolmera",
+    "ThoriumMod/EpiDermon",
+    "ThoriumMod/FrozenFace",
+    "ThoriumMod/FrozenGross",
+    "ThoriumMod/LivingHemorrhage"
   ],
   "IsHallow": [
     "Nurse",
@@ -119,7 +148,11 @@
     "Avalon/Hallowor",
     "CalValEX/CrystalFly",
     "SpiritMod/CrystalSerpent",
-    "SpiritMod/Prismite"
+    "SpiritMod/Prismite",
+    "ThoriumMod/DissonanceSeer",
+    "ThoriumMod/GlitteringGolem",
+    "ThoriumMod/Spectrumite",
+    "ThoriumMod/Spiritualist"
   ],
   "FromPillarEvent": [
     "StardustWormHead",
@@ -177,6 +210,7 @@
   "PrefixBlacklist": [],
   "PushableByTypeId": [
     "Aequus/BlackJellyfish",
+    "Aequus/OilSlime",
     "Aequus/Scavenger",
     "Aequus/ScavengerLootBag"
   ],
