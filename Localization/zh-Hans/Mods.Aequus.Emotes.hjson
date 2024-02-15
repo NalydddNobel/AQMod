@@ -1,3 +1,3 @@
 SkyMerchant.Command: skymerchant
-// Occultist.Command: occultist
-// OccultistHostile.Command: occultisthostile
+Occultist.Command: occultist
+OccultistHostile.Command: occultisthostile
