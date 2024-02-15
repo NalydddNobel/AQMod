@@ -254,3 +254,18 @@ PhysicistPet: {
 		1: Beep bop.
 	}
 }
+
+CleanserDrone: {
+	DisplayName: Cleanser Drone
+	Bestiary: Created by the Physicist in collaboration with the Steampunker to keep your town pure and habitable. Draws energy from the town's pylon as power.
+}
+
+GunnerDrone: {
+	DisplayName: Gunner Drone
+	Bestiary: Created by the Physicist to protect your town, it draws energy from the town's pylon as power.
+}
+
+HealerDrone: {
+	DisplayName: Healer Drone
+	Bestiary: Created by the Physicist to keep your town healthy, it draws energy from the town's pylon as power.
+}

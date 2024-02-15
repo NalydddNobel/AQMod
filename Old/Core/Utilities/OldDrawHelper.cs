@@ -1,8 +1,17 @@
 ﻿using System;
+using Terraria.GameContent;
 
 namespace Aequus.Old.Core.Utilities;
 
 public static class OldDrawHelper {
+    public static void GetDrawInfo(this NPC npc, out Texture2D texture, out Vector2 offset, out Rectangle frame, out Vector2 origin, out int trailLength) {
+        texture = TextureAssets.Npc[npc.type].Value;
+        offset = npc.Size / 2f;
+        frame = npc.frame;
+        origin = frame.Size() / 2f;
+        trailLength = NPCSets.TrailCacheLength[npc.type];
+    }
+
     public static float[] GenerateRotationArr(Vector2[] oldPos) {
         float[] rotations = new float[oldPos.Length];
 

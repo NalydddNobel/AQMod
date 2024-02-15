@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 500)</summary>
+/// <summary>(Total Textures: 513)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -515,6 +515,32 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> UltraStarite_Head_Boss = new("Aequus/Old/Content/Bosses/Cosmic/UltraStarite/UltraStarite_Head_Boss");
     /// <summary>Full Path: Old/Content/Critters/DwarfStarite</summary>
     public static readonly RequestCache<Texture2D> DwarfStarite = new("Aequus/Old/Content/Critters/DwarfStarite");
+    /// <summary>Full Path: Old/Content/DronePylons/CleanserDroneItem</summary>
+    public static readonly RequestCache<Texture2D> CleanserDroneItem = new("Aequus/Old/Content/DronePylons/CleanserDroneItem");
+    /// <summary>Full Path: Old/Content/DronePylons/GunnerDroneItem</summary>
+    public static readonly RequestCache<Texture2D> GunnerDroneItem = new("Aequus/Old/Content/DronePylons/GunnerDroneItem");
+    /// <summary>Full Path: Old/Content/DronePylons/HealerDroneItem</summary>
+    public static readonly RequestCache<Texture2D> HealerDroneItem = new("Aequus/Old/Content/DronePylons/HealerDroneItem");
+    /// <summary>Full Path: Old/Content/DronePylons/NPCs/CleanserDrone</summary>
+    public static readonly RequestCache<Texture2D> CleanserDrone = new("Aequus/Old/Content/DronePylons/NPCs/CleanserDrone");
+    /// <summary>Full Path: Old/Content/DronePylons/NPCs/CleanserDrone_Glow</summary>
+    public static readonly RequestCache<Texture2D> CleanserDrone_Glow = new("Aequus/Old/Content/DronePylons/NPCs/CleanserDrone_Glow");
+    /// <summary>Full Path: Old/Content/DronePylons/NPCs/CleanserDrone_Gun</summary>
+    public static readonly RequestCache<Texture2D> CleanserDrone_Gun = new("Aequus/Old/Content/DronePylons/NPCs/CleanserDrone_Gun");
+    /// <summary>Full Path: Old/Content/DronePylons/NPCs/CleanserDrone_Gun_Glow</summary>
+    public static readonly RequestCache<Texture2D> CleanserDrone_Gun_Glow = new("Aequus/Old/Content/DronePylons/NPCs/CleanserDrone_Gun_Glow");
+    /// <summary>Full Path: Old/Content/DronePylons/NPCs/GunnerDrone</summary>
+    public static readonly RequestCache<Texture2D> GunnerDrone = new("Aequus/Old/Content/DronePylons/NPCs/GunnerDrone");
+    /// <summary>Full Path: Old/Content/DronePylons/NPCs/GunnerDrone_Extras</summary>
+    public static readonly RequestCache<Texture2D> GunnerDrone_Extras = new("Aequus/Old/Content/DronePylons/NPCs/GunnerDrone_Extras");
+    /// <summary>Full Path: Old/Content/DronePylons/NPCs/GunnerDrone_Extras_Glow</summary>
+    public static readonly RequestCache<Texture2D> GunnerDrone_Extras_Glow = new("Aequus/Old/Content/DronePylons/NPCs/GunnerDrone_Extras_Glow");
+    /// <summary>Full Path: Old/Content/DronePylons/NPCs/GunnerDrone_Glow</summary>
+    public static readonly RequestCache<Texture2D> GunnerDrone_Glow = new("Aequus/Old/Content/DronePylons/NPCs/GunnerDrone_Glow");
+    /// <summary>Full Path: Old/Content/DronePylons/NPCs/HealerDrone</summary>
+    public static readonly RequestCache<Texture2D> HealerDrone = new("Aequus/Old/Content/DronePylons/NPCs/HealerDrone");
+    /// <summary>Full Path: Old/Content/DronePylons/NPCs/HealerDrone_Glow</summary>
+    public static readonly RequestCache<Texture2D> HealerDrone_Glow = new("Aequus/Old/Content/DronePylons/NPCs/HealerDrone_Glow");
     /// <summary>Full Path: Old/Content/Enemies/BloodMoon/BloodMimic</summary>
     public static readonly RequestCache<Texture2D> BloodMimic = new("Aequus/Old/Content/Enemies/BloodMoon/BloodMimic");
     /// <summary>Full Path: Old/Content/Enemies/BloodMoon/Gores/BloodMimicGoreEyeball</summary>

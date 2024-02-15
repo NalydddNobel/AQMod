@@ -254,3 +254,7 @@ PhysicistPet: {
 		// 1: Beep bop.
 	}
 }
+
+// CleanserDrone.DisplayName: Cleanser Drone
+// GunnerDrone.DisplayName: Gunner Drone
+// HealerDrone.DisplayName: Healer Drone

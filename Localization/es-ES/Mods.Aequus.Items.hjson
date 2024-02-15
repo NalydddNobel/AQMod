@@ -805,6 +805,21 @@ PhysicsGun: {
 }
 
 LaserReticle: {
-	// DisplayName: Laser Reticle
+	// DisplayName: Mods.Aequus.Items.LaserReticle.DisplayName
+	// Tooltip: ""
+}
+
+CleanserDrone: {
+	// DisplayName: Cleanser Drone
+	// Tooltip: ""
+}
+
+GunnerDrone: {
+	// DisplayName: Gunner Drone
+	// Tooltip: ""
+}
+
+HealerDrone: {
+	// DisplayName: Healer Drone
 	// Tooltip: ""
 }

@@ -1,8 +1,6 @@
 DayOfTheWeek: When it's {0}
 BetweenDays: Between {0}-{1}
-
 InPollutedOcean: In the Polluted Ocean biome
-
 DownedAquaticBoss: Mods.Aequus.Condition.DownedAquaticBoss
 DownedCosmicBoss: After defeating Ultra Starite
 DownedTrueCosmicBoss: After defeating Omega Starite
@@ -15,7 +13,6 @@ DownedOrganicBossMight: Mods.Aequus.Condition.DownedOrganicBossMight
 DownedOrganicBossSight: Mods.Aequus.Condition.DownedOrganicBossSight
 DownedOrganicBossFright: Mods.Aequus.Condition.DownedOrganicBossFright
 DownedTrueFinalBoss: Mods.Aequus.Condition.DownedTrueFinalBoss
-
 NotDownedAquaticBoss: Mods.Aequus.Condition.NotDownedAquaticBoss
 NotDownedCosmicBoss: Before defeating Ultra Starite
 NotDownedTrueCosmicBoss: Before defeating Omega Starite
@@ -28,6 +25,5 @@ NotDownedOrganicBossMight: Mods.Aequus.Condition.NotDownedOrganicBossMight
 NotDownedOrganicBossSight: Mods.Aequus.Condition.NotDownedOrganicBossSight
 NotDownedOrganicBossFright: Mods.Aequus.Condition.NotDownedOrganicBossFright
 NotDownedTrueFinalBoss: Mods.Aequus.Condition.NotDownedTrueFinalBoss
-
-MovePortalGun: "If the \"{$Configs.VanillaChangesConfig.MovePortalGun}\" option is set to true."
-MoveGravityGlobe: "If the \"{$Configs.VanillaChangesConfig.MoveGravityGlobe}\" option is set to true."
+MovePortalGun: If the "{$Configs.VanillaChangesConfig.MovePortalGun}" option is set to true.
+MoveGravityGlobe: If the "{$Configs.VanillaChangesConfig.MoveGravityGlobe}" option is set to true.

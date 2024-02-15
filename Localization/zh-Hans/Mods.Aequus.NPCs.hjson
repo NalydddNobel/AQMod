@@ -177,80 +177,95 @@ OccultistHostile: {
 }
 
 Physicist: {
-	// DisplayName: Physicist
-	// Bestiary: An alien scientist from a neighboring planet, sent to Earth to survey for unnatural phenomena. Kind of an airhead despite her astronomical IQ; she forgot to bring a radio to report back home with.
+	DisplayName: 物理学家
+	Bestiary: 一位来自邻近星球的外星科学家, 被派往地球调查非自然现象. 尽管她有着天文数字般的智商, 但她还是有点傻; 她忘了带无线电广播以向家里报告.
 
 	TownNPCMood: {
-		// Content: My surroundings are acceptable. As they say on Mars, an alive soldier is a happy soldier.
-		// NoHome: I would request a drop-pod laboratory from my homeworld, but... I neglected to bring my radio. May you construct a habitat for me?
-		// FarFromHome: A scientist's work is not for the weak of mind. For instance, I occasionally have to leave my house.
-		// LoveSpace: I enjoy space in all definitions. It's nice to have ample room to set up all of my equipment.
-		// DislikeCrowded: The abundance of nearby lifeforms is throwing off my readings. More room would be appreciated.
-		// HateCrowded: I had heard rumors of your species' inconsiderate housing habits. It's unfortunate to see they're true.
-		// LikeBiome: The clear weather of the Desert is ideal for both long-range observation and sending communications back to my homeworld. Excellent!
-		// LoveBiome: Living in {BiomeName} has been great for me and my drone, reminds me a lot of my homeworld.
-		// DislikeBiome: Really I refuse to believe the place before me is real, must be a mirage you put up for outside visitors.
-		// HateBiome: "[HateBiomeQuote]|{BiomeName}+"
-		// HateBiome_Hallow: What a childish place the Hallow is. This is an insult to someone of my intelligence.
-		// HateBiome_Evils: My equipment keeps malfunctioning in {BiomeName}, as if there is some kind of persistent virus in the air.
-		// LoveNPC: "{NPCName} is utterly fascinating! Even our best scientists could only dream of a truly sapient AI!"
-		// LikeNPC: "{NPCName} is a competent engineer. It's nice to talk to someone that can keep up with my expertise."
-		// LikeNPC_Princess: "{NPCName} has reached out to me about relations with my race. I am no ambassador, but it's nice to see your rulers are fair and just."
-		// DislikeNPC: "{NPCName}'s methods confuse and upset me. Rituals and prophecies have no role in understanding the world."
-		// HateNPC: "{NPCName} is far too whimsical for my tastes. Don't they know 'magic' is just sufficiently advanced technology?"
-		// Princess_LovesNPC: "{NPCName} is so mysterious... I would love for her to stick around!"
+		Content: 我周围的环境是可以接受的. 就像火星上的俗语说的, 活着的士兵就是快乐的士兵.
+		NoHome: 我想从我的家乡申请一个降落舱实验室, 但...我忘了带我的无线电通信. 你能为我建造一个居住地吗?
+		FarFromHome: 科学家的工作不适合心智薄弱的人. 例如, 我有时不得不离开我的房子.
+		LoveSpace: 我喜欢在各种定义中的空间. 有足够的空间来安装我所有的设备真是太好了.
+		DislikeCrowded: 附近大量的生命形式干扰了我的读数. 如果有更大的空间将不胜感激.
+		HateCrowded: 我听说过你们的种族有不体贴的居住习惯. 不幸的是, 这些都是真的.
+		LikeBiome: 沙漠晴朗的天气非常适合远程观测和将通信发送回我的家乡. 太棒了!
+		LoveBiome: 住在{BiomeName}对我和我的无人机来说都很棒, 让我想起了我的家乡.
+		DislikeBiome: 真的, 我拒绝相信我面前的地方是真实的, 一定是你为外来游客搭建的海市蜃楼.
+		HateBiome: "[HateBiomeQuote]|{BiomeName}+"
+		HateBiome_Hallow: 神圣之地是个多么幼稚的地方啊. 这是对像我这样聪明的人的侮辱.
+		HateBiome_Evils: 我的设备在{BiomeName}中一直出现故障, 好像空气中有某种持久的病毒.
+		LoveNPC: "{NPCName}非常迷人! 即使是我们最好的科学家也只能做一个有着真正有智慧的人工智能的梦!"
+		LikeNPC: "{NPCName}是一位称职的工程师. 很高兴能和一个能跟上我的专业知识的人交谈."
+		LikeNPC_Princess: "{NPCName}就我与我种族的关系联系了我, 我不是使者. 但很高兴看到你们的统治者是公平公正的."
+		DislikeNPC: "{NPCName}的方法使我困惑和不安. 仪式和预言在理解世界上没有任何作用."
+		HateNPC: 在我看来, {NPCName}太异想天开了. 难道他不知道'魔法'只是足够先进的科技吗?
+		Princess_LovesNPC: "{NPCName}如此神秘...我希望她能留下来!"
 	}
 
 	Dialogue: {
 		Basic: {
-			// 0: Quite the exotic gravity you have here. My planet's pull is only about 38% the strength.
-			// 1: It seems there is something to chaos theory after all...
-			// 2: Not all seeing further is by standing on the shoulders of giants. Some use flying saucers instead.
+			0: 你这里有着奇特的重力. 我星球的引力对于这里来说只有38%.
+			1: 好吧, 看来混沌理论是有点道理的...
+			2: 并非所有人都要站在巨人的肩膀上才能看到更远. 有些人选择用飞碟.
 			# Do not translate the 'alien text' in brackets '[]'
-			// 3: "[⍀⏃⋏⎅⍜⋔ ⌇⟒⋏⏁⟒⋏☊⟒]. Oh, my apologies, I must have slipped back into my native language."
+			3: "[⍀⏃⋏⎅⍜⋔ ⌇⟒⋏⏁⟒⋏☊⟒]. 哦, 抱歉, 我一定是又切换回了我的母语."
 		}
 
-		// Night.0: My homeworld should be visible in the sky from here... do you see it? Hm. Likely not, with ocular receptors like that.
+		Night.0: 从这里应该能够看到我就家园...你看见它了吗? 嗯, 有着这样的眼部感受器大概不行.
 
 		BloodMoon: {
-			// 0: These conditions appear to have an effect on human biology, but investigating it has been... difficult.
-			// 1: I have been unable to recreate the erratic behaviors caused by these events with a simple red light. Something more must be at play.
+			0: 这些状况似乎对人类生物学有影响, 但要调查起来...非常困难.
+			1: 我无法用简单的红灯重现这些事件造成的不稳定行为. 一定有更多的东西在发挥作用.
 		}
 
 		Graveyard: {
-			// 0: Is this how you bury your dead? Rather formal, compared to the mass graves on my homeworld.
-			// 1: Do you hear that sound? Have I left my PKE meter on debug mode again?
+			0: 这就是你埋葬死者的方式吗? 与我家乡的万人坑相比, 这是相当正式的.
+			1: 你听见那声音了吗? 我是否又将我的PKE仪表置入了调试模式?
 		}
 
 		Glimmer: {
-			// 0: The glittering lights that mark the arrival of the stars... there is so much yet to learn from this still.
-			// 1: All of my data probes keep getting hit by falling stars! Infuriating!
+			0: 闪烁的亮光意味着星星的到来...仍有很多东西要学习.
+			1: 我所有的数据探测器都被坠落的星星击中了! 令人恼火!
 		}
 
-		// MartianMadnessOccuring: What is happening?! I had not authorized an invasion! I had nothing to do with this!
-		// MartianMadness: I apologize for my... overly militant superiors. At least you fended them off in one piece.
-		// LunarPillars: All of my sensors are going haywire! This world's moon is emitting incredibly powerful waves of energy, and its projected area is centered directly on this island!
-		// Pylon: This "pylon" technology is incredible. My homeworld could utilize it well, if only its average happiness levels were not in the negative.
-		// WindyDay: My eyes are quite sensitive to the wind. If only I had brought a pair of goggles...
-		// Rain: Fascinating! I knew of it before, of course, but seeing liquid precipitation in person is an entirely different experience.
-		// Thunderstorm: What was that sound? We don't have anything like this on my planet!
-		// Party: This 'party' is most unnatural. How do you sustain such levels of festivity?
+		MartianMadnessOccuring: 发生了什么?! 我没有授权入侵! 我和这件事无关!
+		MartianMadness: 我为我...过度好战的上级道歉. 至少你挡住了他们.
+		LunarPillars: 我所有的传感器都乱了! 这个世界上的月球正在发射出令人难以置信的强大能量波, 其投射的区域直接集中在这座岛屿上!
+		Pylon: 这种"晶塔"技术令人难以置信. 我的家园应该可以很好的利用它, 只要幸福度不为负数.
+		WindyDay: 我的眼睛对风很敏感. 如果我带了一副护目镜就好了...
+		Rain: 令人着迷! 我以前就知道, 当然, 但亲眼目睹液体沉淀是完全不同的体验.
+		Thunderstorm: 那是什么声音? 我们的星球上没有这样的东西!
+		Party: "'派对'是最反常的. 你如何维持这样的节日水平?"
 
 		SoTSMod: {
-			// 0: When I was first calibrating my portals to transport me here, I discovered a disturbance created by some sort of floating-ship object. It may be in my best interest to investigate this.
-			// 1: You haven't been making deals with any cat-like creatures... right?
+			0: 当我第一次校准传送门以将我传送至此时, 我发现了一种由某种漂浮的船只物体造成的干扰. 调查此事可能符合我的最大利益.
+			1: 你没有和任何类似猫的生物做过交易...对吗?
 		}
 
-		// PolaritiesMod: Have you seen my giant magnet? About 12 feet long? I leave it unattended for one moment and it vanishes on me...
+		PolaritiesMod: 嘿, 你看到我的大型磁铁了吗? 它大约有12英尺长? 我差不多有一刻没看着它, 它就直接消失了.
 	}
 }
 
 PhysicistPet: {
-	// DisplayName: Drone
-	// Bestiary: This tiny contraption follows the Physicist wherever she goes, constantly logging data from the environment to ensure nothing is missed. Miniaturized for personal use from a larger surveillance model.
+	DisplayName: 无人机
+	Bestiary: 无论物理学家走到哪里, 这个小小的装置都会跟着她, 不断记录环境中的数据以确保没有遗漏. 小型化更大的监视模型以供个人使用.
 
 	Dialogue: {
-		// 0: Beep boop.
-		// 1: Beep bop.
+		0: 哔哔啵.
+		1: 哔啵.
 	}
+}
+
+CleanserDrone: {
+	DisplayName: 清扫无人机
+	Bestiary: 它是由物理学家和蒸汽朋克人为了保持你小镇的纯净和宜居而联合创造的. 它从小镇的晶塔中汲取能量作为动力.
+}
+
+GunnerDrone: {
+	DisplayName: 火炮无人机
+	Bestiary: 它是由物理学家为了保护你的小镇而创造的, 它从小镇的晶塔中汲取能量作为动力.
+}
+
+HealerDrone: {
+	DisplayName: 治疗无人机
+	Bestiary: 它是由物理学家为了保持你小镇的健康而创造的, 它从小镇的晶塔中汲取能量作为动力.
 }

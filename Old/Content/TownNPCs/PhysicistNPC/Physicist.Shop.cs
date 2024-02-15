@@ -1,5 +1,6 @@
 ﻿using Aequus.Content.Configuration;
 using Aequus.Content.Tools.MagicMirrors.PhaseMirror;
+using Aequus.Old.Content.DronePylons;
 using Aequus.Old.Content.Equipment.Accessories.LaserScope;
 using Aequus.Old.Content.Events.Glimmer.Spawners;
 using Aequus.Old.Content.Tools;
@@ -19,9 +20,9 @@ public partial class Physicist {
             .AddCustomValue(ItemID.BloodMoonStarter, Item.buyPrice(gold: 2))
             .Add<GalacticStarfruit>()
             .AddCustomValue(ItemID.SolarTablet, Item.buyPrice(gold: 5), Condition.DownedPlantera)
-        //    .Add<PylonGunnerItem>()
-        //    .Add<PylonHealerItem>()
-        //    .Add<PylonCleanserItem>(Condition.NpcIsPresent(NPCID.Steampunker), Condition.NotRemixWorld)
+            .Add(ModContent.GetInstance<GunnerDroneSlot>().DroneItem.Type)
+            .Add(ModContent.GetInstance<HealerDroneSlot>().DroneItem.Type)
+            .Add(ModContent.GetInstance<CleanserDroneSlot>().DroneItem.Type, Condition.NpcIsPresent(NPCID.Steampunker), Condition.NotRemixWorld)
             .Add<PhysicistSentry>(Condition.NotRemixWorld)
         //    .Add<AntiGravityBlock>(Condition.NotZenithWorld)
         //    .Add<GravityBlock>(Condition.NotZenithWorld)

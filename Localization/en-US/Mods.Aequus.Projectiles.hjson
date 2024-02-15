@@ -68,4 +68,5 @@ PhysicistTownSentryLightning.DisplayName: "{$NPCs.Physicist.DisplayName}"
 PhysicistTownSentryProj.DisplayName: "{$NPCs.Physicist.DisplayName}"
 PhysicistSentryLightning.DisplayName: "{$Items.PhysicistSentry.DisplayName}"
 PhysicistSentryProj.DisplayName: "{$Items.PhysicistSentry.DisplayName}"
-PhysicsGunProj.DisplayName: Physics Gun Proj
+PhysicsGunProj.DisplayName: "{$Items.PhysicsGun.DisplayName}"
+GunnerDroneProj.DisplayName: "{$NPCs.GunnerDrone.DisplayName}"

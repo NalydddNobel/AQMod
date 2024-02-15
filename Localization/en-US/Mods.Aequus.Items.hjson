@@ -808,3 +808,18 @@ LaserReticle: {
 	DisplayName: Mods.Aequus.Items.LaserReticle.DisplayName
 	Tooltip: ""
 }
+
+CleanserDrone: {
+	DisplayName: Mods.Aequus.Items.CleanserDrone.DisplayName
+	Tooltip: ""
+}
+
+GunnerDrone: {
+	DisplayName: Mods.Aequus.Items.GunnerDrone.DisplayName
+	Tooltip: ""
+}
+
+HealerDrone: {
+	DisplayName: Mods.Aequus.Items.HealerDrone.DisplayName
+	Tooltip: ""
+}

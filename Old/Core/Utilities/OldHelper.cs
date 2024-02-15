@@ -2,6 +2,16 @@
 
 namespace Aequus.Old.Core.Utilities;
 public static class OldHelper {
+    public static void CollideWithOthers(this NPC npc, float speed = 0.05f) {
+        var rect = npc.getRect();
+        for (int i = 0; i < Main.maxNPCs; i++) {
+            if (Main.npc[i].active && i != npc.whoAmI && npc.type == Main.npc[i].type
+                && rect.Intersects(Main.npc[i].getRect())) {
+                npc.velocity += Main.npc[i].DirectionTo(npc.Center) * speed;
+            }
+        }
+    }
+
     public static int GetMinionTarget(this Projectile projectile, Vector2 position, out float distance, float maxDistance = 2000f, float? ignoreTilesDistance = 0f) {
         if (Main.player[projectile.owner].HasMinionAttackTargetNPC) {
             distance = Vector2.Distance(Main.npc[Main.player[projectile.owner].MinionAttackTargetNPC].Center, projectile.Center);

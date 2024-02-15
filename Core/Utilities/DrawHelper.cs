@@ -115,6 +115,18 @@ public sealed class DrawHelper : ModSystem {
         return WorldGen.paintColor(stringColorId);
     }
 
+    public static void DiscardTarget(ref RenderTarget2D target) {
+        if (target == null) {
+            return;
+        }
+
+        if (!target.IsDisposed) {
+            target.Dispose();
+        }
+
+        target = null;
+    }
+
     public static bool BadRenderTarget(RenderTarget2D renderTarget2D) {
         return renderTarget2D == null || renderTarget2D.IsDisposed || renderTarget2D.IsContentLost;
     }

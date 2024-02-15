@@ -2,31 +2,28 @@ DayOfTheWeek: 当处于{0}
 BetweenDays: 在{0}-{1}之间
 InPollutedOcean: 位于被污染的海洋生物群落时
 DownedAquaticBoss: Mods.Aequus.Condition.DownedAquaticBoss
-NotDownedAquaticBoss: Mods.Aequus.Condition.NotDownedAquaticBoss
 DownedCosmicBoss: 在击败终耀源星后
-NotDownedCosmicBoss: 在击败终耀源星之前
 DownedTrueCosmicBoss: 在击败终末之星后
-NotDownedTrueCosmicBoss: 在击败终末之星之前
 DownedDemonBoss: 在完成一次恶魔围攻后
-NotDownedDemonBoss: 在完成你的首次恶魔围攻之前
 DownedTrueDemonBoss: Mods.Aequus.Condition.DownedTrueDemonBoss
-NotDownedTrueDemonBoss: Mods.Aequus.Condition.NotDownedTrueDemonBoss
 DownedAtmosphereBossFlame: 在与红色精灵相匹配后
-NotDownedAtmosphereBossFlame: 在与红色精灵相匹配之前
 DownedAtmosphereBossFrost: 在与太空乌贼相匹配后
-NotDownedAtmosphereBossFrost: 在与太空乌贼相匹配之前
 DownedTrueAtmosphereBoss: 在击败沙尘恶魔后
-NotDownedTrueAtmosphereBoss: 在击败沙尘恶魔之前
 DownedOrganicBossMight: Mods.Aequus.Condition.DownedOrganicBossMight
-NotDownedOrganicBossMight: Mods.Aequus.Condition.NotDownedOrganicBossMight
 DownedOrganicBossSight: Mods.Aequus.Condition.DownedOrganicBossSight
-NotDownedOrganicBossSight: Mods.Aequus.Condition.NotDownedOrganicBossSight
 DownedOrganicBossFright: Mods.Aequus.Condition.DownedOrganicBossFright
-NotDownedOrganicBossFright: Mods.Aequus.Condition.NotDownedOrganicBossFright
 DownedTrueFinalBoss: Mods.Aequus.Condition.DownedTrueFinalBoss
+NotDownedAquaticBoss: Mods.Aequus.Condition.NotDownedAquaticBoss
+NotDownedCosmicBoss: 在击败终耀源星之前
+NotDownedTrueCosmicBoss: 在击败终末之星之前
+NotDownedDemonBoss: 在完成你的首次恶魔围攻之前
+NotDownedTrueDemonBoss: Mods.Aequus.Condition.NotDownedTrueDemonBoss
+NotDownedAtmosphereBossFlame: 在与红色精灵相匹配之前
+NotDownedAtmosphereBossFrost: 在与太空乌贼相匹配之前
+NotDownedTrueAtmosphereBoss: 在击败沙尘恶魔之前
+NotDownedOrganicBossMight: Mods.Aequus.Condition.NotDownedOrganicBossMight
+NotDownedOrganicBossSight: Mods.Aequus.Condition.NotDownedOrganicBossSight
+NotDownedOrganicBossFright: Mods.Aequus.Condition.NotDownedOrganicBossFright
 NotDownedTrueFinalBoss: Mods.Aequus.Condition.NotDownedTrueFinalBoss
-
-"": {
-	// MovePortalGun: Mods.Aequus.Conditions.MovePortalGun
-	// MoveGravityGlobe: Mods.Aequus.Conditions.MoveGravityGlobe
-}
+// MovePortalGun: If the "{$Configs.VanillaChangesConfig.MovePortalGun}" option is set to true.
+// MoveGravityGlobe: If the "{$Configs.VanillaChangesConfig.MoveGravityGlobe}" option is set to true.

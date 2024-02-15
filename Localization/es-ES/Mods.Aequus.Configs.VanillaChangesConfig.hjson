@@ -43,11 +43,23 @@ SlimeCrownInSurfaceChests: {
 }
 
 MoveGravityGlobe: {
-	// Label: Move Gravity Globe
-	// Tooltip: ""
+	// Label: "[i:GravityGlobe] Gravity Globe sold by Physicist"
+	/* Tooltip:
+		'''
+		When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Gravity Globe] will by sold by the [{$ColorImportant}:Physicist],
+		and will [{$ColorImportant}:no longer be dropped] by the [{$ColorImportant2}:Moon Lord].
+
+		{$NoteExploit}
+		''' */
 }
 
 MovePortalGun: {
-	// Label: Move Portal Gun
-	// Tooltip: ""
+	// Label: "[i:PortalGun] Gravity Globe sold by Physicist"
+	/* Tooltip:
+		'''
+		When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Portal Gun] will by sold by the [{$ColorImportant}:Physicist],
+		and will [{$ColorImportant}:no longer be dropped] by the [{$ColorImportant2}:Moon Lord].
+
+		{$NoteExploit}
+		''' */
 }

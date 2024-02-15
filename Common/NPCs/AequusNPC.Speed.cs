@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace Aequus.Common.NPCs;
 
-public partial class AequusNPC : GlobalNPC {
+public partial class AequusNPC {
     [ResetEffects(1f)]
     public float statSpeedX = 1f;
     [ResetEffects(1f)]

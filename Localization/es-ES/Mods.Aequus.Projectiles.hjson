@@ -69,3 +69,4 @@ DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 // PhysicistSentryLightning.DisplayName: "{$Items.PhysicistSentry.DisplayName}"
 // PhysicistSentryProj.DisplayName: "{$Items.PhysicistSentry.DisplayName}"
 // PhysicsGunProj.DisplayName: Physics Gun Proj
+// GunnerDroneProj.DisplayName: Gunner Drone Proj

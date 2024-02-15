@@ -1487,7 +1487,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 500)</summary>
+            <summary>(Total Textures: 513)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2250,6 +2250,45 @@
         </member>
         <member name="F:Aequus.AequusTextures.DwarfStarite">
             <summary>Full Path: Old/Content/Critters/DwarfStarite</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CleanserDroneItem">
+            <summary>Full Path: Old/Content/DronePylons/CleanserDroneItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GunnerDroneItem">
+            <summary>Full Path: Old/Content/DronePylons/GunnerDroneItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HealerDroneItem">
+            <summary>Full Path: Old/Content/DronePylons/HealerDroneItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CleanserDrone">
+            <summary>Full Path: Old/Content/DronePylons/NPCs/CleanserDrone</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CleanserDrone_Glow">
+            <summary>Full Path: Old/Content/DronePylons/NPCs/CleanserDrone_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CleanserDrone_Gun">
+            <summary>Full Path: Old/Content/DronePylons/NPCs/CleanserDrone_Gun</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CleanserDrone_Gun_Glow">
+            <summary>Full Path: Old/Content/DronePylons/NPCs/CleanserDrone_Gun_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GunnerDrone">
+            <summary>Full Path: Old/Content/DronePylons/NPCs/GunnerDrone</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GunnerDrone_Extras">
+            <summary>Full Path: Old/Content/DronePylons/NPCs/GunnerDrone_Extras</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GunnerDrone_Extras_Glow">
+            <summary>Full Path: Old/Content/DronePylons/NPCs/GunnerDrone_Extras_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GunnerDrone_Glow">
+            <summary>Full Path: Old/Content/DronePylons/NPCs/GunnerDrone_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HealerDrone">
+            <summary>Full Path: Old/Content/DronePylons/NPCs/HealerDrone</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HealerDrone_Glow">
+            <summary>Full Path: Old/Content/DronePylons/NPCs/HealerDrone_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BloodMimic">
             <summary>Full Path: Old/Content/Enemies/BloodMoon/BloodMimic</summary>
