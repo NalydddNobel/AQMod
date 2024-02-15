@@ -64,3 +64,8 @@ DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 // SuperStariteProj.DisplayName: "{$NPCs.SuperStarite.DisplayName}"
 // UltraStariteDeathray.DisplayName: Cosmic Ray
 // UltraStariteOuterArms.DisplayName: "{$NPCs.UltraStarite.DisplayName}"
+// PhysicistTownSentryLightning.DisplayName: "{$NPCs.Physicist.DisplayName}"
+// PhysicistTownSentryProj.DisplayName: "{$NPCs.Physicist.DisplayName}"
+// PhysicistSentryLightning.DisplayName: "{$Items.PhysicistSentry.DisplayName}"
+// PhysicistSentryProj.DisplayName: "{$Items.PhysicistSentry.DisplayName}"
+// PhysicsGunProj.DisplayName: Physics Gun Proj

@@ -73,7 +73,7 @@ public abstract class AequusTownNPC<T> : AequusTownNPC where T : AequusTownNPC<T
     public static int ShimmerHeadIndex { get; protected set; }
     public static StackedNPCProfile Profile { get; protected set; }
 
-    protected static string ShimmerTexture => $"{typeof(T).NamespaceFilePath()}/Shimmer/{typeof(T).Name}";
+    protected static string ShimmerTexture => $"{typeof(T).NamespaceFilePath()}/Shimmer/{typeof(T).Name}_Shimmer";
 
     public override void Load() {
         ShimmerHeadIndex = Mod.AddNPCHeadTexture(Type, ShimmerTexture + "_Head");

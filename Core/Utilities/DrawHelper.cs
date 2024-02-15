@@ -53,7 +53,13 @@ public sealed class DrawHelper : ModSystem {
         DrawLine(Main.spriteBatch.Draw, start, end, width, color);
     }
 
-    public static void DrawBasicVertexLine(Texture2D texture, Vector2[] lineSegments, float[] lineRotations, VertexStrip.StripColorFunction getColor, VertexStrip.StripHalfWidthFunction getWidth, Vector2 offset = default, bool includeBacksides = true, bool tryStoppingOddBug = true) {
+    public static void DrawBasicVertexLine(Texture2D texture, Vector2[] lineSegments, float[] lineRotations, VertexStrip.StripColorFunction getColor, VertexStrip.StripHalfWidthFunction getWidth, Vector2 offset = default, bool includeBacksides = true) {
+        ApplyBasicEffect(texture);
+
+        VertexStrip.PrepareStrip(lineSegments, lineRotations, getColor, getWidth, offset, includeBacksides: includeBacksides);
+        VertexStrip.DrawTrail();
+    }
+    public static void DrawBasicVertexLineWithProceduralPadding(Texture2D texture, Vector2[] lineSegments, float[] lineRotations, VertexStrip.StripColorFunction getColor, VertexStrip.StripHalfWidthFunction getWidth, Vector2 offset = default, bool includeBacksides = true, bool tryStoppingOddBug = true) {
         ApplyBasicEffect(texture);
 
         VertexStrip.PrepareStripWithProceduralPadding(lineSegments, lineRotations, getColor, getWidth, offset, includeBacksides, tryStoppingOddBug);

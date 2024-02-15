@@ -793,3 +793,13 @@ CelestialEightBall: {
 		19: Concentrate and ask again
 	}
 }
+
+PhysicistSentry: {
+	DisplayName: Mods.Aequus.Items.PhysicistSentry.DisplayName
+	Tooltip: ""
+}
+
+PhysicsGun: {
+	DisplayName: Mods.Aequus.Items.PhysicsGun.DisplayName
+	Tooltip: ""
+}

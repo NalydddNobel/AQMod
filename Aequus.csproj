@@ -65,6 +65,7 @@
     <None Remove="Assets\Textures\Pixel.png" />
     <None Remove="Old\Assets\Shaders\Flash.fx" />
     <None Remove="Old\Assets\Shaders\GlimmerBackgroundShaders.fx" />
+    <None Remove="Old\Assets\Sounds\ZumboPettingSqueak.ogg" />
     <None Remove="Old\Content\Bosses\OmegaStarite\Sounds\OmegaStariteHit0.ogg" />
     <None Remove="Old\Content\Bosses\OmegaStarite\Sounds\OmegaStariteHit1.ogg" />
     <None Remove="Old\Content\Bosses\OmegaStarite\Sounds\OmegaStariteHit2.ogg" />
@@ -78,6 +79,14 @@
     <None Remove="Old\Content\Particles\CosmicCrystalDust.png" />
     <None Remove="Old\Content\Particles\MonoSparkleDust.png" />
     <None Remove="Old\Content\StatusEffects\BlueFire.png" />
+    <None Remove="Old\Content\Tools\PhysicsGun.png" />
+    <None Remove="Old\Content\Tools\PhysicsGunProj.png" />
+    <None Remove="Old\Content\Tools\PhysicsGun_Glow.png" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <Folder Include="Old\Common\Items\" />
+    <Folder Include="Old\Content\Weapons\Sentries\" />
   </ItemGroup>
 	
 </Project>

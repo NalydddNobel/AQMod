@@ -1292,7 +1292,7 @@
             <summary>Whether the Occultist has been met. This determines if the Hostile Occultist emote can be used.</summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 63)</summary>
+            <summary>(Total Sounds: 64)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishCharge">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -1465,6 +1465,9 @@
         <member name="F:Aequus.AequusSounds.RecruitZombie">
             <summary>Full Path: Old/Assets/Sounds/RecruitZombie</summary>
         </member>
+        <member name="F:Aequus.AequusSounds.ZumboPettingSqueak">
+            <summary>Full Path: Old/Assets/Sounds/ZumboPettingSqueak</summary>
+        </member>
         <member name="F:Aequus.AequusSounds.OmegaStariteDeathRay">
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteDeathRay</summary>
         </member>
@@ -1484,7 +1487,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 483)</summary>
+            <summary>(Total Textures: 498)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2086,46 +2089,46 @@
         <member name="F:Aequus.AequusTextures.NameTagBlank">
             <summary>Full Path: Content/Tools/NameTag/NameTagBlank</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Balloon">
+        <member name="F:Aequus.AequusTextures.Balloon">
             <summary>Full Path: Content/TownNPCs/SkyMerchant/Balloon</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Basket">
+        <member name="F:Aequus.AequusTextures.Basket">
             <summary>Full Path: Content/TownNPCs/SkyMerchant/Basket</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SkyMerchantEmote">
             <summary>Full Path: Content/TownNPCs/SkyMerchant/Emotes/SkyMerchantEmote</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Shimmer_Balloon">
-            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
+        <member name="F:Aequus.AequusTextures.Balloon_Shimmer">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/Balloon_Shimmer</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Shimmer_Basket">
-            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/Basket</summary>
+        <member name="F:Aequus.AequusTextures.Basket_Shimmer">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/Basket_Shimmer</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Shimmer_SkyMerchant">
-            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant</summary>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Shimmer_SkyMerchant_Aiming">
-            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Aiming</summary>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer_Aiming">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Aiming</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Shimmer_SkyMerchant_CrossbowArm">
-            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_CrossbowArm</summary>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer_CrossbowArm">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CrossbowArm</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Shimmer_SkyMerchant_Head">
-            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Head</summary>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer_Head">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Head</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_SkyMerchant">
+        <member name="F:Aequus.AequusTextures.SkyMerchant">
             <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_SkyMerchant_Aiming">
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Aiming">
             <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant_Aiming</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_SkyMerchant_CrossbowArm">
+        <member name="F:Aequus.AequusTextures.SkyMerchant_CrossbowArm">
             <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant_CrossbowArm</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SkyMerchant_CustomHead">
             <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant_CustomHead</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_SkyMerchant_Head">
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Head">
             <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RenameBackIcon">
@@ -2788,6 +2791,15 @@
         <member name="F:Aequus.AequusTextures.PlanterBoxMorayItem">
             <summary>Full Path: Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxMorayItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.PhysicsGun">
+            <summary>Full Path: Old/Content/Tools/PhysicsGun</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicsGunProj">
+            <summary>Full Path: Old/Content/Tools/PhysicsGunProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicsGun_Glow">
+            <summary>Full Path: Old/Content/Tools/PhysicsGun_Glow</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.CarpenterEmote">
             <summary>Full Path: Old/Content/TownNPCs/CarpenterNPC/Emotes/CarpenterEmote</summary>
         </member>
@@ -2847,6 +2859,33 @@
         </member>
         <member name="F:Aequus.AequusTextures.PhysicistPetEmote">
             <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Emotes/PhysicistPetEmote</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Physicist">
+            <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Physicist</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicistPet">
+            <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/PhysicistPet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicistPet_Glow">
+            <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/PhysicistPet_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Physicist_Head">
+            <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Physicist_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicistPet_Shimmer">
+            <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Shimmer/PhysicistPet_Shimmer</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicistPet_Shimmer_Glow">
+            <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Shimmer/PhysicistPet_Shimmer_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Physicist_Shimmer">
+            <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Shimmer/Physicist_Shimmer</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Physicist_Shimmer_Glow">
+            <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Shimmer/Physicist_Shimmer_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Physicist_Shimmer_Head">
+            <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Shimmer/Physicist_Shimmer_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CelestialEightBall">
             <summary>Full Path: Old/Content/Vanity/CelestialEightBall</summary>
@@ -2928,6 +2967,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.CrusadersCrossbowProj">
             <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicistSentry">
+            <summary>Full Path: Old/Content/Weapons/Sentries/PhysicistSentry/PhysicistSentry</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicistSentryProj">
+            <summary>Full Path: Old/Content/Weapons/Sentries/PhysicistSentry/PhysicistSentryProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicistSentryProj_Glow">
+            <summary>Full Path: Old/Content/Weapons/Sentries/PhysicistSentry/PhysicistSentryProj_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BacciliteSceptre">
             <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre</summary>

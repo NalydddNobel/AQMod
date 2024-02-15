@@ -1216,7 +1216,7 @@ public class OmegaStarite : AequusBoss {
             //Main.spriteBatch.BeginWorld(shader: true);
 
             if ((NPC.position - NPC.oldPos[1]).Length() > 0.01f) {
-                DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, NPC.oldPos, OldDrawHelper.GenerateRotationArr(NPC.oldPos),
+                DrawHelper.DrawBasicVertexLineWithProceduralPadding(AequusTextures.Trail, NPC.oldPos, OldDrawHelper.GenerateRotationArr(NPC.oldPos),
                     (p) => GlimmerColors.Blue * (1f - p),
                     (p) => 20 * (1f - p),
                     -Main.screenPosition + NPC.Size / 2f);

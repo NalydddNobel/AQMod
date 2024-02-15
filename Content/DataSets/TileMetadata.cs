@@ -6,6 +6,10 @@ namespace Aequus.Content.DataSets;
 
 public class TileMetadata : MetadataSet {
     [JsonProperty]
+    public static HashSet<Entry<TileID>> PhysicsGunCannotPickUp { get; private set; } = new();
+    [JsonProperty]
+    public static HashSet<Entry<TileID>> PhysicsGunBlocksLaser { get; private set; } = new();
+    [JsonProperty]
     public static HashSet<Entry<TileID>> IsSmashablePot { get; private set; } = new();
     /// <summary>Prevents tiles below this tile from being sloped.</summary>
     [JsonIgnore]

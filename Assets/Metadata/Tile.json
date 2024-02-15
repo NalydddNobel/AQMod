@@ -1,4 +1,7 @@
 {
+  "PhysicsGunCannotPickUp": [
+    "AntiPortalBlock"
+  ],
   "IsSmashablePot": [
     "Pots",
     "PotsEcho",

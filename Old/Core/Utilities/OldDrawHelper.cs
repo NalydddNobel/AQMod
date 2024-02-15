@@ -7,7 +7,7 @@ public static class OldDrawHelper {
         float[] rotations = new float[oldPos.Length];
 
         for (int i = 0; i < oldPos.Length; i++) {
-            rotations[i] = GetRotationVector(oldPos, i).ToRotation() + MathHelper.PiOver2;
+            rotations[i] = GetRotationVector(oldPos, i).ToRotation();
         }
 
         return rotations;
@@ -19,12 +19,14 @@ public static class OldDrawHelper {
         }
 
         if (index == 0) {
-            return Vector2.Normalize(oldPos[0] - oldPos[1]);
+            return Utils.SafeNormalize(oldPos[1] - oldPos[0], Vector2.UnitY);
         }
 
-        return (index == oldPos.Length - 1
-            ? Vector2.Normalize(oldPos[index] - oldPos[index - 1])
-            : Vector2.Normalize(oldPos[index + 1] - oldPos[index - 1])).RotatedBy(MathHelper.Pi / 2);
+        if (index == oldPos.Length - 1) {
+            return Utils.SafeNormalize(oldPos[index] - oldPos[index - 1], Vector2.UnitY);
+        }
+
+        return Utils.SafeNormalize(oldPos[index + 1] - oldPos[index - 1], Vector2.UnitY);
     }
 
 

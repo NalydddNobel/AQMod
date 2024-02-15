@@ -44,7 +44,7 @@ public class OmegaStariteBullet : ModProjectile {
         drawColor.A = 0;
         var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
 
-        DrawHelper.DrawBasicVertexLine(AequusTextures.Trail2, Projectile.oldPos, Projectile.oldRot,
+        DrawHelper.DrawBasicVertexLineWithProceduralPadding(AequusTextures.Trail2, Projectile.oldPos, Projectile.oldRot,
             (p) => GlimmerColors.CosmicEnergy with { A = 0 } * (1f - p),
             (p) => Projectile.width - p * Projectile.width,
             -Main.screenPosition + Projectile.Size / 2f);

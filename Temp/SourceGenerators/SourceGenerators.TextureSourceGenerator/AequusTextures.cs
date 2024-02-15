@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 483)</summary>
+/// <summary>(Total Textures: 498)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -408,33 +408,33 @@ public partial class AequusTextures {
     /// <summary>Full Path: Content/Tools/NameTag/NameTagBlank</summary>
     public static readonly RequestCache<Texture2D> NameTagBlank = new("Aequus/Content/Tools/NameTag/NameTagBlank");
     /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Balloon</summary>
-    public static readonly RequestCache<Texture2D> Content_TownNPCs_SkyMerchant_Balloon = new("Aequus/Content/TownNPCs/SkyMerchant/Balloon");
+    public static readonly RequestCache<Texture2D> Balloon = new("Aequus/Content/TownNPCs/SkyMerchant/Balloon");
     /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Basket</summary>
-    public static readonly RequestCache<Texture2D> Content_TownNPCs_SkyMerchant_Basket = new("Aequus/Content/TownNPCs/SkyMerchant/Basket");
+    public static readonly RequestCache<Texture2D> Basket = new("Aequus/Content/TownNPCs/SkyMerchant/Basket");
     /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Emotes/SkyMerchantEmote</summary>
     public static readonly RequestCache<Texture2D> SkyMerchantEmote = new("Aequus/Content/TownNPCs/SkyMerchant/Emotes/SkyMerchantEmote");
-    /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
-    public static readonly RequestCache<Texture2D> Content_TownNPCs_SkyMerchant_Shimmer_Balloon = new("Aequus/Content/TownNPCs/SkyMerchant/Shimmer/Balloon");
-    /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/Basket</summary>
-    public static readonly RequestCache<Texture2D> Content_TownNPCs_SkyMerchant_Shimmer_Basket = new("Aequus/Content/TownNPCs/SkyMerchant/Shimmer/Basket");
-    /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant</summary>
-    public static readonly RequestCache<Texture2D> Content_TownNPCs_SkyMerchant_Shimmer_SkyMerchant = new("Aequus/Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant");
-    /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Aiming</summary>
-    public static readonly RequestCache<Texture2D> Content_TownNPCs_SkyMerchant_Shimmer_SkyMerchant_Aiming = new("Aequus/Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Aiming");
-    /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_CrossbowArm</summary>
-    public static readonly RequestCache<Texture2D> Content_TownNPCs_SkyMerchant_Shimmer_SkyMerchant_CrossbowArm = new("Aequus/Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_CrossbowArm");
-    /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Head</summary>
-    public static readonly RequestCache<Texture2D> Content_TownNPCs_SkyMerchant_Shimmer_SkyMerchant_Head = new("Aequus/Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Head");
+    /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/Balloon_Shimmer</summary>
+    public static readonly RequestCache<Texture2D> Balloon_Shimmer = new("Aequus/Content/TownNPCs/SkyMerchant/Shimmer/Balloon_Shimmer");
+    /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/Basket_Shimmer</summary>
+    public static readonly RequestCache<Texture2D> Basket_Shimmer = new("Aequus/Content/TownNPCs/SkyMerchant/Shimmer/Basket_Shimmer");
+    /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer</summary>
+    public static readonly RequestCache<Texture2D> SkyMerchant_Shimmer = new("Aequus/Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer");
+    /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Aiming</summary>
+    public static readonly RequestCache<Texture2D> SkyMerchant_Shimmer_Aiming = new("Aequus/Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Aiming");
+    /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CrossbowArm</summary>
+    public static readonly RequestCache<Texture2D> SkyMerchant_Shimmer_CrossbowArm = new("Aequus/Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CrossbowArm");
+    /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Head</summary>
+    public static readonly RequestCache<Texture2D> SkyMerchant_Shimmer_Head = new("Aequus/Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Head");
     /// <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant</summary>
-    public static readonly RequestCache<Texture2D> Content_TownNPCs_SkyMerchant_SkyMerchant = new("Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant");
+    public static readonly RequestCache<Texture2D> SkyMerchant = new("Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant");
     /// <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant_Aiming</summary>
-    public static readonly RequestCache<Texture2D> Content_TownNPCs_SkyMerchant_SkyMerchant_Aiming = new("Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant_Aiming");
+    public static readonly RequestCache<Texture2D> SkyMerchant_Aiming = new("Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant_Aiming");
     /// <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant_CrossbowArm</summary>
-    public static readonly RequestCache<Texture2D> Content_TownNPCs_SkyMerchant_SkyMerchant_CrossbowArm = new("Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant_CrossbowArm");
+    public static readonly RequestCache<Texture2D> SkyMerchant_CrossbowArm = new("Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant_CrossbowArm");
     /// <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant_CustomHead</summary>
     public static readonly RequestCache<Texture2D> SkyMerchant_CustomHead = new("Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant_CustomHead");
     /// <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant_Head</summary>
-    public static readonly RequestCache<Texture2D> Content_TownNPCs_SkyMerchant_SkyMerchant_Head = new("Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant_Head");
+    public static readonly RequestCache<Texture2D> SkyMerchant_Head = new("Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant_Head");
     /// <summary>Full Path: Content/TownNPCs/SkyMerchant/UI/RenameBackIcon</summary>
     public static readonly RequestCache<Texture2D> RenameBackIcon = new("Aequus/Content/TownNPCs/SkyMerchant/UI/RenameBackIcon");
     /// <summary>Full Path: Content/UI/Map/NameTagBlip</summary>
@@ -875,6 +875,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> PlanterBoxMoonflowerItem = new("Aequus/Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxMoonflowerItem");
     /// <summary>Full Path: Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxMorayItem</summary>
     public static readonly RequestCache<Texture2D> PlanterBoxMorayItem = new("Aequus/Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxMorayItem");
+    /// <summary>Full Path: Old/Content/Tools/PhysicsGun</summary>
+    public static readonly RequestCache<Texture2D> PhysicsGun = new("Aequus/Old/Content/Tools/PhysicsGun");
+    /// <summary>Full Path: Old/Content/Tools/PhysicsGunProj</summary>
+    public static readonly RequestCache<Texture2D> PhysicsGunProj = new("Aequus/Old/Content/Tools/PhysicsGunProj");
+    /// <summary>Full Path: Old/Content/Tools/PhysicsGun_Glow</summary>
+    public static readonly RequestCache<Texture2D> PhysicsGun_Glow = new("Aequus/Old/Content/Tools/PhysicsGun_Glow");
     /// <summary>Full Path: Old/Content/TownNPCs/CarpenterNPC/Emotes/CarpenterEmote</summary>
     public static readonly RequestCache<Texture2D> CarpenterEmote = new("Aequus/Old/Content/TownNPCs/CarpenterNPC/Emotes/CarpenterEmote");
     /// <summary>Full Path: Old/Content/TownNPCs/LobsterNPC/Emotes/LobsterEmote</summary>
@@ -915,6 +921,24 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> PhysicistEmote = new("Aequus/Old/Content/TownNPCs/PhysicistNPC/Emotes/PhysicistEmote");
     /// <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Emotes/PhysicistPetEmote</summary>
     public static readonly RequestCache<Texture2D> PhysicistPetEmote = new("Aequus/Old/Content/TownNPCs/PhysicistNPC/Emotes/PhysicistPetEmote");
+    /// <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Physicist</summary>
+    public static readonly RequestCache<Texture2D> Physicist = new("Aequus/Old/Content/TownNPCs/PhysicistNPC/Physicist");
+    /// <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/PhysicistPet</summary>
+    public static readonly RequestCache<Texture2D> PhysicistPet = new("Aequus/Old/Content/TownNPCs/PhysicistNPC/PhysicistPet");
+    /// <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/PhysicistPet_Glow</summary>
+    public static readonly RequestCache<Texture2D> PhysicistPet_Glow = new("Aequus/Old/Content/TownNPCs/PhysicistNPC/PhysicistPet_Glow");
+    /// <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Physicist_Head</summary>
+    public static readonly RequestCache<Texture2D> Physicist_Head = new("Aequus/Old/Content/TownNPCs/PhysicistNPC/Physicist_Head");
+    /// <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Shimmer/PhysicistPet_Shimmer</summary>
+    public static readonly RequestCache<Texture2D> PhysicistPet_Shimmer = new("Aequus/Old/Content/TownNPCs/PhysicistNPC/Shimmer/PhysicistPet_Shimmer");
+    /// <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Shimmer/PhysicistPet_Shimmer_Glow</summary>
+    public static readonly RequestCache<Texture2D> PhysicistPet_Shimmer_Glow = new("Aequus/Old/Content/TownNPCs/PhysicistNPC/Shimmer/PhysicistPet_Shimmer_Glow");
+    /// <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Shimmer/Physicist_Shimmer</summary>
+    public static readonly RequestCache<Texture2D> Physicist_Shimmer = new("Aequus/Old/Content/TownNPCs/PhysicistNPC/Shimmer/Physicist_Shimmer");
+    /// <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Shimmer/Physicist_Shimmer_Glow</summary>
+    public static readonly RequestCache<Texture2D> Physicist_Shimmer_Glow = new("Aequus/Old/Content/TownNPCs/PhysicistNPC/Shimmer/Physicist_Shimmer_Glow");
+    /// <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Shimmer/Physicist_Shimmer_Head</summary>
+    public static readonly RequestCache<Texture2D> Physicist_Shimmer_Head = new("Aequus/Old/Content/TownNPCs/PhysicistNPC/Shimmer/Physicist_Shimmer_Head");
     /// <summary>Full Path: Old/Content/Vanity/CelestialEightBall</summary>
     public static readonly RequestCache<Texture2D> CelestialEightBall = new("Aequus/Old/Content/Vanity/CelestialEightBall");
     /// <summary>Full Path: Old/Content/Weapons/Demon/CorruptionHellfire</summary>
@@ -969,6 +993,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CrusadersCrossbow = new("Aequus/Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow");
     /// <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj</summary>
     public static readonly RequestCache<Texture2D> CrusadersCrossbowProj = new("Aequus/Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj");
+    /// <summary>Full Path: Old/Content/Weapons/Sentries/PhysicistSentry/PhysicistSentry</summary>
+    public static readonly RequestCache<Texture2D> PhysicistSentry = new("Aequus/Old/Content/Weapons/Sentries/PhysicistSentry/PhysicistSentry");
+    /// <summary>Full Path: Old/Content/Weapons/Sentries/PhysicistSentry/PhysicistSentryProj</summary>
+    public static readonly RequestCache<Texture2D> PhysicistSentryProj = new("Aequus/Old/Content/Weapons/Sentries/PhysicistSentry/PhysicistSentryProj");
+    /// <summary>Full Path: Old/Content/Weapons/Sentries/PhysicistSentry/PhysicistSentryProj_Glow</summary>
+    public static readonly RequestCache<Texture2D> PhysicistSentryProj_Glow = new("Aequus/Old/Content/Weapons/Sentries/PhysicistSentry/PhysicistSentryProj_Glow");
     /// <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre</summary>
     public static readonly RequestCache<Texture2D> BacciliteSceptre = new("Aequus/Old/CrossMod/AvalonSupport/Items/BacciliteSceptre");
     /// <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre_Glow</summary>

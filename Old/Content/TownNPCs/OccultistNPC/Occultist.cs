@@ -23,7 +23,7 @@ using Terraria.Localization;
 namespace Aequus.Old.Content.TownNPCs.OccultistNPC;
 
 [AutoloadHead()]
-public class Occultist : ModNPC, IModifyShoppingSettings {
+public partial class Occultist : ModNPC, IModifyShoppingSettings {
     public const byte STATE_Passive = 0;
     public const byte STATE_Sleeping = 1;
     public const byte STATE_SleepFalling = 2;
@@ -113,17 +113,6 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
         this.CreateEntry(database, bestiaryEntry)
             .AddMainSpawn(BestiaryBuilder.DesertBiome);
-    }
-
-    public override void AddShops() {
-        NPCShop shop = new NPCShop(Type);
-        shop.Add(ModContent.ItemType<Meathook>());
-        shop.Add(ModContent.ItemType<UnholyCore>());
-        shop.Add(ModContent.ItemType<BottleOSpirits>());
-        shop.Add(ItemID.WhoopieCushion, Condition.BloodMoon);
-        shop.Add(ItemID.ShadowChest, Condition.DownedSkeletron);
-        shop.Add(OblivionAltar.Item.Type, Condition.Hardmode);
-        shop.Register();
     }
 
     public override bool CanTownNPCSpawn(int numTownNPCs) {

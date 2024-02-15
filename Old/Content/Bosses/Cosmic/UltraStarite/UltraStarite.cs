@@ -508,7 +508,7 @@ public class UltraStarite : ModNPC {
                 var arr = armPositions[j].ToArray();
                 float[] rotations = OldDrawHelper.GenerateRotationArr(arr);
 
-                DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, arr, rotations,
+                DrawHelper.DrawBasicVertexLineWithProceduralPadding(AequusTextures.Trail, arr, rotations,
                     (p) => Color.BlueViolet with { A = 0 } * 1.25f * (float)Math.Pow(1f - p, 2f),
                     (p) => 60f
                 );

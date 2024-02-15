@@ -404,7 +404,7 @@ public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
             for (int j = 0; j < 5; j++) {
                 Vector2[] array = armPositions[j].ToArray();
                 float[] rotationsArray = OldDrawHelper.GenerateRotationArr(array);
-                DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, armPositions[j].ToArray(), rotationsArray,
+                DrawHelper.DrawBasicVertexLineWithProceduralPadding(AequusTextures.Trail, armPositions[j].ToArray(), rotationsArray,
                     (p) => GlimmerColors.Blue with { A = 0 },
                     (p) => 50f
                 );

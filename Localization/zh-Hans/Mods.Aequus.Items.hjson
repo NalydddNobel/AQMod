@@ -793,3 +793,13 @@ CelestialEightBall: {
 		19: 请集中你的精神再问一次
 	}
 }
+
+PhysicistSentry: {
+	// DisplayName: Mods.Aequus.Items.PhysicistSentry.DisplayName
+	// Tooltip: ""
+}
+
+PhysicsGun: {
+	// DisplayName: Mods.Aequus.Items.PhysicsGun.DisplayName
+	// Tooltip: ""
+}

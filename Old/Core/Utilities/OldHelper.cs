@@ -1,7 +1,34 @@
 ﻿using Terraria.DataStructures;
 
 namespace Aequus.Old.Core.Utilities;
-public class OldHelper {
+public static class OldHelper {
+    public static int GetMinionTarget(this Projectile projectile, Vector2 position, out float distance, float maxDistance = 2000f, float? ignoreTilesDistance = 0f) {
+        if (Main.player[projectile.owner].HasMinionAttackTargetNPC) {
+            distance = Vector2.Distance(Main.npc[Main.player[projectile.owner].MinionAttackTargetNPC].Center, projectile.Center);
+            if (distance < maxDistance) {
+                return Main.player[projectile.owner].MinionAttackTargetNPC;
+            }
+        }
+        int target = -1;
+        distance = maxDistance;
+        for (int i = 0; i < Main.maxNPCs; i++) {
+            if (Main.npc[i].CanBeChasedBy(projectile)) {
+                float d = Vector2.Distance(position, Main.npc[i].Center);
+                if (d < distance) {
+                    if (!ignoreTilesDistance.HasValue || d < ignoreTilesDistance || Collision.CanHit(position - projectile.Size / 2f, projectile.width, projectile.height, Main.npc[i].position, Main.npc[i].width, Main.npc[i].height)) {
+                        distance = d;
+                        target = i;
+                    }
+                }
+            }
+        }
+        return target;
+    }
+
+    public static int GetMinionTarget(this Projectile projectile, out float distance, float maxDistance = 2000f, float? ignoreTilesDistance = 0f) {
+        return GetMinionTarget(projectile, projectile.Center, out distance, maxDistance, ignoreTilesDistance);
+    }
+
     public static void DropHearts(IEntitySource source, Rectangle hitbox, int guaranteedAmount, int randomAmount) {
         for (int i = 0; i < guaranteedAmount; i++) {
             Item.NewItem(source, hitbox, ItemID.Heart);

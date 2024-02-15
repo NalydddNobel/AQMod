@@ -365,7 +365,7 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
         }
 
         if (State == ReturningState || State == TakenState) {
-            DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, Projectile.oldPos, Projectile.oldRot,
+            DrawHelper.DrawBasicVertexLineWithProceduralPadding(AequusTextures.Trail, Projectile.oldPos, Projectile.oldRot,
                 p => new Color(50, 50, 50, 0) * Projectile.Opacity * (1f - p),
                 p => 6f * Projectile.scale,
                 Projectile.Size / 2f - Main.screenPosition);
