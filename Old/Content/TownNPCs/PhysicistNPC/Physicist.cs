@@ -165,7 +165,7 @@ public partial class Physicist : AequusTownNPC<Physicist> {
 
     public override void SetChatButtons(ref string button, ref string button2) {
         button = Language.GetTextValue("LegacyInterface.28");
-        //button2 = Main.npcChatCornerItem > 0 ? TextHelper.GetTextValue("Chat.Physicist.AnalysisButtonComplete") : TextHelper.GetTextValue("Chat.Physicist.AnalysisButton");
+        SetAnalaysisButton(ref button2);
     }
 
     public override void OnChatButtonClicked(bool firstButton, ref string shopName) {
@@ -175,89 +175,8 @@ public partial class Physicist : AequusTownNPC<Physicist> {
         }
 
         AwaitQuest = 30;
-        //QuestButtonPressed();
+        QuestButtonPressed();
     }
-
-    //public static void QuestButtonPressed() {
-    //    var player = Main.LocalPlayer;
-    //    var questPlayer = player.GetModPlayer<AnalysisPlayer>();
-    //    //Main.NewText(questPlayer.completed);
-    //    if (!questPlayer.quest.isValid && questPlayer.timeForNextQuest == 0 && questPlayer.questResetTime <= 0) {
-    //        questPlayer.quest = default(QuestInfo);
-    //        if (Main.netMode == NetmodeID.MultiplayerClient) {
-    //            var p = Aequus.GetPacket(PacketType.RequestAnalysisQuest);
-    //            p.Write(Main.myPlayer);
-    //            p.Write(questPlayer.completed);
-    //            p.Send();
-    //        }
-    //        else {
-    //            questPlayer.RefreshQuest(questPlayer.completed);
-    //        }
-    //    }
-    //    if (!questPlayer.quest.isValid || questPlayer.timeForNextQuest > 0) {
-    //        Main.npcChatText = TextHelper.GetTextValueWith("Chat.Physicist.AnalysisRarityQuestNoQuest", new { Time = TextHelper.WatchTime(questPlayer.timeForNextQuest, questPlayer.dayTimeForNextQuest), });
-    //        return;
-    //    }
-
-    //    var validItem = FindPotentialQuestItem(player, questPlayer.quest);
-    //    if (Main.npcChatCornerItem > 0 && validItem != null) {
-    //        var popupItem = validItem.Clone();
-    //        popupItem.position = player.position;
-    //        popupItem.width = player.width;
-    //        popupItem.height = player.height;
-    //        popupItem.stack = 1;
-    //        var itemText = PopupText.NewText(PopupTextContext.RegularItemPickup, popupItem, 1);
-    //        Main.popupText[itemText].name = $"{Main.popupText[itemText].name} (-1)";
-    //        Main.popupText[itemText].position.X = Main.LocalPlayer.Center.X - FontAssets.ItemStack.Value.MeasureString(Main.popupText[itemText].name).X / 2f;
-
-    //        validItem.stack--;
-    //        if (validItem.stack <= 0) {
-    //            validItem.TurnToAir();
-    //        }
-    //        questPlayer.completed++;
-    //        var items = questPlayer.GetAnalysisRewardDrops();
-    //        var source = player.talkNPC != -1 ? Main.npc[player.talkNPC].GetSource_GiftOrReward() : player.GetSource_GiftOrReward();
-    //        foreach (var i in items) {
-    //            player.QuickSpawnItem(source, i, i.stack);
-    //        }
-    //        int time = Main.rand.Next(28800, 43200);
-    //        Helper.AddToTime(Main.time, time, Main.dayTime, out double result, out bool dayTime);
-    //        questPlayer.timeForNextQuest = (int)Math.Min(result, dayTime ? Main.dayLength - 60 : Main.nightLength - 60);
-    //        questPlayer.dayTimeForNextQuest = dayTime;
-    //        SoundEngine.PlaySound(SoundID.Grab);
-    //        Main.npcChatCornerItem = 0;
-    //        Main.npcChatText = TextHelper.GetTextValue("Chat.Physicist.AnalysisRarityQuestComplete");
-    //        return;
-    //    }
-    //    Main.npcChatText = QuestChat(questPlayer.quest);
-
-    //    if (validItem != null) {
-    //        Main.npcChatCornerItem = validItem.type;
-    //        Main.npcChatText += $"\n{TextHelper.GetTextValueWith("Chat.Physicist.AnalysisRarityQuest2", new { Item = validItem.Name, })}";
-    //    }
-    //}
-    //public static Item FindPotentialQuestItem(Player player, QuestInfo questInfo) {
-    //    for (int i = 0; i < Main.InventorySlotsTotal; i++) {
-    //        if (CanBeQuestItem(player.inventory[i], questInfo)) {
-    //            return player.inventory[i];
-    //        }
-    //    }
-    //    for (int i = 0; i < Chest.maxItems; i++) {
-    //        if (CanBeQuestItem(player.bank4.item[i], questInfo)) {
-    //            return player.bank4.item[i];
-    //        }
-    //    }
-    //    return null;
-    //}
-
-    //public static bool CanBeQuestItem(Item item, QuestInfo questInfo) {
-    //    return !item.favorited && !item.IsAir && !item.IsACoin &&
-    //        item.OriginalRarity == questInfo.itemRarity && !AnalysisSystem.IgnoreItem.Contains(item.type) && !Main.itemAnimationsRegistered.Contains(item.type);
-    //}
-
-    //public static string QuestChat(QuestInfo questInfo) {
-    //    return TextHelper.GetTextValueWith("Chat.Physicist.AnalysisRarityQuest", new { Rarity = TextHelper.ColorCommand(TextHelper.GetRarityNameValue(questInfo.itemRarity), Helper.GetRarityColor(questInfo.itemRarity)), });
-    //}
 
     public override bool CanGoToStatue(bool toKingStatue) {
         return !toKingStatue;

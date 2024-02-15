@@ -7,6 +7,33 @@ using System.Linq;
 namespace Aequus.Content.DataSets;
 
 public class ItemMetadata : MetadataSet {
+    /// <summary>Items in this set are unable to be submitted to the Physicist.</summary>
+    [JsonProperty]
+    public static HashSet<Entry<ItemID>> CannotTradeWithPhysicist { get; private set; } = new() {
+        ItemID.MartianConduitPlating,
+        ItemID.MartianConduitWall,
+        ItemID.LaserDrill,
+        ItemID.ChargedBlasterCannon,
+        ItemID.AntiGravityHook,
+        ItemID.MartianCostumeMask,
+        ItemID.MartianCostumeShirt,
+        ItemID.MartianCostumePants,
+        ItemID.MartianUniformHelmet,
+        ItemID.MartianUniformTorso,
+        ItemID.MartianUniformPants,
+        ItemID.BrainScrambler,
+        ItemID.LaserMachinegun,
+        ItemID.Xenopopper,
+        ItemID.XenoStaff,
+        ItemID.CosmicCarKey,
+        ItemID.ElectrosphereLauncher,
+        ItemID.InfluxWaver,
+
+        ItemID.PortalGun,
+        ItemID.GravityGlobe,
+        ItemID.BloodMoonStarter,
+        ItemID.SolarTablet,
+    };
     /// <summary>Items in this set are fishing junk.</summary>
     [JsonProperty]
     public static List<Entry<ItemID>> FishingJunk { get; private set; }

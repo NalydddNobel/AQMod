@@ -5,6 +5,7 @@ using Aequus.Core.Initialization;
 using Aequus.Old.Content.DronePylons;
 using Aequus.Old.Content.TownNPCs.PhysicistNPC;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
@@ -129,7 +130,8 @@ public abstract class TownDroneBase : ModNPC, IAddRecipes {
             return Color.Cyan;
         }
 
-        if (TileMetadata.PylonColors.TryGetValue((Main.tile[pylonSpot].TileType, Main.tile[pylonSpot].TileFrameX / 54), out Color rgb)) {
+        if (TileMetadata.PylonColors.TryGetValue(Main.tile[pylonSpot].TileType, out Dictionary<int, Color> styleToColorDictionary) 
+            && styleToColorDictionary.TryGetValue(Main.tile[pylonSpot].TileFrameX / 54, out Color rgb)) {
             return rgb;
         }
 
