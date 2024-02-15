@@ -18,6 +18,11 @@ CommonTooltips: {
 }
 
 //# Equipment: Accessories
+LaserReticle: {
+	DisplayName: 激光瞄准镜
+	Tooltip: 降低{0}%远程武器的离散度
+}
+
 ValentineRing: {
 	DisplayName: 情人节礼物
 	Tooltip: 赠与朋友以使对方和你自身获得生命再生和伤害加成
@@ -187,6 +192,16 @@ ShadowVeer: {
 }
 
 //# Equipment: Informational
+HoloLens: {
+	DisplayName: 全息透镜
+	Tooltip: 允许你在不打开箱子的情况下查看上锁和解锁的箱子的内容
+}
+
+Pacemaker: {
+	DisplayName: 心脏起搏器
+	Tooltip: 当它变得安全时会缩减重生时间
+}
+
 ShimmerMonocle: {
 	DisplayName: 微光单片镜
 	Tooltip: 显示一个物品是否是微光材料
@@ -374,6 +389,11 @@ Triacanthorn: {
 }
 
 //# Weapons: Summon
+PhysicistSentry: {
+	DisplayName: 便携式特斯拉炮塔
+	Tooltip: 召唤一个会发射大量连锁闪电的特斯拉炮塔哨兵
+}
+
 Insurgency: {
 	DisplayName: 叛乱
 	Tooltip:
@@ -561,6 +581,11 @@ SoulGemFilled: {
 		'''
 }
 
+GalacticStarfruit: {
+	DisplayName: 星河杨桃
+	Tooltip: 创造一道奇异柔光
+}
+
 UnholyCore: {
 	DisplayName: 不洁核心
 	Tooltip:
@@ -645,6 +670,11 @@ DedicatedFaelingItem: {
 	Tooltip: ""
 }
 
+PhysicsGun: {
+	DisplayName: 物理枪
+	Tooltip: 可以抓取并扔出方块
+}
+
 Bellows: {
 	DisplayName: 风箱
 	Tooltip:
@@ -670,143 +700,6 @@ NameTag: {
 		可在天空商人处重命名
 		对着镇民、小动物或敌人使用以重命名名字
 		'''
-}
-
-//# Vanity Armors
-BreadOfCthulhuMask: {
-	DisplayName: 克苏鲁之面包面具
-	Tooltip: ""
-}
-
-CrabsonMask: {
-	DisplayName: 巨蟹蛤面具
-	Tooltip: ""
-}
-
-DustDevilMask: {
-	DisplayName: 沙尘恶魔面具
-	Tooltip: ""
-}
-
-OmegaStariteMask: {
-	DisplayName: 终末之星面具
-	Tooltip: ""
-}
-
-RedSpriteMask: {
-	DisplayName: 红色精灵面具
-	Tooltip: ""
-}
-
-SpaceSquidMask: {
-	DisplayName: 太空乌贼面具
-	Tooltip: ""
-}
-
-//# Mounts
-BalloonKit: {
-	DisplayName: 气球装备
-	Tooltip:
-		'''
-		允许你骑乘一颗热气球
-		'在Modzilla的公司工厂精心制作而成'
-		'''
-}
-
-//# Backpacks
-ScavengerBag: {
-	DisplayName: 拾荒者袋子
-	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
-	BackpackEnabled: 背包开启
-	BackpackDisabled: 背包关闭
-}
-
-Toolbelt: {
-	Tooltip:
-		'''
-		{$CommonTooltips.IncreasesInventorySlots}
-		只能存储物块和墙壁
-		'''
-	BackpackEnabled: 工具腰带开启
-	BackpackDisabled: 工具腰带关闭
-}
-
-MoonflowerSeeds: {
-	DisplayName: 月光花种
-	Tooltip: ""
-}
-
-MistralSeeds: {
-	DisplayName: 寒风花种
-	Tooltip: ""
-}
-
-ManacleSeeds: {
-	DisplayName: 镣铐花种
-	Tooltip: ""
-}
-
-CosmicMonolith: {
-	DisplayName: 宇宙石
-	// Tooltip: "'Sustain a fraction of cosmic power'"
-}
-
-UltimateSword: {
-	DisplayName: Mods.Aequus.Items.UltimateSword.DisplayName
-	Tooltip: ""
-}
-
-GalacticStarfruit: {
-	DisplayName: 星河杨桃
-	Tooltip: 创造一道奇异柔光
-}
-
-StariteMaterial: {
-	DisplayName: 核心碎片
-	Tooltip: ""
-}
-
-CelestialEightBall: {
-	DisplayName: 星界八号球
-	Tooltip: ""
-
-	Answer: {
-		0: 是的
-		1: 我的消息来源说不
-		2: 有迹象表明是的
-		3: 确实如此
-		4: 毫无疑问
-		5: 当然可以
-		6: 你可以相信它
-		7: 如我所见, 是的
-		8: 有希望
-		9: 前景很好
-		10: 有迹象表明是的
-		11: 别想了
-		12: 我的回答是否
-		13: 前景不妙
-		14: 令人疑惑
-		15: 再试一次吧
-		16: 待会再问
-		17: 时候未到
-		18: 现在没法预测
-		19: 请集中你的精神再问一次
-	}
-}
-
-PhysicistSentry: {
-	DisplayName: 便携式特斯拉炮塔
-	Tooltip: 召唤一个会发射大量连锁闪电的特斯拉炮塔哨兵
-}
-
-PhysicsGun: {
-	DisplayName: 物理枪
-	Tooltip: 可以抓取并扔出方块
-}
-
-LaserReticle: {
-	DisplayName: 激光瞄准镜
-	Tooltip: 降低{0}%远程武器的离散度
 }
 
 PylonDrone.Tooltip: 在晶塔附近使用以激活, 每个晶塔只能存在两架无人机
@@ -838,12 +731,114 @@ HealerDrone: {
 		'''
 }
 
-HoloLens: {
-	DisplayName: 全息透镜
-	Tooltip: 允许你在不打开箱子的情况下查看上锁和解锁的箱子的内容
+MoonflowerSeeds: {
+	DisplayName: 月光花种
+	Tooltip: ""
 }
 
-Pacemaker: {
-	DisplayName: 心脏起搏器
-	Tooltip: 当它变得安全时会缩减重生时间
+MistralSeeds: {
+	DisplayName: 寒风花种
+	Tooltip: ""
+}
+
+ManacleSeeds: {
+	DisplayName: 镣铐花种
+	Tooltip: ""
+}
+
+//# Mounts
+BalloonKit: {
+	DisplayName: 气球装备
+	Tooltip:
+		'''
+		允许你骑乘一颗热气球
+		'在Modzilla的公司工厂精心制作而成'
+		'''
+}
+
+//# Backpacks
+ScavengerBag: {
+	DisplayName: 拾荒者袋子
+	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+	BackpackEnabled: 背包开启
+	BackpackDisabled: 背包关闭
+}
+
+Toolbelt: {
+	Tooltip:
+		'''
+		{$CommonTooltips.IncreasesInventorySlots}
+		只能存储物块和墙壁
+		'''
+	BackpackEnabled: 工具腰带开启
+	BackpackDisabled: 工具腰带关闭
+}
+
+//# Vanity
+BreadOfCthulhuMask: {
+	DisplayName: 克苏鲁之面包面具
+	Tooltip: ""
+}
+
+DustDevilMask: {
+	DisplayName: 沙尘恶魔面具
+	Tooltip: ""
+}
+
+OmegaStariteMask: {
+	DisplayName: 终末之星面具
+	Tooltip: ""
+}
+
+RedSpriteMask: {
+	DisplayName: 红色精灵面具
+	Tooltip: ""
+}
+
+SpaceSquidMask: {
+	DisplayName: 太空乌贼面具
+	Tooltip: ""
+}
+
+CelestialEightBall: {
+	DisplayName: 星界八号球
+	Tooltip: ""
+
+	Answer: {
+		0: 是的
+		1: 我的消息来源说不
+		2: 有迹象表明是的
+		3: 确实如此
+		4: 毫无疑问
+		5: 当然可以
+		6: 你可以相信它
+		7: 如我所见, 是的
+		8: 有希望
+		9: 前景很好
+		10: 有迹象表明是的
+		11: 别想了
+		12: 我的回答是否
+		13: 前景不妙
+		14: 令人疑惑
+		15: 再试一次吧
+		16: 待会再问
+		17: 时候未到
+		18: 现在没法预测
+		19: 请集中你的精神再问一次
+	}
+}
+
+CosmicMonolith: {
+	DisplayName: 宇宙石
+	// Tooltip: "'Sustain a fraction of cosmic power'"
+}
+
+UltimateSword: {
+	DisplayName: Mods.Aequus.Items.UltimateSword.DisplayName
+	Tooltip: ""
+}
+
+StariteMaterial: {
+	DisplayName: 核心碎片
+	Tooltip: ""
 }

@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Items;
 using System.Collections.Generic;
 using System.IO;
+using Terraria.DataStructures;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
 
@@ -30,6 +31,11 @@ public class ValentineRing : ModItem {
         Item.DefaultToAccessory();
         Item.rare = ItemCommons.Rarity.SkyMerchantShopItem;
         Item.value = ItemCommons.Price.SkyMerchantShopItem;
+
+        // Janky
+        if (!Main.gameMenu && Main.player.IndexInRange(Main.myPlayer) && Main.LocalPlayer != null) {
+            gifterName = Main.LocalPlayer.name;
+        }
     }
 
     public void SetGifter(Player player) {
