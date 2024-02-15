@@ -129,8 +129,8 @@ public abstract class TownDroneBase : ModNPC, IAddRecipes {
             return Color.Cyan;
         }
 
-        if (TileMetadata.PylonColors.TryGetValue((Main.tile[pylonSpot].TileType, Main.tile[pylonSpot].TileFrameX / 54), out Color clr)) {
-            return clr;
+        if (TileMetadata.PylonColors.TryGetValue((Main.tile[pylonSpot].TileType, Main.tile[pylonSpot].TileFrameX / 54), out Color rgb)) {
+            return rgb;
         }
 
         return Color.White;

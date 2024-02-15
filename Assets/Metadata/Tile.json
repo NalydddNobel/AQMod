@@ -10,42 +10,100 @@
     "CalamityMod/AbyssalPots"
   ],
   "PylonColors": {
-    "(TeleportationPylon, 0)": "100, 255, 128",
-    "(TeleportationPylon, 1)": "200, 255, 65",
-    "(TeleportationPylon, 2)": "248, 106, 255",
-    "(TeleportationPylon, 3)": "148, 118, 213",
-    "(TeleportationPylon, 4)": "0, 181, 226",
-    "(TeleportationPylon, 5)": "255, 222, 120",
-    "(TeleportationPylon, 6)": "120, 222, 255",
-    "(TeleportationPylon, 7)": "100, 128, 255",
-    "(TeleportationPylon, 8)": "255, 255, 233",
-    "(CalamityMod/AstralPylonTile, 0)": "143, 0, 255",
-    "(CalamityMod/CragsPylonTile, 0)": "255, 200, 0",
-    "(CalamityMod/SunkenPylonTile, 0)": "0, 100, 255",
-    "(CalamityMod/SulphurPylonTile, 0)": "120, 190, 33",
-    "(ExtraPylons/ChlorophytePylon, 0)": "53, 224, 31",
-    "(ExtraPylons/CloudPylon, 0)": "233, 255, 255",
-    "(ExtraPylons/CoralPylon, 0)": "215, 40, 95",
-    "(ExtraPylons/CorruptionPylon, 0)": "138, 75, 180",
-    "(ExtraPylons/CrimsonPylon, 0)": "209, 46, 46",
-    "(ExtraPylons/DungeonPylon, 0)": "172, 83, 162",
-    "(ExtraPylons/GemPylon, 0)": "106, 205, 236",
-    "(ExtraPylons/GlowingMossPylon, 0)": "133, 151, 239",
-    "(ExtraPylons/GranitePylon, 0)": "79, 98, 191",
-    "(ExtraPylons/MarblePylon, 0)": "233, 255, 233",
-    "(ExtraPylons/GravePylon, 0)": "255, 233, 233",
-    "(ExtraPylons/HoneyPylon, 0)": "255, 255, 0",
-    "(ExtraPylons/IcePylon, 0)": "90, 132, 196",
-    "(ExtraPylons/LivingPylon, 0)": "95, 56, 17",
-    "(ExtraPylons/LivingMahoganyPylon, 0)": "95, 74, 17",
-    "(ExtraPylons/OasisPylon, 0)": "143, 234, 255",
-    "(ExtraPylons/SpacePylon, 0)": "156, 143, 255",
-    "(ExtraPylons/SpiderPylon, 0)": "233, 143, 255",
-    "(ExtraPylons/TemplePylon, 0)": "219, 77, 0",
-    "(ExtraPylons/UnderworldPylon, 0)": "255, 65, 36",
-    "(Verdant/VerdantPylonTile, 0)": "189, 66, 162",
-    "(Fargowiltas/SiblingPylonTile, 0)": "0, 82, 44",
-    "(Spooky/SpookyBiomePylon, 0)": "255, 150, 30",
-    "(Spooky/SpookyHellPylon, 0)": "145, 30, 255"
+    "TeleportationPylon": {
+      "0": "100, 255, 128, 255",
+      "1": "200, 255, 65, 255",
+      "2": "248, 106, 255, 255",
+      "3": "148, 118, 213, 255",
+      "4": "0, 181, 226, 255",
+      "5": "255, 222, 120, 255",
+      "6": "120, 222, 255, 255",
+      "7": "100, 128, 255, 255",
+      "8": "255, 255, 233, 255"
+    },
+    "CalamityMod/AstralPylonTile": {
+      "0": "143, 0, 255, 255"
+    },
+    "CalamityMod/CragsPylonTile": {
+      "0": "255, 200, 0, 255"
+    },
+    "CalamityMod/SunkenPylonTile": {
+      "0": "0, 100, 255, 255"
+    },
+    "CalamityMod/SulphurPylonTile": {
+      "0": "120, 190, 33, 255"
+    },
+    "ExtraPylons/ChlorophytePylon": {
+      "0": "53, 224, 31, 255"
+    },
+    "ExtraPylons/CloudPylon": {
+      "0": "233, 255, 255, 255"
+    },
+    "ExtraPylons/CoralPylon": {
+      "0": "215, 40, 95, 255"
+    },
+    "ExtraPylons/CorruptionPylon": {
+      "0": "138, 75, 180, 255"
+    },
+    "ExtraPylons/CrimsonPylon": {
+      "0": "209, 46, 46, 255"
+    },
+    "ExtraPylons/DungeonPylon": {
+      "0": "172, 83, 162, 255"
+    },
+    "ExtraPylons/GemPylon": {
+      "0": "106, 205, 236, 255"
+    },
+    "ExtraPylons/GlowingMossPylon": {
+      "0": "133, 151, 239, 255"
+    },
+    "ExtraPylons/GranitePylon": {
+      "0": "79, 98, 191, 255"
+    },
+    "ExtraPylons/MarblePylon": {
+      "0": "233, 255, 233, 255"
+    },
+    "ExtraPylons/GravePylon": {
+      "0": "255, 233, 233, 255"
+    },
+    "ExtraPylons/HoneyPylon": {
+      "0": "255, 255, 0, 255"
+    },
+    "ExtraPylons/IcePylon": {
+      "0": "90, 132, 196, 255"
+    },
+    "ExtraPylons/LivingPylon": {
+      "0": "95, 56, 17, 255"
+    },
+    "ExtraPylons/LivingMahoganyPylon": {
+      "0": "95, 74, 17, 255"
+    },
+    "ExtraPylons/OasisPylon": {
+      "0": "143, 234, 255, 255"
+    },
+    "ExtraPylons/SpacePylon": {
+      "0": "156, 143, 255, 255"
+    },
+    "ExtraPylons/SpiderPylon": {
+      "0": "233, 143, 255, 255"
+    },
+    "ExtraPylons/TemplePylon": {
+      "0": "219, 77, 0, 255"
+    },
+    "ExtraPylons/UnderworldPylon": {
+      "0": "255, 65, 36, 255"
+    },
+    "Verdant/VerdantPylonTile": {
+      "0": "189, 66, 162, 255"
+    },
+    "Fargowiltas/SiblingPylonTile": {
+      "0": "0, 82, 44, 255"
+    },
+    "Spooky/SpookyBiomePylon": {
+      "0": "255, 150, 30, 255"
+    },
+    "Spooky/SpookyHellPylon": {
+      "0": "145, 30, 255, 255"
+    }
   }
 }
