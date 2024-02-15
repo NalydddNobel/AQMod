@@ -19,13 +19,13 @@ CommonTooltips: {
 
 //# Equipment: Accessories
 ValentineRing: {
-	// DisplayName: Valentine's Gift
-	// Tooltip: Gift to a friend to grant them and yourself increased regneration and damage
-	// Tooltip2: Increased regneration and damage for yourself and the gifter
-	// GiftTooltip: From yours truly, {0}
-	// BuffName: Valentine
-	// BuffDescription: Increased life regeneration and damage
-	// BuffDescription2: You are being buffed by {0}!
+	DisplayName: 情人节礼物
+	Tooltip: 赠与朋友以使对方和你自身获得生命再生和伤害加成
+	Tooltip2: 增加你自身和赠礼者的生命再生速度和伤害
+	GiftTooltip: 来自你真诚的, {0}
+	BuffName: 情人
+	BuffDescription: 生命再生速度和伤害增加
+	BuffDescription2: 你受到了{0}的强化!
 }
 
 GrandReward: {
