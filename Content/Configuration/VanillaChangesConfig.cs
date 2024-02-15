@@ -22,5 +22,13 @@ public class VanillaChangesConfig : ModConfig {
 
     [DefaultValue(true)]
     [ReloadRequired]
+    public bool MoveGravityGlobe { get; set; }
+
+    [DefaultValue(true)]
+    [ReloadRequired]
+    public bool MovePortalGun { get; set; }
+
+    [DefaultValue(true)]
+    [ReloadRequired]
     public bool RestorationPotionRecipe { get; set; }
 }

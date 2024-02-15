@@ -803,3 +803,8 @@ PhysicsGun: {
 	// DisplayName: Mods.Aequus.Items.PhysicsGun.DisplayName
 	// Tooltip: ""
 }
+
+LaserReticle: {
+	// DisplayName: Laser Reticle
+	// Tooltip: ""
+}

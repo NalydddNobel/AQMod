@@ -1,5 +1,9 @@
-﻿using Aequus.Content.Tools.MagicMirrors.PhaseMirror;
+﻿using Aequus.Content.Configuration;
+using Aequus.Content.Tools.MagicMirrors.PhaseMirror;
+using Aequus.Old.Content.Equipment.Accessories.LaserScope;
+using Aequus.Old.Content.Events.Glimmer.Spawners;
 using Aequus.Old.Content.Tools;
+using Aequus.Old.Content.Weapons.Sentries.PhysicistSentry;
 
 namespace Aequus.Old.Content.TownNPCs.PhysicistNPC;
 
@@ -8,19 +12,17 @@ public partial class Physicist {
         new NPCShop(Type)
             .Add<PhaseMirror>()
             .Add<PhysicsGun>()
-        //    .Add(ItemID.PortalGun, GameplayConfig.ConditionEarlyPortalGun)
-        //    .Add(ItemID.GravityGlobe, GameplayConfig.ConditionEarlyGravityGlobe)
-        //    .Add<LaserReticle>()
+            .Add(ItemID.PortalGun, new Condition("Mods.Aequus.Condition.MovePortalGun", () => VanillaChangesConfig.Instance.MovePortalGun))
+            .Add(ItemID.GravityGlobe, new Condition("Mods.Aequus.Condition.MoveGravityGlobe", () => VanillaChangesConfig.Instance.MoveGravityGlobe))
+            .Add<LaserReticle>()
         //    .Add<HaltingMachine>()
-        //    .Add<HolographicMeatloaf>(Condition.NotDontStarveWorld)
-        //    .AddWithCustomValue(ItemID.BloodMoonStarter, Item.buyPrice(gold: 2))
-        //    .Add<GalacticStarfruit>()
-        //    .AddWithCustomValue(ItemID.SolarTablet, Item.buyPrice(gold: 5), Condition.DownedPlantera)
+            .AddCustomValue(ItemID.BloodMoonStarter, Item.buyPrice(gold: 2))
+            .Add<GalacticStarfruit>()
+            .AddCustomValue(ItemID.SolarTablet, Item.buyPrice(gold: 5), Condition.DownedPlantera)
         //    .Add<PylonGunnerItem>()
         //    .Add<PylonHealerItem>()
         //    .Add<PylonCleanserItem>(Condition.NpcIsPresent(NPCID.Steampunker), Condition.NotRemixWorld)
-        //    .Add<PhysicistSentry>(Condition.NotRemixWorld)
-        //    .Add<Sentry6502>(Condition.RemixWorld)
+            .Add<PhysicistSentry>(Condition.NotRemixWorld)
         //    .Add<AntiGravityBlock>(Condition.NotZenithWorld)
         //    .Add<GravityBlock>(Condition.NotZenithWorld)
         //    .Add<AntiGravityBlock>(Condition.ZenithWorld, Condition.DownedEowOrBoc)

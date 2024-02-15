@@ -25,3 +25,8 @@ DownedOrganicBossFright: Mods.Aequus.Condition.DownedOrganicBossFright
 NotDownedOrganicBossFright: Mods.Aequus.Condition.NotDownedOrganicBossFright
 DownedTrueFinalBoss: Mods.Aequus.Condition.DownedTrueFinalBoss
 NotDownedTrueFinalBoss: Mods.Aequus.Condition.NotDownedTrueFinalBoss
+
+"": {
+	// MovePortalGun: Mods.Aequus.Conditions.MovePortalGun
+	// MoveGravityGlobe: Mods.Aequus.Conditions.MoveGravityGlobe
+}

@@ -1487,7 +1487,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 498)</summary>
+            <summary>(Total Textures: 500)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2397,6 +2397,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.HighSteaks_Waist">
             <summary>Full Path: Old/Content/Equipment/Accessories/HighSteaks/HighSteaks_Waist</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LaserReticle">
+            <summary>Full Path: Old/Content/Equipment/Accessories/LaserScope/LaserReticle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LaserReticle_Glow">
+            <summary>Full Path: Old/Content/Equipment/Accessories/LaserScope/LaserReticle_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.WarHorn">
             <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHorn</summary>

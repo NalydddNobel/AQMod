@@ -1,4 +1,5 @@
 ﻿using Aequus.Old.Content.Tiles.Herbs.PlanterBoxes;
+using Aequus.Old.Content.Weapons.Sentries.PhysicistSentry;
 
 namespace Aequus.Old.Content.TownNPCs;
 
@@ -15,6 +16,11 @@ public class ShopEdits : GlobalNPC {
                     foreach (var planterBox in ModContent.GetInstance<PlanterBox>().RegisteredPlanterBoxItems) {
                         shop.InsertAfter(planterBox.ShopSortingItemIdTarget, planterBox.ModItem.Type, planterBox.SellCondition);
                     }
+                }
+                break;
+
+            case NPCID.Mechanic: {
+                    shop.Add(ModContent.ItemType<PhysicistSentry>(), Condition.RemixWorld);
                 }
                 break;
         }
