@@ -27,10 +27,6 @@ public class HighSteaks : ModItem, IHaveDownsideTip {
 
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Percent(NotStackableCritDamage + StackableCritDamage), this.GetLocalization("Downside"));
 
-    public override void SetStaticDefaults() {
-        ItemSets.ShimmerTransformToItem[Type] = ModContent.ItemType<SaivoryKnife>();
-    }
-
     public override void SetDefaults() {
         Item.DefaultToAccessory(16, 16);
         Item.rare = ItemRarityID.Green;

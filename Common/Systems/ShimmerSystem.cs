@@ -1,7 +1,16 @@
 ﻿using Aequus.Common.ItemPrefixes.Components;
 using Aequus.Common.Items;
 using Aequus.Common.Items.Components;
+using Aequus.Content.Configuration;
 using Aequus.Content.DedicatedContent;
+using Aequus.Content.DedicatedContent.SwagEye;
+using Aequus.Content.Equipment.Accessories.Balloons;
+using Aequus.Content.Equipment.Accessories.GrandReward;
+using Aequus.Content.Equipment.Accessories.Informational.Monocle;
+using Aequus.Content.Equipment.Accessories.WeightedHorseshoe;
+using Aequus.Content.Tools.MagicMirrors.PhaseMirror;
+using Aequus.Content.Weapons.Magic.Furystar;
+using Aequus.Old.Content.Materials.SoulGem;
 using Terraria.GameContent;
 using Terraria.GameContent.Achievements;
 
@@ -12,6 +21,107 @@ public class ShimmerSystem : ModSystem {
         On_Item.GetShimmered += On_Item_GetShimmered;
         On_ShimmerTransforms.IsItemTransformLocked += On_ShimmerTransforms_IsItemTransformLocked;
         On_Item.CanShimmer += On_Item_CanShimmer;
+    }
+
+    public static void RegisterShimmerTransmutations() {
+        ItemSets.ShimmerTransformToItem[ModContent.ItemType<GrandReward>()] = ModContent.ItemType<CosmicChest>();
+        ItemSets.ShimmerTransformToItem[ModContent.ItemType<RichMansMonocle>()] = ModContent.ItemType<ShimmerMonocle>();
+        ItemSets.ShimmerTransformToItem[ModContent.ItemType<SoulGemFilled>()] = ModContent.ItemType<SoulGem>();
+        ItemSets.ShimmerTransformToItem[ItemID.SuspiciousLookingEye] = ModContent.GetInstance<SwagEyePet>().PetItem.Type;
+
+        CreateShimmerLoop(ModContent.ItemType<Furystar>(), ItemID.Starfury);
+        CreateShimmerLoop(ModContent.ItemType<SlimyBlueBalloon>(), ItemID.ShinyRedBalloon);
+        CreateShimmerLoop(ModContent.ItemType<WeightedHorseshoe>(), ItemID.LuckyHorseshoe);
+        if (VanillaChangesConfig.Instance.MoveTreasureMagnet) {
+            ItemSets.ShimmerTransformToItem[ItemID.TreasureMagnet] = ItemID.CelestialMagnet;
+            ItemSets.ShimmerTransformToItem[ItemID.CelestialMagnet] = ItemID.TreasureMagnet;
+        }
+
+#if !DEBUG
+        CreateShimmerLoop(
+            ModContent.ItemType<Old.Content.Weapons.Ranged.Bows.CrusadersCrossbow.CrusadersCrossbow>(),
+            ModContent.ItemType<Old.Content.Equipment.GrapplingHooks.HealingGrappleHook.LeechHook>(),
+            ModContent.ItemType<Old.Content.Equipment.Accessories.HighSteaks.HighSteaks>(),
+            ModContent.ItemType<Old.Content.Necromancy.Equipment.Accessories.SpiritKeg.SaivoryKnife>()
+        );
+        CreateShimmerLoop(
+            ModContent.ItemType<Old.Content.Equipment.Accessories.Pacemaker.Pacemaker>(),
+            ModContent.ItemType<Old.Content.Equipment.Accessories.HoloLens.HoloLens>(),
+            ModContent.ItemType<PhaseMirror>()
+        );
+#endif
+    }
+
+    private static void CreateShimmerLoop(params int[] items) {
+        for (int i = 0; i < items.Length; i++) {
+            SetShimmerResultSafely(items[i], items[(i + 1) % items.Length]);
+        }
+    }
+
+    /// <summary>Attempts to safely set the shimmer result of this item, by inserting it to the end of existing chains or loops.</summary>
+    /// <param name="from"></param>
+    /// <param name="into"></param>
+    private static void SetShimmerResultSafely(int from, int into) {
+        if (ItemSets.ShimmerCountsAsItem[from] > -1) {
+            from = ItemSets.ShimmerCountsAsItem[from];
+        }
+
+        // Abort fancy logic if it already converts into the item, or is an invalid Id (0 or larger than ItemLoader.ItemCount)
+        if (ItemSets.ShimmerTransformToItem[from] == into || ItemSets.ShimmerTransformToItem[from] <= 0 || ItemSets.ShimmerTransformToItem[from] >= ItemLoader.ItemCount) {
+            ItemSets.ShimmerTransformToItem[from] = into;
+            return;
+        }
+
+        // Get the endpoint of the shimmer tree we are inserting into.
+        int fromEndpoint = GetShimmerTreeEndpoint(from, out _);
+
+        // Now check if the item we are linking onto is part of a tree.
+        if (ItemSets.ShimmerTransformToItem[into] > 0 && ItemSets.ShimmerTransformToItem[into] < ItemLoader.ItemCount) {
+            // If so, get the endpoint of that item's shimmer tree.
+            int intoEndpoint = GetShimmerTreeEndpoint(into, out _);
+
+            // If the endpoint is also the same as the from item, don't set it
+            // (ItemSets.ShimmerTransformToItem[from] = from;)
+            if (intoEndpoint != from) {
+                ItemSets.ShimmerTransformToItem[intoEndpoint] = from;
+            }
+        }
+
+        // If the endpoint is also the same as the into item, don't set it
+        // (ItemSets.ShimmerTransformToItem[into] = into;)
+        if (fromEndpoint != into) {
+            ItemSets.ShimmerTransformToItem[fromEndpoint] = into;
+        }
+    }
+
+    private static int GetShimmerTreeEndpoint(int start, out ShimmerTransmutationTreeType type) {
+        int lastType = start;
+        for (int i = 0; i < ItemLoader.ItemCount; i++) {
+            // Reached an endpoint where the item has no further conversions.
+            if (ItemSets.ShimmerTransformToItem[lastType] <= 0) {
+                type = ShimmerTransmutationTreeType.Line;
+                return lastType;
+            }
+
+            // Reached an endpoint where the item returns to the starting item.
+            if (ItemSets.ShimmerTransformToItem[lastType] == start) {
+                type = ShimmerTransmutationTreeType.Loop;
+                return lastType;
+            }
+
+            lastType = ItemSets.ShimmerTransformToItem[lastType];
+            if (ItemSets.ShimmerCountsAsItem[lastType] > -1) {
+                lastType = ItemSets.ShimmerCountsAsItem[lastType];
+            }
+        }
+
+        // Reached a broken endpoint where it must loop, but never reach the starting item.
+        type = ShimmerTransmutationTreeType.Broken;
+        return lastType;
+    }
+
+    public override void SetStaticDefaults() {
+        RegisterShimmerTransmutations();
     }
 
     #region Hooks
@@ -96,5 +206,14 @@ public class ShimmerSystem : ModSystem {
             NetMessage.SendData(145, -1, -1, null, item.whoAmI, 1f);
         }
         AchievementsHelper.NotifyProgressionEvent(27);
+    }
+
+    public enum ShimmerTransmutationTreeType {
+        /// <summary>Items convert into each other, eventually ending with an item with no conversion.</summary>
+        Line,
+        /// <summary>Items convert into each other, and will cycle infinitely.</summary>
+        Loop,
+        /// <summary>Items will cycle, but will never reach the starting point.</summary>
+        Broken
     }
 }

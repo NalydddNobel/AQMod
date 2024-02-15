@@ -1,12 +1,10 @@
-﻿using Aequus.Common.Items;
-using Terraria.GameContent;
+﻿using Terraria.GameContent;
 
 namespace Aequus.Old.Content.Materials.SoulGem;
 
 public class SoulGemFilled : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 25;
-        ItemSets.ShimmerTransformToItem[Type] = ModContent.ItemType<SoulGem>();
         ItemSets.SortingPriorityMaterials[Type] = ItemSets.SortingPriorityMaterials[ItemID.Amber];
     }
 

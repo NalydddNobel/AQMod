@@ -16,6 +16,7 @@ internal class SupportedMod<TMod> : ModSystem, ISupportedMod<TMod>, ILocalizedMo
     /// <summary>The Supported Mod's instance. This property is <see langword="null" /> when the mod is not enabled.</summary>
     public static Mod Instance { get; private set; }
     public static string ModName => typeof(TMod).Name;
+    public static bool Enabled { get; private set; }
 
     public string LocalizationCategory => $"CrossMod.{ModName}";
 
@@ -82,10 +83,14 @@ internal class SupportedMod<TMod> : ModSystem, ISupportedMod<TMod>, ILocalizedMo
     }
 
     public sealed override void Load() {
-        Instance = null;
         if (ModLoader.TryGetMod(ModName, out var mod)) {
             Instance = mod;
+            Enabled = true;
             SafeLoad(Instance);
+        }
+        else {
+            Enabled = false;
+            Instance = null;
         }
     }
 

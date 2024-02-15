@@ -18,6 +18,11 @@ CommonTooltips: {
 }
 
 //# Equipment: Accessories
+LaserReticle: {
+	DisplayName: Laser Reticle
+	Tooltip: "{0}% reduced spread on ranged weapons"
+}
+
 ValentineRing: {
 	DisplayName: Valentine's Gift
 	Tooltip: Gift to a friend to grant them and yourself increased regneration and damage
@@ -187,6 +192,16 @@ ShadowVeer: {
 }
 
 //# Equipment: Informational
+HoloLens: {
+	DisplayName: Holo Lens
+	Tooltip: Allows you to view the contents of locked and unlocked chests without opening them
+}
+
+Pacemaker: {
+	DisplayName: Pacemaker
+	Tooltip: Decreased respawn time when it becomes safe
+}
+
 ShimmerMonocle: {
 	DisplayName: Shmonocle
 	Tooltip: Displays if an item is a Shimmer Ingredient
@@ -374,6 +389,11 @@ Triacanthorn: {
 }
 
 //# Weapons: Summon
+PhysicistSentry: {
+	DisplayName: Portable Tesla Turret
+	Tooltip: Summons a tesla turret sentry which fires a barrage of chaining lightning
+}
+
 Insurgency: {
 	DisplayName: Insurgency
 	Tooltip:
@@ -561,6 +581,11 @@ SoulGemFilled: {
 		'''
 }
 
+GalacticStarfruit: {
+	DisplayName: Galactic Starfruit
+	Tooltip: Creates a strange glimmer
+}
+
 UnholyCore: {
 	DisplayName: Unholy Core
 	Tooltip:
@@ -645,6 +670,11 @@ DedicatedFaelingItem: {
 	Tooltip: ""
 }
 
+PhysicsGun: {
+	DisplayName: Physics Gun
+	Tooltip: Can grab and throw blocks
+}
+
 Bellows: {
 	DisplayName: Bellows
 	Tooltip:
@@ -672,37 +702,49 @@ NameTag: {
 		'''
 }
 
-//# Vanity Armors
-BreadOfCthulhuMask: {
-	DisplayName: Bread Of Cthulhu Mask
+PylonDrone.Tooltip: Use near a pylon to activate the drone, pylons can only have two drones each
+
+CleanserDrone: {
+	DisplayName: "{$NPCs.CleanserDrone.DisplayName}"
+	Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		Sprays solution to spread the pylon's biome
+		'''
+}
+
+GunnerDrone: {
+	DisplayName: "{$NPCs.GunnerDrone.DisplayName}"
+	Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		Defends the area from enemies
+		'''
+}
+
+HealerDrone: {
+	DisplayName: "{$NPCs.HealerDrone.DisplayName}"
+	Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		Heals wounded villagers and critters
+		'''
+}
+
+MoonflowerSeeds: {
+	DisplayName: Moonflower Seeds
 	Tooltip: ""
 }
 
-CrabsonMask: {
-	DisplayName: Crabson Mask
+MistralSeeds: {
+	DisplayName: Mistral Seeds
 	Tooltip: ""
 }
 
-DustDevilMask: {
-	DisplayName: Dust Devil Mask
+ManacleSeeds: {
+	DisplayName: Manacle Seeds
 	Tooltip: ""
 }
-
-OmegaStariteMask: {
-	DisplayName: Omega Starite Mask
-	Tooltip: ""
-}
-
-RedSpriteMask: {
-	DisplayName: Red Sprite Mask
-	Tooltip: ""
-}
-
-SpaceSquidMask: {
-	DisplayName: Space Squid Mask
-	Tooltip: ""
-}
-
 //# Mounts
 BalloonKit: {
 	DisplayName: Balloon Kit
@@ -731,38 +773,29 @@ Toolbelt: {
 	BackpackDisabled: Toolbelt Pack Off
 }
 
-MoonflowerSeeds: {
-	DisplayName: Moonflower Seeds
+//# Vanity
+BreadOfCthulhuMask: {
+	DisplayName: Bread Of Cthulhu Mask
 	Tooltip: ""
 }
 
-MistralSeeds: {
-	DisplayName: Mistral Seeds
+DustDevilMask: {
+	DisplayName: Dust Devil Mask
 	Tooltip: ""
 }
 
-ManacleSeeds: {
-	DisplayName: Manacle Seeds
+OmegaStariteMask: {
+	DisplayName: Omega Starite Mask
 	Tooltip: ""
 }
 
-CosmicMonolith: {
-	DisplayName: Mods.Aequus.Items.CosmicMonolith.DisplayName
+RedSpriteMask: {
+	DisplayName: Red Sprite Mask
 	Tooltip: ""
 }
 
-UltimateSword: {
-	DisplayName: Mods.Aequus.Items.UltimateSword.DisplayName
-	Tooltip: ""
-}
-
-GalacticStarfruit: {
-	DisplayName: Mods.Aequus.Items.GalacticStarfruit.DisplayName
-	Tooltip: ""
-}
-
-StariteMaterial: {
-	DisplayName: Mods.Aequus.Items.StariteMaterial.DisplayName
+SpaceSquidMask: {
+	DisplayName: Space Squid Mask
 	Tooltip: ""
 }
 
@@ -794,32 +827,17 @@ CelestialEightBall: {
 	}
 }
 
-PhysicistSentry: {
-	DisplayName: Mods.Aequus.Items.PhysicistSentry.DisplayName
+CosmicMonolith: {
+	DisplayName: Cosmic Monolith
+	Tooltip: "'Sustain a fraction of cosmic power'"
+}
+
+UltimateSword: {
+	DisplayName: Mods.Aequus.Items.UltimateSword.DisplayName
 	Tooltip: ""
 }
 
-PhysicsGun: {
-	DisplayName: Mods.Aequus.Items.PhysicsGun.DisplayName
-	Tooltip: ""
-}
-
-LaserReticle: {
-	DisplayName: Mods.Aequus.Items.LaserReticle.DisplayName
-	Tooltip: ""
-}
-
-CleanserDrone: {
-	DisplayName: Mods.Aequus.Items.CleanserDrone.DisplayName
-	Tooltip: ""
-}
-
-GunnerDrone: {
-	DisplayName: Mods.Aequus.Items.GunnerDrone.DisplayName
-	Tooltip: ""
-}
-
-HealerDrone: {
-	DisplayName: Mods.Aequus.Items.HealerDrone.DisplayName
+StariteMaterial: {
+	DisplayName: Core Fragment
 	Tooltip: ""
 }

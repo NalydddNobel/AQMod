@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
+using Aequus.Content.CrossMod;
 using Aequus.Content.TownNPCs;
 using Aequus.Core;
 using Aequus.Old.Content.Events.Glimmer;
@@ -147,20 +148,65 @@ public partial class Physicist : AequusTownNPC<Physicist> {
                 yield return this.GetDialogue($"Graveyard.{i}").Value;
             }
         }
-        if (ModLoader.TryGetMod("SoTS", out var soTS)) {
-            for (int i = 0; i < 2; i++) {
-                yield return this.GetDialogue($"SoTSMod.{i}").Value;
-            }
-        }
-        if (NPC.downedGolemBoss && NPC.AnyNPCs(NPCID.Mechanic) && ModLoader.TryGetMod("Polarities", out var polarities)) {
-            yield return this.GetDialogue("PolaritiesMod").Value;
-        }
+
         if (NPC.downedMartians) {
             yield return this.GetDialogue("MartianMadness").Value;
         }
         if (NPC.TowerActiveNebula || NPC.TowerActiveSolar || NPC.TowerActiveStardust || NPC.TowerActiveVortex || NPC.MoonLordCountdown > 0 || NPC.AnyNPCs(NPCID.MoonLordCore)) {
             yield return this.GetDialogue("LunarPillars").Value;
         }
+
+        if (CalamityMod.Enabled) {
+            for (int i = 0; i < 2; i++) {
+                yield return this.GetDialogue($"CalamityMod.{i}").Value;
+            }
+            if (Main.hardMode) {
+                yield return this.GetDialogue($"CalamityMod.Astral").Value;
+            }
+        }
+
+        if (ThoriumMod.Enabled) {
+            if (CheckMeteorite()) {
+                yield return this.GetDialogue($"ThoriumMod.StarScouter").Value;
+            }
+        }
+        
+        if (ModLoader.TryGetMod("SpiritMod", out var spiritMod)) {
+            if (NPC.downedBoss3) {
+                yield return this.GetDialogue($"SpiritMod.StarplateVoyager").Value;
+            }
+        }
+
+        if (ModLoader.TryGetMod("SoTS", out var soTS)) {
+            for (int i = 0; i < 2; i++) {
+                yield return this.GetDialogue($"SoTSMod.{i}").Value;
+            }
+        }
+
+        if (NPC.downedGolemBoss && NPC.AnyNPCs(NPCID.Mechanic) && ModLoader.TryGetMod("Polarities", out var polarities)) {
+            yield return this.GetDialogue("PolaritiesMod").Value;
+        }
+    }
+
+    private bool CheckMeteorite() {
+        int worldSurface = (int)Main.worldSurface;
+        int meteoriteCount = 0;
+        int wantedMeteoriteCount = 50;
+
+        // Note: Not all tile sections are loaded on multiplayer clients.
+        // So in MP, this line will not appear unless a Meteor has been loaded by your client.
+        for (int i = 0; i < Main.maxTilesX; i++) {
+            for (int j = 0; j < worldSurface; j++) {
+                Tile tile = Main.tile[i, j];
+                if (tile.HasTile && tile.TileType == TileID.Meteorite) {
+                    if (++meteoriteCount > wantedMeteoriteCount) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
     public override void SetChatButtons(ref string button, ref string button2) {

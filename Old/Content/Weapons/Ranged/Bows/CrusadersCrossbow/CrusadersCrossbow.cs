@@ -4,10 +4,6 @@ using Aequus.Old.Content.Equipment.GrapplingHooks.HealingGrappleHook;
 namespace Aequus.Old.Content.Weapons.Ranged.Bows.CrusadersCrossbow;
 
 public class CrusadersCrossbow : ModItem {
-    public override void SetStaticDefaults() {
-        ItemSets.ShimmerTransformToItem[Type] = ModContent.ItemType<LeechHook>();
-    }
-
     public override void SetDefaults() {
         Item.damage = 22;
         Item.DamageType = DamageClass.Ranged;

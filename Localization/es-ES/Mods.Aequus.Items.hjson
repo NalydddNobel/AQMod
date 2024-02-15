@@ -823,3 +823,13 @@ HealerDrone: {
 	// DisplayName: Mods.Aequus.Items.HealerDrone.DisplayName
 	// Tooltip: ""
 }
+
+HoloLens: {
+	// DisplayName: Holo Lens
+	// Tooltip: ""
+}
+
+Pacemaker: {
+	// DisplayName: Pacemaker
+	// Tooltip: ""
+}

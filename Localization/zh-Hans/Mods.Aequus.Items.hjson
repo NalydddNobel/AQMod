@@ -747,8 +747,8 @@ ManacleSeeds: {
 }
 
 CosmicMonolith: {
-	DisplayName: Mods.Aequus.Items.CosmicMonolith.DisplayName
-	Tooltip: ""
+	DisplayName: 宇宙石
+	// Tooltip: "'Sustain a fraction of cosmic power'"
 }
 
 UltimateSword: {
@@ -757,17 +757,17 @@ UltimateSword: {
 }
 
 GalacticStarfruit: {
-	DisplayName: Mods.Aequus.Items.GalacticStarfruit.DisplayName
-	Tooltip: ""
+	DisplayName: 星河杨桃
+	Tooltip: 创造一道奇异柔光
 }
 
 StariteMaterial: {
-	DisplayName: Mods.Aequus.Items.StariteMaterial.DisplayName
+	DisplayName: 核心碎片
 	Tooltip: ""
 }
 
 CelestialEightBall: {
-	DisplayName: Mods.Aequus.Items.CelestialEightBall.DisplayName
+	DisplayName: 星界八号球
 	Tooltip: ""
 
 	Answer: {
@@ -795,31 +795,55 @@ CelestialEightBall: {
 }
 
 PhysicistSentry: {
-	// DisplayName: Mods.Aequus.Items.PhysicistSentry.DisplayName
-	// Tooltip: ""
+	DisplayName: 便携式特斯拉炮塔
+	Tooltip: 召唤一个会发射大量连锁闪电的特斯拉炮塔哨兵
 }
 
 PhysicsGun: {
-	// DisplayName: Mods.Aequus.Items.PhysicsGun.DisplayName
-	// Tooltip: ""
+	DisplayName: 物理枪
+	Tooltip: 可以抓取并扔出方块
 }
 
 LaserReticle: {
-	// DisplayName: Mods.Aequus.Items.LaserReticle.DisplayName
-	// Tooltip: ""
+	DisplayName: 激光瞄准镜
+	Tooltip: 降低{0}%远程武器的离散度
 }
 
+PylonDrone.Tooltip: 在晶塔附近使用以激活, 每个晶塔只能存在两架无人机
+
 CleanserDrone: {
-	// DisplayName: Mods.Aequus.Items.CleanserDrone.DisplayName
-	// Tooltip: ""
+	DisplayName: "{$NPCs.CleanserDrone.DisplayName}"
+	Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		喷洒溶液以扩散晶塔的生物群落
+		'''
 }
 
 GunnerDrone: {
-	// DisplayName: Mods.Aequus.Items.GunnerDrone.DisplayName
-	// Tooltip: ""
+	DisplayName: "{$NPCs.GunnerDrone.DisplayName}"
+	Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		保护该区域免受敌人攻击
+		'''
 }
 
 HealerDrone: {
-	// DisplayName: Mods.Aequus.Items.HealerDrone.DisplayName
-	// Tooltip: ""
+	DisplayName: "{$NPCs.HealerDrone.DisplayName}"
+	Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		治疗受伤的镇民和小动物
+		'''
+}
+
+HoloLens: {
+	DisplayName: 全息透镜
+	Tooltip: 允许你在不打开箱子的情况下查看上锁和解锁的箱子的内容
+}
+
+Pacemaker: {
+	DisplayName: 心脏起搏器
+	Tooltip: 当它变得安全时会缩减重生时间
 }

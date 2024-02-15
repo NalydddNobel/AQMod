@@ -57,6 +57,15 @@ Dialogue: {
 	Thunderstorm: 那是什么声音? 我们的星球上没有这样的东西!
 	Party: "'派对'是最反常的. 你如何维持这样的节日水平?"
 
+	CalamityMod: {
+		// 0: Getting past those massive orbiting planetoids was quite the ordeal. The largest one gave off strange readings and sent some of my delicate machinery into disrepair.
+		// 1: Who sourced these hunks of junk to run around and torment this place? Not only do they make much noise, but I keep tripping on their bolts and gears after they get obliterated by my turrets.
+		// Astral: A familiar star-like signal seems to be coming... from this planet itself? Does it have to do with that massive meteor which had fallen?
+	}
+
+	// ThoriumMod.StarScouter: An unidentified floating object seems to have been scouting the Meteorite which had crash landed onto Terraria. I'd investigate it if I were you.
+	// SpiritMod.StarplateVoyager: An unidentified floating object seems to have been scuttling along the asteroids orbiting this planet. During investigation, it seemed to have been harvesting a very high-energy resource.
+
 	SoTSMod: {
 		0: 当我第一次校准传送门以将我传送至此时, 我发现了一种由某种漂浮的船只物体造成的干扰. 调查此事可能符合我的最大利益.
 		1: 你没有和任何类似猫的生物做过交易...对吗?
