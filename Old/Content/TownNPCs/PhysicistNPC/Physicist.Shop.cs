@@ -11,7 +11,6 @@ namespace Aequus.Old.Content.TownNPCs.PhysicistNPC;
 public partial class Physicist {
     public override void AddShops() {
         new NPCShop(Type)
-            .Add<PhaseMirror>()
             .Add<PhysicsGun>()
             .Add(ItemID.PortalGun, new Condition("Mods.Aequus.Condition.MovePortalGun", () => VanillaChangesConfig.Instance.MovePortalGun))
             .Add(ItemID.GravityGlobe, new Condition("Mods.Aequus.Condition.MoveGravityGlobe", () => VanillaChangesConfig.Instance.MoveGravityGlobe))
