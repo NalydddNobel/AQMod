@@ -400,7 +400,14 @@
     "ThoriumMod/TrueStrike",
     "ThoriumMod/TrueStrikeTired",
     "ThoriumMod/VampiresCurseBuff",
-    "ThoriumMod/WidowsKiss"
+    "ThoriumMod/WidowsKiss",
+    "Polarities/ConeVenom",
+    "Polarities/Corroding",
+    "Polarities/Desiccating",
+    "Polarities/Incinerating",
+    "Polarities/Pinpointed",
+    "Polarities/TolerancePotionCooldownBuff",
+    "Polarities/SpiritBottleDebuff"
   ],
   "NotTypicalDebuff": [
     "PotionSickness",
@@ -573,7 +580,8 @@
     "ThoriumMod/LastStandBuff",
     "ThoriumMod/TrueStrike",
     "ThoriumMod/TrueStrikeTired",
-    "ThoriumMod/VampiresCurseBuff"
+    "ThoriumMod/VampiresCurseBuff",
+    "Polarities/TolerancePotionCooldownBuff"
   ],
   "DontChangeDuration": [
     "Lucky",
@@ -673,7 +681,8 @@
     "StarsAbove/TyphoonPrismCooldown",
     "StarsAbove/TimelessPotentialCooldown",
     "StarsAbove/WavedancerCooldown",
-    "StarsAbove/YoumuCooldown"
+    "StarsAbove/YoumuCooldown",
+    "Polarities/TolerancePotionCooldownBuff"
   ],
   "CooldownDebuff": [
     "Avalon/CoughCooldown",
@@ -772,7 +781,8 @@
     "StarsAbove/TyphoonPrismCooldown",
     "StarsAbove/TimelessPotentialCooldown",
     "StarsAbove/WavedancerCooldown",
-    "StarsAbove/YoumuCooldown"
+    "StarsAbove/YoumuCooldown",
+    "Polarities/TolerancePotionCooldownBuff"
   ],
   "PlayerStatusDebuff": [],
   "PlayerDoTDebuff": [

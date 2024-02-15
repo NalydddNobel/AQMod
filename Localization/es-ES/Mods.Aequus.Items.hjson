@@ -810,16 +810,16 @@ LaserReticle: {
 }
 
 CleanserDrone: {
-	// DisplayName: Cleanser Drone
+	// DisplayName: Mods.Aequus.Items.CleanserDrone.DisplayName
 	// Tooltip: ""
 }
 
 GunnerDrone: {
-	// DisplayName: Gunner Drone
+	// DisplayName: Mods.Aequus.Items.GunnerDrone.DisplayName
 	// Tooltip: ""
 }
 
 HealerDrone: {
-	// DisplayName: Healer Drone
+	// DisplayName: Mods.Aequus.Items.HealerDrone.DisplayName
 	// Tooltip: ""
 }

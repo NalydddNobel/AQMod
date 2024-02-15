@@ -36,7 +36,11 @@
     "ThoriumMod/MoltenMortar",
     "ThoriumMod/SoulCorrupter",
     "ThoriumMod/UnderworldPot1",
-    "ThoriumMod/WeaponMaster"
+    "ThoriumMod/WeaponMaster",
+    "Polarities/ConvectiveWanderer",
+    "Polarities/BabyWanderer",
+    "Polarities/InfernalArrow",
+    "Polarities/MantleOWar"
   ],
   "IsCorrupt": [
     "Slimeling",
@@ -79,7 +83,11 @@
     "ThoriumMod/SoulCorrupter",
     "ThoriumMod/TheInnocent",
     "ThoriumMod/TheStarved",
-    "ThoriumMod/VileFloater"
+    "ThoriumMod/VileFloater",
+    "Polarities/LightEater",
+    "Polarities/RavenousCursed",
+    "Polarities/TendrilAmalgam",
+    "Polarities/Esophage"
   ],
   "IsCrimson": [
     "Crimera",
@@ -116,7 +124,11 @@
     "ThoriumMod/EpiDermon",
     "ThoriumMod/FrozenFace",
     "ThoriumMod/FrozenGross",
-    "ThoriumMod/LivingHemorrhage"
+    "ThoriumMod/LivingHemorrhage",
+    "Polarities/Crimago",
+    "Polarities/LivingSpine",
+    "Polarities/Uraraneid",
+    "Polarities/Esophage"
   ],
   "IsHallow": [
     "Nurse",
@@ -152,7 +164,15 @@
     "ThoriumMod/DissonanceSeer",
     "ThoriumMod/GlitteringGolem",
     "ThoriumMod/Spectrumite",
-    "ThoriumMod/Spiritualist"
+    "ThoriumMod/Spiritualist",
+    "Polarities/Aequorean",
+    "Polarities/IlluminantScourer",
+    "Polarities/Painbow",
+    "Polarities/Pegasus",
+    "Polarities/SunKnight",
+    "Polarities/SunServitor",
+    "Polarities/Trailblazer",
+    "Polarities/SunPixie"
   ],
   "FromPillarEvent": [
     "StardustWormHead",

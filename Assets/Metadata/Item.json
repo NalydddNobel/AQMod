@@ -165,7 +165,9 @@
     "ThoriumMod/KineticPotion",
     "ThoriumMod/CactusFruit",
     "ThoriumMod/AssassinPotion",
-    "ThoriumMod/HydrationPotion"
+    "ThoriumMod/HydrationPotion",
+    "Polarities/PiercingPotion",
+    "Polarities/TolerancePotion"
   ],
   "PillarFragmentsByColor": [],
   "ShimmerTooltipResultIgnore": [
@@ -412,6 +414,14 @@
     "ThoriumMod/SteelArrow": "ThoriumMod/SteelArrow",
     "ThoriumMod/Baseball": "ThoriumMod/BaseballPro",
     "ThoriumMod/LodestoneBuckshot": "ThoriumMod/LodestoneBuckshotPro",
-    "ThoriumMod/SuppressionBullet": "ThoriumMod/SuppressionBulletPro"
+    "ThoriumMod/SuppressionBullet": "ThoriumMod/SuppressionBulletPro",
+    "Polarities/Salt": "None",
+    "Polarities/BatArrow": "Polarities/BatArrowProjectile",
+    "Polarities/BoneDart": "Polarities/BoneDartProjectile",
+    "Polarities/BouncyDart": "Polarities/BouncyDartProjectile",
+    "Polarities/ChlorophyteDart": "Polarities/ChlorophyteDartProjectile",
+    "Polarities/VenomDart": "Polarities/VenomDartProjectile",
+    "Polarities/WoodenDart": "Polarities/WoodenDartProjectile",
+    "Polarities/WoodenDartEndless": "Polarities/WoodenDartProjectile"
   }
 }
