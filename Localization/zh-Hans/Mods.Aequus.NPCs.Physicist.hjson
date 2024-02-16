@@ -58,13 +58,13 @@ Dialogue: {
 	Party: "'派对'是最反常的. 你如何维持这样的节日水平?"
 
 	CalamityMod: {
-		// 0: Getting past those massive orbiting planetoids was quite the ordeal. The largest one gave off strange readings and sent some of my delicate machinery into disrepair.
-		// 1: Who sourced these hunks of junk to run around and torment this place? Not only do they make much noise, but I keep tripping on their bolts and gears after they get obliterated by my turrets.
-		// Astral: A familiar star-like signal seems to be coming... from this planet itself? Does it have to do with that massive meteor which had fallen?
+		0: 要绕过那些轨道行星是一件相当痛苦的事. 其中最大的一颗发出了奇怪的读数, 并导致了我的精密机械的损坏.
+		1: 是谁将这些垃圾弄得到处都是来折磨这个地方的? 它们不仅发出了很大的噪音, 而且在被我的炮塔摧毁后, 我还一直被它们的螺栓和齿轮绊倒.
+		Astral: 一个熟悉的类星信号即将到来...似乎来自这颗星球本身? 这与那颗坠落的巨大陨石有关吗?
 	}
 
-	// ThoriumMod.StarScouter: An unidentified floating object seems to have been scouting the Meteorite which had crash landed onto Terraria. I'd investigate it if I were you.
-	// SpiritMod.StarplateVoyager: An unidentified floating object seems to have been scuttling along the asteroids orbiting this planet. During investigation, it seemed to have been harvesting a very high-energy resource.
+	ThoriumMod.StarScouter: 一个不明漂浮物似乎一直在侦查坠落在泰拉瑞亚的陨石. 如果我是你的话, 我会去调查它.
+	SpiritMod.StarplateVoyager: 一个不明漂浮物在沿着这颗星球轨道上的小行星飞驰. 经过研究, 它似乎一直在收割一种高能资源.
 
 	SoTSMod: {
 		0: 当我第一次校准传送门以将我传送至此时, 我发现了一种由某种漂浮的船只物体造成的干扰. 调查此事可能符合我的最大利益.
@@ -75,10 +75,10 @@ Dialogue: {
 }
 
 Analysis: {
-	// Button: Item Analysis
-	// CompleteButton: Submit
-	// ChatQuest: My scanners indicate signs of {Rarity}-rare objects. It would be of great service to me and my department if you could locate one of these relics from your world.
-	// ChatFoundItem: That '{Item}' would be a perfect sample for our research, may we have it?
-	// ChatCompleted: Thank you for your service.
-	// ChatNoQuest: You have done enough work for now. Although I have a pending sample request which will be coming in at {Time} if you are interested.
+	Button: 物品解析
+	CompleteButton: 提交
+	ChatQuest: 我的扫描仪显示出有{Rarity}稀有度物件的迹象. 如果你能从你的世界中找到一件这样的圣物, 那对我和我的部门都会有很大的帮助.
+	ChatFoundItem: '{Item}'将是我们研究的完美样本, 可以给我们吗?
+	ChatCompleted: 感谢你的服务.
+	ChatNoQuest: 你现在做的工作已经够多了. 尽管我有一个待定的样本请求, 如果你感兴趣, 将会在{Time}收到.
 }

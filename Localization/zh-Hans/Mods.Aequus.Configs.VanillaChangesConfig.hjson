@@ -43,23 +43,23 @@ SlimeCrownInSurfaceChests: {
 }
 
 MoveGravityGlobe: {
-	// Label: "[i:GravityGlobe] Gravity Globe sold by Physicist"
-	/* Tooltip:
+	Label: "[i:GravityGlobe] 物理学家出售重力球"
+	Tooltip:
 		'''
-		When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Gravity Globe] will by sold by the [{$ColorImportant}:Physicist],
-		and will [{$ColorImportant}:no longer be dropped] by the [{$ColorImportant2}:Moon Lord].
+		[{$ColorImportant}:启用后], [{$ColorImportant}:重力球]将会由[{$ColorImportant}:物理学家]出售,
+		并且[{$ColorImportant2}:月亮领主][{$ColorImportant}:不会再掉落].
 
 		{$NoteExploit}
-		''' */
+		'''
 }
 
 MovePortalGun: {
-	// Label: "[i:PortalGun] Gravity Globe sold by Physicist"
-	/* Tooltip:
+	Label: "[i:PortalGun] 物理学家出售传送门枪"
+	Tooltip:
 		'''
-		When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Portal Gun] will by sold by the [{$ColorImportant}:Physicist],
-		and will [{$ColorImportant}:no longer be dropped] by the [{$ColorImportant2}:Moon Lord].
+		[{$ColorImportant}:启用后], [{$ColorImportant}:传送门枪]将会由[{$ColorImportant}:物理学家]出售,
+		并且[{$ColorImportant2}:月亮领主][{$ColorImportant}:不会再掉落].
 
 		{$NoteExploit}
-		''' */
+		'''
 }

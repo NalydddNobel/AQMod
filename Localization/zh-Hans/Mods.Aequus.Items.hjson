@@ -830,7 +830,7 @@ CelestialEightBall: {
 
 CosmicMonolith: {
 	DisplayName: 宇宙石
-	// Tooltip: "'Sustain a fraction of cosmic power'"
+	Tooltip: "'维系宇宙力量的一小部分'"
 }
 
 UltimateSword: {
