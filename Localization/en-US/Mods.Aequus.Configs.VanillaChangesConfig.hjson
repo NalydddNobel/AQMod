@@ -54,7 +54,7 @@ MoveGravityGlobe: {
 }
 
 MovePortalGun: {
-	Label: "[i:PortalGun] Gravity Globe sold by Physicist"
+	Label: "[i:PortalGun] Portal Gun sold by Physicist"
 	Tooltip:
 		'''
 		When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Portal Gun] will by sold by the [{$ColorImportant}:Physicist],

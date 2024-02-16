@@ -45,34 +45,34 @@ Dyes: {
 }
 
 Rarity: {
-	// -13.DisplayName: Fiery Red
-	// -12.DisplayName: Rainbow
-	// -11.DisplayName: Amber
-	// -1.DisplayName: Gray
-	// 0.DisplayName: White
-	// 1.DisplayName: Blue
-	// 2.DisplayName: Green
-	// 3.DisplayName: Orange
-	// 4.DisplayName: Light Red
-	// 5.DisplayName: Pink
-	// 6.DisplayName: Light Purple
-	// 7.DisplayName: Lime
-	// 8.DisplayName: Yellow
-	// 9.DisplayName: Cyan
-	// 10.DisplayName: Red
-	// 11.DisplayName: Purple
+	-13.DisplayName: 火红色
+	-12.DisplayName: 彩虹色
+	-11.DisplayName: 琥珀色
+	-1.DisplayName: 灰色
+	0.DisplayName: 白色
+	1.DisplayName: 蓝色
+	2.DisplayName: 绿色
+	3.DisplayName: 橙色
+	4.DisplayName: 浅红色
+	5.DisplayName: 粉色
+	6.DisplayName: 浅紫色
+	7.DisplayName: 青柠色
+	8.DisplayName: 黄色
+	9.DisplayName: 青色
+	10.DisplayName: 红色
+	11.DisplayName: 紫色
 
 	CalamityMod: {
-		// Turquoise.DisplayName: Turquoise
-		// PureGreen.DisplayName: Pure Green
-		// DarkBlue.DisplayName: Dark Blue
-		// Violet.DisplayName: Violet
-		// HotPink.DisplayName: Hot Pink
-		// CalamityRed.DisplayName: Calamity Red
-		// DarkOrange.DisplayName: Dark Orange
+		Turquoise.DisplayName: 绿松石色
+		PureGreen.DisplayName: 纯绿色
+		DarkBlue.DisplayName: 深蓝色
+		Violet.DisplayName: 紫罗兰色
+		HotPink.DisplayName: 桃红色
+		CalamityRed.DisplayName: 灾厄红色
+		DarkOrange.DisplayName: 深橙色
 	}
 
-	// CatalystMod.SuperbossRarity.DisplayName: Crystal
+	CatalystMod.SuperbossRarity.DisplayName: 水晶
 }
 
 BlocksDistance: 距离: {0}格物块
