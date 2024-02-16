@@ -15,6 +15,8 @@ CommonTooltips: {
 	StatWingTime: 延长飞行时间
 	DecreaseAggro: 敌人不大可能以你为攻击目标
 	IncreaseAggro: 敌人更有可能以你为攻击目标
+	// DisableItem: <right> to deactivate effects
+	// EnableItem: Effects are currently inactive, <right> to reactivate
 }
 
 //# Equipment: Accessories
@@ -841,4 +843,35 @@ UltimateSword: {
 StariteMaterial: {
 	DisplayName: 核心碎片
 	Tooltip: ""
+}
+
+EventGlasses: {
+	// Folded: (Folded)
+	// DisabledName: "{0} {1}"
+	/* Tooltip:
+		'''
+		{0}
+		{1}
+		''' */
+}
+
+BloodMoonDeactivator: {
+	// DisplayName: Rose Tinted Glasses
+	// Tooltip: Disables Blood Moon effects and enemy spawns
+}
+
+GlimmerDeactivator: {
+	// DisplayName: Stellar Glasses
+	// Tooltip: Disables Glimmer effects and enemy spawns
+}
+
+EclipseDeactivator: {
+	// DisplayName: Eclipse Glasses
+	// Tooltip: Disables Eclipse effects and enemy spawns
+}
+
+GlassesFormat: {
+	// DisabledName: Mods.Aequus.Items.GlassesFormat.DisabledName
+	// Folded: Mods.Aequus.Items.GlassesFormat.Folded
+	// Tooltip: Mods.Aequus.Items.GlassesFormat.Tooltip
 }

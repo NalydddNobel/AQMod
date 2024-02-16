@@ -1504,7 +1504,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 515)</summary>
+            <summary>(Total Textures: 521)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1946,6 +1946,24 @@
         </member>
         <member name="F:Aequus.AequusTextures.HotAirBalloonMount_Glow">
             <summary>Full Path: Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BloodMoonDeactivator">
+            <summary>Full Path: Content/Events/Deactivators/BloodMoon/BloodMoonDeactivator</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BloodMoonDeactivatorInactive">
+            <summary>Full Path: Content/Events/Deactivators/BloodMoon/BloodMoonDeactivatorInactive</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EclipseDeactivator">
+            <summary>Full Path: Content/Events/Deactivators/Eclipse/EclipseDeactivator</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EclipseDeactivatorInactive">
+            <summary>Full Path: Content/Events/Deactivators/Eclipse/EclipseDeactivatorInactive</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GlimmerDeactivator">
+            <summary>Full Path: Content/Events/Deactivators/Glimmer/GlimmerDeactivator</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GlimmerDeactivatorInactive">
+            <summary>Full Path: Content/Events/Deactivators/Glimmer/GlimmerDeactivatorInactive</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabPot">
             <summary>Full Path: Content/Fishing/CrabPots/CrabPot</summary>

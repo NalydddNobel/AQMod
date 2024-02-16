@@ -1,4 +1,5 @@
 ﻿using Aequus.Core.Initialization;
+using System;
 using Terraria.DataStructures;
 using Terraria.Localization;
 
@@ -20,7 +21,7 @@ public class LaserReticle : ModItem {
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
-        player.GetModPlayer<LaserScopePlayer>().bulletSpreadReduction *= BulletSpreadMultiplier;
+        player.GetModPlayer<AequusPlayer>().bulletSpreadReduction *= BulletSpreadMultiplier;
     }
 }
 
@@ -31,18 +32,10 @@ public class LaserScopeGlobalProjectile : GlobalProjectile {
 
     public override void OnSpawn(Projectile projectile, IEntitySource source) {
         if (source is EntitySource_Parent parent && parent.Entity is Player player
-            && Main.myPlayer == player.whoAmI && player.TryGetModPlayer(out LaserScopePlayer laserScopePlayer)) {
+            && Main.myPlayer == player.whoAmI && player.TryGetModPlayer(out AequusPlayer laserScopePlayer)) {
 
             Vector2 wantedVelocity = player.DirectionTo(Main.MouseWorld) * projectile.velocity.Length();
-            projectile.velocity = Vector2.Lerp(projectile.velocity, wantedVelocity, laserScopePlayer.bulletSpreadReduction);
+            projectile.velocity = Vector2.Lerp(wantedVelocity, projectile.velocity, Math.Clamp(laserScopePlayer.bulletSpreadReduction, 0f, 1f));
         }
-    }
-}
-
-public class LaserScopePlayer : ModPlayer {
-    public float bulletSpreadReduction;
-
-    public override void ResetEffects() {
-        bulletSpreadReduction = 0f;
     }
 }

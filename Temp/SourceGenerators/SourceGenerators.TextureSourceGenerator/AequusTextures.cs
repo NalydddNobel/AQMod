@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 515)</summary>
+/// <summary>(Total Textures: 521)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -301,6 +301,18 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> HotAirBalloonMount_Front = new("Aequus/Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Front");
     /// <summary>Full Path: Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Glow</summary>
     public static readonly RequestCache<Texture2D> HotAirBalloonMount_Glow = new("Aequus/Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Glow");
+    /// <summary>Full Path: Content/Events/Deactivators/BloodMoon/BloodMoonDeactivator</summary>
+    public static readonly RequestCache<Texture2D> BloodMoonDeactivator = new("Aequus/Content/Events/Deactivators/BloodMoon/BloodMoonDeactivator");
+    /// <summary>Full Path: Content/Events/Deactivators/BloodMoon/BloodMoonDeactivatorInactive</summary>
+    public static readonly RequestCache<Texture2D> BloodMoonDeactivatorInactive = new("Aequus/Content/Events/Deactivators/BloodMoon/BloodMoonDeactivatorInactive");
+    /// <summary>Full Path: Content/Events/Deactivators/Eclipse/EclipseDeactivator</summary>
+    public static readonly RequestCache<Texture2D> EclipseDeactivator = new("Aequus/Content/Events/Deactivators/Eclipse/EclipseDeactivator");
+    /// <summary>Full Path: Content/Events/Deactivators/Eclipse/EclipseDeactivatorInactive</summary>
+    public static readonly RequestCache<Texture2D> EclipseDeactivatorInactive = new("Aequus/Content/Events/Deactivators/Eclipse/EclipseDeactivatorInactive");
+    /// <summary>Full Path: Content/Events/Deactivators/Glimmer/GlimmerDeactivator</summary>
+    public static readonly RequestCache<Texture2D> GlimmerDeactivator = new("Aequus/Content/Events/Deactivators/Glimmer/GlimmerDeactivator");
+    /// <summary>Full Path: Content/Events/Deactivators/Glimmer/GlimmerDeactivatorInactive</summary>
+    public static readonly RequestCache<Texture2D> GlimmerDeactivatorInactive = new("Aequus/Content/Events/Deactivators/Glimmer/GlimmerDeactivatorInactive");
     /// <summary>Full Path: Content/Fishing/CrabPots/CrabPot</summary>
     public static readonly RequestCache<Texture2D> CrabPot = new("Aequus/Content/Fishing/CrabPots/CrabPot");
     /// <summary>Full Path: Content/Fishing/CrabPots/CrabPot_Back</summary>
