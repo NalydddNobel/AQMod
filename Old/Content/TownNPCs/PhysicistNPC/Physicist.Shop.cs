@@ -1,8 +1,8 @@
 ﻿using Aequus.Content.Configuration;
-using Aequus.Content.Tools.MagicMirrors.PhaseMirror;
 using Aequus.Old.Content.DronePylons;
 using Aequus.Old.Content.Equipment.Accessories.LaserScope;
 using Aequus.Old.Content.Events.Glimmer.Spawners;
+using Aequus.Old.Content.Tiles.GravityBlocks;
 using Aequus.Old.Content.Tools;
 using Aequus.Old.Content.Weapons.Sentries.PhysicistSentry;
 
@@ -23,10 +23,8 @@ public partial class Physicist {
             .Add(ModContent.GetInstance<HealerDroneSlot>().DroneItem.Type)
             .Add(ModContent.GetInstance<CleanserDroneSlot>().DroneItem.Type, Condition.NpcIsPresent(NPCID.Steampunker), Condition.NotRemixWorld)
             .Add<PhysicistSentry>(Condition.NotRemixWorld)
-        //    .Add<AntiGravityBlock>(Condition.NotZenithWorld)
-        //    .Add<GravityBlock>(Condition.NotZenithWorld)
-        //    .Add<AntiGravityBlock>(Condition.ZenithWorld, Condition.DownedEowOrBoc)
-        //    .Add<GravityBlock>(Condition.ZenithWorld, Condition.DownedEowOrBoc)
+            .Add(GravityBlocks.NormalGravityBlockItem.Type)
+            .Add(GravityBlocks.ReverseGravityBlockItem.Type)
         //    .Add<PhysicsBlock>()
         //    .Add<EmancipationGrill>()
         //    .Add<SupernovaFruit>(AequusConditions.DownedOmegaStarite)

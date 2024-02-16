@@ -198,3 +198,15 @@ HangingPot: {
 Moonflower.MapEntry: 月光花
 Mistral.MapEntry: 寒风花
 Manacle.MapEntry: 镣铐花
+
+GravityBlock: {
+	// MapEntry: Normal Gravity Block
+	// ItemDisplayName: "{$Tiles.GravityBlock.MapEntry}"
+	// ItemTooltip: ""
+}
+
+AntiGravityBlock: {
+	// MapEntry: Reversed Gravity Block
+	// ItemDisplayName: "{$Tiles.AntiGravityBlock.MapEntry}"
+	// ItemTooltip: ""
+}

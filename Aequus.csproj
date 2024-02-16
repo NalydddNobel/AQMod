@@ -88,6 +88,7 @@
 	
   <ItemGroup>
     <Folder Include="Old\Common\Items\" />
+    <Folder Include="Old\Content\Tiles\Physics\" />
     <Folder Include="Old\Content\Weapons\Sentries\" />
   </ItemGroup>
 	

@@ -78,7 +78,7 @@ Analysis: {
 	Button: 物品解析
 	CompleteButton: 提交
 	ChatQuest: 我的扫描仪显示出有{Rarity}稀有度物件的迹象. 如果你能从你的世界中找到一件这样的圣物, 那对我和我的部门都会有很大的帮助.
-	ChatFoundItem: '{Item}'将是我们研究的完美样本, 可以给我们吗?
+	ChatFoundItem: "'{Item}'将是我们研究的完美样本, 可以给我们吗?"
 	ChatCompleted: 感谢你的服务.
 	ChatNoQuest: 你现在做的工作已经够多了. 尽管我有一个待定的样本请求, 如果你感兴趣, 将会在{Time}收到.
 }

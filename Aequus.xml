@@ -1504,7 +1504,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 521)</summary>
+            <summary>(Total Textures: 531)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2804,6 +2804,36 @@
         </member>
         <member name="F:Aequus.AequusTextures.OblivionCraftingStation_Stick">
             <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation_Stick</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AntiGravityBlock">
+            <summary>Full Path: Old/Content/Tiles/GravityBlocks/AntiGravityBlock</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AntiGravityBlockAura_0">
+            <summary>Full Path: Old/Content/Tiles/GravityBlocks/AntiGravityBlockAura_0</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AntiGravityBlockAura_1">
+            <summary>Full Path: Old/Content/Tiles/GravityBlocks/AntiGravityBlockAura_1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AntiGravityBlockDust">
+            <summary>Full Path: Old/Content/Tiles/GravityBlocks/AntiGravityBlockDust</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AntiGravityBlockItem">
+            <summary>Full Path: Old/Content/Tiles/GravityBlocks/AntiGravityBlockItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GravityBlock">
+            <summary>Full Path: Old/Content/Tiles/GravityBlocks/GravityBlock</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GravityBlockAura_0">
+            <summary>Full Path: Old/Content/Tiles/GravityBlocks/GravityBlockAura_0</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GravityBlockAura_1">
+            <summary>Full Path: Old/Content/Tiles/GravityBlocks/GravityBlockAura_1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GravityBlockDust">
+            <summary>Full Path: Old/Content/Tiles/GravityBlocks/GravityBlockDust</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GravityBlockItem">
+            <summary>Full Path: Old/Content/Tiles/GravityBlocks/GravityBlockItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HangingPot">
             <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPot</summary>

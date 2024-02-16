@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 521)</summary>
+/// <summary>(Total Textures: 531)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -873,6 +873,26 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OblivionCraftingStation_Portal = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation_Portal");
     /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation_Stick</summary>
     public static readonly RequestCache<Texture2D> OblivionCraftingStation_Stick = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation_Stick");
+    /// <summary>Full Path: Old/Content/Tiles/GravityBlocks/AntiGravityBlock</summary>
+    public static readonly RequestCache<Texture2D> AntiGravityBlock = new("Aequus/Old/Content/Tiles/GravityBlocks/AntiGravityBlock");
+    /// <summary>Full Path: Old/Content/Tiles/GravityBlocks/AntiGravityBlockAura_0</summary>
+    public static readonly RequestCache<Texture2D> AntiGravityBlockAura_0 = new("Aequus/Old/Content/Tiles/GravityBlocks/AntiGravityBlockAura_0");
+    /// <summary>Full Path: Old/Content/Tiles/GravityBlocks/AntiGravityBlockAura_1</summary>
+    public static readonly RequestCache<Texture2D> AntiGravityBlockAura_1 = new("Aequus/Old/Content/Tiles/GravityBlocks/AntiGravityBlockAura_1");
+    /// <summary>Full Path: Old/Content/Tiles/GravityBlocks/AntiGravityBlockDust</summary>
+    public static readonly RequestCache<Texture2D> AntiGravityBlockDust = new("Aequus/Old/Content/Tiles/GravityBlocks/AntiGravityBlockDust");
+    /// <summary>Full Path: Old/Content/Tiles/GravityBlocks/AntiGravityBlockItem</summary>
+    public static readonly RequestCache<Texture2D> AntiGravityBlockItem = new("Aequus/Old/Content/Tiles/GravityBlocks/AntiGravityBlockItem");
+    /// <summary>Full Path: Old/Content/Tiles/GravityBlocks/GravityBlock</summary>
+    public static readonly RequestCache<Texture2D> GravityBlock = new("Aequus/Old/Content/Tiles/GravityBlocks/GravityBlock");
+    /// <summary>Full Path: Old/Content/Tiles/GravityBlocks/GravityBlockAura_0</summary>
+    public static readonly RequestCache<Texture2D> GravityBlockAura_0 = new("Aequus/Old/Content/Tiles/GravityBlocks/GravityBlockAura_0");
+    /// <summary>Full Path: Old/Content/Tiles/GravityBlocks/GravityBlockAura_1</summary>
+    public static readonly RequestCache<Texture2D> GravityBlockAura_1 = new("Aequus/Old/Content/Tiles/GravityBlocks/GravityBlockAura_1");
+    /// <summary>Full Path: Old/Content/Tiles/GravityBlocks/GravityBlockDust</summary>
+    public static readonly RequestCache<Texture2D> GravityBlockDust = new("Aequus/Old/Content/Tiles/GravityBlocks/GravityBlockDust");
+    /// <summary>Full Path: Old/Content/Tiles/GravityBlocks/GravityBlockItem</summary>
+    public static readonly RequestCache<Texture2D> GravityBlockItem = new("Aequus/Old/Content/Tiles/GravityBlocks/GravityBlockItem");
     /// <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPot</summary>
     public static readonly RequestCache<Texture2D> HangingPot = new("Aequus/Old/Content/Tiles/Herbs/HangingPots/HangingPot");
     /// <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPotManacleItem</summary>

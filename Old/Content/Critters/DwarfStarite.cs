@@ -262,7 +262,7 @@ public class DwarfStarite : ModNPC {
 
         if (constellation > 0 && !NPC.IsABestiaryIconDummy) {
             var coords = LinearInterpolationBetween(NPC.Center - Main.screenPosition, Main.npc[Constellation].Center - Main.screenPosition, 50);
-            DrawHelper.DrawBasicVertexLineWithProceduralPadding(AequusTextures.Trail, coords, OldDrawHelper.GenerateRotationArr(coords),
+            DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, coords, OldDrawHelper.GenerateRotationArr(coords),
                 p => Color.Lerp(GlimmerColors.Cyan, GlimmerColors.Blue, MathF.Pow(MathF.Sin(p * MathHelper.Pi), 2f) * 0.6f) * MathF.Sin(p * MathHelper.Pi) * 0.5f,
                 p => 1f + 1f * MathF.Sin(p * MathHelper.Pi)
             );
