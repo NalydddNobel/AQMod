@@ -15,8 +15,8 @@ CommonTooltips: {
 	StatWingTime: 延长飞行时间
 	DecreaseAggro: 敌人不大可能以你为攻击目标
 	IncreaseAggro: 敌人更有可能以你为攻击目标
-	// DisableItem: <right> to deactivate effects
-	// EnableItem: Effects are currently inactive, <right> to reactivate
+	DisableItem: 右键使效果无效化
+	EnableItem: 当前处于非激活状态, 右键以重新激活
 }
 
 //# Equipment: Accessories
@@ -846,32 +846,32 @@ StariteMaterial: {
 }
 
 EventGlasses: {
-	// Folded: (Folded)
-	// DisabledName: "{0} {1}"
-	/* Tooltip:
+	Folded: (已折叠)
+	DisabledName: "{0} {1}"
+	Tooltip:
 		'''
 		{0}
 		{1}
-		''' */
+		'''
 }
 
 BloodMoonDeactivator: {
-	// DisplayName: Rose Tinted Glasses
-	// Tooltip: Disables Blood Moon effects and enemy spawns
+	DisplayName: 玫瑰色眼镜
+	Tooltip: 禁用血月效果以及敌人生成
 }
 
 GlimmerDeactivator: {
-	// DisplayName: Stellar Glasses
-	// Tooltip: Disables Glimmer effects and enemy spawns
+	DisplayName: 星体眼镜
+	Tooltip: 禁用柔光效果以及敌人生成
 }
 
 EclipseDeactivator: {
-	// DisplayName: Eclipse Glasses
-	// Tooltip: Disables Eclipse effects and enemy spawns
+	DisplayName: 日食眼镜
+	Tooltip: 禁用 日食效果以及敌人生成
 }
 
 GlassesFormat: {
-	// DisabledName: Mods.Aequus.Items.GlassesFormat.DisabledName
-	// Folded: Mods.Aequus.Items.GlassesFormat.Folded
-	// Tooltip: Mods.Aequus.Items.GlassesFormat.Tooltip
+	DisabledName: Mods.Aequus.Items.GlassesFormat.DisabledName
+	Folded: Mods.Aequus.Items.GlassesFormat.Folded
+	Tooltip: Mods.Aequus.Items.GlassesFormat.Tooltip
 }

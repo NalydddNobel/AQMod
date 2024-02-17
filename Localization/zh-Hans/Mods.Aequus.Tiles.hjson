@@ -200,13 +200,13 @@ Mistral.MapEntry: 寒风花
 Manacle.MapEntry: 镣铐花
 
 GravityBlock: {
-	// MapEntry: Normal Gravity Block
-	// ItemDisplayName: "{$Tiles.GravityBlock.MapEntry}"
-	// ItemTooltip: ""
+	MapEntry: 普通重力块
+	ItemDisplayName: "{$Tiles.GravityBlock.MapEntry}"
+	ItemTooltip: ""
 }
 
 AntiGravityBlock: {
-	// MapEntry: Reversed Gravity Block
-	// ItemDisplayName: "{$Tiles.AntiGravityBlock.MapEntry}"
-	// ItemTooltip: ""
+	MapEntry: 反转重力块
+	ItemDisplayName: "{$Tiles.AntiGravityBlock.MapEntry}"
+	ItemTooltip: ""
 }
