@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.Configuration;
+using Aequus.Content.Events.Deactivators;
 using Aequus.Old.Content.DronePylons;
 using Aequus.Old.Content.Equipment.Accessories.LaserScope;
 using Aequus.Old.Content.Events.Glimmer.Spawners;
@@ -23,6 +24,9 @@ public partial class Physicist {
             .Add(ModContent.GetInstance<HealerDroneSlot>().DroneItem.Type)
             .Add(ModContent.GetInstance<CleanserDroneSlot>().DroneItem.Type, Condition.NpcIsPresent(NPCID.Steampunker), Condition.NotRemixWorld)
             .Add<PhysicistSentry>(Condition.NotRemixWorld)
+            .Add(EventDeactivators.BloodMoonItem.Type, Condition.DownedPlantera)
+            .Add(EventDeactivators.GlimmerItem.Type, Condition.DownedPlantera)
+            .Add(EventDeactivators.EclipseItem.Type, Condition.DownedPlantera)
             .Add(GravityBlocks.NormalGravityBlockItem.Type)
             .Add(GravityBlocks.ReverseGravityBlockItem.Type)
         //    .Add<PhysicsBlock>()
@@ -33,15 +37,6 @@ public partial class Physicist {
         //    .Add<Tiles.Paintings.Canvas6x4.OmegaStaritePainting>(Condition.NpcIsPresent(NPCID.Painter))
         //    .Add<Tiles.Paintings.Canvas3x3.OmegaStaritePainting2>(Condition.NpcIsPresent(NPCID.Painter))
             .Register();
-
-        //shop.item[nextSlot].SetDefaults(ModContent.ItemType<Cosmicanon>());
-        //nextSlot++;
-        //shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Transistor>());
-        //if (Main.hardMode && NPC.downedMechBossAny)
-        //{
-        //    shop.item[nextSlot].SetDefaults(ModContent.ItemType<EclipseGlasses>());
-        //    nextSlot++;
-        //}
 
         //shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Stardrop>());
     }

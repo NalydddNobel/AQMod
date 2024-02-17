@@ -6,9 +6,6 @@ namespace Aequus.Old.Content.DronePylons.NPCs;
 public class GunnerDroneProj : ModProjectile {
     public override string Texture => AequusTextures.None.Path;
 
-    public override void SetStaticDefaults() {
-    }
-
     public override void SetDefaults() {
         Projectile.width = 2;
         Projectile.height = 2;
@@ -24,8 +21,10 @@ public class GunnerDroneProj : ModProjectile {
 
     public override void AI() {
         Projectile.alpha += 20;
-        if (Projectile.alpha > 255)
+        if (Projectile.alpha > 255) {
             Projectile.Kill();
+        }
+
         var npc = Main.npc[(int)Projectile.ai[0]];
         if (!npc.active) {
             Projectile.Kill();
@@ -34,6 +33,10 @@ public class GunnerDroneProj : ModProjectile {
         Projectile.Center = npc.Center;
         Projectile.rotation = npc.rotation;
         Projectile.direction = npc.spriteDirection;
+    }
+
+    public override bool? CanHitNPC(NPC target) {
+        return target.friendly || target.damage <= 0 ? false : null;
     }
 
     public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {

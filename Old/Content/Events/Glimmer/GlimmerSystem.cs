@@ -248,10 +248,13 @@ public class GlimmerSystem : ModSystem {
     }
 
     public override void LoadWorldData(TagCompound tag) {
-        if (tag.TryGet("PeacefulGlimmerX", out int peacefulX))
+        if (tag.TryGet("PeacefulGlimmerX", out int peacefulX)) {
             PeacefulGlimmerZone.TileLocationX = peacefulX;
-        if (tag.TryGet("GlimmerX", out int x) && tag.TryGet("GlimmerY", out int y))
+        }
+
+        if (tag.TryGet("GlimmerX", out int x) && tag.TryGet("GlimmerY", out int y)) {
             GlimmerZone.TileLocation = new Point(x, y);
+        }
     }
 
     public override void NetSend(BinaryWriter writer) {

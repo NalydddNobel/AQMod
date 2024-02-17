@@ -80,7 +80,9 @@
     "BloodNautilus",
     "BloodSquid",
     "GoblinShark",
-    "BloodEelHead"
+    "BloodEelHead",
+    "BloodEelBody",
+    "BloodEelTail"
   ],
   "IsCorrupt": [
     "Slimeling",

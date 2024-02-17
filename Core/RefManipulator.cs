@@ -1,4 +1,6 @@
-﻿namespace Aequus.Core;
+﻿using System;
+
+namespace Aequus.Core;
 
 public record class RefManipulator<T>(RefManipulator<T>.GetReferenceDelegate GetReference) {
     public delegate ref T GetReferenceDelegate();
@@ -13,6 +15,9 @@ public record class RefManipulator<T>(RefManipulator<T>.GetReferenceDelegate Get
             _originalValue = GetReference();
             _hasOverridenValue = true;
         }
+        //else {
+        //    Aequus.Instance.Logger.Info(Environment.StackTrace);
+        //}
 
         GetReference() = value;
     }

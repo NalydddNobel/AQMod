@@ -53,6 +53,7 @@ public class UltraStarite : ModNPC {
         NPCSets.DontDoHardmodeScaling[Type] = true;
         NPCSets.CantTakeLunchMoney[Type] = true;
         NPCMetadata.PrefixBlacklist.Add(Type);
+        NPCMetadata.FromGlimmer.Add(Type);
         //SnowgraveCorpse.NPCBlacklist.Add(Type);
     }
 

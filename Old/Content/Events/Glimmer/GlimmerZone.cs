@@ -47,7 +47,7 @@ public class GlimmerZone : ModBiome {
     }
 
     public override bool IsBiomeActive(Player player) {
-        return EventActive && (Main.remixWorld ? player.position.Y >= Main.UnderworldLayer : player.position.Y < Main.worldSurface * 16f) && GlimmerSystem.GetTileDistance(player) < MaxTiles;
+        return EventActive && (Main.remixWorld ? player.position.Y >= Main.UnderworldLayer : player.position.Y < Main.worldSurface * 16f) && GlimmerSystem.GetTileDistance(player) < MaxTiles && !player.GetModPlayer<EventDeactivatorPlayer>().accDisableGlimmer;
     }
 
     public static void AddEnemies(int tiles, IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {

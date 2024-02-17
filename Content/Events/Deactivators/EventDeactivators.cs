@@ -30,6 +30,7 @@ public class EventDeactivators : ModSystem {
         Mod.AddContent(EclipseItem);
 
         On_NPC.SpawnNPC += SpawnNPCUndoFlags;
+        On_Projectile.FishingCheck += OverrideFishingFlags;
         IL_NPC.SpawnNPC += SpawnNPCOverrideEventsPerPlayer;
         IL_Main.UpdateAudio += OverrideEventsForMusic;
         IL_Main.CalculateWaterStyle += OverrideBloodMoonWaterStyle;
@@ -42,6 +43,12 @@ public class EventDeactivators : ModSystem {
     }
 
     #region Hooks
+    private static void OverrideFishingFlags(On_Projectile.orig_FishingCheck orig, Projectile projectile) {
+        EventDeactivatorPlayer.CheckPlayerFlagOverrides(Main.player[projectile.owner]);
+        orig(projectile);
+        EventDeactivatorPlayer.UndoPlayerFlagOverrides();
+    }
+
     private static void SpawnNPCUndoFlags(On_NPC.orig_SpawnNPC orig) {
         orig();
         EventDeactivatorPlayer.UndoPlayerFlagOverrides();
@@ -73,11 +80,11 @@ public class EventDeactivators : ModSystem {
     private void OverrideBloodMoonWaterStyle(ILContext il) {
         ILCursor c = new ILCursor(il);
         ILLabel label = null;
-        if (!c.TryGotoNext(MoveType.Before, i => i.MatchLdsfld(typeof(Main), nameof(Main.bloodMoon)) && (i.Next?.MatchBrfalse(out label) ?? false)) || label == null) {
+        if (!c.TryGotoNext(MoveType.After, i => i.MatchLdsfld(typeof(Main), nameof(Main.bloodMoon)) && (i.Next?.MatchBrfalse(out label) ?? false)) || label == null) {
             Mod.Logger.Error($"Could not find {nameof(Main)}.{nameof(Main.bloodMoon)} ldsfld-branching code."); return;
         }
 
-        c.EmitDelegate(() => !Main.LocalPlayer.TryGetModPlayer(out EventDeactivatorPlayer eventDeactivator) || !eventDeactivator.accDisableBloodMoon);
+        c.EmitDelegate((bool bloodMoon) => bloodMoon && Main.LocalPlayer.TryGetModPlayer(out EventDeactivatorPlayer eventDeactivator) && eventDeactivator.accDisableBloodMoon);
         c.EmitBrfalse(label);
     }
 
@@ -94,16 +101,13 @@ public class EventDeactivators : ModSystem {
         c.EmitDelegate((bool swapMusic) => EventDeactivatorPlayer.CheckPlayerFlagOverrides(Main.LocalPlayer));
         c.EmitLdsfld(typeof(Main).GetField(SwapMusicField, SwapMusicBindings));
 
-        MonoModHooks.DumpIL(Mod, il);
 
         if (!c.TryGotoNext(MoveType.After, i => i.MatchLdsfld(typeof(Main), nameof(Main.musicBox2)))) {
             Mod.Logger.Error($"Could not find {nameof(Main)}.{nameof(Main.musicBox2)} ldsfld code."); return;
         }
 
-        c.EmitDelegate((int musicBox2) => EventDeactivatorPlayer.UndoPlayerFlagOverrides);
+        c.EmitDelegate((int musicBox2) => EventDeactivatorPlayer.UndoPlayerFlagOverrides());
         c.EmitLdsfld(typeof(Main).GetField(nameof(Main.musicBox2), BindingFlags.Static | BindingFlags.Public));
-
-        MonoModHooks.DumpIL(Mod, il);
     }
     #endregion
 

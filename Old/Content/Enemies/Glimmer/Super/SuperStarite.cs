@@ -27,6 +27,8 @@ public class SuperStarite : ModNPC, ITrackTimeBetweenHits {
         NPCSets.TrailingMode[Type] = 7;
         NPCSets.TrailCacheLength[Type] = 15;
         NPCSets.ImmuneToRegularBuffs[Type] = true;
+
+        NPCMetadata.FromGlimmer.Add(Type);
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {

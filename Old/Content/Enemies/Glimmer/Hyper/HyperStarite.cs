@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
+using Aequus.Content.DataSets;
 using Aequus.Core.ContentGeneration;
 using Aequus.Old.Common.Graphics;
 using Aequus.Old.Content.Critters;
@@ -46,7 +47,8 @@ public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
         NPCSets.NPCBestiaryDrawOffset.Add(Type, new() {
             Scale = 0.6f,
         });
-        //SnowgraveCorpse.NPCBlacklist.Add(Type);
+
+        NPCMetadata.FromGlimmer.Add(Type);
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
