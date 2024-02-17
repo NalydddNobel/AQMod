@@ -1,5 +1,4 @@
-﻿using Aequus.Old.Content.TownNPCs.PhysicistNPC.Analysis;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Aequus.Content.Tools.MagicMirrors.PhaseMirror;
 
@@ -10,7 +9,7 @@ public class PhaseMirror : ModItem, IPhaseMirror {
 
     public override void SetStaticDefaults() {
 #if !DEBUG
-        AnalysisSystem.PhysicistPrimaryRewardItems.Add(Type);
+        Old.Content.TownNPCs.PhysicistNPC.Analysis.AnalysisSystem.PhysicistPrimaryRewardItems.Add(Type);
 #endif
         ItemSets.WorksInVoidBag[Type] = true;
     }

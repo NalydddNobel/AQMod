@@ -1,4 +1,28 @@
 {
+  "CannotTradeWithPhysicist": [
+    "MartianConduitPlating",
+    "MartianConduitWall",
+    "LaserDrill",
+    "ChargedBlasterCannon",
+    "AntiGravityHook",
+    "MartianCostumeMask",
+    "MartianCostumeShirt",
+    "MartianCostumePants",
+    "MartianUniformHelmet",
+    "MartianUniformTorso",
+    "MartianUniformPants",
+    "BrainScrambler",
+    "LaserMachinegun",
+    "Xenopopper",
+    "XenoStaff",
+    "CosmicCarKey",
+    "ElectrosphereLauncher",
+    "InfluxWaver",
+    "PortalGun",
+    "GravityGlobe",
+    "BloodMoonStarter",
+    "SolarTablet"
+  ],
   "FishingJunk": [
     "OldShoe",
     "TinCan",

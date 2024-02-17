@@ -10,7 +10,7 @@ using Aequus.Content.Equipment.Accessories.Informational.Monocle;
 using Aequus.Content.Equipment.Accessories.WeightedHorseshoe;
 using Aequus.Content.Tools.MagicMirrors.PhaseMirror;
 using Aequus.Content.Weapons.Magic.Furystar;
-using Aequus.Old.Content.Materials.SoulGem;
+using System.Security.Cryptography;
 using Terraria.GameContent;
 using Terraria.GameContent.Achievements;
 
@@ -26,7 +26,6 @@ public class ShimmerSystem : ModSystem {
     public static void RegisterShimmerTransmutations() {
         ItemSets.ShimmerTransformToItem[ModContent.ItemType<GrandReward>()] = ModContent.ItemType<CosmicChest>();
         ItemSets.ShimmerTransformToItem[ModContent.ItemType<RichMansMonocle>()] = ModContent.ItemType<ShimmerMonocle>();
-        ItemSets.ShimmerTransformToItem[ModContent.ItemType<SoulGemFilled>()] = ModContent.ItemType<SoulGem>();
         ItemSets.ShimmerTransformToItem[ItemID.SuspiciousLookingEye] = ModContent.GetInstance<SwagEyePet>().PetItem.Type;
 
         CreateShimmerLoop(ModContent.ItemType<Furystar>(), ItemID.Starfury);
@@ -38,6 +37,7 @@ public class ShimmerSystem : ModSystem {
         }
 
 #if !DEBUG
+        ItemSets.ShimmerTransformToItem[ModContent.ItemType<Old.Content.Materials.SoulGem.SoulGemFilled>()] = ModContent.ItemType<Old.Content.Materials.SoulGem.SoulGem>();
         CreateShimmerLoop(
             ModContent.ItemType<Old.Content.Weapons.Ranged.Bows.CrusadersCrossbow.CrusadersCrossbow>(),
             ModContent.ItemType<Old.Content.Equipment.GrapplingHooks.HealingGrappleHook.LeechHook>(),
