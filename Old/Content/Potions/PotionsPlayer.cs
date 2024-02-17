@@ -34,6 +34,9 @@ public class PotionsPlayer : ModPlayer {
             // Set all bounded buffs to not be persistent
             Main.persistentBuff[buff] = false;
         }
+        if (empoweredPotionId > 0 && !Player.HasBuff(empoweredPotionId)) {
+            empoweredPotionId = 0;
+        }
     }
 
     #region Potion Specific Effects

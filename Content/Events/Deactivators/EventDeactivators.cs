@@ -79,13 +79,11 @@ public class EventDeactivators : ModSystem {
 
     private void OverrideBloodMoonWaterStyle(ILContext il) {
         ILCursor c = new ILCursor(il);
-        ILLabel label = null;
-        if (!c.TryGotoNext(MoveType.After, i => i.MatchLdsfld(typeof(Main), nameof(Main.bloodMoon)) && (i.Next?.MatchBrfalse(out label) ?? false)) || label == null) {
+        if (!c.TryGotoNext(MoveType.After, i => i.MatchLdsfld(typeof(Main), nameof(Main.bloodMoon)))) {
             Mod.Logger.Error($"Could not find {nameof(Main)}.{nameof(Main.bloodMoon)} ldsfld-branching code."); return;
         }
 
-        c.EmitDelegate((bool bloodMoon) => bloodMoon && Main.LocalPlayer.TryGetModPlayer(out EventDeactivatorPlayer eventDeactivator) && eventDeactivator.accDisableBloodMoon);
-        c.EmitBrfalse(label);
+        c.EmitDelegate((bool bloodMoon) => bloodMoon && (!Main.LocalPlayer.TryGetModPlayer(out EventDeactivatorPlayer eventDeactivator) || !eventDeactivator.accDisableBloodMoon));
     }
 
     private void OverrideEventsForMusic(ILContext il) {
