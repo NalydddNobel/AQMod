@@ -16,8 +16,8 @@ CommonTooltips: {
 	StatWingTime: Increases flight duration
 	DecreaseAggro: Enemies are less likely to target you
 	IncreaseAggro: Enemies are more likely to target you
-	DisableItem: <right> to deactivate effects
-	EnableItem: Effects are currently inactive, <right> to reactivate
+	DisableItem: <right> to deactivate
+	EnableItem: Currently inactive, <right> to reactivate
 }
 
 //# Equipment: Accessories
@@ -882,23 +882,17 @@ EventGlasses: {
 
 BloodMoonDeactivator: {
 	DisplayName: Rose Tinted Glasses
-	Tooltip: Disables Blood Moon effects and enemy spawns
+	Tooltip: Ignore Blood Moon effects and enemy spawns while in the inventory
 }
 
 GlimmerDeactivator: {
 	DisplayName: Stellar Glasses
-	Tooltip: Disables Glimmer effects and enemy spawns
+	Tooltip: Ignore Glimmer effects and enemy spawns while in the inventory
 }
 
 EclipseDeactivator: {
 	DisplayName: Eclipse Glasses
-	Tooltip: Disables Eclipse effects and enemy spawns
-}
-
-GlassesFormat: {
-	DisabledName: Mods.Aequus.Items.GlassesFormat.DisabledName
-	Folded: Mods.Aequus.Items.GlassesFormat.Folded
-	Tooltip: Mods.Aequus.Items.GlassesFormat.Tooltip
+	Tooltip: Ignore Eclipse effects and enemy spawns while in the inventory
 }
 
 Killifish: {
