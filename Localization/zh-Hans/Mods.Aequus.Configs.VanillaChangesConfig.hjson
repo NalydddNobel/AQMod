@@ -1,7 +1,4 @@
 DisplayName: 原版更改
-ColorImportant: c/ffffbb
-ColorImportant2: c/ffcc99
-ColorNote: c/aaacff
 NoteExploit: "[{$ColorNote}:如若出于个人偏好或为防止意外利用, 请禁用该设置.]"
 
 MoveTreasureMagnet: {
@@ -61,5 +58,14 @@ MovePortalGun: {
 		并且[{$ColorImportant2}:月亮领主][{$ColorImportant}:不会再掉落].
 
 		{$NoteExploit}
+		'''
+}
+
+MoveMagicConch: {
+	Label: "[i:MagicConch] 移动魔法海螺"
+	Tooltip:
+		'''
+		[{$ColorImportant}:启用后], [{$ColorImportant}:魔法海螺]可以在[{$ColorImportant}:被污染的海洋]中发现,
+		并且[{$ColorImportant2}:地下沙漠]中的[{$ColorImportant}:不会再出现].
 		'''
 }

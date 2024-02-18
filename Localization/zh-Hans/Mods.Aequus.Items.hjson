@@ -1,4 +1,5 @@
 CommonTooltips: {
+	BuffTimeRange: "{0}-{1}分钟持续时间"
 	IncreasesInventorySlots: 获得{0}格物品栏
 	Cooldown: 有{0}秒冷却时间
 	Shimmerable: 微光材料
@@ -15,8 +16,8 @@ CommonTooltips: {
 	StatWingTime: 延长飞行时间
 	DecreaseAggro: 敌人不大可能以你为攻击目标
 	IncreaseAggro: 敌人更有可能以你为攻击目标
-	DisableItem: 右键使效果无效化
-	EnableItem: 当前处于非激活状态, 右键以重新激活
+	DisableItem: 右键无效化
+	EnableItem: 当前未激活, 右键以重新激活
 }
 
 //# Equipment: Accessories
@@ -265,6 +266,15 @@ Dynaknife: {
 		'''
 }
 
+SuperStarSword: {
+	DisplayName: 超级星剑
+	Tooltip:
+		'''
+		生命值高于90%时会发射剑气
+		'会动的东西我砍, 动的很欢的我砍得更欢'
+		'''
+}
+
 Slice: {
 	DisplayName: 利刃
 	Tooltip:
@@ -447,6 +457,21 @@ StunGun: {
 }
 
 //# Potions
+SentryPotion: {
+	DisplayName: 哨兵药水
+	Tooltip: 增加{0}格最大哨兵栏位
+	BuffName: 哨兵
+}
+
+TaintedSeafood: {
+	DisplayName: 受到污染的海鲜
+	Tooltip:
+		'''
+		有可能小幅度、中幅度或大幅度提升所有属性
+		有小概率导致食物中毒
+		'''
+}
+
 NeutronYogurt: {
 	DisplayName: 中子酸奶
 	Tooltip: 获得具有加速度翻倍的附魔下落
@@ -857,30 +882,25 @@ EventGlasses: {
 
 BloodMoonDeactivator: {
 	DisplayName: 玫瑰色眼镜
-	Tooltip: 禁用血月效果以及敌人生成
+	Tooltip: 放置在物品栏中时无视血月效果以及敌人生成
 }
 
 GlimmerDeactivator: {
 	DisplayName: 星体眼镜
-	Tooltip: 禁用柔光效果以及敌人生成
+	Tooltip: 放置在物品栏中时无视柔光效果以及敌人生成
 }
 
 EclipseDeactivator: {
 	DisplayName: 日食眼镜
-	Tooltip: 禁用 日食效果以及敌人生成
+	Tooltip: 放置在物品栏中时无视日食效果以及敌人生成
 }
 
-GlassesFormat: {
-	DisabledName: Mods.Aequus.Items.GlassesFormat.DisabledName
-	Folded: Mods.Aequus.Items.GlassesFormat.Folded
-	Tooltip: Mods.Aequus.Items.GlassesFormat.Tooltip
+Killifish: {
+	DisplayName: 鳉鱼
+	Tooltip: ""
 }
 
-SuperStarSword: {
-	DisplayName: 超级星剑
-	Tooltip:
-		'''
-		生命值高于90%时会发射剑气
-		'会动的东西我砍, 动的很欢的我砍得更欢'
-		'''
+Piraiba: {
+	DisplayName: 须鲇鱼
+	Tooltip: ""
 }

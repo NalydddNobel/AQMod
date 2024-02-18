@@ -15,6 +15,6 @@ PeacefulGlimmerZone: {
 }
 
 PollutedOceanBiome: {
-	// DisplayName: Polluted Ocean
-	// TownNPCDialogueName: the Polluted Ocean
+	DisplayName: 被污染的海洋
+	TownNPCDialogueName: 被污染的海洋
 }
