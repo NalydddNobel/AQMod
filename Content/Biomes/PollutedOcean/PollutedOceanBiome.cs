@@ -1,6 +1,7 @@
 ﻿using Aequus.Content.Biomes.PollutedOcean.Background;
 using Aequus.Content.Biomes.PollutedOcean.Water;
 using Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
+using Aequus.Content.Enemies.PollutedOcean.OilSlime;
 using Aequus.Content.Enemies.PollutedOcean.Scavenger;
 using Aequus.Content.Tiles.Furniture.Trash;
 using System.Collections.Generic;
@@ -43,6 +44,7 @@ public class PollutedOceanBiome : ModBiome {
     public static void PopulateSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
         pool.Clear();
 
+        pool[ModContent.NPCType<OilSlime>()] = 1f;
         pool[ModContent.NPCType<Scavenger>()] = 1f;
         pool[NPCID.DarkCaster] = 0.33f; // Radio Conductor
 
