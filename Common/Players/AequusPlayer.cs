@@ -50,6 +50,7 @@ public partial class AequusPlayer : ModPlayer {
     }
 
     public override void PreUpdate() {
+        UpdateGiftRing();
         UpdateTimers();
         UpdateItemFields();
     }
@@ -57,10 +58,10 @@ public partial class AequusPlayer : ModPlayer {
     public override void PostUpdateEquips() {
         UpdateCosmicChest();
         UpdateWeightedHorseshoe();
-        UpdateNeutronYogurt();
         UpdateTeamEffects();
         Player.wingTimeMax = (int)wingTime.ApplyTo(Player.wingTimeMax);
 #if !DEBUG
+        UpdateNeutronYogurt();
         UpdateLegacyNecromancyAccs();
 #endif
     }

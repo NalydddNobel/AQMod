@@ -3,8 +3,8 @@ using System;
 
 namespace Aequus.Core.ContentGeneration;
 
-[AttributeUsage(AttributeTargets.Class)]
-internal class AutoloadBannerAttribute : AutoloadXAttribute {
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
+internal sealed class AutoloadBannerAttribute : AutoloadXAttribute {
     private readonly int _legacyId;
 
     public AutoloadBannerAttribute(int legacyId = -1) {

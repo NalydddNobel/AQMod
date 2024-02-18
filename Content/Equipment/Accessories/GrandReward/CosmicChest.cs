@@ -4,10 +4,6 @@
 public class CosmicChest : ModItem {
     public static float LuckIncrease { get; set; } = 0.05f;
 
-    public override void SetStaticDefaults() {
-        ItemSets.ShimmerTransformToItem[ModContent.ItemType<GrandReward>()] = Type;
-    }
-
     public override void SetDefaults() {
         Item.useTime = 45;
         Item.useAnimation = 45;

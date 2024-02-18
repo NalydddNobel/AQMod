@@ -1,14 +1,13 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
 using Aequus.Common.UI;
-using Aequus.Content.TownNPCs.SkyMerchant.Emote;
 using Aequus.Content.TownNPCs.SkyMerchant.UI;
 using Aequus.Content.Weapons.Ranged.Bows.SkyHunterCrossbow;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Aequus.Core.ContentGeneration;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.UI;
 using Terraria.Localization;
 
 namespace Aequus.Content.TownNPCs.SkyMerchant;
@@ -50,6 +49,7 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
         if (!Main.dedServ) {
             LoadDrawSets();
         }
+        Mod.AddContent(new InstancedNPCEmote(this, EmoteID.Category.Town));
     }
 
     public override void Unload() {
@@ -65,7 +65,6 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
         NPCSets.HatOffsetY[Type] = 0;
         NPCSets.NoTownNPCHappiness[Type] = true;
         NPCSets.SpawnsWithCustomName[Type] = true;
-        NPCSets.FaceEmote[Type] = ModContent.EmoteBubbleType<SkyMerchantEmote>();
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

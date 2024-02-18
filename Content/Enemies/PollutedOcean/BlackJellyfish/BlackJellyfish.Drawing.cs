@@ -96,7 +96,7 @@ public partial class BlackJellyfish : AIJellyfish {
             spriteBatch.Draw(AequusTextures.Bloom, drawCoordinates - Main.screenPosition, null, lightningColor * attackRangeNormalized, 0f, AequusTextures.Bloom.Size() / 2f, MathF.Pow(attackRange / AttackRange, 3f) * 1.25f, SpriteEffects.None, 0f);
         }
 
-        DrawHelper.DrawBasicVertexLine(AequusTextures.BlackJellyfishVertexStrip, lightningDrawCoordinates, lightningDrawRotations,
+        DrawHelper.DrawBasicVertexLineWithProceduralPadding(AequusTextures.BlackJellyfishVertexStrip, lightningDrawCoordinates, lightningDrawRotations,
             p => lightningColor * attackRangeNormalized * NPC.Opacity,
             p => Math.Max(attackRangeNormalized < 1f ? attackRangeNormalized : MathF.Pow(attackRangeNormalized, 1.5f), 0.25f) * NPC.Opacity * 8f
         );

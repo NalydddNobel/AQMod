@@ -44,6 +44,37 @@ Dyes: {
 	}
 }
 
+Rarity: {
+	-13.DisplayName: Fiery Red
+	-12.DisplayName: Rainbow
+	-11.DisplayName: Amber
+	-1.DisplayName: Gray
+	0.DisplayName: White
+	1.DisplayName: Blue
+	2.DisplayName: Green
+	3.DisplayName: Orange
+	4.DisplayName: Light Red
+	5.DisplayName: Pink
+	6.DisplayName: Light Purple
+	7.DisplayName: Lime
+	8.DisplayName: Yellow
+	9.DisplayName: Cyan
+	10.DisplayName: Red
+	11.DisplayName: Purple
+
+	CalamityMod: {
+		Turquoise.DisplayName: Turquoise
+		PureGreen.DisplayName: Pure Green
+		DarkBlue.DisplayName: Dark Blue
+		Violet.DisplayName: Violet
+		HotPink.DisplayName: Hot Pink
+		CalamityRed.DisplayName: Calamity Red
+		DarkOrange.DisplayName: Dark Orange
+	}
+
+	CatalystMod.SuperbossRarity.DisplayName: Crystal
+}
+
 BlocksDistance: Distance: {0} blocks away
 Contains: Contains: {0}
 MonocleToggleOn: Monocle On

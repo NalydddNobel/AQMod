@@ -1,15 +1,16 @@
 ﻿using Aequus.Common.ItemPrefixes;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Aequus.Common.UI;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
 using Terraria.Localization;
+using Terraria.UI;
 
 namespace Aequus.Common.Items.Components;
 
 public interface ICooldownItem {
     int CooldownTime { get; }
+
     string TimerId => GetType().Name;
     bool ShowCooldownTip => true;
 
@@ -42,6 +43,9 @@ public sealed class CooldownGlobalItem : GlobalItem {
         if (time < 30f) {
             slotColor *= 1f + (1f - time / 30f);
         }
+        if (!UIHelper.CurrentlyDrawingHotbarSlot) {
+            slotColor *= 0.4f;
+        }
         slotColor = Utils.MultiplyRGBA(slotColor, Main.inventoryBack);
 
         var highlightFrame = new Rectangle(cooldownFrame.X, cooldownFrame.Y + frameRemoveY, cooldownFrame.Width, 3);
@@ -59,12 +63,18 @@ public sealed class CooldownGlobalItem : GlobalItem {
             return true;
         }
 
-        if (!UIHelper.CurrentlyDrawingHotbarSlot) {
-            cooldownItem.CustomPreDraw(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
-            return false;
+        if (!cooldownItem.TryGetCooldown(Main.LocalPlayer, out var timer) || !timer.Active || UISystem.CurrentItemSlot.Context == ItemSlot.Context.MouseItem || UISystem.CurrentItemSlot.Context == ItemSlot.Context.CraftingMaterial) {
+            return true;
         }
 
-        if (cooldownItem.TryGetCooldown(Main.LocalPlayer, out var timer) && timer.Active) {
+        if (!UIHelper.CurrentlyDrawingHotbarSlot) {
+            int timerFrameIndex = (int)(Main.GlobalTimeWrappedHourly * 8f) % 8;
+            Texture2D timerTexture = AequusTextures.ItemCooldown;
+            Rectangle timerFrame = timerTexture.Frame(verticalFrames: 8, frameY: timerFrameIndex);
+            DrawBackground(timer.TimePassed, timer.MaxTime, spriteBatch, position);
+            spriteBatch.Draw(AequusTextures.ItemCooldown, position + new Vector2(20f, 20f) * Main.inventoryScale, timerFrame, Color.White, 0f, timerFrame.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
+        }
+        else {
             spriteBatch.Draw(AequusTextures.Bloom, position, null, Color.Black * Math.Min(timer.TimePassed / 5f, 1f) * (1f - timer.TimePassed / timer.MaxTime), 0f, AequusTextures.Bloom.Size() / 2f, Main.inventoryScale * 0.8f, SpriteEffects.None, 0f);
             DrawBackground(timer.TimePassed, timer.MaxTime, spriteBatch, position);
 

@@ -15,6 +15,15 @@ public class NPCMetadata : MetadataSet {
     [JsonProperty]
     public static HashSet<Entry<NPCID>> Soulless { get; private set; } = new();
 
+    [JsonProperty]
+    public static HashSet<Entry<NPCID>> FromGlimmer { get; private set; } = new();
+    /// <summary>Automatically populated with all NPC Ids which have the Eclipse as bestiary tags.</summary>
+    [JsonProperty]
+    public static HashSet<Entry<NPCID>> FromEclipse { get; private set; } = new();
+    /// <summary>Automatically populated with all NPC Ids which have the Blood Moon as bestiary tags.</summary>
+    [JsonProperty]
+    public static HashSet<Entry<NPCID>> FromBloodMoon { get; private set; } = new();
+
     /// <summary>Automatically populated with all NPC Ids which have the Corruption as bestiary tags.</summary>
     [JsonProperty]
     public static HashSet<Entry<NPCID>> IsCorrupt { get; private set; } = new();
@@ -68,6 +77,10 @@ public class NPCMetadata : MetadataSet {
 
     #region Bestiary
     [JsonIgnore]
+    public static List<IFilterInfoProvider> EclipseTags { get; private set; } = new();
+    [JsonIgnore]
+    public static List<IFilterInfoProvider> BloodMoonTags { get; private set; } = new();
+    [JsonIgnore]
     public static List<IFilterInfoProvider> CorruptionTags { get; private set; } = new();
     [JsonIgnore]
     public static List<IFilterInfoProvider> CrimsonTags { get; private set; } = new();
@@ -93,35 +106,41 @@ public class NPCMetadata : MetadataSet {
 
     #region Loading
     public override void SetStaticDefaults() {
+        EclipseTags.AddRange(new IFilterInfoProvider[] {
+            BestiaryEventTag.Eclipse
+        });
+        BloodMoonTags.AddRange(new IFilterInfoProvider[] {
+            BestiaryEventTag.BloodMoon
+        });
         CorruptionTags.AddRange(new IFilterInfoProvider[] {
-            BestiaryBuilder.Corruption,
-            BestiaryBuilder.UndergroundCorruption,
-            BestiaryBuilder.CorruptionDesert,
-            BestiaryBuilder.CorruptionUndergroundDesert,
-            BestiaryBuilder.CorruptionIce,
+            BestiaryBiomeTag.TheCorruption,
+            BestiaryBiomeTag.UndergroundCorruption,
+            BestiaryBiomeTag.CorruptDesert,
+            BestiaryBiomeTag.CorruptUndergroundDesert,
+            BestiaryBiomeTag.CorruptIce,
         });
         CrimsonTags.AddRange(new IFilterInfoProvider[] {
-            BestiaryBuilder.Crimson,
-            BestiaryBuilder.UndergroundCrimson,
-            BestiaryBuilder.CrimsonDesert,
-            BestiaryBuilder.CrimsonUndergroundDesert,
-            BestiaryBuilder.CrimsonIce,
+            BestiaryBiomeTag.TheCrimson,
+            BestiaryBiomeTag.UndergroundCrimson,
+            BestiaryBiomeTag.CrimsonDesert,
+            BestiaryBiomeTag.CrimsonUndergroundDesert,
+            BestiaryBiomeTag.CrimsonIce,
         });
         HallowTags.AddRange(new IFilterInfoProvider[] {
-            BestiaryBuilder.Hallow,
-            BestiaryBuilder.UndergroundHallow,
-            BestiaryBuilder.HallowDesert,
-            BestiaryBuilder.HallowUndergroundDesert,
-            BestiaryBuilder.HallowIce,
+            BestiaryBiomeTag.TheHallow,
+            BestiaryBiomeTag.UndergroundHallow,
+            BestiaryBiomeTag.HallowDesert,
+            BestiaryBiomeTag.HallowUndergroundDesert,
+            BestiaryBiomeTag.HallowIce,
         });
         PillarTags.AddRange(new IFilterInfoProvider[] {
-            BestiaryBuilder.SolarPillar,
-            BestiaryBuilder.VortexPillar,
-            BestiaryBuilder.NebulaPillar,
-            BestiaryBuilder.StardustPillar,
+            BestiaryBiomeTag.SolarPillar,
+            BestiaryBiomeTag.VortexPillar,
+            BestiaryBiomeTag.NebulaPillar,
+            BestiaryBiomeTag.StardustPillar,
         });
         UnderworldTags.AddRange(new IFilterInfoProvider[] {
-            BestiaryBuilder.Underworld,
+            BestiaryBiomeTag.TheUnderworld,
         });
 
         // Make all of these NPCs immune to the vanilla "Slow" debuff.
@@ -170,8 +189,14 @@ public class NPCMetadata : MetadataSet {
             if (bestiaryEntry == null || bestiaryEntry.Info == null) {
                 continue;
             }
-
+            
             List<IBestiaryInfoElement> info = bestiaryEntry.Info;
+            if (ContainsBestiaryTags(info, EclipseTags)) {
+                FromEclipse.Add(i);
+            }
+            if (ContainsBestiaryTags(info, BloodMoonTags)) {
+                FromBloodMoon.Add(i);
+            }
             if (ContainsBestiaryTags(info, CorruptionTags)) {
                 IsCorrupt.Add(i);
             }
@@ -188,15 +213,6 @@ public class NPCMetadata : MetadataSet {
                 Soulless.Add(i);
             }
         }
-    }
-    #endregion
-
-    #region Methods
-    public static bool IsUnholy(int npcId) {
-        return IsCorrupt.Contains(npcId) || IsCrimson.Contains(npcId);
-    }
-    public static bool IsHoly(int npcId) {
-        return IsHallow.Contains(npcId);
     }
     #endregion
 }

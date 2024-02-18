@@ -53,6 +53,7 @@ public class UltraStarite : ModNPC {
         NPCSets.DontDoHardmodeScaling[Type] = true;
         NPCSets.CantTakeLunchMoney[Type] = true;
         NPCMetadata.PrefixBlacklist.Add(Type);
+        NPCMetadata.FromGlimmer.Add(Type);
         //SnowgraveCorpse.NPCBlacklist.Add(Type);
     }
 
@@ -85,7 +86,7 @@ public class UltraStarite : ModNPC {
         NPC.noTileCollide = true;
         NPC.knockBackResist = 0f;
         NPC.value = Item.buyPrice(silver: 50);
-        NPC.npcSlots = 3f;
+        NPC.npcSlots = 8f;
 
         oldArmsLength = new float[NPCSets.TrailCacheLength[Type]];
     }
@@ -508,7 +509,7 @@ public class UltraStarite : ModNPC {
                 var arr = armPositions[j].ToArray();
                 float[] rotations = OldDrawHelper.GenerateRotationArr(arr);
 
-                DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, arr, rotations,
+                DrawHelper.DrawBasicVertexLineWithProceduralPadding(AequusTextures.Trail, arr, rotations,
                     (p) => Color.BlueViolet with { A = 0 } * 1.25f * (float)Math.Pow(1f - p, 2f),
                     (p) => 60f
                 );

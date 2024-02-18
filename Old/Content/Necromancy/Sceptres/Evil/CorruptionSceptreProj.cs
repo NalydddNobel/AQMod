@@ -114,7 +114,7 @@ public class CorruptionSceptreProj : ModProjectile {
     protected void DrawTrail(float waveSize = 8f, int maxLength = -1) {
         int trailCount = _trail.Length;
         for (int i = 0; i < trailCount; i++) {
-            DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, _trail[i], Projectile.oldRot,
+            DrawHelper.DrawBasicVertexLineWithProceduralPadding(AequusTextures.Trail, _trail[i], Projectile.oldRot,
                 (p) => primColor * (1f - p),
                 (p) => primScale * (1f - p),
                 -Main.screenPosition);

@@ -5,6 +5,7 @@ using Aequus.Content.DataSets;
 using Aequus.Core.CodeGeneration;
 using System;
 using System.Collections.Generic;
+using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.UI;
@@ -66,7 +67,7 @@ public partial class AequusPlayer {
         if (inventory[slot].ModItem is IHoverSlot hoverSlot) {
             returnValue |= hoverSlot.HoverSlot(inventory, context, slot);
         }
-        if (inventory[slot].ModItem is ITransformItem transformItem && (context == ItemSlot.Context.InventoryItem || Math.Abs(context) == ItemSlot.Context.EquipAccessory) && Main.mouseRight && Main.mouseRightRelease && Main.LocalPlayer.ItemTimeIsZero) {
+        if (inventory[slot].ModItem is ITransformItem transformItem && (context == ItemSlot.Context.InventoryItem || Math.Abs(context) == ItemSlot.Context.EquipAccessory) && Main.mouseRight && Main.mouseRightRelease && Main.LocalPlayer.ItemTimeIsZero && CombinedHooks.CanUseItem(Player, inventory[slot])) {
             transformItem.SlotTransform(inventory, context, slot);
             Main.mouseRightRelease = false;
         }

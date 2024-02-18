@@ -34,6 +34,10 @@ public class WorldState : ModSystem {
     [SaveData("Final")]
     internal static bool _downedTrueFinalBoss;
 
+    /// <summary>Whether the Occultist has been met. This determines if the Hostile Occultist emote can be used.</summary>
+    [SaveData("MetOccultist")]
+    internal static bool _metOccultist;
+
     public static bool DownedAquaticBoss { get => _downedAquaticBoss; }
     public static bool DownedCosmicBoss { get => _downedCosmicBoss; }
     public static bool DownedTrueCosmicBoss { get => _downedTrueCosmicBoss; }

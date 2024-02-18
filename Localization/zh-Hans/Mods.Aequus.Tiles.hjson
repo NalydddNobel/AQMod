@@ -199,39 +199,14 @@ Moonflower.MapEntry: 月光花
 Mistral.MapEntry: 寒风花
 Manacle.MapEntry: 镣铐花
 
-ScrapBlock: {
-	// MapEntry: Junk Block
-	// ItemDisplayName: "{$Tiles.ScrapBlock.MapEntry}"
-	// ItemTooltip: ""
+GravityBlock: {
+	MapEntry: 普通重力块
+	ItemDisplayName: "{$Tiles.GravityBlock.MapEntry}"
+	ItemTooltip: ""
 }
 
-ScrapBrick: {
-	// ItemDisplayName: Scrap Brick
-	// ItemTooltip: ""
-}
-
-PolymerSandstone: {
-	// ItemDisplayName: Polymer Sandstone
-	// ItemTooltip: ""
-}
-
-PolymerSand: {
-	// ItemDisplayName: Polymer Sand
-	// ItemTooltip: ""
-}
-
-TrashChest: {
-	// MapEntry: Dumpster
-	// ItemDisplayName: "{$Tiles.TrashChest.MapEntry}"
-	// ItemTooltip: Both sides of the dumpster are different chests
-}
-
-TrashTorch: {
-	// ItemDisplayName: Mods.Aequus.Tiles.TrashTorch.ItemDisplayName
-	// ItemTooltip: ""
-}
-
-TrashCampfire: {
-	// ItemDisplayName: Mods.Aequus.Tiles.TrashCampfire.ItemDisplayName
-	// ItemTooltip: ""
+AntiGravityBlock: {
+	MapEntry: 反转重力块
+	ItemDisplayName: "{$Tiles.AntiGravityBlock.MapEntry}"
+	ItemTooltip: ""
 }

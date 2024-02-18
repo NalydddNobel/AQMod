@@ -19,8 +19,18 @@ BlackJellyfish: {
 	BannerName: Black Jellyfish Banner
 }
 
+OilSlime: {
+	// DisplayName: Opaque Slime
+	// Bestiary: These viscous slimes are formed of modern oils and waste, allowing them to be more durable than regular slimes. Vulnerable to fire.
+	// BannerName: Opaque Slime Banner
+}
+
+RadioConductor: {
+	// DisplayName: Conductor
+	Bestiary: Un Frankenstein tecnológico, esta elegante antigüedad electrónica puede dirigir y manipular ondas de radio para defenderse. Se asegurará de poner un espectáculo, quieras o no.
+}
+
 Mirage.Bestiary: Durante la lluvia, nubes toxicas se forman y acumulan formando este monstruo acídico, desea ser un nimbo real, pero tiene problemas haciéndose amigo hasta de un muñeco de pruebas.
-RadioConductor.Bestiary: Un Frankenstein tecnológico, esta elegante antigüedad electrónica puede dirigir y manipular ondas de radio para defenderse. Se asegurará de poner un espectáculo, quieras o no.
 Pillbug.Bestiary: Bendecido con Energía Acuática, estos insectos corretean y se alimentan de la contaminación como si no fuera nada.
 Chromite.Bestiary: Estos insectos han desarrollado un camuflaje magnético increíblemente avanzado, tienden a adherirse a electrónicos y objetos metálicos, y en general son una molestia para cualquier casa familiar con un microondas. Podrían ser útil como carnada.
 Crabson.DisplayName: Crabson
@@ -52,6 +62,34 @@ KeeperImp: {
 }
 
 // ChainedSoul.DisplayName: Chained Soul
+
+DwarfStarite: {
+	// DisplayName: Dwarf Starite
+	// Bestiary: If a starite cannot gather enough energy to evolve, it will eventually wither into just a speck of light. Its powers atrophied into uselessness, it nonetheless enjoys its retirement by floating aimlessly.
+}
+
+UltraStarite: {
+	// DisplayName: Ultra Starite
+	// Bestiary: Elite starites in their final stage of growth can focus their energy into deadly laser beams. You'd be forgiven for thinking the sky was falling!
+}
+
+HyperStarite: {
+	// DisplayName: Hyper Starite
+	// Bestiary: With an even further excess of energy, the starite gains the ability to detach its segments and swing them in an orbit as dangerous weapons.
+	// BannerName: Hyper Starite Banner
+}
+
+SuperStarite: {
+	// DisplayName: Super Starite
+	// Bestiary: Starites that gather enough energy eventually evolve into this armored form. They're much hardier, and can also fire off excess energy as simple projectiles.
+	// BannerName: Super Starite Banner
+}
+
+Starite: {
+	// DisplayName: Starite
+	// Bestiary: A piece of animate stardust, given life by some unknowable force. They cannot survive for long without a source of energy, granted by the strange lights that fill the sky.
+	// BannerName: Starite Banner
+}
 
 Occultist: {
 	// DisplayName: Occultist
@@ -138,30 +176,27 @@ OccultistHostile: {
 	// ListenButton: Listen
 }
 
-DwarfStarite: {
-	// DisplayName: Dwarf Starite
-	// Bestiary: If a starite cannot gather enough energy to evolve, it will eventually wither into just a speck of light. Its powers atrophied into uselessness, it nonetheless enjoys its retirement by floating aimlessly.
+PhysicistPet: {
+	// DisplayName: Drone
+	// Bestiary: This tiny contraption follows the Physicist wherever she goes, constantly logging data from the environment to ensure nothing is missed. Miniaturized for personal use from a larger surveillance model.
+
+	Dialogue: {
+		// 0: Beep boop.
+		// 1: Beep bop.
+	}
 }
 
-UltraStarite: {
-	// DisplayName: Ultra Starite
-	// Bestiary: Elite starites in their final stage of growth can focus their energy into deadly laser beams. You'd be forgiven for thinking the sky was falling!
+CleanserDrone: {
+	// DisplayName: Cleanser Drone
+	// Bestiary: Created by the Physicist in collaboration with the Steampunker to keep your town pure and habitable. Draws energy from the town's pylon as power.
 }
 
-HyperStarite: {
-	// DisplayName: Hyper Starite
-	// Bestiary: With an even further excess of energy, the starite gains the ability to detach its segments and swing them in an orbit as dangerous weapons.
-	// BannerName: Hyper Starite Banner
+GunnerDrone: {
+	// DisplayName: Gunner Drone
+	// Bestiary: Created by the Physicist to protect your town, it draws energy from the town's pylon as power.
 }
 
-SuperStarite: {
-	// DisplayName: Super Starite
-	// Bestiary: Starites that gather enough energy eventually evolve into this armored form. They're much hardier, and can also fire off excess energy as simple projectiles.
-	// BannerName: Super Starite Banner
-}
-
-Starite: {
-	// DisplayName: Starite
-	// Bestiary: A piece of animate stardust, given life by some unknowable force. They cannot survive for long without a source of energy, granted by the strange lights that fill the sky.
-	// BannerName: Starite Banner
+HealerDrone: {
+	// DisplayName: Healer Drone
+	// Bestiary: Created by the Physicist to keep your town healthy, it draws energy from the town's pylon as power.
 }

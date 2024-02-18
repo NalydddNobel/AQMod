@@ -1,5 +1,4 @@
 CommonTooltips: {
-	// BuffTimeRange: "{0}-{1} minute duration"
 	IncreasesInventorySlots: Otorga {0} ranuras de mochila
 	Cooldown: Tiene {0} segundos de recarga
 	Shimmerable: Ingrediente de Fulgor
@@ -16,9 +15,26 @@ CommonTooltips: {
 	// StatWingTime: Increases flight duration
 	// DecreaseAggro: Enemies are less likely to target you
 	// IncreaseAggro: Enemies are more likely to target you
+	// DisableItem: <right> to deactivate effects
+	// EnableItem: Effects are currently inactive, <right> to reactivate
 }
 
 //# Equipment: Accessories
+LaserReticle: {
+	// DisplayName: Laser Reticle
+	// Tooltip: "{0}% reduced spread on ranged weapons"
+}
+
+ValentineRing: {
+	// DisplayName: Valentine's Gift
+	// Tooltip: Gift to a friend to grant them and yourself increased regneration and damage
+	// Tooltip2: Increased regneration and damage for yourself and the gifter
+	// GiftTooltip: From yours truly, {0}
+	// BuffName: Valentine
+	// BuffDescription: Increased life regeneration and damage
+	// BuffDescription2: You are being buffed by {0}!
+}
+
 GrandReward: {
 	DisplayName: Grandiosa Recompensa
 	Tooltip:
@@ -178,6 +194,16 @@ ShadowVeer: {
 }
 
 //# Equipment: Informational
+HoloLens: {
+	// DisplayName: Holo Lens
+	// Tooltip: Allows you to view the contents of locked and unlocked chests without opening them
+}
+
+Pacemaker: {
+	// DisplayName: Pacemaker
+	// Tooltip: Decreased respawn time when it becomes safe
+}
+
 ShimmerMonocle: {
 	DisplayName: Fulgóculo
 	Tooltip: Muestra si un objeto es un ingrediente de Fulgor
@@ -365,6 +391,11 @@ Triacanthorn: {
 }
 
 //# Weapons: Summon
+PhysicistSentry: {
+	// DisplayName: Portable Tesla Turret
+	// Tooltip: Summons a tesla turret sentry which fires a barrage of chaining lightning
+}
+
 Insurgency: {
 	// DisplayName: Insurgency
 	/* Tooltip:
@@ -416,21 +447,6 @@ StunGun: {
 }
 
 //# Potions
-SentryPotion: {
-	// DisplayName: Sentinel Potion
-	// Tooltip: Increases your maximum amount of sentries by {0}
-	// BuffName: Sentinel
-}
-
-TaintedSeafood: {
-	// DisplayName: Tainted Seafood
-	/* Tooltip:
-		'''
-		May grant minor, medium, or major improvments to all stats
-		Has a small chance to instead grant food poisoning
-		''' */
-}
-
 NeutronYogurt: {
 	DisplayName: Yogurt de Neutrones
 	Tooltip: Otorga doble aceleración de caída
@@ -567,6 +583,11 @@ SoulGemFilled: {
 		''' */
 }
 
+GalacticStarfruit: {
+	// DisplayName: Galactic Starfruit
+	// Tooltip: Creates a strange glimmer
+}
+
 UnholyCore: {
 	// DisplayName: Unholy Core
 	/* Tooltip:
@@ -651,6 +672,11 @@ DedicatedFaelingItem: {
 	Tooltip: ""
 }
 
+PhysicsGun: {
+	// DisplayName: Physics Gun
+	// Tooltip: Can grab and throw blocks
+}
+
 Bellows: {
 	DisplayName: Fuelle
 	Tooltip:
@@ -678,35 +704,48 @@ NameTag: {
 		'''
 }
 
-//# Vanity Armors
-BreadOfCthulhuMask: {
-	DisplayName: Mascara del Pan de Cthulhu
-	Tooltip: ""
+// PylonDrone.Tooltip: Use near a pylon to activate the drone, pylons can only have two drones each
+
+CleanserDrone: {
+	// DisplayName: "{$NPCs.CleanserDrone.DisplayName}"
+	/* Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		Sprays solution to spread the pylon's biome
+		''' */
 }
 
-CrabsonMask: {
-	DisplayName: Mascara de Crabson
-	Tooltip: ""
+GunnerDrone: {
+	// DisplayName: "{$NPCs.GunnerDrone.DisplayName}"
+	/* Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		Defends the area from enemies
+		''' */
 }
 
-DustDevilMask: {
-	DisplayName: Mascara del Diablillo de Polvo
-	Tooltip: ""
+HealerDrone: {
+	// DisplayName: "{$NPCs.HealerDrone.DisplayName}"
+	/* Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		Heals wounded villagers and critters
+		''' */
 }
 
-OmegaStariteMask: {
-	DisplayName: Mascara de Omega Starite
-	Tooltip: ""
+MoonflowerSeeds: {
+	// DisplayName: Moonflower Seeds
+	// Tooltip: ""
 }
 
-RedSpriteMask: {
-	DisplayName: Mascara del Espectro Rojo
-	Tooltip: ""
+MistralSeeds: {
+	// DisplayName: Mistral Seeds
+	// Tooltip: ""
 }
 
-SpaceSquidMask: {
-	DisplayName: Mascara del Calamar Espacial
-	Tooltip: ""
+ManacleSeeds: {
+	// DisplayName: Manacle Seeds
+	// Tooltip: ""
 }
 
 //# Mounts
@@ -737,44 +776,30 @@ Toolbelt: {
 	// BackpackDisabled: Toolbelt Pack Off
 }
 
-MoonflowerSeeds: {
-	// DisplayName: Moonflower Seeds
-	// Tooltip: ""
+//# Vanity
+BreadOfCthulhuMask: {
+	DisplayName: Mascara del Pan de Cthulhu
+	Tooltip: ""
 }
 
-MistralSeeds: {
-	// DisplayName: Mistral Seeds
-	// Tooltip: ""
+DustDevilMask: {
+	DisplayName: Mascara del Diablillo de Polvo
+	Tooltip: ""
 }
 
-ManacleSeeds: {
-	// DisplayName: Manacle Seeds
-	// Tooltip: ""
+OmegaStariteMask: {
+	DisplayName: Mascara de Omega Starite
+	Tooltip: ""
 }
 
-CosmicMonolith: {
-	// DisplayName: Mods.Aequus.Items.CosmicMonolith.DisplayName
-	// Tooltip: ""
+RedSpriteMask: {
+	DisplayName: Mascara del Espectro Rojo
+	Tooltip: ""
 }
 
-UltimateSword: {
-	// DisplayName: Mods.Aequus.Items.UltimateSword.DisplayName
-	// Tooltip: ""
-}
-
-DwarfStariteItem: {
-	// DisplayName: Mods.Aequus.Items.DwarfStariteItem.DisplayName
-	// Tooltip: ""
-}
-
-GalacticStarfruit: {
-	// DisplayName: Mods.Aequus.Items.GalacticStarfruit.DisplayName
-	// Tooltip: ""
-}
-
-StariteMaterial: {
-	// DisplayName: Mods.Aequus.Items.StariteMaterial.DisplayName
-	// Tooltip: ""
+SpaceSquidMask: {
+	DisplayName: Mascara del Calamar Espacial
+	Tooltip: ""
 }
 
 CelestialEightBall: {
@@ -805,12 +830,53 @@ CelestialEightBall: {
 	}
 }
 
-Killifish: {
-	// DisplayName: Killifish
+CosmicMonolith: {
+	// DisplayName: Cosmic Monolith
+	// Tooltip: "'Sustain a fraction of cosmic power'"
+}
+
+UltimateSword: {
+	// DisplayName: Mods.Aequus.Items.UltimateSword.DisplayName
 	// Tooltip: ""
 }
 
-Piraiba: {
-	// DisplayName: Piraiba
+StariteMaterial: {
+	// DisplayName: Core Fragment
+	// Tooltip: ""
+}
+
+EventGlasses: {
+	// Folded: (Folded)
+	// DisabledName: "{0} {1}"
+	/* Tooltip:
+		'''
+		{0}
+		{1}
+		''' */
+}
+
+BloodMoonDeactivator: {
+	// DisplayName: Rose Tinted Glasses
+	// Tooltip: Disables Blood Moon effects and enemy spawns
+}
+
+GlimmerDeactivator: {
+	// DisplayName: Stellar Glasses
+	// Tooltip: Disables Glimmer effects and enemy spawns
+}
+
+EclipseDeactivator: {
+	// DisplayName: Eclipse Glasses
+	// Tooltip: Disables Eclipse effects and enemy spawns
+}
+
+GlassesFormat: {
+	// DisabledName: Mods.Aequus.Items.GlassesFormat.DisabledName
+	// Folded: Mods.Aequus.Items.GlassesFormat.Folded
+	// Tooltip: Mods.Aequus.Items.GlassesFormat.Tooltip
+}
+
+SuperStarSword: {
+	// DisplayName: Super Star Sword
 	// Tooltip: ""
 }

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.UI.Chat;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
 
@@ -245,7 +246,7 @@ public class DemonSiegeSacrificeInfo {
                 itemList += ", ";
             }
 
-            itemList += ChatCommandInserts.ItemCommand(i.type);
+            itemList += ItemTagHandler.GenerateTag(i);
         }
         if (!clientOnly && !string.IsNullOrEmpty(itemList)) {
             TextBroadcast.NewText("Mods.Aequus.Announcement.DemonSiege.FailEat", new Color(255, 210, 25, 255), itemList);

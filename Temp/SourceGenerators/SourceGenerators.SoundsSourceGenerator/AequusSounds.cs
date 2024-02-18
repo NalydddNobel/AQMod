@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Sounds: 67)</summary>
+/// <summary>(Total Sounds: 68)</summary>
 [CompilerGenerated]
 public partial class AequusSounds {            
         /// <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -128,6 +128,8 @@ public partial class AequusSounds {
     public static readonly SoundStyle MeathookPull = new("Aequus/Old/Assets/Sounds/Meathook/MeathookPull");
     /// <summary>Full Path: Old/Assets/Sounds/RecruitZombie</summary>
     public static readonly SoundStyle RecruitZombie = new("Aequus/Old/Assets/Sounds/RecruitZombie");
+    /// <summary>Full Path: Old/Assets/Sounds/ZumboPettingSqueak</summary>
+    public static readonly SoundStyle ZumboPettingSqueak = new("Aequus/Old/Assets/Sounds/ZumboPettingSqueak");
     /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteDeathRay</summary>
     public static readonly SoundStyle OmegaStariteDeathRay = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteDeathRay");
     /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit0</summary>

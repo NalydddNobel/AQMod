@@ -2,26 +2,28 @@ DayOfTheWeek: Cuando sea {0}
 BetweenDays: Entre {0}-{1}
 // InPollutedOcean: In the Polluted Ocean biome
 // DownedAquaticBoss: Mods.Aequus.Condition.DownedAquaticBoss
-// NotDownedAquaticBoss: Mods.Aequus.Condition.NotDownedAquaticBoss
 // DownedCosmicBoss: After defeating Ultra Starite
-// NotDownedCosmicBoss: Before defeating Ultra Starite
 // DownedTrueCosmicBoss: After defeating Omega Starite
-// NotDownedTrueCosmicBoss: Before defeating Omega Starite
 // DownedDemonBoss: After completing your first Demon Siege
-// NotDownedDemonBoss: Before completing your first Demon Siege
 // DownedTrueDemonBoss: Mods.Aequus.Condition.DownedTrueDemonBoss
-// NotDownedTrueDemonBoss: Mods.Aequus.Condition.NotDownedTrueDemonBoss
 // DownedAtmosphereBossFlame: After matching against the Red Sprite
-// NotDownedAtmosphereBossFlame: Before matching against the Red Sprite
 // DownedAtmosphereBossFrost: After matching against the Space Squid
-// NotDownedAtmosphereBossFrost: Before matching against the Space Squid
 // DownedTrueAtmosphereBoss: After defeating the Dust Devil
-// NotDownedTrueAtmosphereBoss: Before defeating the Dust Devil
 // DownedOrganicBossMight: Mods.Aequus.Condition.DownedOrganicBossMight
-// NotDownedOrganicBossMight: Mods.Aequus.Condition.NotDownedOrganicBossMight
 // DownedOrganicBossSight: Mods.Aequus.Condition.DownedOrganicBossSight
-// NotDownedOrganicBossSight: Mods.Aequus.Condition.NotDownedOrganicBossSight
 // DownedOrganicBossFright: Mods.Aequus.Condition.DownedOrganicBossFright
-// NotDownedOrganicBossFright: Mods.Aequus.Condition.NotDownedOrganicBossFright
 // DownedTrueFinalBoss: Mods.Aequus.Condition.DownedTrueFinalBoss
+// NotDownedAquaticBoss: Mods.Aequus.Condition.NotDownedAquaticBoss
+// NotDownedCosmicBoss: Before defeating Ultra Starite
+// NotDownedTrueCosmicBoss: Before defeating Omega Starite
+// NotDownedDemonBoss: Before completing your first Demon Siege
+// NotDownedTrueDemonBoss: Mods.Aequus.Condition.NotDownedTrueDemonBoss
+// NotDownedAtmosphereBossFlame: Before matching against the Red Sprite
+// NotDownedAtmosphereBossFrost: Before matching against the Space Squid
+// NotDownedTrueAtmosphereBoss: Before defeating the Dust Devil
+// NotDownedOrganicBossMight: Mods.Aequus.Condition.NotDownedOrganicBossMight
+// NotDownedOrganicBossSight: Mods.Aequus.Condition.NotDownedOrganicBossSight
+// NotDownedOrganicBossFright: Mods.Aequus.Condition.NotDownedOrganicBossFright
 // NotDownedTrueFinalBoss: Mods.Aequus.Condition.NotDownedTrueFinalBoss
+// MovePortalGun: If the "{$Configs.VanillaChangesConfig.MovePortalGun}" option is set to true.
+// MoveGravityGlobe: If the "{$Configs.VanillaChangesConfig.MoveGravityGlobe}" option is set to true.

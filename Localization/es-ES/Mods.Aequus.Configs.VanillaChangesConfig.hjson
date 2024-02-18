@@ -1,4 +1,7 @@
 DisplayName: Cambios Vanilla
+ColorImportant: c/ffffbb
+ColorImportant2: c/ffcc99
+ColorNote: c/aaacff
 NoteExploit: "[{$ColorNote}:Desactiva esta configuración por preferencia personal, o para prevenir ventajas no deseadas.]"
 
 MoveTreasureMagnet: {
@@ -39,11 +42,24 @@ SlimeCrownInSurfaceChests: {
 	// Tooltip: When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Slime Crown] can be found in [{$ColorImportant}:Surface Chests].
 }
 
-MoveMagicConch: {
-	// Label: "[i:MagicConch] Move Magic Conch"
+MoveGravityGlobe: {
+	// Label: "[i:GravityGlobe] Gravity Globe sold by Physicist"
 	/* Tooltip:
 		'''
-		When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Magic Conch] can be found in the [{$ColorImportant}:Polluted Ocean],
-		and will [{$ColorImportant}:no longer be found] in the [{$ColorImportant2}:Underground Desert].
+		When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Gravity Globe] will by sold by the [{$ColorImportant}:Physicist],
+		and will [{$ColorImportant}:no longer be dropped] by the [{$ColorImportant2}:Moon Lord].
+
+		{$NoteExploit}
+		''' */
+}
+
+MovePortalGun: {
+	// Label: "[i:PortalGun] Portal Gun sold by Physicist"
+	/* Tooltip:
+		'''
+		When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Portal Gun] will by sold by the [{$ColorImportant}:Physicist],
+		and will [{$ColorImportant}:no longer be dropped] by the [{$ColorImportant2}:Moon Lord].
+
+		{$NoteExploit}
 		''' */
 }

@@ -1,5 +1,6 @@
 ﻿using Aequus.Old.Content.Enemies.BloodMoon;
 using Aequus.Old.Content.Events.DemonSiege;
+using Aequus.Old.Content.Events.Glimmer;
 using System.Collections.Generic;
 
 namespace Aequus.Old.Common;
@@ -34,13 +35,13 @@ public class LegacyEnemySpawns : GlobalNPC {
         //}
 
         if (!Main.dayTime && surface) {
-            //if (GlimmerZone.EventActive) {
-            //    int tiles = GlimmerSystem.GetTileDistance(spawnInfo.Player);
-            //    if (tiles < GlimmerZone.MaxTiles) {
-            //        GlimmerEnemies(tiles, pool, spawnInfo);
-            //        return;
-            //    }
-            //}
+            if (GlimmerZone.EventActive) {
+                int tiles = GlimmerSystem.GetTileDistance(spawnInfo.Player);
+                if (tiles < GlimmerZone.MaxTiles) {
+                    GlimmerZone.AddEnemies(tiles, pool, spawnInfo);
+                    return;
+                }
+            }
 
             if (Main.bloodMoon) {
                 if (!NPC.AnyNPCs(ModContent.NPCType<BloodMimic>())) {

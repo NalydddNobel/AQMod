@@ -8,6 +8,9 @@ public class PhaseMirror : ModItem, IPhaseMirror {
     public int UseAnimationMax => 64;
 
     public override void SetStaticDefaults() {
+#if !DEBUG
+        Old.Content.TownNPCs.PhysicistNPC.Analysis.AnalysisSystem.PhysicistPrimaryRewardItems.Add(Type);
+#endif
         ItemSets.WorksInVoidBag[Type] = true;
     }
 

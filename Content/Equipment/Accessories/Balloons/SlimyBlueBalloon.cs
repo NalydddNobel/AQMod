@@ -7,11 +7,6 @@ public class SlimyBlueBalloon : ModItem {
     public static float MaxFallSpeedMultiplier { get; set; } = 0.5f;
     public static float FallGravityMultiplier { get; set; } = 0.5f;
 
-    public override void SetStaticDefaults() {
-        ItemSets.ShimmerTransformToItem[Type] = ItemID.ShinyRedBalloon;
-        ItemSets.ShimmerTransformToItem[ItemID.ShinyRedBalloon] = Type;
-    }
-
     public override void SetDefaults() {
         Item.DefaultToAccessory();
         Item.rare = ItemCommons.Rarity.SkyMerchantShopItem;

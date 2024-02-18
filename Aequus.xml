@@ -251,6 +251,15 @@
         <member name="P:Aequus.Common.Items.ItemCommons.Rarity.ShimmerPermaPowerup">
             <summary><see cref="F:Terraria.ID.ItemRarityID.LightPurple"/></summary>
         </member>
+        <member name="F:Aequus.Common.Items.ItemCommons.Rarity.WallOfFleshLoot">
+            <summary><see cref="F:Terraria.ID.ItemRarityID.LightRed"/></summary>
+        </member>
+        <member name="F:Aequus.Common.Items.ItemCommons.Rarity.PlanteraLoot">
+            <summary><see cref="F:Terraria.ID.ItemRarityID.Yellow"/></summary>
+        </member>
+        <member name="F:Aequus.Common.Items.ItemCommons.Rarity.MoonLordLoot">
+            <summary><see cref="F:Terraria.ID.ItemRarityID.Red"/></summary>
+        </member>
         <member name="P:Aequus.Common.Items.ItemCommons.Price.SkyMerchantShopItem">
             <summary>1 Gold</summary>
         </member>
@@ -295,466 +304,6 @@
         </member>
         <member name="P:Aequus.Common.Items.ItemCommons.Price.YinYangLoot">
             <summary>10 Gold</summary>
-        </member>
-        <member name="T:Aequus.Common.Items.ItemSortingPriority.Materials">
-            <summary>
-            <see cref="F:Terraria.ID.ItemID.Sets.SortingPriorityMaterials"/>
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Amethyst">
-            <summary>
-            37
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Topaz">
-            <summary>
-            38
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Sapphire">
-            <summary>
-            39
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Emerald">
-            <summary>
-            40
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Ruby">
-            <summary>
-            41
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Diamond">
-            <summary>
-            42
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Amber">
-            <summary>
-            43
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.CopperOre">
-            <summary>
-            44
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.CopperBar">
-            <summary>
-            45
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.TinOre">
-            <summary>
-            46
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.TinBar">
-            <summary>
-            47
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.IronOre">
-            <summary>
-            48
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.IronBar">
-            <summary>
-            49
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.LeadOre">
-            <summary>
-            50
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.LeadBar">
-            <summary>
-            51
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SilverOre">
-            <summary>
-            52
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SilverBar">
-            <summary>
-            53
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.TungstenOre">
-            <summary>
-            54
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.TungstenBar">
-            <summary>
-            55
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.GoldOre">
-            <summary>
-            56
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.GoldBar">
-            <summary>
-            57
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.PlatinumOre">
-            <summary>
-            58
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.PlatinumBar">
-            <summary>
-            59
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Meteorite">
-            <summary>
-            60
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.MeteoriteBar">
-            <summary>
-            61
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.DemoniteOre">
-            <summary>
-            62
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.DemoniteBar">
-            <summary>
-            63
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.ShadowScale">
-            <summary>
-            64
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.CrimtaneOre">
-            <summary>
-            65
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.CrimtaneBar">
-            <summary>
-            66
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.TissueSample">
-            <summary>
-            67
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SturdyFossil">
-            <summary>
-            68
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Hellstone">
-            <summary>
-            69
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.HellstoneBar">
-            <summary>
-            70
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SoulOfLight">
-            <summary>
-            71
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SoulOfNight">
-            <summary>
-            72
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SoulOfFlight">
-            <summary>
-            73
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SoulOfSight">
-            <summary>
-            74
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SoulOfFright">
-            <summary>
-            75
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SoulOfMight">
-            <summary>
-            76
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.CobaltOre">
-            <summary>
-            77
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.CobaltBar">
-            <summary>
-            78
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.PalladiumOre">
-            <summary>
-            79
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.PalladiumBar">
-            <summary>
-            80
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.MythrilOre">
-            <summary>
-            81
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.MythrilBar">
-            <summary>
-            82
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.OrichalcumOre">
-            <summary>
-            83
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.OrichalcumBar">
-            <summary>
-            84
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.AdamantiteOre">
-            <summary>
-            85
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.AdamantiteBar">
-            <summary>
-            86
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.TitaniumOre">
-            <summary>
-            87
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.TitaniumBar">
-            <summary>
-            88
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.HallowedBar">
-            <summary>
-            89
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.ChlorophyeOre">
-            <summary>
-            90
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.ChlorophyeBar">
-            <summary>
-            91
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.ShroomiteBar">
-            <summary>
-            92
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Ectoplasm">
-            <summary>
-            93
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SpectreBar">
-            <summary>
-            94
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.StardustFragment">
-            <summary>
-            95
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.NebulaFragment">
-            <summary>
-            96
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.VortexFragment">
-            <summary>
-            97
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SolarFragment">
-            <summary>
-            98
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Luminite">
-            <summary>
-            99
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.LuminiteBar">
-            <summary>
-            100
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.FrozenTechnology">
-            <summary>
-            10
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.OmniGem">
-            <summary>
-            43 (<see cref="P:Aequus.Common.Items.ItemSortingPriority.Materials.Amber"/>)
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SoulGem">
-            <summary>
-            43 (<see cref="P:Aequus.Common.Items.ItemSortingPriority.Materials.Amber"/>)
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Energies">
-            <summary>
-            70 (<see cref="P:Aequus.Common.Items.ItemSortingPriority.Materials.HellstoneBar"/>)
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.UltimateEnergy">
-            <summary>
-            88 (<see cref="P:Aequus.Common.Items.ItemSortingPriority.Materials.TitaniumBar"/>)
-            </summary>
-        </member>
-        <member name="T:Aequus.Common.Items.ItemSortingPriority.BossSpawns">
-            <summary>
-            <see cref="F:Terraria.ID.ItemID.Sets.SortingPriorityBossSpawns"/>
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.SuspiciousLookingEye">
-            <summary>
-            1
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.SlimeCrown">
-            <summary>
-            2
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.WormFood">
-            <summary>
-            3
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.BloodySpine">
-            <summary>
-            3
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.GoblinBattleStandard">
-            <summary>
-            4
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.DeerThing">
-            <summary>
-            5
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.Abeemination">
-            <summary>
-            5
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.GelatinCrystal">
-            <summary>
-            6
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.MechanicalEye">
-            <summary>
-            7
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.MechanicalWorm">
-            <summary>
-            8
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.MechanicalSkull">
-            <summary>
-            9
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.TreasureMap">
-            <summary>
-            10, this is a Terraria error, the Pirate Map is not sorted properly. Instead it is the Treasure Map, a placeable reward from the Angler.
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.PirateMap">
-            <summary>
-            -1, check <see cref="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.TreasureMap"/> for info.
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.TruffleWorm">
-            <summary>
-            11
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.SnowGlobe">
-            <summary>
-            12
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.PumpkinMoonMedallion">
-            <summary>
-            13
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.NaughtyPresent">
-            <summary>
-            14
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.LihzahrdPowerCell">
-            <summary>
-            15
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.SolarTablet">
-            <summary>
-            16
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.BloodyTear">
-            <summary>
-            16
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.CelestialSigil">
-            <summary>
-            17
-            </summary>
         </member>
         <member name="F:Aequus.Common.NPCs.AIJellyfish.shockRampUpDistance">
             <summary>
@@ -868,9 +417,23 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Aequus.Common.Systems.ShimmerSystem.SetShimmerResultSafely(System.Int32,System.Int32)">
+            <summary>Attempts to safely set the shimmer result of this item, by inserting it to the end of existing chains or loops.</summary>
+            <param name="from"></param>
+            <param name="into"></param>
+        </member>
         <member name="M:Aequus.Common.Systems.ShimmerSystem.GetShimmeredEffects(Terraria.Item)">
             <summary>Emulates all vanilla shimmer on-transmutation effects. Including getting the achievement, the sound, particles, networking, ect.</summary>
             <param name="item"></param>
+        </member>
+        <member name="F:Aequus.Common.Systems.ShimmerSystem.ShimmerTransmutationTreeType.Line">
+            <summary>Items convert into each other, eventually ending with an item with no conversion.</summary>
+        </member>
+        <member name="F:Aequus.Common.Systems.ShimmerSystem.ShimmerTransmutationTreeType.Loop">
+            <summary>Items convert into each other, and will cycle infinitely.</summary>
+        </member>
+        <member name="F:Aequus.Common.Systems.ShimmerSystem.ShimmerTransmutationTreeType.Broken">
+            <summary>Items will cycle, but will never reach the starting point.</summary>
         </member>
         <member name="T:Aequus.Common.Tiles.BaseFurnitureTile.Furniture">
             <summary>
@@ -1030,10 +593,14 @@
         <member name="P:Aequus.Content.DataSets.BuffMetadata.PlayerDoTDebuff">
             <summary>Set for compatibility with Thorium.</summary>
         </member>
+        <member name="P:Aequus.Content.DataSets.ItemMetadata.CannotTradeWithPhysicist">
+            <summary>Items in this set are unable to be submitted to the Physicist.</summary>
+        </member>
+        <member name="P:Aequus.Content.DataSets.ItemMetadata.FishingJunk">
+            <summary>Items in this set are fishing junk.</summary>
+        </member>
         <member name="P:Aequus.Content.DataSets.ItemMetadata.Potions">
-            <summary>
-            Items in this set are potions.
-            </summary>
+            <summary>Items in this set are potions.</summary>
         </member>
         <member name="P:Aequus.Content.DataSets.ItemMetadata.ShimmerTooltipResultIgnore">
             <summary>
@@ -1064,6 +631,12 @@
             NPC Ids in this set cannot damage the Occultist, or have their souls trapped into Soul Gems.
             Automatically populated with all NPC Ids which have the Underworld or Gore Nest as bestiary tags.
             </summary>
+        </member>
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.FromEclipse">
+            <summary>Automatically populated with all NPC Ids which have the Eclipse as bestiary tags.</summary>
+        </member>
+        <member name="P:Aequus.Content.DataSets.NPCMetadata.FromBloodMoon">
+            <summary>Automatically populated with all NPC Ids which have the Blood Moon as bestiary tags.</summary>
         </member>
         <member name="P:Aequus.Content.DataSets.NPCMetadata.IsCorrupt">
             <summary>Automatically populated with all NPC Ids which have the Corruption as bestiary tags.</summary>
@@ -1363,6 +936,13 @@
         <member name="T:Aequus.Core.PhysicsBehaviors.VICollisonNode">
             <summary>A Verlet Integrated node with Tile Collision.</summary>
         </member>
+        <member name="M:Aequus.Core.RefManipulator`1.OverrideValue(`0)">
+            <summary>Replaces the referenced value with <paramref name="value"/>. The original value will be cached, and can be restored using <see cref="!:VoidOverriddenValue(ref T)"/>.</summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Aequus.Core.RefManipulator`1.VoidOverriddenValue">
+            <summary>Restores overriden values back to their original value.</summary>
+        </member>
         <member name="T:Aequus.Core.UI.UILayer">
             <summary>
             Used to simplify UI implementation. Only loads in singleplayer or on multiplayer clients.
@@ -1388,6 +968,9 @@
             <summary>
             Only loads in singleplayer or on multiplayer clients.
             </summary>
+        </member>
+        <member name="T:Aequus.Core.Utilities.ChatTagWriter">
+            <summary>Contains helper methods for generating chat tag strings. For item and glyphs, <see cref="T:Terraria.GameContent.UI.Chat.ItemTagHandler"/> and <see cref="T:Terraria.GameContent.UI.Chat.GlyphTagHandler"/> have static helper methods.</summary>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendArray.Copy``1(``0[])">
             <returns>A new array with the same contents.</returns>
@@ -1820,8 +1403,11 @@
         <member name="P:Aequus.Core.WorldState.RemixWorldSafeUnderworldRange">
             <summary>Returns a point with the beginning (left) (X) and end (right) (Y) of the 'safe' underworld in remix worlds. This does not represent a point in 2D space, but rather two X coordinates.</summary>
         </member>
+        <member name="F:Aequus.Core.WorldState._metOccultist">
+            <summary>Whether the Occultist has been met. This determines if the Hostile Occultist emote can be used.</summary>
+        </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 67)</summary>
+            <summary>(Total Sounds: 68)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishCharge">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -2006,6 +1592,9 @@
         <member name="F:Aequus.AequusSounds.RecruitZombie">
             <summary>Full Path: Old/Assets/Sounds/RecruitZombie</summary>
         </member>
+        <member name="F:Aequus.AequusSounds.ZumboPettingSqueak">
+            <summary>Full Path: Old/Assets/Sounds/ZumboPettingSqueak</summary>
+        </member>
         <member name="F:Aequus.AequusSounds.OmegaStariteDeathRay">
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteDeathRay</summary>
         </member>
@@ -2025,7 +1614,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 526)</summary>
+            <summary>(Total Textures: 596)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2069,6 +1658,9 @@
         <member name="F:Aequus.AequusTextures.GenericExplosion">
             <summary>Full Path: Assets/Textures/GenericExplosion</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.ItemCooldown">
+            <summary>Full Path: Assets/Textures/ItemCooldown</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.LensFlare">
             <summary>Full Path: Assets/Textures/LensFlare</summary>
         </member>
@@ -2092,6 +1684,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.SlashVanilla">
             <summary>Full Path: Assets/Textures/SlashVanilla</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SlashVanillaAlt">
+            <summary>Full Path: Assets/Textures/SlashVanillaAlt</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SlashVanillaSmall">
             <summary>Full Path: Assets/Textures/SlashVanillaSmall</summary>
@@ -2459,6 +2054,15 @@
         <member name="F:Aequus.AequusTextures.BlackJellyfishBannerItem">
             <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBannerItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.OilSlime">
+            <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/OilSlime</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OilSlimeBanner">
+            <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/Tiles/OilSlimeBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OilSlimeBannerItem">
+            <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/Tiles/OilSlimeBannerItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.ScavengerGoreHead">
             <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Gores/ScavengerGoreHead</summary>
         </member>
@@ -2558,6 +2162,12 @@
         <member name="F:Aequus.AequusTextures.ScavengerBag_Strap">
             <summary>Full Path: Content/Equipment/Accessories/ScavengerBag/ScavengerBag_Strap</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.ValentineRing">
+            <summary>Full Path: Content/Equipment/Accessories/ValentinesRing/ValentineRing</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ValentineRingBuff">
+            <summary>Full Path: Content/Equipment/Accessories/ValentinesRing/ValentineRingBuff</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.WeightedHorseshoe">
             <summary>Full Path: Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoe</summary>
         </member>
@@ -2587,6 +2197,24 @@
         </member>
         <member name="F:Aequus.AequusTextures.HotAirBalloonMount_Glow">
             <summary>Full Path: Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BloodMoonDeactivator">
+            <summary>Full Path: Content/Events/Deactivators/BloodMoon/BloodMoonDeactivator</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BloodMoonDeactivatorInactive">
+            <summary>Full Path: Content/Events/Deactivators/BloodMoon/BloodMoonDeactivatorInactive</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EclipseDeactivator">
+            <summary>Full Path: Content/Events/Deactivators/Eclipse/EclipseDeactivator</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EclipseDeactivatorInactive">
+            <summary>Full Path: Content/Events/Deactivators/Eclipse/EclipseDeactivatorInactive</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GlimmerDeactivator">
+            <summary>Full Path: Content/Events/Deactivators/Glimmer/GlimmerDeactivator</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GlimmerDeactivatorInactive">
+            <summary>Full Path: Content/Events/Deactivators/Glimmer/GlimmerDeactivatorInactive</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabPot">
             <summary>Full Path: Content/Fishing/CrabPots/CrabPot</summary>
@@ -2792,46 +2420,46 @@
         <member name="F:Aequus.AequusTextures.NameTagBlank">
             <summary>Full Path: Content/Tools/NameTag/NameTagBlank</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Balloon">
+        <member name="F:Aequus.AequusTextures.Balloon">
             <summary>Full Path: Content/TownNPCs/SkyMerchant/Balloon</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Basket">
+        <member name="F:Aequus.AequusTextures.Basket">
             <summary>Full Path: Content/TownNPCs/SkyMerchant/Basket</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SkyMerchantEmote">
-            <summary>Full Path: Content/TownNPCs/SkyMerchant/Emote/SkyMerchantEmote</summary>
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Emotes/SkyMerchantEmote</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Shimmer_Balloon">
-            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
+        <member name="F:Aequus.AequusTextures.Balloon_Shimmer">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/Balloon_Shimmer</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Shimmer_Basket">
-            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/Basket</summary>
+        <member name="F:Aequus.AequusTextures.Basket_Shimmer">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/Basket_Shimmer</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Shimmer_SkyMerchant">
-            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant</summary>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Shimmer_SkyMerchant_Aiming">
-            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Aiming</summary>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer_Aiming">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Aiming</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Shimmer_SkyMerchant_CrossbowArm">
-            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_CrossbowArm</summary>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer_CrossbowArm">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CrossbowArm</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Shimmer_SkyMerchant_Head">
-            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Head</summary>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer_Head">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Head</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_SkyMerchant">
+        <member name="F:Aequus.AequusTextures.SkyMerchant">
             <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_SkyMerchant_Aiming">
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Aiming">
             <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant_Aiming</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_SkyMerchant_CrossbowArm">
+        <member name="F:Aequus.AequusTextures.SkyMerchant_CrossbowArm">
             <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant_CrossbowArm</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SkyMerchant_CustomHead">
             <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant_CustomHead</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_SkyMerchant_Head">
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Head">
             <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RenameBackIcon">
@@ -2954,8 +2582,44 @@
         <member name="F:Aequus.AequusTextures.DwarfStarite">
             <summary>Full Path: Old/Content/Critters/DwarfStarite</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.DwarfStariteItem">
-            <summary>Full Path: Old/Content/Critters/DwarfStariteItem</summary>
+        <member name="F:Aequus.AequusTextures.CleanserDroneItem">
+            <summary>Full Path: Old/Content/DronePylons/CleanserDroneItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GunnerDroneItem">
+            <summary>Full Path: Old/Content/DronePylons/GunnerDroneItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HealerDroneItem">
+            <summary>Full Path: Old/Content/DronePylons/HealerDroneItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CleanserDrone">
+            <summary>Full Path: Old/Content/DronePylons/NPCs/CleanserDrone</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CleanserDrone_Glow">
+            <summary>Full Path: Old/Content/DronePylons/NPCs/CleanserDrone_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CleanserDrone_Gun">
+            <summary>Full Path: Old/Content/DronePylons/NPCs/CleanserDrone_Gun</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CleanserDrone_Gun_Glow">
+            <summary>Full Path: Old/Content/DronePylons/NPCs/CleanserDrone_Gun_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GunnerDrone">
+            <summary>Full Path: Old/Content/DronePylons/NPCs/GunnerDrone</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GunnerDrone_Extras">
+            <summary>Full Path: Old/Content/DronePylons/NPCs/GunnerDrone_Extras</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GunnerDrone_Extras_Glow">
+            <summary>Full Path: Old/Content/DronePylons/NPCs/GunnerDrone_Extras_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GunnerDrone_Glow">
+            <summary>Full Path: Old/Content/DronePylons/NPCs/GunnerDrone_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HealerDrone">
+            <summary>Full Path: Old/Content/DronePylons/NPCs/HealerDrone</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HealerDrone_Glow">
+            <summary>Full Path: Old/Content/DronePylons/NPCs/HealerDrone_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BloodMimic">
             <summary>Full Path: Old/Content/Enemies/BloodMoon/BloodMimic</summary>
@@ -3104,6 +2768,18 @@
         <member name="F:Aequus.AequusTextures.HighSteaks_Waist">
             <summary>Full Path: Old/Content/Equipment/Accessories/HighSteaks/HighSteaks_Waist</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.HoloLens">
+            <summary>Full Path: Old/Content/Equipment/Accessories/HoloLens/HoloLens</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LaserReticle">
+            <summary>Full Path: Old/Content/Equipment/Accessories/LaserScope/LaserReticle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LaserReticle_Glow">
+            <summary>Full Path: Old/Content/Equipment/Accessories/LaserScope/LaserReticle_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Pacemaker">
+            <summary>Full Path: Old/Content/Equipment/Accessories/Pacemaker/Pacemaker</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.WarHorn">
             <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHorn</summary>
         </member>
@@ -3184,6 +2860,27 @@
         </member>
         <member name="F:Aequus.AequusTextures.BloodyTearstone">
             <summary>Full Path: Old/Content/Materials/BloodyTearstone</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AquaticEnergy">
+            <summary>Full Path: Old/Content/Materials/Energies/AquaticEnergy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AtmosphericEnergy">
+            <summary>Full Path: Old/Content/Materials/Energies/AtmosphericEnergy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CosmicEnergy">
+            <summary>Full Path: Old/Content/Materials/Energies/CosmicEnergy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonicEnergy">
+            <summary>Full Path: Old/Content/Materials/Energies/DemonicEnergy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EnergyDust">
+            <summary>Full Path: Old/Content/Materials/Energies/EnergyDust</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OrganicEnergy">
+            <summary>Full Path: Old/Content/Materials/Energies/OrganicEnergy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltimateEnergy">
+            <summary>Full Path: Old/Content/Materials/Energies/UltimateEnergy</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SoulGem">
             <summary>Full Path: Old/Content/Materials/SoulGem/SoulGem</summary>
@@ -3350,6 +3047,12 @@
         <member name="F:Aequus.AequusTextures.BlueFire">
             <summary>Full Path: Old/Content/StatusEffects/BlueFire</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.BlueFireParticle">
+            <summary>Full Path: Old/Content/StatusEffects/BlueFireParticle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlueFireSparkle">
+            <summary>Full Path: Old/Content/StatusEffects/BlueFireSparkle</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.GoreNestStalagmite">
             <summary>Full Path: Old/Content/Tiles/Ambient/GoreNestStalagmite</summary>
         </member>
@@ -3403,6 +3106,36 @@
         </member>
         <member name="F:Aequus.AequusTextures.OblivionCraftingStation_Stick">
             <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionCraftingStation_Stick</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AntiGravityBlock">
+            <summary>Full Path: Old/Content/Tiles/GravityBlocks/AntiGravityBlock</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AntiGravityBlockAura_0">
+            <summary>Full Path: Old/Content/Tiles/GravityBlocks/AntiGravityBlockAura_0</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AntiGravityBlockAura_1">
+            <summary>Full Path: Old/Content/Tiles/GravityBlocks/AntiGravityBlockAura_1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AntiGravityBlockDust">
+            <summary>Full Path: Old/Content/Tiles/GravityBlocks/AntiGravityBlockDust</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AntiGravityBlockItem">
+            <summary>Full Path: Old/Content/Tiles/GravityBlocks/AntiGravityBlockItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GravityBlock">
+            <summary>Full Path: Old/Content/Tiles/GravityBlocks/GravityBlock</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GravityBlockAura_0">
+            <summary>Full Path: Old/Content/Tiles/GravityBlocks/GravityBlockAura_0</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GravityBlockAura_1">
+            <summary>Full Path: Old/Content/Tiles/GravityBlocks/GravityBlockAura_1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GravityBlockDust">
+            <summary>Full Path: Old/Content/Tiles/GravityBlocks/GravityBlockDust</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GravityBlockItem">
+            <summary>Full Path: Old/Content/Tiles/GravityBlocks/GravityBlockItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HangingPot">
             <summary>Full Path: Old/Content/Tiles/Herbs/HangingPots/HangingPot</summary>
@@ -3476,6 +3209,27 @@
         <member name="F:Aequus.AequusTextures.PlanterBoxMorayItem">
             <summary>Full Path: Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxMorayItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.PhysicsGun">
+            <summary>Full Path: Old/Content/Tools/PhysicsGun</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicsGunProj">
+            <summary>Full Path: Old/Content/Tools/PhysicsGunProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicsGun_Glow">
+            <summary>Full Path: Old/Content/Tools/PhysicsGun_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CarpenterEmote">
+            <summary>Full Path: Old/Content/TownNPCs/CarpenterNPC/Emotes/CarpenterEmote</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LobsterEmote">
+            <summary>Full Path: Old/Content/TownNPCs/LobsterNPC/Emotes/LobsterEmote</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistEmote">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Emotes/OccultistEmote</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OccultistHostileEmote">
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Emotes/OccultistHostileEmote</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.OccultistGoreBook">
             <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreBook</summary>
         </member>
@@ -3517,6 +3271,39 @@
         </member>
         <member name="F:Aequus.AequusTextures.Old_Content_TownNPCs_OccultistNPC_Shimmer_Occultist">
             <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Shimmer/Occultist</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicistEmote">
+            <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Emotes/PhysicistEmote</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicistPetEmote">
+            <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Emotes/PhysicistPetEmote</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Physicist">
+            <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Physicist</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicistPet">
+            <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/PhysicistPet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicistPet_Glow">
+            <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/PhysicistPet_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Physicist_Head">
+            <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Physicist_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicistPet_Shimmer">
+            <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Shimmer/PhysicistPet_Shimmer</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicistPet_Shimmer_Glow">
+            <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Shimmer/PhysicistPet_Shimmer_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Physicist_Shimmer">
+            <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Shimmer/Physicist_Shimmer</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Physicist_Shimmer_Glow">
+            <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Shimmer/Physicist_Shimmer_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Physicist_Shimmer_Head">
+            <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Shimmer/Physicist_Shimmer_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CelestialEightBall">
             <summary>Full Path: Old/Content/Vanity/CelestialEightBall</summary>
@@ -3584,6 +3371,9 @@
         <member name="F:Aequus.AequusTextures.SliceBulletProj">
             <summary>Full Path: Old/Content/Weapons/Melee/Slice/SliceBulletProj</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.SuperStarSword">
+            <summary>Full Path: Old/Content/Weapons/Melee/SuperStarSword/SuperStarSword</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.UltimateSword">
             <summary>Full Path: Old/Content/Weapons/Melee/UltimateSword/UltimateSword</summary>
         </member>
@@ -3598,6 +3388,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.CrusadersCrossbowProj">
             <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicistSentry">
+            <summary>Full Path: Old/Content/Weapons/Sentries/PhysicistSentry/PhysicistSentry</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicistSentryProj">
+            <summary>Full Path: Old/Content/Weapons/Sentries/PhysicistSentry/PhysicistSentryProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicistSentryProj_Glow">
+            <summary>Full Path: Old/Content/Weapons/Sentries/PhysicistSentry/PhysicistSentryProj_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BacciliteSceptre">
             <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre</summary>

@@ -27,10 +27,6 @@ public class HighSteaks : ModItem, IHaveDownsideTip {
 
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Percent(NotStackableCritDamage + StackableCritDamage), this.GetLocalization("Downside"));
 
-    public override void SetStaticDefaults() {
-        ItemSets.ShimmerTransformToItem[Type] = ModContent.ItemType<SaivoryKnife>();
-    }
-
     public override void SetDefaults() {
         Item.DefaultToAccessory(16, 16);
         Item.rare = ItemRarityID.Green;
@@ -51,7 +47,7 @@ public class HighSteaks : ModItem, IHaveDownsideTip {
 
     public override void ModifyTooltips(List<TooltipLine> tooltips) {
         const string REPLACE = "{Price}";
-        string replaceValue = ExtendLanguage.PriceTextColored(WantedCost, AlphaPulse: true);
+        string replaceValue = ExtendLanguage.PriceTextColored(WantedCost, pulse: true);
 
         foreach (var t in tooltips.Where(t => t.Name.StartsWith("Tooltip") && t.Text.Contains(REPLACE))) {
             t.Text = t.Text.Replace(REPLACE, replaceValue);

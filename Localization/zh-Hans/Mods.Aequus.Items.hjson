@@ -1,5 +1,4 @@
 CommonTooltips: {
-	// BuffTimeRange: "{0}-{1} minute duration"
 	IncreasesInventorySlots: 获得{0}格物品栏
 	Cooldown: 有{0}秒冷却时间
 	Shimmerable: 微光材料
@@ -16,9 +15,26 @@ CommonTooltips: {
 	StatWingTime: 延长飞行时间
 	DecreaseAggro: 敌人不大可能以你为攻击目标
 	IncreaseAggro: 敌人更有可能以你为攻击目标
+	DisableItem: 右键使效果无效化
+	EnableItem: 当前处于非激活状态, 右键以重新激活
 }
 
 //# Equipment: Accessories
+LaserReticle: {
+	DisplayName: 激光瞄准镜
+	Tooltip: 降低{0}%远程武器的离散度
+}
+
+ValentineRing: {
+	DisplayName: 情人节礼物
+	Tooltip: 赠与朋友以使对方和你自身获得生命再生和伤害加成
+	Tooltip2: 增加你自身和赠礼者的生命再生速度和伤害
+	GiftTooltip: 来自你真诚的, {0}
+	BuffName: 情人
+	BuffDescription: 生命再生速度和伤害增加
+	BuffDescription2: 你受到了{0}的强化!
+}
+
 GrandReward: {
 	DisplayName: 豪华奖励
 	Tooltip:
@@ -178,6 +194,16 @@ ShadowVeer: {
 }
 
 //# Equipment: Informational
+HoloLens: {
+	DisplayName: 全息透镜
+	Tooltip: 允许你在不打开箱子的情况下查看上锁和解锁的箱子的内容
+}
+
+Pacemaker: {
+	DisplayName: 心脏起搏器
+	Tooltip: 当它变得安全时会缩减重生时间
+}
+
 ShimmerMonocle: {
 	DisplayName: 微光单片镜
 	Tooltip: 显示一个物品是否是微光材料
@@ -365,6 +391,11 @@ Triacanthorn: {
 }
 
 //# Weapons: Summon
+PhysicistSentry: {
+	DisplayName: 便携式特斯拉炮塔
+	Tooltip: 召唤一个会发射大量连锁闪电的特斯拉炮塔哨兵
+}
+
 Insurgency: {
 	DisplayName: 叛乱
 	Tooltip:
@@ -416,21 +447,6 @@ StunGun: {
 }
 
 //# Potions
-SentryPotion: {
-	// DisplayName: Sentinel Potion
-	// Tooltip: Increases your maximum amount of sentries by {0}
-	// BuffName: Sentinel
-}
-
-TaintedSeafood: {
-	// DisplayName: Tainted Seafood
-	/* Tooltip:
-		'''
-		May grant minor, medium, or major improvments to all stats
-		Has a small chance to instead grant food poisoning
-		''' */
-}
-
 NeutronYogurt: {
 	DisplayName: 中子酸奶
 	Tooltip: 获得具有加速度翻倍的附魔下落
@@ -567,6 +583,11 @@ SoulGemFilled: {
 		'''
 }
 
+GalacticStarfruit: {
+	DisplayName: 星河杨桃
+	Tooltip: 创造一道奇异柔光
+}
+
 UnholyCore: {
 	DisplayName: 不洁核心
 	Tooltip:
@@ -651,6 +672,11 @@ DedicatedFaelingItem: {
 	Tooltip: ""
 }
 
+PhysicsGun: {
+	DisplayName: 物理枪
+	Tooltip: 可以抓取并扔出方块
+}
+
 Bellows: {
 	DisplayName: 风箱
 	Tooltip:
@@ -678,34 +704,47 @@ NameTag: {
 		'''
 }
 
-//# Vanity Armors
-BreadOfCthulhuMask: {
-	DisplayName: 克苏鲁之面包面具
+PylonDrone.Tooltip: 在晶塔附近使用以激活, 每个晶塔只能存在两架无人机
+
+CleanserDrone: {
+	DisplayName: "{$NPCs.CleanserDrone.DisplayName}"
+	Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		喷洒溶液以扩散晶塔的生物群落
+		'''
+}
+
+GunnerDrone: {
+	DisplayName: "{$NPCs.GunnerDrone.DisplayName}"
+	Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		保护该区域免受敌人攻击
+		'''
+}
+
+HealerDrone: {
+	DisplayName: "{$NPCs.HealerDrone.DisplayName}"
+	Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		治疗受伤的镇民和小动物
+		'''
+}
+
+MoonflowerSeeds: {
+	DisplayName: 月光花种
 	Tooltip: ""
 }
 
-CrabsonMask: {
-	DisplayName: 巨蟹蛤面具
+MistralSeeds: {
+	DisplayName: 寒风花种
 	Tooltip: ""
 }
 
-DustDevilMask: {
-	DisplayName: 沙尘恶魔面具
-	Tooltip: ""
-}
-
-OmegaStariteMask: {
-	DisplayName: 终末之星面具
-	Tooltip: ""
-}
-
-RedSpriteMask: {
-	DisplayName: 红色精灵面具
-	Tooltip: ""
-}
-
-SpaceSquidMask: {
-	DisplayName: 太空乌贼面具
+ManacleSeeds: {
+	DisplayName: 镣铐花种
 	Tooltip: ""
 }
 
@@ -737,49 +776,35 @@ Toolbelt: {
 	BackpackDisabled: 工具腰带关闭
 }
 
-MoonflowerSeeds: {
-	DisplayName: 月光花种
+//# Vanity
+BreadOfCthulhuMask: {
+	DisplayName: 克苏鲁之面包面具
 	Tooltip: ""
 }
 
-MistralSeeds: {
-	DisplayName: 寒风花种
+DustDevilMask: {
+	DisplayName: 沙尘恶魔面具
 	Tooltip: ""
 }
 
-ManacleSeeds: {
-	DisplayName: 镣铐花种
+OmegaStariteMask: {
+	DisplayName: 终末之星面具
 	Tooltip: ""
 }
 
-CosmicMonolith: {
-	DisplayName: Mods.Aequus.Items.CosmicMonolith.DisplayName
+RedSpriteMask: {
+	DisplayName: 红色精灵面具
 	Tooltip: ""
 }
 
-UltimateSword: {
-	DisplayName: Mods.Aequus.Items.UltimateSword.DisplayName
+SpaceSquidMask: {
+	DisplayName: 太空乌贼面具
 	Tooltip: ""
-}
-
-DwarfStariteItem: {
-	// DisplayName: Mods.Aequus.Items.DwarfStariteItem.DisplayName
-	// Tooltip: ""
-}
-
-GalacticStarfruit: {
-	// DisplayName: Mods.Aequus.Items.GalacticStarfruit.DisplayName
-	// Tooltip: ""
-}
-
-StariteMaterial: {
-	// DisplayName: Mods.Aequus.Items.StariteMaterial.DisplayName
-	// Tooltip: ""
 }
 
 CelestialEightBall: {
-	// DisplayName: Mods.Aequus.Items.CelestialEightBall.DisplayName
-	// Tooltip: ""
+	DisplayName: 星界八号球
+	Tooltip: ""
 
 	Answer: {
 		0: 是的
@@ -805,12 +830,57 @@ CelestialEightBall: {
 	}
 }
 
-Killifish: {
-	// DisplayName: Killifish
-	// Tooltip: ""
+CosmicMonolith: {
+	DisplayName: 宇宙石
+	Tooltip: "'维系宇宙力量的一小部分'"
 }
 
-Piraiba: {
-	// DisplayName: Piraiba
-	// Tooltip: ""
+UltimateSword: {
+	DisplayName: Mods.Aequus.Items.UltimateSword.DisplayName
+	Tooltip: ""
+}
+
+StariteMaterial: {
+	DisplayName: 核心碎片
+	Tooltip: ""
+}
+
+EventGlasses: {
+	Folded: (已折叠)
+	DisabledName: "{0} {1}"
+	Tooltip:
+		'''
+		{0}
+		{1}
+		'''
+}
+
+BloodMoonDeactivator: {
+	DisplayName: 玫瑰色眼镜
+	Tooltip: 禁用血月效果以及敌人生成
+}
+
+GlimmerDeactivator: {
+	DisplayName: 星体眼镜
+	Tooltip: 禁用柔光效果以及敌人生成
+}
+
+EclipseDeactivator: {
+	DisplayName: 日食眼镜
+	Tooltip: 禁用 日食效果以及敌人生成
+}
+
+GlassesFormat: {
+	DisabledName: Mods.Aequus.Items.GlassesFormat.DisabledName
+	Folded: Mods.Aequus.Items.GlassesFormat.Folded
+	Tooltip: Mods.Aequus.Items.GlassesFormat.Tooltip
+}
+
+SuperStarSword: {
+	DisplayName: 超级星剑
+	Tooltip:
+		'''
+		生命值高于90%时会发射剑气
+		'会动的东西我砍, 动的很欢的我砍得更欢'
+		'''
 }

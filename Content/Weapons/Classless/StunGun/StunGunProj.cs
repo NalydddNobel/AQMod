@@ -114,7 +114,7 @@ public class StunGunProj : ModProjectile {
 
     public override bool PreDraw(ref Color lightColor) {
         float opacity = Projectile.Opacity;
-        DrawHelper.DrawBasicVertexLine(TextureAssets.MagicPixel.Value, Projectile.oldPos, Projectile.oldRot,
+        DrawHelper.DrawBasicVertexLineWithProceduralPadding(TextureAssets.MagicPixel.Value, Projectile.oldPos, Projectile.oldRot,
             (p) => Color.Cyan with { A = 0 } * opacity * p,
             (p) => 2f + MathF.Sin(p * MathHelper.Pi) * (2f * opacity),
             -Main.screenPosition + Projectile.Size / 2f

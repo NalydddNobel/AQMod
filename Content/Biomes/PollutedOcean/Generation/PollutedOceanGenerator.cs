@@ -80,7 +80,7 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
             return generationSide;
         }
 
-        if (CalamityMod.IsEnabled) {
+        if (CalamityMod.Enabled) {
             return POGenerationSide.JungleSide;
         }
         return POGenerationSide.DungeonSide;

@@ -5,7 +5,7 @@ using System;
 
 namespace Aequus.Core.ContentGeneration;
 
-[AttributeUsage(AttributeTargets.Class)]
+[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
 internal sealed class AutoloadTrophiesAttribute : AutoloadXAttribute {
     private readonly int _legacyId;
 

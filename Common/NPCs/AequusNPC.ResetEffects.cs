@@ -11,6 +11,9 @@ public partial class AequusNPC {
     }
 
     public override void ResetEffects(NPC npc) {
+        if (immuneToDamageTime > 0) {
+            immuneToDamageTime--;
+        }
         _resetEffects.Invoke(this);
     }
 }

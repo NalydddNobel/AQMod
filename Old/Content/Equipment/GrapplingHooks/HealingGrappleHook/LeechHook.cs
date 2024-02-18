@@ -9,10 +9,6 @@ public class LeechHook : ModItem {
     public static int HealAmount { get; set; } = 1;
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ArmorPenetration);
 
-    public override void SetStaticDefaults() {
-        ItemSets.ShimmerTransformToItem[Type] = ModContent.ItemType<HighSteaks>();
-    }
-
     public override void SetDefaults() {
         Item.width = 20;
         Item.height = 20;

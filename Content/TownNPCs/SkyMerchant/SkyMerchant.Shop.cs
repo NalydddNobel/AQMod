@@ -5,6 +5,7 @@ using Aequus.Content.Equipment.Accessories.Balloons;
 using Aequus.Content.Equipment.Accessories.FlashwayShield;
 using Aequus.Content.Equipment.Accessories.GoldenFeather;
 using Aequus.Content.Equipment.Accessories.Informational.Calendar;
+using Aequus.Content.Equipment.Accessories.ValentinesRing;
 using Aequus.Content.Equipment.Accessories.WeightedHorseshoe;
 using Aequus.Content.Equipment.Mounts.HotAirBalloon;
 using Aequus.Content.Potions.Healing.Restoration;

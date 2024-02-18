@@ -12,11 +12,6 @@ public class TreasureMagnetChanges : GlobalItem {
         return entity.type == ItemID.TreasureMagnet;
     }
 
-    public override void SetStaticDefaults() {
-        ItemSets.ShimmerTransformToItem[ItemID.TreasureMagnet] = ItemID.CelestialMagnet;
-        ItemSets.ShimmerTransformToItem[ItemID.CelestialMagnet] = ItemID.TreasureMagnet;
-    }
-
     public override void ModifyItemLoot(Item item, ItemLoot itemLoot) {
         if (item.type == ItemID.ObsidianLockbox) {
             itemLoot.RemoveItemId(ItemID.TreasureMagnet);

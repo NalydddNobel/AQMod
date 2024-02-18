@@ -199,6 +199,18 @@ Moonflower.MapEntry: Moonflower
 Mistral.MapEntry: Mistral
 Manacle.MapEntry: Manacle
 
+GravityBlock: {
+	MapEntry: Normal Gravity Block
+	ItemDisplayName: "{$Tiles.GravityBlock.MapEntry}"
+	ItemTooltip: ""
+}
+
+AntiGravityBlock: {
+	MapEntry: Reversed Gravity Block
+	ItemDisplayName: "{$Tiles.AntiGravityBlock.MapEntry}"
+	ItemTooltip: ""
+}
+
 ScrapBlock: {
 	MapEntry: Junk Block
 	ItemDisplayName: "{$Tiles.ScrapBlock.MapEntry}"

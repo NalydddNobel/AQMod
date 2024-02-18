@@ -10,8 +10,6 @@ public class Furystar : ModItem {
 
     public override void SetStaticDefaults() {
         Item.staff[Type] = true;
-        ItemSets.ShimmerTransformToItem[Type] = ItemID.Starfury;
-        ItemSets.ShimmerTransformToItem[ItemID.Starfury] = Type;
     }
 
     public override void SetDefaults() {

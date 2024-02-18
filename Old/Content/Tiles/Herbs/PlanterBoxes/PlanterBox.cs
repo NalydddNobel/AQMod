@@ -273,8 +273,6 @@ public sealed class PlanterBox : ModTile, IRandomUpdateOverride, IPostSetupConte
         cursor.EmitLdarg1();
         cursor.EmitDelegate((int x, int y) => Main.tile[x, y + 1].TileType != ModContent.TileType<PlanterBox>());
         cursor.EmitBrfalse(branchLabel);
-
-        MonoModHooks.DumpIL(Mod, il);
     }
 
     private void IL_WorldGen_CanCutTile(ILContext il) {
@@ -302,8 +300,6 @@ public sealed class PlanterBox : ModTile, IRandomUpdateOverride, IPostSetupConte
         cursor.EmitLdarg1();
         cursor.EmitDelegate((int x, int y) => Main.tile[x, y + 1].TileType != ModContent.TileType<PlanterBox>());
         cursor.EmitBrfalse(branchLabel);
-
-        MonoModHooks.DumpIL(Mod, il);
     }
 
     private void IL_WorldGen_PlantCheck(ILContext il) {

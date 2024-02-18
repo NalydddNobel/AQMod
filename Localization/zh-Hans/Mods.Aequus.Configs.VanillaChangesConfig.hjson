@@ -1,4 +1,7 @@
 DisplayName: 原版更改
+ColorImportant: c/ffffbb
+ColorImportant2: c/ffcc99
+ColorNote: c/aaacff
 NoteExploit: "[{$ColorNote}:如若出于个人偏好或为防止意外利用, 请禁用该设置.]"
 
 MoveTreasureMagnet: {
@@ -39,11 +42,24 @@ SlimeCrownInSurfaceChests: {
 	Tooltip: "[{$ColorImportant}:启用后], [{$ColorImportant}:史莱姆王冠]可以在[{$ColorImportant}:地表宝箱]中发现."
 }
 
-MoveMagicConch: {
-	// Label: "[i:MagicConch] Move Magic Conch"
-	/* Tooltip:
+MoveGravityGlobe: {
+	Label: "[i:GravityGlobe] 物理学家出售重力球"
+	Tooltip:
 		'''
-		When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Magic Conch] can be found in the [{$ColorImportant}:Polluted Ocean],
-		and will [{$ColorImportant}:no longer be found] in the [{$ColorImportant2}:Underground Desert].
-		''' */
+		[{$ColorImportant}:启用后], [{$ColorImportant}:重力球]将会由[{$ColorImportant}:物理学家]出售,
+		并且[{$ColorImportant2}:月亮领主][{$ColorImportant}:不会再掉落].
+
+		{$NoteExploit}
+		'''
+}
+
+MovePortalGun: {
+	Label: "[i:PortalGun] 物理学家出售传送门枪"
+	Tooltip:
+		'''
+		[{$ColorImportant}:启用后], [{$ColorImportant}:传送门枪]将会由[{$ColorImportant}:物理学家]出售,
+		并且[{$ColorImportant2}:月亮领主][{$ColorImportant}:不会再掉落].
+
+		{$NoteExploit}
+		'''
 }
