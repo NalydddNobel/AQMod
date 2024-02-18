@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 532)</summary>
+/// <summary>(Total Textures: 536)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -53,6 +53,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SlashForward = new("Aequus/Assets/Textures/SlashForward");
     /// <summary>Full Path: Assets/Textures/SlashVanilla</summary>
     public static readonly RequestCache<Texture2D> SlashVanilla = new("Aequus/Assets/Textures/SlashVanilla");
+    /// <summary>Full Path: Assets/Textures/SlashVanillaAlt</summary>
+    public static readonly RequestCache<Texture2D> SlashVanillaAlt = new("Aequus/Assets/Textures/SlashVanillaAlt");
     /// <summary>Full Path: Assets/Textures/SlashVanillaSmall</summary>
     public static readonly RequestCache<Texture2D> SlashVanillaSmall = new("Aequus/Assets/Textures/SlashVanillaSmall");
     /// <summary>Full Path: Assets/Textures/Sparkles</summary>
@@ -839,6 +841,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> PotionOfResurrection = new("Aequus/Old/Content/Potions/Resurrection/PotionOfResurrection");
     /// <summary>Full Path: Old/Content/StatusEffects/BlueFire</summary>
     public static readonly RequestCache<Texture2D> BlueFire = new("Aequus/Old/Content/StatusEffects/BlueFire");
+    /// <summary>Full Path: Old/Content/StatusEffects/BlueFireParticle</summary>
+    public static readonly RequestCache<Texture2D> BlueFireParticle = new("Aequus/Old/Content/StatusEffects/BlueFireParticle");
+    /// <summary>Full Path: Old/Content/StatusEffects/BlueFireSparkle</summary>
+    public static readonly RequestCache<Texture2D> BlueFireSparkle = new("Aequus/Old/Content/StatusEffects/BlueFireSparkle");
     /// <summary>Full Path: Old/Content/Tiles/Ambient/GoreNestStalagmite</summary>
     public static readonly RequestCache<Texture2D> GoreNestStalagmite = new("Aequus/Old/Content/Tiles/Ambient/GoreNestStalagmite");
     /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstones</summary>
@@ -1051,6 +1057,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Slice = new("Aequus/Old/Content/Weapons/Melee/Slice/Slice");
     /// <summary>Full Path: Old/Content/Weapons/Melee/Slice/SliceBulletProj</summary>
     public static readonly RequestCache<Texture2D> SliceBulletProj = new("Aequus/Old/Content/Weapons/Melee/Slice/SliceBulletProj");
+    /// <summary>Full Path: Old/Content/Weapons/Melee/SuperStarSword/SuperStarSword</summary>
+    public static readonly RequestCache<Texture2D> SuperStarSword = new("Aequus/Old/Content/Weapons/Melee/SuperStarSword/SuperStarSword");
     /// <summary>Full Path: Old/Content/Weapons/Melee/UltimateSword/UltimateSword</summary>
     public static readonly RequestCache<Texture2D> UltimateSword = new("Aequus/Old/Content/Weapons/Melee/UltimateSword/UltimateSword");
     /// <summary>Full Path: Old/Content/Weapons/Melee/UltimateSword/UltimateSwordBuff</summary>

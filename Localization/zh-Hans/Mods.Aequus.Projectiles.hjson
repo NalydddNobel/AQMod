@@ -70,3 +70,5 @@ PhysicistSentryLightning.DisplayName: "{$Items.PhysicistSentry.DisplayName}"
 PhysicistSentryProj.DisplayName: "{$Items.PhysicistSentry.DisplayName}"
 PhysicsGunProj.DisplayName: "{$Items.PhysicsGun.DisplayName}"
 GunnerDroneProj.DisplayName: "{$NPCs.GunnerDrone.DisplayName}"
+// SuperStarSwordProj.DisplayName: Super Star Sword Proj
+// SuperStarSwordSlash.DisplayName: Super Star Sword Slash

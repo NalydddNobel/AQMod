@@ -875,3 +875,8 @@ GlassesFormat: {
 	// Folded: Mods.Aequus.Items.GlassesFormat.Folded
 	// Tooltip: Mods.Aequus.Items.GlassesFormat.Tooltip
 }
+
+SuperStarSword: {
+	// DisplayName: Super Star Sword
+	// Tooltip: ""
+}

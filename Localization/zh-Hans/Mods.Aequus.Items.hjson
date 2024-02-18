@@ -875,3 +875,12 @@ GlassesFormat: {
 	Folded: Mods.Aequus.Items.GlassesFormat.Folded
 	Tooltip: Mods.Aequus.Items.GlassesFormat.Tooltip
 }
+
+SuperStarSword: {
+	DisplayName: 超级星剑
+	Tooltip:
+		'''
+		生命值高于90%时会发射剑气
+		'会动的东西我砍, 动的很欢的我砍得更欢'
+		'''
+}

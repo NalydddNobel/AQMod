@@ -265,6 +265,15 @@ Dynaknife: {
 		'''
 }
 
+SuperStarSword: {
+	DisplayName: Super Star Sword
+	Tooltip:
+		'''
+		Fires a slash while above 90% health
+		'If they zig, I cut 'em (If they zag, I cut 'em too)'
+		'''
+}
+
 Slice: {
 	DisplayName: Slice
 	Tooltip:

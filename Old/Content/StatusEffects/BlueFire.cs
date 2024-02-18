@@ -1,12 +1,14 @@
 ﻿using Aequus.Common.Buffs.Components;
 using Aequus.Content.DataSets;
+using System;
 using Terraria.Audio;
 
 namespace Aequus.Old.Content.StatusEffects;
 
 public class BlueFire : ModBuff, IOnAddBuff {
-    public static int Damage = 20;
-    public static int DamageNumber = 5;
+    public static int Damage { get; set; } = 20;
+    public static int DamageNumber { get; set; } = 5;
+    public static int VFXWearOffTime { get; set; } = 50;
 
     public override void SetStaticDefaults() {
         Main.debuff[Type] = true;
@@ -14,9 +16,9 @@ public class BlueFire : ModBuff, IOnAddBuff {
         BuffMetadata.PlayerDoTDebuff.Add(Type);
     }
 
-    //public override void Update(NPC npc, ref int buffIndex) {
-    //    npc.Aequus().debuffBlueFire = true;
-    //}
+    public override void Update(NPC npc, ref int buffIndex) {
+        npc.GetGlobalNPC<BlueFireNPC>().debuffBlueFire = VFXWearOffTime;
+    }
 
     public void PostAddBuff(NPC npc, int duration, bool quiet) {
         if (npc.HasBuff<BlueFire>()) {
@@ -25,31 +27,46 @@ public class BlueFire : ModBuff, IOnAddBuff {
     }
 }
 
-//public class BlueFireNPC {
-//    public bool debuffBlueFire;
+public class BlueFireNPC : GlobalNPC {
+    public int debuffBlueFire;
 
-//    private void DebuffEffect_BlueFire(NPC npc) {
-//        if (!debuffBlueFire) {
-//            return;
-//        }
+    public override bool InstancePerEntity => true;
+    protected override bool CloneNewInstances => true;
 
-//        int amt = Math.Max((int)(npc.Size.Length() / 64f), 1);
-//        for (int i = 0; i < amt; i++) {
-//            ParticleSystem.New<BlueFireParticle>(ParticleLayer.BehindPlayers).Setup(
-//                Main.rand.NextFromRect(npc.Hitbox),
-//                -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f)),
-//                new Color(45, 90, 205, 0), new Color(0, 0, 10, 0),
-//                Main.rand.NextFloat(1.5f, 3f), 0.3f,
-//                Main.rand.NextFloat(MathHelper.TwoPi)
-//            );
-//        }
-//    }
+    public override bool AppliesToEntity(NPC entity, bool lateInstantiation) {
+        return !entity.buffImmune[ModContent.BuffType<BlueFire>()];
+    }
 
-//    private void UpdateLifeRegen_BlueFire(NPC npc, ref LifeRegenModifiers modifiers) {
-//        if (debuffBlueFire) {
-//            modifiers.LifeRegen -= BlueFire.Damage;
-//            modifiers.DamageNumber = BlueFire.DamageNumber;
-//            modifiers.ApplyOiled = true;
-//        }
-//    }
-//}
+    public override void ResetEffects(NPC npc) {
+        if (debuffBlueFire > 0) {
+            debuffBlueFire--;
+        }
+    }
+
+    public override void PostAI(NPC npc) {
+        if (debuffBlueFire > 0 && Main.netMode != NetmodeID.Server && !Main.rand.NextBool(debuffBlueFire)) {
+            int amt = Math.Max((int)(npc.Size.Length() / 64f), 1);
+            for (int i = 0; i < amt; i++) {
+                var p = ModContent.GetInstance<BlueFireParticle>().New();
+                p.Location = Main.rand.NextVector2FromRectangle(npc.Hitbox);
+                p.Velocity = -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f));
+                p.Color = new Color(45, 90, 205, 0);
+                p.BloomColor = new Color(0, 0, 10, 0);
+                p.Scale = Main.rand.NextFloat(1.5f, 3f);
+                p.BloomScale = 0.3f;
+                p.Rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+            }
+        }
+    }
+
+    public override void UpdateLifeRegen(NPC npc, ref int damage) {
+        if (debuffBlueFire > 0) {
+            npc.lifeRegen -= BlueFire.Damage;
+            damage = BlueFire.DamageNumber;
+
+            if (npc.oiled) {
+                npc.lifeRegen -= 50;
+            }
+        }
+    }
+}

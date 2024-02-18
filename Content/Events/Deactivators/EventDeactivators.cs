@@ -99,7 +99,6 @@ public class EventDeactivators : ModSystem {
         c.EmitDelegate((bool swapMusic) => EventDeactivatorPlayer.CheckPlayerFlagOverrides(Main.LocalPlayer));
         c.EmitLdsfld(typeof(Main).GetField(SwapMusicField, SwapMusicBindings));
 
-
         if (!c.TryGotoNext(MoveType.After, i => i.MatchLdsfld(typeof(Main), nameof(Main.musicBox2)))) {
             Mod.Logger.Error($"Could not find {nameof(Main)}.{nameof(Main.musicBox2)} ldsfld code."); return;
         }

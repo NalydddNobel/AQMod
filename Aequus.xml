@@ -1517,7 +1517,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 532)</summary>
+            <summary>(Total Textures: 536)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1587,6 +1587,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.SlashVanilla">
             <summary>Full Path: Assets/Textures/SlashVanilla</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SlashVanillaAlt">
+            <summary>Full Path: Assets/Textures/SlashVanillaAlt</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SlashVanillaSmall">
             <summary>Full Path: Assets/Textures/SlashVanillaSmall</summary>
@@ -2767,6 +2770,12 @@
         <member name="F:Aequus.AequusTextures.BlueFire">
             <summary>Full Path: Old/Content/StatusEffects/BlueFire</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.BlueFireParticle">
+            <summary>Full Path: Old/Content/StatusEffects/BlueFireParticle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlueFireSparkle">
+            <summary>Full Path: Old/Content/StatusEffects/BlueFireSparkle</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.GoreNestStalagmite">
             <summary>Full Path: Old/Content/Tiles/Ambient/GoreNestStalagmite</summary>
         </member>
@@ -3084,6 +3093,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.SliceBulletProj">
             <summary>Full Path: Old/Content/Weapons/Melee/Slice/SliceBulletProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SuperStarSword">
+            <summary>Full Path: Old/Content/Weapons/Melee/SuperStarSword/SuperStarSword</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltimateSword">
             <summary>Full Path: Old/Content/Weapons/Melee/UltimateSword/UltimateSword</summary>
