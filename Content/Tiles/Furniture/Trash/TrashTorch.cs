@@ -31,7 +31,7 @@ public class TrashTorch : ModTorch {
     }
 
     public override float GetTorchLuck(Player player) {
-        return player.InModBiome<PollutedOceanBiome>() ? 1f : -1f;
+        return player.InModBiome<PollutedOceanBiomeUnderground>() ? 1f : -1f;
     }
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {

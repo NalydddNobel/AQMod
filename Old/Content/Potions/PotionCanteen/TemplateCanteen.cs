@@ -198,10 +198,9 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
         int consumePotions = PotionRecipeRequirement;
         int buffType = heldItem.buffType;
 
-        if (buffType == 0 || heldItem.buffTime <= 0 || !heldItem.consumable || heldItem.stack < consumePotions || heldItem.maxStack < 30 || Buffs.Any(b => b.BuffId == buffType) || BuffMetadata.DontChangeDuration.Contains(heldItem.buffType) || !ItemMetadata.Potions.Contains(heldItem.type)) {
+        if (buffType == 0 || heldItem.buffTime <= 0 || !heldItem.consumable || heldItem.stack < consumePotions || heldItem.maxStack < 30 || Buffs.Any(b => b.BuffId == buffType) || BuffMetadata.CannotChangeDuration.Contains(heldItem.buffType) || !ItemMetadata.Potions.Contains(heldItem.type)) {
             _warningAnimation = 80;
             SoundEngine.PlaySound(AequusSounds.CanteenBuzzer with { Volume = 0.5f });
-
             return false;
         }
 

@@ -19,7 +19,7 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
     private static int LeftPadded;
     private static int RightPadded;
     private static int direction;
-    private static POGenerationSide generationSide;
+    private static PollutedOceanGenerationSideConfig generationSide;
 
     protected override double GenWeight => 200f;
 
@@ -43,7 +43,7 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
     public static int X { get => x; }
     public static int Y { get => y; }
     public static int Direction { get => direction; }
-    public static POGenerationSide GenerationSide { get => generationSide; }
+    public static PollutedOceanGenerationSideConfig GenerationSide { get => generationSide; }
 
     internal static ushort _polymerSand;
     internal static ushort _polymerSandstone;
@@ -69,26 +69,26 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
         PunchOres(progress);
     }
 
-    private static POGenerationSide GetGenerationSide(UnifiedRandom random) {
+    private static PollutedOceanGenerationSideConfig GetGenerationSide(UnifiedRandom random) {
         var generationSide = GameplayConfig.Instance.PollutedOceanSide;
 
-        if (generationSide == POGenerationSide.CompleteRandom) {
-            return random.NextBool() ? POGenerationSide.DungeonSide : POGenerationSide.JungleSide;
+        if (generationSide == PollutedOceanGenerationSideConfig.CompleteRandom) {
+            return random.NextBool() ? PollutedOceanGenerationSideConfig.DungeonSide : PollutedOceanGenerationSideConfig.JungleSide;
         }
 
-        if (generationSide != POGenerationSide.Automatic) {
+        if (generationSide != PollutedOceanGenerationSideConfig.Automatic) {
             return generationSide;
         }
 
         if (CalamityMod.Enabled) {
-            return POGenerationSide.JungleSide;
+            return PollutedOceanGenerationSideConfig.JungleSide;
         }
-        return POGenerationSide.DungeonSide;
+        return PollutedOceanGenerationSideConfig.DungeonSide;
     }
 
-    private static void SetGenerationParameters(POGenerationSide side) {
+    private static void SetGenerationParameters(PollutedOceanGenerationSideConfig side) {
         direction = Main.dungeonX * 2 < Main.maxTilesX ? -1 : 1;
-        if (side == POGenerationSide.JungleSide) {
+        if (side == PollutedOceanGenerationSideConfig.JungleSide) {
             direction = -direction;
         }
 

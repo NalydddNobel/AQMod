@@ -21,9 +21,9 @@ CommonTooltips: {
 }
 
 //# Equipment: Accessories
-LaserReticle: {
-	// DisplayName: Laser Reticle
-	// Tooltip: "{0}% reduced spread on ranged weapons"
+BreathConserver: {
+	// DisplayName: Breath Conserver
+	// Tooltip: Restore breath upon breaking tiles and slaying foes
 }
 
 ValentineRing: {
@@ -109,6 +109,11 @@ WeightedHorseshoe: {
 		Daña enemigos al caer a través de ellos a altas velocidades
 		'¡Deberías usar una cadena de verlet, seguro no pasa nada!'
 		'''
+}
+
+LaserReticle: {
+	// DisplayName: Laser Reticle
+	// Tooltip: "{0}% reduced spread on ranged weapons"
 }
 
 HighSteaks: {
@@ -902,10 +907,5 @@ Killifish: {
 
 Piraiba: {
 	// DisplayName: Piraiba
-	// Tooltip: ""
-}
-
-BreathConserver: {
-	// DisplayName: Breath Conserver
 	// Tooltip: ""
 }

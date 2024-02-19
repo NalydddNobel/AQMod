@@ -64,4 +64,10 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
   </ItemGroup>
 	
+  <ItemGroup>
+    <None Remove="Content\Biomes\PollutedOcean\Background\MapBG_Underground.png" />
+    <None Remove="Content\Biomes\PollutedOcean\PollutedOceanBiomeUnderground_Icon.png" />
+    <None Remove="Content\Biomes\PollutedOcean\Water\PollutedOceanBiomeSurface_Icon.png" />
+  </ItemGroup>
+	
 </Project>

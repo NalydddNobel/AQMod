@@ -21,9 +21,9 @@ CommonTooltips: {
 }
 
 //# Equipment: Accessories
-LaserReticle: {
-	DisplayName: 激光瞄准镜
-	Tooltip: 降低{0}%远程武器的离散度
+BreathConserver: {
+	// DisplayName: Breath Conserver
+	// Tooltip: Restore breath upon breaking tiles and slaying foes
 }
 
 ValentineRing: {
@@ -109,6 +109,11 @@ WeightedHorseshoe: {
 		在速度较高时会伤害并穿过敌人
 		'你应该在这上面使用韦尔莱链, 这样它就不会出错了!'
 		'''
+}
+
+LaserReticle: {
+	DisplayName: 激光瞄准镜
+	Tooltip: 降低{0}%远程武器的离散度
 }
 
 HighSteaks: {
@@ -903,9 +908,4 @@ Killifish: {
 Piraiba: {
 	DisplayName: 须鲇鱼
 	Tooltip: ""
-}
-
-BreathConserver: {
-	// DisplayName: Breath Conserver
-	// Tooltip: ""
 }

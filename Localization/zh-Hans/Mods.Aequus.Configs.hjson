@@ -2,7 +2,7 @@
 // ColorImportant2: c/ffcc99
 // ColorNote: c/aaacff
 
-POGenerationSide: {
+PollutedOceanGenerationSideConfig: {
 	/* Tooltip:
 		'''
 		{$Automatic.Label}: Automatically changes the side [{$ColorImportant2}:depending on which mods are enabled].

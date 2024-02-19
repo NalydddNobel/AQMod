@@ -14,7 +14,12 @@ PeacefulGlimmerZone: {
 	TownNPCDialogueName: 柔光
 }
 
-PollutedOceanBiome: {
+PollutedOceanBiomeSurface: {
 	DisplayName: 被污染的海洋
 	TownNPCDialogueName: 被污染的海洋
+}
+
+PollutedOceanBiomeUnderground: {
+	// DisplayName: Polluted Ocean Biome Underground
+	// TownNPCDialogueName: the Polluted Ocean Biome Underground
 }

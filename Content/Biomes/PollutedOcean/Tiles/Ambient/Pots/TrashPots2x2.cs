@@ -15,11 +15,11 @@ public class TrashPots2x2 : BasePot {
     }
 
     protected override bool DoSpecialBiomeTorch(ref int itemID) {
-        itemID = ModContent.GetInstance<PollutedOceanBiome>().BiomeTorchItemType;
+        itemID = ModContent.GetInstance<PollutedOceanBiomeUnderground>().BiomeTorchItemType;
         return true;
     }
 
     protected override int ChooseGlowstick(int i, int j) {
-        return ModContent.GetInstance<PollutedOceanBiome>().BiomeTorchItemType;
+        return ModContent.GetInstance<PollutedOceanBiomeUnderground>().BiomeTorchItemType;
     }
 }

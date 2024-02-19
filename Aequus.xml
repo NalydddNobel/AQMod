@@ -574,6 +574,9 @@
             Lookup for tile Ids which are safe to generate over.
             </summary>
         </member>
+        <member name="T:Aequus.Content.Biomes.PollutedOcean.PollutedOceanBiomeUnderground">
+            <summary>Main class for general things related to the Polluted Ocean biome. Also counts as the Underground Polluted Ocean.</summary>
+        </member>
         <member name="T:Aequus.Content.CrossMod.BossChecklist">
             <summary><see href="link">https://github.com/JavidPack/BossChecklist/wiki/%5B1.4.4%5D-Boss-Log-Entry-Mod-Call#arguments</see></summary>
         </member>
@@ -1614,7 +1617,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 598)</summary>
+            <summary>(Total Textures: 600)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1727,9 +1730,6 @@
         <member name="F:Aequus.AequusTextures.BackgroundRainDroplets">
             <summary>Full Path: Content/Biomes/PollutedOcean/Background/BackgroundRainDroplets</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.MapBG">
-            <summary>Full Path: Content/Biomes/PollutedOcean/Background/MapBG</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.OceanCreviceBG_0">
             <summary>Full Path: Content/Biomes/PollutedOcean/Background/OceanCreviceBG_0</summary>
         </member>
@@ -1745,8 +1745,17 @@
         <member name="F:Aequus.AequusTextures.SurfaceBG_Far">
             <summary>Full Path: Content/Biomes/PollutedOcean/Background/SurfaceBG_Far</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PollutedOceanBestiaryIcon">
-            <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBestiaryIcon</summary>
+        <member name="F:Aequus.AequusTextures.PollutedOceanBiomeSurface_Background">
+            <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeSurface_Background</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanBiomeSurface_Icon">
+            <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeSurface_Icon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanBiomeUnderground_Background">
+            <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeUnderground_Background</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanBiomeUnderground_Icon">
+            <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeUnderground_Icon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PolymerStalactite1x1">
             <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Ambient/Dripstones/PolymerStalactite1x1</summary>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.Content.DataSets;
+using System.Collections.Generic;
 
 namespace Aequus.Old.Content.Potions.Prefixes.StuffedPotions;
 
@@ -14,7 +15,7 @@ public class StuffedPrefix : PotionPrefix {
     }
 
     public override bool CanRoll(Item item) {
-        return base.CanRoll(item) && item.buffType != BuffID.Lucky;
+        return base.CanRoll(item) && !BuffMetadata.CannotChangeDuration.Contains(item.buffType);
     }
 
     public override void ModifyValue(ref float valueMult) {

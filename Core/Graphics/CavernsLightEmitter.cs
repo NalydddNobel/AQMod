@@ -12,8 +12,8 @@ public class CavernsLightEmitter : ModSystem {
     private static bool _appliedHook;
 
     public override void PreUpdateEntities() {
-        if (Main.LocalPlayer.InModBiome<PollutedOceanBiome>()) {
-            CavernLight = PollutedOceanBiome.CavernLight * 0.1f;
+        if (Main.LocalPlayer.InModBiome<PollutedOceanBiomeUnderground>()) {
+            CavernLight = PollutedOceanBiomeUnderground.CavernLight * 0.1f;
         }
         else if (CavernLight != Vector3.Zero) {
             CavernLight *= 0.9f;

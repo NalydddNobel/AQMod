@@ -14,7 +14,12 @@ PeacefulGlimmerZone: {
 	TownNPCDialogueName: the Glimmer
 }
 
-PollutedOceanBiome: {
+PollutedOceanBiomeSurface: {
 	DisplayName: Polluted Ocean
 	TownNPCDialogueName: the Polluted Ocean
+}
+
+PollutedOceanBiomeUnderground: {
+	DisplayName: Polluted Crevices
+	TownNPCDialogueName: the Polluted Crevices
 }

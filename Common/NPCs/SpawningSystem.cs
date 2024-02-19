@@ -20,15 +20,18 @@ public class SpawningSystem : GlobalNPC {
         if (spawnInfo.Invasion) {
             return;
         }
+
         foreach (var b in OverrideAequusBiomes) {
             if (spawnInfo.Player.InModBiome(b)) {
                 return;
             }
         }
 
-        if (spawnInfo.Player.InModBiome<PollutedOceanBiome>()) {
-            PollutedOceanBiome.PopulateSpawnPool(pool, spawnInfo);
-            return;
+        if (spawnInfo.Player.InModBiome<PollutedOceanBiomeSurface>()) {
+            PollutedOceanBiomeSurface.PopulateSpawnPool(pool, spawnInfo);
+        }
+        else if (spawnInfo.Player.InModBiome<PollutedOceanBiomeUnderground>()) {
+            PollutedOceanBiomeUnderground.PopulateSpawnPool(pool, spawnInfo);
         }
     }
 }
