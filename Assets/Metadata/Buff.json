@@ -407,7 +407,8 @@
     "Polarities/Incinerating",
     "Polarities/Pinpointed",
     "Polarities/TolerancePotionCooldownBuff",
-    "Polarities/SpiritBottleDebuff"
+    "Polarities/SpiritBottleDebuff",
+    "Aequus/FoodPoisoningDebuff"
   ],
   "NotTypicalDebuff": [
     "PotionSickness",
@@ -581,7 +582,8 @@
     "ThoriumMod/TrueStrike",
     "ThoriumMod/TrueStrikeTired",
     "ThoriumMod/VampiresCurseBuff",
-    "Polarities/TolerancePotionCooldownBuff"
+    "Polarities/TolerancePotionCooldownBuff",
+    "Aequus/FoodPoisoningDebuff"
   ],
   "DontChangeDuration": [
     "Lucky",
@@ -788,7 +790,14 @@
   "PlayerDoTDebuff": [
     "Aequus/IronLotusDebuff"
   ],
-  "BuffConflicts": {},
+  "BuffConflicts": {
+    "Aequus/SentryBuff": [
+      "Summoning"
+    ],
+    "Summoning": [
+      "Aequus/SentryBuff"
+    ]
+  },
   "IsFireDebuff": {
     "OnFire": true,
     "CursedInferno": true,

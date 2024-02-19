@@ -904,3 +904,8 @@ Piraiba: {
 	DisplayName: 须鲇鱼
 	Tooltip: ""
 }
+
+BreathConserver: {
+	// DisplayName: Breath Conserver
+	// Tooltip: ""
+}

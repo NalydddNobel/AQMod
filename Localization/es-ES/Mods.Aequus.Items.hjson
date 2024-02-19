@@ -904,3 +904,8 @@ Piraiba: {
 	// DisplayName: Piraiba
 	// Tooltip: ""
 }
+
+BreathConserver: {
+	// DisplayName: Breath Conserver
+	// Tooltip: ""
+}

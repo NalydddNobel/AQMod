@@ -191,7 +191,8 @@
     "ThoriumMod/AssassinPotion",
     "ThoriumMod/HydrationPotion",
     "Polarities/PiercingPotion",
-    "Polarities/TolerancePotion"
+    "Polarities/TolerancePotion",
+    "Aequus/SentryPotion"
   ],
   "PillarFragmentsByColor": [],
   "ShimmerTooltipResultIgnore": [

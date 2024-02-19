@@ -17,7 +17,7 @@ public class EnergyMaterial : ModSystem {
     public static ModItem Ultimate { get; private set; }
 
     public override void Load() {
-        AddEnergy(nameof(Aquatic), ItemCommons.Rarity.CrabsonLoot + 1, new Vector3(0.05f, 0.3f, 0.33f));
+        AddEnergy(nameof(Aquatic), ItemCommons.Rarity.AquaticBossLoot + 1, new Vector3(0.05f, 0.3f, 0.33f));
         AddEnergy(nameof(Demonic), ItemCommons.Rarity.WallOfFleshLoot + 1, new Vector3(0.5f, 0.1f, 0.1f));
         AddEnergy(nameof(Cosmic), ItemCommons.Rarity.OmegaStariteLoot + 1, new Vector3(0.3f, 0.3f, 0.8f));
         AddEnergy(nameof(Atmospheric), ItemCommons.Rarity.DustDevilLoot + 1, new Vector3(0.33f, 0.15f, 0.05f));

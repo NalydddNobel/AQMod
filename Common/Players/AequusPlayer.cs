@@ -17,6 +17,7 @@ public partial class AequusPlayer : ModPlayer {
     public override void Load() {
         _resetEffects = new();
         _resetEffects.Generate();
+        IL_Player.PickTile += IL_Player_PickTile;
         On_Player.UpdateVisibleAccessories += On_Player_UpdateVisibleAccessories;
         On_PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
         On_ItemSlot.RightClick_ItemArray_int_int += ItemSlot_RightClick;

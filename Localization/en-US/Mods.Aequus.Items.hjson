@@ -21,9 +21,9 @@ CommonTooltips: {
 }
 
 //# Equipment: Accessories
-LaserReticle: {
-	DisplayName: Laser Reticle
-	Tooltip: "{0}% reduced spread on ranged weapons"
+BreathConserver: {
+	DisplayName: Breath Conserver
+	Tooltip: Restore breath upon breaking tiles
 }
 
 ValentineRing: {
@@ -109,6 +109,11 @@ WeightedHorseshoe: {
 		Damage and fall through enemies while at high speeds
 		'You should put a verlet chain on this, it won't be buggy!'
 		'''
+}
+
+LaserReticle: {
+	DisplayName: Laser Reticle
+	Tooltip: "{0}% reduced spread on ranged weapons"
 }
 
 HighSteaks: {

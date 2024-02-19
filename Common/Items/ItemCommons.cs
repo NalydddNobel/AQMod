@@ -9,7 +9,7 @@ public static class ItemCommons {
         public static int PollutedOceanLoot { get; set; } = ItemRarityID.Blue;
 
         /// <summary><see cref="ItemRarityID.Blue"/></summary>
-        public static int CrabsonLoot { get; set; } = ItemRarityID.Blue;
+        public static int AquaticBossLoot { get; set; } = ItemRarityID.Blue;
 
         /// <summary><see cref="ItemRarityID.LightPurple"/></summary>
         public static int JungleLoot { get; set; } = ItemRarityID.Green;
@@ -72,7 +72,7 @@ public static class ItemCommons {
         public static int PollutedOceanLoot { get; set; } = Item.sellPrice(silver: 50);
 
         /// <summary>75 Silver</summary>
-        public static int CrabsonLoot { get; set; } = Item.sellPrice(silver: 75);
+        public static int AquaticBossLoot { get; set; } = Item.sellPrice(silver: 75);
 
         /// <summary>1 Gold</summary>
         public static int GlimmerLoot { get; set; } = Item.sellPrice(gold: 1);

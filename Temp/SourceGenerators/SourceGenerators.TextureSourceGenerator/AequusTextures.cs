@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 596)</summary>
+/// <summary>(Total Textures: 598)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -333,6 +333,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SlimyBlueBalloon = new("Aequus/Content/Equipment/Accessories/Balloons/SlimyBlueBalloon");
     /// <summary>Full Path: Content/Equipment/Accessories/Balloons/SlimyBlueBalloon_Balloon</summary>
     public static readonly RequestCache<Texture2D> SlimyBlueBalloon_Balloon = new("Aequus/Content/Equipment/Accessories/Balloons/SlimyBlueBalloon_Balloon");
+    /// <summary>Full Path: Content/Equipment/Accessories/Breath/BreathConserver</summary>
+    public static readonly RequestCache<Texture2D> BreathConserver = new("Aequus/Content/Equipment/Accessories/Breath/BreathConserver");
+    /// <summary>Full Path: Content/Equipment/Accessories/Breath/BreathConserver_Back</summary>
+    public static readonly RequestCache<Texture2D> BreathConserver_Back = new("Aequus/Content/Equipment/Accessories/Breath/BreathConserver_Back");
     /// <summary>Full Path: Content/Equipment/Accessories/FlashwayShield/FlashwayShield</summary>
     public static readonly RequestCache<Texture2D> FlashwayShield = new("Aequus/Content/Equipment/Accessories/FlashwayShield/FlashwayShield");
     /// <summary>Full Path: Content/Equipment/Accessories/FlashwayShield/FlashwayShield_Shield</summary>

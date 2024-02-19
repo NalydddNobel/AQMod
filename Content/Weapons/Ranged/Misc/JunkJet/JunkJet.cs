@@ -74,8 +74,8 @@ public class JunkJet : ModItem {
         Item.UseSound = AequusSounds.JunkJetShoot;
         Item.noMelee = true;
         Item.autoReuse = true;
-        Item.rare = ItemCommons.Rarity.CrabsonLoot;
-        Item.value = ItemCommons.Price.CrabsonLoot;
+        Item.rare = ItemCommons.Rarity.PollutedOceanLoot;
+        Item.value = ItemCommons.Price.PollutedOceanLoot;
         Item.useAmmo = AmmoID.Bullet;
     }
     #endregion

@@ -94,7 +94,7 @@ public class UnderwaterBubbleParticles : ParallelParticleArray<UnderwaterBubbleP
             if (Main.rand.NextBool(240)) {
                 bubble.Frame--;
             }
-            if (!Collision.WetCollision(bubble.Location, 0, 0) || Collision.LavaCollision(bubble.Location, 0, 0) || bubble.Frame < 0 || opacity <= 0f) {
+            if (bubble.Opacity < 0.975f && (!Collision.WetCollision(bubble.Location - new Vector2(8f, 16f), 16, 16) || Collision.LavaCollision(bubble.Location, 0, 0) || bubble.Frame < 0 || opacity <= 0f)) {
                 bubble.Active = false;
                 continue;
             }
