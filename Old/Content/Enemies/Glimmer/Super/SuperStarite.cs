@@ -379,8 +379,8 @@ public class SuperStarite : ModNPC, ITrackTimeBetweenHits {
         Main.spriteBatch.Draw(texture, NPC.position + offset - screenPos + new Vector2(1f, 4f), NPC.frame, drawColor, rotation, origin, NPC.scale, SpriteEffects.None, 0f);
 
         var bloom = AequusTextures.Bloom;
-        Main.spriteBatch.Draw(bloom, NPC.position + offset - screenPos, null, bloomColor * 0.5f, 0f, bloom.Size() / 2f, NPC.scale * 0.6f, SpriteEffects.None, 0f);
-        Main.spriteBatch.Draw(bloom, NPC.position + offset - screenPos, null, bloomColor * 0.25f, 0f, bloom.Size() / 2f, NPC.scale * 0.9f, SpriteEffects.None, 0f);
+        //Main.spriteBatch.Draw(bloom, NPC.position + offset - screenPos, null, bloomColor * 0.5f, 0f, bloom.Size() / 2f, NPC.scale * 0.6f, SpriteEffects.None, 0f);
+        //Main.spriteBatch.Draw(bloom, NPC.position + offset - screenPos, null, bloomColor * 0.25f, 0f, bloom.Size() / 2f, NPC.scale * 0.9f, SpriteEffects.None, 0f);
         Main.spriteBatch.Draw(texture, NPC.position + offset - screenPos, coreFrame, drawColor, 0f, NPC.frame.Size()/2f, NPC.scale, SpriteEffects.None, 0f);
         if ((int)NPC.ai[0] == -2) {
             DrawDeathExplosion(NPC.position + offset - screenPos);

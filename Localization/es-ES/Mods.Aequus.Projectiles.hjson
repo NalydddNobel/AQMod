@@ -70,5 +70,5 @@ DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 // PhysicistSentryProj.DisplayName: "{$Items.PhysicistSentry.DisplayName}"
 // PhysicsGunProj.DisplayName: "{$Items.PhysicsGun.DisplayName}"
 // GunnerDroneProj.DisplayName: "{$NPCs.GunnerDrone.DisplayName}"
-// SuperStarSwordProj.DisplayName: Super Star Sword Proj
-// SuperStarSwordSlash.DisplayName: Super Star Sword Slash
+// SuperStarSwordProj.DisplayName: "{$Items.SuperStarSword.DisplayName}"
+// SuperStarSwordSlash.DisplayName: "{$Items.SuperStarSword.DisplayName}"

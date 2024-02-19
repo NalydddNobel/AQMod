@@ -336,8 +336,10 @@ public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
     }
 
     public override bool CheckDead() {
-        if (State == STATE_DEAD)
+        if (State == STATE_DEAD) {
             return true;
+        }
+
         State = STATE_DEAD;
         NPC.ai[1] = 0f;
         NPC.ai[2] = 0f;
@@ -406,10 +408,10 @@ public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
             for (int j = 0; j < 5; j++) {
                 Vector2[] array = armPositions[j].ToArray();
                 float[] rotationsArray = OldDrawHelper.GenerateRotationArr(array);
-                DrawHelper.DrawBasicVertexLineWithProceduralPadding(AequusTextures.Trail, armPositions[j].ToArray(), rotationsArray,
-                    (p) => GlimmerColors.Blue with { A = 0 },
-                    (p) => 50f
-                );
+                DrawHelper.DrawBasicVertexLine(TextureAssets.Extra[ExtrasID.RainbowRodTrailShape].Value, armPositions[j].ToArray(), rotationsArray,
+                    (p) => GlimmerColors.Red with { A = 0 } * (1f - p),
+                    (p) => 46f
+                , -Main.screenPosition);
             }
 
             Main.spriteBatch.End();

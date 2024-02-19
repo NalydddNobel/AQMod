@@ -1,7 +1,4 @@
 DisplayName: 原版更改
-ColorImportant: c/ffffbb
-ColorImportant2: c/ffcc99
-ColorNote: c/aaacff
 NoteExploit: "[{$ColorNote}:如若出于个人偏好或为防止意外利用, 请禁用该设置.]"
 
 MoveTreasureMagnet: {
@@ -62,4 +59,13 @@ MovePortalGun: {
 
 		{$NoteExploit}
 		'''
+}
+
+MoveMagicConch: {
+	// Label: "[i:MagicConch] Move Magic Conch"
+	/* Tooltip:
+		'''
+		When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Magic Conch] can be found in the [{$ColorImportant}:Polluted Ocean],
+		and will [{$ColorImportant}:no longer be found] in the [{$ColorImportant2}:Underground Desert].
+		''' */
 }
