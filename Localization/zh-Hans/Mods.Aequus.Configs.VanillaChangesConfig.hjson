@@ -62,10 +62,10 @@ MovePortalGun: {
 }
 
 MoveMagicConch: {
-	// Label: "[i:MagicConch] Move Magic Conch"
-	/* Tooltip:
+	Label: "[i:MagicConch] 移动魔法海螺"
+	Tooltip:
 		'''
-		When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Magic Conch] can be found in the [{$ColorImportant}:Polluted Ocean],
-		and will [{$ColorImportant}:no longer be found] in the [{$ColorImportant2}:Underground Desert].
-		''' */
+		[{$ColorImportant}:启用后], [{$ColorImportant}:魔法海螺]可以在[{$ColorImportant}:被污染的海洋]中发现,
+		并且[{$ColorImportant2}:地下沙漠]中的[{$ColorImportant}:不会再出现].
+		'''
 }

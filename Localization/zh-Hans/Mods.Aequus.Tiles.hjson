@@ -206,7 +206,7 @@ GravityBlock: {
 }
 
 AntiGravityBlock: {
-	MapEntry: 反转重力块
+	MapEntry: 复原重力块
 	ItemDisplayName: "{$Tiles.AntiGravityBlock.MapEntry}"
 	ItemTooltip: ""
 }
