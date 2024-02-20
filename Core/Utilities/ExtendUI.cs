@@ -1,6 +1,4 @@
 ﻿using Aequus.Core.UI;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria.UI;
 
 namespace Aequus.Core.Utilities;
@@ -9,7 +7,7 @@ public static class ExtendUI {
     // TODO: Make this actually check the item slot contexts
     public static bool CurrentlyDrawingHotbarSlot => !Main.playerInventory;
 
-    public static void SetState<T>(this UserInterface ui) where T : UIStateLayer {
+    public static void SetState<T>(this UserInterface ui) where T : UIState, ILoadable {
         ui.SetState(ModContent.GetInstance<T>());
     }
 
@@ -49,6 +47,7 @@ public static class ExtendUI {
         Main.hoverItemName = item.Name;
         Main.HoverItem = item.Clone();
         Main.HoverItem.tooltipContext = context;
+        Main.instance.MouseText("");
     }
 
     public static int BottomLeftInventoryX(bool ignoreCreative = false) {

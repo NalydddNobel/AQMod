@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 602)</summary>
+/// <summary>(Total Textures: 601)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -583,8 +583,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SkyMerchant_CustomHead = new("Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant_CustomHead");
     /// <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant_Head</summary>
     public static readonly RequestCache<Texture2D> SkyMerchant_Head = new("Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant_Head");
-    /// <summary>Full Path: Content/TownNPCs/SkyMerchant/UI/RenameBackIcon</summary>
-    public static readonly RequestCache<Texture2D> RenameBackIcon = new("Aequus/Content/TownNPCs/SkyMerchant/UI/RenameBackIcon");
     /// <summary>Full Path: Content/UI/Map/NameTagBlip</summary>
     public static readonly RequestCache<Texture2D> NameTagBlip = new("Aequus/Content/UI/Map/NameTagBlip");
     /// <summary>Full Path: Content/VanillaChanges/ToolbeltBuilderToggle</summary>
