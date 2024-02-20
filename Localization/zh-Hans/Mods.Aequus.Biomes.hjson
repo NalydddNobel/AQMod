@@ -20,6 +20,6 @@ PollutedOceanBiomeSurface: {
 }
 
 PollutedOceanBiomeUnderground: {
-	// DisplayName: Polluted Ocean Biome Underground
-	// TownNPCDialogueName: the Polluted Ocean Biome Underground
+	DisplayName: 被污染的岩隙
+	TownNPCDialogueName: 被污染的岩隙
 }

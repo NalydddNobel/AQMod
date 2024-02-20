@@ -22,8 +22,8 @@ CommonTooltips: {
 
 //# Equipment: Accessories
 BreathConserver: {
-	// DisplayName: Breath Conserver
-	// Tooltip: Restore breath upon breaking tiles and slaying foes
+	DisplayName: 呼吸救生器
+	Tooltip: 摧毁物块以及击杀敌人时会回复呼吸条
 }
 
 ValentineRing: {
