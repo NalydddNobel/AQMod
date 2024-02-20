@@ -20,7 +20,7 @@ public class SkyMerchantRenameUIState : UIState, ILoad {
     public override void OnInitialize() {
         Left.Set(InventoryUI.LeftInventoryPosition, 0f);
         Top.Set(InventoryUI.BottomInventoryY + 12, 0f);
-        Width.Set(510, 0f);
+        Width.Set(474, 0f);
         Height.Set(100, 0f);
 
         TextBox = new RenameTextBox("") {
@@ -42,7 +42,6 @@ public class SkyMerchantRenameUIState : UIState, ILoad {
                 renameItem.UpdateCustomName(ReceiveItem.Item);
             }
         };
-        TextBox.OnLeftClick += (sender, e) => (e as RenameTextBox).ToggleText();
         TextBox.SetTextMaxLength(60);
         TextBox.Width.Set(Width.Pixels, Width.Percent);
         TextBox.Height.Set(30, 0f);
@@ -67,6 +66,8 @@ public class SkyMerchantRenameUIState : UIState, ILoad {
             }
 
             TextBox.SetText(to.Name);
+            TextBox.Unhighlight();
+            TextBox.BringCursorToEnd();
 
             if (!TextBox.IsWritingText) {
                 TextBox.ToggleText();
@@ -99,10 +100,12 @@ public class SkyMerchantRenameUIState : UIState, ILoad {
         };
         ReceiveItem.OnItemSwap += (from, to) => {
             Main.LocalPlayer.BuyItem(RenameItem.GetRenamePrice(ReceiveItem.Item));
-            TextBox.SetText("");
             SendItem.Item.TurnToAir();
             SoundEngine.PlaySound(SoundID.Coins);
 
+            TextBox.SetText("");
+            TextBox.Unhighlight();
+            TextBox.BringCursorToEnd();
             if (TextBox.IsWritingText) {
                 TextBox.ToggleText();
             }
@@ -115,7 +118,7 @@ public class SkyMerchantRenameUIState : UIState, ILoad {
 
         Append(ReceiveItem);
 
-        Asset<Texture2D> texturePackButtons = ModContent.Request<Texture2D>("Terraria/Images/UI/TexturePackButtons");
+        Asset<Texture2D> texturePackButtons = ModContent.Request<Texture2D>("Terraria/Images/UI/TexturePackButtons", AssetRequestMode.ImmediateLoad);
         UIImageFramed image = new UIImageFramed(texturePackButtons, texturePackButtons.Frame(horizontalFrames: 2, verticalFrames: 2, frameX: 1, frameY: 1));
         image.Left.Set(SendItem.Width.Pixels, SendItem.Width.Percent);
         image.Top.Set(SendItem.Top.Pixels + 8f, SendItem.Width.Percent);
