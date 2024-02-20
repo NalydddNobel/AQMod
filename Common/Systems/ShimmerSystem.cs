@@ -8,6 +8,7 @@ using Aequus.Content.Equipment.Accessories.Balloons;
 using Aequus.Content.Equipment.Accessories.GrandReward;
 using Aequus.Content.Equipment.Accessories.Informational.Monocle;
 using Aequus.Content.Equipment.Accessories.WeightedHorseshoe;
+using Aequus.Content.PermaPowerups.Shimmer;
 using Aequus.Content.Tools.MagicMirrors.PhaseMirror;
 using Aequus.Content.Weapons.Magic.Furystar;
 using System.Security.Cryptography;
@@ -26,7 +27,8 @@ public class ShimmerSystem : ModSystem {
     public static void RegisterShimmerTransmutations() {
         ItemSets.ShimmerTransformToItem[ModContent.ItemType<GrandReward>()] = ModContent.ItemType<CosmicChest>();
         ItemSets.ShimmerTransformToItem[ModContent.ItemType<RichMansMonocle>()] = ModContent.ItemType<ShimmerMonocle>();
-        ItemSets.ShimmerTransformToItem[ItemID.SuspiciousLookingEye] = ModContent.GetInstance<SwagEyePet>().PetItem.Type;
+        SetShimmerResultSafely(ItemID.TinkerersWorkshop, ModContent.ItemType<TinkerersGuidebook>());
+        SetShimmerResultSafely(ItemID.SuspiciousLookingEye, ModContent.GetInstance<SwagEyePet>().PetItem.Type);
 
         CreateShimmerLoop(ModContent.ItemType<Furystar>(), ItemID.Starfury);
         CreateShimmerLoop(ModContent.ItemType<SlimyBlueBalloon>(), ItemID.ShinyRedBalloon);

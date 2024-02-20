@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.ItemPrefixes;
-using Aequus.Common.UI;
+using Aequus.Core.UI;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
@@ -43,7 +43,7 @@ public sealed class CooldownGlobalItem : GlobalItem {
         if (time < 30f) {
             slotColor *= 1f + (1f - time / 30f);
         }
-        if (!UIHelper.CurrentlyDrawingHotbarSlot) {
+        if (!ExtendUI.CurrentlyDrawingHotbarSlot) {
             slotColor *= 0.4f;
         }
         slotColor = Utils.MultiplyRGBA(slotColor, Main.inventoryBack);
@@ -59,15 +59,13 @@ public sealed class CooldownGlobalItem : GlobalItem {
     }
 
     public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
-        if (item.ModItem is not ICooldownItem cooldownItem) {
+        if (item.ModItem is not ICooldownItem cooldownItem 
+            || !UISystem.InventorySlotContexts.Contains(CurrentSlot.Instance.Context) 
+            || !cooldownItem.TryGetCooldown(Main.LocalPlayer, out var timer) || !timer.Active) {
             return true;
         }
 
-        if (!cooldownItem.TryGetCooldown(Main.LocalPlayer, out var timer) || !timer.Active || UISystem.CurrentItemSlot.Context == ItemSlot.Context.MouseItem || UISystem.CurrentItemSlot.Context == ItemSlot.Context.CraftingMaterial) {
-            return true;
-        }
-
-        if (!UIHelper.CurrentlyDrawingHotbarSlot) {
+        if (!ExtendUI.CurrentlyDrawingHotbarSlot) {
             int timerFrameIndex = (int)(Main.GlobalTimeWrappedHourly * 8f) % 8;
             Texture2D timerTexture = AequusTextures.ItemCooldown;
             Rectangle timerFrame = timerTexture.Frame(verticalFrames: 8, frameY: timerFrameIndex);

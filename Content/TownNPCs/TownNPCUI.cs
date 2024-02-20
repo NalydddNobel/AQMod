@@ -18,7 +18,7 @@ public class TownNPCUI : UILayer {
             Exclamation popup = NPCExclamations[npcIndex] = new Exclamation();
             popup.Opacity = 0f;
 
-            Activate();
+            this.Activate();
         }
     }
 

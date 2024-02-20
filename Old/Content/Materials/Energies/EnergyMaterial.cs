@@ -1,7 +1,8 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Common.UI;
 using Aequus.Core.ContentGeneration;
+using Aequus.Core.UI;
 using System;
+using System.Linq;
 using Terraria.GameContent;
 using Terraria.UI;
 using Terraria.Utilities;
@@ -93,7 +94,7 @@ public class EnergyMaterial : ModSystem {
 
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
             float lensFlareScale = 1.2f;
-            if (!Main.playerInventory || UISystem.CurrentItemSlot.Context == ItemSlot.Context.CraftingMaterial || UISystem.CurrentItemSlot.Context == ItemSlot.Context.MouseItem) {
+            if (!Main.playerInventory || !UISystem.InventorySlotContexts.Contains(CurrentSlot.Instance.Context)) {
                 lensFlareScale = 0f;
             }
             DrawGodItem(spriteBatch, TextureAssets.Item[Type].Value, frame, origin, position, 0f, scale, lensFlareScale);

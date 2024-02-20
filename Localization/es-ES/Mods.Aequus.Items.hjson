@@ -579,6 +579,21 @@ SuperRestorationPotion: {
 	Tooltip: "{$ItemTooltip.RestorationPotion}"
 }
 
+NoHitReward: {
+	// DisplayName: A Victor's Award
+	/* Tooltip:
+		'''
+		Permanently allows you to respawn at maximum life
+		'Granted to the ones who go the extra mile!'
+		''' */
+}
+
+TinkerersGuidebook: {
+	// DisplayName: Tinkerer's Guidebook
+	// Tooltip: Permanently increases odds of rolling positive prefixes from reforge services
+	// DisplayMessage: The Goblin Tinkerer's profits begin to dwindle!
+}
+
 CosmicChest: {
 	DisplayName: Suvenir Afortunado
 	Tooltip: Permanentemente aumenta el índice de objetos que sueltan los enemigos

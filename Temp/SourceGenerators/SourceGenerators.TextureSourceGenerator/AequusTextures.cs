@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 600)</summary>
+/// <summary>(Total Textures: 602)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -353,8 +353,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> GoldenWind = new("Aequus/Content/Equipment/Accessories/GoldenFeather/GoldenWind");
     /// <summary>Full Path: Content/Equipment/Accessories/GoldenFeather/GoldenWindBuff</summary>
     public static readonly RequestCache<Texture2D> GoldenWindBuff = new("Aequus/Content/Equipment/Accessories/GoldenFeather/GoldenWindBuff");
-    /// <summary>Full Path: Content/Equipment/Accessories/GrandReward/CosmicChest</summary>
-    public static readonly RequestCache<Texture2D> CosmicChest = new("Aequus/Content/Equipment/Accessories/GrandReward/CosmicChest");
     /// <summary>Full Path: Content/Equipment/Accessories/GrandReward/GrandReward</summary>
     public static readonly RequestCache<Texture2D> GrandReward = new("Aequus/Content/Equipment/Accessories/GrandReward/GrandReward");
     /// <summary>Full Path: Content/Equipment/Accessories/Informational/Calendar/Calendar</summary>
@@ -455,6 +453,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> NetherStarMask = new("Aequus/Content/PermaPowerups/NetherStar/NetherStarMask");
     /// <summary>Full Path: Content/PermaPowerups/NetherStar/NetherStar_Glow</summary>
     public static readonly RequestCache<Texture2D> NetherStar_Glow = new("Aequus/Content/PermaPowerups/NetherStar/NetherStar_Glow");
+    /// <summary>Full Path: Content/PermaPowerups/NoHit/NoHitReward</summary>
+    public static readonly RequestCache<Texture2D> NoHitReward = new("Aequus/Content/PermaPowerups/NoHit/NoHitReward");
+    /// <summary>Full Path: Content/PermaPowerups/Shimmer/CosmicChest</summary>
+    public static readonly RequestCache<Texture2D> CosmicChest = new("Aequus/Content/PermaPowerups/Shimmer/CosmicChest");
+    /// <summary>Full Path: Content/PermaPowerups/Shimmer/TinkerersGuidebook</summary>
+    public static readonly RequestCache<Texture2D> TinkerersGuidebook = new("Aequus/Content/PermaPowerups/Shimmer/TinkerersGuidebook");
     /// <summary>Full Path: Content/Pets/Miner/UndeadMinerPet</summary>
     public static readonly RequestCache<Texture2D> UndeadMinerPet = new("Aequus/Content/Pets/Miner/UndeadMinerPet");
     /// <summary>Full Path: Content/Pets/Miner/UndeadMinerPetBuff</summary>

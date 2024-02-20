@@ -51,6 +51,9 @@ public class WorldState : ModSystem {
     public static bool DownedOrganicBossFright { get => _downedOrganicBossFright; }
     public static bool DownedTrueFinalBoss { get => _downedTrueFinalBoss; }
 
+    [SaveData("ReforgeBook")]
+    public static bool UsedReforgeBook;
+
     public override void SaveWorldData(TagCompound tag) {
         SaveDataAttribute.SaveData(tag, this);
     }

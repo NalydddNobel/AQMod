@@ -7,9 +7,11 @@ using Terraria.UI.Gamepad;
 
 namespace Aequus.Core.UI;
 
-public class InventoryUISystem : ModSystem {
+public class InventoryUI : ModSystem {
     public static int CoinsAmmoOffsetX { get; internal set; }
     public static int RightsideButtonsOffsetY { get; internal set; }
+    public static int BottomInventoryY { get; set; } = 260;
+    public static int LeftInventoryPosition { get; set; } = 20;
 
     public override void Load() {
         IL_Main.DrawInventory += IL_Main_DrawInventory;
@@ -17,6 +19,43 @@ public class InventoryUISystem : ModSystem {
         IL_Main.DrawEmoteBubblesButton += IL_Main_DrawEmoteAndBestiaryButton;
     }
 
+    public override void UpdateUI(GameTime gameTime) {
+        if (!Main.LocalPlayer.TryGetModPlayer(out BackpackPlayer aequusPlayer)) {
+            return;
+        }
+        BackpackLoader.AnimateBackpacks(aequusPlayer.backpacks, out int totalInventorySlots, out int activeBackpacks);
+
+        int coinsAmmoOffsetWantedX = 0;
+        if (totalInventorySlots > 0) {
+            coinsAmmoOffsetWantedX = (int)(((totalInventorySlots - 1) / 5 + 1) * BackpackSlotsUI.SlotWidth * BackpackSlotsUI.InventoryScale) + BackpackSlotsUI.BackpackPadding * activeBackpacks;
+        }
+
+        if (CoinsAmmoOffsetX < coinsAmmoOffsetWantedX) {
+            CoinsAmmoOffsetX = (int)MathHelper.Lerp(CoinsAmmoOffsetX, coinsAmmoOffsetWantedX, 0.33f);
+            CoinsAmmoOffsetX++;
+            if (CoinsAmmoOffsetX > coinsAmmoOffsetWantedX) {
+                CoinsAmmoOffsetX = coinsAmmoOffsetWantedX;
+            }
+        }
+        else if (CoinsAmmoOffsetX > coinsAmmoOffsetWantedX) {
+            CoinsAmmoOffsetX = (int)MathHelper.Lerp(CoinsAmmoOffsetX, coinsAmmoOffsetWantedX, 0.1f);
+            CoinsAmmoOffsetX--;
+            if (CoinsAmmoOffsetX < coinsAmmoOffsetWantedX) {
+                CoinsAmmoOffsetX = coinsAmmoOffsetWantedX;
+            }
+        }
+
+        if (CoinsAmmoOffsetX > 0) {
+            if (RightsideButtonsOffsetY < 16) {
+                RightsideButtonsOffsetY++;
+            }
+        }
+        else if (RightsideButtonsOffsetY > 0) {
+            RightsideButtonsOffsetY--;
+        }
+    }
+
+    #region Hooks
     private void IL_Main_DrawEmoteAndBestiaryButton(ILContext il) {
         //MonoModHooks.DumpIL(ModContent.GetInstance<Aequus>(), il);
         var cursor = new ILCursor(il);
@@ -124,40 +163,5 @@ public class InventoryUISystem : ModSystem {
             MonoModHooks.DumpIL(ModContent.GetInstance<Aequus>(), il);
         }
     }
-
-    public override void UpdateUI(GameTime gameTime) {
-        if (!Main.LocalPlayer.TryGetModPlayer(out BackpackPlayer aequusPlayer)) {
-            return;
-        }
-        BackpackLoader.AnimateBackpacks(aequusPlayer.backpacks, out int totalInventorySlots, out int activeBackpacks);
-
-        int coinsAmmoOffsetWantedX = 0;
-        if (totalInventorySlots > 0) {
-            coinsAmmoOffsetWantedX = (int)(((totalInventorySlots - 1) / 5 + 1) * BackpackSlotsUI.SlotWidth * BackpackSlotsUI.InventoryScale) + BackpackSlotsUI.BackpackPadding * activeBackpacks;
-        }
-
-        if (CoinsAmmoOffsetX < coinsAmmoOffsetWantedX) {
-            CoinsAmmoOffsetX = (int)MathHelper.Lerp(CoinsAmmoOffsetX, coinsAmmoOffsetWantedX, 0.33f);
-            CoinsAmmoOffsetX++;
-            if (CoinsAmmoOffsetX > coinsAmmoOffsetWantedX) {
-                CoinsAmmoOffsetX = coinsAmmoOffsetWantedX;
-            }
-        }
-        else if (CoinsAmmoOffsetX > coinsAmmoOffsetWantedX) {
-            CoinsAmmoOffsetX = (int)MathHelper.Lerp(CoinsAmmoOffsetX, coinsAmmoOffsetWantedX, 0.1f);
-            CoinsAmmoOffsetX--;
-            if (CoinsAmmoOffsetX < coinsAmmoOffsetWantedX) {
-                CoinsAmmoOffsetX = coinsAmmoOffsetWantedX;
-            }
-        }
-
-        if (CoinsAmmoOffsetX > 0) {
-            if (RightsideButtonsOffsetY < 16) {
-                RightsideButtonsOffsetY++;
-            }
-        }
-        else if (RightsideButtonsOffsetY > 0) {
-            RightsideButtonsOffsetY--;
-        }
-    }
+    #endregion
 }

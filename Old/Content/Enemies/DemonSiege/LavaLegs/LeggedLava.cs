@@ -36,9 +36,7 @@ public class LeggedLava : ModNPC {
             Position = new Vector2(1f, 0f)
         });
 
-        foreach (int buff in BuffMetadata.DemonSiegeImmune) {
-            NPCSets.SpecificDebuffImmunity[Type][buff] = true;
-        }
+        NPCSets.ImmuneToRegularBuffs[Type] = true;
         NPCMetadata.DealsHeatDamage.Add(Type);
     }
 

@@ -1,8 +1,8 @@
 ﻿using Aequus.Common.Backpacks;
 using Aequus.Common.Items.Components;
-using Aequus.Common.UI;
 using Aequus.Content.DataSets;
 using Aequus.Core.CodeGeneration;
+using Aequus.Core.UI;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -70,9 +70,6 @@ public partial class AequusPlayer {
         if (inventory[slot].ModItem is ITransformItem transformItem && (context == ItemSlot.Context.InventoryItem || Math.Abs(context) == ItemSlot.Context.EquipAccessory) && Main.mouseRight && Main.mouseRightRelease && Main.LocalPlayer.ItemTimeIsZero && CombinedHooks.CanUseItem(Player, inventory[slot])) {
             transformItem.SlotTransform(inventory, context, slot);
             Main.mouseRightRelease = false;
-        }
-        if (UISystem.TalkInterface?.CurrentState is AequusUIState aequusUI) {
-            returnValue |= aequusUI.HoverSlot(inventory, context, slot);
         }
         return returnValue;
     }

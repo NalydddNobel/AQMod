@@ -14,7 +14,7 @@ public class NPCNameTagPopup : UILayer {
         Popup popup = NPCPopups[npcIndex] = new Popup();
         popup.Time = 1f;
 
-        Activate();
+        this.Activate();
     }
 
     public override bool OnUIUpdate(GameTime gameTime) {

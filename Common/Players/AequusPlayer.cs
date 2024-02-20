@@ -44,6 +44,7 @@ public partial class AequusPlayer : ModPlayer {
 
     public override void OnRespawn() {
         timeSinceRespawn = 0;
+        DoPermanentMaxHPRespawn();
     }
 
     public override void OnEnterWorld() {
@@ -57,7 +58,7 @@ public partial class AequusPlayer : ModPlayer {
     }
 
     public override void PostUpdateEquips() {
-        UpdateCosmicChest();
+        DoPermanentStatBoosts();
         UpdateWeightedHorseshoe();
         UpdateTeamEffects();
         Player.wingTimeMax = (int)wingTime.ApplyTo(Player.wingTimeMax);

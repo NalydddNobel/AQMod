@@ -9,7 +9,7 @@ public class DeathTips : UILayer {
 
     public override void OnPreUpdatePlayers() {
         if (ClientConfig.Instance.ShowDeathTips && !Active && Main.LocalPlayer.dead && !Main.LocalPlayer.ghost) {
-            Activate();
+            this.Activate();
         }
     }
 

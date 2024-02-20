@@ -26,9 +26,7 @@ public class KeeperImp : ModNPC {
         NPCSets.NPCBestiaryDrawOffset.Add(Type, new() {
             Position = new Vector2(1f, 12f)
         });
-        foreach (int buff in BuffMetadata.DemonSiegeImmune) {
-            NPCSets.SpecificDebuffImmunity[Type][buff] = true;
-        }
+        NPCSets.ImmuneToRegularBuffs[Type] = true;
         NPCMetadata.DealsHeatDamage.Add(Type);
     }
 

@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Items.Tooltips;
-using Aequus.Common.UI;
 using Aequus.Content.Equipment.Accessories.ScavengerBag;
 using Aequus.Core.UI;
 using System;
@@ -89,7 +88,7 @@ public class BackpackSlotsUI : UILayer {
                     Main.spriteBatch.Draw(shinyTexture, position, null, slotColor, 0f, slotOrigin, Main.inventoryScale, SpriteEffects.None, 0f);
                 }
             }
-            ItemSlotRenderer.DrawFullItem(backpack.Inventory[i], context, i, Main.spriteBatch, corner, position, Main.inventoryScale, 32f, Color.White, Color.White);
+            ItemSlotDrawHelper.DrawFullItem(backpack.Inventory[i], context, i, Main.spriteBatch, corner, position, Main.inventoryScale, 32f, Color.White, Color.White);
             backpack.PostDrawSlot(Main.spriteBatch, position, corner, i);
         }
         if (backpack.nextSlotAnimation > 0f) {
@@ -101,7 +100,7 @@ public class BackpackSlotsUI : UILayer {
         if (slotsDrawn > 0f) {
             float opacity;
             if (!visible) {
-                opacity = Math.Min(InventoryUISystem.CoinsAmmoOffsetX / 50f, 1f);
+                opacity = Math.Min(InventoryUI.CoinsAmmoOffsetX / 50f, 1f);
             }
             else {
                 opacity = MathF.Min(slotsDrawn / 2.5f, 1f);

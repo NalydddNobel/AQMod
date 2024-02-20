@@ -1,9 +1,9 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
-using Aequus.Common.UI;
 using Aequus.Content.TownNPCs.SkyMerchant.UI;
 using Aequus.Content.Weapons.Ranged.Bows.SkyHunterCrossbow;
 using Aequus.Core.ContentGeneration;
+using Aequus.Core.UI;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;
@@ -282,9 +282,7 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
             shopName = "Shop";
         }
         else {
-            Main.playerInventory = true;
-            Main.npcChatText = "";
-            UISystem.TalkInterface.SetState(new RenameItemUIState());
+            ModContent.GetInstance<NPCChat>().Interface.SetState<SkyMerchantRenameUIState>();
         }
     }
 

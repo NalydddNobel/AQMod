@@ -560,9 +560,7 @@
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.dropRolls">
-            <summary>
-            Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
-            </summary>
+            <summary>Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.</summary>
         </member>
         <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedOceanGenerator.SafeTile">
             <summary>
@@ -589,6 +587,9 @@
             <param name="spriteBatch">The SpriteBatch.</param>
             <param name="sourceRectangle">The bounds of the portrait.</param>
             <param name="displayColor">The Color of the entry. It is usually Black when hidden, and White when not hidden.</param>
+        </member>
+        <member name="P:Aequus.Content.DataSets.BuffMetadata.CannotChangeDuration">
+            <summary>Buffs in this set should not have their duration altered, like the Luck Potion effect.</summary>
         </member>
         <member name="P:Aequus.Content.DataSets.BuffMetadata.PlayerStatusDebuff">
             <summary>Set for compatibility with Thorium.</summary>
@@ -946,10 +947,15 @@
         <member name="M:Aequus.Core.RefManipulator`1.VoidOverriddenValue">
             <summary>Restores overriden values back to their original value.</summary>
         </member>
+        <member name="M:Aequus.Core.UI.IUserInterfaceLayer.OnUIUpdate(Microsoft.Xna.Framework.GameTime)">
+            <param name="gameTime"></param>
+            <returns>Whether or not to deactivate this UI.</returns>
+        </member>
+        <member name="M:Aequus.Core.UI.IUserInterfaceLayer.OnRemove">
+            <summary>Called right before this UI Layer node is removed.</summary>
+        </member>
         <member name="T:Aequus.Core.UI.UILayer">
-            <summary>
-            Used to simplify UI implementation. Only loads in singleplayer or on multiplayer clients.
-            </summary>
+            <summary>Used to simplify UI implementation. Only loads in singleplayer or on multiplayer clients.</summary>
         </member>
         <member name="M:Aequus.Core.UI.UILayer.#ctor(System.String,System.String,Terraria.UI.InterfaceScaleType,System.Int32)">
             <param name="Name">Name of this layer.</param>
@@ -957,20 +963,17 @@
             <param name="ScaleType">Scale Type of this layer.</param>
             <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
         </member>
-        <member name="M:Aequus.Core.UI.UILayer.Activate">
-            <summary>
-            Activates the UI Layer.
-            </summary>
-        </member>
-        <member name="M:Aequus.Core.UI.UILayer.Deactivate">
-            <summary>
-            Deactivates the UI Layer. This does not instantly remove the layer, instead it will be removed on the next ui update.
-            </summary>
-        </member>
         <member name="T:Aequus.Core.UI.UILayersSystem">
-            <summary>
-            Only loads in singleplayer or on multiplayer clients.
-            </summary>
+            <summary>Only loads in singleplayer or on multiplayer clients.</summary>
+        </member>
+        <member name="M:Aequus.Core.UI.UIStateLayer.#ctor(System.String,System.String,Terraria.UI.InterfaceScaleType,System.Int32)">
+            <param name="Name">Name of this layer.</param>
+            <param name="InsertLayer">Name of the layer to search the index of.</param>
+            <param name="ScaleType">Scale Type of this layer.</param>
+            <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
+        </member>
+        <member name="F:Aequus.Core.UI.UISystem.InventorySlotContexts">
+            <summary>Contains Item Slot Contexts which are usually related to normal inventory slots. Check the current slot context to determine drawing item status UI like cooldowns and ect.</summary>
         </member>
         <member name="T:Aequus.Core.Utilities.ChatTagWriter">
             <summary>Contains helper methods for generating chat tag strings. For item and glyphs, <see cref="T:Terraria.GameContent.UI.Chat.ItemTagHandler"/> and <see cref="T:Terraria.GameContent.UI.Chat.GlyphTagHandler"/> have static helper methods.</summary>
@@ -1349,6 +1352,18 @@
         <member name="M:Aequus.Core.Utilities.ExtendTooltips.RemoveCritChanceModifier(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})">
             <summary>Removes the "PrefixCritChance" tooltip line, if it exists.</summary>
         </member>
+        <member name="M:Aequus.Core.Utilities.ExtendUI.Activate(Aequus.Core.UI.IUserInterfaceLayer)">
+            <summary>Activates the UI Layer.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendUI.Deactivate(Aequus.Core.UI.IUserInterfaceLayer)">
+            <summary>Deactivates the UI Layer. This does not instantly remove the layer, instead it will be removed on the next ui update.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendUI.InventoryDrawCentered(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Draws something with its position set to the center of the inventory slot.
+            Only use in Pre/PostDraw hooks for items.
+            </summary>
+        </member>
         <member name="M:Aequus.Core.Utilities.Helper.RandomTileCoordinates(System.Int32,System.Int32)">
             <summary>
             Gets a consistent <see cref="T:Terraria.Utilities.FastRandom"/> for these tile coordinates.
@@ -1396,12 +1411,6 @@
             <param name="x"></param>
             <param name="y"></param>
             <param name="quiet"></param>
-        </member>
-        <member name="M:Aequus.Core.Utilities.UIHelper.InventoryDrawCentered(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2)">
-            <summary>
-            Draws something with its position set to the center of the inventory slot.
-            Only use in Pre/PostDraw hooks for items.
-            </summary>
         </member>
         <member name="P:Aequus.Core.WorldState.RemixWorldSafeUnderworldRange">
             <summary>Returns a point with the beginning (left) (X) and end (right) (Y) of the 'safe' underworld in remix worlds. This does not represent a point in 2D space, but rather two X coordinates.</summary>
@@ -1617,7 +1626,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 600)</summary>
+            <summary>(Total Textures: 602)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2138,9 +2147,6 @@
         <member name="F:Aequus.AequusTextures.GoldenWindBuff">
             <summary>Full Path: Content/Equipment/Accessories/GoldenFeather/GoldenWindBuff</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CosmicChest">
-            <summary>Full Path: Content/Equipment/Accessories/GrandReward/CosmicChest</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.GrandReward">
             <summary>Full Path: Content/Equipment/Accessories/GrandReward/GrandReward</summary>
         </member>
@@ -2290,6 +2296,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.NetherStar_Glow">
             <summary>Full Path: Content/PermaPowerups/NetherStar/NetherStar_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NoHitReward">
+            <summary>Full Path: Content/PermaPowerups/NoHit/NoHitReward</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CosmicChest">
+            <summary>Full Path: Content/PermaPowerups/Shimmer/CosmicChest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TinkerersGuidebook">
+            <summary>Full Path: Content/PermaPowerups/Shimmer/TinkerersGuidebook</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UndeadMinerPet">
             <summary>Full Path: Content/Pets/Miner/UndeadMinerPet</summary>

@@ -19,7 +19,6 @@ public class CorruptionHellfire : ModBuff, IOnAddBuff {
     public override void SetStaticDefaults() {
         Main.debuff[Type] = true;
         Main.buffNoSave[Type] = true;
-        BuffMetadata.DemonSiegeImmune.Add(Type);
         BuffMetadata.PlayerDoTDebuff.Add(Type);
     }
 

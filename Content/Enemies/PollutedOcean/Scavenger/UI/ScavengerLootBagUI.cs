@@ -1,37 +1,30 @@
-﻿using Aequus.Common.UI;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Aequus.Core.UI;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameInput;
 using Terraria.UI;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger.UI;
 
-public class ScavengerLootBagUI : AequusUIState {
-    public override void OnInitialize() {
-        OverrideSamplerState = SamplerState.LinearClamp;
-
-        Width.Set(750, 0f);
-        Height.Set(100, 0f);
+public class ScavengerLootBagUI : UIStateLayer {
+    public override void OnActivate() {
+        Main.playerInventory = true;
+        Main.npcChatText = "";
     }
 
-    public override void OnDeactivate() {
-        Main.trashSlotOffset = new(0, 0);
+    public override void OnRemove() {
+        Main.trashSlotOffset = new Point16(0, 0);
     }
 
-    public override void Update(GameTime gameTime) {
-        base.Update(gameTime);
-        if (NotTalkingTo<ScavengerLootBag>()) {
-            CloseThisInterface();
-        }
+    public override bool OnUIUpdate(GameTime gameTime) {
+        return Main.LocalPlayer.TalkNPC?.ModNPC is ScavengerLootBag;
     }
 
-    private Vector2 GetSlotPosition(int i) {
+    private static Vector2 GetSlotPosition(int i) {
         return new Vector2(74f + 42f * (i % 10), 260f + 42f * (i / 10));
     }
 
     protected override void DrawSelf(SpriteBatch spriteBatch) {
-        base.DrawSelf(spriteBatch);
         var player = Main.LocalPlayer;
         var talkNPC = player.TalkNPC;
         if (talkNPC?.ModNPC is not ScavengerLootBag lootBag) {
@@ -39,7 +32,7 @@ public class ScavengerLootBagUI : AequusUIState {
         }
 
         Main.inventoryScale = 0.75f;
-        Main.trashSlotOffset = new(4, 170);
+        Main.trashSlotOffset = new Point16(4, 170);
         var slotTexture = TextureAssets.InventoryBack5.Value;
         var slotOrigin = slotTexture.Size() / 2f;
         var slotColor = Main.inventoryBack;
@@ -72,7 +65,9 @@ public class ScavengerLootBagUI : AequusUIState {
                 ItemSlot.MouseHover(lootBag.drops, context, i);
             }
 
-            ItemSlotRenderer.DrawFullItem(lootBag.drops[i], context, i, Main.spriteBatch, slotPosition, slotPosition + slotOrigin * Main.inventoryScale, Main.inventoryScale, 32f, Color.White, Color.White);
+            ItemSlotDrawHelper.DrawFullItem(lootBag.drops[i], context, i, spriteBatch, slotPosition, slotPosition + slotOrigin * Main.inventoryScale, Main.inventoryScale, 32f, Color.White, Color.White);
         }
     }
+
+    public ScavengerLootBagUI() : base("Scavenger Loot Bag", InterfaceLayerNames.NPCSignDialog_24, InterfaceScaleType.UI) { }
 }

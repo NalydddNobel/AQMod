@@ -1,5 +1,4 @@
-﻿using Aequus.Common.UI;
-using Aequus.Core.Collections;
+﻿using Aequus.Core.Collections;
 using Aequus.Core.UI;
 using System;
 using System.Collections.Generic;
@@ -142,7 +141,7 @@ public class ChestLensInterface : UILayer {
                 var clr = Main.mouseColor.HueAdd(GetHueForItem(c.item[i]));
                 Main.spriteBatch.Draw(texture, drawCoords, null, (clr * 0.2f) with { A = 255 } * opacity * 0.66f, 0f, Vector2.Zero, Main.inventoryScale, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(TextureAssets.InventoryBack16.Value, drawCoords, null, clr * opacity * 0.66f, 0f, Vector2.Zero, Main.inventoryScale, SpriteEffects.None, 0f);
-                ItemSlotRenderer.Draw(spriteBatch, c.item[i], drawCoords, Color.White * opacity);
+                ItemSlotDrawHelper.DrawSimple(spriteBatch, c.item[i], drawCoords, ItemSlot.Context.ChestItem, color: Color.White * opacity);
             }
             Main.inventoryScale = inventoryScale;
         }

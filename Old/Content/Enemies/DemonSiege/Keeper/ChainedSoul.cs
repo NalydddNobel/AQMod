@@ -5,6 +5,7 @@ using System;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using static Aequus.Old.Content.Potions.PotionCanteen.TemplateCanteen;
 
 namespace Aequus.Old.Content.Enemies.DemonSiege.Keeper;
 
@@ -17,9 +18,7 @@ public class ChainedSoul : ModNPC {
             Hide = true,
         };
         NPCSets.CantTakeLunchMoney[Type] = true;
-        foreach (int buff in BuffMetadata.DemonSiegeImmune) {
-            NPCSets.SpecificDebuffImmunity[Type][buff] = true;
-        }
+        NPCSets.ImmuneToRegularBuffs[Type] = true;
         NPCMetadata.DealsHeatDamage.Add(Type);
         NPCMetadata.Soulless.Add(Type);
 

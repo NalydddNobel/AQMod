@@ -1,13 +1,37 @@
-﻿using Aequus.Common.UI;
+﻿using Aequus.Core.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria.UI;
 
 namespace Aequus.Core.Utilities;
 
-public static class UIHelper {
-    public const int LeftInventoryPosition = 20;
+public static class ExtendUI {
     // TODO: Make this actually check the item slot contexts
     public static bool CurrentlyDrawingHotbarSlot => !Main.playerInventory;
+
+    public static void SetState<T>(this UserInterface ui) where T : UIStateLayer {
+        ui.SetState(ModContent.GetInstance<T>());
+    }
+
+    /// <summary>Activates the UI Layer.</summary>
+    public static void Activate(this IUserInterfaceLayer layer) {
+        if (layer.IsActive) {
+            return;
+        }
+
+        layer.OnActivate();
+        ModContent.GetInstance<UILayersSystem>()._active.AddLast(layer);
+        layer.IsActive = true;
+    }
+    /// <summary>Deactivates the UI Layer. This does not instantly remove the layer, instead it will be removed on the next ui update.</summary>
+    public static void Deactivate(this IUserInterfaceLayer layer) {
+        if (!layer.IsActive) {
+            return;
+        }
+
+        layer.OnDeactivate();
+        layer.IsActive = false;
+    }
 
     public static void DrawUIPanel(SpriteBatch sb, Texture2D texture, Rectangle rect, Color color = default(Color)) {
         Utils.DrawSplicedPanel(sb, texture, rect.X, rect.Y, rect.Width, rect.Height, 10, 10, 10, 10, color == default ? Color.White : color);
@@ -28,7 +52,7 @@ public static class UIHelper {
     }
 
     public static int BottomLeftInventoryX(bool ignoreCreative = false) {
-        int left = LeftInventoryPosition;
+        int left = InventoryUI.LeftInventoryPosition;
         if (!ignoreCreative && Main.LocalPlayer.difficulty == 3 && !Main.CreativeMenu.Blocked) {
             left += 48;
         }

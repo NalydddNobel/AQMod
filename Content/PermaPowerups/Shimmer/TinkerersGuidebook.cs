@@ -1,8 +1,9 @@
-﻿namespace Aequus.Content.Equipment.Accessories.GrandReward;
+﻿using Aequus.Core;
 
-[LegacyName("GalaxyCommission", "Moro", "GhostlyGrave")]
-public class CosmicChest : ModItem {
-    public static float LuckIncrease { get; set; } = 0.05f;
+namespace Aequus.Content.PermaPowerups.Shimmer;
+
+public class TinkerersGuidebook : ModItem {
+    public static int BonusRerolls { get; set; } = 2;
 
     public override void SetDefaults() {
         Item.useTime = 45;
@@ -18,11 +19,16 @@ public class CosmicChest : ModItem {
     }
 
     public override bool? UseItem(Player player) {
-        var aequusPlayer = player.GetModPlayer<AequusPlayer>();
-        if (aequusPlayer.usedCosmicChest) {
+        if (WorldState.UsedReforgeBook) {
             return false;
         }
-        aequusPlayer.usedCosmicChest = true;
+
+        WorldState.UsedReforgeBook = true;
+        if (Main.netMode == NetmodeID.Server) {
+            NetMessage.SendData(MessageID.WorldData);
+        }
+        
+        WorldGen.BroadcastText(this.GetLocalization("DisplayMessage").ToNetworkText(), CommonColor.TEXT_EVENT);
         return true;
     }
 }
