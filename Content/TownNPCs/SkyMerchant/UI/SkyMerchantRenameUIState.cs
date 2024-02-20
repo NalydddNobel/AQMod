@@ -23,7 +23,9 @@ public class SkyMerchantRenameUIState : UIState, ILoad {
         Width.Set(474, 0f);
         Height.Set(100, 0f);
 
-        TextBox = new RenameTextBox("") {
+        Color backgroundColor = new Color(20, 125, 30) * 0.785f;
+
+        TextBox = new RenameTextBox("", 0.9f) {
             DrawPanel = true
         };
         TextBox.OnTextChanged += (oldText, newText) => {
@@ -44,12 +46,13 @@ public class SkyMerchantRenameUIState : UIState, ILoad {
         };
         TextBox.SetTextMaxLength(60);
         TextBox.Width.Set(Width.Pixels, Width.Percent);
-        TextBox.Height.Set(30, 0f);
+        TextBox.Height.Set(24, 0f);
         TextBox.Top.Set(50, 0f);
         TextBox.TextHAlign = 0f;
+        TextBox.BackgroundColor = backgroundColor;
         Append(TextBox);
 
-        SendItem = new AequusItemSlotElement(ItemSlot.Context.GuideItem, TextureAssets.InventoryBack.Value, AequusTextures.NameTagBlank) {
+        SendItem = new AequusItemSlotElement(ItemSlot.Context.GuideItem, TextureAssets.InventoryBack3.Value, AequusTextures.NameTagBlank) {
             CanPutItemIntoSlot = RenameItem.CanRename,
             CanTakeItemFromSlot = (i) => true,
         };
@@ -90,7 +93,7 @@ public class SkyMerchantRenameUIState : UIState, ILoad {
 
         Append(SendItem);
 
-        ReceiveItem = new AequusItemSlotElement(ItemSlot.Context.GuideItem, TextureAssets.InventoryBack.Value, AequusTextures.NameTag) {
+        ReceiveItem = new AequusItemSlotElement(ItemSlot.Context.GuideItem, TextureAssets.InventoryBack3.Value, AequusTextures.NameTag) {
             CanTakeItemFromSlot = (i) => {
                 ReceiveItem.GetDimensions();
                 int price = RenameItem.GetRenamePrice(i);

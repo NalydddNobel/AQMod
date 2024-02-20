@@ -221,7 +221,7 @@ public class ImprovedTextBox : UITextPanel<string> {
     private Vector2 GetTextCoordinates(int cursor, string text) {
         cursor = Math.Clamp(cursor, 0, text.Length);
         text = text[..cursor];
-        return new Vector2(ChatManager.GetStringSize(Font, text, new Vector2(TextScale)).X - 6f, IsLarge ? 32f : 16f) * TextScale;
+        return new Vector2(ChatManager.GetStringSize(Font, text, Vector2.One).X - 6f, IsLarge ? 32f : 16f) * TextScale;
     }
 
     private void HandleWriting() {
