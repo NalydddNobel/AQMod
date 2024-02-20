@@ -11,6 +11,7 @@ public class AequusItemSlotElement : UIElement {
     public readonly Rectangle IconFrame;
     public readonly int Context;
 
+    public event Action<Item, int> WhileHoveringItem;
     public Func<Item, bool> CanPutItemIntoSlot { get; set; }
     public Func<Item, bool> CanTakeItemFromSlot { get; set; }
 
@@ -80,8 +81,13 @@ public class AequusItemSlotElement : UIElement {
         base.Draw(spriteBatch);
         Main.inventoryScale = oldScale;
 
-        if (ShowTooltip && CanHover && IsMouseHovering && HasItem) {
-            ExtendUI.HoverItem(_item, ItemSlot.Context.InventoryItem);
+        if (IsMouseHovering) {
+            if (WhileHoveringItem != null) {
+                WhileHoveringItem.Invoke(_item, Context);
+            }
+            else if (HasItem && ShowTooltip && CanHover) {
+                ExtendUI.HoverItem(_item, Context);
+            }
         }
     }
 }

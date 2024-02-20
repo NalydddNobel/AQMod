@@ -47,6 +47,7 @@ public class SkyMerchantRenameUIState : UIState, ILoad {
         TextBox.Width.Set(Width.Pixels, Width.Percent);
         TextBox.Height.Set(30, 0f);
         TextBox.Top.Set(50, 0f);
+        TextBox.TextHAlign = 0f;
         Append(TextBox);
 
         SendItem = new AequusItemSlotElement(ItemSlot.Context.GuideItem, TextureAssets.InventoryBack.Value, AequusTextures.NameTagBlank) {
@@ -69,6 +70,16 @@ public class SkyMerchantRenameUIState : UIState, ILoad {
 
             if (!TextBox.IsWritingText) {
                 TextBox.ToggleText();
+            }
+        };
+        SendItem.WhileHoveringItem += (item, context) => {
+            if (item != null && !item.IsAir) {
+                ExtendUI.HoverItem(item, context);
+            }
+            else {
+                Main.hoverItemName = "";
+                Main.HoverItem.TurnToAir();
+                Main.instance.MouseText(ModContent.GetInstance<SkyMerchant>().GetLocalizedValue("Interface.PlaceHere"));
             }
         };
         SendItem.CanHover = true;
