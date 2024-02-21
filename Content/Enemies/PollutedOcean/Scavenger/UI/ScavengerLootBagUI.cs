@@ -6,7 +6,7 @@ using Terraria.UI;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger.UI;
 
-public class ScavengerLootBagUI : UIState {
+public class ScavengerLootBagUI : UIState, ILoad {
     public override void OnActivate() {
         Main.playerInventory = true;
         Main.npcChatText = "";
@@ -72,4 +72,8 @@ public class ScavengerLootBagUI : UIState {
             ItemSlotDrawHelper.DrawFullItem(lootBag.drops[i], context, i, spriteBatch, slotPosition, slotPosition + slotOrigin * Main.inventoryScale, Main.inventoryScale, 32f, Color.White, Color.White);
         }
     }
+
+    public void Load(Mod mod) { }
+
+    public void Unload() { }
 }

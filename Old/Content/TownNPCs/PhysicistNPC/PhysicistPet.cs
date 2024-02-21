@@ -201,8 +201,10 @@ public class PhysicistPet : ModNPC, IAddRecipes {
         NPC.frameCounter++;
         if (NPC.frameCounter > 6.0) {
             NPC.frame.Y += frameHeight;
-            if (NPC.frame.Y >= frameHeight * Main.npcFrameCount[Type])
+            if (NPC.frame.Y >= frameHeight * Main.npcFrameCount[Type]) {
                 NPC.frame.Y = 0;
+            }
+
             NPC.frameCounter = 0.0;
         }
     }
@@ -212,8 +214,10 @@ public class PhysicistPet : ModNPC, IAddRecipes {
     }
 
     public override void SaveData(TagCompound tag) {
-        if (!string.IsNullOrEmpty(NPC.GivenName))
+        if (!string.IsNullOrEmpty(NPC.GivenName)) {
             tag["Name"] = NPC.GivenName;
+        }
+
         int physIndex = -1;
         int myPhysWhoAmI = (int)NPC.ai[0];
         for (int i = 0; i < Main.maxNPCs; i++) {
@@ -228,8 +232,10 @@ public class PhysicistPet : ModNPC, IAddRecipes {
     }
 
     public override void LoadData(TagCompound tag) {
-        if (tag.TryGet<string>("Name", out var value))
+        if (tag.TryGet<string>("Name", out var value)) {
             NPC.GivenName = value;
+        }
+
         if (tag.TryGet("ParentApparentID", out int findPhys)) {
             int physIndex = -1;
             for (int i = 0; i < Main.maxNPCs; i++) {
@@ -256,9 +262,15 @@ public class PhysicistPet : ModNPC, IAddRecipes {
         var texture = TextureAssets.Npc[Type].Value;
         var glowTexture = AequusTextures.PhysicistPet_Glow.Value;
         var frame = NPC.frame;
-        float opacity = Main.npc[Owner].Opacity * (1f - Main.npc[Owner].shimmerTransparency);
+        float opacity = 1f;
+        bool shimmer = NPC.IsShimmerVariant;
 
-        if (Main.npc[Owner].IsShimmerVariant) {
+        if (NPC.IsABestiaryIconDummy) {
+            opacity *= Main.npc[Owner].Opacity * (1f - Main.npc[Owner].shimmerTransparency);
+            shimmer |= Main.npc[Owner].IsShimmerVariant;
+        }
+
+        if (shimmer) {
             texture = AequusTextures.PhysicistPet_Shimmer.Value;
             glowTexture = AequusTextures.PhysicistPet_Shimmer_Glow.Value;
             int frameY = frame.Y / frame.Height;

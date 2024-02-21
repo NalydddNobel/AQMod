@@ -63,6 +63,7 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
         NPCSets.AttackAverageChance[Type] = 20;
         NPCSets.DangerDetectRange[Type] = 632;
         NPCSets.HatOffsetY[Type] = 0;
+        NPCSets.ActsLikeTownNPC[Type] = true;
         NPCSets.NoTownNPCHappiness[Type] = true;
         NPCSets.SpawnsWithCustomName[Type] = true;
     }
