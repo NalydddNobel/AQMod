@@ -212,38 +212,38 @@ AntiGravityBlock: {
 }
 
 ScrapBlock: {
-	// MapEntry: Junk Block
-	// ItemDisplayName: "{$Tiles.ScrapBlock.MapEntry}"
-	// ItemTooltip: ""
+	MapEntry: 垃圾块
+	ItemDisplayName: "{$Tiles.ScrapBlock.MapEntry}"
+	ItemTooltip: ""
 }
 
 ScrapBrick: {
-	// ItemDisplayName: Scrap Brick
-	// ItemTooltip: ""
+	ItemDisplayName: 废料砖
+	ItemTooltip: ""
 }
 
 PolymerSandstone: {
-	// ItemDisplayName: Polymer Sandstone
-	// ItemTooltip: ""
+	ItemDisplayName: 聚合沙岩
+	ItemTooltip: ""
 }
 
 PolymerSand: {
-	// ItemDisplayName: Polymer Sand
-	// ItemTooltip: ""
+	ItemDisplayName: 聚合沙
+	ItemTooltip: ""
 }
 
 TrashChest: {
-	// MapEntry: Dumpster
-	// ItemDisplayName: "{$Tiles.TrashChest.MapEntry}"
-	// ItemTooltip: Both sides of the dumpster are different chests
+	MapEntry: 垃圾箱
+	ItemDisplayName: "{$Tiles.TrashChest.MapEntry}"
+	ItemTooltip: 垃圾箱的两侧是不同的箱子
 }
 
 TrashTorch: {
-	// ItemDisplayName: Mods.Aequus.Tiles.TrashTorch.ItemDisplayName
-	// ItemTooltip: ""
+	ItemDisplayName: Mods.Aequus.Tiles.TrashTorch.ItemDisplayName
+	ItemTooltip: ""
 }
 
 TrashCampfire: {
-	// ItemDisplayName: Mods.Aequus.Tiles.TrashCampfire.ItemDisplayName
-	// ItemTooltip: ""
+	ItemDisplayName: Mods.Aequus.Tiles.TrashCampfire.ItemDisplayName
+	ItemTooltip: ""
 }
