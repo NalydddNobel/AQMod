@@ -2,6 +2,7 @@
 using Aequus.Content.CrossMod;
 using Aequus.Content.TownNPCs;
 using Aequus.Core;
+using Aequus.Core.ContentGeneration;
 using Aequus.Old.Content.Events.Glimmer;
 using Aequus.Old.Content.TownNPCs.OccultistNPC;
 using System;
@@ -11,6 +12,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Events;
 using Terraria.GameContent.Personalities;
+using Terraria.GameContent.UI;
 using Terraria.Localization;
 
 namespace Aequus.Old.Content.TownNPCs.PhysicistNPC;
@@ -40,6 +42,7 @@ public partial class Physicist : AequusTownNPC<Physicist> {
 
     public override void Load() {
         ShimmerHeadIndex = Mod.AddNPCHeadTexture(Type, AequusTextures.Physicist_Shimmer_Head.Path);
+        Mod.AddContent(new InstancedNPCEmote(this, EmoteID.Category.Town, () => WorldState.DownedCosmicBoss || WorldState.DownedTrueCosmicBoss));
     }
 
     public override void SetStaticDefaults() {

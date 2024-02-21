@@ -1,6 +1,8 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.Renaming;
 using Aequus.Content.DataSets;
+using Aequus.Core;
+using Aequus.Core.ContentGeneration;
 using Aequus.Core.Initialization;
 using System;
 using System.Collections.Generic;
@@ -8,6 +10,7 @@ using System.IO;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.UI;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
 
@@ -57,6 +60,10 @@ public class PhysicistPet : ModNPC, IAddRecipes {
 
             "Pooper",
         };
+    }
+
+    public override void Load() {
+        Mod.AddContent(new InstancedNPCEmote(this, EmoteID.Category.Town, () => WorldState.DownedCosmicBoss || WorldState.DownedTrueCosmicBoss));
     }
 
     public override void SetStaticDefaults() {

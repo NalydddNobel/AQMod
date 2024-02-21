@@ -1,4 +1,5 @@
 ﻿using Aequus.Core.IO;
+using System.Reflection;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Core;
@@ -55,10 +56,10 @@ public class WorldState : ModSystem {
     public static bool UsedReforgeBook;
 
     public override void SaveWorldData(TagCompound tag) {
-        SaveDataAttribute.SaveData(tag, this);
+        SaveDataAttribute.SaveData(tag, this, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
     }
 
     public override void LoadWorldData(TagCompound tag) {
-        SaveDataAttribute.LoadData(tag, this);
+        SaveDataAttribute.LoadData(tag, this, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
     }
 }

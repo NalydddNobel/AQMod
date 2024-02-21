@@ -59,9 +59,9 @@ public sealed class SaveDataAttribute : Attribute {
         return false;
     }
 
-    public static void SaveData(TagCompound tag, object me) {
+    public static void SaveData(TagCompound tag, object me, BindingFlags flags = BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance) {
         var list = new List<string>();
-        foreach (var m in ReflectionHelper.GetMembersWithAttribute<SaveDataAttribute>(me.GetType())) {
+        foreach (var m in ReflectionHelper.GetMembersWithAttribute<SaveDataAttribute>(me.GetType(), flags)) {
             m.attributeInstance.SaveData(tag, me, m.memberInfo);
         }
         if (list.Count > 0) {
@@ -69,8 +69,8 @@ public sealed class SaveDataAttribute : Attribute {
         }
     }
 
-    public static void LoadData(TagCompound tag, object me) {
-        foreach (var m in ReflectionHelper.GetMembersWithAttribute<SaveDataAttribute>(me.GetType())) {
+    public static void LoadData(TagCompound tag, object me, BindingFlags flags = BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance) {
+        foreach (var m in ReflectionHelper.GetMembersWithAttribute<SaveDataAttribute>(me.GetType(), flags)) {
             m.attributeInstance.LoadData(tag, me, m.memberInfo);
         }
     }
