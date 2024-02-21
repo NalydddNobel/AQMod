@@ -947,6 +947,9 @@
         <member name="M:Aequus.Core.RefManipulator`1.VoidOverriddenValue">
             <summary>Restores overriden values back to their original value.</summary>
         </member>
+        <member name="M:Aequus.Core.UI.Elements.ImprovedItemSlot.SetIcon(Terraria.UI.UIElement)">
+            <summary>Adds the UI Element as an icon to display when no item is in the slot.</summary>
+        </member>
         <member name="T:Aequus.Core.UI.Elements.ImprovedTextBox">
             <summary>Improved text box based off of <see cref="T:Terraria.GameContent.UI.Elements.UITextBox"/>.</summary>
         </member>
