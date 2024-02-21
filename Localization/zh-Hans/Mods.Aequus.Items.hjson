@@ -580,18 +580,18 @@ SuperRestorationPotion: {
 }
 
 NoHitReward: {
-	// DisplayName: A Victor's Award
-	/* Tooltip:
+	DisplayName: 胜者的奖励
+	Tooltip:
 		'''
-		Permanently allows you to respawn at maximum life
-		'Granted to the ones who go the extra mile!'
-		''' */
+		永久性使你在重生时以满生命值复活
+		'给那些加倍努力的人!'
+		'''
 }
 
 TinkerersGuidebook: {
-	// DisplayName: Tinkerer's Guidebook
-	// Tooltip: Permanently increases odds of rolling positive prefixes from reforge services
-	// DisplayMessage: The Goblin Tinkerer's profits begin to dwindle!
+	DisplayName: 工匠指南
+	Tooltip: 永久性增加在重铸前缀时出现正面前缀的几率
+	DisplayMessage: 哥布林工匠的利润开始减少了!
 }
 
 CosmicChest: {

@@ -1,5 +1,5 @@
 SkyMerchant.Command: skymerchant
 Occultist.Command: occultistgood
 OccultistHostile.Command: occultist
-// Physicist.Command: physicist
-// PhysicistPet.Command: physicistpet
+Physicist.Command: physicist
+PhysicistPet.Command: physicistpet
