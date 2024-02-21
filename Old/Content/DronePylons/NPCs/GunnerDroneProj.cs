@@ -1,4 +1,5 @@
-﻿using Aequus.Old.Core.Utilities;
+﻿using Aequus.Old.Content.Particles;
+using Aequus.Old.Core.Utilities;
 using System;
 
 namespace Aequus.Old.Content.DronePylons.NPCs;
@@ -15,24 +16,55 @@ public class GunnerDroneProj : ModProjectile {
         Projectile.aiStyle = -1;
         Projectile.timeLeft *= 5;
         Projectile.usesLocalNPCImmunity = true;
-        Projectile.localNPCHitCooldown = 20;
+        Projectile.localNPCHitCooldown = 40;
         Projectile.manualDirectionChange = true;
     }
 
     public override void AI() {
-        Projectile.alpha += 20;
+        const float BeamReach = 1600f;
+
+        Projectile.alpha += 16;
         if (Projectile.alpha > 255) {
             Projectile.Kill();
         }
 
         var npc = Main.npc[(int)Projectile.ai[0]];
-        if (!npc.active) {
+        if (!npc.active || npc.ModNPC is not TownDroneBase townDrone) {
             Projectile.Kill();
             return;
         }
         Projectile.Center = npc.Center;
         Projectile.rotation = npc.rotation;
         Projectile.direction = npc.spriteDirection;
+
+        Vector2 startingPoint = Projectile.Center;
+        Vector2 normal = Projectile.rotation.ToRotationVector2() * Projectile.direction;
+        int i = 0;
+        for (; i < BeamReach; i += 8) {
+            if (Collision.SolidCollision(startingPoint + normal * i - new Vector2(4f), 10, 10)) {
+                break;
+            }
+        }
+
+        Projectile.ai[1] = i;
+
+        Color color = townDrone.GetPylonColor();
+        if (Projectile.localAI[0] == 0f) {
+            Projectile.localAI[0]++;
+
+            for (int k = 0; k < i; k += 4) {
+                if (Main.rand.NextBool(3)) {
+                    Dust d = Dust.NewDustPerfect(startingPoint + normal * k, ModContent.DustType<MonoDust>(), newColor: color with { A = 100 } * 0.6f, Scale: Main.rand.NextFloat(0.5f, 1.5f));
+                    d.noGravity = true;
+                    d.velocity *= 0.8f;
+                }
+            }
+        }
+
+        if (Main.rand.NextBool(3)) {
+            Dust endBeamDust = Dust.NewDustPerfect(startingPoint + normal * i, ModContent.DustType<MonoDust>(), newColor: color with { A = 40 }, Scale: Main.rand.NextFloat(1f, 2.5f));
+            endBeamDust.noGravity = true;
+        }
     }
 
     public override bool? CanHitNPC(NPC target) {
@@ -41,8 +73,8 @@ public class GunnerDroneProj : ModProjectile {
 
     public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
         float _ = float.NaN;
-        var normal = new Vector2(1f, 0f).RotatedBy(Projectile.rotation);
-        var end = Projectile.Center + normal * 800f * Projectile.direction;
+        var normal = Projectile.rotation.ToRotationVector2();
+        var end = Projectile.Center + normal * Projectile.ai[1] * Projectile.direction;
         return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, end, 10f * Projectile.scale, ref _);
     }
 
@@ -57,25 +89,27 @@ public class GunnerDroneProj : ModProjectile {
         }
 
         var drawPos = Projectile.Center - Main.screenPosition;
-        var drawColor = new Color(10, 200, 80, 0);
         var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
-        var n = Projectile.rotation.ToRotationVector2();
-        var arr = new Vector2[] {
+        Vector2 normal = Projectile.rotation.ToRotationVector2() * Projectile.direction;
+        Vector2[] indices = new Vector2[] {
                 drawPos,
-                drawPos + n * 800f * Projectile.direction,
-                drawPos + n * 800f * 2f * Projectile.direction, };
+                drawPos + normal * Projectile.ai[1] / 2f,
+                drawPos + normal * Projectile.ai[1], };
 
-        for (int i = 0; i < arr.Length; i++) {
-            Main.ReverseGravitySupport(arr[i]);
+        for (int i = 0; i < indices.Length; i++) {
+            Main.ReverseGravitySupport(indices[i]);
         }
-        var smokeLineColor = drawColor * ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 12f) + 2f);
         int amount = (int)(5 * (Aequus.HighQualityEffects ? 1f : 0.5f));
 
-        float[] rotations = OldDrawHelper.GenerateRotationArr(arr);
-        Color laserColor = townDrone.GetPylonColor() with { A = 0 } * 1.4f * Projectile.Opacity;
-        DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, arr, rotations, 
-            p => laserColor * (float)Math.Pow(1f - p, 2f),
+        float[] rotations = OldDrawHelper.GenerateRotationArr(indices);
+        Color laserColor = townDrone.GetPylonColor() with { A = 100 } * MathF.Pow(Projectile.Opacity, 2f);
+        DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, indices, rotations, 
+            p => laserColor,
             p => 4f
+        );
+        DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, indices, rotations, 
+            p => laserColor with { A = 0 } * 0.5f,
+            p => 8f
         );
         return false;
     }

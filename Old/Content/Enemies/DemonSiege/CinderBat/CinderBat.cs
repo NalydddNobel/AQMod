@@ -10,6 +10,7 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
+using static Aequus.Old.Content.Potions.PotionCanteen.TemplateCanteen;
 
 namespace Aequus.Old.Content.Enemies.DemonSiege.CinderBat;
 
@@ -41,9 +42,7 @@ public class CinderBat : LegacyAIBat {
             Position = new Vector2(4f, 12f)
         });
 
-        foreach (int buff in BuffMetadata.DemonSiegeImmune) {
-            NPCSets.SpecificDebuffImmunity[Type][buff] = true;
-        }
+        NPCSets.ImmuneToRegularBuffs[Type] = true;
         NPCMetadata.DealsHeatDamage.Add(Type);
     }
 

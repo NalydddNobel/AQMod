@@ -17,9 +17,7 @@ public class ChainedSoul : ModNPC {
             Hide = true,
         };
         NPCSets.CantTakeLunchMoney[Type] = true;
-        foreach (int buff in BuffMetadata.DemonSiegeImmune) {
-            NPCSets.SpecificDebuffImmunity[Type][buff] = true;
-        }
+        NPCSets.ImmuneToRegularBuffs[Type] = true;
         NPCMetadata.DealsHeatDamage.Add(Type);
         NPCMetadata.Soulless.Add(Type);
 
