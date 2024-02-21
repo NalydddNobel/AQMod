@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Buffs.Components;
 using Aequus.Content.DataSets;
-using Aequus.Core.DataSets;
 using Aequus.Old.Content.Particles;
 using System;
 using Terraria.Audio;

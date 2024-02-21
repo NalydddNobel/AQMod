@@ -39,7 +39,7 @@ public class GunnerDrone : TownDroneBase {
             }
         }
 
-        int target = Helper.FindTarget(NPC.position, NPC.width, NPC.height, 900f, NPC);
+        int target = Helper.FindTarget(NPC.position, NPC.width, NPC.height, 900f, NPC, (i) => !NPCSets.BelongsToInvasionOldOnesArmy[Main.npc[i].type]);
 
         if (NPC.frame.Y >= NPC.frame.Height * 7 && NPC.frame.Y < NPC.frame.Height * (Main.npcFrameCount[Type] - 1)) {
             NPC.frameCounter++;
@@ -77,7 +77,7 @@ public class GunnerDrone : TownDroneBase {
                     }
                     SoundEngine.PlaySound(SoundID.Item158.WithVolumeScale(1.5f).WithPitchOffset(0.33f), NPC.Center);
                     NPC.ai[0] = 1f + Main.rand.NextFloat(10f);
-                    NPC.velocity -= Vector2.Normalize(diff) * 2f;
+                    NPC.velocity = -Vector2.Normalize(diff) * 2f;
                 }
             }
             else {
@@ -86,12 +86,18 @@ public class GunnerDrone : TownDroneBase {
             targetDistance = NPC.Distance(Main.npc[target].Center);
         }
 
-        if (target != -1 && targetDistance >= minDistance) {
-            movementPoint = NPC.Center;
-            NPC.velocity = Vector2.Lerp(NPC.velocity, Vector2.Normalize(Main.npc[target].Center - NPC.Center + new Vector2(0f, tileHeight < 10 ? -30f : 0f)) * 9f, 0.1f);
-        }
-        else {
-            DefaultMovement();
+        if (NPC.ai[0] >= 20f || target == -1) {
+            if (target != -1 && targetDistance >= minDistance) {
+                movementPoint = NPC.Center;
+                NPC.velocity = Vector2.Lerp(NPC.velocity, Vector2.Normalize(Main.npc[target].Center - NPC.Center + new Vector2(0f, tileHeight < 10 ? -30f : 0f)) * 7f, 0.1f);
+            }
+            else if (target != -1 && targetDistance < minDistance / 2f) {
+                movementPoint = NPC.Center;
+                NPC.velocity = Vector2.Lerp(NPC.velocity, NPC.DirectionFrom(Main.npc[target].Center) * 4f, 0.1f);
+            }
+            else {
+                DefaultMovement();
+            }
         }
         if (target != -1) {
             NPC.direction = Math.Sign(diff.X);
@@ -115,8 +121,9 @@ public class GunnerDrone : TownDroneBase {
                 }
                 else if (NPC.frame.Y == 0) {
                     NPC.frameCounter += Main.rand.Next(-7, 0) * 0.2;
-                    if (NPC.frameCounter < 0.0)
+                    if (NPC.frameCounter < 0.0) {
                         NPC.frameCounter = 0.0;
+                    }
                 }
             }
             if (NPC.frame.Y >= NPC.frame.Height * 6) {

@@ -10,6 +10,7 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
+using static Aequus.Old.Content.Potions.PotionCanteen.TemplateCanteen;
 
 namespace Aequus.Old.Content.Enemies.DemonSiege.CinderBat;
 
