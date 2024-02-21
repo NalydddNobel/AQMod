@@ -94,7 +94,7 @@ public class EnergyMaterial : ModSystem {
 
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
             float lensFlareScale = 1.2f;
-            if (!Main.playerInventory || !UISystem.InventorySlotContexts.Contains(CurrentSlot.Instance.Context)) {
+            if (!Main.playerInventory || !InventoryUI.InventorySlotContexts.Contains(CurrentSlot.Instance.Context)) {
                 lensFlareScale = 0f;
             }
             DrawGodItem(spriteBatch, TextureAssets.Item[Type].Value, frame, origin, position, 0f, scale, lensFlareScale);

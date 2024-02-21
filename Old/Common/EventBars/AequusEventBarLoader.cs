@@ -25,7 +25,7 @@ public class AequusEventBarLoader : UILayer {
             if (b.IsActive()) {
                 _activeBarReal = i;
                 ActiveBar = i;
-                Activate();
+                this.Activate();
             }
         }
     }
@@ -33,7 +33,7 @@ public class AequusEventBarLoader : UILayer {
     protected override bool DrawSelf() {
         if (_progressBars == null || (Main.invasionProgressAlpha > 0f && _invasionProgressAlpha <= 0f)) {
             ActiveBar = byte.MaxValue;
-            Deactivate();
+            this.Deactivate();
             return true;
         }
         Main.invasionProgressAlpha = 0f;
@@ -44,7 +44,7 @@ public class AequusEventBarLoader : UILayer {
                 }
                 else {
                     ActiveBar = byte.MaxValue;
-                    Deactivate();
+                    this.Deactivate();
                     return true;
                 }
             }
@@ -109,7 +109,7 @@ public class AequusEventBarLoader : UILayer {
         }
         else if (_invasionProgressAlpha <= 0f) {
             ActiveBar = byte.MaxValue;
-            Deactivate();
+            this.Deactivate();
         }
         return true;
     }

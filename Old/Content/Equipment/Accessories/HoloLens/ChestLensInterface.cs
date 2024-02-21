@@ -19,7 +19,7 @@ public class ChestLensInterface : UILayer {
 
     public override void OnPreUpdatePlayers() {
         if (!Main.LocalPlayer.GetModPlayer<AequusPlayer>().accHoloLens) {
-            Deactivate();
+            this.Deactivate();
         }
     }
 
@@ -67,7 +67,7 @@ public class ChestLensInterface : UILayer {
         return true;
     }
 
-    protected override void OnDeactivate() {
+    public override void OnRemove() {
         ChestLens.Clear();
     }
 

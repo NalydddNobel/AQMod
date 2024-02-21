@@ -1,5 +1,4 @@
 ﻿using Aequus.Core.UI;
-using Aequus.Old.Content.Necromancy.Rendering;
 using Terraria.UI;
 
 namespace Aequus.Old.Content.Necromancy;
@@ -14,7 +13,7 @@ public class NecromancyInterface : UILayer {
         }
 
         if (!anyDrawn) {
-            Deactivate();
+            this.Deactivate();
         }
 
         return true;

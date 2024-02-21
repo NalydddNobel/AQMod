@@ -953,6 +953,9 @@
         <member name="T:Aequus.Core.UI.Elements.ImprovedTextBox">
             <summary>Improved text box based off of <see cref="T:Terraria.GameContent.UI.Elements.UITextBox"/>.</summary>
         </member>
+        <member name="F:Aequus.Core.UI.InventoryUI.InventorySlotContexts">
+            <summary>Contains Item Slot Contexts which are usually related to normal inventory slots. Check the current slot context to determine drawing item status UI like cooldowns and ect.</summary>
+        </member>
         <member name="M:Aequus.Core.UI.IUserInterfaceLayer.OnUIUpdate(Microsoft.Xna.Framework.GameTime)">
             <param name="gameTime"></param>
             <returns>Whether or not to deactivate this UI.</returns>
@@ -977,9 +980,6 @@
             <param name="InsertLayer">Name of the layer to search the index of.</param>
             <param name="ScaleType">Scale Type of this layer.</param>
             <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
-        </member>
-        <member name="F:Aequus.Core.UI.UISystem.InventorySlotContexts">
-            <summary>Contains Item Slot Contexts which are usually related to normal inventory slots. Check the current slot context to determine drawing item status UI like cooldowns and ect.</summary>
         </member>
         <member name="T:Aequus.Core.Utilities.ChatTagWriter">
             <summary>Contains helper methods for generating chat tag strings. For item and glyphs, <see cref="T:Terraria.GameContent.UI.Chat.ItemTagHandler"/> and <see cref="T:Terraria.GameContent.UI.Chat.GlyphTagHandler"/> have static helper methods.</summary>

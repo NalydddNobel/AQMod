@@ -13,17 +13,19 @@ using Terraria.UI.Chat;
 namespace Aequus.Content.TownNPCs.SkyMerchant.UI;
 
 public class SkyMerchantRenameUIState : UIState, ILoad {
-    public AequusItemSlotElement SendItem { get; private set; }
-    public AequusItemSlotElement ReceiveItem { get; private set; }
+    public ImprovedItemSlot SendItem { get; private set; }
+    public ImprovedItemSlot ReceiveItem { get; private set; }
     public RenameTextBox TextBox { get; private set; }
 
     public override void OnInitialize() {
         Left.Set(InventoryUI.LeftInventoryPosition, 0f);
         Top.Set(InventoryUI.BottomInventoryY + 12, 0f);
         Width.Set(474, 0f);
-        Height.Set(100, 0f);
+        Height.Set(120, 0f);
 
-        Color backgroundColor = new Color(20, 125, 30) * 0.785f;
+        Color backgroundColor = new Color(48, 110, 66) * 0.9f;
+        Color iconColor = Color.White * 0.35f;
+        float itemSlotScale = 0.9f;
 
         TextBox = new RenameTextBox("", 0.9f) {
             DrawPanel = true
@@ -43,23 +45,40 @@ public class SkyMerchantRenameUIState : UIState, ILoad {
                 renameItem.CustomName = newText.Trim();
                 renameItem.UpdateCustomName(ReceiveItem.Item);
             }
+
+            ReceiveItem.UpdateIcon();
         };
         TextBox.SetTextMaxLength(60);
         TextBox.Width.Set(Width.Pixels, Width.Percent);
         TextBox.Height.Set(24, 0f);
-        TextBox.Top.Set(50, 0f);
+        TextBox.Top.Set(56, 0f);
         TextBox.TextHAlign = 0f;
         TextBox.BackgroundColor = backgroundColor;
         Append(TextBox);
 
-        SendItem = new AequusItemSlotElement(ItemSlot.Context.GuideItem, TextureAssets.InventoryBack3.Value, AequusTextures.NameTagBlank) {
-            CanPutItemIntoSlot = RenameItem.CanRename,
-            CanTakeItemFromSlot = (i) => true,
+        UIImage sendItemPanel = new UIImage(TextureAssets.InventoryBack13) {
+            ImageScale = itemSlotScale,
+            Color = backgroundColor
         };
+
+        Append(sendItemPanel);
+
+        UIImage receiveItemPanel = new UIImage(TextureAssets.InventoryBack13) {
+            ImageScale = itemSlotScale,
+            Color = backgroundColor
+        };
+        receiveItemPanel.Left.Set(sendItemPanel.Width.Pixels + 36f, sendItemPanel.Width.Percent);
+
+        Append(receiveItemPanel);
+
+        SendItem = new ImprovedItemSlot(ItemSlot.Context.GuideItem, itemSlotScale);
+        SendItem.CanPutItemIntoSlot += RenameItem.CanRename;
+        SendItem.CanTakeItemFromSlot += (i) => true;
         SendItem.OnItemSwap += (from, to) => {
             SoundEngine.PlaySound(SoundID.Grab);
 
             ReceiveItem.Item?.TurnToAir();
+            ReceiveItem.UpdateIcon();
             if (to == null || to.IsAir) {
                 TextBox.SetText("");
                 if (TextBox.IsWritingText) {
@@ -76,9 +95,9 @@ public class SkyMerchantRenameUIState : UIState, ILoad {
                 TextBox.ToggleText();
             }
         };
-        SendItem.WhileHoveringItem += (item, context) => {
+        SendItem.WhileHoveringItem += (item) => {
             if (item != null && !item.IsAir) {
-                ExtendUI.HoverItem(item, context);
+                ExtendUI.HoverItem(item, SendItem.Context);
             }
             else {
                 Main.hoverItemName = "";
@@ -87,23 +106,26 @@ public class SkyMerchantRenameUIState : UIState, ILoad {
             }
         };
         SendItem.CanHover = true;
-        SendItem.ShowTooltip = true;
+        SendItem.ShowItemTooltip = true;
         SendItem.Width.Set(48f, 0f);
         SendItem.Height.Set(48f, 0f);
+        SendItem.SetIcon(new UIImage(AequusTextures.NameTagBlank.Asset) { HAlign = 0.5f, VAlign = 0.5f, Color = iconColor });
+        SendItem.HAlign = 0.5f;
+        SendItem.VAlign = 0.5f;
 
-        Append(SendItem);
+        sendItemPanel.Append(SendItem);
 
-        ReceiveItem = new AequusItemSlotElement(ItemSlot.Context.GuideItem, TextureAssets.InventoryBack3.Value, AequusTextures.NameTag) {
-            CanTakeItemFromSlot = (i) => {
-                ReceiveItem.GetDimensions();
-                int price = RenameItem.GetRenamePrice(i);
+        ReceiveItem = new ImprovedItemSlot(ItemSlot.Context.GuideItem, itemSlotScale);
+        ReceiveItem.CanTakeItemFromSlot += (i) => {
+            ReceiveItem.GetDimensions();
+            int price = RenameItem.GetRenamePrice(i);
 
-                return price > 0 ? Main.LocalPlayer.CanAfford(price) : true;
-            },
+            return price > 0 ? Main.LocalPlayer.CanAfford(price) : true;
         };
         ReceiveItem.OnItemSwap += (from, to) => {
             Main.LocalPlayer.BuyItem(RenameItem.GetRenamePrice(ReceiveItem.Item));
             SendItem.Item.TurnToAir();
+            SendItem.UpdateIcon();
             SoundEngine.PlaySound(SoundID.Coins);
 
             TextBox.SetText("");
@@ -114,29 +136,29 @@ public class SkyMerchantRenameUIState : UIState, ILoad {
             }
         };
         ReceiveItem.CanHover = true;
-        ReceiveItem.ShowTooltip = true;
+        ReceiveItem.ShowItemTooltip = true;
         ReceiveItem.Width.Set(SendItem.Width.Pixels, SendItem.Width.Percent);
         ReceiveItem.Height.Set(SendItem.Height.Pixels, SendItem.Height.Percent);
-        ReceiveItem.Left.Set(SendItem.Width.Pixels + 36f, SendItem.Width.Percent);
+        ReceiveItem.SetIcon(new UIImage(AequusTextures.NameTag.Asset) { HAlign = 0.5f, VAlign = 0.5f, Color = iconColor });
+        ReceiveItem.HAlign = 0.5f;
+        ReceiveItem.VAlign = 0.5f;
 
-        Append(ReceiveItem);
+        receiveItemPanel.Append(ReceiveItem);
 
         Asset<Texture2D> texturePackButtons = ModContent.Request<Texture2D>("Terraria/Images/UI/TexturePackButtons", AssetRequestMode.ImmediateLoad);
         UIImageFramed image = new UIImageFramed(texturePackButtons, texturePackButtons.Frame(horizontalFrames: 2, verticalFrames: 2, frameX: 1, frameY: 1));
-        image.Left.Set(SendItem.Width.Pixels, SendItem.Width.Percent);
-        image.Top.Set(SendItem.Top.Pixels + 8f, SendItem.Width.Percent);
+        image.Left.Set(SendItem.Width.Pixels + 4f, SendItem.Width.Percent);
+        image.Top.Set(SendItem.Top.Pixels + 10f, SendItem.Width.Percent);
         Append(image);
     }
 
     public override void OnActivate() {
-        RemoveAllChildren();
-        OnInitialize();
         Main.playerInventory = true;
         Main.npcChatText = "";
     }
 
     public override void OnDeactivate() {
-        if (!SendItem.Item?.IsAir == true) {
+        if (!SendItem?.Item?.IsAir == true) {
             Main.LocalPlayer.QuickSpawnItem(new EntitySource_WorldEvent(), SendItem.Item, SendItem.Item.stack);
             SendItem.Item.TurnToAir();
         }

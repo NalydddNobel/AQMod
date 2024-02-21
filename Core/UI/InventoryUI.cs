@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Backpacks;
 using MonoMod.Cil;
 using System;
+using System.Collections.Generic;
 using Terraria.GameContent;
 using Terraria.UI;
 using Terraria.UI.Gamepad;
@@ -12,6 +13,19 @@ public class InventoryUI : ModSystem {
     public static int RightsideButtonsOffsetY { get; internal set; }
     public static int BottomInventoryY { get; set; } = 260;
     public static int LeftInventoryPosition { get; set; } = 20;
+
+    /// <summary>Contains Item Slot Contexts which are usually related to normal inventory slots. Check the current slot context to determine drawing item status UI like cooldowns and ect.</summary>
+    public static readonly HashSet<int> InventorySlotContexts = new() {
+        ItemSlot.Context.EquipAccessory,
+        ItemSlot.Context.ModdedAccessorySlot,
+        ItemSlot.Context.EquipAccessoryVanity,
+        ItemSlot.Context.ModdedVanityAccessorySlot,
+        ItemSlot.Context.HotbarItem,
+        ItemSlot.Context.InventoryItem,
+        ItemSlot.Context.BankItem,
+        ItemSlot.Context.ChestItem,
+        ItemSlot.Context.VoidItem,
+    };
 
     public override void Load() {
         IL_Main.DrawInventory += IL_Main_DrawInventory;

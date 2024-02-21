@@ -6,8 +6,10 @@ namespace Aequus.Core.UI.Elements;
 public class ImprovedItemSlot : UIElement {
     private UIElement _icon;
 
-    public readonly float MaxSize;
     public readonly int Context;
+    public readonly float Scale;
+
+    public readonly float MaxItemDimensions;
 
     public bool CanHover { get; set; }
     public bool ShowItemTooltip { get; set; }
@@ -18,7 +20,7 @@ public class ImprovedItemSlot : UIElement {
 
     #region Events
     public delegate void HoverItemDelegate(Item item);
-    public delegate bool ItemSwapDelegate(Item mouseItem, Item slotItem);
+    public delegate void ItemSwapDelegate(Item mouseItem, Item slotItem);
     public delegate bool ItemTransferConditionDelegate(Item item);
 
     public event HoverItemDelegate WhileHoveringItem;
@@ -27,14 +29,21 @@ public class ImprovedItemSlot : UIElement {
     public event ItemTransferConditionDelegate CanTakeItemFromSlot;
     #endregion
 
-    public ImprovedItemSlot(int slotContext, float maxSize = 32f) {
+    public ImprovedItemSlot(int slotContext, float scale, float maxSize = 32f) {
         Context = slotContext;
-        MaxSize = maxSize;
+        Scale = scale;
+        MaxItemDimensions = maxSize;
     }
 
     /// <summary>Adds the UI Element as an icon to display when no item is in the slot.</summary>
     public void SetIcon(UIElement icon) {
+        if (_icon != null) {
+            RemoveChild(_icon);
+        }
+
         _icon = icon;
+        
+        UpdateIcon();
     }
 
     public override void Update(GameTime gameTime) {
@@ -51,9 +60,17 @@ public class ImprovedItemSlot : UIElement {
     }
 
     public override void LeftClick(UIMouseEvent evt) {
-        Item mouseItem = (Main.mouseItem ??= new());
         _item ??= new();
 
+        HandleLeftClickActions();
+
+        base.LeftClick(evt);
+
+        UpdateIcon();
+    }
+
+    private void HandleLeftClickActions() {
+        Item mouseItem = Main.mouseItem ??= new();
         if (mouseItem.IsAir) {
             if (!_item.IsAir) {
                 if (CanTakeItemFromSlot?.Invoke(_item) == true) {
@@ -70,10 +87,11 @@ public class ImprovedItemSlot : UIElement {
                 return;
             }
 
-            ItemLoader.TryStackItems(_item, mouseItem, out _);
+            ItemLoader.TryStackItems(_item, Main.mouseItem, out int numTransferred);
+            if (numTransferred > 0) {
+                OnItemSwap?.Invoke(Main.mouseItem, _item);
+            }
         }
-
-        base.LeftClick(evt);
 
         void SwapItems() {
             Main.mouseItem = _item?.Clone();
@@ -85,5 +103,38 @@ public class ImprovedItemSlot : UIElement {
 
     public override void RightClick(UIMouseEvent evt) {
         base.RightClick(evt);
+        UpdateIcon();
+    }
+
+    public void UpdateIcon() {
+        if (_icon != null) {
+            if (_item != null && !_item.IsAir) {
+                RemoveChild(_icon);
+            }
+            else {
+                Append(_icon);
+            }
+        }
+    }
+
+    protected override void DrawSelf(SpriteBatch spriteBatch) {
+        _item ??= new Item();
+        CalculatedStyle c = GetDimensions();
+
+        float oldScale = Main.inventoryScale;
+        Main.inventoryScale = Scale;
+
+        ItemSlotDrawHelper.DrawFullItem(_item, Context, 0, spriteBatch, c.Center() - new Vector2(26f * Main.inventoryScale), c.Center(), Main.inventoryScale, MaxItemDimensions, Color.White, Color.White);
+
+        Main.inventoryScale = oldScale;
+
+        if (IsMouseHovering) {
+            if (WhileHoveringItem != null) {
+                WhileHoveringItem.Invoke(_item);
+            }
+            else if (HasItem && ShowItemTooltip && CanHover) {
+                ExtendUI.HoverItem(_item, Context);
+            }
+        }
     }
 }

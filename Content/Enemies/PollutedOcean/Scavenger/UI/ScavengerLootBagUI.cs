@@ -6,18 +6,21 @@ using Terraria.UI;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger.UI;
 
-public class ScavengerLootBagUI : UIStateLayer {
+public class ScavengerLootBagUI : UIState {
     public override void OnActivate() {
         Main.playerInventory = true;
         Main.npcChatText = "";
     }
 
-    public override void OnRemove() {
+    public override void OnDeactivate() {
         Main.trashSlotOffset = new Point16(0, 0);
     }
 
-    public override bool OnUIUpdate(GameTime gameTime) {
-        return Main.LocalPlayer.TalkNPC?.ModNPC is ScavengerLootBag;
+    public override void Update(GameTime gameTime) {
+        if (Main.LocalPlayer.TalkNPC?.ModNPC is not ScavengerLootBag) {
+            ModContent.GetInstance<NPCChat>().Interface.SetState(null);
+        }
+        base.Update(gameTime);
     }
 
     private static Vector2 GetSlotPosition(int i) {
@@ -62,12 +65,11 @@ public class ScavengerLootBagUI : UIStateLayer {
                     Recipe.FindRecipes();
                     continue;
                 }
-                ItemSlot.MouseHover(lootBag.drops, context, i);
+
+                ExtendUI.HoverItem(lootBag.drops[i], context);
             }
 
             ItemSlotDrawHelper.DrawFullItem(lootBag.drops[i], context, i, spriteBatch, slotPosition, slotPosition + slotOrigin * Main.inventoryScale, Main.inventoryScale, 32f, Color.White, Color.White);
         }
     }
-
-    public ScavengerLootBagUI() : base("Scavenger Loot Bag", InterfaceLayerNames.NPCSignDialog_24, InterfaceScaleType.UI) { }
 }

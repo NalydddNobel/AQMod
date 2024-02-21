@@ -11,18 +11,6 @@ public partial class UISystem : ModSystem {
     public static byte specialLeftClickDelay;
     public static byte disableItemLeftClick;
 
-    /// <summary>Contains Item Slot Contexts which are usually related to normal inventory slots. Check the current slot context to determine drawing item status UI like cooldowns and ect.</summary>
-    public static readonly HashSet<int> InventorySlotContexts = new() {
-        ItemSlot.Context.EquipAccessory,
-        ItemSlot.Context.ModdedAccessorySlot,
-        ItemSlot.Context.EquipAccessoryVanity,
-        ItemSlot.Context.ModdedVanityAccessorySlot,
-        ItemSlot.Context.InventoryItem,
-        ItemSlot.Context.BankItem,
-        ItemSlot.Context.ChestItem,
-        ItemSlot.Context.VoidItem,
-    };
-
     public static byte DisableItemLeftClick { get => disableItemLeftClick; set => disableItemLeftClick = Math.Max(disableItemLeftClick, value); }
 
     public static bool CanDoLeftClickItemActions => specialLeftClickDelay == 0;
