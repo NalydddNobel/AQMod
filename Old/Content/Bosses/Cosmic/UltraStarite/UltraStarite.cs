@@ -7,7 +7,10 @@ using Aequus.Core.ContentGeneration;
 using Aequus.Old.Common.Graphics;
 using Aequus.Old.Content.Bosses.Cosmic.UltraStarite.Projectiles;
 using Aequus.Old.Content.Events.Glimmer;
+using Aequus.Old.Content.Events.Glimmer.CosmicMonolith;
+using Aequus.Old.Content.Materials;
 using Aequus.Old.Content.Particles;
+using Aequus.Old.Content.Potions.NeutronYogurt;
 using Aequus.Old.Content.StatusEffects;
 using Aequus.Old.Core.Utilities;
 using System;
@@ -16,6 +19,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.Utilities;
 
 namespace Aequus.Old.Content.Bosses.Cosmic.UltraStarite;
@@ -58,14 +62,12 @@ public class UltraStarite : ModNPC {
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
-        //this.CreateLoot(npcLoot)
-        //    .AddRelic<UltraStariteRelic>()
-        //    .Add(new GuaranteedFlawlesslyRule(ModContent.ItemType<UltraStariteTrophy>(), 10))
-        //    .Add<StariteMaterial>(chance: 1, stack: (8, 15))
-        //    .Add<CosmicMonolith>(chance: 4, stack: 1)
-        //    .Add<ManaCursor>(chance: 4, stack: 1)
-        //    .Add(ItemID.Megaphone, chance: 50, stack: 1)
-        //    .Add<NeutronYogurt>(chance: 1, stack: (1, 2));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<StariteMaterial>(), minimumDropped: 8, maximumDropped: 15));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CosmicMonolith>(), chanceDenominator: 4));
+        npcLoot.Add(ItemDropRule.Common(ItemID.Megaphone, chanceDenominator: 50));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<NeutronYogurt>(), minimumDropped: 1, maximumDropped: 2));
+
+        //    .Add<ManaCursor>(chance: 4, stack: 1);
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
