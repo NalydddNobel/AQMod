@@ -87,6 +87,7 @@ public class UltraStarite : ModNPC {
         NPC.knockBackResist = 0f;
         NPC.value = Item.buyPrice(silver: 50);
         NPC.npcSlots = 8f;
+        NPC.BossBar = ModContent.GetInstance<LegacyAequusBossSupportedBar>();
 
         oldArmsLength = new float[NPCSets.TrailCacheLength[Type]];
     }
@@ -102,7 +103,7 @@ public class UltraStarite : ModNPC {
         if (NPC.life <= 0) {
             if (Main.netMode != NetmodeID.Server && State == STATE_DEAD) {
                 ViewHelper.LegacyScreenShake(35, multiplyPerTick: 0.9f, where: NPC.Center);
-                ScreenFlash.Instance.Set(NPC.Center, 0.2f);
+                ScreenFlash.Instance.Set(NPC.Center, 1.2f);
             }
             for (int i = 0; i < 50; i++) {
                 int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.MagicMirror);
@@ -468,8 +469,8 @@ public class UltraStarite : ModNPC {
 
         Main.spriteBatch.Draw(bloom, new Vector2((int)(NPC.position.X + offset.X - screenPos.X), (int)(NPC.position.Y + offset.Y - screenPos.Y)), bloomFrame, new Color(200, 0, 255, 0), 0f, bloomOrigin, NPC.scale * 2, SpriteEffects.None, 0f);
         if (!NPC.IsABestiaryIconDummy && !dying && State == STATE_SPINNY) {
-            //Main.spriteBatch.End();
-            //Main.spriteBatch.BeginWorld(shader: true);
+            Main.spriteBatch.End();
+            Main.spriteBatch.BeginWorld(shader: true);
             int trailLength = NPCSets.TrailCacheLength[Type];
             int armTrailLength = trailLength;
             if (NPC.ai[1] < 90f) {
@@ -499,30 +500,34 @@ public class UltraStarite : ModNPC {
                     armPositions[j].Add(armPos + screenPos);
                     if (Aequus.GameWorldActive && !NPC.IsABestiaryIconDummy && NPC.ai[1] < 125f && Main.rand.NextBool(2 + i * 15)) {
                         float scale = Main.rand.NextFloat(0.4f, 1.5f);
-                        //ParticleSystem.New<MonoBloomParticle>(ParticleLayer.AboveDust).Setup(armPos + Main.screenPosition + Main.rand.NextVector2Unit() * 30f,
-                        //((armPos - (NPC.Center - Main.screenPosition)).ToRotation() - MathHelper.PiOver2 + Main.rand.NextFloat(-0.4f, 0.4f)).ToRotationVector2() * Main.rand.NextFloat(2f, 8f),
-                        //Color.White.UseA(40) * scale, Color.BlueViolet with { A = 0 } * 0.3f * scale, Main.rand.NextFloat(0.9f, 1.5f) * scale, Main.rand.NextFloat(0.1f, 0.4f), Main.rand.NextFloat(MathHelper.TwoPi));
+                        var p = ModContent.GetInstance<LegacyBloomParticle>().New();
+                        p.Location = armPos + Main.screenPosition + Main.rand.NextVector2Unit() * 30f;
+                        p.Velocity = ((armPos - (NPC.Center - Main.screenPosition)).ToRotation() - MathHelper.PiOver2 + Main.rand.NextFloat(-0.4f, 0.4f)).ToRotationVector2() * Main.rand.NextFloat(2f, 8f);
+                        p.Color = Color.White with { A = 40 } * scale;
+                        p.BloomColor = Color.BlueViolet with { A = 0 } * 0.3f * scale;
+                        p.Scale = Main.rand.NextFloat(0.9f, 1.5f) * scale;
+                        p.BloomScale = Main.rand.NextFloat(0.1f, 0.4f);
                     }
                 }
             }
             for (int j = 0; j < 5; j++) {
-                var arr = armPositions[j].ToArray();
+                Vector2[] arr = armPositions[j].ToArray();
                 float[] rotations = OldDrawHelper.GenerateRotationArr(arr);
 
-                DrawHelper.DrawBasicVertexLineWithProceduralPadding(AequusTextures.Trail, arr, rotations,
+                DrawHelper.DrawBasicVertexLine(AequusTextures.Trail2, arr, rotations,
                     (p) => Color.BlueViolet with { A = 0 } * 1.25f * (float)Math.Pow(1f - p, 2f),
-                    (p) => 60f
-                );
+                    (p) => 60f,
+                    -Main.screenPosition);
 
                 DrawHelper.ApplyUVEffect(AequusTextures.Trail3, new Vector2(1f, 1f), new Vector2(Main.GameUpdateCount / 60f % 1f, 0f));
                 DrawHelper.VertexStrip.PrepareStrip(arr, rotations,
                     (p) => Color.Blue with { A = 0 } * (1f - p) * 0.8f,
-                    (p) => 50f
-                );
+                    (p) => 50f,
+                    -Main.screenPosition, includeBacksides: true);
                 DrawHelper.VertexStrip.DrawTrail();
             }
-            //Main.spriteBatch.End();
-            //Main.spriteBatch.BeginWorld(shader: false);
+            Main.spriteBatch.End();
+            Main.spriteBatch.BeginWorld(shader: false);
         }
         var armSegmentFrame = new Rectangle(NPC.frame.X, NPC.frame.Y + NPC.frame.Height, NPC.frame.Width, NPC.frame.Height);
 
@@ -627,7 +632,7 @@ public class UltraStarite : ModNPC {
         float rayProgress = Math.Max(bloomProgress, 0.4f);
         var rayOrigin = ray.Size() / 2f;
         for (int i = 0; i < 40; i++) {
-            var rand = new FastRandom("Split".GetHashCode() + NPC.whoAmI + i * 612897);
+            var rand = new FastRandom(NPC.whoAmI + i * 612897);
             float rotation = rand.NextFloat(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * rand.NextFloat(0.4f, 2f) * (rand.Next(2) == 0).ToDirectionInt();
             float wave = (float)Math.Sin(rand.NextFloat(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * rand.NextFloat(0.02f, 1f));
             var scale = new Vector2(rand.NextFloat(0.8f, 1.1f) * wave, NPC.scale * rayProgress * rand.NextFloat(1f, 6f) * wave) * 0.5f * hpRatio;

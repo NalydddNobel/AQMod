@@ -26,7 +26,7 @@ namespace Aequus.Old.Content.Bosses.Cosmic.OmegaStarite;
 [ModBiomes(typeof(GlimmerZone))]
 [AutoloadBossHead()]
 [AutoloadTrophies(LegacyBossTrophiesTile.OmegaStarite, typeof(OmegaStariteRelicRenderer))]
-public class OmegaStarite : AequusBoss {
+public class OmegaStarite : LegacyAequusBoss {
     public const float BossProgression = 6.99f;
 
     public const int ACTION_LASER_ORBITAL_2 = 8;
@@ -89,6 +89,7 @@ public class OmegaStarite : AequusBoss {
         NPC.noTileCollide = true;
         NPC.trapImmune = true;
         NPC.lavaImmune = true;
+        NPC.BossBar = ModContent.GetInstance<LegacyAequusBossSupportedBar>();
 
         starDamageMultiplier = 0.8f;
 
@@ -116,7 +117,7 @@ public class OmegaStarite : AequusBoss {
         if (Main.netMode == NetmodeID.Server) {
             return;
         }
-        if (NPC.life == -33333) {
+        if (NPC.ai[0] == -101f) {
             if (Main.netMode != NetmodeID.Server) {
                 ViewHelper.PunchCameraTo(NPC.Center, 6f, 6f, 30);
             }
@@ -204,7 +205,7 @@ public class OmegaStarite : AequusBoss {
     }
 
     public override void AI() {
-        if (Main.dayTime && !Main.remixWorld && Action != ACTION_DEAD) {
+        if (Main.dayTime && !Main.remixWorld && State != ACTION_DEAD) {
             NPC.GetGlobalNPC<DropsGlobalNPC>().noOnKillEffects = true;
         }
 
@@ -617,7 +618,7 @@ public class OmegaStarite : AequusBoss {
                 }
                 break;
 
-            case ACTION_INTRO:
+            case STATE_INTRO:
                 var r = NPC.getRect();
                 r.Inflate(24, 24);
                 for (int i = 0; i < Main.maxItems; i++) {
@@ -637,7 +638,7 @@ public class OmegaStarite : AequusBoss {
                 Intro(center, plrCenter);
                 break;
 
-            case ACTION_INIT:
+            case STATE_INIT:
                 int target = NPC.target;
                 if (!NPC.HasValidTarget) {
                     NPC.TargetClosest(faceTarget: false);
@@ -646,11 +647,11 @@ public class OmegaStarite : AequusBoss {
                 Initalize();
                 NPC.netUpdate = true;
                 NPC.target = target;
-                NPC.ai[0] = ACTION_INTRO;
+                NPC.ai[0] = STATE_INTRO;
                 NPC.ai[2] = plrCenter.Y - DIAMETER * 2.5f;
                 break;
 
-            case ACTION_GOODBYE:
+            case STATE_GOODBYE:
                 Goodbye();
                 break;
 
@@ -696,8 +697,8 @@ public class OmegaStarite : AequusBoss {
                                     Main.item[item].active = false;
                                 }
                                 SoundEngine.PlaySound(SoundID.Item2, NPC.Center);
-                                NPC.life = -33333;
-                                NPC.KillEffects();
+                                NPC.ai[0] = -101f;
+                                NPC.StrikeInstantKill();
                                 return;
                             }
                             else {
@@ -718,7 +719,7 @@ public class OmegaStarite : AequusBoss {
         for (int i = 0; i < rings.Count; i++) {
             rings[i].Update(center + NPC.velocity);
         }
-        if (NPC.ai[0] != ACTION_DEAD && Action != -100) {
+        if (NPC.ai[0] != ACTION_DEAD && State != -100) {
             int chance = 10 - (int)speed;
             if (chance < 2 || Main.rand.NextBool(chance)) {
                 if (speed < 2f) {
@@ -851,9 +852,8 @@ public class OmegaStarite : AequusBoss {
         //}
 
         if (NPC.ai[1] > DEATHTIME * 1.314f) {
-            NPC.life = -33333;
-            NPC.HitEffect();
-            NPC.checkDead();
+            NPC.ai[0] = -101f;
+            NPC.StrikeInstantKill();
         }
     }
     public void Goodbye() {
@@ -907,7 +907,7 @@ public class OmegaStarite : AequusBoss {
         NPC.TargetClosest(faceTarget: false);
         NPC.netUpdate = true;
         if (!NPC.HasValidTarget || NPC.Distance(Main.player[NPC.target].Center) > 4000f) {
-            NPC.ai[0] = ACTION_GOODBYE;
+            NPC.ai[0] = STATE_GOODBYE;
             NPC.ai[1] = 0f;
             NPC.ai[2] = 0f;
             NPC.ai[3] = 0f;
@@ -1016,15 +1016,14 @@ public class OmegaStarite : AequusBoss {
     }
 
     public override void UpdateLifeRegen(ref int damage) {
-        if (Main.dayTime && Action != ACTION_DEAD && !Main.remixWorld) {
+        if (Main.dayTime && State != ACTION_DEAD && !Main.remixWorld) {
             NPC.lifeRegen = -10000;
             damage = 100;
         }
     }
 
     public override bool CheckDead() {
-        if (Action == ACTION_DEAD || Main.dayTime) {
-            NPC.lifeMax = -33333;
+        if (State == -101 || Main.dayTime) {
             return true;
         }
         //NPC.GetGlobalNPC<NoHitting>().preventNoHitCheck = true;
@@ -1037,6 +1036,10 @@ public class OmegaStarite : AequusBoss {
         NPC.life = NPC.lifeMax;
         return false;
     }
+
+    //public override bool CheckActive() {
+    //    return NPC.ai[0] != ACTION_DEAD;
+    //}
 
     public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo) {
         if (Main.rand.NextBool()) {
@@ -1090,7 +1093,7 @@ public class OmegaStarite : AequusBoss {
         }
         float intensity = 1f;
 
-        if (Action == -100) {
+        if (State == -100) {
             var focus = Main.item[(int)NPC.ai[1]].Center;
             intensity += NPC.localAI[3] / 60;
             Lighting.GlobalBrightness -= intensity * 0.2f;
@@ -1099,7 +1102,7 @@ public class OmegaStarite : AequusBoss {
             ViewHelper.LegacyScreenShake(intensity * 0.5f);
             ModContent.GetInstance<CameraFocus>().SetTarget("Omega Starite", focus, CameraPriority.VeryImportant, 0.5f, 60);
         }
-        else if (Action == ACTION_DEAD) {
+        else if (State == ACTION_DEAD) {
             intensity += NPC.ai[1] / 20;
             if (NPC.CountNPCS(Type) == 1) {
                 ModContent.GetInstance<CameraFocus>().SetTarget("Omega Starite", NPC.Center, CameraPriority.BossDefeat, 12f, 60);
@@ -1112,8 +1115,8 @@ public class OmegaStarite : AequusBoss {
                 Main.musicFade[i] = Math.Min(Main.musicFade[i], val);
             }
 
-            ScreenFlash.Instance.Set(NPC.Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.2f, 0.8f));
-            ViewHelper.LegacyScreenShake(intensity * 2.25f);
+            ScreenFlash.Instance.Set(NPC.Center, Math.Min(Math.Max(intensity - 1f, 0f) * 0.2f, 0.8f), 1.1f);
+            ViewHelper.LegacyScreenShake(intensity * 5.25f, 0.8f);
 
             int range = (int)intensity + 4;
             drawPos += new Vector2(Main.rand.Next(-range, range), Main.rand.Next(-range, range));
@@ -1149,7 +1152,7 @@ public class OmegaStarite : AequusBoss {
             spriteBatch.Draw(omegiteTexture, position, omegiteFrame, drawColor, rotation, origin1, scale, SpriteEffects.None, 0f);
         });
         float secretIntensity = 1f;
-        if (Action == -100) {
+        if (State == -100) {
             DrawDeathLightRays(intensity, Main.item[(int)NPC.ai[1]].Center - screenPos, spotlight, spotlightColor, spotlightOrig, deathSpotlightScale, NPC.localAI[3] * 0.05f);
             float decMult = Math.Clamp(2f - intensity * 0.4f, 0f, 1f);
             secretIntensity *= decMult;
@@ -1250,12 +1253,12 @@ public class OmegaStarite : AequusBoss {
                     secretIntensity);
             }
         }
-        if (Action != -100)
+        if (State != -100)
             DrawDeathLightRays(intensity, drawPos, spotlight, spotlightColor, spotlightOrig, deathSpotlightScale, NPC.ai[1]);
         return false;
     }
     public void DrawDeathLightRays(float intensity, Vector2 drawPos, Texture2D spotlight, Color spotlightColor, Vector2 spotlightOrig, float deathSpotlightScale, float deathTime) {
-        if (intensity > 3f || Action == -100 && intensity > 2f) {
+        if (intensity > 3f || State == -100 && intensity > 2f) {
             float intensity2 = intensity - 2f;
             float raysScaler = intensity2;
             if (deathTime > DEATHTIME) {

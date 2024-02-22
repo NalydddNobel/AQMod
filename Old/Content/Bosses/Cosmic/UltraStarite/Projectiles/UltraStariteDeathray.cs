@@ -1,6 +1,8 @@
 ﻿using Aequus.Old.Common.Projectiles;
+using Aequus.Old.Core.Utilities;
 using System;
 using System.Collections.Generic;
+using Terraria.Graphics;
 
 namespace Aequus.Old.Content.Bosses.Cosmic.UltraStarite.Projectiles;
 public class UltraStariteDeathray : EnemyAttachedProjBase {
@@ -70,7 +72,8 @@ public class UltraStariteDeathray : EnemyAttachedProjBase {
         var drawColor = new Color(10, 200, 80, 0);
         var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
         var n = Projectile.rotation.ToRotationVector2();
-        var arr = LinearInterpolationBetween(Main.ReverseGravitySupport(drawPos), Main.ReverseGravitySupport(drawPos + n * DEATHRAY_LENGTH * 5), 4);
+        Vector2[] arr = LinearInterpolationBetween(Main.ReverseGravitySupport(drawPos), Main.ReverseGravitySupport(drawPos + n * DEATHRAY_LENGTH * 5), 8);
+        float[] rotations = OldDrawHelper.GenerateRotationArr(arr);
         //if (prim == null) {
         //    prim = new TrailRenderer(TrailTextures.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(70f), (p) => Color.BlueViolet.UseA(0) * 1.4f * (float)Math.Pow(1f - p, 2f) * 0.4f * Projectile.Opacity * FadeLaser(p), obeyReversedGravity: false, worldTrail: false);
         //}
@@ -86,11 +89,22 @@ public class UltraStariteDeathray : EnemyAttachedProjBase {
         int amount = (int)(50 * (Aequus.HighQualityEffects ? 1f : 0.5f));
         var center = Projectile.Center;
 
-        //prim.Draw(arr);
-        //smokePrim.Draw(arr, -Main.GlobalTimeWrappedHourly, 2f);
+        DrawHelper.DrawBasicVertexLine(AequusTextures.Trail2, arr, rotations,
+            (p) => Color.BlueViolet with { A = 0 } * 1.4f * (float)Math.Pow(1f - p, 2f) * Projectile.Opacity * FadeLaser(p),
+            (p) => 70f);
+        DrawHelper.VertexStrip.DrawTrail();
 
-        //prim.Draw(arr);
-        //smokePrim.Draw(arr, -Main.GlobalTimeWrappedHourly, 2f);
+        DrawHelper.ApplyUVEffect(AequusTextures.Trail3, new Vector2(1f, 1f), new Vector2(Main.GameUpdateCount / 60f % 1f, 0f));
+        DrawHelper.VertexStrip.PrepareStrip(arr, rotations,
+            (p) => new Color(60, 160, 255, 0) * (1f - p) * 0.8f * Projectile.Opacity * FadeLaser(p),
+            (p) => 80f, includeBacksides: true);
+        DrawHelper.VertexStrip.DrawTrail();
+
+        DrawHelper.ApplyUVEffect(AequusTextures.Trail3, new Vector2(1f, 1f), new Vector2(Main.GameUpdateCount / 40f % 1f, 0f));
+        DrawHelper.VertexStrip.DrawTrail();
+
+        DrawHelper.ApplyUVEffect(AequusTextures.Trail3, new Vector2(1f, 1f), new Vector2(Main.GameUpdateCount / 20f % 1f, 0f));
+        DrawHelper.VertexStrip.DrawTrail();
 
         var spotlight = AequusTextures.BloomStrong;
         Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.4f, Projectile.rotation, spotlight.Size() / 2f, Projectile.scale * (Projectile.height / 32f), SpriteEffects.None, 0f);

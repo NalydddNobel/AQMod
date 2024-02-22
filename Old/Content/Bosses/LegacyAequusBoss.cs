@@ -2,15 +2,17 @@
 
 namespace Aequus.Old.Content.Bosses;
 
-public abstract class AequusBoss : ModNPC {
-    public const int ACTION_GOODBYE = -1;
-    public const int ACTION_INIT = 0;
-    public const int ACTION_INTRO = 1;
+public abstract class LegacyAequusBoss : ModNPC {
+    public const int STATE_KILLED = -3;
+    public const int STATE_DEATH_ANIMATION = -2;
+    public const int STATE_GOODBYE = -1;
+    public const int STATE_INIT = 0;
+    public const int STATE_INTRO = 1;
 
     public int horizontalFrames = 1;
 
-    public int Action { get => (int)NPC.ai[0]; set => NPC.ai[0] = value; }
-    public float ActionTimer { get => NPC.ai[1]; set => NPC.ai[1] = value; }
+    public int State { get => (int)NPC.ai[0]; set => NPC.ai[0] = value; }
+    public float StateTimer { get => NPC.ai[1]; set => NPC.ai[1] = value; }
 
     public override void SetStaticDefaults() {
         NPCSets.MPAllowedEnemies[Type] = true;

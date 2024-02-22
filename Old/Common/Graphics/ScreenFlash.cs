@@ -85,8 +85,8 @@ public class ScreenFlashData {
 
     public void Set(Vector2 location, float brightness, float multiplier = 0.9f) {
         FlashLocation = location;
-        Intensity = brightness;
-        Multiplier = multiplier;
+        Intensity = brightness * 2f;
+        Multiplier = multiplier * 0.8f;
     }
 
     public void Clear() {
