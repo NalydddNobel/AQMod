@@ -7,4 +7,4 @@ hideCode = false
 includeSource = false
 includePBD = true
 modReferences = AequusMusic
-buildIgnore = *.csproj, *.user, *.sln, *.gitignore, *.editorconfig, *.md, *.ase, *.fx, *.Temp.*, *.Temp, obj\*, bin\*, .vs\*, .cache\*, Assets\Effects\.compiler\*, .idea\*, SourceGenerators\*, Temp\SourceGenerators\SourceGenerators.Generator\*
+buildIgnore = *.csproj, *.user, *.sln, *.gitignore, *.editorconfig, *.md, *.ase, *.fx, *.Temp.*, *.Temp, obj\*, bin\*, .vs\*, .cache\*, Assets\Effects\.compiler\*, .idea\*, SourceGenerators\*, Temp\SourceGenerators\SourceGenerators.Generator\*, UnitTesting\*

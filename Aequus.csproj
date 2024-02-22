@@ -21,6 +21,9 @@
     <None Remove="Temp\SourceGenerators.Generator\**" />
 	<EmbeddedResource Remove="Temp\SourceGenerators.Generator\**" />
 	<Compile Remove="Temp\SourceGenerators.Generator\**" />
+    <None Remove="UnitTesting\**" />
+	<EmbeddedResource Remove="UnitTesting\**" />
+	<Compile Remove="UnitTesting\**" />
     <None Remove="SourceGenerators\**" />
 	<EmbeddedResource Remove="SourceGenerators\**" />
 	<Compile Remove="SourceGenerators\**" />
@@ -62,12 +65,6 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" />
 	<AdditionalFiles Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
-  </ItemGroup>
-	
-  <ItemGroup>
-    <None Remove="Content\Biomes\PollutedOcean\Background\MapBG_Underground.png" />
-    <None Remove="Content\Biomes\PollutedOcean\PollutedOceanBiomeUnderground_Icon.png" />
-    <None Remove="Content\Biomes\PollutedOcean\Water\PollutedOceanBiomeSurface_Icon.png" />
   </ItemGroup>
 	
 </Project>

@@ -21,7 +21,6 @@ public class BossItemInstantiator : ModSystem {
         AddBossMask("SpaceSquid");
 
         void AddBossContent(string name, int internalRarity, bool preHardmode, IRelicRenderer relicRenderer, int legacyTrophyId = -1) {
-            Mod.AddContent(new InstancedBossBag(name, internalRarity, preHardmode));
             AddLegacyTrophy(name, relicRenderer, legacyTrophyId);
         }
 

@@ -2,63 +2,27 @@
 
 public static class ItemCommons {
     public class Rarity {
-        /// <summary><see cref="ItemRarityID.Blue"/></summary>
-        public static int SkyMerchantShopItem { get; set; } = ItemRarityID.Blue;
+        public const int SkyMerchantShopItem = ItemRarityID.Blue;
+        public const int PollutedOceanLoot = ItemRarityID.Blue;
+        public const int AquaticBossLoot = ItemRarityID.Blue;
+        public const int JungleLoot = ItemRarityID.Green;
+        public const int GlimmerLoot = ItemRarityID.Green;
+        public const int DungeonLoot = ItemRarityID.Green;
+        public const int DemonSiegeTier1Loot = ItemRarityID.Orange;
+        public const int OmegaStariteLoot = ItemRarityID.LightRed;
+        public const int WallOfFleshLoot = ItemRarityID.LightRed;
+        public const int EarlyHardmodeMaterial = ItemRarityID.Orange;
+        public const int HardSandstormBlizzardLoot = ItemRarityID.LightRed;
+        public const int SpaceStormLoot = ItemRarityID.Pink;
+        public const int DustDevilLoot = ItemRarityID.Pink;
+        public const int PlanteraLoot = ItemRarityID.Yellow;
+        public const int HardDungeonLoot = ItemRarityID.Yellow;
+        public const int DemonSiegeTier2Loot = ItemRarityID.Yellow;
+        public const int UpriserLoot = ItemRarityID.Cyan;
+        public const int MoonLordLoot = ItemRarityID.Red;
+        public const int YinYangLoot = ItemRarityID.Red;
 
-        /// <summary><see cref="ItemRarityID.Blue"/></summary>
-        public static int PollutedOceanLoot { get; set; } = ItemRarityID.Blue;
-
-        /// <summary><see cref="ItemRarityID.Blue"/></summary>
-        public static int AquaticBossLoot { get; set; } = ItemRarityID.Blue;
-
-        /// <summary><see cref="ItemRarityID.LightPurple"/></summary>
-        public static int JungleLoot { get; set; } = ItemRarityID.Green;
-
-        /// <summary><see cref="ItemRarityID.Green"/></summary>
-        public static int GlimmerLoot { get; set; } = ItemRarityID.Green;
-
-        /// <summary><see cref="ItemRarityID.Green"/></summary>
-        public static int DungeonLoot { get; set; } = ItemRarityID.Green;
-
-        /// <summary><see cref="ItemRarityID.Orange"/></summary>
-        public static int DemonSiegeTier1Loot { get; set; } = ItemRarityID.Orange;
-
-        /// <summary><see cref="ItemRarityID.LightRed"/></summary>
-        public static int OmegaStariteLoot { get; set; } = ItemRarityID.LightRed;
-
-        /// <summary><see cref="ItemRarityID.Orange"/></summary>
-        public static int EarlyHardmodeMaterial { get; set; } = ItemRarityID.Orange;
-
-        /// <summary><see cref="ItemRarityID.LightRed"/></summary>
-        public static int HardSandstormBlizzardLoot { get; set; } = ItemRarityID.LightRed;
-
-        /// <summary><see cref="ItemRarityID.Pink"/></summary>
-        public static int SpaceStormLoot { get; set; } = ItemRarityID.Pink;
-
-        /// <summary><see cref="ItemRarityID.LightPurple"/></summary>
-        public static int DustDevilLoot { get; set; } = ItemRarityID.LightPurple;
-
-        /// <summary><see cref="ItemRarityID.Yellow"/></summary>
-        public static int HardDungeonLoot { get; set; } = ItemRarityID.Yellow;
-
-        /// <summary><see cref="ItemRarityID.Yellow"/></summary>
-        public static int DemonSiegeTier2Loot { get; set; } = ItemRarityID.Yellow;
-
-        /// <summary><see cref="ItemRarityID.Red"/></summary>
-        public static int UpriserLoot { get; set; } = ItemRarityID.Red;
-
-        /// <summary><see cref="ItemRarityID.Red"/></summary>
-        public static int YinYangLoot { get; set; } = ItemRarityID.Red;
-
-        /// <summary><see cref="ItemRarityID.LightPurple"/></summary>
-        public static int ShimmerPermaPowerup { get; set; } = ItemRarityID.LightPurple;
-
-        /// <summary><see cref="ItemRarityID.LightRed"/></summary>
-        public static readonly int WallOfFleshLoot = ItemRarityID.LightRed;
-        /// <summary><see cref="ItemRarityID.Yellow"/></summary>
-        public static readonly int PlanteraLoot = ItemRarityID.Yellow;
-        /// <summary><see cref="ItemRarityID.Red"/></summary>
-        public static readonly int MoonLordLoot = ItemRarityID.Red;
+        public const int ShimmerPermaPowerup = ItemRarityID.LightPurple;
     }
 
     public class Price {

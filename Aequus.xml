@@ -200,66 +200,6 @@
             How long the item should float for. Set to 255 for permanent duration.
             </summary>
         </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.SkyMerchantShopItem">
-            <summary><see cref="F:Terraria.ID.ItemRarityID.Blue"/></summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.PollutedOceanLoot">
-            <summary><see cref="F:Terraria.ID.ItemRarityID.Blue"/></summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.AquaticBossLoot">
-            <summary><see cref="F:Terraria.ID.ItemRarityID.Blue"/></summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.JungleLoot">
-            <summary><see cref="F:Terraria.ID.ItemRarityID.LightPurple"/></summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.GlimmerLoot">
-            <summary><see cref="F:Terraria.ID.ItemRarityID.Green"/></summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.DungeonLoot">
-            <summary><see cref="F:Terraria.ID.ItemRarityID.Green"/></summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.DemonSiegeTier1Loot">
-            <summary><see cref="F:Terraria.ID.ItemRarityID.Orange"/></summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.OmegaStariteLoot">
-            <summary><see cref="F:Terraria.ID.ItemRarityID.LightRed"/></summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.EarlyHardmodeMaterial">
-            <summary><see cref="F:Terraria.ID.ItemRarityID.Orange"/></summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.HardSandstormBlizzardLoot">
-            <summary><see cref="F:Terraria.ID.ItemRarityID.LightRed"/></summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.SpaceStormLoot">
-            <summary><see cref="F:Terraria.ID.ItemRarityID.Pink"/></summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.DustDevilLoot">
-            <summary><see cref="F:Terraria.ID.ItemRarityID.LightPurple"/></summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.HardDungeonLoot">
-            <summary><see cref="F:Terraria.ID.ItemRarityID.Yellow"/></summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.DemonSiegeTier2Loot">
-            <summary><see cref="F:Terraria.ID.ItemRarityID.Yellow"/></summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.UpriserLoot">
-            <summary><see cref="F:Terraria.ID.ItemRarityID.Red"/></summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.YinYangLoot">
-            <summary><see cref="F:Terraria.ID.ItemRarityID.Red"/></summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Rarity.ShimmerPermaPowerup">
-            <summary><see cref="F:Terraria.ID.ItemRarityID.LightPurple"/></summary>
-        </member>
-        <member name="F:Aequus.Common.Items.ItemCommons.Rarity.WallOfFleshLoot">
-            <summary><see cref="F:Terraria.ID.ItemRarityID.LightRed"/></summary>
-        </member>
-        <member name="F:Aequus.Common.Items.ItemCommons.Rarity.PlanteraLoot">
-            <summary><see cref="F:Terraria.ID.ItemRarityID.Yellow"/></summary>
-        </member>
-        <member name="F:Aequus.Common.Items.ItemCommons.Rarity.MoonLordLoot">
-            <summary><see cref="F:Terraria.ID.ItemRarityID.Red"/></summary>
-        </member>
         <member name="P:Aequus.Common.Items.ItemCommons.Price.SkyMerchantShopItem">
             <summary>1 Gold</summary>
         </member>
@@ -735,6 +675,25 @@
             Bubble particles which only work underwater. Floats upwards.
             </summary>
         </member>
+        <member name="T:Aequus.Core.CodeGeneration.Publicization`2">
+            <summary>Rough system which helps getting private fields from classes.</summary>
+        </member>
+        <member name="M:Aequus.Core.CodeGeneration.Publicization`2.Get(System.String)">
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.NullReferenceException"></exception>
+            <exception cref="T:System.MissingMemberException"></exception>
+            <exception cref="T:System.NotSupportedException"></exception>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="M:Aequus.Core.CodeGeneration.Publicization`2.Get(`0,System.String)">
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.NullReferenceException"></exception>
+            <exception cref="T:System.MissingMemberException"></exception>
+            <exception cref="T:System.NotSupportedException"></exception>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
         <member name="T:Aequus.Core.Collections.DictionaryRemoveQueue`2">
             <summary>
             A Dictionary with a removal queue. Allows for removals to occur in an iteration.
@@ -757,229 +716,30 @@
             <param name="modWall"></param>
             <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
         </member>
-        <member name="P:Aequus.Core.CrossMod.SupportedMod`1.Instance">
-            <summary>The Supported Mod's instance. This property is <see langword="null" /> when the mod is not enabled.</summary>
+        <member name="M:Aequus.Core.Utilities.ExtendNPC.AddBossDrop(Terraria.ModLoader.NPCLoot,Terraria.GameContent.ItemDropRules.IItemDropRule)">
+            <summary>Adds <paramref name="entry"/> to <paramref name="npcLoot"/>, and its boss bag.</summary>
+            <param name="npcLoot"></param>
+            <param name="entry"></param>
         </member>
-        <member name="P:Aequus.Core.DataSets.IEntry.Name">
-            <summary>Name for the content entry.</summary>
+        <member name="M:Aequus.Core.Utilities.ExtendNPC.AddToBossBag(Terraria.ModLoader.NPCLoot,Terraria.GameContent.ItemDropRules.IItemDropRule)">
+            <summary>Adds <paramref name="entry"/> to <paramref name="npcLoot"/>'s boss bag. Throws errors if a boss bag doesn't exist.</summary>
         </member>
-        <member name="P:Aequus.Core.DataSets.IEntry.Id">
-            <summary>ID for the content.</summary>
+        <member name="M:Aequus.Core.Utilities.ExtendNPC.SyncNPC(Terraria.NPC)">
+            <summary>Manually sends a <see cref="F:Terraria.ID.MessageID.SyncNPC"/> packet to sync this NPC.</summary>
         </member>
-        <member name="P:Aequus.Core.DataSets.IEntry.ValidEntry">
-            <summary>Whether this is a valid entry. Entries for content from other mods will be marked as Invalid if the mod is not enabled.</summary>
+        <member name="M:Aequus.Core.Utilities.ExtendNPC.TryRetargeting(Terraria.NPC,System.Boolean)">
+            <summary>Runs <see cref="M:Terraria.NPC.TargetClosest(System.Boolean)"/>, and returns <see cref="P:Terraria.NPC.HasValidTarget"/>.</summary>
         </member>
-        <member name="P:Aequus.Core.DataSets.IEntry.VanillaEntry">
-            <summary>Whether this is a vanilla entry.</summary>
+        <member name="M:Aequus.Core.Utilities.ExtendNPC.IsProbablyACritter(Terraria.NPC)">
+            <returns>Whether or not this is most likely a critter, dependant on multiple checks of their stats and values in data sets.</returns>
         </member>
-        <member name="M:Aequus.Core.DataSets.IEntry.SetName(System.String)">
-            <summary>Set <see cref="P:Aequus.Core.DataSets.IEntry.Id"/> using <paramref name="name"/>. Called when loading the .json metadata files.</summary>
-            <param name="name">Name of the content.</param>
+        <member name="M:Aequus.Core.Utilities.ExtendNPC.DrawNPCStatusEffects(Microsoft.Xna.Framework.Graphics.SpriteBatch,Terraria.NPC,Microsoft.Xna.Framework.Vector2)">
+            <summary>Replicates the drawing of misc vanilla status effects. This is used to support these effects on NPCs with custom rendering.</summary>
         </member>
-        <member name="M:Aequus.Core.DataSets.IEntry.SetId(System.Int32)">
-            <summary>Set <see cref="P:Aequus.Core.DataSets.IEntry.Id"/> directly. Use this to update the name or other values if needed.</summary>
-            <param name="id">The Content's Id.</param>
-        </member>
-        <member name="T:Aequus.Core.DataSets.Entry`1">
-            <summary>
-            Represents an entry for a piece of content which uses an Id system.
-            <para>
-            <typeparamref name="T"/> should be one of the "X-ID" classes, like <see cref="T:Terraria.ID.ItemID"/>, <see cref="T:Terraria.ID.BuffID"/>, ect.
-            The ID class must also have an <see cref="T:ReLogic.Reflection.IdDictionary"/> named "Search", and a value for the total amount of vanilla entries labled "Count" (which can also be converted into an <see cref="T:System.Int32"/>)
-            </para>
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="P:Aequus.Core.DataSets.Entry`1.Name">
-            <summary><inheritdoc cref="P:Aequus.Core.DataSets.IEntry.Name"/> Automatically grabbed from <typeparamref name="T"/>.Search.GetName(<see cref="P:Aequus.Core.DataSets.Entry`1.Id"/>). Returns "Unknown" or a name of an invalid entry if no name exists.</summary>
-        </member>
-        <member name="P:Aequus.Core.DataSets.Entry`1.VanillaEntry">
-            <summary><inheritdoc cref="P:Aequus.Core.DataSets.IEntry.VanillaEntry"/> Automatically determined by checking if <see cref="P:Aequus.Core.DataSets.Entry`1.Id"/> is less than <typeparamref name="T"/>.Count.</summary>
-        </member>
-        <member name="F:Aequus.Core.DataSets.IDCommons`1.Count">
-            <summary>The vanilla count.</summary>
-        </member>
-        <member name="F:Aequus.Core.DataSets.IDCommons`1.StartCount">
-            <summary>The starting Id. This is usually 0, but in some cases like <see cref="T:Terraria.ID.NPCID"/> it will be equal to <see cref="F:Terraria.ID.NPCID.NegativeIDCount"/>.</summary>
-        </member>
-        <member name="E:Aequus.Core.Graphics.DrawLayers.WorldBehindTiles">
-            <summary>Invoked before NPCs behind tiles are drawn.</summary>
-        </member>
-        <member name="E:Aequus.Core.Graphics.DrawLayers.PostDrawDust">
-            <summary>Invoked after Dusts have been drawn.</summary>
-        </member>
-        <member name="E:Aequus.Core.Graphics.DrawLayers.PostDrawLiquids">
-            <summary>Invoked after Liquids and Inferno Rings have been drawn, but before Wire Overlays are drawn.</summary>
-        </member>
-        <member name="M:Aequus.Core.Graphics.SpriteBatchCache.InheritFrom(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
-            <summary>
-            Note: This calls <see cref="M:Microsoft.Xna.Framework.Graphics.SpriteBatch.End"/>, and then grabs all of the graphics device info and caches it into the various properties.
-            Use <see cref="M:Aequus.Core.Graphics.SpriteBatchCache.Begin(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.SpriteSortMode,Microsoft.Xna.Framework.Graphics.Effect,System.Nullable{Microsoft.Xna.Framework.Matrix})"/> to restart <paramref name="spriteBatch"/> back to its original state, with its <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteSortMode"/> needing to be respecified.
-            </summary>
-            <param name="spriteBatch"></param>
-            <exception cref="T:System.InvalidOperationException"></exception>
-        </member>
-        <member name="T:Aequus.Core.Graphics.Tiles.BatchedTileDrawInfo">
-            <summary>
-            Tile draw info used internally with <see cref="T:Aequus.Core.Graphics.Tiles.BatchedTileRenderer"/>.
-            </summary>
-            <param name="Tile"></param>
-            <param name="Position"></param>
-        </member>
-        <member name="M:Aequus.Core.Graphics.Tiles.BatchedTileDrawInfo.#ctor(Terraria.Tile,Microsoft.Xna.Framework.Point)">
-            <summary>
-            Tile draw info used internally with <see cref="T:Aequus.Core.Graphics.Tiles.BatchedTileRenderer"/>.
-            </summary>
-            <param name="Tile"></param>
-            <param name="Position"></param>
-        </member>
-        <member name="P:Aequus.Core.Graphics.Tiles.BatchedTileDrawInfo.Tile">
-            <summary></summary>
-        </member>
-        <member name="P:Aequus.Core.Graphics.Tiles.BatchedTileDrawInfo.Position">
-            <summary></summary>
-        </member>
-        <member name="T:Aequus.Core.Graphics.Tiles.BatchedTileRenderer">
-            <summary>
-            Special system for adding tiles with cool render effects.
-            </summary>
-        </member>
-        <member name="M:Aequus.Core.Graphics.Tiles.BatchedTileRenderer.Register(System.Int32,Aequus.Core.Graphics.Tiles.IBatchedTile)">
-            <summary>
-            Registers a delegate for use with special tile drawing for selected type.
-            </summary>
-        </member>
-        <member name="M:Aequus.Core.Graphics.Tiles.BatchedTileRenderer.Add(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Adds the tile at position to draw buffer.
-            </summary>
-        </member>
-        <member name="T:Aequus.Core.Graphics.Tiles.IBatchedTile">
-            <summary>
-            Grants a ModTile the ability to render post-draw elements in a batch to reduce on Begin/End calls.
-            <para>Place SpecialTileDrawing.Add(i, j, Type); into ModTile.PostDraw(...) to add it to the rendering list.</para>
-            </summary>
-        </member>
-        <member name="M:Aequus.Core.Graphics.Tiles.IDrawWindyGrass.DrawWindyGrass(Aequus.Core.Graphics.Tiles.TileDrawCall)">
-            <param name="drawInfo"></param>
-            <returns>Whether to run vanilla rendering. Return false to prevent vanilla rendering.</returns>
-        </member>
-        <member name="M:Aequus.Core.Graphics.CustomDrawnUGBackground.RenderBackground(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.GraphicsDevice)">
-            <summary>
-            Renders the background to the background render target.
-            </summary>
-            <param name="spriteBatch"></param>
-            <param name="graphicsDevice"></param>
-        </member>
-        <member name="M:Aequus.Core.Initialization.BannerLoader.AddBannerBuff``1(Terraria.ModLoader.ModNPC)">
-            <summary>
-            Adds a banner buff for this NPC to <typeparamref name="TBannerNPC"/>'s registered banner. This is used grant a buff against Chained Souls when near the Keeper's Banner.
-            </summary>
-            <typeparam name="TBannerNPC"></typeparam>
-            <param name="npcWithoutBanner"></param>
-        </member>
-        <member name="T:Aequus.Core.IO.IDLoader`1">
-            <summary>Helper for loading content which uses a legacy Id system.</summary>
-        </member>
-        <member name="T:Aequus.Core.Particles.ParallelParticleArray`1">
-            <summary>
-            A basic particle array system which updates particles in parallel.
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="T:Aequus.Core.Particles.ParticleArray`1">
-            <summary>A basic particle array system, initializes an array of a specified size on-load.</summary>
-        </member>
-        <member name="M:Aequus.Core.Particles.ParticleArray`1.New">
-            <returns>A single particle instance.</returns>
-        </member>
-        <member name="M:Aequus.Core.Particles.ParticleArray`1.NewMultiple(System.Int32)">
-            <summary>
-            Gets multiple particle instances, used to reduce <see cref="M:Aequus.Core.Particles.ParticleArray`1.CheckInit"/> calls. Unlike <see cref="M:Aequus.Core.Particles.ParticleArray`1.NewMultipleReduced(System.Int32,System.Int32)"/>, 
-            <paramref name="count"/> is NOT multiplied by <see cref="F:Terraria.Main.gfxQuality"/>.
-            </summary>
-            <param name="count">The amount of particles wanted.</param>
-        </member>
-        <member name="M:Aequus.Core.Particles.ParticleArray`1.NewMultipleReduced(System.Int32,System.Int32)">
-            <summary>
-            Gets multiple particle instances, used to reduce <see cref="M:Aequus.Core.Particles.ParticleArray`1.CheckInit"/> calls. <paramref name="count"/> is multiplied by <see cref="F:Terraria.Main.gfxQuality"/>, 
-            but returns atleast <paramref name="minimum"/> amount of particles.
-            </summary>
-            <param name="count">The amount of particles wanted. This is multiplied <see cref="F:Terraria.Main.gfxQuality"/>.</param>
-            <param name="minimum">The minimum amount of particles to return. <paramref name="count"/> is multiplied by <see cref="F:Terraria.Main.gfxQuality"/>, which reduces it depending on quality settings.</param>
-        </member>
-        <member name="M:Aequus.Core.Particles.ParticleArray`1.OnActivate">
-            <summary>
-            Allows the renderer to subscribe to various drawing actions.
-            This is ran when the particle system is activated.
-            </summary>
-        </member>
-        <member name="M:Aequus.Core.Particles.ParticleArray`1.Deactivate">
-            <summary>
-            Allows the renderer to unsubscribe to various drawing actions.
-            This is ran when all particles are cleared from the system.
-            </summary>
-        </member>
-        <member name="T:Aequus.Core.Particles.ParticleManager">
-            <summary>
-            Handles and updates particle systems.
-            </summary>
-        </member>
-        <member name="M:Aequus.Core.Particles.ParticleSystem.OnActivate">
-            <summary>
-            Allows the renderer to subscribe to various drawing actions.
-            This is ran when the particle system is activated.
-            </summary>
-        </member>
-        <member name="M:Aequus.Core.Particles.ParticleSystem.Deactivate">
-            <summary>
-            Allows the renderer to unsubscribe to various drawing actions.
-            This is ran when all particles are cleared from the system.
-            </summary>
-        </member>
-        <member name="T:Aequus.Core.PhysicsBehaviors.VICollisonNode">
-            <summary>A Verlet Integrated node with Tile Collision.</summary>
-        </member>
-        <member name="M:Aequus.Core.RefManipulator`1.OverrideValue(`0)">
-            <summary>Replaces the referenced value with <paramref name="value"/>. The original value will be cached, and can be restored using <see cref="!:VoidOverriddenValue(ref T)"/>.</summary>
-            <param name="value"></param>
-        </member>
-        <member name="M:Aequus.Core.RefManipulator`1.VoidOverriddenValue">
-            <summary>Restores overriden values back to their original value.</summary>
-        </member>
-        <member name="M:Aequus.Core.UI.Elements.ImprovedItemSlot.SetIcon(Terraria.UI.UIElement)">
-            <summary>Adds the UI Element as an icon to display when no item is in the slot.</summary>
-        </member>
-        <member name="T:Aequus.Core.UI.Elements.ImprovedTextBox">
-            <summary>Improved text box based off of <see cref="T:Terraria.GameContent.UI.Elements.UITextBox"/>.</summary>
-        </member>
-        <member name="F:Aequus.Core.UI.InventoryUI.InventorySlotContexts">
-            <summary>Contains Item Slot Contexts which are usually related to normal inventory slots. Check the current slot context to determine drawing item status UI like cooldowns and ect.</summary>
-        </member>
-        <member name="M:Aequus.Core.UI.IUserInterfaceLayer.OnUIUpdate(Microsoft.Xna.Framework.GameTime)">
-            <param name="gameTime"></param>
-            <returns>Whether or not to deactivate this UI.</returns>
-        </member>
-        <member name="M:Aequus.Core.UI.IUserInterfaceLayer.OnRemove">
-            <summary>Called right before this UI Layer node is removed.</summary>
-        </member>
-        <member name="T:Aequus.Core.UI.UILayer">
-            <summary>Used to simplify UI implementation. Only loads in singleplayer or on multiplayer clients.</summary>
-        </member>
-        <member name="M:Aequus.Core.UI.UILayer.#ctor(System.String,System.String,Terraria.UI.InterfaceScaleType,System.Int32)">
-            <param name="Name">Name of this layer.</param>
-            <param name="InsertLayer">Name of the layer to search the index of.</param>
-            <param name="ScaleType">Scale Type of this layer.</param>
-            <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
-        </member>
-        <member name="T:Aequus.Core.UI.UILayersSystem">
-            <summary>Only loads in singleplayer or on multiplayer clients.</summary>
-        </member>
-        <member name="M:Aequus.Core.UI.UIStateLayer.#ctor(System.String,System.String,Terraria.UI.InterfaceScaleType,System.Int32)">
-            <param name="Name">Name of this layer.</param>
-            <param name="InsertLayer">Name of the layer to search the index of.</param>
-            <param name="ScaleType">Scale Type of this layer.</param>
-            <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
+        <member name="M:Aequus.Core.Utilities.ExtendNPC.ClearBuff(Terraria.NPC,System.Int32)">
+            <summary>Clears a buff of the specified ID from this NPC.</summary>
+            <param name="npc"></param>
+            <param name="buffId">The Buff Id to clear from this NPC.</param>
         </member>
         <member name="T:Aequus.Core.Utilities.ChatTagWriter">
             <summary>Contains helper methods for generating chat tag strings. For item and glyphs, <see cref="T:Terraria.GameContent.UI.Chat.ItemTagHandler"/> and <see cref="T:Terraria.GameContent.UI.Chat.GlyphTagHandler"/> have static helper methods.</summary>
@@ -1168,23 +928,6 @@
             <summary>Gets Drop Rules registered to the specified NPC Id.</summary>
             <param name="npcId">The NPC Id.</param>
             <param name="database">Database instance. Set to null to use <see cref="F:Terraria.Main.ItemDropsDB"/>.</param>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendNPC.SyncNPC(Terraria.NPC)">
-            <summary>Manually sends a <see cref="F:Terraria.ID.MessageID.SyncNPC"/> packet to sync this NPC.</summary>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendNPC.TryRetargeting(Terraria.NPC,System.Boolean)">
-            <summary>Runs <see cref="M:Terraria.NPC.TargetClosest(System.Boolean)"/>, and returns <see cref="P:Terraria.NPC.HasValidTarget"/>.</summary>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendNPC.IsProbablyACritter(Terraria.NPC)">
-            <returns>Whether or not this is most likely a critter, dependant on multiple checks of their stats and values in data sets.</returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendNPC.DrawNPCStatusEffects(Microsoft.Xna.Framework.Graphics.SpriteBatch,Terraria.NPC,Microsoft.Xna.Framework.Vector2)">
-            <summary>Replicates the drawing of misc vanilla status effects. This is used to support these effects on NPCs with custom rendering.</summary>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendNPC.ClearBuff(Terraria.NPC,System.Int32)">
-            <summary>Clears a buff of the specified ID from this NPC.</summary>
-            <param name="npc"></param>
-            <param name="buffId">The Buff Id to clear from this NPC.</param>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendPlayer.CheckPickPower(Terraria.Player,Terraria.Item,System.Int32,System.Int32)">
             <summary>
@@ -1417,6 +1160,230 @@
             <param name="x"></param>
             <param name="y"></param>
             <param name="quiet"></param>
+        </member>
+        <member name="P:Aequus.Core.CrossMod.SupportedMod`1.Instance">
+            <summary>The Supported Mod's instance. This property is <see langword="null" /> when the mod is not enabled.</summary>
+        </member>
+        <member name="P:Aequus.Core.DataSets.IEntry.Name">
+            <summary>Name for the content entry.</summary>
+        </member>
+        <member name="P:Aequus.Core.DataSets.IEntry.Id">
+            <summary>ID for the content.</summary>
+        </member>
+        <member name="P:Aequus.Core.DataSets.IEntry.ValidEntry">
+            <summary>Whether this is a valid entry. Entries for content from other mods will be marked as Invalid if the mod is not enabled.</summary>
+        </member>
+        <member name="P:Aequus.Core.DataSets.IEntry.VanillaEntry">
+            <summary>Whether this is a vanilla entry.</summary>
+        </member>
+        <member name="M:Aequus.Core.DataSets.IEntry.SetName(System.String)">
+            <summary>Set <see cref="P:Aequus.Core.DataSets.IEntry.Id"/> using <paramref name="name"/>. Called when loading the .json metadata files.</summary>
+            <param name="name">Name of the content.</param>
+        </member>
+        <member name="M:Aequus.Core.DataSets.IEntry.SetId(System.Int32)">
+            <summary>Set <see cref="P:Aequus.Core.DataSets.IEntry.Id"/> directly. Use this to update the name or other values if needed.</summary>
+            <param name="id">The Content's Id.</param>
+        </member>
+        <member name="T:Aequus.Core.DataSets.Entry`1">
+            <summary>
+            Represents an entry for a piece of content which uses an Id system.
+            <para>
+            <typeparamref name="T"/> should be one of the "X-ID" classes, like <see cref="T:Terraria.ID.ItemID"/>, <see cref="T:Terraria.ID.BuffID"/>, ect.
+            The ID class must also have an <see cref="T:ReLogic.Reflection.IdDictionary"/> named "Search", and a value for the total amount of vanilla entries labled "Count" (which can also be converted into an <see cref="T:System.Int32"/>)
+            </para>
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Aequus.Core.DataSets.Entry`1.Name">
+            <summary><inheritdoc cref="P:Aequus.Core.DataSets.IEntry.Name"/> Automatically grabbed from <typeparamref name="T"/>.Search.GetName(<see cref="P:Aequus.Core.DataSets.Entry`1.Id"/>). Returns "Unknown" or a name of an invalid entry if no name exists.</summary>
+        </member>
+        <member name="P:Aequus.Core.DataSets.Entry`1.VanillaEntry">
+            <summary><inheritdoc cref="P:Aequus.Core.DataSets.IEntry.VanillaEntry"/> Automatically determined by checking if <see cref="P:Aequus.Core.DataSets.Entry`1.Id"/> is less than <typeparamref name="T"/>.Count.</summary>
+        </member>
+        <member name="F:Aequus.Core.DataSets.IDCommons`1.Count">
+            <summary>The vanilla count.</summary>
+        </member>
+        <member name="F:Aequus.Core.DataSets.IDCommons`1.StartCount">
+            <summary>The starting Id. This is usually 0, but in some cases like <see cref="T:Terraria.ID.NPCID"/> it will be equal to <see cref="F:Terraria.ID.NPCID.NegativeIDCount"/>.</summary>
+        </member>
+        <member name="E:Aequus.Core.Graphics.DrawLayers.WorldBehindTiles">
+            <summary>Invoked before NPCs behind tiles are drawn.</summary>
+        </member>
+        <member name="E:Aequus.Core.Graphics.DrawLayers.PostDrawDust">
+            <summary>Invoked after Dusts have been drawn.</summary>
+        </member>
+        <member name="E:Aequus.Core.Graphics.DrawLayers.PostDrawLiquids">
+            <summary>Invoked after Liquids and Inferno Rings have been drawn, but before Wire Overlays are drawn.</summary>
+        </member>
+        <member name="M:Aequus.Core.Graphics.SpriteBatchCache.InheritFrom(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
+            <summary>
+            Note: This calls <see cref="M:Microsoft.Xna.Framework.Graphics.SpriteBatch.End"/>, and then grabs all of the graphics device info and caches it into the various properties.
+            Use <see cref="M:Aequus.Core.Graphics.SpriteBatchCache.Begin(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.SpriteSortMode,Microsoft.Xna.Framework.Graphics.Effect,System.Nullable{Microsoft.Xna.Framework.Matrix})"/> to restart <paramref name="spriteBatch"/> back to its original state, with its <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteSortMode"/> needing to be respecified.
+            </summary>
+            <param name="spriteBatch"></param>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="T:Aequus.Core.Graphics.Tiles.BatchedTileDrawInfo">
+            <summary>
+            Tile draw info used internally with <see cref="T:Aequus.Core.Graphics.Tiles.BatchedTileRenderer"/>.
+            </summary>
+            <param name="Tile"></param>
+            <param name="Position"></param>
+        </member>
+        <member name="M:Aequus.Core.Graphics.Tiles.BatchedTileDrawInfo.#ctor(Terraria.Tile,Microsoft.Xna.Framework.Point)">
+            <summary>
+            Tile draw info used internally with <see cref="T:Aequus.Core.Graphics.Tiles.BatchedTileRenderer"/>.
+            </summary>
+            <param name="Tile"></param>
+            <param name="Position"></param>
+        </member>
+        <member name="P:Aequus.Core.Graphics.Tiles.BatchedTileDrawInfo.Tile">
+            <summary></summary>
+        </member>
+        <member name="P:Aequus.Core.Graphics.Tiles.BatchedTileDrawInfo.Position">
+            <summary></summary>
+        </member>
+        <member name="T:Aequus.Core.Graphics.Tiles.BatchedTileRenderer">
+            <summary>
+            Special system for adding tiles with cool render effects.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.Graphics.Tiles.BatchedTileRenderer.Register(System.Int32,Aequus.Core.Graphics.Tiles.IBatchedTile)">
+            <summary>
+            Registers a delegate for use with special tile drawing for selected type.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.Graphics.Tiles.BatchedTileRenderer.Add(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Adds the tile at position to draw buffer.
+            </summary>
+        </member>
+        <member name="T:Aequus.Core.Graphics.Tiles.IBatchedTile">
+            <summary>
+            Grants a ModTile the ability to render post-draw elements in a batch to reduce on Begin/End calls.
+            <para>Place SpecialTileDrawing.Add(i, j, Type); into ModTile.PostDraw(...) to add it to the rendering list.</para>
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.Graphics.Tiles.IDrawWindyGrass.DrawWindyGrass(Aequus.Core.Graphics.Tiles.TileDrawCall)">
+            <param name="drawInfo"></param>
+            <returns>Whether to run vanilla rendering. Return false to prevent vanilla rendering.</returns>
+        </member>
+        <member name="M:Aequus.Core.Graphics.CustomDrawnUGBackground.RenderBackground(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.GraphicsDevice)">
+            <summary>
+            Renders the background to the background render target.
+            </summary>
+            <param name="spriteBatch"></param>
+            <param name="graphicsDevice"></param>
+        </member>
+        <member name="M:Aequus.Core.Initialization.BannerLoader.AddBannerBuff``1(Terraria.ModLoader.ModNPC)">
+            <summary>
+            Adds a banner buff for this NPC to <typeparamref name="TBannerNPC"/>'s registered banner. This is used grant a buff against Chained Souls when near the Keeper's Banner.
+            </summary>
+            <typeparam name="TBannerNPC"></typeparam>
+            <param name="npcWithoutBanner"></param>
+        </member>
+        <member name="T:Aequus.Core.IO.IDLoader`1">
+            <summary>Helper for loading content which uses a legacy Id system.</summary>
+        </member>
+        <member name="T:Aequus.Core.Particles.ParallelParticleArray`1">
+            <summary>
+            A basic particle array system which updates particles in parallel.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:Aequus.Core.Particles.ParticleArray`1">
+            <summary>A basic particle array system, initializes an array of a specified size on-load.</summary>
+        </member>
+        <member name="M:Aequus.Core.Particles.ParticleArray`1.New">
+            <returns>A single particle instance.</returns>
+        </member>
+        <member name="M:Aequus.Core.Particles.ParticleArray`1.NewMultiple(System.Int32)">
+            <summary>
+            Gets multiple particle instances, used to reduce <see cref="M:Aequus.Core.Particles.ParticleArray`1.CheckInit"/> calls. Unlike <see cref="M:Aequus.Core.Particles.ParticleArray`1.NewMultipleReduced(System.Int32,System.Int32)"/>, 
+            <paramref name="count"/> is NOT multiplied by <see cref="F:Terraria.Main.gfxQuality"/>.
+            </summary>
+            <param name="count">The amount of particles wanted.</param>
+        </member>
+        <member name="M:Aequus.Core.Particles.ParticleArray`1.NewMultipleReduced(System.Int32,System.Int32)">
+            <summary>
+            Gets multiple particle instances, used to reduce <see cref="M:Aequus.Core.Particles.ParticleArray`1.CheckInit"/> calls. <paramref name="count"/> is multiplied by <see cref="F:Terraria.Main.gfxQuality"/>, 
+            but returns atleast <paramref name="minimum"/> amount of particles.
+            </summary>
+            <param name="count">The amount of particles wanted. This is multiplied <see cref="F:Terraria.Main.gfxQuality"/>.</param>
+            <param name="minimum">The minimum amount of particles to return. <paramref name="count"/> is multiplied by <see cref="F:Terraria.Main.gfxQuality"/>, which reduces it depending on quality settings.</param>
+        </member>
+        <member name="M:Aequus.Core.Particles.ParticleArray`1.OnActivate">
+            <summary>
+            Allows the renderer to subscribe to various drawing actions.
+            This is ran when the particle system is activated.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.Particles.ParticleArray`1.Deactivate">
+            <summary>
+            Allows the renderer to unsubscribe to various drawing actions.
+            This is ran when all particles are cleared from the system.
+            </summary>
+        </member>
+        <member name="T:Aequus.Core.Particles.ParticleManager">
+            <summary>
+            Handles and updates particle systems.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.Particles.ParticleSystem.OnActivate">
+            <summary>
+            Allows the renderer to subscribe to various drawing actions.
+            This is ran when the particle system is activated.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.Particles.ParticleSystem.Deactivate">
+            <summary>
+            Allows the renderer to unsubscribe to various drawing actions.
+            This is ran when all particles are cleared from the system.
+            </summary>
+        </member>
+        <member name="T:Aequus.Core.PhysicsBehaviors.VICollisonNode">
+            <summary>A Verlet Integrated node with Tile Collision.</summary>
+        </member>
+        <member name="M:Aequus.Core.RefManipulator`1.OverrideValue(`0)">
+            <summary>Replaces the referenced value with <paramref name="value"/>. The original value will be cached, and can be restored using <see cref="!:VoidOverriddenValue(ref T)"/>.</summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Aequus.Core.RefManipulator`1.VoidOverriddenValue">
+            <summary>Restores overriden values back to their original value.</summary>
+        </member>
+        <member name="M:Aequus.Core.UI.Elements.ImprovedItemSlot.SetIcon(Terraria.UI.UIElement)">
+            <summary>Adds the UI Element as an icon to display when no item is in the slot.</summary>
+        </member>
+        <member name="T:Aequus.Core.UI.Elements.ImprovedTextBox">
+            <summary>Improved text box based off of <see cref="T:Terraria.GameContent.UI.Elements.UITextBox"/>.</summary>
+        </member>
+        <member name="F:Aequus.Core.UI.InventoryUI.InventorySlotContexts">
+            <summary>Contains Item Slot Contexts which are usually related to normal inventory slots. Check the current slot context to determine drawing item status UI like cooldowns and ect.</summary>
+        </member>
+        <member name="M:Aequus.Core.UI.IUserInterfaceLayer.OnUIUpdate(Microsoft.Xna.Framework.GameTime)">
+            <param name="gameTime"></param>
+            <returns>Whether or not to deactivate this UI.</returns>
+        </member>
+        <member name="M:Aequus.Core.UI.IUserInterfaceLayer.OnRemove">
+            <summary>Called right before this UI Layer node is removed.</summary>
+        </member>
+        <member name="T:Aequus.Core.UI.UILayer">
+            <summary>Used to simplify UI implementation. Only loads in singleplayer or on multiplayer clients.</summary>
+        </member>
+        <member name="M:Aequus.Core.UI.UILayer.#ctor(System.String,System.String,Terraria.UI.InterfaceScaleType,System.Int32)">
+            <param name="Name">Name of this layer.</param>
+            <param name="InsertLayer">Name of the layer to search the index of.</param>
+            <param name="ScaleType">Scale Type of this layer.</param>
+            <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
+        </member>
+        <member name="T:Aequus.Core.UI.UILayersSystem">
+            <summary>Only loads in singleplayer or on multiplayer clients.</summary>
+        </member>
+        <member name="M:Aequus.Core.UI.UIStateLayer.#ctor(System.String,System.String,Terraria.UI.InterfaceScaleType,System.Int32)">
+            <param name="Name">Name of this layer.</param>
+            <param name="InsertLayer">Name of the layer to search the index of.</param>
+            <param name="ScaleType">Scale Type of this layer.</param>
+            <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
         </member>
         <member name="P:Aequus.Core.WorldState.RemixWorldSafeUnderworldRange">
             <summary>Returns a point with the beginning (left) (X) and end (right) (Y) of the 'safe' underworld in remix worlds. This does not represent a point in 2D space, but rather two X coordinates.</summary>
@@ -1909,9 +1876,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilBag">
             <summary>Full Path: Content/Bosses/TreasureBags/DustDevilBag</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteBag">
-            <summary>Full Path: Content/Bosses/TreasureBags/OmegaStariteBag</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonRelic">
             <summary>Full Path: Content/Bosses/Trophies/CrabsonRelic</summary>
@@ -2566,6 +2530,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.icon_workshop">
             <summary>Full Path: icon_workshop</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteBag">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteBag</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteRelic">
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteRelic</summary>

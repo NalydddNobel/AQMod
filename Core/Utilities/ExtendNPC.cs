@@ -3,7 +3,7 @@ using Terraria.GameContent;
 
 namespace Aequus.Core.Utilities;
 
-public static class ExtendNPC {
+public static partial class ExtendNPC {
     public static void Kill(this NPC npc) {
         npc.StrikeInstantKill();
     }

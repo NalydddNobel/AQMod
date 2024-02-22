@@ -191,8 +191,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CrabsonBag = new("Aequus/Content/Bosses/TreasureBags/CrabsonBag");
     /// <summary>Full Path: Content/Bosses/TreasureBags/DustDevilBag</summary>
     public static readonly RequestCache<Texture2D> DustDevilBag = new("Aequus/Content/Bosses/TreasureBags/DustDevilBag");
-    /// <summary>Full Path: Content/Bosses/TreasureBags/OmegaStariteBag</summary>
-    public static readonly RequestCache<Texture2D> OmegaStariteBag = new("Aequus/Content/Bosses/TreasureBags/OmegaStariteBag");
     /// <summary>Full Path: Content/Bosses/Trophies/CrabsonRelic</summary>
     public static readonly RequestCache<Texture2D> CrabsonRelic = new("Aequus/Content/Bosses/Trophies/CrabsonRelic");
     /// <summary>Full Path: Content/Bosses/Trophies/CrabsonRelicItem</summary>
@@ -629,6 +627,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> icon_small = new("Aequus/icon_small");
     /// <summary>Full Path: icon_workshop</summary>
     public static readonly RequestCache<Texture2D> icon_workshop = new("Aequus/icon_workshop");
+    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteBag</summary>
+    public static readonly RequestCache<Texture2D> OmegaStariteBag = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteBag");
     /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteRelic</summary>
     public static readonly RequestCache<Texture2D> OmegaStariteRelic = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteRelic");
     /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteRelicItem</summary>

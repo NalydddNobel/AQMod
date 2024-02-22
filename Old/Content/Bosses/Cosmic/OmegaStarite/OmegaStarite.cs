@@ -1,16 +1,20 @@
-﻿using Aequus.Common.NPCs;
+﻿using Aequus.Common.Items;
+using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Bosses;
 using Aequus.Content.Bosses.Trophies;
 using Aequus.Content.DataSets;
+using Aequus.Content.Pets.OmegaStarite;
 using Aequus.Core;
 using Aequus.Core.ContentGeneration;
 using Aequus.Old.Common.Graphics;
 using Aequus.Old.Common.Graphics.Camera;
 using Aequus.Old.Content.Bosses.Cosmic.OmegaStarite.Projectiles;
 using Aequus.Old.Content.Events.Glimmer;
+using Aequus.Old.Content.Materials.Energies;
 using Aequus.Old.Content.Particles;
 using Aequus.Old.Content.StatusEffects;
+using Aequus.Old.Content.Weapons.Melee.UltimateSword;
 using Aequus.Old.Core.Utilities;
 using System;
 using System.Collections.Generic;
@@ -19,6 +23,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.Utilities;
 
 namespace Aequus.Old.Content.Bosses.Cosmic.OmegaStarite;
@@ -26,6 +31,7 @@ namespace Aequus.Old.Content.Bosses.Cosmic.OmegaStarite;
 [ModBiomes(typeof(GlimmerZone))]
 [AutoloadBossHead()]
 [AutoloadTrophies(LegacyBossTrophiesTile.OmegaStarite, typeof(OmegaStariteRelicRenderer))]
+[AutoloadBossBag(preHardmode: true, itemRarity: ItemCommons.Rarity.OmegaStariteLoot)]
 public class OmegaStarite : LegacyAequusBoss {
     public const float BossProgression = 6.99f;
 
@@ -1320,17 +1326,13 @@ public class OmegaStarite : LegacyAequusBoss {
         //    if (Main.rand.NextBool(3))
         //        Item.NewItem(rect, ModContent.ItemType<CosmicTelescope>());
 
-        //int bossBag = ModContent.ItemType<OmegaStariteBag>();
+        npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.GetInstance<OmegaStaritePet>().PetItem.Type, chanceDenominator: 4));
+        //npcLoot.AddBossDrop(ItemDropRule.Common(ModContent.ItemType<CelesteTorus>());
+        npcLoot.Add(new DropPerPlayerOnThePlayer(EnergyMaterial.Cosmic.Type, chanceDenominator: 1, amountDroppedMinimum: 3, amountDroppedMaximum: 3, optionalCondition: null));
+        npcLoot.AddBossDrop(ItemDropRule.OneFromOptions(1, ModContent.ItemType<UltimateSword>()/*, ModContent.ItemType<Raygun>(), ModContent.ItemType<Gamestar>(), ModContent.ItemType<ScribbleNotebook>()*/));
+
         //npcLoot.Add(ItemDropRule.ByCondition(LootBuilder.GetCondition_OnFirstKill(() => AequusWorld.downedOmegaStarite), ModContent.ItemType<SupernovaFruit>()));
-        //npcLoot.Add(AequusDropRules.Trophy<OmegaStariteTrophy>());
-        //npcLoot.Add(ItemDropRule.BossBag(bossBag));
-        //npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<OmegaStariteRelic>()));
-        //npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<DragonBall>(), AequusDropRules.DroprateMasterPet));
         //npcLoot.Add<FlawlessCondition>(ItemDropRule.Common(ModContent.ItemType<OriginPainting>()));
-        //npcLoot.AddExpertDrop<CelesteTorus>(bossBag);
-        //npcLoot.Add(LootBuilder.GetDropRule_PerPlayerInstanced<CosmicEnergy>(min: 3, max: 3));
-        //npcLoot.AddBossLoot(bossBag, ItemDropRule.Common(ModContent.ItemType<OmegaStariteMask>(), AequusDropRules.DroprateMask));
-        //npcLoot.AddBossLoot(bossBag, ItemDropRule.OneFromOptions(1, ModContent.ItemType<UltimateSword>(), ModContent.ItemType<Raygun>(), ModContent.ItemType<Gamestar>(), ModContent.ItemType<ScribbleNotebook>()));
     }
     #endregion
 
