@@ -6,5 +6,6 @@ hideResources = false
 hideCode = false
 includeSource = false
 includePBD = true
+dllReferences = TerrariaProxy
 modReferences = AequusMusic
-buildIgnore = *.csproj, *.user, *.sln, *.gitignore, *.editorconfig, *.md, *.ase, *.fx, *.Temp.*, *.Temp, obj\*, bin\*, .vs\*, .cache\*, Assets\Effects\.compiler\*, .idea\*, SourceGenerators\*, Temp\SourceGenerators\SourceGenerators.Generator\*, UnitTesting\*
+buildIgnore = *.csproj, *.user, *.sln, *.gitignore, *.editorconfig, *.md, *.ase, *.fx, *.Temp.*, *.Temp, obj\*, bin\*, .vs\*, .cache\*, Assets\Effects\.compiler\*, .idea\*, SourceGenerators\*, Temp\SourceGenerators\SourceGenerators.Generator\*, UnitTesting\*, TerrariaProxy\*

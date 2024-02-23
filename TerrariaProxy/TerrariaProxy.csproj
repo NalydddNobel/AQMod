@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\tModLoader.targets" />
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPublishable>False</IsPublishable>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <PackageOutputPath>.\lib\</PackageOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Publicizer" Version="2.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
+  </ItemGroup>
+
+  <Target Name="CopyDLLs" AfterTargets="Build">
+	<Message Text="Executing CopyDLLs task" Importance="High" />
+	  <Copy
+          SourceFiles="$(TargetDir)$(ProjectName).dll;"
+          DestinationFolder="..\lib\"
+      />
+	  <Message Text="Copied build files" Importance="High" />
+  </Target>
+</Project>

@@ -1,6 +1,6 @@
-﻿using Aequus.Core.CodeGeneration;
-using Aequus.Core.ContentGeneration;
+﻿using Aequus.Core.ContentGeneration;
 using Terraria.GameContent.ItemDropRules;
+using TerrariaProxy;
 
 namespace Aequus.Core.Utilities;
 
@@ -15,11 +15,16 @@ public static partial class ExtendNPC {
         npcLoot.Add(normalModeRule);
         AddToBossBag(npcLoot, entry);
     }
+
     /// <summary>Adds <paramref name="entry"/> to <paramref name="npcLoot"/>'s boss bag. Throws errors if a boss bag doesn't exist.</summary>
     public static void AddToBossBag(this NPCLoot npcLoot, IItemDropRule entry) {
-        int npcNetId = Publicization<NPCLoot, int>.Get(npcLoot, "npcNetId");
+        //int npcNetId = Publicization<NPCLoot, int>.Get(npcLoot, "npcNetId");
+        //int treasureBag = AutoNPCDefaults._npcToBossBag[ModContent.GetModNPC(npcNetId)].Type;
+        //ItemDropDatabase database = Publicization<NPCLoot, ItemDropDatabase>.Get(npcLoot, "itemDropDatabase");
+        var proxy = new NPCLootProxy(npcLoot);
+        int npcNetId = proxy.npcNetId;
         int treasureBag = AutoNPCDefaults._npcToBossBag[ModContent.GetModNPC(npcNetId)].Type;
-        ItemDropDatabase database = Publicization<NPCLoot, ItemDropDatabase>.Get(npcLoot, "itemDropDatabase");
+        ItemDropDatabase database = proxy.itemDropDatabase;
         database.RegisterToItem(treasureBag, entry);
     }
 }

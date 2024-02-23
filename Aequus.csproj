@@ -21,6 +21,9 @@
     <None Remove="Temp\SourceGenerators.Generator\**" />
 	<EmbeddedResource Remove="Temp\SourceGenerators.Generator\**" />
 	<Compile Remove="Temp\SourceGenerators.Generator\**" />
+    <None Remove="TerrariaProxy\**" />
+	<EmbeddedResource Remove="TerrariaProxy\**" />
+	<Compile Remove="TerrariaProxy\**" />
     <None Remove="UnitTesting\**" />
 	<EmbeddedResource Remove="UnitTesting\**" />
 	<Compile Remove="UnitTesting\**" />
@@ -65,6 +68,12 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" />
 	<AdditionalFiles Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <Reference Include="TerrariaProxy">
+      <HintPath>lib\TerrariaProxy.dll</HintPath>
+    </Reference>
   </ItemGroup>
 	
 </Project>
