@@ -9,7 +9,25 @@ public class UnitTest1 {
     const int Iterations = 100000000;
 
     [TestMethod]
-    public void PublicizationTest() {
+    public void OptimalTest() {
+        for (int i = 0; i < Iterations; i++) {
+            var testClass = new OptimalTestClass(Value);
+            int value = testClass._value;
+            Assert.AreEqual(value, Value);
+        }
+    }
+
+    [TestMethod]
+    public void NewPublicizationTest() {
+        for (int i = 0; i < Iterations; i++) {
+            var testClass = new TerrariaProxy.TestClassProxy(new TerrariaProxy.TestClass(Value));
+            int value = testClass._value;
+            Assert.AreEqual(value, Value);
+        }
+    }
+
+    [TestMethod]
+    public void LegacyPublicizationTest() {
         for (int i = 0; i < Iterations; i++) {
             TestClass testClass = new TestClass(Value);
             int value = Publicization<TestClass, int>.Get(testClass, "_value");
@@ -42,5 +60,11 @@ public class UnitTest1 {
         public int Value => _value;
 
         public TestClass(int value) { _value = value; }
+    }
+
+    public class OptimalTestClass {
+        public int _value;
+
+        public OptimalTestClass(int value) { _value = value; }
     }
 }

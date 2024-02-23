@@ -19,6 +19,9 @@
     <Reference Include="Aequus">
       <HintPath>..\bin\Release\net6.0\Aequus.dll</HintPath>
     </Reference>
+    <Reference Include="TerrariaProxy">
+      <HintPath>..\lib\TerrariaProxy.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

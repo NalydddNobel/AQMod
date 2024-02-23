@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 
 namespace Aequus.Core.CodeGeneration;
 
-/// <summary>Rough system which helps getting private fields from classes.</summary>
+[Obsolete("Replaced with TerrariaProxy directory.")]
 public class Publicization<T, TReturnValue> {
     /// <exception cref="ArgumentException"></exception>
     /// <exception cref="ArgumentNullException"></exception>
