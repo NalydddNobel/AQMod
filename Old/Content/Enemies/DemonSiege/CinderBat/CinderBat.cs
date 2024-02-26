@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.DataSets;
 using Aequus.Core.ContentGeneration;
-using Aequus.Core.DataSets;
 using Aequus.Old.Content.Equipment.Accessories.WarHorn;
 using Aequus.Old.Content.Events.DemonSiege;
 using Aequus.Old.Content.Materials.SoulGem;
@@ -10,7 +9,6 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
-using static Aequus.Old.Content.Potions.PotionCanteen.TemplateCanteen;
 
 namespace Aequus.Old.Content.Enemies.DemonSiege.CinderBat;
 
@@ -37,7 +35,6 @@ public class CinderBat : LegacyAIBat {
         Main.npcFrameCount[NPC.type] = 12;
         NPCSets.TrailCacheLength[NPC.type] = 4;
         NPCSets.TrailingMode[NPC.type] = 7;
-        ItemSets.KillsToBanner[BannerItem] = 25;
         NPCSets.NPCBestiaryDrawOffset.Add(Type, new() {
             Position = new Vector2(4f, 12f)
         });
@@ -348,19 +345,14 @@ public class CinderBat : LegacyAIBat {
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoulGem>(), 3));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoulGem>(), 2));
         npcLoot.Add(ItemDropRule.OneFromOptions(
-            chanceDenominator: 6,
+            chanceDenominator: 40,
             ModContent.ItemType<WarHorn>(),
             ItemID.MagmaStone
         ));
         npcLoot.Add(ItemDropRule.ByCondition(new Conditions.DontStarveIsNotUp(), ItemID.BatBat, chanceDenominator: 250));
         npcLoot.Add(ItemDropRule.ByCondition(new Conditions.DontStarveIsUp(), ItemID.BatBat, chanceDenominator: 100));
-
-        //this.CreateLoot(npcLoot)
-        //    .Add<DemonicEnergy>(chance: 10, stack: 1)
-        //    .AddOptions(chance: 6, ItemID.MagmaStone, ModContent.ItemType<WarHorn>())
-        //    .Add<AncientHellBeamDye>(chance: 16, stack: 1)
     }
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {

@@ -29,8 +29,8 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
     public const int ARMOR_COUNT = 4;
 
     public static int ExtraEquipChance { get; set; } = 2;
-    public static int ItemDropChance { get; set; } = 4;
-    public static int TravelingMerchantBuilderItemChance { get; set; } = 20;
+    public static int ItemDropChance { get; set; } = 8;
+    public static int TravelingMerchantBuilderItemChance { get; set; } = 30;
 
     private int serverWhoAmI = Main.maxPlayers;
     private Player playerDummy;

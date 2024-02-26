@@ -206,8 +206,8 @@ public class KeeperImp : ModNPC {
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoulGem>(), 3));
-        npcLoot.Add(ItemDropRule.Common(ItemID.ObsidianRose, chanceDenominator: 25));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SoulGem>(), 2));
+        npcLoot.Add(ItemDropRule.Common(ItemID.ObsidianRose, chanceDenominator: 40));
     }
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
