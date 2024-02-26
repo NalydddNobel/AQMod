@@ -24,6 +24,9 @@
     <None Remove="UnitTesting\**" />
 	<EmbeddedResource Remove="UnitTesting\**" />
 	<Compile Remove="UnitTesting\**" />
+    <None Remove="TerrariaProxy\**" />
+	<EmbeddedResource Remove="TerrariaProxy\**" />
+	<Compile Remove="TerrariaProxy\**" />
     <None Remove="SourceGenerators\**" />
 	<EmbeddedResource Remove="SourceGenerators\**" />
 	<Compile Remove="SourceGenerators\**" />
