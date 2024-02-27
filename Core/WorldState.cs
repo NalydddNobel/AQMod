@@ -55,6 +55,8 @@ public class WorldState : ModSystem {
     [SaveData("ReforgeBook")]
     public static bool UsedReforgeBook;
 
+    public static bool HardmodeTier => Main.hardMode || DownedTrueCosmicBoss;
+
     public override void SaveWorldData(TagCompound tag) {
         SaveDataAttribute.SaveData(tag, this, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
     }

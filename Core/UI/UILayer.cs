@@ -9,6 +9,8 @@ public abstract class UILayer : GameInterfaceLayer, IUserInterfaceLayer, ILoad {
     public string InsertLayer { get; init; }
     public int InsertOffset { get; init; }
 
+    public Mod Mod { get; private set; }
+
     /// <param name="Name">Name of this layer.</param>
     /// <param name="InsertLayer">Name of the layer to search the index of.</param>
     /// <param name="ScaleType">Scale Type of this layer.</param>
@@ -22,6 +24,7 @@ public abstract class UILayer : GameInterfaceLayer, IUserInterfaceLayer, ILoad {
     public virtual void OnUnload() { }
 
     public void Load(Mod mod) {
+        Mod = mod;
         OnLoad();
         Active = false;
         UILayersSystem.Register(this);
