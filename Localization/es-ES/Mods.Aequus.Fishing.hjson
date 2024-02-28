@@ -3,4 +3,9 @@ FishingPoles: {
 		DisplayName: Caña de la steampunker
 		Tooltip: Automáticamente jala y lanza el anzuelo
 	}
+
+	BambooFishingPole: {
+		// DisplayName: Bamboo Fishing Pole
+		// Tooltip: ""
+	}
 }

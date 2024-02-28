@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Fishing.FishingPoles.Steampunker;
+﻿using Aequus.Content.Fishing.FishingPoles;
 
 namespace Aequus.Common.NPCs;
 

@@ -1599,7 +1599,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 601)</summary>
+            <summary>(Total Textures: 603)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2234,11 +2234,17 @@
         <member name="F:Aequus.AequusTextures.ObsidianCrabPot_Highlight">
             <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot_Highlight</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.BambooFishingPole">
+            <summary>Full Path: Content/Fishing/FishingPoles/BambooFishingPole</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BambooFishingPoleBobber">
+            <summary>Full Path: Content/Fishing/FishingPoles/BambooFishingPoleBobber</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.SteampunkerFishingPole">
-            <summary>Full Path: Content/Fishing/FishingPoles/Steampunker/SteampunkerFishingPole</summary>
+            <summary>Full Path: Content/Fishing/FishingPoles/SteampunkerFishingPole</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SteampunkerFishingPoleBobber">
-            <summary>Full Path: Content/Fishing/FishingPoles/Steampunker/SteampunkerFishingPoleBobber</summary>
+            <summary>Full Path: Content/Fishing/FishingPoles/SteampunkerFishingPoleBobber</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Killifish">
             <summary>Full Path: Content/Fishing/Fish/Killifish</summary>

@@ -3,4 +3,9 @@ FishingPoles: {
 		DisplayName: 蒸汽朋克人之杖
 		Tooltip: 能够自动收杆并重新投出钓鱼浮标
 	}
+
+	BambooFishingPole: {
+		// DisplayName: Bamboo Fishing Pole
+		// Tooltip: ""
+	}
 }

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 601)</summary>
+/// <summary>(Total Textures: 603)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -429,10 +429,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ObsidianCrabPot_Back = new("Aequus/Content/Fishing/CrabPots/ObsidianCrabPot_Back");
     /// <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot_Highlight</summary>
     public static readonly RequestCache<Texture2D> ObsidianCrabPot_Highlight = new("Aequus/Content/Fishing/CrabPots/ObsidianCrabPot_Highlight");
-    /// <summary>Full Path: Content/Fishing/FishingPoles/Steampunker/SteampunkerFishingPole</summary>
-    public static readonly RequestCache<Texture2D> SteampunkerFishingPole = new("Aequus/Content/Fishing/FishingPoles/Steampunker/SteampunkerFishingPole");
-    /// <summary>Full Path: Content/Fishing/FishingPoles/Steampunker/SteampunkerFishingPoleBobber</summary>
-    public static readonly RequestCache<Texture2D> SteampunkerFishingPoleBobber = new("Aequus/Content/Fishing/FishingPoles/Steampunker/SteampunkerFishingPoleBobber");
+    /// <summary>Full Path: Content/Fishing/FishingPoles/BambooFishingPole</summary>
+    public static readonly RequestCache<Texture2D> BambooFishingPole = new("Aequus/Content/Fishing/FishingPoles/BambooFishingPole");
+    /// <summary>Full Path: Content/Fishing/FishingPoles/BambooFishingPoleBobber</summary>
+    public static readonly RequestCache<Texture2D> BambooFishingPoleBobber = new("Aequus/Content/Fishing/FishingPoles/BambooFishingPoleBobber");
+    /// <summary>Full Path: Content/Fishing/FishingPoles/SteampunkerFishingPole</summary>
+    public static readonly RequestCache<Texture2D> SteampunkerFishingPole = new("Aequus/Content/Fishing/FishingPoles/SteampunkerFishingPole");
+    /// <summary>Full Path: Content/Fishing/FishingPoles/SteampunkerFishingPoleBobber</summary>
+    public static readonly RequestCache<Texture2D> SteampunkerFishingPoleBobber = new("Aequus/Content/Fishing/FishingPoles/SteampunkerFishingPoleBobber");
     /// <summary>Full Path: Content/Fishing/Fish/Killifish</summary>
     public static readonly RequestCache<Texture2D> Killifish = new("Aequus/Content/Fishing/Fish/Killifish");
     /// <summary>Full Path: Content/Fishing/Fish/Piraiba</summary>
