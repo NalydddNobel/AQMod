@@ -3,6 +3,7 @@ using Aequus.Common.Items.Components;
 using Aequus.Common.Systems;
 using Aequus.Content.DataSets;
 using Aequus.Core.IO;
+using Aequus.Core.UI;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,7 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
     [CloneByReference]
     public LocalizedText AltName { get; private set; }
 
+    private double _glowAnimation;
     private int _warningAnimation;
 
     protected override bool CloneNewInstances => true;
@@ -184,25 +186,46 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
         }
     }
 
+    private bool IsValidPotion(Item item) {
+        return item.buffType > 0 && item.buffTime > 0 && item.consumable && item.maxStack >= 30 && !Buffs.Any(b => b.BuffId == item.buffType) && !BuffMetadata.CannotChangeDuration.Contains(item.buffType) && ItemMetadata.Potions.Contains(item.type);
+    }
+
+    private static void EatRightClick() {
+        Main.mouseRightRelease = false;
+        Main.stackSplit = 180;
+    }
+
     public bool HoverSlot(Item[] inventory, int context, int slot) {
+        int aContext = Math.Abs(context);
+        if (!InventoryUI.InventorySlotContexts.Contains(context)) {
+            return false;
+        }
+
         Item heldItem = Main.mouseItem;
 
         if (_warningAnimation > 0 || !Main.mouseRight || !Main.mouseRightRelease || heldItem == null || heldItem.IsAir) {
             return false;
         }
 
-        Main.mouseRightRelease = false;
-        Main.stackSplit = 180;
         InitializeBuffs();
 
         int consumePotions = PotionRecipeRequirement;
-        int buffType = heldItem.buffType;
 
-        if (buffType == 0 || heldItem.buffTime <= 0 || !heldItem.consumable || heldItem.stack < consumePotions || heldItem.maxStack < 30 || Buffs.Any(b => b.BuffId == buffType) || BuffMetadata.CannotChangeDuration.Contains(heldItem.buffType) || !ItemMetadata.Potions.Contains(heldItem.type)) {
+        if (!IsValidPotion(heldItem) || heldItem.stack < consumePotions) {
+
+            // Don't do warning animation on acc slots if right clicking with another accessory
+            if ((aContext == ItemSlot.Context.EquipAccessory || aContext == ItemSlot.Context.EquipAccessoryVanity) && heldItem.accessory) {
+                return false;
+            }
+
+            EatRightClick();
+
             _warningAnimation = 80;
             SoundEngine.PlaySound(AequusSounds.CanteenBuzzer with { Volume = 0.5f });
             return false;
         }
+
+        EatRightClick();
 
         int i = 0;
         // Iterate through each buff and check if it has an id of 0
@@ -227,6 +250,7 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
         }
 
         _potionTCommonColor = null;
+        SetPotionDefaults();
         Item.NetStateChanged();
 
         SoundEngine.PlaySound(AequusSounds.CanteenUse with { Volume = 0.75f, PitchVariance = 0.2f });
@@ -235,6 +259,30 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
     }
 
     public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
+        if (!InventoryUI.InventorySlotContexts.Contains(CurrentSlot.Instance.Context)) {
+            return true;
+        }
+
+        if (Main.mouseItem != null && !Main.mouseItem.IsAir && IsValidPotion(Main.mouseItem)) {
+            if (_glowAnimation < 1.0) {
+                _glowAnimation += Main._drawInterfaceGameTime.ElapsedGameTime.TotalSeconds * 9f;
+                if (_glowAnimation > 1.0) {
+                    _glowAnimation = 1.0;
+                }
+            }
+        }
+        else if (_glowAnimation > 0.0) {
+            _glowAnimation -= Main._drawInterfaceGameTime.ElapsedGameTime.TotalSeconds * 9f;
+            if (_glowAnimation < 0.0) {
+                _glowAnimation = 0.0;
+            }
+        }
+
+        if (_glowAnimation > 0f) {
+            Texture2D texture = TextureAssets.InventoryBack15.Value;
+            spriteBatch.Draw(texture, position, null, Color.White with { A = 140 } * (float)_glowAnimation * 0.8f, 0f, texture.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
+        }
+
         if (_warningAnimation > 0) {
             _warningAnimation--;
 
@@ -243,6 +291,7 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
                 spriteBatch.Draw(texture, position, null, Color.Red, 0f, texture.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
             }
         }
+
         return true;
     }
 

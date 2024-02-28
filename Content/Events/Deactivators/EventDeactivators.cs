@@ -1,11 +1,9 @@
-﻿using Aequus.Common.Items.Components;
-using Aequus.Core.ContentGeneration;
+﻿using Aequus.Core.ContentGeneration;
+using Aequus.Old.Content.Materials;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using System;
 using System.Reflection;
-using Terraria.Audio;
-using Terraria.Localization;
 
 namespace Aequus.Content.Events.Deactivators;
 public class EventDeactivators : ModSystem {
@@ -34,6 +32,25 @@ public class EventDeactivators : ModSystem {
         IL_NPC.SpawnNPC += SpawnNPCOverrideEventsPerPlayer;
         IL_Main.UpdateAudio += OverrideEventsForMusic;
         IL_Main.CalculateWaterStyle += OverrideBloodMoonWaterStyle;
+    }
+
+    public override void AddRecipes() {
+        BloodMoonItem.CreateRecipe()
+            .AddIngredient(ItemID.BlackLens)
+            .AddIngredient<BloodyTearstone>(5)
+            .AddTile(TileID.MythrilAnvil)
+            .Register();
+        GlimmerItem.CreateRecipe()
+            .AddIngredient(ItemID.BlackLens)
+            .AddIngredient<StariteMaterial>(5)
+            .AddTile(TileID.MythrilAnvil)
+            .Register();
+        EclipseItem.CreateRecipe()
+            .AddIngredient(ItemID.BlackLens)
+            .AddIngredient(ItemID.LunarTabletFragment, 5)
+            .AddIngredient(ItemID.Ectoplasm, 5)
+            .AddTile(TileID.MythrilAnvil)
+            .Register();
     }
 
     public override void Unload() {
@@ -108,9 +125,8 @@ public class EventDeactivators : ModSystem {
     }
     #endregion
 
-    private class EventDeactivatorItem : InstancedModItem, ITransformItem, ICooldownItem {
-        public EventDeactivatorDisabledItem DisabledVariant { get; private set; }
-
+    [AutoloadEquip(EquipType.Face)]
+    private class EventDeactivatorItem : InstancedModItem {
         private readonly int _rarity;
         private readonly int _value;
 
@@ -122,6 +138,23 @@ public class EventDeactivators : ModSystem {
             _updateFlag = updateFlag;
         }
 
+        public override void SetStaticDefaults() {
+            ItemSets.WorksInVoidBag[Type] = true;
+        }
+
+        public override void SetDefaults() {
+            Item.DefaultToAccessory();
+            Item.rare = _rarity;
+            Item.value = _value;
+        }
+
+        public override void UpdateAccessory(Player player, bool hideVisual) {
+            _updateFlag.Invoke(player);
+        }
+
+        /*
+        public EventDeactivatorDisabledItem DisabledVariant { get; private set; }
+        
         public override LocalizedText Tooltip => this.GetCategoryText("EventGlasses.Tooltip")
             .WithFormatArgs(base.Tooltip, Language.GetText("Mods.Aequus.Items.CommonTooltips.DisableItem"));
 
@@ -140,23 +173,27 @@ public class EventDeactivators : ModSystem {
             SoundEngine.PlaySound(SoundID.Unlock);
         }
 
-        public override void SetDefaults() {
-            Item.width = 24;
-            Item.height = 24;
-            Item.rare = _rarity;
-            Item.value = _value;
-        }
-
         public override bool CanUseItem(Player player) {
             return !this.HasCooldown(player);
         }
 
-        public override void UpdateInfoAccessory(Player player) {
+        public override void ModifyTooltips(List<TooltipLine> tooltips) {
+            if (NPC.downedPlantBoss) {
+                tooltips.AddTooltip(new TooltipLine(Mod, "Plantera Lock", );
+                tooltips.RemoveAll(t => t.Mod == "Terraria" && t.Name.StartsWith("Tooltip"));
+            }
+        }
+
+        public override void UpdateInventory(Player player) {
             _updateFlag.Invoke(player);
         }
+
+        public override void UpdateInfoAccessory(Player player) {
+            _updateFlag.Invoke(player);
+        }*/
     }
 
-    private class EventDeactivatorDisabledItem : InstancedModItem, ITransformItem, ICooldownItem {
+    /*private class EventDeactivatorDisabledItem : InstancedModItem, ITransformItem, ICooldownItem {
         public readonly EventDeactivatorItem _parent;
 
         public EventDeactivatorDisabledItem(EventDeactivatorItem parent) : base(parent.Name + "Disabled", parent.Texture + "Inactive") {
@@ -180,6 +217,7 @@ public class EventDeactivators : ModSystem {
 
         public override void SetStaticDefaults() {
             ContentSamples.CreativeResearchItemPersistentIdOverride[Type] = _parent.Type;
+            ItemSets.ShimmerCountsAsItem[Type] = _parent.Type;
         }
 
         public override void SetDefaults() {
@@ -192,5 +230,5 @@ public class EventDeactivators : ModSystem {
         public override bool CanUseItem(Player player) {
             return !this.HasCooldown(player);
         }
-    }
+    }*/
 }

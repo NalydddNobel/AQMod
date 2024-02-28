@@ -29,7 +29,8 @@ using Terraria.Utilities;
 namespace Aequus.Old.Content.Bosses.Cosmic.OmegaStarite;
 
 [ModBiomes(typeof(GlimmerZone))]
-[AutoloadBossHead()]
+[AutoloadBossHead]
+[AutoloadBossMask]
 [AutoloadTrophies(LegacyBossTrophiesTile.OmegaStarite, typeof(OmegaStariteRelicRenderer))]
 [AutoloadBossBag(preHardmode: true, itemRarity: ItemCommons.Rarity.OmegaStariteLoot)]
 public class OmegaStarite : LegacyAequusBoss {

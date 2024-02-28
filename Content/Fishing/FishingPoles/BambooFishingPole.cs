@@ -31,6 +31,6 @@ public class BambooFishingPole : ModFishingPole {
             .AddIngredient(ItemID.BambooBlock, 8)
             .AddTile(TileID.WorkBenches)
             .Register()
-            .SortAfterFirstRecipesOf(ItemID.BambooFence);
+            .SortAfterFirstRecipesOf(ItemID.BambooWorkbench);
     }
 }

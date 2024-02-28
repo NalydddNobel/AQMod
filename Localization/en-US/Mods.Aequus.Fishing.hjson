@@ -6,6 +6,6 @@ FishingPoles: {
 
 	BambooFishingPole: {
 		DisplayName: Bamboo Pole
-		Tooltip: "Greatly increased catch rate"
+		Tooltip: Greatly increased catch rate
 	}
 }

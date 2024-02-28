@@ -7,11 +7,9 @@ namespace Aequus.Core.ContentGeneration;
 
 public sealed class AutoNPCDefaults : GlobalNPC {
     internal static readonly Dictionary<int, short> _npcToCritter = new();
-    internal static readonly Dictionary<ModNPC, ModItem> _npcToBossBag = new();
 
     public override void Unload() {
         _npcToCritter.Clear();
-        _npcToBossBag.Clear();
     }
 
     public override void SetDefaults(NPC npc) {
@@ -31,8 +29,13 @@ public sealed class AutoNPCDefaults : GlobalNPC {
                 npcLoot.Add(ItemDropRule.MasterModeCommonDrop(Mod.Find<ModItem>($"{modNPC.Name}Relic").Type));
                 npcLoot.Add(ItemDropRule.Common(Mod.Find<ModItem>($"{modNPC.Name}Trophy").Type, chanceDenominator: 10));
             }
+
             if (attr is AutoloadBossBagAttribute) {
-                npcLoot.Add(ItemDropRule.BossBag(_npcToBossBag[modNPC].Type));
+                npcLoot.Add(ItemDropRule.BossBag(Mod.Find<ModItem>($"{modNPC.Name}Bag").Type));
+            }
+
+            if (attr is AutoloadBossMaskAttribute) {
+                npcLoot.AddBossDrop(ItemDropRule.Common(Mod.Find<ModItem>($"{modNPC.Name}Mask").Type, chanceDenominator: 7), throwError: false);
             }
         }
     }

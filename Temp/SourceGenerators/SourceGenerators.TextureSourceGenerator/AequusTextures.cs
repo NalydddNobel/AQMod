@@ -175,10 +175,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> DustDevilMaskFire_Head = new("Aequus/Content/Bosses/BossMasks/DustDevilMaskFire_Head");
     /// <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskIce_Head</summary>
     public static readonly RequestCache<Texture2D> DustDevilMaskIce_Head = new("Aequus/Content/Bosses/BossMasks/DustDevilMaskIce_Head");
-    /// <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask</summary>
-    public static readonly RequestCache<Texture2D> OmegaStariteMask = new("Aequus/Content/Bosses/BossMasks/OmegaStariteMask");
-    /// <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask_Head</summary>
-    public static readonly RequestCache<Texture2D> OmegaStariteMask_Head = new("Aequus/Content/Bosses/BossMasks/OmegaStariteMask_Head");
     /// <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask</summary>
     public static readonly RequestCache<Texture2D> RedSpriteMask = new("Aequus/Content/Bosses/BossMasks/RedSpriteMask");
     /// <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask_Head</summary>
@@ -401,16 +397,16 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> HotAirBalloonMount_Glow = new("Aequus/Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Glow");
     /// <summary>Full Path: Content/Events/Deactivators/BloodMoon/BloodMoonDeactivator</summary>
     public static readonly RequestCache<Texture2D> BloodMoonDeactivator = new("Aequus/Content/Events/Deactivators/BloodMoon/BloodMoonDeactivator");
-    /// <summary>Full Path: Content/Events/Deactivators/BloodMoon/BloodMoonDeactivatorInactive</summary>
-    public static readonly RequestCache<Texture2D> BloodMoonDeactivatorInactive = new("Aequus/Content/Events/Deactivators/BloodMoon/BloodMoonDeactivatorInactive");
+    /// <summary>Full Path: Content/Events/Deactivators/BloodMoon/BloodMoonDeactivator_Face</summary>
+    public static readonly RequestCache<Texture2D> BloodMoonDeactivator_Face = new("Aequus/Content/Events/Deactivators/BloodMoon/BloodMoonDeactivator_Face");
     /// <summary>Full Path: Content/Events/Deactivators/Eclipse/EclipseDeactivator</summary>
     public static readonly RequestCache<Texture2D> EclipseDeactivator = new("Aequus/Content/Events/Deactivators/Eclipse/EclipseDeactivator");
-    /// <summary>Full Path: Content/Events/Deactivators/Eclipse/EclipseDeactivatorInactive</summary>
-    public static readonly RequestCache<Texture2D> EclipseDeactivatorInactive = new("Aequus/Content/Events/Deactivators/Eclipse/EclipseDeactivatorInactive");
+    /// <summary>Full Path: Content/Events/Deactivators/Eclipse/EclipseDeactivator_Face</summary>
+    public static readonly RequestCache<Texture2D> EclipseDeactivator_Face = new("Aequus/Content/Events/Deactivators/Eclipse/EclipseDeactivator_Face");
     /// <summary>Full Path: Content/Events/Deactivators/Glimmer/GlimmerDeactivator</summary>
     public static readonly RequestCache<Texture2D> GlimmerDeactivator = new("Aequus/Content/Events/Deactivators/Glimmer/GlimmerDeactivator");
-    /// <summary>Full Path: Content/Events/Deactivators/Glimmer/GlimmerDeactivatorInactive</summary>
-    public static readonly RequestCache<Texture2D> GlimmerDeactivatorInactive = new("Aequus/Content/Events/Deactivators/Glimmer/GlimmerDeactivatorInactive");
+    /// <summary>Full Path: Content/Events/Deactivators/Glimmer/GlimmerDeactivator_Face</summary>
+    public static readonly RequestCache<Texture2D> GlimmerDeactivator_Face = new("Aequus/Content/Events/Deactivators/Glimmer/GlimmerDeactivator_Face");
     /// <summary>Full Path: Content/Fishing/CrabPots/CrabPot</summary>
     public static readonly RequestCache<Texture2D> CrabPot = new("Aequus/Content/Fishing/CrabPots/CrabPot");
     /// <summary>Full Path: Content/Fishing/CrabPots/CrabPot_Back</summary>
@@ -633,6 +629,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> icon_workshop = new("Aequus/icon_workshop");
     /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteBag</summary>
     public static readonly RequestCache<Texture2D> OmegaStariteBag = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteBag");
+    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteMask</summary>
+    public static readonly RequestCache<Texture2D> OmegaStariteMask = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteMask");
+    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteMask_Head</summary>
+    public static readonly RequestCache<Texture2D> OmegaStariteMask_Head = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteMask_Head");
     /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteRelic</summary>
     public static readonly RequestCache<Texture2D> OmegaStariteRelic = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteRelic");
     /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteRelicItem</summary>

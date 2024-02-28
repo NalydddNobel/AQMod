@@ -15,12 +15,6 @@ internal class InstancedBossBag : InstancedModItem {
         PreHardmode = preHardmode;
     }
 
-    public InstancedBossBag(string name, int internalRarity, bool preHardmode = false) : base($"{name}Bag", $"{typeof(InstancedBossBag).NamespaceFilePath()}/TreasureBags/{name}Bag") {
-        _parent = null;
-        InternalRarity = internalRarity;
-        PreHardmode = preHardmode;
-    }
-
     public override LocalizedText DisplayName => Language.GetText("Mods.Aequus.Items.TreasureBag.DisplayName").WithFormatArgs(_parent.DisplayName);
     public override LocalizedText Tooltip => Language.GetText("CommonItemTooltip.RightClickToOpen");
 

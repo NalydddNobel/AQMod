@@ -15,16 +15,12 @@ public class BossItemInstantiator : ModSystem {
         Mod.AddContent(new DustDevilMask("DustDevil"));
 
         AddLegacyTrophy("RedSprite", new BasicRelicRenderer(AequusTextures.RedSpriteRelic), LegacyBossRelicsTile.RedSprite);
-        AddBossMask("RedSprite");
 
         AddLegacyTrophy("SpaceSquid", new BasicRelicRenderer(AequusTextures.SpaceSquidRelic), LegacyBossRelicsTile.SpaceSquid);
-        AddBossMask("SpaceSquid");
 
         void AddBossContent(string name, int internalRarity, bool preHardmode, IRelicRenderer relicRenderer, int legacyTrophyId = -1) {
             AddLegacyTrophy(name, relicRenderer, legacyTrophyId);
         }
-
-        void AddBossMask(string name) => Mod.AddContent(new InstancedBossMask(name));
 #pragma warning restore CS0618 // Type or member is obsolete
     }
 

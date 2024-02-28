@@ -199,6 +199,23 @@ ShadowVeer: {
 	Tooltip: Ghost minions will do shadow dashes at targeted enemies
 }
 
+//# Equipment: Misc
+BloodMoonDeactivator: {
+	DisplayName: Rose Tinted Glasses
+	Tooltip: Ignore Blood Moon effects
+}
+
+GlimmerDeactivator: {
+	DisplayName: Stellar Glasses
+	Tooltip: Ignore Glimmer effects
+}
+
+EclipseDeactivator: {
+	DisplayName: Eclipse Glasses
+	Tooltip: Ignore Eclipse effects
+}
+
+
 //# Equipment: Informational
 HoloLens: {
 	DisplayName: Holo Lens
@@ -888,31 +905,6 @@ UltimateSword: {
 StariteMaterial: {
 	DisplayName: Core Fragment
 	Tooltip: ""
-}
-
-EventGlasses: {
-	Folded: (Folded)
-	DisabledName: "{0} {1}"
-	Tooltip:
-		'''
-		{0}
-		{1}
-		'''
-}
-
-BloodMoonDeactivator: {
-	DisplayName: Rose Tinted Glasses
-	Tooltip: Ignore Blood Moon effects and enemy spawns while in the inventory
-}
-
-GlimmerDeactivator: {
-	DisplayName: Stellar Glasses
-	Tooltip: Ignore Glimmer effects and enemy spawns while in the inventory
-}
-
-EclipseDeactivator: {
-	DisplayName: Eclipse Glasses
-	Tooltip: Ignore Eclipse effects and enemy spawns while in the inventory
 }
 
 Killifish: {

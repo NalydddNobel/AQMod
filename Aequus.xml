@@ -716,12 +716,13 @@
             <param name="modWall"></param>
             <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
         </member>
-        <member name="M:Aequus.Core.Utilities.ExtendNPC.AddBossDrop(Terraria.ModLoader.NPCLoot,Terraria.GameContent.ItemDropRules.IItemDropRule)">
+        <member name="M:Aequus.Core.Utilities.ExtendNPC.AddBossDrop(Terraria.ModLoader.NPCLoot,Terraria.GameContent.ItemDropRules.IItemDropRule,System.Boolean)">
             <summary>Adds <paramref name="entry"/> to <paramref name="npcLoot"/>, and its boss bag.</summary>
             <param name="npcLoot"></param>
             <param name="entry"></param>
+            <param name="throwError">Whether or not to throw an error if a Treasure Bag does not exist. Defaults to true.</param>
         </member>
-        <member name="M:Aequus.Core.Utilities.ExtendNPC.AddToBossBag(Terraria.ModLoader.NPCLoot,Terraria.GameContent.ItemDropRules.IItemDropRule)">
+        <member name="M:Aequus.Core.Utilities.ExtendNPC.AddToBossBag(Terraria.ModLoader.NPCLoot,Terraria.GameContent.ItemDropRules.IItemDropRule,System.Boolean)">
             <summary>Adds <paramref name="entry"/> to <paramref name="npcLoot"/>'s boss bag. Throws errors if a boss bag doesn't exist.</summary>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendNPC.SyncNPC(Terraria.NPC)">
@@ -1853,12 +1854,6 @@
         <member name="F:Aequus.AequusTextures.DustDevilMaskIce_Head">
             <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskIce_Head</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteMask">
-            <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteMask_Head">
-            <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask_Head</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.RedSpriteMask">
             <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask</summary>
         </member>
@@ -2192,20 +2187,20 @@
         <member name="F:Aequus.AequusTextures.BloodMoonDeactivator">
             <summary>Full Path: Content/Events/Deactivators/BloodMoon/BloodMoonDeactivator</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.BloodMoonDeactivatorInactive">
-            <summary>Full Path: Content/Events/Deactivators/BloodMoon/BloodMoonDeactivatorInactive</summary>
+        <member name="F:Aequus.AequusTextures.BloodMoonDeactivator_Face">
+            <summary>Full Path: Content/Events/Deactivators/BloodMoon/BloodMoonDeactivator_Face</summary>
         </member>
         <member name="F:Aequus.AequusTextures.EclipseDeactivator">
             <summary>Full Path: Content/Events/Deactivators/Eclipse/EclipseDeactivator</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.EclipseDeactivatorInactive">
-            <summary>Full Path: Content/Events/Deactivators/Eclipse/EclipseDeactivatorInactive</summary>
+        <member name="F:Aequus.AequusTextures.EclipseDeactivator_Face">
+            <summary>Full Path: Content/Events/Deactivators/Eclipse/EclipseDeactivator_Face</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GlimmerDeactivator">
             <summary>Full Path: Content/Events/Deactivators/Glimmer/GlimmerDeactivator</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.GlimmerDeactivatorInactive">
-            <summary>Full Path: Content/Events/Deactivators/Glimmer/GlimmerDeactivatorInactive</summary>
+        <member name="F:Aequus.AequusTextures.GlimmerDeactivator_Face">
+            <summary>Full Path: Content/Events/Deactivators/Glimmer/GlimmerDeactivator_Face</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabPot">
             <summary>Full Path: Content/Fishing/CrabPots/CrabPot</summary>
@@ -2539,6 +2534,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteBag">
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteBag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteMask">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteMask_Head">
+            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteMask_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteRelic">
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteRelic</summary>
