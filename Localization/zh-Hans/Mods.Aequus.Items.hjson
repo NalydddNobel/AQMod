@@ -199,6 +199,23 @@ ShadowVeer: {
 	Tooltip: 幽魂仆从会对被标记的敌人进行暗影冲刺
 }
 
+//# Equipment: Misc
+BloodMoonDeactivator: {
+	DisplayName: 玫瑰色眼镜
+	Tooltip: 无视血月效果
+}
+
+GlimmerDeactivator: {
+	DisplayName: 星体眼镜
+	Tooltip: 无视柔光效果
+}
+
+EclipseDeactivator: {
+	DisplayName: 日食眼镜
+	Tooltip: 无视日食效果
+}
+
+
 //# Equipment: Informational
 HoloLens: {
 	DisplayName: 全息透镜
@@ -888,31 +905,6 @@ UltimateSword: {
 StariteMaterial: {
 	DisplayName: 核心碎片
 	Tooltip: ""
-}
-
-EventGlasses: {
-	Folded: (已折叠)
-	DisabledName: "{0} {1}"
-	Tooltip:
-		'''
-		{0}
-		{1}
-		'''
-}
-
-BloodMoonDeactivator: {
-	DisplayName: 玫瑰色眼镜
-	Tooltip: 放置在物品栏中时无视血月效果以及敌人生成
-}
-
-GlimmerDeactivator: {
-	DisplayName: 星体眼镜
-	Tooltip: 放置在物品栏中时无视柔光效果以及敌人生成
-}
-
-EclipseDeactivator: {
-	DisplayName: 日食眼镜
-	Tooltip: 放置在物品栏中时无视日食效果以及敌人生成
 }
 
 Killifish: {
