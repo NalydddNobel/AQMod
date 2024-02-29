@@ -200,17 +200,17 @@ ShadowVeer: {
 }
 
 //# Equipment: Misc
-BloodMoonDeactivator: {
+RoseTintedGlasses: {
 	DisplayName: 玫瑰色眼镜
 	Tooltip: 无视血月效果
 }
 
-GlimmerDeactivator: {
+StellarGlasses: {
 	DisplayName: 星体眼镜
 	Tooltip: 无视柔光效果
 }
 
-EclipseDeactivator: {
+EclipseGlasses: {
 	DisplayName: 日食眼镜
 	Tooltip: 无视日食效果
 }

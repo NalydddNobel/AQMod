@@ -34,6 +34,8 @@ public record class RefManipulator<T>(RefManipulator<T>.GetReferenceDelegate Get
 public class CommonRefManipulators {
     public static readonly RefManipulator<bool> BloodMoon = new RefManipulator<bool>(() => ref Main.bloodMoon);
     public static readonly RefManipulator<bool> Eclipse = new RefManipulator<bool>(() => ref Main.eclipse);
+    public static readonly RefManipulator<bool> FrostMoon = new RefManipulator<bool>(() => ref Main.snowMoon);
+    public static readonly RefManipulator<bool> PumpkinMoon = new RefManipulator<bool>(() => ref Main.pumpkinMoon);
     public static readonly RefManipulator<bool> DayTime = new RefManipulator<bool>(() => ref Main.dayTime);
     public static readonly RefManipulator<double> Time = new RefManipulator<double>(() => ref Main.time);
 }

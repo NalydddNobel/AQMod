@@ -2094,6 +2094,24 @@
         <member name="F:Aequus.AequusTextures.BreathConserver_Back">
             <summary>Full Path: Content/Equipment/Accessories/Breath/BreathConserver_Back</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.EclipseGlasses">
+            <summary>Full Path: Content/Equipment/Accessories/EventPrevention/EclipseGlasses</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EclipseGlasses_Face">
+            <summary>Full Path: Content/Equipment/Accessories/EventPrevention/EclipseGlasses_Face</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RoseTintedGlasses">
+            <summary>Full Path: Content/Equipment/Accessories/EventPrevention/RoseTintedGlasses</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RoseTintedGlasses_Face">
+            <summary>Full Path: Content/Equipment/Accessories/EventPrevention/RoseTintedGlasses_Face</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StellarGlasses">
+            <summary>Full Path: Content/Equipment/Accessories/EventPrevention/StellarGlasses</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StellarGlasses_Face">
+            <summary>Full Path: Content/Equipment/Accessories/EventPrevention/StellarGlasses_Face</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.FlashwayShield">
             <summary>Full Path: Content/Equipment/Accessories/FlashwayShield/FlashwayShield</summary>
         </member>
@@ -2183,24 +2201,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.HotAirBalloonMount_Glow">
             <summary>Full Path: Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BloodMoonDeactivator">
-            <summary>Full Path: Content/Events/Deactivators/BloodMoon/BloodMoonDeactivator</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BloodMoonDeactivator_Face">
-            <summary>Full Path: Content/Events/Deactivators/BloodMoon/BloodMoonDeactivator_Face</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EclipseDeactivator">
-            <summary>Full Path: Content/Events/Deactivators/Eclipse/EclipseDeactivator</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EclipseDeactivator_Face">
-            <summary>Full Path: Content/Events/Deactivators/Eclipse/EclipseDeactivator_Face</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GlimmerDeactivator">
-            <summary>Full Path: Content/Events/Deactivators/Glimmer/GlimmerDeactivator</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GlimmerDeactivator_Face">
-            <summary>Full Path: Content/Events/Deactivators/Glimmer/GlimmerDeactivator_Face</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabPot">
             <summary>Full Path: Content/Fishing/CrabPots/CrabPot</summary>

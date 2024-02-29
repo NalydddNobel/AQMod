@@ -1,5 +1,4 @@
 ﻿using Aequus.Content.Configuration;
-using Aequus.Content.Events.Deactivators;
 using Aequus.Old.Content.DronePylons;
 using Aequus.Old.Content.Equipment.Accessories.LaserScope;
 using Aequus.Old.Content.Events.Glimmer.Spawners;

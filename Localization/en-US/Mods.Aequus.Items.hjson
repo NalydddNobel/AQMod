@@ -200,21 +200,20 @@ ShadowVeer: {
 }
 
 //# Equipment: Misc
-BloodMoonDeactivator: {
+RoseTintedGlasses: {
 	DisplayName: Rose Tinted Glasses
-	Tooltip: Ignore Blood Moon effects
+	Tooltip: Ignore enemy spawns of the Blood Moon
 }
 
-GlimmerDeactivator: {
+StellarGlasses: {
 	DisplayName: Stellar Glasses
-	Tooltip: Ignore Glimmer effects
+	Tooltip: Ignore enemy spawns of the Glimmer
 }
 
-EclipseDeactivator: {
+EclipseGlasses: {
 	DisplayName: Eclipse Glasses
-	Tooltip: Ignore Eclipse effects
+	Tooltip: Ignore enemy spawns of the Eclipse
 }
-
 
 //# Equipment: Informational
 HoloLens: {

@@ -2,12 +2,14 @@
 using Aequus.Content.DataSets;
 using Aequus.Core;
 
-namespace Aequus;
+namespace Aequus.Content.Equipment.Accessories.EventPrevention;
 
 public class EventDeactivatorPlayer : ModPlayer {
     public bool accDisableBloodMoon;
     public bool accDisableEclipse;
     public bool accDisableGlimmer;
+    public bool accDisableFrostMoon;
+    public bool accDisablePumpkinMoon;
 
     public override void PreUpdate() {
         CheckFlagOverrides();
@@ -32,6 +34,12 @@ public class EventDeactivatorPlayer : ModPlayer {
         }
         if (accDisableEclipse) {
             CommonRefManipulators.Eclipse.OverrideValue(false);
+        }
+        if (accDisablePumpkinMoon) {
+            CommonRefManipulators.PumpkinMoon.OverrideValue(false);
+        }
+        if (accDisableFrostMoon) {
+            CommonRefManipulators.FrostMoon.OverrideValue(false);
         }
     }
 

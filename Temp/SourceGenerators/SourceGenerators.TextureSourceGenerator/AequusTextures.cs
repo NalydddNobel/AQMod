@@ -335,6 +335,18 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> BreathConserver = new("Aequus/Content/Equipment/Accessories/Breath/BreathConserver");
     /// <summary>Full Path: Content/Equipment/Accessories/Breath/BreathConserver_Back</summary>
     public static readonly RequestCache<Texture2D> BreathConserver_Back = new("Aequus/Content/Equipment/Accessories/Breath/BreathConserver_Back");
+    /// <summary>Full Path: Content/Equipment/Accessories/EventPrevention/EclipseGlasses</summary>
+    public static readonly RequestCache<Texture2D> EclipseGlasses = new("Aequus/Content/Equipment/Accessories/EventPrevention/EclipseGlasses");
+    /// <summary>Full Path: Content/Equipment/Accessories/EventPrevention/EclipseGlasses_Face</summary>
+    public static readonly RequestCache<Texture2D> EclipseGlasses_Face = new("Aequus/Content/Equipment/Accessories/EventPrevention/EclipseGlasses_Face");
+    /// <summary>Full Path: Content/Equipment/Accessories/EventPrevention/RoseTintedGlasses</summary>
+    public static readonly RequestCache<Texture2D> RoseTintedGlasses = new("Aequus/Content/Equipment/Accessories/EventPrevention/RoseTintedGlasses");
+    /// <summary>Full Path: Content/Equipment/Accessories/EventPrevention/RoseTintedGlasses_Face</summary>
+    public static readonly RequestCache<Texture2D> RoseTintedGlasses_Face = new("Aequus/Content/Equipment/Accessories/EventPrevention/RoseTintedGlasses_Face");
+    /// <summary>Full Path: Content/Equipment/Accessories/EventPrevention/StellarGlasses</summary>
+    public static readonly RequestCache<Texture2D> StellarGlasses = new("Aequus/Content/Equipment/Accessories/EventPrevention/StellarGlasses");
+    /// <summary>Full Path: Content/Equipment/Accessories/EventPrevention/StellarGlasses_Face</summary>
+    public static readonly RequestCache<Texture2D> StellarGlasses_Face = new("Aequus/Content/Equipment/Accessories/EventPrevention/StellarGlasses_Face");
     /// <summary>Full Path: Content/Equipment/Accessories/FlashwayShield/FlashwayShield</summary>
     public static readonly RequestCache<Texture2D> FlashwayShield = new("Aequus/Content/Equipment/Accessories/FlashwayShield/FlashwayShield");
     /// <summary>Full Path: Content/Equipment/Accessories/FlashwayShield/FlashwayShield_Shield</summary>
@@ -395,18 +407,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> HotAirBalloonMount_Front = new("Aequus/Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Front");
     /// <summary>Full Path: Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Glow</summary>
     public static readonly RequestCache<Texture2D> HotAirBalloonMount_Glow = new("Aequus/Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Glow");
-    /// <summary>Full Path: Content/Events/Deactivators/BloodMoon/BloodMoonDeactivator</summary>
-    public static readonly RequestCache<Texture2D> BloodMoonDeactivator = new("Aequus/Content/Events/Deactivators/BloodMoon/BloodMoonDeactivator");
-    /// <summary>Full Path: Content/Events/Deactivators/BloodMoon/BloodMoonDeactivator_Face</summary>
-    public static readonly RequestCache<Texture2D> BloodMoonDeactivator_Face = new("Aequus/Content/Events/Deactivators/BloodMoon/BloodMoonDeactivator_Face");
-    /// <summary>Full Path: Content/Events/Deactivators/Eclipse/EclipseDeactivator</summary>
-    public static readonly RequestCache<Texture2D> EclipseDeactivator = new("Aequus/Content/Events/Deactivators/Eclipse/EclipseDeactivator");
-    /// <summary>Full Path: Content/Events/Deactivators/Eclipse/EclipseDeactivator_Face</summary>
-    public static readonly RequestCache<Texture2D> EclipseDeactivator_Face = new("Aequus/Content/Events/Deactivators/Eclipse/EclipseDeactivator_Face");
-    /// <summary>Full Path: Content/Events/Deactivators/Glimmer/GlimmerDeactivator</summary>
-    public static readonly RequestCache<Texture2D> GlimmerDeactivator = new("Aequus/Content/Events/Deactivators/Glimmer/GlimmerDeactivator");
-    /// <summary>Full Path: Content/Events/Deactivators/Glimmer/GlimmerDeactivator_Face</summary>
-    public static readonly RequestCache<Texture2D> GlimmerDeactivator_Face = new("Aequus/Content/Events/Deactivators/Glimmer/GlimmerDeactivator_Face");
     /// <summary>Full Path: Content/Fishing/CrabPots/CrabPot</summary>
     public static readonly RequestCache<Texture2D> CrabPot = new("Aequus/Content/Fishing/CrabPots/CrabPot");
     /// <summary>Full Path: Content/Fishing/CrabPots/CrabPot_Back</summary>
