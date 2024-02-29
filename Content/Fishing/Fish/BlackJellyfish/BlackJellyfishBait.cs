@@ -8,6 +8,10 @@ using Terraria.GameContent.Shaders;
 namespace Aequus.Content.Fishing.Fish.BlackJellyfish;
 
 public class BlackJellyfishBait : ModItem, IOnPullBobber {
+    public override void SetStaticDefaults() {
+        Item.ResearchUnlockCount = 3;
+    }
+
     public override void SetDefaults() {
         Item.CloneDefaults(ItemID.GreenJellyfish);
         Item.makeNPC = 0;

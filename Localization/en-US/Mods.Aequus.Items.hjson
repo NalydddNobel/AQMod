@@ -918,5 +918,5 @@ Piraiba: {
 
 BlackJellyfishBait: {
 	DisplayName: "{$NPCs.BlackJellyfish.DisplayName}"
-	Tooltip: "Explodes and damages fished up enemies"
+	Tooltip: Explodes and damages fished up enemies
 }
