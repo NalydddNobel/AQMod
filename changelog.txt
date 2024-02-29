@@ -114,5 +114,6 @@ III. Removals
 - Removed White Phial, again
 
 IV. Fixes
+- Natural Glimmer Events now reset the cooldown of the Enchanted Sundial and Moondial
 - Fixed a few enemy names on banners not matching the actual enemy's name
 - Trophies and Paintings now glow when using the Spelunker Potion

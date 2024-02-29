@@ -1,8 +1,6 @@
 ﻿using Aequus.Content.Fishing.Components;
 using Aequus.Content.Graphics.Particles;
-using Microsoft.Xna.Framework.Graphics;
 using System;
-using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Shaders;
@@ -27,11 +25,11 @@ public class BlackJellyfishBait : ModItem, IOnPullBobber {
 
         if (Main.myPlayer == player.whoAmI) {
             int damage = player.HeldItem.fishingPole * 6;
-            if (Main.hardMode) {
-                damage *= 2;
-            }
             if (Main.expertMode) {
                 damage *= 2;
+            }
+            if (Main.hardMode) {
+                damage *= 4;
             }
             Projectile.NewProjectile(new EntitySource_FishedOut(player), bobber.position, Vector2.Zero, ModContent.ProjectileType<BlackJellyfishBaitExplosion>(), damage + bobber.damage, bobber.knockBack, player.whoAmI);
         }
