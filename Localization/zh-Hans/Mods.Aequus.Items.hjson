@@ -215,7 +215,6 @@ EclipseGlasses: {
 	Tooltip: 无视日食效果
 }
 
-
 //# Equipment: Informational
 HoloLens: {
 	DisplayName: 全息透镜
