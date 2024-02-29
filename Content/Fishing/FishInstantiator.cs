@@ -1,6 +1,6 @@
 ﻿namespace Aequus.Content.Fishing;
 
-public class FishCatches : ILoadable {
+public class FishInstantiator : ILoadable {
     public static ModItem Killifish { get; private set; }
     public static ModItem Piraiba { get; private set; }
 

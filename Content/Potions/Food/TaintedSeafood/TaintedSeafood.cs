@@ -62,7 +62,7 @@ public class TaintedSeafood : ModItem {
 
     public override void AddRecipes() {
         CreateRecipe()
-            .AddIngredient(FishCatches.Piraiba)
+            .AddIngredient(FishInstantiator.Piraiba)
             .AddTile(TileID.CookingPots)
             .Register()
             .DisableDecraft();

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 603)</summary>
+/// <summary>(Total Textures: 604)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -433,6 +433,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SteampunkerFishingPole = new("Aequus/Content/Fishing/FishingPoles/SteampunkerFishingPole");
     /// <summary>Full Path: Content/Fishing/FishingPoles/SteampunkerFishingPoleBobber</summary>
     public static readonly RequestCache<Texture2D> SteampunkerFishingPoleBobber = new("Aequus/Content/Fishing/FishingPoles/SteampunkerFishingPoleBobber");
+    /// <summary>Full Path: Content/Fishing/Fish/BlackJellyfish/BlackJellyfishBait</summary>
+    public static readonly RequestCache<Texture2D> BlackJellyfishBait = new("Aequus/Content/Fishing/Fish/BlackJellyfish/BlackJellyfishBait");
     /// <summary>Full Path: Content/Fishing/Fish/Killifish</summary>
     public static readonly RequestCache<Texture2D> Killifish = new("Aequus/Content/Fishing/Fish/Killifish");
     /// <summary>Full Path: Content/Fishing/Fish/Piraiba</summary>

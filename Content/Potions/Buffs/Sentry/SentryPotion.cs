@@ -22,7 +22,7 @@ public class SentryPotion : ModItem {
     public override void AddRecipes() {
         CreateRecipe()
             .AddIngredient(ItemID.BottledWater)
-            .AddIngredient(FishCatches.Killifish)
+            .AddIngredient(FishInstantiator.Killifish)
             .AddIngredient(ItemID.Shiverthorn)
             .AddTile(TileID.Bottles)
             .Register()

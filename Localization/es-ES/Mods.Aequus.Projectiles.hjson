@@ -72,3 +72,4 @@ DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 // GunnerDroneProj.DisplayName: "{$NPCs.GunnerDrone.DisplayName}"
 // SuperStarSwordProj.DisplayName: "{$Items.SuperStarSword.DisplayName}"
 // SuperStarSwordSlash.DisplayName: "{$Items.SuperStarSword.DisplayName}"
+// BlackJellyfishBaitExplosion.DisplayName: Black Jellyfish Bait Explosion

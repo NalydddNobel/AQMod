@@ -70,4 +70,8 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
   </ItemGroup>
 	
+  <ItemGroup>
+    <None Remove="Content\Fishing\Fish\BlackJellyfish\BlackJellyfishBait.png" />
+  </ItemGroup>
+	
 </Project>

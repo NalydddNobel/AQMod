@@ -915,3 +915,8 @@ Piraiba: {
 	DisplayName: 须鲇鱼
 	Tooltip: ""
 }
+
+BlackJellyfishBait: {
+	DisplayName: "{$NPCs.BlackJellyfish.DisplayName}"
+	// Tooltip: ""
+}

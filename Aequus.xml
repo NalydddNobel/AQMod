@@ -653,6 +653,12 @@
             Uses "uLightSource" as a 3rd color value.
             </summary>
         </member>
+        <member name="T:Aequus.Content.Fishing.Components.IOnPullBobber">
+            <summary>Only works on Fishing Pole or Bait items.</summary>
+        </member>
+        <member name="M:Aequus.Content.Fishing.Components.IOnPullBobber.PrePullBobber(Terraria.Player,Terraria.Projectile,System.Int32@)">
+            <returns><see langword="true" /> to override default pulling operations.</returns>
+        </member>
         <member name="P:Aequus.Content.Fishing.CrabPots.TECrabPot.LavaEffectiveness">
             <summary>
             Multiplier to <see cref="P:Aequus.Content.Fishing.CrabPots.TECrabPot.ChancePerTick"/> for crab pots inside of lava. Defaults to 2 (chance is twice as rare)
@@ -1600,7 +1606,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 603)</summary>
+            <summary>(Total Textures: 604)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2240,6 +2246,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.SteampunkerFishingPoleBobber">
             <summary>Full Path: Content/Fishing/FishingPoles/SteampunkerFishingPoleBobber</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackJellyfishBait">
+            <summary>Full Path: Content/Fishing/Fish/BlackJellyfish/BlackJellyfishBait</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Killifish">
             <summary>Full Path: Content/Fishing/Fish/Killifish</summary>

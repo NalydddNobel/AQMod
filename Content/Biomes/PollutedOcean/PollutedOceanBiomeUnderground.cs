@@ -1,7 +1,11 @@
 ﻿using Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
 using Aequus.Content.Enemies.PollutedOcean.OilSlime;
 using Aequus.Content.Enemies.PollutedOcean.Scavenger;
+using Aequus.Content.Fishing;
+using Aequus.Content.Fishing.Fish.BlackJellyfish;
 using System.Collections.Generic;
+using Terraria.DataStructures;
+using static Terraria.ID.ContentSamples.CreativeHelper;
 
 namespace Aequus.Content.Biomes.PollutedOcean;
 
@@ -34,5 +38,19 @@ public class PollutedOceanBiomeUnderground : PollutedOceanBiomeSurface {
 
         pool[NPCID.Buggy] = 0.1f; // Chromite
         pool[NPCID.Sluggy] = 0.1f; // Horseshoe Crab
+    }
+
+    public static void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn) {
+        if (attempt.rare && Main.rand.NextBool(5)) {
+            itemDrop = ModContent.ItemType<BlackJellyfishBait>();
+        }
+        else if (attempt.common && Main.rand.NextBool()) {
+            if (Main.rand.NextBool()) {
+                itemDrop = FishInstantiator.Killifish.Type;
+            }
+            else {
+                itemDrop = FishInstantiator.Piraiba.Type;
+            }
+        }
     }
 }
