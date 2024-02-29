@@ -1606,7 +1606,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 604)</summary>
+            <summary>(Total Textures: 610)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2043,6 +2043,30 @@
         <member name="F:Aequus.AequusTextures.BlackJellyfishBannerItem">
             <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBannerItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.BreadOfCthulhu">
+            <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/BreadOfCthulhu</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BreadOfCthulhu_0">
+            <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Gores/BreadOfCthulhu_0</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BreadOfCthulhu_1">
+            <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Gores/BreadOfCthulhu_1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BreadOfCthulhu_2">
+            <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Gores/BreadOfCthulhu_2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BreadOfCthulhuMask">
+            <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Items/BreadOfCthulhuMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BreadOfCthulhuMask_Head">
+            <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Items/BreadOfCthulhuMask_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Content_Enemies_PollutedOcean_BreadOfCthulhu_Tiles_BreadOfCthulhuBanner">
+            <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Tiles/BreadOfCthulhuBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BreadOfCthulhuBannerItem">
+            <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Tiles/BreadOfCthulhuBannerItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.OilSlime">
             <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/OilSlime</summary>
         </member>
@@ -2183,12 +2207,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.WeightedHorseshoeVisual">
             <summary>Full Path: Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BreadOfCthulhuMask">
-            <summary>Full Path: Content/Equipment/Armor/Vanity/BreadOfCthulhuMask</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BreadOfCthulhuMask_Head">
-            <summary>Full Path: Content/Equipment/Armor/Vanity/BreadOfCthulhuMask_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BalloonKit">
             <summary>Full Path: Content/Equipment/Mounts/HotAirBalloon/BalloonKit</summary>
@@ -2652,7 +2670,7 @@
         <member name="F:Aequus.AequusTextures.BloodMimicBannerItem">
             <summary>Full Path: Old/Content/Enemies/BloodMoon/Tiles/BloodMimicBannerItem</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.BreadOfCthulhuBanner">
+        <member name="F:Aequus.AequusTextures.Old_Content_Enemies_BreadOfCthulhuBanner">
             <summary>Full Path: Old/Content/Enemies/BreadOfCthulhuBanner</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CinderBat">
@@ -3247,13 +3265,13 @@
             <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Emotes/OccultistHostileEmote</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OccultistGoreBook">
-            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreBook</summary>
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gores/OccultistGoreBook</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OccultistGoreHead">
-            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreHead</summary>
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gores/OccultistGoreHead</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OccultistGoreWing">
-            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreWing</summary>
+            <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gores/OccultistGoreWing</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Old_Content_TownNPCs_OccultistNPC_Occultist">
             <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Occultist</summary>

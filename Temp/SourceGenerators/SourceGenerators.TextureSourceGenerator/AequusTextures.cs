@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 604)</summary>
+/// <summary>(Total Textures: 610)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -297,6 +297,22 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> BlackJellyfishBanner = new("Aequus/Content/Enemies/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBanner");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBannerItem</summary>
     public static readonly RequestCache<Texture2D> BlackJellyfishBannerItem = new("Aequus/Content/Enemies/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBannerItem");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/BreadOfCthulhu</summary>
+    public static readonly RequestCache<Texture2D> BreadOfCthulhu = new("Aequus/Content/Enemies/PollutedOcean/BreadOfCthulhu/BreadOfCthulhu");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Gores/BreadOfCthulhu_0</summary>
+    public static readonly RequestCache<Texture2D> BreadOfCthulhu_0 = new("Aequus/Content/Enemies/PollutedOcean/BreadOfCthulhu/Gores/BreadOfCthulhu_0");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Gores/BreadOfCthulhu_1</summary>
+    public static readonly RequestCache<Texture2D> BreadOfCthulhu_1 = new("Aequus/Content/Enemies/PollutedOcean/BreadOfCthulhu/Gores/BreadOfCthulhu_1");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Gores/BreadOfCthulhu_2</summary>
+    public static readonly RequestCache<Texture2D> BreadOfCthulhu_2 = new("Aequus/Content/Enemies/PollutedOcean/BreadOfCthulhu/Gores/BreadOfCthulhu_2");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Items/BreadOfCthulhuMask</summary>
+    public static readonly RequestCache<Texture2D> BreadOfCthulhuMask = new("Aequus/Content/Enemies/PollutedOcean/BreadOfCthulhu/Items/BreadOfCthulhuMask");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Items/BreadOfCthulhuMask_Head</summary>
+    public static readonly RequestCache<Texture2D> BreadOfCthulhuMask_Head = new("Aequus/Content/Enemies/PollutedOcean/BreadOfCthulhu/Items/BreadOfCthulhuMask_Head");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Tiles/BreadOfCthulhuBanner</summary>
+    public static readonly RequestCache<Texture2D> Content_Enemies_PollutedOcean_BreadOfCthulhu_Tiles_BreadOfCthulhuBanner = new("Aequus/Content/Enemies/PollutedOcean/BreadOfCthulhu/Tiles/BreadOfCthulhuBanner");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Tiles/BreadOfCthulhuBannerItem</summary>
+    public static readonly RequestCache<Texture2D> BreadOfCthulhuBannerItem = new("Aequus/Content/Enemies/PollutedOcean/BreadOfCthulhu/Tiles/BreadOfCthulhuBannerItem");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/OilSlime</summary>
     public static readonly RequestCache<Texture2D> OilSlime = new("Aequus/Content/Enemies/PollutedOcean/OilSlime/OilSlime");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/Tiles/OilSlimeBanner</summary>
@@ -391,10 +407,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> WeightedHorseshoe = new("Aequus/Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoe");
     /// <summary>Full Path: Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
     public static readonly RequestCache<Texture2D> WeightedHorseshoeVisual = new("Aequus/Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual");
-    /// <summary>Full Path: Content/Equipment/Armor/Vanity/BreadOfCthulhuMask</summary>
-    public static readonly RequestCache<Texture2D> BreadOfCthulhuMask = new("Aequus/Content/Equipment/Armor/Vanity/BreadOfCthulhuMask");
-    /// <summary>Full Path: Content/Equipment/Armor/Vanity/BreadOfCthulhuMask_Head</summary>
-    public static readonly RequestCache<Texture2D> BreadOfCthulhuMask_Head = new("Aequus/Content/Equipment/Armor/Vanity/BreadOfCthulhuMask_Head");
     /// <summary>Full Path: Content/Equipment/Mounts/HotAirBalloon/BalloonKit</summary>
     public static readonly RequestCache<Texture2D> BalloonKit = new("Aequus/Content/Equipment/Mounts/HotAirBalloon/BalloonKit");
     /// <summary>Full Path: Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
@@ -704,7 +716,7 @@ public partial class AequusTextures {
     /// <summary>Full Path: Old/Content/Enemies/BloodMoon/Tiles/BloodMimicBannerItem</summary>
     public static readonly RequestCache<Texture2D> BloodMimicBannerItem = new("Aequus/Old/Content/Enemies/BloodMoon/Tiles/BloodMimicBannerItem");
     /// <summary>Full Path: Old/Content/Enemies/BreadOfCthulhuBanner</summary>
-    public static readonly RequestCache<Texture2D> BreadOfCthulhuBanner = new("Aequus/Old/Content/Enemies/BreadOfCthulhuBanner");
+    public static readonly RequestCache<Texture2D> Old_Content_Enemies_BreadOfCthulhuBanner = new("Aequus/Old/Content/Enemies/BreadOfCthulhuBanner");
     /// <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/CinderBat</summary>
     public static readonly RequestCache<Texture2D> CinderBat = new("Aequus/Old/Content/Enemies/DemonSiege/CinderBat/CinderBat");
     /// <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/Tiles/CinderBatBanner</summary>
@@ -1099,12 +1111,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OccultistEmote = new("Aequus/Old/Content/TownNPCs/OccultistNPC/Emotes/OccultistEmote");
     /// <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Emotes/OccultistHostileEmote</summary>
     public static readonly RequestCache<Texture2D> OccultistHostileEmote = new("Aequus/Old/Content/TownNPCs/OccultistNPC/Emotes/OccultistHostileEmote");
-    /// <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreBook</summary>
-    public static readonly RequestCache<Texture2D> OccultistGoreBook = new("Aequus/Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreBook");
-    /// <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreHead</summary>
-    public static readonly RequestCache<Texture2D> OccultistGoreHead = new("Aequus/Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreHead");
-    /// <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreWing</summary>
-    public static readonly RequestCache<Texture2D> OccultistGoreWing = new("Aequus/Old/Content/TownNPCs/OccultistNPC/Gore/OccultistGoreWing");
+    /// <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gores/OccultistGoreBook</summary>
+    public static readonly RequestCache<Texture2D> OccultistGoreBook = new("Aequus/Old/Content/TownNPCs/OccultistNPC/Gores/OccultistGoreBook");
+    /// <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gores/OccultistGoreHead</summary>
+    public static readonly RequestCache<Texture2D> OccultistGoreHead = new("Aequus/Old/Content/TownNPCs/OccultistNPC/Gores/OccultistGoreHead");
+    /// <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Gores/OccultistGoreWing</summary>
+    public static readonly RequestCache<Texture2D> OccultistGoreWing = new("Aequus/Old/Content/TownNPCs/OccultistNPC/Gores/OccultistGoreWing");
     /// <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/Occultist</summary>
     public static readonly RequestCache<Texture2D> Old_Content_TownNPCs_OccultistNPC_Occultist = new("Aequus/Old/Content/TownNPCs/OccultistNPC/Occultist");
     /// <summary>Full Path: Old/Content/TownNPCs/OccultistNPC/OccultistHostile</summary>

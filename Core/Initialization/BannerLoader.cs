@@ -43,7 +43,7 @@ public class BannerLoader : GlobalNPC {
 
     public override void SetDefaults(NPC entity) {
         if (NPCToBannerItemId.TryGetValue(entity.type, out var banner)) {
-            entity.ModNPC.Banner = entity.ModNPC.Type;
+            entity.ModNPC.Banner = entity.type;
             entity.ModNPC.BannerItem = banner.Type;
         }
     }

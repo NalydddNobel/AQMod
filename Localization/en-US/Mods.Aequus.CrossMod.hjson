@@ -14,6 +14,11 @@ Avalon: {
 	}
 
 	Projectiles.BacciliteSceptreProj.DisplayName: "{Avalon.Items.BacciliteSceptre.DisplayName}"
+
+	ItemDropRules: {
+		IsContagion: Drops in the Contagion
+		IsNotContagion: Drops outside of Contagion worlds
+	}
 }
 
 Fargowiltas: {

@@ -1,8 +1,6 @@
 ﻿using Aequus.Content.Biomes.PollutedOcean.Background;
 using Aequus.Content.Biomes.PollutedOcean.Water;
-using Aequus.Content.Enemies.PollutedOcean.OilSlime;
 using Aequus.Content.Tiles.Furniture.Trash;
-using System.Collections.Generic;
 
 namespace Aequus.Content.Biomes.PollutedOcean;
 
@@ -27,22 +25,5 @@ public class PollutedOceanBiomeSurface : ModBiome {
 
     public override bool IsBiomeActive(Player player) {
         return player.position.Y > Main.worldSurface * 16.0 && PollutedOceanSystem.CheckBiome(player);
-    }
-
-    public static void PopulateSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
-        pool.Clear();
-
-        pool[ModContent.NPCType<OilSlime>()] = 1f;
-
-        if (spawnInfo.Water) {
-            pool[NPCID.Arapaima] = 1f; // Eel
-            pool[NPCID.Tumbleweed] = 1f; // Urchin
-
-            pool[NPCID.LightningBug] = 0.1f; // Sea Firefly
-        }
-
-        if (Main.hardMode) {
-            pool[NPCID.AngryNimbus] = 0.33f; // Mirage
-        }
     }
 }

@@ -28,10 +28,10 @@ public class SpawningSystem : GlobalNPC {
         }
 
         if (spawnInfo.Player.InModBiome<PollutedOceanBiomeSurface>()) {
-            PollutedOceanBiomeSurface.PopulateSpawnPool(pool, spawnInfo);
+            PollutedOceanSystem.PopulateSurfaceSpawnPool(pool, spawnInfo);
         }
         else if (spawnInfo.Player.InModBiome<PollutedOceanBiomeUnderground>()) {
-            PollutedOceanBiomeUnderground.PopulateSpawnPool(pool, spawnInfo);
+            PollutedOceanSystem.PopulateUndergroundSpawnPool(pool, spawnInfo);
         }
     }
 }

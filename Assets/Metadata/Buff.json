@@ -1,5 +1,7 @@
 {
-  "CannotChangeDuration": [],
+  "CannotChangeDuration": [
+    "Lucky"
+  ],
   "PlayerStatusDebuff": [],
   "PlayerDoTDebuff": [
     "Aequus/IronLotusDebuff"

@@ -18,7 +18,7 @@ internal class SupportedMod<TMod> : ModSystem, ISupportedMod<TMod>, ILocalizedMo
     public static string ModName => typeof(TMod).Name;
     public static bool Enabled { get; private set; }
 
-    public string LocalizationCategory => $"CrossMod.{ModName}";
+    public string LocalizationCategory => $"CrossMod";
 
     public static bool IsLoadingEnabled() {
         return ModLoader.HasMod(ModName);

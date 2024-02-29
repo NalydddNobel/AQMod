@@ -25,6 +25,12 @@ OilSlime: {
 	BannerName: 不透明的史莱姆旗
 }
 
+BreadOfCthulhu: {
+	DisplayName: 克苏鲁之面包旗
+	// BannerName: Bread Of Cthulhu Banner
+	Bestiary: 一种遗失的食物, 当它穿过惊骇传送门后重新获得了生命, 这个令人厌恶的面包并不打算成为你的午餐! 钓鱼时要小心, 它可能会挑看起来容易捕食的没有经验的渔夫来诱惑.
+}
+
 RadioConductor: {
 	DisplayName: 导体
 	Bestiary: 一种科技上的弗兰肯斯坦, 这一经典的历史电子产品可以引导和操纵无线电波来保护自己. 无论你喜欢与否, 它都一定会上演一出好戏.

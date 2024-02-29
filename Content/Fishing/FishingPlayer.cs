@@ -25,8 +25,11 @@ public class FishingPlayer : ModPlayer {
     }
 
     public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition) {
-        if (Player.InModBiome<PollutedOceanBiomeUnderground>()) {
-            PollutedOceanBiomeUnderground.CatchFish(attempt, ref itemDrop, ref npcSpawn);
+        if (Player.InModBiome<PollutedOceanBiomeSurface>()) {
+            PollutedOceanSystem.CatchSurfaceFish(in attempt, ref itemDrop, ref npcSpawn);
+        }
+        else if (Player.InModBiome<PollutedOceanBiomeUnderground>()) {
+            PollutedOceanSystem.CatchUndergroundFish(in attempt, ref itemDrop, ref npcSpawn);
         }
     }
 }
