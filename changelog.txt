@@ -2,15 +2,18 @@ Version 3.0 Changes ------------------------------------------------------------
 
 I. Additions & Changes:
 - Completely remade the project from the ground up, many items have been tweaked or temporarily removed.
-- Soul Gems can no longer be filled with souls from enemies from the Underworld or Demon Siege.
 - The Occultist is now immune to enemies from the Underworld or Demon Siege.
+- Added emotes for Aequus' Town NPCs.
 - Adjusted Lesser, Greater, and Super Restoration Potions stats & recipes.
 - Resprited The Christmas Spirit.
 - Slightly tweaked the Junk Jet, and it can use more types of ammo.
 - Resprited & Renamed the Cosmic Chest to Fortunate Souvenir
-- Reworked Bottle O' Spirits to do      something...
 
+- New Item: Rose Tinted Glasses, makes you ignore the Blood Moon.
+- New Item: Stellar Glasses, makes you ignore the Glimmer.
+- New Item: Eclipse Glasses, makes you ignore the Eclipse.
 - New Item: Argon, Krypton, Neon, & Xenon Plant Statues.
+- New Item: Bamboo Pole, an early game fishing rod.
 - New Item: Steampunker's Rod.
 - New Item: Convergent Heart.
 
@@ -19,6 +22,7 @@ Polluted Ocean:
 - New Enemy: Scavenger, a Skeleton which can use armor and accessories!
 - New Item: Scavenger Bag, grants 10 inventory slots.
 - New Enemy: Black Jellyfish, an explosive threat!
+- New Enemy: Opaque Slime!
 - New Item: Trash Compactor, lets you compress trash, and decraft furniture.
 - New Item: Spam Mail, a magic weapon which sends unsafe mail to enemies to damage them.
 - New Item: Copper & Tin Conductors, pre-Skeletron wiring, with a few unique effects!
@@ -40,6 +44,7 @@ Sky Merchant:
 - New Item: Flashway Shield, grants a dash, slightly longer than the Shield of Cthulhu but cannot bonk on enemies.
 - New Item: Miraculous Feather, increases life regen and decreases respawn time for yourself and everyone on your team.
 	-- Combines with the Band of Regeneration to create the Golden Wind, granting more life regeneration.
+- New Item: Valentines Ring, give it to a loved one for increased stats for both of you!
 - New Item: Stun Gun, allows you to stun enemies, making them heavily vulnerable.
 - New Item: Furystar, reminiscent of the orignal Starfury! Using mana and all! (Well, it deals magic damage now.)
 
