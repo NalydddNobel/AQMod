@@ -43,8 +43,13 @@ public class BlackJellyfishBait : ModItem, IOnPullBobber {
     }
 }
 
-public class BlackJellyfishBaitExplosion : ModProjectile, DrawLayers.IDrawLayer {
+public class BlackJellyfishBaitExplosion : ModProjectile, DrawLayers.IDrawLayer, RenderTargetRequests.IRenderTargetRequest {
     public override string Texture => AequusTextures.None.Path;
+
+    public Point Dimensions => new Point(270, 270);
+    public RenderTarget2D RenderTarget { get; set; }
+    public bool IsDisposed { get; set; }
+    public bool Active { get; set; }
 
     private const int LightningSegments = 70;
     private Vector2[] lightningDrawCoordinates;
@@ -125,6 +130,7 @@ public class BlackJellyfishBaitExplosion : ModProjectile, DrawLayers.IDrawLayer 
 
     public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI) {
         DrawLayers.Instance.PostDrawLiquids += Projectile;
+        RenderTargetRequests.Instance.Request(this);
     }
 
     public override bool PreDraw(ref Color lightColor) {
@@ -152,17 +158,71 @@ public class BlackJellyfishBaitExplosion : ModProjectile, DrawLayers.IDrawLayer 
         Main.EntitySpriteDraw(AequusTextures.BloomStrong, drawCoordinates - Main.screenPosition, null, lightningColor, 0f, AequusTextures.BloomStrong.Size() / 2f, attackRange * 1.5f, SpriteEffects.None, 0f);
         Main.EntitySpriteDraw(AequusTextures.Bloom, drawCoordinates - Main.screenPosition, null, lightningColor, 0f, AequusTextures.Bloom.Size() / 2f, attackRange * 1.25f, SpriteEffects.None, 0f);
 
+        if (RenderTarget != null && !RenderTarget.IsDisposed && !RenderTarget.IsContentLost) {
+            Color color = Color.White;
+            drawCoordinates = Projectile.Center - Main.screenPosition;
+            Vector2 origin = RenderTarget.Size() / 2f;
+            spriteBatch.Draw(RenderTarget, drawCoordinates, null, color, 0f, origin, 1f, SpriteEffects.None, 0f);
+        }
+    }
+
+    public void DrawOntoRenderTarget(GraphicsDevice graphics, SpriteBatch sb) {
+        if (Projectile == null || !Projectile.active) {
+            Active = false;
+            return;
+        }
+
+        graphics.Clear(Color.Transparent);
+
+        var drawCoordinates = RenderTarget.Size() / 2f;
+
+        if (lightningDrawCoordinates == null) {
+            lightningDrawCoordinates = new Vector2[LightningSegments];
+            lightningDrawRotations = new float[LightningSegments];
+        }
+
+        Color lightningColor = new Color(255, 200, 100, 10);
+        float attackProgress = 1f - Projectile.timeLeft / 20f;
+        float attackRange;
+        float attackStart = 0.3f;
+        if (attackProgress < attackStart) {
+            attackRange = attackProgress / attackStart;
+        }
+        else {
+            attackRange = 1f - (attackProgress - attackStart) / (1f - attackStart);
+        }
+
         attackRange = MathF.Sin(attackRange * MathHelper.Pi) * Projectile.width / 2f;
 
         for (int i = 0; i < lightningDrawCoordinates.Length; i++) {
             float rotation = i * MathHelper.TwoPi / (lightningDrawCoordinates.Length - 1) * 2f + Main.GlobalTimeWrappedHourly * 38f;
-            lightningDrawCoordinates[i] = drawCoordinates + rotation.ToRotationVector2() * attackRange - Main.screenPosition + Main.rand.NextVector2Square(-attackRange, attackRange) / 12f;
+            lightningDrawCoordinates[i] = drawCoordinates + rotation.ToRotationVector2() * attackRange + Main.rand.NextVector2Square(-attackRange, attackRange) / 12f;
             lightningDrawRotations[i] = rotation - MathHelper.PiOver2;
         }
 
-        DrawHelper.DrawBasicVertexLineWithProceduralPadding(AequusTextures.Trail2, lightningDrawCoordinates, lightningDrawRotations,
+        DrawHelper.ApplyBasicEffect(DrawHelper.View, DrawHelper.Projection, AequusTextures.BlackJellyfishVertexStrip);
+        DrawHelper.VertexStrip.PrepareStrip(lightningDrawCoordinates, lightningDrawRotations,
             p => new Color(255, 200, 100, 10),
-            p => 4f
-        );
+            p => 9f,
+            Vector2.Zero, includeBacksides: true);
+        DrawHelper.VertexStrip.DrawTrail();
+    }
+
+    public void Dispose() {
+        if (RenderTarget != null && !RenderTarget.IsDisposed) {
+            RenderTarget.Dispose();
+            RenderTarget = null;
+        }
+
+        IsDisposed = true;
+        Active = false;
+
+        GC.SuppressFinalize(this);
+    }
+
+    ~BlackJellyfishBaitExplosion() {
+        if (!IsDisposed) {
+            Dispose();
+        }
     }
 }

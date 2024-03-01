@@ -67,9 +67,11 @@ public class GlimmerSystem : ModSystem {
         }
         if (PeacefulGlimmerZone.EventActive) {
             DeleteFallenStarsWithin(PeacefulGlimmerZone.TileLocationX);
-            if (Main.dayTime || Main.bloodMoon || Main.snowMoon || Main.pumpkinMoon) {
-                PeacefulGlimmerZone.TileLocationX = 0;
-            }
+        }
+
+        if (Main.dayTime || Main.bloodMoon || Main.snowMoon || Main.pumpkinMoon) {
+            EndEvent();
+            PeacefulGlimmerZone.TileLocationX = 0;
         }
     }
 

@@ -12,6 +12,9 @@ namespace Aequus.Core.Utilities;
 public sealed class DrawHelper : ModSystem {
     public delegate void Draw(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth);
 
+    public static Matrix View => Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) * Matrix.CreateTranslation(Main.graphics.GraphicsDevice.Viewport.Width / 2f, Main.graphics.GraphicsDevice.Viewport.Height / -2f, 0) * Matrix.CreateRotationZ(MathHelper.Pi);
+    public static Matrix Projection => Matrix.CreateOrthographic(Main.graphics.GraphicsDevice.Viewport.Width, Main.graphics.GraphicsDevice.Viewport.Height, 0, 1000);
+
     private static BasicEffect _basicEffect;
     public static VertexStrip VertexStrip { get; private set; }
 
@@ -71,17 +74,15 @@ public sealed class DrawHelper : ModSystem {
     }
 
     public static void GetWorldViewProjection(out Matrix view, out Matrix projection) {
-        int width = Main.graphics.GraphicsDevice.Viewport.Width;
-        int height = Main.graphics.GraphicsDevice.Viewport.Height;
-        projection = Matrix.CreateOrthographic(width, height, 0, 1000);
-        view = Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) *
-            Matrix.CreateTranslation(width / 2f, height / -2f, 0) * Matrix.CreateRotationZ(MathHelper.Pi) *
-            Matrix.CreateScale(Main.GameViewMatrix.Zoom.X, Main.GameViewMatrix.Zoom.Y, 1f);
+        projection = Projection;
+        view = View * Matrix.CreateScale(Main.GameViewMatrix.Zoom.X, Main.GameViewMatrix.Zoom.Y, 1f);
     }
 
     public static void ApplyBasicEffect(Texture2D texture = default, bool vertexTCommonColorEnabled = true) {
         GetWorldViewProjection(out var view, out var projection);
-
+        ApplyBasicEffect(view, projection, texture, vertexTCommonColorEnabled);
+    }
+    public static void ApplyBasicEffect(Matrix view, Matrix projection, Texture2D texture = default, bool vertexTCommonColorEnabled = true) {
         _basicEffect.VertexColorEnabled = vertexTCommonColorEnabled;
         _basicEffect.Projection = projection;
         _basicEffect.View = view;
