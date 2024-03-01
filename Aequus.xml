@@ -653,6 +653,14 @@
             Uses "uLightSource" as a 3rd color value.
             </summary>
         </member>
+        <member name="M:Aequus.Content.Enemies.PollutedOcean.BlackJellyfish.BlackJellyfish.GetLightMagnitude">
+            <summary>Gets the lighting magnitude for this Jellyfish. Returns 1f if <see cref="F:Terraria.NPC.IsABestiaryIconDummy"/> is <see langword="true"></see>.</summary>
+            <returns><inheritdoc cref="M:Aequus.Content.Enemies.PollutedOcean.BlackJellyfish.BlackJellyfish.GetLightMagnitude(Microsoft.Xna.Framework.Color)"/></returns>
+        </member>
+        <member name="M:Aequus.Content.Enemies.PollutedOcean.BlackJellyfish.BlackJellyfish.GetLightMagnitude(Microsoft.Xna.Framework.Color)">
+            <param name="lightColor">The Light color</param>
+            <returns>A value between 0.45 and 1 which represents the light's magnitude.</returns>
+        </member>
         <member name="T:Aequus.Content.Fishing.Components.IOnPullBobber">
             <summary>Only works on Fishing Pole or Bait items.</summary>
         </member>
@@ -1219,7 +1227,7 @@
         <member name="E:Aequus.Core.Graphics.DrawLayers.PostDrawDust">
             <summary>Invoked after Dusts have been drawn.</summary>
         </member>
-        <member name="E:Aequus.Core.Graphics.DrawLayers.PostDrawLiquids">
+        <member name="F:Aequus.Core.Graphics.DrawLayers.PostDrawLiquids">
             <summary>Invoked after Liquids and Inferno Rings have been drawn, but before Wire Overlays are drawn.</summary>
         </member>
         <member name="M:Aequus.Core.Graphics.SpriteBatchCache.InheritFrom(Microsoft.Xna.Framework.Graphics.SpriteBatch)">

@@ -1,6 +1,8 @@
 ﻿using Aequus.Content.Fishing.Components;
 using Aequus.Content.Graphics.Particles;
+using Aequus.Core.Graphics;
 using System;
+using System.Collections.Generic;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Shaders;
@@ -41,8 +43,12 @@ public class BlackJellyfishBait : ModItem, IOnPullBobber {
     }
 }
 
-public class BlackJellyfishBaitExplosion : ModProjectile {
+public class BlackJellyfishBaitExplosion : ModProjectile, DrawLayers.IDrawLayer {
     public override string Texture => AequusTextures.None.Path;
+
+    private const int LightningSegments = 70;
+    private Vector2[] lightningDrawCoordinates;
+    private float[] lightningDrawRotations;
 
     public override void SetDefaults() {
         Projectile.SetDefaultNoInteractions();
@@ -117,12 +123,22 @@ public class BlackJellyfishBaitExplosion : ModProjectile {
         }
     }
 
+    public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI) {
+        DrawLayers.Instance.PostDrawLiquids += Projectile;
+    }
+
     public override bool PreDraw(ref Color lightColor) {
+        return false;
+    }
+
+    public void DrawOntoLayer(SpriteBatch spriteBatch, DrawLayers.DrawLayer layer) {
         var drawCoordinates = Projectile.Center;
 
-        const int LightningSegments = 70;
-        Vector2[] lightningDrawCoordinates = new Vector2[LightningSegments];
-        float[] lightningDrawRotations = new float[LightningSegments];
+        if (lightningDrawCoordinates == null) {
+            lightningDrawCoordinates = new Vector2[LightningSegments];
+            lightningDrawRotations = new float[LightningSegments];
+        }
+
         Color lightningColor = new Color(255, 200, 100, 10);
         float attackProgress = 1f - Projectile.timeLeft / 20f;
         float attackRange;
@@ -148,6 +164,5 @@ public class BlackJellyfishBaitExplosion : ModProjectile {
             p => new Color(255, 200, 100, 10),
             p => 4f
         );
-        return false;
     }
 }

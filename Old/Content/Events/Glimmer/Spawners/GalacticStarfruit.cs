@@ -1,5 +1,6 @@
 ﻿using Aequus.Content.DataSets;
 using Aequus.Old.Content.Bosses.Cosmic.OmegaStarite;
+using System.Linq;
 using Terraria.Audio;
 
 namespace Aequus.Old.Content.Events.Glimmer.Spawners;
@@ -33,7 +34,7 @@ public class GalacticStarfruit : ModItem {
     }
 
     public override void AddRecipes() {
-        foreach (int bar in ItemTypeVariantMetadata.DemoniteBar) {
+        foreach (int bar in ItemTypeVariantMetadata.DemoniteBar.Where(i => i.ValidEntry)) {
             CreateRecipe()
                 .AddIngredient(ItemID.FallenStar, 5)
                 .AddIngredient(bar, 1)

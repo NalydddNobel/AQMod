@@ -1,23 +1,21 @@
-﻿using Aequus.Common.NPCs;
+﻿using Aequus.Core.Graphics;
 using System;
-using System.Collections.Generic;
 using Terraria.GameContent;
 
 namespace Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
 
-public partial class BlackJellyfish : AIJellyfish {
-    private static readonly List<int> _drawList = new();
-
+public partial class BlackJellyfish : DrawLayers.IDrawLayer {
+    private const int LightningSegments = 36;
     private Vector2[] lightningDrawCoordinates;
     private float[] lightningDrawRotations;
 
     public override Color? GetAlpha(Color drawColor) {
-        return drawColor * GetLightingIntensity();
+        return drawColor * GetLightMagnitude();
     }
 
     public override void DrawBehind(int index) {
         if (NPC.ai[2] > 0f) {
-            _drawList.Add(NPC.whoAmI);
+            DrawLayers.Instance.PostDrawLiquids += NPC;
         }
     }
 
@@ -27,7 +25,7 @@ public partial class BlackJellyfish : AIJellyfish {
         var origin = NPC.frame.Size() / 2f;
         //origin.X += 1f;
         //origin.Y += 6f;
-        drawColor = NPC.GetAlpha(NPC.GetNPCColorTintedByBuffs(drawColor));
+        drawColor = NPC.GetNPCColorTintedByBuffs(drawColor);
         if (!NPC.IsABestiaryIconDummy) {
             if (NPC.ai[2] > shockAttackLength) {
                 return false;
@@ -36,29 +34,19 @@ public partial class BlackJellyfish : AIJellyfish {
                 opacity *= 1f - Math.Min(NPC.ai[2] / shockAttackLength, 1f);
             }
         }
-        spriteBatch.Draw(TextureAssets.Npc[Type].Value, drawCoordinates - screenPos, NPC.frame, drawColor * opacity * 0.92f, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+        spriteBatch.Draw(TextureAssets.Npc[Type].Value, drawCoordinates - screenPos, NPC.frame, NPC.GetAlpha(drawColor) * opacity * 0.92f, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
         spriteBatch.Draw(AequusTextures.BlackJellyfish_Bag, drawCoordinates - screenPos, NPC.frame, drawColor * opacity, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
         return false;
     }
 
-    private static void DrawExplodingJellyfishesLayer(SpriteBatch spriteBatch) {
-        for (int i = 0; i < _drawList.Count; i++) {
-            int jellyfish = _drawList[i];
-            if (Main.npc[jellyfish].active && Main.npc[jellyfish].ModNPC is BlackJellyfish blackJellyfish) {
-                blackJellyfish.DrawLightning(spriteBatch);
-            }
-        }
-        _drawList.Clear();
-    }
-
-    private void DrawLightning(SpriteBatch spriteBatch) {
+    public void DrawOntoLayer(SpriteBatch spriteBatch, DrawLayers.DrawLayer layer) {
         var drawCoordinates = NPC.Center;
 
         if (lightningDrawCoordinates == null) {
-            const int LightningSegments = 36;
             lightningDrawCoordinates = new Vector2[LightningSegments];
             lightningDrawRotations = new float[LightningSegments];
         }
+
         float attackProgress = Math.Min(NPC.ai[2] / shockAttackLength, 1f);
         float attackRange = MathF.Pow(attackProgress, 2f) * AttackRange;
         if (NPC.ai[2] > shockAttackLength) {

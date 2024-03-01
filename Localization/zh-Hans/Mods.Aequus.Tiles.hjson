@@ -249,6 +249,7 @@ TrashCampfire: {
 }
 
 BlackJellyfishJar: {
-	// ItemDisplayName: Black Jellyfish Jar
+	// MapEntry: Black Jellyfish Jar
+	// ItemDisplayName: "{$Tiles.BlackJellyfishJar.MapEntry}"
 	// ItemTooltip: ""
 }

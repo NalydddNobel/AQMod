@@ -22,9 +22,6 @@ public partial class BlackJellyfish : AIJellyfish {
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = 4;
         NPCMetadata.PushableByTypeId.Add(Type);
-        if (Main.netMode != NetmodeID.Server) {
-            DrawLayers.Instance.PostDrawLiquids += DrawExplodingJellyfishesLayer;
-        }
     }
 
     public override void SetDefaults() {
@@ -55,7 +52,7 @@ public partial class BlackJellyfish : AIJellyfish {
 
     public override void AI() {
         if (Main.netMode != NetmodeID.Server) {
-            float lightingIntensity = GetLightingIntensity();
+            float lightingIntensity = GetLightMagnitude();
             if (lightingIntensity <= 0.75f) {
                 NPC.ShowNameOnHover = false;
                 NPC.nameOver = 0f;
@@ -196,10 +193,17 @@ public partial class BlackJellyfish : AIJellyfish {
         return false;
     }
 
-    public float GetLightingIntensity() {
-        return GetLightingIntensity(ExtendLight.Get(NPC.Center));
+    /// <summary>Gets the lighting magnitude for this Jellyfish. Returns 1f if <see cref="NPC.IsABestiaryIconDummy"/> is <see langword="true"></see>.</summary>
+    /// <returns><inheritdoc cref="GetLightMagnitude(Color)"/></returns>
+    public float GetLightMagnitude() {
+        if (NPC.IsABestiaryIconDummy) {
+            return 1f;
+        }
+        return GetLightMagnitude(ExtendLight.Get(NPC.Center));
     }
-    public static float GetLightingIntensity(Color lightColor) {
+    /// <param name="lightColor">The Light color</param>
+    /// <returns>A value between 0.45 and 1 which represents the light's magnitude.</returns>
+    public static float GetLightMagnitude(Color lightColor) {
         return Math.Clamp(MathF.Pow(lightColor.ToVector3().Length(), 4f), 0.45f, 1f);
     }
 }
