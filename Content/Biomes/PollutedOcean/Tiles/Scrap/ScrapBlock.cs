@@ -15,12 +15,12 @@ public class ScrapBlock : ModTile, ISpecialTileRenderer, ICustomPlaceSound, ITou
         Item = new InstancedTileItem(this);
         Mod.AddContent(Item);
 
-        LoadingSteps.EnqueueAddRecipes(() => {
+        Aequus.OnAddRecipes += () => {
             Item.CreateRecipe(10)
                 .AddIngredient(ModContent.ItemType<CompressedTrash>())
                 .AddTile(TileID.WorkBenches)
                 .Register();
-        });
+        };
     }
 
     public override void SetStaticDefaults() {

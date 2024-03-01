@@ -12,13 +12,13 @@ public class PolymerSand : MultiMergeTile {
         Item = new InstancedTileItem(this);
         Mod.AddContent(Item);
 
-        LoadingSteps.EnqueueAddRecipes(() => {
+        Aequus.OnAddRecipes += () => {
             Item.CreateRecipe(5)
                 .AddIngredient(ItemID.SandBlock, 5)
                 .AddIngredient(ScrapBlock.Item)
                 .AddTile(TileID.Furnaces)
                 .Register();
-        });
+        };
     }
 
     public override void SetStaticDefaults() {

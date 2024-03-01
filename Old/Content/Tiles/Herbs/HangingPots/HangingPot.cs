@@ -26,13 +26,13 @@ internal class HangingPot : ModTile {
             Mod.AddContent(hangingPlantItem);
 
             style++;
-            LoadingSteps.EnqueueAddRecipes(() => {
+            Aequus.OnAddRecipes += () => {
                 hangingPlantItem.CreateRecipe()
                     .AddIngredient(ItemID.PotSuspended)
                     .AddIngredient(getIngredientId())
                     .Register()
                     .SortAfterFirstRecipesOf(recipeSortIdTarget);
-            });
+            };
         }
     }
 

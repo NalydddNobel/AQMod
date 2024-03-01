@@ -13,11 +13,11 @@ public static class DataSetExtensions {
     }
 
     public static void AddEntry<T, T2>(this ICollection<T> list, T2 id) where T : IDataEntry<T2>, new() {
-        LoadingSteps.EnqueuePostSetupContent(() => {
+        Aequus.OnPostSetupContent += () => {
             var value = new T() { Id = id };
             value.Initialize();
             list.Add(value);
-        });
+        };
     }
 
     public static bool Contains<T, T2>(this ICollection<T> list, T2 id) where T : IDataEntry<T2>, new() {

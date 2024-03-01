@@ -1606,7 +1606,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 610)</summary>
+            <summary>(Total Textures: 613)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2402,6 +2402,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.MossStatuesXenonItem">
             <summary>Full Path: Content/Tiles/Statues/MossStatuesXenonItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackJellyfishJar">
+            <summary>Full Path: Content/Tiles/Terrariums/BlackJellyfishJar</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackJellyfishJarItem">
+            <summary>Full Path: Content/Tiles/Terrariums/BlackJellyfishJarItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackJellyfishJar_Glow">
+            <summary>Full Path: Content/Tiles/Terrariums/BlackJellyfishJar_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AnglerLamp">
             <summary>Full Path: Content/Tools/AnglerLamp/AnglerLamp</summary>

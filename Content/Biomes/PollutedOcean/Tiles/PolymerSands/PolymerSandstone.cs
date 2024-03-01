@@ -10,13 +10,13 @@ public class PolymerSandstone : MultiMergeTile {
         ModItem item = new InstancedTileItem(this);
         Mod.AddContent(item);
 
-        LoadingSteps.EnqueueAddRecipes(() => {
+        Aequus.OnAddRecipes += () => {
             item.CreateRecipe()
                 .AddIngredient(PolymerSand.Item)
                 .AddIngredient(ItemID.StoneBlock)
                 .AddTile(TileID.Solidifier)
                 .Register();
-        });
+        };
     }
 
     public override void SetStaticDefaults() {

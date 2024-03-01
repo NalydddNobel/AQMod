@@ -25,9 +25,9 @@ public class BuffMetadata : MetadataSet {
     }
 
     public static void AddBuffConflicts(int buffID, int buffID2) {
-        LoadingSteps.EnqueuePostSetupContent(() => {
+        Aequus.OnPostSetupContent += () => {
             AddBuffConflictsInner(buffID, buffID2);
             AddBuffConflictsInner(buffID2, buffID);
-        });
+        };
     }
 }

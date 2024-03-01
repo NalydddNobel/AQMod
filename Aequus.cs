@@ -28,16 +28,8 @@ public partial class Aequus : Mod {
     public override void Unload() {
         Instance = null;
         MusicMod = null;
+        UnloadLoadingSteps();
         UnloadModCalls();
         UnloadPackets();
     }
-
-    internal const bool DEBUG_MODE =
-#if DEBUG
-            true;
-#else
-        false;
-#endif
-
-    internal static string DEBUG_FILES_PATH => $"{Main.SavePath.Replace("tModLoader-preview", "tModLoader")}";
 }

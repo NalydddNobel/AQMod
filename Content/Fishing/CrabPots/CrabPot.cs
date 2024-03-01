@@ -16,14 +16,14 @@ public class CrabPot : BaseCrabPot {
         void AddItem(int style, int barItem, string name) {
             ModItem item = new InstancedTileItem(this, style: style, nameSuffix: name, rarity: ItemRarityID.Blue, value: Item.sellPrice(silver: 20));
             Mod.AddContent(item);
-            LoadingSteps.EnqueueAddRecipes(() => {
+            Aequus.OnAddRecipes += () => {
                 item.CreateRecipe()
                     .AddIngredient(barItem, 10)
                     .AddIngredient(ItemID.Chain, 3)
                     .AddIngredient<CompressedTrash>()
                     .AddTile(TileID.Anvils)
                     .Register();
-            });
+            };
         }
     }
 

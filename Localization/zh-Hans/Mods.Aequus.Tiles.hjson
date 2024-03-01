@@ -247,3 +247,8 @@ TrashCampfire: {
 	ItemDisplayName: Mods.Aequus.Tiles.TrashCampfire.ItemDisplayName
 	ItemTooltip: ""
 }
+
+BlackJellyfishJar: {
+	// ItemDisplayName: Black Jellyfish Jar
+	// ItemTooltip: ""
+}

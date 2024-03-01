@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 610)</summary>
+/// <summary>(Total Textures: 613)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -537,6 +537,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> MossStatuesNeonItem = new("Aequus/Content/Tiles/Statues/MossStatuesNeonItem");
     /// <summary>Full Path: Content/Tiles/Statues/MossStatuesXenonItem</summary>
     public static readonly RequestCache<Texture2D> MossStatuesXenonItem = new("Aequus/Content/Tiles/Statues/MossStatuesXenonItem");
+    /// <summary>Full Path: Content/Tiles/Terrariums/BlackJellyfishJar</summary>
+    public static readonly RequestCache<Texture2D> BlackJellyfishJar = new("Aequus/Content/Tiles/Terrariums/BlackJellyfishJar");
+    /// <summary>Full Path: Content/Tiles/Terrariums/BlackJellyfishJarItem</summary>
+    public static readonly RequestCache<Texture2D> BlackJellyfishJarItem = new("Aequus/Content/Tiles/Terrariums/BlackJellyfishJarItem");
+    /// <summary>Full Path: Content/Tiles/Terrariums/BlackJellyfishJar_Glow</summary>
+    public static readonly RequestCache<Texture2D> BlackJellyfishJar_Glow = new("Aequus/Content/Tiles/Terrariums/BlackJellyfishJar_Glow");
     /// <summary>Full Path: Content/Tools/AnglerLamp/AnglerLamp</summary>
     public static readonly RequestCache<Texture2D> AnglerLamp = new("Aequus/Content/Tools/AnglerLamp/AnglerLamp");
     /// <summary>Full Path: Content/Tools/AnglerLamp/AnglerLampOff</summary>

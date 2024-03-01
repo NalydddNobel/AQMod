@@ -247,3 +247,9 @@ TrashCampfire: {
 	ItemDisplayName: Mods.Aequus.Tiles.TrashCampfire.ItemDisplayName
 	ItemTooltip: ""
 }
+
+BlackJellyfishJar: {
+	MapEntry: Dumpster
+	ItemDisplayName: "{$Tiles.BlackJellyfishJar.MapEntry}"
+	ItemTooltip: ""
+}

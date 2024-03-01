@@ -92,12 +92,12 @@ public abstract class MultiMergeTile : ModTile {
         Merges.Add(with);
 
         if (Main.netMode != NetmodeID.Server) {
-            LoadingSteps.EnqueuePostSetupContent(() => {
+            Aequus.OnPostSetupContent += () => {
                 if (_mergeTextures.Length <= with) {
                     Array.Resize(ref _mergeTextures, with + 1);
                 }
                 _mergeTextures[with] ??= ModContent.Request<Texture2D>($"{Path}{TileID.Search.GetName(with).Replace("Aequus/", "")}");
-            });
+            };
         }
     }
 

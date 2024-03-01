@@ -11,7 +11,7 @@ public class ObsidianCrabPot : BaseCrabPot {
     public override void Load() {
         ModItem item = new InstancedTileItem(this, rarity: ItemRarityID.Orange, value: Item.sellPrice(silver: 50));
 
-        LoadingSteps.EnqueueAddRecipes(() => {
+        Aequus.OnAddRecipes += () => {
             foreach (var item in Mod.GetContent<ModItem>()) {
                 if (item.Item.createTile != ModContent.TileType<CrabPot>()) {
                     continue;
@@ -23,7 +23,7 @@ public class ObsidianCrabPot : BaseCrabPot {
                     .AddTile(TileID.Hellforge)
                     .Register();
             }
-        });
+        };
     }
 
     protected override void SetupCrabPotContent() {

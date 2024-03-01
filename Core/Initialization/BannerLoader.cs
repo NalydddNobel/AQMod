@@ -19,7 +19,7 @@ public class BannerLoader : GlobalNPC {
             MonsterBanners.StyleToNewBannerTileConversion.Add((byte)legacyId, tile);
         }
 
-        LoadingSteps.EnqueuePostSetupContent(() => NPCToBannerItemId.Add(modNPC.Type, item));
+        Aequus.OnPostSetupContent += () => NPCToBannerItemId.Add(modNPC.Type, item);
     }
 
     /// <summary>

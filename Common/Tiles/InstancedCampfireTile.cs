@@ -23,13 +23,13 @@ internal class InstancedCampfireTile : InstancedModTile {
 
         Mod.AddContent(Item);
 
-        LoadingSteps.EnqueueAddRecipes(() => {
+        Aequus.OnAddRecipes += () => {
             Item.CreateRecipe()
                 .AddRecipeGroup(RecipeGroupID.Wood, 10)
                 .AddIngredient(_modTorch.Type, 5)
                 .Register()
                 .SortAfterFirstRecipesOf(ItemID.RainbowCampfire);
-        });
+        };
     }
 
     public override void SetStaticDefaults() {

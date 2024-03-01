@@ -47,13 +47,13 @@ public class AshTombstones : ModTile {
             ModTypeLookup<ModItem>.RegisterLegacyNames(item, $"Ash{name}");
             TombstoneProjectiles.Add(proj);
 
-            LoadingSteps.EnqueueAddRecipes(() => {
+            Aequus.OnAddRecipes += () => {
                 item.CreateRecipe()
                     .AddIngredient(ingredient)
                     .AddIngredient(ItemID.AshBlock, 25)
                     .AddTile<OblivionCraftingStation>()
                     .Register();
-            });
+            };
 
             return item;
         }

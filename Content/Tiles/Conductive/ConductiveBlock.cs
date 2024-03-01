@@ -23,12 +23,12 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
         ModItem item = new InstancedTileItem(this, value: Item.buyPrice(silver: 1));
         Mod.AddContent(item);
 
-        LoadingSteps.EnqueueAddRecipes(() => {
+        Aequus.OnAddRecipes += () => {
             item.CreateRecipe()
                 .AddIngredient(BarItem, 1)
                 .AddTile(TileID.Furnaces)
                 .Register();
-        });
+        };
     }
 
     public override void SetStaticDefaults() {

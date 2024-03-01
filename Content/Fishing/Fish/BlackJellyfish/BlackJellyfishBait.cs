@@ -17,6 +17,7 @@ public class BlackJellyfishBait : ModItem, IOnPullBobber {
         Item.makeNPC = 0;
     }
 
+    // Consumes less often
     public override bool? CanConsumeBait(Player player) {
         return Main.rand.NextBool() ? null : false;
     }
@@ -51,6 +52,10 @@ public class BlackJellyfishBaitExplosion : ModProjectile {
         Projectile.friendly = true;
         Projectile.usesIDStaticNPCImmunity = true;
         Projectile.idStaticNPCHitCooldown = Projectile.timeLeft + 2;
+    }
+
+    public override bool? CanHitNPC(NPC target) {
+        return target.realLife < 0 || target.realLife == target.whoAmI ? null : false;
     }
 
     public override void AI() {

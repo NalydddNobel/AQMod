@@ -26,7 +26,7 @@ public struct LootDefinition {
     }
 
     internal static void CreateFor(List<LootDefinition> lootPool, int primaryItem, int stack = 1, params ItemLootEntry[] secondaryItems) {
-        LoadingSteps.EnqueuePostSetupContent(() => lootPool.Add(Create(primaryItem, stack, secondaryItems)));
+        Aequus.OnPostSetupContent += () => lootPool.Add(Create(primaryItem, stack, secondaryItems));
     }
 }
 
