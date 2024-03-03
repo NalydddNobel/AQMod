@@ -247,10 +247,7 @@ public class BreadOfCthulhu : ModNPC {
     }
 
     public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo) {
-        if (Main.expertMode) {
-            target.AddBuff(BuffID.Bleeding, 600);
-        }
-        if (Main.rand.NextBool(Main.expertMode ? 2 : 8)) {
+        if (Main.rand.NextBool(Main.expertMode ? 1 : 3)) {
             target.AddBuff(BuffID.Confused, 120);
         }
     }
