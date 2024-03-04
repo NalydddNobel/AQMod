@@ -1614,7 +1614,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 613)</summary>
+            <summary>(Total Textures: 617)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2074,6 +2074,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.BreadOfCthulhuBannerItem">
             <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Tiles/BreadOfCthulhuBannerItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Conductor">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Conductor</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Conductor_Wave">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Conductor_Wave</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductorBanner">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Tiles/ConductorBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductorBannerItem">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Tiles/ConductorBannerItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OilSlime">
             <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/OilSlime</summary>

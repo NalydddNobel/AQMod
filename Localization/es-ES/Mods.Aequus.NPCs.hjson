@@ -31,7 +31,7 @@ BreadOfCthulhu: {
 	// Bestiary: A lost snack that gained life when it slipped through an eldritch portal, this loathsome loaf does not intend to be your lunch! Watch out when fishing, for it might just latch on to the lure of an inexperienced fisherman that looks like easy prey.
 }
 
-RadioConductor: {
+Conductor: {
 	// DisplayName: Conductor
 	Bestiary: Un Frankenstein tecnológico, esta elegante antigüedad electrónica puede dirigir y manipular ondas de radio para defenderse. Se asegurará de poner un espectáculo, quieras o no.
 }
