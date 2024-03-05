@@ -34,6 +34,7 @@ BreadOfCthulhu: {
 Conductor: {
 	DisplayName: Conductor
 	Bestiary: An unpleasant amalgam of outdated, discarded technology. Desperate to prove it still has worth, it puts on a show for anyone it sees with blasts of condensed radio waves.
+	BannerName: Conductor Banner
 }
 
 Mirage.Bestiary: During the rain, toxic fog clouds form and bunch together forming this acidic monster. It wishes it could be like a real nimbus, but it has trouble even befriending a Target Dummy.

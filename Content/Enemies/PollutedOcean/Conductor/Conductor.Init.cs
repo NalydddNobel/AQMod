@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.DataSets;
+using Aequus.Content.Materials;
 using Aequus.Core.Initialization;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -7,8 +8,6 @@ using Terraria.GameContent.ItemDropRules;
 namespace Aequus.Content.Enemies.PollutedOcean.Conductor;
 
 public partial class Conductor : IPostPopulateItemDropDatabase {
-    public static int TravelingMerchantInfoItemChance { get; set; } = 30;
-
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = 18;
         NPCSets.NPCBestiaryDrawOffset[Type] = new() {
@@ -27,7 +26,7 @@ public partial class Conductor : IPostPopulateItemDropDatabase {
         NPC.lifeMax = 35;
         NPC.HitSound = SoundID.NPCHit2;
         NPC.DeathSound = SoundID.NPCDeath2;
-        NPC.knockBackResist = 0.5f;
+        NPC.knockBackResist = 0.3f;
         NPC.value = Item.silver;
         NPC.aiStyle = -1;
     }
@@ -37,9 +36,10 @@ public partial class Conductor : IPostPopulateItemDropDatabase {
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CompressedTrash>(), minimumDropped: 1, maximumDropped: 2));
     }
 
     public virtual void PostPopulateItemDropDatabase(Aequus aequus, ItemDropDatabase database) {
-        ExtendLoot.InheritDropRules(NPCID.Skeleton, Type, database);
+        //ExtendLoot.InheritDropRules(NPCID.Skeleton, Type, database);
     }
 }
