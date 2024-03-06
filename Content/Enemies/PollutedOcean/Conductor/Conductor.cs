@@ -12,11 +12,11 @@ public partial class Conductor : ModNPC {
     public const int A_TARGETING = 0;
 
     /// <summary>Upon ai[1] reaching this value, set <see cref="State"/> to <see cref="A_TELEPORT"/>.</summary>
-    public const int TARGETTING_TELEPORT_TIME_THRESHOLD = -60;
+    public static int TARGETTING_TELEPORT_TIME_THRESHOLD = -60;
     /// <summary>This tick value is subtracted to ai[1] every AI tick when the Conductor cannot see the player. Upon reaching <see cref="TARGETTING_TELEPORT_TIME_THRESHOLD"/>, set <see cref="State"/> to <see cref="A_TELEPORT"/>.</summary>
-    public const float TARGETTING_TELEPORT_TICK = 0.2f;
+    public static float TARGETTING_TELEPORT_TICK = 0.2f;
     /// <summary>Upon ai[1] reaching this value, set <see cref="State"/> to <see cref="A_ATTACKING"/>.</summary>
-    public const int TARGETTING_ATTACK_TIME_THRESHOLD = 60;
+    public static int TARGETTING_ATTACK_TIME_THRESHOLD = 120;
 
     public const int A_ATTACKING = 1;
 
@@ -25,20 +25,20 @@ public partial class Conductor : ModNPC {
     public const int A_SLIDE_BACK = 2;
 
     /// <summary>How long the Conductor must be in the <see cref="A_SLIDE_BACK"/> state even if he has no horizontal velocity.</summary>
-    public const int SLIDE_BACK_REQUIRED_TIME = 50;
+    public static int SLIDE_BACK_REQUIRED_TIME = 50;
     /// <summary>How many times the Conductor can enter the <see cref="A_SLIDE_BACK"/> state. Tracked using ai[2]. ai[2] is reset in <see cref="A_ATTACKING"/>.</summary>
-    public const int SLIDE_BACK_COUNT = 1;
+    public static int SLIDE_BACK_COUNT = 1;
     /// <summary>Sets ai[1] (attack delay timer) to this value upon entering <see cref="A_TARGETING"/>. This makes the Conductor enter the attack state faster.</summary>
-    public const int SLIDE_ATTACK_AGGRESSION = TARGETTING_ATTACK_TIME_THRESHOLD / 2 + 10;
+    public static int SLIDE_ATTACK_AGGRESSION = TARGETTING_ATTACK_TIME_THRESHOLD / 2 + 10;
     public static float SLIDE_BACK_VELOCITY_MULTIPLIER = 0.9f;
     public static float SLIDE_BACK_SPEED = 16f;
 
     public const int A_TELEPORT = 3;
     /// <summary>How many update ticks to waste teleporting when <see cref="Main.zenithWorld"/> equals <see langword="true"/>.</summary>
-    public const int GFB_TELEPORT_SPAM = 40;
+    public static int GFB_TELEPORT_SPAM = 40;
 
     /// <summary>The distance in pixels which is considered "Melee distance"</summary>
-    public const int MELEE_DISTANCE = 96;
+    public static int MELEE_DISTANCE = 96;
 
     private int State { 
         get => (int)NPC.ai[0]; 
