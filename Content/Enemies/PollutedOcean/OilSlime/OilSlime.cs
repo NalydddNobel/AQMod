@@ -65,6 +65,10 @@ public class OilSlime : ModNPC {
         }
     }
 
+    public override bool? CanFallThroughPlatforms() {
+        return NPC.HasValidTarget && Main.player[NPC.target].position.Y > NPC.Bottom.Y;
+    }
+
     private static int GetBodyItem() {
         return Main.rand.Next(ItemMetadata.FishingJunk);
     }
