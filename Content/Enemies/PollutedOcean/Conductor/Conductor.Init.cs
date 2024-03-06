@@ -36,7 +36,7 @@ public partial class Conductor : IPostPopulateItemDropDatabase {
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CompressedTrash>(), minimumDropped: 1, maximumDropped: 2));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CompressedTrash>(), minimumDropped: 1, maximumDropped: 4));
     }
 
     public virtual void PostPopulateItemDropDatabase(Aequus aequus, ItemDropDatabase database) {
