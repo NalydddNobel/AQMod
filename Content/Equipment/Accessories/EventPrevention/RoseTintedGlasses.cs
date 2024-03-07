@@ -1,6 +1,4 @@
-﻿using Aequus.Old.Content.Materials;
-
-namespace Aequus.Content.Equipment.Accessories.EventPrevention;
+﻿namespace Aequus.Content.Equipment.Accessories.EventPrevention;
 
 [AutoloadEquip(EquipType.Face)]
 public class RoseTintedGlasses : ModItem {
@@ -15,10 +13,12 @@ public class RoseTintedGlasses : ModItem {
     }
 
     public override void AddRecipes() {
+#if DEBUG
         CreateRecipe()
             .AddIngredient(ItemID.BlackLens)
-            .AddIngredient<BloodyTearstone>(5)
+            .AddIngredient<Old.Content.Materials.BloodyTearstone>(5)
             .AddTile(TileID.Anvils)
             .Register();
+#endif
     }
 }

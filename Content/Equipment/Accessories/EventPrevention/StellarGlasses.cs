@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Players.Drawing;
-using Aequus.Old.Content.Materials;
 using System;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -44,10 +43,12 @@ public class StellarGlasses : ModItem {
     }
 
     public override void AddRecipes() {
+#if DEBUG
         CreateRecipe()
             .AddIngredient(ItemID.BlackLens)
-            .AddIngredient<StariteMaterial>(5)
+            .AddIngredient<Old.Content.Materials.StariteMaterial>(5)
             .AddTile(TileID.Anvils)
             .Register();
+#endif
     }
 }
