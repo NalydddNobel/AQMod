@@ -13,7 +13,7 @@ public class RoseTintedGlasses : ModItem {
     }
 
     public override void AddRecipes() {
-#if DEBUG
+#if !DEBUG
         CreateRecipe()
             .AddIngredient(ItemID.BlackLens)
             .AddIngredient<Old.Content.Materials.BloodyTearstone>(5)

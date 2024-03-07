@@ -43,7 +43,7 @@ public class StellarGlasses : ModItem {
     }
 
     public override void AddRecipes() {
-#if DEBUG
+#if !DEBUG
         CreateRecipe()
             .AddIngredient(ItemID.BlackLens)
             .AddIngredient<Old.Content.Materials.StariteMaterial>(5)
