@@ -2,37 +2,30 @@
 using Aequus.Content.Fishing.CrabPots;
 using Terraria.Cinematics;
 using Terraria.DataStructures;
-using Terraria.GameContent.Creative;
 
 namespace Aequus.Content.Cinematics;
 
-/// <summary><see cref="DD2Film"/> <see cref="DSTFilm"/></summary>
-internal class CrabPotFilm : Film {
-    private Vector2 _startPoint;
-    private Point[] _crabPots;
+internal class CrabPotFilm : AequusFilm {
+    private readonly Point[] _crabPots;
 
     public CrabPotFilm() {
         _crabPots = new Point[4];
 
-        BuildSequence();
+        BuildFullSequence();
     }
 
-    public override void OnBegin() {
-        Main.NewText("CrabPotFilm: Begin");
+    protected override void Begin() {
         Main.dayTime = true;
         Main.time = 27000.0;
         Main.windSpeedCurrent = Main.windSpeedTarget = 0.22f;
         Main.hideUI = false;
         _startPoint = Main.screenPosition + new Vector2(Main.mouseX, Main.mouseY - 32f);
         TECrabPot.ChancePerTick = 100000000;
-        base.OnBegin();
     }
-
-    public override void OnEnd() {
+    protected override void End() {
         TECrabPot.ChancePerTick = 100000;
         Main.LocalPlayer.isControlledByFilm = false;
         Main.hideUI = false;
-        Main.NewText("CrabPotFilm: End");
 
         for (int k = 0; k < _crabPots.Length; k++) {
             if (_crabPots[k] != Point.Zero) {
@@ -48,105 +41,103 @@ internal class CrabPotFilm : Film {
                 break;
             }
         }
-
-        base.OnEnd();
     }
 
-    private void BuildSequence() {
-        AppendKeyFrames(InitPlayer, ControlPlayer);
+    protected override void BuildSequence() {
+        AppendKeyFrames(InitPlayer, WalkPlayerRight);
         AppendEmptySequence(107);
-        AppendKeyFrames(StopPlayer);
+        AppendKeyFrames(StopPlayerMovement);
         AppendEmptySequence(14);
 
         // Leftmost crab pot
         AppendKeyFrames(PlaceCrabPot);
         AppendEmptySequence(6);
-        AppendKeyFrames(StopPlayerItemAction, ControlPlayer);
+        AppendKeyFrames(StopPlayerUseItem, WalkPlayerRight);
         AppendEmptySequence(36);
 
         // Left middle crab pot
-        AppendKeyFrames(StopPlayer, PlaceCrabPot);
+        AppendKeyFrames(StopPlayerMovement, PlaceCrabPot);
         AppendEmptySequence(6);
-        AppendKeyFrames(StopPlayerItemAction, ControlPlayer);
+        AppendKeyFrames(StopPlayerUseItem, WalkPlayerRight);
         AppendEmptySequence(25);
 
         // Right middle crab pot
-        AppendKeyFrames(StopPlayer, PlaceCrabPot);
+        AppendKeyFrames(StopPlayerMovement, PlaceCrabPot);
         AppendEmptySequence(6);
-        AppendKeyFrames(StopPlayerItemAction, ControlPlayer);
+        AppendKeyFrames(StopPlayerUseItem, WalkPlayerRight);
         AppendEmptySequence(14);
 
         // Rightmost crab pot
-        AppendKeyFrames(StopPlayer, PlaceCrabPot);
+        AppendKeyFrames(StopPlayerMovement, PlaceCrabPot);
         AppendEmptySequence(6);
 
-        AppendKeyFrames(StopPlayerItemAction, ControlPlayer);
+        AppendKeyFrames(StopPlayerUseItem, WalkPlayerRight);
         AppendEmptySequence(14);
-        AppendKeyFrames(FlipPlayerLeft);
+        AppendKeyFrames(WalkPlayerLeft);
         AppendEmptySequence(11);
-        AppendKeyFrames(StopPlayer);
+        AppendKeyFrames(StopPlayerMovement);
         AppendEmptySequence(120);
-        AppendKeyFrames(FlipPlayerLeft);
+        AppendKeyFrames(WalkPlayerLeft);
         AppendEmptySequence(35);
 
-        AppendKeyFrames(StopPlayer);
+        AppendKeyFrames(StopPlayerMovement);
         AppendEmptySequence(8);
-        AppendKeyFrames(GiveApprenticeBait, FillCrabPot);
+        AppendKeyFrames(SetHeldItem(ItemID.ApprenticeBait), RclickCrabPot);
         AppendEmptySequence(1);
-        AppendKeyFrames(FlipPlayerLeft);
+        AppendKeyFrames(WalkPlayerLeft);
         AppendEmptySequence(14);
 
-        AppendKeyFrames(StopPlayer);
+        AppendKeyFrames(StopPlayerMovement);
         AppendEmptySequence(8);
-        AppendKeyFrames(GiveJourneymanBait, FillCrabPot);
+        AppendKeyFrames(SetHeldItem(ItemID.JourneymanBait), RclickCrabPot);
         AppendEmptySequence(1);
-        AppendKeyFrames(FlipPlayerLeft);
+        AppendKeyFrames(WalkPlayerLeft);
         AppendEmptySequence(28);
 
-        AppendKeyFrames(StopPlayer);
+        AppendKeyFrames(StopPlayerMovement);
         AppendEmptySequence(8);
-        AppendKeyFrames(GiveMasterBait, FillCrabPot);
+        AppendKeyFrames(SetHeldItem(ItemID.MasterBait), RclickCrabPot);
         AppendEmptySequence(1);
-        AppendKeyFrames(FlipPlayerLeft);
+        AppendKeyFrames(WalkPlayerLeft);
         AppendEmptySequence(18);
 
-        AppendKeyFrames(StopPlayer);
+        AppendKeyFrames(StopPlayerMovement);
         AppendEmptySequence(8);
-        AppendKeyFrames(GiveMasterBait, FillCrabPot);
+        AppendKeyFrames(SetHeldItem(ItemID.MasterBait), RclickCrabPot);
         AppendEmptySequence(1);
-        AppendKeyFrames(FlipPlayerLeft);
+        AppendKeyFrames(WalkPlayerLeft);
         AppendEmptySequence(180);
 
 
-        AppendKeyFrames(StopPlayer);
+        AppendKeyFrames(StopPlayerMovement);
         AppendSequence(3000, SpeedUpTime);
 
 
-        AppendKeyFrames(InitPlayer, ControlPlayer, UnSpeedUpTime);
+        AppendKeyFrames(InitPlayer, WalkPlayerRight, UnSpeedUpTime);
         AppendEmptySequence(115);
 
         // Leftmost crab pot
-        AppendKeyFrames(FillCrabPot);
+        AppendKeyFrames(RclickCrabPot);
         AppendEmptySequence(6);
-        AppendKeyFrames(StopPlayerItemAction, ControlPlayer);
+        AppendKeyFrames(StopPlayerUseItem, WalkPlayerRight);
         AppendEmptySequence(16);
 
         // Left middle crab pot
-        AppendKeyFrames(StopPlayer, FillCrabPot);
+        AppendKeyFrames(StopPlayerMovement, RclickCrabPot);
         AppendEmptySequence(6);
-        AppendKeyFrames(StopPlayerItemAction, ControlPlayer);
+        AppendKeyFrames(StopPlayerUseItem, WalkPlayerRight);
         AppendEmptySequence(23);
 
         // Right middle crab pot
-        AppendKeyFrames(StopPlayer, FillCrabPot);
+        AppendKeyFrames(StopPlayerMovement, RclickCrabPot);
         AppendEmptySequence(6);
-        AppendKeyFrames(StopPlayerItemAction, ControlPlayer);
+        AppendKeyFrames(StopPlayerUseItem, WalkPlayerRight);
         AppendEmptySequence(14);
 
         // Rightmost crab pot
-        AppendKeyFrames(StopPlayer, FillCrabPot);
+        AppendKeyFrames(StopPlayerMovement, RclickCrabPot);
         AppendEmptySequence(6);
-        AppendKeyFrames(StopPlayerItemAction, ControlPlayer);
+        AppendKeyFrames(StopPlayerUseItem, WalkPlayerRight);
         AppendEmptySequence(120);
     }
 
@@ -162,19 +153,7 @@ internal class CrabPotFilm : Film {
         TECrabPot.ChancePerTick = 10000;
     }
 
-    private void GiveMasterBait(FrameEventData evt) {
-        Main.LocalPlayer.inventory[0].SetDefaults(ItemID.MasterBait);
-    }
-
-    private void GiveJourneymanBait(FrameEventData evt) {
-        Main.LocalPlayer.inventory[0].SetDefaults(ItemID.JourneymanBait);
-    }
-
-    private void GiveApprenticeBait(FrameEventData evt) {
-        Main.LocalPlayer.inventory[0].SetDefaults(ItemID.ApprenticeBait);
-    }
-
-    private void FillCrabPot(FrameEventData evt) {
+    private void RclickCrabPot(FrameEventData evt) {
         Player player = Main.LocalPlayer;
 
         Point crabPotSpot = player.Center.ToTileCoordinates();
@@ -188,10 +167,6 @@ internal class CrabPotFilm : Film {
         }
 
         crabPot.RightClick(crabPotSpot.X, crabPotSpot.Y);
-    }
-
-    private void FlipPlayerLeft(FrameEventData evt) {
-        Main.LocalPlayer.controlLeft = true;
     }
 
     private void PlaceCrabPot(FrameEventData evt) {
@@ -215,21 +190,6 @@ internal class CrabPotFilm : Film {
         }
     }
 
-    private void StopPlayerItemAction(FrameEventData evt) {
-        Main.LocalPlayer.controlUseItem = false;
-    }
-
-    private void StopPlayer(FrameEventData evt) {
-        Player player = Main.LocalPlayer;
-        player.controlRight = false;
-        player.controlLeft = false;
-    }
-
-    private void ControlPlayer(FrameEventData evt) {
-        Player player = Main.LocalPlayer;
-        player.controlRight = true;
-    }
-
     private void InitPlayer(FrameEventData evt) {
         Player player = Main.LocalPlayer;
         FindFloorAt(_startPoint, out var x, out var y);
@@ -237,22 +197,5 @@ internal class CrabPotFilm : Film {
         player.velocity.X = 6f;
         player.isControlledByFilm = true;
         player.inventory[0].SetDefaults(Aequus.Instance.Find<ModItem>("CrabPotCopper").Type);
-    }
-
-    private void ResetPlayerSelectedItem(FrameEventData evt) {
-    }
-
-    private void EndSlot() {
-    }
-
-    private static void FindFloorAt(Vector2 position, out int x, out int y) {
-        x = (int)position.X;
-        y = (int)position.Y;
-        int i = x / 16;
-        int j;
-        for (j = y / 16; !WorldGen.SolidTile(i, j); j++) {
-        }
-
-        y = j * 16;
     }
 }
