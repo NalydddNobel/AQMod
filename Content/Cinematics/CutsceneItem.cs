@@ -1,8 +1,7 @@
-﻿using Aequus.Content.Cinematics;
-using Aequus.Core.Debugging;
+﻿using Aequus.Core.Debugging;
 using Terraria.Cinematics;
 
-namespace Aequus.Content.Cutscenes;
+namespace Aequus.Content.Cinematics;
 
 internal class CutsceneItem : DebugItem {
     public override bool? UseItem(Player player) {

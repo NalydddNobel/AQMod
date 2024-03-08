@@ -515,6 +515,9 @@
         <member name="T:Aequus.Content.Biomes.PollutedOcean.PollutedOceanBiomeUnderground">
             <summary>Main class for general things related to the Polluted Ocean biome. Also counts as the Underground Polluted Ocean.</summary>
         </member>
+        <member name="T:Aequus.Content.Cinematics.AequusFilm">
+            <summary><see cref="T:Terraria.Cinematics.DD2Film"/> <see cref="T:Terraria.Cinematics.DSTFilm"/></summary>
+        </member>
         <member name="T:Aequus.Content.CrossMod.BossChecklist">
             <summary><see href="link">https://github.com/JavidPack/BossChecklist/wiki/%5B1.4.4%5D-Boss-Log-Entry-Mod-Call#arguments</see></summary>
         </member>
@@ -527,9 +530,6 @@
             <param name="spriteBatch">The SpriteBatch.</param>
             <param name="sourceRectangle">The bounds of the portrait.</param>
             <param name="displayColor">The Color of the entry. It is usually Black when hidden, and White when not hidden.</param>
-        </member>
-        <member name="T:Aequus.Content.Cinematics.CrabPotFilm">
-            <summary><see cref="T:Terraria.Cinematics.DD2Film"/> <see cref="T:Terraria.Cinematics.DSTFilm"/></summary>
         </member>
         <member name="P:Aequus.Content.DataSets.BuffMetadata.CannotChangeDuration">
             <summary>Buffs in this set should not have their duration altered, like the Luck Potion effect.</summary>

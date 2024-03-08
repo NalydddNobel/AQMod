@@ -1,5 +1,4 @@
-﻿using Aequus.Content.Cutscenes;
-using Aequus.Content.Fishing.CrabPots;
+﻿using Aequus.Content.Fishing.CrabPots;
 using Terraria.Cinematics;
 using Terraria.DataStructures;
 

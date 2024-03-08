@@ -1,6 +1,6 @@
 ﻿using Terraria.Cinematics;
 
-namespace Aequus.Content.Cutscenes;
+namespace Aequus.Content.Cinematics;
 
 /// <summary><see cref="DD2Film"/> <see cref="DSTFilm"/></summary>
 internal abstract class AequusFilm : Film {
