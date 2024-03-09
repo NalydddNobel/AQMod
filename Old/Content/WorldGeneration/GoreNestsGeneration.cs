@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Renaming;
 using Aequus.Common.WorldGeneration;
+using Aequus.Content.Tiles.Tombstones;
 using Aequus.Old.Content.Events.DemonSiege.Tiles;
 using Aequus.Old.Content.Tiles.Ambient;
 using Aequus.Old.Content.Tiles.Furniture.Oblivion;
@@ -245,7 +246,7 @@ public class GoreNestsGeneration : AequusGenStep {
         for (int i = 0; i < 1250; i++) {
             var v = WorldGen.genRand.NextVector2FromRectangle(genTangle).ToPoint();
             if (!Main.tile[v.X, v.Y].HasTile) {
-                WorldGen.PlaceTile(v.X, v.Y, ModContent.TileType<AshTombstones>(), style: WorldGen.genRand.Next(6));
+                WorldGen.PlaceTile(v.X, v.Y, ModContent.TileType<Tombstones>(), style: WorldGen.genRand.Next(Tombstones.STYLE_GOLD_ASH_YIN, Tombstones.STYLE_GOLD_ASH_FIST+1));
                 if (Main.tile[v.X, v.Y].HasTile) {
                     int sign = Sign.ReadSign(v.X, v.Y);
                     if (sign >= 0) {

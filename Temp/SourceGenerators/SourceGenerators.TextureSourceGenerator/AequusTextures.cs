@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 613)</summary>
+/// <summary>(Total Textures: 618)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -543,6 +543,34 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> BlackJellyfishJarItem = new("Aequus/Content/Tiles/Terrariums/BlackJellyfishJarItem");
     /// <summary>Full Path: Content/Tiles/Terrariums/BlackJellyfishJar_Glow</summary>
     public static readonly RequestCache<Texture2D> BlackJellyfishJar_Glow = new("Aequus/Content/Tiles/Terrariums/BlackJellyfishJar_Glow");
+    /// <summary>Full Path: Content/Tiles/Tombstones/AshGold/AshGoldTombstone0</summary>
+    public static readonly RequestCache<Texture2D> AshGoldTombstone0 = new("Aequus/Content/Tiles/Tombstones/AshGold/AshGoldTombstone0");
+    /// <summary>Full Path: Content/Tiles/Tombstones/AshGold/AshGoldTombstone1</summary>
+    public static readonly RequestCache<Texture2D> AshGoldTombstone1 = new("Aequus/Content/Tiles/Tombstones/AshGold/AshGoldTombstone1");
+    /// <summary>Full Path: Content/Tiles/Tombstones/AshGold/AshGoldTombstone2</summary>
+    public static readonly RequestCache<Texture2D> AshGoldTombstone2 = new("Aequus/Content/Tiles/Tombstones/AshGold/AshGoldTombstone2");
+    /// <summary>Full Path: Content/Tiles/Tombstones/AshGold/AshGoldTombstone3</summary>
+    public static readonly RequestCache<Texture2D> AshGoldTombstone3 = new("Aequus/Content/Tiles/Tombstones/AshGold/AshGoldTombstone3");
+    /// <summary>Full Path: Content/Tiles/Tombstones/AshGold/AshGoldTombstone4</summary>
+    public static readonly RequestCache<Texture2D> AshGoldTombstone4 = new("Aequus/Content/Tiles/Tombstones/AshGold/AshGoldTombstone4");
+    /// <summary>Full Path: Content/Tiles/Tombstones/Ash/AshTombstone0</summary>
+    public static readonly RequestCache<Texture2D> AshTombstone0 = new("Aequus/Content/Tiles/Tombstones/Ash/AshTombstone0");
+    /// <summary>Full Path: Content/Tiles/Tombstones/Ash/AshTombstone1</summary>
+    public static readonly RequestCache<Texture2D> AshTombstone1 = new("Aequus/Content/Tiles/Tombstones/Ash/AshTombstone1");
+    /// <summary>Full Path: Content/Tiles/Tombstones/Ash/AshTombstone2</summary>
+    public static readonly RequestCache<Texture2D> AshTombstone2 = new("Aequus/Content/Tiles/Tombstones/Ash/AshTombstone2");
+    /// <summary>Full Path: Content/Tiles/Tombstones/Ash/AshTombstone3</summary>
+    public static readonly RequestCache<Texture2D> AshTombstone3 = new("Aequus/Content/Tiles/Tombstones/Ash/AshTombstone3");
+    /// <summary>Full Path: Content/Tiles/Tombstones/Ash/AshTombstone4</summary>
+    public static readonly RequestCache<Texture2D> AshTombstone4 = new("Aequus/Content/Tiles/Tombstones/Ash/AshTombstone4");
+    /// <summary>Full Path: Content/Tiles/Tombstones/Ash/AshTombstone5</summary>
+    public static readonly RequestCache<Texture2D> AshTombstone5 = new("Aequus/Content/Tiles/Tombstones/Ash/AshTombstone5");
+    /// <summary>Full Path: Content/Tiles/Tombstones/Tombstones</summary>
+    public static readonly RequestCache<Texture2D> Tombstones = new("Aequus/Content/Tiles/Tombstones/Tombstones");
+    /// <summary>Full Path: Content/Tiles/Tombstones/Tombstones_Glow</summary>
+    public static readonly RequestCache<Texture2D> Tombstones_Glow = new("Aequus/Content/Tiles/Tombstones/Tombstones_Glow");
+    /// <summary>Full Path: Content/Tiles/Tombstones/Tombstones_Highlight</summary>
+    public static readonly RequestCache<Texture2D> Tombstones_Highlight = new("Aequus/Content/Tiles/Tombstones/Tombstones_Highlight");
     /// <summary>Full Path: Content/Tools/AnglerLamp/AnglerLamp</summary>
     public static readonly RequestCache<Texture2D> AnglerLamp = new("Aequus/Content/Tools/AnglerLamp/AnglerLamp");
     /// <summary>Full Path: Content/Tools/AnglerLamp/AnglerLampOff</summary>
@@ -1001,24 +1029,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> BlueFireSparkle = new("Aequus/Old/Content/StatusEffects/BlueFireSparkle");
     /// <summary>Full Path: Old/Content/Tiles/Ambient/GoreNestStalagmite</summary>
     public static readonly RequestCache<Texture2D> GoreNestStalagmite = new("Aequus/Old/Content/Tiles/Ambient/GoreNestStalagmite");
-    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstones</summary>
-    public static readonly RequestCache<Texture2D> AshTombstones = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstones");
-    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesCrossGraveMarkerItem</summary>
-    public static readonly RequestCache<Texture2D> AshTombstonesCrossGraveMarkerItem = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstonesCrossGraveMarkerItem");
-    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesGraveMarkerItem</summary>
-    public static readonly RequestCache<Texture2D> AshTombstonesGraveMarkerItem = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstonesGraveMarkerItem");
-    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesGravestoneItem</summary>
-    public static readonly RequestCache<Texture2D> AshTombstonesGravestoneItem = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstonesGravestoneItem");
-    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesHeadstoneItem</summary>
-    public static readonly RequestCache<Texture2D> AshTombstonesHeadstoneItem = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstonesHeadstoneItem");
-    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesObeliskItem</summary>
-    public static readonly RequestCache<Texture2D> AshTombstonesObeliskItem = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstonesObeliskItem");
-    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesTombstoneItem</summary>
-    public static readonly RequestCache<Texture2D> AshTombstonesTombstoneItem = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstonesTombstoneItem");
-    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstones_Glow</summary>
-    public static readonly RequestCache<Texture2D> AshTombstones_Glow = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstones_Glow");
-    /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstones_Highlight</summary>
-    public static readonly RequestCache<Texture2D> AshTombstones_Highlight = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/AshTombstones_Highlight");
     /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionChest</summary>
     public static readonly RequestCache<Texture2D> OblivionChest = new("Aequus/Old/Content/Tiles/Furniture/Oblivion/OblivionChest");
     /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionChestItem</summary>
