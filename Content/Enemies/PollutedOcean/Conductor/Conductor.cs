@@ -7,7 +7,6 @@ namespace Aequus.Content.Enemies.PollutedOcean.Conductor;
 
 [AutoloadBanner]
 public partial class Conductor : ModNPC {
-
     /// <summary>Targetting state. The conductor walks towards the player and activates his attack here.</summary>
     public const int A_TARGETING = 0;
 
@@ -47,17 +46,6 @@ public partial class Conductor : ModNPC {
             NPC.ai[1] = 0f;
             NPC.netUpdate = true;
         } 
-    }
-
-    private bool CheckForceTP() {
-        Point bottom = NPC.Bottom.ToTileCoordinates();
-        int tileWidth = (int)Math.Ceiling(NPC.width / 16f);
-        if (!TileHelper.ScanTiles(new Rectangle(bottom.X, bottom.Y, tileWidth, 3), TileHelper.IsSolid)) {
-            State = A_TELEPORT;
-            return true;
-        }
-
-        return false;
     }
 
     public override void AI() {
@@ -228,6 +216,17 @@ public partial class Conductor : ModNPC {
         }
 
         NPC.spriteDirection = NPC.direction;
+    }
+
+    private bool CheckForceTP() {
+        Point bottom = NPC.Bottom.ToTileCoordinates();
+        int tileWidth = (int)Math.Ceiling(NPC.width / 16f);
+        if (!TileHelper.ScanTiles(new Rectangle(bottom.X, bottom.Y, tileWidth, 3), TileHelper.IsSolid)) {
+            State = A_TELEPORT;
+            return true;
+        }
+
+        return false;
     }
 
     public override void FindFrame(int frameHeight) {
