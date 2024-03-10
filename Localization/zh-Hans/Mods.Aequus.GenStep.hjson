@@ -5,19 +5,21 @@ GoreNestsGeneration: {
 	DisplayMessage: 正在使地狱更加邪恶...
 
 	Tombstones: {
-		// 0: "{Name} was torn into shreds"
-		// 1: "{Name} was obliterated"
-		// 2: "{Name} was possessed"
-		// 3: Eldritch forces tore apart {Name}
+		0: "{Name}被撕成了碎片"
+		1: "{Name}被抹去了存在"
+		2: "{Name}着相了"
+		3: 惊骇之力撕裂了{Name}
+		4: "{Name}成为了祭品"
+		5: "{Name}未能见证自身的结局"
 	}
 
 	TombstoneHints: {
-		// 0: ... The demons... they were everywhere... didn't stand a chance...
-		// 1: . A mark of the slayer... leaving their weaponry left to rot.
-		// 2: . Left them to be consumed by the Gore Nest, their legendary blade of darkness was attracted to its dark energy.
-		// 3: . The prophecy of a sacred blade of night wasn't fullfilled for this one...
-		// 4: ... Body thrown into the portal, never to be seen again.
-		// 5: ... Their fate left unknown
+		0: ...恶魔...它们到处都是...根本就没有机会...
+		1: .屠戮者的印记...留下武器, 任由其腐烂.
+		2: .让他们被血巢吞噬, 他们的传说黑暗剑会被它的黑暗能量吸引.
+		3:.夜之圣刃的预言之力在这次并未被填满...
+		4: ...尸体被扔进入口后, 就再也看不到了.
+		5: ...他们的命运不得而知.
 	}
 }
 
@@ -25,22 +27,22 @@ LavaCleanup.DisplayMessage: 正在清理熔岩
 
 PollutedOcean: {
 	DisplayMessage: {
-		// 0: Creating a landfill
-		// 1: Sabotaging the turtles
-		// 2: Polluting one of the oceans
-		// 3: Destroying coral reefs
-		// 4: Throwing away trash
-		// 5: Sailing Oil Tankers
-		// 6: Creating a Great Garbage Patch
-		// 7: Becoming Non-biodegradable
-		// 8: Ghost fishing
+		0: 正在创建垃圾填埋场
+		1: 正在妨害海龟
+		2: 正在污染其中一个海洋
+		3: 正在摧毁珊瑚礁
+		4: 正在扔垃圾
+		5: 油轮正在航行
+		6: 正在创建伟大垃圾之路径
+		7: 正在变得不可生物降解
+		8: 幽灵渔捞
 	}
 
-	// Sand: ..Depositing Sand
-	// Caves: ..Punching Holes
-	// Detailing: ..Decomposing Plastics
-	// Ores: ..Adding Goodies
+	Sand: ..沉积沙子
+	Caves: ..冲打孔洞
+	Detailing: ..分解塑料
+	Ores: ..增添美味
 }
 
-// PollutedOceanAmbience.DisplayMessage: Taking out the trash...
-// Reset.DisplayMessage: ""
+PollutedOceanAmbience.DisplayMessage: 正在倾倒垃圾...
+Reset.DisplayMessage: ""
