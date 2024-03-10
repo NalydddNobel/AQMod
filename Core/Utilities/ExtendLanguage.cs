@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Terraria.Localization;
+using Terraria.Utilities;
 
 namespace Aequus.Core.Utilities;
 public static class ExtendLanguage {
     private record struct ColoredText(string Text, Color Color);
+
+    /// <summary>Gets a <see cref="ILocalizedModType"/>'s "DisplayName" value.</summary>
+    public static LocalizedText GetRandomLocalizationFromCategory(this ILocalizedModType localizedModType, string suffix, UnifiedRandom random = null) {
+        string filterText = localizedModType.GetLocalizationKey(suffix);
+        return Language.SelectRandom((key, value) => key.StartsWith(filterText), random);
+    }
 
     /// <summary>Gets a <see cref="ILocalizedModType"/>'s "DisplayName" value.</summary>
     public static LocalizedText GetDisplayName(ILocalizedModType localizedModType) {

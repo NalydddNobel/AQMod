@@ -141,7 +141,7 @@ public class ChestLensInterface : UILayer {
                 var clr = Main.mouseColor.HueAdd(GetHueForItem(c.item[i]));
                 Main.spriteBatch.Draw(texture, drawCoords, null, (clr * 0.2f) with { A = 255 } * opacity * 0.66f, 0f, Vector2.Zero, Main.inventoryScale, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(TextureAssets.InventoryBack16.Value, drawCoords, null, clr * opacity * 0.66f, 0f, Vector2.Zero, Main.inventoryScale, SpriteEffects.None, 0f);
-                ItemSlotDrawHelper.DrawSimple(spriteBatch, c.item[i], drawCoords, ItemSlot.Context.ChestItem, color: Color.White * opacity);
+                ItemSlotDrawHelper.DrawSimple(spriteBatch, c.item[i], drawCoords + texture.Size() / 2f * Main.inventoryScale, ItemSlot.Context.ChestItem, color: Color.White * opacity, maxSize: 20);
             }
             Main.inventoryScale = inventoryScale;
         }

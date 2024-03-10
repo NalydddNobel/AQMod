@@ -16,6 +16,9 @@
         <member name="P:Aequus.Aequus.GameWorldActive">
             <summary>Shorthand for a bunch of checks determining whether the game is unpaused.</summary>
         </member>
+        <member name="M:Aequus.Aequus.GetRandomName(Terraria.Utilities.UnifiedRandom)">
+            <returns>A random name. Used in naturally generated underworld tombstones.</returns>
+        </member>
         <member name="F:Aequus.Aequus.ConditionDownedAquaticBoss">
             <summary>Whether ??? was defeated.</summary>
         </member>
@@ -829,6 +832,9 @@
             <summary>Registers this item as a food.</summary>
             <param name="modItem"></param>
             <param name="TCommonColor">Particle TCommonColor for when this food is eaten.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetRandomLocalizationFromCategory(Terraria.ModLoader.ILocalizedModType,System.String,Terraria.Utilities.UnifiedRandom)">
+            <summary>Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.</summary>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetDisplayName(Terraria.ModLoader.ILocalizedModType)">
             <summary>Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.</summary>

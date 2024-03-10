@@ -1,6 +1,26 @@
 GenVarEdits.DisplayMessage: ""
 Statues.DisplayMessage: 正在放置更多雕像...
-GoreNestsGeneration.DisplayMessage: 正在使地狱更加邪恶...
+
+GoreNestsGeneration: {
+	DisplayMessage: 正在使地狱更加邪恶...
+
+	Tombstones: {
+		// 0: "{Name} was torn into shreds"
+		// 1: "{Name} was obliterated"
+		// 2: "{Name} was possessed"
+		// 3: Eldritch forces tore apart {Name}
+	}
+
+	TombstoneHints: {
+		// 0: ... The demons... they were everywhere... didn't stand a chance...
+		// 1: . A mark of the slayer... leaving their weaponry left to rot.
+		// 2: . Left them to be consumed by the Gore Nest, their legendary blade of darkness was attracted to its dark energy.
+		// 3: . The prophecy of a sacred blade of night wasn't fullfilled for this one...
+		// 4: ... Body thrown into the portal, never to be seen again.
+		// 5: ... Their fate left unknown
+	}
+}
+
 LavaCleanup.DisplayMessage: 正在清理熔岩
 
 PollutedOcean: {

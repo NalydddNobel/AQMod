@@ -37,7 +37,7 @@ public class PollutedOceanSystem : ModSystem {
     }
 
     public static void PopulateSurfaceSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
-        pool.Clear();
+        pool[0] *= 0.5f;
 
         pool[ModContent.NPCType<OilSlime>()] = 1f;
 

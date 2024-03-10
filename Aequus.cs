@@ -1,6 +1,7 @@
 using log4net;
-using ReLogic.Content.Sources;
 using System.Reflection;
+using Terraria.Localization;
+using Terraria.Utilities;
 
 namespace Aequus;
 
@@ -32,5 +33,11 @@ public partial class Aequus : Mod {
         UnloadLoadingSteps();
         UnloadModCalls();
         UnloadPackets();
+    }
+
+    /// <returns>A random name. Used in naturally generated underworld tombstones.</returns>
+    public static LocalizedText GetRandomName(UnifiedRandom random = null) {
+        string filter = "Mods.Aequus.Names";
+        return Language.SelectRandom((key, value) => key.StartsWith(filter), random);
     }
 }

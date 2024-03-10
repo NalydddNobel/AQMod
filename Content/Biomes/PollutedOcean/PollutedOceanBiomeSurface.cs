@@ -24,6 +24,6 @@ public class PollutedOceanBiomeSurface : ModBiome {
     }
 
     public override bool IsBiomeActive(Player player) {
-        return player.position.Y > Main.worldSurface * 16.0 && PollutedOceanSystem.CheckBiome(player);
+        return player.position.Y < Main.worldSurface * 16.0 && PollutedOceanSystem.CheckBiome(player);
     }
 }

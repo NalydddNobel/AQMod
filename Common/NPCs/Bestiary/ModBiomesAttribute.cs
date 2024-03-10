@@ -20,6 +20,10 @@ internal class ModBiomesGlobalNPC : GlobalNPC {
     }
 
     public override void SetDefaults(NPC npc) {
+        if (npc.ModNPC == null) {
+            return;
+        }
+
         // NOTE: Attributes are reinitialized each time they are requested.
         foreach (var attr in npc.ModNPC.GetType().GetCustomAttributes<ModBiomesAttribute>()) {
             IEnumerable<ModBiome> modBiomes = ModContent.GetContent<ModBiome>();
