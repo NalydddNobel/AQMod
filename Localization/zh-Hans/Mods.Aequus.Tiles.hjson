@@ -119,38 +119,6 @@ OblivionCraftingStation: {
 	ItemTooltip: "{$CommonItemTooltip.SpecialCrafting}"
 }
 
-AshTombstones: {
-	Tombstone: {
-		ItemDisplayName: 余烬墓石
-		ItemTooltip: ""
-	}
-
-	GraveMarker: {
-		ItemDisplayName: 余烬墓标
-		ItemTooltip: ""
-	}
-
-	CrossGraveMarker: {
-		ItemDisplayName: 余烬十字碑
-		ItemTooltip: ""
-	}
-
-	Headstone: {
-		ItemDisplayName: 余烬碑石
-		ItemTooltip: ""
-	}
-
-	Gravestone: {
-		ItemDisplayName: 余烬墓碑
-		ItemTooltip: ""
-	}
-
-	Obelisk: {
-		ItemDisplayName: 余烬尖碑
-		ItemTooltip: ""
-	}
-}
-
 PlanterBox: {
 	Moray: {
 		ItemDisplayName: 海鳝花种植箱
@@ -252,4 +220,20 @@ BlackJellyfishJar: {
 	MapEntry: 黑水母罐
 	ItemDisplayName: "{$Tiles.BlackJellyfishJar.MapEntry}"
 	ItemTooltip: ""
+}
+
+Tombstones: {
+	MapEntry: {
+		// 0: Underworld Tombstone
+		// 1: Underworld Grave Marker
+		// 2: Underworld Resting Fern
+		// 3: Underworld Resting Shrub
+		// 4: Underworld Resting Hedge
+		// 5: Underworld Obelisk
+		// 6: Reaper Sepulcher
+		// 7: Grim Sepulcher
+		// 8: Imp Sepulcher
+		// 9: Fire Quartz Sepulcher
+		// 10: Duke Sepulcher
+	}
 }

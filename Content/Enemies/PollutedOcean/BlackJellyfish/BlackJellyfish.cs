@@ -120,7 +120,7 @@ public partial class BlackJellyfish : AIJellyfish {
             NPC.width = AttackRange * 2;
             NPC.height = AttackRange * 2;
             NPC.Center = center;
-            NPC.damage *= 5;
+            NPC.damage *= 4;
             NPC.noTileCollide = true;
             NPC.dontTakeDamage = true;
         }
@@ -191,6 +191,10 @@ public partial class BlackJellyfish : AIJellyfish {
 
     public override bool CanShock() {
         return false;
+    }
+
+    public override bool? CanFallThroughPlatforms() {
+        return true;
     }
 
     /// <summary>Gets the lighting magnitude for this Jellyfish. Returns 1f if <see cref="NPC.IsABestiaryIconDummy"/> is <see langword="true"></see>.</summary>

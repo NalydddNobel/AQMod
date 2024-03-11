@@ -16,6 +16,9 @@
         <member name="P:Aequus.Aequus.GameWorldActive">
             <summary>Shorthand for a bunch of checks determining whether the game is unpaused.</summary>
         </member>
+        <member name="M:Aequus.Aequus.GetRandomName(Terraria.Utilities.UnifiedRandom)">
+            <returns>A random name. Used in naturally generated underworld tombstones.</returns>
+        </member>
         <member name="F:Aequus.Aequus.ConditionDownedAquaticBoss">
             <summary>Whether ??? was defeated.</summary>
         </member>
@@ -515,6 +518,9 @@
         <member name="T:Aequus.Content.Biomes.PollutedOcean.PollutedOceanBiomeUnderground">
             <summary>Main class for general things related to the Polluted Ocean biome. Also counts as the Underground Polluted Ocean.</summary>
         </member>
+        <member name="T:Aequus.Content.Cinematics.AequusFilm">
+            <summary><see cref="T:Terraria.Cinematics.DD2Film"/> <see cref="T:Terraria.Cinematics.DSTFilm"/></summary>
+        </member>
         <member name="T:Aequus.Content.CrossMod.BossChecklist">
             <summary><see href="link">https://github.com/JavidPack/BossChecklist/wiki/%5B1.4.4%5D-Boss-Log-Entry-Mod-Call#arguments</see></summary>
         </member>
@@ -857,6 +863,9 @@
             <summary>Registers this item as a food.</summary>
             <param name="modItem"></param>
             <param name="TCommonColor">Particle TCommonColor for when this food is eaten.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetRandomLocalizationFromCategory(Terraria.ModLoader.ILocalizedModType,System.String,Terraria.Utilities.UnifiedRandom)">
+            <summary>Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.</summary>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetDisplayName(Terraria.ModLoader.ILocalizedModType)">
             <summary>Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.</summary>
@@ -1645,7 +1654,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 617)</summary>
+            <summary>(Total Textures: 622)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2463,6 +2472,48 @@
         <member name="F:Aequus.AequusTextures.BlackJellyfishJar_Glow">
             <summary>Full Path: Content/Tiles/Terrariums/BlackJellyfishJar_Glow</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.AshGoldTombstone0">
+            <summary>Full Path: Content/Tiles/Tombstones/AshGold/AshGoldTombstone0</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AshGoldTombstone1">
+            <summary>Full Path: Content/Tiles/Tombstones/AshGold/AshGoldTombstone1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AshGoldTombstone2">
+            <summary>Full Path: Content/Tiles/Tombstones/AshGold/AshGoldTombstone2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AshGoldTombstone3">
+            <summary>Full Path: Content/Tiles/Tombstones/AshGold/AshGoldTombstone3</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AshGoldTombstone4">
+            <summary>Full Path: Content/Tiles/Tombstones/AshGold/AshGoldTombstone4</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AshTombstone0">
+            <summary>Full Path: Content/Tiles/Tombstones/Ash/AshTombstone0</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AshTombstone1">
+            <summary>Full Path: Content/Tiles/Tombstones/Ash/AshTombstone1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AshTombstone2">
+            <summary>Full Path: Content/Tiles/Tombstones/Ash/AshTombstone2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AshTombstone3">
+            <summary>Full Path: Content/Tiles/Tombstones/Ash/AshTombstone3</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AshTombstone4">
+            <summary>Full Path: Content/Tiles/Tombstones/Ash/AshTombstone4</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AshTombstone5">
+            <summary>Full Path: Content/Tiles/Tombstones/Ash/AshTombstone5</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Tombstones">
+            <summary>Full Path: Content/Tiles/Tombstones/Tombstones</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Tombstones_Glow">
+            <summary>Full Path: Content/Tiles/Tombstones/Tombstones_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Tombstones_Highlight">
+            <summary>Full Path: Content/Tiles/Tombstones/Tombstones_Highlight</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.AnglerLamp">
             <summary>Full Path: Content/Tools/AnglerLamp/AnglerLamp</summary>
         </member>
@@ -3149,33 +3200,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.GoreNestStalagmite">
             <summary>Full Path: Old/Content/Tiles/Ambient/GoreNestStalagmite</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AshTombstones">
-            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstones</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AshTombstonesCrossGraveMarkerItem">
-            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesCrossGraveMarkerItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AshTombstonesGraveMarkerItem">
-            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesGraveMarkerItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AshTombstonesGravestoneItem">
-            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesGravestoneItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AshTombstonesHeadstoneItem">
-            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesHeadstoneItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AshTombstonesObeliskItem">
-            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesObeliskItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AshTombstonesTombstoneItem">
-            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstonesTombstoneItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AshTombstones_Glow">
-            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstones_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AshTombstones_Highlight">
-            <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/AshTombstones_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OblivionChest">
             <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionChest</summary>

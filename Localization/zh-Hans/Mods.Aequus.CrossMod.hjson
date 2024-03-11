@@ -22,13 +22,11 @@ Avalon: {
 }
 
 Fargowiltas: {
-	Fargowiltas: {
-		Stats: {
-			MaxGhostSlots: 幽魂仆从栏位: {0}
-			GhostDuration: 幽魂仆从持续时间: {0}分钟
-			SceptreDebuffMultiplier: 权杖减益伤害: {0}%
-			DropRolls: 掉落重投: {0}
-			RespawnReduction: 重生冷却缩减: {0}秒
-		}
+	Stats: {
+		MaxGhostSlots: 幽魂仆从栏位: {0}
+		GhostDuration: 幽魂仆从持续时间: {0}分钟
+		SceptreDebuffMultiplier: 权杖减益伤害: {0}%
+		DropRolls: 掉落重投: {0}
+		RespawnReduction: 重生冷却缩减: {0}秒
 	}
 }

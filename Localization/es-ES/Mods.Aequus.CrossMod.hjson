@@ -22,13 +22,11 @@ Avalon: {
 }
 
 Fargowiltas: {
-	Fargowiltas: {
-		Stats: {
-			// MaxGhostSlots: Ghost Slots: {0}
-			// GhostDuration: Ghost Duration: {0} minutes
-			// SceptreDebuffMultiplier: Sceptre Debuff Damage: {0}%
-			// DropRolls: Drop Rerolls: {0}
-			// RespawnReduction: Reduced Respawn: {0} seconds
-		}
+	Stats: {
+		// MaxGhostSlots: Ghost Slots: {0}
+		// GhostDuration: Ghost Duration: {0} minutes
+		// SceptreDebuffMultiplier: Sceptre Debuff Damage: {0}%
+		// DropRolls: Drop Rerolls: {0}
+		// RespawnReduction: Reduced Respawn: {0} seconds
 	}
 }

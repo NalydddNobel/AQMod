@@ -7,6 +7,7 @@ using System;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.GameContent.UI.Elements;
 
 namespace Aequus.Content.Enemies.PollutedOcean.BreadOfCthulhu;
 
@@ -125,6 +126,7 @@ public class BreadOfCthulhu : ModNPC {
             int jumpTime = (int)(NPC.ai[0] % 1000f);
             int jumpType = (int)(NPC.ai[0] / 1000f);
 
+            NPC.localAI[0] = 0f;
             NPC.ai[0]++;
             NPC.velocity.X *= 0.9f;
 
@@ -220,6 +222,15 @@ public class BreadOfCthulhu : ModNPC {
                     NPC.velocity.X = NPC.ai[3];
                 }
             }
+
+            if (!NPC.HasValidTarget) {
+                NPC.TargetClosest(faceTarget: false);
+            }
+
+            if (Main.expertMode && NPC.wet && NPC.localAI[0] < 500f && NPC.velocity.Y < 0f && NPC.HasValidTarget && Main.player[NPC.target].position.Y < NPC.position.Y) {
+                NPC.localAI[0]++;
+                NPC.velocity.Y = Math.Max(NPC.velocity.Y - 0.5f, -8f);
+            }
         }
         NPC.spriteDirection = NPC.direction;
     }
@@ -250,6 +261,10 @@ public class BreadOfCthulhu : ModNPC {
         if (Main.rand.NextBool(Main.expertMode ? 1 : 3)) {
             target.AddBuff(BuffID.Confused, 120);
         }
+    }
+
+    public override bool? CanFallThroughPlatforms() {
+        return NPC.HasValidTarget && Main.player[NPC.target].position.Y > NPC.Bottom.Y;
     }
 
     public static int GetFishingChance(in FishingAttempt attempt) {

@@ -256,6 +256,10 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         base.FindFrame(frameHeight);
     }
 
+    public override bool? CanFallThroughPlatforms() {
+        return NPC.HasValidTarget && Main.player[NPC.target].position.Y > NPC.Bottom.Y;
+    }
+
     public override void OnKill() {
         //TryDroppingItem(weapon, Main.rand);
         //for (int i = 0; i < armor.Length; i++) {

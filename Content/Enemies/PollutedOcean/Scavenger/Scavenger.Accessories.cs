@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria.Audio;
 
@@ -18,6 +17,12 @@ public partial class Scavenger {
         var extraJump = ModContent.GetInstance<T>();
         return (s, attacking) => {
             var npc = s.NPC;
+            if (npc.HasValidTarget) {
+                return;
+            }
+
+            Player target = Main.player[npc.target];
+
             if (npc.velocity.Y == 0f) {
                 if (s.accessoryUseData != 0f) {
                     s.accessoryUseData = 0f;
@@ -25,14 +30,15 @@ public partial class Scavenger {
                 }
                 return;
             }
-            if (s.accessoryUseData == 0f && npc.velocity.Y > 1f) {
+
+            if (s.accessoryUseData == 0f && npc.velocity.Y > 1f && npc.Bottom.Y > target.Bottom.Y) {
                 s.accessoryUseData = 1f;
                 npc.velocity.Y = -8f;
                 npc.netUpdate = true;
 
                 bool playSound = true;
                 extraJump.OnStarted(s.playerDummy, ref playSound);
-                if (playSound) {
+                if (playSound && Collision.CanHitLine(npc.position, npc.width, npc.height, target.position, target.width, target.height)) {
                     SoundEngine.PlaySound(SoundID.DoubleJump, npc.Center);
                 }
 

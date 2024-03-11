@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Renaming;
 using Aequus.Common.WorldGeneration;
+using Aequus.Content.Tiles.Tombstones;
 using Aequus.Old.Content.Events.DemonSiege.Tiles;
 using Aequus.Old.Content.Tiles.Ambient;
 using Aequus.Old.Content.Tiles.Furniture.Oblivion;
@@ -22,7 +23,7 @@ public class GoreNestsGeneration : AequusGenStep {
 
         GetGenerationValues(out int minY, out int maxY, out int wantedGoreNests);
         int goreNestCount = 0;
-        int loops = 300000;
+        int loops = Main.maxTilesX * 50;
         for (int i = 0; i < loops; i++) {
             SetProgress(progress, i / (double)loops);
             int x = WorldGen.genRand.Next(80, Main.maxTilesX - 80);
@@ -30,7 +31,6 @@ public class GoreNestsGeneration : AequusGenStep {
             try {
                 if (TryGrowGoreNest(x, y)) {
                     goreNestCount++;
-                    loops = 80000;
                     if (goreNestCount > wantedGoreNests) {
                         break;
                     }
@@ -220,7 +220,7 @@ public class GoreNestsGeneration : AequusGenStep {
         }
 
         var genTangle = new Rectangle(x - 40, y - 20, 80, 40);
-        for (int i = 0; i < 1250; i++) {
+        for (int i = 0; i < 15000; i++) {
             var v = WorldGen.genRand.NextVector2FromRectangle(genTangle).ToPoint();
             if (!Main.tile[v.X, v.Y].HasTile) {
                 int c = WorldGen.PlaceChest(v.X, v.Y, type: (ushort)ModContent.TileType<OblivionChest>());
@@ -242,20 +242,29 @@ public class GoreNestsGeneration : AequusGenStep {
 
     private void GenerateSigns(int x, int y) {
         var genTangle = new Rectangle(x - 60, y - 20, 120, 40);
-        for (int i = 0; i < 1250; i++) {
+        for (int i = 0; i < 3500; i++) {
             var v = WorldGen.genRand.NextVector2FromRectangle(genTangle).ToPoint();
             if (!Main.tile[v.X, v.Y].HasTile) {
-                WorldGen.PlaceTile(v.X, v.Y, ModContent.TileType<AshTombstones>(), style: WorldGen.genRand.Next(6));
+                WorldGen.PlaceTile(v.X, v.Y, ModContent.TileType<Tombstones>(), style: WorldGen.genRand.Next(Tombstones.STYLE_GOLD_ASH_YIN, Tombstones.STYLE_GOLD_ASH_FIST+1));
                 if (Main.tile[v.X, v.Y].HasTile) {
                     int sign = Sign.ReadSign(v.X, v.Y);
                     if (sign >= 0) {
-                        string text = Language.GetTextValueWith("Mods.Aequus.GoreNestTombstones." + WorldGen.genRand.Next(4), new { Name = Language.GetTextValue("Mods.Aequus.Names." + WorldGen.genRand.Next(10)) });
-                        Sign.TextSign(sign, text + Language.GetTextValue("Mods.Aequus.GoreNestTombstones.Hint." + WorldGen.genRand.Next(6)));
+                        TextSign(sign);
                     }
                     i += 400;
                 }
             }
         }
+    }
+
+    private void TextSign(int sign) {
+        LocalizedText name = Aequus.GetRandomName(WorldGen.genRand);
+        string text = this.GetRandomLocalizationFromCategory("Tombstones", WorldGen.genRand)
+            .FormatWith(new { 
+                Name = name 
+            });
+        string hint = this.GetRandomLocalizationFromCategory("TombstoneHints", WorldGen.genRand).Value;
+        Sign.TextSign(sign, text + hint);
     }
 
     private static void FillChest(Chest chest) {
@@ -302,6 +311,9 @@ public class GoreNestsGeneration : AequusGenStep {
             if (Main.tileDungeon[t]) {
                 SafeTile[t] = false;
             }
+            if (TileID.Sets.Ash[t]) {
+                SafeTile[t] = true;
+            }
         }
         for (int w = 0; w < WallLoader.WallCount; w++) {
             if (Main.wallDungeon[w]) {
@@ -312,6 +324,7 @@ public class GoreNestsGeneration : AequusGenStep {
         SafeTile[TileID.LihzahrdBrick] = false;
         SafeTile[TileID.ObsidianBrick] = false;
         SafeTile[TileID.HellstoneBrick] = false;
+        SafeTile[TileID.AshGrass] = true;
         SafeTile[ModContent.TileType<OblivionAltar>()] = false;
 
         SafeWall[WallID.ObsidianBrick] = false;
