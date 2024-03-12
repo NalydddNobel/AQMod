@@ -692,7 +692,7 @@
         <member name="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.SLIDE_ATTACK_AGGRESSION">
             <summary>Sets ai[1] (attack delay timer) to this value upon entering <see cref="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.A_TARGETING"/>. This makes the Conductor enter the attack state faster.</summary>
         </member>
-        <member name="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.GFB_TELEPORT_SPAM">
+        <member name="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.FTW_TELEPORT_SPAM">
             <summary>How many update ticks to waste teleporting when <see cref="F:Terraria.Main.zenithWorld"/> equals <see langword="true"/>.</summary>
         </member>
         <member name="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.MELEE_DISTANCE">

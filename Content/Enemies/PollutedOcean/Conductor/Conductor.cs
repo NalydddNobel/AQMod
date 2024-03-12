@@ -1,51 +1,61 @@
 ﻿using Aequus.Core.ContentGeneration;
 using System;
 using Terraria.Audio;
-using Terraria.GameContent;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Conductor;
 
 [AutoloadBanner]
 public partial class Conductor : ModNPC {
+    #region States
     /// <summary>Targetting state. The conductor walks towards the player and activates his attack here.</summary>
     public const int A_TARGETING = 0;
 
     /// <summary>Upon ai[1] reaching this value, set <see cref="State"/> to <see cref="A_TELEPORT"/>.</summary>
-    public static int TARGETTING_TELEPORT_TIME_THRESHOLD = -60;
+    public const int TARGETTING_TELEPORT_TIME_THRESHOLD = -60;
     /// <summary>This tick value is subtracted to ai[1] every AI tick when the Conductor cannot see the player. Upon reaching <see cref="TARGETTING_TELEPORT_TIME_THRESHOLD"/>, set <see cref="State"/> to <see cref="A_TELEPORT"/>.</summary>
-    public static float TARGETTING_TELEPORT_TICK = 0.2f;
+    public const float TARGETTING_TELEPORT_TICK = 0.2f;
     /// <summary>Upon ai[1] reaching this value, set <see cref="State"/> to <see cref="A_ATTACKING"/>.</summary>
-    public static int TARGETTING_ATTACK_TIME_THRESHOLD = 120;
+    public const int TARGETTING_ATTACK_TIME_THRESHOLD = 120;
 
     public const int A_ATTACKING = 1;
+
+    public const int ATTACK_TIME = 360;
+    public const int ATTACK_SHOOT_TIME = 240;
+    public const float ATTACK_SHOOT_VELOCITY_CLASSIC = 6f;
+    public const float ATTACK_SHOOT_VELOCITY_EXPERT = 10f;
+    public const int ATTACK_SHOOT_DAMAGE = 10;
+    public const int ATTACK_RATE = 32;
+    public const int ATTACK_RANGE_X = 20;
+    public const int ATTACK_RANGE_Y = 10;
 
     /// <summary>Dodge state. The Conductor slides backwards to avoid melee confrontation with the player. 
     /// Upon the state ending if the distance is greater than <see cref="MELEE_DISTANCE"/>, set <see cref="State"/> to <see cref="A_TARGETING"/>, otherwise <see cref="A_TELEPORT"/>.</summary>
     public const int A_SLIDE_BACK = 2;
 
     /// <summary>How long the Conductor must be in the <see cref="A_SLIDE_BACK"/> state even if he has no horizontal velocity.</summary>
-    public static int SLIDE_BACK_REQUIRED_TIME = 50;
+    public const int SLIDE_BACK_REQUIRED_TIME = 50;
     /// <summary>How many times the Conductor can enter the <see cref="A_SLIDE_BACK"/> state. Tracked using ai[2]. ai[2] is reset in <see cref="A_ATTACKING"/>.</summary>
-    public static int SLIDE_BACK_COUNT = 1;
+    public const int SLIDE_BACK_COUNT = 1;
     /// <summary>Sets ai[1] (attack delay timer) to this value upon entering <see cref="A_TARGETING"/>. This makes the Conductor enter the attack state faster.</summary>
-    public static int SLIDE_ATTACK_AGGRESSION = TARGETTING_ATTACK_TIME_THRESHOLD / 2 + 10;
-    public static float SLIDE_BACK_VELOCITY_MULTIPLIER = 0.9f;
-    public static float SLIDE_BACK_SPEED = 16f;
+    public const int SLIDE_ATTACK_AGGRESSION = TARGETTING_ATTACK_TIME_THRESHOLD / 2 + 10;
+    public const float SLIDE_BACK_VELOCITY_MULTIPLIER = 0.93f;
+    public const float SLIDE_BACK_SPEED = 12f;
 
     public const int A_TELEPORT = 3;
     /// <summary>How many update ticks to waste teleporting when <see cref="Main.zenithWorld"/> equals <see langword="true"/>.</summary>
-    public static int GFB_TELEPORT_SPAM = 40;
+    public const int FTW_TELEPORT_SPAM = 40;
 
     /// <summary>The distance in pixels which is considered "Melee distance"</summary>
-    public static int MELEE_DISTANCE = 96;
+    public const int MELEE_DISTANCE = 96;
+    #endregion
 
-    private int State { 
-        get => (int)NPC.ai[0]; 
+    private int State {
+        get => (int)NPC.ai[0];
         set {
             NPC.ai[0] = value;
             NPC.ai[1] = 0f;
             NPC.netUpdate = true;
-        } 
+        }
     }
 
     public override void AI() {
@@ -62,7 +72,7 @@ public partial class Conductor : ModNPC {
                     }
                     else if (NPC.HasValidTarget && Collision.CanHitLine(NPC.position, NPC.width, NPC.height, Main.player[NPC.target].position, Main.player[NPC.target].width, Main.player[NPC.target].height)) {
                         NPC.ai[1]++;
-                        if (NPC.ai[1] > TARGETTING_ATTACK_TIME_THRESHOLD) {
+                        if (NPC.ai[1] > TARGETTING_ATTACK_TIME_THRESHOLD && NPC.velocity.Y == 0f && NPC.velocity.X == 0f) {
                             State = A_ATTACKING;
                             NPC.ai[2] = 0f;
                         }
@@ -89,12 +99,17 @@ public partial class Conductor : ModNPC {
                         NPC.localAI[0] = 0f;
                         if (NPC.velocity.Y == 0f) {
                             NPC.velocity.X *= 0.9f;
+                            if (Math.Abs(NPC.velocity.X) < 0.1f) {
+                                NPC.velocity.X = 0f;
+                            }
                         }
                     }
                 }
                 break;
 
             case A_ATTACKING: {
+                    GetAttackTimings(out int rate, out int duration, out _);
+
                     if (CheckForceTP()) {
                         break;
                     }
@@ -109,10 +124,16 @@ public partial class Conductor : ModNPC {
                         SoundEngine.PlaySound(SoundID.Item8, NPC.Center);
                     }
 
-                    if (NPC.ai[1] > 240f) {
+                    int timer = (int)NPC.ai[1];
+                    if (timer > duration) {
                         State = A_TELEPORT;
                         NPC.ai[2] = 0f;
                         NPC.ai[3] = 0f;
+                    }
+                    else if (timer > rate && timer % rate == 0 && timer * 2 < duration) {
+                        if (Main.netMode != NetmodeID.MultiplayerClient) {
+                            CastWaterSphere();
+                        }
                     }
 
                     NPC.ai[1]++;
@@ -123,6 +144,8 @@ public partial class Conductor : ModNPC {
                     if (CheckForceTP()) {
                         break;
                     }
+
+                    Collision.StepUp(ref NPC.position, ref NPC.velocity, NPC.width, NPC.height, ref NPC.stepSpeed, ref NPC.gfxOffY);
 
                     NPC.velocity.X *= SLIDE_BACK_VELOCITY_MULTIPLIER;
 
@@ -202,7 +225,7 @@ public partial class Conductor : ModNPC {
                                 d.velocity *= 0.5f;
                             }
 
-                            if (Main.zenithWorld && NPC.ai[1] < GFB_TELEPORT_SPAM) {
+                            if (Main.getGoodWorld && NPC.ai[1] < FTW_TELEPORT_SPAM) {
                                 NPC.ai[1]++;
                                 break;
                             }
@@ -218,6 +241,38 @@ public partial class Conductor : ModNPC {
         NPC.spriteDirection = NPC.direction;
     }
 
+    private void CastWaterSphere() {
+        int damage = ATTACK_SHOOT_DAMAGE;
+        Vector2 spawnPosition = NPC.Center;
+        Point npcTileCoordinates = NPC.Center.ToTileCoordinates();
+        int minX = Math.Max(npcTileCoordinates.X - ATTACK_RANGE_X, 40);
+        int maxX = Math.Min(npcTileCoordinates.X + ATTACK_RANGE_X, Main.maxTilesX - 40);
+        int minY = Math.Max(npcTileCoordinates.Y - ATTACK_RANGE_Y, 40);
+        int maxY = Math.Min(npcTileCoordinates.Y + ATTACK_RANGE_Y, Main.maxTilesY - 40);
+        for (int i = 0; i < 600; i++) {
+            int x = Main.rand.Next(minX, maxX);
+            int y = Main.rand.Next(minY, maxY);
+            Tile tile = Main.tile[x, y];
+            if (tile.IsSolid() || tile.LiquidAmount > 0) {
+                continue;
+            }
+
+            Tile belowTile = Main.tile[x, y + 1];
+
+            if (belowTile.IsSolid()) {
+                spawnPosition = new Vector2(x, y).ToWorldCoordinates();
+                break;
+            }
+
+            if (belowTile.LiquidAmount > 0 && belowTile.LiquidType == LiquidID.Water) {
+                spawnPosition = new Vector2(x * 16f + 8f, y * 16f + 28f);
+                break;
+            }
+        }
+
+        Projectile.NewProjectile(NPC.GetSource_FromAI(), spawnPosition, NPC.velocity, ModContent.ProjectileType<ConductorProj>(), damage, 1f, Main.myPlayer, ai2: NPC.whoAmI);
+    }
+
     private bool CheckForceTP() {
         Point bottom = NPC.Bottom.ToTileCoordinates();
         int tileWidth = (int)Math.Ceiling(NPC.width / 16f);
@@ -229,63 +284,15 @@ public partial class Conductor : ModNPC {
         return false;
     }
 
-    public override void FindFrame(int frameHeight) {
-        int frame = 0;
-        switch (State) {
-            case A_TARGETING: {
-                    if (NPC.localAI[0] < 1f) {
-                        frame = 0;
-                    }
-                    else {
-                        NPC.frameCounter += Math.Abs(NPC.velocity.X) * 0.8f;
-                        if (NPC.frameCounter > 24.0) {
-                            NPC.frameCounter = 0;
-                        }
-                        frame = 1 + (int)Math.Min(NPC.frameCounter / 6, 3.0);
-                    }
-                }
-                break;
+    public static void GetAttackTimings(out int rate, out int attackDuration, out int attackTime) {
+        rate = ATTACK_RATE;
+        attackDuration = ATTACK_TIME;
+        attackTime = ATTACK_SHOOT_TIME;
 
-            case A_ATTACKING: {
-                    NPC.frameCounter++;
-                    if (NPC.frameCounter > 60.0) {
-                        NPC.frameCounter = 0;
-                    }
-                    if (NPC.frameCounter >= 30.0) {
-                        frame = 13 - (int)Math.Min((NPC.frameCounter - 30.0) / 5, 6.0);
-                    }
-                    else {
-                        frame = 7 + (int)Math.Min(NPC.frameCounter / 5, 6.0);
-                    }
-                }
-                break;
-
-            case A_SLIDE_BACK: {
-                    NPC.frameCounter++;
-                    if (NPC.frameCounter > 6.0) {
-                        NPC.frameCounter = 0;
-                    }
-                    frame = 5 + (int)Math.Min(NPC.frameCounter / 3, 1.0);
-                }
-                break;
-
-            case A_TELEPORT: {
-                }
-                break;
+        if (Main.getGoodWorld) {
+            attackTime *= 2;
+            attackDuration *= 2;
+            rate /= 2;
         }
-
-        NPC.frame.Y = frame * frameHeight;
-    }
-
-    public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
-        Texture2D texture = TextureAssets.Npc[Type].Value;
-        Rectangle frame = NPC.frame;
-        Vector2 origin = frame.Size() / 2f;
-        origin.X -= 14f * NPC.spriteDirection;
-        Vector2 drawCoordinates = NPC.Bottom + new Vector2(0f, origin.Y - frame.Height + 4f + NPC.gfxOffY);
-        drawColor = NPC.GetAlpha(NPC.GetNPCColorTintedByBuffs(drawColor));
-        SpriteEffects effects = NPC.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-        spriteBatch.Draw(texture, drawCoordinates - screenPos, frame, drawColor, NPC.rotation, origin, NPC.scale, effects, 0f);
-        return false;
     }
 }
