@@ -4,10 +4,15 @@ using System.Runtime.InteropServices;
 using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Common.NPCs;
+
 public sealed class DropsGlobalNPC : GlobalNPC {
     private static bool _rerolling;
 
     private static readonly Dictionary<int, List<IItemDropRule>> _dropRules = new();
+
+    public bool noOnKillEffects;
+
+    public override bool InstancePerEntity => true;
 
     /// <summary>
     /// Allows you to add a drop rule to an NPC. Please only call this in SetStaticDefaults/PostSetupContent.
@@ -29,6 +34,14 @@ public sealed class DropsGlobalNPC : GlobalNPC {
                 npcLoot.Add(rule);
             }
         }
+    }
+
+    public override bool SpecialOnKill(NPC npc) {
+        if (noOnKillEffects) {
+            return true;
+        }
+
+        return base.SpecialOnKill(npc);
     }
 
     public override void Unload() {

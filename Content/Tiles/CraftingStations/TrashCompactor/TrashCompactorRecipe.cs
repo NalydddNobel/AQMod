@@ -28,7 +28,7 @@ public struct TrashCompactorRecipe {
     public bool Invalid => Ingredient == null || Results == null || Results.Count <= 0;
 
     public static TrashCompactorRecipe FromItem(Item item) {
-        if (ItemSets.CustomTrashCompactorRecipes.TryGetValue(item.type, out var recipeOverride)) {
+        if (ItemMetadata.CustomTrashCompactorRecipes.TryGetValue(item.type, out var recipeOverride)) {
             return recipeOverride;
         }
 
@@ -44,7 +44,7 @@ public struct TrashCompactorRecipe {
             if (item.createTile > -1) {
                 // Prevent decrafting for 1x1 tiles which are not light sources like Candles. (Bars, misc)
                 var tileObjectData = TileObjectData.GetTileData(item.createTile, item.placeStyle);
-                if (tileObjectData != null && tileObjectData.Width == 1 && tileObjectData.Height == 1 && !TileID.Sets.RoomNeeds.CountsAsTorch.Any(item.createTile)) {
+                if (tileObjectData != null && tileObjectData.Width == 1 && tileObjectData.Height == 1 && !TileID.Sets.RoomNeeds.CountsAsTorch.Match(item.createTile)) {
                     return None;
                 }
             }
@@ -74,6 +74,6 @@ public struct TrashCompactorRecipe {
     }
 
     public static void AddCustomRecipe(int ingredient, params (int, int)[] results) {
-        ItemSets.CustomTrashCompactorRecipes[ingredient] = new(ingredient, results);
+        ItemMetadata.CustomTrashCompactorRecipes[ingredient] = new(ingredient, results);
     }
 }

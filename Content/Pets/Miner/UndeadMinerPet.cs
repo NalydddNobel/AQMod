@@ -158,7 +158,7 @@ public class UndeadMinerPet : ModPet {
     public override bool PreDraw(ref Color lightColor) {
         Projectile.GetDrawInfo(out var texture, out var offset, out var _, out var origin, out int _);
         var frame = texture.Frame(verticalFrames: Main.projFrames[Type], frameY: this.frame);
-        Main.EntitySpriteDraw(texture, Projectile.position + offset + new Vector2(0f, DrawOriginOffsetY) - Main.screenPosition, frame, LightHelper.GetLightColor(Projectile.Center), Projectile.rotation, origin, Projectile.scale, Projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
+        Main.EntitySpriteDraw(texture, Projectile.position + offset + new Vector2(0f, DrawOriginOffsetY) - Main.screenPosition, frame, ExtendLight.Get(Projectile.Center), Projectile.rotation, origin, Projectile.scale, Projectile.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
         if (swingPick > 0) {
             float rotation = (MathHelper.Pi + 0.1f) / SwingTime * swingPick - MathHelper.PiOver2;
             var pick = Main.player[Projectile.owner].GetBestPickaxe();
@@ -171,7 +171,7 @@ public class UndeadMinerPet : ModPet {
             else {
                 rotation = -rotation;
             }
-            Main.EntitySpriteDraw(itemTexture, pickaxeDrawCoords - Main.screenPosition, itemFrame, LightHelper.GetLightColor(pickaxeDrawCoords), rotation - MathHelper.PiOver4, new Vector2(0f, itemFrame.Height), Projectile.scale, SpriteEffects.None, 0);
+            Main.EntitySpriteDraw(itemTexture, pickaxeDrawCoords - Main.screenPosition, itemFrame, ExtendLight.Get(pickaxeDrawCoords), rotation - MathHelper.PiOver4, new Vector2(0f, itemFrame.Height), Projectile.scale, SpriteEffects.None, 0);
             if (pick?.glowMask > 0) {
                 Main.EntitySpriteDraw(TextureAssets.GlowMask[pick.glowMask].Value, pickaxeDrawCoords - Main.screenPosition, itemFrame, new Color(250, 250, 250, 0), rotation - MathHelper.PiOver4, new Vector2(0f, itemFrame.Height), Projectile.scale, SpriteEffects.None, 0);
             }

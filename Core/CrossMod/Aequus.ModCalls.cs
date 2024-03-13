@@ -164,7 +164,7 @@ public partial class Aequus {
 
     [Conditional("DEBUG")]
     private void GenerateWikiPage() {
-        string path = $"{DebugPath}/ModSources/Aequus/Assets/Metadata/ModCallsWikiPage.Temp";
+        string path = $"{DEBUG_FILES_PATH}/ModSources/Aequus/Assets/Metadata/ModCallsWikiPage.Temp";
         if (!Directory.Exists(Path.GetDirectoryName(path))) {
             return;
         }

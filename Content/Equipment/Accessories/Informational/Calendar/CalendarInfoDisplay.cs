@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Systems;
-using Microsoft.Xna.Framework;
 using Terraria.Localization;
 
 namespace Aequus.Content.Equipment.Accessories.Informational.Calendar;
@@ -16,6 +15,6 @@ public class CalendarInfoDisplay : InfoDisplay {
 
     public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor) {
         Tooltip ??= this.GetLocalization("Tooltip");
-        return string.Format(Tooltip.Value, TextHelper.DayOfWeek(TimeTrackerSystem.DayOfTheWeek).Value, TimeTrackerSystem.daysPassed);
+        return string.Format(Tooltip.Value, ExtendLanguage.DayOfWeek(TimeTrackerSystem.DayOfTheWeek).Value, TimeTrackerSystem.daysPassed);
     }
 }

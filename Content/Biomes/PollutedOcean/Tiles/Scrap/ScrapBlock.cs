@@ -1,7 +1,8 @@
-﻿using Aequus.Common.Tiles;
-using Aequus.Common.Tiles.Components;
-using Aequus.Content.Items.Material;
+﻿using Aequus.Common.Tiles.Components;
+using Aequus.Content.Materials;
+using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics.Tiles;
+using Aequus.Core.Initialization;
 using Terraria.Audio;
 using Terraria.GameContent;
 
@@ -11,13 +12,15 @@ public class ScrapBlock : ModTile, ISpecialTileRenderer, ICustomPlaceSound, ITou
     public static ModItem Item { get; private set; }
 
     public override void Load() {
-        Item = new InstancedTileItem(this).WithRecipe((item) => {
-            item.CreateRecipe(10)
+        Item = new InstancedTileItem(this);
+        Mod.AddContent(Item);
+
+        Aequus.OnAddRecipes += () => {
+            Item.CreateRecipe(10)
                 .AddIngredient(ModContent.ItemType<CompressedTrash>())
                 .AddTile(TileID.WorkBenches)
                 .Register();
-        });
-        Mod.AddContent(Item);
+        };
     }
 
     public override void SetStaticDefaults() {

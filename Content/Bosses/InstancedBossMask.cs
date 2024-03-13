@@ -1,10 +1,10 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Core.ContentGeneration;
 
 namespace Aequus.Content.Bosses;
 
 [AutoloadEquip(EquipType.Head)]
 internal class InstancedBossMask : InstancedModItem {
-    public InstancedBossMask(string name) : base($"{name}Mask", $"{typeof(InstancedBossMask).NamespaceFilePath()}/BossMasks/{name}Mask") {
+    public InstancedBossMask(ModNPC modNPC) : base($"{modNPC.Name}Mask", $"{modNPC.NamespaceFilePath()}/Items/{modNPC.Name}Mask") {
     }
 
     public override void SetDefaults() {

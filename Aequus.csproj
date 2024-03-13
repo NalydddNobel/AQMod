@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\tModLoader.targets" />
-	
+
   <PropertyGroup>
     <AssemblyName>Aequus</AssemblyName>
     <TargetFramework>net6.0</TargetFramework>
@@ -16,15 +16,24 @@
   </ItemGroup>
 		
   <ItemGroup>
+    <None Remove="Old\**" Condition="'$(Configuration)' == 'Debug'" />
+    <EmbeddedResource Remove="Old\**" Condition="'$(Configuration)' == 'Debug'" />
     <None Remove="Temp\SourceGenerators.Generator\**" />
 	<EmbeddedResource Remove="Temp\SourceGenerators.Generator\**" />
 	<Compile Remove="Temp\SourceGenerators.Generator\**" />
+    <None Remove="UnitTesting\**" />
+	<EmbeddedResource Remove="UnitTesting\**" />
+	<Compile Remove="UnitTesting\**" />
+    <None Remove="TerrariaProxy\**" />
+	<EmbeddedResource Remove="TerrariaProxy\**" />
+	<Compile Remove="TerrariaProxy\**" />
     <None Remove="SourceGenerators\**" />
 	<EmbeddedResource Remove="SourceGenerators\**" />
 	<Compile Remove="SourceGenerators\**" />
   </ItemGroup>
-
+	
   <ItemGroup>
+	<ProjectReference Include="..\AequusMusic\AequusMusic.csproj" />
 	<ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	<AdditionalFiles Include="**\*.png" />
 	<AdditionalFiles Include="**\*.ogg" />
@@ -39,16 +48,26 @@
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <CompilerGeneratedFilesOutputPath>Temp</CompilerGeneratedFilesOutputPath>
   </PropertyGroup>
+	
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Optimize>False</Optimize>
+  </PropertyGroup>
+	
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>False</Optimize>
+  </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
+  <ItemGroup Condition="'$(Configuration)' == 'Debug'">
+	<AdditionalFiles Remove="Old\**" />
+	<Compile Remove="Old\**" />
+	<AdditionalFiles Include="Old\**\*.png" />
+	<AdditionalFiles Include="Old\**\*.ogg" />
   </ItemGroup>
-
+	
   <ItemGroup>
-    <None Remove="Content\Critters\HorseshoeCrab\GoldAdultHorseshoeCrab.png" />
-    <None Remove="Content\Critters\HorseshoeCrab\GoldBabyHorseshoeCrab.png" />
-    <None Remove="Content\Critters\HorseshoeCrab\GoldElderHorseshoeCrab.png" />
-    <None Remove="Content\Critters\HorseshoeCrab\Gore\ElderHorseshoeCrab.png" />
+    <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" />
+	<AdditionalFiles Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
+    <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
   </ItemGroup>
-
+	
 </Project>

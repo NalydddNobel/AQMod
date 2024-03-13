@@ -1,6 +1,5 @@
-﻿using Aequus.Common.Items;
-using Aequus.Core.Assets;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Aequus.Core.Assets;
+using Aequus.Core.ContentGeneration;
 using System;
 using Terraria.Graphics.Shaders;
 
@@ -10,8 +9,10 @@ namespace Aequus.Content.Dyes;
 internal sealed class InstancedDyeItem : InstancedModItem {
     public readonly int _rarity;
     public readonly int _value;
-    private Func<ArmorShaderData> _shaderDataFactory;
 
+    [CloneByReference]
+    private Func<ArmorShaderData> _shaderDataFactory;
+    [CloneByReference]
     private Action<ModItem> customRecipes;
 
     public InstancedDyeItem SafeAddImage(RequestCache<Texture2D> texture) {
@@ -25,10 +26,6 @@ internal sealed class InstancedDyeItem : InstancedModItem {
 
     public InstancedDyeItem WithCustomRecipe(Action<ModItem> recipeFactory) {
         customRecipes += recipeFactory;
-        return this;
-    }
-
-    private InstancedDyeItem AddAncientVariant() {
         return this;
     }
 

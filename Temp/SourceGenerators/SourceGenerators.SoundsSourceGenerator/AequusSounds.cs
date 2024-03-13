@@ -3,12 +3,10 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Sounds: 41)</summary>
+/// <summary>(Total Sounds: 68)</summary>
 [CompilerGenerated]
 public partial class AequusSounds {            
-        /// <summary>Full Path: Assets/Music/PollutedOcean</summary>
-    public static readonly SoundStyle PollutedOcean = new("Aequus/Assets/Music/PollutedOcean");
-    /// <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
+        /// <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
     public static readonly SoundStyle BlackJellyfishCharge = new("Aequus/Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge");
     /// <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge_Underwater</summary>
     public static readonly SoundStyle BlackJellyfishCharge_Underwater = new("Aequus/Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge_Underwater");
@@ -18,6 +16,22 @@ public partial class AequusSounds {
     public static readonly SoundStyle BlackJellyfishExplosion_Underwater = new("Aequus/Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishExplosion_Underwater");
     /// <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishUnderwaterBubbles</summary>
     public static readonly SoundStyle BlackJellyfishUnderwaterBubbles = new("Aequus/Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishUnderwaterBubbles");
+    /// <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttack</summary>
+    public static readonly SoundStyle ChainedSoulAttack = new("Aequus/Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttack");
+    /// <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttackExplode0</summary>
+    public static readonly SoundStyle ChainedSoulAttackExplode0 = new("Aequus/Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttackExplode0");
+    /// <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttackExplode1</summary>
+    public static readonly SoundStyle ChainedSoulAttackExplode1 = new("Aequus/Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttackExplode1");
+    /// <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttackExplode2</summary>
+    public static readonly SoundStyle ChainedSoulAttackExplode2 = new("Aequus/Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttackExplode2");
+    /// <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/KeeperImpSummon</summary>
+    public static readonly SoundStyle KeeperImpSummon = new("Aequus/Assets/Sounds/Enemy/KeeperImp/KeeperImpSummon");
+    /// <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/KeeperImpSummonTelegraph</summary>
+    public static readonly SoundStyle KeeperImpSummonTelegraph = new("Aequus/Assets/Sounds/Enemy/KeeperImp/KeeperImpSummonTelegraph");
+    /// <summary>Full Path: Assets/Sounds/Items/CanteenBuzzer</summary>
+    public static readonly SoundStyle CanteenBuzzer = new("Aequus/Assets/Sounds/Items/CanteenBuzzer");
+    /// <summary>Full Path: Assets/Sounds/Items/CanteenUse</summary>
+    public static readonly SoundStyle CanteenUse = new("Aequus/Assets/Sounds/Items/CanteenUse");
     /// <summary>Full Path: Assets/Sounds/Items/CrossbowReload</summary>
     public static readonly SoundStyle CrossbowReload = new("Aequus/Assets/Sounds/Items/CrossbowReload");
     /// <summary>Full Path: Assets/Sounds/Items/CrossbowShoot</summary>
@@ -44,8 +58,12 @@ public partial class AequusSounds {
     public static readonly SoundStyle ShardHit0 = new("Aequus/Assets/Sounds/Items/PossessedShard/ShardHit0");
     /// <summary>Full Path: Assets/Sounds/Items/PossessedShard/ShardHit1</summary>
     public static readonly SoundStyle ShardHit1 = new("Aequus/Assets/Sounds/Items/PossessedShard/ShardHit1");
+    /// <summary>Full Path: Assets/Sounds/Items/PotionPrefix</summary>
+    public static readonly SoundStyle PotionPrefix = new("Aequus/Assets/Sounds/Items/PotionPrefix");
     /// <summary>Full Path: Assets/Sounds/Items/RopeRetract</summary>
     public static readonly SoundStyle RopeRetract = new("Aequus/Assets/Sounds/Items/RopeRetract");
+    /// <summary>Full Path: Assets/Sounds/Items/StudiesOfTheInkblotUse</summary>
+    public static readonly SoundStyle StudiesOfTheInkblotUse = new("Aequus/Assets/Sounds/Items/StudiesOfTheInkblotUse");
     /// <summary>Full Path: Assets/Sounds/Items/UseDagger</summary>
     public static readonly SoundStyle UseDagger = new("Aequus/Assets/Sounds/Items/UseDagger");
     /// <summary>Full Path: Assets/Sounds/OnHit/DaggerHit0</summary>
@@ -78,6 +96,8 @@ public partial class AequusSounds {
     public static readonly SoundStyle ConductiveBlock2 = new("Aequus/Assets/Sounds/Tile/ConductiveBlock2");
     /// <summary>Full Path: Assets/Sounds/Tile/ConductiveBlock3</summary>
     public static readonly SoundStyle ConductiveBlock3 = new("Aequus/Assets/Sounds/Tile/ConductiveBlock3");
+    /// <summary>Full Path: Assets/Sounds/Tile/MoonflowerBreak</summary>
+    public static readonly SoundStyle MoonflowerBreak = new("Aequus/Assets/Sounds/Tile/MoonflowerBreak");
     /// <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
     public static readonly SoundStyle OmniGemBreak = new("Aequus/Assets/Sounds/Tile/OmniGemBreak");
     /// <summary>Full Path: Assets/Sounds/Tile/ScrapBlock0</summary>
@@ -88,4 +108,38 @@ public partial class AequusSounds {
     public static readonly SoundStyle ScrapBlock2 = new("Aequus/Assets/Sounds/Tile/ScrapBlock2");
     /// <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
     public static readonly SoundStyle ScrapBlock3 = new("Aequus/Assets/Sounds/Tile/ScrapBlock3");
+    /// <summary>Full Path: Old/Assets/Sounds/GoreNest/BeginDemonSiege</summary>
+    public static readonly SoundStyle BeginDemonSiege = new("Aequus/Old/Assets/Sounds/GoreNest/BeginDemonSiege");
+    /// <summary>Full Path: Old/Assets/Sounds/HighSteaks/HighSteaks0</summary>
+    public static readonly SoundStyle HighSteaks0 = new("Aequus/Old/Assets/Sounds/HighSteaks/HighSteaks0");
+    /// <summary>Full Path: Old/Assets/Sounds/HighSteaks/HighSteaks1</summary>
+    public static readonly SoundStyle HighSteaks1 = new("Aequus/Old/Assets/Sounds/HighSteaks/HighSteaks1");
+    /// <summary>Full Path: Old/Assets/Sounds/HighSteaks/HighSteaksCriticalStrike</summary>
+    public static readonly SoundStyle HighSteaksCriticalStrike = new("Aequus/Old/Assets/Sounds/HighSteaks/HighSteaksCriticalStrike");
+    /// <summary>Full Path: Old/Assets/Sounds/InflictFireDebuff</summary>
+    public static readonly SoundStyle InflictFireDebuff = new("Aequus/Old/Assets/Sounds/InflictFireDebuff");
+    /// <summary>Full Path: Old/Assets/Sounds/Meathook/Meathook0</summary>
+    public static readonly SoundStyle Meathook0 = new("Aequus/Old/Assets/Sounds/Meathook/Meathook0");
+    /// <summary>Full Path: Old/Assets/Sounds/Meathook/Meathook1</summary>
+    public static readonly SoundStyle Meathook1 = new("Aequus/Old/Assets/Sounds/Meathook/Meathook1");
+    /// <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookConnect</summary>
+    public static readonly SoundStyle MeathookConnect = new("Aequus/Old/Assets/Sounds/Meathook/MeathookConnect");
+    /// <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookPull</summary>
+    public static readonly SoundStyle MeathookPull = new("Aequus/Old/Assets/Sounds/Meathook/MeathookPull");
+    /// <summary>Full Path: Old/Assets/Sounds/RecruitZombie</summary>
+    public static readonly SoundStyle RecruitZombie = new("Aequus/Old/Assets/Sounds/RecruitZombie");
+    /// <summary>Full Path: Old/Assets/Sounds/ZumboPettingSqueak</summary>
+    public static readonly SoundStyle ZumboPettingSqueak = new("Aequus/Old/Assets/Sounds/ZumboPettingSqueak");
+    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteDeathRay</summary>
+    public static readonly SoundStyle OmegaStariteDeathRay = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteDeathRay");
+    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit0</summary>
+    public static readonly SoundStyle OmegaStariteHit0 = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit0");
+    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit1</summary>
+    public static readonly SoundStyle OmegaStariteHit1 = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit1");
+    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit2</summary>
+    public static readonly SoundStyle OmegaStariteHit2 = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit2");
+    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteKilled</summary>
+    public static readonly SoundStyle OmegaStariteKilled = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteKilled");
+    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
+    public static readonly SoundStyle OmegaStariteStarBullets = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets");
 }

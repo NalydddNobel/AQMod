@@ -14,7 +14,7 @@ public class StunGun : ClasslessWeapon, ICooldownItem {
 
     int ICooldownItem.CooldownTime => CooldownTime;
 
-    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Seconds(DebuffTime), TextHelper.Seconds(CooldownTime));
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Seconds(DebuffTime), ExtendLanguage.Seconds(CooldownTime));
 
     public override void SetDefaults() {
         Item.width = 24;

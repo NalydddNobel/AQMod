@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Biomes.PollutedOcean;
+﻿using Aequus.Content.Biomes.PollutedOcean.Generation;
 using System.ComponentModel;
 using Terraria.ModLoader.Config;
 
@@ -8,6 +8,6 @@ internal class GameplayConfig : ModConfig {
 
     public static GameplayConfig Instance;
 
-    [DefaultValue(POGenerationSide.Automatic)]
-    public POGenerationSide PollutedOceanSide;
+    [DefaultValue(PollutedOceanGenerationSideConfig.Automatic)]
+    public PollutedOceanGenerationSideConfig PollutedOceanSide;
 }

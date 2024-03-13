@@ -1,6 +1,4 @@
-﻿using Aequus.Content.Graphics;
-using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria.GameContent.Drawing;
@@ -8,9 +6,11 @@ using Terraria.GameContent.Drawing;
 namespace Aequus.Core.Graphics.Tiles;
 
 internal sealed class SpecialTileRenderer : ModSystem {
-    public static Action PreDrawNonSolidTiles;
     public static Action UpdateTileEffects;
     public static Action ClearTileEffects;
+
+    public static Action PreDrawSolidTiles;
+    public static Action PreDrawNonSolidTiles;
 
     public static List<Point>[] DrawPoints { get; private set; }
     public static List<Point>[] SolidDrawPoints { get; private set; }
@@ -148,6 +148,7 @@ internal sealed class SpecialTileRenderer : ModSystem {
                 }
             }
             else {
+                PreDrawSolidTiles?.Invoke();
                 for (int i = 0; i < SolidDrawPoints.Length; i++) {
                     SolidDrawPoints[i].Clear();
                 }
@@ -190,13 +191,7 @@ internal sealed class SpecialTileRenderer : ModSystem {
         }
     }
 
-    public override void OnWorldLoad() {
-        if (!Main.dedServ && ClearTileEffects != null) {
-            ClearTileEffects();
-        }
-    }
-
-    public override void OnWorldUnload() {
+    public override void ClearWorld() {
         if (!Main.dedServ && ClearTileEffects != null) {
             ClearTileEffects();
         }

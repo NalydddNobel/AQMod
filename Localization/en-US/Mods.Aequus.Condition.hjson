@@ -1,3 +1,29 @@
 DayOfTheWeek: When it's {0}
-BetweenDays: Between {0}-{0}
-InPollutedOcean: Mods.Aequus.Condition.InPollutedOcean
+BetweenDays: Between {0}-{1}
+InPollutedOcean: In the Polluted Ocean biome
+DownedAquaticBoss: Mods.Aequus.Condition.DownedAquaticBoss
+DownedCosmicBoss: After defeating Ultra Starite
+DownedTrueCosmicBoss: After defeating Omega Starite
+DownedDemonBoss: After completing your first Demon Siege
+DownedTrueDemonBoss: Mods.Aequus.Condition.DownedTrueDemonBoss
+DownedAtmosphereBossFlame: After matching against the Red Sprite
+DownedAtmosphereBossFrost: After matching against the Space Squid
+DownedTrueAtmosphereBoss: After defeating the Dust Devil
+DownedOrganicBossMight: Mods.Aequus.Condition.DownedOrganicBossMight
+DownedOrganicBossSight: Mods.Aequus.Condition.DownedOrganicBossSight
+DownedOrganicBossFright: Mods.Aequus.Condition.DownedOrganicBossFright
+DownedTrueFinalBoss: Mods.Aequus.Condition.DownedTrueFinalBoss
+NotDownedAquaticBoss: Mods.Aequus.Condition.NotDownedAquaticBoss
+NotDownedCosmicBoss: Before defeating Ultra Starite
+NotDownedTrueCosmicBoss: Before defeating Omega Starite
+NotDownedDemonBoss: Before completing your first Demon Siege
+NotDownedTrueDemonBoss: Mods.Aequus.Condition.NotDownedTrueDemonBoss
+NotDownedAtmosphereBossFlame: Before matching against the Red Sprite
+NotDownedAtmosphereBossFrost: Before matching against the Space Squid
+NotDownedTrueAtmosphereBoss: Before defeating the Dust Devil
+NotDownedOrganicBossMight: Mods.Aequus.Condition.NotDownedOrganicBossMight
+NotDownedOrganicBossSight: Mods.Aequus.Condition.NotDownedOrganicBossSight
+NotDownedOrganicBossFright: Mods.Aequus.Condition.NotDownedOrganicBossFright
+NotDownedTrueFinalBoss: Mods.Aequus.Condition.NotDownedTrueFinalBoss
+MovePortalGun: If the "{$Configs.VanillaChangesConfig.MovePortalGun}" option is set to true.
+MoveGravityGlobe: If the "{$Configs.VanillaChangesConfig.MoveGravityGlobe}" option is set to true.

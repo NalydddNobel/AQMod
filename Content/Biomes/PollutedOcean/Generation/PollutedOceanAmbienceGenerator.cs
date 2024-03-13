@@ -1,9 +1,10 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Common.Tiles.Rubblemaker;
 using Aequus.Common.WorldGeneration;
-using Aequus.Content.Biomes.PollutedOcean.Tiles;
-using Aequus.Content.Biomes.PollutedOcean.Tiles.Pots;
-using Aequus.Content.Biomes.PollutedOcean.Tiles.SeaPickles;
+using Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient;
+using Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient.Dripstones;
+using Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient.Pots;
+using Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient.SeaPickles;
 using Aequus.Content.DataSets;
 using Aequus.Content.Tiles.Furniture.Trash;
 using System;
@@ -74,7 +75,7 @@ internal class PollutedOceanAmbienceGenerator : AequusGenStep {
                     continue;
                 }
 
-                SetProgress(progress, IJLoopProgress(i, j), 0f, 0.5f);
+                SetProgress(progress, RectangleProgress(i, j), 0f, 0.5f);
                 if (Random.NextBool(3000)) {
                     PlaceSeaPickleSetPiece(i, j, Random.Next(30, 50));
                 }
@@ -88,7 +89,7 @@ internal class PollutedOceanAmbienceGenerator : AequusGenStep {
                     continue;
                 }
 
-                SetProgress(progress, IJLoopProgress(i, j), 0.5f, 1f);
+                SetProgress(progress, RectangleProgress(i, j), 0.5f, 1f);
                 var tile = Main.tile[i, j];
                 if (tile.TileType == TileID.Pots) {
                     WorldGen.KillTile(i, j);

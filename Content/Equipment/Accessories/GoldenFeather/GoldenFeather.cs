@@ -3,11 +3,12 @@ using Terraria.Localization;
 
 namespace Aequus.Content.Equipment.Accessories.GoldenFeather;
 
+[LegacyName("BloodCrystal", "BloodCurcleav")]
 public class GoldenFeather : ModItem {
     public static int RespawnTimeAmount { get; set; } = -300;
     public static int LifeRegenerationAmount { get; set; } = 1;
 
-    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Seconds(-RespawnTimeAmount), TextHelper.Decimals(LifeRegenerationAmount / 2f));
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Seconds(-RespawnTimeAmount), ExtendLanguage.Decimals(LifeRegenerationAmount / 2f));
 
     public virtual int BuffType => ModContent.BuffType<GoldenFeatherBuff>();
 

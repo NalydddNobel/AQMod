@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.Equipment.Accessories.WeightedHorseshoe;
-using Aequus.Core.Generator;
+using Aequus.Core.CodeGeneration;
 
 namespace Aequus;
 

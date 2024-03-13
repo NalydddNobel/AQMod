@@ -1,25 +1,19 @@
 ﻿using Aequus.Content.DataSets;
 using Aequus.Core.CrossMod;
 
-namespace Aequus.Content.CrossMod {
-    internal class ThoriumMod : SupportedMod<ThoriumMod> {
-        public override void SafeLoad(Mod mod) {
-        }
+namespace Aequus.Content.CrossMod; 
 
-        public override void AddRecipes() {
-            foreach (var b in BuffSets.PlayerDoTDebuff) {
-                if (b >= BuffID.Count && BuffLoader.GetBuff(b).Mod == Aequus.Instance) {
-                    Call("AddPlayerDoTBuffID", b);
-                }
-            }
-            foreach (var b in BuffSets.PlayerStatusDebuff) {
-                if (b >= BuffID.Count && BuffLoader.GetBuff(b).Mod == Aequus.Instance) {
-                    Call("AddPlayerStatusBuffID", b);
-                }
+internal class ThoriumMod : SupportedMod<ThoriumMod> {
+    public override void AddRecipes() {
+        foreach (int buffId in BuffMetadata.PlayerDoTDebuff) {
+            if (buffId >= BuffID.Count && BuffLoader.GetBuff(buffId)?.Mod == Aequus.Instance) {
+                Call("AddPlayerDoTBuffID", buffId);
             }
         }
-
-        public override void SafeUnload() {
+        foreach (int buffId in BuffMetadata.PlayerStatusDebuff) {
+            if (buffId >= BuffID.Count && BuffLoader.GetBuff(buffId)?.Mod == Aequus.Instance) {
+                Call("AddPlayerStatusBuffID", buffId);
+            }
         }
     }
 }

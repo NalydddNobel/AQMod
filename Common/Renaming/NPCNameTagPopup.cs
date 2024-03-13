@@ -1,4 +1,4 @@
-﻿using Aequus.Core;
+﻿using Aequus.Core.Collections;
 using Aequus.Core.UI;
 using System;
 using Terraria.GameContent;
@@ -8,13 +8,13 @@ using Terraria.UI.Chat;
 namespace Aequus.Common.Renaming;
 
 public class NPCNameTagPopup : UILayer {
-    private readonly TrimmableDictionary<int, Popup> NPCPopups = new();
+    private readonly DictionaryRemoveQueue<int, Popup> NPCPopups = new();
 
     public void ShowRenamePopup(int npcIndex) {
         Popup popup = NPCPopups[npcIndex] = new Popup();
         popup.Time = 1f;
 
-        Activate();
+        this.Activate();
     }
 
     public override bool OnUIUpdate(GameTime gameTime) {

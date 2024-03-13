@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Golfing;
+using Aequus.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -92,7 +93,7 @@ public class BackpackLoader {
     }
     private static void UpdateSingleInfoAccessory(Player player, AequusPlayer aequusPlayer, BackpackData backpack) {
         for (int i = 0; i < backpack.Inventory.Length; i++) {
-            if (ItemID.Sets.WorksInVoidBag[backpack.Inventory[i].type]) {
+            if (ItemSets.WorksInVoidBag[backpack.Inventory[i].type]) {
                 ItemLoader.UpdateInventory(backpack.Inventory[i], player);
                 player.RefreshInfoAccsFromItemType(backpack.Inventory[i]);
                 player.RefreshMechanicalAccsFromItemType(backpack.Inventory[i].type);

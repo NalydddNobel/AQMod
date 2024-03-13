@@ -1,5 +1,5 @@
 ﻿namespace Aequus.Core.Initialization;
 
-internal interface IPostSetupContent : ILoadable {
+internal interface IPostSetupContent : ILoad {
     void PostSetupContent(Aequus aequus);
 }

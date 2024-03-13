@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.Weapons.Classless.StunGun;
-using Aequus.Core.Generator;
+using Aequus.Core.CodeGeneration;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 

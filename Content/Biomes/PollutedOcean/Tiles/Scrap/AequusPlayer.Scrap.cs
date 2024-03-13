@@ -1,12 +1,8 @@
 ﻿using Aequus.Content.Biomes.PollutedOcean.Tiles.Scrap;
-using Aequus.Core.Generator;
-using Microsoft.Xna.Framework;
+using Aequus.Core.CodeGeneration;
 using System;
-using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.GameContent.ObjectInteractions;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.Utilities;
 
 namespace Aequus;
@@ -33,6 +29,15 @@ public partial class AequusPlayer {
             return;
         }
 
+        if (!oldTouchingScrapBlock) {
+            if (Player.velocity.Length() > 4f) {
+                SoundEngine.PlaySound(SoundID.Splash);
+            }
+            else {
+                SoundEngine.PlaySound(SoundID.SplashWeak);
+            }
+        }
+
         int amountCovered = 0;
         var centerTileCoords = Player.Center.ToTileCoordinates();
         int x = centerTileCoords.X;
@@ -52,6 +57,7 @@ public partial class AequusPlayer {
                 if (Main.netMode != NetmodeID.Server) {
                     if (pressedJump || Math.Abs(Player.velocity.X) > 0.3f || Math.Abs(Player.velocity.Y) > 0.5f || Main.rand.NextBool(30)) {
                         if (pressedJump || Player.miscCounter % 12 == 0) {
+                            SoundEngine.PlaySound(SoundID.SplashWeak);
                             Dust.NewDust(new Vector2(x, bottomY - i).ToWorldCoordinates(0f, 0f), 16, 16, GetScrapDustId(Main.rand));
                             if (Main.rand.NextBool(5)) {
                                 Gore.NewGore(new EntitySource_TileInteraction(Player, x, bottomY - i, "Aequus: Scrap Block"), new Vector2(x, bottomY - i).ToWorldCoordinates() + Main.rand.NextVector2Square(-8f, 8f), Main.rand.NextVector2Unit(), GetScrapGoreId(Main.rand));

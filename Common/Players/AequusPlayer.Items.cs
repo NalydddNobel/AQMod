@@ -1,10 +1,11 @@
 ﻿using Aequus.Common.Backpacks;
 using Aequus.Common.Items.Components;
-using Aequus.Common.UI;
 using Aequus.Content.DataSets;
-using Aequus.Core.Generator;
+using Aequus.Core.CodeGeneration;
+using Aequus.Core.UI;
 using System;
 using System.Collections.Generic;
+using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.UI;
@@ -66,12 +67,9 @@ public partial class AequusPlayer {
         if (inventory[slot].ModItem is IHoverSlot hoverSlot) {
             returnValue |= hoverSlot.HoverSlot(inventory, context, slot);
         }
-        if (inventory[slot].ModItem is ITransformItem transformItem && (context == ItemSlot.Context.InventoryItem || Math.Abs(context) == ItemSlot.Context.EquipAccessory) && Main.mouseRight && Main.mouseRightRelease && Main.LocalPlayer.ItemTimeIsZero) {
+        if (inventory[slot].ModItem is ITransformItem transformItem && (context == ItemSlot.Context.InventoryItem || Math.Abs(context) == ItemSlot.Context.EquipAccessory) && Main.mouseRight && Main.mouseRightRelease && Main.LocalPlayer.ItemTimeIsZero && CombinedHooks.CanUseItem(Player, inventory[slot])) {
             transformItem.SlotTransform(inventory, context, slot);
             Main.mouseRightRelease = false;
-        }
-        if (UISystem.TalkInterface?.CurrentState is AequusUIState aequusUI) {
-            returnValue |= aequusUI.HoverSlot(inventory, context, slot);
         }
         return returnValue;
     }
@@ -110,7 +108,7 @@ public partial class AequusPlayer {
             Recipe.FindRecipes();
             return true;
         }
-        if (ItemSets.IsDungeonLockBox.Contains(inv[slot].type)) {
+        if (ItemMetadata.IsDungeonLockBox.Contains(inv[slot].type)) {
             if ((goldenKey.consumable || goldenKey.type == ItemID.GoldenKey) && ItemLoader.ConsumeItem(goldenKey, Player)) {
                 goldenKey.stack--;
                 if (goldenKey.stack < 0) {
@@ -156,7 +154,7 @@ public partial class AequusPlayer {
             Recipe.FindRecipes();
             return true;
         }
-        if (ItemSets.IsHellLockBox.Contains(inv[slot].type)) {
+        if (ItemMetadata.IsHellLockBox.Contains(inv[slot].type)) {
             if (shadowKey.consumable && ItemLoader.ConsumeItem(shadowKey, Player)) {
                 shadowKey.stack--;
                 if (shadowKey.stack < 0) {
@@ -182,7 +180,10 @@ public partial class AequusPlayer {
         if (Main.mouseRight && Main.mouseRightRelease) {
             var player = Main.LocalPlayer;
             var aequus = player.GetModPlayer<AequusPlayer>();
-            if (Main.mouseItem.ModItem is IRightClickOverrideWhenHeld rightClickOverride && rightClickOverride.RightClickOverrideWhileHeld(ref Main.mouseItem, inv, context, slot, player, aequus)) {
+            if (!Main.mouseItem.IsAir && Main.mouseItem.ModItem is IRightClickOverrideWhenHeld rightClickOverride && rightClickOverride.RightClickOverrideWhileHeld(ref Main.mouseItem, inv, context, slot, player, aequus)) {
+                Main.mouseRightRelease = false;
+                // Set stack split delay to 3 seconds (so you don't instantly pick up the item with rclick)
+                Main.stackSplit = 180;
                 return;
             }
 

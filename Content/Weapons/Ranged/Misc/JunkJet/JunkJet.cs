@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Content.DataSets;
-using Aequus.Content.Items.Material;
+using Aequus.Content.Materials;
 using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;
@@ -8,6 +8,7 @@ using Terraria.Localization;
 
 namespace Aequus.Content.Weapons.Ranged.Misc.JunkJet;
 
+[LegacyName("Slingshot")]
 public class JunkJet : ModItem {
     public struct AmmoData {
         public int ProjectileId;
@@ -35,7 +36,7 @@ public class JunkJet : ModItem {
 
     public static readonly Dictionary<int, AmmoData> AmmoOverrides = new();
 
-    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Percent(AmmoReserveChance));
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Percent(AmmoReserveChance));
 
     #region Initialization
     public override void SetStaticDefaults() {
@@ -73,8 +74,8 @@ public class JunkJet : ModItem {
         Item.UseSound = AequusSounds.JunkJetShoot;
         Item.noMelee = true;
         Item.autoReuse = true;
-        Item.rare = ItemCommons.Rarity.CrabsonLoot;
-        Item.value = ItemCommons.Price.CrabsonLoot;
+        Item.rare = ItemCommons.Rarity.PollutedOceanLoot;
+        Item.value = ItemCommons.Price.PollutedOceanLoot;
         Item.useAmmo = AmmoID.Bullet;
     }
     #endregion
@@ -97,7 +98,7 @@ public class JunkJet : ModItem {
         }
 
         ammoData = new();
-        if (ItemSets.AmmoIdToProjectileId.TryGetValue(bulletItem, out var projectileConversion)) {
+        if (ItemMetadata.AmmoIdToProjectileId.TryGetValue(bulletItem, out var projectileConversion)) {
             ammoData.ProjectileId = projectileConversion;
             return;
         }

@@ -16,7 +16,7 @@ public sealed class GravityGlobalItem : GlobalItem {
     public float itemGravityMultiplier = 1f;
 
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
-        return !ItemID.Sets.ItemNoGravity[entity.type];
+        return !ItemSets.ItemNoGravity[entity.type];
     }
 
     public void SetNoGrav(Item item, byte duration) {

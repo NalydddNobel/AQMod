@@ -1,6 +1,4 @@
-﻿using Aequus.Common.Items;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Aequus.Core.ContentGeneration;
 using Terraria.GameContent;
 using Terraria.Localization;
 
@@ -9,20 +7,20 @@ namespace Aequus.Content.Bosses;
 internal class InstancedBossBag : InstancedModItem {
     private readonly int InternalRarity;
     private readonly bool PreHardmode;
-    private string _bossName;
+    private readonly ModNPC _parent;
 
-    public InstancedBossBag(string name, int internalRarity, bool preHardmode = false) : base($"{name}Bag", $"{typeof(InstancedBossBag).NamespaceFilePath()}/TreasureBags/{name}Bag") {
-        _bossName = name;
+    public InstancedBossBag(ModNPC modNPC, int internalRarity, bool preHardmode = false) : base($"{modNPC.Name}Bag", $"{modNPC.NamespaceFilePath()}/Items/{modNPC.Name}Bag") {
+        _parent = modNPC;
         InternalRarity = internalRarity;
         PreHardmode = preHardmode;
     }
 
-    public override LocalizedText DisplayName => Language.GetText("Mods.Aequus.Items.TreasureBag.DisplayName").WithFormatArgs(Language.GetOrRegister($"Mods.Aequus.NPCs.{_bossName}.DisplayName"));
+    public override LocalizedText DisplayName => Language.GetText("Mods.Aequus.Items.TreasureBag.DisplayName").WithFormatArgs(_parent.DisplayName);
     public override LocalizedText Tooltip => Language.GetText("CommonItemTooltip.RightClickToOpen");
 
     public override void SetStaticDefaults() {
-        ItemID.Sets.BossBag[Type] = true;
-        ItemID.Sets.PreHardmodeLikeBossBag[Type] = PreHardmode;
+        ItemSets.BossBag[Type] = true;
+        ItemSets.PreHardmodeLikeBossBag[Type] = PreHardmode;
 
         Item.ResearchUnlockCount = 3;
     }
@@ -36,7 +34,9 @@ internal class InstancedBossBag : InstancedModItem {
         Item.expert = true;
     }
 
-    public override bool CanRightClick() => true;
+    public override bool CanRightClick() {
+        return true;
+    }
 
     public override Color? GetAlpha(Color lightColor) {
         return Color.Lerp(lightColor, Color.White, 0.4f);

@@ -4,8 +4,8 @@ using Terraria.GameContent.Drawing;
 
 namespace Aequus.Common.Tiles;
 
-public class VineDrawing : ILoadable {
-    public static readonly Dictionary<int, int> VineLength = new();
+public class VineDrawing : ILoad {
+    public static readonly Dictionary<int, Point> VineLength = new();
 
     public static void DrawVine(int i, int j) {
         SpecialTileRenderer.AddVanillaSpecialPoint(i, j, 5);
@@ -14,8 +14,9 @@ public class VineDrawing : ILoadable {
     private static void On_TileDrawing_DrawMultiTileVinesInWind(On_TileDrawing.orig_DrawMultiTileVinesInWind orig, TileDrawing self, Vector2 screenPosition, Vector2 offSet, int topLeftX, int topLeftY, int sizeX, int sizeY) {
         // Turn these into IL edits later?
 
-        if (VineLength.TryGetValue(Main.tile[topLeftX, topLeftY].TileType, out int value)) {
-            sizeY = value;
+        if (VineLength.TryGetValue(Main.tile[topLeftX, topLeftY].TileType, out Point value)) {
+            sizeX = value.X;
+            sizeY = value.Y;
         }
 
         // Strange drawing hack used by Starite in a Bottle

@@ -12,13 +12,16 @@ internal interface ISupportedMod<TMod> where TMod : SupportedMod<TMod> {
     }
 }
 
-internal class SupportedMod<TMod> : ModSystem where TMod : SupportedMod<TMod> {
+internal class SupportedMod<TMod> : ModSystem, ISupportedMod<TMod>, ILocalizedModType where TMod : SupportedMod<TMod> {
+    /// <summary>The Supported Mod's instance. This property is <see langword="null" /> when the mod is not enabled.</summary>
     public static Mod Instance { get; private set; }
     public static string ModName => typeof(TMod).Name;
-    public static bool IsEnabled => ModLoader.HasMod(ModName);
+    public static bool Enabled { get; private set; }
+
+    public string LocalizationCategory => $"CrossMod";
 
     public static bool IsLoadingEnabled() {
-        return IsEnabled;
+        return ModLoader.HasMod(ModName);
     }
 
     public static object Call(params object[] args) {
@@ -80,10 +83,14 @@ internal class SupportedMod<TMod> : ModSystem where TMod : SupportedMod<TMod> {
     }
 
     public sealed override void Load() {
-        Instance = null;
         if (ModLoader.TryGetMod(ModName, out var mod)) {
             Instance = mod;
+            Enabled = true;
             SafeLoad(Instance);
+        }
+        else {
+            Enabled = false;
+            Instance = null;
         }
     }
 

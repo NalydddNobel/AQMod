@@ -1,7 +1,4 @@
-﻿using Aequus.Common.Tiles;
-using Aequus.Content.WorldGeneration;
-using System.Collections.Generic;
-using Terraria.ObjectData;
+﻿using System.Collections.Generic;
 using Terraria.WorldBuilding;
 
 namespace Aequus.Common.WorldGeneration;

@@ -12,11 +12,6 @@ public class WeightedHorseshoe : ModItem, IUpdateItemDye {
     public static float EnemyFallKnockback = 10f;
     public static float SlimeMountFallDamageMultiplier = 2f;
 
-    public override void SetStaticDefaults() {
-        ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.LuckyHorseshoe;
-        ItemID.Sets.ShimmerTransformToItem[ItemID.LuckyHorseshoe] = Type;
-    }
-
     public override void SetDefaults() {
         Item.DefaultToAccessory();
         Item.rare = ItemCommons.Rarity.SkyMerchantShopItem;

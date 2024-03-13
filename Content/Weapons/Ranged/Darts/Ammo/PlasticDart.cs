@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Items.Material;
+﻿using Aequus.Content.Materials;
 
 namespace Aequus.Content.Weapons.Ranged.Darts.Ammo;
 

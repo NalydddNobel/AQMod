@@ -8,3 +8,49 @@ Organized.DisplayName: Organizado
 Punctual.DisplayName: Puntual
 Steady.DisplayName: Estable
 Tardy.DisplayName: Tardío
+// PotionPrefixTooltip: Hold and press <right> while hovering over a potion to apply
+
+SplashPrefix: {
+	// DisplayName: Splashable
+	// Ability: +Throwable
+	// ItemName: Moray Pollen
+	/* ItemTooltip:
+		'''
+		Allows for potions to be thrown
+		{$Prefixes.PotionPrefixTooltip}
+		''' */
+}
+
+BoundedPrefix: {
+	// DisplayName: Bounded
+	// Ability: +Beyond Death
+	// ItemName: Manacle Pollen
+	/* ItemTooltip:
+		'''
+		Allows potion buffs to stay after death
+		{$Prefixes.PotionPrefixTooltip}
+		''' */
+}
+
+StuffedPrefix: {
+	// DisplayName: Stuffed
+	// Ability: x{0} duration
+	// ItemName: Stellar Cubes
+	/* ItemTooltip:
+		'''
+		Doubles the duration of potions
+		{$Prefixes.PotionPrefixTooltip}
+		''' */
+}
+
+EmpoweredPrefix: {
+	// DisplayName: Empowered
+	// Ability: x{0} strength
+	// Downside: "{$StuffedPrefix.Ability}"
+	// ItemName: Mistral Pollen
+	/* ItemTooltip:
+		'''
+		Increases the strength of potions
+		{$Prefixes.PotionPrefixTooltip}
+		''' */
+}

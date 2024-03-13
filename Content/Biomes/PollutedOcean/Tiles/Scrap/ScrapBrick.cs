@@ -1,16 +1,19 @@
-﻿using Aequus.Common.Tiles;
+﻿using Aequus.Core.ContentGeneration;
 
 namespace Aequus.Content.Biomes.PollutedOcean.Tiles.Scrap;
 
 public class ScrapBrick : ModTile {
     public override void Load() {
-        Mod.AddContent(new InstancedTileItem(this).WithRecipe((item) => {
+        ModItem item = new InstancedTileItem(this);
+        Mod.AddContent(item);
+
+        Aequus.OnAddRecipes += () => {
             item.CreateRecipe()
                 .AddIngredient(ScrapBlock.Item)
                 .AddIngredient(ItemID.StoneBlock)
                 .AddTile(TileID.Furnaces)
                 .Register();
-        }));
+        };
     }
 
     public override void SetStaticDefaults() {
@@ -22,5 +25,7 @@ public class ScrapBrick : ModTile {
         MineResist = 1.5f;
     }
 
-    public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
+    public override void NumDust(int i, int j, bool fail, ref int num) {
+        num = fail ? 1 : 3;
+    }
 }

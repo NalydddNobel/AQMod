@@ -62,7 +62,7 @@ public struct AnimationItemSpew : IOverlayDrawer {
     }
 
     private void GetItemDrawValues(float progress, FastRandom rng, ref Vector2 drawLocation, out Color lightColor, out float opacity, out float rotation, out float scale) {
-        bool noGravity = ItemID.Sets.ItemNoGravity[ItemId];
+        bool noGravity = ItemSets.ItemNoGravity[ItemId];
         opacity = 1f;
         rotation = (progress * 6f + rng.NextFloat(10f)) * (noGravity ? 0.03f : 1f);
         drawLocation += new Vector2(MathF.Sin(progress * rng.NextFloat(2f, 5f))).RotatedBy(progress * rng.NextFloat(0.05f, 0.1f)) * 10f;
@@ -86,7 +86,7 @@ public struct AnimationItemSpew : IOverlayDrawer {
             opacity *= 1f - MathF.Pow(fallProgress, 5f);
         }
 
-        lightColor = LightHelper.GetLightColor(drawLocation);
+        lightColor = ExtendLight.Get(drawLocation);
         scale = rng.NextFloat(0.6f, 0.8f);
     }
 

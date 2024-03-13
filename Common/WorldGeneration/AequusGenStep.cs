@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Terraria.GameContent.Generation;
 using Terraria.IO;
+using Terraria.Localization;
 using Terraria.Utilities;
 using Terraria.WorldBuilding;
 
@@ -11,16 +12,18 @@ namespace Aequus.Common.WorldGeneration;
 public abstract class AequusGenStep : ModType, ILocalizedModType, IPostSetupContent {
     public abstract string InsertAfter { get; }
 
-    public double Weight { get; private set; }
+    public double Weight { get; private set; } = 1f;
 
     public static UnifiedRandom Random => WorldGen.genRand;
 
-    protected virtual double GenWeight { get; }
+    protected virtual double GenWeight => 1f;
 
     public string LocalizationCategory => "GenStep";
 
     protected string name;
     public override string Name => name;
+
+    private string _genMessage;
 
     public AequusGenStep() {
         name = base.Name.Replace("Generator", "").Replace("Step", "");
@@ -63,12 +66,41 @@ public abstract class AequusGenStep : ModType, ILocalizedModType, IPostSetupCont
     /// <param name="keySuffix"></param>
     protected void SetMessage(GenerationProgress progress, object keySuffix = null) {
         if (progress != null) {
-            progress.Message = this.GetLocalizedValue($"DisplayMessage{(keySuffix == null ? "" : "." + keySuffix)}");
+            _genMessage = this.GetLocalizedValue($"DisplayMessage{(keySuffix == null ? "" : "." + keySuffix)}");
+            progress.Message = _genMessage;
         }
     }
 
-    protected static double IJLoopProgress(int i, int j) {
-        return (i * Main.maxTilesY + j) / (double)(Main.maxTilesX + Main.maxTilesY);
+    protected void SetSubMessage(GenerationProgress progress, string key = null) {
+        if (progress != null) {
+            progress.Message = _genMessage + this.GetLocalizedValue(key);
+        }
+    }
+
+    /// <summary>Determines the progress of an ij loop in a rectangle. Using 0-<see cref="Main.maxTilesX"/> and 0-<see cref="Main.maxTilesY"/> as the edges.</summary>
+    /// <param name="i"></param>
+    /// <param name="j"></param>
+    protected static double RectangleProgress(int i, int j) {
+        return RectangleProgress(i, j, 0, Main.maxTilesX, 0, Main.maxTilesY);
+    }
+    /// <summary>Determines the progress of an ij loop in a rectangle. Using 0-<see cref="Main.maxTilesY"/> as the vertical edges.</summary>
+    /// <param name="i"></param>
+    /// <param name="j"></param>
+    /// <param name="leftSide">X coordinate of the Left edge of the rectangle.</param>
+    /// <param name="rightSide">X coordinate of the Right edge of the rectnagle.</param>
+    protected static double RectangleProgress(int i, int j, int leftSide, int rightSide) {
+        return RectangleProgress(i, j, leftSide, rightSide, 0, Main.maxTilesY);
+    }
+    /// <summary>Determines the progress of an ij loop in a rectangle.</summary>
+    /// <param name="i"></param>
+    /// <param name="j"></param>
+    /// <param name="leftSide">X coordinate of the Left edge of the rectangle.</param>
+    /// <param name="rightSide">X coordinate of the Right edge of the rectnagle.</param>
+    /// <param name="topSide">Y coordinate of the Top Edge of the rectangle.</param>
+    /// <param name="bottomSide">Y coordinate of the Bottom Edge of the rectangle.</param>
+    protected static double RectangleProgress(int i, int j, int leftSide, int rightSide, int topSide, int bottomSide) {
+        int tilesYDifference = bottomSide - topSide;
+        return (i * tilesYDifference + j) / (double)(rightSide - leftSide + tilesYDifference);
     }
 
     /// <summary>
@@ -76,7 +108,7 @@ public abstract class AequusGenStep : ModType, ILocalizedModType, IPostSetupCont
     /// </summary>
     protected void SetProgress(GenerationProgress progress, double progressValue, double prevProgress = 0f, double wantedProgress = 1f) {
         if (progress != null) {
-            progress.Value = (prevProgress + (wantedProgress - prevProgress) * Math.Clamp(progressValue, 0f, 1f)) / Weight;
+            progress.Value = (prevProgress + (wantedProgress - prevProgress) * Math.Clamp(progressValue, 0f, 1f));
         }
     }
 

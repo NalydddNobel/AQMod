@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Tiles.Banners;
 
+[Browsable(false)]
+[Obsolete]
 internal class MonsterBanners : ModTile {
     public static readonly Dictionary<byte, ModTile> StyleToNewBannerTileConversion = new();
 

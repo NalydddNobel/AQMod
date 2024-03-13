@@ -251,10 +251,10 @@ public class HotAirBalloonMount : ModMount {
             var balloonFrame = balloonTexture.Frame(verticalFrames: BalloonFrames, frameY: balloonFrameY);
             var balloonDrawPos = drawPosition + new Vector2(drawPlayer.width / 2f - 10f, -balloonFrame.Height / 2f - frame.Height + 33f);
             balloonDrawPos.X -= MountData.xOffset * drawPlayer.direction;
-            var lightColor = LightHelper.GetBrightestLight((balloonDrawPos + Main.screenPosition).ToTileCoordinates(), 8);
+            var lightColor = ExtendLight.GetBrightestLight((balloonDrawPos + Main.screenPosition).ToTileCoordinates(), 8);
             float lightIntensity = (lightColor.R + lightColor.G + lightColor.B) / 3f / 255f * 0.9f;
             var balloonColor = lightColor.MultiplyRGB(color);
-            if (Aequus.highQualityEffects) {
+            if (Aequus.HighQualityEffects) {
                 playerDrawData.Add(new(balloonTexture, balloonDrawPos, balloonFrame, balloonColor, rotation, balloonFrame.Size() / 2f, 1f, spriteEffects, 0) { shader = drawPlayer.cMount });
                 if (lightIntensity < 0.99f) {
                     var balloonFlameColor = flameColor with { A = 0 } * Helper.Oscillate(Main.GlobalTimeWrappedHourly * 2f, 0.75f, 1f);

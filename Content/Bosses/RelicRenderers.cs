@@ -30,31 +30,37 @@ public record class BasicRelicRenderer(RequestCache<Texture2D> Texture) : IRelic
     }
 }
 
-public record class OmegaStariteRelicRenderer(RequestCache<Texture2D> Texture, int FrameCount) : IRelicRenderer {
+public record class OmegaStariteRelicRenderer(RequestCache<Texture2D> Texture) : IRelicRenderer {
+    public int FrameCount { get; set; } = 5;
+
     public void DrawRelic(int x, int y, Vector2 drawCoordinates, Color drawColor, SpriteEffects spriteEffects, float glow) {
         var tile = Main.tile[x, y];
         var baseFrame = new Rectangle(tile.TileFrameX, 0, 48, 48);
 
         var texture = Texture.Value;
-        var baseOrbFrame = new Rectangle(baseFrame.X, baseFrame.Y + baseFrame.Height + 2, 18, 18);
+        var baseOrbFrame = new Rectangle(baseFrame.X, baseFrame.Y + baseFrame.Height + 2, 16, 16);
         var orbFrame = baseOrbFrame;
         var orbOrigin = orbFrame.Size() / 2f;
         float f = Main.GlobalTimeWrappedHourly % (MathHelper.TwoPi / 5f) - MathHelper.PiOver2;
         int k = 0;
+        int direction = spriteEffects.HasFlag(SpriteEffects.FlipHorizontally) ? 1 : -1;
+        float oscYMagnitude = 0.7f * direction;
+        float oscXMagnitude = baseFrame.Width / 2f - 2f;
+        float orbYOffset = 4f;
         for (; f <= MathHelper.Pi - MathHelper.PiOver2; f += MathHelper.TwoPi / 5f) {
-            float wave = (float)Math.Sin(f);
+            float wave = (float)Math.Sin(f * -direction);
             float z = (float)Math.Sin(f + MathHelper.PiOver2);
             orbFrame.Y = baseOrbFrame.Y + (int)MathHelper.Clamp(2 + z * 2.5f, 0f, FrameCount) * orbFrame.Height;
             k++;
-            IRelicRenderer.Draw(Main.spriteBatch, texture, drawCoordinates + new Vector2(wave * baseFrame.Width / 2f, wave * orbFrame.Height * 0.4f - 8f), orbFrame, drawColor, orbOrigin, spriteEffects, glow);
+            IRelicRenderer.Draw(Main.spriteBatch, texture, drawCoordinates + new Vector2(wave * oscXMagnitude, wave * orbFrame.Height * oscYMagnitude+ orbYOffset), orbFrame, drawColor, orbOrigin, spriteEffects, glow);
         }
         IRelicRenderer.Draw(Main.spriteBatch, texture, drawCoordinates, baseFrame, drawColor, baseFrame.Size() / 2f, spriteEffects, glow);
         for (; k < 5; f += MathHelper.TwoPi / 5f) {
-            float wave = (float)Math.Sin(f);
+            float wave = (float)Math.Sin(f * -direction);
             float z = (float)Math.Sin(f + MathHelper.PiOver2);
-            orbFrame.Y = baseOrbFrame.Y + (int)MathHelper.Clamp(2 + z * 2.5f, 0f, 5f) * orbFrame.Height;
+            orbFrame.Y = baseOrbFrame.Y + (int)MathHelper.Clamp(2 + z * 2.5f, 0f, FrameCount) * orbFrame.Height;
             k++;
-            IRelicRenderer.Draw(Main.spriteBatch, texture, drawCoordinates + new Vector2(wave * baseFrame.Width / 2f, wave * orbFrame.Height * 0.4f - 8f), orbFrame, drawColor, orbOrigin, spriteEffects, glow);
+            IRelicRenderer.Draw(Main.spriteBatch, texture, drawCoordinates + new Vector2(wave * oscXMagnitude, wave * orbFrame.Height * oscYMagnitude + orbYOffset), orbFrame, drawColor, orbOrigin, spriteEffects, glow);
         }
 
     }

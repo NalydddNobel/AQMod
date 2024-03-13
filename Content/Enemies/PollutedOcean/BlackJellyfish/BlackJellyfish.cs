@@ -3,8 +3,7 @@ using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Content.DataSets;
 using Aequus.Content.Graphics.Particles;
-using Aequus.Content.Tiles.Banners;
-using Aequus.Core;
+using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics;
 using System;
 using Terraria.Audio;
@@ -15,15 +14,14 @@ using Terraria.GameContent.Shaders;
 namespace Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
 
 [AutoloadBanner]
-[ModBiomes(typeof(PollutedOceanBiome))]
+[ModBiomes(typeof(PollutedOceanBiomeUnderground))]
 public partial class BlackJellyfish : AIJellyfish {
     public static int AttackRange => 60;
 
     #region Initialization
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = 4;
-        NPCSets.PushableByTypeId.AddEntry(Type);
-        DrawLayers.Instance.PostDrawLiquids += DrawExplodingJellyfishesLayer;
+        NPCMetadata.PushableByTypeId.Add(Type);
     }
 
     public override void SetDefaults() {
@@ -54,7 +52,7 @@ public partial class BlackJellyfish : AIJellyfish {
 
     public override void AI() {
         if (Main.netMode != NetmodeID.Server) {
-            float lightingIntensity = GetLightingIntensity();
+            float lightingIntensity = GetLightMagnitude();
             if (lightingIntensity <= 0.75f) {
                 NPC.ShowNameOnHover = false;
                 NPC.nameOver = 0f;
@@ -122,7 +120,7 @@ public partial class BlackJellyfish : AIJellyfish {
             NPC.width = AttackRange * 2;
             NPC.height = AttackRange * 2;
             NPC.Center = center;
-            NPC.damage *= 5;
+            NPC.damage *= 4;
             NPC.noTileCollide = true;
             NPC.dontTakeDamage = true;
         }
@@ -165,7 +163,7 @@ public partial class BlackJellyfish : AIJellyfish {
         if (Collision.WetCollision(NPC.position, NPC.width, NPC.height)) {
             // Bubble particles if underwater
             UnderwaterBubbleParticles bubbleParticles = ModContent.GetInstance<UnderwaterBubbleParticles>();
-            foreach (var particle in bubbleParticles.NewMultiple(32)) {
+            foreach (var particle in bubbleParticles.NewMultipleReduced(32, 8)) {
                 particle.Location = NPC.Center;
                 particle.Frame = (byte)Main.rand.Next(3);
                 particle.Velocity = Main.rand.NextVector2Unit() * Main.rand.NextFloat(0.01f, 0.4f);
@@ -195,10 +193,21 @@ public partial class BlackJellyfish : AIJellyfish {
         return false;
     }
 
-    public float GetLightingIntensity() {
-        return GetLightingIntensity(LightHelper.GetLightColor(NPC.Center));
+    public override bool? CanFallThroughPlatforms() {
+        return true;
     }
-    public static float GetLightingIntensity(Color lightColor) {
+
+    /// <summary>Gets the lighting magnitude for this Jellyfish. Returns 1f if <see cref="NPC.IsABestiaryIconDummy"/> is <see langword="true"></see>.</summary>
+    /// <returns><inheritdoc cref="GetLightMagnitude(Color)"/></returns>
+    public float GetLightMagnitude() {
+        if (NPC.IsABestiaryIconDummy) {
+            return 1f;
+        }
+        return GetLightMagnitude(ExtendLight.Get(NPC.Center));
+    }
+    /// <param name="lightColor">The Light color</param>
+    /// <returns>A value between 0.45 and 1 which represents the light's magnitude.</returns>
+    public static float GetLightMagnitude(Color lightColor) {
         return Math.Clamp(MathF.Pow(lightColor.ToVector3().Length(), 4f), 0.45f, 1f);
     }
 }

@@ -10,7 +10,7 @@ public class StunGunDebuff : ModBuff, IOnAddBuff/*, IAddRecipeGroups*/ {
 
     public override void SetStaticDefaults() {
         Main.debuff[Type] = true;
-        BuffSets.ModifiesMoveSpeed.AddEntry(Type);
+        BuffSets.GrantImmunityWith[Type].Add(BuffID.Slow);
     }
 
     #region On Add Buff
@@ -35,7 +35,7 @@ public class StunGunDebuff : ModBuff, IOnAddBuff/*, IAddRecipeGroups*/ {
         //if (npc.ModNPC?.Mod?.Name == "CalamityMod") {
         //    return true;
         //}
-        return !NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type] && (!npc.buffImmune[BuffID.Confused] || NPCSets.StunnableByTypeId.Contains(npc.type) || NPCSets.StunnableByAI.Contains(npc.aiStyle));
+        return !NPCSets.BelongsToInvasionOldOnesArmy[npc.type] && (!npc.buffImmune[BuffID.Confused] || NPCMetadata.StunnableByTypeId.Contains(npc.type) || NPCMetadata.StunnableByAI.Contains(npc.aiStyle));
     }
 
     private void EmitParticles(Entity entity, int[] buffTime, ref int buffIndex) {

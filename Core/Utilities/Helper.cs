@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Terraria.Audio;
+using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.IO;
 using Terraria.Utilities;
@@ -37,8 +38,38 @@ public static class Helper {
         return Math.Sign(velocity.Y) == Math.Sign(gravDir);
     }
 
-    public static string ModPath(this SoundStyle sound) {
-        return string.Join('/', sound.SoundPath.Split('/')[1..]);
+    public static int FindTarget(Vector2 position, int width = 2, int height = 2, float maxRange = 800f, object me = null, Func<int, bool> validCheck = null) {
+        float num = maxRange;
+        int result = -1;
+        var center = position + new Vector2(width / 2f, height / 2f);
+        for (int i = 0; i < 200; i++) {
+            NPC nPC = Main.npc[i];
+            if (nPC.CanBeChasedBy(me) && (validCheck == null || validCheck.Invoke(i))) {
+                float num2 = Vector2.Distance(center, Main.npc[i].Center);
+                if (num2 < num) {
+                    num = num2;
+                    result = i;
+                }
+            }
+        }
+        return result;
+    }
+
+    public static int FindTargetWithLineOfSight(Vector2 position, int width = 2, int height = 2, float maxRange = 800f, object me = null, Func<int, bool> validCheck = null) {
+        float num = maxRange;
+        int result = -1;
+        var center = position + new Vector2(width / 2f, height / 2f);
+        for (int i = 0; i < 200; i++) {
+            NPC nPC = Main.npc[i];
+            if (nPC.CanBeChasedBy(me) && (validCheck == null || validCheck.Invoke(i))) {
+                float num2 = Vector2.Distance(center, Main.npc[i].Center);
+                if (num2 < num && Collision.CanHit(position, width, height, nPC.position, nPC.width, nPC.height)) {
+                    num = num2;
+                    result = i;
+                }
+            }
+        }
+        return result;
     }
 
     #region Type
@@ -254,16 +285,28 @@ public static class Helper {
                 loot.Remove(l);
             }
             else if (l is OneFromOptionsDropRule oneFromOptions) {
-                EnumerableHelper.Remove(ref oneFromOptions.dropIds, itemId);
+                ExtendArray.Remove(ref oneFromOptions.dropIds, itemId);
             }
             else if (l is OneFromOptionsNotScaledWithLuckDropRule oneFromOptionsNotScaledWithLuck) {
-                EnumerableHelper.Remove(ref oneFromOptionsNotScaledWithLuck.dropIds, itemId);
+                ExtendArray.Remove(ref oneFromOptionsNotScaledWithLuck.dropIds, itemId);
             }
         }
     }
     #endregion
 
     #region World
+    public static bool FrozenTimeActive() {
+        return CreativePowerManager.Instance.GetPower<CreativePowers.FreezeTime>().Enabled;
+    }
+
+    public static int GetTimeScale() {
+        if (FrozenTimeActive()) {
+            return 0;
+        }
+
+        return CreativePowerManager.Instance.GetPower<CreativePowers.ModifyTimeRate>().TargetTimeRate;
+    }
+
     public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
 
     public static bool ZoneSkyHeight(Entity entity) {

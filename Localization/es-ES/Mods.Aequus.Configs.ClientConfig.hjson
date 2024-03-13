@@ -4,3 +4,18 @@ ShowDeathTips: {
 	Label: "[i:Tombstone] Tips de Muerte"
 	Tooltip: Los [c/ffffbb:Tips de Juego] se mostraran mientras Reapareces.
 }
+
+ShowNecromancyOutlines: {
+	// Label: "[i:Insurgency] Show Necromancy Outlines"
+	// Tooltip: "[c/ffffbb:Ghost minions] will have outlines to make them stand out."
+}
+
+FlashIntensity: {
+	// Label: "[i:CosmicMonolith] Flash Intensity"
+	// Tooltip: ""
+}
+
+FlashLoops: {
+	// Label: "[i:CosmicMonolith] Flash Loops"
+	// Tooltip: ""
+}

@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Items.Components;
+using Aequus.Content.DataSets;
 using Aequus.Content.Weapons.Classless;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,8 @@ public class AequusPrefixes : GlobalItem {
     public static List<CooldownPrefix> RegisteredCooldownPrefixes { get; private set; } = new();
 
     public override void Load() {
-        DetourHelper.AddHook(typeof(PrefixLoader).GetMethod(nameof(PrefixLoader.CanRoll)), typeof(AequusPrefixes).GetMethod(nameof(On_PrefixLoader_CanRoll), BindingFlags.NonPublic | BindingFlags.Static));
+        On_Item.CanHavePrefixes += On_Item_CanHavePrefixes;
+        HookManager.ApplyAndCacheHook(typeof(PrefixLoader).GetMethod(nameof(PrefixLoader.CanRoll)), typeof(AequusPrefixes).GetMethod(nameof(On_PrefixLoader_CanRoll), BindingFlags.NonPublic | BindingFlags.Static));
     }
 
     public override void Unload() {
@@ -19,6 +21,14 @@ public class AequusPrefixes : GlobalItem {
     }
 
     #region Hooks
+    private static bool On_Item_CanHavePrefixes(On_Item.orig_CanHavePrefixes orig, Item self) {
+        if (ItemMetadata.Potions.Contains(self.type)) {
+            return true;
+        }
+
+        return orig(self);
+    }
+
     private static bool On_PrefixLoader_CanRoll(Func<Item, int, bool> orig, Item item, int prefix) {
         if (item.ModItem is ClasslessWeapon && prefix < PrefixID.Count) {
             return true;

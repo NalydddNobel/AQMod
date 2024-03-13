@@ -1,1 +1,5 @@
-SkyMerchantEmote.Command: Mercaderdelcielo
+SkyMerchant.Command: Mercaderdelcielo
+// Occultist.Command: occultistgood
+// OccultistHostile.Command: occultist
+// Physicist.Command: physicist
+// PhysicistPet.Command: physicistpet

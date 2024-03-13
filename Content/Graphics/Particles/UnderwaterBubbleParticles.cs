@@ -20,7 +20,7 @@ public class UnderwaterBubbleParticles : ParallelParticleArray<UnderwaterBubbleP
 
     public override int ParticleCount => 100;
 
-    public static bool AllowMergeDrawing => Aequus.highQualityEffects;
+    public static bool AllowMergeDrawing => Aequus.HighQualityEffects;
 
     public override void Draw(SpriteBatch spriteBatch) {
         if (!AllowMergeDrawing) {
@@ -75,7 +75,7 @@ public class UnderwaterBubbleParticles : ParallelParticleArray<UnderwaterBubbleP
                 float scale = Helper.Oscillate(Main.GameUpdateCount / 60f + k, 0.9f, 1.1f);
                 Vector2 drawLocation = bubble.Location - Main.screenPosition;
                 Vector2 velocity = bubble.Velocity;
-                Color color = LightHelper.GetLightColor(bubble.Location) * Math.Max(minOpacity, bubble.Opacity);
+                Color color = ExtendLight.Get(bubble.Location) * Math.Max(minOpacity, bubble.Opacity);
 
                 spriteBatch.Draw(texture, drawLocation, frame, color, rotation, origin, scale, SpriteEffects.None, 0f);
             }
@@ -94,7 +94,7 @@ public class UnderwaterBubbleParticles : ParallelParticleArray<UnderwaterBubbleP
             if (Main.rand.NextBool(240)) {
                 bubble.Frame--;
             }
-            if (!Collision.WetCollision(bubble.Location, 0, 0) || Collision.LavaCollision(bubble.Location, 0, 0) || bubble.Frame < 0 || opacity <= 0f) {
+            if (bubble.Opacity < 0.975f && (!Collision.WetCollision(bubble.Location - new Vector2(8f, 16f), 16, 16) || Collision.LavaCollision(bubble.Location, 0, 0) || bubble.Frame < 0 || opacity <= 0f)) {
                 bubble.Active = false;
                 continue;
             }

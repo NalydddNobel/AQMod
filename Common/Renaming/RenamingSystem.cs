@@ -1,9 +1,8 @@
-﻿using Aequus.Core;
+﻿using Aequus.Core.IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 using Terraria.DataStructures;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
@@ -21,13 +20,13 @@ public sealed class RenamingSystem : ModSystem {
     };
 
     private static void LanguageKeyCommand(string fullCommand, string commandInput, List<DecodedText> output) {
-        string languageText = Language.GetTextValue(commandInput, Lang.CreateDialogSubstitutionObject());
+        string languageText = Language.GetTextValue(commandInput, LanguageDatabase.CreateDialogSubstitutionObject());
 
         output.Add(new DecodedText(fullCommand, languageText, commandInput == languageText ? DecodeType.FailedCommand : DecodeType.LanguageKey));
     }
     #endregion
 
-    public static Dictionary<DecodeType, Color> DecodeColors { get; private set; } = new() {
+    public static Dictionary<DecodeType, Color> DecodeTCommonColor { get; private set; } = new() {
         [DecodeType.None] = Color.White,
         [DecodeType.FailedCommand] = new Color(255, 120, 120),
         [DecodeType.LanguageKey] = new Color(255, 255, 80),
@@ -52,7 +51,7 @@ public sealed class RenamingSystem : ModSystem {
 
         string result = "";
         foreach (var i in _decodedTextList) {
-            result += i.Type != DecodeType.None ? TextHelper.ColorCommand(i.Output, DecodeColors[i.Type], pulse) : i.Output;
+            result += i.Type != DecodeType.None ? ChatTagWriter.Color(Colors.AlphaDarken(DecodeTCommonColor[i.Type]), i.Output) : i.Output;
         }
 
         return result;
@@ -116,7 +115,7 @@ public sealed class RenamingSystem : ModSystem {
     private static int _gameTime;
 
     public override void Load() {
-        IOHooks.PreSaveWorld += EnsureTagCompoundContents;
+        SaveActions.PreSaveWorld += EnsureTagCompoundContents;
     }
 
     public override void ClearWorld() {

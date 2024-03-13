@@ -1,13 +1,11 @@
-﻿using Aequus.Core.PhysicsObjects;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Aequus.Core.PhysicsBehaviors;
 using System;
 using Terraria.GameContent;
 
 namespace Aequus.Content.Equipment.Accessories.WeightedHorseshoe;
 
 public class WeightedHorseshoeVisual : ModProjectile {
-    public RopeChain horseshoeAnvilRope;
+    public VerletIntegrationStringTwoPoint<VINode> horseshoeAnvilRope;
 
     public override void SetStaticDefaults() {
     }
@@ -43,14 +41,13 @@ public class WeightedHorseshoeVisual : ModProjectile {
         else {
             Projectile.tileCollide = true;
         }
-        horseshoeAnvilRope ??= new(anvilAnchor, 9, 4.33f, gravity);
+        horseshoeAnvilRope ??= new VerletIntegrationStringTwoPoint<VINode>(anvilAnchor, Projectile.Center + new Vector2(0f, Projectile.gfxOffY), 9, 4.33f, gravity);
         horseshoeAnvilRope.StartPos = anvilAnchor;
-        horseshoeAnvilRope.EndPos = Projectile.Center + new Vector2(0f, Projectile.gfxOffY);
-        horseshoeAnvilRope.segments[^1].position = horseshoeAnvilRope.EndPos;
+        horseshoeAnvilRope.EndPosition = horseshoeAnvilRope.EndPosition;
         horseshoeAnvilRope.gravity = gravity;
         horseshoeAnvilRope.damping = Utils.GetLerpValue(20, 0, player.velocity.Length(), true) * 0.05f;
         horseshoeAnvilRope.Update();
-        float wantedRotation = (Projectile.Center - horseshoeAnvilRope.segments[horseshoeAnvilRope.segments.Count / 5].position).ToRotation();
+        float wantedRotation = (Projectile.Center - horseshoeAnvilRope.segments[horseshoeAnvilRope.segments.Length / 5].Position).ToRotation();
         Projectile.rotation = Projectile.rotation.AngleTowards(wantedRotation, 0.1f);
 
         var groundTileCoordinates = Projectile.Bottom.ToTileCoordinates();
@@ -118,7 +115,7 @@ public class WeightedHorseshoeVisual : ModProjectile {
     }
 
     private Color GetStringColor(Vector2 stringStart, Vector2 stringEnd, Color baseColor) {
-        return (LightHelper.GetLightColor((stringStart + stringEnd) / 2f).MultiplyRGB(baseColor) * 0.75f) with { A = 255, };
+        return (ExtendLight.Get((stringStart + stringEnd) / 2f).MultiplyRGB(baseColor) * 0.75f) with { A = 255, };
     }
 
     public override bool PreDraw(ref Color lightColor) {
@@ -130,12 +127,12 @@ public class WeightedHorseshoeVisual : ModProjectile {
         var aequusPlayer = player.GetModPlayer<AequusPlayer>();
         Main.instance.PrepareDrawnEntityDrawing(Projectile, aequusPlayer.cHorseshoeAnvil, null);
         var stringColor = DrawHelper.GetYoyoStringColor(player.stringColor);
-        for (int i = 1; i < horseshoeAnvilRope.segments.Count; i++) {
-            var start = horseshoeAnvilRope.segments[i].position;
-            var end = horseshoeAnvilRope.segments[i - 1].position;
+        for (int i = 1; i < horseshoeAnvilRope.segments.Length; i++) {
+            var start = horseshoeAnvilRope.segments[i].Position;
+            var end = horseshoeAnvilRope.segments[i - 1].Position;
             DrawHelper.DrawLine(Main.EntitySpriteDraw, start - Main.screenPosition, end - Main.screenPosition, 2f, GetStringColor(start, end, stringColor));
         }
-        DrawHelper.DrawLine(Main.EntitySpriteDraw, Projectile.Center - Main.screenPosition, horseshoeAnvilRope.segments[^1].position - Main.screenPosition, 2f, GetStringColor(Projectile.Center, horseshoeAnvilRope.segments[^1].position, stringColor));
+        DrawHelper.DrawLine(Main.EntitySpriteDraw, Projectile.Center - Main.screenPosition, horseshoeAnvilRope.segments[^1].Position - Main.screenPosition, 2f, GetStringColor(Projectile.Center, horseshoeAnvilRope.segments[^1].Position, stringColor));
         var texture = TextureAssets.Projectile[Type].Value;
         var effects = Math.Abs(Projectile.rotation) > MathHelper.PiOver2 ? SpriteEffects.FlipVertically : SpriteEffects.None;
         Main.EntitySpriteDraw(texture, Projectile.Center + new Vector2(0f, 4f + Projectile.gfxOffY) - Main.screenPosition, null, lightColor, Projectile.rotation, texture.Size() / 2f, Projectile.scale, effects, 0f);

@@ -1,0 +1,32 @@
+Avalon: {
+	Buffs: {
+		BacciliteSceptreDebuff: {
+			DisplayName: "{Avalon.Items.BacciliteSceptre.DisplayName}"
+			Description: Mods.Aequus.CrossMod.Avalon.Buffs.BacciliteSceptreDebuff.Description
+		}
+	}
+
+	Items: {
+		BacciliteSceptre: {
+			DisplayName: 凋亡权杖
+			Tooltip: "{$Items.CorruptionSceptre.Tooltip}"
+		}
+	}
+
+	Projectiles.BacciliteSceptreProj.DisplayName: "{Avalon.Items.BacciliteSceptre.DisplayName}"
+
+	ItemDropRules: {
+		IsContagion: Contagion掉落
+		IsNotContagion: Contagion世界之外掉落
+	}
+}
+
+Fargowiltas: {
+	Stats: {
+		MaxGhostSlots: 幽魂仆从栏位: {0}
+		GhostDuration: 幽魂仆从持续时间: {0}分钟
+		SceptreDebuffMultiplier: 权杖减益伤害: {0}%
+		DropRolls: 掉落重投: {0}
+		RespawnReduction: 重生冷却缩减: {0}秒
+	}
+}

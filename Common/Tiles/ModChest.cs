@@ -1,4 +1,6 @@
-﻿using System.Runtime.CompilerServices;
+﻿using Aequus.Core.ContentGeneration;
+using Aequus.Core.Initialization;
+using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -13,14 +15,21 @@ namespace Aequus.Common.Tiles;
 public abstract class ModChest : ModTile {
     private LocalizedText _nameCache;
 
-    public ModItem Item { get; private set; }
+    public ModItem DropItem { get; private set; }
 
     public int FrameWidth { get; private set; }
     public int FrameHeight { get; private set; }
 
+    public virtual bool LoadTrappedChest => true;
+
     public override void Load() {
-        Item = new InstancedTileItem(this);
-        Mod.AddContent(Item);
+        DropItem = new InstancedTileItem(this, value: Item.sellPrice(silver: 1));
+        Mod.AddContent(DropItem);
+
+        if (LoadTrappedChest) {
+            TrappedChest trappedVariant = new TrappedChest(this);
+            Mod.AddContent(trappedVariant);
+        }
     }
 
     public sealed override void SetStaticDefaults() {
@@ -78,7 +87,7 @@ public abstract class ModChest : ModTile {
     }
 
     public override LocalizedText DefaultContainerName(int frameX, int frameY) {
-        return _nameCache ??= Item.DisplayName;
+        return _nameCache ??= DropItem.DisplayName;
     }
 
     public override ushort GetMapOption(int i, int j) {
@@ -169,7 +178,7 @@ public abstract class ModChest : ModTile {
     }
 
     public virtual int HoverItem(int i, int j, int left, int top) {
-        return Item.Type;
+        return DropItem.Type;
     }
 
     public override void MouseOver(int i, int j) {
@@ -237,5 +246,133 @@ public abstract class ModChest : ModTile {
 
     protected void SendChestUpdate(int x, int y, int style) {
         NetMessage.SendData(MessageID.ChestUpdates, number: 100, number2: x, number3: y, number4: style, number5: 0, number6: Type);
+    }
+}
+
+[Autoload(false)]
+internal class TrappedChest : InstancedModTile, IAddRecipes {
+    private readonly ModChest _baseChest;
+
+    private ModItem _item;
+
+    public TrappedChest(ModChest chest) : base(chest.Name + "Trapped", chest.Texture) {
+        _baseChest = chest;
+    }
+
+    public override void Load() {
+        _item = new InstancedTileItem(this, rarity: _baseChest.DropItem.Item.rare, value: _baseChest.DropItem.Item.value);
+        Mod.AddContent(_item);
+    }
+
+    public override void SetStaticDefaults() {
+        ItemSets.TrapSigned[_item.Type] = true;
+
+        Main.tileSpelunker[Type] = true;
+        Main.tileShine2[Type] = true;
+        Main.tileShine[Type] = 1200;
+        Main.tileFrameImportant[Type] = true;
+        Main.tileNoAttach[Type] = true;
+        Main.tileOreFinderPriority[Type] = 500;
+        Main.tileLavaDeath[Type] = false;
+        TileID.Sets.HasOutlines[Type] = true;
+        TileID.Sets.AvoidedByNPCs[Type] = true;
+        TileID.Sets.InteractibleByNPCs[Type] = true;
+        TileID.Sets.BasicChestFake[Type] = true;
+        TileID.Sets.DisableSmartCursor[Type] = true;
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
+        TileObjectData.newTile.Origin = new Point16(0, 1);
+        TileObjectData.newTile.CoordinateHeights = new int[] {
+            16,
+            18
+        };
+        TileObjectData.newTile.AnchorInvalidTiles = new int[] {
+            TileID.MagicalIceBlock
+        };
+        TileObjectData.newTile.StyleHorizontal = true;
+        TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
+        TileObjectData.addTile(Type);
+
+        _baseChest.SafeSetStaticDefaults();
+
+        DustType = -1;
+        AdjTiles = new int[] {
+            TileID.FakeContainers,
+            TileID.FakeContainers2,
+        };
+    }
+
+    public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
+
+    public override ushort GetMapOption(int i, int j) {
+        return (ushort)((Main.tile[i, j] != null) ? (Main.tile[i, j].TileFrameX / 36) : 0);
+    }
+
+    public override void MouseOver(int i, int j) {
+        Player localPlayer = Main.LocalPlayer;
+        localPlayer.noThrow = 2;
+        localPlayer.cursorItemIconEnabled = true;
+        localPlayer.cursorItemIconText = "";
+        localPlayer.cursorItemIconID = _baseChest.DropItem.Type;
+    }
+
+    public override bool RightClick(int i, int j) {
+        Tile tile = Main.tile[i, j];
+        Main.mouseRightRelease = false;
+        int num = i;
+        int num2 = j;
+        if (tile.TileFrameX % 36 != 0) {
+            num--;
+        }
+        if (tile.TileFrameY != 0) {
+            num2--;
+        }
+        Animation.NewTemporaryAnimation(2, tile.TileType, num, num2);
+        NetMessage.SendTemporaryAnimation(-1, 2, tile.TileType, num, num2);
+        Trigger(i, j);
+        if (Main.netMode == NetmodeID.MultiplayerClient) {
+            // TODO -- Send Trapped Chest opening data
+        }
+        return true;
+    }
+
+    public override void AnimateIndividualTile(int type, int i, int j, ref int frameXOffset, ref int frameYOffset) {
+        Tile tile = Main.tile[i, j];
+        int num = i;
+        int num2 = j;
+        if (tile.TileFrameX % 36 != 0) {
+            num--;
+        }
+        if (tile.TileFrameY != 0) {
+            num2--;
+        }
+        if (Animation.GetTemporaryFrame(num, num2, out int num3)) {
+            frameYOffset = 38 * num3;
+        }
+    }
+
+    public static void Trigger(int i, int j) {
+        Tile tile = Main.tile[i, j];
+        int num = i;
+        int num2 = j;
+        if (tile.TileFrameX % 36 != 0) {
+            num--;
+        }
+        if (tile.TileFrameY != 0) {
+            num2--;
+        }
+        SoundEngine.PlaySound(SoundID.Mech, new(i * 16, j * 16));
+        Wiring.TripWire(num, num2, 2, 2);
+    }
+
+    public override void PostDraw(int i, int j, SpriteBatch spriteBatch) {
+        _baseChest.PostDraw(i, j, spriteBatch);
+    }
+
+    public void AddRecipes(Aequus aequus) {
+        Recipe.Create(_item.Type)
+            .AddIngredient(_baseChest.Type)
+            .AddIngredient(ItemID.Wire, 10)
+            .AddTile(TileID.HeavyWorkBench)
+            .Register();
     }
 }

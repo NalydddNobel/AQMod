@@ -1,6 +1,6 @@
 ﻿namespace Aequus.Core.Particles;
 
-public interface IParticleSystem : ILoadable {
+public interface IParticleSystem : ILoad {
     void Update();
     void Draw(SpriteBatch spriteBatch);
     void Activate();
