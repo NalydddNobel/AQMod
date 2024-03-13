@@ -1,4 +1,5 @@
-﻿using Terraria.DataStructures;
+﻿using System.Collections.Generic;
+using Terraria.DataStructures;
 
 namespace Aequus.Core.Utilities;
 

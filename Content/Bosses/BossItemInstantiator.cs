@@ -8,7 +8,7 @@ namespace Aequus.Content.Bosses;
 public class BossItemInstantiator : ModSystem {
     public override void Load() {
 #pragma warning disable CS0618 // Type or member is obsolete
-        //AddBossContent("Crabson", ItemCommons.Rarity.CrabsonLoot, preHardmode: true, new BasicRelicRenderer(AequusTextures.CrabsonRelic), LegacyBossRelicsTile.Crabson);
+        //AddBossContent("Crabson", ItemDefaults.Rarity.CrabsonLoot, preHardmode: true, new BasicRelicRenderer(AequusTextures.CrabsonRelic), LegacyBossRelicsTile.Crabson);
         //AddBossMask("Crabson");
 
         AddBossContent("DustDevil", ItemCommons.Rarity.DustDevilLoot, preHardmode: true, new BasicRelicRenderer(AequusTextures.DustDevilRelic), LegacyBossRelicsTile.DustDevil);

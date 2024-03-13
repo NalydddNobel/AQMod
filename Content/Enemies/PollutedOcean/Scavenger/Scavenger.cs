@@ -2,6 +2,7 @@
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
 using Aequus.Content.Biomes.PollutedOcean;
+using Aequus.Content.CrossMod;
 using Aequus.Content.DataSets;
 using Aequus.Content.Equipment.Accessories.ScavengerBag;
 using Aequus.Core.ContentGeneration;
@@ -55,12 +56,12 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         SetupAccessoryUsages();
         SetupDrawLookups();
         Main.npcFrameCount[Type] = 20;
-        NPCID.Sets.Skeletons[Type] = true;
-        NPCID.Sets.NPCBestiaryDrawOffset[Type] = new() {
+        NPCSets.Skeletons[Type] = true;
+        NPCSets.NPCBestiaryDrawOffset[Type] = new() {
             Velocity = -1f,
             Scale = 1f,
         };
-        NPCSets.PushableByTypeId.AddEntry(Type);
+        NPCMetadata.PushableByTypeId.Add(Type);
 
         ThoriumMod.SupportsRepellant[Type] = ThoriumMod.RepellantType.Skeleton;
     }

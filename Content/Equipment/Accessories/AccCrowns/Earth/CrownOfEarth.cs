@@ -9,8 +9,8 @@ namespace Aequus.Content.Equipment.Accessories.AccCrowns.Earth;
 public class CrownOfEarth : ModItem, IHaveDownsideTip {
     public override void SetDefaults() {
         Item.DefaultToAccessory(14, 20);
-        Item.rare = ItemDefaults.Rarity.AccessoryCrown;
-        Item.value = ItemDefaults.Price.AccessoryCrown;
+        Item.rare = ItemCommons.Rarity.OccultistCrown;
+        Item.value = ItemCommons.Price.OccultistCrown;
         Item.hasVanityEffects = true;
     }
 }

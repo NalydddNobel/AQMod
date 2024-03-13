@@ -48,7 +48,7 @@ public class BloodCrownGlobalItem : GlobalItem {
 
         void AddTooltip(string text, bool isModifierBad = false) {
             // Add padding for symbol.
-            text += TextHelper.AirCharacter;
+            text += ExtendLanguage.AirCharacter;
 
             tooltips.Insert(prefixLine, new TooltipLine(Mod, "PrefixBloodCrown" + lineNum++, text) { IsModifier = true, IsModifierBad = isModifierBad, });
         }

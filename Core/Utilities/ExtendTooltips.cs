@@ -98,9 +98,18 @@ public static class ExtendTooltips {
         return tooltips.Find((t) => t != null && t.Mod.Equals("Terraria") && t.Name.Equals(name));
     }
 
+    public static bool TryGetItemName(this List<TooltipLine> tooltips, out TooltipLine value) {
+        value = ItemName(tooltips);
+        return value != null;
+    }
+
     /// <returns>The <see cref="TooltipLine"/> for an Item's name.</returns>
     public static TooltipLine ItemName(this List<TooltipLine> tooltips) {
         return tooltips.Find("ItemName");
+    }
+
+    public static int GetPrefixIndex(this List<TooltipLine> tooltips, int resultOffset = 0) {
+        return GetIndex(tooltips, "PrefixAccMeleeSpeed", resultOffset);
     }
 
     /// <summary>Removes the "Knockback" tooltip line, if it exists.</summary>

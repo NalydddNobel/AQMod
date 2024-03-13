@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 618)</summary>
+/// <summary>(Total Textures: 627)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -331,6 +331,32 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ScavengerLootBag = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline</summary>
     public static readonly RequestCache<Texture2D> ScavengerLootBag_Outline = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerBanner</summary>
+    public static readonly RequestCache<Texture2D> ScavengerBanner = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerBanner");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerBannerItem</summary>
+    public static readonly RequestCache<Texture2D> ScavengerBannerItem = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerBannerItem");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatue</summary>
+    public static readonly RequestCache<Texture2D> ScavengerStatue = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatue");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatueItem</summary>
+    public static readonly RequestCache<Texture2D> ScavengerStatueItem = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatueItem");
+    /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/BloodCrown</summary>
+    public static readonly RequestCache<Texture2D> BloodCrown = new("Aequus/Content/Equipment/Accessories/AccCrowns/Blood/BloodCrown");
+    /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/BloodCrownSlotDecal</summary>
+    public static readonly RequestCache<Texture2D> BloodCrownSlotDecal = new("Aequus/Content/Equipment/Accessories/AccCrowns/Blood/BloodCrownSlotDecal");
+    /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/BloodCrown_Crown</summary>
+    public static readonly RequestCache<Texture2D> BloodCrown_Crown = new("Aequus/Content/Equipment/Accessories/AccCrowns/Blood/BloodCrown_Crown");
+    /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/BloodSymbol</summary>
+    public static readonly RequestCache<Texture2D> BloodSymbol = new("Aequus/Content/Equipment/Accessories/AccCrowns/Blood/BloodSymbol");
+    /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/Heart</summary>
+    public static readonly RequestCache<Texture2D> Heart = new("Aequus/Content/Equipment/Accessories/AccCrowns/Blood/Heart");
+    /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/Heart2</summary>
+    public static readonly RequestCache<Texture2D> Heart2 = new("Aequus/Content/Equipment/Accessories/AccCrowns/Blood/Heart2");
+    /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/Heart_Template</summary>
+    public static readonly RequestCache<Texture2D> Heart_Template = new("Aequus/Content/Equipment/Accessories/AccCrowns/Blood/Heart_Template");
+    /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Earth/CrownOfEarth</summary>
+    public static readonly RequestCache<Texture2D> CrownOfEarth = new("Aequus/Content/Equipment/Accessories/AccCrowns/Earth/CrownOfEarth");
+    /// <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Moon/CrownOfMoon</summary>
+    public static readonly RequestCache<Texture2D> CrownOfMoon = new("Aequus/Content/Equipment/Accessories/AccCrowns/Moon/CrownOfMoon");
     /// <summary>Full Path: Content/Equipment/Accessories/Balloons/PurpleBalloon</summary>
     public static readonly RequestCache<Texture2D> PurpleBalloon = new("Aequus/Content/Equipment/Accessories/Balloons/PurpleBalloon");
     /// <summary>Full Path: Content/Equipment/Accessories/Balloons/PurpleBalloon_Balloon</summary>

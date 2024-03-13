@@ -204,49 +204,52 @@
             </summary>
         </member>
         <member name="P:Aequus.Common.Items.ItemCommons.Price.SkyMerchantShopItem">
-            <summary>1 Gold</summary>
+            <summary>Sell price: 1 Gold</summary>
         </member>
         <member name="P:Aequus.Common.Items.ItemCommons.Price.SkyMerchantCustomPurchasePrice">
-            <summary>5 Gold</summary>
+            <summary>Buy price: 5 Gold</summary>
         </member>
         <member name="P:Aequus.Common.Items.ItemCommons.Price.PollutedOceanLoot">
-            <summary>50 Silver</summary>
+            <summary>Sell price: 50 Silver</summary>
         </member>
         <member name="P:Aequus.Common.Items.ItemCommons.Price.AquaticBossLoot">
-            <summary>75 Silver</summary>
+            <summary>Sell price: 75 Silver</summary>
         </member>
         <member name="P:Aequus.Common.Items.ItemCommons.Price.GlimmerLoot">
-            <summary>1 Gold</summary>
+            <summary>Sell price: 1 Gold</summary>
         </member>
         <member name="P:Aequus.Common.Items.ItemCommons.Price.DungeonLoot">
-            <summary>1 Gold 75 Silver</summary>
+            <summary>Sell price: 1 Gold 75 Silver</summary>
         </member>
         <member name="P:Aequus.Common.Items.ItemCommons.Price.DemonSiegeLoot">
-            <summary>2 Gold</summary>
+            <summary>Sell price: 2 Gold</summary>
         </member>
         <member name="P:Aequus.Common.Items.ItemCommons.Price.OmegaStariteLoot">
-            <summary>3 Gold</summary>
+            <summary>Sell price: 3 Gold</summary>
         </member>
         <member name="P:Aequus.Common.Items.ItemCommons.Price.HardSandstormBlizzardLoot">
-            <summary>2 Gold</summary>
+            <summary>Sell price: 2 Gold</summary>
         </member>
         <member name="P:Aequus.Common.Items.ItemCommons.Price.SpaceStormLoot">
-            <summary>3 Gold</summary>
+            <summary>Sell price: 3 Gold</summary>
         </member>
         <member name="P:Aequus.Common.Items.ItemCommons.Price.DustDevilLoot">
-            <summary>3 Gold 50 Silver</summary>
+            <summary>Sell price: 3 Gold 50 Silver</summary>
         </member>
         <member name="P:Aequus.Common.Items.ItemCommons.Price.HardDungeonLoot">
-            <summary>6 Gold</summary>
+            <summary>Sell price: 6 Gold</summary>
         </member>
         <member name="P:Aequus.Common.Items.ItemCommons.Price.DemonSiegeTier2Loot">
-            <summary>8 Gold</summary>
+            <summary>Sell price: 8 Gold</summary>
         </member>
         <member name="P:Aequus.Common.Items.ItemCommons.Price.UpriserLoot">
-            <summary>8 Gold 50 Silver</summary>
+            <summary>Sell price: 8 Gold 50 Silver</summary>
         </member>
         <member name="P:Aequus.Common.Items.ItemCommons.Price.YinYangLoot">
-            <summary>10 Gold</summary>
+            <summary>Sell price: 10 Gold</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemCommons.Price.OccultistCrown">
+            <summary>Buy price: 30 Gold</summary>
         </member>
         <member name="F:Aequus.Common.NPCs.AIJellyfish.shockRampUpDistance">
             <summary>
@@ -318,6 +321,18 @@
             <summary>
             Multiplier used to reduce velocity when above the dash's halting speed.
             </summary>
+        </member>
+        <member name="M:Aequus.Common.Players.Stats.IStatComparison.Record(Terraria.Player)">
+            <summary>
+            Record stats for comparison later.
+            </summary>
+            <param name="player"></param>
+        </member>
+        <member name="M:Aequus.Common.Players.Stats.IStatComparison.Measure(Terraria.Player)">
+            <summary>
+            Fill out <see cref="P:Aequus.Common.Players.Stats.IStatComparison.Difference"/> and <see cref="P:Aequus.Common.Players.Stats.IStatComparison.DifferenceText"/> with new player stats.
+            </summary>
+            <param name="player"></param>
         </member>
         <member name="F:Aequus.Common.Projectiles.LegacyHeldSlashingSwordProjectile.swordHeight">
             <summary>
@@ -736,10 +751,31 @@
             <param name="modWall"></param>
             <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
         </member>
-        <member name="F:Aequus.AequusPlayer.MinimumRespawnTime">
-            <summary>
-            The lowest any respawn-time reducing items can go.
-            </summary>
+        <member name="M:Aequus.Core.Utilities.ExtendNPC.AddBossDrop(Terraria.ModLoader.NPCLoot,Terraria.GameContent.ItemDropRules.IItemDropRule,System.Boolean)">
+            <summary>Adds <paramref name="entry"/> to <paramref name="npcLoot"/>, and its boss bag.</summary>
+            <param name="npcLoot"></param>
+            <param name="entry"></param>
+            <param name="throwError">Whether or not to throw an error if a Treasure Bag does not exist. Defaults to true.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendNPC.AddToBossBag(Terraria.ModLoader.NPCLoot,Terraria.GameContent.ItemDropRules.IItemDropRule,System.Boolean)">
+            <summary>Adds <paramref name="entry"/> to <paramref name="npcLoot"/>'s boss bag. Throws errors if a boss bag doesn't exist.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendNPC.SyncNPC(Terraria.NPC)">
+            <summary>Manually sends a <see cref="F:Terraria.ID.MessageID.SyncNPC"/> packet to sync this NPC.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendNPC.TryRetargeting(Terraria.NPC,System.Boolean)">
+            <summary>Runs <see cref="M:Terraria.NPC.TargetClosest(System.Boolean)"/>, and returns <see cref="P:Terraria.NPC.HasValidTarget"/>.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendNPC.IsProbablyACritter(Terraria.NPC)">
+            <returns>Whether or not this is most likely a critter, dependant on multiple checks of their stats and values in data sets.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendNPC.DrawNPCStatusEffects(Microsoft.Xna.Framework.Graphics.SpriteBatch,Terraria.NPC,Microsoft.Xna.Framework.Vector2)">
+            <summary>Replicates the drawing of misc vanilla status effects. This is used to support these effects on NPCs with custom rendering.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendNPC.ClearBuff(Terraria.NPC,System.Int32)">
+            <summary>Clears a buff of the specified ID from this NPC.</summary>
+            <param name="npc"></param>
+            <param name="buffId">The Buff Id to clear from this NPC.</param>
         </member>
         <member name="T:Aequus.Core.Utilities.ChatTagWriter">
             <summary>Contains helper methods for generating chat tag strings. For item and glyphs, <see cref="T:Terraria.GameContent.UI.Chat.ItemTagHandler"/> and <see cref="T:Terraria.GameContent.UI.Chat.GlyphTagHandler"/> have static helper methods.</summary>
@@ -1602,7 +1638,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 244)</summary>
+            <summary>(Total Textures: 627)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2089,6 +2125,45 @@
         </member>
         <member name="F:Aequus.AequusTextures.ScavengerLootBag_Outline">
             <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerBanner">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerBannerItem">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerBannerItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerStatue">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatue</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerStatueItem">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatueItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BloodCrown">
+            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/BloodCrown</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BloodCrownSlotDecal">
+            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/BloodCrownSlotDecal</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BloodCrown_Crown">
+            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/BloodCrown_Crown</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BloodSymbol">
+            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/BloodSymbol</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Heart">
+            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/Heart</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Heart2">
+            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/Heart2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Heart_Template">
+            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Blood/Heart_Template</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrownOfEarth">
+            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Earth/CrownOfEarth</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrownOfMoon">
+            <summary>Full Path: Content/Equipment/Accessories/AccCrowns/Moon/CrownOfMoon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PurpleBalloon">
             <summary>Full Path: Content/Equipment/Accessories/Balloons/PurpleBalloon</summary>

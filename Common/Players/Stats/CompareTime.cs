@@ -26,7 +26,7 @@ public struct CompareTime : IStatComparison<float> {
     public void Measure(Player player) {
         After = _getStat(player);
         Difference = DifferenceMethods.CompareFloat(After, Before);
-        DifferenceText = Difference.GetSign() + TextHelper.Seconds(After - (double)Before);
+        DifferenceText = Difference.GetSign() + ExtendLanguage.Seconds(After - (double)Before);
     }
 
     public object Clone() {

@@ -1,9 +1,7 @@
 ﻿using Aequus.Content.Equipment.Accessories.AccCrowns.Blood;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.Players.Stats;
 
@@ -70,4 +68,8 @@ public class StatCompareLoader : ModSystem {
         TrackedComparers.Clear();
         RegisteredStats.Clear();
     }
+}
+
+public static class StatCompareExtensions {
+    public static LocalizedText GetStatCompareText(this ILocalizedModType modType, string key, Func<string> createDefault = null) => StatCompareLoader.Affix($"{modType.Name}." + key, createDefault);
 }

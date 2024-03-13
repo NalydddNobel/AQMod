@@ -36,6 +36,7 @@ public partial class AequusPlayer {
     }
 
     private void UpdateTimers() {
+        timeSinceLastHit++;
         foreach (var t in Timers) {
             t.Value.TimePassed++;
         }
