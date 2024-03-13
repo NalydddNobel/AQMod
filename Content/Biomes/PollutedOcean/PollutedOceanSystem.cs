@@ -1,5 +1,6 @@
 ﻿using Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
 using Aequus.Content.Enemies.PollutedOcean.BreadOfCthulhu;
+using Aequus.Content.Enemies.PollutedOcean.Conductor;
 using Aequus.Content.Enemies.PollutedOcean.OilSlime;
 using Aequus.Content.Enemies.PollutedOcean.Scavenger;
 using Aequus.Content.Fishing;
@@ -57,8 +58,8 @@ public class PollutedOceanSystem : ModSystem {
         pool.Clear();
 
         pool[ModContent.NPCType<OilSlime>()] = 1f;
-        pool[ModContent.NPCType<Scavenger>()] = 1f;
-        pool[NPCID.DarkCaster] = 0.33f; // Radio Conductor
+        pool[ModContent.NPCType<Scavenger>()] = 0.8f;
+        pool[ModContent.NPCType<Conductor>()] = 0.1f;
 
         if (spawnInfo.Water) {
             pool[ModContent.NPCType<BlackJellyfish>()] = 1f;

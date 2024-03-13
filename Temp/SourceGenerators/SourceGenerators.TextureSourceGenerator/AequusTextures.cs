@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 622)</summary>
+/// <summary>(Total Textures: 623)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -317,6 +317,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Conductor = new("Aequus/Content/Enemies/PollutedOcean/Conductor/Conductor");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Conductor_Wave</summary>
     public static readonly RequestCache<Texture2D> Conductor_Wave = new("Aequus/Content/Enemies/PollutedOcean/Conductor/Conductor_Wave");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Gores/ConductorGoreHead</summary>
+    public static readonly RequestCache<Texture2D> ConductorGoreHead = new("Aequus/Content/Enemies/PollutedOcean/Conductor/Gores/ConductorGoreHead");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Tiles/ConductorBanner</summary>
     public static readonly RequestCache<Texture2D> ConductorBanner = new("Aequus/Content/Enemies/PollutedOcean/Conductor/Tiles/ConductorBanner");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Tiles/ConductorBannerItem</summary>

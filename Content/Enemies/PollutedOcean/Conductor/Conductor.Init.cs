@@ -9,7 +9,7 @@ namespace Aequus.Content.Enemies.PollutedOcean.Conductor;
 
 public partial class Conductor : IPostPopulateItemDropDatabase {
     public override void SetStaticDefaults() {
-        Main.npcFrameCount[Type] = 18;
+        Main.npcFrameCount[Type] = FRAME_COUNT;
         NPCSets.NPCBestiaryDrawOffset[Type] = new() {
             Velocity = -1f,
             Scale = 1f,
@@ -29,6 +29,7 @@ public partial class Conductor : IPostPopulateItemDropDatabase {
         NPC.knockBackResist = 0.3f;
         NPC.value = Item.silver;
         NPC.aiStyle = -1;
+        NPC.npcSlots = 2f;
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

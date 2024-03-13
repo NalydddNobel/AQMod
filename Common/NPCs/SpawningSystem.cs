@@ -3,13 +3,17 @@ using System.Collections.Generic;
 
 namespace Aequus.Common.NPCs;
 public class SpawningSystem : GlobalNPC {
-    /// <summary>
-    /// A list of <see cref="ModBiome"/>s which will override Aequus biome spawns.
-    /// </summary>
+    /// <summary>A list of <see cref="ModBiome"/>s which will override Aequus biome spawns.</summary>
     public readonly static List<ModBiome> OverrideAequusBiomes = new();
 
     public override void Unload() {
         OverrideAequusBiomes.Clear();
+    }
+
+    public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns) {
+        if (player.InModBiome<PollutedOceanBiomeSurface>() || player.InModBiome<PollutedOceanBiomeUnderground>()) {
+            maxSpawns = (int)(maxSpawns * 1.5f);
+        }
     }
 
     public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {

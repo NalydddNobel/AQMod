@@ -310,9 +310,7 @@
             <param name="rule">The item drop rule.</param>
         </member>
         <member name="F:Aequus.Common.NPCs.SpawningSystem.OverrideAequusBiomes">
-            <summary>
-            A list of <see cref="T:Terraria.ModLoader.ModBiome"/>s which will override Aequus biome spawns.
-            </summary>
+            <summary>A list of <see cref="T:Terraria.ModLoader.ModBiome"/>s which will override Aequus biome spawns.</summary>
         </member>
         <member name="P:Aequus.Common.Players.CustomDashData.DashHaltSpeedMultiplier">
             <summary>
@@ -698,6 +696,9 @@
         <member name="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.MELEE_DISTANCE">
             <summary>The distance in pixels which is considered "Melee distance"</summary>
         </member>
+        <member name="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.FRAME_COUNT">
+            <summary><see cref="F:Terraria.Main.npcFrameCount"/></summary>
+        </member>
         <member name="T:Aequus.Content.Fishing.Components.IOnPullBobber">
             <summary>Only works on Fishing Pole or Bait items.</summary>
         </member>
@@ -776,6 +777,9 @@
         <member name="M:Aequus.Core.Utilities.ExtendNPC.AddToBossBag(Terraria.ModLoader.NPCLoot,Terraria.GameContent.ItemDropRules.IItemDropRule,System.Boolean)">
             <summary>Adds <paramref name="entry"/> to <paramref name="npcLoot"/>'s boss bag. Throws errors if a boss bag doesn't exist.</summary>
         </member>
+        <member name="M:Aequus.Core.Utilities.ExtendNPC.UpdateShimmerReflection(Terraria.NPC)">
+            <summary>Helper method which reflects an NPC against shimmer.</summary>
+        </member>
         <member name="M:Aequus.Core.Utilities.ExtendNPC.SyncNPC(Terraria.NPC)">
             <summary>Manually sends a <see cref="F:Terraria.ID.MessageID.SyncNPC"/> packet to sync this NPC.</summary>
         </member>
@@ -817,6 +821,122 @@
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendColor.MaxRGBA(Microsoft.Xna.Framework.Color,System.Byte,System.Byte,System.Byte,System.Byte)">
             <returns><paramref name="color"/>, with R,G,B,A Maxed to <paramref name="r"/>,<paramref name="g"/>,<paramref name="b"/>,<paramref name="a"/> accordingly.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendPlayer.CheckPickPower(Terraria.Player,Terraria.Item,System.Int32,System.Int32)">
+            <param name="player">The player.</param>
+            <param name="pickaxe">The pickaxe.</param>
+            <param name="x">Tile X coordinate.</param>
+            <param name="y">Tile Y coordinate.</param>
+            <returns>Whether or not the player has enough pickaxe power to break this tile.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendPlayer.GiveItem(Terraria.Player,Terraria.Item,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings)">
+            <summary>
+            Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
+            <para>Automatically syncs the item in multiplayer.</para>
+            <para>Note: May only work if <see cref="F:Terraria.Main.myPlayer"/> is the <paramref name="player"/>.</para>
+            </summary>
+            <param name="player">The player.</param>
+            <param name="item">The Item.</param>
+            <param name="source">Item source.</param>
+            <param name="getItemSettings">The Get Item settings.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendPlayer.GiveItem(Terraria.Player,System.Int32,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings,System.Int32,System.Int32)">
+            <summary>
+            Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
+            <para>Automatically syncs the item in multiplayer.</para>
+            <para>Note: May only work if <see cref="F:Terraria.Main.myPlayer"/> is the <paramref name="player"/>.</para>
+            </summary>
+            <param name="player">The player.</param>
+            <param name="type">The Item Id.</param>
+            <param name="stack">The Item's stack.</param>
+            <param name="prefix">The Item's prefix.</param>
+            <param name="source">Item source.</param>
+            <param name="getItemSettings">The Get Item settings.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendPlayer.GetPlayerFocusPosition(Terraria.Player)">
+            <summary>
+            Gets the "Player Focus". This is by default the player's centre, but when using the Drone, this returns the drone's position.
+            <para>This position is used to make Radon Fog disappear when approched by the player, or by their controlled drone.</para>
+            <para>This position also ignores camera panning effects, like screen shakes, scoping, ect.</para>
+            </summary>
+            <param name="player"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendPlayer.SpawnEnchantmentDusts(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Terraria.Player,System.Boolean)">
+            <summary>
+            Spawns Flask and other "Enchantment" dusts, like the Magma Stone flames.
+            </summary>
+            <param name="position"></param>
+            <param name="velocity"></param>
+            <param name="player"></param>
+            <param name="showMagmaStone"></param>
+            <returns>A potential dust instance, if any spawn. If none spawn, the result will be null.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendPlayer.WeirdNPCHitRestrictions(Terraria.NPC)">
+            <summary>
+            Checks weird damage restrictions for NPCs. This literally only checks for Fairies as of right now.
+            </summary>
+            <param name="npc"></param>
+            <returns>Whether the enemy should be immune to this hit (true = Do not hit)</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendShop.FindNextIndex(Terraria.Item[])">
+            <summary>Finds the next null index in an item array. Items which are "Air" are empty slots which were added to not contain any items inside them.</summary>
+            <param name="itemList">The shop's item list.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Int32,Terraria.Condition[])">
+            <summary>Adds an item with a custom value. (<paramref name="customValue"/>)</summary>
+            <param name="shop"></param>
+            <param name="itemType">The Item Id to add.</param>
+            <param name="customValue">The custom value to assign.</param>
+            <param name="conditions">Conditions for this item.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendShop.AddCustomValue``1(Terraria.ModLoader.NPCShop,System.Int32,Terraria.Condition[])">
+            <summary><inheritdoc cref="M:Aequus.Core.Utilities.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Int32,Terraria.Condition[])"/></summary>
+            <typeparam name="T"></typeparam>
+            <param name="shop"></param>
+            <param name="customValue">The custom value to assign.</param>
+            <param name="conditions">Conditions for this item.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Double,Terraria.Condition[])">
+            <summary><inheritdoc cref="M:Aequus.Core.Utilities.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Int32,Terraria.Condition[])"/></summary>
+            <param name="itemType">The Item Id to add.</param>
+            <param name="shop"></param>
+            <param name="customValue">The custom value to assign.</param>
+            <param name="conditions">Conditions for this item.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendShop.AddCustomValue``1(Terraria.ModLoader.NPCShop,System.Double,Terraria.Condition[])">
+            <summary><inheritdoc cref="M:Aequus.Core.Utilities.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Int32,Terraria.Condition[])"/></summary>
+            <typeparam name="T"></typeparam>
+            <param name="shop"></param>
+            <param name="customValue">The custom value to assign.</param>
+            <param name="conditions">Conditions for this item.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendShop.AddCrossMod``1(Terraria.ModLoader.NPCShop,System.String,Terraria.Condition[])">
+            <summary>Attempts to add an item from another mod, if it exists and that mod is loaded.</summary>
+            <typeparam name="T">The Mod.</typeparam>
+            <param name="shop"></param>
+            <param name="itemName">The internal name of the item.</param>
+            <param name="conditions">Conditions for this item.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendProjectile.TryFindProjectileIdentity(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Attempts to find a projectile index using the identity and owner provided. Returns true if the projectile output is not -1.
+            </summary>
+            <param name="owner"></param>
+            <param name="identity"></param>
+            <param name="projectile"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendProjectile.FindProjectileIdentity(System.Int32,System.Int32)">
+            <summary>
+            Attempts to find a projectile index using the identity and owner provided. Returns -1 otherwise.
+            </summary>
+            <param name="owner"></param>
+            <param name="identity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendProjectile.UpdateShimmerReflection(Terraria.Projectile)">
+            <summary>Helper method which reflects a projectile against shimmer.</summary>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendEnumerable.Match``1(System.Collections.Generic.IEnumerable{``0},``0)">
             <summary>Forces an Enumeration.</summary>
@@ -984,86 +1104,6 @@
             <param name="npcId">The NPC Id.</param>
             <param name="database">Database instance. Set to null to use <see cref="F:Terraria.Main.ItemDropsDB"/>.</param>
         </member>
-        <member name="M:Aequus.Core.Utilities.ExtendPlayer.CheckPickPower(Terraria.Player,Terraria.Item,System.Int32,System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="player">The player.</param>
-            <param name="pickaxe">The pickaxe.</param>
-            <param name="x">Tile X coordinate.</param>
-            <param name="y">Tile Y coordinate.</param>
-            <returns>Whether or not the player has enough pickaxe power to break this tile.</returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendPlayer.GiveItem(Terraria.Player,Terraria.Item,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings)">
-            <summary>
-            Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
-            <para>Automatically syncs the item in multiplayer.</para>
-            <para>Note: May only work if <see cref="F:Terraria.Main.myPlayer"/> is the <paramref name="player"/>.</para>
-            </summary>
-            <param name="player">The player.</param>
-            <param name="item">The Item.</param>
-            <param name="source">Item source.</param>
-            <param name="getItemSettings">The Get Item settings.</param>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendPlayer.GiveItem(Terraria.Player,System.Int32,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings,System.Int32,System.Int32)">
-            <summary>
-            Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
-            <para>Automatically syncs the item in multiplayer.</para>
-            <para>Note: May only work if <see cref="F:Terraria.Main.myPlayer"/> is the <paramref name="player"/>.</para>
-            </summary>
-            <param name="player">The player.</param>
-            <param name="type">The Item Id.</param>
-            <param name="stack">The Item's stack.</param>
-            <param name="prefix">The Item's prefix.</param>
-            <param name="source">Item source.</param>
-            <param name="getItemSettings">The Get Item settings.</param>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendPlayer.GetPlayerFocusPosition(Terraria.Player)">
-            <summary>
-            Gets the "Player Focus". This is by default the player's centre, but when using the Drone, this returns the drone's position.
-            <para>This position is used to make Radon Fog disappear when approched by the player, or by their controlled drone.</para>
-            <para>This position also ignores camera panning effects, like screen shakes, scoping, ect.</para>
-            </summary>
-            <param name="player"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendPlayer.SpawnEnchantmentDusts(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Terraria.Player,System.Boolean)">
-            <summary>
-            Spawns Flask and other "Enchantment" dusts, like the Magma Stone flames.
-            </summary>
-            <param name="position"></param>
-            <param name="velocity"></param>
-            <param name="player"></param>
-            <param name="showMagmaStone"></param>
-            <returns>A potential dust instance, if any spawn. If none spawn, the result will be null.</returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendPlayer.WeirdNPCHitRestrictions(Terraria.NPC)">
-            <summary>
-            Checks weird damage restrictions for NPCs. This literally only checks for Fairies as of right now.
-            </summary>
-            <param name="npc"></param>
-            <returns>Whether the enemy should be immune to this hit (true = Do not hit)</returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendProjectile.TryFindProjectileIdentity(System.Int32,System.Int32,System.Int32@)">
-            <summary>
-            Attempts to find a projectile index using the identity and owner provided. Returns true if the projectile output is not -1.
-            </summary>
-            <param name="owner"></param>
-            <param name="identity"></param>
-            <param name="projectile"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendProjectile.FindProjectileIdentity(System.Int32,System.Int32)">
-            <summary>
-            Attempts to find a projectile index using the identity and owner provided. Returns -1 otherwise.
-            </summary>
-            <param name="owner"></param>
-            <param name="identity"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendProjectile.UpdateShimmerReflection(Terraria.Projectile)">
-            <summary>Helper method which reflects a projectile against shimmer.</summary>
-        </member>
         <member name="M:Aequus.Core.Utilities.ExtendRecipe.NotDisabledAndConditionsMet(Terraria.Recipe)">
             <returns><see langword="true"/>, if the recipe is not disabled, and conditions have been met. Otherwise <see langword="false"/>.</returns>
         </member>
@@ -1086,45 +1126,6 @@
             <param name="oldItem">The Item Id to be replaced by <paramref name="newItem"/>.</param>
             <param name="newItem">The Item Id to replace <paramref name="oldItem"/> with.</param>
             <param name="newItemStack">Stack override for <paramref name="newItem"/>. A value of -1 will keep the stack of <paramref name="oldItem"/></param>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendShop.FindNextIndex(Terraria.Item[])">
-            <summary>Finds the next null index in an item array. Items which are "Air" are empty slots which were added to not contain any items inside them.</summary>
-            <param name="itemList">The shop's item list.</param>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Int32,Terraria.Condition[])">
-            <summary>Adds an item with a custom value. (<paramref name="customValue"/>)</summary>
-            <param name="shop"></param>
-            <param name="itemType">The Item Id to add.</param>
-            <param name="customValue">The custom value to assign.</param>
-            <param name="conditions">Conditions for this item.</param>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendShop.AddCustomValue``1(Terraria.ModLoader.NPCShop,System.Int32,Terraria.Condition[])">
-            <summary><inheritdoc cref="M:Aequus.Core.Utilities.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Int32,Terraria.Condition[])"/></summary>
-            <typeparam name="T"></typeparam>
-            <param name="shop"></param>
-            <param name="customValue">The custom value to assign.</param>
-            <param name="conditions">Conditions for this item.</param>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Double,Terraria.Condition[])">
-            <summary><inheritdoc cref="M:Aequus.Core.Utilities.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Int32,Terraria.Condition[])"/></summary>
-            <param name="itemType">The Item Id to add.</param>
-            <param name="shop"></param>
-            <param name="customValue">The custom value to assign.</param>
-            <param name="conditions">Conditions for this item.</param>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendShop.AddCustomValue``1(Terraria.ModLoader.NPCShop,System.Double,Terraria.Condition[])">
-            <summary><inheritdoc cref="M:Aequus.Core.Utilities.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Int32,Terraria.Condition[])"/></summary>
-            <typeparam name="T"></typeparam>
-            <param name="shop"></param>
-            <param name="customValue">The custom value to assign.</param>
-            <param name="conditions">Conditions for this item.</param>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendShop.AddCrossMod``1(Terraria.ModLoader.NPCShop,System.String,Terraria.Condition[])">
-            <summary>Attempts to add an item from another mod, if it exists and that mod is loaded.</summary>
-            <typeparam name="T">The Mod.</typeparam>
-            <param name="shop"></param>
-            <param name="itemName">The internal name of the item.</param>
-            <param name="conditions">Conditions for this item.</param>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendSound.ModPath(Terraria.Audio.SoundStyle)">
             <returns>The Sound's path with the first directory removed.</returns>
@@ -1654,7 +1655,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 622)</summary>
+            <summary>(Total Textures: 623)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2120,6 +2121,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.Conductor_Wave">
             <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Conductor_Wave</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductorGoreHead">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Gores/ConductorGoreHead</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ConductorBanner">
             <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Tiles/ConductorBanner</summary>
