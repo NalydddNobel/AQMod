@@ -73,7 +73,7 @@ public class CritterCommons : GlobalNPC {
 
         public override void PostAI(NPC npc) {
             npc.position += npc.netOffset;
-            Color color = LightHelper.GetLightColor(npc.Center);
+            Color color = ExtendLight.Get(npc.Center);
             int sparkleChance = Math.Max(Math.Max(color.R, color.G), color.B);
             if (sparkleChance > 30) {
                 sparkleChance /= 30;

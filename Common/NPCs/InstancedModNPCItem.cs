@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Core.ContentGeneration;
 using Terraria.Localization;
 
 namespace Aequus.Common.NPCs;

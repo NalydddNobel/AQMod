@@ -5,8 +5,8 @@ using Terraria.GameContent.Bestiary;
 
 namespace Aequus.Content.Critters.Chromite;
 
-[CritterCommons.AutoloadCatchItem(value: Item.silver, rarity: ItemRarityID.Blue,  baitPower: 10)]
-[ModBiomes(typeof(PollutedOceanBiome))]
+[CritterCommons.AutoloadCatchItem(value: Item.silver, rarity: ItemRarityID.Blue, baitPower: 10)]
+[ModBiomes(typeof(PollutedOceanBiomeUnderground))]
 public class Chromite : ModNPC, CritterCommons.ICritter {
     public bool IsGolden => false;
 

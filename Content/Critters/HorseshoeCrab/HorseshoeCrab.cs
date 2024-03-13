@@ -9,7 +9,7 @@ using Terraria.Localization;
 
 namespace Aequus.Content.Critters.HorseshoeCrab;
 
-[ModBiomes(typeof(PollutedOceanBiome))]
+[ModBiomes(typeof(PollutedOceanBiomeUnderground))]
 internal class HorseshoeCrab : InstancedModNPC, CritterCommons.ICritter, IAddRecipes {
     public const int GetUpTime = -30;
 
@@ -210,7 +210,7 @@ internal class HorseshoeCrab : InstancedModNPC, CritterCommons.ICritter, IAddRec
             return;
         }
 
-        BestiaryBuilder.InsertEntry(pair.Item2, ContentSamples.NpcBestiarySortingId[HorseshoeCrabInitializer.BestiaryHorseshoeCrabAnchor.Type]);
+        BestiaryBuilder.ReSort(pair.Item2, ContentSamples.NpcBestiarySortingId[HorseshoeCrabInitializer.BestiaryHorseshoeCrabAnchor.Type]);
         HorseshoeCrabInitializer.BestiaryHorseshoeCrabAnchor = pair.Item2;
     }
 }

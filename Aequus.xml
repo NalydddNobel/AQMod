@@ -521,6 +521,11 @@
         <member name="T:Aequus.Content.Cinematics.AequusFilm">
             <summary><see cref="T:Terraria.Cinematics.DD2Film"/> <see cref="T:Terraria.Cinematics.DSTFilm"/></summary>
         </member>
+        <member name="F:Aequus.Content.Critters.HorseshoeCrab.HorseshoeCrabInitializer.HorseshoeCrabs">
+            <summary>
+            Item1 is the normal Horseshoe Crab. Item2 is the Golden variant.
+            </summary>
+        </member>
         <member name="T:Aequus.Content.CrossMod.BossChecklist">
             <summary><see href="link">https://github.com/JavidPack/BossChecklist/wiki/%5B1.4.4%5D-Boss-Log-Entry-Mod-Call#arguments</see></summary>
         </member>
@@ -1623,7 +1628,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 267)</summary>
+            <summary>(Total Textures: 631)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1949,17 +1954,41 @@
         <member name="F:Aequus.AequusTextures.Trophy">
             <summary>Full Path: Content/Bosses/Trophies/Trophy</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.UltraStariteRelic">
-            <summary>Full Path: Content/Bosses/Trophies/UltraStariteRelic</summary>
+        <member name="F:Aequus.AequusTextures.Chromite">
+            <summary>Full Path: Content/Critters/Chromite/Chromite</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.UltraStariteRelicItem">
-            <summary>Full Path: Content/Bosses/Trophies/UltraStariteRelicItem</summary>
+        <member name="F:Aequus.AequusTextures.ChromiteItem">
+            <summary>Full Path: Content/Critters/Chromite/ChromiteItem</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.UltraStariteTrophy">
-            <summary>Full Path: Content/Bosses/Trophies/UltraStariteTrophy</summary>
+        <member name="F:Aequus.AequusTextures.AdultHorseshoeCrab">
+            <summary>Full Path: Content/Critters/HorseshoeCrab/AdultHorseshoeCrab</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.UltraStariteTrophyItem">
-            <summary>Full Path: Content/Bosses/Trophies/UltraStariteTrophyItem</summary>
+        <member name="F:Aequus.AequusTextures.BabyHorseshoeCrab">
+            <summary>Full Path: Content/Critters/HorseshoeCrab/BabyHorseshoeCrab</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ElderHorseshoeCrab">
+            <summary>Full Path: Content/Critters/HorseshoeCrab/ElderHorseshoeCrab</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldAdultHorseshoeCrab">
+            <summary>Full Path: Content/Critters/HorseshoeCrab/GoldAdultHorseshoeCrab</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldBabyHorseshoeCrab">
+            <summary>Full Path: Content/Critters/HorseshoeCrab/GoldBabyHorseshoeCrab</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldElderHorseshoeCrab">
+            <summary>Full Path: Content/Critters/HorseshoeCrab/GoldElderHorseshoeCrab</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AdultHorseshoeCrabGoreHead">
+            <summary>Full Path: Content/Critters/HorseshoeCrab/Gore/AdultHorseshoeCrabGoreHead</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AdultHorseshoeCrabGoreTail">
+            <summary>Full Path: Content/Critters/HorseshoeCrab/Gore/AdultHorseshoeCrabGoreTail</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ElderHorseshoeCrabGoreHead">
+            <summary>Full Path: Content/Critters/HorseshoeCrab/Gore/ElderHorseshoeCrabGoreHead</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ElderHorseshoeCrabGoreTail">
+            <summary>Full Path: Content/Critters/HorseshoeCrab/Gore/ElderHorseshoeCrabGoreTail</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Baguette">
             <summary>Full Path: Content/DedicatedContent/Baguette/Baguette</summary>
