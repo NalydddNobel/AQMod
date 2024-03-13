@@ -1,10 +1,7 @@
 ﻿using Aequus.Core;
 using Aequus.Core.Networking;
 using System.IO;
-using Terraria;
 using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Fishing.CrabPots;
 

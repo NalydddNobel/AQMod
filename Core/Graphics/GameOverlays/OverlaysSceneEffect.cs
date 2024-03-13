@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using Terraria;
 using Terraria.Graphics.Effects;
-using Terraria.ModLoader;
 
 namespace Aequus.Core.Graphics.GameOverlays;
 

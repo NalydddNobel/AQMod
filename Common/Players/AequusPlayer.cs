@@ -1,10 +1,7 @@
-﻿using Aequus.Common.Players.Backpacks;
-using Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
-using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Aequus.Content.Weapons.Ranged.Bows.SkyHunterCrossbow;
+using Aequus.Core.CodeGeneration;
 using Terraria.DataStructures;
 using Terraria.GameInput;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace Aequus;
@@ -14,9 +11,13 @@ public partial class AequusPlayer : ModPlayer {
 
     public int timeSinceRespawn;
 
+    [ResetEffects]
+    public StatModifier wingTime;
+
     public override void Load() {
         _resetEffects = new();
         _resetEffects.Generate();
+        IL_Player.PickTile += IL_Player_PickTile;
         On_Player.UpdateVisibleAccessories += On_Player_UpdateVisibleAccessories;
         On_PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
         On_ItemSlot.RightClick_ItemArray_int_int += ItemSlot_RightClick;
@@ -39,11 +40,11 @@ public partial class AequusPlayer : ModPlayer {
 
     public override void Initialize() {
         Timers = new();
-        InitializeItems();
     }
 
     public override void OnRespawn() {
         timeSinceRespawn = 0;
+        DoPermanentMaxHPRespawn();
     }
 
     public override void OnEnterWorld() {
@@ -51,28 +52,25 @@ public partial class AequusPlayer : ModPlayer {
     }
 
     public override void PreUpdate() {
-        BackpackLoader.UpdateBackpacks(Player, backpacks);
-        timeSinceLastHit++;
+        UpdateGiftRing();
         UpdateTimers();
         UpdateItemFields();
     }
 
-    public override void PostUpdateBuffs() {
-        BackpackLoader.ResetEffects(Player, backpacks);
-    }
-
-    public override void UpdateEquips() {
-    }
-
     public override void PostUpdateEquips() {
-        UpdateCosmicChest();
+        DoPermanentStatBoosts();
         UpdateWeightedHorseshoe();
-        UpdateNeutronYogurt();
         UpdateTeamEffects();
+        Player.wingTimeMax = (int)wingTime.ApplyTo(Player.wingTimeMax);
+#if !DEBUG
+        UpdateNeutronYogurt();
+        UpdateLegacyNecromancyAccs();
+#endif
     }
 
     public override void PostUpdateMiscEffects() {
         HandleTileEffects();
+        UpdateScrapBlockState();
         if ((transitionVelocity - Player.velocity).Length() < 0.01f) {
             transitionVelocity = Player.velocity;
         }

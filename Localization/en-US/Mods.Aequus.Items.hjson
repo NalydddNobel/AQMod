@@ -1,4 +1,5 @@
 CommonTooltips: {
+	BuffTimeRange: "{0}-{1} minute duration"
 	IncreasesInventorySlots: Grants {0} backpack slots
 	Cooldown: Has a {0} second cooldown
 	Shimmerable: Shimmer Ingredient
@@ -8,9 +9,33 @@ CommonTooltips: {
 	DedicatedItem: Thank you, {0}!
 	DedicatedItemAnonymous: Dedicated Item
 	UsesDarts: Uses seeds and darts as ammo
+	Banner: "{$CommonItemTooltip.BannerBonus}{0}"
+	NecromancyStaff: Slain enemies will convert into ghost minions
+	StatGhostDuration: Increases the duration of your ghost minions by {0} seconds
+	StatGhostSlots: Increases your max number of ghosts by {0}
+	StatWingTime: Increases flight duration
+	DecreaseAggro: Enemies are less likely to target you
+	IncreaseAggro: Enemies are more likely to target you
+	DisableItem: <right> to deactivate
+	EnableItem: Currently inactive, <right> to reactivate
 }
 
 //# Equipment: Accessories
+BreathConserver: {
+	DisplayName: Breath Conserver
+	Tooltip: Restore breath upon breaking tiles and slaying foes
+}
+
+ValentineRing: {
+	DisplayName: Valentine's Gift
+	Tooltip: Gift to a friend to grant them and yourself increased regneration and damage
+	Tooltip2: Increased regneration and damage for yourself and the gifter
+	GiftTooltip: From yours truly, {0}
+	BuffName: Valentine
+	BuffDescription: Increased life regeneration and damage
+	BuffDescription2: You are being buffed by {0}!
+}
+
 GrandReward: {
 	DisplayName: Grand Reward
 	Tooltip:
@@ -78,6 +103,7 @@ PurpleBalloon: {
 		'''
 		{$ItemTooltip.ShinyRedBalloon}
 		{$SlimyBlueBalloon.Tooltip}
+		'Not to be confused with a Balloon in a Balloon'
 		'''
 }
 
@@ -100,7 +126,121 @@ WeightedHorseshoe: {
 		'''
 }
 
+LaserReticle: {
+	DisplayName: Laser Reticle
+	Tooltip: "{0}% reduced spread on ranged weapons"
+}
+
+HighSteaks: {
+	DisplayName: High Steaks
+	Tooltip:
+		'''
+		{0}% increased damage when performing a critical strike
+		{1}
+		'''
+	Downside: "{v}However, you pay {Price} upon crit"
+}
+
+KegOSpirits: {
+	DisplayName: Keg O' Spirits
+	Tooltip:
+		'''
+		{$SaivoryKnife.Tooltip}
+		{$BottleOSpirits.Tooltip@1}
+		'''
+}
+
+SaivoryKnife: {
+	DisplayName: Saivory Knife
+	Tooltip: Increases the duration of your ghost minions by {0} minute
+}
+
+BottleOSpirits: {
+	DisplayName: Bottle O' Spirits
+	Tooltip: Increases your maximum number of ghosts by {0}
+}
+
+WarHorn: {
+	DisplayName: War Horn
+	Tooltip:
+		'''
+		Minions enter a frenzy for {0} seconds after landing a hit
+		This effect has a {1} second cooldown
+		Frenzied minions gain increased attack and movement speed
+		'''
+}
+
+HallowCanteen: {
+	DisplayName: Magic Canteen
+	DisplayNameAlt: Magic Canteen ({0})
+	Tooltip:
+		'''
+		Allows infinite usage of two potions
+		Hover over with a stack of 15 potions and press <right>
+		'''
+}
+
+PotionCanteen: {
+	DisplayName: Potion Canteen
+	DisplayNameAlt: Potion Canteen ({0})
+	Tooltip:
+		'''
+		Allows infinite usage of a potion
+		Hover over with a stack of 15 potions and press <right>
+		'''
+}
+
+SouljointCuffs: {
+	DisplayName: Souljoint Cuffs
+	Tooltip: Ghost minions become attached to an enemy after dealing a melee hit
+}
+
+PandorasBox: {
+	DisplayName: Pandoras Box
+	Tooltip:
+		'''
+		Enemies take extra damage from scepter debuffs
+		Ghost minion projectiles travel at twice the speed
+		'''
+}
+
+RitualisticSkull: {
+	DisplayName: Ritualistic Skull
+	Tooltip: Converts all but one of your minion slots into ghost slots
+}
+
+ShadowVeer: {
+	DisplayName: Shadow Veer
+	Tooltip: Ghost minions will do shadow dashes at targeted enemies
+}
+
+//# Equipment: Misc
+RoseTintedGlasses: {
+	DisplayName: Rose Tinted Glasses
+	Tooltip: Ignore enemy spawns of the Blood Moon
+}
+
+StellarGlasses: {
+	DisplayName: Stellar Glasses
+	Tooltip: Ignore enemy spawns of the Glimmer
+}
+
+EclipseGlasses: {
+	DisplayName: Eclipse Glasses
+	Tooltip: Ignore enemy spawns of the Eclipse
+}
+
 //# Equipment: Informational
+HoloLens: {
+	DisplayName: Holo Lens
+	Tooltip: Allows you to view the contents of locked and unlocked chests without opening them
+}
+
+Pacemaker: {
+	DisplayName: Pacemaker
+	Tooltip: Decreased respawn time when it becomes safe
+}
+
 ShimmerMonocle: {
 	DisplayName: Shmonocle
 	Tooltip: Displays if an item is a Shimmer Ingredient
@@ -116,6 +256,42 @@ Calendar: {
 	Tooltip: Shows you the date
 }
 
+//# Equipment: Armor
+GravetenderHood: {
+	DisplayName: Gravetender Hood
+	Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
+	Setbonus: Summon a wisp which empowers your closest ghost minion
+}
+
+GravetenderRobes: {
+	DisplayName: Gravetender Robes
+	Tooltip:
+		'''
+		{$CommonTooltips.StatGhostDuration}
+		{$CommonTooltips.StatGhostSlots@1}
+		'''
+}
+
+//# Equipment: Grappling Hooks
+LeechHook: {
+	DisplayName: Leech Hook
+	Tooltip:
+		'''
+		Ignores {0} points of enemy Defense
+		Latches onto enemies, healing you
+		Damage the victim to restore extra life
+		'''
+}
+
+Meathook: {
+	DisplayName: Meathook
+	Tooltip:
+		'''
+		Allows you to grapple to enemies
+		Deal {0}% increased damage to the enemy you grapple onto
+		'''
+}
+
 //# Weapons: Melee
 Dynaknife: {
 	DisplayName: The Christmas Spirit
@@ -123,6 +299,15 @@ Dynaknife: {
 		'''
 		Hits apply a bomb which will explode on enemies
 		<right> to dash foward and attack
+		'''
+}
+
+SuperStarSword: {
+	DisplayName: Super Star Sword
+	Tooltip:
+		'''
+		Fires a slash while above 90% health
+		'If they zig, I cut 'em (If they zag, I cut 'em too)'
 		'''
 }
 
@@ -134,6 +319,30 @@ Slice: {
 		{$CommonTooltips.OmnidirectionMelee}
 		'Not to be confused with Dice'
 		'''
+}
+
+MirrorsCall: {
+	DisplayName: Mirror's Call
+	Tooltip: Strike the enemy from the comfort of your couch!
+}
+
+IronLotus: {
+	DisplayName: Iron Lotus
+	Tooltip:
+		'''
+		Brandish a spear which inflicts spreading flames
+		'Burn those who dare to care for me'
+		'''
+}
+
+Cauterizer: {
+	DisplayName: Cauterizer
+	Tooltip: "{$CommonTooltips.OmnidirectionMelee}"
+}
+
+HellsBoon: {
+	DisplayName: Hells Boon
+	Tooltip: Attack enemies with long range darkness and ash spikes
 }
 
 //# Ranged Ammo
@@ -170,13 +379,110 @@ SkyHunterCrossbow: {
 		'''
 }
 
+CrusadersCrossbow: {
+	DisplayName: Crusaders Crossbow
+	Tooltip: Shoots a bolt which can heal allies
+}
+
+Deltoid: {
+	DisplayName: Deltoid
+	Tooltip: Ignites wooden arrows with crimson hellfire
+}
+
+HamaYumi: {
+	DisplayName: Hama Yumi
+	Tooltip: Arrows are temporarily buffed with a piercing corruption blast
+}
+
 //# Weapons: Magic
+TrashStaff: {
+	DisplayName: Spam Mail
+	Tooltip: Critical strikes send virus mail to nearby enemies
+}
+
 Furystar: {
 	DisplayName: Furystar
 	Tooltip:
 		'''
 		Causes stars to rain from the sky
 		Attacks restores mana
+		'''
+}
+
+StudiesOfTheInkblot: {
+	DisplayName: Studies Of The Inkblot
+	Tooltip:
+		'''
+		Left Click for 'Rorschach in Danmaku'
+		Right Click for 'Subterranean Rose'
+		'''
+}
+
+BombarderRod: {
+	DisplayName: Bombarder Rod
+	Tooltip:
+		'''
+		Critical strikes inflict crimson fire to nearby enemies
+		Imprecise at close range
+		'''
+}
+
+Triacanthorn: {
+	DisplayName: Triacanthorn
+	Tooltip:
+		'''
+		Cast splitting vile tendrils
+		Ignores 10 points of enemy Defense
+		'''
+}
+
+//# Weapons: Summon
+PhysicistSentry: {
+	DisplayName: Portable Tesla Turret
+	Tooltip: Summons a tesla turret sentry which fires a barrage of chaining lightning
+}
+
+Insurgency: {
+	DisplayName: Insurgency
+	Tooltip:
+		'''
+		Drains the soul of very powerful enemies, instantly killing weakened enemies
+		While accursed, they release spirits that attack nearby enemies
+		{$CommonTooltips.NecromancyStaff}
+		'Silence'
+		'''
+}
+
+Revenant: {
+	DisplayName: Revenant
+	Tooltip:
+		'''
+		Drains the soul of strong enemies, instantly killing weakened enemies
+		{$CommonTooltips.NecromancyStaff}
+		'''
+}
+
+CorruptionSceptre: {
+	DisplayName: Corruption Sceptre
+	Tooltip:
+		'''
+		Drains the soul of weak enemies
+		{$CommonTooltips.NecromancyStaff}
+		'''
+}
+
+CrimsonSceptre: {
+	DisplayName: Crimson Sceptre
+	Tooltip: "{$Items.CorruptionSceptre.Tooltip}"
+}
+
+Osiris: {
+	DisplayName: Osiris
+	Tooltip:
+		'''
+		Drains the soul of powerful enemies
+		{$CommonTooltips.NecromancyStaff}
+		Bursts into a swarm of locusts on hit
 		'''
 }
 
@@ -187,6 +493,21 @@ StunGun: {
 }
 
 //# Potions
+SentryPotion: {
+	DisplayName: Sentinel Potion
+	Tooltip: Increases your maximum amount of sentries by {0}
+	BuffName: Sentinel
+}
+
+TaintedSeafood: {
+	DisplayName: Tainted Seafood
+	Tooltip:
+		'''
+		May grant minor, medium, or major improvments to all stats
+		Has a small chance to instead grant food poisoning
+		'''
+}
+
 NeutronYogurt: {
 	DisplayName: Neutron Yogurt
 	Tooltip: Grants an enchanted fall with doubled acceleration
@@ -201,6 +522,20 @@ DeathsEmbrace: {
 		Makes attacks slightly inaccurate
 		Attacks make you redrink the potion automatically
 		{{Once the buff wears off, you instantly die...}}
+		'''
+}
+
+SuspiciousLookingSteak: {
+	DisplayName: Suspicious Looking Steak
+	Tooltip: "'You are a terrible person'"
+}
+
+PotionOfResurrection: {
+	DisplayName: Potion Of Resurrection
+	Tooltip:
+		'''
+		Teleports you to the location of your most recent death
+		'A drink favored by those who have experienced death recently'
 		'''
 }
 
@@ -275,6 +610,21 @@ SuperRestorationPotion: {
 	Tooltip: "{$ItemTooltip.RestorationPotion}"
 }
 
+NoHitReward: {
+	DisplayName: A Victor's Award
+	Tooltip:
+		'''
+		Permanently allows you to respawn at maximum life
+		'Granted to the ones who go the extra mile!'
+		'''
+}
+
+TinkerersGuidebook: {
+	DisplayName: Tinkerer's Guidebook
+	Tooltip: Permanently increases odds of rolling positive prefixes from reforge services
+	DisplayMessage: The Goblin Tinkerer's profits begin to dwindle!
+}
+
 CosmicChest: {
 	DisplayName: Fortunate Souvenir
 	Tooltip: Permanently increases item droprates from enemies
@@ -290,30 +640,49 @@ CompressedTrash: {
 	Tooltip: ""
 }
 
-Fluorescence: {
-	DisplayName: Fluorescence
-	Tooltip: "'Charged with rage, adrenaline, and tormented malice'"
+BloodyTearstone: {
+	DisplayName: Bloody Tearstone
+	Tooltip: ""
 }
 
-FrozenTear: {
-	DisplayName: Frozen Teardrop
-	Tooltip: "'An exotic tear formed by melting the heart of a squid'"
+SoulGem: {
+	DisplayName: Empty Soul Gem
+	Tooltip: Unusable until it captures the soul of an enemy
 }
 
-CrabsonBag: {
-	DisplayName: Treasure Bag (Crabson)
-	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+SoulGemFilled: {
+	DisplayName: Soul Gem
+	Tooltip:
+		'''
+		Used to craft necromantic equipment
+		Dropped by the darkest of demons...
+		'''
 }
 
-OmegaStariteBag: {
-	DisplayName: Treasure Bag (Omega Starite)
-	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+GalacticStarfruit: {
+	DisplayName: Galactic Starfruit
+	Tooltip: Creates a strange glimmer
 }
 
-DustDevilBag: {
-	DisplayName: Treasure Bag (Dust Devil)
-	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+UnholyCore: {
+	DisplayName: Unholy Core
+	Tooltip:
+		'''
+		Can be used at the Gore Nest
+		Decreases the length of the Demon Siege event
+		'''
 }
+
+UnholyCoreSmall: {
+	DisplayName: Dark Tearstone
+	Tooltip:
+		'''
+		Can be used at the Gore Nest
+		Dropped from mysterious entites around the Underworld
+		'''
+}
+
+TreasureBag.DisplayName: Treasure Bag ({0})
 
 WispLantern: {
 	DisplayName: Wisp Lantern
@@ -379,6 +748,11 @@ DedicatedFaelingItem: {
 	Tooltip: ""
 }
 
+PhysicsGun: {
+	DisplayName: Physics Gun
+	Tooltip: Can grab and throw blocks
+}
+
 Bellows: {
 	DisplayName: Bellows
 	Tooltip:
@@ -406,24 +780,86 @@ NameTag: {
 		'''
 }
 
-//# Vanity Armors
+PylonDrone.Tooltip: Use near a pylon to activate the drone, pylons can only have two drones each
+
+CleanserDrone: {
+	DisplayName: "{$NPCs.CleanserDrone.DisplayName}"
+	Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		Sprays solution to spread the pylon's biome
+		'''
+}
+
+GunnerDrone: {
+	DisplayName: "{$NPCs.GunnerDrone.DisplayName}"
+	Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		Defends the area from enemies
+		'''
+}
+
+HealerDrone: {
+	DisplayName: "{$NPCs.HealerDrone.DisplayName}"
+	Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		Heals wounded villagers and critters
+		'''
+}
+
+MoonflowerSeeds: {
+	DisplayName: Moonflower Seeds
+	Tooltip: ""
+}
+
+MistralSeeds: {
+	DisplayName: Mistral Seeds
+	Tooltip: ""
+}
+
+ManacleSeeds: {
+	DisplayName: Manacle Seeds
+	Tooltip: ""
+}
+
+//# Mounts
+BalloonKit: {
+	DisplayName: Balloon Kit
+	Tooltip:
+		'''
+		Allows you to ride a hot air balloon
+		'Skillfully crafted at Modzilla Corp Factories'
+		'''
+}
+
+//# Backpacks
+ScavengerBag: {
+	DisplayName: Scavenger Bag
+	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+	BackpackEnabled: Backpack On
+	BackpackDisabled: Backpack Off
+}
+
+Toolbelt: {
+	Tooltip:
+		'''
+		{$CommonTooltips.IncreasesInventorySlots}
+		Can only hold tiles and walls
+		'''
+	BackpackEnabled: Toolbelt Pack On
+	BackpackDisabled: Toolbelt Pack Off
+}
+
+//# Vanity
 BreadOfCthulhuMask: {
 	DisplayName: Bread Of Cthulhu Mask
 	Tooltip: ""
 }
 
-CrabsonMask: {
-	DisplayName: Crabson Mask
-	Tooltip: ""
-}
-
-DustDevilMaskFire: {
-	DisplayName: Fiery Dust Devil Mask
-	Tooltip: ""
-}
-
-DustDevilMaskIce: {
-	DisplayName: Frosty Dust Devil Mask
+DustDevilMask: {
+	DisplayName: Dust Devil Mask
 	Tooltip: ""
 }
 
@@ -442,99 +878,62 @@ SpaceSquidMask: {
 	Tooltip: ""
 }
 
-//# Tiles & Blocks
-MonsterChestItem: {
-	DisplayName: Monster Chest
-	Tooltip: Places a monster chest which will get immediately activated unless you have the Invisibility buff
-}
-
-CircuitBreaker: {
-	DisplayName: Circuit Switch
-	Tooltip: Activates Conductive Blocks without needing wire
-}
-
-CrabsonRelic: {
-	DisplayName: Crabson Relic
+CelestialEightBall: {
+	DisplayName: Mods.Aequus.Items.CelestialEightBall.DisplayName
 	Tooltip: ""
-}
 
-DustDevilRelic: {
-	DisplayName: Dust Devil Relic
-	Tooltip: ""
-}
-
-OmegaStariteRelic: {
-	DisplayName: Omega Starite Relic
-	Tooltip: ""
-}
-
-RedSpriteRelic: {
-	DisplayName: Red Sprite Relic
-	Tooltip: ""
-}
-
-SpaceSquidRelic: {
-	DisplayName: Space Squid Relic
-	Tooltip: ""
-}
-
-UltraStariteRelic: {
-	DisplayName: Ultra Starite Relic
-	Tooltip: ""
-}
-
-CrabsonTrophy: {
-	DisplayName: Crabson Trophy
-	Tooltip: ""
-}
-
-DustDevilTrophy: {
-	DisplayName: Dust Devil Trophy
-	Tooltip: ""
-}
-
-OmegaStariteTrophy: {
-	DisplayName: Omega Starite Trophy
-	Tooltip: ""
-}
-
-RedSpriteTrophy: {
-	DisplayName: Red Sprite Trophy
-	Tooltip: ""
-}
-
-SpaceSquidTrophy: {
-	DisplayName: Space Squid Trophy
-	Tooltip: ""
-}
-
-UltraStariteTrophy: {
-	DisplayName: Ultra Starite Trophy
-	Tooltip: ""
-}
-
-//# Mounts
-BalloonKit: {
-	DisplayName: Balloon Kit
-	Tooltip:
-		'''
-		Allows you to ride a hot air balloon
-		'Skillfully crafted at Modzilla Corp Factories'
-		'''
-}
-
-//# Backpacks
-ScavengerBag: {
-	DisplayName: Scavenger Bag
-	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
-}
-
-Backpacks: {
-	ScavengerBagBackpackData: {
-		DisplayName: Backpack
-		BackpackEnabled: Backpack On
-		BackpackDisabled: Backpack Off
+	Answer: {
+		0: Yes
+		1: My sources say no
+		2: It is certain
+		3: It is decidedly so
+		4: Without a doubt
+		5: Yes definitely
+		6: You may rely on it
+		7: As I see it yes
+		8: Most likely
+		9: Outlook good
+		10: Signs point to yes
+		11: Don't count on it
+		12: My reply is no
+		13: Outlook not so good
+		14: Very doubtful
+		15: Reply hazy try again
+		16: Ask again later
+		17: Better not tell you now
+		18: Cannot predict now
+		19: Concentrate and ask again
 	}
+}
+
+CosmicMonolith: {
+	DisplayName: Cosmic Monolith
+	Tooltip: "'Sustain a fraction of cosmic power'"
+}
+
+UltimateSword: {
+	DisplayName: Mods.Aequus.Items.UltimateSword.DisplayName
+	Tooltip: ""
+}
+
+StariteMaterial: {
+	DisplayName: Core Fragment
+	Tooltip: ""
+}
+
+Killifish: {
+	DisplayName: Killifish
+	Tooltip: ""
+}
+
+Piraiba: {
+	DisplayName: Piraiba
+	Tooltip: ""
+}
+
+BlackJellyfishBait: {
+	DisplayName: "{$NPCs.BlackJellyfish.DisplayName}"
+	Tooltip: Explodes and damages fished up enemies
 }
 
 BoostTooltips.NoEffect: Mods.Aequus.Items.BoostTooltips.NoEffect

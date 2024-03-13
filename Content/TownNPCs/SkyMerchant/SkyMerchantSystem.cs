@@ -1,8 +1,5 @@
 ﻿using System;
-using Terraria;
 using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.TownNPCs.SkyMerchant;
 
@@ -35,7 +32,7 @@ public class SkyMerchantSystem : ModSystem {
                 if (Main.player[i].active && !Main.player[i].DeadOrGhost && !Main.player[i].ZoneWaterCandle && Helper.ZoneSkyHeight(Main.player[i]) && Math.Abs((int)Main.player[i].Center.X - SkyMerchantX * 16) < NPC.safeRangeX * 24f) {
                     if (TrySpawningSkyMerchant()) {
                         if (Main.tenthAnniversaryWorld) {
-                            TextHelper.Broadcast("Announcement.HasArrived", TextHelper.TownNPCArrived, Main.npc[NPC.FindFirstNPC(ModContent.NPCType<SkyMerchant>())].GetFullNetName());
+                            TextBroadcast.NewText("Announcement.HasArrived", CommonColor.TEXT_TOWN_NPC_ARRIVED, Main.npc[NPC.FindFirstNPC(ModContent.NPCType<SkyMerchant>())].GetFullNetName());
                         }
                     }
                     break;

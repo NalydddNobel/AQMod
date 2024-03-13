@@ -28,11 +28,7 @@ CrabPot: {
 TrashCompactor: {
 	MapEntry: Trash Compactor
 	ItemDisplayName: "{$Tiles.TrashCompactor.MapEntry}"
-	ItemTooltip:
-		'''
-		Used to compress trash
-		Placing furniture into the compactor will deconstruct them into their components
-		'''
+	ItemTooltip: Can extractinate furniture and junk
 }
 
 RadonMoss: {
@@ -53,4 +49,191 @@ ObsidianCrabPot: {
 		Use lava bait to catch fish in lava
 		{$Tiles.CrabPot.Copper.ItemTooltip}
 		'''
+}
+
+Trophies: {
+	CrabsonTrophy.DisplayName: Crabson Trophy
+	CrabsonRelic.DisplayName: Crabson Relic
+	OmegaStariteTrophy.DisplayName: Omega Starite Trophy
+	OmegaStariteRelic.DisplayName: Omega Starite Relic
+	DustDevilTrophy.DisplayName: Dust Devil Trophy
+	DustDevilRelic.DisplayName: Dust Devil Relic
+	UltraStariteTrophy.DisplayName: Ultra Starite Trophy
+	UltraStariteRelic.DisplayName: Ultra Starite Relic
+	RedSpriteTrophy.DisplayName: Red Sprite Trophy
+	RedSpriteRelic.DisplayName: Red Sprite Relic
+	SpaceSquidTrophy.DisplayName: Space Squid Trophy
+	SpaceSquidRelic.DisplayName: Space Squid Relic
+}
+
+OblivionAltar: {
+	MapEntry: Oblivion Altar
+	ItemDisplayName: "{$OblivionAltar.MapEntry}"
+	ItemTooltip:
+		'''
+		<right> to upgrade evil weapons
+		Counts as a Demon/Crimson Altar for crafting
+		'''
+}
+
+ScavengerStatue: {
+	ItemDisplayName: Scavenger Statue
+	ItemTooltip: ""
+}
+
+MossStatues: {
+	Argon: {
+		ItemDisplayName: Argon Plant Statue
+		ItemTooltip: ""
+	}
+
+	Krypton: {
+		ItemDisplayName: Krypton Plant Statue
+		ItemTooltip: ""
+	}
+
+	Neon: {
+		ItemDisplayName: Neon Plant Statue
+		ItemTooltip: ""
+	}
+
+	Xenon: {
+		ItemDisplayName: Xenon Plant Statue
+		ItemTooltip: ""
+	}
+}
+
+OblivionChest: {
+	MapEntry: Oblivion Chest
+	ItemDisplayName: "{$Tiles.OblivionChest.MapEntry}"
+	ItemTooltip: ""
+}
+
+OblivionChestTrapped: {
+	ItemDisplayName: Trapped Oblivion Chest
+	ItemTooltip: ""
+}
+
+OblivionCraftingStation: {
+	ItemDisplayName: Oblivion Reformatory
+	ItemTooltip: "{$CommonItemTooltip.SpecialCrafting}"
+}
+
+PlanterBox: {
+	Moray: {
+		ItemDisplayName: Moray Planter Box
+		ItemTooltip: ""
+	}
+
+	Moonflower: {
+		ItemDisplayName: Moonflower Planter Box
+		ItemTooltip: ""
+	}
+
+	Manacle: {
+		ItemDisplayName: Manacle Planter Box
+		ItemTooltip: ""
+	}
+
+	Mistral: {
+		ItemDisplayName: Mistral Planter Box
+		ItemTooltip: ""
+	}
+}
+
+HangingPot: {
+	Moray: {
+		ItemDisplayName: Hanging Moray
+		ItemTooltip: ""
+	}
+
+	Mistral: {
+		ItemDisplayName: Hanging Mistral
+		ItemTooltip: ""
+	}
+
+	Manacle: {
+		ItemDisplayName: Hanging Manacle
+		ItemTooltip: ""
+	}
+
+	Moonflower: {
+		ItemDisplayName: Hanging Moonflower
+		ItemTooltip: ""
+	}
+}
+
+Moonflower.MapEntry: Moonflower
+Mistral.MapEntry: Mistral
+Manacle.MapEntry: Manacle
+
+GravityBlock: {
+	MapEntry: Normal Gravity Block
+	ItemDisplayName: "{$Tiles.GravityBlock.MapEntry}"
+	ItemTooltip: ""
+}
+
+AntiGravityBlock: {
+	MapEntry: Reversed Gravity Block
+	ItemDisplayName: "{$Tiles.AntiGravityBlock.MapEntry}"
+	ItemTooltip: ""
+}
+
+ScrapBlock: {
+	MapEntry: Junk Block
+	ItemDisplayName: "{$Tiles.ScrapBlock.MapEntry}"
+	ItemTooltip: ""
+}
+
+ScrapBrick: {
+	ItemDisplayName: Scrap Brick
+	ItemTooltip: ""
+}
+
+PolymerSandstone: {
+	ItemDisplayName: Polymer Sandstone
+	ItemTooltip: ""
+}
+
+PolymerSand: {
+	ItemDisplayName: Polymer Sand
+	ItemTooltip: ""
+}
+
+TrashChest: {
+	MapEntry: Dumpster
+	ItemDisplayName: "{$Tiles.TrashChest.MapEntry}"
+	ItemTooltip: Both sides of the dumpster are different chests
+}
+
+TrashTorch: {
+	ItemDisplayName: Mods.Aequus.Tiles.TrashTorch.ItemDisplayName
+	ItemTooltip: ""
+}
+
+TrashCampfire: {
+	ItemDisplayName: Mods.Aequus.Tiles.TrashCampfire.ItemDisplayName
+	ItemTooltip: ""
+}
+
+BlackJellyfishJar: {
+	MapEntry: Black Jellyfish Jar
+	ItemDisplayName: "{$Tiles.BlackJellyfishJar.MapEntry}"
+	ItemTooltip: ""
+}
+
+Tombstones: {
+	MapEntry: {
+		0: Underworld Tombstone
+		1: Underworld Grave Marker
+		2: Underworld Resting Fern
+		3: Underworld Resting Shrub
+		4: Underworld Resting Hedge
+		5: Underworld Obelisk
+		6: Reaper Sepulcher
+		7: Grim Sepulcher
+		8: Imp Sepulcher
+		9: Fire Quartz Sepulcher
+		10: Duke Sepulcher
+	}
 }

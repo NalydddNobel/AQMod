@@ -1,7 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 
 namespace Aequus.Core.Graphics.Primitives;
+
+[Obsolete]
 public class UVVertexStrip : VertexStripClone {
     public static readonly UVVertexStrip Instance = new();
 
@@ -14,6 +15,6 @@ public class UVVertexStrip : VertexStripClone {
     }
 
     protected override void AddVertex(Vector2 pos, float rot, int indexOnVertexArray, Color color, float width, float textureUV) {
-        base.AddVertex(pos, rot, indexOnVertexArray, color, width, Math.Abs(indexOnVertexArray / 2 / (float)totalVertexPairs * uvMultiplier + uvAdd) % 1f);
+        base.AddVertex(pos, rot, indexOnVertexArray, color, width, textureUV * 10f % 1f);
     }
 }

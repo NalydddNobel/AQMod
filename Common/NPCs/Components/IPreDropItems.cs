@@ -1,6 +1,4 @@
-﻿using Terraria;
-
-namespace Aequus.Common.NPCs.Components;
+﻿namespace Aequus.Common.NPCs.Components;
 public interface IPreDropItems {
     bool PreDropItems(Player closestPlayer);
 

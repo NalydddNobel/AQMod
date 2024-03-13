@@ -1,8 +1,6 @@
 ﻿using Aequus.Core.Graphics.Animations;
 using Microsoft.Xna.Framework;
-using Terraria;
 using Terraria.Audio;
-using Terraria.ID;
 
 namespace Aequus.Content.Fishing.CrabPots;
 

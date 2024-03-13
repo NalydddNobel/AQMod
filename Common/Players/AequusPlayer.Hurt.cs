@@ -1,9 +1,8 @@
 ﻿using Aequus.Common.Tiles.Components;
+using Aequus.Core.CodeGeneration;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace Aequus;
 
@@ -13,7 +12,28 @@ public partial class AequusPlayer {
     /// </summary>
     public static int MinimumRespawnTime { get; set; } = 180;
 
-    public int respawnTimeModifier;
+    [ResetEffects]
+    public int respawnTimeModifierFlat;
+
+    /// <summary>
+    /// Sets the respawn time modifier without allowing it to stack.
+    /// </summary>
+    /// <param name="amount"></param>
+    public void SetAccRespawnTimeModifier(int amount) {
+        if (amount < 0) {
+            if (respawnTimeModifierFlat <= amount) {
+                return;
+            }
+
+            respawnTimeModifierFlat += amount;
+        }
+        else {
+            if (respawnTimeModifierFlat >= amount) {
+                return;
+            }
+            respawnTimeModifierFlat += amount;
+        }
+    }
 
     public int timeSinceLastHit;
 
@@ -24,7 +44,7 @@ public partial class AequusPlayer {
         if (time <= MinimumRespawnTime || !player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
             return time;
         }
-        return Math.Max(time + aequusPlayer.respawnTimeModifier, MinimumRespawnTime);
+        return Math.Max(time + aequusPlayer.respawnTimeModifierFlat, MinimumRespawnTime);
     }
 
     private void HandleTileEffects() {
@@ -32,7 +52,7 @@ public partial class AequusPlayer {
         Collision.GetEntityEdgeTiles(_edgeTilesCache, Player);
         foreach (Point touchedTile in _edgeTilesCache) {
             Tile tile = Framing.GetTileSafely(touchedTile);
-            if (!tile.HasTile || !tile.HasUnactuatedTile) {
+            if (!tile.HasUnactuatedTile) {
                 continue;
             }
 

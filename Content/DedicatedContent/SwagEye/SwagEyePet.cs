@@ -1,12 +1,8 @@
-﻿using Aequus;
-using Aequus.Content.Pets;
+﻿using Aequus.Content.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
 namespace Aequus.Content.DedicatedContent.SwagEye;
@@ -16,8 +12,6 @@ public class SwagEyePet : ModPet {
         Main.projFrames[Type] = 2;
         Main.projPet[Projectile.type] = true;
         ProjectileID.Sets.CharacterPreviewAnimations[Type] = new() { Offset = new(0f, -8f) };
-
-        ItemID.Sets.ShimmerTransformToItem[ItemID.SuspiciousLookingEye] = PetItem.Type;
     }
 
     public override void SetDefaults() {
@@ -70,7 +64,7 @@ public class SwagEyePet : ModPet {
             var rotation = i + MathHelper.TwoPi / 6f + Main.GameUpdateCount * 0.05f;
             var frame = texture.Frame(verticalFrames: 5, frameY: (Projectile.identity + i) % 5);
             var icicleDrawCoords = drawCoords + rotation.ToRotationVector2() * icicleDistance * Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f + i * MathHelper.Pi / 3f, 0.8f, 1f) * Projectile.scale;
-            Main.EntitySpriteDraw(texture, icicleDrawCoords - Main.screenPosition, frame, LightHelper.GetLightColor(icicleDrawCoords), rotation - MathHelper.PiOver2, new Vector2(frame.Width / 2f, frame.Height - 6), Projectile.scale, SpriteEffects.None, 0);
+            Main.EntitySpriteDraw(texture, icicleDrawCoords - Main.screenPosition, frame, ExtendLight.Get(icicleDrawCoords), rotation - MathHelper.PiOver2, new Vector2(frame.Width / 2f, frame.Height - 6), Projectile.scale, SpriteEffects.None, 0);
         }
 
         if (Projectile.isAPreviewDummy) {

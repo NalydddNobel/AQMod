@@ -1,12 +1,19 @@
 ﻿using Aequus.Common.Buffs.Components;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.Buffs;
 public partial class AequusBuff : GlobalBuff {
     public override void Load() {
         On_NPC.AddBuff += NPC_AddBuff;
         On_Player.AddBuff += Player_AddBuff;
+        On_Player.QuickBuff_ShouldBotherUsingThisBuff += On_Player_QuickBuff_ShouldBotherUsingThisBuff;
+    }
+
+    private static bool On_Player_QuickBuff_ShouldBotherUsingThisBuff(On_Player.orig_QuickBuff_ShouldBotherUsingThisBuff orig, Player self, int attemptedType) {
+        if (BuffLoader.GetBuff(attemptedType) is ICheckQuickBuff modifyQuickBuff && !modifyQuickBuff.CheckQuickBuff(self)) {
+            return false;
+        }
+
+        return orig(self, attemptedType);
     }
 
     #region Hooks

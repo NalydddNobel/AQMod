@@ -1,18 +1,13 @@
-﻿using Aequus.Common.UI;
-using Aequus.Content.DataSets;
+﻿using Aequus.Content.DataSets;
 using Aequus.Content.Enemies.PollutedOcean.Scavenger.UI;
 using Aequus.Content.Equipment.Accessories.ScavengerBag;
 using Aequus.Core;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Aequus.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger;
@@ -28,13 +23,13 @@ public class ScavengerLootBag : ModNPC {
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = 3;
 
-        NPCID.Sets.DontDoHardmodeScaling[Type] = true;
-        NPCID.Sets.CantTakeLunchMoney[Type] = true;
-        NPCID.Sets.NPCBestiaryDrawOffset[Type] = new() {
+        NPCSets.DontDoHardmodeScaling[Type] = true;
+        NPCSets.CantTakeLunchMoney[Type] = true;
+        NPCSets.NPCBestiaryDrawOffset[Type] = new() {
             Hide = true,
         };
 
-        NPCSets.PushableByTypeId.AddEntry(Type);
+        NPCMetadata.PushableByTypeId.Add(Type);
     }
 
     public override void SetDefaults() {
@@ -101,10 +96,8 @@ public class ScavengerLootBag : ModNPC {
         for (int i = 0; i < Main.maxPlayers; i++) {
             if (Main.player[i].active && Main.player[i].talkNPC == NPC.whoAmI) {
                 playerOpened = i;
-                if (Main.myPlayer == i && UISystem.TalkInterface.CurrentState is not ScavengerLootBagUI) {
-                    Main.playerInventory = true;
-                    Main.npcChatText = "";
-                    UISystem.TalkInterface.SetState(new ScavengerLootBagUI());
+                if (Main.netMode != NetmodeID.Server && Main.myPlayer == i) {
+                    ModContent.GetInstance<NPCChat>().Interface.SetState<ScavengerLootBagUI>();
                 }
                 break;
             }

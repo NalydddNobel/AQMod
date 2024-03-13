@@ -1,6 +1,4 @@
-﻿using Terraria;
-using Terraria.Localization;
-using Terraria.ModLoader;
+﻿using Terraria.Localization;
 
 namespace Aequus.Content.Pets;
 

@@ -1,12 +1,8 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Aequus.Content.Equipment.Accessories.Informational.Calendar;
+﻿namespace Aequus.Content.Equipment.Accessories.Informational.Calendar;
 
 public class Calendar : ModItem {
     public override void SetStaticDefaults() {
-        ItemID.Sets.WorksInVoidBag[Type] = true;
+        ItemSets.WorksInVoidBag[Type] = true;
     }
 
     public override void SetDefaults() {

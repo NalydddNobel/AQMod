@@ -1,10 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using Terraria;
 using Terraria.Graphics.Effects;
-using Terraria.ModLoader;
 
 namespace Aequus.Core.Graphics.GameOverlays;
-public abstract class AequusOverlay : Overlay, ILoadable {
+public abstract class AequusOverlay : Overlay, ILoad {
     public Mod Mod { get; private set; }
 
     public string Name => GetType().Name;

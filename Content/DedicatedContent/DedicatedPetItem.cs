@@ -1,6 +1,5 @@
 ﻿using Aequus.Content.Pets;
 using Microsoft.Xna.Framework;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.DedicatedContent;
 

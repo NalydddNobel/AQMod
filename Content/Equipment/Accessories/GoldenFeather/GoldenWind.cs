@@ -1,15 +1,13 @@
 ﻿using Aequus.Common.Items;
-using Terraria;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.GoldenFeather;
 
+[LegacyName("AloeVera")]
 public class GoldenWind : GoldenFeather {
     public static new int LifeRegenerationAmount { get; set; } = 3;
 
-    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Seconds(-RespawnTimeAmount), TextHelper.Decimals(LifeRegenerationAmount / 2f));
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Seconds(-RespawnTimeAmount), ExtendLanguage.Decimals(LifeRegenerationAmount / 2f));
 
     public override int BuffType => ModContent.BuffType<GoldenWindBuff>();
 

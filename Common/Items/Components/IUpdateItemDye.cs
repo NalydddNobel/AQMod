@@ -1,6 +1,4 @@
-﻿using Terraria;
-
-namespace Aequus.Common.Items.Components;
+﻿namespace Aequus.Common.Items.Components;
 
 public interface IUpdateItemDye {
     void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem);

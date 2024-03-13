@@ -1,0 +1,32 @@
+Avalon: {
+	Buffs: {
+		BacciliteSceptreDebuff: {
+			DisplayName: "{Avalon.Items.BacciliteSceptre.DisplayName}"
+			Description: Mods.Aequus.CrossMod.Avalon.Buffs.BacciliteSceptreDebuff.Description
+		}
+	}
+
+	Items: {
+		BacciliteSceptre: {
+			DisplayName: Apoptosis Sceptre
+			Tooltip: "{$Items.CorruptionSceptre.Tooltip}"
+		}
+	}
+
+	Projectiles.BacciliteSceptreProj.DisplayName: "{Avalon.Items.BacciliteSceptre.DisplayName}"
+
+	ItemDropRules: {
+		IsContagion: Drops in the Contagion
+		IsNotContagion: Drops outside of Contagion worlds
+	}
+}
+
+Fargowiltas: {
+	Stats: {
+		MaxGhostSlots: Ghost Slots: {0}
+		GhostDuration: Ghost Duration: {0} minutes
+		SceptreDebuffMultiplier: Sceptre Debuff Damage: {0}%
+		DropRolls: Drop Rerolls: {0}
+		RespawnReduction: Reduced Respawn: {0} seconds
+	}
+}

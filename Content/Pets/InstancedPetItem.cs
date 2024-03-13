@@ -1,15 +1,12 @@
-﻿using Aequus.Common.Items;
-using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Aequus.Core.ContentGeneration;
 using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Pets;
 
 [Autoload(false)]
 internal class InstancedPetItem : InstancedModItem {
+    [CloneByReference]
     private readonly ModPet _modPet;
     private readonly int _rarity;
     private readonly int _value;

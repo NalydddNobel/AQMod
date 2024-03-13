@@ -1,6 +1,4 @@
 ﻿using System;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.GoldenFeather;
 
@@ -16,9 +14,7 @@ public class GoldenFeatherBuff : ModBuff {
             return;
         }
         player.lifeRegen += GoldenFeather.LifeRegenerationAmount;
-        if (aequusPlayer.respawnTimeModifier > GoldenFeather.RespawnTimeAmount) {
-            aequusPlayer.respawnTimeModifier = Math.Max(aequusPlayer.respawnTimeModifier + GoldenFeather.RespawnTimeAmount, GoldenFeather.RespawnTimeAmount);
-        }
+        aequusPlayer.SetAccRespawnTimeModifier(GoldenFeather.RespawnTimeAmount);
     }
 
     public override bool RightClick(int buffIndex) {

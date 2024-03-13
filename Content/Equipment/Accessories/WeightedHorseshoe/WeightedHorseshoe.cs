@@ -1,11 +1,7 @@
-﻿using Aequus;
-using Aequus.Common.Items;
+﻿using Aequus.Common.Items;
 using Aequus.Common.Items.Components;
 using Microsoft.Xna.Framework;
 using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.WeightedHorseshoe;
 
@@ -15,11 +11,6 @@ public class WeightedHorseshoe : ModItem, IUpdateItemDye {
     public static float EnemyFallDamage = 75f;
     public static float EnemyFallKnockback = 10f;
     public static float SlimeMountFallDamageMultiplier = 2f;
-
-    public override void SetStaticDefaults() {
-        ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.LuckyHorseshoe;
-        ItemID.Sets.ShimmerTransformToItem[ItemID.LuckyHorseshoe] = Type;
-    }
 
     public override void SetDefaults() {
         Item.DefaultToAccessory();

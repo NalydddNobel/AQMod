@@ -1,17 +1,14 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Common.UI;
 using Aequus.Core;
+using Aequus.Core.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Content.DedicatedContent;
@@ -66,7 +63,7 @@ public class DedicatedFaelingItem : ModItem {
             var glowColor = GetGlowColor(dedicatedItem);
             spriteBatch.Draw(AequusTextures.DedicatedFaelingItem_Mask, position, frame, glowColor, 0f, origin, scale, SpriteEffects.None, 0f);
 
-            ulong seed = (ulong)(Math.Abs(Main.LocalPlayer.name.GetHashCode()) + UISystem.CurrentItemSlot.Slot);
+            ulong seed = (ulong)(Math.Abs(Main.LocalPlayer.name.GetHashCode()) + CurrentSlot.Instance.Slot);
             var sparkleTexture = AequusTextures.Sparkles;
             var sparkleOrigin = new Vector2(6f, 5f);
             int size = (int)(TextureAssets.InventoryBack.Value.Width * 0.8f) / 4;

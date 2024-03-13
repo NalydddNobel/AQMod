@@ -1,7 +1,4 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-
-namespace Aequus.Common.Items.Components;
+﻿namespace Aequus.Common.Items.Components;
 
 public interface ITransformItem {
     void Transform(Player player);
@@ -21,7 +18,7 @@ internal sealed class TransformGlobalItem : GlobalItem {
     }
 
     public override void HoldItem(Item item, Player player) {
-        if (item.ModItem is ITransformItem transformItem && Main.myPlayer == player.whoAmI && Main.mouseRight && Main.mouseRightRelease && !Main.LocalPlayer.lastMouseInterface && Main.LocalPlayer.ItemTimeIsZero) {
+        if (item.ModItem is ITransformItem transformItem && Main.myPlayer == player.whoAmI && Main.mouseRight && Main.mouseRightRelease && !Main.LocalPlayer.lastMouseInterface && Main.LocalPlayer.ItemTimeIsZero && CombinedHooks.CanUseItem(player, item)) {
             transformItem.HoldItemTransform(player);
         }
     }

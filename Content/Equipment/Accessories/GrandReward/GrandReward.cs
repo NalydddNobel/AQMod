@@ -1,10 +1,9 @@
 ﻿using Aequus.Common.Items.Components;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.GrandReward;
 
+[LegacyName("BusinessCard", "ForgedCard")]
+[LegacyName("FaultyCoin", "FoolsGoldRing")]
 public class GrandReward : ModItem, IHaveDownsideTip {
     public static float LuckIncrease { get; set; } = 1f;
 

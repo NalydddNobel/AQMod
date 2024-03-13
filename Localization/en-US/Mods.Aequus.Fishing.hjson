@@ -3,4 +3,9 @@ FishingPoles: {
 		DisplayName: Steampunker's Rod
 		Tooltip: Automatically pulls and recasts the fishing bobber
 	}
+
+	BambooFishingPole: {
+		DisplayName: Bamboo Pole
+		Tooltip: Greatly increased catch rate
+	}
 }

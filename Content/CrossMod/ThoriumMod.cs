@@ -1,12 +1,10 @@
 ﻿using Aequus.Common.Players.Stats;
 using Aequus.Content.DataSets;
 using Aequus.Core.CrossMod;
-using System;
-using System.Collections.Generic;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
+namespace Aequus.Content.CrossMod; 
 namespace Aequus.Content.CrossMod; 
 
 internal class ThoriumMod : ModSupport<ThoriumMod> {

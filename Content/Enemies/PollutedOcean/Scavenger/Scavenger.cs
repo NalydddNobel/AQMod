@@ -1,35 +1,36 @@
 ﻿using Aequus.Common.NPCs;
+using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
-using Aequus.Content.CrossMod;
+using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Content.DataSets;
 using Aequus.Content.Equipment.Accessories.ScavengerBag;
-using Aequus.Core.Autoloading;
-using Microsoft.Xna.Framework;
+using Aequus.Core.ContentGeneration;
+using Aequus.Core.Initialization;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Utilities;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger;
 
+[AutoloadBanner]
+[AutoloadStatue]
+[ModBiomes(typeof(PollutedOceanBiomeUnderground))]
 public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateItemDropDatabase {
-    public const int HeadSlot = 0;
-    public const int BodySlot = 1;
-    public const int LegSlot = 2;
-    public const int AccSlot = 3;
-    public const int ArmorCount = 4;
+    public const int SLOT_HEAD = 0;
+    public const int SLOT_BODY = 1;
+    public const int SLOT_LEGS = 2;
+    public const int SLOT_ACCS = 3;
+    public const int ARMOR_COUNT = 4;
 
-    public static int ExtraEquipChance = 2;
-    public static int ItemDropChance = 4;
-    public static int TravelingMerchantBuilderItemChance = 20;
+    public static int ExtraEquipChance { get; set; } = 2;
+    public static int ItemDropChance { get; set; } = 8;
+    public static int TravelingMerchantBuilderItemChance { get; set; } = 30;
 
     private int serverWhoAmI = Main.maxPlayers;
     private Player playerDummy;
@@ -44,7 +45,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
     #region Initialization
     public Scavenger() {
         weapon = new();
-        armor = new Item[ArmorCount];
+        armor = new Item[ARMOR_COUNT];
         for (int i = 0; i < armor.Length; i++) {
             armor[i] = new();
         }
@@ -65,9 +66,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-        this.CreateEntry(database, bestiaryEntry)
-            .AddMainSpawn(BestiaryBuilder.CavernsBiome)
-            .AddSpawn(BestiaryBuilder.OceanBiome);
+        this.CreateEntry(database, bestiaryEntry);
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
@@ -79,7 +78,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
     }
 
     public virtual void PostPopulateItemDropDatabase(Aequus aequus, ItemDropDatabase database) {
-        NPCHelper.InheritDropRules(NPCID.Skeleton, Type, database);
+        ExtendLoot.InheritDropRules(NPCID.Skeleton, Type, database);
     }
 
     public override void SetDefaults() {
@@ -108,10 +107,10 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         playerDummy.statLifeMax = NPC.lifeMax;
         playerDummy.statLifeMax2 = NPC.lifeMax;
         playerDummy.statDefense = Player.DefenseStat.Default + NPC.defense;
-        playerDummy.armor[0] = armor[HeadSlot];
-        playerDummy.armor[1] = armor[BodySlot];
-        playerDummy.armor[2] = armor[LegSlot];
-        playerDummy.armor[3] = armor[AccSlot];
+        playerDummy.armor[0] = armor[SLOT_HEAD];
+        playerDummy.armor[1] = armor[SLOT_BODY];
+        playerDummy.armor[2] = armor[SLOT_LEGS];
+        playerDummy.armor[3] = armor[SLOT_ACCS];
         playerDummy.selectedItem = 0;
         playerDummy.inventory[0] = weapon;
         playerDummy.whoAmI = serverWhoAmI;
@@ -138,15 +137,15 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
 
     private void RandomizeArmor(UnifiedRandom random) {
         SetItem(ref weapon, ScavengerEquipment.ScavengerWeapons.Select((i) => i.Id).ToList(), random);
-        var options = new List<int>() { HeadSlot, BodySlot, LegSlot, AccSlot };
+        var options = new List<int>() { SLOT_HEAD, SLOT_BODY, SLOT_LEGS, SLOT_ACCS };
         while (options.Count > 0) {
             int choice = random.Next(options);
 
             bool value = choice switch {
-                HeadSlot => SetItem(ref armor[HeadSlot], ScavengerEquipment.ScavengerHelmets.Select((i) => i.Id).ToList(), random),
-                BodySlot => SetItem(ref armor[BodySlot], ScavengerEquipment.ScavengerBreastplates.Select((i) => i.Id).ToList(), random),
-                LegSlot => SetItem(ref armor[LegSlot], ScavengerEquipment.ScavengerLeggings.Select((i) => i.Id).ToList(), random),
-                AccSlot => SetItem(ref armor[AccSlot], ScavengerEquipment.ScavengerAccessories.Select((i) => i.Id).ToList(), random),
+                SLOT_HEAD => SetItem(ref armor[SLOT_HEAD], ScavengerEquipment.ScavengerHelmets.Select((i) => i.Id).ToList(), random),
+                SLOT_BODY => SetItem(ref armor[SLOT_BODY], ScavengerEquipment.ScavengerBreastplates.Select((i) => i.Id).ToList(), random),
+                SLOT_LEGS => SetItem(ref armor[SLOT_LEGS], ScavengerEquipment.ScavengerLeggings.Select((i) => i.Id).ToList(), random),
+                SLOT_ACCS => SetItem(ref armor[SLOT_ACCS], ScavengerEquipment.ScavengerAccessories.Select((i) => i.Id).ToList(), random),
                 _ => false
             };
 
@@ -174,7 +173,8 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
             for (int i = 0; i < 20; i++) {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hit.HitDirection, -2.5f);
             }
-            Gore.NewGore(source, NPC.position, NPC.velocity, Mod.Find<ModGore>(nameof(AequusTextures.ScavengerGoreHead)).Type, NPC.scale);
+
+            NPC.NewGore(AequusTextures.ScavengerGoreHead, NPC.position, NPC.velocity, Scale: NPC.scale);
             for (int i = 0; i < 2; i++) {
                 Gore.NewGore(source, NPC.position + new Vector2(0f, 20f), NPC.velocity, 43, NPC.scale);
                 Gore.NewGore(source, NPC.position + new Vector2(0f, 34f), NPC.velocity, 44, NPC.scale);
@@ -226,8 +226,8 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
             NPC.defense += armor[i].defense;
         }
         PassDownStatsToPlayer();
-        if (!armor[AccSlot].IsAir) {
-            playerDummy.ApplyEquipFunctional(armor[AccSlot], hideVisual: false);
+        if (!armor[SLOT_ACCS].IsAir) {
+            playerDummy.ApplyEquipFunctional(armor[SLOT_ACCS], hideVisual: false);
         }
         if (NPC.TryGetGlobalNPC<AequusNPC>(out var aequusNPC)) {
             acceleration += playerDummy.runAcceleration;
@@ -243,7 +243,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
 
         //bool attacking = DoAttack();
         bool attacking = false;
-        if (!armor[AccSlot].IsAir && CustomAccessoryUsage.TryGetValue(armor[AccSlot].type, out var accessoryUpdate)) {
+        if (!armor[SLOT_ACCS].IsAir && CustomAccessoryUsage.TryGetValue(armor[SLOT_ACCS].type, out var accessoryUpdate)) {
             accessoryUpdate(this, attacking);
         }
 
@@ -256,6 +256,10 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
 
     public override void FindFrame(int frameHeight) {
         base.FindFrame(frameHeight);
+    }
+
+    public override bool? CanFallThroughPlatforms() {
+        return NPC.HasValidTarget && Main.player[NPC.target].position.Y > NPC.Bottom.Y;
     }
 
     public override void OnKill() {
@@ -274,7 +278,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         ScavengerLootBag.AddDropsToList(NPC, dropsRegisterList);
 
         dropsRegisterList.RemoveAll((i) => i.ModItem is ScavengerBag);
-        
+
         if (dropsRegisterList.Count <= 0) {
             return;
         }
@@ -301,10 +305,10 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
 
     #region IO
     public override void SaveData(TagCompound tag) {
-        TrySaveItem("Head", armor[HeadSlot]);
-        TrySaveItem("Body", armor[BodySlot]);
-        TrySaveItem("Legs", armor[LegSlot]);
-        TrySaveItem("Acc", armor[AccSlot]);
+        TrySaveItem("Head", armor[SLOT_HEAD]);
+        TrySaveItem("Body", armor[SLOT_BODY]);
+        TrySaveItem("Legs", armor[SLOT_LEGS]);
+        TrySaveItem("Acc", armor[SLOT_ACCS]);
         TrySaveItem("Weapon", weapon);
 
         void TrySaveItem(string name, Item item) {
@@ -315,10 +319,10 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
     }
 
     public override void LoadData(TagCompound tag) {
-        TryLoadItem("Head", ref armor[HeadSlot]);
-        TryLoadItem("Body", ref armor[BodySlot]);
-        TryLoadItem("Legs", ref armor[LegSlot]);
-        TryLoadItem("Acc", ref armor[AccSlot]);
+        TryLoadItem("Head", ref armor[SLOT_HEAD]);
+        TryLoadItem("Body", ref armor[SLOT_BODY]);
+        TryLoadItem("Legs", ref armor[SLOT_LEGS]);
+        TryLoadItem("Acc", ref armor[SLOT_ACCS]);
         TryLoadItem("Weapon", ref weapon);
 
         void TryLoadItem(string name, ref Item item) {

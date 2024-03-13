@@ -10,7 +10,27 @@ public class VanillaChangesConfig : ModConfig {
 
     [DefaultValue(true)]
     [ReloadRequired]
+    public bool SlimeCrownInSurfaceChests { get; set; }
+
+    [DefaultValue(true)]
+    [ReloadRequired]
+    public bool MoveMagicConch { get; set; }
+
+    [DefaultValue(true)]
+    [ReloadRequired]
     public bool MoveTreasureMagnet { get; set; }
+
+    [DefaultValue(true)]
+    [ReloadRequired]
+    public bool MoveToolbelt { get; set; }
+
+    [DefaultValue(true)]
+    [ReloadRequired]
+    public bool MoveGravityGlobe { get; set; }
+
+    [DefaultValue(true)]
+    [ReloadRequired]
+    public bool MovePortalGun { get; set; }
 
     [DefaultValue(true)]
     [ReloadRequired]

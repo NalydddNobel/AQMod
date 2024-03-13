@@ -1,5 +1,4 @@
 ﻿using Aequus.Core.Assets;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Aequus;
 

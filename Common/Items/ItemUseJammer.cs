@@ -1,7 +1,4 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-
-namespace Aequus.Common.Items;
+﻿namespace Aequus.Common.Items;
 
 public class ItemUseJammer : GlobalItem {
     public override bool? UseItem(Item item, Player player) {

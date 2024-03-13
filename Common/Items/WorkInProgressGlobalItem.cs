@@ -2,9 +2,7 @@
 using Microsoft.Xna.Framework;
 using ReLogic.Utilities;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.Items;
 

@@ -1,7 +1,4 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-
-namespace Aequus.Common.Buffs {
+﻿namespace Aequus.Common.Buffs {
     public abstract class BaseMountBuff : ModBuff {
         public abstract int MountType { get; }
 

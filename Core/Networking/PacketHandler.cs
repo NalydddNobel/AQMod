@@ -2,7 +2,6 @@
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using Terraria.ModLoader;
 
 namespace Aequus.Core.Networking;
 
@@ -14,7 +13,7 @@ public abstract class PacketHandler : ModType {
             // Require all inherited Packet Handlers to have a "Send" method.
             throw new Exception($"A public instanced 'Send' method was not found in {Name}.");
         }
-        PacketSystem.Register(this);
+        Aequus.RegisterPacket(this);
     }
 
     public sealed override void SetupContent() {
@@ -28,15 +27,5 @@ public abstract class PacketHandler : ModType {
         var packet = Aequus.Instance.GetPacket();
         packet.Write(Type);
         return packet;
-    }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    /// <summary>
-    /// Casts an <see cref="int"/> into a <see cref="byte"/>. Clamped between 0 and 255.
-    /// </summary>
-    /// <param name="value"></param>
-    /// <returns></returns>
-    protected byte AsClampedByte(int value) {
-        return (byte)Math.Clamp(value, byte.MinValue, byte.MaxValue);
     }
 }

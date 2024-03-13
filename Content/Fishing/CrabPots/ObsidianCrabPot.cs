@@ -1,30 +1,29 @@
 ﻿using Aequus.Common.Tiles;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Aequus.Core.ContentGeneration;
+using Aequus.Core.Initialization;
 using System;
-using Terraria;
 using Terraria.Enums;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Fishing.CrabPots;
 
 public class ObsidianCrabPot : BaseCrabPot {
     public override void Load() {
-        Mod.AddContent(new InstancedTileItem(this, rarity: ItemRarityID.Orange, value: Item.sellPrice(silver: 50)).WithRecipe((m) => {
+        ModItem item = new InstancedTileItem(this, rarity: ItemRarityID.Orange, value: Item.sellPrice(silver: 50));
+
+        Aequus.OnAddRecipes += () => {
             foreach (var item in Mod.GetContent<ModItem>()) {
                 if (item.Item.createTile != ModContent.TileType<CrabPot>()) {
                     continue;
                 }
 
-                m.CreateRecipe()
+                item.CreateRecipe()
                     .AddIngredient(item)
                     .AddIngredient(ItemID.Obsidian, 20)
                     .AddTile(TileID.Hellforge)
                     .Register();
             }
-        }));
+        };
     }
 
     protected override void SetupCrabPotContent() {

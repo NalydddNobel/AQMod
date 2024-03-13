@@ -1,13 +1,9 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Aequus.Content.DedicatedContent.Baguette;
+﻿namespace Aequus.Content.DedicatedContent.Baguette;
 
 public class BaguetteBuff : ModBuff {
     public override void SetStaticDefaults() {
-        BuffID.Sets.IsFedState[Type] = true;
-        BuffID.Sets.IsWellFed[Type] = true;
+        BuffSets.IsFedState[Type] = true;
+        BuffSets.IsWellFed[Type] = true;
     }
 
     public override void Update(Player player, ref int buffIndex) {

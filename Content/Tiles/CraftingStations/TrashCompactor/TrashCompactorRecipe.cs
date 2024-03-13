@@ -1,8 +1,6 @@
 ﻿using Aequus.Content.DataSets;
 using System.Collections.Generic;
 using System.Linq;
-using Terraria;
-using Terraria.ID;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Tiles.CraftingStations.TrashCompactor;
@@ -30,7 +28,7 @@ public struct TrashCompactorRecipe {
     public bool Invalid => Ingredient == null || Results == null || Results.Count <= 0;
 
     public static TrashCompactorRecipe FromItem(Item item) {
-        if (ItemSets.CustomTrashCompactorRecipes.TryGetValue(item.type, out var recipeOverride)) {
+        if (ItemMetadata.CustomTrashCompactorRecipes.TryGetValue(item.type, out var recipeOverride)) {
             return recipeOverride;
         }
 
@@ -41,12 +39,12 @@ public struct TrashCompactorRecipe {
 
         // Only get recipes for items which can place a "Frame Important" (non-block) tile, and isn't a generic torch.
         if (item.createTile > -1 && Main.tileFrameImportant[item.createTile] && !TileID.Sets.Torch[item.createTile]) {
-        //if (true) {
+            //if (true) {
 
             if (item.createTile > -1) {
                 // Prevent decrafting for 1x1 tiles which are not light sources like Candles. (Bars, misc)
                 var tileObjectData = TileObjectData.GetTileData(item.createTile, item.placeStyle);
-                if (tileObjectData != null && tileObjectData.Width == 1 && tileObjectData.Height == 1 && !TileID.Sets.RoomNeeds.CountsAsTorch.Any(item.createTile)) {
+                if (tileObjectData != null && tileObjectData.Width == 1 && tileObjectData.Height == 1 && !TileID.Sets.RoomNeeds.CountsAsTorch.Match(item.createTile)) {
                     return None;
                 }
             }
@@ -76,6 +74,6 @@ public struct TrashCompactorRecipe {
     }
 
     public static void AddCustomRecipe(int ingredient, params (int, int)[] results) {
-        ItemSets.CustomTrashCompactorRecipes[ingredient] = new(ingredient, results);
+        ItemMetadata.CustomTrashCompactorRecipes[ingredient] = new(ingredient, results);
     }
 }

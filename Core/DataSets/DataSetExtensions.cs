@@ -1,4 +1,4 @@
-﻿using Aequus.Core;
+﻿using Aequus.Core.Initialization;
 using Aequus.Core.DataSets;
 using System.Collections.Generic;
 
@@ -13,11 +13,11 @@ public static class DataSetExtensions {
     }
 
     public static void AddEntry<T, T2>(this ICollection<T> list, T2 id) where T : IDataEntry<T2>, new() {
-        ContentInitializationSteps.EnqueuePostSetupContent(() => {
+        Aequus.OnPostSetupContent += () => {
             var value = new T() { Id = id };
             value.Initialize();
             list.Add(value);
-        });
+        };
     }
 
     public static bool Contains<T, T2>(this ICollection<T> list, T2 id) where T : IDataEntry<T2>, new() {

@@ -1,8 +1,7 @@
 ﻿using Aequus.Common.Tiles;
-using Aequus.Content.Items.Material;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+using Aequus.Content.Materials;
+using Aequus.Core.ContentGeneration;
+using Aequus.Core.Initialization;
 
 namespace Aequus.Content.Fishing.CrabPots;
 public class CrabPot : BaseCrabPot {
@@ -15,14 +14,16 @@ public class CrabPot : BaseCrabPot {
         AddItem(TinPot, ItemID.TinBar, "Tin");
 
         void AddItem(int style, int barItem, string name) {
-            Mod.AddContent(new InstancedTileItem(this, style: style, nameSuffix: name, rarity: ItemRarityID.Blue, value: Item.sellPrice(silver: 20)).WithRecipe((m) => {
-                m.CreateRecipe()
+            ModItem item = new InstancedTileItem(this, style: style, nameSuffix: name, rarity: ItemRarityID.Blue, value: Item.sellPrice(silver: 20));
+            Mod.AddContent(item);
+            Aequus.OnAddRecipes += () => {
+                item.CreateRecipe()
                     .AddIngredient(barItem, 10)
                     .AddIngredient(ItemID.Chain, 3)
                     .AddIngredient<CompressedTrash>()
                     .AddTile(TileID.Anvils)
                     .Register();
-            }));
+            };
         }
     }
 

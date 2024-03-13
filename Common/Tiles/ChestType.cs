@@ -1,7 +1,4 @@
 ﻿using System.Collections.Generic;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.Tiles {
     public class ChestType : ModSystem {
