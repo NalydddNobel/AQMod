@@ -224,16 +224,24 @@ BlackJellyfishJar: {
 
 Tombstones: {
 	MapEntry: {
-		// 0: Underworld Tombstone
-		// 1: Underworld Grave Marker
-		// 2: Underworld Resting Fern
-		// 3: Underworld Resting Shrub
-		// 4: Underworld Resting Hedge
-		// 5: Underworld Obelisk
-		// 6: Reaper Sepulcher
-		// 7: Grim Sepulcher
-		// 8: Imp Sepulcher
-		// 9: Fire Quartz Sepulcher
-		// 10: Duke Sepulcher
+		0: 地狱墓石
+		1: 地狱墓标
+		2: 眠狱蕨
+		3: 眠狱灌木
+		4: 眠狱树篱
+		5: 地狱尖碑
+		6: 收割者坟墓
+		7: 阴寒坟墓
+		8: 看守者坟墓
+		9: 火石英坟墓
+		10: 公爵坟墓
 	}
 }
+
+RainTotem: {
+	// MapEntry: Rain Totem
+	// ItemDisplayName: "{$Tiles.RainTotem.MapEntry}"
+	// ItemTooltip: Increases the chance for rain while nearby
+}
+
+// RainTotemInactive.MapEntry: Rain Totem Inactive

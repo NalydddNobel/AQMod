@@ -12,6 +12,58 @@ public static class TileHelper {
     public static Vector2 DrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
 
     public static bool ShowEcho { get; internal set; }
+    /// <param name="i">The X light sampling coordinate.</param>
+    /// <param name="j">The Y light sampling coordinate.</param>
+    /// <param name="tile">The tile.</param>
+    /// <returns>
+    /// The suggested color to draw this wall in. Colors returned are prioritized in this order:
+    /// <list type="number">
+    /// <item>
+    /// <see cref="Color.White"/> if <see cref="Tile.IsWallFullbright"/> equals <see langword="true"></see>
+    /// </item>
+    /// <item>
+    /// Otherwise, <see cref="Lighting.GetColor(int, int)"/> using <paramref name="i"/> and <paramref name="j"/>.
+    /// </item>
+    /// </list>
+    /// </returns>
+    public static Color WallColor(int i, int j, Tile tile) {
+        if (tile.IsWallFullbright) {
+            return Color.White;
+        }
+
+        return Lighting.GetColor(i, j);
+    }
+    /// <returns><inheritdoc cref="WallColor(int, int, Tile)"/></returns>
+    public static Color WallColor(int i, int j) {
+        return WallColor(i, j, Main.tile[i, j]);
+    }
+
+    /// <param name="i">The X light sampling coordinate.</param>
+    /// <param name="j">The Y light sampling coordinate.</param>
+    /// <param name="tile">The tile.</param>
+    /// <returns>
+    /// The suggested color to draw this tile in. Colors returned are prioritized in this order:
+    /// <list type="number">
+    /// <item>
+    /// <see cref="Color.White"/> if <see cref="Tile.IsTileFullbright"/> equals <see langword="true"></see>
+    /// </item>
+    /// <item>
+    /// Otherwise, <see cref="Lighting.GetColor(int, int)"/> using <paramref name="i"/> and <paramref name="j"/>.
+    /// </item>
+    /// </list>
+    /// </returns>
+    public static Color TileColor(int i, int j, Tile tile) {
+        if (tile.IsTileFullbright) {
+            return Color.White;
+        }
+
+        return Lighting.GetColor(i, j);
+    }
+
+    /// <returns><inheritdoc cref="TileColor(int, int, Tile)"/></returns>
+    public static Color TileColor(int i, int j) {
+        return TileColor(i, j, Main.tile[i, j]);
+    }
 
     public static float GetWaterY(byte liquidAmount) {
         return (1f - liquidAmount / 255f) * 16f;

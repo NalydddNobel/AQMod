@@ -1,6 +1,6 @@
 ﻿namespace Aequus.Common.Buffs;
 
-internal abstract class InstancedBuff : ModBuff {
+internal class InstancedBuff : ModBuff {
     private readonly string _name;
     private readonly string _texture;
 
