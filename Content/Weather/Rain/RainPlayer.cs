@@ -40,6 +40,9 @@ public class RainPlayerSyncPacket : PacketHandler {
 
     public override void Receive(BinaryReader reader, int sender) {
         byte player = reader.ReadByte();
-        Main.player[player].GetModPlayer<RainPlayer>().rainTotems = reader.ReadByte();
+        byte rainTotems = reader.ReadByte();
+        if (Main.player[player].TryGetModPlayer(out RainPlayer rainPlayer)) {
+            rainPlayer.rainTotems = rainTotems;
+        }
     }
 }
