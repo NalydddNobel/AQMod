@@ -695,6 +695,15 @@
             Bubble particles which only work underwater. Floats upwards.
             </summary>
         </member>
+        <member name="P:Aequus.Content.Weather.Rain.RainTotem.RainTotemMax">
+            <summary>Amount of Rain Totems on screen required to reach <see cref="P:Aequus.Content.Weather.Rain.RainTotem.BonusRainChanceMax"/></summary>
+        </member>
+        <member name="P:Aequus.Content.Weather.Rain.RainTotem.BonusRainChanceMin">
+            <summary>The extra rain chance per tick granted by a single totem. Extra totems interpolate between this and <see cref="P:Aequus.Content.Weather.Rain.RainTotem.BonusRainChanceMax"/> using the ratio between <see cref="P:Aequus.Content.Weather.Rain.RainTotem.RainTotemCount"/>/<see cref="P:Aequus.Content.Weather.Rain.RainTotem.RainTotemMax"/>.</summary>
+        </member>
+        <member name="P:Aequus.Content.Weather.Rain.RainTotem.BonusRainChanceMax">
+            <summary>The extra rain chance per tick granted by having maximum totems on screen.</summary>
+        </member>
         <member name="T:Aequus.Core.CodeGeneration.Publicization`2">
             <summary>Rough system which helps getting private fields from classes.</summary>
         </member>
@@ -1623,7 +1632,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 618)</summary>
+            <summary>(Total Textures: 620)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2617,6 +2626,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.JunkJet">
             <summary>Full Path: Content/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RainTotem">
+            <summary>Full Path: Content/Weather/Rain/RainTotem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RainTotemItem">
+            <summary>Full Path: Content/Weather/Rain/RainTotemItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.icon">
             <summary>Full Path: icon</summary>
