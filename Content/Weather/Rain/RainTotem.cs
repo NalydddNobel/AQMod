@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Buffs;
-using Aequus.Core.ContentGeneration;
+﻿using Aequus.Core.ContentGeneration;
 using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;
@@ -12,7 +11,6 @@ namespace Aequus.Content.Weather.Rain;
 
 public class RainTotem : ModTile {
     public static ModItem DropItem { get; private set; }
-    public static ModBuff Buff { get; private set; }
 
     public static int RainTotemCount { get; internal set; }
     /// <summary>Amount of Rain Totems on screen required to reach <see cref="BonusRainChanceMax"/></summary>
