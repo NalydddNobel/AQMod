@@ -1,4 +1,5 @@
 ﻿using Aequus.Core.Initialization;
+using Steamworks;
 using System;
 using Terraria.GameContent;
 
@@ -91,7 +92,7 @@ public partial class Conductor : IPostPopulateItemDropDatabase {
                     if (NPC.localAI[3] == 0f) {
                         NPC.frameCounter = 0.0;
                     }
-                    if (NPC.ai[1] < attackTime) {
+                    if (NPC.ai[1] < attackTime - 12) {
                         NPC.localAI[3] = 1f;
                         NPC.frameCounter++;
 
@@ -159,6 +160,10 @@ public partial class Conductor : IPostPopulateItemDropDatabase {
 
         switch (State) {
             case A_ATTACKING: {
+                    if (frame.Y == 0) {
+                        break;
+                    }
+
                     const int FRAME_COUNT = 5;
                     const int FRAME_RATE = 6;
                     var waveTexture = AequusTextures.Conductor_Wave.Value;

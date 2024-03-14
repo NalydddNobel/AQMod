@@ -23,7 +23,7 @@ public partial class Conductor : ModNPC {
     public const int A_ATTACKING = 1;
 
     public const int ATTACK_TIME = 360;
-    public const int ATTACK_SHOOT_TIME = 250;
+    public const int ATTACK_SHOOT_TIME = 280;
     public const float ATTACK_SHOOT_VELOCITY_CLASSIC = 6f;
     public const float ATTACK_SHOOT_VELOCITY_EXPERT = 10f;
     public const int ATTACK_RATE = 32;

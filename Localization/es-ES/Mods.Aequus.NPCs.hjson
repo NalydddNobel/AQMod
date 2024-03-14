@@ -35,7 +35,7 @@ Conductor: {
 	// DisplayName: Conductor
 	Bestiary: Un Frankenstein tecnológico, esta elegante antigüedad electrónica puede dirigir y manipular ondas de radio para defenderse. Se asegurará de poner un espectáculo, quieras o no.
 	// BannerName: Conductor Banner
-	// ProjectileName: Mods.Aequus.NPCs.Conductor.ProjectileName
+	// ProjectileName: Magic Ensemble
 }
 
 Mirage.Bestiary: Durante la lluvia, nubes toxicas se forman y acumulan formando este monstruo acídico, desea ser un nimbo real, pero tiene problemas haciéndose amigo hasta de un muñeco de pruebas.
