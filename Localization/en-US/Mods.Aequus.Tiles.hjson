@@ -243,3 +243,5 @@ RainTotem: {
 	ItemDisplayName: "{$Tiles.RainTotem.MapEntry}"
 	ItemTooltip: Increases the chance for rain while nearby
 }
+
+RainTotemInactive.MapEntry: "{$Tiles.RainTotem.MapEntry}"
