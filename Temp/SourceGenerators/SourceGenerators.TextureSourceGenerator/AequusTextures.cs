@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 620)</summary>
+/// <summary>(Total Textures: 622)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -671,8 +671,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> JunkJet = new("Aequus/Content/Weapons/Ranged/Misc/JunkJet/JunkJet");
     /// <summary>Full Path: Content/Weather/Rain/RainTotem</summary>
     public static readonly RequestCache<Texture2D> RainTotem = new("Aequus/Content/Weather/Rain/RainTotem");
+    /// <summary>Full Path: Content/Weather/Rain/RainTotemBuff</summary>
+    public static readonly RequestCache<Texture2D> RainTotemBuff = new("Aequus/Content/Weather/Rain/RainTotemBuff");
     /// <summary>Full Path: Content/Weather/Rain/RainTotemItem</summary>
     public static readonly RequestCache<Texture2D> RainTotemItem = new("Aequus/Content/Weather/Rain/RainTotemItem");
+    /// <summary>Full Path: Content/Weather/Rain/RainTotem_Glow</summary>
+    public static readonly RequestCache<Texture2D> RainTotem_Glow = new("Aequus/Content/Weather/Rain/RainTotem_Glow");
     /// <summary>Full Path: icon</summary>
     public static readonly RequestCache<Texture2D> icon = new("Aequus/icon");
     /// <summary>Full Path: icon_small</summary>

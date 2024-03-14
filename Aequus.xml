@@ -1186,6 +1186,44 @@
             <param name="text"></param>
             <param name="color"></param>
         </member>
+        <member name="M:Aequus.Core.Utilities.TileHelper.WallColor(System.Int32,System.Int32,Terraria.Tile)">
+            <param name="i">The X light sampling coordinate.</param>
+            <param name="j">The Y light sampling coordinate.</param>
+            <param name="tile">The tile.</param>
+            <returns>
+            The suggested color to draw this wall in. Colors returned are prioritized in this order:
+            <list type="number">
+            <item>
+            <see cref="P:Microsoft.Xna.Framework.Color.White"/> if <see cref="P:Terraria.Tile.IsWallFullbright"/> equals <see langword="true"></see>
+            </item>
+            <item>
+            Otherwise, <see cref="M:Terraria.Lighting.GetColor(System.Int32,System.Int32)"/> using <paramref name="i"/> and <paramref name="j"/>.
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.TileHelper.WallColor(System.Int32,System.Int32)">
+            <returns><inheritdoc cref="M:Aequus.Core.Utilities.TileHelper.WallColor(System.Int32,System.Int32,Terraria.Tile)"/></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.TileHelper.TileColor(System.Int32,System.Int32,Terraria.Tile)">
+            <param name="i">The X light sampling coordinate.</param>
+            <param name="j">The Y light sampling coordinate.</param>
+            <param name="tile">The tile.</param>
+            <returns>
+            The suggested color to draw this tile in. Colors returned are prioritized in this order:
+            <list type="number">
+            <item>
+            <see cref="P:Microsoft.Xna.Framework.Color.White"/> if <see cref="P:Terraria.Tile.IsTileFullbright"/> equals <see langword="true"></see>
+            </item>
+            <item>
+            Otherwise, <see cref="M:Terraria.Lighting.GetColor(System.Int32,System.Int32)"/> using <paramref name="i"/> and <paramref name="j"/>.
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.TileHelper.TileColor(System.Int32,System.Int32)">
+            <returns><inheritdoc cref="M:Aequus.Core.Utilities.TileHelper.TileColor(System.Int32,System.Int32,Terraria.Tile)"/></returns>
+        </member>
         <member name="M:Aequus.Core.Utilities.TileHelper.KillLiquid(System.Int32,System.Int32,System.Boolean)">
             <summary>
             Properly removes a liquid at the given tile coordinates.
@@ -1632,7 +1670,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 620)</summary>
+            <summary>(Total Textures: 622)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2630,8 +2668,14 @@
         <member name="F:Aequus.AequusTextures.RainTotem">
             <summary>Full Path: Content/Weather/Rain/RainTotem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.RainTotemBuff">
+            <summary>Full Path: Content/Weather/Rain/RainTotemBuff</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.RainTotemItem">
             <summary>Full Path: Content/Weather/Rain/RainTotemItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RainTotem_Glow">
+            <summary>Full Path: Content/Weather/Rain/RainTotem_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.icon">
             <summary>Full Path: icon</summary>

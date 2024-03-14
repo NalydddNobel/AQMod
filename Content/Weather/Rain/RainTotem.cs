@@ -1,13 +1,19 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequus.Common.Buffs;
+using Aequus.Core.ContentGeneration;
 using System;
+using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent;
+using Terraria.GameContent.Drawing;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Weather.Rain;
 
 public class RainTotem : ModTile {
+    public static ModItem DropItem { get; private set; }
+    public static ModBuff Buff { get; private set; }
+
     public static int RainTotemCount { get; internal set; }
     /// <summary>Amount of Rain Totems on screen required to reach <see cref="BonusRainChanceMax"/></summary>
     public static int RainTotemMax { get; set; } = 9;
@@ -18,11 +24,11 @@ public class RainTotem : ModTile {
     public static int BonusRainChanceMax { get; set; } = 3600; // This chance should practically guarantee rain in 1 minute.
 
     public override void Load() {
-        ModItem item = new InstancedTileItem(this);
-        Mod.AddContent(item);
+        DropItem = new InstancedTileItem(this, rarity: ItemRarityID.Blue, value: Item.silver, researchSacrificeCount: 3);
+        Mod.AddContent(DropItem);
 
         Aequus.OnAddRecipes += () => {
-            item.CreateRecipe()
+            DropItem.CreateRecipe()
                 .AddIngredient(ItemID.BambooBlock, 30)
                 .AddIngredient(ItemID.RainCloud, 10)
 #if DEBUG
@@ -53,7 +59,7 @@ public class RainTotem : ModTile {
         TileObjectData.newTile.RandomStyleRange = 3;
         TileObjectData.addTile(Type);
 
-        DustType = DustID.Stone;
+        DustType = DustID.JunglePlants;
         AdjTiles = new int[] { TileID.Extractinator };
         AddMapEntry(new Color(89, 98, 40), CreateMapEntryName());
     }
@@ -77,6 +83,10 @@ public class RainTotem : ModTile {
             }
         }
         return 0;
+    }
+
+    public override void Unload() {
+        DropItem = null;
     }
 
     public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak) {
@@ -121,14 +131,28 @@ public class RainTotem : ModTile {
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
         Tile tile = Main.tile[i, j];
-        if (tile.TileFrameY % 36 != 0 && tile.TileFrameY % 36 != 18) {
-            Main.NewText(tile.TileFrameY);
+        if (!TileDrawing.IsVisible(tile)) {
+            return false;
         }
+        //if (tile.TileFrameY % 36 != 0 && tile.TileFrameY % 36 != 18) {
+        //    Main.NewText(tile.TileFrameY);
+        //}
 
         Vector2 drawCoordinates = new Vector2(i * 16f, j * 16f + 2f) - Main.screenPosition + TileHelper.DrawOffset;
         Rectangle frame = new Rectangle(tile.TileFrameX, tile.TileFrameY, 16, 16);
-        spriteBatch.Draw(TextureAssets.Tile[Type].Value, drawCoordinates, frame, Lighting.GetColor(i, j));
+        Color lightColor = TileHelper.TileColor(i, j, tile);
+        spriteBatch.Draw(TextureAssets.Tile[Type].Value, drawCoordinates, frame, lightColor);
+
+        //if (!Main.raining) {
+        //    float brightest = Math.Max(Math.Max(lightColor.R, lightColor.G), lightColor.B) / 255f;
+        //    Color drawColor = Color.Cyan with { A = 0 } * Helper.Oscillate(Main.GlobalTimeWrappedHourly, 0.8f, 1f) * brightest;
+        //    spriteBatch.Draw(AequusTextures.RainTotem_Glow, drawCoordinates, frame, drawColor);
+        //}
         return false;
+    }
+
+    public override IEnumerable<Item> GetItemDrops(int i, int j) {
+        yield return new Item(DropItem.Type);
     }
 
     private static int _rainTotemTick;
