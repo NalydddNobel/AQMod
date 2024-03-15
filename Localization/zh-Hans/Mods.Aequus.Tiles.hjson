@@ -239,9 +239,9 @@ Tombstones: {
 }
 
 RainTotem: {
-	// MapEntry: Rain Totem
-	// ItemDisplayName: "{$Tiles.RainTotem.MapEntry}"
-	// ItemTooltip: Increases the chance for rain while nearby
+	MapEntry: 雨图腾
+	ItemDisplayName: "{$Tiles.RainTotem.MapEntry}"
+	ItemTooltip: 在附近时增加下雨几率
 }
 
-// RainTotemInactive.MapEntry: Rain Totem Inactive
+RainTotemInactive.MapEntry: "{$Tiles.RainTotem.MapEntry}"
