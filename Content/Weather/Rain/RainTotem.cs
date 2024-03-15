@@ -187,6 +187,12 @@ public abstract class RainTotemTileTemplate : ModTile {
     #endregion
 
     #region Wiring and Right Click
+    public sealed override void MouseOver(int i, int j) {
+        Player player = Main.LocalPlayer;
+        player.cursorItemIconEnabled = true;
+        player.cursorItemIconID = RainTotem.DropItem.Type;
+    }
+
     public sealed override bool RightClick(int i, int j) {
         HitWire(i, j);
         return true;
