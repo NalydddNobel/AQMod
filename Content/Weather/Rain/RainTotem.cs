@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent;
@@ -16,13 +17,6 @@ public class RainTotem : RainTotemTileTemplate {
     private static int _rainTotemCount;
 
     public static void UpdateRainState() {
-        if (_rainTotemTick++ < Main.CurrentFrameFlags.ActivePlayersCount) {
-            return;
-        }
-
-        _rainTotemTick = 0;
-        _rainTotemCount = CountRainTotems(RainTotemMax);
-
         if (_rainTotemCount > 0) {
             // Subtract 1 since _rainTotemCount must be greater than 0, but we'd like to start at 0 progress.
             // Also subtract 1 from the count, since the totem max will never reach the real wanted count.
@@ -37,6 +31,13 @@ public class RainTotem : RainTotemTileTemplate {
                 Main.StartRain();
             }
         }
+
+        if ((_rainTotemTick += (int)Main.desiredWorldEventsUpdateRate) < Main.CurrentFrameFlags.ActivePlayersCount) {
+            return;
+        }
+
+        _rainTotemTick = 0;
+        _rainTotemCount = CountRainTotems(RainTotemMax);
     }
 
     private static int CountRainTotems(int max) {
@@ -92,11 +93,11 @@ public class RainTotem : RainTotemTileTemplate {
     #endregion
 
     public override void CustomPreDraw(SpriteBatch spriteBatch, Vector2 drawCoordinates, Rectangle frame, Color lightColor) {
-        if (Main.raining) {
-            return;
-        }
+        //if (Main.raining) {
+        //    return;
+        //}
 
-        float brightest = Math.Max(Math.Max(lightColor.R, lightColor.G), lightColor.B) / 255f;
+        float brightest = Math.Max(Math.Max(Math.Max(lightColor.R, lightColor.G), lightColor.B) / 255f, 0.2f);
         Color drawColor = Color.Cyan with { A = 0 } * Helper.Oscillate(Main.GlobalTimeWrappedHourly, 0.8f, 1f) * brightest;
         spriteBatch.Draw(AequusTextures.RainTotem_Glow, drawCoordinates, frame, drawColor);
     }
@@ -185,20 +186,44 @@ public abstract class RainTotemTileTemplate : ModTile {
     public virtual void CustomPreDraw(SpriteBatch spriteBatch, Vector2 drawCoordinates, Rectangle frame, Color lightColor) { }
     #endregion
 
-    #region Wiring
+    #region Wiring and Right Click
+    public sealed override bool RightClick(int i, int j) {
+        HitWire(i, j);
+        return true;
+    }
+
     public sealed override void HitWire(int i, int j) {
         Tile tile = Main.tile[i, j];
         int left = i - tile.TileFrameX % 36 / 18;
         int top = j - tile.TileFrameY % 36 / 18;
-        for (int x = left; x < left + 2; x++) {
-            for (int y = top; y < top + 2; y++) {
-                Wiring.SkipWire(x, y);
-                TransformTileOnWireHit(x, y, Main.tile[x, y]);
-            }
-        }
+
+        ScaleUpAndToggleTotems(left, top);
+
+        SoundEngine.PlaySound(SoundID.Mech, new Vector2(i, j).ToWorldCoordinates());
     }
 
     public abstract void TransformTileOnWireHit(int i, int j, Tile tile);
+
+    private void ScaleUpAndToggleTotems(int x, int y) {
+        int totemsCount = 1;
+        while (y > 0 && Main.tile[x, y].TileType == Type && totemsCount < RainTotem.RainTotemMax) {
+            ToggleTotem(x, y);
+            totemsCount++;
+            y -= 2;   
+        }
+        if (Main.netMode != NetmodeID.SinglePlayer) {
+            NetMessage.SendTileSquare(-1, x, y, 2, 2 * totemsCount);
+        }
+    }
+
+    private void ToggleTotem(int x, int y) {
+        for (int i = x; i < x + 2; i++) {
+            for (int j = y; j < y + 2; j++) {
+                Wiring.SkipWire(i, j);
+                TransformTileOnWireHit(i, j, Main.tile[i, j]);
+            }
+        }
+    }
     #endregion
 
     #region Initialization

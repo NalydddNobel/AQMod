@@ -22,7 +22,7 @@ public static class ExtendColor {
 
     public static Color HueShift(this Color color, float multiplier) {
         var hsl = Main.rgbToHsl(color);
-        float lerpValue = Math.Clamp(1f - multiplier, 0f, 1f);
+        float lerpValue = Math.Clamp(multiplier, 0f, 1f);
         float shiftEnd = 0.7f;
         if (hsl.X < 0.2f) {
             hsl.X = MathHelper.Lerp(hsl.X, -shiftEnd, lerpValue);

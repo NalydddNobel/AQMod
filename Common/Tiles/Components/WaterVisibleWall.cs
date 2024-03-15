@@ -27,6 +27,10 @@ public class WaterVisibleWall : ModSystem {
     }
 
     public override void AddRecipes() {
+        if (Main.dedServ) {
+            return;
+        }
+
         // Offset all of the water entries by the wall's entry id so we get the proper id for the water entry
         foreach (ModWall wall in Mod.GetContent<ModWall>().Where(w => w is IWaterVisibleWall)) {
             IWaterVisibleWall waterVisibleWall = wall as IWaterVisibleWall;
