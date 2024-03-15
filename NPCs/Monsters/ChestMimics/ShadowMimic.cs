@@ -28,7 +28,7 @@ public class ShadowMimic : ModNPC, IAddRecipes {
     }
 
     public virtual void AddRecipes(Aequus aequus) {
-        BestiaryBuilder.MoveBestiaryEntry(this, ContentSamples.NpcBestiarySortingId[NPCID.Mimic]);
+        BestiaryBuilder.MoveBestiaryEntry(this, NPCID.Mimic);
     }
 
     public override void SetDefaults() {

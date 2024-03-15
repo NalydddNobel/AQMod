@@ -1313,9 +1313,10 @@
             <returns>Whether to draw the chain</returns>
         </member>
         <member name="T:Aequus.Common.NPCs.BestiaryBuilder">
-            <summary>
-            Helper class for setting up bestiary entries.
-            </summary>
+            <summary>Helper class for setting up bestiary entries.</summary>
+        </member>
+        <member name="T:Aequus.Common.NPCs.Bestiary.IUnlockBestiaryEntryUponExisting.UnlockUponExistingUICollectionInfoProvider">
+            <summary>Automatically unlocks a bestiary entry when the NPC spawns into the world.</summary>
         </member>
         <member name="M:Aequus.Common.PlayerLayers.Equipment.EquipDraw.CanDraw">
             <returns>Whether or not to draw an equip.</returns>

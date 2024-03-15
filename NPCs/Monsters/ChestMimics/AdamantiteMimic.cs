@@ -61,7 +61,7 @@ namespace Aequus.NPCs.Monsters.ChestMimics {
         }
 
         public virtual void AddRecipes(Aequus aequus) {
-            BestiaryBuilder.MoveBestiaryEntry(this, ContentSamples.NpcBestiarySortingId[CloneNPC]);
+            BestiaryBuilder.MoveBestiaryEntry(this, CloneNPC);
         }
 
         public override void HitEffect(NPC.HitInfo hit) {
