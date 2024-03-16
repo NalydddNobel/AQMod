@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Items;
+using Aequus.Content.Chests;
 using Aequus.Content.DataSets;
 using Aequus.Core.Initialization;
 using System;
@@ -27,7 +28,7 @@ public class AnglerLamp : ModItem {
     public float animation;
 
     public override void SetStaticDefaults() {
-        LootDefinition.CreateFor(Loot.PollutedOceanPrimary, Type);
+        ChestLootDatabase.Instance.RegisterCommon(ChestLoot.PollutedOcean, Type);
     }
 
     public override void SetDefaults() {

@@ -920,3 +920,8 @@ BlackJellyfishBait: {
 	// DisplayName: "{$NPCs.BlackJellyfish.DisplayName}"
 	// Tooltip: Explodes and damages fished up enemies
 }
+
+UnopenedChestItem: {
+	// DisplayName: Unopened Chest Item
+	// Tooltip: ""
+}

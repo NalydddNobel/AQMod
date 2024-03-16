@@ -518,6 +518,12 @@
         <member name="T:Aequus.Content.Biomes.PollutedOcean.PollutedOceanBiomeUnderground">
             <summary>Main class for general things related to the Polluted Ocean biome. Also counts as the Underground Polluted Ocean.</summary>
         </member>
+        <member name="T:Aequus.Content.Chests.ChestLootDatabase">
+            <summary>Replica of <see cref="T:Terraria.GameContent.ItemDropRules.ItemDropDatabase"/>/<see cref="T:Terraria.GameContent.ItemDropRules.ItemDropResolver"/>, except for Aequus' chest loot.</summary>
+        </member>
+        <member name="T:Aequus.Content.Chests.UnopenedChestItem">
+            <summary>Item used to determine if a chest has been opened or not.</summary>
+        </member>
         <member name="T:Aequus.Content.Cinematics.AequusFilm">
             <summary><see cref="T:Terraria.Cinematics.DD2Film"/> <see cref="T:Terraria.Cinematics.DSTFilm"/></summary>
         </member>
@@ -786,6 +792,12 @@
         <member name="M:Aequus.Core.Utilities.ExtendArray.Remove``1(``0[]@,``0)">
             <summary>Removes <paramref name="value"/> from <paramref name="arr"/>, and resizes <paramref name="arr"/> to fit if necessary.</summary>
             <returns>Whether anything was removed at all.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendChest.IsUnopened(System.Int32)">
+            <returns><inheritdoc cref="M:Aequus.Core.Utilities.ExtendChest.IsUnopened(Terraria.Chest)"/></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendChest.IsUnopened(Terraria.Chest)">
+            <returns>Whether the chest contains <see cref="T:Aequus.Content.Chests.UnopenedChestItem"/>.</returns>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendColor.MaxRGBA(Microsoft.Xna.Framework.Color,System.Byte)">
             <returns><paramref name="color"/>, with its R,G,B,A Maxed to the specified <paramref name="amt"/>.</returns>

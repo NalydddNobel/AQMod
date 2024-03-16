@@ -920,3 +920,8 @@ BlackJellyfishBait: {
 	DisplayName: "{$NPCs.BlackJellyfish.DisplayName}"
 	Tooltip: 爆炸并伤害被钓的敌人
 }
+
+UnopenedChestItem: {
+	// DisplayName: Unopened Chest Item
+	// Tooltip: ""
+}

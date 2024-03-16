@@ -1,13 +1,17 @@
-﻿using Aequus.Common.Tiles;
+﻿using Aequus.Common.Items.Chests;
+using Aequus.Common.Tiles;
 using Aequus.Common.Tiles.Rubblemaker;
 using Aequus.Common.WorldGeneration;
 using Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient;
 using Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient.Dripstones;
 using Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient.Pots;
 using Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient.SeaPickles;
+using Aequus.Content.Chests;
 using Aequus.Content.DataSets;
 using Aequus.Content.Tiles.Furniture.Trash;
 using System;
+using System.Collections.Generic;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.IO;
 using Terraria.WorldBuilding;
 
@@ -160,9 +164,10 @@ internal class PollutedOceanAmbienceGenerator : AequusGenStep {
             return false;
         }
 
+        List<IChestLootRule> rules = ChestLootDatabase.Instance.GetRulesForType(ChestLoot.PollutedOcean);
         Chest chest = Main.chest[chestId];
-        LootDefinition primaryLoot = Loot.PollutedOceanPrimary[ChestsPlaced % Loot.PollutedOceanPrimary.Count];
-        chest.AddItemLoot(primaryLoot);
+        ChestLootInfo info = new(chestId, Random);
+        ChestLootDatabase.Instance.SolveIndexedRule(rules, in info, ref ChestsPlaced);
         //if (Random.NextBool(5)) {
         //    chest.AddItem();
         //}

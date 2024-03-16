@@ -1,16 +1,16 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Content.DataSets;
+using Aequus.Common.Items.Chests;
+using Aequus.Content.Chests;
 using Aequus.Content.Weapons.Ranged.Darts.Ammo;
-using Aequus.Core.DataSets;
 using Terraria.DataStructures;
 
 namespace Aequus.Content.Weapons.Ranged.Darts.StarPhish;
 
 public class StarPhish : ModItem {
     public override void SetStaticDefaults() {
-        LootDefinition.CreateFor(Loot.PollutedOceanPrimary, Type,
-            secondaryItems: new ItemLootEntry(ModContent.ItemType<PlasticDart>(), min: 25, max: 50, prefix: 0)
-        );
+        IChestLootRule rule = new CommonChestRule(Type);
+        rule.OnSucceed(new CommonChestRule(ModContent.ItemType<PlasticDart>(), MinStack: 25, MaxStack: 50));
+        ChestLootDatabase.Instance.Register(ChestLoot.PollutedOcean, rule);
     }
 
     public override void SetDefaults() {

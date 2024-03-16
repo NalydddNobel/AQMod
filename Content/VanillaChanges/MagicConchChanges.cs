@@ -1,5 +1,5 @@
-﻿using Aequus.Content.Configuration;
-using Aequus.Content.DataSets;
+﻿using Aequus.Content.Chests;
+using Aequus.Content.Configuration;
 using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Content.VanillaChanges;
@@ -10,7 +10,7 @@ public class MagicConchChanges : GlobalItem {
     }
 
     public override void SetStaticDefaults() {
-        LootDefinition.CreateFor(Loot.PollutedOceanPrimary, ItemID.MagicConch);
+        ChestLootDatabase.Instance.RegisterCommon(ChestLoot.PollutedOcean, ItemID.MagicConch);
     }
 
     public override void ModifyItemLoot(Item item, ItemLoot itemLoot) {

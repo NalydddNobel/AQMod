@@ -1,4 +1,5 @@
-﻿using Aequus.Content.DataSets;
+﻿using Aequus.Content.Chests;
+using Aequus.Content.DataSets;
 using Terraria.GameContent;
 
 namespace Aequus.Old.Content.Potions.PotionCanteen;
@@ -12,7 +13,7 @@ public class PotionCanteen : TemplateCanteen {
 
     public override void SetStaticDefaults() {
         base.SetStaticDefaults();
-        LootDefinition.CreateFor(Loot.PollutedOceanPrimary, Type);
+        ChestLootDatabase.Instance.RegisterCommon(ChestLoot.PollutedOcean, Type);
     }
 
     public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
