@@ -24,7 +24,6 @@ public class NewCavesGeneration : AequusGenStep {
                     continue;
                 }
 
-                Thread.Sleep(5);
                 SetProgress(progress, RectangleProgress(i, j, left, right, top, bottom), 0f, 0.5f);
                 GenerateWeirdCave(i, j);
             }
@@ -72,7 +71,6 @@ public class NewCavesGeneration : AequusGenStep {
                     continue;
                 }
 
-                Thread.Sleep(5);
                 SetProgress(progress, RectangleProgress(i, j, left, right, top, bottom), 0.5f, 1f);
                 GenerateTallCave(i, j);
             }
