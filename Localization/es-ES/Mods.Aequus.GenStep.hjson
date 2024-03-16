@@ -23,7 +23,7 @@ GoreNestsGeneration: {
 	}
 }
 
-// LavaCleanup.DisplayMessage: Cleaning up lava
+// LavaCleanupStep.DisplayMessage: Cleaning up lava
 
 PollutedOcean: {
 	DisplayMessage: {
@@ -46,3 +46,9 @@ PollutedOcean: {
 
 // PollutedOceanAmbience.DisplayMessage: Taking out the trash...
 // Reset.DisplayMessage: ""
+
+NewCavesGeneration: {
+	// DisplayMessage: Creating bizarre caverns...
+	// Weird: Weird ones
+	// Tall: Tall ones
+}

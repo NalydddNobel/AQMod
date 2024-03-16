@@ -39,8 +39,9 @@ internal class PollutedOceanAmbienceGenerator : AequusGenStep {
         if (WorldGen.SolidTile(x, y)) {
             return false;
         }
-        for (int i = x - 2; i < x + 3; i++) {
-            for (int j = y - 2; j < y + 3; j++) {
+
+        for (int i = x; i < x + 1; i++) {
+            for (int j = y - 1; j < y + 3; j++) {
                 if (Main.tile[i, j].TileType == PollutedOceanGenerator._polymerSand || Main.tile[i, j].TileType == PollutedOceanGenerator._polymerSandstone || Main.tile[i, j].WallType == PollutedOceanGenerator._polymerSandstoneWall) {
                     return true;
                 }
@@ -68,34 +69,43 @@ internal class PollutedOceanAmbienceGenerator : AequusGenStep {
 
         ChestsPlaced = 0;
 
+        int left = PollutedOceanGenerator._LeftPadded;
+        int right = PollutedOceanGenerator._RightPadded;
+        int top = Math.Max(PollutedOceanGenerator.Y - 25, 10);
+        int bottom = Main.UnderworldLayer + 20;
         SetMessage(progress);
-        for (int i = 10; i < Main.maxTilesX - 10; i++) {
-            for (int j = 10; j < Main.maxTilesY - 10; j++) {
-                if (!Polluted(i, j)) {
-                    continue;
-                }
+        for (int i = left; i < right; i++) {
+            for (int j = top; j < bottom; j++) {
+                SetProgress(progress, RectangleProgress(i, j, left, right, top, bottom), 0f, 0.5f);
 
-                SetProgress(progress, RectangleProgress(i, j), 0f, 0.5f);
                 if (Random.NextBool(3000)) {
+                    if (!Polluted(i, j)) {
+                        continue;
+                    }
                     PlaceSeaPickleSetPiece(i, j, Random.Next(30, 50));
                 }
             }
         }
 
         bool wantChest = false;
-        for (int i = 10; i < Main.maxTilesX - 10; i++) {
-            for (int j = 10; j < Main.maxTilesY - 10; j++) {
-                if (!Polluted(i, j)) {
-                    continue;
-                }
+        for (int i = left; i < right; i++) {
+            for (int j = top; j < bottom; j++) {
+                SetProgress(progress, RectangleProgress(i, j, left, right, top, bottom), 0.5f, 1f);
 
-                SetProgress(progress, RectangleProgress(i, j), 0.5f, 1f);
                 var tile = Main.tile[i, j];
                 if (tile.TileType == TileID.Pots) {
+                    if (!Polluted(i, j)) {
+                        continue;
+                    }
+
                     WorldGen.KillTile(i, j);
                 }
-                if (WorldGen.SolidTile(i, j + 1)) {
+                else if (WorldGen.SolidTile(i, j + 1)) {
                     if (wantChest || Random.NextBool(120)) {
+                        if (!Polluted(i, j)) {
+                            continue;
+                        }
+
                         if (PlaceChest(i, j)) {
                             ChestsPlaced++;
                             wantChest = false;
@@ -105,17 +115,33 @@ internal class PollutedOceanAmbienceGenerator : AequusGenStep {
                         }
                     }
                     if (Random.NextBool(3)) {
+                        if (!Polluted(i, j)) {
+                            continue;
+                        }
+
                         PlacePot(i, j);
                     }
                     else if (Random.NextBool()) {
+                        if (!Polluted(i, j)) {
+                            continue;
+                        }
+
                         PlaceAmbientTile(i, j);
                     }
                     else if (Random.NextBool(3)) {
+                        if (!Polluted(i, j)) {
+                            continue;
+                        }
+
                         PlaceStalagmite(i, j);
                     }
                 }
                 else if (WorldGen.SolidTile(i, j - 1)) {
                     if (Random.NextBool(3)) {
+                        if (!Polluted(i, j)) {
+                            continue;
+                        }
+
                         if (Random.NextBool()) {
                             WorldGen.PlaceTile(i, j, _stalactite1x1, style: Random.Next(3));
                         }

@@ -42,6 +42,10 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
 
     public static int X { get => x; }
     public static int Y { get => y; }
+    public static int _Left => Left;
+    public static int _Right => Right;
+    public static int _LeftPadded => LeftPadded;
+    public static int _RightPadded => RightPadded;
     public static int Direction { get => direction; }
     public static PollutedOceanGenerationSideConfig GenerationSide { get => generationSide; }
 

@@ -4,7 +4,7 @@ using Terraria.IO;
 using Terraria.WorldBuilding;
 
 namespace Aequus.Old.Content.WorldGeneration;
-public class LavaCleanup : AequusGenStep {
+public class LavaCleanupStep : AequusGenStep {
     public override string InsertAfter => "Tile Cleanup";
 
     protected override double GenWeight => 1000f;

@@ -99,8 +99,13 @@ public abstract class AequusGenStep : ModType, ILocalizedModType, IPostSetupCont
     /// <param name="topSide">Y coordinate of the Top Edge of the rectangle.</param>
     /// <param name="bottomSide">Y coordinate of the Bottom Edge of the rectangle.</param>
     protected static double RectangleProgress(int i, int j, int leftSide, int rightSide, int topSide, int bottomSide) {
-        int tilesYDifference = bottomSide - topSide;
-        return (i * tilesYDifference + j) / (double)(rightSide - leftSide + tilesYDifference);
+        int height = bottomSide - topSide;
+        int width = rightSide - leftSide;
+        int startX = i - leftSide;
+        int startY = j - topSide;
+        int progress = startX * height + startY;
+        double maximumProgress = width * height;
+        return progress / maximumProgress;
     }
 
     /// <summary>

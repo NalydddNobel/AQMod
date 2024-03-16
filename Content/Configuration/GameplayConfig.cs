@@ -10,4 +10,8 @@ internal class GameplayConfig : ModConfig {
 
     [DefaultValue(PollutedOceanGenerationSideConfig.Automatic)]
     public PollutedOceanGenerationSideConfig PollutedOceanSide;
+
+    [DefaultValue(1f)]
+    [Range(0f, 1f)]
+    public float CaveVariety;
 }

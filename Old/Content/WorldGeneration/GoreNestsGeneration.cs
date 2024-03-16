@@ -4,6 +4,7 @@ using Aequus.Content.Tiles.Tombstones;
 using Aequus.Old.Content.Events.DemonSiege.Tiles;
 using Aequus.Old.Content.Tiles.Ambient;
 using Aequus.Old.Content.Tiles.Furniture.Oblivion;
+using System;
 using Terraria.IO;
 using Terraria.Localization;
 using Terraria.WorldBuilding;
@@ -24,8 +25,10 @@ public class GoreNestsGeneration : AequusGenStep {
         GetGenerationValues(out int minY, out int maxY, out int wantedGoreNests);
         int goreNestCount = 0;
         int loops = Main.maxTilesX * 50;
+        double goreNestsProgress = 0.0;
         for (int i = 0; i < loops; i++) {
-            SetProgress(progress, i / (double)loops);
+            double loopsProgress = i / (double)loops;
+            SetProgress(progress, Math.Max(loopsProgress, goreNestsProgress));
             int x = WorldGen.genRand.Next(80, Main.maxTilesX - 80);
             int y = WorldGen.genRand.Next(minY, maxY);
             try {
@@ -34,6 +37,8 @@ public class GoreNestsGeneration : AequusGenStep {
                     if (goreNestCount > wantedGoreNests) {
                         break;
                     }
+
+                    goreNestsProgress = goreNestCount / (double)wantedGoreNests;
                 }
             }
             catch {

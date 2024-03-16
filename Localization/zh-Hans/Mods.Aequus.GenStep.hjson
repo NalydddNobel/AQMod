@@ -23,7 +23,7 @@ GoreNestsGeneration: {
 	}
 }
 
-LavaCleanup.DisplayMessage: 正在清理熔岩
+LavaCleanupStep.DisplayMessage: 正在清理熔岩
 
 PollutedOcean: {
 	DisplayMessage: {
@@ -46,3 +46,9 @@ PollutedOcean: {
 
 PollutedOceanAmbience.DisplayMessage: 正在倾倒垃圾...
 Reset.DisplayMessage: ""
+
+NewCavesGeneration: {
+	// DisplayMessage: Creating bizarre caverns...
+	// Weird: Weird ones
+	// Tall: Tall ones
+}
