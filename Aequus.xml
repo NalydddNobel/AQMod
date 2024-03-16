@@ -1670,7 +1670,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 621)</summary>
+            <summary>(Total Textures: 622)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2673,6 +2673,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.RainTotem_Glow">
             <summary>Full Path: Content/Weather/Rain/RainTotem_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RainTotem_Highlight">
+            <summary>Full Path: Content/Weather/Rain/RainTotem_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.icon">
             <summary>Full Path: icon</summary>

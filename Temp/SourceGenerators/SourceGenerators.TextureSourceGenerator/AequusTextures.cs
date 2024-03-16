@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 621)</summary>
+/// <summary>(Total Textures: 622)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -675,6 +675,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> RainTotemItem = new("Aequus/Content/Weather/Rain/RainTotemItem");
     /// <summary>Full Path: Content/Weather/Rain/RainTotem_Glow</summary>
     public static readonly RequestCache<Texture2D> RainTotem_Glow = new("Aequus/Content/Weather/Rain/RainTotem_Glow");
+    /// <summary>Full Path: Content/Weather/Rain/RainTotem_Highlight</summary>
+    public static readonly RequestCache<Texture2D> RainTotem_Highlight = new("Aequus/Content/Weather/Rain/RainTotem_Highlight");
     /// <summary>Full Path: icon</summary>
     public static readonly RequestCache<Texture2D> icon = new("Aequus/icon");
     /// <summary>Full Path: icon_small</summary>

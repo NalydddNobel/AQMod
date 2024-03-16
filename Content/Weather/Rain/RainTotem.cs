@@ -7,6 +7,7 @@ using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent;
 using Terraria.GameContent.Drawing;
+using Terraria.GameContent.ObjectInteractions;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Weather.Rain;
@@ -179,6 +180,11 @@ public abstract class RainTotemTileTemplate : ModTile {
         Color lightColor = TileHelper.TileColor(i, j, tile);
         spriteBatch.Draw(TextureAssets.Tile[Type].Value, drawCoordinates, frame, lightColor);
 
+        if (Main.InSmartCursorHighlightArea(i, j, out var actuallySelected)) {
+            Color selectionColor = TCommonColor.GetSelectionGlowColor(actuallySelected, (lightColor.R + lightColor.G + lightColor.B) / 3);
+            spriteBatch.Draw(TextureAssets.HighlightMask[Type].Value, drawCoordinates, frame, selectionColor);
+        }
+
         CustomPreDraw(spriteBatch, drawCoordinates, frame, lightColor);
         return false;
     }
@@ -187,6 +193,20 @@ public abstract class RainTotemTileTemplate : ModTile {
     #endregion
 
     #region Wiring and Right Click
+    public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) {
+        // Allow selection of this totem if it's at the bottom of your smart selection range.
+        if (j > settings.HY - 1) {
+            return true;
+        }
+
+        // Otherwise, check if it's not on top of another totem.
+        int left = i - Main.tile[i, j].TileFrameX % 36 / 18;
+        int top = j - Main.tile[i, j].TileFrameY % 36 / 18;
+        int ground = top + 2;
+        Tile groundTile = Framing.GetTileSafely(left, ground);
+        return groundTile.TileType != Type;
+    }
+
     public sealed override void MouseOver(int i, int j) {
         Player player = Main.LocalPlayer;
         player.cursorItemIconEnabled = true;
@@ -235,12 +255,17 @@ public abstract class RainTotemTileTemplate : ModTile {
     #region Initialization
     public override void SetStaticDefaults() {
         Main.tileFrameImportant[Type] = true;
+        TileID.Sets.HasOutlines[Type] = true;
+        TileID.Sets.DisableSmartCursor[Type] = true;
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
         TileObjectData.newTile.DrawYOffset = 2;
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.AlternateTile, 2, 0);
         // Stupid
         TileObjectData.newTile.AnchorAlternateTiles = new int[] {
             TileID.Mud, TileID.JungleGrass, TileID.CorruptJungleGrass, TileID.CrimsonJungleGrass,
+            TileID.LihzahrdBrick,
+            TileID.MushroomGrass, TileID.MushroomBlock,
+            TileID.RichMahogany, TileID.LivingMahogany, TileID.LivingMahoganyLeaves,
             TileID.BambooBlock, TileID.LargeBambooBlock,
             ModContent.TileType<RainTotem>(), ModContent.TileType<RainTotemInactive>(),
         };
@@ -267,6 +292,8 @@ public abstract class RainTotemTileTemplate : ModTile {
         return 0;
     }
     #endregion
+
+    public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
 
     public override IEnumerable<Item> GetItemDrops(int i, int j) {
         yield return new Item(RainTotem.DropItem.Type);
