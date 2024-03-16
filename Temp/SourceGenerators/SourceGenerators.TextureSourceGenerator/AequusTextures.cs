@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 622)</summary>
+/// <summary>(Total Textures: 635)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1035,6 +1035,32 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> BlueFireParticle = new("Aequus/Old/Content/StatusEffects/BlueFireParticle");
     /// <summary>Full Path: Old/Content/StatusEffects/BlueFireSparkle</summary>
     public static readonly RequestCache<Texture2D> BlueFireSparkle = new("Aequus/Old/Content/StatusEffects/BlueFireSparkle");
+    /// <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/BigGem</summary>
+    public static readonly RequestCache<Texture2D> BigGem = new("Aequus/Old/Content/Tiles/Ambient/BigGems/BigGem");
+    /// <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Gores/AmethystGore</summary>
+    public static readonly RequestCache<Texture2D> AmethystGore = new("Aequus/Old/Content/Tiles/Ambient/BigGems/Gores/AmethystGore");
+    /// <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Gores/DiamondGore</summary>
+    public static readonly RequestCache<Texture2D> DiamondGore = new("Aequus/Old/Content/Tiles/Ambient/BigGems/Gores/DiamondGore");
+    /// <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Gores/EmeraldGore</summary>
+    public static readonly RequestCache<Texture2D> EmeraldGore = new("Aequus/Old/Content/Tiles/Ambient/BigGems/Gores/EmeraldGore");
+    /// <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Gores/RubyGore</summary>
+    public static readonly RequestCache<Texture2D> RubyGore = new("Aequus/Old/Content/Tiles/Ambient/BigGems/Gores/RubyGore");
+    /// <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Gores/SapphireGore</summary>
+    public static readonly RequestCache<Texture2D> SapphireGore = new("Aequus/Old/Content/Tiles/Ambient/BigGems/Gores/SapphireGore");
+    /// <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Gores/TopazGore</summary>
+    public static readonly RequestCache<Texture2D> TopazGore = new("Aequus/Old/Content/Tiles/Ambient/BigGems/Gores/TopazGore");
+    /// <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Items/BigGemAmethyst</summary>
+    public static readonly RequestCache<Texture2D> BigGemAmethyst = new("Aequus/Old/Content/Tiles/Ambient/BigGems/Items/BigGemAmethyst");
+    /// <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Items/BigGemDiamond</summary>
+    public static readonly RequestCache<Texture2D> BigGemDiamond = new("Aequus/Old/Content/Tiles/Ambient/BigGems/Items/BigGemDiamond");
+    /// <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Items/BigGemEmerald</summary>
+    public static readonly RequestCache<Texture2D> BigGemEmerald = new("Aequus/Old/Content/Tiles/Ambient/BigGems/Items/BigGemEmerald");
+    /// <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Items/BigGemRuby</summary>
+    public static readonly RequestCache<Texture2D> BigGemRuby = new("Aequus/Old/Content/Tiles/Ambient/BigGems/Items/BigGemRuby");
+    /// <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Items/BigGemSapphire</summary>
+    public static readonly RequestCache<Texture2D> BigGemSapphire = new("Aequus/Old/Content/Tiles/Ambient/BigGems/Items/BigGemSapphire");
+    /// <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Items/BigGemTopaz</summary>
+    public static readonly RequestCache<Texture2D> BigGemTopaz = new("Aequus/Old/Content/Tiles/Ambient/BigGems/Items/BigGemTopaz");
     /// <summary>Full Path: Old/Content/Tiles/Ambient/GoreNestStalagmite</summary>
     public static readonly RequestCache<Texture2D> GoreNestStalagmite = new("Aequus/Old/Content/Tiles/Ambient/GoreNestStalagmite");
     /// <summary>Full Path: Old/Content/Tiles/Furniture/Oblivion/OblivionChest</summary>

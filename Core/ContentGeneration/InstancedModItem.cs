@@ -24,10 +24,17 @@ internal abstract class InstancedModItem : ModItem {
         string name = texture[(i + 1)..];
         string path = texture[..i];
 
-        string itemsFolder = path + "/Items/" + name;
-        if (ModContent.HasAsset(itemsFolder)) {
-            texture = itemsFolder;
+        string tryFolder = path + "/Items/" + name;
+        if (ModContent.HasAsset(tryFolder)) {
+            texture = tryFolder;
             return;
+        }
+        if (tryFolder.EndsWith("Item")) {
+            tryFolder = tryFolder[..^4];
+            if (ModContent.HasAsset(tryFolder)) {
+                texture = tryFolder;
+                return;
+            }
         }
     }
 

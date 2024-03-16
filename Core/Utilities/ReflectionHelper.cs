@@ -6,6 +6,27 @@ using System.Reflection;
 namespace Aequus.Core.Utilities;
 
 public static class ReflectionHelper {
+    /// <returns>Returns all constant fields from <paramref name="obj"/>'s <see cref="Type"/>.</returns>
+    /// <exception cref="ArgumentNullException"></exception>
+    public static IEnumerable<FieldInfo> GetConstantFields(this object obj, BindingFlags flags = BindingFlags.Public) {
+        if (obj == null) {
+            throw new ArgumentNullException(nameof(obj));
+        }
+        return GetConstantFields(obj.GetType(), flags);
+    }
+    /// <returns>Returns all constant fields from <paramref name="type"/>.</returns>
+    /// <exception cref="ArgumentNullException"></exception>
+    public static IEnumerable<FieldInfo> GetConstantFields(this Type type, BindingFlags flags = BindingFlags.Public) {
+        if (type == null) {
+            throw new ArgumentNullException(nameof(type));
+        }
+
+        flags |= BindingFlags.Static;
+        foreach (FieldInfo fieldInfo in type.GetFields().Where(f => f.IsLiteral && !f.IsInitOnly)) {
+            yield return fieldInfo;
+        }
+    }
+
     public static IEnumerable<(T attributeInstance, MemberInfo memberInfo)> GetMembersWithAttribute<T>(Type t, BindingFlags flags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static) where T : Attribute {
         var l = new List<(T, MemberInfo)>();
         foreach (var f in t.GetFields(flags)) {

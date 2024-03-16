@@ -1164,6 +1164,14 @@
             <param name="target"></param>
             <returns></returns>
         </member>
+        <member name="M:Aequus.Core.Utilities.ReflectionHelper.GetConstantFields(System.Object,System.Reflection.BindingFlags)">
+            <returns>Returns all constant fields from <paramref name="obj"/>'s <see cref="T:System.Type"/>.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ReflectionHelper.GetConstantFields(System.Type,System.Reflection.BindingFlags)">
+            <returns>Returns all constant fields from <paramref name="type"/>.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
         <member name="M:Aequus.Core.Utilities.TextBroadcast.NewText(System.String,Microsoft.Xna.Framework.Color,System.Object[])">
             <summary>
             Broadcasts a message. Only does something when <see cref="F:Terraria.Main.netMode"/> is not equal to <see cref="F:Terraria.ID.NetmodeID.MultiplayerClient"/>.
@@ -1670,7 +1678,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 622)</summary>
+            <summary>(Total Textures: 635)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -3213,6 +3221,45 @@
         </member>
         <member name="F:Aequus.AequusTextures.BlueFireSparkle">
             <summary>Full Path: Old/Content/StatusEffects/BlueFireSparkle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BigGem">
+            <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/BigGem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AmethystGore">
+            <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Gores/AmethystGore</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DiamondGore">
+            <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Gores/DiamondGore</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EmeraldGore">
+            <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Gores/EmeraldGore</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RubyGore">
+            <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Gores/RubyGore</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SapphireGore">
+            <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Gores/SapphireGore</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TopazGore">
+            <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Gores/TopazGore</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BigGemAmethyst">
+            <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Items/BigGemAmethyst</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BigGemDiamond">
+            <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Items/BigGemDiamond</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BigGemEmerald">
+            <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Items/BigGemEmerald</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BigGemRuby">
+            <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Items/BigGemRuby</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BigGemSapphire">
+            <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Items/BigGemSapphire</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BigGemTopaz">
+            <summary>Full Path: Old/Content/Tiles/Ambient/BigGems/Items/BigGemTopaz</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GoreNestStalagmite">
             <summary>Full Path: Old/Content/Tiles/Ambient/GoreNestStalagmite</summary>

@@ -245,3 +245,35 @@ RainTotem: {
 }
 
 RainTotemInactive.MapEntry: "{$Tiles.RainTotem.MapEntry}"
+
+BigGem: {
+	Amethyst: {
+		// ItemDisplayName: Amethyst Deposit
+		// ItemTooltip: ""
+	}
+
+	Topaz: {
+		// ItemDisplayName: Topaz Deposit
+		// ItemTooltip: ""
+	}
+
+	Sapphire: {
+		// ItemDisplayName: Sapphire Deposit
+		// ItemTooltip: ""
+	}
+
+	Emerald: {
+		// ItemDisplayName: Emerald Deposit
+		// ItemTooltip: ""
+	}
+
+	Ruby: {
+		// ItemDisplayName: Ruby Deposit
+		// ItemTooltip: ""
+	}
+
+	Diamond: {
+		// ItemDisplayName: Diamond Deposit
+		// ItemTooltip: ""
+	}
+}

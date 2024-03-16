@@ -24,6 +24,7 @@ GoreNestsGeneration: {
 }
 
 LavaCleanupStep.DisplayMessage: Cleaning up lava
+LavaCleanup.DisplayMessage: Mods.Aequus.GenStep.LavaCleanup.DisplayMessage
 
 PollutedOcean: {
 	DisplayMessage: {
@@ -52,3 +53,5 @@ NewCavesGeneration: {
 	Weird: Weird ones
 	Tall: Tall ones
 }
+
+BigGemsGeneration.DisplayMessage: Making Ice Overpowered...
