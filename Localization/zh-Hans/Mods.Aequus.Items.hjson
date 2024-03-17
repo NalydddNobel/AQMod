@@ -922,6 +922,6 @@ BlackJellyfishBait: {
 }
 
 UnopenedChestItem: {
-	// DisplayName: Unopened Chest Item
-	// Tooltip: ""
+	DisplayName: 未开启的宝箱物品
+	Tooltip: ""
 }

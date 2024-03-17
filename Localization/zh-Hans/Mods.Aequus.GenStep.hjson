@@ -24,7 +24,7 @@ GoreNestsGeneration: {
 }
 
 LavaCleanupStep.DisplayMessage: 正在清理熔岩
-// LavaCleanup.DisplayMessage: Mods.Aequus.GenStep.LavaCleanup.DisplayMessage
+LavaCleanup.DisplayMessage: Mods.Aequus.GenStep.LavaCleanup.DisplayMessage
 
 PollutedOcean: {
 	DisplayMessage: {
@@ -49,9 +49,9 @@ PollutedOceanAmbience.DisplayMessage: 正在倾倒垃圾...
 Reset.DisplayMessage: ""
 
 NewCavesGeneration: {
-	// DisplayMessage: Creating bizarre caverns...
-	// Weird: Weird ones
-	// Tall: Tall ones
+	DisplayMessage: 正在创建奇异洞穴...
+	Weird: 怪的那个
+	Tall: 高的那个
 }
 
-// BigGemsGeneration.DisplayMessage: Making Ice Overpowered...
+BigGemsGeneration.DisplayMessage: 正在使冰变得超模...
