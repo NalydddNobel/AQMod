@@ -100,6 +100,12 @@
             <param name="dayOfWeek">The <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:Aequus.Common.Systems.TimeTrackerSystem.DayOfTheWeek"/>.</param>
             <returns>A condition for a specific day of the week.</returns>
         </member>
+        <member name="M:Aequus.Aequus.ConditionConfigIsTrue(Terraria.ModLoader.Config.ModConfig,System.String)">
+            <returns><inheritdoc cref="M:Aequus.Aequus.ConditionConfig(Terraria.ModLoader.Config.ModConfig,System.String,Terraria.Localization.LocalizedText,System.Func{System.Object,System.Boolean})"/> Defaults to checking if the value equals true.</returns>
+        </member>
+        <member name="M:Aequus.Aequus.ConditionConfig(Terraria.ModLoader.Config.ModConfig,System.String,Terraria.Localization.LocalizedText,System.Func{System.Object,System.Boolean})">
+            <returns>A condition which depends on a certain config setting.</returns>
+        </member>
         <member name="M:Aequus.Common.Backpacks.BackpackData.Deactivate(Terraria.Player)">
             <summary>
             Runs when the Backpack is no longer active. Use this hook to deposit items from the Backpack.
@@ -154,6 +160,21 @@
             <summary>
             <see cref="T:Terraria.RecipeGroup"/> for trash items.
             </summary>
+        </member>
+        <member name="T:Aequus.Common.Items.Chests.ChestRules.Indexed">
+            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>
+        </member>
+        <member name="M:Aequus.Common.Items.Chests.ChestRules.Indexed.#ctor(Aequus.Common.Items.Chests.IChestLootRule[],Terraria.Condition[])">
+            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>
+        </member>
+        <member name="M:Aequus.Common.Items.Chests.IChestLootRule.AddItem(Aequus.Common.Items.Chests.ChestLootInfo@)">
+            <summary>Add the item into the chest here. <see cref="P:Aequus.Common.Items.Chests.ChestLootInfo.Chest"/> should safely index into <see cref="F:Terraria.Main.chest"/>.</summary>
+        </member>
+        <member name="M:Aequus.Common.Items.Chests.IChestLootRule.CanDrop(Aequus.Common.Items.Chests.ChestLootInfo@)">
+            <summary>Condition for whether this rule should be ran.</summary>
+        </member>
+        <member name="M:Aequus.Common.Items.Chests.IChestLootRule.Reset">
+            <summary>Called upon <see cref="M:Terraria.ModLoader.ModSystem.ClearWorld"/> and Hardmode Chests. Use to reset values before world generation and etc.</summary>
         </member>
         <member name="T:Aequus.Common.Items.Components.IManageProjectile">
             <summary>

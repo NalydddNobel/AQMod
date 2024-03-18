@@ -25,5 +25,4 @@ NotDownedOrganicBossMight: Mods.Aequus.Condition.NotDownedOrganicBossMight
 NotDownedOrganicBossSight: Mods.Aequus.Condition.NotDownedOrganicBossSight
 NotDownedOrganicBossFright: Mods.Aequus.Condition.NotDownedOrganicBossFright
 NotDownedTrueFinalBoss: Mods.Aequus.Condition.NotDownedTrueFinalBoss
-MovePortalGun: 如果"{$Configs.VanillaChangesConfig.MovePortalGun}"选项设为true.
-MoveGravityGlobe: 如果"{$Configs.VanillaChangesConfig.MoveGravityGlobe}"选项设为true.
+ConfigIsTrue: 如果{1}/{0}配置选项设为True

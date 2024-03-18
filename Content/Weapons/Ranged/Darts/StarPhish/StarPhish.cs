@@ -7,12 +7,6 @@ using Terraria.DataStructures;
 namespace Aequus.Content.Weapons.Ranged.Darts.StarPhish;
 
 public class StarPhish : ModItem {
-    public override void SetStaticDefaults() {
-        IChestLootRule rule = new CommonChestRule(Type);
-        rule.OnSucceed(new CommonChestRule(ModContent.ItemType<PlasticDart>(), MinStack: 25, MaxStack: 50));
-        ChestLootDatabase.Instance.Register(ChestLoot.PollutedOcean, rule);
-    }
-
     public override void SetDefaults() {
         Item.width = 24;
         Item.height = 8;

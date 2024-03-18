@@ -164,10 +164,9 @@ internal class PollutedOceanAmbienceGenerator : AequusGenStep {
             return false;
         }
 
-        List<IChestLootRule> rules = ChestLootDatabase.Instance.GetRulesForType(ChestLoot.PollutedOcean);
-        Chest chest = Main.chest[chestId];
         ChestLootInfo info = new(chestId, Random);
-        ChestLootDatabase.Instance.SolveIndexedRule(rules, in info, ref ChestsPlaced);
+        ChestLootDatabase.Instance.SolveRules(ChestLoot.PollutedOcean, in info);
+        ChestsPlaced++;
         //if (Random.NextBool(5)) {
         //    chest.AddItem();
         //}

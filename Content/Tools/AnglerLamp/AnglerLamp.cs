@@ -1,6 +1,4 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Content.Chests;
-using Aequus.Content.DataSets;
 using Aequus.Core.Initialization;
 using System;
 using System.Collections.Generic;
@@ -26,10 +24,6 @@ public class AnglerLamp : ModItem {
     private readonly List<Dust> _dustEffects = new();
 
     public float animation;
-
-    public override void SetStaticDefaults() {
-        ChestLootDatabase.Instance.RegisterCommon(ChestLoot.PollutedOcean, Type);
-    }
 
     public override void SetDefaults() {
         Item.width = 16;
