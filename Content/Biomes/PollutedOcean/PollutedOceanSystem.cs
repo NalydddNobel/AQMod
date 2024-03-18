@@ -1,9 +1,16 @@
-﻿using Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
+﻿using Aequus.Common.Items.Chests;
+using Aequus.Content.Chests;
+using Aequus.Content.Configuration;
+using Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
 using Aequus.Content.Enemies.PollutedOcean.BreadOfCthulhu;
 using Aequus.Content.Enemies.PollutedOcean.OilSlime;
 using Aequus.Content.Enemies.PollutedOcean.Scavenger;
 using Aequus.Content.Fishing;
 using Aequus.Content.Fishing.Fish.BlackJellyfish;
+using Aequus.Content.Tools.AnglerLamp;
+using Aequus.Content.Weapons.Ranged.Darts.Ammo;
+using Aequus.Content.Weapons.Ranged.Darts.StarPhish;
+using Aequus.Old.Content.Potions.PotionCanteen;
 using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;
@@ -19,6 +26,17 @@ public class PollutedOceanSystem : ModSystem {
 
     private static int? _music;
     public static int Music => _music ??= MusicLoader.GetMusicSlot("AequusMusic/Assets/Music/PollutedOcean");
+
+    public override void SetStaticDefaults() {
+        ChestLootDatabase.Instance.RegisterIndexed(ChestLoot.PollutedOcean,
+            new ChestRules.Common(ItemID.MagicConch, OptionalConditions: Aequus.ConditionConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveMagicConch))),
+            new ChestRules.Common(ModContent.ItemType<AnglerLamp>()),
+#if !DEBUG
+            new ChestRules.Common(ModContent.ItemType<PotionCanteen>()),
+#endif
+            new ChestRules.Common(ModContent.ItemType<StarPhish>()).OnSucceed(new ChestRules.Common(ModContent.ItemType<PlasticDart>(), MinStack: 25, MaxStack: 50))
+        );
+    }
 
     public override void Unload() {
         BiomeTiles.Clear();

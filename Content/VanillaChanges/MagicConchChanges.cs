@@ -1,5 +1,4 @@
-﻿using Aequus.Content.Chests;
-using Aequus.Content.Configuration;
+﻿using Aequus.Content.Configuration;
 using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Content.VanillaChanges;
@@ -7,10 +6,6 @@ namespace Aequus.Content.VanillaChanges;
 public class MagicConchChanges : GlobalItem {
     public override bool IsLoadingEnabled(Mod mod) {
         return VanillaChangesConfig.Instance.MoveMagicConch;
-    }
-
-    public override void SetStaticDefaults() {
-        ChestLootDatabase.Instance.RegisterCommon(ChestLoot.PollutedOcean, ItemID.MagicConch);
     }
 
     public override void ModifyItemLoot(Item item, ItemLoot itemLoot) {

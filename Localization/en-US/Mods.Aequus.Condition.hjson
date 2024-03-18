@@ -25,5 +25,4 @@ NotDownedOrganicBossMight: Mods.Aequus.Condition.NotDownedOrganicBossMight
 NotDownedOrganicBossSight: Mods.Aequus.Condition.NotDownedOrganicBossSight
 NotDownedOrganicBossFright: Mods.Aequus.Condition.NotDownedOrganicBossFright
 NotDownedTrueFinalBoss: Mods.Aequus.Condition.NotDownedTrueFinalBoss
-MovePortalGun: If the "{$Configs.VanillaChangesConfig.MovePortalGun}" option is set to true.
-MoveGravityGlobe: If the "{$Configs.VanillaChangesConfig.MoveGravityGlobe}" option is set to true.
+ConfigIsTrue: If the {1}/{0} config option is set to true

@@ -12,8 +12,8 @@ public partial class Physicist {
     public override void AddShops() {
         new NPCShop(Type)
             .Add<PhysicsGun>()
-            .Add(ItemID.PortalGun, new Condition("Mods.Aequus.Condition.MovePortalGun", () => VanillaChangesConfig.Instance.MovePortalGun))
-            .Add(ItemID.GravityGlobe, new Condition("Mods.Aequus.Condition.MoveGravityGlobe", () => VanillaChangesConfig.Instance.MoveGravityGlobe))
+            .Add(ItemID.PortalGun, Aequus.ConditionConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MovePortalGun)))
+            .Add(ItemID.GravityGlobe, Aequus.ConditionConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveGravityGlobe)))
             .Add<LaserReticle>()
         //    .Add<HaltingMachine>()
             .AddCustomValue(ItemID.BloodMoonStarter, Item.buyPrice(gold: 2))
