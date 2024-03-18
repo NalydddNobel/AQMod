@@ -25,4 +25,4 @@ NotDownedOrganicBossMight: Mods.Aequus.Condition.NotDownedOrganicBossMight
 NotDownedOrganicBossSight: Mods.Aequus.Condition.NotDownedOrganicBossSight
 NotDownedOrganicBossFright: Mods.Aequus.Condition.NotDownedOrganicBossFright
 NotDownedTrueFinalBoss: Mods.Aequus.Condition.NotDownedTrueFinalBoss
-// ConfigIsTrue: If the {1}/{0} config option is set to true
+ConfigIsTrue: 如果{1}/{0}配置选项设为True
