@@ -241,39 +241,43 @@ Tombstones: {
 RainTotem: {
 	MapEntry: 雨图腾
 	ItemDisplayName: "{$Tiles.RainTotem.MapEntry}"
-	ItemTooltip: 在附近时增加下雨几率
+	ItemTooltip:
+		'''
+		在附近时增加下雨几率
+		必须放置在丛林方块上
+		'''
 }
 
 RainTotemInactive.MapEntry: "{$Tiles.RainTotem.MapEntry}"
 
 BigGem: {
 	Amethyst: {
-		// ItemDisplayName: Amethyst Deposit
-		// ItemTooltip: ""
+		ItemDisplayName: 紫水晶矿床
+		ItemTooltip: ""
 	}
 
 	Topaz: {
-		// ItemDisplayName: Topaz Deposit
-		// ItemTooltip: ""
+		ItemDisplayName: 黄玉矿床
+		ItemTooltip: ""
 	}
 
 	Sapphire: {
-		// ItemDisplayName: Sapphire Deposit
-		// ItemTooltip: ""
+		ItemDisplayName: 蓝宝石矿床
+		ItemTooltip: ""
 	}
 
 	Emerald: {
-		// ItemDisplayName: Emerald Deposit
-		// ItemTooltip: ""
+		ItemDisplayName: 翡翠矿床
+		ItemTooltip: ""
 	}
 
 	Ruby: {
-		// ItemDisplayName: Ruby Deposit
-		// ItemTooltip: ""
+		ItemDisplayName: 红玉矿床
+		ItemTooltip: ""
 	}
 
 	Diamond: {
-		// ItemDisplayName: Diamond Deposit
-		// ItemTooltip: ""
+		ItemDisplayName: 钻石矿床
+		ItemTooltip: ""
 	}
 }

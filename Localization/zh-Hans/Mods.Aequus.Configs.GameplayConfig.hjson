@@ -12,11 +12,11 @@ PollutedOceanSide: {
 }
 
 CaveVariety: {
-	// Label: "[i:BonePickaxe] Aequus Caves"
-	/* Tooltip:
+	Label: "[i:BonePickaxe] Aequus洞穴"
+	Tooltip:
 		'''
-		Adds more cave variants, and overall expands caves to have much less dead-ends.
-		This value determines the quanity of Aequus caves to spawn.
-		Setting this to 0 disables them from spawning entirely.
-		''' */
+		增加了更多的洞穴种类, 总体上扩大了洞穴, 并减少了死胡同.
+		此值会影响Aequus洞穴的生成数量.
+		设为0以完全禁止生成.
+		'''
 }
