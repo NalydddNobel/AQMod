@@ -35,6 +35,20 @@ public static class ExtendChest {
         return null;
     }
 
+    public static void InsertItem(this Chest chest, Item item, int slot) {
+        int endSlot = slot;
+        int length = chest.item.Length - 1;
+        for (; endSlot < length && chest.item[endSlot].IsAir; ++endSlot) ;
+
+        if (endSlot != slot) {
+            for (int i = endSlot; i >= slot; i--) {
+                Main.chest[i + 1] = Main.chest[i];
+            }
+        }
+
+        chest.item[slot] = item;
+    }
+
     public static Item AddItem(this Chest chest, int item, int stack = 1, int prefix = -1) {
         var emptySlot = chest.FindEmptySlot();
         if (emptySlot != null) {

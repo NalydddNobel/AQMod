@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items.Chests;
+﻿using Aequus.Common.Chests;
 using Aequus.Content.Chests;
 using Aequus.Content.Configuration;
 using Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
@@ -36,6 +36,16 @@ public class PollutedOceanSystem : ModSystem {
 #endif
             new ChestRules.Common(ModContent.ItemType<StarPhish>()).OnSucceed(new ChestRules.Common(ModContent.ItemType<PlasticDart>(), MinStack: 25, MaxStack: 50))
         );
+
+        ChestLootDatabase.Instance.Register(ChestLoot.Sandstone, new ChestRules.Replace(
+            ItemIdToReplace: ItemID.MagicConch,
+            new ChestRules.Indexed(new IChestLootRule[] {
+                            new ChestRules.Common(ItemID.SandstorminaBottle),
+                            new ChestRules.Common(ItemID.FlyingCarpet)
+                }
+            ),
+            Aequus.ConditionConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveMagicConch))
+        ));
     }
 
     public override void Unload() {

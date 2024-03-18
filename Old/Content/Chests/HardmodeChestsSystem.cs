@@ -1,5 +1,5 @@
 ﻿using Aequus;
-using Aequus.Common.Items.Chests;
+using Aequus.Common.Chests;
 using Aequus.Common.Tiles;
 using Aequus.Content.Chests;
 using System.Collections.Generic;

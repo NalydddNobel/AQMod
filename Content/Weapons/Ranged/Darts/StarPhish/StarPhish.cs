@@ -1,7 +1,4 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Common.Items.Chests;
-using Aequus.Content.Chests;
-using Aequus.Content.Weapons.Ranged.Darts.Ammo;
 using Terraria.DataStructures;
 
 namespace Aequus.Content.Weapons.Ranged.Darts.StarPhish;

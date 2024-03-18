@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items.Chests;
+﻿using Aequus.Common.Chests;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Terraria.GameContent.ItemDropRules;
@@ -20,7 +20,7 @@ public class ChestLootDatabase : ModSystem {
     }
 
     public void SolveRules(ChestLoot type, in ChestLootInfo info) {
-        List<IChestLootRule> rules = Instance.GetRulesForType(ChestLoot.PollutedOcean);
+        List<IChestLootRule> rules = Instance.GetRulesForType(type);
 
         if (rules != null) {
             for (int i = 0; i < rules.Count; ++i) {
@@ -82,39 +82,5 @@ public class ChestLootDatabase : ModSystem {
 
     public override void Unload() {
         Instance = null;
-    }
-}
-
-public enum ChestLoot {
-    PollutedOcean,
-    HardmodeChestRegular,
-    HardmodeChestSnow,
-    HardmodeChestJungle,
-    Count
-}
-
-public static class ChestLootExtenstions {
-    public static void RegisterCommon(this ChestLootDatabase database, ChestLoot type, int item, int minStack = 1, int maxStack = 1) {
-        database.Register(type, new ChestRules.Common(item, minStack, maxStack));
-    }
-
-    public static void RegisterIndexed(this ChestLootDatabase database, ChestLoot type, params IChestLootRule[] rules) {
-        database.Register(type, new ChestRules.Indexed(rules));
-    }
-
-    public static IChestLootRule OnSucceed(this IChestLootRule parentRule, IChestLootRule rule) {
-        parentRule.ChainedRules.Add(new ChainTryIfSucceed(rule));
-        return parentRule;
-    }
-
-    public static bool CanDropWithConditions(this IChestLootRule rule, in ChestLootInfo info) {
-        return rule.CanDrop(in info) && (rule.Conditions?.IsMet() == false ? false : true);
-    }
-
-    public static void ClearSelfAndChains(this IChestLootRule rule) {
-        rule.Reset();
-        foreach (var c in rule.ChainedRules) {
-            c.RuleToChain?.ClearSelfAndChains();
-        }
     }
 }

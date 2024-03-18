@@ -15,7 +15,6 @@ public class ToolbeltChanges : GlobalItem {
 
     public static int Capacity { get; set; } = 5;
     public static float SlotHue { get; set; } = 0.4f;
-    public static int SpawnRate { get; set; } = 7;
 
     public override bool InstancePerEntity => true;
     protected override bool CloneNewInstances => true;
@@ -41,7 +40,7 @@ public class ToolbeltChanges : GlobalItem {
 
     public override void ModifyItemLoot(Item item, ItemLoot itemLoot) {
         if (item.type == ItemID.IronCrate) {
-            itemLoot.Add(ItemDropRule.Common(ItemID.Toolbelt, chanceDenominator: SpawnRate * 3));
+            itemLoot.Add(ItemDropRule.Common(ItemID.Toolbelt, chanceDenominator: 12));
         }
     }
 

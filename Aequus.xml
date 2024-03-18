@@ -120,6 +120,55 @@
             Prevents the player from right clicking a certain buff type. This list is cleared right before the local player is updated.
             </summary>
         </member>
+        <member name="F:Aequus.Common.Chests.ChestLoot.Surface">
+            <summary>Extra loot pool for Vanilla's Surface Wooden Chests.</summary>
+        </member>
+        <member name="F:Aequus.Common.Chests.ChestLoot.Underground">
+            <summary>Extra loot pool for Vanilla's Gold Chests.</summary>
+        </member>
+        <member name="F:Aequus.Common.Chests.ChestLoot.Shadow">
+            <summary>Extra loot pool for Vanilla's Shadow Chests.</summary>
+        </member>
+        <member name="F:Aequus.Common.Chests.ChestLoot.Sandstone">
+            <summary>Extra loot pool for Vanilla's Sandstone Chests.</summary>
+        </member>
+        <member name="F:Aequus.Common.Chests.ChestLoot.PollutedOcean">
+            <summary>Loot pool for Polluted Ocean Trash Cans.</summary>
+        </member>
+        <member name="T:Aequus.Common.Chests.ChestRules.Indexed">
+            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
+        </member>
+        <member name="M:Aequus.Common.Chests.ChestRules.Indexed.#ctor(Aequus.Common.Chests.IChestLootRule[],Terraria.Condition[])">
+            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
+        </member>
+        <member name="T:Aequus.Common.Chests.ChestRules.Replace">
+            <summary>
+            Finds <paramref name="ItemIdToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.Common.Chests.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.Common.Chests.ChestRules.Remove"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Aequus.Common.Chests.ChestRules.Replace.#ctor(System.Int32,Aequus.Common.Chests.IChestLootRule,Terraria.Condition[])">
+            <summary>
+            Finds <paramref name="ItemIdToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.Common.Chests.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.Common.Chests.ChestRules.Remove"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="T:Aequus.Common.Chests.ChestRules.Remove">
+            <summary>Usually used in conjunction with <see cref="T:Aequus.Common.Chests.ChestRules.Replace"/> to pull all of the item slots backwards after deleting the item.</summary>
+        </member>
+        <member name="M:Aequus.Common.Chests.IChestLootRule.AddItem(Aequus.Common.Chests.ChestLootInfo@)">
+            <summary>Add the item into the chest here. <see cref="!:ChestLootInfo.Chest"/> should safely index into <see cref="F:Terraria.Main.chest"/>.</summary>
+        </member>
+        <member name="M:Aequus.Common.Chests.IChestLootRule.CanDrop(Aequus.Common.Chests.ChestLootInfo@)">
+            <summary>Condition for whether this rule should be ran.</summary>
+        </member>
+        <member name="M:Aequus.Common.Chests.IChestLootRule.Reset">
+            <summary>Called upon <see cref="M:Terraria.ModLoader.ModSystem.ClearWorld"/> and Hardmode Chests. Use to reset values before world generation and etc.</summary>
+        </member>
         <member name="M:Aequus.Common.Golfing.GolfingSystem.SetGolfBallStatus(System.Boolean)">
             <summary>
             Sets all fake golf balls to be counted or not counted as golf balls.
@@ -160,21 +209,6 @@
             <summary>
             <see cref="T:Terraria.RecipeGroup"/> for trash items.
             </summary>
-        </member>
-        <member name="T:Aequus.Common.Items.Chests.ChestRules.Indexed">
-            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>
-        </member>
-        <member name="M:Aequus.Common.Items.Chests.ChestRules.Indexed.#ctor(Aequus.Common.Items.Chests.IChestLootRule[],Terraria.Condition[])">
-            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>
-        </member>
-        <member name="M:Aequus.Common.Items.Chests.IChestLootRule.AddItem(Aequus.Common.Items.Chests.ChestLootInfo@)">
-            <summary>Add the item into the chest here. <see cref="P:Aequus.Common.Items.Chests.ChestLootInfo.Chest"/> should safely index into <see cref="F:Terraria.Main.chest"/>.</summary>
-        </member>
-        <member name="M:Aequus.Common.Items.Chests.IChestLootRule.CanDrop(Aequus.Common.Items.Chests.ChestLootInfo@)">
-            <summary>Condition for whether this rule should be ran.</summary>
-        </member>
-        <member name="M:Aequus.Common.Items.Chests.IChestLootRule.Reset">
-            <summary>Called upon <see cref="M:Terraria.ModLoader.ModSystem.ClearWorld"/> and Hardmode Chests. Use to reset values before world generation and etc.</summary>
         </member>
         <member name="T:Aequus.Common.Items.Components.IManageProjectile">
             <summary>
