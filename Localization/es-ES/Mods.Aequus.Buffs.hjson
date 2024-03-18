@@ -25,12 +25,12 @@ GoldenWindBuff: {
 
 HotAirBalloonBuff: {
 	DisplayName: Globo Aeroestatico
-	Description: Up, up, and away!!!
+	Description: Hasta el infinito y más allá!!!
 }
 
 DeathsEmbraceBuff: {
 	DisplayName: "{$Items.DeathsEmbrace.DisplayName}"
-	Description: Por qué estás leyendo esto… vas a morir
+	Description: Por qué estás leyendo esto… estas a punto de morir
 }
 
 BaguetteBuff: {
@@ -39,23 +39,23 @@ BaguetteBuff: {
 }
 
 WarHornCooldown: {
-	// DisplayName: War Horn (Cooldown)
-	// Description: The War Horn is on cooldown!
+	 DisplayName: Cuerno de Guerra (Refrescando)
+	 Description: El Cuerno de Guerra se esta refrescando!
 }
 
 FoodPoisoningDebuff: {
-	// DisplayName: Food Poisoning
-	// Description: No improvements to stats, and you can no longer eat food!
+	 DisplayName: Intoxicacíon Alimenticia
+	 Description: mejoras nulas a todas las característica, y no puedes comer!
 }
 
 CorruptionHellfire: {
-	// DisplayName: Corruption Hellfire
-	// Description: Your flesh burns from the sinister flames
+	 DisplayName: Fuego Infernal Corrupto
+	 Description: Tu sangre hierve con llamas siniestras
 }
 
 CrimsonHellfire: {
-	// DisplayName: Crimson Hellfire
-	// Description: Your flesh burns from the sinister flames
+	 DisplayName: Fuego Infernal Carmesi
+	 Description: Tu sangre hierve con llamas siniestras
 }
 
 IronLotusDebuff: {
@@ -94,13 +94,13 @@ CrimsonSceptreDebuff: {
 }
 
 GravetenderMinionBuff: {
-	// DisplayName: Gravetender
-	// Description: The wisp will increase the power of your ghosts!
+	 DisplayName: Tiendetumbas
+	 Description: La voluta incrementa el poder de tus fantasmas!
 }
 
 BlueFire: {
-	// DisplayName: Mana Blaze
-	// Description: The celestial heat rips at your health and mana!
+	 DisplayName: Ardor de Mana
+	 Description: Un calor celestial desgarra tú vida y mana!
 }
 
 UltimateSwordBuff: {

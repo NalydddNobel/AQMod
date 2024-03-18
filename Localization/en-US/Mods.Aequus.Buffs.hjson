@@ -30,7 +30,7 @@ HotAirBalloonBuff: {
 
 DeathsEmbraceBuff: {
 	DisplayName: "{$Items.DeathsEmbrace.DisplayName}"
-	Description: Why are you reading this... you're going to die
+	Description: Why are you reading this... you're about to die
 }
 
 BaguetteBuff: {

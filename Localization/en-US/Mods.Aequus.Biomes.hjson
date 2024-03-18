@@ -1,5 +1,5 @@
 DemonSiegeZone: {
-	DisplayName: Gore Nest
+	DisplayName: Oblivion Altar
 	EventName: Demon Siege
 	TownNPCDialogueName: ""
 }
@@ -20,6 +20,6 @@ PollutedOceanBiomeSurface: {
 }
 
 PollutedOceanBiomeUnderground: {
-	DisplayName: Polluted Crevices
-	TownNPCDialogueName: the Polluted Crevices
+	DisplayName: Polluted Aquifier
+	TownNPCDialogueName: the Polluted Aquifier
 }
