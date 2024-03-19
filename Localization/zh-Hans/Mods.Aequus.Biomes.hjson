@@ -1,5 +1,5 @@
 DemonSiegeZone: {
-	DisplayName: 血巢
+	DisplayName: 遗境祭坛
 	EventName: 恶魔围攻
 	TownNPCDialogueName: ""
 }
@@ -20,6 +20,6 @@ PollutedOceanBiomeSurface: {
 }
 
 PollutedOceanBiomeUnderground: {
-	DisplayName: 被污染的岩隙
-	TownNPCDialogueName: 被污染的岩隙
+	DisplayName: 被污染的蓄水层
+	TownNPCDialogueName: 被污染的蓄水层
 }
