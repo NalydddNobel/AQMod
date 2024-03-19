@@ -39,23 +39,23 @@ BaguetteBuff: {
 }
 
 WarHornCooldown: {
-	 DisplayName: Cuerno de Guerra (Refrescando)
-	 Description: El Cuerno de Guerra se esta refrescando!
+	DisplayName: Cuerno de Guerra (Refrescando)
+	Description: El Cuerno de Guerra se esta refrescando!
 }
 
 FoodPoisoningDebuff: {
-	 DisplayName: Intoxicacíon Alimenticia
-	 Description: mejoras nulas a todas las característica, y no puedes comer!
+	DisplayName: Intoxicacíon Alimenticia
+	Description: mejoras nulas a todas las característica, y no puedes comer!
 }
 
 CorruptionHellfire: {
-	 DisplayName: Fuego Infernal Corrupto
-	 Description: Tu sangre hierve con llamas siniestras
+	DisplayName: Fuego Infernal Corrupto
+	Description: Tu sangre hierve con llamas siniestras
 }
 
 CrimsonHellfire: {
-	 DisplayName: Fuego Infernal Carmesi
-	 Description: Tu sangre hierve con llamas siniestras
+	DisplayName: Fuego Infernal Carmesi
+	Description: Tu sangre hierve con llamas siniestras
 }
 
 IronLotusDebuff: {
@@ -94,13 +94,13 @@ CrimsonSceptreDebuff: {
 }
 
 GravetenderMinionBuff: {
-	 DisplayName: Tiendetumbas
-	 Description: La voluta incrementa el poder de tus fantasmas!
+	DisplayName: Tiendetumbas
+	Description: La voluta incrementa el poder de tus fantasmas!
 }
 
 BlueFire: {
-	 DisplayName: Ardor de Mana
-	 Description: Un calor celestial desgarra tú vida y mana!
+	DisplayName: Ardor de Mana
+	Description: Un calor celestial desgarra tú vida y mana!
 }
 
 UltimateSwordBuff: {

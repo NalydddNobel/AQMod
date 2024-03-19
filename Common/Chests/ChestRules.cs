@@ -1,7 +1,6 @@
 ﻿using Aequus.Content.Chests;
 using Aequus.Core;
 using System.Collections.Generic;
-using System.Data;
 
 namespace Aequus.Common.Chests;
 

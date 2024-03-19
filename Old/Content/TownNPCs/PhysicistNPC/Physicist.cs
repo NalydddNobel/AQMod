@@ -111,6 +111,9 @@ public partial class Physicist : AequusTownNPC<Physicist> {
         return Main.rand.Next(GetAvailableChat(Main.LocalPlayer).ToArray());
     }
 
+    #region Chat
+    public const int CHAT_PYLON_DISTANCE = 64;
+
     private IEnumerable<string> GetAvailableChat(Player player) {
         if (GlimmerZone.EventActive) {
             for (int i = 0; i < 2; i++) {
@@ -133,9 +136,11 @@ public partial class Physicist : AequusTownNPC<Physicist> {
             }
         }
 
+        if (CheckPylons()) {
+            yield return this.GetDialogue("Pylon").Value;
+        }
         if (Main.IsItAHappyWindyDay) {
             yield return this.GetDialogue("WindyDay").Value;
-            yield return this.GetDialogue("Pylon").Value;
         }
         if (Main.raining) {
             yield return this.GetDialogue("Rain").Value;
@@ -191,6 +196,7 @@ public partial class Physicist : AequusTownNPC<Physicist> {
         }
     }
 
+    // NOTE -- These are probably fucked in Multiplayer, since Tiles and Tile Entities aren't all loaded on mp clients.
     private bool CheckMeteorite() {
         int worldSurface = (int)Main.worldSurface;
         int meteoriteCount = 0;
@@ -212,6 +218,20 @@ public partial class Physicist : AequusTownNPC<Physicist> {
         return false;
     }
 
+    private bool CheckPylons() {
+        Point center = NPC.Center.ToTileCoordinates();
+
+        foreach (TeleportPylonInfo pylon in Main.PylonSystem.Pylons) {
+            // Just use the shortest distance on the XY plane.
+            int c = Math.Min(Math.Abs(center.X - pylon.PositionInTiles.X), Math.Abs(center.Y - pylon.PositionInTiles.Y));
+            if (c < CHAT_PYLON_DISTANCE) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public override void SetChatButtons(ref string button, ref string button2) {
         button = Language.GetTextValue("LegacyInterface.28");
         SetAnalaysisButton(ref button2);
@@ -226,6 +246,7 @@ public partial class Physicist : AequusTownNPC<Physicist> {
         AwaitQuest = 30;
         QuestButtonPressed();
     }
+    #endregion
 
     public override bool CanGoToStatue(bool toKingStatue) {
         return !toKingStatue;
