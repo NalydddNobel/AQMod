@@ -580,6 +580,16 @@ OmniGem: {
 	Tooltip: "'Encantada con la presencia del Éter'"
 }
 
+GreaterHoney: {
+	// DisplayName: Greater Honey Potion
+	// Tooltip: Improves natural healing
+}
+
+SuperHoney: {
+	// DisplayName: Super Honey Potion
+	// Tooltip: Improves natural healing for a long time
+}
+
 LesserRestorationPotion: {
 	DisplayName: Poción de recuperación menor
 	Tooltip: "{$ItemTooltip.RestorationPotion}"

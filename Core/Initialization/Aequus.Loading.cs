@@ -5,10 +5,12 @@ namespace Aequus;
 partial class Aequus {
     internal static LoadActions OnPostSetupContent;
     internal static LoadActions OnAddRecipes;
+    internal static LoadActions OnPostAddRecipes;
 
     private static void UnloadLoadingSteps() {
         OnPostSetupContent = null;
         OnAddRecipes = null;
+        OnPostAddRecipes = null;
     }
 
     internal class LoadActions {
@@ -45,11 +47,15 @@ partial class Aequus {
 
     private class LoadingSteps : ModSystem {
         public override void PostSetupContent() {
-            OnPostSetupContent.Invoke();
+            OnPostSetupContent?.Invoke();
         }
 
         public override void AddRecipes() {
-            OnAddRecipes.Invoke();
+            OnAddRecipes?.Invoke();
+        }
+
+        public override void PostAddRecipes() {
+            OnPostAddRecipes?.Invoke();
         }
     }
 }

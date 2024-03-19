@@ -580,6 +580,16 @@ OmniGem: {
 	Tooltip: "'被以太的存在所附魔'"
 }
 
+GreaterHoney: {
+	// DisplayName: Greater Honey Potion
+	// Tooltip: Improves natural healing
+}
+
+SuperHoney: {
+	// DisplayName: Super Honey Potion
+	// Tooltip: Improves natural healing for a long time
+}
+
 LesserRestorationPotion: {
 	DisplayName: 弱效恢复药水
 	Tooltip: "{$ItemTooltip.RestorationPotion}"

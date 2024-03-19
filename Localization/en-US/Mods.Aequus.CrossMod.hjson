@@ -30,3 +30,27 @@ Fargowiltas: {
 		RespawnReduction: Reduced Respawn: {0} seconds
 	}
 }
+
+CalamityMod: {
+	Items: {
+		OmegaHoney: {
+			DisplayName: Omega Honey Potion
+			Tooltip: Improves natural healing for an extensive duration
+		}
+
+		SupremeHoney: {
+			DisplayName: Supreme Honey Potion
+			Tooltip: Improves natural healing for a prolonged time
+		}
+
+		OmegaRestoration: {
+			DisplayName: Omega Restoration Potion
+			Tooltip: "{$ItemTooltip.RestorationPotion}"
+		}
+
+		SupremeRestoration: {
+			DisplayName: Supreme Restoration Potion
+			Tooltip: "{$ItemTooltip.RestorationPotion}"
+		}
+	}
+}

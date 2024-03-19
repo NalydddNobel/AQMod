@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 635)</summary>
+/// <summary>(Total Textures: 641)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -221,6 +221,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SpaceSquidTrophyItem = new("Aequus/Content/Bosses/Trophies/SpaceSquidTrophyItem");
     /// <summary>Full Path: Content/Bosses/Trophies/Trophy</summary>
     public static readonly RequestCache<Texture2D> Trophy = new("Aequus/Content/Bosses/Trophies/Trophy");
+    /// <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/OmegaHoney</summary>
+    public static readonly RequestCache<Texture2D> OmegaHoney = new("Aequus/Content/CrossMod/CalamityModSupport/Items/OmegaHoney");
+    /// <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/OmegaRestoration</summary>
+    public static readonly RequestCache<Texture2D> OmegaRestoration = new("Aequus/Content/CrossMod/CalamityModSupport/Items/OmegaRestoration");
+    /// <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/SupremeHoney</summary>
+    public static readonly RequestCache<Texture2D> SupremeHoney = new("Aequus/Content/CrossMod/CalamityModSupport/Items/SupremeHoney");
+    /// <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/SupremeRestoration</summary>
+    public static readonly RequestCache<Texture2D> SupremeRestoration = new("Aequus/Content/CrossMod/CalamityModSupport/Items/SupremeRestoration");
     /// <summary>Full Path: Content/DedicatedContent/Baguette/Baguette</summary>
     public static readonly RequestCache<Texture2D> Baguette = new("Aequus/Content/DedicatedContent/Baguette/Baguette");
     /// <summary>Full Path: Content/DedicatedContent/Baguette/BaguetteBuff</summary>
@@ -491,6 +499,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> FoodPoisoningDebuff = new("Aequus/Content/Potions/Food/TaintedSeafood/FoodPoisoningDebuff");
     /// <summary>Full Path: Content/Potions/Food/TaintedSeafood/TaintedSeafood</summary>
     public static readonly RequestCache<Texture2D> TaintedSeafood = new("Aequus/Content/Potions/Food/TaintedSeafood/TaintedSeafood");
+    /// <summary>Full Path: Content/Potions/Healing/Honey/GreaterHoney</summary>
+    public static readonly RequestCache<Texture2D> GreaterHoney = new("Aequus/Content/Potions/Healing/Honey/GreaterHoney");
+    /// <summary>Full Path: Content/Potions/Healing/Honey/SuperHoney</summary>
+    public static readonly RequestCache<Texture2D> SuperHoney = new("Aequus/Content/Potions/Healing/Honey/SuperHoney");
     /// <summary>Full Path: Content/Potions/Healing/Restoration/GreaterRestorationPotion</summary>
     public static readonly RequestCache<Texture2D> GreaterRestorationPotion = new("Aequus/Content/Potions/Healing/Restoration/GreaterRestorationPotion");
     /// <summary>Full Path: Content/Potions/Healing/Restoration/SuperRestorationPotion</summary>

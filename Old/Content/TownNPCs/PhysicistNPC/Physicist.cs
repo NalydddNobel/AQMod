@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.CrossMod;
+using Aequus.Content.CrossMod.CalamityModSupport;
 using Aequus.Content.TownNPCs;
 using Aequus.Core;
 using Aequus.Core.ContentGeneration;

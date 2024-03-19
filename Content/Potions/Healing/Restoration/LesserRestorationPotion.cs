@@ -40,6 +40,7 @@ public class LesserRestorationPotion : ModItem, IApplyPotionDelay, IPostAddRecip
             .AddIngredient(ItemID.Bottle, 3)
             .AddTile(TileID.Bottles)
             .Register()
+            .SortBeforeFirstRecipesOf(ItemID.LesserHealingPotion)
             .DisableDecraft();
 
         if (VanillaChangesConfig.Instance.RestorationPotionRecipe) {
@@ -48,6 +49,7 @@ public class LesserRestorationPotion : ModItem, IApplyPotionDelay, IPostAddRecip
                 .AddIngredient(ItemID.GlowingMushroom)
                 .AddTile(TileID.Bottles)
                 .Register()
+                .SortBeforeFirstRecipesOf(ItemID.HealingPotion)
                 .DisableDecraft();
         }
     }

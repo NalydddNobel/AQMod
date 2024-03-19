@@ -1,21 +1,17 @@
-﻿using Aequus.Common.Items.Components;
+﻿namespace Aequus.Content.Potions.Healing.Honey;
 
-namespace Aequus.Content.Potions.Healing.Restoration;
-
-public class SuperRestorationPotion : ModItem, IApplyPotionDelay {
-    public bool ApplyPotionDelay(Player player) {
-        player.potionDelay = player.restorationDelayTime;
-        player.AddBuff(BuffID.PotionSickness, player.potionDelay);
-        return true;
-    }
-
+public class SuperHoney : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 30;
     }
 
     public override void SetDefaults() {
+        Item.healLife = 160;
+        Item.buffType = BuffID.Honey;
+        Item.buffTime = 1800;
+        Item.value = Item.sellPrice(silver: 60);
+        Item.rare = ItemRarityID.Lime;
         Item.UseSound = SoundID.Item3;
-        Item.healLife = 180;
         Item.useStyle = ItemUseStyleID.DrinkLiquid;
         Item.useTurn = true;
         Item.useAnimation = 17;
@@ -25,13 +21,11 @@ public class SuperRestorationPotion : ModItem, IApplyPotionDelay {
         Item.width = 14;
         Item.height = 24;
         Item.potion = true;
-        Item.value = Item.sellPrice(silver: 60);
-        Item.rare = ItemRarityID.Lime;
     }
 
     public override void AddRecipes() {
         CreateRecipe(4)
-            .AddIngredient<GreaterRestorationPotion>(4)
+            .AddIngredient<GreaterHoney>(4)
             .AddIngredient(ItemID.FragmentNebula)
             .AddIngredient(ItemID.FragmentSolar)
             .AddIngredient(ItemID.FragmentStardust)

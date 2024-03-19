@@ -41,11 +41,19 @@ public class GreaterRestorationPotion : ModItem, IApplyPotionDelay {
         //    }
         //}
         CreateRecipe(3)
-            .AddIngredient(ItemID.BottledWater, 3)
+            .AddIngredient(ItemID.RestorationPotion, 3)
             .AddIngredient(ItemID.PixieDust, 3)
-            .AddIngredient(ItemID.Sapphire)
+            .AddIngredient(ItemID.CrystalShard)
             .AddTile(TileID.Bottles)
             .Register()
+            .SortBeforeFirstRecipesOf(ItemID.GreaterHealingPotion)
+            .DisableDecraft();
+        CreateRecipe(3)
+            .AddIngredient(ItemID.GreaterHealingPotion, 3)
+            .AddIngredient(ItemID.PinkGel, 3)
+            .AddTile(TileID.Bottles)
+            .Register()
+            .SortBeforeFirstRecipesOf(ItemID.GreaterHealingPotion)
             .DisableDecraft();
     }
 }

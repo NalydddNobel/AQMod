@@ -137,4 +137,24 @@ internal static class SupportedModExtensions {
     public static int GetNPC<TMod>(this ISupportedMod<TMod> modSupport, string name, int defaultNPC = 0) where TMod : SupportedMod<TMod> {
         return modSupport.TryFind<ModNPC, TMod>(name, out var value) ? value.Type : defaultNPC;
     }
+
+    public static Recipe SortBeforeModItem(this Recipe recipe, string name, CrossModItem crossModItem) {
+        Aequus.OnPostAddRecipes += () => {
+            if (ModLoader.TryGetMod(crossModItem.CrossModName, out Mod mod) && mod.TryFind(name, out ModItem modItem)) {
+                recipe.SortBeforeFirstRecipesOf(modItem.Type);
+            }
+        };
+
+        return recipe;
+    }
+
+    public static Recipe SortAfterModItem(this Recipe recipe, string name, CrossModItem crossModItem) {
+        Aequus.OnPostAddRecipes += () => {
+            if (ModLoader.TryGetMod(crossModItem.CrossModName, out Mod mod) && mod.TryFind(name, out ModItem modItem)) {
+                recipe.SortAfterFirstRecipesOf(modItem.Type);
+            }
+        };
+
+        return recipe;
+    }
 }
