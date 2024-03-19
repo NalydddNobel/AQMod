@@ -522,15 +522,85 @@
             </summary>
         </member>
         <member name="P:Aequus.AequusPlayer.MinimumRespawnTime">
-            <summary>
-            The lowest any respawn-time reducing items can go.
-            </summary>
+            <summary>The lowest any respawn-time reducing items can go.</summary>
         </member>
         <member name="M:Aequus.AequusPlayer.SetAccRespawnTimeModifier(System.Int32)">
             <summary>
             Sets the respawn time modifier without allowing it to stack.
             </summary>
             <param name="amount"></param>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_FALLING">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for Fall Damage.</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_DROWNED">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for Drowning.</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_LAVA">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for Lava Damage.</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_DEFAULT">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for Misc Deaths. Used by:
+            <list type="bullet">
+            <item>Cactus in DST worlds.</item>
+            <item>Tiles in <see cref="F:Terraria.ID.TileID.Sets.TouchDamageImmediate"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_WAS_SLAIN_1">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for Misc Deaths. Used by:
+            <list type="bullet">
+            <item>Hammering a Demon Altar in Pre-Hardmode.</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_WAS_SLAIN_2">
+            <summary>Seemingly unused, emits the same text as <see cref="F:Aequus.AequusPlayer.DEATH_WAS_SLAIN_1"/>.</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_PETRIFIED">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying while petrified (<see cref="F:Terraria.Player.stoned"/>).</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_COMPANION_CUBE_STAB">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to the Companion Cube's stab.</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_SUFFOCATING">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to suffocation damage (<see cref="F:Terraria.Player.suffocating"/>).</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_BURNING">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to fire damage. Is also the fallback death message for dying to any Damage Over Time effect.</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_POISON">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to poison or venom damage. (<see cref="F:Terraria.Player.poisoned"/>, <see cref="F:Terraria.Player.venom"/>)</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_ELECTRIFIED">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to electrified damage. (<see cref="F:Terraria.Player.electrified"/>)</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_WALL_OF_FLESH_ESCAPE">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for trying to escape Wall of Flesh.</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_WALL_OF_FLESH_LICK">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for being tongued by Wall of Flesh. (<see cref="F:Terraria.Player.tongued"/>)</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_CHAOS_STATE_GENDERLESS_LINES">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to Chaos State. These are genderless lines which have a 50% chance of appearing instead of the gendered lines. (<see cref="F:Terraria.Player.chaosState"/>)</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_CHAOS_STATE_MALE_LINES">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to Chaos State. These are male lines which have a 50% chance of appearing instead of the genderless lines. (<see cref="F:Terraria.Player.chaosState"/>)</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_CHAOS_STATE_FEMALE_LINES">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to Chaos State. These are female lines which have a 50% chance of appearing instead of the genderless lines. (<see cref="F:Terraria.Player.chaosState"/>)</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_HOSTILE_PLAYER_INFERNO_POTION">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to a hostile player's Inferno Potion effect. (<see cref="F:Terraria.Player.inferno"/>)</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_DST_DARKNESS">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to darkness in the DST seed. (<see cref="T:Terraria.GameContent.DontStarveDarknessDamageDealer"/>)</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_DST_STARVING">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to starvation in the DST seed. (<see cref="F:Terraria.Player.starving"/>)</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_REMIX_SPACE">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying from going offscreen to space. (<see cref="F:Terraria.Main.remixWorld"/>, <see cref="F:Terraria.Player.forcedGravity"/>)</summary>
         </member>
         <member name="F:Aequus.AequusPlayer.lastSelectedItem">
             <summary>

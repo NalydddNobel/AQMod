@@ -181,6 +181,6 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
             return;
         }
 
-        player.Hurt(ExtendPlayer.CustomDeathReason("Mods.Aequus.Player.DeathMessage.Conductive." + Main.rand.Next(5), player.name), 120, 0, cooldownCounter: ImmunityCooldownID.TileContactDamage, knockback: 0f);
+        player.Hurt(AequusPlayer.CustomDeathReason("Conductive", 5), 120, 0, cooldownCounter: ImmunityCooldownID.TileContactDamage, knockback: 0f);
     }
 }

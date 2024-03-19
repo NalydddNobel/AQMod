@@ -276,17 +276,6 @@ public static class ExtendPlayer {
     }
     #endregion
 
-    #region Death Messages
-    // Change these if tmodloader eventually adds proper custom death messages
-    public static PlayerDeathReason CustomDeathReason(string key, params object[] args) {
-        return PlayerDeathReason.ByCustomReason(Language.GetTextValue(key, args));
-    }
-
-    public static PlayerDeathReason CustomDeathReason(string key) {
-        return PlayerDeathReason.ByCustomReason(Language.GetTextValue(key));
-    }
-    #endregion
-
     #region Player Draw Set
     public static void Draw(this ref PlayerDrawSet drawInfo, Texture2D texture, Vector2 position, Rectangle? sourceRect, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effect, int shader, float inactiveLayerDepth = 0f) {
         drawInfo.DrawDataCache.Add(new DrawData(texture, position, sourceRect, color, rotation, origin, scale, effect, inactiveLayerDepth) with { shader = shader });
