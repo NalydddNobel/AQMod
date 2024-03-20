@@ -1815,7 +1815,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 641)</summary>
+            <summary>(Total Textures: 648)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -3205,6 +3205,27 @@
         </member>
         <member name="F:Aequus.AequusTextures.UltimateEnergy">
             <summary>Full Path: Old/Content/Materials/Energies/UltimateEnergy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MonoGem">
+            <summary>Full Path: Old/Content/Materials/MonoGem/MonoGem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MonoGemTile">
+            <summary>Full Path: Old/Content/Materials/MonoGem/MonoGemTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmniGem">
+            <summary>Full Path: Old/Content/Materials/OmniGem/OmniGem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmniGemTile">
+            <summary>Full Path: Old/Content/Materials/OmniGem/OmniGemTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmniGemTile_Mask">
+            <summary>Full Path: Old/Content/Materials/OmniGem/OmniGemTile_Mask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmniGem_Mask">
+            <summary>Full Path: Old/Content/Materials/OmniGem/OmniGem_Mask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PossessedShard">
+            <summary>Full Path: Old/Content/Materials/PossessedShard/PossessedShard</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SoulGem">
             <summary>Full Path: Old/Content/Materials/SoulGem/SoulGem</summary>

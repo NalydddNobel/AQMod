@@ -412,6 +412,7 @@ BombarderRod: {
 		'''
 }
 
+// localization note: 'triacanthorn' is a portmanteau of 'Gleditsia triacanthos' (scientific name of a thorny plant) and the word 'thorn'
 Triacanthorn: {
 	DisplayName: Triacastilla
 	Tooltip:

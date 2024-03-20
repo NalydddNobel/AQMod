@@ -5,8 +5,8 @@ GoreNestsGeneration: {
 	DisplayMessage: Haciendo el inframundo mas malvado...
 
 	Tombstones: {
-		0: "Los organos de {Name} fueron desgarrados"
-		1: "no quedo nada de {Name}"
+		0: Los organos de {Name} fueron desgarrados
+		1: no quedo nada de {Name}
 		2: "{Name} perdio control de su cuerpo"
 		3: Fuerzas malignas destruyeron a {Name}
 		4: "{Name} se convirtio en un sacrificio"
@@ -16,7 +16,7 @@ GoreNestsGeneration: {
 	TombstoneHints: {
 		0: ... Los demonios... Estaban por todos lados... no tenia oportunidad...
 		1: . dejando sus armas a marchitar.
-z		2: . Un alma más consumida por el altar de oblivio, su espada legendaria de la oscuridad fue atraida a la energía oscura del altar.
+		2: . Un alma más consumida por el altar de oblivio, su espada legendaria de la oscuridad fue atraida a la energía oscura del altar.
 		3: . La profecía de la sagrada espada de la noche no fue cumplida para esta alma...
 		4: ... Su cuerpo arrojado al portal, nunca sera visto otra vez.
 		5: ... Su destino permanece incierto.

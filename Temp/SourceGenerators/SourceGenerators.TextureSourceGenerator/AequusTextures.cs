@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 641)</summary>
+/// <summary>(Total Textures: 648)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -933,6 +933,20 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OrganicEnergy = new("Aequus/Old/Content/Materials/Energies/OrganicEnergy");
     /// <summary>Full Path: Old/Content/Materials/Energies/UltimateEnergy</summary>
     public static readonly RequestCache<Texture2D> UltimateEnergy = new("Aequus/Old/Content/Materials/Energies/UltimateEnergy");
+    /// <summary>Full Path: Old/Content/Materials/MonoGem/MonoGem</summary>
+    public static readonly RequestCache<Texture2D> MonoGem = new("Aequus/Old/Content/Materials/MonoGem/MonoGem");
+    /// <summary>Full Path: Old/Content/Materials/MonoGem/MonoGemTile</summary>
+    public static readonly RequestCache<Texture2D> MonoGemTile = new("Aequus/Old/Content/Materials/MonoGem/MonoGemTile");
+    /// <summary>Full Path: Old/Content/Materials/OmniGem/OmniGem</summary>
+    public static readonly RequestCache<Texture2D> OmniGem = new("Aequus/Old/Content/Materials/OmniGem/OmniGem");
+    /// <summary>Full Path: Old/Content/Materials/OmniGem/OmniGemTile</summary>
+    public static readonly RequestCache<Texture2D> OmniGemTile = new("Aequus/Old/Content/Materials/OmniGem/OmniGemTile");
+    /// <summary>Full Path: Old/Content/Materials/OmniGem/OmniGemTile_Mask</summary>
+    public static readonly RequestCache<Texture2D> OmniGemTile_Mask = new("Aequus/Old/Content/Materials/OmniGem/OmniGemTile_Mask");
+    /// <summary>Full Path: Old/Content/Materials/OmniGem/OmniGem_Mask</summary>
+    public static readonly RequestCache<Texture2D> OmniGem_Mask = new("Aequus/Old/Content/Materials/OmniGem/OmniGem_Mask");
+    /// <summary>Full Path: Old/Content/Materials/PossessedShard/PossessedShard</summary>
+    public static readonly RequestCache<Texture2D> PossessedShard = new("Aequus/Old/Content/Materials/PossessedShard/PossessedShard");
     /// <summary>Full Path: Old/Content/Materials/SoulGem/SoulGem</summary>
     public static readonly RequestCache<Texture2D> SoulGem = new("Aequus/Old/Content/Materials/SoulGem/SoulGem");
     /// <summary>Full Path: Old/Content/Materials/SoulGem/SoulGemFilled</summary>

@@ -411,7 +411,8 @@ BombarderRod: {
 		Imprecise at close range
 		'''
 }
-	// localization note: 'triacanthorn' is a portmanteau of 'Gleditsia triacanthos' (scientific name of a thorny plant) and the word 'thorn'
+
+// localization note: 'triacanthorn' is a portmanteau of 'Gleditsia triacanthos' (scientific name of a thorny plant) and the word 'thorn'
 Triacanthorn: {
 	DisplayName: Triacanthorn
 	Tooltip:

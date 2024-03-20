@@ -15,6 +15,6 @@ public class UVVertexStrip : VertexStripClone {
     }
 
     protected override void AddVertex(Vector2 pos, float rot, int indexOnVertexArray, Color color, float width, float textureUV) {
-        base.AddVertex(pos, rot, indexOnVertexArray, color, width, textureUV * 10f % 1f);
+        base.AddVertex(pos, rot, indexOnVertexArray, color, width, textureUV);
     }
 }
