@@ -9,7 +9,7 @@ PollutedOceanGenerationSideConfig: {
 		{$DungeonSide.Label}: Se generara en el lado de la Mazmorra.
 		{$JungleSide.Label}: Se generara en el lado de la Jungla.
 		{$CompleteRandom.Label}: Elige un lado al azar.
-		''' */
+		'''
 	Automatic.Label: "[{$ColorImportant}:Automatico]"
 	DungeonSide.Label: "[{$ColorImportant}:Lado de Mazmorra]"
 	JungleSide.Label: "[{$ColorImportant}:Lado de Jungla]"
