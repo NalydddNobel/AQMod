@@ -34,23 +34,23 @@ Fargowiltas: {
 CalamityMod: {
 	Items: {
 		OmegaHoney: {
-			// DisplayName: Omega Honey Potion
-			// Tooltip: Improves natural healing for an extensive duration
+			DisplayName: 欧米茄蜂蜜药水
+			Tooltip: 在极长的时间内提高自然恢复
 		}
 
 		SupremeHoney: {
-			// DisplayName: Supreme Honey Potion
-			// Tooltip: Improves natural healing for a prolonged time
+			DisplayName: 至尊蜂蜜药水
+			Tooltip: 在更长的时间内提高自然恢复
 		}
 
 		OmegaRestoration: {
-			// DisplayName: Omega Restoration Potion
-			// Tooltip: "{$ItemTooltip.RestorationPotion}"
+			DisplayName: 欧米茄恢复药水
+			Tooltip: "{$ItemTooltip.RestorationPotion}"
 		}
 
 		SupremeRestoration: {
-			// DisplayName: Supreme Restoration Potion
-			// Tooltip: "{$ItemTooltip.RestorationPotion}"
+			DisplayName: 至尊恢复药水
+			Tooltip: "{$ItemTooltip.RestorationPotion}"
 		}
 	}
 }
