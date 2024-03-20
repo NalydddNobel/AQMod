@@ -24,48 +24,48 @@ RestorationPotionRecipe: {
 }
 
 MoveToolbelt: {
-	// Label: "[i:Toolbelt] Move Toolbelt"
-	/* Tooltip:
+	Label: "[i:Toolbelt] Mover Cinturón de Herramientas"
+	Tooltip:
 		'''
-		When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Toolbelt] can be found in [{$ColorImportant}:Chests Underground],
-		and will [{$ColorImportant}:no longer be sold] by the [{$ColorImportant2}:Goblin Tinkerer].
+		Al [{$ColorImportant}:Activar], el [{$ColorImportant}:Cinturón de Herramientas] se podra encontrar en [{$ColorImportant}:Cofres bajo tierra],
+		Y [{$ColorImportant}:no sera vendido] por el [{$ColorImportant2}:Duende chapucero].
 
 		{$NoteExploit}
-		''' */
+		'''
 }
 
 SlimeCrownInSurfaceChests: {
-	// Label: "[i:SlimeCrown] Slime Crown in Surface Chests"
-	// Tooltip: When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Slime Crown] can be found in [{$ColorImportant}:Surface Chests].
+	Label: "[i:SlimeCrown] Corona de slime en cofres de la superficie"
+	Tooltip: Al [{$ColorImportant}:Activar], la [{$ColorImportant}:Corona de slime] se podra encontrar en [{$ColorImportant}:Cofres de la superficie].
 }
 
 MoveGravityGlobe: {
-	// Label: "[i:GravityGlobe] Gravity Globe sold by Physicist"
-	/* Tooltip:
+	Label: "[i:GravityGlobe] Mover Globo gravitacional"
+	Tooltip:
 		'''
-		When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Gravity Globe] will by sold by the [{$ColorImportant}:Physicist],
-		and will [{$ColorImportant}:no longer be dropped] by the [{$ColorImportant2}:Moon Lord].
+		Al [{$ColorImportant}:Activar], el [{$ColorImportant}:Globo gravitacional] sera vendido por la [{$ColorImportant}:Física],
+		y [{$ColorImportant}:dejara de caer] del [{$ColorImportant2}:Señor de la Luna].
 
 		{$NoteExploit}
-		''' */
+		'''
 }
 
 MovePortalGun: {
-	// Label: "[i:PortalGun] Portal Gun sold by Physicist"
-	/* Tooltip:
+	Label: "[i:PortalGun] Mover Arma de portales"
+	Tooltip:
 		'''
-		When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Portal Gun] will by sold by the [{$ColorImportant}:Physicist],
-		and will [{$ColorImportant}:no longer be dropped] by the [{$ColorImportant2}:Moon Lord].
+		Al [{$ColorImportant}:Activar], el [{$ColorImportant}:Arma de portales] sera vendido por la [{$ColorImportant}:Física],
+		y [{$ColorImportant}:dejara de caer] del [{$ColorImportant2}:Señor de la Luna].
 
 		{$NoteExploit}
-		''' */
+		'''
 }
 
 MoveMagicConch: {
-	// Label: "[i:MagicConch] Move Magic Conch"
-	/* Tooltip:
+	Label: "[i:MagicConch] Mover Concha mágica"
+	Tooltip:
 		'''
-		When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Magic Conch] can be found in the [{$ColorImportant}:Polluted Ocean],
-		and will [{$ColorImportant}:no longer be found] in the [{$ColorImportant2}:Underground Desert].
-		''' */
+		Al [{$ColorImportant}:Activar], la [{$ColorImportant}:Concha mágica] se podra encontrar en el [{$ColorImportant}:Oceano contaminado],
+		Y [{$ColorImportant}:dejara de aparecer] en el [{$ColorImportant2}:desierto subterráneo].
+		'''
 }

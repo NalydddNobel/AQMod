@@ -1,28 +1,28 @@
 DayOfTheWeek: Cuando sea {0}
 BetweenDays: Entre {0}-{1}
-// InPollutedOcean: In the Polluted Ocean biome
+InPollutedOcean: En el Oceano Contaminado
 // DownedAquaticBoss: Mods.Aequus.Condition.DownedAquaticBoss
-// DownedCosmicBoss: After defeating Ultra Starite
-// DownedTrueCosmicBoss: After defeating Omega Starite
-// DownedDemonBoss: After completing your first Demon Siege
+DownedCosmicBoss: Despues de derrotar a Ultra Starite
+DownedTrueCosmicBoss: Despues de derrotar a Omega Starite
+DownedDemonBoss: Despues de completar tu primer Asedio Demoniaco
 // DownedTrueDemonBoss: Mods.Aequus.Condition.DownedTrueDemonBoss
-// DownedAtmosphereBossFlame: After matching against the Red Sprite
-// DownedAtmosphereBossFrost: After matching against the Space Squid
-// DownedTrueAtmosphereBoss: After defeating the Dust Devil
+DownedAtmosphereBossFlame: Despues de luchar contra el Epectro Rojo
+DownedAtmosphereBossFrost: Despues de luchar contra el Calamar espacial
+DownedTrueAtmosphereBoss: Despues de derrotar al Demonio de Polvo
 // DownedOrganicBossMight: Mods.Aequus.Condition.DownedOrganicBossMight
 // DownedOrganicBossSight: Mods.Aequus.Condition.DownedOrganicBossSight
 // DownedOrganicBossFright: Mods.Aequus.Condition.DownedOrganicBossFright
 // DownedTrueFinalBoss: Mods.Aequus.Condition.DownedTrueFinalBoss
 // NotDownedAquaticBoss: Mods.Aequus.Condition.NotDownedAquaticBoss
-// NotDownedCosmicBoss: Before defeating Ultra Starite
-// NotDownedTrueCosmicBoss: Before defeating Omega Starite
-// NotDownedDemonBoss: Before completing your first Demon Siege
+NotDownedCosmicBoss: Antes de derrotar a Ultra Starite
+NotDownedTrueCosmicBoss: Antes de derrotar a Omega Starite
+NotDownedDemonBoss: Antes de completar tu primer Asedio Demoniaco
 // NotDownedTrueDemonBoss: Mods.Aequus.Condition.NotDownedTrueDemonBoss
-// NotDownedAtmosphereBossFlame: Before matching against the Red Sprite
-// NotDownedAtmosphereBossFrost: Before matching against the Space Squid
-// NotDownedTrueAtmosphereBoss: Before defeating the Dust Devil
+NotDownedAtmosphereBossFlame: Antes de luchar contra el Epectro Rojo
+NotDownedAtmosphereBossFrost: Antes de luchar contra el Calamar espacial
+NotDownedTrueAtmosphereBoss: Ants de derrotar al Demonio de Polvo
 // NotDownedOrganicBossMight: Mods.Aequus.Condition.NotDownedOrganicBossMight
 // NotDownedOrganicBossSight: Mods.Aequus.Condition.NotDownedOrganicBossSight
 // NotDownedOrganicBossFright: Mods.Aequus.Condition.NotDownedOrganicBossFright
 // NotDownedTrueFinalBoss: Mods.Aequus.Condition.NotDownedTrueFinalBoss
-// ConfigIsTrue: If the {1}/{0} config option is set to true
+ConfigIsTrue: Si la configuracion {1}/{0} esta activada

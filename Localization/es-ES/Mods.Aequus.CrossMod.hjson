@@ -23,34 +23,34 @@ Avalon: {
 
 Fargowiltas: {
 	Stats: {
-		// MaxGhostSlots: Ghost Slots: {0}
-		// GhostDuration: Ghost Duration: {0} minutes
-		// SceptreDebuffMultiplier: Sceptre Debuff Damage: {0}%
-		// DropRolls: Drop Rerolls: {0}
-		// RespawnReduction: Reduced Respawn: {0} seconds
+		MaxGhostSlots: Ranura de fantasmas: {0}
+		GhostDuration: Duración de fantasmas: {0} minutes
+		SceptreDebuffMultiplier: Daño de estado de cetros: {0}%
+		DropRolls: Rerolls de Botin: {0}
+		RespawnReduction: Reaparición reducida: {0} seconds
 	}
 }
 
 CalamityMod: {
 	Items: {
 		OmegaHoney: {
-			// DisplayName: Omega Honey Potion
-			// Tooltip: Improves natural healing for an extensive duration
+			DisplayName: Omega Poción de miel
+			Tooltip: Mejora la regeneración de vida natural por un periodo extendido
 		}
 
 		SupremeHoney: {
-			// DisplayName: Supreme Honey Potion
-			// Tooltip: Improves natural healing for a prolonged time
+			DisplayName: Poción de miel Suprema
+			Tooltip: Mejora la regeneración de vida natural por un periodo prolongado
 		}
 
 		OmegaRestoration: {
-			// DisplayName: Omega Restoration Potion
-			// Tooltip: "{$ItemTooltip.RestorationPotion}"
+			DisplayName: Omega Poción de restauración
+			Tooltip: "{$ItemTooltip.RestorationPotion}"
 		}
 
 		SupremeRestoration: {
-			// DisplayName: Supreme Restoration Potion
-			// Tooltip: "{$ItemTooltip.RestorationPotion}"
+			DisplayName: Poción de restauración Suprema
+			Tooltip: "{$ItemTooltip.RestorationPotion}"
 		}
 	}
 }

@@ -120,7 +120,7 @@ HighSteaks: {
 	DisplayName: High Steaks
 	Tooltip:
 		'''
-		{0}% increased damage when performing a critical strike
+		increased critical strike damage by {0}%
 		{1}
 		'''
 	Downside: "{v}However, you pay {Price} upon crit"
@@ -218,7 +218,7 @@ EclipseGlasses: {
 //# Equipment: Informational
 HoloLens: {
 	DisplayName: Holo Lens
-	Tooltip: Allows you to view the contents of locked and unlocked chests without opening them
+	Tooltip: Allows you to view the contents of chests without opening them
 }
 
 Pacemaker: {
@@ -411,7 +411,7 @@ BombarderRod: {
 		Imprecise at close range
 		'''
 }
-
+	// localization note: 'triacanthorn' is a portmanteau of 'Gleditsia triacanthos' (scientific name of a thorny plant) and the word 'thorn'
 Triacanthorn: {
 	DisplayName: Triacanthorn
 	Tooltip:
@@ -424,7 +424,7 @@ Triacanthorn: {
 //# Weapons: Summon
 PhysicistSentry: {
 	DisplayName: Portable Tesla Turret
-	Tooltip: Summons a tesla turret sentry which fires a barrage of chaining lightning
+	Tooltip: Summons a tesla turret which fires a barrage of chaining lightning
 }
 
 Insurgency: {

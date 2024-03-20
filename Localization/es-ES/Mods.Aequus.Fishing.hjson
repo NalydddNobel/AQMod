@@ -5,7 +5,7 @@ FishingPoles: {
 	}
 
 	BambooFishingPole: {
-		// DisplayName: Bamboo Pole
-		// Tooltip: Greatly increased catch rate
+		DisplayName: Caña de bambú
+		Tooltip: Taza de pesca incrementada
 	}
 }

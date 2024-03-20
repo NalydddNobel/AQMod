@@ -6,16 +6,16 @@ ShowDeathTips: {
 }
 
 ShowNecromancyOutlines: {
-	// Label: "[i:Insurgency] Show Necromancy Outlines"
-	// Tooltip: "[c/ffffbb:Ghost minions] will have outlines to make them stand out."
+	Label: "[i:Insurgency] Mostrar bordes de necromancia"
+	Tooltip: "Los [c/ffffbb:súbditos fantasma] tendran bordes para sobresalir."
 }
 
 FlashIntensity: {
-	// Label: "[i:CosmicMonolith] Flash Intensity"
-	// Tooltip: ""
+	Label: "[i:CosmicMonolith] Intensidad de flash"
+	Tooltip: ""
 }
 
 FlashLoops: {
-	// Label: "[i:CosmicMonolith] Flash Loops"
-	// Tooltip: ""
+	Label: "[i:CosmicMonolith] Repeticiónes de flash"
+	Tooltip: ""
 }

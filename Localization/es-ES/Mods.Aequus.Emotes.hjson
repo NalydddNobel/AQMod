@@ -1,5 +1,5 @@
 SkyMerchant.Command: Mercaderdelcielo
-// Occultist.Command: occultistgood
-// OccultistHostile.Command: occultist
-// Physicist.Command: physicist
-// PhysicistPet.Command: physicistpet
+Occultist.Command: ocultista
+OccultistHostile.Command: ocultistahostil
+Physicist.Command: física
+PhysicistPet.Command: Mascotafísica

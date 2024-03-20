@@ -1,57 +1,57 @@
 // GenVarEdits.DisplayMessage: ""
-// Statues.DisplayMessage: Placing More Statues...
+Statues.DisplayMessage: Colocando mas estatuas...
 
 GoreNestsGeneration: {
-	// DisplayMessage: Making the Underworld more evil...
+	DisplayMessage: Haciendo el inframundo mas malvado...
 
 	Tombstones: {
-		// 0: "{Name} was torn into shreds"
-		// 1: "{Name} was obliterated"
-		// 2: "{Name} was possessed"
-		// 3: Eldritch forces tore apart {Name}
-		// 4: "{Name} became a sacrifice"
-		// 5: "{Name} didn't see their end coming"
+		0: "Los organos de {Name} fueron desgarrados"
+		1: "no quedo nada de {Name}"
+		2: "{Name} perdio control de su cuerpo"
+		3: Fuerzas malignas destruyeron a {Name}
+		4: "{Name} se convirtio en un sacrificio"
+		5: "{Name} no esperaba su final"
 	}
 
 	TombstoneHints: {
-		// 0: ... The demons... they were everywhere... didn't stand a chance...
-		// 1: . A mark of the slayer... leaving behind their weaponry to wither.
-		// 2: . Left them to be consumed by the Oblivion Altar, their legendary blade of darkness was attracted to its dark energy.
-		// 3: . The prophecy of a sacred blade of night wasn't fullfilled for this one...
-		// 4: ... Body thrown into the portal, never to be seen again.
-		// 5: ... Their fate left unknown
+		0: ... Los demonios... Estaban por todos lados... no tenia oportunidad...
+		1: . dejando sus armas a marchitar.
+z		2: . Un alma más consumida por el altar de oblivio, su espada legendaria de la oscuridad fue atraida a la energía oscura del altar.
+		3: . La profecía de la sagrada espada de la noche no fue cumplida para esta alma...
+		4: ... Su cuerpo arrojado al portal, nunca sera visto otra vez.
+		5: ... Su destino permanece incierto.
 	}
 }
 
-// LavaCleanupStep.DisplayMessage: Cleaning up lava
-// LavaCleanup.DisplayMessage: Mods.Aequus.GenStep.LavaCleanup.DisplayMessage
+LavaCleanupStep.DisplayMessage: Limpiando lava
+LavaCleanup.DisplayMessage: Mods.Aequus.GenStep.LavaCleanup.DisplayMessage
 
 PollutedOcean: {
 	DisplayMessage: {
-		// 0: Creating a landfill
-		// 1: Sabotaging the turtles
-		// 2: Polluting one of the oceans
-		// 3: Destroying coral reefs
-		// 4: Throwing away trash
-		// 5: Sailing Oil Tankers
-		// 6: Creating a Great Garbage Patch
-		// 7: Becoming Non-biodegradable
-		// 8: Ghost fishing
+		0: Creando un vertedero
+		1: Saboteando a las tortugas
+		2: Contaminando uno de los oceanos
+		3: destruyendo arrecifes
+		4: Tirando basura
+		5: Zarpando petroleros
+		6: Creando una gran mancha de basura
+		7: Usando bolsas no biodegradables
+		8: Dejando redes fantasma
 	}
 
-	// Sand: ..Depositing Sand
-	// Caves: ..Punching Holes
-	// Detailing: ..Decomposing Plastics
-	// Ores: ..Adding Goodies
+	Sand: ..depositando arena
+	Caves: ..Perforando agujeros
+	Detailing: ..Descomponiendo plasticos
+	Ores: ..Añadiendo joyas
 }
 
-// PollutedOceanAmbience.DisplayMessage: Taking out the trash...
-// Reset.DisplayMessage: ""
+PollutedOceanAmbience.DisplayMessage: Sacando la basura...
+Reset.DisplayMessage: ""
 
 NewCavesGeneration: {
-	// DisplayMessage: Creating bizarre caverns...
-	// Weird: Weird ones
-	// Tall: Tall ones
+	DisplayMessage: Creando cuevas bizarras...
+	Weird: Raras
+	Tall: Altas
 }
 
-// BigGemsGeneration.DisplayMessage: Making Ice Overpowered...
+BigGemsGeneration.DisplayMessage: Haciendo el hielo demasiado poderoso...

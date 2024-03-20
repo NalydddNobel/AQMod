@@ -1,22 +1,22 @@
-// DisplayName: Gameplay Config
+DisplayName: Configuraciones de Gameplay
 
 PollutedOceanSide: {
-	// Label: "[i:Aequus/TrashCompactor] Polluted Ocean Side"
-	/* Tooltip:
+	Label: "[i:Aequus/TrashCompactor] Lado del Oceano Contaminado"
+	Tooltip:
 		'''
-		Determines which side of the world the Polluted Ocean should generate.
+		Determina el lado del mundo en el cual el Oceano Contaminado deberia generarse.
 		{$POGenerationSide.Tooltip}
 
-		[{$ColorNote}:Utilize this config for personal preference, or to fix an issue with overlapping biomes.]
-		''' */
+		[{$ColorNote}:Utiliza esta configuracion por preferencia personal, o para solucionar conflictos con otros biomas.]
+		'''
 }
 
 CaveVariety: {
-	// Label: "[i:BonePickaxe] Aequus Caves"
-	/* Tooltip:
+	Label: "[i:BonePickaxe] Cuevas de Aequus"
+	Tooltip:
 		'''
-		Adds more cave variants, and overall expands caves to have much less dead-ends.
-		This value determines the quanity of Aequus caves to spawn.
-		Setting this to 0 disables them from spawning entirely.
-		''' */
+		Añade variación y expande a las cuevas para que haya menos túneles sin salida.
+		El valor determina la cantidad del nuevo tipo de cuevas que se generaran.
+		Colocarlo en 0 desactivara la nueva generacion por completo.
+		'''
 }

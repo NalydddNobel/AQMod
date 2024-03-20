@@ -1,17 +1,17 @@
-// ColorImportant: c/ffffbb
-// ColorImportant2: c/ffcc99
-// ColorNote: c/aaacff
+ColorImportant: c/ffffbb
+ColorImportant2: c/ffcc99
+ColorNote: c/aaacff
 
 PollutedOceanGenerationSideConfig: {
-	/* Tooltip:
+	Tooltip:
 		'''
-		{$Automatic.Label}: Automatically changes the side [{$ColorImportant2}:depending on which mods are enabled].
-		{$DungeonSide.Label}: Generates on the Dungeon side of the world.
-		{$JungleSide.Label}: Generates on the Jungle side of the world.
-		{$CompleteRandom.Label}: Picks either side by random.
+		{$Automatic.Label}: Automaticamente ajusta el lado [{$ColorImportant2}:dependiendo en que mods esten activados].
+		{$DungeonSide.Label}: Se generara en el lado de la Mazmorra.
+		{$JungleSide.Label}: Se generara en el lado de la Jungla.
+		{$CompleteRandom.Label}: Elige un lado al azar.
 		''' */
-	// Automatic.Label: "[{$ColorImportant}:Automatic]"
-	// DungeonSide.Label: "[{$ColorImportant}:Dungeon Side]"
-	// JungleSide.Label: "[{$ColorImportant}:Jungle Side]"
-	// CompleteRandom.Label: "[{$ColorImportant}:Complete Random]"
+	Automatic.Label: "[{$ColorImportant}:Automatico]"
+	DungeonSide.Label: "[{$ColorImportant}:Lado de Mazmorra]"
+	JungleSide.Label: "[{$ColorImportant}:Lado de Jungla]"
+	CompleteRandom.Label: "[{$ColorImportant}:Aleatorio]"
 }
