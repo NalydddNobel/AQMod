@@ -123,14 +123,35 @@
         <member name="F:Aequus.Common.Chests.ChestLoot.Surface">
             <summary>Extra loot pool for Vanilla's Surface Wooden Chests.</summary>
         </member>
-        <member name="F:Aequus.Common.Chests.ChestLoot.Underground">
+        <member name="F:Aequus.Common.Chests.ChestLoot.AllUnderground">
+            <summary>Extra loot pool for Vanilla's Underground Chests, this includes Gold, Frozen, Rich Mahogany, etc.</summary>
+        </member>
+        <member name="F:Aequus.Common.Chests.ChestLoot.Sky">
+            <summary>Extra loot pool for Vanilla's Sky Chests. This includes Skyware and Locked Gold Chests located above the surface line.</summary>
+        </member>
+        <member name="F:Aequus.Common.Chests.ChestLoot.UndergroundDesert">
+            <summary>Extra loot pool for Chests located in the Underground Desert.</summary>
+        </member>
+        <member name="F:Aequus.Common.Chests.ChestLoot.Pyramid">
+            <summary>Extra loot pool for Chests located in the Pyramid.</summary>
+        </member>
+        <member name="F:Aequus.Common.Chests.ChestLoot.Dungeon">
+            <summary>Extra loot pool for Chests located in the Dungeon. Includes Biome Chests as of now.</summary>
+        </member>
+        <member name="F:Aequus.Common.Chests.ChestLoot.Temple">
+            <summary>Extra loot pool for Chests located in the Temple.</summary>
+        </member>
+        <member name="F:Aequus.Common.Chests.ChestLoot.Gold">
             <summary>Extra loot pool for Vanilla's Gold Chests.</summary>
         </member>
         <member name="F:Aequus.Common.Chests.ChestLoot.Shadow">
             <summary>Extra loot pool for Vanilla's Shadow Chests.</summary>
         </member>
-        <member name="F:Aequus.Common.Chests.ChestLoot.Sandstone">
-            <summary>Extra loot pool for Vanilla's Sandstone Chests.</summary>
+        <member name="F:Aequus.Common.Chests.ChestLoot.Frozen">
+            <summary>Extra loot pool for Vanilla's Frozen Chests. Note this is NOT the Biome Chest.</summary>
+        </member>
+        <member name="F:Aequus.Common.Chests.ChestLoot.Ivy">
+            <summary>Extra loot pool for Vanilla's Ivy Chests.</summary>
         </member>
         <member name="F:Aequus.Common.Chests.ChestLoot.PollutedOcean">
             <summary>Loot pool for Polluted Ocean Trash Cans.</summary>
@@ -1814,7 +1835,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 652)</summary>
+            <summary>(Total Textures: 654)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2613,6 +2634,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.TrashTorchItem_Flame">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTorchItem_Flame</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AncientAngelStatue">
+            <summary>Full Path: Content/Tiles/Statues/AncientAngelStatue</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AncientAngelStatueItem">
+            <summary>Full Path: Content/Tiles/Statues/AncientAngelStatueItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MossStatues">
             <summary>Full Path: Content/Tiles/Statues/MossStatues</summary>

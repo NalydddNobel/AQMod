@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 652)</summary>
+/// <summary>(Total Textures: 654)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -539,6 +539,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> TrashTorchItem = new("Aequus/Content/Tiles/Furniture/Trash/TrashTorchItem");
     /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTorchItem_Flame</summary>
     public static readonly RequestCache<Texture2D> TrashTorchItem_Flame = new("Aequus/Content/Tiles/Furniture/Trash/TrashTorchItem_Flame");
+    /// <summary>Full Path: Content/Tiles/Statues/AncientAngelStatue</summary>
+    public static readonly RequestCache<Texture2D> AncientAngelStatue = new("Aequus/Content/Tiles/Statues/AncientAngelStatue");
+    /// <summary>Full Path: Content/Tiles/Statues/AncientAngelStatueItem</summary>
+    public static readonly RequestCache<Texture2D> AncientAngelStatueItem = new("Aequus/Content/Tiles/Statues/AncientAngelStatueItem");
     /// <summary>Full Path: Content/Tiles/Statues/MossStatues</summary>
     public static readonly RequestCache<Texture2D> MossStatues = new("Aequus/Content/Tiles/Statues/MossStatues");
     /// <summary>Full Path: Content/Tiles/Statues/MossStatuesArgonItem</summary>

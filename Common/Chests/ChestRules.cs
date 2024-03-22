@@ -1,5 +1,7 @@
-﻿using Aequus.Content.Chests;
+﻿using Aequus.Common.Items;
+using Aequus.Content.Chests;
 using Aequus.Core;
+using System;
 using System.Collections.Generic;
 
 namespace Aequus.Common.Chests;
@@ -21,8 +23,8 @@ internal class ChestRules {
         }
     }
 
-    public record class OneFromOptions(int[] Options, int ChanceDenominator = 1, int ChanceNumerator = 1, params Condition[] OptionalConditions) : IChestLootRule {
-        public List<IChestLootChain> ChainedRules { get; set; } = new();
+    public record class OneFromOptions(IChestLootRule[] Options, int ChanceDenominator = 1, int ChanceNumerator = 1, params Condition[] OptionalConditions) : IChestLootRule {
+        public List<IChestLootChain> ChainedRules { get; set; } = IChestLootChain.GetFromSelfRules(Options);
         public ConditionCollection Conditions { get; set; } = new(OptionalConditions);
 
         public ChestLootResult AddItem(in ChestLootInfo info) {
@@ -31,23 +33,27 @@ internal class ChestRules {
                 return ChestLootResult.FailedRandomRoll;
             }
 
-            // Add the item.
-            info.Add.AddItem(info.RNG.Next(Options), 1, in info);
-            return ChestLootResult.Success;
+            // Roll a random rule 
+            IChestLootRule selectedRule = info.RNG.Next(Options);
+
+            // Solve that rule.
+            ChestLootResult result = ChestLootDatabase.Instance.SolveSingleRule(selectedRule, in info);
+
+            return result;
         }
     }
 
     /// <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
-    public record class Indexed(IChestLootRule[] Rules, params Condition[] OptionalConditions) : IChestLootRule {
+    public record class Indexed(IChestLootRule[] Options, params Condition[] OptionalConditions) : IChestLootRule {
         public int Index { get; private set; }
-        public int RuleIndex => Index % Rules.Length;
+        public int RuleIndex => Index % Options.Length;
 
-        public List<IChestLootChain> ChainedRules { get; set; } = IChestLootChain.GetFromSelfRules(Rules);
+        public List<IChestLootChain> ChainedRules { get; set; } = IChestLootChain.GetFromSelfRules(Options);
         public ConditionCollection Conditions { get; set; } = new(OptionalConditions);
 
         public ChestLootResult AddItem(in ChestLootInfo info) {
             // Get the next rule index.
-            IChestLootRule selectedRule = Rules[RuleIndex];
+            IChestLootRule selectedRule = Options[RuleIndex];
 
             // Solve that rule.
             ChestLootResult result = ChestLootDatabase.Instance.SolveSingleRule(selectedRule, in info);
@@ -106,6 +112,28 @@ internal class ChestRules {
         public ChestLootResult AddItem(in ChestLootInfo info) {
             info.Add.RemoveItem(in info);
             return ChestLootResult.Success;
+        }
+    }
+
+    public record class MetalBar(Func<int> GetOreTileId, int MinStack = 1, int MaxStack = 1, params Condition[] OptionalConditions) : IChestLootRule {
+        public List<IChestLootChain> ChainedRules { get; set; } = new();
+        public ConditionCollection Conditions { get; set; } = new(OptionalConditions);
+
+        public ChestLootResult AddItem(in ChestLootInfo info) {
+            int scannedItem = GetItem();
+
+            if (scannedItem > 0) {
+                // Add the item.
+                info.Add.AddItem(scannedItem, info.RNG.Next(MinStack, MaxStack + 1), in info);
+                return ChestLootResult.Success;
+            }
+
+            return ChestLootResult.DidNotRunCode;
+        }
+
+        private int GetItem() {
+            int tileId = GetOreTileId();
+            return ItemScanner.GetBarFromTileId(tileId);
         }
     }
 }

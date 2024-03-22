@@ -11,6 +11,10 @@ public static class ChestLootExtenstions {
         database.Register(type, new ChestRules.Indexed(rules));
     }
 
+    public static void RegisterOneFromOptions(this ChestLootDatabase database, ChestLoot type, params IChestLootRule[] rules) {
+        database.Register(type, new ChestRules.OneFromOptions(rules));
+    }
+
     public static IChestLootRule OnSucceed(this IChestLootRule parentRule, IChestLootRule rule) {
         parentRule.ChainedRules.Add(new ChestChains.OnSuccess(rule));
         return parentRule;

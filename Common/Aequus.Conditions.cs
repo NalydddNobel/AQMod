@@ -8,6 +8,7 @@ using Terraria.ModLoader.Config;
 namespace Aequus;
 
 public partial class Aequus {
+    #region Downed X
     /// <summary>Whether ??? was defeated.</summary>
     public static readonly Condition ConditionDownedAquaticBoss = new Condition("Mods.Aequus.Condition.DownedAquaticBoss", () => WorldState.DownedAquaticBoss);
     /// <summary>Whether ??? was not defeated.</summary>
@@ -67,7 +68,9 @@ public partial class Aequus {
     public static readonly Condition ConditionDownedTrueFinalBoss = new Condition("Mods.Aequus.Condition.DownedTrueFinalBoss", () => WorldState.DownedTrueFinalBoss);
     /// <summary>Whether ??? was not defeated.</summary>
     public static readonly Condition ConditionNotDownedTrueFinalBoss = new Condition("Mods.Aequus.Condition.NotDownedTrueFinalBoss", () => !WorldState.DownedTrueFinalBoss);
+    #endregion
 
+    #region Days
     /// <param name="firstDay">A <see cref="DayOfWeek"/> to compare against <see cref="TimeTrackerSystem.DayOfTheWeek"/>.</param>
     /// <param name="lastDay">A <see cref="DayOfWeek"/> to compare against <see cref="TimeTrackerSystem.DayOfTheWeek"/>.</param>
     /// <returns>A condition for a specific time range between two days of the week.</returns>
@@ -93,7 +96,9 @@ public partial class Aequus {
         return new Condition(Language.GetText("Mods.Aequus.Condition.DayOfTheWeek").WithFormatArgs(ExtendLanguage.DayOfWeek(dayOfWeek)),
             () => TimeTrackerSystem.DayOfTheWeek == dayOfWeek);
     }
+    #endregion
 
+    #region Config
     /// <returns><inheritdoc cref="ConditionConfig(ModConfig, string, LocalizedText, Func{object, bool})"/> Defaults to checking if the value equals true.</returns>
     public static Condition ConditionConfigIsTrue(ModConfig config, string settingName) {
         return ConditionConfig(config, settingName, Language.GetText("Mods.Aequus.Condition.ConfigIsTrue"), (value) => value.Equals(true));
@@ -127,4 +132,5 @@ public partial class Aequus {
             throw new MissingMemberException(config.Name, settingName);
         }
     }
+    #endregion
 }

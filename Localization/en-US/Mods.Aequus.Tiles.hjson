@@ -281,3 +281,8 @@ BigGem: {
 		ItemTooltip: ""
 	}
 }
+
+AncientAngelStatue: {
+	ItemDisplayName: Ancient Angel Statue
+	ItemTooltip: ""
+}
