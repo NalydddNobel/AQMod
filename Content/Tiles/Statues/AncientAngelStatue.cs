@@ -9,4 +9,8 @@ public class AncientAngelStatue : StatueTileTemplate {
         ItemDrop = new InstancedTileItem(this, value: Item.sellPrice(copper: 60));
         Mod.AddContent(ItemDrop);
     }
+
+    protected override void SafeSetStaticDefaults() {
+        ItemSets.ShimmerCountsAsItem[ItemDrop.Type] = ItemID.AngelStatue;
+    }
 }
