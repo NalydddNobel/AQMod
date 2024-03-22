@@ -1,20 +1,25 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Content.Dyes;
 using Aequus.Core.Graphics.Tiles;
-using System;
 using System.Collections.Generic;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
+using Terraria.Localization;
 
 namespace Aequus.Old.Content.Materials.OmniGem;
 
 public class OmniGemTile : BaseGemTile, IBatchedTile {
-    public const int MaskFrameWidth = MaskFullWidth / 3;
-    public const int MaskFullWidth = 150;
+    public const int GROW_RANGE_HORIZONTAL = 30;
+    public const int GROW_RANGE_UP = 60;
+    public const int GROW_RANGE_DOWN = 0;
 
-    public const int MapEntries = 16;
+    public const int MASK_FRAME_COUNT = 3;
+    public const int MASK_FULL_WIDTH = 150;
+    public const int MASK_FRAME_WIDTH = MASK_FULL_WIDTH / MASK_FRAME_COUNT;
+
+    public const int MAP_ENTRY_COUNT = 16;
 
     public bool SolidLayerTile => false;
 
@@ -24,15 +29,18 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
         Main.tileObsidianKill[Type] = true;
         Main.tileNoFail[Type] = true;
 
-        for (int i = 0; i < MapEntries; i++) {
-            AddMapEntry(Main.hslToRgb(new(i / (float)MapEntries, 1f, 0.66f)), LanguageDatabase.GetItemName(ModContent.ItemType<OmniGem>()));
+        AequusTile.OnRandomTileUpdate += GrowOmniGems;
+
+        LocalizedText mapEntry = LanguageDatabase.GetItemName(ModContent.ItemType<OmniGem>());
+        for (int i = 0; i < MAP_ENTRY_COUNT; i++) {
+            AddMapEntry(Main.hslToRgb(new Vector3(i / (float)MAP_ENTRY_COUNT, 1f, 0.66f)), mapEntry);
         }
         DustType = DustID.RainbowRod;
     }
 
     public override ushort GetMapOption(int i, int j) {
         var seed = Helper.TileSeed(i, j);
-        return (ushort)Utils.RandomInt(ref seed, 0, MapEntries);
+        return (ushort)Utils.RandomInt(ref seed, 0, MAP_ENTRY_COUNT);
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) {
@@ -86,7 +94,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
                 continue;
             }
 
-            var frame = new Rectangle(info.Tile.TileFrameX / 18 * MaskFullWidth, info.Tile.TileFrameY / 18 * MaskFrameWidth, MaskFrameWidth, 50);
+            var frame = new Rectangle(info.Tile.TileFrameX / 18 * MASK_FULL_WIDTH, info.Tile.TileFrameY / 18 * MASK_FRAME_WIDTH, MASK_FRAME_WIDTH, 50);
             var drawPosition = new Vector2(tiles[i].Position.X * 16f, tiles[i].Position.Y * 16f) - Main.screenPosition;
             var origin = frame.Size() / 2f;
             float globalTime = Main.GlobalTimeWrappedHourly;
@@ -125,7 +133,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
             }
 
             ulong seed = Helper.TileSeed(tiles[i].Position);
-            var frame = new Rectangle(info.Tile.TileFrameX / 18 * MaskFullWidth, info.Tile.TileFrameY / 18 * MaskFrameWidth, MaskFrameWidth, 50);
+            var frame = new Rectangle(info.Tile.TileFrameX / 18 * MASK_FULL_WIDTH, info.Tile.TileFrameY / 18 * MASK_FRAME_WIDTH, MASK_FRAME_WIDTH, 50);
             var drawPosition = new Vector2(tiles[i].Position.X * 16f, tiles[i].Position.Y * 16f) - Main.screenPosition;
             var origin = frame.Size() / 2f;
             float globalTime = Main.GlobalTimeWrappedHourly;
@@ -183,44 +191,36 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
         Main.spriteBatch.End();
     }
 
-    private static bool CheckShimmer(int i, int j, int rangeX, int rangeY, int iterations) {
-        for (int k = 0; k < iterations; k++) {
-            int randX = i + WorldGen.genRand.Next(-rangeX, rangeX);
-            int randY = j + WorldGen.genRand.Next(-rangeY, rangeY);
-            if (WorldGen.InWorld(randX, randY) && TileHelper.HasShimmer(randX, randY)) {
-                return true;
-            }
+    public static void GrowOmniGems(int i, int j, int type) {
+        Tile tile = Main.tile[i, j];
+        // Abort if the block being updated does not have Shimmer.
+        if (tile.LiquidAmount == 0 || tile.LiquidType != LiquidID.Shimmer) {
+            return;
         }
-        return false;
-    }
 
-    public static bool Grow(int i, int j) {
-        const int RANGE_X = 60;
-        const int RANGE_Y = 60;
-        const int ITERATIONS = 30;
-        if (!WorldGen.InWorld(i, j, Math.Max(RANGE_X, RANGE_Y) + 10)) {
-            return false;
+        int gemX = i + WorldGen.genRand.Next(-GROW_RANGE_HORIZONTAL, GROW_RANGE_HORIZONTAL);
+        int gemY = j - WorldGen.genRand.Next(GROW_RANGE_DOWN, GROW_RANGE_UP);
+
+        // Abort if the random spot is outside of the world, or has a Tile already.
+        if (!WorldGen.InWorld(gemX, gemY, 5) || Main.tile[gemX, gemY].HasTile || !TileHelper.GetGemFramingAnchor(gemX, gemY).IsSolidTileAnchor()) {
+            return;
         }
 
         int omniGemTileID = ModContent.TileType<OmniGemTile>();
-        int generateX = i + WorldGen.genRand.Next(-1, 2);
-        int generateY = j + WorldGen.genRand.Next(2);
-        var tile = Main.tile[generateX, generateY];
-        if (tile.HasTile || TileHelper.ScanTiles(new(i - 2, j - 1, 5, 3), TileHelper.HasTileAction(omniGemTileID), TileHelper.HasShimmer, TileHelper.IsTree)
-            || !CheckShimmer(i, j + RANGE_Y / 2, RANGE_X, RANGE_Y, ITERATIONS)) {
-            return false;
+
+        // Abort if the random spot has an omni gem, shimmer, or a tree/gem tree within a 5x3 rectangle
+        if (TileHelper.ScanTiles(new Rectangle(gemX - 2, gemY - 1, 5, 3), TileHelper.HasTileAction(omniGemTileID), TileHelper.HasShimmer, TileHelper.IsTree)) {
+            return;
         }
 
-        //if (tile.CuttableType()) {
-        //    tile.HasTile = false;
-        //}
-        WorldGen.PlaceTile(generateX, generateY, omniGemTileID, mute: true);
+        // Place the Gem
+        WorldGen.PlaceTile(gemX, gemY, omniGemTileID, mute: true);
+
+        // Sync the gem if it was successfully placed.
         if (tile.HasTile && tile.TileType == omniGemTileID) {
             if (Main.netMode != NetmodeID.SinglePlayer) {
-                NetMessage.SendTileSquare(-1, generateX, generateY);
+                NetMessage.SendTileSquare(-1, gemX, gemY);
             }
-            return true;
         }
-        return false;
     }
 }

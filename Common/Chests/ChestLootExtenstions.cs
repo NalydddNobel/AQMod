@@ -1,5 +1,4 @@
 ﻿using Aequus.Content.Chests;
-using Terraria.GameContent.UI.States;
 
 namespace Aequus.Common.Chests;
 

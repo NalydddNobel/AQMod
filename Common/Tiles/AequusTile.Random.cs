@@ -10,6 +10,8 @@ public partial class AequusTile {
         var tile = Framing.GetTileSafely(i, j);
         ushort tileType = tile.TileType;
 
+        OnRandomTileUpdate.Invoke(i, j, 0);
+
         if (tileType < TileID.Count) {
             orig(i, j, checkNPCSpawns, wallDist);
             return;
@@ -28,6 +30,8 @@ public partial class AequusTile {
         Tile tile = Main.tile[i, j];
         ushort tileType = tile.TileType;
 
+        OnRandomTileUpdate.Invoke(i, j, 0);
+
         if (tileType < TileID.Count) {
             orig(i, j, checkNPCSpawns, wallDist);
             return;
@@ -43,6 +47,5 @@ public partial class AequusTile {
     }
 
     public override void RandomUpdate(int i, int j, int type) {
-        OnRandomTileUpdate.Invoke(i, j, type);
     }
 }

@@ -536,6 +536,26 @@ Baguette: {
 }
 
 //# Misc
+FrozenTechnology: {
+	// DisplayName: Frozen Technology
+	// Tooltip: Used to craft informational gadgets
+}
+
+GlowLichen: {
+	// DisplayName: Glow Lichen
+	// Tooltip: Dropped from moss enriched enemies
+}
+
+ArtFragment: {
+	// DisplayName: Accretion Fragment
+	// Tooltip: "'The burning of the universe's passion emanate from this fragment'"
+}
+
+NecroFragment: {
+	// DisplayName: Plerion Fragment
+	// Tooltip: "'Deathly particles are released from this fragment'"
+}
+
 PossessedShard: {
 	DisplayName: Fragmento Poseído
 	Tooltip: Dejado caer por Armaduras y Herramientas poseídas
@@ -875,7 +895,7 @@ SpaceSquidMask: {
 }
 
 CelestialEightBall: {
-	// DisplayName: Mods.Aequus.Items.CelestialEightBall.DisplayName
+	// DisplayName: Magic 8 Ball
 	// Tooltip: ""
 
 	Answer: {
@@ -934,5 +954,5 @@ BlackJellyfishBait: {
 
 UnopenedChestItem: {
 	DisplayName: Objeto de cofre sin abrir
-	// Tooltip: ""
+	// Tooltip: This is a debug item placed into chests upon worldgen to check if they have been opened
 }

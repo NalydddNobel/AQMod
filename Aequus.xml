@@ -185,30 +185,29 @@
             <param name="projType">The projectile Id of the previously chosen golf ball.</param>
             <returns></returns>
         </member>
+        <member name="P:Aequus.Common.Items.AequusRecipes.AnyGoldBar">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for Gold Bar variants.</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.AequusRecipes.AnySilverBar">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for Silver Bar variants.</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.AequusRecipes.AnyCopperBar">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for Copper Bar variants.</summary>
+        </member>
         <member name="P:Aequus.Common.Items.AequusRecipes.AnyQuestFish">
-            <summary>
-            <see cref="T:Terraria.RecipeGroup"/> for all IDs in <see cref="F:Terraria.Main.anglerQuestItemNetIDs"/>.
-            </summary>
+            <summary><see cref="T:Terraria.RecipeGroup"/> for all IDs in <see cref="F:Terraria.Main.anglerQuestItemNetIDs"/>.</summary>
         </member>
         <member name="P:Aequus.Common.Items.AequusRecipes.Shellphone">
-            <summary>
-            <see cref="T:Terraria.RecipeGroup"/> for the Shellphone and its alternative modes.
-            </summary>
+            <summary><see cref="T:Terraria.RecipeGroup"/> for the Shellphone and its alternative modes.</summary>
         </member>
         <member name="P:Aequus.Common.Items.AequusRecipes.AnyPaints">
-            <summary>
-            <see cref="T:Terraria.RecipeGroup"/> for paints.
-            </summary>
+            <summary><see cref="T:Terraria.RecipeGroup"/> for paints.</summary>
         </member>
         <member name="P:Aequus.Common.Items.AequusRecipes.AnyCoatings">
-            <summary>
-            <see cref="T:Terraria.RecipeGroup"/> for coatings.
-            </summary>
+            <summary><see cref="T:Terraria.RecipeGroup"/> for coatings.</summary>
         </member>
         <member name="P:Aequus.Common.Items.AequusRecipes.AnyTrash">
-            <summary>
-            <see cref="T:Terraria.RecipeGroup"/> for trash items.
-            </summary>
+            <summary><see cref="T:Terraria.RecipeGroup"/> for trash items.</summary>
         </member>
         <member name="T:Aequus.Common.Items.Components.IManageProjectile">
             <summary>
@@ -1815,7 +1814,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 648)</summary>
+            <summary>(Total Textures: 652)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -3206,6 +3205,12 @@
         <member name="F:Aequus.AequusTextures.UltimateEnergy">
             <summary>Full Path: Old/Content/Materials/Energies/UltimateEnergy</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.FrozenTechnology">
+            <summary>Full Path: Old/Content/Materials/FrozenTechnology</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GlowLichen">
+            <summary>Full Path: Old/Content/Materials/GlowLichen</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.MonoGem">
             <summary>Full Path: Old/Content/Materials/MonoGem/MonoGem</summary>
         </member>
@@ -3223,6 +3228,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.OmniGem_Mask">
             <summary>Full Path: Old/Content/Materials/OmniGem/OmniGem_Mask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ArtFragment">
+            <summary>Full Path: Old/Content/Materials/PillarFragments/ArtFragment</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NecroFragment">
+            <summary>Full Path: Old/Content/Materials/PillarFragments/NecroFragment</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PossessedShard">
             <summary>Full Path: Old/Content/Materials/PossessedShard/PossessedShard</summary>

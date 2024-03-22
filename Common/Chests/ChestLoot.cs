@@ -9,6 +9,8 @@ public enum ChestLoot {
     Shadow,
     /// <summary>Extra loot pool for Vanilla's Sandstone Chests.</summary>
     Sandstone,
+    /// <summary>Extra loot pool for Vanilla's Frozen Chests. Note this is NOT the Biome Chest.</summary>
+    Frozen,
     /// <summary>Loot pool for Polluted Ocean Trash Cans.</summary>
     PollutedOcean,
     HardmodeChestRegular,

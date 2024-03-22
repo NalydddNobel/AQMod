@@ -101,6 +101,10 @@ public class ChestLootSystem : ModSystem {
                     return;
                 }
 
+                if (type == TileID.Containers && style == ChestType.Frozen) {
+                    ChestLootDatabase.Instance.SolveRules(ChestLoot.Frozen, info);
+                }
+
                 ChestLootDatabase.Instance.SolveRules(ChestLoot.Underground, info);
             }
 

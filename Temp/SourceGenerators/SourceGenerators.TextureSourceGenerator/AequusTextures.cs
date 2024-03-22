@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 648)</summary>
+/// <summary>(Total Textures: 652)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -933,6 +933,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OrganicEnergy = new("Aequus/Old/Content/Materials/Energies/OrganicEnergy");
     /// <summary>Full Path: Old/Content/Materials/Energies/UltimateEnergy</summary>
     public static readonly RequestCache<Texture2D> UltimateEnergy = new("Aequus/Old/Content/Materials/Energies/UltimateEnergy");
+    /// <summary>Full Path: Old/Content/Materials/FrozenTechnology</summary>
+    public static readonly RequestCache<Texture2D> FrozenTechnology = new("Aequus/Old/Content/Materials/FrozenTechnology");
+    /// <summary>Full Path: Old/Content/Materials/GlowLichen</summary>
+    public static readonly RequestCache<Texture2D> GlowLichen = new("Aequus/Old/Content/Materials/GlowLichen");
     /// <summary>Full Path: Old/Content/Materials/MonoGem/MonoGem</summary>
     public static readonly RequestCache<Texture2D> MonoGem = new("Aequus/Old/Content/Materials/MonoGem/MonoGem");
     /// <summary>Full Path: Old/Content/Materials/MonoGem/MonoGemTile</summary>
@@ -945,6 +949,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OmniGemTile_Mask = new("Aequus/Old/Content/Materials/OmniGem/OmniGemTile_Mask");
     /// <summary>Full Path: Old/Content/Materials/OmniGem/OmniGem_Mask</summary>
     public static readonly RequestCache<Texture2D> OmniGem_Mask = new("Aequus/Old/Content/Materials/OmniGem/OmniGem_Mask");
+    /// <summary>Full Path: Old/Content/Materials/PillarFragments/ArtFragment</summary>
+    public static readonly RequestCache<Texture2D> ArtFragment = new("Aequus/Old/Content/Materials/PillarFragments/ArtFragment");
+    /// <summary>Full Path: Old/Content/Materials/PillarFragments/NecroFragment</summary>
+    public static readonly RequestCache<Texture2D> NecroFragment = new("Aequus/Old/Content/Materials/PillarFragments/NecroFragment");
     /// <summary>Full Path: Old/Content/Materials/PossessedShard/PossessedShard</summary>
     public static readonly RequestCache<Texture2D> PossessedShard = new("Aequus/Old/Content/Materials/PossessedShard/PossessedShard");
     /// <summary>Full Path: Old/Content/Materials/SoulGem/SoulGem</summary>

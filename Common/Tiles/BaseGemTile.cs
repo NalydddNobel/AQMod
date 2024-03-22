@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Terraria.ObjectData;
 
 namespace Aequus.Common.Tiles;
 
@@ -10,7 +9,8 @@ public abstract class BaseGemTile : ModTile {
     }
 
     public override bool CanPlace(int i, int j) {
-        return TileHelper.GetGemFramingAnchor(i, j).IsSolidTileAnchor();
+        TileAnchorDirection anchor = TileHelper.GetGemFramingAnchor(i, j);
+        return anchor.IsSolidTileAnchor();
     }
 
     public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak) {
@@ -28,13 +28,5 @@ public abstract class BaseGemTile : ModTile {
         }
 
         return null;
-    }
-
-    public TileObjectData GetObjectData(int i, int j) {
-        var tile = Main.tile[i, j];
-        int style = tile.TileFrameY / 18;
-        int alt = tile.TileFrameY / 54;
-        var objectData = TileObjectData.GetTileData(tile.TileType, style, alt);
-        return objectData;
     }
 }

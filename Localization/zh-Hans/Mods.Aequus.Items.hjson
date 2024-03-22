@@ -536,6 +536,26 @@ Baguette: {
 }
 
 //# Misc
+FrozenTechnology: {
+	DisplayName: 霜冻科技
+	Tooltip: 用于制作信息小装置
+}
+
+GlowLichen: {
+	DisplayName: 发光苔藓
+	Tooltip: 掉落自长满苔藓的敌人
+}
+
+ArtFragment: {
+	DisplayName: 吸积碎片
+	Tooltip: "'燃烧的宇宙的热烈从此碎片内散发出来'"
+}
+
+NecroFragment: {
+	DisplayName: 脉冲风星云碎片
+	Tooltip: "'死亡粒子从此碎片内释放而出'"
+}
+
 PossessedShard: {
 	DisplayName: 附魔碎块
 	Tooltip: 掉落自附魔的盔甲和工具

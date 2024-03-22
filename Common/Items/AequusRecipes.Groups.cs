@@ -5,28 +5,27 @@ using Terraria.Localization;
 namespace Aequus.Common.Items;
 
 public partial class AequusRecipes {
-    /// <summary>
-    /// <see cref="RecipeGroup"/> for all IDs in <see cref="Main.anglerQuestItemNetIDs"/>.
-    /// </summary>
+    /// <summary><see cref="RecipeGroup"/> for Gold Bar variants.</summary>
+    public static RecipeGroup AnyGoldBar { get; private set; }
+    /// <summary><see cref="RecipeGroup"/> for Silver Bar variants.</summary>
+    public static RecipeGroup AnySilverBar { get; private set; }
+    /// <summary><see cref="RecipeGroup"/> for Copper Bar variants.</summary>
+    public static RecipeGroup AnyCopperBar { get; private set; }
+    /// <summary><see cref="RecipeGroup"/> for all IDs in <see cref="Main.anglerQuestItemNetIDs"/>.</summary>
     public static RecipeGroup AnyQuestFish { get; private set; }
-    /// <summary>
-    /// <see cref="RecipeGroup"/> for the Shellphone and its alternative modes.
-    /// </summary>
+    /// <summary><see cref="RecipeGroup"/> for the Shellphone and its alternative modes.</summary>
     public static RecipeGroup Shellphone { get; private set; }
-    /// <summary>
-    /// <see cref="RecipeGroup"/> for paints.
-    /// </summary>
+    /// <summary><see cref="RecipeGroup"/> for paints.</summary>
     public static RecipeGroup AnyPaints { get; private set; }
-    /// <summary>
-    /// <see cref="RecipeGroup"/> for coatings.
-    /// </summary>
+    /// <summary><see cref="RecipeGroup"/> for coatings.</summary>
     public static RecipeGroup AnyCoatings { get; private set; }
-    /// <summary>
-    /// <see cref="RecipeGroup"/> for trash items.
-    /// </summary>
+    /// <summary><see cref="RecipeGroup"/> for trash items.</summary>
     public static RecipeGroup AnyTrash { get; private set; }
 
     public override void AddRecipeGroups() {
+        AnyGoldBar = NewGroup("AnyGoldBar", ItemID.GoldBar, ItemID.PlatinumBar);
+        AnySilverBar = NewGroup("AnySilverBar", ItemID.SilverBar, ItemID.TungstenBar);
+        AnyCopperBar = NewGroup("AnyCopperBar", ItemID.CopperBar, ItemID.TinBar);
         AnyQuestFish = NewGroup("AnyQuestFish", Main.anglerQuestItemNetIDs.Copy());
         Shellphone = NewGroup("Shellphone", ItemID.ShellphoneDummy, ItemID.Shellphone, ItemID.ShellphoneHell, ItemID.ShellphoneOcean, ItemID.ShellphoneSpawn);
         AnyTrash = NewGroup("AnyTrash", ItemID.OldShoe, ItemID.FishingSeaweed, ItemID.TinCan);
