@@ -120,7 +120,7 @@ HighSteaks: {
 	DisplayName: 高级牛排
 	Tooltip:
 		'''
-		造成暴击时增加{0}%伤害
+		增加{0}%暴击伤害
 		{1}
 		'''
 	Downside: "{v}然而, 你在暴击时会支付{Price}"
@@ -218,7 +218,7 @@ EclipseGlasses: {
 //# Equipment: Informational
 HoloLens: {
 	DisplayName: 全息透镜
-	Tooltip: 允许你在不打开箱子的情况下查看上锁和解锁的箱子的内容
+	Tooltip: 允许你在不打开箱子的情况下查看箱中的内容
 }
 
 Pacemaker: {
@@ -414,10 +414,10 @@ BombarderRod: {
 
 // localization note: 'triacanthorn' is a portmanteau of 'Gleditsia triacanthos' (scientific name of a thorny plant) and the word 'thorn'
 Triacanthorn: {
-	DisplayName: 三棘卷须
+	DisplayName: 三刺棘
 	Tooltip:
 		'''
-		施放出会分裂的邪恶卷须
+		施放出会分裂的邪恶刺须
 		无视敌人10点的防御力
 		'''
 }
@@ -425,7 +425,7 @@ Triacanthorn: {
 //# Weapons: Summon
 PhysicistSentry: {
 	DisplayName: 便携式特斯拉炮塔
-	Tooltip: 召唤一个会发射大量连锁闪电的特斯拉炮塔哨兵
+	Tooltip: 召唤一个会发射大量连锁闪电的特斯拉炮塔
 }
 
 Insurgency: {
