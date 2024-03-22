@@ -287,6 +287,6 @@ BigGem: {
 }
 
 AncientAngelStatue: {
-	// ItemDisplayName: Mods.Aequus.Tiles.AncientAngelStatue.ItemDisplayName
+	// ItemDisplayName: Ancient Angel Statue
 	// ItemTooltip: ""
 }
