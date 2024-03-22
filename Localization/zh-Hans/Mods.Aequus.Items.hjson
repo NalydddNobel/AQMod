@@ -538,7 +538,7 @@ Baguette: {
 //# Misc
 FrozenTechnology: {
 	DisplayName: 霜冻科技
-	Tooltip: 用于制作信息小装置
+	Tooltip: 用于制作信息工具
 }
 
 GlowLichen: {
@@ -895,7 +895,7 @@ SpaceSquidMask: {
 }
 
 CelestialEightBall: {
-	DisplayName: 星界八号球
+	DisplayName: 魔法八号球
 	Tooltip: ""
 
 	Answer: {
@@ -954,5 +954,5 @@ BlackJellyfishBait: {
 
 UnopenedChestItem: {
 	DisplayName: 未开启的宝箱物品
-	Tooltip: ""
+	Tooltip: 这是Debug物品, 将其放置在世界生成的宝箱内以检测其是否被开启过
 }

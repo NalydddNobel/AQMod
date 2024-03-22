@@ -283,6 +283,6 @@ BigGem: {
 }
 
 AncientAngelStatue: {
-	// ItemDisplayName: Ancient Angel Statue
-	// ItemTooltip: ""
+	ItemDisplayName: 远古天使雕像
+	ItemTooltip: ""
 }
