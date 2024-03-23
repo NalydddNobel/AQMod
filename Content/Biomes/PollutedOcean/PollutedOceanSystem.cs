@@ -135,7 +135,7 @@ public class PollutedOceanSystem : ModSystem {
     }
 
     public static bool CheckBiome(Player player) {
-        return WorldGen.oceanDepths((int)player.position.X / 16, (int)Main.worldSurface) && PollutedTileCount >= PollutedTileMax;
+        return PollutedTileCount >= PollutedTileMax;
     }
 
     public static void PopulateSurfaceSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {

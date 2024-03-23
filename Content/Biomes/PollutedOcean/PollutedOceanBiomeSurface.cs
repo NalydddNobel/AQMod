@@ -9,7 +9,7 @@ public class PollutedOceanBiomeSurface : ModBiome {
     public override ModSurfaceBackgroundStyle SurfaceBackgroundStyle => ModContent.GetInstance<PollutedOceanSurfaceBG>();
     public override ModUndergroundBackgroundStyle UndergroundBackgroundStyle => ModContent.GetInstance<PollutedOceanUndergroundBG>();
 
-    public override SceneEffectPriority Priority => SceneEffectPriority.BiomeMedium;
+    public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
 
     public override int Music => PollutedOceanSystem.Music;
 
