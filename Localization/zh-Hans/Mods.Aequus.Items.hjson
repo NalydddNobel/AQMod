@@ -112,32 +112,32 @@ WeightedHorseshoe: {
 }
 
 BlackPhial: {
-	// DisplayName: Black Phial
-	// Tooltip: Inflict various debuffs upon attacking an enemy
+	DisplayName: 黑色药瓶
+	Tooltip: 攻击敌人时会对其造成各种减益
 }
 
 BoneRing: {
-	// DisplayName: Bone Ring
-	// Tooltip: Inflict weakness upon enemies, reducing their movement speed
+	DisplayName: 骨质戒指
+	Tooltip: 攻击会削弱敌人并降低其移动速度
 }
 
 PhoenixRing: {
-	// DisplayName: Phoenix Ring
-	/* Tooltip:
+	DisplayName: 菲尼克斯戒指
+	Tooltip:
 		'''
-		{$Items.BoneRing}
+		{$Items.BoneRing.Tooltip}
 		{$ItemTooltip.MagmaStone}
-		''' */
+		'''
 }
 
 BlackPlague: {
-	// DisplayName: Black Plague
-	/* Tooltip:
+	DisplayName: 黑死病
+	Tooltip:
 		'''
-		{$Items.BoneRing}
+		{$Items.BoneRing.Tooltip}
 		{$ItemTooltip.MagmaStone}
-		{$Items.BlackPhial}
-		''' */
+		{$Items.BlackPhial.Tooltip}
+		'''
 }
 
 LaserReticle: {

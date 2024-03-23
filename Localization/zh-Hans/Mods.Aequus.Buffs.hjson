@@ -44,8 +44,8 @@ WarHornCooldown: {
 }
 
 FoodPoisoningDebuff: {
-	// DisplayName: Food Poisoning
-	// Description: No improvements to stats, and you can no longer eat food!
+	DisplayName: 食物中毒
+	Description: 各项属性没有增加, 你不能再食用食物了!
 }
 
 CorruptionHellfire: {
@@ -109,6 +109,6 @@ UltimateSwordBuff: {
 }
 
 BoneRingDebuff: {
-	// DisplayName: "{$Items.BoneRing.DisplayName}"
-	// Description: Mods.Aequus.Buffs.BoneRingDebuff.Description
+	DisplayName: "{$Items.BoneRing.DisplayName}"
+	Description: Mods.Aequus.Buffs.BoneRingDebuff.Description
 }
