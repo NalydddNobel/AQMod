@@ -8,6 +8,7 @@ public partial class AequusBuff : GlobalBuff {
         On_Player.QuickBuff_ShouldBotherUsingThisBuff += On_Player_QuickBuff_ShouldBotherUsingThisBuff;
     }
 
+    #region Hooks
     private static bool On_Player_QuickBuff_ShouldBotherUsingThisBuff(On_Player.orig_QuickBuff_ShouldBotherUsingThisBuff orig, Player self, int attemptedType) {
         if (BuffLoader.GetBuff(attemptedType) is ICheckQuickBuff modifyQuickBuff && !modifyQuickBuff.CheckQuickBuff(self)) {
             return false;
@@ -16,10 +17,10 @@ public partial class AequusBuff : GlobalBuff {
         return orig(self, attemptedType);
     }
 
-    #region Hooks
     private static void NPC_AddBuff(On_NPC.orig_AddBuff orig, NPC npc, int type, int time, bool quiet) {
-        var onAddBuff = BuffLoader.GetBuff(type) as IOnAddBuff;
-        onAddBuff?.PreAddBuff(npc, ref time, ref quiet);
+        bool hasBuff = npc.HasBuff(type);
+        IOnAddBuff onAddBuff = BuffLoader.GetBuff(type) as IOnAddBuff;
+        onAddBuff?.PreAddBuff(npc, hasBuff, ref time, ref quiet);
         //if (Main.debuff[type] || BuffSets.ProbablyFireDebuff.Contains(type)) {
         //    var player = AequusPlayer.CurrentPlayerContext();
         //    if (player != null) {
@@ -44,21 +45,15 @@ public partial class AequusBuff : GlobalBuff {
         //    }
         //}
         orig(npc, type, time, quiet);
-        onAddBuff?.PostAddBuff(npc, time, quiet);
+        onAddBuff?.PostAddBuff(npc, hasBuff, time, quiet);
     }
 
     private static void Player_AddBuff(On_Player.orig_AddBuff orig, Player player, int type, int timeToAdd, bool quiet, bool foodHack) {
-        var onAddBuff = BuffLoader.GetBuff(type) as IOnAddBuff;
-        onAddBuff?.PreAddBuff(player, ref timeToAdd, ref quiet, ref foodHack);
-        //if (BuffSets.BuffConflicts.TryGetValue(EmpoweredBuffBase.GetDepoweredBuff(type), out var l) && l != null) {
-        //    for (int i = 0; i < Player.MaxBuffs; i++) {
-        //        if (l.Contains(EmpoweredBuffBase.GetDepoweredBuff(player.buffType[i]))) {
-        //            player.DelBuff(i);
-        //        }
-        //    }
-        //}
+        bool hasBuff = player.HasBuff(type);
+        IOnAddBuff onAddBuff = BuffLoader.GetBuff(type) as IOnAddBuff;
+        onAddBuff?.PreAddBuff(player, hasBuff, ref timeToAdd, ref quiet, ref foodHack);
         orig(player, type, timeToAdd, quiet, foodHack);
-        onAddBuff?.PostAddBuff(player, timeToAdd, quiet, foodHack);
+        onAddBuff?.PostAddBuff(player, hasBuff, timeToAdd, quiet, foodHack);
     }
     #endregion
 }

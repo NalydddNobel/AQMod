@@ -1,4 +1,5 @@
-﻿using Aequus.Old.Content.Materials.Energies;
+﻿using Aequus.Old.Content.Equipment.Accessories.OnHitDebuffs;
+using Aequus.Old.Content.Materials.Energies;
 using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Old.Common;
@@ -6,6 +7,11 @@ namespace Aequus.Old.Common;
 public class EnemyDropEdits : GlobalNPC {
     public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot) {
         switch (npc.type) {
+            case NPCID.DarkCaster: {
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BoneRing>(), chanceDenominator: 30));
+                }
+                break;
+
             case NPCID.WallofFlesh: {
                     npcLoot.Add(new DropPerPlayerOnThePlayer(EnergyMaterial.Demonic.Type, 1, 3, 3, null));
                 }

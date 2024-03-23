@@ -6,6 +6,10 @@ public sealed partial class AequusTextures : AssetManager<Texture2D> {
     public const string TemporaryBuffIcon = "Terraria/Images/Buff_188";
     public const string TemporaryDebuffIcon = "Terraria/Images/Buff_164";
 
+    public static string Buff(int id) {
+        return $"Terraria/Images/Buff_{id}";
+    }
+
     public static string Tile(int id) {
         return $"Terraria/Images/Tiles_{id}";
     }

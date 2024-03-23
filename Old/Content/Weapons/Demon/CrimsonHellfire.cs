@@ -35,7 +35,7 @@ public class CrimsonHellfire : ModBuff, IOnAddBuff {
         }
     }
 
-    public void PostAddBuff(NPC npc, int duration, bool quiet) {
+    public void PostAddBuff(NPC npc, bool alreadyHasBuff, int duration, bool quiet) {
         if (npc.HasBuff<CrimsonHellfire>()) {
             SoundEngine.PlaySound(AequusSounds.InflictFireDebuff with { Pitch = -0.2f, PitchVariance = 0.1f }, npc.Center);
         }

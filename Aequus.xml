@@ -1628,7 +1628,7 @@
             <summary>Whether the Occultist has been met. This determines if the Hostile Occultist emote can be used.</summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 68)</summary>
+            <summary>(Total Sounds: 70)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishCharge">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -1729,11 +1729,17 @@
         <member name="F:Aequus.AequusSounds.DaggerHit2">
             <summary>Full Path: Assets/Sounds/OnHit/DaggerHit2</summary>
         </member>
+        <member name="F:Aequus.AequusSounds.InflictBlackPhial">
+            <summary>Full Path: Assets/Sounds/OnHit/InflictBlackPhial</summary>
+        </member>
         <member name="F:Aequus.AequusSounds.InflictBlood">
             <summary>Full Path: Assets/Sounds/OnHit/InflictBlood</summary>
         </member>
         <member name="F:Aequus.AequusSounds.InflictStunned">
             <summary>Full Path: Assets/Sounds/OnHit/InflictStunned</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.InflictWeakness">
+            <summary>Full Path: Assets/Sounds/OnHit/InflictWeakness</summary>
         </member>
         <member name="F:Aequus.AequusSounds.LanternConfuse">
             <summary>Full Path: Assets/Sounds/OnHit/LanternConfuse</summary>
@@ -1835,7 +1841,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 654)</summary>
+            <summary>(Total Textures: 662)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -3126,6 +3132,30 @@
         </member>
         <member name="F:Aequus.AequusTextures.LaserReticle_Glow">
             <summary>Full Path: Old/Content/Equipment/Accessories/LaserScope/LaserReticle_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackPhial">
+            <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/BlackPhial</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackPhial_Waist">
+            <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/BlackPhial_Waist</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackPlague">
+            <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/BlackPlague</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackPlague_HandsOn">
+            <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/BlackPlague_HandsOn</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BoneRing">
+            <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/BoneRing</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BoneRing_HandsOn">
+            <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/BoneRing_HandsOn</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhoenixRing">
+            <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/PhoenixRing</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhoenixRing_HandsOn">
+            <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/PhoenixRing_HandsOn</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Pacemaker">
             <summary>Full Path: Old/Content/Equipment/Accessories/Pacemaker/Pacemaker</summary>

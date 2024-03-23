@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Sounds: 68)</summary>
+/// <summary>(Total Sounds: 70)</summary>
 [CompilerGenerated]
 public partial class AequusSounds {            
         /// <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -72,10 +72,14 @@ public partial class AequusSounds {
     public static readonly SoundStyle DaggerHit1 = new("Aequus/Assets/Sounds/OnHit/DaggerHit1");
     /// <summary>Full Path: Assets/Sounds/OnHit/DaggerHit2</summary>
     public static readonly SoundStyle DaggerHit2 = new("Aequus/Assets/Sounds/OnHit/DaggerHit2");
+    /// <summary>Full Path: Assets/Sounds/OnHit/InflictBlackPhial</summary>
+    public static readonly SoundStyle InflictBlackPhial = new("Aequus/Assets/Sounds/OnHit/InflictBlackPhial");
     /// <summary>Full Path: Assets/Sounds/OnHit/InflictBlood</summary>
     public static readonly SoundStyle InflictBlood = new("Aequus/Assets/Sounds/OnHit/InflictBlood");
     /// <summary>Full Path: Assets/Sounds/OnHit/InflictStunned</summary>
     public static readonly SoundStyle InflictStunned = new("Aequus/Assets/Sounds/OnHit/InflictStunned");
+    /// <summary>Full Path: Assets/Sounds/OnHit/InflictWeakness</summary>
+    public static readonly SoundStyle InflictWeakness = new("Aequus/Assets/Sounds/OnHit/InflictWeakness");
     /// <summary>Full Path: Assets/Sounds/OnHit/LanternConfuse</summary>
     public static readonly SoundStyle LanternConfuse = new("Aequus/Assets/Sounds/OnHit/LanternConfuse");
     /// <summary>Full Path: Assets/Sounds/OnHit/SwordHit0</summary>

@@ -91,6 +91,11 @@ public partial class AequusPlayer : ModPlayer {
         }
     }
 
+    public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
+        ProcBoneRing(target);
+        ProcBlackPhial(target);
+    }
+
     #region Misc
     private struct MiscDamageHit {
         public DamageClass DamageClass;

@@ -107,3 +107,8 @@ UltimateSwordBuff: {
 	DisplayName: Mods.Aequus.Buffs.UltimateSwordBuff.DisplayName
 	Description: Mods.Aequus.Buffs.UltimateSwordBuff.Description
 }
+
+BoneRingDebuff: {
+	// DisplayName: "{$Items.BoneRing.DisplayName}"
+	// Description: Mods.Aequus.Buffs.BoneRingDebuff.Description
+}

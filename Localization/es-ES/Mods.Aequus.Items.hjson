@@ -111,6 +111,35 @@ WeightedHorseshoe: {
 		'''
 }
 
+BlackPhial: {
+	// DisplayName: Black Phial
+	// Tooltip: Inflict various debuffs upon attacking an enemy
+}
+
+BoneRing: {
+	// DisplayName: Bone Ring
+	// Tooltip: Inflict weakness upon enemies, reducing their movement speed
+}
+
+PhoenixRing: {
+	// DisplayName: Phoenix Ring
+	/* Tooltip:
+		'''
+		{$Items.BoneRing}
+		{$ItemTooltip.MagmaStone}
+		''' */
+}
+
+BlackPlague: {
+	// DisplayName: Black Plague
+	/* Tooltip:
+		'''
+		{$Items.BoneRing}
+		{$ItemTooltip.MagmaStone}
+		{$Items.BlackPhial}
+		''' */
+}
+
 LaserReticle: {
 	DisplayName: Reticula Laser
 	Tooltip: Disminuye la propagación de armas de rango por {0}%

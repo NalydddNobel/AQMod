@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 654)</summary>
+/// <summary>(Total Textures: 662)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -867,6 +867,22 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> LaserReticle = new("Aequus/Old/Content/Equipment/Accessories/LaserScope/LaserReticle");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/LaserScope/LaserReticle_Glow</summary>
     public static readonly RequestCache<Texture2D> LaserReticle_Glow = new("Aequus/Old/Content/Equipment/Accessories/LaserScope/LaserReticle_Glow");
+    /// <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/BlackPhial</summary>
+    public static readonly RequestCache<Texture2D> BlackPhial = new("Aequus/Old/Content/Equipment/Accessories/OnHitDebuffs/BlackPhial");
+    /// <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/BlackPhial_Waist</summary>
+    public static readonly RequestCache<Texture2D> BlackPhial_Waist = new("Aequus/Old/Content/Equipment/Accessories/OnHitDebuffs/BlackPhial_Waist");
+    /// <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/BlackPlague</summary>
+    public static readonly RequestCache<Texture2D> BlackPlague = new("Aequus/Old/Content/Equipment/Accessories/OnHitDebuffs/BlackPlague");
+    /// <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/BlackPlague_HandsOn</summary>
+    public static readonly RequestCache<Texture2D> BlackPlague_HandsOn = new("Aequus/Old/Content/Equipment/Accessories/OnHitDebuffs/BlackPlague_HandsOn");
+    /// <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/BoneRing</summary>
+    public static readonly RequestCache<Texture2D> BoneRing = new("Aequus/Old/Content/Equipment/Accessories/OnHitDebuffs/BoneRing");
+    /// <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/BoneRing_HandsOn</summary>
+    public static readonly RequestCache<Texture2D> BoneRing_HandsOn = new("Aequus/Old/Content/Equipment/Accessories/OnHitDebuffs/BoneRing_HandsOn");
+    /// <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/PhoenixRing</summary>
+    public static readonly RequestCache<Texture2D> PhoenixRing = new("Aequus/Old/Content/Equipment/Accessories/OnHitDebuffs/PhoenixRing");
+    /// <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/PhoenixRing_HandsOn</summary>
+    public static readonly RequestCache<Texture2D> PhoenixRing_HandsOn = new("Aequus/Old/Content/Equipment/Accessories/OnHitDebuffs/PhoenixRing_HandsOn");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/Pacemaker/Pacemaker</summary>
     public static readonly RequestCache<Texture2D> Pacemaker = new("Aequus/Old/Content/Equipment/Accessories/Pacemaker/Pacemaker");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHorn</summary>

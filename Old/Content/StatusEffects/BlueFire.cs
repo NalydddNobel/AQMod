@@ -20,7 +20,7 @@ public class BlueFire : ModBuff, IOnAddBuff {
         npc.GetGlobalNPC<BlueFireNPC>().debuffBlueFire = VFXWearOffTime;
     }
 
-    public void PostAddBuff(NPC npc, int duration, bool quiet) {
+    public void PostAddBuff(NPC npc, bool alreadyHasBuff, int duration, bool quiet) {
         if (npc.HasBuff<BlueFire>()) {
             SoundEngine.PlaySound(AequusSounds.InflictFireDebuff, npc.Center);
         }
