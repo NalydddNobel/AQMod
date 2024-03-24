@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Aequus.Common.ItemPrefixes;
 
 [Autoload(false)]
-public class CooldownPrefix : InstancedModPrefix {
+internal class CooldownPrefix : InstancedModPrefix {
     public float cooldownMultiplier;
 
     public CooldownPrefix(string name, float priceMultiplier, float cooldownMultiplier, StatModifiers statModifiers) : base(name, priceMultiplier, statModifiers) {

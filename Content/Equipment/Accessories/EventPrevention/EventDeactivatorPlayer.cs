@@ -52,12 +52,16 @@ public class EventDeactivatorPlayer : ModPlayer {
     public static void UndoPlayerFlagOverrides() {
         CommonRefManipulators.BloodMoon.VoidOverriddenValue();
         CommonRefManipulators.Eclipse.VoidOverriddenValue();
+        CommonRefManipulators.PumpkinMoon.VoidOverriddenValue();
+        CommonRefManipulators.FrostMoon.VoidOverriddenValue();
     }
 
     public override void ResetEffects() {
         accDisableBloodMoon = false;
         accDisableGlimmer = false;
         accDisableEclipse = false;
+        accDisablePumpkinMoon = false;
+        accDisableFrostMoon = false;
     }
 
     public override void PostUpdateEquips() {

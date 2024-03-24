@@ -1,7 +1,8 @@
 ﻿using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Common.Chests;
-internal class ChestChains {
+
+public class ChestChains {
     public class Always : IChestLootChain {
         public IChestLootRule RuleToChain { get; private set; }
 

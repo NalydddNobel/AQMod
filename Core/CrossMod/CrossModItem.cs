@@ -30,7 +30,7 @@ public abstract class CrossModItem : ModItem {
     }
 }
 
-public sealed class CrossModGlobalItem : GlobalItem {
+internal sealed class CrossModGlobalItem : GlobalItem {
     public static readonly Color TooltipColor = Color.Lerp(Color.White, Color.Turquoise * 1.5f, 0.5f);
 
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {

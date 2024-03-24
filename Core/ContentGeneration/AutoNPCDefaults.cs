@@ -5,7 +5,7 @@ using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Core.ContentGeneration;
 
-public sealed class AutoNPCDefaults : GlobalNPC {
+internal sealed class AutoNPCDefaults : GlobalNPC {
     internal static readonly Dictionary<int, short> _npcToCritter = new();
 
     public override void Unload() {

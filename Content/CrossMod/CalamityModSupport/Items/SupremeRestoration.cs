@@ -4,7 +4,7 @@ using Aequus.Core.CrossMod;
 
 namespace Aequus.Content.CrossMod.CalamityModSupport.Items;
 
-internal class SupremeRestoration : CrossModItem, IApplyPotionDelay {
+public class SupremeRestoration : CrossModItem, IApplyPotionDelay {
     public bool ApplyPotionDelay(Player player) {
         player.potionDelay = player.restorationDelayTime;
         player.AddBuff(BuffID.PotionSickness, player.potionDelay);

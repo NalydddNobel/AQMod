@@ -9,7 +9,7 @@ using Terraria.Utilities;
 namespace Aequus.Common.ItemPrefixes;
 
 public class AequusPrefixes : GlobalItem {
-    public static List<CooldownPrefix> RegisteredCooldownPrefixes { get; private set; } = new();
+    internal static List<CooldownPrefix> RegisteredCooldownPrefixes { get; private set; } = new();
 
     public override void Load() {
         On_Item.CanHavePrefixes += On_Item_CanHavePrefixes;

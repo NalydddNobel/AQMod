@@ -3,7 +3,7 @@
 namespace Aequus.Core.ContentGeneration;
 
 [Autoload(false)]
-public class InstancedEmote : ModEmoteBubble {
+internal class InstancedEmote : ModEmoteBubble {
     private readonly int _emoteCategory;
 
     private readonly Func<bool> _isUnlocked;
@@ -32,7 +32,7 @@ public class InstancedEmote : ModEmoteBubble {
     }
 }
 
-public class InstancedNPCEmote : InstancedEmote {
+internal class InstancedNPCEmote : InstancedEmote {
     private readonly ModNPC _parentNPC;
 
     public InstancedNPCEmote(ModNPC modNPC, int emoteCategory, Func<bool> IsUnlocked = null) : base($"{modNPC.Name}", $"{modNPC.NamespaceFilePath()}/Emotes/{modNPC.Name}Emote", emoteCategory, IsUnlocked) {

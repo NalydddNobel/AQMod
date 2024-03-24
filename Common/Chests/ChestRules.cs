@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Aequus.Common.Chests;
 
-internal class ChestRules {
+public class ChestRules {
     public record class Common(int Item, int MinStack = 1, int MaxStack = 1, int ChanceDenominator = 1, int ChanceNumerator = 1, params Condition[] OptionalConditions) : IChestLootRule {
         public List<IChestLootChain> ChainedRules { get; set; } = new();
         public ConditionCollection Conditions { get; set; } = new(OptionalConditions);

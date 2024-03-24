@@ -246,7 +246,7 @@ EclipseGlasses: {
 
 RabbitsFoot: {
 	DisplayName: Rabbits Foot
-	Tooltip: "Double luck!"
+	Tooltip: Double luck!
 }
 
 LavaproofMitten: {

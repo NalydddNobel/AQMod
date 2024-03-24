@@ -1,6 +1,6 @@
 ﻿namespace Aequus.Core.ContentGeneration;
 
-public class InstancedModPrefix : ModPrefix {
+internal class InstancedModPrefix : ModPrefix {
     public readonly record struct StatModifiers(float? DamageMultiplier = default, float? KnockbackMultiplier = default, float? UseTimeMultiplier = default, float? ScaleMultiplier = default, float? ShootSpeedMultiplier = default, float? ManaMultiplier = default, int? CritBonus = default);
 
     private readonly string _name;

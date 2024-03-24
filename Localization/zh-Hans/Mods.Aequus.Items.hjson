@@ -229,11 +229,6 @@ ShadowVeer: {
 }
 
 //# Equipment: Misc
-LavaproofMitten: {
-	// DisplayName: Lavaproof Mitten
-	// Tooltip: Allows block placement in lava
-}
-
 RoseTintedGlasses: {
 	DisplayName: 玫瑰色眼镜
 	Tooltip: 无视血月的敌人生成
@@ -249,15 +244,30 @@ EclipseGlasses: {
 	Tooltip: 无视日食的敌人生成
 }
 
-//# Equipment: Informational
-HoloLens: {
-	DisplayName: 全息透镜
-	Tooltip: 允许你在不打开箱子的情况下查看箱中的内容
+RabbitsFoot: {
+	// DisplayName: Rabbits Foot
+	// Tooltip: Double luck!
+}
+
+LavaproofMitten: {
+	// DisplayName: Lavaproof Mitten
+	// Tooltip: Allows block placement in lava
 }
 
 Pacemaker: {
 	DisplayName: 心脏起搏器
 	Tooltip: 当它变得安全时会缩减重生时间
+}
+
+//# Equipment: Informational
+AnglerBroadcaster: {
+	// DisplayName: Angler Broadcaster
+	// Tooltip: Displays the current Angler quest
+}
+
+HoloLens: {
+	DisplayName: 全息透镜
+	Tooltip: 允许你在不打开箱子的情况下查看箱中的内容
 }
 
 ShimmerMonocle: {
@@ -989,14 +999,4 @@ BlackJellyfishBait: {
 UnopenedChestItem: {
 	DisplayName: 未开启的宝箱物品
 	Tooltip: 这是Debug物品, 将其放置在世界生成的宝箱内以检测其是否被开启过
-}
-
-AnglerBroadcaster: {
-	// DisplayName: Angler Broadcaster
-	// Tooltip: ""
-}
-
-RabbitsFoot: {
-	// DisplayName: Rabbits Foot
-	// Tooltip: ""
 }

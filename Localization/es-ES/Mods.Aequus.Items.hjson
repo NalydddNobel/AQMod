@@ -229,11 +229,6 @@ ShadowVeer: {
 }
 
 //# Equipment: Misc
-LavaproofMitten: {
-	// DisplayName: Lavaproof Mitten
-	// Tooltip: Allows block placement in lava
-}
-
 RoseTintedGlasses: {
 	DisplayName: Gafas teñidas de rosa
 	Tooltip: Ignora la aparición de enemigos de la luna sangrienta
@@ -249,15 +244,30 @@ EclipseGlasses: {
 	Tooltip: Ignora la aparición de enemigos del eclipse
 }
 
-//# Equipment: Informational
-HoloLens: {
-	DisplayName: Holo-lente
-	Tooltip: Te permite ver los contenidos de cofres sin abrirlos
+RabbitsFoot: {
+	// DisplayName: Rabbits Foot
+	// Tooltip: Double luck!
+}
+
+LavaproofMitten: {
+	// DisplayName: Lavaproof Mitten
+	// Tooltip: Allows block placement in lava
 }
 
 Pacemaker: {
 	DisplayName: Marcapasos
 	Tooltip: Reduce el tiempo de reaparición cuando sea seguro
+}
+
+//# Equipment: Informational
+AnglerBroadcaster: {
+	// DisplayName: Angler Broadcaster
+	// Tooltip: Displays the current Angler quest
+}
+
+HoloLens: {
+	DisplayName: Holo-lente
+	Tooltip: Te permite ver los contenidos de cofres sin abrirlos
 }
 
 ShimmerMonocle: {
@@ -989,14 +999,4 @@ BlackJellyfishBait: {
 UnopenedChestItem: {
 	DisplayName: Objeto de cofre sin abrir
 	// Tooltip: This is a debug item placed into chests upon worldgen to check if they have been opened
-}
-
-AnglerBroadcaster: {
-	// DisplayName: Angler Broadcaster
-	// Tooltip: ""
-}
-
-RabbitsFoot: {
-	// DisplayName: Rabbits Foot
-	// Tooltip: ""
 }

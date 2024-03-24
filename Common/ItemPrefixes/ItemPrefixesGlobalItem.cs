@@ -1,7 +1,7 @@
 ﻿using Aequus.Content.PermaPowerups.Shimmer;
 using Aequus.Core;
 
-namespace Aequus.Common.Items.Prefixes;
+namespace Aequus.Common.ItemPrefixes;
 
 public class ItemPrefixesGlobalItem : GlobalItem {
     private static int _loops;

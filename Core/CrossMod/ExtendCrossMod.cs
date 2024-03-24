@@ -2,7 +2,7 @@
 
 namespace Aequus.Core.CrossMod;
 
-public static class ExtendCrossMod {
+internal static class ExtendCrossMod {
     public static string GetModFromNamespace(Type type) {
         string typeNamespace = type.Namespace;
         string search = "CrossMod.";
