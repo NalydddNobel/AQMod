@@ -981,21 +981,6 @@ StariteMaterial: {
 	// Tooltip: ""
 }
 
-Killifish: {
-	DisplayName: Killi
-	// Tooltip: ""
-}
-
-Piraiba: {
-	DisplayName: Piraiba
-	// Tooltip: ""
-}
-
-BlackJellyfishBait: {
-	// DisplayName: "{$NPCs.BlackJellyfish.DisplayName}"
-	Tooltip: Explodeta y daña enemigos pescados
-}
-
 UnopenedChestItem: {
 	DisplayName: Objeto de cofre sin abrir
 	// Tooltip: This is a debug item placed into chests upon worldgen to check if they have been opened

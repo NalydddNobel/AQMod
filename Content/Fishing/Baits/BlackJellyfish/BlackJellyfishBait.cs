@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Fishing.Components;
+﻿using Aequus.Common.Items.Components;
 using Aequus.Content.Graphics.Particles;
 using Aequus.Core.Graphics;
 using System;
@@ -7,9 +7,9 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Shaders;
 
-namespace Aequus.Content.Fishing.Fish.BlackJellyfish;
+namespace Aequus.Content.Fishing.Baits.BlackJellyfish;
 
-public class BlackJellyfishBait : ModItem, IOnPullBobber {
+public class BlackJellyfishBait : ModBait, IOnPullBobber {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 3;
     }

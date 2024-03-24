@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 668)</summary>
+/// <summary>(Total Textures: 674)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -427,6 +427,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> HotAirBalloonMount_Front = new("Aequus/Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Front");
     /// <summary>Full Path: Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Glow</summary>
     public static readonly RequestCache<Texture2D> HotAirBalloonMount_Glow = new("Aequus/Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Glow");
+    /// <summary>Full Path: Content/Fishing/Baits/BlackJellyfish/BlackJellyfishBait</summary>
+    public static readonly RequestCache<Texture2D> BlackJellyfishBait = new("Aequus/Content/Fishing/Baits/BlackJellyfish/BlackJellyfishBait");
     /// <summary>Full Path: Content/Fishing/CrabPots/CrabPot</summary>
     public static readonly RequestCache<Texture2D> CrabPot = new("Aequus/Content/Fishing/CrabPots/CrabPot");
     /// <summary>Full Path: Content/Fishing/CrabPots/CrabPot_Back</summary>
@@ -453,8 +455,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SteampunkerFishingPole = new("Aequus/Content/Fishing/FishingPoles/SteampunkerFishingPole");
     /// <summary>Full Path: Content/Fishing/FishingPoles/SteampunkerFishingPoleBobber</summary>
     public static readonly RequestCache<Texture2D> SteampunkerFishingPoleBobber = new("Aequus/Content/Fishing/FishingPoles/SteampunkerFishingPoleBobber");
-    /// <summary>Full Path: Content/Fishing/Fish/BlackJellyfish/BlackJellyfishBait</summary>
-    public static readonly RequestCache<Texture2D> BlackJellyfishBait = new("Aequus/Content/Fishing/Fish/BlackJellyfish/BlackJellyfishBait");
     /// <summary>Full Path: Content/Fishing/Fish/Killifish</summary>
     public static readonly RequestCache<Texture2D> Killifish = new("Aequus/Content/Fishing/Fish/Killifish");
     /// <summary>Full Path: Content/Fishing/Fish/Piraiba</summary>
@@ -945,6 +945,18 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> GlimmerEventIcon = new("Aequus/Old/Content/Events/Glimmer/Textures/GlimmerEventIcon");
     /// <summary>Full Path: Old/Content/Events/Glimmer/Textures/GlimmerMapBackground</summary>
     public static readonly RequestCache<Texture2D> GlimmerMapBackground = new("Aequus/Old/Content/Events/Glimmer/Textures/GlimmerMapBackground");
+    /// <summary>Full Path: Old/Content/Fishing/GimmickBait/CrateBait</summary>
+    public static readonly RequestCache<Texture2D> CrateBait = new("Aequus/Old/Content/Fishing/GimmickBait/CrateBait");
+    /// <summary>Full Path: Old/Content/Fishing/GimmickBait/LegendberryBait</summary>
+    public static readonly RequestCache<Texture2D> LegendberryBait = new("Aequus/Old/Content/Fishing/GimmickBait/LegendberryBait");
+    /// <summary>Full Path: Old/Content/Fishing/GimmickBait/Omnibait</summary>
+    public static readonly RequestCache<Texture2D> Omnibait = new("Aequus/Old/Content/Fishing/GimmickBait/Omnibait");
+    /// <summary>Full Path: Old/Content/Fishing/Poppers/CorruptPopper</summary>
+    public static readonly RequestCache<Texture2D> CorruptPopper = new("Aequus/Old/Content/Fishing/Poppers/CorruptPopper");
+    /// <summary>Full Path: Old/Content/Fishing/Poppers/CrimsonPopper</summary>
+    public static readonly RequestCache<Texture2D> CrimsonPopper = new("Aequus/Old/Content/Fishing/Poppers/CrimsonPopper");
+    /// <summary>Full Path: Old/Content/Fishing/Poppers/HallowPopper</summary>
+    public static readonly RequestCache<Texture2D> HallowPopper = new("Aequus/Old/Content/Fishing/Poppers/HallowPopper");
     /// <summary>Full Path: Old/Content/MainMenu/GlimmerMenu</summary>
     public static readonly RequestCache<Texture2D> GlimmerMenu = new("Aequus/Old/Content/MainMenu/GlimmerMenu");
     /// <summary>Full Path: Old/Content/MainMenu/GlimmerMenu_Glow</summary>

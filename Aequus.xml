@@ -247,6 +247,21 @@
             </list>
             </summary>
         </member>
+        <member name="T:Aequus.Common.Items.Components.IModifyFishAttempt">
+            <summary>Only works on Fishing Pole or Bait items.</summary>
+        </member>
+        <member name="M:Aequus.Common.Items.Components.IModifyFishAttempt.PreCatchFish(Terraria.Projectile,Terraria.DataStructures.FishingAttempt@)">
+            <returns>Return false to prevent vanilla rolling fish</returns>
+        </member>
+        <member name="T:Aequus.Common.Items.Components.IModifyFishItem">
+            <summary>Only works on Fishing Pole or Bait items.</summary>
+        </member>
+        <member name="T:Aequus.Common.Items.Components.IOnPullBobber">
+            <summary>Only works on Fishing Pole or Bait items.</summary>
+        </member>
+        <member name="M:Aequus.Common.Items.Components.IOnPullBobber.PrePullBobber(Terraria.Player,Terraria.Projectile,System.Int32@)">
+            <returns><see langword="true" /> to override default pulling operations.</returns>
+        </member>
         <member name="M:Aequus.Common.Items.Components.IOnShimmer.OnShimmer">
             <returns>true to run normal shimmer behavior.</returns>
         </member>
@@ -817,12 +832,6 @@
         <member name="M:Aequus.Content.Enemies.PollutedOcean.BlackJellyfish.BlackJellyfish.GetLightMagnitude(Microsoft.Xna.Framework.Color)">
             <param name="lightColor">The Light color</param>
             <returns>A value between 0.45 and 1 which represents the light's magnitude.</returns>
-        </member>
-        <member name="T:Aequus.Content.Fishing.Components.IOnPullBobber">
-            <summary>Only works on Fishing Pole or Bait items.</summary>
-        </member>
-        <member name="M:Aequus.Content.Fishing.Components.IOnPullBobber.PrePullBobber(Terraria.Player,Terraria.Projectile,System.Int32@)">
-            <returns><see langword="true" /> to override default pulling operations.</returns>
         </member>
         <member name="P:Aequus.Content.Fishing.CrabPots.TECrabPot.LavaEffectiveness">
             <summary>
@@ -1841,7 +1850,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 668)</summary>
+            <summary>(Total Textures: 674)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2473,6 +2482,9 @@
         <member name="F:Aequus.AequusTextures.HotAirBalloonMount_Glow">
             <summary>Full Path: Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Glow</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.BlackJellyfishBait">
+            <summary>Full Path: Content/Fishing/Baits/BlackJellyfish/BlackJellyfishBait</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.CrabPot">
             <summary>Full Path: Content/Fishing/CrabPots/CrabPot</summary>
         </member>
@@ -2511,9 +2523,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.SteampunkerFishingPoleBobber">
             <summary>Full Path: Content/Fishing/FishingPoles/SteampunkerFishingPoleBobber</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BlackJellyfishBait">
-            <summary>Full Path: Content/Fishing/Fish/BlackJellyfish/BlackJellyfishBait</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Killifish">
             <summary>Full Path: Content/Fishing/Fish/Killifish</summary>
@@ -3249,6 +3258,24 @@
         </member>
         <member name="F:Aequus.AequusTextures.GlimmerMapBackground">
             <summary>Full Path: Old/Content/Events/Glimmer/Textures/GlimmerMapBackground</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrateBait">
+            <summary>Full Path: Old/Content/Fishing/GimmickBait/CrateBait</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LegendberryBait">
+            <summary>Full Path: Old/Content/Fishing/GimmickBait/LegendberryBait</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Omnibait">
+            <summary>Full Path: Old/Content/Fishing/GimmickBait/Omnibait</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CorruptPopper">
+            <summary>Full Path: Old/Content/Fishing/Poppers/CorruptPopper</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrimsonPopper">
+            <summary>Full Path: Old/Content/Fishing/Poppers/CrimsonPopper</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HallowPopper">
+            <summary>Full Path: Old/Content/Fishing/Poppers/HallowPopper</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GlimmerMenu">
             <summary>Full Path: Old/Content/MainMenu/GlimmerMenu</summary>

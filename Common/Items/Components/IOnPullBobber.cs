@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Fishing.Components;
+﻿namespace Aequus.Common.Items.Components;
 
 /// <summary>Only works on Fishing Pole or Bait items.</summary>
 internal interface IOnPullBobber {

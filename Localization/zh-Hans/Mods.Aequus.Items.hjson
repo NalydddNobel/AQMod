@@ -981,21 +981,6 @@ StariteMaterial: {
 	Tooltip: ""
 }
 
-Killifish: {
-	DisplayName: 鳉鱼
-	Tooltip: ""
-}
-
-Piraiba: {
-	DisplayName: 须鲇鱼
-	Tooltip: ""
-}
-
-BlackJellyfishBait: {
-	DisplayName: "{$NPCs.BlackJellyfish.DisplayName}"
-	Tooltip: 爆炸并伤害被钓的敌人
-}
-
 UnopenedChestItem: {
 	DisplayName: 未开启的宝箱物品
 	Tooltip: 这是Debug物品, 将其放置在世界生成的宝箱内以检测其是否被开启过

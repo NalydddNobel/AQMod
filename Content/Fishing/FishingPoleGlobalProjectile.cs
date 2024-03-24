@@ -30,6 +30,7 @@ public class FishingPoleGlobalProjectile : GlobalProjectile {
     #endregion
 
     public override bool PreAI(Projectile projectile) {
+        projectile.ai[1] = Math.Max(-360f, projectile.ai[1]);
         return Main.player[projectile.owner].HeldItem.ModItem is ModFishingPole fishingPole ? fishingPole.BobberPreAI(projectile) : true;
     }
 

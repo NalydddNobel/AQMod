@@ -1,5 +1,4 @@
-﻿using Aequus.Content.Fishing.Fish.BlackJellyfish;
-using Aequus.Core.ContentGeneration;
+﻿using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics.Tiles;
 using ReLogic.Content;
 using Terraria.GameContent;

@@ -9,3 +9,52 @@ FishingPoles: {
 		Tooltip: 大幅度增加捕获率
 	}
 }
+
+Bait: {
+	BlackJellyfishBait: {
+		DisplayName: "{$NPCs.BlackJellyfish.DisplayName}"
+		Tooltip: 爆炸并伤害被钓的敌人
+	}
+
+	CrateBait: {
+		// DisplayName: Crate Bait
+		// Tooltip: Highly increased catch rate for crates
+	}
+
+	LegendberryBait: {
+		// DisplayName: Legendberry Bait
+		// Tooltip: Increased catch rate for rare items
+	}
+
+	Omnibait: {
+		// DisplayName: Omnibait
+		// Tooltip: Fish as if you are in every biome
+	}
+
+	CorruptPopper: {
+		// DisplayName: Cursed Popper
+		// Tooltip: Increases fishing power by {0}% while in the Corruption
+	}
+
+	CrimsonPopper: {
+		// DisplayName: Ichor Popper
+		// Tooltip: Increases fishing power by {0}% while in the Crimson
+	}
+
+	HallowPopper: {
+		// DisplayName: Spectral Popper
+		// Tooltip: Increases fishing power by {0}% while in the Hallow
+	}
+}
+
+Catches: {
+	Killifish: {
+		DisplayName: 鳉鱼
+		Tooltip: ""
+	}
+
+	Piraiba: {
+		DisplayName: 须鲇鱼
+		Tooltip: ""
+	}
+}

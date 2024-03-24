@@ -15,6 +15,8 @@ internal class InstancedFishItem : InstancedModItem {
         _addRecipes = Recipe;
     }
 
+    public override string LocalizationCategory => "Fishing.Catches";
+
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 3;
     }
@@ -22,6 +24,7 @@ internal class InstancedFishItem : InstancedModItem {
     public override void SetDefaults() {
         Item.width = 16;
         Item.height = 16;
+        Item.maxStack = Item.CommonMaxStack;
         Item.rare = _rarity;
         Item.value = _value;
     }

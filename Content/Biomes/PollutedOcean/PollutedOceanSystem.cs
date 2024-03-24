@@ -6,7 +6,7 @@ using Aequus.Content.Enemies.PollutedOcean.BreadOfCthulhu;
 using Aequus.Content.Enemies.PollutedOcean.OilSlime;
 using Aequus.Content.Enemies.PollutedOcean.Scavenger;
 using Aequus.Content.Fishing;
-using Aequus.Content.Fishing.Fish.BlackJellyfish;
+using Aequus.Content.Fishing.Baits.BlackJellyfish;
 using Aequus.Content.Potions.Healing.Restoration;
 using Aequus.Content.Tiles.Furniture.Trash;
 using Aequus.Content.Tiles.Statues;
