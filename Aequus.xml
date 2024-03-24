@@ -1841,7 +1841,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 665)</summary>
+            <summary>(Total Textures: 668)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -3136,6 +3136,12 @@
         <member name="F:Aequus.AequusTextures.HoloLens">
             <summary>Full Path: Old/Content/Equipment/Accessories/HoloLens/HoloLens</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.AnglerBroadcaster">
+            <summary>Full Path: Old/Content/Equipment/Accessories/Info/AnglerBroadcaster</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AnglerBroadcasterIcon">
+            <summary>Full Path: Old/Content/Equipment/Accessories/Info/AnglerBroadcasterIcon</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.LaserReticle">
             <summary>Full Path: Old/Content/Equipment/Accessories/LaserScope/LaserReticle</summary>
         </member>
@@ -3168,6 +3174,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.Pacemaker">
             <summary>Full Path: Old/Content/Equipment/Accessories/Pacemaker/Pacemaker</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RabbitsFoot">
+            <summary>Full Path: Old/Content/Equipment/Accessories/RabbitsFoot/RabbitsFoot</summary>
         </member>
         <member name="F:Aequus.AequusTextures.WarHorn">
             <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHorn</summary>

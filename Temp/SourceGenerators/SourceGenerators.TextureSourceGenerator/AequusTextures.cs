@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 665)</summary>
+/// <summary>(Total Textures: 668)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -869,6 +869,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> HighSteaks_Waist = new("Aequus/Old/Content/Equipment/Accessories/HighSteaks/HighSteaks_Waist");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/HoloLens/HoloLens</summary>
     public static readonly RequestCache<Texture2D> HoloLens = new("Aequus/Old/Content/Equipment/Accessories/HoloLens/HoloLens");
+    /// <summary>Full Path: Old/Content/Equipment/Accessories/Info/AnglerBroadcaster</summary>
+    public static readonly RequestCache<Texture2D> AnglerBroadcaster = new("Aequus/Old/Content/Equipment/Accessories/Info/AnglerBroadcaster");
+    /// <summary>Full Path: Old/Content/Equipment/Accessories/Info/AnglerBroadcasterIcon</summary>
+    public static readonly RequestCache<Texture2D> AnglerBroadcasterIcon = new("Aequus/Old/Content/Equipment/Accessories/Info/AnglerBroadcasterIcon");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/LaserScope/LaserReticle</summary>
     public static readonly RequestCache<Texture2D> LaserReticle = new("Aequus/Old/Content/Equipment/Accessories/LaserScope/LaserReticle");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/LaserScope/LaserReticle_Glow</summary>
@@ -891,6 +895,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> PhoenixRing_HandsOn = new("Aequus/Old/Content/Equipment/Accessories/OnHitDebuffs/PhoenixRing_HandsOn");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/Pacemaker/Pacemaker</summary>
     public static readonly RequestCache<Texture2D> Pacemaker = new("Aequus/Old/Content/Equipment/Accessories/Pacemaker/Pacemaker");
+    /// <summary>Full Path: Old/Content/Equipment/Accessories/RabbitsFoot/RabbitsFoot</summary>
+    public static readonly RequestCache<Texture2D> RabbitsFoot = new("Aequus/Old/Content/Equipment/Accessories/RabbitsFoot/RabbitsFoot");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHorn</summary>
     public static readonly RequestCache<Texture2D> WarHorn = new("Aequus/Old/Content/Equipment/Accessories/WarHorn/WarHorn");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHornCooldown</summary>

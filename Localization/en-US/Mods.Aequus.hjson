@@ -1,6 +1,12 @@
 InfoDisplays: {
+	AnglerBroadcasterIcon: {
+		DisplayName: Fish Quest
+		Unavailable: Unavailable
+		Finished: Finished
+	}
+
 	CalendarInfoDisplay: {
-		DisplayName: "{$Items.Calendar.DisplayName}"
+		DisplayName: Date
 		Tooltip: "{0} (Day {1})"
 	}
 }

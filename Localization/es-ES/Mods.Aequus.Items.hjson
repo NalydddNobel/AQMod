@@ -990,3 +990,13 @@ UnopenedChestItem: {
 	DisplayName: Objeto de cofre sin abrir
 	// Tooltip: This is a debug item placed into chests upon worldgen to check if they have been opened
 }
+
+AnglerBroadcaster: {
+	// DisplayName: Angler Broadcaster
+	// Tooltip: ""
+}
+
+RabbitsFoot: {
+	// DisplayName: Rabbits Foot
+	// Tooltip: ""
+}

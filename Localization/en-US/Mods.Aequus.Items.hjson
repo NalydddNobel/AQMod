@@ -229,11 +229,6 @@ ShadowVeer: {
 }
 
 //# Equipment: Misc
-LavaproofMitten: {
-	DisplayName: Lavaproof Mitten
-	Tooltip: Allows block placement in lava
-}
-
 RoseTintedGlasses: {
 	DisplayName: Rose Tinted Glasses
 	Tooltip: Ignore enemy spawns of the Blood Moon
@@ -249,15 +244,30 @@ EclipseGlasses: {
 	Tooltip: Ignore enemy spawns of the Eclipse
 }
 
-//# Equipment: Informational
-HoloLens: {
-	DisplayName: Holo Lens
-	Tooltip: Allows you to view the contents of chests without opening them
+RabbitsFoot: {
+	DisplayName: Rabbits Foot
+	Tooltip: "Double luck!"
+}
+
+LavaproofMitten: {
+	DisplayName: Lavaproof Mitten
+	Tooltip: Allows block placement in lava
 }
 
 Pacemaker: {
 	DisplayName: Pacemaker
 	Tooltip: Decreased respawn time when it becomes safe
+}
+
+//# Equipment: Informational
+AnglerBroadcaster: {
+	DisplayName: Angler Broadcaster
+	Tooltip: Displays the current Angler quest
+}
+
+HoloLens: {
+	DisplayName: Holo Lens
+	Tooltip: Allows you to view the contents of chests without opening them
 }
 
 ShimmerMonocle: {

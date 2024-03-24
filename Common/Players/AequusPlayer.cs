@@ -17,6 +17,7 @@ public partial class AequusPlayer : ModPlayer {
     public override void Load() {
         _resetEffects = new();
         _resetEffects.Generate();
+        On_Player.RollLuck += RabbitFootLuckRerolls;
         IL_Player.PlaceThing_ValidTileForReplacement += IL_Player_PlaceThing_ValidTileForReplacement;
         On_Player.PlaceThing_Tiles_CheckLavaBlocking += OverrideLavaBlockPlacement;
         On_PlayerDeathReason.GetDeathText += LocalizedAequusDeathMessages;
