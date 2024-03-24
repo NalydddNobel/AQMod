@@ -17,6 +17,8 @@ public partial class AequusPlayer : ModPlayer {
     public override void Load() {
         _resetEffects = new();
         _resetEffects.Generate();
+        IL_Player.PlaceThing_ValidTileForReplacement += IL_Player_PlaceThing_ValidTileForReplacement;
+        On_Player.PlaceThing_Tiles_CheckLavaBlocking += OverrideLavaBlockPlacement;
         On_PlayerDeathReason.GetDeathText += LocalizedAequusDeathMessages;
         IL_Player.PickTile += IL_Player_PickTile;
         On_Player.UpdateVisibleAccessories += On_Player_UpdateVisibleAccessories;

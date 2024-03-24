@@ -229,6 +229,11 @@ ShadowVeer: {
 }
 
 //# Equipment: Misc
+LavaproofMitten: {
+	DisplayName: Lavaproof Mitten
+	Tooltip: Allows block placement in lava
+}
+
 RoseTintedGlasses: {
 	DisplayName: Rose Tinted Glasses
 	Tooltip: Ignore enemy spawns of the Blood Moon

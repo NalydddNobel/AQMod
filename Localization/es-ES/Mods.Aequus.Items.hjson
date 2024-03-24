@@ -125,7 +125,7 @@ PhoenixRing: {
 	// DisplayName: Phoenix Ring
 	/* Tooltip:
 		'''
-		{$Items.BoneRing}
+		{$Items.BoneRing.Tooltip}
 		{$ItemTooltip.MagmaStone}
 		''' */
 }
@@ -134,9 +134,9 @@ BlackPlague: {
 	// DisplayName: Black Plague
 	/* Tooltip:
 		'''
-		{$Items.BoneRing}
+		{$Items.BoneRing.Tooltip}
 		{$ItemTooltip.MagmaStone}
-		{$Items.BlackPhial}
+		{$Items.BlackPhial.Tooltip}
 		''' */
 }
 
@@ -229,6 +229,11 @@ ShadowVeer: {
 }
 
 //# Equipment: Misc
+LavaproofMitten: {
+	// DisplayName: Lavaproof Mitten
+	// Tooltip: Allows block placement in lava
+}
+
 RoseTintedGlasses: {
 	DisplayName: Gafas teñidas de rosa
 	Tooltip: Ignora la aparición de enemigos de la luna sangrienta

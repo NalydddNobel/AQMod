@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 662)</summary>
+/// <summary>(Total Textures: 665)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -735,6 +735,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> UltraStarite = new("Aequus/Old/Content/Bosses/Cosmic/UltraStarite/UltraStarite");
     /// <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/UltraStarite_Head_Boss</summary>
     public static readonly RequestCache<Texture2D> UltraStarite_Head_Boss = new("Aequus/Old/Content/Bosses/Cosmic/UltraStarite/UltraStarite_Head_Boss");
+    /// <summary>Full Path: Old/Content/Building/LavaproofMitten</summary>
+    public static readonly RequestCache<Texture2D> LavaproofMitten = new("Aequus/Old/Content/Building/LavaproofMitten");
+    /// <summary>Full Path: Old/Content/Building/LavaproofMitten_HandsOff</summary>
+    public static readonly RequestCache<Texture2D> LavaproofMitten_HandsOff = new("Aequus/Old/Content/Building/LavaproofMitten_HandsOff");
+    /// <summary>Full Path: Old/Content/Building/LavaproofMitten_HandsOn</summary>
+    public static readonly RequestCache<Texture2D> LavaproofMitten_HandsOn = new("Aequus/Old/Content/Building/LavaproofMitten_HandsOn");
     /// <summary>Full Path: Old/Content/Critters/DwarfStarite</summary>
     public static readonly RequestCache<Texture2D> DwarfStarite = new("Aequus/Old/Content/Critters/DwarfStarite");
     /// <summary>Full Path: Old/Content/DronePylons/CleanserDroneItem</summary>

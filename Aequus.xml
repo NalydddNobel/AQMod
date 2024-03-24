@@ -1841,7 +1841,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 662)</summary>
+            <summary>(Total Textures: 665)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2934,6 +2934,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.UltraStarite_Head_Boss">
             <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/UltraStarite_Head_Boss</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LavaproofMitten">
+            <summary>Full Path: Old/Content/Building/LavaproofMitten</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LavaproofMitten_HandsOff">
+            <summary>Full Path: Old/Content/Building/LavaproofMitten_HandsOff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LavaproofMitten_HandsOn">
+            <summary>Full Path: Old/Content/Building/LavaproofMitten_HandsOn</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DwarfStarite">
             <summary>Full Path: Old/Content/Critters/DwarfStarite</summary>
