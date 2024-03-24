@@ -11,7 +11,7 @@ public class RabbitsFoot : ModItem {
     }
 
     public override void SetDefaults() {
-        Item.width = 20; // hi tea
+        Item.width = 20;
         Item.height = 20;
         Item.rare = ItemCommons.Rarity.DemonSiegeTier1Loot;
         Item.value = ItemCommons.Price.DemonSiegeLoot;
