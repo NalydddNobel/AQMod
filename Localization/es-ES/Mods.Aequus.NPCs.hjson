@@ -3,7 +3,7 @@ DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
 Scavenger: {
 	DisplayName: Carroñero
 	Bestiary: Alguna vez piratas vicios navegando los mares, sus huesos retienen la necesidad de robar y saquear.
-	// BannerName: Scavenger Banner
+	BannerName: Estandar de Carroñero
 }
 
 ScavengerLootBag.DisplayName: Bolsa Carroñera
@@ -16,90 +16,90 @@ MonsterChestSummon: {
 BlackJellyfish: {
 	DisplayName: Medusa Negra
 	Bestiary: Evolución en un ambiente tan contaminado es difícil, estas medusas descubrieron que obliterar a sus enemigos y así mismos sería la mejor forma de defender a su especie, su esperanza de vida varía entre un par de minutos a años.
-	BannerName: Black Jellyfish Banner
+	BannerName: Estandarte de Medusa Negra
 }
 
 OilSlime: {
-	// DisplayName: Opaque Slime
-	// Bestiary: These viscous slimes are formed of modern oils and waste, allowing them to be more durable than regular slimes. Vulnerable to fire.
-	// BannerName: Opaque Slime Banner
+	DisplayName: Slime Opaco
+	Bestiary: Estos Slimes Viscosos estan formados por aceites y residuos, Permitiendoles ser mas resistentes que los slimes normales. Es vulnerable al fuego.
+	BannerName: Estandarte de Slime Opaco
 }
 
 BreadOfCthulhu: {
-	// DisplayName: Bread of Cthulhu
-	// BannerName: Bread of Cthulhu Banner
-	// Bestiary: A lost snack that gained life when it slipped through an eldritch portal, this loathsome loaf does not intend to be your lunch! Watch out when fishing, for it might just latch on to the lure of an inexperienced fisherman that looks like easy prey.
+	DisplayName: Pan de Cthulhu
+	BannerName: Estandarte de Pan de Cthulhu
+	Bestiary: Un bocadillo perdido que obtuvo vida despues de caer por un portal maligno, ¡Esta rebanada no tiene planeado ser tu almuerzo! Ten cuidado cuando pezcas, porque podria tomar el anzuelo de un pezcador que parece presa fácil.
 }
 
 RadioConductor: {
-	// DisplayName: Conductor
-	Bestiary: Un Frankenstein tecnológico, esta elegante antigüedad electrónica puede dirigir y manipular ondas de radio para defenderse. Se asegurará de poner un espectáculo, quieras o no.
+	DisplayName: Director
+	Bestiary: Un amalgama de tecnología anticuada. desesperado por demostrar que aun sirve de algo, trata de poner un espectaculo a quien sea que se acerce usando ondas de radio condensadas.
 }
 
 Mirage.Bestiary: Durante la lluvia, nubes toxicas se forman y acumulan formando este monstruo acídico, desea ser un nimbo real, pero tiene problemas haciéndose amigo hasta de un muñeco de pruebas.
 Pillbug.Bestiary: Bendecido con Energía Acuática, estos insectos corretean y se alimentan de la contaminación como si no fuera nada.
-Chromite.Bestiary: Estos insectos han desarrollado un camuflaje magnético increíblemente avanzado, tienden a adherirse a electrónicos y objetos metálicos, y en general son una molestia para cualquier casa familiar con un microondas. Podrían ser útil como carnada.
+Chromite.Bestiary: Un insecto con un caparazon metalico que cambia de color usando un mecanismo magnetico, Son una plaga dómestica común, y el colmo para los microondas. Podrían ser útil como carnada.
 Crabson.DisplayName: Crabson
 OmegaStarite.DisplayName: Omega Starite
 DustDevil.DisplayName: Demonio de Polvo
 
 BloodMimic: {
-	// DisplayName: Blood Mimic
-	// BannerName: Blood Mimic Banner
-	// Bestiary: When the gruesome red moon shines, the festering corpses of slain looters may merge with the chests they tried to claim, corrupting and mutating the treasure within.
+	DisplayName: Cofre falso sangriento
+	BannerName: Estandarte de Cofre falso sangriento
+	Bestiary: Cuando la luz de la luna roja aparece, los cuerpos putrefactos de saqueadores pueden llegar a unirse con los cofres que trataron de robar, corrompiendo y mutando el tesoro que contenia.
 }
 
 CinderBat: {
-	// Bestiary: A lesser bat-like demon, known for its ugly face and uglier attitude. Definitely doesn't have a complex.
-	// DisplayName: Cinder Bat
-	// BannerName: Cinder Bat Banner
+	Bestiary: Un demonio menor parecido a un murciélago, famoso por su cara fea y si actitud aun mas fea. Definitivamente no tiene un complejo.
+	DisplayName: Murciélago de Brasas
+	BannerName: Estandarte de Murciélago de Brasas
 }
 
 LeggedLava: {
-	// DisplayName: Legged Lava
-	// Bestiary: Lava slimes touched by the Gore Nest's fleshy 'blessing' will grow spider-like legs. They hop about freely and spew shadowy energies, but are thankfully too heavy to climb on walls.
-	// BannerName: Legged Lava Banner
+	DisplayName: Lava andante
+	Bestiary: Slimes de lava tocados por la "Bendición" carnosa de los altares de oblivio tienden a crecer piernas. Brincan libremente escupiendo energia sombría, pero afortunadamente son muy pesados como para escalar paredes.
+	BannerName: Estandarte de Lava andante
 }
 
 KeeperImp: {
-	// DisplayName: Keeper
-	// Bestiary: By capturing souls for itself, withering their bodies, and breaking their will, this imp has gained deadly pets that follow its command perfectly.
-	// BannerName: Keeper Banner
+	DisplayName: Custodiante
+	Bestiary: Captura almas para si mismo, marchitando sus cuerpos, y rompiendo su voluntad, este diablillo consiguio mascotas mortales que siguen sus instrucciónes perfectamente.
+	BannerName: Estandarte de Custodiante
 }
 
-// ChainedSoul.DisplayName: Chained Soul
+ChainedSoul.DisplayName: Alma encadenada
 
 DwarfStarite: {
-	// DisplayName: Dwarf Starite
-	// Bestiary: If a starite cannot gather enough energy to evolve, it will eventually wither into just a speck of light. Its powers atrophied into uselessness, it nonetheless enjoys its retirement by floating aimlessly.
+	DisplayName: Starite Enana
+	Bestiary: Si un Starite no consigue suficiente energia para evoluciónar, este se desolvera hasta quedar como una particula de luz. Apesar de tener sus poderes atrofiados, disfruta de su jubilación flotando sin rumbo.
 }
 
 UltraStarite: {
-	// DisplayName: Ultra Starite
-	// Bestiary: Elite starites in their final stage of growth can focus their energy into deadly laser beams. You'd be forgiven for thinking the sky was falling!
+	DisplayName: Ultra Starite
+	Bestiary: En su ultima etapa de crecimiento, starites elite pueden concentrar la energia de su núcleo expuesto para formar rayos mortales. ¡es casi como si el cielo estuviera cayendo!
 }
 
 HyperStarite: {
-	// DisplayName: Hyper Starite
-	// Bestiary: With an even further excess of energy, the starite gains the ability to detach its segments and swing them in an orbit as dangerous weapons.
-	// BannerName: Hyper Starite Banner
+	DisplayName: Hiper Starite
+	Bestiary: Cuando un Starite envejece, este se vuelve mas volátil y comienza a expandirse, lo que permite utilizar sus segmentos en orbita como armas.
+	BannerName: Estandarte de Hiper Starite
 }
 
 SuperStarite: {
-	// DisplayName: Super Starite
-	// Bestiary: Starites that gather enough energy eventually evolve into this armored form. They're much hardier, and can also fire off excess energy as simple projectiles.
-	// BannerName: Super Starite Banner
+	DisplayName: Super Starite
+	Bestiary: Starites que consiguen suficiente energía pueden mudar de caparazón y evolucionar a esta forma blindada.
+	BannerName: Estandarte de Super Starite
 }
 
 Starite: {
-	// DisplayName: Starite
-	// Bestiary: A piece of animate stardust, given life by some unknowable force. They cannot survive for long without a source of energy, granted by the strange lights that fill the sky.
-	// BannerName: Starite Banner
+	DisplayName: Starite
+	Bestiary: A piece of animate stardust bearing a striking resemblance to fallen stars, their exterior seems gassy but will grow to have a sturdy shell.
+	BannerName: Estandarte de Starite
 }
 
 Occultist: {
-	// DisplayName: Occultist
-	// Bestiary: A ex-cultist that's decided to bat for the winning team. She claims to be reformed, but still attempts to cast curses and hexes whenever she thinks nobody's looking.
+	DisplayName: Ocultista
+	Bestiary: A ex-cultist that's decided to bat for the winning team. She claims to be reformed, but still attempts to cast curses and hexes whenever she thinks nobody's looking.
 
 	TownNPCMood: {
 		// Content: This place is pleasant enough. Could use more suffering, but beggars can't be choosers, you know?

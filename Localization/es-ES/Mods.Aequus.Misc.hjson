@@ -45,37 +45,37 @@ Dyes: {
 }
 
 Rarity: {
-	// -13.DisplayName: Fiery Red
-	// -12.DisplayName: Rainbow
-	// -11.DisplayName: Amber
-	// -1.DisplayName: Gray
-	// 0.DisplayName: White
-	// 1.DisplayName: Blue
-	// 2.DisplayName: Green
-	// 3.DisplayName: Orange
-	// 4.DisplayName: Light Red
-	// 5.DisplayName: Pink
-	// 6.DisplayName: Light Purple
-	// 7.DisplayName: Lime
-	// 8.DisplayName: Yellow
-	// 9.DisplayName: Cyan
-	// 10.DisplayName: Red
-	// 11.DisplayName: Purple
+	-13.DisplayName: Rojo Fuego
+	-12.DisplayName: Arcoíris
+	-11.DisplayName: Ambar
+	-1.DisplayName: Gris
+	0.DisplayName: Blanco
+	1.DisplayName: Azul
+	2.DisplayName: Verde
+	3.DisplayName: Naranja
+	4.DisplayName: Rojo Claro
+	5.DisplayName: Rosa
+	6.DisplayName: Morado Claro
+	7.DisplayName: Lima
+	8.DisplayName: Amarillo
+	9.DisplayName: Cian
+	10.DisplayName: Rojo
+	11.DisplayName: Morado
 
 	CalamityMod: {
-		// Turquoise.DisplayName: Turquoise
-		// PureGreen.DisplayName: Pure Green
-		// DarkBlue.DisplayName: Dark Blue
-		// Violet.DisplayName: Violet
-		// HotPink.DisplayName: Hot Pink
-		// CalamityRed.DisplayName: Calamity Red
-		// DarkOrange.DisplayName: Dark Orange
+		Turquoise.DisplayName: Turquesa
+		PureGreen.DisplayName: Verde Puro
+		DarkBlue.DisplayName: Azul Oscuro
+		Violet.DisplayName: Violeta
+		HotPink.DisplayName: Rosa Fucsia
+		CalamityRed.DisplayName: Rojo Calamidad
+		DarkOrange.DisplayName: Naranja Oscuro
 	}
 
-	// CatalystMod.SuperbossRarity.DisplayName: Crystal
+	CatalystMod.SuperbossRarity.DisplayName: Cristal
 }
 
-// BlocksDistance: Distance: {0} blocks away
+BlocksDistance: Distancia: a {0} blocks
 Contains: Contiene: {0}
 MonocleToggleOn: Monóculo Activo
 MonocleToggleOff: Monóculo Inacctivo
@@ -83,4 +83,4 @@ ShimmerMonocleToggleOn: Notas de Fulgor Activas
 ShimmerMonocleToggleOff: Notas de Fulgor Inactivas
 BagWarningQuickBuff: ¡La mochila no soporta el Potenciar Rapido!
 BagWarningAmmo: ¡La mochila no soporta Munición    !
-// TimeLeft: Time left: {0}
+TimeLeft: Time Restante: {0}
