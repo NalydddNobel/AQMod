@@ -1,12 +1,12 @@
 InfoDisplays: {
 	AnglerBroadcasterIcon: {
-		// DisplayName: Fish Quest
-		// Unavailable: Unavailable
-		// Finished: Finished
+		DisplayName: 钓鱼任务
+		Unavailable: 不可用
+		Finished: 已完成
 	}
 
 	CalendarInfoDisplay: {
-		DisplayName: "{$Items.Calendar.DisplayName}"
+		DisplayName: 日期
 		Tooltip: "{0} ({1}天)"
 	}
 }
