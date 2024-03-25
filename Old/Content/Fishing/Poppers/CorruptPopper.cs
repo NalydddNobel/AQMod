@@ -20,15 +20,6 @@ public class CorruptPopper : ModBait, IModifyFishingPower {
         Item.consumable = true;
     }
 
-    public override void AddRecipes() {
-        CreateRecipe(5)
-            .AddIngredient(ItemID.UnholyWater, 5)
-            .AddIngredient(ItemID.CursedFlame, 1)
-            .AddTile(TileID.Bottles)
-            .Register()
-            .SortBeforeFirstRecipesOf(ItemID.EnchantedNightcrawler);
-    }
-
     public void ModifyFishingPower(Player player, Item fishingRod, ref float fishingLevel) {
         if (player.ZoneCorrupt) {
             fishingLevel += IncreasedFishingPowerInCorruption;

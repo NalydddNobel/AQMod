@@ -1,7 +1,7 @@
-﻿using Aequus.Content.DataSets;
-using Aequus.Core;
+﻿using Aequus.Core;
 using Aequus.Core.Graphics;
 using Aequus.Core.UI;
+using Aequus.DataSets;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -74,7 +74,7 @@ public class PotsSystem : ModSystem {
             var aequusPlayer = Main.LocalPlayer.GetModPlayer<AequusPlayer>();
             int effectRange = aequusPlayer.potSightRange;
             foreach (var preview in LootPreviews) {
-                if (!Main.tile[preview.Key].HasTile || !TileMetadata.IsSmashablePot.Contains((int)Main.tile[preview.Key].TileType) || !InPotSightRange(Main.LocalPlayer, preview.Key, effectRange)) {
+                if (!Main.tile[preview.Key].HasTile || !TileDataSet.IsSmashablePot.Contains((int)Main.tile[preview.Key].TileType) || !InPotSightRange(Main.LocalPlayer, preview.Key, effectRange)) {
                     preview.Value.Opacity -= 0.04f;
                     if (preview.Value.Opacity <= 0f) {
                         RemoveQueue.Enqueue(preview.Key);

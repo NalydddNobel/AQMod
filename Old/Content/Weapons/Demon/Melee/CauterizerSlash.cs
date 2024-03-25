@@ -1,5 +1,4 @@
-﻿using Aequus.Content.DataSets;
-using Aequus.Core.DataSets;
+﻿using Aequus.DataSets;
 using Terraria.Audio;
 
 namespace Aequus.Old.Content.Weapons.Demon.Melee;
@@ -10,8 +9,8 @@ public class CauterizerSlash : ModProjectile {
     public override void SetStaticDefaults() {
         ProjectileID.Sets.TrailCacheLength[Type] = 10;
         ProjectileID.Sets.TrailingMode[Type] = 2;
-        ProjectileMetadata.PushableByTypeId.Add(Type);
-        ProjectileMetadata.DealsHeatDamage.Add(Type);
+        ProjectileDataSet.PushableByTypeId.Add(Type);
+        ProjectileDataSet.DealsHeatDamage.Add(Type);
     }
 
     public override void SetDefaults() {

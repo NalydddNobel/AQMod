@@ -1,5 +1,4 @@
-﻿using Aequus.Content.DataSets;
-using Aequus.Core.DataSets;
+﻿using Aequus.DataSets;
 using Aequus.Old.Content.Particles;
 using Terraria.GameContent;
 
@@ -15,7 +14,7 @@ public class CorruptionSceptreProj : ModProjectile {
     protected Vector2[][] _trail;
 
     public override void SetStaticDefaults() {
-        ProjectileMetadata.PushableByTypeId.Add(Type);
+        ProjectileDataSet.PushableByTypeId.Add(Type);
     }
 
     public override void SetDefaults() {

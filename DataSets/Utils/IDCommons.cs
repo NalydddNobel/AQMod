@@ -2,7 +2,7 @@
 using System;
 using System.Reflection;
 
-namespace Aequus.Core.DataSets;
+namespace Aequus.DataSets.Utils;
 
 public static class IDCommons<T> where T : class {
     public static readonly IdDictionary Search = (IdDictionary)typeof(T).GetField("Search").GetValue(null);

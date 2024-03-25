@@ -1,4 +1,4 @@
-﻿using Aequus.Content.DataSets;
+﻿using Aequus.DataSets;
 using System.Diagnostics;
 using System.IO;
 using Terraria;
@@ -76,7 +76,7 @@ public sealed class RenameNPC : GlobalNPC {
     }
 
     public static bool CanRename(NPC npc) {
-        if (NPCMetadata.NameTagOverride.TryGetValue(npc.netID, out bool canBeRenamedOverride)) {
+        if (NPCDataSet.NameTagOverride.TryGetValue(npc.netID, out bool canBeRenamedOverride)) {
             return canBeRenamedOverride;
         }
 

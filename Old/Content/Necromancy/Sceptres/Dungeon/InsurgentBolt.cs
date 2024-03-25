@@ -1,5 +1,4 @@
-﻿using Aequus.Content.DataSets;
-using Aequus.Core.DataSets;
+﻿using Aequus.DataSets;
 using Terraria.GameContent;
 
 namespace Aequus.Old.Content.Necromancy.Sceptres.Dungeon;
@@ -10,7 +9,7 @@ public class InsurgentBolt : InsurgencyProj {
     public override void SetStaticDefaults() {
         ProjectileID.Sets.TrailCacheLength[Type] = 20;
         ProjectileID.Sets.TrailingMode[Type] = 2;
-        ProjectileMetadata.PushableByTypeId.Add(Type);
+        ProjectileDataSet.PushableByTypeId.Add(Type);
     }
 
     public override void SetDefaults() {

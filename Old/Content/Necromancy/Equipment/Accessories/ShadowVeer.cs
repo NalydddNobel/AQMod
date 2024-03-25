@@ -1,4 +1,4 @@
-﻿using Aequus.Content.DataSets;
+﻿using Aequus.DataSets;
 using System.Linq;
 
 namespace Aequus.Old.Content.Necromancy.Equipment.Accessories;
@@ -21,7 +21,7 @@ public class ShadowVeer : ModItem {
     }
 
     public override void AddRecipes() {
-        foreach (int demoniteBar in ItemTypeVariantMetadata.DemoniteBar.Where(i => i.ValidEntry)) {
+        foreach (int demoniteBar in ItemTypeVariantDataSet.DemoniteBar.Where(i => i.ValidEntry)) {
             CreateRecipe()
                 .AddIngredient(ItemID.Cobweb, 100)
                 .AddIngredient(demoniteBar, 3)

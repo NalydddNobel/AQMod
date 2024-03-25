@@ -1,5 +1,5 @@
-﻿using Aequus.Content.DataSets;
-using Aequus.Core.Initialization;
+﻿using Aequus.Core.Initialization;
+using Aequus.DataSets;
 using Aequus.Old.Common.EventBars;
 using Aequus.Old.Content.Enemies.DemonSiege.CinderBat;
 using Aequus.Old.Content.Enemies.DemonSiege.Keeper;
@@ -85,6 +85,6 @@ public class DemonSiegeZone : ModBiome, IPostSetupContent {
     }
 
     void IPostSetupContent.PostSetupContent(Aequus aequus) {
-        NPCMetadata.UnderworldTags.Add(ModBiomeBestiaryInfoElement);
+        NPCDataSet.UnderworldTags.Add(ModBiomeBestiaryInfoElement);
     }
 }

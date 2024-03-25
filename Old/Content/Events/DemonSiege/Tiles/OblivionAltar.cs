@@ -1,8 +1,8 @@
-﻿using Aequus.Content.DataSets;
-using Aequus.Content.Events.DemonSiege;
+﻿using Aequus.Content.Events.DemonSiege;
 using Aequus.Core.Assets;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics.Tiles;
+using Aequus.DataSets;
 using Aequus.Old.Content.TownNPCs.OccultistNPC;
 using System;
 using Terraria.DataStructures;
@@ -34,7 +34,7 @@ public class OblivionAltar : ModTile, ISpecialTileRenderer {
         TileID.Sets.DisableSmartCursor[Type] = true;
         TileID.Sets.PreventsTileRemovalIfOnTopOfIt[Type] = true;
         TileID.Sets.PreventsSandfall[Type] = true;
-        TileMetadata.PreventsSlopesBelow.Add(Type);
+        TileDataSet.PreventsSlopesBelow.Add(Type);
 
         TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
         TileObjectData.newTile.LavaDeath = false;

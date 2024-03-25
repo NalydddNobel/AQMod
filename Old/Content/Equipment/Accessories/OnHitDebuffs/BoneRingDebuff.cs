@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Buffs.Components;
 using Aequus.Common.NPCs;
-using Aequus.Content.DataSets;
+using Aequus.DataSets;
 using Terraria.Audio;
 
 namespace Aequus.Old.Content.Equipment.Accessories.OnHitDebuffs;
@@ -12,7 +12,7 @@ public class BoneRingDebuff : ModBuff, IOnAddBuff {
         Main.debuff[Type] = true;
         Main.buffNoSave[Type] = true;
         BuffSets.GrantImmunityWith[Type].Add(BuffID.Slow);
-        BuffMetadata.PlayerStatusDebuff.Add(Type);
+        BuffDataSet.PlayerStatusDebuff.Add(Type);
     }
 
     public override void Update(NPC npc, ref int buffIndex) {

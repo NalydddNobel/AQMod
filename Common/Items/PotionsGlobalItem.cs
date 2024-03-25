@@ -1,10 +1,10 @@
-﻿using Aequus.Content.DataSets;
+﻿using Aequus.DataSets;
 
 namespace Aequus.Common.Items;
 
 public class PotionsGlobalItem : GlobalItem {
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
-        return ItemMetadata.Potions.Contains(entity.type);
+        return ItemDataSet.Potions.Contains(entity.type);
     }
 
     public override void SetDefaults(Item entity) {

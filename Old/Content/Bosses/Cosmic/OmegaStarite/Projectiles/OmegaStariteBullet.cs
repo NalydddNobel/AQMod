@@ -1,4 +1,4 @@
-﻿using Aequus.Content.DataSets;
+﻿using Aequus.DataSets;
 using Aequus.Old.Content.Events.Glimmer;
 using Aequus.Old.Content.Particles;
 using System;
@@ -10,7 +10,7 @@ public class OmegaStariteBullet : ModProjectile {
     public override void SetStaticDefaults() {
         ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
         ProjectileID.Sets.TrailCacheLength[Projectile.type] = 16;
-        ProjectileMetadata.PushableByAI.Add(Type);
+        ProjectileDataSet.PushableByAI.Add(Type);
     }
 
     public override void SetDefaults() {

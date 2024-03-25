@@ -1,4 +1,4 @@
-﻿using Aequus.Content.DataSets;
+﻿using Aequus.DataSets;
 using Aequus.Old.Content.DronePylons.NPCs;
 using System.Collections.Generic;
 
@@ -80,7 +80,7 @@ public class CleanserDroneSlot : DroneSlot {
         ushort tileType = tile.TileType;
         var pylonStand = Location + new Point(1, 4);
 
-        bool convertible = TileMetadata.Convertible.Contains(tileType);
+        bool convertible = TileDataSet.HasAnyConversions.Contains(tileType);
 
         if (solutionProj == ProjectileID.MushroomSpray && tileType == TileID.JungleGrass) {
             return true;

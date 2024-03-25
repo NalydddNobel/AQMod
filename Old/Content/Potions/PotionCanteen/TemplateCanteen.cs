@@ -1,9 +1,9 @@
 ﻿using Aequus.Common.Buffs;
 using Aequus.Common.Items.Components;
 using Aequus.Common.Systems;
-using Aequus.Content.DataSets;
 using Aequus.Core.IO;
 using Aequus.Core.UI;
+using Aequus.DataSets;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -187,7 +187,7 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
     }
 
     private bool IsValidPotion(Item item) {
-        return item.buffType > 0 && item.buffTime > 0 && item.consumable && item.maxStack >= 30 && !Buffs.Any(b => b.BuffId == item.buffType) && !BuffMetadata.CannotChangeDuration.Contains(item.buffType) && ItemMetadata.Potions.Contains(item.type);
+        return item.buffType > 0 && item.buffTime > 0 && item.consumable && item.maxStack >= 30 && !Buffs.Any(b => b.BuffId == item.buffType) && !BuffDataSet.CannotChangeDuration.Contains(item.buffType) && ItemDataSet.Potions.Contains(item.type);
     }
 
     private static void EatRightClick() {

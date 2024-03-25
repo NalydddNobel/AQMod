@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Projectiles;
-using Aequus.Content.DataSets;
 using Aequus.Core;
+using Aequus.DataSets;
 
 namespace Aequus.Content.Equipment.Accessories.EventPrevention;
 
@@ -66,26 +66,26 @@ public class EventDeactivatorPlayer : ModPlayer {
 
     public override void PostUpdateEquips() {
         if (accDisableBloodMoon) {
-            foreach (int npc in NPCMetadata.FromBloodMoon) {
+            foreach (int npc in NPCDataSet.FromBloodMoon) {
                 Player.npcTypeNoAggro[npc] = true;
             }
         }
         if (accDisableGlimmer) {
-            foreach (int npc in NPCMetadata.FromGlimmer) {
+            foreach (int npc in NPCDataSet.FromGlimmer) {
                 Player.npcTypeNoAggro[npc] = true;
             }
         }
         if (accDisableEclipse) {
-            foreach (int npc in NPCMetadata.FromEclipse) {
+            foreach (int npc in NPCDataSet.FromEclipse) {
                 Player.npcTypeNoAggro[npc] = true;
             }
         }
     }
 
     public override bool CanHitNPC(NPC target) {
-        return (!accDisableBloodMoon || !NPCMetadata.FromBloodMoon.Contains(target.netID))
-            && (!accDisableGlimmer || !NPCMetadata.FromGlimmer.Contains(target.netID))
-            && (!accDisableEclipse || !NPCMetadata.FromEclipse.Contains(target.netID));
+        return (!accDisableBloodMoon || !NPCDataSet.FromBloodMoon.Contains(target.netID))
+            && (!accDisableGlimmer || !NPCDataSet.FromGlimmer.Contains(target.netID))
+            && (!accDisableEclipse || !NPCDataSet.FromEclipse.Contains(target.netID));
     }
 
     public override bool CanBeHitByProjectile(Projectile proj) {

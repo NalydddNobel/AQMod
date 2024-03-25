@@ -1,29 +1,29 @@
 ﻿using Aequus.Content.Tiles.CraftingStations.TrashCompactor;
-using Aequus.Core.DataSets;
+using Aequus.DataSets.Structures;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Aequus.Content.DataSets;
+namespace Aequus.DataSets;
 
-public class ItemMetadata : MetadataSet {
+public class ItemDataSet : DataSet {
     /// <summary>Items in this set are unable to be submitted to the Physicist.</summary>
     [JsonProperty]
-    public static HashSet<Entry<ItemID>> CannotTradeWithPhysicist { get; private set; } = new();
+    public static HashSet<IDEntry<ItemID>> CannotTradeWithPhysicist { get; private set; } = new();
     /// <summary>Items in this set are fishing junk.</summary>
     [JsonProperty]
-    public static List<Entry<ItemID>> FishingJunk { get; private set; }
+    public static List<IDEntry<ItemID>> FishingJunk { get; private set; }
     /// <summary>Items in this set are potions.</summary>
     [JsonProperty]
-    public static HashSet<Entry<ItemID>> Potions { get; private set; } = new();
+    public static HashSet<IDEntry<ItemID>> Potions { get; private set; } = new();
     [JsonProperty]
-    public static List<Entry<ItemID>> PillarFragmentsByColor { get; private set; } = new();
+    public static List<IDEntry<ItemID>> PillarFragmentsByColor { get; private set; } = new();
 
     /// <summary>
     /// A few item results which are ignored by the Shimmer Monocle, so that common transmuations don't have crappy bloated tooltips.
     /// </summary>
     [JsonProperty]
-    public static HashSet<Entry<ItemID>> ShimmerTooltipResultIgnore { get; private set; } = new();
+    public static HashSet<IDEntry<ItemID>> ShimmerTooltipResultIgnore { get; private set; } = new();
     /// <summary>
     /// Items marked as important will have special properties:
     /// <list type="bullet">
@@ -31,21 +31,21 @@ public class ItemMetadata : MetadataSet {
     /// </list>
     /// </summary>
     [JsonProperty]
-    public static HashSet<Entry<ItemID>> ImportantItem { get; private set; } = new();
+    public static HashSet<IDEntry<ItemID>> ImportantItem { get; private set; } = new();
     [JsonProperty]
-    public static HashSet<Entry<ItemID>> CannotRename { get; private set; } = new();
+    public static HashSet<IDEntry<ItemID>> CannotRename { get; private set; } = new();
     [JsonProperty]
-    public static HashSet<Entry<ItemID>> IsDungeonLockBox { get; private set; } = new();
+    public static HashSet<IDEntry<ItemID>> IsDungeonLockBox { get; private set; } = new();
     [JsonProperty]
-    public static HashSet<Entry<ItemID>> IsHellLockBox { get; private set; } = new();
+    public static HashSet<IDEntry<ItemID>> IsHellLockBox { get; private set; } = new();
     [JsonProperty]
-    public static HashSet<Entry<ItemID>> IsStaffOfRegrowth { get; private set; } = new() {
+    public static HashSet<IDEntry<ItemID>> IsStaffOfRegrowth { get; private set; } = new() {
         ItemID.StaffofRegrowth,
         ItemID.AcornAxe,
     };
 
     [JsonProperty]
-    public static Dictionary<Entry<ItemID>, Entry<ProjectileID>> AmmoIdToProjectileId { get; private set; } = new();
+    public static Dictionary<IDEntry<ItemID>, IDEntry<ProjectileID>> AmmoIdToProjectileId { get; private set; } = new();
 
     [JsonIgnore]
     public static Dictionary<int, TrashCompactorRecipe> CustomTrashCompactorRecipes { get; private set; } = new();

@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
-using Aequus.Content.DataSets;
 using Aequus.Content.DronePylons;
 using Aequus.Core.Initialization;
+using Aequus.DataSets;
 using Aequus.Old.Content.DronePylons;
 using Aequus.Old.Content.TownNPCs.PhysicistNPC;
 using System;
@@ -130,7 +130,7 @@ public abstract class TownDroneBase : ModNPC, IAddRecipes {
             return Color.Cyan;
         }
 
-        if (TileMetadata.PylonColors.TryGetValue(Main.tile[pylonSpot].TileType, out Dictionary<int, Color> styleToColorDictionary) 
+        if (TileDataSet.PylonColors.TryGetValue(Main.tile[pylonSpot].TileType, out Dictionary<int, Color> styleToColorDictionary) 
             && styleToColorDictionary.TryGetValue(Main.tile[pylonSpot].TileFrameX / 54, out Color rgb)) {
             return rgb;
         }

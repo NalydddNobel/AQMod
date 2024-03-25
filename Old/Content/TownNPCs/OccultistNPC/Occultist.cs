@@ -1,9 +1,9 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
 using Aequus.Common.Projectiles;
-using Aequus.Content.DataSets;
 using Aequus.Core;
 using Aequus.Core.ContentGeneration;
+using Aequus.DataSets;
 using Aequus.Old.Content.Equipment.GrapplingHooks.EnemyGrappleHook;
 using Aequus.Old.Content.Events.DemonSiege.Spawners;
 using Aequus.Old.Content.Events.DemonSiege.Tiles;
@@ -488,7 +488,7 @@ public partial class Occultist : ModNPC, IModifyShoppingSettings {
     }
 
     public override bool? CanBeHitByProjectile(Projectile projectile) {
-        if (ProjectileMetadata.OccultistIgnore.Contains(projectile.type)) {
+        if (ProjectileDataSet.OccultistIgnore.Contains(projectile.type)) {
             return false;
         }
 
@@ -504,7 +504,7 @@ public partial class Occultist : ModNPC, IModifyShoppingSettings {
     }
 
     public override bool CanBeHitByNPC(NPC attacker) {
-        return !NPCMetadata.Soulless.Contains(attacker.type);
+        return !NPCDataSet.Soulless.Contains(attacker.type);
     }
 }
 

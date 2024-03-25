@@ -1,5 +1,4 @@
-﻿using Aequus.Content.DataSets;
-using Aequus.Core.DataSets;
+﻿using Aequus.DataSets;
 using Terraria.Audio;
 
 namespace Aequus.Old.Content.Weapons.Demon.Magic;
@@ -11,7 +10,7 @@ public class TriacanthornProj : ModProjectile {
         ProjectileID.Sets.TrailCacheLength[Projectile.type] = 18;
         ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
         Main.projFrames[Type] = 3;
-        ProjectileMetadata.DealsHeatDamage.Add(Type);
+        ProjectileDataSet.DealsHeatDamage.Add(Type);
     }
 
     public override void SetDefaults() {

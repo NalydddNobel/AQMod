@@ -1,4 +1,4 @@
-﻿using Aequus.Content.DataSets;
+﻿using Aequus.DataSets;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.ObjectData;
@@ -28,7 +28,7 @@ public struct TrashCompactorRecipe {
     public bool Invalid => Ingredient == null || Results == null || Results.Count <= 0;
 
     public static TrashCompactorRecipe FromItem(Item item) {
-        if (ItemMetadata.CustomTrashCompactorRecipes.TryGetValue(item.type, out var recipeOverride)) {
+        if (ItemDataSet.CustomTrashCompactorRecipes.TryGetValue(item.type, out var recipeOverride)) {
             return recipeOverride;
         }
 
@@ -74,6 +74,6 @@ public struct TrashCompactorRecipe {
     }
 
     public static void AddCustomRecipe(int ingredient, params (int, int)[] results) {
-        ItemMetadata.CustomTrashCompactorRecipes[ingredient] = new(ingredient, results);
+        ItemDataSet.CustomTrashCompactorRecipes[ingredient] = new(ingredient, results);
     }
 }

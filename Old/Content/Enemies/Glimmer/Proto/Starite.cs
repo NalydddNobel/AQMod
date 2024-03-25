@@ -1,8 +1,8 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
-using Aequus.Content.DataSets;
 using Aequus.Core.ContentGeneration;
+using Aequus.DataSets;
 using Aequus.Old.Content.Events.Glimmer;
 using Aequus.Old.Content.Materials;
 using Aequus.Old.Content.Particles;
@@ -35,7 +35,7 @@ public class Starite : ModNPC, ITrackTimeBetweenHits {
             PortraitPositionYOverride = 36,
         });
 
-        NPCMetadata.FromGlimmer.Add(Type);
+        NPCDataSet.FromGlimmer.Add(Type);
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

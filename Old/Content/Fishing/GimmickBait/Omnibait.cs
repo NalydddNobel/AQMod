@@ -1,14 +1,18 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Content.Fishing;
+using Aequus.Old.Content.Fishing.Poppers;
 using System.Collections;
-using System.Diagnostics;
 using System.Reflection;
 using Terraria.DataStructures;
 
 namespace Aequus.Old.Content.Fishing.GimmickBait;
 
 public class Omnibait : ModBait, IModifyFishAttempt {
-    private static BitsByte[] _vanillaZoneFlags = new BitsByte[5];
+    public const int RECIPE_POPPER_AMOUNT = 10;
+    public const int RECIPE_COMMON_BAITS_AMOUNT = 5;
+    public const int RECIPE_GEMS_WANTED = 3;
+
+    private static readonly BitsByte[] _vanillaZoneFlags = new BitsByte[5];
     private static BitArray _moddedZoneFlags;
 
     private static FieldInfo FieldInfo_Player_modBiomeFlags;
@@ -101,9 +105,6 @@ public class Omnibait : ModBait, IModifyFishAttempt {
         }
 
         if (TryGetModdedBiomeBitArray(player, out BitArray modBiomes)) {
-            spitOutBitArray("Default", modBiomes);
-            spitOutBitArray("Shuffled", _moddedZoneFlags);
-
             if (_moddedZoneFlags == null || _moddedZoneFlags.Length != modBiomes.Length) {
                 _moddedZoneFlags = new BitArray(modBiomes.Length);
             }
@@ -137,12 +138,59 @@ public class Omnibait : ModBait, IModifyFishAttempt {
         return true;
     }
 
-    [Conditional("DEBUG")]
-    private static void spitOutBitArray(string arrName, BitArray bitArray) {
-        string bitArrText = "";
-        for (int i = 0; i < bitArray.Length; i++) {
-            bitArrText += bitArray[i] ? "1" : "0";
-        }
-        Main.NewText($"{arrName} arr: {bitArrText}");
+    public override void AddRecipes() {
+        int commonBaitAmount = RECIPE_COMMON_BAITS_AMOUNT;
+        int gemsAmount = RECIPE_GEMS_WANTED;
+        int popperAmount = RECIPE_POPPER_AMOUNT;
+
+        /* Common Baits */
+        Recipe.Create(ItemID.JourneymanBait, commonBaitAmount)
+            .AddIngredient(Type)
+            .AddIngredient(ItemID.Amethyst, gemsAmount)
+            .Register()
+            .SortBeforeFirstRecipesOf(ItemID.EnchantedNightcrawler);
+
+        Recipe.Create(ItemID.MasterBait, commonBaitAmount)
+            .AddIngredient(Type)
+            .AddIngredient(ItemID.Sapphire, gemsAmount)
+            .Register()
+            .SortBeforeFirstRecipesOf(ItemID.EnchantedNightcrawler);
+
+        /* Rare Baits */
+        Recipe.Create(ModContent.ItemType<CrateBait>())
+            .AddIngredient(Type)
+            .AddIngredient(ItemID.Amber, gemsAmount)
+            .AddTile(TileID.Bottles)
+            .Register()
+            .SortBeforeFirstRecipesOf(ItemID.EnchantedNightcrawler);
+
+        Recipe.Create(ModContent.ItemType<LegendberryBait>())
+            .AddIngredient(Type)
+            .AddIngredient(ItemID.Diamond, gemsAmount)
+            .AddTile(TileID.Bottles)
+            .Register()
+            .SortBeforeFirstRecipesOf(ItemID.EnchantedNightcrawler);
+
+        /* Poppers */
+        Recipe.Create(ModContent.ItemType<CorruptPopper>(), popperAmount)
+            .AddIngredient(Type)
+            .AddIngredient(ItemID.CursedFlame, popperAmount)
+            .AddTile(TileID.Bottles)
+            .Register()
+            .SortBeforeFirstRecipesOf(ItemID.EnchantedNightcrawler);
+
+        Recipe.Create(ModContent.ItemType<CrimsonPopper>(), popperAmount)
+            .AddIngredient(Type)
+            .AddIngredient(ItemID.Ichor, popperAmount)
+            .AddTile(TileID.Bottles)
+            .Register()
+            .SortBeforeFirstRecipesOf(ItemID.EnchantedNightcrawler);
+
+        Recipe.Create(ModContent.ItemType<HallowPopper>(), popperAmount)
+            .AddIngredient(Type)
+            .AddIngredient(ItemID.CrystalShard, popperAmount)
+            .AddTile(TileID.Bottles)
+            .Register()
+            .SortBeforeFirstRecipesOf(ItemID.EnchantedNightcrawler);
     }
 }

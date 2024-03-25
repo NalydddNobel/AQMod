@@ -1,5 +1,5 @@
-﻿using Aequus.Content.DataSets;
-using Aequus.Core;
+﻿using Aequus.Core;
+using Aequus.DataSets;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using Terraria.ObjectData;
@@ -8,7 +8,7 @@ namespace Aequus.Common.Tiles;
 
 public class PotsGlobalTile : GlobalTile {
     public override bool? IsTileDangerous(int i, int j, int type, Player player) {
-        if (!TileMetadata.IsSmashablePot.Contains(type)) {
+        if (!TileDataSet.IsSmashablePot.Contains(type)) {
             return null;
         }
 
@@ -23,7 +23,7 @@ public class PotsGlobalTile : GlobalTile {
     }
 
     public override void PostDraw(int i, int j, int type, SpriteBatch spriteBatch) {
-        if (!TileMetadata.IsSmashablePot.Contains(type)) {
+        if (!TileDataSet.IsSmashablePot.Contains(type)) {
             return;
         }
 

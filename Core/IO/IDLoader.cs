@@ -1,4 +1,4 @@
-﻿using Aequus.Core.DataSets;
+﻿using Aequus.DataSets.Utils;
 using System;
 using System.Globalization;
 using Terraria.ModLoader.IO;

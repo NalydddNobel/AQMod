@@ -1,4 +1,4 @@
-﻿using Aequus.Content.DataSets;
+﻿using Aequus.DataSets;
 using Aequus.Old.Content.TownNPCs.PhysicistNPC.Analysis;
 using System;
 using Terraria.Audio;
@@ -89,7 +89,7 @@ public partial class Physicist {
 
     public static bool CanBeQuestItem(Item item, AnalysisQuest questInfo) {
         return !item.favorited && !item.IsAir && !item.IsACoin &&
-            item.OriginalRarity == questInfo.itemRarity && !ItemMetadata.CannotTradeWithPhysicist.Contains(item.type) && !Main.itemAnimationsRegistered.Contains(item.type);
+            item.OriginalRarity == questInfo.itemRarity && !ItemDataSet.CannotTradeWithPhysicist.Contains(item.type) && !Main.itemAnimationsRegistered.Contains(item.type);
     }
 
     public string QuestChat(AnalysisQuest questInfo) {

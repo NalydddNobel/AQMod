@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Projectiles;
-using Aequus.Content.DataSets;
 using Aequus.Core.Networking;
+using Aequus.DataSets;
 using Aequus.Old.Core.Utilities;
 using System;
 using System.IO;
@@ -196,12 +196,12 @@ public class PhysicsGunProj : HeldProjBase {
                 Tile tile = Main.tile[checkTileCoords];
                 ushort tileType = tile.TileType;
                 if (tile.HasTile) {
-                    if (TileMetadata.PhysicsGunBlocksLaser.Contains(tileType)) {
+                    if (TileDataSet.PhysicsGunBlocksLaser.Contains(tileType)) {
                         break;
                     }
 
                     if (Main.tile[checkTileCoords].IsFullySolid() && !Main.tileFrameImportant[tileType]) {
-                        if (TileMetadata.PhysicsGunCannotPickUp.Contains(tileType) || !player.HasEnoughPickPowerToHurtTile(checkTileCoords.X, checkTileCoords.Y) || !WorldGen.CanKillTile(checkTileCoords.X, checkTileCoords.Y)) {
+                        if (TileDataSet.PhysicsGunCannotPickUp.Contains(tileType) || !player.HasEnoughPickPowerToHurtTile(checkTileCoords.X, checkTileCoords.Y) || !WorldGen.CanKillTile(checkTileCoords.X, checkTileCoords.Y)) {
                             break;
                         }
 
@@ -434,7 +434,7 @@ public class PhysicsGunPickupBlockPacket : PacketHandler {
             Tile tile = Main.tile[X, Y];
             ushort tileType = tile.TileType;
 
-            if (!tile.IsFullySolid() || Main.tileFrameImportant[tileType] || TileMetadata.PhysicsGunCannotPickUp.Contains(tileType) || !WorldGen.CanKillTile(X, Y)) {
+            if (!tile.IsFullySolid() || Main.tileFrameImportant[tileType] || TileDataSet.PhysicsGunCannotPickUp.Contains(tileType) || !WorldGen.CanKillTile(X, Y)) {
                 return;
             }
 

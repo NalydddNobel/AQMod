@@ -1,10 +1,10 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Biomes.PollutedOcean;
-using Aequus.Content.DataSets;
 using Aequus.Content.Graphics.Particles;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics;
+using Aequus.DataSets;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
@@ -21,7 +21,7 @@ public partial class BlackJellyfish : AIJellyfish {
     #region Initialization
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = 4;
-        NPCMetadata.PushableByTypeId.Add(Type);
+        NPCDataSet.PushableByTypeId.Add(Type);
     }
 
     public override void SetDefaults() {

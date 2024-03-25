@@ -2,10 +2,10 @@
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
 using Aequus.Content.Biomes.PollutedOcean;
-using Aequus.Content.DataSets;
 using Aequus.Content.Equipment.Accessories.ScavengerBag;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.Initialization;
+using Aequus.DataSets;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -60,7 +60,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
             Scale = 1f,
         };
         NPCSets.StatueSpawnedDropRarity[Type] = 0.05f;
-        NPCMetadata.PushableByTypeId.Add(Type);
+        NPCDataSet.PushableByTypeId.Add(Type);
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -134,16 +134,16 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
     }
 
     private void RandomizeArmor(UnifiedRandom random) {
-        SetItem(ref weapon, ScavengerEquipment.ScavengerWeapons.Select((i) => i.Id).ToList(), random);
+        SetItem(ref weapon, ScavengerDataSet.ScavengerWeapons.Select((i) => i.Id).ToList(), random);
         var options = new List<int>() { SLOT_HEAD, SLOT_BODY, SLOT_LEGS, SLOT_ACCS };
         while (options.Count > 0) {
             int choice = random.Next(options);
 
             bool value = choice switch {
-                SLOT_HEAD => SetItem(ref armor[SLOT_HEAD], ScavengerEquipment.ScavengerHelmets.Select((i) => i.Id).ToList(), random),
-                SLOT_BODY => SetItem(ref armor[SLOT_BODY], ScavengerEquipment.ScavengerBreastplates.Select((i) => i.Id).ToList(), random),
-                SLOT_LEGS => SetItem(ref armor[SLOT_LEGS], ScavengerEquipment.ScavengerLeggings.Select((i) => i.Id).ToList(), random),
-                SLOT_ACCS => SetItem(ref armor[SLOT_ACCS], ScavengerEquipment.ScavengerAccessories.Select((i) => i.Id).ToList(), random),
+                SLOT_HEAD => SetItem(ref armor[SLOT_HEAD], ScavengerDataSet.ScavengerHelmets.Select((i) => i.Id).ToList(), random),
+                SLOT_BODY => SetItem(ref armor[SLOT_BODY], ScavengerDataSet.ScavengerBreastplates.Select((i) => i.Id).ToList(), random),
+                SLOT_LEGS => SetItem(ref armor[SLOT_LEGS], ScavengerDataSet.ScavengerLeggings.Select((i) => i.Id).ToList(), random),
+                SLOT_ACCS => SetItem(ref armor[SLOT_ACCS], ScavengerDataSet.ScavengerAccessories.Select((i) => i.Id).ToList(), random),
                 _ => false
             };
 

@@ -700,126 +700,6 @@
             <param name="sourceRectangle">The bounds of the portrait.</param>
             <param name="displayColor">The Color of the entry. It is usually Black when hidden, and White when not hidden.</param>
         </member>
-        <member name="P:Aequus.Content.DataSets.BuffMetadata.CannotChangeDuration">
-            <summary>Buffs in this set should not have their duration altered, like the Luck Potion effect.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.BuffMetadata.PlayerStatusDebuff">
-            <summary>Set for compatibility with Thorium.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.BuffMetadata.PlayerDoTDebuff">
-            <summary>Set for compatibility with Thorium.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.ItemMetadata.CannotTradeWithPhysicist">
-            <summary>Items in this set are unable to be submitted to the Physicist.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.ItemMetadata.FishingJunk">
-            <summary>Items in this set are fishing junk.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.ItemMetadata.Potions">
-            <summary>Items in this set are potions.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.ItemMetadata.ShimmerTooltipResultIgnore">
-            <summary>
-            A few item results which are ignored by the Shimmer Monocle, so that common transmuations don't have crappy bloated tooltips.
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.ItemMetadata.ImportantItem">
-            <summary>
-            Items marked as important will have special properties:
-            <list type="bullet">
-            <item>If this item is inside a chest, the chest will not gain Aequus loot, or Hardmode Chest Loot.</item>
-            </list>
-            </summary>
-        </member>
-        <member name="T:Aequus.Content.DataSets.ItemTypeVariantMetadata">
-            <summary>
-            Dataset with lists of all supported variants of an item. 
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.ItemTypeVariantMetadata.RottenChunk">
-            <summary><see cref="F:Terraria.ID.ItemID.RottenChunk"/>, <see cref="F:Terraria.ID.ItemID.Vertebrae"/>, Avalon/YuckyBit.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.ItemTypeVariantMetadata.DemoniteBar">
-            <summary><see cref="F:Terraria.ID.ItemID.DemoniteBar"/>, <see cref="F:Terraria.ID.ItemID.CrimtaneBar"/>, Avalon/BacciliteBar.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.NPCMetadata.Soulless">
-            <summary>
-            NPC Ids in this set cannot damage the Occultist, or have their souls trapped into Soul Gems.
-            Automatically populated with all NPC Ids which have the Underworld or Gore Nest as bestiary tags.
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.NPCMetadata.FromEclipse">
-            <summary>Automatically populated with all NPC Ids which have the Eclipse as bestiary tags.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.NPCMetadata.FromBloodMoon">
-            <summary>Automatically populated with all NPC Ids which have the Blood Moon as bestiary tags.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.NPCMetadata.IsCorrupt">
-            <summary>Automatically populated with all NPC Ids which have the Corruption as bestiary tags.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.NPCMetadata.IsCrimson">
-            <summary>Automatically populated with all NPC Ids which have the Crimson as bestiary tags.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.NPCMetadata.IsHallow">
-            <summary>Automatically populated with all NPC Ids which have the Hallow as bestiary tags.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.NPCMetadata.FromPillarEvent">
-            <summary>Automatically populated with all NPC Ids which have a Pillar as a bestiary tag.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.NPCMetadata.NameTagOverride">
-            <summary>Entries in this set can completely override the Name Tag conditional check with their own value.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.NPCMetadata.StunnableByTypeId">
-            <summary>Entries in this set are able to be stunned by the Stun Gun (<see cref="T:Aequus.Content.Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.NPCMetadata.StunnableByAI">
-            <summary>Enemies with an AI Type in this set are able to be stunned by the Stun Gun (<see cref="T:Aequus.Content.Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.NPCMetadata.FriendablePreHardmodeSlime">
-            <summary>Used for Royal Gel's Crown of Blood combination.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.NPCMetadata.FriendableHardmodeSlime">
-            <summary>Used for Volatile Gelatin's Crown of Blood combination.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.NPCMetadata.Unfriendable">
-            <summary>Enemies in this set cannot become friendly through necromancy.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.NPCMetadata.DealsHeatDamage">
-            <summary>NPCs in this set deal 'heat' contact damage. This damage can be resisted using the Frost Potion.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.NPCMetadata.PrefixBlacklist">
-            <summary>NPCs in this set cannot be given Elite affixes.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.NPCMetadata.PushableByTypeId">
-            <summary>Entries in this set are able to be pushed by the Pumpinator.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.NPCMetadata.PushableByAI">
-            <summary>Enemies with an AI Type in this set are able to be pushed by the Pumpinator.</summary>
-        </member>
-        <member name="M:Aequus.Content.DataSets.NPCMetadata.ContainsBestiaryTags(System.Collections.Generic.List{Terraria.GameContent.Bestiary.IBestiaryInfoElement},System.Collections.Generic.List{Terraria.GameContent.Bestiary.IFilterInfoProvider})">
-            <summary>
-            Compares bestiary tags by comparing <see cref="M:Terraria.GameContent.Bestiary.IFilterInfoProvider.GetDisplayNameKey"/> results.
-            Biome/Event/Time/Ect Tags utilize <see cref="T:Terraria.GameContent.Bestiary.IFilterInfoProvider"/>.
-            </summary>
-            <param name="tags"></param>
-            <param name="searchTags"></param>
-            <returns></returns>
-        </member>
-        <member name="P:Aequus.Content.DataSets.ProjectileMetadata.SpriteRotation">
-            <summary>Rotation offset of projectile sprites so it can be rotated correctly.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.ProjectileMetadata.OccultistIgnore">
-            <summary>Projectiles in this set do not damage the <see cref="T:Aequus.Old.Content.TownNPCs.OccultistNPC.Occultist"/>.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.ProjectileMetadata.IsStar">
-            <summary>Whether or not this projectile is a "Star", this is automatically populated with anything that has "Star" in their internal name.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.ProjectileMetadata.DealsHeatDamage">
-            <summary>Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.</summary>
-        </member>
-        <member name="P:Aequus.Content.DataSets.TileMetadata.PreventsSlopesBelow">
-            <summary>Prevents tiles below this tile from being sloped.</summary>
-        </member>
         <member name="T:Aequus.Content.Dyes.ArmorShaderDataThirdColor">
             <summary>
             Uses "uLightSource" as a 3rd color value.
@@ -1408,48 +1288,6 @@
         </member>
         <member name="P:Aequus.Core.CrossMod.SupportedMod`1.Instance">
             <summary>The Supported Mod's instance. This property is <see langword="null" /> when the mod is not enabled.</summary>
-        </member>
-        <member name="P:Aequus.Core.DataSets.IEntry.Name">
-            <summary>Name for the content entry.</summary>
-        </member>
-        <member name="P:Aequus.Core.DataSets.IEntry.Id">
-            <summary>ID for the content.</summary>
-        </member>
-        <member name="P:Aequus.Core.DataSets.IEntry.ValidEntry">
-            <summary>Whether this is a valid entry. Entries for content from other mods will be marked as Invalid if the mod is not enabled.</summary>
-        </member>
-        <member name="P:Aequus.Core.DataSets.IEntry.VanillaEntry">
-            <summary>Whether this is a vanilla entry.</summary>
-        </member>
-        <member name="M:Aequus.Core.DataSets.IEntry.SetName(System.String)">
-            <summary>Set <see cref="P:Aequus.Core.DataSets.IEntry.Id"/> using <paramref name="name"/>. Called when loading the .json metadata files.</summary>
-            <param name="name">Name of the content.</param>
-        </member>
-        <member name="M:Aequus.Core.DataSets.IEntry.SetId(System.Int32)">
-            <summary>Set <see cref="P:Aequus.Core.DataSets.IEntry.Id"/> directly. Use this to update the name or other values if needed.</summary>
-            <param name="id">The Content's Id.</param>
-        </member>
-        <member name="T:Aequus.Core.DataSets.Entry`1">
-            <summary>
-            Represents an entry for a piece of content which uses an Id system.
-            <para>
-            <typeparamref name="T"/> should be one of the "X-ID" classes, like <see cref="T:Terraria.ID.ItemID"/>, <see cref="T:Terraria.ID.BuffID"/>, ect.
-            The ID class must also have an <see cref="T:ReLogic.Reflection.IdDictionary"/> named "Search", and a value for the total amount of vanilla entries labled "Count" (which can also be converted into an <see cref="T:System.Int32"/>)
-            </para>
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="P:Aequus.Core.DataSets.Entry`1.Name">
-            <summary><inheritdoc cref="P:Aequus.Core.DataSets.IEntry.Name"/> Automatically grabbed from <typeparamref name="T"/>.Search.GetName(<see cref="P:Aequus.Core.DataSets.Entry`1.Id"/>). Returns "Unknown" or a name of an invalid entry if no name exists.</summary>
-        </member>
-        <member name="P:Aequus.Core.DataSets.Entry`1.VanillaEntry">
-            <summary><inheritdoc cref="P:Aequus.Core.DataSets.IEntry.VanillaEntry"/> Automatically determined by checking if <see cref="P:Aequus.Core.DataSets.Entry`1.Id"/> is less than <typeparamref name="T"/>.Count.</summary>
-        </member>
-        <member name="F:Aequus.Core.DataSets.IDCommons`1.Count">
-            <summary>The vanilla count.</summary>
-        </member>
-        <member name="F:Aequus.Core.DataSets.IDCommons`1.StartCount">
-            <summary>The starting Id. This is usually 0, but in some cases like <see cref="T:Terraria.ID.NPCID"/> it will be equal to <see cref="F:Terraria.ID.NPCID.NegativeIDCount"/>.</summary>
         </member>
         <member name="E:Aequus.Core.Graphics.DrawLayers.WorldBehindTiles">
             <summary>Invoked before NPCs behind tiles are drawn.</summary>
@@ -3873,6 +3711,171 @@
         </member>
         <member name="F:Aequus.AequusTextures.BacciliteSceptre_Glow">
             <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre_Glow</summary>
+        </member>
+        <member name="P:Aequus.DataSets.BuffDataSet.CannotChangeDuration">
+            <summary>Buffs in this set should not have their duration altered, like the Luck Potion effect.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.BuffDataSet.PlayerStatusDebuff">
+            <summary>Set for compatibility with Thorium.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.BuffDataSet.PlayerDoTDebuff">
+            <summary>Set for compatibility with Thorium.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.FishDataSet.Junk">
+            <summary>Items in this set are fishing junk.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.ItemDataSet.CannotTradeWithPhysicist">
+            <summary>Items in this set are unable to be submitted to the Physicist.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.ItemDataSet.FishingJunk">
+            <summary>Items in this set are fishing junk.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.ItemDataSet.Potions">
+            <summary>Items in this set are potions.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.ItemDataSet.ShimmerTooltipResultIgnore">
+            <summary>
+            A few item results which are ignored by the Shimmer Monocle, so that common transmuations don't have crappy bloated tooltips.
+            </summary>
+        </member>
+        <member name="P:Aequus.DataSets.ItemDataSet.ImportantItem">
+            <summary>
+            Items marked as important will have special properties:
+            <list type="bullet">
+            <item>If this item is inside a chest, the chest will not gain Aequus loot, or Hardmode Chest Loot.</item>
+            </list>
+            </summary>
+        </member>
+        <member name="T:Aequus.DataSets.ItemTypeVariantDataSet">
+            <summary>
+            Dataset with lists of all supported variants of an item. 
+            </summary>
+        </member>
+        <member name="P:Aequus.DataSets.ItemTypeVariantDataSet.RottenChunk">
+            <summary><see cref="F:Terraria.ID.ItemID.RottenChunk"/>, <see cref="F:Terraria.ID.ItemID.Vertebrae"/>, Avalon/YuckyBit.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.ItemTypeVariantDataSet.DemoniteBar">
+            <summary><see cref="F:Terraria.ID.ItemID.DemoniteBar"/>, <see cref="F:Terraria.ID.ItemID.CrimtaneBar"/>, Avalon/BacciliteBar.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.Soulless">
+            <summary>
+            NPC Ids in this set cannot damage the Occultist, or have their souls trapped into Soul Gems.
+            Automatically populated with all NPC Ids which have the Underworld or Gore Nest as bestiary tags.
+            </summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.FromEclipse">
+            <summary>Automatically populated with all NPC Ids which have the Eclipse as bestiary tags.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.FromBloodMoon">
+            <summary>Automatically populated with all NPC Ids which have the Blood Moon as bestiary tags.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.IsCorrupt">
+            <summary>Automatically populated with all NPC Ids which have the Corruption as bestiary tags.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.IsCrimson">
+            <summary>Automatically populated with all NPC Ids which have the Crimson as bestiary tags.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.IsHallow">
+            <summary>Automatically populated with all NPC Ids which have the Hallow as bestiary tags.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.FromPillarEvent">
+            <summary>Automatically populated with all NPC Ids which have a Pillar as a bestiary tag.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.NameTagOverride">
+            <summary>Entries in this set can completely override the Name Tag conditional check with their own value.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.StunnableByTypeId">
+            <summary>Entries in this set are able to be stunned by the Stun Gun (<see cref="!:Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.StunnableByAI">
+            <summary>Enemies with an AI Type in this set are able to be stunned by the Stun Gun (<see cref="!:Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.FriendablePreHardmodeSlime">
+            <summary>Used for Royal Gel's Crown of Blood combination.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.FriendableHardmodeSlime">
+            <summary>Used for Volatile Gelatin's Crown of Blood combination.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.Unfriendable">
+            <summary>Enemies in this set cannot become friendly through necromancy.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.DealsHeatDamage">
+            <summary>NPCs in this set deal 'heat' contact damage. This damage can be resisted using the Frost Potion.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.PrefixBlacklist">
+            <summary>NPCs in this set cannot be given Elite affixes.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.PushableByTypeId">
+            <summary>Entries in this set are able to be pushed by the Pumpinator.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.PushableByAI">
+            <summary>Enemies with an AI Type in this set are able to be pushed by the Pumpinator.</summary>
+        </member>
+        <member name="M:Aequus.DataSets.NPCDataSet.ContainsBestiaryTags(System.Collections.Generic.List{Terraria.GameContent.Bestiary.IBestiaryInfoElement},System.Collections.Generic.List{Terraria.GameContent.Bestiary.IFilterInfoProvider})">
+            <summary>
+            Compares bestiary tags by comparing <see cref="M:Terraria.GameContent.Bestiary.IFilterInfoProvider.GetDisplayNameKey"/> results.
+            Biome/Event/Time/Ect Tags utilize <see cref="T:Terraria.GameContent.Bestiary.IFilterInfoProvider"/>.
+            </summary>
+            <param name="tags"></param>
+            <param name="searchTags"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Aequus.DataSets.ProjectileDataSet.SpriteRotation">
+            <summary>Rotation offset of projectile sprites so it can be rotated correctly.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.ProjectileDataSet.OccultistIgnore">
+            <summary>Projectiles in this set do not damage the <see cref="T:Aequus.Old.Content.TownNPCs.OccultistNPC.Occultist"/>.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.ProjectileDataSet.IsStar">
+            <summary>Whether or not this projectile is a "Star", this is automatically populated with anything that has "Star" in their internal name.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.ProjectileDataSet.DealsHeatDamage">
+            <summary>Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.</summary>
+        </member>
+        <member name="T:Aequus.DataSets.Structures.IDEntry`1">
+            <summary>
+            Represents an entry for a piece of content which uses an Id system.
+            <para>
+            <typeparamref name="T"/> should be one of the "X-ID" classes, like <see cref="T:Terraria.ID.ItemID"/>, <see cref="T:Terraria.ID.BuffID"/>, ect.
+            The ID class must also have an <see cref="T:ReLogic.Reflection.IdDictionary"/> named "Search", and a value for the total amount of vanilla entries labled "Count" (which can also be converted into an <see cref="T:System.Int32"/>)
+            </para>
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Aequus.DataSets.Structures.IDEntry`1.Name">
+            <summary><inheritdoc cref="P:Aequus.DataSets.Structures.IIDEntry.Name"/> Automatically grabbed from <typeparamref name="T"/>.Search.GetName(<see cref="P:Aequus.DataSets.Structures.IDEntry`1.Id"/>). Returns "Unknown" or a name of an invalid entry if no name exists.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.Structures.IDEntry`1.VanillaEntry">
+            <summary><inheritdoc cref="P:Aequus.DataSets.Structures.IIDEntry.VanillaEntry"/> Automatically determined by checking if <see cref="P:Aequus.DataSets.Structures.IDEntry`1.Id"/> is less than <typeparamref name="T"/>.Count.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.Structures.IIDEntry.Name">
+            <summary>Name for the content entry.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.Structures.IIDEntry.Id">
+            <summary>ID for the content.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.Structures.IIDEntry.ValidEntry">
+            <summary>Whether this is a valid entry. Entries for content from other mods will be marked as Invalid if the mod is not enabled.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.Structures.IIDEntry.VanillaEntry">
+            <summary>Whether this is a vanilla entry.</summary>
+        </member>
+        <member name="M:Aequus.DataSets.Structures.IIDEntry.SetName(System.String)">
+            <summary>Set <see cref="P:Aequus.DataSets.Structures.IIDEntry.Id"/> using <paramref name="name"/>. Called when loading the .json metadata files.</summary>
+            <param name="name">Name of the content.</param>
+        </member>
+        <member name="M:Aequus.DataSets.Structures.IIDEntry.SetId(System.Int32)">
+            <summary>Set <see cref="P:Aequus.DataSets.Structures.IIDEntry.Id"/> directly. Use this to update the name or other values if needed.</summary>
+            <param name="id">The Content's Id.</param>
+        </member>
+        <member name="P:Aequus.DataSets.TileDataSet.PreventsSlopesBelow">
+            <summary>Prevents tiles below this tile from being sloped.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Utils.IDCommons`1.Count">
+            <summary>The vanilla count.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Utils.IDCommons`1.StartCount">
+            <summary>The starting Id. This is usually 0, but in some cases like <see cref="T:Terraria.ID.NPCID"/> it will be equal to <see cref="F:Terraria.ID.NPCID.NegativeIDCount"/>.</summary>
         </member>
         <member name="T:Aequus.Old.Common.Graphics.Camera.CameraFocus">
             <summary>

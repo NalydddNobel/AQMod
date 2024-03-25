@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Content.Biomes.PollutedOcean;
 using Terraria.DataStructures;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Fishing;
 

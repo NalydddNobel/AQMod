@@ -3,10 +3,10 @@ using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Bosses;
 using Aequus.Content.Bosses.Trophies;
-using Aequus.Content.DataSets;
 using Aequus.Content.Pets.OmegaStarite;
 using Aequus.Core;
 using Aequus.Core.ContentGeneration;
+using Aequus.DataSets;
 using Aequus.Old.Common.Graphics;
 using Aequus.Old.Common.Graphics.Camera;
 using Aequus.Old.Content.Bosses.Cosmic.OmegaStarite.Projectiles;
@@ -1313,7 +1313,7 @@ public class OmegaStarite : LegacyAequusBoss {
     }
 
     public override void ModifyHitByProjectile(Projectile projectile, ref NPC.HitModifiers modifiers) {
-        if (ProjectileMetadata.IsStar.Contains(projectile.type)) {
+        if (ProjectileDataSet.IsStar.Contains(projectile.type)) {
             modifiers.FinalDamage *= starDamageMultiplier;
         }
     }

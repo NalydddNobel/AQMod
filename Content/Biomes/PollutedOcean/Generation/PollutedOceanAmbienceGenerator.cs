@@ -7,11 +7,8 @@ using Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient.Dripstones;
 using Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient.Pots;
 using Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient.SeaPickles;
 using Aequus.Content.Chests;
-using Aequus.Content.DataSets;
 using Aequus.Content.Tiles.Furniture.Trash;
 using System;
-using System.Collections.Generic;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.IO;
 using Terraria.WorldBuilding;
 

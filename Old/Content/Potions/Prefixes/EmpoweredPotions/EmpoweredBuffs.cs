@@ -1,4 +1,4 @@
-﻿using Aequus.Core.DataSets;
+﻿using Aequus.DataSets.Structures;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -6,11 +6,11 @@ using Terraria.Localization;
 
 namespace Aequus.Old.Content.Potions.Prefixes.EmpoweredPotions;
 
-public class EmpoweredBuffs : MetadataSet {
+public class EmpoweredBuffs : DataSet {
     [JsonProperty]
-    public static HashSet<Entry<BuffID>> Blacklist { get; private set; } = new();
+    public static HashSet<IDEntry<BuffID>> Blacklist { get; private set; } = new();
     [JsonIgnore]
-    public static Dictionary<Entry<BuffID>, EmpoweredOverride> Override { get; private set; } = new();
+    public static Dictionary<IDEntry<BuffID>, EmpoweredOverride> Override { get; private set; } = new();
 
     public record struct EmpoweredOverride(float Percent = 1f, Action<Player> CustomAction = null, LocalizedText Tooltip = null);
 

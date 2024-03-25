@@ -1,8 +1,8 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
-using Aequus.Content.DataSets;
 using Aequus.Core.ContentGeneration;
+using Aequus.DataSets;
 using Aequus.Old.Common.Graphics;
 using Aequus.Old.Content.Critters;
 using Aequus.Old.Content.Events.Glimmer;
@@ -48,7 +48,7 @@ public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
             Scale = 0.6f,
         });
 
-        NPCMetadata.FromGlimmer.Add(Type);
+        NPCDataSet.FromGlimmer.Add(Type);
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {

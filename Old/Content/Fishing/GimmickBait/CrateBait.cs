@@ -14,15 +14,6 @@ public class CrateBait : ModBait, IModifyFishAttempt {
         Item.rare = ItemRarityID.Orange;
     }
 
-    public override void AddRecipes() {
-        CreateRecipe()
-            .AddIngredient(ItemID.BottledWater)
-            .AddIngredient(ItemID.Amber, 5)
-            .AddTile(TileID.Bottles)
-            .Register()
-            .SortBeforeFirstRecipesOf(ItemID.EnchantedNightcrawler);
-    }
-
     public bool PreCatchFish(Projectile bobber, ref FishingAttempt fisher) {
         if (!fisher.crate) {
             fisher.crate = Main.rand.NextBool();

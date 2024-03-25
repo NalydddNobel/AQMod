@@ -1,4 +1,4 @@
-﻿using Aequus.Content.DataSets;
+﻿using Aequus.DataSets;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -16,7 +16,7 @@ public sealed class ShimmerMonocleGlobalItem : GlobalItem {
     }
 
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
-        return (ItemSets.ShimmerTransformToItem[entity.type] > 0 || CustomShimmerTip.ContainsKey(entity.type)) && !ItemMetadata.ShimmerTooltipResultIgnore.Contains(ItemSets.ShimmerTransformToItem[entity.type]);
+        return (ItemSets.ShimmerTransformToItem[entity.type] > 0 || CustomShimmerTip.ContainsKey(entity.type)) && !ItemDataSet.ShimmerTooltipResultIgnore.Contains(ItemSets.ShimmerTransformToItem[entity.type]);
     }
 
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
@@ -32,7 +32,7 @@ public sealed class ShimmerMonocleGlobalItem : GlobalItem {
             }
         }
 
-        if (ItemSets.ShimmerTransformToItem[item.type] <= 0 || ItemMetadata.ShimmerTooltipResultIgnore.Contains(ItemSets.ShimmerTransformToItem[item.type]) || !item.CanShimmer()) {
+        if (ItemSets.ShimmerTransformToItem[item.type] <= 0 || ItemDataSet.ShimmerTooltipResultIgnore.Contains(ItemSets.ShimmerTransformToItem[item.type]) || !item.CanShimmer()) {
             return;
         }
 

@@ -1,8 +1,8 @@
 ﻿using Aequus.Common.Backpacks;
 using Aequus.Common.Items.Components;
-using Aequus.Content.DataSets;
 using Aequus.Core.CodeGeneration;
 using Aequus.Core.UI;
+using Aequus.DataSets;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -108,7 +108,7 @@ public partial class AequusPlayer {
             Recipe.FindRecipes();
             return true;
         }
-        if (ItemMetadata.IsDungeonLockBox.Contains(inv[slot].type)) {
+        if (ItemDataSet.IsDungeonLockBox.Contains(inv[slot].type)) {
             if ((goldenKey.consumable || goldenKey.type == ItemID.GoldenKey) && ItemLoader.ConsumeItem(goldenKey, Player)) {
                 goldenKey.stack--;
                 if (goldenKey.stack < 0) {
@@ -154,7 +154,7 @@ public partial class AequusPlayer {
             Recipe.FindRecipes();
             return true;
         }
-        if (ItemMetadata.IsHellLockBox.Contains(inv[slot].type)) {
+        if (ItemDataSet.IsHellLockBox.Contains(inv[slot].type)) {
             if (shadowKey.consumable && ItemLoader.ConsumeItem(shadowKey, Player)) {
                 shadowKey.stack--;
                 if (shadowKey.stack < 0) {

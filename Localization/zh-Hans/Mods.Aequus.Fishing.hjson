@@ -22,13 +22,17 @@ Bait: {
 	}
 
 	LegendberryBait: {
-		// DisplayName: Legendberry Bait
+		// DisplayName: Legendberry
 		// Tooltip: Increased catch rate for rare items
 	}
 
 	Omnibait: {
 		// DisplayName: Omnibait
-		// Tooltip: Fish as if you are in every biome
+		/* Tooltip:
+			'''
+			Fish as if you are in every biome
+			Can also be crafted into many different varieties of bait
+			''' */
 	}
 
 	CorruptPopper: {

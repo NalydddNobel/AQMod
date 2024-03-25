@@ -1,30 +1,30 @@
-﻿using Aequus.Core.DataSets;
+﻿using Aequus.DataSets.Structures;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using Terraria.GameContent;
 
-namespace Aequus.Content.DataSets;
+namespace Aequus.DataSets;
 
-public class ProjectileMetadata : MetadataSet {
+public class ProjectileDataSet : DataSet {
     /// <summary>Rotation offset of projectile sprites so it can be rotated correctly.</summary>
-    public static Dictionary<Entry<ProjectileID>, float> SpriteRotation { get; private set; } = new();
+    public static Dictionary<IDEntry<ProjectileID>, float> SpriteRotation { get; private set; } = new();
 
     /// <summary>Projectiles in this set do not damage the <see cref="Old.Content.TownNPCs.OccultistNPC.Occultist"/>.</summary>
     [JsonProperty]
-    public static HashSet<Entry<ProjectileID>> OccultistIgnore { get; private set; } = new();
+    public static HashSet<IDEntry<ProjectileID>> OccultistIgnore { get; private set; } = new();
 
     /// <summary>Whether or not this projectile is a "Star", this is automatically populated with anything that has "Star" in their internal name.</summary>
-    public static HashSet<Entry<ProjectileID>> IsStar { get; private set; } = new();
+    public static HashSet<IDEntry<ProjectileID>> IsStar { get; private set; } = new();
 
     /// <summary>Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.</summary>
     [JsonProperty]
-    public static HashSet<Entry<ProjectileID>> DealsHeatDamage { get; private set; } = new();
+    public static HashSet<IDEntry<ProjectileID>> DealsHeatDamage { get; private set; } = new();
 
     [JsonProperty]
-    public static HashSet<Entry<ProjectileID>> PushableByTypeId { get; private set; } = new();
+    public static HashSet<IDEntry<ProjectileID>> PushableByTypeId { get; private set; } = new();
 
     [JsonProperty]
-    public static HashSet<Entry<ProjectileID>> PushableByAI { get; private set; } = new();
+    public static HashSet<IDEntry<ProjectileID>> PushableByAI { get; private set; } = new();
 
     public override void PostSetupContent() {
         for (int i = 0; i < ProjectileLoader.ProjectileCount; i++) {

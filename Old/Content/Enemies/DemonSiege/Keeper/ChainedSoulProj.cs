@@ -1,5 +1,4 @@
-﻿using Aequus.Content.DataSets;
-using Aequus.Core.DataSets;
+﻿using Aequus.DataSets;
 using System;
 using Terraria.Audio;
 
@@ -7,8 +6,8 @@ namespace Aequus.Old.Content.Enemies.DemonSiege.Keeper;
 
 public class ChainedSoulProj : ModProjectile {
     public override void SetStaticDefaults() {
-        ProjectileMetadata.PushableByTypeId.Add(Type);
-        ProjectileMetadata.DealsHeatDamage.Add(Type);
+        ProjectileDataSet.PushableByTypeId.Add(Type);
+        ProjectileDataSet.DealsHeatDamage.Add(Type);
     }
 
     public override void SetDefaults() {

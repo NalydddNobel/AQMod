@@ -1,21 +1,22 @@
-﻿using Aequus.Core.DataSets;
+﻿using Aequus.DataSets.Items;
+using Aequus.DataSets.Structures;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Aequus.Content.DataSets;
+namespace Aequus.DataSets;
 
-public class PaintMetadata : MetadataSet {
+public class PaintDataSet : DataSet {
     [JsonProperty]
-    public static Dictionary<PaintColor, Entry<ItemID>> Paints { get; private set; } = new();
+    public static Dictionary<PaintColor, IDEntry<ItemID>> Paints { get; private set; } = new();
     [JsonProperty]
-    public static Dictionary<PaintColor, Entry<ItemID>> DeepPaints { get; private set; } = new();
+    public static Dictionary<PaintColor, IDEntry<ItemID>> DeepPaints { get; private set; } = new();
     [JsonProperty]
-    public static Dictionary<PaintColor, Entry<ItemID>> Dyes { get; private set; } = new();
+    public static Dictionary<PaintColor, IDEntry<ItemID>> Dyes { get; private set; } = new();
     [JsonProperty]
-    public static Dictionary<PaintColor, Entry<ItemID>> YoyoStrings { get; private set; } = new();
+    public static Dictionary<PaintColor, IDEntry<ItemID>> YoyoStrings { get; private set; } = new();
     [JsonProperty]
-    public static Dictionary<PaintColor, Entry<ItemID>> GolfBalls { get; private set; } = new();
+    public static Dictionary<PaintColor, IDEntry<ItemID>> GolfBalls { get; private set; } = new();
 
     public override void AddRecipes() {
         //AutogenerateEntries();
@@ -30,7 +31,7 @@ public class PaintMetadata : MetadataSet {
         GolfBalls.Add(PaintColor.White, ItemID.GolfBall);
         AutogenerateColorLookup(GolfBalls, "GolfBallDyed", "");
 
-        static void AutogenerateColorLookup(Dictionary<PaintColor, Entry<ItemID>> dictionary, string prefix, string suffix) {
+        static void AutogenerateColorLookup(Dictionary<PaintColor, IDEntry<ItemID>> dictionary, string prefix, string suffix) {
             for (int i = 0; i < (int)PaintColor.Count; i++) {
                 var key = (PaintColor)i;
                 string name = prefix + key.ToString() + suffix;

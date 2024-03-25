@@ -19,15 +19,6 @@ public class CrimsonPopper : ModBait, IModifyFishingPower {
         Item.consumable = true;
     }
 
-    public override void AddRecipes() {
-        CreateRecipe(5)
-            .AddIngredient(ItemID.BloodWater, 5)
-            .AddIngredient(ItemID.Ichor, 1)
-            .AddTile(TileID.Bottles)
-            .Register()
-            .SortBeforeFirstRecipesOf(ItemID.EnchantedNightcrawler);
-    }
-
     public void ModifyFishingPower(Player player, Item fishingRod, ref float fishingLevel) {
         if (player.ZoneCrimson) {
             fishingLevel += IncreasedFishingPowerInCrimson;

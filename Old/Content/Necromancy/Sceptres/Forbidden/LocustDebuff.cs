@@ -1,4 +1,4 @@
-﻿using Aequus.Content.DataSets;
+﻿using Aequus.DataSets;
 using Aequus.Old.Content.Weapons.Demon;
 using System;
 
@@ -16,7 +16,7 @@ public class LocustDebuff : ModBuff {
     public override void SetStaticDefaults() {
         Main.debuff[Type] = true;
         Main.buffNoSave[Type] = true;
-        BuffMetadata.PlayerDoTDebuff.Add(Type);
+        BuffDataSet.PlayerDoTDebuff.Add(Type);
     }
 
     public override bool ReApply(NPC npc, int time, int buffIndex) {

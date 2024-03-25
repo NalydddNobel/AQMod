@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.Chests;
-using Aequus.Content.DataSets;
+using Aequus.DataSets;
 using Terraria.ObjectData;
 
 namespace Aequus.Common.Chests;
@@ -12,7 +12,7 @@ public class ChestLootSystem : ModSystem {
             }
 
             // Prevent Aequus from adjusting chest loot at all if it contains an important item
-            if (ItemMetadata.ImportantItem.Contains(chest.item[m].type)) {
+            if (ItemDataSet.ImportantItem.Contains(chest.item[m].type)) {
                 return false;
             }
         }

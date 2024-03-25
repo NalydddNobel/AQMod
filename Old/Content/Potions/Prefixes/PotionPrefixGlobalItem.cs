@@ -1,4 +1,4 @@
-﻿using Aequus.Content.DataSets;
+﻿using Aequus.DataSets;
 using Aequus.Old.Content.Potions.Prefixes.BoundedPotions;
 using Aequus.Old.Content.Potions.Prefixes.EmpoweredPotions;
 using Aequus.Old.Content.Potions.Prefixes.SplashPotions;
@@ -11,7 +11,7 @@ public class PotionPrefixGlobalItem : GlobalItem {
     public override bool InstancePerEntity => true;
 
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
-        return ItemMetadata.Potions.Contains(entity.type);
+        return ItemDataSet.Potions.Contains(entity.type);
     }
 
     public override bool CanUseItem(Item item, Player player) {

@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Biomes.PollutedOcean;
-using Aequus.Content.DataSets;
 using Aequus.Core.ContentGeneration;
+using Aequus.DataSets;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -24,7 +24,7 @@ public class OilSlime : ModNPC {
         NPCSets.SpecificDebuffImmunity[Type][BuffID.OnFire] = false;
         NPCSets.SpecificDebuffImmunity[Type][BuffID.OnFire3] = false;
 
-        NPCMetadata.PushableByTypeId.Add(Type);
+        NPCDataSet.PushableByTypeId.Add(Type);
     }
 
     public override void SetDefaults() {
@@ -70,7 +70,7 @@ public class OilSlime : ModNPC {
     }
 
     private static int GetBodyItem() {
-        return Main.rand.Next(ItemMetadata.FishingJunk);
+        return Main.rand.Next(FishDataSet.Junk);
     }
 
     public override void HitEffect(NPC.HitInfo hit) {

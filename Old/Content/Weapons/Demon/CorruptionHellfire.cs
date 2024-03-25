@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Buffs.Components;
-using Aequus.Content.DataSets;
+using Aequus.DataSets;
 using Aequus.Old.Content.Particles;
 using System;
 using Terraria.Audio;
@@ -18,7 +18,7 @@ public class CorruptionHellfire : ModBuff, IOnAddBuff {
     public override void SetStaticDefaults() {
         Main.debuff[Type] = true;
         Main.buffNoSave[Type] = true;
-        BuffMetadata.PlayerDoTDebuff.Add(Type);
+        BuffDataSet.PlayerDoTDebuff.Add(Type);
     }
 
     public override bool ReApply(NPC npc, int time, int buffIndex) {

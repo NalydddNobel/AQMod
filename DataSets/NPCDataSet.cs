@@ -1,79 +1,79 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
-using Aequus.Core.DataSets;
+using Aequus.DataSets.Structures;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.GameContent.Bestiary;
 
-namespace Aequus.Content.DataSets;
+namespace Aequus.DataSets;
 
-public class NPCMetadata : MetadataSet {
+public class NPCDataSet : DataSet {
     /// <summary>
     /// NPC Ids in this set cannot damage the Occultist, or have their souls trapped into Soul Gems.
     /// Automatically populated with all NPC Ids which have the Underworld or Gore Nest as bestiary tags.
     /// </summary>
     [JsonProperty]
-    public static HashSet<Entry<NPCID>> Soulless { get; private set; } = new();
+    public static HashSet<IDEntry<NPCID>> Soulless { get; private set; } = new();
 
     [JsonProperty]
-    public static HashSet<Entry<NPCID>> FromGlimmer { get; private set; } = new();
+    public static HashSet<IDEntry<NPCID>> FromGlimmer { get; private set; } = new();
     /// <summary>Automatically populated with all NPC Ids which have the Eclipse as bestiary tags.</summary>
     [JsonProperty]
-    public static HashSet<Entry<NPCID>> FromEclipse { get; private set; } = new();
+    public static HashSet<IDEntry<NPCID>> FromEclipse { get; private set; } = new();
     /// <summary>Automatically populated with all NPC Ids which have the Blood Moon as bestiary tags.</summary>
     [JsonProperty]
-    public static HashSet<Entry<NPCID>> FromBloodMoon { get; private set; } = new();
+    public static HashSet<IDEntry<NPCID>> FromBloodMoon { get; private set; } = new();
 
     /// <summary>Automatically populated with all NPC Ids which have the Corruption as bestiary tags.</summary>
     [JsonProperty]
-    public static HashSet<Entry<NPCID>> IsCorrupt { get; private set; } = new();
+    public static HashSet<IDEntry<NPCID>> IsCorrupt { get; private set; } = new();
     /// <summary>Automatically populated with all NPC Ids which have the Crimson as bestiary tags.</summary>
     [JsonProperty]
-    public static HashSet<Entry<NPCID>> IsCrimson { get; private set; } = new();
+    public static HashSet<IDEntry<NPCID>> IsCrimson { get; private set; } = new();
     /// <summary>Automatically populated with all NPC Ids which have the Hallow as bestiary tags.</summary>
     [JsonProperty]
-    public static HashSet<Entry<NPCID>> IsHallow { get; private set; } = new();
+    public static HashSet<IDEntry<NPCID>> IsHallow { get; private set; } = new();
     /// <summary>Automatically populated with all NPC Ids which have a Pillar as a bestiary tag.</summary>
     [JsonProperty]
-    public static HashSet<Entry<NPCID>> FromPillarEvent { get; private set; } = new();
+    public static HashSet<IDEntry<NPCID>> FromPillarEvent { get; private set; } = new();
 
     /// <summary>Entries in this set can completely override the Name Tag conditional check with their own value.</summary>
     [JsonProperty]
-    public static Dictionary<Entry<NPCID>, bool> NameTagOverride { get; private set; } = new();
+    public static Dictionary<IDEntry<NPCID>, bool> NameTagOverride { get; private set; } = new();
 
     /// <summary>Entries in this set are able to be stunned by the Stun Gun (<see cref="Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
     [JsonProperty]
-    public static HashSet<Entry<NPCID>> StunnableByTypeId { get; private set; } = new();
+    public static HashSet<IDEntry<NPCID>> StunnableByTypeId { get; private set; } = new();
     /// <summary>Enemies with an AI Type in this set are able to be stunned by the Stun Gun (<see cref="Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
     [JsonProperty]
-    public static HashSet<Entry<NPCAIStyleID>> StunnableByAI { get; private set; } = new();
+    public static HashSet<IDEntry<NPCAIStyleID>> StunnableByAI { get; private set; } = new();
 
     /// <summary>Used for Royal Gel's Crown of Blood combination.</summary>
     [JsonProperty]
-    public static HashSet<Entry<NPCID>> FriendablePreHardmodeSlime { get; private set; } = new();
+    public static HashSet<IDEntry<NPCID>> FriendablePreHardmodeSlime { get; private set; } = new();
 
     /// <summary>Used for Volatile Gelatin's Crown of Blood combination.</summary>
     [JsonProperty]
-    public static HashSet<Entry<NPCID>> FriendableHardmodeSlime { get; private set; } = new();
+    public static HashSet<IDEntry<NPCID>> FriendableHardmodeSlime { get; private set; } = new();
 
     /// <summary>Enemies in this set cannot become friendly through necromancy.</summary>
     [JsonProperty]
-    public static HashSet<Entry<NPCID>> Unfriendable { get; private set; } = new();
+    public static HashSet<IDEntry<NPCID>> Unfriendable { get; private set; } = new();
 
     /// <summary>NPCs in this set deal 'heat' contact damage. This damage can be resisted using the Frost Potion.</summary>
     [JsonProperty]
-    public static HashSet<Entry<NPCID>> DealsHeatDamage { get; private set; } = new();
+    public static HashSet<IDEntry<NPCID>> DealsHeatDamage { get; private set; } = new();
 
     /// <summary>NPCs in this set cannot be given Elite affixes.</summary>
     [JsonProperty]
-    public static HashSet<Entry<NPCID>> PrefixBlacklist { get; private set; } = new();
+    public static HashSet<IDEntry<NPCID>> PrefixBlacklist { get; private set; } = new();
 
     /// <summary>Entries in this set are able to be pushed by the Pumpinator.</summary>
     [JsonProperty]
-    public static HashSet<Entry<NPCID>> PushableByTypeId { get; private set; } = new();
+    public static HashSet<IDEntry<NPCID>> PushableByTypeId { get; private set; } = new();
     /// <summary>Enemies with an AI Type in this set are able to be pushed by the Pumpinator.</summary>
     [JsonProperty]
-    public static HashSet<Entry<NPCAIStyleID>> PushableByAI { get; private set; } = new();
+    public static HashSet<IDEntry<NPCAIStyleID>> PushableByAI { get; private set; } = new();
 
     #region Bestiary
     [JsonIgnore]
@@ -189,7 +189,7 @@ public class NPCMetadata : MetadataSet {
             if (bestiaryEntry == null || bestiaryEntry.Info == null) {
                 continue;
             }
-            
+
             List<IBestiaryInfoElement> info = bestiaryEntry.Info;
             if (ContainsBestiaryTags(info, EclipseTags)) {
                 FromEclipse.Add(i);

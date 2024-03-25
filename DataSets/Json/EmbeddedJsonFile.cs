@@ -1,18 +1,19 @@
-﻿using Newtonsoft.Json;
+﻿using Aequus.DataSets.Structures;
+using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
 
-namespace Aequus.Core.DataSets;
+namespace Aequus.DataSets.Json;
 
-public sealed class MetadataFile {
-    private readonly MetadataSet _dataSet;
+public sealed class EmbeddedJsonFile {
+    private readonly DataSet _dataSet;
     public readonly string FilePath;
     public readonly string ModFileStreamPath;
     public readonly string FileData;
 
-    public MetadataFile(MetadataSet dataSet) {
+    public EmbeddedJsonFile(DataSet dataSet) {
         _dataSet = dataSet;
         FilePath = dataSet.FilePath;
         ModFileStreamPath = $"{FilePath}.json"[(dataSet.Mod.Name.Length + 1)..];
@@ -35,7 +36,7 @@ public sealed class MetadataFile {
     }
 
     [Conditional("DEBUG")]
-    internal void Gen() {
+    internal void GenerateEmbeddedFiles() {
         string fileLocation = Path.Join(Aequus.DEBUG_FILES_PATH, "ModSources", FilePath.Replace($"Content/DataSets/", "Assets/Metadata/") + ".json").Replace('/', Path.DirectorySeparatorChar);
         _dataSet.Mod.Logger.Debug(fileLocation);
         try {

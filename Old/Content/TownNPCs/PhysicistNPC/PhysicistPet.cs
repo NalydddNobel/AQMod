@@ -1,9 +1,9 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.Renaming;
-using Aequus.Content.DataSets;
 using Aequus.Core;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.Initialization;
+using Aequus.DataSets;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -74,7 +74,7 @@ public class PhysicistPet : ModNPC, IAddRecipes {
         NPCSets.ActsLikeTownNPC[Type] = true;
         NPCSets.SpecificDebuffImmunity[Type][BuffID.Shimmer] = true;
 
-        NPCMetadata.NameTagOverride[Type] = true;
+        NPCDataSet.NameTagOverride[Type] = true;
     }
 
     public void AddRecipes(Aequus aequus) {

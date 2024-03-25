@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
-using Aequus.Content.DataSets;
 using Aequus.Core.ContentGeneration;
+using Aequus.DataSets;
 using Aequus.Old.Content.Equipment.Accessories.WarHorn;
 using Aequus.Old.Content.Events.DemonSiege;
 using Aequus.Old.Content.Materials.SoulGem;
@@ -40,7 +40,7 @@ public class CinderBat : LegacyAIBat {
         });
 
         NPCSets.ImmuneToRegularBuffs[Type] = true;
-        NPCMetadata.DealsHeatDamage.Add(Type);
+        NPCDataSet.DealsHeatDamage.Add(Type);
     }
 
     public override void SetDefaults() {

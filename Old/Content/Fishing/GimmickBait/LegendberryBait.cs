@@ -18,6 +18,7 @@ public class LegendberryBait : ModBait, IModifyFishAttempt {
         if (fisher.crate) {
             return true;
         }
+
         fisher.common = false;
         fisher.uncommon = true;
         int rolledTier = Main.rand.Next(4);

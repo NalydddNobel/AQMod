@@ -1,13 +1,9 @@
 Version 3.0 Changes -------------------------------------------------------------------------------------------
 
 I. Additions & Changes:
+- Added Spanish and German Translations!!! Thank you niker for your spanish tranlsations, and Edwin for your German Translations!!!
 - Completely remade the project from the ground up, many items have been tweaked or temporarily removed.
-- The Occultist is now immune to enemies from the Underworld or Demon Siege.
 - Added emotes for Aequus' Town NPCs.
-- Adjusted Lesser, Greater, and Super Restoration Potions stats & recipes.
-- Resprited The Christmas Spirit.
-- Slightly tweaked the Junk Jet, and it can use more types of ammo.
-- Resprited & Renamed the Cosmic Chest to Fortunate Souvenir
 
 - New Item: Rose Tinted Glasses, makes you ignore the Blood Moon.
 - New Item: Stellar Glasses, makes you ignore the Glimmer.
@@ -66,6 +62,25 @@ Demon Siege:
 - All demon siege enemies no longer drop Demonic Energy, and instead drop Empty Soul Gems
 - Empty Soul Gems can now only be filled by non-Underworld/Demon Siege enemies
 
+- Omnibait
+	-- Fishing power reduced from 40% to 30%
+	-- Is now used to craft Journeyman Bait, Master Bait, Crate Bait, Legendberries, and all Popper variants
+- Crate Bait
+	-- Now increases the chance for Iron/Mythril and Golden/Titanium Crates
+	-- No longer instantly consumed upon catching a crate
+	-- No longer obtained from biome crates or Angler, and is exclusively crafted
+- Mystic Popper
+	-- Renamed to "Spectral Popper"
+	-- Bait power changed from (50% + 25%) to (20%+40%)
+- Ichor Popper bait power changed from (31%+35%) to (40%+20%)
+- Legendberry fishing power has been reduced from 40% to 30%
+- Tweaked functionality of Legendberry bait, you should now get rare stuff more often
+- The Occultist is now immune to enemies from the Underworld or Demon Siege.
+- Adjusted Lesser, Greater, and Super Restoration Potions stats & recipes.
+- Resprited The Christmas Spirit.
+- Slightly tweaked the Junk Jet, and it can use more types of ammo.
+- Resprited & Renamed the Cosmic Chest to Fortunate Souvenir
+
 II. Vanilla Changes:
 - Toolbelt now spawns in Chests Underground
 	-- Grants +5 backpack slots, but they only store items
@@ -114,6 +129,8 @@ III. Removals
 - Removed White Phial, again
 
 IV. Fixes
+- Crate Bait can now catch modded biome crates
+- Omnibait now shuffles modded biomes when probing for fish
 - Natural Glimmer Events now reset the cooldown of the Enchanted Sundial and Moondial
 - Fixed a few enemy names on banners not matching the actual enemy's name
 - Trophies and Paintings now glow when using the Spelunker Potion

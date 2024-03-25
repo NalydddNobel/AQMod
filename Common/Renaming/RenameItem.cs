@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Items.Components;
-using Aequus.Content.DataSets;
+using Aequus.DataSets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
@@ -114,6 +114,6 @@ public sealed class RenameItem : GlobalItem {
     }
 
     public static bool CanRename(Item item) {
-        return !item.IsACoin && !ItemMetadata.CannotRename.Contains(item.type);
+        return !item.IsACoin && !ItemDataSet.CannotRename.Contains(item.type);
     }
 }

@@ -20,15 +20,6 @@ public class HallowPopper : ModBait, IModifyFishingPower {
         Item.consumable = true;
     }
 
-    public override void AddRecipes() {
-        CreateRecipe(5)
-            .AddIngredient(ItemID.HolyWater, 5)
-            .AddIngredient(ItemID.UnicornHorn, 1)
-            .AddTile(TileID.Bottles)
-            .Register()
-            .SortBeforeFirstRecipesOf(ItemID.EnchantedNightcrawler);
-    }
-
     public void ModifyFishingPower(Player player, Item fishingRod, ref float fishingLevel) {
         if (player.ZoneHallow) {
             fishingLevel += IncreasedFishingPowerInHallow;

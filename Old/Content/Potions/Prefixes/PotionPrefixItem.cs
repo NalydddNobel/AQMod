@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items.Components;
-using Aequus.Content.DataSets;
 using Aequus.Core.ContentGeneration;
+using Aequus.DataSets;
 using Terraria.Audio;
 using Terraria.Localization;
 
@@ -33,7 +33,7 @@ internal class PotionPrefixItem : InstancedModItem, IRightClickOverrideWhenHeld 
         Item potion = inv[slot];
         int wantedPrefix = _parent.Type;
 
-        if (!ItemMetadata.Potions.Contains(potion.type) || !potion.CanApplyPrefix(wantedPrefix) || potion.prefix == wantedPrefix) {
+        if (!ItemDataSet.Potions.Contains(potion.type) || !potion.CanApplyPrefix(wantedPrefix) || potion.prefix == wantedPrefix) {
             return false;
         }
 

@@ -1,9 +1,9 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Bosses.Trophies;
-using Aequus.Content.DataSets;
 using Aequus.Core;
 using Aequus.Core.ContentGeneration;
+using Aequus.DataSets;
 using Aequus.Old.Common.Graphics;
 using Aequus.Old.Content.Bosses.Cosmic.UltraStarite.Projectiles;
 using Aequus.Old.Content.Events.Glimmer;
@@ -56,8 +56,8 @@ public class UltraStarite : ModNPC {
         };
         NPCSets.DontDoHardmodeScaling[Type] = true;
         NPCSets.CantTakeLunchMoney[Type] = true;
-        NPCMetadata.PrefixBlacklist.Add(Type);
-        NPCMetadata.FromGlimmer.Add(Type);
+        NPCDataSet.PrefixBlacklist.Add(Type);
+        NPCDataSet.FromGlimmer.Add(Type);
         //SnowgraveCorpse.NPCBlacklist.Add(Type);
     }
 

@@ -1,4 +1,4 @@
-﻿using Aequus.Content.DataSets;
+﻿using Aequus.DataSets;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.Localization;
@@ -20,7 +20,7 @@ public abstract class BasePot : ModTile {
 
         TileID.Sets.DisableSmartCursor[Type] = true;
 
-        TileMetadata.IsSmashablePot.Add(Type);
+        TileDataSet.IsSmashablePot.Add(Type);
 
         SetupTileObjectData();
         _multiTile = TileObjectData.newTile.Width > 1 || TileObjectData.newTile.Height > 1;

@@ -1,6 +1,6 @@
-﻿using Aequus.Content.DataSets;
-using Aequus.Core.DataSets;
-using Aequus.Core.IO;
+﻿using Aequus.Core.IO;
+using Aequus.DataSets;
+using Aequus.DataSets.Structures;
 using Aequus.NPCs.Town.PhysicistNPC.Analysis;
 using System;
 using System.Collections.Generic;
@@ -22,8 +22,8 @@ public class AnalysisSystem : ModSystem {
     public static readonly Dictionary<int, int> RarityItemCounts = new();
     public static readonly Dictionary<int, List<Item>> RarityToItemList = new();
 
-    public static List<Entry<ItemID>> PhysicistPrimaryRewardItems { get; private set; } = new();
-    public static List<Entry<ItemID>> PhysicistSecondaryRewardItems { get; private set; } = new();
+    public static List<IDEntry<ItemID>> PhysicistPrimaryRewardItems { get; private set; } = new();
+    public static List<IDEntry<ItemID>> PhysicistSecondaryRewardItems { get; private set; } = new();
 
     public override void Load() {
         IgnoreRarities.Add(ItemRarityID.Quest);
@@ -35,7 +35,7 @@ public class AnalysisSystem : ModSystem {
         // Mark all of the items in the Physicist's shop as untradeable.
         NPCShopDatabase.TryGetNPCShop(NPCShopDatabase.GetShopName(ModContent.NPCType<Physicist>()), out var shop);
         foreach (var item in shop.ActiveEntries) {
-            ItemMetadata.CannotTradeWithPhysicist.Add(item.Item.type);
+            ItemDataSet.CannotTradeWithPhysicist.Add(item.Item.type);
         }
 
         // Automatically blacklist rarities which have less than 8 items.

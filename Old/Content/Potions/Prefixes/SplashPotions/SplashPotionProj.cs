@@ -1,4 +1,4 @@
-﻿using Aequus.Content.DataSets;
+﻿using Aequus.DataSets;
 using System;
 using System.IO;
 using System.Linq;
@@ -27,7 +27,7 @@ public class SplashPotionProj : ModProjectile {
 
     public override void OnSpawn(IEntitySource source) {
         if (source is not EntitySource_ItemUse itemUse || itemUse.Item == null || itemUse.Item.IsAir) {
-            ItemType = Main.rand.Next(ItemMetadata.Potions.Where(e => e.ValidEntry).Select(e => e.Id).ToArray());
+            ItemType = Main.rand.Next(ItemDataSet.Potions.Where(e => e.ValidEntry).Select(e => e.Id).ToArray());
             return;
         }
 

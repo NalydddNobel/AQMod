@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Buffs.Components;
-using Aequus.Content.DataSets;
+using Aequus.DataSets;
 using System;
 using Terraria.Audio;
 
@@ -13,7 +13,7 @@ public class BlueFire : ModBuff, IOnAddBuff {
     public override void SetStaticDefaults() {
         Main.debuff[Type] = true;
         Main.buffNoSave[Type] = true;
-        BuffMetadata.PlayerDoTDebuff.Add(Type);
+        BuffDataSet.PlayerDoTDebuff.Add(Type);
     }
 
     public override void Update(NPC npc, ref int buffIndex) {

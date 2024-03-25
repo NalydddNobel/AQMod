@@ -1,4 +1,4 @@
-﻿using Aequus.Content.DataSets;
+﻿using Aequus.DataSets;
 using Aequus.Old.Common.PlayerLayers;
 using System.Linq;
 using Terraria.Localization;
@@ -31,7 +31,7 @@ public class GravetenderRobes : ModItem {
     }
 
     public override void AddRecipes() {
-        foreach (int rottenChunk in ItemTypeVariantMetadata.RottenChunk.Where(i => i.ValidEntry)) {
+        foreach (int rottenChunk in ItemTypeVariantDataSet.RottenChunk.Where(i => i.ValidEntry)) {
             CreateRecipe()
                 .AddIngredient(ItemID.Cobweb, 80)
                 .AddIngredient(rottenChunk, 5)

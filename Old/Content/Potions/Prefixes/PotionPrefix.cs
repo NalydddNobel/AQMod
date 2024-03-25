@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.ItemPrefixes.Components;
-using Aequus.Content.DataSets;
+using Aequus.DataSets;
 using ReLogic.Content;
 
 namespace Aequus.Old.Content.Potions.Prefixes;
@@ -25,6 +25,6 @@ public abstract class PotionPrefix : ModPrefix, IRemovedByShimmerPrefix {
     }
 
     public override bool CanRoll(Item item) {
-        return ItemMetadata.Potions.Contains(item.type);
+        return ItemDataSet.Potions.Contains(item.type);
     }
 }

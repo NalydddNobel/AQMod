@@ -1,4 +1,4 @@
-﻿using Aequus.Content.DataSets;
+﻿using Aequus.DataSets;
 
 namespace Aequus.Old.Content.Tiles.Herbs;
 
@@ -12,7 +12,7 @@ public class StaffOfRegrowthHelper : ModSystem {
         int j = Player.tileTargetY;
         Tile tile = Main.tile[i, j];
 
-        if (ItemMetadata.IsStaffOfRegrowth.Contains(player.HeldItem.type) && tile.HasTile && tile.TileType >= TileID.Count && TileLoader.GetTile(tile.TileType) is ModHerb herbTile) {
+        if (ItemDataSet.IsStaffOfRegrowth.Contains(player.HeldItem.type) && tile.HasTile && tile.TileType >= TileID.Count && TileLoader.GetTile(tile.TileType) is ModHerb herbTile) {
             if (herbTile.GetGrowthStage(i, j) == ModHerb.STAGE_BLOOMING) {
                 WorldGen.KillTile(i, j);
                 if (!Main.tile[i, j].HasTile && Main.netMode == NetmodeID.MultiplayerClient) {

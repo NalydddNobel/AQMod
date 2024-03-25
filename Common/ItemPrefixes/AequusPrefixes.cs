@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items.Components;
-using Aequus.Content.DataSets;
 using Aequus.Content.Weapons.Classless;
+using Aequus.DataSets;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -22,7 +22,7 @@ public class AequusPrefixes : GlobalItem {
 
     #region Hooks
     private static bool On_Item_CanHavePrefixes(On_Item.orig_CanHavePrefixes orig, Item self) {
-        if (ItemMetadata.Potions.Contains(self.type)) {
+        if (ItemDataSet.Potions.Contains(self.type)) {
             return true;
         }
 

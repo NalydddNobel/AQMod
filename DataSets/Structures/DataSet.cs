@@ -1,21 +1,18 @@
 ﻿using Aequus.Core.Initialization;
+using Aequus.DataSets.Json;
 using Newtonsoft.Json;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 
-namespace Aequus.Core.DataSets;
+namespace Aequus.DataSets.Structures;
 
-public abstract class MetadataSet : IModType, ILoad, ISetStaticDefaults,  IPostSetupContent, IAddRecipes, IPostAddRecipes {
+public abstract class DataSet : IModType, ILoad, ISetStaticDefaults, IPostSetupContent, IAddRecipes, IPostAddRecipes {
     private readonly BindingFlags _memberBindingFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
 
     [JsonIgnore]
-    protected MetadataFile File { get; private set; }
+    protected EmbeddedJsonFile File { get; private set; }
 
     [JsonIgnore]
-    public virtual string FilePath => $"{Mod.Name}/Assets/Metadata/{Name.Replace("Metadata", "")}";
+    public virtual string FilePath => $"{Mod.Name}/Assets/Metadata/{Name.Replace("DataSet", "")}";
 
     [JsonIgnore]
     public Mod Mod { get; set; }
@@ -27,7 +24,7 @@ public abstract class MetadataSet : IModType, ILoad, ISetStaticDefaults,  IPostS
     [JsonIgnore]
     public FieldInfo[] _fields;
 
-    public MetadataSet() {
+    public DataSet() {
         _fields = GetType().GetFields(_memberBindingFlags);
     }
 
@@ -65,7 +62,7 @@ public abstract class MetadataSet : IModType, ILoad, ISetStaticDefaults,  IPostS
 
     public void PostAddRecipes(Aequus aequus) {
         PostAddRecipes();
-        File.Gen();
+        File.GenerateEmbeddedFiles();
     }
 
     public void Unload() {

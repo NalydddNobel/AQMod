@@ -1,4 +1,4 @@
-﻿using Aequus.Content.DataSets;
+﻿using Aequus.DataSets;
 using Aequus.Old.Content.Events.Glimmer;
 using Aequus.Old.Content.Particles;
 using System;
@@ -12,7 +12,7 @@ public class SuperStariteBullet : ModProjectile {
         ProjectileID.Sets.TrailCacheLength[Type] = 20;
         ProjectileID.Sets.TrailingMode[Type] = 2;
         Main.projFrames[Type] = 2;
-        ProjectileMetadata.PushableByTypeId.Add(Type);
+        ProjectileDataSet.PushableByTypeId.Add(Type);
     }
 
     public override void SetDefaults() {

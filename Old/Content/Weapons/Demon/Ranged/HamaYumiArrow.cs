@@ -1,5 +1,4 @@
-﻿using Aequus.Content.DataSets;
-using Aequus.Core.DataSets;
+﻿using Aequus.DataSets;
 using Aequus.Old.Content.Particles;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -12,8 +11,8 @@ public class HamaYumiArrow : ModProjectile {
         Main.projFrames[Type] = 2;
         ProjectileID.Sets.TrailCacheLength[Type] = 10;
         ProjectileID.Sets.TrailingMode[Type] = 2;
-        ProjectileMetadata.PushableByTypeId.Add(Type);
-        ProjectileMetadata.DealsHeatDamage.Add(Type);
+        ProjectileDataSet.PushableByTypeId.Add(Type);
+        ProjectileDataSet.DealsHeatDamage.Add(Type);
     }
 
     public override void SetDefaults() {

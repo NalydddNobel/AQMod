@@ -1,11 +1,8 @@
-﻿using Aequus.Content.DataSets;
-using Aequus.Core.DataSets;
-using Aequus.Core.Initialization;
+﻿using Aequus.Core.Initialization;
+using Aequus.DataSets;
 using System;
-using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
-using static Aequus.Old.Content.Potions.PotionCanteen.TemplateCanteen;
 
 namespace Aequus.Old.Content.Enemies.DemonSiege.Keeper;
 
@@ -19,8 +16,8 @@ public class ChainedSoul : ModNPC {
         };
         NPCSets.CantTakeLunchMoney[Type] = true;
         NPCSets.ImmuneToRegularBuffs[Type] = true;
-        NPCMetadata.DealsHeatDamage.Add(Type);
-        NPCMetadata.Soulless.Add(Type);
+        NPCDataSet.DealsHeatDamage.Add(Type);
+        NPCDataSet.Soulless.Add(Type);
 
         BannerLoader.AddBannerBuff<KeeperImp>(this);
     }
@@ -244,7 +241,7 @@ public class ChainedSoul : ModNPC {
             float healthRatio = closestPlayer.statLife / (float)closestPlayer.statLifeMax2;
             heartCount += (int)((1f - healthRatio) * 4f);
         }
-        
+
         if (Main.expertMode) {
             heartCount /= 2;
         }

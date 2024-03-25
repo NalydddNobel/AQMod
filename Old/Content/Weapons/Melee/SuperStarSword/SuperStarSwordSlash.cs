@@ -1,4 +1,4 @@
-﻿using Aequus.Content.DataSets;
+﻿using Aequus.DataSets;
 using Aequus.Old.Content.Particles;
 using Aequus.Old.Content.StatusEffects;
 using System;
@@ -14,8 +14,8 @@ public class SuperStarSwordSlash : ModProjectile {
     public override void SetStaticDefaults() {
         ProjectileID.Sets.TrailingMode[Type] = 2;
         ProjectileID.Sets.TrailCacheLength[Type] = 18;
-        ProjectileMetadata.PushableByTypeId.Add(Type);
-        ProjectileMetadata.DealsHeatDamage.Add(Type);
+        ProjectileDataSet.PushableByTypeId.Add(Type);
+        ProjectileDataSet.DealsHeatDamage.Add(Type);
     }
 
     public override void SetDefaults() {

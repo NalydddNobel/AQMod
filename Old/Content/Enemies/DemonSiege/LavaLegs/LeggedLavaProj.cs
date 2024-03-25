@@ -1,5 +1,4 @@
-﻿using Aequus.Content.DataSets;
-using Aequus.Core.DataSets;
+﻿using Aequus.DataSets;
 using System;
 using Terraria.Audio;
 
@@ -7,7 +6,7 @@ namespace Aequus.Old.Content.Enemies.DemonSiege.LavaLegs;
 
 public class LeggedLavaProj : ModProjectile {
     public override void SetStaticDefaults() {
-        ProjectileMetadata.PushableByTypeId.Add(Type);
+        ProjectileDataSet.PushableByTypeId.Add(Type);
     }
 
     public override void SetDefaults() {

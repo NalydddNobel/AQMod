@@ -1,5 +1,5 @@
-﻿using Aequus.Core.DataSets;
-using Aequus.Core.IO;
+﻿using Aequus.Core.IO;
+using Aequus.DataSets.Utils;
 using Aequus.Old.Content.Potions.Prefixes;
 using Aequus.Old.Content.Potions.Prefixes.EmpoweredPotions;
 using System.Collections.Generic;

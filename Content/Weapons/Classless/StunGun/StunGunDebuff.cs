@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Buffs.Components;
 using Aequus.Common.NPCs;
-using Aequus.Content.DataSets;
+using Aequus.DataSets;
 using Terraria.Audio;
 
 namespace Aequus.Content.Weapons.Classless.StunGun;
@@ -35,7 +35,7 @@ public class StunGunDebuff : ModBuff, IOnAddBuff/*, IAddRecipeGroups*/ {
         //if (npc.ModNPC?.Mod?.Name == "CalamityMod") {
         //    return true;
         //}
-        return !NPCSets.BelongsToInvasionOldOnesArmy[npc.type] && (!npc.buffImmune[BuffID.Confused] || NPCMetadata.StunnableByTypeId.Contains(npc.type) || NPCMetadata.StunnableByAI.Contains(npc.aiStyle));
+        return !NPCSets.BelongsToInvasionOldOnesArmy[npc.type] && (!npc.buffImmune[BuffID.Confused] || NPCDataSet.StunnableByTypeId.Contains(npc.type) || NPCDataSet.StunnableByAI.Contains(npc.aiStyle));
     }
 
     private void EmitParticles(Entity entity, int[] buffTime, ref int buffIndex) {

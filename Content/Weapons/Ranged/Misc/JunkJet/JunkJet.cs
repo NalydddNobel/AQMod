@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Content.DataSets;
 using Aequus.Content.Materials;
+using Aequus.DataSets;
 using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;
@@ -98,7 +98,7 @@ public class JunkJet : ModItem {
         }
 
         ammoData = new();
-        if (ItemMetadata.AmmoIdToProjectileId.TryGetValue(bulletItem, out var projectileConversion)) {
+        if (ItemDataSet.AmmoIdToProjectileId.TryGetValue(bulletItem, out var projectileConversion)) {
             ammoData.ProjectileId = projectileConversion;
             return;
         }

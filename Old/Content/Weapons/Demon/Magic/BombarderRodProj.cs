@@ -1,5 +1,4 @@
-﻿using Aequus.Content.DataSets;
-using Aequus.Core.DataSets;
+﻿using Aequus.DataSets;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -13,8 +12,8 @@ public class BombarderRodProj : ModProjectile {
         Main.projFrames[Type] = Main.projFrames[ProjectileID.Flamelash];
         ProjectileID.Sets.TrailCacheLength[Type] = 16;
         ProjectileID.Sets.TrailingMode[Type] = 2;
-        ProjectileMetadata.PushableByTypeId.Add(Type);
-        ProjectileMetadata.DealsHeatDamage.Add(Type);
+        ProjectileDataSet.PushableByTypeId.Add(Type);
+        ProjectileDataSet.DealsHeatDamage.Add(Type);
     }
 
     public override void SetDefaults() {

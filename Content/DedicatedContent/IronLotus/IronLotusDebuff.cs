@@ -1,4 +1,4 @@
-﻿using Aequus.Content.DataSets;
+﻿using Aequus.DataSets;
 
 namespace Aequus.Content.DedicatedContent.IronLotus;
 
@@ -10,7 +10,7 @@ public class IronLotusDebuff : ModBuff {
 
     public override void SetStaticDefaults() {
         Main.debuff[Type] = true;
-        BuffMetadata.PlayerDoTDebuff.Add(Type);
+        BuffDataSet.PlayerDoTDebuff.Add(Type);
     }
 
     public override void Update(NPC npc, ref int buffIndex) {
