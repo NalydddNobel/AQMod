@@ -112,32 +112,32 @@ WeightedHorseshoe: {
 }
 
 BlackPhial: {
-	// DisplayName: Black Phial
-	// Tooltip: Inflict various debuffs upon attacking an enemy
+	DisplayName: Frasco Negro
+	Tooltip: Inflige varios efectos de estados al atacar a un enemigo
 }
 
 BoneRing: {
-	// DisplayName: Bone Ring
-	// Tooltip: Inflict weakness upon enemies, reducing their movement speed
+	DisplayName: Anillo de Hueso
+	Tooltip: Inflige debilidad a enemigos, reduciendo su velocidad
 }
 
 PhoenixRing: {
-	// DisplayName: Phoenix Ring
-	/* Tooltip:
+	DisplayName: Anillo de Fénix
+	Tooltip:
 		'''
 		{$Items.BoneRing.Tooltip}
 		{$ItemTooltip.MagmaStone}
-		''' */
+		'''
 }
 
 BlackPlague: {
-	// DisplayName: Black Plague
-	/* Tooltip:
+	DisplayName: Peste Negra
+	Tooltip:
 		'''
 		{$Items.BoneRing.Tooltip}
 		{$ItemTooltip.MagmaStone}
 		{$Items.BlackPhial.Tooltip}
-		''' */
+		'''
 }
 
 LaserReticle: {
@@ -245,13 +245,13 @@ EclipseGlasses: {
 }
 
 RabbitsFoot: {
-	// DisplayName: Rabbits Foot
-	// Tooltip: Double luck!
+	DisplayName: Pata de Conejo
+	Tooltip: ¡Doble Suerte!
 }
 
 LavaproofMitten: {
-	// DisplayName: Lavaproof Mitten
-	// Tooltip: Allows block placement in lava
+	DisplayName: Mitón a prueba de lava
+	Tooltip: Permite colocar bloques en la lava
 }
 
 Pacemaker: {
@@ -259,10 +259,10 @@ Pacemaker: {
 	Tooltip: Reduce el tiempo de reaparición cuando sea seguro
 }
 
-//# Equipment: Informational
+# Equipment: Informational
 AnglerBroadcaster: {
-	// DisplayName: Angler Broadcaster
-	// Tooltip: Displays the current Angler quest
+	DisplayName: Radio Pesquera
+	Tooltip: Muestra la misión de pesca actual
 }
 
 HoloLens: {
@@ -581,23 +581,23 @@ Baguette: {
 
 //# Misc
 FrozenTechnology: {
-	// DisplayName: Frozen Technology
-	// Tooltip: Used to craft informational gadgets
+	DisplayName: Tecnología Congelada
+	Tooltip: Usado para crear aparatos informacionales
 }
 
 GlowLichen: {
-	// DisplayName: Glow Lichen
-	// Tooltip: Dropped from moss enriched enemies
+	DisplayName: Liquen Brillante
+	Tooltip: Dejado caer por enemigos musgosos
 }
 
 ArtFragment: {
-	// DisplayName: Accretion Fragment
-	// Tooltip: "'The burning of the universe's passion emanate from this fragment'"
+	DisplayName: Fragmento de Acreción
+	Tooltip: "'The burning of the universe's passion emanate from this fragment'"
 }
 
 NecroFragment: {
-	// DisplayName: Plerion Fragment
-	// Tooltip: "'Deathly particles are released from this fragment'"
+	DisplayName: Plerión Fragment
+	Tooltip: "'Deathly particles are released from this fragment'"
 }
 
 PossessedShard: {
@@ -939,7 +939,7 @@ SpaceSquidMask: {
 }
 
 CelestialEightBall: {
-	// DisplayName: Magic 8 Ball
+	DisplayName: Bola 8 Mágica
 	// Tooltip: ""
 
 	Answer: {

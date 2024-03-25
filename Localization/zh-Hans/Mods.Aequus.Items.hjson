@@ -245,13 +245,13 @@ EclipseGlasses: {
 }
 
 RabbitsFoot: {
-	// DisplayName: Rabbits Foot
-	// Tooltip: Double luck!
+	DisplayName: 兔脚
+	Tooltip: 双倍幸运!
 }
 
 LavaproofMitten: {
-	// DisplayName: Lavaproof Mitten
-	// Tooltip: Allows block placement in lava
+	DisplayName: 防熔岩连指手套
+	Tooltip: 允许你在熔岩中放置方块
 }
 
 Pacemaker: {
@@ -261,8 +261,8 @@ Pacemaker: {
 
 //# Equipment: Informational
 AnglerBroadcaster: {
-	// DisplayName: Angler Broadcaster
-	// Tooltip: Displays the current Angler quest
+	DisplayName: 渔夫广播
+	Tooltip: 显示当前渔夫任务
 }
 
 HoloLens: {

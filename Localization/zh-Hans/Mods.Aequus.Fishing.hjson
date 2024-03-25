@@ -17,37 +17,33 @@ Bait: {
 	}
 
 	CrateBait: {
-		// DisplayName: Crate Bait
-		// Tooltip: Highly increased catch rate for crates
+		DisplayName: 宝匣饵
+		Tooltip: 大幅度增加宝匣的捕获率
 	}
 
 	LegendberryBait: {
-		// DisplayName: Legendberry
-		// Tooltip: Increased catch rate for rare items
+		DisplayName: 传奇浆果饵
+		Tooltip: 增加稀有物品的捕获率
 	}
 
 	Omnibait: {
-		// DisplayName: Omnibait
-		/* Tooltip:
-			'''
-			Fish as if you are in every biome
-			Can also be crafted into many different varieties of bait
-			''' */
+		DisplayName: 全能鱼饵
+		Tooltip: 视作在各种生物群落中钓鱼
 	}
 
 	CorruptPopper: {
-		// DisplayName: Cursed Popper
-		// Tooltip: Increases fishing power by {0}% while in the Corruption
+		DisplayName: 诅咒响饵
+		Tooltip: 在腐化之地钓鱼时增加{0}%鱼饵力
 	}
 
 	CrimsonPopper: {
-		// DisplayName: Ichor Popper
-		// Tooltip: Increases fishing power by {0}% while in the Crimson
+		DisplayName: 灵液响饵
+		Tooltip: 在猩红之地钓鱼时增加{0}%鱼饵力
 	}
 
 	HallowPopper: {
-		// DisplayName: Spectral Popper
-		// Tooltip: Increases fishing power by {0}% while in the Hallow
+		DisplayName: 秘圣响饵
+		Tooltip: 在神圣之地钓鱼时增加{0}%鱼饵力
 	}
 }
 

@@ -728,7 +728,7 @@ UnholyCore: {
 	DisplayName: Unholy Core
 	Tooltip:
 		'''
-		Can be used at the Gore Nest
+		Can be used at the Oblivion Altar
 		Decreases the length of the Demon Siege event
 		'''
 }
@@ -737,7 +737,7 @@ UnholyCoreSmall: {
 	DisplayName: Dark Tearstone
 	Tooltip:
 		'''
-		Can be used at the Gore Nest
+		Can be used at the Oblivion Altar
 		Dropped from mysterious entites around the Underworld
 		'''
 }

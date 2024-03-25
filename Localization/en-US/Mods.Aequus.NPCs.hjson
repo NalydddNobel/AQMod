@@ -38,7 +38,7 @@ RadioConductor: {
 
 Mirage.Bestiary: During the rain, toxic fog clouds form and bunch together forming this acidic monster. It wishes it could be like a real nimbus, but it has trouble even befriending a Target Dummy.
 Pillbug.Bestiary: Blessed with Aquatic Energy, these bugs scurry around and feed on the pollution like it means nothing to them.
-Chromite.Bestiary: A beetle-like bug with a metallic shell that can change color by anodizing to help blend in. They're common household pests, the banes of microwaves everywhere, but might make useful fishing bait.
+Chromite.Bestiary: A beetle-like bug with a metallic shell that can change color using a magnetic mechanism to help blend in. They're common household pests, the banes of microwaves everywhere, but might make useful fishing bait.
 Crabson.DisplayName: Crabson
 OmegaStarite.DisplayName: Omega Starite
 DustDevil.DisplayName: Dust Devil
@@ -76,24 +76,24 @@ DwarfStarite: {
 
 UltraStarite: {
 	DisplayName: Ultra Starite
-	Bestiary: Elite starites in their final stage of growth can focus their energy into deadly laser beams. You'd be forgiven for thinking the sky was falling!
+	Bestiary: Elite starites in their final stage of growth can focus their now exposed core into deadly laser beams. You'd be forgiven for thinking the sky was falling!
 }
 
 HyperStarite: {
 	DisplayName: Hyper Starite
-	Bestiary: With an even further excess of energy, the starite gains the ability to detach its segments and swing them in an orbit as dangerous weapons.
+	Bestiary: As it ages, the starite begins to expand and become more volatile, causing its segments to be pushed outwards into orbit to be used as dangerous weapons.
 	BannerName: Hyper Starite Banner
 }
 
 SuperStarite: {
 	DisplayName: Super Starite
-	Bestiary: Starites that gather enough energy eventually evolve into this armored form. They're much hardier, and can also fire off excess energy as simple projectiles.
+	Bestiary: Starites that gather enough energy eventually molt from their shell and evolve into this armored form.
 	BannerName: Super Starite Banner
 }
 
 Starite: {
 	DisplayName: Starite
-	Bestiary: A piece of animate stardust, given life by some unknowable force. They cannot survive for long without a source of energy, granted by the strange lights that fill the sky.
+	Bestiary: A piece of animate stardust bearing a striking resemblance to fallen stars, their exterior seems gassy but will grow to have a sturdy shell.
 	BannerName: Starite Banner
 }
 
