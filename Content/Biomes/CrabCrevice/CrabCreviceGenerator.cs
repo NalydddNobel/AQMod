@@ -680,6 +680,9 @@ namespace Aequus.Content.Biomes.CrabCrevice {
             else if (ThoriumMod.Instance != null) {
                 wantedDirection = Main.dungeonX * 2 < Main.maxTilesX ? -1 : 1;
             }
+            else if (ContinentOfJourney.Instance != null) {
+                wantedDirection = 1;
+            }
 
             if (Main.remixWorld) {
                 location.X = GenVars.UndergroundDesertLocation.X + GenVars.UndergroundDesertLocation.Width / 2;
