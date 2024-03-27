@@ -22,13 +22,17 @@ Bait: {
 	}
 
 	LegendberryBait: {
-		DisplayName: 传奇浆果饵
+		DisplayName: 传奇浆果
 		Tooltip: 增加稀有物品的捕获率
 	}
 
 	Omnibait: {
 		DisplayName: 全能鱼饵
-		Tooltip: 视作在各种生物群落中钓鱼
+		Tooltip:
+			'''
+			视作在各种生物群落中钓鱼
+			也能够制作成不同的鱼饵
+			'''
 	}
 
 	CorruptPopper: {
