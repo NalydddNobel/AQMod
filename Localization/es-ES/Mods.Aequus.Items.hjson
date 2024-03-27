@@ -259,7 +259,7 @@ Pacemaker: {
 	Tooltip: Reduce el tiempo de reaparición cuando sea seguro
 }
 
-# Equipment: Informational
+//# Equipment: Informational
 AnglerBroadcaster: {
 	DisplayName: Radio Pesquera
 	Tooltip: Muestra la misión de pesca actual

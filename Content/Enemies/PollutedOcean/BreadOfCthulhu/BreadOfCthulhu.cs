@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.CrossMod;
-using Aequus.Content.DedicatedContent.Baguette;
+using Aequus.Content.Dedicated.Baguette;
 using Aequus.Content.Enemies.PollutedOcean.BreadOfCthulhu.Items;
 using Aequus.Core.ContentGeneration;
 using System;

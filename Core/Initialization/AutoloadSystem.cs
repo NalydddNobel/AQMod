@@ -11,6 +11,9 @@ internal sealed class AutoloadSystem : ModSystem {
     }
 
     public override void OnModLoad() {
+        foreach (var t in Aequus.Instance.GetContent<IOnModLoad>()) {
+            t.OnModLoad(Aequus.Instance);
+        }
         foreach (var t in Mod.GetContent<ModType>().ToList()) {
             var attributes = t.GetType().GetCustomAttributes(inherit: false);
             foreach (var attr in attributes) {

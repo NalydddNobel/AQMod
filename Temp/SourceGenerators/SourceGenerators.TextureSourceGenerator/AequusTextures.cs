@@ -229,56 +229,56 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SupremeHoney = new("Aequus/Content/CrossMod/CalamityModSupport/Items/SupremeHoney");
     /// <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/SupremeRestoration</summary>
     public static readonly RequestCache<Texture2D> SupremeRestoration = new("Aequus/Content/CrossMod/CalamityModSupport/Items/SupremeRestoration");
-    /// <summary>Full Path: Content/DedicatedContent/Baguette/Baguette</summary>
-    public static readonly RequestCache<Texture2D> Baguette = new("Aequus/Content/DedicatedContent/Baguette/Baguette");
-    /// <summary>Full Path: Content/DedicatedContent/Baguette/BaguetteBuff</summary>
-    public static readonly RequestCache<Texture2D> BaguetteBuff = new("Aequus/Content/DedicatedContent/Baguette/BaguetteBuff");
-    /// <summary>Full Path: Content/DedicatedContent/DeathsEmbrace/DeathsEmbrace</summary>
-    public static readonly RequestCache<Texture2D> DeathsEmbrace = new("Aequus/Content/DedicatedContent/DeathsEmbrace/DeathsEmbrace");
-    /// <summary>Full Path: Content/DedicatedContent/DeathsEmbrace/DeathsEmbraceBuff</summary>
-    public static readonly RequestCache<Texture2D> DeathsEmbraceBuff = new("Aequus/Content/DedicatedContent/DeathsEmbrace/DeathsEmbraceBuff");
-    /// <summary>Full Path: Content/DedicatedContent/DedicatedFaelingItem</summary>
-    public static readonly RequestCache<Texture2D> DedicatedFaelingItem = new("Aequus/Content/DedicatedContent/DedicatedFaelingItem");
-    /// <summary>Full Path: Content/DedicatedContent/DedicatedFaelingItem_Mask</summary>
-    public static readonly RequestCache<Texture2D> DedicatedFaelingItem_Mask = new("Aequus/Content/DedicatedContent/DedicatedFaelingItem_Mask");
-    /// <summary>Full Path: Content/DedicatedContent/Familiar/FamiliarPetBuff</summary>
-    public static readonly RequestCache<Texture2D> FamiliarPetBuff = new("Aequus/Content/DedicatedContent/Familiar/FamiliarPetBuff");
-    /// <summary>Full Path: Content/DedicatedContent/Familiar/FamiliarPetItem</summary>
-    public static readonly RequestCache<Texture2D> FamiliarPetItem = new("Aequus/Content/DedicatedContent/Familiar/FamiliarPetItem");
-    /// <summary>Full Path: Content/DedicatedContent/IronLotus/IronLotus</summary>
-    public static readonly RequestCache<Texture2D> IronLotus = new("Aequus/Content/DedicatedContent/IronLotus/IronLotus");
-    /// <summary>Full Path: Content/DedicatedContent/IronLotus/IronLotusProj</summary>
-    public static readonly RequestCache<Texture2D> IronLotusProj = new("Aequus/Content/DedicatedContent/IronLotus/IronLotusProj");
-    /// <summary>Full Path: Content/DedicatedContent/IronLotus/IronLotusProj_Edges</summary>
-    public static readonly RequestCache<Texture2D> IronLotusProj_Edges = new("Aequus/Content/DedicatedContent/IronLotus/IronLotusProj_Edges");
-    /// <summary>Full Path: Content/DedicatedContent/IronLotus/IronLotusProj_EdgesAura</summary>
-    public static readonly RequestCache<Texture2D> IronLotusProj_EdgesAura = new("Aequus/Content/DedicatedContent/IronLotus/IronLotusProj_EdgesAura");
-    /// <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPet</summary>
-    public static readonly RequestCache<Texture2D> LanternCatPet = new("Aequus/Content/DedicatedContent/LanternCat/LanternCatPet");
-    /// <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPetBuff</summary>
-    public static readonly RequestCache<Texture2D> LanternCatPetBuff = new("Aequus/Content/DedicatedContent/LanternCat/LanternCatPetBuff");
-    /// <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPetItem</summary>
-    public static readonly RequestCache<Texture2D> LanternCatPetItem = new("Aequus/Content/DedicatedContent/LanternCat/LanternCatPetItem");
-    /// <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPet_Lantern</summary>
-    public static readonly RequestCache<Texture2D> LanternCatPet_Lantern = new("Aequus/Content/DedicatedContent/LanternCat/LanternCatPet_Lantern");
-    /// <summary>Full Path: Content/DedicatedContent/MirrorsCall/MirrorsCall</summary>
-    public static readonly RequestCache<Texture2D> MirrorsCall = new("Aequus/Content/DedicatedContent/MirrorsCall/MirrorsCall");
-    /// <summary>Full Path: Content/DedicatedContent/MirrorsCall/MirrorsCall_Aura</summary>
-    public static readonly RequestCache<Texture2D> MirrorsCall_Aura = new("Aequus/Content/DedicatedContent/MirrorsCall/MirrorsCall_Aura");
-    /// <summary>Full Path: Content/DedicatedContent/MirrorsCall/MirrorsCall_Edges</summary>
-    public static readonly RequestCache<Texture2D> MirrorsCall_Edges = new("Aequus/Content/DedicatedContent/MirrorsCall/MirrorsCall_Edges");
-    /// <summary>Full Path: Content/DedicatedContent/MirrorsCall/MirrorsCall_Edges_Aura</summary>
-    public static readonly RequestCache<Texture2D> MirrorsCall_Edges_Aura = new("Aequus/Content/DedicatedContent/MirrorsCall/MirrorsCall_Edges_Aura");
-    /// <summary>Full Path: Content/DedicatedContent/StudiesOfTheInkblot/StudiesOfTheInkblot</summary>
-    public static readonly RequestCache<Texture2D> StudiesOfTheInkblot = new("Aequus/Content/DedicatedContent/StudiesOfTheInkblot/StudiesOfTheInkblot");
-    /// <summary>Full Path: Content/DedicatedContent/StudiesOfTheInkblot/StudiesOfTheInkblotProj</summary>
-    public static readonly RequestCache<Texture2D> StudiesOfTheInkblotProj = new("Aequus/Content/DedicatedContent/StudiesOfTheInkblot/StudiesOfTheInkblotProj");
-    /// <summary>Full Path: Content/DedicatedContent/SwagEye/SwagEyePet</summary>
-    public static readonly RequestCache<Texture2D> SwagEyePet = new("Aequus/Content/DedicatedContent/SwagEye/SwagEyePet");
-    /// <summary>Full Path: Content/DedicatedContent/SwagEye/SwagEyePetBuff</summary>
-    public static readonly RequestCache<Texture2D> SwagEyePetBuff = new("Aequus/Content/DedicatedContent/SwagEye/SwagEyePetBuff");
-    /// <summary>Full Path: Content/DedicatedContent/SwagEye/SwagEyePetItem</summary>
-    public static readonly RequestCache<Texture2D> SwagEyePetItem = new("Aequus/Content/DedicatedContent/SwagEye/SwagEyePetItem");
+    /// <summary>Full Path: Content/Dedicated/Baguette/Baguette</summary>
+    public static readonly RequestCache<Texture2D> Baguette = new("Aequus/Content/Dedicated/Baguette/Baguette");
+    /// <summary>Full Path: Content/Dedicated/Baguette/BaguetteBuff</summary>
+    public static readonly RequestCache<Texture2D> BaguetteBuff = new("Aequus/Content/Dedicated/Baguette/BaguetteBuff");
+    /// <summary>Full Path: Content/Dedicated/DeathsEmbrace/DeathsEmbrace</summary>
+    public static readonly RequestCache<Texture2D> DeathsEmbrace = new("Aequus/Content/Dedicated/DeathsEmbrace/DeathsEmbrace");
+    /// <summary>Full Path: Content/Dedicated/DeathsEmbrace/DeathsEmbraceBuff</summary>
+    public static readonly RequestCache<Texture2D> DeathsEmbraceBuff = new("Aequus/Content/Dedicated/DeathsEmbrace/DeathsEmbraceBuff");
+    /// <summary>Full Path: Content/Dedicated/DedicatedFaelingItem</summary>
+    public static readonly RequestCache<Texture2D> DedicatedFaelingItem = new("Aequus/Content/Dedicated/DedicatedFaelingItem");
+    /// <summary>Full Path: Content/Dedicated/DedicatedFaelingItem_Mask</summary>
+    public static readonly RequestCache<Texture2D> DedicatedFaelingItem_Mask = new("Aequus/Content/Dedicated/DedicatedFaelingItem_Mask");
+    /// <summary>Full Path: Content/Dedicated/Familiar/FamiliarPetBuff</summary>
+    public static readonly RequestCache<Texture2D> FamiliarPetBuff = new("Aequus/Content/Dedicated/Familiar/FamiliarPetBuff");
+    /// <summary>Full Path: Content/Dedicated/Familiar/FamiliarPetItem</summary>
+    public static readonly RequestCache<Texture2D> FamiliarPetItem = new("Aequus/Content/Dedicated/Familiar/FamiliarPetItem");
+    /// <summary>Full Path: Content/Dedicated/IronLotus/IronLotus</summary>
+    public static readonly RequestCache<Texture2D> IronLotus = new("Aequus/Content/Dedicated/IronLotus/IronLotus");
+    /// <summary>Full Path: Content/Dedicated/IronLotus/IronLotusProj</summary>
+    public static readonly RequestCache<Texture2D> IronLotusProj = new("Aequus/Content/Dedicated/IronLotus/IronLotusProj");
+    /// <summary>Full Path: Content/Dedicated/IronLotus/IronLotusProj_Edges</summary>
+    public static readonly RequestCache<Texture2D> IronLotusProj_Edges = new("Aequus/Content/Dedicated/IronLotus/IronLotusProj_Edges");
+    /// <summary>Full Path: Content/Dedicated/IronLotus/IronLotusProj_EdgesAura</summary>
+    public static readonly RequestCache<Texture2D> IronLotusProj_EdgesAura = new("Aequus/Content/Dedicated/IronLotus/IronLotusProj_EdgesAura");
+    /// <summary>Full Path: Content/Dedicated/LanternCat/LanternCatPet</summary>
+    public static readonly RequestCache<Texture2D> LanternCatPet = new("Aequus/Content/Dedicated/LanternCat/LanternCatPet");
+    /// <summary>Full Path: Content/Dedicated/LanternCat/LanternCatPetBuff</summary>
+    public static readonly RequestCache<Texture2D> LanternCatPetBuff = new("Aequus/Content/Dedicated/LanternCat/LanternCatPetBuff");
+    /// <summary>Full Path: Content/Dedicated/LanternCat/LanternCatPetItem</summary>
+    public static readonly RequestCache<Texture2D> LanternCatPetItem = new("Aequus/Content/Dedicated/LanternCat/LanternCatPetItem");
+    /// <summary>Full Path: Content/Dedicated/LanternCat/LanternCatPet_Lantern</summary>
+    public static readonly RequestCache<Texture2D> LanternCatPet_Lantern = new("Aequus/Content/Dedicated/LanternCat/LanternCatPet_Lantern");
+    /// <summary>Full Path: Content/Dedicated/MirrorsCall/MirrorsCall</summary>
+    public static readonly RequestCache<Texture2D> MirrorsCall = new("Aequus/Content/Dedicated/MirrorsCall/MirrorsCall");
+    /// <summary>Full Path: Content/Dedicated/MirrorsCall/MirrorsCall_Aura</summary>
+    public static readonly RequestCache<Texture2D> MirrorsCall_Aura = new("Aequus/Content/Dedicated/MirrorsCall/MirrorsCall_Aura");
+    /// <summary>Full Path: Content/Dedicated/MirrorsCall/MirrorsCall_Edges</summary>
+    public static readonly RequestCache<Texture2D> MirrorsCall_Edges = new("Aequus/Content/Dedicated/MirrorsCall/MirrorsCall_Edges");
+    /// <summary>Full Path: Content/Dedicated/MirrorsCall/MirrorsCall_Edges_Aura</summary>
+    public static readonly RequestCache<Texture2D> MirrorsCall_Edges_Aura = new("Aequus/Content/Dedicated/MirrorsCall/MirrorsCall_Edges_Aura");
+    /// <summary>Full Path: Content/Dedicated/StudiesOfTheInkblot/StudiesOfTheInkblot</summary>
+    public static readonly RequestCache<Texture2D> StudiesOfTheInkblot = new("Aequus/Content/Dedicated/StudiesOfTheInkblot/StudiesOfTheInkblot");
+    /// <summary>Full Path: Content/Dedicated/StudiesOfTheInkblot/StudiesOfTheInkblotProj</summary>
+    public static readonly RequestCache<Texture2D> StudiesOfTheInkblotProj = new("Aequus/Content/Dedicated/StudiesOfTheInkblot/StudiesOfTheInkblotProj");
+    /// <summary>Full Path: Content/Dedicated/SwagEye/SwagEyePet</summary>
+    public static readonly RequestCache<Texture2D> SwagEyePet = new("Aequus/Content/Dedicated/SwagEye/SwagEyePet");
+    /// <summary>Full Path: Content/Dedicated/SwagEye/SwagEyePetBuff</summary>
+    public static readonly RequestCache<Texture2D> SwagEyePetBuff = new("Aequus/Content/Dedicated/SwagEye/SwagEyePetBuff");
+    /// <summary>Full Path: Content/Dedicated/SwagEye/SwagEyePetItem</summary>
+    public static readonly RequestCache<Texture2D> SwagEyePetItem = new("Aequus/Content/Dedicated/SwagEye/SwagEyePetItem");
     /// <summary>Full Path: Content/Dyes/EnchantedDyeEffect</summary>
     public static readonly RequestCache<Texture2D> EnchantedDyeEffect = new("Aequus/Content/Dyes/EnchantedDyeEffect");
     /// <summary>Full Path: Content/Dyes/FrostbiteDyeEffect</summary>

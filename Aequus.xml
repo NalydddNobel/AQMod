@@ -2024,79 +2024,79 @@
             <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/SupremeRestoration</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Baguette">
-            <summary>Full Path: Content/DedicatedContent/Baguette/Baguette</summary>
+            <summary>Full Path: Content/Dedicated/Baguette/Baguette</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BaguetteBuff">
-            <summary>Full Path: Content/DedicatedContent/Baguette/BaguetteBuff</summary>
+            <summary>Full Path: Content/Dedicated/Baguette/BaguetteBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DeathsEmbrace">
-            <summary>Full Path: Content/DedicatedContent/DeathsEmbrace/DeathsEmbrace</summary>
+            <summary>Full Path: Content/Dedicated/DeathsEmbrace/DeathsEmbrace</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DeathsEmbraceBuff">
-            <summary>Full Path: Content/DedicatedContent/DeathsEmbrace/DeathsEmbraceBuff</summary>
+            <summary>Full Path: Content/Dedicated/DeathsEmbrace/DeathsEmbraceBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DedicatedFaelingItem">
-            <summary>Full Path: Content/DedicatedContent/DedicatedFaelingItem</summary>
+            <summary>Full Path: Content/Dedicated/DedicatedFaelingItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DedicatedFaelingItem_Mask">
-            <summary>Full Path: Content/DedicatedContent/DedicatedFaelingItem_Mask</summary>
+            <summary>Full Path: Content/Dedicated/DedicatedFaelingItem_Mask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FamiliarPetBuff">
-            <summary>Full Path: Content/DedicatedContent/Familiar/FamiliarPetBuff</summary>
+            <summary>Full Path: Content/Dedicated/Familiar/FamiliarPetBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FamiliarPetItem">
-            <summary>Full Path: Content/DedicatedContent/Familiar/FamiliarPetItem</summary>
+            <summary>Full Path: Content/Dedicated/Familiar/FamiliarPetItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.IronLotus">
-            <summary>Full Path: Content/DedicatedContent/IronLotus/IronLotus</summary>
+            <summary>Full Path: Content/Dedicated/IronLotus/IronLotus</summary>
         </member>
         <member name="F:Aequus.AequusTextures.IronLotusProj">
-            <summary>Full Path: Content/DedicatedContent/IronLotus/IronLotusProj</summary>
+            <summary>Full Path: Content/Dedicated/IronLotus/IronLotusProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.IronLotusProj_Edges">
-            <summary>Full Path: Content/DedicatedContent/IronLotus/IronLotusProj_Edges</summary>
+            <summary>Full Path: Content/Dedicated/IronLotus/IronLotusProj_Edges</summary>
         </member>
         <member name="F:Aequus.AequusTextures.IronLotusProj_EdgesAura">
-            <summary>Full Path: Content/DedicatedContent/IronLotus/IronLotusProj_EdgesAura</summary>
+            <summary>Full Path: Content/Dedicated/IronLotus/IronLotusProj_EdgesAura</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LanternCatPet">
-            <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPet</summary>
+            <summary>Full Path: Content/Dedicated/LanternCat/LanternCatPet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LanternCatPetBuff">
-            <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPetBuff</summary>
+            <summary>Full Path: Content/Dedicated/LanternCat/LanternCatPetBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LanternCatPetItem">
-            <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPetItem</summary>
+            <summary>Full Path: Content/Dedicated/LanternCat/LanternCatPetItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LanternCatPet_Lantern">
-            <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPet_Lantern</summary>
+            <summary>Full Path: Content/Dedicated/LanternCat/LanternCatPet_Lantern</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MirrorsCall">
-            <summary>Full Path: Content/DedicatedContent/MirrorsCall/MirrorsCall</summary>
+            <summary>Full Path: Content/Dedicated/MirrorsCall/MirrorsCall</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MirrorsCall_Aura">
-            <summary>Full Path: Content/DedicatedContent/MirrorsCall/MirrorsCall_Aura</summary>
+            <summary>Full Path: Content/Dedicated/MirrorsCall/MirrorsCall_Aura</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MirrorsCall_Edges">
-            <summary>Full Path: Content/DedicatedContent/MirrorsCall/MirrorsCall_Edges</summary>
+            <summary>Full Path: Content/Dedicated/MirrorsCall/MirrorsCall_Edges</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MirrorsCall_Edges_Aura">
-            <summary>Full Path: Content/DedicatedContent/MirrorsCall/MirrorsCall_Edges_Aura</summary>
+            <summary>Full Path: Content/Dedicated/MirrorsCall/MirrorsCall_Edges_Aura</summary>
         </member>
         <member name="F:Aequus.AequusTextures.StudiesOfTheInkblot">
-            <summary>Full Path: Content/DedicatedContent/StudiesOfTheInkblot/StudiesOfTheInkblot</summary>
+            <summary>Full Path: Content/Dedicated/StudiesOfTheInkblot/StudiesOfTheInkblot</summary>
         </member>
         <member name="F:Aequus.AequusTextures.StudiesOfTheInkblotProj">
-            <summary>Full Path: Content/DedicatedContent/StudiesOfTheInkblot/StudiesOfTheInkblotProj</summary>
+            <summary>Full Path: Content/Dedicated/StudiesOfTheInkblot/StudiesOfTheInkblotProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SwagEyePet">
-            <summary>Full Path: Content/DedicatedContent/SwagEye/SwagEyePet</summary>
+            <summary>Full Path: Content/Dedicated/SwagEye/SwagEyePet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SwagEyePetBuff">
-            <summary>Full Path: Content/DedicatedContent/SwagEye/SwagEyePetBuff</summary>
+            <summary>Full Path: Content/Dedicated/SwagEye/SwagEyePetBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SwagEyePetItem">
-            <summary>Full Path: Content/DedicatedContent/SwagEye/SwagEyePetItem</summary>
+            <summary>Full Path: Content/Dedicated/SwagEye/SwagEyePetItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.EnchantedDyeEffect">
             <summary>Full Path: Content/Dyes/EnchantedDyeEffect</summary>

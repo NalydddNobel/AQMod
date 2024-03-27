@@ -17,11 +17,16 @@ public abstract class ModPet : ModProjectile {
 
     public override LocalizedText DisplayName => Language.GetText(this.GetLocalizationKey("DisplayName"));
 
-    public override void Load() {
+    public sealed override void Load() {
         PetBuff = CreatePetBuff();
         PetItem = CreatePetItem();
+        OnLoad();
         Mod.AddContent(PetBuff);
         Mod.AddContent(PetItem);
+    }
+
+    protected virtual void OnLoad() {
+
     }
 
     public override bool PreAI() {

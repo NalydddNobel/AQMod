@@ -122,7 +122,7 @@ public sealed class DrawHelper : ModSystem {
         }
 
         if (!target.IsDisposed) {
-            target.Dispose();
+            Main.QueueMainThreadAction(target.Dispose);
         }
 
         target = null;
