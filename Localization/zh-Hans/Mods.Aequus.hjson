@@ -1,23 +1,12 @@
-Biomes: {
-	DemonSiegeZone: {
-		DisplayName: 恶魔围攻
-		TownNPCDialogueName: 血巢
-	}
-
-	GlimmerZone: {
-		DisplayName: 柔光
-		TownNPCDialogueName: 柔光
-	}
-
-	SpaceStormZone: {
-		DisplayName: 太空风暴
-		TownNPCDialogueName: 太空风暴
-	}
-}
-
 InfoDisplays: {
+	AnglerBroadcasterIcon: {
+		DisplayName: 钓鱼任务
+		Unavailable: 不可用
+		Finished: 已完成
+	}
+
 	CalendarInfoDisplay: {
-		DisplayName: "{$Items.Calendar.DisplayName}"
+		DisplayName: 日期
 		Tooltip: "{0} ({1}天)"
 	}
 }

@@ -1,27 +1,71 @@
-// DisplayName: Vanilla Changes
-// ColorImportant: c/ffffbb
-// ColorImportant2: c/ffcc99
-// ColorNote: c/aaacff
-// NoteExploit: "[{$ColorNote}:Disable this config for personal preference, or to prevent unintended exploits.]"
+DisplayName: Cambios Vanilla
+NoteExploit: "[{$ColorNote}:Desactiva esta configuración por preferencia personal, o para prevenir ventajas no deseadas.]"
 
 MoveTreasureMagnet: {
-	// Label: "[i:TreasureMagnet] Move Treasure Magnet"
-	/* Tooltip:
+	Label: "[i:TreasureMagnet] Mover Imán de tesoros"
+	Tooltip:
 		'''
-		When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Treasure Magnet] will be sold by the [{$ColorImportant}:Sky Merchant],
-		[{$ColorImportant}:no longer spawning] in [{$ColorImportant2}:Shadow Chests] or [{$ColorImportant2}:Obsidian Lock Boxes].
+		Cuando [{$ColorImportant}:Activo], el [{$ColorImportant}:Imán de tesoros] sera vendido por el [{$ColorImportant}:Mercader del cielo],
+		y [{$ColorImportant}:no aparecera] en [{$ColorImportant2}:Cofres de las sombras] o en [{$ColorImportant2}:Caja con cierre de obsidiana].
 
 		{$NoteExploit}
-		''' */
+		'''
 }
 
 RestorationPotionRecipe: {
-	// Label: "[i:RestorationPotion] Restoration Potion Recipe"
-	/* Tooltip:
+	Label: "[i:RestorationPotion] Receta de Poción de recuperación"
+	Tooltip:
 		'''
-		When [{$ColorImportant}:Enabled], the vanilla [{$ColorImportant}:Restoration Potion] recipe will be [{$ColorImportant}:removed].
-		Aequus adds an [{$ColorImportant}:alternative recipe], using two [{$ColorImportant2}:Lesser Restoration Potions] and a [{$ColorImportant2}:Glowing Mushroom].
+		Cuando [{$ColorImportant}:Activo], La receta Vanilla de la [{$ColorImportant}:Poción de recuperación] sera [{$ColorImportant}:removida].
+		Aequus añade una [{$ColorImportant}:receta alternativa], usando dos [{$ColorImportant2}:Pociónes de recuperación menor] y un [{$ColorImportant2}:Champiñón brillante].
 
-		[{$ColorNote}:Disable this config for personal preference, or if any issues arise from this recipe being removed.]
-		''' */
+		[{$ColorNote}:Desactiva esta configuración por preferencia personal, o si se presenta un problema al remover esta receta.]
+		'''
+}
+
+MoveToolbelt: {
+	Label: "[i:Toolbelt] Mover Cinturón de Herramientas"
+	Tooltip:
+		'''
+		Al [{$ColorImportant}:Activar], el [{$ColorImportant}:Cinturón de Herramientas] se podra encontrar en [{$ColorImportant}:Cofres bajo tierra],
+		Y [{$ColorImportant}:no sera vendido] por el [{$ColorImportant2}:Duende chapucero].
+
+		{$NoteExploit}
+		'''
+}
+
+SlimeCrownInSurfaceChests: {
+	Label: "[i:SlimeCrown] Corona de slime en cofres de la superficie"
+	Tooltip: Al [{$ColorImportant}:Activar], la [{$ColorImportant}:Corona de slime] se podra encontrar en [{$ColorImportant}:Cofres de la superficie].
+}
+
+MoveGravityGlobe: {
+	Label: "[i:GravityGlobe] Mover Globo gravitacional"
+	Tooltip:
+		'''
+		Al [{$ColorImportant}:Activar], el [{$ColorImportant}:Globo gravitacional] sera vendido por la [{$ColorImportant}:Física],
+		y [{$ColorImportant}:dejara de caer] del [{$ColorImportant2}:Señor de la Luna].
+
+		{$NoteExploit}
+		'''
+}
+
+MovePortalGun: {
+	Label: "[i:PortalGun] Mover Arma de portales"
+	Tooltip:
+		'''
+		Al [{$ColorImportant}:Activar], el [{$ColorImportant}:Arma de portales] sera vendido por la [{$ColorImportant}:Física],
+		y [{$ColorImportant}:dejara de caer] del [{$ColorImportant2}:Señor de la Luna].
+
+		{$NoteExploit}
+		'''
+}
+
+MoveMagicConch: {
+	Label: "[i:MagicConch] Mover Concha mágica"
+	Tooltip:
+		'''
+		Al [{$ColorImportant}:Activar], la [{$ColorImportant}:Concha mágica] se podra encontrar en el [{$ColorImportant}:Oceano contaminado],
+		Y [{$ColorImportant}:dejara de aparecer] en el [{$ColorImportant2}:desierto subterráneo].
+		'''
 }

@@ -1,22 +1,19 @@
-﻿using Aequus.Content.Graphics;
-using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Terraria;
 using Terraria.GameContent.Drawing;
-using Terraria.ModLoader;
 
 namespace Aequus.Core.Graphics.Tiles;
 
 internal sealed class SpecialTileRenderer : ModSystem {
-    public static Action PreDrawNonSolidTiles;
     public static Action UpdateTileEffects;
     public static Action ClearTileEffects;
 
+    public static Action PreDrawSolidTiles;
+    public static Action PreDrawNonSolidTiles;
+
     public static List<Point>[] DrawPoints { get; private set; }
     public static List<Point>[] SolidDrawPoints { get; private set; }
-    public static Dictionary<int, int> ModHangingVines { get; private set; }
 
     private static FieldInfo _addSpecialPointSpecialPositions;
     private static FieldInfo _addSpecialPointSpecialsCount;
@@ -40,16 +37,26 @@ internal sealed class SpecialTileRenderer : ModSystem {
         for (int i = 0; i < TileRenderLayerID.Count; i++) {
             DrawPoints[i] = new List<Point>();
         }
-        ModHangingVines = new Dictionary<int, int>();
         On_TileDrawing.DrawMasterTrophies += TileDrawing_DrawMasterTrophies;
         On_TileDrawing.DrawReverseVines += TileDrawing_DrawReverseVines;
         On_TileDrawing.PreDrawTiles += TileDrawing_PreDrawTiles;
         On_Main.DoDraw_Tiles_NonSolid += Main_DoDraw_Tiles_NonSolid;
         On_Main.DoDraw_Tiles_Solid += Main_DoDraw_Tiles_Solid;
         On_Main.DoDraw_WallsAndBlacks += Main_DoDraw_WallsAndBlacks;
+        On_Main.DrawPlayers_AfterProjectiles += On_Main_DrawPlayers_AfterProjectiles;
     }
 
-    private void Main_DoDraw_Tiles_Solid(On_Main.orig_DoDraw_Tiles_Solid orig, Main self) {
+    private static void On_Main_DrawPlayers_AfterProjectiles(On_Main.orig_DrawPlayers_AfterProjectiles orig, Main self) {
+        orig(self);
+
+        if (AnyInLayer(TileRenderLayerID.PostDrawPlayers)) {
+            Main.spriteBatch.BeginWorld();
+            Render(TileRenderLayerID.PostDrawPlayers);
+            Main.spriteBatch.End();
+        }
+    }
+
+    private static void Main_DoDraw_Tiles_Solid(On_Main.orig_DoDraw_Tiles_Solid orig, Main self) {
         foreach (var batch in BatchedTileRenderer._batches.Values) {
             if (batch.Count <= 0 || batch.SolidLayer == false) {
                 continue;
@@ -92,7 +99,7 @@ internal sealed class SpecialTileRenderer : ModSystem {
         _specialPositions = (Point[][])_addSpecialPointSpecialPositions.GetValue(otherRenderer);
         _specialsCount = (int[])_addSpecialPointSpecialsCount.GetValue(otherRenderer);
     }
-    public static void AddSpecialPoint(int x, int y, int type) {
+    public static void AddVanillaSpecialPoint(int x, int y, int type) {
         if (_specialPositions == null) {
             return;
         }
@@ -141,8 +148,7 @@ internal sealed class SpecialTileRenderer : ModSystem {
                 }
             }
             else {
-                RadonMossFogRenderer.Tiles.Clear();
-                RadonMossFogRenderer.DrawInfoCache.Clear();
+                PreDrawSolidTiles?.Invoke();
                 for (int i = 0; i < SolidDrawPoints.Length; i++) {
                     SolidDrawPoints[i].Clear();
                 }
@@ -185,13 +191,7 @@ internal sealed class SpecialTileRenderer : ModSystem {
         }
     }
 
-    public override void OnWorldLoad() {
-        if (!Main.dedServ && ClearTileEffects != null) {
-            ClearTileEffects();
-        }
-    }
-
-    public override void OnWorldUnload() {
+    public override void ClearWorld() {
         if (!Main.dedServ && ClearTileEffects != null) {
             ClearTileEffects();
         }

@@ -30,10 +30,85 @@ HotAirBalloonBuff: {
 
 DeathsEmbraceBuff: {
 	DisplayName: "{$Items.DeathsEmbrace.DisplayName}"
-	Description: Why are you reading this... you're going to die
+	Description: Why are you reading this... you're about to die
 }
 
 BaguetteBuff: {
 	DisplayName: "{$Items.Baguette.DisplayName}"
 	Description: Supreme improvements to all stats and greatly improved life regeneration
+}
+
+WarHornCooldown: {
+	DisplayName: War Horn (Cooldown)
+	Description: The War Horn is on cooldown!
+}
+
+FoodPoisoningDebuff: {
+	DisplayName: Food Poisoning
+	Description: No improvements to stats, and you can no longer eat food!
+}
+
+CorruptionHellfire: {
+	DisplayName: Corruption Hellfire
+	Description: Your flesh burns from the sinister flames
+}
+
+CrimsonHellfire: {
+	DisplayName: Crimson Hellfire
+	Description: Your flesh burns from the sinister flames
+}
+
+IronLotusDebuff: {
+	DisplayName: "{$Items.IronLotus.DisplayName}"
+	Description: Mods.Aequus.Buffs.IronLotusDebuff.Description
+}
+
+LocustDebuff: {
+	DisplayName: Mods.Aequus.Buffs.LocustDebuff.DisplayName
+	Description: Mods.Aequus.Buffs.LocustDebuff.Description
+}
+
+InsurgentDebuff: {
+	DisplayName: "{$Items.Insurgency.DisplayName}"
+	Description: Mods.Aequus.Buffs.InsurgentDebuff.Description
+}
+
+RevenantDebuff: {
+	DisplayName: "{$Items.Revenant.DisplayName}"
+	Description: Mods.Aequus.Buffs.RevenantDebuff.Description
+}
+
+NecromancyDebuff: {
+	DisplayName: "{$Items.CorruptionSceptre.DisplayName}"
+	Description: Mods.Aequus.Buffs.NecromancyDebuff.Description
+}
+
+OsirisDebuff: {
+	DisplayName: "{$Items.Osiris.DisplayName}"
+	Description: Mods.Aequus.Buffs.OsirisDebuff.Description
+}
+
+CrimsonSceptreDebuff: {
+	DisplayName: "{$Items.CrimsonSceptre.DisplayName}"
+	Description: Mods.Aequus.Buffs.CrimsonSceptreDebuff.Description
+}
+
+GravetenderMinionBuff: {
+	DisplayName: Gravetender
+	Description: The wisp will increase the power of your ghosts!
+}
+
+BlueFire: {
+	DisplayName: Mana Blaze
+	Description: The celestial heat rips at your health and mana!
+}
+
+UltimateSwordBuff: {
+	DisplayName: Mods.Aequus.Buffs.UltimateSwordBuff.DisplayName
+	Description: Mods.Aequus.Buffs.UltimateSwordBuff.Description
+}
+
+BoneRingDebuff: {
+	DisplayName: "{$Items.BoneRing.DisplayName}"
+	Description: Mods.Aequus.Buffs.BoneRingDebuff.Description
 }

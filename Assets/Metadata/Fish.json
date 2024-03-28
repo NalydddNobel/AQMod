@@ -1,0 +1,27 @@
+{
+  "Corrupt": [
+    "Ebonkoi",
+    "EaterofPlankton",
+    "InfectedScabbardfish",
+    "Cursedfish"
+  ],
+  "Crimson": [
+    "CrimsonTigerfish",
+    "Hemopiranha",
+    "BloodyManowar",
+    "Ichorfish"
+  ],
+  "Hallow": [
+    "ChaosFish",
+    "PrincessFish",
+    "Prismite",
+    "MirageFish",
+    "Pixiefish",
+    "UnicornFish"
+  ],
+  "Junk": [
+    "OldShoe",
+    "TinCan",
+    "FishingSeaweed"
+  ]
+}

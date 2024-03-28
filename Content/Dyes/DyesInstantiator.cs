@@ -1,14 +1,6 @@
-﻿using Aequus.Content.Items.Material;
-using Aequus.Content.Items.Material.Energy.Cosmic;
-using Aequus.Content.Items.Material.OmniGem;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
+﻿using ReLogic.Content;
 using System;
-using Terraria;
 using Terraria.Graphics.Shaders;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Dyes;
 
@@ -35,7 +27,7 @@ public sealed class DyesInstantiator : ModSystem {
             .WithCustomRecipe((m) => {
                 m.CreateRecipe()
                 .AddIngredient(ItemID.BottledWater)
-                .AddIngredient<OmniGem>()
+                .AddIngredient(ItemID.RainbowTorch)
                 .AddTile(TileID.DyeVat)
                 .Register();
             });
@@ -43,7 +35,7 @@ public sealed class DyesInstantiator : ModSystem {
             .WithCustomRecipe((m) => {
                 m.CreateRecipe()
                 .AddIngredient(ItemID.BottledWater)
-                .AddIngredient<OmniGem>()
+                .AddIngredient(ItemID.RainbowBrick)
                 .AddTile(TileID.DyeVat)
                 .Register();
             });
@@ -52,7 +44,7 @@ public sealed class DyesInstantiator : ModSystem {
             .WithCustomRecipe((m) => {
                 m.CreateRecipe()
                 .AddIngredient(ItemID.BottledWater)
-                .AddIngredient<CosmicEnergy>()
+                .AddIngredient(ItemID.FallenStar, 5)
                 .AddTile(TileID.DyeVat)
                 .Register();
             });
@@ -61,7 +53,7 @@ public sealed class DyesInstantiator : ModSystem {
             .WithCustomRecipe((m) => {
                 m.CreateRecipe()
                 .AddIngredient(ItemID.BottledWater)
-                .AddIngredient<FrozenTear>()
+                .AddIngredient(ItemID.FrostCore)
                 .AddTile(TileID.DyeVat)
                 .Register();
             });
@@ -70,7 +62,7 @@ public sealed class DyesInstantiator : ModSystem {
             .WithCustomRecipe((m) => {
                 m.CreateRecipe()
                 .AddIngredient(ItemID.BottledWater)
-                .AddIngredient<Fluorescence>()
+                .AddIngredient(ItemID.AncientBattleArmorMaterial)
                 .AddTile(TileID.DyeVat)
                 .Register();
             });

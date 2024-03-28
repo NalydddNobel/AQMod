@@ -1,4 +1,4 @@
-﻿using Aequus.Core.Generator;
+﻿using Aequus.Core.CodeGeneration;
 
 namespace Aequus;
 

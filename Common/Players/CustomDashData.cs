@@ -1,7 +1,4 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-
-namespace Aequus.Common.Players;
+﻿namespace Aequus.Common.Players;
 
 public abstract class CustomDashData : ModType {
     protected sealed override void Register() {

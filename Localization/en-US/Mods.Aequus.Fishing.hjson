@@ -3,4 +3,62 @@ FishingPoles: {
 		DisplayName: Steampunker's Rod
 		Tooltip: Automatically pulls and recasts the fishing bobber
 	}
+
+	BambooFishingPole: {
+		DisplayName: Bamboo Pole
+		Tooltip: Greatly increased catch rate
+	}
+}
+
+Bait: {
+	BlackJellyfishBait: {
+		DisplayName: "{$NPCs.BlackJellyfish.DisplayName}"
+		Tooltip: Explodes and damages fished up enemies
+	}
+
+	CrateBait: {
+		DisplayName: Crate Bait
+		Tooltip: Highly increased catch rate for crates
+	}
+
+	LegendberryBait: {
+		DisplayName: Legendberry
+		Tooltip: Increased catch rate for rare items
+	}
+
+	Omnibait: {
+		DisplayName: Omnibait
+		Tooltip:
+			'''
+			Fish as if you are in every biome
+			Can also be crafted into many different varieties of bait
+			'''
+	}
+
+	CorruptPopper: {
+		DisplayName: Cursed Popper
+		Tooltip: Increases fishing power by {0}% while in the Corruption
+	}
+
+	CrimsonPopper: {
+		DisplayName: Ichor Popper
+		Tooltip: Increases fishing power by {0}% while in the Crimson
+	}
+
+	HallowPopper: {
+		DisplayName: Spectral Popper
+		Tooltip: Increases fishing power by {0}% while in the Hallow
+	}
+}
+
+Catches: {
+	Killifish: {
+		DisplayName: Killifish
+		Tooltip: ""
+	}
+
+	Piraiba: {
+		DisplayName: Piraiba
+		Tooltip: ""
+	}
 }

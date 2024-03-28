@@ -1,4 +1,5 @@
 CommonTooltips: {
+	BuffTimeRange: "{0}-{1} minuto(s) de duración"
 	IncreasesInventorySlots: Otorga {0} ranuras de mochila
 	Cooldown: Tiene {0} segundos de recarga
 	Shimmerable: Ingrediente de Fulgor
@@ -8,9 +9,33 @@ CommonTooltips: {
 	DedicatedItem: Gracias, {0}!
 	DedicatedItemAnonymous: Objeto Dedicado
 	UsesDarts: Utiliza semillas y dardos como munición
+	Banner: "{$CommonItemTooltip.BannerBonus}{0}"
+	NecromancyStaff: Los enemigos derrotados se convertiran en súbditos fantasma
+	StatGhostDuration: Incrementa la duración de tus fantasmas por {0} segundos
+	StatGhostSlots: Incrementa tu maximo número de fantsmas por {0}
+	StatWingTime: Incrementa la duración de vuelo
+	DecreaseAggro: Los enemigos son menos probables de que te persigan
+	IncreaseAggro: Los enemigos son mas probables de que te persigan
+	DisableItem: <right> para desactivar
+	EnableItem: Actualmente desactivado, <right> para reactivar
 }
 
 //# Equipment: Accessories
+BreathConserver: {
+	DisplayName: Conservador de aire
+	Tooltip: Restaura respiración al romper bloques y derrotar enemigos
+}
+
+ValentineRing: {
+	DisplayName: anillo de valentín
+	Tooltip: Regalaselo a un amigo para darle regeneración y daño a ambos de ustedes
+	Tooltip2: Incrementa regeneración de vida y daño para ti y el regalador
+	GiftTooltip: Atentamente, {0}
+	BuffName: Valentín
+	BuffDescription: Incrementa regeneración de vida y daño
+	BuffDescription2: "{0} te esta favoreciendo!"
+}
+
 GrandReward: {
 	DisplayName: Grandiosa Recompensa
 	Tooltip:
@@ -57,6 +82,16 @@ FlashwayShield: {
 		'''
 }
 
+PurpleBalloon: {
+	DisplayName: Globo morado mate
+	Tooltip:
+		'''
+		{$ItemTooltip.ShinyRedBalloon}
+		{$SlimyBlueBalloon.Tooltip}
+		'No confundir con el globo en un globo'
+		'''
+}
+
 SlimyBlueBalloon: {
 	DisplayName: Globo Azul Pegajoso
 	Tooltip:
@@ -76,7 +111,165 @@ WeightedHorseshoe: {
 		'''
 }
 
+BlackPhial: {
+	DisplayName: Frasco Negro
+	Tooltip: Inflige varios efectos de estados al atacar a un enemigo
+}
+
+BoneRing: {
+	DisplayName: Anillo de Hueso
+	Tooltip: Inflige debilidad a enemigos, reduciendo su velocidad
+}
+
+PhoenixRing: {
+	DisplayName: Anillo de Fénix
+	Tooltip:
+		'''
+		{$Items.BoneRing.Tooltip}
+		{$ItemTooltip.MagmaStone}
+		'''
+}
+
+BlackPlague: {
+	DisplayName: Peste Negra
+	Tooltip:
+		'''
+		{$Items.BoneRing.Tooltip}
+		{$ItemTooltip.MagmaStone}
+		{$Items.BlackPhial.Tooltip}
+		'''
+}
+
+LaserReticle: {
+	DisplayName: Reticula Laser
+	Tooltip: Disminuye la propagación de armas de rango por {0}%
+}
+
+HighSteaks: {
+	DisplayName: Apuistec
+	Tooltip:
+		'''
+		Incrementa el daño de un golpe critico por {0}%
+		{1}
+		'''
+	Downside: "{v}Pero, debes pagar {Price} por cada golpe critico"
+}
+
+KegOSpirits: {
+	DisplayName: Barrilete de espíritus
+	Tooltip:
+		'''
+		{$SaivoryKnife.Tooltip}
+		{$BottleOSpirits.Tooltip@1}
+		'''
+}
+
+SaivoryKnife: {
+	DisplayName: cuchillo de marfil
+	Tooltip: Incrementa la dúracion de tus fantasmas por {0} minuto(s)
+}
+
+BottleOSpirits: {
+	DisplayName: Botella de espíritus
+	Tooltip: Incrementa tu número de fantasmas por {0}
+}
+
+WarHorn: {
+	DisplayName: Cuerno de guerra
+	Tooltip:
+		'''
+		Súbditos entran a un frenesí por {0} segundos despues de dar un golpe
+		Este efecto se refresca en {1} segundos
+		Súbditos en frenesí obtienen velocidad de movimiento y ataque aumentado
+		'''
+}
+
+HallowCanteen: {
+	DisplayName: Cantina Mágica
+	DisplayNameAlt: Cantina Mágica ({0})
+	Tooltip:
+		'''
+		Permite el uso infinito de dos pociones
+		Presiona <right> con 15 de una poción en la cantina para aplicar
+		'''
+}
+
+PotionCanteen: {
+	DisplayName: Cantina de pociónes
+	DisplayNameAlt: Cantina de pociónes ({0})
+	Tooltip:
+		'''
+		Permite el uso infinito de una poción
+		Presiona <right> con 15 de una poción en la cantina para aplicar
+		'''
+}
+
+SouljointCuffs: {
+	DisplayName: Esposas de Almas
+	Tooltip: Los Súbditos fantasmas se vinculan al enemigo despues de dar un golpe cuerpo a cuerpo
+}
+
+PandorasBox: {
+	DisplayName: Caja de Pandora
+	Tooltip:
+		'''
+		Los enemigos reciben mas daño de los efectos de estado de los cetros
+		Los proyectiles de tus Súbditos fantasma viajan al doble de velocidad
+		'''
+}
+
+RitualisticSkull: {
+	DisplayName: Calavera Ritualista
+	Tooltip: Convierte todos excepto uno de tus ranuras de súbditos en ranuras para fantasmas
+}
+
+ShadowVeer: {
+	DisplayName: Giro Sombrío
+	Tooltip: Otorga la habilidad de embestir a tus súbditos fantasma
+}
+
+//# Equipment: Misc
+RoseTintedGlasses: {
+	DisplayName: Gafas teñidas de rosa
+	Tooltip: Ignora la aparición de enemigos de la luna sangrienta
+}
+
+StellarGlasses: {
+	DisplayName: Gafas Estelares
+	Tooltip: Ignora la aparición de enemigos del destello
+}
+
+EclipseGlasses: {
+	DisplayName: Gafas de Eclipse
+	Tooltip: Ignora la aparición de enemigos del eclipse
+}
+
+RabbitsFoot: {
+	DisplayName: Pata de Conejo
+	Tooltip: ¡Doble Suerte!
+}
+
+LavaproofMitten: {
+	DisplayName: Mitón a prueba de lava
+	Tooltip: Permite colocar bloques en la lava
+}
+
+Pacemaker: {
+	DisplayName: Marcapasos
+	Tooltip: Reduce el tiempo de reaparición cuando sea seguro
+}
+
 //# Equipment: Informational
+AnglerBroadcaster: {
+	DisplayName: Radio Pesquera
+	Tooltip: Muestra la misión de pesca actual
+}
+
+HoloLens: {
+	DisplayName: Holo-lente
+	Tooltip: Te permite ver los contenidos de cofres sin abrirlos
+}
+
 ShimmerMonocle: {
 	DisplayName: Fulgóculo
 	Tooltip: Muestra si un objeto es un ingrediente de Fulgor
@@ -92,14 +285,59 @@ Calendar: {
 	Tooltip: Muestra la fecha
 }
 
-//# Weapons: Melee
-Dynaknife: {
-	// DisplayName: The Christmas Spirit
+//# Equipment: Armor
+GravetenderHood: {
+	DisplayName: Capucha Tiendetumbas
+	// Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
+	Setbonus: Invoca una voluta que empodera tu súbdito fantasma mas cercano
+}
+
+GravetenderRobes: {
+	DisplayName: Manto Tiendetumbas
 	/* Tooltip:
 		'''
-		Hits apply a bomb which will explode on enemies
-		<right> to dash foward and attack
+		{$CommonTooltips.StatGhostDuration}
+		{$CommonTooltips.StatGhostSlots@1}
 		''' */
+}
+
+//# Equipment: Grappling Hooks
+LeechHook: {
+	DisplayName: Ganchijuela
+	Tooltip:
+		'''
+		Ignora {0} puntos de defensa
+		Se adiere al enemigo y te cura
+		Dañar a la victima restaura vida extra
+		'''
+}
+
+Meathook: {
+	DisplayName: Gancho de Carna
+	Tooltip:
+		'''
+		Permite sujetarte a enemigos
+		{0}% de daño incrementado al enemigo afectado
+		'''
+}
+
+//# Weapons: Melee
+Dynaknife: {
+	DisplayName: El espíritu navideño
+	Tooltip:
+		'''
+		Ataques aplican una bomba que explota en el enemigo
+		<right> para embestir y atacar
+		'''
+}
+
+SuperStarSword: {
+	DisplayName: Espada Super Estrella
+	Tooltip:
+		'''
+		Lanza un corte estando sobre 90% de vida
+		'¡Si alguien me ataca, les corto! (¡Y si no me atacan, también!)'
+		'''
 }
 
 Slice: {
@@ -110,6 +348,30 @@ Slice: {
 		{$CommonTooltips.OmnidirectionMelee}
 		'No confundir con tajar'
 		'''
+}
+
+MirrorsCall: {
+	DisplayName: Llamada del Espejo
+	Tooltip: Ataca al enemigo desde la comodidad de tu sillon!
+}
+
+IronLotus: {
+	DisplayName: Loto de Hierro
+	Tooltip:
+		'''
+		Sosten una lanza que esparce el fuego
+		'Quema a aquellos que le importe'
+		'''
+}
+
+Cauterizer: {
+	DisplayName: Cauterizador
+	Tooltip: "{$CommonTooltips.OmnidirectionMelee}"
+}
+
+HellsBoon: {
+	DisplayName: Favor del Infierno
+	Tooltip: Ataca a enemigos con pinchos de ceniza y oscuridad
 }
 
 //# Ranged Ammo
@@ -173,13 +435,111 @@ SkyHunterCrossbow: {
 		'''
 }
 
+CrusadersCrossbow: {
+	DisplayName: Ballesta del Cruzado
+	Tooltip: Dispara dardos especiales que curan a aliados
+}
+
+Deltoid: {
+	DisplayName: Deltoide
+	Tooltip: Enciende flechas de madera con fuego infernal carmesí
+}
+
+HamaYumi: {
+	DisplayName: Hama Yumi
+	Tooltip: Las flechas estan temporalmente mejoradas con una rafaga de corrupción
+}
+
 //# Weapons: Magic
+TrashStaff: {
+	DisplayName: Correo Spam
+	Tooltip: Ataques críticos envían un virus a enemigos cercanos
+}
+
 Furystar: {
 	DisplayName: Estrella de furia
 	Tooltip:
 		'''
 		Hace que lluevan estrellas del cielo
 		Ataques restauran maná
+		'''
+}
+
+StudiesOfTheInkblot: {
+	DisplayName: Estudios de la mancha de tinta
+	Tooltip:
+		'''
+		Click izquierdo para 'Rorschach en Danmaku'
+		Click derecho 'Rosa Subterránea'
+		'''
+}
+
+BombarderRod: {
+	DisplayName: Vara Bombardera
+	Tooltip:
+		'''
+		Golpes criticos infligen fuego carmesí a los enemigos cercanos
+		Poco preciso a corto alcanze
+		'''
+}
+
+// localization note: 'triacanthorn' is a portmanteau of 'Gleditsia triacanthos' (scientific name of a thorny plant) and the word 'thorn'
+Triacanthorn: {
+	DisplayName: Triacastilla
+	Tooltip:
+		'''
+		Invoca zarcillos viles
+		Ignora 10 puntos de defensa
+		'''
+}
+
+//# Weapons: Summon
+PhysicistSentry: {
+	DisplayName: Torreta Tesla Portátil
+	Tooltip: Invoca una torreta tesla que dispara una rafaga de relampagos en cadena
+}
+
+Insurgency: {
+	DisplayName: Insurgencia
+	Tooltip:
+		'''
+		Drena el alma de enemigos muy poderosos, instantaneamente matando a enemigos debiles
+		Cuando estan afectados, Desprende espiritus que atacan enemigos cercanos
+		{$CommonTooltips.NecromancyStaff}
+		'Silencio'
+		'''
+}
+
+Revenant: {
+	DisplayName: Renacido
+	Tooltip:
+		'''
+		Drena el alma de enemigos poderosos, instantaneamente matando a enemigos debiles
+		{$CommonTooltips.NecromancyStaff}
+		'''
+}
+
+CorruptionSceptre: {
+	DisplayName: Cetro de Corrupción
+	Tooltip:
+		'''
+		Drena el alma de enemigos debiles
+		{$CommonTooltips.NecromancyStaff}
+		'''
+}
+
+CrimsonSceptre: {
+	DisplayName: Cetro Carmesí
+	Tooltip: "{$Items.CorruptionSceptre.Tooltip}"
+}
+
+Osiris: {
+	DisplayName: Osiris
+	Tooltip:
+		'''
+		Drena el alma de enemigos poderosos
+		{$CommonTooltips.NecromancyStaff}
+		Al golpear explota en un enjambre de langostas
 		'''
 }
 
@@ -190,6 +550,21 @@ StunGun: {
 }
 
 //# Potions
+SentryPotion: {
+	DisplayName: Poción de centinela
+	Tooltip: Incrementa tu numero maximo de centinelas por {0}
+	BuffName: centinela
+}
+
+TaintedSeafood: {
+	DisplayName: Comida marina Contaminada
+	Tooltip:
+		'''
+		Puede dar mejoras menores, medianas, or o mayores a todas las estadisticas
+		Tambien tiene una probabilidad de dar intoxicación alimenticia
+		'''
+}
+
 NeutronYogurt: {
 	DisplayName: Yogurt de Neutrones
 	Tooltip: Otorga doble aceleración de caída
@@ -207,6 +582,20 @@ DeathsEmbrace: {
 		'''
 }
 
+SuspiciousLookingSteak: {
+	DisplayName: Filete de aspecto sospechoso
+	Tooltip: "'Eres una persona terrible'"
+}
+
+PotionOfResurrection: {
+	DisplayName: Poción de resurrección
+	Tooltip:
+		'''
+		Te teletransporta a el lugar de tu muerte mas reciente
+		'Una bebida preferida por aquellos que han experimentado la muerte'
+		'''
+}
+
 //# Foods
 Baguette: {
 	DisplayName: Baguette
@@ -218,6 +607,26 @@ Baguette: {
 }
 
 //# Misc
+FrozenTechnology: {
+	DisplayName: Tecnología Congelada
+	Tooltip: Usado para crear aparatos informacionales
+}
+
+GlowLichen: {
+	DisplayName: Liquen Brillante
+	Tooltip: Dejado caer por enemigos musgosos
+}
+
+ArtFragment: {
+	DisplayName: Fragmento de Acreción
+	Tooltip: "'The burning of the universe's passion emanate from this fragment'"
+}
+
+NecroFragment: {
+	DisplayName: Plerión Fragment
+	Tooltip: "'Deathly particles are released from this fragment'"
+}
+
 PossessedShard: {
 	DisplayName: Fragmento Poseído
 	Tooltip: Dejado caer por Armaduras y Herramientas poseídas
@@ -263,6 +672,16 @@ OmniGem: {
 	Tooltip: "'Encantada con la presencia del Éter'"
 }
 
+GreaterHoney: {
+	DisplayName: Poción de Miel Mayor
+	Tooltip: Incrementa la regeneración natural
+}
+
+SuperHoney: {
+	DisplayName: Super Poción de Miel
+	Tooltip: Incrementa la regeneración natural por un largo tiempo
+}
+
 LesserRestorationPotion: {
 	DisplayName: Poción de recuperación menor
 	Tooltip: "{$ItemTooltip.RestorationPotion}"
@@ -276,6 +695,21 @@ GreaterRestorationPotion: {
 SuperRestorationPotion: {
 	DisplayName: Super Poción de recuperación
 	Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+NoHitReward: {
+	DisplayName: La Recompensa del Vencedor
+	Tooltip:
+		'''
+		Permite reaparecer con vida completa permanentemente
+		'¡Otorgado a los que dan la milla extra!'
+		'''
+}
+
+TinkerersGuidebook: {
+	DisplayName: Guía del Chapuzero
+	Tooltip: Incrementa permanentemente la probabilidad de conseguir modificadores positivos al reforjar
+	DisplayMessage: Las ganancias del duende chapuzero comienzan a sufrir!
 }
 
 CosmicChest: {
@@ -293,30 +727,49 @@ CompressedTrash: {
 	Tooltip: ""
 }
 
-Fluorescence: {
-	DisplayName: Fluorescencia
-	Tooltip: "'Cargado con ira, adrenalina, y malicia atormentada'"
+BloodyTearstone: {
+	DisplayName: Piedra Lacrimógena Sangrienta
+	// Tooltip: ""
 }
 
-FrozenTear: {
-	DisplayName: Lagrima Congelada
-	Tooltip: "'Una lagrima exótica formada por el corazón derretido de un calamar'"
+SoulGem: {
+	DisplayName: Gema de Almas Vacia
+	Tooltip: Inutil hasta capturar el alma de un enemigo
 }
 
-CrabsonBag: {
-	DisplayName: Bolsa del Tesoro (Crabson)
-	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+SoulGemFilled: {
+	DisplayName: Gema de Almas
+	Tooltip:
+		'''
+		Usado para fabricar equipamiento necromantico
+		Dejado caer por los demonios mas oscuros...
+		'''
 }
 
-OmegaStariteBag: {
-	DisplayName: Bolsa del Tesoro (Omega Starite)
-	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+GalacticStarfruit: {
+	DisplayName: Fruta Estelar Galactica
+	Tooltip: Crea un destello extraño
 }
 
-DustDevilBag: {
-	DisplayName: Bolsa del Tesoro (Demonio de Polvo)
-	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+UnholyCore: {
+	DisplayName: Núcleo Impío
+	Tooltip:
+		'''
+		Puede usarse en un altar de oblivio
+		Disminuye la duración del asedio demoniaco
+		'''
 }
+
+UnholyCoreSmall: {
+	DisplayName: Piedra Lacrimógena Oscura
+	Tooltip:
+		'''
+		Puede usarse en un altar de oblivio
+		Dejado caer por entidades misteriosas en el inframundo
+		'''
+}
+
+TreasureBag.DisplayName: Bolsa del Tesoro ({0})
 
 WispLantern: {
 	DisplayName: Linterna Espiritual
@@ -382,6 +835,11 @@ DedicatedFaelingItem: {
 	Tooltip: ""
 }
 
+PhysicsGun: {
+	DisplayName: Arma de Física
+	Tooltip: Toma y tira bloques
+}
+
 Bellows: {
 	DisplayName: Fuelle
 	Tooltip:
@@ -409,24 +867,86 @@ NameTag: {
 		'''
 }
 
-//# Vanity Armors
+PylonDrone.Tooltip: Usar cerca de una Torre para activar el dron, Una torre puede tener un maximo de 2 drones
+
+CleanserDrone: {
+	// DisplayName: "{$NPCs.CleanserDrone.DisplayName}"
+	Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		Rocía solución para esparcir el bioma de la torre
+		'''
+}
+
+GunnerDrone: {
+	// DisplayName: "{$NPCs.GunnerDrone.DisplayName}"
+	Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		Defende el area de enemigos
+		'''
+}
+
+HealerDrone: {
+	DisplayName: "{$NPCs.HealerDrone.DisplayName}"
+	Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		Cura a aldeanos y criaturas
+		'''
+}
+
+MoonflowerSeeds: {
+	DisplayName: Semillas de Flor Lunar
+	Tooltip: ""
+}
+
+MistralSeeds: {
+	DisplayName: Semillas de Mistral
+	Tooltip: ""
+}
+
+ManacleSeeds: {
+	DisplayName: Semillas de Manilla
+	Tooltip: ""
+}
+
+//# Mounts
+BalloonKit: {
+	DisplayName: Botiquin Aerostático
+	Tooltip:
+		'''
+		Te permite montar un Globo Aerostático
+		'Expertamente fabricado por Empresas Modzilla'
+		'''
+}
+
+//# Backpacks
+ScavengerBag: {
+	DisplayName: Bolsa Carroñera
+	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+	BackpackEnabled: Mochila Visible
+	BackpackDisabled: Mochila No Visible
+}
+
+Toolbelt: {
+	Tooltip:
+		'''
+		{$CommonTooltips.IncreasesInventorySlots}
+		Solo puede sostener bloques y paredes
+		'''
+	BackpackEnabled: cinturón de herramientas Activo
+	BackpackDisabled: cinturón de herramientas Inactivo
+}
+
+//# Vanity
 BreadOfCthulhuMask: {
 	DisplayName: Mascara del Pan de Cthulhu
 	Tooltip: ""
 }
 
-CrabsonMask: {
-	DisplayName: Mascara de Crabson
-	Tooltip: ""
-}
-
-DustDevilMaskFire: {
-	DisplayName: Mascara ardiente del Demonio de Polvo
-	Tooltip: ""
-}
-
-DustDevilMaskIce: {
-	DisplayName: Mascara helada del Demonio de Polvo
+DustDevilMask: {
+	DisplayName: Mascara del Diablillo de Polvo
 	Tooltip: ""
 }
 
@@ -445,97 +965,50 @@ SpaceSquidMask: {
 	Tooltip: ""
 }
 
-//# Tiles & Blocks
-MonsterChestItem: {
-	DisplayName: Cofre Monstruo
-	Tooltip: Coloca un cofre monstruo que se activara de inmediato a menos que seas invisible
-}
+CelestialEightBall: {
+	DisplayName: Bola 8 Mágica
+	// Tooltip: ""
 
-CircuitBreaker: {
-	DisplayName: Palanca de Circuito
-	Tooltip: Activa bloques conductivos sin necesitar cables
-}
-
-CrabsonRelic: {
-	DisplayName: Reliquia de Crabson
-	Tooltip: ""
-}
-
-DustDevilRelic: {
-	DisplayName: Reliquia del Demonio de Polvo
-	Tooltip: ""
-}
-
-OmegaStariteRelic: {
-	DisplayName: Reliquia de Omega Starite
-	Tooltip: ""
-}
-
-RedSpriteRelic: {
-	DisplayName: Reliquia del Espectro Rojo
-	Tooltip: ""
-}
-
-SpaceSquidRelic: {
-	DisplayName: Reliquia del Calamar Espacial
-	Tooltip: ""
-}
-
-UltraStariteRelic: {
-	DisplayName: Reliquia de Ultra Starite
-	Tooltip: ""
-}
-
-CrabsonTrophy: {
-	DisplayName: Trofeo de Crabson
-	Tooltip: ""
-}
-
-DustDevilTrophy: {
-	DisplayName: Trofeo del Demonio de Polvo
-	Tooltip: ""
-}
-
-OmegaStariteTrophy: {
-	DisplayName: Trofeo de Omega Starite
-	Tooltip: ""
-}
-
-RedSpriteTrophy: {
-	DisplayName: Trofeo del Espectro Rojo
-	Tooltip: ""
-}
-
-SpaceSquidTrophy: {
-	DisplayName: Trofeo del Calamar Espacial
-	Tooltip: ""
-}
-
-UltraStariteTrophy: {
-	DisplayName: Trofeo de Ultra Starite
-	Tooltip: ""
-}
-
-//# Mounts
-BalloonKit: {
-	DisplayName: Botiquin Aerostático
-	Tooltip:
-		'''
-		Te permite montar un Globo Aerostático
-		'Expertamente fabricado por Empresas Modzilla'
-		'''
-}
-
-//# Backpacks
-ScavengerBag: {
-	DisplayName: Bolsa Carroñera
-	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
-}
-
-Backpacks: {
-	ScavengerBagBackpackData: {
-		DisplayName: Mochila
-		BackpackEnabled: Mochila Visible
-		BackpackDisabled: Mochila No Visible
+	Answer: {
+		0: Si
+		1: Mis fuentes dicen No
+		2: Es cierto
+		3: Es decididamante No
+		4: Sin duda
+		5: Si definitivamente
+		6: Puedes contar en ello
+		7: Como yo lo veo, Si
+		8: Probablemente
+		9: Se ve bien
+		10: Las señales apuntan a Si
+		11: No cuentes en ello
+		12: Mi respuesta es No
+		13: No se muy bien
+		14: Muy improbable
+		15: Respuesta borrosa, intenta denuevo
+		16: Pregunta mas tarde
+		17: Mejor no decirte ahora
+		18: No se puede predecir ahora
+		19: Concentrate y pregunta denuevo
 	}
+}
+
+CosmicMonolith: {
+	DisplayName: Monolito cosmico
+	Tooltip: "'Sostiene una fracción de poder cosmico'"
+}
+
+UltimateSword: {
+	// DisplayName: Mods.Aequus.Items.UltimateSword.DisplayName
+	// Tooltip: ""
+}
+
+StariteMaterial: {
+	DisplayName: Fragmento de Núcleo
+	// Tooltip: ""
+}
+
+UnopenedChestItem: {
+	DisplayName: Objeto de cofre sin abrir
+	// Tooltip: This is a debug item placed into chests upon worldgen to check if they have been opened
 }

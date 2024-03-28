@@ -1,0 +1,57 @@
+GenVarEdits.DisplayMessage: ""
+Statues.DisplayMessage: Placing More Statues...
+
+GoreNestsGeneration: {
+	DisplayMessage: Making the Underworld more evil...
+
+	Tombstones: {
+		0: "{Name} was torn into shreds"
+		1: "{Name} was obliterated"
+		2: "{Name} was possessed"
+		3: Eldritch forces tore apart {Name}
+		4: "{Name} became a sacrifice"
+		5: "{Name} didn't see their end coming"
+	}
+
+	TombstoneHints: {
+		0: ... The demons... they were everywhere... didn't stand a chance...
+		1: . leaving behind their weapons to wither away.
+		2: . Left them to be consumed by the Oblivion Altar, their legendary blade of darkness was attracted to its dark energy.
+		3: . The prophecy of a sacred blade of night wasn't fullfilled for this one...
+		4: ... Body thrown into the portal, never to be seen again.
+		5: ... Their fate left unknown
+	}
+}
+
+LavaCleanupStep.DisplayMessage: Cleaning up lava
+LavaCleanup.DisplayMessage: Mods.Aequus.GenStep.LavaCleanup.DisplayMessage
+
+PollutedOcean: {
+	DisplayMessage: {
+		0: Creating a landfill
+		1: Sabotaging the turtles
+		2: Polluting one of the oceans
+		3: Destroying coral reefs
+		4: Throwing away trash
+		5: Sailing Oil Tankers
+		6: Creating a Great Garbage Patch
+		7: Becoming Non-biodegradable
+		8: Ghost fishing
+	}
+
+	Sand: ..Depositing Sand
+	Caves: ..Punching Holes
+	Detailing: ..Decomposing Plastics
+	Ores: ..Adding Goodies
+}
+
+PollutedOceanAmbience.DisplayMessage: Taking out the trash...
+Reset.DisplayMessage: ""
+
+NewCavesGeneration: {
+	DisplayMessage: Creating bizarre caverns...
+	Weird: Weird ones
+	Tall: Tall ones
+}
+
+BigGemsGeneration.DisplayMessage: Making Ice Overpowered...

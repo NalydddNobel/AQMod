@@ -1,23 +1,19 @@
 ﻿using Aequus.Common.NPCs;
-using Aequus.Common.Particles;
-using Aequus.Content.Items.Material.MonoGem;
+using Aequus.Core.Assets;
 using Aequus.Core.Graphics;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Shaders;
 using Terraria.Graphics;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
-using Terraria.ID;
-using Terraria.ModLoader;
 
-namespace Aequus;
+namespace Aequus.Core.Utilities;
 
 public sealed class DrawHelper : ModSystem {
     public delegate void Draw(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth);
+
+    public static Matrix View => Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) * Matrix.CreateTranslation(Main.graphics.GraphicsDevice.Viewport.Width / 2f, Main.graphics.GraphicsDevice.Viewport.Height / -2f, 0) * Matrix.CreateRotationZ(MathHelper.Pi);
+    public static Matrix Projection => Matrix.CreateOrthographic(Main.graphics.GraphicsDevice.Viewport.Width, Main.graphics.GraphicsDevice.Viewport.Height, 0, 1000);
 
     private static BasicEffect _basicEffect;
     public static VertexStrip VertexStrip { get; private set; }
@@ -60,7 +56,13 @@ public sealed class DrawHelper : ModSystem {
         DrawLine(Main.spriteBatch.Draw, start, end, width, color);
     }
 
-    public static void DrawBasicVertexLine(Texture2D texture, Vector2[] lineSegments, float[] lineRotations, VertexStrip.StripColorFunction getColor, VertexStrip.StripHalfWidthFunction getWidth, Vector2 offset = default, bool includeBacksides = true, bool tryStoppingOddBug = true) {
+    public static void DrawBasicVertexLine(Texture2D texture, Vector2[] lineSegments, float[] lineRotations, VertexStrip.StripColorFunction getColor, VertexStrip.StripHalfWidthFunction getWidth, Vector2 offset = default, bool includeBacksides = true) {
+        ApplyBasicEffect(texture);
+
+        VertexStrip.PrepareStrip(lineSegments, lineRotations, getColor, getWidth, offset, includeBacksides: includeBacksides);
+        VertexStrip.DrawTrail();
+    }
+    public static void DrawBasicVertexLineWithProceduralPadding(Texture2D texture, Vector2[] lineSegments, float[] lineRotations, VertexStrip.StripColorFunction getColor, VertexStrip.StripHalfWidthFunction getWidth, Vector2 offset = default, bool includeBacksides = true, bool tryStoppingOddBug = true) {
         ApplyBasicEffect(texture);
 
         VertexStrip.PrepareStripWithProceduralPadding(lineSegments, lineRotations, getColor, getWidth, offset, includeBacksides, tryStoppingOddBug);
@@ -72,18 +74,16 @@ public sealed class DrawHelper : ModSystem {
     }
 
     public static void GetWorldViewProjection(out Matrix view, out Matrix projection) {
-        int width = Main.graphics.GraphicsDevice.Viewport.Width;
-        int height = Main.graphics.GraphicsDevice.Viewport.Height;
-        projection = Matrix.CreateOrthographic(width, height, 0, 1000);
-        view = Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) *
-            Matrix.CreateTranslation(width / 2f, height / -2f, 0) * Matrix.CreateRotationZ(MathHelper.Pi) *
-            Matrix.CreateScale(Main.GameViewMatrix.Zoom.X, Main.GameViewMatrix.Zoom.Y, 1f);
+        projection = Projection;
+        view = View * Matrix.CreateScale(Main.GameViewMatrix.Zoom.X, Main.GameViewMatrix.Zoom.Y, 1f);
     }
 
-    public static void ApplyBasicEffect(Texture2D texture = default, bool vertexColorsEnabled = true) {
+    public static void ApplyBasicEffect(Texture2D texture = default, bool vertexTCommonColorEnabled = true) {
         GetWorldViewProjection(out var view, out var projection);
-
-        _basicEffect.VertexColorEnabled = vertexColorsEnabled;
+        ApplyBasicEffect(view, projection, texture, vertexTCommonColorEnabled);
+    }
+    public static void ApplyBasicEffect(Matrix view, Matrix projection, Texture2D texture = default, bool vertexTCommonColorEnabled = true) {
+        _basicEffect.VertexColorEnabled = vertexTCommonColorEnabled;
         _basicEffect.Projection = projection;
         _basicEffect.View = view;
 
@@ -95,12 +95,63 @@ public sealed class DrawHelper : ModSystem {
             pass.Apply();
         }
     }
+    public static void ApplyUVEffect(Texture2D texture, Vector2 uvMultiplier, Vector2 uvAdd) {
+        GetWorldViewProjection(out var view, out var projection);
+
+        Main.instance.GraphicsDevice.Textures[0] = texture;
+        var effect = AequusShaders.UVVertexShader.Value;
+        effect.CurrentTechnique = effect.Techniques["UVWrap"];
+        effect.Parameters["XViewProjection"].SetValue(view * projection);
+        effect.Parameters["UVMultiplier"].SetValue(uvMultiplier);
+        effect.Parameters["UVAdd"].SetValue(uvAdd);
+        foreach (var pass in effect.CurrentTechnique.Passes) {
+            pass.Apply();
+        }
+    }
 
     public static Color GetYoyoStringColor(int stringColorId) {
         if (stringColorId == 27) {
             return Main.DiscoColor;
         }
         return WorldGen.paintColor(stringColorId);
+    }
+
+    public static void DiscardTarget(ref RenderTarget2D target) {
+        if (target == null) {
+            return;
+        }
+
+        if (!target.IsDisposed) {
+            Main.QueueMainThreadAction(target.Dispose);
+        }
+
+        target = null;
+    }
+
+    public static bool BadRenderTarget(RenderTarget2D renderTarget2D) {
+        return renderTarget2D == null || renderTarget2D.IsDisposed || renderTarget2D.IsContentLost;
+    }
+    public static bool BadRenderTarget(RenderTarget2D renderTarget2D, int wantedWidth, int wantedHeight) {
+        return BadRenderTarget(renderTarget2D) || renderTarget2D.Width != wantedWidth || renderTarget2D.Height != wantedHeight;
+    }
+
+    public static Vector2 ApplyZoom(Vector2 screenCoordinate, float zoomFactor) {
+        Vector2 screenCenter = new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
+        Vector2 difference = screenCoordinate - screenCenter;
+        float zoom = zoomFactor;
+        return screenCenter + difference * zoom;
+    }
+    public static float ApplyZoomY(float screenCoordinateY, float zoomFactor) {
+        float screenCenterY = Main.screenHeight / 2f;
+        float differenceY = screenCoordinateY - screenCenterY;
+        float zoom = zoomFactor;
+        return screenCenterY + differenceY * zoom;
+    }
+    public static float ApplyZoomX(float screenCoordinateX, float zoomFactor) {
+        float screenCenterX = Main.screenWidth / 2f;
+        float differenceX = screenCoordinateX - screenCenterX;
+        float zoom = zoomFactor;
+        return screenCenterX + differenceX * zoom;
     }
 
     #region Dust
@@ -139,7 +190,6 @@ public sealed class DrawHelper : ModSystem {
         On_Main.DrawNPC += On_Main_DrawNPC;
         On_Main.DrawNPCs += On_Main_DrawNPCs;
         On_Main.DrawItems += On_Main_DrawItems;
-        On_Main.DrawDust += On_Main_DrawDust;
         Main.QueueMainThreadAction(LoadShaders);
     }
 
@@ -158,31 +208,12 @@ public sealed class DrawHelper : ModSystem {
     #endregion
 
     #region Hooks
-    private static void On_Main_DrawDust(On_Main.orig_DrawDust orig, Main main) {
-        orig(main);
-        var particleRenderer = ParticleSystem.GetLayer(ParticleLayer.AboveDust);
-        if (particleRenderer.Particles.Count > 0) {
-            Main.spriteBatch.BeginWorld();
-            particleRenderer.Draw(Main.spriteBatch);
-            Main.spriteBatch.End();
-        }
-        MonoGemRenderer.HandleScreenRender();
-    }
-
     private static void On_Main_DrawItems(On_Main.orig_DrawItems orig, Main main) {
         orig(main);
-        ParticleSystem.GetLayer(ParticleLayer.AboveItems).Draw(Main.spriteBatch);
     }
 
     private static void On_Main_DrawNPCs(On_Main.orig_DrawNPCs orig, Main main, bool behindTiles) {
-        if (!behindTiles) {
-            orig(main, behindTiles);
-            ParticleSystem.GetLayer(ParticleLayer.AboveNPCs).Draw(Main.spriteBatch);
-        }
-        else {
-            ParticleSystem.GetLayer(ParticleLayer.BehindAllNPCsBehindTiles).Draw(Main.spriteBatch);
-            orig(main, behindTiles);
-        }
+        orig(main, behindTiles);
     }
 
     private static void On_Main_DrawNPC(On_Main.orig_DrawNPC orig, Main main, int iNPCIndex, bool behindTiles) {

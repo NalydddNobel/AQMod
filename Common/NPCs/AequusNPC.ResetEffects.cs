@@ -1,5 +1,4 @@
-﻿using Aequus.Core.Generator;
-using Terraria;
+﻿using Aequus.Core.CodeGeneration;
 
 namespace Aequus.Common.NPCs;
 
@@ -12,6 +11,9 @@ public partial class AequusNPC {
     }
 
     public override void ResetEffects(NPC npc) {
+        if (immuneToDamageTime > 0) {
+            immuneToDamageTime--;
+        }
         _resetEffects.Invoke(this);
     }
 }

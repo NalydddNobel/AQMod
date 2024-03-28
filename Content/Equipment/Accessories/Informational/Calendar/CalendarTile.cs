@@ -1,10 +1,5 @@
-﻿using Aequus.Common;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria;
-using Terraria.Localization;
-using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Equipment.Accessories.Informational.Calendar;
@@ -26,7 +21,7 @@ public class CalendarTile : ModTile {
         TileObjectData.newTile.StyleWrapLimit = 36;
         TileObjectData.addTile(Type);
         DustType = DustID.BubbleBurst_White;
-        AddMapEntry(new Color(85, 85, 85), Lang.GetItemName(ModContent.ItemType<Calendar>()));
+        AddMapEntry(new Color(85, 85, 85), LanguageDatabase.GetItemName(ModContent.ItemType<Calendar>()));
     }
 
     public override void NearbyEffects(int i, int j, bool closer) {

@@ -1,4 +1,4 @@
-﻿using Aequus;
+﻿using Aequus.Common.Backpacks;
 using Aequus.Common.Tiles.Components;
 using Aequus.Core.Graphics.Animations;
 using Aequus.Core.Graphics.Tiles;
@@ -6,14 +6,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
-using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent;
 using Terraria.GameContent.ObjectInteractions;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Fishing.CrabPots;
@@ -140,7 +137,7 @@ public abstract class BaseCrabPot : ModTile, ISpecialTileRenderer, IModifyPlacem
         if (item.IsAir || item.bait <= 0) {
             return false;
         }
-        if (liquidType == LiquidID.Lava && !ItemID.Sets.IsLavaBait[item.type]) {
+        if (liquidType == LiquidID.Lava && !ItemSets.IsLavaBait[item.type]) {
             return false;
         }
         return true;
@@ -158,7 +155,7 @@ public abstract class BaseCrabPot : ModTile, ISpecialTileRenderer, IModifyPlacem
     }
 
     public static Item GetBaitItem(Player player, int x, int y) {
-        var aequusPlayer = player.GetModPlayer<AequusPlayer>();
+        var backpackPlayer = player.GetModPlayer<BackpackPlayer>();
         int liquidType = GetLiquidType(x, y);
         var heldItem = player.HeldItemFixed();
         if (ValidBait(heldItem, liquidType)) {
@@ -180,9 +177,9 @@ public abstract class BaseCrabPot : ModTile, ISpecialTileRenderer, IModifyPlacem
         }
 
         // Backpack slots
-        for (int k = 0; k < aequusPlayer.backpacks.Length; k++) {
-            if (aequusPlayer.backpacks[k].IsActive(player) && aequusPlayer.backpacks[k].SupportsConsumeItem) {
-                var inventory = aequusPlayer.backpacks[k].Inventory;
+        for (int k = 0; k < backpackPlayer.backpacks.Length; k++) {
+            if (backpackPlayer.backpacks[k].IsActive(player) && backpackPlayer.backpacks[k].SupportsConsumeItem) {
+                var inventory = backpackPlayer.backpacks[k].Inventory;
                 for (int i = 0; i < inventory.Length; i++) {
                     if (ValidBait(inventory[i], liquidType)) {
                         return inventory[i];
@@ -315,7 +312,7 @@ public abstract class BaseCrabPot : ModTile, ISpecialTileRenderer, IModifyPlacem
         DrawCrabPot(left, top, spriteBatch, TextureAssets.Tile[Type].Value, data, yOffset, crabPotAnimation, (x, y, rgb) => rgb);
 
         if (Main.InSmartCursorHighlightArea(i, j, out var actuallySelected)) {
-            DrawCrabPot(left, top, spriteBatch, _highlightTexture.Value, data, yOffset, crabPotAnimation, (x, y, rgb) => Colors.GetSelectionGlowColor(actuallySelected, (rgb.R + rgb.G + rgb.B) / 3));
+            DrawCrabPot(left, top, spriteBatch, _highlightTexture.Value, data, yOffset, crabPotAnimation, (x, y, rgb) => TCommonColor.GetSelectionGlowColor(actuallySelected, (rgb.R + rgb.G + rgb.B) / 3));
         }
         if (TileEntity.ByPosition.TryGetValue(new(left, top), out var tileEntity) && tileEntity is TECrabPot crabPot) {
             CustomPreDraw(left, top, yOffset, spriteBatch, crabPot);

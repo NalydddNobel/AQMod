@@ -1,23 +1,22 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Items;
 using Aequus.Content.Configuration;
+using Aequus.Content.Equipment.Accessories.Balloons;
+using Aequus.Content.Equipment.Accessories.FlashwayShield;
+using Aequus.Content.Equipment.Accessories.GoldenFeather;
 using Aequus.Content.Equipment.Accessories.Informational.Calendar;
-using Aequus.Content.Equipment.Accessories.Movement.FlashwayShield;
-using Aequus.Content.Equipment.Accessories.Movement.SlimyBlueBalloon;
-using Aequus.Content.Equipment.Accessories.Movement.WeightedHorseshoe;
-using Aequus.Content.Equipment.Accessories.Restoration.GoldenFeather;
+using Aequus.Content.Equipment.Accessories.ValentinesRing;
+using Aequus.Content.Equipment.Accessories.WeightedHorseshoe;
 using Aequus.Content.Equipment.Mounts.HotAirBalloon;
-using Aequus.Content.Items.Tools.Bellows;
-using Aequus.Content.Items.Tools.NameTag;
-using Aequus.Content.Items.Weapons.Classless.StunGun;
-using Aequus.Content.Items.Weapons.Magic.Furystar;
-using Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
+using Aequus.Content.Potions.Healing.Restoration;
+using Aequus.Content.Tools.Bellows;
+using Aequus.Content.Tools.NameTag;
+using Aequus.Content.Weapons.Classless.StunGun;
+using Aequus.Content.Weapons.Magic.Furystar;
+using Aequus.Content.Weapons.Ranged.Bows.SkyHunterCrossbow;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.TownNPCs.SkyMerchant;
 
@@ -31,13 +30,14 @@ public partial class SkyMerchant {
             .AddCustomValue<BalloonKit>(ItemCommons.Price.SkyMerchantCustomPurchasePrice * 7)
             .Add<NameTag>()
             .Add<Calendar>()
-            .AddCustomValue<SlimyBlueBalloon>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.BetweenDays(DayOfWeek.Sunday, DayOfWeek.Monday))
-            .AddCustomValue<GoldenFeather>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.BetweenDays(DayOfWeek.Monday, DayOfWeek.Tuesday))
-            .AddCustomValue(celestialMagnetAltId, ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.BetweenDays(DayOfWeek.Tuesday, DayOfWeek.Wednesday))
-            .AddCustomValue<StunGun>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.BetweenDays(DayOfWeek.Wednesday, DayOfWeek.Thursday))
-            .AddCustomValue<WeightedHorseshoe>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.BetweenDays(DayOfWeek.Thursday, DayOfWeek.Friday))
-            .AddCustomValue<Furystar>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.BetweenDays(DayOfWeek.Friday, DayOfWeek.Saturday))
-            .AddCustomValue<FlashwayShield>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.DayOfTheWeek(DayOfWeek.Saturday))
+            .Add<LesserRestorationPotion>()
+            .AddCustomValue<SlimyBlueBalloon>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Aequus.ConditionBetweenDays(DayOfWeek.Sunday, DayOfWeek.Monday))
+            .AddCustomValue<GoldenFeather>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Aequus.ConditionBetweenDays(DayOfWeek.Monday, DayOfWeek.Tuesday))
+            .AddCustomValue(celestialMagnetAltId, ItemCommons.Price.SkyMerchantCustomPurchasePrice, Aequus.ConditionBetweenDays(DayOfWeek.Tuesday, DayOfWeek.Wednesday))
+            .AddCustomValue<StunGun>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Aequus.ConditionBetweenDays(DayOfWeek.Wednesday, DayOfWeek.Thursday))
+            .AddCustomValue<WeightedHorseshoe>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Aequus.ConditionBetweenDays(DayOfWeek.Thursday, DayOfWeek.Friday))
+            .AddCustomValue<Furystar>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Aequus.ConditionBetweenDays(DayOfWeek.Friday, DayOfWeek.Saturday))
+            .AddCustomValue<FlashwayShield>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Aequus.ConditionDayOfTheWeek(DayOfWeek.Saturday))
             .Register();
     }
 
@@ -74,7 +74,7 @@ public partial class SkyMerchant {
             }
         }
 
-        int nextIndex = items.GetNextIndex();
+        int nextIndex = ExtendShop.FindNextIndex(items);
         foreach (var pair in dropRateInfo) {
             foreach (var dropRateInfoValue in pair.Value.DropRateInfo) {
                 if (nextIndex >= items.Length) {

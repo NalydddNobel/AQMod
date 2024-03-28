@@ -1,18 +1,16 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Common.Tiles.Components;
-using Aequus.Core.Autoloading;
+using Aequus.Core.Initialization;
 using Aequus.Core.Graphics.Tiles;
 using Aequus.Core.Networking;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
-using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
-using Terraria.ID;
-using Terraria.ModLoader;
+using Aequus.Core.ContentGeneration;
 
 namespace Aequus.Content.Tiles.Conductive;
 
@@ -22,19 +20,22 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
     public virtual Color MapColor => new(183, 88, 25);
 
     public override void Load() {
-        Mod.AddContent(new InstancedTileItem(this, value: Item.buyPrice(silver: 1)).WithRecipe((m) => {
-            m.CreateRecipe()
+        ModItem item = new InstancedTileItem(this, value: Item.buyPrice(silver: 1));
+        Mod.AddContent(item);
+
+        Aequus.OnAddRecipes += () => {
+            item.CreateRecipe()
                 .AddIngredient(BarItem, 1)
                 .AddTile(TileID.Furnaces)
                 .Register();
-        }));
+        };
     }
 
     public override void SetStaticDefaults() {
         Main.tileSolid[Type] = true;
         Main.tileBlockLight[Type] = true;
         DustType = DustID.Copper;
-        HitSound = AequusSounds.ConductiveBlock;
+        HitSound = AequusSounds.ConductiveBlockBreak;
         AddMapEntry(MapColor, CreateMapEntryName());
     }
 
@@ -51,7 +52,13 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
     public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
 
     public override void HitWire(int i, int j) {
-        ActivateEffect(i, j);
+        if (ConductiveSystem.PoweredLocation == Point.Zero) {
+            ActivateEffect(i, j, new(i, j));
+        }
+        else {
+            ActivateEffect(i, j, ConductiveSystem.PoweredLocation);
+        }
+
         if (!Wiring.CheckMech(i, j, ConductiveSystem.PoweredLocation == Point.Zero ? ConductiveSystem.ActivationDelay : 0)) {
             return;
         }
@@ -88,7 +95,7 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
     }
 
     public void Send(int i, int j, BinaryWriter binaryWriter) {
-        binaryWriter.Write(-ConductiveSystem.ActivationEffect.GetDistance(i, j));
+        binaryWriter.Write(-ConductiveSystem.ActivationEffect.GetDistance(i, j, ConductiveSystem.PoweredLocation));
     }
 
     public void Receive(int i, int j, BinaryReader binaryReader, int sender) {
@@ -96,12 +103,15 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
         ConductiveSystem.ActivationEffect.Activate(i, j, distance);
     }
 
-    private static void ActivateEffect(int i, int j) {
+    private static void ActivateEffect(int i, int j, Point origin) {
         if (Main.netMode == NetmodeID.Server) {
-            PacketSystem.Get<TileInteractionPacket>().Send(i, j);
+            var originalPoweredLocation = ConductiveSystem.PoweredLocation;
+            ConductiveSystem.PoweredLocation = origin;
+            Aequus.GetPacket<TileInteractionPacket>().Send(i, j);
+            ConductiveSystem.PoweredLocation = originalPoweredLocation;
         }
         else if (Main.netMode == NetmodeID.SinglePlayer) {
-            ConductiveSystem.ActivationEffect.Activate(i, j, -ConductiveSystem.ActivationEffect.GetDistance(i, j));
+            ConductiveSystem.ActivationEffect.Activate(i, j, -ConductiveSystem.ActivationEffect.GetDistance(i, j, origin));
         }
     }
 
@@ -127,7 +137,7 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
             d.noGravity = true;
         }
 
-        if (!Aequus.highQualityEffects) {
+        if (!Aequus.HighQualityEffects) {
             return;
         }
 
@@ -171,6 +181,6 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
             return;
         }
 
-        player.Hurt(PlayerHelper.CustomDeathReason("Mods.Aequus.Player.DeathMessage.Conductive." + Main.rand.Next(5), player.name), 120, 0, cooldownCounter: ImmunityCooldownID.TileContactDamage, knockback: 0f);
+        player.Hurt(AequusPlayer.CustomDeathReason("Conductive", 5), 120, 0, cooldownCounter: ImmunityCooldownID.TileContactDamage, knockback: 0f);
     }
 }

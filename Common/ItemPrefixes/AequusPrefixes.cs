@@ -1,20 +1,19 @@
 ﻿using Aequus.Common.Items.Components;
-using Aequus.Content.Items.Weapons.Classless;
+using Aequus.Content.Weapons.Classless;
+using Aequus.DataSets;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.Utilities;
 
 namespace Aequus.Common.ItemPrefixes;
 
 public class AequusPrefixes : GlobalItem {
-    public static List<CooldownPrefix> RegisteredCooldownPrefixes { get; private set; } = new();
+    internal static List<CooldownPrefix> RegisteredCooldownPrefixes { get; private set; } = new();
 
     public override void Load() {
-        DetourHelper.AddHook(typeof(PrefixLoader).GetMethod(nameof(PrefixLoader.CanRoll)), typeof(AequusPrefixes).GetMethod(nameof(On_PrefixLoader_CanRoll), BindingFlags.NonPublic | BindingFlags.Static));
+        On_Item.CanHavePrefixes += On_Item_CanHavePrefixes;
+        HookManager.ApplyAndCacheHook(typeof(PrefixLoader).GetMethod(nameof(PrefixLoader.CanRoll)), typeof(AequusPrefixes).GetMethod(nameof(On_PrefixLoader_CanRoll), BindingFlags.NonPublic | BindingFlags.Static));
     }
 
     public override void Unload() {
@@ -22,6 +21,14 @@ public class AequusPrefixes : GlobalItem {
     }
 
     #region Hooks
+    private static bool On_Item_CanHavePrefixes(On_Item.orig_CanHavePrefixes orig, Item self) {
+        if (ItemDataSet.Potions.Contains(self.type)) {
+            return true;
+        }
+
+        return orig(self);
+    }
+
     private static bool On_PrefixLoader_CanRoll(Func<Item, int, bool> orig, Item item, int prefix) {
         if (item.ModItem is ClasslessWeapon && prefix < PrefixID.Count) {
             return true;

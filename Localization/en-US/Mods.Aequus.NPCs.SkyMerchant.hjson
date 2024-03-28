@@ -21,6 +21,6 @@ Dialogue: {
 }
 
 Interface: {
-	RenameButton: Rename
+	RenameButton: Rename Items
 	PlaceHere: Place an item here to rename
 }

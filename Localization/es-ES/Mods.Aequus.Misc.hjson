@@ -1,3 +1,4 @@
+NeedsMod: Requiere activar [{0}]
 GameTipPretense: Aequus:
 PriceFree: Gratis!
 
@@ -43,6 +44,38 @@ Dyes: {
 	}
 }
 
+Rarity: {
+	-13.DisplayName: Rojo Fuego
+	-12.DisplayName: Arcoíris
+	-11.DisplayName: Ambar
+	-1.DisplayName: Gris
+	0.DisplayName: Blanco
+	1.DisplayName: Azul
+	2.DisplayName: Verde
+	3.DisplayName: Naranja
+	4.DisplayName: Rojo Claro
+	5.DisplayName: Rosa
+	6.DisplayName: Morado Claro
+	7.DisplayName: Lima
+	8.DisplayName: Amarillo
+	9.DisplayName: Cian
+	10.DisplayName: Rojo
+	11.DisplayName: Morado
+
+	CalamityMod: {
+		Turquoise.DisplayName: Turquesa
+		PureGreen.DisplayName: Verde Puro
+		DarkBlue.DisplayName: Azul Oscuro
+		Violet.DisplayName: Violeta
+		HotPink.DisplayName: Rosa Fucsia
+		CalamityRed.DisplayName: Rojo Calamidad
+		DarkOrange.DisplayName: Naranja Oscuro
+	}
+
+	CatalystMod.SuperbossRarity.DisplayName: Cristal
+}
+
+BlocksDistance: Distancia: a {0} blocks
 Contains: Contiene: {0}
 MonocleToggleOn: Monóculo Activo
 MonocleToggleOff: Monóculo Inacctivo
@@ -50,9 +83,4 @@ ShimmerMonocleToggleOn: Notas de Fulgor Activas
 ShimmerMonocleToggleOff: Notas de Fulgor Inactivas
 BagWarningQuickBuff: ¡La mochila no soporta el Potenciar Rapido!
 BagWarningAmmo: ¡La mochila no soporta Munición    !
-ClickLink:
-	'''
-	Escucha la música en y[c/AABBEE:{0}]!
-	Doble click para abrir el link
-	'''
-OpenLink: Abriendo [c/AABBEE:{0}] en el buscador...
+TimeLeft: Time Restante: {0}

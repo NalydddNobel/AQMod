@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Common.Tiles.Components;
 using Aequus.Content.Graphics.GameOverlays;
+using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics.Animations;
 using Aequus.Core.Graphics.Tiles;
 using Microsoft.Xna.Framework;
@@ -8,12 +9,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.IO;
-using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Tiles.CraftingStations.TrashCompactor;

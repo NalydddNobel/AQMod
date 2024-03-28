@@ -3,9 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ID;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger;
 
@@ -91,14 +89,14 @@ public partial class Scavenger {
         var armorSpriteEffects = NPC.spriteDirection == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
         float opacity = NPC.Opacity * (1f - NPC.shimmerTransparency);
 
-        NPCHelper.DrawNPCStatusEffects(spriteBatch, NPC, screenPos);
+        ExtendNPC.DrawNPCStatusEffects(spriteBatch, NPC, screenPos);
 
         DrawHelmet(spriteBatch, drawCoordinates, drawColor, AequusTextures.ScavengerBag_Back, bodyFrame, armorSpriteEffects);
 
-        if (armor[AccSlot].balloonSlot > 0) {
-            Main.instance.LoadAccBalloon(armor[AccSlot].balloonSlot);
-            var balloonTexture = TextureAssets.AccBalloon[armor[AccSlot].balloonSlot].Value;
-            if (!ArmorIDs.Balloon.Sets.UsesTorsoFraming[armor[AccSlot].balloonSlot]) {
+        if (armor[SLOT_ACCS].balloonSlot > 0) {
+            Main.instance.LoadAccBalloon(armor[SLOT_ACCS].balloonSlot);
+            var balloonTexture = TextureAssets.AccBalloon[armor[SLOT_ACCS].balloonSlot].Value;
+            if (!BalloonEquipSets.UsesTorsoFraming[armor[SLOT_ACCS].balloonSlot]) {
                 var balloonFrame = balloonTexture.Frame(verticalFrames: 4, frameY: DateTime.Now.Millisecond % 800 / 200);
                 spriteBatch.Draw(balloonTexture, drawCoordinates + new Vector2((NPC.width / 2f - 6f) * NPC.spriteDirection, -8f) * NPC.scale, balloonFrame, drawColor, 0f, balloonFrame.Size() / 2f, NPC.scale, armorSpriteEffects, 0f);
             }
@@ -107,39 +105,39 @@ public partial class Scavenger {
             }
         }
 
-        if (armor[LegSlot].legSlot <= 0 || !ArmorIDs.Legs.Sets.HidesTopSkin[armor[LegSlot].legSlot]) {
+        if (armor[SLOT_LEGS].legSlot <= 0 || !LegEquipSets.HidesTopSkin[armor[SLOT_LEGS].legSlot]) {
             var legsFrame = bodyFrame;
-            if ((armor[AccSlot].shoeSlot > 0 && ArmorIDs.Shoe.Sets.OverridesLegs[armor[AccSlot].shoeSlot]) || (armor[LegSlot].legSlot > 0 && ArmorIDs.Legs.Sets.HidesBottomSkin[armor[LegSlot].legSlot])) {
+            if ((armor[SLOT_ACCS].shoeSlot > 0 && ShoeEquipSets.OverridesLegs[armor[SLOT_ACCS].shoeSlot]) || (armor[SLOT_LEGS].legSlot > 0 && LegEquipSets.HidesBottomSkin[armor[SLOT_LEGS].legSlot])) {
                 legsFrame.Height -= 14;
             }
             spriteBatch.Draw(TextureAssets.Npc[Type].Value, drawCoordinates, legsFrame, drawColor, NPC.rotation, NPC.frame.Size() / 2f, NPC.scale, armorSpriteEffects, 0f);
         }
 
         var drawInfo = new DrawInfo(spriteBatch, drawCoordinates, drawColor, bodyFrame, x, y, opacity, armorSpriteEffects);
-        DrawBody(spriteBatch, drawCoordinates, drawColor, AequusTextures.ScavengerBody, bodyFrame, x, y, armorSpriteEffects, drawBackArm: armor[BodySlot].IsAir || !BackArmSkinOverride.Contains(armor[BodySlot].bodySlot));
-        DrawBodyFull(AccSlot, (i) => i.handOffSlot, Main.instance.LoadAccHandsOff, TextureAssets.AccHandsOff, drawInfo);
-        DrawBodyFull(BodySlot, (i) => i.bodySlot, Main.instance.LoadArmorBody, TextureAssets.ArmorBodyComposite, drawInfo);
-        if (!armor[BodySlot].IsAir) {
+        DrawBody(spriteBatch, drawCoordinates, drawColor, AequusTextures.ScavengerBody, bodyFrame, x, y, armorSpriteEffects, drawBackArm: armor[SLOT_BODY].IsAir || !BackArmSkinOverride.Contains(armor[SLOT_BODY].bodySlot));
+        DrawBodyFull(SLOT_ACCS, (i) => i.handOffSlot, Main.instance.LoadAccHandsOff, TextureAssets.AccHandsOff, drawInfo);
+        DrawBodyFull(SLOT_BODY, (i) => i.bodySlot, Main.instance.LoadArmorBody, TextureAssets.ArmorBodyComposite, drawInfo);
+        if (!armor[SLOT_BODY].IsAir) {
             spriteBatch.Draw(AequusTextures.ScavengerBag_Strap.Value, drawCoordinates + new Vector2(positionOffset.X + NPC.spriteDirection * 3f, 4f + positionOffset.Y).RotatedBy(NPC.rotation) * NPC.scale, null, drawColor, NPC.rotation, AequusTextures.ScavengerBag_Strap.Size() / 2f, NPC.scale, armorSpriteEffects, 0f);
         }
-        if (armor[HeadSlot].headSlot <= 0 || (!HeadSkinOverride.Contains(armor[HeadSlot].headSlot) && ArmorIDs.Head.Sets.DrawHead[armor[HeadSlot].headSlot])) {
+        if (armor[SLOT_HEAD].headSlot <= 0 || (!HeadSkinOverride.Contains(armor[SLOT_HEAD].headSlot) && HelmetEquipSets.DrawHead[armor[SLOT_HEAD].headSlot])) {
             spriteBatch.Draw(AequusTextures.ScavengerHead.Value, drawCoordinates + new Vector2(positionOffset.X, -2f + positionOffset.Y).RotatedBy(NPC.rotation) * NPC.scale, null, drawColor, NPC.rotation, AequusTextures.ScavengerHead.Size() / 2f, NPC.scale, armorSpriteEffects, 0f);
         }
-        DrawBodyFull(AccSlot, (i) => i.handOnSlot, Main.instance.LoadAccHandsOn, TextureAssets.AccHandsOn, drawInfo);
-        DrawHelmetFull(HeadSlot, (i) => i.headSlot, Main.instance.LoadArmorHead, TextureAssets.ArmorHead, drawInfo with { drawCoordinates = drawInfo.drawCoordinates + new Vector2(2f * NPC.spriteDirection, 0f) });
+        DrawBodyFull(SLOT_ACCS, (i) => i.handOnSlot, Main.instance.LoadAccHandsOn, TextureAssets.AccHandsOn, drawInfo);
+        DrawHelmetFull(SLOT_HEAD, (i) => i.headSlot, Main.instance.LoadArmorHead, TextureAssets.ArmorHead, drawInfo with { drawCoordinates = drawInfo.drawCoordinates + new Vector2(2f * NPC.spriteDirection, 0f) });
         DrawFrontArm(spriteBatch, drawCoordinates, drawColor, AequusTextures.ScavengerBody, bodyFrame, x, y, armorSpriteEffects, layerFront: true);
-        DrawFrontArmFull(BodySlot, (i) => i.bodySlot, Main.instance.LoadArmorBody, TextureAssets.ArmorBodyComposite, drawInfo, layerFront: true);
-        DrawFrontArmFull(AccSlot, (i) => i.handOnSlot, Main.instance.LoadAccHandsOn, TextureAssets.AccHandsOn, drawInfo, layerFront: true);
+        DrawFrontArmFull(SLOT_BODY, (i) => i.bodySlot, Main.instance.LoadArmorBody, TextureAssets.ArmorBodyComposite, drawInfo, layerFront: true);
+        DrawFrontArmFull(SLOT_ACCS, (i) => i.handOnSlot, Main.instance.LoadAccHandsOn, TextureAssets.AccHandsOn, drawInfo, layerFront: true);
 
-        bool hideShoes = armor[LegSlot].legSlot > 0 && ArmorIDs.Legs.Sets.OverridesLegs[armor[LegSlot].legSlot];
-        if (hideShoes || armor[AccSlot].shoeSlot <= 0 || !ArmorIDs.Shoe.Sets.OverridesLegs[armor[AccSlot].shoeSlot]) {
-            DrawHelmetFull(LegSlot, (i) => i.legSlot, Main.instance.LoadArmorLegs, TextureAssets.ArmorLeg, drawInfo);
+        bool hideShoes = armor[SLOT_LEGS].legSlot > 0 && LegEquipSets.OverridesLegs[armor[SLOT_LEGS].legSlot];
+        if (hideShoes || armor[SLOT_ACCS].shoeSlot <= 0 || !ShoeEquipSets.OverridesLegs[armor[SLOT_ACCS].shoeSlot]) {
+            DrawHelmetFull(SLOT_LEGS, (i) => i.legSlot, Main.instance.LoadArmorLegs, TextureAssets.ArmorLeg, drawInfo);
         }
         if (!hideShoes) {
-            DrawHelmetFull(AccSlot, (i) => i.shoeSlot, Main.instance.LoadAccShoes, TextureAssets.AccShoes, drawInfo);
+            DrawHelmetFull(SLOT_ACCS, (i) => i.shoeSlot, Main.instance.LoadAccShoes, TextureAssets.AccShoes, drawInfo);
         }
-        DrawHelmetFull(AccSlot, (i) => i.shieldSlot, Main.instance.LoadAccShield, TextureAssets.AccShield, drawInfo);
-        DrawHelmetFull(AccSlot, (i) => i.waistSlot, Main.instance.LoadAccWaist, TextureAssets.AccWaist, drawInfo);
+        DrawHelmetFull(SLOT_ACCS, (i) => i.shieldSlot, Main.instance.LoadAccShield, TextureAssets.AccShield, drawInfo);
+        DrawHelmetFull(SLOT_ACCS, (i) => i.waistSlot, Main.instance.LoadAccWaist, TextureAssets.AccWaist, drawInfo);
         return false;
     }
 }

@@ -1,9 +1,8 @@
 ﻿using System.Reflection;
-using Terraria.ModLoader;
 
 namespace Aequus.Core.Assets;
 
-public abstract class AssetManager<T> : ILoadable where T : class {
+public abstract class AssetManager<T> : ILoad where T : class {
     public void Load(Mod mod) {
         OnLoad(mod);
     }

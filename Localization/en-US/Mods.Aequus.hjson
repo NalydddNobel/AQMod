@@ -1,23 +1,12 @@
-Biomes: {
-	DemonSiegeZone: {
-		DisplayName: Demon Siege Zone
-		TownNPCDialogueName: the Demon Siege Zone
-	}
-
-	GlimmerZone: {
-		DisplayName: Glimmer Zone
-		TownNPCDialogueName: the Glimmer Zone
-	}
-
-	SpaceStormZone: {
-		DisplayName: Space Storm Zone
-		TownNPCDialogueName: the Space Storm Zone
-	}
-}
-
 InfoDisplays: {
+	AnglerBroadcasterIcon: {
+		DisplayName: Fish Quest
+		Unavailable: Unavailable
+		Finished: Finished
+	}
+
 	CalendarInfoDisplay: {
-		DisplayName: "{$Items.Calendar.DisplayName}"
+		DisplayName: Date
 		Tooltip: "{0} (Day {1})"
 	}
 }

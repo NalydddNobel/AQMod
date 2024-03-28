@@ -1,45 +1,74 @@
-﻿using Terraria;
-using Terraria.ID;
-
-namespace Aequus.Common.Items;
+﻿namespace Aequus.Common.Items;
 
 public static class ItemCommons {
     public class Rarity {
-        public static int SkyMerchantShopItem = ItemRarityID.Blue;
-        public static int PollutedOceanLoot = ItemRarityID.Blue;
-        public static int CrabsonLoot = ItemRarityID.Blue;
-        public static int GlimmerLoot = ItemRarityID.Green;
-        public static int DemonSiegeTier1Loot = ItemRarityID.Orange;
-        public static int OmegaStariteLoot = ItemRarityID.LightRed;
-        public static int SpaceStormLoot = ItemRarityID.Pink;
-        public static int DustDevilLoot = ItemRarityID.LightPurple;
-        public static int DemonSiegeTier2Loot = ItemRarityID.Yellow;
-        public static int UpriserLoot = ItemRarityID.Red;
-        public static int YinYangLoot = ItemRarityID.Red;
-
-        #region Vanilla
-        public const int ShimmerPermaPowerup = ItemRarityID.LightPurple;
-        public const int Banners = ItemRarityID.Blue;
-        public const int BossMasks = ItemRarityID.Blue;
-        public const int DungeonLoot = ItemRarityID.Green;
+        public const int SkyMerchantShopItem = ItemRarityID.Blue;
+        public const int PollutedOceanLoot = ItemRarityID.Blue;
+        public const int AquaticBossLoot = ItemRarityID.Blue;
         public const int JungleLoot = ItemRarityID.Green;
+        public const int GlimmerLoot = ItemRarityID.Green;
+        public const int DungeonLoot = ItemRarityID.Green;
+        public const int DemonSiegeTier1Loot = ItemRarityID.Orange;
+        public const int OmegaStariteLoot = ItemRarityID.LightRed;
+        public const int WallOfFleshLoot = ItemRarityID.LightRed;
         public const int EarlyHardmodeMaterial = ItemRarityID.Orange;
+        public const int HardSandstormBlizzardLoot = ItemRarityID.LightRed;
+        public const int SpaceStormLoot = ItemRarityID.Pink;
+        public const int DustDevilLoot = ItemRarityID.Pink;
+        public const int PlanteraLoot = ItemRarityID.Yellow;
         public const int HardDungeonLoot = ItemRarityID.Yellow;
-        #endregion
+        public const int DemonSiegeTier2Loot = ItemRarityID.Yellow;
+        public const int UpriserLoot = ItemRarityID.Cyan;
+        public const int MoonLordLoot = ItemRarityID.Red;
+        public const int YinYangLoot = ItemRarityID.Red;
+
+        public const int ShimmerPermaPowerup = ItemRarityID.LightPurple;
     }
 
     public class Price {
-        public static int SkyMerchantShopItem = Item.sellPrice(gold: 1);
-        public static int SkyMerchantCustomPurchasePrice = Item.buyPrice(gold: 5);
-        public static int PollutedOceanLoot = Item.sellPrice(silver: 50);
-        public static int CrabsonLoot = Item.sellPrice(silver: 75);
-        public static int GlimmerLoot = Item.sellPrice(gold: 1);
-        public static int DemonSiegeLoot = Item.sellPrice(gold: 2);
-        public static int OmegaStariteLoot = Item.sellPrice(gold: 3);
-        public static int SpaceStormLoot = Item.sellPrice(gold: 2, silver: 50);
-        public static int DustDevilLoot = Item.sellPrice(gold: 3);
-        public static int DemonSiegeTier2Loot = Item.sellPrice(gold: 8);
-        public static int UpriserLoot = Item.sellPrice(gold: 8, silver: 50);
-        public static int YinYangLoot = Item.sellPrice(gold: 10);
+        /// <summary>1 Gold</summary>
+        public static int SkyMerchantShopItem { get; set; } = Item.sellPrice(gold: 1);
+
+        /// <summary>5 Gold</summary>
+        public static int SkyMerchantCustomPurchasePrice { get; set; } = Item.buyPrice(gold: 5);
+
+        /// <summary>50 Silver</summary>
+        public static int PollutedOceanLoot { get; set; } = Item.sellPrice(silver: 50);
+
+        /// <summary>75 Silver</summary>
+        public static int AquaticBossLoot { get; set; } = Item.sellPrice(silver: 75);
+
+        /// <summary>1 Gold</summary>
+        public static int GlimmerLoot { get; set; } = Item.sellPrice(gold: 1);
+
+        /// <summary>1 Gold 75 Silver</summary>
+        public static int DungeonLoot { get; set; } = Item.sellPrice(gold: 1, silver: 75);
+
+        /// <summary>2 Gold</summary>
+        public static int DemonSiegeLoot { get; set; } = Item.sellPrice(gold: 2);
+
+        /// <summary>3 Gold</summary>
+        public static int OmegaStariteLoot { get; set; } = Item.sellPrice(gold: 3);
+
+        /// <summary>2 Gold</summary>
+        public static int HardSandstormBlizzardLoot { get; set; } = Item.sellPrice(gold: 2);
+
+        /// <summary>3 Gold</summary>
+        public static int SpaceStormLoot { get; set; } = Item.sellPrice(gold: 3);
+
+        /// <summary>3 Gold 50 Silver</summary>
+        public static int DustDevilLoot { get; set; } = Item.sellPrice(gold: 3, silver: 50);
+
+        /// <summary>6 Gold</summary>
+        public static int HardDungeonLoot { get; set; } = Item.sellPrice(gold: 6);
+
+        /// <summary>8 Gold</summary>
+        public static int DemonSiegeTier2Loot { get; set; } = Item.sellPrice(gold: 8);
+
+        /// <summary>8 Gold 50 Silver</summary>
+        public static int UpriserLoot { get; set; } = Item.sellPrice(gold: 8, silver: 50);
+
+        /// <summary>10 Gold</summary>
+        public static int YinYangLoot { get; set; } = Item.sellPrice(gold: 10);
     }
 }

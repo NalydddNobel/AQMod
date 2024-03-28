@@ -1,7 +1,5 @@
-﻿using Aequus.Core.Generator;
+﻿using Aequus.Core.CodeGeneration;
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
 
 namespace Aequus;
 

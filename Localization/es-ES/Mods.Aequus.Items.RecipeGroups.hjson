@@ -1,4 +1,8 @@
+// AnyGoldBar.DisplayName: Any Gold Bar
+// AnySilverBar.DisplayName: Any Silver Bar
+// AnyCopperBar.DisplayName: Any Copper Bar
 AnyQuestFish.DisplayName: Cualquier Pez de Misión
 AnyTrash.DisplayName: Cualquier Basura de Pesca
-AnyPaint.DisplayName: Cualquier Pintura
+// AnyCoatings.DisplayName: Any Coating
+// AnyPaints.DisplayName: Any Paint
 Shellphone.DisplayName: "{$ItemName.ShellphoneDummy}"

@@ -1,8 +1,7 @@
 ﻿using Aequus.Common.ItemPrefixes;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.ItemPrefixes;
-public sealed class CooldownPrefixInitializer : ILoadable {
+public sealed class CooldownPrefixInitializer : ILoad {
     public void Load(Mod mod) {
         // Good Prefixes
         mod.AddContent(new CooldownPrefix("Constant", priceMultiplier: 1.66f, cooldownMultiplier: 0.80f, new() {

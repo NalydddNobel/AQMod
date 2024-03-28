@@ -1,8 +1,5 @@
 ﻿using System;
 using System.IO;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Common.Renaming;
@@ -15,7 +12,7 @@ public sealed class RenamedNPCMarkerManager : GlobalNPC {
     public int MarkerId { get; internal set; } = 0;
 
     public override bool AppliesToEntity(NPC entity, bool lateInstantiation) {
-        return RenameNPC.CanRename(entity) && !NPCLoader.SavesAndLoads(entity) && (!NPCID.Sets.RespawnEnemyID.TryGetValue(entity.type, out int respawnId) || respawnId != 0);
+        return RenameNPC.CanRename(entity) && !NPCLoader.SavesAndLoads(entity) && (!NPCSets.RespawnEnemyID.TryGetValue(entity.type, out int respawnId) || respawnId != 0);
     }
 
     public override void AI(NPC npc) {

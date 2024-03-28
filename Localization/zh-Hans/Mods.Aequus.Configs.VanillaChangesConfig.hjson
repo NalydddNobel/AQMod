@@ -1,7 +1,4 @@
 DisplayName: 原版更改
-ColorImportant: c/ffffbb
-ColorImportant2: c/ffcc99
-ColorNote: c/aaacff
 NoteExploit: "[{$ColorNote}:如若出于个人偏好或为防止意外利用, 请禁用该设置.]"
 
 MoveTreasureMagnet: {
@@ -23,5 +20,52 @@ RestorationPotionRecipe: {
 		Aequus添加了使用两个[{$ColorImportant2}:弱效恢复药水]和一个[{$ColorImportant2}:发光魔符]的[{$ColorImportant}:替代合成].
 
 		[{$ColorNote}:如若出于个人偏好或为防止合成表被移除后出现的任何问题, 请禁用该设置.]
+		'''
+}
+
+MoveToolbelt: {
+	Label: "[i:Toolbelt] 移动工具腰带"
+	Tooltip:
+		'''
+		[{$ColorImportant}:启用后], [{$ColorImportant}:工具腰带]可以在[{$ColorImportant}:地下宝箱]中发现,
+		并且[{$ColorImportant2}:哥布林工匠][{$ColorImportant}:不会再出售].
+
+		{$NoteExploit}
+		'''
+}
+
+SlimeCrownInSurfaceChests: {
+	Label: "[i:SlimeCrown] 地表宝箱中的史莱姆王冠"
+	Tooltip: "[{$ColorImportant}:启用后], [{$ColorImportant}:史莱姆王冠]可以在[{$ColorImportant}:地表宝箱]中发现."
+}
+
+MoveGravityGlobe: {
+	Label: "[i:GravityGlobe] 物理学家出售重力球"
+	Tooltip:
+		'''
+		[{$ColorImportant}:启用后], [{$ColorImportant}:重力球]将会由[{$ColorImportant}:物理学家]出售,
+		并且[{$ColorImportant2}:月亮领主][{$ColorImportant}:不会再掉落].
+
+		{$NoteExploit}
+		'''
+}
+
+MovePortalGun: {
+	Label: "[i:PortalGun] 物理学家出售传送门枪"
+	Tooltip:
+		'''
+		[{$ColorImportant}:启用后], [{$ColorImportant}:传送门枪]将会由[{$ColorImportant}:物理学家]出售,
+		并且[{$ColorImportant2}:月亮领主][{$ColorImportant}:不会再掉落].
+
+		{$NoteExploit}
+		'''
+}
+
+MoveMagicConch: {
+	Label: "[i:MagicConch] 移动魔法海螺"
+	Tooltip:
+		'''
+		[{$ColorImportant}:启用后], [{$ColorImportant}:魔法海螺]可以在[{$ColorImportant}:被污染的海洋]中发现,
+		并且[{$ColorImportant2}:地下沙漠]中的[{$ColorImportant}:不会再出现].
 		'''
 }

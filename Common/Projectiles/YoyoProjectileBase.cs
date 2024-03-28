@@ -1,8 +1,4 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Aequus.Common.Projectiles;
+﻿namespace Aequus.Common.Projectiles;
 
 public abstract class YoyoProjectileBase : ModProjectile {
     public override void SetDefaults() {

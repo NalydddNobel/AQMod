@@ -1,4 +1,5 @@
 CommonTooltips: {
+	BuffTimeRange: "{0}-{1}分钟持续时间"
 	IncreasesInventorySlots: 获得{0}格物品栏
 	Cooldown: 有{0}秒冷却时间
 	Shimmerable: 微光材料
@@ -8,14 +9,38 @@ CommonTooltips: {
 	DedicatedItem: 谢谢你, {0}!
 	DedicatedItemAnonymous: 专属物品
 	UsesDarts: 使用种子和飞镖作为弹药
+	Banner: "{$CommonItemTooltip.BannerBonus}{0}"
+	NecromancyStaff: 被击杀敌人会转化为幽魂仆从
+	StatGhostDuration: 延长{0}秒幽魂仆从的存在时间
+	StatGhostSlots: 增加{0}格最大幽魂仆从栏位
+	StatWingTime: 延长飞行时间
+	DecreaseAggro: 敌人不大可能以你为攻击目标
+	IncreaseAggro: 敌人更有可能以你为攻击目标
+	DisableItem: 右键无效化
+	EnableItem: 当前未激活, 右键以重新激活
 }
 
 //# Equipment: Accessories
+BreathConserver: {
+	DisplayName: 呼吸救生器
+	Tooltip: 摧毁物块以及击杀敌人时会回复呼吸条
+}
+
+ValentineRing: {
+	DisplayName: 情人节礼物
+	Tooltip: 赠与朋友以使对方和你自身获得生命再生和伤害加成
+	Tooltip2: 增加你自身和赠礼者的生命再生速度和伤害
+	GiftTooltip: 来自你真诚的, {0}
+	BuffName: 情人
+	BuffDescription: 生命再生速度和伤害增加
+	BuffDescription2: 你受到了{0}的强化!
+}
+
 GrandReward: {
 	DisplayName: 豪华奖励
 	Tooltip:
 		'''
-		敌人会掉落额外的战利品，这些战利品会带有闪光
+		敌人会掉落额外的战利品, 这些战利品会带有闪光
 		{v}...但敌人不再掉落钱币
 		'''
 }
@@ -57,6 +82,16 @@ FlashwayShield: {
 		'''
 }
 
+PurpleBalloon: {
+	DisplayName: 哑光紫色气球
+	Tooltip:
+		'''
+		{$ItemTooltip.ShinyRedBalloon}
+		{$SlimyBlueBalloon.Tooltip}
+		'不要与气球气球混淆'
+		'''
+}
+
 SlimyBlueBalloon: {
 	DisplayName: 黏糊糊的蓝色气球
 	Tooltip:
@@ -76,7 +111,165 @@ WeightedHorseshoe: {
 		'''
 }
 
+BlackPhial: {
+	DisplayName: 黑色药瓶
+	Tooltip: 攻击敌人时会对其造成各种减益
+}
+
+BoneRing: {
+	DisplayName: 骨质戒指
+	Tooltip: 攻击会削弱敌人并降低其移动速度
+}
+
+PhoenixRing: {
+	DisplayName: 菲尼克斯戒指
+	Tooltip:
+		'''
+		{$Items.BoneRing.Tooltip}
+		{$ItemTooltip.MagmaStone}
+		'''
+}
+
+BlackPlague: {
+	DisplayName: 黑死病
+	Tooltip:
+		'''
+		{$Items.BoneRing.Tooltip}
+		{$ItemTooltip.MagmaStone}
+		{$Items.BlackPhial.Tooltip}
+		'''
+}
+
+LaserReticle: {
+	DisplayName: 激光瞄准镜
+	Tooltip: 降低{0}%远程武器的离散度
+}
+
+HighSteaks: {
+	DisplayName: 高级牛排
+	Tooltip:
+		'''
+		增加{0}%暴击伤害
+		{1}
+		'''
+	Downside: "{v}然而, 你在暴击时会支付{Price}"
+}
+
+KegOSpirits: {
+	DisplayName: 魂灵桶
+	Tooltip:
+		'''
+		{$SaivoryKnife.Tooltip}
+		{$BottleOSpirits.Tooltip@1}
+		'''
+}
+
+SaivoryKnife: {
+	DisplayName: 美味象牙刀
+	Tooltip: 延长{0}分钟幽魂仆从的存在时间
+}
+
+BottleOSpirits: {
+	DisplayName: 魂灵瓶
+	Tooltip: 增加{0}格最大幽魂仆从栏位
+}
+
+WarHorn: {
+	DisplayName: 战争号角
+	Tooltip:
+		'''
+		召唤物在击中敌人后会进入狂暴状态, 持续{0}秒
+		此效果有{1}秒冷却时间
+		狂暴的召唤物会获得更高的攻击和移动速度
+		'''
+}
+
+HallowCanteen: {
+	DisplayName: 魔力壶
+	DisplayNameAlt: 魔力壶 ({0})
+	Tooltip:
+		'''
+		能够无限使用两种药水
+		光标悬停在堆叠数量为15的药水上并点击右键
+		'''
+}
+
+PotionCanteen: {
+	DisplayName: 药水壶
+	DisplayNameAlt: "{0}壶"
+	Tooltip:
+		'''
+		能够无限使用一种药水
+		光标悬停在堆叠数量为15的药水上并点击右键
+		'''
+}
+
+SouljointCuffs: {
+	DisplayName: 魂结镣铐
+	Tooltip: 幽魂仆从在近战击中敌人时会链在敌人身上
+}
+
+PandorasBox: {
+	DisplayName: 潘多拉魔盒
+	Tooltip:
+		'''
+		敌人会受到更多来自权杖减益的伤害
+		幽魂仆从的弹幕速度翻倍
+		'''
+}
+
+RitualisticSkull: {
+	DisplayName: 仪式颅骨
+	Tooltip: 将你的所有召唤栏位转化为幽魂栏位
+}
+
+ShadowVeer: {
+	DisplayName: 影行者
+	Tooltip: 幽魂仆从会对被标记的敌人进行暗影冲刺
+}
+
+//# Equipment: Misc
+RoseTintedGlasses: {
+	DisplayName: 玫瑰色眼镜
+	Tooltip: 无视血月的敌人生成
+}
+
+StellarGlasses: {
+	DisplayName: 星体眼镜
+	Tooltip: 无视柔光的敌人生成
+}
+
+EclipseGlasses: {
+	DisplayName: 日食眼镜
+	Tooltip: 无视日食的敌人生成
+}
+
+RabbitsFoot: {
+	DisplayName: 兔脚
+	Tooltip: 双倍幸运!
+}
+
+LavaproofMitten: {
+	DisplayName: 防熔岩连指手套
+	Tooltip: 允许你在熔岩中放置方块
+}
+
+Pacemaker: {
+	DisplayName: 心脏起搏器
+	Tooltip: 当它变得安全时会缩减重生时间
+}
+
 //# Equipment: Informational
+AnglerBroadcaster: {
+	DisplayName: 渔夫广播
+	Tooltip: 显示当前渔夫任务
+}
+
+HoloLens: {
+	DisplayName: 全息透镜
+	Tooltip: 允许你在不打开箱子的情况下查看箱中的内容
+}
+
 ShimmerMonocle: {
 	DisplayName: 微光单片镜
 	Tooltip: 显示一个物品是否是微光材料
@@ -92,6 +285,42 @@ Calendar: {
 	Tooltip: 显示日期
 }
 
+//# Equipment: Armor
+GravetenderHood: {
+	DisplayName: 守墓人兜帽
+	Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
+	Setbonus: 召唤一缕能够强化与你最近的幽魂仆从的游魂
+}
+
+GravetenderRobes: {
+	DisplayName: 守墓人长袍
+	Tooltip:
+		'''
+		{$CommonTooltips.StatGhostDuration}
+		{$CommonTooltips.StatGhostSlots@1}
+		'''
+}
+
+//# Equipment: Grappling Hooks
+LeechHook: {
+	DisplayName: 水蛭钩
+	Tooltip:
+		'''
+		无视敌人{0}点的防御力
+		吸住敌人并治疗你
+		伤害被吸住的敌人以获得额外治疗
+		'''
+}
+
+Meathook: {
+	DisplayName: 血肉钩
+	Tooltip:
+		'''
+		你的钩爪会抓住敌人
+		你会对被你的钩爪抓住的敌怪额外造成{0}%伤害
+		'''
+}
+
 //# Weapons: Melee
 Dynaknife: {
 	DisplayName: 圣诞精神
@@ -99,6 +328,15 @@ Dynaknife: {
 		'''
 		击中敌人时会施加炸弹并引爆
 		<right>向前冲刺并攻击
+		'''
+}
+
+SuperStarSword: {
+	DisplayName: 超级星剑
+	Tooltip:
+		'''
+		生命值高于90%时会发射剑气
+		'会动的东西我砍, 动的很欢的我砍得更欢'
 		'''
 }
 
@@ -110,6 +348,30 @@ Slice: {
 		{$CommonTooltips.OmnidirectionMelee}
 		'不要和骰子混淆'
 		'''
+}
+
+MirrorsCall: {
+	DisplayName: 镜之召
+	Tooltip: 从你舒适的沙发上打击敌人!
+}
+
+IronLotus: {
+	DisplayName: 铁莲花
+	Tooltip:
+		'''
+		挥舞会扩散火焰的长矛
+		'点燃那些胆敢在乎我的人'
+		'''
+}
+
+Cauterizer: {
+	DisplayName: 灼烧者
+	Tooltip: "{$CommonTooltips.OmnidirectionMelee}"
+}
+
+HellsBoon: {
+	DisplayName: 地狱之赐
+	Tooltip: 用远距离黑暗和灰烬尖刺攻击敌人
 }
 
 //# Ranged Ammo
@@ -173,13 +435,111 @@ SkyHunterCrossbow: {
 		'''
 }
 
+CrusadersCrossbow: {
+	DisplayName: 十字军弩
+	Tooltip: 发射可以治疗队友的箭矢
+}
+
+Deltoid: {
+	DisplayName: 三角肌
+	Tooltip: 用猩红狱火点燃木箭
+}
+
+HamaYumi: {
+	DisplayName: 破魔弓
+	Tooltip: 箭矢会被穿透性腐化爆炸短暂增幅
+}
+
 //# Weapons: Magic
+TrashStaff: {
+	DisplayName: 垃圾邮件
+	Tooltip: 造成暴击时会向附近的敌人发送病毒邮件
+}
+
 Furystar: {
 	DisplayName: 怒星
 	Tooltip:
 		'''
 		使星星从天而降
 		攻击会回复魔力值
+		'''
+}
+
+StudiesOfTheInkblot: {
+	DisplayName: 墨迹研究学
+	Tooltip:
+		'''
+		左键释放'弹幕的墨迹测验'
+		右键释放'地底蔷薇'
+		'''
+}
+
+BombarderRod: {
+	DisplayName: 轰炸者手杖
+	Tooltip:
+		'''
+		攻击造成暴击时对附近的敌人造成猩红减益
+		近距离时并不精准
+		'''
+}
+
+// localization note: 'triacanthorn' is a portmanteau of 'Gleditsia triacanthos' (scientific name of a thorny plant) and the word 'thorn'
+Triacanthorn: {
+	DisplayName: 三刺棘
+	Tooltip:
+		'''
+		施放出会分裂的邪恶刺须
+		无视敌人10点的防御力
+		'''
+}
+
+//# Weapons: Summon
+PhysicistSentry: {
+	DisplayName: 便携式特斯拉炮塔
+	Tooltip: 召唤一个会发射大量连锁闪电的特斯拉炮塔
+}
+
+Insurgency: {
+	DisplayName: 叛乱
+	Tooltip:
+		'''
+		消耗强大敌人的灵魂, 会立即击杀弱小的敌人
+		被诅咒的敌人会释放会攻击附近敌人的灵魂
+		{$CommonTooltips.NecromancyStaff}
+		'寂静'
+		'''
+}
+
+Revenant: {
+	DisplayName: 亡魂
+	Tooltip:
+		'''
+		消耗强大敌人的灵魂, 会立即击杀弱小的敌人
+		{$CommonTooltips.NecromancyStaff}
+		'''
+}
+
+CorruptionSceptre: {
+	DisplayName: 腐化权杖
+	Tooltip:
+		'''
+		消耗弱小敌人的灵魂
+		{$CommonTooltips.NecromancyStaff}
+		'''
+}
+
+CrimsonSceptre: {
+	DisplayName: 猩红权杖
+	Tooltip: "{$Items.CorruptionSceptre.Tooltip}"
+}
+
+Osiris: {
+	DisplayName: 欧西里斯
+	Tooltip:
+		'''
+		消耗极强敌人的灵魂
+		{$CommonTooltips.NecromancyStaff}
+		击中敌人时会爆裂成一群蝗虫群
 		'''
 }
 
@@ -190,6 +550,21 @@ StunGun: {
 }
 
 //# Potions
+SentryPotion: {
+	DisplayName: 哨兵药水
+	Tooltip: 增加{0}格最大哨兵栏位
+	BuffName: 哨兵
+}
+
+TaintedSeafood: {
+	DisplayName: 受到污染的海鲜
+	Tooltip:
+		'''
+		有可能小幅度、中幅度或大幅度提升所有属性
+		有小概率导致食物中毒
+		'''
+}
+
 NeutronYogurt: {
 	DisplayName: 中子酸奶
 	Tooltip: 获得具有加速度翻倍的附魔下落
@@ -207,6 +582,20 @@ DeathsEmbrace: {
 		'''
 }
 
+SuspiciousLookingSteak: {
+	DisplayName: 可疑牛排
+	Tooltip: "'你是个可怕的人'"
+}
+
+PotionOfResurrection: {
+	DisplayName: 复活药水
+	Tooltip:
+		'''
+		将你传送至上次死亡时的位置
+		'最近经历过死亡的人喜欢的饮料'
+		'''
+}
+
 //# Foods
 Baguette: {
 	DisplayName: 法棍
@@ -218,6 +607,26 @@ Baguette: {
 }
 
 //# Misc
+FrozenTechnology: {
+	DisplayName: 霜冻科技
+	Tooltip: 用于制作信息工具
+}
+
+GlowLichen: {
+	DisplayName: 发光苔藓
+	Tooltip: 掉落自长满苔藓的敌人
+}
+
+ArtFragment: {
+	DisplayName: 吸积碎片
+	Tooltip: "'燃烧的宇宙的热烈从此碎片内散发出来'"
+}
+
+NecroFragment: {
+	DisplayName: 脉冲风星云碎片
+	Tooltip: "'死亡粒子从此碎片内释放而出'"
+}
+
 PossessedShard: {
 	DisplayName: 附魔碎块
 	Tooltip: 掉落自附魔的盔甲和工具
@@ -263,6 +672,16 @@ OmniGem: {
 	Tooltip: "'被以太的存在所附魔'"
 }
 
+GreaterHoney: {
+	DisplayName: 强效蜂蜜药水
+	Tooltip: 提高自然恢复
+}
+
+SuperHoney: {
+	DisplayName: 超级蜂蜜药水
+	Tooltip: 在长时间内提高自然恢复
+}
+
 LesserRestorationPotion: {
 	DisplayName: 弱效恢复药水
 	Tooltip: "{$ItemTooltip.RestorationPotion}"
@@ -276,6 +695,21 @@ GreaterRestorationPotion: {
 SuperRestorationPotion: {
 	DisplayName: 超级恢复药水
 	Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+NoHitReward: {
+	DisplayName: 胜者的奖励
+	Tooltip:
+		'''
+		永久性使你在重生时以满生命值复活
+		'给那些加倍努力的人!'
+		'''
+}
+
+TinkerersGuidebook: {
+	DisplayName: 工匠指南
+	Tooltip: 永久性增加在重铸前缀时出现正面前缀的几率
+	DisplayMessage: 哥布林工匠的利润开始减少了!
 }
 
 CosmicChest: {
@@ -293,30 +727,49 @@ CompressedTrash: {
 	Tooltip: ""
 }
 
-Fluorescence: {
-	DisplayName: 荧光
-	Tooltip: "'充满了愤怒、肾上腺素和痛苦的恶意'"
+BloodyTearstone: {
+	DisplayName: 血泪石
+	Tooltip: ""
 }
 
-FrozenTear: {
-	DisplayName: 冰寒泪滴
-	Tooltip: "'一种由乌贼的心融化而成的奇异的眼泪'"
+SoulGem: {
+	DisplayName: 空白灵魂宝石
+	Tooltip: 无法使用, 直到其捕获敌人的灵魂
 }
 
-CrabsonBag: {
-	DisplayName: 宝藏袋 (巨蟹蛤)
-	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+SoulGemFilled: {
+	DisplayName: 灵魂宝石
+	Tooltip:
+		'''
+		用于制作死灵装备
+		掉落自最黑暗的恶魔...
+		'''
 }
 
-OmegaStariteBag: {
-	DisplayName: 宝藏袋 (终末之星)
-	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+GalacticStarfruit: {
+	DisplayName: 星河杨桃
+	Tooltip: 创造一道奇异柔光
 }
 
-DustDevilBag: {
-	DisplayName: 宝藏袋 (沙尘恶魔)
-	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+UnholyCore: {
+	DisplayName: 不洁核心
+	Tooltip:
+		'''
+		可在遗境祭坛处使用
+		降低恶魔围攻事件的进攻时间
+		'''
 }
+
+UnholyCoreSmall: {
+	DisplayName: 暗黑泪石
+	Tooltip:
+		'''
+		可在遗境祭坛处使用
+		掉落自地狱的神秘实体
+		'''
+}
+
+TreasureBag.DisplayName: 宝藏袋 ({0})
 
 WispLantern: {
 	DisplayName: 精灵灯笼
@@ -382,6 +835,11 @@ DedicatedFaelingItem: {
 	Tooltip: ""
 }
 
+PhysicsGun: {
+	DisplayName: 物理枪
+	Tooltip: 可以抓取并扔出方块
+}
+
 Bellows: {
 	DisplayName: 风箱
 	Tooltip:
@@ -409,24 +867,86 @@ NameTag: {
 		'''
 }
 
-//# Vanity Armors
+PylonDrone.Tooltip: 在晶塔附近使用以激活, 每个晶塔只能存在两架无人机
+
+CleanserDrone: {
+	DisplayName: "{$NPCs.CleanserDrone.DisplayName}"
+	Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		喷洒溶液以扩散晶塔的生物群落
+		'''
+}
+
+GunnerDrone: {
+	DisplayName: "{$NPCs.GunnerDrone.DisplayName}"
+	Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		保护该区域免受敌人攻击
+		'''
+}
+
+HealerDrone: {
+	DisplayName: "{$NPCs.HealerDrone.DisplayName}"
+	Tooltip:
+		'''
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		治疗受伤的镇民和小动物
+		'''
+}
+
+MoonflowerSeeds: {
+	DisplayName: 月光花种
+	Tooltip: ""
+}
+
+MistralSeeds: {
+	DisplayName: 寒风花种
+	Tooltip: ""
+}
+
+ManacleSeeds: {
+	DisplayName: 镣铐花种
+	Tooltip: ""
+}
+
+//# Mounts
+BalloonKit: {
+	DisplayName: 气球装备
+	Tooltip:
+		'''
+		允许你骑乘一颗热气球
+		'在Modzilla的公司工厂精心制作而成'
+		'''
+}
+
+//# Backpacks
+ScavengerBag: {
+	DisplayName: 拾荒者袋子
+	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+	BackpackEnabled: 背包开启
+	BackpackDisabled: 背包关闭
+}
+
+Toolbelt: {
+	Tooltip:
+		'''
+		{$CommonTooltips.IncreasesInventorySlots}
+		只能存储物块和墙壁
+		'''
+	BackpackEnabled: 工具腰带开启
+	BackpackDisabled: 工具腰带关闭
+}
+
+//# Vanity
 BreadOfCthulhuMask: {
 	DisplayName: 克苏鲁之面包面具
 	Tooltip: ""
 }
 
-CrabsonMask: {
-	DisplayName: 巨蟹蛤面具
-	Tooltip: ""
-}
-
-DustDevilMaskFire: {
-	DisplayName: 火焰沙尘恶魔面具
-	Tooltip: ""
-}
-
-DustDevilMaskIce: {
-	DisplayName: 冰霜沙尘恶魔面具
+DustDevilMask: {
+	DisplayName: 沙尘恶魔面具
 	Tooltip: ""
 }
 
@@ -445,97 +965,50 @@ SpaceSquidMask: {
 	Tooltip: ""
 }
 
-//# Tiles & Blocks
-MonsterChestItem: {
-	DisplayName: 怪物箱
-	Tooltip: 放置一个怪物箱, 除非你拥有隐形增益, 否则它会立即激活
-}
-
-CircuitBreaker: {
-	DisplayName: 电路开关
-	Tooltip: 无需电线即可激活导电方块
-}
-
-CrabsonRelic: {
-	DisplayName: 巨蟹蛤纪念物
+CelestialEightBall: {
+	DisplayName: 魔法八号球
 	Tooltip: ""
-}
 
-DustDevilRelic: {
-	DisplayName: 沙尘恶魔纪念物
-	Tooltip: ""
-}
-
-OmegaStariteRelic: {
-	DisplayName: 终末之星纪念物
-	Tooltip: ""
-}
-
-RedSpriteRelic: {
-	DisplayName: 红色精灵纪念物
-	Tooltip: ""
-}
-
-SpaceSquidRelic: {
-	DisplayName: 太空乌贼纪念物
-	Tooltip: ""
-}
-
-UltraStariteRelic: {
-	DisplayName: 终耀源星纪念物
-	Tooltip: ""
-}
-
-CrabsonTrophy: {
-	DisplayName: 巨蟹蛤纪念章
-	Tooltip: ""
-}
-
-DustDevilTrophy: {
-	DisplayName: 沙尘恶魔纪念章
-	Tooltip: ""
-}
-
-OmegaStariteTrophy: {
-	DisplayName: 终末之星纪念章
-	Tooltip: ""
-}
-
-RedSpriteTrophy: {
-	DisplayName: 红色精灵纪念章
-	Tooltip: ""
-}
-
-SpaceSquidTrophy: {
-	DisplayName: 太空乌贼纪念章
-	Tooltip: ""
-}
-
-UltraStariteTrophy: {
-	DisplayName: 终耀源星纪念章
-	Tooltip: ""
-}
-
-//# Mounts
-BalloonKit: {
-	DisplayName: 气球装备
-	Tooltip:
-		'''
-		允许你骑乘一颗热气球
-		'在Modzilla的公司工厂精心制作而成'
-		'''
-}
-
-//# Backpacks
-ScavengerBag: {
-	DisplayName: 拾荒者袋子
-	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
-}
-
-Backpacks: {
-	ScavengerBagBackpackData: {
-		DisplayName: 背包
-		BackpackEnabled: 背包开启
-		BackpackDisabled: 背包关闭
+	Answer: {
+		0: 是的
+		1: 我的消息来源说不
+		2: 有迹象表明是的
+		3: 确实如此
+		4: 毫无疑问
+		5: 当然可以
+		6: 你可以相信它
+		7: 如我所见, 是的
+		8: 有希望
+		9: 前景很好
+		10: 有迹象表明是的
+		11: 别想了
+		12: 我的回答是否
+		13: 前景不妙
+		14: 令人疑惑
+		15: 再试一次吧
+		16: 待会再问
+		17: 时候未到
+		18: 现在没法预测
+		19: 请集中你的精神再问一次
 	}
+}
+
+CosmicMonolith: {
+	DisplayName: 宇宙石
+	Tooltip: "'维系宇宙力量的一小部分'"
+}
+
+UltimateSword: {
+	DisplayName: Mods.Aequus.Items.UltimateSword.DisplayName
+	Tooltip: ""
+}
+
+StariteMaterial: {
+	DisplayName: 核心碎片
+	Tooltip: ""
+}
+
+UnopenedChestItem: {
+	DisplayName: 未开启的宝箱物品
+	Tooltip: 这是Debug物品, 将其放置在世界生成的宝箱内以检测其是否被开启过
 }

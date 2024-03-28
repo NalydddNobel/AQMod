@@ -25,15 +25,90 @@ GoldenWindBuff: {
 
 HotAirBalloonBuff: {
 	DisplayName: Globo Aeroestatico
-	Description: Up, up, and away!!!
+	Description: Hasta el infinito y más allá!!!
 }
 
 DeathsEmbraceBuff: {
 	DisplayName: "{$Items.DeathsEmbrace.DisplayName}"
-	Description: Por qué estás leyendo esto… vas a morir
+	Description: Por qué estás leyendo esto… estas a punto de morir
 }
 
 BaguetteBuff: {
 	DisplayName: "{$Items.Baguette.DisplayName}"
 	Description: Mejoras supremas a todas las características y regeneración de vida muy incrementada
+}
+
+WarHornCooldown: {
+	DisplayName: Cuerno de Guerra (Refrescando)
+	Description: El Cuerno de Guerra se esta refrescando!
+}
+
+FoodPoisoningDebuff: {
+	DisplayName: Intoxicacíon Alimenticia
+	Description: mejoras nulas a todas las característica, y no puedes comer!
+}
+
+CorruptionHellfire: {
+	DisplayName: Fuego Infernal Corrupto
+	Description: Tu sangre hierve con llamas siniestras
+}
+
+CrimsonHellfire: {
+	DisplayName: Fuego Infernal Carmesi
+	Description: Tu sangre hierve con llamas siniestras
+}
+
+IronLotusDebuff: {
+	// DisplayName: "{$Items.IronLotus.DisplayName}"
+	// Description: Mods.Aequus.Buffs.IronLotusDebuff.Description
+}
+
+LocustDebuff: {
+	// DisplayName: Mods.Aequus.Buffs.LocustDebuff.DisplayName
+	// Description: Mods.Aequus.Buffs.LocustDebuff.Description
+}
+
+InsurgentDebuff: {
+	// DisplayName: "{$Items.Insurgency.DisplayName}"
+	// Description: Mods.Aequus.Buffs.InsurgentDebuff.Description
+}
+
+RevenantDebuff: {
+	// DisplayName: "{$Items.Revenant.DisplayName}"
+	// Description: Mods.Aequus.Buffs.RevenantDebuff.Description
+}
+
+NecromancyDebuff: {
+	// DisplayName: "{$Items.CorruptionSceptre.DisplayName}"
+	// Description: Mods.Aequus.Buffs.NecromancyDebuff.Description
+}
+
+OsirisDebuff: {
+	// DisplayName: "{$Items.Osiris.DisplayName}"
+	// Description: Mods.Aequus.Buffs.OsirisDebuff.Description
+}
+
+CrimsonSceptreDebuff: {
+	// DisplayName: "{$Items.CrimsonSceptre.DisplayName}"
+	// Description: Mods.Aequus.Buffs.CrimsonSceptreDebuff.Description
+}
+
+GravetenderMinionBuff: {
+	DisplayName: Tiendetumbas
+	Description: La voluta incrementa el poder de tus fantasmas!
+}
+
+BlueFire: {
+	DisplayName: Ardor de Mana
+	Description: Un calor celestial desgarra tú vida y mana!
+}
+
+UltimateSwordBuff: {
+	// DisplayName: Mods.Aequus.Buffs.UltimateSwordBuff.DisplayName
+	// Description: Mods.Aequus.Buffs.UltimateSwordBuff.Description
+}
+
+BoneRingDebuff: {
+	// DisplayName: "{$Items.BoneRing.DisplayName}"
+	// Description: Mods.Aequus.Buffs.BoneRingDebuff.Description
 }

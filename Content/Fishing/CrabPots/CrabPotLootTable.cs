@@ -1,12 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Fishing.CrabPots;
 
-public class CrabPotLootTable : ILoadable {
+public class CrabPotLootTable : ILoad {
     public static Dictionary<int, List<CrabPotCatchRule>> Table { get; private set; } = new();
 
     public void Load(Mod mod) {

@@ -1,0 +1,25 @@
+DemonSiegeZone: {
+	DisplayName: Altar de Oblivio
+	EventName: Asedio Demoniaco
+	TownNPCDialogueName: ""
+}
+
+GlimmerZone: {
+	DisplayName: Destello
+	TownNPCDialogueName: el Destello
+}
+
+PeacefulGlimmerZone: {
+	DisplayName: Destello Tranquilo
+	TownNPCDialogueName: el Destello
+}
+
+PollutedOceanBiomeSurface: {
+	DisplayName: Océano Contaminado
+	TownNPCDialogueName: el Océano Contaminado
+}
+
+PollutedOceanBiomeUnderground: {
+	DisplayName: Aquífero Contaminado
+	TownNPCDialogueName: el Aquífero Contaminado
+}

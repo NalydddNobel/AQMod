@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Terraria;
 
 namespace Aequus.Common.Buffs {
     public abstract class BaseUniMinionBuff : BaseMinionBuff {

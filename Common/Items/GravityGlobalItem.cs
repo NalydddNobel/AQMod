@@ -1,9 +1,6 @@
 ﻿using System;
 using System.IO;
-using Terraria;
 using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.Items;
 
@@ -19,7 +16,7 @@ public sealed class GravityGlobalItem : GlobalItem {
     public float itemGravityMultiplier = 1f;
 
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
-        return !ItemID.Sets.ItemNoGravity[entity.type];
+        return !ItemSets.ItemNoGravity[entity.type];
     }
 
     public void SetNoGrav(Item item, byte duration) {
