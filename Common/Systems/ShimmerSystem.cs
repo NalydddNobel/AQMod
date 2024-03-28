@@ -144,11 +144,13 @@ public class ShimmerSystem : ModSystem {
     private static void On_Item_GetShimmered(On_Item.orig_GetShimmered orig, Item item) {
         ModItem modItem = ItemLoader.GetItem(item.type);
 
-        if (modItem is IOnShimmer onShimmer && !onShimmer.OnShimmer()) {
-            return;
-        }
+        if (modItem != null) {
+            if (modItem is IOnShimmer onShimmer && !onShimmer.OnShimmer()) {
+                return;
+            }
 
-        DedicatedFaeling.SpawnFaelingsFromShimmer(item, modItem);
+            DedicatedFaeling.SpawnFaelingsFromShimmer(item, modItem);
+        }
 
         if (item.prefix >= PrefixID.Count && PrefixLoader.GetPrefix(item.prefix) is IRemovedByShimmerPrefix shimmerablePrefix && shimmerablePrefix.CanBeRemovedByShimmer) {
             int oldStack = item.stack;

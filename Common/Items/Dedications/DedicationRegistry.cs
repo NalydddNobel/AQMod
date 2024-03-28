@@ -36,19 +36,25 @@ public class DedicationRegistry : ModSystem {
         _fromItem[modItem] = info;
     }
 
-    public static IDedicationInfo Get(int id) {
-        return _fromItem[ItemLoader.GetItem(id)];
+    public static IDedicationInfo Get(ModItem item) {
+        return _fromItem[item];
     }
 
-    public static bool TryGet(int id, out IDedicationInfo info) {
-        ModItem modItem = ItemLoader.GetItem(id);
-
-        if (modItem == null) {
+    public static bool TryGet(ModItem item, out IDedicationInfo info) {
+        if (item == null) {
             info = default;
             return false;
         }
 
-        return _fromItem.TryGetValue(modItem, out info);
+        return _fromItem.TryGetValue(item, out info);
+    }
+
+    public static IDedicationInfo Get(int id) {
+        return Get(ItemLoader.GetItem(id));
+    }
+
+    public static bool TryGet(int id, out IDedicationInfo info) {
+        return TryGet(ItemLoader.GetItem(id), out info);
     }
 
     public override void OnModLoad() {

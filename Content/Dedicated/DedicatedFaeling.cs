@@ -2,13 +2,13 @@
 using Aequus.Common.Systems;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.CrossMod;
-using Aequus.Core.Initialization;
 using Aequus.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.Graphics.Renderers;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
 
@@ -59,6 +59,9 @@ public class DedicatedFaeling : ModNPC {
 
     public override void AI() {
         NPC.catchItem = _catchItemId;
+        if (ItemLoader.GetItem(_catchItemId) is FaelingItem faeling) {
+            SpawnSparkles(NPC.Center, faeling._dedication);
+        }
     }
 
     public override void OnKill() {
@@ -140,6 +143,10 @@ public class DedicatedFaeling : ModNPC {
         _catchItemId = reader.ReadInt32();
     }
 
+    public override void ModifyHoverBoundingBox(ref Rectangle boundingBox) {
+        boundingBox.Inflate(-4, -4);
+    }
+
     internal static void SpawnFaelingsFromShimmer(Item item, ModItem modItem) {
         if (!DedicationRegistry.TryGet(modItem.Type, out _)) {
             return;
@@ -169,6 +176,30 @@ public class DedicatedFaeling : ModNPC {
         return;
     }
 
+    private static void SpawnSparkles(Vector2 spawnCoordinates, IDedicationInfo dedication) {
+        if (Main.netMode == NetmodeID.Server || Main.GameUpdateCount % 6 != 0) {
+            return;
+        }
+
+        spawnCoordinates += Main.rand.NextVector2Unit() * Main.rand.NextFloat(8f, 14f);
+        Vector2 velocity = Main.rand.NextVector2Unit() * 0.05f;
+        float lifeTime = 45f;
+
+        FadingParticle fadingParticle = new FadingParticle();
+        fadingParticle.SetBasicInfo(TextureAssets.Star[Main.rand.Next(4)], null, velocity, spawnCoordinates);
+        fadingParticle.SetTypeInfo(lifeTime);
+        fadingParticle.AccelerationPerFrame = velocity / lifeTime;
+        fadingParticle.ColorTint = Main.hslToRgb(Main.rgbToHsl(dedication.FaelingColor).X, Main.rand.NextFloat(0.5f, 1f), 0.8f);
+        fadingParticle.ColorTint.A = 30;
+        fadingParticle.FadeInNormalizedTime = 0.5f;
+        fadingParticle.FadeOutNormalizedTime = 0.5f;
+        fadingParticle.Rotation = Main.rand.NextFloat() * MathHelper.TwoPi;
+        fadingParticle.RotationVelocity += 0.05f + Main.rand.NextFloat() * 0.05f;
+        fadingParticle.RotationAcceleration -= Main.rand.NextFloat() * 0.0025f;
+        fadingParticle.Scale = Vector2.One * (0.4f + 0.6f * Main.rand.NextFloat());
+        Main.ParticleSystem_World_OverPlayers.Add(fadingParticle);
+    }
+
     internal class FaelingItem : InstancedModItem {
         public readonly ModItem _parentItem;
         public readonly IDedicationInfo _dedication;
@@ -183,6 +214,7 @@ public class DedicatedFaeling : ModNPC {
 
         public override void SetStaticDefaults() {
             ContentSamples.CreativeResearchItemPersistentIdOverride[Type] = ItemID.Shimmerfly;
+            ItemSets.ShimmerTransformToItem[Type] = _parentItem.Type;
         }
 
         public override void SetDefaults() {
@@ -253,6 +285,7 @@ public class DedicatedFaeling : ModNPC {
 
         // TODO - Make the item sparkle when dropped
         public override void Update(ref float gravity, ref float maxFallSpeed) {
+            SpawnSparkles(Item.Center, _dedication);
         }
     }
 }
