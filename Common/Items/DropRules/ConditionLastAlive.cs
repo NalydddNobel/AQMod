@@ -9,15 +9,7 @@ public class ConditionLastAlive : IItemDropRuleCondition, IProvideItemConditionD
         this.type = type;
     }
 
-    public bool CanDrop(DropAttemptInfo info) {
-        return NPC.CountNPCS(type) <= 1;
-    }
-
-    public bool CanShowItemDropInUI() {
-        return true;
-    }
-
-    public string GetConditionDescription() {
-        return null;
-    }
+    public bool CanDrop(DropAttemptInfo info) => NPC.CountNPCS(type) <= 1;
+    public bool CanShowItemDropInUI() => true;
+    public string GetConditionDescription() => null;
 }

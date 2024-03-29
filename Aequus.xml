@@ -834,6 +834,13 @@
         <member name="M:Aequus.Core.Utilities.ExtendChest.IsUnopened(Terraria.Chest)">
             <returns>Whether the chest contains <see cref="T:Aequus.Content.Chests.UnopenedChestItem"/>.</returns>
         </member>
+        <member name="M:Aequus.Core.Utilities.ExtendCollision.GetFloor(Microsoft.Xna.Framework.Vector2,System.Int32,Microsoft.Xna.Framework.Vector2@,System.Boolean)">
+            <param name="startWorldPosition">The starting scan position.</param>
+            <param name="worldHeight">How far (in world coordinates) it should scan down. 16 world coordinates = 1 tile coordinate.</param>
+            <param name="floor">The resulting floor's position.</param>
+            <param name="acceptTopSurfaces">Whether or not to accept surfaces like Platforms, Tables, Planter Boxes, etc.</param>
+            <returns>Whether or not a solid floor was found.</returns>
+        </member>
         <member name="M:Aequus.Core.Utilities.ExtendColor.MaxRGBA(Microsoft.Xna.Framework.Color,System.Byte)">
             <returns><paramref name="color"/>, with its R,G,B,A Maxed to the specified <paramref name="amt"/>.</returns>
         </member>
@@ -1476,7 +1483,7 @@
             <summary>Whether the Occultist has been met. This determines if the Hostile Occultist emote can be used.</summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 70)</summary>
+            <summary>(Total Sounds: 72)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishCharge">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -1546,6 +1553,12 @@
         </member>
         <member name="F:Aequus.AequusSounds.JunkJetShoot1">
             <summary>Full Path: Assets/Sounds/Items/JunkJetShoot1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.NoHitRewardAmbient">
+            <summary>Full Path: Assets/Sounds/Items/NoHitRewardAmbient</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.NoHitRewardSpawn">
+            <summary>Full Path: Assets/Sounds/Items/NoHitRewardSpawn</summary>
         </member>
         <member name="F:Aequus.AequusSounds.Dash">
             <summary>Full Path: Assets/Sounds/Items/PossessedShard/Dash</summary>
