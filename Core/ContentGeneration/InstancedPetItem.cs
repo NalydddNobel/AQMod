@@ -1,18 +1,17 @@
-﻿using Aequus.Core.ContentGeneration;
-using Terraria.DataStructures;
+﻿using Terraria.DataStructures;
 using Terraria.Localization;
 
-namespace Aequus.Content.Pets;
+namespace Aequus.Core.ContentGeneration;
 
 [Autoload(false)]
 internal class InstancedPetItem : InstancedModItem {
     [CloneByReference]
-    private readonly ModPet _modPet;
+    private readonly UnifiedModPet _modPet;
     private readonly int _rarity;
     private readonly int _value;
     private readonly Color? _alphaOverride;
 
-    public InstancedPetItem(ModPet modPet, int itemRarity = ItemRarityID.Orange, int value = Item.gold * 5, Color? alphaOverride = null) : base(modPet.Name + "Item", modPet.NamespaceFilePath() + $"/{modPet.Name}Item") {
+    public InstancedPetItem(UnifiedModPet modPet, int itemRarity = ItemRarityID.Orange, int value = Item.gold * 5, Color? alphaOverride = null) : base(modPet.Name + "Item", modPet.NamespaceFilePath() + $"/{modPet.Name}Item") {
         _modPet = modPet;
         _rarity = itemRarity;
         _value = value;

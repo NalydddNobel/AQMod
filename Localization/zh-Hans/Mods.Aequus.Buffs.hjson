@@ -23,11 +23,6 @@ GoldenWindBuff: {
 	Description: "{$Buffs.GoldenFeatherBuff.Description}"
 }
 
-HotAirBalloonBuff: {
-	DisplayName: 热气球
-	Description: 飞高一点, 飞远一点!!!
-}
-
 DeathsEmbraceBuff: {
 	DisplayName: "{$Items.DeathsEmbrace.DisplayName}"
 	Description: 你为什么会读这个...你快死了

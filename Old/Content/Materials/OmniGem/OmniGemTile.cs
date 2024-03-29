@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Tiles;
-using Aequus.Content.Dyes;
+using Aequus.Content.Vanity.Dyes;
 using Aequus.Core.Graphics.Tiles;
 using System.Collections.Generic;
 using Terraria.Audio;
@@ -84,7 +84,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
         Main.spriteBatch.End();
         Main.spriteBatch.BeginWorld(shader: true);
 
-        var effect = GameShaders.Armor.GetShaderFromItemId(DyesInstantiator.HueshiftDye.Type);
+        var effect = GameShaders.Armor.GetShaderFromItemId(DyeLoader.HueshiftDye.Type);
 
         var maskTexture = AequusTextures.OmniGemTile_Mask.Value;
         var glowOffset = new Vector2(-1f, -1f);
@@ -122,7 +122,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
     public void BatchedPostDraw(List<BatchedTileDrawInfo> tiles, int count) {
         Main.spriteBatch.BeginWorld(shader: true);
 
-        var effect = GameShaders.Armor.GetShaderFromItemId(DyesInstantiator.HueshiftDye.Type);
+        var effect = GameShaders.Armor.GetShaderFromItemId(DyeLoader.HueshiftDye.Type);
 
         var texture = AequusTextures.OmniGemTile_Mask.Value;
         var glowOffset = new Vector2(7f, 7f);

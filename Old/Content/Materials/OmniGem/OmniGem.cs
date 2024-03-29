@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Dyes;
+﻿using Aequus.Content.Vanity.Dyes;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
@@ -31,7 +31,7 @@ public class OmniGem : ModItem {
         var maskTexture = AequusTextures.OmniGem_Mask.Value;
         var maskFrame = maskTexture.Frame(verticalFrames: 3, frameY: 2);
 
-        var effect = GameShaders.Armor.GetShaderFromItemId(DyesInstantiator.HueshiftDye.Type);
+        var effect = GameShaders.Armor.GetShaderFromItemId(DyeLoader.HueshiftDye.Type);
         effect.Apply(null, drawData);
 
         var drawPosition = position + frame.Size() / 2f * scale - origin * scale;
@@ -72,7 +72,7 @@ public class OmniGem : ModItem {
         var origin = frame.Size() / 2f;
         var drawData = new DrawData(texture, drawPosition, frame, Item.GetAlpha(lightColor), rotation, origin, scale, SpriteEffects.None, 0);
 
-        var effect = GameShaders.Armor.GetShaderFromItemId(DyesInstantiator.HueshiftDye.Type);
+        var effect = GameShaders.Armor.GetShaderFromItemId(DyeLoader.HueshiftDye.Type);
         effect.Apply(null, drawData);
 
         var maskTexture = AequusTextures.OmniGem_Mask.Value;

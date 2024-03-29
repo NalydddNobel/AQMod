@@ -884,16 +884,6 @@ ManacleSeeds: {
 	Tooltip: ""
 }
 
-//# Mounts
-BalloonKit: {
-	DisplayName: 气球装备
-	Tooltip:
-		'''
-		允许你骑乘一颗热气球
-		'在Modzilla的公司工厂精心制作而成'
-		'''
-}
-
 //# Backpacks
 ScavengerBag: {
 	DisplayName: 拾荒者袋子

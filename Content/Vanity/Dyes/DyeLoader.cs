@@ -1,27 +1,19 @@
-﻿using ReLogic.Content;
+﻿using Aequus.Core.ContentGeneration;
+using ReLogic.Content;
 using System;
 using Terraria.Graphics.Shaders;
 
-namespace Aequus.Content.Dyes;
+namespace Aequus.Content.Vanity.Dyes;
 
-public sealed class DyesInstantiator : ModSystem {
+public sealed class DyeLoader : ModSystem {
     public static ModItem HueshiftDye { get; private set; }
-
-    private InstancedDyeItem RegisterDye(string name, Func<ArmorShaderData> shaderDataFactory, int itemRarity = ItemRarityID.Blue, int value = Item.silver * 50) {
-        var item = new InstancedDyeItem(name, shaderDataFactory, itemRarity, value);
-        Mod.AddContent(item);
-        return item;
-    }
-
-    private InstancedDyeItem RegisterDye(string name, string pass, Ref<Effect> effect, int itemRarity = ItemRarityID.Blue, int value = Item.silver * 50, float useOpacity = 1f, Color? useColor = null) {
-        return RegisterDye(name, () => new ArmorShaderData(effect, pass).UseOpacity(useOpacity).UseColor(useColor ?? Color.Transparent), itemRarity, value);
-    }
 
     public override void Load() {
         Ref<Effect> effect = null;
         if (!Main.dedServ) {
             effect = new Ref<Effect>(ModContent.Request<Effect>($"Aequus/Assets/Shaders/DyeShaders", AssetRequestMode.ImmediateLoad).Value);
         }
+
         RegisterDye("CensorDye", "CensorPass", effect, useOpacity: 4f);
         RegisterDye("DiscoDye", "DiscoPass", effect, itemRarity: ItemRarityID.Green)
             .WithCustomRecipe((m) => {
@@ -66,5 +58,15 @@ public sealed class DyesInstantiator : ModSystem {
                 .AddTile(TileID.DyeVat)
                 .Register();
             });
+    }
+
+    private InstancedDyeItem RegisterDye(string name, Func<ArmorShaderData> shaderDataFactory, int itemRarity = ItemRarityID.Blue, int value = Item.silver * 50) {
+        var item = new InstancedDyeItem(name, shaderDataFactory, itemRarity, value);
+        Mod.AddContent(item);
+        return item;
+    }
+
+    private InstancedDyeItem RegisterDye(string name, string pass, Ref<Effect> effect, int itemRarity = ItemRarityID.Blue, int value = Item.silver * 50, float useOpacity = 1f, Color? useColor = null) {
+        return RegisterDye(name, () => new ArmorShaderData(effect, pass).UseOpacity(useOpacity).UseColor(useColor ?? Color.Transparent), itemRarity, value);
     }
 }

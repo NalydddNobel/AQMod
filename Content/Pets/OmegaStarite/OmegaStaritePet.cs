@@ -1,11 +1,12 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Core.ContentGeneration;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria.GameContent;
 
 namespace Aequus.Content.Pets.OmegaStarite;
 
-public class OmegaStaritePet : ModPet {
+public class OmegaStaritePet : UnifiedModPet {
     public override void SetStaticDefaults() {
         Main.projFrames[Projectile.type] = 4;
         Main.projPet[Projectile.type] = true;

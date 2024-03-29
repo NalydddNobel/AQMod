@@ -23,11 +23,6 @@ GoldenWindBuff: {
 	Description: "{$Buffs.GoldenFeatherBuff.Description}"
 }
 
-HotAirBalloonBuff: {
-	DisplayName: Hot Air Balloon
-	Description: Up, up, and away!!!
-}
-
 DeathsEmbraceBuff: {
 	DisplayName: "{$Items.DeathsEmbrace.DisplayName}"
 	Description: Why are you reading this... you're about to die

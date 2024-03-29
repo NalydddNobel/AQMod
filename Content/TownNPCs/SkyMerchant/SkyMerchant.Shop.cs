@@ -27,7 +27,7 @@ public partial class SkyMerchant {
         new NPCShop(Type, "Shop")
             .AddCustomValue<SkyHunterCrossbow>(ItemCommons.Price.SkyMerchantCustomPurchasePrice * 1.5)
             .AddCustomValue<Bellows>(ItemCommons.Price.SkyMerchantCustomPurchasePrice)
-            .AddCustomValue<BalloonKit>(ItemCommons.Price.SkyMerchantCustomPurchasePrice * 7)
+            .AddCustomValue(ModContent.GetInstance<HotAirBalloonMount>().MountItem.Type, ItemCommons.Price.SkyMerchantCustomPurchasePrice * 7)
             .Add<NameTag>()
             .Add<Calendar>()
             .Add<LesserRestorationPotion>()

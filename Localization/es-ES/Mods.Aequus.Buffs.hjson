@@ -23,11 +23,6 @@ GoldenWindBuff: {
 	Description: "{$Buffs.GoldenFeatherBuff.Description}"
 }
 
-HotAirBalloonBuff: {
-	DisplayName: Globo Aeroestatico
-	Description: Hasta el infinito y más allá!!!
-}
-
 DeathsEmbraceBuff: {
 	DisplayName: "{$Items.DeathsEmbrace.DisplayName}"
 	Description: Por qué estás leyendo esto… estas a punto de morir

@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Aequus.Core.ContentGeneration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +8,7 @@ using Terraria.Utilities;
 
 namespace Aequus.Content.Equipment.Mounts.HotAirBalloon;
 
-public class HotAirBalloonMount : ModMount {
+public class HotAirBalloonMount : UnifiedModMount {
     public const int BalloonFrames = 2;
 
     #region Balloon Data and Easter Eggs
@@ -100,7 +99,7 @@ public class HotAirBalloonMount : ModMount {
     }
     #endregion
 
-    public override void SetStaticDefaults() {
+    protected override void OnSetStaticDefaults() {
         LoadEasterEggs();
         MountData.jumpHeight = 1;
         MountData.jumpSpeed = 1f;
@@ -113,8 +112,6 @@ public class HotAirBalloonMount : ModMount {
         MountData.fatigueMax = 0;
         MountData.fallDamage = 0f;
         MountData.usesHover = true;
-
-        MountData.buff = ModContent.BuffType<HotAirBalloonBuff>();
 
         MountData.spawnDust = DustID.Torch;
         MountData.spawnDustNoGravity = true;
@@ -275,5 +272,13 @@ public class HotAirBalloonMount : ModMount {
             playerDrawData.Add(new(balloonTexture, balloonDrawPos, balloonFrame, balloonColor * Math.Max(MathF.Pow(lightIntensity, 6f), 0.4f), rotation, balloonFrame.Size() / 2f, 1f, spriteEffects, 0) { shader = drawPlayer.cMount });
         }
         return true;
+    }
+
+    internal override ModItem CreateMountItem() {
+        return new InstancedMountItem(this, value: Item.buyPrice(gold: 10), SoundOverride: SoundID.Item34);
+    }
+
+    protected override void OnLoad() {
+        ModTypeLookup<ModItem>.RegisterLegacyNames(MountItem, "BalloonKit");
     }
 }

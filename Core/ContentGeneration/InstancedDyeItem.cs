@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Assets;
-using Aequus.Core.ContentGeneration;
+﻿using Aequus.Content.Vanity.Dyes;
+using Aequus.Core.Assets;
 using System;
 using Terraria.Graphics.Shaders;
 
-namespace Aequus.Content.Dyes;
+namespace Aequus.Core.ContentGeneration;
 
 [Autoload(false)]
 internal sealed class InstancedDyeItem : InstancedModItem {
@@ -29,11 +29,15 @@ internal sealed class InstancedDyeItem : InstancedModItem {
         return this;
     }
 
-    public InstancedDyeItem(string name, Func<ArmorShaderData> shaderDataFactory, int itemRarity = ItemRarityID.Blue, int value = Item.silver * 50) : base(name, $"{Helper.NamespaceFilePath(typeof(InstancedDyeItem))}/Items/{name}") {
+    internal InstancedDyeItem(string name, string texture, Func<ArmorShaderData> shaderDataFactory, int itemRarity = ItemRarityID.Blue, int value = Item.silver * 50)
+        : base(name, texture) {
         _shaderDataFactory = shaderDataFactory;
         _rarity = itemRarity;
         _value = value;
     }
+
+    internal InstancedDyeItem(string name, Func<ArmorShaderData> shaderDataFactory, int itemRarity = ItemRarityID.Blue, int value = Item.silver * 50)
+        : this(name, $"{typeof(DyeLoader).NamespaceFilePath()}/{name}", shaderDataFactory, itemRarity, value) { }
 
     public override string LocalizationCategory => "Misc.Dyes";
 

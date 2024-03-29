@@ -700,11 +700,6 @@
             <param name="sourceRectangle">The bounds of the portrait.</param>
             <param name="displayColor">The Color of the entry. It is usually Black when hidden, and White when not hidden.</param>
         </member>
-        <member name="T:Aequus.Content.Dyes.ArmorShaderDataThirdColor">
-            <summary>
-            Uses "uLightSource" as a 3rd color value.
-            </summary>
-        </member>
         <member name="M:Aequus.Content.Enemies.PollutedOcean.BlackJellyfish.BlackJellyfish.GetLightMagnitude">
             <summary>Gets the lighting magnitude for this Jellyfish. Returns 1f if <see cref="F:Terraria.NPC.IsABestiaryIconDummy"/> is <see langword="true"></see>.</summary>
             <returns><inheritdoc cref="M:Aequus.Content.Enemies.PollutedOcean.BlackJellyfish.BlackJellyfish.GetLightMagnitude(Microsoft.Xna.Framework.Color)"/></returns>
@@ -784,6 +779,12 @@
             </summary>
             <param name="modWall"></param>
             <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
+        </member>
+        <member name="T:Aequus.Core.ContentGeneration.UnifiedModMount">
+            <summary>A <see cref="T:Terraria.ModLoader.ModMount"/> which automagically registers a related <see cref="T:Terraria.ModLoader.ModItem"/> and <see cref="T:Terraria.ModLoader.ModBuff"/>, suffixed with +"Item" and +"Buff" respectively.</summary>
+        </member>
+        <member name="T:Aequus.Core.ContentGeneration.UnifiedModPet">
+            <summary>A <see cref="T:Terraria.ModLoader.ModProjectile"/> which automagically registers a related <see cref="T:Terraria.ModLoader.ModItem"/> and <see cref="T:Terraria.ModLoader.ModBuff"/>, suffixed with +"Item" and +"Buff" respectively.</summary>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendNPC.AddBossDrop(Terraria.ModLoader.NPCLoot,Terraria.GameContent.ItemDropRules.IItemDropRule,System.Boolean)">
             <summary>Adds <paramref name="entry"/> to <paramref name="npcLoot"/>, and its boss bag.</summary>
@@ -1688,7 +1689,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 674)</summary>
+            <summary>(Total Textures: 675)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2083,6 +2084,9 @@
         <member name="F:Aequus.AequusTextures.MirrorsCall_Edges_Aura">
             <summary>Full Path: Content/Dedicated/MirrorsCall/MirrorsCall_Edges_Aura</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.NikoPetItem">
+            <summary>Full Path: Content/Dedicated/Niko/NikoPetItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.StudiesOfTheInkblot">
             <summary>Full Path: Content/Dedicated/StudiesOfTheInkblot/StudiesOfTheInkblot</summary>
         </member>
@@ -2097,30 +2101,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.SwagEyePetItem">
             <summary>Full Path: Content/Dedicated/SwagEye/SwagEyePetItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EnchantedDyeEffect">
-            <summary>Full Path: Content/Dyes/EnchantedDyeEffect</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.FrostbiteDyeEffect">
-            <summary>Full Path: Content/Dyes/FrostbiteDyeEffect</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CensorDye">
-            <summary>Full Path: Content/Dyes/Items/CensorDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DiscoDye">
-            <summary>Full Path: Content/Dyes/Items/DiscoDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EnchantedDye">
-            <summary>Full Path: Content/Dyes/Items/EnchantedDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.FrostbiteDye">
-            <summary>Full Path: Content/Dyes/Items/FrostbiteDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HueshiftDye">
-            <summary>Full Path: Content/Dyes/Items/HueshiftDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ScorchingDye">
-            <summary>Full Path: Content/Dyes/Items/ScorchingDye</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BlackJellyfish">
             <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
@@ -2302,11 +2282,11 @@
         <member name="F:Aequus.AequusTextures.WeightedHorseshoeVisual">
             <summary>Full Path: Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.BalloonKit">
-            <summary>Full Path: Content/Equipment/Mounts/HotAirBalloon/BalloonKit</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.HotAirBalloonBuff">
             <summary>Full Path: Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HotAirBalloonItem">
+            <summary>Full Path: Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HotAirBalloonMount">
             <summary>Full Path: Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount</summary>
@@ -2652,6 +2632,30 @@
         </member>
         <member name="F:Aequus.AequusTextures.ToolbeltBuilderToggle">
             <summary>Full Path: Content/VanillaChanges/ToolbeltBuilderToggle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CensorDye">
+            <summary>Full Path: Content/Vanity/Dyes/CensorDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DiscoDye">
+            <summary>Full Path: Content/Vanity/Dyes/DiscoDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EnchantedDye">
+            <summary>Full Path: Content/Vanity/Dyes/EnchantedDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EnchantedDyeEffect">
+            <summary>Full Path: Content/Vanity/Dyes/EnchantedDyeEffect</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FrostbiteDye">
+            <summary>Full Path: Content/Vanity/Dyes/FrostbiteDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FrostbiteDyeEffect">
+            <summary>Full Path: Content/Vanity/Dyes/FrostbiteDyeEffect</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HueshiftDye">
+            <summary>Full Path: Content/Vanity/Dyes/HueshiftDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScorchingDye">
+            <summary>Full Path: Content/Vanity/Dyes/ScorchingDye</summary>
         </member>
         <member name="F:Aequus.AequusTextures.StunEffect">
             <summary>Full Path: Content/Weapons/Classless/StunGun/StunEffect</summary>

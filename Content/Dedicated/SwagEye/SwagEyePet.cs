@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Items.Dedications;
-using Aequus.Content.Pets;
+using Aequus.Core.ContentGeneration;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -8,7 +8,7 @@ using Terraria.UI.Chat;
 
 namespace Aequus.Content.Dedicated.SwagEye;
 
-public class SwagEyePet : ModPet {
+public class SwagEyePet : UnifiedModPet {
     public override void SetStaticDefaults() {
         Main.projFrames[Type] = 2;
         Main.projPet[Projectile.type] = true;

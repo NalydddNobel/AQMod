@@ -1,12 +1,12 @@
 ﻿using Aequus.Common.Items.Dedications;
-using Aequus.Content.Pets;
+using Aequus.Core.ContentGeneration;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
 namespace Aequus.Content.Dedicated.LanternCat;
 
-public class LanternCatPet : ModPet {
+public class LanternCatPet : UnifiedModPet {
     private int frame;
     private double frameCounter;
 

@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Items.Dedications;
-using Aequus.Content.Pets;
+using Aequus.Core.ContentGeneration;
 
 namespace Aequus.Content.Dedicated;
 
@@ -9,7 +9,7 @@ internal class DedicatedPetItem : InstancedPetItem, IDedicatedItem {
     private readonly string _displayedDedicateeName;
     private readonly Color _dedicateeColor;
 
-    public DedicatedPetItem(ModPet modPet, string dedicateeName, Color dedicateeColor, bool nameHidden = false, int itemRarity = 3, int value = 50000, Color? alphaOverride = null) : base(modPet, itemRarity, value, alphaOverride) {
+    public DedicatedPetItem(UnifiedModPet modPet, string dedicateeName, Color dedicateeColor, bool nameHidden = false, int itemRarity = 3, int value = 50000, Color? alphaOverride = null) : base(modPet, itemRarity, value, alphaOverride) {
         _dedicateeName = dedicateeName;
         _displayedDedicateeName = nameHidden ? null : dedicateeName;
         _dedicateeColor = dedicateeColor;

@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Projectiles;
+using Aequus.Core.ContentGeneration;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -8,7 +9,7 @@ using Terraria.GameContent;
 
 namespace Aequus.Content.Pets.Miner;
 
-public class UndeadMinerPet : ModPet {
+public class UndeadMinerPet : UnifiedModPet {
     public int swingPick;
     public int tileX;
     public int tileY;

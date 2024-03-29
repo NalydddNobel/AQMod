@@ -310,7 +310,6 @@ public class PhysicsGunProj : HeldProjBase {
             //mouseWorld = Main.player[Projectile.owner].MountedCenter - new Vector2(0f, 400f);
             var difference = Main.player[Projectile.owner].MountedCenter - mouseWorld;
             var dir = Vector2.Normalize(difference);
-            Main.NewText(beamColor);
 
             Vector2[] vertices;
             Vector2 start = Main.player[Projectile.owner].MountedCenter + dir * -30f;

@@ -1,8 +1,9 @@
 ﻿using Terraria.Localization;
 
-namespace Aequus.Content.Pets;
+namespace Aequus.Core.ContentGeneration;
 
-public abstract class ModPet : ModProjectile {
+/// <summary>A <see cref="ModProjectile"/> which automagically registers a related <see cref="ModItem"/> and <see cref="ModBuff"/>, suffixed with +"Item" and +"Buff" respectively.</summary>
+public abstract class UnifiedModPet : ModProjectile {
     internal InstancedPetBuff PetBuff { get; set; }
     internal InstancedPetItem PetItem { get; set; }
 

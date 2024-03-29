@@ -884,16 +884,6 @@ ManacleSeeds: {
 	Tooltip: ""
 }
 
-//# Mounts
-BalloonKit: {
-	DisplayName: Botiquin Aerostático
-	Tooltip:
-		'''
-		Te permite montar un Globo Aerostático
-		'Expertamente fabricado por Empresas Modzilla'
-		'''
-}
-
 //# Backpacks
 ScavengerBag: {
 	DisplayName: Bolsa Carroñera

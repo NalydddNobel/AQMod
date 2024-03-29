@@ -1,11 +1,11 @@
 ﻿using Aequus.Common.Items.Dedications;
 using Aequus.Content.CrossMod;
-using Aequus.Content.Pets;
+using Aequus.Core.ContentGeneration;
 using Microsoft.Xna.Framework;
 
 namespace Aequus.Content.Dedicated.Familiar;
 
-public class FamiliarPet : ModPet {
+public class FamiliarPet : UnifiedModPet {
     public override string Texture => AequusTextures.NPC(NPCID.Guide);
 
     private Player dummyPlayer;
