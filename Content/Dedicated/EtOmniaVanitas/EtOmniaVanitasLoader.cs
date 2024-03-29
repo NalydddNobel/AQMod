@@ -247,8 +247,6 @@ public class EtOmniaVanitasLoader : ILoad {
         }
         EtOmniaVanitas add = new EtOmniaVanitas(progress, stats);
 
-        mod.AddContent(add);
-
         // Register this as a dedicated item
         if (Tier1 == null) {
             DedicationRegistry.Register(add, new Dedication.Default("Yuki-Miyako", new Color(60, 60, 120)));
@@ -256,6 +254,8 @@ public class EtOmniaVanitasLoader : ILoad {
         else {
             DedicationRegistry.RegisterSubItem(Tier1, add);
         }
+
+        mod.AddContent(add);
 
         return add;
     }
