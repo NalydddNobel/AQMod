@@ -1,8 +1,7 @@
-﻿using Aequus.Core.ContentGeneration;
-using Terraria.GameContent;
+﻿using Terraria.GameContent;
 using Terraria.Localization;
 
-namespace Aequus.Content.Bosses;
+namespace Aequus.Core.ContentGeneration;
 
 internal class InstancedBossBag : InstancedModItem {
     private readonly int InternalRarity;

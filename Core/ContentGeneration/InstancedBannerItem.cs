@@ -1,8 +1,11 @@
-﻿using Terraria.Localization;
+﻿using Aequus.Common.Items.Components;
+using Aequus.Common.JourneyMode;
+using System.Collections.Generic;
+using Terraria.Localization;
 
 namespace Aequus.Core.ContentGeneration;
 
-internal class InstancedBannerItem : InstancedModItem {
+internal class InstancedBannerItem : InstancedModItem, IOverrideGroupOrder {
     private readonly ModNPC _npc;
     private readonly ModTile _banner;
 
@@ -27,5 +30,12 @@ internal class InstancedBannerItem : InstancedModItem {
         Item.createTile = _banner.Type;
         Item.rare = ItemRarityID.Blue;
         Item.value = Item.silver * 10;
+    }
+
+    public void ModifyItemGroup(ref ContentSamples.CreativeHelper.ItemGroupAndOrderInGroup myGroup, Dictionary<int, ContentSamples.CreativeHelper.ItemGroupAndOrderInGroup> groupDictionary) {
+        int? ordering = new JourneySortByTileId(TileID.Banners).ProvideItemGroupOrdering(myGroup, groupDictionary);
+        if (ordering != null) {
+            myGroup.OrderInGroup = ordering.Value;
+        }
     }
 }

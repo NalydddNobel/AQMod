@@ -154,6 +154,7 @@ public abstract class BackpackData : ModType, ILocalizedModType {
         float wantedHue = SlotHue;
         if (_hueRenderedWith != wantedHue) {
             GetHuedItemSlots(wantedHue);
+            _hueRenderedWith = wantedHue;
         }
 
         return InventoryBack != null && InventoryBackFavorited != null && InventoryBackNewItem != null;

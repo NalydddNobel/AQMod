@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Content.Bosses.BossMasks;
 using Aequus.Content.Bosses.Trophies;
+using Aequus.Core.ContentGeneration;
 
 namespace Aequus.Content.Bosses;
 

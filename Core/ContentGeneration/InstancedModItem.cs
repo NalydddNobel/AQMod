@@ -1,4 +1,8 @@
-﻿using Aequus.Core.Initialization;
+﻿using Aequus.Common.Items.Components;
+using Aequus.Common.JourneyMode;
+using Aequus.Core.Initialization;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Terraria.DataStructures;
 using Terraria.Localization;
 
@@ -47,7 +51,7 @@ internal abstract class InstancedModItem : ModItem {
     }
 }
 
-internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
+internal class InstancedTileItem : InstancedModItem, IPostSetupContent, IOverrideGroupOrder {
     [CloneByReference]
     protected readonly ModTile _modTile;
     private readonly int _style;
@@ -55,6 +59,7 @@ internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
     private readonly int _rarity;
     private readonly int _value;
     private readonly int? _sacrificeCount;
+    private readonly IJourneySortOverrideProvider _journeyOverride;
 
     /// <param name="modTile"></param>
     /// <param name="style"></param>
@@ -63,7 +68,8 @@ internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
     /// <param name="rarity">Item rarity.</param>
     /// <param name="value">Item value.</param>
     /// <param name="researchSacrificeCount">Research count override.</param>
-    public InstancedTileItem(ModTile modTile, int style = 0, string nameSuffix = "", bool dropItem = true, int rarity = ItemRarityID.White, int value = 0, int? researchSacrificeCount = null)
+    /// <param name="journeyOverride">Journey Mode item group override, used to organize tiles all together in the menu. Utilize <see cref="JourneySortByTileId"/> to sort with tiles with a matching tile id, since many tiles do not have item groups, and are instead sorted by tile id.</param>
+    public InstancedTileItem(ModTile modTile, int style = 0, string nameSuffix = "", bool dropItem = true, int rarity = ItemRarityID.White, int value = 0, int? researchSacrificeCount = null, IJourneySortOverrideProvider journeyOverride = null)
         : base(modTile.Name + nameSuffix, (modTile is InstancedModTile instancedModTile ? instancedModTile._texture : modTile.Texture) + nameSuffix + "Item") {
         _modTile = modTile;
         _dropItem = dropItem;
@@ -71,6 +77,7 @@ internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
         _rarity = rarity;
         _value = value;
         _sacrificeCount = researchSacrificeCount;
+        _journeyOverride = journeyOverride;
     }
 
     public override string LocalizationCategory => "Tiles";
@@ -100,6 +107,20 @@ internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
                 .AddTile(TileID.WorkBenches)
                 .Register()
                 .DisableDecraft();
+        }
+    }
+
+    public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup) {
+        var groupOverride = _journeyOverride?.ProvideItemGroup();
+        if (groupOverride != null) {
+            itemGroup = groupOverride.Value;
+        }
+    }
+
+    public void ModifyItemGroup(ref ContentSamples.CreativeHelper.ItemGroupAndOrderInGroup myGroup, Dictionary<int, ContentSamples.CreativeHelper.ItemGroupAndOrderInGroup> groupDictionary) {
+        int? sortingOverride = _journeyOverride?.ProvideItemGroupOrdering(myGroup, groupDictionary);
+        if (sortingOverride != null) {
+            myGroup.OrderInGroup = sortingOverride.Value;
         }
     }
 }

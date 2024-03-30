@@ -1,4 +1,6 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequus.Common.Items.Components;
+using Aequus.Common.JourneyMode;
+using Aequus.Core.ContentGeneration;
 using System.Collections.Generic;
 using Terraria.GameContent.Metadata;
 using Terraria.ObjectData;
@@ -146,12 +148,19 @@ public abstract class ModHerb : ModTile {
         };
     }
 
-    internal class InstancedSeedItem : InstancedModItem {
+    internal class InstancedSeedItem : InstancedModItem, IOverrideGroupOrder {
         [CloneByReference]
         private readonly ModTile _parent;
 
         public InstancedSeedItem(ModHerb tile) : base(tile.Name + "Seeds", tile.Texture + "Seeds") {
             _parent = tile;
+        }
+
+        public void ModifyItemGroup(ref ContentSamples.CreativeHelper.ItemGroupAndOrderInGroup myGroup, Dictionary<int, ContentSamples.CreativeHelper.ItemGroupAndOrderInGroup> groupDictionary) {
+            int? ordering = new JourneySortByTileId(TileID.ImmatureHerbs).ProvideItemGroupOrdering(myGroup, groupDictionary);
+            if (ordering != null) {
+                myGroup.OrderInGroup = ordering.Value;
+            }
         }
 
         public override void SetDefaults() {

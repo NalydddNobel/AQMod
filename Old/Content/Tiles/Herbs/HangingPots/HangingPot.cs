@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Tiles;
+﻿using Aequus.Common.JourneyMode;
+using Aequus.Common.Tiles;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.Initialization;
 using Aequus.Old.Content.Potions.Prefixes.BoundedPotions;
@@ -21,7 +22,7 @@ internal class HangingPot : ModTile {
         AddItem("Moonflower", ItemID.PotSuspendedDeathweedCrimson, () => ModContent.GetInstance<StuffedPrefix>().Item.Type);
 
         void AddItem(string name, int recipeSortIdTarget, Func<int> getIngredientId) {
-            InstancedTileItem hangingPlantItem = new InstancedTileItem(this, style, name, rarity: ItemRarityID.White, value: Item.silver, researchSacrificeCount: 1);
+            InstancedTileItem hangingPlantItem = new InstancedTileItem(this, style, name, rarity: ItemRarityID.White, value: Item.silver, researchSacrificeCount: 1, journeyOverride: new JourneySortByTileId(TileID.PotsSuspended));
 
             Mod.AddContent(hangingPlantItem);
 

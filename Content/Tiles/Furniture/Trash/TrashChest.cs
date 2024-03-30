@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Tiles;
-using Aequus.Common.Tiles.Components;
+﻿using Aequus.Common.Tiles.Components;
+using Aequus.Core.ContentGeneration;
 using System;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -7,7 +7,7 @@ using Terraria.ObjectData;
 
 namespace Aequus.Content.Tiles.Furniture.Trash;
 
-public class TrashChest : ModChest, IPlaceChestHook {
+public class TrashChest : UnifiedModChest, IPlaceChestHook {
     public override bool LoadTrappedChest => false;
 
     public override void SafeSetStaticDefaults() {

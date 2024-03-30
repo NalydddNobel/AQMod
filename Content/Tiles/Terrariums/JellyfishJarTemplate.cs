@@ -1,4 +1,5 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequus.Common.JourneyMode;
+using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics.Tiles;
 using ReLogic.Content;
 using Terraria.GameContent;
@@ -19,7 +20,7 @@ public abstract class JellyfishJarTemplate : ModTile {
     protected int JellyfishItem { get; set; }
 
     public override void Load() {
-        ModItem jarItem = new InstancedTileItem(this);
+        ModItem jarItem = new InstancedTileItem(this, journeyOverride: new JourneySortByTileId(TileID.GreenJellyfishBowl));
         Mod.AddContent(jarItem);
 
         SpecialTileRenderer.PreDrawNonSolidTiles += () => _onScreen = false;

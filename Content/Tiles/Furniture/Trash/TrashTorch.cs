@@ -1,13 +1,13 @@
-﻿using Aequus.Common.Tiles;
-using Aequus.Content.Biomes.PollutedOcean;
+﻿using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Content.Materials;
 using Aequus.Core;
+using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics.Animations;
 using Terraria.DataStructures;
 
 namespace Aequus.Content.Tiles.Furniture.Trash;
 
-public class TrashTorch : ModTorch {
+public class TrashTorch : UnifiedModTorch {
     public override int TorchIngredient => ModContent.ItemType<CompressedTrash>();
     public override int TorchCraftAmount => 20;
 

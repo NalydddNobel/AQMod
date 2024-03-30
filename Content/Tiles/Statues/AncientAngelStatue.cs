@@ -1,4 +1,5 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequus.Common.JourneyMode;
+using Aequus.Core.ContentGeneration;
 
 namespace Aequus.Content.Tiles.Statues;
 
@@ -6,7 +7,7 @@ public class AncientAngelStatue : StatueTileTemplate {
     public ModItem ItemDrop { get; private set; }
 
     public override void Load() {
-        ItemDrop = new InstancedTileItem(this, value: Item.sellPrice(copper: 60));
+        ItemDrop = new InstancedTileItem(this, value: Item.sellPrice(copper: 60), journeyOverride: new JourneySortByTileId(TileID.Statues));
         Mod.AddContent(ItemDrop);
     }
 

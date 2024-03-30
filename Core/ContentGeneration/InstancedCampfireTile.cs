@@ -1,5 +1,4 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Initialization;
+﻿using Aequus.Common.JourneyMode;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -8,18 +7,18 @@ using Terraria.Localization;
 using Terraria.ObjectData;
 using Terraria.Utilities;
 
-namespace Aequus.Common.Tiles;
+namespace Aequus.Core.ContentGeneration;
 
 internal class InstancedCampfireTile : InstancedModTile {
-    private readonly ModTorch _modTorch;
+    private readonly UnifiedModTorch _modTorch;
     public ModItem Item { get; private set; }
 
-    public InstancedCampfireTile(ModTorch parentTorch) : base(parentTorch.Name.Replace("Torch", "Campfire"), parentTorch.NamespaceFilePath() + "/" + parentTorch.Name.Replace("Torch", "Campfire")) {
+    public InstancedCampfireTile(UnifiedModTorch parentTorch) : base(parentTorch.Name.Replace("Torch", "Campfire"), parentTorch.NamespaceFilePath() + "/" + parentTorch.Name.Replace("Torch", "Campfire")) {
         _modTorch = parentTorch;
     }
 
     public override void Load() {
-        Item = new InstancedTileItem(this);
+        Item = new InstancedTileItem(this, journeyOverride: new JourneySortByTileId(TileID.Campfire));
 
         Mod.AddContent(Item);
 
@@ -130,7 +129,7 @@ internal class InstancedCampfireTile : InstancedModTile {
         }
         if (!Lighting.UpdateEveryFrame || new FastRandom(Main.TileFrameSeed).WithModifier(i, j).Next(4) == 0) {
             Tile tile = Main.tile[i, j];
-            if (tile.TileFrameY == 0 && Main.rand.NextBool(3) && ((Main.drawToScreen && Main.rand.NextBool(4)) || !Main.drawToScreen)) {
+            if (tile.TileFrameY == 0 && Main.rand.NextBool(3) && (Main.drawToScreen && Main.rand.NextBool(4) || !Main.drawToScreen)) {
                 Dust dust = Dust.NewDustDirect(new Vector2(i * 16 + 2, j * 16 - 4), 4, 8, DustID.Smoke, 0f, 0f, 100);
                 if (tile.TileFrameX == 0) {
                     dust.position.X += Main.rand.Next(8);

@@ -1,6 +1,4 @@
-﻿using Aequus.Core.ContentGeneration;
-
-namespace Aequus.Content.Bosses;
+﻿namespace Aequus.Core.ContentGeneration;
 
 [AutoloadEquip(EquipType.Head)]
 internal class InstancedBossMask : InstancedModItem {

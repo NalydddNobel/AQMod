@@ -1,5 +1,4 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Initialization;
+﻿using Aequus.Core.Initialization;
 using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.Audio;
@@ -9,10 +8,11 @@ using Terraria.GameContent.ObjectInteractions;
 using Terraria.Localization;
 using Terraria.ObjectData;
 using Terraria.ID;
+using Aequus.Common.JourneyMode;
 
-namespace Aequus.Common.Tiles;
+namespace Aequus.Core.ContentGeneration;
 
-public abstract class ModChest : ModTile {
+public abstract class UnifiedModChest : ModTile {
     private LocalizedText _nameCache;
 
     public ModItem DropItem { get; private set; }
@@ -23,7 +23,7 @@ public abstract class ModChest : ModTile {
     public virtual bool LoadTrappedChest => true;
 
     public override void Load() {
-        DropItem = new InstancedTileItem(this, value: Item.sellPrice(silver: 1));
+        DropItem = new InstancedTileItem(this, value: Item.sellPrice(silver: 1), journeyOverride: new JourneySortByTileId(TileID.Containers2));
         Mod.AddContent(DropItem);
 
         if (LoadTrappedChest) {
@@ -251,16 +251,16 @@ public abstract class ModChest : ModTile {
 
 [Autoload(false)]
 internal class TrappedChest : InstancedModTile, IAddRecipes {
-    private readonly ModChest _baseChest;
+    private readonly UnifiedModChest _baseChest;
 
     private ModItem _item;
 
-    public TrappedChest(ModChest chest) : base(chest.Name + "Trapped", chest.Texture) {
+    public TrappedChest(UnifiedModChest chest) : base(chest.Name + "Trapped", chest.Texture) {
         _baseChest = chest;
     }
 
     public override void Load() {
-        _item = new InstancedTileItem(this, rarity: _baseChest.DropItem.Item.rare, value: _baseChest.DropItem.Item.value);
+        _item = new InstancedTileItem(this, rarity: _baseChest.DropItem.Item.rare, value: _baseChest.DropItem.Item.value, journeyOverride: new JourneySortByTileId(TileID.FakeContainers2));
         Mod.AddContent(_item);
     }
 
@@ -304,7 +304,7 @@ internal class TrappedChest : InstancedModTile, IAddRecipes {
     public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
 
     public override ushort GetMapOption(int i, int j) {
-        return (ushort)((Main.tile[i, j] != null) ? (Main.tile[i, j].TileFrameX / 36) : 0);
+        return (ushort)(Main.tile[i, j] != null ? Main.tile[i, j].TileFrameX / 36 : 0);
     }
 
     public override void MouseOver(int i, int j) {

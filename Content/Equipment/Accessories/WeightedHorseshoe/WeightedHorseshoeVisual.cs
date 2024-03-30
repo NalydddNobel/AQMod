@@ -41,12 +41,14 @@ public class WeightedHorseshoeVisual : ModProjectile {
         else {
             Projectile.tileCollide = true;
         }
+
         horseshoeAnvilRope ??= new VerletIntegrationStringTwoPoint<VINode>(anvilAnchor, Projectile.Center + new Vector2(0f, Projectile.gfxOffY), 9, 4.33f, gravity);
         horseshoeAnvilRope.StartPos = anvilAnchor;
         horseshoeAnvilRope.EndPosition = horseshoeAnvilRope.EndPosition;
         horseshoeAnvilRope.gravity = gravity;
         horseshoeAnvilRope.damping = Utils.GetLerpValue(20, 0, player.velocity.Length(), true) * 0.05f;
         horseshoeAnvilRope.Update();
+
         float wantedRotation = (Projectile.Center - horseshoeAnvilRope.segments[horseshoeAnvilRope.segments.Length / 5].Position).ToRotation();
         Projectile.rotation = Projectile.rotation.AngleTowards(wantedRotation, 0.1f);
 
@@ -84,6 +86,7 @@ public class WeightedHorseshoeVisual : ModProjectile {
         else {
             Projectile.velocity.Y += 0.4f;
         }
+
         Vector4 collisionVector = Collision.WalkDownSlope(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height, 0.4f);
         Projectile.position.X = collisionVector.X;
         Projectile.position.Y = collisionVector.Y;

@@ -1,4 +1,5 @@
-﻿using Terraria.DataStructures;
+﻿using Aequus.Common.JourneyMode;
+using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.Localization;
 using Terraria.ObjectData;
@@ -13,7 +14,7 @@ internal class InstancedNPCStatue : InstancedModTile {
     }
 
     public override void Load() {
-        Mod.AddContent(new InstancedTileItem(this, value: Item.sellPrice(copper: 60)));
+        Mod.AddContent(new InstancedTileItem(this, value: Item.sellPrice(copper: 60), journeyOverride: new JourneySortByTileId(TileID.Statues)));
     }
 
     public override void SetStaticDefaults() {

@@ -1,12 +1,12 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequus.Content.Bosses;
 using Terraria.Localization;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Bosses;
+namespace Aequus.Core.ContentGeneration;
 
 internal class InstancedTrophyTile : InstancedModTile {
     public InstancedTrophyTile(ModNPC modNPC) : base($"{modNPC.Name}Trophy", $"{modNPC.NamespaceFilePath()}/Items/{modNPC.Name}Trophy") { }
-    public InstancedTrophyTile(string name) : base($"{name}Trophy", $"{typeof(InstancedTrophyTile).NamespaceFilePath()}/Trophies/{name}Trophy") { }
+    public InstancedTrophyTile(string name) : base($"{name}Trophy", $"{typeof(BossItemInstantiator).NamespaceFilePath()}/Trophies/{name}Trophy") { }
 
     public override void SetStaticDefaults() {
         Main.tileSpelunker[Type] = true;

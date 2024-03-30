@@ -1,11 +1,10 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequus.Common.JourneyMode;
 using Terraria.Localization;
 
-namespace Aequus.Content.Bosses;
+namespace Aequus.Core.ContentGeneration;
 
 internal class InstancedRelicItem : InstancedTileItem {
-    public InstancedRelicItem(ModTile relicTile) : base(relicTile, value: Item.sellPrice(gold: 1), rarity: ItemRarityID.Master) {
-    }
+    public InstancedRelicItem(ModTile relicTile) : base(relicTile, value: Item.sellPrice(gold: 1), rarity: ItemRarityID.Master, journeyOverride: new JourneySortByTileId(TileID.MasterTrophyBase)) { }
 
     public override LocalizedText DisplayName => Language.GetOrRegister(_modTile.GetCategoryKey($"Trophies.{Name}.DisplayName"));
     public override LocalizedText Tooltip => LocalizedText.Empty;

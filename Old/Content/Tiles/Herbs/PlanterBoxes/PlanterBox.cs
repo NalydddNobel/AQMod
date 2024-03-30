@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Tiles.Components;
+﻿using Aequus.Common.JourneyMode;
+using Aequus.Common.Tiles.Components;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.Initialization;
 using Mono.Cecil.Cil;
@@ -157,7 +158,7 @@ public sealed class PlanterBox : ModTile, IRandomUpdateOverride, IPostSetupConte
         AddItem("Moonflower", ItemID.CrimsonPlanterBox, Aequus.ConditionDownedTrueCosmicBoss);
 
         void AddItem(string name, int shopSortItemIdTarget, Condition sellCondition) {
-            InstancedTileItem planterBoxItem = new InstancedTileItem(this, style: RegisteredPlanterBoxItems.Count, name, rarity: ItemRarityID.White, value: Item.silver, researchSacrificeCount: 25);
+            InstancedTileItem planterBoxItem = new InstancedTileItem(this, style: RegisteredPlanterBoxItems.Count, name, rarity: ItemRarityID.White, value: Item.silver, researchSacrificeCount: 25, journeyOverride: new JourneySortByTileId(TileID.PlanterBox));
 
             Mod.AddContent(planterBoxItem);
 

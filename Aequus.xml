@@ -764,7 +764,7 @@
             Call <see cref="M:Aequus.Core.Collections.DictionaryRemoveQueue`2.RemoveAllQueued"/> to remove all queued entries from the Dictionary.
             </summary>
         </member>
-        <member name="M:Aequus.Core.ContentGeneration.InstancedTileItem.#ctor(Terraria.ModLoader.ModTile,System.Int32,System.String,System.Boolean,System.Int32,System.Int32,System.Nullable{System.Int32})">
+        <member name="M:Aequus.Core.ContentGeneration.InstancedTileItem.#ctor(Terraria.ModLoader.ModTile,System.Int32,System.String,System.Boolean,System.Int32,System.Int32,System.Nullable{System.Int32},Aequus.Common.JourneyMode.IJourneySortOverrideProvider)">
             <param name="modTile"></param>
             <param name="style"></param>
             <param name="nameSuffix">Extra text added to the end of the name.</param>
@@ -772,6 +772,7 @@
             <param name="rarity">Item rarity.</param>
             <param name="value">Item value.</param>
             <param name="researchSacrificeCount">Research count override.</param>
+            <param name="journeyOverride">Journey Mode item group override, used to organize tiles all together in the menu. Utilize <see cref="T:Aequus.Common.JourneyMode.JourneySortByTileId"/> to sort with tiles with a matching tile id, since many tiles do not have item groups, and are instead sorted by tile id.</param>
         </member>
         <member name="M:Aequus.Core.ContentGeneration.InstancedWallItem.#ctor(Terraria.ModLoader.ModWall,System.Boolean)">
             <summary>

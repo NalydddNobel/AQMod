@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Events.DemonSiege;
+﻿using Aequus.Common.JourneyMode;
+using Aequus.Content.Events.DemonSiege;
 using Aequus.Core.Assets;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics.Tiles;
@@ -24,7 +25,7 @@ public class OblivionAltar : ModTile, ISpecialTileRenderer {
             GoreNestPortal = new("Aequus/Old/Assets/Shaders/GoreNestPortal");
         }
 
-        Item = new InstancedTileItem(this, rarity: ItemRarityID.Orange, value: Terraria.Item.buyPrice(gold: 5));
+        Item = new InstancedTileItem(this, rarity: ItemRarityID.Orange, value: Terraria.Item.buyPrice(gold: 5), journeyOverride: new JourneyOverrideGroup(ContentSamples.CreativeHelper.ItemGroup.CraftingObjects));
         Mod.AddContent(Item);
     }
 

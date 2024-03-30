@@ -11,14 +11,15 @@ public class ObsidianCrabPot : BaseCrabPot {
     public override void Load() {
         ModItem item = new InstancedTileItem(this, rarity: ItemRarityID.Orange, value: Item.sellPrice(silver: 50));
 
+        Mod.AddContent(item);
         Aequus.OnAddRecipes += () => {
-            foreach (var item in Mod.GetContent<ModItem>()) {
-                if (item.Item.createTile != ModContent.TileType<CrabPot>()) {
+            foreach (var otherItem in Mod.GetContent<ModItem>()) {
+                if (otherItem.Item.createTile != ModContent.TileType<CrabPot>()) {
                     continue;
                 }
 
                 item.CreateRecipe()
-                    .AddIngredient(item)
+                    .AddIngredient(otherItem)
                     .AddIngredient(ItemID.Obsidian, 20)
                     .AddTile(TileID.Hellforge)
                     .Register();

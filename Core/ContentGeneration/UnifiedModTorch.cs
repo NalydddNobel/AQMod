@@ -1,13 +1,12 @@
-﻿using Aequus.Core.ContentGeneration;
-using Terraria.DataStructures;
+﻿using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.Localization;
 using Terraria.ObjectData;
 
-namespace Aequus.Common.Tiles;
+namespace Aequus.Core.ContentGeneration;
 
 // TODO -- Fix Torch God's Favor disliking underwater torches.
-public abstract class ModTorch : ModTile {
+public abstract class UnifiedModTorch : ModTile {
     public ModItem Item { get; protected set; }
 
     public abstract int TorchIngredient { get; }
@@ -90,18 +89,18 @@ public abstract class ModTorch : ModTile {
     }
 
     private class InstancedTorchItem : InstancedTileItem {
-        private readonly ModTorch _modTorch;
+        private readonly UnifiedModTorch _modTorch;
 
-        public InstancedTorchItem(ModTorch modTile) : base(modTile, 0, "", true, 0, 50, researchSacrificeCount: 100) {
+        public InstancedTorchItem(UnifiedModTorch modTile) : base(modTile, 0, "", true, 0, 50, researchSacrificeCount: 100) {
             _modTorch = modTile;
         }
 
         public override void SetStaticDefaults() {
             base.SetStaticDefaults();
-            ItemID.Sets.ShimmerTransformToItem[Type] = ItemID.ShimmerTorch;
-            ItemID.Sets.SingleUseInGamepad[Type] = true;
-            ItemID.Sets.Torches[Type] = true;
-            ItemID.Sets.WaterTorches[Type] = _modTorch.AllowWaterPlacement;
+            ItemSets.ShimmerTransformToItem[Type] = ItemID.ShimmerTorch;
+            ItemSets.SingleUseInGamepad[Type] = true;
+            ItemSets.Torches[Type] = true;
+            ItemSets.WaterTorches[Type] = _modTorch.AllowWaterPlacement;
         }
 
         public override void SetDefaults() {
@@ -142,6 +141,10 @@ public abstract class ModTorch : ModTile {
                 .AddIngredient(_modTorch.TorchCraftAmount)
                 .SortAfterFirstRecipesOf(ItemID.RainbowTorch)
                 .Register();
+        }
+
+        public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup) {
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.Torches;
         }
     }
 }

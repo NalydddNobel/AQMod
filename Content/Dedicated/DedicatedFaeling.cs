@@ -2,12 +2,14 @@
 using Aequus.Common.Systems;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.CrossMod;
+using Aequus.Core.Initialization;
 using Aequus.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.GameContent.Creative;
 using Terraria.Graphics.Renderers;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
@@ -200,7 +202,7 @@ public class DedicatedFaeling : ModNPC {
         Main.ParticleSystem_World_OverPlayers.Add(fadingParticle);
     }
 
-    internal class FaelingItem : InstancedModItem {
+    internal class FaelingItem : InstancedModItem, IPostSetupContent {
         public readonly ModItem _parentItem;
         public readonly IDedicationInfo _dedication;
 
@@ -211,11 +213,6 @@ public class DedicatedFaeling : ModNPC {
 
         public override LocalizedText DisplayName => Language.GetText("ItemName.Shimmerfly");
         public override LocalizedText Tooltip => LocalizedText.Empty;
-
-        public override void SetStaticDefaults() {
-            ContentSamples.CreativeResearchItemPersistentIdOverride[Type] = ItemID.Shimmerfly;
-            ItemSets.ShimmerTransformToItem[Type] = _parentItem.Type;
-        }
 
         public override void SetDefaults() {
             Item.CloneDefaults(ItemID.Shimmerfly);
@@ -283,9 +280,25 @@ public class DedicatedFaeling : ModNPC {
             return ((dedicationInfo?.FaelingColor ?? Color.White) * 2f) with { A = 220 };
         }
 
-        // TODO - Make the item sparkle when dropped
         public override void Update(ref float gravity, ref float maxFallSpeed) {
             SpawnSparkles(Item.Center, _dedication);
+        }
+
+        public override void SetStaticDefaults() {
+            // Dedicated faelings originally counted as regular faelings for research.
+            //ContentSamples.CreativeResearchItemPersistentIdOverride[Type] = ItemID.Shimmerfly;
+            ItemSets.ShimmerTransformToItem[Type] = _parentItem.Type;
+        }
+
+        public void PostSetupContent(Aequus aequus) {
+            if (CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId.TryGetValue(_parentItem.Type, out int parentResearchCount)) {
+                // Inherit the parent item's research count, capped at 5.
+                Item.ResearchUnlockCount = Math.Min(parentResearchCount, 5);
+            }
+            else {
+                // If the parent item cannot be researched, set it to 0 to make the faeling un-researchable aswell.
+                Item.ResearchUnlockCount = 0;
+            }
         }
     }
 }

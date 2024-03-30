@@ -31,15 +31,21 @@ public class VerletIntegrationString<T> where T : IVerletIntegrationNode, new() 
 
         for (int i = 0; i < segments.Length; i++) {
             if (segments[i].Position.HasNaNs()) {
-                segments[i].Position = segments[0].Position;
+                segments[i].Position = segments[0].Position + Vector2.UnitY;
             }
 
-            segments[i].UpdateNode(damping, gravity);
+            UpdateNode(ref segments[i]);
         }
 
         for (int i = 0; i < accuracy; i++) {
             ConstrainPoints();
         }
+    }
+
+    private void UpdateNode(ref T node) {
+        Vector2 velocity = (node.Position - node.OldPosition) / (1f + damping) + gravity;
+        node.OldPosition = node.Position;
+        node.Position += node.MoveNode(velocity);
     }
 
     private void ConstrainPoints() {
