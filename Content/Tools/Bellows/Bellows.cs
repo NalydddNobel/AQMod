@@ -1,8 +1,10 @@
 ﻿using Aequus.Common.Items;
+using Aequus.Common.JourneyMode;
 using System.Collections.Generic;
 
 namespace Aequus.Content.Tools.Bellows;
 
+[FilterOverride(FilterFullfillment.Tools)]
 public class Bellows : ModItem {
     public static float MountPushForcePenalty = 0.33f;
 

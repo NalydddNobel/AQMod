@@ -1,10 +1,12 @@
 ﻿using Aequus.Common.Items.Components;
+using Aequus.Common.JourneyMode;
 using Aequus.Common.Renaming;
 using Terraria.Audio;
 using Terraria.DataStructures;
 
 namespace Aequus.Content.Tools.NameTag;
 
+[FilterOverride(FilterFullfillment.Tools)]
 public class NameTag : ModItem, ICustomNameTagPrice {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 5;

@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.Common.JourneyMode;
+using System.Collections.Generic;
 
 namespace Aequus.Content.Tools.MagicMirrors.PhaseMirror;
 
+[FilterOverride(FilterFullfillment.Tools)]
 public class PhaseMirror : ModItem, IPhaseMirror {
     [CloneByReference]
     public List<(int, int, Dust)> DustEffectCache { get; set; }

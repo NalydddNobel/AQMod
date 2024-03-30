@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Items;
+using Aequus.Common.JourneyMode;
 using Aequus.Core.Initialization;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using Terraria.GameContent;
 namespace Aequus.Content.Tools.AnglerLamp;
 
 [AutoloadGlowMask]
+[FilterOverride(FilterFullfillment.Tools)]
 public class AnglerLamp : ModItem {
     public static int PotSightRange { get; set; } = 300;
 

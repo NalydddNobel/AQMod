@@ -1,9 +1,11 @@
-﻿using ReLogic.Content;
+﻿using Aequus.Common.JourneyMode;
+using ReLogic.Content;
 using System.Collections.Generic;
 using Terraria.GameContent;
 
 namespace Aequus.Old.Content.Tools;
 
+[FilterOverride(FilterFullfillment.Tools)]
 public class PhysicsGun : ModItem {
     public static Dictionary<int, bool> TileSpecialConditions { get; private set; }
 

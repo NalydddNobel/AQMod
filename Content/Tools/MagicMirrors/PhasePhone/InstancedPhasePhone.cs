@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Items.Components;
+using Aequus.Common.JourneyMode;
 using Aequus.Content.Tools.MagicMirrors.PhaseMirror;
 using Aequus.Core.ContentGeneration;
 using Microsoft.Xna.Framework;
@@ -11,6 +12,7 @@ using Terraria.Localization;
 namespace Aequus.Content.Tools.MagicMirrors.PhasePhone;
 
 [Autoload(false)]
+[FilterOverride(FilterFullfillment.Tools)]
 internal class InstancedPhasePhone : InstancedModItem, IPhaseMirror, ITransformItem {
     [CloneByReference]
     public List<(int, int, Dust)> DustEffectCache { get; set; }

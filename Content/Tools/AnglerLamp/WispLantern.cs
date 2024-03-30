@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Items;
+using Aequus.Common.JourneyMode;
 using Aequus.Core.Initialization;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 namespace Aequus.Content.Tools.AnglerLamp;
 
 [AutoloadGlowMask]
+[FilterOverride(FilterFullfillment.Tools)]
 public class WispLantern : ModItem {
     public static int PotSightRange { get; set; } = 900;
 
