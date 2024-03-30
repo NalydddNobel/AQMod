@@ -50,28 +50,29 @@ public class VerletIntegrationString<T> where T : IVerletIntegrationNode, new() 
 
     private void ConstrainPoints() {
         for (int i = 0; i < segments.Length - 1; i++) {
-            T segment = segments[i];
-            T nextSegment = segments[i + 1];
+            ConstrainPointsInner(ref segments[i], ref segments[i + 1], i);
+        }
+    }
 
-            float dist = (segment.Position - nextSegment.Position).Length();
-            float error = MathF.Abs(dist - segmentLength);
-            Vector2 changeDirection = Vector2.Zero;
+    private void ConstrainPointsInner(ref T segment, ref T nextSegment, int index) {
+        float dist = (segment.Position - nextSegment.Position).Length();
+        float error = MathF.Abs(dist - segmentLength);
+        Vector2 changeDirection = Vector2.Zero;
 
-            if (dist > segmentLength) {
-                changeDirection = (segment.Position - nextSegment.Position).SafeNormalize(Vector2.Zero);
-            }
-            else if (dist < segmentLength) {
-                changeDirection = (nextSegment.Position - segment.Position).SafeNormalize(Vector2.Zero);
-            }
+        if (dist > segmentLength) {
+            changeDirection = (segment.Position - nextSegment.Position).SafeNormalize(Vector2.Zero);
+        }
+        else if (dist < segmentLength) {
+            changeDirection = (nextSegment.Position - segment.Position).SafeNormalize(Vector2.Zero);
+        }
 
-            Vector2 changeAmount = changeDirection * error;
-            if (i != 0) {
-                segment.Position += segment.MoveNode(changeAmount * -0.5f);
-                nextSegment.Position += segment.MoveNode(changeAmount * 0.5f);
-            }
-            else {
-                nextSegment.Position += segment.MoveNode(changeAmount);
-            }
+        Vector2 changeAmount = changeDirection * error;
+        if (index != 0) {
+            segment.Position += segment.MoveNode(changeAmount * -0.5f);
+            nextSegment.Position += segment.MoveNode(changeAmount * 0.5f);
+        }
+        else {
+            nextSegment.Position += segment.MoveNode(changeAmount);
         }
     }
 }

@@ -42,9 +42,10 @@ public class WeightedHorseshoeVisual : ModProjectile {
             Projectile.tileCollide = true;
         }
 
-        horseshoeAnvilRope ??= new VerletIntegrationStringTwoPoint<VINode>(anvilAnchor, Projectile.Center + new Vector2(0f, Projectile.gfxOffY), 9, 4.33f, gravity);
+        Vector2 endPosition = Projectile.Center + new Vector2(0f, Projectile.gfxOffY);
+        horseshoeAnvilRope ??= new VerletIntegrationStringTwoPoint<VINode>(anvilAnchor, endPosition, 9, 4.33f, gravity);
         horseshoeAnvilRope.StartPos = anvilAnchor;
-        horseshoeAnvilRope.EndPosition = horseshoeAnvilRope.EndPosition;
+        horseshoeAnvilRope.EndPosition = endPosition;
         horseshoeAnvilRope.gravity = gravity;
         horseshoeAnvilRope.damping = Utils.GetLerpValue(20, 0, player.velocity.Length(), true) * 0.05f;
         horseshoeAnvilRope.Update();
