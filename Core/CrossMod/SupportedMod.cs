@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Terraria.Localization;
 
 namespace Aequus.Core.CrossMod;
 
@@ -77,6 +78,20 @@ internal class SupportedMod<TMod> : ModSystem, ISupportedMod<TMod>, ILocalizedMo
         return TryFind<ModNPC>(name, out var value) ? value.Type : defaultNPC;
     }
 
+    public static IContentIdProvider GetContentProvider<T>(string name, int defaultItem = 0) where T : IModType {
+        return new ProvideModContentId<T>(name, ModName, defaultItem);
+    }
+
+    public static string GetLocalizationKey(string suffix) {
+        return $"Mods.Aequus.CrossMod.{ModName}.{suffix}";
+    }
+    public static LocalizedText GetLocalization(string suffix) {
+        return Language.GetOrRegister(GetLocalizationKey(suffix));
+    }
+    public static string GetLocalizedValue(string suffix) {
+        return Language.GetTextValue(GetLocalizationKey(suffix));
+    }
+
     public override bool IsLoadingEnabled(Mod mod) {
         //mod.Logger.Debug($"{ModName} is {(ModLoader.HasMod(ModName) ? "Enabled" : "Disabled")}");
         return IsLoadingEnabled();
@@ -86,7 +101,7 @@ internal class SupportedMod<TMod> : ModSystem, ISupportedMod<TMod>, ILocalizedMo
         if (ModLoader.TryGetMod(ModName, out var mod)) {
             Instance = mod;
             Enabled = true;
-            SafeLoad(Instance);
+            OnLoad(Instance);
         }
         else {
             Enabled = false;
@@ -94,7 +109,7 @@ internal class SupportedMod<TMod> : ModSystem, ISupportedMod<TMod>, ILocalizedMo
         }
     }
 
-    public virtual void SafeLoad(Mod mod) {
+    public virtual void OnLoad(Mod mod) {
 
     }
 
@@ -104,7 +119,6 @@ internal class SupportedMod<TMod> : ModSystem, ISupportedMod<TMod>, ILocalizedMo
     }
 
     public virtual void SafeUnload() {
-
     }
 }
 

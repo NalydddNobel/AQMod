@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Chests;
 using Aequus.Content.Chests;
 using Aequus.Content.Configuration;
+using Aequus.Content.CrossMod.SplitSupport.Photography;
 using Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
 using Aequus.Content.Enemies.PollutedOcean.BreadOfCthulhu;
 using Aequus.Content.Enemies.PollutedOcean.OilSlime;
@@ -31,20 +32,36 @@ public class PollutedOceanSystem : ModSystem {
     public static int Music => _music ??= MusicLoader.GetMusicSlot("AequusMusic/Assets/Music/PollutedOcean");
 
     public override void SetStaticDefaults() {
+        PopulateCrateDrops();
+        PopulateChestDrops();
+    }
+
+    private static void PopulateCrateDrops() {
+        if (VanillaChangesConfig.Instance.MoveMagicConch) {
+            PhotographyLoader.EnvelopePollutedOcean.MainItemDrops.Add(ItemID.MagicConch);
+        }
+        PhotographyLoader.EnvelopePollutedOcean.MainItemDrops.Add(ModContent.ItemType<AnglerLamp>());
+        PhotographyLoader.EnvelopePollutedOcean.MainItemDrops.Add(ModContent.ItemType<StarPhish>());
+#if !DEBUG
+        PhotographyLoader.EnvelopePollutedOcean.MainItemDrops.Add(ModContent.ItemType<PotionCanteen>());
+#endif
+    }
+
+    private static void PopulateChestDrops() {
         ChestLootDatabase.Instance.RegisterIndexed(ChestLoot.PollutedOcean,
             new ChestRules.Common(ItemID.MagicConch, OptionalConditions: Aequus.ConditionConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveMagicConch))),
             new ChestRules.Common(ModContent.ItemType<AnglerLamp>()),
-#if !DEBUG
+        #if !DEBUG
             new ChestRules.Common(ModContent.ItemType<PotionCanteen>()),
-#endif
+        #endif
             new ChestRules.Common(ModContent.ItemType<StarPhish>()).OnSucceed(new ChestRules.Common(ModContent.ItemType<PlasticDart>(), MinStack: 25, MaxStack: 50))
         );
 
-        ChestLootDatabase.Instance.RegisterCommon(ChestLoot.PollutedOcean, ItemID.BombFish, 
+        ChestLootDatabase.Instance.RegisterCommon(ChestLoot.PollutedOcean, ItemID.BombFish,
             minStack: 10, maxStack: 19,
             chanceDemoninator: 3
         );
-        ChestLootDatabase.Instance.RegisterCommon(ChestLoot.PollutedOcean, ModContent.GetInstance<AncientAngelStatue>().ItemDrop.Type, 
+        ChestLootDatabase.Instance.RegisterCommon(ChestLoot.PollutedOcean, ModContent.GetInstance<AncientAngelStatue>().ItemDrop.Type,
             chanceDemoninator: 5
         );
         ChestLootDatabase.Instance.RegisterCommon(ChestLoot.PollutedOcean, ItemID.Chain,
@@ -52,7 +69,7 @@ public class PollutedOceanSystem : ModSystem {
             chanceDemoninator: 3
         );
 
-        ChestLootDatabase.Instance.Register(ChestLoot.PollutedOcean, new ChestRules.OneFromOptions( new IChestLootRule[] {
+        ChestLootDatabase.Instance.Register(ChestLoot.PollutedOcean, new ChestRules.OneFromOptions(new IChestLootRule[] {
                 new ChestRules.MetalBar(() => WorldGen.SavedOreTiers.Copper, MinStack: 5, MaxStack: 14),
                 new ChestRules.MetalBar(() => WorldGen.SavedOreTiers.Iron, MinStack: 5, MaxStack: 14)
             },
@@ -70,7 +87,7 @@ public class PollutedOceanSystem : ModSystem {
             },
             ChanceDenominator: 2
         ));
-        ChestLootDatabase.Instance.RegisterCommon(ChestLoot.PollutedOcean, ModContent.ItemType<LesserRestorationPotion>(), 
+        ChestLootDatabase.Instance.RegisterCommon(ChestLoot.PollutedOcean, ModContent.ItemType<LesserRestorationPotion>(),
             minStack: 3, maxStack: 5,
             chanceDemoninator: 5
         );

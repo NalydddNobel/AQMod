@@ -10,7 +10,7 @@ internal class CalamityMod : SupportedMod<CalamityMod> {
     public static int RarityHotPink_16 = ItemRarityID.Purple;
     public static int RarityCalamityRed_17 = ItemRarityID.Purple;
 
-    public override void SafeLoad(Mod mod) {
+    public override void OnLoad(Mod mod) {
         ModCompatabilityFlags.RemoveExpertExclusivity = true;
     }
 

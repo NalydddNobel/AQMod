@@ -4,7 +4,7 @@ using Aequus.Core.CrossMod;
 namespace Aequus.Content.CrossMod.CalamityModSupport.Items;
 
 public class SupremeHoney : CrossModItem {
-    public override void SafeSetStaticDefaults() {
+    public override void OnSetStaticDefaults() {
         Item.ResearchUnlockCount = 30;
     }
 

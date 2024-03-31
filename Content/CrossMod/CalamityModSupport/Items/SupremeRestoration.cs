@@ -11,7 +11,7 @@ public class SupremeRestoration : CrossModItem, IApplyPotionDelay {
         return true;
     }
 
-    public override void SafeSetStaticDefaults() {
+    public override void OnSetStaticDefaults() {
         Item.ResearchUnlockCount = 30;
     }
 

@@ -70,4 +70,10 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
   </ItemGroup>
 	
+  <ItemGroup>
+    <None Remove="Content\CrossMod\SplitSupport\Photography\Envelopes\GlimmerEnvelope.png" />
+    <None Remove="Content\CrossMod\SplitSupport\Photography\Envelopes\PollutedOceanEnvelope.png" />
+    <None Remove="Content\CrossMod\SplitSupport\Photography\SplitAlbum.png" />
+  </ItemGroup>
+	
 </Project>

@@ -54,3 +54,19 @@ CalamityMod: {
 		}
 	}
 }
+
+Split: {
+	Items: {
+		Prints: Poster: {0}
+
+		PollutedOceanEnvelope: {
+			DisplayName: Ruined Sea Envelope
+			Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+		}
+
+		GlimmerEnvelope: {
+			DisplayName: Tainted Sea Envelope
+			Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+		}
+	}
+}

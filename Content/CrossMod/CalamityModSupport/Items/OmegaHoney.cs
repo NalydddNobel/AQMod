@@ -3,7 +3,7 @@
 namespace Aequus.Content.CrossMod.CalamityModSupport.Items;
 
 public class OmegaHoney : CrossModItem {
-    public override void SafeSetStaticDefaults() {
+    public override void OnSetStaticDefaults() {
         Item.ResearchUnlockCount = 30;
     }
 

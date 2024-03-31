@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 675)</summary>
+/// <summary>(Total Textures: 685)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -229,6 +229,26 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SupremeHoney = new("Aequus/Content/CrossMod/CalamityModSupport/Items/SupremeHoney");
     /// <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/SupremeRestoration</summary>
     public static readonly RequestCache<Texture2D> SupremeRestoration = new("Aequus/Content/CrossMod/CalamityModSupport/Items/SupremeRestoration");
+    /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/Envelopes/GlimmerEnvelope</summary>
+    public static readonly RequestCache<Texture2D> GlimmerEnvelope = new("Aequus/Content/CrossMod/SplitSupport/Photography/Envelopes/GlimmerEnvelope");
+    /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/Envelopes/PollutedOceanEnvelope</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanEnvelope = new("Aequus/Content/CrossMod/SplitSupport/Photography/Envelopes/PollutedOceanEnvelope");
+    /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/Poster</summary>
+    public static readonly RequestCache<Texture2D> Poster = new("Aequus/Content/CrossMod/SplitSupport/Photography/Poster");
+    /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterBloodMimicItem</summary>
+    public static readonly RequestCache<Texture2D> PosterBloodMimicItem = new("Aequus/Content/CrossMod/SplitSupport/Photography/PosterBloodMimicItem");
+    /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterBreadOfCthulhuItem</summary>
+    public static readonly RequestCache<Texture2D> PosterBreadOfCthulhuItem = new("Aequus/Content/CrossMod/SplitSupport/Photography/PosterBreadOfCthulhuItem");
+    /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterHecktoItem</summary>
+    public static readonly RequestCache<Texture2D> PosterHecktoItem = new("Aequus/Content/CrossMod/SplitSupport/Photography/PosterHecktoItem");
+    /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterOblivisionItem</summary>
+    public static readonly RequestCache<Texture2D> PosterOblivisionItem = new("Aequus/Content/CrossMod/SplitSupport/Photography/PosterOblivisionItem");
+    /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterSkyMerchantItem</summary>
+    public static readonly RequestCache<Texture2D> PosterSkyMerchantItem = new("Aequus/Content/CrossMod/SplitSupport/Photography/PosterSkyMerchantItem");
+    /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterUltraStariteItem</summary>
+    public static readonly RequestCache<Texture2D> PosterUltraStariteItem = new("Aequus/Content/CrossMod/SplitSupport/Photography/PosterUltraStariteItem");
+    /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/SplitAlbum</summary>
+    public static readonly RequestCache<Texture2D> SplitAlbum = new("Aequus/Content/CrossMod/SplitSupport/Photography/SplitAlbum");
     /// <summary>Full Path: Content/Dedicated/Baguette/Baguette</summary>
     public static readonly RequestCache<Texture2D> Baguette = new("Aequus/Content/Dedicated/Baguette/Baguette");
     /// <summary>Full Path: Content/Dedicated/Baguette/BaguetteBuff</summary>

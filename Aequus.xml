@@ -700,6 +700,11 @@
             <param name="sourceRectangle">The bounds of the portrait.</param>
             <param name="displayColor">The Color of the entry. It is usually Black when hidden, and White when not hidden.</param>
         </member>
+        <member name="M:Aequus.Content.CrossMod.SplitSupport.Photography.PhotographyLoader.AddPhotographyPage(System.Single,System.Int32,Aequus.Content.CrossMod.SplitSupport.Photography.AlbumQuestInfo[])">
+            <param name="order">Sorting value for this album.</param>
+            <param name="specialReward">Special reward for this album</param>
+            <param name="values">Must have a length of 6.</param>
+        </member>
         <member name="M:Aequus.Content.Enemies.PollutedOcean.BlackJellyfish.BlackJellyfish.GetLightMagnitude">
             <summary>Gets the lighting magnitude for this Jellyfish. Returns 1f if <see cref="F:Terraria.NPC.IsABestiaryIconDummy"/> is <see langword="true"></see>.</summary>
             <returns><inheritdoc cref="M:Aequus.Content.Enemies.PollutedOcean.BlackJellyfish.BlackJellyfish.GetLightMagnitude(Microsoft.Xna.Framework.Color)"/></returns>
@@ -1219,6 +1224,12 @@
             <param name="target"></param>
             <returns></returns>
         </member>
+        <member name="F:Aequus.Core.Utilities.IDCommons`1.Count">
+            <summary>The vanilla count.</summary>
+        </member>
+        <member name="F:Aequus.Core.Utilities.IDCommons`1.StartCount">
+            <summary>The starting Id. This is usually 0, but in some cases like <see cref="T:Terraria.ID.NPCID"/> it will be equal to <see cref="F:Terraria.ID.NPCID.NegativeIDCount"/>.</summary>
+        </member>
         <member name="M:Aequus.Core.Utilities.ReflectionHelper.GetConstantFields(System.Object,System.Reflection.BindingFlags)">
             <returns>Returns all constant fields from <paramref name="obj"/>'s <see cref="T:System.Type"/>.</returns>
             <exception cref="T:System.ArgumentNullException"></exception>
@@ -1703,7 +1714,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 675)</summary>
+            <summary>(Total Textures: 685)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2037,6 +2048,36 @@
         </member>
         <member name="F:Aequus.AequusTextures.SupremeRestoration">
             <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/SupremeRestoration</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GlimmerEnvelope">
+            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/Envelopes/GlimmerEnvelope</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanEnvelope">
+            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/Envelopes/PollutedOceanEnvelope</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Poster">
+            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/Poster</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PosterBloodMimicItem">
+            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterBloodMimicItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PosterBreadOfCthulhuItem">
+            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterBreadOfCthulhuItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PosterHecktoItem">
+            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterHecktoItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PosterOblivisionItem">
+            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterOblivisionItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PosterSkyMerchantItem">
+            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterSkyMerchantItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PosterUltraStariteItem">
+            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterUltraStariteItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SplitAlbum">
+            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/SplitAlbum</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Baguette">
             <summary>Full Path: Content/Dedicated/Baguette/Baguette</summary>
@@ -3888,12 +3929,6 @@
         </member>
         <member name="P:Aequus.DataSets.TileDataSet.PreventsSlopesBelow">
             <summary>Prevents tiles below this tile from being sloped.</summary>
-        </member>
-        <member name="F:Aequus.DataSets.Utils.IDCommons`1.Count">
-            <summary>The vanilla count.</summary>
-        </member>
-        <member name="F:Aequus.DataSets.Utils.IDCommons`1.StartCount">
-            <summary>The starting Id. This is usually 0, but in some cases like <see cref="T:Terraria.ID.NPCID"/> it will be equal to <see cref="F:Terraria.ID.NPCID.NegativeIDCount"/>.</summary>
         </member>
         <member name="T:Aequus.Old.Common.Graphics.Camera.CameraFocus">
             <summary>
