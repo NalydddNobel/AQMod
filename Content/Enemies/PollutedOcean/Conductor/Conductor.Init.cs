@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
-using Aequus.Content.DataSets;
 using Aequus.Content.Materials;
 using Aequus.Core.Initialization;
+using Aequus.DataSets;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 
@@ -15,7 +15,7 @@ public partial class Conductor : IPostPopulateItemDropDatabase {
             Scale = 1f,
         };
         NPCSets.StatueSpawnedDropRarity[Type] = 0.05f;
-        NPCMetadata.PushableByTypeId.Add(Type);
+        NPCDataSet.PushableByTypeId.Add(Type);
     }
 
     public override void SetDefaults() {

@@ -1,4 +1,4 @@
-﻿using Aequus.Content.DataSets;
+﻿using Aequus.DataSets;
 using Aequus.Old.Core.Utilities;
 using System;
 using Terraria.Audio;
@@ -26,7 +26,7 @@ public class ConductorProj : ModNPC {
     public override void SetStaticDefaults() {
         NPCSets.SpecificDebuffImmunity[Type][BuffID.Shimmer] = true;
         NPCSets.NPCBestiaryDrawOffset[Type] = new() { Hide = true, };
-        NPCMetadata.PushableByTypeId.Add(Type);
+        NPCDataSet.PushableByTypeId.Add(Type);
     }
 
     public override void SetDefaults() {

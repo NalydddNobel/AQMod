@@ -711,6 +711,40 @@
             <param name="lightColor">The Light color</param>
             <returns>A value between 0.45 and 1 which represents the light's magnitude.</returns>
         </member>
+        <member name="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.A_TARGETING">
+            <summary>Targetting state. The conductor walks towards the player and activates his attack here.</summary>
+        </member>
+        <member name="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.TARGETTING_TELEPORT_TIME_THRESHOLD">
+            <summary>Upon ai[1] reaching this value, set <see cref="P:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.State"/> to <see cref="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.A_TELEPORT"/>.</summary>
+        </member>
+        <member name="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.TARGETTING_TELEPORT_TICK">
+            <summary>This tick value is subtracted to ai[1] every AI tick when the Conductor cannot see the player. Upon reaching <see cref="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.TARGETTING_TELEPORT_TIME_THRESHOLD"/>, set <see cref="P:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.State"/> to <see cref="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.A_TELEPORT"/>.</summary>
+        </member>
+        <member name="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.TARGETTING_ATTACK_TIME_THRESHOLD">
+            <summary>Upon ai[1] reaching this value, set <see cref="P:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.State"/> to <see cref="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.A_ATTACKING"/>.</summary>
+        </member>
+        <member name="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.A_SLIDE_BACK">
+            <summary>Dodge state. The Conductor slides backwards to avoid melee confrontation with the player. 
+            Upon the state ending if the distance is greater than <see cref="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.MELEE_DISTANCE"/>, set <see cref="P:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.State"/> to <see cref="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.A_TARGETING"/>, otherwise <see cref="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.A_TELEPORT"/>.</summary>
+        </member>
+        <member name="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.SLIDE_BACK_REQUIRED_TIME">
+            <summary>How long the Conductor must be in the <see cref="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.A_SLIDE_BACK"/> state even if he has no horizontal velocity.</summary>
+        </member>
+        <member name="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.SLIDE_BACK_COUNT">
+            <summary>How many times the Conductor can enter the <see cref="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.A_SLIDE_BACK"/> state. Tracked using ai[2]. ai[2] is reset in <see cref="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.A_ATTACKING"/>.</summary>
+        </member>
+        <member name="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.SLIDE_ATTACK_AGGRESSION">
+            <summary>Sets ai[1] (attack delay timer) to this value upon entering <see cref="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.A_TARGETING"/>. This makes the Conductor enter the attack state faster.</summary>
+        </member>
+        <member name="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.FTW_TELEPORT_SPAM">
+            <summary>How many update ticks to waste teleporting when <see cref="F:Terraria.Main.zenithWorld"/> equals <see langword="true"/>.</summary>
+        </member>
+        <member name="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.MELEE_DISTANCE">
+            <summary>The distance in pixels which is considered "Melee distance"</summary>
+        </member>
+        <member name="F:Aequus.Content.Enemies.PollutedOcean.Conductor.Conductor.FRAME_COUNT">
+            <summary><see cref="F:Terraria.Main.npcFrameCount"/></summary>
+        </member>
         <member name="P:Aequus.Content.Fishing.CrabPots.TECrabPot.LavaEffectiveness">
             <summary>
             Multiplier to <see cref="P:Aequus.Content.Fishing.CrabPots.TECrabPot.ChancePerTick"/> for crab pots inside of lava. Defaults to 2 (chance is twice as rare)
@@ -1712,7 +1746,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 685)</summary>
+            <summary>(Total Textures: 690)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
