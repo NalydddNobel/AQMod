@@ -73,3 +73,7 @@ DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 // SuperStarSwordProj.DisplayName: "{$Items.SuperStarSword.DisplayName}"
 // SuperStarSwordSlash.DisplayName: "{$Items.SuperStarSword.DisplayName}"
 // BlackJellyfishBaitExplosion.DisplayName: "{$NPCs.BlackJellyfish.DisplayName}"
+// PolymerSand.DisplayName: Polymer Sand
+// PolymerSandSandGun.DisplayName: Polymer Sand Sand Gun
+// ScrapBlock.DisplayName: Scrap Block
+// ScrapBlockSandGun.DisplayName: Scrap Block Sand Gun

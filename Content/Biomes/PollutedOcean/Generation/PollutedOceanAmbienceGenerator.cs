@@ -2,12 +2,12 @@
 using Aequus.Common.Tiles;
 using Aequus.Common.Tiles.Rubblemaker;
 using Aequus.Common.WorldGeneration;
-using Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient;
-using Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient.Dripstones;
-using Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient.Pots;
-using Aequus.Content.Biomes.PollutedOcean.Tiles.Ambient.SeaPickles;
 using Aequus.Content.Chests;
 using Aequus.Content.Tiles.Furniture.Trash;
+using Aequus.Content.Tiles.PollutedOcean.Ambient;
+using Aequus.Content.Tiles.PollutedOcean.Ambient.Dripstones;
+using Aequus.Content.Tiles.PollutedOcean.Ambient.Pots;
+using Aequus.Content.Tiles.PollutedOcean.Ambient.SeaPickles;
 using System;
 using Terraria.IO;
 using Terraria.WorldBuilding;

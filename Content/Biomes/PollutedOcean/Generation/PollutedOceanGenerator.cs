@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.WorldGeneration;
-using Aequus.Content.Biomes.PollutedOcean.Tiles.PolymerSands;
 using Aequus.Content.Configuration;
 using Aequus.Content.CrossMod.CalamityModSupport;
+using Aequus.Content.Tiles.PollutedOcean.PolymerSands;
 using System;
 using Terraria.IO;
 using Terraria.Utilities;
