@@ -8,7 +8,7 @@ public class TileSystem : ModSystem {
     }
 
     public override void ClearWorld() {
-        MultiMergeTile.EnsureCacheLength();
+        MultiMergeTile.EnsureCacheLength(MultiMergeTile.DummyEntry);
     }
 
     public override void Unload() {

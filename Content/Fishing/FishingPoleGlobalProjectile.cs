@@ -7,27 +7,7 @@ public class FishingPoleGlobalProjectile : GlobalProjectile {
         return entity.bobber;
     }
 
-    public override void Load() {
-        try {
-            HookManager.ApplyAndCacheHook(typeof(ProjectileLoader), typeof(FishingPoleGlobalProjectile), nameof(ProjectileLoader.ModifyFishingLine));
-        }
-        catch (Exception ex) {
-            // Unimportant if this hook fails loading.
-            Mod.Logger.Error(ex);
-        }
-    }
-
     public override bool InstancePerEntity => true;
-
-    #region Hooks
-    private delegate void ProjectileLoader_ModifyFishingLine_orig(Projectile projectile, ref float polePosX, ref float polePosY, ref Color lineColor);
-    private static void ProjectileLoader_ModifyFishingLine(ProjectileLoader_ModifyFishingLine_orig orig, Projectile projectile, ref float polePosX, ref float polePosY, ref Color lineColor) {
-        if (Main.player[projectile.owner].HeldItem.ModItem is ModFishingPole fishingPole) {
-            fishingPole.GetDrawData(projectile, ref polePosX, ref polePosY, ref lineColor);
-        }
-        orig(projectile, ref polePosX, ref polePosY, ref lineColor);
-    }
-    #endregion
 
     public override bool PreAI(Projectile projectile) {
         projectile.ai[1] = Math.Max(-360f, projectile.ai[1]);

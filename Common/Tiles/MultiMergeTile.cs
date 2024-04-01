@@ -1,5 +1,4 @@
-﻿using Aequus.Core.Initialization;
-using ReLogic.Content;
+﻿using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;

@@ -20,9 +20,8 @@ public class BambooFishingPole : ModFishingPole {
         Item.shoot = _bobber.Type;
     }
 
-    public override void GetDrawData(Projectile bobber, ref float polePosX, ref float polePosY, ref Color lineColor) {
-        polePosX += 46f * Main.player[bobber.owner].direction;
-        polePosY -= 32f;
+    public override void ModifyFishingLine(Projectile bobber, ref Vector2 lineOriginOffset, ref Color lineColor) {
+        lineOriginOffset = new Vector2(46f, -32f);
         lineColor = new Color(187, 161, 95, 255);
     }
 

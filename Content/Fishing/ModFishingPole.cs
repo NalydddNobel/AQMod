@@ -15,5 +15,4 @@ public abstract class ModFishingPole : ModItem {
     public virtual bool BobberPreAI(Projectile bobber) => true;
     public virtual void BobberOnKill(Projectile bobber, int timeLeft) { }
     public virtual bool BobberPreDraw(Projectile bobber, ref Color lightColor) => true;
-    public virtual void GetDrawData(Projectile bobber, ref float polePosX, ref float polePosY, ref Color lineColor) { }
 }
