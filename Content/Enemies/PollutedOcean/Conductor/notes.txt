@@ -1,0 +1,14 @@
+check the .ase file to see what frame does what in where for what in where
+
+last 2 frames are the same for timing but if you want you can cut the last
+
+wave goes around the antenna head when 'charging' an attack
+
+
+
+you can do gores ifyou want, or not idontremember if skeletons and casters leave gores
+
+
+
+oh yea i dont know if the wave should have a glowmask, would contrast too much with
+the actual enemy having no glow, maybe could be a translusent glowmask? is that athing?

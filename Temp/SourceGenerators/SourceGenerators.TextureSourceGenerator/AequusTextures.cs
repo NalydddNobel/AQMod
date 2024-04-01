@@ -327,6 +327,16 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Content_Enemies_PollutedOcean_BreadOfCthulhu_Tiles_BreadOfCthulhuBanner = new("Aequus/Content/Enemies/PollutedOcean/BreadOfCthulhu/Tiles/BreadOfCthulhuBanner");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Tiles/BreadOfCthulhuBannerItem</summary>
     public static readonly RequestCache<Texture2D> BreadOfCthulhuBannerItem = new("Aequus/Content/Enemies/PollutedOcean/BreadOfCthulhu/Tiles/BreadOfCthulhuBannerItem");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Conductor</summary>
+    public static readonly RequestCache<Texture2D> Conductor = new("Aequus/Content/Enemies/PollutedOcean/Conductor/Conductor");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Conductor_Wave</summary>
+    public static readonly RequestCache<Texture2D> Conductor_Wave = new("Aequus/Content/Enemies/PollutedOcean/Conductor/Conductor_Wave");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Gores/ConductorGoreHead</summary>
+    public static readonly RequestCache<Texture2D> ConductorGoreHead = new("Aequus/Content/Enemies/PollutedOcean/Conductor/Gores/ConductorGoreHead");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Tiles/ConductorBanner</summary>
+    public static readonly RequestCache<Texture2D> ConductorBanner = new("Aequus/Content/Enemies/PollutedOcean/Conductor/Tiles/ConductorBanner");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Tiles/ConductorBannerItem</summary>
+    public static readonly RequestCache<Texture2D> ConductorBannerItem = new("Aequus/Content/Enemies/PollutedOcean/Conductor/Tiles/ConductorBannerItem");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/OilSlime</summary>
     public static readonly RequestCache<Texture2D> OilSlime = new("Aequus/Content/Enemies/PollutedOcean/OilSlime/OilSlime");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/Tiles/OilSlimeBanner</summary>

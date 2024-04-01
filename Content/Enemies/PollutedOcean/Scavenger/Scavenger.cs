@@ -92,6 +92,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         NPC.value = Item.silver;
         AnimationType = NPCID.Skeleton;
         NPC.aiStyle = -1;
+        NPC.npcSlots = 2f;
     }
     #endregion
 
@@ -160,31 +161,6 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
     public override void OnSpawn(IEntitySource source) {
     }
 
-    public override void HitEffect(NPC.HitInfo hit) {
-        if (Main.netMode == NetmodeID.Server) {
-            return;
-        }
-
-        var source = NPC.GetSource_FromThis();
-
-        if (NPC.life <= 0) {
-            for (int i = 0; i < 20; i++) {
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hit.HitDirection, -2.5f);
-            }
-
-            NPC.NewGore(AequusTextures.ScavengerGoreHead, NPC.position, NPC.velocity, Scale: NPC.scale);
-            for (int i = 0; i < 2; i++) {
-                Gore.NewGore(source, NPC.position + new Vector2(0f, 20f), NPC.velocity, 43, NPC.scale);
-                Gore.NewGore(source, NPC.position + new Vector2(0f, 34f), NPC.velocity, 44, NPC.scale);
-            }
-        }
-        else {
-            for (int i = 0; i < hit.Damage / (double)NPC.lifeMax * 50f; i++) {
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, hit.HitDirection, -1f);
-            }
-        }
-    }
-
     private bool DoAttack() {
         float attackDistance = 200f;
         var target = Main.player[NPC.target];
@@ -250,10 +226,6 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         }
 
         base.AI();
-    }
-
-    public override void FindFrame(int frameHeight) {
-        base.FindFrame(frameHeight);
     }
 
     public override bool? CanFallThroughPlatforms() {

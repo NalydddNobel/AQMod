@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
+﻿using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
@@ -12,6 +10,10 @@ public partial class Scavenger {
     public static readonly HashSet<int> BackArmSkinOverride = new();
 
     private record struct DrawInfo(SpriteBatch spriteBatch, Vector2 drawCoordinates, Color drawColor, Rectangle bodyFrame, int frameWidth, int frameHeight, float Opacity, SpriteEffects ArmorSpriteEffects);
+
+    public override void FindFrame(int frameHeight) {
+        base.FindFrame(frameHeight);
+    }
 
     private void SetupDrawLookups() {
         HeadSkinOverride.Add(ArmorIDs.Head.SilverHelmet);
@@ -139,5 +141,30 @@ public partial class Scavenger {
         DrawHelmetFull(SLOT_ACCS, (i) => i.shieldSlot, Main.instance.LoadAccShield, TextureAssets.AccShield, drawInfo);
         DrawHelmetFull(SLOT_ACCS, (i) => i.waistSlot, Main.instance.LoadAccWaist, TextureAssets.AccWaist, drawInfo);
         return false;
+    }
+
+    public override void HitEffect(NPC.HitInfo hit) {
+        if (Main.netMode == NetmodeID.Server) {
+            return;
+        }
+
+        var source = NPC.GetSource_FromThis();
+
+        if (NPC.life <= 0) {
+            for (int i = 0; i < 20; i++) {
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, 2.5f * hit.HitDirection, -2.5f);
+            }
+
+            NPC.NewGore(AequusTextures.ScavengerGoreHead, NPC.position, NPC.velocity, Scale: NPC.scale);
+            for (int i = 0; i < 2; i++) {
+                Gore.NewGore(source, NPC.position + new Vector2(0f, 20f), NPC.velocity, 43, NPC.scale);
+                Gore.NewGore(source, NPC.position + new Vector2(0f, 34f), NPC.velocity, 44, NPC.scale);
+            }
+        }
+        else {
+            for (int i = 0; i < hit.Damage / (double)NPC.lifeMax * 50f; i++) {
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, hit.HitDirection, -1f);
+            }
+        }
     }
 }

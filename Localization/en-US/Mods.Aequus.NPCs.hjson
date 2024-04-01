@@ -31,9 +31,11 @@ BreadOfCthulhu: {
 	Bestiary: A lost snack that gained life when it slipped through an eldritch portal, this loathsome loaf does not intend to be your lunch! Watch out when fishing, for it might just latch on to the lure of an inexperienced fisherman that looks like easy prey.
 }
 
-RadioConductor: {
+Conductor: {
 	DisplayName: Conductor
 	Bestiary: An unpleasant amalgam of outdated, discarded technology. Desperate to prove it still has worth, it puts on a show for anyone it sees with blasts of condensed radio waves.
+	BannerName: Conductor Banner
+	ProjectileName: Magic Ensemble
 }
 
 Mirage.Bestiary: During the rain, toxic fog clouds form and bunch together forming this acidic monster. It wishes it could be like a real nimbus, but it has trouble even befriending a Target Dummy.
