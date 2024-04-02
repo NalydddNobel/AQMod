@@ -21,7 +21,7 @@ public class NPCWantsToMoveIn : GlobalNPC {
         int wantedNPC = 0;
         int maxNPCs = Math.Min(Main.townNPCCanSpawn.Length, NPCLoader.NPCCount);
         for (int i = 0; i < maxNPCs; i++) {
-            if (Main.townNPCCanSpawn[i] && !NPC.AnyNPCs(wantedNPC)) {
+            if (Main.townNPCCanSpawn[i] && !NPCSets.IsTownPet[i] && !NPC.AnyNPCs(wantedNPC)) {
                 wantedNPC = i;
                 break;
             }

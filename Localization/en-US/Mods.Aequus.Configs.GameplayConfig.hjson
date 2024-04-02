@@ -5,7 +5,7 @@ PollutedOceanSide: {
 	Tooltip:
 		'''
 		Determines which side of the world the Polluted Ocean should generate.
-		{$POGenerationSide.Tooltip}
+		{$PollutedOceanGenerationSideConfig.Tooltip}
 
 		[{$ColorNote}:Utilize this config for personal preference, or to fix an issue with overlapping biomes.]
 		'''
@@ -18,5 +18,16 @@ CaveVariety: {
 		Adds more cave variants, and overall expands caves to have much less dead-ends.
 		This value determines the quanity of Aequus caves to spawn.
 		Setting this to 0 disables them from spawning entirely.
+		'''
+}
+
+TownNPCSettleDownMessage: {
+	Label: "[i:MusicBoxTownNight] Villagers Settle Down Message"
+	Tooltip:
+		'''
+		During the beginning of a day, a message may appear saying a specific town NPC would like to settle down.
+		Census or other mod features may make this Obsolete.
+
+		[{$ColorNote}:Utilize this config for personal preference.]
 		'''
 }

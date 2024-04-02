@@ -20,3 +20,14 @@ CaveVariety: {
 		设为0以完全禁止生成.
 		'''
 }
+
+TownNPCSettleDownMessage: {
+	// Label: "[i:MusicBoxTownNight] Villagers Settle Down Message"
+	/* Tooltip:
+		'''
+		During the beginning of a day, a message may appear saying a specific town NPC would like to settle down.
+		Census or other mod features may make this Obsolete.
+
+		[{$ColorNote}:Utilize this config for personal preference.]
+		''' */
+}

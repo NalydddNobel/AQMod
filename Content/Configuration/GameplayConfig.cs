@@ -14,4 +14,7 @@ internal class GameplayConfig : ModConfig {
     [DefaultValue(1f)]
     [Range(0f, 1f)]
     public float CaveVariety;
+
+    [DefaultValue(true)]
+    public bool TownNPCSettleDownMessage;
 }
