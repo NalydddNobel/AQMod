@@ -71,8 +71,8 @@ public partial class Aequus {
     #endregion
 
     #region Days
-    /// <param name="firstDay">A <see cref="DayOfWeek"/> to compare against <see cref="TimeTrackerSystem.DayOfTheWeek"/>.</param>
-    /// <param name="lastDay">A <see cref="DayOfWeek"/> to compare against <see cref="TimeTrackerSystem.DayOfTheWeek"/>.</param>
+    /// <param name="firstDay">A <see cref="DayOfWeek"/> to compare against <see cref="TimeSystem.DayOfTheWeek"/>.</param>
+    /// <param name="lastDay">A <see cref="DayOfWeek"/> to compare against <see cref="TimeSystem.DayOfTheWeek"/>.</param>
     /// <returns>A condition for a specific time range between two days of the week.</returns>
     public static Condition ConditionBetweenDays(DayOfWeek firstDay, DayOfWeek lastDay) {
         LocalizedText text = Language.GetText("Mods.Aequus.Condition.BetweenDays")
@@ -82,19 +82,19 @@ public partial class Aequus {
             // For example, if something were to be sold between Friday (5) and Monday (1)
             // We should instead check if the day is <= Monday and >= Friday
             // Making the valid days be 5, 6, 0, and 1.
-            return new Condition(text, () => TimeTrackerSystem.DayOfTheWeek <= lastDay && TimeTrackerSystem.DayOfTheWeek >= firstDay);
+            return new Condition(text, () => TimeSystem.DayOfTheWeek <= lastDay && TimeSystem.DayOfTheWeek >= firstDay);
         }
 
         // Otherwise, no special logic is needed, we can just check
         // if the current day is between the first and last days.
-        return new Condition(text, () => TimeTrackerSystem.DayOfTheWeek >= firstDay && TimeTrackerSystem.DayOfTheWeek <= lastDay);
+        return new Condition(text, () => TimeSystem.DayOfTheWeek >= firstDay && TimeSystem.DayOfTheWeek <= lastDay);
     }
 
-    /// <param name="dayOfWeek">The <see cref="DayOfWeek"/> to compare against <see cref="TimeTrackerSystem.DayOfTheWeek"/>.</param>
+    /// <param name="dayOfWeek">The <see cref="DayOfWeek"/> to compare against <see cref="TimeSystem.DayOfTheWeek"/>.</param>
     /// <returns>A condition for a specific day of the week.</returns>
     public static Condition ConditionDayOfTheWeek(DayOfWeek dayOfWeek) {
         return new Condition(Language.GetText("Mods.Aequus.Condition.DayOfTheWeek").WithFormatArgs(ExtendLanguage.DayOfWeek(dayOfWeek)),
-            () => TimeTrackerSystem.DayOfTheWeek == dayOfWeek);
+            () => TimeSystem.DayOfTheWeek == dayOfWeek);
     }
     #endregion
 

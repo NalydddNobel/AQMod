@@ -280,10 +280,6 @@ public class GlimmerSystem : ModSystem {
     }
 
     private static void GlimmerNightTransition(On_Main.orig_UpdateTime_StartNight orig, ref bool stopEvents) {
-        if (!Main.IsFastForwardingTime() && !stopEvents) {
-            OnTransitionToNight(ref stopEvents);
-        }
-
         orig(ref stopEvents);
     }
 

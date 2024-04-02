@@ -15,6 +15,6 @@ public class CalendarInfoDisplay : InfoDisplay {
 
     public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor) {
         Tooltip ??= this.GetLocalization("Tooltip");
-        return string.Format(Tooltip.Value, ExtendLanguage.DayOfWeek(TimeTrackerSystem.DayOfTheWeek).Value, TimeTrackerSystem.daysPassed);
+        return string.Format(Tooltip.Value, ExtendLanguage.DayOfWeek(TimeSystem.DayOfTheWeek).Value, TimeSystem.DaysPassed);
     }
 }

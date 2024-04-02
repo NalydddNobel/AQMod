@@ -1,4 +1,4 @@
-﻿DemonSiege: {
+DemonSiege: {
 	GiveItem: {
 		0: "{Player}接受了魔鬼的契约..."
 		1: "{Player}接受了自己的命运..."
@@ -24,3 +24,5 @@
 	FailEat: 遗境祭坛吞噬了你的{0}...
 	Fail: 遗境祭坛反刍出了你的{0}...
 }
+
+// NPCWantsToMoveIn: The {0} would like to settle down.
