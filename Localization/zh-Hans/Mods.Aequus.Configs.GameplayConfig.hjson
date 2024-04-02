@@ -7,7 +7,7 @@ PollutedOceanSide: {
 		决定被污染的海洋生成在世界的哪个位置.
 		{$PollutedOceanGenerationSideConfig.Tooltip}
 
-		[{$ColorNote}:出于个人偏好, 或用于解决生物群落重叠问题来设置此配置.]
+		[{$ColorNote}:请根据个人偏好, 或用于解决生物群落重叠问题来设置此配置.]
 		'''
 }
 
@@ -28,6 +28,6 @@ TownNPCSettleDownMessage: {
 		在一天开始时, 可能会出现一条信息, 说某人想要定居于此.
 		Census或其他Mod功能可能会导致此设置废弃.
 
-		[{$ColorNote}:出于个人偏好来设置此配置.]
+		[{$ColorNote}:请根据个人偏好来设置此配置.]
 		'''
 }
