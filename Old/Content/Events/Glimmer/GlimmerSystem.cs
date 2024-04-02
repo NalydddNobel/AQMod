@@ -42,7 +42,7 @@ public class GlimmerSystem : ModSystem {
             PeacefulGlimmerZone.TileLocationX = 0;
             if (endEvent) {
                 if (EndEvent() && Main.netMode != NetmodeID.MultiplayerClient) {
-                    WorldGen.BroadcastText(NetworkText.FromKey("Mods.Aequus.Announcement.GlimmerEnd"), CommonColor.TEXT_EVENT);
+                    WorldGen.BroadcastText(NetworkText.FromKey("Mods.Aequus.Announcement.Glimmer.End"), CommonColor.TEXT_EVENT);
                 }
                 return;
             }
@@ -84,7 +84,7 @@ public class GlimmerSystem : ModSystem {
     public static void BeginEvent(Point where) {
         GlimmerZone.TileLocation = CheckGround(where);
 
-        WorldGen.BroadcastText(NetworkText.FromKey($"Mods.Aequus.Announcement.GlimmerStart{(where.X * 2 > Main.maxTilesX ? "East" : "West")}"), CommonColor.TEXT_EVENT);
+        WorldGen.BroadcastText(NetworkText.FromKey($"Mods.Aequus.Announcement.Glimmer.Start{(where.X * 2 > Main.maxTilesX ? "East" : "West")}"), CommonColor.TEXT_EVENT);
         if (Main.netMode != NetmodeID.SinglePlayer) {
             SendGlimmerStatus();
         }
