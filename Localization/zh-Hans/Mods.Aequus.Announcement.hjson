@@ -32,4 +32,4 @@ DemonSiege: {
 	Fail: 遗境祭坛反刍出了你的{0}...
 }
 
-// NPCWantsToMoveIn: The {0} would like to settle down.
+NPCWantsToMoveIn: {0}希望能定居于此.
