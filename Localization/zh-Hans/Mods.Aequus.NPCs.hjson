@@ -32,10 +32,10 @@ BreadOfCthulhu: {
 }
 
 Conductor: {
-	DisplayName: 导体
+	DisplayName: 指挥
 	Bestiary: 一种科技上的弗兰肯斯坦, 这一经典的历史电子产品可以引导和操纵无线电波来保护自己. 无论你喜欢与否, 它都一定会上演一出好戏.
-	// BannerName: Conductor Banner
-	// ProjectileName: Magic Ensemble
+	BannerName: 指挥旗
+	ProjectileName: 魔法合奏
 }
 
 Mirage.Bestiary: 下雨时, 有毒的雾云形成并聚集在一起, 形成这种酸性怪物. 它希望自己能像真正的雨云一样, 但就连和目标假人交朋友都有困难.

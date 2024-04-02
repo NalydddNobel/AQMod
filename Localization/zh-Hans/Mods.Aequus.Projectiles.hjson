@@ -73,7 +73,7 @@ GunnerDroneProj.DisplayName: "{$NPCs.GunnerDrone.DisplayName}"
 SuperStarSwordProj.DisplayName: "{$Items.SuperStarSword.DisplayName}"
 SuperStarSwordSlash.DisplayName: "{$Items.SuperStarSword.DisplayName}"
 BlackJellyfishBaitExplosion.DisplayName: "{$NPCs.BlackJellyfish.DisplayName}"
-// PolymerSand.DisplayName: Sand Ball
-// PolymerSandSandGun.DisplayName: "{PolymerSand.DisplayName}"
-// ScrapBlock.DisplayName: Junk Ball
-// ScrapBlockSandGun.DisplayName: "{ScrapBlock.DisplayName}"
+PolymerSand.DisplayName: 沙球
+PolymerSandSandGun.DisplayName: "{PolymerSand.DisplayName}"
+ScrapBlock.DisplayName: 废料球
+ScrapBlockSandGun.DisplayName: "{ScrapBlock.DisplayName}"
