@@ -5,7 +5,7 @@ PollutedOceanSide: {
 	Tooltip:
 		'''
 		Determina el lado del mundo en el cual el Oceano Contaminado deberia generarse.
-		{$POGenerationSide.Tooltip}
+		{$PollutedOceanGenerationSideConfig.Tooltip}
 
 		[{$ColorNote}:Utiliza esta configuracion por preferencia personal, o para solucionar conflictos con otros biomas.]
 		'''

@@ -1,5 +1,5 @@
 DisplayName: 原版更改
-NoteExploit: "[{$ColorNote}:如若出于个人偏好或为防止意外利用, 请禁用该设置.]"
+NoteExploit: "[{$ColorNote}:如若出于个人偏好或为防止意外利用, 请禁用该配置.]"
 
 MoveTreasureMagnet: {
 	Label: "[i:TreasureMagnet] 移动宝藏磁石"
@@ -19,7 +19,7 @@ RestorationPotionRecipe: {
 		[{$ColorImportant}:启用后], 原版的[{$ColorImportant}:恢复药水]的合成表会被[{$ColorImportant}:移除].
 		Aequus添加了使用两个[{$ColorImportant2}:弱效恢复药水]和一个[{$ColorImportant2}:发光魔符]的[{$ColorImportant}:替代合成].
 
-		[{$ColorNote}:如若出于个人偏好或为防止合成表被移除后出现的任何问题, 请禁用该设置.]
+		[{$ColorNote}:如若出于个人偏好或为防止合成表被移除后出现的任何问题, 请禁用该配置.]
 		'''
 }
 

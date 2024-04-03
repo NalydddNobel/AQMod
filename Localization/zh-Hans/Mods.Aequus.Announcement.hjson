@@ -32,5 +32,5 @@ DemonSiege: {
 	Fail: 遗境祭坛反刍出了你的{0}...
 }
 
-// NPCWantsToMoveIn: A {0} would like to settle down.
+NPCWantsToMoveIn: {0}希望能定居于此.
 // HardmodeChests: The chests of the caverns are blessed with new treasures...
