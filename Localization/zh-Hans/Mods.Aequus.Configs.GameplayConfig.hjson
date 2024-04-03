@@ -1,4 +1,4 @@
-DisplayName: 游戏设置
+DisplayName: 游戏配置
 
 PollutedOceanSide: {
 	Label: "[i:Aequus/TrashCompactor] 被污染的海洋位置"

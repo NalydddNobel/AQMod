@@ -1,4 +1,4 @@
-DisplayName: 客户端设置
+DisplayName: 客户端配置
 
 ShowDeathTips: {
 	Label: "[i:Tombstone] 死亡提示"
