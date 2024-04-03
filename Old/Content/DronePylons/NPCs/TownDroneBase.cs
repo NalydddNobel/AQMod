@@ -35,7 +35,7 @@ public abstract class TownDroneBase : ModNPC, IAddRecipes {
     }
 
     public virtual void AddRecipes(Aequus aequus) {
-        BestiaryBuilder.ReSort(this, ContentSamples.NpcBestiarySortingId[ModContent.NPCType<Physicist>()]);
+        BestiaryBuilder.ReSort(this, ModContent.NPCType<Physicist>());
     }
 
     public void DefaultMovement() {

@@ -70,30 +70,4 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
   </ItemGroup>
 	
-  <ItemGroup>
-    <None Remove="Old\Content\Chests\AdamantiteChest.png" />
-    <None Remove="Old\Content\Chests\AdamantiteChestItem.png" />
-    <None Remove="Old\Content\Chests\AdamantiteChest_Highlight.png" />
-    <None Remove="Old\Content\Chests\HardFrozenChest.png" />
-    <None Remove="Old\Content\Chests\HardFrozenChestItem.png" />
-    <None Remove="Old\Content\Chests\HardFrozenChest_Highlight.png" />
-    <None Remove="Old\Content\Chests\HardGraniteChest.png" />
-    <None Remove="Old\Content\Chests\HardGraniteChestItem.png" />
-    <None Remove="Old\Content\Chests\HardGraniteChest_Glow.png" />
-    <None Remove="Old\Content\Chests\HardGraniteChest_Highlight.png" />
-    <None Remove="Old\Content\Chests\HardJungleChest.png" />
-    <None Remove="Old\Content\Chests\HardJungleChestItem.png" />
-    <None Remove="Old\Content\Chests\HardJungleChest_Highlight.png" />
-    <None Remove="Old\Content\Chests\HardMarbleChest.png" />
-    <None Remove="Old\Content\Chests\HardMarbleChestItem.png" />
-    <None Remove="Old\Content\Chests\HardMarbleChest_Highlight.png" />
-    <None Remove="Old\Content\Chests\HardMushroomChest.png" />
-    <None Remove="Old\Content\Chests\HardMushroomChestItem.png" />
-    <None Remove="Old\Content\Chests\HardMushroomChest_Glow.png" />
-    <None Remove="Old\Content\Chests\HardMushroomChest_Highlight.png" />
-    <None Remove="Old\Content\Chests\HardSandstoneChest.png" />
-    <None Remove="Old\Content\Chests\HardSandstoneChestItem.png" />
-    <None Remove="Old\Content\Chests\HardSandstoneChest_Highlight.png" />
-  </ItemGroup>
-	
 </Project>

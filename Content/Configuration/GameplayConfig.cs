@@ -20,5 +20,17 @@ internal class GameplayConfig : ModConfig {
 
     [DefaultValue(true)]
     [ReloadRequired]
+    public bool PreHardmodeMimics;
+
+    [DefaultValue(true)]
+    [ReloadRequired]
+    public bool ShadowMimics;
+
+    [DefaultValue(true)]
+    [ReloadRequired]
+    public bool HardmodeMimics;
+
+    [DefaultValue(true)]
+    [ReloadRequired]
     public bool HardmodeChests;
 }

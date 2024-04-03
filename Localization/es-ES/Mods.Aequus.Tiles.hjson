@@ -293,25 +293,25 @@ AncientAngelStatue: {
 
 AdamantiteChest: {
 	// MapEntry: Adamantite Chest
-	// ItemDisplayName: "{AdamantiteChest.MapEntry}"
+	// ItemDisplayName: "{$AdamantiteChest.MapEntry}"
 	// ItemTooltip: ""
 }
 
 HardGraniteChest: {
 	// MapEntry: Living Granite Chest
-	// ItemDisplayName: "{HardGraniteChest.MapEntry}"
+	// ItemDisplayName: "{$HardGraniteChest.MapEntry}"
 	// ItemTooltip: ""
 }
 
 HardMarbleChest: {
 	// MapEntry: Marble Trove
-	// ItemDisplayName: "{HardMarbleChest.MapEntry}"
+	// ItemDisplayName: "{$HardMarbleChest.MapEntry}"
 	// ItemTooltip: ""
 }
 
 HardMushroomChest: {
 	// MapEntry: Shroomite Chest
-	// ItemDisplayName: "{HardMushroomChest.MapEntry}"
+	// ItemDisplayName: "{$HardMushroomChest.MapEntry}"
 	// ItemTooltip: ""
 }
 
@@ -323,13 +323,13 @@ HardFrozenChest: {
 
 HardSandstoneChest: {
 	// MapEntry: Forbidden Chest
-	// ItemDisplayName: "{AdamantiteChest.MapEntry}"
+	// ItemDisplayName: "{$HardSandstoneChest.MapEntry}"
 	// ItemTooltip: ""
 }
 
 HardJungleChest: {
 	// MapEntry: Tortoise Case
-	// ItemDisplayName: "{AdamantiteChest.MapEntry}"
+	// ItemDisplayName: "{$HardJungleChest.MapEntry}"
 	// ItemTooltip: ""
 }
 

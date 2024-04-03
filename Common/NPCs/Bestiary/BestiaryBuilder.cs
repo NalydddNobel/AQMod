@@ -1,4 +1,6 @@
-﻿using Terraria.GameContent.Bestiary;
+﻿using System.Collections.Generic;
+using System;
+using Terraria.GameContent.Bestiary;
 
 namespace Aequus.Common.NPCs.Bestiary;
 
@@ -54,30 +56,44 @@ internal static class BestiaryBuilder {
         return new EntryEditor(key, database, bestiaryEntry, modNPC);
     }
 
-    public static void ReSort(ModNPC modNPC, int wantedBestiaryId) {
-        int oldEntryID = ContentSamples.NpcBestiarySortingId[modNPC.Type];
-        if (oldEntryID == wantedBestiaryId) {
-            return;
-        }
-        if (oldEntryID < wantedBestiaryId) {
-            for (int i = oldEntryID + 1; i <= wantedBestiaryId; i++) {
-                for (int k = 1; k < NPCLoader.NPCCount; k++) {
-                    if (ContentSamples.NpcBestiarySortingId.TryGetValue(k, out int sort) && sort == i) {
-                        ContentSamples.NpcBestiarySortingId[k] = i - 1;
+    public static void ReSort(ModNPC modNPC, int npcIdToSortAfter, int sortOffset = 0) {
+        try {
+            Dictionary<int, int> sorting = ContentSamples.NpcBestiarySortingId;
+            if (!sorting.TryGetValue(modNPC.Type, out int oldEntryID)) {
+                throw new Exception("ModNPC does not have a Bestiary Entry sorting id.");
+            }
+            if (!sorting.TryGetValue(npcIdToSortAfter, out int sortingID)) {
+                throw new Exception("NPC to sort after does not have a Bestiary Entry sorting id.");
+            }
+            sortingID += sortOffset;
+
+            if (oldEntryID == sortingID) {
+                return;
+            }
+
+            if (oldEntryID < sortingID) {
+                for (int i = oldEntryID + 1; i <= sortingID; i++) {
+                    for (int k = 1; k < NPCLoader.NPCCount; k++) {
+                        if (sorting.TryGetValue(k, out int sort) && sort == i) {
+                            sorting[k] = i - 1;
+                        }
                     }
                 }
             }
-        }
-        else {
-            for (int i = oldEntryID - 1; i >= wantedBestiaryId; i--) {
-                for (int k = 1; k < NPCLoader.NPCCount; k++) {
-                    if (ContentSamples.NpcBestiarySortingId.TryGetValue(k, out int sort) && sort == i) {
-                        ContentSamples.NpcBestiarySortingId[k] = i + 1;
+            else {
+                for (int i = oldEntryID - 1; i >= sortingID; i--) {
+                    for (int k = 1; k < NPCLoader.NPCCount; k++) {
+                        if (sorting.TryGetValue(k, out int sort) && sort == i) {
+                            sorting[k] = i + 1;
+                        }
                     }
                 }
             }
+            sorting[modNPC.Type] = sortingID;
         }
-        ContentSamples.NpcBestiarySortingId[modNPC.Type] = wantedBestiaryId;
+        catch (Exception ex) {
+            Aequus.Instance.Logger.Error($"Failed to move entry for {modNPC.Type} ({modNPC.Name}) to {npcIdToSortAfter} ({(NPCID.Search.TryGetName(npcIdToSortAfter, out string name) ? name : "Unknown")}).\n{ex}");
+        }
     }
 
     #region Spawn Condition Shortcuts (Since typing these out normally sucks)

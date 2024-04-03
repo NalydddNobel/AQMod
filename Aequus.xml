@@ -1778,7 +1778,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 715)</summary>
+            <summary>(Total Textures: 716)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2173,7 +2173,7 @@
         <member name="F:Aequus.AequusTextures.BreadOfCthulhuMask_Head">
             <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Items/BreadOfCthulhuMask_Head</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Content_Enemies_PollutedOcean_BreadOfCthulhu_Tiles_BreadOfCthulhuBanner">
+        <member name="F:Aequus.AequusTextures.BreadOfCthulhuBanner">
             <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Tiles/BreadOfCthulhuBanner</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BreadOfCthulhuBannerItem">
@@ -3061,9 +3061,6 @@
         <member name="F:Aequus.AequusTextures.BloodMimicBannerItem">
             <summary>Full Path: Old/Content/Enemies/BloodMoon/Tiles/BloodMimicBannerItem</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Old_Content_Enemies_BreadOfCthulhuBanner">
-            <summary>Full Path: Old/Content/Enemies/BreadOfCthulhuBanner</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.CinderBat">
             <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/CinderBat</summary>
         </member>
@@ -3177,6 +3174,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.SuperStariteBannerItem">
             <summary>Full Path: Old/Content/Enemies/Glimmer/Super/Tiles/SuperStariteBannerItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AdamantiteMimic">
+            <summary>Full Path: Old/Content/Enemies/Mimics/AdamantiteMimic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FrostMimic">
+            <summary>Full Path: Old/Content/Enemies/Mimics/FrostMimic</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrapSkeletonBanner">
             <summary>Full Path: Old/Content/Enemies/TrapSkeletonBanner</summary>

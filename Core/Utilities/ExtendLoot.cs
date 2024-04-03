@@ -1,9 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Core.Utilities;
 
 public static class ExtendLoot {
+    public static void RemoveAll(this NPCLoot loot, Predicate<IItemDropRule> predicate) {
+        foreach (IItemDropRule item in loot.Get(includeGlobalDrops: false)) {
+            if (predicate(item)) {
+                loot.Remove(item);
+            }
+        }
+    }
+
     /// <summary>Inherits all of the Drop Rules from a specified NPC Id. (<paramref name="parentNPCId"/>)</summary>
     /// <param name="parentNPCId">The NPC Id to take the Drop Rules from.</param>
     /// <param name="childNPCId">The NPC Id to give the Drop Rules to.</param>

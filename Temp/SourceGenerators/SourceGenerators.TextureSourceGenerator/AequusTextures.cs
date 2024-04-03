@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 715)</summary>
+/// <summary>(Total Textures: 716)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -270,7 +270,7 @@ public partial class AequusTextures {
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Items/BreadOfCthulhuMask_Head</summary>
     public static readonly RequestCache<Texture2D> BreadOfCthulhuMask_Head = new("Aequus/Content/Enemies/PollutedOcean/BreadOfCthulhu/Items/BreadOfCthulhuMask_Head");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Tiles/BreadOfCthulhuBanner</summary>
-    public static readonly RequestCache<Texture2D> Content_Enemies_PollutedOcean_BreadOfCthulhu_Tiles_BreadOfCthulhuBanner = new("Aequus/Content/Enemies/PollutedOcean/BreadOfCthulhu/Tiles/BreadOfCthulhuBanner");
+    public static readonly RequestCache<Texture2D> BreadOfCthulhuBanner = new("Aequus/Content/Enemies/PollutedOcean/BreadOfCthulhu/Tiles/BreadOfCthulhuBanner");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Tiles/BreadOfCthulhuBannerItem</summary>
     public static readonly RequestCache<Texture2D> BreadOfCthulhuBannerItem = new("Aequus/Content/Enemies/PollutedOcean/BreadOfCthulhu/Tiles/BreadOfCthulhuBannerItem");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Conductor</summary>
@@ -861,8 +861,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> BloodMimicBanner = new("Aequus/Old/Content/Enemies/BloodMoon/Tiles/BloodMimicBanner");
     /// <summary>Full Path: Old/Content/Enemies/BloodMoon/Tiles/BloodMimicBannerItem</summary>
     public static readonly RequestCache<Texture2D> BloodMimicBannerItem = new("Aequus/Old/Content/Enemies/BloodMoon/Tiles/BloodMimicBannerItem");
-    /// <summary>Full Path: Old/Content/Enemies/BreadOfCthulhuBanner</summary>
-    public static readonly RequestCache<Texture2D> Old_Content_Enemies_BreadOfCthulhuBanner = new("Aequus/Old/Content/Enemies/BreadOfCthulhuBanner");
     /// <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/CinderBat</summary>
     public static readonly RequestCache<Texture2D> CinderBat = new("Aequus/Old/Content/Enemies/DemonSiege/CinderBat/CinderBat");
     /// <summary>Full Path: Old/Content/Enemies/DemonSiege/CinderBat/Tiles/CinderBatBanner</summary>
@@ -939,6 +937,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SuperStariteBanner = new("Aequus/Old/Content/Enemies/Glimmer/Super/Tiles/SuperStariteBanner");
     /// <summary>Full Path: Old/Content/Enemies/Glimmer/Super/Tiles/SuperStariteBannerItem</summary>
     public static readonly RequestCache<Texture2D> SuperStariteBannerItem = new("Aequus/Old/Content/Enemies/Glimmer/Super/Tiles/SuperStariteBannerItem");
+    /// <summary>Full Path: Old/Content/Enemies/Mimics/AdamantiteMimic</summary>
+    public static readonly RequestCache<Texture2D> AdamantiteMimic = new("Aequus/Old/Content/Enemies/Mimics/AdamantiteMimic");
+    /// <summary>Full Path: Old/Content/Enemies/Mimics/FrostMimic</summary>
+    public static readonly RequestCache<Texture2D> FrostMimic = new("Aequus/Old/Content/Enemies/Mimics/FrostMimic");
     /// <summary>Full Path: Old/Content/Enemies/TrapSkeletonBanner</summary>
     public static readonly RequestCache<Texture2D> TrapSkeletonBanner = new("Aequus/Old/Content/Enemies/TrapSkeletonBanner");
     /// <summary>Full Path: Old/Content/Enemies/VraineBanner</summary>

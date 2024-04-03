@@ -78,7 +78,7 @@ public class PhysicistPet : ModNPC, IAddRecipes {
     }
 
     public void AddRecipes(Aequus aequus) {
-        BestiaryBuilder.ReSort(this, ContentSamples.NpcBestiarySortingId[ModContent.NPCType<Physicist>()] - 1);
+        BestiaryBuilder.ReSort(this, ModContent.NPCType<Physicist>(), -1);
     }
 
     public override void SetDefaults() {

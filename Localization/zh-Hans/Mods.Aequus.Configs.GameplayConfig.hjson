@@ -41,3 +41,18 @@ HardmodeChests: {
 		2. Mimics in Hardmode will appear as the Hardmode Chests.
 		''' */
 }
+
+PreHardmodeMimics: {
+	// Label: "[i:GoldChest] Pre Hardmode Mimics"
+	// Tooltip: Whether Mimics should appear in Pre-Hardmode. (and drop Pre-Hardmode loot.)
+}
+
+ShadowMimics: {
+	// Label: "[i:ShadowChest] Shadow Mimics"
+	// Tooltip: Whether Shadow Mimics should appear after defeating Skeletron. (And drop Shadow Chest loot.)
+}
+
+HardmodeMimics: {
+	// Label: "[i:Aequus/HardFrozenChest] Hardmode Mimics"
+	// Tooltip: Whether Aequus' special Hardmode Mimics should appear, replacing regular Mimics. This config does nothing if "{$GameplayConfig.HardmodeChests}" is false.
+}

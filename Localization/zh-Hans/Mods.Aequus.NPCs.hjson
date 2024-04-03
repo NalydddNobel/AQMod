@@ -208,3 +208,7 @@ HealerDrone: {
 	DisplayName: 治疗无人机
 	Bestiary: 它是由物理学家为了保持你小镇的健康而创造的, 它从小镇的晶塔中汲取能量作为动力.
 }
+
+// AdamantiteMimic.DisplayName: Adamantite Mimic
+// FrostMimic.DisplayName: Frost Mimic
+// ShadowMimic.DisplayName: Shadow Mimic

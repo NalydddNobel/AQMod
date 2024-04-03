@@ -105,6 +105,10 @@ public sealed class HardmodeChestSystem : ModSystem {
     private static void HardmodifySingleChest(int i) {
         Chest chest = Main.chest[i];
         Tile tile = Main.tile[chest.x, chest.y];
+        if (chest.bankChest || !tile.HasTile || !TileID.Sets.IsAContainer[tile.TileType]) {
+            return;
+        }
+
         ChestLootInfo info = new ChestLootInfo(i, WorldGen.genRand);
         ChestStyle style = ChestStyleConversion.ToEnum(tile.TileType, tile.TileFrameX / 36);
 
