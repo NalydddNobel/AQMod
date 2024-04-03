@@ -288,78 +288,78 @@ AncientAngelStatue: {
 }
 
 AdamantiteChest: {
-	// MapEntry: Adamantite Chest
-	// ItemDisplayName: "{$AdamantiteChest.MapEntry}"
-	// ItemTooltip: ""
+	MapEntry: 精金宝箱
+	ItemDisplayName: "{$AdamantiteChest.MapEntry}"
+	ItemTooltip: ""
 }
 
 HardGraniteChest: {
-	// MapEntry: Living Granite Chest
-	// ItemDisplayName: "{$HardGraniteChest.MapEntry}"
-	// ItemTooltip: ""
+	MapEntry: 活花岗岩宝箱
+	ItemDisplayName: "{$HardGraniteChest.MapEntry}"
+	ItemTooltip: ""
 }
 
 HardMarbleChest: {
-	// MapEntry: Marble Trove
-	// ItemDisplayName: "{$HardMarbleChest.MapEntry}"
-	// ItemTooltip: ""
+	MapEntry: 大理石宝藏
+	ItemDisplayName: "{$HardMarbleChest.MapEntry}"
+	ItemTooltip: ""
 }
 
 HardMushroomChest: {
-	// MapEntry: Shroomite Chest
-	// ItemDisplayName: "{$HardMushroomChest.MapEntry}"
-	// ItemTooltip: ""
+	MapEntry: 蘑菇矿宝箱
+	ItemDisplayName: "{$HardMushroomChest.MapEntry}"
+	ItemTooltip: ""
 }
 
 HardFrozenChest: {
-	// MapEntry: Frost Chest
-	// ItemDisplayName: "{$HardFrozenChest.MapEntry}"
-	// ItemTooltip: ""
+	MapEntry: 寒霜宝箱
+	ItemDisplayName: "{$HardFrozenChest.MapEntry}"
+	ItemTooltip: ""
 }
 
 HardSandstoneChest: {
-	// MapEntry: Forbidden Chest
-	// ItemDisplayName: "{$HardSandstoneChest.MapEntry}"
-	// ItemTooltip: ""
+	MapEntry: 禁戒宝箱
+	ItemDisplayName: "{$HardSandstoneChest.MapEntry}"
+	ItemTooltip: ""
 }
 
 HardJungleChest: {
-	// MapEntry: Tortoise Case
-	// ItemDisplayName: "{$HardJungleChest.MapEntry}"
-	// ItemTooltip: ""
+	MapEntry: 陆龟保险箱
+	ItemDisplayName: "{$HardJungleChest.MapEntry}"
+	ItemTooltip: ""
 }
 
 AdamantiteChestTrapped: {
-	// ItemDisplayName: Trapped Adamantite Chest
-	// ItemTooltip: ""
+	ItemDisplayName: 机关精金宝箱
+	ItemTooltip: ""
 }
 
 HardGraniteChestTrapped: {
-	// ItemDisplayName: Trapped Living Granite Chest
-	// ItemTooltip: ""
+	ItemDisplayName: 机关活花岗岩宝箱
+	ItemTooltip: ""
 }
 
 HardMarbleChestTrapped: {
-	// ItemDisplayName: Trapped Marble Trove
-	// ItemTooltip: ""
+	ItemDisplayName: 机关大理石宝藏
+	ItemTooltip: ""
 }
 
 HardMushroomChestTrapped: {
-	// ItemDisplayName: Trapped Shroomite Chest
-	// ItemTooltip: ""
+	ItemDisplayName: 机关蘑菇矿宝箱
+	ItemTooltip: ""
 }
 
 HardFrozenChestTrapped: {
-	// ItemDisplayName: Trapped Frost Chest
-	// ItemTooltip: ""
+	ItemDisplayName: 机关寒霜宝箱
+	ItemTooltip: ""
 }
 
 HardSandstoneChestTrapped: {
-	// ItemDisplayName: Trapped Forbidden Chest
-	// ItemTooltip: ""
+	ItemDisplayName: 机关禁戒宝箱
+	ItemTooltip: ""
 }
 
 HardJungleChestTrapped: {
-	// ItemDisplayName: Trapped Tortoise Case
-	// ItemTooltip: ""
+	ItemDisplayName: 机关陆龟保险箱
+	ItemTooltip: ""
 }

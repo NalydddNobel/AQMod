@@ -26,4 +26,4 @@ NotDownedOrganicBossSight: Mods.Aequus.Condition.NotDownedOrganicBossSight
 NotDownedOrganicBossFright: Mods.Aequus.Condition.NotDownedOrganicBossFright
 NotDownedTrueFinalBoss: Mods.Aequus.Condition.NotDownedTrueFinalBoss
 ConfigIsTrue: 如果{1}/{0}配置选项设为True
-// SilverOre: Mods.Aequus.Condition.SilverOre
+SilverOre: Mods.Aequus.Condition.SilverOre

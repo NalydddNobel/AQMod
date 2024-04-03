@@ -33,26 +33,26 @@ TownNPCSettleDownMessage: {
 }
 
 HardmodeChests: {
-	// Label: "[i:Aequus/AdamantiteChest] Hardmode Chests"
-	/* Tooltip:
+	Label: "[i:Aequus/AdamantiteChest] 困难模式宝箱"
+	Tooltip:
 		'''
-		Determines whether the Hardmode Chests system would be active. This has multiple gameplay changes.
-		1. In Hardmode, unopened chests will be upgraded and contain new loot.
-		2. Mimics in Hardmode will appear as the Hardmode Chests.
-		''' */
+		决定是否激活困难模式宝箱系统. 会有导致游戏出现多种变化.
+		1. 在困难模式下, 未打开的宝箱会升级并且有新的战利品.
+		2. 困难模式下的宝箱怪会以困难模式宝箱的样式出现.
+		'''
 }
 
 PreHardmodeMimics: {
-	// Label: "[i:GoldChest] Pre Hardmode Mimics"
-	// Tooltip: Whether Mimics should appear in Pre-Hardmode. (and drop Pre-Hardmode loot.)
+	Label: "[i:GoldChest] 困难模式前宝箱怪"
+	Tooltip: 决定宝箱怪能否在困难模式前生成. (并掉落困难模式前战利品.)
 }
 
 ShadowMimics: {
-	// Label: "[i:ShadowChest] Shadow Mimics"
-	// Tooltip: Whether Shadow Mimics should appear after defeating Skeletron. (And drop Shadow Chest loot.)
+	Label: "[i:ShadowChest] 暗影宝箱怪"
+	Tooltip: 决定暗影宝箱怪在骷髅王被击败后是否会生成. (并掉落暗影宝箱战利品.)
 }
 
 HardmodeMimics: {
-	// Label: "[i:Aequus/HardFrozenChest] Hardmode Mimics"
-	// Tooltip: Whether Aequus' special Hardmode Mimics should appear, replacing regular Mimics. This config does nothing if "{$GameplayConfig.HardmodeChests}" is false.
+	Label: "[i:Aequus/HardFrozenChest] 困难模式宝箱怪"
+	Tooltip: 决定Aequus的特殊困难模式宝箱怪是否会生成, 替代普通宝箱怪. 在"{$GameplayConfig.HardmodeChests}"为False时, 此配置不生效.
 }
