@@ -1,8 +1,10 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Content.Chests;
 using Aequus.Core;
+using Aequus.DataSets;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Common.Chests;
 
@@ -52,14 +54,22 @@ public class ChestRules {
         public ConditionCollection Conditions { get; set; } = new(OptionalConditions);
 
         public ChestLootResult AddItem(in ChestLootInfo info) {
-            // Get the next rule index.
-            IChestLootRule selectedRule = Options[RuleIndex];
+            ChestLootResult result = ChestLootResult.DidNotRunCode;
+            do {
+                // Get the next rule index.
+                IChestLootRule selectedRule = Options[RuleIndex];
 
-            // Solve that rule.
-            ChestLootResult result = ChestLootDatabase.Instance.SolveSingleRule(selectedRule, in info);
+                // Solve the rule.
+                result = ChestLootDatabase.Instance.SolveSingleRule(selectedRule, in info);
 
-            // Increment the index, and return the result.
-            Index++;
+                // Increment index.
+                Index++;
+            }
+            // Repeat the above code if the rule doesn't fullfill conditions
+            // For example, chests may have different loot in the Remix seed, making the rule not satisfy conditions.
+            // So we increment to the next rule.
+            while (result.State == ItemDropAttemptResultState.DoesntFillConditions);
+
             return result;
         }
 
@@ -79,7 +89,7 @@ public class ChestRules {
     /// To remove an item properly, use <see cref="Remove"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
     /// </para>
     /// </summary>
-    public record class Replace(int ItemIdToReplace, IChestLootRule Rule, params Condition[] OptionalConditions) : IChestLootRule {
+    public record class ReplaceItem(int ItemIdToReplace, IChestLootRule Rule, params Condition[] OptionalConditions) : IChestLootRule {
         public List<IChestLootChain> ChainedRules { get; set; } = IChestLootChain.GetFromSelfRules(Rule);
         public ConditionCollection Conditions { get; set; } = new(OptionalConditions);
 
@@ -104,7 +114,61 @@ public class ChestRules {
         }
     }
 
-    /// <summary>Usually used in conjunction with <see cref="Replace"/> to pull all of the item slots backwards after deleting the item.</summary>
+    /// <summary>
+    /// Finds any item which is in <paramref name="ItemIdsToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="InsertToChest"/> context.
+    /// <para>
+    /// To remove an item properly, use <see cref="Remove"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+    /// </para>
+    /// </summary>
+    public record class ReplaceItems(int[] ItemIdsToReplace, IChestLootRule Rule, params Condition[] OptionalConditions) : IChestLootRule {
+        public List<IChestLootChain> ChainedRules { get; set; } = IChestLootChain.GetFromSelfRules(Rule);
+        public ConditionCollection Conditions { get; set; } = new(OptionalConditions);
+
+        public ChestLootResult AddItem(in ChestLootInfo info) {
+            ChestLootResult result = ChestLootResult.DidNotRunCode;
+            Chest chest = Main.chest[info.ChestId];
+            for (int i = 0; i < chest.item.Length; i++) {
+                if (!chest.item[i].IsAir && ItemIdsToReplace.Contains(chest.item[i].type)) {
+                    // Delete item
+                    chest.item[i].TurnToAir();
+
+                    // Run Rule with "Insert" properties.
+                    ChestLootInfo childInfo = new ChestLootInfo(info, new InsertToChest(i));
+                    ChestLootDatabase.Instance.SolveSingleRule(Rule, in childInfo);
+
+                    result = ChestLootResult.Success;
+                }
+            }
+
+            return result;
+        }
+    }
+
+    /// <summary>
+    /// Deletes the first slot, and runs <paramref name="Rule"/> on its slot with an <see cref="InsertToChest"/> context.
+    /// <para>
+    /// To remove an item properly, use <see cref="Remove"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+    /// </para>
+    /// </summary>
+    public record class ReplaceFirstSlot(IChestLootRule Rule, params Condition[] OptionalConditions) : IChestLootRule {
+        public List<IChestLootChain> ChainedRules { get; set; } = IChestLootChain.GetFromSelfRules(Rule);
+        public ConditionCollection Conditions { get; set; } = new(OptionalConditions);
+
+        public ChestLootResult AddItem(in ChestLootInfo info) {
+            Chest chest = Main.chest[info.ChestId];
+            // Delete item
+            chest.item[0].TurnToAir();
+
+            // Run Rule with "Insert" properties.
+            ChestLootInfo childInfo = new ChestLootInfo(info, new InsertToChest(0));
+            ChestLootDatabase.Instance.SolveSingleRule(Rule, in childInfo);
+
+            // Success!!
+            return ChestLootResult.Success;
+        }
+    }
+
+    /// <summary>Usually used in conjunction with <see cref="ReplaceItem"/> to pull all of the item slots backwards after deleting the item.</summary>
     public class Remove : IChestLootRule {
         public List<IChestLootChain> ChainedRules { get; set; } = new();
         public ConditionCollection Conditions { get; set; } = null;

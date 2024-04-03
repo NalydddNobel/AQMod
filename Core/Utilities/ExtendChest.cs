@@ -1,11 +1,24 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Content.Chests;
+using Aequus.DataSets;
 using System;
 using System.Collections.Generic;
 
 namespace Aequus.Core.Utilities;
 
 public static class ExtendChest {
+    /// <returns>Whether the chest contains any items within the <see cref="ItemDataSet.ImportantItem"/> set.</returns>
+    public static bool HasImportantItem(this Chest chest) {
+        for (int i = 0; i < chest.item.Length; i++) {
+            Item item = chest.item[i];
+            if (item != null && !item.IsAir && ItemDataSet.ImportantItem.Contains(item.type)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     /// <returns><inheritdoc cref="IsUnopened(Chest)"/></returns>
     public static bool IsUnopened(int chest) {
         return IsUnopened(chest);
@@ -15,7 +28,7 @@ public static class ExtendChest {
         int unopenedChestItemId = ModContent.ItemType<UnopenedChestItem>();
         for (int i = 0; i < chest.item.Length; i++) {
             Item item = chest.item[i];
-            if (item.type == unopenedChestItemId) {
+            if (item != null && !item.IsAir && item.type == unopenedChestItemId) {
                 return true;
             }
         }

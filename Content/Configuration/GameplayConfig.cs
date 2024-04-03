@@ -17,4 +17,8 @@ internal class GameplayConfig : ModConfig {
 
     [DefaultValue(true)]
     public bool TownNPCSettleDownMessage;
+
+    [DefaultValue(true)]
+    [ReloadRequired]
+    public bool HardmodeChests;
 }

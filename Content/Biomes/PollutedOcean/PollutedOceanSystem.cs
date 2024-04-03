@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Chests;
-using Aequus.Content.Chests;
 using Aequus.Content.Configuration;
 using Aequus.Content.CrossMod.SplitSupport.Photography;
 using Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
@@ -15,6 +14,7 @@ using Aequus.Content.Tiles.Statues;
 using Aequus.Content.Tools.AnglerLamp;
 using Aequus.Content.Weapons.Ranged.Darts.Ammo;
 using Aequus.Content.Weapons.Ranged.Darts.StarPhish;
+using Aequus.DataSets;
 using Aequus.Old.Content.Potions.PotionCanteen;
 using System;
 using System.Collections.Generic;
@@ -129,7 +129,7 @@ public class PollutedOceanSystem : ModSystem {
             minStack: 1, maxStack: 99
         );
 
-        ChestLootDatabase.Instance.Register(ChestLoot.UndergroundDesert, new ChestRules.Replace(
+        ChestLootDatabase.Instance.Register(ChestLoot.UndergroundDesert, new ChestRules.ReplaceItem(
             ItemIdToReplace: ItemID.MagicConch,
             new ChestRules.Indexed(new IChestLootRule[] {
                     new ChestRules.Common(ItemID.SandstorminaBottle),

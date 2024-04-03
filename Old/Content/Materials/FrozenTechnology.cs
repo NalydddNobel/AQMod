@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Chests;
 using Aequus.Common.Items;
-using Aequus.Content.Chests;
+using Aequus.DataSets;
 
 namespace Aequus.Old.Content.Materials;
 

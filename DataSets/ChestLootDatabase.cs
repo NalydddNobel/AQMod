@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Content.Chests;
+namespace Aequus.DataSets;
 
 /// <summary>Replica of <see cref="ItemDropDatabase"/>/<see cref="ItemDropResolver"/>, except for Aequus' chest loot.</summary>
 public class ChestLootDatabase : ModSystem {

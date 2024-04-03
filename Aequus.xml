@@ -162,7 +162,7 @@
         <member name="M:Aequus.Common.Chests.ChestRules.Indexed.#ctor(Aequus.Common.Chests.IChestLootRule[],Terraria.Condition[])">
             <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
         </member>
-        <member name="T:Aequus.Common.Chests.ChestRules.Replace">
+        <member name="T:Aequus.Common.Chests.ChestRules.ReplaceItem">
             <summary>
             Finds <paramref name="ItemIdToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.Common.Chests.InsertToChest"/> context.
             <para>
@@ -170,16 +170,48 @@
             </para>
             </summary>
         </member>
-        <member name="M:Aequus.Common.Chests.ChestRules.Replace.#ctor(System.Int32,Aequus.Common.Chests.IChestLootRule,Terraria.Condition[])">
+        <member name="M:Aequus.Common.Chests.ChestRules.ReplaceItem.#ctor(System.Int32,Aequus.Common.Chests.IChestLootRule,Terraria.Condition[])">
             <summary>
             Finds <paramref name="ItemIdToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.Common.Chests.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.Common.Chests.ChestRules.Remove"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="T:Aequus.Common.Chests.ChestRules.ReplaceItems">
+            <summary>
+            Finds any item which is in <paramref name="ItemIdsToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.Common.Chests.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.Common.Chests.ChestRules.Remove"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Aequus.Common.Chests.ChestRules.ReplaceItems.#ctor(System.Int32[],Aequus.Common.Chests.IChestLootRule,Terraria.Condition[])">
+            <summary>
+            Finds any item which is in <paramref name="ItemIdsToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.Common.Chests.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.Common.Chests.ChestRules.Remove"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="T:Aequus.Common.Chests.ChestRules.ReplaceFirstSlot">
+            <summary>
+            Deletes the first slot, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.Common.Chests.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.Common.Chests.ChestRules.Remove"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Aequus.Common.Chests.ChestRules.ReplaceFirstSlot.#ctor(Aequus.Common.Chests.IChestLootRule,Terraria.Condition[])">
+            <summary>
+            Deletes the first slot, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.Common.Chests.InsertToChest"/> context.
             <para>
             To remove an item properly, use <see cref="T:Aequus.Common.Chests.ChestRules.Remove"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
             </para>
             </summary>
         </member>
         <member name="T:Aequus.Common.Chests.ChestRules.Remove">
-            <summary>Usually used in conjunction with <see cref="T:Aequus.Common.Chests.ChestRules.Replace"/> to pull all of the item slots backwards after deleting the item.</summary>
+            <summary>Usually used in conjunction with <see cref="T:Aequus.Common.Chests.ChestRules.ReplaceItem"/> to pull all of the item slots backwards after deleting the item.</summary>
         </member>
         <member name="M:Aequus.Common.Chests.IChestLootRule.AddItem(Aequus.Common.Chests.ChestLootInfo@)">
             <summary>Add the item into the chest here. <see cref="!:ChestLootInfo.Chest"/> should safely index into <see cref="F:Terraria.Main.chest"/>.</summary>
@@ -676,9 +708,6 @@
         <member name="T:Aequus.Content.Biomes.PollutedOcean.PollutedOceanBiomeUnderground">
             <summary>Main class for general things related to the Polluted Ocean biome. Also counts as the Underground Polluted Ocean.</summary>
         </member>
-        <member name="T:Aequus.Content.Chests.ChestLootDatabase">
-            <summary>Replica of <see cref="T:Terraria.GameContent.ItemDropRules.ItemDropDatabase"/>/<see cref="T:Terraria.GameContent.ItemDropRules.ItemDropResolver"/>, except for Aequus' chest loot.</summary>
-        </member>
         <member name="T:Aequus.Content.Chests.UnopenedChestItem">
             <summary>Item used to determine if a chest has been opened or not.</summary>
         </member>
@@ -868,6 +897,9 @@
         <member name="M:Aequus.Core.Utilities.ExtendArray.Remove``1(``0[]@,``0)">
             <summary>Removes <paramref name="value"/> from <paramref name="arr"/>, and resizes <paramref name="arr"/> to fit if necessary.</summary>
             <returns>Whether anything was removed at all.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendChest.HasImportantItem(Terraria.Chest)">
+            <returns>Whether the chest contains any items within the <see cref="P:Aequus.DataSets.ItemDataSet.ImportantItem"/> set.</returns>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendChest.IsUnopened(System.Int32)">
             <returns><inheritdoc cref="M:Aequus.Core.Utilities.ExtendChest.IsUnopened(Terraria.Chest)"/></returns>
@@ -1746,7 +1778,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 692)</summary>
+            <summary>(Total Textures: 715)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2903,6 +2935,75 @@
         <member name="F:Aequus.AequusTextures.LavaproofMitten_HandsOn">
             <summary>Full Path: Old/Content/Building/LavaproofMitten_HandsOn</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.AdamantiteChest">
+            <summary>Full Path: Old/Content/Chests/AdamantiteChest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AdamantiteChestItem">
+            <summary>Full Path: Old/Content/Chests/AdamantiteChestItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AdamantiteChest_Highlight">
+            <summary>Full Path: Old/Content/Chests/AdamantiteChest_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HardFrozenChest">
+            <summary>Full Path: Old/Content/Chests/HardFrozenChest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HardFrozenChestItem">
+            <summary>Full Path: Old/Content/Chests/HardFrozenChestItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HardFrozenChest_Highlight">
+            <summary>Full Path: Old/Content/Chests/HardFrozenChest_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HardGraniteChest">
+            <summary>Full Path: Old/Content/Chests/HardGraniteChest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HardGraniteChestItem">
+            <summary>Full Path: Old/Content/Chests/HardGraniteChestItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HardGraniteChest_Glow">
+            <summary>Full Path: Old/Content/Chests/HardGraniteChest_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HardGraniteChest_Highlight">
+            <summary>Full Path: Old/Content/Chests/HardGraniteChest_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HardJungleChest">
+            <summary>Full Path: Old/Content/Chests/HardJungleChest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HardJungleChestItem">
+            <summary>Full Path: Old/Content/Chests/HardJungleChestItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HardJungleChest_Highlight">
+            <summary>Full Path: Old/Content/Chests/HardJungleChest_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HardMarbleChest">
+            <summary>Full Path: Old/Content/Chests/HardMarbleChest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HardMarbleChestItem">
+            <summary>Full Path: Old/Content/Chests/HardMarbleChestItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HardMarbleChest_Highlight">
+            <summary>Full Path: Old/Content/Chests/HardMarbleChest_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HardMushroomChest">
+            <summary>Full Path: Old/Content/Chests/HardMushroomChest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HardMushroomChestItem">
+            <summary>Full Path: Old/Content/Chests/HardMushroomChestItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HardMushroomChest_Glow">
+            <summary>Full Path: Old/Content/Chests/HardMushroomChest_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HardMushroomChest_Highlight">
+            <summary>Full Path: Old/Content/Chests/HardMushroomChest_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HardSandstoneChest">
+            <summary>Full Path: Old/Content/Chests/HardSandstoneChest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HardSandstoneChestItem">
+            <summary>Full Path: Old/Content/Chests/HardSandstoneChestItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HardSandstoneChest_Highlight">
+            <summary>Full Path: Old/Content/Chests/HardSandstoneChest_Highlight</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.DwarfStarite">
             <summary>Full Path: Old/Content/Critters/DwarfStarite</summary>
         </member>
@@ -3832,6 +3933,9 @@
         </member>
         <member name="P:Aequus.DataSets.BuffDataSet.PlayerDoTDebuff">
             <summary>Set for compatibility with Thorium.</summary>
+        </member>
+        <member name="T:Aequus.DataSets.ChestLootDatabase">
+            <summary>Replica of <see cref="T:Terraria.GameContent.ItemDropRules.ItemDropDatabase"/>/<see cref="T:Terraria.GameContent.ItemDropRules.ItemDropResolver"/>, except for Aequus' chest loot.</summary>
         </member>
         <member name="P:Aequus.DataSets.FishDataSet.Junk">
             <summary>Items in this set are fishing junk.</summary>

@@ -1,6 +1,6 @@
-﻿namespace Aequus.Common.Chests;
+﻿namespace Aequus.DataSets;
 
-public class ChestStyle {
+public class ChestStyleID {
     public class Containers {
         public const int Wood = 0;
         public const int Gold = 1;

@@ -1,5 +1,4 @@
-﻿using Aequus.DataSets.Items;
-using Aequus.DataSets.Structures;
+﻿using Aequus.DataSets.Structures;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Diagnostics;

@@ -31,3 +31,13 @@ TownNPCSettleDownMessage: {
 		[{$ColorNote}:Utilize this config for personal preference.]
 		''' */
 }
+
+HardmodeChests: {
+	// Label: "[i:Aequus/AdamantiteChest] Hardmode Chests"
+	/* Tooltip:
+		'''
+		Determines whether the Hardmode Chests system would be active. This has multiple gameplay changes.
+		1. In Hardmode, unopened chests will be upgraded and contain new loot.
+		2. Mimics in Hardmode will appear as the Hardmode Chests.
+		''' */
+}

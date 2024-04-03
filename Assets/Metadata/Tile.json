@@ -1,4 +1,20 @@
 {
+  "ChestToBiome": {
+    "Gold": "Underground",
+    "Marble": "Underground",
+    "Granite": "Underground",
+    "Mushroom": "Underground",
+
+    "Shadow": "Underworld",
+    "LockedShadow": "Underworld",
+
+    "Frozen": "UndergroundSnow",
+
+    "RichMahogany": "UndergroundJungle",
+    "Ivy": "UndergroundJungle",
+
+    "Sandstone": "UndergroundDesert"
+  },
   "PhysicsGunCannotPickUp": [
     "AntiPortalBlock"
   ],

@@ -290,3 +290,80 @@ AncientAngelStatue: {
 	// ItemDisplayName: Ancient Angel Statue
 	// ItemTooltip: ""
 }
+
+AdamantiteChest: {
+	// MapEntry: Adamantite Chest
+	// ItemDisplayName: "{AdamantiteChest.MapEntry}"
+	// ItemTooltip: ""
+}
+
+HardGraniteChest: {
+	// MapEntry: Living Granite Chest
+	// ItemDisplayName: "{HardGraniteChest.MapEntry}"
+	// ItemTooltip: ""
+}
+
+HardMarbleChest: {
+	// MapEntry: Marble Trove
+	// ItemDisplayName: "{HardMarbleChest.MapEntry}"
+	// ItemTooltip: ""
+}
+
+HardMushroomChest: {
+	// MapEntry: Shroomite Chest
+	// ItemDisplayName: "{HardMushroomChest.MapEntry}"
+	// ItemTooltip: ""
+}
+
+HardFrozenChest: {
+	// MapEntry: Frost Chest
+	// ItemDisplayName: "{$HardFrozenChest.MapEntry}"
+	// ItemTooltip: ""
+}
+
+HardSandstoneChest: {
+	// MapEntry: Forbidden Chest
+	// ItemDisplayName: "{AdamantiteChest.MapEntry}"
+	// ItemTooltip: ""
+}
+
+HardJungleChest: {
+	// MapEntry: Tortoise Case
+	// ItemDisplayName: "{AdamantiteChest.MapEntry}"
+	// ItemTooltip: ""
+}
+
+AdamantiteChestTrapped: {
+	// ItemDisplayName: Trapped Adamantite Chest
+	// ItemTooltip: ""
+}
+
+HardGraniteChestTrapped: {
+	// ItemDisplayName: Trapped Living Granite Chest
+	// ItemTooltip: ""
+}
+
+HardMarbleChestTrapped: {
+	// ItemDisplayName: Trapped Marble Trove
+	// ItemTooltip: ""
+}
+
+HardMushroomChestTrapped: {
+	// ItemDisplayName: Trapped Shroomite Chest
+	// ItemTooltip: ""
+}
+
+HardFrozenChestTrapped: {
+	// ItemDisplayName: Trapped Frost Chest
+	// ItemTooltip: ""
+}
+
+HardSandstoneChestTrapped: {
+	// ItemDisplayName: Trapped Forbidden Chest
+	// ItemTooltip: ""
+}
+
+HardJungleChestTrapped: {
+	// ItemDisplayName: Trapped Tortoise Case
+	// ItemTooltip: ""
+}

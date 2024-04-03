@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Chests;
+﻿using Aequus.DataSets;
 
 namespace Aequus.Common.Chests;
 
@@ -17,6 +17,11 @@ public static class ChestLootExtenstions {
 
     public static IChestLootRule OnSucceed(this IChestLootRule parentRule, IChestLootRule rule) {
         parentRule.ChainedRules.Add(new ChestChains.OnSuccess(rule));
+        return parentRule;
+    }
+
+    public static IChestLootRule OnFailure(this IChestLootRule parentRule, IChestLootRule rule) {
+        parentRule.ChainedRules.Add(new ChestChains.OnFailure(rule));
         return parentRule;
     }
 

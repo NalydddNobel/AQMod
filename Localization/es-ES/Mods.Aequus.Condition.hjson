@@ -26,3 +26,4 @@ NotDownedTrueAtmosphereBoss: Ants de derrotar al Demonio de Polvo
 // NotDownedOrganicBossFright: Mods.Aequus.Condition.NotDownedOrganicBossFright
 // NotDownedTrueFinalBoss: Mods.Aequus.Condition.NotDownedTrueFinalBoss
 ConfigIsTrue: Si la configuracion {1}/{0} esta activada
+// SilverOre: Mods.Aequus.Condition.SilverOre

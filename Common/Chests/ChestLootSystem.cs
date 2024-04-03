@@ -21,8 +21,6 @@ public class ChestLootSystem : ModSystem {
     }
 
     public override void PostWorldGen() {
-        int unopenedChestItemId = ModContent.ItemType<UnopenedChestItem>();
-
         for (int i = 0; i < Main.maxChests; i++) {
             if (Main.chest[i] == null) {
                 continue;
@@ -32,14 +30,7 @@ public class ChestLootSystem : ModSystem {
 
             AddLoot(i);
 
-            // Find an empty slot starting from the last slot.
-            for (int k = chest.item.Length - 1; k > 0; k++) {
-                if (chest.item[k] == null || chest.item[k].IsAir) {
-                    // Fill the last empty slot with the unopened chest item.
-                    chest.item[k].SetDefaults(unopenedChestItemId);
-                    break;
-                }
-            }
+            UnopenedChestItem.Place(chest);
         }
     }
 
@@ -81,7 +72,7 @@ public class ChestLootSystem : ModSystem {
         }
 
         // Jungle Shrine / Living Wood Tree chest
-        if (ChestStyle.Ivy.Equals(type, style)) {
+        if (ChestStyleID.Ivy.Equals(type, style)) {
             ChestLootDatabase.Instance.SolveRules(ChestLoot.Ivy, info);
             return;
         }
@@ -90,7 +81,7 @@ public class ChestLootSystem : ModSystem {
         if (chest.y < Main.worldSurface || wallId == WallID.LivingWoodUnsafe) {
 
             // Sky Island
-            if (wallId == WallID.DiscWall || ChestStyle.Skyware.Equals(type, style) || ChestStyle.LockedGold.Equals(type, style)) {
+            if (wallId == WallID.DiscWall || ChestStyleID.Skyware.Equals(type, style) || ChestStyleID.LockedGold.Equals(type, style)) {
                 ChestLootDatabase.Instance.SolveRules(ChestLoot.Sky, info);
                 return;
             }
@@ -104,13 +95,13 @@ public class ChestLootSystem : ModSystem {
             if (type == TileID.Containers) {
                 switch (style) {
                     // Polluted Ocean
-                    case ChestStyle.Containers.TrashCan:
+                    case ChestStyleID.Containers.TrashCan:
                         return;
 
-                    case ChestStyle.Containers.Gold:
+                    case ChestStyleID.Containers.Gold:
                         ChestLootDatabase.Instance.SolveRules(ChestLoot.Gold, info);
                         break;
-                    case ChestStyle.Containers.Frozen:
+                    case ChestStyleID.Containers.Frozen:
                         ChestLootDatabase.Instance.SolveRules(ChestLoot.Frozen, info);
                         break;
                 }
@@ -120,7 +111,7 @@ public class ChestLootSystem : ModSystem {
         }
 
         // Underworld Chests
-        else if (ChestStyle.LockedShadow.Equals(type, style)) {
+        else if (ChestStyleID.LockedShadow.Equals(type, style)) {
             ChestLootDatabase.Instance.SolveRules(ChestLoot.Shadow, info);
         }
     }

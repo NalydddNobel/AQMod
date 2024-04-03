@@ -38,4 +38,16 @@ public class ChestChains {
             return parentResult.State == ItemDropAttemptResultState.Success;
         }
     }
+
+    public class OnFailure : IChestLootChain {
+        public IChestLootRule RuleToChain { get; private set; }
+
+        public OnFailure(IChestLootRule rule) {
+            RuleToChain = rule;
+        }
+
+        public bool CanChainIntoRule(ChestLootResult parentResult) {
+            return parentResult.State != ItemDropAttemptResultState.Success;
+        }
+    }
 }

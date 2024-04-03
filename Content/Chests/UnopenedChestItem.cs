@@ -1,4 +1,6 @@
-﻿namespace Aequus.Content.Chests;
+﻿using Terraria;
+
+namespace Aequus.Content.Chests;
 
 /// <summary>Item used to determine if a chest has been opened or not.</summary>
 public class UnopenedChestItem : ModItem {
@@ -32,5 +34,18 @@ public class UnopenedChestItem : ModItem {
             Item.TurnToAir();
         }
         return false;
+    }
+
+    public static void Place(Chest chest) {
+        // Find an empty slot starting from the last slot.
+        Item[] items = chest.item;
+        for (int k = items.Length - 1; k > 0; k--) {
+            Item item = items[k];
+            if (item == null || item.IsAir) {
+                // Fill the last empty slot with the unopened chest item.
+                item.SetDefaults(ModContent.ItemType<UnopenedChestItem>());
+                break;
+            }
+        }
     }
 }

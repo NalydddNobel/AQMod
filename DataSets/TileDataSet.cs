@@ -6,6 +6,8 @@ namespace Aequus.DataSets;
 
 public class TileDataSet : DataSet {
     [JsonProperty]
+    public static Dictionary<ChestStyle, Biome> ChestToBiome { get; private set; } = new();
+    [JsonProperty]
     public static HashSet<IDEntry<TileID>> PhysicsGunCannotPickUp { get; private set; } = new();
     [JsonProperty]
     public static HashSet<IDEntry<TileID>> PhysicsGunBlocksLaser { get; private set; } = new();
