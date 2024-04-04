@@ -7,6 +7,9 @@ using Terraria.Utilities;
 
 namespace Aequus.Core.Utilities;
 public static class ExtendLanguage {
+    public const char AirCharacter = '⠀';
+    public const string AirString = "⠀";
+
     private record struct ColoredText(string Text, Color Color);
 
     /// <summary>Gets a <see cref="ILocalizedModType"/>'s "DisplayName" value.</summary>

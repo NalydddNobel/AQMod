@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Aequus.Core.Graphics;
 
-public class RenderTargetRequests : ILoad {
+public sealed class RenderTargetRequests : ILoad {
     private readonly List<IRenderTargetRequest> _requests = new(4);
 
     public static RenderTargetRequests Instance { get; private set; }

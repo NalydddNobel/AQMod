@@ -70,4 +70,11 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
   </ItemGroup>
 	
+  <ItemGroup>
+    <None Remove="Old\Content\Carpentry\Challenges\ActuatorDoor\ActuatorDoorBuff.png" />
+    <None Remove="Old\Content\Carpentry\Challenges\Fountain\FountainBuff.png" />
+    <None Remove="Old\Content\Carpentry\Challenges\PirateShip\PirateShipBuff.png" />
+    <None Remove="Old\Content\Carpentry\Challenges\PondBridge\PondBridgeBuff.png" />
+  </ItemGroup>
+	
 </Project>
