@@ -128,7 +128,7 @@ public partial class Occultist : ModNPC, IModifyShoppingSettings {
     }
 
     public IEnumerable<LocalizedText> GetAvailableChat(Player localPlayer) {
-        const int BASIC_LINES_COUNT = 5;
+        const int BASIC_LINES_COUNT = 4;
         const int NIGHT_LINES_COUNT = 2;
         const int BLOODMOON_LINES_COUNT = 3;
         const int RARE_LINE_CHANCE = 7;
