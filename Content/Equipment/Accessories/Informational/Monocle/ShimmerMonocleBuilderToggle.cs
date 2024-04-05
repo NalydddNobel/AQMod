@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Terraria.DataStructures;
 using Terraria.Localization;
 
 namespace Aequus.Content.Equipment.Accessories.Informational.Monocle;
@@ -12,7 +13,8 @@ public class ShimmerMonocleBuilderToggle : BuilderToggle {
         return Language.GetTextValue("Mods.Aequus.Misc.ShimmerMonocleToggle" + (CurrentState == 0 ? "On" : "Off"));
     }
 
-    public override Color DisplayColorTexture() {
-        return CurrentState == 0 ? Color.White : Color.Gray;
+    public override bool Draw(SpriteBatch spriteBatch, ref BuilderToggleDrawParams drawParams) {
+        drawParams.Color = CurrentState == 0 ? Color.White : Color.Gray;
+        return true;
     }
 }

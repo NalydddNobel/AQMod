@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Backpacks;
 using Aequus.Content.Configuration;
 using System.Collections.Generic;
+using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
 
@@ -106,8 +107,9 @@ public class ToolbeltChanges : GlobalItem {
             return (CurrentState == 0 ? _on : _off).Value;
         }
 
-        public override Color DisplayColorTexture() {
-            return CurrentState == 0 ? Color.White : Color.Gray;
+        public override bool Draw(SpriteBatch spriteBatch, ref BuilderToggleDrawParams drawParams) {
+            drawParams.Color = CurrentState == 0 ? Color.White : Color.Gray;
+            return true;
         }
 
         public override void Load() {
