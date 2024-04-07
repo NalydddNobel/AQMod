@@ -1,5 +1,11 @@
 DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
 
+ConeheadZombie: {
+	// DisplayName: Armored Zombie
+	// Bestiary: Mindlessly wandering around the Polluted Beach, this zombie scrapped together a defensive attire from the debris.
+	// Slimed_Bestiary: "{$Bestiary_FlavorText.npc_SlimedZombie}"
+}
+
 Scavenger: {
 	DisplayName: Carroñero
 	Bestiary: Alguna vez piratas vicios navegando los mares, sus huesos retienen la necesidad de robar y saquear.

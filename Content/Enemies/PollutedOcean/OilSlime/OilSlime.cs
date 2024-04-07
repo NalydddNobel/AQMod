@@ -43,7 +43,8 @@ public class OilSlime : ModNPC {
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-        this.CreateEntry(database, bestiaryEntry);
+        this.CreateEntry(database, bestiaryEntry)
+            .AddSpawn(BestiaryTimeTag.DayTime);
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {

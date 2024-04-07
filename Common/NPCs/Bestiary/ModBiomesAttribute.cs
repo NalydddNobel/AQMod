@@ -28,19 +28,9 @@ internal class ModBiomesGlobalNPC : GlobalNPC {
         foreach (var attr in npc.ModNPC.GetType().GetCustomAttributes<ModBiomesAttribute>()) {
             IEnumerable<ModBiome> modBiomes = ModContent.GetContent<ModBiome>();
 
-            int startIndex;
-            if (npc.ModNPC.SpawnModBiomes == null) {
-                startIndex = 0;
-                npc.ModNPC.SpawnModBiomes = new int[attr._modBiomeTypes.Length];
-            }
-            else {
-                var arr = npc.ModNPC.SpawnModBiomes;
-                startIndex = arr.Length;
-                Array.Resize(ref arr, arr.Length + attr._modBiomeTypes.Length);
-                npc.ModNPC.SpawnModBiomes = arr;
-            }
+            int startIndex = 0;
+            npc.ModNPC.SpawnModBiomes = new int[attr._modBiomeTypes.Length];
 
-            
             int attributeIndex = 0;
             do {
                 npc.ModNPC.SpawnModBiomes[startIndex] = modBiomes.Where((mb) => mb.GetType().Equals(attr._modBiomeTypes[attributeIndex])).First().Type;

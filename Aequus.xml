@@ -1808,7 +1808,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 719)</summary>
+            <summary>(Total Textures: 728)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2226,6 +2226,33 @@
         </member>
         <member name="F:Aequus.AequusTextures.ConductorBannerItem">
             <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Tiles/ConductorBannerItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeheadPincushionZombie">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadPincushionZombie</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeheadZombieBald">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieBald</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeheadZombieBasic">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieBasic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeheadZombieFemale">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieFemale</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeheadZombieHeadless">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieHeadless</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeheadZombiePincushion">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombiePincushion</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeheadZombieSlimed">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieSlimed</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeheadZombieSwamp">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieSwamp</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeheadZombieTwiggy">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieTwiggy</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OilSlime">
             <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/OilSlime</summary>

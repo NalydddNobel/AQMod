@@ -4,6 +4,7 @@ using Aequus.Content.CrossMod.SplitSupport.Photography;
 using Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
 using Aequus.Content.Enemies.PollutedOcean.BreadOfCthulhu;
 using Aequus.Content.Enemies.PollutedOcean.Conductor;
+using Aequus.Content.Enemies.PollutedOcean.Conehead;
 using Aequus.Content.Enemies.PollutedOcean.OilSlime;
 using Aequus.Content.Enemies.PollutedOcean.Scavenger;
 using Aequus.Content.Fishing;
@@ -157,9 +158,17 @@ public class PollutedOceanSystem : ModSystem {
     }
 
     public static void PopulateSurfaceSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
-        pool[0] *= 0.5f;
+        pool[0] *= 0.25f;
 
-        pool[ModContent.NPCType<OilSlime>()] = 1f;
+        if (Main.dayTime) {
+            pool[ModContent.NPCType<OilSlime>()] = 1f;
+        }
+        else {
+            List<ModNPC> zombies = ModContent.GetInstance<ConeheadZombieLoader>().Types;
+            for (int i = 0; i < zombies.Count; i++) {
+                pool[zombies[i].Type] = 1f / zombies.Count;
+            }
+        }
 
         if (spawnInfo.Water) {
             pool[NPCID.Arapaima] = 1f; // Eel

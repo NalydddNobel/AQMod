@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 719)</summary>
+/// <summary>(Total Textures: 728)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -285,6 +285,24 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ConductorBanner = new("Aequus/Content/Enemies/PollutedOcean/Conductor/Tiles/ConductorBanner");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Tiles/ConductorBannerItem</summary>
     public static readonly RequestCache<Texture2D> ConductorBannerItem = new("Aequus/Content/Enemies/PollutedOcean/Conductor/Tiles/ConductorBannerItem");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadPincushionZombie</summary>
+    public static readonly RequestCache<Texture2D> ConeheadPincushionZombie = new("Aequus/Content/Enemies/PollutedOcean/Conehead/ConeheadPincushionZombie");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieBald</summary>
+    public static readonly RequestCache<Texture2D> ConeheadZombieBald = new("Aequus/Content/Enemies/PollutedOcean/Conehead/ConeheadZombieBald");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieBasic</summary>
+    public static readonly RequestCache<Texture2D> ConeheadZombieBasic = new("Aequus/Content/Enemies/PollutedOcean/Conehead/ConeheadZombieBasic");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieFemale</summary>
+    public static readonly RequestCache<Texture2D> ConeheadZombieFemale = new("Aequus/Content/Enemies/PollutedOcean/Conehead/ConeheadZombieFemale");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieHeadless</summary>
+    public static readonly RequestCache<Texture2D> ConeheadZombieHeadless = new("Aequus/Content/Enemies/PollutedOcean/Conehead/ConeheadZombieHeadless");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombiePincushion</summary>
+    public static readonly RequestCache<Texture2D> ConeheadZombiePincushion = new("Aequus/Content/Enemies/PollutedOcean/Conehead/ConeheadZombiePincushion");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieSlimed</summary>
+    public static readonly RequestCache<Texture2D> ConeheadZombieSlimed = new("Aequus/Content/Enemies/PollutedOcean/Conehead/ConeheadZombieSlimed");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieSwamp</summary>
+    public static readonly RequestCache<Texture2D> ConeheadZombieSwamp = new("Aequus/Content/Enemies/PollutedOcean/Conehead/ConeheadZombieSwamp");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieTwiggy</summary>
+    public static readonly RequestCache<Texture2D> ConeheadZombieTwiggy = new("Aequus/Content/Enemies/PollutedOcean/Conehead/ConeheadZombieTwiggy");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/OilSlime</summary>
     public static readonly RequestCache<Texture2D> OilSlime = new("Aequus/Content/Enemies/PollutedOcean/OilSlime/OilSlime");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/Tiles/OilSlimeBanner</summary>
