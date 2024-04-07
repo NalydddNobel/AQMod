@@ -18,6 +18,18 @@ CommonTooltips: {
 	IncreaseAggro: Enemies are more likely to target you
 	DisableItem: <right> to deactivate
 	EnableItem: Currently inactive, <right> to reactivate
+	GoblinTinkererRepair: Can be repaired at the Goblin Tinkerer
+}
+
+Keywords: {
+	Brittle: {
+		DisplayName: Brittle
+		Description:
+			'''
+			After receiving {0} hits, this item breaks
+			{$CommonTooltips.GoblinTinkererRepair}
+			'''
+	}
 }
 
 //# Equipment: Accessories
@@ -286,6 +298,13 @@ Calendar: {
 }
 
 //# Equipment: Armor
+ConeHelmet: {
+	DisplayName: Traffic Cone Hat
+	Tooltip: "{$CommonItemTooltip.ReducesDamageTakenByPercent@0}"
+	DisplayName_Broken: Broken Traffic Cone Hat
+	Tooltip_Broken: "{$CommonTooltips.GoblinTinkererRepair}"
+}
+
 GravetenderHood: {
 	DisplayName: Gravetender Hood
 	Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"

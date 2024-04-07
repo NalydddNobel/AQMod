@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 716)</summary>
+/// <summary>(Total Textures: 719)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -77,6 +77,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Trail3 = new("Aequus/Assets/Textures/Trail3");
     /// <summary>Full Path: Assets/Textures/TrailShootingStar</summary>
     public static readonly RequestCache<Texture2D> TrailShootingStar = new("Aequus/Assets/Textures/TrailShootingStar");
+    /// <summary>Full Path: Assets/Textures/UI/Durability</summary>
+    public static readonly RequestCache<Texture2D> Durability = new("Aequus/Assets/Textures/UI/Durability");
     /// <summary>Full Path: Assets/Textures/VignetteSmall</summary>
     public static readonly RequestCache<Texture2D> VignetteSmall = new("Aequus/Assets/Textures/VignetteSmall");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/Background/BackgroundRainDroplets</summary>
@@ -377,6 +379,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> WeightedHorseshoe = new("Aequus/Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoe");
     /// <summary>Full Path: Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
     public static readonly RequestCache<Texture2D> WeightedHorseshoeVisual = new("Aequus/Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual");
+    /// <summary>Full Path: Content/Equipment/Armor/MiscHelmets/ConeHelmet</summary>
+    public static readonly RequestCache<Texture2D> ConeHelmet = new("Aequus/Content/Equipment/Armor/MiscHelmets/ConeHelmet");
+    /// <summary>Full Path: Content/Equipment/Armor/MiscHelmets/ConeHelmet_Head</summary>
+    public static readonly RequestCache<Texture2D> ConeHelmet_Head = new("Aequus/Content/Equipment/Armor/MiscHelmets/ConeHelmet_Head");
     /// <summary>Full Path: Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
     public static readonly RequestCache<Texture2D> HotAirBalloonBuff = new("Aequus/Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonBuff");
     /// <summary>Full Path: Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonItem</summary>

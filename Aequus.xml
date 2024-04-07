@@ -297,6 +297,24 @@
         <member name="M:Aequus.Common.Items.Components.IOnShimmer.OnShimmer">
             <returns>true to run normal shimmer behavior.</returns>
         </member>
+        <member name="F:Aequus.Common.Items.Components.IPickItemMovementAction.RESULT_SIMPLE_SWAP">
+            <summary>Returning this result will attempt to place the item into the slot.</summary>
+        </member>
+        <member name="F:Aequus.Common.Items.Components.IPickItemMovementAction.RESULT_EQUIPMENT_SWAP">
+            <summary>Returning this result will attempt to place the item into the slot, if it is an equipable and follows conditions depending on the context.</summary>
+        </member>
+        <member name="F:Aequus.Common.Items.Components.IPickItemMovementAction.RESULT_DYE_SWAP">
+            <summary>Returning this result will attempt to place the item into the slot, if it is a Dye.</summary>
+        </member>
+        <member name="F:Aequus.Common.Items.Components.IPickItemMovementAction.RESULT_BUY_ITEM">
+            <summary>Returning this result will attempt to purchase the item.</summary>
+        </member>
+        <member name="F:Aequus.Common.Items.Components.IPickItemMovementAction.RESULT_SELL_ITEM">
+            <summary>Returning this result will attempt to sell the item.</summary>
+        </member>
+        <member name="F:Aequus.Common.Items.Components.IPickItemMovementAction.RESULT_JOURNEY_DUPE">
+            <summary>Returning this result will attempt dupe the item from the item slot, stacking it onto the mouse item.</summary>
+        </member>
         <member name="M:Aequus.Common.Items.Components.IRightClickOverrideWhenHeld.RightClickOverrideWhileHeld(Terraria.Item@,Terraria.Item[],System.Int32,System.Int32,Terraria.Player,Aequus.AequusPlayer)">
             <summary>
             
@@ -923,6 +941,15 @@
         <member name="M:Aequus.Core.Utilities.ExtendColor.MaxRGBA(Microsoft.Xna.Framework.Color,System.Byte,System.Byte,System.Byte,System.Byte)">
             <returns><paramref name="color"/>, with R,G,B,A Maxed to <paramref name="r"/>,<paramref name="g"/>,<paramref name="b"/>,<paramref name="a"/> accordingly.</returns>
         </member>
+        <member name="M:Aequus.Core.Utilities.ExtendPlayer.SafelyAddDamageReduction(Terraria.Player,System.Single)">
+            <summary>
+            Adds <paramref name="damageReduction"/> to <see cref="F:Terraria.Player.endurance"/>, but the added DR gets multiplicatively weaker the higher the endurance stat is.
+            (So adding 0.5 endurance to a player which has 0.75 endurance will grant (0.5 * (1 - 0.75)) 0.125 endurance.)
+            </summary>
+            <param name="player"></param>
+            <param name="damageReduction">The damage reduction to add. The formula for the final endurance addition looks like this: (<paramref name="damageReduction"/> - <paramref name="damageReduction"/> * <see cref="F:Terraria.Player.endurance"/>)</param>
+            <returns></returns>
+        </member>
         <member name="M:Aequus.Core.Utilities.ExtendPlayer.CheckPickPower(Terraria.Player,Terraria.Item,System.Int32,System.Int32)">
             <param name="player">The player.</param>
             <param name="pickaxe">The pickaxe.</param>
@@ -1061,7 +1088,7 @@
             <param name="Scale">The Scale of the gore.</param>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendItem.Transform(Terraria.Item,System.Int32)">
-            <summary>Attempts to transform an item into a different item id, while preserving its posiiton, prefix, and stack</summary>
+            <summary>Attempts to transform an item into a different item id, while preserving its positon, prefix, and stack</summary>
             <param name="item"></param>
             <param name="newType"></param>
         </member>
@@ -1559,7 +1586,7 @@
             <summary>Whether the Occultist has been met. This determines if the Hostile Occultist emote can be used.</summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 72)</summary>
+            <summary>(Total Sounds: 73)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishCharge">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -1623,6 +1650,9 @@
         </member>
         <member name="F:Aequus.AequusSounds.HeavySwing5">
             <summary>Full Path: Assets/Sounds/Items/HeavySwing5</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.ItemBreak">
+            <summary>Full Path: Assets/Sounds/Items/ItemBreak</summary>
         </member>
         <member name="F:Aequus.AequusSounds.JunkJetShoot0">
             <summary>Full Path: Assets/Sounds/Items/JunkJetShoot0</summary>
@@ -1778,7 +1808,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 716)</summary>
+            <summary>(Total Textures: 719)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1884,6 +1914,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.TrailShootingStar">
             <summary>Full Path: Assets/Textures/TrailShootingStar</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Durability">
+            <summary>Full Path: Assets/Textures/UI/Durability</summary>
         </member>
         <member name="F:Aequus.AequusTextures.VignetteSmall">
             <summary>Full Path: Assets/Textures/VignetteSmall</summary>
@@ -2334,6 +2367,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.WeightedHorseshoeVisual">
             <summary>Full Path: Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeHelmet">
+            <summary>Full Path: Content/Equipment/Armor/MiscHelmets/ConeHelmet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeHelmet_Head">
+            <summary>Full Path: Content/Equipment/Armor/MiscHelmets/ConeHelmet_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HotAirBalloonBuff">
             <summary>Full Path: Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>

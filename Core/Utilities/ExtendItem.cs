@@ -3,7 +3,7 @@
 namespace Aequus.Core.Utilities;
 
 public static class ExtendItem {
-    /// <summary>Attempts to transform an item into a different item id, while preserving its posiiton, prefix, and stack</summary>
+    /// <summary>Attempts to transform an item into a different item id, while preserving its positon, prefix, and stack</summary>
     /// <param name="item"></param>
     /// <param name="newType"></param>
     public static void Transform(this Item item, int newType) {

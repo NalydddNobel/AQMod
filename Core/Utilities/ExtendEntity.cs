@@ -20,6 +20,17 @@ public static class ExtendEntity {
 public static class ExtendPlayer {
     private static readonly Item[] _dummyInventory = ExtendArray.CreateArray(i => new Item(), Main.InventorySlotsTotal);
 
+    /// <summary>
+    /// Adds <paramref name="damageReduction"/> to <see cref="Player.endurance"/>, but the added DR gets multiplicatively weaker the higher the endurance stat is.
+    /// (So adding 0.5 endurance to a player which has 0.75 endurance will grant (0.5 * (1 - 0.75)) 0.125 endurance.)
+    /// </summary>
+    /// <param name="player"></param>
+    /// <param name="damageReduction">The damage reduction to add. The formula for the final endurance addition looks like this: (<paramref name="damageReduction"/> - <paramref name="damageReduction"/> * <see cref="Player.endurance"/>)</param>
+    /// <returns></returns>
+    public static float SafelyAddDamageReduction(this Player player, float damageReduction) {
+        return player.endurance += damageReduction - damageReduction * Math.Clamp(player.endurance, 0f, 1f);
+    }
+
     public static Point GetSpawn(this Player player) => new Point(GetSpawnX(player), GetSpawnY(player));
     public static int GetSpawnY(this Player player) => player.SpawnY > 0 ? player.SpawnY : Main.spawnTileY;
     public static int GetSpawnX(this Player player) => player.SpawnX > 0 ? player.SpawnX : Main.spawnTileX;
