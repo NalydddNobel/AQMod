@@ -76,7 +76,7 @@ internal class InstancedConeheadZombie : InstancedModNPC, IPostPopulateItemDropD
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ConeHelmet>(), chanceDenominator: 50));
+        npcLoot.Add(ItemDropRule.Common(ModContent.GetInstance<ConeHelmet>().Items[0].Type, chanceDenominator: 50));
     }
 
     public void PostPopulateItemDropDatabase(Aequus aequus, ItemDropDatabase database) {

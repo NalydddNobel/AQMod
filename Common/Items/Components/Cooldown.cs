@@ -60,7 +60,7 @@ public sealed class CooldownGlobalItem : GlobalItem {
 
     public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
         if (item.ModItem is not ICooldownItem cooldownItem 
-            || !InventoryUI.InventorySlotContexts.Contains(CurrentSlot.Instance.Context) 
+            || !InventoryUI.ContextsInv.Contains(CurrentSlot.Instance.Context) 
             || !cooldownItem.TryGetCooldown(Main.LocalPlayer, out var timer) || !timer.Active) {
             return true;
         }

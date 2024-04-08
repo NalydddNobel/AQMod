@@ -24,11 +24,7 @@ CommonTooltips: {
 Keywords: {
 	Brittle: {
 		// DisplayName: Brittle
-		/* Description:
-			'''
-			After receiving {0} hits, this item breaks
-			{$CommonTooltips.GoblinTinkererRepair}
-			''' */
+		// Description: After receiving {0} hits, this item breaks
 	}
 }
 
@@ -298,13 +294,6 @@ Calendar: {
 }
 
 //# Equipment: Armor
-ConeHelmet: {
-	// DisplayName: Traffic Cone Hat
-	// Tooltip: "{$CommonItemTooltip.ReducesDamageTakenByPercent@0}"
-	// DisplayName_Broken: Broken Traffic Cone Hat
-	// Tooltip_Broken: "{$CommonTooltips.GoblinTinkererRepair}"
-}
-
 GravetenderHood: {
 	DisplayName: Capucha Tiendetumbas
 	// Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"

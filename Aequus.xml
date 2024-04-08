@@ -1551,8 +1551,8 @@
         <member name="T:Aequus.Core.UI.Elements.ImprovedTextBox">
             <summary>Improved text box based off of <see cref="T:Terraria.GameContent.UI.Elements.UITextBox"/>.</summary>
         </member>
-        <member name="F:Aequus.Core.UI.InventoryUI.InventorySlotContexts">
-            <summary>Contains Item Slot Contexts which are usually related to normal inventory slots. Check the current slot context to determine drawing item status UI like cooldowns and ect.</summary>
+        <member name="F:Aequus.Core.UI.InventoryUI.ContextsInv">
+            <summary>Contains Item Slot Contexts which are usually related to normal inventory slots. Check the current slot context to determine drawing item status UI like cooldowns and etc.</summary>
         </member>
         <member name="M:Aequus.Core.UI.IUserInterfaceLayer.OnUIUpdate(Microsoft.Xna.Framework.GameTime)">
             <param name="gameTime"></param>
@@ -1808,7 +1808,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 728)</summary>
+            <summary>(Total Textures: 731)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2227,9 +2227,6 @@
         <member name="F:Aequus.AequusTextures.ConductorBannerItem">
             <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Tiles/ConductorBannerItem</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.ConeheadPincushionZombie">
-            <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadPincushionZombie</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.ConeheadZombieBald">
             <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieBald</summary>
         </member>
@@ -2397,6 +2394,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.ConeHelmet">
             <summary>Full Path: Content/Equipment/Armor/MiscHelmets/ConeHelmet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeHelmet_1">
+            <summary>Full Path: Content/Equipment/Armor/MiscHelmets/ConeHelmet_1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeHelmet_1_Head">
+            <summary>Full Path: Content/Equipment/Armor/MiscHelmets/ConeHelmet_1_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeHelmet_2">
+            <summary>Full Path: Content/Equipment/Armor/MiscHelmets/ConeHelmet_2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConeHelmet_2_Head">
+            <summary>Full Path: Content/Equipment/Armor/MiscHelmets/ConeHelmet_2_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ConeHelmet_Head">
             <summary>Full Path: Content/Equipment/Armor/MiscHelmets/ConeHelmet_Head</summary>

@@ -197,7 +197,7 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
 
     public bool HoverSlot(Item[] inventory, int context, int slot) {
         int aContext = Math.Abs(context);
-        if (!InventoryUI.InventorySlotContexts.Contains(context)) {
+        if (!InventoryUI.ContextsInv.Contains(context)) {
             return false;
         }
 
@@ -259,7 +259,7 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
     }
 
     public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
-        if (!InventoryUI.InventorySlotContexts.Contains(CurrentSlot.Instance.Context)) {
+        if (!InventoryUI.ContextsInv.Contains(CurrentSlot.Instance.Context)) {
             return true;
         }
 

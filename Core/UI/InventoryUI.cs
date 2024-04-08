@@ -14,8 +14,10 @@ public class InventoryUI : ModSystem {
     public static int BottomInventoryY { get; set; } = 260;
     public static int LeftInventoryPosition { get; set; } = 20;
 
-    /// <summary>Contains Item Slot Contexts which are usually related to normal inventory slots. Check the current slot context to determine drawing item status UI like cooldowns and ect.</summary>
-    public static readonly HashSet<int> InventorySlotContexts = new() {
+    /// <summary>Contains Item Slot Contexts which are usually related to normal inventory slots. Check the current slot context to determine drawing item status UI like cooldowns and etc.</summary>
+    public static readonly HashSet<int> ContextsInv = new() {
+        ItemSlot.Context.EquipArmor,
+        ItemSlot.Context.EquipArmorVanity,
         ItemSlot.Context.EquipAccessory,
         ItemSlot.Context.ModdedAccessorySlot,
         ItemSlot.Context.EquipAccessoryVanity,

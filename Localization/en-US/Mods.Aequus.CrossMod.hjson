@@ -65,7 +65,7 @@ Split: {
 		}
 
 		GlimmerEnvelope: {
-			DisplayName: Tainted Sea Envelope
+			DisplayName: Shooting Star Envelope
 			Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 		}
 	}

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 728)</summary>
+/// <summary>(Total Textures: 731)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -285,8 +285,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ConductorBanner = new("Aequus/Content/Enemies/PollutedOcean/Conductor/Tiles/ConductorBanner");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Tiles/ConductorBannerItem</summary>
     public static readonly RequestCache<Texture2D> ConductorBannerItem = new("Aequus/Content/Enemies/PollutedOcean/Conductor/Tiles/ConductorBannerItem");
-    /// <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadPincushionZombie</summary>
-    public static readonly RequestCache<Texture2D> ConeheadPincushionZombie = new("Aequus/Content/Enemies/PollutedOcean/Conehead/ConeheadPincushionZombie");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieBald</summary>
     public static readonly RequestCache<Texture2D> ConeheadZombieBald = new("Aequus/Content/Enemies/PollutedOcean/Conehead/ConeheadZombieBald");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieBasic</summary>
@@ -399,6 +397,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> WeightedHorseshoeVisual = new("Aequus/Content/Equipment/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual");
     /// <summary>Full Path: Content/Equipment/Armor/MiscHelmets/ConeHelmet</summary>
     public static readonly RequestCache<Texture2D> ConeHelmet = new("Aequus/Content/Equipment/Armor/MiscHelmets/ConeHelmet");
+    /// <summary>Full Path: Content/Equipment/Armor/MiscHelmets/ConeHelmet_1</summary>
+    public static readonly RequestCache<Texture2D> ConeHelmet_1 = new("Aequus/Content/Equipment/Armor/MiscHelmets/ConeHelmet_1");
+    /// <summary>Full Path: Content/Equipment/Armor/MiscHelmets/ConeHelmet_1_Head</summary>
+    public static readonly RequestCache<Texture2D> ConeHelmet_1_Head = new("Aequus/Content/Equipment/Armor/MiscHelmets/ConeHelmet_1_Head");
+    /// <summary>Full Path: Content/Equipment/Armor/MiscHelmets/ConeHelmet_2</summary>
+    public static readonly RequestCache<Texture2D> ConeHelmet_2 = new("Aequus/Content/Equipment/Armor/MiscHelmets/ConeHelmet_2");
+    /// <summary>Full Path: Content/Equipment/Armor/MiscHelmets/ConeHelmet_2_Head</summary>
+    public static readonly RequestCache<Texture2D> ConeHelmet_2_Head = new("Aequus/Content/Equipment/Armor/MiscHelmets/ConeHelmet_2_Head");
     /// <summary>Full Path: Content/Equipment/Armor/MiscHelmets/ConeHelmet_Head</summary>
     public static readonly RequestCache<Texture2D> ConeHelmet_Head = new("Aequus/Content/Equipment/Armor/MiscHelmets/ConeHelmet_Head");
     /// <summary>Full Path: Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
