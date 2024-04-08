@@ -1,4 +1,5 @@
-﻿using Aequus.Old.Content.Necromancy.Rendering;
+﻿using Aequus.Common;
+using Aequus.Old.Content.Necromancy.Rendering;
 using System;
 
 namespace Aequus.Old.Content.Necromancy;
@@ -18,7 +19,7 @@ public class GhostHitbox : ModProjectile {
         Projectile.penetrate = -1;
         Projectile.friendly = true;
         Projectile.tileCollide = false;
-        Projectile.DamageType = Aequus.NecromancyClass;
+        Projectile.DamageType = Commons.NecromancyClass;
         Projectile.localNPCHitCooldown = 30;
         Projectile.usesLocalNPCImmunity = true;
         Projectile.timeLeft = 120;

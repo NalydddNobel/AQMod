@@ -31,13 +31,13 @@ public partial class SkyMerchant {
             .Add<NameTag>()
             .Add<Calendar>()
             .Add<LesserRestorationPotion>()
-            .AddCustomValue<SlimyBlueBalloon>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Aequus.ConditionBetweenDays(DayOfWeek.Sunday, DayOfWeek.Monday))
-            .AddCustomValue<GoldenFeather>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Aequus.ConditionBetweenDays(DayOfWeek.Monday, DayOfWeek.Tuesday))
-            .AddCustomValue(celestialMagnetAltId, ItemCommons.Price.SkyMerchantCustomPurchasePrice, Aequus.ConditionBetweenDays(DayOfWeek.Tuesday, DayOfWeek.Wednesday))
-            .AddCustomValue<StunGun>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Aequus.ConditionBetweenDays(DayOfWeek.Wednesday, DayOfWeek.Thursday))
-            .AddCustomValue<WeightedHorseshoe>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Aequus.ConditionBetweenDays(DayOfWeek.Thursday, DayOfWeek.Friday))
-            .AddCustomValue<Furystar>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Aequus.ConditionBetweenDays(DayOfWeek.Friday, DayOfWeek.Saturday))
-            .AddCustomValue<FlashwayShield>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Aequus.ConditionDayOfTheWeek(DayOfWeek.Saturday))
+            .AddCustomValue<SlimyBlueBalloon>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Commons.Conditions.BetweenDays(DayOfWeek.Sunday, DayOfWeek.Monday))
+            .AddCustomValue<GoldenFeather>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Commons.Conditions.BetweenDays(DayOfWeek.Monday, DayOfWeek.Tuesday))
+            .AddCustomValue(celestialMagnetAltId, ItemCommons.Price.SkyMerchantCustomPurchasePrice, Commons.Conditions.BetweenDays(DayOfWeek.Tuesday, DayOfWeek.Wednesday))
+            .AddCustomValue<StunGun>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Commons.Conditions.BetweenDays(DayOfWeek.Wednesday, DayOfWeek.Thursday))
+            .AddCustomValue<WeightedHorseshoe>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Commons.Conditions.BetweenDays(DayOfWeek.Thursday, DayOfWeek.Friday))
+            .AddCustomValue<Furystar>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Commons.Conditions.BetweenDays(DayOfWeek.Friday, DayOfWeek.Saturday))
+            .AddCustomValue<FlashwayShield>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Commons.Conditions.DayOfTheWeek(DayOfWeek.Saturday))
             .Register();
     }
 

@@ -1,4 +1,5 @@
-﻿using Aequus.DataSets;
+﻿using Aequus.Common;
+using Aequus.DataSets;
 using Aequus.Old.Content.Particles;
 using Terraria.GameContent;
 
@@ -26,7 +27,7 @@ public class CorruptionSceptreProj : ModProjectile {
         Projectile.aiStyle = -1;
         Projectile.usesLocalNPCImmunity = true;
         Projectile.localNPCHitCooldown = 6;
-        Projectile.DamageType = Aequus.NecromancyClass;
+        Projectile.DamageType = Commons.NecromancyClass;
         Projectile.alpha = 255;
         InitTrail();
     }

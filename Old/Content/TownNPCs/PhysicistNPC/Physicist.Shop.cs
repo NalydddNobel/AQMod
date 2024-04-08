@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Configuration;
+﻿using Aequus.Common;
+using Aequus.Content.Configuration;
 using Aequus.Old.Content.DronePylons;
 using Aequus.Old.Content.Equipment.Accessories.LaserScope;
 using Aequus.Old.Content.Events.Glimmer.Spawners;
@@ -12,8 +13,8 @@ public partial class Physicist {
     public override void AddShops() {
         new NPCShop(Type)
             .Add<PhysicsGun>()
-            .Add(ItemID.PortalGun, Aequus.ConditionConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MovePortalGun)))
-            .Add(ItemID.GravityGlobe, Aequus.ConditionConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveGravityGlobe)))
+            .Add(ItemID.PortalGun, Commons.Conditions.ConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MovePortalGun)))
+            .Add(ItemID.GravityGlobe, Commons.Conditions.ConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveGravityGlobe)))
             .Add<LaserReticle>()
         //    .Add<HaltingMachine>()
             .AddCustomValue(ItemID.BloodMoonStarter, Item.buyPrice(gold: 2))

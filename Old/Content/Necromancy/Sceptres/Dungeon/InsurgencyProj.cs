@@ -1,4 +1,5 @@
-﻿using Aequus.Old.Content.Necromancy.Sceptres.Evil;
+﻿using Aequus.Common;
+using Aequus.Old.Content.Necromancy.Sceptres.Evil;
 using Aequus.Old.Content.Particles;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -27,7 +28,7 @@ public class InsurgencyProj : CorruptionSceptreProj {
         Projectile.scale = 1f;
         Projectile.usesLocalNPCImmunity = true;
         Projectile.localNPCHitCooldown = 6;
-        Projectile.DamageType = Aequus.NecromancyClass;
+        Projectile.DamageType = Commons.NecromancyClass;
 
         primDistance = 8f;
         InitTrail();

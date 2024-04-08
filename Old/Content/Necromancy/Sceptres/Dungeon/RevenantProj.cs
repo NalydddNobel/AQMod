@@ -1,4 +1,5 @@
-﻿using Aequus.Old.Content.Necromancy.Sceptres.Evil;
+﻿using Aequus.Common;
+using Aequus.Old.Content.Necromancy.Sceptres.Evil;
 using Aequus.Old.Content.Particles;
 using Terraria.GameContent;
 
@@ -24,7 +25,7 @@ public class RevenantProj : CorruptionSceptreProj {
         Projectile.localNPCHitCooldown = 6;
         Projectile.alpha = 250;
         Projectile.scale = 1.1f;
-        Projectile.DamageType = Aequus.NecromancyClass;
+        Projectile.DamageType = Commons.NecromancyClass;
         Projectile.extraUpdates = 1;
         InitTrail();
     }

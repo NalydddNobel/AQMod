@@ -1,4 +1,5 @@
-﻿using Aequus.Old.Content.Necromancy.Rendering;
+﻿using Aequus.Common;
+using Aequus.Old.Content.Necromancy.Rendering;
 using Aequus.Old.Content.Particles;
 using System;
 using System.Collections.Generic;
@@ -65,7 +66,7 @@ public class NecromancyProj : GlobalProjectile {
             projectile.damage = zombie.ghostDamage;
         }
 
-        projectile.DamageType = Aequus.NecromancyClass;
+        projectile.DamageType = Commons.NecromancyClass;
         if (!projectile.usesLocalNPCImmunity) {
             projectile.usesIDStaticNPCImmunity = true;
             projectile.idStaticNPCHitCooldown = 10;
@@ -157,7 +158,7 @@ public class NecromancyProj : GlobalProjectile {
             isZombie = true;
             projectile.hostile = false;
             projectile.friendly = true;
-            projectile.DamageType = Aequus.NecromancyClass;
+            projectile.DamageType = Commons.NecromancyClass;
             if (!projectile.usesLocalNPCImmunity) {
                 projectile.usesIDStaticNPCImmunity = true;
                 projectile.idStaticNPCHitCooldown = 10;

@@ -1,4 +1,5 @@
-﻿using Aequus.Core.Collections;
+﻿using Aequus.Common;
+using Aequus.Core.Collections;
 using Aequus.Core.UI;
 using System;
 using System.Collections.Generic;
@@ -176,7 +177,7 @@ public class ChestLensInterface : UILayer {
                     return 0.4f;
                 if (item.DamageType.CountsAsClass(DamageClass.Summon))
                     return 0.5f;
-                if (item.DamageType.CountsAsClass(Aequus.NecromancyClass))
+                if (item.DamageType.CountsAsClass(Commons.NecromancyClass))
                     return 0.5f;
                 return 0.1f;
             }

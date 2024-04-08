@@ -1,4 +1,5 @@
-﻿using Aequus.Old.Content.Necromancy.Sceptres.Evil;
+﻿using Aequus.Common;
+using Aequus.Old.Content.Necromancy.Sceptres.Evil;
 using Aequus.Old.Content.Particles;
 using Terraria.GameContent;
 
@@ -24,7 +25,7 @@ public class OsirisProj : CorruptionSceptreProj {
         Projectile.alpha = 250;
         Projectile.extraUpdates = 1;
         Projectile.scale = 1.33f;
-        Projectile.DamageType = Aequus.NecromancyClass;
+        Projectile.DamageType = Commons.NecromancyClass;
         InitTrail();
     }
 

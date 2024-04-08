@@ -1,5 +1,5 @@
-﻿namespace Aequus;
+﻿namespace Aequus.Common;
 
-public partial class Aequus {
+public partial class Commons {
     public static DamageClass NecromancyClass => DamageClass.Summon;
 }

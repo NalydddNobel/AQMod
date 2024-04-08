@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Chests;
+﻿using Aequus.Common;
+using Aequus.Common.Chests;
 using Aequus.Content.Configuration;
 using Aequus.Content.CrossMod.SplitSupport.Photography;
 using Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
@@ -51,7 +52,7 @@ public class PollutedOceanSystem : ModSystem {
 
     private static void PopulateChestDrops() {
         ChestLootDatabase.Instance.RegisterIndexed(ChestLoot.PollutedOcean,
-            new ChestRules.Common(ItemID.MagicConch, OptionalConditions: Aequus.ConditionConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveMagicConch))),
+            new ChestRules.Common(ItemID.MagicConch, OptionalConditions: Commons.Conditions.ConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveMagicConch))),
             new ChestRules.Common(ModContent.ItemType<AnglerLamp>()),
         #if !DEBUG
             new ChestRules.Common(ModContent.ItemType<PotionCanteen>()),
@@ -137,7 +138,7 @@ public class PollutedOceanSystem : ModSystem {
                     new ChestRules.Common(ItemID.FlyingCarpet)
                 }
             ),
-            Aequus.ConditionConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveMagicConch))
+            Commons.Conditions.ConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveMagicConch))
         ));
     }
 

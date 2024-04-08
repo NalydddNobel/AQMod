@@ -1,4 +1,5 @@
-﻿using Aequus.DataSets;
+﻿using Aequus.Common;
+using Aequus.DataSets;
 using System;
 
 namespace Aequus.Old.Content.Necromancy.Sceptres.Forbidden;
@@ -14,7 +15,7 @@ public class LocustSmall : ModProjectile {
         Projectile.width = 4;
         Projectile.height = 4;
         Projectile.friendly = true;
-        Projectile.DamageType = Aequus.NecromancyClass;
+        Projectile.DamageType = Commons.NecromancyClass;
         Projectile.aiStyle = -1;
         Projectile.alpha = 200;
         Projectile.timeLeft = 120;
