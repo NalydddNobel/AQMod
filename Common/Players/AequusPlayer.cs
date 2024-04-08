@@ -1,9 +1,6 @@
-﻿using Aequus.Common.Items.Components;
-using Aequus.Content.Weapons.Ranged.Bows.SkyHunterCrossbow;
+﻿using Aequus.Content.Weapons.Ranged.Bows.SkyHunterCrossbow;
 using Aequus.Core.CodeGeneration;
-using Terraria.DataStructures;
 using Terraria.GameInput;
-using Terraria.UI;
 
 namespace Aequus;
 
@@ -18,25 +15,6 @@ public partial class AequusPlayer : ModPlayer {
     public override void Load() {
         _resetEffects = new();
         _resetEffects.Generate();
-        On_Player.RollLuck += RabbitFootLuckRerolls;
-        IL_Player.PlaceThing_ValidTileForReplacement += IL_Player_PlaceThing_ValidTileForReplacement;
-        On_Player.PlaceThing_Tiles_CheckLavaBlocking += OverrideLavaBlockPlacement;
-        On_PlayerDeathReason.GetDeathText += LocalizedAequusDeathMessages;
-        IL_Player.PickTile += IL_Player_PickTile;
-        On_Player.UpdateVisibleAccessories += On_Player_UpdateVisibleAccessories;
-        On_PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
-        On_ItemSlot.RightClick_ItemArray_int_int += ItemSlot_RightClick;
-        On_ChestUI.QuickStack += On_ChestUI_QuickStack;
-        On_Player.QuickStackAllChests += On_Player_QuickStackAllChests;
-        On_Player.ConsumeItem += On_Player_ConsumeItem;
-        On_Player.QuickMount_GetItemToUse += On_Player_QuickMount_GetItemToUse;
-        On_Player.QuickHeal_GetItemToUse += On_Player_QuickHeal_GetItemToUse;
-        On_Player.QuickMana_GetItemToUse += On_Player_QuickMana_GetItemToUse;
-        On_Player.HasUnityPotion += Player_HasUnityPotion;
-        On_Player.TakeUnityPotion += Player_TakeUnityPotion;
-        On_Player.GetRespawnTime += On_Player_GetRespawnTime;
-        On_Player.DashMovement += On_Player_DashMovement;
-        On_Player.PlaceThing_PaintScrapper_LongMoss += On_Player_PlaceThing_PaintScrapper_LongMoss;
     }
 
     public override void Unload() {

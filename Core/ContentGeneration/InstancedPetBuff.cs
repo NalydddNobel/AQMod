@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Buffs;
-using Terraria.Localization;
+﻿using Terraria.Localization;
 
 namespace Aequus.Core.ContentGeneration;
 

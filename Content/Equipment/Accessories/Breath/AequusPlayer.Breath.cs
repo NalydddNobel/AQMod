@@ -1,9 +1,6 @@
 ﻿using Aequus.Content.Graphics.Particles;
 using Aequus.Core.CodeGeneration;
-using Mono.Cecil.Cil;
-using MonoMod.Cil;
 using System;
-using Terraria.GameContent.Achievements;
 
 namespace Aequus;
 
@@ -11,7 +8,7 @@ public partial class AequusPlayer {
     [ResetEffects]
     public int accRestoreBreathOnKill;
 
-    private void RestoreBreathOnBrokenTile(int X, int Y) {
+    internal void RestoreBreathOnBrokenTile(int X, int Y) {
         if (accRestoreBreathOnKill <= 0 || Player.breath >= Player.breathMax) {
             return;
         }
@@ -38,22 +35,5 @@ public partial class AequusPlayer {
             bigBubble.Velocity = Vector2.Zero;
             bigBubble.UpLift = 0.005f;
         }
-    }
-
-    private void IL_Player_PickTile(ILContext il) {
-        ILCursor c = new ILCursor(il);
-
-        if (!c.TryGotoNext(MoveType.After, i => i.MatchPropertySetter(typeof(AchievementsHelper), nameof(AchievementsHelper.CurrentlyMining)))) {
-            Mod.Logger.Error("Could not find mining AchievementsHelper.CurrentlyMining setter in Player.PickTile."); return;
-        }
-
-        c.Emit(OpCodes.Ldarg_0); // Player
-        c.Emit(OpCodes.Ldarg_1); // X
-        c.Emit(OpCodes.Ldarg_2); // Y
-        c.Emit(OpCodes.Ldarg_3); // Pickaxe Power
-        c.EmitDelegate((Player player, int X, int Y, int PickPower) => {
-            this.accGifterRing = "";
-            player.GetModPlayer<AequusPlayer>().RestoreBreathOnBrokenTile(X, Y);
-        });
     }
 }

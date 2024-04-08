@@ -1,6 +1,6 @@
-﻿namespace Aequus;
+﻿namespace Aequus.Common.Hooks;
 
-public partial class AequusPlayer {
+public partial class TerrariaHooks {
     private static void On_Player_PlaceThing_PaintScrapper_LongMoss(On_Player.orig_PlaceThing_PaintScrapper_LongMoss orig, Player player, int x, int y) {
         //if (Main.tile[x, y].TileType == ModContent.TileType<RadonMoss>()) {
         //    player.cursorItemIconEnabled = true;

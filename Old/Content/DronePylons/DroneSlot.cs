@@ -1,5 +1,4 @@
-﻿using Aequus.Content.DronePylons;
-using Aequus.Old.Content.DronePylons.NPCs;
+﻿using Aequus.Old.Content.DronePylons.NPCs;
 using System.Collections.Generic;
 using System.IO;
 using Terraria.ModLoader.IO;

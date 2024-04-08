@@ -8,18 +8,6 @@ public partial class AequusPlayer {
     [ResetEffects]
     public bool infiniteWormhole;
 
-    private static void Player_TakeUnityPotion(On_Player.orig_TakeUnityPotion orig, Player player) {
-        if (player.GetModPlayer<AequusPlayer>().infiniteWormhole) {
-            return;
-        }
-
-        orig(player);
-    }
-
-    private static bool Player_HasUnityPotion(On_Player.orig_HasUnityPotion orig, Player player) {
-        return player.GetModPlayer<AequusPlayer>().infiniteWormhole ? true : orig(player);
-    }
-
     private void UpdateTeamEffects() {
         for (int i = 0; i < Main.maxPlayers; i++) {
             if (Main.player[i].active && Main.player[i].team == Player.team && Main.player[i].TryGetModPlayer<AequusPlayer>(out var aequusPlayer) && Player.Distance(Main.player[i].Center) < TeamBuffDistanceFalloff) {

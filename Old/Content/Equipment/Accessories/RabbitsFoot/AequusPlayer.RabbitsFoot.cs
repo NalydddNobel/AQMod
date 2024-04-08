@@ -8,18 +8,16 @@ public partial class AequusPlayer {
     public float accRabbitFootLuck;
     private static int _rabbitFootRerolls;
 
-    private static int RabbitFootLuckRerolls(On_Player.orig_RollLuck orig, Player self, int range) {
-        int rolled = orig(self, range);
+    internal void RerollLuckFull(ref int rolled, int range) {
         if (_rabbitFootRerolls == 0) {
             _rabbitFootRerolls++;
             try {
-                rolled = self.GetModPlayer<AequusPlayer>().RerollLuck(rolled, range);
+                rolled = RerollLuck(rolled, range);
             }
             catch {
             }
             _rabbitFootRerolls = 0;
         }
-        return rolled;
     }
 
     public int RerollLuck(int rolledAmt, int range) {

@@ -1,5 +1,4 @@
 ﻿using Aequus.Core.Networking;
-using Aequus.Old.Content.DronePylons;
 using Aequus.Old.Content.DronePylons.NPCs;
 using System;
 using System.Collections.Generic;
@@ -7,7 +6,7 @@ using System.IO;
 using Terraria.DataStructures;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.DronePylons;
+namespace Aequus.Old.Content.DronePylons;
 
 public class PylonDronePoint : TagSerializable {
     public static int DefaultMaxDrones { get; set; }

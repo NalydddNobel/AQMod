@@ -15,36 +15,9 @@ public partial class AequusPlayer {
     [ResetEffects]
     public int? DrawForceDye;
 
-    private static bool customDrawing;
+    internal static bool customDrawing;
 
-    private static void On_Player_UpdateVisibleAccessories(On_Player.orig_UpdateVisibleAccessories orig, Player player) {
-        if (!player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
-            orig(player);
-            return;
-        }
-
-        CustomDashData dashData = player.dashDelay < 0 && player.dash == -1 && aequusPlayer.DashData != null ? aequusPlayer.DashData : null;
-        dashData?.PreUpdateVisibleAccessories(player, aequusPlayer);
-        orig(player);
-        dashData?.PostUpdateVisibleAccessories(player, aequusPlayer);
-    }
-    private static void PlayerDrawLayers_DrawPlayer_RenderAllLayers(On_PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers orig, ref PlayerDrawSet drawinfo) {
-        try {
-            if (customDrawing || !drawinfo.drawPlayer.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
-                orig(ref drawinfo);
-                return;
-            }
-            customDrawing = true;
-            aequusPlayer.ModifyDrawSet(ref drawinfo);
-            orig(ref drawinfo);
-        }
-        catch {
-
-        }
-        customDrawing = false;
-    }
-
-    private void ModifyDrawSet(ref PlayerDrawSet info) {
+    internal void ModifyDrawSet(ref PlayerDrawSet info) {
         if (info.headOnlyRender) {
             return;
         }

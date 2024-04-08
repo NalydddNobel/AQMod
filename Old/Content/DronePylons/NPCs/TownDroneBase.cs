@@ -1,8 +1,6 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
-using Aequus.Content.DronePylons;
 using Aequus.Core.Initialization;
 using Aequus.DataSets;
-using Aequus.Old.Content.DronePylons;
 using Aequus.Old.Content.TownNPCs.PhysicistNPC;
 using System;
 using System.Collections.Generic;

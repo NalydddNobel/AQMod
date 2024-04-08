@@ -37,14 +37,6 @@ public partial class AequusPlayer {
 
     private readonly List<Point> _edgeTilesCache = new();
 
-    private static int On_Player_GetRespawnTime(On_Player.orig_GetRespawnTime orig, Player player, bool pvp) {
-        int time = orig(player, pvp);
-        if (time <= MinimumRespawnTime || !player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
-            return time;
-        }
-        return Math.Max(time + aequusPlayer.respawnTimeModifierFlat, MinimumRespawnTime);
-    }
-
     private void HandleTileEffects() {
         _edgeTilesCache.Clear();
         Collision.GetEntityEdgeTiles(_edgeTilesCache, Player);
@@ -151,15 +143,6 @@ public partial class AequusPlayer {
 
     private static void SignCustomDeathReason(PlayerDeathReason damageSource, string reason, int variants = 1) {
         damageSource.SourceCustomReason = $"Mods.Aequus.Player.DeathMessage.{reason}.{(variants > 1 ? Main.rand.Next(variants) : "")}";
-    }
-
-    private static NetworkText LocalizedAequusDeathMessages(On_PlayerDeathReason.orig_GetDeathText orig, PlayerDeathReason deathReason, string deadPlayerName) {
-        if (deathReason.SourceCustomReason != null && deathReason.SourceCustomReason.StartsWith("Mods.Aequus.")) {
-            // Return this custom network text for reasons which start with "Mods.Aequus"
-            return NetworkText.FromKey(deathReason.SourceCustomReason, deadPlayerName);
-        }
-
-        return orig(deathReason, deadPlayerName);
     }
     #endregion
 }

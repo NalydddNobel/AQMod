@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.NPCs;
-using Aequus.Content.DronePylons;
 using Aequus.Old.Content.Particles;
 using Aequus.Old.Core.Utilities;
 using System;

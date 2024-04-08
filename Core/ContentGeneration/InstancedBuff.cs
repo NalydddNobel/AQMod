@@ -1,4 +1,4 @@
-﻿namespace Aequus.Common.Buffs;
+﻿namespace Aequus.Core.ContentGeneration;
 
 internal class InstancedBuff : ModBuff {
     private readonly string _name;
