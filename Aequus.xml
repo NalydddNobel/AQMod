@@ -823,6 +823,9 @@
         <member name="P:Aequus.Content.Weather.Rain.RainTotem.BonusRainChanceMax">
             <summary>The extra rain chance per tick granted by having maximum totems on screen.</summary>
         </member>
+        <member name="M:Aequus.Core.Audio.AudioEffects.PlayUnpanningAttenuationSound(Terraria.Audio.SoundStyle,Microsoft.Xna.Framework.Vector2,System.Single)">
+            <summary>Plays a sound which does not pan, but will get quieter with distance.</summary>
+        </member>
         <member name="T:Aequus.Core.CodeGeneration.Publicization`2">
             <summary>Rough system which helps getting private fields from classes.</summary>
         </member>
@@ -1586,7 +1589,34 @@
             <summary>Whether the Occultist has been met. This determines if the Hostile Occultist emote can be used.</summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 73)</summary>
+            <summary>(Total Sounds: 82)</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.PollutedOcean_AmbientA0">
+            <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_AmbientA0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.PollutedOcean_AmbientA1">
+            <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_AmbientA1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.PollutedOcean_AmbientA2">
+            <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_AmbientA2</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.PollutedOcean_AmbientB0">
+            <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_AmbientB0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.PollutedOcean_AmbientB1">
+            <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_AmbientB1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.PollutedOcean_CaveDrone">
+            <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_CaveDrone</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.PollutedOcean_RainA">
+            <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_RainA</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.PollutedOcean_RainA_Interior">
+            <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_RainA_Interior</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.PollutedOcean_RainB">
+            <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_RainB</summary>
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishCharge">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
