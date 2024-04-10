@@ -12,7 +12,7 @@ public class TrashPots2x2 : BasePot {
 
     public override void SetStaticDefaults() {
         base.SetStaticDefaults();
-        HitSound = SoundID.Grass;
+        HitSound = AequusSounds.TrashBag with { Pitch = -0.1f, PitchVariance = 0.06f };
     }
 
     protected override bool DoSpecialBiomeTorch(ref int itemID) {
