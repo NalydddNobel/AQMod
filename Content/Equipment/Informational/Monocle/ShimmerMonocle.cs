@@ -2,7 +2,6 @@
 
 namespace Aequus.Content.Equipment.Informational.Monocle;
 
-[WorkInProgress]
 public class ShimmerMonocle : ModItem {
     public override void SetStaticDefaults() {
         ItemSets.WorksInVoidBag[Type] = true;
