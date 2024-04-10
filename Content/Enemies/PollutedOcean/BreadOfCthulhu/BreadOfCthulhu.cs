@@ -1,4 +1,6 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
+using Aequus.Content.Biomes.PollutedOcean;
+using Aequus.Content.Biomes.PollutedOcean.Background;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Dedicated.Baguette;
 using Aequus.Content.Enemies.PollutedOcean.BreadOfCthulhu.Items;
@@ -12,6 +14,7 @@ using Terraria.GameContent.UI.Elements;
 namespace Aequus.Content.Enemies.PollutedOcean.BreadOfCthulhu;
 
 [AutoloadBanner]
+[ModBiomes(typeof(PollutedOceanBiomeSurface), typeof(PollutedOceanBiomeUnderground))]
 public class BreadOfCthulhu : ModNPC {
     public override void SetStaticDefaults() {
         Main.npcFrameCount[NPC.type] = 5;

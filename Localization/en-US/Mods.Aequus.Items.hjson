@@ -157,7 +157,7 @@ HighSteaks: {
 	DisplayName: High Steaks
 	Tooltip:
 		'''
-		increased critical strike damage by {0}%
+		Increased critical strike damage by {0}%
 		{1}
 		'''
 	Downside: "{v}However, you pay {Price} upon crit"

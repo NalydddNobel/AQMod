@@ -54,7 +54,7 @@ ShadowMimics: {
 
 HardmodeMimics: {
 	// Label: "[i:Aequus/HardFrozenChest] Hardmode Mimics"
-	// Tooltip: Whether Aequus' special Hardmode Mimics should appear, replacing regular Mimics. This config does nothing if "{$GameplayConfig.HardmodeChests}" is false.
+	// Tooltip: Whether Aequus' special Hardmode Mimics should appear, replacing regular Mimics. This config does nothing if "{$GameplayConfig.HardmodeChests.Label}" is false.
 }
 
 PDAGetsAequusItems: {

@@ -269,8 +269,8 @@ Pacemaker: {
 
 //# Equipment: Informational
 GeigerCounter: {
-	// DisplayName: Geiger Counter
-	// Tooltip: Displays the damage per second from debuffs
+	DisplayName: 盖革计数器
+	Tooltip: 显示每秒造成的持续伤害
 }
 
 ShimmerMonocle: {
@@ -285,7 +285,7 @@ RichMansMonocle: {
 
 Calendar: {
 	DisplayName: 日历
-	Tooltip: 显示日期
+	Tooltip: 显示关于日期的信息
 }
 
 AnglerBroadcaster: {
