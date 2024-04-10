@@ -1,13 +1,17 @@
 InfoDisplays: {
-	AnglerBroadcasterIcon: {
-		DisplayName: 钓鱼任务
-		Unavailable: 不可用
-		Finished: 已完成
+	GeigerCounterInfoDisplay: {
+		DisplayName: 减益伤害/秒
 	}
 
 	CalendarInfoDisplay: {
 		DisplayName: 日期
 		Tooltip: "{0} ({1}天)"
+	}
+
+	AnglerBroadcasterIcon: {
+		DisplayName: 钓鱼任务
+		Unavailable: 不可用
+		Finished: 已完成
 	}
 }
 
