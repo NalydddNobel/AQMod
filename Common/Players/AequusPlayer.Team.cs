@@ -22,8 +22,8 @@ public partial class AequusPlayer {
         }
 
         // TODO: Automate this?
-        accMonocle |= otherAequusPlayer.accMonocle;
-        accShimmerMonocle |= otherAequusPlayer.accShimmerMonocle;
+        accInfoMoneyMonocle |= otherAequusPlayer.accInfoMoneyMonocle;
+        accInfoShimmerMonocle |= otherAequusPlayer.accInfoShimmerMonocle;
         accInfoDayCalendar |= otherAequusPlayer.accInfoDayCalendar;
     }
 }

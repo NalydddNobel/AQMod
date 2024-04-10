@@ -5,7 +5,7 @@ namespace Aequus.Content.Equipment.Informational.Monocle;
 
 public class MonocleBuilderToggle : BuilderToggle {
     public override bool Active() {
-        return Main.LocalPlayer.TryGetModPlayer<AequusPlayer>(out var aequusPlayer) && aequusPlayer.accMonocle;
+        return Main.LocalPlayer.TryGetModPlayer<AequusPlayer>(out var aequusPlayer) && aequusPlayer.accInfoMoneyMonocle;
     }
 
     public override string DisplayValue() {

@@ -6,7 +6,7 @@ namespace Aequus.Content.Equipment.Informational.Monocle;
 
 public class ShimmerMonocleBuilderToggle : BuilderToggle {
     public override bool Active() {
-        return Main.LocalPlayer.TryGetModPlayer<AequusPlayer>(out var aequusPlayer) && aequusPlayer.accShimmerMonocle;
+        return Main.LocalPlayer.TryGetModPlayer<AequusPlayer>(out var aequusPlayer) && aequusPlayer.accInfoShimmerMonocle;
     }
 
     public override string DisplayValue() {

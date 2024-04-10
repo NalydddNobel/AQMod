@@ -11,10 +11,10 @@ public partial class AequusPlayer {
     public bool accInfoDPSMeterDebuff;
 
     [ResetEffects]
-    public bool accMonocle;
+    public bool accInfoMoneyMonocle;
     [ResetEffects]
-    public bool accShimmerMonocle;
+    public bool accInfoShimmerMonocle;
 
-    public bool ShowMonocle => accMonocle && ModContent.GetInstance<MonocleBuilderToggle>().CurrentState == 0;
-    public bool ShowShimmerMonocle => accShimmerMonocle && ModContent.GetInstance<ShimmerMonocleBuilderToggle>().CurrentState == 0;
+    public bool ShowMoneyMonocle => accInfoMoneyMonocle && ModContent.GetInstance<MonocleBuilderToggle>().CurrentState == 0;
+    public bool ShowShimmerMonocle => accInfoShimmerMonocle && ModContent.GetInstance<ShimmerMonocleBuilderToggle>().CurrentState == 0;
 }

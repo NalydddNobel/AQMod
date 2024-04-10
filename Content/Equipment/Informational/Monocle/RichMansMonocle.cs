@@ -10,6 +10,6 @@ public class RichMansMonocle : ModItem {
     }
 
     public override void UpdateInfoAccessory(Player player) {
-        player.GetModPlayer<AequusPlayer>().accMonocle = true;
+        player.GetModPlayer<AequusPlayer>().accInfoMoneyMonocle = true;
     }
 }

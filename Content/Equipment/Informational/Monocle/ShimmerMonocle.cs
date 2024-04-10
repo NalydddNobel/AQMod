@@ -12,6 +12,6 @@ public class ShimmerMonocle : ModItem {
     }
 
     public override void UpdateInfoAccessory(Player player) {
-        player.GetModPlayer<AequusPlayer>().accShimmerMonocle = true;
+        player.GetModPlayer<AequusPlayer>().accInfoShimmerMonocle = true;
     }
 }
