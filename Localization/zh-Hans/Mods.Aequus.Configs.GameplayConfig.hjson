@@ -58,10 +58,10 @@ HardmodeMimics: {
 }
 
 PDAGetsAequusItems: {
-	// Label: "[i:PDA] Aequus PDA"
-	/* Tooltip:
+	Label: "[i:PDA] Aequus个人数字助手"
+	Tooltip:
 		'''
-		Whether Aequus' new Info Accessories should be added to the PDA and upgrades.
-		Any items which use the PDA or upgrades in their recipes will automatically inherit Aequus' info accessories.
-		''' */
+		决定Aequus的新信息饰品是否会添加到个人数字助手及其上位升级中.
+		任何使用个人数字助手及其上位升级的物品的配方中都会自动继承Aequus的信息饰品.
+		'''
 }
