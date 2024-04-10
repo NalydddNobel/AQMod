@@ -1586,7 +1586,7 @@
             <summary>Whether the Occultist has been met. This determines if the Hostile Occultist emote can be used.</summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 73)</summary>
+            <summary>(Total Sounds: 74)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishCharge">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -1756,6 +1756,9 @@
         <member name="F:Aequus.AequusSounds.ScrapBlock3">
             <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
         </member>
+        <member name="F:Aequus.AequusSounds.TrashBag">
+            <summary>Full Path: Assets/Sounds/Tile/TrashBag</summary>
+        </member>
         <member name="F:Aequus.AequusSounds.BeginDemonSiege">
             <summary>Full Path: Old/Assets/Sounds/GoreNest/BeginDemonSiege</summary>
         </member>
@@ -1808,7 +1811,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 731)</summary>
+            <summary>(Total Textures: 736)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2347,27 +2350,6 @@
         <member name="F:Aequus.AequusTextures.GrandReward">
             <summary>Full Path: Content/Equipment/Accessories/GrandReward/GrandReward</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Calendar">
-            <summary>Full Path: Content/Equipment/Accessories/Informational/Calendar/Calendar</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CalendarInfoDisplay">
-            <summary>Full Path: Content/Equipment/Accessories/Informational/Calendar/CalendarInfoDisplay</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CalendarTile">
-            <summary>Full Path: Content/Equipment/Accessories/Informational/Calendar/CalendarTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MonocleBuilderToggle">
-            <summary>Full Path: Content/Equipment/Accessories/Informational/Monocle/MonocleBuilderToggle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RichMansMonocle">
-            <summary>Full Path: Content/Equipment/Accessories/Informational/Monocle/RichMansMonocle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ShimmerMonocle">
-            <summary>Full Path: Content/Equipment/Accessories/Informational/Monocle/ShimmerMonocle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ShimmerMonocleBuilderToggle">
-            <summary>Full Path: Content/Equipment/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.ScavengerBag">
             <summary>Full Path: Content/Equipment/Accessories/ScavengerBag/ScavengerBag</summary>
         </member>
@@ -2409,6 +2391,33 @@
         </member>
         <member name="F:Aequus.AequusTextures.ConeHelmet_Head">
             <summary>Full Path: Content/Equipment/Armor/MiscHelmets/ConeHelmet_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Calendar">
+            <summary>Full Path: Content/Equipment/Informational/Calendar/Calendar</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CalendarInfoDisplay">
+            <summary>Full Path: Content/Equipment/Informational/Calendar/CalendarInfoDisplay</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CalendarTile">
+            <summary>Full Path: Content/Equipment/Informational/Calendar/CalendarTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GeigerCounter">
+            <summary>Full Path: Content/Equipment/Informational/DebuffDPSMeter/GeigerCounter</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GeigerCounterIcon">
+            <summary>Full Path: Content/Equipment/Informational/DebuffDPSMeter/GeigerCounterIcon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MonocleBuilderToggle">
+            <summary>Full Path: Content/Equipment/Informational/Monocle/MonocleBuilderToggle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RichMansMonocle">
+            <summary>Full Path: Content/Equipment/Informational/Monocle/RichMansMonocle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShimmerMonocle">
+            <summary>Full Path: Content/Equipment/Informational/Monocle/ShimmerMonocle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShimmerMonocleBuilderToggle">
+            <summary>Full Path: Content/Equipment/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HotAirBalloonBuff">
             <summary>Full Path: Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
@@ -2646,6 +2655,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.SeaPickles2x2">
             <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/SeaPickles/SeaPickles2x2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BrokenTelevision">
+            <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Television/BrokenTelevision</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Television">
+            <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Television/Television</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TelevisionItem">
+            <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Television/TelevisionItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PolymerSand">
             <summary>Full Path: Content/Tiles/PollutedOcean/PolymerSands/PolymerSand</summary>
@@ -3274,12 +3292,6 @@
         <member name="F:Aequus.AequusTextures.HoloLens">
             <summary>Full Path: Old/Content/Equipment/Accessories/HoloLens/HoloLens</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.AnglerBroadcaster">
-            <summary>Full Path: Old/Content/Equipment/Accessories/Info/AnglerBroadcaster</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AnglerBroadcasterIcon">
-            <summary>Full Path: Old/Content/Equipment/Accessories/Info/AnglerBroadcasterIcon</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.LaserReticle">
             <summary>Full Path: Old/Content/Equipment/Accessories/LaserScope/LaserReticle</summary>
         </member>
@@ -3342,6 +3354,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.LeechHookProj_Chain">
             <summary>Full Path: Old/Content/Equipment/GrapplingHooks/HealingGrappleHook/LeechHookProj_Chain</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AnglerBroadcaster">
+            <summary>Full Path: Old/Content/Equipment/Info/AnglerBroadcaster</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AnglerBroadcasterIcon">
+            <summary>Full Path: Old/Content/Equipment/Info/AnglerBroadcasterIcon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UnholyCore">
             <summary>Full Path: Old/Content/Events/DemonSiege/Spawners/UnholyCore</summary>

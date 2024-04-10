@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria.Localization;
 
-namespace Aequus.Content.Equipment.Accessories.Informational.Monocle;
+namespace Aequus.Content.Equipment.Informational.Monocle;
 
 public class MonocleBuilderToggle : BuilderToggle {
     public override bool Active() {

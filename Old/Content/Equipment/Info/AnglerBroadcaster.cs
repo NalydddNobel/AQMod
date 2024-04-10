@@ -1,7 +1,7 @@
 ﻿using Terraria.Localization;
 using Terraria.UI;
 
-namespace Aequus.Old.Content.Equipment.Accessories.Info;
+namespace Aequus.Old.Content.Equipment.Info;
 
 public class AnglerBroadcaster : ModItem {
     public override void SetDefaults() {
@@ -60,7 +60,7 @@ public class AnglerBroadcasterIcon : InfoDisplay {
     }
 
     private void UpdateTooltipCache(int questFish) {
-        ItemTooltip tooltip = Lang.GetTooltip(questFish);
+        ItemTooltip tooltip = LanguageDatabase.GetTooltip(questFish);
         // If the quest fish has no tooltip, set the tooltip to empty.
         if (tooltip == null || tooltip.Lines != 1) {
             _tooltip = string.Empty;

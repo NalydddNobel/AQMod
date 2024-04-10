@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Systems;
 using Terraria.Localization;
 
-namespace Aequus.Content.Equipment.Accessories.Informational.Calendar;
+namespace Aequus.Content.Equipment.Informational.Calendar;
 
 public class CalendarInfoDisplay : InfoDisplay {
     private LocalizedText Tooltip;

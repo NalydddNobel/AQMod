@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using Terraria.Localization;
 
-namespace Aequus.Content.Equipment.Accessories.Informational.Monocle;
+namespace Aequus.Content.Equipment.Informational.Monocle;
 
 public sealed class ShimmerMonocleGlobalItem : GlobalItem {
     public static Dictionary<int, Func<Item, string>> CustomShimmerTip { get; private set; } = new();

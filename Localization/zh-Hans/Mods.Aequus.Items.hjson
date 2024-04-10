@@ -983,3 +983,8 @@ UnopenedChestItem: {
 	DisplayName: 未开启的宝箱物品
 	Tooltip: 这是Debug物品, 将其放置在世界生成的宝箱内以检测其是否被开启过
 }
+
+GeigerCounter: {
+	// DisplayName: Geiger Counter
+	// Tooltip: ""
+}

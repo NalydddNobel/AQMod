@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Equipment.Accessories.Informational.Monocle;
+﻿namespace Aequus.Content.Equipment.Informational.Monocle;
 
 public class RichMansMonocle : ModItem {
     public override void SetStaticDefaults() {

@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Equipment.Accessories.Informational.Calendar;
+﻿namespace Aequus.Content.Equipment.Informational.Calendar;
 
 public class Calendar : ModItem {
     public override void SetStaticDefaults() {

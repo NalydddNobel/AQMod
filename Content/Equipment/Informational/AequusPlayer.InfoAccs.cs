@@ -1,9 +1,15 @@
-﻿using Aequus.Content.Equipment.Accessories.Informational.Monocle;
+﻿using Aequus.Content.Equipment.Informational.Monocle;
 using Aequus.Core.CodeGeneration;
 
 namespace Aequus;
 
 public partial class AequusPlayer {
+    [ResetEffects]
+    public bool accDayCalendar;
+
+    [ResetEffects]
+    public bool accDebuffDPSMeter;
+
     [ResetEffects]
     public bool accMonocle;
     [ResetEffects]

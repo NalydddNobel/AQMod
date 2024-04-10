@@ -1,6 +1,6 @@
 ﻿using Aequus.Core;
 
-namespace Aequus.Content.Equipment.Accessories.Informational.Monocle;
+namespace Aequus.Content.Equipment.Informational.Monocle;
 
 [WorkInProgress]
 public class ShimmerMonocle : ModItem {
