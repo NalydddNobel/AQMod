@@ -33,4 +33,8 @@ internal class GameplayConfig : ModConfig {
     [DefaultValue(true)]
     [ReloadRequired]
     public bool HardmodeChests;
+
+    [DefaultValue(true)]
+    [ReloadRequired]
+    public bool PDAGetsAequusItems;
 }

@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.JourneyMode;
 using System.Collections.Generic;
 
-namespace Aequus.Content.Tools.MagicMirrors.PhaseMirror;
+namespace Aequus.Old.Content.Tools.MagicMirrors.PhaseMirror;
 
 [FilterOverride(FilterFullfillment.Tools)]
 public class PhaseMirror : ModItem, IPhaseMirror {
@@ -11,7 +11,7 @@ public class PhaseMirror : ModItem, IPhaseMirror {
 
     public override void SetStaticDefaults() {
 #if !DEBUG
-        Old.Content.TownNPCs.PhysicistNPC.Analysis.AnalysisSystem.PhysicistPrimaryRewardItems.Add(Type);
+        TownNPCs.PhysicistNPC.Analysis.AnalysisSystem.PhysicistPrimaryRewardItems.Add(Type);
 #endif
         ItemSets.WorksInVoidBag[Type] = true;
     }

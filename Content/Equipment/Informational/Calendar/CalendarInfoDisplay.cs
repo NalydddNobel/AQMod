@@ -10,7 +10,7 @@ public class CalendarInfoDisplay : InfoDisplay {
     }
 
     public override bool Active() {
-        return CalendarTile.Nearby || Main.LocalPlayer.GetModPlayer<AequusPlayer>().accDayCalendar;
+        return CalendarTile.Nearby || Main.LocalPlayer.GetModPlayer<AequusPlayer>().accInfoDayCalendar;
     }
 
     public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor) {

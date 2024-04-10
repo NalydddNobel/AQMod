@@ -9,7 +9,7 @@ public class AnglerBroadcaster : ModItem {
     }
 
     public override void UpdateInfoAccessory(Player player) {
-        player.GetModPlayer<AequusPlayer>().accShowQuestFish = true;
+        player.GetModPlayer<AequusPlayer>().accInfoQuestFish = true;
     }
 }
 
@@ -81,6 +81,6 @@ public class AnglerBroadcasterIcon : InfoDisplay {
     }
 
     public override bool Active() {
-        return Main.LocalPlayer.GetModPlayer<AequusPlayer>().accShowQuestFish;
+        return Main.LocalPlayer.GetModPlayer<AequusPlayer>().accInfoQuestFish;
     }
 }

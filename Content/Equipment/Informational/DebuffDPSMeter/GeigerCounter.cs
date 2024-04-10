@@ -1,4 +1,5 @@
-﻿using Terraria.Localization;
+﻿using Aequus.Common.Items;
+using Terraria.Localization;
 
 namespace Aequus.Content.Equipment.Informational.DebuffDPSMeter;
 
@@ -8,7 +9,10 @@ public class GeigerCounter : ModItem {
     }
 
     public override void UpdateInfoAccessory(Player player) {
-        player.GetModPlayer<AequusPlayer>().accDebuffDPSMeter = true;
+        if (PDAEffects.PDAUpgrades.Contains(Type)) {
+
+        }
+        player.GetModPlayer<AequusPlayer>().accInfoDPSMeterDebuff = true;
     }
 }
 
@@ -39,6 +43,6 @@ public class GeigerCounterInfoDisplay : InfoDisplay {
     }
 
     public override bool Active() {
-        return Main.LocalPlayer.GetModPlayer<AequusPlayer>().accDebuffDPSMeter;
+        return Main.LocalPlayer.GetModPlayer<AequusPlayer>().accInfoDPSMeterDebuff;
     }
 }

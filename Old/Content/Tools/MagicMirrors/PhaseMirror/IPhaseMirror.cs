@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Aequus.Content.Tools.MagicMirrors.PhaseMirror {
+namespace Aequus.Old.Content.Tools.MagicMirrors.PhaseMirror {
     public interface IPhaseMirror {
         List<(int, int, Dust)> DustEffectCache { get; set; }
         int UseAnimationMax { get; }

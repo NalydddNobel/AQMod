@@ -5,10 +5,10 @@ namespace Aequus;
 
 public partial class AequusPlayer {
     [ResetEffects]
-    public bool accDayCalendar;
+    public bool accInfoDayCalendar;
 
     [ResetEffects]
-    public bool accDebuffDPSMeter;
+    public bool accInfoDPSMeterDebuff;
 
     [ResetEffects]
     public bool accMonocle;

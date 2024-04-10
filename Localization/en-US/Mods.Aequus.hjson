@@ -1,7 +1,5 @@
 InfoDisplays: {
-	GeigerCounterInfoDisplay: {
-		DisplayName: Damage Per Second (Debuff)
-	}
+	GeigerCounterInfoDisplay.DisplayName: Damage Per Second (Debuff)
 
 	CalendarInfoDisplay: {
 		DisplayName: Date

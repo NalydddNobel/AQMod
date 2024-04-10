@@ -11,6 +11,6 @@ public class Calendar : ModItem {
     }
 
     public override void UpdateInfoAccessory(Player player) {
-        player.GetModPlayer<AequusPlayer>().accDayCalendar = true;
+        player.GetModPlayer<AequusPlayer>().accInfoDayCalendar = true;
     }
 }

@@ -238,30 +238,6 @@
             <param name="projType">The projectile Id of the previously chosen golf ball.</param>
             <returns></returns>
         </member>
-        <member name="P:Aequus.Common.Items.AequusRecipes.AnyGoldBar">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for Gold Bar variants.</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.AequusRecipes.AnySilverBar">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for Silver Bar variants.</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.AequusRecipes.AnyCopperBar">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for Copper Bar variants.</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.AequusRecipes.AnyQuestFish">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for all IDs in <see cref="F:Terraria.Main.anglerQuestItemNetIDs"/>.</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.AequusRecipes.Shellphone">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for the Shellphone and its alternative modes.</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.AequusRecipes.AnyPaints">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for paints.</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.AequusRecipes.AnyCoatings">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for coatings.</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.AequusRecipes.AnyTrash">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for trash items.</summary>
-        </member>
         <member name="T:Aequus.Common.Items.Components.IManageProjectile">
             <summary>
             Allows the item to grant various effects to fired projectiles. All of these methods are not instanced, do NOT use <see cref="P:Terraria.ModLoader.ModItem.Item"/> data.
@@ -387,6 +363,30 @@
         </member>
         <member name="P:Aequus.Common.Items.ItemCommons.Price.YinYangLoot">
             <summary>10 Gold</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.AequusRecipes.AnyGoldBar">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for Gold Bar variants.</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.AequusRecipes.AnySilverBar">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for Silver Bar variants.</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.AequusRecipes.AnyCopperBar">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for Copper Bar variants.</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.AequusRecipes.AnyQuestFish">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for all IDs in <see cref="F:Terraria.Main.anglerQuestItemNetIDs"/>.</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.AequusRecipes.Shellphone">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for the Shellphone and its alternative modes.</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.AequusRecipes.AnyPaints">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for paints.</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.AequusRecipes.AnyCoatings">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for coatings.</summary>
+        </member>
+        <member name="P:Aequus.Common.Items.AequusRecipes.AnyTrash">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for trash items.</summary>
         </member>
         <member name="F:Aequus.Common.NPCs.AIJellyfish.shockRampUpDistance">
             <summary>
@@ -1087,6 +1087,11 @@
             <param name="Source">The Source of the gore, if null, defaults to <see cref="M:Terraria.Entity.GetSource_FromThis(System.String)"/>.</param>
             <param name="Scale">The Scale of the gore.</param>
         </member>
+        <member name="M:Aequus.Core.Utilities.ExtendItem.GetAllOverridesOfItemId(System.Int32)">
+            <summary>Returns all 'Overrides' of a specified item. (<see cref="F:Terraria.ID.ContentSamples.CreativeResearchItemPersistentIdOverride"/>)</summary>
+            <param name="itemId"></param>
+            <returns></returns>
+        </member>
         <member name="M:Aequus.Core.Utilities.ExtendItem.Transform(Terraria.Item,System.Int32)">
             <summary>Attempts to transform an item into a different item id, while preserving its positon, prefix, and stack</summary>
             <param name="item"></param>
@@ -1475,6 +1480,9 @@
             </summary>
             <typeparam name="TBannerNPC"></typeparam>
             <param name="npcWithoutBanner"></param>
+        </member>
+        <member name="T:Aequus.Core.Initialization.IPostSetupRecipes">
+            <summary>Runs after PostAddRecipes. Do not edit recipes here.</summary>
         </member>
         <member name="T:Aequus.Core.IO.IDLoader`1">
             <summary>Helper for loading content which uses a legacy Id system.</summary>
@@ -2404,8 +2412,8 @@
         <member name="F:Aequus.AequusTextures.GeigerCounter">
             <summary>Full Path: Content/Equipment/Informational/DebuffDPSMeter/GeigerCounter</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.GeigerCounterIcon">
-            <summary>Full Path: Content/Equipment/Informational/DebuffDPSMeter/GeigerCounterIcon</summary>
+        <member name="F:Aequus.AequusTextures.GeigerCounterInfoDisplay">
+            <summary>Full Path: Content/Equipment/Informational/DebuffDPSMeter/GeigerCounterInfoDisplay</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MonocleBuilderToggle">
             <summary>Full Path: Content/Equipment/Informational/Monocle/MonocleBuilderToggle</summary>
@@ -2793,24 +2801,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.BellowsProj">
             <summary>Full Path: Content/Tools/Bellows/BellowsProj</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhaseMirror">
-            <summary>Full Path: Content/Tools/MagicMirrors/PhaseMirror/PhaseMirror</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhasePhone">
-            <summary>Full Path: Content/Tools/MagicMirrors/PhasePhone/PhasePhone</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhasePhoneHome">
-            <summary>Full Path: Content/Tools/MagicMirrors/PhasePhone/PhasePhoneHome</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhasePhoneOcean">
-            <summary>Full Path: Content/Tools/MagicMirrors/PhasePhone/PhasePhoneOcean</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhasePhoneSpawn">
-            <summary>Full Path: Content/Tools/MagicMirrors/PhasePhone/PhasePhoneSpawn</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhasePhoneUnderworld">
-            <summary>Full Path: Content/Tools/MagicMirrors/PhasePhone/PhasePhoneUnderworld</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NameTag">
             <summary>Full Path: Content/Tools/NameTag/NameTag</summary>
@@ -3825,6 +3815,24 @@
         </member>
         <member name="F:Aequus.AequusTextures.PlanterBoxMorayItem">
             <summary>Full Path: Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxMorayItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhaseMirror">
+            <summary>Full Path: Old/Content/Tools/MagicMirrors/PhaseMirror/PhaseMirror</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhone">
+            <summary>Full Path: Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhone</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhoneHome">
+            <summary>Full Path: Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneHome</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhoneOcean">
+            <summary>Full Path: Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneOcean</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhoneSpawn">
+            <summary>Full Path: Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneSpawn</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhoneUnderworld">
+            <summary>Full Path: Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneUnderworld</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PhysicsGun">
             <summary>Full Path: Old/Content/Tools/PhysicsGun</summary>

@@ -1,15 +1,14 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Common.JourneyMode;
-using Aequus.Content.Tools.MagicMirrors.PhaseMirror;
 using Aequus.Core.ContentGeneration;
-using Microsoft.Xna.Framework;
+using Aequus.Old.Content.Tools.MagicMirrors.PhaseMirror;
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Localization;
 
-namespace Aequus.Content.Tools.MagicMirrors.PhasePhone;
+namespace Aequus.Old.Content.Tools.MagicMirrors.PhasePhone;
 
 [Autoload(false)]
 [FilterOverride(FilterFullfillment.Tools)]
@@ -98,21 +97,20 @@ internal class InstancedPhasePhone : InstancedModItem, IPhaseMirror, ITransformI
     public override void HoldItem(Player player) {
     }
 
-    // TODO: Make this support other modded info accessories which add their ingredients to the PDA.
     public override void UpdateInfoAccessory(Player player) {
         player.GetModPlayer<AequusPlayer>().infiniteWormhole = true;
-        player.accWatch = 3;
-        player.accCompass = 1;
-        player.accDepthMeter = 1;
-        player.accCalendar = true;
-        player.accDreamCatcher = true;
-        player.accFishFinder = true;
-        player.accJarOfSouls = true;
-        player.accOreFinder = true;
-        player.accStopwatch = true;
-        player.accThirdEye = true;
-        player.accWeatherRadio = true;
-        player.accCritterGuide = true;
+        //player.accWatch = 3;
+        //player.accCompass = 1;
+        //player.accDepthMeter = 1;
+        //player.accCalendar = true;
+        //player.accDreamCatcher = true;
+        //player.accFishFinder = true;
+        //player.accJarOfSouls = true;
+        //player.accOreFinder = true;
+        //player.accStopwatch = true;
+        //player.accThirdEye = true;
+        //player.accWeatherRadio = true;
+        //player.accCritterGuide = true;
     }
 
     public void Teleport(Player player, Item item, IPhaseMirror me) {
