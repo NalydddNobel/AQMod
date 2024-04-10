@@ -9,7 +9,7 @@ public class AmbientAudioSystem : ModSystem {
     private int _ambientAudioCooldown;
 
     private void handleRainInDebug(in SoundStyle style) {
-        SoundStyle realStyle = style with { Volume = 0.5f, Type = SoundType.Ambient };
+        SoundStyle realStyle = style with { Volume = 0.7f, Type = SoundType.Ambient };
         ActiveSound sound = SoundEngine.FindActiveSound(in realStyle);
         if (sound == null) {
             SoundEngine.PlaySound(realStyle);
