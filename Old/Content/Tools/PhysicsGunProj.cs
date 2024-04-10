@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Projectiles;
 using Aequus.Core.Networking;
 using Aequus.DataSets;
+using Aequus.Old.Content.Particles;
 using Aequus.Old.Core.Utilities;
 using System;
 using System.IO;
@@ -8,6 +9,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.GameContent.UI.Elements;
 using Terraria.Graphics.Shaders;
 using static tModPorter.ProgressUpdate;
 
@@ -29,6 +31,7 @@ public class PhysicsGunProj : HeldProjBase {
         Projectile.tileCollide = false;
         Projectile.ignoreWater = true;
         Projectile.netImportant = true;
+        Projectile.alpha = 200;
     }
 
     public override bool? CanDamage() {
@@ -39,12 +42,8 @@ public class PhysicsGunProj : HeldProjBase {
         if (!realBlock || Main.myPlayer != Projectile.owner) {
             return;
         }
-        var player = Main.player[Projectile.owner];
-        for (int k = 0; k < 50; k++) {
-            if (!player.inventory[k].IsAir && player.inventory[k].ModItem is PhysicsGun) {
-                player.inventory[k].pick = 35;
-            }
-        }
+
+        PhysGunPickaxePowerHack(ContentSamples.ItemsByType[ItemID.CopperPickaxe].pick);
 
         Point tileCoords = Projectile.Center.ToTileCoordinates();
         Tile tile = Main.tile[tileCoords];
@@ -66,11 +65,7 @@ public class PhysicsGunProj : HeldProjBase {
             }
         }
 
-        for (int k = 0; k < Main.InventoryItemSlotsCount; k++) {
-            if (!player.inventory[k].IsAir && player.inventory[k].ModItem is PhysicsGun) {
-                player.inventory[k].pick = 0;
-            }
-        }
+        PhysGunPickaxePowerHack(0);
     }
 
     public override void AI() {
@@ -90,6 +85,7 @@ public class PhysicsGunProj : HeldProjBase {
         var player = Main.player[Projectile.owner];
         if ((int)Projectile.ai[1] == 3) {
             if (CheckEmancipationGrills()) {
+                EmancipationGrillEffects();
                 return;
             }
             Projectile.velocity.Y += 0.03f;
@@ -107,8 +103,9 @@ public class PhysicsGunProj : HeldProjBase {
             mouseColor = Main.mouseColor;
         }
         if (mouseColor == Color.Transparent) {
-            if (Main.myPlayer == Projectile.owner)
+            if (Main.myPlayer == Projectile.owner) {
                 Projectile.netUpdate = true;
+            }
 
             mouseColor = Color.White;
         }
@@ -146,14 +143,17 @@ public class PhysicsGunProj : HeldProjBase {
 
         if ((int)Projectile.ai[1] == 2) {
             if (CheckEmancipationGrills()) {
+                EmancipationGrillEffects();
                 return;
             }
 
             Projectile.tileCollide = true;
-            var localMouseWorld = mouseWorld;
+            Vector2 localMouseWorld = mouseWorld;
             player.LimitPointToPlayerReachableArea(ref localMouseWorld);
-            var difference = localMouseWorld - Projectile.Center;
+            Vector2 difference = localMouseWorld - Projectile.Center;
+
             Projectile.velocity = difference * 0.3f;
+
             if (Main.myPlayer == Projectile.owner) {
                 if (Main.mouseRight && Main.mouseRightRelease) {
                     PlaceTile();
@@ -168,70 +168,183 @@ public class PhysicsGunProj : HeldProjBase {
             return;
         }
 
-        var oldVelocity = Projectile.velocity;
+        Vector2 oldVelocity = Projectile.velocity;
         Projectile.velocity = Vector2.Normalize(mouseWorld - Main.player[Projectile.owner].Center);
         if (Main.myPlayer == Projectile.owner) {
-            if (oldVelocity.X != Projectile.velocity.X || oldVelocity.Y != Projectile.velocity.Y)
+            if (oldVelocity.X != Projectile.velocity.X || oldVelocity.Y != Projectile.velocity.Y) {
                 Projectile.netUpdate = true;
+            }
+
             Projectile.Center = Main.player[Projectile.owner].Center;
         }
 
-        var checkCoords = Projectile.Center;
-        for (int k = 0; k < 50; k++) {
-            if (!player.inventory[k].IsAir && player.inventory[k].ModItem is PhysicsGun) {
-                player.inventory[k].pick = 35;
+        if (Projectile.alpha > 0) {
+            Projectile.alpha -= 70;
+            if (Projectile.alpha < 0) {
+                Projectile.alpha = 0;
             }
         }
 
+        ShootLaser();
+
+        SetArmRotation();
+        GunLight();
+    }
+
+    protected void ShootLaser() {
+        Player player = Main.player[Projectile.owner];
+
+        PhysGunPickaxePowerHack(ContentSamples.ItemsByType[ItemID.CopperPickaxe].pick);
+
+        Vector2 checkCoords = Projectile.Center;
         for (int i = 0; i < 300; i++) {
-            var old = checkCoords;
+            Vector2 oldCheckCoords = checkCoords;
             player.LimitPointToPlayerReachableArea(ref checkCoords);
-            if (old.X != checkCoords.X || old.Y != checkCoords.Y) {
+            if (oldCheckCoords.X != checkCoords.X || oldCheckCoords.Y != checkCoords.Y) {
                 break;
             }
 
-            var checkTileCoords = checkCoords.ToTileCoordinates();
-            bool inWorld = WorldGen.InWorld(checkTileCoords.X, checkTileCoords.Y, 10);
-            if (inWorld) {
-                Tile tile = Main.tile[checkTileCoords];
-                ushort tileType = tile.TileType;
-                if (tile.HasTile) {
-                    if (TileDataSet.PhysicsGunBlocksLaser.Contains(tileType)) {
-                        break;
-                    }
-
-                    if (Main.tile[checkTileCoords].IsFullySolid() && !Main.tileFrameImportant[tileType]) {
-                        if (TileDataSet.PhysicsGunCannotPickUp.Contains(tileType) || !player.HasEnoughPickPowerToHurtTile(checkTileCoords.X, checkTileCoords.Y) || !WorldGen.CanKillTile(checkTileCoords.X, checkTileCoords.Y)) {
-                            break;
-                        }
-
-                        Projectile.ai[0] = Main.tile[checkTileCoords].TileType;
-                        Projectile.ai[1] = 2f;
-                        WorldGen.KillTile(checkTileCoords.X, checkTileCoords.Y, noItem: true);
-                        if (Main.netMode != NetmodeID.SinglePlayer) {
-                            if (Main.myPlayer == player.whoAmI) {
-                                Aequus.GetPacket<PhysicsGunPickupBlockPacket>().Send(player.whoAmI, checkTileCoords.X, checkTileCoords.Y);
-                            }
-                            break;
-                        }
-
-                        realBlock = true;
-                        break;
-                    }
-                }
+            Point checkTileCoords = checkCoords.ToTileCoordinates();
+            if (!WorldGen.InWorld(checkTileCoords.X, checkTileCoords.Y, 10)) {
+                break;
             }
+
+            if (!StepLaser2(checkCoords, checkTileCoords, out realBlock)) {
+                break;
+            }
+
             checkCoords += Projectile.velocity * 4f;
         }
 
-        for (int k = 0; k < 50; k++) {
-            if (!player.inventory[k].IsAir && player.inventory[k].ModItem is PhysicsGun) {
-                player.inventory[k].pick = 0;
+        PhysGunPickaxePowerHack(0);
+
+        Projectile.Center = checkCoords;
+
+        if (Projectile.alpha < 100) {
+            Vector2 oldPosition = Projectile.oldPosition;
+            Vector2 position = Projectile.position;
+
+            float speed = 9f;
+            float dustScaleThreshold = speed * 6f;
+            Vector2 normal = Utils.SafeNormalize(oldPosition - position, Vector2.Zero);
+
+            float distance = Vector2.Distance(position, oldPosition);
+
+            float travel = 0f;
+            do {
+                Vector2 dustCoordinates = position + normal * travel;
+                int dustType = Main.rand.NextBool(8) ? ModContent.DustType<MonoSparkleDust>() : ModContent.DustType<MonoDust>();
+
+                float scale = 0.75f;
+
+                if (travel < dustScaleThreshold) {
+                    scale += (1f - travel / dustScaleThreshold) * 0.75f;
+                }
+
+                Dust d = Dust.NewDustPerfect(dustCoordinates, dustType, newColor: mouseColor with { A = 30 } * scale, Scale: scale);
+                d.velocity *= 0.5f;
+                d.velocity += normal * 0.1f;
+                d.fadeIn = d.scale + 0.33f;
+
+                travel += speed;
+            }
+            while (travel < distance);
+
+        }
+    }
+
+    protected bool StepLaser2(Vector2 position, Point xy, out bool realBlock) {
+        Tile tile = Main.tile[xy];
+        ushort tileType = tile.TileType;
+        Player player = Main.player[Projectile.owner];
+
+        realBlock = false;
+
+        // Shimmer Blocks the physics gun laser
+        if (tile.LiquidAmount > 0 && tile.LiquidType == LiquidID.Shimmer) {
+            if (position.Y % 16f > (255 - tile.LiquidAmount) / 255f * 16f) {
+                return false;
             }
         }
 
-        Projectile.Center = checkCoords;
-        SetArmRotation();
-        GunLight();
+        if (tile.HasTile) {
+            if (TileDataSet.PhysicsGunBlocksLaser.Contains(tileType)) {
+                return false;
+            }
+
+            if (tile.IsFullySolid() && !Main.tileFrameImportant[tileType]) {
+                if (TileDataSet.PhysicsGunCannotPickUp.Contains(tileType) || !player.HasEnoughPickPowerToHurtTile(xy.X, xy.Y) || !WorldGen.CanKillTile(xy.X, xy.Y)) {
+                    return false;
+                }
+
+                Projectile.ai[0] = Main.tile[xy].TileType;
+                Projectile.ai[1] = 2f;
+
+                WorldGen.KillTile(xy.X, xy.Y, noItem: true);
+
+                if (Main.netMode != NetmodeID.SinglePlayer) {
+                    if (Main.myPlayer == Projectile.owner) {
+                        Aequus.GetPacket<PhysicsGunPickupBlockPacket>().Send(Projectile.owner, xy.X, xy.Y);
+                    }
+                    return false;
+                }
+
+                realBlock = true;
+                return false;
+            }
+        }
+
+        return true;
+    }
+    protected bool StepLaser(Point xy, out bool realBlock) {
+        Tile tile = Main.tile[xy];
+        ushort tileType = tile.TileType;
+        Player player = Main.player[Projectile.owner];
+
+        realBlock = false;
+
+        // Shimmer Blocks the physics gun laser
+        if (tile.LiquidAmount > 0 && tile.LiquidType == LiquidID.Shimmer) {
+            return false;
+        }
+
+        if (tile.HasTile) {
+            if (TileDataSet.PhysicsGunBlocksLaser.Contains(tileType)) {
+                return false;
+            }
+
+            if (tile.IsFullySolid() && !Main.tileFrameImportant[tileType]) {
+                if (TileDataSet.PhysicsGunCannotPickUp.Contains(tileType) || !player.HasEnoughPickPowerToHurtTile(xy.X, xy.Y) || !WorldGen.CanKillTile(xy.X, xy.Y)) {
+                    return false;
+                }
+
+                Projectile.ai[0] = Main.tile[xy].TileType;
+                Projectile.ai[1] = 2f;
+
+                WorldGen.KillTile(xy.X, xy.Y, noItem: true);
+
+                if (Main.netMode != NetmodeID.SinglePlayer) {
+                    if (Main.myPlayer == Projectile.owner) {
+                        Aequus.GetPacket<PhysicsGunPickupBlockPacket>().Send(Projectile.owner, xy.X, xy.Y);
+                    }
+                    return false;
+                }
+
+                realBlock = true;
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    protected void PhysGunPickaxePowerHack(int pickaxePower) {
+        Player player = Main.player[Projectile.owner];
+        for (int k = 0; k < Main.InventoryItemSlotsCount; k++) {
+            if (!player.inventory[k].IsAir && player.inventory[k].ModItem is PhysicsGun) {
+                player.inventory[k].pick = pickaxePower;
+            }
+        }
     }
 
     public bool CheckEmancipationGrills() {
@@ -242,23 +355,31 @@ public class PhysicsGunProj : HeldProjBase {
         for (int i = 0; i < checkLength; i++) {
             var checkTileCoords = checkCoords.ToTileCoordinates();
             if (WorldGen.InWorld(checkTileCoords.X, checkTileCoords.Y, 10)) {
+                Tile tile = Main.tile[checkTileCoords];
+                if (tile.LiquidAmount > 0 && tile.LiquidType == LiquidID.Shimmer) {
+                    return true;
+                }
+
                 //if (Main.tile[checkTileCoords].HasTile && !Main.tile[checkTileCoords].IsActuated && Main.tile[checkTileCoords].TileType == ModContent.TileType<EmancipationGrillTile>()) {
-                //    Projectile.ai[1] = 4f;
-                //    Projectile.velocity *= Projectile.extraUpdates + 1;
-                //    Projectile.velocity /= 4f;
-                //    Projectile.timeLeft = 120;
-                //    if (Projectile.velocity.Length() > 2f) {
-                //        Projectile.velocity.Normalize();
-                //        Projectile.velocity *= 2f;
-                //    }
-                //    Projectile.netUpdate = true;
-                //    SoundEngine.PlaySound(SoundID.Item122 with { Volume = 0.33f, Pitch = 0.8f }, Projectile.Center);
                 //    return true;
                 //}
             }
             checkCoords += velocity * 4f;
         }
         return false;
+    }
+
+    public void EmancipationGrillEffects() {
+        Projectile.ai[1] = 4f;
+        Projectile.velocity *= Projectile.extraUpdates + 1;
+        Projectile.velocity /= 4f;
+        Projectile.timeLeft = 120;
+        if (Projectile.velocity.Length() > 2f) {
+            Projectile.velocity.Normalize();
+            Projectile.velocity *= 2f;
+        }
+        Projectile.netUpdate = true;
+        SoundEngine.PlaySound(SoundID.Item122 with { Volume = 0.33f, Pitch = 0.8f }, Projectile.Center);
     }
 
     public void GunLight() {

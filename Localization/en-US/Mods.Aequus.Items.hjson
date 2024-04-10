@@ -157,7 +157,7 @@ HighSteaks: {
 	DisplayName: High Steaks
 	Tooltip:
 		'''
-		increased critical strike damage by {0}%
+		Increased critical strike damage by {0}%
 		{1}
 		'''
 	Downside: "{v}However, you pay {Price} upon crit"
@@ -268,14 +268,9 @@ Pacemaker: {
 }
 
 //# Equipment: Informational
-AnglerBroadcaster: {
-	DisplayName: Angler Broadcaster
-	Tooltip: Displays the current Angler quest
-}
-
-HoloLens: {
-	DisplayName: Holo Lens
-	Tooltip: Allows you to view the contents of chests without opening them
+GeigerCounter: {
+	DisplayName: Geiger Counter
+	Tooltip: Displays the damage per second from debuffs
 }
 
 ShimmerMonocle: {
@@ -290,7 +285,17 @@ RichMansMonocle: {
 
 Calendar: {
 	DisplayName: Calendar
-	Tooltip: Shows you the date
+	Tooltip: Displays information about the date
+}
+
+AnglerBroadcaster: {
+	DisplayName: Angler Broadcaster
+	Tooltip: Displays the current Angler quest
+}
+
+HoloLens: {
+	DisplayName: Holo Lens
+	Tooltip: Allows you to view the contents of chests without opening them
 }
 
 //# Equipment: Armor

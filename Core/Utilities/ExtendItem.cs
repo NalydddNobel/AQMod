@@ -1,8 +1,28 @@
-﻿using Terraria.DataStructures;
+﻿using System.Collections.Generic;
+using Terraria.DataStructures;
 
 namespace Aequus.Core.Utilities;
 
 public static class ExtendItem {
+    /// <summary>Returns all 'Overrides' of a specified item. (<see cref="ContentSamples.CreativeResearchItemPersistentIdOverride"/>)</summary>
+    /// <param name="itemId"></param>
+    /// <returns></returns>
+    public static IEnumerable<int> GetAllOverridesOfItemId(int itemId) {
+        yield return itemId;
+
+        foreach (var i in ContentSamples.CreativeResearchItemPersistentIdOverride) {
+            if (i.Value == itemId) {
+                yield return i.Key;
+            }
+        }
+
+        if (ContentSamples.CreativeResearchItemPersistentIdOverride.TryGetValue(itemId, out int myAlt) && itemId != myAlt) {
+            foreach (var i in GetAllOverridesOfItemId(myAlt)) {
+                yield return i;
+            }
+        }
+    }
+
     /// <summary>Attempts to transform an item into a different item id, while preserving its positon, prefix, and stack</summary>
     /// <param name="item"></param>
     /// <param name="newType"></param>

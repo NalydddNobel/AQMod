@@ -1,13 +1,15 @@
 InfoDisplays: {
-	AnglerBroadcasterIcon: {
-		DisplayName: Fish Quest
-		Unavailable: Unavailable
-		Finished: Finished
-	}
+	GeigerCounterInfoDisplay.DisplayName: Damage Per Second (Debuff)
 
 	CalendarInfoDisplay: {
 		DisplayName: Date
 		Tooltip: "{0} (Day {1})"
+	}
+
+	AnglerBroadcasterIcon: {
+		DisplayName: Fish Quest
+		Unavailable: Unavailable
+		Finished: Finished
 	}
 }
 

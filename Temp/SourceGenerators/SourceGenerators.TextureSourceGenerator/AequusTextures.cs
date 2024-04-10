@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 731)</summary>
+/// <summary>(Total Textures: 736)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -365,20 +365,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> GoldenWindBuff = new("Aequus/Content/Equipment/Accessories/GoldenFeather/GoldenWindBuff");
     /// <summary>Full Path: Content/Equipment/Accessories/GrandReward/GrandReward</summary>
     public static readonly RequestCache<Texture2D> GrandReward = new("Aequus/Content/Equipment/Accessories/GrandReward/GrandReward");
-    /// <summary>Full Path: Content/Equipment/Accessories/Informational/Calendar/Calendar</summary>
-    public static readonly RequestCache<Texture2D> Calendar = new("Aequus/Content/Equipment/Accessories/Informational/Calendar/Calendar");
-    /// <summary>Full Path: Content/Equipment/Accessories/Informational/Calendar/CalendarInfoDisplay</summary>
-    public static readonly RequestCache<Texture2D> CalendarInfoDisplay = new("Aequus/Content/Equipment/Accessories/Informational/Calendar/CalendarInfoDisplay");
-    /// <summary>Full Path: Content/Equipment/Accessories/Informational/Calendar/CalendarTile</summary>
-    public static readonly RequestCache<Texture2D> CalendarTile = new("Aequus/Content/Equipment/Accessories/Informational/Calendar/CalendarTile");
-    /// <summary>Full Path: Content/Equipment/Accessories/Informational/Monocle/MonocleBuilderToggle</summary>
-    public static readonly RequestCache<Texture2D> MonocleBuilderToggle = new("Aequus/Content/Equipment/Accessories/Informational/Monocle/MonocleBuilderToggle");
-    /// <summary>Full Path: Content/Equipment/Accessories/Informational/Monocle/RichMansMonocle</summary>
-    public static readonly RequestCache<Texture2D> RichMansMonocle = new("Aequus/Content/Equipment/Accessories/Informational/Monocle/RichMansMonocle");
-    /// <summary>Full Path: Content/Equipment/Accessories/Informational/Monocle/ShimmerMonocle</summary>
-    public static readonly RequestCache<Texture2D> ShimmerMonocle = new("Aequus/Content/Equipment/Accessories/Informational/Monocle/ShimmerMonocle");
-    /// <summary>Full Path: Content/Equipment/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
-    public static readonly RequestCache<Texture2D> ShimmerMonocleBuilderToggle = new("Aequus/Content/Equipment/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle");
     /// <summary>Full Path: Content/Equipment/Accessories/ScavengerBag/ScavengerBag</summary>
     public static readonly RequestCache<Texture2D> ScavengerBag = new("Aequus/Content/Equipment/Accessories/ScavengerBag/ScavengerBag");
     /// <summary>Full Path: Content/Equipment/Accessories/ScavengerBag/ScavengerBagBuilderToggle</summary>
@@ -407,6 +393,24 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ConeHelmet_2_Head = new("Aequus/Content/Equipment/Armor/MiscHelmets/ConeHelmet_2_Head");
     /// <summary>Full Path: Content/Equipment/Armor/MiscHelmets/ConeHelmet_Head</summary>
     public static readonly RequestCache<Texture2D> ConeHelmet_Head = new("Aequus/Content/Equipment/Armor/MiscHelmets/ConeHelmet_Head");
+    /// <summary>Full Path: Content/Equipment/Informational/Calendar/Calendar</summary>
+    public static readonly RequestCache<Texture2D> Calendar = new("Aequus/Content/Equipment/Informational/Calendar/Calendar");
+    /// <summary>Full Path: Content/Equipment/Informational/Calendar/CalendarInfoDisplay</summary>
+    public static readonly RequestCache<Texture2D> CalendarInfoDisplay = new("Aequus/Content/Equipment/Informational/Calendar/CalendarInfoDisplay");
+    /// <summary>Full Path: Content/Equipment/Informational/Calendar/CalendarTile</summary>
+    public static readonly RequestCache<Texture2D> CalendarTile = new("Aequus/Content/Equipment/Informational/Calendar/CalendarTile");
+    /// <summary>Full Path: Content/Equipment/Informational/DebuffDPSMeter/GeigerCounter</summary>
+    public static readonly RequestCache<Texture2D> GeigerCounter = new("Aequus/Content/Equipment/Informational/DebuffDPSMeter/GeigerCounter");
+    /// <summary>Full Path: Content/Equipment/Informational/DebuffDPSMeter/GeigerCounterInfoDisplay</summary>
+    public static readonly RequestCache<Texture2D> GeigerCounterInfoDisplay = new("Aequus/Content/Equipment/Informational/DebuffDPSMeter/GeigerCounterInfoDisplay");
+    /// <summary>Full Path: Content/Equipment/Informational/Monocle/MonocleBuilderToggle</summary>
+    public static readonly RequestCache<Texture2D> MonocleBuilderToggle = new("Aequus/Content/Equipment/Informational/Monocle/MonocleBuilderToggle");
+    /// <summary>Full Path: Content/Equipment/Informational/Monocle/RichMansMonocle</summary>
+    public static readonly RequestCache<Texture2D> RichMansMonocle = new("Aequus/Content/Equipment/Informational/Monocle/RichMansMonocle");
+    /// <summary>Full Path: Content/Equipment/Informational/Monocle/ShimmerMonocle</summary>
+    public static readonly RequestCache<Texture2D> ShimmerMonocle = new("Aequus/Content/Equipment/Informational/Monocle/ShimmerMonocle");
+    /// <summary>Full Path: Content/Equipment/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
+    public static readonly RequestCache<Texture2D> ShimmerMonocleBuilderToggle = new("Aequus/Content/Equipment/Informational/Monocle/ShimmerMonocleBuilderToggle");
     /// <summary>Full Path: Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
     public static readonly RequestCache<Texture2D> HotAirBalloonBuff = new("Aequus/Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonBuff");
     /// <summary>Full Path: Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonItem</summary>
@@ -565,6 +569,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SeaPickles1x2 = new("Aequus/Content/Tiles/PollutedOcean/Ambient/SeaPickles/SeaPickles1x2");
     /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/SeaPickles/SeaPickles2x2</summary>
     public static readonly RequestCache<Texture2D> SeaPickles2x2 = new("Aequus/Content/Tiles/PollutedOcean/Ambient/SeaPickles/SeaPickles2x2");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Television/BrokenTelevision</summary>
+    public static readonly RequestCache<Texture2D> BrokenTelevision = new("Aequus/Content/Tiles/PollutedOcean/Ambient/Television/BrokenTelevision");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Television/Television</summary>
+    public static readonly RequestCache<Texture2D> Television = new("Aequus/Content/Tiles/PollutedOcean/Ambient/Television/Television");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Television/TelevisionItem</summary>
+    public static readonly RequestCache<Texture2D> TelevisionItem = new("Aequus/Content/Tiles/PollutedOcean/Ambient/Television/TelevisionItem");
     /// <summary>Full Path: Content/Tiles/PollutedOcean/PolymerSands/PolymerSand</summary>
     public static readonly RequestCache<Texture2D> PolymerSand = new("Aequus/Content/Tiles/PollutedOcean/PolymerSands/PolymerSand");
     /// <summary>Full Path: Content/Tiles/PollutedOcean/PolymerSands/PolymerSandFalling</summary>
@@ -651,18 +661,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Bellows = new("Aequus/Content/Tools/Bellows/Bellows");
     /// <summary>Full Path: Content/Tools/Bellows/BellowsProj</summary>
     public static readonly RequestCache<Texture2D> BellowsProj = new("Aequus/Content/Tools/Bellows/BellowsProj");
-    /// <summary>Full Path: Content/Tools/MagicMirrors/PhaseMirror/PhaseMirror</summary>
-    public static readonly RequestCache<Texture2D> PhaseMirror = new("Aequus/Content/Tools/MagicMirrors/PhaseMirror/PhaseMirror");
-    /// <summary>Full Path: Content/Tools/MagicMirrors/PhasePhone/PhasePhone</summary>
-    public static readonly RequestCache<Texture2D> PhasePhone = new("Aequus/Content/Tools/MagicMirrors/PhasePhone/PhasePhone");
-    /// <summary>Full Path: Content/Tools/MagicMirrors/PhasePhone/PhasePhoneHome</summary>
-    public static readonly RequestCache<Texture2D> PhasePhoneHome = new("Aequus/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneHome");
-    /// <summary>Full Path: Content/Tools/MagicMirrors/PhasePhone/PhasePhoneOcean</summary>
-    public static readonly RequestCache<Texture2D> PhasePhoneOcean = new("Aequus/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneOcean");
-    /// <summary>Full Path: Content/Tools/MagicMirrors/PhasePhone/PhasePhoneSpawn</summary>
-    public static readonly RequestCache<Texture2D> PhasePhoneSpawn = new("Aequus/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneSpawn");
-    /// <summary>Full Path: Content/Tools/MagicMirrors/PhasePhone/PhasePhoneUnderworld</summary>
-    public static readonly RequestCache<Texture2D> PhasePhoneUnderworld = new("Aequus/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneUnderworld");
     /// <summary>Full Path: Content/Tools/NameTag/NameTag</summary>
     public static readonly RequestCache<Texture2D> NameTag = new("Aequus/Content/Tools/NameTag/NameTag");
     /// <summary>Full Path: Content/Tools/NameTag/NameTagBlank</summary>
@@ -983,10 +981,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> HighSteaks_Waist = new("Aequus/Old/Content/Equipment/Accessories/HighSteaks/HighSteaks_Waist");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/HoloLens/HoloLens</summary>
     public static readonly RequestCache<Texture2D> HoloLens = new("Aequus/Old/Content/Equipment/Accessories/HoloLens/HoloLens");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/Info/AnglerBroadcaster</summary>
-    public static readonly RequestCache<Texture2D> AnglerBroadcaster = new("Aequus/Old/Content/Equipment/Accessories/Info/AnglerBroadcaster");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/Info/AnglerBroadcasterIcon</summary>
-    public static readonly RequestCache<Texture2D> AnglerBroadcasterIcon = new("Aequus/Old/Content/Equipment/Accessories/Info/AnglerBroadcasterIcon");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/LaserScope/LaserReticle</summary>
     public static readonly RequestCache<Texture2D> LaserReticle = new("Aequus/Old/Content/Equipment/Accessories/LaserScope/LaserReticle");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/LaserScope/LaserReticle_Glow</summary>
@@ -1029,6 +1023,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> LeechHookProj = new("Aequus/Old/Content/Equipment/GrapplingHooks/HealingGrappleHook/LeechHookProj");
     /// <summary>Full Path: Old/Content/Equipment/GrapplingHooks/HealingGrappleHook/LeechHookProj_Chain</summary>
     public static readonly RequestCache<Texture2D> LeechHookProj_Chain = new("Aequus/Old/Content/Equipment/GrapplingHooks/HealingGrappleHook/LeechHookProj_Chain");
+    /// <summary>Full Path: Old/Content/Equipment/Info/AnglerBroadcaster</summary>
+    public static readonly RequestCache<Texture2D> AnglerBroadcaster = new("Aequus/Old/Content/Equipment/Info/AnglerBroadcaster");
+    /// <summary>Full Path: Old/Content/Equipment/Info/AnglerBroadcasterIcon</summary>
+    public static readonly RequestCache<Texture2D> AnglerBroadcasterIcon = new("Aequus/Old/Content/Equipment/Info/AnglerBroadcasterIcon");
     /// <summary>Full Path: Old/Content/Events/DemonSiege/Spawners/UnholyCore</summary>
     public static readonly RequestCache<Texture2D> UnholyCore = new("Aequus/Old/Content/Events/DemonSiege/Spawners/UnholyCore");
     /// <summary>Full Path: Old/Content/Events/DemonSiege/Spawners/UnholyCoreSmall</summary>
@@ -1339,6 +1337,18 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> PlanterBoxMoonflowerItem = new("Aequus/Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxMoonflowerItem");
     /// <summary>Full Path: Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxMorayItem</summary>
     public static readonly RequestCache<Texture2D> PlanterBoxMorayItem = new("Aequus/Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxMorayItem");
+    /// <summary>Full Path: Old/Content/Tools/MagicMirrors/PhaseMirror/PhaseMirror</summary>
+    public static readonly RequestCache<Texture2D> PhaseMirror = new("Aequus/Old/Content/Tools/MagicMirrors/PhaseMirror/PhaseMirror");
+    /// <summary>Full Path: Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhone</summary>
+    public static readonly RequestCache<Texture2D> PhasePhone = new("Aequus/Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhone");
+    /// <summary>Full Path: Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneHome</summary>
+    public static readonly RequestCache<Texture2D> PhasePhoneHome = new("Aequus/Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneHome");
+    /// <summary>Full Path: Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneOcean</summary>
+    public static readonly RequestCache<Texture2D> PhasePhoneOcean = new("Aequus/Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneOcean");
+    /// <summary>Full Path: Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneSpawn</summary>
+    public static readonly RequestCache<Texture2D> PhasePhoneSpawn = new("Aequus/Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneSpawn");
+    /// <summary>Full Path: Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneUnderworld</summary>
+    public static readonly RequestCache<Texture2D> PhasePhoneUnderworld = new("Aequus/Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneUnderworld");
     /// <summary>Full Path: Old/Content/Tools/PhysicsGun</summary>
     public static readonly RequestCache<Texture2D> PhysicsGun = new("Aequus/Old/Content/Tools/PhysicsGun");
     /// <summary>Full Path: Old/Content/Tools/PhysicsGunProj</summary>

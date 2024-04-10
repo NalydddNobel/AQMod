@@ -268,14 +268,9 @@ Pacemaker: {
 }
 
 //# Equipment: Informational
-AnglerBroadcaster: {
-	DisplayName: 渔夫广播
-	Tooltip: 显示当前渔夫任务
-}
-
-HoloLens: {
-	DisplayName: 全息透镜
-	Tooltip: 允许你在不打开箱子的情况下查看箱中的内容
+GeigerCounter: {
+	DisplayName: 盖革计数器
+	Tooltip: 显示每秒造成的持续伤害
 }
 
 ShimmerMonocle: {
@@ -290,7 +285,17 @@ RichMansMonocle: {
 
 Calendar: {
 	DisplayName: 日历
-	Tooltip: 显示日期
+	Tooltip: 显示关于日期的信息
+}
+
+AnglerBroadcaster: {
+	DisplayName: 渔夫广播
+	Tooltip: 显示当前渔夫任务
+}
+
+HoloLens: {
+	DisplayName: 全息透镜
+	Tooltip: 允许你在不打开箱子的情况下查看箱中的内容
 }
 
 //# Equipment: Armor

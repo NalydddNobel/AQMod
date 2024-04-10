@@ -54,5 +54,14 @@ ShadowMimics: {
 
 HardmodeMimics: {
 	// Label: "[i:Aequus/HardFrozenChest] Hardmode Mimics"
-	// Tooltip: Whether Aequus' special Hardmode Mimics should appear, replacing regular Mimics. This config does nothing if "{$GameplayConfig.HardmodeChests}" is false.
+	// Tooltip: Whether Aequus' special Hardmode Mimics should appear, replacing regular Mimics. This config does nothing if "{$GameplayConfig.HardmodeChests.Label}" is false.
+}
+
+PDAGetsAequusItems: {
+	// Label: "[i:PDA] Aequus PDA"
+	/* Tooltip:
+		'''
+		Whether Aequus' new Info Accessories should be added to the PDA and upgrades.
+		Any items which use the PDA or upgrades in their recipes will automatically inherit Aequus' info accessories.
+		''' */
 }

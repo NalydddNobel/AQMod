@@ -54,5 +54,14 @@ ShadowMimics: {
 
 HardmodeMimics: {
 	Label: "[i:Aequus/HardFrozenChest] 困难模式宝箱怪"
-	Tooltip: 决定Aequus的特殊困难模式宝箱怪是否会生成, 替代普通宝箱怪. 在"{$GameplayConfig.HardmodeChests}"为False时, 此配置不生效.
+	Tooltip: 决定Aequus的特殊困难模式宝箱怪是否会生成, 替代普通宝箱怪. 在"{$GameplayConfig.HardmodeChests.Label}"为False时, 此配置不生效.
+}
+
+PDAGetsAequusItems: {
+	// Label: "[i:PDA] Aequus PDA"
+	/* Tooltip:
+		'''
+		Whether Aequus' new Info Accessories should be added to the PDA and upgrades.
+		Any items which use the PDA or upgrades in their recipes will automatically inherit Aequus' info accessories.
+		''' */
 }

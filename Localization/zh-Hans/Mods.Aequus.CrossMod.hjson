@@ -65,7 +65,7 @@ Split: {
 		}
 
 		GlimmerEnvelope: {
-			DisplayName: 被污染的海洋信封
+			DisplayName: 流星信封
 			Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 		}
 	}

@@ -6,6 +6,13 @@ using System.Reflection;
 namespace Aequus.Core.Utilities;
 
 public static class ReflectionHelper {
+    public static bool HasAttribute<T>(this object instance) where T : Attribute {
+        return instance?.GetType()?.GetCustomAttribute<T>() != null;
+    }
+    public static bool HasAttribute<TType, TAttribute>() where TAttribute : Attribute {
+        return typeof(TType).GetCustomAttribute<TAttribute>() != null;
+    }
+
     /// <returns>Returns all constant fields from <paramref name="obj"/>'s <see cref="Type"/>.</returns>
     /// <exception cref="ArgumentNullException"></exception>
     public static IEnumerable<FieldInfo> GetConstantFields(this object obj, BindingFlags flags = BindingFlags.Public) {

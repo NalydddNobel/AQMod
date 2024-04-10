@@ -14,6 +14,8 @@ public partial class TerrariaHooks : ILoad {
 
         On_GolfHelper.StepGolfBall += On_GolfHelper_StepGolfBall;
 
+        On_Item.CanHavePrefixes += Item_CanHavePrefixes;
+
         On_ItemSlot.PickItemMovementAction += On_ItemSlot_PickItemMovementAction;
         On_ItemSlot.RightClick_ItemArray_int_int += ItemSlot_RightClick;
 

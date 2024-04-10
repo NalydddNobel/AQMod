@@ -69,4 +69,10 @@ internal sealed class AutoloadSystem : ModSystem {
             t.PostAddRecipes(Aequus.Instance);
         }
     }
+
+    public override void PostSetupRecipes() {
+        foreach (var t in Aequus.Instance.GetContent<IPostSetupRecipes>()) {
+            t.PostSetupRecipes(Aequus.Instance);
+        }
+    }
 }
