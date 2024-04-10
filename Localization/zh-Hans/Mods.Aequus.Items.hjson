@@ -268,14 +268,9 @@ Pacemaker: {
 }
 
 //# Equipment: Informational
-AnglerBroadcaster: {
-	DisplayName: 渔夫广播
-	Tooltip: 显示当前渔夫任务
-}
-
-HoloLens: {
-	DisplayName: 全息透镜
-	Tooltip: 允许你在不打开箱子的情况下查看箱中的内容
+GeigerCounter: {
+	// DisplayName: Geiger Counter
+	// Tooltip: Displays the damage per second from debuffs
 }
 
 ShimmerMonocle: {
@@ -291,6 +286,16 @@ RichMansMonocle: {
 Calendar: {
 	DisplayName: 日历
 	Tooltip: 显示日期
+}
+
+AnglerBroadcaster: {
+	DisplayName: 渔夫广播
+	Tooltip: 显示当前渔夫任务
+}
+
+HoloLens: {
+	DisplayName: 全息透镜
+	Tooltip: 允许你在不打开箱子的情况下查看箱中的内容
 }
 
 //# Equipment: Armor
@@ -982,9 +987,4 @@ StariteMaterial: {
 UnopenedChestItem: {
 	DisplayName: 未开启的宝箱物品
 	Tooltip: 这是Debug物品, 将其放置在世界生成的宝箱内以检测其是否被开启过
-}
-
-GeigerCounter: {
-	// DisplayName: Geiger Counter
-	// Tooltip: ""
 }

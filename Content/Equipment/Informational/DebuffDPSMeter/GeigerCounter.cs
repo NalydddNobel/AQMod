@@ -12,7 +12,7 @@ public class GeigerCounter : ModItem {
     }
 }
 
-public class GeigerCounterIcon : InfoDisplay {
+public class GeigerCounterInfoDisplay : InfoDisplay {
     public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor) {
         int dps = GetDPS(Main.myPlayer);
 

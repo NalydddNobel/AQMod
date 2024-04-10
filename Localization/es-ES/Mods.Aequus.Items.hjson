@@ -268,14 +268,9 @@ Pacemaker: {
 }
 
 //# Equipment: Informational
-AnglerBroadcaster: {
-	DisplayName: Radio Pesquera
-	Tooltip: Muestra la misión de pesca actual
-}
-
-HoloLens: {
-	DisplayName: Holo-lente
-	Tooltip: Te permite ver los contenidos de cofres sin abrirlos
+GeigerCounter: {
+	// DisplayName: Geiger Counter
+	// Tooltip: Displays the damage per second from debuffs
 }
 
 ShimmerMonocle: {
@@ -291,6 +286,16 @@ RichMansMonocle: {
 Calendar: {
 	DisplayName: Calendario
 	Tooltip: Muestra la fecha
+}
+
+AnglerBroadcaster: {
+	DisplayName: Radio Pesquera
+	Tooltip: Muestra la misión de pesca actual
+}
+
+HoloLens: {
+	DisplayName: Holo-lente
+	Tooltip: Te permite ver los contenidos de cofres sin abrirlos
 }
 
 //# Equipment: Armor
@@ -982,9 +987,4 @@ StariteMaterial: {
 UnopenedChestItem: {
 	DisplayName: Objeto de cofre sin abrir
 	// Tooltip: This is a debug item placed into chests upon worldgen to check if they have been opened
-}
-
-GeigerCounter: {
-	// DisplayName: Geiger Counter
-	// Tooltip: ""
 }
