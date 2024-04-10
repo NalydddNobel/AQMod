@@ -1,8 +1,8 @@
 ConeHelmet: {
 	DisplayName: 路障帽
-	// Tooltip: "{$CommonItemTooltip.ReducesDamageTakenByPercent@0}"
-	// DisplayName_1: Bent Traffic Cone Hat
-	// Tooltip_1: "{$Armor.ConeHelmet.Tooltip}"
+	Tooltip: "{$CommonItemTooltip.ReducesDamageTakenByPercent@0}"
+	DisplayName_1: 弯曲路障帽
+	Tooltip_1: "{$Armor.ConeHelmet.Tooltip}"
 	DisplayName_2: 破损路障帽
-	// Tooltip_2: "{$Armor.ConeHelmet.Tooltip}"
+	Tooltip_2: "{$Armor.ConeHelmet.Tooltip}"
 }
