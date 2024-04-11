@@ -3,6 +3,8 @@ using Aequus.Content.Equipment.Informational.Calendar;
 using Aequus.Content.Equipment.Informational.DebuffDPSMeter;
 using Aequus.Core.Initialization;
 using Aequus.Old.Content.Equipment.Info;
+using System.Collections.Generic;
+using Terraria.Localization;
 
 namespace Aequus.Content.VanillaChanges;
 
@@ -52,6 +54,10 @@ public class InfoAccessoryChanges {
 #if !DEBUG
             player.GetModPlayer<AequusPlayer>().accInfoQuestFish = true;
 #endif
+        }
+
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
+            tooltips.AddTooltip(new TooltipLine(Mod, "AnglerBroadcaster", Language.GetTextValue("Mods.Aequus.Items.Vanilla.FishFinder.Tooltip")));
         }
 
         public void EditRecipe(Recipe recipe) {
