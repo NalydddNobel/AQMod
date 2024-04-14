@@ -1,6 +1,6 @@
 ﻿using Aequus.Content.Equipment.Accessories.GoldenFeather;
-using Aequus.Content.Equipment.Accessories.GrandReward;
 using Aequus.Core.CrossMod;
+using Aequus.Old.Content.Equipment.Accessories.GrandReward;
 using System;
 using Terraria.Localization;
 

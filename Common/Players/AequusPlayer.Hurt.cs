@@ -19,7 +19,7 @@ public partial class AequusPlayer {
     /// Sets the respawn time modifier without allowing it to stack.
     /// </summary>
     /// <param name="amount"></param>
-    public void SetAccRespawnTimeModifier(int amount) {
+    public void SetNonStackingRespawnTimeModifier(int amount) {
         if (amount < 0) {
             if (respawnTimeModifierFlat <= amount) {
                 return;

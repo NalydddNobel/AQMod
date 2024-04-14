@@ -363,8 +363,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> GoldenWind = new("Aequus/Content/Equipment/Accessories/GoldenFeather/GoldenWind");
     /// <summary>Full Path: Content/Equipment/Accessories/GoldenFeather/GoldenWindBuff</summary>
     public static readonly RequestCache<Texture2D> GoldenWindBuff = new("Aequus/Content/Equipment/Accessories/GoldenFeather/GoldenWindBuff");
-    /// <summary>Full Path: Content/Equipment/Accessories/GrandReward/GrandReward</summary>
-    public static readonly RequestCache<Texture2D> GrandReward = new("Aequus/Content/Equipment/Accessories/GrandReward/GrandReward");
     /// <summary>Full Path: Content/Equipment/Accessories/ScavengerBag/ScavengerBag</summary>
     public static readonly RequestCache<Texture2D> ScavengerBag = new("Aequus/Content/Equipment/Accessories/ScavengerBag/ScavengerBag");
     /// <summary>Full Path: Content/Equipment/Accessories/ScavengerBag/ScavengerBagBuilderToggle</summary>
@@ -503,6 +501,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> GreaterRestorationPotion = new("Aequus/Content/Potions/Healing/Restoration/GreaterRestorationPotion");
     /// <summary>Full Path: Content/Potions/Healing/Restoration/SuperRestorationPotion</summary>
     public static readonly RequestCache<Texture2D> SuperRestorationPotion = new("Aequus/Content/Potions/Healing/Restoration/SuperRestorationPotion");
+    /// <summary>Full Path: Content/Potions/PotionCanteen/HallowCanteen</summary>
+    public static readonly RequestCache<Texture2D> HallowCanteen = new("Aequus/Content/Potions/PotionCanteen/HallowCanteen");
+    /// <summary>Full Path: Content/Potions/PotionCanteen/HallowCanteenEmpty</summary>
+    public static readonly RequestCache<Texture2D> HallowCanteenEmpty = new("Aequus/Content/Potions/PotionCanteen/HallowCanteenEmpty");
+    /// <summary>Full Path: Content/Potions/PotionCanteen/PotionCanteen</summary>
+    public static readonly RequestCache<Texture2D> PotionCanteen = new("Aequus/Content/Potions/PotionCanteen/PotionCanteen");
+    /// <summary>Full Path: Content/Potions/PotionCanteen/PotionCanteenEmpty</summary>
+    public static readonly RequestCache<Texture2D> PotionCanteenEmpty = new("Aequus/Content/Potions/PotionCanteen/PotionCanteenEmpty");
     /// <summary>Full Path: Content/Tiles/Banners/OldMonsterBanners</summary>
     public static readonly RequestCache<Texture2D> OldMonsterBanners = new("Aequus/Content/Tiles/Banners/OldMonsterBanners");
     /// <summary>Full Path: Content/Tiles/Conductive/ConductiveBlock</summary>
@@ -975,6 +981,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> VraineBanner = new("Aequus/Old/Content/Enemies/VraineBanner");
     /// <summary>Full Path: Old/Content/Enemies/WhiteSlimeBanner</summary>
     public static readonly RequestCache<Texture2D> WhiteSlimeBanner = new("Aequus/Old/Content/Enemies/WhiteSlimeBanner");
+    /// <summary>Full Path: Old/Content/Equipment/Accessories/GrandReward/GrandReward</summary>
+    public static readonly RequestCache<Texture2D> GrandReward = new("Aequus/Old/Content/Equipment/Accessories/GrandReward/GrandReward");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/HighSteaks/HighSteaks</summary>
     public static readonly RequestCache<Texture2D> HighSteaks = new("Aequus/Old/Content/Equipment/Accessories/HighSteaks/HighSteaks");
     /// <summary>Full Path: Old/Content/Equipment/Accessories/HighSteaks/HighSteaks_Waist</summary>
@@ -1193,14 +1201,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> NeutronYogurt = new("Aequus/Old/Content/Potions/NeutronYogurt/NeutronYogurt");
     /// <summary>Full Path: Old/Content/Potions/NeutronYogurt/NeutronYogurtBuff</summary>
     public static readonly RequestCache<Texture2D> NeutronYogurtBuff = new("Aequus/Old/Content/Potions/NeutronYogurt/NeutronYogurtBuff");
-    /// <summary>Full Path: Old/Content/Potions/PotionCanteen/HallowCanteen</summary>
-    public static readonly RequestCache<Texture2D> HallowCanteen = new("Aequus/Old/Content/Potions/PotionCanteen/HallowCanteen");
-    /// <summary>Full Path: Old/Content/Potions/PotionCanteen/HallowCanteenEmpty</summary>
-    public static readonly RequestCache<Texture2D> HallowCanteenEmpty = new("Aequus/Old/Content/Potions/PotionCanteen/HallowCanteenEmpty");
-    /// <summary>Full Path: Old/Content/Potions/PotionCanteen/PotionCanteen</summary>
-    public static readonly RequestCache<Texture2D> PotionCanteen = new("Aequus/Old/Content/Potions/PotionCanteen/PotionCanteen");
-    /// <summary>Full Path: Old/Content/Potions/PotionCanteen/PotionCanteenEmpty</summary>
-    public static readonly RequestCache<Texture2D> PotionCanteenEmpty = new("Aequus/Old/Content/Potions/PotionCanteen/PotionCanteenEmpty");
     /// <summary>Full Path: Old/Content/Potions/Prefixes/BoundedPotions/BoundedPrefixGlint</summary>
     public static readonly RequestCache<Texture2D> BoundedPrefixGlint = new("Aequus/Old/Content/Potions/Prefixes/BoundedPotions/BoundedPrefixGlint");
     /// <summary>Full Path: Old/Content/Potions/Prefixes/BoundedPotions/BoundedPrefixItem</summary>

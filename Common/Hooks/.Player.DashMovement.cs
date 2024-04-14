@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Aequus.Common.Players;
+using System;
 
 namespace Aequus.Common.Hooks;
 
 public partial class TerrariaHooks {
+    /// <summary>Allows for custom dash accessories added by Aequus to update dash movement.</summary>
     private static void On_Player_DashMovement(On_Player.orig_DashMovement orig, Player player) {
         orig(player);
 
@@ -10,7 +12,7 @@ public partial class TerrariaHooks {
             return;
         }
 
-        var dashData = aequusPlayer.DashData;
+        CustomDashData dashData = aequusPlayer.DashData;
 
         if (player.dashDelay > 0) {
             dashData.OnUpdateDashDelay(player, aequusPlayer);

@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items.Components;
 
-namespace Aequus.Content.Equipment.Accessories.GrandReward;
+namespace Aequus.Old.Content.Equipment.Accessories.GrandReward;
 
 [LegacyName("BusinessCard", "ForgedCard")]
 [LegacyName("FaultyCoin", "FoolsGoldRing")]

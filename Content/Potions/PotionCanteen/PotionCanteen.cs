@@ -1,6 +1,6 @@
 ﻿using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Potions.PotionCanteen;
+namespace Aequus.Content.Potions.PotionCanteen;
 
 public class PotionCanteen : TemplateCanteen {
     public override int Rarity => ItemRarityID.Blue;

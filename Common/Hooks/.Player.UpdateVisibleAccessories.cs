@@ -3,6 +3,7 @@
 namespace Aequus.Common.Hooks;
 
 public partial class TerrariaHooks {
+    /// <summary>Allows for custom dash accessories added by Aequus to update visual effects.</summary>
     private static void On_Player_UpdateVisibleAccessories(On_Player.orig_UpdateVisibleAccessories orig, Player player) {
         if (!player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
             orig(player);

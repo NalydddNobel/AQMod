@@ -1,5 +1,6 @@
 ﻿using Terraria.DataStructures;
 using Terraria.GameContent.Golf;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.UI;
 
 namespace Aequus.Common.Hooks;
@@ -14,13 +15,15 @@ public partial class TerrariaHooks : ILoad {
 
         On_GolfHelper.StepGolfBall += On_GolfHelper_StepGolfBall;
 
-        On_Item.CanHavePrefixes += Item_CanHavePrefixes;
+        On_ItemDropResolver.ResolveRule += ItemDropResolver_ResolveRule;
 
         On_ItemSlot.PickItemMovementAction += On_ItemSlot_PickItemMovementAction;
         On_ItemSlot.RightClick_ItemArray_int_int += ItemSlot_RightClick;
 
         On_Main.UpdateTime_StartDay += On_Main_UpdateTime_StartDay;
         On_Main.UpdateTime_StartNight += On_Main_UpdateTime_StartNight;
+
+        On_NPC.NPCLoot_DropMoney += NPC_NPCLoot_DropMoney;
 
         On_Player.GetPreferredGolfBallToUse += On_Player_GetPreferredGolfBallToUse;
         On_Player.RollLuck += On_Player_RollLuck;

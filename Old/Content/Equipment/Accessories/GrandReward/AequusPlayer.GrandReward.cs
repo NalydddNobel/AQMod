@@ -1,6 +1,4 @@
-﻿using Aequus.Content.PermaPowerups.Shimmer;
-using Aequus.Core.CodeGeneration;
-using Aequus.Core.IO;
+﻿using Aequus.Core.CodeGeneration;
 
 namespace Aequus;
 

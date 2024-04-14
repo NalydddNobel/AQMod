@@ -5,6 +5,7 @@ using System;
 namespace Aequus.Common.Hooks;
 
 public partial class TerrariaHooks {
+    /// <summary>Allows for the Lavaproof Mitten to grant block placement in lava for blockswap.</summary>
     private void IL_Player_PlaceThing_ValidTileForReplacement(ILContext il) {
         ILCursor c = new ILCursor(il);
 

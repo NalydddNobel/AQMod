@@ -3,6 +3,7 @@
 namespace Aequus.Common.Hooks;
 
 public partial class TerrariaHooks {
+    /// <summary>Allows for backpacks to provide mana healing items.</summary>
     private static Item On_Player_QuickMana_GetItemToUse(On_Player.orig_QuickMana_GetItemToUse orig, Player player) {
         var item = orig(player);
 

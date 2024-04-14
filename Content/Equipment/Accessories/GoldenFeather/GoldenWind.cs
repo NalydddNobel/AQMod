@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Items;
-using Terraria.Localization;
+﻿using Terraria.Localization;
 
 namespace Aequus.Content.Equipment.Accessories.GoldenFeather;
 
@@ -13,8 +12,8 @@ public class GoldenWind : GoldenFeather {
 
     public override void SetDefaults() {
         Item.DefaultToAccessory();
-        Item.rare = ItemCommons.Rarity.SkyMerchantShopItem + 1;
-        Item.value = ItemCommons.Price.SkyMerchantShopItem;
+        Item.rare = ItemRarityID.Green;
+        Item.value = Item.sellPrice(gold: 2);
     }
 
     public override void AddRecipes() {

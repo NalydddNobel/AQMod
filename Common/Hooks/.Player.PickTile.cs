@@ -5,6 +5,7 @@ using Terraria.GameContent.Achievements;
 namespace Aequus.Common.Hooks;
 
 public partial class TerrariaHooks {
+    /// <summary>Allows for the breath conserver to restore breath upon breaking a tile.</summary>
     private void IL_Player_PickTile(ILContext il) {
         ILCursor c = new ILCursor(il);
 

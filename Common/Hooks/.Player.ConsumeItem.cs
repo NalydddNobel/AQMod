@@ -3,6 +3,7 @@
 namespace Aequus.Common.Hooks;
 
 public partial class TerrariaHooks {
+    /// <summary>Allows items in backpacks to be consumed.</summary>
     private static bool On_Player_ConsumeItem(On_Player.orig_ConsumeItem orig, Player player, int type, bool reverseOrder, bool includeVoidBag) {
         bool consumedItem = orig(player, type, reverseOrder, includeVoidBag);
 

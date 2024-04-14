@@ -14,7 +14,7 @@ public class GoldenFeatherBuff : ModBuff {
             return;
         }
         player.lifeRegen += GoldenFeather.LifeRegenerationAmount;
-        aequusPlayer.SetAccRespawnTimeModifier(GoldenFeather.RespawnTimeAmount);
+        aequusPlayer.SetNonStackingRespawnTimeModifier(GoldenFeather.RespawnTimeAmount);
     }
 
     public override bool RightClick(int buffIndex) {

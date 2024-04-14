@@ -5,7 +5,6 @@ using System.Linq;
 namespace Aequus.Common.Items;
 
 public sealed partial class AequusRecipes : ModSystem {
-    public static readonly HashSet<int> ItemIdHasPrefixRecipe = new();
     public static readonly Dictionary<int, Condition> ShimmerTransformLocks = new();
 
     public override void PostAddRecipes() {
@@ -37,7 +36,6 @@ public sealed partial class AequusRecipes : ModSystem {
     }
 
     public override void Unload() {
-        ItemIdHasPrefixRecipe.Clear();
         ShimmerTransformLocks.Clear();
     }
 }

@@ -4,9 +4,11 @@ using Aequus.Common.Golfing;
 namespace Aequus.Common.Hooks;
 
 public partial class TerrariaHooks {
+    /// <summary>Allows for custom golf ball projectiles to be picked by this method. And allows golf balls in backpacks to be chosen aswell.</summary>
     private static void On_Player_GetPreferredGolfBallToUse(On_Player.orig_GetPreferredGolfBallToUse orig, Player player, out int projType) {
         orig(player, out projType);
-        var heldItem = player.HeldItem;
+
+        Item heldItem = player.HeldItem;
         if (!heldItem.IsAir && heldItem.shoot == projType) {
             return;
         }
@@ -17,7 +19,7 @@ public partial class TerrariaHooks {
         }
 
         for (int i = 0; i < Main.InventorySlotsTotal; i++) {
-            var item = player.inventory[i];
+            Item item = player.inventory[i];
             if (!item.IsAir && (ProjectileLoader.GetProjectile(item.shoot) as IGolfBallProjectile)?.OverrideGolfBallId(player, item, projType) == true) {
                 projType = item.shoot;
             }

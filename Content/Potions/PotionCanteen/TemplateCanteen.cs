@@ -15,7 +15,7 @@ using Terraria.Localization;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
 
-namespace Aequus.Old.Content.Potions.PotionCanteen;
+namespace Aequus.Content.Potions.PotionCanteen;
 
 public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
     public abstract int Rarity { get; }

@@ -3,6 +3,7 @@
 namespace Aequus.Common.Hooks;
 
 public partial class TerrariaHooks {
+    /// <summary>Allows for backpacks to provide mount items.</summary>
     private static Item On_Player_QuickMount_GetItemToUse(On_Player.orig_QuickMount_GetItemToUse orig, Player player) {
         var item = orig(player);
 
