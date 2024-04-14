@@ -12,6 +12,10 @@ public class TreasureMagnetChanges : GlobalItem {
         return entity.type == ItemID.TreasureMagnet;
     }
 
+    public override void SetDefaults(Item entity) {
+        entity.StatsModifiedBy.Add(Mod);
+    }
+
     public override void ModifyItemLoot(Item item, ItemLoot itemLoot) {
         if (item.type == ItemID.ObsidianLockbox) {
             itemLoot.RemoveItemId(ItemID.TreasureMagnet);

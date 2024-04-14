@@ -8,6 +8,14 @@ public class MagicConchChanges : GlobalItem {
         return VanillaChangesConfig.Instance.MoveMagicConch;
     }
 
+    public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
+        return entity.type == ItemID.MagicConch;
+    }
+
+    public override void SetDefaults(Item entity) {
+        entity.StatsModifiedBy.Add(Mod);
+    }
+
     public override void ModifyItemLoot(Item item, ItemLoot itemLoot) {
         if (item.type != ItemID.OasisCrate && item.type != ItemID.OasisCrateHard) {
             return;

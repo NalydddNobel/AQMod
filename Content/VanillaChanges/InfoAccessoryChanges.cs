@@ -18,6 +18,10 @@ public class InfoAccessoryChanges {
             return entity.type == ItemID.PDA;
         }
 
+        public override void SetDefaults(Item entity) {
+            entity.StatsModifiedBy.Add(Mod);
+        }
+
         public override void UpdateInfoAccessory(Item item, Player player) {
             UpdateAequusInfoAccs(player);
         }
@@ -48,6 +52,10 @@ public class InfoAccessoryChanges {
 
         public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
             return entity.type == ItemID.FishFinder;
+        }
+
+        public override void SetDefaults(Item entity) {
+            entity.StatsModifiedBy.Add(Mod);
         }
 
         public override void UpdateInfoAccessory(Item item, Player player) {

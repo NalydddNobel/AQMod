@@ -28,6 +28,10 @@ public class ToolbeltChanges : GlobalItem {
         _tooltip = Language.GetOrRegister("Mods.Aequus.Items.Toolbelt.Tooltip").WithFormatArgs(Capacity);
     }
 
+    public override void SetDefaults(Item entity) {
+        entity.StatsModifiedBy.Add(Mod);
+    }
+
     public override void UpdateAccessory(Item item, Player player, bool hideVisual) {
         if (!player.TryGetModPlayer(out BackpackPlayer backpackPlayer)) {
             return;
