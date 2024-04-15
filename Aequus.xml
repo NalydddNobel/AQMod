@@ -1684,7 +1684,7 @@
             <summary>Whether the Occultist has been met. This determines if the Hostile Occultist emote can be used.</summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 74)</summary>
+            <summary>(Total Sounds: 75)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishCharge">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -1824,6 +1824,9 @@
         <member name="F:Aequus.AequusSounds.PowerReady">
             <summary>Full Path: Assets/Sounds/PowerReady</summary>
         </member>
+        <member name="F:Aequus.AequusSounds.BuriedChestReveal">
+            <summary>Full Path: Assets/Sounds/Tile/BuriedChestReveal</summary>
+        </member>
         <member name="F:Aequus.AequusSounds.ConductiveBlock0">
             <summary>Full Path: Assets/Sounds/Tile/ConductiveBlock0</summary>
         </member>
@@ -1909,7 +1912,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 736)</summary>
+            <summary>(Total Textures: 741)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2153,6 +2156,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.Trophy">
             <summary>Full Path: Content/Bosses/Trophies/Trophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CopperChest">
+            <summary>Full Path: Content/Chests/BuriedChests/CopperChest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CopperChestItem">
+            <summary>Full Path: Content/Chests/BuriedChests/CopperChestItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CopperChestLockedItem">
+            <summary>Full Path: Content/Chests/BuriedChests/CopperChestLockedItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CopperChest_Highlight">
+            <summary>Full Path: Content/Chests/BuriedChests/CopperChest_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaHoney">
             <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/OmegaHoney</summary>
@@ -2900,6 +2915,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.BellowsProj">
             <summary>Full Path: Content/Tools/Bellows/BellowsProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CopperKey">
+            <summary>Full Path: Content/Tools/Keys/CopperKey</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NameTag">
             <summary>Full Path: Content/Tools/NameTag/NameTag</summary>

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 736)</summary>
+/// <summary>(Total Textures: 741)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -169,6 +169,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SpaceSquidTrophyItem = new("Aequus/Content/Bosses/Trophies/SpaceSquidTrophyItem");
     /// <summary>Full Path: Content/Bosses/Trophies/Trophy</summary>
     public static readonly RequestCache<Texture2D> Trophy = new("Aequus/Content/Bosses/Trophies/Trophy");
+    /// <summary>Full Path: Content/Chests/BuriedChests/CopperChest</summary>
+    public static readonly RequestCache<Texture2D> CopperChest = new("Aequus/Content/Chests/BuriedChests/CopperChest");
+    /// <summary>Full Path: Content/Chests/BuriedChests/CopperChestItem</summary>
+    public static readonly RequestCache<Texture2D> CopperChestItem = new("Aequus/Content/Chests/BuriedChests/CopperChestItem");
+    /// <summary>Full Path: Content/Chests/BuriedChests/CopperChestLockedItem</summary>
+    public static readonly RequestCache<Texture2D> CopperChestLockedItem = new("Aequus/Content/Chests/BuriedChests/CopperChestLockedItem");
+    /// <summary>Full Path: Content/Chests/BuriedChests/CopperChest_Highlight</summary>
+    public static readonly RequestCache<Texture2D> CopperChest_Highlight = new("Aequus/Content/Chests/BuriedChests/CopperChest_Highlight");
     /// <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/OmegaHoney</summary>
     public static readonly RequestCache<Texture2D> OmegaHoney = new("Aequus/Content/CrossMod/CalamityModSupport/Items/OmegaHoney");
     /// <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/OmegaRestoration</summary>
@@ -667,6 +675,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Bellows = new("Aequus/Content/Tools/Bellows/Bellows");
     /// <summary>Full Path: Content/Tools/Bellows/BellowsProj</summary>
     public static readonly RequestCache<Texture2D> BellowsProj = new("Aequus/Content/Tools/Bellows/BellowsProj");
+    /// <summary>Full Path: Content/Tools/Keys/CopperKey</summary>
+    public static readonly RequestCache<Texture2D> CopperKey = new("Aequus/Content/Tools/Keys/CopperKey");
     /// <summary>Full Path: Content/Tools/NameTag/NameTag</summary>
     public static readonly RequestCache<Texture2D> NameTag = new("Aequus/Content/Tools/NameTag/NameTag");
     /// <summary>Full Path: Content/Tools/NameTag/NameTagBlank</summary>

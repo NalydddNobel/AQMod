@@ -19,6 +19,10 @@ public class ChestLootDatabase : ModSystem {
         return CollectionsMarshal.GetValueRefOrAddDefault(_loot, type, out _) ??= new();
     }
 
+    public void SolveRules(ChestLoot type, ChestLootInfo info) {
+        SolveRules(type, in info);
+    }
+
     public void SolveRules(ChestLoot type, in ChestLootInfo info) {
         List<IChestLootRule> rules = Instance.GetRulesForType(type);
 

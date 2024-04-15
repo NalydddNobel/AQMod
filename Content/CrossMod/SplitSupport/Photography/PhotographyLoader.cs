@@ -47,7 +47,7 @@ internal sealed partial class PhotographyLoader : ModSystem {
             });
 
         IContentIdProvider Envelope(ModItem modItem) => new ProvideInstanceModContentId<ModItem>(modItem);
-        IContentIdProvider GetNPC<T>() where T : ModNPC => new ProvideInstanceModContentId<T>();
+        IContentIdProvider GetNPC<T>() where T : ModNPC => new ProvideGenericTypeModContentId<T>();
     }
 
     private void LoadPrintsAfterAlbums() {

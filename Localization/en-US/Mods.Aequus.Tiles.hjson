@@ -363,3 +363,20 @@ HardJungleChestTrapped: {
 	ItemDisplayName: Trapped Tortoise Case
 	ItemTooltip: ""
 }
+
+CopperChest: {
+	MapEntry: Copper Chest
+	ItemDisplayName: "{$CopperChest.MapEntry}"
+	ItemTooltip: ""
+}
+
+CopperChestTrapped: {
+	ItemDisplayName: Trapped Copper Chest
+	ItemTooltip: ""
+}
+
+CopperChestLocked: {
+	MapEntry: Copper Chest
+	ItemDisplayName: "{$CopperChestLocked.MapEntry}"
+	ItemTooltip: "{$Items.CommonTooltips.LockedWithKey}"
+}

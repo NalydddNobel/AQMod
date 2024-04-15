@@ -25,6 +25,10 @@ public enum ChestLoot {
     Ivy,
     /// <summary>Loot pool for Polluted Ocean Trash Cans.</summary>
     PollutedOcean,
+    BuriedCopperChest,
+    BuriedGoldChest,
+    BuriedShadowChest,
+    BuriedAdamantiteChest,
     HardmodeChestRegular,
     HardmodeChestSnow,
     HardmodeChestJungle,

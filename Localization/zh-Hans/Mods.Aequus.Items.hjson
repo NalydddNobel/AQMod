@@ -19,6 +19,11 @@ CommonTooltips: {
 	DisableItem: 右键无效化
 	EnableItem: 当前未激活, 右键以重新激活
 	GoblinTinkererRepair: 可以在哥布林工匠处修复
+	/* LockedWithKey:
+		'''
+		<right> to open
+		Requires a {0}
+		''' */
 }
 
 Keywords: {
@@ -987,4 +992,9 @@ StariteMaterial: {
 UnopenedChestItem: {
 	DisplayName: 未开启的宝箱物品
 	Tooltip: 这是Debug物品, 将其放置在世界生成的宝箱内以检测其是否被开启过
+}
+
+CopperKey: {
+	// DisplayName: Copper Key
+	// Tooltip: ""
 }

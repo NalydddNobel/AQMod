@@ -55,6 +55,9 @@ public class WorldState : ModSystem {
     [SaveData("ReforgeBook")]
     public static bool UsedReforgeBook;
 
+    [SaveData("BuriedChestSeed")]
+    public static int BuriedChestsLooted;
+
     public static bool HardmodeTier => Main.hardMode || DownedTrueCosmicBoss;
 
     public override void SaveWorldData(TagCompound tag) {

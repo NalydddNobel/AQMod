@@ -19,6 +19,11 @@ CommonTooltips: {
 	DisableItem: <right> to deactivate
 	EnableItem: Currently inactive, <right> to reactivate
 	GoblinTinkererRepair: Can be repaired at the Goblin Tinkerer
+	LockedWithKey:
+		'''
+		<right> to open
+		Requires a {0}
+		'''
 }
 
 Keywords: {
@@ -987,4 +992,9 @@ StariteMaterial: {
 UnopenedChestItem: {
 	DisplayName: Unopened Chest Item
 	Tooltip: This is a debug item placed into chests upon worldgen to check if they have been opened
+}
+
+CopperKey: {
+	DisplayName: Copper Key
+	Tooltip: "Opens one locked Copper Chest"
 }

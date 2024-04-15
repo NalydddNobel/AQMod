@@ -1,14 +1,12 @@
-﻿using Aequus.Core.Initialization;
+﻿using Aequus.Common.JourneyMode;
+using Aequus.Core.Initialization;
 using System.Runtime.CompilerServices;
-using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.Localization;
 using Terraria.ObjectData;
-using Terraria.ID;
-using Aequus.Common.JourneyMode;
 
 namespace Aequus.Core.ContentGeneration;
 
@@ -111,14 +109,14 @@ public abstract class UnifiedModChest : ModTile {
         Chest.DestroyChest(i, j);
     }
 
-    public virtual bool UnlockChest(int i, int j, int left, int top, Player player) {
+    public virtual bool CanUnlockChest(int i, int j, int left, int top, Player player) {
         return true;
     }
 
     public override bool RightClick(int i, int j) {
-        var player = Main.LocalPlayer;
+        Player player = Main.LocalPlayer;
         Main.mouseRightRelease = false;
-        var tile = Main.tile[i, j];
+        Tile tile = Main.tile[i, j];
         GetChestHoverLocation(i, j, Main.MouseWorld, in tile, out int chestX, out int chestY);
 
         player.CloseSign();
@@ -150,7 +148,7 @@ public abstract class UnifiedModChest : ModTile {
         }
         else {
             if (isLocked) {
-                if (UnlockChest(i, j, chestX, chestY, player) && Chest.Unlock(chestX, chestY)) {
+                if (CanUnlockChest(i, j, chestX, chestY, player) && Chest.Unlock(chestX, chestY)) {
                     if (Main.netMode == NetmodeID.MultiplayerClient) {
                         NetMessage.SendData(MessageID.LockAndUnlock, -1, -1, null, player.whoAmI, 1f, chestX, chestY);
                     }
@@ -215,7 +213,7 @@ public abstract class UnifiedModChest : ModTile {
 
     protected void DrawBasicGlowmask(int i, int j, SpriteBatch spriteBatch, Texture2D texture, Color color) {
         var tile = Main.tile[i, j];
-        if (tile.IsTileInvisible) {
+        if (tile.IsInvisible()) {
             return;
         }
 
@@ -292,7 +290,7 @@ internal class TrappedChest : InstancedModTile, IAddRecipes {
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
         TileObjectData.addTile(Type);
 
-        _baseChest.SafeSetStaticDefaults();
+        //_baseChest.SafeSetStaticDefaults();
 
         DustType = -1;
         AdjTiles = new int[] {
@@ -301,7 +299,9 @@ internal class TrappedChest : InstancedModTile, IAddRecipes {
         };
     }
 
-    public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
+    public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) {
+        return true;
+    }
 
     public override ushort GetMapOption(int i, int j) {
         return (ushort)(Main.tile[i, j] != null ? Main.tile[i, j].TileFrameX / 36 : 0);
