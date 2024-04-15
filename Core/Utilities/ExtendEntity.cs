@@ -110,9 +110,9 @@ public static class ExtendPlayer {
     }
 
     public static Item HeldItemFixed(this Player player) {
-        if (Main.myPlayer == player.whoAmI && player.selectedItem == 58 && Main.mouseItem != null && !Main.mouseItem.IsAir) {
-            return Main.mouseItem;
-        }
+        //if (Main.myPlayer == player.whoAmI && player.selectedItem == 58 && Main.mouseItem != null && !Main.mouseItem.IsAir) {
+        //    return Main.mouseItem;
+        //}
         return player.HeldItem;
     }
 

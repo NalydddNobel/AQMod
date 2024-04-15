@@ -996,5 +996,5 @@ UnopenedChestItem: {
 
 CopperKey: {
 	DisplayName: Copper Key
-	Tooltip: "Opens one locked Copper Chest"
+	Tooltip: Opens one locked Copper Chest
 }

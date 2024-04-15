@@ -108,9 +108,9 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction
     }
 
     public override void MouseOver(int i, int j) {
-        var player = Main.LocalPlayer;
-        var heldItem = player.HeldItemFixed();
-        var recipeResults = TrashCompactorRecipe.FromItem(heldItem);
+        Player player = Main.LocalPlayer;
+        Item heldItem = player.HeldItemFixed();
+        TrashCompactorRecipe recipeResults = TrashCompactorRecipe.FromItem(heldItem);
 
         if (recipeResults.Invalid) {
             return;
