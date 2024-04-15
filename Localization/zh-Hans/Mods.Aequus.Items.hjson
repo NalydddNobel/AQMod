@@ -19,11 +19,11 @@ CommonTooltips: {
 	DisableItem: 右键无效化
 	EnableItem: 当前未激活, 右键以重新激活
 	GoblinTinkererRepair: 可以在哥布林工匠处修复
-	/* LockedWithKey:
+	LockedWithKey:
 		'''
-		<right> to open
-		Requires a {0}
-		''' */
+		右键打开
+		需要一个{0}
+		'''
 }
 
 Keywords: {
@@ -995,6 +995,6 @@ UnopenedChestItem: {
 }
 
 CopperKey: {
-	// DisplayName: Copper Key
-	// Tooltip: Opens one locked Copper Chest
+	DisplayName: 铜钥匙
+	Tooltip: 打开上锁的铜宝箱
 }
