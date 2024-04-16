@@ -20,6 +20,6 @@ PollutedOceanBiomeSurface: {
 }
 
 PollutedOceanBiomeUnderground: {
-	DisplayName: Polluted Aquifier
-	TownNPCDialogueName: the Polluted Aquifier
+	DisplayName: Polluted Underground
+	TownNPCDialogueName: the Polluted Underground
 }

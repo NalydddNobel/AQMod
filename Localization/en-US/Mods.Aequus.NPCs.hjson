@@ -36,7 +36,7 @@ BreadOfCthulhu: {
 	BannerName: Bread of Cthulhu Banner
 	Bestiary: A lost snack that gained life when it slipped through an eldritch portal, this loathsome loaf does not intend to be your lunch! Watch out when fishing, for it might just latch on to the lure of an inexperienced fisherman that looks like easy prey.
 }
-
+// --localization note-- "conductor" as in an orchestra conductor
 Conductor: {
 	DisplayName: Conductor
 	Bestiary: An unpleasant amalgam of outdated, discarded technology. Desperate to prove it still has worth, it puts on a show for anyone it sees with blasts of condensed radio waves.

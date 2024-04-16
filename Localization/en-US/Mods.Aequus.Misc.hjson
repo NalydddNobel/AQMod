@@ -43,7 +43,7 @@ Dyes: {
 		Tooltip: "'From the depths...'"
 	}
 }
-
+// --localization note-- these color names will go unused in the future so its not necessary to translate
 Rarity: {
 	-13.DisplayName: Fiery Red
 	-12.DisplayName: Rainbow

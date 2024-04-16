@@ -133,35 +133,35 @@ Occultist: {
 	}
 
 	Dialogue: {
-		// 0: Fool! By talking to me, you've triggered a trap hex that will force you to obey my commands! Now, please buy something.
-		// 1: Ahahaha... HAHAHAHA- oh. Um. Hello, fellow do-gooder?
-		// 2: Want to know what I look like under this cloak? Hahaha, in your dreams! Actually, don't dream about that, because I've set up a scrying rune above your bed and I will know.
-		// 3: Your dimension is so cold, I've got to bundle up this tight just to bear it here.
-		// Rare: Memorialist? Don't be ridiculous, I'm not memorizing anything. I have my spellbooks for that.
+		0: ¡Idiota! ¡al hablar conmigo, has activado mi hechizo trampa que te forzará a obedecer mis comandos! Ahora, porfavor compra algo.
+		1: Jajaja... JAJAJAJA- oh. ehm. Saludos, colega bienhechor.
+		2: ¿Quieres saber cómo me veo debajo de la capucha? jajaja en tus sueños. no literalmente en tus sueños, porque instalé una runa espía sobre tu cama y sabré si estás soñando con eso.
+		3: Tu dimensión es tan fría, tengo que estar completamente cubierta solo para soportar estar aquí.
+		Rare: Memorialista? no digas ridiculeses, no voy a memorizar nada, para eso tengo mis libros.
 
 		Night: {
-			// 0: The darkness suffocating the land... this is what I live for. Yes, I know it happens every day here, let me have this.
-			// 1: Excuse me, could you hold this voidsent flame real quick? I'll be right back~!
+			0: La oscuridad sofocando la tierra... vivo para esto. Sí, sé que esto pasa todos los días aquí, déjame disfrutarlo.
+			1: Disculpa, ¿podrías sostener esta flama del vacío por un momento? ¡Vuelvo enseguida!
 		}
 
 		BloodMoon: {
-			// 0: Quiet, please! I'm having an inner council meeting!
-			// 1: There's no escape. Even the most eldritch of beings suffer under the red moon's light.
-			// 2: I've been thinking up a new curse. Want to be my test subject? Come here...
-			// 3: Go away! I don't need you right now! I don't need anyone!
+			0: ¡Silencio por favor! estoy teniendo una reunión interna.
+			1: No hay escapatoria, incluso las criaturas más sobrenaturales sufren bajo el brillo rojo de la luna.
+			2: He estado trabajando en una nueva maldición, ¿quieres ser mi sujeto de prueba? acercate...
+			3: ¡Aléjate! ¡No te necesito, no necesito a nadie!
 		}
 
-		// Princess: I would love nothing more than to topple a monarchy from within. Hypothetically speaking, of course.
-		// Cultists: Have you seen the cultists skulking about at the dungeon? Looks like they're preparing a pretty big ritual! I can't wait to see what happens, hahaha!
+		Princess: Nada me encantaría más que derrocar una monarquía, hipotéticamente hablando, porsupuesto.
+		Cultists: ¿Has visto a los cultistas merodeando por la mazmorra? ¡Parece que están preparando un ritual grande! no puedo esperar jajaja.
 		// EarlyHardmode: The light and dark dance together again... fun times are ahead, I think!
 		// Waffles: Strange, I would've expected to have met Yin by now... We had this super cool plan to ki- I mean befriend the Princess!
 		// WindyDay: The wind keeps blowing out my candles! I appreciate that it's your birthday or whatever, world, but I need to work!
 		// Rain: I think I know a ritual that would dispel this rain. Or was it for turning it into chocolate milk?
 		// Thunderstorm: I'll have to try and catch some of this lightning. Nature's wrath is a surprisingly versatile spellcasting component!
 		// Party: They didn't want me to hex the cake to regenerate. I promise I hadn't mixed in anything else! This time!
-		// Graveyard: Oh, hello, ghosties! You'll make excellent fuel for my rituals...
-		// Glimmer: What? No! Where did my darkness go? Put it back!
-		// Awaken: AAAAAGGH!!!!!!!!
+		Graveyard: Oh, ¡hola fantasmitas! ustedes servirán como el combustible perfecto para mis rituales...
+		Glimmer: ¿Qué? ¡No! ¡Dónde se fue mi oscuridad, devuélvemela!
+		Awaken: AAAAAGGH!!!!!!!!
 	}
 
 	// Census.SpawnCondition: After the Demon Siege has been defeated
@@ -214,6 +214,6 @@ HealerDrone: {
 	// Bestiary: Created by the Physicist to keep your town healthy, it draws energy from the town's pylon as power.
 }
 
-// AdamantiteMimic.DisplayName: Adamantite Mimic
+AdamantiteMimic.DisplayName: Cofre falso de Adamantita
 // FrostMimic.DisplayName: Frost Mimic
-// ShadowMimic.DisplayName: Shadow Mimic
+ShadowMimic.DisplayName: Cofre falso Oscuro
