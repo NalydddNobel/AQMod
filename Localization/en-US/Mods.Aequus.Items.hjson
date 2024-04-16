@@ -157,7 +157,7 @@ LaserReticle: {
 	DisplayName: Laser Reticle
 	Tooltip: "{0}% reduced spread on ranged weapons"
 }
-
+// --localization note-- this is a pun. (high stakes + steak)
 HighSteaks: {
 	DisplayName: High Steaks
 	Tooltip:
@@ -176,7 +176,7 @@ KegOSpirits: {
 		{$BottleOSpirits.Tooltip@1}
 		'''
 }
-
+// --localization note-- this is also a pun. (savory + ivory)
 SaivoryKnife: {
 	DisplayName: Saivory Knife
 	Tooltip: Increases the duration of your ghost minions by {0} minute
@@ -277,7 +277,7 @@ GeigerCounter: {
 	DisplayName: Geiger Counter
 	Tooltip: Displays the damage per second from debuffs
 }
-
+// --localization note-- this may be a pun? (shimmer + monocle)
 ShimmerMonocle: {
 	DisplayName: Shmonocle
 	Tooltip: Displays if an item is a Shimmer Ingredient
@@ -348,7 +348,7 @@ Dynaknife: {
 		<right> to dash foward and attack
 		'''
 }
-
+// translation note: the flavor text on the tooltip is taken straight from the sword ability flavor text from 'Kirby: Nightmare in Dream Land'
 SuperStarSword: {
 	DisplayName: Super Star Sword
 	Tooltip:
@@ -435,7 +435,7 @@ Deltoid: {
 	DisplayName: Deltoid
 	Tooltip: Ignites wooden arrows with crimson hellfire
 }
-
+// --localization note-- this bow is named after an actual real bow, probably should be left as is
 HamaYumi: {
 	DisplayName: Hama Yumi
 	Tooltip: Arrows are temporarily buffed with a piercing corruption blast
@@ -474,7 +474,7 @@ BombarderRod: {
 		'''
 }
 
-// localization note: 'triacanthorn' is a portmanteau of 'Gleditsia triacanthos' (scientific name of a thorny plant) and the word 'thorn'
+// --localization note-- 'triacanthorn' is a portmanteau of 'Gleditsia triacanthos' (scientific name of a thorny plant) and the word 'thorn'
 Triacanthorn: {
 	DisplayName: Triacanthorn
 	Tooltip:
@@ -642,7 +642,7 @@ DemonicEnergy: {
 	DisplayName: Eidolic Energy
 	Tooltip: ""
 }
-
+// --localization note-- 'hearth' is a very specific word so it can just be translated into anything relating to earth or ground
 OrganicEnergy: {
 	DisplayName: Hearthic Energy
 	Tooltip: ""

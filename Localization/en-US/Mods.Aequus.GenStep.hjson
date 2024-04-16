@@ -3,7 +3,7 @@ Statues.DisplayMessage: Placing More Statues...
 
 GoreNestsGeneration: {
 	DisplayMessage: Making the Underworld more evil...
-
+// --localization note-- "tombstone" and "tombstonehints" work the same as the previous "giveitem" and "eventstart" lines, the two go together and it picks a random combination
 	Tombstones: {
 		0: "{Name} was torn into shreds"
 		1: "{Name} was obliterated"

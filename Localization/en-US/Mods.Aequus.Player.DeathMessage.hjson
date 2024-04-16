@@ -13,7 +13,7 @@ AshTombstone: {
 	11: ...Forced to freeze under the cold gaze of Lucifer forever.
 	12: ...Locked in the coffins of the heretics for the rest of time.
 }
-
+// --localization note-- "{0}" refers to the player, it should go without saying but any text regarding the player should not imply gender if possible
 ManaFire: {
 	0: "{0}'s essence radiated away."
 	1: "{0} was reduced to stardust."
