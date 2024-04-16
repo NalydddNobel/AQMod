@@ -2,8 +2,6 @@
 using Aequus.Common.Tiles.Components;
 using Aequus.Core.Graphics.Animations;
 using Aequus.Core.Graphics.Tiles;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using Terraria.Audio;
@@ -15,7 +13,7 @@ using Terraria.ObjectData;
 
 namespace Aequus.Content.Fishing.CrabPots;
 
-public abstract class BaseCrabPot : ModTile, ISpecialTileRenderer, IModifyPlacementPreview {
+public abstract class UnifiedCrabPot : ModTile, ISpecialTileRenderer, IModifyPlacementPreview {
     public const int FramesCount = 4;
     private TileObjectData _tileObjectData;
     private Asset<Texture2D> _backTexture;
@@ -81,9 +79,13 @@ public abstract class BaseCrabPot : ModTile, ISpecialTileRenderer, IModifyPlacem
         return 0;
     }
 
-    public override void NumDust(int i, int j, bool fail, ref int num) => num = 0;
+    public override void NumDust(int i, int j, bool fail, ref int num) {
+        num = 0;
+    }
 
-    public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
+    public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) {
+        return true;
+    }
 
     public override void MouseOver(int i, int j) {
         var player = Main.LocalPlayer;
@@ -317,5 +319,22 @@ public abstract class BaseCrabPot : ModTile, ISpecialTileRenderer, IModifyPlacem
         if (TileEntity.ByPosition.TryGetValue(new(left, top), out var tileEntity) && tileEntity is TECrabPot crabPot) {
             CustomPreDraw(left, top, yOffset, spriteBatch, crabPot);
         }
+    }
+
+    public override void HitWire(int i, int j) {
+        int left = i - Main.tile[i, j].TileFrameX % 36 / 18;
+        int top = j - Main.tile[i, j].TileFrameY % 42 / 18;
+
+        Wiring.SkipWire(left, top);
+        Wiring.SkipWire(left + 1, top);
+        Wiring.SkipWire(left, top + 1);
+        Wiring.SkipWire(left + 1, top + 1);
+
+        if (!TileEntity.ByPosition.TryGetValue(new(left, top), out var tileEntity) || tileEntity is not TECrabPot crabPot || !crabPot.caught) {
+            return;
+        }
+
+        Item.NewItem(new EntitySource_Wiring(i, j), new Rectangle(left * 16, top * 16, 2, 2), crabPot.item.Clone());
+        crabPot.ClearItem();
     }
 }

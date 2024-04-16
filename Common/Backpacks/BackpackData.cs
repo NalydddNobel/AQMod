@@ -169,18 +169,18 @@ public abstract class BackpackData : ModType, ILocalizedModType {
     }
 
     private static Texture2D HueSingleTexture2D(Texture2D baseTexture, float hue) {
-        Color[] textureTCommonColorExtracted = new Color[baseTexture.Width * baseTexture.Height];
-        baseTexture.GetData(textureTCommonColorExtracted);
+        Color[] textureColorsExtracted = new Color[baseTexture.Width * baseTexture.Height];
+        baseTexture.GetData(textureColorsExtracted);
 
-        for (int k = 0; k < textureTCommonColorExtracted.Length; k++) {
-            Color color = textureTCommonColorExtracted[k];
+        for (int k = 0; k < textureColorsExtracted.Length; k++) {
+            Color color = textureColorsExtracted[k];
             byte velocity = Math.Max(Math.Max(color.R, color.G), color.B);
-            textureTCommonColorExtracted[k] = color.HueAdd(hue) with { A = color.A };
+            textureColorsExtracted[k] = color.HueAdd(hue) with { A = color.A };
         }
 
         try {
             Texture2D resultTexture = new Texture2D(Main.instance.GraphicsDevice, baseTexture.Width, baseTexture.Height);
-            resultTexture.SetData(textureTCommonColorExtracted);
+            resultTexture.SetData(textureColorsExtracted);
             return resultTexture;
         }
         catch (Exception ex) {

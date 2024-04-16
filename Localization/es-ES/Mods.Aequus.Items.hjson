@@ -158,6 +158,7 @@ LaserReticle: {
 	Tooltip: Disminuye la propagación de armas de rango por {0}%
 }
 
+// --localization note-- this is a pun. (high stakes + steak)
 HighSteaks: {
 	DisplayName: Apuistec
 	Tooltip:
@@ -177,6 +178,7 @@ KegOSpirits: {
 		'''
 }
 
+// --localization note-- this is also a pun. (savory + ivory)
 SaivoryKnife: {
 	DisplayName: cuchillo de marfil
 	Tooltip: Incrementa la dúracion de tus fantasmas por {0} minuto(s)
@@ -278,6 +280,7 @@ GeigerCounter: {
 	// Tooltip: Displays the damage per second from debuffs
 }
 
+// --localization note-- this may be a pun? (shimmer + monocle)
 ShimmerMonocle: {
 	DisplayName: Fulgóculo
 	Tooltip: Muestra si un objeto es un ingrediente de Fulgor
@@ -349,6 +352,7 @@ Dynaknife: {
 		'''
 }
 
+// translation note: the flavor text on the tooltip is taken straight from the sword ability flavor text from 'Kirby: Nightmare in Dream Land'
 SuperStarSword: {
 	DisplayName: Espada Super Estrella
 	Tooltip:
@@ -436,6 +440,7 @@ Deltoid: {
 	Tooltip: Enciende flechas de madera con fuego infernal carmesí
 }
 
+// --localization note-- this bow is named after an actual real bow, probably should be left as is
 HamaYumi: {
 	DisplayName: Hama Yumi
 	Tooltip: Las flechas estan temporalmente mejoradas con una rafaga de corrupción
@@ -474,7 +479,7 @@ BombarderRod: {
 		'''
 }
 
-// localization note: 'triacanthorn' is a portmanteau of 'Gleditsia triacanthos' (scientific name of a thorny plant) and the word 'thorn'
+// --localization note-- 'triacanthorn' is a portmanteau of 'Gleditsia triacanthos' (scientific name of a thorny plant) and the word 'thorn'
 Triacanthorn: {
 	DisplayName: Triacastilla
 	Tooltip:
@@ -598,6 +603,29 @@ Baguette: {
 }
 
 //# Misc
+CopperKey: {
+	// DisplayName: Copper Key
+	// Tooltip: Opens one locked Copper Chest
+}
+
+Keychain: {
+	// DisplayName: Keychain
+	/* Tooltip:
+		'''
+		<right> while holding a key over this item to add it
+		<shift> and <right> to remove all keys
+		''' */
+}
+
+MagicKeychain: {
+	// DisplayName: Spectre Keychain
+	/* Tooltip:
+		'''
+		{$Keychain.Tooltip}
+		Keys can be used infinitely
+		''' */
+}
+
 FrozenTechnology: {
 	DisplayName: Tecnología Congelada
 	Tooltip: Usado para crear aparatos informacionales
@@ -643,6 +671,7 @@ DemonicEnergy: {
 	Tooltip: ""
 }
 
+// --localization note-- 'hearth' is a very specific word so it can just be translated into anything relating to earth or ground
 OrganicEnergy: {
 	DisplayName: Energía Terrica
 	Tooltip: ""
@@ -992,27 +1021,4 @@ StariteMaterial: {
 UnopenedChestItem: {
 	DisplayName: Objeto de cofre sin abrir
 	// Tooltip: This is a debug item placed into chests upon worldgen to check if they have been opened
-}
-
-CopperKey: {
-	// DisplayName: Copper Key
-	// Tooltip: Opens one locked Copper Chest
-}
-
-Keychain: {
-	// DisplayName: Keychain
-	/* Tooltip:
-		'''
-		<right> while holding a key over this item to add it
-		<shift> and <right> to remove all keys
-		''' */
-}
-
-MagicKeychain: {
-	// DisplayName: Spectre Keychain
-	/* Tooltip:
-		'''
-		{$Keychain.Tooltip}
-		Keys can be used infinitely
-		''' */
 }

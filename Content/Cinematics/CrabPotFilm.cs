@@ -158,7 +158,7 @@ internal class CrabPotFilm : AequusFilm {
         Point crabPotSpot = player.Center.ToTileCoordinates();
         crabPotSpot.Y += 5;
 
-        if (TileLoader.GetTile(Main.tile[crabPotSpot].TileType) is not BaseCrabPot crabPot) {
+        if (TileLoader.GetTile(Main.tile[crabPotSpot].TileType) is not UnifiedCrabPot crabPot) {
             Dust d = Dust.NewDustPerfect(crabPotSpot.ToWorldCoordinates(), DustID.Torch);
             d.noGravity = true;
             d.fadeIn = d.scale + 2f;

@@ -158,6 +158,7 @@ LaserReticle: {
 	Tooltip: 降低{0}%远程武器的离散度
 }
 
+// --localization note-- this is a pun. (high stakes + steak)
 HighSteaks: {
 	DisplayName: 高级牛排
 	Tooltip:
@@ -177,6 +178,7 @@ KegOSpirits: {
 		'''
 }
 
+// --localization note-- this is also a pun. (savory + ivory)
 SaivoryKnife: {
 	DisplayName: 美味象牙刀
 	Tooltip: 延长{0}分钟幽魂仆从的存在时间
@@ -278,6 +280,7 @@ GeigerCounter: {
 	Tooltip: 显示每秒造成的持续伤害
 }
 
+// --localization note-- this may be a pun? (shimmer + monocle)
 ShimmerMonocle: {
 	DisplayName: 微光单片镜
 	Tooltip: 显示一个物品是否是微光材料
@@ -349,6 +352,7 @@ Dynaknife: {
 		'''
 }
 
+// translation note: the flavor text on the tooltip is taken straight from the sword ability flavor text from 'Kirby: Nightmare in Dream Land'
 SuperStarSword: {
 	DisplayName: 超级星剑
 	Tooltip:
@@ -436,6 +440,7 @@ Deltoid: {
 	Tooltip: 用猩红狱火点燃木箭
 }
 
+// --localization note-- this bow is named after an actual real bow, probably should be left as is
 HamaYumi: {
 	DisplayName: 破魔弓
 	Tooltip: 箭矢会被穿透性腐化爆炸短暂增幅
@@ -474,7 +479,7 @@ BombarderRod: {
 		'''
 }
 
-// localization note: 'triacanthorn' is a portmanteau of 'Gleditsia triacanthos' (scientific name of a thorny plant) and the word 'thorn'
+// --localization note-- 'triacanthorn' is a portmanteau of 'Gleditsia triacanthos' (scientific name of a thorny plant) and the word 'thorn'
 Triacanthorn: {
 	DisplayName: 三刺棘
 	Tooltip:
@@ -598,6 +603,29 @@ Baguette: {
 }
 
 //# Misc
+CopperKey: {
+	DisplayName: 铜钥匙
+	Tooltip: 打开上锁的铜宝箱
+}
+
+Keychain: {
+	// DisplayName: Keychain
+	/* Tooltip:
+		'''
+		<right> while holding a key over this item to add it
+		<shift> and <right> to remove all keys
+		''' */
+}
+
+MagicKeychain: {
+	// DisplayName: Spectre Keychain
+	/* Tooltip:
+		'''
+		{$Keychain.Tooltip}
+		Keys can be used infinitely
+		''' */
+}
+
 FrozenTechnology: {
 	DisplayName: 霜冻科技
 	Tooltip: 用于制作信息工具
@@ -643,6 +671,7 @@ DemonicEnergy: {
 	Tooltip: ""
 }
 
+// --localization note-- 'hearth' is a very specific word so it can just be translated into anything relating to earth or ground
 OrganicEnergy: {
 	DisplayName: 心象能量
 	Tooltip: ""
@@ -992,27 +1021,4 @@ StariteMaterial: {
 UnopenedChestItem: {
 	DisplayName: 未开启的宝箱物品
 	Tooltip: 这是Debug物品, 将其放置在世界生成的宝箱内以检测其是否被开启过
-}
-
-CopperKey: {
-	DisplayName: 铜钥匙
-	Tooltip: 打开上锁的铜宝箱
-}
-
-Keychain: {
-	// DisplayName: Keychain
-	/* Tooltip:
-		'''
-		<right> while holding a key over this item to add it
-		<shift> and <right> to remove all keys
-		''' */
-}
-
-MagicKeychain: {
-	// DisplayName: Spectre Keychain
-	/* Tooltip:
-		'''
-		{$Keychain.Tooltip}
-		Keys can be used infinitely
-		''' */
 }

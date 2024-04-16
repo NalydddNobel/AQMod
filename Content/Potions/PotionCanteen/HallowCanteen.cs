@@ -3,12 +3,13 @@ using Terraria.GameContent;
 
 namespace Aequus.Content.Potions.PotionCanteen;
 
-public class HallowCanteen : TemplateCanteen {
-    public override int Rarity => ItemRarityID.LightRed;
-    public override int Value => Item.buyPrice(gold: 10);
-
-    public override int PotionsContained => 2;
-    public override int PotionRecipeRequirement => 15;
+public class HallowCanteen : UnifiedCanteen {
+    public HallowCanteen() : base(new CanteenInfo(
+        MaxBuffs: 2,
+        PotionsRequiredToAddBuff: 15,
+        Rarity: ItemRarityID.Orange,
+        Value: Item.buyPrice(gold: 10)
+    )) { }
 
     public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
         base.PreDrawInInventory(spriteBatch, position, frame, drawColor, itemColor, origin, scale);
@@ -47,7 +48,7 @@ public class HallowCanteen : TemplateCanteen {
     }
 
     private void DrawLiquid(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color color, float rotation, Vector2 origin, float scale) {
-        var liquidColor = GetPotionTCommonColor();
+        var liquidColor = GetPotionColors();
 
         AequusShaders.LuminentMultiply.Value.CurrentTechnique.Passes[0].Apply();
 

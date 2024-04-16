@@ -63,7 +63,7 @@ internal class InstancedPhasePhone : InstancedModItem, IPhaseMirror, ITransformI
         return this;
     }
 
-    public InstancedPhasePhone WithDustTCommonColor(Func<Color> colorFactory) {
+    public InstancedPhasePhone WithDustColors(Func<Color> colorFactory) {
         _customColorFactory += colorFactory;
         return this;
     }

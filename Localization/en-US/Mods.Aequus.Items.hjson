@@ -157,6 +157,7 @@ LaserReticle: {
 	DisplayName: Laser Reticle
 	Tooltip: "{0}% reduced spread on ranged weapons"
 }
+
 // --localization note-- this is a pun. (high stakes + steak)
 HighSteaks: {
 	DisplayName: High Steaks
@@ -176,6 +177,7 @@ KegOSpirits: {
 		{$BottleOSpirits.Tooltip@1}
 		'''
 }
+
 // --localization note-- this is also a pun. (savory + ivory)
 SaivoryKnife: {
 	DisplayName: Saivory Knife
@@ -277,6 +279,7 @@ GeigerCounter: {
 	DisplayName: Geiger Counter
 	Tooltip: Displays the damage per second from debuffs
 }
+
 // --localization note-- this may be a pun? (shimmer + monocle)
 ShimmerMonocle: {
 	DisplayName: Shmonocle
@@ -348,6 +351,7 @@ Dynaknife: {
 		<right> to dash foward and attack
 		'''
 }
+
 // translation note: the flavor text on the tooltip is taken straight from the sword ability flavor text from 'Kirby: Nightmare in Dream Land'
 SuperStarSword: {
 	DisplayName: Super Star Sword
@@ -435,6 +439,7 @@ Deltoid: {
 	DisplayName: Deltoid
 	Tooltip: Ignites wooden arrows with crimson hellfire
 }
+
 // --localization note-- this bow is named after an actual real bow, probably should be left as is
 HamaYumi: {
 	DisplayName: Hama Yumi
@@ -665,6 +670,7 @@ DemonicEnergy: {
 	DisplayName: Eidolic Energy
 	Tooltip: ""
 }
+
 // --localization note-- 'hearth' is a very specific word so it can just be translated into anything relating to earth or ground
 OrganicEnergy: {
 	DisplayName: Hearthic Energy

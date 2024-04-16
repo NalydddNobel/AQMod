@@ -37,6 +37,7 @@ BreadOfCthulhu: {
 	Bestiary: Un bocadillo perdido que obtuvo vida despues de caer por un portal maligno, ¡Esta rebanada no tiene planeado ser tu almuerzo! Ten cuidado cuando pezcas, porque podria tomar el anzuelo de un pezcador que parece presa fácil.
 }
 
+// --localization note-- "conductor" as in an orchestra conductor
 Conductor: {
 	DisplayName: Director
 	Bestiary: Un amalgama de tecnología anticuada. desesperado por demostrar que aun sirve de algo, trata de poner un espectaculo a quien sea que se acerce usando ondas de radio condensadas.

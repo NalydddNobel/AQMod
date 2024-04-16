@@ -2,12 +2,13 @@
 
 namespace Aequus.Content.Potions.PotionCanteen;
 
-public class PotionCanteen : TemplateCanteen {
-    public override int Rarity => ItemRarityID.Blue;
-    public override int Value => Item.buyPrice(gold: 5);
-
-    public override int PotionsContained => 1;
-    public override int PotionRecipeRequirement => 15;
+public class PotionCanteen : UnifiedCanteen {
+    public PotionCanteen() : base(new CanteenInfo(
+        MaxBuffs: 1,
+        PotionsRequiredToAddBuff: 15,
+        Rarity: ItemRarityID.Blue,
+        Value: Item.buyPrice(gold: 5)
+    )) { }
 
     public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
         base.PreDrawInInventory(spriteBatch, position, frame, drawColor, itemColor, origin, scale);
@@ -16,7 +17,7 @@ public class PotionCanteen : TemplateCanteen {
             return true;
         }
 
-        var liquidColor = GetPotionTCommonColor();
+        var liquidColor = GetPotionColors();
         float a = drawColor.A > 0 ? drawColor.A / 255f : Main.inventoryBack.A / 255f;
         spriteBatch.Draw(TextureAssets.Item[Type].Value, position, frame, liquidColor with { A = 255 }, 0f, origin, scale, SpriteEffects.None, 0f);
         return false;
@@ -28,7 +29,7 @@ public class PotionCanteen : TemplateCanteen {
         var origin = frame.Size() / 2f;
         spriteBatch.Draw(AequusTextures.PotionCanteenEmpty, position, frame, lightColor, rotation, origin, scale, SpriteEffects.None, 0f);
         if (HasBuffs()) {
-            var liquidColor = GetPotionTCommonColor();
+            var liquidColor = GetPotionColors();
             spriteBatch.Draw(texture, position, frame, lightColor.MultiplyRGBA(liquidColor), rotation, origin, scale, SpriteEffects.None, 0f);
         }
         return false;

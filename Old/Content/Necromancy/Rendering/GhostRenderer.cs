@@ -10,7 +10,7 @@ namespace Aequus.Old.Content.Necromancy.Rendering;
 public class GhostRenderer : ModSystem {
     public static Asset<Effect> OutlineShader { get; private set; }
     public static GhostRenderer Instance { get; private set; }
-    public static RenderData[] TCommonColor { get; private set; }
+    public static RenderData[] Colors { get; private set; }
 
     public static readonly List<(NPC, NPC)> ChainedUpNPCs = new();
 
@@ -44,8 +44,8 @@ public class GhostRenderer : ModSystem {
         RenderTargetBinding[] bindings = device.GetRenderTargets();
         device.SetRenderTarget(_helperTarget);
 
-        for (int i = 0; i < TCommonColor.Length; i++) {
-            RenderData render = TCommonColor[i];
+        for (int i = 0; i < Colors.Length; i++) {
+            RenderData render = Colors[i];
             try {
                 if (!render.ContainsContents()) {
                     render.CheckSettingAdoption();
@@ -89,7 +89,7 @@ public class GhostRenderer : ModSystem {
     }
 
     public static void DrawOntoScreen(SpriteBatch spriteBatch) {
-        foreach (var render in TCommonColor) {
+        foreach (var render in Colors) {
             try {
                 if (render.renderTargetCache == null || !render.ContainsContents() || !render.CheckRenderTarget(out bool _)) {
                     continue;
@@ -113,7 +113,7 @@ public class GhostRenderer : ModSystem {
     }
 
     public static RenderData GetColorTarget(Player player, int suggestedTarget = 0) {
-        return TCommonColor[ColorID(player, suggestedTarget)];
+        return Colors[ColorID(player, suggestedTarget)];
     }
 
     public static int ColorID(Player player, int suggestedTarget = 0) {
@@ -127,7 +127,7 @@ public class GhostRenderer : ModSystem {
         if (Main.netMode != NetmodeID.Server) {
             Instance = this;
             Main.OnPreDraw += Main_OnPreDraw;
-            TCommonColor = new RenderData[]
+            Colors = new RenderData[]
             {
                 new RenderData(() => Color.White), // None
                 new RenderData(() => new Color(100, 149, 237, 255)), // Zombie Scepter
@@ -164,7 +164,7 @@ public class GhostRenderer : ModSystem {
     public override void Unload() {
         Instance = null;
         OutlineShader = null;
-        TCommonColor = null;
+        Colors = null;
         ChainedUpNPCs.Clear();
         OrphanedRenderTargets.Clear();
         Main.OnPreDraw -= Main_OnPreDraw;

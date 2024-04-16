@@ -68,9 +68,9 @@ public class NetherStar : ModItem {
     private void DrawGem(SpriteBatch spriteBatch, Vector2 drawCoordinates, Rectangle itemFrame, Color drawColor, float rotation, Vector2 origin, float itemScale, float bloomScale, float flareScale) {
         var texture = TextureAssets.Item[Type].Value;
         float beatTime = Main.GlobalTimeWrappedHourly * 4f;
-        float TCommonColorwapTime = MathF.Sin(beatTime / 2f);
+        float colorSwapTime = MathF.Sin(beatTime / 2f);
         Color bloomColor = Color.Lerp(Color.Violet, Color.Blue, Helper.Oscillate(beatTime, 1f)) with { A = 0 };
-        Color flareColor = TCommonColorwapTime > 0f ? drawColor with { A = 0 } * 0.6f : Color.Black with { A = drawColor.A } * 0.6f;
+        Color flareColor = colorSwapTime > 0f ? drawColor with { A = 0 } * 0.6f : Color.Black with { A = drawColor.A } * 0.6f;
         float pulse = 1f + (MathF.Sin(Main.GlobalTimeWrappedHourly * 5f) * 0.05f + 0.05f);
         itemScale *= pulse;
         bloomScale *= pulse;
@@ -81,8 +81,8 @@ public class NetherStar : ModItem {
         spriteBatch.Draw(AequusTextures.BloomStrong, drawCoordinates, null, bloomColor * 0.1f, 0f, AequusTextures.BloomStrong.Size() / 2f, bloomScale * 2f, SpriteEffects.None, 0f);
 
         spriteBatch.Draw(texture, drawCoordinates, itemFrame, drawColor, rotation, origin, itemScale, SpriteEffects.None, 0f);
-        if (TCommonColorwapTime > 0f) {
-            spriteBatch.Draw(AequusTextures.NetherStar_Glow, drawCoordinates, itemFrame, drawColor * TCommonColorwapTime, rotation, origin, itemScale, SpriteEffects.None, 0f);
+        if (colorSwapTime > 0f) {
+            spriteBatch.Draw(AequusTextures.NetherStar_Glow, drawCoordinates, itemFrame, drawColor * colorSwapTime, rotation, origin, itemScale, SpriteEffects.None, 0f);
         }
 
         float beatScale = Math.Max(MathF.Pow(Helper.Oscillate(beatTime, 1f), 4f) * 1.05f, MathF.Pow(Helper.Oscillate(beatTime - 1.4f, 1f), 4f) * 0.8f);

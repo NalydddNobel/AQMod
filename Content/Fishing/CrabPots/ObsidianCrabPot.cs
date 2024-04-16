@@ -7,7 +7,7 @@ using Terraria.ObjectData;
 
 namespace Aequus.Content.Fishing.CrabPots;
 
-public class ObsidianCrabPot : BaseCrabPot {
+public class ObsidianCrabPot : UnifiedCrabPot {
     public override void Load() {
         ModItem item = new InstancedTileItem(this, rarity: ItemRarityID.Orange, value: Item.sellPrice(silver: 50));
 

@@ -26,7 +26,7 @@ public sealed class RenamingSystem : ModSystem {
     }
     #endregion
 
-    public static Dictionary<DecodeType, Color> DecodeTCommonColor { get; private set; } = new() {
+    public static Dictionary<DecodeType, Color> DecodeColors { get; private set; } = new() {
         [DecodeType.None] = Color.White,
         [DecodeType.FailedCommand] = new Color(255, 120, 120),
         [DecodeType.LanguageKey] = new Color(255, 255, 80),
@@ -51,7 +51,7 @@ public sealed class RenamingSystem : ModSystem {
 
         string result = "";
         foreach (var i in _decodedTextList) {
-            result += i.Type != DecodeType.None ? ChatTagWriter.Color(Colors.AlphaDarken(DecodeTCommonColor[i.Type]), i.Output) : i.Output;
+            result += i.Type != DecodeType.None ? ChatTagWriter.Color(Colors.AlphaDarken(DecodeColors[i.Type]), i.Output) : i.Output;
         }
 
         return result;

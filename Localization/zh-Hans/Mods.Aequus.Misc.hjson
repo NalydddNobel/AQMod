@@ -44,6 +44,7 @@ Dyes: {
 	}
 }
 
+// --localization note-- these color names will go unused in the future so its not necessary to translate
 Rarity: {
 	-13.DisplayName: 火红色
 	-12.DisplayName: 彩虹色

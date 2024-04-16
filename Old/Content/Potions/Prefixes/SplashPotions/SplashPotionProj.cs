@@ -195,8 +195,8 @@ public class SplashPotionProj : ModProjectile {
     }
 
     private Color GetPotionColor() {
-        Color[] TCommonColor = ItemSets.DrinkParticleColors.IndexInRange(ItemType) ? ItemSets.DrinkParticleColors[ItemType] : null;
+        Color[] colors = ItemSets.DrinkParticleColors.IndexInRange(ItemType) ? ItemSets.DrinkParticleColors[ItemType] : null;
 
-        return TCommonColor == null || TCommonColor.Length == 0 ? Color.White : Main.rand.Next(TCommonColor);
+        return colors == null || colors.Length == 0 ? Color.White : Main.rand.Next(colors);
     }
 }

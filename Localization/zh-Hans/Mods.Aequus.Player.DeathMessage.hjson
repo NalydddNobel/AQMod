@@ -14,6 +14,7 @@ AshTombstone: {
 	12: ...的余生都将被锁在异教徒的棺材中.
 }
 
+// --localization note-- "{0}" refers to the player, it should go without saying but any text regarding the player should not imply gender if possible
 ManaFire: {
 	0: "{0}的精华消散无踪."
 	1: "{0}化作了星尘."

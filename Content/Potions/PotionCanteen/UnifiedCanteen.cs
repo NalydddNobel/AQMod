@@ -17,11 +17,12 @@ using Terraria.UI;
 
 namespace Aequus.Content.Potions.PotionCanteen;
 
-public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
-    public abstract int Rarity { get; }
-    public abstract int Value { get; }
-    public abstract int PotionsContained { get; }
-    public abstract int PotionRecipeRequirement { get; }
+public abstract class UnifiedCanteen : ModItem, IOnShimmer, IRightClickOverrideWhenHovered {
+    protected readonly CanteenInfo _info;
+
+    public UnifiedCanteen(CanteenInfo info) {
+        _info = info;
+    }
 
     [CloneByReference]
     public Buff[] Buffs { get; private set; }
@@ -119,97 +120,23 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
         return false;
     }
 
-    public override void SaveData(TagCompound tag) {
-        if (!HasBuffs()) {
-            return;
-        }
-
-        for (int i = 0; i < Buffs.Length; i++) {
-            IDLoader<BuffID>.SaveToTag(tag, $"Buff{i}", Buffs[i].BuffId);
-            IDLoader<ItemID>.SaveToTag(tag, $"Item{i}", Buffs[i].ItemId);
-        }
-    }
-
-    public override void LoadData(TagCompound tag) {
-        InitializeBuffs();
-
-        if (tag.ContainsKey("BuffID") && tag.ContainsKey("ItemID")) {
-            Buffs[0].BuffId = IDLoader<BuffID>.LoadFromTag(tag, "BuffID");
-            Buffs[0].ItemId = IDLoader<ItemID>.LoadFromTag(tag, "ItemID");
-        }
-        else {
-            for (int i = 0; i < Buffs.Length; i++) {
-                Buffs[i].BuffId = IDLoader<BuffID>.LoadFromTag(tag, $"Buff{i}", 0);
-                Buffs[i].ItemId = IDLoader<ItemID>.LoadFromTag(tag, $"Item{i}", 0);
-            }
-        }
-
-        SetPotionDefaults();
-    }
-
-    public override void NetSend(BinaryWriter writer) {
-        InitializeBuffs();
-
-        // PotionsContained is the total amount of buffs, and should be the same across clients.
-        // If it isn't going to be consistent, the canteen should be manually synced instead of using this implementation.
-        int count = PotionsContained;
-
-        for (int i = 0; i < count; i++) {
-            Buff buff = Buffs[i];
-
-            if (buff.BuffId == 0) {
-                writer.Write(0); // Signals a quicker end to the array
-                break;
-            }
-
-            writer.Write(buff.BuffId);
-            writer.Write(buff.ItemId);
-        }
-    }
-
-    public override void NetReceive(BinaryReader reader) {
-        InitializeBuffs();
-
-        int count = PotionsContained;
-
-        for (int i = 0; i < count; i++) {
-            Buff buff = Buffs[i];
-
-            int type = reader.ReadInt32();
-            if (type == 0) {
-                // End of array signal.
-                break;
-            }
-
-            Buffs[i].BuffId = type;
-            Buffs[i].ItemId = reader.ReadInt32();
-        }
-    }
-
     private bool IsValidPotion(Item item) {
         return item.buffType > 0 && item.buffTime > 0 && item.consumable && item.maxStack >= 30 && !Buffs.Any(b => b.BuffId == item.buffType) && !BuffDataSet.CannotChangeDuration.Contains(item.buffType) && ItemDataSet.Potions.Contains(item.type);
     }
 
-    private static void EatRightClick() {
-        Main.mouseRightRelease = false;
-        Main.stackSplit = 180;
-    }
-
-    public bool HoverSlot(Item[] inventory, int context, int slot) {
+    bool IRightClickOverrideWhenHovered.RightClickOverrideWhenHovered(ref Item heldItem, Item[] inv, int context, int slot, Player player, AequusPlayer aequus) {
         int aContext = Math.Abs(context);
         if (!InventoryUI.ContextsInv.Contains(context)) {
             return false;
         }
 
-        Item heldItem = Main.mouseItem;
-
-        if (_warningAnimation > 0 || !Main.mouseRight || !Main.mouseRightRelease || heldItem == null || heldItem.IsAir) {
+        if (_warningAnimation > 0 || heldItem == null || heldItem.IsAir) {
             return false;
         }
 
         InitializeBuffs();
 
-        int consumePotions = PotionRecipeRequirement;
+        int consumePotions = _info.PotionsRequiredToAddBuff;
 
         if (!IsValidPotion(heldItem) || heldItem.stack < consumePotions) {
 
@@ -218,14 +145,10 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
                 return false;
             }
 
-            EatRightClick();
-
             _warningAnimation = 80;
-            SoundEngine.PlaySound(AequusSounds.CanteenBuzzer with { Volume = 0.5f });
-            return false;
+            SoundEngine.PlaySound(AequusSounds.CanteenBuzzer with { Volume = 0.33f });
+            return true;
         }
-
-        EatRightClick();
 
         int i = 0;
         // Iterate through each buff and check if it has an id of 0
@@ -249,7 +172,7 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
             heldItem.TurnToAir();
         }
 
-        _potionTCommonColor = null;
+        _potionColors = null;
         SetPotionDefaults();
         Item.NetStateChanged();
 
@@ -295,42 +218,111 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
         return true;
     }
 
-    #region TCommonColor
-    [CloneByReference]
-    protected Color[] _potionTCommonColor;
+    #region IO
+    public override void SaveData(TagCompound tag) {
+        if (!HasBuffs()) {
+            return;
+        }
 
-    protected Color GetPotionTCommonColor() {
+        for (int i = 0; i < Buffs.Length; i++) {
+            IDLoader<BuffID>.SaveToTag(tag, $"Buff{i}", Buffs[i].BuffId);
+            IDLoader<ItemID>.SaveToTag(tag, $"Item{i}", Buffs[i].ItemId);
+        }
+    }
+
+    public override void LoadData(TagCompound tag) {
+        InitializeBuffs();
+
+        if (tag.ContainsKey("BuffID") && tag.ContainsKey("ItemID")) {
+            Buffs[0].BuffId = IDLoader<BuffID>.LoadFromTag(tag, "BuffID");
+            Buffs[0].ItemId = IDLoader<ItemID>.LoadFromTag(tag, "ItemID");
+        }
+        else {
+            for (int i = 0; i < Buffs.Length; i++) {
+                Buffs[i].BuffId = IDLoader<BuffID>.LoadFromTag(tag, $"Buff{i}", 0);
+                Buffs[i].ItemId = IDLoader<ItemID>.LoadFromTag(tag, $"Item{i}", 0);
+            }
+        }
+
+        SetPotionDefaults();
+    }
+
+    public override void NetSend(BinaryWriter writer) {
+        InitializeBuffs();
+
+        // PotionsContained is the total amount of buffs, and should be the same across clients.
+        // If it isn't going to be consistent, the canteen should be manually synced instead of using this implementation.
+        int count = _info.MaxBuffs;
+
+        for (int i = 0; i < count; i++) {
+            Buff buff = Buffs[i];
+
+            if (buff.BuffId == 0) {
+                writer.Write(0); // Signals a quicker end to the array
+                break;
+            }
+
+            writer.Write(buff.BuffId);
+            writer.Write(buff.ItemId);
+        }
+    }
+
+    public override void NetReceive(BinaryReader reader) {
+        InitializeBuffs();
+
+        int count = _info.MaxBuffs;
+
+        for (int i = 0; i < count; i++) {
+            Buff buff = Buffs[i];
+
+            int type = reader.ReadInt32();
+            if (type == 0) {
+                // End of array signal.
+                break;
+            }
+
+            Buffs[i].BuffId = type;
+            Buffs[i].ItemId = reader.ReadInt32();
+        }
+    }
+    #endregion
+
+    #region Colors
+    [CloneByReference]
+    protected Color[] _potionColors;
+
+    protected Color GetPotionColors() {
         if (!HasBuffs()) {
             return Color.White;
         }
 
-        // Initialize TCommonColor if they are null.
-        if (_potionTCommonColor == null && HasBuffs()) {
-            List<Color> TCommonColor = new List<Color>();
+        // Initialize colors if they are null.
+        if (_potionColors == null && HasBuffs()) {
+            List<Color> colors = new List<Color>();
 
             for (int i = 0; i < Buffs.Length; i++) {
                 if (Buffs[i].ItemId <= 0) {
                     continue;
                 }
 
-                Color[] drinkTCommonColor = ItemSets.DrinkParticleColors[Buffs[i].ItemId];
-                if (drinkTCommonColor != null) {
-                    TCommonColor.AddRange(drinkTCommonColor);
+                Color[] drinkColors = ItemSets.DrinkParticleColors[Buffs[i].ItemId];
+                if (drinkColors != null) {
+                    colors.AddRange(drinkColors);
                 }
             }
 
-            _potionTCommonColor = TCommonColor.ToArray();
+            _potionColors = colors.ToArray();
         }
 
         Color colorResult = Color.White;
-        if (_potionTCommonColor != null && _potionTCommonColor.Length > 0) {
+        if (_potionColors != null && _potionColors.Length > 0) {
             float time = Main.GlobalTimeWrappedHourly * Buffs.Length;
             if (HasBuffs()) {
                 for (int i = 0; i < Buffs.Length; i++) {
                     time += Buffs[i].BuffId;
                 }
             }
-            colorResult = Color.Lerp(_potionTCommonColor[(int)time % _potionTCommonColor.Length], _potionTCommonColor[(int)(time + 1) % _potionTCommonColor.Length], time % 1f);
+            colorResult = Color.Lerp(_potionColors[(int)time % _potionColors.Length], _potionColors[(int)(time + 1) % _potionColors.Length], time % 1f);
         }
 
         return colorResult * 1.1f;
@@ -344,8 +336,8 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
 
     public sealed override void SetDefaults() {
         Item.DefaultToAccessory(20, 20);
-        Item.value = Rarity;
-        Item.rare = Value;
+        Item.value = _info.Rarity;
+        Item.rare = _info.Value;
 
         SetPotionDefaults();
     }
@@ -375,12 +367,12 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
 
     public void InitializeBuffs() {
         if (Buffs == null) {
-            Buffs = new Buff[PotionsContained];
+            Buffs = new Buff[_info.MaxBuffs];
         }
         else {
-            int amt = Math.Min(Buffs.Length, PotionsContained);
+            int amt = Math.Min(Buffs.Length, _info.MaxBuffs);
 
-            Buff[] entries = new Buff[PotionsContained];
+            Buff[] entries = new Buff[_info.MaxBuffs];
             for (int i = 0; i < amt; i++) {
                 entries[i] = Buffs[i];
             }
@@ -410,7 +402,7 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
     /*
     public override void AddRecipes() {
         int[] validPotions = ItemSets.Potions.Where(i => i.ValidEntry && ContentSamples.ItemsByType[i.Id].buffType != BuffID.Lucky).Select(e => e.Id).ToArray();
-        int potionCount = PotionsContained;
+        int potionCount = _info.MaxBuffs;
 
         // Examples use an array of length 3.
         // Create an array which counts up (0, 1, 2)
@@ -458,4 +450,5 @@ public abstract class TemplateCanteen : ModItem, IOnShimmer, IHoverSlot {
     #endregion
 
     public record struct Buff(int ItemId, int BuffId);
+    public record struct CanteenInfo(int MaxBuffs, int PotionsRequiredToAddBuff, int Rarity, int Value);
 }

@@ -26,7 +26,7 @@ public class PacketCrabPotUse : PacketHandler {
         }
 
         if (Main.myPlayer == plr) {
-            BaseCrabPot.GrabItem(x, y, plr, crabPot);
+            UnifiedCrabPot.GrabItem(x, y, plr, crabPot);
         }
         if (Main.netMode == NetmodeID.Server) {
             Send(x, y, plr, waterStyle);

@@ -4,7 +4,7 @@ using Aequus.Core.ContentGeneration;
 using Aequus.Core.Initialization;
 
 namespace Aequus.Content.Fishing.CrabPots;
-public class CrabPot : BaseCrabPot {
+public class CrabPot : UnifiedCrabPot {
     public const int CopperPot = 0;
     public const int TinPot = 1;
     public const int StyleCount = 2;
