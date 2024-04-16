@@ -77,6 +77,6 @@ public partial class AequusTile : GlobalTile, IPostSetupContent {
     }
 
     public override void RightClick(int i, int j, int type) {
-        CheckCustomKeys(i, j, type);
+        CheckVanillaKeyInteractions(i, j, type);
     }
 }

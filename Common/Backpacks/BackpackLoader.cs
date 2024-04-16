@@ -98,12 +98,6 @@ public class BackpackLoader {
                 player.RefreshInfoAccsFromItemType(backpack.Inventory[i]);
                 player.RefreshMechanicalAccsFromItemType(backpack.Inventory[i].type);
             }
-            if (backpack.Inventory[i].type == ItemID.GoldenKey && aequusPlayer.goldenKey == null) {
-                aequusPlayer.goldenKey = backpack.Inventory[i];
-            }
-            if (backpack.Inventory[i].type == ItemID.ShadowKey && (aequusPlayer.shadowKey == null || aequusPlayer.shadowKey.consumable)) {
-                aequusPlayer.shadowKey = backpack.Inventory[i];
-            }
             if (backpack.Inventory[i].type == ItemID.Football) {
                 player.hasFootball = true;
             }
@@ -208,15 +202,19 @@ public class BackpackLoader {
         return anyTransfers;
     }
 
-    public static void ConsumeItem(Player player, BackpackData backpack, int type, bool reverseOrder) {
+    public static bool ConsumeItem(Player player, BackpackData backpack, int type, bool reverseOrder) {
         for (int i = 0; i < backpack.Inventory.Length; i++) {
             if (!backpack.Inventory[i].IsAir && backpack.Inventory[i].type == type && ItemLoader.ConsumeItem(backpack.Inventory[i], player)) {
                 backpack.Inventory[i].stack--;
                 if (backpack.Inventory[i].stack <= 0) {
                     backpack.Inventory[i].TurnToAir();
                 }
+
+                return true;
             }
         }
+
+        return false;
     }
 
     public static Item GetQuickManaItem(Player player, BackpackData backpack) {

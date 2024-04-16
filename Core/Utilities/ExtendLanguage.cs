@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Terraria.Localization;
 using Terraria.Utilities;
 
 namespace Aequus.Core.Utilities;
 public static class ExtendLanguage {
     private record struct ColoredText(string Text, Color Color);
+
+    public static string PrettyPrint(string text) {
+        return Regex.Replace(text, "([A-Z])", " $1").Trim();
+    }
 
     /// <summary>Gets a <see cref="ILocalizedModType"/>'s "DisplayName" value.</summary>
     public static LocalizedText GetRandomLocalizationFromCategory(this ILocalizedModType localizedModType, string suffix, UnifiedRandom random = null) {

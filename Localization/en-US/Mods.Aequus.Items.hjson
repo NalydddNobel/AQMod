@@ -598,6 +598,29 @@ Baguette: {
 }
 
 //# Misc
+CopperKey: {
+	DisplayName: Copper Key
+	Tooltip: Opens one locked Copper Chest
+}
+
+Keychain: {
+	DisplayName: Keychain
+	Tooltip:
+		'''
+		<right> while holding a key over this item to add it
+		<shift> and <right> to remove all keys
+		'''
+}
+
+MagicKeychain: {
+	DisplayName: Spectre Keychain
+	Tooltip:
+		'''
+		{$Keychain.Tooltip}
+		Keys can be used infinitely
+		'''
+}
+
 FrozenTechnology: {
 	DisplayName: Frozen Technology
 	Tooltip: Used to craft informational gadgets
@@ -992,9 +1015,4 @@ StariteMaterial: {
 UnopenedChestItem: {
 	DisplayName: Unopened Chest Item
 	Tooltip: This is a debug item placed into chests upon worldgen to check if they have been opened
-}
-
-CopperKey: {
-	DisplayName: Copper Key
-	Tooltip: Opens one locked Copper Chest
 }

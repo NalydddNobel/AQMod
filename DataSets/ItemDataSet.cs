@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.Tiles.CraftingStations.TrashCompactor;
+using Aequus.Content.Tools.Keychain;
 using Aequus.DataSets.Structures;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -7,6 +8,19 @@ using System.Linq;
 namespace Aequus.DataSets;
 
 public class ItemDataSet : DataSet {
+    /// <summary>Items in this set are unable to be submitted to the Physicist.</summary>
+    [JsonProperty]
+    public static Dictionary<IDEntry<ItemID>, Keychain.KeychainInfo> KeychainData { get; private set; } = new Dictionary<IDEntry<ItemID>, Keychain.KeychainInfo>() {
+        [ItemID.CorruptionKey] = new(NonConsumable: false),
+        [ItemID.CrimsonKey] = new(NonConsumable: false),
+        [ItemID.DungeonDesertKey] = new(NonConsumable: false),
+        [ItemID.FrozenKey] = new(NonConsumable: false),
+        [ItemID.GoldenKey] = new(NonConsumable: false),
+        [ItemID.HallowedKey] = new(NonConsumable: false),
+        [ItemID.JungleKey] = new(NonConsumable: false),
+        [ItemID.ShadowKey] = new(NonConsumable: true),
+        [ItemID.TempleKey] = new(NonConsumable: false),
+    };
     /// <summary>Items in this set are unable to be submitted to the Physicist.</summary>
     [JsonProperty]
     public static HashSet<IDEntry<ItemID>> CannotTradeWithPhysicist { get; private set; } = new();

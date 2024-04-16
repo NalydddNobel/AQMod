@@ -998,3 +998,21 @@ CopperKey: {
 	// DisplayName: Copper Key
 	// Tooltip: Opens one locked Copper Chest
 }
+
+Keychain: {
+	// DisplayName: Keychain
+	/* Tooltip:
+		'''
+		<right> while holding a key over this item to add it
+		<shift> and <right> to remove all keys
+		''' */
+}
+
+MagicKeychain: {
+	// DisplayName: Spectre Keychain
+	/* Tooltip:
+		'''
+		{$Keychain.Tooltip}
+		Keys can be used infinitely
+		''' */
+}

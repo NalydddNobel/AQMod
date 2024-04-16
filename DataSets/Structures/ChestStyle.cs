@@ -113,4 +113,8 @@ public class ChestStyleConversion {
         // TODO -- Add impl for aequus chest -> enum
         return ChestStyle.Unknown;
     }
+
+    public static ChestStyle ToEnum(Tile chestTile) {
+        return ToEnum(chestTile.TileType, chestTile.TileFrameX / 36);
+    }
 }

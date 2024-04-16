@@ -379,15 +379,9 @@
             <summary>Returning this result will attempt dupe the item from the item slot, stacking it onto the mouse item.</summary>
         </member>
         <member name="M:Aequus.Common.Items.Components.IRightClickOverrideWhenHeld.RightClickOverrideWhileHeld(Terraria.Item@,Terraria.Item[],System.Int32,System.Int32,Terraria.Player,Aequus.AequusPlayer)">
-            <summary>
-            
-            </summary>
-            <param name="heldItem"></param>
-            <param name="inv"></param>
-            <param name="context"></param>
-            <param name="slot"></param>
-            <param name="player"></param>
-            <param name="aequus"></param>
+            <returns>true to prevent vanilla right click actions.</returns>
+        </member>
+        <member name="M:Aequus.Common.Items.Components.IRightClickOverrideWhenHovered.RightClickOverrideWhenHovered(Terraria.Item@,Terraria.Item[],System.Int32,System.Int32,Terraria.Player,Aequus.AequusPlayer)">
             <returns>true to prevent vanilla right click actions.</returns>
         </member>
         <member name="M:Aequus.Common.Items.Components.IUpdateItemDye.Player_UpdateItemDye(Terraria.On_Player.orig_UpdateItemDye,Terraria.Player,System.Boolean,System.Boolean,Terraria.Item,Terraria.Item)">
@@ -1912,7 +1906,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 741)</summary>
+            <summary>(Total Textures: 742)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2915,6 +2909,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.BellowsProj">
             <summary>Full Path: Content/Tools/Bellows/BellowsProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Keychain">
+            <summary>Full Path: Content/Tools/Keychain/Keychain</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CopperKey">
             <summary>Full Path: Content/Tools/Keys/CopperKey</summary>
@@ -4151,6 +4148,9 @@
         </member>
         <member name="P:Aequus.DataSets.FishDataSet.Junk">
             <summary>Items in this set are fishing junk.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.ItemDataSet.KeychainData">
+            <summary>Items in this set are unable to be submitted to the Physicist.</summary>
         </member>
         <member name="P:Aequus.DataSets.ItemDataSet.CannotTradeWithPhysicist">
             <summary>Items in this set are unable to be submitted to the Physicist.</summary>
