@@ -93,9 +93,10 @@ public class ChestStyleConversion {
         if (chestStyle < CONTAINERS2_START) {
             return;
         }
+
         if (chestStyle < AEQUUS_START) {
             chestType = TileID.Containers2;
-            style -= CONTAINERS2_START;
+            chestStyle -= CONTAINERS2_START;
             return;
         }
 

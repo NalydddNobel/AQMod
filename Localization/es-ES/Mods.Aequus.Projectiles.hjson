@@ -77,3 +77,7 @@ DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 // PolymerSandSandGun.DisplayName: "{PolymerSand.DisplayName}"
 // ScrapBlock.DisplayName: Junk Ball
 // ScrapBlockSandGun.DisplayName: "{ScrapBlock.DisplayName}"
+// PhaseDiscProj.DisplayName: Phase Disc Proj
+// SickBeatProj.DisplayName: Sick Beat Proj
+// ValariProj.DisplayName: Valari Proj
+// VrangProj.DisplayName: Vrang Proj

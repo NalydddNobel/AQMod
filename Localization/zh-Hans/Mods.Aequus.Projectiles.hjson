@@ -77,3 +77,7 @@ PolymerSand.DisplayName: 沙球
 PolymerSandSandGun.DisplayName: "{PolymerSand.DisplayName}"
 ScrapBlock.DisplayName: 废料球
 ScrapBlockSandGun.DisplayName: "{ScrapBlock.DisplayName}"
+// PhaseDiscProj.DisplayName: Phase Disc Proj
+// SickBeatProj.DisplayName: Sick Beat Proj
+// ValariProj.DisplayName: Valari Proj
+// VrangProj.DisplayName: Vrang Proj

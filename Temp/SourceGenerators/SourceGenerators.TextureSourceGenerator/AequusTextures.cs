@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 742)</summary>
+/// <summary>(Total Textures: 750)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1465,6 +1465,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> HamaYumiArrow = new("Aequus/Old/Content/Weapons/Demon/Ranged/HamaYumiArrow");
     /// <summary>Full Path: Old/Content/Weapons/Demon/Ranged/HamaYumi_Glow</summary>
     public static readonly RequestCache<Texture2D> HamaYumi_Glow = new("Aequus/Old/Content/Weapons/Demon/Ranged/HamaYumi_Glow");
+    /// <summary>Full Path: Old/Content/Weapons/Melee/PhaseDisc/PhaseDisc</summary>
+    public static readonly RequestCache<Texture2D> PhaseDisc = new("Aequus/Old/Content/Weapons/Melee/PhaseDisc/PhaseDisc");
+    /// <summary>Full Path: Old/Content/Weapons/Melee/PhaseDisc/PhaseDiscProj</summary>
+    public static readonly RequestCache<Texture2D> PhaseDiscProj = new("Aequus/Old/Content/Weapons/Melee/PhaseDisc/PhaseDiscProj");
+    /// <summary>Full Path: Old/Content/Weapons/Melee/SickBeat/SickBeat</summary>
+    public static readonly RequestCache<Texture2D> SickBeat = new("Aequus/Old/Content/Weapons/Melee/SickBeat/SickBeat");
     /// <summary>Full Path: Old/Content/Weapons/Melee/Slice/Slice</summary>
     public static readonly RequestCache<Texture2D> Slice = new("Aequus/Old/Content/Weapons/Melee/Slice/Slice");
     /// <summary>Full Path: Old/Content/Weapons/Melee/Slice/SliceBulletProj</summary>
@@ -1477,6 +1483,16 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> UltimateSwordBuff = new("Aequus/Old/Content/Weapons/Melee/UltimateSword/UltimateSwordBuff");
     /// <summary>Full Path: Old/Content/Weapons/Melee/UltimateSword/UltimateSword_Glow</summary>
     public static readonly RequestCache<Texture2D> UltimateSword_Glow = new("Aequus/Old/Content/Weapons/Melee/UltimateSword/UltimateSword_Glow");
+    /// <summary>Full Path: Old/Content/Weapons/Melee/Valari/Valari</summary>
+    public static readonly RequestCache<Texture2D> Valari = new("Aequus/Old/Content/Weapons/Melee/Valari/Valari");
+    /// <summary>Full Path: Old/Content/Weapons/Melee/Vrang/Vrang</summary>
+    public static readonly RequestCache<Texture2D> Vrang = new("Aequus/Old/Content/Weapons/Melee/Vrang/Vrang");
+    /// <summary>Full Path: Old/Content/Weapons/Melee/Vrang/VrangProj</summary>
+    public static readonly RequestCache<Texture2D> VrangProj = new("Aequus/Old/Content/Weapons/Melee/Vrang/VrangProj");
+    /// <summary>Full Path: Old/Content/Weapons/Melee/Vrang/VrangProj_Cold</summary>
+    public static readonly RequestCache<Texture2D> VrangProj_Cold = new("Aequus/Old/Content/Weapons/Melee/Vrang/VrangProj_Cold");
+    /// <summary>Full Path: Old/Content/Weapons/Melee/Vrang/VrangProj_Hot</summary>
+    public static readonly RequestCache<Texture2D> VrangProj_Hot = new("Aequus/Old/Content/Weapons/Melee/Vrang/VrangProj_Hot");
     /// <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow</summary>
     public static readonly RequestCache<Texture2D> CrusadersCrossbow = new("Aequus/Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow");
     /// <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj</summary>

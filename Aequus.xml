@@ -36,7 +36,7 @@
         <member name="F:Aequus.Common.Chests.ChestLoot.Surface">
             <summary>Extra loot pool for Vanilla's Surface Wooden Chests.</summary>
         </member>
-        <member name="F:Aequus.Common.Chests.ChestLoot.AllUnderground">
+        <member name="F:Aequus.Common.Chests.ChestLoot.Underground">
             <summary>Extra loot pool for Vanilla's Underground Chests, this includes Gold, Frozen, Rich Mahogany, etc.</summary>
         </member>
         <member name="F:Aequus.Common.Chests.ChestLoot.Sky">
@@ -49,7 +49,7 @@
             <summary>Extra loot pool for Chests located in the Pyramid.</summary>
         </member>
         <member name="F:Aequus.Common.Chests.ChestLoot.Dungeon">
-            <summary>Extra loot pool for Chests located in the Dungeon. Includes Biome Chests as of now.</summary>
+            <summary>Extra loot pool for Locked Gold Chests located in the Dungeon.</summary>
         </member>
         <member name="F:Aequus.Common.Chests.ChestLoot.Temple">
             <summary>Extra loot pool for Chests located in the Temple.</summary>
@@ -1906,7 +1906,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 742)</summary>
+            <summary>(Total Textures: 750)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -4095,6 +4095,15 @@
         <member name="F:Aequus.AequusTextures.HamaYumi_Glow">
             <summary>Full Path: Old/Content/Weapons/Demon/Ranged/HamaYumi_Glow</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.PhaseDisc">
+            <summary>Full Path: Old/Content/Weapons/Melee/PhaseDisc/PhaseDisc</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhaseDiscProj">
+            <summary>Full Path: Old/Content/Weapons/Melee/PhaseDisc/PhaseDiscProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SickBeat">
+            <summary>Full Path: Old/Content/Weapons/Melee/SickBeat/SickBeat</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Slice">
             <summary>Full Path: Old/Content/Weapons/Melee/Slice/Slice</summary>
         </member>
@@ -4112,6 +4121,21 @@
         </member>
         <member name="F:Aequus.AequusTextures.UltimateSword_Glow">
             <summary>Full Path: Old/Content/Weapons/Melee/UltimateSword/UltimateSword_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Valari">
+            <summary>Full Path: Old/Content/Weapons/Melee/Valari/Valari</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Vrang">
+            <summary>Full Path: Old/Content/Weapons/Melee/Vrang/Vrang</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.VrangProj">
+            <summary>Full Path: Old/Content/Weapons/Melee/Vrang/VrangProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.VrangProj_Cold">
+            <summary>Full Path: Old/Content/Weapons/Melee/Vrang/VrangProj_Cold</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.VrangProj_Hot">
+            <summary>Full Path: Old/Content/Weapons/Melee/Vrang/VrangProj_Hot</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrusadersCrossbow">
             <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow</summary>

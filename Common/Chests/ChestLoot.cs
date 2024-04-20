@@ -4,14 +4,14 @@ public enum ChestLoot {
     /// <summary>Extra loot pool for Vanilla's Surface Wooden Chests.</summary>
     Surface,
     /// <summary>Extra loot pool for Vanilla's Underground Chests, this includes Gold, Frozen, Rich Mahogany, etc.</summary>
-    AllUnderground,
+    Underground,
     /// <summary>Extra loot pool for Vanilla's Sky Chests. This includes Skyware and Locked Gold Chests located above the surface line.</summary>
     Sky,
     /// <summary>Extra loot pool for Chests located in the Underground Desert.</summary>
     UndergroundDesert,
     /// <summary>Extra loot pool for Chests located in the Pyramid.</summary>
     Pyramid,
-    /// <summary>Extra loot pool for Chests located in the Dungeon. Includes Biome Chests as of now.</summary>
+    /// <summary>Extra loot pool for Locked Gold Chests located in the Dungeon.</summary>
     Dungeon,
     /// <summary>Extra loot pool for Chests located in the Temple.</summary>
     Temple,
