@@ -5,14 +5,11 @@ namespace Aequus.Content.Tools.Keychain;
 
 [WorkInProgress]
 internal class MagicKeychain : Keychain {
-    public override string Texture => AequusTextures.Item(ItemID.GoldenKey);
-
     public override void SetDefaults() {
         Item.width = 16;
         Item.height = 16;
         Item.rare = ItemRarityID.Cyan;
         Item.value = Item.sellPrice(gold: 5);
-        Item.color = Color.LimeGreen;
         _keys = new();
     }
 

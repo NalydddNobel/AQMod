@@ -352,6 +352,39 @@ Dynaknife: {
 		'''
 }
 
+PhaseDisc: {
+	// DisplayName: Phasebrink
+	/* Tooltip:
+		'''
+		<left> and <right> to throw elemental discs
+		Throw them together for a powerful attack
+		''' */
+}
+
+SickBeat: {
+	// DisplayName: Sick Beat
+	/* Tooltip:
+		'''
+		Deals extra hits when returning back
+		Dropped from sickly enemies who'd love some beats
+		'This beat comes straight from Terraria!'
+		''' */
+}
+
+Valari: {
+	// DisplayName: Valari
+	// Tooltip: Can pick up items
+}
+
+Vrang: {
+	// DisplayName: Vrang
+	/* Tooltip:
+		'''
+		Throw 3 boomerangs at once
+		Dropped by flocking birds which travel in the skies while the wind is high
+		''' */
+}
+
 // translation note: the flavor text on the tooltip is taken straight from the sword ability flavor text from 'Kirby: Nightmare in Dream Land'
 SuperStarSword: {
 	DisplayName: Espada Super Estrella
@@ -1021,24 +1054,4 @@ StariteMaterial: {
 UnopenedChestItem: {
 	DisplayName: Objeto de cofre sin abrir
 	// Tooltip: This is a debug item placed into chests upon worldgen to check if they have been opened
-}
-
-PhaseDisc: {
-	// DisplayName: Phase Disc
-	// Tooltip: ""
-}
-
-SickBeat: {
-	// DisplayName: Sick Beat
-	// Tooltip: ""
-}
-
-Valari: {
-	// DisplayName: Valari
-	// Tooltip: ""
-}
-
-Vrang: {
-	// DisplayName: Vrang
-	// Tooltip: ""
 }

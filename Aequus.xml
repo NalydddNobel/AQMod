@@ -1906,7 +1906,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 750)</summary>
+            <summary>(Total Textures: 751)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2912,6 +2912,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.Keychain">
             <summary>Full Path: Content/Tools/Keychain/Keychain</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MagicKeychain">
+            <summary>Full Path: Content/Tools/Keychain/MagicKeychain</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CopperKey">
             <summary>Full Path: Content/Tools/Keys/CopperKey</summary>
