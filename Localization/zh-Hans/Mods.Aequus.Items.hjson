@@ -348,7 +348,40 @@ Dynaknife: {
 	Tooltip:
 		'''
 		击中敌人时会施加炸弹并引爆
-		<right>向前冲刺并攻击
+		右键向前冲刺并攻击
+		'''
+}
+
+PhaseDisc: {
+	DisplayName: 相位盘
+	Tooltip:
+		'''
+		左键和右键会分别丢出一个元素飞盘
+		组合在一起以形成强大的攻击
+		'''
+}
+
+SickBeat: {
+	DisplayName: 动感节拍
+	Tooltip:
+		'''
+		当折返时会造成额外的命中
+		掉落自喜欢某些节拍的生病的敌人
+		'这个节拍直接来自泰拉瑞亚!'
+		'''
+}
+
+Valari: {
+	DisplayName: 回旋镰
+	Tooltip: 可以拾取物品
+}
+
+Vrang: {
+	DisplayName: 镰刃
+	Tooltip:
+		'''
+		同时扔出3个回旋镖
+		从在大风时成群结队飞行的鸟儿处掉落
 		'''
 }
 
@@ -1021,37 +1054,4 @@ StariteMaterial: {
 UnopenedChestItem: {
 	DisplayName: 未开启的宝箱物品
 	Tooltip: 这是Debug物品, 将其放置在世界生成的宝箱内以检测其是否被开启过
-}
-
-PhaseDisc: {
-	DisplayName: 相位盘
-	Tooltip:
-		'''
-		<left>和<right>会分别丢出一个元素飞盘
-		组合在一起以形成强大的攻击
-		'''
-}
-
-SickBeat: {
-	DisplayName: 动感节拍
-	Tooltip:
-		'''
-		当折返时会造成额外的命中
-		掉落自喜欢某些节拍的生病的敌人
-		'这个节拍直接来自泰拉瑞亚!'
-		'''
-}
-
-Valari: {
-	DisplayName: 回旋镰
-	Tooltip: 可以拾取物品
-}
-
-Vrang: {
-	DisplayName: 镰刃
-	Tooltip:
-		'''
-		同时扔出3个回旋镖
-		从在大风时成群结队飞行的鸟儿处掉落
-		'''
 }
