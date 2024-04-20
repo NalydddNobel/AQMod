@@ -358,7 +358,7 @@ SuperStarSword: {
 	Tooltip:
 		'''
 		生命值高于90%时会发射剑气
-		'会动的东西我砍, 动的很欢的我砍得更欢'
+		'如果谁想逃，就把他们砍了（不逃也砍了）'
 		'''
 }
 
@@ -609,21 +609,21 @@ CopperKey: {
 }
 
 Keychain: {
-	// DisplayName: Keychain
-	/* Tooltip:
+	DisplayName: 钥匙链
+	Tooltip:
 		'''
-		<right> while holding a key over this item to add it
-		<shift> and <right> to remove all keys
-		''' */
+		手持钥匙右键此物品以添加钥匙
+		Shift+右键移除所有钥匙
+		'''
 }
 
 MagicKeychain: {
-	// DisplayName: Spectre Keychain
-	/* Tooltip:
+	DisplayName: 幽灵钥匙链
+	Tooltip:
 		'''
 		{$Keychain.Tooltip}
-		Keys can be used infinitely
-		''' */
+		可以无限使用钥匙
+		'''
 }
 
 FrozenTechnology: {
@@ -673,7 +673,7 @@ DemonicEnergy: {
 
 // --localization note-- 'hearth' is a very specific word so it can just be translated into anything relating to earth or ground
 OrganicEnergy: {
-	DisplayName: 心象能量
+	DisplayName: 地象能量
 	Tooltip: ""
 }
 

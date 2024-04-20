@@ -20,6 +20,6 @@ PollutedOceanBiomeSurface: {
 }
 
 PollutedOceanBiomeUnderground: {
-	DisplayName: 被污染的蓄水层
-	TownNPCDialogueName: 被污染的蓄水层
+	DisplayName: 被污染的地底
+	TownNPCDialogueName: 被污染的地底
 }
