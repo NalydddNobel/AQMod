@@ -119,6 +119,8 @@ public sealed class HardmodeChestLoader : ILoad {
         }
 
         public override void SafeSetStaticDefaults() {
+            Main.tileShine[Type] = Main.tileShine[Type] / 3;
+            Main.tileOreFinderPriority[Type] = (short)(Main.tileOreFinderPriority[TileID.Chlorophyte] + 10);
             ItemSets.ShimmerTransformToItem[DropItem.Type] = _info.PreHardmodeChestItemId;
             AddMapEntry(_info.MapColor, CreateMapEntryName(), MapChestName);
         }

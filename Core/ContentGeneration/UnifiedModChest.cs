@@ -31,16 +31,7 @@ public abstract class UnifiedModChest : ModTile {
     }
 
     public sealed override void SetStaticDefaults() {
-        Main.tileSpelunker[Type] = true;
-        Main.tileContainer[Type] = true;
-        Main.tileShine2[Type] = true;
-        Main.tileShine[Type] = 1200;
-        Main.tileFrameImportant[Type] = true;
-        Main.tileNoAttach[Type] = true;
-        Main.tileOreFinderPriority[Type] = 500;
-        TileID.Sets.HasOutlines[Type] = true;
-        TileID.Sets.BasicChest[Type] = true;
-        TileID.Sets.DisableSmartCursor[Type] = true;
+        this.CloneStaticDefaults(TileID.Containers);
 
         AdjTiles = new int[] { TileID.Containers };
 
