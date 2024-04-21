@@ -17,43 +17,37 @@ public partial class Keychain {
     });
 
     public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
-        if (_sortedKeyIcons == null || _sortedKeyIcons.Count == 0) {
+        KeychainPlayer keychain = Main.LocalPlayer.GetModPlayer<KeychainPlayer>();
+        if (keychain.sortedKeysForIcons == null || keychain.sortedKeysForIcons.Count == 0) {
             return;
         }
 
-        //spriteBatch.End();
-        //spriteBatch.BeginUI(immediate: true, useScissorRectangle: true);
-
-        DrawKeys(spriteBatch, position, drawColor, 0f, scale);
-
-        //spriteBatch.End();
-        //spriteBatch.BeginUI(immediate: false, useScissorRectangle: true);
+        DrawKeys(keychain, spriteBatch, position, drawColor, 0f, scale);
     }
 
     public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI) {
-        if (_sortedKeyIcons == null || _sortedKeyIcons.Count == 0) {
+        KeychainPlayer keychain = Main.LocalPlayer.GetModPlayer<KeychainPlayer>();
+        if (keychain.sortedKeysForIcons == null || keychain.sortedKeysForIcons.Count == 0) {
             return;
         }
 
         Main.GetItemDrawFrame(Type, out _, out Rectangle frame);
         Vector2 drawCoordinates = ExtendItem.WorldDrawPos(Item, frame);
 
-        //spriteBatch.End();
-        //spriteBatch.BeginWorld(shader: true);
-
-        DrawKeys(spriteBatch, drawCoordinates, lightColor, rotation, scale);
-
-        //spriteBatch.End();
-        //spriteBatch.BeginWorld(shader: false);
+        DrawKeys(keychain, spriteBatch, drawCoordinates, lightColor, rotation, scale);
     }
 
-    protected void DrawKeys(SpriteBatch spriteBatch, Vector2 drawCoordinates, Color drawColor, float rotation, float scale) {
-        int count = Math.Min(_keys.Count, KEYS_FRAME_COUNT);
+    protected void DrawKeys(KeychainPlayer keychain, SpriteBatch spriteBatch, Vector2 drawCoordinates, Color drawColor, float rotation, float scale) {
+        int count = Math.Min(keychain.sortedKeysForIcons.Count, KEYS_FRAME_COUNT);
 
         drawCoordinates.Y -= 2f * scale;
-        for (int i = 0; i < count; i++) {
-            Item key = _sortedKeyIcons[i];
-            Rectangle frame = AequusTextures.KeychainKeysTemplate.Frame(verticalFrames: KEYS_FRAME_COUNT, frameY: i);
+        int keyIndex = 0;
+        int frameIndex = 0;
+        int stackLeft = KEYS_FRAME_COUNT - count;
+        int currentItemStack = 0;
+        while (keyIndex < count) {
+            Item key = keychain.sortedKeysForIcons[keyIndex];
+            Rectangle frame = AequusTextures.KeychainKeysTemplate.Frame(verticalFrames: KEYS_FRAME_COUNT, frameY: frameIndex);
             //frame.Height -= 2;
             //if (ItemDataSet.KeychainData.TryGetValue(, out KeychainInfo value)) {
             //    keyColor = Utils.MultiplyRGBA(keyColor, value.Color);
@@ -61,7 +55,20 @@ public partial class Keychain {
 
             GetKeyDrawData(key.type, out Texture2D keyTexture, out Color keyColor);
             keyColor = Utils.MultiplyRGBA(keyColor, drawColor);
-            spriteBatch.Draw(keyTexture, drawCoordinates, frame, keyColor, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f); ;
+            spriteBatch.Draw(keyTexture, drawCoordinates, frame, keyColor, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
+
+            frameIndex++;
+            if (stackLeft > 0 && key.stack > 1 && currentItemStack != 1) {
+                if (currentItemStack == 0) {
+                    currentItemStack = key.stack;
+                }
+                currentItemStack--;
+                stackLeft--;
+            }
+            else {
+                currentItemStack = 0;
+                keyIndex++;
+            }
         }
     }
 

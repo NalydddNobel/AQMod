@@ -22,8 +22,8 @@ public partial class TerrariaHooks {
         }
 
         // Check Keychain for consuming an item.
-        if (player.TryGetModPlayer(out KeychainPlayer keychain) && keychain.keyChain?.ConsumeKey(player, type) == true) {
-            keychain.keyChain.RefreshKeys();
+        if (player.TryGetModPlayer(out KeychainPlayer keychain) && keychain.ConsumeKey(player, type) == true) {
+            keychain.RefreshKeys();
             return true;
         }
 

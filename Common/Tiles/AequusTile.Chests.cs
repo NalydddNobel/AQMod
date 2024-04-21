@@ -69,8 +69,8 @@ public partial class AequusTile : GlobalTile, IPostSetupContent {
             }
         }
 
-        if (player.TryGetModPlayer(out KeychainPlayer keychain) && keychain.keyChain?.ConsumeKey(player, key) == true) {
-            keychain.keyChain.RefreshKeys();
+        if (player.TryGetModPlayer(out KeychainPlayer keychain) && keychain.ConsumeKey(player, key) == true) {
+            keychain.RefreshKeys();
             return true;
         }
 

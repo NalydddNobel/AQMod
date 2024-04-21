@@ -5,18 +5,18 @@ using Terraria.GameContent.UI;
 using Terraria.GameContent.UI.Chat;
 using Terraria.GameInput;
 using Terraria.Localization;
-using Terraria.ID;
 
 namespace Aequus.Content.Tools.Keychain;
 
 public partial class Keychain : IAddKeywords {
     public void AddSpecialTooltips() {
-        if (_keys.Count <= 0) {
+        KeychainPlayer keychain = Main.LocalPlayer.GetModPlayer<KeychainPlayer>();
+        if (keychain.sortedKeysForIcons == null || keychain.sortedKeysForIcons.Count == 0) {
             return;
         }
 
         Keyword keyword = new Keyword(Language.GetTextValue("Mods.Aequus.Misc.ContainsHeader"), Color.Gold, ItemID.GoldenKey);
-        foreach (Item item in _sortedKeyIcons) {
+        foreach (Item item in keychain.sortedKeysForIcons) {
             int stack = item.stack;
             item.stack = 1;
             Color color = item.rare == ItemRarityID.White ? Color.White : ItemRarity.GetColor(item.rare);
