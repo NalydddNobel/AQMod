@@ -78,7 +78,7 @@ Rarity: {
 
 BlocksDistance: 距离: {0}格物块
 Contains: 包含: {0}
-// ContainsHeader: Contains
+ContainsHeader: 包含
 MonocleToggleOn: 单片眼镜开启
 MonocleToggleOff: 单片眼镜关闭
 ShimmerMonocleToggleOn: 微光备注开启
