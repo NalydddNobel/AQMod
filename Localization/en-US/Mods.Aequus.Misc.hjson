@@ -78,6 +78,7 @@ Rarity: {
 
 BlocksDistance: Distance: {0} blocks away
 Contains: Contains: {0}
+ContainsHeader: Contains
 MonocleToggleOn: Monocle On
 MonocleToggleOff: Monocle Off
 ShimmerMonocleToggleOn: Shimmer Notes On

@@ -14,3 +14,11 @@ InfoDisplays: {
 }
 
 KeyUnbound: Unbound
+
+Controls: {
+	// Unbound: "{$Mods.Aequus.KeyUnbound}"
+	// LeftControl: Left Control
+	// RightControl: Right Shift
+	// Control: Shift
+	// LeftShift: Left Shift
+}

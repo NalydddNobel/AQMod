@@ -70,4 +70,16 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
   </ItemGroup>
 	
+  <ItemGroup>
+    <None Remove="Assets\Textures\Keychain\CrimsonKeyPalette.png" />
+    <None Remove="Assets\Textures\Keychain\DungeonDesertKeyPalette.png" />
+    <None Remove="Assets\Textures\Keychain\FrozenKeyPalette.png" />
+    <None Remove="Assets\Textures\Keychain\GoldenKeyPalette.png" />
+    <None Remove="Assets\Textures\Keychain\KeychainKeys.png" />
+    <None Remove="Assets\Textures\Keychain\PaletteKey.png" />
+    <None Remove="Assets\Textures\Keychain\SilverKeyPalette.png" />
+    <None Remove="Assets\Textures\Keychain\TempleKeyPalette.png" />
+    <None Remove="Content\Tools\Keychain\Keychain_Keys.png" />
+  </ItemGroup>
+	
 </Project>

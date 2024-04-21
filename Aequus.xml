@@ -1906,7 +1906,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 751)</summary>
+            <summary>(Total Textures: 765)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1952,6 +1952,48 @@
         </member>
         <member name="F:Aequus.AequusTextures.ItemCooldown">
             <summary>Full Path: Assets/Textures/ItemCooldown</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CopperKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/CopperKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CorruptionKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/CorruptionKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrimsonKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/CrimsonKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DungeonDesertKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/DungeonDesertKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FrozenKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/FrozenKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldenKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/GoldenKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HallowedKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/HallowedKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.JungleKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/JungleKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.KeychainKeys">
+            <summary>Full Path: Assets/Textures/Keychain/KeychainKeys</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.KeychainKeysTemplate">
+            <summary>Full Path: Assets/Textures/Keychain/KeychainKeysTemplate</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PaletteKey">
+            <summary>Full Path: Assets/Textures/Keychain/PaletteKey</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShadowKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/ShadowKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SilverKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/SilverKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TempleKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/TempleKeyPalette</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LensFlare">
             <summary>Full Path: Assets/Textures/LensFlare</summary>

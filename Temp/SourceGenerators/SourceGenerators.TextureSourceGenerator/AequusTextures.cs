@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 751)</summary>
+/// <summary>(Total Textures: 765)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -37,6 +37,34 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> GenericExplosion = new("Aequus/Assets/Textures/GenericExplosion");
     /// <summary>Full Path: Assets/Textures/ItemCooldown</summary>
     public static readonly RequestCache<Texture2D> ItemCooldown = new("Aequus/Assets/Textures/ItemCooldown");
+    /// <summary>Full Path: Assets/Textures/Keychain/CopperKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> CopperKeyPalette = new("Aequus/Assets/Textures/Keychain/CopperKeyPalette");
+    /// <summary>Full Path: Assets/Textures/Keychain/CorruptionKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> CorruptionKeyPalette = new("Aequus/Assets/Textures/Keychain/CorruptionKeyPalette");
+    /// <summary>Full Path: Assets/Textures/Keychain/CrimsonKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> CrimsonKeyPalette = new("Aequus/Assets/Textures/Keychain/CrimsonKeyPalette");
+    /// <summary>Full Path: Assets/Textures/Keychain/DungeonDesertKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> DungeonDesertKeyPalette = new("Aequus/Assets/Textures/Keychain/DungeonDesertKeyPalette");
+    /// <summary>Full Path: Assets/Textures/Keychain/FrozenKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> FrozenKeyPalette = new("Aequus/Assets/Textures/Keychain/FrozenKeyPalette");
+    /// <summary>Full Path: Assets/Textures/Keychain/GoldenKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> GoldenKeyPalette = new("Aequus/Assets/Textures/Keychain/GoldenKeyPalette");
+    /// <summary>Full Path: Assets/Textures/Keychain/HallowedKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> HallowedKeyPalette = new("Aequus/Assets/Textures/Keychain/HallowedKeyPalette");
+    /// <summary>Full Path: Assets/Textures/Keychain/JungleKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> JungleKeyPalette = new("Aequus/Assets/Textures/Keychain/JungleKeyPalette");
+    /// <summary>Full Path: Assets/Textures/Keychain/KeychainKeys</summary>
+    public static readonly RequestCache<Texture2D> KeychainKeys = new("Aequus/Assets/Textures/Keychain/KeychainKeys");
+    /// <summary>Full Path: Assets/Textures/Keychain/KeychainKeysTemplate</summary>
+    public static readonly RequestCache<Texture2D> KeychainKeysTemplate = new("Aequus/Assets/Textures/Keychain/KeychainKeysTemplate");
+    /// <summary>Full Path: Assets/Textures/Keychain/PaletteKey</summary>
+    public static readonly RequestCache<Texture2D> PaletteKey = new("Aequus/Assets/Textures/Keychain/PaletteKey");
+    /// <summary>Full Path: Assets/Textures/Keychain/ShadowKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> ShadowKeyPalette = new("Aequus/Assets/Textures/Keychain/ShadowKeyPalette");
+    /// <summary>Full Path: Assets/Textures/Keychain/SilverKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> SilverKeyPalette = new("Aequus/Assets/Textures/Keychain/SilverKeyPalette");
+    /// <summary>Full Path: Assets/Textures/Keychain/TempleKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> TempleKeyPalette = new("Aequus/Assets/Textures/Keychain/TempleKeyPalette");
     /// <summary>Full Path: Assets/Textures/LensFlare</summary>
     public static readonly RequestCache<Texture2D> LensFlare = new("Aequus/Assets/Textures/LensFlare");
     /// <summary>Full Path: Assets/Textures/LightRayCircular</summary>

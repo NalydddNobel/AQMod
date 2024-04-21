@@ -1,24 +1,19 @@
 ﻿using Aequus.Common.Items.Components;
-using Aequus.Core;
-using Aequus.Core.Assets;
+using Aequus.Core.Graphics;
 using Aequus.DataSets;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.GameContent.UI.Chat;
-using Terraria.GameInput;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Content.Tools.Keychain;
 
-[WorkInProgress]
-public class Keychain : ModItem, IRightClickOverrideWhenHovered, IOnConsumedInRecipe {
+public partial class Keychain : ModItem, IRightClickOverrideWhenHovered, IOnConsumedInRecipe {
     public const int MAX_KEYS_ALLOWED = 32;
-    public const int FRAME_COUNT = 6;
+    public const int KEYS_FRAME_COUNT = 5;
     public const string TAG_KEY = "Keychain";
 
     public List<Item> _keys;
@@ -99,8 +94,15 @@ public class Keychain : ModItem, IRightClickOverrideWhenHovered, IOnConsumedInRe
         return resultKey;
     }
 
-    public override void SetStaticDefaults() {
-        Main.RegisterItemAnimation(Type, new DrawAnimationVertical(int.MaxValue, FRAME_COUNT));
+    public override void Load() {
+        if (!Main.dedServ) {
+            KeyTextures = new Paletter(AequusTextures.PaletteKey, AequusTextures.KeychainKeysTemplate);
+            Main.QueueMainThreadAction(KeyTextures.Load);
+        }
+    }
+
+    public override void Unload() {
+        Main.QueueMainThreadAction(() => KeyTextures?.Dispose());
     }
 
     public override void SetDefaults() {
@@ -113,36 +115,6 @@ public class Keychain : ModItem, IRightClickOverrideWhenHovered, IOnConsumedInRe
 
     public override void UpdateInfoAccessory(Player player) {
         player.GetModPlayer<KeychainPlayer>().keyChain = this;
-    }
-
-    public override void ModifyTooltips(List<TooltipLine> tooltips) {
-        if (_keys.Count > 0) {
-            string text = "Contains:";
-
-            foreach (Item item in _sortedKeyIcons) {
-                int stack = item.stack;
-                item.stack = 1;
-                text += $"\n{ItemTagHandler.GenerateTag(item)}{item.Name}";
-                item.stack = stack;
-
-                if (item.stack > 1) {
-                    text += $" ({item.stack})";
-                }
-            }
-
-            tooltips.AddTooltip(new TooltipLine(Mod, "KeyChain", text));
-        }
-
-        string smartSelectButton = PlayerInput.GenerateInputTag_ForCurrentGamemode_WithHacks(tagForGameplay: false, "SmartSelect");
-        if (!smartSelectButton.Contains('[')) {
-            smartSelectButton = ExtendLanguage.PrettyPrint(smartSelectButton);
-        }
-
-        foreach (TooltipLine line in tooltips) {
-            if (line.Name.StartsWith("Tooltip")) {
-                line.Text = line.Text.Replace("<shift>", smartSelectButton);
-            }
-        }
     }
 
     public override ModItem Clone(Item newEntity) {
@@ -219,55 +191,6 @@ public class Keychain : ModItem, IRightClickOverrideWhenHovered, IOnConsumedInRe
         }
 
         _keys.Clear();
-    }
-
-    public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
-        if (_sortedKeyIcons == null || _sortedKeyIcons.Count == 0) {
-            return;
-        }
-
-        spriteBatch.End();
-        spriteBatch.BeginUI(immediate: true, useScissorRectangle: true);
-
-        DrawKeys(spriteBatch, position, drawColor, 0f, scale);
-
-        spriteBatch.End();
-        spriteBatch.BeginUI(immediate: false, useScissorRectangle: true);
-    }
-
-    public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI) {
-        if (_sortedKeyIcons == null || _sortedKeyIcons.Count == 0) {
-            return;
-        }
-
-        Main.GetItemDrawFrame(Type, out _, out Rectangle frame);
-        Vector2 drawCoordinates = ExtendItem.WorldDrawPos(Item, frame);
-
-        spriteBatch.End();
-        spriteBatch.BeginWorld(shader: true);
-
-        DrawKeys(spriteBatch, drawCoordinates, lightColor, rotation, scale);
-
-        spriteBatch.End();
-        spriteBatch.BeginWorld(shader: false);
-    }
-
-    public void DrawKeys(SpriteBatch spriteBatch, Vector2 drawCoordinates, Color drawColor, float rotation, float scale) {
-        Main.GetItemDrawFrame(Type, out Texture2D texture, out _);
-        int count = Math.Min(_keys.Count + 1, FRAME_COUNT);
-
-        AequusShaders.LuminentMultiply.Value.CurrentTechnique.Passes[0].Apply();
-
-        drawCoordinates.Y -= 2f * scale;
-        for (int i = 1; i < count; i++) {
-            Rectangle frame = texture.Frame(verticalFrames: FRAME_COUNT, frameY: i);
-            frame.Height -= 2;
-            Color keyColor = drawColor;
-            if (ItemDataSet.KeychainData.TryGetValue(_sortedKeyIcons[i - 1].type, out KeychainInfo value)) {
-                keyColor = Utils.MultiplyRGBA(keyColor, value.Color);
-            }
-            spriteBatch.Draw(texture, drawCoordinates, frame, keyColor, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f); ;
-        }
     }
 
     public record struct KeychainInfo([JsonProperty] bool NonConsumable, [JsonProperty] Color Color);

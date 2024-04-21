@@ -1,9 +1,5 @@
-﻿using Aequus.Core;
-using Terraria.DataStructures;
+﻿namespace Aequus.Content.Tools.Keychain;
 
-namespace Aequus.Content.Tools.Keychain;
-
-[WorkInProgress]
 internal class MagicKeychain : Keychain {
     public override void SetDefaults() {
         Item.width = 16;
