@@ -12,7 +12,7 @@ public class GeigerCounter : ModItem {
         if (PDAEffects.PDAUpgrades.Contains(Type)) {
 
         }
-        player.GetModPlayer<AequusPlayer>().accInfoDPSMeterDebuff = true;
+        player.GetModPlayer<AequusPlayer>().accInfoDebuffDPS = true;
     }
 }
 
@@ -43,6 +43,6 @@ public class GeigerCounterInfoDisplay : InfoDisplay {
     }
 
     public override bool Active() {
-        return Main.LocalPlayer.GetModPlayer<AequusPlayer>().accInfoDPSMeterDebuff;
+        return Main.LocalPlayer.GetModPlayer<AequusPlayer>().accInfoDebuffDPS;
     }
 }

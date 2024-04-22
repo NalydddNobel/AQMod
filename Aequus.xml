@@ -28,6 +28,15 @@
         <member name="M:Aequus.Common.Backpacks.BackpackData.PreDrawSlot(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32)">
             <summary>Return false to override slot drawing.</summary>
         </member>
+        <member name="M:Aequus.Common.Backpacks.BackpackData.SyncNetStates(Terraria.Player,Aequus.Common.Backpacks.BackpackData)">
+            <returns>Whether any items needed syncing.</returns>
+        </member>
+        <member name="M:Aequus.Common.Backpacks.BackpackPlayerSyncPacket.SendSingleItem(Terraria.Player,Aequus.Common.Backpacks.BackpackData,System.Int32,System.Int32,System.Int32)">
+            <summary>Invokes a single item being sent from a backpack.</summary>
+        </member>
+        <member name="M:Aequus.Common.Backpacks.BackpackPlayerSyncPacket.Send(Terraria.Player,Aequus.Common.Backpacks.BackpackData,System.Int32,System.Int32)">
+            <summary>Invokes a full sync of a backpack.</summary>
+        </member>
         <member name="F:Aequus.Common.Buffs.BuffUI.DisableRightClick">
             <summary>
             Prevents the player from right clicking a certain buff type. This list is cleared right before the local player is updated.

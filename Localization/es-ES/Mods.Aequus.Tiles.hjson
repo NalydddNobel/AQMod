@@ -384,3 +384,5 @@ CopperChestLocked: {
 	// ItemDisplayName: "{$CopperChestLocked.MapEntry}"
 	// ItemTooltip: "{$Items.CommonTooltips.LockedWithKey}"
 }
+
+// HiddenChest.MapEntry: Hidden Chest

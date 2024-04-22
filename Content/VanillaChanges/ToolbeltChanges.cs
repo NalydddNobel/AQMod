@@ -36,7 +36,7 @@ public class ToolbeltChanges : GlobalItem {
         if (!player.TryGetModPlayer(out BackpackPlayer backpackPlayer)) {
             return;
         }
-        BackpackLoader.Get<ToolbeltBackpack>(backpackPlayer).Toolbelt = item;
+        BackpackLoader.GetPlayerInstance<ToolbeltBackpack>(backpackPlayer).Toolbelt = item;
     }
 
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
@@ -104,7 +104,7 @@ public class ToolbeltChanges : GlobalItem {
         private LocalizedText _off;
 
         public override bool Active() {
-            return BackpackLoader.Get<ToolbeltBackpack>(Main.LocalPlayer).IsActive(Main.LocalPlayer);
+            return BackpackLoader.GetPlayerInstance<ToolbeltBackpack>(Main.LocalPlayer).IsActive(Main.LocalPlayer);
         }
 
         public override string DisplayValue() {

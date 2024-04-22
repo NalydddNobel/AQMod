@@ -12,7 +12,8 @@ public abstract class BackpackData : ModType, ILocalizedModType {
 
     public int Type { get; internal set; }
 
-    public Item[] Inventory { get; internal set; }
+    private Item[] _inventory;
+    public Item[] Inventory { get => _inventory; internal set => _inventory = value; }
     public int slotCount;
 
     protected bool activeOld;
@@ -124,9 +125,7 @@ public abstract class BackpackData : ModType, ILocalizedModType {
                         }
                     }
 
-                    Item[] arr = Inventory;
-                    Array.Resize(ref arr, capacity);
-                    Inventory = arr;
+                    Array.Resize(ref _inventory, capacity);
                 }
 
                 for (int i = 0; i < Inventory.Length; i++) {
@@ -145,6 +144,7 @@ public abstract class BackpackData : ModType, ILocalizedModType {
         DisplayNameCache = DisplayName;
     }
 
+    #region Rendering
     private float _hueRenderedWith;
     public Texture2D InventoryBack { get; private set; }
     public Texture2D InventoryBackFavorited { get; private set; }
@@ -188,6 +188,67 @@ public abstract class BackpackData : ModType, ILocalizedModType {
 
             // return null if error occurs, this will retry rendering the textures next frame
             return null;
+        }
+    }
+    #endregion
+
+    internal void EnsureCapacity(int capacity) {
+        if (_inventory == null) {
+            _inventory = new Item[capacity];
+            UnNullItems();
+        }
+        else if (_inventory.Length < capacity) {
+            Array.Resize(ref _inventory, capacity);
+            UnNullItems();
+        }
+    }
+
+    internal void UnNullItems() {
+        for (int i = 0; i < _inventory.Length; i++) {
+            if (_inventory[i] == null) {
+                _inventory[i] = new Item();
+            }
+        }
+    }
+
+    /// <returns>Whether any items needed syncing.</returns>
+    public bool SyncNetStates(Player player, BackpackData cloneBackpack) {
+        if (Inventory == null || cloneBackpack.Inventory == null || cloneBackpack.Inventory.Length < Inventory.Length) {
+            return false;
+        }
+
+        bool returnValue = false;
+        for (int i = 0; i < Inventory.Length; i++) {
+            if (Inventory[i] != null && cloneBackpack.Inventory[i] != null && Inventory[i].IsNetStateDifferent(cloneBackpack.Inventory[i])) {
+                Aequus.GetPacket<BackpackPlayerSyncPacket>().SendSingleItem(player, this, i);
+                returnValue |= true;
+            }
+        }
+
+        return returnValue;
+    }
+
+    public void CopyClientState(Player player, BackpackData cloneBackpack) {
+        if (Inventory == null) {
+            return;
+        }
+
+        cloneBackpack.EnsureCapacity(Inventory.Length);
+
+        try {
+            for (int i = 0; i < Inventory.Length; i++) {
+                if (Inventory[i] == null) {
+                    Inventory[i] = new();
+                }
+                if (cloneBackpack.Inventory[i] == null) {
+                    cloneBackpack.Inventory[i] = new();
+                }
+                Inventory[i].CopyNetStateTo(cloneBackpack.Inventory[i]);
+            }
+        }
+        catch (Exception ex) {
+            cloneBackpack.UnNullItems();
+            Aequus.Instance.Logger.Error(ex);
         }
     }
 }

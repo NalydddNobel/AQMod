@@ -38,7 +38,7 @@ public class InfoAccessoryChanges {
         public static void UpdateAequusInfoAccs(Player player) {
             AequusPlayer info = player.GetModPlayer<AequusPlayer>();
             info.accInfoDayCalendar = true;
-            info.accInfoDPSMeterDebuff = true;
+            info.accInfoDebuffDPS = true;
 #if !DEBUG
             info.accInfoQuestFish = true;
 #endif

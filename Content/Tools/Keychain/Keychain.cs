@@ -17,6 +17,10 @@ public partial class Keychain : ModItem, IRightClickOverrideWhenHovered, IOnCons
         }
     }
 
+    public override void SetStaticDefaults() {
+        ItemSets.WorksInVoidBag[Type] = true;
+    }
+
     public override void Unload() {
         Main.QueueMainThreadAction(() => KeyTextures?.Dispose());
     }

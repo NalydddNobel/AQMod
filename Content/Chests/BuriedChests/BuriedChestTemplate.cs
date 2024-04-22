@@ -161,30 +161,42 @@ public class BuriedChestTemplate : UnifiedModChest {
             SoundEngine.PlaySound(SoundID.Unlock, new Vector2(i, j).ToWorldCoordinates());
             for (int x = left; x < left + 2; x++) {
                 for (int y = top; y < top + 2; y++) {
-                    Tile chestTile = Framing.GetTileSafely(x, y);
-                    if (chestTile.TileType != Type) {
-                        continue;
-                    }
-                    chestTile.HasTile = false;
-
                     Vector2 dustCoordinates = new Vector2(i * 16, j * 16);
                     for (int k = 0; k < 4; k++) {
                         Dust.NewDust(dustCoordinates, 16, 16, _parent.DustType);
                     }
+
+                    Tile chestTile = Framing.GetTileSafely(x, y);
+                    if (chestTile.TileType == Type && Main.netMode != NetmodeID.MultiplayerClient) {
+                        chestTile.HasTile = false;
+                    }
                 }
             }
 
-            int chest = WorldGen.PlaceChest(left, top + 1, _parent.Type);
-            if (Main.chest.IndexInRange(chest)) {
-                // Create an RNG seed using the world's seed and the number of buried chests opened.
-                int seed = Main.ActiveWorldFileData.Seed + WorldState.BuriedChestsLooted;
+            if (Main.netMode != NetmodeID.MultiplayerClient) {
+                ushort chestType = _parent.Type;
+                int chest = WorldGen.PlaceChest(left, top + 1, chestType);
 
-                WorldState.BuriedChestsLooted++;
+                if (Main.chest.IndexInRange(chest)) {
+                    // Create an RNG seed using the world's seed and the number of buried chests opened.
+                    int seed = Main.ActiveWorldFileData.Seed + WorldState.BuriedChestsLooted;
 
-                UnifiedRandom chestSpecificRNG = new UnifiedRandom(seed);
+                    WorldState.BuriedChestsLooted++;
 
-                // Roll chest loot using special seed.
-                ChestLootDatabase.Instance.SolveRules(_parent._info.LootPool, new ChestLootInfo(chest, rng: chestSpecificRNG));
+                    UnifiedRandom chestSpecificRNG = new UnifiedRandom(seed);
+
+                    // Roll chest loot using special seed.
+                    ChestLootDatabase.Instance.SolveRules(_parent._info.LootPool, new ChestLootInfo(chest, rng: chestSpecificRNG));
+                }
+
+                if (Main.netMode == NetmodeID.Server) {
+                    NetMessage.SendTileSquare(-1, left - 1, top - 1, 4, 4);
+                    NetMessage.SendData(MessageID.ChestUpdates,
+                        number: 100,
+                        number2: Main.chest[chest].x, number3: Main.chest[chest].y + 1,
+                        number4: 0f, number5: 0,
+                        number6: chestType);
+                }
             }
         }
     }
@@ -221,7 +233,7 @@ public class BuriedChestTemplate : UnifiedModChest {
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
             TileObjectData.addTile(Type);
 
-            AddMapEntry(Color.Gray);
+            AddMapEntry(Color.Lerp(Color.LightGray, Color.Gray, 0.5f), Language.GetOrRegister("Mods.Aequus.Tiles.HiddenChest.MapEntry"));
 
             DustType = _parent.DustType;
             AdjTiles = new int[] { TileID.Containers };
@@ -360,24 +372,25 @@ public class BuriedChestTemplate : UnifiedModChest {
     }
 
     private class UnlockBuriedChestPacket : PacketHandler {
-        public void Send(int i, int j, int plr) {
+        public void Send(int i, int j, int plr, ushort? TileTypeOverride = null) {
             ModPacket packet = GetPacket();
             packet.Write((ushort)i);
             packet.Write((ushort)j);
+            packet.Write(TileTypeOverride ?? Main.tile[i, j].TileType);
             packet.Send();
         }
 
         public override void Receive(BinaryReader reader, int sender) {
             int i = reader.ReadUInt16();
             int j = reader.ReadUInt16();
+            ushort type = reader.ReadUInt16();
 
-            Tile tile = Framing.GetTileSafely(i, j);
-            if (TileLoader.GetTile(tile.TileType) is not InstancedLockedBuriedChest buriedChest) {
+            if (TileLoader.GetTile(type) is not InstancedLockedBuriedChest buriedChest) {
                 return;
             }
 
             if (Main.netMode == NetmodeID.Server) {
-                Send(i, j, Main.myPlayer);
+                Send(i, j, Main.myPlayer, TileTypeOverride: type);
             }
 
             buriedChest.UnlockBuriedChest(i, j);

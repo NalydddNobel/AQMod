@@ -315,17 +315,21 @@ public class BackpackLoader {
         return false;
     }
 
-    public static BackpackData Get(BackpackPlayer player, BackpackData backpack) {
+    public static BackpackData GetPlayerInstance(BackpackPlayer player, BackpackData backpack) {
         return player.backpacks[backpack.Type];
     }
-    public static BackpackData Get(Player player, BackpackData backpack) {
-        return Get(player.GetModPlayer<BackpackPlayer>(), backpack);
+    public static BackpackData GetPlayerInstance(Player player, BackpackData backpack) {
+        return GetPlayerInstance(player.GetModPlayer<BackpackPlayer>(), backpack);
     }
-    public static T Get<T>(BackpackPlayer player) where T : BackpackData {
-        return (T)Get(player, ModContent.GetInstance<T>());
+    public static T GetPlayerInstance<T>(BackpackPlayer player) where T : BackpackData {
+        return (T)GetPlayerInstance(player, ModContent.GetInstance<T>());
     }
-    public static T Get<T>(Player player) where T : BackpackData {
-        return Get<T>(player.GetModPlayer<BackpackPlayer>());
+    public static T GetPlayerInstance<T>(Player player) where T : BackpackData {
+        return GetPlayerInstance<T>(player.GetModPlayer<BackpackPlayer>());
+    }
+
+    public static BackpackData Get(int type) {
+        return Backpacks[type];
     }
 
     [Conditional("DEBUG")]

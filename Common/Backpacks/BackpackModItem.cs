@@ -104,7 +104,7 @@ public abstract class BackpackModItem : ModItem {
         }
 
         public override bool Active() {
-            return BackpackLoader.Get(Main.LocalPlayer, _backpack).IsActive(Main.LocalPlayer);
+            return BackpackLoader.GetPlayerInstance(Main.LocalPlayer, _backpack).IsActive(Main.LocalPlayer);
         }
 
         public override string DisplayValue() {

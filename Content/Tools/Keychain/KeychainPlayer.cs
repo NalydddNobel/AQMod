@@ -9,7 +9,7 @@ using Terraria.ModLoader.IO;
 namespace Aequus.Content.Tools.Keychain;
 
 public class KeychainPlayer : ModPlayer {
-    public const int MAX_KEYS_ALLOWED = 32;
+    public const sbyte MAX_KEYS_ALLOWED = 32;
     public const string TAG_KEY = "Keychain";
 
     public bool hasKeyChain;
@@ -93,6 +93,9 @@ public class KeychainPlayer : ModPlayer {
     public void RefreshKeys() {
         lock (keys) {
             keys.RemoveAll((i) => i == null || i.IsAir);
+        }
+
+        lock (sortedKeysForIcons) {
             sortedKeysForIcons = new List<Item>(keys.Select(GetKeyIconItem));
             sortedKeysForIcons.Sort((item1, item2) => item1.Name.CompareTo(item2.Name));
         }
@@ -134,21 +137,70 @@ public class KeychainPlayer : ModPlayer {
         RefreshKeys();
     }
 
-    public override void ResetEffects() {
+    public override void ResetInfoAccessories() {
         hasKeyChain = false;
         hasInfiniteKeyChain = false;
     }
+
+    #region Networking
+    public override void SyncPlayer(int toWho, int fromWho, bool newPlayer) {
+        if (newPlayer) {
+            Aequus.GetPacket<KeychainPlayerPacket>().Send(Player.whoAmI);
+        }
+    }
+
+    public override void CopyClientState(ModPlayer targetCopy) {
+        KeychainPlayer clone = (KeychainPlayer)targetCopy;
+
+        for (int i = 0; i < keys.Count; i++) {
+            if (clone.keys.Count <= i) {
+                clone.keys.Add(new Item());
+            }
+            keys[i].CopyNetStateTo(clone.keys[i]);
+        }
+    }
+
+    public override void SendClientChanges(ModPlayer clientPlayer) {
+        KeychainPlayer clone = (KeychainPlayer)clientPlayer;
+
+        if (clone.keys.Count == keys.Count) {
+            for (int i = 0; i < keys.Count; i++) {
+                if (keys[i].IsNetStateDifferent(clone.keys[i])) {
+                    Aequus.GetPacket<KeychainPlayerPacket>().SendSingleItem(Player.whoAmI, i);
+                }
+            }
+        }
+        else {
+            clone.keys.Clear();
+            Aequus.GetPacket<KeychainPlayerPacket>().Send(Player.whoAmI);
+        }
+    }
+    #endregion
 }
 
 public class KeychainPlayerPacket : PacketHandler {
+    public void SendSingleItem(int p, int slot) {
+        ModPacket packet = GetPacket();
+
+        Player player = Main.player[p];
+        KeychainPlayer keychain = player.GetModPlayer<KeychainPlayer>();
+
+        packet.Write((byte)p);
+        lock (keychain) {
+            packet.Write((sbyte)(-slot - 1));
+            ItemIO.Send(keychain.keys[slot], packet, writeStack: true);
+        }
+    }
+
     public void Send(int p) {
         ModPacket packet = GetPacket();
 
         Player player = Main.player[p];
         KeychainPlayer keychain = player.GetModPlayer<KeychainPlayer>();
 
+        packet.Write((byte)p);
         lock (keychain) {
-            packet.Write(keychain.keys.Count);
+            packet.Write((sbyte)keychain.keys.Count);
             for (int i = 0; i < keychain.keys.Count; i++) {
                 ItemIO.Send(keychain.keys[i], packet, writeStack: true);
             }
@@ -156,19 +208,35 @@ public class KeychainPlayerPacket : PacketHandler {
     }
 
     public override void Receive(BinaryReader reader, int sender) {
-        int p = reader.ReadInt32();
+        int p = reader.ReadByte();
         Player player = Main.player[p];
         KeychainPlayer keychain = player.GetModPlayer<KeychainPlayer>();
+        int value = reader.ReadSByte();
 
-        lock (keychain) {
-            keychain.keys.Clear();
+        // From: SendSingleItem
+        if (value < 0) {
+            value++;
+            value = -value;
 
-            int count = reader.ReadInt32();
-            for (int i = 0; i < count; i++) {
-                keychain.keys.Add(ItemIO.Receive(reader, readStack: true));
+            lock (keychain) {
+                if (keychain.keys.Count <= value) {
+                    keychain.keys.Add(ItemIO.Receive(reader, readStack: true));
+                }
+                else {
+                    ItemIO.Receive(keychain.keys[value], reader, readStack: true);
+                }
             }
-
-            keychain.RefreshKeys();
         }
+        else {
+            lock (keychain) {
+                keychain.keys.Clear();
+
+                for (int i = 0; i < value; i++) {
+                    keychain.keys.Add(ItemIO.Receive(reader, readStack: true));
+                }
+            }
+        }
+
+        keychain.RefreshKeys();
     }
 }

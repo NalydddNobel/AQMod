@@ -15,15 +15,4 @@ public partial class AequusPlayer {
             }
         }
     }
-
-    public override void RefreshInfoAccessoriesFromTeamPlayers(Player otherPlayer) {
-        if (!otherPlayer.TryGetModPlayer<AequusPlayer>(out var otherAequusPlayer)) {
-            return;
-        }
-
-        // TODO: Automate this?
-        accInfoMoneyMonocle |= otherAequusPlayer.accInfoMoneyMonocle;
-        accInfoShimmerMonocle |= otherAequusPlayer.accInfoShimmerMonocle;
-        accInfoDayCalendar |= otherAequusPlayer.accInfoDayCalendar;
-    }
 }

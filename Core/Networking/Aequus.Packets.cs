@@ -24,9 +24,18 @@ public partial class Aequus {
 
     public override void HandlePacket(BinaryReader reader, int whoAmI) {
         var type = reader.ReadByte();
-        if (PacketHandlers.IndexInRange(type)) {
-            PacketHandlers[type].Receive(reader, whoAmI);
+        if (!PacketHandlers.IndexInRange(type)) {
+            return;
         }
+
+        PacketHandler handler = PacketHandlers[type];
+
+        Log.Info(
+            $"\nfrom:{whoAmI} ({(whoAmI >= 255 || !Main.player.IndexInRange(whoAmI) ? "Server" : (Main.player[whoAmI].name ?? "Unnamed Player"))})" +
+            $"\ntype:{handler.Type}/{handler.Name}"
+        );
+
+        handler.Receive(reader, whoAmI);
     }
 
     public static T GetPacket<T>() where T : PacketHandler {

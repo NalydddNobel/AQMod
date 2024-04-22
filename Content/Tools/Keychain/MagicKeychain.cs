@@ -8,6 +8,10 @@ internal class MagicKeychain : Keychain {
         Item.value = Item.sellPrice(gold: 5);
     }
 
+    public override Color? GetAlpha(Color lightColor) {
+        return Color.White with { A = 200 };
+    }
+
     public override void UpdateInfoAccessory(Player player) {
         base.UpdateInfoAccessory(player);
         player.GetModPlayer<KeychainPlayer>().hasInfiniteKeyChain = true;
