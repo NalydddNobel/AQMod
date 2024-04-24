@@ -38,7 +38,7 @@ public class RealBuriedChestsStep : AequusGenStep {
         return false;
     }
 
-    private static bool TryGenerateChestInner<T>(int x, int y) where T : BuriedChestTemplate {
+    private static bool TryGenerateChestInner<T>(int x, int y) where T : UnifiedBuriedChest {
         PunchHoleForChest(x, y);
         int hiddenChestTileId = ModContent.GetInstance<T>().Locked.Hidden.Type;
         WorldGen.PlaceTile(x, y, hiddenChestTileId);

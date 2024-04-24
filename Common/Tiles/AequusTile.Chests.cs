@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Backpacks;
 using Aequus.Content.Tools.Keychain;
 using Aequus.Core.Initialization;
-using Aequus.DataSets.Structures;
+using Aequus.DataSets.Structures.Enums;
 
 namespace Aequus.Common.Tiles;
 

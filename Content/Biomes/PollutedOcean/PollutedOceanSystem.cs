@@ -1,5 +1,4 @@
 ﻿using Aequus.Common;
-using Aequus.Common.Chests;
 using Aequus.Content.Configuration;
 using Aequus.Content.CrossMod.SplitSupport.Photography;
 using Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
@@ -18,6 +17,8 @@ using Aequus.Content.Tools.AnglerLamp;
 using Aequus.Content.Weapons.Ranged.Darts.Ammo;
 using Aequus.Content.Weapons.Ranged.Darts.StarPhish;
 using Aequus.DataSets;
+using Aequus.DataSets.Structures.DropRulesChest;
+using Aequus.DataSets.Structures.Enums;
 using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;
@@ -51,91 +52,91 @@ public class PollutedOceanSystem : ModSystem {
     }
 
     private static void PopulateChestDrops() {
-        ChestLootDatabase.Instance.RegisterIndexed(ChestLoot.PollutedOcean,
-            new ChestRules.Common(ItemID.MagicConch, OptionalConditions: Commons.Conditions.ConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveMagicConch))),
-            new ChestRules.Common(ModContent.ItemType<AnglerLamp>()),
-        #if !DEBUG
-            new ChestRules.Common(ModContent.ItemType<PotionCanteen>()),
-        #endif
-            new ChestRules.Common(ModContent.ItemType<StarPhish>()).OnSucceed(new ChestRules.Common(ModContent.ItemType<PlasticDart>(), MinStack: 25, MaxStack: 50))
+        ChestLootDatabase.Instance.RegisterIndexed(ChestPool.PollutedOcean,
+            new CommonChestRule(ItemID.MagicConch, OptionalConditions: Commons.Conditions.ConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveMagicConch))),
+            new CommonChestRule(ModContent.ItemType<AnglerLamp>()),
+#if !DEBUG
+            new CommonChestRule(ModContent.ItemType<PotionCanteen>()),
+#endif
+            new CommonChestRule(ModContent.ItemType<StarPhish>()).OnSucceed(new CommonChestRule(ModContent.ItemType<PlasticDart>(), MinStack: 25, MaxStack: 50))
         );
 
-        ChestLootDatabase.Instance.RegisterCommon(ChestLoot.PollutedOcean, ItemID.BombFish,
+        ChestLootDatabase.Instance.RegisterCommon(ChestPool.PollutedOcean, ItemID.BombFish,
             minStack: 10, maxStack: 19,
             chanceDemoninator: 3
         );
-        ChestLootDatabase.Instance.RegisterCommon(ChestLoot.PollutedOcean, ModContent.GetInstance<AncientAngelStatue>().ItemDrop.Type,
+        ChestLootDatabase.Instance.RegisterCommon(ChestPool.PollutedOcean, ModContent.GetInstance<AncientAngelStatue>().ItemDrop.Type,
             chanceDemoninator: 5
         );
-        ChestLootDatabase.Instance.RegisterCommon(ChestLoot.PollutedOcean, ItemID.Chain,
+        ChestLootDatabase.Instance.RegisterCommon(ChestPool.PollutedOcean, ItemID.Chain,
             minStack: 10, maxStack: 25,
             chanceDemoninator: 3
         );
 
-        ChestLootDatabase.Instance.Register(ChestLoot.PollutedOcean, new ChestRules.OneFromOptions(new IChestLootRule[] {
-                new ChestRules.MetalBar(() => WorldGen.SavedOreTiers.Copper, MinStack: 5, MaxStack: 14),
-                new ChestRules.MetalBar(() => WorldGen.SavedOreTiers.Iron, MinStack: 5, MaxStack: 14)
+        ChestLootDatabase.Instance.Register(ChestPool.PollutedOcean, new OneFromOptionsChestRule(new IChestLootRule[] {
+                new MetalBarHackChestRule(() => WorldGen.SavedOreTiers.Copper, MinStack: 5, MaxStack: 14),
+                new MetalBarHackChestRule(() => WorldGen.SavedOreTiers.Iron, MinStack: 5, MaxStack: 14)
             },
             ChanceDenominator: 2
         ));
-        ChestLootDatabase.Instance.Register(ChestLoot.PollutedOcean, new ChestRules.OneFromOptions(new IChestLootRule[] {
-                new ChestRules.MetalBar(() => WorldGen.SavedOreTiers.Silver, MinStack: 5, MaxStack: 14),
-                new ChestRules.MetalBar(() => WorldGen.SavedOreTiers.Gold, MinStack: 5, MaxStack: 14)
+        ChestLootDatabase.Instance.Register(ChestPool.PollutedOcean, new OneFromOptionsChestRule(new IChestLootRule[] {
+                new MetalBarHackChestRule(() => WorldGen.SavedOreTiers.Silver, MinStack: 5, MaxStack: 14),
+                new MetalBarHackChestRule(() => WorldGen.SavedOreTiers.Gold, MinStack: 5, MaxStack: 14)
             },
             ChanceDenominator: 3
         ));
-        ChestLootDatabase.Instance.Register(ChestLoot.PollutedOcean, new ChestRules.OneFromOptions(new IChestLootRule[] {
-                new ChestRules.Common(ItemID.BoneArrow, MinStack: 25, MaxStack: 49),
-                new ChestRules.Common(ItemID.SpikyBall, MinStack: 25, MaxStack: 49)
+        ChestLootDatabase.Instance.Register(ChestPool.PollutedOcean, new OneFromOptionsChestRule(new IChestLootRule[] {
+                new CommonChestRule(ItemID.BoneArrow, MinStack: 25, MaxStack: 49),
+                new CommonChestRule(ItemID.SpikyBall, MinStack: 25, MaxStack: 49)
             },
             ChanceDenominator: 2
         ));
-        ChestLootDatabase.Instance.RegisterCommon(ChestLoot.PollutedOcean, ModContent.ItemType<LesserRestorationPotion>(),
+        ChestLootDatabase.Instance.RegisterCommon(ChestPool.PollutedOcean, ModContent.ItemType<LesserRestorationPotion>(),
             minStack: 3, maxStack: 5,
             chanceDemoninator: 5
         );
 
-        ChestLootDatabase.Instance.Register(ChestLoot.PollutedOcean, new ChestRules.OneFromOptions(new IChestLootRule[] {
-                new ChestRules.Common(ItemID.GillsPotion, MinStack: 1, MaxStack: 2),
-                new ChestRules.Common(ItemID.FlipperPotion, MinStack: 1, MaxStack: 2),
+        ChestLootDatabase.Instance.Register(ChestPool.PollutedOcean, new OneFromOptionsChestRule(new IChestLootRule[] {
+                new CommonChestRule(ItemID.GillsPotion, MinStack: 1, MaxStack: 2),
+                new CommonChestRule(ItemID.FlipperPotion, MinStack: 1, MaxStack: 2),
             },
             ChanceDenominator: 3, ChanceNumerator: 1
         ));
-        ChestLootDatabase.Instance.Register(ChestLoot.PollutedOcean, new ChestRules.OneFromOptions(new IChestLootRule[] {
-                new ChestRules.Common(ItemID.RegenerationPotion, MinStack: 1, MaxStack: 2),
-                new ChestRules.Common(ItemID.ShinePotion, MinStack: 1, MaxStack: 2),
-                new ChestRules.Common(ItemID.NightOwlPotion, MinStack: 1, MaxStack: 2),
-                new ChestRules.Common(ItemID.SwiftnessPotion, MinStack: 1, MaxStack: 2),
-                new ChestRules.Common(ItemID.ArcheryPotion, MinStack: 1, MaxStack: 2),
-                new ChestRules.Common(ItemID.HunterPotion, MinStack: 1, MaxStack: 2),
-                new ChestRules.Common(ItemID.MiningPotion, MinStack: 1, MaxStack: 2),
-                new ChestRules.Common(ItemID.TrapsightPotion, MinStack: 1, MaxStack: 2),
+        ChestLootDatabase.Instance.Register(ChestPool.PollutedOcean, new OneFromOptionsChestRule(new IChestLootRule[] {
+                new CommonChestRule(ItemID.RegenerationPotion, MinStack: 1, MaxStack: 2),
+                new CommonChestRule(ItemID.ShinePotion, MinStack: 1, MaxStack: 2),
+                new CommonChestRule(ItemID.NightOwlPotion, MinStack: 1, MaxStack: 2),
+                new CommonChestRule(ItemID.SwiftnessPotion, MinStack: 1, MaxStack: 2),
+                new CommonChestRule(ItemID.ArcheryPotion, MinStack: 1, MaxStack: 2),
+                new CommonChestRule(ItemID.HunterPotion, MinStack: 1, MaxStack: 2),
+                new CommonChestRule(ItemID.MiningPotion, MinStack: 1, MaxStack: 2),
+                new CommonChestRule(ItemID.TrapsightPotion, MinStack: 1, MaxStack: 2),
             },
             ChanceDenominator: 3, ChanceNumerator: 2
         ));
 
-        ChestLootDatabase.Instance.RegisterCommon(ChestLoot.PollutedOcean, ModContent.GetInstance<TrashTorch>().Item.Type,
+        ChestLootDatabase.Instance.RegisterCommon(ChestPool.PollutedOcean, ModContent.GetInstance<TrashTorch>().Item.Type,
             minStack: 10, maxStack: 20,
             chanceDemoninator: 2
         );
 
-        ChestLootDatabase.Instance.RegisterCommon(ChestLoot.PollutedOcean, ItemID.RecallPotion,
+        ChestLootDatabase.Instance.RegisterCommon(ChestPool.PollutedOcean, ItemID.RecallPotion,
             minStack: 1, maxStack: 2,
             chanceDemoninator: 3, chanceNumerator: 2
         );
 
-        ChestLootDatabase.Instance.RegisterCommon(ChestLoot.PollutedOcean, ItemID.GoldCoin,
+        ChestLootDatabase.Instance.RegisterCommon(ChestPool.PollutedOcean, ItemID.GoldCoin,
             chanceDemoninator: 2
         );
-        ChestLootDatabase.Instance.RegisterCommon(ChestLoot.PollutedOcean, ItemID.SilverCoin,
+        ChestLootDatabase.Instance.RegisterCommon(ChestPool.PollutedOcean, ItemID.SilverCoin,
             minStack: 1, maxStack: 99
         );
 
-        ChestLootDatabase.Instance.Register(ChestLoot.UndergroundDesert, new ChestRules.ReplaceItem(
+        ChestLootDatabase.Instance.Register(ChestPool.UndergroundDesert, new ReplaceItemChestRule(
             ItemIdToReplace: ItemID.MagicConch,
-            new ChestRules.Indexed(new IChestLootRule[] {
-                    new ChestRules.Common(ItemID.SandstorminaBottle),
-                    new ChestRules.Common(ItemID.FlyingCarpet)
+            new IndexedChestRule(new IChestLootRule[] {
+                    new CommonChestRule(ItemID.SandstorminaBottle),
+                    new CommonChestRule(ItemID.FlyingCarpet)
                 }
             ),
             Commons.Conditions.ConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveMagicConch))

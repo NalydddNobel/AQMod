@@ -42,108 +42,6 @@
             Prevents the player from right clicking a certain buff type. This list is cleared right before the local player is updated.
             </summary>
         </member>
-        <member name="F:Aequus.Common.Chests.ChestLoot.Surface">
-            <summary>Extra loot pool for Vanilla's Surface Wooden Chests.</summary>
-        </member>
-        <member name="F:Aequus.Common.Chests.ChestLoot.Underground">
-            <summary>Extra loot pool for Vanilla's Underground Chests, this includes Gold, Frozen, Rich Mahogany, etc.</summary>
-        </member>
-        <member name="F:Aequus.Common.Chests.ChestLoot.Sky">
-            <summary>Extra loot pool for Vanilla's Sky Chests. This includes Skyware and Locked Gold Chests located above the surface line.</summary>
-        </member>
-        <member name="F:Aequus.Common.Chests.ChestLoot.UndergroundDesert">
-            <summary>Extra loot pool for Chests located in the Underground Desert.</summary>
-        </member>
-        <member name="F:Aequus.Common.Chests.ChestLoot.Pyramid">
-            <summary>Extra loot pool for Chests located in the Pyramid.</summary>
-        </member>
-        <member name="F:Aequus.Common.Chests.ChestLoot.Dungeon">
-            <summary>Extra loot pool for Locked Gold Chests located in the Dungeon.</summary>
-        </member>
-        <member name="F:Aequus.Common.Chests.ChestLoot.Temple">
-            <summary>Extra loot pool for Chests located in the Temple.</summary>
-        </member>
-        <member name="F:Aequus.Common.Chests.ChestLoot.Gold">
-            <summary>Extra loot pool for Vanilla's Gold Chests.</summary>
-        </member>
-        <member name="F:Aequus.Common.Chests.ChestLoot.Shadow">
-            <summary>Extra loot pool for Vanilla's Shadow Chests.</summary>
-        </member>
-        <member name="F:Aequus.Common.Chests.ChestLoot.Frozen">
-            <summary>Extra loot pool for Vanilla's Frozen Chests. Note this is NOT the Biome Chest.</summary>
-        </member>
-        <member name="F:Aequus.Common.Chests.ChestLoot.Ivy">
-            <summary>Extra loot pool for Vanilla's Ivy Chests.</summary>
-        </member>
-        <member name="F:Aequus.Common.Chests.ChestLoot.PollutedOcean">
-            <summary>Loot pool for Polluted Ocean Trash Cans.</summary>
-        </member>
-        <member name="T:Aequus.Common.Chests.ChestRules.Indexed">
-            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
-        </member>
-        <member name="M:Aequus.Common.Chests.ChestRules.Indexed.#ctor(Aequus.Common.Chests.IChestLootRule[],Terraria.Condition[])">
-            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
-        </member>
-        <member name="T:Aequus.Common.Chests.ChestRules.ReplaceItem">
-            <summary>
-            Finds <paramref name="ItemIdToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.Common.Chests.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:Aequus.Common.Chests.ChestRules.Remove"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="M:Aequus.Common.Chests.ChestRules.ReplaceItem.#ctor(System.Int32,Aequus.Common.Chests.IChestLootRule,Terraria.Condition[])">
-            <summary>
-            Finds <paramref name="ItemIdToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.Common.Chests.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:Aequus.Common.Chests.ChestRules.Remove"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="T:Aequus.Common.Chests.ChestRules.ReplaceItems">
-            <summary>
-            Finds any item which is in <paramref name="ItemIdsToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.Common.Chests.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:Aequus.Common.Chests.ChestRules.Remove"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="M:Aequus.Common.Chests.ChestRules.ReplaceItems.#ctor(System.Int32[],Aequus.Common.Chests.IChestLootRule,Terraria.Condition[])">
-            <summary>
-            Finds any item which is in <paramref name="ItemIdsToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.Common.Chests.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:Aequus.Common.Chests.ChestRules.Remove"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="T:Aequus.Common.Chests.ChestRules.ReplaceFirstSlot">
-            <summary>
-            Deletes the first slot, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.Common.Chests.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:Aequus.Common.Chests.ChestRules.Remove"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="M:Aequus.Common.Chests.ChestRules.ReplaceFirstSlot.#ctor(Aequus.Common.Chests.IChestLootRule,Terraria.Condition[])">
-            <summary>
-            Deletes the first slot, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.Common.Chests.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:Aequus.Common.Chests.ChestRules.Remove"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="T:Aequus.Common.Chests.ChestRules.Remove">
-            <summary>Usually used in conjunction with <see cref="T:Aequus.Common.Chests.ChestRules.ReplaceItem"/> to pull all of the item slots backwards after deleting the item.</summary>
-        </member>
-        <member name="M:Aequus.Common.Chests.IChestLootRule.AddItem(Aequus.Common.Chests.ChestLootInfo@)">
-            <summary>Add the item into the chest here. <see cref="!:ChestLootInfo.Chest"/> should safely index into <see cref="F:Terraria.Main.chest"/>.</summary>
-        </member>
-        <member name="M:Aequus.Common.Chests.IChestLootRule.CanDrop(Aequus.Common.Chests.ChestLootInfo@)">
-            <summary>Condition for whether this rule should be ran.</summary>
-        </member>
-        <member name="M:Aequus.Common.Chests.IChestLootRule.Reset">
-            <summary>Called upon <see cref="M:Terraria.ModLoader.ModSystem.ClearWorld"/> and Hardmode Chests. Use to reset values before world generation and etc.</summary>
-        </member>
         <member name="F:Aequus.Common.Commons.Conditions.DownedAquaticBoss">
             <summary>Whether ??? was defeated.</summary>
         </member>
@@ -4337,6 +4235,108 @@
         </member>
         <member name="P:Aequus.DataSets.ProjectileDataSet.DealsHeatDamage">
             <summary>Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.</summary>
+        </member>
+        <member name="M:Aequus.DataSets.Structures.DropRulesChest.IChestLootRule.AddItem(Aequus.DataSets.Structures.DropRulesChest.ChestLootInfo@)">
+            <summary>Add the item into the chest here. <see cref="P:Aequus.DataSets.Structures.DropRulesChest.ChestLootInfo.ChestId"/> should safely index into <see cref="F:Terraria.Main.chest"/>.</summary>
+        </member>
+        <member name="M:Aequus.DataSets.Structures.DropRulesChest.IChestLootRule.CanDrop(Aequus.DataSets.Structures.DropRulesChest.ChestLootInfo@)">
+            <summary>Condition for whether this rule should be ran.</summary>
+        </member>
+        <member name="M:Aequus.DataSets.Structures.DropRulesChest.IChestLootRule.Reset">
+            <summary>Called upon <see cref="M:Terraria.ModLoader.ModSystem.ClearWorld"/> and Hardmode Chests. Use to reset values before world generation and etc.</summary>
+        </member>
+        <member name="T:Aequus.DataSets.Structures.DropRulesChest.IndexedChestRule">
+            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
+        </member>
+        <member name="M:Aequus.DataSets.Structures.DropRulesChest.IndexedChestRule.#ctor(Aequus.DataSets.Structures.DropRulesChest.IChestLootRule[],Terraria.Condition[])">
+            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
+        </member>
+        <member name="T:Aequus.DataSets.Structures.DropRulesChest.RemoveItemChestRule">
+            <summary>Usually used in conjunction with <see cref="T:Aequus.DataSets.Structures.DropRulesChest.ReplaceItemChestRule"/> to pull all of the item slots backwards after deleting the item.</summary>
+        </member>
+        <member name="T:Aequus.DataSets.Structures.DropRulesChest.ReplaceFirstSlotChestRule">
+            <summary>
+            Deletes the first slot, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Aequus.DataSets.Structures.DropRulesChest.ReplaceFirstSlotChestRule.#ctor(Aequus.DataSets.Structures.DropRulesChest.IChestLootRule,Terraria.Condition[])">
+            <summary>
+            Deletes the first slot, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="T:Aequus.DataSets.Structures.DropRulesChest.ReplaceItemChestRule">
+            <summary>
+            Finds <paramref name="ItemIdToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Aequus.DataSets.Structures.DropRulesChest.ReplaceItemChestRule.#ctor(System.Int32,Aequus.DataSets.Structures.DropRulesChest.IChestLootRule,Terraria.Condition[])">
+            <summary>
+            Finds <paramref name="ItemIdToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="T:Aequus.DataSets.Structures.DropRulesChest.ReplaceMultipleItemsChestRule">
+            <summary>
+            Finds any item which is in <paramref name="ItemIdsToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Aequus.DataSets.Structures.DropRulesChest.ReplaceMultipleItemsChestRule.#ctor(System.Int32[],Aequus.DataSets.Structures.DropRulesChest.IChestLootRule,Terraria.Condition[])">
+            <summary>
+            Finds any item which is in <paramref name="ItemIdsToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Surface">
+            <summary>Extra loot pool for Vanilla's Surface Wooden Chests.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Underground">
+            <summary>Extra loot pool for Vanilla's Underground Chests, this includes Gold, Frozen, Rich Mahogany, etc.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Sky">
+            <summary>Extra loot pool for Vanilla's Sky Chests. This includes Skyware and Locked Gold Chests located above the surface line.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.UndergroundDesert">
+            <summary>Extra loot pool for Chests located in the Underground Desert.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Pyramid">
+            <summary>Extra loot pool for Chests located in the Pyramid.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Dungeon">
+            <summary>Extra loot pool for Locked Gold Chests located in the Dungeon.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Temple">
+            <summary>Extra loot pool for Chests located in the Temple.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Gold">
+            <summary>Extra loot pool for Vanilla's Gold Chests.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Shadow">
+            <summary>Extra loot pool for Vanilla's Shadow Chests.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Frozen">
+            <summary>Extra loot pool for Vanilla's Frozen Chests. Note this is NOT the Biome Chest.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Ivy">
+            <summary>Extra loot pool for Vanilla's Ivy Chests.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.PollutedOcean">
+            <summary>Loot pool for Polluted Ocean Trash Cans.</summary>
         </member>
         <member name="T:Aequus.DataSets.Structures.IDEntry`1">
             <summary>

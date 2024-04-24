@@ -1,16 +1,20 @@
-﻿using Aequus.Common.Chests;
-using Aequus.Common.JourneyMode;
+﻿using Aequus.Common.JourneyMode;
 using Aequus.Core;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.CrossMod;
 using Aequus.Core.Networking;
 using Aequus.DataSets;
+using Aequus.DataSets.Structures;
+using Aequus.DataSets.Structures.DropRulesChest;
+using Aequus.DataSets.Structures.Enums;
 using System.IO;
+using System.Linq;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent;
 using Terraria.GameContent.Drawing;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.Localization;
 using Terraria.ObjectData;
@@ -20,16 +24,16 @@ namespace Aequus.Content.Chests.BuriedChests;
 
 // Buried Chests use a fake chest before being unlocked
 // This allows them to generate their loot upon being opened
-public class BuriedChestTemplate : UnifiedModChest {
+public class UnifiedBuriedChest : UnifiedModChest {
     internal readonly ChestInfo _info;
 
     internal InstancedLockedBuriedChest Locked { get; private set; }
 
-    internal BuriedChestTemplate(ChestInfo info) {
+    internal UnifiedBuriedChest(ChestInfo info) {
         _info = info;
     }
 
-    internal record struct ChestInfo(IContentIdProvider Key, ChestLoot LootPool, Color MapEntryColor);
+    internal record struct ChestInfo(IContentIdProvider Key, ChestPool LootPool, Color MapEntryColor);
 
     public override void Load() {
         base.Load();
@@ -50,13 +54,13 @@ public class BuriedChestTemplate : UnifiedModChest {
     }
 
     internal class InstancedLockedBuriedChest : InstancedModTile {
-        internal BuriedChestTemplate _parent;
+        internal UnifiedBuriedChest _parent;
 
         internal InstancedHiddenBuriedChest Hidden { get; private set; }
 
         public override string Texture => _parent.Texture;
 
-        public InstancedLockedBuriedChest(BuriedChestTemplate parent) : base(parent.Name + "Locked", parent.Texture + "Locked") {
+        public InstancedLockedBuriedChest(UnifiedBuriedChest parent) : base(parent.Name + "Locked", parent.Texture + "Locked") {
             _parent = parent;
         }
 
@@ -363,12 +367,29 @@ public class BuriedChestTemplate : UnifiedModChest {
     }
 
     private class InstancedLockedBuriedChestItem : InstancedTileItem {
-        private InstancedLockedBuriedChest _parent;
+        private readonly InstancedLockedBuriedChest _parent;
         public InstancedLockedBuriedChestItem(InstancedLockedBuriedChest parent) : base(parent, style: 1, journeyOverride: new JourneySortByTileId(TileID.Containers)) {
             _parent = parent;
         }
 
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ItemLoader.GetItem(_parent._parent._info.Key.GetId()).DisplayName);
+
+        public override bool CanRightClick() {
+            return Main.LocalPlayer.ConsumeItem(_parent._parent._info.Key.GetId());
+        }
+
+        public override void RightClick(Player player) {
+            SoundEngine.PlaySound(SoundID.Unlock);
+        }
+
+        public override void ModifyItemLoot(ItemLoot itemLoot) {
+            foreach (IItemDropRule itemDropRule in ChestLootDatabase.Instance
+                .GetRulesForType(_parent._parent._info.LootPool)
+                .SelectWhereOfType<IConvertDropRules>()
+                .Select(convert => convert.ToItemDropRule())) {
+                itemLoot.Add(itemDropRule);
+            }
+        }
     }
 
     private class UnlockBuriedChestPacket : PacketHandler {

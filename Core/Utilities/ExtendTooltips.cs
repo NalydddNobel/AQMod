@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.GameContent.UI.Chat;
 
 namespace Aequus.Core.Utilities;
 
@@ -116,5 +119,53 @@ public static class ExtendTooltips {
     /// <summary>Removes the "PrefixCritChance" tooltip line, if it exists.</summary>
     public static void RemoveCritChanceModifier(this List<TooltipLine> tooltips) {
         tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "PrefixCritChance");
+    }
+
+    internal static void TestGrabBagTooltip(Item item, List<TooltipLine> tooltips) {
+        List<string> dropTable = GetListOfDrops(Main.ItemDropsDB.GetRulesForItemID(item.type));
+
+        for (int i = 0; i < dropTable.Count; i++) {
+            tooltips.Add(new TooltipLine(Aequus.Instance, $"Drop{i}", dropTable[i]));
+        }
+    }
+
+    private static List<string> GetListOfDrops(List<IItemDropRule> dropTable) {
+        var tooltips = new List<string>();
+        if (dropTable.Count == 0) {
+            return tooltips;
+        }
+
+        foreach (var rule in dropTable) {
+            var drops = new List<DropRateInfo>();
+            rule.ReportDroprates(drops, new DropRateInfoChainFeed(1f));
+            tooltips.Add(rule.GetType().FullName + ":");
+            foreach (var drop in drops) {
+                string text = "* " + ItemTagHandler.GenerateTag(new Item(drop.itemId));
+                if (drop.stackMin == drop.stackMax) {
+                    if (drop.stackMin > 1) {
+                        text += $" ({drop.stackMin})";
+                    }
+                }
+                else {
+                    text += $" ({drop.stackMin} - {drop.stackMax})";
+                }
+                text += " " + (int)(drop.dropRate * 10000f) / 100f + "%";
+                tooltips.Add(text);
+                if (drop.conditions != null && drop.conditions.Count > 0 && Main.keyState.IsKeyDown(Keys.LeftControl)) {
+                    foreach (var cond in drop.conditions) {
+                        if (cond == null) {
+                            continue;
+                        }
+
+                        string extraDesc = cond.GetConditionDescription();
+                        string condText = Main.keyState.IsKeyDown(Keys.LeftShift) ? cond.GetType().FullName : cond.GetType().Name;
+                        if (!string.IsNullOrEmpty(extraDesc))
+                            condText = $"{condText} '{extraDesc}': {cond.CanDrop(info: new DropAttemptInfo() { IsInSimulation = false, item = -1, npc = Main.npc[0], player = Main.LocalPlayer, rng = Main.rand, IsExpertMode = Main.expertMode, IsMasterMode = Main.masterMode })}";
+                        tooltips.Add(condText);
+                    }
+                }
+            }
+        }
+        return tooltips;
     }
 }

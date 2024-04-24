@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Chests;
+﻿using Aequus.DataSets.Structures.DropRulesChest;
+using Aequus.DataSets.Structures.Enums;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Terraria.GameContent.ItemDropRules;
@@ -9,21 +10,21 @@ namespace Aequus.DataSets;
 public class ChestLootDatabase : ILoad {
     public static ChestLootDatabase Instance { get; private set; }
 
-    private readonly Dictionary<ChestLoot, List<IChestLootRule>> _loot = new();
+    private readonly Dictionary<ChestPool, List<IChestLootRule>> _loot = new();
 
-    public void Register(ChestLoot type, IChestLootRule rule) {
+    public void Register(ChestPool type, IChestLootRule rule) {
         (CollectionsMarshal.GetValueRefOrAddDefault(_loot, type, out _) ??= new()).Add(rule);
     }
 
-    public List<IChestLootRule> GetRulesForType(ChestLoot type) {
+    public List<IChestLootRule> GetRulesForType(ChestPool type) {
         return CollectionsMarshal.GetValueRefOrAddDefault(_loot, type, out _) ??= new();
     }
 
-    public void SolveRules(ChestLoot type, ChestLootInfo info) {
+    public void SolveRules(ChestPool type, ChestLootInfo info) {
         SolveRules(type, in info);
     }
 
-    public void SolveRules(ChestLoot type, in ChestLootInfo info) {
+    public void SolveRules(ChestPool type, in ChestLootInfo info) {
         List<IChestLootRule> rules = Instance.GetRulesForType(type);
 
         if (rules != null) {

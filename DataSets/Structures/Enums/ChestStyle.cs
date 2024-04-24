@@ -1,4 +1,4 @@
-﻿namespace Aequus.DataSets.Structures;
+﻿namespace Aequus.DataSets.Structures.Enums;
 
 public enum ChestStyle : ushort {
     /* Containers */
@@ -89,7 +89,7 @@ public class ChestStyleConversion {
     public static void ToTile(ChestStyle style, out int chestType, out int chestStyle) {
         chestType = TileID.Containers;
         chestStyle = (int)style;
-        
+
         if (chestStyle < CONTAINERS2_START) {
             return;
         }

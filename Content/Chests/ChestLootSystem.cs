@@ -1,12 +1,9 @@
-﻿using Aequus.Common.Tiles;
-using Aequus.Content.Chests;
-using Aequus.DataSets;
-using Aequus.DataSets.Structures;
-using System.Collections.Generic;
-using Terraria.ModLoader;
+﻿using Aequus.DataSets;
+using Aequus.DataSets.Structures.DropRulesChest;
+using Aequus.DataSets.Structures.Enums;
 using Terraria.ObjectData;
 
-namespace Aequus.Common.Chests;
+namespace Aequus.Content.Chests;
 
 public class ChestLootSystem : ModSystem {
     private static bool CanAddLoot(Chest chest) {
@@ -57,31 +54,31 @@ public class ChestLootSystem : ModSystem {
         ChestLootInfo info = new ChestLootInfo(chestId, WorldGen.genRand);
         // Pyramid
         if (wallId == WallID.SandstoneBrick) {
-            ChestLootDatabase.Instance.SolveRules(ChestLoot.Pyramid, in info);
+            ChestLootDatabase.Instance.SolveRules(ChestPool.Pyramid, in info);
             return;
         }
 
         // Dungeon
         if (Main.wallDungeon[wallId] && style == ChestStyle.LockedGold) {
-            ChestLootDatabase.Instance.SolveRules(ChestLoot.Dungeon, in info);
+            ChestLootDatabase.Instance.SolveRules(ChestPool.Dungeon, in info);
             return;
         }
 
         // UG Desert
         if (WallID.Sets.AllowsUndergroundDesertEnemiesToSpawn[wallId]) {
-            ChestLootDatabase.Instance.SolveRules(ChestLoot.UndergroundDesert, in info);
+            ChestLootDatabase.Instance.SolveRules(ChestPool.UndergroundDesert, in info);
             return;
         }
 
         // Temple
         if (wallId == WallID.LihzahrdBrickUnsafe) {
-            ChestLootDatabase.Instance.SolveRules(ChestLoot.Temple, in info);
+            ChestLootDatabase.Instance.SolveRules(ChestPool.Temple, in info);
             return;
         }
 
         // Jungle Shrine / Living Wood Tree chest
         if (style == ChestStyle.Ivy) {
-            ChestLootDatabase.Instance.SolveRules(ChestLoot.Ivy, in info);
+            ChestLootDatabase.Instance.SolveRules(ChestPool.Ivy, in info);
             return;
         }
 
@@ -90,11 +87,11 @@ public class ChestLootSystem : ModSystem {
 
             // Sky Island
             if (wallId == WallID.DiscWall || style == ChestStyle.Skyware || style == ChestStyle.LockedGold) {
-                ChestLootDatabase.Instance.SolveRules(ChestLoot.Sky, in info);
+                ChestLootDatabase.Instance.SolveRules(ChestPool.Sky, in info);
                 return;
             }
 
-            ChestLootDatabase.Instance.SolveRules(ChestLoot.Surface, in info);
+            ChestLootDatabase.Instance.SolveRules(ChestPool.Surface, in info);
         }
 
         // Underground Chests
@@ -106,19 +103,19 @@ public class ChestLootSystem : ModSystem {
                     return;
 
                 case ChestStyle.Gold:
-                    ChestLootDatabase.Instance.SolveRules(ChestLoot.Gold, in info);
+                    ChestLootDatabase.Instance.SolveRules(ChestPool.Gold, in info);
                     break;
                 case ChestStyle.Frozen:
-                    ChestLootDatabase.Instance.SolveRules(ChestLoot.Frozen, in info);
+                    ChestLootDatabase.Instance.SolveRules(ChestPool.Frozen, in info);
                     break;
             }
 
-            ChestLootDatabase.Instance.SolveRules(ChestLoot.Underground, in info);
+            ChestLootDatabase.Instance.SolveRules(ChestPool.Underground, in info);
         }
 
         // Underworld Chests
         else if (style == ChestStyle.LockedShadow) {
-            ChestLootDatabase.Instance.SolveRules(ChestLoot.Shadow, in info);
+            ChestLootDatabase.Instance.SolveRules(ChestPool.Shadow, in info);
         }
     }
 }

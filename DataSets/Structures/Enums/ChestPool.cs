@@ -1,6 +1,6 @@
-﻿namespace Aequus.Common.Chests;
+﻿namespace Aequus.DataSets.Structures.Enums;
 
-public enum ChestLoot {
+public enum ChestPool {
     /// <summary>Extra loot pool for Vanilla's Surface Wooden Chests.</summary>
     Surface,
     /// <summary>Extra loot pool for Vanilla's Underground Chests, this includes Gold, Frozen, Rich Mahogany, etc.</summary>

@@ -1,6 +1,6 @@
 ﻿using Aequus.Core.ContentGeneration;
 using Aequus.DataSets;
-using Aequus.DataSets.Structures;
+using Aequus.DataSets.Structures.Enums;
 using ReLogic.Content;
 using System.Collections.Generic;
 

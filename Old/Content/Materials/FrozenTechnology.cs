@@ -1,6 +1,6 @@
-﻿using Aequus.Common.Chests;
-using Aequus.Common.Items;
+﻿using Aequus.Common.Items;
 using Aequus.DataSets;
+using Aequus.DataSets.Structures.Enums;
 
 namespace Aequus.Old.Content.Materials;
 
@@ -8,7 +8,7 @@ public class FrozenTechnology : ModItem {
     public override void SetStaticDefaults() {
         //ItemSets.SortingPriorityMaterials[Type] = ???;
         Item.ResearchUnlockCount = 25;
-        ChestLootDatabase.Instance.RegisterCommon(ChestLoot.Frozen, Type, minStack: 1, maxStack: 2, chanceDemoninator: 3);
+        ChestLootDatabase.Instance.RegisterCommon(ChestPool.Frozen, Type, minStack: 1, maxStack: 2, chanceDemoninator: 3);
     }
 
     public override void SetDefaults() {

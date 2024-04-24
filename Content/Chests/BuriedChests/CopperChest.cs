@@ -1,15 +1,16 @@
-﻿using Aequus.Common.Chests;
-using Aequus.Content.Potions.Healing.Restoration;
+﻿using Aequus.Content.Potions.Healing.Restoration;
 using Aequus.Content.Tools.Keys;
 using Aequus.Core.CrossMod;
 using Aequus.DataSets;
+using Aequus.DataSets.Structures.DropRulesChest;
+using Aequus.DataSets.Structures.Enums;
 
 namespace Aequus.Content.Chests.BuriedChests;
 
-public class CopperChest : BuriedChestTemplate {
+public class CopperChest : UnifiedBuriedChest {
     internal CopperChest() : base(new ChestInfo(
             Key: new ProvideGenericTypeModContentId<CopperKey>(),
-            LootPool: ChestLoot.BuriedCopperChest,
+            LootPool: ChestPool.BuriedCopperChest,
             MapEntryColor: Color.OrangeRed.SaturationMultiply(0.4f)
         )) {
     }
@@ -20,16 +21,16 @@ public class CopperChest : BuriedChestTemplate {
     }
 
     public override void PostSetDefaults() {
-        ChestLoot type = ChestLoot.BuriedCopperChest;
+        ChestPool type = ChestPool.BuriedCopperChest;
         ChestLootDatabase.Instance.RegisterOneFromOptions(type, new IChestLootRule[] {
-            new ChestRules.Common(ItemID.BandofRegeneration),
-            new ChestRules.Common(ItemID.MagicMirror),
-            new ChestRules.Common(ItemID.CloudinaBottle),
-            new ChestRules.Common(ItemID.HermesBoots),
-            new ChestRules.Common(ItemID.Mace),
-            new ChestRules.Common(ItemID.ShoeSpikes),
-            new ChestRules.Common(ItemID.Extractinator),
-            new ChestRules.Common(ItemID.FlareGun).OnSucceed(new ChestRules.Common(ItemID.Flare, MinStack: 10, MaxStack: 25)),
+            new CommonChestRule(ItemID.BandofRegeneration),
+            new CommonChestRule(ItemID.MagicMirror),
+            new CommonChestRule(ItemID.CloudinaBottle),
+            new CommonChestRule(ItemID.HermesBoots),
+            new CommonChestRule(ItemID.Mace),
+            new CommonChestRule(ItemID.ShoeSpikes),
+            new CommonChestRule(ItemID.Extractinator),
+            new CommonChestRule(ItemID.FlareGun).OnSucceed(new CommonChestRule(ItemID.Flare, MinStack: 10, MaxStack: 25)),
         });
         ChestLootDatabase.Instance.RegisterCommon(type, ItemID.Bomb, minStack: 5, maxStack: 10, chanceDemoninator: 4);
         ChestLootDatabase.Instance.RegisterCommon(type, ItemID.AngelStatue, chanceDemoninator: 10);
@@ -37,15 +38,15 @@ public class CopperChest : BuriedChestTemplate {
         ChestLootDatabase.Instance.RegisterCommon(type, ItemID.ThrowingKnife, minStack: 15, maxStack: 30, chanceDemoninator: 4);
         ChestLootDatabase.Instance.RegisterCommon(type, ModContent.ItemType<LesserRestorationPotion>(), minStack: 1, maxStack: 3, chanceDemoninator: 4);
         ChestLootDatabase.Instance.RegisterOneFromOptions(type, new IChestLootRule[] {
-            new ChestRules.Common(ItemID.RegenerationPotion, ChanceDenominator: 3),
-            new ChestRules.Common(ItemID.ShinePotion, ChanceDenominator: 3),
-            new ChestRules.Common(ItemID.NightOwlPotion, ChanceDenominator: 3),
-            new ChestRules.Common(ItemID.SwiftnessPotion, ChanceDenominator: 3),
-            new ChestRules.Common(ItemID.ArcheryPotion, ChanceDenominator: 3),
-            new ChestRules.Common(ItemID.GillsPotion, ChanceDenominator: 3),
-            new ChestRules.Common(ItemID.HunterPotion, ChanceDenominator: 3),
-            new ChestRules.Common(ItemID.MiningPotion, ChanceDenominator: 3),
-            new ChestRules.Common(ItemID.TrapsightPotion, ChanceDenominator: 3),
+            new CommonChestRule(ItemID.RegenerationPotion, ChanceDenominator: 3),
+            new CommonChestRule(ItemID.ShinePotion, ChanceDenominator: 3),
+            new CommonChestRule(ItemID.NightOwlPotion, ChanceDenominator: 3),
+            new CommonChestRule(ItemID.SwiftnessPotion, ChanceDenominator : 3),
+            new CommonChestRule(ItemID.ArcheryPotion, ChanceDenominator: 3),
+            new CommonChestRule(ItemID.GillsPotion, ChanceDenominator: 3),
+            new CommonChestRule(ItemID.HunterPotion, ChanceDenominator: 3),
+            new CommonChestRule(ItemID.MiningPotion, ChanceDenominator: 3),
+            new CommonChestRule(ItemID.TrapsightPotion, ChanceDenominator: 3),
         });
         ChestLootDatabase.Instance.RegisterCommon(type, ItemID.Torch, minStack: 5, maxStack: 10, chanceDemoninator: 4);
         ChestLootDatabase.Instance.RegisterCommon(type, ItemID.RecallPotion, chanceDemoninator: 6);

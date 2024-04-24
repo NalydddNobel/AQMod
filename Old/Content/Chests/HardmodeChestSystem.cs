@@ -1,10 +1,10 @@
-﻿using Aequus.Common.Chests;
-using Aequus.Common.Tiles;
+﻿using Aequus.Common.Tiles;
 using Aequus.Content.Chests;
 using Aequus.Content.Configuration;
 using Aequus.Content.Potions.Healing.Restoration;
 using Aequus.DataSets;
-using Aequus.DataSets.Structures;
+using Aequus.DataSets.Structures.DropRulesChest;
+using Aequus.DataSets.Structures.Enums;
 using System;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
@@ -119,13 +119,13 @@ public sealed class HardmodeChestSystem : ModSystem {
         // Add loot
         switch (biome) {
             case Biome.Underground:
-                ChestLootDatabase.Instance.SolveRules(ChestLoot.HardmodeChestRegular, in info);
+                ChestLootDatabase.Instance.SolveRules(ChestPool.HardmodeChestRegular, in info);
                 break;
             case Biome.UndergroundSnow:
-                ChestLootDatabase.Instance.SolveRules(ChestLoot.HardmodeChestSnow, in info);
+                ChestLootDatabase.Instance.SolveRules(ChestPool.HardmodeChestSnow, in info);
                 break;
             case Biome.UndergroundJungle:
-                ChestLootDatabase.Instance.SolveRules(ChestLoot.HardmodeChestJungle, in info);
+                ChestLootDatabase.Instance.SolveRules(ChestPool.HardmodeChestJungle, in info);
                 break;
         }
 
@@ -196,32 +196,32 @@ public sealed class HardmodeChestSystem : ModSystem {
 
     public override void SetStaticDefaults() {
         AequusTile.OnRandomTileUpdate += OnRandomTileUpdate;
-        ChestLootDatabase.Instance.Register(ChestLoot.HardmodeChestRegular, new ChestRules.ReplaceFirstSlot(
-            new ChestRules.Indexed(new IChestLootRule[] {
-                    new ChestRules.Common(ItemID.DualHook),
-                    new ChestRules.Common(ItemID.MagicDagger, OptionalConditions: Condition.NotRemixWorld),
-                    new ChestRules.Common(ItemID.WandofSparking, OptionalConditions: Condition.RemixWorld),
-                    new ChestRules.Common(ItemID.TitanGlove),
-                    new ChestRules.Common(ItemID.PhilosophersStone),
-                    new ChestRules.Common(ItemID.CrossNecklace),
-                    new ChestRules.Common(ItemID.StarCloak)
+        ChestLootDatabase.Instance.Register(ChestPool.HardmodeChestRegular, new ReplaceFirstSlotChestRule(
+            new IndexedChestRule(new IChestLootRule[] {
+                    new CommonChestRule(ItemID.DualHook),
+                    new CommonChestRule(ItemID.MagicDagger, OptionalConditions: Condition.NotRemixWorld),
+                    new CommonChestRule(ItemID.WandofSparking, OptionalConditions: Condition.RemixWorld),
+                    new CommonChestRule(ItemID.TitanGlove),
+                    new CommonChestRule(ItemID.PhilosophersStone),
+                    new CommonChestRule(ItemID.CrossNecklace),
+                    new CommonChestRule(ItemID.StarCloak)
                 }
             )
         ));
-        ChestLootDatabase.Instance.Register(ChestLoot.HardmodeChestSnow, new ChestRules.ReplaceFirstSlot(
-            new ChestRules.Indexed(new IChestLootRule[] {
-                    new ChestRules.Common(ItemID.Frostbrand),
-                    new ChestRules.Common(ItemID.IceBow, OptionalConditions: Condition.NotRemixWorld),
-                    new ChestRules.Common(ItemID.SnowballCannon, OptionalConditions: Condition.RemixWorld),
-                    new ChestRules.Common(ItemID.FlowerofFrost)
+        ChestLootDatabase.Instance.Register(ChestPool.HardmodeChestSnow, new ReplaceFirstSlotChestRule(
+            new IndexedChestRule(new IChestLootRule[] {
+                    new CommonChestRule(ItemID.Frostbrand),
+                    new CommonChestRule(ItemID.IceBow, OptionalConditions: Condition.NotRemixWorld),
+                    new CommonChestRule(ItemID.SnowballCannon, OptionalConditions: Condition.RemixWorld),
+                    new CommonChestRule(ItemID.FlowerofFrost)
                 }
             )
         ));
-        ChestLootDatabase.Instance.Register(ChestLoot.HardmodeChestJungle, new ChestRules.ReplaceFirstSlot(
-            new ChestRules.Indexed(new IChestLootRule[] {
-                    new ChestRules.Common(ItemID.Seedler),
-                    new ChestRules.Common(ItemID.VenusMagnum),
-                    new ChestRules.Common(ItemID.NettleBurst),
+        ChestLootDatabase.Instance.Register(ChestPool.HardmodeChestJungle, new ReplaceFirstSlotChestRule(
+            new IndexedChestRule(new IChestLootRule[] {
+                    new CommonChestRule(ItemID.Seedler),
+                    new CommonChestRule(ItemID.VenusMagnum),
+                    new CommonChestRule(ItemID.NettleBurst),
                 }
             )
         ));
@@ -230,51 +230,51 @@ public sealed class HardmodeChestSystem : ModSystem {
         int ammoMax = 100;
 
         // Replace Wooden and Flaming Arrows with Unholy Arrows.
-        RegisterGenericHardmodeChestRule(new ChestRules.ReplaceItems(new int[] {
+        RegisterGenericHardmodeChestRule(new ReplaceMultipleItemsChestRule(new int[] {
             ItemID.WoodenArrow, ItemID.FlamingArrow
-        }, new ChestRules.Common(ItemID.UnholyArrow, MinStack: ammoMin, MaxStack: ammoMax)));
+        }, new CommonChestRule(ItemID.UnholyArrow, MinStack: ammoMin, MaxStack: ammoMax)));
 
         // Replace Shurikens, Throwing Knives, and Flares with Silver/Tungsten bullets.
         Condition silverBulletCondition = new Condition("Mods.Aequus.Condition.SilverOre", () => WorldGen.SavedOreTiers.Silver == TileID.Silver);
-        RegisterGenericHardmodeChestRule(new ChestRules.ReplaceItems(new int[] {
+        RegisterGenericHardmodeChestRule(new ReplaceMultipleItemsChestRule(new int[] {
             ItemID.Shuriken, ItemID.ThrowingKnife, ItemID.Flare
-        }, new ChestRules.Common(ItemID.SilverBullet, MinStack: ammoMin, MaxStack: ammoMax, OptionalConditions: silverBulletCondition)
-        .OnFailure(new ChestRules.Common(ItemID.TungstenBullet, MinStack: ammoMin, MaxStack: ammoMax))));
+        }, new CommonChestRule(ItemID.SilverBullet, MinStack: ammoMin, MaxStack: ammoMax, OptionalConditions: silverBulletCondition)
+        .OnFailure(new CommonChestRule(ItemID.TungstenBullet, MinStack: ammoMin, MaxStack: ammoMax))));
 
         // Replace Recalls with Return potions.
-        RegisterGenericHardmodeChestRule(new ChestRules.ReplaceItems(new int[] {
+        RegisterGenericHardmodeChestRule(new ReplaceMultipleItemsChestRule(new int[] {
             ItemID.RecallPotion
-        }, new ChestRules.Common(ItemID.PotionOfReturn, MinStack: 1, MaxStack: 3)));
+        }, new CommonChestRule(ItemID.PotionOfReturn, MinStack: 1, MaxStack: 3)));
 
         // Replace Glowsticks with Spelunker Glowsticks.
-        RegisterGenericHardmodeChestRule(new ChestRules.ReplaceItems(new int[] {
+        RegisterGenericHardmodeChestRule(new ReplaceMultipleItemsChestRule(new int[] {
             ItemID.Glowstick, ItemID.StickyGlowstick
-        }, new ChestRules.Common(ItemID.SpelunkerGlowstick, MinStack: 50, MaxStack: 150)));
+        }, new CommonChestRule(ItemID.SpelunkerGlowstick, MinStack: 50, MaxStack: 150)));
 
         // Replace Healing Potions with Greater Healing Potions.
-        RegisterGenericHardmodeChestRule(new ChestRules.ReplaceItems(new int[] {
+        RegisterGenericHardmodeChestRule(new ReplaceMultipleItemsChestRule(new int[] {
             ItemID.LesserHealingPotion, ItemID.HealingPotion
-        }, new ChestRules.Common(ItemID.GreaterHealingPotion, MinStack: 2, MaxStack: 6)));
+        }, new CommonChestRule(ItemID.GreaterHealingPotion, MinStack: 2, MaxStack: 6)));
 
         // Replace Restoration Potions with Greater Restoration Potions.
-        RegisterGenericHardmodeChestRule(new ChestRules.ReplaceItems(new int[] {
+        RegisterGenericHardmodeChestRule(new ReplaceMultipleItemsChestRule(new int[] {
             ModContent.ItemType<LesserRestorationPotion>(), ItemID.RestorationPotion
-        }, new ChestRules.Common(ModContent.ItemType<GreaterRestorationPotion>(), MinStack: 2, MaxStack: 6)));
+        }, new CommonChestRule(ModContent.ItemType<GreaterRestorationPotion>(), MinStack: 2, MaxStack: 6)));
 
         // Replace PHM boss items with HM boss items.
-        RegisterGenericHardmodeChestRule(new ChestRules.ReplaceItems(new int[] {
+        RegisterGenericHardmodeChestRule(new ReplaceMultipleItemsChestRule(new int[] {
             ItemID.SuspiciousLookingEye, ItemID.SlimeCrown
-        }, new ChestRules.Indexed(new[] { 
-            new ChestRules.Common(ItemID.MechanicalEye),
-            new ChestRules.Common(ItemID.MechanicalWorm),
-            new ChestRules.Common(ItemID.MechanicalSkull),
+        }, new IndexedChestRule(new[] {
+            new CommonChestRule(ItemID.MechanicalEye),
+            new CommonChestRule(ItemID.MechanicalWorm),
+            new CommonChestRule(ItemID.MechanicalSkull),
         })));
     }
 
     private static void RegisterGenericHardmodeChestRule(IChestLootRule rule) {
-        ChestLootDatabase.Instance.Register(ChestLoot.HardmodeChestRegular, rule);
-        ChestLootDatabase.Instance.Register(ChestLoot.HardmodeChestSnow, rule);
-        ChestLootDatabase.Instance.Register(ChestLoot.HardmodeChestJungle, rule);
+        ChestLootDatabase.Instance.Register(ChestPool.HardmodeChestRegular, rule);
+        ChestLootDatabase.Instance.Register(ChestPool.HardmodeChestSnow, rule);
+        ChestLootDatabase.Instance.Register(ChestPool.HardmodeChestJungle, rule);
     }
 
     public override void SaveWorldData(TagCompound tag) {

@@ -4,13 +4,13 @@ using System.Linq;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Utilities;
 
-namespace Aequus.Common.Chests;
+namespace Aequus.DataSets.Structures.DropRulesChest;
 
 public interface IChestLootRule {
     List<IChestLootChain> ChainedRules { get; }
     ConditionCollection Conditions { get; }
 
-    /// <summary>Add the item into the chest here. <see cref="ChestLootInfo.Chest"/> should safely index into <see cref="Main.chest"/>.</summary>
+    /// <summary>Add the item into the chest here. <see cref="ChestLootInfo.ChestId"/> should safely index into <see cref="Main.chest"/>.</summary>
     ChestLootResult AddItem(in ChestLootInfo info);
 
     /// <summary>Condition for whether this rule should be ran.</summary>
@@ -26,7 +26,7 @@ public interface IChestLootChain {
     bool CanChainIntoRule(ChestLootResult parentResult);
 
     public static List<IChestLootChain> GetFromSelfRules(params IChestLootRule[] Rules) {
-        return Rules.Select<IChestLootRule, IChestLootChain>(r => new ChestChains.Never(r)).ToList();
+        return Rules.Select<IChestLootRule, IChestLootChain>(r => new NeverChestChain(r)).ToList();
     }
 }
 

@@ -1,7 +1,7 @@
-﻿namespace Aequus.DataSets.Structures;
+﻿namespace Aequus.DataSets.Structures.Enums;
 
 public enum Biome : byte {
-    Forest = 0,
+    Forest,
     Underground,
     Underworld,
     Sky,
@@ -16,29 +16,32 @@ public enum Biome : byte {
     Jungle,
     UndergroundJungle,
 
-    Corruption = 100,
+    Corruption,
     CorruptionUnderground,
     CorruptionDesert,
     CorruptionUndergroundDesert,
     CorruptionSnow,
     CorruptionUndergroundSnow,
 
-    Crimson = 150,
+    Crimson,
     CrimsonUnderground,
     CrimsonDesert,
     CrimsonUndergroundDesert,
     CrimsonSnow,
     CrimsonUndergroundSnow,
 
-    Hallow = 200,
+    Hallow,
     HallowUnderground,
     HallowDesert,
     HallowUndergroundDesert,
     HallowSnow,
     HallowUndergroundSnow,
 
-    PollutedOcean = 230,
+    PollutedOcean,
+    UndergroundForest,
 
-    Dungeon = 254,
-    Temple = 255,
+    Dungeon,
+    Temple,
+
+    Count
 }
