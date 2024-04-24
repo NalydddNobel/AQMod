@@ -376,7 +376,7 @@ CopperChestTrapped: {
 }
 
 CopperChestLocked: {
-	MapEntry: 铜宝箱
+	MapEntry: 上锁铜宝箱
 	ItemDisplayName: "{$CopperChestLocked.MapEntry}"
 	ItemTooltip: "{$Items.CommonTooltips.LockedWithKey}"
 }
