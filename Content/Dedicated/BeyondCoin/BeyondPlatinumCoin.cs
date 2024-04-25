@@ -1,10 +1,11 @@
 ﻿using Aequus.Common.Items.Dedications;
+using Aequus.Core.Graphics;
 using Terraria.GameContent;
 using Terraria.Graphics.Renderers;
 
 namespace Aequus.Content.Dedicated.BeyondCoin;
 
-public class BeyondPlatinumCoin : ModItem {
+public class BeyondPlatinumCoin : ModItem, DrawLayers.IDrawLayer {
     public override void SetDefaults() {
         Item.width = 8;
         Item.height = 8;
@@ -63,6 +64,8 @@ public class BeyondPlatinumCoin : ModItem {
     }
 
     public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
+        DrawLayers.Instance.PostDrawLiquids += this;
+
         Texture2D texture = AequusTextures.BeyondPlatinumCoin_World;
         Rectangle frame = texture.Frame(verticalFrames: 8, frameY: (int)(Main.GameUpdateCount / 7 % 8));
         Vector2 drawCoordinates = ExtendItem.WorldDrawPos(Item, frame);
@@ -83,9 +86,10 @@ public class BeyondPlatinumCoin : ModItem {
             spriteBatch.Draw(texture, drawCoordinates + (i * MathHelper.PiOver2 + timer).ToRotationVector2() * outwards, frame, outlineColor * colorIntensity, rotation, origin, scale, SpriteEffects.None, 0f);
         }
 
-        DrawHelper.DrawMagicLensFlare(spriteBatch, drawCoordinates, Color.Lerp(Color.BlueViolet, Color.White, 0.3f) * 0.4f, 0.9f * scale);
-        //spriteBatch.Draw(AequusTextures.LensFlare, drawCoordinates, null, Color.White with { A = 0 } * colorIntensity * 0.2f, 0f, AequusTextures.LensFlare.Size() / 2f, scale, SpriteEffects.None, 0f);
-
         return false;
+    }
+
+    public void DrawOntoLayer(SpriteBatch spriteBatch, DrawLayers.DrawLayer layer) {
+        DrawHelper.DrawMagicLensFlare(spriteBatch, Item.Center - Main.screenPosition, Color.Lerp(Color.BlueViolet, Color.White, 0.3f) * 0.4f, 0.9f);
     }
 }

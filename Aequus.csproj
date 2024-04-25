@@ -16,10 +16,13 @@
   </ItemGroup>
 		
   <ItemGroup>
+    <None Remove="Content\Currency\**" />
     <None Remove="Old\**" Condition="'$(Configuration)' == 'Debug'" />
+    <EmbeddedResource Remove="Content\Currency\**" />
     <EmbeddedResource Remove="Old\**" Condition="'$(Configuration)' == 'Debug'" />
     <None Remove="Temp\SourceGenerators.Generator\**" />
 	<EmbeddedResource Remove="Temp\SourceGenerators.Generator\**" />
+	<Compile Remove="Content\Currency\**" />
 	<Compile Remove="Temp\SourceGenerators.Generator\**" />
     <None Remove="UnitTesting\**" />
 	<EmbeddedResource Remove="UnitTesting\**" />
@@ -42,6 +45,7 @@
 	<AdditionalFiles Remove="**\obj\**" />
 	<AdditionalFiles Remove="**\SourceGenerators\**" />
 	<AdditionalFiles Remove="**\Properties\**" />
+	<AdditionalFiles Remove="Content\Currency\**" />
   </ItemGroup>
 
   <PropertyGroup>
@@ -69,24 +73,5 @@
 	<AdditionalFiles Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
   </ItemGroup>
-	
-  <ItemGroup>
-    <None Remove="Assets\Textures\Keychain\CrimsonKeyPalette.png" />
-    <None Remove="Assets\Textures\Keychain\DungeonDesertKeyPalette.png" />
-    <None Remove="Assets\Textures\Keychain\FrozenKeyPalette.png" />
-    <None Remove="Assets\Textures\Keychain\GoldenKeyPalette.png" />
-    <None Remove="Assets\Textures\Keychain\KeychainKeys.png" />
-    <None Remove="Assets\Textures\Keychain\PaletteKey.png" />
-    <None Remove="Assets\Textures\Keychain\SilverKeyPalette.png" />
-    <None Remove="Assets\Textures\Keychain\TempleKeyPalette.png" />
-    <None Remove="Content\Dedicated\BeyondCoin\BeyondPlatinumCoin.png" />
-    <None Remove="Content\Dedicated\BeyondCoin\BeyondPlatinumCoin_World.png" />
-    <None Remove="Content\PermaPowerups\Shimmer\ShimmerCoin.png" />
-    <None Remove="Content\Tools\Keychain\Keychain_Keys.png" />
-  </ItemGroup>
-	
-  <ItemGroup>
-    <Folder Include="Content\Currency\" />
-  </ItemGroup>
-	
+		
 </Project>

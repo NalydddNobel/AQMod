@@ -50,10 +50,18 @@ public class DrawLayers : ILoad {
 
     public class DrawLayer {
         private Action<SpriteBatch> _action;
+        private readonly List<IDrawLayer> _drawInstances = new(2);
         private readonly List<int> _npcsIndices = new(2);
         private readonly List<int> _projIndices = new(2);
 
         internal void Draw(SpriteBatch spriteBatch) {
+            if (_drawInstances.Count > 0) {
+                for (int i = 0; i < _drawInstances.Count; i++) {
+                    _drawInstances[i].DrawOntoLayer(spriteBatch, this);
+                }
+                _drawInstances.Clear();
+            }
+
             if (_npcsIndices.Count > 0) {
                 for (int i = 0; i < _npcsIndices.Count; i++) {
                     NPC npc = Main.npc[_npcsIndices[i]];
@@ -83,6 +91,10 @@ public class DrawLayers : ILoad {
             _action?.Invoke(spriteBatch);
         }
 
+        public static DrawLayer operator +(DrawLayer a, IDrawLayer b) {
+            (a ??= new())._drawInstances.Add(b);
+            return a;
+        }
         public static DrawLayer operator +(DrawLayer a, Projectile b) {
             (a ??= new())._projIndices.Add(b.whoAmI);
             return a;
