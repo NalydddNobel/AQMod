@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 768)</summary>
+/// <summary>(Total Textures: 777)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -67,6 +67,24 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> TempleKeyPalette = new("Aequus/Assets/Textures/Keychain/TempleKeyPalette");
     /// <summary>Full Path: Assets/Textures/LensFlare</summary>
     public static readonly RequestCache<Texture2D> LensFlare = new("Aequus/Assets/Textures/LensFlare");
+    /// <summary>Full Path: Assets/Textures/LensFlare/FlareSprite0</summary>
+    public static readonly RequestCache<Texture2D> FlareSprite0 = new("Aequus/Assets/Textures/LensFlare/FlareSprite0");
+    /// <summary>Full Path: Assets/Textures/LensFlare/FlareSprite1</summary>
+    public static readonly RequestCache<Texture2D> FlareSprite1 = new("Aequus/Assets/Textures/LensFlare/FlareSprite1");
+    /// <summary>Full Path: Assets/Textures/LensFlare/FlareSprite2</summary>
+    public static readonly RequestCache<Texture2D> FlareSprite2 = new("Aequus/Assets/Textures/LensFlare/FlareSprite2");
+    /// <summary>Full Path: Assets/Textures/LensFlare/FlareSprite3</summary>
+    public static readonly RequestCache<Texture2D> FlareSprite3 = new("Aequus/Assets/Textures/LensFlare/FlareSprite3");
+    /// <summary>Full Path: Assets/Textures/LensFlare/FlareSprite4</summary>
+    public static readonly RequestCache<Texture2D> FlareSprite4 = new("Aequus/Assets/Textures/LensFlare/FlareSprite4");
+    /// <summary>Full Path: Assets/Textures/LensFlare/FlareSprite5</summary>
+    public static readonly RequestCache<Texture2D> FlareSprite5 = new("Aequus/Assets/Textures/LensFlare/FlareSprite5");
+    /// <summary>Full Path: Assets/Textures/LensFlare/FlareSprite6</summary>
+    public static readonly RequestCache<Texture2D> FlareSprite6 = new("Aequus/Assets/Textures/LensFlare/FlareSprite6");
+    /// <summary>Full Path: Assets/Textures/LensFlare/FlareSprite7</summary>
+    public static readonly RequestCache<Texture2D> FlareSprite7 = new("Aequus/Assets/Textures/LensFlare/FlareSprite7");
+    /// <summary>Full Path: Assets/Textures/LensFlare/FlareSprite8</summary>
+    public static readonly RequestCache<Texture2D> FlareSprite8 = new("Aequus/Assets/Textures/LensFlare/FlareSprite8");
     /// <summary>Full Path: Assets/Textures/LightRayCircular</summary>
     public static readonly RequestCache<Texture2D> LightRayCircular = new("Aequus/Assets/Textures/LightRayCircular");
     /// <summary>Full Path: Assets/Textures/LightRayFlat</summary>

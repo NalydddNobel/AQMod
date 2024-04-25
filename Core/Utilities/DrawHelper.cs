@@ -43,6 +43,28 @@ public sealed class DrawHelper : ModSystem {
     public static int ColorOnlyShaderId => ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex;
     public static ArmorShaderData ColorOnlyShader => GameShaders.Armor.GetSecondaryShader(ColorOnlyShaderId, Main.LocalPlayer);
 
+    public static void DrawMagicLensFlare(SpriteBatch spriteBatch, Vector2 drawPosition, Color color, float scale = 1f) {
+        Vector2 screenCenter = new Vector2(Main.screenWidth, Main.screenHeight) / 2f;
+        float distance = Vector2.Distance(drawPosition, screenCenter);
+
+        float intensity = 1f - distance / (900f * scale);
+        if (intensity <= 0f || float.IsNaN(intensity)) {
+            return;
+        }
+
+        color *= intensity;
+        color.A = 0;
+
+        int textureCount = AequusTextures.LensFlares.Length;
+        float lerpAmount = 2f / textureCount * (1f - intensity);
+
+        for (int i = 0; i < textureCount; i++) {
+            Texture2D texture = AequusTextures.LensFlares[i].Value;
+            Vector2 position = Vector2.Lerp(drawPosition, screenCenter, lerpAmount * i);
+            spriteBatch.Draw(texture, position, null, color, 0f, texture.Size() / 2f, scale, SpriteEffects.None, 0f);
+        }
+    }
+
     public static void DrawLine(Draw draw, Vector2 start, float rotation, float length, float width, Color color) {
         draw(TextureAssets.MagicPixel.Value, start, new Rectangle(0, 0, 1, 1), color, rotation, new Vector2(1f, 0.5f), new Vector2(length, width), SpriteEffects.None, 0f);
     }

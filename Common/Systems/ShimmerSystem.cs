@@ -149,7 +149,9 @@ public class ShimmerSystem : ModSystem {
                 return;
             }
 
-            DedicatedFaeling.SpawnFaelingsFromShimmer(item, modItem);
+            if (ItemSets.ShimmerTransformToItem[item.type] == -1) {
+                DedicatedFaeling.SpawnFaelingsFromShimmer(item, modItem);
+            }
         }
 
         if (item.prefix >= PrefixID.Count && PrefixLoader.GetPrefix(item.prefix) is IRemovedByShimmerPrefix shimmerablePrefix && shimmerablePrefix.CanBeRemovedByShimmer) {

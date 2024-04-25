@@ -638,12 +638,19 @@ Baguette: {
 //# Misc
 BeyondPlatinumCoin: {
 	DisplayName: Beyond Coin
-	Tooltip: ""
+	Tooltip: Doesn't count as a coin, but stores 100 Platinum
 }
 
 ShimmerCoin: {
 	DisplayName: Shimmer Coin
-	Tooltip: Permanently increase nearly all stats
+	Tooltip:
+		'''
+		Permanently increase damage, melee speed,
+		critical strike chance, life regeneration,
+		defense, mining speed, movement speed, 
+		minion knockback, flight time,
+		reduced mana cost, and reduced enemy aggro
+		'''
 }
 
 CopperKey: {

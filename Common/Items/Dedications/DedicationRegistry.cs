@@ -29,9 +29,11 @@ public class DedicationRegistry : ModSystem {
     }
 
     private static void RegisterInner(ModItem modItem, IDedicationInfo info) {
-        // Register a colored faeling aswell.
-        info.Faeling = new DedicatedFaeling.FaelingItem(modItem, info);
-        ModContent.GetInstance<Aequus>().AddContent(info.Faeling);
+        if (info.Faeling == null) {
+            // Register a colored faeling aswell.
+            info.Faeling = new DedicatedFaeling.FaelingItem(modItem, info);
+            ModContent.GetInstance<Aequus>().AddContent(info.Faeling);
+        }
 
         _fromItem[modItem] = info;
     }

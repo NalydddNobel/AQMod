@@ -636,6 +636,23 @@ Baguette: {
 }
 
 //# Misc
+BeyondPlatinumCoin: {
+	// DisplayName: Beyond Coin
+	// Tooltip: Doesn't count as a coin, but stores 100 Platinum
+}
+
+ShimmerCoin: {
+	// DisplayName: Shimmer Coin
+	/* Tooltip:
+		'''
+		Permanently increase damage, melee speed,
+		critical strike chance, life regeneration,
+		defense, mining speed, movement speed, 
+		minion knockback, flight time,
+		reduced mana cost, and reduced enemy aggro
+		''' */
+}
+
 CopperKey: {
 	// DisplayName: Copper Key
 	// Tooltip: Opens one locked Copper Chest
@@ -1054,14 +1071,4 @@ StariteMaterial: {
 UnopenedChestItem: {
 	DisplayName: Objeto de cofre sin abrir
 	// Tooltip: This is a debug item placed into chests upon worldgen to check if they have been opened
-}
-
-BeyondPlatinumCoin: {
-	// DisplayName: Beyond Coin
-	// Tooltip: ""
-}
-
-ShimmerCoin: {
-	// DisplayName: Shimmer Coin
-	// Tooltip: Permanently increase nearly all stats
 }

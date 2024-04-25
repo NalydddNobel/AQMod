@@ -1813,7 +1813,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 768)</summary>
+            <summary>(Total Textures: 777)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1904,6 +1904,33 @@
         </member>
         <member name="F:Aequus.AequusTextures.LensFlare">
             <summary>Full Path: Assets/Textures/LensFlare</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlareSprite0">
+            <summary>Full Path: Assets/Textures/LensFlare/FlareSprite0</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlareSprite1">
+            <summary>Full Path: Assets/Textures/LensFlare/FlareSprite1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlareSprite2">
+            <summary>Full Path: Assets/Textures/LensFlare/FlareSprite2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlareSprite3">
+            <summary>Full Path: Assets/Textures/LensFlare/FlareSprite3</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlareSprite4">
+            <summary>Full Path: Assets/Textures/LensFlare/FlareSprite4</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlareSprite5">
+            <summary>Full Path: Assets/Textures/LensFlare/FlareSprite5</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlareSprite6">
+            <summary>Full Path: Assets/Textures/LensFlare/FlareSprite6</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlareSprite7">
+            <summary>Full Path: Assets/Textures/LensFlare/FlareSprite7</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlareSprite8">
+            <summary>Full Path: Assets/Textures/LensFlare/FlareSprite8</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LightRayCircular">
             <summary>Full Path: Assets/Textures/LightRayCircular</summary>
