@@ -9,6 +9,22 @@ using Terraria.Utilities;
 namespace Aequus.Core.Utilities;
 
 public static class Helper {
+    /// <summary>Converts <paramref name="value"/> to an int. And uses RNG to determine if value should be +1 higher depending on the remaining decimal number. For example, 10.5 has a 50% chance to return either 10 or 11, since the remaining decimal value gives it a 50% chance to be +1 higher.</summary>
+    /// <param name="value"></param>
+    /// <param name="random"></param>
+    /// <returns></returns>
+    public static int ToIntUsingRNGForDecimals(float value, UnifiedRandom random) {
+        int integerValue = (int)value;
+
+        value -= integerValue;
+
+        if (value > 0f && random.NextFloat(1f) < value) {
+            integerValue++;
+        }
+
+        return integerValue;
+    }
+
     public static bool TryReadInt(string s, out int value) {
         return int.TryParse(s, NumberStyles.Integer, CultureInfo.InvariantCulture.NumberFormat, out value);
     }

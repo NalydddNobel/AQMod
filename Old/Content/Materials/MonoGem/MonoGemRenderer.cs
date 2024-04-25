@@ -43,6 +43,7 @@ public class MonoGemRenderer : ILoad {
     }
 
     public void Unload() {
+        Main.OnPreDraw -= DrawOntoTarget;
         DrawHelper.DiscardTarget(ref _target);
         Instance = null;
     }
@@ -58,6 +59,10 @@ public class MonoGemRenderer : ILoad {
 
     protected void DrawOntoTarget(GameTime gameTime) {
         Prepared = false;
+
+        if (Main.gameMenu) {
+            return;
+        }
 
         if (FogDrawQueue.Count <= 0) {
             if (_active) {
@@ -84,17 +89,18 @@ public class MonoGemRenderer : ILoad {
 
         RenderTargetBinding[] oldTargets = g.GetRenderTargets();
 
+        sb.BeginDusts();
         try {
             g.SetRenderTarget(_target);
             g.Clear(Color.Transparent);
 
-            sb.BeginDusts();
             DrawFog(sb);
-            sb.End();
         }
-        catch {
+        catch (Exception ex) {
+            Aequus.Log.Error(ex);
         }
         finally {
+            sb.End();
         }
 
         g.SetRenderTargets(oldTargets);

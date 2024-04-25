@@ -1,4 +1,5 @@
-﻿using Aequus.Content.PermaPowerups.Shimmer;
+﻿using Aequus.Content.Dedicated.BeyondCoin;
+using Aequus.Content.PermaPowerups.Shimmer;
 using Aequus.Core;
 
 namespace Aequus.Common.ItemPrefixes;
@@ -16,6 +17,7 @@ public class ItemPrefixesGlobalItem : GlobalItem {
         }
 
         int rerolls = TinkerersGuidebook.BonusRerolls;
+        ShimmerCoinPlayer.TinkererRerolls(ref rerolls);
 
         bool successfullyAppliedAnyPrefix = false;
         int finalPrefix = 0;

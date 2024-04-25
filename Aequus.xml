@@ -196,9 +196,6 @@
         <member name="M:Aequus.Common.Hooks.TerrariaHooks.On_Player_PlaceThing_PaintScrapper_LongMoss(Terraria.On_Player.orig_PlaceThing_PaintScrapper_LongMoss,Terraria.Player,System.Int32,System.Int32)">
             <summary>Allows for custom mosses to be broken by the Paint Scraper.</summary>
         </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.On_Player_PlaceThing_Tiles_CheckLavaBlocking(Terraria.On_Player.orig_PlaceThing_Tiles_CheckLavaBlocking,Terraria.Player)">
-            <summary>Allows for the Lavaproof Mitten to grant block placement in lava.</summary>
-        </member>
         <member name="M:Aequus.Common.Hooks.TerrariaHooks.IL_Player_PlaceThing_ValidTileForReplacement(MonoMod.Cil.ILContext)">
             <summary>Allows for the Lavaproof Mitten to grant block placement in lava for blockswap.</summary>
         </member>
@@ -231,6 +228,9 @@
         </member>
         <member name="M:Aequus.Common.Hooks.TerrariaHooks.Player_HasUnityPotion(Terraria.On_Player.orig_HasUnityPotion,Terraria.Player)">
             <summary>Allows infinite wormhole usage for the Phase Mirror. (<see cref="F:Aequus.AequusPlayer.infiniteWormhole"/>)</summary>
+        </member>
+        <member name="M:Aequus.Common.Hooks.TerrariaHooks.On_Player_PlaceThing_Tiles_CheckLavaBlocking(Terraria.On_Player.orig_PlaceThing_Tiles_CheckLavaBlocking,Terraria.Player)">
+            <summary>Allows for the Lavaproof Mitten to grant block placement in lava.</summary>
         </member>
         <member name="T:Aequus.Common.Items.Components.IManageProjectile">
             <summary>
@@ -1292,6 +1292,12 @@
             Draws something with its position set to the center of the inventory slot.
             Only use in Pre/PostDraw hooks for items.
             </summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.Helper.ToIntUsingRNGForDecimals(System.Single,Terraria.Utilities.UnifiedRandom)">
+            <summary>Converts <paramref name="value"/> to an int. And uses RNG to determine if value should be +1 higher depending on the remaining decimal number. For example, 10.5 has a 50% chance to return either 10 or 11, since the remaining decimal value gives it a 50% chance to be +1 higher.</summary>
+            <param name="value"></param>
+            <param name="random"></param>
+            <returns></returns>
         </member>
         <member name="M:Aequus.Core.Utilities.Helper.RandomTileCoordinates(System.Int32,System.Int32)">
             <summary>

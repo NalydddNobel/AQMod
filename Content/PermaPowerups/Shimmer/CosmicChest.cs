@@ -22,6 +22,7 @@ public class CosmicChest : ModItem {
         if (aequusPlayer.usedCosmicChest) {
             return false;
         }
+
         aequusPlayer.usedCosmicChest = true;
         return true;
     }

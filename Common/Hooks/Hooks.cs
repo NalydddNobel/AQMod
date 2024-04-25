@@ -11,6 +11,8 @@ public partial class TerrariaHooks : ILoad {
     public void Load(Mod mod) {
         Mod = mod;
 
+        IL_Chest.SetupTravelShop += IL_Chest_SetupTravelShop;
+
         On_ChestUI.QuickStack += On_ChestUI_QuickStack;
 
         On_GolfHelper.StepGolfBall += On_GolfHelper_StepGolfBall;
@@ -25,6 +27,8 @@ public partial class TerrariaHooks : ILoad {
 
         On_NPC.NPCLoot_DropMoney += NPC_NPCLoot_DropMoney;
 
+        IL_Player.PlaceThing_ValidTileForReplacement += IL_Player_PlaceThing_ValidTileForReplacement;
+        IL_Player.UpdateManaRegen += IL_Player_UpdateManaRegen;
         On_Player.GetPreferredGolfBallToUse += On_Player_GetPreferredGolfBallToUse;
         On_Player.RollLuck += On_Player_RollLuck;
         On_Player.PlaceThing_Tiles_CheckLavaBlocking += On_Player_PlaceThing_Tiles_CheckLavaBlocking;
