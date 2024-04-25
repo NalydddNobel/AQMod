@@ -115,6 +115,6 @@ public class LanternCatPet : UnifiedModPet {
     }
 
     protected override void OnLoad() {
-        DedicationRegistry.Register(PetItem, new Dedication.Default("Linnn", new Color(60, 60, 120)));
+        DedicationRegistry.Register(PetItem, new DefaultDedication("Linnn", new Color(60, 60, 120)));
     }
 }

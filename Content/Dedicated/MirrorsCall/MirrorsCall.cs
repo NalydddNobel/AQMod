@@ -5,7 +5,7 @@ namespace Aequus.Content.Dedicated.MirrorsCall;
 
 public class MirrorsCall : ModItem {
     public override void Load() {
-        DedicationRegistry.Register(this, new Dedication.Default("Mr. Gerd26", new Color(110, 110, 128)));
+        DedicationRegistry.Register(this, new DefaultDedication("Mr. Gerd26", new Color(110, 110, 128)));
     }
 
     public override void SetDefaults() {

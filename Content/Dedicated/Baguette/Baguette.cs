@@ -4,7 +4,7 @@ namespace Aequus.Content.Dedicated.Baguette;
 
 public class Baguette : ModItem {
     public override void Load() {
-        DedicationRegistry.Register(this, new Dedication.Anonymous(new Color(127, 92, 32)));
+        DedicationRegistry.Register(this, new AnonymousDedication(new Color(127, 92, 32)));
     }
 
     public override void SetStaticDefaults() {

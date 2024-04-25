@@ -1,4 +1,5 @@
-﻿using Aequus.Content.PermaPowerups.Shimmer;
+﻿using Aequus.Content.Dedicated.BeyondCoin;
+using Aequus.Content.PermaPowerups.Shimmer;
 using Aequus.Core.IO;
 using System;
 
@@ -7,6 +8,9 @@ namespace Aequus;
 public partial class AequusPlayer {
     [SaveData("NetherStar")]
     public bool usedConvergentHeart;
+
+    [SaveData("ShimmerCoin")]
+    public bool usedShimmerCoin;
 
     [SaveData("CosmicChest")]
     public bool usedCosmicChest;
@@ -17,6 +21,9 @@ public partial class AequusPlayer {
     private void DoPermanentStatBoosts() {
         if (usedCosmicChest) {
             dropRolls += CosmicChest.LuckIncrease;
+        }
+        if (usedShimmerCoin) {
+            ShimmerCoin.UpdatePermanentEffects(Player);
         }
     }
 

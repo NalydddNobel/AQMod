@@ -79,7 +79,14 @@
     <None Remove="Assets\Textures\Keychain\PaletteKey.png" />
     <None Remove="Assets\Textures\Keychain\SilverKeyPalette.png" />
     <None Remove="Assets\Textures\Keychain\TempleKeyPalette.png" />
+    <None Remove="Content\Dedicated\BeyondCoin\BeyondPlatinumCoin.png" />
+    <None Remove="Content\Dedicated\BeyondCoin\BeyondPlatinumCoin_World.png" />
+    <None Remove="Content\PermaPowerups\Shimmer\ShimmerCoin.png" />
     <None Remove="Content\Tools\Keychain\Keychain_Keys.png" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <Folder Include="Content\Currency\" />
   </ItemGroup>
 	
 </Project>

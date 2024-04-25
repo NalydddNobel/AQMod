@@ -5,7 +5,7 @@ namespace Aequus.Content.Dedicated.DeathsEmbrace;
 
 public class DeathsEmbrace : ModItem {
     public override void Load() {
-        DedicationRegistry.Register(this, new Dedication.Default("bubbyboytoo", new Color(20, 70, 30)));
+        DedicationRegistry.Register(this, new DefaultDedication("bubbyboytoo", new Color(20, 70, 30)));
     }
 
     public override void SetStaticDefaults() {

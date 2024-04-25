@@ -11,7 +11,7 @@ public class StudiesOfTheInkblot : ModItem {
     public Color TextColor => new Color(110, 110, 128, 255);
 
     public override void Load() {
-        DedicationRegistry.Register(this, new Dedication.Default("starlight.mp4", new Color(110, 110, 128)));
+        DedicationRegistry.Register(this, new DefaultDedication("starlight.mp4", new Color(110, 110, 128)));
     }
 
     public override void SetStaticDefaults() {

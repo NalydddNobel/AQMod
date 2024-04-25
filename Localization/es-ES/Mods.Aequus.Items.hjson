@@ -1055,3 +1055,13 @@ UnopenedChestItem: {
 	DisplayName: Objeto de cofre sin abrir
 	// Tooltip: This is a debug item placed into chests upon worldgen to check if they have been opened
 }
+
+BeyondPlatinumCoin: {
+	// DisplayName: Beyond Coin
+	// Tooltip: ""
+}
+
+ShimmerCoin: {
+	// DisplayName: Shimmer Coin
+	// Tooltip: Permanently increase nearly all stats
+}

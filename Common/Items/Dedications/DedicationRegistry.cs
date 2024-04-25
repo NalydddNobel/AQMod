@@ -13,6 +13,10 @@ public class DedicationRegistry : ModSystem {
             throw new Exception($"Dedication has already been registered for an item.");
         }
 
+        if (_doneAcceptingRegistries) {
+            throw new Exception($"{modItem.FullName} attempted to register dedicated item info after Aequus has been loaded.");
+        }
+
         RegisterInner(modItem, info);
     }
 
@@ -25,10 +29,6 @@ public class DedicationRegistry : ModSystem {
     }
 
     private static void RegisterInner(ModItem modItem, IDedicationInfo info) {
-        if (_doneAcceptingRegistries) {
-            throw new Exception($"{modItem.FullName} attempted to register dedicated item info after Aequus has been loaded.");
-        }
-
         // Register a colored faeling aswell.
         info.Faeling = new DedicatedFaeling.FaelingItem(modItem, info);
         ModContent.GetInstance<Aequus>().AddContent(info.Faeling);

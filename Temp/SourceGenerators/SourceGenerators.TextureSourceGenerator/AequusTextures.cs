@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 765)</summary>
+/// <summary>(Total Textures: 768)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -237,6 +237,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Baguette = new("Aequus/Content/Dedicated/Baguette/Baguette");
     /// <summary>Full Path: Content/Dedicated/Baguette/BaguetteBuff</summary>
     public static readonly RequestCache<Texture2D> BaguetteBuff = new("Aequus/Content/Dedicated/Baguette/BaguetteBuff");
+    /// <summary>Full Path: Content/Dedicated/BeyondCoin/BeyondPlatinumCoin</summary>
+    public static readonly RequestCache<Texture2D> BeyondPlatinumCoin = new("Aequus/Content/Dedicated/BeyondCoin/BeyondPlatinumCoin");
+    /// <summary>Full Path: Content/Dedicated/BeyondCoin/BeyondPlatinumCoin_World</summary>
+    public static readonly RequestCache<Texture2D> BeyondPlatinumCoin_World = new("Aequus/Content/Dedicated/BeyondCoin/BeyondPlatinumCoin_World");
+    /// <summary>Full Path: Content/Dedicated/BeyondCoin/ShimmerCoin</summary>
+    public static readonly RequestCache<Texture2D> ShimmerCoin = new("Aequus/Content/Dedicated/BeyondCoin/ShimmerCoin");
     /// <summary>Full Path: Content/Dedicated/DeathsEmbrace/DeathsEmbrace</summary>
     public static readonly RequestCache<Texture2D> DeathsEmbrace = new("Aequus/Content/Dedicated/DeathsEmbrace/DeathsEmbrace");
     /// <summary>Full Path: Content/Dedicated/DeathsEmbrace/DeathsEmbraceBuff</summary>

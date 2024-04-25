@@ -96,6 +96,6 @@ public class SwagEyePet : UnifiedModPet {
     }
 
     protected override void OnLoad() {
-        DedicationRegistry.Register(PetItem, new Dedication.Default("torra th", new Color(80, 60, 255)));
+        DedicationRegistry.Register(PetItem, new DefaultDedication("torra th", new Color(80, 60, 255)));
     }
 }

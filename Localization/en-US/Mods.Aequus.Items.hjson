@@ -636,6 +636,16 @@ Baguette: {
 }
 
 //# Misc
+BeyondPlatinumCoin: {
+	DisplayName: Beyond Coin
+	Tooltip: ""
+}
+
+ShimmerCoin: {
+	DisplayName: Shimmer Coin
+	Tooltip: Permanently increase nearly all stats
+}
+
 CopperKey: {
 	DisplayName: Copper Key
 	Tooltip: Opens one locked Copper Chest
