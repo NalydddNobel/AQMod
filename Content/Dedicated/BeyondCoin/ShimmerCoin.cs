@@ -22,6 +22,7 @@ public class ShimmerCoin : ModItem {
     }
 
     public override void SetStaticDefaults() {
+        Item.ResearchUnlockCount = 5;
         AequusRecipes.ShimmerTransformLocks[Type] = Condition.DownedMoonLord;
         DedicationRegistry.RegisterSubItem(ModContent.GetInstance<BeyondPlatinumCoin>(), this);
     }

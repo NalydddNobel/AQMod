@@ -18,6 +18,7 @@ public class BeyondPlatinumCoin : ModItem, DrawLayers.IDrawLayer {
     }
 
     public override void SetStaticDefaults() {
+        Item.ResearchUnlockCount = 100;
         ItemSets.ShimmerTransformToItem[Type] = ModContent.ItemType<ShimmerCoin>();
     }
 
