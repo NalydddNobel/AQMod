@@ -24,6 +24,7 @@ CommonTooltips: {
 		右键打开
 		需要一个{0}
 		'''
+	// UsedXOfXTimes: Used {0}/{1} times
 }
 
 Keywords: {

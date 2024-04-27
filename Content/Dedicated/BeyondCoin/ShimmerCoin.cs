@@ -1,5 +1,7 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.Dedications;
+using System.Collections.Generic;
+using Terraria.Localization;
 
 namespace Aequus.Content.Dedicated.BeyondCoin;
 
@@ -34,5 +36,9 @@ public class ShimmerCoin : ModItem {
 
         TimesUsed++;
         return true;
+    }
+
+    public override void ModifyTooltips(List<TooltipLine> tooltips) {
+        tooltips.AddTooltip(new TooltipLine(Mod, "Uses", Language.GetTextValue("Mods.Aequus.Items.CommonTooltips.UsedXOfXTimes", TimesUsed, MaxTimesUsed)));
     }
 }

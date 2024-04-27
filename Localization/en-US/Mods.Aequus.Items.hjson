@@ -24,6 +24,7 @@ CommonTooltips: {
 		<right> to open
 		Requires a {0}
 		'''
+	UsedXOfXTimes: Used {0}/{1} times
 }
 
 Keywords: {
@@ -650,7 +651,6 @@ ShimmerCoin: {
 		mining speed, building speed, fishing skill, luck, 
 		droprates, rolling positive prefixes from reforging,
 		defense & strength of villagers, and Traveling Merchant items
-		Can be used up to 5 times
 		'''
 }
 
