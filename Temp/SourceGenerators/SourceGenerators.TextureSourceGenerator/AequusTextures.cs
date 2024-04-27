@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 777)</summary>
+/// <summary>(Total Textures: 779)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -65,6 +65,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SilverKeyPalette = new("Aequus/Assets/Textures/Keychain/SilverKeyPalette");
     /// <summary>Full Path: Assets/Textures/Keychain/TempleKeyPalette</summary>
     public static readonly RequestCache<Texture2D> TempleKeyPalette = new("Aequus/Assets/Textures/Keychain/TempleKeyPalette");
+    /// <summary>Full Path: Assets/Textures/Keychain/TinKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> TinKeyPalette = new("Aequus/Assets/Textures/Keychain/TinKeyPalette");
     /// <summary>Full Path: Assets/Textures/LensFlare</summary>
     public static readonly RequestCache<Texture2D> LensFlare = new("Aequus/Assets/Textures/LensFlare");
     /// <summary>Full Path: Assets/Textures/LensFlare/FlareSprite0</summary>
@@ -733,6 +735,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> MagicKeychain = new("Aequus/Content/Tools/Keychain/MagicKeychain");
     /// <summary>Full Path: Content/Tools/Keys/CopperKey</summary>
     public static readonly RequestCache<Texture2D> CopperKey = new("Aequus/Content/Tools/Keys/CopperKey");
+    /// <summary>Full Path: Content/Tools/Keys/TinKey</summary>
+    public static readonly RequestCache<Texture2D> TinKey = new("Aequus/Content/Tools/Keys/TinKey");
     /// <summary>Full Path: Content/Tools/NameTag/NameTag</summary>
     public static readonly RequestCache<Texture2D> NameTag = new("Aequus/Content/Tools/NameTag/NameTag");
     /// <summary>Full Path: Content/Tools/NameTag/NameTagBlank</summary>

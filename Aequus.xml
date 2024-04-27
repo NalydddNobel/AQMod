@@ -1819,7 +1819,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 777)</summary>
+            <summary>(Total Textures: 779)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1907,6 +1907,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.TempleKeyPalette">
             <summary>Full Path: Assets/Textures/Keychain/TempleKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TinKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/TinKeyPalette</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LensFlare">
             <summary>Full Path: Assets/Textures/LensFlare</summary>
@@ -2909,6 +2912,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.CopperKey">
             <summary>Full Path: Content/Tools/Keys/CopperKey</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TinKey">
+            <summary>Full Path: Content/Tools/Keys/TinKey</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NameTag">
             <summary>Full Path: Content/Tools/NameTag/NameTag</summary>

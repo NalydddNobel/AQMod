@@ -655,6 +655,11 @@ ShimmerCoin: {
 		'''
 }
 
+TinKey: {
+	// DisplayName: Tin Key
+	// Tooltip: Opens the Generator room door
+}
+
 CopperKey: {
 	DisplayName: 铜钥匙
 	Tooltip: 打开上锁的铜宝箱

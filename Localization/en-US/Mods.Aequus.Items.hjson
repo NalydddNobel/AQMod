@@ -654,6 +654,11 @@ ShimmerCoin: {
 		'''
 }
 
+TinKey: {
+	DisplayName: Tin Key
+	Tooltip: Opens the Generator room door
+}
+
 CopperKey: {
 	DisplayName: Copper Key
 	Tooltip: Opens one locked Copper Chest
