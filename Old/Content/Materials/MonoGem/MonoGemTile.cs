@@ -56,7 +56,7 @@ public class MonoGemTile : BaseGemTile {
             d.rotation = 0f;
         }
 
-        MonoGemRenderer.Instance.AddFog(i, j);
+        MonoGemRenderer.Instance.Enqueue(new Point(i, j));
         return false;
     }
 }

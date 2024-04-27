@@ -9,6 +9,17 @@ using Terraria.Utilities;
 namespace Aequus.Core.Utilities;
 
 public static class Helper {
+    /// <summary>
+    /// Subtracts <paramref name="minThreshold"/> from <paramref name="value"/>, then multiplies the result by <paramref name="scaleMultiplier"/>, finally re-adding <paramref name="minThreshold"/> back.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="minThreshold"></param>
+    /// <param name="scaleMultiplier"></param>
+    /// <returns></returns>
+    public static float MultiplyAboveMin(float value, float minThreshold, float scaleMultiplier) {
+        return (value - minThreshold) * scaleMultiplier + minThreshold;
+    }
+
     /// <summary>Converts <paramref name="value"/> to an int. And uses RNG to determine if value should be +1 higher depending on the remaining decimal number. For example, 10.5 has a 50% chance to return either 10 or 11, since the remaining decimal value gives it a 50% chance to be +1 higher.</summary>
     /// <param name="value"></param>
     /// <param name="random"></param>

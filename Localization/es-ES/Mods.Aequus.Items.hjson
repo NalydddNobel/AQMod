@@ -1078,3 +1078,8 @@ UnopenedChestItem: {
 	DisplayName: Objeto de cofre sin abrir
 	// Tooltip: This is a debug item placed into chests upon worldgen to check if they have been opened
 }
+
+Nightfall: {
+	// DisplayName: Nightfall
+	// Tooltip: ""
+}

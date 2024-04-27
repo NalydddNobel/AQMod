@@ -3,7 +3,7 @@ using Aequus.Old.Content.StatusEffects;
 using System;
 using Terraria.Audio;
 
-namespace Aequus.Old.Content.Weapons.Melee.SuperStarSword;
+namespace Aequus.Old.Content.Weapons.Glimmer.SuperStarSword;
 
 public class SuperStarSwordProj : LegacyHeldSlashingSwordProjectile {
     private bool _spawnedProjectile;

@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Sounds: 75)</summary>
+/// <summary>(Total Sounds: 77)</summary>
 [CompilerGenerated]
 public partial class AequusSounds {            
         /// <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -54,6 +54,10 @@ public partial class AequusSounds {
     public static readonly SoundStyle JunkJetShoot0 = new("Aequus/Assets/Sounds/Items/JunkJetShoot0");
     /// <summary>Full Path: Assets/Sounds/Items/JunkJetShoot1</summary>
     public static readonly SoundStyle JunkJetShoot1 = new("Aequus/Assets/Sounds/Items/JunkJetShoot1");
+    /// <summary>Full Path: Assets/Sounds/Items/NightfallPushDown</summary>
+    public static readonly SoundStyle NightfallPushDown = new("Aequus/Assets/Sounds/Items/NightfallPushDown");
+    /// <summary>Full Path: Assets/Sounds/Items/NightfallPushUp</summary>
+    public static readonly SoundStyle NightfallPushUp = new("Aequus/Assets/Sounds/Items/NightfallPushUp");
     /// <summary>Full Path: Assets/Sounds/Items/NoHitRewardAmbient</summary>
     public static readonly SoundStyle NoHitRewardAmbient = new("Aequus/Assets/Sounds/Items/NoHitRewardAmbient");
     /// <summary>Full Path: Assets/Sounds/Items/NoHitRewardSpawn</summary>

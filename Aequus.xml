@@ -13,6 +13,9 @@
         <member name="P:Aequus.Aequus.HighQualityEffects">
             <summary>Shorthand for checking if <see cref="F:Terraria.Main.gfxQuality"/> is greater than 0.</summary>
         </member>
+        <member name="P:Aequus.Aequus.ScreenShadersActive">
+            <summary>Shorthand for checking if <see cref="P:Terraria.Lighting.NotRetro"/> is true, and <see cref="M:Terraria.Graphics.Effects.FilterManager.CanCapture"/>.</summary>
+        </member>
         <member name="P:Aequus.Aequus.GameWorldActive">
             <summary>Shorthand for a bunch of checks determining whether the game is unpaused.</summary>
         </member>
@@ -1293,6 +1296,15 @@
             Only use in Pre/PostDraw hooks for items.
             </summary>
         </member>
+        <member name="M:Aequus.Core.Utilities.Helper.MultiplyAboveMin(System.Single,System.Single,System.Single)">
+            <summary>
+            Subtracts <paramref name="minThreshold"/> from <paramref name="value"/>, then multiplies the result by <paramref name="scaleMultiplier"/>, finally re-adding <paramref name="minThreshold"/> back.
+            </summary>
+            <param name="value"></param>
+            <param name="minThreshold"></param>
+            <param name="scaleMultiplier"></param>
+            <returns></returns>
+        </member>
         <member name="M:Aequus.Core.Utilities.Helper.ToIntUsingRNGForDecimals(System.Single,Terraria.Utilities.UnifiedRandom)">
             <summary>Converts <paramref name="value"/> to an int. And uses RNG to determine if value should be +1 higher depending on the remaining decimal number. For example, 10.5 has a 50% chance to return either 10 or 11, since the remaining decimal value gives it a 50% chance to be +1 higher.</summary>
             <param name="value"></param>
@@ -1591,7 +1603,7 @@
             <summary>Whether the Occultist has been met. This determines if the Hostile Occultist emote can be used.</summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 75)</summary>
+            <summary>(Total Sounds: 77)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishCharge">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -1664,6 +1676,12 @@
         </member>
         <member name="F:Aequus.AequusSounds.JunkJetShoot1">
             <summary>Full Path: Assets/Sounds/Items/JunkJetShoot1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.NightfallPushDown">
+            <summary>Full Path: Assets/Sounds/Items/NightfallPushDown</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.NightfallPushUp">
+            <summary>Full Path: Assets/Sounds/Items/NightfallPushUp</summary>
         </member>
         <member name="F:Aequus.AequusSounds.NoHitRewardAmbient">
             <summary>Full Path: Assets/Sounds/Items/NoHitRewardAmbient</summary>
@@ -1819,7 +1837,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 779)</summary>
+            <summary>(Total Textures: 782)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -4095,6 +4113,18 @@
         <member name="F:Aequus.AequusTextures.HamaYumi_Glow">
             <summary>Full Path: Old/Content/Weapons/Demon/Ranged/HamaYumi_Glow</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Nightfall">
+            <summary>Full Path: Old/Content/Weapons/Glimmer/Nightfall/Nightfall</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NightfallGlint">
+            <summary>Full Path: Old/Content/Weapons/Glimmer/Nightfall/NightfallGlint</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NightfallProj">
+            <summary>Full Path: Old/Content/Weapons/Glimmer/Nightfall/NightfallProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SuperStarSword">
+            <summary>Full Path: Old/Content/Weapons/Glimmer/SuperStarSword/SuperStarSword</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.PhaseDisc">
             <summary>Full Path: Old/Content/Weapons/Melee/PhaseDisc/PhaseDisc</summary>
         </member>
@@ -4109,9 +4139,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.SliceBulletProj">
             <summary>Full Path: Old/Content/Weapons/Melee/Slice/SliceBulletProj</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SuperStarSword">
-            <summary>Full Path: Old/Content/Weapons/Melee/SuperStarSword/SuperStarSword</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltimateSword">
             <summary>Full Path: Old/Content/Weapons/Melee/UltimateSword/UltimateSword</summary>

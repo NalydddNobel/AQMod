@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 779)</summary>
+/// <summary>(Total Textures: 782)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1523,6 +1523,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> HamaYumiArrow = new("Aequus/Old/Content/Weapons/Demon/Ranged/HamaYumiArrow");
     /// <summary>Full Path: Old/Content/Weapons/Demon/Ranged/HamaYumi_Glow</summary>
     public static readonly RequestCache<Texture2D> HamaYumi_Glow = new("Aequus/Old/Content/Weapons/Demon/Ranged/HamaYumi_Glow");
+    /// <summary>Full Path: Old/Content/Weapons/Glimmer/Nightfall/Nightfall</summary>
+    public static readonly RequestCache<Texture2D> Nightfall = new("Aequus/Old/Content/Weapons/Glimmer/Nightfall/Nightfall");
+    /// <summary>Full Path: Old/Content/Weapons/Glimmer/Nightfall/NightfallGlint</summary>
+    public static readonly RequestCache<Texture2D> NightfallGlint = new("Aequus/Old/Content/Weapons/Glimmer/Nightfall/NightfallGlint");
+    /// <summary>Full Path: Old/Content/Weapons/Glimmer/Nightfall/NightfallProj</summary>
+    public static readonly RequestCache<Texture2D> NightfallProj = new("Aequus/Old/Content/Weapons/Glimmer/Nightfall/NightfallProj");
+    /// <summary>Full Path: Old/Content/Weapons/Glimmer/SuperStarSword/SuperStarSword</summary>
+    public static readonly RequestCache<Texture2D> SuperStarSword = new("Aequus/Old/Content/Weapons/Glimmer/SuperStarSword/SuperStarSword");
     /// <summary>Full Path: Old/Content/Weapons/Melee/PhaseDisc/PhaseDisc</summary>
     public static readonly RequestCache<Texture2D> PhaseDisc = new("Aequus/Old/Content/Weapons/Melee/PhaseDisc/PhaseDisc");
     /// <summary>Full Path: Old/Content/Weapons/Melee/PhaseDisc/PhaseDiscProj</summary>
@@ -1533,8 +1541,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Slice = new("Aequus/Old/Content/Weapons/Melee/Slice/Slice");
     /// <summary>Full Path: Old/Content/Weapons/Melee/Slice/SliceBulletProj</summary>
     public static readonly RequestCache<Texture2D> SliceBulletProj = new("Aequus/Old/Content/Weapons/Melee/Slice/SliceBulletProj");
-    /// <summary>Full Path: Old/Content/Weapons/Melee/SuperStarSword/SuperStarSword</summary>
-    public static readonly RequestCache<Texture2D> SuperStarSword = new("Aequus/Old/Content/Weapons/Melee/SuperStarSword/SuperStarSword");
     /// <summary>Full Path: Old/Content/Weapons/Melee/UltimateSword/UltimateSword</summary>
     public static readonly RequestCache<Texture2D> UltimateSword = new("Aequus/Old/Content/Weapons/Melee/UltimateSword/UltimateSword");
     /// <summary>Full Path: Old/Content/Weapons/Melee/UltimateSword/UltimateSwordBuff</summary>

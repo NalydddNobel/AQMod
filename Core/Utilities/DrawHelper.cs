@@ -1,6 +1,8 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Core.Assets;
 using Aequus.Core.Graphics;
+using System;
+using System.Collections.Generic;
 using Terraria.GameContent;
 using Terraria.GameContent.Shaders;
 using Terraria.Graphics;
@@ -138,25 +140,6 @@ public sealed class DrawHelper : ModSystem {
         return WorldGen.paintColor(stringColorId);
     }
 
-    public static void DiscardTarget(ref RenderTarget2D target) {
-        if (target == null) {
-            return;
-        }
-
-        if (!target.IsDisposed) {
-            Main.QueueMainThreadAction(target.Dispose);
-        }
-
-        target = null;
-    }
-
-    public static bool BadRenderTarget(RenderTarget2D renderTarget2D) {
-        return renderTarget2D == null || renderTarget2D.IsDisposed || renderTarget2D.IsContentLost;
-    }
-    public static bool BadRenderTarget(RenderTarget2D renderTarget2D, int wantedWidth, int wantedHeight) {
-        return BadRenderTarget(renderTarget2D) || renderTarget2D.Width != wantedWidth || renderTarget2D.Height != wantedHeight;
-    }
-
     public static Vector2 ApplyZoom(Vector2 screenCoordinate, float zoomFactor) {
         Vector2 screenCenter = new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
         Vector2 difference = screenCoordinate - screenCenter;
@@ -201,6 +184,76 @@ public sealed class DrawHelper : ModSystem {
     }
     #endregion
 
+    #region Textures
+    private static readonly List<RenderTarget2D> _loadedRenderTargets = new();
+
+    public static RenderTarget2D NewRenderTarget(GraphicsDevice gd, int width, int height, RenderTargetUsage usage = RenderTargetUsage.DiscardContents) {
+        return NewRenderTarget(new RenderTarget2D(gd, width, height, mipMap: false, SurfaceFormat.Color, DepthFormat.None, preferredMultiSampleCount: 0, usage));
+    }
+
+    public static RenderTarget2D NewRenderTarget(RenderTarget2D target) {
+        if (!_loadedRenderTargets.Contains(target)) {
+            _loadedRenderTargets.Add(target);
+        }
+
+        return target;
+    }
+
+    public static bool CheckTargetCycle(ref RenderTarget2D target, int desiredWidth, int desiredHeight, GraphicsDevice device = null, RenderTargetUsage usage = RenderTargetUsage.DiscardContents) {
+        if (!BadRenderTarget(target, desiredWidth, desiredHeight)) {
+            return true;
+        }
+
+        device ??= Main.instance.GraphicsDevice;
+        try {
+            DiscardTarget(ref target);
+
+            if (Main.IsGraphicsDeviceAvailable) {
+                target = NewRenderTarget(device, Main.screenWidth, Main.screenHeight, RenderTargetUsage.PreserveContents);
+            }
+        }
+        catch (Exception ex) {
+            Aequus.Log.Error(ex);
+        }
+        finally {
+        }
+        return false;
+    }
+
+    public static void DiscardTarget(ref RenderTarget2D target) {
+        if (target == null) {
+            return;
+        }
+
+        _loadedRenderTargets.Remove(target);
+        if (!target.IsDisposed) {
+            Main.QueueMainThreadAction(target.Dispose);
+        }
+
+        target = null;
+    }
+
+    public static bool BadRenderTarget(RenderTarget2D renderTarget2D) {
+        return renderTarget2D == null || renderTarget2D.IsDisposed || renderTarget2D.IsContentLost;
+    }
+    public static bool BadRenderTarget(RenderTarget2D renderTarget2D, int desiredWidth, int desiredHeight) {
+        return BadRenderTarget(renderTarget2D) || renderTarget2D.Width != desiredWidth || renderTarget2D.Height != desiredHeight;
+    }
+    #endregion
+
+    #region Hooks
+    private static readonly List<Action<GameTime>> _loadedPreDrawHooks = new();
+
+    public static void AddPreDrawHook(Action<GameTime> action) {
+        _loadedPreDrawHooks.Add(action);
+        Main.OnPreDraw += action;
+    }
+    public static void RemovePreDrawHook(Action<GameTime> action) {
+        _loadedPreDrawHooks.Remove(action);
+        Main.OnPreDraw -= action;
+    }
+    #endregion
+
     #region Initialization
     public override void Load() {
         if (Main.dedServ) {
@@ -209,47 +262,35 @@ public sealed class DrawHelper : ModSystem {
 
         SpriteBatchCache = new();
         VertexStrip = new();
-        On_Main.DrawNPC += On_Main_DrawNPC;
-        On_Main.DrawNPCs += On_Main_DrawNPCs;
-        On_Main.DrawItems += On_Main_DrawItems;
-        Main.QueueMainThreadAction(LoadShaders);
+        Main.QueueMainThreadAction(LoadOnMainThread);
     }
 
     public override void Unload() {
         SpriteBatchCache = null;
         VertexStrip = null;
-        Main.QueueMainThreadAction(UnloadShaders);
+
+        // Unload Render Targets.
+        for (int i = 0; i < _loadedRenderTargets.Count; i++) {
+            RenderTarget2D target = _loadedRenderTargets[i];
+            DiscardTarget(ref target);
+        }
+        _loadedRenderTargets.Clear();
+
+        // Unload pre draw hooks.
+        for (int i = 0; i < _loadedPreDrawHooks.Count; i++) {
+            RemovePreDrawHook(_loadedPreDrawHooks[i]);
+        }
+        _loadedRenderTargets.Clear();
+
+        Main.QueueMainThreadAction(UnloadOnMainThread);
     }
 
-    private static void LoadShaders() {
+    private static void LoadOnMainThread() {
         _basicEffect = new(Main.graphics.GraphicsDevice);
     }
-    private static void UnloadShaders() {
+    private static void UnloadOnMainThread() {
+        _basicEffect?.Dispose();
         _basicEffect = null;
-    }
-    #endregion
-
-    #region Hooks
-    private static void On_Main_DrawItems(On_Main.orig_DrawItems orig, Main main) {
-        orig(main);
-    }
-
-    private static void On_Main_DrawNPCs(On_Main.orig_DrawNPCs orig, Main main, bool behindTiles) {
-        orig(main, behindTiles);
-    }
-
-    private static void On_Main_DrawNPC(On_Main.orig_DrawNPC orig, Main main, int iNPCIndex, bool behindTiles) {
-        if (!Main.npc[iNPCIndex].TryGetGlobalNPC<AequusNPC>(out var aequusNPC)) {
-            orig(main, iNPCIndex, behindTiles);
-            return;
-        }
-
-        Vector2 drawOffset = Vector2.Zero;
-        aequusNPC.DrawBehindNPC(iNPCIndex, behindTiles, ref drawOffset);
-        Main.npc[iNPCIndex].position += drawOffset;
-        orig(main, iNPCIndex, behindTiles);
-        Main.npc[iNPCIndex].position -= drawOffset;
-        aequusNPC.DrawAboveNPC(iNPCIndex, behindTiles);
     }
     #endregion
 }

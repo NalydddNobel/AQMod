@@ -1,5 +1,6 @@
 using log4net;
 using System.Reflection;
+using Terraria.Graphics.Effects;
 using Terraria.Localization;
 using Terraria.Utilities;
 
@@ -17,6 +18,9 @@ public partial class Aequus : Mod {
 
     /// <summary>Shorthand for checking if <see cref="Main.gfxQuality"/> is greater than 0.</summary>
     public static bool HighQualityEffects => Main.gfxQuality > 0f;
+
+    /// <summary>Shorthand for checking if <see cref="Lighting.NotRetro"/> is true, and <see cref="FilterManager.CanCapture"/>.</summary>
+    public static bool ScreenShadersActive => Lighting.NotRetro && Filters.Scene.CanCapture();
 
     /// <summary>Shorthand for a bunch of checks determining whether the game is unpaused.</summary>
     public static bool GameWorldActive => (Main.instance.IsActive && !Main.gamePaused && !Main.gameInactive) || Main.netMode != NetmodeID.SinglePlayer;

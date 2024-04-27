@@ -4,7 +4,7 @@ using Aequus.Old.Content.StatusEffects;
 using System;
 using Terraria.Audio;
 
-namespace Aequus.Old.Content.Weapons.Melee.SuperStarSword;
+namespace Aequus.Old.Content.Weapons.Glimmer.SuperStarSword;
 
 public class SuperStarSwordSlash : ModProjectile {
     public override string Texture => AequusTextures.SlashVanillaAlt.Path;
@@ -113,7 +113,7 @@ public class SuperStarSwordSlash : ModProjectile {
     public override bool PreDraw(ref Color lightColor) {
         Projectile.GetDrawInfo(out var texture, out var offset, out _, out _, out int trailLength);
         float slashRotation = Projectile.rotation;
-        Color glowColor = (Main.tenthAnniversaryWorld ? Color.HotPink with { A = 0 } * 0.45f : Color.CornflowerBlue * 0.9f ) * Projectile.Opacity;
+        Color glowColor = (Main.tenthAnniversaryWorld ? Color.HotPink with { A = 0 } * 0.45f : Color.CornflowerBlue * 0.9f) * Projectile.Opacity;
         lightColor = Projectile.GetAlpha(lightColor) * Projectile.Opacity;
         Rectangle frame = texture.Frame(horizontalFrames: 2, verticalFrames: 4, frameX: 1, frameY: 0);
         Vector2 origin = frame.Size() / 2f;

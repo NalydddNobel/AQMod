@@ -25,6 +25,11 @@ public sealed partial class AequusTextures : AssetManager<Texture2D> {
         }
     }
 
+    #region Frame Counts
+    public const int FogFrameCount = 8;
+    #endregion
+
+    #region Texture Paths
     public static string Buff(int id) {
         return $"Terraria/Images/Buff_{id}";
     }
@@ -48,4 +53,5 @@ public sealed partial class AequusTextures : AssetManager<Texture2D> {
     public static string Projectile(int id) {
         return $"Terraria/Images/Projectile_{id}";
     }
+    #endregion
 }
