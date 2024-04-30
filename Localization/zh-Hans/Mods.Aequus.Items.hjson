@@ -495,14 +495,12 @@ Furystar: {
 		'''
 }
 
-Nightfall: {
-	DisplayName: 夜陨
-	Tooltip:
-		'''
-		攻击地面敌人会将其抛向空中
-		在空中的敌人会砸向地面, 受到摔落伤害
-		'''
-}
+// DisplayName: Nightfall
+/* Tooltip:
+	'''
+	Attacks against grounded enemies throws them into the air
+	Airborne enemies slam to the ground, taking fall damage
+	''' */
 
 StudiesOfTheInkblot: {
 	DisplayName: 墨迹研究学
@@ -1086,4 +1084,18 @@ StariteMaterial: {
 UnopenedChestItem: {
 	DisplayName: 未开启的宝箱物品
 	Tooltip: 这是Debug物品, 将其放置在世界生成的宝箱内以检测其是否被开启过
+}
+
+Nightfall: {
+	DisplayName: 夜陨
+	Tooltip:
+		'''
+		攻击地面敌人会将其抛向空中
+		在空中的敌人会砸向地面, 受到摔落伤害
+		'''
+}
+
+StariteStaff: {
+	// DisplayName: Starite Staff
+	// Tooltip: ""
 }

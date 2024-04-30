@@ -2,12 +2,24 @@
 
 namespace Aequus.Old.Core.Utilities;
 public static class OldHelper {
+    public static void CollideWithOthers(this Projectile proj, float speed = 0.05f) {
+        Rectangle rect = proj.getRect();
+        for (int i = 0; i < Main.maxProjectiles; i++) {
+            Projectile other = Main.projectile[i];
+            if (other.active && i != proj.whoAmI && proj.type == other.type
+                && rect.Intersects(other.getRect())) {
+                proj.velocity += Utils.SafeNormalize(proj.Center - other.Center, Vector2.UnitY) * speed;
+            }
+        }
+    }
+
     public static void CollideWithOthers(this NPC npc, float speed = 0.05f) {
-        var rect = npc.getRect();
+        Rectangle rect = npc.getRect();
         for (int i = 0; i < Main.maxNPCs; i++) {
-            if (Main.npc[i].active && i != npc.whoAmI && npc.type == Main.npc[i].type
-                && rect.Intersects(Main.npc[i].getRect())) {
-                npc.velocity += Main.npc[i].DirectionTo(npc.Center) * speed;
+            NPC other = Main.npc[i];
+            if (other.active && i != npc.whoAmI && npc.type == other.type
+                && rect.Intersects(other.getRect())) {
+                npc.velocity += Utils.SafeNormalize(npc.Center - other.Center, Vector2.UnitY) * speed;
             }
         }
     }

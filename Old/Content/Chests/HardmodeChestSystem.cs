@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Tiles;
+﻿using Aequus.Common.Hooks;
+using Aequus.Common.Tiles;
 using Aequus.Content.Chests;
 using Aequus.Content.Configuration;
 using Aequus.Content.Potions.Healing.Restoration;
@@ -156,12 +157,12 @@ public sealed class HardmodeChestSystem : ModSystem {
         NetMessage.SendTileSquare(-1, chest.x, chest.y, 3);
     }
 
-    public static void OnRandomTileUpdate(int i, int j, int type) {
+    public static void OnRandomTileUpdate(int i, int j) {
         if (!Main.tile[i, j].HasTile) {
             return;
         }
 
-        type = Main.tile[i, j].TileType;
+        int type = Main.tile[i, j].TileType;
         if (WorldGen.SavedOreTiers.Cobalt > 0 && type == WorldGen.SavedOreTiers.Cobalt) {
             SetTier(TIER_COBALT);
         }
@@ -195,7 +196,7 @@ public sealed class HardmodeChestSystem : ModSystem {
     }
 
     public override void SetStaticDefaults() {
-        AequusTile.OnRandomTileUpdate += OnRandomTileUpdate;
+        TerrariaHooks.OnRandomTileUpdate += OnRandomTileUpdate;
         ChestLootDatabase.Instance.Register(ChestPool.HardmodeChestRegular, new ReplaceFirstSlotChestRule(
             new IndexedChestRule(new IChestLootRule[] {
                     new CommonChestRule(ItemID.DualHook),

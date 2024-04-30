@@ -83,3 +83,4 @@ ValariProj.DisplayName: "{$Items.Valari.DisplayName}"
 VrangProj.DisplayName: "{$Items.Vrang.DisplayName}"
 NightfallGlint.DisplayName: 夜闪
 NightfallProj.DisplayName: 夜陨
+// StariteMinion.DisplayName: Starite Minion

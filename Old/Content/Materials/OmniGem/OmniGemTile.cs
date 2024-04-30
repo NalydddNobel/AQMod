@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Tiles;
+﻿using Aequus.Common.Hooks;
+using Aequus.Common.Tiles;
 using Aequus.Content.Vanity.Dyes;
 using Aequus.Core.Graphics.Tiles;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
         Main.tileObsidianKill[Type] = true;
         Main.tileNoFail[Type] = true;
 
-        AequusTile.OnRandomTileUpdate += GrowOmniGems;
+        TerrariaHooks.OnRandomTileUpdate += GrowOmniGems;
 
         LocalizedText mapEntry = LanguageDatabase.GetItemName(ModContent.ItemType<OmniGem>());
         for (int i = 0; i < MAP_ENTRY_COUNT; i++) {
@@ -191,7 +192,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
         Main.spriteBatch.End();
     }
 
-    public static void GrowOmniGems(int i, int j, int type) {
+    public static void GrowOmniGems(int i, int j) {
         Tile tile = Main.tile[i, j];
         // Abort if the block being updated does not have Shimmer.
         if (tile.LiquidAmount == 0 || tile.LiquidType != LiquidID.Shimmer) {

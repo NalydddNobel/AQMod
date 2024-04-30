@@ -73,5 +73,12 @@
 	<AdditionalFiles Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
   </ItemGroup>
+	
+  <ItemGroup>
+    <None Remove="Old\Content\Weapons\Glimmer\StariteMinion\StariteMinion.png" />
+    <None Remove="Old\Content\Weapons\Glimmer\StariteMinion\StariteMinionBuff.png" />
+    <None Remove="Old\Content\Weapons\Glimmer\StariteMinion\StariteStaff.png" />
+    <None Remove="Old\Content\Weapons\Glimmer\StariteMinion\StariteStaff_Glow.png" />
+  </ItemGroup>
 			
 </Project>

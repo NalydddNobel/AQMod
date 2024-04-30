@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Tiles;
-using Aequus.Core;
+﻿using Aequus.Core;
 using Aequus.Core.Graphics.Tiles;
 using Aequus.Old.Content.Potions.Prefixes.BoundedPotions;
 using System;
@@ -119,30 +118,26 @@ public class Manacle : ModHerb, IDrawWindyGrass {
             TileID.Ash,
             TileID.AshGrass,
             TileID.Hellstone,
+        };
+        TileObjectData.newTile.AnchorAlternateTiles = new int[] {
             TileID.Obsidian,
             TileID.ObsidianBrick,
             TileID.HellstoneBrick,
         };
 
-        RandomTick.AddUpdateByType(GrowManacle, TileID.Ash, TileID.AshGrass, TileID.Hellstone);
-
         AddMapEntry(new Color(205, 80, 25), CreateMapEntryName());
     }
 
-    public static void GrowManacle(int i, int j, int type) {
+    public override bool CanNaturallyGrow(int X, int Y, Tile tile, bool[] anchoredTiles) {
         if (Main.remixWorld) {
             Point range = WorldState.RemixWorldSafeUnderworldRange;
 
             // Manacle plants cannot generate in the middle of remix seed worlds.
-            if (i > range.X && i < range.Y && j > Main.rockLayer) {
-                return;
+            if (X > range.X && X < range.Y && Y > Main.rockLayer) {
+                return false;
             }
         }
 
-        Tile tile = Main.tile[i, j];
-        Tile topTile = Main.tile[i, j - 1];
-        if (!topTile.HasTile && tile.HasUnactuatedTile && tile.TopSlope && !tile.IsHalfBlock && WorldGen.genRand.NextBool(100) && !TileHelper.ScanTilesSquare(i, j, 20, TileHelper.HasTileAction(ModContent.TileType<Manacle>()))) {
-            WorldGen.PlaceTile(i, j - 1, ModContent.TileType<Manacle>(), mute: true);
-        }
+        return TileHelper.ScanTilesSquare(X, Y, 20, TileHelper.HasTileAction(ModContent.TileType<Manacle>()));
     }
 }

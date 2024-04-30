@@ -50,6 +50,12 @@ public partial class TerrariaHooks : ILoad {
         On_PlayerDeathReason.GetDeathText += On_PlayerDeathReason_GetDeathText;
 
         On_PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
+
+        On_WorldGen.PlaceTile += On_WorldGen_PlaceTile;
+        On_WorldGen.PlaceChest += On_WorldGen_PlaceChest;
+        On_WorldGen.PlaceChestDirect += On_WorldGen_PlaceChestDirect;
+        On_WorldGen.UpdateWorld_OvergroundTile += WorldGen_UpdateWorld_OvergroundTile;
+        On_WorldGen.UpdateWorld_UndergroundTile += WorldGen_UpdateWorld_UndergroundTile;
     }
 
     public void Unload() { }

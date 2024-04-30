@@ -1837,7 +1837,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 782)</summary>
+            <summary>(Total Textures: 786)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -4121,6 +4121,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.NightfallProj">
             <summary>Full Path: Old/Content/Weapons/Glimmer/Nightfall/NightfallProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StariteMinion">
+            <summary>Full Path: Old/Content/Weapons/Glimmer/StariteMinion/StariteMinion</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StariteMinionBuff">
+            <summary>Full Path: Old/Content/Weapons/Glimmer/StariteMinion/StariteMinionBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StariteStaff">
+            <summary>Full Path: Old/Content/Weapons/Glimmer/StariteMinion/StariteStaff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StariteStaff_Glow">
+            <summary>Full Path: Old/Content/Weapons/Glimmer/StariteMinion/StariteStaff_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SuperStarSword">
             <summary>Full Path: Old/Content/Weapons/Glimmer/SuperStarSword/SuperStarSword</summary>

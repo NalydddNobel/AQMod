@@ -1,11 +1,9 @@
 ﻿using Aequus.Common.Backpacks;
 using Aequus.Content.Tools.Keychain;
-using Aequus.Core.Initialization;
 using Aequus.DataSets.Structures.Enums;
 
 namespace Aequus.Common.Tiles;
-
-public partial class AequusTile : GlobalTile, IPostSetupContent {
+public class LockedTiles : GlobalTile {
     public static void CheckVanillaKeyInteractions(int i, int j, int type) {
         Tile tile = Main.tile[i, j];
         bool unlockedChest = ChestStyleConversion.ToEnum(tile) switch {
@@ -27,6 +25,10 @@ public partial class AequusTile : GlobalTile, IPostSetupContent {
                 TryUnlockingDoorWithKey(i, j, ItemID.TempleKey);
             }
         }
+    }
+
+    public override void RightClick(int i, int j, int type) {
+        CheckVanillaKeyInteractions(i, j, type);
     }
 
     private static bool TryUnlockingDoorWithKey(int i, int j, int key) {

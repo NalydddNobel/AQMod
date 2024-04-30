@@ -4,6 +4,30 @@ using System.Linq;
 namespace Aequus.Core.Utilities;
 
 public static class ExtendArray {
+    /// <summary>Safely adds <paramref name="other"/>'s contents into <paramref name="array"/> by resizing and inserting the elements from <paramref name="other"/> into <paramref name="array"/>.</summary>
+    /// <returns>The combined array.</returns>
+    public static T[] AddRangeSafe<T>(T[] array, T[] other) {
+        if (other == null) {
+            //throw new ArgumentNullException(nameof(other));
+            return array;
+        }
+
+        if (array == null) {
+            return Copy(other);
+        }
+
+        int start = array.Length;
+        Array.Resize(ref array, array.Length + other.Length);
+
+        int i = start;
+        int k = 0;
+        while (i < array.Length) {
+            array[i] = other[k];
+        }
+
+        return array;
+    }
+
     /// <returns>A new array with the same contents.</returns>
     public static T[] Copy<T>(this T[] array) {
         var array2 = new T[array.Length];
@@ -22,7 +46,7 @@ public static class ExtendArray {
         }
     }
 
-    /// <returns>An array with the Length of <paramref name="length"/>, populated using <paramref name="dataFactory"/> (<see cref="Func{Int32, T}"/>) where <see cref="int"/> is the index of the array being populated and <typeparamref name="T"/> is the value stored.</returns>
+    /// <returns>An array with the Length of <paramref name="length"/>, populated using <paramref name="dataFactory"/> where <see cref="int"/> is the index of the array being populated and <typeparamref name="T"/> is the value stored.</returns>
     public static T[] CreateArray<T>(Func<int, T> dataFactory, int length) {
         var arr = new T[length];
         for (int i = 0; i < length; i++) {

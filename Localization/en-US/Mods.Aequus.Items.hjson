@@ -1085,3 +1085,13 @@ UnopenedChestItem: {
 	DisplayName: Unopened Chest Item
 	Tooltip: This is a debug item placed into chests upon worldgen to check if they have been opened
 }
+
+Nightfall: {
+	DisplayName: Nightfall
+	Tooltip: ""
+}
+
+StariteStaff: {
+	DisplayName: Starite Staff
+	Tooltip: ""
+}
