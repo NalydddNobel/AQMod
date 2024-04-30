@@ -1,7 +1,7 @@
 <img src="icon.png" alt="Mod Icon" align="right" />
 
 # Aequus
-The official repository for Aequus, a mod for tModLoader.
+The official repository for Aequus, a mod for tModLoader. Aequus' code is not beginner friendly or a useful resource for implementing mod content, nor is it the ideal way to implement Terraria content.
 
 ### The MIT Lisence will not grant you protections when using non-code content from this repository in commercial, personal, or trademark use.
 The code itself is under an MIT lisence.
