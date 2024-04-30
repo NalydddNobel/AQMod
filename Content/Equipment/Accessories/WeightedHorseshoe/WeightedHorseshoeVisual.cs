@@ -5,7 +5,7 @@ using Terraria.GameContent;
 namespace Aequus.Content.Equipment.Accessories.WeightedHorseshoe;
 
 public class WeightedHorseshoeVisual : ModProjectile {
-    public VerletIntegrationStringTwoPoint<VINode> horseshoeAnvilRope;
+    public VIStringTwoPoint<VINode> horseshoeAnvilRope;
 
     public override void SetStaticDefaults() {
     }
@@ -43,7 +43,7 @@ public class WeightedHorseshoeVisual : ModProjectile {
         }
 
         Vector2 endPosition = Projectile.Center + new Vector2(0f, Projectile.gfxOffY);
-        horseshoeAnvilRope ??= new VerletIntegrationStringTwoPoint<VINode>(anvilAnchor, endPosition, 9, 4.33f, gravity);
+        horseshoeAnvilRope ??= new VIStringTwoPoint<VINode>(anvilAnchor, endPosition, 9, 4.33f, gravity);
         horseshoeAnvilRope.StartPos = anvilAnchor;
         horseshoeAnvilRope.EndPosition = endPosition;
         horseshoeAnvilRope.gravity = gravity;

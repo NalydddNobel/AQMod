@@ -2,7 +2,7 @@
 
 namespace Aequus.Core.PhysicsBehaviors;
 
-public class VerletIntegrationString<T> where T : IVerletIntegrationNode, new() {
+public class VIString<T> where T : IVerletIntegrationNode, new() {
     public T[] segments;
     public int accuracy;
     public float segmentLength;
@@ -10,7 +10,7 @@ public class VerletIntegrationString<T> where T : IVerletIntegrationNode, new() 
     public float damping;
     public Vector2 StartPos { get; set; }
 
-    public VerletIntegrationString(Vector2 startPoint, int segmentCount, float segmentLength, Vector2 gravity, float damping = 0f, int accuracy = 15) {
+    public VIString(Vector2 startPoint, int segmentCount, float segmentLength, Vector2 gravity, float damping = 0f, int accuracy = 15) {
         segments = new T[segmentCount];
         for (int i = 0; i < segmentCount; i++) {
             T value = new T();
