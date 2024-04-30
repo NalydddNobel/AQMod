@@ -81,6 +81,5 @@ DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 // SickBeatProj.DisplayName: "{$Items.SickBeat.DisplayName}"
 // ValariProj.DisplayName: "{$Items.Valari.DisplayName}"
 // VrangProj.DisplayName: "{$Items.Vrang.DisplayName}"
-// NightfallGlint.DisplayName: Nightfall Glint
-// NightfallProj.DisplayName: Nightfall Proj
-// StariteMinion.DisplayName: Starite Minion
+// NightfallGlint.DisplayName: "{$Items.Nightfall.DisplayName}"
+// NightfallProj.DisplayName: "{$Items.Nightfall.DisplayName}"

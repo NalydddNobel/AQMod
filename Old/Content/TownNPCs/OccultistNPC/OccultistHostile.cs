@@ -37,6 +37,8 @@ public class OccultistHostile : Occultist {
         NPC.dontTakeDamage = true;
     }
 
+    public override string LocalizationCategory => "NPCs.Occultist";
+
     public override bool CanHitPlayer(Player target, ref int cooldownSlot) {
         return false;
     }

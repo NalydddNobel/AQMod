@@ -1,0 +1,5 @@
+StariteMinion: {
+	// DisplayName: "{$NPCs.Starite.DisplayName}"
+	// BuffDisplayName: "{$StariteMinion.DisplayName}"
+	// BuffDescription: The starite will fight for you
+}

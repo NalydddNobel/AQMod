@@ -23,6 +23,8 @@ public static class ExtendArray {
         int k = 0;
         while (i < array.Length) {
             array[i] = other[k];
+            i++;
+            k++;
         }
 
         return array;

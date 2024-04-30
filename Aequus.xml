@@ -235,6 +235,9 @@
         <member name="M:Aequus.Common.Hooks.TerrariaHooks.On_Player_PlaceThing_Tiles_CheckLavaBlocking(Terraria.On_Player.orig_PlaceThing_Tiles_CheckLavaBlocking,Terraria.Player)">
             <summary>Allows for the Lavaproof Mitten to grant block placement in lava.</summary>
         </member>
+        <member name="P:Aequus.Common.Hooks.TerrariaHooks.OnRandomTileUpdate">
+            <summary>int1 = X, int2 = Y</summary>
+        </member>
         <member name="T:Aequus.Common.Items.Components.IManageProjectile">
             <summary>
             Allows the item to grant various effects to fired projectiles. All of these methods are not instanced, do NOT use <see cref="P:Terraria.ModLoader.ModItem.Item"/> data.
@@ -558,9 +561,6 @@
             <param name="baseColor"></param>
             <param name="text"></param>
             <param name="entryNumber">Offsets the map Id lookup by this value. Defaults to 1, meaning that it assumes that this is the 2nd registered color for this wall.</param>
-        </member>
-        <member name="F:Aequus.Common.Tiles.RandomTick.UpdateByType">
-            <summary>Lookup for update tick actions to perform less type checks.</summary>
         </member>
         <member name="M:Aequus.Common.WorldGeneration.AequusGenStep.SetMessage(Terraria.WorldBuilding.GenerationProgress,System.Object)">
             <summary>
@@ -897,11 +897,15 @@
         <member name="T:Aequus.Core.Utilities.ChatTagWriter">
             <summary>Contains helper methods for generating chat tag strings. For item and glyphs, <see cref="T:Terraria.GameContent.UI.Chat.ItemTagHandler"/> and <see cref="T:Terraria.GameContent.UI.Chat.GlyphTagHandler"/> have static helper methods.</summary>
         </member>
+        <member name="M:Aequus.Core.Utilities.ExtendArray.AddRangeSafe``1(``0[],``0[])">
+            <summary>Safely adds <paramref name="other"/>'s contents into <paramref name="array"/> by resizing and inserting the elements from <paramref name="other"/> into <paramref name="array"/>.</summary>
+            <returns>The combined array.</returns>
+        </member>
         <member name="M:Aequus.Core.Utilities.ExtendArray.Copy``1(``0[])">
             <returns>A new array with the same contents.</returns>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendArray.CreateArray``1(System.Func{System.Int32,``0},System.Int32)">
-            <returns>An array with the Length of <paramref name="length"/>, populated using <paramref name="dataFactory"/> (<see cref="T:System.Func`2"/>) where <see cref="T:System.Int32"/> is the index of the array being populated and <typeparamref name="T"/> is the value stored.</returns>
+            <returns>An array with the Length of <paramref name="length"/>, populated using <paramref name="dataFactory"/> where <see cref="T:System.Int32"/> is the index of the array being populated and <typeparamref name="T"/> is the value stored.</returns>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendArray.RemoveAt``1(``0[]@,System.Int32)">
             <summary>Removes at <paramref name="index"/> and resizes <paramref name="arr"/> to fit.</summary>
