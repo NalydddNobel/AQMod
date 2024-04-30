@@ -69,19 +69,29 @@ public class NightfallEffectRenderer : RequestHandler<NightfallEffectRenderer.Ni
                 Math.Max(smallestFrameSize / bloomSize.X, 1f),
                 SpriteEffects.None, 0f);
 
+            int trailCount = 5;
+
+            Vector2 difference = npc.netOffset;
+            npc.position += difference;
             int alpha = npc.alpha;
-            npc.Opacity = opacity;
 
             bool gameMenu = Main.gameMenu;
+            Main.gameMenu = true;
             try {
-                Main.gameMenu = true;
-                Main.instance.DrawNPC(npc.whoAmI, npc.behindTiles);
+                for (int i = 0; i < trailCount; i++) {
+                    npc.Opacity = opacity * (1f - i / (float)trailCount) * 0.4f;
+
+                    Main.instance.DrawNPC(npc.whoAmI, npc.behindTiles);
+                    difference += -npc.velocity;
+                    npc.position += -npc.velocity;
+                }
             }
             catch {
             }
             Main.gameMenu = gameMenu;
 
             npc.alpha = alpha;
+            npc.position -= difference;
         }
         spriteBatch.End();
 

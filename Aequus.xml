@@ -4533,6 +4533,11 @@
             Default Value: 3600 (1 minute)
             </summary>
         </member>
+        <member name="F:Aequus.Old.Content.Particles.DashBlurParticle.Particle.ScaleX">
+            <summary>
+            Defaults to 0.5f.
+            </summary>
+        </member>
         <member name="M:Aequus.Old.Content.Tiles.Herbs.ModHerb.GetDropParams(System.Int32,Terraria.Player,Terraria.Item,System.Int32@)">
             <param name="growthStage">The growth stage (style) of this plant.</param>
             <param name="closestPlayer">The closest player to the plant.</param>

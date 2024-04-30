@@ -205,24 +205,26 @@ public class NightfallProj : ModProjectile {
         target.velocity.Y -= 3f;
         target.position.Y = (tileCoordinates.Y + fallHeight) * 16f - target.height;
 
-        for (int k = 0; k < fallHeight; k++) {
-            //ParticleSystem.New<DashBlurParticle>(ParticleLayer.AboveNPCs)
-            //    .Setup(
-            //    new(oldPosition.X + Main.rand.Next(target.width), oldPosition.Y + k * 16f + Main.rand.Next(target.height)),
-            //    Vector2.UnitY * Main.rand.NextFloat(4f, 8f),
-            //    Color.BlueViolet with { A = 60 },
-            //    2f,
-            //    0f);
+        if (Main.netMode != NetmodeID.Server) {
+            var particleSystem = ModContent.GetInstance<DashBlurParticle>();
+            for (int k = 0; k < fallHeight; k++) {
+                var particle = particleSystem.New();
+                particle.Location = new Vector2(oldPosition.X + Main.rand.Next(target.width), oldPosition.Y + k * 16f + Main.rand.Next(target.height));
+                particle.Velocity = Vector2.UnitY * Main.rand.NextFloat(4f, 8f);
+                particle.Color = Color.BlueViolet with { A = 60 };
+                particle.Scale = 1f;
+                particle.Rotation = 0f;
 
-            var d = Dust.NewDustDirect(
-                oldPosition with { Y = oldPosition.Y + k * 16f },
-                target.width,
-                target.height,
-                ModContent.DustType<MonoDust>(),
-                0f, 1f,
-                0, Color.HotPink with { A = 0, }, Scale: Main.rand.NextFloat(0.5f, 1.5f));
-            d.velocity.X *= 0.1f;
-            d.noGravity = false;
+                var d = Dust.NewDustDirect(
+                    oldPosition with { Y = oldPosition.Y + k * 16f },
+                    target.width,
+                    target.height,
+                    ModContent.DustType<MonoDust>(),
+                    0f, 1f,
+                    0, Color.HotPink with { A = 0, }, Scale: Main.rand.NextFloat(0.5f, 1.5f));
+                d.velocity.X *= 0.1f;
+                d.noGravity = false;
+            }
         }
         Collision.HitTiles(target.position with { Y = target.position.Y + target.height, }, Vector2.UnitY, target.width, 16);
     }
