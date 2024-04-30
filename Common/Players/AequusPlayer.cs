@@ -78,7 +78,15 @@ public partial class AequusPlayer : ModPlayer {
         ProcBlackPhial(target);
     }
 
+    internal void OnKillNPC(in KillInfo info) {
+        RestoreBreathOnKillNPC(in info);
+    }
+
     #region Misc
+    /// <param name="Location">The enemy's center.</param>
+    /// <param name="Type">The enemy's type.</param>
+    internal record struct KillInfo(Vector2 Center, int Type);
+
     private struct MiscDamageHit {
         public DamageClass DamageClass;
         public Rectangle DamagingHitbox;

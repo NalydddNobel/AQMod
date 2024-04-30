@@ -595,6 +595,17 @@
             Safely sets the progress bar.
             </summary>
         </member>
+        <member name="T:Aequus.AequusPlayer.KillInfo">
+            <param name="Location">The enemy's center.</param>
+            <param name="Type">The enemy's type.</param>
+        </member>
+        <member name="M:Aequus.AequusPlayer.KillInfo.#ctor(Microsoft.Xna.Framework.Vector2,System.Int32)">
+            <param name="Location">The enemy's center.</param>
+            <param name="Type">The enemy's type.</param>
+        </member>
+        <member name="P:Aequus.AequusPlayer.KillInfo.Type">
+            <summary>The enemy's type.</summary>
+        </member>
         <member name="P:Aequus.AequusPlayer.MinimumRespawnTime">
             <summary>The lowest any respawn-time reducing items can go.</summary>
         </member>
@@ -938,6 +949,9 @@
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendColor.MaxRGBA(Microsoft.Xna.Framework.Color,System.Byte,System.Byte,System.Byte,System.Byte)">
             <returns><paramref name="color"/>, with R,G,B,A Maxed to <paramref name="r"/>,<paramref name="g"/>,<paramref name="b"/>,<paramref name="a"/> accordingly.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendPlayer.HealBreath(Terraria.Player,System.Int32,System.Boolean)">
+            <summary>Restores player breath without going over <see cref="F:Terraria.Player.breathMax"/>.</summary>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendPlayer.SafelyAddDamageReduction(Terraria.Player,System.Single)">
             <summary>

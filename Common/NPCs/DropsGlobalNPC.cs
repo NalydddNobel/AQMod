@@ -1,5 +1,6 @@
-﻿using System;
+﻿using Aequus.Core.Networking;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.InteropServices;
 using Terraria.GameContent.ItemDropRules;
 
@@ -32,6 +33,39 @@ public sealed class DropsGlobalNPC : GlobalNPC {
         return base.SpecialOnKill(npc);
     }
 
+    public override void OnKill(NPC npc) {
+        // Only activate on kill effects on NPCs which are not friendly and have greater than 5 HP.
+        if (npc.friendly || npc.lifeMax <= 5) {
+            return;
+        }
+
+        // Find the closest eligable player.
+        Player nearestPlayer = null;
+        float closestDistance = 2000f; // On kill range.
+        for (int i = 0; i < Main.maxPlayers; i++) {
+            Player player = Main.player[i];
+            if (!npc.playerInteraction[i] || !player.active || player.DeadOrGhost || !player.TryGetModPlayer<AequusPlayer>(out _)) {
+                continue;
+            }
+
+            float distance = npc.Distance(player.Center);
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                nearestPlayer = player;
+            }
+        }
+
+        if (nearestPlayer == null) {
+            return;
+        }
+
+        var killInfo = new AequusPlayer.KillInfo(npc.Center, npc.type);
+        nearestPlayer.GetModPlayer<AequusPlayer>().OnKillNPC(in killInfo);
+
+        if (Main.netMode == NetmodeID.Server) {
+            Aequus.GetPacket<OnKillPacket>().Send(nearestPlayer, killInfo);
+        }
+    }
 
     /// <summary>
     /// Allows you to add a drop rule to an NPC. Please only call this in SetStaticDefaults/PostSetupContent.
@@ -47,5 +81,28 @@ public sealed class DropsGlobalNPC : GlobalNPC {
 
     public override void Unload() {
         _dropRules.Clear();
+    }
+}
+
+internal class OnKillPacket : PacketHandler {
+    public void Send(Player player, AequusPlayer.KillInfo info) {
+        ModPacket packet = GetPacket();
+        packet.WritePackedVector2(info.Center);
+        packet.Write(info.Type);
+        packet.Write((byte)player.whoAmI);
+        packet.Send();
+    }
+
+    public override void Receive(BinaryReader reader, int sender) {
+        Vector2 center = reader.ReadPackedVector2();
+        int type = reader.ReadInt32();
+        int player = reader.ReadByte();
+
+        if (!Main.player.IndexInRange(player) || Main.player[player].TryGetModPlayer(out AequusPlayer aequus)) {
+            return;
+        }
+
+        var killInfo = new AequusPlayer.KillInfo(center, type);
+        aequus.OnKillNPC(killInfo);
     }
 }

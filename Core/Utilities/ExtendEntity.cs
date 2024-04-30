@@ -1,9 +1,9 @@
 ﻿using Aequus.Common.Projectiles;
 using Aequus.Core.CrossMod;
 using System;
+using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.GameContent;
-using Terraria.Localization;
 
 namespace Aequus.Core.Utilities;
 
@@ -20,6 +20,39 @@ public static class ExtendEntity {
 public static class ExtendPlayer {
     private static readonly Item[] _dummyInventory = ExtendArray.CreateArray(i => new Item(), Main.InventorySlotsTotal);
 
+    public static IEnumerable<Player> FindNearbyPlayersOnTeam(this Player player, float seeingDistance) {
+        yield return player;
+
+        for (int i = 0; i < Main.maxPlayers; i++) {
+            if (i == player.whoAmI) {
+                continue;
+            }
+
+            if (Main.player[i].active && !Main.player[i].DeadOrGhost && Main.player[i].team == player.team && player.Distance(Main.player[i].Center) < seeingDistance) {
+                yield return Main.player[i];
+            }
+        }
+    }
+
+    /// <summary>Restores player breath without going over <see cref="Player.breathMax"/>.</summary>
+    public static void HealBreath(this Player player, int breathAmount, bool showPopupText = true) {
+        if (player.breath >= player.breathMax) {
+            return;
+        }
+
+        player.breath = Math.Min(player.breath + breathAmount, player.breathMax);
+
+        if (Main.netMode != NetmodeID.Server && showPopupText) {
+            string seconds = $"{ExtendLanguage.Seconds(breathAmount)}s";
+            int combatText = CombatText.NewText(player.getRect(), AequusPlayer.CombatText_RestoreBreath, seconds);
+
+            // Breath meter usually hides the text with its normal velocity.
+            if (Main.combatText.IndexInRange(combatText)) {
+                Main.combatText[combatText].velocity.Y *= 0.5f;
+            }
+        }
+    }
+
     /// <summary>
     /// Adds <paramref name="damageReduction"/> to <see cref="Player.endurance"/>, but the added DR gets multiplicatively weaker the higher the endurance stat is.
     /// (So adding 0.5 endurance to a player which has 0.75 endurance will grant (0.5 * (1 - 0.75)) 0.125 endurance.)
@@ -31,9 +64,17 @@ public static class ExtendPlayer {
         return player.endurance += damageReduction - damageReduction * Math.Clamp(player.endurance, 0f, 1f);
     }
 
-    public static Point GetSpawn(this Player player) => new Point(GetSpawnX(player), GetSpawnY(player));
-    public static int GetSpawnY(this Player player) => player.SpawnY > 0 ? player.SpawnY : Main.spawnTileY;
-    public static int GetSpawnX(this Player player) => player.SpawnX > 0 ? player.SpawnX : Main.spawnTileX;
+    public static Point GetSpawn(this Player player) {
+        return new Point(GetSpawnX(player), GetSpawnY(player));
+    }
+
+    public static int GetSpawnY(this Player player) {
+        return player.SpawnY > 0 ? player.SpawnY : Main.spawnTileY;
+    }
+
+    public static int GetSpawnX(this Player player) {
+        return player.SpawnX > 0 ? player.SpawnX : Main.spawnTileX;
+    }
 
     /// <param name="player">The player.</param>
     /// <param name="pickaxe">The pickaxe.</param>

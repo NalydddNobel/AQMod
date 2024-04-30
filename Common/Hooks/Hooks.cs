@@ -30,6 +30,7 @@ public partial class TerrariaHooks : ILoad {
 
         On_NPC.NPCLoot_DropMoney += NPC_NPCLoot_DropMoney;
 
+        IL_Player.PickTile += IL_Player_PickTile;
         IL_Player.PlaceThing_ValidTileForReplacement += IL_Player_PlaceThing_ValidTileForReplacement;
         IL_Player.UpdateManaRegen += IL_Player_UpdateManaRegen;
         On_Player.GetPreferredGolfBallToUse += On_Player_GetPreferredGolfBallToUse;
@@ -50,6 +51,8 @@ public partial class TerrariaHooks : ILoad {
         On_PlayerDeathReason.GetDeathText += On_PlayerDeathReason_GetDeathText;
 
         On_PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
+
+        On_Projectile.KillOldestJavelin += On_Projectile_KillOldestJavelin;
 
         On_WorldGen.PlaceTile += On_WorldGen_PlaceTile;
         On_WorldGen.PlaceChest += On_WorldGen_PlaceChest;
