@@ -24,7 +24,7 @@ CommonTooltips: {
 		右键打开
 		需要一个{0}
 		'''
-	// UsedXOfXTimes: Used {0}/{1} times
+	UsedXOfXTimes: 已使用{0}/{1}次
 }
 
 Keywords: {
@@ -651,13 +651,12 @@ ShimmerCoin: {
 		挖掘速度、建筑速度、渔力、运气、
 		物品掉率、重铸时出现正面前缀的几率、
 		镇民的防御力和力量和旅行商人的物品数量
-		至多可使用5次
 		'''
 }
 
 TinKey: {
-	// DisplayName: Tin Key
-	// Tooltip: Opens the Generator room door
+	DisplayName: 锡钥匙
+	Tooltip: 打开发电机房门
 }
 
 CopperKey: {
@@ -1081,6 +1080,6 @@ UnopenedChestItem: {
 }
 
 Nightfall: {
-	// DisplayName: Nightfall
-	// Tooltip: ""
+	DisplayName: 夜陨
+	Tooltip: ""
 }
