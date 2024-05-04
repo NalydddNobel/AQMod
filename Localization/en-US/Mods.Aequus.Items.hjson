@@ -589,6 +589,11 @@ StunGun: {
 }
 
 //# Potions
+MeadowMushroom: {
+	DisplayName: Meadow Mushroom
+	Tooltip: ""
+}
+
 SentryPotion: {
 	DisplayName: Sentinel Potion
 	Tooltip: Increases your maximum amount of sentries by {0}

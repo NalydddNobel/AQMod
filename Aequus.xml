@@ -1868,7 +1868,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 788)</summary>
+            <summary>(Total Textures: 790)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2704,6 +2704,9 @@
         <member name="F:Aequus.AequusTextures.SuperRestorationPotion">
             <summary>Full Path: Content/Potions/Healing/Restoration/SuperRestorationPotion</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.MeadowMushroom">
+            <summary>Full Path: Content/Potions/Mana/MeadowMushroom</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.HallowCanteen">
             <summary>Full Path: Content/Potions/PotionCanteen/HallowCanteen</summary>
         </member>
@@ -2769,6 +2772,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.MeadowGrassItem">
             <summary>Full Path: Content/Tiles/Meadow/MeadowGrassItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowPlants">
+            <summary>Full Path: Content/Tiles/Meadow/MeadowPlants</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PolymerStalactite1x1">
             <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x1</summary>

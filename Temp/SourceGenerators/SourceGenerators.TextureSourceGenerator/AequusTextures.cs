@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 788)</summary>
+/// <summary>(Total Textures: 790)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -563,6 +563,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> GreaterRestorationPotion = new("Aequus/Content/Potions/Healing/Restoration/GreaterRestorationPotion");
     /// <summary>Full Path: Content/Potions/Healing/Restoration/SuperRestorationPotion</summary>
     public static readonly RequestCache<Texture2D> SuperRestorationPotion = new("Aequus/Content/Potions/Healing/Restoration/SuperRestorationPotion");
+    /// <summary>Full Path: Content/Potions/Mana/MeadowMushroom</summary>
+    public static readonly RequestCache<Texture2D> MeadowMushroom = new("Aequus/Content/Potions/Mana/MeadowMushroom");
     /// <summary>Full Path: Content/Potions/PotionCanteen/HallowCanteen</summary>
     public static readonly RequestCache<Texture2D> HallowCanteen = new("Aequus/Content/Potions/PotionCanteen/HallowCanteen");
     /// <summary>Full Path: Content/Potions/PotionCanteen/HallowCanteenEmpty</summary>
@@ -607,6 +609,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> MeadowGrass = new("Aequus/Content/Tiles/Meadow/MeadowGrass");
     /// <summary>Full Path: Content/Tiles/Meadow/MeadowGrassItem</summary>
     public static readonly RequestCache<Texture2D> MeadowGrassItem = new("Aequus/Content/Tiles/Meadow/MeadowGrassItem");
+    /// <summary>Full Path: Content/Tiles/Meadow/MeadowPlants</summary>
+    public static readonly RequestCache<Texture2D> MeadowPlants = new("Aequus/Content/Tiles/Meadow/MeadowPlants");
     /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x1</summary>
     public static readonly RequestCache<Texture2D> PolymerStalactite1x1 = new("Aequus/Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x1");
     /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x2</summary>

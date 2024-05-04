@@ -2,6 +2,7 @@
 using Aequus.Common.Tiles.Components;
 using Aequus.Core.ContentGeneration;
 using Terraria.Audio;
+using Terraria.GameContent.Metadata;
 
 namespace Aequus.Content.Tiles.Meadow;
 
@@ -24,8 +25,30 @@ public class MeadowGrass : ModTile, IOverridePlacement, IOnPlaceTile {
         TileID.Sets.DoesntPlaceWithTileReplacement[Type] = true;
         TileID.Sets.Conversion.MergesWithDirtInASpecialWay[Type] = true;
         TileID.Sets.Conversion.Grass[Type] = true;
+        TileMaterials.SetForTileId(Type, TileMaterials._materialsByName["Grass"]);
 
+        MineResist = 100f;
         AddMapEntry(new Color(106, 188, 170));
+        RegisterItemDrop(ItemID.DirtBlock);
+    }
+
+    public override void RandomUpdate(int i, int j) {
+        if (Main.tile[i, j - 1].HasTile || !WorldGen.genRand.NextBool(20)) {
+            return;
+        }
+
+        // Stupid hack.
+        Main.tile[i, j].TileType = TileID.Grass;
+        WorldGen.PlaceTile(i, j - 1, TileID.Plants, mute: true);
+
+        Main.tile[i, j].TileType = Type;
+        Main.tile[i, j - 1].TileType = (ushort)ModContent.TileType<MeadowPlants>();
+    }
+
+    public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem) {
+        if (fail && !effectOnly) {
+            Main.tile[i, j].TileType = TileID.Dirt;
+        }
     }
 
     public bool? PlaceTile(int i, int j, bool mute, bool forced, int plr, int style) {
