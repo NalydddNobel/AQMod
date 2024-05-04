@@ -1,8 +1,8 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Common.JourneyMode;
+using Aequus.Common.Tiles.Components;
 using Aequus.Core.Initialization;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using Terraria.DataStructures;
 using Terraria.Localization;
 
@@ -19,7 +19,7 @@ internal abstract class InstancedModItem : ModItem {
 
     protected override bool CloneNewInstances => true;
 
-    private void TryAlternativeTexturePaths(ref string texture) {
+    private static void TryAlternativeTexturePaths(ref string texture) {
         if (ModContent.HasAsset(texture)) {
             return;
         }
@@ -51,34 +51,18 @@ internal abstract class InstancedModItem : ModItem {
     }
 }
 
-internal class InstancedTileItem : InstancedModItem, IPostSetupContent, IOverrideGroupOrder {
+/// <param name="modTile"></param>
+/// <param name="style"></param>
+/// <param name="nameSuffix">Extra text added to the end of the name.</param>
+/// <param name="dropItem">Whether or not the <paramref name="modTile"/> should drop this item.</param>
+/// <param name="rarity">Item rarity.</param>
+/// <param name="value">Item value.</param>
+/// <param name="researchSacrificeCount">Research count override.</param>
+/// <param name="journeyOverride">Journey Mode item group override, used to organize tiles all together in the menu. Utilize <see cref="JourneySortByTileId"/> to sort with tiles with a matching tile id, since many tiles do not have item groups, and are instead sorted by tile id.</param>
+/// <param name="TileIdOverride">Overrides the place tile id.</param>
+internal class InstancedTileItem(ModTile modTile, int style = 0, string nameSuffix = "", bool dropItem = true, int rarity = ItemRarityID.White, int value = 0, int? researchSacrificeCount = null, IJourneySortOverrideProvider journeyOverride = null, int? TileIdOverride = null) : InstancedModItem(modTile.Name + nameSuffix, (modTile is InstancedModTile instancedModTile ? instancedModTile._texture : modTile.Texture) + nameSuffix + "Item"), IPostSetupContent, IOverrideGroupOrder {
     [CloneByReference]
-    protected readonly ModTile _modTile;
-    private readonly int _style;
-    private readonly bool _dropItem;
-    private readonly int _rarity;
-    private readonly int _value;
-    private readonly int? _sacrificeCount;
-    private readonly IJourneySortOverrideProvider _journeyOverride;
-
-    /// <param name="modTile"></param>
-    /// <param name="style"></param>
-    /// <param name="nameSuffix">Extra text added to the end of the name.</param>
-    /// <param name="dropItem">Whether or not the <paramref name="modTile"/> should drop this item.</param>
-    /// <param name="rarity">Item rarity.</param>
-    /// <param name="value">Item value.</param>
-    /// <param name="researchSacrificeCount">Research count override.</param>
-    /// <param name="journeyOverride">Journey Mode item group override, used to organize tiles all together in the menu. Utilize <see cref="JourneySortByTileId"/> to sort with tiles with a matching tile id, since many tiles do not have item groups, and are instead sorted by tile id.</param>
-    public InstancedTileItem(ModTile modTile, int style = 0, string nameSuffix = "", bool dropItem = true, int rarity = ItemRarityID.White, int value = 0, int? researchSacrificeCount = null, IJourneySortOverrideProvider journeyOverride = null)
-        : base(modTile.Name + nameSuffix, (modTile is InstancedModTile instancedModTile ? instancedModTile._texture : modTile.Texture) + nameSuffix + "Item") {
-        _modTile = modTile;
-        _dropItem = dropItem;
-        _style = style;
-        _rarity = rarity;
-        _value = value;
-        _sacrificeCount = researchSacrificeCount;
-        _journeyOverride = journeyOverride;
-    }
+    internal readonly ModTile _modTile = modTile;
 
     public override string LocalizationCategory => "Tiles";
 
@@ -87,17 +71,17 @@ internal class InstancedTileItem : InstancedModItem, IPostSetupContent, IOverrid
     public override LocalizedText Tooltip => Language.GetOrRegister(_modTile.GetLocalizationKey(KeyPrefix + "ItemTooltip"), () => "");
 
     public override void SetStaticDefaults() {
-        ItemSets.DisableAutomaticPlaceableDrop[Type] = !_dropItem;
+        ItemSets.DisableAutomaticPlaceableDrop[Type] = !dropItem;
     }
 
     public void PostSetupContent(Aequus aequus) {
-        Item.ResearchUnlockCount = _sacrificeCount ?? (Main.tileFrameImportant[_modTile.Type] ? 1 : 100);
+        Item.ResearchUnlockCount = researchSacrificeCount ?? (Main.tileFrameImportant[_modTile.Type] ? 1 : 100);
     }
 
     public override void SetDefaults() {
-        Item.DefaultToPlaceableTile(_modTile.Type, _style);
-        Item.rare = _rarity;
-        Item.value = _value;
+        Item.DefaultToPlaceableTile(TileIdOverride ?? _modTile.Type, style);
+        Item.rare = rarity;
+        Item.value = value;
     }
 
     public override void AddRecipes() {
@@ -111,49 +95,38 @@ internal class InstancedTileItem : InstancedModItem, IPostSetupContent, IOverrid
     }
 
     public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup) {
-        var groupOverride = _journeyOverride?.ProvideItemGroup();
+        var groupOverride = journeyOverride?.ProvideItemGroup();
         if (groupOverride != null) {
             itemGroup = groupOverride.Value;
         }
     }
 
     public void ModifyItemGroup(ref ContentSamples.CreativeHelper.ItemGroupAndOrderInGroup myGroup, Dictionary<int, ContentSamples.CreativeHelper.ItemGroupAndOrderInGroup> groupDictionary) {
-        int? sortingOverride = _journeyOverride?.ProvideItemGroupOrdering(myGroup, groupDictionary);
+        int? sortingOverride = journeyOverride?.ProvideItemGroupOrdering(myGroup, groupDictionary);
         if (sortingOverride != null) {
             myGroup.OrderInGroup = sortingOverride.Value;
         }
     }
 }
 
-internal class InstancedWallItem : InstancedModItem {
-    private readonly ModWall _modWall;
-    private readonly bool _dropItem;
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="modWall"></param>
-    /// <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
-    public InstancedWallItem(ModWall modWall, bool dropItem = true) : base(modWall.Name, modWall.Texture + "Item") {
-        _modWall = modWall;
-        _dropItem = dropItem;
-    }
-
-    private string KeyPrefix => Name != _modWall.Name ? $"{Name.Replace(_modWall.Name, "")}." : "";
-    public override LocalizedText DisplayName => Language.GetOrRegister(_modWall.GetLocalizationKey(KeyPrefix + "ItemDisplayName"));
-    public override LocalizedText Tooltip => Language.GetOrRegister(_modWall.GetLocalizationKey(KeyPrefix + "ItemTooltip"), () => "");
+/// <param name="modWall"></param>
+/// <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
+internal class InstancedWallItem(ModWall modWall, bool dropItem = true) : InstancedModItem(modWall.Name, modWall.Texture + "Item") {
+    private string KeyPrefix => Name != modWall.Name ? $"{Name.Replace(modWall.Name, "")}." : "";
+    public override LocalizedText DisplayName => Language.GetOrRegister(modWall.GetLocalizationKey(KeyPrefix + "ItemDisplayName"));
+    public override LocalizedText Tooltip => Language.GetOrRegister(modWall.GetLocalizationKey(KeyPrefix + "ItemTooltip"), () => "");
 
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 400;
-        ItemSets.DisableAutomaticPlaceableDrop[Type] = !_dropItem;
+        ItemSets.DisableAutomaticPlaceableDrop[Type] = !dropItem;
     }
 
     public override void SetDefaults() {
-        Item.DefaultToPlaceableWall(_modWall.Type);
+        Item.DefaultToPlaceableWall(modWall.Type);
     }
 
     public override void AddRecipes() {
-        string modWallName = _modWall.Name;
+        string modWallName = modWall.Name;
         if (modWallName.Contains("Wall") && Mod.TryFind<ModItem>(modWallName.Replace("Wall", ""), out var blockItem)) {
             CreateRecipe(4)
                 .AddIngredient(blockItem)
@@ -164,13 +137,9 @@ internal class InstancedWallItem : InstancedModItem {
     }
 }
 
-internal class InstancedCaughtNPCItem : InstancedModItem, IPostSetupContent {
+internal class InstancedCaughtNPCItem(ModNPC parent) : InstancedModItem(parent.Name, parent.Texture), IPostSetupContent {
     [CloneByReference]
-    private readonly ModNPC _parent;
-
-    public InstancedCaughtNPCItem(ModNPC parent) : base(parent.Name, parent.Texture) {
-        _parent = parent;
-    }
+    private readonly ModNPC _parent = parent;
 
     public override LocalizedText DisplayName => _parent.DisplayName;
     public override LocalizedText Tooltip => LocalizedText.Empty;

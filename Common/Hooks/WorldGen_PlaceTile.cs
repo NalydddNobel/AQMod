@@ -11,23 +11,21 @@ public partial class TerrariaHooks {
 
     private static bool On_WorldGen_PlaceTile(On_WorldGen.orig_PlaceTile orig, int i, int j, int Type, bool mute, bool forced, int plr, int style) {
         bool muteOld = mute;
-        var modTile = TileLoader.GetTile(Type);
+        ModTile modTile = TileLoader.GetTile(Type);
 
         if (modTile is ICustomPlaceSound) {
             mute = true;
         }
 
+        bool value = true;
+
         if (modTile is IOnPlaceTile onPlaceTile) {
-            var overrideValue = onPlaceTile.PlaceTile(i, j, mute, forced, plr, style);
-            if (overrideValue.HasValue) {
-                if (!muteOld) {
-                    On_WorldGen_PlaceTile_TryPlayCustomSound(i, j, modTile, forced, plr, style, overrideValue.Value);
-                }
-                return overrideValue.Value;
-            }
+            value = onPlaceTile.PlaceTile(i, j, mute, forced, plr, style) ?? value;
         }
 
-        var value = orig(i, j, Type, mute, forced, plr, style);
+        if (value) {
+            value = orig(i, j, Type, mute, forced, plr, style);
+        }
 
         if (!muteOld) {
             On_WorldGen_PlaceTile_TryPlayCustomSound(i, j, modTile, forced, plr, style, value);
