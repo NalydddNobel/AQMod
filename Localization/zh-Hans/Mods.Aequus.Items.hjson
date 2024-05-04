@@ -589,6 +589,11 @@ StunGun: {
 }
 
 //# Potions
+MeadowMushroom: {
+	DisplayName: 草地菇
+	Tooltip: ""
+}
+
 SentryPotion: {
 	DisplayName: 哨兵药水
 	Tooltip: 增加{0}格最大哨兵栏位
@@ -1091,9 +1096,4 @@ UnopenedChestItem: {
 StariteStaff: {
 	DisplayName: 源星法杖
 	Tooltip: ""
-}
-
-MeadowMushroom: {
-	// DisplayName: Meadow Mushroom
-	// Tooltip: ""
 }
