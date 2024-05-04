@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Aequus.DataSets;
 
 namespace Aequus.Content.Tools.Keys;
@@ -10,6 +10,6 @@ public class TinKey : ModItem {
 
     public override void SetDefaults() {
         Item.CloneDefaults(ItemID.GoldenKey);
-        Item.rare = ItemCommons.Rarity.AquaticBossLoot;
+        Item.rare = Commons.Rare.AquaticBossLoot;
     }
 }

@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Aequus.Core.Initialization;
 
 namespace Aequus.Old.Content.Necromancy.Sceptres.Dungeon;
@@ -10,8 +10,8 @@ public class Insurgency : ScepterBase {
         Item.SetWeaponValues(125, 0.8f, 0);
         Item.shoot = ModContent.ProjectileType<InsurgencyProj>();
         Item.shootSpeed = 30f;
-        Item.rare = ItemCommons.Rarity.HardDungeonLoot;
-        Item.value = ItemCommons.Price.HardDungeonLoot;
+        Item.rare = Commons.Rare.HardDungeonLoot;
+        Item.value = Commons.Cost.HardDungeonLoot;
         Item.mana = 20;
         Item.UseSound = SoundID.Item8;
         Item.autoReuse = true;

@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Aequus.Content.Materials;
 
 namespace Aequus.Content.Weapons.Magic.TrashStaff;
@@ -12,8 +12,8 @@ public class TrashStaff : ModItem {
     public override void SetDefaults() {
         Item.DefaultToMagicWeapon(ModContent.ProjectileType<TrashStaffProj>(), 4, 14f, hasAutoReuse: true);
         Item.SetWeaponValues(17, 1f, bonusCritChance: 8);
-        Item.rare = ItemCommons.Rarity.PollutedOceanLoot;
-        Item.value = ItemCommons.Price.PollutedOceanLoot;
+        Item.rare = Commons.Rare.PollutedOceanLoot;
+        Item.value = Commons.Cost.PollutedOceanLoot;
         Item.mana = 10;
         Item.useAnimation *= 5;
         Item.reuseDelay = 25;

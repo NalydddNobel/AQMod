@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Aequus.Content.Events.DemonSiege;
 
 namespace Aequus.Old.Content.Equipment.Accessories.RabbitsFoot;
@@ -13,8 +13,8 @@ public class RabbitsFoot : ModItem {
     public override void SetDefaults() {
         Item.width = 20;
         Item.height = 20;
-        Item.rare = ItemCommons.Rarity.DemonSiegeTier1Loot;
-        Item.value = ItemCommons.Price.DemonSiegeLoot;
+        Item.rare = Commons.Rare.DemonSiegeTier1Loot;
+        Item.value = Commons.Cost.DemonSiegeLoot;
         Item.accessory = true;
     }
 

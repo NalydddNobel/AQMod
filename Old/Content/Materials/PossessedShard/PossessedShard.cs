@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Aequus.Common.NPCs;
 
 namespace Aequus.Old.Content.Materials.PossessedShard;
@@ -15,7 +15,7 @@ public class PossessedShard : ModItem {
         Item.width = 14;
         Item.height = 14;
         Item.maxStack = Item.CommonMaxStack;
-        Item.rare = ItemCommons.Rarity.EarlyHardmodeMaterial;
+        Item.rare = Commons.Rare.EarlyHardmodeMaterial;
         Item.value = Item.sellPrice(silver: 7);
     }
 

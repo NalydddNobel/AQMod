@@ -382,3 +382,8 @@ CopperChestLocked: {
 }
 
 HiddenChest.MapEntry: 隐藏宝箱
+
+MeadowGrass: {
+	// ItemDisplayName: Mods.Aequus.Tiles.MeadowGrass.ItemDisplayName
+	// ItemTooltip: ""
+}

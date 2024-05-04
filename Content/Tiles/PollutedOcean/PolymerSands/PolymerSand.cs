@@ -21,13 +21,15 @@ public class PolymerSand : MultiMergeTile {
         Mod.AddContent(SandBallProjectile);
         Mod.AddContent(SandGunProjectile);
 
-        Aequus.OnAddRecipes += () => {
+        Aequus.OnAddRecipes += AddRecipes;
+
+        void AddRecipes() {
             Item.CreateRecipe(5)
                 .AddIngredient(ItemID.SandBlock, 5)
                 .AddIngredient(ScrapBlock.Item)
                 .AddTile(TileID.Furnaces)
                 .Register();
-        };
+        }
     }
 
     public override void SetStaticDefaults() {

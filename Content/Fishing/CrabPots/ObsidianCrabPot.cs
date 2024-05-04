@@ -12,7 +12,9 @@ public class ObsidianCrabPot : UnifiedCrabPot {
         ModItem item = new InstancedTileItem(this, rarity: ItemRarityID.Orange, value: Item.sellPrice(silver: 50));
 
         Mod.AddContent(item);
-        Aequus.OnAddRecipes += () => {
+        Aequus.OnAddRecipes += AddRecipes;
+
+        void AddRecipes() {
             foreach (var otherItem in Mod.GetContent<ModItem>()) {
                 if (otherItem.Item.createTile != ModContent.TileType<CrabPot>()) {
                     continue;
@@ -24,7 +26,7 @@ public class ObsidianCrabPot : UnifiedCrabPot {
                     .AddTile(TileID.Hellforge)
                     .Register();
             }
-        };
+        }
     }
 
     protected override void SetupCrabPotContent() {
@@ -35,7 +37,7 @@ public class ObsidianCrabPot : UnifiedCrabPot {
         TileObjectData.newTile.CoordinateHeights = new int[] { 16, 24 };
         TileObjectData.newTile.DrawYOffset = -16;
         DustType = DustID.Obsidian;
-        AddMapEntry(new(123, 90, 68), CreateMapEntryName());
+        AddMapEntry(new Color(123, 90, 68), CreateMapEntryName());
     }
 
     protected override void CustomPreDraw(int x, int y, int waterYOffset, SpriteBatch spriteBatch, TECrabPot crabPot) {

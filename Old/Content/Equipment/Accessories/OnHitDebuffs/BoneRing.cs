@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Terraria.Localization;
 
 namespace Aequus.Old.Content.Equipment.Accessories.OnHitDebuffs;
@@ -13,8 +13,8 @@ public class BoneRing : ModItem {
 
     public override void SetDefaults() {
         Item.DefaultToAccessory(20, 14);
-        Item.rare = ItemCommons.Rarity.DungeonLoot;
-        Item.value = ItemCommons.Price.DungeonLoot;
+        Item.rare = Commons.Rare.DungeonLoot;
+        Item.value = Commons.Cost.DungeonLoot;
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {

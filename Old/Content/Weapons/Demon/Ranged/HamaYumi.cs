@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Core.Initialization;
 
@@ -19,12 +19,12 @@ public class HamaYumi : ModItem {
         Item.height = 30;
         Item.noMelee = true;
         Item.useStyle = ItemUseStyleID.Shoot;
-        Item.rare = ItemCommons.Rarity.DemonSiegeTier1Loot;
+        Item.rare = Commons.Rare.DemonSiegeTier1Loot;
         Item.shoot = ProjectileID.WoodenArrowFriendly;
         Item.shootSpeed = 12.5f;
         Item.useAmmo = AmmoID.Arrow;
         Item.UseSound = SoundID.Item5;
-        Item.value = ItemCommons.Price.DemonSiegeLoot;
+        Item.value = Commons.Cost.DemonSiegeLoot;
         Item.noMelee = true;
         Item.autoReuse = true;
         Item.knockBack = 6f;

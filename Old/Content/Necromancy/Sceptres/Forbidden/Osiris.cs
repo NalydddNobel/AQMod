@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Aequus.Core.Initialization;
 
 namespace Aequus.Old.Content.Necromancy.Sceptres.Forbidden;
@@ -10,8 +10,8 @@ public class Osiris : ScepterBase {
         Item.SetWeaponValues(75, 1f, 0);
         Item.shoot = ModContent.ProjectileType<OsirisProj>();
         Item.shootSpeed = 12.5f;
-        Item.rare = ItemCommons.Rarity.HardSandstormBlizzardLoot;
-        Item.value = ItemCommons.Price.HardSandstormBlizzardLoot;
+        Item.rare = Commons.Rare.HardSandstormBlizzardLoot;
+        Item.value = Commons.Cost.HardSandstormBlizzardLoot;
         Item.mana = 15;
         Item.UseSound = SoundID.Item8;
     }

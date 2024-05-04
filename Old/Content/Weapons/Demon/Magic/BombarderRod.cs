@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Core.Initialization;
 
@@ -26,8 +26,8 @@ public class BombarderRod : ModItem {
         Item.mana = 6;
         Item.autoReuse = true;
         Item.UseSound = SoundID.Item88 with { Volume = 0.5f, Pitch = 0.8f };
-        Item.rare = ItemCommons.Rarity.DemonSiegeTier1Loot;
-        Item.value = ItemCommons.Price.DemonSiegeLoot;
+        Item.rare = Commons.Rare.DemonSiegeTier1Loot;
+        Item.value = Commons.Cost.DemonSiegeLoot;
     }
 
     public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {

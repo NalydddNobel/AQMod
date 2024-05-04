@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Aequus.Content.Materials;
 using Aequus.DataSets;
 using System;
@@ -74,8 +74,8 @@ public class JunkJet : ModItem {
         Item.UseSound = AequusSounds.JunkJetShoot;
         Item.noMelee = true;
         Item.autoReuse = true;
-        Item.rare = ItemCommons.Rarity.PollutedOceanLoot;
-        Item.value = ItemCommons.Price.PollutedOceanLoot;
+        Item.rare = Commons.Rare.PollutedOceanLoot;
+        Item.value = Commons.Cost.PollutedOceanLoot;
         Item.useAmmo = AmmoID.Bullet;
     }
     #endregion

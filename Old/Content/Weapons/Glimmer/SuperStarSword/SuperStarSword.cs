@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Aequus.Old.Content.Materials;
 
 namespace Aequus.Old.Content.Weapons.Glimmer.SuperStarSword;
@@ -11,8 +11,8 @@ public class SuperStarSword : ModItem {
         Item.height = 20;
         Item.scale = 1.25f;
         Item.autoReuse = true;
-        Item.rare = ItemCommons.Rarity.GlimmerLoot;
-        Item.value = ItemCommons.Price.GlimmerLoot;
+        Item.rare = Commons.Rare.GlimmerLoot;
+        Item.value = Commons.Cost.GlimmerLoot;
     }
 
     public override bool? UseItem(Player player) {

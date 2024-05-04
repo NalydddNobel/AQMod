@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Aequus.Common.JourneyMode;
 using System.Collections.Generic;
 
@@ -18,8 +18,8 @@ public class Bellows : ModItem {
         Item.reuseDelay = 5;
         Item.UseSound = SoundID.DoubleJump;
         Item.autoReuse = true;
-        Item.rare = ItemCommons.Rarity.SkyMerchantShopItem;
-        Item.value = ItemCommons.Price.SkyMerchantShopItem;
+        Item.rare = Commons.Rare.SkyMerchantShopItem;
+        Item.value = Commons.Cost.SkyMerchantShopItem;
         Item.shoot = ModContent.ProjectileType<BellowsProj>();
         Item.shootSpeed = 1f;
         Item.noUseGraphic = true;

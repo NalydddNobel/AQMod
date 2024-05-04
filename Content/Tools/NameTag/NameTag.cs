@@ -36,8 +36,8 @@ public class NameTag : ModItem, ICustomNameTagPrice {
         int screenMouseX = Main.mouseX + (int)Main.screenPosition.X;
         int screenMouseY = Main.mouseY + (int)Main.screenPosition.Y;
         for (int i = 0; i < Main.maxNPCs; i++) {
-            var npc = Main.npc[i];
-            if (!npc.active || !npc.getRect().Contains(screenMouseX, screenMouseY) || !npc.TryGetGlobalNPC<RenameNPC>(out var npcNameTag) || npcNameTag.CustomName == itemNameTag.CustomName) {
+            NPC npc = Main.npc[i];
+            if (!npc.active || !npc.getRect().Contains(screenMouseX, screenMouseY) || (!npc.TryGetGlobalNPC(out RenameNPC npcNameTag) || npcNameTag.CustomName == itemNameTag.CustomName)) {
                 continue;
             }
 

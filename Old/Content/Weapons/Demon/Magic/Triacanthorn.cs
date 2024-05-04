@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Core.Initialization;
 
@@ -28,8 +28,8 @@ public class Triacanthorn : ModItem {
         Item.ArmorPenetration = 10;
         Item.shootSpeed = 16f;
         Item.noMelee = true;
-        Item.rare = ItemCommons.Rarity.DemonSiegeTier1Loot;
-        Item.value = ItemCommons.Price.DemonSiegeLoot;
+        Item.rare = Commons.Rare.DemonSiegeTier1Loot;
+        Item.value = Commons.Cost.DemonSiegeLoot;
     }
 
     public override Color? GetAlpha(Color lightColor) {

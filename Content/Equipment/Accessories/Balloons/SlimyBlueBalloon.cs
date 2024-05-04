@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 
 namespace Aequus.Content.Equipment.Accessories.Balloons;
 
@@ -9,8 +9,8 @@ public class SlimyBlueBalloon : ModItem {
 
     public override void SetDefaults() {
         Item.DefaultToAccessory();
-        Item.rare = ItemCommons.Rarity.SkyMerchantShopItem;
-        Item.value = ItemCommons.Price.SkyMerchantShopItem;
+        Item.rare = Commons.Rare.SkyMerchantShopItem;
+        Item.value = Commons.Cost.SkyMerchantShopItem;
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {

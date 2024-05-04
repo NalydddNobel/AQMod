@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Core.Initialization;
 
@@ -26,8 +26,8 @@ public class HellsBoon : ModItem {
         Item.shootSpeed = 35f;
         Item.shoot = ModContent.ProjectileType<HellsBoonSpawner>();
         Item.scale = 1f;
-        Item.rare = ItemCommons.Rarity.DemonSiegeTier1Loot;
-        Item.value = ItemCommons.Price.DemonSiegeLoot;
+        Item.rare = Commons.Rare.DemonSiegeTier1Loot;
+        Item.value = Commons.Cost.DemonSiegeLoot;
     }
 
     public override Color? GetAlpha(Color lightColor) {

@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Aequus.Old.Common.Items.Variants;
 using Aequus.Old.Core.Utilities;
 using Terraria.Audio;
@@ -23,7 +23,7 @@ public class PhysicistSentry : ModItem {
         Item.useTime = 40;
         Item.useAnimation = 40;
         Item.value = Item.buyPrice(silver: 10);
-        Item.rare = ItemCommons.Rarity.GlimmerLoot;
+        Item.rare = Commons.Rare.GlimmerLoot;
         Item.UseSound = SoundID.Item1;
         Item.shoot = ModContent.ProjectileType<PhysicistSentryProj>();
         Item.shootSpeed = 10f;

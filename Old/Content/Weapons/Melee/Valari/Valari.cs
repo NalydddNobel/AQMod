@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 
 namespace Aequus.Old.Content.Weapons.Melee.Valari;
 
@@ -9,8 +9,8 @@ public class Valari : ModItem {
         Item.damage = 28;
         Item.useTime = 32;
         Item.useAnimation = 32;
-        Item.rare = ItemCommons.Rarity.DungeonLoot;
-        Item.value = ItemCommons.Price.DungeonLoot;
+        Item.rare = Commons.Rare.DungeonLoot;
+        Item.value = Commons.Cost.DungeonLoot;
         Item.useStyle = ItemUseStyleID.Swing;
         Item.UseSound = SoundID.Item1;
         Item.DamageType = DamageClass.Melee;

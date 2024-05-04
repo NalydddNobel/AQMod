@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 786)</summary>
+/// <summary>(Total Textures: 788)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -603,6 +603,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> TrashTorchItem = new("Aequus/Content/Tiles/Furniture/Trash/TrashTorchItem");
     /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTorchItem_Flame</summary>
     public static readonly RequestCache<Texture2D> TrashTorchItem_Flame = new("Aequus/Content/Tiles/Furniture/Trash/TrashTorchItem_Flame");
+    /// <summary>Full Path: Content/Tiles/Meadow/MeadowGrass</summary>
+    public static readonly RequestCache<Texture2D> MeadowGrass = new("Aequus/Content/Tiles/Meadow/MeadowGrass");
+    /// <summary>Full Path: Content/Tiles/Meadow/MeadowGrassItem</summary>
+    public static readonly RequestCache<Texture2D> MeadowGrassItem = new("Aequus/Content/Tiles/Meadow/MeadowGrassItem");
     /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x1</summary>
     public static readonly RequestCache<Texture2D> PolymerStalactite1x1 = new("Aequus/Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x1");
     /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x2</summary>

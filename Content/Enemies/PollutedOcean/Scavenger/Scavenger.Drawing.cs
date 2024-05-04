@@ -30,17 +30,17 @@ public partial class Scavenger {
 
     private void DrawBody(SpriteBatch spriteBatch, Vector2 drawCoordinates, Color drawColor, Texture2D bodyTexture, Rectangle bodyFrame, int frameWidth, int frameHeight, SpriteEffects ArmorSpriteEffects, bool drawBackArm = true) {
         var bodyOffset = Main.OffsetsPlayerHeadgear[bodyFrame.Y / frameHeight] + new Vector2(0f, -2f);
-        spriteBatch.Draw(bodyTexture, drawCoordinates + bodyOffset, new(frameWidth * 3, frameHeight * 3, frameWidth, frameHeight), drawColor, NPC.rotation, bodyFrame.Size() / 2f, NPC.scale, ArmorSpriteEffects, 0f);
+        spriteBatch.Draw(bodyTexture, drawCoordinates + bodyOffset, new Rectangle(frameWidth * 3, frameHeight * 3, frameWidth, frameHeight), drawColor, NPC.rotation, bodyFrame.Size() / 2f, NPC.scale, ArmorSpriteEffects, 0f);
 
-        spriteBatch.Draw(bodyTexture, drawCoordinates + bodyOffset, new(0, 0, frameWidth, frameHeight), drawColor, NPC.rotation, bodyFrame.Size() / 2f, NPC.scale, ArmorSpriteEffects, 0f);
+        spriteBatch.Draw(bodyTexture, drawCoordinates + bodyOffset, new Rectangle(0, 0, frameWidth, frameHeight), drawColor, NPC.rotation, bodyFrame.Size() / 2f, NPC.scale, ArmorSpriteEffects, 0f);
         DrawFrontArm(spriteBatch, drawCoordinates, drawColor, bodyTexture, bodyFrame, frameWidth, frameHeight, ArmorSpriteEffects, layerFront: false);
-        spriteBatch.Draw(bodyTexture, drawCoordinates + bodyOffset, new(0, frameHeight, frameWidth, frameHeight), drawColor, NPC.rotation, bodyFrame.Size() / 2f, NPC.scale, ArmorSpriteEffects, 0f);
+        spriteBatch.Draw(bodyTexture, drawCoordinates + bodyOffset, new Rectangle(0, frameHeight, frameWidth, frameHeight), drawColor, NPC.rotation, bodyFrame.Size() / 2f, NPC.scale, ArmorSpriteEffects, 0f);
     }
 
     private void DrawFrontArm(SpriteBatch spriteBatch, Vector2 drawCoordinates, Color drawColor, Texture2D bodyTexture, Rectangle bodyFrame, int frameWidth, int frameHeight, SpriteEffects ArmorSpriteEffects, bool layerFront = false) {
         var bodyOffset = Main.OffsetsPlayerHeadgear[bodyFrame.Y / frameHeight] + new Vector2(0f, -2f);
         if (!layerFront) {
-            spriteBatch.Draw(bodyTexture, drawCoordinates + bodyOffset, new(frameWidth * 3, frameHeight, frameWidth, frameHeight), drawColor, NPC.rotation, bodyFrame.Size() / 2f, NPC.scale, ArmorSpriteEffects, 0f);
+            spriteBatch.Draw(bodyTexture, drawCoordinates + bodyOffset, new Rectangle(frameWidth * 3, frameHeight, frameWidth, frameHeight), drawColor, NPC.rotation, bodyFrame.Size() / 2f, NPC.scale, ArmorSpriteEffects, 0f);
         }
     }
 

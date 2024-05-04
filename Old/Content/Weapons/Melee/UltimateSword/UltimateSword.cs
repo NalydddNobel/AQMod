@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Aequus.Core.Initialization;
 
 namespace Aequus.Old.Content.Weapons.Melee.UltimateSword;
@@ -11,8 +11,8 @@ public class UltimateSword : ModItem {
         Item.width = 30;
         Item.height = 30;
         Item.scale = 1f;
-        Item.rare = ItemCommons.Rarity.OmegaStariteLoot;
-        Item.value = ItemCommons.Price.OmegaStariteLoot;
+        Item.rare = Commons.Rare.OmegaStariteLoot;
+        Item.value = Commons.Cost.OmegaStariteLoot;
         Item.autoReuse = true;
     }
 

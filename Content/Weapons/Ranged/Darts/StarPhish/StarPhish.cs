@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Terraria.DataStructures;
 
 namespace Aequus.Content.Weapons.Ranged.Darts.StarPhish;
@@ -19,8 +19,8 @@ public class StarPhish : ModItem {
         Item.shootSpeed = 25f;
         Item.UseSound = SoundID.Item65;
         Item.noMelee = true;
-        Item.rare = ItemCommons.Rarity.PollutedOceanLoot;
-        Item.value = ItemCommons.Price.PollutedOceanLoot;
+        Item.rare = Commons.Rare.PollutedOceanLoot;
+        Item.value = Commons.Cost.PollutedOceanLoot;
     }
 
     public override void UseItemFrame(Player player) {

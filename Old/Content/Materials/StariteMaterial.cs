@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Terraria.DataStructures;
 
 namespace Aequus.Old.Content.Materials;
@@ -14,7 +14,7 @@ public class StariteMaterial : ModItem {
         Item.width = 16;
         Item.height = 16;
         Item.maxStack = Item.CommonMaxStack;
-        Item.rare = ItemCommons.Rarity.GlimmerLoot - 1;
+        Item.rare = Commons.Rare.GlimmerLoot - 1;
         Item.value = Item.sellPrice(silver: 2);
     }
 

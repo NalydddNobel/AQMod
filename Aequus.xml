@@ -132,6 +132,51 @@
         <member name="M:Aequus.Common.Commons.Conditions.Config(Terraria.ModLoader.Config.ModConfig,System.String,Terraria.Localization.LocalizedText,System.Func{System.Object,System.Boolean})">
             <returns>A condition which depends on a certain config setting.</returns>
         </member>
+        <member name="P:Aequus.Common.Commons.Cost.SkyMerchantShopItem">
+            <summary>1 Gold</summary>
+        </member>
+        <member name="P:Aequus.Common.Commons.Cost.SkyMerchantCustomPurchasePrice">
+            <summary>5 Gold</summary>
+        </member>
+        <member name="P:Aequus.Common.Commons.Cost.PollutedOceanLoot">
+            <summary>50 Silver</summary>
+        </member>
+        <member name="P:Aequus.Common.Commons.Cost.AquaticBossLoot">
+            <summary>75 Silver</summary>
+        </member>
+        <member name="P:Aequus.Common.Commons.Cost.GlimmerLoot">
+            <summary>1 Gold</summary>
+        </member>
+        <member name="P:Aequus.Common.Commons.Cost.DungeonLoot">
+            <summary>1 Gold 75 Silver</summary>
+        </member>
+        <member name="P:Aequus.Common.Commons.Cost.DemonSiegeLoot">
+            <summary>2 Gold</summary>
+        </member>
+        <member name="P:Aequus.Common.Commons.Cost.OmegaStariteLoot">
+            <summary>3 Gold</summary>
+        </member>
+        <member name="P:Aequus.Common.Commons.Cost.HardSandstormBlizzardLoot">
+            <summary>2 Gold</summary>
+        </member>
+        <member name="P:Aequus.Common.Commons.Cost.SpaceStormLoot">
+            <summary>3 Gold</summary>
+        </member>
+        <member name="P:Aequus.Common.Commons.Cost.DustDevilLoot">
+            <summary>3 Gold 50 Silver</summary>
+        </member>
+        <member name="P:Aequus.Common.Commons.Cost.HardDungeonLoot">
+            <summary>6 Gold</summary>
+        </member>
+        <member name="P:Aequus.Common.Commons.Cost.DemonSiegeTier2Loot">
+            <summary>8 Gold</summary>
+        </member>
+        <member name="P:Aequus.Common.Commons.Cost.UpriserLoot">
+            <summary>8 Gold 50 Silver</summary>
+        </member>
+        <member name="P:Aequus.Common.Commons.Cost.YinYangLoot">
+            <summary>10 Gold</summary>
+        </member>
         <member name="M:Aequus.Common.Golfing.GolfingSystem.SetGolfBallStatus(System.Boolean)">
             <summary>
             Sets all fake golf balls to be counted or not counted as golf balls.
@@ -312,51 +357,6 @@
             <summary>
             How long the item should float for. Set to 255 for permanent duration.
             </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Price.SkyMerchantShopItem">
-            <summary>1 Gold</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Price.SkyMerchantCustomPurchasePrice">
-            <summary>5 Gold</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Price.PollutedOceanLoot">
-            <summary>50 Silver</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Price.AquaticBossLoot">
-            <summary>75 Silver</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Price.GlimmerLoot">
-            <summary>1 Gold</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Price.DungeonLoot">
-            <summary>1 Gold 75 Silver</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Price.DemonSiegeLoot">
-            <summary>2 Gold</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Price.OmegaStariteLoot">
-            <summary>3 Gold</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Price.HardSandstormBlizzardLoot">
-            <summary>2 Gold</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Price.SpaceStormLoot">
-            <summary>3 Gold</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Price.DustDevilLoot">
-            <summary>3 Gold 50 Silver</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Price.HardDungeonLoot">
-            <summary>6 Gold</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Price.DemonSiegeTier2Loot">
-            <summary>8 Gold</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Price.UpriserLoot">
-            <summary>8 Gold 50 Silver</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.ItemCommons.Price.YinYangLoot">
-            <summary>10 Gold</summary>
         </member>
         <member name="P:Aequus.Common.Items.AequusRecipes.AnyGoldBar">
             <summary><see cref="T:Terraria.RecipeGroup"/> for Gold Bar variants.</summary>
@@ -1855,7 +1855,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 786)</summary>
+            <summary>(Total Textures: 788)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2750,6 +2750,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.TrashTorchItem_Flame">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTorchItem_Flame</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowGrass">
+            <summary>Full Path: Content/Tiles/Meadow/MeadowGrass</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowGrassItem">
+            <summary>Full Path: Content/Tiles/Meadow/MeadowGrassItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PolymerStalactite1x1">
             <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x1</summary>

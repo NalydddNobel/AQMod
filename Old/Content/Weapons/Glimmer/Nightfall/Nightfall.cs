@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Aequus.Core.Networking;
 using Aequus.DataSets;
 using Aequus.Old.Content.Materials;
@@ -19,8 +19,8 @@ public class Nightfall : ModItem {
         Item.mana = 10;
         Item.width = 24;
         Item.height = 24;
-        Item.rare = ItemCommons.Rarity.GlimmerLoot;
-        Item.value = ItemCommons.Price.GlimmerLoot;
+        Item.rare = Commons.Rare.GlimmerLoot;
+        Item.value = Commons.Cost.GlimmerLoot;
         Item.UseSound = SoundID.Item8;
     }
 

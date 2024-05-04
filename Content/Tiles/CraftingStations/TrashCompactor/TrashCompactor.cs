@@ -33,7 +33,7 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction
         TileObjectData.addTile(Type);
         DustType = DustID.Stone;
         AdjTiles = new int[] { TileID.Extractinator };
-        AddMapEntry(new(65, 115, 75), CreateMapEntryName());
+        AddMapEntry(new Color(65, 115, 75), CreateMapEntryName());
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = 0;

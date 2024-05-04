@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Aequus.Common.Projectiles;
 using Aequus.Content.Graphics.Particles;
 using Aequus.Old.Content.Particles;
@@ -13,8 +13,8 @@ public class BreathConserver : ModItem {
 
     public override void SetDefaults() {
         Item.DefaultToAccessory();
-        Item.rare = ItemCommons.Rarity.PollutedOceanLoot;
-        Item.value = ItemCommons.Price.PollutedOceanLoot;
+        Item.rare = Commons.Rare.PollutedOceanLoot;
+        Item.value = Commons.Cost.PollutedOceanLoot;
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {

@@ -1,31 +1,31 @@
-﻿namespace Aequus.Common.Items;
+﻿namespace Aequus.Common;
 
-public static class ItemCommons {
-    public class Rarity {
-        public const int SkyMerchantShopItem = ItemRarityID.Blue;
-        public const int PollutedOceanLoot = ItemRarityID.Blue;
-        public const int AquaticBossLoot = ItemRarityID.Blue;
-        public const int JungleLoot = ItemRarityID.Green;
-        public const int GlimmerLoot = ItemRarityID.Green;
-        public const int DungeonLoot = ItemRarityID.Green;
-        public const int DemonSiegeTier1Loot = ItemRarityID.Orange;
-        public const int OmegaStariteLoot = ItemRarityID.LightRed;
-        public const int WallOfFleshLoot = ItemRarityID.LightRed;
-        public const int EarlyHardmodeMaterial = ItemRarityID.Orange;
-        public const int HardSandstormBlizzardLoot = ItemRarityID.LightRed;
-        public const int SpaceStormLoot = ItemRarityID.Pink;
-        public const int DustDevilLoot = ItemRarityID.Pink;
-        public const int PlanteraLoot = ItemRarityID.Yellow;
-        public const int HardDungeonLoot = ItemRarityID.Yellow;
-        public const int DemonSiegeTier2Loot = ItemRarityID.Yellow;
-        public const int UpriserLoot = ItemRarityID.Cyan;
-        public const int MoonLordLoot = ItemRarityID.Red;
-        public const int YinYangLoot = ItemRarityID.Red;
+public partial class Commons {
+    public class Rare {
+        public const int SkyMerchantShopItem = 1;
+        public const int PollutedOceanLoot = 1;
+        public const int AquaticBossLoot = 1;
+        public const int JungleLoot = 2;
+        public const int GlimmerLoot = 2;
+        public const int DungeonLoot = 2;
+        public const int DemonSiegeTier1Loot = 3;
+        public const int OmegaStariteLoot = 4;
+        public const int WallOfFleshLoot = 4;
+        public const int EarlyHardmodeMaterial = 3;
+        public const int HardSandstormBlizzardLoot = 4;
+        public const int SpaceStormLoot = 5;
+        public const int DustDevilLoot = 5;
+        public const int PlanteraLoot = 8;
+        public const int HardDungeonLoot = 8;
+        public const int DemonSiegeTier2Loot = 8;
+        public const int UpriserLoot = 9;
+        public const int MoonLordLoot = 10;
+        public const int YinYangLoot = 10;
 
-        public const int ShimmerPermaPowerup = ItemRarityID.LightPurple;
+        public const int ShimmerPermaPowerup = 6;
     }
 
-    public class Price {
+    public class Cost {
         /// <summary>1 Gold</summary>
         public static int SkyMerchantShopItem { get; set; } = Item.sellPrice(gold: 1);
 

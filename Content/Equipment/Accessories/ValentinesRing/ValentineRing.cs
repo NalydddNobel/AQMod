@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using System.Collections.Generic;
 using System.IO;
 using Terraria.DataStructures;
@@ -29,8 +29,8 @@ public class ValentineRing : ModItem {
 
     public override void SetDefaults() {
         Item.DefaultToAccessory();
-        Item.rare = ItemCommons.Rarity.SkyMerchantShopItem;
-        Item.value = ItemCommons.Price.SkyMerchantShopItem;
+        Item.rare = Commons.Rare.SkyMerchantShopItem;
+        Item.value = Commons.Cost.SkyMerchantShopItem;
 
         // Janky
         if (!Main.gameMenu && Main.player.IndexInRange(Main.myPlayer) && Main.LocalPlayer != null) {

@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Aequus.Core.Initialization;
 using Aequus.Old.Content.Materials;
 using Terraria.DataStructures;
@@ -15,8 +15,8 @@ public class StariteStaff : ModItem {
         Item.SetWeaponValues(20, 5f);
         Item.mana = 10;
         Item.DamageType = DamageClass.Summon;
-        Item.rare = ItemCommons.Rarity.GlimmerLoot;
-        Item.value = ItemCommons.Price.GlimmerLoot;
+        Item.rare = Commons.Rare.GlimmerLoot;
+        Item.value = Commons.Cost.GlimmerLoot;
         Item.useTime = 24;
         Item.useAnimation = 24;
         Item.useStyle = ItemUseStyleID.Swing;

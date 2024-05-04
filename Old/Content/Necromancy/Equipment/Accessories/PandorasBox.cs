@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 
 namespace Aequus.Old.Content.Necromancy.Equipment.Accessories;
 
@@ -7,8 +7,8 @@ public class PandorasBox : ModItem {
         Item.width = 24;
         Item.height = 24;
         Item.accessory = true;
-        Item.rare = ItemCommons.Rarity.DungeonLoot;
-        Item.value = ItemCommons.Price.DungeonLoot;
+        Item.rare = Commons.Rare.DungeonLoot;
+        Item.value = Commons.Cost.DungeonLoot;
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {

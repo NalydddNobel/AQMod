@@ -495,12 +495,14 @@ Furystar: {
 		'''
 }
 
-// DisplayName: Nightfall
-/* Tooltip:
-	'''
-	Attacks against grounded enemies throws them into the air
-	Airborne enemies slam to the ground, taking fall damage
-	''' */
+Nightfall: {
+	// DisplayName: Nightfall
+	/* Tooltip:
+		'''
+		Attacks against grounded enemies throws them into the air
+		Airborne enemies slam to the ground, taking fall damage
+		''' */
+}
 
 StudiesOfTheInkblot: {
 	DisplayName: Estudios de la mancha de tinta
@@ -1084,11 +1086,6 @@ StariteMaterial: {
 UnopenedChestItem: {
 	DisplayName: Objeto de cofre sin abrir
 	// Tooltip: This is a debug item placed into chests upon worldgen to check if they have been opened
-}
-
-Nightfall: {
-	// DisplayName: Nightfall
-	// Tooltip: ""
 }
 
 StariteStaff: {

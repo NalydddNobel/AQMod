@@ -111,7 +111,7 @@ public abstract class BackpackModItem : ModItem {
             return (CurrentState == 0 ? BuilderSlotTextOnCache : BuilderSlotTextOffCache).Value;
         }
 
-        public override Color DisplayColorTexture() {
+        public override Color DisplayColorTexture()/* tModPorter Note: Removed. Use BuilderToggle.Draw */ {
             return CurrentState == 0 ? Color.White : Color.Gray;
         }
     }

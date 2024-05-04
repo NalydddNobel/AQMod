@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Aequus.Common.JourneyMode;
 using Aequus.Core.Initialization;
 using System;
@@ -30,8 +30,8 @@ public class AnglerLamp : ModItem {
     public override void SetDefaults() {
         Item.width = 16;
         Item.height = 24;
-        Item.rare = ItemCommons.Rarity.PollutedOceanLoot;
-        Item.value = ItemCommons.Price.PollutedOceanLoot;
+        Item.rare = Commons.Rare.PollutedOceanLoot;
+        Item.value = Commons.Cost.PollutedOceanLoot;
         Item.useAmmo = AmmoID.Gel;
         Item.holdStyle = ItemHoldStyleID.HoldLamp;
         Item.useStyle = ItemUseStyleID.RaiseLamp;

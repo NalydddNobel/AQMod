@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Terraria.Audio;
 using Terraria.Localization;
 
@@ -14,7 +14,7 @@ public class ConeHelmet : BrittleArmor {
     }
 
     internal override void SetItemDefaults(Item Item, BrittleArmorItem armor) {
-        Item.rare = ItemCommons.Rarity.PollutedOceanLoot - armor.Tier;
+        Item.rare = Commons.Rare.PollutedOceanLoot - armor.Tier;
         Item.defense = 15 / (armor.Tier+1);
     }
 

@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Aequus.Content.Events.DemonSiege;
 
 namespace Aequus.Old.Content.Weapons.Demon.Melee;
@@ -15,8 +15,8 @@ public class Cauterizer : ModItem {
         Item.height = 24;
         Item.scale = 1f;
         Item.autoReuse = true;
-        Item.rare = ItemCommons.Rarity.DemonSiegeTier1Loot;
-        Item.value = ItemCommons.Price.DemonSiegeLoot;
+        Item.rare = Commons.Rare.DemonSiegeTier1Loot;
+        Item.value = Commons.Cost.DemonSiegeLoot;
     }
 
     public override Color? GetAlpha(Color lightColor) {

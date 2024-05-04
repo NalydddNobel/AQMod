@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using Aequus.Common.Items.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -25,8 +25,8 @@ public class StunGun : ClasslessWeapon, ICooldownItem {
         Item.useAnimation = 10;
         Item.useTime = 10;
         Item.mana = 60;
-        Item.rare = ItemCommons.Rarity.SkyMerchantShopItem;
-        Item.value = ItemCommons.Price.SkyMerchantShopItem;
+        Item.rare = Commons.Rare.SkyMerchantShopItem;
+        Item.value = Commons.Cost.SkyMerchantShopItem;
         Item.shoot = ModContent.ProjectileType<StunGunProj>();
         Item.UseSound = SoundID.DD2_LightningBugZap;
         Item.shootSpeed = 12f;

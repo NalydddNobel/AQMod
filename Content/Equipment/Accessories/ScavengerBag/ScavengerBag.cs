@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Backpacks;
-using Aequus.Common.Items;
+﻿using Aequus.Common;
+using Aequus.Common.Backpacks;
 using Terraria.Localization;
 
 namespace Aequus.Content.Equipment.Accessories.ScavengerBag;
@@ -14,7 +14,7 @@ public class ScavengerBag : BackpackModItem {
 
     public override void SetDefaults() {
         base.SetDefaults();
-        Item.rare = ItemCommons.Rarity.PollutedOceanLoot;
-        Item.value = ItemCommons.Price.PollutedOceanLoot;
+        Item.rare = Commons.Rare.PollutedOceanLoot;
+        Item.value = Commons.Cost.PollutedOceanLoot;
     }
 }
