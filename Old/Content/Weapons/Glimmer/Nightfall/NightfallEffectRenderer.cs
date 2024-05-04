@@ -25,6 +25,7 @@ public class NightfallEffectRenderer : RequestHandler<NightfallEffectRenderer.Ni
 
     private void HandleRequestsOnPreDraw(GameTime gameTime) {
         HandleRequests();
+        ClearQueue();
     }
 
     protected override bool HandleRequests(IEnumerable<NightfallEffectDrawData> todo) {

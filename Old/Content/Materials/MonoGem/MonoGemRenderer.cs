@@ -28,11 +28,14 @@ public class MonoGemRenderer : RequestHandler<Point> {
     private RenderTarget2D _target;
 
     protected override void OnActivate() {
+        SpecialTileRenderer.ClearTileEffects += ClearQueue;
         DrawHelper.AddPreDrawHook(HandleRequestsOnPreDraw);
         DrawLayers.Instance.PostDrawDust += DrawOntoScreen;
     }
 
     protected override void OnDeactivate() {
+        DeactivateFilter();
+        SpecialTileRenderer.ClearTileEffects -= ClearQueue;
         DrawHelper.RemovePreDrawHook(HandleRequestsOnPreDraw);
         DrawLayers.Instance.PostDrawDust -= DrawOntoScreen;
     }
@@ -133,10 +136,14 @@ public class MonoGemRenderer : RequestHandler<Point> {
         }
         else {
             if (filter.IsActive()) {
-                Filters.Scene.Deactivate(ScreenShaderKey, Main.LocalPlayer.Center);
-                filter.GetShader().UseOpacity(0f);
+                DeactivateFilter();
             }
         }
+    }
+
+    private static void DeactivateFilter() {
+        Filters.Scene.Deactivate(ScreenShaderKey, Main.LocalPlayer.Center);
+        Filters.Scene[ScreenShaderKey].GetShader().UseOpacity(0f);
     }
 
     private void DrawTargetOntoScreen(SpriteBatch spriteBatch) {

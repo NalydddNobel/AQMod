@@ -37,7 +37,6 @@ public abstract class RequestHandler<T> : ModType {
         if (HandleRequests(_queue)) {
             Prepared = true;
         }
-        ClearQueue();
     }
 
     protected void ClearQueue() {
