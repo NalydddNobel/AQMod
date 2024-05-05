@@ -590,8 +590,8 @@ StunGun: {
 
 //# Potions
 MeadowMushroom: {
-	// DisplayName: Meadow Mushroom
-	// Tooltip: ""
+	DisplayName: 草地菇
+	Tooltip: ""
 }
 
 SentryPotion: {

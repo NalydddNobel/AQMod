@@ -384,6 +384,6 @@ CopperChestLocked: {
 HiddenChest.MapEntry: 隐藏宝箱
 
 MeadowGrass: {
-	// ItemDisplayName: Meadow Grass Seeds
-	// ItemTooltip: ""
+	ItemDisplayName: 草地种
+	ItemTooltip: ""
 }
