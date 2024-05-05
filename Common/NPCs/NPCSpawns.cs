@@ -4,7 +4,7 @@ using Aequus.Old.Common.NPCs;
 using System.Collections.Generic;
 
 namespace Aequus.Common.NPCs;
-public class SpawningSystem : GlobalNPC {
+public class NPCSpawns : GlobalNPC {
     /// <summary>A list of <see cref="ModBiome"/>s which will override Aequus biome spawns.</summary>
     public readonly static List<ModBiome> OverrideAequusBiomes = new();
 

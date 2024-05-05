@@ -1,10 +1,11 @@
 ﻿using Aequus.Common.NPCs.Components;
+using Aequus.Content.TownNPCs;
 using Terraria.GameContent;
 using static Terraria.GameContent.Profiles;
 
-namespace Aequus.Content.TownNPCs;
+namespace Aequus.Core.ContentGeneration;
 
-public abstract class AequusTownNPC : ModNPC, IModifyShoppingSettings, ITalkNPCUpdate {
+public abstract class UnifiedTownNPC : ModNPC, IModifyShoppingSettings, ITalkNPCUpdate {
     public bool ShowExclamation { get; protected set; }
     public byte CheckExclamationTimer;
 
@@ -69,7 +70,7 @@ public abstract class AequusTownNPC : ModNPC, IModifyShoppingSettings, ITalkNPCU
     }
 }
 
-public abstract class AequusTownNPC<T> : AequusTownNPC where T : AequusTownNPC<T> {
+public abstract class AequusTownNPC<T> : UnifiedTownNPC where T : AequusTownNPC<T> {
     public static int ShimmerHeadIndex { get; protected set; }
     public static StackedNPCProfile Profile { get; protected set; }
 

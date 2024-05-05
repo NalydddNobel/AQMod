@@ -589,6 +589,11 @@ StunGun: {
 }
 
 //# Potions
+MeadowMushroom: {
+	// DisplayName: Meadow Mushroom
+	// Tooltip: ""
+}
+
 SentryPotion: {
 	DisplayName: Poción de centinela
 	Tooltip: Incrementa tu numero maximo de centinelas por {0}
@@ -1090,10 +1095,5 @@ UnopenedChestItem: {
 
 StariteStaff: {
 	// DisplayName: Starite Staff
-	// Tooltip: ""
-}
-
-MeadowMushroom: {
-	// DisplayName: Meadow Mushroom
 	// Tooltip: ""
 }

@@ -7,9 +7,11 @@ using Terraria.GameContent.Metadata;
 namespace Aequus.Content.Tiles.Meadow;
 
 public class MeadowGrass : ModTile, IOverridePlacement, IOnPlaceTile {
+    public ModItem MeadowGrassSeeds { get; private set; }
+
     public override void Load() {
-        ModItem item = new InstancedTileItem(this, value: Item.buyPrice(copper: 20), researchSacrificeCount: 25, journeyOverride: new JourneySortByTileId(TileID.Grass), TileIdOverride: TileID.Grass);
-        Mod.AddContent(item);
+        MeadowGrassSeeds = new InstancedTileItem(this, value: Item.buyPrice(copper: 20), researchSacrificeCount: 25, journeyOverride: new JourneySortByTileId(TileID.Grass), TileIdOverride: TileID.Grass);
+        Mod.AddContent(MeadowGrassSeeds);
     }
 
     public override void SetStaticDefaults() {

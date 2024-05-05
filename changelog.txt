@@ -69,6 +69,11 @@ Polluted Ocean:
 - New Item: Angler Lantern & Wisp Lantern, lets you see inside pots and emits light.
 - New Item: Dumpster, a 2x3 chest with 2 containers worth of space.
 
+Meadow:
+- Floating Islands will now sometimes contain the Meadow biome.
+- New Item: Meadow Grass Seeds, sold by the Dryad while in Space.
+- New Item: Meadow Mushroom, heals mana instead of health.
+
 Sky Merchant:
 - Resprited.
 - Now spawns at the very left side of the world during the day, and slowly travels to the right side of the world, following the Sun. This should hopefully make the Sky Merchant more consistent and easily available to players who want to purchase items from them.
@@ -104,6 +109,7 @@ Demon Siege:
 - Empty Soul Gems can now only be filled by non-Underworld/Demon Siege enemies
 
 II. Vanilla Changes:
+- The Lesser Mana Potion can now be crafted using Meadow Mushrooms.
 - Toolbelt now spawns in Chests Underground
 	-- Grants +5 backpack slots, but they only store items
 	-- No longer sold by the Goblin Tinkerer

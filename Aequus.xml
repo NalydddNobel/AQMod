@@ -443,7 +443,7 @@
             <param name="npcId">The NPC type.</param>
             <param name="rule">The item drop rule.</param>
         </member>
-        <member name="F:Aequus.Common.NPCs.SpawningSystem.OverrideAequusBiomes">
+        <member name="F:Aequus.Common.NPCs.NPCSpawns.OverrideAequusBiomes">
             <summary>A list of <see cref="T:Terraria.ModLoader.ModBiome"/>s which will override Aequus biome spawns.</summary>
         </member>
         <member name="P:Aequus.Common.Players.CustomDashData.DashHaltSpeedMultiplier">
