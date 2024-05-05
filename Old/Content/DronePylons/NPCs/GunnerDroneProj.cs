@@ -1,4 +1,4 @@
-﻿using Aequus.Old.Content.Particles;
+﻿using Aequus.Content.Dusts;
 using Aequus.Old.Core.Utilities;
 using System;
 
@@ -103,11 +103,11 @@ public class GunnerDroneProj : ModProjectile {
 
         float[] rotations = OldDrawHelper.GenerateRotationArr(indices);
         Color laserColor = townDrone.GetPylonColor() with { A = 100 } * MathF.Pow(Projectile.Opacity, 2f);
-        DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, indices, rotations, 
+        DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, indices, rotations,
             p => laserColor,
             p => 4f
         );
-        DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, indices, rotations, 
+        DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, indices, rotations,
             p => laserColor with { A = 0 } * 0.5f,
             p => 8f
         );

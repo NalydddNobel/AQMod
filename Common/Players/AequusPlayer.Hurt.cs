@@ -1,8 +1,8 @@
 ﻿using Aequus.Common.Tiles.Components;
 using Aequus.Core.CodeGeneration;
-using Aequus.Old.Content.StatusEffects;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Terraria.DataStructures;
 using Terraria.Localization;
 
@@ -124,9 +124,11 @@ public partial class AequusPlayer {
             case DEATH_POISON:
             case DEATH_DST_STARVING:
                 // Dying of custom DoTs.
-                if (Player.HasBuff(ModContent.BuffType<BlueFire>())) {
+#if !DEBUG
+                if (Player.HasBuff(ModContent.BuffType<Old.Content.StatusEffects.BlueFire>())) {
                     SetReason("ManaFire", 4);
                 }
+#endif
                 break;
         }
 
@@ -144,5 +146,5 @@ public partial class AequusPlayer {
     private static void SignCustomDeathReason(PlayerDeathReason damageSource, string reason, int variants = 1) {
         damageSource.SourceCustomReason = $"Mods.Aequus.Player.DeathMessage.{reason}.{(variants > 1 ? Main.rand.Next(variants) : "")}";
     }
-    #endregion
+#endregion
 }

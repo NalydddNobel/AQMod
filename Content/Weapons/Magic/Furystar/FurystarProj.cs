@@ -99,7 +99,7 @@ public class FurystarProj : HeldProjBase {
             player.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, Projectile.rotation * 0.45f + MathHelper.Pi + 0.7f * player.direction);
             var particleBox = Utils.CenteredRectangle(player.MountedCenter + new Vector2((player.width / 2f + 6f) * player.direction, -player.height / 2f - 20f), new(20f));
             if (Main.rand.NextBool(12)) {
-                var d = Dust.NewDustDirect(new Vector2(particleBox.X, particleBox.Y), particleBox.Width, particleBox.Height, DustID.Enchanted_Pink, 0f, -2f, Alpha: 150, Scale: 1.2f);
+                var d = Terraria.Dust.NewDustDirect(new Vector2(particleBox.X, particleBox.Y), particleBox.Width, particleBox.Height, DustID.Enchanted_Pink, 0f, -2f, Alpha: 150, Scale: 1.2f);
                 d.fadeIn = d.scale + 0.3f;
                 d.velocity *= 0.8f;
                 d.velocity.Y *= 0.5f;

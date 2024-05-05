@@ -110,7 +110,7 @@ public partial class BlackJellyfish : AIJellyfish {
             NPC.netUpdate = true;
         }
         else {
-            Dust d = Dust.NewDustPerfect(NPC.Center + Main.rand.NextVector2Unit() * Main.rand.NextFloat(0.33f, 1f) * Math.Min(NPC.ai[2] / shockAttackLength, 1f) * AttackRange, DustID.MartianSaucerSpark, Alpha: 0, Scale: Main.rand.NextFloat(0.8f, 1.8f));
+            Terraria.Dust d = Terraria.Dust.NewDustPerfect(NPC.Center + Main.rand.NextVector2Unit() * Main.rand.NextFloat(0.33f, 1f) * Math.Min(NPC.ai[2] / shockAttackLength, 1f) * AttackRange, DustID.MartianSaucerSpark, Alpha: 0, Scale: Main.rand.NextFloat(0.8f, 1.8f));
             d.rotation = 0f;
             d.noGravity = true;
         }
@@ -146,7 +146,7 @@ public partial class BlackJellyfish : AIJellyfish {
         // Dusts
         for (int i = 0; i < 30; i++) {
             Vector2 randomVector = Main.rand.NextVector2Unit();
-            Dust d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.MartianSaucerSpark, Alpha: 0, Scale: Main.rand.NextFloat(0.8f, 1.8f));
+            Terraria.Dust d = Terraria.Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.MartianSaucerSpark, Alpha: 0, Scale: Main.rand.NextFloat(0.8f, 1.8f));
             d.rotation = 0f;
             d.velocity = randomVector * Main.rand.NextFloat(4f);
             d.fadeIn = d.scale + Main.rand.NextFloat(0.8f);
@@ -154,7 +154,7 @@ public partial class BlackJellyfish : AIJellyfish {
         }
         for (int i = 0; i < 60; i++) {
             Vector2 randomVector = Main.rand.NextVector2Unit();
-            Dust d = Dust.NewDustPerfect(NPC.Center + randomVector * Main.rand.NextFloat(0.8f, 1f) * NPC.ai[2] / shockAttackLength * AttackRange, DustID.MartianSaucerSpark, Alpha: 0, Scale: Main.rand.NextFloat(0.8f, 2.5f));
+            Terraria.Dust d = Terraria.Dust.NewDustPerfect(NPC.Center + randomVector * Main.rand.NextFloat(0.8f, 1f) * NPC.ai[2] / shockAttackLength * AttackRange, DustID.MartianSaucerSpark, Alpha: 0, Scale: Main.rand.NextFloat(0.8f, 2.5f));
             d.rotation = 0f;
             d.velocity += randomVector * 4f * Main.rand.NextFloat();
             d.noGravity = true;

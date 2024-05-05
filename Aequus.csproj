@@ -73,5 +73,10 @@
 	<AdditionalFiles Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
   </ItemGroup>
+	
+  <ItemGroup>
+    <None Remove="Content\Tiles\Meadow\MeadowTree.png" />
+    <None Remove="Content\Tiles\Meadow\MeadowWoodItem.png" />
+  </ItemGroup>
 				
 </Project>

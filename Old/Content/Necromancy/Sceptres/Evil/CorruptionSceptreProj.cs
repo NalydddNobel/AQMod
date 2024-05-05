@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Content.Dusts;
 using Aequus.DataSets;
 using Aequus.Old.Content.Particles;
 using Terraria.GameContent;

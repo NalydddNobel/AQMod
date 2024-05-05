@@ -13,7 +13,7 @@ public class NetherStar : ModItem {
 
     public override void Load() {
         if (!Main.dedServ) {
-            GameShaders.Misc[MiscShaderKey] = new MiscShaderData(AequusShaders.FadeToCenter.Ref, "FadeToCenterPass")
+            GameShaders.Misc[MiscShaderKey] = new MiscShaderData(AequusShaders.FadeToCenter, "FadeToCenterPass")
                 .UseImage1(AequusTextures.NetherStarMask)
                 .UseImage2(AequusTextures.EffectNoise);
         }

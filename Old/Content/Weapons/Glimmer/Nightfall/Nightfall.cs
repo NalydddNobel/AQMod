@@ -1,9 +1,9 @@
 ﻿using Aequus.Common;
+using Aequus.Content.Dusts;
 using Aequus.Core.Networking;
 using Aequus.DataSets;
 using Aequus.Old.Content.Materials;
 using Aequus.Old.Content.Particles;
-using Aequus.Old.Core.Utilities;
 using System;
 using System.IO;
 using Terraria.Audio;

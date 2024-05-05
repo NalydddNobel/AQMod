@@ -65,7 +65,7 @@ public class AnglerLampParticles : ParticleArray<AnglerLampParticles.Particle> {
                     }
                 }
 
-                var d = Dust.NewDustPerfect(particle.Location, DustID.Torch, Alpha: 150, Scale: particle.Scale * 5f);
+                var d = Terraria.Dust.NewDustPerfect(particle.Location, DustID.Torch, Alpha: 150, Scale: particle.Scale * 5f);
                 d.noGravity = true;
                 d.velocity *= 2f;
                 continue;

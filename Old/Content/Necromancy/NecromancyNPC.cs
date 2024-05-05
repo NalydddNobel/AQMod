@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.NPCs;
+using Aequus.Content.Dusts;
 using Aequus.Core.Initialization;
 using Aequus.DataSets;
 using Aequus.Old.Content.Necromancy.Networking;
@@ -410,7 +411,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
         else {
             renderLayer = 0;
         }
-        
+
         Zombie.Reset();
     }
 

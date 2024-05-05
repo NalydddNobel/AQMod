@@ -15,9 +15,11 @@ public partial class TerrariaHooks {
 
         c.Emit(OpCodes.Ldarg_0); // Push Player
         c.EmitDelegate<Func<bool, Player, bool>>((originalValue, player) => {
-            bool value = player.GetModPlayer<AequusPlayer>().accLavaPlacement ? false : originalValue;
-            //Main.NewText(value);
-            return value;
+#if !DEBUG
+            originalValue = player.GetModPlayer<AequusPlayer>().accLavaPlacement ? false : originalValue;
+            //Main.NewText(originalValue);
+#endif
+            return originalValue;
         });
     }
 }

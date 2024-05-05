@@ -1,5 +1,4 @@
 ﻿using Aequus.DataSets;
-using Aequus.Old.Core.Utilities;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -156,7 +155,7 @@ public class ConductorProj : ModNPC {
         }
 
         if (myTimer % 12 == 0) {
-            Dust d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.MagicMirror);
+            Terraria.Dust d = Terraria.Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.MagicMirror);
             d.noGravity = true;
             d.velocity *= 0.8f;
             d.fadeIn = d.scale + 0.2f;
@@ -195,14 +194,14 @@ public class ConductorProj : ModNPC {
     private void EmitParticles() {
         if (Main.rand.NextBool(3)) {
             Vector2 randomVector2 = Main.rand.NextVector2Unit();
-            Dust d = Dust.NewDustPerfect(NPC.Center + randomVector2 * NPC.Size / 2f, DustID.MagicMirror, Velocity: randomVector2 - NPC.velocity * 0.25f);
+            Terraria.Dust d = Terraria.Dust.NewDustPerfect(NPC.Center + randomVector2 * NPC.Size / 2f, DustID.MagicMirror, Velocity: randomVector2 - NPC.velocity * 0.25f);
             d.noGravity = true;
         }
 
         if (WaterSphere && Main.rand.NextBool()) {
-            int dustType = Dust.dustWater();
+            int dustType = Terraria.Dust.dustWater();
 
-            Dust d = Dust.NewDustPerfect(NPC.Center, dustType, Scale: 1f);
+            Terraria.Dust d = Terraria.Dust.NewDustPerfect(NPC.Center, dustType, Scale: 1f);
             d.noGravity = true;
             d.fadeIn = d.scale + 0.1f;
             d.customData = this;
@@ -212,19 +211,19 @@ public class ConductorProj : ModNPC {
     public override void HitEffect(NPC.HitInfo hit) {
         if (NPC.life <= 0) {
             for (int i = 0; i < 20; i++) {
-                int dustType = WaterSphere ? Dust.dustWater() : (i % 2 == 0 ? DustID.Copper : DustID.Tin);
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, dustType, NPC.velocity.X * 0.2f, NPC.velocity.Y * 0.2f);
+                int dustType = WaterSphere ? Terraria.Dust.dustWater() : (i % 2 == 0 ? DustID.Copper : DustID.Tin);
+                Terraria.Dust.NewDust(NPC.position, NPC.width, NPC.height, dustType, NPC.velocity.X * 0.2f, NPC.velocity.Y * 0.2f);
             }
         }
         else {
-            int dustType = WaterSphere ? Dust.dustWater() : (Main.rand.NextBool() ? DustID.Copper : DustID.Tin);
-            Dust.NewDust(NPC.position, NPC.width, NPC.height, dustType, NPC.velocity.X * 0.2f, NPC.velocity.Y * 0.2f);
+            int dustType = WaterSphere ? Terraria.Dust.dustWater() : (Main.rand.NextBool() ? DustID.Copper : DustID.Tin);
+            Terraria.Dust.NewDust(NPC.position, NPC.width, NPC.height, dustType, NPC.velocity.X * 0.2f, NPC.velocity.Y * 0.2f);
         }
     }
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
-        NPC.GetDrawInfo(out Texture2D texture, out Vector2 offset, out Rectangle frame, out Vector2 origin, out _);
-        Vector2 drawCoordinates = NPC.position + offset - screenPos;
+        var drawInfo = NPC.GetDrawInfo();
+        Vector2 drawCoordinates = drawInfo.Position - screenPos;
         SpriteEffects effects = NPC.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
         drawColor = NPC.GetAlpha(NPC.GetNPCColorTintedByBuffs(drawColor)) * NPC.Opacity;
@@ -248,7 +247,7 @@ public class ConductorProj : ModNPC {
             dustBaseScale = 1f;
         }
         else {
-            dustType = Dust.dustWater();
+            dustType = Terraria.Dust.dustWater();
             dustColor = Color.Lerp(drawColor, Color.White with { A = 200 }, 0.5f) * 0.8f;
             dustBaseScale = 2f;
         }
@@ -276,7 +275,7 @@ public class ConductorProj : ModNPC {
         }
 
         if (!WaterSphere) {
-            spriteBatch.Draw(texture, drawCoordinates, frame, drawColor, NPC.rotation, origin, NPC.scale, effects, 0f);
+            spriteBatch.Draw(drawInfo.Texture, drawCoordinates, drawInfo.Frame, drawColor, NPC.rotation, drawInfo.Origin, NPC.scale, effects, 0f);
         }
 
         return false;

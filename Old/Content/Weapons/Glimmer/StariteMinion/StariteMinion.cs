@@ -51,7 +51,7 @@ public class StariteMinion : UnifiedModMinion {
         Player player = Main.player[Projectile.owner];
         AequusPlayer aequus = player.GetModPlayer<AequusPlayer>();
         Vector2 center = Projectile.Center;
-        OldHelper.CollideWithOthers(Projectile);
+        Projectile.CollideWithOthers();
 
         if ((Projectile.Center - Main.player[Projectile.owner].Center).Length() > 2000f) {
             Projectile.Center = Main.player[Projectile.owner].Center + Main.rand.NextVector2Square(-2f, 2f);

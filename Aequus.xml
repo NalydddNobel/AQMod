@@ -1868,7 +1868,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 790)</summary>
+            <summary>(Total Textures: 792)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2326,6 +2326,9 @@
         <member name="F:Aequus.AequusTextures.SwagEyePetItem">
             <summary>Full Path: Content/Dedicated/SwagEye/SwagEyePetItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.MonoDust">
+            <summary>Full Path: Content/Dusts/MonoDust</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.BlackJellyfish">
             <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
         </member>
@@ -2775,6 +2778,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.MeadowPlants">
             <summary>Full Path: Content/Tiles/Meadow/MeadowPlants</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowTree">
+            <summary>Full Path: Content/Tiles/Meadow/MeadowTree</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowWoodItem">
+            <summary>Full Path: Content/Tiles/Meadow/MeadowWoodItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PolymerStalactite1x1">
             <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x1</summary>
@@ -3759,9 +3768,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.GhostDrainDust">
             <summary>Full Path: Old/Content/Particles/GhostDrainDust</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MonoDust">
-            <summary>Full Path: Old/Content/Particles/MonoDust</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MonoSparkleDust">
             <summary>Full Path: Old/Content/Particles/MonoSparkleDust</summary>

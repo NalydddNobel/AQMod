@@ -46,23 +46,23 @@ public class StunGunDebuff : ModBuff, IOnAddBuff/*, IAddRecipeGroups*/ {
 
         if (buffTime[buffIndex] <= 1) {
             for (int i = 0; i < 2; i++) {
-                var d = Dust.NewDustPerfect(dustSpotFront + Main.rand.NextVector2Square(-dustSize, dustSize), DustID.Electric);
+                var d = Terraria.Dust.NewDustPerfect(dustSpotFront + Main.rand.NextVector2Square(-dustSize, dustSize), DustID.Electric);
                 d.velocity *= 2f;
                 d.fadeIn = d.scale + Main.rand.NextFloat(0.1f, 0.2f);
                 d.noGravity = true;
 
-                d = Dust.NewDustPerfect(dustSpotBack + Main.rand.NextVector2Square(-dustSize, dustSize), DustID.Electric);
+                d = Terraria.Dust.NewDustPerfect(dustSpotBack + Main.rand.NextVector2Square(-dustSize, dustSize), DustID.Electric);
                 d.velocity *= 0.5f;
                 d.fadeIn = d.scale + Main.rand.NextFloat(0.1f, 0.2f);
                 d.noGravity = true;
             }
         }
         if (Main.GameUpdateCount % 15 == 0) {
-            var d = Dust.NewDustPerfect(dustSpotFront + Main.rand.NextVector2Square(-dustSize, dustSize), DustID.Electric, Scale: 0.6f * dustScale);
+            var d = Terraria.Dust.NewDustPerfect(dustSpotFront + Main.rand.NextVector2Square(-dustSize, dustSize), DustID.Electric, Scale: 0.6f * dustScale);
             d.fadeIn = d.scale + Main.rand.NextFloat(0.1f, 0.2f);
             d.noGravity = true;
 
-            d = Dust.NewDustPerfect(dustSpotBack + Main.rand.NextVector2Square(-dustSize, dustSize), DustID.Electric, Scale: 0.6f * dustScale);
+            d = Terraria.Dust.NewDustPerfect(dustSpotBack + Main.rand.NextVector2Square(-dustSize, dustSize), DustID.Electric, Scale: 0.6f * dustScale);
             d.fadeIn = d.scale + Main.rand.NextFloat(0.1f, 0.2f);
             d.noGravity = true;
         }

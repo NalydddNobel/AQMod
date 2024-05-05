@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Content.Dusts;
 using Aequus.Old.Content.Necromancy.Sceptres.Evil;
 using Aequus.Old.Content.Particles;
 using Terraria.GameContent;

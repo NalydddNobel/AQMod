@@ -1,5 +1,5 @@
-﻿using Aequus.Old.Content.Events.Glimmer;
-using Aequus.Old.Content.Particles;
+﻿using Aequus.Content.Dusts;
+using Aequus.Old.Content.Events.Glimmer;
 using System;
 using System.IO;
 using Terraria.GameContent;
@@ -104,8 +104,10 @@ public class OmegaStariteDeathray : ModProjectile {
             float x = Main.rand.NextFloat(0f, length) * 60f;
             float dir = Main.rand.NextBool() ? -1 : 1;
             int d = Dust.NewDust(spawnBase + normalizedRotation * x + dustPositionOffset * dir, 2, 2, type);
-            if (d == -1)
+            if (d == -1) {
                 continue;
+            }
+
             Main.dust[d].color = beamColor * 20;
             Main.dust[d].scale = Main.rand.NextFloat(0.8f, 2f);
             Main.dust[d].noGravity = true;

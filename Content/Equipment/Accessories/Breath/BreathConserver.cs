@@ -1,7 +1,7 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Projectiles;
+using Aequus.Content.Dusts;
 using Aequus.Content.Graphics.Particles;
-using Aequus.Old.Content.Particles;
 using System;
 
 namespace Aequus.Content.Equipment.Accessories.Breath;
@@ -46,7 +46,7 @@ public class BreathConserverProj : ModProjectile {
         AIClones.AI_52_Heal(Projectile, target, HealBreath);
 
         if (Main.netMode != NetmodeID.Server) {
-            Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), newColor: new Color(30, 60, 88, 30), Scale: 2f);
+            Terraria.Dust d = Terraria.Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), newColor: new Color(30, 60, 88, 30), Scale: 2f);
             d.velocity *= 0.2f;
             if (Projectile.timeLeft % 12 == 0 && Collision.WetCollision(Projectile.position, Projectile.width, Projectile.height)) {
                 var bigBubble = ModContent.GetInstance<UnderwaterBubbleParticles>().New();

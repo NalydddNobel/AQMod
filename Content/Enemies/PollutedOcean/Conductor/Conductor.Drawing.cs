@@ -42,7 +42,7 @@ public partial class Conductor : IPostPopulateItemDropDatabase {
 
         if (NPC.life <= 0) {
             for (int i = 0; i < 20; i++) {
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, Main.rand.NextBool(3) ? DustID.Iron : DustID.Bone, 2.5f * hit.HitDirection, -2.5f);
+                Terraria.Dust.NewDust(NPC.position, NPC.width, NPC.height, Main.rand.NextBool(3) ? DustID.Iron : DustID.Bone, 2.5f * hit.HitDirection, -2.5f);
             }
 
             NPC.NewGore(AequusTextures.ConductorGoreHead, NPC.position, NPC.velocity, Scale: NPC.scale);
@@ -53,7 +53,7 @@ public partial class Conductor : IPostPopulateItemDropDatabase {
         }
         else {
             for (int i = 0; i < hit.Damage / (double)NPC.lifeMax * 50f; i++) {
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, Main.rand.NextBool(3) ? DustID.Iron : DustID.Bone, hit.HitDirection, -1f);
+                Terraria.Dust.NewDust(NPC.position, NPC.width, NPC.height, Main.rand.NextBool(3) ? DustID.Iron : DustID.Bone, hit.HitDirection, -1f);
             }
         }
     }

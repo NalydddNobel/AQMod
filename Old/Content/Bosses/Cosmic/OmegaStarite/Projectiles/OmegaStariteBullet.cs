@@ -1,6 +1,6 @@
-﻿using Aequus.DataSets;
+﻿using Aequus.Content.Dusts;
+using Aequus.DataSets;
 using Aequus.Old.Content.Events.Glimmer;
-using Aequus.Old.Content.Particles;
 using System;
 using Terraria.GameContent;
 

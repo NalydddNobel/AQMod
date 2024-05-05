@@ -20,7 +20,7 @@ public class IronLotusFlare : ModProjectile {
     public override void AI() {
         base.AI();
         for (int i = 0; i < 3; i++) {
-            var d = Dust.NewDustDirect(Projectile.Center - new Vector2(10f), 20, 20, DustID.Flare, Scale: Main.rand.NextFloat(0.3f, 2f));
+            var d = Terraria.Dust.NewDustDirect(Projectile.Center - new Vector2(10f), 20, 20, DustID.Flare, Scale: Main.rand.NextFloat(0.3f, 2f));
             d.noGravity = true;
             d.velocity += Projectile.DirectionTo(d.position) * 2f;
             d.velocity *= Main.rand.NextFloat(3f);

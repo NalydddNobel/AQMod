@@ -35,7 +35,7 @@ public class BellowsProj : ModProjectile {
                 g.scale = Main.rand.NextFloat(0.5f, 1.1f);
                 g.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
             }
-            var d = Dust.NewDustDirect(spawnPos, 10, 10, DustID.Smoke);
+            var d = Terraria.Dust.NewDustDirect(spawnPos, 10, 10, DustID.Smoke);
             d.velocity *= 0.1f;
             d.velocity += v.RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f)) * Main.rand.NextFloat(0.5f, 4f);
             d.scale = Main.rand.NextFloat(0.8f, 1.5f);

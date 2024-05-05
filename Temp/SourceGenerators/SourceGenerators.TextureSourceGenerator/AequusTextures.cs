@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 790)</summary>
+/// <summary>(Total Textures: 792)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -311,6 +311,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SwagEyePetBuff = new("Aequus/Content/Dedicated/SwagEye/SwagEyePetBuff");
     /// <summary>Full Path: Content/Dedicated/SwagEye/SwagEyePetItem</summary>
     public static readonly RequestCache<Texture2D> SwagEyePetItem = new("Aequus/Content/Dedicated/SwagEye/SwagEyePetItem");
+    /// <summary>Full Path: Content/Dusts/MonoDust</summary>
+    public static readonly RequestCache<Texture2D> MonoDust = new("Aequus/Content/Dusts/MonoDust");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
     public static readonly RequestCache<Texture2D> BlackJellyfish = new("Aequus/Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishVertexStrip</summary>
@@ -611,6 +613,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> MeadowGrassItem = new("Aequus/Content/Tiles/Meadow/MeadowGrassItem");
     /// <summary>Full Path: Content/Tiles/Meadow/MeadowPlants</summary>
     public static readonly RequestCache<Texture2D> MeadowPlants = new("Aequus/Content/Tiles/Meadow/MeadowPlants");
+    /// <summary>Full Path: Content/Tiles/Meadow/MeadowTree</summary>
+    public static readonly RequestCache<Texture2D> MeadowTree = new("Aequus/Content/Tiles/Meadow/MeadowTree");
+    /// <summary>Full Path: Content/Tiles/Meadow/MeadowWoodItem</summary>
+    public static readonly RequestCache<Texture2D> MeadowWoodItem = new("Aequus/Content/Tiles/Meadow/MeadowWoodItem");
     /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x1</summary>
     public static readonly RequestCache<Texture2D> PolymerStalactite1x1 = new("Aequus/Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x1");
     /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x2</summary>
@@ -1267,8 +1273,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CosmicCrystalDust = new("Aequus/Old/Content/Particles/CosmicCrystalDust");
     /// <summary>Full Path: Old/Content/Particles/GhostDrainDust</summary>
     public static readonly RequestCache<Texture2D> GhostDrainDust = new("Aequus/Old/Content/Particles/GhostDrainDust");
-    /// <summary>Full Path: Old/Content/Particles/MonoDust</summary>
-    public static readonly RequestCache<Texture2D> MonoDust = new("Aequus/Old/Content/Particles/MonoDust");
     /// <summary>Full Path: Old/Content/Particles/MonoSparkleDust</summary>
     public static readonly RequestCache<Texture2D> MonoSparkleDust = new("Aequus/Old/Content/Particles/MonoSparkleDust");
     /// <summary>Full Path: Old/Content/Particles/VoidDust</summary>

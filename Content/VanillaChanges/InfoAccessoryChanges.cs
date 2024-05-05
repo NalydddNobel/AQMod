@@ -2,7 +2,6 @@
 using Aequus.Content.Equipment.Informational.Calendar;
 using Aequus.Content.Equipment.Informational.DebuffDPSMeter;
 using Aequus.Core.Initialization;
-using Aequus.Old.Content.Equipment.Info;
 using System.Collections.Generic;
 using Terraria.Localization;
 
@@ -72,7 +71,7 @@ public class InfoAccessoryChanges {
             if (recipe.createItem.type == ItemID.FishFinder) {
                 Aequus.Log.Debug("Adding Aequus Fish Finder ingredients...");
 #if !DEBUG
-                recipe.AddIngredient(ModContent.ItemType<AnglerBroadcaster>());
+                recipe.AddIngredient(ModContent.ItemType<Old.Content.Equipment.Info.AnglerBroadcaster>());
 #endif
             }
         }

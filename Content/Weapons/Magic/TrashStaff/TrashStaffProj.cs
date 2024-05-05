@@ -105,7 +105,7 @@ public class TrashStaffProj : ModProjectile {
         var dustColor = Crit ? Color.Lerp(Color.Red, Color.White, 0.4f) : Color.White;
 
         for (int i = 0; i < 6; i++) {
-            var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.WhiteTorch, Alpha: 170, newColor: dustColor, Scale: 1.6f);
+            var d = Terraria.Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.WhiteTorch, Alpha: 170, newColor: dustColor, Scale: 1.6f);
             d.velocity += Projectile.oldVelocity * 0.1f;
             d.velocity *= 2f;
             d.noGravity = true;

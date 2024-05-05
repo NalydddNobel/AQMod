@@ -1,7 +1,5 @@
 ﻿using Aequus.Content.Fishing.FishingPoles;
 using Aequus.Content.Tiles.Meadow;
-using Aequus.Old.Content.Tiles.Herbs.PlanterBoxes;
-using Aequus.Old.Content.Weapons.Sentries.PhysicistSentry;
 
 namespace Aequus.Common.NPCs;
 
@@ -14,7 +12,7 @@ public class ShopEdits : GlobalNPC {
 
 #if !DEBUG
                 // Add new planter boxes to the Dryad's shop.
-                foreach (var planterBox in ModContent.GetInstance<PlanterBox>().RegisteredPlanterBoxItems) {
+                foreach (var planterBox in ModContent.GetInstance<Old.Content.Tiles.Herbs.PlanterBoxes.PlanterBox>().RegisteredPlanterBoxItems) {
                     shop.InsertAfter(planterBox.ShopSortingItemIdTarget, planterBox.ModItem.Type, planterBox.SellCondition);
                 }
 #endif
@@ -22,7 +20,7 @@ public class ShopEdits : GlobalNPC {
 
             case (NPCID.Mechanic, "Shop"):
 #if !DEBUG
-                shop.Add(ModContent.ItemType<PhysicistSentry>(), Condition.RemixWorld);
+                shop.Add(ModContent.ItemType<Old.Content.Weapons.Sentries.PhysicistSentry.PhysicistSentry>(), Condition.RemixWorld);
 #endif
                 break;
 

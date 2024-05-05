@@ -167,7 +167,7 @@ public class UnifiedBuriedChest : UnifiedModChest {
                 for (int y = top; y < top + 2; y++) {
                     Vector2 dustCoordinates = new Vector2(i * 16, j * 16);
                     for (int k = 0; k < 4; k++) {
-                        Dust.NewDust(dustCoordinates, 16, 16, _parent.DustType);
+                        Terraria.Dust.NewDust(dustCoordinates, 16, 16, _parent.DustType);
                     }
 
                     Tile chestTile = Framing.GetTileSafely(x, y);
@@ -359,7 +359,7 @@ public class UnifiedBuriedChest : UnifiedModChest {
                     WorldGen.SquareTileFrame(x, y);
                     Vector2 dustCoordinates = new Vector2(x * 16, y * 16);
                     for (int k = 0; k < 12; k++) {
-                        Dust.NewDust(dustCoordinates, 16, 16, DustID.Stone);
+                        Terraria.Dust.NewDust(dustCoordinates, 16, 16, DustID.Stone);
                     }
                 }
             }

@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Bosses.Trophies;
+using Aequus.Content.Dusts;
 using Aequus.Core;
 using Aequus.Core.ContentGeneration;
 using Aequus.DataSets;
@@ -431,7 +432,7 @@ public class UltraStarite : ModNPC {
     }
 
     public override void OnKill() {
-        OldHelper.DropHearts(new EntitySource_Loot(NPC), NPC.Hitbox, 4, 4);
+        ExtendItem.DropHearts(new EntitySource_Loot(NPC), NPC.Hitbox, 4, 4);
         NPC.SetEventFlagCleared(ref WorldState._downedCosmicBoss, -1);
     }
 

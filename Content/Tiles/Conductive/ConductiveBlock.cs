@@ -131,7 +131,7 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
         }
 
         if (Aequus.GameWorldActive && effect.electricAnimation > 0.1f && Main.rand.NextBool(10)) {
-            var d = Dust.NewDustDirect(new Vector2(i * 16f, j * 16f), 16, 16, DustID.MartianSaucerSpark, Alpha: 0, Scale: Main.rand.NextFloat(0.8f, 1.8f));
+            var d = Terraria.Dust.NewDustDirect(new Vector2(i * 16f, j * 16f), 16, 16, DustID.MartianSaucerSpark, Alpha: 0, Scale: Main.rand.NextFloat(0.8f, 1.8f));
             d.rotation = 0f;
             //d.fadeIn = d.scale + 0.4f;
             d.noGravity = true;

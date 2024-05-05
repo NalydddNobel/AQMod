@@ -43,13 +43,13 @@ public class DynaknifeStabProj : ModProjectile {
             Projectile.Center = npc.Center;
             var dustPosition = Projectile.Center + normalOffset * Main.npc[NPC].Size / 2f;
             float dustVelocity = 16f * MathF.Pow(Projectile.timeLeft / (float)ExplodeDelay, 2f);
-            var d = Dust.NewDustPerfect(dustPosition, DustID.Torch, normalOffset.RotatedBy(Main.rand.NextFloat(-0.2f, 0.2f)) * Main.rand.NextFloat(dustVelocity));
+            var d = Terraria.Dust.NewDustPerfect(dustPosition, DustID.Torch, normalOffset.RotatedBy(Main.rand.NextFloat(-0.2f, 0.2f)) * Main.rand.NextFloat(dustVelocity));
             d.noGravity = true;
             d.fadeIn = d.scale + 0.2f;
             if (Projectile.timeLeft <= 40) {
                 float distance = Main.rand.NextFloat(Projectile.timeLeft * 2f);
                 var v = Main.rand.NextVector2Unit();
-                d = Dust.NewDustPerfect(dustPosition + v * distance, DustID.Torch, v * -distance * Main.rand.NextFloat(0.1f));
+                d = Terraria.Dust.NewDustPerfect(dustPosition + v * distance, DustID.Torch, v * -distance * Main.rand.NextFloat(0.1f));
                 d.noGravity = true;
                 d.fadeIn = d.scale + 0.2f;
             }
@@ -65,14 +65,14 @@ public class DynaknifeStabProj : ModProjectile {
             for (int i = 0; i < Projectile.width; i++) {
                 float distance = Main.rand.NextFloat(Projectile.width / 2f);
                 var v = Main.rand.NextVector2Unit();
-                var d = Dust.NewDustPerfect(dustPosition + v * distance, DustID.Smoke, v * distance * Main.rand.NextFloat(0.1f), Scale: Main.rand.NextFloat(2f));
+                var d = Terraria.Dust.NewDustPerfect(dustPosition + v * distance, DustID.Smoke, v * distance * Main.rand.NextFloat(0.1f), Scale: Main.rand.NextFloat(2f));
                 d.noGravity = true;
                 d.fadeIn = d.scale + 0.2f;
             }
             for (int i = 0; i < Projectile.width; i++) {
                 float distance = Main.rand.NextFloat(Projectile.width / 2f);
                 var v = Main.rand.NextVector2Unit();
-                var d = Dust.NewDustPerfect(dustPosition + v * distance, DustID.Torch, v * distance * Main.rand.NextFloat(0.2f), Scale: Main.rand.NextFloat(2f));
+                var d = Terraria.Dust.NewDustPerfect(dustPosition + v * distance, DustID.Torch, v * distance * Main.rand.NextFloat(0.2f), Scale: Main.rand.NextFloat(2f));
                 d.noGravity = true;
                 d.fadeIn = d.scale + 0.2f;
             }

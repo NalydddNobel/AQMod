@@ -5,7 +5,7 @@ using Aequus.Core.Initialization;
 using Aequus.DataSets;
 using Aequus.DataSets.Structures.DropRulesChest;
 using Aequus.DataSets.Structures.Enums;
-using Aequus.Old.Content.Weapons.Melee.Valari;
+using System.Security.Cryptography;
 
 namespace Aequus.Content.Chests;
 
@@ -22,9 +22,11 @@ public class ChestPopulator : ISetStaticDefaults {
             Commons.Conditions.ConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveTreasureMagnet))
         ));
 
-        ChestLootDatabase.Instance.RegisterIndexed(ChestPool.Dungeon, new IChestLootRule[] {
-            new CommonChestRule(ModContent.ItemType<Valari>())
-        });
+#if !DEBUG
+        ChestLootDatabase.Instance.RegisterIndexed(ChestPool.Dungeon, [
+            new CommonChestRule(ModContent.ItemType<Old.Content.Weapons.Melee.Valari.Valari>())
+        ]);
+#endif
     }
 
     public void Load(Mod mod) { }

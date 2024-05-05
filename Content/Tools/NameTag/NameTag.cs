@@ -62,7 +62,7 @@ public class NameTag : ModItem, ICustomNameTagPrice {
             ModContent.GetInstance<NPCNameTagPopup>().ShowRenamePopup(i);
 
             for (int k = 0; k < 15; k++) {
-                var d = Dust.NewDustDirect(Main.npc[i].position, Main.npc[i].width, Main.npc[i].height, DustID.AncientLight, 0f, 0f, Scale: Main.rand.NextFloat(0.5f, 0.8f));
+                var d = Terraria.Dust.NewDustDirect(Main.npc[i].position, Main.npc[i].width, Main.npc[i].height, DustID.AncientLight, 0f, 0f, Scale: Main.rand.NextFloat(0.5f, 0.8f));
                 d.velocity *= 0.1f;
                 d.velocity += Main.npc[i].velocity;
                 d.fadeIn = d.scale + 0.25f;

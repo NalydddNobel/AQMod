@@ -53,7 +53,7 @@ public class FurystarParticles : ParticleArray<FurystarParticles.Particle> {
             particle.Animation += 0.4f;
             if (particle.Animation < 4f) {
                 particle.Scale *= 0.85f;
-                var d = Dust.NewDustPerfect(particle.Location, DustID.ManaRegeneration, Alpha: 150, Scale: particle.Scale * 5f);
+                var d = Terraria.Dust.NewDustPerfect(particle.Location, DustID.ManaRegeneration, Alpha: 150, Scale: particle.Scale * 5f);
                 d.noGravity = true;
                 d.velocity *= 2f;
                 continue;

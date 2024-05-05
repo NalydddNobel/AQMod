@@ -74,8 +74,10 @@ public partial class AequusPlayer : ModPlayer {
     }
 
     public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
+#if !DEBUG
         ProcBoneRing(target);
         ProcBlackPhial(target);
+#endif
     }
 
     internal void OnKillNPC(in KillInfo info) {

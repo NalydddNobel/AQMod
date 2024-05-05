@@ -50,7 +50,7 @@ public class FurystarBulletProj : ModProjectile {
                 Gore.NewGore(Projectile.GetSource_FromThis(), Projectile.position, Projectile.velocity * 0.2f, Main.rand.Next(16, 18));
             }
             if (Main.rand.NextBool(4)) {
-                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 86, 0f, 0f, 127);
+                var d = Terraria.Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 86, 0f, 0f, 127);
                 d.velocity *= 0.7f;
                 d.noGravity = true;
                 d.velocity += Projectile.velocity * 0.3f;
@@ -91,7 +91,7 @@ public class FurystarBulletProj : ModProjectile {
     public override void OnKill(int timeLeft) {
         SoundEngine.PlaySound(in SoundID.Item10, Projectile.Center);
         for (int i = 0; i < 10; i++) {
-            Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Enchanted_Pink, Projectile.velocity.X * 0.1f, Projectile.velocity.Y * 0.1f, Alpha: 150, Scale: Main.rand.NextFloat(1f, 1.5f));
+            Terraria.Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Enchanted_Pink, Projectile.velocity.X * 0.1f, Projectile.velocity.Y * 0.1f, Alpha: 150, Scale: Main.rand.NextFloat(1f, 1.5f));
         }
         for (int i = 0; i < 3; i++) {
             Gore.NewGore(Projectile.GetSource_FromThis(), Projectile.Center, new Vector2(Projectile.velocity.X * 0.05f, Projectile.velocity.Y * 0.05f), Main.rand.Next(16, 18));

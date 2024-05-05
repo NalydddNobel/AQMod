@@ -4,6 +4,16 @@ using Terraria.DataStructures;
 namespace Aequus.Core.Utilities;
 
 public static class ExtendItem {
+    public static void DropHearts(IEntitySource source, Rectangle hitbox, int guaranteedAmount, int randomAmount) {
+        for (int i = 0; i < guaranteedAmount; i++) {
+            Item.NewItem(source, hitbox, ItemID.Heart);
+        }
+        randomAmount = Main.rand.Next(randomAmount);
+        for (int i = 0; i < randomAmount; i++) {
+            Item.NewItem(source, hitbox, ItemID.Heart);
+        }
+    }
+
     /// <summary>Returns all 'Overrides' of a specified item. (<see cref="ContentSamples.CreativeResearchItemPersistentIdOverride"/>)</summary>
     /// <param name="itemId"></param>
     /// <returns></returns>

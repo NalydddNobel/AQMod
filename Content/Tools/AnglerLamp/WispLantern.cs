@@ -22,7 +22,7 @@ public class WispLantern : ModItem {
     public static int DebuffRange { get; set; } = 480;
 
     [CloneByReference]
-    private readonly List<Dust> _dustEffects = new();
+    private readonly List<Terraria.Dust> _dustEffects = new();
 
     public override void SetDefaults() {
         Item.width = 16;
@@ -62,7 +62,7 @@ public class WispLantern : ModItem {
         var lampPosition = GetLampPosition(player);
         _dustEffects.Clear();
         for (int i = 0; i < 12; i++) {
-            var d = Dust.NewDustPerfect(lampPosition, 156);
+            var d = Terraria.Dust.NewDustPerfect(lampPosition, 156);
             d.velocity = (i / 13f * MathHelper.TwoPi).ToRotationVector2() * 2f;
             d.noGravity = true;
             d.fadeIn = d.scale + 0.3f;

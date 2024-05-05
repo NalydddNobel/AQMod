@@ -1,17 +1,15 @@
 ﻿using Aequus.Common.Projectiles;
+using Aequus.Content.Dusts;
 using Aequus.Core.Networking;
 using Aequus.DataSets;
 using Aequus.Old.Content.Particles;
 using Aequus.Old.Core.Utilities;
 using System;
 using System.IO;
-using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
-using Terraria.GameContent.UI.Elements;
 using Terraria.Graphics.Shaders;
-using static tModPorter.ProgressUpdate;
 
 namespace Aequus.Old.Content.Tools;
 

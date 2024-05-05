@@ -80,12 +80,12 @@ public class OilSlime : ModNPC {
         if (NPC.life > 0) {
             double dustCount = hit.Damage / (double)NPC.lifeMax * 100.0;
             for (int i = 0; i < dustCount; i++) {
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.TintableDust, hit.HitDirection, -1f, NPC.alpha, slimeColor);
+                Terraria.Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.TintableDust, hit.HitDirection, -1f, NPC.alpha, slimeColor);
             }
         }
         else {
             for (int i = 0; i < 50; i++) {
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.TintableDust, 2 * hit.HitDirection, -2f, NPC.alpha, slimeColor);
+                Terraria.Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.TintableDust, 2 * hit.HitDirection, -2f, NPC.alpha, slimeColor);
             }
         }
     }

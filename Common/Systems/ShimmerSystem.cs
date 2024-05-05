@@ -10,12 +10,8 @@ using Aequus.Content.Equipment.Accessories.WeightedHorseshoe;
 using Aequus.Content.Equipment.Informational.Monocle;
 using Aequus.Content.PermaPowerups.Shimmer;
 using Aequus.Content.Weapons.Magic.Furystar;
-using Aequus.Old.Content.Equipment.Accessories.GrandReward;
-using Aequus.Old.Content.Tools.MagicMirrors.PhaseMirror;
-using System.Security.Cryptography;
 using Terraria.GameContent;
 using Terraria.GameContent.Achievements;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.Systems;
 
@@ -27,7 +23,9 @@ public class ShimmerSystem : ModSystem {
     }
 
     public static void RegisterShimmerTransmutations() {
-        ItemSets.ShimmerTransformToItem[ModContent.ItemType<GrandReward>()] = ModContent.ItemType<CosmicChest>();
+#if !DEBUG
+        ItemSets.ShimmerTransformToItem[ModContent.ItemType<Old.Content.Equipment.Accessories.GrandReward.GrandReward>()] = ModContent.ItemType<CosmicChest>();
+#endif
         ItemSets.ShimmerTransformToItem[ModContent.ItemType<RichMansMonocle>()] = ModContent.ItemType<ShimmerMonocle>();
         SetShimmerResultSafely(ItemID.TinkerersWorkshop, ModContent.ItemType<TinkerersGuidebook>());
         SetShimmerResultSafely(ItemID.SuspiciousLookingEye, ModContent.GetInstance<SwagEyePet>().PetItem.Type);
@@ -51,7 +49,7 @@ public class ShimmerSystem : ModSystem {
         CreateShimmerLoop(
             ModContent.ItemType<Old.Content.Equipment.Accessories.Pacemaker.Pacemaker>(),
             ModContent.ItemType<Old.Content.Equipment.Accessories.HoloLens.HoloLens>(),
-            ModContent.ItemType<PhaseMirror>()
+            ModContent.ItemType<Old.Content.Tools.MagicMirrors.PhaseMirror.PhaseMirror>()
         );
 #endif
     }

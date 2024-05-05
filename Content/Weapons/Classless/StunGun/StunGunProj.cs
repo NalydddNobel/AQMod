@@ -76,7 +76,7 @@ public class StunGunProj : ModProjectile {
         Projectile.ai[0] *= 0.98f;
         Projectile.ai[1] *= 0.98f;
         if (Projectile.ai[2] > 4f && (Projectile.friendly || Projectile.hostile) && Main.rand.NextBool(Math.Max(Projectile.MaxUpdates / 15, 1))) {
-            var d = Dust.NewDustPerfect(Projectile.Center + Main.rand.NextVector2Square(-2f, 2f), DustID.Electric, Scale: 0.75f);
+            var d = Terraria.Dust.NewDustPerfect(Projectile.Center + Main.rand.NextVector2Square(-2f, 2f), DustID.Electric, Scale: 0.75f);
             d.velocity *= Main.rand.NextFloat(0.1f, 0.2f);
             d.velocity += Projectile.velocity * Main.rand.NextFloat(0f, 0.2f);
             d.noGravity = true;

@@ -1,6 +1,5 @@
 ﻿using Aequus.Content.Equipment.Accessories.GoldenFeather;
 using Aequus.Core.CrossMod;
-using Aequus.Old.Content.Equipment.Accessories.GrandReward;
 using System;
 using Terraria.Localization;
 
@@ -18,8 +17,8 @@ internal class Fargowiltas : SupportedMod<Fargowiltas> {
         AddStat(ModContent.ItemType<Old.Content.Necromancy.Equipment.Accessories.SpiritKeg.BottleOSpirits>(), "MaxGhostSlots", () => Main.LocalPlayer.GetModPlayer<AequusPlayer>().ghostSlotsMax);
         AddStat(ModContent.ItemType<Old.Content.Necromancy.Equipment.Accessories.SpiritKeg.SaivoryKnife>(), "GhostDuration", () => ExtendLanguage.Minutes(Main.LocalPlayer.GetModPlayer<AequusPlayer>().ghostLifespan));
         AddStat(ModContent.ItemType<Old.Content.Necromancy.Equipment.Accessories.PandorasBox>(), "SceptreDebuffMultiplier", () => ExtendLanguage.Percent(Main.LocalPlayer.GetModPlayer<AequusPlayer>().zombieDebuffMultiplier));
+        AddStat(ModContent.ItemType<Old.Content.Equipment.Accessories.GrandReward.GrandReward>(), "DropRolls", () => Main.LocalPlayer.GetModPlayer<AequusPlayer>().dropRolls);
 #endif
-        AddStat(ModContent.ItemType<GrandReward>(), "DropRolls", () => Main.LocalPlayer.GetModPlayer<AequusPlayer>().dropRolls);
         AddStat(ModContent.ItemType<GoldenFeather>(), "RespawnReduction", () => ExtendLanguage.Seconds(-Main.LocalPlayer.GetModPlayer<AequusPlayer>().respawnTimeModifierFlat));
     }
 }

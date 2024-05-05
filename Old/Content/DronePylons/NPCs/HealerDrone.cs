@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.NPCs;
-using Aequus.Old.Content.Particles;
+using Aequus.Content.Dusts;
 using Aequus.Old.Core.Utilities;
 using System;
 using System.Collections.Generic;

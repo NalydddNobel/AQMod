@@ -35,9 +35,9 @@ public class StarPhish : ModItem {
         int amt = Main.rand.Next(35, 50);
         var direction = Vector2.Normalize(velocity);
         var offset = new Vector2(-6f + -2f * player.direction, -10f);
-        int dustId = Dust.dustWater();
+        int dustId = Terraria.Dust.dustWater();
         for (int i = 0; i < amt; i++) {
-            var d = Dust.NewDustDirect(player.MountedCenter + direction * 36f + offset, 10, 10, dustId);
+            var d = Terraria.Dust.NewDustDirect(player.MountedCenter + direction * 36f + offset, 10, 10, dustId);
             d.velocity = direction.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * Main.rand.NextFloat(2f, 5f);
             d.noGravity = true;
         }

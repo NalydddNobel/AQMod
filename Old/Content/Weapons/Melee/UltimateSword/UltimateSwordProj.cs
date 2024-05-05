@@ -1,6 +1,5 @@
-﻿using Aequus.Common.Buffs;
-using Aequus.Common.Projectiles;
-using Aequus.Old.Content.Particles;
+﻿using Aequus.Common.Projectiles;
+using Aequus.Content.Dusts;
 using System;
 using System.IO;
 using Terraria.Audio;

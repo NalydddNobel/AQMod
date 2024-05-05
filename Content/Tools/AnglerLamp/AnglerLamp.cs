@@ -23,7 +23,7 @@ public class AnglerLamp : ModItem {
     public static int DebuffRange { get; set; } = 240;
 
     [CloneByReference]
-    private readonly List<Dust> _dustEffects = new();
+    private readonly List<Terraria.Dust> _dustEffects = new();
 
     public float animation;
 
@@ -71,7 +71,7 @@ public class AnglerLamp : ModItem {
         var lampPosition = GetLampPosition(player);
         _dustEffects.Clear();
         for (int i = 0; i < 12; i++) {
-            var d = Dust.NewDustPerfect(lampPosition, DustID.Torch, Scale: 1.5f);
+            var d = Terraria.Dust.NewDustPerfect(lampPosition, DustID.Torch, Scale: 1.5f);
             d.velocity = (i / 13f * MathHelper.TwoPi).ToRotationVector2() * 2f;
             d.noGravity = true;
             d.fadeIn = d.scale + 0.3f;

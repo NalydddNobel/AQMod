@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
+using Aequus.Content.Dusts;
 using Aequus.Core.ContentGeneration;
 using Aequus.DataSets;
 using Aequus.Old.Content.Events.Glimmer;
@@ -10,7 +11,6 @@ using Aequus.Old.Content.Potions.NeutronYogurt;
 using Aequus.Old.Content.StatusEffects;
 using Aequus.Old.Content.Vanity;
 using Aequus.Old.Core.Utilities;
-using ReLogic.Content;
 using System;
 using System.IO;
 using Terraria.Audio;

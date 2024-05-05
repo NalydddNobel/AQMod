@@ -2,65 +2,6 @@
 
 namespace Aequus.Old.Core.Utilities;
 public static class OldHelper {
-    public static void CollideWithOthers(this Projectile proj, float speed = 0.05f) {
-        Rectangle rect = proj.getRect();
-        for (int i = 0; i < Main.maxProjectiles; i++) {
-            Projectile other = Main.projectile[i];
-            if (other.active && i != proj.whoAmI && proj.type == other.type
-                && rect.Intersects(other.getRect())) {
-                proj.velocity += Utils.SafeNormalize(proj.Center - other.Center, Vector2.UnitY) * speed;
-            }
-        }
-    }
-
-    public static void CollideWithOthers(this NPC npc, float speed = 0.05f) {
-        Rectangle rect = npc.getRect();
-        for (int i = 0; i < Main.maxNPCs; i++) {
-            NPC other = Main.npc[i];
-            if (other.active && i != npc.whoAmI && npc.type == other.type
-                && rect.Intersects(other.getRect())) {
-                npc.velocity += Utils.SafeNormalize(npc.Center - other.Center, Vector2.UnitY) * speed;
-            }
-        }
-    }
-
-    public static int GetMinionTarget(this Projectile projectile, Vector2 position, out float distance, float maxDistance = 2000f, float? ignoreTilesDistance = 0f) {
-        if (Main.player[projectile.owner].HasMinionAttackTargetNPC) {
-            distance = Vector2.Distance(Main.npc[Main.player[projectile.owner].MinionAttackTargetNPC].Center, projectile.Center);
-            if (distance < maxDistance) {
-                return Main.player[projectile.owner].MinionAttackTargetNPC;
-            }
-        }
-        int target = -1;
-        distance = maxDistance;
-        for (int i = 0; i < Main.maxNPCs; i++) {
-            if (Main.npc[i].CanBeChasedBy(projectile)) {
-                float d = Vector2.Distance(position, Main.npc[i].Center);
-                if (d < distance) {
-                    if (!ignoreTilesDistance.HasValue || d < ignoreTilesDistance || Collision.CanHit(position - projectile.Size / 2f, projectile.width, projectile.height, Main.npc[i].position, Main.npc[i].width, Main.npc[i].height)) {
-                        distance = d;
-                        target = i;
-                    }
-                }
-            }
-        }
-        return target;
-    }
-
-    public static int GetMinionTarget(this Projectile projectile, out float distance, float maxDistance = 2000f, float? ignoreTilesDistance = 0f) {
-        return GetMinionTarget(projectile, projectile.Center, out distance, maxDistance, ignoreTilesDistance);
-    }
-
-    public static void DropHearts(IEntitySource source, Rectangle hitbox, int guaranteedAmount, int randomAmount) {
-        for (int i = 0; i < guaranteedAmount; i++) {
-            Item.NewItem(source, hitbox, ItemID.Heart);
-        }
-        randomAmount = Main.rand.Next(randomAmount);
-        for (int i = 0; i < randomAmount; i++) {
-            Item.NewItem(source, hitbox, ItemID.Heart);
-        }
-    }
-
     public static void UpdateCacheList<T>(T[] arr) {
         for (int i = arr.Length - 1; i > 0; i--) {
             arr[i] = arr[i - 1];

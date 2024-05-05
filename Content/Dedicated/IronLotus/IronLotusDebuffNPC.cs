@@ -33,7 +33,7 @@ public class IronLotusDebuffNPC : GlobalNPC {
         if (Main.netMode != NetmodeID.Server) {
             int amt = (int)(npc.Size.Length() / 32f);
             for (int i = 0; i < amt; i++) {
-                Dust dust = Dust.NewDustDirect(npc.position, npc.width, npc.height, DustID.RedTorch, npc.velocity.X, npc.velocity.Y, 100, Color.Red with { A = 0 }, 3f);
+                Terraria.Dust dust = Terraria.Dust.NewDustDirect(npc.position, npc.width, npc.height, DustID.RedTorch, npc.velocity.X, npc.velocity.Y, 100, Color.Red with { A = 0 }, 3f);
                 dust.noGravity = true;
                 //ParticleSystem.New<MonoBloomParticle>(ParticleLayer.BehindPlayers).Setup(
                 //    Main.rand.NextFromRect(npc.Hitbox),

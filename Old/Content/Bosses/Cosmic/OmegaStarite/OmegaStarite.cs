@@ -3,6 +3,7 @@ using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Bosses;
 using Aequus.Content.Bosses.Trophies;
+using Aequus.Content.Dusts;
 using Aequus.Content.Pets.OmegaStarite;
 using Aequus.Core;
 using Aequus.Core.ContentGeneration;

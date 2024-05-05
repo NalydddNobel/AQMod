@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Projectiles;
 using Aequus.Core.CrossMod;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;
@@ -358,6 +359,44 @@ public static class ExtendPlayer {
 }
 
 public static partial class ExtendNPC {
+    public record struct NPCDrawInfo(Texture2D Texture, Vector2 Position, Rectangle Frame, float Rotation, Vector2 Origin, float Scale, SpriteEffects Effects, int TrailLength) {
+        public void Draw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+            spriteBatch.Draw(Texture, Position - screenPos, Frame, drawColor, Rotation, Origin, Scale, Effects, 0f);
+        }
+    }
+
+    public static NPCDrawInfo GetDrawInfo(this NPC npc) {
+        Texture2D texture = TextureAssets.Npc[npc.type].Value;
+        Vector2 offset = npc.Size / 2f + new Vector2(0f, npc.gfxOffY);
+        Vector2 drawCoordinates = npc.Center - offset;
+        Rectangle frame = npc.frame;
+        Vector2 origin = frame.Size() / 2f;
+        float rotation = npc.rotation;
+        float scale = npc.scale;
+        SpriteEffects effects = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+        return new NPCDrawInfo(texture, drawCoordinates, frame, rotation, origin, scale, effects, NPCSets.TrailCacheLength[npc.type]);
+    }
+
+    [Obsolete]
+    public static void GetDrawInfo(this NPC npc, out Texture2D texture, out Vector2 offset, out Rectangle frame, out Vector2 origin, out int trailLength) {
+        texture = TextureAssets.Npc[npc.type].Value;
+        offset = npc.Size / 2f;
+        frame = npc.frame;
+        origin = frame.Size() / 2f;
+        trailLength = NPCSets.TrailCacheLength[npc.type];
+    }
+
+    public static void CollideWithOthers(this NPC npc, float speed = 0.05f) {
+        Rectangle rect = npc.getRect();
+        for (int i = 0; i < Main.maxNPCs; i++) {
+            NPC other = Main.npc[i];
+            if (other.active && i != npc.whoAmI && npc.type == other.type
+                && rect.Intersects(other.getRect())) {
+                npc.velocity += Utils.SafeNormalize(npc.Center - other.Center, Vector2.UnitY) * speed;
+            }
+        }
+    }
+
     /// <summary>Helper method which reflects an NPC against shimmer.</summary>
     public static void UpdateShimmerReflection(this NPC projectile) {
         if (ExtendEntity.CanReflectAgainstShimmer(projectile)) {
@@ -483,6 +522,44 @@ public static class ExtendShop {
 
 public static class ExtendProjectile {
     internal static readonly Projectile _dummyProjectile = new Projectile();
+
+    public static void CollideWithOthers(this Projectile proj, float speed = 0.05f) {
+        Rectangle rect = proj.getRect();
+        for (int i = 0; i < Main.maxProjectiles; i++) {
+            Projectile other = Main.projectile[i];
+            if (other.active && i != proj.whoAmI && proj.type == other.type
+                && rect.Intersects(other.getRect())) {
+                proj.velocity += Utils.SafeNormalize(proj.Center - other.Center, Vector2.UnitY) * speed;
+            }
+        }
+    }
+
+    public static int GetMinionTarget(this Projectile projectile, Vector2 position, out float distance, float maxDistance = 2000f, float? ignoreTilesDistance = 0f) {
+        if (Main.player[projectile.owner].HasMinionAttackTargetNPC) {
+            distance = Vector2.Distance(Main.npc[Main.player[projectile.owner].MinionAttackTargetNPC].Center, projectile.Center);
+            if (distance < maxDistance) {
+                return Main.player[projectile.owner].MinionAttackTargetNPC;
+            }
+        }
+        int target = -1;
+        distance = maxDistance;
+        for (int i = 0; i < Main.maxNPCs; i++) {
+            if (Main.npc[i].CanBeChasedBy(projectile)) {
+                float d = Vector2.Distance(position, Main.npc[i].Center);
+                if (d < distance) {
+                    if (!ignoreTilesDistance.HasValue || d < ignoreTilesDistance || Collision.CanHit(position - projectile.Size / 2f, projectile.width, projectile.height, Main.npc[i].position, Main.npc[i].width, Main.npc[i].height)) {
+                        distance = d;
+                        target = i;
+                    }
+                }
+            }
+        }
+        return target;
+    }
+
+    public static int GetMinionTarget(this Projectile projectile, out float distance, float maxDistance = 2000f, float? ignoreTilesDistance = 0f) {
+        return GetMinionTarget(projectile, projectile.Center, out distance, maxDistance, ignoreTilesDistance);
+    }
 
     public static bool IsChildOrNoSpecialEffects(this Projectile projectile) {
         return projectile.GetGlobalProjectile<ProjectileItemData>().NoSpecialEffects || projectile.GetGlobalProjectile<ProjectileSource>().isProjectileChild;

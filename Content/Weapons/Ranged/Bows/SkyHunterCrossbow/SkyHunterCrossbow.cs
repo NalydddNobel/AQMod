@@ -229,7 +229,7 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
         var chainDifference = projectileCenter - chainPosition;
         var chainVelocity = Vector2.Normalize(chainDifference) * ropeSegmentDistance;
         for (int i = 0; i < 200; i++) {
-            var d = Dust.NewDustPerfect(chainPosition + Main.rand.NextVector2Square(-ropeSegmentSize, ropeSegmentSize), DustID.Rope);
+            var d = Terraria.Dust.NewDustPerfect(chainPosition + Main.rand.NextVector2Square(-ropeSegmentSize, ropeSegmentSize), DustID.Rope);
             d.noGravity = true;
             d.fadeIn = d.scale + 0.2f;
             d.velocity *= Main.rand.NextFloat(1f);

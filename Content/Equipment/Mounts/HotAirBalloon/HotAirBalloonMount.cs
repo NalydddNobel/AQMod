@@ -191,7 +191,7 @@ public class HotAirBalloonMount : UnifiedModMount {
         int boxHeight = 12;
         dustSpawn.Y -= boxHeight;
         for (int i = 0; i < 10; i++) {
-            var d = Dust.NewDustDirect(dustSpawn, player.width, boxHeight, MountData.spawnDust);
+            var d = Terraria.Dust.NewDustDirect(dustSpawn, player.width, boxHeight, MountData.spawnDust);
             d.velocity *= 0.1f;
             d.velocity.Y += Main.rand.NextFloat(-4f, -0.25f);
             d.fadeIn = d.scale * 2f;
@@ -202,7 +202,7 @@ public class HotAirBalloonMount : UnifiedModMount {
 
     private void SpawnDismountDust(Player player) {
         for (int i = 0; i < 40; i++) {
-            var d = Dust.NewDustDirect(player.position, player.width, player.height, MountData.spawnDust);
+            var d = Terraria.Dust.NewDustDirect(player.position, player.width, player.height, MountData.spawnDust);
             d.scale *= 1.2f;
             d.velocity *= 0.5f;
             d.noGravity = MountData.spawnDustNoGravity;

@@ -1,5 +1,5 @@
-﻿using Aequus.DataSets;
-using Aequus.Old.Content.Particles;
+﻿using Aequus.Content.Dusts;
+using Aequus.DataSets;
 using Aequus.Old.Content.StatusEffects;
 using System;
 using Terraria.Audio;

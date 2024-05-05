@@ -1,6 +1,4 @@
 ﻿using Aequus.Content.Biomes.PollutedOcean;
-using Aequus.Old.Common;
-using Aequus.Old.Common.NPCs;
 using System.Collections.Generic;
 
 namespace Aequus.Common.NPCs;
@@ -41,8 +39,8 @@ public class NPCSpawns : GlobalNPC {
         }
 
 #if !DEBUG
-        MimicEdits.AddPHMMimics(pool, in spawnInfo);
-        FakeHardmode.AddEnemies(pool, in spawnInfo);
+        Old.Common.NPCs.MimicEdits.AddPHMMimics(pool, in spawnInfo);
+        Old.Common.FakeHardmode.AddEnemies(pool, in spawnInfo);
 #endif
     }
 }

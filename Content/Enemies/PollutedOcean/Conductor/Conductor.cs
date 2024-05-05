@@ -299,7 +299,7 @@ public partial class Conductor : ModNPC {
             if (Collision.CanHitLine(position, NPC.width, NPC.height, closest.position, closest.width, closest.height)) {
                 SoundEngine.PlaySound(SoundID.Item8, NPC.Center);
                 for (int k = 0; k < 40; k++) {
-                    Dust d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Iron);
+                    Terraria.Dust d = Terraria.Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Iron);
                     d.noGravity = true;
                     d.velocity *= 0.5f;
                 }
@@ -309,7 +309,7 @@ public partial class Conductor : ModNPC {
                 NPC.TargetClosest(faceTarget: true);
                 SoundEngine.PlaySound(SoundID.Item8, NPC.Center);
                 for (int k = 0; k < 40; k++) {
-                    Dust d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Iron);
+                    Terraria.Dust d = Terraria.Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Iron);
                     d.noGravity = true;
                     d.velocity *= 0.5f;
                 }

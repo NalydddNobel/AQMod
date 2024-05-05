@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
+using Aequus.Content.Dusts;
 using Aequus.Core.ContentGeneration;
 using Aequus.Old.Content.Events.Glimmer;
-using Aequus.Old.Content.Particles;
 using Aequus.Old.Core.Utilities;
 using System;
 using Terraria.GameContent;

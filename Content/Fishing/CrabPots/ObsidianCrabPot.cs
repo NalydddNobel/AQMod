@@ -42,7 +42,7 @@ public class ObsidianCrabPot : UnifiedCrabPot {
 
     protected override void CustomPreDraw(int x, int y, int waterYOffset, SpriteBatch spriteBatch, TECrabPot crabPot) {
         if (!crabPot.item.IsAir && Aequus.GameWorldActive) {
-            var d = Dust.NewDustPerfect(new Vector2(x + 0.5f, y - 1.4f).ToWorldCoordinates(), crabPot.caught ? DustID.Frost : DustID.Torch, Scale: 2f);
+            var d = Terraria.Dust.NewDustPerfect(new Vector2(x + 0.5f, y - 1.4f).ToWorldCoordinates(), crabPot.caught ? DustID.Frost : DustID.Torch, Scale: 2f);
             d.noGravity = true;
             d.velocity.X *= 0.1f;
             d.velocity.Y = -Math.Abs(d.velocity.Y * d.scale * 0.5f);
