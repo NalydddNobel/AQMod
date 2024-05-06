@@ -1099,6 +1099,6 @@ StariteStaff: {
 }
 
 MeadowWoodItem: {
-	// DisplayName: Meadow Wood Item
-	// Tooltip: ""
+	DisplayName: 草地木
+	Tooltip: ""
 }
