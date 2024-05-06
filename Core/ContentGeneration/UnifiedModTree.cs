@@ -26,6 +26,7 @@ public abstract class UnifiedModTree : ModTexturedType, IUnifiedTree {
     public int DustType { get; protected set; }
     protected int LeafGoreType;
     protected TreeTypes _treeTypeOverride = TreeTypes.None;
+    protected TreePaintingSettings _shaderSettings;
     protected bool _disablesAcornDrop;
 
     public ModTile Sapling { get; private set; }
@@ -42,9 +43,10 @@ public abstract class UnifiedModTree : ModTexturedType, IUnifiedTree {
 
     public sealed override void Load() {
         string saplingTexturePath = AequusTextures.Tile(TileID.Saplings);
+        LeafGoreType = GoreID.TreeLeaf_Normal;
+        DustType = DustID.WoodFurniture;
+
         if (!Main.dedServ) {
-            LeafGoreType = GoreID.TreeLeaf_Normal;
-            DustType = DustID.WoodFurniture;
             TextureValue = RequestOrGetDefault("", AequusTextures.Tile(TileID.Trees));
             BranchTextureValue = RequestOrGetDefault("_Branches", AequusTextures.Tree_Branches(0));
             TopTextureValue = RequestOrGetDefault("_Tops", AequusTextures.Tree_Tops(0));
@@ -53,6 +55,26 @@ public abstract class UnifiedModTree : ModTexturedType, IUnifiedTree {
             if (ModContent.HasAsset(saplingTexturePathWanted)) {
                 saplingTexturePath = saplingTexturePathWanted;
             }
+
+            string goreTexturePathWanted = $"{Texture}Leaves";
+            if (ModContent.HasAsset(goreTexturePathWanted)) {
+                ModGore leaves = new InstancedTreeEffect(Name, goreTexturePathWanted);
+                Mod.AddContent(leaves);
+            }
+
+            string dustTexturePathWanted = $"{Texture}Dust";
+            if (ModContent.HasAsset(goreTexturePathWanted)) {
+                ModDust leaves = new InstancedCloneDust(Name, dustTexturePathWanted, updateType: DustID.WoodFurniture);
+                Mod.AddContent(leaves);
+            }
+
+            _shaderSettings = new TreePaintingSettings {
+                UseSpecialGroups = true,
+                SpecialGroupMinimalHueValue = 11f / 72f,
+                SpecialGroupMaximumHueValue = 0.25f,
+                SpecialGroupMinimumSaturationValue = 0.88f,
+                SpecialGroupMaximumSaturationValue = 1f
+            };
         }
 
         ModTree = new InstancedModTree(this);
@@ -74,6 +96,12 @@ public abstract class UnifiedModTree : ModTexturedType, IUnifiedTree {
 
     public override void SetupContent() {
         ModTree.GrowsOnTileId = ValidTiles.ToArray();
+        if (Mod.TryFind($"{Name}", out ModGore modGore)) {
+            LeafGoreType = modGore.Type;
+        }
+        if (Mod.TryFind($"{Name}", out ModDust modDust)) {
+            DustType = modDust.Type;
+        }
         SetStaticDefaults();
     }
 
@@ -84,13 +112,7 @@ public abstract class UnifiedModTree : ModTexturedType, IUnifiedTree {
 
         public override TreeTypes CountsAsTreeType => _parent._treeTypeOverride;
 
-        public override TreePaintingSettings TreeShaderSettings => new TreePaintingSettings {
-            UseSpecialGroups = true,
-            SpecialGroupMinimalHueValue = 11f / 72f,
-            SpecialGroupMaximumHueValue = 0.25f,
-            SpecialGroupMinimumSaturationValue = 0.88f,
-            SpecialGroupMaximumSaturationValue = 1f
-        };
+        public override TreePaintingSettings TreeShaderSettings => _parent._shaderSettings;
 
         public InstancedModTree(UnifiedModTree parent) {
             _parent = parent;

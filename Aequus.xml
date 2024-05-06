@@ -2164,7 +2164,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 795)</summary>
+            <summary>(Total Textures: 798)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -3078,6 +3078,12 @@
         <member name="F:Aequus.AequusTextures.MeadowTree">
             <summary>Full Path: Content/Tiles/Meadow/MeadowTree</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.MeadowTreeDust">
+            <summary>Full Path: Content/Tiles/Meadow/MeadowTreeDust</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowTreeLeaves">
+            <summary>Full Path: Content/Tiles/Meadow/MeadowTreeLeaves</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.MeadowTreeSapling">
             <summary>Full Path: Content/Tiles/Meadow/MeadowTreeSapling</summary>
         </member>
@@ -3086,6 +3092,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.MeadowTree_Tops">
             <summary>Full Path: Content/Tiles/Meadow/MeadowTree_Tops</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowWood">
+            <summary>Full Path: Content/Tiles/Meadow/MeadowWood</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MeadowWoodItem">
             <summary>Full Path: Content/Tiles/Meadow/MeadowWoodItem</summary>
