@@ -46,7 +46,7 @@ PollutedBiome: {
 }
 
 PollutedDecoration.DisplayMessage: 正在倾倒垃圾...
-// PollutedCleanup.DisplayMessage: Cleaning out the trash
+PollutedCleanup.DisplayMessage: 正在清理垃圾
 Reset.DisplayMessage: ""
 
 NewCavesGeneration: {
