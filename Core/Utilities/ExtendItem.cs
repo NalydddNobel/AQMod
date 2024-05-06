@@ -1,9 +1,19 @@
 ﻿using System.Collections.Generic;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 
 namespace Aequus.Core.Utilities;
 
 public static class ExtendItem {
+    public static void CloneResearchCount(this Item item, int itemToCopy) {
+        if (CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId.TryGetValue(itemToCopy, out var researchCount)) {
+            item.ResearchUnlockCount = researchCount;
+        }
+        else {
+            item.ResearchUnlockCount = 0;
+        }
+    }
+
     public static void DropHearts(IEntitySource source, Rectangle hitbox, int guaranteedAmount, int randomAmount) {
         for (int i = 0; i < guaranteedAmount; i++) {
             Item.NewItem(source, hitbox, ItemID.Heart);

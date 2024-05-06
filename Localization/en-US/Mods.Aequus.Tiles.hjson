@@ -387,3 +387,8 @@ MeadowGrass: {
 	ItemDisplayName: Meadow Grass Seeds
 	ItemTooltip: ""
 }
+
+MeadowWood: {
+	ItemDisplayName: Meadow Wood
+	ItemTooltip: ""
+}

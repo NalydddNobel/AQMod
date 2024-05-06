@@ -387,3 +387,8 @@ MeadowGrass: {
 	ItemDisplayName: 草地种
 	ItemTooltip: ""
 }
+
+MeadowWood: {
+	ItemDisplayName: 草地木
+	ItemTooltip: ""
+}

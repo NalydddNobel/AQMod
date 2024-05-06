@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.CodeAnalysis;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -211,6 +212,17 @@ public static class Helper {
     #endregion
 
     #region World
+    public static bool InOuterPercentOfWorld(float tileX, float percent) {
+        if (percent <= 0f || percent >= 0.5f) {
+            throw new ArgumentException("Must be a value between 0 and 0.5.", nameof(percent));
+        }
+
+        float left = Main.maxTilesX * percent;
+        float right = Main.maxTilesX - left;
+
+        return tileX < left || tileX > right;
+    }
+
     public static bool FrozenTimeActive() {
         return CreativePowerManager.Instance.GetPower<CreativePowers.FreezeTime>().Enabled;
     }

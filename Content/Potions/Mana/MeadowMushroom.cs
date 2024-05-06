@@ -1,6 +1,10 @@
 ﻿namespace Aequus.Content.Potions.Mana;
 
 public class MeadowMushroom : ModItem {
+    public override void SetStaticDefaults() {
+        Item.CloneResearchCount(ItemID.Mushroom);
+    }
+
     public override void SetDefaults() {
         Item.CloneDefaults(ItemID.Mushroom);
         Item.healMana = Item.healLife;
