@@ -21,7 +21,7 @@ public class Poster : ModTile {
         TileObjectData.newTile.StyleWrapLimit = 6;
         TileObjectData.addTile(Type);
         DustType = -1;
-        AddMapEntry(CommonColor.TILE_FURNITURE);
+        AddMapEntry(CommonColor.MapWoodFurniture);
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) {

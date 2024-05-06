@@ -38,6 +38,14 @@ public sealed partial class AequusTextures : AssetManager<Texture2D> {
         return $"Terraria/Images/Tiles_{id}";
     }
 
+    public static string Tree_Branches(int id) {
+        return $"Terraria/Images/Tree_Branches_{id}";
+    }
+
+    public static string Tree_Tops(int id) {
+        return $"Terraria/Images/Tree_Tops_{id}";
+    }
+
     public static string Extra(int id) {
         return $"Terraria/Images/Extra_{id}";
     }

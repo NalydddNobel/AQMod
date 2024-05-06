@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using Terraria.Enums;
 
 namespace Aequus.Content.Tiles.Meadow;
+
 public class MeadowTree : UnifiedModTree {
-    public override IEnumerable<int> ValidTiles() {
-        yield return ModContent.TileType<MeadowGrass>();
+    public override IEnumerable<int> ValidTiles {
+        get {
+            yield return ModContent.TileType<MeadowGrass>();
+        }
     }
 
     public override int DropWood() {

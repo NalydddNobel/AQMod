@@ -29,7 +29,7 @@ public sealed class HardmodeChestSystem : ModSystem {
     private static void CobaltTierChests() {
         PlaceNewChests();
         HardmodifyChests();
-        WorldGen.BroadcastText(NetworkText.FromKey("Mods.Aequus.Announcement.HardmodeChests"), CommonColor.TEXT_EVENT.HueAdd(0.075f));
+        WorldGen.BroadcastText(NetworkText.FromKey("Mods.Aequus.Announcement.HardmodeChests"), CommonColor.TextEvent.HueAdd(0.075f));
     }
 
     private static void GetChestParams(int x, int y, out int style) {

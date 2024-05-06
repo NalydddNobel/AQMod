@@ -697,7 +697,7 @@ public class OmegaStarite : LegacyAequusBoss {
                             if (NPC.ai[2] < 10f) {
                                 if (Main.netMode != NetmodeID.MultiplayerClient) {
                                     //Item.NewItem(NPC.GetSource_Loot(), NPC.getRect(), ModContent.ItemType<BrickFish>(), 1);
-                                    WorldGen.BroadcastText(this.GetLocalization("EasterEgg").ToNetworkText(), CommonColor.TEXT_BOSS);
+                                    WorldGen.BroadcastText(this.GetLocalization("EasterEgg").ToNetworkText(), CommonColor.TextBoss);
                                 }
                                 Main.item[item].stack--;
                                 if (Main.item[item].stack <= 0) {

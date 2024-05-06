@@ -194,7 +194,7 @@ public sealed class PlanterBox : ModTile, IRandomUpdateOverride, IPostSetupConte
         //TileObjectData.newTile.StyleHorizontal = false;
         //TileObjectData.addTile(Type);
 
-        AddMapEntry(CommonColor.TILE_FURNITURE);
+        AddMapEntry(CommonColor.MapWoodFurniture);
         DustType = 37;
         AdjTiles = new int[] { TileID.PlanterBox };
     }

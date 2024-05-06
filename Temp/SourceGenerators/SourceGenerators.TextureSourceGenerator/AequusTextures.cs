@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 792)</summary>
+/// <summary>(Total Textures: 795)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -615,6 +615,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> MeadowPlants = new("Aequus/Content/Tiles/Meadow/MeadowPlants");
     /// <summary>Full Path: Content/Tiles/Meadow/MeadowTree</summary>
     public static readonly RequestCache<Texture2D> MeadowTree = new("Aequus/Content/Tiles/Meadow/MeadowTree");
+    /// <summary>Full Path: Content/Tiles/Meadow/MeadowTreeSapling</summary>
+    public static readonly RequestCache<Texture2D> MeadowTreeSapling = new("Aequus/Content/Tiles/Meadow/MeadowTreeSapling");
+    /// <summary>Full Path: Content/Tiles/Meadow/MeadowTree_Branches</summary>
+    public static readonly RequestCache<Texture2D> MeadowTree_Branches = new("Aequus/Content/Tiles/Meadow/MeadowTree_Branches");
+    /// <summary>Full Path: Content/Tiles/Meadow/MeadowTree_Tops</summary>
+    public static readonly RequestCache<Texture2D> MeadowTree_Tops = new("Aequus/Content/Tiles/Meadow/MeadowTree_Tops");
     /// <summary>Full Path: Content/Tiles/Meadow/MeadowWoodItem</summary>
     public static readonly RequestCache<Texture2D> MeadowWoodItem = new("Aequus/Content/Tiles/Meadow/MeadowWoodItem");
     /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x1</summary>

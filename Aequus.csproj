@@ -76,6 +76,9 @@
 	
   <ItemGroup>
     <None Remove="Content\Tiles\Meadow\MeadowTree.png" />
+    <None Remove="Content\Tiles\Meadow\MeadowTreeSapling.png" />
+    <None Remove="Content\Tiles\Meadow\MeadowTree_Branches.png" />
+    <None Remove="Content\Tiles\Meadow\MeadowTree_Tops.png" />
     <None Remove="Content\Tiles\Meadow\MeadowWoodItem.png" />
   </ItemGroup>
 				

@@ -32,7 +32,7 @@ public class NPCWantsToMoveIn : GlobalNPC {
         }
 
         LocalizedText npcName = Lang.GetNPCName(wantedNPC);
-        WorldGen.BroadcastText(NetworkText.FromKey("Mods.Aequus.Announcement.NPCWantsToMoveIn", npcName), CommonColor.TEXT_TOWN_NPC_ARRIVED);
+        WorldGen.BroadcastText(NetworkText.FromKey("Mods.Aequus.Announcement.NPCWantsToMoveIn", npcName), CommonColor.TextVillagerHasArrived);
         _lastNPCAnnounced = wantedNPC;
     }
 

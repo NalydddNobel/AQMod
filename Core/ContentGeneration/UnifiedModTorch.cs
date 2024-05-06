@@ -54,7 +54,7 @@ public abstract class UnifiedModTorch : ModTile {
         SafeSetStaticDefaults();
         TileObjectData.addTile(Type);
 
-        AddMapEntry(CommonColor.TILE_FURNITURE_LIGHTED, Language.GetText("ItemName.Torch"));
+        AddMapEntry(CommonColor.MapTorch, Language.GetText("ItemName.Torch"));
     }
     protected virtual void SafeSetStaticDefaults() { }
 

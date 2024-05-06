@@ -91,7 +91,7 @@ public class WaterVisibleWall : ModSystem {
     /// <param name="text"></param>
     /// <param name="entryNumber">Offsets the map Id lookup by this value. Defaults to 1, meaning that it assumes that this is the 2nd registered color for this wall.</param>
     public static void CreateWaterEntry<T>(T wall, Color baseColor, LocalizedText text = null, int entryNumber = 1) where T : ModWall, IWaterVisibleWall {
-        wall.AddMapEntry(Color.Lerp(baseColor, CommonColor.TILE_WATER, WATER_OPACITY), text);
+        wall.AddMapEntry(Color.Lerp(baseColor, CommonColor.MapWater, WATER_OPACITY), text);
         wall.WaterMapEntry = entryNumber;
     }
 }

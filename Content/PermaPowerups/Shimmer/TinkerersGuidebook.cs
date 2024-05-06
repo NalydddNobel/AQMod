@@ -28,7 +28,7 @@ public class TinkerersGuidebook : ModItem {
             NetMessage.SendData(MessageID.WorldData);
         }
         
-        WorldGen.BroadcastText(this.GetLocalization("DisplayMessage").ToNetworkText(), CommonColor.TEXT_EVENT);
+        WorldGen.BroadcastText(this.GetLocalization("DisplayMessage").ToNetworkText(), CommonColor.TextEvent);
         return true;
     }
 }

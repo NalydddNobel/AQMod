@@ -853,6 +853,16 @@
             Call <see cref="M:Aequus.Core.Collections.DictionaryRemoveQueue`2.RemoveAllQueued"/> to remove all queued entries from the Dictionary.
             </summary>
         </member>
+        <member name="T:Aequus.Core.ContentGeneration.InstancedModDust">
+            <param name="name"></param>
+            <param name="texture"></param>
+            <param name="safe">Whether this dust is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeDust"/>)</param>
+        </member>
+        <member name="M:Aequus.Core.ContentGeneration.InstancedModDust.#ctor(System.String,System.String,System.Boolean)">
+            <param name="name"></param>
+            <param name="texture"></param>
+            <param name="safe">Whether this dust is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeDust"/>)</param>
+        </member>
         <member name="T:Aequus.Core.ContentGeneration.InstancedTileItem">
             <param name="modTile"></param>
             <param name="style"></param>
@@ -1868,7 +1878,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 792)</summary>
+            <summary>(Total Textures: 795)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2781,6 +2791,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.MeadowTree">
             <summary>Full Path: Content/Tiles/Meadow/MeadowTree</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowTreeSapling">
+            <summary>Full Path: Content/Tiles/Meadow/MeadowTreeSapling</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowTree_Branches">
+            <summary>Full Path: Content/Tiles/Meadow/MeadowTree_Branches</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowTree_Tops">
+            <summary>Full Path: Content/Tiles/Meadow/MeadowTree_Tops</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MeadowWoodItem">
             <summary>Full Path: Content/Tiles/Meadow/MeadowWoodItem</summary>
