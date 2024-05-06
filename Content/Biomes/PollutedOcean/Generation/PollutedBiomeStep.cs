@@ -9,7 +9,7 @@ using Terraria.WorldBuilding;
 
 namespace Aequus.Content.Biomes.PollutedOcean.Generation;
 
-public sealed class PollutedOceanGenerator : AequusGenStep {
+public sealed class PollutedBiomeStep : AequusGenStep {
     public override string InsertAfter => "Create Ocean Caves";
 
     private static int x;
@@ -555,5 +555,12 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
         _polymerSandstoneWall = (ushort)ModContent.WallType<PolymerSandstoneWallHostile>();
         GenerateTileArrays();
         GenerateWallArrays();
+    }
+
+    public void GetIterationValues(out int left, out int right, out int top, out int bottom) {
+        left = _LeftPadded;
+        right = _RightPadded;
+        top = Math.Max(Y - 25, 10);
+        bottom = Main.UnderworldLayer + 20;
     }
 }

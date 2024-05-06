@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Aequus.DataSets;
 
-public class TileDataSet : DataSet {
+public partial class TileDataSet : DataSet {
     [JsonProperty]
     public static Dictionary<ChestStyle, Biome> ChestToBiome { get; private set; } = new();
     [JsonProperty]

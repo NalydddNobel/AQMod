@@ -24,10 +24,9 @@ GoreNestsGeneration: {
 	}
 }
 
-LavaCleanupStep.DisplayMessage: Limpiando lava
-LavaCleanup.DisplayMessage: Mods.Aequus.GenStep.LavaCleanup.DisplayMessage
+LavaCleanup.DisplayMessage: Limpiando lava
 
-PollutedOcean: {
+PollutedBiome: {
 	DisplayMessage: {
 		0: Creando un vertedero
 		1: Saboteando a las tortugas
@@ -46,7 +45,8 @@ PollutedOcean: {
 	Ores: ..Añadiendo joyas
 }
 
-PollutedOceanAmbience.DisplayMessage: Sacando la basura...
+PollutedDecoration.DisplayMessage: Sacando la basura...
+// PollutedCleanup.DisplayMessage: Cleaning out the trash
 Reset.DisplayMessage: ""
 
 NewCavesGeneration: {

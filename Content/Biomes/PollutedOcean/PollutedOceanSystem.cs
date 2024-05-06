@@ -26,8 +26,6 @@ using Terraria.DataStructures;
 namespace Aequus.Content.Biomes.PollutedOcean;
 
 public class PollutedOceanSystem : ModSystem {
-    public static List<int> BiomeTiles { get; private set; } = new();
-
     public static int PollutedTileThreshold { get; set; } = 800;
     public static int PollutedTileMax { get; set; } = 300;
     public static int PollutedTileCount { get; set; }
@@ -144,14 +142,13 @@ public class PollutedOceanSystem : ModSystem {
     }
 
     public override void Unload() {
-        BiomeTiles.Clear();
         _music = null;
     }
 
     public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts) {
         PollutedTileCount = 0;
-        foreach (var tile in BiomeTiles) {
-            PollutedTileCount += tileCounts[tile];
+        for (int i = 0; i < TileDataSet.GivesPollutedBiomePresence.Count; i++) {
+            PollutedTileCount += tileCounts[TileDataSet.GivesPollutedBiomePresence[i]];
         }
     }
 

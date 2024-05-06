@@ -14,7 +14,7 @@ using Terraria.IO;
 using Terraria.WorldBuilding;
 
 namespace Aequus.Content.Biomes.PollutedOcean.Generation;
-internal class PollutedOceanAmbienceGenerator : AequusGenStep {
+internal class PollutedDecorationStep : AequusGenStep {
     public override string InsertAfter => "Pots";
 
     protected override double GenWeight => 50f;
@@ -37,22 +37,6 @@ internal class PollutedOceanAmbienceGenerator : AequusGenStep {
     private static ushort _chest;
     #endregion
 
-    public static bool Polluted(int x, int y) {
-        if (WorldGen.SolidTile(x, y)) {
-            return false;
-        }
-
-        for (int i = x; i < x + 1; i++) {
-            for (int j = y - 1; j < y + 3; j++) {
-                if (Main.tile[i, j].TileType == PollutedOceanGenerator._polymerSand || Main.tile[i, j].TileType == PollutedOceanGenerator._polymerSandstone || Main.tile[i, j].WallType == PollutedOceanGenerator._polymerSandstoneWall) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
     public override void Apply(GenerationProgress progress, GameConfiguration config) {
         #region Initialization
         _pot1x1 = (ushort)ModContent.TileType<TrashPots1x1>();
@@ -71,19 +55,21 @@ internal class PollutedOceanAmbienceGenerator : AequusGenStep {
 
         ChestsPlaced = 0;
 
-        int left = PollutedOceanGenerator._LeftPadded;
-        int right = PollutedOceanGenerator._RightPadded;
-        int top = Math.Max(PollutedOceanGenerator.Y - 25, 10);
+        int left = PollutedBiomeStep._LeftPadded;
+        int right = PollutedBiomeStep._RightPadded;
+        int top = Math.Max(PollutedBiomeStep.Y - 25, 10);
         int bottom = Main.UnderworldLayer + 20;
         SetMessage(progress);
         for (int i = left; i < right; i++) {
             for (int j = top; j < bottom; j++) {
                 SetProgress(progress, RectangleProgress(i, j, left, right, top, bottom), 0f, 0.5f);
 
+                Tile tile = Main.tile[i, j];
+                if (!TileDataSet.Polluted.Contains(tile.TileType)) {
+                    continue;
+                }
+
                 if (Random.NextBool(3000)) {
-                    if (!Polluted(i, j)) {
-                        continue;
-                    }
                     PlaceSeaPickleSetPiece(i, j, Random.Next(30, 50));
                 }
             }
@@ -94,65 +80,61 @@ internal class PollutedOceanAmbienceGenerator : AequusGenStep {
             for (int j = top; j < bottom; j++) {
                 SetProgress(progress, RectangleProgress(i, j, left, right, top, bottom), 0.5f, 1f);
 
-                var tile = Main.tile[i, j];
-                if (tile.TileType == TileID.Pots) {
-                    if (!Polluted(i, j)) {
-                        continue;
-                    }
-
-                    WorldGen.KillTile(i, j);
+                Tile tile = Main.tile[i, j];
+                if (!TileDataSet.Polluted.Contains(tile.TileType)) {
+                    continue;
                 }
-                else if (WorldGen.SolidTile(i, j + 1)) {
-                    if (wantChest || Random.NextBool(120)) {
-                        if (!Polluted(i, j)) {
-                            continue;
-                        }
 
-                        if (PlaceChest(i, j)) {
-                            ChestsPlaced++;
-                            wantChest = false;
-                        }
-                        else {
-                            wantChest = true;
-                        }
-                    }
-                    if (Random.NextBool(3)) {
-                        if (!Polluted(i, j)) {
-                            continue;
-                        }
-
-                        PlacePot(i, j);
-                    }
-                    else if (Random.NextBool()) {
-                        if (!Polluted(i, j)) {
-                            continue;
-                        }
-
-                        PlaceAmbientTile(i, j);
-                    }
-                    else if (Random.NextBool(3)) {
-                        if (!Polluted(i, j)) {
-                            continue;
-                        }
-
-                        PlaceStalagmite(i, j);
-                    }
-                }
-                else if (WorldGen.SolidTile(i, j - 1)) {
-                    if (Random.NextBool(3)) {
-                        if (!Polluted(i, j)) {
-                            continue;
-                        }
-
-                        if (Random.NextBool()) {
-                            WorldGen.PlaceTile(i, j, _stalactite1x1, style: Random.Next(3));
-                        }
-                        else {
-                            WorldGen.PlaceTile(i, j, _stalactite1x2, style: Random.Next(3));
-                        }
+                for (int k = i - 1; k <= i+1; k++) {
+                    for (int l = j - 1; l <= j + 1; l++) {
+                        CheckTile(k, l, tile, ref wantChest);
                     }
                 }
             }
+        }
+    }
+
+    private static void CheckTile(int i, int j, Tile tile, ref bool wantChest) {
+        if (TileDataSet.RemovedInPollutedOceanGen.Contains(tile.TileType)) {
+            WorldGen.KillTile(i, j);
+        }
+
+        if (WorldGen.SolidTile(i, j)) {
+            return;
+        }
+
+        if (WorldGen.SolidTile(i, j + 1)) {
+            if (wantChest || Random.NextBool(240)) {
+                if (PlaceChest(i, j)) {
+                    ChestsPlaced++;
+                    wantChest = false;
+                }
+                else {
+                    wantChest = true;
+                }
+            }
+            else if (Random.NextBool(3)) {
+                PlacePot(i, j);
+            }
+            else if (Random.NextBool()) {
+                PlaceAmbientTile(i, j);
+            }
+            else if (Random.NextBool(3)) {
+                PlaceStalagmite(i, j);
+            }
+            return;
+        }
+
+        if (WorldGen.SolidTile(i, j - 1)) {
+            if (Random.NextBool(3)) {
+                if (Random.NextBool()) {
+                    WorldGen.PlaceTile(i, j, _stalactite1x1, style: Random.Next(3));
+                }
+                else {
+                    WorldGen.PlaceTile(i, j, _stalactite1x2, style: Random.Next(3));
+                }
+            }
+            return;
         }
     }
 
@@ -207,7 +189,7 @@ internal class PollutedOceanAmbienceGenerator : AequusGenStep {
             int endY = j + sizeY;
             progressX++;
             for (int y = j - sizeY; y < endY; y++) {
-                if (WorldGen.InWorld(x, y, 10) && PollutedOceanGenerator.ReplaceableWall[Main.tile[x, y].WallType] && Main.tile[x, y].LiquidAmount == 255 && WorldGen.SolidTile(x, y + 1) && !Random.NextBool(4)) {
+                if (WorldGen.InWorld(x, y, 10) && PollutedBiomeStep.ReplaceableWall[Main.tile[x, y].WallType] && Main.tile[x, y].LiquidAmount == 255 && WorldGen.SolidTile(x, y + 1) && !Random.NextBool(4)) {
                     ushort type = Random.Next(3) switch {
                         2 => _seaPickle1x1,
                         1 => _seaPickle1x2,

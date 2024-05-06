@@ -149,18 +149,18 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> PollutedOceanBiomeUnderground_Background = new("Aequus/Content/Biomes/PollutedOcean/PollutedOceanBiomeUnderground_Background");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeUnderground_Icon</summary>
     public static readonly RequestCache<Texture2D> PollutedOceanBiomeUnderground_Icon = new("Aequus/Content/Biomes/PollutedOcean/PollutedOceanBiomeUnderground_Icon");
-    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanDroplet</summary>
-    public static readonly RequestCache<Texture2D> PollutedOceanDroplet = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanDroplet");
-    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanSplash</summary>
-    public static readonly RequestCache<Texture2D> PollutedOceanSplash = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanSplash");
-    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanWater</summary>
-    public static readonly RequestCache<Texture2D> PollutedOceanWater = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanWater");
-    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanWaterfall</summary>
-    public static readonly RequestCache<Texture2D> PollutedOceanWaterfall = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanWaterfall");
-    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanWater_Block</summary>
-    public static readonly RequestCache<Texture2D> PollutedOceanWater_Block = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanWater_Block");
-    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanWater_Slope</summary>
-    public static readonly RequestCache<Texture2D> PollutedOceanWater_Slope = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanWater_Slope");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater</summary>
+    public static readonly RequestCache<Texture2D> PollutedWater = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedWater");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Block</summary>
+    public static readonly RequestCache<Texture2D> PollutedWater_Block = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedWater_Block");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Droplet</summary>
+    public static readonly RequestCache<Texture2D> PollutedWater_Droplet = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedWater_Droplet");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Dust</summary>
+    public static readonly RequestCache<Texture2D> PollutedWater_Dust = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedWater_Dust");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Slope</summary>
+    public static readonly RequestCache<Texture2D> PollutedWater_Slope = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedWater_Slope");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Waterfall</summary>
+    public static readonly RequestCache<Texture2D> PollutedWater_Waterfall = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedWater_Waterfall");
     /// <summary>Full Path: Content/Bosses/BossMasks/CrabsonMask</summary>
     public static readonly RequestCache<Texture2D> CrabsonMask = new("Aequus/Content/Bosses/BossMasks/CrabsonMask");
     /// <summary>Full Path: Content/Bosses/BossMasks/CrabsonMask_Head</summary>

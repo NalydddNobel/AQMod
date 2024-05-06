@@ -715,12 +715,12 @@
         <member name="F:Aequus.AequusPlayer.dropRolls">
             <summary>Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.</summary>
         </member>
-        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedOceanGenerator.SafeTile">
+        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.SafeTile">
             <summary>
-            Similar to <see cref="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedOceanGenerator.ReplaceableTile"/>, except if tile Ids in this entry are false, the Crab Crevice will actively try to steer away from generating around them.
+            Similar to <see cref="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.ReplaceableTile"/>, except if tile Ids in this entry are false, the Crab Crevice will actively try to steer away from generating around them.
             </summary>
         </member>
-        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedOceanGenerator.ReplaceableTile">
+        <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.ReplaceableTile">
             <summary>
             Lookup for tile Ids which are safe to generate over.
             </summary>
@@ -828,6 +828,282 @@
         <member name="P:Aequus.Content.Weather.Rain.RainTotem.BonusRainChanceMax">
             <summary>The extra rain chance per tick granted by having maximum totems on screen.</summary>
         </member>
+        <member name="P:Aequus.DataSets.TileDataSet.Polluted">
+            <summary>Allows the tile to have Polluted Ocean ambient tiles spawn on it.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.TileDataSet.GivesPollutedBiomePresence">
+            <summary>When this tile is nearby, it will contribute to <see cref="P:Aequus.Content.Biomes.PollutedOcean.PollutedOceanSystem.PollutedTileCount"/>.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.TileDataSet.RemovedInPollutedOceanGen">
+            <summary>When this tile is near a <see cref="P:Aequus.DataSets.TileDataSet.Polluted"/> tile, it will be destroyed during world generation.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.TileDataSet.PreventsSlopesBelow">
+            <summary>Prevents tiles below this tile from being sloped.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.BuffDataSet.CannotChangeDuration">
+            <summary>Buffs in this set should not have their duration altered, like the Luck Potion effect.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.BuffDataSet.PlayerStatusDebuff">
+            <summary>Set for compatibility with Thorium.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.BuffDataSet.PlayerDoTDebuff">
+            <summary>Set for compatibility with Thorium.</summary>
+        </member>
+        <member name="T:Aequus.DataSets.ChestLootDatabase">
+            <summary>Replica of <see cref="T:Terraria.GameContent.ItemDropRules.ItemDropDatabase"/>/<see cref="T:Terraria.GameContent.ItemDropRules.ItemDropResolver"/>, except for Aequus' chest loot.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.FishDataSet.Junk">
+            <summary>Items in this set are fishing junk.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.ItemDataSet.KeychainData">
+            <summary>Items in this set are unable to be submitted to the Physicist.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.ItemDataSet.CannotTradeWithPhysicist">
+            <summary>Items in this set are unable to be submitted to the Physicist.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.ItemDataSet.FishingJunk">
+            <summary>Items in this set are fishing junk.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.ItemDataSet.Potions">
+            <summary>Items in this set are potions.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.ItemDataSet.ShimmerTooltipResultIgnore">
+            <summary>
+            A few item results which are ignored by the Shimmer Monocle, so that common transmuations don't have crappy bloated tooltips.
+            </summary>
+        </member>
+        <member name="P:Aequus.DataSets.ItemDataSet.ImportantItem">
+            <summary>
+            Items marked as important will have special properties:
+            <list type="bullet">
+            <item>If this item is inside a chest, the chest will not gain Aequus loot, or Hardmode Chest Loot.</item>
+            </list>
+            </summary>
+        </member>
+        <member name="T:Aequus.DataSets.ItemTypeVariantDataSet">
+            <summary>
+            Dataset with lists of all supported variants of an item. 
+            </summary>
+        </member>
+        <member name="P:Aequus.DataSets.ItemTypeVariantDataSet.RottenChunk">
+            <summary><see cref="F:Terraria.ID.ItemID.RottenChunk"/>, <see cref="F:Terraria.ID.ItemID.Vertebrae"/>, Avalon/YuckyBit.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.ItemTypeVariantDataSet.DemoniteBar">
+            <summary><see cref="F:Terraria.ID.ItemID.DemoniteBar"/>, <see cref="F:Terraria.ID.ItemID.CrimtaneBar"/>, Avalon/BacciliteBar.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.Soulless">
+            <summary>
+            NPC Ids in this set cannot damage the Occultist, or have their souls trapped into Soul Gems.
+            Automatically populated with all NPC Ids which have the Underworld or Gore Nest as bestiary tags.
+            </summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.FromEclipse">
+            <summary>Automatically populated with all NPC Ids which have the Eclipse as bestiary tags.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.FromBloodMoon">
+            <summary>Automatically populated with all NPC Ids which have the Blood Moon as bestiary tags.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.IsCorrupt">
+            <summary>Automatically populated with all NPC Ids which have the Corruption as bestiary tags.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.IsCrimson">
+            <summary>Automatically populated with all NPC Ids which have the Crimson as bestiary tags.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.IsHallow">
+            <summary>Automatically populated with all NPC Ids which have the Hallow as bestiary tags.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.FromPillarEvent">
+            <summary>Automatically populated with all NPC Ids which have a Pillar as a bestiary tag.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.NameTagOverride">
+            <summary>Entries in this set can completely override the Name Tag conditional check with their own value.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.StunnableByTypeId">
+            <summary>Entries in this set are able to be stunned by the Stun Gun (<see cref="!:Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.StunnableByAI">
+            <summary>Enemies with an AI Type in this set are able to be stunned by the Stun Gun (<see cref="!:Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.FriendablePreHardmodeSlime">
+            <summary>Used for Royal Gel's Crown of Blood combination.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.FriendableHardmodeSlime">
+            <summary>Used for Volatile Gelatin's Crown of Blood combination.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.Unfriendable">
+            <summary>Enemies in this set cannot become friendly through necromancy.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.DealsHeatDamage">
+            <summary>NPCs in this set deal 'heat' contact damage. This damage can be resisted using the Frost Potion.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.PrefixBlacklist">
+            <summary>NPCs in this set cannot be given Elite affixes.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.PushableByTypeId">
+            <summary>Entries in this set are able to be pushed by the Pumpinator.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.PushableByAI">
+            <summary>Enemies with an AI Type in this set are able to be pushed by the Pumpinator.</summary>
+        </member>
+        <member name="M:Aequus.DataSets.NPCDataSet.ContainsBestiaryTags(System.Collections.Generic.List{Terraria.GameContent.Bestiary.IBestiaryInfoElement},System.Collections.Generic.List{Terraria.GameContent.Bestiary.IFilterInfoProvider})">
+            <summary>
+            Compares bestiary tags by comparing <see cref="M:Terraria.GameContent.Bestiary.IFilterInfoProvider.GetDisplayNameKey"/> results.
+            Biome/Event/Time/Ect Tags utilize <see cref="T:Terraria.GameContent.Bestiary.IFilterInfoProvider"/>.
+            </summary>
+            <param name="tags"></param>
+            <param name="searchTags"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Aequus.DataSets.ProjectileDataSet.SpriteRotation">
+            <summary>Rotation offset of projectile sprites so it can be rotated correctly.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.ProjectileDataSet.OccultistIgnore">
+            <summary>Projectiles in this set do not damage the <see cref="T:Aequus.Old.Content.TownNPCs.OccultistNPC.Occultist"/>.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.ProjectileDataSet.IsStar">
+            <summary>Whether or not this projectile is a "Star", this is automatically populated with anything that has "Star" in their internal name.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.ProjectileDataSet.DealsHeatDamage">
+            <summary>Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.</summary>
+        </member>
+        <member name="M:Aequus.DataSets.Structures.DropRulesChest.IChestLootRule.AddItem(Aequus.DataSets.Structures.DropRulesChest.ChestLootInfo@)">
+            <summary>Add the item into the chest here. <see cref="P:Aequus.DataSets.Structures.DropRulesChest.ChestLootInfo.ChestId"/> should safely index into <see cref="F:Terraria.Main.chest"/>.</summary>
+        </member>
+        <member name="M:Aequus.DataSets.Structures.DropRulesChest.IChestLootRule.CanDrop(Aequus.DataSets.Structures.DropRulesChest.ChestLootInfo@)">
+            <summary>Condition for whether this rule should be ran.</summary>
+        </member>
+        <member name="M:Aequus.DataSets.Structures.DropRulesChest.IChestLootRule.Reset">
+            <summary>Called upon <see cref="M:Terraria.ModLoader.ModSystem.ClearWorld"/> and Hardmode Chests. Use to reset values before world generation and etc.</summary>
+        </member>
+        <member name="T:Aequus.DataSets.Structures.DropRulesChest.IndexedChestRule">
+            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
+        </member>
+        <member name="M:Aequus.DataSets.Structures.DropRulesChest.IndexedChestRule.#ctor(Aequus.DataSets.Structures.DropRulesChest.IChestLootRule[],Terraria.Condition[])">
+            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
+        </member>
+        <member name="T:Aequus.DataSets.Structures.DropRulesChest.RemoveItemChestRule">
+            <summary>Usually used in conjunction with <see cref="T:Aequus.DataSets.Structures.DropRulesChest.ReplaceItemChestRule"/> to pull all of the item slots backwards after deleting the item.</summary>
+        </member>
+        <member name="T:Aequus.DataSets.Structures.DropRulesChest.ReplaceFirstSlotChestRule">
+            <summary>
+            Deletes the first slot, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Aequus.DataSets.Structures.DropRulesChest.ReplaceFirstSlotChestRule.#ctor(Aequus.DataSets.Structures.DropRulesChest.IChestLootRule,Terraria.Condition[])">
+            <summary>
+            Deletes the first slot, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="T:Aequus.DataSets.Structures.DropRulesChest.ReplaceItemChestRule">
+            <summary>
+            Finds <paramref name="ItemIdToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Aequus.DataSets.Structures.DropRulesChest.ReplaceItemChestRule.#ctor(System.Int32,Aequus.DataSets.Structures.DropRulesChest.IChestLootRule,Terraria.Condition[])">
+            <summary>
+            Finds <paramref name="ItemIdToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="T:Aequus.DataSets.Structures.DropRulesChest.ReplaceMultipleItemsChestRule">
+            <summary>
+            Finds any item which is in <paramref name="ItemIdsToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Aequus.DataSets.Structures.DropRulesChest.ReplaceMultipleItemsChestRule.#ctor(System.Int32[],Aequus.DataSets.Structures.DropRulesChest.IChestLootRule,Terraria.Condition[])">
+            <summary>
+            Finds any item which is in <paramref name="ItemIdsToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Surface">
+            <summary>Extra loot pool for Vanilla's Surface Wooden Chests.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Underground">
+            <summary>Extra loot pool for Vanilla's Underground Chests, this includes Gold, Frozen, Rich Mahogany, etc.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Sky">
+            <summary>Extra loot pool for Vanilla's Sky Chests. This includes Skyware and Locked Gold Chests located above the surface line.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.UndergroundDesert">
+            <summary>Extra loot pool for Chests located in the Underground Desert.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Pyramid">
+            <summary>Extra loot pool for Chests located in the Pyramid.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Dungeon">
+            <summary>Extra loot pool for Locked Gold Chests located in the Dungeon.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Temple">
+            <summary>Extra loot pool for Chests located in the Temple.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Gold">
+            <summary>Extra loot pool for Vanilla's Gold Chests.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Shadow">
+            <summary>Extra loot pool for Vanilla's Shadow Chests.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Frozen">
+            <summary>Extra loot pool for Vanilla's Frozen Chests. Note this is NOT the Biome Chest.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Ivy">
+            <summary>Extra loot pool for Vanilla's Ivy Chests.</summary>
+        </member>
+        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.PollutedOcean">
+            <summary>Loot pool for Polluted Ocean Trash Cans.</summary>
+        </member>
+        <member name="T:Aequus.DataSets.Structures.IDEntry`1">
+            <summary>
+            Represents an entry for a piece of content which uses an Id system.
+            <para>
+            <typeparamref name="T"/> should be one of the "X-ID" classes, like <see cref="T:Terraria.ID.ItemID"/>, <see cref="T:Terraria.ID.BuffID"/>, ect.
+            The ID class must also have an <see cref="T:ReLogic.Reflection.IdDictionary"/> named "Search", and a value for the total amount of vanilla entries labled "Count" (which can also be converted into an <see cref="T:System.Int32"/>)
+            </para>
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Aequus.DataSets.Structures.IDEntry`1.Name">
+            <summary><inheritdoc cref="P:Aequus.DataSets.Structures.IIDEntry.Name"/> Automatically grabbed from <typeparamref name="T"/>.Search.GetName(<see cref="P:Aequus.DataSets.Structures.IDEntry`1.Id"/>). Returns "Unknown" or a name of an invalid entry if no name exists.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.Structures.IDEntry`1.VanillaEntry">
+            <summary><inheritdoc cref="P:Aequus.DataSets.Structures.IIDEntry.VanillaEntry"/> Automatically determined by checking if <see cref="P:Aequus.DataSets.Structures.IDEntry`1.Id"/> is less than <typeparamref name="T"/>.Count.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.Structures.IIDEntry.Name">
+            <summary>Name for the content entry.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.Structures.IIDEntry.Id">
+            <summary>ID for the content.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.Structures.IIDEntry.ValidEntry">
+            <summary>Whether this is a valid entry. Entries for content from other mods will be marked as Invalid if the mod is not enabled.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.Structures.IIDEntry.VanillaEntry">
+            <summary>Whether this is a vanilla entry.</summary>
+        </member>
+        <member name="M:Aequus.DataSets.Structures.IIDEntry.SetName(System.String)">
+            <summary>Set <see cref="P:Aequus.DataSets.Structures.IIDEntry.Id"/> using <paramref name="name"/>. Called when loading the .json metadata files.</summary>
+            <param name="name">Name of the content.</param>
+        </member>
+        <member name="M:Aequus.DataSets.Structures.IIDEntry.SetId(System.Int32)">
+            <summary>Set <see cref="P:Aequus.DataSets.Structures.IIDEntry.Id"/> directly. Use this to update the name or other values if needed.</summary>
+            <param name="id">The Content's Id.</param>
+        </member>
         <member name="T:Aequus.Core.CodeGeneration.Publicization`2">
             <summary>Rough system which helps getting private fields from classes.</summary>
         </member>
@@ -862,6 +1138,16 @@
             <param name="name"></param>
             <param name="texture"></param>
             <param name="safe">Whether this dust is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeDust"/>)</param>
+        </member>
+        <member name="T:Aequus.Core.ContentGeneration.InstancedModGore">
+            <param name="name"></param>
+            <param name="texture"></param>
+            <param name="safe">Whether this gore is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeGore"/>)</param>
+        </member>
+        <member name="M:Aequus.Core.ContentGeneration.InstancedModGore.#ctor(System.String,System.String,System.Boolean)">
+            <param name="name"></param>
+            <param name="texture"></param>
+            <param name="safe">Whether this gore is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeGore"/>)</param>
         </member>
         <member name="T:Aequus.Core.ContentGeneration.InstancedTileItem">
             <param name="modTile"></param>
@@ -2093,23 +2379,23 @@
         <member name="F:Aequus.AequusTextures.PollutedOceanBiomeUnderground_Icon">
             <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeUnderground_Icon</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PollutedOceanDroplet">
-            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanDroplet</summary>
+        <member name="F:Aequus.AequusTextures.PollutedWater">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PollutedOceanSplash">
-            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanSplash</summary>
+        <member name="F:Aequus.AequusTextures.PollutedWater_Block">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Block</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PollutedOceanWater">
-            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanWater</summary>
+        <member name="F:Aequus.AequusTextures.PollutedWater_Droplet">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Droplet</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PollutedOceanWaterfall">
-            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanWaterfall</summary>
+        <member name="F:Aequus.AequusTextures.PollutedWater_Dust">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Dust</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PollutedOceanWater_Block">
-            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanWater_Block</summary>
+        <member name="F:Aequus.AequusTextures.PollutedWater_Slope">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Slope</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PollutedOceanWater_Slope">
-            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanWater_Slope</summary>
+        <member name="F:Aequus.AequusTextures.PollutedWater_Waterfall">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Waterfall</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonMask">
             <summary>Full Path: Content/Bosses/BossMasks/CrabsonMask</summary>
@@ -4264,273 +4550,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.BacciliteSceptre_Glow">
             <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre_Glow</summary>
-        </member>
-        <member name="P:Aequus.DataSets.BuffDataSet.CannotChangeDuration">
-            <summary>Buffs in this set should not have their duration altered, like the Luck Potion effect.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.BuffDataSet.PlayerStatusDebuff">
-            <summary>Set for compatibility with Thorium.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.BuffDataSet.PlayerDoTDebuff">
-            <summary>Set for compatibility with Thorium.</summary>
-        </member>
-        <member name="T:Aequus.DataSets.ChestLootDatabase">
-            <summary>Replica of <see cref="T:Terraria.GameContent.ItemDropRules.ItemDropDatabase"/>/<see cref="T:Terraria.GameContent.ItemDropRules.ItemDropResolver"/>, except for Aequus' chest loot.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.FishDataSet.Junk">
-            <summary>Items in this set are fishing junk.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.ItemDataSet.KeychainData">
-            <summary>Items in this set are unable to be submitted to the Physicist.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.ItemDataSet.CannotTradeWithPhysicist">
-            <summary>Items in this set are unable to be submitted to the Physicist.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.ItemDataSet.FishingJunk">
-            <summary>Items in this set are fishing junk.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.ItemDataSet.Potions">
-            <summary>Items in this set are potions.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.ItemDataSet.ShimmerTooltipResultIgnore">
-            <summary>
-            A few item results which are ignored by the Shimmer Monocle, so that common transmuations don't have crappy bloated tooltips.
-            </summary>
-        </member>
-        <member name="P:Aequus.DataSets.ItemDataSet.ImportantItem">
-            <summary>
-            Items marked as important will have special properties:
-            <list type="bullet">
-            <item>If this item is inside a chest, the chest will not gain Aequus loot, or Hardmode Chest Loot.</item>
-            </list>
-            </summary>
-        </member>
-        <member name="T:Aequus.DataSets.ItemTypeVariantDataSet">
-            <summary>
-            Dataset with lists of all supported variants of an item. 
-            </summary>
-        </member>
-        <member name="P:Aequus.DataSets.ItemTypeVariantDataSet.RottenChunk">
-            <summary><see cref="F:Terraria.ID.ItemID.RottenChunk"/>, <see cref="F:Terraria.ID.ItemID.Vertebrae"/>, Avalon/YuckyBit.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.ItemTypeVariantDataSet.DemoniteBar">
-            <summary><see cref="F:Terraria.ID.ItemID.DemoniteBar"/>, <see cref="F:Terraria.ID.ItemID.CrimtaneBar"/>, Avalon/BacciliteBar.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.NPCDataSet.Soulless">
-            <summary>
-            NPC Ids in this set cannot damage the Occultist, or have their souls trapped into Soul Gems.
-            Automatically populated with all NPC Ids which have the Underworld or Gore Nest as bestiary tags.
-            </summary>
-        </member>
-        <member name="P:Aequus.DataSets.NPCDataSet.FromEclipse">
-            <summary>Automatically populated with all NPC Ids which have the Eclipse as bestiary tags.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.NPCDataSet.FromBloodMoon">
-            <summary>Automatically populated with all NPC Ids which have the Blood Moon as bestiary tags.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.NPCDataSet.IsCorrupt">
-            <summary>Automatically populated with all NPC Ids which have the Corruption as bestiary tags.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.NPCDataSet.IsCrimson">
-            <summary>Automatically populated with all NPC Ids which have the Crimson as bestiary tags.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.NPCDataSet.IsHallow">
-            <summary>Automatically populated with all NPC Ids which have the Hallow as bestiary tags.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.NPCDataSet.FromPillarEvent">
-            <summary>Automatically populated with all NPC Ids which have a Pillar as a bestiary tag.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.NPCDataSet.NameTagOverride">
-            <summary>Entries in this set can completely override the Name Tag conditional check with their own value.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.NPCDataSet.StunnableByTypeId">
-            <summary>Entries in this set are able to be stunned by the Stun Gun (<see cref="!:Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
-        </member>
-        <member name="P:Aequus.DataSets.NPCDataSet.StunnableByAI">
-            <summary>Enemies with an AI Type in this set are able to be stunned by the Stun Gun (<see cref="!:Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
-        </member>
-        <member name="P:Aequus.DataSets.NPCDataSet.FriendablePreHardmodeSlime">
-            <summary>Used for Royal Gel's Crown of Blood combination.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.NPCDataSet.FriendableHardmodeSlime">
-            <summary>Used for Volatile Gelatin's Crown of Blood combination.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.NPCDataSet.Unfriendable">
-            <summary>Enemies in this set cannot become friendly through necromancy.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.NPCDataSet.DealsHeatDamage">
-            <summary>NPCs in this set deal 'heat' contact damage. This damage can be resisted using the Frost Potion.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.NPCDataSet.PrefixBlacklist">
-            <summary>NPCs in this set cannot be given Elite affixes.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.NPCDataSet.PushableByTypeId">
-            <summary>Entries in this set are able to be pushed by the Pumpinator.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.NPCDataSet.PushableByAI">
-            <summary>Enemies with an AI Type in this set are able to be pushed by the Pumpinator.</summary>
-        </member>
-        <member name="M:Aequus.DataSets.NPCDataSet.ContainsBestiaryTags(System.Collections.Generic.List{Terraria.GameContent.Bestiary.IBestiaryInfoElement},System.Collections.Generic.List{Terraria.GameContent.Bestiary.IFilterInfoProvider})">
-            <summary>
-            Compares bestiary tags by comparing <see cref="M:Terraria.GameContent.Bestiary.IFilterInfoProvider.GetDisplayNameKey"/> results.
-            Biome/Event/Time/Ect Tags utilize <see cref="T:Terraria.GameContent.Bestiary.IFilterInfoProvider"/>.
-            </summary>
-            <param name="tags"></param>
-            <param name="searchTags"></param>
-            <returns></returns>
-        </member>
-        <member name="P:Aequus.DataSets.ProjectileDataSet.SpriteRotation">
-            <summary>Rotation offset of projectile sprites so it can be rotated correctly.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.ProjectileDataSet.OccultistIgnore">
-            <summary>Projectiles in this set do not damage the <see cref="T:Aequus.Old.Content.TownNPCs.OccultistNPC.Occultist"/>.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.ProjectileDataSet.IsStar">
-            <summary>Whether or not this projectile is a "Star", this is automatically populated with anything that has "Star" in their internal name.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.ProjectileDataSet.DealsHeatDamage">
-            <summary>Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.</summary>
-        </member>
-        <member name="M:Aequus.DataSets.Structures.DropRulesChest.IChestLootRule.AddItem(Aequus.DataSets.Structures.DropRulesChest.ChestLootInfo@)">
-            <summary>Add the item into the chest here. <see cref="P:Aequus.DataSets.Structures.DropRulesChest.ChestLootInfo.ChestId"/> should safely index into <see cref="F:Terraria.Main.chest"/>.</summary>
-        </member>
-        <member name="M:Aequus.DataSets.Structures.DropRulesChest.IChestLootRule.CanDrop(Aequus.DataSets.Structures.DropRulesChest.ChestLootInfo@)">
-            <summary>Condition for whether this rule should be ran.</summary>
-        </member>
-        <member name="M:Aequus.DataSets.Structures.DropRulesChest.IChestLootRule.Reset">
-            <summary>Called upon <see cref="M:Terraria.ModLoader.ModSystem.ClearWorld"/> and Hardmode Chests. Use to reset values before world generation and etc.</summary>
-        </member>
-        <member name="T:Aequus.DataSets.Structures.DropRulesChest.IndexedChestRule">
-            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
-        </member>
-        <member name="M:Aequus.DataSets.Structures.DropRulesChest.IndexedChestRule.#ctor(Aequus.DataSets.Structures.DropRulesChest.IChestLootRule[],Terraria.Condition[])">
-            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
-        </member>
-        <member name="T:Aequus.DataSets.Structures.DropRulesChest.RemoveItemChestRule">
-            <summary>Usually used in conjunction with <see cref="T:Aequus.DataSets.Structures.DropRulesChest.ReplaceItemChestRule"/> to pull all of the item slots backwards after deleting the item.</summary>
-        </member>
-        <member name="T:Aequus.DataSets.Structures.DropRulesChest.ReplaceFirstSlotChestRule">
-            <summary>
-            Deletes the first slot, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:Aequus.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="M:Aequus.DataSets.Structures.DropRulesChest.ReplaceFirstSlotChestRule.#ctor(Aequus.DataSets.Structures.DropRulesChest.IChestLootRule,Terraria.Condition[])">
-            <summary>
-            Deletes the first slot, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:Aequus.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="T:Aequus.DataSets.Structures.DropRulesChest.ReplaceItemChestRule">
-            <summary>
-            Finds <paramref name="ItemIdToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:Aequus.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="M:Aequus.DataSets.Structures.DropRulesChest.ReplaceItemChestRule.#ctor(System.Int32,Aequus.DataSets.Structures.DropRulesChest.IChestLootRule,Terraria.Condition[])">
-            <summary>
-            Finds <paramref name="ItemIdToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:Aequus.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="T:Aequus.DataSets.Structures.DropRulesChest.ReplaceMultipleItemsChestRule">
-            <summary>
-            Finds any item which is in <paramref name="ItemIdsToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:Aequus.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="M:Aequus.DataSets.Structures.DropRulesChest.ReplaceMultipleItemsChestRule.#ctor(System.Int32[],Aequus.DataSets.Structures.DropRulesChest.IChestLootRule,Terraria.Condition[])">
-            <summary>
-            Finds any item which is in <paramref name="ItemIdsToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:Aequus.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Surface">
-            <summary>Extra loot pool for Vanilla's Surface Wooden Chests.</summary>
-        </member>
-        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Underground">
-            <summary>Extra loot pool for Vanilla's Underground Chests, this includes Gold, Frozen, Rich Mahogany, etc.</summary>
-        </member>
-        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Sky">
-            <summary>Extra loot pool for Vanilla's Sky Chests. This includes Skyware and Locked Gold Chests located above the surface line.</summary>
-        </member>
-        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.UndergroundDesert">
-            <summary>Extra loot pool for Chests located in the Underground Desert.</summary>
-        </member>
-        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Pyramid">
-            <summary>Extra loot pool for Chests located in the Pyramid.</summary>
-        </member>
-        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Dungeon">
-            <summary>Extra loot pool for Locked Gold Chests located in the Dungeon.</summary>
-        </member>
-        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Temple">
-            <summary>Extra loot pool for Chests located in the Temple.</summary>
-        </member>
-        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Gold">
-            <summary>Extra loot pool for Vanilla's Gold Chests.</summary>
-        </member>
-        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Shadow">
-            <summary>Extra loot pool for Vanilla's Shadow Chests.</summary>
-        </member>
-        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Frozen">
-            <summary>Extra loot pool for Vanilla's Frozen Chests. Note this is NOT the Biome Chest.</summary>
-        </member>
-        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.Ivy">
-            <summary>Extra loot pool for Vanilla's Ivy Chests.</summary>
-        </member>
-        <member name="F:Aequus.DataSets.Structures.Enums.ChestPool.PollutedOcean">
-            <summary>Loot pool for Polluted Ocean Trash Cans.</summary>
-        </member>
-        <member name="T:Aequus.DataSets.Structures.IDEntry`1">
-            <summary>
-            Represents an entry for a piece of content which uses an Id system.
-            <para>
-            <typeparamref name="T"/> should be one of the "X-ID" classes, like <see cref="T:Terraria.ID.ItemID"/>, <see cref="T:Terraria.ID.BuffID"/>, ect.
-            The ID class must also have an <see cref="T:ReLogic.Reflection.IdDictionary"/> named "Search", and a value for the total amount of vanilla entries labled "Count" (which can also be converted into an <see cref="T:System.Int32"/>)
-            </para>
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="P:Aequus.DataSets.Structures.IDEntry`1.Name">
-            <summary><inheritdoc cref="P:Aequus.DataSets.Structures.IIDEntry.Name"/> Automatically grabbed from <typeparamref name="T"/>.Search.GetName(<see cref="P:Aequus.DataSets.Structures.IDEntry`1.Id"/>). Returns "Unknown" or a name of an invalid entry if no name exists.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.Structures.IDEntry`1.VanillaEntry">
-            <summary><inheritdoc cref="P:Aequus.DataSets.Structures.IIDEntry.VanillaEntry"/> Automatically determined by checking if <see cref="P:Aequus.DataSets.Structures.IDEntry`1.Id"/> is less than <typeparamref name="T"/>.Count.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.Structures.IIDEntry.Name">
-            <summary>Name for the content entry.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.Structures.IIDEntry.Id">
-            <summary>ID for the content.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.Structures.IIDEntry.ValidEntry">
-            <summary>Whether this is a valid entry. Entries for content from other mods will be marked as Invalid if the mod is not enabled.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.Structures.IIDEntry.VanillaEntry">
-            <summary>Whether this is a vanilla entry.</summary>
-        </member>
-        <member name="M:Aequus.DataSets.Structures.IIDEntry.SetName(System.String)">
-            <summary>Set <see cref="P:Aequus.DataSets.Structures.IIDEntry.Id"/> using <paramref name="name"/>. Called when loading the .json metadata files.</summary>
-            <param name="name">Name of the content.</param>
-        </member>
-        <member name="M:Aequus.DataSets.Structures.IIDEntry.SetId(System.Int32)">
-            <summary>Set <see cref="P:Aequus.DataSets.Structures.IIDEntry.Id"/> directly. Use this to update the name or other values if needed.</summary>
-            <param name="id">The Content's Id.</param>
-        </member>
-        <member name="P:Aequus.DataSets.TileDataSet.PreventsSlopesBelow">
-            <summary>Prevents tiles below this tile from being sloped.</summary>
         </member>
         <member name="T:Aequus.Old.Common.Graphics.Camera.CameraFocus">
             <summary>

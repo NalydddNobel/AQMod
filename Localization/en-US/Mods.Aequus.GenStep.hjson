@@ -24,10 +24,9 @@ GoreNestsGeneration: {
 	}
 }
 
-LavaCleanupStep.DisplayMessage: Cleaning up lava
-LavaCleanup.DisplayMessage: Mods.Aequus.GenStep.LavaCleanup.DisplayMessage
+LavaCleanup.DisplayMessage: Cleaning up lava
 
-PollutedOcean: {
+PollutedBiome: {
 	DisplayMessage: {
 		0: Creating a landfill
 		1: Sabotaging the turtles
@@ -46,7 +45,8 @@ PollutedOcean: {
 	Ores: ..Adding Goodies
 }
 
-PollutedOceanAmbience.DisplayMessage: Taking out the trash...
+PollutedDecoration.DisplayMessage: Taking out the trash...
+PollutedCleanup.DisplayMessage: Cleaning out the trash
 Reset.DisplayMessage: ""
 
 NewCavesGeneration: {

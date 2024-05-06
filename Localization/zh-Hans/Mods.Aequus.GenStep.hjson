@@ -24,10 +24,9 @@ GoreNestsGeneration: {
 	}
 }
 
-LavaCleanupStep.DisplayMessage: 正在清理熔岩
-LavaCleanup.DisplayMessage: Mods.Aequus.GenStep.LavaCleanup.DisplayMessage
+LavaCleanup.DisplayMessage: 正在清理熔岩
 
-PollutedOcean: {
+PollutedBiome: {
 	DisplayMessage: {
 		0: 正在创建垃圾填埋场
 		1: 正在妨害海龟
@@ -46,7 +45,8 @@ PollutedOcean: {
 	Ores: ..增添美味
 }
 
-PollutedOceanAmbience.DisplayMessage: 正在倾倒垃圾...
+PollutedDecoration.DisplayMessage: 正在倾倒垃圾...
+// PollutedCleanup.DisplayMessage: Cleaning out the trash
 Reset.DisplayMessage: ""
 
 NewCavesGeneration: {

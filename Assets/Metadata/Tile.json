@@ -1,4 +1,8 @@
 {
+  "RemovedInPollutedOceanGen": [
+    "Pots",
+    "SandDrip"
+  ],
   "ChestToBiome": {
     "Gold": "Underground",
     "Marble": "Underground",
