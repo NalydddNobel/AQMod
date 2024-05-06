@@ -260,11 +260,6 @@ namespace Aequus {
 
         public Item setbonusRef;
 
-        public Item setGravetender;
-        public int gravetenderGhost;
-
-        public float zombieDebuffMultiplier;
-
         public Item accSentrySquid;
         public int sentrySquidTimer;
 
@@ -286,8 +281,6 @@ namespace Aequus {
 
         public int accGlowCore;
         public int cGlowCore;
-
-        public bool accRitualSkull;
 
         /// <summary>
         /// Set to true by <see cref="Aequus.Items.Equipment.Armor.SetTrap.DartTrapHat"/>, <see cref="Aequus.Items.Equipment.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="Aequus.Items.Armor.FlowerCrown.FlowerCrown"/>, <see cref="Aequus.Items.Equipment.Armor.SetTrap.VenomDartTrapHat"/>, <see cref="Aequus.Items.Equipment.Armor.SetWizard.MoonlunaHat"/>
@@ -330,31 +323,12 @@ namespace Aequus {
         /// </summary>
         public uint netInteractionCooldown;
 
-        [Obsolete]
-        public int soulLimit;
-
         /// <summary>
         /// Defense which works 100% no matter the difficulty mode
         /// </summary>
         public int flatDamageReduction;
 
         public int turretSlotCount;
-
-        [Obsolete]
-        public int ghostShadowDash;
-        [Obsolete]
-        public int ghostChains;
-
-        [Obsolete]
-        public int ghostSlotsMax;
-        [Obsolete]
-        public int ghostSlotsOld;
-        [Obsolete]
-        public int ghostSlots;
-        [Obsolete]
-        public int ghostProjExtraUpdates;
-        [Obsolete]
-        public int ghostLifespan;
 
         public int timeSinceLastHit;
         public int idleTime;
@@ -384,6 +358,8 @@ namespace Aequus {
         /// </summary>
         public bool InDanger => closestEnemy != -1;
         public bool InDarkness => darkness > 0.8f;
+
+        public Item setGravetender;
 
         public override void Load() {
             _playerQuickList = new List<Player>();
@@ -702,7 +678,6 @@ namespace Aequus {
             dropRerolls = usedPermaLootLuck ? 0.05f : 0f;
             luckRerolls = 0f;
             antiGravityItemRadius = 0f;
-            soulLimit = 0;
             pickTileDamage = 1f;
             ghostSlotsMax = 1;
             ghostProjExtraUpdates = 0;
@@ -839,7 +814,6 @@ namespace Aequus {
                 flatDamageReduction = 0;
                 addLuck = 0f;
                 accCrownOfBlood = null;
-                armorNecromancerBattle = null;
                 cursorDye = -1;
                 cursorDyeOverride = 0;
 
@@ -1140,7 +1114,6 @@ namespace Aequus {
         }
 
         private void OnEnterCombat() {
-            CheckNecromancerSetbonus();
         }
 
         private void OnExitCombat() {

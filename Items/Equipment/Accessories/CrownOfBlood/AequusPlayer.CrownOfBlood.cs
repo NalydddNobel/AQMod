@@ -77,7 +77,7 @@ public partial class AequusPlayer : ModPlayer {
 
         PostUpdateEquips_WormScarfEmpowerment();
         PostUpdateEquips_BoneHelmEmpowerment();
-        PostUpdateEquips_RoyalGels();
+        //PostUpdateEquips_RoyalGels();
     }
 
     private void InflictCrownOfBloodDownside(Player.HurtInfo hit) {

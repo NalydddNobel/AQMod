@@ -88,6 +88,10 @@ public class Aequus : Mod {
         return p;
     }
 
+    public static T GetPacket<T>() where T : PacketHandler {
+        return ModContent.GetInstance<T>();
+    }
+
     public override void Load()
     {
         Instance = this;

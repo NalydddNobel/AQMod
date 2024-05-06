@@ -6,13 +6,13 @@ namespace Aequus.Common {
         public static Entity CurrentEntity;
 
         public override void ClearWorld() {
-            Zombies.HardClear();
+            //Zombies.HardClear();
         }
 
         public override void PreUpdateEntities() {
             CurrentEntity = null;
-            Zombies.HardClear();
-            Zombies.UpdateIndices();
+            //Zombies.HardClear();
+            //Zombies.UpdateIndices();
         }
 
         public override void PostUpdateDusts() {

@@ -561,3 +561,8 @@ SentryBuffEmpowered: {
 	DisplayName: 哨兵增幅
 	Description: Mods.Aequus.Buffs.SentryBuffEmpowered.Description
 }
+
+CrimsonSceptreDebuff: {
+	// DisplayName: Crimson Sceptre Debuff
+	// Description: Mods.Aequus.Buffs.CrimsonSceptreDebuff.Description
+}

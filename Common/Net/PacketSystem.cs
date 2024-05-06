@@ -409,8 +409,6 @@ public partial class PacketSystem : ModSystem {
                 break;
 
             case PacketType.SyncNecromancyOwner: {
-                    byte npc = reader.ReadByte();
-                    Main.npc[npc].Aequus().PlayerOwner = reader.ReadByte();
                 }
                 break;
 

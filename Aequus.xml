@@ -1318,6 +1318,41 @@
         <member name="T:Aequus.Common.NPCs.Bestiary.IUnlockBestiaryEntryUponExisting.UnlockUponExistingUICollectionInfoProvider">
             <summary>Automatically unlocks a bestiary entry when the NPC spawns into the world.</summary>
         </member>
+        <member name="M:Aequus.Common.Particles.New.ParticleArray`1.New">
+            <returns>A single particle instance.</returns>
+        </member>
+        <member name="M:Aequus.Common.Particles.New.ParticleArray`1.NewMultiple(System.Int32)">
+            <summary>
+            Gets multiple particle instances, used to reduce <see cref="M:Aequus.Common.Particles.New.ParticleArray`1.CheckInit"/> calls. Unlike <see cref="M:Aequus.Common.Particles.New.ParticleArray`1.NewMultipleReduced(System.Int32,System.Int32)"/>, 
+            <paramref name="count"/> is NOT multiplied by <see cref="F:Terraria.Main.gfxQuality"/>.
+            </summary>
+            <param name="count">The amount of particles wanted.</param>
+        </member>
+        <member name="M:Aequus.Common.Particles.New.ParticleArray`1.NewMultipleReduced(System.Int32,System.Int32)">
+            <summary>
+            Gets multiple particle instances, used to reduce <see cref="M:Aequus.Common.Particles.New.ParticleArray`1.CheckInit"/> calls. <paramref name="count"/> is multiplied by <see cref="F:Terraria.Main.gfxQuality"/>, 
+            but returns atleast <paramref name="minimum"/> amount of particles.
+            </summary>
+            <param name="count">The amount of particles wanted. This is multiplied <see cref="F:Terraria.Main.gfxQuality"/>.</param>
+            <param name="minimum">The minimum amount of particles to return. <paramref name="count"/> is multiplied by <see cref="F:Terraria.Main.gfxQuality"/>, which reduces it depending on quality settings.</param>
+        </member>
+        <member name="M:Aequus.Common.Particles.New.ParticleArray`1.Activate">
+            <summary>
+            Allows the renderer to subscribe to various drawing actions.
+            This is ran when the particle system is activated.
+            </summary>
+        </member>
+        <member name="M:Aequus.Common.Particles.New.ParticleArray`1.Deactivate">
+            <summary>
+            Allows the renderer to unsubscribe to various drawing actions.
+            This is ran when all particles are cleared from the system.
+            </summary>
+        </member>
+        <member name="T:Aequus.Common.Particles.New.ParticleManager">
+            <summary>
+            Handles and updates particle systems.
+            </summary>
+        </member>
         <member name="M:Aequus.Common.PlayerLayers.Equipment.EquipDraw.CanDraw">
             <returns>Whether or not to draw an equip.</returns>
         </member>
@@ -1594,16 +1629,6 @@
             Defalut Value: 10
             </summary>
         </member>
-        <member name="F:Aequus.Items.Equipment.Accessories.Necro.BloodiedBucket.GhostLifespan">
-            <summary>
-            Default Value: 3600 (1 minute)
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Equipment.Accessories.Necro.NaturesCruelty.GhostHealthDR">
-            <summary>
-            Default Value: 0.25
-            </summary>
-        </member>
         <member name="F:Aequus.Items.Equipment.Accessories.Sentry.SentrySquid.SentrySquid.TurretStaffUsage.customAction">
             <summary>
             Player is the player who is summoning the sentry
@@ -1688,6 +1713,41 @@
         <member name="F:Aequus.Items.Weapons.Summon.ScribbleNotebook.ScribbleNotebookMinion.EmojiID.Thirsty">
             <summary>
             🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵 so thirsty uuuuuuuuooooooooooooooooooh~
+            </summary>
+        </member>
+        <member name="E:Aequus.Core.Graphics.DrawLayers.WorldBehindTiles">
+            <summary>Invoked before NPCs behind tiles are drawn.</summary>
+        </member>
+        <member name="E:Aequus.Core.Graphics.DrawLayers.PostDrawDust">
+            <summary>Invoked after Dusts have been drawn.</summary>
+        </member>
+        <member name="E:Aequus.Core.Graphics.DrawLayers.PostDrawLiquids">
+            <summary>Invoked after Liquids and Inferno Rings have been drawn, but before Wire Overlays are drawn.</summary>
+        </member>
+        <member name="T:Aequus.Core.UI.NewUILayer">
+            <summary>
+            Used to simplify UI implementation. Only loads in singleplayer or on multiplayer clients.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.UI.NewUILayer.#ctor(System.String,System.String,Terraria.UI.InterfaceScaleType,System.Int32)">
+            <param name="Name">Name of this layer.</param>
+            <param name="InsertLayer">Name of the layer to search the index of.</param>
+            <param name="ScaleType">Scale Type of this layer.</param>
+            <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
+        </member>
+        <member name="M:Aequus.Core.UI.NewUILayer.Activate">
+            <summary>
+            Activates the UI Layer.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.UI.NewUILayer.Deactivate">
+            <summary>
+            Deactivates the UI Layer. This does not instantly remove the layer, instead it will be removed on the next ui update.
+            </summary>
+        </member>
+        <member name="T:Aequus.Core.UI.NewUILayersSystem">
+            <summary>
+            Only loads in singleplayer or on multiplayer clients.
             </summary>
         </member>
         <member name="F:Aequus.Projectiles.AequusProjectile.sourceItemUsed">
@@ -1922,6 +1982,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="P:Aequus.Content.Necromancy.Equipment.Accessories.SpiritKeg.SaivoryKnife.GhostLifespan">
+            <summary>
+            Default Value: 3600 (1 minute)
+            </summary>
+        </member>
         <member name="M:Aequus.Content.CrossMod.SplitSupport.Split.RegisterPhotographyPage(System.Single,System.Int32,Aequus.Content.CrossMod.SplitSupport.Split.AlbumQuestInfo[])">
             <summary>
             
@@ -1988,7 +2053,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1305)</summary>
+            <summary>(Amt Textures: 1274)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -2242,9 +2307,6 @@
         <member name="F:Aequus.AequusTextures.BloodCrystal">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Healing/BloodCrystal</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.BloodiedBucket">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/BloodiedBucket</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.BloodMimic">
             <summary>Full Path: Aequus/NPCs/Monsters/BloodMoon/BloodMimic</summary>
         </member>
@@ -2256,12 +2318,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.BloodMimicBanner">
             <summary>Full Path: Aequus/Tiles/Banners/Items/BloodMimicBanner</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BloodMoonCandle">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/BloodMoonCandle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BloodMoonCandle_Flame">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/BloodMoonCandle_Flame</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BloodthirstBuff">
             <summary>Full Path: Aequus/Buffs/BloodthirstBuff</summary>
@@ -2343,6 +2399,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.BossTrophiesTile">
             <summary>Full Path: Aequus/Tiles/Furniture/Boss/BossTrophiesTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BottleOSpirits">
+            <summary>Full Path: Aequus/Content/Necromancy/Equipment/Accessories/SpiritKeg/BottleOSpirits</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BoundBow">
             <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/BoundBow/BoundBow</summary>
@@ -2470,9 +2529,6 @@
         <member name="F:Aequus.AequusTextures.CarpenterSurpriseDust">
             <summary>Full Path: Aequus/Particles/Dusts/CarpenterSurpriseDust</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CartilageRing">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/CartilageRing</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.CatalystPainting">
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x3/CatalystPainting</summary>
         </member>
@@ -2536,17 +2592,20 @@
         <member name="F:Aequus.AequusTextures.CorpseFlower">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/CorpseFlower</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CorruptionCandle">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/CorruptionCandle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CorruptionCandle_Flame">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/CorruptionCandle_Flame</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.CorruptionDemonWhip">
             <summary>Full Path: Aequus/Items/Weapons/Whips/CorruptionDemonWhip</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CorruptionHellfire">
             <summary>Full Path: Aequus/Buffs/Debuffs/CorruptionHellfire</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CorruptionSceptre">
+            <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Evil/CorruptionSceptre</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CorruptionSceptre_Glow">
+            <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Evil/CorruptionSceptre_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CorruptionSceptreProj">
+            <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Evil/CorruptionSceptreProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CorruptPlantBuff">
             <summary>Full Path: Aequus/Buffs/Minion/CorruptPlantBuff</summary>
@@ -2755,12 +2814,6 @@
         <member name="F:Aequus.AequusTextures.CrateBait">
             <summary>Full Path: Aequus/Items/Misc/FishingBait/CrateBait</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CrimsonCandle">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/CrimsonCandle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrimsonCandle_Flame">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/CrimsonCandle_Flame</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.CrimsonDemonWhip">
             <summary>Full Path: Aequus/Items/Weapons/Whips/CrimsonDemonWhip</summary>
         </member>
@@ -2768,16 +2821,10 @@
             <summary>Full Path: Aequus/Buffs/Debuffs/CrimsonHellfire</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrimsonSceptre">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptre</summary>
+            <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Evil/CrimsonSceptre</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrimsonSceptre_Glow">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptre_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrimsonSceptreParticle">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptreParticle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrimsonSceptreProj">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptreProj</summary>
+            <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Evil/CrimsonSceptre_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrownOfBloodBuff">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/CrownOfBlood/Buffs/CrownOfBloodBuff</summary>
@@ -2986,23 +3033,11 @@
         <member name="F:Aequus.AequusTextures.DragonBall">
             <summary>Full Path: Aequus/Items/Equipment/PetsUtility/OmegaStarite/DragonBall</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.DragonsBreath">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/DragonsBreath</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DragonsBreath_Flame">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/DragonsBreath_Flame</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Driftwood">
             <summary>Full Path: Aequus/Items/Misc/Trash/Driftwood</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DroneBuff">
             <summary>Full Path: Aequus/Items/Equipment/PetsUtility/Drone/DroneBuff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DungeonCandle">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/DungeonCandle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DungeonCandle_Flame">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/DungeonCandle_Flame</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustDevil">
             <summary>Full Path: Aequus/NPCs/BossMonsters/DustDevil/DustDevil</summary>
@@ -3144,9 +3179,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.EnergyDust">
             <summary>Full Path: Aequus/Particles/Dusts/EnergyDust</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EnthrallingScepter">
-            <summary>Full Path: Aequus/Unused/Items/DebugItems/EnthrallingScepter</summary>
         </member>
         <member name="F:Aequus.AequusTextures.EnvelopeGlimmer">
             <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Envelopes/EnvelopeGlimmer</summary>
@@ -3422,19 +3454,22 @@
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/Luck/GrandReward</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GravetenderHood">
-            <summary>Full Path: Aequus/Items/Equipment/Armor/SetGravetender/GravetenderHood</summary>
+            <summary>Full Path: Aequus/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderHood</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GravetenderHood_Head">
-            <summary>Full Path: Aequus/Items/Equipment/Armor/SetGravetender/GravetenderHood_Head</summary>
+            <summary>Full Path: Aequus/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderHood_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GravetenderMinionBuff">
-            <summary>Full Path: Aequus/Buffs/Minion/GravetenderMinionBuff</summary>
+            <summary>Full Path: Aequus/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderMinionBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GravetenderRobes">
-            <summary>Full Path: Aequus/Items/Equipment/Armor/SetGravetender/GravetenderRobes</summary>
+            <summary>Full Path: Aequus/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderRobes</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GravetenderRobes_Body">
-            <summary>Full Path: Aequus/Items/Equipment/Armor/SetGravetender/GravetenderRobes_Body</summary>
+            <summary>Full Path: Aequus/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderRobes_Body</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GravetenderWisp">
+            <summary>Full Path: Aequus/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderWisp</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GravityAura_0">
             <summary>Full Path: Aequus/Tiles/Blocks/GravityBlocks/Auras/GravityAura_0</summary>
@@ -3734,10 +3769,13 @@
             <summary>Full Path: Aequus/CrossMod/ThoriumModSupport/ItemContent/InspirationCursor</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Insurgency">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Insurgent/Insurgency</summary>
+            <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Dungeon/Insurgency</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Insurgency_Glow">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Insurgent/Insurgency_Glow</summary>
+            <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Dungeon/Insurgency_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.InsurgencyProj">
+            <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Dungeon/InsurgencyProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.InsurgentPainting">
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x3/InsurgentPainting</summary>
@@ -3801,6 +3839,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.JunkJet">
             <summary>Full Path: Aequus/Items/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.KegOSpirits">
+            <summary>Full Path: Aequus/Content/Necromancy/Equipment/Accessories/SpiritKeg/KegOSpirits</summary>
         </member>
         <member name="F:Aequus.AequusTextures.KryptonFish">
             <summary>Full Path: Aequus/Items/Misc/FishCatches/LegendaryFish/KryptonFish</summary>
@@ -3904,6 +3945,12 @@
         <member name="F:Aequus.AequusTextures.LittleInferno">
             <summary>Full Path: Aequus/Unused/Items/LittleInferno</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.LocustLarge">
+            <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Forbidden/LocustLarge</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LocustSmall">
+            <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Forbidden/LocustSmall</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.MadokaBow">
             <summary>Full Path: Aequus/Items/Weapons/MadokaBow</summary>
         </member>
@@ -3924,9 +3971,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.MagmabubbleLegs">
             <summary>Full Path: Aequus/NPCs/Monsters/DemonSiege/MagmabubbleLegs</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Malediction">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/Malediction</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Mallet">
             <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/Mallet/Mallet</summary>
@@ -4153,32 +4197,8 @@
         <member name="F:Aequus.AequusTextures.NarryPainting">
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas2x3/NarryPainting</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.NaturesCruelty">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/NaturesCruelty</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.NecroFragment">
             <summary>Full Path: Aequus/Items/Materials/PillarFragments/NecroFragment</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NecromancerHood">
-            <summary>Full Path: Aequus/Items/Equipment/Armor/SetNecromancer/NecromancerHood</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NecromancerHood_Head">
-            <summary>Full Path: Aequus/Items/Equipment/Armor/SetNecromancer/NecromancerHood_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NecromancerHood_Head_Glow">
-            <summary>Full Path: Aequus/Items/Equipment/Armor/SetNecromancer/NecromancerHood_Head_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NecromancerRobe">
-            <summary>Full Path: Aequus/Items/Equipment/Armor/SetNecromancer/NecromancerRobe</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NecromancerRobe_Body">
-            <summary>Full Path: Aequus/Items/Equipment/Armor/SetNecromancer/NecromancerRobe_Body</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NecromancerRobe_Legs">
-            <summary>Full Path: Aequus/Items/Equipment/Armor/SetNecromancer/NecromancerRobe_Legs</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NecromancerRobe_Legs_Glow">
-            <summary>Full Path: Aequus/Items/Equipment/Armor/SetNecromancer/NecromancerRobe_Legs_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NecromancyOwnerBuff">
             <summary>Full Path: Aequus/Buffs/Misc/NecromancyOwnerBuff</summary>
@@ -4339,12 +4359,6 @@
         <member name="F:Aequus.AequusTextures.Occultist_Shimmer">
             <summary>Full Path: Aequus/NPCs/Town/OccultistNPC/Shimmer/Occultist</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.OccultistCandle">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/OccultistCandle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OccultistCandle_Flame">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/OccultistCandle_Flame</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.OccultistHostile">
             <summary>Full Path: Aequus/NPCs/Town/OccultistNPC/OccultistHostile</summary>
         </member>
@@ -4368,9 +4382,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.OceanSlotMachine">
             <summary>Full Path: Aequus/Unused/Items/SlotMachines/OceanSlotMachine</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Ogscule">
-            <summary>Full Path: Aequus/Items/Weapons/Ogscule</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OliverPainting">
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/OliverPainting</summary>
@@ -4457,10 +4468,10 @@
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x3/OriginPainting</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Osiris">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Osiris/Osiris</summary>
+            <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Forbidden/Osiris</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Osiris_Glow">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Osiris/Osiris_Glow</summary>
+            <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Forbidden/Osiris_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OutlineDye">
             <summary>Full Path: Aequus/Items/Misc/Dyes/OutlineDye</summary>
@@ -4472,7 +4483,7 @@
             <summary>Full Path: Aequus/Content/Carpentry/Bonuses/PaletteBountyBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PandorasBox">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/PandorasBox</summary>
+            <summary>Full Path: Aequus/Content/Necromancy/Equipment/Accessories/PandorasBox</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Panel_BountyBoard">
             <summary>Full Path: Aequus/Content/UI/BountyBoard/Panel</summary>
@@ -4529,7 +4540,7 @@
             <summary>Full Path: Aequus/Items/Equipment/PetsUtility/Drone/PersonalDronePack</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PharaohsCurse">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/PharaohsCurse</summary>
+            <summary>Full Path: Aequus/Content/Necromancy/Equipment/Accessories/PharaohsCurse</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PhaseDisc">
             <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/PhaseDisc/PhaseDisc</summary>
@@ -4668,12 +4679,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.PixelPainting_6x4">
             <summary>Full Path: Aequus/Items/Tools/Cameras/MapCamera/Tile/PixelPainting_6x4</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PixieCandle">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/PixieCandle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PixieCandle_Flame">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/PixieCandle_Flame</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PlanterBoxes">
             <summary>Full Path: Aequus/Tiles/Herbs/PlanterBoxes</summary>
@@ -4931,16 +4936,10 @@
             <summary>Full Path: Aequus/Items/Weapons/Melee/Resonance</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Revenant">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/Revenant</summary>
+            <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Dungeon/Revenant</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Revenant_Glow">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/Revenant_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RevenantParticle">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/RevenantParticle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RevenantSceptreProj">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/RevenantSceptreProj</summary>
+            <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Dungeon/Revenant_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RichMansMonocle">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Money/RichMansMonocle</summary>
@@ -4949,7 +4948,7 @@
             <summary>Full Path: Aequus/Buffs/Misc/RitualBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RitualisticSkull">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/RitualisticSkull</summary>
+            <summary>Full Path: Aequus/Content/Necromancy/Equipment/Accessories/RitualisticSkull</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RockMan">
             <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/RockMan/RockMan</summary>
@@ -4962,6 +4961,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.RubyGore">
             <summary>Full Path: Aequus/Assets/Gores/Gems/RubyGore</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SaivoryKnife">
+            <summary>Full Path: Aequus/Content/Necromancy/Equipment/Accessories/SpiritKeg/SaivoryKnife</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SandstormStaff">
             <summary>Full Path: Aequus/Items/Weapons/Magic/SandstormStaff/SandstormStaff</summary>
@@ -5053,23 +5055,11 @@
         <member name="F:Aequus.AequusTextures.SentrySquid_Hat">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Sentry/SentrySquid/SentrySquid_Hat</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SeraphimHood">
-            <summary>Full Path: Aequus/Items/Equipment/Armor/SetSeraphim/SeraphimHood</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SeraphimHood_Head">
-            <summary>Full Path: Aequus/Items/Equipment/Armor/SetSeraphim/SeraphimHood_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SeraphimRobes">
-            <summary>Full Path: Aequus/Items/Equipment/Armor/SetSeraphim/SeraphimRobes</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SeraphimRobes_Body">
-            <summary>Full Path: Aequus/Items/Equipment/Armor/SetSeraphim/SeraphimRobes_Body</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.ShadowRoulette">
             <summary>Full Path: Aequus/Unused/Items/SlotMachines/ShadowRoulette</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ShadowVeer">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/ShadowVeer</summary>
+            <summary>Full Path: Aequus/Content/Necromancy/Equipment/Accessories/ShadowVeer</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Shatter">
             <summary>Full Path: Aequus/Assets/Shatter</summary>
@@ -5221,8 +5211,11 @@
         <member name="F:Aequus.AequusTextures.SoldierCrabProj">
             <summary>Full Path: Aequus/Projectiles/Monster/SoldierCrabProj</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SoulChains">
+        <member name="F:Aequus.AequusTextures.SoulChains_Assets">
             <summary>Full Path: Aequus/Assets/SoulChains</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SoulChains_Chains">
+            <summary>Full Path: Aequus/Content/Necromancy/Equipment/Accessories/Chains/SoulChains</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SoulGem">
             <summary>Full Path: Aequus/Items/Materials/SoulGem/SoulGem</summary>
@@ -5231,7 +5224,7 @@
             <summary>Full Path: Aequus/Items/Materials/SoulGem/SoulGemTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SouljointCuffs">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/SouljointCuffs</summary>
+            <summary>Full Path: Aequus/Content/Necromancy/Equipment/Accessories/Chains/SouljointCuffs</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SoulNeglectite">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/SoulNeglectite</summary>
@@ -5304,12 +5297,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.SpicyEelBuff">
             <summary>Full Path: Aequus/Items/Misc/Foods/SpicyEel/SpicyEelBuff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SpiritBottle">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/SpiritBottle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SpiritKeg">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/SpiritKeg</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SplashGlint">
             <summary>Full Path: Aequus/Content/ItemPrefixes/Potions/SplashGlint</summary>
@@ -5806,9 +5793,6 @@
         <member name="F:Aequus.AequusTextures.WabbajackProj">
             <summary>Full Path: Aequus/Projectiles/Magic/WabbajackProj</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.WadanoharaStaff">
-            <summary>Full Path: Aequus/Items/Weapons/WadanoharaStaff</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.WallPaintings2x2">
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas2x2/WallPaintings2x2</summary>
         </member>
@@ -5890,23 +5874,11 @@
         <member name="F:Aequus.AequusTextures.YinYangXmasPainting">
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas6x4/YinYangXmasPainting</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.ZombieSceptre">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptre</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ZombieSceptre_Glow">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptre_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ZombieSceptreParticle">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptreParticle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ZombieSceptreProj">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptreProj</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.ZoologistAltHead">
             <summary>Full Path: Aequus/Assets/UI/ZoologistAltHead</summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Amt Sounds: 129)</summary>
+            <summary>(Amt Sounds: 130)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.Attack_DeathRay">
             <summary>Full Path: Aequus/NPCs/BossMonsters/OmegaStarite/Sounds/Attack_DeathRay<para>Num Variants: 1</para></summary>
@@ -6150,6 +6122,9 @@
         </member>
         <member name="F:Aequus.AequusSounds.raygun">
             <summary>Full Path: Aequus/Assets/Sounds/Item/raygun<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.RecruitZombie">
+            <summary>Full Path: Aequus/Assets/Sounds/RecruitZombie<para>Num Variants: 1</para></summary>
         </member>
         <member name="F:Aequus.AequusSounds.savingGraceCast">
             <summary>Full Path: Aequus/Assets/Sounds/Item/savingGraceCast<para>Num Variants: 1</para></summary>

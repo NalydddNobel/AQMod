@@ -18,7 +18,7 @@ namespace Aequus.NPCs.BossMonsters.Upriser {
 
         public override void Load() {
             if (!Main.dedServ) {
-                GameShaders.Misc[ShaderKey] = new MiscShaderData(AequusShaders.GlintMiscShader, "EnchantmentPass")
+                GameShaders.Misc[ShaderKey] = new MiscShaderData(AequusShaders.GlintMiscShader.Asset, "EnchantmentPass")
                     .UseOpacity(0.8f)
                     .UseImage1(AequusTextures.Upriser_Wings_Effect);
             }

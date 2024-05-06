@@ -97,9 +97,9 @@ public partial class AequusPlayer : ModPlayer {
 
         var slimeNPC = Main.npc[slime];
         var aequusNPC = slimeNPC.Aequus();
-        aequusNPC.zombieInfo.IsZombie = true;
-        aequusNPC.zombieInfo.PlayerOwner = Player.whoAmI;
-        aequusNPC.zombieInfo.SetDamage = 50;
+        //aequusNPC.zombieInfo.IsZombie = true;
+        //aequusNPC.zombieInfo.PlayerOwner = Player.whoAmI;
+        //aequusNPC.zombieInfo.SetDamage = 50;
     }
 
     public void ProcWormScarfDodge() {

@@ -2,7 +2,6 @@
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Items.Materials.PearlShards;
-using Aequus.Items.Weapons.Necromancy.Candles;
 using Aequus.Tiles.Blocks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -63,17 +62,17 @@ namespace Aequus {
             Terraria.On_WorldGen.QuickFindHome += WorldGen_QuickFindHome;
         }
 
-        private static void TEDisplayDoll_Draw(Terraria.GameContent.Tile_Entities.On_TEDisplayDoll.orig_Draw orig, Terraria.GameContent.Tile_Entities.TEDisplayDoll self, int tileLeftX, int tileTopY) {
-            var texture = ModContent.Request<Texture2D>("Aequus/Tiles/Moss/MannequinArmorOverlay").Value;
-            var frame = texture.Frame(horizontalFrames: 8, frameX: 0);
-            bool facingLeft = Main.tile[tileLeftX, tileTopY].TileFrameX <= 0;
-            var drawCoords = new Vector2(tileLeftX * 16f, tileTopY * 16f) - Main.screenPosition + new Vector2(facingLeft ? -2f : -4f, -14f);
-            var effects = facingLeft ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            var color = new Color(255, 180, 180, 255);
-            Main.spriteBatch.Draw(texture, drawCoords, frame.Frame(frameX: 1, 0), color, 0f, Vector2.Zero, 1f, effects, 0f);
-            orig(self, tileLeftX, tileTopY);
-            Main.spriteBatch.Draw(texture, drawCoords, frame, color, 0f, Vector2.Zero, 1f, effects, 0f);
-        }
+        //private static void TEDisplayDoll_Draw(Terraria.GameContent.Tile_Entities.On_TEDisplayDoll.orig_Draw orig, Terraria.GameContent.Tile_Entities.TEDisplayDoll self, int tileLeftX, int tileTopY) {
+        //    var texture = ModContent.Request<Texture2D>("Aequus/Tiles/Moss/MannequinArmorOverlay").Value;
+        //    Rectangle frame = texture.Frame(horizontalFrames: 8, frameX: 0);
+        //    bool facingLeft = Main.tile[tileLeftX, tileTopY].TileFrameX <= 0;
+        //    var drawCoords = new Vector2(tileLeftX * 16f, tileTopY * 16f) - Main.screenPosition + new Vector2(facingLeft ? -2f : -4f, -14f);
+        //    var effects = facingLeft ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+        //    var color = new Color(255, 180, 180, 255);
+        //    Main.spriteBatch.Draw(texture, drawCoords, frame.Frame(frameX: 1, 0), color, 0f, Vector2.Zero, 1f, effects, 0f);
+        //    orig(self, tileLeftX, tileTopY);
+        //    Main.spriteBatch.Draw(texture, drawCoords, frame, color, 0f, Vector2.Zero, 1f, effects, 0f);
+        //}
 
         private static bool WorldGen_PlaceTile(On_WorldGen.orig_PlaceTile orig, int i, int j, int Type, bool mute, bool forced, int plr, int style) {
             if (Type >= TileID.Count && TileLoader.GetTile(Type) is TileHooks.IOnPlaceTile onPlaceTile) {
@@ -193,9 +192,6 @@ namespace Aequus {
             int c = OrbDrop();
             switch (c) {
                 case 1:
-#if DEBUG
-                    Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16f, j * 16f), 32, 32, ModContent.ItemType<CrimsonCandle>());
-#endif
                     break;
             }
         }
@@ -203,9 +199,6 @@ namespace Aequus {
             int c = OrbDrop();
             switch (c) {
                 case 1:
-#if DEBUG
-                    Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16f, j * 16f), 32, 32, ModContent.ItemType<CorruptionCandle>());
-#endif
                     break;
             }
         }

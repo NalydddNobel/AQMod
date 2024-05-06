@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1305)</summary>
+    /// <summary>(Amt Textures: 1274)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -183,8 +183,6 @@ namespace Aequus {
         public static readonly TextureAsset BlockGlove = new("Aequus/Items/Weapons/Ranged/Misc/BlockGlove/BlockGlove");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Healing/BloodCrystal</summary>
         public static readonly TextureAsset BloodCrystal = new("Aequus/Items/Equipment/Accessories/Healing/BloodCrystal");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/BloodiedBucket</summary>
-        public static readonly TextureAsset BloodiedBucket = new("Aequus/Items/Equipment/Accessories/Necro/BloodiedBucket");
         /// <summary>Full Path: Aequus/NPCs/Monsters/BloodMoon/BloodMimic</summary>
         public static readonly TextureAsset BloodMimic = new("Aequus/NPCs/Monsters/BloodMoon/BloodMimic");
         /// <summary>Full Path: Aequus/Assets/Gores/BloodMimic_0</summary>
@@ -193,10 +191,6 @@ namespace Aequus {
         public static readonly TextureAsset BloodMimic_1 = new("Aequus/Assets/Gores/BloodMimic_1");
         /// <summary>Full Path: Aequus/Tiles/Banners/Items/BloodMimicBanner</summary>
         public static readonly TextureAsset BloodMimicBanner = new("Aequus/Tiles/Banners/Items/BloodMimicBanner");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/BloodMoonCandle</summary>
-        public static readonly TextureAsset BloodMoonCandle = new("Aequus/Items/Weapons/Necromancy/Candles/BloodMoonCandle");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/BloodMoonCandle_Flame</summary>
-        public static readonly TextureAsset BloodMoonCandle_Flame = new("Aequus/Items/Weapons/Necromancy/Candles/BloodMoonCandle_Flame");
         /// <summary>Full Path: Aequus/Buffs/BloodthirstBuff</summary>
         public static readonly TextureAsset BloodthirstBuff = new("Aequus/Buffs/BloodthirstBuff");
         /// <summary>Full Path: Aequus/Items/Potions/BloodthirstPotion</summary>
@@ -251,6 +245,8 @@ namespace Aequus {
         public static readonly TextureAsset BossRelicsTile = new("Aequus/Tiles/Furniture/Boss/BossRelicsTile");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Boss/BossTrophiesTile</summary>
         public static readonly TextureAsset BossTrophiesTile = new("Aequus/Tiles/Furniture/Boss/BossTrophiesTile");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Equipment/Accessories/SpiritKeg/BottleOSpirits</summary>
+        public static readonly TextureAsset BottleOSpirits = new("Aequus/Content/Necromancy/Equipment/Accessories/SpiritKeg/BottleOSpirits");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/BoundBow/BoundBow</summary>
         public static readonly TextureAsset BoundBow = new("Aequus/Items/Weapons/Ranged/Bows/BoundBow/BoundBow");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/BoundBow/BoundBow_Glow</summary>
@@ -335,8 +331,6 @@ namespace Aequus {
         public static readonly TextureAsset CarpenterResetSheet = new("Aequus/Items/Misc/CarpenterResetSheet");
         /// <summary>Full Path: Aequus/Particles/Dusts/CarpenterSurpriseDust</summary>
         public static readonly TextureAsset CarpenterSurpriseDust = new("Aequus/Particles/Dusts/CarpenterSurpriseDust");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/CartilageRing</summary>
-        public static readonly TextureAsset CartilageRing = new("Aequus/Items/Equipment/Accessories/Necro/CartilageRing");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x3/CatalystPainting</summary>
         public static readonly TextureAsset CatalystPainting = new("Aequus/Tiles/Paintings/Canvas3x3/CatalystPainting");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/Demon/Cauterizer/Cauterizer</summary>
@@ -379,14 +373,16 @@ namespace Aequus {
         public static readonly TextureAsset CooldownBack = new("Aequus/Assets/UI/CooldownBack");
         /// <summary>Full Path: Aequus/Tiles/Misc/Plants/CorpseFlower</summary>
         public static readonly TextureAsset CorpseFlower = new("Aequus/Tiles/Misc/Plants/CorpseFlower");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/CorruptionCandle</summary>
-        public static readonly TextureAsset CorruptionCandle = new("Aequus/Items/Weapons/Necromancy/Candles/CorruptionCandle");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/CorruptionCandle_Flame</summary>
-        public static readonly TextureAsset CorruptionCandle_Flame = new("Aequus/Items/Weapons/Necromancy/Candles/CorruptionCandle_Flame");
         /// <summary>Full Path: Aequus/Items/Weapons/Whips/CorruptionDemonWhip</summary>
         public static readonly TextureAsset CorruptionDemonWhip = new("Aequus/Items/Weapons/Whips/CorruptionDemonWhip");
         /// <summary>Full Path: Aequus/Buffs/Debuffs/CorruptionHellfire</summary>
         public static readonly TextureAsset CorruptionHellfire = new("Aequus/Buffs/Debuffs/CorruptionHellfire");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Evil/CorruptionSceptre</summary>
+        public static readonly TextureAsset CorruptionSceptre = new("Aequus/Content/Necromancy/Sceptres/Evil/CorruptionSceptre");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Evil/CorruptionSceptre_Glow</summary>
+        public static readonly TextureAsset CorruptionSceptre_Glow = new("Aequus/Content/Necromancy/Sceptres/Evil/CorruptionSceptre_Glow");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Evil/CorruptionSceptreProj</summary>
+        public static readonly TextureAsset CorruptionSceptreProj = new("Aequus/Content/Necromancy/Sceptres/Evil/CorruptionSceptreProj");
         /// <summary>Full Path: Aequus/Buffs/Minion/CorruptPlantBuff</summary>
         public static readonly TextureAsset CorruptPlantBuff = new("Aequus/Buffs/Minion/CorruptPlantBuff");
         /// <summary>Full Path: Aequus/Projectiles/Summon/CorruptPlantMinion</summary>
@@ -525,22 +521,14 @@ namespace Aequus {
         public static readonly TextureAsset CrabsonTrophy = new("Aequus/Tiles/Furniture/Boss/Trophies/CrabsonTrophy");
         /// <summary>Full Path: Aequus/Items/Misc/FishingBait/CrateBait</summary>
         public static readonly TextureAsset CrateBait = new("Aequus/Items/Misc/FishingBait/CrateBait");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/CrimsonCandle</summary>
-        public static readonly TextureAsset CrimsonCandle = new("Aequus/Items/Weapons/Necromancy/Candles/CrimsonCandle");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/CrimsonCandle_Flame</summary>
-        public static readonly TextureAsset CrimsonCandle_Flame = new("Aequus/Items/Weapons/Necromancy/Candles/CrimsonCandle_Flame");
         /// <summary>Full Path: Aequus/Items/Weapons/Whips/CrimsonDemonWhip</summary>
         public static readonly TextureAsset CrimsonDemonWhip = new("Aequus/Items/Weapons/Whips/CrimsonDemonWhip");
         /// <summary>Full Path: Aequus/Buffs/Debuffs/CrimsonHellfire</summary>
         public static readonly TextureAsset CrimsonHellfire = new("Aequus/Buffs/Debuffs/CrimsonHellfire");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptre</summary>
-        public static readonly TextureAsset CrimsonSceptre = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptre");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptre_Glow</summary>
-        public static readonly TextureAsset CrimsonSceptre_Glow = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptre_Glow");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptreParticle</summary>
-        public static readonly TextureAsset CrimsonSceptreParticle = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptreParticle");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptreProj</summary>
-        public static readonly TextureAsset CrimsonSceptreProj = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptreProj");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Evil/CrimsonSceptre</summary>
+        public static readonly TextureAsset CrimsonSceptre = new("Aequus/Content/Necromancy/Sceptres/Evil/CrimsonSceptre");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Evil/CrimsonSceptre_Glow</summary>
+        public static readonly TextureAsset CrimsonSceptre_Glow = new("Aequus/Content/Necromancy/Sceptres/Evil/CrimsonSceptre_Glow");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/CrownOfBlood/Buffs/CrownOfBloodBuff</summary>
         public static readonly TextureAsset CrownOfBloodBuff = new("Aequus/Items/Equipment/Accessories/CrownOfBlood/Buffs/CrownOfBloodBuff");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/CrownOfBlood/Buffs/CrownOfBloodCooldown</summary>
@@ -679,18 +667,10 @@ namespace Aequus {
         public static readonly TextureAsset DisturbanceStaff = new("Aequus/Items/Weapons/Summon/GaleStreams/DisturbanceStaff");
         /// <summary>Full Path: Aequus/Items/Equipment/PetsUtility/OmegaStarite/DragonBall</summary>
         public static readonly TextureAsset DragonBall = new("Aequus/Items/Equipment/PetsUtility/OmegaStarite/DragonBall");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/DragonsBreath</summary>
-        public static readonly TextureAsset DragonsBreath = new("Aequus/Items/Weapons/Necromancy/Candles/DragonsBreath");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/DragonsBreath_Flame</summary>
-        public static readonly TextureAsset DragonsBreath_Flame = new("Aequus/Items/Weapons/Necromancy/Candles/DragonsBreath_Flame");
         /// <summary>Full Path: Aequus/Items/Misc/Trash/Driftwood</summary>
         public static readonly TextureAsset Driftwood = new("Aequus/Items/Misc/Trash/Driftwood");
         /// <summary>Full Path: Aequus/Items/Equipment/PetsUtility/Drone/DroneBuff</summary>
         public static readonly TextureAsset DroneBuff = new("Aequus/Items/Equipment/PetsUtility/Drone/DroneBuff");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/DungeonCandle</summary>
-        public static readonly TextureAsset DungeonCandle = new("Aequus/Items/Weapons/Necromancy/Candles/DungeonCandle");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/DungeonCandle_Flame</summary>
-        public static readonly TextureAsset DungeonCandle_Flame = new("Aequus/Items/Weapons/Necromancy/Candles/DungeonCandle_Flame");
         /// <summary>Full Path: Aequus/NPCs/BossMonsters/DustDevil/DustDevil</summary>
         public static readonly TextureAsset DustDevil = new("Aequus/NPCs/BossMonsters/DustDevil/DustDevil");
         /// <summary>Full Path: Aequus/NPCs/BossMonsters/DustDevil/DustDevil_Head_Boss</summary>
@@ -785,8 +765,6 @@ namespace Aequus {
         public static readonly TextureAsset EnchantedDyeEffect = new("Aequus/Items/Misc/Dyes/EnchantedDyeEffect");
         /// <summary>Full Path: Aequus/Particles/Dusts/EnergyDust</summary>
         public static readonly TextureAsset EnergyDust = new("Aequus/Particles/Dusts/EnergyDust");
-        /// <summary>Full Path: Aequus/Unused/Items/DebugItems/EnthrallingScepter</summary>
-        public static readonly TextureAsset EnthrallingScepter = new("Aequus/Unused/Items/DebugItems/EnthrallingScepter");
         /// <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Envelopes/EnvelopeGlimmer</summary>
         public static readonly TextureAsset EnvelopeGlimmer = new("Aequus/CrossMod/SplitSupport/ItemContent/Envelopes/EnvelopeGlimmer");
         /// <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Envelopes/EnvelopeUndergroundOcean</summary>
@@ -969,16 +947,18 @@ namespace Aequus {
         public static readonly TextureAsset GoreNestTile_Highlight = new("Aequus/Tiles/CraftingStations/GoreNestTile_Highlight");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/Luck/GrandReward</summary>
         public static readonly TextureAsset GrandReward = new("Aequus/Items/Equipment/Accessories/Misc/Luck/GrandReward");
-        /// <summary>Full Path: Aequus/Items/Equipment/Armor/SetGravetender/GravetenderHood</summary>
-        public static readonly TextureAsset GravetenderHood = new("Aequus/Items/Equipment/Armor/SetGravetender/GravetenderHood");
-        /// <summary>Full Path: Aequus/Items/Equipment/Armor/SetGravetender/GravetenderHood_Head</summary>
-        public static readonly TextureAsset GravetenderHood_Head = new("Aequus/Items/Equipment/Armor/SetGravetender/GravetenderHood_Head");
-        /// <summary>Full Path: Aequus/Buffs/Minion/GravetenderMinionBuff</summary>
-        public static readonly TextureAsset GravetenderMinionBuff = new("Aequus/Buffs/Minion/GravetenderMinionBuff");
-        /// <summary>Full Path: Aequus/Items/Equipment/Armor/SetGravetender/GravetenderRobes</summary>
-        public static readonly TextureAsset GravetenderRobes = new("Aequus/Items/Equipment/Armor/SetGravetender/GravetenderRobes");
-        /// <summary>Full Path: Aequus/Items/Equipment/Armor/SetGravetender/GravetenderRobes_Body</summary>
-        public static readonly TextureAsset GravetenderRobes_Body = new("Aequus/Items/Equipment/Armor/SetGravetender/GravetenderRobes_Body");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderHood</summary>
+        public static readonly TextureAsset GravetenderHood = new("Aequus/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderHood");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderHood_Head</summary>
+        public static readonly TextureAsset GravetenderHood_Head = new("Aequus/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderHood_Head");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderMinionBuff</summary>
+        public static readonly TextureAsset GravetenderMinionBuff = new("Aequus/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderMinionBuff");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderRobes</summary>
+        public static readonly TextureAsset GravetenderRobes = new("Aequus/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderRobes");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderRobes_Body</summary>
+        public static readonly TextureAsset GravetenderRobes_Body = new("Aequus/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderRobes_Body");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderWisp</summary>
+        public static readonly TextureAsset GravetenderWisp = new("Aequus/Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderWisp");
         /// <summary>Full Path: Aequus/Tiles/Blocks/GravityBlocks/Auras/GravityAura_0</summary>
         public static readonly TextureAsset GravityAura_0 = new("Aequus/Tiles/Blocks/GravityBlocks/Auras/GravityAura_0");
         /// <summary>Full Path: Aequus/Tiles/Blocks/GravityBlocks/Auras/GravityAura_1</summary>
@@ -1177,10 +1157,12 @@ namespace Aequus {
         public static readonly TextureAsset ImpenetrableCoating = new("Aequus/Unused/Items/ImpenetrableCoating");
         /// <summary>Full Path: Aequus/CrossMod/ThoriumModSupport/ItemContent/InspirationCursor</summary>
         public static readonly TextureAsset InspirationCursor = new("Aequus/CrossMod/ThoriumModSupport/ItemContent/InspirationCursor");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Insurgent/Insurgency</summary>
-        public static readonly TextureAsset Insurgency = new("Aequus/Items/Weapons/Necromancy/Sceptres/Insurgent/Insurgency");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Insurgent/Insurgency_Glow</summary>
-        public static readonly TextureAsset Insurgency_Glow = new("Aequus/Items/Weapons/Necromancy/Sceptres/Insurgent/Insurgency_Glow");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Dungeon/Insurgency</summary>
+        public static readonly TextureAsset Insurgency = new("Aequus/Content/Necromancy/Sceptres/Dungeon/Insurgency");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Dungeon/Insurgency_Glow</summary>
+        public static readonly TextureAsset Insurgency_Glow = new("Aequus/Content/Necromancy/Sceptres/Dungeon/Insurgency_Glow");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Dungeon/InsurgencyProj</summary>
+        public static readonly TextureAsset InsurgencyProj = new("Aequus/Content/Necromancy/Sceptres/Dungeon/InsurgencyProj");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x3/InsurgentPainting</summary>
         public static readonly TextureAsset InsurgentPainting = new("Aequus/Tiles/Paintings/Canvas3x3/InsurgentPainting");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/CrownOfBlood/InventoryBack</summary>
@@ -1223,6 +1205,8 @@ namespace Aequus {
         public static readonly TextureAsset JungleSlotMachine = new("Aequus/Unused/Items/SlotMachines/JungleSlotMachine");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
         public static readonly TextureAsset JunkJet = new("Aequus/Items/Weapons/Ranged/Misc/JunkJet/JunkJet");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Equipment/Accessories/SpiritKeg/KegOSpirits</summary>
+        public static readonly TextureAsset KegOSpirits = new("Aequus/Content/Necromancy/Equipment/Accessories/SpiritKeg/KegOSpirits");
         /// <summary>Full Path: Aequus/Items/Misc/FishCatches/LegendaryFish/KryptonFish</summary>
         public static readonly TextureAsset KryptonFish = new("Aequus/Items/Misc/FishCatches/LegendaryFish/KryptonFish");
         /// <summary>Full Path: Aequus/Tiles/MossCaves/KryptonHealPlant</summary>
@@ -1291,6 +1275,10 @@ namespace Aequus {
         public static readonly TextureAsset LiquidGunWater = new("Aequus/Unused/Items/LiquidGunWater");
         /// <summary>Full Path: Aequus/Unused/Items/LittleInferno</summary>
         public static readonly TextureAsset LittleInferno = new("Aequus/Unused/Items/LittleInferno");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Forbidden/LocustLarge</summary>
+        public static readonly TextureAsset LocustLarge = new("Aequus/Content/Necromancy/Sceptres/Forbidden/LocustLarge");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Forbidden/LocustSmall</summary>
+        public static readonly TextureAsset LocustSmall = new("Aequus/Content/Necromancy/Sceptres/Forbidden/LocustSmall");
         /// <summary>Full Path: Aequus/Items/Weapons/MadokaBow</summary>
         public static readonly TextureAsset MadokaBow = new("Aequus/Items/Weapons/MadokaBow");
         /// <summary>Full Path: Aequus/NPCs/Monsters/DemonSiege/Magmabubble</summary>
@@ -1305,8 +1293,6 @@ namespace Aequus {
         public static readonly TextureAsset MagmabubbleBullet = new("Aequus/Projectiles/Monster/MagmabubbleBullet");
         /// <summary>Full Path: Aequus/NPCs/Monsters/DemonSiege/MagmabubbleLegs</summary>
         public static readonly TextureAsset MagmabubbleLegs = new("Aequus/NPCs/Monsters/DemonSiege/MagmabubbleLegs");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/Malediction</summary>
-        public static readonly TextureAsset Malediction = new("Aequus/Items/Equipment/Accessories/Necro/Malediction");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/Mallet/Mallet</summary>
         public static readonly TextureAsset Mallet = new("Aequus/Items/Weapons/Melee/Misc/Mallet/Mallet");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/Mallet/MalletCursor_0</summary>
@@ -1457,24 +1443,8 @@ namespace Aequus {
         public static readonly TextureAsset NarrizuulProj_Glow = new("Aequus/Projectiles/Magic/NarrizuulProj_Glow");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas2x3/NarryPainting</summary>
         public static readonly TextureAsset NarryPainting = new("Aequus/Tiles/Paintings/Canvas2x3/NarryPainting");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/NaturesCruelty</summary>
-        public static readonly TextureAsset NaturesCruelty = new("Aequus/Items/Equipment/Accessories/Necro/NaturesCruelty");
         /// <summary>Full Path: Aequus/Items/Materials/PillarFragments/NecroFragment</summary>
         public static readonly TextureAsset NecroFragment = new("Aequus/Items/Materials/PillarFragments/NecroFragment");
-        /// <summary>Full Path: Aequus/Items/Equipment/Armor/SetNecromancer/NecromancerHood</summary>
-        public static readonly TextureAsset NecromancerHood = new("Aequus/Items/Equipment/Armor/SetNecromancer/NecromancerHood");
-        /// <summary>Full Path: Aequus/Items/Equipment/Armor/SetNecromancer/NecromancerHood_Head</summary>
-        public static readonly TextureAsset NecromancerHood_Head = new("Aequus/Items/Equipment/Armor/SetNecromancer/NecromancerHood_Head");
-        /// <summary>Full Path: Aequus/Items/Equipment/Armor/SetNecromancer/NecromancerHood_Head_Glow</summary>
-        public static readonly TextureAsset NecromancerHood_Head_Glow = new("Aequus/Items/Equipment/Armor/SetNecromancer/NecromancerHood_Head_Glow");
-        /// <summary>Full Path: Aequus/Items/Equipment/Armor/SetNecromancer/NecromancerRobe</summary>
-        public static readonly TextureAsset NecromancerRobe = new("Aequus/Items/Equipment/Armor/SetNecromancer/NecromancerRobe");
-        /// <summary>Full Path: Aequus/Items/Equipment/Armor/SetNecromancer/NecromancerRobe_Body</summary>
-        public static readonly TextureAsset NecromancerRobe_Body = new("Aequus/Items/Equipment/Armor/SetNecromancer/NecromancerRobe_Body");
-        /// <summary>Full Path: Aequus/Items/Equipment/Armor/SetNecromancer/NecromancerRobe_Legs</summary>
-        public static readonly TextureAsset NecromancerRobe_Legs = new("Aequus/Items/Equipment/Armor/SetNecromancer/NecromancerRobe_Legs");
-        /// <summary>Full Path: Aequus/Items/Equipment/Armor/SetNecromancer/NecromancerRobe_Legs_Glow</summary>
-        public static readonly TextureAsset NecromancerRobe_Legs_Glow = new("Aequus/Items/Equipment/Armor/SetNecromancer/NecromancerRobe_Legs_Glow");
         /// <summary>Full Path: Aequus/Buffs/Misc/NecromancyOwnerBuff</summary>
         public static readonly TextureAsset NecromancyOwnerBuff = new("Aequus/Buffs/Misc/NecromancyOwnerBuff");
         /// <summary>Full Path: Aequus/Unused/Items/NecromancyPotion</summary>
@@ -1581,10 +1551,6 @@ namespace Aequus {
         public static readonly TextureAsset Occultist_OccultistNPC = new("Aequus/NPCs/Town/OccultistNPC/Occultist");
         /// <summary>Full Path: Aequus/NPCs/Town/OccultistNPC/Shimmer/Occultist</summary>
         public static readonly TextureAsset Occultist_Shimmer = new("Aequus/NPCs/Town/OccultistNPC/Shimmer/Occultist");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/OccultistCandle</summary>
-        public static readonly TextureAsset OccultistCandle = new("Aequus/Items/Weapons/Necromancy/Candles/OccultistCandle");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/OccultistCandle_Flame</summary>
-        public static readonly TextureAsset OccultistCandle_Flame = new("Aequus/Items/Weapons/Necromancy/Candles/OccultistCandle_Flame");
         /// <summary>Full Path: Aequus/NPCs/Town/OccultistNPC/OccultistHostile</summary>
         public static readonly TextureAsset OccultistHostile = new("Aequus/NPCs/Town/OccultistNPC/OccultistHostile");
         /// <summary>Full Path: Aequus/NPCs/Town/OccultistNPC/OccultistHostile_Head</summary>
@@ -1601,8 +1567,6 @@ namespace Aequus {
         public static readonly TextureAsset OccultistSleep_Glow = new("Aequus/NPCs/Town/OccultistNPC/OccultistSleep_Glow");
         /// <summary>Full Path: Aequus/Unused/Items/SlotMachines/OceanSlotMachine</summary>
         public static readonly TextureAsset OceanSlotMachine = new("Aequus/Unused/Items/SlotMachines/OceanSlotMachine");
-        /// <summary>Full Path: Aequus/Items/Weapons/Ogscule</summary>
-        public static readonly TextureAsset Ogscule = new("Aequus/Items/Weapons/Ogscule");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/OliverPainting</summary>
         public static readonly TextureAsset OliverPainting = new("Aequus/Tiles/Paintings/Canvas3x2/OliverPainting");
         /// <summary>Full Path: Aequus/NPCs/BossMonsters/OmegaStarite/OmegaStarite</summary>
@@ -1659,18 +1623,18 @@ namespace Aequus {
         public static readonly TextureAsset OrganicEnergyGradient = new("Aequus/Assets/Effects/Textures/OrganicEnergyGradient");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x3/OriginPainting</summary>
         public static readonly TextureAsset OriginPainting = new("Aequus/Tiles/Paintings/Canvas3x3/OriginPainting");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Osiris/Osiris</summary>
-        public static readonly TextureAsset Osiris = new("Aequus/Items/Weapons/Necromancy/Sceptres/Osiris/Osiris");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Osiris/Osiris_Glow</summary>
-        public static readonly TextureAsset Osiris_Glow = new("Aequus/Items/Weapons/Necromancy/Sceptres/Osiris/Osiris_Glow");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Forbidden/Osiris</summary>
+        public static readonly TextureAsset Osiris = new("Aequus/Content/Necromancy/Sceptres/Forbidden/Osiris");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Forbidden/Osiris_Glow</summary>
+        public static readonly TextureAsset Osiris_Glow = new("Aequus/Content/Necromancy/Sceptres/Forbidden/Osiris_Glow");
         /// <summary>Full Path: Aequus/Items/Misc/Dyes/OutlineDye</summary>
         public static readonly TextureAsset OutlineDye = new("Aequus/Items/Misc/Dyes/OutlineDye");
         /// <summary>Full Path: Aequus/Items/Misc/PalePufferfish</summary>
         public static readonly TextureAsset PalePufferfish = new("Aequus/Items/Misc/PalePufferfish");
         /// <summary>Full Path: Aequus/Content/Carpentry/Bonuses/PaletteBountyBuff</summary>
         public static readonly TextureAsset PaletteBountyBuff = new("Aequus/Content/Carpentry/Bonuses/PaletteBountyBuff");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/PandorasBox</summary>
-        public static readonly TextureAsset PandorasBox = new("Aequus/Items/Equipment/Accessories/Necro/PandorasBox");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Equipment/Accessories/PandorasBox</summary>
+        public static readonly TextureAsset PandorasBox = new("Aequus/Content/Necromancy/Equipment/Accessories/PandorasBox");
         /// <summary>Full Path: Aequus/Content/UI/BountyBoard/Panel</summary>
         public static readonly TextureAsset Panel_BountyBoard = new("Aequus/Content/UI/BountyBoard/Panel");
         /// <summary>Full Path: Aequus/Content/UI/GrabBagReroll/Panel</summary>
@@ -1707,8 +1671,8 @@ namespace Aequus {
         public static readonly TextureAsset PeonyPhotobook = new("Aequus/Unused/Items/Photobook/PeonyPhotobook");
         /// <summary>Full Path: Aequus/Items/Equipment/PetsUtility/Drone/PersonalDronePack</summary>
         public static readonly TextureAsset PersonalDronePack = new("Aequus/Items/Equipment/PetsUtility/Drone/PersonalDronePack");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/PharaohsCurse</summary>
-        public static readonly TextureAsset PharaohsCurse = new("Aequus/Items/Equipment/Accessories/Necro/PharaohsCurse");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Equipment/Accessories/PharaohsCurse</summary>
+        public static readonly TextureAsset PharaohsCurse = new("Aequus/Content/Necromancy/Equipment/Accessories/PharaohsCurse");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/PhaseDisc/PhaseDisc</summary>
         public static readonly TextureAsset PhaseDisc = new("Aequus/Items/Weapons/Melee/Misc/PhaseDisc/PhaseDisc");
         /// <summary>Full Path: Aequus/Projectiles/Melee/PhaseDiscProj</summary>
@@ -1801,10 +1765,6 @@ namespace Aequus {
         public static readonly TextureAsset PixelPainting_3x3 = new("Aequus/Items/Tools/Cameras/MapCamera/Tile/PixelPainting_3x3");
         /// <summary>Full Path: Aequus/Items/Tools/Cameras/MapCamera/Tile/PixelPainting_6x4</summary>
         public static readonly TextureAsset PixelPainting_6x4 = new("Aequus/Items/Tools/Cameras/MapCamera/Tile/PixelPainting_6x4");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/PixieCandle</summary>
-        public static readonly TextureAsset PixieCandle = new("Aequus/Items/Weapons/Necromancy/Candles/PixieCandle");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/PixieCandle_Flame</summary>
-        public static readonly TextureAsset PixieCandle_Flame = new("Aequus/Items/Weapons/Necromancy/Candles/PixieCandle_Flame");
         /// <summary>Full Path: Aequus/Tiles/Herbs/PlanterBoxes</summary>
         public static readonly TextureAsset PlanterBoxes = new("Aequus/Tiles/Herbs/PlanterBoxes");
         /// <summary>Full Path: Aequus/Items/Misc/Trash/PlasticBottle</summary>
@@ -1975,20 +1935,16 @@ namespace Aequus {
         public static readonly TextureAsset RerollButton = new("Aequus/Content/UI/GrabBagReroll/RerollButton");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Resonance</summary>
         public static readonly TextureAsset Resonance = new("Aequus/Items/Weapons/Melee/Resonance");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/Revenant</summary>
-        public static readonly TextureAsset Revenant = new("Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/Revenant");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/Revenant_Glow</summary>
-        public static readonly TextureAsset Revenant_Glow = new("Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/Revenant_Glow");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/RevenantParticle</summary>
-        public static readonly TextureAsset RevenantParticle = new("Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/RevenantParticle");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/RevenantSceptreProj</summary>
-        public static readonly TextureAsset RevenantSceptreProj = new("Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/RevenantSceptreProj");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Dungeon/Revenant</summary>
+        public static readonly TextureAsset Revenant = new("Aequus/Content/Necromancy/Sceptres/Dungeon/Revenant");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Dungeon/Revenant_Glow</summary>
+        public static readonly TextureAsset Revenant_Glow = new("Aequus/Content/Necromancy/Sceptres/Dungeon/Revenant_Glow");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Money/RichMansMonocle</summary>
         public static readonly TextureAsset RichMansMonocle = new("Aequus/Items/Equipment/Accessories/Money/RichMansMonocle");
         /// <summary>Full Path: Aequus/Buffs/Misc/RitualBuff</summary>
         public static readonly TextureAsset RitualBuff = new("Aequus/Buffs/Misc/RitualBuff");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/RitualisticSkull</summary>
-        public static readonly TextureAsset RitualisticSkull = new("Aequus/Items/Equipment/Accessories/Necro/RitualisticSkull");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Equipment/Accessories/RitualisticSkull</summary>
+        public static readonly TextureAsset RitualisticSkull = new("Aequus/Content/Necromancy/Equipment/Accessories/RitualisticSkull");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/RockMan/RockMan</summary>
         public static readonly TextureAsset RockMan = new("Aequus/Items/Weapons/Melee/Swords/RockMan/RockMan");
         /// <summary>Full Path: Aequus/Unused/Items/SlotMachines/Roulette</summary>
@@ -1997,6 +1953,8 @@ namespace Aequus {
         public static readonly TextureAsset RubyDeposit = new("Aequus/Tiles/Misc/BigGems/Items/RubyDeposit");
         /// <summary>Full Path: Aequus/Assets/Gores/Gems/RubyGore</summary>
         public static readonly TextureAsset RubyGore = new("Aequus/Assets/Gores/Gems/RubyGore");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Equipment/Accessories/SpiritKeg/SaivoryKnife</summary>
+        public static readonly TextureAsset SaivoryKnife = new("Aequus/Content/Necromancy/Equipment/Accessories/SpiritKeg/SaivoryKnife");
         /// <summary>Full Path: Aequus/Items/Weapons/Magic/SandstormStaff/SandstormStaff</summary>
         public static readonly TextureAsset SandstormStaff = new("Aequus/Items/Weapons/Magic/SandstormStaff/SandstormStaff");
         /// <summary>Full Path: Aequus/Tiles/Misc/BigGems/Items/SapphireDeposit</summary>
@@ -2057,18 +2015,10 @@ namespace Aequus {
         public static readonly TextureAsset SentrySquid = new("Aequus/Items/Equipment/Accessories/Sentry/SentrySquid/SentrySquid");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Sentry/SentrySquid/SentrySquid_Hat</summary>
         public static readonly TextureAsset SentrySquid_Hat = new("Aequus/Items/Equipment/Accessories/Sentry/SentrySquid/SentrySquid_Hat");
-        /// <summary>Full Path: Aequus/Items/Equipment/Armor/SetSeraphim/SeraphimHood</summary>
-        public static readonly TextureAsset SeraphimHood = new("Aequus/Items/Equipment/Armor/SetSeraphim/SeraphimHood");
-        /// <summary>Full Path: Aequus/Items/Equipment/Armor/SetSeraphim/SeraphimHood_Head</summary>
-        public static readonly TextureAsset SeraphimHood_Head = new("Aequus/Items/Equipment/Armor/SetSeraphim/SeraphimHood_Head");
-        /// <summary>Full Path: Aequus/Items/Equipment/Armor/SetSeraphim/SeraphimRobes</summary>
-        public static readonly TextureAsset SeraphimRobes = new("Aequus/Items/Equipment/Armor/SetSeraphim/SeraphimRobes");
-        /// <summary>Full Path: Aequus/Items/Equipment/Armor/SetSeraphim/SeraphimRobes_Body</summary>
-        public static readonly TextureAsset SeraphimRobes_Body = new("Aequus/Items/Equipment/Armor/SetSeraphim/SeraphimRobes_Body");
         /// <summary>Full Path: Aequus/Unused/Items/SlotMachines/ShadowRoulette</summary>
         public static readonly TextureAsset ShadowRoulette = new("Aequus/Unused/Items/SlotMachines/ShadowRoulette");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/ShadowVeer</summary>
-        public static readonly TextureAsset ShadowVeer = new("Aequus/Items/Equipment/Accessories/Necro/ShadowVeer");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Equipment/Accessories/ShadowVeer</summary>
+        public static readonly TextureAsset ShadowVeer = new("Aequus/Content/Necromancy/Equipment/Accessories/ShadowVeer");
         /// <summary>Full Path: Aequus/Assets/Shatter</summary>
         public static readonly TextureAsset Shatter = new("Aequus/Assets/Shatter");
         /// <summary>Full Path: Aequus/Items/Misc/FishCatches/ShimmerFish</summary>
@@ -2170,13 +2120,15 @@ namespace Aequus {
         /// <summary>Full Path: Aequus/Projectiles/Monster/SoldierCrabProj</summary>
         public static readonly TextureAsset SoldierCrabProj = new("Aequus/Projectiles/Monster/SoldierCrabProj");
         /// <summary>Full Path: Aequus/Assets/SoulChains</summary>
-        public static readonly TextureAsset SoulChains = new("Aequus/Assets/SoulChains");
+        public static readonly TextureAsset SoulChains_Assets = new("Aequus/Assets/SoulChains");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Equipment/Accessories/Chains/SoulChains</summary>
+        public static readonly TextureAsset SoulChains_Chains = new("Aequus/Content/Necromancy/Equipment/Accessories/Chains/SoulChains");
         /// <summary>Full Path: Aequus/Items/Materials/SoulGem/SoulGem</summary>
         public static readonly TextureAsset SoulGem = new("Aequus/Items/Materials/SoulGem/SoulGem");
         /// <summary>Full Path: Aequus/Items/Materials/SoulGem/SoulGemTile</summary>
         public static readonly TextureAsset SoulGemTile = new("Aequus/Items/Materials/SoulGem/SoulGemTile");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/SouljointCuffs</summary>
-        public static readonly TextureAsset SouljointCuffs = new("Aequus/Items/Equipment/Accessories/Necro/SouljointCuffs");
+        /// <summary>Full Path: Aequus/Content/Necromancy/Equipment/Accessories/Chains/SouljointCuffs</summary>
+        public static readonly TextureAsset SouljointCuffs = new("Aequus/Content/Necromancy/Equipment/Accessories/Chains/SouljointCuffs");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/SoulNeglectite</summary>
         public static readonly TextureAsset SoulNeglectite = new("Aequus/Items/Equipment/Accessories/Combat/SoulNeglectite");
         /// <summary>Full Path: Aequus/NPCs/SpaceSquid/SpaceSquid</summary>
@@ -2225,10 +2177,6 @@ namespace Aequus {
         public static readonly TextureAsset SpicyEel = new("Aequus/Items/Misc/Foods/SpicyEel/SpicyEel");
         /// <summary>Full Path: Aequus/Items/Misc/Foods/SpicyEel/SpicyEelBuff</summary>
         public static readonly TextureAsset SpicyEelBuff = new("Aequus/Items/Misc/Foods/SpicyEel/SpicyEelBuff");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/SpiritBottle</summary>
-        public static readonly TextureAsset SpiritBottle = new("Aequus/Items/Equipment/Accessories/Necro/SpiritBottle");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/SpiritKeg</summary>
-        public static readonly TextureAsset SpiritKeg = new("Aequus/Items/Equipment/Accessories/Necro/SpiritKeg");
         /// <summary>Full Path: Aequus/Content/ItemPrefixes/Potions/SplashGlint</summary>
         public static readonly TextureAsset SplashGlint = new("Aequus/Content/ItemPrefixes/Potions/SplashGlint");
         /// <summary>Full Path: Aequus/Items/Tools/FishingPoles/Starcatcher</summary>
@@ -2559,8 +2507,6 @@ namespace Aequus {
         public static readonly TextureAsset Wabbajack = new("Aequus/Items/Weapons/Magic/Misc/Wabbajack/Wabbajack");
         /// <summary>Full Path: Aequus/Projectiles/Magic/WabbajackProj</summary>
         public static readonly TextureAsset WabbajackProj = new("Aequus/Projectiles/Magic/WabbajackProj");
-        /// <summary>Full Path: Aequus/Items/Weapons/WadanoharaStaff</summary>
-        public static readonly TextureAsset WadanoharaStaff = new("Aequus/Items/Weapons/WadanoharaStaff");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas2x2/WallPaintings2x2</summary>
         public static readonly TextureAsset WallPaintings2x2 = new("Aequus/Tiles/Paintings/Canvas2x2/WallPaintings2x2");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas2x3/WallPaintings2x3</summary>
@@ -2615,14 +2561,6 @@ namespace Aequus {
         public static readonly TextureAsset YinYangPainting = new("Aequus/Tiles/Paintings/Canvas3x2/YinYangPainting");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas6x4/YinYangXmasPainting</summary>
         public static readonly TextureAsset YinYangXmasPainting = new("Aequus/Tiles/Paintings/Canvas6x4/YinYangXmasPainting");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptre</summary>
-        public static readonly TextureAsset ZombieSceptre = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptre");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptre_Glow</summary>
-        public static readonly TextureAsset ZombieSceptre_Glow = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptre_Glow");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptreParticle</summary>
-        public static readonly TextureAsset ZombieSceptreParticle = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptreParticle");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptreProj</summary>
-        public static readonly TextureAsset ZombieSceptreProj = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptreProj");
         /// <summary>Full Path: Aequus/Assets/UI/ZoologistAltHead</summary>
         public static readonly TextureAsset ZoologistAltHead = new("Aequus/Assets/UI/ZoologistAltHead");
     }

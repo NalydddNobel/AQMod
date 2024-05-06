@@ -878,3 +878,23 @@ ScarabDynamite: {
 		'It'll help you take your mind off things'
 		'''
 }
+
+BottleOSpirits: {
+	DisplayName: Bottle O Spirits
+	Tooltip: ""
+}
+
+KegOSpirits: {
+	DisplayName: Keg O Spirits
+	Tooltip: ""
+}
+
+SaivoryKnife: {
+	DisplayName: Saivory Knife
+	Tooltip: ""
+}
+
+CorruptionSceptre: {
+	DisplayName: Corruption Sceptre
+	Tooltip: ""
+}

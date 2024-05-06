@@ -21,7 +21,7 @@ namespace Aequus.Content.ItemPrefixes.Potions {
             HasGlint = true;
             shaderKey = $"Aequus:{Name}";
             GameShaders.Misc[shaderKey] = new MiscShaderData(
-                AequusShaders.GlintMiscShader,
+                AequusShaders.GlintMiscShader.Asset,
                 "EnchantmentPass")
                 .UseOpacity(0.8f)
                 .UseImage1(ModContent.Request<Texture2D>(glintTexture));

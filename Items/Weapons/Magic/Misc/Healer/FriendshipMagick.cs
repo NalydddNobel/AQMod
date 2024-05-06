@@ -1,29 +1,22 @@
 ﻿using Aequus;
 using Aequus.Common.Particles;
 using Aequus.Common.Recipes;
-using Aequus.Content.Necromancy;
-using Aequus.Items.Weapons.Necromancy.Sceptres.Zombie.Corruption;
-using Aequus.Items.Weapons.Necromancy.Sceptres.Zombie.Crimson;
 using Aequus.NPCs;
+using Aequus.Content.Necromancy.Sceptres.Evil;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Misc.Friendly;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Graphics.Renderers;
-using Terraria.ID;
-using Terraria.ModLoader;
+using Aequus.Content.Necromancy;
 
 namespace Aequus.Items.Weapons.Magic.Misc.Healer {
     [AutoloadGlowMask]
     public class FriendshipMagick : ModItem {
-
         public override void SetStaticDefaults() {
-            AequusRecipes.AddShimmerCraft(ModContent.ItemType<ZombieSceptre>(), Type);
+            AequusRecipes.AddShimmerCraft(ModContent.ItemType<CorruptionSceptre>(), Type);
             AequusRecipes.AddShimmerCraft(ModContent.ItemType<CrimsonSceptre>(), Type);
             AequusItem.HasCooldown.Add(Type);
             Item.staff[Type] = true;
@@ -130,7 +123,7 @@ namespace Aequus.Projectiles.Misc.Friendly {
                 if (Main.npc[i].active && Projectile.Distance(Main.npc[i].getRect().ClosestPointInRect(Projectile.Center)) < healingRange) {
                     velocityMultiplier *= 0.5f;
                     if (Projectile.ai[0] > 30f) {
-                        if (Main.npc[i].boss || !Main.npc[i].TryGetGlobalNPC<AequusNPC>(out var aequusNPC) || aequusNPC.IsZombie) {
+                        if (Main.npc[i].boss || !Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var aequusNPC) || aequusNPC.isZombie) {
                             continue;
                         }
 

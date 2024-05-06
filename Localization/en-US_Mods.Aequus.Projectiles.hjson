@@ -251,3 +251,7 @@ CrimsonSceptreProjOnHit.DisplayName: $"{$Items.CrimsonSceptre.DisplayName}"
 SceptreProcProj.DisplayName: Sceptre Proc Proj
 PixelCameraHeldProj.DisplayName: Pixel Camera Held Proj
 UpriserNecromancyAttack.DisplayName: Upriser Necromancy Attack
+InsurgencyProj.DisplayName: Insurgency Proj
+RevenantProj.DisplayName: Revenant Proj
+CorruptionSceptreProj.DisplayName: Corruption Sceptre Proj
+OsirisProj.DisplayName: Osiris Proj

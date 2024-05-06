@@ -4,7 +4,7 @@
 	
   <PropertyGroup>
     <AssemblyName>Aequus</AssemblyName>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>latest</LangVersion>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
@@ -15,12 +15,25 @@
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
 		
-  <ItemGroup>
-    <None Remove="SourceGenerators\**" />
-	<EmbeddedResource Remove="SourceGenerators\**" />
-	<Compile Remove="SourceGenerators\**" />
-  </ItemGroup>
-
+	<ItemGroup>
+		<None Remove="Old\**" Condition="'$(Configuration)' == 'Debug'" />
+		<EmbeddedResource Remove="Content\Currency\**" />
+		<EmbeddedResource Remove="Old\**" Condition="'$(Configuration)' == 'Debug'" />
+		<None Remove="Temp\SourceGenerators.Generator\**" />
+		<EmbeddedResource Remove="Temp\SourceGenerators.Generator\**" />
+		<Compile Remove="Content\Currency\**" />
+		<Compile Remove="Temp\SourceGenerators.Generator\**" />
+		<None Remove="UnitTesting\**" />
+		<EmbeddedResource Remove="UnitTesting\**" />
+		<Compile Remove="UnitTesting\**" />
+		<None Remove="TerrariaProxy\**" />
+		<EmbeddedResource Remove="TerrariaProxy\**" />
+		<Compile Remove="TerrariaProxy\**" />
+		<None Remove="SourceGenerators\**" />
+		<EmbeddedResource Remove="SourceGenerators\**" />
+		<Compile Remove="SourceGenerators\**" />
+	</ItemGroup>
+	
   <ItemGroup>
 	<ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	<AdditionalFiles Include="**\*.png" />
@@ -39,6 +52,39 @@
 
   <ItemGroup>
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\Sounds\RecruitZombie.ogg" />
+    <None Remove="Content\Necromancy\Equipment\Accessories\Chains\SoulChains.png" />
+    <None Remove="Content\Necromancy\Equipment\Accessories\Chains\SouljointCuffs.png" />
+    <None Remove="Content\Necromancy\Equipment\Accessories\PandorasBox.png" />
+    <None Remove="Content\Necromancy\Equipment\Accessories\PharaohsCurse.png" />
+    <None Remove="Content\Necromancy\Equipment\Accessories\RitualisticSkull.png" />
+    <None Remove="Content\Necromancy\Equipment\Accessories\ShadowVeer.png" />
+    <None Remove="Content\Necromancy\Equipment\Accessories\SpiritKeg\BottleOSpirits.png" />
+    <None Remove="Content\Necromancy\Equipment\Accessories\SpiritKeg\KegOSpirits.png" />
+    <None Remove="Content\Necromancy\Equipment\Accessories\SpiritKeg\SaivoryKnife.png" />
+    <None Remove="Content\Necromancy\Equipment\Armor\SetGravetender\GravetenderHood.png" />
+    <None Remove="Content\Necromancy\Equipment\Armor\SetGravetender\GravetenderHood_Head.png" />
+    <None Remove="Content\Necromancy\Equipment\Armor\SetGravetender\GravetenderMinionBuff.png" />
+    <None Remove="Content\Necromancy\Equipment\Armor\SetGravetender\GravetenderRobes.png" />
+    <None Remove="Content\Necromancy\Equipment\Armor\SetGravetender\GravetenderRobes_Body.png" />
+    <None Remove="Content\Necromancy\Equipment\Armor\SetGravetender\GravetenderWisp.png" />
+    <None Remove="Content\Necromancy\Sceptres\Dungeon\Insurgency.png" />
+    <None Remove="Content\Necromancy\Sceptres\Dungeon\InsurgencyProj.png" />
+    <None Remove="Content\Necromancy\Sceptres\Dungeon\Insurgency_Glow.png" />
+    <None Remove="Content\Necromancy\Sceptres\Dungeon\Revenant.png" />
+    <None Remove="Content\Necromancy\Sceptres\Dungeon\Revenant_Glow.png" />
+    <None Remove="Content\Necromancy\Sceptres\Evil\CorruptionSceptre.png" />
+    <None Remove="Content\Necromancy\Sceptres\Evil\CorruptionSceptreProj.png" />
+    <None Remove="Content\Necromancy\Sceptres\Evil\CorruptionSceptre_Glow.png" />
+    <None Remove="Content\Necromancy\Sceptres\Evil\CrimsonSceptre.png" />
+    <None Remove="Content\Necromancy\Sceptres\Evil\CrimsonSceptre_Glow.png" />
+    <None Remove="Content\Necromancy\Sceptres\Forbidden\LocustLarge.png" />
+    <None Remove="Content\Necromancy\Sceptres\Forbidden\LocustSmall.png" />
+    <None Remove="Content\Necromancy\Sceptres\Forbidden\Osiris.png" />
+    <None Remove="Content\Necromancy\Sceptres\Forbidden\Osiris_Glow.png" />
   </ItemGroup>
 
 </Project>

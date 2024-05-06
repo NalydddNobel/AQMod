@@ -47,6 +47,9 @@
         RecordBreaker,
         WormScarfDodge,
         LuckyDropSpawn,
+        SyncNecromancyNPCPacket,
+        ZombieConvertEffectsPacket,
+        SyncNecromancyOwnerPacket,
         Count
     }
 }

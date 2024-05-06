@@ -10,7 +10,6 @@ using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc.FishingBait;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee.Swords.IronLotus;
-using Aequus.Items.Weapons.Necromancy.Candles;
 using Aequus.Items.Weapons.Ranged.Misc.Slingshot;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
@@ -56,6 +55,7 @@ namespace Aequus.Items {
                 case ItemID.GoldenCrateHard:
                     itemLoot.Add(ItemDropRule.OneFromOptions(1, HardmodeChestBoost.HardmodeChestLoot.ToArray()));
                     goto case ItemID.GoldenCrate;
+                    break;
 
                 case ItemID.GoldenCrate:
                     itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<SwordCursor>(), 4));
@@ -73,11 +73,13 @@ namespace Aequus.Items {
                 case ItemID.JungleFishingCrateHard:
                     itemLoot.Add(ItemDropRule.OneFromOptions(1, HardmodeChestBoost.HardmodeJungleChestLoot.ToArray()));
                     goto case ItemID.JungleFishingCrate;
+                    break;
 
                 // Frozen and Boreal Crate loot
                 case ItemID.FrozenCrateHard:
                     itemLoot.Add(ItemDropRule.OneFromOptions(1, HardmodeChestBoost.HardmodeSnowChestLoot.ToArray()));
                     goto case ItemID.FrozenCrate;
+                    break;
                 case ItemID.FrozenCrate:
                     itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrozenTechnology>(), 2));
                     goto BiomeCrate;
@@ -98,16 +100,10 @@ namespace Aequus.Items {
 
                 case ItemID.CorruptFishingCrate:
                 case ItemID.CorruptFishingCrateHard:
-#if DEBUG
-                    itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<CorruptionCandle>(), 3));
-#endif
                     goto BiomeCrate;
 
                 case ItemID.CrimsonFishingCrate:
                 case ItemID.CrimsonFishingCrateHard:
-#if DEBUG
-                    itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<CrimsonCandle>(), 3));
-#endif
                     goto BiomeCrate;
 
                 case ItemID.FloatingIslandFishingCrate:

@@ -130,7 +130,7 @@ namespace Aequus.Projectiles {
         }
 
         public override void SetDefaults(Projectile projectile) {
-            SetDefaults_Zombie();
+            //SetDefaults_Zombie();
             if (ProjectileSets.DealsHeatDamage.Contains(projectile.type)) {
                 heatDamage = true;
             }
@@ -152,7 +152,7 @@ namespace Aequus.Projectiles {
                         sourceAmmoUsed = parentAequusProjectile.sourceAmmoUsed;
                     }
                 }
-                zombieInfo.Inherit(parentAequusProjectile.zombieInfo);
+                //zombieInfo.Inherit(parentAequusProjectile.zombieInfo);
             }
         }
 
@@ -164,7 +164,7 @@ namespace Aequus.Projectiles {
                 var parentNPC = Main.npc[sourceNPC];
                 if (parentNPC.TryGetGlobalNPC<AequusNPC>(out var aequusNPC)) {
                     friendship = aequusNPC.friendship;
-                    zombieInfo.Inherit(aequusNPC.zombieInfo);
+                    //zombieInfo.Inherit(aequusNPC.zombieInfo);
                 }
             }
             else if (projectile.friendly && projectile.owner == Main.myPlayer) {
@@ -273,7 +273,7 @@ namespace Aequus.Projectiles {
         }
 
         public override bool PreAI(Projectile projectile) {
-            PreAI_CheckZombie(projectile);
+            //PreAI_CheckZombie(projectile);
             if (!aiInit) {
                 if (sourceItemUsed != -1 && ItemLoader.GetItem(sourceItemUsed) is ItemHooks.IOnSpawnProjectile onSpawnHook2) {
                     onSpawnHook2.InitalizeProjectile(projectile, this);
@@ -377,7 +377,7 @@ namespace Aequus.Projectiles {
             }
 
             PostAI_UpdateFriendship(projectile);
-            PostAI_CheckZombie(projectile);
+            //PostAI_CheckZombie(projectile);
 
             if (projectile.type == ProjectileID.PortalGunBolt) {
                 var checkTileCoords = projectile.Center.ToTileCoordinates();

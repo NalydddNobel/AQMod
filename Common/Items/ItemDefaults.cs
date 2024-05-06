@@ -115,14 +115,6 @@ namespace Aequus.Common.Items {
             item.maxStack = Item.CommonMaxStack;
         }
 
-        public static void DefaultToNecromancy(this Item item, int timeBetweenShots) {
-            item.useTime = timeBetweenShots;
-            item.useAnimation = timeBetweenShots;
-            item.useStyle = ItemUseStyleID.Shoot;
-            item.DamageType = Aequus.NecromancyClass;
-            item.noMelee = true;
-        }
-
         public static void DefaultToHoldUpItem(this Item item) {
             item.useAnimation = 45;
             item.useTime = 45;

@@ -25,7 +25,7 @@ namespace Aequus.Common.Effects {
         }
 
         internal ScreenShaderData Load() {
-            Filters.Scene[Key] = new(new(new(ModContent.Request<Effect>(Path, AssetRequestMode.ImmediateLoad).Value), Pass), Priority);
+            Filters.Scene[Key] = new(new(ModContent.Request<Effect>(Path, AssetRequestMode.ImmediateLoad), Pass), Priority);
             _screenShaderData = Filters.Scene[Key].GetShader();
             return _screenShaderData;
         }

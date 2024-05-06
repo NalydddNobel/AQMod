@@ -23,23 +23,23 @@ public partial class AequusPlayer {
             CombatText.NewText(target.Hitbox, CombatText.DamagedHostile.HueSet(0.55f), soulDamage);
 
             if (target.TryGetAequus(out var aequusNPC)) {
-                aequusNPC.soulHealthTotal += soulDamage;
+                //aequusNPC.soulHealthTotal += soulDamage;
 
-                if (aequusNPC.soulHealthTotal > target.lifeMax) {
-                    if (NPCSets.Unfriendable.Contains(target.type)) {
-                        target.Kill(); // Kill on this client, this should also add a player interaction if needed.
-                        return;
-                    }
+                //if (aequusNPC.soulHealthTotal > target.lifeMax) {
+                //    if (NPCSets.Unfriendable.Contains(target.type)) {
+                //        target.Kill(); // Kill on this client, this should also add a player interaction if needed.
+                //        return;
+                //    }
 
-                    target.life = target.lifeMax;
-                    target.friendly = true;
-                    target.dontTakeDamage = true;
-                    aequusNPC.zombieInfo.IsZombie = true;
-                    aequusNPC.zombieInfo.PlayerOwner = Player.whoAmI;
-                    aequusNPC.zombieInfo.SetDamage = hit.SourceDamage * 2;
+                //    target.life = target.lifeMax;
+                //    target.friendly = true;
+                //    target.dontTakeDamage = true;
+                //    aequusNPC.zombieInfo.IsZombie = true;
+                //    aequusNPC.zombieInfo.PlayerOwner = Player.whoAmI;
+                //    aequusNPC.zombieInfo.SetDamage = hit.SourceDamage * 2;
 
-                    SoundEngine.PlaySound(AequusSounds.ghostification, target.Center);
-                }
+                //    SoundEngine.PlaySound(AequusSounds.ghostification, target.Center);
+                //}
             }
         }
     }

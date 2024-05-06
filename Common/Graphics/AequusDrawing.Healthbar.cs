@@ -1,4 +1,5 @@
-﻿using Aequus.NPCs;
+﻿using Aequus.Content.Necromancy;
+using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -16,15 +17,15 @@ namespace Aequus.Common.Graphics {
 
         private static void On_Main_DrawHealthBar(On_Main.orig_DrawHealthBar orig, Main self, float X, float Y, int Health, int MaxHealth, float alpha, float scale, bool noFlip) {
             orig(self, X, Y, Health, MaxHealth, alpha, scale, noFlip);
-            if (DrawnEntity is NPC npc && npc.TryGetAequus(out var aequusNPC)) {
-                int healthbarsDrawn = 0;
-                VanillaHealthbarDrawInfo info = new(X, Y, Health, MaxHealth, alpha, scale, noFlip);
-                if (aequusNPC.soulHealthTotal > 0) {
-                    float wave = Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.5f, 1f);
-                    DrawHealthbarOverlay(healthbarsDrawn, info, AequusTextures.GenericOverlay, Color.Red.HueSet(0.5f + wave * 0.1f) * wave, npc, aequusNPC, aequusNPC.soulHealthTotal, npc.lifeMax);
-                    healthbarsDrawn++;
-                }
-            }
+            //if (DrawnEntity is NPC npc && npc.TryGetGlobalNPC(out NecromancyNPC aequusNPC)) {
+            //    int healthbarsDrawn = 0;
+            //    VanillaHealthbarDrawInfo info = new(X, Y, Health, MaxHealth, alpha, scale, noFlip);
+            //    if (aequusNPC.soulHealthTotal > 0) {
+            //        float wave = Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.5f, 1f);
+            //        DrawHealthbarOverlay(healthbarsDrawn, info, AequusTextures.GenericOverlay, Color.Red.HueSet(0.5f + wave * 0.1f) * wave, npc, aequusNPC, aequusNPC.soulHealthTotal, npc.lifeMax);
+            //        healthbarsDrawn++;
+            //    }
+            //}
             DrawnEntity = null;
         }
 

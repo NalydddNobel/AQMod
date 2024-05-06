@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Sounds: 129)</summary>
+    /// <summary>(Amt Sounds: 130)</summary>
     [CompilerGenerated]
     public class AequusSounds : ILoadable {                    
         public void Load(Mod mod) {
@@ -177,6 +177,8 @@ namespace Aequus {
         public static readonly SoundAsset pushUp = new SoundAsset("Aequus/Assets/Sounds/Item/Nightfall/pushUp", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Item/raygun<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset raygun = new SoundAsset("Aequus/Assets/Sounds/Item/raygun", 1);
+        /// <summary>Full Path: Aequus/Assets/Sounds/RecruitZombie<para>Num Variants: 1</para></summary>
+        public static readonly SoundAsset RecruitZombie = new SoundAsset("Aequus/Assets/Sounds/RecruitZombie", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Item/savingGraceCast<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset savingGraceCast = new SoundAsset("Aequus/Assets/Sounds/Item/savingGraceCast", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Item/savingGraceHeal<para>Num Variants: 1</para></summary>
