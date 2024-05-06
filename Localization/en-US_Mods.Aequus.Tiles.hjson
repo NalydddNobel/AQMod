@@ -74,3 +74,13 @@ BigGemsTile: {
 }
 
 RecyclingMachineTile.MapEntry: Recycling Machine Tile
+
+MeadowGrass: {
+	ItemDisplayName: Mods.Aequus.Tiles.MeadowGrass.ItemDisplayName
+	ItemTooltip: ""
+}
+
+MeadowWood: {
+	ItemDisplayName: Mods.Aequus.Tiles.MeadowWood.ItemDisplayName
+	ItemTooltip: ""
+}

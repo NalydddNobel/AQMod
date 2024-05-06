@@ -77,6 +77,17 @@ namespace Aequus {
 
         private static Mod Mod => ModContent.GetInstance<Aequus>();
 
+        public static bool InOuterPercentOfWorld(float tileX, float percent) {
+            if (percent <= 0f || percent >= 0.5f) {
+                throw new ArgumentException("Must be a value between 0 and 0.5.", nameof(percent));
+            }
+
+            float left = Main.maxTilesX * percent;
+            float right = Main.maxTilesX - left;
+
+            return tileX < left || tileX > right;
+        }
+
         #region RNG
         public static float NextFloat(this ref FastRandom random, float min, float max) {
             return min + random.NextFloat() * (max - min);

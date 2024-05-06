@@ -117,6 +117,7 @@ namespace Aequus.Common.World {
             //    GenVars.waterLine += SurfacePush;
             //    GenVars.lavaLine += SurfacePush;
             //}, tasks);
+            AddPass(ModContent.GetInstance<SkyMeadowsStep>().InsertAfter, "Sky Meadows", ModContent.GetInstance<SkyMeadowsStep>().Apply, tasks);
             AddPass("Dungeon", "Radon Biome", (progress, configuration) => {
                 progress.Message = Language.GetTextValue("Mods.Aequus.WorldGeneration.RadonBiome");
                 RadonCaves.GenerateWorld();

@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1274)</summary>
+    /// <summary>(Amt Textures: 1286)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -1321,6 +1321,30 @@ namespace Aequus {
         public static readonly TextureAsset ManathirstPotion = new("Aequus/Items/Potions/ManathirstPotion");
         /// <summary>Full Path: Aequus/Tiles/MossCaves/MannequinArmorOverlay</summary>
         public static readonly TextureAsset MannequinArmorOverlay = new("Aequus/Tiles/MossCaves/MannequinArmorOverlay");
+        /// <summary>Full Path: Aequus/Tiles/Meadow/MeadowGrass</summary>
+        public static readonly TextureAsset MeadowGrass = new("Aequus/Tiles/Meadow/MeadowGrass");
+        /// <summary>Full Path: Aequus/Tiles/Meadow/MeadowGrassItem</summary>
+        public static readonly TextureAsset MeadowGrassItem = new("Aequus/Tiles/Meadow/MeadowGrassItem");
+        /// <summary>Full Path: Aequus/Items/Potions/MeadowMushroom</summary>
+        public static readonly TextureAsset MeadowMushroom = new("Aequus/Items/Potions/MeadowMushroom");
+        /// <summary>Full Path: Aequus/Tiles/Meadow/MeadowPlants</summary>
+        public static readonly TextureAsset MeadowPlants = new("Aequus/Tiles/Meadow/MeadowPlants");
+        /// <summary>Full Path: Aequus/Tiles/Meadow/MeadowTree</summary>
+        public static readonly TextureAsset MeadowTree = new("Aequus/Tiles/Meadow/MeadowTree");
+        /// <summary>Full Path: Aequus/Tiles/Meadow/MeadowTree_Branches</summary>
+        public static readonly TextureAsset MeadowTree_Branches = new("Aequus/Tiles/Meadow/MeadowTree_Branches");
+        /// <summary>Full Path: Aequus/Tiles/Meadow/MeadowTree_Tops</summary>
+        public static readonly TextureAsset MeadowTree_Tops = new("Aequus/Tiles/Meadow/MeadowTree_Tops");
+        /// <summary>Full Path: Aequus/Tiles/Meadow/MeadowTreeDust</summary>
+        public static readonly TextureAsset MeadowTreeDust = new("Aequus/Tiles/Meadow/MeadowTreeDust");
+        /// <summary>Full Path: Aequus/Tiles/Meadow/MeadowTreeLeaves</summary>
+        public static readonly TextureAsset MeadowTreeLeaves = new("Aequus/Tiles/Meadow/MeadowTreeLeaves");
+        /// <summary>Full Path: Aequus/Tiles/Meadow/MeadowTreeSapling</summary>
+        public static readonly TextureAsset MeadowTreeSapling = new("Aequus/Tiles/Meadow/MeadowTreeSapling");
+        /// <summary>Full Path: Aequus/Tiles/Meadow/MeadowWood</summary>
+        public static readonly TextureAsset MeadowWood = new("Aequus/Tiles/Meadow/MeadowWood");
+        /// <summary>Full Path: Aequus/Tiles/Meadow/MeadowWoodItem</summary>
+        public static readonly TextureAsset MeadowWoodItem = new("Aequus/Tiles/Meadow/MeadowWoodItem");
         /// <summary>Full Path: Aequus/Items/Equipment/GrapplingHooks/Meathook</summary>
         public static readonly TextureAsset Meathook = new("Aequus/Items/Equipment/GrapplingHooks/Meathook");
         /// <summary>Full Path: Aequus/Projectiles/Misc/GrapplingHooks/MeathookProj</summary>

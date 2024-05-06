@@ -898,3 +898,8 @@ CorruptionSceptre: {
 	DisplayName: Corruption Sceptre
 	Tooltip: ""
 }
+
+MeadowMushroom: {
+	DisplayName: Meadow Mushroom
+	Tooltip: ""
+}
