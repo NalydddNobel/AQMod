@@ -7,7 +7,7 @@ public sealed partial class AequusTextures : AssetManager<Texture2D> {
     public const string TemporaryBuffIcon = "Terraria/Images/Buff_188";
     public const string TemporaryDebuffIcon = "Terraria/Images/Buff_164";
 
-    public static Asset<Texture2D>[] LensFlares;
+    public static Asset<Texture2D>[] LensFlares { get; private set; }
 
     protected override void OnLoad(Mod mod) {
         if (Main.netMode == NetmodeID.Server) { return; }
