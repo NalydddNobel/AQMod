@@ -41,13 +41,4 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="NPCs\Town\ExporterNPC\Gores\ExporterGore_Belt.png" />
-    <None Remove="NPCs\Town\ExporterNPC\Gores\ExporterGore_Body.png" />
-    <None Remove="NPCs\Town\ExporterNPC\Gores\ExporterGore_Claw.png" />
-    <None Remove="NPCs\Town\ExporterNPC\Gores\ExporterGore_Head.png" />
-    <None Remove="NPCs\Town\ExporterNPC\Gores\ExporterGore_Legs.png" />
-    <None Remove="NPCs\Town\ExporterNPC\Gores\ExporterGore_Tail.png" />
-  </ItemGroup>
-
 </Project>

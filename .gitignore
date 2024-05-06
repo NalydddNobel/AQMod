@@ -5,8 +5,8 @@
 .idea/
 bin/
 obj/
-Assets/Effects/.compiler
-Assets/Sounds/unused
+Assets/Shaders/.compiler
 *.ase
 *.ini
-/Assets/Shaders/.compiler
+*.Temp
+*.Temp.*
