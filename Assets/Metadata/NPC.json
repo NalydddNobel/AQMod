@@ -272,6 +272,15 @@
   "PrefixBlacklist": [],
   "PushableByTypeId": [
     "Aequus/BlackJellyfish",
+    "Aequus/Conductor",
+    "Aequus/ConductorProj",
+    "Aequus/ConeheadZombieBasic",
+    "Aequus/ConeheadZombieBald",
+    "Aequus/ConeheadZombiePincushion",
+    "Aequus/ConeheadZombieSlimed",
+    "Aequus/ConeheadZombieSwamp",
+    "Aequus/ConeheadZombieTwiggy",
+    "Aequus/ConeheadZombieFemale",
     "Aequus/OilSlime",
     "Aequus/Scavenger",
     "Aequus/ScavengerLootBag"
