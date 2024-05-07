@@ -1,14 +1,14 @@
 ﻿using Aequus.Common;
-using Aequus.Common.JourneyMode;
 using Aequus.Core.Initialization;
 using System;
 using System.Collections.Generic;
+using Terraria.Extended.GameContent.Creative;
 using Terraria.GameContent;
 
 namespace Aequus.Content.Tools.AnglerLamp;
 
 [AutoloadGlowMask]
-[FilterOverride(FilterFullfillment.Tools)]
+[FilterOverride(FilterOverride.Tools)]
 public class AnglerLamp : ModItem {
     public static int PotSightRange { get; set; } = 300;
 
@@ -23,7 +23,7 @@ public class AnglerLamp : ModItem {
     public static int DebuffRange { get; set; } = 240;
 
     [CloneByReference]
-    private readonly List<Terraria.Dust> _dustEffects = new();
+    private readonly List<Dust> _dustEffects = new();
 
     public float animation;
 

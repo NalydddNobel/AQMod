@@ -1,5 +1,4 @@
-﻿using Aequus.Common.JourneyMode;
-using Aequus.Core;
+﻿using Aequus.Core;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.CrossMod;
 using Aequus.Core.Networking;
@@ -12,6 +11,7 @@ using System.Linq;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
+using Terraria.Extended.GameContent.Creative;
 using Terraria.GameContent;
 using Terraria.GameContent.Drawing;
 using Terraria.GameContent.ItemDropRules;

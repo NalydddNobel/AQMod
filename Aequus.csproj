@@ -16,6 +16,9 @@
 	<Reference Include="FNAUtils">
 	  <HintPath>lib\FNAUtils.dll</HintPath>
 	</Reference>
+	<Reference Include="tModLoaderExtended">
+	  <HintPath>lib\tModLoaderExtended.dll</HintPath>
+	</Reference>
   </ItemGroup>
 		
   <ItemGroup>

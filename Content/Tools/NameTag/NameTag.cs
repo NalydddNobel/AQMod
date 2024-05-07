@@ -1,12 +1,12 @@
 ﻿using Aequus.Common.Items.Components;
-using Aequus.Common.JourneyMode;
 using Aequus.Common.Renaming;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.Extended.GameContent.Creative;
 
 namespace Aequus.Content.Tools.NameTag;
 
-[FilterOverride(FilterFullfillment.Tools)]
+[FilterOverride(FilterOverride.Tools)]
 public class NameTag : ModItem, ICustomNameTagPrice {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 5;
@@ -37,7 +37,7 @@ public class NameTag : ModItem, ICustomNameTagPrice {
         int screenMouseY = Main.mouseY + (int)Main.screenPosition.Y;
         for (int i = 0; i < Main.maxNPCs; i++) {
             NPC npc = Main.npc[i];
-            if (!npc.active || !npc.getRect().Contains(screenMouseX, screenMouseY) || (!npc.TryGetGlobalNPC(out RenameNPC npcNameTag) || npcNameTag.CustomName == itemNameTag.CustomName)) {
+            if (!npc.active || !npc.getRect().Contains(screenMouseX, screenMouseY) || !npc.TryGetGlobalNPC(out RenameNPC npcNameTag) || npcNameTag.CustomName == itemNameTag.CustomName) {
                 continue;
             }
 

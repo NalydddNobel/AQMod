@@ -1,7 +1,7 @@
-﻿using Aequus.Common.JourneyMode;
-using Terraria.Audio;
+﻿using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
+using Terraria.Extended.GameContent.Creative;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.Localization;
 using Terraria.ObjectData;

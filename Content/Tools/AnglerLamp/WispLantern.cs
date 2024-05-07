@@ -1,13 +1,13 @@
 ﻿using Aequus.Common;
-using Aequus.Common.JourneyMode;
 using Aequus.Core.Initialization;
 using System;
 using System.Collections.Generic;
+using Terraria.Extended.GameContent.Creative;
 
 namespace Aequus.Content.Tools.AnglerLamp;
 
 [AutoloadGlowMask]
-[FilterOverride(FilterFullfillment.Tools)]
+[FilterOverride(FilterOverride.Tools)]
 public class WispLantern : ModItem {
     public static int PotSightRange { get; set; } = 900;
 

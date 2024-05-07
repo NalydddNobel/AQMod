@@ -1,5 +1,6 @@
 using log4net;
 using System.Reflection;
+using Terraria.Extended;
 using Terraria.Graphics.Effects;
 using Terraria.Localization;
 using Terraria.Utilities;
@@ -28,6 +29,7 @@ public partial class Aequus : Mod {
     public override void Load() {
         Instance = this;
         MusicMod = ModLoader.GetMod("AequusMusic");
+        new ModBind(this);
         LoadModCalls();
     }
 

@@ -1,5 +1,4 @@
-﻿using Aequus.Common.JourneyMode;
-using Aequus.Content.Events.DemonSiege;
+﻿using Aequus.Content.Events.DemonSiege;
 using Aequus.Core.Assets;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics.Tiles;
@@ -7,6 +6,7 @@ using Aequus.DataSets;
 using Aequus.Old.Content.TownNPCs.OccultistNPC;
 using System;
 using Terraria.DataStructures;
+using Terraria.Extended.GameContent.Creative;
 using Terraria.GameContent;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ObjectData;

@@ -1,6 +1,5 @@
-﻿using Aequus.Common.Items.Components;
-using Aequus.Common.JourneyMode;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Terraria.Extended.GameContent.Creative;
 using Terraria.Localization;
 
 namespace Aequus.Core.ContentGeneration;

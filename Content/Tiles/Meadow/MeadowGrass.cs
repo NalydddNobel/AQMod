@@ -1,7 +1,7 @@
-﻿using Aequus.Common.JourneyMode;
-using Aequus.Common.Tiles.Components;
+﻿using Aequus.Common.Tiles.Components;
 using Aequus.Core.ContentGeneration;
 using Terraria.Audio;
+using Terraria.Extended.GameContent.Creative;
 using Terraria.GameContent.Metadata;
 
 namespace Aequus.Content.Tiles.Meadow;
@@ -35,6 +35,11 @@ public class MeadowGrass : ModTile, IOverridePlacement, IOnPlaceTile {
     }
 
     public override void RandomUpdate(int i, int j) {
+        Tile tile = Main.tile[i, j];
+        TileColorCache colorCache = new TileColorCache();
+        colorCache.Color = tile.TileColor;
+        WorldGen.SpreadGrass(i + Main.rand.Next(-1, 2), j + Main.rand.Next(-1, 2), TileID.Dirt, Type, repeat: false, colorCache);
+
         if (Main.tile[i, j - 1].HasTile || !WorldGen.genRand.NextBool(20)) {
             return;
         }

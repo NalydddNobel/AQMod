@@ -1,5 +1,4 @@
 ﻿using Aequus.Common;
-using Aequus.Common.JourneyMode;
 using Aequus.Common.Tiles.Components;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.Initialization;
@@ -8,6 +7,7 @@ using MonoMod.Cil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Terraria.Extended.GameContent.Creative;
 using Terraria.ObjectData;
 
 namespace Aequus.Old.Content.Tiles.Herbs.PlanterBoxes;

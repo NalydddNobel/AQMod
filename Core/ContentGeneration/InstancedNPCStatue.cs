@@ -1,6 +1,6 @@
-﻿using Aequus.Common.JourneyMode;
-using Terraria.DataStructures;
+﻿using Terraria.DataStructures;
 using Terraria.Enums;
+using Terraria.Extended.GameContent.Creative;
 using Terraria.Localization;
 using Terraria.ObjectData;
 

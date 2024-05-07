@@ -1,11 +1,8 @@
 ﻿using Aequus.Common.Hooks;
-using Aequus.Common.Items.Components;
-using Aequus.Common.JourneyMode;
-using Aequus.Common.Tiles;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.Initialization;
-using System;
 using System.Collections.Generic;
+using Terraria.Extended.GameContent.Creative;
 using Terraria.GameContent.Metadata;
 using Terraria.ObjectData;
 

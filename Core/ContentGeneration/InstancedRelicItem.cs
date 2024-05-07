@@ -1,4 +1,4 @@
-﻿using Aequus.Common.JourneyMode;
+﻿using Terraria.Extended.GameContent.Creative;
 using Terraria.Localization;
 
 namespace Aequus.Core.ContentGeneration;

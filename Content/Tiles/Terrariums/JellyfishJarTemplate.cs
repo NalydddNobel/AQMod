@@ -1,7 +1,7 @@
-﻿using Aequus.Common.JourneyMode;
-using Aequus.Core.ContentGeneration;
+﻿using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics.Tiles;
 using ReLogic.Content;
+using Terraria.Extended.GameContent.Creative;
 using Terraria.GameContent;
 using Terraria.ObjectData;
 using Terraria.Utilities;

@@ -1,9 +1,9 @@
-﻿using Aequus.Common.JourneyMode;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Terraria.Extended.GameContent.Creative;
 
 namespace Aequus.Old.Content.Tools.MagicMirrors.PhaseMirror;
 
-[FilterOverride(FilterFullfillment.Tools)]
+[FilterOverride(FilterOverride.Tools)]
 public class PhaseMirror : ModItem, IPhaseMirror {
     [CloneByReference]
     public List<(int, int, Dust)> DustEffectCache { get; set; }

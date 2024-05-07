@@ -1,12 +1,12 @@
 ﻿using Aequus.Common;
-using Aequus.Common.JourneyMode;
 using System.Collections.Generic;
+using Terraria.Extended.GameContent.Creative;
 
 namespace Aequus.Content.Tools.Bellows;
 
-[FilterOverride(FilterFullfillment.Tools)]
+[FilterOverride(FilterOverride.Tools)]
 public class Bellows : ModItem {
-    public static float MountPushForcePenalty = 0.33f;
+    public static float MountPushForcePenalty { get; set; } = 0.33f;
 
     public override void SetDefaults() {
         Item.width = 20;

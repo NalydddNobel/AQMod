@@ -393,6 +393,6 @@ MeadowGrass: {
 }
 
 MeadowWood: {
-	// ItemDisplayName: Mods.Aequus.Tiles.MeadowWood.ItemDisplayName
+	// ItemDisplayName: Meadow Wood
 	// ItemTooltip: ""
 }
