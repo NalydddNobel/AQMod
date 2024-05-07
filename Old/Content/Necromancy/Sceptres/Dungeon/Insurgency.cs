@@ -1,5 +1,5 @@
 ﻿using Aequus.Common;
-using Aequus.Core.Initialization;
+using tModLoaderExtended.GlowMasks;
 
 namespace Aequus.Old.Content.Necromancy.Sceptres.Dungeon;
 

@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Content.Graphics.Particles;
-using Aequus.Core.Initialization;
 using System;
+using tModLoaderExtended.GlowMasks;
 
 namespace Aequus.Content.Weapons.Melee.DynaKnife;
 

@@ -1,5 +1,5 @@
 ﻿using Aequus.Common;
-using Aequus.Core.Initialization;
+using tModLoaderExtended.GlowMasks;
 using Aequus.Old.Content.Materials;
 using Terraria.DataStructures;
 

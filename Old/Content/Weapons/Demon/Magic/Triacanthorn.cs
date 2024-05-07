@@ -1,6 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Content.Events.DemonSiege;
-using Aequus.Core.Initialization;
+using tModLoaderExtended.GlowMasks;
 
 namespace Aequus.Old.Content.Weapons.Demon.Magic;
 

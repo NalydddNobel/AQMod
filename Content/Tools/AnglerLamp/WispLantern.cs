@@ -1,7 +1,7 @@
 ﻿using Aequus.Common;
-using Aequus.Core.Initialization;
 using System;
 using System.Collections.Generic;
+using tModLoaderExtended.GlowMasks;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace Aequus.Content.Tools.AnglerLamp;

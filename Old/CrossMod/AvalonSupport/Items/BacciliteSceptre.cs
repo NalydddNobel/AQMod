@@ -1,6 +1,6 @@
 ﻿using Aequus.Content.CrossMod;
 using Aequus.Core.CrossMod;
-using Aequus.Core.Initialization;
+using tModLoaderExtended.GlowMasks;
 using Aequus.Old.Content.Necromancy;
 using Aequus.Old.Content.Necromancy.Sceptres.Evil;
 

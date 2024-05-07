@@ -1,7 +1,7 @@
-﻿using Aequus.Core.Initialization;
-using System;
+﻿using System;
 using Terraria.DataStructures;
 using Terraria.Localization;
+using tModLoaderExtended.GlowMasks;
 
 namespace Aequus.Old.Content.Equipment.Accessories.LaserScope;
 
