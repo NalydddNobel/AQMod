@@ -5,9 +5,7 @@ using System;
 
 namespace Aequus.Content.Graphics.Particles;
 
-/// <summary>
-/// Bubble particles which only work underwater. Floats upwards.
-/// </summary>
+/// <summary>Bubble particles which only work underwater. Floats upwards.</summary>
 public class UnderwaterBubbleParticles : ParallelParticleArray<UnderwaterBubbleParticles.Bubble> {
     public const int FRAME_COUNT_X = 9;
     public const int FRAME_COUNT_Y = 5;
@@ -144,7 +142,7 @@ public class UnderwaterBubbleParticles : ParallelParticleArray<UnderwaterBubbleP
             return;
         }
 
-        RenderTargetBinding[] oldTargets = g.GetRenderTargets();
+        DrawHelper.graphics.EnqueueRenderTargetBindings(g);
 
         try {
             g.SetRenderTarget(_mergeTarget);
@@ -165,9 +163,8 @@ public class UnderwaterBubbleParticles : ParallelParticleArray<UnderwaterBubbleP
         catch {
         }
         finally {
+            DrawHelper.graphics.DequeueRenderTargetBindings(g);
         }
-
-        g.SetRenderTargets(oldTargets);
     }
     #endregion
 

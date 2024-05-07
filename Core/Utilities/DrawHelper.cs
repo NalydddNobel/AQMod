@@ -1,6 +1,6 @@
-﻿using Aequus.Common.NPCs;
-using Aequus.Core.Assets;
+﻿using Aequus.Core.Assets;
 using Aequus.Core.Graphics;
+using FNAUtils.Drawing;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
@@ -41,6 +41,8 @@ public sealed class DrawHelper : ModSystem {
             return zoom * projection;
         }
     }
+
+    public static readonly GraphicsDeviceHelper graphics = new();
 
     public static int ColorOnlyShaderId => ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex;
     public static ArmorShaderData ColorOnlyShader => GameShaders.Armor.GetSecondaryShader(ColorOnlyShaderId, Main.LocalPlayer);

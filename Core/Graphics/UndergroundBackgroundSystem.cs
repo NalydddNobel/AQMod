@@ -53,7 +53,7 @@ public class UndergroundBackgroundSystem : ModSystem {
             return false;
         }
 
-        RenderTargetBinding[] oldTargets = graphicsDevice.GetRenderTargets();
+        DrawHelper.graphics.EnqueueRenderTargetBindings(graphicsDevice);
 
         bool rendered = true;
 
@@ -73,7 +73,7 @@ public class UndergroundBackgroundSystem : ModSystem {
         finally {
         }
 
-        graphicsDevice.SetRenderTargets(oldTargets);
+        DrawHelper.graphics.DequeueRenderTargetBindings(graphicsDevice);
 
         return rendered;
     }
