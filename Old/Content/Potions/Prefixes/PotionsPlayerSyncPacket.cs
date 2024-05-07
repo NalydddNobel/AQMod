@@ -1,4 +1,4 @@
-﻿using Aequus.Core.Networking;
+﻿using tModLoaderExtended.Networking;
 using System.Collections.Generic;
 using System.IO;
 

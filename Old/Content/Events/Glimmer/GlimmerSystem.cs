@@ -1,5 +1,5 @@
 ﻿using Aequus.Core;
-using Aequus.Core.Networking;
+using tModLoaderExtended.Networking;
 using Aequus.Old.Content.Events.Glimmer.Peaceful;
 using System;
 using System.IO;

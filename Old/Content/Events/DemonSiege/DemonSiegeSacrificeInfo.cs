@@ -1,6 +1,6 @@
 ﻿using Aequus.Content.Events.DemonSiege;
 using Aequus.Core;
-using Aequus.Core.Networking;
+using tModLoaderExtended.Networking;
 using Aequus.Old.Content.Events.DemonSiege.Spawners;
 using Aequus.Old.Content.Events.DemonSiege.Tiles;
 using System;

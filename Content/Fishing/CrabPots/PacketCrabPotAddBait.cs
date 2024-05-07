@@ -1,5 +1,5 @@
 ﻿using Aequus.Core.Graphics.Animations;
-using Aequus.Core.Networking;
+using tModLoaderExtended.Networking;
 using System.IO;
 using Terraria.DataStructures;
 using Terraria.ModLoader.IO;

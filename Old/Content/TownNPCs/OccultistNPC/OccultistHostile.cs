@@ -1,6 +1,6 @@
 ﻿using Aequus.Core;
 using Aequus.Core.ContentGeneration;
-using Aequus.Core.Networking;
+using tModLoaderExtended.Networking;
 using System;
 using System.Collections.Generic;
 using System.IO;

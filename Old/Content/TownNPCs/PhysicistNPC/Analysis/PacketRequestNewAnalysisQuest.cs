@@ -1,4 +1,4 @@
-﻿using Aequus.Core.Networking;
+﻿using tModLoaderExtended.Networking;
 using System.IO;
 
 namespace Aequus.Old.Content.TownNPCs.PhysicistNPC.Analysis;

@@ -1,4 +1,4 @@
-﻿using Aequus.Core.Networking;
+﻿using tModLoaderExtended.Networking;
 using Aequus.Old.Content.DronePylons.NPCs;
 using System;
 using System.Collections.Generic;

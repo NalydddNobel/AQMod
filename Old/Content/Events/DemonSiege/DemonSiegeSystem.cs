@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.Events.DemonSiege;
-using Aequus.Core.Networking;
+using tModLoaderExtended.Networking;
 using System;
 using System.Collections.Generic;
 using System.IO;

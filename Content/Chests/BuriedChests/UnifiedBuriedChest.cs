@@ -1,7 +1,7 @@
 ﻿using Aequus.Core;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.CrossMod;
-using Aequus.Core.Networking;
+using tModLoaderExtended.Networking;
 using Aequus.DataSets;
 using Aequus.DataSets.Structures;
 using Aequus.DataSets.Structures.DropRulesChest;

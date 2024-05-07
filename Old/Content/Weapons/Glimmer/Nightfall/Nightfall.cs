@@ -1,6 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Content.Dusts;
-using Aequus.Core.Networking;
+using tModLoaderExtended.Networking;
 using Aequus.DataSets;
 using Aequus.Old.Content.Materials;
 using Aequus.Old.Content.Particles;

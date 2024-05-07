@@ -1,4 +1,4 @@
-﻿using Aequus.Core.Networking;
+﻿using tModLoaderExtended.Networking;
 using System.IO;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger.UI;

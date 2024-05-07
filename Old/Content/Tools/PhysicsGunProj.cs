@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Projectiles;
 using Aequus.Content.Dusts;
-using Aequus.Core.Networking;
+using tModLoaderExtended.Networking;
 using Aequus.DataSets;
 using Aequus.Old.Content.Particles;
 using Aequus.Old.Core.Utilities;

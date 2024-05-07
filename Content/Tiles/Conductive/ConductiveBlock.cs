@@ -2,7 +2,7 @@
 using Aequus.Common.Tiles.Components;
 using Aequus.Core.Initialization;
 using Aequus.Core.Graphics.Tiles;
-using Aequus.Core.Networking;
+using tModLoaderExtended.Networking;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
