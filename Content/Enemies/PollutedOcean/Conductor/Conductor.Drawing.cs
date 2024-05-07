@@ -1,11 +1,9 @@
-﻿using Aequus.Core.Initialization;
-using Steamworks;
-using System;
+﻿using System;
 using Terraria.GameContent;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Conductor;
 
-public partial class Conductor : IPostPopulateItemDropDatabase {
+public partial class Conductor {
     public const int FRAME_IDLE = 0;
 
     public const int FRAME_WALK_S = 1;
@@ -16,7 +14,7 @@ public partial class Conductor : IPostPopulateItemDropDatabase {
     public const int FRAME_SLIDE_S = 5;
     public const int FRAME_SLIDE_E = 6;
     public const int FRAME_SLIDE_RATE = 3;
-    public const int FRAME_SLIDE_FRAMES = FRAME_SLIDE_E- FRAME_SLIDE_S + 1;
+    public const int FRAME_SLIDE_FRAMES = FRAME_SLIDE_E - FRAME_SLIDE_S + 1;
 
     public const int FRAME_CONDUCT_S = 7;
     public const int FRAME_CONDUCT_E = 13;
@@ -96,16 +94,16 @@ public partial class Conductor : IPostPopulateItemDropDatabase {
                         NPC.localAI[3] = 1f;
                         NPC.frameCounter++;
 
-                        double conductAnimation = FRAME_CONDUCT_RATE * (FRAME_CONDUCT_FRAMES-1);
+                        double conductAnimation = FRAME_CONDUCT_RATE * (FRAME_CONDUCT_FRAMES - 1);
 
                         if (NPC.frameCounter > conductAnimation * 2) {
                             NPC.frameCounter = 0;
                         }
                         if (NPC.frameCounter >= conductAnimation) {
-                            frame = 13 - (int)Math.Min((NPC.frameCounter - conductAnimation) / FRAME_CONDUCT_RATE, FRAME_CONDUCT_FRAMES-1);
+                            frame = 13 - (int)Math.Min((NPC.frameCounter - conductAnimation) / FRAME_CONDUCT_RATE, FRAME_CONDUCT_FRAMES - 1);
                         }
                         else {
-                            frame = 7 + (int)Math.Min(NPC.frameCounter / FRAME_CONDUCT_RATE, FRAME_CONDUCT_FRAMES-1);
+                            frame = 7 + (int)Math.Min(NPC.frameCounter / FRAME_CONDUCT_RATE, FRAME_CONDUCT_FRAMES - 1);
                         }
                     }
                     else {

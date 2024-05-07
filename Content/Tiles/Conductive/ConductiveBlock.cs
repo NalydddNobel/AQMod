@@ -1,16 +1,12 @@
-﻿using Aequus.Common.Tiles;
-using Aequus.Common.Tiles.Components;
-using Aequus.Core.Initialization;
+﻿using Aequus.Common.Tiles.Components;
+using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics.Tiles;
-using tModLoaderExtended.Networking;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
-using Aequus.Core.ContentGeneration;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Content.Tiles.Conductive;
 
@@ -39,7 +35,7 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
         AddMapEntry(MapColor, CreateMapEntryName());
     }
 
-    public void AddRecipes(Aequus aequus) {
+    public void AddRecipes(Mod mod) {
         //foreach (var tileId in TileSets.Mechanical) {
         //    Main.tileMerge[Type][tileId] = true;
         //}
@@ -49,7 +45,9 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
         return false;
     }
 
-    public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
+    public override void NumDust(int i, int j, bool fail, ref int num) {
+        num = fail ? 1 : 3;
+    }
 
     public override void HitWire(int i, int j) {
         if (ConductiveSystem.PoweredLocation == Point.Zero) {

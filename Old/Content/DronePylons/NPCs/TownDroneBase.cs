@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
-using Aequus.Core.Initialization;
 using Aequus.DataSets;
 using Aequus.Old.Content.TownNPCs.PhysicistNPC;
 using System;
@@ -8,6 +7,7 @@ using System.IO;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Old.Content.DronePylons.NPCs;
 
@@ -32,7 +32,7 @@ public abstract class TownDroneBase : ModNPC, IAddRecipes {
         npcLoot.Add(new CommonDrop(Slot.DroneItem.Type, chanceDenominator: 4, chanceNumerator: 5));
     }
 
-    public virtual void AddRecipes(Aequus aequus) {
+    public virtual void AddRecipes(Mod mod) {
         BestiaryBuilder.ReSort(this, ModContent.NPCType<Physicist>());
     }
 
@@ -128,7 +128,7 @@ public abstract class TownDroneBase : ModNPC, IAddRecipes {
             return Color.Cyan;
         }
 
-        if (TileDataSet.PylonColors.TryGetValue(Main.tile[pylonSpot].TileType, out Dictionary<int, Color> styleToColorDictionary) 
+        if (TileDataSet.PylonColors.TryGetValue(Main.tile[pylonSpot].TileType, out Dictionary<int, Color> styleToColorDictionary)
             && styleToColorDictionary.TryGetValue(Main.tile[pylonSpot].TileFrameX / 54, out Color rgb)) {
             return rgb;
         }

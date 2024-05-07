@@ -1,12 +1,12 @@
 ﻿using Aequus.Content.Bosses;
 using Aequus.Core.Assets;
-using Aequus.Core.Initialization;
 using System;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Core.ContentGeneration;
 
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-internal sealed class AutoloadTrophiesAttribute : AutoloadXAttribute {
+internal sealed class AutoloadTrophiesAttribute : Attribute, IAttributeOnModLoad {
     private readonly int _legacyId;
 
     private Type _relicRendererType;
@@ -16,8 +16,8 @@ internal sealed class AutoloadTrophiesAttribute : AutoloadXAttribute {
         _relicRendererType = relicRenderer;
     }
 
-    internal override void Load(ModType modType) {
-        if (modType is not ModNPC modNPC) {
+    public void OnModLoad(Mod mod, ILoad Content) {
+        if (Content is not ModNPC modNPC) {
             throw new Exception($"{nameof(AutoloadTrophiesAttribute)} can only be applied to ModNPCs.");
         }
 
@@ -25,7 +25,7 @@ internal sealed class AutoloadTrophiesAttribute : AutoloadXAttribute {
         RequestCache<Texture2D> requestCache = new RequestCache<Texture2D>(texturePath);
 
         IRelicRenderer renderer;
-        if (_relicRendererType != null ) {
+        if (_relicRendererType != null) {
             renderer = (IRelicRenderer)Activator.CreateInstance(_relicRendererType, new object[] { requestCache });
         }
         else {

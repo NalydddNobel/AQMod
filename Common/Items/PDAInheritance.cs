@@ -1,8 +1,8 @@
 ﻿using Aequus.Content.Configuration;
 using Aequus.Content.VanillaChanges;
-using Aequus.Core.Initialization;
 using System.Collections.Generic;
 using System.Linq;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Common.Items;
 
@@ -21,7 +21,7 @@ public class PDAEffects : GlobalItem, IPostSetupRecipes {
         }
     }
 
-    public void PostSetupRecipes(Aequus aequus) {
+    public void PostSetupRecipes(Mod mod) {
         Aequus.Log.Debug("Scanning PDA recipe trees...");
         MoveUpTree(ItemID.PDA);
     }

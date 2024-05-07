@@ -13,6 +13,7 @@ using Terraria.GameContent.Creative;
 using Terraria.Graphics.Renderers;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Content.Dedicated;
 
@@ -290,7 +291,7 @@ public class DedicatedFaeling : ModNPC {
             ItemSets.ShimmerTransformToItem[Type] = _parentItem.Type;
         }
 
-        public void PostSetupContent(Aequus aequus) {
+        public void PostSetupContent(Mod mod) {
             if (CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId.TryGetValue(_parentItem.Type, out int parentResearchCount)) {
                 // Inherit the parent item's research count, capped at 5.
                 Item.ResearchUnlockCount = Math.Min(parentResearchCount, 5);

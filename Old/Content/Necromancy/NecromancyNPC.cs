@@ -11,6 +11,7 @@ using System.IO;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Old.Content.Necromancy;
 
@@ -783,7 +784,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
         Sync(Main.npc[npc]);
     }
 
-    void IAddRecipes.AddRecipes(Aequus aequus) {
+    void IAddRecipes.AddRecipes(Mod mod) {
     }
 
     public static void RestoreTarget() {

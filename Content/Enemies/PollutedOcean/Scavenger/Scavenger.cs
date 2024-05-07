@@ -15,6 +15,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader.IO;
 using Terraria.Utilities;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger;
 
@@ -75,7 +76,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         npcLoot.Add(ItemDropRule.Common(ItemID.BrickLayer, TravelingMerchantBuilderItemChance));
     }
 
-    public virtual void PostPopulateItemDropDatabase(Aequus aequus, ItemDropDatabase database) {
+    public virtual void PostPopulateItemDropDatabase(Mod mod, ItemDropDatabase database) {
         ExtendLoot.InheritDropRules(NPCID.Skeleton, Type, database);
     }
 

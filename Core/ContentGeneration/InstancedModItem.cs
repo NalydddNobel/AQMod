@@ -1,9 +1,8 @@
-﻿using Aequus.Common.Items.Components;
-using Aequus.Core.Initialization;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Terraria.DataStructures;
-using tModLoaderExtended.Terraria.GameContent.Creative;
 using Terraria.Localization;
+using tModLoaderExtended.Terraria.GameContent.Creative;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Core.ContentGeneration;
 
@@ -73,7 +72,7 @@ internal class InstancedTileItem(ModTile modTile, int style = 0, string nameSuff
         ItemSets.DisableAutomaticPlaceableDrop[Type] = !dropItem;
     }
 
-    public void PostSetupContent(Aequus aequus) {
+    public void PostSetupContent(Mod mod) {
         Item.ResearchUnlockCount = researchSacrificeCount ?? (Main.tileFrameImportant[_modTile.Type] ? 1 : 100);
     }
 
@@ -151,7 +150,7 @@ internal class InstancedCaughtNPCItem(ModNPC parent) : InstancedModItem(parent.N
         AutoNPCDefaults._npcToCritter.Add(_parent.Type, (short)Type);
     }
 
-    public void PostSetupContent(Aequus aequus) {
+    public void PostSetupContent(Mod mod) {
         if (Main.npcFrameCount[_parent.Type] > 1) {
             Main.RegisterItemAnimation(Type, new DrawAnimationVertical(int.MaxValue - 1, Main.npcFrameCount[_parent.Type]));
         }

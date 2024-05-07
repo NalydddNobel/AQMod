@@ -1,5 +1,5 @@
 ﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Initialization;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Content.Tiles.Meadow;
 
@@ -24,7 +24,7 @@ internal class MeadowWood : ModTile, IAddRecipeGroups {
         num = fail ? 1 : 3;
     }
 
-    public void AddRecipeGroups(Aequus aequus) {
+    public void AddRecipeGroups(Mod mod) {
         RecipeGroup.recipeGroups[RecipeGroupID.Wood].ValidItems.Add(Item.Type);
     }
 }

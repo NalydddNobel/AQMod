@@ -105,7 +105,7 @@ public class NPCDataSet : DataSet {
     #endregion
 
     #region Loading
-    public override void SetStaticDefaults() {
+    public override void SetupContent() {
         EclipseTags.AddRange(new IFilterInfoProvider[] {
             BestiaryEventTag.Eclipse
         });

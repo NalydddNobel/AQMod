@@ -1,9 +1,10 @@
 ﻿using System;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Core.Initialization;
 
 [AttributeUsage(AttributeTargets.Class)]
-internal sealed class AutoloadGlowMaskAttribute : AutoloadXAttribute {
+internal sealed class AutoloadGlowMaskAttribute : Attribute, IAttributeOnModLoad {
     public readonly string[] CustomGlowmasks;
     public readonly bool AutoAssignID;
 
@@ -17,8 +18,8 @@ internal sealed class AutoloadGlowMaskAttribute : AutoloadXAttribute {
         CustomGlowmasks = glowmasks;
     }
 
-    internal override void Load(ModType modType) {
-        if (Main.dedServ || modType is not ModItem m) {
+    public void OnModLoad(Mod mod, ILoad Content) {
+        if (Main.dedServ || Content is not ModItem m) {
             return;
         }
 

@@ -2,7 +2,6 @@
 using Aequus.Common.Renaming;
 using Aequus.Core;
 using Aequus.Core.ContentGeneration;
-using Aequus.Core.Initialization;
 using Aequus.DataSets;
 using System;
 using System.Collections.Generic;
@@ -13,6 +12,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.UI;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Old.Content.TownNPCs.PhysicistNPC;
 
@@ -77,7 +77,7 @@ public class PhysicistPet : ModNPC, IAddRecipes {
         NPCDataSet.NameTagOverride[Type] = true;
     }
 
-    public void AddRecipes(Aequus aequus) {
+    public void AddRecipes(Mod mod) {
         BestiaryBuilder.ReSort(this, ModContent.NPCType<Physicist>(), -1);
     }
 

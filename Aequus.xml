@@ -1084,21 +1084,6 @@
             <summary>Set <see cref="P:Aequus.DataSets.Structures.IIDEntry.Id"/> directly. Use this to update the name or other values if needed.</summary>
             <param name="id">The Content's Id.</param>
         </member>
-        <member name="P:Aequus.Aequus.Log">
-            <summary>Shorthand for <see cref="P:Aequus.Aequus.Instance"/>.Logger.</summary>
-        </member>
-        <member name="P:Aequus.Aequus.TerrariaAssembly">
-            <summary>Shorthand for typeof(<see cref="T:Terraria.Main"/>).Assembly.</summary>
-        </member>
-        <member name="P:Aequus.Aequus.HighQualityEffects">
-            <summary>Shorthand for checking if <see cref="F:Terraria.Main.gfxQuality"/> is greater than 0.</summary>
-        </member>
-        <member name="P:Aequus.Aequus.ScreenShadersActive">
-            <summary>Shorthand for checking if <see cref="P:Terraria.Lighting.NotRetro"/> is true, and <see cref="M:Terraria.Graphics.Effects.FilterManager.CanCapture"/>.</summary>
-        </member>
-        <member name="P:Aequus.Aequus.GameWorldActive">
-            <summary>Shorthand for a bunch of checks determining whether the game is unpaused.</summary>
-        </member>
         <member name="M:Aequus.Aequus.GetRandomName(Terraria.Utilities.UnifiedRandom)">
             <returns>A random name. Used in naturally generated underworld tombstones.</returns>
         </member>
@@ -1814,9 +1799,6 @@
             </summary>
             <typeparam name="TBannerNPC"></typeparam>
             <param name="npcWithoutBanner"></param>
-        </member>
-        <member name="T:Aequus.Core.Initialization.IPostSetupRecipes">
-            <summary>Runs after PostAddRecipes. Do not edit recipes here.</summary>
         </member>
         <member name="T:Aequus.Core.IO.IDLoader`1">
             <summary>Helper for loading content which uses a legacy Id system.</summary>

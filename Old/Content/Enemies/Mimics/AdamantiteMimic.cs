@@ -1,9 +1,9 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Configuration;
-using Aequus.Core.Initialization;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Old.Content.Enemies.Mimics;
 
@@ -54,7 +54,7 @@ public class AdamantiteMimic : ModNPC, IPostPopulateItemDropDatabase, IAddRecipe
         BannerItem = Item.BannerToItem(Banner);
     }
 
-    public virtual void AddRecipes(Aequus aequus) {
+    public virtual void AddRecipes(Mod mod) {
         BestiaryBuilder.ReSort(this, CloneNPC);
     }
 
@@ -114,7 +114,7 @@ public class AdamantiteMimic : ModNPC, IPostPopulateItemDropDatabase, IAddRecipe
         return false;
     }
 
-    public virtual void PostPopulateItemDropDatabase(Aequus aequus, ItemDropDatabase database) {
+    public virtual void PostPopulateItemDropDatabase(Mod mod, ItemDropDatabase database) {
         ExtendLoot.InheritDropRules(CloneNPC, Type, database);
         //if (ThoriumMod.Instance != null && ThoriumMod.TryGetItem("VanquisherMedal", out ModItem vanquisherMedal)) {
         //    database.RegisterToNPC(Type, ItemDropRule.Common(vanquisherMedal.Type));

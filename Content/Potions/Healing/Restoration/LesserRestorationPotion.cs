@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Content.Configuration;
-using Aequus.Core.Initialization;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Content.Potions.Healing.Restoration;
 
@@ -54,7 +54,7 @@ public class LesserRestorationPotion : ModItem, IApplyPotionDelay, IPostAddRecip
         }
     }
 
-    public void PostAddRecipes(Aequus aequus) {
+    public void PostAddRecipes(Mod mod) {
         if (!VanillaChangesConfig.Instance.RestorationPotionRecipe) {
             return;
         }

@@ -1,9 +1,9 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Materials;
-using Aequus.Core.Initialization;
 using Aequus.DataSets;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Conductor;
 
@@ -40,7 +40,7 @@ public partial class Conductor : IPostPopulateItemDropDatabase {
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CompressedTrash>(), minimumDropped: 1, maximumDropped: 4));
     }
 
-    public virtual void PostPopulateItemDropDatabase(Aequus aequus, ItemDropDatabase database) {
+    public virtual void PostPopulateItemDropDatabase(Mod mod, ItemDropDatabase database) {
         //ExtendLoot.InheritDropRules(NPCID.Skeleton, Type, database);
     }
 }

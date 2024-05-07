@@ -1,10 +1,10 @@
 ﻿using Aequus.Common.Hooks;
 using Aequus.Core.ContentGeneration;
-using Aequus.Core.Initialization;
 using System.Collections.Generic;
-using tModLoaderExtended.Terraria.GameContent.Creative;
 using Terraria.GameContent.Metadata;
 using Terraria.ObjectData;
+using tModLoaderExtended.Terraria.GameContent.Creative;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Old.Content.Tiles.Herbs;
 
@@ -171,7 +171,7 @@ public abstract class ModHerb : ModTile, IAddRecipeGroups {
         WorldGen.PlaceTile(i, j - 1, Type, mute: true);
     }
 
-    public void AddRecipeGroups(Aequus aequus) {
+    public void AddRecipeGroups(Mod mod) {
         _validAnchors = new bool[TileLoader.TileCount];
         TileObjectData objectData = TileObjectData.GetTileData(Type, 0, 0);
         for (int i = 0; i < objectData.AnchorValidTiles.Length; i++) {

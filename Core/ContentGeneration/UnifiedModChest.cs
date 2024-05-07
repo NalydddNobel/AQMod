@@ -1,12 +1,12 @@
-﻿using Aequus.Core.Initialization;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
-using tModLoaderExtended.Terraria.GameContent.Creative;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.Localization;
 using Terraria.ObjectData;
+using tModLoaderExtended.Terraria.GameContent.Creative;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Core.ContentGeneration;
 
@@ -359,7 +359,7 @@ internal class TrappedChest : InstancedModTile, IAddRecipes {
         _baseChest.PostDraw(i, j, spriteBatch);
     }
 
-    public void AddRecipes(Aequus aequus) {
+    public void AddRecipes(Mod mod) {
         Recipe.Create(_item.Type)
             .AddIngredient(_baseChest.Type)
             .AddIngredient(ItemID.Wire, 10)
