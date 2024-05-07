@@ -18,8 +18,10 @@ public class ShimmerCoinPlayer : ModPlayer {
         Player.tileSpeed += 0.05f * effectiveness;
         Player.wallSpeed += 0.05f * effectiveness;
 
+#if !DEBUG
         // Cosmic Chest
         Player.GetModPlayer<AequusPlayer>().dropRolls += CosmicChest.LuckIncrease * effectiveness;
+#endif
     }
 
     public override void UpdateLifeRegen() {

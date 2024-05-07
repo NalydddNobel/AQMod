@@ -1,6 +1,6 @@
 ﻿namespace Aequus.DataSets.Structures.Enums;
 
-public enum Biome : byte {
+public enum Biome {
     Forest,
     Underground,
     Underworld,

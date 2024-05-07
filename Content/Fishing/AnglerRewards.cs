@@ -30,6 +30,8 @@ internal class AnglerRewards : ModPlayer {
         if (TryGetQuestSpecificItem(questFish, out Item questSpecificItem)) {
             yield return questSpecificItem;
         }
+#else
+        yield return new Item(ItemID.SilverCoin);
 #endif
     }
 

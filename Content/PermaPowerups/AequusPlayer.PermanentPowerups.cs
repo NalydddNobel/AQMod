@@ -1,5 +1,4 @@
-﻿using Aequus.Content.PermaPowerups.Shimmer;
-using Aequus.Core.IO;
+﻿using Aequus.Core.IO;
 using System;
 
 namespace Aequus;
@@ -15,9 +14,11 @@ public partial class AequusPlayer {
     public bool usedMaxHPRespawnReward;
 
     private void DoPermanentStatBoosts() {
+#if !DEBUG
         if (usedCosmicChest) {
-            dropRolls += CosmicChest.LuckIncrease;
+            dropRolls += Content.PermaPowerups.Shimmer.CosmicChest.LuckIncrease;
         }
+#endif
     }
 
     private void DoPermanentMaxHPRespawn() {
