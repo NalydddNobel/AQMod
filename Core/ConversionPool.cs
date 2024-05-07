@@ -9,7 +9,7 @@ public class ConversionPool<TFrom, TTo> {
 
     public ConversionPool(Func<TFrom, TTo> converter) {
         _converter = converter;
-        _conversionCache = new();
+        _conversionCache = [];
     }
 
     public TTo Get(TFrom from) {

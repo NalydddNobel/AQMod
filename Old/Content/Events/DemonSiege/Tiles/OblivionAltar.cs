@@ -6,7 +6,7 @@ using Aequus.DataSets;
 using Aequus.Old.Content.TownNPCs.OccultistNPC;
 using System;
 using Terraria.DataStructures;
-using Terraria.Extended.GameContent.Creative;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 using Terraria.GameContent;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ObjectData;

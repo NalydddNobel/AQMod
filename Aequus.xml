@@ -4,24 +4,6 @@
         <name>Aequus</name>
     </assembly>
     <members>
-        <member name="P:Aequus.Aequus.Log">
-            <summary>Shorthand for <see cref="P:Aequus.Aequus.Instance"/>.Logger.</summary>
-        </member>
-        <member name="P:Aequus.Aequus.TerrariaAssembly">
-            <summary>Shorthand for typeof(<see cref="T:Terraria.Main"/>).Assembly.</summary>
-        </member>
-        <member name="P:Aequus.Aequus.HighQualityEffects">
-            <summary>Shorthand for checking if <see cref="F:Terraria.Main.gfxQuality"/> is greater than 0.</summary>
-        </member>
-        <member name="P:Aequus.Aequus.ScreenShadersActive">
-            <summary>Shorthand for checking if <see cref="P:Terraria.Lighting.NotRetro"/> is true, and <see cref="M:Terraria.Graphics.Effects.FilterManager.CanCapture"/>.</summary>
-        </member>
-        <member name="P:Aequus.Aequus.GameWorldActive">
-            <summary>Shorthand for a bunch of checks determining whether the game is unpaused.</summary>
-        </member>
-        <member name="M:Aequus.Aequus.GetRandomName(Terraria.Utilities.UnifiedRandom)">
-            <returns>A random name. Used in naturally generated underworld tombstones.</returns>
-        </member>
         <member name="M:Aequus.Common.Backpacks.BackpackData.Deactivate(Terraria.Player)">
             <summary>
             Runs when the Backpack is no longer active. Use this hook to deposit items from the Backpack.
@@ -1102,6 +1084,24 @@
             <summary>Set <see cref="P:Aequus.DataSets.Structures.IIDEntry.Id"/> directly. Use this to update the name or other values if needed.</summary>
             <param name="id">The Content's Id.</param>
         </member>
+        <member name="P:Aequus.Aequus.Log">
+            <summary>Shorthand for <see cref="P:Aequus.Aequus.Instance"/>.Logger.</summary>
+        </member>
+        <member name="P:Aequus.Aequus.TerrariaAssembly">
+            <summary>Shorthand for typeof(<see cref="T:Terraria.Main"/>).Assembly.</summary>
+        </member>
+        <member name="P:Aequus.Aequus.HighQualityEffects">
+            <summary>Shorthand for checking if <see cref="F:Terraria.Main.gfxQuality"/> is greater than 0.</summary>
+        </member>
+        <member name="P:Aequus.Aequus.ScreenShadersActive">
+            <summary>Shorthand for checking if <see cref="P:Terraria.Lighting.NotRetro"/> is true, and <see cref="M:Terraria.Graphics.Effects.FilterManager.CanCapture"/>.</summary>
+        </member>
+        <member name="P:Aequus.Aequus.GameWorldActive">
+            <summary>Shorthand for a bunch of checks determining whether the game is unpaused.</summary>
+        </member>
+        <member name="M:Aequus.Aequus.GetRandomName(Terraria.Utilities.UnifiedRandom)">
+            <returns>A random name. Used in naturally generated underworld tombstones.</returns>
+        </member>
         <member name="T:Aequus.Core.CodeGeneration.Publicization`2">
             <summary>Rough system which helps getting private fields from classes.</summary>
         </member>
@@ -1155,10 +1155,10 @@
             <param name="rarity">Item rarity.</param>
             <param name="value">Item value.</param>
             <param name="researchSacrificeCount">Research count override.</param>
-            <param name="journeyOverride">Journey Mode item group override, used to organize tiles all together in the menu. Utilize <see cref="T:Terraria.Extended.GameContent.Creative.JourneySortByTileId"/> to sort with tiles with a matching tile id, since many tiles do not have item groups, and are instead sorted by tile id.</param>
+            <param name="journeyOverride">Journey Mode item group override, used to organize tiles all together in the menu. Utilize <see cref="T:tModLoaderExtended.Terraria.GameContent.Creative.JourneySortByTileId"/> to sort with tiles with a matching tile id, since many tiles do not have item groups, and are instead sorted by tile id.</param>
             <param name="TileIdOverride">Overrides the place tile id.</param>
         </member>
-        <member name="M:Aequus.Core.ContentGeneration.InstancedTileItem.#ctor(Terraria.ModLoader.ModTile,System.Int32,System.String,System.Boolean,System.Int32,System.Int32,System.Nullable{System.Int32},Terraria.Extended.GameContent.Creative.IJourneySortOverrideProvider,System.Nullable{System.Int32})">
+        <member name="M:Aequus.Core.ContentGeneration.InstancedTileItem.#ctor(Terraria.ModLoader.ModTile,System.Int32,System.String,System.Boolean,System.Int32,System.Int32,System.Nullable{System.Int32},tModLoaderExtended.Terraria.GameContent.Creative.IJourneySortOverrideProvider,System.Nullable{System.Int32})">
             <param name="modTile"></param>
             <param name="style"></param>
             <param name="nameSuffix">Extra text added to the end of the name.</param>
@@ -1166,7 +1166,7 @@
             <param name="rarity">Item rarity.</param>
             <param name="value">Item value.</param>
             <param name="researchSacrificeCount">Research count override.</param>
-            <param name="journeyOverride">Journey Mode item group override, used to organize tiles all together in the menu. Utilize <see cref="T:Terraria.Extended.GameContent.Creative.JourneySortByTileId"/> to sort with tiles with a matching tile id, since many tiles do not have item groups, and are instead sorted by tile id.</param>
+            <param name="journeyOverride">Journey Mode item group override, used to organize tiles all together in the menu. Utilize <see cref="T:tModLoaderExtended.Terraria.GameContent.Creative.JourneySortByTileId"/> to sort with tiles with a matching tile id, since many tiles do not have item groups, and are instead sorted by tile id.</param>
             <param name="TileIdOverride">Overrides the place tile id.</param>
         </member>
         <member name="T:Aequus.Core.ContentGeneration.InstancedWallItem">
@@ -1424,17 +1424,17 @@
         <member name="M:Aequus.Core.Utilities.ExtendItem.StaticDefaultsToPotion(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])">
             <summary>Registers this item as a drink (Potion).</summary>
             <param name="modItem"></param>
-            <param name="colors">Particle TCommonColor for when this potion is consumed.</param>
+            <param name="colors">Particle Colors for when this potion is consumed.</param>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendItem.StaticDefaultsToFoodDrink(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])">
             <summary>Registers this item as a drink. The difference between this and <see cref="M:Aequus.Core.Utilities.ExtendItem.StaticDefaultsToPotion(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])"/> is that drinks have held sprites.</summary>
             <param name="modItem"></param>
-            <param name="colors">Particle TCommonColor for when this drink is consumed.</param>
+            <param name="colors">Particle Colors for when this drink is consumed.</param>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendItem.StaticDefaultsToFood(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])">
             <summary>Registers this item as a food.</summary>
             <param name="modItem"></param>
-            <param name="colors">Particle TCommonColor for when this food is eaten.</param>
+            <param name="colors">Particle Colors for when this food is eaten.</param>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetRandomLocalizationFromCategory(Terraria.ModLoader.ILocalizedModType,System.String,Terraria.Utilities.UnifiedRandom)">
             <summary>Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.</summary>

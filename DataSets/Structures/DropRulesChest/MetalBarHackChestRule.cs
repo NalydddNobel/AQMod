@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Core;
 using System;
 using System.Collections.Generic;
+using tModLoaderExtended.Terraria;
 
 namespace Aequus.DataSets.Structures.DropRulesChest;
 

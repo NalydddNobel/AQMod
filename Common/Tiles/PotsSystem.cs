@@ -9,6 +9,7 @@ using System.Reflection;
 using Terraria.GameContent;
 using Terraria.ObjectData;
 using Terraria.Utilities;
+using tModLoaderExtended.Terraria;
 
 namespace Aequus.Common.Tiles;
 

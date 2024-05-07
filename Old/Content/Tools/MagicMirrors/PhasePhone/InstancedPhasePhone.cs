@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.Extended.GameContent.Creative;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 using Terraria.Localization;
 
 namespace Aequus.Old.Content.Tools.MagicMirrors.PhasePhone;

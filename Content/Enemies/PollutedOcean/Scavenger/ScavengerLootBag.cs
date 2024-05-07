@@ -9,6 +9,7 @@ using System.IO;
 using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader.IO;
+using tModLoaderExtended.Terraria;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger;
 

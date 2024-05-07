@@ -272,7 +272,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
 
             Zombie.PlayerOwner = zombieOwner;
 
-            npc.GivenName = Main.player[zombieOwner].name + "'s " + LanguageDatabase.GetNPCName(npc.netID);
+            npc.GivenName = Main.player[zombieOwner].name + "'s " + Lang.GetNPCName(npc.netID);
             npc.friendly = true;
             npc.boss = false;
             npc.alpha = Math.Max(npc.alpha, 60);

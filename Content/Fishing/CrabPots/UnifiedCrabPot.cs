@@ -314,7 +314,7 @@ public abstract class UnifiedCrabPot : ModTile, ISpecialTileRenderer, IModifyPla
         DrawCrabPot(left, top, spriteBatch, TextureAssets.Tile[Type].Value, data, yOffset, crabPotAnimation, (x, y, rgb) => rgb);
 
         if (Main.InSmartCursorHighlightArea(i, j, out var actuallySelected)) {
-            DrawCrabPot(left, top, spriteBatch, _highlightTexture.Value, data, yOffset, crabPotAnimation, (x, y, rgb) => TCommonColor.GetSelectionGlowColor(actuallySelected, (rgb.R + rgb.G + rgb.B) / 3));
+            DrawCrabPot(left, top, spriteBatch, _highlightTexture.Value, data, yOffset, crabPotAnimation, (x, y, rgb) => Colors.GetSelectionGlowColor(actuallySelected, (rgb.R + rgb.G + rgb.B) / 3));
         }
         if (TileEntity.ByPosition.TryGetValue(new(left, top), out var tileEntity) && tileEntity is TECrabPot crabPot) {
             CustomPreDraw(left, top, yOffset, spriteBatch, crabPot);

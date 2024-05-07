@@ -113,16 +113,16 @@ public static class ExtendLanguage {
         }
 
         if (platinum > 0) {
-            yield return new ColoredText(platinum + " " + LanguageDatabase.inter[15].Value, TCommonColor.CoinPlatinum);
+            yield return new ColoredText(platinum + " " + Lang.inter[15].Value, Colors.CoinPlatinum);
         }
         if (gold > 0) {
-            yield return new ColoredText(gold + " " + LanguageDatabase.inter[16].Value, TCommonColor.CoinGold);
+            yield return new ColoredText(gold + " " + Lang.inter[16].Value, Colors.CoinGold);
         }
         if (silver > 0) {
-            yield return new ColoredText(silver + " " + LanguageDatabase.inter[17].Value, TCommonColor.CoinSilver);
+            yield return new ColoredText(silver + " " + Lang.inter[17].Value, Colors.CoinSilver);
         }
         if (copper > 0) {
-            yield return new ColoredText(copper + " " + LanguageDatabase.inter[18].Value, TCommonColor.CoinCopper);
+            yield return new ColoredText(copper + " " + Lang.inter[18].Value, Colors.CoinCopper);
         }
     }
 

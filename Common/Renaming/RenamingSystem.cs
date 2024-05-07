@@ -20,7 +20,7 @@ public sealed class RenamingSystem : ModSystem {
     };
 
     private static void LanguageKeyCommand(string fullCommand, string commandInput, List<DecodedText> output) {
-        string languageText = Language.GetTextValue(commandInput, LanguageDatabase.CreateDialogSubstitutionObject());
+        string languageText = Language.GetTextValue(commandInput, Lang.CreateDialogSubstitutionObject());
 
         output.Add(new DecodedText(fullCommand, languageText, commandInput == languageText ? DecodeType.FailedCommand : DecodeType.LanguageKey));
     }

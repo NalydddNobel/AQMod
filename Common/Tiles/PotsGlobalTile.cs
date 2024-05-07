@@ -3,6 +3,7 @@ using Aequus.DataSets;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using Terraria.ObjectData;
+using tModLoaderExtended.Terraria;
 
 namespace Aequus.Common.Tiles;
 

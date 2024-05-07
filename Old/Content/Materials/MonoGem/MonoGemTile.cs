@@ -8,7 +8,7 @@ public class MonoGemTile : BaseGemTile {
         base.SetStaticDefaults();
         Main.tileLighted[Type] = true;
 
-        AddMapEntry(new Color(66, 55, 55), LanguageDatabase.GetItemName(ModContent.ItemType<MonoGem>()));
+        AddMapEntry(new Color(66, 55, 55), Lang.GetItemName(ModContent.ItemType<MonoGem>()));
         DustType = DustID.Ambient_DarkBrown;
     }
 

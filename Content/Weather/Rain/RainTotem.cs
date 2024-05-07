@@ -181,7 +181,7 @@ public abstract class RainTotemTileTemplate : ModTile {
         spriteBatch.Draw(TextureAssets.Tile[Type].Value, drawCoordinates, frame, lightColor);
 
         if (Main.InSmartCursorHighlightArea(i, j, out var actuallySelected)) {
-            Color selectionColor = TCommonColor.GetSelectionGlowColor(actuallySelected, (lightColor.R + lightColor.G + lightColor.B) / 3);
+            Color selectionColor = Colors.GetSelectionGlowColor(actuallySelected, (lightColor.R + lightColor.G + lightColor.B) / 3);
             spriteBatch.Draw(TextureAssets.HighlightMask[Type].Value, drawCoordinates, frame, selectionColor);
         }
 

@@ -53,14 +53,14 @@ public class AnglerBroadcasterIcon : InfoDisplay {
         // Alternate between showing the fish's name and tooltip every 2 seconds.
         // Or just only display the name if the fish has no tooltip.
         if (Main.GameUpdateCount % maxTime < showItemNameTime || string.IsNullOrEmpty(_tooltip)) {
-            return LanguageDatabase.GetItemNameValue(questFish);
+            return Lang.GetItemNameValue(questFish);
         }
 
         return _tooltip;
     }
 
     private void UpdateTooltipCache(int questFish) {
-        ItemTooltip tooltip = LanguageDatabase.GetTooltip(questFish);
+        ItemTooltip tooltip = Lang.GetTooltip(questFish);
         // If the quest fish has no tooltip, set the tooltip to empty.
         if (tooltip == null || tooltip.Lines != 1) {
             _tooltip = string.Empty;

@@ -12,7 +12,7 @@ public sealed class ShimmerMonocleGlobalItem : GlobalItem {
     public static Color TipColor { get; set; } = Color.Lerp(Color.White, Color.BlueViolet, 0.33f);
 
     public override void Load() {
-        CustomShimmerTip[ItemID.GelBalloon] = (i) => NPC.unlockedSlimeRainbowSpawn ? null : Language.GetTextValue("Mods.Aequus.Items.CommonTooltips.ShimmerableToNPC", LanguageDatabase.GetNPCNameValue(NPCID.TownSlimeRainbow));
+        CustomShimmerTip[ItemID.GelBalloon] = (i) => NPC.unlockedSlimeRainbowSpawn ? null : Language.GetTextValue("Mods.Aequus.Items.CommonTooltips.ShimmerableToNPC", Lang.GetNPCNameValue(NPCID.TownSlimeRainbow));
     }
 
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
@@ -36,6 +36,6 @@ public sealed class ShimmerMonocleGlobalItem : GlobalItem {
             return;
         }
 
-        tooltips.Insert(tooltips.GetIndex("Material", 1), new(Mod, "Shimmerable", Language.GetTextValue("Mods.Aequus.Items.CommonTooltips.Shimmerable", ItemSets.ShimmerTransformToItem[itemId], LanguageDatabase.GetItemNameValue(ItemSets.ShimmerTransformToItem[itemId]))) { OverrideColor = TipColor });
+        tooltips.Insert(tooltips.GetIndex("Material", 1), new(Mod, "Shimmerable", Language.GetTextValue("Mods.Aequus.Items.CommonTooltips.Shimmerable", ItemSets.ShimmerTransformToItem[itemId], Lang.GetItemNameValue(ItemSets.ShimmerTransformToItem[itemId]))) { OverrideColor = TipColor });
     }
 }

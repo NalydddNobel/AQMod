@@ -13,7 +13,7 @@ public class SoulGemTile : ModTile {
 
         TileID.Sets.DisableSmartCursor[Type] = true;
 
-        AddMapEntry(MapColor, LanguageDatabase.GetItemName(Item));
+        AddMapEntry(MapColor, Lang.GetItemName(Item));
         DustType = DustID.BlueCrystalShard;
     }
 

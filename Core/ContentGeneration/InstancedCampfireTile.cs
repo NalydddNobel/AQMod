@@ -1,7 +1,7 @@
 ﻿using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
-using Terraria.Extended.GameContent.Creative;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.Localization;
 using Terraria.ObjectData;

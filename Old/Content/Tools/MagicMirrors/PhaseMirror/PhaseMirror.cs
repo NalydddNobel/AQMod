@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Terraria.Extended.GameContent.Creative;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace Aequus.Old.Content.Tools.MagicMirrors.PhaseMirror;
 

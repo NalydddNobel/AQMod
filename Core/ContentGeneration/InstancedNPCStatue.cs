@@ -1,6 +1,6 @@
 ﻿using Terraria.DataStructures;
 using Terraria.Enums;
-using Terraria.Extended.GameContent.Creative;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 using Terraria.Localization;
 using Terraria.ObjectData;
 

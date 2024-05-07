@@ -7,7 +7,7 @@ using Aequus.Old.Content.Potions.Prefixes.StuffedPotions;
 using System;
 using Terraria.DataStructures;
 using Terraria.Enums;
-using Terraria.Extended.GameContent.Creative;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 using Terraria.ObjectData;
 
 namespace Aequus.Old.Content.Tiles.Herbs.HangingPots;

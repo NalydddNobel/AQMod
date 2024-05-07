@@ -7,7 +7,7 @@ using MonoMod.Cil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Terraria.Extended.GameContent.Creative;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 using Terraria.ObjectData;
 
 namespace Aequus.Old.Content.Tiles.Herbs.PlanterBoxes;

@@ -1,5 +1,5 @@
 ﻿using Aequus.Core.ContentGeneration;
-using Terraria.Extended.GameContent.Creative;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace Aequus.Content.Tiles.Statues;
 

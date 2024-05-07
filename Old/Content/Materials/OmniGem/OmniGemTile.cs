@@ -32,7 +32,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
 
         TerrariaHooks.OnRandomTileUpdate += GrowOmniGems;
 
-        LocalizedText mapEntry = LanguageDatabase.GetItemName(ModContent.ItemType<OmniGem>());
+        LocalizedText mapEntry = Lang.GetItemName(ModContent.ItemType<OmniGem>());
         for (int i = 0; i < MAP_ENTRY_COUNT; i++) {
             AddMapEntry(Main.hslToRgb(new Vector3(i / (float)MAP_ENTRY_COUNT, 1f, 0.66f)), mapEntry);
         }

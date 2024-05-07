@@ -2,7 +2,7 @@
 using Aequus.Common.Renaming;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.Extended.GameContent.Creative;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace Aequus.Content.Tools.NameTag;
 

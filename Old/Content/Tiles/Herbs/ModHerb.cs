@@ -2,7 +2,7 @@
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.Initialization;
 using System.Collections.Generic;
-using Terraria.Extended.GameContent.Creative;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 using Terraria.GameContent.Metadata;
 using Terraria.ObjectData;
 

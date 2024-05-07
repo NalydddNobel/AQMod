@@ -64,7 +64,7 @@ public abstract class UnifiedCanteen : ModItem, IOnShimmer, IRightClickOverrideW
             bool holdingShift = !Main.keyState.IsKeyDown(Keys.LeftShift) && !Main.keyState.IsKeyDown(Keys.RightShift);
             for (int k = 0; k < Buffs.Length; k++) {
                 if (!holdingShift && Buffs[k].ItemId > 0) {
-                    ItemTooltip tooltip = LanguageDatabase.GetTooltip(Buffs[k].ItemId);
+                    ItemTooltip tooltip = Lang.GetTooltip(Buffs[k].ItemId);
                     if (tooltip.Lines > 0) {
 
                         if (vanillaLine) {
@@ -97,7 +97,7 @@ public abstract class UnifiedCanteen : ModItem, IOnShimmer, IRightClickOverrideW
                         t.Text += '\n';
                     }
 
-                    t.Text += LanguageDatabase.GetBuffDescription(Buffs[k].BuffId);
+                    t.Text += Lang.GetBuffDescription(Buffs[k].BuffId);
                 }
             }
         }
@@ -388,12 +388,12 @@ public abstract class UnifiedCanteen : ModItem, IOnShimmer, IRightClickOverrideW
 
         string buffText = AltName.Format(string.Join(", ", GetBuffNames()));
 
-        return originalName.Replace(LanguageDatabase.GetItemNameValue(Type), buffText);
+        return originalName.Replace(Lang.GetItemNameValue(Type), buffText);
 
         IEnumerable<string> GetBuffNames() {
             for (int i = 0; i < Buffs.Length; i++) {
                 if (Buffs[i].BuffId > 0) {
-                    yield return LanguageDatabase.GetBuffName(Buffs[i].BuffId);
+                    yield return Lang.GetBuffName(Buffs[i].BuffId);
                 }
             }
         }

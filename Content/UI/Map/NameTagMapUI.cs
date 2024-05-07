@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Renaming;
-using Microsoft.Xna.Framework;
 using Terraria.Map;
 using Terraria.UI;
 
@@ -13,7 +12,7 @@ public class NameTagMapUI : ModMapLayer {
     public override void Draw(ref MapOverlayDrawContext context, ref string text) {
         foreach (var npc in RenamingSystem.RenamedNPCs) {
             if (context.Draw(AequusTextures.NameTagBlip, new Vector2(npc.Value.tileX + 0.5f, npc.Value.tileY + 0.5f), Alignment.Center).IsMouseOver) {
-                text = $"{npc.Value.customName} ({LanguageDatabase.GetNPCNameValue(npc.Value.type)})";
+                text = $"{npc.Value.customName} ({Lang.GetNPCNameValue(npc.Value.type)})";
             }
         }
     }

@@ -326,7 +326,7 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
         if (NPC.AnyNPCs(NPCID.Demolitionist) && Main.rand.NextBool(5)) {
             key = "Demolitionist";
         }
-        return this.GetLocalization("Dialogue." + key).FormatWith(LanguageDatabase.CreateDialogSubstitutionObject(NPC));
+        return this.GetLocalization("Dialogue." + key).FormatWith(Lang.CreateDialogSubstitutionObject(NPC));
     }
     #endregion
 

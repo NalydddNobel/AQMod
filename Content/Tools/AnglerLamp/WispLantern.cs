@@ -2,7 +2,7 @@
 using Aequus.Core.Initialization;
 using System;
 using System.Collections.Generic;
-using Terraria.Extended.GameContent.Creative;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace Aequus.Content.Tools.AnglerLamp;
 
@@ -109,7 +109,7 @@ public class WispLantern : ModItem {
                 return false;
             }
             var canHitOverride = CombinedHooks.CanPlayerHitNPCWithItem(player, Item, npc);
-            if (canHitOverride.HasValue && canHitOverride == false || (!canHitOverride.HasValue || canHitOverride != true) && npc.friendly && (npc.type != NPCID.Guide || !player.killGuide) && (npc.type != NPCID.Clothier || !player.killClothier)) {
+            if ((canHitOverride.HasValue && canHitOverride == false) || (!canHitOverride.HasValue || canHitOverride != true) && npc.friendly && (npc.type != NPCID.Guide || !player.killGuide) && (npc.type != NPCID.Clothier || !player.killClothier)) {
                 return false;
             }
             return npc.noTileCollide || Collision.CanHitLine(player.position, player.width, player.height, npc.position, npc.width, npc.height);

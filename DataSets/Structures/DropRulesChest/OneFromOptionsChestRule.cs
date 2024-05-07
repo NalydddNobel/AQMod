@@ -1,8 +1,8 @@
-﻿using Aequus.Core;
-using Aequus.DataSets.Structures.DropRulesItem;
+﻿using Aequus.DataSets.Structures.DropRulesItem;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.GameContent.ItemDropRules;
+using tModLoaderExtended.Terraria;
 
 namespace Aequus.DataSets.Structures.DropRulesChest;
 
