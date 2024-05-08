@@ -38,7 +38,7 @@
             <param name="into"></param>
         </member>
         <member name="M:tModLoaderExtended.Terraria.GameContent.IShimmerOverride.GetShimmered(Terraria.Item,System.Int32)">
-            <returns>Return <see langword="true"/> to allow vanilla shimmer actions to occur.</returns>
+            <returns>Return <see langword="false"/> to allow vanilla shimmer actions to occur.</returns>
         </member>
         <member name="M:tModLoaderExtended.Terraria.GameContent.IShimmerOverride.IsTransformLocked(System.Int32)">
             <summary>This method is not instanced.</summary>

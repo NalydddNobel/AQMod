@@ -14,7 +14,7 @@ using tModLoaderExtended.Terraria.ModLoader;
 namespace Aequus.Common.Systems;
 
 public class ShimmerTransmutationsLoader : IPostSetupContent {
-    void IContentInstance.Load(Mod mod) {
+    void IPostSetupContent.PostSetupContent(Mod mod) {
 #if !DEBUG
         ItemSets.ShimmerTransformToItem[ModContent.ItemType<Old.Content.Equipment.Accessories.GrandReward.GrandReward>()] = ModContent.ItemType<CosmicChest>();
 #endif
@@ -44,9 +44,7 @@ public class ShimmerTransmutationsLoader : IPostSetupContent {
             ModContent.ItemType<Old.Content.Tools.MagicMirrors.PhaseMirror.PhaseMirror>()
         );
 #endif
-    }
 
-    void IPostSetupContent.PostSetupContent(Mod mod) {
         ExtendedShimmer shimmer = ModContent.GetInstance<ExtendedShimmer>();
         foreach (ModItem item in mod.GetContent<ModItem>()) {
             if (ItemSets.ShimmerTransformToItem[item.Type] == -1 && DedicationRegistry.Contains(item)) {
@@ -78,13 +76,13 @@ public class ShimmerTransmutationsLoader : IPostSetupContent {
                 item.shimmered = true;
 
                 ExtendedShimmer.GetShimmered(item);
-                return false;
+                return true;
             }
-            return true;
+            return false;
         }
 
         readonly bool? IShimmerOverride.CanShimmer(Item item, int type) {
-            return true;
+            return null;
         }
     }
 }

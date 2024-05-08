@@ -177,7 +177,6 @@ public class DedicatedFaeling : ModNPC {
         }
 
         ExtendedShimmer.GetShimmered(item);
-        return;
     }
 
     private static void SpawnSparkles(Vector2 spawnCoordinates, IDedicationInfo dedication) {
