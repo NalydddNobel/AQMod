@@ -38,6 +38,14 @@ public class DedicationRegistry : ModSystem {
         _fromItem[modItem] = info;
     }
 
+    public static bool Contains(int item) {
+        return Contains(ItemLoader.GetItem(item));
+    }
+
+    public static bool Contains(ModItem item) {
+        return item != null && _fromItem.ContainsKey(item);
+    }
+
     public static IDedicationInfo Get(ModItem item) {
         return _fromItem[item];
     }

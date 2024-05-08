@@ -2,10 +2,11 @@
 using Aequus.Common.Items.Dedications;
 using System.Collections.Generic;
 using Terraria.Localization;
+using tModLoaderExtended.Terraria.GameContent;
 
 namespace Aequus.Content.Dedicated.BeyondCoin;
 
-public class ShimmerCoin : ModItem {
+public class ShimmerCoin : ModItem, IShimmerOverride {
     public static int TimesUsed { get; set; }
     public static int MaxTimesUsed { get; set; } = 5;
     public static float Effectiveness => TimesUsed / (float)MaxTimesUsed;
@@ -40,5 +41,9 @@ public class ShimmerCoin : ModItem {
 
     public override void ModifyTooltips(List<TooltipLine> tooltips) {
         tooltips.AddTooltip(new TooltipLine(Mod, "Uses", Language.GetTextValue("Mods.Aequus.Items.CommonTooltips.UsedXOfXTimes", TimesUsed, MaxTimesUsed)));
+    }
+
+    bool? IShimmerOverride.IsTransformLocked(int type) {
+        return NPC.downedMoonlord ? null : false;
     }
 }

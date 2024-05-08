@@ -13,6 +13,7 @@ using Terraria.GameContent.Creative;
 using Terraria.Graphics.Renderers;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
+using tModLoaderExtended.Terraria.GameContent;
 using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Content.Dedicated;
@@ -175,7 +176,7 @@ public class DedicatedFaeling : ModNPC {
             item.TurnToAir();
         }
 
-        ShimmerSystem.GetShimmeredEffects(item);
+        ExtendedShimmer.GetShimmered(item);
         return;
     }
 

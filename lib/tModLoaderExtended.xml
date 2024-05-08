@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>tModLoaderExtended</name>
+    </assembly>
+    <members>
+        <member name="T:tModLoaderExtended.ExtendedMod">
+            <summary>Features automatic overrides for <see cref="T:Terraria.ModLoader.Mod"/>, Loading and Misc for the tModLoaderExtended API and features.</summary>
+        </member>
+        <member name="P:tModLoaderExtended.ExtendedMod.Log">
+            <summary>Shorthand for <see cref="P:tModLoaderExtended.ExtendedMod.Instance"/>.Logger.</summary>
+        </member>
+        <member name="P:tModLoaderExtended.ExtendedMod.TerrariaAssembly">
+            <summary>Shorthand for typeof(<see cref="T:Terraria.Main"/>).Assembly.</summary>
+        </member>
+        <member name="P:tModLoaderExtended.ExtendedMod.HighQualityEffects">
+            <summary>Shorthand for checking if <see cref="F:Terraria.Main.gfxQuality"/> is greater than 0.</summary>
+        </member>
+        <member name="P:tModLoaderExtended.ExtendedMod.ScreenShadersActive">
+            <summary>Shorthand for checking if <see cref="P:Terraria.Lighting.NotRetro"/> is true, and <see cref="M:Terraria.Graphics.Effects.FilterManager.CanCapture"/>.</summary>
+        </member>
+        <member name="P:tModLoaderExtended.ExtendedMod.GameWorldActive">
+            <summary>Shorthand for a bunch of checks determining whether the game is unpaused.</summary>
+        </member>
+        <member name="M:tModLoaderExtended.ExtendedMod.GetPacket``1">
+            <returns>An instance of T. Use the Send function to send info with this packet.</returns>
+        </member>
+        <member name="T:tModLoaderExtended.GlowMasks.AutoloadGlowMaskAttribute">
+            <summary>Allows <see cref="T:Terraria.ModLoader.ModItem"/> to register and utilize Terraria's Glow Masks system.</summary>
+        </member>
+        <member name="M:tModLoaderExtended.Terraria.GameContent.ExtendedShimmer.GetShimmered(Terraria.Item)">
+            <summary>Emulates all vanilla shimmer on-transmutation effects. Including getting the achievement, the sound, particles, networking, ect.</summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:tModLoaderExtended.Terraria.GameContent.ExtendedShimmer.SetShimmerResultSafely(System.Int32,System.Int32)">
+            <summary>Attempts to safely set the shimmer result of this item, by inserting it to the end of existing chains or loops.</summary>
+            <param name="from"></param>
+            <param name="into"></param>
+        </member>
+        <member name="M:tModLoaderExtended.Terraria.GameContent.IShimmerOverride.GetShimmered(Terraria.Item,System.Int32)">
+            <returns>Return <see langword="true"/> to allow vanilla shimmer actions to occur.</returns>
+        </member>
+        <member name="M:tModLoaderExtended.Terraria.GameContent.IShimmerOverride.IsTransformLocked(System.Int32)">
+            <summary>This method is not instanced.</summary>
+            <returns>Return <see langword="null"/> to allow vanilla shimmer conditions to be checked.</returns>
+        </member>
+        <member name="M:tModLoaderExtended.Terraria.GameContent.IShimmerOverride.CanShimmer(Terraria.Item,System.Int32)">
+            <returns>Return <see langword="null"/> to allow vanilla shimmer conditions to be checked.</returns>
+        </member>
+        <member name="F:tModLoaderExtended.Terraria.GameContent.ShimmerTransmutationTreeType.Line">
+            <summary>Items convert into each other, eventually ending with an item with no conversion.</summary>
+        </member>
+        <member name="F:tModLoaderExtended.Terraria.GameContent.ShimmerTransmutationTreeType.Loop">
+            <summary>Items convert into each other, and will cycle infinitely.</summary>
+        </member>
+        <member name="F:tModLoaderExtended.Terraria.GameContent.ShimmerTransmutationTreeType.Broken">
+            <summary>Items will cycle, but will never reach the starting point.</summary>
+        </member>
+        <member name="T:tModLoaderExtended.Terraria.ModLoader.IAttributeOnModLoad">
+            <summary>Apply to an <see cref="T:System.Attribute"/> in order to have them define <see cref="M:tModLoaderExtended.Terraria.ModLoader.IAttributeOnModLoad.OnModLoad(Terraria.ModLoader.Mod,Terraria.ModLoader.ILoadable)"/> to run on <see cref="T:Terraria.ModLoader.ILoadable"/> types.</summary>
+        </member>
+        <member name="T:tModLoaderExtended.Terraria.ModLoader.IContentInstance">
+            <summary><inheritdoc cref="T:Terraria.ModLoader.ILoadable"/> Version of ILoadable with blank <see cref="!:ILoadable.Load(ExtendedMod)"/> and <see cref="M:Terraria.ModLoader.ILoadable.Unload"/> overrides.</summary>
+        </member>
+        <member name="M:tModLoaderExtended.Terraria.ModLoader.IContentInstance.Load(Terraria.ModLoader.Mod)">
+            <inheritdoc cref="M:Terraria.ModLoader.ILoadable.Load(Terraria.ModLoader.Mod)"/>
+        </member>
+        <member name="M:tModLoaderExtended.Terraria.ModLoader.IContentInstance.Unload">
+            <inheritdoc cref="M:Terraria.ModLoader.ILoadable.Unload"/>
+        </member>
+        <member name="T:tModLoaderExtended.Terraria.ModLoader.IOnModLoad">
+            <summary><inheritdoc cref="T:Terraria.ModLoader.ILoadable"/> Includes <see cref="M:tModLoaderExtended.Terraria.ModLoader.IOnModLoad.OnModLoad(Terraria.ModLoader.Mod)"/> for running code on that loading step.</summary>
+        </member>
+        <member name="T:tModLoaderExtended.Terraria.ModLoader.ISetupContent">
+            <summary><inheritdoc cref="M:Terraria.ModLoader.ModType.SetStaticDefaults"/></summary>
+        </member>
+        <member name="T:tModLoaderExtended.Terraria.ModLoader.IPostSetupContent">
+            <summary><inheritdoc cref="M:Terraria.ModLoader.ModSystem.PostSetupContent"/></summary>
+        </member>
+        <member name="T:tModLoaderExtended.Terraria.ModLoader.IPostPopulateItemDropDatabase">
+            <summary>Allows you to clone ItemDropRule entries from other NPCs or Items.</summary>
+        </member>
+        <member name="T:tModLoaderExtended.Terraria.ModLoader.IPreExtractBestiaryItemDrops">
+            <summary>Allows you to modify ItemDropRule entries from other NPCs or Items before they are registered to the bestiary.</summary>
+        </member>
+        <member name="T:tModLoaderExtended.Terraria.ModLoader.IAddRecipeGroups">
+            <summary><inheritdoc cref="M:Terraria.ModLoader.ModSystem.AddRecipeGroups"/></summary>
+        </member>
+        <member name="T:tModLoaderExtended.Terraria.ModLoader.IAddRecipes">
+            <summary><inheritdoc cref="M:Terraria.ModLoader.ModSystem.AddRecipes"/></summary>
+        </member>
+        <member name="T:tModLoaderExtended.Terraria.ModLoader.IPostAddRecipes">
+            <summary><inheritdoc cref="M:Terraria.ModLoader.ModSystem.PostAddRecipes"/></summary>
+        </member>
+        <member name="T:tModLoaderExtended.Terraria.ModLoader.IPostSetupRecipes">
+            <summary><inheritdoc cref="M:Terraria.ModLoader.ModSystem.PostSetupRecipes"/></summary>
+        </member>
+    </members>
+</doc>

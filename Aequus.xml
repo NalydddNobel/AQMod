@@ -297,9 +297,6 @@
         <member name="M:Aequus.Common.Items.Components.IOnPullBobber.PrePullBobber(Terraria.Player,Terraria.Projectile,System.Int32@)">
             <returns><see langword="true" /> to override default pulling operations.</returns>
         </member>
-        <member name="M:Aequus.Common.Items.Components.IOnShimmer.OnShimmer">
-            <returns>true to run normal shimmer behavior.</returns>
-        </member>
         <member name="F:Aequus.Common.Items.Components.IPickItemMovementAction.RESULT_SIMPLE_SWAP">
             <summary>Returning this result will attempt to place the item into the slot.</summary>
         </member>
@@ -473,24 +470,6 @@
             Determines whether this projectile is the orbiting yoyo from the Yoyo Glove.
             </summary>
             <returns></returns>
-        </member>
-        <member name="M:Aequus.Common.Systems.ShimmerSystem.SetShimmerResultSafely(System.Int32,System.Int32)">
-            <summary>Attempts to safely set the shimmer result of this item, by inserting it to the end of existing chains or loops.</summary>
-            <param name="from"></param>
-            <param name="into"></param>
-        </member>
-        <member name="M:Aequus.Common.Systems.ShimmerSystem.GetShimmeredEffects(Terraria.Item)">
-            <summary>Emulates all vanilla shimmer on-transmutation effects. Including getting the achievement, the sound, particles, networking, ect.</summary>
-            <param name="item"></param>
-        </member>
-        <member name="F:Aequus.Common.Systems.ShimmerSystem.ShimmerTransmutationTreeType.Line">
-            <summary>Items convert into each other, eventually ending with an item with no conversion.</summary>
-        </member>
-        <member name="F:Aequus.Common.Systems.ShimmerSystem.ShimmerTransmutationTreeType.Loop">
-            <summary>Items convert into each other, and will cycle infinitely.</summary>
-        </member>
-        <member name="F:Aequus.Common.Systems.ShimmerSystem.ShimmerTransmutationTreeType.Broken">
-            <summary>Items will cycle, but will never reach the starting point.</summary>
         </member>
         <member name="T:Aequus.Common.Tiles.BaseFurnitureTile.Furniture">
             <summary>

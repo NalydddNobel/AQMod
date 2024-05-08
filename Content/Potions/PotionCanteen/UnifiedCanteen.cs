@@ -14,10 +14,11 @@ using Terraria.GameContent;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
+using tModLoaderExtended.Terraria.GameContent;
 
 namespace Aequus.Content.Potions.PotionCanteen;
 
-public abstract class UnifiedCanteen : ModItem, IOnShimmer, IRightClickOverrideWhenHovered {
+public abstract class UnifiedCanteen : ModItem, IShimmerOverride, IRightClickOverrideWhenHovered {
     protected readonly CanteenInfo _info;
 
     public UnifiedCanteen(CanteenInfo info) {
@@ -103,10 +104,10 @@ public abstract class UnifiedCanteen : ModItem, IOnShimmer, IRightClickOverrideW
         }
     }
 
-    public bool OnShimmer() {
+    bool IShimmerOverride.GetShimmered(Item item, int type) {
         // Remove the name override,
         // so it is not inherited by the empty canteen
-        Item.ClearNameOverride();
+        item.ClearNameOverride();
 
         if (!HasBuffs()) {
             return true;
@@ -115,8 +116,8 @@ public abstract class UnifiedCanteen : ModItem, IOnShimmer, IRightClickOverrideW
         // Remove buffs
         Buffs = null;
         InitializeBuffs();
-        Item.shimmered = true;
-        ShimmerSystem.GetShimmeredEffects(Item);
+        item.shimmered = true;
+        ExtendedShimmer.GetShimmered(Item);
         return false;
     }
 
