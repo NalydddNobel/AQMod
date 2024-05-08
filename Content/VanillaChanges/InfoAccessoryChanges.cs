@@ -1,9 +1,9 @@
 ﻿using Aequus.Content.Configuration;
 using Aequus.Content.Equipment.Informational.Calendar;
 using Aequus.Content.Equipment.Informational.DebuffDPSMeter;
-using Aequus.Core.Initialization;
 using System.Collections.Generic;
 using Terraria.Localization;
+using tModLoaderExtended.Recipes;
 
 namespace Aequus.Content.VanillaChanges;
 
