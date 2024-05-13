@@ -291,6 +291,9 @@
         <member name="T:Aequus.Common.Items.Components.IModifyFishItem">
             <summary>Only works on Fishing Pole or Bait items.</summary>
         </member>
+        <member name="T:Aequus.Common.Items.Components.IOmniclassItem">
+            <summary>Signifies that this item is an omniclass weapon, and can receive multiple class modifiers.</summary>
+        </member>
         <member name="T:Aequus.Common.Items.Components.IOnPullBobber">
             <summary>Only works on Fishing Pole or Bait items.</summary>
         </member>
@@ -557,12 +560,15 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusPlayer.KillInfo">
-            <param name="Location">The enemy's center.</param>
+            <param name="Center">The enemy's center.</param>
             <param name="Type">The enemy's type.</param>
         </member>
         <member name="M:Aequus.AequusPlayer.KillInfo.#ctor(Microsoft.Xna.Framework.Vector2,System.Int32)">
-            <param name="Location">The enemy's center.</param>
+            <param name="Center">The enemy's center.</param>
             <param name="Type">The enemy's type.</param>
+        </member>
+        <member name="P:Aequus.AequusPlayer.KillInfo.Center">
+            <summary>The enemy's center.</summary>
         </member>
         <member name="P:Aequus.AequusPlayer.KillInfo.Type">
             <summary>The enemy's type.</summary>
@@ -2920,6 +2926,60 @@
         <member name="F:Aequus.AequusTextures.TinkerersGuidebook">
             <summary>Full Path: Content/Items/PermaPowerups/Shimmer/TinkerersGuidebook</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.StunEffect">
+            <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunEffect</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StunGun">
+            <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunGun</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Furystar">
+            <summary>Full Path: Content/Items/Weapons/Magic/Furystar/Furystar</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashStaff">
+            <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashStaffCritEffect">
+            <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaffCritEffect</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashStaffCritEffectStrip">
+            <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaffCritEffectStrip</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashStaffProj">
+            <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaffProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AncientCutlass">
+            <summary>Full Path: Content/Items/Weapons/Melee/AncientCutlass/AncientCutlass</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Dynaknife">
+            <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/Dynaknife</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DynaknifeProj">
+            <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/DynaknifeProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DynaknifeProj_Glow">
+            <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/DynaknifeProj_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Dynaknife_Glow">
+            <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/Dynaknife_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Chain">
+            <summary>Full Path: Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyHunterCrossbow">
+            <summary>Full Path: Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PlasticDart">
+            <summary>Full Path: Content/Items/Weapons/Ranged/Darts/Ammo/PlasticDart</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PlasticDart_Outline">
+            <summary>Full Path: Content/Items/Weapons/Ranged/Darts/Ammo/PlasticDart_Outline</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StarPhish">
+            <summary>Full Path: Content/Items/Weapons/Ranged/Darts/StarPhish/StarPhish</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.JunkJet">
+            <summary>Full Path: Content/Items/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.UndeadMinerPet">
             <summary>Full Path: Content/Pets/Miner/UndeadMinerPet</summary>
         </member>
@@ -3336,60 +3396,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.ScorchingDye">
             <summary>Full Path: Content/Vanity/Dyes/ScorchingDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.StunEffect">
-            <summary>Full Path: Content/Weapons/Classless/StunGun/StunEffect</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.StunGun">
-            <summary>Full Path: Content/Weapons/Classless/StunGun/StunGun</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Furystar">
-            <summary>Full Path: Content/Weapons/Magic/Furystar/Furystar</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.TrashStaff">
-            <summary>Full Path: Content/Weapons/Magic/TrashStaff/TrashStaff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.TrashStaffCritEffect">
-            <summary>Full Path: Content/Weapons/Magic/TrashStaff/TrashStaffCritEffect</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.TrashStaffCritEffectStrip">
-            <summary>Full Path: Content/Weapons/Magic/TrashStaff/TrashStaffCritEffectStrip</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.TrashStaffProj">
-            <summary>Full Path: Content/Weapons/Magic/TrashStaff/TrashStaffProj</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AncientCutlass">
-            <summary>Full Path: Content/Weapons/Melee/AncientCutlass/AncientCutlass</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Dynaknife">
-            <summary>Full Path: Content/Weapons/Melee/DynaKnife/Dynaknife</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DynaknifeProj">
-            <summary>Full Path: Content/Weapons/Melee/DynaKnife/DynaknifeProj</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DynaknifeProj_Glow">
-            <summary>Full Path: Content/Weapons/Melee/DynaKnife/DynaknifeProj_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Dynaknife_Glow">
-            <summary>Full Path: Content/Weapons/Melee/DynaKnife/Dynaknife_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Chain">
-            <summary>Full Path: Content/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyHunterCrossbow">
-            <summary>Full Path: Content/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PlasticDart">
-            <summary>Full Path: Content/Weapons/Ranged/Darts/Ammo/PlasticDart</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PlasticDart_Outline">
-            <summary>Full Path: Content/Weapons/Ranged/Darts/Ammo/PlasticDart_Outline</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.StarPhish">
-            <summary>Full Path: Content/Weapons/Ranged/Darts/StarPhish/StarPhish</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.JunkJet">
-            <summary>Full Path: Content/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RainTotem">
             <summary>Full Path: Content/Weather/Rain/RainTotem</summary>

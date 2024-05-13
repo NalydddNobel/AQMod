@@ -1,4 +1,6 @@
-﻿using Terraria.DataStructures;
+﻿using Aequus.Common.ItemPrefixes;
+using System.Reflection;
+using Terraria.DataStructures;
 using Terraria.GameContent.Golf;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.UI;
@@ -16,6 +18,8 @@ public partial class TerrariaHooks : ILoad {
         On_ChestUI.QuickStack += On_ChestUI_QuickStack;
 
         On_GolfHelper.StepGolfBall += On_GolfHelper_StepGolfBall;
+
+        On_Item.CanHavePrefixes += On_Item_CanHavePrefixes;
 
         On_ItemDropResolver.ResolveRule += ItemDropResolver_ResolveRule;
 
@@ -60,6 +64,8 @@ public partial class TerrariaHooks : ILoad {
         On_WorldGen.PlaceChestDirect += On_WorldGen_PlaceChestDirect;
         On_WorldGen.UpdateWorld_OvergroundTile += WorldGen_UpdateWorld_OvergroundTile;
         On_WorldGen.UpdateWorld_UndergroundTile += WorldGen_UpdateWorld_UndergroundTile;
+
+        HookManager.ApplyAndCacheHook(typeof(PrefixLoader).GetMethod(nameof(PrefixLoader.CanRoll)), typeof(AequusPrefixes).GetMethod(nameof(On_PrefixLoader_CanRoll), BindingFlags.NonPublic | BindingFlags.Static));
     }
 
     public void Unload() { }

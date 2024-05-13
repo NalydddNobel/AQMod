@@ -1,13 +1,12 @@
 ﻿using Aequus.Common;
+using Aequus.Common.DamageClasses;
 using Aequus.Common.Items.Components;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria.Localization;
 
 namespace Aequus.Content.Weapons.Classless.StunGun;
 
-public class StunGun : ClasslessWeapon, ICooldownItem {
+public class StunGun : ModItem, ICooldownItem {
     public static float VisualTimer => Main.GlobalTimeWrappedHourly * 5f;
     public static int DebuffTime { get; set; } = 180;
     public static int CooldownTime { get; set; } = 480;
@@ -20,7 +19,7 @@ public class StunGun : ClasslessWeapon, ICooldownItem {
         Item.width = 24;
         Item.height = 24;
         Item.SetWeaponValues(20, 0.5f);
-        Item.DamageType = ModContent.GetInstance<GenericDamageClassNoCrit>();
+        Item.DamageType = ModContent.GetInstance<OmniDamageClassNoCrit>();
         Item.useStyle = ItemUseStyleID.Shoot;
         Item.useAnimation = 10;
         Item.useTime = 10;

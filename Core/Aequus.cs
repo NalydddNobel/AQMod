@@ -41,6 +41,7 @@ using tModLoaderExtended;
 namespace Aequus;
 
 public partial class Aequus : ExtendedMod {
+    public static new Mod Instance => ExtendedMod.Instance;
     public static Mod MusicMod { get; private set; }
 
     public override void OnLoad() {

@@ -1,13 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.Common.Items.Components;
+using System.Collections.Generic;
 using Terraria.Utilities;
 
-namespace Aequus.Content.Weapons.Classless;
+namespace Aequus.Common.Items;
 
-public abstract class ClasslessWeapon : ModItem {
-    // Poopy
-    public override int ChoosePrefix(UnifiedRandom rand) {
-        var prefixes = PrefixLoader.GetPrefixesInCategory(PrefixCategory.Custom);
-        List<int> list = new() {
+public class ClasslessGlobalItem : GlobalItem {
+    public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
+        return entity.ModItem is IOmniclassItem;
+    }
+
+    public override int ChoosePrefix(Item item, UnifiedRandom rand) {
+        IReadOnlyList<ModPrefix> prefixes = PrefixLoader.GetPrefixesInCategory(PrefixCategory.Custom);
+
+        // Generic prefixes all classless weapons should get.
+        List<int> list = [
             PrefixID.Broken,
             PrefixID.Annoying,
             PrefixID.Damaged,
@@ -20,13 +26,17 @@ public abstract class ClasslessWeapon : ModItem {
             PrefixID.Godly,
             PrefixID.Murderous,
             PrefixID.Nasty,
-        };
-        if (Item.knockBack > 0f) {
+        ];
+
+        // Generic prefixes which effect knockback.
+        if (item.knockBack > 0f) {
             list.Add(PrefixID.Weak);
             list.Add(PrefixID.Forceful);
             list.Add(PrefixID.Strong);
         }
-        if (Item.mana > 0) {
+
+        // Generic magic prefixes for magical-classless items.
+        if (item.mana > 0) {
             list.Add(PrefixID.Mystic);
             list.Add(PrefixID.Mythical);
             list.Add(PrefixID.Adept);
@@ -38,7 +48,9 @@ public abstract class ClasslessWeapon : ModItem {
             list.Add(PrefixID.Celestial);
             list.Add(PrefixID.Furious);
         }
-        if (Item.shoot > ProjectileID.None && Item.shootSpeed > 0f) {
+
+        // Generic ranged prefixes for ranged-classless items.
+        if (item.shoot > ProjectileID.None && item.shootSpeed > 0f) {
             list.Add(PrefixID.Unreal);
             list.Add(PrefixID.Deadly2);
             list.Add(PrefixID.Intimidating);
@@ -47,20 +59,25 @@ public abstract class ClasslessWeapon : ModItem {
             list.Add(PrefixID.Awful);
             list.Add(PrefixID.Lethargic);
         }
-        if (Item.DamageType.UseStandardCritCalcs) {
+
+        // Generic crit prefixes for classless items which can randomly critical strike.
+        if (item.DamageType.UseStandardCritCalcs) {
             list.Add(PrefixID.Keen);
             list.Add(PrefixID.Zealous);
         }
-        foreach (var prefix in prefixes) {
-            if (prefix.CanRoll(Item)) {
+
+        // Modded prefixes.
+        foreach (ModPrefix prefix in prefixes) {
+            if (prefix.CanRoll(item)) {
                 list.Add(prefix.Type);
             }
         }
-        return list.Count > 0 ? rand.Next(list) : 0;
+
+        return list.Count > 0 ? rand.Next(list) : -1;
     }
 
-    public override void ModifyTooltips(List<TooltipLine> tooltips) {
-        if (!Item.DamageType.UseStandardCritCalcs) {
+    public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
+        if (!item.DamageType.UseStandardCritCalcs) {
             tooltips.RemoveCritChanceModifier();
         }
     }
