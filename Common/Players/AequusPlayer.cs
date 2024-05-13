@@ -114,7 +114,7 @@ public partial class AequusPlayer : ModPlayer {
     #endregion
 
     #region Misc
-    /// <param name="Location">The enemy's center.</param>
+    /// <param name="Center">The enemy's center.</param>
     /// <param name="Type">The enemy's type.</param>
     internal record struct KillInfo(Vector2 Center, int Type);
 
