@@ -7,17 +7,18 @@ namespace SourceGenerators;
 
 [Generator]
 public class AequusPlayerGenerator : ISourceGenerator {
-    private readonly TypeConstructor _aequusPlayer = new("AequusPlayer", "Aequus", "Terraria.ModLoader.IO");
-
     public void Initialize(GeneratorInitializationContext context) {
     }
 
     public void Execute(GeneratorExecutionContext context) {
-        _aequusPlayer.Clear();
+        TypeConstructor player = new("AequusPlayer", "Aequus", "Terraria.ModLoader.IO");
 
         foreach (ClassDeclarationSyntax definedClass in context.Compilation.SyntaxTrees.SelectMany(tree => tree.GetRoot(context.CancellationToken)
                 .DescendantNodes()
                 .OfType<ClassDeclarationSyntax>())) {
+            if (context.CancellationToken.IsCancellationRequested) {
+                return;
+            }
 
             //_aequusPlayer.AddField(definedClass.Parent?.GetType()?.Name ?? "Null", "parent");
 
@@ -31,24 +32,42 @@ public class AequusPlayerGenerator : ISourceGenerator {
                 string attributeName = Utilities.ConvertNameSyntax(attr.Name);
 
                 switch (attributeName) {
-                    case "PlayerField":
-                        _aequusPlayer.AddField(attr.GetTextArgument(0), attr.GetTextArgument(1));
-                        break;
-                    case "SavedPlayerField":
-                        string name = attr.GetTextArgument(0);
-                        _aequusPlayer.AddField(name, attr.GetTextArgument(1));
-                        _aequusPlayer.AddMethod("SaveInner(TagCompound tag)", $"SaveObj(tag, \"{name}\", {name});");
-                        _aequusPlayer.AddMethod("LoadInner(TagCompound tag)", $"LoadObj(tag, \"{name}\", ref {name});");
+                    // Add a field.
+                    case "PlayerField": {
+                            player.AddField(attr.GetTextArgument(0), attr.GetTextArgument(1));
+                        }
                         break;
 
-                    //default:
-                    //    _aequusPlayer.AddField(attributeName, "test");
-                    //    break;
+                    // Add a field, and code to Save/Load
+                    case "SavedPlayerField": {
+                            string name = attr.GetTextArgument(0);
+                            player.AddField(name, attr.GetTextArgument(1));
+                            player.AddMethod("SaveInner(TagCompound tag)", $"SaveObj(tag, \"{name}\", {name});");
+                            player.AddMethod("LoadInner(TagCompound tag)", $"LoadObj(tag, \"{name}\", ref {name});");
+                        }
+                        break;
+
+                    // Add a field, and code to ResetEffects
+                    case "ResetPlayerField": {
+                            string name = attr.GetTextArgument(0);
+                            player.AddField(name, attr.GetTextArgument(1));
+                            player.AddMethod("ResetEffectsInner()", $"ResetObj(ref {name});");
+                        }
+                        break;
+
+                    // Add a field, and code to ResetInfoAccessories
+                    case "InfoPlayerField": {
+                            string name = attr.GetTextArgument(0);
+                            player.AddField(name, "bool");
+                            player.AddMethod("ResetInfoAccessoriesInner()", $"ResetObj(ref {name});");
+                            player.AddMethod("MatchInfoAccessoriesInner(AequusPlayer other)", $"{name} |= other.{name};");
+                        }
+                        break;
                 }
             }
         }
 
-        _aequusPlayer.AddSource(in context);
+        player.AddSource(in context);
     }
 }
 

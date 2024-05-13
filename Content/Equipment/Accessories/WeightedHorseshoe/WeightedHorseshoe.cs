@@ -1,16 +1,20 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Items.Components;
+using Aequus.Core.CodeGeneration;
 using Microsoft.Xna.Framework;
 using System;
 
 namespace Aequus.Content.Equipment.Accessories.WeightedHorseshoe;
 
+[ResetPlayerField("accWeightedHorseshoe", "Item")]
+[ResetPlayerField("showHorseshoeAnvilRope", "bool")]
+[ResetPlayerField("cHorseshoeAnvil", "int")]
 public class WeightedHorseshoe : ModItem, IUpdateItemDye {
-    public static float MaxFallSpeedMultiplier = 2f;
-    public static float DamagingFallSpeedThreshold = 11f;
-    public static float EnemyFallDamage = 75f;
-    public static float EnemyFallKnockback = 10f;
-    public static float SlimeMountFallDamageMultiplier = 2f;
+    public static float MaxFallSpeedMultiplier { get; set; } = 2f;
+    public static float DamagingFallSpeedThreshold { get; set; } = 11f;
+    public static float EnemyFallDamage { get; set; } = 75f;
+    public static float EnemyFallKnockback { get; set; } = 10f;
+    public static float SlimeMountFallDamageMultiplier { get; set; } = 2f;
 
     public override void SetDefaults() {
         Item.DefaultToAccessory();

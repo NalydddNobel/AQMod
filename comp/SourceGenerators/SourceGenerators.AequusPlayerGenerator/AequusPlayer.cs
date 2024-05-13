@@ -6,11 +6,61 @@ namespace Aequus;
 
 public partial class AequusPlayer {
     [CompilerGenerated]
+    public Item accBreathRestore;
+    [CompilerGenerated]
+    public int accBreathRestoreStacks;
+    [CompilerGenerated]
+    public string accGifterRing;
+    [CompilerGenerated]
+    public Item accWeightedHorseshoe;
+    [CompilerGenerated]
+    public bool showHorseshoeAnvilRope;
+    [CompilerGenerated]
+    public int cHorseshoeAnvil;
+    [CompilerGenerated]
+    public bool accInfoDayCalendar;
+    [CompilerGenerated]
+    public bool accInfoDebuffDPS;
+    [CompilerGenerated]
+    public bool accInfoMoneyMonocle;
+    [CompilerGenerated]
+    public bool accInfoShimmerMonocle;
+    [CompilerGenerated]
     public bool usedConvergentHeart;
     [CompilerGenerated]
     public bool usedMaxHPRespawnReward;
     [CompilerGenerated]
     public bool usedCosmicChest;
+    [CompilerGenerated]
+    public bool accInfoQuestFish;
+    
+    [CompilerGenerated]
+    private void ResetEffectsInner() {
+        ResetObj(ref accBreathRestore);
+        ResetObj(ref accBreathRestoreStacks);
+        ResetObj(ref accGifterRing);
+        ResetObj(ref accWeightedHorseshoe);
+        ResetObj(ref showHorseshoeAnvilRope);
+        ResetObj(ref cHorseshoeAnvil);
+    }
+    
+    [CompilerGenerated]
+    private void ResetInfoAccessoriesInner() {
+        ResetObj(ref accInfoDayCalendar);
+        ResetObj(ref accInfoDebuffDPS);
+        ResetObj(ref accInfoMoneyMonocle);
+        ResetObj(ref accInfoShimmerMonocle);
+        ResetObj(ref accInfoQuestFish);
+    }
+    
+    [CompilerGenerated]
+    private void MatchInfoAccessoriesInner(AequusPlayer other) {
+        accInfoDayCalendar |= other.accInfoDayCalendar;
+        accInfoDebuffDPS |= other.accInfoDebuffDPS;
+        accInfoMoneyMonocle |= other.accInfoMoneyMonocle;
+        accInfoShimmerMonocle |= other.accInfoShimmerMonocle;
+        accInfoQuestFish |= other.accInfoQuestFish;
+    }
     
     [CompilerGenerated]
     private void SaveInner(TagCompound tag) {

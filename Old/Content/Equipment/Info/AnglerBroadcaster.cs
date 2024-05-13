@@ -1,8 +1,10 @@
-﻿using Terraria.Localization;
+﻿using Aequus.Core.CodeGeneration;
+using Terraria.Localization;
 using Terraria.UI;
 
 namespace Aequus.Old.Content.Equipment.Info;
 
+[InfoPlayerField("accInfoQuestFish", "bool")]
 public class AnglerBroadcaster : ModItem {
     public override void SetDefaults() {
         Item.CloneDefaults(ItemID.LifeformAnalyzer);

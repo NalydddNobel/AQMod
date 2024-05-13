@@ -10,6 +10,7 @@ public partial class AequusPlayer {
         ResetEffects_LegacyNecromancy();
 #endif
 
+        ResetEffectsInner();
         if (Player.dashDelay == 0) {
             DashData = null;
         }

@@ -8,10 +8,6 @@ namespace Aequus;
 public partial class AequusPlayer {
     public static readonly Color CombatText_RestoreBreath = new Color(100, 150, 150);
 
-    public Item accBreathRestore;
-    [ResetEffects]
-    public int accBreathRestoreStacks;
-
     internal void RestoreBreathOnBrokenTile(int X, int Y) {
         if (accBreathRestoreStacks <= 0 || Player.breath >= Player.breathMax) {
             return;

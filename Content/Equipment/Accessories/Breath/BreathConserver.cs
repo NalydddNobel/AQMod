@@ -2,11 +2,14 @@
 using Aequus.Common.Projectiles;
 using Aequus.Content.Dusts;
 using Aequus.Content.Graphics.Particles;
+using Aequus.Core.CodeGeneration;
 using System;
 
 namespace Aequus.Content.Equipment.Accessories.Breath;
 
 [AutoloadEquip(EquipType.Back)]
+[ResetPlayerField("accBreathRestore", "Item")]
+[ResetPlayerField("accBreathRestoreStacks", "int")]
 public class BreathConserver : ModItem {
     public static float RestoreBreathMaxOnTileBreak { get; private set; } = 1f / 15f;
     public static float RestoreBreathMaxOnEnemyKill { get; private set; } = 1f / 3f;

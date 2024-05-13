@@ -85,13 +85,27 @@ public partial class AequusPlayer : ModPlayer {
         RestoreBreathOnKillNPC(in info);
     }
 
+    public override void ResetInfoAccessories() {
+        ResetInfoAccessoriesInner();
+    }
+
+    public override void RefreshInfoAccessoriesFromTeamPlayers(Player otherPlayer) {
+        if (otherPlayer.TryGetModPlayer(out AequusPlayer other)) {
+            MatchInfoAccessoriesInner(other);
+        }
+    }
+
+    private void ResetObj<T>(ref T obj) {
+        obj = default(T);
+    }
+
     #region IO
-    private void SaveObj<T>(TagCompound tag, string name, T obj) {
+    private static void SaveObj<T>(TagCompound tag, string name, T obj) {
         if (obj?.Equals(default(T)) == true) {
             tag[name] = obj;
         }
     }
-    private void LoadObj<T>(TagCompound tag, string name, ref T obj) {
+    private static void LoadObj<T>(TagCompound tag, string name, ref T obj) {
         obj = default;
         if (tag.TryGet(name, out T result)) {
             obj = result;

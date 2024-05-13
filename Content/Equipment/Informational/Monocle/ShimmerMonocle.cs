@@ -1,5 +1,8 @@
-﻿namespace Aequus.Content.Equipment.Informational.Monocle;
+﻿using Aequus.Core.CodeGeneration;
 
+namespace Aequus.Content.Equipment.Informational.Monocle;
+
+[InfoPlayerField("accInfoShimmerMonocle", "bool")]
 public class ShimmerMonocle : ModItem {
     public override void SetStaticDefaults() {
         ItemSets.WorksInVoidBag[Type] = true;

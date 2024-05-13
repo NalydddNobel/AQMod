@@ -4,13 +4,6 @@ using Aequus.Core.CodeGeneration;
 namespace Aequus;
 
 public partial class AequusPlayer {
-    [ResetEffects]
-    public Item accWeightedHorseshoe;
-    [ResetEffects]
-    public bool showHorseshoeAnvilRope;
-    [ResetEffects]
-    public int cHorseshoeAnvil;
-
     private void WeightedHorseshoe_FallDamageAdjustments(ref MiscDamageHit hitInfo) {
         if (Player.mount.IsConsideredASlimeMount) {
             if (Player.velocity.Y >= WeightedHorseshoe.DamagingFallSpeedThreshold) {
