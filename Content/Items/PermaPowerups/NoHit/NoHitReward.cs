@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Items.DropRules;
+using Aequus.Core.CodeGeneration;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
@@ -6,6 +7,7 @@ using Terraria.GameContent.ItemDropRules;
 namespace Aequus.Content.PermaPowerups.NoHit;
 
 [LegacyName("VictorsReward")]
+[SavedPlayerField("usedMaxHPRespawnReward", "bool")]
 public class NoHitReward : ModItem {
     private uint _gameTick;
     private uint _nextAmbientTick;

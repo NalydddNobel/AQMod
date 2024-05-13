@@ -11,7 +11,7 @@ public class SoundsSourceGenerator : ISourceGenerator {
     }
 
     public void Execute(GeneratorExecutionContext context) {
-        var files = GeneratorCommons.GetFiles<AssetFile>(context, "ogg", static s => new(s));
+        var files = Utilities.GetFiles<AssetFile>(context, "ogg", static s => new(s));
         context.AddSource("AequusSounds.cs", SourceText.From(
             $$"""
                 using Terraria.Audio;

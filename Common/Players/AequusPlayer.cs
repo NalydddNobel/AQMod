@@ -1,6 +1,7 @@
 ﻿using Aequus.Content.Weapons.Ranged.Bows.SkyHunterCrossbow;
 using Aequus.Core.CodeGeneration;
 using Terraria.GameInput;
+using Terraria.ModLoader.IO;
 
 namespace Aequus;
 
@@ -83,6 +84,20 @@ public partial class AequusPlayer : ModPlayer {
     internal void OnKillNPC(in KillInfo info) {
         RestoreBreathOnKillNPC(in info);
     }
+
+    #region IO
+    private void SaveObj<T>(TagCompound tag, string name, T obj) {
+        if (obj?.Equals(default(T)) == true) {
+            tag[name] = obj;
+        }
+    }
+    private void LoadObj<T>(TagCompound tag, string name, ref T obj) {
+        obj = default;
+        if (tag.TryGet(name, out T result)) {
+            obj = result;
+        }
+    }
+    #endregion
 
     #region Misc
     /// <param name="Location">The enemy's center.</param>

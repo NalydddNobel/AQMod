@@ -1,18 +1,8 @@
-﻿using Aequus.Core.IO;
-using System;
+﻿using System;
 
 namespace Aequus;
 
 public partial class AequusPlayer {
-    [SaveData("NetherStar")]
-    public bool usedConvergentHeart;
-
-    [SaveData("CosmicChest")]
-    public bool usedCosmicChest;
-
-    [SaveData("NoHitReward")]
-    public bool usedMaxHPRespawnReward;
-
     private void DoPermanentStatBoosts() {
 #if !DEBUG
         if (usedCosmicChest) {

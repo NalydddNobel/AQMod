@@ -1,9 +1,11 @@
-﻿using Aequus.Core;
+﻿using Aequus.Core.CodeGeneration;
 
 namespace Aequus.Content.PermaPowerups.Shimmer;
 
-public class TinkerersGuidebook : ModItem {
-    public static int BonusRerolls { get; set; } = 2;
+[LegacyName("GalaxyCommission", "Moro", "GhostlyGrave")]
+[SavedPlayerField("usedCosmicChest", "bool")]
+public class CosmicChest : ModItem {
+    public static float LuckIncrease { get; set; } = 0.05f;
 
     public override void SetDefaults() {
         Item.useTime = 45;
@@ -19,16 +21,12 @@ public class TinkerersGuidebook : ModItem {
     }
 
     public override bool? UseItem(Player player) {
-        if (WorldState.UsedReforgeBook) {
+        var aequusPlayer = player.GetModPlayer<AequusPlayer>();
+        if (aequusPlayer.usedCosmicChest) {
             return false;
         }
 
-        WorldState.UsedReforgeBook = true;
-        if (Main.netMode == NetmodeID.Server) {
-            NetMessage.SendData(MessageID.WorldData);
-        }
-        
-        WorldGen.BroadcastText(this.GetLocalization("DisplayMessage").ToNetworkText(), CommonColor.TextEvent);
+        aequusPlayer.usedCosmicChest = true;
         return true;
     }
 }

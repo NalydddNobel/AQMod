@@ -1,6 +1,5 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Text;
-using System;
 using System.Linq;
 using System.Text;
 
@@ -12,8 +11,8 @@ public class TextureSourceGenerator : ISourceGenerator {
     }
 
     public void Execute(GeneratorExecutionContext context) {
-        var files = GeneratorCommons.GetFiles<AssetFile>(context, "png", static s => new(s));
-        GeneratorCommons.FixFileNames(files, static f => f.Name = f.Name = f.Path.Replace("/", "_"));
+        var files = Utilities.GetFiles<AssetFile>(context, "png", static s => new(s));
+        Utilities.FixFileNames(files, static f => f.Name = f.Name = f.Path.Replace("/", "_"));
         context.AddSource("AequusTextures.cs", SourceText.From(
             $$"""
                 using Aequus.Core.Assets;
@@ -22,7 +21,7 @@ public class TextureSourceGenerator : ISourceGenerator {
 
                 namespace Aequus;
 
-                /// <summary>(Total Textures: {{files.Count}})</summary>
+                /// <summary>(Total Textures: {{files.Count}}) yo momma gai</summary>
                 [CompilerGenerated]
                 public partial class AequusTextures {            
                     {{string.Join("\n", files.Select((file) =>

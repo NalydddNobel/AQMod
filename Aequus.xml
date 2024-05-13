@@ -2123,7 +2123,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 798)</summary>
+            <summary>(Total Textures: 798) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2897,28 +2897,28 @@
             <summary>Full Path: Content/Graphics/Particles/DashParticles</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CompressedTrash">
-            <summary>Full Path: Content/Materials/CompressedTrash</summary>
+            <summary>Full Path: Content/Items/Materials/CompressedTrash</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NetherStar">
-            <summary>Full Path: Content/PermaPowerups/NetherStar/NetherStar</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStar</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NetherStarBackground">
-            <summary>Full Path: Content/PermaPowerups/NetherStar/NetherStarBackground</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStarBackground</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NetherStarMask">
-            <summary>Full Path: Content/PermaPowerups/NetherStar/NetherStarMask</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStarMask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NetherStar_Glow">
-            <summary>Full Path: Content/PermaPowerups/NetherStar/NetherStar_Glow</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStar_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NoHitReward">
-            <summary>Full Path: Content/PermaPowerups/NoHit/NoHitReward</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/NoHit/NoHitReward</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CosmicChest">
-            <summary>Full Path: Content/PermaPowerups/Shimmer/CosmicChest</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/Shimmer/CosmicChest</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TinkerersGuidebook">
-            <summary>Full Path: Content/PermaPowerups/Shimmer/TinkerersGuidebook</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/Shimmer/TinkerersGuidebook</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UndeadMinerPet">
             <summary>Full Path: Content/Pets/Miner/UndeadMinerPet</summary>

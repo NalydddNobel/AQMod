@@ -1,6 +1,5 @@
 ﻿using Aequus.Core.Assets;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Aequus.Core.CodeGeneration;
 using System;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -8,6 +7,7 @@ using Terraria.Graphics.Shaders;
 
 namespace Aequus.Content.PermaPowerups.NetherStar;
 
+[SavedPlayerField("usedConvergentHeart", "bool")]
 public class NetherStar : ModItem {
     public const string MiscShaderKey = "Aequus:NetherStar";
 
