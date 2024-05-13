@@ -8,5 +8,3 @@ obj/
 Assets/Shaders/.compiler
 *.ase
 *.ini
-*.Temp
-*.Temp.*

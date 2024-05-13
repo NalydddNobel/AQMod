@@ -2,82 +2,67 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\tModLoader.targets" />
 
+  <!-- ASSEMBLY -->
   <PropertyGroup>
     <AssemblyName>Aequus</AssemblyName>
     <TargetFramework>net8.0</TargetFramework>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>latest</LangVersion>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+	<!-- Generates a file with all available documentation (xml comments (///) -->
+	<GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DocumentationFile>Aequus.xml</DocumentationFile>
   </PropertyGroup>
 
+  <!-- DEPENDANCIES -->
   <ItemGroup>
-    <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
+	<!-- tML nuget package -->
+	<PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
+	<!-- custom written FNAUtils dll -->
 	<Reference Include="FNAUtils">
 	  <HintPath>lib\FNAUtils.dll</HintPath>
 	</Reference>
+	<!-- custom written util dll -->
 	<Reference Include="tModLoaderExtended">
 	  <HintPath>lib\tModLoaderExtended.dll</HintPath>
 	</Reference>
-  </ItemGroup>
-		
-  <ItemGroup>
-    <None Remove="Content\Currency\**" />
-    <None Remove="Old\**" Condition="'$(Configuration)' == 'Debug'" />
-    <EmbeddedResource Remove="Content\Currency\**" />
-    <EmbeddedResource Remove="Old\**" Condition="'$(Configuration)' == 'Debug'" />
-    <None Remove="Temp\SourceGenerators.Generator\**" />
-	<EmbeddedResource Remove="Temp\SourceGenerators.Generator\**" />
-	<Compile Remove="Content\Currency\**" />
-	<Compile Remove="Temp\SourceGenerators.Generator\**" />
-    <None Remove="UnitTesting\**" />
-	<EmbeddedResource Remove="UnitTesting\**" />
-	<Compile Remove="UnitTesting\**" />
-    <None Remove="TerrariaProxy\**" />
-	<EmbeddedResource Remove="TerrariaProxy\**" />
-	<Compile Remove="TerrariaProxy\**" />
-    <None Remove="SourceGenerators\**" />
-	<EmbeddedResource Remove="SourceGenerators\**" />
-	<Compile Remove="SourceGenerators\**" />
-  </ItemGroup>
-	
-  <ItemGroup>
+	<!-- Aequus Music dependancy -->
 	<ProjectReference Include="..\AequusMusic\AequusMusic.csproj" />
-	<ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	<!-- Source Generator (For AequusTextures and AequusSounds) -->
+	<ProjectReference Include="project\SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <!-- FILE MANAGEMENT -->
+  <ItemGroup>
+	<Compile Remove="project\**" />
+    <EmbeddedResource Remove="project\**" />
+    <None Remove="project\**" />
+	<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" />
+	<AdditionalFiles Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
+	<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
 	<AdditionalFiles Include="**\*.png" />
 	<AdditionalFiles Include="**\*.ogg" />
 	<AdditionalFiles Include="**\Localization\*.hjson" />
-  	<AdditionalFiles Remove="**\bin\**" />
+	<AdditionalFiles Remove="**\bin\**" />
 	<AdditionalFiles Remove="**\obj\**" />
 	<AdditionalFiles Remove="**\SourceGenerators\**" />
 	<AdditionalFiles Remove="**\Properties\**" />
-	<AdditionalFiles Remove="Content\Currency\**" />
+	<AdditionalFiles Remove="project\**" />
   </ItemGroup>
 
+  <!-- SOURCE GENERATORS -->
   <PropertyGroup>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-    <CompilerGeneratedFilesOutputPath>Temp</CompilerGeneratedFilesOutputPath>
-  </PropertyGroup>
-	
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <Optimize>False</Optimize>
-  </PropertyGroup>
-	
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <Optimize>False</Optimize>
+    <CompilerGeneratedFilesOutputPath>comp</CompilerGeneratedFilesOutputPath>
   </PropertyGroup>
 
+  <!-- DEBUG -->
   <ItemGroup Condition="'$(Configuration)' == 'Debug'">
 	<AdditionalFiles Remove="Old\**" />
 	<Compile Remove="Old\**" />
+	<None Remove="Old\**" />
+	<EmbeddedResource Remove="Old\**" />
 	<AdditionalFiles Include="Old\**\*.png" />
 	<AdditionalFiles Include="Old\**\*.ogg" />
   </ItemGroup>
-	
-  <ItemGroup>
-    <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" />
-	<AdditionalFiles Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
-    <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
-  </ItemGroup>
-	
+		
 </Project>

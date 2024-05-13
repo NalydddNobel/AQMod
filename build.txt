@@ -8,4 +8,4 @@ includeSource = false
 includePBD = true
 modReferences = AequusMusic
 dllReferences = FNAUtils, tModLoaderExtended
-buildIgnore = *.csproj, *.user, *.sln, *.gitignore, *.editorconfig, *.md, *.ase, *.fx, *.Temp.*, *.Temp, obj\*, bin\*, .vs\*, .cache\*, Assets\Effects\.compiler\*, .idea\*, SourceGenerators\*, Temp\SourceGenerators\SourceGenerators.Generator\*, UnitTesting\*, TerrariaProxy\*
+buildIgnore = *.csproj, *.user, *.sln, *.gitignore, *.editorconfig, *.md, *.ase, *.fx, obj\*, bin\*, .vs\*, project\*
