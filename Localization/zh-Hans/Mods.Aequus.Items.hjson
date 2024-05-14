@@ -1099,6 +1099,6 @@ StariteStaff: {
 }
 
 AncientCutlass: {
-	// DisplayName: Ancient Cutlass
-	// Tooltip: ""
+	DisplayName: 远古短刀
+	Tooltip: ""
 }
