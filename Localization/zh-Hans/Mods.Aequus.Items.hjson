@@ -345,8 +345,8 @@ Meathook: {
 
 //# Weapons: Melee
 AncientCutlass: {
-	// DisplayName: Ol' Yore Cutlass
-	// Tooltip: Enemies have a chance to drop bonus loot on hit
+	DisplayName: 昔时短刀
+	Tooltip: 被击中的敌人有几率掉落更多战利品
 }
 
 Dynaknife: {
@@ -728,7 +728,7 @@ PossessedShard: {
 
 AquaticEnergy: {
 	DisplayName: 海蓝能量
-	Tooltip: ""
+	Tooltip: "[c/C080FF:向导可能会对此物感兴趣...]"
 }
 
 AtmosphericEnergy: {
