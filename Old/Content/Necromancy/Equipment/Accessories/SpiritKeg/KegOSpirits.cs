@@ -15,7 +15,7 @@ public class KegOSpirits : ModItem {
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
         var aequus = player.GetModPlayer<AequusPlayer>();
-        aequus.ghostLifespan += 3600;
+        aequus.ghostLifespan.Flat += 3600;
         aequus.ghostSlotsMax++;
     }
 

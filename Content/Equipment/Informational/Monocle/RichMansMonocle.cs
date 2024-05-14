@@ -2,7 +2,7 @@
 
 namespace Aequus.Content.Equipment.Informational.Monocle;
 
-[InfoPlayerField("accInfoMoneyMonocle", "bool")]
+[PlayerGen.InfoField("accInfoMoneyMonocle")]
 public class RichMansMonocle : ModItem {
     public override void SetStaticDefaults() {
         ItemSets.WorksInVoidBag[Type] = true;

@@ -1,7 +1,10 @@
 ﻿using Aequus.Common;
+using Aequus.Core.CodeGeneration;
 
 namespace Aequus.Old.Content.Necromancy.Equipment.Accessories;
 
+[PlayerGen.ResetField<float>("zombieDebuffMultiplier")]
+[PlayerGen.ResetField<int>("ghostProjExtraUpdates")]
 public class PandorasBox : ModItem {
     public override void SetDefaults() {
         Item.width = 24;

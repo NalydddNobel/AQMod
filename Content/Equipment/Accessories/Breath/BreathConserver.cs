@@ -8,8 +8,8 @@ using System;
 namespace Aequus.Content.Equipment.Accessories.Breath;
 
 [AutoloadEquip(EquipType.Back)]
-[ResetPlayerField("accBreathRestore", "Item")]
-[ResetPlayerField("accBreathRestoreStacks", "int")]
+[PlayerGen.ResetField<Item>("accBreathRestore")]
+[PlayerGen.ResetField<int>("accBreathRestoreStacks")]
 public class BreathConserver : ModItem {
     public static float RestoreBreathMaxOnTileBreak { get; private set; } = 1f / 15f;
     public static float RestoreBreathMaxOnEnemyKill { get; private set; } = 1f / 3f;

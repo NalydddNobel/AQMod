@@ -1,6 +1,7 @@
 ﻿using Microsoft.CodeAnalysis;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace SourceGenerators;
@@ -94,6 +95,8 @@ public class TypeConstructor(string Name, string Namespace, params string[] Usin
             stringBuilder.Insert(0, "/*");
         }
 
+        ExportDebugText(stringBuilder);
+
         context.AddSource($"{Name}.cs", stringBuilder.ToString());
 
         void TabFor() {
@@ -110,5 +113,23 @@ public class TypeConstructor(string Name, string Namespace, params string[] Usin
         void AppendLine(string text = "") {
             stringBuilder.AppendLine($"{tabs}{text.Replace("\n", $"\n{tabs}")}");
         }
+    }
+
+    private string _debugText;
+
+    [Conditional("DEBUG")]
+    internal void AddDebuggerText(string text) {
+        _debugText += $"\n{text};";
+    }
+
+    [Conditional("DEBUG")]
+    private void ExportDebugText(StringBuilder stringBuilder) {
+        if (string.IsNullOrEmpty(_debugText)) {
+            return;
+        }
+
+        stringBuilder.Append("/*");
+        stringBuilder.AppendLine(_debugText);
+        stringBuilder.AppendLine("*/");
     }
 }

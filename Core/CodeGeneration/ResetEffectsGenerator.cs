@@ -4,13 +4,14 @@ using System.Reflection.Emit;
 
 namespace Aequus.Core.CodeGeneration;
 
+[Obsolete("Replaced with PlayerGen/NPCGen.ResetEffectsAttribute")]
 public sealed class ResetEffectsGenerator<T> {
     private Action<T> ResetEffects;
 
     public void Generate() {
         var generatedMethod = new DynamicMethod("ResetEffects", null, new Type[] { typeof(T), }, true);
         var gen = generatedMethod.GetILGenerator();
-
+        
         foreach (var f in typeof(T).GetFields(BindingFlags.Instance | BindingFlags.Public)) {
             var attr = f.GetCustomAttribute<ResetEffectsAttribute>();
             if (attr == null) {

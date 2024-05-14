@@ -3,6 +3,7 @@
 namespace Aequus.Core.CodeGeneration;
 
 [AttributeUsage(AttributeTargets.Field)]
+[Obsolete("Replaced with PlayerGen/NPCGen.ResetEffectsAttribute")]
 public sealed class ResetEffectsAttribute : Attribute {
     internal object resetValue;
 

@@ -8,6 +8,6 @@ public class NeutronYogurtBuff : ModBuff {
     }
 
     public override void Update(Player player, ref int buffIndex) {
-        player.GetModPlayer<AequusPlayer>().buffNeutronYogurt++;
+        player.GetModPlayer<AequusPlayer>().buffNeutronYogurt += 1f;
     }
 }

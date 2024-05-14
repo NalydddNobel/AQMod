@@ -8,11 +8,58 @@ using System.Linq;
 namespace SourceGenerators;
 
 public static class Utilities {
+    public const string Parent = "Aequus";
+    public const string ParentS = $"{Parent}/";
+    public const string ParentD = $"{Parent}.";
     public const string TabForward = "    ";
-        
+
+    public static string GetNamespace(this BaseNamespaceDeclarationSyntax namespaceSyntax) {
+        string result = namespaceSyntax.Name.ToString();
+        if (result.StartsWith(ParentD)) {
+            result = result.Substring(ParentD.Length);
+        }
+        return result;
+    }
+    
+    public static IEnumerable<(string, string)> GetArguments(this MethodDeclarationSyntax method) {
+        return method.ParameterList.Parameters.Select(parameter => {
+            (string type, string name) = (parameter.Type.GetText().ToString().Trim(), parameter.Identifier.ToString().Trim());
+
+            SyntaxTokenList modifiers = parameter.Modifiers;
+            if (modifiers.Any(SyntaxKind.RefKeyword)) {
+                type = $"ref {type}";
+                name = $"ref {name}";
+            }
+            else if (modifiers.Any(SyntaxKind.OutKeyword)) {
+                type = $"out {type}";
+                name = $"out {name}";
+            }
+            else if (modifiers.Any(SyntaxKind.InKeyword)) {
+                type = $"in {type}";
+                name = $"in {name}";
+            }
+
+            return (type, name);
+        });
+    }
+    public static IEnumerable<string> GetArgumentTypes(this MethodDeclarationSyntax method) {
+        return GetArguments(method).Select((ss) => ss.Item1);
+    }
+    public static IEnumerable<string> GetArgumentNames(this MethodDeclarationSyntax method) {
+        return GetArguments(method).Select((ss) => ss.Item2);
+    }
+
+    public static string GetGeneric(this NameSyntax generic, int index) {
+        return generic switch {
+            GenericNameSyntax genericNameSyntax => ConvertNameSyntax(genericNameSyntax.TypeArgumentList.Arguments[index]),
+            _ => "Unresolved"
+        };
+    }
+
     public static string GetTextArgument(this AttributeSyntax attr, int index) {
         return (attr.ArgumentList.Arguments[index].Expression as LiteralExpressionSyntax).Token.Text.Trim('"');
     }
+
     public static string GetArgument(this AttributeSyntax attr, int index) {
         return attr.ArgumentList.Arguments[index].Expression.ToString();
     }
@@ -20,13 +67,14 @@ public static class Utilities {
     public static string ConvertNameSyntax(SyntaxNode node) {
         return node switch {
             NamespaceDeclarationSyntax namespaceDeclarationSyntax => ConvertNameSyntax(namespaceDeclarationSyntax.Name),
-            _ => node.TryGetInferredMemberName() ?? "Unknown"
+            _ => node.ToString() ?? "Unknown"
         };
     }
 
     public static string ConvertNameSyntax(NameSyntax name) {
         return name switch {
             IdentifierNameSyntax identifierNameSyntax => identifierNameSyntax.Identifier.Text,
+            GenericNameSyntax genericNameSyntax => genericNameSyntax.Identifier.Text,
             QualifiedNameSyntax qualifiedNameSyntax => ResolveQualifiedName(qualifiedNameSyntax),
             _ => "Unresolved",
         };

@@ -1,5 +1,8 @@
-﻿namespace Aequus.Old.Content.Necromancy.Equipment.Accessories;
+﻿using Aequus.Core.CodeGeneration;
 
+namespace Aequus.Old.Content.Necromancy.Equipment.Accessories;
+
+[PlayerGen.ResetField<bool>("accRitualSkull")]
 public class RitualisticSkull : ModItem {
     public override void SetDefaults() {
         Item.width = 24;
@@ -21,5 +24,13 @@ public class RitualisticSkull : ModItem {
             .AddTile(TileID.MythrilAnvil)
             .Register()
             .SortAfterFirstRecipesOf(ItemID.PapyrusScarab);
+    }
+
+    [PlayerGen.PostUpdateEquips]
+    internal static void OnPostUpdateEquips(Player player, AequusPlayer aequusPlayer) {
+        if (aequusPlayer.accRitualSkull) {
+            aequusPlayer.ghostSlots += player.maxMinions;
+            player.maxMinions = 1;
+        }
     }
 }

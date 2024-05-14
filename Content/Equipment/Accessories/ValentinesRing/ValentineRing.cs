@@ -7,7 +7,7 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus.Content.Equipment.Accessories.ValentinesRing;
 
-[ResetPlayerField("accGifterRing", "string")]
+[PlayerGen.ResetField<string>("accGifterRing")]
 public class ValentineRing : ModItem {
     public const string SAVE_KEY = "Gifter";
 

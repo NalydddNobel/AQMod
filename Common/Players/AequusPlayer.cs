@@ -1,17 +1,16 @@
 ﻿using Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
 using Aequus.Core.CodeGeneration;
+using System.Runtime.CompilerServices;
 using Terraria.GameInput;
 using Terraria.ModLoader.IO;
 
 namespace Aequus;
 
+[PlayerGen.ResetField<StatModifier>("wingTime")]
 public partial class AequusPlayer : ModPlayer {
     public Vector2 transitionVelocity;
 
     public int timeSinceRespawn;
-
-    [ResetEffects]
-    public StatModifier wingTime;
 
     public override void Load() {
         _resetEffects = new();
@@ -26,11 +25,6 @@ public partial class AequusPlayer : ModPlayer {
         Timers = new();
     }
 
-    public override void OnRespawn() {
-        timeSinceRespawn = 0;
-        DoPermanentMaxHPRespawn();
-    }
-
     public override void OnEnterWorld() {
         timeSinceRespawn = 0;
     }
@@ -42,14 +36,9 @@ public partial class AequusPlayer : ModPlayer {
     }
 
     public override void PostUpdateEquips() {
-        DoPermanentStatBoosts();
-        UpdateWeightedHorseshoe();
+        PostUpdateEquipsInner();
         UpdateTeamEffects();
         Player.wingTimeMax = (int)wingTime.ApplyTo(Player.wingTimeMax);
-#if !DEBUG
-        UpdateNeutronYogurt();
-        UpdateLegacyNecromancyAccs();
-#endif
     }
 
     public override void PostUpdateMiscEffects() {
@@ -95,16 +84,29 @@ public partial class AequusPlayer : ModPlayer {
         }
     }
 
-    private void ResetObj<T>(ref T obj) {
+    public override void OnRespawn() {
+        timeSinceRespawn = 0;
+        OnRespawnInner();
+    }
+
+    public override void SetControls() {
+        SetControlsInner();
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static void ResetObj<T>(ref T obj) {
         obj = default(T);
     }
 
     #region IO
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static void SaveObj<T>(TagCompound tag, string name, T obj) {
         if (obj?.Equals(default(T)) == true) {
             tag[name] = obj;
         }
     }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static void LoadObj<T>(TagCompound tag, string name, ref T obj) {
         obj = default;
         if (tag.TryGet(name, out T result)) {
@@ -116,9 +118,9 @@ public partial class AequusPlayer : ModPlayer {
     #region Misc
     /// <param name="Center">The enemy's center.</param>
     /// <param name="Type">The enemy's type.</param>
-    internal record struct KillInfo(Vector2 Center, int Type);
+    public record struct KillInfo(Vector2 Center, int Type);
 
-    private struct MiscDamageHit {
+    public struct MiscDamageHit {
         public DamageClass DamageClass;
         public Rectangle DamagingHitbox;
         public double Damage;

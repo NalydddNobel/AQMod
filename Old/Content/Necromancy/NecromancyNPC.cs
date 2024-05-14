@@ -239,7 +239,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
                 npc.damage = ghostDamage;
             }
             if (zombieTimer == 0) {
-                int time = Main.player[zombieOwner].GetModPlayer<AequusPlayer>().ghostLifespan;
+                int time = (int)Main.player[zombieOwner].GetModPlayer<AequusPlayer>().ghostLifespan.ApplyTo(NecromancySystem.DefaultLifespan);
 
                 zombieTimerMax = time;
                 zombieTimer = time;
@@ -420,7 +420,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
         if (ghostDebuffDOT > 0) {
             float multiplier = 1f;
             if (zombieOwner > 0 && zombieOwner < Main.maxPlayers && Main.player[zombieOwner].active) {
-                multiplier = Main.player[zombieOwner].GetModPlayer<AequusPlayer>().zombieDebuffMultiplier;
+                multiplier += Main.player[zombieOwner].GetModPlayer<AequusPlayer>().zombieDebuffMultiplier;
             }
 
             if (npc.lifeRegen > 0) {
@@ -603,7 +603,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
         zombie.isZombie = true;
         zombie.zombieOwner = zombieOwner;
         zombie.zombieDebuffTier = zombieDebuffTier;
-        zombie.zombieTimer = zombie.zombieTimerMax = Main.player[zombieOwner].GetModPlayer<AequusPlayer>().ghostLifespan;
+        zombie.zombieTimer = zombie.zombieTimerMax = (int)Main.player[zombieOwner].GetModPlayer<AequusPlayer>().ghostLifespan.ApplyTo(NecromancySystem.DefaultLifespan);
         zombie.renderLayer = renderLayer;
         zombie.ghostSpeed = ghostSpeed;
         zombie.ghostDamage = ghostDamage;

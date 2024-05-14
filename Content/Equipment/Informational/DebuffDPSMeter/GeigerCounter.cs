@@ -4,7 +4,7 @@ using Terraria.Localization;
 
 namespace Aequus.Content.Equipment.Informational.DebuffDPSMeter;
 
-[InfoPlayerField("accInfoDebuffDPS", "bool")]
+[PlayerGen.InfoField("accInfoDebuffDPS")]
 public class GeigerCounter : ModItem {
     public override void SetDefaults() {
         Item.CloneDefaults(ItemID.LifeformAnalyzer);

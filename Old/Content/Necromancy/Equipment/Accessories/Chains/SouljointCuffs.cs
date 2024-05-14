@@ -1,10 +1,13 @@
-﻿using Aequus.Core.Graphics;
+﻿using Aequus.Core.CodeGeneration;
+using Aequus.Core.ContentGeneration;
+using Aequus.Core.Graphics;
 using Aequus.Old.Content.Materials.SoulGem;
 using Aequus.Old.Content.Necromancy.Rendering;
 using Aequus.Old.Core.Utilities;
 
 namespace Aequus.Old.Content.Necromancy.Equipment.Accessories.Chains;
 
+[PlayerGen.ResetField<int>("ghostChains")]
 public class SouljointCuffs : ModItem {
     public override void SetStaticDefaults() {
         if (Main.netMode != NetmodeID.Server) {

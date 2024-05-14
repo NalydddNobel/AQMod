@@ -1,6 +1,5 @@
 ﻿using Aequus.Content.Equipment.Accessories.Breath;
 using Aequus.Content.Graphics.Particles;
-using Aequus.Core.CodeGeneration;
 using System;
 
 namespace Aequus;

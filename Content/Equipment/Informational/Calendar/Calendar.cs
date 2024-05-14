@@ -2,7 +2,7 @@
 
 namespace Aequus.Content.Equipment.Informational.Calendar;
 
-[InfoPlayerField("accInfoDayCalendar", "bool")]
+[PlayerGen.InfoField("accInfoDayCalendar")]
 public class Calendar : ModItem {
     public override void SetStaticDefaults() {
         ItemSets.WorksInVoidBag[Type] = true;

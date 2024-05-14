@@ -1,14 +1,13 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Items.Components;
 using Aequus.Core.CodeGeneration;
-using Microsoft.Xna.Framework;
 using System;
 
 namespace Aequus.Content.Equipment.Accessories.WeightedHorseshoe;
 
-[ResetPlayerField("accWeightedHorseshoe", "Item")]
-[ResetPlayerField("showHorseshoeAnvilRope", "bool")]
-[ResetPlayerField("cHorseshoeAnvil", "int")]
+[PlayerGen.ResetField<Item>("accWeightedHorseshoe")]
+[PlayerGen.ResetField<bool>("showHorseshoeAnvilRope")]
+[PlayerGen.ResetField<int>("cHorseshoeAnvil")]
 public class WeightedHorseshoe : ModItem, IUpdateItemDye {
     public static float MaxFallSpeedMultiplier { get; set; } = 2f;
     public static float DamagingFallSpeedThreshold { get; set; } = 11f;
@@ -87,5 +86,49 @@ public class WeightedHorseshoe : ModItem, IUpdateItemDye {
         aequusPlayer.cHorseshoeAnvil = dyeItem.dye;
 
         UpdateFloorEffects(player, aequusPlayer);
+    }
+
+    private static void AdjustDamage(Player player, ref AequusPlayer.MiscDamageHit hitInfo) {
+        if (player.mount.IsConsideredASlimeMount) {
+            if (player.velocity.Y >= DamagingFallSpeedThreshold) {
+                hitInfo.Damage *= SlimeMountFallDamageMultiplier;
+            }
+            hitInfo.DamagingHitbox.Inflate(6, 0);
+            //hitInfo.DamagingHitbox.Height *= 2;
+            hitInfo.DamageClass = DamageClass.Summon;
+        }
+    }
+
+    private static void OnHitNPCWithHorseshoe(Player player, int amountHit, AequusPlayer.MiscDamageHit hitInfo) {
+        if (amountHit == 0) {
+            return;
+        }
+        if (player.mount.IsConsideredASlimeMount) {
+            player.velocity.Y = -10f;
+        }
+    }
+
+    [PlayerGen.PostUpdateEquips]
+    internal static void OnPostUpdateEquips(Player player, AequusPlayer aequusPlayer) {
+        int visualProj = ModContent.ProjectileType<WeightedHorseshoeVisual>();
+        if (aequusPlayer.showHorseshoeAnvilRope && Main.myPlayer == player.whoAmI && player.ownedProjectileCounts[visualProj] < 1) {
+            Projectile.NewProjectile(player.GetSource_FromThis(), player.Center, player.velocity * 0.5f, visualProj, 0, 0f, player.whoAmI);
+        }
+
+        if (aequusPlayer.accWeightedHorseshoe == null || player.velocity.Y < DamagingFallSpeedThreshold) {
+            return;
+        }
+
+        AequusPlayer.MiscDamageHit hitInfo = new() {
+            DamagingHitbox = Utils.CenteredRectangle(player.Bottom, new(player.width + 12, player.velocity.Y * 2f)),
+            Damage = EnemyFallDamage,
+            DamageClass = DamageClass.Melee,
+            Knockback = EnemyFallKnockback
+        };
+
+        AdjustDamage(player, ref hitInfo);
+
+        int amountDamaged = player.CollideWithNPCs(hitInfo.DamagingHitbox, player.GetTotalDamage(hitInfo.DamageClass).ApplyTo((float)hitInfo.Damage), player.GetTotalKnockback(hitInfo.DamageClass).ApplyTo(hitInfo.Knockback), 10, 4, hitInfo.DamageClass);
+        OnHitNPCWithHorseshoe(player, amountDamaged, hitInfo);
     }
 }
