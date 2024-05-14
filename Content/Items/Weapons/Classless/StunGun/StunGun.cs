@@ -4,7 +4,7 @@ using Aequus.Common.Items.Components;
 using System;
 using Terraria.Localization;
 
-namespace Aequus.Content.Weapons.Classless.StunGun;
+namespace Aequus.Content.Items.Weapons.Classless.StunGun;
 
 public class StunGun : ModItem, ICooldownItem {
     public static float VisualTimer => Main.GlobalTimeWrappedHourly * 5f;

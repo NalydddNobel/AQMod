@@ -1,12 +1,12 @@
 ﻿using Aequus.Common;
-using Aequus.Content.Materials;
+using Aequus.Content.Items.Materials;
 using Aequus.DataSets;
 using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.Localization;
 
-namespace Aequus.Content.Weapons.Ranged.Misc.JunkJet;
+namespace Aequus.Content.Items.Weapons.Ranged.Misc.JunkJet;
 
 [LegacyName("Slingshot")]
 public class JunkJet : ModItem {

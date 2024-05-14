@@ -2,7 +2,7 @@
 using System;
 using Terraria.GameContent;
 
-namespace Aequus.Content.Weapons.Classless.StunGun;
+namespace Aequus.Content.Items.Weapons.Classless.StunGun;
 
 public class StunGunProj : ModProjectile {
     public override string Texture => AequusTextures.Extra(ExtrasID.RainbowRodTrailShape);

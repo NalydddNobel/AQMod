@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.Biomes.PollutedOcean;
-using Aequus.Content.Materials;
+using Aequus.Content.Items.Materials;
 using Aequus.Core;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics.Animations;

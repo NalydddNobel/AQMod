@@ -1,9 +1,10 @@
 ﻿using Aequus.Common.Projectiles;
 using Aequus.Content.Graphics.Particles;
+using Aequus.Content.Items.Weapons.Melee.DynaKnife;
 using System;
 using Terraria.Audio;
 
-namespace Aequus.Content.Weapons.Melee.DynaKnife;
+namespace Aequus.Content.Items.Weapons.Melee.DynaKnife;
 
 public class DynaknifeProj : LegacyHeldSlashingSwordProjectile {
     public override void SetDefaults() {

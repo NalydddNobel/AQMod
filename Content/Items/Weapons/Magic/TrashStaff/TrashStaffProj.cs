@@ -2,7 +2,7 @@
 using Terraria.DataStructures;
 using Terraria.Localization;
 
-namespace Aequus.Content.Weapons.Magic.TrashStaff;
+namespace Aequus.Content.Items.Weapons.Magic.TrashStaff;
 
 public class TrashStaffProj : ModProjectile {
     public override LocalizedText DisplayName => ModContent.GetInstance<TrashStaff>().DisplayName;

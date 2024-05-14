@@ -4,7 +4,7 @@ using System;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Content.PermaPowerups.NoHit;
+namespace Aequus.Content.Items.PermaPowerups.NoHit;
 
 [LegacyName("VictorsReward")]
 [SavedPlayerField("usedMaxHPRespawnReward", "bool")]

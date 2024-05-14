@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.Dedicated.BeyondCoin;
-using Aequus.Content.PermaPowerups.Shimmer;
+using Aequus.Content.Items.PermaPowerups.Shimmer;
 using Aequus.Core;
 
 namespace Aequus.Common.ItemPrefixes;

@@ -3,7 +3,7 @@ using Aequus.Content.Graphics.Particles;
 using System;
 using tModLoaderExtended.GlowMasks;
 
-namespace Aequus.Content.Weapons.Melee.DynaKnife;
+namespace Aequus.Content.Items.Weapons.Melee.DynaKnife;
 
 [LegacyName("CrystalDagger", "Mallet")]
 [AutoloadGlowMask]

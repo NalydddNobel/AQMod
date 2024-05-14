@@ -1,4 +1,8 @@
 {
+  "CannotPickpocketItemsFrom": [
+    "EaterofWorldsBody",
+    "EaterofWorldsTail"
+  ],
   "Soulless": [
     "FireImp",
     "BoneSerpentHead",

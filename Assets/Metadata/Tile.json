@@ -4,20 +4,16 @@
     "SandDrip"
   ],
   "ChestToBiome": {
-    "Gold": "Underground",
-    "Marble": "Underground",
-    "Granite": "Underground",
-    "Mushroom": "Underground",
-
-    "Shadow": "Underworld",
-    "LockedShadow": "Underworld",
-
-    "Frozen": "UndergroundSnow",
-
-    "RichMahogany": "UndergroundJungle",
-    "Ivy": "UndergroundJungle",
-
-    "Sandstone": "UndergroundDesert"
+    "Gold": 1,
+    "Marble": 1,
+    "Granite": 1,
+    "Mushroom": 1,
+    "Shadow": 2,
+    "LockedShadow": 2,
+    "Frozen": 5,
+    "RichMahogany": 13,
+    "Ivy": 13,
+    "Sandstone": 7
   },
   "PhysicsGunCannotPickUp": [
     "AntiPortalBlock"

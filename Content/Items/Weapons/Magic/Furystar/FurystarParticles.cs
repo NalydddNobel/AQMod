@@ -2,7 +2,7 @@
 using Aequus.Core.Particles;
 using System;
 
-namespace Aequus.Content.Weapons.Magic.Furystar;
+namespace Aequus.Content.Items.Weapons.Magic.Furystar;
 
 public class FurystarParticles : ParticleArray<FurystarParticles.Particle> {
     public override int ParticleCount => 50;

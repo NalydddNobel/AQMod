@@ -18,12 +18,12 @@ public static partial class ExtendNPC {
     }
     /// <summary>Adds <paramref name="entry"/> to <paramref name="npcLoot"/>'s boss bag. Throws errors if a boss bag doesn't exist.</summary>
     public static void AddToBossBag(this NPCLoot npcLoot, IItemDropRule entry, bool throwError = true) {
-        int npcNetId = Publicization<NPCLoot, int>.Get(npcLoot, "npcNetId");
+        int npcNetId = Publicization<NPCLoot, int>.GetField(npcLoot, "npcNetId");
 
         ModNPC npc = ModContent.GetModNPC(npcNetId);
         ModItem treasureBag = npc.Mod.Find<ModItem>($"{npc.Name}Bag");
         if (treasureBag != null) {
-            ItemDropDatabase database = Publicization<NPCLoot, ItemDropDatabase>.Get(npcLoot, "itemDropDatabase");
+            ItemDropDatabase database = Publicization<NPCLoot, ItemDropDatabase>.GetField(npcLoot, "itemDropDatabase");
             database.RegisterToItem(treasureBag.Type, entry);
         }
         else if (throwError) {

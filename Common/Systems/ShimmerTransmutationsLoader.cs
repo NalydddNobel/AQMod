@@ -6,8 +6,8 @@ using Aequus.Content.Dedicated.SwagEye;
 using Aequus.Content.Equipment.Accessories.Balloons;
 using Aequus.Content.Equipment.Accessories.WeightedHorseshoe;
 using Aequus.Content.Equipment.Informational.Monocle;
-using Aequus.Content.PermaPowerups.Shimmer;
-using Aequus.Content.Weapons.Magic.Furystar;
+using Aequus.Content.Items.PermaPowerups.Shimmer;
+using Aequus.Content.Items.Weapons.Magic.Furystar;
 using tModLoaderExtended.Terraria.GameContent;
 using tModLoaderExtended.Terraria.ModLoader;
 

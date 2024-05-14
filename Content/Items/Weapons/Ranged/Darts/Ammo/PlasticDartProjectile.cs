@@ -6,7 +6,7 @@ using Terraria.GameContent.Golf;
 using Terraria.GameContent.Metadata;
 using Terraria.Physics;
 
-namespace Aequus.Content.Weapons.Ranged.Darts.Ammo;
+namespace Aequus.Content.Items.Weapons.Ranged.Darts.Ammo;
 
 public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
     public const byte InitState = 0;

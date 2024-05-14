@@ -8,6 +8,10 @@ using Terraria.GameContent.Bestiary;
 namespace Aequus.DataSets;
 
 public class NPCDataSet : DataSet {
+    /// <summary>NPC Ids in this set cannot have their items stolen by the <see cref="Content.Items.Weapons.Melee.AncientCutlass.AncientCutlass"/>.</summary>
+    [JsonProperty]
+    public static HashSet<IDEntry<NPCID>> CannotPickpocketItemsFrom { get; private set; } = [NPCID.EaterofWorldsBody, NPCID.EaterofWorldsTail];
+
     /// <summary>
     /// NPC Ids in this set cannot damage the Occultist, or have their souls trapped into Soul Gems.
     /// Automatically populated with all NPC Ids which have the Underworld or Gore Nest as bestiary tags.

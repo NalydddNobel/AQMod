@@ -1,6 +1,6 @@
 ﻿using Aequus.Core.CodeGeneration;
 
-namespace Aequus.Content.PermaPowerups.Shimmer;
+namespace Aequus.Content.Items.PermaPowerups.Shimmer;
 
 [LegacyName("GalaxyCommission", "Moro", "GhostlyGrave")]
 [SavedPlayerField("usedCosmicChest", "bool")]

@@ -14,7 +14,7 @@ public sealed class DropsGlobalNPC : GlobalNPC {
     public override bool InstancePerEntity => true;
 
     public override void ModifyGlobalLoot(GlobalLoot globalLoot) {
-        globalLoot.Add(Content.PermaPowerups.NoHit.NoHitReward.GetGlobalLoot());
+        globalLoot.Add(Content.Items.PermaPowerups.NoHit.NoHitReward.GetGlobalLoot());
     }
 
     public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot) {

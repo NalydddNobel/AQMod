@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 
-namespace Aequus.Content.Weapons.Magic.Furystar;
+namespace Aequus.Content.Items.Weapons.Magic.Furystar;
 
 public class Furystar : ModItem {
     public static float ExtraStarChance = 0.25f;

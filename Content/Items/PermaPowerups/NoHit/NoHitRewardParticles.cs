@@ -3,7 +3,7 @@ using Aequus.Core.Particles;
 using System;
 using System.Collections.Generic;
 
-namespace Aequus.Content.PermaPowerups.NoHit;
+namespace Aequus.Content.Items.PermaPowerups.NoHit;
 
 public class NoHitRewardParticles : ParticleSystem {
     private static int _nextSlot;

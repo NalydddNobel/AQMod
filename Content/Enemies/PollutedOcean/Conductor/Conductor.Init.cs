@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
-using Aequus.Content.Materials;
+using Aequus.Content.Items.Materials;
 using Aequus.DataSets;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;

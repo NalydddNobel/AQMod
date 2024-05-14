@@ -1,7 +1,7 @@
 ﻿using Aequus.Core;
 using Aequus.Core.CodeGeneration;
 
-namespace Aequus.Content.PermaPowerups.Shimmer;
+namespace Aequus.Content.Items.PermaPowerups.Shimmer;
 
 public class TinkerersGuidebook : ModItem {
     public static int BonusRerolls { get; set; } = 2;

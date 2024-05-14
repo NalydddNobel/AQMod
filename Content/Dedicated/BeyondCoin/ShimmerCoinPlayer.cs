@@ -1,4 +1,4 @@
-﻿using Aequus.Content.PermaPowerups.Shimmer;
+﻿using Aequus.Content.Items.PermaPowerups.Shimmer;
 using System;
 
 namespace Aequus.Content.Dedicated.BeyondCoin;

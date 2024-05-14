@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Tiles.Rubblemaker;
-using Aequus.Content.Materials;
+using Aequus.Content.Items.Materials;
 
 namespace Aequus.Content.Tiles.PollutedOcean.Ambient;
 

@@ -5,7 +5,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
 
-namespace Aequus.Content.PermaPowerups.NetherStar;
+namespace Aequus.Content.Items.PermaPowerups.NetherStar;
 
 [SavedPlayerField("usedConvergentHeart", "bool")]
 public class NetherStar : ModItem {

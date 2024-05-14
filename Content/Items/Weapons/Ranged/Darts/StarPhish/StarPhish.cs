@@ -1,7 +1,7 @@
 ﻿using Aequus.Common;
 using Terraria.DataStructures;
 
-namespace Aequus.Content.Weapons.Ranged.Darts.StarPhish;
+namespace Aequus.Content.Items.Weapons.Ranged.Darts.StarPhish;
 
 public class StarPhish : ModItem {
     public override void SetDefaults() {

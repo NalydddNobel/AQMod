@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 
-namespace Aequus.Content.Materials;
+namespace Aequus.Content.Items.Materials;
 
 [LegacyName("ItemScrap")]
 public class CompressedTrash : ModItem {

@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Tiles;
-using Aequus.Content.Materials;
+using Aequus.Content.Items.Materials;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.Initialization;
 using Terraria;

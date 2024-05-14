@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Weapons.Classless.StunGun;
+﻿using Aequus.Content.Items.Weapons.Classless.StunGun;
 using Aequus.Core.CodeGeneration;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

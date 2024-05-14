@@ -3,7 +3,7 @@ using Aequus.Common.NPCs;
 using Aequus.DataSets;
 using Terraria.Audio;
 
-namespace Aequus.Content.Weapons.Classless.StunGun;
+namespace Aequus.Content.Items.Weapons.Classless.StunGun;
 
 public class StunGunDebuff : ModBuff, IOnAddBuff/*, IAddRecipeGroups*/ {
     public override string Texture => AequusTextures.TemporaryDebuffIcon;

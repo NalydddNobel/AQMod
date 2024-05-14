@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria.DataStructures;
 
-namespace Aequus.Content.Weapons.Magic.Furystar;
+namespace Aequus.Content.Items.Weapons.Magic.Furystar;
 
 public class FurystarProj : HeldProjBase {
     public override string Texture => ModContent.GetInstance<Furystar>().Texture;

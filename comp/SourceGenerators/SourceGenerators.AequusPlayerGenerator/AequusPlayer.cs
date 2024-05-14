@@ -31,8 +31,6 @@ public partial class AequusPlayer {
     public bool usedMaxHPRespawnReward;
     [CompilerGenerated]
     public bool usedCosmicChest;
-    [CompilerGenerated]
-    public bool accInfoQuestFish;
     
     [CompilerGenerated]
     private void ResetEffectsInner() {
@@ -50,7 +48,6 @@ public partial class AequusPlayer {
         ResetObj(ref accInfoDebuffDPS);
         ResetObj(ref accInfoMoneyMonocle);
         ResetObj(ref accInfoShimmerMonocle);
-        ResetObj(ref accInfoQuestFish);
     }
     
     [CompilerGenerated]
@@ -59,7 +56,6 @@ public partial class AequusPlayer {
         accInfoDebuffDPS |= other.accInfoDebuffDPS;
         accInfoMoneyMonocle |= other.accInfoMoneyMonocle;
         accInfoShimmerMonocle |= other.accInfoShimmerMonocle;
-        accInfoQuestFish |= other.accInfoQuestFish;
     }
     
     [CompilerGenerated]

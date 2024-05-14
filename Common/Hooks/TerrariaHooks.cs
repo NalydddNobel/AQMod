@@ -1,5 +1,4 @@
-﻿using Aequus.Common.ItemPrefixes;
-using System.Reflection;
+﻿using System.Reflection;
 using Terraria.DataStructures;
 using Terraria.GameContent.Golf;
 using Terraria.GameContent.ItemDropRules;
@@ -65,7 +64,7 @@ public partial class TerrariaHooks : ILoad {
         On_WorldGen.UpdateWorld_OvergroundTile += WorldGen_UpdateWorld_OvergroundTile;
         On_WorldGen.UpdateWorld_UndergroundTile += WorldGen_UpdateWorld_UndergroundTile;
 
-        HookManager.ApplyAndCacheHook(typeof(PrefixLoader).GetMethod(nameof(PrefixLoader.CanRoll)), typeof(AequusPrefixes).GetMethod(nameof(On_PrefixLoader_CanRoll), BindingFlags.NonPublic | BindingFlags.Static));
+        HookManager.ApplyAndCacheHook(typeof(PrefixLoader).GetMethod(nameof(PrefixLoader.CanRoll)), typeof(TerrariaHooks).GetMethod(nameof(On_PrefixLoader_CanRoll), BindingFlags.NonPublic | BindingFlags.Static));
     }
 
     public void Unload() { }
