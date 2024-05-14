@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Hooks;
 using Aequus.Common.Tiles;
-using Aequus.Content.Vanity.Dyes;
+using Aequus.Content.Items.Vanity.Dyes;
 using Aequus.Core.Graphics.Tiles;
 using System.Collections.Generic;
 using Terraria.Audio;

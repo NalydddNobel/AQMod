@@ -344,6 +344,11 @@ Meathook: {
 }
 
 //# Weapons: Melee
+AncientCutlass: {
+	DisplayName: Ol' Yore Cutlass
+	Tooltip: Enemies have a chance to drop bonus loot on hit
+}
+
 Dynaknife: {
 	DisplayName: The Christmas Spirit
 	Tooltip:
@@ -723,7 +728,7 @@ PossessedShard: {
 
 AquaticEnergy: {
 	DisplayName: Aquatic Energy
-	Tooltip: ""
+	Tooltip: "[c/C080FF:The guide may be interested in this...]"
 }
 
 AtmosphericEnergy: {
@@ -1095,10 +1100,5 @@ UnopenedChestItem: {
 
 StariteStaff: {
 	DisplayName: Starite Staff
-	Tooltip: ""
-}
-
-AncientCutlass: {
-	DisplayName: Ancient Cutlass
 	Tooltip: ""
 }

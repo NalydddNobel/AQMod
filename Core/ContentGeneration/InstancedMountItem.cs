@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Equipment.Mounts.HotAirBalloon;
+﻿using Aequus.Content.Mounts.HotAirBalloon;
 using Terraria.Audio;
 using Terraria.Localization;
 

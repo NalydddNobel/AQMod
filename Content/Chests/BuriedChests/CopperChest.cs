@@ -1,5 +1,5 @@
-﻿using Aequus.Content.Potions.Healing.Restoration;
-using Aequus.Content.Tools.Keys;
+﻿using Aequus.Content.Items.Potions.Healing.Restoration;
+using Aequus.Content.Items.Tools.Keys;
 using Aequus.Core.CrossMod;
 using Aequus.DataSets;
 using Aequus.DataSets.Structures.DropRulesChest;

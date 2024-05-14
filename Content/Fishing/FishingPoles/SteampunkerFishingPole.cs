@@ -1,9 +1,10 @@
 ﻿using Aequus.Common.Projectiles;
+using Aequus.Core.ContentGeneration;
 using Terraria.DataStructures;
 
 namespace Aequus.Content.Fishing.FishingPoles;
 
-public class SteampunkerFishingPole : ModFishingPole {
+public class SteampunkerFishingPole : UnifiedFishingPole {
     public override bool BobberPreAI(Projectile bobber) {
         if ((int)bobber.ai[0] == 0 && bobber.ai[1] < 0f && bobber.ai[1] > -30f && bobber.TryGetGlobalProjectile<ProjectileItemData>(out var aequusProjectile)) {
             aequusProjectile.ItemData = 1;

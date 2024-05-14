@@ -1,11 +1,11 @@
 ﻿using Aequus.Common.Items.Components;
-using Aequus.Content.Fishing;
+using Aequus.Core.ContentGeneration;
 using Terraria.Localization;
 
 namespace Aequus.Old.Content.Fishing.Poppers;
 
 [LegacyName("CursedPopper")]
-public class CorruptPopper : ModBait, IModifyFishingPower {
+public class CorruptPopper : UnifiedModBait, IModifyFishingPower {
     public static float IncreasedFishingPowerInCorruption { get; set; } = 0.3f;
 
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Percent(IncreasedFishingPowerInCorruption));

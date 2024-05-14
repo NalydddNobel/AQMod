@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Equipment.Accessories.EventPrevention;
+﻿using Aequus.Content.Items.Accessories.EventPrevention;
 using Aequus.Core;
 using Aequus.Old.Common.EventBars;
 using Aequus.Old.Content.Bosses.Cosmic.UltraStarite;

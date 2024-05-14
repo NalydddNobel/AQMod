@@ -1,9 +1,9 @@
 ﻿using Aequus.Common.Items.Components;
-using Aequus.Content.Fishing;
+using Aequus.Core.ContentGeneration;
 using Terraria.DataStructures;
 
 namespace Aequus.Old.Content.Fishing.GimmickBait;
-public class LegendberryBait : ModBait, IModifyFishAttempt {
+public class LegendberryBait : UnifiedModBait, IModifyFishAttempt {
     public override void SetDefaults() {
         Item.width = 6;
         Item.height = 6;

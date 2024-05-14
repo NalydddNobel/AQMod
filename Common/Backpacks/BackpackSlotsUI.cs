@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Items.Tooltips;
-using Aequus.Content.Equipment.Accessories.ScavengerBag;
+using Aequus.Content.Items.Accessories.ScavengerBag;
 using Aequus.Core.UI;
 using System;
 using Terraria.GameContent;

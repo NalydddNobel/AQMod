@@ -6,16 +6,16 @@ public class MonoDust : ModDust {
     public virtual float VelocityMultiplier => 0.9f;
     public virtual float ScaleSubtraction => 0.05f;
 
-    public override void OnSpawn(Terraria.Dust dust) {
+    public override void OnSpawn(Dust dust) {
         dust.noGravity = true;
         dust.noLight = false;
     }
 
-    public override Color? GetAlpha(Terraria.Dust dust, Color lightColor) {
+    public override Color? GetAlpha(Dust dust, Color lightColor) {
         return dust.color;
     }
 
-    public override bool Update(Terraria.Dust dust) {
+    public override bool Update(Dust dust) {
         dust.velocity *= VelocityMultiplier;
         float speed = dust.velocity.Length();
         dust.rotation += speed * 0.0314f;

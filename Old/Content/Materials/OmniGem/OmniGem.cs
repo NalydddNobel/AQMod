@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Vanity.Dyes;
+﻿using Aequus.Content.Items.Vanity.Dyes;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Graphics.Shaders;

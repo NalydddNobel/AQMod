@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Equipment.Accessories.GoldenFeather;
+﻿using Aequus.Content.Items.Accessories.GoldenFeather;
 using Aequus.Core.CrossMod;
 using System;
 using Terraria.Localization;

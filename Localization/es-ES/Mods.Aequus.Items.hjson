@@ -344,6 +344,11 @@ Meathook: {
 }
 
 //# Weapons: Melee
+AncientCutlass: {
+	// DisplayName: Ol' Yore Cutlass
+	// Tooltip: Enemies have a chance to drop bonus loot on hit
+}
+
 Dynaknife: {
 	DisplayName: El espíritu navideño
 	Tooltip:
@@ -1095,10 +1100,5 @@ UnopenedChestItem: {
 
 StariteStaff: {
 	// DisplayName: Starite Staff
-	// Tooltip: ""
-}
-
-AncientCutlass: {
-	// DisplayName: Ancient Cutlass
 	// Tooltip: ""
 }

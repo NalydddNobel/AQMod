@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Aequus.Content.Fishing;
 internal class AnglerRewards : ModPlayer {
+#if !DEBUG
     public override void AnglerQuestReward(float rareMultiplier, List<Item> rewardItems) {
         IEnumerable<Item> rewards = GetRewards();
         if (rewards != null) {
@@ -16,7 +17,6 @@ internal class AnglerRewards : ModPlayer {
         int questFish = Main.anglerQuestItemNetIDs[Main.anglerQuest];
         int questsComplete = Player.anglerQuestsFinished;
 
-#if !DEBUG
         // Roll Omni Bait
         if (Main.rand.Next(25) < questsComplete) {
             yield return new Item(ModContent.ItemType<Old.Content.Fishing.GimmickBait.Omnibait>(), Main.rand.Next(1, 6));
@@ -30,13 +30,10 @@ internal class AnglerRewards : ModPlayer {
         if (TryGetQuestSpecificItem(questFish, out Item questSpecificItem)) {
             yield return questSpecificItem;
         }
-#else
         yield return new Item(ItemID.SilverCoin);
-#endif
     }
 
     private static bool TryGetQuestSpecificItem(int questFish, out Item questSpecificItem) {
-#if !DEBUG
         // Give spectral poppers upon returning a hallow fish
         if (FishDataSet.Hallow.Contains(questFish)) {
             questSpecificItem = new Item(ModContent.ItemType<Old.Content.Fishing.Poppers.HallowPopper>(), Main.rand.Next(1, 6)); return true;
@@ -49,9 +46,9 @@ internal class AnglerRewards : ModPlayer {
         if (FishDataSet.Crimson.Contains(questFish)) {
             questSpecificItem = new Item(ModContent.ItemType<Old.Content.Fishing.Poppers.CrimsonPopper>(), Main.rand.Next(1, 6)); return true;
         }
-#endif
 
         questSpecificItem = default;
         return false;
     }
+#endif
 }

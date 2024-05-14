@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Biomes.PollutedOcean;
-using Aequus.Content.Equipment.Armor.MiscHelmets;
+using Aequus.Content.Items.Armor.MiscHelmets;
 using Aequus.Core.ContentGeneration;
 using Aequus.DataSets;
 using System.Collections.Generic;

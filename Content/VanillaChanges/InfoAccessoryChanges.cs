@@ -1,6 +1,6 @@
 ﻿using Aequus.Content.Configuration;
-using Aequus.Content.Equipment.Informational.Calendar;
-using Aequus.Content.Equipment.Informational.DebuffDPSMeter;
+using Aequus.Content.Items.Accessories.Informational.Calendar;
+using Aequus.Content.Items.Accessories.Informational.DebuffDPSMeter;
 using System.Collections.Generic;
 using Terraria.Localization;
 using tModLoaderExtended.Recipes;

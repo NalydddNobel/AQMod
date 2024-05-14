@@ -2,7 +2,7 @@
 using Aequus.Common.Tiles;
 using Aequus.Content.Chests;
 using Aequus.Content.Configuration;
-using Aequus.Content.Potions.Healing.Restoration;
+using Aequus.Content.Items.Potions.Healing.Restoration;
 using Aequus.DataSets;
 using Aequus.DataSets.Structures.DropRulesChest;
 using Aequus.DataSets.Structures.Enums;

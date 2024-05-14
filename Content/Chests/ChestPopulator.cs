@@ -1,6 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Content.Configuration;
-using Aequus.Content.Tools.NameTag;
+using Aequus.Content.Items.Tools.NameTag;
 using Aequus.DataSets;
 using Aequus.DataSets.Structures.DropRulesChest;
 using Aequus.DataSets.Structures.Enums;

@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.Enemies.PollutedOcean.Scavenger.UI;
-using Aequus.Content.Equipment.Accessories.ScavengerBag;
+using Aequus.Content.Items.Accessories.ScavengerBag;
 using Aequus.Core;
 using Aequus.Core.UI;
 using Aequus.DataSets;

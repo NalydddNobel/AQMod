@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Backpacks;
-using Aequus.Content.Tools.Keychain;
+using Aequus.Content.Items.Tools.Keychain;
 
 namespace Aequus.Common.Hooks;
 

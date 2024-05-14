@@ -21,14 +21,6 @@ public partial class AequusPlayer {
     [CompilerGenerated]
     public int accBreathRestoreStacks;
     [CompilerGenerated]
-    public string accGifterRing;
-    [CompilerGenerated]
-    public Item accWeightedHorseshoe;
-    [CompilerGenerated]
-    public bool showHorseshoeAnvilRope;
-    [CompilerGenerated]
-    public int cHorseshoeAnvil;
-    [CompilerGenerated]
     public bool accInfoDayCalendar;
     [CompilerGenerated]
     public bool accInfoDebuffDPS;
@@ -37,35 +29,21 @@ public partial class AequusPlayer {
     [CompilerGenerated]
     public bool accInfoShimmerMonocle;
     [CompilerGenerated]
+    public string accGifterRing;
+    [CompilerGenerated]
+    public Item accWeightedHorseshoe;
+    [CompilerGenerated]
+    public bool showHorseshoeAnvilRope;
+    [CompilerGenerated]
+    public int cHorseshoeAnvil;
+    [CompilerGenerated]
     public bool usedConvergentHeart;
     [CompilerGenerated]
     public bool usedMaxHPRespawnReward;
     [CompilerGenerated]
     public bool usedCosmicChest;
     [CompilerGenerated]
-    public bool accInfoQuestFish;
-    [CompilerGenerated]
-    public int ghostChains;
-    [CompilerGenerated]
-    public float zombieDebuffMultiplier;
-    [CompilerGenerated]
-    public int ghostProjExtraUpdates;
-    [CompilerGenerated]
-    public bool accRitualSkull;
-    [CompilerGenerated]
-    public int ghostShadowDash;
-    [CompilerGenerated]
-    public NPCAnchor gravetenderGhost;
-    [CompilerGenerated]
-    public int ghostSlots;
-    [CompilerGenerated]
-    public int ghostSlotsOld;
-    [CompilerGenerated]
-    public int ghostSlotsMax;
-    [CompilerGenerated]
-    public StatModifier ghostLifespan;
-    [CompilerGenerated]
-    public float buffNeutronYogurt;
+    public int potSightRange;
     
     [CompilerGenerated]
     private void SetControlsInner() {
@@ -83,24 +61,7 @@ public partial class AequusPlayer {
         ResetObj(ref accWeightedHorseshoe);
         ResetObj(ref showHorseshoeAnvilRope);
         ResetObj(ref cHorseshoeAnvil);
-        ResetObj(ref ghostChains);
-        ResetObj(ref zombieDebuffMultiplier);
-        ResetObj(ref ghostProjExtraUpdates);
-        ResetObj(ref accRitualSkull);
-        ResetObj(ref ghostShadowDash);
-        ResetObj(ref gravetenderGhost);
-        ResetObj(ref ghostSlotsMax);
-        ResetObj(ref ghostLifespan);
-        Old.Content.Necromancy.NecromancySystem.OnResetEffects(this);
-        ResetObj(ref buffNeutronYogurt);
-    }
-    
-    [CompilerGenerated]
-    private void PostUpdateEquipsInner() {
-        Content.Equipment.Accessories.WeightedHorseshoe.WeightedHorseshoe.OnPostUpdateEquips(Player, this);
-        Content.Items.PermaPowerups.Shimmer.CosmicChest.OnPostUpdateEquips(this);
-        Old.Content.Necromancy.Equipment.Accessories.RitualisticSkull.OnPostUpdateEquips(Player, this);
-        Old.Content.Potions.NeutronYogurt.NeutronYogurt.UpdateNeutronYogurt(Player, this);
+        ResetObj(ref potSightRange);
     }
     
     [CompilerGenerated]
@@ -109,7 +70,6 @@ public partial class AequusPlayer {
         ResetObj(ref accInfoDebuffDPS);
         ResetObj(ref accInfoMoneyMonocle);
         ResetObj(ref accInfoShimmerMonocle);
-        ResetObj(ref accInfoQuestFish);
     }
     
     [CompilerGenerated]
@@ -118,7 +78,12 @@ public partial class AequusPlayer {
         accInfoDebuffDPS |= other.accInfoDebuffDPS;
         accInfoMoneyMonocle |= other.accInfoMoneyMonocle;
         accInfoShimmerMonocle |= other.accInfoShimmerMonocle;
-        accInfoQuestFish |= other.accInfoQuestFish;
+    }
+    
+    [CompilerGenerated]
+    private void PostUpdateEquipsInner() {
+        Content.Items.Accessories.WeightedHorseshoe.WeightedHorseshoe.OnPostUpdateEquips(Player, this);
+        Content.Items.PermaPowerups.Shimmer.CosmicChest.OnPostUpdateEquips(this);
     }
     
     [CompilerGenerated]
@@ -154,6 +119,10 @@ PlayerGen.ResetField;
 Item;
 PlayerGen.ResetField;
 int;
+PlayerGen.InfoField;
+PlayerGen.InfoField;
+PlayerGen.InfoField;
+PlayerGen.InfoField;
 PlayerGen.ResetField;
 string;
 PlayerGen.ResetField;
@@ -162,37 +131,12 @@ PlayerGen.ResetField;
 bool;
 PlayerGen.ResetField;
 int;
-PlayerGen.InfoField;
-PlayerGen.InfoField;
-PlayerGen.InfoField;
-PlayerGen.InfoField;
 PlayerGen.SavedField;
 bool;
 PlayerGen.SavedField;
 bool;
 PlayerGen.SavedField;
 bool;
-PlayerGen.InfoField;
 PlayerGen.ResetField;
 int;
-PlayerGen.ResetField;
-float;
-PlayerGen.ResetField;
-int;
-PlayerGen.ResetField;
-bool;
-PlayerGen.ResetField;
-int;
-PlayerGen.ResetField;
-NPCAnchor;
-PlayerGen.Field;
-int;
-PlayerGen.Field;
-int;
-PlayerGen.ResetField;
-int;
-PlayerGen.ResetField;
-StatModifier;
-PlayerGen.ResetField;
-float;
 */
