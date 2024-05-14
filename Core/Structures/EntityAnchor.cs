@@ -34,7 +34,19 @@ public struct NPCAnchor : IEntityAnchor {
         return me.Index < other.Index;
     }
 
-    public static bool operator  >(NPCAnchor me, NPCAnchor other) {
+    public static bool operator >(NPCAnchor me, NPCAnchor other) {
         return me.Index > other.Index;
+    }
+
+    public override readonly bool Equals(object obj) {
+        if (obj is NPCAnchor other) {
+            return this == other;
+        }
+
+        return false;
+    }
+
+    public override readonly int GetHashCode() {
+        return Index.GetHashCode();
     }
 }
