@@ -10,7 +10,6 @@ using Aequus.Old.Content.Particles;
 using Aequus.Old.Content.Potions.NeutronYogurt;
 using Aequus.Old.Content.StatusEffects;
 using Aequus.Old.Content.Vanity;
-using Aequus.Old.Core.Utilities;
 using System;
 using System.IO;
 using Terraria.Audio;
@@ -367,7 +366,7 @@ public class Starite : ModNPC, ITrackTimeBetweenHits {
     }
 
     public override void UpdateLifeRegen(ref int damage) {
-        if (Main.dayTime && !OldHelper.ShadedSpot(NPC.Center) && !Main.remixWorld) {
+        if (Main.dayTime && !Helper.ShadedSpot(NPC.Center) && !Main.remixWorld) {
             NPC.lifeRegen = -20;
             damage = 2;
         }

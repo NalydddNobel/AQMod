@@ -4,7 +4,7 @@ using Terraria.DataStructures;
 
 namespace Aequus.Old.Content.Potions.NeutronYogurt;
 
-[PlayerGen.ResetField<float>("buffNeutronYogurt")]
+[Gen.AequusPlayer_ResetField<float>("buffNeutronYogurt")]
 public class NeutronYogurt : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 20;
@@ -28,7 +28,7 @@ public class NeutronYogurt : ModItem {
         Item.buffTime = 28800;
     }
 
-    [PlayerGen.PostUpdateEquips]
+    [Gen.AequusPlayer_PostUpdateEquips]
     internal static void UpdateNeutronYogurt(Player Player, AequusPlayer aequusPlayer) {
         if (aequusPlayer.buffNeutronYogurt <= 0f || (Player.slowFall && !Player.controlDown)) {
             return;

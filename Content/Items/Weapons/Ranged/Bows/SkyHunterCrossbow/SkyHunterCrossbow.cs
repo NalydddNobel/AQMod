@@ -37,7 +37,7 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
     public bool PreAIProjectile(Projectile projectile) {
         ProjectileSource projectileSource = projectile.GetGlobalProjectile<ProjectileSource>();
         ProjectileItemData aequusProjectile = projectile.GetGlobalProjectile<ProjectileItemData>();
-        if (projectileSource.isProjectileChild) {
+        if (projectileSource.IsProjectileChild) {
             return true;
         }
         if (aequusProjectile.NoSpecialEffects) {

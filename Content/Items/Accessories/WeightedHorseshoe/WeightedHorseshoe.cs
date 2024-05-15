@@ -5,9 +5,9 @@ using System;
 
 namespace Aequus.Content.Items.Accessories.WeightedHorseshoe;
 
-[PlayerGen.ResetField<Item>("accWeightedHorseshoe")]
-[PlayerGen.ResetField<bool>("showHorseshoeAnvilRope")]
-[PlayerGen.ResetField<int>("cHorseshoeAnvil")]
+[Gen.AequusPlayer_ResetField<Item>("accWeightedHorseshoe")]
+[Gen.AequusPlayer_ResetField<bool>("showHorseshoeAnvilRope")]
+[Gen.AequusPlayer_ResetField<int>("cHorseshoeAnvil")]
 public class WeightedHorseshoe : ModItem, IUpdateItemDye {
     public static float MaxFallSpeedMultiplier { get; set; } = 2f;
     public static float DamagingFallSpeedThreshold { get; set; } = 11f;
@@ -108,7 +108,7 @@ public class WeightedHorseshoe : ModItem, IUpdateItemDye {
         }
     }
 
-    [PlayerGen.PostUpdateEquips]
+    [Gen.AequusPlayer_PostUpdateEquips]
     internal static void OnPostUpdateEquips(Player player, AequusPlayer aequusPlayer) {
         int visualProj = ModContent.ProjectileType<WeightedHorseshoeVisual>();
         if (aequusPlayer.showHorseshoeAnvilRope && Main.myPlayer == player.whoAmI && player.ownedProjectileCounts[visualProj] < 1) {

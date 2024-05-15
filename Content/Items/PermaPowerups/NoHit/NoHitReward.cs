@@ -7,7 +7,7 @@ using Terraria.GameContent.ItemDropRules;
 namespace Aequus.Content.Items.PermaPowerups.NoHit;
 
 [LegacyName("VictorsReward")]
-[PlayerGen.SavedField<bool>("usedMaxHPRespawnReward")]
+[Gen.AequusPlayer_SavedField<bool>("usedMaxHPRespawnReward")]
 public class NoHitReward : ModItem {
     private uint _gameTick;
     private uint _nextAmbientTick;
@@ -195,7 +195,7 @@ public class NoHitReward : ModItem {
         return ItemDropRule.ByCondition(new ConditionBossNoDamageTaken(), ModContent.ItemType<NoHitReward>());
     }
 
-    [PlayerGen.OnRespawn]
+    [Gen.AequusPlayer_OnRespawn]
     internal static void DoPermanentMaxHPRespawn(Player player, AequusPlayer aequusPlayer) {
         if (aequusPlayer.usedMaxHPRespawnReward) {
             player.statLife = Math.Max(player.statLife, player.statLifeMax2);

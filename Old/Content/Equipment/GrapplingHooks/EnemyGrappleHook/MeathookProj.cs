@@ -1,6 +1,4 @@
-﻿using Aequus.Old.Core.Assets;
-using Aequus.Old.Core.Utilities;
-using System;
+﻿using System;
 using System.IO;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -142,7 +140,7 @@ public class MeathookProj : ModProjectile {
         ConnectedNPC = target.whoAmI;
         Projectile.tileCollide = false;
         Projectile.netUpdate = true;
-        SoundEngine.PlaySound(OldAequusSounds.Meathook, target.Center);
+        SoundEngine.PlaySound(AequusSounds.Meathook, target.Center);
     }
 
     public override bool PreDrawExtras() {
@@ -152,7 +150,7 @@ public class MeathookProj : ModProjectile {
     public override bool PreDraw(ref Color lightColor) {
         var player = Main.player[Projectile.owner];
         float playerLength = (player.Center - Projectile.Center).Length();
-        OldDrawHelper.DrawChain(AequusTextures.MeathookProj_Chain, Projectile.Center, player.Center, Main.screenPosition);
+        Helper.DrawChain(AequusTextures.MeathookProj_Chain, Projectile.Center, player.Center, Main.screenPosition);
         var texture = TextureAssets.Projectile[Type].Value;
         var drawPosition = Projectile.Center - Main.screenPosition;
         Main.EntitySpriteDraw(texture, drawPosition, null, lightColor, Projectile.rotation, texture.Size() / 2f, 1f, SpriteEffects.None, 0);

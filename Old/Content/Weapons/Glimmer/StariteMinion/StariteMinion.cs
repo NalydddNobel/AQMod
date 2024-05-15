@@ -1,8 +1,6 @@
 ﻿using Aequus.Core.ContentGeneration;
-using Aequus.Old.Content.Events.Glimmer;
 using Aequus.Old.Content.Particles;
 using Aequus.Old.Content.StatusEffects;
-using Aequus.Old.Core.Utilities;
 using System;
 using Terraria.GameContent;
 

@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Content.Dusts;
-using Aequus.Old.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -301,7 +300,7 @@ public class HealerDrone : TownDroneBase {
         Vector2[] array = list.ToArray();
 
         float opacity = (float)Math.Pow(healingAuraOpacity, 2f);
-        DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, array, OldDrawHelper.GenerateRotationArr(array),
+        DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, array, Helper.GenerateRotationArr(array),
             p => Color.Lerp(GetPylonColor(), CombatText.HealLife, p) with { A = 60 } * opacity,
             p => 6f,
             -Main.screenPosition);

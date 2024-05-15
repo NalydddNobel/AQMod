@@ -1,5 +1,4 @@
-﻿using Aequus.Old.Core.Assets;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Terraria.Audio;
 using Terraria.Localization;
 
@@ -37,7 +36,7 @@ public class Meathook : ModItem {
 
     public static void CheckMeathookSound(NPC target) {
         if (target.HasBuff<MeathookDebuff>()) {
-            SoundEngine.PlaySound(OldAequusSounds.Meathook, target.Center);
+            SoundEngine.PlaySound(AequusSounds.Meathook, target.Center);
         }
     }
 }

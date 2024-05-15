@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Aequus.Old.Content.Necromancy.Equipment.Accessories;
 
-[PlayerGen.ResetField<int>("ghostShadowDash")]
+[Gen.AequusPlayer_ResetField<int>("ghostShadowDash")]
 public class ShadowVeer : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 1;

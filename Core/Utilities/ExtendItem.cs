@@ -5,6 +5,8 @@ using Terraria.GameContent.Creative;
 namespace Aequus.Core.Utilities;
 
 public static class ExtendItem {
+    public static readonly IItemEntryFilter ToolFilter = new ItemFilters.Tools();
+
     public static void CloneResearchCount(this Item item, int itemToCopy) {
         if (CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId.TryGetValue(itemToCopy, out var researchCount)) {
             item.ResearchUnlockCount = researchCount;

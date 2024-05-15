@@ -10,7 +10,7 @@ namespace Aequus.Content.Items.Tools.AnglerLamp;
 
 [AutoloadGlowMask]
 [FilterOverride(FilterOverride.Tools)]
-[PlayerGen.ResetField<int>("potSightRange")]
+[Gen.AequusPlayer_ResetField<int>("potSightRange")]
 public class AnglerLamp : ModItem {
     public static int PotSightRange { get; set; } = 300;
 

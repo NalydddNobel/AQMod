@@ -562,7 +562,7 @@ public static class ExtendProjectile {
     }
 
     public static bool IsChildOrNoSpecialEffects(this Projectile projectile) {
-        return projectile.GetGlobalProjectile<ProjectileItemData>().NoSpecialEffects || projectile.GetGlobalProjectile<ProjectileSource>().isProjectileChild;
+        return projectile.GetGlobalProjectile<ProjectileItemData>().NoSpecialEffects || projectile.GetGlobalProjectile<ProjectileSource>().IsProjectileChild;
     }
 
     public static void SetDefaultNoInteractions(this Projectile projectile) {

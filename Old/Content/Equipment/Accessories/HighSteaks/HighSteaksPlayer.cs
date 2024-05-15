@@ -1,5 +1,4 @@
-﻿using Aequus.Old.Core.Assets;
-using Terraria.Audio;
+﻿using Terraria.Audio;
 
 namespace Aequus.Old.Content.Equipment.Accessories.HighSteaks;
 
@@ -32,7 +31,7 @@ public class HighSteaksPlayer : ModPlayer {
         }
 
         if (Main.rand.NextBool(8)) {
-            SoundEngine.PlaySound(OldAequusSounds.HighSteaks, target.Center);
+            SoundEngine.PlaySound(AequusSounds.HighSteaks, target.Center);
         }
 
         if (highSteaksCost != 0) {

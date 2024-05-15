@@ -2,7 +2,6 @@
 using Aequus.Content.Dusts;
 using Aequus.Core.ContentGeneration;
 using Aequus.Old.Content.Events.Glimmer;
-using Aequus.Old.Core.Utilities;
 using System;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
@@ -227,7 +226,7 @@ public class DwarfStarite : ModNPC {
     }
 
     public override void UpdateLifeRegen(ref int damage) {
-        if (Main.dayTime && !OldHelper.ShadedSpot(NPC.Center) && !Main.remixWorld) {
+        if (Main.dayTime && !Helper.ShadedSpot(NPC.Center) && !Main.remixWorld) {
             NPC.lifeRegen = -1;
         }
     }
@@ -262,7 +261,7 @@ public class DwarfStarite : ModNPC {
 
         if (constellation > 0 && !NPC.IsABestiaryIconDummy) {
             var coords = LinearInterpolationBetween(NPC.Center - Main.screenPosition, Main.npc[Constellation].Center - Main.screenPosition, 50);
-            DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, coords, OldDrawHelper.GenerateRotationArr(coords),
+            DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, coords, Helper.GenerateRotationArr(coords),
                 p => Color.Lerp(GlimmerColors.Cyan, GlimmerColors.Blue, MathF.Pow(MathF.Sin(p * MathHelper.Pi), 2f) * 0.6f) * MathF.Sin(p * MathHelper.Pi) * 0.5f,
                 p => 1f + 1f * MathF.Sin(p * MathHelper.Pi)
             );

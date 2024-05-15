@@ -9,7 +9,16 @@ using Terraria.Utilities;
 
 namespace Aequus.Core.Utilities;
 
-public static class Helper {
+public static partial class Helper {
+    /// <returns>Returns 0f if <see cref="float.IsNaN(float)"/> returns true for <paramref name="value"/>.</returns>
+    public static float UnNaN(this float value) {
+        return float.IsNaN(value) ? 0f : value;
+    }
+    /// <returns><paramref name="value"/> but replaces <see cref="Vector2.X"/> or <see cref="Vector2.Y"/> with <c>0f</c> if <see cref="float.IsNaN(float)"/> is true for their values.</returns>
+    public static Vector2 UnNaN(this Vector2 value) {
+        return new Vector2(UnNaN(value.X), UnNaN(value.Y));
+    }
+
     /// <summary>
     /// Subtracts <paramref name="minThreshold"/> from <paramref name="value"/>, then multiplies the result by <paramref name="scaleMultiplier"/>, finally re-adding <paramref name="minThreshold"/> back.
     /// </summary>

@@ -1,6 +1,4 @@
-﻿using Aequus.Old.Content.DronePylons;
-using Aequus.Old.Core.Utilities;
-using System;
+﻿using System;
 using Terraria.Audio;
 
 namespace Aequus.Old.Content.DronePylons.NPCs;

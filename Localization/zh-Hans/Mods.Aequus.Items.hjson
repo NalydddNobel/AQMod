@@ -1102,3 +1102,8 @@ StariteStaff: {
 	DisplayName: 源星法杖
 	Tooltip: ""
 }
+
+HyperCrystal: {
+	// DisplayName: Hyper Crystal
+	// Tooltip: ""
+}

@@ -2,7 +2,7 @@
 
 namespace Aequus.Old.Content.Necromancy.Equipment.Accessories;
 
-[PlayerGen.ResetField<bool>("accRitualSkull")]
+[Gen.AequusPlayer_ResetField<bool>("accRitualSkull")]
 public class RitualisticSkull : ModItem {
     public override void SetDefaults() {
         Item.width = 24;
@@ -26,7 +26,7 @@ public class RitualisticSkull : ModItem {
             .SortAfterFirstRecipesOf(ItemID.PapyrusScarab);
     }
 
-    [PlayerGen.PostUpdateEquips]
+    [Gen.AequusPlayer_PostUpdateEquips]
     internal static void OnPostUpdateEquips(Player player, AequusPlayer aequusPlayer) {
         if (aequusPlayer.accRitualSkull) {
             aequusPlayer.ghostSlots += player.maxMinions;

@@ -3,7 +3,7 @@
 namespace Aequus.Content.Items.PermaPowerups.Shimmer;
 
 [LegacyName("GalaxyCommission", "Moro", "GhostlyGrave")]
-[PlayerGen.SavedField<bool>("usedCosmicChest")]
+[Gen.AequusPlayer_SavedField<bool>("usedCosmicChest")]
 public class CosmicChest : ModItem {
     public static float LuckIncrease { get; set; } = 0.05f;
 
@@ -30,7 +30,7 @@ public class CosmicChest : ModItem {
         return true;
     }
 
-    [PlayerGen.PostUpdateEquips]
+    [Gen.AequusPlayer_PostUpdateEquips]
     internal static void OnPostUpdateEquips(AequusPlayer aequusPlayer) {
         if (aequusPlayer.usedCosmicChest) {
 #if !DEBUG

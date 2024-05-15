@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SourceGenerators;
 
-public class TypeConstructor(string Name, string Namespace, params string[] Usings) {
+public class TypeConstructor(string Name, string Namespace, string[] Usings, Dictionary<string, string> MethodInputConversions) {
     private readonly List<string> _fields = [];
     private readonly Dictionary<string, string> _methods = [];
 
@@ -36,6 +36,10 @@ public class TypeConstructor(string Name, string Namespace, params string[] Usin
         }
 
         _methods[Define] = Code; 
+    }
+
+    public bool GetArgOverride(string type, out string argOverride) {
+        return MethodInputConversions.TryGetValue(type, out argOverride);
     }
 
     public void AddSource(in GeneratorExecutionContext context) {

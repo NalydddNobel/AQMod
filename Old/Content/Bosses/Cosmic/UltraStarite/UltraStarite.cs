@@ -13,7 +13,6 @@ using Aequus.Old.Content.Materials;
 using Aequus.Old.Content.Particles;
 using Aequus.Old.Content.Potions.NeutronYogurt;
 using Aequus.Old.Content.StatusEffects;
-using Aequus.Old.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;
@@ -221,7 +220,7 @@ public class UltraStarite : ModNPC {
         Player player = Main.player[NPC.target];
         Vector2 plrCenter = player.Center;
         oldArmsLength[0] = NPC.ai[3];
-        OldHelper.UpdateCacheList(oldArmsLength);
+        Helper.UpdateCacheList(oldArmsLength);
         switch (State) {
             case STATE_IDLE: {
                     NPC.TargetClosest(faceTarget: false);
@@ -515,7 +514,7 @@ public class UltraStarite : ModNPC {
             }
             for (int j = 0; j < 5; j++) {
                 Vector2[] arr = armPositions[j].ToArray();
-                float[] rotations = OldDrawHelper.GenerateRotationArr(arr);
+                float[] rotations = Helper.GenerateRotationArr(arr);
 
                 DrawHelper.DrawBasicVertexLine(AequusTextures.Trail2, arr, rotations,
                     (p) => Color.BlueViolet with { A = 0 } * 1.25f * (float)Math.Pow(1f - p, 2f),

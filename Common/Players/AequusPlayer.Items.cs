@@ -5,8 +5,8 @@ using Terraria.UI;
 
 namespace Aequus;
 
-[PlayerGen.ResetField<Item>("goldenKey")]
-[PlayerGen.ResetField<Item>("shadowKey")]
+[Gen.AequusPlayer_ResetField<Item>("goldenKey")]
+[Gen.AequusPlayer_ResetField<Item>("shadowKey")]
 public partial class AequusPlayer {
     public int itemHits;
     /// <summary>Tracks <see cref="Player.selectedItem"/></summary>

@@ -8,7 +8,7 @@ namespace Aequus.Old.Content.Necromancy.Equipment.Armor.SetGravetender;
 
 [LegacyName("NecromancerHood", "SeraphimHood")]
 [AutoloadEquip(EquipType.Head)]
-[PlayerGen.ResetField<NPCAnchor>("gravetenderGhost")]
+[Gen.AequusPlayer_ResetField<NPCAnchor>("gravetenderGhost")]
 public class GravetenderHood : ModItem {
     public static float SummonDamageIncrease { get; set; } = 0.1f;
 

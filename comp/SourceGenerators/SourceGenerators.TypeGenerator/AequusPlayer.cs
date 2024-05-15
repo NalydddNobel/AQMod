@@ -44,6 +44,36 @@ public partial class AequusPlayer {
     public bool usedCosmicChest;
     [CompilerGenerated]
     public int potSightRange;
+    [CompilerGenerated]
+    public bool accInfoQuestFish;
+    [CompilerGenerated]
+    public Item accHyperCrystal;
+    [CompilerGenerated]
+    public int hyperCrystalCooldownMax;
+    [CompilerGenerated]
+    public int cHyperCrystal;
+    [CompilerGenerated]
+    public int ghostChains;
+    [CompilerGenerated]
+    public float zombieDebuffMultiplier;
+    [CompilerGenerated]
+    public int ghostProjExtraUpdates;
+    [CompilerGenerated]
+    public bool accRitualSkull;
+    [CompilerGenerated]
+    public int ghostShadowDash;
+    [CompilerGenerated]
+    public NPCAnchor gravetenderGhost;
+    [CompilerGenerated]
+    public int ghostSlots;
+    [CompilerGenerated]
+    public int ghostSlotsOld;
+    [CompilerGenerated]
+    public int ghostSlotsMax;
+    [CompilerGenerated]
+    public StatModifier ghostLifespan;
+    [CompilerGenerated]
+    public float buffNeutronYogurt;
     
     [CompilerGenerated]
     private void SetControlsInner() {
@@ -62,6 +92,19 @@ public partial class AequusPlayer {
         ResetObj(ref showHorseshoeAnvilRope);
         ResetObj(ref cHorseshoeAnvil);
         ResetObj(ref potSightRange);
+        ResetObj(ref accHyperCrystal);
+        ResetObj(ref hyperCrystalCooldownMax);
+        ResetObj(ref cHyperCrystal);
+        ResetObj(ref ghostChains);
+        ResetObj(ref zombieDebuffMultiplier);
+        ResetObj(ref ghostProjExtraUpdates);
+        ResetObj(ref accRitualSkull);
+        ResetObj(ref ghostShadowDash);
+        ResetObj(ref gravetenderGhost);
+        ResetObj(ref ghostSlotsMax);
+        ResetObj(ref ghostLifespan);
+        Old.Content.Necromancy.NecromancySystem.OnResetEffects(this);
+        ResetObj(ref buffNeutronYogurt);
     }
     
     [CompilerGenerated]
@@ -70,6 +113,7 @@ public partial class AequusPlayer {
         ResetObj(ref accInfoDebuffDPS);
         ResetObj(ref accInfoMoneyMonocle);
         ResetObj(ref accInfoShimmerMonocle);
+        ResetObj(ref accInfoQuestFish);
     }
     
     [CompilerGenerated]
@@ -78,12 +122,15 @@ public partial class AequusPlayer {
         accInfoDebuffDPS |= other.accInfoDebuffDPS;
         accInfoMoneyMonocle |= other.accInfoMoneyMonocle;
         accInfoShimmerMonocle |= other.accInfoShimmerMonocle;
+        accInfoQuestFish |= other.accInfoQuestFish;
     }
     
     [CompilerGenerated]
     private void PostUpdateEquipsInner() {
         Content.Items.Accessories.WeightedHorseshoe.WeightedHorseshoe.OnPostUpdateEquips(Player, this);
         Content.Items.PermaPowerups.Shimmer.CosmicChest.OnPostUpdateEquips(this);
+        Old.Content.Necromancy.Equipment.Accessories.RitualisticSkull.OnPostUpdateEquips(Player, this);
+        Old.Content.Potions.NeutronYogurt.NeutronYogurt.UpdateNeutronYogurt(Player, this);
     }
     
     [CompilerGenerated]
@@ -104,39 +151,4 @@ public partial class AequusPlayer {
     private void OnRespawnInner() {
         Content.Items.PermaPowerups.NoHit.NoHitReward.DoPermanentMaxHPRespawn(Player, this);
     }
-}/*
-PlayerGen.Field;
-bool;
-PlayerGen.Field;
-byte;
-PlayerGen.ResetField;
-StatModifier;
-PlayerGen.ResetField;
-Item;
-PlayerGen.ResetField;
-Item;
-PlayerGen.ResetField;
-Item;
-PlayerGen.ResetField;
-int;
-PlayerGen.InfoField;
-PlayerGen.InfoField;
-PlayerGen.InfoField;
-PlayerGen.InfoField;
-PlayerGen.ResetField;
-string;
-PlayerGen.ResetField;
-Item;
-PlayerGen.ResetField;
-bool;
-PlayerGen.ResetField;
-int;
-PlayerGen.SavedField;
-bool;
-PlayerGen.SavedField;
-bool;
-PlayerGen.SavedField;
-bool;
-PlayerGen.ResetField;
-int;
-*/
+}

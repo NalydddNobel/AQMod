@@ -1,13 +1,29 @@
-﻿using Terraria.DataStructures;
+﻿using System;
 
-namespace Aequus.Old.Core.Utilities;
-public static class OldHelper {
+namespace Aequus.Core.Utilities;
+
+public static partial class Helper {
+    [Obsolete]
+    public static void SetTrail(this ModProjectile modProjectile, int length = -1) {
+        if (length > 0) {
+            ProjectileID.Sets.TrailCacheLength[modProjectile.Type] = length;
+        }
+        ProjectileID.Sets.TrailingMode[modProjectile.Type] = 2;
+    }
+
+    [Obsolete]
+    public static AequusPlayer Aequus(this Player player) {
+        return player.GetModPlayer<AequusPlayer>();
+    }
+
+    [Obsolete]
     public static void UpdateCacheList<T>(T[] arr) {
         for (int i = arr.Length - 1; i > 0; i--) {
             arr[i] = arr[i - 1];
         }
     }
 
+    [Obsolete]
     public static bool ShadedSpot(int x, int y) {
         if (!WorldGen.InWorld(x, y) || y > (int)Main.worldSurface || Main.tile[x, y].IsFullySolid()) {
             return true;
@@ -27,9 +43,11 @@ public static class OldHelper {
 
         return Main.tile[x, y].WallType == WallID.None && !WallID.Sets.Transparent[Main.tile[x, y].WallType] && !WallID.Sets.AllowsWind[Main.tile[x, y].WallType];
     }
+    [Obsolete]
     public static bool ShadedSpot(Point tileCoordinates) {
         return ShadedSpot(tileCoordinates.X, tileCoordinates.Y);
     }
+    [Obsolete]
     public static bool ShadedSpot(Vector2 worldCoordinates) {
         return ShadedSpot(worldCoordinates.ToTileCoordinates());
     }

@@ -84,3 +84,4 @@ VrangProj.DisplayName: "{$Items.Vrang.DisplayName}"
 NightfallGlint.DisplayName: "{$Items.Nightfall.DisplayName}"
 NightfallProj.DisplayName: "{$Items.Nightfall.DisplayName}"
 BreathConserverProj.DisplayName: "{$Items.BreathConserver.DisplayName}"
+HyperCrystalProj.DisplayName: Hyper Crystal Proj

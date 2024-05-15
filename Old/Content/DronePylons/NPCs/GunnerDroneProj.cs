@@ -1,5 +1,4 @@
 ﻿using Aequus.Content.Dusts;
-using Aequus.Old.Core.Utilities;
 using System;
 
 namespace Aequus.Old.Content.DronePylons.NPCs;
@@ -101,7 +100,7 @@ public class GunnerDroneProj : ModProjectile {
         }
         int amount = (int)(5 * (Aequus.HighQualityEffects ? 1f : 0.5f));
 
-        float[] rotations = OldDrawHelper.GenerateRotationArr(indices);
+        float[] rotations = Helper.GenerateRotationArr(indices);
         Color laserColor = townDrone.GetPylonColor() with { A = 100 } * MathF.Pow(Projectile.Opacity, 2f);
         DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, indices, rotations,
             p => laserColor,

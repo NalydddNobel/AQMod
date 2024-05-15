@@ -6,7 +6,7 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus;
 
-[PlayerGen.ResetField<StatModifier>("wingTime")]
+[Gen.AequusPlayer_ResetField<StatModifier>("wingTime")]
 public partial class AequusPlayer : ModPlayer {
     public Vector2 transitionVelocity;
 
@@ -74,23 +74,9 @@ public partial class AequusPlayer : ModPlayer {
         RestoreBreathOnKillNPC(in info);
     }
 
-    public override void ResetInfoAccessories() {
-        ResetInfoAccessoriesInner();
-    }
-
-    public override void RefreshInfoAccessoriesFromTeamPlayers(Player otherPlayer) {
-        if (otherPlayer.TryGetModPlayer(out AequusPlayer other)) {
-            MatchInfoAccessoriesInner(other);
-        }
-    }
-
     public override void OnRespawn() {
         timeSinceRespawn = 0;
         OnRespawnInner();
-    }
-
-    public override void SetControls() {
-        SetControlsInner();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -4,7 +4,7 @@ using Terraria.UI;
 
 namespace Aequus.Old.Content.Equipment.Info;
 
-[PlayerGen.InfoField("accInfoQuestFish")]
+[Gen.AequusPlayer_InfoField("accInfoQuestFish")]
 public class AnglerBroadcaster : ModItem {
     public override void SetDefaults() {
         Item.CloneDefaults(ItemID.LifeformAnalyzer);

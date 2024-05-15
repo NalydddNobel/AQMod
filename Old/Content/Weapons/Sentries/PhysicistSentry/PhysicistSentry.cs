@@ -1,6 +1,5 @@
 ﻿using Aequus.Common;
 using Aequus.Old.Common.Items.Variants;
-using Aequus.Old.Core.Utilities;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Items;

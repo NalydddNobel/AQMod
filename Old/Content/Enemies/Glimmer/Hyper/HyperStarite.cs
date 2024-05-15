@@ -10,7 +10,6 @@ using Aequus.Old.Content.Events.Glimmer;
 using Aequus.Old.Content.Materials;
 using Aequus.Old.Content.Potions.NeutronYogurt;
 using Aequus.Old.Content.StatusEffects;
-using Aequus.Old.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
@@ -198,7 +197,7 @@ public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
         Vector2 plrCenter = player.Center;
         float armsWantedLength = 320f;
         oldArmsLength[0] = NPC.ai[3];
-        OldHelper.UpdateCacheList(oldArmsLength);
+        Helper.UpdateCacheList(oldArmsLength);
         switch (State) {
             case STATE_IDLE: {
                     NPC.TargetClosest(faceTarget: false);
@@ -315,7 +314,7 @@ public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
     }
 
     public override void UpdateLifeRegen(ref int damage) {
-        if (Main.dayTime && State != STATE_DEAD && !OldHelper.ShadedSpot(NPC.Center) && !Main.remixWorld) {
+        if (Main.dayTime && State != STATE_DEAD && !Helper.ShadedSpot(NPC.Center) && !Main.remixWorld) {
             NPC.lifeRegen = -50;
             damage = 8;
         }
@@ -407,7 +406,7 @@ public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
 
             for (int j = 0; j < 5; j++) {
                 Vector2[] array = armPositions[j].ToArray();
-                float[] rotationsArray = OldDrawHelper.GenerateRotationArr(array);
+                float[] rotationsArray = Helper.GenerateRotationArr(array);
                 DrawHelper.DrawBasicVertexLine(TextureAssets.Extra[ExtrasID.RainbowRodTrailShape].Value, armPositions[j].ToArray(), rotationsArray,
                     (p) => GlimmerColors.Red with { A = 0 } * (1f - p),
                     (p) => 46f

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 798) yo momma gai</summary>
+/// <summary>(Total Textures: 800) yo momma gai</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1173,6 +1173,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CrimsonPopper = new("Aequus/Old/Content/Fishing/Poppers/CrimsonPopper");
     /// <summary>Full Path: Old/Content/Fishing/Poppers/HallowPopper</summary>
     public static readonly RequestCache<Texture2D> HallowPopper = new("Aequus/Old/Content/Fishing/Poppers/HallowPopper");
+    /// <summary>Full Path: Old/Content/Items/Accessories/HyperCrystal/HyperCrystal</summary>
+    public static readonly RequestCache<Texture2D> HyperCrystal = new("Aequus/Old/Content/Items/Accessories/HyperCrystal/HyperCrystal");
+    /// <summary>Full Path: Old/Content/Items/Accessories/HyperCrystal/HyperCrystalProj</summary>
+    public static readonly RequestCache<Texture2D> HyperCrystalProj = new("Aequus/Old/Content/Items/Accessories/HyperCrystal/HyperCrystalProj");
     /// <summary>Full Path: Old/Content/MainMenu/GlimmerMenu</summary>
     public static readonly RequestCache<Texture2D> GlimmerMenu = new("Aequus/Old/Content/MainMenu/GlimmerMenu");
     /// <summary>Full Path: Old/Content/MainMenu/GlimmerMenu_Glow</summary>

@@ -50,6 +50,15 @@ ValentineRing: {
 	BuffDescription2: You are being buffed by {0}!
 }
 
+HyperCrystal: {
+	DisplayName: Hyper Crystal
+	Tooltip: 
+		'''
+		Shoot powerful crystals at your enemies as you attack
+		Your crystals shatter when out of range
+		'''
+}
+
 GrandReward: {
 	DisplayName: Grand Reward
 	Tooltip:

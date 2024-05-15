@@ -1102,3 +1102,8 @@ StariteStaff: {
 	// DisplayName: Starite Staff
 	// Tooltip: ""
 }
+
+HyperCrystal: {
+	// DisplayName: Hyper Crystal
+	// Tooltip: ""
+}

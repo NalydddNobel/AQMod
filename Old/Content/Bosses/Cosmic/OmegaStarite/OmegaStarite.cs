@@ -16,7 +16,6 @@ using Aequus.Old.Content.Materials.Energies;
 using Aequus.Old.Content.Particles;
 using Aequus.Old.Content.StatusEffects;
 using Aequus.Old.Content.Weapons.Melee.UltimateSword;
-using Aequus.Old.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -1227,7 +1226,7 @@ public class OmegaStarite : LegacyAequusBoss {
             //Main.spriteBatch.BeginWorld(shader: true);
 
             if ((NPC.position - NPC.oldPos[1]).Length() > 0.01f) {
-                DrawHelper.DrawBasicVertexLineWithProceduralPadding(AequusTextures.Trail, NPC.oldPos, OldDrawHelper.GenerateRotationArr(NPC.oldPos),
+                DrawHelper.DrawBasicVertexLineWithProceduralPadding(AequusTextures.Trail, NPC.oldPos, Helper.GenerateRotationArr(NPC.oldPos),
                     (p) => GlimmerColors.Blue * (1f - p),
                     (p) => 20 * (1f - p),
                     -Main.screenPosition + NPC.Size / 2f);

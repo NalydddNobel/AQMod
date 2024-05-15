@@ -1,8 +1,6 @@
 ﻿using Aequus.Old.Common.Projectiles;
-using Aequus.Old.Core.Utilities;
 using System;
 using System.Collections.Generic;
-using Terraria.Graphics;
 
 namespace Aequus.Old.Content.Bosses.Cosmic.UltraStarite.Projectiles;
 public class UltraStariteDeathray : EnemyAttachedProjBase {
@@ -73,7 +71,7 @@ public class UltraStariteDeathray : EnemyAttachedProjBase {
         var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
         var n = Projectile.rotation.ToRotationVector2();
         Vector2[] arr = LinearInterpolationBetween(Main.ReverseGravitySupport(drawPos), Main.ReverseGravitySupport(drawPos + n * DEATHRAY_LENGTH * 5), 8);
-        float[] rotations = OldDrawHelper.GenerateRotationArr(arr);
+        float[] rotations = Helper.GenerateRotationArr(arr);
         //if (prim == null) {
         //    prim = new TrailRenderer(TrailTextures.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(70f), (p) => Color.BlueViolet.UseA(0) * 1.4f * (float)Math.Pow(1f - p, 2f) * 0.4f * Projectile.Opacity * FadeLaser(p), obeyReversedGravity: false, worldTrail: false);
         //}
