@@ -1077,60 +1077,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> VraineBanner = new("Aequus/Old/Content/Enemies/VraineBanner");
     /// <summary>Full Path: Old/Content/Enemies/WhiteSlimeBanner</summary>
     public static readonly RequestCache<Texture2D> WhiteSlimeBanner = new("Aequus/Old/Content/Enemies/WhiteSlimeBanner");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/GrandReward/GrandReward</summary>
-    public static readonly RequestCache<Texture2D> GrandReward = new("Aequus/Old/Content/Equipment/Accessories/GrandReward/GrandReward");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/HighSteaks/HighSteaks</summary>
-    public static readonly RequestCache<Texture2D> HighSteaks = new("Aequus/Old/Content/Equipment/Accessories/HighSteaks/HighSteaks");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/HighSteaks/HighSteaks_Waist</summary>
-    public static readonly RequestCache<Texture2D> HighSteaks_Waist = new("Aequus/Old/Content/Equipment/Accessories/HighSteaks/HighSteaks_Waist");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/HoloLens/HoloLens</summary>
-    public static readonly RequestCache<Texture2D> HoloLens = new("Aequus/Old/Content/Equipment/Accessories/HoloLens/HoloLens");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/LaserScope/LaserReticle</summary>
-    public static readonly RequestCache<Texture2D> LaserReticle = new("Aequus/Old/Content/Equipment/Accessories/LaserScope/LaserReticle");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/LaserScope/LaserReticle_Glow</summary>
-    public static readonly RequestCache<Texture2D> LaserReticle_Glow = new("Aequus/Old/Content/Equipment/Accessories/LaserScope/LaserReticle_Glow");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/BlackPhial</summary>
-    public static readonly RequestCache<Texture2D> BlackPhial = new("Aequus/Old/Content/Equipment/Accessories/OnHitDebuffs/BlackPhial");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/BlackPhial_Waist</summary>
-    public static readonly RequestCache<Texture2D> BlackPhial_Waist = new("Aequus/Old/Content/Equipment/Accessories/OnHitDebuffs/BlackPhial_Waist");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/BlackPlague</summary>
-    public static readonly RequestCache<Texture2D> BlackPlague = new("Aequus/Old/Content/Equipment/Accessories/OnHitDebuffs/BlackPlague");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/BlackPlague_HandsOn</summary>
-    public static readonly RequestCache<Texture2D> BlackPlague_HandsOn = new("Aequus/Old/Content/Equipment/Accessories/OnHitDebuffs/BlackPlague_HandsOn");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/BoneRing</summary>
-    public static readonly RequestCache<Texture2D> BoneRing = new("Aequus/Old/Content/Equipment/Accessories/OnHitDebuffs/BoneRing");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/BoneRing_HandsOn</summary>
-    public static readonly RequestCache<Texture2D> BoneRing_HandsOn = new("Aequus/Old/Content/Equipment/Accessories/OnHitDebuffs/BoneRing_HandsOn");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/PhoenixRing</summary>
-    public static readonly RequestCache<Texture2D> PhoenixRing = new("Aequus/Old/Content/Equipment/Accessories/OnHitDebuffs/PhoenixRing");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/OnHitDebuffs/PhoenixRing_HandsOn</summary>
-    public static readonly RequestCache<Texture2D> PhoenixRing_HandsOn = new("Aequus/Old/Content/Equipment/Accessories/OnHitDebuffs/PhoenixRing_HandsOn");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/Pacemaker/Pacemaker</summary>
-    public static readonly RequestCache<Texture2D> Pacemaker = new("Aequus/Old/Content/Equipment/Accessories/Pacemaker/Pacemaker");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/RabbitsFoot/RabbitsFoot</summary>
-    public static readonly RequestCache<Texture2D> RabbitsFoot = new("Aequus/Old/Content/Equipment/Accessories/RabbitsFoot/RabbitsFoot");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHorn</summary>
-    public static readonly RequestCache<Texture2D> WarHorn = new("Aequus/Old/Content/Equipment/Accessories/WarHorn/WarHorn");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHornCooldown</summary>
-    public static readonly RequestCache<Texture2D> WarHornCooldown = new("Aequus/Old/Content/Equipment/Accessories/WarHorn/WarHornCooldown");
-    /// <summary>Full Path: Old/Content/Equipment/Accessories/WarHorn/WarHornEffect</summary>
-    public static readonly RequestCache<Texture2D> WarHornEffect = new("Aequus/Old/Content/Equipment/Accessories/WarHorn/WarHornEffect");
-    /// <summary>Full Path: Old/Content/Equipment/GrapplingHooks/EnemyGrappleHook/Meathook</summary>
-    public static readonly RequestCache<Texture2D> Meathook = new("Aequus/Old/Content/Equipment/GrapplingHooks/EnemyGrappleHook/Meathook");
-    /// <summary>Full Path: Old/Content/Equipment/GrapplingHooks/EnemyGrappleHook/MeathookProj</summary>
-    public static readonly RequestCache<Texture2D> MeathookProj = new("Aequus/Old/Content/Equipment/GrapplingHooks/EnemyGrappleHook/MeathookProj");
-    /// <summary>Full Path: Old/Content/Equipment/GrapplingHooks/EnemyGrappleHook/MeathookProj_Chain</summary>
-    public static readonly RequestCache<Texture2D> MeathookProj_Chain = new("Aequus/Old/Content/Equipment/GrapplingHooks/EnemyGrappleHook/MeathookProj_Chain");
-    /// <summary>Full Path: Old/Content/Equipment/GrapplingHooks/HealingGrappleHook/LeechHook</summary>
-    public static readonly RequestCache<Texture2D> LeechHook = new("Aequus/Old/Content/Equipment/GrapplingHooks/HealingGrappleHook/LeechHook");
-    /// <summary>Full Path: Old/Content/Equipment/GrapplingHooks/HealingGrappleHook/LeechHookProj</summary>
-    public static readonly RequestCache<Texture2D> LeechHookProj = new("Aequus/Old/Content/Equipment/GrapplingHooks/HealingGrappleHook/LeechHookProj");
-    /// <summary>Full Path: Old/Content/Equipment/GrapplingHooks/HealingGrappleHook/LeechHookProj_Chain</summary>
-    public static readonly RequestCache<Texture2D> LeechHookProj_Chain = new("Aequus/Old/Content/Equipment/GrapplingHooks/HealingGrappleHook/LeechHookProj_Chain");
-    /// <summary>Full Path: Old/Content/Equipment/Info/AnglerBroadcaster</summary>
-    public static readonly RequestCache<Texture2D> AnglerBroadcaster = new("Aequus/Old/Content/Equipment/Info/AnglerBroadcaster");
-    /// <summary>Full Path: Old/Content/Equipment/Info/AnglerBroadcasterIcon</summary>
-    public static readonly RequestCache<Texture2D> AnglerBroadcasterIcon = new("Aequus/Old/Content/Equipment/Info/AnglerBroadcasterIcon");
     /// <summary>Full Path: Old/Content/Events/DemonSiege/Spawners/UnholyCore</summary>
     public static readonly RequestCache<Texture2D> UnholyCore = new("Aequus/Old/Content/Events/DemonSiege/Spawners/UnholyCore");
     /// <summary>Full Path: Old/Content/Events/DemonSiege/Spawners/UnholyCoreSmall</summary>
@@ -1173,60 +1119,248 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CrimsonPopper = new("Aequus/Old/Content/Fishing/Poppers/CrimsonPopper");
     /// <summary>Full Path: Old/Content/Fishing/Poppers/HallowPopper</summary>
     public static readonly RequestCache<Texture2D> HallowPopper = new("Aequus/Old/Content/Fishing/Poppers/HallowPopper");
+    /// <summary>Full Path: Old/Content/Items/Accessories/GrandReward/GrandReward</summary>
+    public static readonly RequestCache<Texture2D> GrandReward = new("Aequus/Old/Content/Items/Accessories/GrandReward/GrandReward");
+    /// <summary>Full Path: Old/Content/Items/Accessories/HighSteaks/HighSteaks</summary>
+    public static readonly RequestCache<Texture2D> HighSteaks = new("Aequus/Old/Content/Items/Accessories/HighSteaks/HighSteaks");
+    /// <summary>Full Path: Old/Content/Items/Accessories/HighSteaks/HighSteaks_Waist</summary>
+    public static readonly RequestCache<Texture2D> HighSteaks_Waist = new("Aequus/Old/Content/Items/Accessories/HighSteaks/HighSteaks_Waist");
+    /// <summary>Full Path: Old/Content/Items/Accessories/HoloLens/HoloLens</summary>
+    public static readonly RequestCache<Texture2D> HoloLens = new("Aequus/Old/Content/Items/Accessories/HoloLens/HoloLens");
     /// <summary>Full Path: Old/Content/Items/Accessories/HyperCrystal/HyperCrystal</summary>
     public static readonly RequestCache<Texture2D> HyperCrystal = new("Aequus/Old/Content/Items/Accessories/HyperCrystal/HyperCrystal");
     /// <summary>Full Path: Old/Content/Items/Accessories/HyperCrystal/HyperCrystalProj</summary>
     public static readonly RequestCache<Texture2D> HyperCrystalProj = new("Aequus/Old/Content/Items/Accessories/HyperCrystal/HyperCrystalProj");
+    /// <summary>Full Path: Old/Content/Items/Accessories/Info/AnglerBroadcaster</summary>
+    public static readonly RequestCache<Texture2D> AnglerBroadcaster = new("Aequus/Old/Content/Items/Accessories/Info/AnglerBroadcaster");
+    /// <summary>Full Path: Old/Content/Items/Accessories/Info/AnglerBroadcasterIcon</summary>
+    public static readonly RequestCache<Texture2D> AnglerBroadcasterIcon = new("Aequus/Old/Content/Items/Accessories/Info/AnglerBroadcasterIcon");
+    /// <summary>Full Path: Old/Content/Items/Accessories/LaserScope/LaserReticle</summary>
+    public static readonly RequestCache<Texture2D> LaserReticle = new("Aequus/Old/Content/Items/Accessories/LaserScope/LaserReticle");
+    /// <summary>Full Path: Old/Content/Items/Accessories/LaserScope/LaserReticle_Glow</summary>
+    public static readonly RequestCache<Texture2D> LaserReticle_Glow = new("Aequus/Old/Content/Items/Accessories/LaserScope/LaserReticle_Glow");
+    /// <summary>Full Path: Old/Content/Items/Accessories/OnHitDebuffs/BlackPhial</summary>
+    public static readonly RequestCache<Texture2D> BlackPhial = new("Aequus/Old/Content/Items/Accessories/OnHitDebuffs/BlackPhial");
+    /// <summary>Full Path: Old/Content/Items/Accessories/OnHitDebuffs/BlackPhial_Waist</summary>
+    public static readonly RequestCache<Texture2D> BlackPhial_Waist = new("Aequus/Old/Content/Items/Accessories/OnHitDebuffs/BlackPhial_Waist");
+    /// <summary>Full Path: Old/Content/Items/Accessories/OnHitDebuffs/BlackPlague</summary>
+    public static readonly RequestCache<Texture2D> BlackPlague = new("Aequus/Old/Content/Items/Accessories/OnHitDebuffs/BlackPlague");
+    /// <summary>Full Path: Old/Content/Items/Accessories/OnHitDebuffs/BlackPlague_HandsOn</summary>
+    public static readonly RequestCache<Texture2D> BlackPlague_HandsOn = new("Aequus/Old/Content/Items/Accessories/OnHitDebuffs/BlackPlague_HandsOn");
+    /// <summary>Full Path: Old/Content/Items/Accessories/OnHitDebuffs/BoneRing</summary>
+    public static readonly RequestCache<Texture2D> BoneRing = new("Aequus/Old/Content/Items/Accessories/OnHitDebuffs/BoneRing");
+    /// <summary>Full Path: Old/Content/Items/Accessories/OnHitDebuffs/BoneRing_HandsOn</summary>
+    public static readonly RequestCache<Texture2D> BoneRing_HandsOn = new("Aequus/Old/Content/Items/Accessories/OnHitDebuffs/BoneRing_HandsOn");
+    /// <summary>Full Path: Old/Content/Items/Accessories/OnHitDebuffs/PhoenixRing</summary>
+    public static readonly RequestCache<Texture2D> PhoenixRing = new("Aequus/Old/Content/Items/Accessories/OnHitDebuffs/PhoenixRing");
+    /// <summary>Full Path: Old/Content/Items/Accessories/OnHitDebuffs/PhoenixRing_HandsOn</summary>
+    public static readonly RequestCache<Texture2D> PhoenixRing_HandsOn = new("Aequus/Old/Content/Items/Accessories/OnHitDebuffs/PhoenixRing_HandsOn");
+    /// <summary>Full Path: Old/Content/Items/Accessories/Pacemaker/Pacemaker</summary>
+    public static readonly RequestCache<Texture2D> Pacemaker = new("Aequus/Old/Content/Items/Accessories/Pacemaker/Pacemaker");
+    /// <summary>Full Path: Old/Content/Items/Accessories/RabbitsFoot/RabbitsFoot</summary>
+    public static readonly RequestCache<Texture2D> RabbitsFoot = new("Aequus/Old/Content/Items/Accessories/RabbitsFoot/RabbitsFoot");
+    /// <summary>Full Path: Old/Content/Items/Accessories/WarHorn/WarHorn</summary>
+    public static readonly RequestCache<Texture2D> WarHorn = new("Aequus/Old/Content/Items/Accessories/WarHorn/WarHorn");
+    /// <summary>Full Path: Old/Content/Items/Accessories/WarHorn/WarHornCooldown</summary>
+    public static readonly RequestCache<Texture2D> WarHornCooldown = new("Aequus/Old/Content/Items/Accessories/WarHorn/WarHornCooldown");
+    /// <summary>Full Path: Old/Content/Items/Accessories/WarHorn/WarHornEffect</summary>
+    public static readonly RequestCache<Texture2D> WarHornEffect = new("Aequus/Old/Content/Items/Accessories/WarHorn/WarHornEffect");
+    /// <summary>Full Path: Old/Content/Items/GrapplingHooks/EnemyGrappleHook/Meathook</summary>
+    public static readonly RequestCache<Texture2D> Meathook = new("Aequus/Old/Content/Items/GrapplingHooks/EnemyGrappleHook/Meathook");
+    /// <summary>Full Path: Old/Content/Items/GrapplingHooks/EnemyGrappleHook/MeathookProj</summary>
+    public static readonly RequestCache<Texture2D> MeathookProj = new("Aequus/Old/Content/Items/GrapplingHooks/EnemyGrappleHook/MeathookProj");
+    /// <summary>Full Path: Old/Content/Items/GrapplingHooks/EnemyGrappleHook/MeathookProj_Chain</summary>
+    public static readonly RequestCache<Texture2D> MeathookProj_Chain = new("Aequus/Old/Content/Items/GrapplingHooks/EnemyGrappleHook/MeathookProj_Chain");
+    /// <summary>Full Path: Old/Content/Items/GrapplingHooks/HealingGrappleHook/LeechHook</summary>
+    public static readonly RequestCache<Texture2D> LeechHook = new("Aequus/Old/Content/Items/GrapplingHooks/HealingGrappleHook/LeechHook");
+    /// <summary>Full Path: Old/Content/Items/GrapplingHooks/HealingGrappleHook/LeechHookProj</summary>
+    public static readonly RequestCache<Texture2D> LeechHookProj = new("Aequus/Old/Content/Items/GrapplingHooks/HealingGrappleHook/LeechHookProj");
+    /// <summary>Full Path: Old/Content/Items/GrapplingHooks/HealingGrappleHook/LeechHookProj_Chain</summary>
+    public static readonly RequestCache<Texture2D> LeechHookProj_Chain = new("Aequus/Old/Content/Items/GrapplingHooks/HealingGrappleHook/LeechHookProj_Chain");
+    /// <summary>Full Path: Old/Content/Items/Materials/BloodyTearstone</summary>
+    public static readonly RequestCache<Texture2D> BloodyTearstone = new("Aequus/Old/Content/Items/Materials/BloodyTearstone");
+    /// <summary>Full Path: Old/Content/Items/Materials/Energies/AquaticEnergy</summary>
+    public static readonly RequestCache<Texture2D> AquaticEnergy = new("Aequus/Old/Content/Items/Materials/Energies/AquaticEnergy");
+    /// <summary>Full Path: Old/Content/Items/Materials/Energies/AtmosphericEnergy</summary>
+    public static readonly RequestCache<Texture2D> AtmosphericEnergy = new("Aequus/Old/Content/Items/Materials/Energies/AtmosphericEnergy");
+    /// <summary>Full Path: Old/Content/Items/Materials/Energies/CosmicEnergy</summary>
+    public static readonly RequestCache<Texture2D> CosmicEnergy = new("Aequus/Old/Content/Items/Materials/Energies/CosmicEnergy");
+    /// <summary>Full Path: Old/Content/Items/Materials/Energies/DemonicEnergy</summary>
+    public static readonly RequestCache<Texture2D> DemonicEnergy = new("Aequus/Old/Content/Items/Materials/Energies/DemonicEnergy");
+    /// <summary>Full Path: Old/Content/Items/Materials/Energies/EnergyDust</summary>
+    public static readonly RequestCache<Texture2D> EnergyDust = new("Aequus/Old/Content/Items/Materials/Energies/EnergyDust");
+    /// <summary>Full Path: Old/Content/Items/Materials/Energies/OrganicEnergy</summary>
+    public static readonly RequestCache<Texture2D> OrganicEnergy = new("Aequus/Old/Content/Items/Materials/Energies/OrganicEnergy");
+    /// <summary>Full Path: Old/Content/Items/Materials/Energies/UltimateEnergy</summary>
+    public static readonly RequestCache<Texture2D> UltimateEnergy = new("Aequus/Old/Content/Items/Materials/Energies/UltimateEnergy");
+    /// <summary>Full Path: Old/Content/Items/Materials/FrozenTechnology</summary>
+    public static readonly RequestCache<Texture2D> FrozenTechnology = new("Aequus/Old/Content/Items/Materials/FrozenTechnology");
+    /// <summary>Full Path: Old/Content/Items/Materials/GlowLichen</summary>
+    public static readonly RequestCache<Texture2D> GlowLichen = new("Aequus/Old/Content/Items/Materials/GlowLichen");
+    /// <summary>Full Path: Old/Content/Items/Materials/MonoGem/MonoGem</summary>
+    public static readonly RequestCache<Texture2D> MonoGem = new("Aequus/Old/Content/Items/Materials/MonoGem/MonoGem");
+    /// <summary>Full Path: Old/Content/Items/Materials/MonoGem/MonoGemTile</summary>
+    public static readonly RequestCache<Texture2D> MonoGemTile = new("Aequus/Old/Content/Items/Materials/MonoGem/MonoGemTile");
+    /// <summary>Full Path: Old/Content/Items/Materials/OmniGem/OmniGem</summary>
+    public static readonly RequestCache<Texture2D> OmniGem = new("Aequus/Old/Content/Items/Materials/OmniGem/OmniGem");
+    /// <summary>Full Path: Old/Content/Items/Materials/OmniGem/OmniGemTile</summary>
+    public static readonly RequestCache<Texture2D> OmniGemTile = new("Aequus/Old/Content/Items/Materials/OmniGem/OmniGemTile");
+    /// <summary>Full Path: Old/Content/Items/Materials/OmniGem/OmniGemTile_Mask</summary>
+    public static readonly RequestCache<Texture2D> OmniGemTile_Mask = new("Aequus/Old/Content/Items/Materials/OmniGem/OmniGemTile_Mask");
+    /// <summary>Full Path: Old/Content/Items/Materials/OmniGem/OmniGem_Mask</summary>
+    public static readonly RequestCache<Texture2D> OmniGem_Mask = new("Aequus/Old/Content/Items/Materials/OmniGem/OmniGem_Mask");
+    /// <summary>Full Path: Old/Content/Items/Materials/PillarFragments/ArtFragment</summary>
+    public static readonly RequestCache<Texture2D> ArtFragment = new("Aequus/Old/Content/Items/Materials/PillarFragments/ArtFragment");
+    /// <summary>Full Path: Old/Content/Items/Materials/PillarFragments/NecroFragment</summary>
+    public static readonly RequestCache<Texture2D> NecroFragment = new("Aequus/Old/Content/Items/Materials/PillarFragments/NecroFragment");
+    /// <summary>Full Path: Old/Content/Items/Materials/PossessedShard/PossessedShard</summary>
+    public static readonly RequestCache<Texture2D> PossessedShard = new("Aequus/Old/Content/Items/Materials/PossessedShard/PossessedShard");
+    /// <summary>Full Path: Old/Content/Items/Materials/SoulGem/SoulGem</summary>
+    public static readonly RequestCache<Texture2D> SoulGem = new("Aequus/Old/Content/Items/Materials/SoulGem/SoulGem");
+    /// <summary>Full Path: Old/Content/Items/Materials/SoulGem/SoulGemFilled</summary>
+    public static readonly RequestCache<Texture2D> SoulGemFilled = new("Aequus/Old/Content/Items/Materials/SoulGem/SoulGemFilled");
+    /// <summary>Full Path: Old/Content/Items/Materials/SoulGem/SoulGemTile</summary>
+    public static readonly RequestCache<Texture2D> SoulGemTile = new("Aequus/Old/Content/Items/Materials/SoulGem/SoulGemTile");
+    /// <summary>Full Path: Old/Content/Items/Materials/StariteMaterial</summary>
+    public static readonly RequestCache<Texture2D> StariteMaterial = new("Aequus/Old/Content/Items/Materials/StariteMaterial");
+    /// <summary>Full Path: Old/Content/Items/Potions/Foods/SusSteak/SuspiciousLookingSteak</summary>
+    public static readonly RequestCache<Texture2D> SuspiciousLookingSteak = new("Aequus/Old/Content/Items/Potions/Foods/SusSteak/SuspiciousLookingSteak");
+    /// <summary>Full Path: Old/Content/Items/Potions/NeutronYogurt/NeutronYogurt</summary>
+    public static readonly RequestCache<Texture2D> NeutronYogurt = new("Aequus/Old/Content/Items/Potions/NeutronYogurt/NeutronYogurt");
+    /// <summary>Full Path: Old/Content/Items/Potions/NeutronYogurt/NeutronYogurtBuff</summary>
+    public static readonly RequestCache<Texture2D> NeutronYogurtBuff = new("Aequus/Old/Content/Items/Potions/NeutronYogurt/NeutronYogurtBuff");
+    /// <summary>Full Path: Old/Content/Items/Potions/Prefixes/BoundedPotions/BoundedPrefixGlint</summary>
+    public static readonly RequestCache<Texture2D> BoundedPrefixGlint = new("Aequus/Old/Content/Items/Potions/Prefixes/BoundedPotions/BoundedPrefixGlint");
+    /// <summary>Full Path: Old/Content/Items/Potions/Prefixes/BoundedPotions/BoundedPrefixItem</summary>
+    public static readonly RequestCache<Texture2D> BoundedPrefixItem = new("Aequus/Old/Content/Items/Potions/Prefixes/BoundedPotions/BoundedPrefixItem");
+    /// <summary>Full Path: Old/Content/Items/Potions/Prefixes/EmpoweredPotions/EmpoweredPrefixGlint</summary>
+    public static readonly RequestCache<Texture2D> EmpoweredPrefixGlint = new("Aequus/Old/Content/Items/Potions/Prefixes/EmpoweredPotions/EmpoweredPrefixGlint");
+    /// <summary>Full Path: Old/Content/Items/Potions/Prefixes/EmpoweredPotions/EmpoweredPrefixItem</summary>
+    public static readonly RequestCache<Texture2D> EmpoweredPrefixItem = new("Aequus/Old/Content/Items/Potions/Prefixes/EmpoweredPotions/EmpoweredPrefixItem");
+    /// <summary>Full Path: Old/Content/Items/Potions/Prefixes/SplashPotions/SplashPrefixGlint</summary>
+    public static readonly RequestCache<Texture2D> SplashPrefixGlint = new("Aequus/Old/Content/Items/Potions/Prefixes/SplashPotions/SplashPrefixGlint");
+    /// <summary>Full Path: Old/Content/Items/Potions/Prefixes/SplashPotions/SplashPrefixItem</summary>
+    public static readonly RequestCache<Texture2D> SplashPrefixItem = new("Aequus/Old/Content/Items/Potions/Prefixes/SplashPotions/SplashPrefixItem");
+    /// <summary>Full Path: Old/Content/Items/Potions/Prefixes/StuffedPotions/StuffedPrefixGlint</summary>
+    public static readonly RequestCache<Texture2D> StuffedPrefixGlint = new("Aequus/Old/Content/Items/Potions/Prefixes/StuffedPotions/StuffedPrefixGlint");
+    /// <summary>Full Path: Old/Content/Items/Potions/Prefixes/StuffedPotions/StuffedPrefixItem</summary>
+    public static readonly RequestCache<Texture2D> StuffedPrefixItem = new("Aequus/Old/Content/Items/Potions/Prefixes/StuffedPotions/StuffedPrefixItem");
+    /// <summary>Full Path: Old/Content/Items/Potions/Resurrection/PotionOfResurrection</summary>
+    public static readonly RequestCache<Texture2D> PotionOfResurrection = new("Aequus/Old/Content/Items/Potions/Resurrection/PotionOfResurrection");
+    /// <summary>Full Path: Old/Content/Items/Tools/MagicMirrors/PhaseMirror/PhaseMirror</summary>
+    public static readonly RequestCache<Texture2D> PhaseMirror = new("Aequus/Old/Content/Items/Tools/MagicMirrors/PhaseMirror/PhaseMirror");
+    /// <summary>Full Path: Old/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhone</summary>
+    public static readonly RequestCache<Texture2D> PhasePhone = new("Aequus/Old/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhone");
+    /// <summary>Full Path: Old/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneHome</summary>
+    public static readonly RequestCache<Texture2D> PhasePhoneHome = new("Aequus/Old/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneHome");
+    /// <summary>Full Path: Old/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneOcean</summary>
+    public static readonly RequestCache<Texture2D> PhasePhoneOcean = new("Aequus/Old/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneOcean");
+    /// <summary>Full Path: Old/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneSpawn</summary>
+    public static readonly RequestCache<Texture2D> PhasePhoneSpawn = new("Aequus/Old/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneSpawn");
+    /// <summary>Full Path: Old/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneUnderworld</summary>
+    public static readonly RequestCache<Texture2D> PhasePhoneUnderworld = new("Aequus/Old/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneUnderworld");
+    /// <summary>Full Path: Old/Content/Items/Tools/PhysicsGun</summary>
+    public static readonly RequestCache<Texture2D> PhysicsGun = new("Aequus/Old/Content/Items/Tools/PhysicsGun");
+    /// <summary>Full Path: Old/Content/Items/Tools/PhysicsGunProj</summary>
+    public static readonly RequestCache<Texture2D> PhysicsGunProj = new("Aequus/Old/Content/Items/Tools/PhysicsGunProj");
+    /// <summary>Full Path: Old/Content/Items/Tools/PhysicsGun_Glow</summary>
+    public static readonly RequestCache<Texture2D> PhysicsGun_Glow = new("Aequus/Old/Content/Items/Tools/PhysicsGun_Glow");
+    /// <summary>Full Path: Old/Content/Items/Vanity/CelestialEightBall</summary>
+    public static readonly RequestCache<Texture2D> CelestialEightBall = new("Aequus/Old/Content/Items/Vanity/CelestialEightBall");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Demon/CorruptionHellfire</summary>
+    public static readonly RequestCache<Texture2D> CorruptionHellfire = new("Aequus/Old/Content/Items/Weapons/Demon/CorruptionHellfire");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Demon/CrimsonHellfire</summary>
+    public static readonly RequestCache<Texture2D> CrimsonHellfire = new("Aequus/Old/Content/Items/Weapons/Demon/CrimsonHellfire");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Demon/Magic/BombarderRod</summary>
+    public static readonly RequestCache<Texture2D> BombarderRod = new("Aequus/Old/Content/Items/Weapons/Demon/Magic/BombarderRod");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Demon/Magic/BombarderRod_Glow</summary>
+    public static readonly RequestCache<Texture2D> BombarderRod_Glow = new("Aequus/Old/Content/Items/Weapons/Demon/Magic/BombarderRod_Glow");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Demon/Magic/Triacanthorn</summary>
+    public static readonly RequestCache<Texture2D> Triacanthorn = new("Aequus/Old/Content/Items/Weapons/Demon/Magic/Triacanthorn");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Demon/Magic/TriacanthornBolt</summary>
+    public static readonly RequestCache<Texture2D> TriacanthornBolt = new("Aequus/Old/Content/Items/Weapons/Demon/Magic/TriacanthornBolt");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Demon/Magic/TriacanthornProj</summary>
+    public static readonly RequestCache<Texture2D> TriacanthornProj = new("Aequus/Old/Content/Items/Weapons/Demon/Magic/TriacanthornProj");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Demon/Magic/Triacanthorn_Glow</summary>
+    public static readonly RequestCache<Texture2D> Triacanthorn_Glow = new("Aequus/Old/Content/Items/Weapons/Demon/Magic/Triacanthorn_Glow");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Demon/Melee/Cauterizer</summary>
+    public static readonly RequestCache<Texture2D> Cauterizer = new("Aequus/Old/Content/Items/Weapons/Demon/Melee/Cauterizer");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Demon/Melee/CauterizerSlash</summary>
+    public static readonly RequestCache<Texture2D> CauterizerSlash = new("Aequus/Old/Content/Items/Weapons/Demon/Melee/CauterizerSlash");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Demon/Melee/HellsBoon</summary>
+    public static readonly RequestCache<Texture2D> HellsBoon = new("Aequus/Old/Content/Items/Weapons/Demon/Melee/HellsBoon");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Demon/Melee/HellsBoonProj</summary>
+    public static readonly RequestCache<Texture2D> HellsBoonProj = new("Aequus/Old/Content/Items/Weapons/Demon/Melee/HellsBoonProj");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Demon/Melee/HellsBoon_Glow</summary>
+    public static readonly RequestCache<Texture2D> HellsBoon_Glow = new("Aequus/Old/Content/Items/Weapons/Demon/Melee/HellsBoon_Glow");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Demon/Ranged/Deltoid</summary>
+    public static readonly RequestCache<Texture2D> Deltoid = new("Aequus/Old/Content/Items/Weapons/Demon/Ranged/Deltoid");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Demon/Ranged/DeltoidArrow</summary>
+    public static readonly RequestCache<Texture2D> DeltoidArrow = new("Aequus/Old/Content/Items/Weapons/Demon/Ranged/DeltoidArrow");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Demon/Ranged/Deltoid_Glow</summary>
+    public static readonly RequestCache<Texture2D> Deltoid_Glow = new("Aequus/Old/Content/Items/Weapons/Demon/Ranged/Deltoid_Glow");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Demon/Ranged/HamaYumi</summary>
+    public static readonly RequestCache<Texture2D> HamaYumi = new("Aequus/Old/Content/Items/Weapons/Demon/Ranged/HamaYumi");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Demon/Ranged/HamaYumiArrow</summary>
+    public static readonly RequestCache<Texture2D> HamaYumiArrow = new("Aequus/Old/Content/Items/Weapons/Demon/Ranged/HamaYumiArrow");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Demon/Ranged/HamaYumi_Glow</summary>
+    public static readonly RequestCache<Texture2D> HamaYumi_Glow = new("Aequus/Old/Content/Items/Weapons/Demon/Ranged/HamaYumi_Glow");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Glimmer/Nightfall/Nightfall</summary>
+    public static readonly RequestCache<Texture2D> Nightfall = new("Aequus/Old/Content/Items/Weapons/Glimmer/Nightfall/Nightfall");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Glimmer/Nightfall/NightfallGlint</summary>
+    public static readonly RequestCache<Texture2D> NightfallGlint = new("Aequus/Old/Content/Items/Weapons/Glimmer/Nightfall/NightfallGlint");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Glimmer/Nightfall/NightfallProj</summary>
+    public static readonly RequestCache<Texture2D> NightfallProj = new("Aequus/Old/Content/Items/Weapons/Glimmer/Nightfall/NightfallProj");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Glimmer/StariteMinion/StariteMinion</summary>
+    public static readonly RequestCache<Texture2D> StariteMinion = new("Aequus/Old/Content/Items/Weapons/Glimmer/StariteMinion/StariteMinion");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Glimmer/StariteMinion/StariteMinionBuff</summary>
+    public static readonly RequestCache<Texture2D> StariteMinionBuff = new("Aequus/Old/Content/Items/Weapons/Glimmer/StariteMinion/StariteMinionBuff");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Glimmer/StariteMinion/StariteStaff</summary>
+    public static readonly RequestCache<Texture2D> StariteStaff = new("Aequus/Old/Content/Items/Weapons/Glimmer/StariteMinion/StariteStaff");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Glimmer/StariteMinion/StariteStaff_Glow</summary>
+    public static readonly RequestCache<Texture2D> StariteStaff_Glow = new("Aequus/Old/Content/Items/Weapons/Glimmer/StariteMinion/StariteStaff_Glow");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Glimmer/SuperStarSword/SuperStarSword</summary>
+    public static readonly RequestCache<Texture2D> SuperStarSword = new("Aequus/Old/Content/Items/Weapons/Glimmer/SuperStarSword/SuperStarSword");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Melee/PhaseDisc/PhaseDisc</summary>
+    public static readonly RequestCache<Texture2D> PhaseDisc = new("Aequus/Old/Content/Items/Weapons/Melee/PhaseDisc/PhaseDisc");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Melee/PhaseDisc/PhaseDiscProj</summary>
+    public static readonly RequestCache<Texture2D> PhaseDiscProj = new("Aequus/Old/Content/Items/Weapons/Melee/PhaseDisc/PhaseDiscProj");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Melee/SickBeat/SickBeat</summary>
+    public static readonly RequestCache<Texture2D> SickBeat = new("Aequus/Old/Content/Items/Weapons/Melee/SickBeat/SickBeat");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Melee/Slice/Slice</summary>
+    public static readonly RequestCache<Texture2D> Slice = new("Aequus/Old/Content/Items/Weapons/Melee/Slice/Slice");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Melee/Slice/SliceBulletProj</summary>
+    public static readonly RequestCache<Texture2D> SliceBulletProj = new("Aequus/Old/Content/Items/Weapons/Melee/Slice/SliceBulletProj");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Melee/UltimateSword/UltimateSword</summary>
+    public static readonly RequestCache<Texture2D> UltimateSword = new("Aequus/Old/Content/Items/Weapons/Melee/UltimateSword/UltimateSword");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Melee/UltimateSword/UltimateSwordBuff</summary>
+    public static readonly RequestCache<Texture2D> UltimateSwordBuff = new("Aequus/Old/Content/Items/Weapons/Melee/UltimateSword/UltimateSwordBuff");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Melee/UltimateSword/UltimateSword_Glow</summary>
+    public static readonly RequestCache<Texture2D> UltimateSword_Glow = new("Aequus/Old/Content/Items/Weapons/Melee/UltimateSword/UltimateSword_Glow");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Melee/Valari/Valari</summary>
+    public static readonly RequestCache<Texture2D> Valari = new("Aequus/Old/Content/Items/Weapons/Melee/Valari/Valari");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Melee/Vrang/Vrang</summary>
+    public static readonly RequestCache<Texture2D> Vrang = new("Aequus/Old/Content/Items/Weapons/Melee/Vrang/Vrang");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Melee/Vrang/VrangProj</summary>
+    public static readonly RequestCache<Texture2D> VrangProj = new("Aequus/Old/Content/Items/Weapons/Melee/Vrang/VrangProj");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Melee/Vrang/VrangProj_Cold</summary>
+    public static readonly RequestCache<Texture2D> VrangProj_Cold = new("Aequus/Old/Content/Items/Weapons/Melee/Vrang/VrangProj_Cold");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Melee/Vrang/VrangProj_Hot</summary>
+    public static readonly RequestCache<Texture2D> VrangProj_Hot = new("Aequus/Old/Content/Items/Weapons/Melee/Vrang/VrangProj_Hot");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow</summary>
+    public static readonly RequestCache<Texture2D> CrusadersCrossbow = new("Aequus/Old/Content/Items/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj</summary>
+    public static readonly RequestCache<Texture2D> CrusadersCrossbowProj = new("Aequus/Old/Content/Items/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Sentries/PhysicistSentry/PhysicistSentry</summary>
+    public static readonly RequestCache<Texture2D> PhysicistSentry = new("Aequus/Old/Content/Items/Weapons/Sentries/PhysicistSentry/PhysicistSentry");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Sentries/PhysicistSentry/PhysicistSentryProj</summary>
+    public static readonly RequestCache<Texture2D> PhysicistSentryProj = new("Aequus/Old/Content/Items/Weapons/Sentries/PhysicistSentry/PhysicistSentryProj");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Sentries/PhysicistSentry/PhysicistSentryProj_Glow</summary>
+    public static readonly RequestCache<Texture2D> PhysicistSentryProj_Glow = new("Aequus/Old/Content/Items/Weapons/Sentries/PhysicistSentry/PhysicistSentryProj_Glow");
     /// <summary>Full Path: Old/Content/MainMenu/GlimmerMenu</summary>
     public static readonly RequestCache<Texture2D> GlimmerMenu = new("Aequus/Old/Content/MainMenu/GlimmerMenu");
     /// <summary>Full Path: Old/Content/MainMenu/GlimmerMenu_Glow</summary>
     public static readonly RequestCache<Texture2D> GlimmerMenu_Glow = new("Aequus/Old/Content/MainMenu/GlimmerMenu_Glow");
-    /// <summary>Full Path: Old/Content/Materials/BloodyTearstone</summary>
-    public static readonly RequestCache<Texture2D> BloodyTearstone = new("Aequus/Old/Content/Materials/BloodyTearstone");
-    /// <summary>Full Path: Old/Content/Materials/Energies/AquaticEnergy</summary>
-    public static readonly RequestCache<Texture2D> AquaticEnergy = new("Aequus/Old/Content/Materials/Energies/AquaticEnergy");
-    /// <summary>Full Path: Old/Content/Materials/Energies/AtmosphericEnergy</summary>
-    public static readonly RequestCache<Texture2D> AtmosphericEnergy = new("Aequus/Old/Content/Materials/Energies/AtmosphericEnergy");
-    /// <summary>Full Path: Old/Content/Materials/Energies/CosmicEnergy</summary>
-    public static readonly RequestCache<Texture2D> CosmicEnergy = new("Aequus/Old/Content/Materials/Energies/CosmicEnergy");
-    /// <summary>Full Path: Old/Content/Materials/Energies/DemonicEnergy</summary>
-    public static readonly RequestCache<Texture2D> DemonicEnergy = new("Aequus/Old/Content/Materials/Energies/DemonicEnergy");
-    /// <summary>Full Path: Old/Content/Materials/Energies/EnergyDust</summary>
-    public static readonly RequestCache<Texture2D> EnergyDust = new("Aequus/Old/Content/Materials/Energies/EnergyDust");
-    /// <summary>Full Path: Old/Content/Materials/Energies/OrganicEnergy</summary>
-    public static readonly RequestCache<Texture2D> OrganicEnergy = new("Aequus/Old/Content/Materials/Energies/OrganicEnergy");
-    /// <summary>Full Path: Old/Content/Materials/Energies/UltimateEnergy</summary>
-    public static readonly RequestCache<Texture2D> UltimateEnergy = new("Aequus/Old/Content/Materials/Energies/UltimateEnergy");
-    /// <summary>Full Path: Old/Content/Materials/FrozenTechnology</summary>
-    public static readonly RequestCache<Texture2D> FrozenTechnology = new("Aequus/Old/Content/Materials/FrozenTechnology");
-    /// <summary>Full Path: Old/Content/Materials/GlowLichen</summary>
-    public static readonly RequestCache<Texture2D> GlowLichen = new("Aequus/Old/Content/Materials/GlowLichen");
-    /// <summary>Full Path: Old/Content/Materials/MonoGem/MonoGem</summary>
-    public static readonly RequestCache<Texture2D> MonoGem = new("Aequus/Old/Content/Materials/MonoGem/MonoGem");
-    /// <summary>Full Path: Old/Content/Materials/MonoGem/MonoGemTile</summary>
-    public static readonly RequestCache<Texture2D> MonoGemTile = new("Aequus/Old/Content/Materials/MonoGem/MonoGemTile");
-    /// <summary>Full Path: Old/Content/Materials/OmniGem/OmniGem</summary>
-    public static readonly RequestCache<Texture2D> OmniGem = new("Aequus/Old/Content/Materials/OmniGem/OmniGem");
-    /// <summary>Full Path: Old/Content/Materials/OmniGem/OmniGemTile</summary>
-    public static readonly RequestCache<Texture2D> OmniGemTile = new("Aequus/Old/Content/Materials/OmniGem/OmniGemTile");
-    /// <summary>Full Path: Old/Content/Materials/OmniGem/OmniGemTile_Mask</summary>
-    public static readonly RequestCache<Texture2D> OmniGemTile_Mask = new("Aequus/Old/Content/Materials/OmniGem/OmniGemTile_Mask");
-    /// <summary>Full Path: Old/Content/Materials/OmniGem/OmniGem_Mask</summary>
-    public static readonly RequestCache<Texture2D> OmniGem_Mask = new("Aequus/Old/Content/Materials/OmniGem/OmniGem_Mask");
-    /// <summary>Full Path: Old/Content/Materials/PillarFragments/ArtFragment</summary>
-    public static readonly RequestCache<Texture2D> ArtFragment = new("Aequus/Old/Content/Materials/PillarFragments/ArtFragment");
-    /// <summary>Full Path: Old/Content/Materials/PillarFragments/NecroFragment</summary>
-    public static readonly RequestCache<Texture2D> NecroFragment = new("Aequus/Old/Content/Materials/PillarFragments/NecroFragment");
-    /// <summary>Full Path: Old/Content/Materials/PossessedShard/PossessedShard</summary>
-    public static readonly RequestCache<Texture2D> PossessedShard = new("Aequus/Old/Content/Materials/PossessedShard/PossessedShard");
-    /// <summary>Full Path: Old/Content/Materials/SoulGem/SoulGem</summary>
-    public static readonly RequestCache<Texture2D> SoulGem = new("Aequus/Old/Content/Materials/SoulGem/SoulGem");
-    /// <summary>Full Path: Old/Content/Materials/SoulGem/SoulGemFilled</summary>
-    public static readonly RequestCache<Texture2D> SoulGemFilled = new("Aequus/Old/Content/Materials/SoulGem/SoulGemFilled");
-    /// <summary>Full Path: Old/Content/Materials/SoulGem/SoulGemTile</summary>
-    public static readonly RequestCache<Texture2D> SoulGemTile = new("Aequus/Old/Content/Materials/SoulGem/SoulGemTile");
-    /// <summary>Full Path: Old/Content/Materials/StariteMaterial</summary>
-    public static readonly RequestCache<Texture2D> StariteMaterial = new("Aequus/Old/Content/Materials/StariteMaterial");
     /// <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/Chains/SoulChains</summary>
     public static readonly RequestCache<Texture2D> SoulChains = new("Aequus/Old/Content/Necromancy/Equipment/Accessories/Chains/SoulChains");
     /// <summary>Full Path: Old/Content/Necromancy/Equipment/Accessories/Chains/SouljointCuffs</summary>
@@ -1293,30 +1427,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> MonoSparkleDust = new("Aequus/Old/Content/Particles/MonoSparkleDust");
     /// <summary>Full Path: Old/Content/Particles/VoidDust</summary>
     public static readonly RequestCache<Texture2D> VoidDust = new("Aequus/Old/Content/Particles/VoidDust");
-    /// <summary>Full Path: Old/Content/Potions/Foods/SusSteak/SuspiciousLookingSteak</summary>
-    public static readonly RequestCache<Texture2D> SuspiciousLookingSteak = new("Aequus/Old/Content/Potions/Foods/SusSteak/SuspiciousLookingSteak");
-    /// <summary>Full Path: Old/Content/Potions/NeutronYogurt/NeutronYogurt</summary>
-    public static readonly RequestCache<Texture2D> NeutronYogurt = new("Aequus/Old/Content/Potions/NeutronYogurt/NeutronYogurt");
-    /// <summary>Full Path: Old/Content/Potions/NeutronYogurt/NeutronYogurtBuff</summary>
-    public static readonly RequestCache<Texture2D> NeutronYogurtBuff = new("Aequus/Old/Content/Potions/NeutronYogurt/NeutronYogurtBuff");
-    /// <summary>Full Path: Old/Content/Potions/Prefixes/BoundedPotions/BoundedPrefixGlint</summary>
-    public static readonly RequestCache<Texture2D> BoundedPrefixGlint = new("Aequus/Old/Content/Potions/Prefixes/BoundedPotions/BoundedPrefixGlint");
-    /// <summary>Full Path: Old/Content/Potions/Prefixes/BoundedPotions/BoundedPrefixItem</summary>
-    public static readonly RequestCache<Texture2D> BoundedPrefixItem = new("Aequus/Old/Content/Potions/Prefixes/BoundedPotions/BoundedPrefixItem");
-    /// <summary>Full Path: Old/Content/Potions/Prefixes/EmpoweredPotions/EmpoweredPrefixGlint</summary>
-    public static readonly RequestCache<Texture2D> EmpoweredPrefixGlint = new("Aequus/Old/Content/Potions/Prefixes/EmpoweredPotions/EmpoweredPrefixGlint");
-    /// <summary>Full Path: Old/Content/Potions/Prefixes/EmpoweredPotions/EmpoweredPrefixItem</summary>
-    public static readonly RequestCache<Texture2D> EmpoweredPrefixItem = new("Aequus/Old/Content/Potions/Prefixes/EmpoweredPotions/EmpoweredPrefixItem");
-    /// <summary>Full Path: Old/Content/Potions/Prefixes/SplashPotions/SplashPrefixGlint</summary>
-    public static readonly RequestCache<Texture2D> SplashPrefixGlint = new("Aequus/Old/Content/Potions/Prefixes/SplashPotions/SplashPrefixGlint");
-    /// <summary>Full Path: Old/Content/Potions/Prefixes/SplashPotions/SplashPrefixItem</summary>
-    public static readonly RequestCache<Texture2D> SplashPrefixItem = new("Aequus/Old/Content/Potions/Prefixes/SplashPotions/SplashPrefixItem");
-    /// <summary>Full Path: Old/Content/Potions/Prefixes/StuffedPotions/StuffedPrefixGlint</summary>
-    public static readonly RequestCache<Texture2D> StuffedPrefixGlint = new("Aequus/Old/Content/Potions/Prefixes/StuffedPotions/StuffedPrefixGlint");
-    /// <summary>Full Path: Old/Content/Potions/Prefixes/StuffedPotions/StuffedPrefixItem</summary>
-    public static readonly RequestCache<Texture2D> StuffedPrefixItem = new("Aequus/Old/Content/Potions/Prefixes/StuffedPotions/StuffedPrefixItem");
-    /// <summary>Full Path: Old/Content/Potions/Resurrection/PotionOfResurrection</summary>
-    public static readonly RequestCache<Texture2D> PotionOfResurrection = new("Aequus/Old/Content/Potions/Resurrection/PotionOfResurrection");
     /// <summary>Full Path: Old/Content/StatusEffects/BlueFire</summary>
     public static readonly RequestCache<Texture2D> BlueFire = new("Aequus/Old/Content/StatusEffects/BlueFire");
     /// <summary>Full Path: Old/Content/StatusEffects/BlueFireParticle</summary>
@@ -1435,24 +1545,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> PlanterBoxMoonflowerItem = new("Aequus/Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxMoonflowerItem");
     /// <summary>Full Path: Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxMorayItem</summary>
     public static readonly RequestCache<Texture2D> PlanterBoxMorayItem = new("Aequus/Old/Content/Tiles/Herbs/PlanterBoxes/PlanterBoxMorayItem");
-    /// <summary>Full Path: Old/Content/Tools/MagicMirrors/PhaseMirror/PhaseMirror</summary>
-    public static readonly RequestCache<Texture2D> PhaseMirror = new("Aequus/Old/Content/Tools/MagicMirrors/PhaseMirror/PhaseMirror");
-    /// <summary>Full Path: Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhone</summary>
-    public static readonly RequestCache<Texture2D> PhasePhone = new("Aequus/Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhone");
-    /// <summary>Full Path: Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneHome</summary>
-    public static readonly RequestCache<Texture2D> PhasePhoneHome = new("Aequus/Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneHome");
-    /// <summary>Full Path: Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneOcean</summary>
-    public static readonly RequestCache<Texture2D> PhasePhoneOcean = new("Aequus/Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneOcean");
-    /// <summary>Full Path: Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneSpawn</summary>
-    public static readonly RequestCache<Texture2D> PhasePhoneSpawn = new("Aequus/Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneSpawn");
-    /// <summary>Full Path: Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneUnderworld</summary>
-    public static readonly RequestCache<Texture2D> PhasePhoneUnderworld = new("Aequus/Old/Content/Tools/MagicMirrors/PhasePhone/PhasePhoneUnderworld");
-    /// <summary>Full Path: Old/Content/Tools/PhysicsGun</summary>
-    public static readonly RequestCache<Texture2D> PhysicsGun = new("Aequus/Old/Content/Tools/PhysicsGun");
-    /// <summary>Full Path: Old/Content/Tools/PhysicsGunProj</summary>
-    public static readonly RequestCache<Texture2D> PhysicsGunProj = new("Aequus/Old/Content/Tools/PhysicsGunProj");
-    /// <summary>Full Path: Old/Content/Tools/PhysicsGun_Glow</summary>
-    public static readonly RequestCache<Texture2D> PhysicsGun_Glow = new("Aequus/Old/Content/Tools/PhysicsGun_Glow");
     /// <summary>Full Path: Old/Content/TownNPCs/CarpenterNPC/Emotes/CarpenterEmote</summary>
     public static readonly RequestCache<Texture2D> CarpenterEmote = new("Aequus/Old/Content/TownNPCs/CarpenterNPC/Emotes/CarpenterEmote");
     /// <summary>Full Path: Old/Content/TownNPCs/LobsterNPC/Emotes/LobsterEmote</summary>
@@ -1511,98 +1603,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Physicist_Shimmer_Glow = new("Aequus/Old/Content/TownNPCs/PhysicistNPC/Shimmer/Physicist_Shimmer_Glow");
     /// <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Shimmer/Physicist_Shimmer_Head</summary>
     public static readonly RequestCache<Texture2D> Physicist_Shimmer_Head = new("Aequus/Old/Content/TownNPCs/PhysicistNPC/Shimmer/Physicist_Shimmer_Head");
-    /// <summary>Full Path: Old/Content/Vanity/CelestialEightBall</summary>
-    public static readonly RequestCache<Texture2D> CelestialEightBall = new("Aequus/Old/Content/Vanity/CelestialEightBall");
-    /// <summary>Full Path: Old/Content/Weapons/Demon/CorruptionHellfire</summary>
-    public static readonly RequestCache<Texture2D> CorruptionHellfire = new("Aequus/Old/Content/Weapons/Demon/CorruptionHellfire");
-    /// <summary>Full Path: Old/Content/Weapons/Demon/CrimsonHellfire</summary>
-    public static readonly RequestCache<Texture2D> CrimsonHellfire = new("Aequus/Old/Content/Weapons/Demon/CrimsonHellfire");
-    /// <summary>Full Path: Old/Content/Weapons/Demon/Magic/BombarderRod</summary>
-    public static readonly RequestCache<Texture2D> BombarderRod = new("Aequus/Old/Content/Weapons/Demon/Magic/BombarderRod");
-    /// <summary>Full Path: Old/Content/Weapons/Demon/Magic/BombarderRod_Glow</summary>
-    public static readonly RequestCache<Texture2D> BombarderRod_Glow = new("Aequus/Old/Content/Weapons/Demon/Magic/BombarderRod_Glow");
-    /// <summary>Full Path: Old/Content/Weapons/Demon/Magic/Triacanthorn</summary>
-    public static readonly RequestCache<Texture2D> Triacanthorn = new("Aequus/Old/Content/Weapons/Demon/Magic/Triacanthorn");
-    /// <summary>Full Path: Old/Content/Weapons/Demon/Magic/TriacanthornBolt</summary>
-    public static readonly RequestCache<Texture2D> TriacanthornBolt = new("Aequus/Old/Content/Weapons/Demon/Magic/TriacanthornBolt");
-    /// <summary>Full Path: Old/Content/Weapons/Demon/Magic/TriacanthornProj</summary>
-    public static readonly RequestCache<Texture2D> TriacanthornProj = new("Aequus/Old/Content/Weapons/Demon/Magic/TriacanthornProj");
-    /// <summary>Full Path: Old/Content/Weapons/Demon/Magic/Triacanthorn_Glow</summary>
-    public static readonly RequestCache<Texture2D> Triacanthorn_Glow = new("Aequus/Old/Content/Weapons/Demon/Magic/Triacanthorn_Glow");
-    /// <summary>Full Path: Old/Content/Weapons/Demon/Melee/Cauterizer</summary>
-    public static readonly RequestCache<Texture2D> Cauterizer = new("Aequus/Old/Content/Weapons/Demon/Melee/Cauterizer");
-    /// <summary>Full Path: Old/Content/Weapons/Demon/Melee/CauterizerSlash</summary>
-    public static readonly RequestCache<Texture2D> CauterizerSlash = new("Aequus/Old/Content/Weapons/Demon/Melee/CauterizerSlash");
-    /// <summary>Full Path: Old/Content/Weapons/Demon/Melee/HellsBoon</summary>
-    public static readonly RequestCache<Texture2D> HellsBoon = new("Aequus/Old/Content/Weapons/Demon/Melee/HellsBoon");
-    /// <summary>Full Path: Old/Content/Weapons/Demon/Melee/HellsBoonProj</summary>
-    public static readonly RequestCache<Texture2D> HellsBoonProj = new("Aequus/Old/Content/Weapons/Demon/Melee/HellsBoonProj");
-    /// <summary>Full Path: Old/Content/Weapons/Demon/Melee/HellsBoon_Glow</summary>
-    public static readonly RequestCache<Texture2D> HellsBoon_Glow = new("Aequus/Old/Content/Weapons/Demon/Melee/HellsBoon_Glow");
-    /// <summary>Full Path: Old/Content/Weapons/Demon/Ranged/Deltoid</summary>
-    public static readonly RequestCache<Texture2D> Deltoid = new("Aequus/Old/Content/Weapons/Demon/Ranged/Deltoid");
-    /// <summary>Full Path: Old/Content/Weapons/Demon/Ranged/DeltoidArrow</summary>
-    public static readonly RequestCache<Texture2D> DeltoidArrow = new("Aequus/Old/Content/Weapons/Demon/Ranged/DeltoidArrow");
-    /// <summary>Full Path: Old/Content/Weapons/Demon/Ranged/Deltoid_Glow</summary>
-    public static readonly RequestCache<Texture2D> Deltoid_Glow = new("Aequus/Old/Content/Weapons/Demon/Ranged/Deltoid_Glow");
-    /// <summary>Full Path: Old/Content/Weapons/Demon/Ranged/HamaYumi</summary>
-    public static readonly RequestCache<Texture2D> HamaYumi = new("Aequus/Old/Content/Weapons/Demon/Ranged/HamaYumi");
-    /// <summary>Full Path: Old/Content/Weapons/Demon/Ranged/HamaYumiArrow</summary>
-    public static readonly RequestCache<Texture2D> HamaYumiArrow = new("Aequus/Old/Content/Weapons/Demon/Ranged/HamaYumiArrow");
-    /// <summary>Full Path: Old/Content/Weapons/Demon/Ranged/HamaYumi_Glow</summary>
-    public static readonly RequestCache<Texture2D> HamaYumi_Glow = new("Aequus/Old/Content/Weapons/Demon/Ranged/HamaYumi_Glow");
-    /// <summary>Full Path: Old/Content/Weapons/Glimmer/Nightfall/Nightfall</summary>
-    public static readonly RequestCache<Texture2D> Nightfall = new("Aequus/Old/Content/Weapons/Glimmer/Nightfall/Nightfall");
-    /// <summary>Full Path: Old/Content/Weapons/Glimmer/Nightfall/NightfallGlint</summary>
-    public static readonly RequestCache<Texture2D> NightfallGlint = new("Aequus/Old/Content/Weapons/Glimmer/Nightfall/NightfallGlint");
-    /// <summary>Full Path: Old/Content/Weapons/Glimmer/Nightfall/NightfallProj</summary>
-    public static readonly RequestCache<Texture2D> NightfallProj = new("Aequus/Old/Content/Weapons/Glimmer/Nightfall/NightfallProj");
-    /// <summary>Full Path: Old/Content/Weapons/Glimmer/StariteMinion/StariteMinion</summary>
-    public static readonly RequestCache<Texture2D> StariteMinion = new("Aequus/Old/Content/Weapons/Glimmer/StariteMinion/StariteMinion");
-    /// <summary>Full Path: Old/Content/Weapons/Glimmer/StariteMinion/StariteMinionBuff</summary>
-    public static readonly RequestCache<Texture2D> StariteMinionBuff = new("Aequus/Old/Content/Weapons/Glimmer/StariteMinion/StariteMinionBuff");
-    /// <summary>Full Path: Old/Content/Weapons/Glimmer/StariteMinion/StariteStaff</summary>
-    public static readonly RequestCache<Texture2D> StariteStaff = new("Aequus/Old/Content/Weapons/Glimmer/StariteMinion/StariteStaff");
-    /// <summary>Full Path: Old/Content/Weapons/Glimmer/StariteMinion/StariteStaff_Glow</summary>
-    public static readonly RequestCache<Texture2D> StariteStaff_Glow = new("Aequus/Old/Content/Weapons/Glimmer/StariteMinion/StariteStaff_Glow");
-    /// <summary>Full Path: Old/Content/Weapons/Glimmer/SuperStarSword/SuperStarSword</summary>
-    public static readonly RequestCache<Texture2D> SuperStarSword = new("Aequus/Old/Content/Weapons/Glimmer/SuperStarSword/SuperStarSword");
-    /// <summary>Full Path: Old/Content/Weapons/Melee/PhaseDisc/PhaseDisc</summary>
-    public static readonly RequestCache<Texture2D> PhaseDisc = new("Aequus/Old/Content/Weapons/Melee/PhaseDisc/PhaseDisc");
-    /// <summary>Full Path: Old/Content/Weapons/Melee/PhaseDisc/PhaseDiscProj</summary>
-    public static readonly RequestCache<Texture2D> PhaseDiscProj = new("Aequus/Old/Content/Weapons/Melee/PhaseDisc/PhaseDiscProj");
-    /// <summary>Full Path: Old/Content/Weapons/Melee/SickBeat/SickBeat</summary>
-    public static readonly RequestCache<Texture2D> SickBeat = new("Aequus/Old/Content/Weapons/Melee/SickBeat/SickBeat");
-    /// <summary>Full Path: Old/Content/Weapons/Melee/Slice/Slice</summary>
-    public static readonly RequestCache<Texture2D> Slice = new("Aequus/Old/Content/Weapons/Melee/Slice/Slice");
-    /// <summary>Full Path: Old/Content/Weapons/Melee/Slice/SliceBulletProj</summary>
-    public static readonly RequestCache<Texture2D> SliceBulletProj = new("Aequus/Old/Content/Weapons/Melee/Slice/SliceBulletProj");
-    /// <summary>Full Path: Old/Content/Weapons/Melee/UltimateSword/UltimateSword</summary>
-    public static readonly RequestCache<Texture2D> UltimateSword = new("Aequus/Old/Content/Weapons/Melee/UltimateSword/UltimateSword");
-    /// <summary>Full Path: Old/Content/Weapons/Melee/UltimateSword/UltimateSwordBuff</summary>
-    public static readonly RequestCache<Texture2D> UltimateSwordBuff = new("Aequus/Old/Content/Weapons/Melee/UltimateSword/UltimateSwordBuff");
-    /// <summary>Full Path: Old/Content/Weapons/Melee/UltimateSword/UltimateSword_Glow</summary>
-    public static readonly RequestCache<Texture2D> UltimateSword_Glow = new("Aequus/Old/Content/Weapons/Melee/UltimateSword/UltimateSword_Glow");
-    /// <summary>Full Path: Old/Content/Weapons/Melee/Valari/Valari</summary>
-    public static readonly RequestCache<Texture2D> Valari = new("Aequus/Old/Content/Weapons/Melee/Valari/Valari");
-    /// <summary>Full Path: Old/Content/Weapons/Melee/Vrang/Vrang</summary>
-    public static readonly RequestCache<Texture2D> Vrang = new("Aequus/Old/Content/Weapons/Melee/Vrang/Vrang");
-    /// <summary>Full Path: Old/Content/Weapons/Melee/Vrang/VrangProj</summary>
-    public static readonly RequestCache<Texture2D> VrangProj = new("Aequus/Old/Content/Weapons/Melee/Vrang/VrangProj");
-    /// <summary>Full Path: Old/Content/Weapons/Melee/Vrang/VrangProj_Cold</summary>
-    public static readonly RequestCache<Texture2D> VrangProj_Cold = new("Aequus/Old/Content/Weapons/Melee/Vrang/VrangProj_Cold");
-    /// <summary>Full Path: Old/Content/Weapons/Melee/Vrang/VrangProj_Hot</summary>
-    public static readonly RequestCache<Texture2D> VrangProj_Hot = new("Aequus/Old/Content/Weapons/Melee/Vrang/VrangProj_Hot");
-    /// <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow</summary>
-    public static readonly RequestCache<Texture2D> CrusadersCrossbow = new("Aequus/Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow");
-    /// <summary>Full Path: Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj</summary>
-    public static readonly RequestCache<Texture2D> CrusadersCrossbowProj = new("Aequus/Old/Content/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj");
-    /// <summary>Full Path: Old/Content/Weapons/Sentries/PhysicistSentry/PhysicistSentry</summary>
-    public static readonly RequestCache<Texture2D> PhysicistSentry = new("Aequus/Old/Content/Weapons/Sentries/PhysicistSentry/PhysicistSentry");
-    /// <summary>Full Path: Old/Content/Weapons/Sentries/PhysicistSentry/PhysicistSentryProj</summary>
-    public static readonly RequestCache<Texture2D> PhysicistSentryProj = new("Aequus/Old/Content/Weapons/Sentries/PhysicistSentry/PhysicistSentryProj");
-    /// <summary>Full Path: Old/Content/Weapons/Sentries/PhysicistSentry/PhysicistSentryProj_Glow</summary>
-    public static readonly RequestCache<Texture2D> PhysicistSentryProj_Glow = new("Aequus/Old/Content/Weapons/Sentries/PhysicistSentry/PhysicistSentryProj_Glow");
     /// <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre</summary>
     public static readonly RequestCache<Texture2D> BacciliteSceptre = new("Aequus/Old/CrossMod/AvalonSupport/Items/BacciliteSceptre");
     /// <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre_Glow</summary>

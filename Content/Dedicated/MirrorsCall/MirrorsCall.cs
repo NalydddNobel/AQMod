@@ -81,7 +81,7 @@ public class MirrorsCall : ModItem {
 #if !DEBUG
         CreateRecipe()
             .AddIngredient(ItemID.PiercingStarlight)
-            .AddIngredient(ModContent.ItemType<Old.Content.Weapons.Melee.Slice.Slice>())
+            .AddIngredient(ModContent.ItemType<Aequus.Old.Content.Items.Weapons.Melee.Slice.Slice>())
             .AddIngredient(ItemID.LunarBar, 10)
             //.AddIngredient(ModContent.ItemType<UltimateEnergy>(), 5)
             .AddIngredient(ItemID.WhitePearl)

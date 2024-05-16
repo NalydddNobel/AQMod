@@ -1,6 +1,6 @@
 ﻿using Aequus.Core.CodeGeneration;
 using Aequus.Core.Graphics;
-using Aequus.Old.Content.Materials.SoulGem;
+using Aequus.Old.Content.Items.Materials.SoulGem;
 using Aequus.Old.Content.Necromancy.Rendering;
 
 namespace Aequus.Old.Content.Necromancy.Equipment.Accessories.Chains;

@@ -1,14 +1,14 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Core.ContentGeneration;
-using Aequus.Old.Content.Potions.Prefixes.BoundedPotions;
-using Aequus.Old.Content.Potions.Prefixes.EmpoweredPotions;
-using Aequus.Old.Content.Potions.Prefixes.SplashPotions;
-using Aequus.Old.Content.Potions.Prefixes.StuffedPotions;
 using System;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 using Terraria.ObjectData;
+using Aequus.Old.Content.Items.Potions.Prefixes.BoundedPotions;
+using Aequus.Old.Content.Items.Potions.Prefixes.EmpoweredPotions;
+using Aequus.Old.Content.Items.Potions.Prefixes.SplashPotions;
+using Aequus.Old.Content.Items.Potions.Prefixes.StuffedPotions;
 
 namespace Aequus.Old.Content.Tiles.Herbs.HangingPots;
 

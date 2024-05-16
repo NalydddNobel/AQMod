@@ -1,6 +1,6 @@
-﻿using Aequus.Old.Content.Equipment.GrapplingHooks.EnemyGrappleHook;
-using Aequus.Old.Content.Events.DemonSiege.Spawners;
+﻿using Aequus.Old.Content.Events.DemonSiege.Spawners;
 using Aequus.Old.Content.Events.DemonSiege.Tiles;
+using Aequus.Old.Content.Items.GrapplingHooks.EnemyGrappleHook;
 using Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg;
 
 namespace Aequus.Old.Content.TownNPCs.OccultistNPC;

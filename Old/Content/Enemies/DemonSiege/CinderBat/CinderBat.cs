@@ -1,9 +1,9 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Core.ContentGeneration;
 using Aequus.DataSets;
-using Aequus.Old.Content.Equipment.Accessories.WarHorn;
 using Aequus.Old.Content.Events.DemonSiege;
-using Aequus.Old.Content.Materials.SoulGem;
+using Aequus.Old.Content.Items.Accessories.WarHorn;
+using Aequus.Old.Content.Items.Materials.SoulGem;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;

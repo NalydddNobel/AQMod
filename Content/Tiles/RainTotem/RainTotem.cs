@@ -80,7 +80,7 @@ public class RainTotem : RainTotemTileTemplate {
 #if DEBUG
                 .AddIngredient(ItemID.FallenStar)
 #else
-                .AddIngredient(Old.Content.Materials.Energies.EnergyMaterial.Aquatic.Type)
+                .AddIngredient(Aequus.Old.Content.Items.Materials.Energies.EnergyMaterial.Aquatic.Type)
 #endif
                 .AddTile(TileID.Sawmill)
                 .Register()

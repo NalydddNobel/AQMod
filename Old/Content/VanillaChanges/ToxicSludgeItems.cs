@@ -1,4 +1,4 @@
-﻿using Aequus.Old.Content.Weapons.Melee.SickBeat;
+﻿using Aequus.Old.Content.Items.Weapons.Melee.SickBeat;
 using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
 

@@ -1,6 +1,6 @@
 ﻿using Aequus.Core;
 using Aequus.Core.Graphics.Tiles;
-using Aequus.Old.Content.Potions.Prefixes.BoundedPotions;
+using Aequus.Old.Content.Items.Potions.Prefixes.BoundedPotions;
 using System;
 using Terraria.Audio;
 using Terraria.Enums;

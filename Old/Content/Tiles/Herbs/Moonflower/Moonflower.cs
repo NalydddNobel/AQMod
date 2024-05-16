@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Core.Graphics.Tiles;
-using Aequus.Old.Content.Potions.Prefixes.StuffedPotions;
+using Aequus.Old.Content.Items.Potions.Prefixes.StuffedPotions;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent.Drawing;

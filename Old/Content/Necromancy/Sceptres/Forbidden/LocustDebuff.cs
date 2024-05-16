@@ -1,5 +1,5 @@
 ﻿using Aequus.DataSets;
-using Aequus.Old.Content.Weapons.Demon;
+using Aequus.Old.Content.Items.Weapons.Demon;
 using System;
 
 namespace Aequus.Old.Content.Necromancy.Sceptres.Forbidden;

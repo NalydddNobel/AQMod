@@ -1,6 +1,6 @@
 ﻿using Aequus.Content.Configuration;
 using Aequus.Old.Content.Enemies.Mimics;
-using Aequus.Old.Content.Materials;
+using Aequus.Old.Content.Items.Materials;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;

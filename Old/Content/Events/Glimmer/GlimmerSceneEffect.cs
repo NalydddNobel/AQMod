@@ -3,7 +3,7 @@ using Aequus.Old.Content.Bosses.Cosmic.OmegaStarite;
 using Aequus.Old.Content.Events.Glimmer.CosmicMonolith;
 using Aequus.Old.Content.Events.Glimmer.Peaceful;
 using Aequus.Old.Content.Events.Glimmer.Sky;
-using Aequus.Old.Content.Weapons.Melee.UltimateSword;
+using Aequus.Old.Content.Items.Weapons.Melee.UltimateSword;
 using ReLogic.Content;
 using System;
 using Terraria.Audio;

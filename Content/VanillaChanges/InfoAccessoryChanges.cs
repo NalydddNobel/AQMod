@@ -71,7 +71,7 @@ public class InfoAccessoryChanges {
             if (recipe.createItem.type == ItemID.FishFinder) {
                 Aequus.Log.Debug("Adding Aequus Fish Finder ingredients...");
 #if !DEBUG
-                recipe.AddIngredient(ModContent.ItemType<Old.Content.Equipment.Info.AnglerBroadcaster>());
+                recipe.AddIngredient(ModContent.ItemType<Aequus.Old.Content.Items.Accessories.Info.AnglerBroadcaster>());
 #endif
             }
         }

@@ -17,7 +17,7 @@ internal class Fargowiltas : SupportedMod<Fargowiltas> {
         AddStat(ModContent.ItemType<Old.Content.Necromancy.Equipment.Accessories.SpiritKeg.BottleOSpirits>(), "MaxGhostSlots", () => Main.LocalPlayer.GetModPlayer<AequusPlayer>().ghostSlotsMax);
         AddStat(ModContent.ItemType<Old.Content.Necromancy.Equipment.Accessories.SpiritKeg.SaivoryKnife>(), "GhostDuration", () => ExtendLanguage.Minutes(Main.LocalPlayer.GetModPlayer<AequusPlayer>().ghostLifespan.ApplyTo(Old.Content.Necromancy.NecromancySystem.DefaultLifespan)));
         AddStat(ModContent.ItemType<Old.Content.Necromancy.Equipment.Accessories.PandorasBox>(), "SceptreDebuffMultiplier", () => ExtendLanguage.Percent(Main.LocalPlayer.GetModPlayer<AequusPlayer>().zombieDebuffMultiplier));
-        AddStat(ModContent.ItemType<Old.Content.Equipment.Accessories.GrandReward.GrandReward>(), "DropRolls", () => Main.LocalPlayer.GetModPlayer<AequusPlayer>().dropRolls);
+        AddStat(ModContent.ItemType<Aequus.Old.Content.Items.Accessories.GrandReward.GrandReward>(), "DropRolls", () => Main.LocalPlayer.GetModPlayer<AequusPlayer>().dropRolls);
 #endif
         AddStat(ModContent.ItemType<GoldenFeather>(), "RespawnReduction", () => ExtendLanguage.Seconds(-Main.LocalPlayer.GetModPlayer<AequusPlayer>().respawnTimeModifierFlat));
     }

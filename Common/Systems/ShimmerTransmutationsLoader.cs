@@ -16,7 +16,7 @@ namespace Aequus.Common.Systems;
 public class ShimmerTransmutationsLoader : IPostSetupContent {
     void IPostSetupContent.PostSetupContent(Mod mod) {
 #if !DEBUG
-        ItemSets.ShimmerTransformToItem[ModContent.ItemType<Old.Content.Equipment.Accessories.GrandReward.GrandReward>()] = ModContent.ItemType<CosmicChest>();
+        ItemSets.ShimmerTransformToItem[ModContent.ItemType<Old.Content.Items.Accessories.GrandReward.GrandReward>()] = ModContent.ItemType<CosmicChest>();
 #endif
         ItemSets.ShimmerTransformToItem[ModContent.ItemType<RichMansMonocle>()] = ModContent.ItemType<ShimmerMonocle>();
         ExtendedShimmer.SetShimmerResultSafely(ItemID.TinkerersWorkshop, ModContent.ItemType<TinkerersGuidebook>());
@@ -31,17 +31,17 @@ public class ShimmerTransmutationsLoader : IPostSetupContent {
         }
 
 #if !DEBUG
-        ItemSets.ShimmerTransformToItem[ModContent.ItemType<Old.Content.Materials.SoulGem.SoulGemFilled>()] = ModContent.ItemType<Old.Content.Materials.SoulGem.SoulGem>();
+        ItemSets.ShimmerTransformToItem[ModContent.ItemType<Old.Content.Items.Materials.SoulGem.SoulGemFilled>()] = ModContent.ItemType<Old.Content.Items.Materials.SoulGem.SoulGem>();
         ExtendedShimmer.CreateShimmerLoop(
-            ModContent.ItemType<Old.Content.Weapons.Ranged.Bows.CrusadersCrossbow.CrusadersCrossbow>(),
-            ModContent.ItemType<Old.Content.Equipment.GrapplingHooks.HealingGrappleHook.LeechHook>(),
-            ModContent.ItemType<Old.Content.Equipment.Accessories.HighSteaks.HighSteaks>(),
+            ModContent.ItemType<Old.Content.Items.Weapons.Ranged.Bows.CrusadersCrossbow.CrusadersCrossbow>(),
+            ModContent.ItemType<Old.Content.Items.GrapplingHooks.HealingGrappleHook.LeechHook>(),
+            ModContent.ItemType<Old.Content.Items.Accessories.HighSteaks.HighSteaks>(),
             ModContent.ItemType<Old.Content.Necromancy.Equipment.Accessories.SpiritKeg.SaivoryKnife>()
         );
         ExtendedShimmer.CreateShimmerLoop(
-            ModContent.ItemType<Old.Content.Equipment.Accessories.Pacemaker.Pacemaker>(),
-            ModContent.ItemType<Old.Content.Equipment.Accessories.HoloLens.HoloLens>(),
-            ModContent.ItemType<Old.Content.Tools.MagicMirrors.PhaseMirror.PhaseMirror>()
+            ModContent.ItemType<Old.Content.Items.Accessories.Pacemaker.Pacemaker>(),
+            ModContent.ItemType<Old.Content.Items.Accessories.HoloLens.HoloLens>(),
+            ModContent.ItemType<Old.Content.Items.Tools.MagicMirrors.PhaseMirror.PhaseMirror>()
         );
 #endif
 

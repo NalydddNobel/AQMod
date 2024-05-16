@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus;
+namespace Aequus.Core;
 
 partial class Aequus {
     internal static LoadActions OnPostSetupContent;

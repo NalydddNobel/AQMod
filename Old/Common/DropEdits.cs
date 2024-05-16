@@ -1,5 +1,5 @@
-﻿using Aequus.Old.Content.Equipment.Accessories.OnHitDebuffs;
-using Aequus.Old.Content.Materials.Energies;
+﻿using Aequus.Old.Content.Items.Accessories.OnHitDebuffs;
+using Aequus.Old.Content.Items.Materials.Energies;
 using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Old.Common;

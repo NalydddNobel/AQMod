@@ -38,7 +38,7 @@ using Terraria.Localization;
 using Terraria.Utilities;
 using tModLoaderExtended;
 
-namespace Aequus;
+namespace Aequus.Core;
 
 public partial class Aequus : ExtendedMod {
     public static new Mod Instance => ExtendedMod.Instance;

@@ -1,5 +1,5 @@
 ﻿using Aequus.Core.CodeGeneration;
-using Aequus.Old.Content.Materials;
+using Aequus.Old.Content.Items.Materials;
 using System;
 using Terraria.DataStructures;
 
