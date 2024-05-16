@@ -221,6 +221,7 @@ internal class Eel : ModNPC {
         }
 
         NPC.dontCountMe = true;
+        NPC.wetCount = 1;
         NPC parentNPC = Main.npc[(int)NPC.ai[1]];
 
         if (!parentNPC.active) {
@@ -240,7 +241,7 @@ internal class Eel : ModNPC {
     }
 
     public override bool ModifyCollisionData(Rectangle victimHitbox, ref int immunityCooldownSlot, ref MultipliableFloat damageMultiplier, ref Rectangle npcHitbox) {
-        if (NPC.localAI[0] == 1f) {
+        if (NPC.localAI[1] >= 1f) {
             npcHitbox.Inflate(NPC.width, NPC.height);
         }
         return true;

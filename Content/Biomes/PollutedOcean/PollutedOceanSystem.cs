@@ -5,6 +5,7 @@ using Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
 using Aequus.Content.Enemies.PollutedOcean.BreadOfCthulhu;
 using Aequus.Content.Enemies.PollutedOcean.Conductor;
 using Aequus.Content.Enemies.PollutedOcean.Conehead;
+using Aequus.Content.Enemies.PollutedOcean.Eel;
 using Aequus.Content.Enemies.PollutedOcean.OilSlime;
 using Aequus.Content.Enemies.PollutedOcean.Scavenger;
 using Aequus.Content.Fishing;
@@ -170,7 +171,7 @@ public class PollutedOceanSystem : ModSystem {
         }
 
         if (spawnInfo.Water) {
-            pool[NPCID.Arapaima] = 1f; // Eel
+            pool[ModContent.NPCType<Eel>()] = 0.1f;
             pool[NPCID.Tumbleweed] = 1f; // Urchin
 
             pool[NPCID.LightningBug] = 0.1f; // Sea Firefly
@@ -190,7 +191,7 @@ public class PollutedOceanSystem : ModSystem {
 
         if (spawnInfo.Water) {
             pool[ModContent.NPCType<BlackJellyfish>()] = 1f;
-            pool[NPCID.Arapaima] = 1f; // Eel
+            pool[ModContent.NPCType<Eel>()] = 0.1f;
             pool[NPCID.Tumbleweed] = 1f; // Urchin
 
             pool[NPCID.LightningBug] = 0.1f; // Sea Firefly
