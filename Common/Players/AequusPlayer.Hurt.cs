@@ -1,10 +1,7 @@
 ﻿using Aequus.Common.Tiles.Components;
 using Aequus.Core.CodeGeneration;
-using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using Terraria.DataStructures;
-using Terraria.Localization;
 
 namespace Aequus;
 
@@ -132,9 +129,7 @@ public partial class AequusPlayer {
                 break;
         }
 
-        void SetReason(string reason, int variants = 1) {
-            SignCustomDeathReason(damageSource, reason, variants);
-        }
+        void SetReason(string reason, int variants = 1) => SignCustomDeathReason(damageSource, reason, variants);
     }
 
     public static PlayerDeathReason CustomDeathReason(string reason, int variants = 1) {
@@ -146,5 +141,5 @@ public partial class AequusPlayer {
     private static void SignCustomDeathReason(PlayerDeathReason damageSource, string reason, int variants = 1) {
         damageSource.SourceCustomReason = $"Mods.Aequus.Player.DeathMessage.{reason}.{(variants > 1 ? Main.rand.Next(variants) : "")}";
     }
-#endregion
+    #endregion
 }

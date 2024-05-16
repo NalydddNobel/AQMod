@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
+﻿using System;
 using Terraria.Audio;
 
 namespace Aequus.Old.Content.Items.Weapons.Melee.Slice;

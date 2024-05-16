@@ -1,5 +1,4 @@
 ﻿using Aequus.DataSets;
-using Aequus.Old.Content.Items.Weapons.Demon;
 using Terraria.Audio;
 
 namespace Aequus.Old.Content.Items.Weapons.Demon.Melee;

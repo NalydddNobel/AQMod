@@ -3,7 +3,6 @@ using Aequus.Old.Content.Events.Glimmer;
 using System;
 using System.IO;
 using Terraria.GameContent;
-using tModLoaderExtended;
 
 namespace Aequus.Old.Content.Bosses.Cosmic.OmegaStarite.Projectiles;
 

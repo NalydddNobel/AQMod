@@ -11,7 +11,7 @@ public sealed class ResetEffectsGenerator<T> {
     public void Generate() {
         var generatedMethod = new DynamicMethod("ResetEffects", null, new Type[] { typeof(T), }, true);
         var gen = generatedMethod.GetILGenerator();
-        
+
         foreach (var f in typeof(T).GetFields(BindingFlags.Instance | BindingFlags.Public)) {
             var attr = f.GetCustomAttribute<ResetEffectsAttribute>();
             if (attr == null) {

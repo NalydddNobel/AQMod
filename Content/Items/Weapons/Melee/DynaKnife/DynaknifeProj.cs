@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Projectiles;
 using Aequus.Content.Graphics.Particles;
-using Aequus.Content.Items.Weapons.Melee.DynaKnife;
 using System;
 using Terraria.Audio;
 

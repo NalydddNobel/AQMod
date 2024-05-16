@@ -1,5 +1,4 @@
 ﻿using Aequus.Core.Graphics.Animations;
-using Microsoft.Xna.Framework;
 using Terraria.Audio;
 
 namespace Aequus.Content.Fishing.CrabPots;

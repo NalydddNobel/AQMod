@@ -7,15 +7,12 @@ public class RequestCache<T> where T : class {
     public readonly string Path;
 
     private string _modPath;
-    public string ModPath {
-        get {
+    public string ModPath =>
             // "Aequus/" is 7 characters long
-            return _modPath ??= Path[7..];
-        }
-    }
+            _modPath ??= Path[7..];
 
     private string _name;
-    public string Name { get => _name ??= Path.Split('/').Last().Trim(); }
+    public string Name => _name ??= Path.Split('/').Last().Trim();
 
     protected Asset<T> _asset;
     public Asset<T> Asset => _asset ??= ModContent.Request<T>(Path, AssetRequestMode.ImmediateLoad);

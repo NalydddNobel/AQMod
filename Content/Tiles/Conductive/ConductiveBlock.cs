@@ -6,7 +6,6 @@ using System.IO;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
-using tModLoaderExtended;
 using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Content.Tiles.Conductive;

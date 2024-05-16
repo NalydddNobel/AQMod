@@ -7,6 +7,7 @@ public record struct AnonymousDedication(Color TextColor) : IDedicationInfo {
 
     public ModItem Faeling { get; set; }
 
-    public LocalizedText GetDedicatedLine()
-        => _lineCache ??= Language.GetText("Mods.Aequus.Items.CommonTooltips.DedicatedItemAnonymous");
+    public LocalizedText GetDedicatedLine() {
+        return _lineCache ??= Language.GetText("Mods.Aequus.Items.CommonTooltips.DedicatedItemAnonymous");
+    }
 }

@@ -1,7 +1,6 @@
-﻿using tModLoaderExtended.Networking;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using Aequus.Old.Content.Items.Potions;
+using tModLoaderExtended.Networking;
 
 namespace Aequus.Old.Content.Items.Potions.Prefixes;
 

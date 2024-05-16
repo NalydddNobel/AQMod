@@ -1,5 +1,5 @@
-﻿using tModLoaderExtended.Terraria.GameContent.Creative;
-using Terraria.Localization;
+﻿using Terraria.Localization;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace Aequus.Core.ContentGeneration;
 

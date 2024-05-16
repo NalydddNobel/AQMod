@@ -1,6 +1,5 @@
 ﻿using Aequus.Old.Content.Items.GrapplingHooks.EnemyGrappleHook;
 using System;
-using System.IO;
 using Terraria.GameContent;
 
 namespace Aequus.Old.Content.Items.GrapplingHooks.HealingGrappleHook;

@@ -4,7 +4,6 @@ using Aequus.Common.NPCs.Components;
 using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Content.Items.Accessories.ScavengerBag;
 using Aequus.Core.ContentGeneration;
-using Aequus.Core.Initialization;
 using Aequus.DataSets;
 using System.Collections.Generic;
 using System.IO;

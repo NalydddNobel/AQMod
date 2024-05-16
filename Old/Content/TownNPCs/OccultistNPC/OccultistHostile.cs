@@ -1,6 +1,4 @@
-﻿using Aequus.Core;
-using Aequus.Core.ContentGeneration;
-using tModLoaderExtended.Networking;
+﻿using Aequus.Core.ContentGeneration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,7 +6,7 @@ using System.Linq;
 using Terraria.DataStructures;
 using Terraria.GameContent.UI;
 using Terraria.Localization;
-using tModLoaderExtended;
+using tModLoaderExtended.Networking;
 
 namespace Aequus.Old.Content.TownNPCs.OccultistNPC;
 

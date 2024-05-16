@@ -1,6 +1,4 @@
-﻿using Steamworks;
-
-namespace Aequus.Core.CrossMod;
+﻿namespace Aequus.Core.CrossMod;
 
 internal interface IContentIdProvider {
     int GetId();

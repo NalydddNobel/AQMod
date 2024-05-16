@@ -162,12 +162,12 @@ public class HyperCrystalProj : ModProjectile {
         float travelledLength = 0f;
         float pixelsToTravelPerIteration = MaxDistance / 16f;
         float lineOpacity = 1f;
-        while(travelledLength < MaxDistance) {
+        while (travelledLength < MaxDistance) {
             float progress = travelledLength / MaxDistance;
             float wave = Helper.Oscillate(progress * MathHelper.Pi, 1f);
             travelledLength += pixelsToTravelPerIteration;
             Main.EntitySpriteDraw(flareTexture, originPoint + Vector2.Normalize(toEdge) * travelledLength - Main.screenPosition, null, flareColor * wave * lineOpacity, flareRotation, flareOrigin, Projectile.scale * (0.1f + wave * 0.3f), SpriteEffects.None, 0);
-        
+
             if (travelledLength > length) {
                 lineOpacity *= 0.5f;
             }

@@ -1,5 +1,4 @@
 ﻿using Aequus.DataSets;
-using Aequus.Old.Content.Items.Weapons.Demon;
 using Aequus.Old.Content.Particles;
 using Terraria.Audio;
 using Terraria.GameContent;

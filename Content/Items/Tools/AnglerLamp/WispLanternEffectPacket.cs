@@ -1,5 +1,5 @@
-﻿using tModLoaderExtended.Networking;
-using System.IO;
+﻿using System.IO;
+using tModLoaderExtended.Networking;
 
 namespace Aequus.Content.Items.Tools.AnglerLamp;
 

@@ -1,5 +1,4 @@
 ﻿using Aequus.Content.Configuration;
-using Aequus.Core;
 using Aequus.Core.IO;
 using Aequus.Core.UI;
 using System;
@@ -9,7 +8,6 @@ using System.Reflection;
 using Terraria.DataStructures;
 using Terraria.GameContent.Events;
 using Terraria.GameContent.UI;
-using Terraria.Localization;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
 using Terraria.Utilities;

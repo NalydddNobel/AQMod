@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.IO;
 using Terraria.Audio;
 using Terraria.Graphics.Shaders;
-using tModLoaderExtended;
 
 namespace Aequus.Old.Content.DronePylons.NPCs;
 

@@ -1,6 +1,6 @@
-﻿using tModLoaderExtended.Networking;
-using System.IO;
+﻿using System.IO;
 using Terraria.ModLoader.IO;
+using tModLoaderExtended.Networking;
 
 namespace Aequus.Old.Content.Items.Accessories.HoloLens;
 

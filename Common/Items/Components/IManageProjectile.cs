@@ -1,7 +1,4 @@
-﻿using Aequus.Common.Projectiles;
-using Microsoft.Xna.Framework;
-
-namespace Aequus.Common.Items.Components;
+﻿namespace Aequus.Common.Items.Components;
 
 /// <summary>
 /// Allows the item to grant various effects to fired projectiles. All of these methods are not instanced, do NOT use <see cref="ModItem.Item"/> data.

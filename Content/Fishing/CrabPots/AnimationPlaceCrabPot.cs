@@ -1,5 +1,4 @@
 ﻿using Aequus.Core.Graphics.Animations;
-using Microsoft.Xna.Framework;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent.Shaders;

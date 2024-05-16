@@ -1,14 +1,20 @@
 ﻿using Aequus.Core.Assets;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System.Runtime.CompilerServices;
 
 namespace Aequus.Core.Utilities;
 
 public static class RequestCacheExtensions {
-    public static int Width(this RequestCache<Texture2D> asset) => asset.Value.Width;
-    public static int Height(this RequestCache<Texture2D> asset) => asset.Value.Height;
-    public static Rectangle Bounds(this RequestCache<Texture2D> asset) => asset.Value.Bounds;
+    public static int Width(this RequestCache<Texture2D> asset) {
+        return asset.Value.Width;
+    }
+
+    public static int Height(this RequestCache<Texture2D> asset) {
+        return asset.Value.Height;
+    }
+
+    public static Rectangle Bounds(this RequestCache<Texture2D> asset) {
+        return asset.Value.Bounds;
+    }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Vector2 GetCenteredFrameOrigin(this RequestCache<Texture2D> asset, int horizontalFrames = 1, int verticalFrames = 1) {

@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Content.Dusts;
-using Aequus.Core.Initialization;
 using Aequus.DataSets;
 using Aequus.Old.Content.Necromancy.Networking;
 using Aequus.Old.Content.Necromancy.Rendering;

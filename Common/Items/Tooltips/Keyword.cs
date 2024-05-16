@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using ReLogic.Graphics;
+﻿using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;

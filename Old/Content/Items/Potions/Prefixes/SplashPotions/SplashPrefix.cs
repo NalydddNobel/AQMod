@@ -1,5 +1,4 @@
-﻿using Aequus.Old.Content.Items.Potions.Prefixes;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Aequus.Old.Content.Items.Potions.Prefixes.SplashPotions;
 

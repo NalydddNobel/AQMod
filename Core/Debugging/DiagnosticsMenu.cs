@@ -66,7 +66,9 @@ internal class DiagnosticsMenu : ModSystem {
         }
     }
 
-    public override bool IsLoadingEnabled(Mod mod) => Aequus.DEBUG_MODE;
+    public override bool IsLoadingEnabled(Mod mod) {
+        return Aequus.DEBUG_MODE;
+    }
 
     public override void Load() {
         _stopwatch = new();

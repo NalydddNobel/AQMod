@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Items;
-using Aequus.Common.Items.Dedications;
+﻿using Aequus.Common.Items.Dedications;
 using System.Collections.Generic;
 using Terraria.Localization;
 using tModLoaderExtended.Terraria.GameContent;

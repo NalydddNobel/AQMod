@@ -1,10 +1,10 @@
-﻿using tModLoaderExtended.Networking;
-using Aequus.Old.Content.DronePylons.NPCs;
+﻿using Aequus.Old.Content.DronePylons.NPCs;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria.DataStructures;
 using Terraria.ModLoader.IO;
+using tModLoaderExtended.Networking;
 
 namespace Aequus.Old.Content.DronePylons;
 

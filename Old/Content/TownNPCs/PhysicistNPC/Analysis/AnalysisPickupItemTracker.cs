@@ -1,6 +1,4 @@
-﻿using tModLoaderExtended;
-
-namespace Aequus.Old.Content.TownNPCs.PhysicistNPC.Analysis;
+﻿namespace Aequus.Old.Content.TownNPCs.PhysicistNPC.Analysis;
 
 public class AnalysisPickupItemTracker : GlobalItem {
     public override bool OnPickup(Item item, Player player) {

@@ -5,13 +5,18 @@ namespace Aequus.Common.Items.DropRules;
 
 public class ConditionNoDamageTaken : IItemDropRuleCondition {
     public bool CanDrop(DropAttemptInfo info) {
-        if (info.npc == null || !info.npc.TryGetGlobalNPC(out DamagedPlayersTracker noHitTracker)) { 
-            return false; 
+        if (info.npc == null || !info.npc.TryGetGlobalNPC(out DamagedPlayersTracker noHitTracker)) {
+            return false;
         }
 
         return noHitTracker.anyInteractedPlayersAreDamaged;
     }
 
-    public bool CanShowItemDropInUI() => false;
-    public string GetConditionDescription() => null;
+    public bool CanShowItemDropInUI() {
+        return false;
+    }
+
+    public string GetConditionDescription() {
+        return null;
+    }
 }

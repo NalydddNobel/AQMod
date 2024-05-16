@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
+﻿using System;
 using Terraria.GameContent;
 
 namespace Aequus.Content.Items.Tools.Bellows;

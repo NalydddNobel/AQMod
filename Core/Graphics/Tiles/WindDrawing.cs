@@ -1,6 +1,5 @@
 ﻿using Mono.Cecil.Cil;
 using MonoMod.Cil;
-using System.Runtime.ExceptionServices;
 using Terraria.GameContent.Drawing;
 
 namespace Aequus.Core.Graphics.Tiles;

@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Buffs;
 using Aequus.Common.Items.Components;
-using Aequus.Common.Systems;
 using Aequus.Core.IO;
 using Aequus.Core.UI;
 using Aequus.DataSets;

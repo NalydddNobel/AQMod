@@ -79,11 +79,11 @@ public class RainTotem : RainTotemTileTemplate {
             DropItem.CreateRecipe()
                 .AddIngredient(ItemID.BambooBlock, 30)
                 .AddIngredient(ItemID.RainCloud, 10)
-            #if DEBUG
+#if DEBUG
                             .AddIngredient(ItemID.FallenStar)
-            #else
+#else
                 .AddIngredient(Old.Content.Items.Materials.Energies.EnergyMaterial.Aquatic.Type)
-            #endif
+#endif
                 .AddTile(TileID.Sawmill)
                 .Register()
                 .SortBeforeFirstRecipesOf(ItemID.GoblinBattleStandard);
@@ -295,7 +295,9 @@ public abstract class RainTotemTileTemplate : ModTile {
     }
     #endregion
 
-    public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
+    public override void NumDust(int i, int j, bool fail, ref int num) {
+        num = fail ? 1 : 3;
+    }
 
     public override IEnumerable<Item> GetItemDrops(int i, int j) {
         yield return new Item(RainTotem.DropItem.Type);

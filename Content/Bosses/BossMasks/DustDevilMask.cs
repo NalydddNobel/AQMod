@@ -1,5 +1,4 @@
 ﻿using Aequus.Core.ContentGeneration;
-using Microsoft.Xna.Framework;
 
 namespace Aequus.Content.Bosses.BossMasks;
 

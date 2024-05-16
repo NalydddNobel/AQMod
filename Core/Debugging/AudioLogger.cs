@@ -28,5 +28,7 @@ internal class AudioLogger : ModSystem {
         }
     }
 
-    public override bool IsLoadingEnabled(Mod mod) => Aequus.DEBUG_MODE;
+    public override bool IsLoadingEnabled(Mod mod) {
+        return Aequus.DEBUG_MODE;
+    }
 }

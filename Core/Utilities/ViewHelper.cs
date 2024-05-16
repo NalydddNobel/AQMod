@@ -6,16 +6,14 @@ namespace Aequus.Core.Utilities;
 
 public static class ViewHelper {
     public static Vector2 ScaledMouseScreen => Vector2.Transform(Main.ReverseGravitySupport(Main.MouseScreen, 0f), Matrix.Invert(Main.GameViewMatrix.ZoomMatrix));
-    
+
     public static Vector2 ScaledMouseworld => ScaledMouseScreen + Main.screenPosition;
 
     public const float Z_VIEW = -20f;
 
     public static Vector2 ScreenCenter {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        get {
-            return Main.screenPosition + new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
-        }
+        get => Main.screenPosition + new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
     }
 
     [Obsolete("Replace with non-legacy screen shake", Aequus.DEBUG_MODE)]

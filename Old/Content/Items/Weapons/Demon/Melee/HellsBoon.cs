@@ -1,6 +1,5 @@
 ﻿using Aequus.Common;
 using Aequus.Content.Events.DemonSiege;
-using Aequus.Old.Content.Items.Weapons.Demon;
 using tModLoaderExtended.GlowMasks;
 
 namespace Aequus.Old.Content.Items.Weapons.Demon.Melee;

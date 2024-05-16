@@ -4,7 +4,6 @@ using System;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.UI;
-using tModLoaderExtended;
 
 namespace Aequus.Old.Content.TownNPCs.PhysicistNPC;
 

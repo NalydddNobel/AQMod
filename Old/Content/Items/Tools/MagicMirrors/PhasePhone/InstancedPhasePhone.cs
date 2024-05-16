@@ -1,12 +1,12 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Core.ContentGeneration;
+using Aequus.Old.Content.Items.Tools.MagicMirrors.PhaseMirror;
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using tModLoaderExtended.Terraria.GameContent.Creative;
 using Terraria.Localization;
-using Aequus.Old.Content.Items.Tools.MagicMirrors.PhaseMirror;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace Aequus.Old.Content.Items.Tools.MagicMirrors.PhasePhone;
 

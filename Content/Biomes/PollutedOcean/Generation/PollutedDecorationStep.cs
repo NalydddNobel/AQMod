@@ -85,7 +85,7 @@ internal class PollutedDecorationStep : AequusGenStep {
                     continue;
                 }
 
-                for (int k = i - 1; k <= i+1; k++) {
+                for (int k = i - 1; k <= i + 1; k++) {
                     for (int l = j - 1; l <= j + 1; l++) {
                         CheckTile(k, l, tile, ref wantChest);
                     }

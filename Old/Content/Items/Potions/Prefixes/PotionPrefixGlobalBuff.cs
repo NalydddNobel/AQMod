@@ -1,7 +1,5 @@
-﻿using Aequus.Old.Content.Items.Potions;
-using Aequus.Old.Content.Items.Potions.Prefixes.BoundedPotions;
+﻿using Aequus.Old.Content.Items.Potions.Prefixes.BoundedPotions;
 using Aequus.Old.Content.Items.Potions.Prefixes.EmpoweredPotions;
-using System.Collections;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 

@@ -17,8 +17,6 @@ public partial class TerrariaHooks {
         c.Emit(OpCodes.Ldarg_1); // X
         c.Emit(OpCodes.Ldarg_2); // Y
         c.Emit(OpCodes.Ldarg_3); // Pickaxe Power
-        c.EmitDelegate((Player player, int X, int Y, int PickPower) => {
-            player.GetModPlayer<AequusPlayer>().RestoreBreathOnBrokenTile(X, Y);
-        });
+        c.EmitDelegate((Player player, int X, int Y, int PickPower) => player.GetModPlayer<AequusPlayer>().RestoreBreathOnBrokenTile(X, Y));
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Aequus.Content.Dusts;
 using System;
-using tModLoaderExtended;
 
 namespace Aequus.Old.Content.DronePylons.NPCs;
 

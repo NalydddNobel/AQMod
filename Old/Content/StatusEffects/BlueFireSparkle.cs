@@ -1,7 +1,5 @@
 ﻿using Aequus.Core.Graphics;
 using Aequus.Core.Particles;
-using System;
-using Terraria;
 
 namespace Aequus.Old.Content.StatusEffects;
 

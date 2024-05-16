@@ -2,7 +2,6 @@
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Bosses.Trophies;
 using Aequus.Content.Dusts;
-using Aequus.Core;
 using Aequus.Core.ContentGeneration;
 using Aequus.DataSets;
 using Aequus.Old.Common.Graphics;
@@ -21,7 +20,6 @@ using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Utilities;
-using tModLoaderExtended;
 
 namespace Aequus.Old.Content.Bosses.Cosmic.UltraStarite;
 

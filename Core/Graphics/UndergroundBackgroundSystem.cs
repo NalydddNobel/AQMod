@@ -1,7 +1,6 @@
 ﻿using Aequus.Core.Assets;
 using System;
 using System.Collections.Generic;
-using Terraria.GameInput;
 
 namespace Aequus.Core.Graphics;
 

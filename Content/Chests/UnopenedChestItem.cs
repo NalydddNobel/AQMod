@@ -1,6 +1,4 @@
-﻿using Terraria;
-
-namespace Aequus.Content.Chests;
+﻿namespace Aequus.Content.Chests;
 
 /// <summary>Item used to determine if a chest has been opened or not.</summary>
 public class UnopenedChestItem : ModItem {

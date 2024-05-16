@@ -1,9 +1,7 @@
-﻿using Aequus.Core;
-using Aequus.Core.Graphics;
+﻿using Aequus.Core.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Terraria;
 
 namespace Aequus.Old.Content.Items.Weapons.Glimmer.Nightfall;
 

@@ -1,6 +1,4 @@
 ﻿using Aequus.Core.Assets;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 
 namespace Aequus.Content.Bosses;
@@ -52,7 +50,7 @@ public record class OmegaStariteRelicRenderer(RequestCache<Texture2D> Texture) :
             float z = (float)Math.Sin(f + MathHelper.PiOver2);
             orbFrame.Y = baseOrbFrame.Y + (int)MathHelper.Clamp(2 + z * 2.5f, 0f, FrameCount) * orbFrame.Height;
             k++;
-            IRelicRenderer.Draw(Main.spriteBatch, texture, drawCoordinates + new Vector2(wave * oscXMagnitude, wave * orbFrame.Height * oscYMagnitude+ orbYOffset), orbFrame, drawColor, orbOrigin, spriteEffects, glow);
+            IRelicRenderer.Draw(Main.spriteBatch, texture, drawCoordinates + new Vector2(wave * oscXMagnitude, wave * orbFrame.Height * oscYMagnitude + orbYOffset), orbFrame, drawColor, orbOrigin, spriteEffects, glow);
         }
         IRelicRenderer.Draw(Main.spriteBatch, texture, drawCoordinates, baseFrame, drawColor, baseFrame.Size() / 2f, spriteEffects, glow);
         for (; k < 5; f += MathHelper.TwoPi / 5f) {

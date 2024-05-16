@@ -1,6 +1,4 @@
-﻿using Aequus.Core;
-using Aequus.DataSets;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Aequus.DataSets;
 using Terraria.GameContent;
 using Terraria.ObjectData;
 using tModLoaderExtended.Terraria;

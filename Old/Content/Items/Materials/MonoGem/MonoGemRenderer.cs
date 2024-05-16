@@ -1,5 +1,4 @@
-﻿using Aequus.Core;
-using Aequus.Core.Graphics;
+﻿using Aequus.Core.Graphics;
 using Aequus.Core.Graphics.Tiles;
 using ReLogic.Content;
 using System;

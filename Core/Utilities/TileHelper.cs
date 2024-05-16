@@ -1,9 +1,7 @@
 ﻿using Aequus.Common.Tiles;
-using Microsoft.Xna.Framework;
 using System;
 using System.Runtime.CompilerServices;
 using Terraria.Enums;
-using Terraria.GameContent.Drawing;
 using Terraria.ObjectData;
 
 namespace Aequus.Core.Utilities;
@@ -522,9 +520,7 @@ public static class TileHelper {
         CopyFromArr(TileID.Sets.BasicChest);
         CopyFromArr(TileID.Sets.DisableSmartCursor);
 
-        void CopyFromArr<T>(T[] arr) {
-            arr[modTile.Type] = arr[tileId];
-        }
+        void CopyFromArr<T>(T[] arr) => arr[modTile.Type] = arr[tileId];
     }
 
     [Autoload(Side = ModSide.Client)]

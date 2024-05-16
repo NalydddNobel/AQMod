@@ -1,5 +1,5 @@
-﻿using Aequus.Content.Items.Accessories.Breath;
-using Aequus.Content.Graphics.Particles;
+﻿using Aequus.Content.Graphics.Particles;
+using Aequus.Content.Items.Accessories.Breath;
 using System;
 
 namespace Aequus;

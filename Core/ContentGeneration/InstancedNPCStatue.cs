@@ -1,8 +1,8 @@
 ﻿using Terraria.DataStructures;
 using Terraria.Enums;
-using tModLoaderExtended.Terraria.GameContent.Creative;
 using Terraria.Localization;
 using Terraria.ObjectData;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace Aequus.Core.ContentGeneration;
 

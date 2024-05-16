@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Common.NPCs.Components;
@@ -40,7 +35,7 @@ public class TrackTimeBetweenHits : GlobalNPC {
 }
 
 public static class TrackTimeBetweenHitsExtensions {
-    public static int TimeSinceLastHit<T>(this T trackTimeBetweenHits) where T : ModNPC, ITrackTimeBetweenHits  {
+    public static int TimeSinceLastHit<T>(this T trackTimeBetweenHits) where T : ModNPC, ITrackTimeBetweenHits {
         return trackTimeBetweenHits.NPC.GetGlobalNPC<TrackTimeBetweenHits>().timeSinceLastHit;
     }
 }

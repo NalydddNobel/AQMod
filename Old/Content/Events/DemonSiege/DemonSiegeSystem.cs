@@ -1,9 +1,9 @@
 ﻿using Aequus.Content.Events.DemonSiege;
-using tModLoaderExtended.Networking;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria.ModLoader.IO;
+using tModLoaderExtended.Networking;
 
 namespace Aequus.Old.Content.Events.DemonSiege;
 

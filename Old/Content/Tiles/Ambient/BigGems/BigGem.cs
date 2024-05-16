@@ -9,7 +9,6 @@ using Terraria.GameContent;
 using Terraria.Localization;
 using Terraria.ObjectData;
 using Terraria.Utilities;
-using Terraria.ID;
 
 namespace Aequus.Old.Content.Tiles.Ambient.BigGems;
 

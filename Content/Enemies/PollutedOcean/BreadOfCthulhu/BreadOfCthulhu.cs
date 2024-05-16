@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Biomes.PollutedOcean;
-using Aequus.Content.Biomes.PollutedOcean.Background;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Dedicated.Baguette;
 using Aequus.Content.Enemies.PollutedOcean.BreadOfCthulhu.Items;
@@ -9,7 +8,6 @@ using System;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.GameContent.UI.Elements;
 
 namespace Aequus.Content.Enemies.PollutedOcean.BreadOfCthulhu;
 

@@ -1,7 +1,5 @@
-﻿using Aequus.Core;
-using Aequus.Core.ContentGeneration;
+﻿using Aequus.Core.ContentGeneration;
 using Aequus.Core.CrossMod;
-using tModLoaderExtended.Networking;
 using Aequus.DataSets;
 using Aequus.DataSets.Structures;
 using Aequus.DataSets.Structures.DropRulesChest;
@@ -11,7 +9,6 @@ using System.Linq;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
-using tModLoaderExtended.Terraria.GameContent.Creative;
 using Terraria.GameContent;
 using Terraria.GameContent.Drawing;
 using Terraria.GameContent.ItemDropRules;
@@ -19,6 +16,8 @@ using Terraria.GameContent.ObjectInteractions;
 using Terraria.Localization;
 using Terraria.ObjectData;
 using Terraria.Utilities;
+using tModLoaderExtended.Networking;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace Aequus.Content.Chests.BuriedChests;
 

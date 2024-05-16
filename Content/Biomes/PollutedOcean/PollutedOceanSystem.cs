@@ -9,19 +9,19 @@ using Aequus.Content.Enemies.PollutedOcean.OilSlime;
 using Aequus.Content.Enemies.PollutedOcean.Scavenger;
 using Aequus.Content.Fishing;
 using Aequus.Content.Fishing.Baits.BlackJellyfish;
-using Aequus.Content.Tiles.Furniture.Trash;
-using Aequus.Content.Tiles.Statues;
+using Aequus.Content.Items.Potions.Healing.Restoration;
+using Aequus.Content.Items.Potions.PotionCanteen;
+using Aequus.Content.Items.Tools.AnglerLamp;
 using Aequus.Content.Items.Weapons.Ranged.Darts.Ammo;
 using Aequus.Content.Items.Weapons.Ranged.Darts.StarPhish;
+using Aequus.Content.Tiles.Furniture.Trash;
+using Aequus.Content.Tiles.Statues;
 using Aequus.DataSets;
 using Aequus.DataSets.Structures.DropRulesChest;
 using Aequus.DataSets.Structures.Enums;
 using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;
-using Aequus.Content.Items.Tools.AnglerLamp;
-using Aequus.Content.Items.Potions.PotionCanteen;
-using Aequus.Content.Items.Potions.Healing.Restoration;
 
 namespace Aequus.Content.Biomes.PollutedOcean;
 

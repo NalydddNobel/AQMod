@@ -31,8 +31,13 @@ public abstract class BrittleArmor : ModTexturedType, ILocalizedModType {
         Items = new BrittleArmorItem[numTiers];
     }
 
-    internal virtual LocalizedText GetDisplayName(BrittleArmorItem armor) => this.GetLocalization(TierText("DisplayName", armor.Tier));
-    internal virtual LocalizedText GetTooltip(BrittleArmorItem armor) => this.GetLocalization(TierText("Tooltip", armor.Tier));
+    internal virtual LocalizedText GetDisplayName(BrittleArmorItem armor) {
+        return this.GetLocalization(TierText("DisplayName", armor.Tier));
+    }
+
+    internal virtual LocalizedText GetTooltip(BrittleArmorItem armor) {
+        return this.GetLocalization(TierText("Tooltip", armor.Tier));
+    }
 
     internal abstract void SetItemDefaults(Item Item, BrittleArmorItem armor);
 

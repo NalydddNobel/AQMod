@@ -3,7 +3,6 @@ using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Content.Graphics.Particles;
 using Aequus.Core.ContentGeneration;
-using Aequus.Core.Graphics;
 using Aequus.DataSets;
 using System;
 using Terraria.Audio;

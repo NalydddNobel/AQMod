@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.Renaming;
-using Aequus.Core;
 using Aequus.Core.ContentGeneration;
 using Aequus.DataSets;
 using System;

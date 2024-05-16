@@ -1,5 +1,4 @@
-﻿using Aequus.Core;
-using Aequus.Core.Graphics;
+﻿using Aequus.Core.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;

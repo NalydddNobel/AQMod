@@ -14,7 +14,12 @@ public abstract class UnifiedFishingPole : ModItem {
         Mod.AddContent(_bobber);
     }
 
-    public virtual bool BobberPreAI(Projectile bobber) => true;
+    public virtual bool BobberPreAI(Projectile bobber) {
+        return true;
+    }
+
     public virtual void BobberOnKill(Projectile bobber, int timeLeft) { }
-    public virtual bool BobberPreDraw(Projectile bobber, ref Color lightColor) => true;
+    public virtual bool BobberPreDraw(Projectile bobber, ref Color lightColor) {
+        return true;
+    }
 }

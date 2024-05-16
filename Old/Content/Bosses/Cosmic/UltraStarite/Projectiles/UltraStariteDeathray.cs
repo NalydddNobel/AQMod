@@ -1,7 +1,6 @@
 ﻿using Aequus.Old.Common.Projectiles;
 using System;
 using System.Collections.Generic;
-using tModLoaderExtended;
 
 namespace Aequus.Old.Content.Bosses.Cosmic.UltraStarite.Projectiles;
 public class UltraStariteDeathray : EnemyAttachedProjBase {

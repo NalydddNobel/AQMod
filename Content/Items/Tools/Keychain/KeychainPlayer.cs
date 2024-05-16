@@ -1,10 +1,10 @@
-﻿using tModLoaderExtended.Networking;
-using Aequus.DataSets;
+﻿using Aequus.DataSets;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Terraria.DataStructures;
 using Terraria.ModLoader.IO;
+using tModLoaderExtended.Networking;
 
 namespace Aequus.Content.Items.Tools.Keychain;
 

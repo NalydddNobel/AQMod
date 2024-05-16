@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Aequus.Core.Particles;
@@ -45,7 +45,7 @@ public abstract class ParticleArray<T> : IParticleSystem where T : IParticle, ne
                 p.Active = true;
                 yield return p;
 
-                if(--count == 0) {
+                if (--count == 0) {
                     yield break;
                 }
             }

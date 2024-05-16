@@ -1,8 +1,5 @@
-﻿using Aequus.Common.Tiles;
-using Aequus.Content.Items.Materials;
+﻿using Aequus.Content.Items.Materials;
 using Aequus.Core.ContentGeneration;
-using Aequus.Core.Initialization;
-using Terraria;
 
 namespace Aequus.Content.Fishing.CrabPots;
 public class CrabPot : UnifiedCrabPot {

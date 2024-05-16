@@ -4,7 +4,6 @@ using Terraria.GameContent;
 using Terraria.GameContent.Events;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
-using tModLoaderExtended;
 
 namespace Aequus.Common.Backpacks;
 
@@ -65,16 +64,23 @@ public abstract class BackpackData : ModType, ILocalizedModType {
     protected virtual void OnUpdateItem(Player player, AequusPlayer aequusPlayer, int slot) {
     }
 
-    public virtual BackpackData CreateInstance() => (BackpackData)MemberwiseClone();
+    public virtual BackpackData CreateInstance() {
+        return (BackpackData)MemberwiseClone();
+    }
 
     protected virtual void SaveExtraData(TagCompound tag) { }
 
     protected virtual void LoadExtraData(TagCompound tag) { }
 
-    public virtual bool CanAcceptItem(int slot, Item incomingItem) => true;
+    public virtual bool CanAcceptItem(int slot, Item incomingItem) {
+        return true;
+    }
 
     /// <summary>Return false to override slot drawing.</summary>
-    public virtual bool PreDrawSlot(SpriteBatch spriteBatch, Vector2 slotCenter, Vector2 slotTopLeft, int slot) => true;
+    public virtual bool PreDrawSlot(SpriteBatch spriteBatch, Vector2 slotCenter, Vector2 slotTopLeft, int slot) {
+        return true;
+    }
+
     public virtual void PostDrawSlot(SpriteBatch spriteBatch, Vector2 slotCenter, Vector2 slotTopLeft, int slot) { }
 
     public void SaveData(TagCompound tag) {

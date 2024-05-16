@@ -1,10 +1,7 @@
-﻿using Aequus.Common.Tiles;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Initialization;
+﻿using Aequus.Core.ContentGeneration;
 using System;
 using Terraria.Enums;
 using Terraria.ObjectData;
-using tModLoaderExtended;
 
 namespace Aequus.Content.Fishing.CrabPots;
 

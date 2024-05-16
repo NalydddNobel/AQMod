@@ -16,7 +16,7 @@ public class InstancedModDust(string name, string texture, bool safe = true) : M
     }
 }
 
-public class InstancedCloneDust(string name, string texture, bool safe = true, int updateType = -1) 
+public class InstancedCloneDust(string name, string texture, bool safe = true, int updateType = -1)
     : InstancedModDust(name, texture, safe) {
     public override void SetStaticDefaults() {
         base.SetStaticDefaults();

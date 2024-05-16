@@ -28,7 +28,9 @@ public class HellsBoonProj : ModProjectile {
         Projectile.idStaticNPCHitCooldown = 10;
     }
 
-    public override bool? CanCutTiles() => Projectile.ai[1] > 15f && Projectile.ai[1] < 15f + GO_OUT_TIME;
+    public override bool? CanCutTiles() {
+        return Projectile.ai[1] > 15f && Projectile.ai[1] < 15f + GO_OUT_TIME;
+    }
 
     public override void AI() {
         if (Projectile.frameCounter == 0) {

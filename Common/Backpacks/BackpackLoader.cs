@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Golfing;
-using Aequus.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,7 +10,7 @@ namespace Aequus.Common.Backpacks;
 
 public class BackpackLoader {
     public const string BackpacksSaveKey = "Backpacks";
-    
+
     public static readonly List<BackpackData> Backpacks = new();
     public static int Count => Backpacks.Count;
 
@@ -27,7 +26,7 @@ public class BackpackLoader {
     public static void SaveBackpacks(TagCompound tag, BackpackData[] backpacks, List<(string, TagCompound)> unloadedBackpacksList) {
         // Create a tag which will contain all of the individual backpack tag compounds.
         TagCompound backpacksSaveTag = new TagCompound();
-        
+
         for (int i = 0; i < backpacks.Length; i++) {
             // Create backpack tag compound, and save data to it
             TagCompound backpackTag = new TagCompound();

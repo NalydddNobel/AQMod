@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Items.DropRules;
 using Aequus.Core.CrossMod;
-using System;
 using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
 

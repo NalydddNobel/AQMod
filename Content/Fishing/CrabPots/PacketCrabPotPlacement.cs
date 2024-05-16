@@ -1,7 +1,6 @@
-﻿using Aequus.Core;
-using tModLoaderExtended.Networking;
-using System.IO;
+﻿using System.IO;
 using Terraria.DataStructures;
+using tModLoaderExtended.Networking;
 
 namespace Aequus.Content.Fishing.CrabPots;
 

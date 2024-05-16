@@ -1,8 +1,8 @@
-﻿using tModLoaderExtended.Networking;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using Terraria.GameContent.ItemDropRules;
+using tModLoaderExtended.Networking;
 
 namespace Aequus.Common.NPCs;
 

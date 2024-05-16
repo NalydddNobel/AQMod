@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;
-using Terraria.GameContent;
 using Terraria.Localization;
 using Terraria.ObjectData;
 

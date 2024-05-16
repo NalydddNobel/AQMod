@@ -40,14 +40,14 @@ public sealed class PollutedBiomeStep : AequusGenStep {
     public static bool[] ReplaceableTile { get; private set; }
     public static bool[] ReplaceableWall { get; private set; }
 
-    public static int X { get => x; }
-    public static int Y { get => y; }
+    public static int X => x;
+    public static int Y => y;
     public static int _Left => Left;
     public static int _Right => Right;
     public static int _LeftPadded => LeftPadded;
     public static int _RightPadded => RightPadded;
-    public static int Direction { get => direction; }
-    public static PollutedOceanGenerationSideConfig GenerationSide { get => generationSide; }
+    public static int Direction => direction;
+    public static PollutedOceanGenerationSideConfig GenerationSide => generationSide;
 
     internal static ushort _polymerSand;
     internal static ushort _polymerSandstone;
@@ -441,7 +441,7 @@ public sealed class PollutedBiomeStep : AequusGenStep {
         for (int i = Left; i < Right; i++) {
             for (int j = 0; j < Main.maxTilesY; j++) {
                 SetProgress(progress, RectangleProgress(i, j, Left, Right), 0.85f, 1f);
-                if (Main.tile[i, j].TileType == _polymerSandstone && Random.NextBool(600) && !TileHelper.ScanTilesSquare(i, j, 5, TileHelper.IsNotSolid, 
+                if (Main.tile[i, j].TileType == _polymerSandstone && Random.NextBool(600) && !TileHelper.ScanTilesSquare(i, j, 5, TileHelper.IsNotSolid,
                     (i, j) => Main.tile[i, j].HasTile && TileID.Sets.Ore[Main.tile[i, j].TileType])) {
                     PunchOre(i, j, Random.Next(oreChoices));
                 }

@@ -1,5 +1,5 @@
-﻿using Aequus.Content.Tiles.CraftingStations.TrashCompactor;
-using Aequus.Content.Items.Tools.Keychain;
+﻿using Aequus.Content.Items.Tools.Keychain;
+using Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 using Aequus.DataSets.Structures;
 using Newtonsoft.Json;
 using System.Collections.Generic;

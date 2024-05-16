@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Projectiles;
-using Aequus.Core;
 using Aequus.DataSets;
 
 namespace Aequus.Content.Items.Accessories.EventPrevention;

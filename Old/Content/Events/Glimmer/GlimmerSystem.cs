@@ -1,12 +1,11 @@
-﻿using Aequus.Core;
-using tModLoaderExtended.Networking;
-using Aequus.Old.Content.Events.Glimmer.Peaceful;
+﻿using Aequus.Old.Content.Events.Glimmer.Peaceful;
 using System;
 using System.IO;
 using Terraria.Enums;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
+using tModLoaderExtended.Networking;
 
 namespace Aequus.Old.Content.Events.Glimmer;
 public class GlimmerSystem : ModSystem {

@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
-using Aequus.Content.TownNPCs.SkyMerchant.UI;
 using Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
+using Aequus.Content.TownNPCs.SkyMerchant.UI;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.UI;
 using System;

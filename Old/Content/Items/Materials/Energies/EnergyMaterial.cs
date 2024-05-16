@@ -2,9 +2,7 @@
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.UI;
 using System;
-using System.Linq;
 using Terraria.GameContent;
-using Terraria.UI;
 using Terraria.Utilities;
 
 namespace Aequus.Old.Content.Items.Materials.Energies;

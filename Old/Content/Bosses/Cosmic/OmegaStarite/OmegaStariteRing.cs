@@ -1,7 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.IO;
-using Terraria;
 
 namespace Aequus.Old.Content.Bosses.Cosmic.OmegaStarite;
 

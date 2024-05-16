@@ -1,5 +1,4 @@
-﻿using Aequus.Old.Content.Items.Materials;
-using Terraria.GameContent;
+﻿using Terraria.GameContent;
 
 namespace Aequus.Old.Content.Items.Materials.SoulGem;
 

@@ -1,8 +1,6 @@
 ﻿using Aequus.Common.Items.Dedications;
-using Aequus.Common.Systems;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.CrossMod;
-using Aequus.Core.Initialization;
 using Aequus.Core.UI;
 using System;
 using System.Collections.Generic;

@@ -6,10 +6,10 @@ using Aequus.DataSets;
 using Aequus.Old.Content.TownNPCs.OccultistNPC;
 using System;
 using Terraria.DataStructures;
-using tModLoaderExtended.Terraria.GameContent.Creative;
 using Terraria.GameContent;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ObjectData;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace Aequus.Old.Content.Events.DemonSiege.Tiles;
 

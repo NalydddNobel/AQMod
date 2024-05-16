@@ -7,6 +7,7 @@ public record struct DefaultDedication(string DedicateeName, Color TextColor) : 
 
     public ModItem Faeling { get; set; }
 
-    public LocalizedText GetDedicatedLine()
-        => _lineCache ??= Language.GetText("Mods.Aequus.Items.CommonTooltips.DedicatedItem").WithFormatArgs(DedicateeName);
+    public LocalizedText GetDedicatedLine() {
+        return _lineCache ??= Language.GetText("Mods.Aequus.Items.CommonTooltips.DedicatedItem").WithFormatArgs(DedicateeName);
+    }
 }

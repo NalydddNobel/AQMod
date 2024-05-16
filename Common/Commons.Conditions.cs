@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Systems;
-using Aequus.Core;
 using System;
 using System.Reflection;
 using Terraria.Localization;

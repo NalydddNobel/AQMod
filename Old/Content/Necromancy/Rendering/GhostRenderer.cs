@@ -97,7 +97,7 @@ public class GhostRenderer : ModSystem {
 
                 spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.Default, Main.Rasterizer, null, Main.Transform);
 
-                var drawData = new DrawData(render.renderTargetCache, Main.screenLastPosition- Main.screenPosition, null, Color.White * Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f, 0.6f, 1f), 0f, Vector2.Zero, 2f, SpriteEffects.None, 0f);
+                var drawData = new DrawData(render.renderTargetCache, Main.screenLastPosition - Main.screenPosition, null, Color.White * Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f, 0.6f, 1f), 0f, Vector2.Zero, 2f, SpriteEffects.None, 0f);
                 OutlineShader.Value.Parameters["uColor"].SetValue(render.getDrawColor().ToVector3());
                 OutlineShader.Value.Parameters["uImageSize0"].SetValue(new Vector2(Main.screenWidth, Main.screenHeight));
                 OutlineShader.Value.CurrentTechnique.Passes[0].Apply();

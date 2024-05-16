@@ -1,8 +1,8 @@
 ﻿using Aequus.Common.Tiles.Components;
 using Aequus.Core.ContentGeneration;
 using Terraria.Audio;
-using tModLoaderExtended.Terraria.GameContent.Creative;
 using Terraria.GameContent.Metadata;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace Aequus.Content.Tiles.Meadow;
 

@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
+﻿using Terraria.DataStructures;
 using Terraria.Localization;
 
 namespace Aequus.Content.Items.Accessories.Informational.Monocle;

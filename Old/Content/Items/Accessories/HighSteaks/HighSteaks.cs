@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Items.Components;
-using Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,11 +1,8 @@
-﻿using Aequus.Common.Tiles;
-using Aequus.Common.Tiles.Components;
+﻿using Aequus.Common.Tiles.Components;
 using Aequus.Content.Graphics.GameOverlays;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics.Animations;
 using Aequus.Core.Graphics.Tiles;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.IO;
@@ -13,7 +10,6 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ObjectData;
-using tModLoaderExtended;
 
 namespace Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 
@@ -37,7 +33,9 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction
         AddMapEntry(new Color(65, 115, 75), CreateMapEntryName());
     }
 
-    public override void NumDust(int i, int j, bool fail, ref int num) => num = 0;
+    public override void NumDust(int i, int j, bool fail, ref int num) {
+        num = 0;
+    }
 
     public static void UseItemAnimation(int i, int j, int totalAmount, int itemType) {
         var spawnLocation = new Vector2(i + 0.5f, j + 2.5f) * 16f;

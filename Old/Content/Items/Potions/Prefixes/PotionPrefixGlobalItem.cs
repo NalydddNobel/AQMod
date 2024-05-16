@@ -1,5 +1,4 @@
 ﻿using Aequus.DataSets;
-using Aequus.Old.Content.Items.Potions;
 using Aequus.Old.Content.Items.Potions.Prefixes.BoundedPotions;
 using Aequus.Old.Content.Items.Potions.Prefixes.EmpoweredPotions;
 using Aequus.Old.Content.Items.Potions.Prefixes.SplashPotions;

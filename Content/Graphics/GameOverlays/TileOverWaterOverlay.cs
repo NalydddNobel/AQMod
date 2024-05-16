@@ -1,6 +1,5 @@
 ﻿using Aequus.Core.Graphics.GameOverlays;
 using Aequus.Core.Graphics.Tiles;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria.Graphics.Effects;
 
 namespace Aequus.Content.Graphics.GameOverlays;

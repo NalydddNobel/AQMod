@@ -1,7 +1,7 @@
 ﻿using ReLogic.Content;
 using System.Collections.Generic;
-using tModLoaderExtended.Terraria.GameContent.Creative;
 using Terraria.GameContent;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace Aequus.Old.Content.Items.Tools;
 

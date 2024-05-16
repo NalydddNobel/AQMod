@@ -33,7 +33,7 @@ public class ShimmerCoinPlayer : ModPlayer {
         // Galaxy Pearl
         luck += 0.03f * ShimmerCoin.Effectiveness;
     }
-    
+
     // Arcane Crystal
     internal static void ArcaneCrystalEffectDelay(Player player) {
         player.manaRegenDelay -= 0.05f * ShimmerCoin.Effectiveness;

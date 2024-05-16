@@ -19,9 +19,7 @@ public class BossItemInstantiator : ModSystem {
 
         AddLegacyTrophy("SpaceSquid", new BasicRelicRenderer(AequusTextures.SpaceSquidRelic), LegacyBossRelicsTile.SpaceSquid);
 
-        void AddBossContent(string name, int internalRarity, bool preHardmode, IRelicRenderer relicRenderer, int legacyTrophyId = -1) {
-            AddLegacyTrophy(name, relicRenderer, legacyTrophyId);
-        }
+        void AddBossContent(string name, int internalRarity, bool preHardmode, IRelicRenderer relicRenderer, int legacyTrophyId = -1) => AddLegacyTrophy(name, relicRenderer, legacyTrophyId);
 #pragma warning restore CS0618 // Type or member is obsolete
     }
 

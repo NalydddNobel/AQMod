@@ -1,7 +1,4 @@
-﻿using Aequus.Common.Backpacks;
-using System.Collections.Generic;
-using Terraria.GameContent.Golf;
-using Terraria.Physics;
+﻿using System.Collections.Generic;
 
 namespace Aequus.Common.Golfing;
 

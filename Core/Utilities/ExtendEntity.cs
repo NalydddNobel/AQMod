@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Projectiles;
 using Aequus.Core.CrossMod;
-using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;

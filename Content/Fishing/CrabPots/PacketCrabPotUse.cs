@@ -1,8 +1,7 @@
-﻿using Aequus.Core;
-using Aequus.Core.Graphics.Animations;
-using tModLoaderExtended.Networking;
+﻿using Aequus.Core.Graphics.Animations;
 using System.IO;
 using Terraria.DataStructures;
+using tModLoaderExtended.Networking;
 
 namespace Aequus.Content.Fishing.CrabPots;
 public class PacketCrabPotUse : PacketHandler {

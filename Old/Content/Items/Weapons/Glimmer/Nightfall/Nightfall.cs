@@ -1,13 +1,13 @@
 ﻿using Aequus.Common;
 using Aequus.Content.Dusts;
-using tModLoaderExtended.Networking;
 using Aequus.DataSets;
+using Aequus.Old.Content.Items.Materials;
 using Aequus.Old.Content.Particles;
 using System;
 using System.IO;
 using Terraria.Audio;
 using Terraria.GameContent;
-using Aequus.Old.Content.Items.Materials;
+using tModLoaderExtended.Networking;
 
 namespace Aequus.Old.Content.Items.Weapons.Glimmer.Nightfall;
 

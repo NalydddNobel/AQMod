@@ -1,6 +1,6 @@
-﻿using tModLoaderExtended.Networking;
-using System;
+﻿using System;
 using System.IO;
+using tModLoaderExtended.Networking;
 
 namespace Aequus.Content.Tiles.RainTotem;
 

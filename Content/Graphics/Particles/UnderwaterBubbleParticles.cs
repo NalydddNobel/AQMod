@@ -2,7 +2,6 @@
 using Aequus.Core.Graphics;
 using Aequus.Core.Particles;
 using System;
-using tModLoaderExtended;
 
 namespace Aequus.Content.Graphics.Particles;
 
@@ -48,7 +47,7 @@ public class UnderwaterBubbleParticles : ParallelParticleArray<UnderwaterBubbleP
         catch {
 
         }
-        
+
         spriteBatch.End();
 
         spriteBatch.BeginDusts();
@@ -132,7 +131,7 @@ public class UnderwaterBubbleParticles : ParallelParticleArray<UnderwaterBubbleP
         SpriteBatch sb = Main.spriteBatch;
         GraphicsDevice g = Main.instance.GraphicsDevice;
         if (DrawHelper.BadRenderTarget(_mergeTarget, Main.screenWidth, Main.screenHeight) || DrawHelper.BadRenderTarget(_bubbleOutlineTarget, Main.screenWidth, Main.screenHeight)) {
-            try { 
+            try {
                 if (Main.IsGraphicsDeviceAvailable) {
                     _mergeTarget = new RenderTarget2D(g, Main.screenWidth, Main.screenHeight, mipMap: false, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
                     _bubbleOutlineTarget = new RenderTarget2D(g, Main.screenWidth, Main.screenHeight, mipMap: false, SurfaceFormat.Color, DepthFormat.None, 0, RenderTargetUsage.PreserveContents);
@@ -154,7 +153,7 @@ public class UnderwaterBubbleParticles : ParallelParticleArray<UnderwaterBubbleP
             DrawAll(sb, FRAME_Y_CULL_MASK, minOpacity: 1f);
             sb.End();
 
-            g.SetRenderTarget(_bubbleOutlineTarget); 
+            g.SetRenderTarget(_bubbleOutlineTarget);
             g.Clear(Color.Transparent);
 
             sb.BeginDusts();

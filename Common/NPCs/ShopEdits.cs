@@ -7,7 +7,7 @@ public class ShopEdits : GlobalNPC {
     public override void ModifyShop(NPCShop shop) {
         switch ((shop.NpcType, shop.Name)) {
             case (NPCID.Dryad, "Shop"):
-                shop.InsertAfter(ItemID.GrassSeeds, 
+                shop.InsertAfter(ItemID.GrassSeeds,
                     ModContent.GetInstance<MeadowGrass>().MeadowGrassSeeds.Type, Condition.InSpace);
 
 #if !DEBUG

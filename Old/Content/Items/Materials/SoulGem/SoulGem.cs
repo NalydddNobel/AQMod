@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Items;
-using System;
+﻿using System;
 using Terraria.Audio;
 
 namespace Aequus.Old.Content.Items.Materials.SoulGem;

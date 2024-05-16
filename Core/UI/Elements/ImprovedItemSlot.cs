@@ -42,7 +42,7 @@ public class ImprovedItemSlot : UIElement {
         }
 
         _icon = icon;
-        
+
         UpdateIcon();
     }
 

@@ -3,19 +3,18 @@ using Aequus.Content.Configuration;
 using Aequus.Content.Items.Accessories.Balloons;
 using Aequus.Content.Items.Accessories.FlashwayShield;
 using Aequus.Content.Items.Accessories.GoldenFeather;
-using Aequus.Content.Items.Accessories.ValentinesRing;
+using Aequus.Content.Items.Accessories.Informational.Calendar;
 using Aequus.Content.Items.Accessories.WeightedHorseshoe;
+using Aequus.Content.Items.Potions.Healing.Restoration;
+using Aequus.Content.Items.Tools.Bellows;
+using Aequus.Content.Items.Tools.NameTag;
 using Aequus.Content.Items.Weapons.Classless.StunGun;
 using Aequus.Content.Items.Weapons.Magic.Furystar;
 using Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
+using Aequus.Content.Mounts.HotAirBalloon;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
-using Aequus.Content.Items.Tools.Bellows;
-using Aequus.Content.Items.Tools.NameTag;
-using Aequus.Content.Items.Potions.Healing.Restoration;
-using Aequus.Content.Items.Accessories.Informational.Calendar;
-using Aequus.Content.Mounts.HotAirBalloon;
 
 namespace Aequus.Content.TownNPCs.SkyMerchant;
 

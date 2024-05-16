@@ -1,6 +1,4 @@
 ﻿using Aequus.Content.Events.DemonSiege;
-using Aequus.Core;
-using tModLoaderExtended.Networking;
 using Aequus.Old.Content.Events.DemonSiege.Spawners;
 using Aequus.Old.Content.Events.DemonSiege.Tiles;
 using System;
@@ -11,6 +9,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent.UI.Chat;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
+using tModLoaderExtended.Networking;
 
 namespace Aequus.Old.Content.Events.DemonSiege;
 

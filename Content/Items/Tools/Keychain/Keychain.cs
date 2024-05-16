@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Items.Components;
-using Aequus.Content.Items.Tools.Keychain;
 using Aequus.Core.Graphics;
 using Aequus.DataSets;
 using Newtonsoft.Json;

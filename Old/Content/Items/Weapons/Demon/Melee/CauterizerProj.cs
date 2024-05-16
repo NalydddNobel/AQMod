@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Projectiles;
-using Aequus.Old.Content.Items.Weapons.Demon;
 using System;
 using Terraria.Audio;
 

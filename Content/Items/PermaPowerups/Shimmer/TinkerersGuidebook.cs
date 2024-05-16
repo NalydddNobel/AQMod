@@ -1,7 +1,4 @@
-﻿using Aequus.Core;
-using Aequus.Core.CodeGeneration;
-
-namespace Aequus.Content.Items.PermaPowerups.Shimmer;
+﻿namespace Aequus.Content.Items.PermaPowerups.Shimmer;
 
 public class TinkerersGuidebook : ModItem {
     public static int BonusRerolls { get; set; } = 2;
@@ -28,7 +25,7 @@ public class TinkerersGuidebook : ModItem {
         if (Main.netMode == NetmodeID.Server) {
             NetMessage.SendData(MessageID.WorldData);
         }
-        
+
         WorldGen.BroadcastText(this.GetLocalization("DisplayMessage").ToNetworkText(), CommonColor.TextEvent);
         return true;
     }

@@ -39,18 +39,18 @@ public class WorldState : ModSystem {
     [SaveData("MetOccultist")]
     internal static bool _metOccultist;
 
-    public static bool DownedAquaticBoss { get => _downedAquaticBoss; }
-    public static bool DownedCosmicBoss { get => _downedCosmicBoss; }
-    public static bool DownedTrueCosmicBoss { get => _downedTrueCosmicBoss; }
-    public static bool DownedDemonBoss { get => _downedDemonBoss; }
-    public static bool DownedTrueDemonBoss { get => _downedTrueDemonBoss; }
-    public static bool DownedAtmoBossFlame { get => _downedAtmoBossFlame; }
-    public static bool DownedAtmoBossFrost { get => _downedAtmoBossFrost; }
-    public static bool DownedTrueAtmoBoss { get => _downedTrueAtmoBoss; }
-    public static bool DownedOrganicBossMight { get => _downedOrganicBossMight; }
-    public static bool DownedOrganicBossSight { get => _downedOrganicBossSight; }
-    public static bool DownedOrganicBossFright { get => _downedOrganicBossFright; }
-    public static bool DownedTrueFinalBoss { get => _downedTrueFinalBoss; }
+    public static bool DownedAquaticBoss => _downedAquaticBoss;
+    public static bool DownedCosmicBoss => _downedCosmicBoss;
+    public static bool DownedTrueCosmicBoss => _downedTrueCosmicBoss;
+    public static bool DownedDemonBoss => _downedDemonBoss;
+    public static bool DownedTrueDemonBoss => _downedTrueDemonBoss;
+    public static bool DownedAtmoBossFlame => _downedAtmoBossFlame;
+    public static bool DownedAtmoBossFrost => _downedAtmoBossFrost;
+    public static bool DownedTrueAtmoBoss => _downedTrueAtmoBoss;
+    public static bool DownedOrganicBossMight => _downedOrganicBossMight;
+    public static bool DownedOrganicBossSight => _downedOrganicBossSight;
+    public static bool DownedOrganicBossFright => _downedOrganicBossFright;
+    public static bool DownedTrueFinalBoss => _downedTrueFinalBoss;
 
     [SaveData("ReforgeBook")]
     public static bool UsedReforgeBook;

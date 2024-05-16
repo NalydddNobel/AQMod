@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using Terraria.GameContent;
 
 namespace Aequus.Content.Items.Weapons.Classless.StunGun;

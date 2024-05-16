@@ -1,7 +1,5 @@
 ﻿using Aequus.Content.Items.Weapons.Classless.StunGun;
 using Aequus.Core.CodeGeneration;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace Aequus.Common.NPCs;
 

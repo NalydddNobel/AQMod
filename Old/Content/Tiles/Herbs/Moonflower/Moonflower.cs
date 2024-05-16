@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Tiles;
-using Aequus.Core.Graphics.Tiles;
+﻿using Aequus.Core.Graphics.Tiles;
 using Aequus.Old.Content.Items.Potions.Prefixes.StuffedPotions;
 using System;
 using Terraria.Audio;

@@ -1,7 +1,7 @@
 ﻿using Aequus.Common;
-using tModLoaderExtended.GlowMasks;
-using Terraria.DataStructures;
 using Aequus.Old.Content.Items.Materials;
+using Terraria.DataStructures;
+using tModLoaderExtended.GlowMasks;
 
 namespace Aequus.Old.Content.Items.Weapons.Glimmer.StariteMinion;
 

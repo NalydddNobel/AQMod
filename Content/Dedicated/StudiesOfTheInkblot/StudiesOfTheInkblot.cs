@@ -87,7 +87,7 @@ public class StudiesOfTheInkblot : ModItem {
                 Main.projectile[p].localAI[0] = 1.5f;
                 Main.projectile[p].frame = alternateColors ? 1 : 5;
             }
-            
+
             if (alternateColors && aequus.TryGetTimer(ALTERNATE_COLORS_TIMER, out var timer)) {
                 timer.TimePassed = timer.MaxTime - 1;
             }
