@@ -142,7 +142,7 @@ public class UnifiedBuriedChest : UnifiedModChest {
 
             if (player.ConsumeItem(_parent._info.Key.GetId())) {
                 if (Main.netMode == NetmodeID.MultiplayerClient) {
-                    Aequus.GetPacket<UnlockBuriedChestPacket>().Send(i, j, Main.myPlayer);
+                    ExtendedMod.GetPacket<UnlockBuriedChestPacket>().Send(i, j, Main.myPlayer);
                 }
                 else {
                     UnlockBuriedChest(i, j);

@@ -2,6 +2,7 @@
 using Aequus.Core.Graphics;
 using Aequus.Core.Particles;
 using System;
+using tModLoaderExtended;
 
 namespace Aequus.Content.Graphics.Particles;
 
@@ -18,7 +19,7 @@ public class UnderwaterBubbleParticles : ParallelParticleArray<UnderwaterBubbleP
 
     public override int ParticleCount => 100;
 
-    public static bool AllowMergeDrawing => Aequus.HighQualityEffects;
+    public static bool AllowMergeDrawing => ExtendedMod.HighQualityEffects;
 
     public override void Draw(SpriteBatch spriteBatch) {
         if (!AllowMergeDrawing) {

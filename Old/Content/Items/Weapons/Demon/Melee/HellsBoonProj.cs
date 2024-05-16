@@ -94,7 +94,7 @@ public class HellsBoonProj : ModProjectile {
             drawData.scale.Y += (Projectile.ai[0] - 42f) / 66f;
         }
 
-        //if (Aequus.highQualityEffects) {
+        //if (ExtendedMod.HighQualityEffects) {
         //    Main.spriteBatch.End();
         //    Main.spriteBatch.BeginWorld(shader: true);
         //    var effect = SpikeFade.ShaderData;

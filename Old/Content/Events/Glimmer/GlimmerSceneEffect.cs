@@ -125,7 +125,7 @@ public class GlimmerSceneEffect : ModSceneEffect {
                 Main.SmartCursorY = 0;
             }
             var mouseWorld = mouseScreen + Main.screenPosition;
-            if (!NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>()) && Aequus.GameWorldActive && Main.LocalPlayer.IsInTileInteractionRange((int)mouseWorld.X / 16, (int)mouseWorld.Y / 16, TileReachCheckSettings.Simple)) {
+            if (!NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>()) && ExtendedMod.GameWorldActive && Main.LocalPlayer.IsInTileInteractionRange((int)mouseWorld.X / 16, (int)mouseWorld.Y / 16, TileReachCheckSettings.Simple)) {
                 var plr = Main.LocalPlayer;
                 plr.noThrow = 2;
                 plr.cursorItemIconEnabled = true;

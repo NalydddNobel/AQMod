@@ -6,6 +6,7 @@ using System.IO;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using tModLoaderExtended;
 using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Content.Tiles.Conductive;
@@ -105,7 +106,7 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
         if (Main.netMode == NetmodeID.Server) {
             var originalPoweredLocation = ConductiveSystem.PoweredLocation;
             ConductiveSystem.PoweredLocation = origin;
-            Aequus.GetPacket<TileInteractionPacket>().Send(i, j);
+            ExtendedMod.GetPacket<TileInteractionPacket>().Send(i, j);
             ConductiveSystem.PoweredLocation = originalPoweredLocation;
         }
         else if (Main.netMode == NetmodeID.SinglePlayer) {
@@ -128,14 +129,14 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
             Main.spriteBatch.Draw(TextureAssets.Tile[Type].Value, (drawCoordinates + ConductiveSystem.ElectricOffsets[k] * effect.electricAnimation).Floor(), frame, electricColor * 0.5f * globalIntensity, 0f, new Vector2(8f), 1f, SpriteEffects.None, 0f);
         }
 
-        if (Aequus.GameWorldActive && effect.electricAnimation > 0.1f && Main.rand.NextBool(10)) {
+        if (ExtendedMod.GameWorldActive && effect.electricAnimation > 0.1f && Main.rand.NextBool(10)) {
             var d = Terraria.Dust.NewDustDirect(new Vector2(i * 16f, j * 16f), 16, 16, DustID.MartianSaucerSpark, Alpha: 0, Scale: Main.rand.NextFloat(0.8f, 1.8f));
             d.rotation = 0f;
             //d.fadeIn = d.scale + 0.4f;
             d.noGravity = true;
         }
 
-        if (!Aequus.HighQualityEffects) {
+        if (!ExtendedMod.HighQualityEffects) {
             return;
         }
 

@@ -23,7 +23,7 @@ public class ChestPopulator : ISetupContent {
 
 #if !DEBUG
         ChestLootDatabase.Instance.RegisterIndexed(ChestPool.Dungeon, [
-            new CommonChestRule(ModContent.ItemType<Aequus.Old.Content.Items.Weapons.Melee.Valari.Valari>())
+            new CommonChestRule(ModContent.ItemType<Old.Content.Items.Weapons.Melee.Valari.Valari>())
         ]);
 #endif
     }

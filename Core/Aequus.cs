@@ -1,9 +1,11 @@
+global using Aequus.Core;
 global using Aequus.Core.Utilities;
 global using Microsoft.Xna.Framework;
 global using Microsoft.Xna.Framework.Graphics;
 global using Terraria;
 global using Terraria.ID;
 global using Terraria.ModLoader;
+global using tModLoaderExtended;
 
 #region Aliases
 global using BestiaryTimeTag = Terraria.GameContent.Bestiary.BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times;
@@ -36,9 +38,8 @@ global using HairSets = Terraria.ID.HairID.Sets;
 
 using Terraria.Localization;
 using Terraria.Utilities;
-using tModLoaderExtended;
 
-namespace Aequus.Core;
+namespace Aequus;
 
 public partial class Aequus : ExtendedMod {
     public static new Mod Instance => ExtendedMod.Instance;

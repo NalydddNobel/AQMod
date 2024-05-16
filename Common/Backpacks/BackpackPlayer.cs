@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Terraria.ModLoader.IO;
+using tModLoaderExtended;
 
 namespace Aequus.Common.Backpacks;
 
@@ -47,7 +48,7 @@ public class BackpackPlayer : ModPlayer {
     public override void SyncPlayer(int toWho, int fromWho, bool newPlayer) {
         if (newPlayer) {
             for (int i = 0; i < backpacks.Length; i++) {
-                Aequus.GetPacket<BackpackPlayerSyncPacket>().Send(Player, backpacks[i], toWho, fromWho);
+                ExtendedMod.GetPacket<BackpackPlayerSyncPacket>().Send(Player, backpacks[i], toWho, fromWho);
             }
         }
     }

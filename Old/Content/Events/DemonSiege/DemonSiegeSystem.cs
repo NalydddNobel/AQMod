@@ -52,7 +52,7 @@ public class DemonSiegeSystem : ModSystem {
         foreach (var p in SacrificeRemovalQueue) {
             ActiveSacrifices.Remove(p);
             if (Main.netMode != NetmodeID.SinglePlayer) {
-                Aequus.GetPacket<RemoveDemonSiegePacket>().Send(p.X, p.Y);
+                ExtendedMod.GetPacket<RemoveDemonSiegePacket>().Send(p.X, p.Y);
             }
         }
         SacrificeRemovalQueue.Clear();
@@ -121,7 +121,7 @@ public class DemonSiegeSystem : ModSystem {
         };
         s.Items.Add(sacrifice);
         if (Main.netMode != NetmodeID.SinglePlayer) {
-            Aequus.GetPacket<StartDemonSiegePacket>().Send(x, y, player, sacrifice);
+            ExtendedMod.GetPacket<StartDemonSiegePacket>().Send(x, y, player, sacrifice);
         }
         if (player != 255) {
             s.OnPlayerActivate(Main.player[player]);

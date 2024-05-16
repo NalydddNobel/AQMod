@@ -25,6 +25,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Utilities;
+using tModLoaderExtended;
 
 namespace Aequus.Old.Content.Bosses.Cosmic.OmegaStarite;
 
@@ -1150,7 +1151,7 @@ public class OmegaStarite : LegacyAequusBoss {
         var spotlightColor = Main.tenthAnniversaryWorld ? Color.DeepPink with { A = 0 } * 0.5f : new Color(100, 100, 255, 0);
         var drawOmegite = new List<DrawDelegate>();
         drawColor = NPC.GetNPCColorTintedByBuffs(drawColor);
-        if (Aequus.HighQualityEffects) {
+        if (ExtendedMod.HighQualityEffects) {
             drawOmegite.Add(delegate (Texture2D texture1, Vector2 position, Rectangle? frame1, Color color, float scale, Vector2 origin1, float rotation, SpriteEffects effects, float layerDepth) {
                 spriteBatch.Draw(spotlight, position, null, spotlightColor, rotation, spotlightOrig, scale * 1.33f, SpriteEffects.None, 0f);
             });

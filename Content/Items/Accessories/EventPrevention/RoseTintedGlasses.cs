@@ -16,7 +16,7 @@ public class RoseTintedGlasses : ModItem {
 #if !DEBUG
         CreateRecipe()
             .AddIngredient(ItemID.BlackLens)
-            .AddIngredient<Aequus.Old.Content.Items.Materials.BloodyTearstone>(5)
+            .AddIngredient<Old.Content.Items.Materials.BloodyTearstone>(5)
             .AddTile(TileID.Anvils)
             .Register();
 #endif

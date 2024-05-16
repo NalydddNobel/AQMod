@@ -4,6 +4,7 @@ using System;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.UI;
+using tModLoaderExtended;
 
 namespace Aequus.Old.Content.TownNPCs.PhysicistNPC;
 
@@ -24,7 +25,7 @@ public partial class Physicist {
         if (!questPlayer.quest.isValid && questPlayer.timeForNextQuest == 0 && questPlayer.questResetTime <= 0) {
             questPlayer.quest = default;
             if (Main.netMode == NetmodeID.MultiplayerClient) {
-                Aequus.GetPacket<PacketRequestNewAnalysisQuest>().Send(player);
+                ExtendedMod.GetPacket<PacketRequestNewAnalysisQuest>().Send(player);
             }
             else {
                 questPlayer.RefreshQuest(questPlayer.completed);

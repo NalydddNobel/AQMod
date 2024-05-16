@@ -73,19 +73,21 @@ public class RainTotem : RainTotemTileTemplate {
         DropItem = new InstancedTileItem(this, rarity: ItemRarityID.Blue, value: Item.silver, researchSacrificeCount: 3);
         Mod.AddContent(DropItem);
 
-        Aequus.OnAddRecipes += () => {
+        Aequus.OnAddRecipes += AddRecipes;
+
+        void AddRecipes() {
             DropItem.CreateRecipe()
                 .AddIngredient(ItemID.BambooBlock, 30)
                 .AddIngredient(ItemID.RainCloud, 10)
-#if DEBUG
-                .AddIngredient(ItemID.FallenStar)
-#else
-                .AddIngredient(Aequus.Old.Content.Items.Materials.Energies.EnergyMaterial.Aquatic.Type)
-#endif
+            #if DEBUG
+                            .AddIngredient(ItemID.FallenStar)
+            #else
+                .AddIngredient(Old.Content.Items.Materials.Energies.EnergyMaterial.Aquatic.Type)
+            #endif
                 .AddTile(TileID.Sawmill)
                 .Register()
                 .SortBeforeFirstRecipesOf(ItemID.GoblinBattleStandard);
-        };
+        }
     }
 
     public override void Unload() {

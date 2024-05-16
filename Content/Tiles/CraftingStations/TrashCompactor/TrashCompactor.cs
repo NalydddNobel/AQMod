@@ -13,6 +13,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ObjectData;
+using tModLoaderExtended;
 
 namespace Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 
@@ -123,7 +124,7 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction
 
         i -= Main.tile[i, j].TileFrameX / 18;
         j -= Main.tile[i, j].TileFrameY / 18;
-        if (Aequus.GameWorldActive && player.itemAnimation == player.itemAnimationMax - 2) {
+        if (ExtendedMod.GameWorldActive && player.itemAnimation == player.itemAnimationMax - 2) {
             UseExtractinator(i, j, heldItem, recipeResults, player);
             Recipe.FindRecipes();
         }

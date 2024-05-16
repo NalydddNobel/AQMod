@@ -21,6 +21,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Utilities;
+using tModLoaderExtended;
 
 namespace Aequus.Old.Content.Bosses.Cosmic.UltraStarite;
 
@@ -500,7 +501,7 @@ public class UltraStarite : ModNPC {
                     float rotation = NPC.oldRot[i] + MathHelper.TwoPi / 5f * j;
                     var armPos = NPC.position + offset + (rotation - MathHelper.PiOver2).ToRotationVector2() * (armLength + oldArmsLength[i]) - screenPos;
                     armPositions[j].Add(armPos + screenPos);
-                    if (Aequus.GameWorldActive && !NPC.IsABestiaryIconDummy && NPC.ai[1] < 125f && Main.rand.NextBool(2 + i * 15)) {
+                    if (ExtendedMod.GameWorldActive && !NPC.IsABestiaryIconDummy && NPC.ai[1] < 125f && Main.rand.NextBool(2 + i * 15)) {
                         float scale = Main.rand.NextFloat(0.4f, 1.5f);
                         var p = ModContent.GetInstance<LegacyBloomParticle>().New();
                         p.Location = armPos + Main.screenPosition + Main.rand.NextVector2Unit() * 30f;

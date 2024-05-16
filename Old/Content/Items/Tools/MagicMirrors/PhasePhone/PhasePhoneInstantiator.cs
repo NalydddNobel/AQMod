@@ -53,7 +53,7 @@ public class PhasePhoneInstantiator : ModSystem {
     public override void AddRecipes() {
         Recipe.Create(PhasePhone.Type)
             .AddRecipeGroup(AequusRecipes.Shellphone)
-            .AddIngredient<Aequus.Old.Content.Items.Tools.MagicMirrors.PhaseMirror.PhaseMirror>()
+            .AddIngredient<Old.Content.Items.Tools.MagicMirrors.PhaseMirror.PhaseMirror>()
             .AddTile(TileID.TinkerersWorkbench)
             .Register();
     }

@@ -9,7 +9,7 @@ using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices;
 using Terraria.Social.WeGame;
 
-namespace Aequus.Core;
+namespace Aequus;
 
 // Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls for more info.
 

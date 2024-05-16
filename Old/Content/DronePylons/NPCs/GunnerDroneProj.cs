@@ -1,5 +1,6 @@
 ﻿using Aequus.Content.Dusts;
 using System;
+using tModLoaderExtended;
 
 namespace Aequus.Old.Content.DronePylons.NPCs;
 
@@ -98,7 +99,7 @@ public class GunnerDroneProj : ModProjectile {
         for (int i = 0; i < indices.Length; i++) {
             Main.ReverseGravitySupport(indices[i]);
         }
-        int amount = (int)(5 * (Aequus.HighQualityEffects ? 1f : 0.5f));
+        int amount = (int)(5 * (ExtendedMod.HighQualityEffects ? 1f : 0.5f));
 
         float[] rotations = Helper.GenerateRotationArr(indices);
         Color laserColor = townDrone.GetPylonColor() with { A = 100 } * MathF.Pow(Projectile.Opacity, 2f);

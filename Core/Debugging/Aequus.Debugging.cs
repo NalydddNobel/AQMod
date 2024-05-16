@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core;
+﻿namespace Aequus;
 
 partial class Aequus {
     internal const bool DEBUG_MODE =

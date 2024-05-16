@@ -113,7 +113,7 @@ public class DemonSiegeSacrificeInfo {
         if (Main.netMode != NetmodeID.SinglePlayer) {
             NetUpdate++;
             if (NetUpdate > 120 && Main.netMode == NetmodeID.Server) {
-                Aequus.GetPacket<DemonSiegeStatusPacket>().Send(this);
+                ExtendedMod.GetPacket<DemonSiegeStatusPacket>().Send(this);
                 NetUpdate = 0;
             }
             // Timeout
@@ -144,7 +144,7 @@ public class DemonSiegeSacrificeInfo {
     public void InnerUpdate_OnStart() {
         TimeLeftMax = TimeLeft = DetermineLength();
         if (Main.netMode == NetmodeID.Server) {
-            Aequus.GetPacket<DemonSiegeStatusPacket>().Send(this);
+            ExtendedMod.GetPacket<DemonSiegeStatusPacket>().Send(this);
         }
 
         if (Main.netMode != NetmodeID.Server && player != 255) {

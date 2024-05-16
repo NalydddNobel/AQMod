@@ -4,6 +4,7 @@ using Aequus.Core.Initialization;
 using System;
 using Terraria.Enums;
 using Terraria.ObjectData;
+using tModLoaderExtended;
 
 namespace Aequus.Content.Fishing.CrabPots;
 
@@ -41,7 +42,7 @@ public class ObsidianCrabPot : UnifiedCrabPot {
     }
 
     protected override void CustomPreDraw(int x, int y, int waterYOffset, SpriteBatch spriteBatch, TECrabPot crabPot) {
-        if (!crabPot.item.IsAir && Aequus.GameWorldActive) {
+        if (!crabPot.item.IsAir && ExtendedMod.GameWorldActive) {
             var d = Terraria.Dust.NewDustPerfect(new Vector2(x + 0.5f, y - 1.4f).ToWorldCoordinates(), crabPot.caught ? DustID.Frost : DustID.Torch, Scale: 2f);
             d.noGravity = true;
             d.velocity.X *= 0.1f;

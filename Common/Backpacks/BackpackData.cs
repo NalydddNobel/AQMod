@@ -4,6 +4,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.Events;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
+using tModLoaderExtended;
 
 namespace Aequus.Common.Backpacks;
 
@@ -220,7 +221,7 @@ public abstract class BackpackData : ModType, ILocalizedModType {
         bool returnValue = false;
         for (int i = 0; i < Inventory.Length; i++) {
             if (Inventory[i] != null && cloneBackpack.Inventory[i] != null && Inventory[i].IsNetStateDifferent(cloneBackpack.Inventory[i])) {
-                Aequus.GetPacket<BackpackPlayerSyncPacket>().SendSingleItem(player, this, i);
+                ExtendedMod.GetPacket<BackpackPlayerSyncPacket>().SendSingleItem(player, this, i);
                 returnValue |= true;
             }
         }

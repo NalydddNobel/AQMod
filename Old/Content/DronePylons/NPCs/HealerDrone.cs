@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using Terraria.Audio;
 using Terraria.Graphics.Shaders;
+using tModLoaderExtended;
 
 namespace Aequus.Old.Content.DronePylons.NPCs;
 
@@ -280,7 +281,7 @@ public class HealerDrone : TownDroneBase {
             {
                 startPos,
             };
-        int amt = Aequus.HighQualityEffects ? 20 : 7;
+        int amt = ExtendedMod.HighQualityEffects ? 20 : 7;
         if (difference.Length() < 300f) {
             amt = 0;
         }

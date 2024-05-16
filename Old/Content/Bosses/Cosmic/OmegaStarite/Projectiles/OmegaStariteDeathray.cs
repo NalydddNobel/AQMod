@@ -3,6 +3,7 @@ using Aequus.Old.Content.Events.Glimmer;
 using System;
 using System.IO;
 using Terraria.GameContent;
+using tModLoaderExtended;
 
 namespace Aequus.Old.Content.Bosses.Cosmic.OmegaStarite.Projectiles;
 
@@ -91,7 +92,7 @@ public class OmegaStariteDeathray : ModProjectile {
             Main.spriteBatch.Draw(texture, basePosition2, frame2, drawColor, rotation, origin2, new Vector2(progress * baseScale, length), SpriteEffects.None, 0f);
         }
 
-        if (Aequus.GameWorldActive) {
+        if (ExtendedMod.GameWorldActive) {
             return false;
         }
 

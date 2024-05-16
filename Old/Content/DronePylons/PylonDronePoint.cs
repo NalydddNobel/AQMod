@@ -271,7 +271,7 @@ public class PylonDronePoint : TagSerializable {
             return;
         }
 
-        Aequus.GetPacket<SyncDronePointPacket>().Send(this);
+        ExtendedMod.GetPacket<SyncDronePointPacket>().Send(this);
     }
 
     public void WriteData(BinaryWriter p) {

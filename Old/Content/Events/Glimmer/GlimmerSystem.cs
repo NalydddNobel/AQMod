@@ -92,7 +92,7 @@ public class GlimmerSystem : ModSystem {
 
     public static bool BeginEvent() {
         if (Main.netMode == NetmodeID.MultiplayerClient) {
-            Aequus.GetPacket<RequestRandomGlimmerEventPacket>().Send();
+            ExtendedMod.GetPacket<RequestRandomGlimmerEventPacket>().Send();
             return false;
         }
 
@@ -268,7 +268,7 @@ public class GlimmerSystem : ModSystem {
     }
 
     public static void SendGlimmerStatus() {
-        Aequus.GetPacket<GlimmerEventLocationPacket>().Send();
+        ExtendedMod.GetPacket<GlimmerEventLocationPacket>().Send();
     }
 
     public static void ReadGlimmerStatus(BinaryReader r) {

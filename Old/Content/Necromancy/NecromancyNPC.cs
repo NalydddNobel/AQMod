@@ -180,7 +180,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
                 info.SetZombieNPCInfo(npc, zombie);
                 zombie.ApplyStaticStats(npc);
                 if (Main.netMode != NetmodeID.SinglePlayer) {
-                    Aequus.GetPacket<SyncNecromancyOwnerPacket>().Send(npc.whoAmI, info.Player);
+                    ExtendedMod.GetPacket<SyncNecromancyOwnerPacket>().Send(npc.whoAmI, info.Player);
                 }
             }
         }
@@ -581,7 +581,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
             SpawnZombie_SetZombieStats(Main.npc[n], npc.Center, npc.velocity, npc.direction, npc.spriteDirection, out bool playSound);
             if (playSound) {
                 if (Main.netMode == NetmodeID.Server) {
-                    Aequus.GetPacket<ZombieConvertEffectsPacket>().Send(npc, zombieOwner, renderLayer);
+                    ExtendedMod.GetPacket<ZombieConvertEffectsPacket>().Send(npc, zombieOwner, renderLayer);
                 }
                 else {
                     ConvertEffects(npc.position, npc.width, npc.height, zombieOwner, renderLayer);
@@ -777,7 +777,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
 
     public static void Sync(NPC npc) {
         if (Main.netMode != NetmodeID.SinglePlayer) {
-            Aequus.GetPacket<SyncNecromancyNPCPacket>().Send(npc);
+            ExtendedMod.GetPacket<SyncNecromancyNPCPacket>().Send(npc);
         }
     }
     public static void Sync(int npc) {

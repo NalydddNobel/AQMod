@@ -46,7 +46,7 @@ public class StellarGlasses : ModItem {
 #if !DEBUG
         CreateRecipe()
             .AddIngredient(ItemID.BlackLens)
-            .AddIngredient<Aequus.Old.Content.Items.Materials.StariteMaterial>(5)
+            .AddIngredient<Old.Content.Items.Materials.StariteMaterial>(5)
             .AddTile(TileID.Anvils)
             .Register();
 #endif

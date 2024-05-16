@@ -8,6 +8,7 @@ using System.Linq;
 using Terraria.DataStructures;
 using Terraria.GameContent.UI;
 using Terraria.Localization;
+using tModLoaderExtended;
 
 namespace Aequus.Old.Content.TownNPCs.OccultistNPC;
 
@@ -149,7 +150,7 @@ public class OccultistHostile : Occultist {
         }
 
         if (Main.netMode == NetmodeID.MultiplayerClient) {
-            Aequus.GetPacket<OccultistRitualPacket>().Send(x, y, plr);
+            ExtendedMod.GetPacket<OccultistRitualPacket>().Send(x, y, plr);
         }
         else {
             int spawnX = (x + 1) * 16 + 8;

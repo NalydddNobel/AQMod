@@ -1,6 +1,7 @@
 ﻿using Aequus.Old.Common.Projectiles;
 using System;
 using System.Collections.Generic;
+using tModLoaderExtended;
 
 namespace Aequus.Old.Content.Bosses.Cosmic.UltraStarite.Projectiles;
 public class UltraStariteDeathray : EnemyAttachedProjBase {
@@ -84,7 +85,7 @@ public class UltraStariteDeathray : EnemyAttachedProjBase {
         //}
 
         var smokeLineColor = drawColor * ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 12f) + 2f);
-        int amount = (int)(50 * (Aequus.HighQualityEffects ? 1f : 0.5f));
+        int amount = (int)(50 * (ExtendedMod.HighQualityEffects ? 1f : 0.5f));
         var center = Projectile.Center;
 
         DrawHelper.DrawBasicVertexLine(AequusTextures.Trail2, arr, rotations,

@@ -48,7 +48,7 @@ public class PotsUI : UILayer {
             Main.spriteBatch.Draw(preview.Texture, drawCoordinates + itemWobbleOffset, frame, preview.NPCColor * 0.75f * opacity * pulseScale * preview.Opacity, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
         }
 
-        int sparkleCount = Aequus.HighQualityEffects ? 6 : 3;
+        int sparkleCount = ExtendedMod.HighQualityEffects ? 6 : 3;
         var sparkleColor = preview.Dangerous ? Color.Red : Color.Orange;
         for (int i = 0; i < sparkleCount; i++) {
             float timer = seed + (i * (seed + 500) + Main.GlobalTimeWrappedHourly * 1.1f) + i / (float)sparkleCount;

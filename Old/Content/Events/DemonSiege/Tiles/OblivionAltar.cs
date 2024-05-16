@@ -89,7 +89,7 @@ public class OblivionAltar : ModTile, ISpecialTileRenderer {
         else if (DemonSiegeSystem.ActiveSacrifices.TryGetValue(topLeft, out var sacrifice)) {
             sacrifice.PreStart = Math.Min(sacrifice.PreStart, 60);
             if (Main.netMode != NetmodeID.SinglePlayer) {
-                Aequus.GetPacket<DemonSiegeSacrificeInfo.DemonSiegeStatusPacket>().Send(sacrifice);
+                ExtendedMod.GetPacket<DemonSiegeSacrificeInfo.DemonSiegeStatusPacket>().Send(sacrifice);
             }
         }
         return true;
@@ -157,7 +157,7 @@ public class OblivionAltar : ModTile, ISpecialTileRenderer {
 
     // TODO -- Make this spawn dust in time intervals rather than draw ticks
     public static void InnerDrawPorter_DoDust(Vector2 where, DemonSiegeSacrificeInfo invasion) {
-        if (Aequus.GameWorldActive) {
+        if (ExtendedMod.GameWorldActive) {
             if (invasion.PreStart > 0) {
                 if (invasion.PreStart < 75) {
                     var d = Dust.NewDustPerfect(where + Main.rand.NextVector2Unit() * Main.rand.NextFloat(40f, 80f), DustID.SilverFlame,

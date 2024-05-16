@@ -63,7 +63,7 @@ public sealed class DropsGlobalNPC : GlobalNPC {
         nearestPlayer.GetModPlayer<AequusPlayer>().OnKillNPC(in killInfo);
 
         if (Main.netMode == NetmodeID.Server) {
-            Aequus.GetPacket<OnKillPacket>().Send(nearestPlayer, killInfo);
+            ExtendedMod.GetPacket<OnKillPacket>().Send(nearestPlayer, killInfo);
         }
     }
 
