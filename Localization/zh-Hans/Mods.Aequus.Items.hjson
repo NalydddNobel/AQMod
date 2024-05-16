@@ -50,6 +50,15 @@ ValentineRing: {
 	BuffDescription2: 你受到了{0}的强化!
 }
 
+HyperCrystal: {
+	DisplayName: 超晶体
+	Tooltip: 
+		'''
+		攻击时会向敌人发射强大的晶体
+		晶体会在超出范围时碎裂
+		'''
+}
+
 GrandReward: {
 	DisplayName: 豪华奖励
 	Tooltip:
@@ -1101,9 +1110,4 @@ UnopenedChestItem: {
 StariteStaff: {
 	DisplayName: 源星法杖
 	Tooltip: ""
-}
-
-HyperCrystal: {
-	// DisplayName: Hyper Crystal
-	// Tooltip: ""
 }
