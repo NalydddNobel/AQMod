@@ -18,7 +18,7 @@ using Terraria.Utilities;
 
 namespace Aequus.Old.Content.Enemies.Glimmer.Super;
 
-[ModBiomes(typeof(GlimmerZone))]
+[BestiaryBiome<GlimmerZone>()]
 [AutoloadBanner]
 public class SuperStarite : ModNPC, ITrackTimeBetweenHits {
     public override void SetStaticDefaults() {

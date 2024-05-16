@@ -9,7 +9,8 @@ using Terraria.GameContent.ItemDropRules;
 namespace Aequus.Content.Enemies.PollutedOcean.OilSlime;
 
 [AutoloadBanner]
-[ModBiomes(typeof(PollutedOceanBiomeSurface), typeof(PollutedOceanBiomeUnderground))]
+[BestiaryBiome<PollutedOceanBiomeSurface>()]
+[BestiaryBiome<PollutedOceanBiomeUnderground>()]
 public class OilSlime : ModNPC {
     public static int ItemSpawnChance { get; set; } = 7;
 

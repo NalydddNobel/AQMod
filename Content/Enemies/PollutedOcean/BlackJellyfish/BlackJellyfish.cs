@@ -13,7 +13,7 @@ using Terraria.GameContent.Shaders;
 namespace Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
 
 [AutoloadBanner]
-[ModBiomes(typeof(PollutedOceanBiomeUnderground))]
+[BestiaryBiome<PollutedOceanBiomeUnderground>()]
 public partial class BlackJellyfish : AIJellyfish {
     public static int AttackRange => 60;
 

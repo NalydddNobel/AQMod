@@ -8,7 +8,8 @@ using Terraria.GameContent;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Eel;
 
-[ModBiomes(typeof(PollutedOceanBiomeSurface), typeof(PollutedOceanBiomeUnderground))]
+[BestiaryBiome<PollutedOceanBiomeSurface>()]
+[BestiaryBiome<PollutedOceanBiomeUnderground>()]
 internal class Eel : ModNPC {
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = 3;

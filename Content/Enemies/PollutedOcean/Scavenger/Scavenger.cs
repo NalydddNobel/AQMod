@@ -20,7 +20,7 @@ namespace Aequus.Content.Enemies.PollutedOcean.Scavenger;
 
 [AutoloadBanner]
 [AutoloadStatue]
-[ModBiomes(typeof(PollutedOceanBiomeUnderground))]
+[BestiaryBiome<PollutedOceanBiomeUnderground>()]
 public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateItemDropDatabase {
     public const int SLOT_HEAD = 0;
     public const int SLOT_BODY = 1;

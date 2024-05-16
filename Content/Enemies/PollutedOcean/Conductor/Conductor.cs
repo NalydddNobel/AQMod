@@ -7,7 +7,7 @@ using Terraria.Audio;
 namespace Aequus.Content.Enemies.PollutedOcean.Conductor;
 
 [AutoloadBanner]
-[ModBiomes(typeof(PollutedOceanBiomeUnderground))]
+[BestiaryBiome<PollutedOceanBiomeUnderground>()]
 public partial class Conductor : ModNPC {
     #region States
     /// <summary>Targetting state. The conductor walks towards the player and activates his attack here.</summary>

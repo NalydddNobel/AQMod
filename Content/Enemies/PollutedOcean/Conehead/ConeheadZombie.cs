@@ -27,7 +27,7 @@ public class ConeheadZombieLoader : ILoad {
     public void Unload() { }
 }
 
-[ModBiomes(typeof(PollutedOceanBiomeSurface))]
+[BestiaryBiome<PollutedOceanBiomeSurface>()]
 internal class InstancedConeheadZombie : InstancedModNPC, IPostPopulateItemDropDatabase {
     private readonly int _zombieClone;
 

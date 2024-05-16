@@ -9,7 +9,7 @@ using Terraria.GameContent.Bestiary;
 namespace Aequus.Old.Content.Critters;
 
 [AutoloadCatchItem]
-[ModBiomes(typeof(GlimmerZone))]
+[BestiaryBiome<GlimmerZone>()]
 [LegacyName("DwarfStariteCritter")]
 public class DwarfStarite : ModNPC {
     public float rotationSpeed;

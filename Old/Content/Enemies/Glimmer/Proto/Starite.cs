@@ -19,7 +19,7 @@ using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Old.Content.Enemies.Glimmer.Proto;
 
-[ModBiomes(typeof(GlimmerZone))]
+[BestiaryBiome<GlimmerZone>()]
 [AutoloadBanner]
 public class Starite : ModNPC, ITrackTimeBetweenHits {
     public bool fallenStar;

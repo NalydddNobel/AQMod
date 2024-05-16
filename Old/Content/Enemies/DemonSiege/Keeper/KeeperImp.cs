@@ -12,7 +12,7 @@ using Terraria.GameContent.ItemDropRules;
 namespace Aequus.Old.Content.Enemies.DemonSiege.Keeper;
 
 [AutoloadBanner(legacyId: 9)]
-[ModBiomes(typeof(DemonSiegeZone))]
+[BestiaryBiome<DemonSiegeZone>()]
 public class KeeperImp : ModNPC {
     public const int TAIL_FRAME_COUNT = 15;
     public const int WING_FRAME_COUNT = 1;

@@ -23,7 +23,7 @@ using Terraria.Utilities;
 
 namespace Aequus.Old.Content.Bosses.Cosmic.UltraStarite;
 
-[ModBiomes(typeof(GlimmerZone))]
+[BestiaryBiome<GlimmerZone>()]
 [AutoloadBossHead]
 [AutoloadTrophies(LegacyBossTrophiesTile.UltraStarite)]
 public class UltraStarite : ModNPC {

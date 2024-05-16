@@ -14,7 +14,7 @@ namespace Aequus.Old.Content.Enemies.DemonSiege.CinderBat;
 
 [LegacyName("Cindera")]
 [AutoloadBanner(legacyId: 7)]
-[ModBiomes(typeof(DemonSiegeZone))]
+[BestiaryBiome<DemonSiegeZone>()]
 public class CinderBat : LegacyAIBat {
     public const int FRAME_FLY_0 = 0;
     public const int FRAME_FLY_1 = 1;

@@ -19,7 +19,7 @@ using Terraria.Utilities;
 
 namespace Aequus.Old.Content.Enemies.Glimmer.Hyper;
 
-[ModBiomes(typeof(GlimmerZone))]
+[BestiaryBiome<GlimmerZone>()]
 [AutoloadBanner]
 public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
     public const int STATE_ARMS_IN = 4;

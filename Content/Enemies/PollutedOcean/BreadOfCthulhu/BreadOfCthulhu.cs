@@ -12,7 +12,8 @@ using Terraria.GameContent.ItemDropRules;
 namespace Aequus.Content.Enemies.PollutedOcean.BreadOfCthulhu;
 
 [AutoloadBanner]
-[ModBiomes(typeof(PollutedOceanBiomeSurface), typeof(PollutedOceanBiomeUnderground))]
+[BestiaryBiome<PollutedOceanBiomeSurface>()]
+[BestiaryBiome<PollutedOceanBiomeUnderground>()]
 public class BreadOfCthulhu : ModNPC {
     public override void SetStaticDefaults() {
         Main.npcFrameCount[NPC.type] = 5;
