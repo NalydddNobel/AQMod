@@ -64,6 +64,10 @@
 	<AdditionalFiles Include="Old\**\*.png" />
 	<AdditionalFiles Include="Old\**\*.ogg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Content\Enemies\PollutedOcean\Eel\Eel.png" />
+    <None Remove="Content\Enemies\PollutedOcean\Eel\Eel_Bestiary.png" />
+  </ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<Optimize>False</Optimize>

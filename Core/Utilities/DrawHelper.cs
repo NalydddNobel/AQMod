@@ -14,6 +14,9 @@ namespace Aequus.Core.Utilities;
 public sealed class DrawHelper : ModSystem {
     public delegate void Draw(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth);
 
+    public static Vector2 ScreenCenter => Main.screenPosition + ScreenSize / 2f;
+    public static Vector2 ScreenSize => new Vector2(Main.screenWidth, Main.screenHeight);
+
     public static Matrix View => Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) * Matrix.CreateTranslation(Main.graphics.GraphicsDevice.Viewport.Width / 2f, Main.graphics.GraphicsDevice.Viewport.Height / -2f, 0) * Matrix.CreateRotationZ(MathHelper.Pi);
     public static Matrix Projection => Matrix.CreateOrthographic(Main.graphics.GraphicsDevice.Viewport.Width, Main.graphics.GraphicsDevice.Viewport.Height, 0, 1000);
 

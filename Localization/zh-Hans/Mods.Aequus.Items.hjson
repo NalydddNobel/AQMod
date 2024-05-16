@@ -52,7 +52,7 @@ ValentineRing: {
 
 HyperCrystal: {
 	DisplayName: 超晶体
-	Tooltip: 
+	Tooltip:
 		'''
 		攻击时会向敌人发射强大的晶体
 		晶体会在超出范围时碎裂

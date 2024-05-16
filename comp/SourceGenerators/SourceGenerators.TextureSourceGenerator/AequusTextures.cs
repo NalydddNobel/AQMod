@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 800) yo momma gai</summary>
+/// <summary>(Total Textures: 802) yo momma gai</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -365,6 +365,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ConeheadZombieSwamp = new("Aequus/Content/Enemies/PollutedOcean/Conehead/ConeheadZombieSwamp");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieTwiggy</summary>
     public static readonly RequestCache<Texture2D> ConeheadZombieTwiggy = new("Aequus/Content/Enemies/PollutedOcean/Conehead/ConeheadZombieTwiggy");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Eel/Eel</summary>
+    public static readonly RequestCache<Texture2D> Eel = new("Aequus/Content/Enemies/PollutedOcean/Eel/Eel");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/Eel/Eel_Bestiary</summary>
+    public static readonly RequestCache<Texture2D> Eel_Bestiary = new("Aequus/Content/Enemies/PollutedOcean/Eel/Eel_Bestiary");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/OilSlime</summary>
     public static readonly RequestCache<Texture2D> OilSlime = new("Aequus/Content/Enemies/PollutedOcean/OilSlime/OilSlime");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/Tiles/OilSlimeBanner</summary>
