@@ -136,6 +136,6 @@ FrostMimic.DisplayName: 寒霜宝箱怪
 ShadowMimic.DisplayName: 暗影宝箱怪
 
 Eel: {
-	// DisplayName: Eel
+	DisplayName: 鳗鱼
 	// BannerName: Eel Banner
 }
