@@ -134,4 +134,8 @@ HealerDrone: {
 AdamantiteMimic.DisplayName: 精金宝箱怪
 FrostMimic.DisplayName: 寒霜宝箱怪
 ShadowMimic.DisplayName: 暗影宝箱怪
-// Eel.DisplayName: Eel
+
+Eel: {
+	// DisplayName: Eel
+	// BannerName: Eel Banner
+}

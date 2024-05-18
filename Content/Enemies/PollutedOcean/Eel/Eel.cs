@@ -1,16 +1,72 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Content.Graphics.Particles;
+using Aequus.Core.ContentGeneration;
 using System;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Eel;
 
+[AutoloadBanner]
 [BestiaryBiome<PollutedOceanBiomeSurface>()]
 [BestiaryBiome<PollutedOceanBiomeUnderground>()]
 internal class Eel : ModNPC {
+    #region AI Values
+    public const float IdleMinSpeed = 1f;
+    public const float IdleMaxSpeed = 2f;
+    public const float AttackMinSpeed = 2f;
+    public const float AttackMaxSpeed = 32f;
+    public const float AirXVelocityAccel = 0.03f;
+    public const float WaterXVelocityAccel = 0.1f;
+    public const float WaterYVelocityAccel = 0.05f;
+    /// <summary>Multiplied by <see cref="Timer"/> to get the current position of the wave pattern used when the Eel is moving idly.</summary>
+    public const float IdleWaveTimerMultiplier = 0.08f;
+    /// <summary>The vertical magnitude of the wave used when the Eel is moving idly.</summary>
+    public const float IdleWaveMagnitude = 0.8f;
+
+    /// <summary>The delay (in ticks) before the eel can shock again. This delay is extended by -<see cref="ShockRecoilCooldown"/> after it performs its first shock.</summary>
+    public const float ShockDelay = 250f;
+    /// <summary>The delay (in ticks) before the eel exits the shock state.</summary>
+    public const float ShockTime = 120f;
+    /// <summary>Added cooldown before it can perform (in ticks) after the eel does a shock.</summary>
+    public const float ShockRecoilCooldown = -125f;
+    /// <summary>Delay before <see cref="State"/> returns to <see cref="Normal"/> state from <see cref="ExitShocking"/>.</summary>
+    public const float ShockRecoilTime = 20f;
+
+    public const float Gravity = 0.12f;
+    public const float TerminalVelocity = 12f;
+    #endregion
+
+    #region States
+    public const int Normal = 0;
+    public const int Shocking = 1;
+    public const int ExitShocking = 2;
+    #endregion
+
+    #region Properties
+    /// <summary>Represents NPC.ai[0]. This value is the order the worm segment spawned in. Starts at 1 for the head, and increases for each next NPC. The tail has this same property, but it is negative.</summary>
+    public int SegmentNumber { get => (int)NPC.ai[0]; set => NPC.ai[0] = value; }
+    /// <summary>Represents NPC.ai[1]. This value is the index in <see cref="Main.npc"/> for the next NPC in the worm chain. It is -1 for the head.</summary>
+    public int NextSegment { get => (int)NPC.ai[1]; set => NPC.ai[1] = value; }
+    /// <summary>Represents NPC.ai[2]. This value represents the Head's current state. Unused by the body segments.</summary>
+    public int State { get => (int)NPC.ai[2]; set => NPC.ai[2] = value; }
+    /// <summary>Represents NPC.ai[3]. This value represents the Head's current timer. Unused by the body segments.</summary>
+    public float Timer { get => (int)NPC.ai[3]; set => NPC.ai[3] = value; }
+
+    /// <summary>Represents NPC.localAI[1]. This value is used as a frame offset in order to alternate between the zapping and regular frames. Use <see cref="RealHorizontalFrame"/> for drawing.</summary>
+    public float HorizontalFrame { get => (int)NPC.localAI[1]; set => NPC.localAI[1] = value; }
+    /// <summary>Gets the real horizontal frame from the head NPC. (or <see cref="HorizontalFrame"/> if it is the head.)</summary>
+    public int RealHorizontalFrame => (int)(NPC.realLife > -1 ? Main.npc[NPC.realLife].localAI[1] : HorizontalFrame);
+
+    public bool InShockFrame => RealHorizontalFrame == 1;
+
+    public bool IsHead => SegmentNumber == 1;
+    public bool IsTail => SegmentNumber < 0;
+    #endregion
+
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = 3;
         NPCSets.NPCBestiaryDrawOffset[Type] = new() {
@@ -38,86 +94,46 @@ internal class Eel : ModNPC {
         NPC.waterMovementSpeed = 1f;
     }
 
-    private void SpawnSegments() {
-        int length = Main.rand.Next(8, 12);
-        IEntitySource source = NPC.GetSource_FromThis();
-        NPC lastNPC = NPC;
-
-        for (int i = 0; i < length; i++) {
-            int newNPC = NPC.NewNPC(source, (int)lastNPC.Center.X, (int)lastNPC.Bottom.Y + 16, Type, lastNPC.whoAmI, lastNPC.ai[0] + 1f, lastNPC.whoAmI);
-            if (newNPC == Main.maxNPCs) {
-                break;
-            }
-
-            lastNPC = Main.npc[newNPC];
-            lastNPC.realLife = NPC.whoAmI;
-        }
-
-        lastNPC.ai[0] = -lastNPC.ai[0];
-    }
-
-    private void GetFrame() {
-        if (NPC.ai[0] < 0f) {
-            NPC.frame.Y = NPC.frame.Height * 2;
-        }
-        else if (NPC.ai[0] != 1f) {
-            NPC.frame.Y = NPC.frame.Height * 1;
-        }
-        else {
-            NPC.frame.Y = 0;
-        }
-    }
-
     public override void AI() {
-        if (NPC.ai[0] == 0f) {
-            NPC.ai[0]++;
-            NPC.ai[1] = -1f;
+        // Initialize worm.
+        if (SegmentNumber == 0) {
+            SegmentNumber = 1;
+            NextSegment = -1;
             if (Main.netMode != NetmodeID.MultiplayerClient) {
                 SpawnSegments();
             }
         }
 
-        if (NPC.localAI[0] == 0f) {
-            GetFrame();
-            NPC.localAI[0]++;
-        }
-
         bool inGround = Collision.SolidCollision(NPC.position, NPC.width, NPC.height);
         bool inWater = Collision.WetCollision(NPC.position, NPC.width, NPC.height);
-        if (inWater) {
+        if (inWater && !inGround) {
+            /* Collision is now always set to true in SetDefaults. 
+
+            // Set collision to true if the worm is in Lava
             if (Collision.LavaCollision(NPC.position, NPC.width, NPC.height)) {
                 NPC.noTileCollide = false;
             }
+            */
 
+            // Bubble effects
             if (Main.netMode != NetmodeID.Server) {
-                Vector2 velocity = NPC.position - NPC.oldPosition;
-                if (velocity.Length() > 3f) {
-                    int bubbleChance = Math.Clamp(10 - (int)velocity.Length(), 1, 20);
-                    if (Main.rand.NextBool(bubbleChance)) {
-                        var bubble = ModContent.GetInstance<UnderwaterBubbleParticles>().New();
-                        bubble.Location = NPC.Center + Vector2.Normalize(NPC.velocity).RotatedBy(Main.rand.NextBool() ? MathHelper.PiOver2 : -MathHelper.PiOver2) * 12f;
-                        bubble.Frame = (byte)Main.rand.Next(4);
-                        bubble.Velocity = Main.rand.NextVector2Unit() * Main.rand.NextFloat(0.1f, 0.3f) + velocity * 0.1f;
-                        bubble.UpLift = 0.001f;
-                        bubble.Opacity = Main.rand.NextFloat(0.8f, 1f);
-                    }
-                }
+                BubbleEffects();
             }
         }
 
-        if (NPC.ai[0] == 1f || NPC.ai[1] < 0f) {
+        if (IsHead) {
+            HeadAI(inWater, inGround);
+        }
+        else {
+            BodyAI();
+        }
+
+        void HeadAI(bool inWater, bool inGround) {
             NPC.TargetClosest(faceTarget: true);
 
             bool hasTarget = NPC.HasValidTarget;
             Player target = Main.player[NPC.target];
             float distance = NPC.Distance(target.Center);
-            if (NPC.ai[2] == 0f && NPC.direction != NPC.oldDirection && hasTarget && distance < 96f) {
-                if (NPC.ai[3] > 20f) {
-                    NPC.ai[3] = 0f;
-                    NPC.ai[2] = 1f;
-                }
-                NPC.netUpdate = true;
-            }
 
             if (NPC.collideX) {
                 NPC.velocity.X = -NPC.oldVelocity.X * 0.4f;
@@ -129,21 +145,34 @@ internal class Eel : ModNPC {
             NPC.rotation = NPC.velocity.ToRotation();
             NPC.spriteDirection = Math.Sign(NPC.velocity.X);
 
-            float minSpeed = 1f;
+            float minSpeed = IdleMinSpeed;
 
-            switch (NPC.ai[2]) {
-                case 1:
-                case 0: {
-                        float maxSpeed = 2f;
-                        Vector2 wantedVelocity = new Vector2(NPC.spriteDirection, Helper.Oscillate(NPC.ai[3], -0.8f, 0.8f));
-                        NPC.ai[3] += 0.08f;
+            switch (State) {
+                default: {
+                        bool normalState = State == Normal;
+                        if (normalState && NPC.direction != NPC.oldDirection && hasTarget && distance < 96f) {
+                            if (Timer > ShockDelay) {
+                                Timer = 0f;
+                                State = Shocking;
+                            }
+                            NPC.netUpdate = true;
+                        }
+
+                        // Idle velocity.
+                        Vector2 wantedVelocity = new Vector2(NPC.spriteDirection, Helper.Oscillate(Timer * IdleWaveTimerMultiplier, -IdleWaveMagnitude, IdleWaveMagnitude));
+                        Timer++;
+                        // Idle speed
+                        float maxSpeed = IdleMaxSpeed;
+
                         bool canSeeTarget = hasTarget && Collision.CanHitLine(NPC.position, NPC.width, NPC.height, target.position, target.width, target.height);
+
                         if (hasTarget) {
                             Vector2 toTarget = NPC.DirectionTo(target.Center);
                             if (canSeeTarget) {
+                                // Override idle velocity with a direct line to the target.
                                 wantedVelocity = toTarget;
-                                maxSpeed = 32f;
-                                minSpeed = 2f;
+                                maxSpeed = AttackMaxSpeed;
+                                minSpeed = AttackMinSpeed;
                             }
                             else {
                                 wantedVelocity = Vector2.Lerp(wantedVelocity, toTarget, 0.3f);
@@ -152,8 +181,9 @@ internal class Eel : ModNPC {
 
                         wantedVelocity = Utils.SafeNormalize(wantedVelocity, Vector2.UnitX);
 
+                        // WIP Sound effect
                         SoundStyle zapSound = new SoundStyle($"Terraria/Sounds/Dig_0") with { Volume = 0.8f, Pitch = -0.6f, PitchVariance = 0f, };
-                        if (distance < 200f && canSeeTarget && NPC.ai[2] == 0f) {
+                        if (distance < 200f && canSeeTarget && normalState) {
                             if (NPC.soundDelay == 0) {
                                 NPC.soundDelay = Math.Max((int)(distance / 4f), 6);
                                 SoundEngine.PlaySound(zapSound, NPC.Center);
@@ -161,53 +191,53 @@ internal class Eel : ModNPC {
                         }
 
                         if (inWater || inGround) {
-                            if (NPC.ai[2] == 1f) {
-                                float attackTime = 120f;
+                            if (State == Shocking) {
+                                float attackTime = ShockTime;
 
                                 NPC.velocity *= 0.9f;
-                                minSpeed = 0.5f + NPC.ai[3] / attackTime;
-                                if (NPC.ai[3] == 0f) {
-                                    NPC.localAI[1] = 1f;
+                                minSpeed = 0.5f + Timer / attackTime;
+                                if (Timer == 0f) {
+                                    HorizontalFrame = 1f;
                                 }
 
-                                float oldZapFrame = NPC.localAI[1];
-                                NPC.localAI[1] = (NPC.localAI[1] + 0.33f) % 2f;
+                                float oldZapFrame = HorizontalFrame;
+                                HorizontalFrame = (HorizontalFrame + 0.33f) % 2f;
 
-                                if (oldZapFrame < 1f && NPC.localAI[1] > 1f) {
+                                if (oldZapFrame < 1f && HorizontalFrame > 1f) {
                                     SoundEngine.PlaySound(zapSound, NPC.Center);
                                 }
 
-                                NPC.ai[3]++;
-                                if (NPC.ai[3] > attackTime) {
-                                    NPC.ai[3] = 0f;
-                                    NPC.ai[2] = 2f;
+                                Timer++;
+                                if (Timer > attackTime) {
+                                    Timer = 0f;
+                                    State = ExitShocking;
                                 }
                             }
 
-                            NPC.velocity.X += wantedVelocity.X * 0.1f;
-                            NPC.velocity.Y += wantedVelocity.Y * 0.05f;
+                            NPC.velocity.X += wantedVelocity.X * WaterXVelocityAccel;
+                            NPC.velocity.Y += wantedVelocity.Y * WaterYVelocityAccel;
                             if (NPC.velocity.Length() > maxSpeed) {
                                 NPC.velocity *= 0.9f;
                             }
                         }
                         else {
                             NPC.localAI[1] = 0f;
-                            NPC.velocity.X += wantedVelocity.X * 0.03f;
-                            NPC.velocity.Y += 0.08f;
-                            if (NPC.velocity.Y > 8f) {
-                                NPC.velocity.Y = 8f;
+                            NPC.velocity.X += wantedVelocity.X * AirXVelocityAccel;
+                            NPC.velocity.Y += Gravity;
+                            if (NPC.velocity.Y > TerminalVelocity) {
+                                NPC.velocity.Y = TerminalVelocity;
                             }
                         }
                     }
                     break;
 
-                case 2: {
-                        NPC.localAI[1] = 0f;
+                case ExitShocking: {
+                        HorizontalFrame = 0f;
 
-                        NPC.ai[3]++;
-                        if (NPC.ai[3] > 20f) {
-                            NPC.ai[2] = 0f;
-                            NPC.ai[3] = -10f;
+                        Timer++;
+                        if (Timer > ShockRecoilTime) {
+                            State = Normal;
+                            Timer = -ShockRecoilCooldown;
                         }
                     }
                     break;
@@ -216,39 +246,137 @@ internal class Eel : ModNPC {
             if (NPC.velocity.Length() < minSpeed) {
                 NPC.velocity = Utils.SafeNormalize(NPC.velocity, Vector2.UnitX) * minSpeed;
             }
+        }
 
+        void BodyAI() {
+            NPC.dontCountMe = true;
+            NPC.wetCount = 1;
+            NPC parentNPC = Main.npc[NextSegment];
+
+            if (!parentNPC.active) {
+                NPC.KillEffects(quiet: true);
+                return;
+            }
+
+            Vector2 wantedVector = Vector2.Normalize(parentNPC.velocity).UnNaN();
+            Vector2 difference = parentNPC.Center - NPC.Center;
+            float wantedDistance = (parentNPC.Size.Length() + NPC.Size.Length()) / 4f;
+            if (difference.Length() > wantedDistance) {
+                NPC.Center = parentNPC.Center - Vector2.Normalize(difference) * wantedDistance - wantedVector;
+                NPC.rotation = difference.ToRotation();
+                NPC.velocity = Vector2.Normalize(difference);
+                NPC.spriteDirection = Math.Sign(difference.X);
+            }
+        }
+
+        void BubbleEffects() {
+            Vector2 velocity = NPC.position - NPC.oldPosition;
+            if (velocity.Length() > 3f) {
+                int bubbleChance = Math.Clamp(10 - (int)velocity.Length(), 1, 20);
+                if (Main.rand.NextBool(bubbleChance)) {
+                    var bubble = ModContent.GetInstance<UnderwaterBubbleParticles>().New();
+                    bubble.Location = NPC.Center + Vector2.Normalize(NPC.velocity).RotatedBy(Main.rand.NextBool() ? MathHelper.PiOver2 : -MathHelper.PiOver2) * 12f;
+                    bubble.Frame = (byte)Main.rand.Next(4);
+                    bubble.Velocity = Main.rand.NextVector2Unit() * Main.rand.NextFloat(0.1f, 0.3f) + velocity * 0.1f;
+                    bubble.UpLift = 0.001f;
+                    bubble.Opacity = Main.rand.NextFloat(0.8f, 1f);
+                }
+            }
+        }
+
+        void SpawnSegments() {
+            int length = Main.rand.Next(8, 12);
+            IEntitySource source = NPC.GetSource_FromThis();
+            NPC lastNPC = NPC;
+
+            for (int i = 0; i < length; i++) {
+                int newNPC = NPC.NewNPC(source, (int)lastNPC.Center.X, (int)lastNPC.Bottom.Y + 16, Type, lastNPC.whoAmI, lastNPC.ai[0] + 1f, lastNPC.whoAmI);
+                if (newNPC == Main.maxNPCs) {
+                    break;
+                }
+
+                lastNPC = Main.npc[newNPC];
+                lastNPC.realLife = NPC.whoAmI;
+            }
+
+            lastNPC.ai[0] = -lastNPC.ai[0];
+        }
+    }
+
+    public override void FindFrame(int frameHeight) {
+        // Initialize frame.
+        if (NPC.localAI[0] == 0f) {
+            SetFrame();
+            NPC.localAI[0]++;
+        }
+
+        void SetFrame() {
+            if (IsTail) {
+                NPC.frame.Y = NPC.frame.Height * 2;
+            }
+            else if (!IsHead) {
+                NPC.frame.Y = NPC.frame.Height * 1;
+            }
+            else {
+                NPC.frame.Y = 0;
+            }
+        }
+    }
+
+    public override void HitEffect(NPC.HitInfo hit) {
+        if (Main.netMode == NetmodeID.Server) {
             return;
         }
 
-        NPC.dontCountMe = true;
-        NPC.wetCount = 1;
-        NPC parentNPC = Main.npc[(int)NPC.ai[1]];
+        if (NPC.life <= 0) {
+            IEntitySource source = NPC.GetSource_FromThis();
+            for (int i = 0; i < 20; i++) {
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, 2.5f * hit.HitDirection, -2.5f);
+            }
 
-        if (!parentNPC.active) {
-            NPC.KillEffects(quiet: true);
-            return;
+            if (IsTail) {
+                NPC.NewGore(AequusTextures.EekGoreTail, NPC.position, NPC.velocity, Scale: NPC.scale);
+            }
+            else if (!IsHead) {
+                NPC.NewGore(AequusTextures.EekGoreBody, NPC.position, NPC.velocity, Scale: NPC.scale);
+            }
+            else {
+                NPC.NewGore(AequusTextures.EekGoreHead, NPC.position, NPC.velocity, Scale: NPC.scale);
+            }
         }
-
-        Vector2 wantedVector = Vector2.Normalize(parentNPC.velocity).UnNaN();
-        Vector2 difference = parentNPC.Center - NPC.Center;
-        float wantedDistance = (parentNPC.Size.Length() + NPC.Size.Length()) / 4f;
-        if (difference.Length() > wantedDistance) {
-            NPC.Center = parentNPC.Center - Vector2.Normalize(difference) * wantedDistance - wantedVector;
-            NPC.rotation = difference.ToRotation();
-            NPC.velocity = Vector2.Normalize(difference);
-            NPC.spriteDirection = Math.Sign(difference.X);
+        else {
+            for (int i = 0; i < hit.Damage / (double)NPC.lifeMax * 50f; i++) {
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hit.HitDirection, -1f);
+            }
         }
     }
 
     public override bool ModifyCollisionData(Rectangle victimHitbox, ref int immunityCooldownSlot, ref MultipliableFloat damageMultiplier, ref Rectangle npcHitbox) {
-        if (NPC.localAI[1] >= 1f) {
+        // Expand hitbox if in the shock frame.
+        if (InShockFrame) {
             npcHitbox.Inflate(NPC.width, NPC.height);
         }
         return true;
     }
 
+    public override bool? CanFallThroughPlatforms() {
+        return true;
+    }
+
+    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+        this.CreateEntry(database, bestiaryEntry);
+    }
+
+    #region Drawing
     public override bool? DrawHealthBar(byte hbPosition, ref float scale, ref Vector2 position) {
-        return NPC.ai[0] == 1f ? true : false;
+        return IsHead ? null : false;
+    }
+
+    private void DrawEye(SpriteBatch spriteBatch, Vector2 drawCoords, float rotation) {
+        Vector2 eyePosition = drawCoords + new Vector2(-1f, 5f * NPC.spriteDirection).RotatedBy(rotation) * NPC.scale;
+        float intensity = Math.Min(Vector2.Distance(eyePosition, DrawHelper.ScreenSize / 2f) / 600f, 1f);
+        spriteBatch.Draw(AequusTextures.FlareSoft, eyePosition, null, new Color(180, 180, 60, 0) * intensity, 0f, AequusTextures.FlareSoft.Size() / 2f, new Vector2(2f, 1f) * NPC.scale * 0.3f, SpriteEffects.None, 0f);
+        //DrawHelper.DrawMagicLensFlare(spriteBatch, eyePosition, Color.White, 0.3f);
     }
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
@@ -259,7 +387,7 @@ internal class Eel : ModNPC {
         NPC parent = Main.npc.IndexInRange(NPC.realLife) ? Main.npc[NPC.realLife] : NPC;
         Texture2D texture = TextureAssets.Npc[Type].Value;
         Vector2 drawCoords = NPC.Center - screenPos;
-        Rectangle frame = new Rectangle(NPC.frame.X + NPC.frame.Width / 4 * (int)parent.localAI[1], NPC.frame.Y, NPC.frame.Width / 4 - 2, NPC.frame.Height - 2);
+        Rectangle frame = new Rectangle(NPC.frame.X + NPC.frame.Width / 4 * RealHorizontalFrame, NPC.frame.Y, NPC.frame.Width / 4 - 2, NPC.frame.Height - 2);
         Vector2 origin = frame.Size() / 2f;
         float scale = NPC.scale;
         float rotation = NPC.rotation + (NPC.spriteDirection == -1 ? MathHelper.PiOver2 : -MathHelper.PiOver2);
@@ -267,12 +395,10 @@ internal class Eel : ModNPC {
         spriteBatch.Draw(texture, drawCoords, frame, drawColor, rotation, origin, 1f, effects, 0f);
         spriteBatch.Draw(texture, drawCoords, frame.Frame(2, 0, -2, -2), Color.White, rotation, origin, 1f, effects, 0f);
 
-        if (NPC.ai[0] == 1f && NPC.localAI[1] == 0f) {
-            Vector2 eyePosition = drawCoords + new Vector2(-1f, 5f * NPC.spriteDirection).RotatedBy(rotation) * NPC.scale;
-            float intensity = Math.Min(Vector2.Distance(eyePosition, DrawHelper.ScreenSize / 2f) / 600f, 1f);
-            spriteBatch.Draw(AequusTextures.FlareSoft, eyePosition, null, new Color(180, 180, 60, 0) * intensity, 0f, AequusTextures.FlareSoft.Size() / 2f, new Vector2(2f, 1f) * NPC.scale * 0.3f, SpriteEffects.None, 0f);
-            //DrawHelper.DrawMagicLensFlare(spriteBatch, eyePosition, Color.White, 0.3f);
+        if (IsHead && !InShockFrame) {
+            DrawEye(spriteBatch, drawCoords, rotation);
         }
         return false;
     }
+    #endregion
 }
