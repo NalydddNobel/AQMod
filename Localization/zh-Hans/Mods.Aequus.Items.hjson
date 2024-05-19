@@ -547,6 +547,16 @@ Triacanthorn: {
 }
 
 //# Weapons: Summon
+DemonSoulscourge: {
+	DisplayName: 海蛇之疫
+	Tooltip: ""
+}
+
+DemonVasculash: {
+	DisplayName: 鞭毛
+	Tooltip: ""
+}
+
 PhysicistSentry: {
 	DisplayName: 便携式特斯拉炮塔
 	Tooltip: 召唤一个会发射大量连锁闪电的特斯拉炮塔
