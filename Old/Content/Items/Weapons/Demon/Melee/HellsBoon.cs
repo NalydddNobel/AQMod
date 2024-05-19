@@ -26,7 +26,7 @@ public class HellsBoon : ModItem {
         Item.shootSpeed = 35f;
         Item.shoot = ModContent.ProjectileType<HellsBoonSpawner>();
         Item.scale = 1f;
-        Item.rare = Commons.Rare.DemonSiegeTier1Loot;
+        Item.rare = Commons.Rare.DemonSiegeLoot;
         Item.value = Commons.Cost.DemonSiegeLoot;
     }
 

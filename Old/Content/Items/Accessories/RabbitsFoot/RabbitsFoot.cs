@@ -13,7 +13,7 @@ public class RabbitsFoot : ModItem {
     public override void SetDefaults() {
         Item.width = 20;
         Item.height = 20;
-        Item.rare = Commons.Rare.DemonSiegeTier1Loot;
+        Item.rare = Commons.Rare.DemonSiegeLoot;
         Item.value = Commons.Cost.DemonSiegeLoot;
         Item.accessory = true;
     }

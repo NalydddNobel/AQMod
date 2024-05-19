@@ -1111,3 +1111,13 @@ StariteStaff: {
 	DisplayName: 源星法杖
 	Tooltip: ""
 }
+
+DemonSoulscourge: {
+	// DisplayName: Demon Soulscourge
+	// Tooltip: ""
+}
+
+DemonVasculash: {
+	// DisplayName: Demon Vasculash
+	// Tooltip: ""
+}

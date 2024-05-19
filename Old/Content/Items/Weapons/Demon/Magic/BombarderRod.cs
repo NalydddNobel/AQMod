@@ -26,7 +26,7 @@ public class BombarderRod : ModItem {
         Item.mana = 6;
         Item.autoReuse = true;
         Item.UseSound = SoundID.Item88 with { Volume = 0.5f, Pitch = 0.8f };
-        Item.rare = Commons.Rare.DemonSiegeTier1Loot;
+        Item.rare = Commons.Rare.DemonSiegeLoot;
         Item.value = Commons.Cost.DemonSiegeLoot;
     }
 

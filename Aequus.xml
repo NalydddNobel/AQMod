@@ -2214,7 +2214,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 807) yo momma gai</summary>
+            <summary>(Total Textures: 811) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -3169,6 +3169,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.JunkJet">
             <summary>Full Path: Content/Items/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonSoulscourge">
+            <summary>Full Path: Content/Items/Weapons/Summon/Whips/DemonCorruptWhip/DemonSoulscourge</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonSoulscourgeProj">
+            <summary>Full Path: Content/Items/Weapons/Summon/Whips/DemonCorruptWhip/DemonSoulscourgeProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonVasculash">
+            <summary>Full Path: Content/Items/Weapons/Summon/Whips/DemonCrimsonWhip/DemonVasculash</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonVasculashProj">
+            <summary>Full Path: Content/Items/Weapons/Summon/Whips/DemonCrimsonWhip/DemonVasculashProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HotAirBalloonBuff">
             <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>

@@ -138,4 +138,5 @@ ShadowMimic.DisplayName: Cofre falso Oscuro
 Eel: {
 	// DisplayName: Eel
 	// BannerName: Eel Banner
+	// Bestiary: Constant consumption of live wires and machinery lead up to this eel's death, and later reanimation. The cables which lined through its body control its motion and behavior, bringing it new life.
 }

@@ -28,7 +28,7 @@ public class Triacanthorn : ModItem {
         Item.ArmorPenetration = 10;
         Item.shootSpeed = 16f;
         Item.noMelee = true;
-        Item.rare = Commons.Rare.DemonSiegeTier1Loot;
+        Item.rare = Commons.Rare.DemonSiegeLoot;
         Item.value = Commons.Cost.DemonSiegeLoot;
     }
 

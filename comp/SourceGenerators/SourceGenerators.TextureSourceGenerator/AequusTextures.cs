@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 807) yo momma gai</summary>
+/// <summary>(Total Textures: 811) yo momma gai</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -643,6 +643,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> StarPhish = new("Aequus/Content/Items/Weapons/Ranged/Darts/StarPhish/StarPhish");
     /// <summary>Full Path: Content/Items/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
     public static readonly RequestCache<Texture2D> JunkJet = new("Aequus/Content/Items/Weapons/Ranged/Misc/JunkJet/JunkJet");
+    /// <summary>Full Path: Content/Items/Weapons/Summon/Whips/DemonCorruptWhip/DemonSoulscourge</summary>
+    public static readonly RequestCache<Texture2D> DemonSoulscourge = new("Aequus/Content/Items/Weapons/Summon/Whips/DemonCorruptWhip/DemonSoulscourge");
+    /// <summary>Full Path: Content/Items/Weapons/Summon/Whips/DemonCorruptWhip/DemonSoulscourgeProj</summary>
+    public static readonly RequestCache<Texture2D> DemonSoulscourgeProj = new("Aequus/Content/Items/Weapons/Summon/Whips/DemonCorruptWhip/DemonSoulscourgeProj");
+    /// <summary>Full Path: Content/Items/Weapons/Summon/Whips/DemonCrimsonWhip/DemonVasculash</summary>
+    public static readonly RequestCache<Texture2D> DemonVasculash = new("Aequus/Content/Items/Weapons/Summon/Whips/DemonCrimsonWhip/DemonVasculash");
+    /// <summary>Full Path: Content/Items/Weapons/Summon/Whips/DemonCrimsonWhip/DemonVasculashProj</summary>
+    public static readonly RequestCache<Texture2D> DemonVasculashProj = new("Aequus/Content/Items/Weapons/Summon/Whips/DemonCrimsonWhip/DemonVasculashProj");
     /// <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
     public static readonly RequestCache<Texture2D> HotAirBalloonBuff = new("Aequus/Content/Mounts/HotAirBalloon/HotAirBalloonBuff");
     /// <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonItem</summary>

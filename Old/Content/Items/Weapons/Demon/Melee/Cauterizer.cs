@@ -15,7 +15,7 @@ public class Cauterizer : ModItem {
         Item.height = 24;
         Item.scale = 1f;
         Item.autoReuse = true;
-        Item.rare = Commons.Rare.DemonSiegeTier1Loot;
+        Item.rare = Commons.Rare.DemonSiegeLoot;
         Item.value = Commons.Cost.DemonSiegeLoot;
     }
 

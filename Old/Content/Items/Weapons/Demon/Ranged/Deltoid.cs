@@ -20,7 +20,7 @@ public class Deltoid : ModItem {
         Item.height = 30;
         Item.noMelee = true;
         Item.useStyle = ItemUseStyleID.Shoot;
-        Item.rare = Commons.Rare.DemonSiegeTier1Loot;
+        Item.rare = Commons.Rare.DemonSiegeLoot;
         Item.shoot = ProjectileID.WoodenArrowFriendly;
         Item.shootSpeed = 12f;
         Item.useAmmo = AmmoID.Arrow;

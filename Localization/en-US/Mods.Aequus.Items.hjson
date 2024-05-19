@@ -547,6 +547,16 @@ Triacanthorn: {
 }
 
 //# Weapons: Summon
+DemonSoulscourge: {
+	DisplayName: Serpent's Blight
+	Tooltip: ""
+}
+
+DemonVasculash: {
+	DisplayName: Flagellum
+	Tooltip: ""
+}
+
 PhysicistSentry: {
 	DisplayName: Portable Tesla Turret
 	Tooltip: Summons a tesla turret which fires a barrage of chaining lightning
