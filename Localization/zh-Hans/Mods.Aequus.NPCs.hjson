@@ -137,6 +137,6 @@ ShadowMimic.DisplayName: 暗影宝箱怪
 
 Eel: {
 	DisplayName: 鳗鱼
-	// BannerName: Eel Banner
-	// Bestiary: Constant consumption of live wires and machinery lead up to this eel's death, and later reanimation. The cables which lined through its body control its motion and behavior, bringing it new life.
+	BannerName: 鳗鱼旗
+	Bestiary: 恒定放电的电线和机械最终导致了这条鳗鱼的死亡, 随后它又被复活了. 穿过它身体的电缆控制着它的运动和行为, 为它带来了新生.
 }
