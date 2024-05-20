@@ -88,7 +88,7 @@ public sealed class MonocleGlobalItem : GlobalItem {
     }
 
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
-        if (!Main.LocalPlayer.GetModPlayer<AequusPlayer>().accInfoMoneyMonocle && ModContent.GetInstance<MonocleBuilderToggle>().CurrentState == 0
+        if (!Main.LocalPlayer.GetModPlayer<AequusPlayer>().accInfoMoneyMonocle || ModContent.GetInstance<MonocleBuilderToggle>().CurrentState != 0
             || item.value < 0 || item.IsACoin || tooltips.Find((t) => t.Name == "Price" || t.Name == "SpecialPrice") != null) {
             return;
         }

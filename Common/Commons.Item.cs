@@ -8,8 +8,8 @@ public partial class Commons {
         public const int JungleLoot = 2;
         public const int GlimmerLoot = 2;
         public const int DungeonLoot = 2;
-        public const int DemonSiegeLoot = 3;
-        public const int OmegaStariteLoot = 4;
+        public const int DemonSiegeLoot = 4;
+        public const int OmegaStariteLoot = 5;
         public const int WallOfFleshLoot = 4;
         public const int EarlyHardmodeMaterial = 3;
         public const int HardSandstormBlizzardLoot = 4;

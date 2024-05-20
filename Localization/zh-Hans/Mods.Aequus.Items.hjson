@@ -547,6 +547,16 @@ Triacanthorn: {
 }
 
 //# Weapons: Summon
+DemonSoulscourge: {
+	// DisplayName: Serpent's Blight
+	// Tooltip: ""
+}
+
+DemonVasculash: {
+	// DisplayName: Flagellum
+	// Tooltip: ""
+}
+
 PhysicistSentry: {
 	DisplayName: 便携式特斯拉炮塔
 	Tooltip: 召唤一个会发射大量连锁闪电的特斯拉炮塔
@@ -1110,14 +1120,4 @@ UnopenedChestItem: {
 StariteStaff: {
 	DisplayName: 源星法杖
 	Tooltip: ""
-}
-
-DemonSoulscourge: {
-	// DisplayName: Demon Soulscourge
-	// Tooltip: ""
-}
-
-DemonVasculash: {
-	// DisplayName: Demon Vasculash
-	// Tooltip: ""
 }

@@ -1226,6 +1226,13 @@
         <member name="T:Aequus.Core.ContentGeneration.UnifiedModPet">
             <summary>A <see cref="T:Terraria.ModLoader.ModProjectile"/> which automagically registers a related <see cref="T:Terraria.ModLoader.ModItem"/> and <see cref="T:Terraria.ModLoader.ModBuff"/>, suffixed with +"Item" and +"Buff" respectively.</summary>
         </member>
+        <member name="M:Aequus.Core.ContentGeneration.IWhipController.OnHitNPC(System.Single@,Terraria.Projectile,Terraria.NPC,Terraria.NPC.HitInfo@,System.Int32)">
+            <param name="damagePenalty">Defaults to 0.5.</param>
+            <param name="whip"></param>
+            <param name="target"></param>
+            <param name="hit"></param>
+            <param name="damageDone"></param>
+        </member>
         <member name="M:Aequus.Core.Utilities.ExtendNPC.AddBossDrop(Terraria.ModLoader.NPCLoot,Terraria.GameContent.ItemDropRules.IItemDropRule,System.Boolean)">
             <summary>Adds <paramref name="entry"/> to <paramref name="npcLoot"/>, and its boss bag.</summary>
             <param name="npcLoot"></param>
@@ -1580,6 +1587,10 @@
             <param name="tilesSize">The size in tile coordinates</param>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendLight.Get(Microsoft.Xna.Framework.Vector2)">
+            <param name="worldCoordinates">The World coordinates.</param>
+            <returns>The Light Color at a specified world coordinate.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendLight.Get(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)">
             <param name="worldCoordinates">The World coordinates.</param>
             <returns>The Light Color at a specified world coordinate.</returns>
         </member>

@@ -19,7 +19,7 @@ public sealed class ShimmerMonocleGlobalItem : GlobalItem {
     }
 
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
-        if (!Main.LocalPlayer.GetModPlayer<AequusPlayer>().accInfoShimmerMonocle && ModContent.GetInstance<ShimmerMonocleBuilderToggle>().CurrentState == 0) {
+        if (!Main.LocalPlayer.GetModPlayer<AequusPlayer>().accInfoShimmerMonocle || ModContent.GetInstance<ShimmerMonocleBuilderToggle>().CurrentState != 0) {
             return;
         }
 

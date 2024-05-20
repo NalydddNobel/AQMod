@@ -74,4 +74,11 @@ public static class ExtendLight {
     public static Color Get(Vector2 worldCoordinates) {
         return Lighting.GetColor(worldCoordinates.ToTileCoordinates());
     }
+
+    /// <param name="worldCoordinates">The World coordinates.</param>
+    /// <returns>The Light Color at a specified world coordinate.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Color Get(Vector2 worldCoordinates, Color originalColor) {
+        return Lighting.GetColor(worldCoordinates.ToTileCoordinates(), originalColor);
+    }
 }

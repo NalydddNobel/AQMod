@@ -549,12 +549,20 @@ Triacanthorn: {
 //# Weapons: Summon
 DemonSoulscourge: {
 	DisplayName: Serpent's Blight
-	Tooltip: ""
+	Tooltip: 
+		'''
+		{$CommonItemTooltip.SummonTagDamage}
+		{$CommonItemTooltip.Whips}
+		'''
 }
 
 DemonVasculash: {
 	DisplayName: Flagellum
-	Tooltip: ""
+	Tooltip: 
+		'''
+		{$CommonItemTooltip.SummonTagDamage}
+		{$CommonItemTooltip.Whips}
+		'''
 }
 
 PhysicistSentry: {

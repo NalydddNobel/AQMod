@@ -547,6 +547,16 @@ Triacanthorn: {
 }
 
 //# Weapons: Summon
+DemonSoulscourge: {
+	// DisplayName: Serpent's Blight
+	// Tooltip: ""
+}
+
+DemonVasculash: {
+	// DisplayName: Flagellum
+	// Tooltip: ""
+}
+
 PhysicistSentry: {
 	DisplayName: Torreta Tesla Portátil
 	Tooltip: Invoca una torreta tesla que dispara una rafaga de relampagos en cadena
@@ -1109,15 +1119,5 @@ UnopenedChestItem: {
 
 StariteStaff: {
 	// DisplayName: Starite Staff
-	// Tooltip: ""
-}
-
-DemonSoulscourge: {
-	// DisplayName: Demon Soulscourge
-	// Tooltip: ""
-}
-
-DemonVasculash: {
-	// DisplayName: Demon Vasculash
 	// Tooltip: ""
 }
