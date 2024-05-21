@@ -549,20 +549,21 @@ Triacanthorn: {
 //# Weapons: Summon
 DemonSoulscourge: {
 	DisplayName: 海蛇之疫
-	/* Tooltip:
+	Tooltip:
 		'''
 		{$CommonItemTooltip.SummonTagDamage}
 		{$CommonItemTooltip.Whips}
-		''' */
+		'''
 }
 
 DemonVasculash: {
 	DisplayName: 鞭毛
-	/* Tooltip:
+	Tooltip:
 		'''
-		{$CommonItemTooltip.SummonTagDamage}
 		{$CommonItemTooltip.Whips}
-		''' */
+		被召唤物攻击的敌人会释放出防御性饿鬼
+		右键或受到伤害时会释放所有饿鬼进行攻击
+		'''
 }
 
 PhysicistSentry: {
