@@ -522,6 +522,24 @@ public static class ExtendShop {
 public static class ExtendProjectile {
     internal static readonly Projectile _dummyProjectile = new Projectile();
 
+    public static IEnumerable<Projectile> Where(int owner, Predicate<Projectile> Condition) {
+        for (int i = 0; i < Main.maxProjectiles; i++) {
+            Projectile p = Main.projectile[i];
+            if (p.active && p.owner == owner && !p.hostile && Condition(p)) {
+                yield return p;
+            }
+        }
+    }
+
+    public static IEnumerable<Projectile> Where(Predicate<Projectile> Condition) {
+        for (int i = 0; i < Main.maxProjectiles; i++) {
+            Projectile p = Main.projectile[i];
+            if (p.active && Condition(p)) {
+                yield return p;
+            }
+        }
+    }
+
     public static void CollideWithOthers(this Projectile proj, float speed = 0.05f) {
         Rectangle rect = proj.getRect();
         for (int i = 0; i < Main.maxProjectiles; i++) {

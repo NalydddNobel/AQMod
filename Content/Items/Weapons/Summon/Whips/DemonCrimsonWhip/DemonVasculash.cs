@@ -1,11 +1,18 @@
 ﻿using Aequus.Common;
 using Aequus.Core.ContentGeneration;
 using System.Collections.Generic;
+using Terraria.DataStructures;
 
 namespace Aequus.Content.Items.Weapons.Summon.Whips.DemonCrimsonWhip;
 
 [WorkInProgress]
 public class DemonVasculash : UnifiedWhipItem, IMinionTagController {
+    public static readonly int DefensePerPet = 2;
+    public static readonly int MaxPets = 20;
+    public static readonly int PetsPerTagHit = 2;
+    public static readonly int WhipSegments = 38;
+    public static readonly int[] HellfireDurations = [240, 300, 360];
+
     public ModBuff TagBuff { get; set; }
     public int TagDuration => 240;
 
@@ -16,8 +23,7 @@ public class DemonVasculash : UnifiedWhipItem, IMinionTagController {
     }
 
     public override void SetWhipSettings(Projectile projectile, ref WhipSettings settings) {
-        settings.Segments = 38;
-        settings.RangeMultiplier = 1f;
+        settings.Segments = WhipSegments;
     }
 
     public override Color GetWhipStringColor(Vector2 position) {
@@ -76,9 +82,41 @@ public class DemonVasculash : UnifiedWhipItem, IMinionTagController {
     }
 
     public override void OnHitNPC(ref float damagePenalty, Projectile whip, NPC target, in NPC.HitInfo hit, int damageDone) {
-        target.AddBuff(BuffID.OnFire3, 240 + Main.rand.Next(3) * 60);
+        target.AddBuff(BuffID.OnFire3, Main.rand.Next(HellfireDurations));
     }
 
     void IMinionTagNPCController.OnMinionHit(NPC npc, Projectile minionProj, in NPC.HitInfo hit, int damageDone) {
+        IEntitySource source = minionProj.GetSource_OnHit(npc);
+        Vector2 spawnLocation = npc.Center;
+        int type = ModContent.ProjectileType<VasculashTagProj>();
+        int damage = minionProj.damage;
+        float knockback = minionProj.knockBack;
+        int owner = minionProj.owner;
+
+        for (int i = 0; i < PetsPerTagHit; i++) {
+            Projectile.NewProjectile(source, npc.Center, Main.rand.NextVector2Unit(), ModContent.ProjectileType<VasculashTagProj>(), minionProj.damage, minionProj.knockBack, minionProj.owner);
+        }
+
+        npc.RequestBuffRemoval(TagBuff.Type);
+    }
+
+    public override bool? UseItem(Player player) {
+        if (player.altFunctionUse == 2 && Main.myPlayer == player.whoAmI) {
+            int petsCount = 0;
+            Vector2 wantedVelocity = player.DirectionTo(Main.MouseWorld) * Item.shootSpeed;
+            int petType = ModContent.ProjectileType<VasculashTagProj>();
+            foreach (Projectile pet in ExtendProjectile.Where(player.whoAmI, (p) => p.type == petType)) {
+                pet.ai[0] = 4f + petsCount * 2f;
+                pet.ai[2] = 10f;
+                pet.netUpdate = true;
+                petsCount++;
+            }
+            return true;
+        }
+        return null;
+    }
+
+    public override bool AltFunctionUse(Player player) {
+        return player.ownedProjectileCounts[ModContent.ProjectileType<VasculashTagProj>()] > 0;
     }
 }

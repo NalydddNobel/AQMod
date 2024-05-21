@@ -85,3 +85,4 @@ NightfallGlint.DisplayName: 夜闪
 NightfallProj.DisplayName: 夜陨
 BreathConserverProj.DisplayName: "{$Items.BreathConserver.DisplayName}"
 HyperCrystalProj.DisplayName: "{$Items.HyperCrystal.DisplayName}"
+VasculashTagProj.DisplayName: "{$Items.DemonVasculash.DisplayName}"

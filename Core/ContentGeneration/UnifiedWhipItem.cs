@@ -142,7 +142,7 @@ internal class InstancedWhipProjectile(IWhipController controller, string name, 
     }
 }
 
-public interface IMinionTagController : IMinionTagNPCController {
+public interface IMinionTagController : IMinionTagNPCController, ILocalizedModType {
     public ModBuff TagBuff { get; set; }
 
     public abstract int TagDuration { get; }
@@ -158,8 +158,12 @@ public interface IMinionTagNPCController {
 internal class InstancedMinionTagDebuff(IMinionTagController controller, string name) : InstancedBuff(name, AequusTextures.TemporaryDebuffIcon), IMinionTagNPCController {
     internal readonly IMinionTagController _controller = controller;
 
+    public override LocalizedText DisplayName => _controller.GetLocalization("DisplayName");
+    public override LocalizedText Description => LocalizedText.Empty;
+
     public override void SetStaticDefaults() {
         BuffSets.IsATagBuff[Type] = true;
+        BuffSets.CanBeRemovedByNetMessage[Type] = true;
     }
 
     public override void Update(NPC npc, ref int buffIndex) {

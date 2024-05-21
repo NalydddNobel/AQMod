@@ -560,8 +560,9 @@ DemonVasculash: {
 	DisplayName: Flagellum
 	Tooltip:
 		'''
-		{$CommonItemTooltip.SummonTagDamage}
 		{$CommonItemTooltip.Whips}
+		Defensive hungries are unleashed from enemies hit by summons
+		<right> or take damage to release all of the hungries as an attack
 		'''
 }
 
