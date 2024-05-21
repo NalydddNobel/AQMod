@@ -24,6 +24,11 @@ public abstract class UnifiedWhipItem : ModItem, IWhipController {
     public sealed override void Load() {
         WhipProjectile = new InstancedWhipProjectile(this, Name, Texture + "Proj");
         Mod.AddContent(WhipProjectile);
+
+        if (this is IMinionTagController whipTagController) {
+            whipTagController.TagBuff = new InstancedMinionTagDebuff(this as IMinionTagController, Name);
+            Mod.AddContent(whipTagController.TagBuff);
+        }
     }
 
     public sealed override void Unload() {
@@ -79,6 +84,10 @@ internal class InstancedWhipProjectile(IWhipController controller, string name, 
         float penalty = 0.5f;
         _controller.OnHitNPC(ref penalty, Projectile, target, in hit, damageDone);
 
+        if (_controller is IMinionTagController minionTag) {
+            target.AddBuff(minionTag.TagBuff.Type, minionTag.TagDuration);
+        }
+
         // Whips set the target of the player's minions.
         Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
 
@@ -130,5 +139,66 @@ internal class InstancedWhipProjectile(IWhipController controller, string name, 
 
         DrawWhip(_controlPoints);
         return false;
+    }
+}
+
+public interface IMinionTagController : IMinionTagNPCController {
+    public ModBuff TagBuff { get; set; }
+
+    public abstract int TagDuration { get; }
+
+    public virtual void UpdateTagBuff(NPC npc, ref int buffIndex) { }
+}
+
+public interface IMinionTagNPCController {
+    public virtual void ModifyMinionHit(NPC npc, Projectile minionProj, ref NPC.HitModifiers modifiers, float tagMultiplier) { }
+    public virtual void OnMinionHit(NPC npc, Projectile minionProj, in NPC.HitInfo hit, int damageDone) { }
+}
+
+internal class InstancedMinionTagDebuff(IMinionTagController controller, string name) : InstancedBuff(name, AequusTextures.TemporaryDebuffIcon), IMinionTagNPCController {
+    internal readonly IMinionTagController _controller = controller;
+
+    public override void SetStaticDefaults() {
+        BuffSets.IsATagBuff[Type] = true;
+    }
+
+    public override void Update(NPC npc, ref int buffIndex) {
+        _controller.UpdateTagBuff(npc, ref buffIndex);
+    }
+
+    void IMinionTagNPCController.ModifyMinionHit(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers, float tagMultiplier) {
+        _controller.ModifyMinionHit(npc, projectile, ref modifiers, tagMultiplier);
+    }
+
+    void IMinionTagNPCController.OnMinionHit(NPC npc, Projectile minionProj, in NPC.HitInfo hit, int damageDone) {
+        _controller.OnMinionHit(npc, minionProj, in hit, damageDone);
+    }
+}
+
+internal class MinionTagNPC : GlobalNPC {
+    public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers) {
+        if (projectile.npcProj || projectile.trap || !projectile.IsMinionOrSentryRelated) {
+            return;
+        }
+
+        float tagMultiplier = ProjectileID.Sets.SummonTagDamageMultiplier[projectile.type];
+
+        for (int i = 0; i < NPC.maxBuffs; i++) {
+            if (npc.buffTime[i] > 0 && BuffLoader.GetBuff(npc.buffType[i]) is IMinionTagNPCController controller) {
+                controller.ModifyMinionHit(npc, projectile, ref modifiers, tagMultiplier);
+            }
+        }
+    }
+
+    public override void OnHitByProjectile(NPC npc, Projectile projectile, NPC.HitInfo hit, int damageDone) {
+        if (projectile.npcProj || projectile.trap || !projectile.IsMinionOrSentryRelated) {
+            return;
+        }
+
+        for (int i = 0; i < NPC.maxBuffs; i++) {
+            if (npc.buffTime[i] > 0 && BuffLoader.GetBuff(npc.buffType[i]) is IMinionTagNPCController controller) {
+                controller.OnMinionHit(npc, projectile, in hit, damageDone);
+            }
+        }
     }
 }

@@ -5,7 +5,10 @@ using System.Collections.Generic;
 namespace Aequus.Content.Items.Weapons.Summon.Whips.DemonCorruptWhip;
 
 [WorkInProgress]
-public class DemonSoulscourge : UnifiedWhipItem {
+public class DemonSoulscourge : UnifiedWhipItem, IMinionTagController {
+    public ModBuff TagBuff { get; set; }
+    public int TagDuration => 240;
+
     public override void SetDefaults() {
         Item.DefaultToWhip(WhipProjectile.Type, 32, 2f, 5f, animationTotalTime: 30);
         Item.rare = Commons.Rare.DemonSiegeLoot;
@@ -63,5 +66,12 @@ public class DemonSoulscourge : UnifiedWhipItem {
 
         projectile.localAI[0] = endPoint.X;
         projectile.localAI[1] = endPoint.Y;
+    }
+
+    public override void OnHitNPC(ref float damagePenalty, Projectile whip, NPC target, in NPC.HitInfo hit, int damageDone) {
+        target.AddBuff(BuffID.ShadowFlame, 240 + Main.rand.Next(2) * 60);
+    }
+
+    void IMinionTagNPCController.OnMinionHit(NPC npc, Projectile minionProj, in NPC.HitInfo hit, int damageDone) {
     }
 }

@@ -5,7 +5,10 @@ using System.Collections.Generic;
 namespace Aequus.Content.Items.Weapons.Summon.Whips.DemonCrimsonWhip;
 
 [WorkInProgress]
-public class DemonVasculash : UnifiedWhipItem {
+public class DemonVasculash : UnifiedWhipItem, IMinionTagController {
+    public ModBuff TagBuff { get; set; }
+    public int TagDuration => 240;
+
     public override void SetDefaults() {
         Item.DefaultToWhip(WhipProjectile.Type, 90, 2f, 2.8f, animationTotalTime: 42);
         Item.rare = Commons.Rare.DemonSiegeLoot;
@@ -13,7 +16,7 @@ public class DemonVasculash : UnifiedWhipItem {
     }
 
     public override void SetWhipSettings(Projectile projectile, ref WhipSettings settings) {
-        settings.Segments = 48;
+        settings.Segments = 38;
         settings.RangeMultiplier = 1f;
     }
 
@@ -70,5 +73,12 @@ public class DemonVasculash : UnifiedWhipItem {
 
         projectile.localAI[0] = endPoint.X;
         projectile.localAI[1] = endPoint.Y;
+    }
+
+    public override void OnHitNPC(ref float damagePenalty, Projectile whip, NPC target, in NPC.HitInfo hit, int damageDone) {
+        target.AddBuff(BuffID.OnFire3, 240 + Main.rand.Next(3) * 60);
+    }
+
+    void IMinionTagNPCController.OnMinionHit(NPC npc, Projectile minionProj, in NPC.HitInfo hit, int damageDone) {
     }
 }
