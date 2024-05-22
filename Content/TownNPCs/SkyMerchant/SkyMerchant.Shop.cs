@@ -10,7 +10,7 @@ using Aequus.Content.Items.Tools.Bellows;
 using Aequus.Content.Items.Tools.NameTag;
 using Aequus.Content.Items.Weapons.Classless.StunGun;
 using Aequus.Content.Items.Weapons.Magic.Furystar;
-using Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
+using Aequus.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
 using Aequus.Content.Mounts.HotAirBalloon;
 using System;
 using System.Collections.Generic;

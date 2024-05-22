@@ -2225,7 +2225,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 811) yo momma gai</summary>
+            <summary>(Total Textures: 810) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -4150,86 +4150,47 @@
         <member name="F:Aequus.AequusTextures.CelestialEightBall">
             <summary>Full Path: Old/Content/Items/Vanity/CelestialEightBall</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CorruptionHellfire">
-            <summary>Full Path: Old/Content/Items/Weapons/Demon/CorruptionHellfire</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrimsonHellfire">
-            <summary>Full Path: Old/Content/Items/Weapons/Demon/CrimsonHellfire</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BombarderRod">
-            <summary>Full Path: Old/Content/Items/Weapons/Demon/Magic/BombarderRod</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BombarderRod_Glow">
-            <summary>Full Path: Old/Content/Items/Weapons/Demon/Magic/BombarderRod_Glow</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Triacanthorn">
-            <summary>Full Path: Old/Content/Items/Weapons/Demon/Magic/Triacanthorn</summary>
+            <summary>Full Path: Old/Content/Items/Weapons/Magic/DemonCorruptVilethorn/Triacanthorn</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TriacanthornBolt">
-            <summary>Full Path: Old/Content/Items/Weapons/Demon/Magic/TriacanthornBolt</summary>
+            <summary>Full Path: Old/Content/Items/Weapons/Magic/DemonCorruptVilethorn/TriacanthornBolt</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TriacanthornProj">
-            <summary>Full Path: Old/Content/Items/Weapons/Demon/Magic/TriacanthornProj</summary>
+            <summary>Full Path: Old/Content/Items/Weapons/Magic/DemonCorruptVilethorn/TriacanthornProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Triacanthorn_Glow">
-            <summary>Full Path: Old/Content/Items/Weapons/Demon/Magic/Triacanthorn_Glow</summary>
+            <summary>Full Path: Old/Content/Items/Weapons/Magic/DemonCorruptVilethorn/Triacanthorn_Glow</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cauterizer">
-            <summary>Full Path: Old/Content/Items/Weapons/Demon/Melee/Cauterizer</summary>
+        <member name="F:Aequus.AequusTextures.BombarderRod">
+            <summary>Full Path: Old/Content/Items/Weapons/Magic/DemonCrimsonRod/BombarderRod</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CauterizerSlash">
-            <summary>Full Path: Old/Content/Items/Weapons/Demon/Melee/CauterizerSlash</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HellsBoon">
-            <summary>Full Path: Old/Content/Items/Weapons/Demon/Melee/HellsBoon</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HellsBoonProj">
-            <summary>Full Path: Old/Content/Items/Weapons/Demon/Melee/HellsBoonProj</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HellsBoon_Glow">
-            <summary>Full Path: Old/Content/Items/Weapons/Demon/Melee/HellsBoon_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Deltoid">
-            <summary>Full Path: Old/Content/Items/Weapons/Demon/Ranged/Deltoid</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DeltoidArrow">
-            <summary>Full Path: Old/Content/Items/Weapons/Demon/Ranged/DeltoidArrow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Deltoid_Glow">
-            <summary>Full Path: Old/Content/Items/Weapons/Demon/Ranged/Deltoid_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HamaYumi">
-            <summary>Full Path: Old/Content/Items/Weapons/Demon/Ranged/HamaYumi</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HamaYumiArrow">
-            <summary>Full Path: Old/Content/Items/Weapons/Demon/Ranged/HamaYumiArrow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HamaYumi_Glow">
-            <summary>Full Path: Old/Content/Items/Weapons/Demon/Ranged/HamaYumi_Glow</summary>
+        <member name="F:Aequus.AequusTextures.BombarderRod_Glow">
+            <summary>Full Path: Old/Content/Items/Weapons/Magic/DemonCrimsonRod/BombarderRod_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Nightfall">
-            <summary>Full Path: Old/Content/Items/Weapons/Glimmer/Nightfall/Nightfall</summary>
+            <summary>Full Path: Old/Content/Items/Weapons/Magic/Nightfall/Nightfall</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NightfallGlint">
-            <summary>Full Path: Old/Content/Items/Weapons/Glimmer/Nightfall/NightfallGlint</summary>
+            <summary>Full Path: Old/Content/Items/Weapons/Magic/Nightfall/NightfallGlint</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NightfallProj">
-            <summary>Full Path: Old/Content/Items/Weapons/Glimmer/Nightfall/NightfallProj</summary>
+            <summary>Full Path: Old/Content/Items/Weapons/Magic/Nightfall/NightfallProj</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.StariteMinion">
-            <summary>Full Path: Old/Content/Items/Weapons/Glimmer/StariteMinion/StariteMinion</summary>
+        <member name="F:Aequus.AequusTextures.HellsBoon">
+            <summary>Full Path: Old/Content/Items/Weapons/Melee/DemonCorruptSword/HellsBoon</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.StariteMinionBuff">
-            <summary>Full Path: Old/Content/Items/Weapons/Glimmer/StariteMinion/StariteMinionBuff</summary>
+        <member name="F:Aequus.AequusTextures.HellsBoonProj">
+            <summary>Full Path: Old/Content/Items/Weapons/Melee/DemonCorruptSword/HellsBoonProj</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.StariteStaff">
-            <summary>Full Path: Old/Content/Items/Weapons/Glimmer/StariteMinion/StariteStaff</summary>
+        <member name="F:Aequus.AequusTextures.HellsBoon_Glow">
+            <summary>Full Path: Old/Content/Items/Weapons/Melee/DemonCorruptSword/HellsBoon_Glow</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.StariteStaff_Glow">
-            <summary>Full Path: Old/Content/Items/Weapons/Glimmer/StariteMinion/StariteStaff_Glow</summary>
+        <member name="F:Aequus.AequusTextures.Cauterizer">
+            <summary>Full Path: Old/Content/Items/Weapons/Melee/DemonCrimsonSpear/Cauterizer</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SuperStarSword">
-            <summary>Full Path: Old/Content/Items/Weapons/Glimmer/SuperStarSword/SuperStarSword</summary>
+        <member name="F:Aequus.AequusTextures.CauterizerSlash">
+            <summary>Full Path: Old/Content/Items/Weapons/Melee/DemonCrimsonSpear/CauterizerSlash</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PhaseDisc">
             <summary>Full Path: Old/Content/Items/Weapons/Melee/PhaseDisc/PhaseDisc</summary>
@@ -4245,6 +4206,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.SliceBulletProj">
             <summary>Full Path: Old/Content/Items/Weapons/Melee/Slice/SliceBulletProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SuperStarSword">
+            <summary>Full Path: Old/Content/Items/Weapons/Melee/SuperStarSword/SuperStarSword</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltimateSword">
             <summary>Full Path: Old/Content/Items/Weapons/Melee/UltimateSword/UltimateSword</summary>
@@ -4276,14 +4240,47 @@
         <member name="F:Aequus.AequusTextures.CrusadersCrossbowProj">
             <summary>Full Path: Old/Content/Items/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.HamaYumi">
+            <summary>Full Path: Old/Content/Items/Weapons/Ranged/DemonCorruptBow/HamaYumi</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HamaYumiArrow">
+            <summary>Full Path: Old/Content/Items/Weapons/Ranged/DemonCorruptBow/HamaYumiArrow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HamaYumi_Glow">
+            <summary>Full Path: Old/Content/Items/Weapons/Ranged/DemonCorruptBow/HamaYumi_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Deltoid">
+            <summary>Full Path: Old/Content/Items/Weapons/Ranged/DemonCrimsonGun/Deltoid</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DeltoidArrow">
+            <summary>Full Path: Old/Content/Items/Weapons/Ranged/DemonCrimsonGun/DeltoidArrow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Deltoid_Glow">
+            <summary>Full Path: Old/Content/Items/Weapons/Ranged/DemonCrimsonGun/Deltoid_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Embalmer">
+            <summary>Full Path: Old/Content/Items/Weapons/Ranged/DemonCrimsonGun/Embalmer</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StariteMinion">
+            <summary>Full Path: Old/Content/Items/Weapons/Summon/Minions/StariteMinion/StariteMinion</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StariteMinionBuff">
+            <summary>Full Path: Old/Content/Items/Weapons/Summon/Minions/StariteMinion/StariteMinionBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StariteStaff">
+            <summary>Full Path: Old/Content/Items/Weapons/Summon/Minions/StariteMinion/StariteStaff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StariteStaff_Glow">
+            <summary>Full Path: Old/Content/Items/Weapons/Summon/Minions/StariteMinion/StariteStaff_Glow</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.PhysicistSentry">
-            <summary>Full Path: Old/Content/Items/Weapons/Sentries/PhysicistSentry/PhysicistSentry</summary>
+            <summary>Full Path: Old/Content/Items/Weapons/Summon/Sentries/PhysicistSentry/PhysicistSentry</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PhysicistSentryProj">
-            <summary>Full Path: Old/Content/Items/Weapons/Sentries/PhysicistSentry/PhysicistSentryProj</summary>
+            <summary>Full Path: Old/Content/Items/Weapons/Summon/Sentries/PhysicistSentry/PhysicistSentryProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PhysicistSentryProj_Glow">
-            <summary>Full Path: Old/Content/Items/Weapons/Sentries/PhysicistSentry/PhysicistSentryProj_Glow</summary>
+            <summary>Full Path: Old/Content/Items/Weapons/Summon/Sentries/PhysicistSentry/PhysicistSentryProj_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GlimmerMenu">
             <summary>Full Path: Old/Content/MainMenu/GlimmerMenu</summary>

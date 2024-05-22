@@ -20,7 +20,7 @@ public class ShopEdits : GlobalNPC {
 
             case (NPCID.Mechanic, "Shop"):
 #if !DEBUG
-                shop.Add(ModContent.ItemType<Old.Content.Items.Weapons.Sentries.PhysicistSentry.PhysicistSentry>(), Condition.RemixWorld);
+                shop.Add(ModContent.ItemType<Old.Content.Items.Weapons.Summon.Sentries.PhysicistSentry.PhysicistSentry>(), Condition.RemixWorld);
 #endif
                 break;
 

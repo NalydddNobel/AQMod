@@ -5,7 +5,7 @@ using Aequus.Old.Content.Items.Accessories.HighSteaks;
 using Aequus.Old.Content.Items.GrapplingHooks.HealingGrappleHook;
 using Aequus.Old.Content.Items.Potions.Foods.SusSteak;
 using Aequus.Old.Content.Items.Potions.Resurrection;
-using Aequus.Old.Content.Items.Weapons.Ranged.Bows.CrusadersCrossbow;
+using Aequus.Old.Content.Items.Weapons.Ranged.CrusadersCrossbow;
 using Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg;
 using System;
 using Terraria.GameContent.Bestiary;

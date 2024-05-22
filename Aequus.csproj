@@ -64,6 +64,9 @@
 	<AdditionalFiles Include="Old\**\*.png" />
 	<AdditionalFiles Include="Old\**\*.ogg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Old\Content\Items\Weapons\Ranged\DemonCrimsonGun\Embalmer.png" />
+  </ItemGroup>
 	
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<Optimize>False</Optimize>

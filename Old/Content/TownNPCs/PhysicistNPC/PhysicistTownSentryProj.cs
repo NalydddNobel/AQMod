@@ -1,4 +1,4 @@
-﻿using Aequus.Old.Content.Items.Weapons.Sentries.PhysicistSentry;
+﻿using Aequus.Old.Content.Items.Weapons.Summon.Sentries.PhysicistSentry;
 using System.Collections.Generic;
 
 namespace Aequus.Old.Content.TownNPCs.PhysicistNPC;

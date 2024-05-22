@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
+﻿using Aequus.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
 using Aequus.Core.CodeGeneration;
 using System.Runtime.CompilerServices;
 using Terraria.GameInput;

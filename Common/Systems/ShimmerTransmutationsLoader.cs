@@ -33,7 +33,7 @@ public class ShimmerTransmutationsLoader : IPostSetupContent {
 #if !DEBUG
         ItemSets.ShimmerTransformToItem[ModContent.ItemType<Old.Content.Items.Materials.SoulGem.SoulGemFilled>()] = ModContent.ItemType<Old.Content.Items.Materials.SoulGem.SoulGem>();
         ExtendedShimmer.CreateShimmerLoop(
-            ModContent.ItemType<Old.Content.Items.Weapons.Ranged.Bows.CrusadersCrossbow.CrusadersCrossbow>(),
+            ModContent.ItemType<Old.Content.Items.Weapons.Ranged.CrusadersCrossbow.CrusadersCrossbow>(),
             ModContent.ItemType<Old.Content.Items.GrapplingHooks.HealingGrappleHook.LeechHook>(),
             ModContent.ItemType<Old.Content.Items.Accessories.HighSteaks.HighSteaks>(),
             ModContent.ItemType<Old.Content.Necromancy.Equipment.Accessories.SpiritKeg.SaivoryKnife>()
