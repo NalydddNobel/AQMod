@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 812) yo momma gai</summary>
+/// <summary>(Total Textures: 816) yo momma gai</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -225,6 +225,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CopperChestLockedItem = new("Aequus/Content/Chests/BuriedChests/CopperChestLockedItem");
     /// <summary>Full Path: Content/Chests/BuriedChests/CopperChest_Highlight</summary>
     public static readonly RequestCache<Texture2D> CopperChest_Highlight = new("Aequus/Content/Chests/BuriedChests/CopperChest_Highlight");
+    /// <summary>Full Path: Content/Critters/SeaFirefly/SeaFirefly</summary>
+    public static readonly RequestCache<Texture2D> SeaFirefly = new("Aequus/Content/Critters/SeaFirefly/SeaFirefly");
+    /// <summary>Full Path: Content/Critters/SeaFirefly/SeaFireflyItem</summary>
+    public static readonly RequestCache<Texture2D> SeaFireflyItem = new("Aequus/Content/Critters/SeaFirefly/SeaFireflyItem");
+    /// <summary>Full Path: Content/Critters/SeaFirefly/SeaFireflyJar</summary>
+    public static readonly RequestCache<Texture2D> SeaFireflyJar = new("Aequus/Content/Critters/SeaFirefly/SeaFireflyJar");
+    /// <summary>Full Path: Content/Critters/SeaFirefly/SeaFireflyJarItem</summary>
+    public static readonly RequestCache<Texture2D> SeaFireflyJarItem = new("Aequus/Content/Critters/SeaFirefly/SeaFireflyJarItem");
     /// <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/OmegaHoney</summary>
     public static readonly RequestCache<Texture2D> OmegaHoney = new("Aequus/Content/CrossMod/CalamityModSupport/Items/OmegaHoney");
     /// <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/OmegaRestoration</summary>

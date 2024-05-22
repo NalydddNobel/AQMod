@@ -214,7 +214,7 @@ public sealed class DrawHelper : ModSystem {
             DiscardTarget(ref target);
 
             if (Main.IsGraphicsDeviceAvailable) {
-                target = NewRenderTarget(device, Main.screenWidth, Main.screenHeight, RenderTargetUsage.PreserveContents);
+                target = NewRenderTarget(device, desiredWidth, desiredHeight, RenderTargetUsage.PreserveContents);
             }
         }
         catch (Exception ex) {

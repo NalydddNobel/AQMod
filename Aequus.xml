@@ -2231,7 +2231,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 812) yo momma gai</summary>
+            <summary>(Total Textures: 816) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2559,6 +2559,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.CopperChest_Highlight">
             <summary>Full Path: Content/Chests/BuriedChests/CopperChest_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SeaFirefly">
+            <summary>Full Path: Content/Critters/SeaFirefly/SeaFirefly</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SeaFireflyItem">
+            <summary>Full Path: Content/Critters/SeaFirefly/SeaFireflyItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SeaFireflyJar">
+            <summary>Full Path: Content/Critters/SeaFirefly/SeaFireflyJar</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SeaFireflyJarItem">
+            <summary>Full Path: Content/Critters/SeaFirefly/SeaFireflyJarItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaHoney">
             <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/OmegaHoney</summary>
