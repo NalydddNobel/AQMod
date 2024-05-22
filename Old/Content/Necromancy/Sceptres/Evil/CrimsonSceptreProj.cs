@@ -18,7 +18,7 @@ public class CrimsonSceptreProj : CorruptionSceptreProj {
             int trailCount = _trail.GetLength(0);
 
             for (int i = 0; i < trailCount; i++) {
-                var p = ModContent.GetInstance<LegacyBloomParticle>().New();
+                var p = LegacyBloomParticle.New();
                 p.Location = _trail[i][0];
                 p.Velocity = Projectile.velocity * -0.125f;
                 p.Color = new Color(150, 30, 10, 10) * Projectile.Opacity;

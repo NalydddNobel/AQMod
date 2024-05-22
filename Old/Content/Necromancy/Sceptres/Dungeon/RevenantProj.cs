@@ -45,7 +45,7 @@ public class RevenantProj : CorruptionSceptreProj {
                     continue;
                 }
 
-                var p = ModContent.GetInstance<RevenantParticle>().New();
+                var p = RevenantParticle.New();
                 p.Location = _trail[i][0];
                 p.Velocity = Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.1f, 0.1f)) * 0.1f * Projectile.MaxUpdates;
                 p.Color = new Color(55, 55, 255, 200) * Projectile.Opacity;

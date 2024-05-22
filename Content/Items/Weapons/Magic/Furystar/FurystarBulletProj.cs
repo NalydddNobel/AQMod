@@ -71,13 +71,13 @@ public class FurystarBulletProj : ModProjectile {
         var player = Main.player[Projectile.owner];
         var color = Color.Lerp(Color.Cyan, Color.Blue, Main.rand.NextFloat(0.15f, 0.85f));
         float scale = Main.rand.NextFloat(0.2f, 0.4f);
-        var particle = ModContent.GetInstance<FurystarParticles>().New();
+        var particle = FurystarParticles.New();
         particle.Location = Main.rand.NextVector2FromRectangle(target.getRect());
         particle.Velocity = Projectile.velocity * 0.05f;
         particle.Color = color;
         particle.Scale = scale;
 
-        particle = ModContent.GetInstance<FurystarParticles>().New();
+        particle = FurystarParticles.New();
         particle.Location = Main.rand.NextVector2FromRectangle(Main.player[Projectile.owner].getRect());
         particle.Velocity = Main.player[Projectile.owner].velocity * 0.05f;
         particle.Color = color;

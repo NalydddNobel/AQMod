@@ -501,7 +501,7 @@ public class UltraStarite : ModNPC {
                     armPositions[j].Add(armPos + screenPos);
                     if (ExtendedMod.GameWorldActive && !NPC.IsABestiaryIconDummy && NPC.ai[1] < 125f && Main.rand.NextBool(2 + i * 15)) {
                         float scale = Main.rand.NextFloat(0.4f, 1.5f);
-                        var p = ModContent.GetInstance<LegacyBloomParticle>().New();
+                        var p = LegacyBloomParticle.New();
                         p.Location = armPos + Main.screenPosition + Main.rand.NextVector2Unit() * 30f;
                         p.Velocity = ((armPos - (NPC.Center - Main.screenPosition)).ToRotation() - MathHelper.PiOver2 + Main.rand.NextFloat(-0.4f, 0.4f)).ToRotationVector2() * Main.rand.NextFloat(2f, 8f);
                         p.Color = Color.White with { A = 40 } * scale;

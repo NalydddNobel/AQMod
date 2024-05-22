@@ -161,15 +161,14 @@ public partial class BlackJellyfish : AIJellyfish {
 
         if (Collision.WetCollision(NPC.position, NPC.width, NPC.height)) {
             // Bubble particles if underwater
-            UnderwaterBubbleParticles bubbleParticles = ModContent.GetInstance<UnderwaterBubbleParticles>();
-            foreach (var particle in bubbleParticles.NewMultipleReduced(32, 8)) {
+            foreach (var particle in UnderwaterBubbleParticles.NewMultipleReduced(32, 8)) {
                 particle.Location = NPC.Center;
                 particle.Frame = (byte)Main.rand.Next(3);
                 particle.Velocity = Main.rand.NextVector2Unit() * Main.rand.NextFloat(0.01f, 0.4f);
                 particle.UpLift = (1f - particle.Velocity.X) * 0.003f;
                 particle.Opacity = Main.rand.NextFloat(0.8f, 1f);
             }
-            var bigBubble = bubbleParticles.New();
+            var bigBubble = UnderwaterBubbleParticles.New();
             bigBubble.Location = NPC.Center;
             bigBubble.Frame = 7;
             bigBubble.Velocity = Vector2.Zero;

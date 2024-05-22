@@ -274,7 +274,7 @@ internal class Eel : ModNPC {
             if (velocity.Length() > 3f) {
                 int bubbleChance = Math.Clamp(10 - (int)velocity.Length(), 1, 20);
                 if (Main.rand.NextBool(bubbleChance)) {
-                    var bubble = ModContent.GetInstance<UnderwaterBubbleParticles>().New();
+                    var bubble = UnderwaterBubbleParticles.New();
                     bubble.Location = NPC.Center + Vector2.Normalize(NPC.velocity).RotatedBy(Main.rand.NextBool() ? MathHelper.PiOver2 : -MathHelper.PiOver2) * 12f;
                     bubble.Frame = (byte)Main.rand.Next(4);
                     bubble.Velocity = Main.rand.NextVector2Unit() * Main.rand.NextFloat(0.1f, 0.3f) + velocity * 0.1f;

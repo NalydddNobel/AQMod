@@ -120,7 +120,7 @@ public class DeltoidExplosion : ModProjectile {
     public override void AI() {
         if (Projectile.frame == 0 && Main.netMode != NetmodeID.Server) {
             SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
-            foreach (var p in ModContent.GetInstance<LegacyBloomParticle>().NewMultiple(5)) {
+            foreach (var p in LegacyBloomParticle.NewMultiple(5)) {
                 Vector2 randomVector2Unit = Main.rand.NextVector2Unit();
 
                 p.Location = Projectile.Center + randomVector2Unit * Main.rand.NextFloat(16f);

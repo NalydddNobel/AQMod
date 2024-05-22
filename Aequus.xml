@@ -1898,8 +1898,8 @@
         </member>
         <member name="M:Aequus.Core.Particles.ParticleArray`1.NewMultiple(System.Int32)">
             <summary>
-            Gets multiple particle instances, used to reduce <see cref="M:Aequus.Core.Particles.ParticleArray`1.CheckInit"/> calls. Unlike <see cref="M:Aequus.Core.Particles.ParticleArray`1.NewMultipleReduced(System.Int32,System.Int32)"/>, 
-            <paramref name="count"/> is NOT multiplied by <see cref="F:Terraria.Main.gfxQuality"/>.
+            Gets multiple particle instances, used to reduce <see cref="M:Aequus.Core.Particles.ParticleArray`1.CheckInit"/> calls. 
+            Use <see cref="M:Aequus.Core.Particles.ParticleArray`1.NewMultipleReduced(System.Int32,System.Int32)"/>, if you want to spawn particles based on <see cref="F:Terraria.Main.gfxQuality"/>.
             </summary>
             <param name="count">The amount of particles wanted.</param>
         </member>
@@ -1910,6 +1910,12 @@
             </summary>
             <param name="count">The amount of particles wanted. This is multiplied <see cref="F:Terraria.Main.gfxQuality"/>.</param>
             <param name="minimum">The minimum amount of particles to return. <paramref name="count"/> is multiplied by <see cref="F:Terraria.Main.gfxQuality"/>, which reduces it depending on quality settings.</param>
+        </member>
+        <member name="M:Aequus.Core.Particles.ParticleArray`1.NewInner">
+            <returns><inheritdoc cref="M:Aequus.Core.Particles.ParticleArray`1.New"/></returns>
+        </member>
+        <member name="M:Aequus.Core.Particles.ParticleArray`1.NewMultipleInner(System.Int32)">
+            <summary><inheritdoc cref="M:Aequus.Core.Particles.ParticleArray`1.NewMultiple(System.Int32)"/></summary>
         </member>
         <member name="M:Aequus.Core.Particles.ParticleArray`1.OnActivate">
             <summary>
@@ -2225,7 +2231,7 @@
             <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 810) yo momma gai</summary>
+            <summary>(Total Textures: 812) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -3163,23 +3169,23 @@
         <member name="F:Aequus.AequusTextures.Dynaknife_Glow">
             <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/Dynaknife_Glow</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Chain">
-            <summary>Full Path: Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyHunterCrossbow">
-            <summary>Full Path: Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.PlasticDart">
-            <summary>Full Path: Content/Items/Weapons/Ranged/Darts/Ammo/PlasticDart</summary>
+            <summary>Full Path: Content/Items/Weapons/Ranged/Ammo/PlasticDart</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PlasticDart_Outline">
-            <summary>Full Path: Content/Items/Weapons/Ranged/Darts/Ammo/PlasticDart_Outline</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.StarPhish">
-            <summary>Full Path: Content/Items/Weapons/Ranged/Darts/StarPhish/StarPhish</summary>
+            <summary>Full Path: Content/Items/Weapons/Ranged/Ammo/PlasticDart_Outline</summary>
         </member>
         <member name="F:Aequus.AequusTextures.JunkJet">
-            <summary>Full Path: Content/Items/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
+            <summary>Full Path: Content/Items/Weapons/Ranged/JunkJet/JunkJet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Chain">
+            <summary>Full Path: Content/Items/Weapons/Ranged/SkyHunterCrossbow/Chain</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyHunterCrossbow">
+            <summary>Full Path: Content/Items/Weapons/Ranged/SkyHunterCrossbow/SkyHunterCrossbow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StarPhish">
+            <summary>Full Path: Content/Items/Weapons/Ranged/StarPhish/StarPhish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DemonSoulscourge">
             <summary>Full Path: Content/Items/Weapons/Summon/Whips/DemonCorruptWhip/DemonSoulscourge</summary>
@@ -4235,10 +4241,10 @@
             <summary>Full Path: Old/Content/Items/Weapons/Melee/Vrang/VrangProj_Hot</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrusadersCrossbow">
-            <summary>Full Path: Old/Content/Items/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbow</summary>
+            <summary>Full Path: Old/Content/Items/Weapons/Ranged/CrusadersCrossbow/CrusadersCrossbow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrusadersCrossbowProj">
-            <summary>Full Path: Old/Content/Items/Weapons/Ranged/Bows/CrusadersCrossbow/CrusadersCrossbowProj</summary>
+            <summary>Full Path: Old/Content/Items/Weapons/Ranged/CrusadersCrossbow/CrusadersCrossbowProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HamaYumi">
             <summary>Full Path: Old/Content/Items/Weapons/Ranged/DemonCorruptBow/HamaYumi</summary>
@@ -4260,6 +4266,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.Embalmer">
             <summary>Full Path: Old/Content/Items/Weapons/Ranged/DemonCrimsonGun/Embalmer</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Hitscanner">
+            <summary>Full Path: Old/Content/Items/Weapons/Ranged/Hitscanner/Hitscanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Raygun">
+            <summary>Full Path: Old/Content/Items/Weapons/Ranged/Raygun/Raygun</summary>
         </member>
         <member name="F:Aequus.AequusTextures.StariteMinion">
             <summary>Full Path: Old/Content/Items/Weapons/Summon/Minions/StariteMinion/StariteMinion</summary>

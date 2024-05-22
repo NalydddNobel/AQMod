@@ -13,8 +13,34 @@ public abstract class ParticleArray<T> : IParticleSystem where T : IParticle, ne
     public abstract int ParticleCount { get; }
     public bool Active { get; protected set; }
 
+    internal static ParticleArray<T> Instance { get; private set; }
+
     /// <returns>A single particle instance.</returns>
-    public T New() {
+    public static T New() {
+        return Instance.NewInner();
+    }
+
+    /// <summary>
+    /// Gets multiple particle instances, used to reduce <see cref="CheckInit"/> calls. 
+    /// Use <see cref="NewMultipleReduced(int, int)"/>, if you want to spawn particles based on <see cref="Main.gfxQuality"/>.
+    /// </summary>
+    /// <param name="count">The amount of particles wanted.</param>
+    public static IEnumerable<T> NewMultiple(int count) {
+        return Instance.NewMultipleInner(count);
+    }
+
+    /// <summary>
+    /// Gets multiple particle instances, used to reduce <see cref="CheckInit"/> calls. <paramref name="count"/> is multiplied by <see cref="Main.gfxQuality"/>, 
+    /// but returns atleast <paramref name="minimum"/> amount of particles.
+    /// </summary>
+    /// <param name="count">The amount of particles wanted. This is multiplied <see cref="Main.gfxQuality"/>.</param>
+    /// <param name="minimum">The minimum amount of particles to return. <paramref name="count"/> is multiplied by <see cref="Main.gfxQuality"/>, which reduces it depending on quality settings.</param>
+    public static IEnumerable<T> NewMultipleReduced(int count, int minimum = 1) {
+        return Instance.NewMultipleInner(Math.Clamp((int)(count * Main.gfxQuality), minimum, count));
+    }
+
+    /// <returns><inheritdoc cref="New"/></returns>
+    internal T NewInner() {
         CheckInit();
 
         for (int i = 0; i < Particles.Length; i++) {
@@ -28,12 +54,8 @@ public abstract class ParticleArray<T> : IParticleSystem where T : IParticle, ne
         return Particles[^1];
     }
 
-    /// <summary>
-    /// Gets multiple particle instances, used to reduce <see cref="CheckInit"/> calls. Unlike <see cref="NewMultipleReduced(int, int)"/>, 
-    /// <paramref name="count"/> is NOT multiplied by <see cref="Main.gfxQuality"/>.
-    /// </summary>
-    /// <param name="count">The amount of particles wanted.</param>
-    public IEnumerable<T> NewMultiple(int count) {
+    /// <summary><inheritdoc cref="NewMultiple(int)"/></summary>
+    internal IEnumerable<T> NewMultipleInner(int count) {
         if (Main.netMode == NetmodeID.Server) {
             yield break;
         }
@@ -50,16 +72,6 @@ public abstract class ParticleArray<T> : IParticleSystem where T : IParticle, ne
                 }
             }
         }
-    }
-
-    /// <summary>
-    /// Gets multiple particle instances, used to reduce <see cref="CheckInit"/> calls. <paramref name="count"/> is multiplied by <see cref="Main.gfxQuality"/>, 
-    /// but returns atleast <paramref name="minimum"/> amount of particles.
-    /// </summary>
-    /// <param name="count">The amount of particles wanted. This is multiplied <see cref="Main.gfxQuality"/>.</param>
-    /// <param name="minimum">The minimum amount of particles to return. <paramref name="count"/> is multiplied by <see cref="Main.gfxQuality"/>, which reduces it depending on quality settings.</param>
-    public IEnumerable<T> NewMultipleReduced(int count, int minimum = 1) {
-        return NewMultiple(Math.Clamp((int)(count * Main.gfxQuality), minimum, count));
     }
 
     private void CheckInit() {
@@ -96,9 +108,11 @@ public abstract class ParticleArray<T> : IParticleSystem where T : IParticle, ne
 
     public void Load(Mod mod) {
         Mod = mod;
+        Instance = this;
     }
     public void Unload() {
         OnUnload();
+        Instance = null;
         Mod = null;
     }
     protected virtual void OnUnload() { }

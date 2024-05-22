@@ -45,7 +45,7 @@ public class OsirisProj : CorruptionSceptreProj {
                     continue;
                 }
 
-                var p = ModContent.GetInstance<LegacyBloomParticle>().New();
+                var p = LegacyBloomParticle.New();
                 p.Location = _trail[i][0];
                 p.Velocity = Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * -0.125f;
                 p.Color = new Color(255, 160, 100, 100);

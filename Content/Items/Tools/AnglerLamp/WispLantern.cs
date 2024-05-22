@@ -49,7 +49,7 @@ public class WispLantern : ModItem {
 
         if (Main.netMode != NetmodeID.Server) {
             int count = Math.Clamp(Math.Max(Main.npc[npc].width, Main.npc[npc].height) / 10, 3, 8);
-            foreach (var particle in ModContent.GetInstance<WispLanternParticles>().NewMultiple(count)) {
+            foreach (var particle in WispLanternParticles.NewMultiple(count)) {
                 particle.Location = Main.rand.NextVector2FromRectangle(Main.npc[npc].getRect());
                 particle.Color = Color.Lerp(Color.Teal, Color.LightSkyBlue, Main.rand.NextFloat(0.15f, 0.85f));
                 particle.Scale = Main.rand.NextFloat(0.5f, 0.9f);

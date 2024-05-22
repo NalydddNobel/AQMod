@@ -77,7 +77,7 @@ public class SuperStarSwordSlash : ModProjectile {
             }
 
             if (Main.rand.NextBool(4)) {
-                var p = ModContent.GetInstance<BlueFireSparkle>().New();
+                var p = BlueFireSparkle.New();
                 p.Location = Projectile.Center + Vector2.Normalize(Projectile.velocity.RotatedBy(Main.rand.NextFloat(-1.3f, 1.3f))) * 38f * Projectile.scale;
                 p.Velocity = Projectile.velocity;
                 p.Color = new Color(255, 255, 255, 0);

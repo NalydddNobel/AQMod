@@ -206,9 +206,8 @@ public class NightfallProj : ModProjectile {
         target.position.Y = (tileCoordinates.Y + fallHeight) * 16f - target.height;
 
         if (Main.netMode != NetmodeID.Server) {
-            var particleSystem = ModContent.GetInstance<DashBlurParticle>();
             for (int k = 0; k < fallHeight; k++) {
-                var particle = particleSystem.New();
+                var particle = DashBlurParticle.New();
                 particle.Location = new Vector2(oldPosition.X + Main.rand.Next(target.width), oldPosition.Y + k * 16f + Main.rand.Next(target.height));
                 particle.Velocity = Vector2.UnitY * Main.rand.NextFloat(4f, 8f);
                 particle.Color = Color.BlueViolet with { A = 60 };

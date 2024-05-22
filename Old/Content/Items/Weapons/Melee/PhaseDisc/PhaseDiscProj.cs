@@ -72,7 +72,7 @@ public class PhaseDiscProj : ValariProj {
         if (Projectile.localAI[1] > 0.6f && Main.rand.NextBool(2)) {
             var c = EffectColor;
 
-            var p = ModContent.GetInstance<LegacyBloomParticle>().New();
+            var p = LegacyBloomParticle.New();
             p.Location = Projectile.Center + (Projectile.rotation - MathHelper.PiOver2 + (MathHelper.PiOver4 + 0.5f + Main.rand.NextFloat(-1f, 0f)) * Projectile.direction).ToRotationVector2() *
                 Projectile.Size * 0.5f * Main.rand.NextFloat(0.5f, 1.1f);
             p.Velocity = Projectile.rotation.ToRotationVector2() * Main.rand.NextFloat(2f, 6f) * Projectile.direction;

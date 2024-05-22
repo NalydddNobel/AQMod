@@ -50,7 +50,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
 
     public override bool CreateDust(int i, int j, ref int type) {
         if (Main.netMode != NetmodeID.Server) {
-            var particle = ModContent.GetInstance<OmniGemParticle>().New();
+            var particle = OmniGemParticle.New();
             particle.Location = new Vector2(i * 16f + Main.rand.Next(16), j * 16f + Main.rand.Next(16));
             particle.Velocity = Main.rand.NextVector2Unit() * Main.rand.NextFloat(0.2f, 1f) * 3.3f;
             particle.Color = Color.White with { A = 0 };

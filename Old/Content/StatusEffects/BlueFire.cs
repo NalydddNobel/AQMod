@@ -47,7 +47,7 @@ public class BlueFireNPC : GlobalNPC {
         if (debuffBlueFire > 0 && Main.netMode != NetmodeID.Server && !Main.rand.NextBool(debuffBlueFire)) {
             int amt = Math.Max((int)(npc.Size.Length() / 64f), 1);
             for (int i = 0; i < amt; i++) {
-                var p = ModContent.GetInstance<BlueFireParticle>().New();
+                var p = BlueFireParticle.New();
                 p.Location = Main.rand.NextVector2FromRectangle(npc.Hitbox);
                 p.Velocity = -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f));
                 p.Color = new Color(45, 90, 205, 0);

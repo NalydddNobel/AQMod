@@ -7,7 +7,7 @@ namespace Aequus.Content.Items.PermaPowerups.NoHit;
 
 public class NoHitRewardParticles : ParticleSystem {
     private static int _nextSlot;
-    private readonly List<ParticleSlot> _items = new();
+    private readonly List<ParticleSlot> _items = [];
 
     public override int ParticleCount => _items.Count;
 

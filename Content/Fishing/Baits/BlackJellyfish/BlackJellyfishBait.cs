@@ -83,7 +83,7 @@ public class BlackJellyfishBaitExplosion : ModProjectile, DrawLayers.IDrawLayer,
             // Dusts
             for (int i = 0; i < 30; i++) {
                 Vector2 randomVector = Main.rand.NextVector2Unit();
-                Terraria.Dust d = Terraria.Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.MartianSaucerSpark, Alpha: 0, Scale: Main.rand.NextFloat(0.8f, 1.8f));
+                Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.MartianSaucerSpark, Alpha: 0, Scale: Main.rand.NextFloat(0.8f, 1.8f));
                 d.rotation = 0f;
                 d.velocity = randomVector * Main.rand.NextFloat(4f);
                 d.fadeIn = d.scale + Main.rand.NextFloat(0.8f);
@@ -91,13 +91,12 @@ public class BlackJellyfishBaitExplosion : ModProjectile, DrawLayers.IDrawLayer,
             }
             for (int i = 0; i < 60; i++) {
                 Vector2 randomVector = Main.rand.NextVector2Unit();
-                Terraria.Dust d = Terraria.Dust.NewDustPerfect(Projectile.Center + randomVector * Main.rand.NextFloat(0.8f, 1f) * Projectile.width / 2f, DustID.MartianSaucerSpark, Alpha: 0, Scale: Main.rand.NextFloat(0.8f, 2.5f));
+                Dust d = Dust.NewDustPerfect(Projectile.Center + randomVector * Main.rand.NextFloat(0.8f, 1f) * Projectile.width / 2f, DustID.MartianSaucerSpark, Alpha: 0, Scale: Main.rand.NextFloat(0.8f, 2.5f));
                 d.rotation = 0f;
                 d.velocity += randomVector * 4f * Main.rand.NextFloat();
                 d.noGravity = true;
             }
 
-            UnderwaterBubbleParticles bubbleParticles = ModContent.GetInstance<UnderwaterBubbleParticles>();
             int particleCount = Math.Max((int)(Projectile.width / 2 * Main.gfxQuality), Projectile.width / 4);
             for (int i = 0; i < particleCount; i++) {
                 Vector2 velocity = Main.rand.NextVector2Unit();
@@ -106,7 +105,7 @@ public class BlackJellyfishBaitExplosion : ModProjectile, DrawLayers.IDrawLayer,
                     continue;
                 }
 
-                var particle = bubbleParticles.New();
+                var particle = UnderwaterBubbleParticles.New();
                 particle.Location = location;
                 particle.Frame = (byte)Main.rand.Next(5);
                 particle.Velocity = velocity * Main.rand.NextFloat(1f);

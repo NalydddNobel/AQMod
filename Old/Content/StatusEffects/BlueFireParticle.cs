@@ -59,7 +59,7 @@ public sealed class BlueFireParticle : ParticleArray<BlueFireParticle.Particle> 
             particle.Location += particle.Velocity;
 
             if (Main.rand.NextBool(50)) {
-                var p = ModContent.GetInstance<BlueFireSparkle>().New();
+                var p = BlueFireSparkle.New();
                 p.Location = particle.Location;
                 p.Velocity = particle.Velocity;
                 p.Color = new Color(255, 255, 255, 0) * 0.5f;
