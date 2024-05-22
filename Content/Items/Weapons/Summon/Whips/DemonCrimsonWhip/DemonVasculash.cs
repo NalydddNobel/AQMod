@@ -17,7 +17,7 @@ public class DemonVasculash : UnifiedWhipItem, IMinionTagController {
     public int TagDuration => 240;
 
     public override void SetDefaults() {
-        Item.DefaultToWhip(WhipProjectile.Type, 90, 2f, 2.8f, animationTotalTime: 42);
+        Item.DefaultToWhip(WhipProjectile.Type, 90, 2f, 3.2f, animationTotalTime: 42);
         Item.rare = Commons.Rare.DemonSiegeLoot;
         Item.value = Commons.Cost.DemonSiegeLoot;
     }
