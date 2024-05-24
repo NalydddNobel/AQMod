@@ -1,5 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Content.Configuration;
+using Aequus.Content.Critters.SeaFirefly;
 using Aequus.Content.CrossMod.SplitSupport.Photography;
 using Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
 using Aequus.Content.Enemies.PollutedOcean.BreadOfCthulhu;
@@ -11,7 +12,6 @@ using Aequus.Content.Enemies.PollutedOcean.Scavenger;
 using Aequus.Content.Fishing;
 using Aequus.Content.Fishing.Baits.BlackJellyfish;
 using Aequus.Content.Items.Potions.Healing.Restoration;
-using Aequus.Content.Items.Potions.PotionCanteen;
 using Aequus.Content.Items.Tools.AnglerLamp;
 using Aequus.Content.Items.Weapons.Ranged.Ammo;
 using Aequus.Content.Items.Weapons.Ranged.StarPhish;
@@ -174,7 +174,7 @@ public class PollutedOceanSystem : ModSystem {
             pool[ModContent.NPCType<Eel>()] = 0.1f;
             pool[NPCID.Tumbleweed] = 1f; // Urchin
 
-            pool[NPCID.LightningBug] = 0.1f; // Sea Firefly
+            pool[ModContent.NPCType<SeaFirefly>()] = 2f;
         }
 
         if (Main.hardMode) {
@@ -194,7 +194,7 @@ public class PollutedOceanSystem : ModSystem {
             pool[ModContent.NPCType<Eel>()] = 0.1f;
             pool[NPCID.Tumbleweed] = 1f; // Urchin
 
-            pool[NPCID.LightningBug] = 0.1f; // Sea Firefly
+            pool[ModContent.NPCType<SeaFirefly>()] = 2f;
         }
 
         if (Main.hardMode) {

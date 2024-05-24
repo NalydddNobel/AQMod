@@ -12,6 +12,7 @@ public class SeaFirefly : ModNPC {
         NPC.lifeMax = 5;
         NPC.width = 8;
         NPC.height = 8;
+        NPC.npcSlots = 0.1f;
         NPC.friendly = true;
         NPC.noGravity = true;
     }
