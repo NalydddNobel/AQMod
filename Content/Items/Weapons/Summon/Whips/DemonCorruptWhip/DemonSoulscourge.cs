@@ -68,7 +68,7 @@ public class DemonSoulscourge : UnifiedWhipItem, IMinionTagController {
         projectile.localAI[1] = endPoint.Y;
     }
 
-    public override void OnHitNPC(ref float damagePenalty, Projectile whip, NPC target, in NPC.HitInfo hit, int damageDone) {
+    public override void OnWhipHitNPC(ref float damagePenalty, Projectile whip, NPC target, in NPC.HitInfo hit, int damageDone) {
         target.AddBuff(BuffID.ShadowFlame, 240 + Main.rand.Next(2) * 60);
     }
 

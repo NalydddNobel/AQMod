@@ -1,4 +1,5 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequus.Core.Assets;
+using Aequus.Core.ContentGeneration;
 using ReLogic.Content;
 using System;
 using Terraria.Graphics.Shaders;
@@ -9,9 +10,9 @@ public sealed class DyeLoader : ModSystem {
     public static ModItem HueshiftDye { get; private set; }
 
     public override void Load() {
-        Ref<Effect> effect = null;
+        Asset<Effect> effect = null;
         if (!Main.dedServ) {
-            effect = new Ref<Effect>(ModContent.Request<Effect>($"Aequus/Assets/Shaders/DyeShaders", AssetRequestMode.ImmediateLoad).Value);
+            effect = AequusShaders.Get("DyeShaders");
         }
 
         RegisterDye("CensorDye", "CensorPass", effect, useOpacity: 4f);
@@ -66,7 +67,7 @@ public sealed class DyeLoader : ModSystem {
         return item;
     }
 
-    private InstancedDyeItem RegisterDye(string name, string pass, Ref<Effect> effect, int itemRarity = ItemRarityID.Blue, int value = Item.silver * 50, float useOpacity = 1f, Color? useColor = null) {
+    private InstancedDyeItem RegisterDye(string name, string pass, Asset<Effect> effect, int itemRarity = ItemRarityID.Blue, int value = Item.silver * 50, float useOpacity = 1f, Color? useColor = null) {
         return RegisterDye(name, () => new ArmorShaderData(effect, pass).UseOpacity(useOpacity).UseColor(useColor ?? Color.Transparent), itemRarity, value);
     }
 }

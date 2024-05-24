@@ -66,6 +66,7 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
     }
 
     private void AI_ReturnToOwner() {
+        Projectile.ignoreWater = true;
         Projectile.alpha = 0;
         if (!Main.player[Projectile.owner].active || Main.player[Projectile.owner].DeadOrGhost) {
             Projectile.Kill();
@@ -184,6 +185,7 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
     }
 
     private void AI_Broken() {
+        Projectile.ignoreWater = true;
         Projectile.tileCollide = false;
         Projectile.rotation += Projectile.velocity.X * 0.05f;
         Projectile.velocity.X *= 0.97f;

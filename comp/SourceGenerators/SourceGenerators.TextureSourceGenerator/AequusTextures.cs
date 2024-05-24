@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 816) yo momma gai</summary>
+/// <summary>(Total Textures: 817) yo momma gai</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -659,6 +659,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> DemonVasculash = new("Aequus/Content/Items/Weapons/Summon/Whips/DemonCrimsonWhip/DemonVasculash");
     /// <summary>Full Path: Content/Items/Weapons/Summon/Whips/DemonCrimsonWhip/DemonVasculashProj</summary>
     public static readonly RequestCache<Texture2D> DemonVasculashProj = new("Aequus/Content/Items/Weapons/Summon/Whips/DemonCrimsonWhip/DemonVasculashProj");
+    /// <summary>Full Path: Content/Items/Weapons/Summon/Whips/DemonCrimsonWhip/VasculashTagProj</summary>
+    public static readonly RequestCache<Texture2D> VasculashTagProj = new("Aequus/Content/Items/Weapons/Summon/Whips/DemonCrimsonWhip/VasculashTagProj");
     /// <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
     public static readonly RequestCache<Texture2D> HotAirBalloonBuff = new("Aequus/Content/Mounts/HotAirBalloon/HotAirBalloonBuff");
     /// <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonItem</summary>

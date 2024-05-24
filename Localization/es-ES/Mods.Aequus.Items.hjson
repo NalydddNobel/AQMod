@@ -547,6 +547,11 @@ Triacanthorn: {
 }
 
 //# Weapons: Summon
+ElectricEelWhip: {
+	// DisplayName: Stimulant
+	// Tooltip: "'The Eel - Eek!'"
+}
+
 DemonSoulscourge: {
 	// DisplayName: Serpent's Blight
 	/* Tooltip:
@@ -566,11 +571,17 @@ DemonVasculash: {
 		''' */
 }
 
+StariteStaff: {
+	// DisplayName: Starite Staff
+	// Tooltip: ""
+}
+
 PhysicistSentry: {
 	DisplayName: Torreta Tesla Portátil
 	Tooltip: Invoca una torreta tesla que dispara una rafaga de relampagos en cadena
 }
 
+//# Weapons: Necromancy
 Insurgency: {
 	DisplayName: Insurgencia
 	Tooltip:
@@ -1124,9 +1135,4 @@ StariteMaterial: {
 UnopenedChestItem: {
 	DisplayName: Objeto de cofre sin abrir
 	// Tooltip: This is a debug item placed into chests upon worldgen to check if they have been opened
-}
-
-StariteStaff: {
-	// DisplayName: Starite Staff
-	// Tooltip: ""
 }

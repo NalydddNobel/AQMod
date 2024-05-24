@@ -8,7 +8,7 @@ public abstract class UnifiedWhipItem : ModItem, IWhipController {
     public abstract void SetWhipSettings(Projectile projectile, ref WhipSettings settings);
     public abstract void DrawWhip(IWhipController.WhipDrawParams drawInfo);
 
-    public virtual void OnHitNPC(ref float damagePenalty, Projectile whip, NPC target, in NPC.HitInfo hit, int damageDone) { }
+    public virtual void OnWhipHitNPC(ref float damagePenalty, Projectile whip, NPC target, in NPC.HitInfo hit, int damageDone) { }
 
     public virtual void WhipAI(Projectile projectile, List<Vector2> WhipPoints, float Progress) { }
 
@@ -47,7 +47,7 @@ public interface IWhipController : ILocalizedModType {
     /// <param name="target"></param>
     /// <param name="hit"></param>
     /// <param name="damageDone"></param>
-    void OnHitNPC(ref float damagePenalty, Projectile whip, NPC target, in NPC.HitInfo hit, int damageDone);
+    void OnWhipHitNPC(ref float damagePenalty, Projectile whip, NPC target, in NPC.HitInfo hit, int damageDone);
     void WhipAI(Projectile projectile, List<Vector2> WhipPoints, float Progress);
     void DrawWhip(WhipDrawParams drawInfo);
     Color GetWhipStringColor(Vector2 position);
@@ -82,7 +82,7 @@ internal class InstancedWhipProjectile(IWhipController controller, string name, 
 
     public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
         float penalty = 0.5f;
-        _controller.OnHitNPC(ref penalty, Projectile, target, in hit, damageDone);
+        _controller.OnWhipHitNPC(ref penalty, Projectile, target, in hit, damageDone);
 
         if (_controller is IMinionTagController minionTag) {
             target.AddBuff(minionTag.TagBuff.Type, minionTag.TagDuration);
@@ -204,5 +204,11 @@ internal class MinionTagNPC : GlobalNPC {
                 controller.OnMinionHit(npc, projectile, in hit, damageDone);
             }
         }
+    }
+}
+
+public static partial class Extensions {
+    public static void RemoveTagBuff(this IMinionTagController tag, NPC npc) {
+        npc.RequestBuffRemoval(tag.TagBuff.Type);
     }
 }

@@ -547,6 +547,11 @@ Triacanthorn: {
 }
 
 //# Weapons: Summon
+ElectricEelWhip: {
+	// DisplayName: Stimulant
+	// Tooltip: "'The Eel - Eek!'"
+}
+
 DemonSoulscourge: {
 	DisplayName: 海蛇之疫
 	Tooltip:
@@ -566,11 +571,17 @@ DemonVasculash: {
 		'''
 }
 
+StariteStaff: {
+	DisplayName: 源星法杖
+	Tooltip: ""
+}
+
 PhysicistSentry: {
 	DisplayName: 便携式特斯拉炮塔
 	Tooltip: 召唤一个会发射大量连锁闪电的特斯拉炮塔
 }
 
+//# Weapons: Necromancy
 Insurgency: {
 	DisplayName: 叛乱
 	Tooltip:
@@ -1124,9 +1135,4 @@ StariteMaterial: {
 UnopenedChestItem: {
 	DisplayName: 未开启的宝箱物品
 	Tooltip: 这是Debug物品, 将其放置在世界生成的宝箱内以检测其是否被开启过
-}
-
-StariteStaff: {
-	DisplayName: 源星法杖
-	Tooltip: ""
 }

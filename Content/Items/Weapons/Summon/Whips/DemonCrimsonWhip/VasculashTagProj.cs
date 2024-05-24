@@ -11,8 +11,6 @@ public class VasculashTagProj : ModProjectile {
     public static readonly int IdleMaxDistance = 96;
     public static readonly int IdleMinDistance = 36;
 
-    public override string Texture => AequusTextures.NPC(NPCID.TheHungry);
-
     public override void SetStaticDefaults() {
         Main.projFrames[Type] = 3;
     }
@@ -28,8 +26,6 @@ public class VasculashTagProj : ModProjectile {
     }
 
     public override void AI() {
-        Projectile.scale = 0.5f;
-
         Player player = Main.player[Projectile.owner];
 
         if (player.immune) {

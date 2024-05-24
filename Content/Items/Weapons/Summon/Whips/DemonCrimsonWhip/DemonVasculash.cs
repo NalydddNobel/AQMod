@@ -5,7 +5,6 @@ using Terraria.DataStructures;
 
 namespace Aequus.Content.Items.Weapons.Summon.Whips.DemonCrimsonWhip;
 
-[WorkInProgress]
 public class DemonVasculash : UnifiedWhipItem, IMinionTagController {
     public static readonly int DefensePerPet = 2;
     public static readonly int MaxPets = 20;
@@ -13,8 +12,8 @@ public class DemonVasculash : UnifiedWhipItem, IMinionTagController {
     public static readonly int WhipSegments = 38;
     public static readonly int[] HellfireDurations = [240, 300, 360];
 
-    public ModBuff TagBuff { get; set; }
-    public int TagDuration => 240;
+    ModBuff IMinionTagController.TagBuff { get; set; }
+    int IMinionTagController.TagDuration => 240;
 
     public override void SetDefaults() {
         Item.DefaultToWhip(WhipProjectile.Type, 90, 2f, 3.2f, animationTotalTime: 42);
@@ -81,7 +80,7 @@ public class DemonVasculash : UnifiedWhipItem, IMinionTagController {
         projectile.localAI[1] = endPoint.Y;
     }
 
-    public override void OnHitNPC(ref float damagePenalty, Projectile whip, NPC target, in NPC.HitInfo hit, int damageDone) {
+    public override void OnWhipHitNPC(ref float damagePenalty, Projectile whip, NPC target, in NPC.HitInfo hit, int damageDone) {
         target.AddBuff(BuffID.OnFire3, Main.rand.Next(HellfireDurations));
     }
 
@@ -97,7 +96,7 @@ public class DemonVasculash : UnifiedWhipItem, IMinionTagController {
             Projectile.NewProjectile(source, npc.Center, Main.rand.NextVector2Unit(), ModContent.ProjectileType<VasculashTagProj>(), minionProj.damage, minionProj.knockBack, minionProj.owner);
         }
 
-        npc.RequestBuffRemoval(TagBuff.Type);
+        this.RemoveTagBuff(npc);
     }
 
     public override bool? UseItem(Player player) {
