@@ -142,6 +142,6 @@ Eel: {
 }
 
 SeaFirefly: {
-	// DisplayName: Sea Firefly
+	DisplayName: 海萤火虫
 	// Bestiary: Mods.Aequus.NPCs.SeaFirefly.Bestiary
 }
