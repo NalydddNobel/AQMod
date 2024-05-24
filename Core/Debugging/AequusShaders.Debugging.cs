@@ -17,6 +17,10 @@ public partial class AequusShaders {
         }
 
         _loadedAllShaders = true;
+        if (Main.dedServ) {
+            return;
+        }
+
         MethodInfo info = typeof(Mod).GetProperty("File", BindingFlags.NonPublic | BindingFlags.Instance).GetGetMethod(true);
         TmodFile file = info.Invoke(Aequus.Instance, null) as TmodFile;
 

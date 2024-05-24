@@ -9,6 +9,7 @@ internal class DiagnosticsMenu : ModSystem {
     public enum TimerType : byte {
         Particles,
         PostDrawLiquids,
+        SeaFireflies,
         Count
     }
     public enum TrackerType : byte {
@@ -52,6 +53,9 @@ internal class DiagnosticsMenu : ModSystem {
         ChatManager.DrawColorCodedString(spriteBatch, font, "Aequus", new Vector2(wordX, y), Color.White, 0f, Vector2.Zero, Vector2.One);
 
         for (int i = 0; i < _durations.Length; i++) {
+            if (_durations[i] < 0.01) {
+                continue;
+            }
             string name = ((TimerType)i).ToString();
             y += yOffset;
             spriteBatch.DrawString(font, name + ":", new Vector2(wordX, y), Color.White);
@@ -59,6 +63,10 @@ internal class DiagnosticsMenu : ModSystem {
         }
 
         for (int i = 0; i < _trackedNumbers.Length; i++) {
+            if (_trackedNumbers[i] == 0) {
+                continue;
+            }
+
             string name = ((TrackerType)i).ToString();
             y += yOffset;
             spriteBatch.DrawString(font, name + ":", new Vector2(wordX, y), Color.White);
