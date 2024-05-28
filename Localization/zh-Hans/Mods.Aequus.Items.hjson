@@ -1178,11 +1178,11 @@ UnopenedChestItem: {
 }
 
 BeyondLifeCrystal: {
-	// DisplayName: Beyond Life Crystal
-	// Tooltip: ""
+	DisplayName: 彼界生命水晶
+	Tooltip: ""
 }
 
 BeyondManaCrystal: {
-	// DisplayName: Beyond Mana Crystal
-	// Tooltip: ""
+	DisplayName: 彼界魔力水晶
+	Tooltip: ""
 }
