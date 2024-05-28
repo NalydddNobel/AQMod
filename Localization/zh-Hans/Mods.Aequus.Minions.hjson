@@ -5,7 +5,7 @@ StariteMinion: {
 }
 
 ScribbleNotebookMinion: {
-	// BuffDisplayName: Mods.Aequus.Minions.ScribbleNotebookMinion.BuffDisplayName
-	// BuffDescription: Mods.Aequus.Minions.ScribbleNotebookMinion.BuffDescription
-	// DisplayName: Scribble Notebook Minion
+	DisplayName: 涂鸦
+	BuffDisplayName: "{$ScribbleNotebookMinion.DisplayName}"
+	BuffDescription: 物件会你而战!
 }

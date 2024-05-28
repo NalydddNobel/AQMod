@@ -1,4 +1,5 @@
 CommonTooltips: {
+	GuideHint: "向导可能会对此物感兴趣..."
 	BuffTimeRange: "{0}-{1}分钟持续时间"
 	IncreasesInventorySlots: 获得{0}格物品栏
 	Cooldown: 有{0}秒冷却时间
@@ -611,8 +612,8 @@ DemonVasculash: {
 }
 
 ScribbleNotebook: {
-	// DisplayName: Scribble Notebook
-	// Tooltip: Summons a random object to fight for you
+	DisplayName: 涂鸦笔记本
+	Tooltip: 召唤一个随机物件为你而战
 }
 
 StariteStaff: {
@@ -811,7 +812,7 @@ PossessedShard: {
 
 AquaticEnergy: {
 	DisplayName: 海蓝能量
-	Tooltip: "[c/C080FF:向导可能会对此物感兴趣...]"
+	Tooltip: ""
 }
 
 AtmosphericEnergy: {
