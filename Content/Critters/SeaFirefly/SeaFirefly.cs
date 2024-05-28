@@ -1,29 +1,52 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Biomes.PollutedOcean;
+using Aequus.Core.ContentGeneration;
 using System;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 
 namespace Aequus.Content.Critters.SeaFirefly;
 
+[WorkInProgress]
 [BestiaryBiome<PollutedOceanBiomeSurface>]
 [BestiaryBiome<PollutedOceanBiomeUnderground>]
-public class SeaFirefly : ModNPC {
-    public override void SetDefaults() {
-        NPC.lifeMax = 5;
+public class SeaFirefly : UnifiedCritter {
+    public override int BestiaryCritterSort => NPCID.Firefly;
+
+    public override void OnSetDefaults() {
         NPC.width = 8;
         NPC.height = 8;
         NPC.npcSlots = 0.1f;
-        NPC.friendly = true;
         NPC.noGravity = true;
+    }
+
+    public override void SetItemDefaults(Item Item) {
+        Item.width = 16;
+        Item.height = 16;
+        Item.value = Item.sellPrice(silver: 4);
+        Item.rare = ItemRarityID.Blue;
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
         this.CreateEntry(database, bestiaryEntry);
     }
 
+    public override void OnSpawn(IEntitySource source) {
+        if (source is EntitySource_SpawnNPC) {
+        }
+    }
+
     public override void AI() {
-        base.AI();
         if (NPC.wet) {
+            if (NPC.ai[2] == 0f) {
+                NPC.ai[2] = 1f;
+                IEntitySource mySource = NPC.GetSource_FromThis();
+                int amount = Main.rand.Next(8);
+                for (int i = 0; i < amount; i++) {
+                    Point spawnCoordinates = (NPC.Center + Main.rand.NextVector2Unit() * 4f).ToPoint();
+                    NPC.NewNPC(mySource, spawnCoordinates.X, spawnCoordinates.Y, Type, NPC.whoAmI, ai2: NPC.ai[2]);
+                }
+            }
             if (NPC.direction == 0) {
                 NPC.TargetClosest(faceTarget: true);
             }
@@ -65,21 +88,23 @@ public class SeaFirefly : ModNPC {
             NPC.CollideWithOthers();
         }
         else {
-            NPC.aiStyle = NPCAIStyleID.Piranha;
+            NPC.velocity.Y += 0.3f;
         }
+
+        Lighting.AddLight(NPC.Center, new Vector3(0.1f, 0.2f, 0.3f));
     }
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
         if (!NPC.IsABestiaryIconDummy) {
             Vector2 glowPosition = NPC.Center;
-            float wave = Helper.Oscillate(glowPosition.X * 0.003f + Main.GlobalTimeWrappedHourly, 1f);
+            float wave = Helper.Oscillate(NPC.whoAmI + glowPosition.X * 0.01f + Main.GlobalTimeWrappedHourly * 4f, 1f);
 
             Color color = Color.Lerp(new Color(30, 90, 255, 50), new Color(40, 255, 255, 50), wave) * 0.5f;
             if (Main.getGoodWorld) {
                 color = ExtendColor.HueSet(Color.Red, wave) with { A = 0 } * 0.5f;
             }
 
-            float scale = Helper.Oscillate(NPC.whoAmI + Main.GlobalTimeWrappedHourly, 0.4f, 0.7f);
+            float scale = Helper.Oscillate(NPC.whoAmI + Main.GlobalTimeWrappedHourly, 0.4f, 0.8f);
             SeaFireflyRenderer.Instance.Enqueue(new SeaFireflyShaderRequest(glowPosition, NPC.scale * scale, color));
         }
 

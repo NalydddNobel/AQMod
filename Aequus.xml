@@ -1217,6 +1217,10 @@
             <param name="modWall"></param>
             <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
         </member>
+        <member name="M:Aequus.Core.ContentGeneration.UnifiedCritter.SetItemDefaults(Terraria.Item)">
+            <summary>This method is not instanced.</summary>
+            <param name="Item"></param>
+        </member>
         <member name="T:Aequus.Core.ContentGeneration.UnifiedModMount">
             <summary>A <see cref="T:Terraria.ModLoader.ModMount"/> which automagically registers a related <see cref="T:Terraria.ModLoader.ModItem"/> and <see cref="T:Terraria.ModLoader.ModBuff"/>, suffixed with +"Item" and +"Buff" respectively.</summary>
         </member>
@@ -1802,10 +1806,13 @@
         <member name="P:Aequus.Core.CrossMod.SupportedMod`1.Instance">
             <summary>The Supported Mod's instance. This property is <see langword="null" /> when the mod is not enabled.</summary>
         </member>
-        <member name="E:Aequus.Core.Graphics.DrawLayers.WorldBehindTiles">
+        <member name="F:Aequus.Core.Graphics.DrawLayers.PostUpdateScreenPosition">
+            <summary>Invoked before anything has begun rendering, but after the screen position has been determined.</summary>
+        </member>
+        <member name="F:Aequus.Core.Graphics.DrawLayers.WorldBehindTiles">
             <summary>Invoked before NPCs behind tiles are drawn.</summary>
         </member>
-        <member name="E:Aequus.Core.Graphics.DrawLayers.PostDrawDust">
+        <member name="F:Aequus.Core.Graphics.DrawLayers.PostDrawDust">
             <summary>Invoked after Dusts have been drawn.</summary>
         </member>
         <member name="F:Aequus.Core.Graphics.DrawLayers.PostDrawLiquids">

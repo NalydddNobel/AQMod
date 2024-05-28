@@ -93,7 +93,7 @@ public class DemonVasculash : UnifiedWhipItem, IMinionTagController {
         int owner = minionProj.owner;
 
         for (int i = 0; i < PetsPerTagHit; i++) {
-            Projectile.NewProjectile(source, npc.Center, Main.rand.NextVector2Unit(), ModContent.ProjectileType<VasculashTagProj>(), minionProj.damage, minionProj.knockBack, minionProj.owner);
+            Projectile.NewProjectile(source, npc.Center, Main.rand.NextVector2Unit(), type, damage, knockback, owner);
         }
 
         this.RemoveTagBuff(npc);

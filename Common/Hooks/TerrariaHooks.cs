@@ -25,8 +25,10 @@ public partial class TerrariaHooks : ILoad {
         On_ItemSlot.PickItemMovementAction += On_ItemSlot_PickItemMovementAction;
         On_ItemSlot.RightClick_ItemArray_int_int += ItemSlot_RightClick;
 
+        On_Main.CheckMonoliths += On_Main_CheckMonoliths;
         On_Main.DrawNPC += On_Main_DrawNPC;
         On_Main.DrawNPCs += On_Main_DrawNPCs;
+        On_Main.DrawInfernoRings += On_Main_DrawInfernoRings;
         On_Main.DrawItems += On_Main_DrawItems;
         On_Main.UpdateTime_StartDay += On_Main_UpdateTime_StartDay;
         On_Main.UpdateTime_StartNight += On_Main_UpdateTime_StartNight;

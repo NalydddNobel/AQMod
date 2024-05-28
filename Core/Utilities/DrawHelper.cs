@@ -270,6 +270,7 @@ public sealed class DrawHelper : ModSystem {
         Main.QueueMainThreadAction(LoadOnMainThread);
     }
 
+
     public override void Unload() {
         SpriteBatchCache = null;
         VertexStrip = null;

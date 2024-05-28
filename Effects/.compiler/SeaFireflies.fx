@@ -4,6 +4,7 @@ sampler2D Glows : register(s1);
 float glowMagnitude;
 float outlineGlowMagnitude;
 float2 imageSize;
+float2 glowOffsetUV;
 const float pixelSize = 2;
 
 bool anyA(float2 uv)
@@ -25,7 +26,7 @@ bool anySquare(float2 uv, sampler2D input)
 float4 main(float2 uv : TEXCOORD) : COLOR
 {
     float4 color = tex2D(Tiles, uv);
-    float4 maskColor = tex2D(Glows, uv);
+    float4 maskColor = tex2D(Glows, uv + glowOffsetUV);
     float glow = anySquare(uv, Tiles) ? outlineGlowMagnitude : glowMagnitude;
 	
     return maskColor * (int) color.a * glow;
@@ -36,7 +37,7 @@ float4 water(float2 uv : TEXCOORD) : COLOR
     float2 pixelsToUV = float2(pixelSize / imageSize.x, pixelSize / imageSize.y);
     float2 up = float2(0, -pixelsToUV.y);
     float4 color = tex2D(Tiles, uv);
-    float4 maskColor = tex2D(Glows, uv);
+    float4 maskColor = tex2D(Glows, uv + glowOffsetUV);
     float glow = anyA(uv + up) ? outlineGlowMagnitude : glowMagnitude;
 	
     return maskColor * (int) color.a * glow;

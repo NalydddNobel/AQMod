@@ -1,6 +1,7 @@
 ﻿using Aequus.Common;
 using Aequus.Core.ContentGeneration;
 using System.Collections.Generic;
+using Terraria.DataStructures;
 
 namespace Aequus.Content.Items.Weapons.Summon.Whips.DemonCorruptWhip;
 
@@ -73,5 +74,24 @@ public class DemonSoulscourge : UnifiedWhipItem, IMinionTagController {
     }
 
     void IMinionTagNPCController.OnMinionHit(NPC npc, Projectile minionProj, in NPC.HitInfo hit, int damageDone) {
+        IEntitySource source = minionProj.GetSource_OnHit(npc);
+        Vector2 spawnLocation = npc.Center;
+        int type = ModContent.ProjectileType<SoulscourgeTagProj>();
+        int damage = minionProj.damage;
+        float knockback = minionProj.knockBack;
+        int owner = minionProj.owner;
+
+        Projectile.NewProjectile(source, npc.Center, Main.rand.NextVector2Unit(), type, damage, knockback, owner);
+
+        this.RemoveTagBuff(npc);
     }
+
+    public override bool? UseItem(Player player) {
+        return null;
+    }
+
+    public override bool AltFunctionUse(Player player) {
+        return player.ownedProjectileCounts[ModContent.ProjectileType<SoulscourgeTagProj>()] > 0;
+    }
+
 }

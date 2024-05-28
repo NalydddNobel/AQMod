@@ -174,7 +174,11 @@ public class PollutedOceanSystem : ModSystem {
             pool[ModContent.NPCType<Eel>()] = 0.1f;
             pool[NPCID.Tumbleweed] = 1f; // Urchin
 
-            pool[ModContent.NPCType<SeaFirefly>()] = 2f;
+            if (!Main.dayTime) {
+                if (NPC.CountNPCS(ModContent.NPCType<SeaFirefly>()) < 25) {
+                    pool[ModContent.NPCType<SeaFirefly>()] = 20f;
+                }
+            }
         }
 
         if (Main.hardMode) {
@@ -194,7 +198,9 @@ public class PollutedOceanSystem : ModSystem {
             pool[ModContent.NPCType<Eel>()] = 0.1f;
             pool[NPCID.Tumbleweed] = 1f; // Urchin
 
-            pool[ModContent.NPCType<SeaFirefly>()] = 2f;
+            if (NPC.CountNPCS(ModContent.NPCType<SeaFirefly>()) < 25) {
+                pool[ModContent.NPCType<SeaFirefly>()] = 20f;
+            }
         }
 
         if (Main.hardMode) {
