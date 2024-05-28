@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Sounds: 78)</summary>
+/// <summary>(Total Sounds: 84)</summary>
 [CompilerGenerated]
 public partial class AequusSounds {            
         /// <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -16,6 +16,12 @@ public partial class AequusSounds {
     public static readonly SoundStyle BlackJellyfishExplosion_Underwater = new("Aequus/Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishExplosion_Underwater");
     /// <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishUnderwaterBubbles</summary>
     public static readonly SoundStyle BlackJellyfishUnderwaterBubbles = new("Aequus/Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishUnderwaterBubbles");
+    /// <summary>Full Path: Assets/Sounds/Enemy/Eel/EelMoving0</summary>
+    public static readonly SoundStyle EelMoving0 = new("Aequus/Assets/Sounds/Enemy/Eel/EelMoving0");
+    /// <summary>Full Path: Assets/Sounds/Enemy/Eel/EelMoving1</summary>
+    public static readonly SoundStyle EelMoving1 = new("Aequus/Assets/Sounds/Enemy/Eel/EelMoving1");
+    /// <summary>Full Path: Assets/Sounds/Enemy/Eel/EelMoving2</summary>
+    public static readonly SoundStyle EelMoving2 = new("Aequus/Assets/Sounds/Enemy/Eel/EelMoving2");
     /// <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttack</summary>
     public static readonly SoundStyle ChainedSoulAttack = new("Aequus/Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttack");
     /// <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttackExplode0</summary>
@@ -28,6 +34,10 @@ public partial class AequusSounds {
     public static readonly SoundStyle KeeperImpSummon = new("Aequus/Assets/Sounds/Enemy/KeeperImp/KeeperImpSummon");
     /// <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/KeeperImpSummonTelegraph</summary>
     public static readonly SoundStyle KeeperImpSummonTelegraph = new("Aequus/Assets/Sounds/Enemy/KeeperImp/KeeperImpSummonTelegraph");
+    /// <summary>Full Path: Assets/Sounds/Enemy/Pillbug/PhilBugHurt</summary>
+    public static readonly SoundStyle PhilBugHurt = new("Aequus/Assets/Sounds/Enemy/Pillbug/PhilBugHurt");
+    /// <summary>Full Path: Assets/Sounds/Enemy/Pillbug/PhilBugKilled</summary>
+    public static readonly SoundStyle PhilBugKilled = new("Aequus/Assets/Sounds/Enemy/Pillbug/PhilBugKilled");
     /// <summary>Full Path: Assets/Sounds/Items/CanteenBuzzer</summary>
     public static readonly SoundStyle CanteenBuzzer = new("Aequus/Assets/Sounds/Items/CanteenBuzzer");
     /// <summary>Full Path: Assets/Sounds/Items/CanteenUse</summary>
@@ -116,6 +126,8 @@ public partial class AequusSounds {
     public static readonly SoundStyle MoonflowerBreak = new("Aequus/Assets/Sounds/Tile/MoonflowerBreak");
     /// <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
     public static readonly SoundStyle OmniGemBreak = new("Aequus/Assets/Sounds/Tile/OmniGemBreak");
+    /// <summary>Full Path: Assets/Sounds/Tile/RadioAmbient</summary>
+    public static readonly SoundStyle RadioAmbient = new("Aequus/Assets/Sounds/Tile/RadioAmbient");
     /// <summary>Full Path: Assets/Sounds/Tile/ScrapBlock0</summary>
     public static readonly SoundStyle ScrapBlock0 = new("Aequus/Assets/Sounds/Tile/ScrapBlock0");
     /// <summary>Full Path: Assets/Sounds/Tile/ScrapBlock1</summary>

@@ -81,7 +81,7 @@ ChainedSoul.DisplayName: Alma encadenada
 DwarfStarite: {
 	DisplayName: Starite Enana
 	Bestiary: Si un Starite no consigue suficiente energia para evoluciónar, este se desolvera hasta quedar como una particula de luz. Apesar de tener sus poderes atrofiados, disfruta de su jubilación flotando sin rumbo.
-	// ItemTooltip: Mods.Aequus.NPCs.DwarfStarite.ItemTooltip
+	// ItemTooltip: ""
 }
 
 UltraStarite: {

@@ -2136,7 +2136,7 @@
             <summary>Whether the Occultist has been met. This determines if the Hostile Occultist emote can be used.</summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 78)</summary>
+            <summary>(Total Sounds: 84)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishCharge">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -2152,6 +2152,15 @@
         </member>
         <member name="F:Aequus.AequusSounds.BlackJellyfishUnderwaterBubbles">
             <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishUnderwaterBubbles</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.EelMoving0">
+            <summary>Full Path: Assets/Sounds/Enemy/Eel/EelMoving0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.EelMoving1">
+            <summary>Full Path: Assets/Sounds/Enemy/Eel/EelMoving1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.EelMoving2">
+            <summary>Full Path: Assets/Sounds/Enemy/Eel/EelMoving2</summary>
         </member>
         <member name="F:Aequus.AequusSounds.ChainedSoulAttack">
             <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttack</summary>
@@ -2170,6 +2179,12 @@
         </member>
         <member name="F:Aequus.AequusSounds.KeeperImpSummonTelegraph">
             <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/KeeperImpSummonTelegraph</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.PhilBugHurt">
+            <summary>Full Path: Assets/Sounds/Enemy/Pillbug/PhilBugHurt</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.PhilBugKilled">
+            <summary>Full Path: Assets/Sounds/Enemy/Pillbug/PhilBugKilled</summary>
         </member>
         <member name="F:Aequus.AequusSounds.CanteenBuzzer">
             <summary>Full Path: Assets/Sounds/Items/CanteenBuzzer</summary>
@@ -2303,6 +2318,9 @@
         <member name="F:Aequus.AequusSounds.OmniGemBreak">
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
+        <member name="F:Aequus.AequusSounds.RadioAmbient">
+            <summary>Full Path: Assets/Sounds/Tile/RadioAmbient</summary>
+        </member>
         <member name="F:Aequus.AequusSounds.ScrapBlock0">
             <summary>Full Path: Assets/Sounds/Tile/ScrapBlock0</summary>
         </member>
@@ -2373,7 +2391,7 @@
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 828) yo momma gai</summary>
+            <summary>(Total Textures: 834) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -3163,6 +3181,24 @@
         </member>
         <member name="F:Aequus.AequusTextures.CompressedTrash">
             <summary>Full Path: Content/Items/Materials/CompressedTrash</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BeyondHeart">
+            <summary>Full Path: Content/Items/PermaPowerups/BeyondLifeCrystal/BeyondHeart</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BeyondHeartBar">
+            <summary>Full Path: Content/Items/PermaPowerups/BeyondLifeCrystal/BeyondHeartBar</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BeyondLifeCrystal">
+            <summary>Full Path: Content/Items/PermaPowerups/BeyondLifeCrystal/BeyondLifeCrystal</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BeyondManaCrystal">
+            <summary>Full Path: Content/Items/PermaPowerups/BeyondManaCrystal/BeyondManaCrystal</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BeyondStar">
+            <summary>Full Path: Content/Items/PermaPowerups/BeyondManaCrystal/BeyondStar</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BeyondStarBar">
+            <summary>Full Path: Content/Items/PermaPowerups/BeyondManaCrystal/BeyondStarBar</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NetherStar">
             <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStar</summary>

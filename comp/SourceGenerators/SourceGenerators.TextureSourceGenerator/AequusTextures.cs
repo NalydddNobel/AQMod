@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 828) yo momma gai</summary>
+/// <summary>(Total Textures: 834) yo momma gai</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -533,6 +533,18 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ConeHelmet_Head = new("Aequus/Content/Items/Armor/MiscHelmets/ConeHelmet_Head");
     /// <summary>Full Path: Content/Items/Materials/CompressedTrash</summary>
     public static readonly RequestCache<Texture2D> CompressedTrash = new("Aequus/Content/Items/Materials/CompressedTrash");
+    /// <summary>Full Path: Content/Items/PermaPowerups/BeyondLifeCrystal/BeyondHeart</summary>
+    public static readonly RequestCache<Texture2D> BeyondHeart = new("Aequus/Content/Items/PermaPowerups/BeyondLifeCrystal/BeyondHeart");
+    /// <summary>Full Path: Content/Items/PermaPowerups/BeyondLifeCrystal/BeyondHeartBar</summary>
+    public static readonly RequestCache<Texture2D> BeyondHeartBar = new("Aequus/Content/Items/PermaPowerups/BeyondLifeCrystal/BeyondHeartBar");
+    /// <summary>Full Path: Content/Items/PermaPowerups/BeyondLifeCrystal/BeyondLifeCrystal</summary>
+    public static readonly RequestCache<Texture2D> BeyondLifeCrystal = new("Aequus/Content/Items/PermaPowerups/BeyondLifeCrystal/BeyondLifeCrystal");
+    /// <summary>Full Path: Content/Items/PermaPowerups/BeyondManaCrystal/BeyondManaCrystal</summary>
+    public static readonly RequestCache<Texture2D> BeyondManaCrystal = new("Aequus/Content/Items/PermaPowerups/BeyondManaCrystal/BeyondManaCrystal");
+    /// <summary>Full Path: Content/Items/PermaPowerups/BeyondManaCrystal/BeyondStar</summary>
+    public static readonly RequestCache<Texture2D> BeyondStar = new("Aequus/Content/Items/PermaPowerups/BeyondManaCrystal/BeyondStar");
+    /// <summary>Full Path: Content/Items/PermaPowerups/BeyondManaCrystal/BeyondStarBar</summary>
+    public static readonly RequestCache<Texture2D> BeyondStarBar = new("Aequus/Content/Items/PermaPowerups/BeyondManaCrystal/BeyondStarBar");
     /// <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStar</summary>
     public static readonly RequestCache<Texture2D> NetherStar = new("Aequus/Content/Items/PermaPowerups/NetherStar/NetherStar");
     /// <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStarBackground</summary>

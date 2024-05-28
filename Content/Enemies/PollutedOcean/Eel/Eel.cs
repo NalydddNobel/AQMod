@@ -168,7 +168,7 @@ internal class Eel : ModNPC {
                         Timer++;
                         // Idle speed
                         float maxSpeed = IdleMaxSpeed;
-
+                        float speed = NPC.velocity.Length();
                         bool canSeeTarget = hasTarget && Collision.CanHitLine(NPC.position, NPC.width, NPC.height, target.position, target.width, target.height);
 
                         if (hasTarget) {
@@ -178,6 +178,13 @@ internal class Eel : ModNPC {
                                 wantedVelocity = toTarget;
                                 maxSpeed = AttackMaxSpeed;
                                 minSpeed = AttackMinSpeed;
+
+                                if (speed > maxSpeed / 6f) {
+                                    if (NPC.soundDelay <= 0) {
+                                        SoundEngine.PlaySound(AequusSounds.EelMoving with { Volume = 2f }, NPC.Center);
+                                    }
+                                    NPC.soundDelay = Math.Max(NPC.soundDelay, 16);
+                                }
                             }
                             else {
                                 wantedVelocity = Vector2.Lerp(wantedVelocity, toTarget, 0.3f);
@@ -212,13 +219,8 @@ internal class Eel : ModNPC {
 
                             NPC.velocity.X += wantedVelocity.X * WaterXVelocityAccel;
                             NPC.velocity.Y += wantedVelocity.Y * WaterYVelocityAccel;
-                            if (NPC.velocity.Length() > maxSpeed) {
+                            if (speed > maxSpeed) {
                                 NPC.velocity *= 0.9f;
-
-                                if (NPC.soundDelay <= 0) {
-                                    SoundEngine.PlaySound(AequusSounds.EelMoving, NPC.Center);
-                                }
-                                NPC.soundDelay = Math.Max(NPC.soundDelay, 16);
                             }
                         }
                         else {

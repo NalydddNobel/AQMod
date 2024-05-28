@@ -7,6 +7,7 @@ using Terraria.Graphics.Shaders;
 
 namespace Aequus.Content.Items.PermaPowerups.NetherStar;
 
+[WorkInProgress]
 [Gen.AequusPlayer_SavedField<bool>("usedConvergentHeart")]
 public class NetherStar : ModItem {
     public const string MiscShaderKey = "Aequus:NetherStar";
@@ -30,9 +31,9 @@ public class NetherStar : ModItem {
         Item.width = 24;
         Item.height = 24;
         Item.consumable = true;
-        Item.rare = ItemRarityID.LightPurple;
         Item.UseSound = SoundID.Item92;
         Item.maxStack = Item.CommonMaxStack;
+        Item.rare = ItemRarityID.Purple;
         Item.value = Item.sellPrice(gold: 2);
     }
 

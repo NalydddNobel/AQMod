@@ -37,6 +37,10 @@ public partial class AequusPlayer {
     [CompilerGenerated]
     public int cHorseshoeAnvil;
     [CompilerGenerated]
+    public int consumedBeyondLifeCrystals;
+    [CompilerGenerated]
+    public int consumedBeyondManaCrystals;
+    [CompilerGenerated]
     public bool usedConvergentHeart;
     [CompilerGenerated]
     public bool usedMaxHPRespawnReward;
@@ -139,6 +143,8 @@ public partial class AequusPlayer {
     
     [CompilerGenerated]
     private void SaveInner(TagCompound tag) {
+        SaveObj(tag, "consumedBeyondLifeCrystals", consumedBeyondLifeCrystals);
+        SaveObj(tag, "consumedBeyondManaCrystals", consumedBeyondManaCrystals);
         SaveObj(tag, "usedConvergentHeart", usedConvergentHeart);
         SaveObj(tag, "usedMaxHPRespawnReward", usedMaxHPRespawnReward);
         SaveObj(tag, "usedCosmicChest", usedCosmicChest);
@@ -146,6 +152,8 @@ public partial class AequusPlayer {
     
     [CompilerGenerated]
     private void LoadInner(TagCompound tag) {
+        LoadObj(tag, "consumedBeyondLifeCrystals", ref consumedBeyondLifeCrystals);
+        LoadObj(tag, "consumedBeyondManaCrystals", ref consumedBeyondManaCrystals);
         LoadObj(tag, "usedConvergentHeart", ref usedConvergentHeart);
         LoadObj(tag, "usedMaxHPRespawnReward", ref usedMaxHPRespawnReward);
         LoadObj(tag, "usedCosmicChest", ref usedCosmicChest);

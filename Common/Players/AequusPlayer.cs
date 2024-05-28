@@ -1,4 +1,6 @@
-﻿using Aequus.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
+﻿using Aequus.Content.Items.PermaPowerups.BeyondLifeCrystal;
+using Aequus.Content.Items.PermaPowerups.BeyondManaCrystal;
+using Aequus.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
 using Aequus.Core.CodeGeneration;
 using System.Runtime.CompilerServices;
 using Terraria.GameInput;
@@ -27,6 +29,14 @@ public partial class AequusPlayer : ModPlayer {
 
     public override void OnEnterWorld() {
         timeSinceRespawn = 0;
+    }
+
+    public override void ModifyMaxStats(out StatModifier health, out StatModifier mana) {
+        health = StatModifier.Default;
+        health.Base += consumedBeyondLifeCrystals * BeyondLifeCrystal.LifeIncrease;
+
+        mana = StatModifier.Default;
+        mana.Base += consumedBeyondManaCrystals * BeyondManaCrystal.ManaIncrease;
     }
 
     public override void PreUpdate() {
