@@ -8,6 +8,7 @@ public sealed partial class AequusSounds : IContentInstance {
         return new(zero.SoundPath[..^1], 0, variants);
     }
 
+    public static SoundStyle EelMoving { get; private set; }
     public static SoundStyle ShardHit { get; private set; }
     public static SoundStyle JunkJetShoot { get; private set; }
     public static SoundStyle SwordHit { get; private set; }
@@ -19,6 +20,7 @@ public sealed partial class AequusSounds : IContentInstance {
     public static SoundStyle ChainedSoulAttackExplode { get; private set; }
 
     void IContentInstance.Load(Mod mod) {
+        EelMoving = GetMultisound(EelMoving, 3) with { Pitch = 0f, PitchVariance = 0.1f, MaxInstances = 2 };
         ChainedSoulAttackExplode = GetMultisound(ChainedSoulAttackExplode0, 3) with { Pitch = 0f, PitchVariance = 0.1f, MaxInstances = 3 };
         ShardHit = GetMultisound(ShardHit0, 2) with { Volume = 0.5f, Pitch = -0.2f, PitchVariance = 0.15f, };
         JunkJetShoot = GetMultisound(JunkJetShoot0, 2) with { Volume = 0.66f, PitchVariance = 0.15f, MaxInstances = 3, };

@@ -7,6 +7,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Eel;
 
@@ -142,6 +143,10 @@ internal class Eel : ModNPC {
                 NPC.velocity.Y = -NPC.oldVelocity.Y * 0.4f;
             }
 
+            if (NPC.soundDelay > 0) {
+                NPC.soundDelay--;
+            }
+
             NPC.rotation = NPC.velocity.ToRotation();
             NPC.spriteDirection = Math.Sign(NPC.velocity.X);
 
@@ -181,15 +186,6 @@ internal class Eel : ModNPC {
 
                         wantedVelocity = Utils.SafeNormalize(wantedVelocity, Vector2.UnitX);
 
-                        // WIP Sound effect
-                        SoundStyle zapSound = new SoundStyle($"Terraria/Sounds/Dig_0") with { Volume = 0.8f, Pitch = -0.6f, PitchVariance = 0f, };
-                        if (distance < 200f && canSeeTarget && normalState) {
-                            if (NPC.soundDelay == 0) {
-                                NPC.soundDelay = Math.Max((int)(distance / 4f), 6);
-                                SoundEngine.PlaySound(zapSound, NPC.Center);
-                            }
-                        }
-
                         if (inWater || inGround) {
                             if (State == Shocking) {
                                 float attackTime = ShockTime;
@@ -203,9 +199,9 @@ internal class Eel : ModNPC {
                                 float oldZapFrame = HorizontalFrame;
                                 HorizontalFrame = (HorizontalFrame + 0.33f) % 2f;
 
-                                if (oldZapFrame < 1f && HorizontalFrame > 1f) {
-                                    SoundEngine.PlaySound(zapSound, NPC.Center);
-                                }
+                                /*if (oldZapFrame < 1f && HorizontalFrame > 1f) {
+
+                                }*/
 
                                 Timer++;
                                 if (Timer > attackTime) {
@@ -218,6 +214,11 @@ internal class Eel : ModNPC {
                             NPC.velocity.Y += wantedVelocity.Y * WaterYVelocityAccel;
                             if (NPC.velocity.Length() > maxSpeed) {
                                 NPC.velocity *= 0.9f;
+
+                                if (NPC.soundDelay <= 0) {
+                                    SoundEngine.PlaySound(AequusSounds.EelMoving, NPC.Center);
+                                }
+                                NPC.soundDelay = Math.Max(NPC.soundDelay, 16);
                             }
                         }
                         else {
@@ -365,6 +366,10 @@ internal class Eel : ModNPC {
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
         this.CreateEntry(database, bestiaryEntry);
+    }
+
+    public override void ModifyNPCLoot(NPCLoot npcLoot) {
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Weapons.Summon.Whips.EekWhip.ElectricEelWhip>(), chanceDenominator: 15));
     }
 
     #region Drawing
