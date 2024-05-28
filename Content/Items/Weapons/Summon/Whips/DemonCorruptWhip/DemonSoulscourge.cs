@@ -12,8 +12,8 @@ public class DemonSoulscourge : UnifiedWhipItem, IMinionTagController {
 
     public override void SetDefaults() {
         Item.DefaultToWhip(WhipProjectile.Type, 32, 2f, 5f, animationTotalTime: 30);
-        Item.rare = Commons.Rare.DemonSiegeLoot;
-        Item.value = Commons.Cost.DemonSiegeLoot;
+        Item.rare = Commons.Rare.EventDemonSiege;
+        Item.value = Commons.Cost.EventDemonSiege;
     }
 
     public override void SetWhipSettings(Projectile projectile, ref WhipSettings settings) {

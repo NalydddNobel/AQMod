@@ -27,7 +27,7 @@ public class WispLantern : ModItem {
     public override void SetDefaults() {
         Item.width = 16;
         Item.height = 24;
-        Item.rare = Commons.Rare.HardDungeonLoot;
+        Item.rare = Commons.Rare.BiomeDungeonHM;
         Item.value = Item.sellPrice(gold: 5, silver: 50);
         Item.holdStyle = ItemHoldStyleID.HoldLamp;
         Item.useStyle = ItemUseStyleID.RaiseLamp;

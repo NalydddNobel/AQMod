@@ -9,8 +9,8 @@ public class ElectricEelWhip : UnifiedWhipItem {
 
     public override void SetDefaults() {
         Item.DefaultToWhip(WhipProjectile.Type, 10, 2f, 3.2f, animationTotalTime: 42);
-        Item.rare = Commons.Rare.PollutedOceanLoot;
-        Item.value = Commons.Cost.PollutedOceanLoot;
+        Item.rare = Commons.Rare.BiomeOcean;
+        Item.value = Commons.Cost.BiomeOcean;
     }
 
     public override void DrawWhip(IWhipController.WhipDrawParams drawInfo) {

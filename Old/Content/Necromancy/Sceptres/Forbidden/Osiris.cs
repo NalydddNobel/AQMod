@@ -10,8 +10,8 @@ public class Osiris : ScepterBase {
         Item.SetWeaponValues(75, 1f, 0);
         Item.shoot = ModContent.ProjectileType<OsirisProj>();
         Item.shootSpeed = 12.5f;
-        Item.rare = Commons.Rare.HardSandstormBlizzardLoot;
-        Item.value = Commons.Cost.HardSandstormBlizzardLoot;
+        Item.rare = Commons.Rare.EventSandstormHM;
+        Item.value = Commons.Cost.EventSandstormHM;
         Item.mana = 15;
         Item.UseSound = SoundID.Item8;
     }

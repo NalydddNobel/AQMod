@@ -16,7 +16,7 @@ public class ConeHelmet : BrittleArmor {
     }
 
     internal override void SetItemDefaults(Item Item, BrittleArmorItem armor) {
-        Item.rare = Commons.Rare.PollutedOceanLoot - armor.Tier;
+        Item.rare = Commons.Rare.BiomeOcean - armor.Tier;
         Item.defense = 15 / (armor.Tier + 1);
     }
 

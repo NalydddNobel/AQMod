@@ -10,8 +10,8 @@ public class Revenant : ScepterBase {
         Item.SetWeaponValues(40, 1f, 0);
         Item.shoot = ModContent.ProjectileType<RevenantProj>();
         Item.shootSpeed = 6.5f;
-        Item.rare = Commons.Rare.DungeonLoot;
-        Item.value = Commons.Cost.DungeonLoot;
+        Item.rare = Commons.Rare.BiomeDungeon;
+        Item.value = Commons.Cost.BiomeDungeon;
         Item.mana = 15;
         Item.UseSound = SoundID.Item8;
     }

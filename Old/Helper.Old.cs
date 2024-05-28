@@ -3,6 +3,18 @@
 namespace Aequus.Core.Utilities;
 
 public static partial class Helper {
+    public static void SetIDStaticHitCooldown(this NPC npc, int projID, uint time) {
+        Projectile.perIDStaticNPCImmunity[projID][npc.whoAmI] = Main.GameUpdateCount + time;
+    }
+    public static void SetIDStaticHitCooldown<T>(this NPC npc, uint time) where T : ModProjectile {
+        SetIDStaticHitCooldown(npc, ModContent.ProjectileType<T>(), time);
+    }
+
+    [Obsolete("Use the \"with { A = <value> }\" expression.")]
+    public static Color UseA(this Color rgba, byte A) {
+        return rgba with { A = A };
+    }
+
     [Obsolete]
     public static void SetTrail(this ModProjectile modProjectile, int length = -1) {
         if (length > 0) {

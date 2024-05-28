@@ -15,8 +15,8 @@ public class StariteStaff : ModItem {
         Item.SetWeaponValues(20, 5f);
         Item.mana = 10;
         Item.DamageType = DamageClass.Summon;
-        Item.rare = Commons.Rare.GlimmerLoot;
-        Item.value = Commons.Cost.GlimmerLoot;
+        Item.rare = Commons.Rare.EventGlimmer;
+        Item.value = Commons.Cost.EventGlimmer;
         Item.useTime = 24;
         Item.useAnimation = 24;
         Item.useStyle = ItemUseStyleID.Swing;

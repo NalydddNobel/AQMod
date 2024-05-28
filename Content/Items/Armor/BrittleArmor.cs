@@ -118,7 +118,7 @@ internal sealed class BrittleArmorItem : InstancedModItem, IPickItemMovementActi
     public override void SetDefaults() {
         Item.width = 16;
         Item.height = 16;
-        Item.value = Commons.Cost.PollutedOceanLoot;
+        Item.value = Commons.Cost.BiomeOcean;
         Item.headSlot = EquipLoader.GetEquipSlot(Mod, Name, EquipType.Head);
         HitsLeft = _parent.HitsNeededForTier(Tier);
         _parent.SetItemDefaults(Item, this);

@@ -10,8 +10,8 @@ public class PandorasBox : ModItem {
         Item.width = 24;
         Item.height = 24;
         Item.accessory = true;
-        Item.rare = Commons.Rare.DungeonLoot;
-        Item.value = Commons.Cost.DungeonLoot;
+        Item.rare = Commons.Rare.BiomeDungeon;
+        Item.value = Commons.Cost.BiomeDungeon;
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {

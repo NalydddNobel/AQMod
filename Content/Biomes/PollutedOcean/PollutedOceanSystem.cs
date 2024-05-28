@@ -12,6 +12,7 @@ using Aequus.Content.Enemies.PollutedOcean.Scavenger;
 using Aequus.Content.Fishing;
 using Aequus.Content.Fishing.Baits.BlackJellyfish;
 using Aequus.Content.Items.Potions.Healing.Restoration;
+using Aequus.Content.Items.Potions.PotionCanteen;
 using Aequus.Content.Items.Tools.AnglerLamp;
 using Aequus.Content.Items.Weapons.Ranged.Ammo;
 using Aequus.Content.Items.Weapons.Ranged.StarPhish;
@@ -45,18 +46,14 @@ public class PollutedOceanSystem : ModSystem {
         }
         PhotographyLoader.EnvelopePollutedOcean.MainItemDrops.Add(ModContent.ItemType<AnglerLamp>());
         PhotographyLoader.EnvelopePollutedOcean.MainItemDrops.Add(ModContent.ItemType<StarPhish>());
-#if !DEBUG
         PhotographyLoader.EnvelopePollutedOcean.MainItemDrops.Add(ModContent.ItemType<PotionCanteen>());
-#endif
     }
 
     private static void PopulateChestDrops() {
         ChestLootDatabase.Instance.RegisterIndexed(ChestPool.PollutedOcean,
             new CommonChestRule(ItemID.MagicConch, OptionalConditions: Commons.Conditions.ConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveMagicConch))),
             new CommonChestRule(ModContent.ItemType<AnglerLamp>()),
-#if !DEBUG
             new CommonChestRule(ModContent.ItemType<PotionCanteen>()),
-#endif
             new CommonChestRule(ModContent.ItemType<StarPhish>()).OnSucceed(new CommonChestRule(ModContent.ItemType<PlasticDart>(), MinStack: 25, MaxStack: 50))
         );
 

@@ -26,8 +26,8 @@ public class HellsBoon : ModItem {
         Item.shootSpeed = 35f;
         Item.shoot = ModContent.ProjectileType<HellsBoonSpawner>();
         Item.scale = 1f;
-        Item.rare = Commons.Rare.DemonSiegeLoot;
-        Item.value = Commons.Cost.DemonSiegeLoot;
+        Item.rare = Commons.Rare.EventDemonSiege;
+        Item.value = Commons.Cost.EventDemonSiege;
     }
 
     public override Color? GetAlpha(Color lightColor) {

@@ -20,12 +20,12 @@ public class Deltoid : ModItem {
         Item.height = 30;
         Item.noMelee = true;
         Item.useStyle = ItemUseStyleID.Shoot;
-        Item.rare = Commons.Rare.DemonSiegeLoot;
+        Item.rare = Commons.Rare.EventDemonSiege;
         Item.shoot = ProjectileID.WoodenArrowFriendly;
         Item.shootSpeed = 12f;
         Item.useAmmo = AmmoID.Arrow;
         Item.UseSound = SoundID.Item5;
-        Item.value = Commons.Cost.DemonSiegeLoot;
+        Item.value = Commons.Cost.EventDemonSiege;
         Item.noMelee = true;
         Item.autoReuse = true;
         Item.knockBack = 3f;

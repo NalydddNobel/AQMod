@@ -26,6 +26,7 @@ public partial class TerrariaHooks : ILoad {
         On_ItemSlot.RightClick_ItemArray_int_int += ItemSlot_RightClick;
 
         On_Main.CheckMonoliths += On_Main_CheckMonoliths;
+        On_Main.DrawDust += On_Main_DrawDust;
         On_Main.DrawNPC += On_Main_DrawNPC;
         On_Main.DrawNPCs += On_Main_DrawNPCs;
         On_Main.DrawInfernoRings += On_Main_DrawInfernoRings;

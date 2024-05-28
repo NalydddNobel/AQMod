@@ -30,8 +30,8 @@ public class ValentineRing : ModItem {
 
     public override void SetDefaults() {
         Item.DefaultToAccessory();
-        Item.rare = Commons.Rare.SkyMerchantShopItem;
-        Item.value = Commons.Cost.SkyMerchantShopItem;
+        Item.rare = Commons.Rare.NPCSkyMerchant;
+        Item.value = Commons.Cost.NPCSkyMerchant;
 
         // Janky
         if (!Main.gameMenu && Main.player.IndexInRange(Main.myPlayer) && Main.LocalPlayer != null) {

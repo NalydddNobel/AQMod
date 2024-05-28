@@ -26,8 +26,8 @@ public class BombarderRod : ModItem {
         Item.mana = 6;
         Item.autoReuse = true;
         Item.UseSound = SoundID.Item88 with { Volume = 0.5f, Pitch = 0.8f };
-        Item.rare = Commons.Rare.DemonSiegeLoot;
-        Item.value = Commons.Cost.DemonSiegeLoot;
+        Item.rare = Commons.Rare.EventDemonSiege;
+        Item.value = Commons.Cost.EventDemonSiege;
     }
 
     public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {

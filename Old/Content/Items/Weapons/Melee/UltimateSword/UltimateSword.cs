@@ -11,8 +11,8 @@ public class UltimateSword : ModItem {
         Item.width = 30;
         Item.height = 30;
         Item.scale = 1f;
-        Item.rare = Commons.Rare.OmegaStariteLoot;
-        Item.value = Commons.Cost.OmegaStariteLoot;
+        Item.rare = Commons.Rare.BossOmegaStarite;
+        Item.value = Commons.Cost.BossOmegaStarite;
         Item.autoReuse = true;
     }
 

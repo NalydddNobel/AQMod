@@ -1141,3 +1141,8 @@ SeaFirefly: {
 	// DisplayName: Sea Firefly
 	// Tooltip: ""
 }
+
+Raygun: {
+	// DisplayName: Raygun
+	// Tooltip: ""
+}

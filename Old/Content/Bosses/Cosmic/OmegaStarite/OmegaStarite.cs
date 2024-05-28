@@ -31,7 +31,7 @@ namespace Aequus.Old.Content.Bosses.Cosmic.OmegaStarite;
 [AutoloadBossHead]
 [AutoloadBossMask]
 [AutoloadTrophies(LegacyBossTrophiesTile.OmegaStarite, typeof(OmegaStariteRelicRenderer))]
-[AutoloadBossBag(preHardmode: true, itemRarity: Commons.Rare.OmegaStariteLoot)]
+[AutoloadBossBag(preHardmode: true, itemRarity: Commons.Rare.BossOmegaStarite)]
 public class OmegaStarite : LegacyAequusBoss {
     public const float BossProgression = 6.99f;
 

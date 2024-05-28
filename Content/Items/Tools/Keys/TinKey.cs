@@ -10,6 +10,6 @@ public class TinKey : ModItem {
 
     public override void SetDefaults() {
         Item.CloneDefaults(ItemID.GoldenKey);
-        Item.rare = Commons.Rare.AquaticBossLoot;
+        Item.rare = Commons.Rare.BossSalamancer;
     }
 }

@@ -11,8 +11,8 @@ public class SuperStarSword : ModItem {
         Item.height = 20;
         Item.scale = 1.25f;
         Item.autoReuse = true;
-        Item.rare = Commons.Rare.GlimmerLoot;
-        Item.value = Commons.Cost.GlimmerLoot;
+        Item.rare = Commons.Rare.EventGlimmer;
+        Item.value = Commons.Cost.EventGlimmer;
     }
 
     public override bool? UseItem(Player player) {

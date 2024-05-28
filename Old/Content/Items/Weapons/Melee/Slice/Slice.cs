@@ -15,8 +15,8 @@ public class Slice : ModItem {
         Item.width = 20;
         Item.height = 20;
         Item.autoReuse = true;
-        Item.rare = Commons.Rare.SpaceStormLoot;
-        Item.value = Commons.Cost.SpaceStormLoot;
+        Item.rare = Commons.Rare.EventGaleStreams;
+        Item.value = Commons.Cost.EventGaleStreams;
         Item.scale = 0.9f;
     }
 

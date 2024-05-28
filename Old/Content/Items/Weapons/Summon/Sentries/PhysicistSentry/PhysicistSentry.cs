@@ -22,7 +22,7 @@ public class PhysicistSentry : ModItem {
         Item.useTime = 40;
         Item.useAnimation = 40;
         Item.value = Item.buyPrice(silver: 10);
-        Item.rare = Commons.Rare.GlimmerLoot;
+        Item.rare = Commons.Rare.EventGlimmer;
         Item.UseSound = SoundID.Item1;
         Item.shoot = ModContent.ProjectileType<PhysicistSentryProj>();
         Item.shootSpeed = 10f;

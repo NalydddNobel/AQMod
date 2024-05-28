@@ -19,8 +19,8 @@ public class Nightfall : ModItem {
         Item.mana = 10;
         Item.width = 24;
         Item.height = 24;
-        Item.rare = Commons.Rare.GlimmerLoot;
-        Item.value = Commons.Cost.GlimmerLoot;
+        Item.rare = Commons.Rare.EventGlimmer;
+        Item.value = Commons.Cost.EventGlimmer;
         Item.UseSound = SoundID.Item8;
     }
 

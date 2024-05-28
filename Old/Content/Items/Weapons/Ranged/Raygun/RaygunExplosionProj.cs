@@ -1,8 +1,9 @@
-﻿namespace Aequus.Items.Weapons.Ranged.Guns.Raygun;
+﻿using Aequus.Common.Projectiles;
 
-/*
+namespace Aequus.Old.Content.Items.Weapons.Ranged.Raygun;
+
 public class RaygunExplosionProj : ModProjectile {
-    public override string Texture => Aequus.BlankTexture;
+    public override string Texture => AequusTextures.None.Path;
 
     public override void SetDefaults() {
         Projectile.width = 120;
@@ -14,10 +15,10 @@ public class RaygunExplosionProj : ModProjectile {
         Projectile.usesIDStaticNPCImmunity = true;
         Projectile.idStaticNPCHitCooldown = Projectile.timeLeft + 2;
         Projectile.penetrate = -1;
+        Projectile.GetGlobalProjectile<ProjectileItemData>().NoSpecialEffects = true;
     }
 
     public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
         Projectile.damage = (int)(Projectile.damage * 0.75f);
     }
 }
-*/

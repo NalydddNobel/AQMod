@@ -14,7 +14,7 @@ public class ScavengerBag : BackpackModItem {
 
     public override void SetDefaults() {
         base.SetDefaults();
-        Item.rare = Commons.Rare.PollutedOceanLoot;
-        Item.value = Commons.Cost.PollutedOceanLoot;
+        Item.rare = Commons.Rare.BiomeOcean;
+        Item.value = Commons.Cost.BiomeOcean;
     }
 }

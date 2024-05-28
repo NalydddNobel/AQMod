@@ -16,8 +16,8 @@ public class BreathConserver : ModItem {
 
     public override void SetDefaults() {
         Item.DefaultToAccessory();
-        Item.rare = Commons.Rare.PollutedOceanLoot;
-        Item.value = Commons.Cost.PollutedOceanLoot;
+        Item.rare = Commons.Rare.BiomeOcean;
+        Item.value = Commons.Cost.BiomeOcean;
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {

@@ -12,8 +12,8 @@ public class TrashStaff : ModItem {
     public override void SetDefaults() {
         Item.DefaultToMagicWeapon(ModContent.ProjectileType<TrashStaffProj>(), 4, 14f, hasAutoReuse: true);
         Item.SetWeaponValues(17, 1f, bonusCritChance: 8);
-        Item.rare = Commons.Rare.PollutedOceanLoot;
-        Item.value = Commons.Cost.PollutedOceanLoot;
+        Item.rare = Commons.Rare.BiomeOcean;
+        Item.value = Commons.Cost.BiomeOcean;
         Item.mana = 10;
         Item.useAnimation *= 5;
         Item.reuseDelay = 25;

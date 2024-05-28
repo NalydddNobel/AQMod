@@ -16,12 +16,12 @@ public class EnergyMaterial : ModSystem {
     public static ModItem Ultimate { get; private set; }
 
     public override void Load() {
-        AddEnergy(nameof(Aquatic), Commons.Rare.AquaticBossLoot + 1, new Vector3(0.05f, 0.3f, 0.33f));
-        AddEnergy(nameof(Demonic), Commons.Rare.WallOfFleshLoot + 1, new Vector3(0.5f, 0.1f, 0.1f));
-        AddEnergy(nameof(Cosmic), Commons.Rare.OmegaStariteLoot + 1, new Vector3(0.3f, 0.3f, 0.8f));
-        AddEnergy(nameof(Atmospheric), Commons.Rare.DustDevilLoot + 1, new Vector3(0.33f, 0.15f, 0.05f));
-        AddEnergy(nameof(Organic), Commons.Rare.PlanteraLoot + 1, new Vector3(0.1f, 0.4f, 0.12f));
-        AddEnergy(nameof(Ultimate), Commons.Rare.MoonLordLoot, new Vector3(0.33f, 0.33f, 0.33f), ItemSets.SortingPriorityMaterials[ItemID.LunarBar]);
+        AddEnergy(nameof(Aquatic), Commons.Rare.BossSalamancer + 1, new Vector3(0.05f, 0.3f, 0.33f));
+        AddEnergy(nameof(Demonic), Commons.Rare.BossWallOfFlesh + 1, new Vector3(0.5f, 0.1f, 0.1f));
+        AddEnergy(nameof(Cosmic), Commons.Rare.BossOmegaStarite + 1, new Vector3(0.3f, 0.3f, 0.8f));
+        AddEnergy(nameof(Atmospheric), Commons.Rare.BossDustDevil + 1, new Vector3(0.33f, 0.15f, 0.05f));
+        AddEnergy(nameof(Organic), Commons.Rare.BossPlantera + 1, new Vector3(0.1f, 0.4f, 0.12f));
+        AddEnergy(nameof(Ultimate), Commons.Rare.BossMoonLord, new Vector3(0.33f, 0.33f, 0.33f), ItemSets.SortingPriorityMaterials[ItemID.LunarBar]);
 
         void AddEnergy(string name, int rarity, Vector3 lightColor, int? sortingPriority = null) {
             int realSortingPrority = sortingPriority ?? ItemSets.SortingPriorityMaterials[ItemID.SoulofLight] - 1;

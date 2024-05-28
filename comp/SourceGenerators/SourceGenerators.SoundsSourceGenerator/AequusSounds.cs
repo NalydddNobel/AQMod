@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Sounds: 77)</summary>
+/// <summary>(Total Sounds: 78)</summary>
 [CompilerGenerated]
 public partial class AequusSounds {            
         /// <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
@@ -144,6 +144,8 @@ public partial class AequusSounds {
     public static readonly SoundStyle MeathookConnect = new("Aequus/Old/Assets/Sounds/Meathook/MeathookConnect");
     /// <summary>Full Path: Old/Assets/Sounds/Meathook/MeathookPull</summary>
     public static readonly SoundStyle MeathookPull = new("Aequus/Old/Assets/Sounds/Meathook/MeathookPull");
+    /// <summary>Full Path: Old/Assets/Sounds/Raygun</summary>
+    public static readonly SoundStyle Raygun = new("Aequus/Old/Assets/Sounds/Raygun");
     /// <summary>Full Path: Old/Assets/Sounds/RecruitZombie</summary>
     public static readonly SoundStyle RecruitZombie = new("Aequus/Old/Assets/Sounds/RecruitZombie");
     /// <summary>Full Path: Old/Assets/Sounds/ZumboPettingSqueak</summary>

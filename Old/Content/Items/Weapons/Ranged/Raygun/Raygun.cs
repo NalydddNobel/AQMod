@@ -1,33 +1,17 @@
-﻿namespace Aequus.Items.Weapons.Ranged.Guns.Raygun;
+﻿using Aequus.Common;
+using Aequus.Common.Items.Components;
+using Aequus.Common.Projectiles;
+using Aequus.Content.Dusts;
+using Aequus.Core.Particles;
+using Aequus.DataSets;
+using Aequus.Old.Content.Items.Materials;
+using Aequus.Old.Content.Items.Materials.Energies;
+using System;
+using Terraria.DataStructures;
 
-/*
-public class Raygun : ModItem, ItemHooks.IOnSpawnProjectile {
-    public static Dictionary<int, Func<Projectile, Color>> BulletColor { get; private set; }
+namespace Aequus.Old.Content.Items.Weapons.Ranged.Raygun;
 
-    public override void Load() {
-        BulletColor = new Dictionary<int, Func<Projectile, Color>>() {
-            [ProjectileID.Bullet] = (p) => new Color(1, 255, 40, 255),
-            [ProjectileID.MeteorShot] = (p) => new Color(30, 255, 200, 255),
-            [ProjectileID.CrystalBullet] = (p) => new Color(200, 112, 145, 255),
-            [ProjectileID.CrystalShard] = (p) => new Color(200, 112, 145, 255),
-            [ProjectileID.CursedBullet] = (p) => new Color(120, 228, 50, 255),
-            [ProjectileID.IchorBullet] = (p) => new Color(228, 200, 50, 255),
-            [ProjectileID.ChlorophyteBullet] = (p) => new Color(135, 255, 120, 255),
-            [ProjectileID.BulletHighVelocity] = (p) => new Color(255, 255, 235, 255),
-            [ProjectileID.VenomBullet] = (p) => new Color(128, 30, 255, 255),
-            [ProjectileID.NanoBullet] = (p) => new Color(60, 200, 255, 255),
-            [ProjectileID.ExplosiveBullet] = (p) => new Color(255, 120, 60, 255),
-            [ProjectileID.GoldenBullet] = (p) => new Color(255, 255, 10, 255),
-            [ProjectileID.MoonlordBullet] = (p) => new Color(60, 215, 245, 255),
-            [ProjectileID.PartyBullet] = (p) => Helper.GetRainbowColor(p, Main.GlobalTimeWrappedHourly % 6f),
-        };
-    }
-
-    public override void Unload() {
-        BulletColor?.Clear();
-        BulletColor = null;
-    }
-
+public class Raygun : ModItem, IManageProjectile {
     public override void SetDefaults() {
         Item.width = 32;
         Item.height = 24;
@@ -41,9 +25,9 @@ public class Raygun : ModItem, ItemHooks.IOnSpawnProjectile {
         Item.shoot = ProjectileID.Bullet;
         Item.shootSpeed = 1.5f;
         Item.autoReuse = true;
-        Item.UseSound = AequusSounds.raygun with { Volume = 0.5f };
-        Item.rare = ItemDefaults.RarityOmegaStarite;
-        Item.value = ItemDefaults.ValueOmegaStarite;
+        Item.UseSound = AequusSounds.Raygun with { Volume = 0.5f };
+        Item.rare = Commons.Rare.BossOmegaStarite;
+        Item.value = Commons.Cost.BossOmegaStarite;
         Item.knockBack = 1f;
     }
 
@@ -61,64 +45,50 @@ public class Raygun : ModItem, ItemHooks.IOnSpawnProjectile {
     public override void AddRecipes() {
         CreateRecipe()
             .AddIngredient<StariteMaterial>(16)
-            .AddIngredient<CosmicEnergy>()
+            .AddIngredient(EnergyMaterial.Cosmic)
             .AddTile(TileID.Anvils)
-            .TryRegisterAfter(ItemID.NightsEdge);
+            .Register()
+            .SortAfterFirstRecipesOf(ItemID.NightsEdge);
     }
 
-    public static Color GetColor(Projectile projectile) {
-        if (BulletColor.TryGetValue(projectile.type, out var color)) {
-            return color(projectile);
-        }
-        if (Main.netMode == NetmodeID.Server) {
-            return Color.White;
-        }
-        var clr = CheckRayColor(projectile);
-        BulletColor[projectile.type] = (p) => p.GetAlpha(clr);
-        return clr;
-    }
+    bool IManageProjectile.PreAIProjectile(Projectile projectile) {
+        if (!projectile.TryGetGlobalProjectile(out ProjectileItemData item)) { return true; }
 
-    public static Color CheckRayColor(Projectile projectile) {
-        var texture = TextureAssets.Projectile[projectile.type];
-        if (texture == null || !texture.IsLoaded) {
-            return Color.White;
+        if (item.ItemData == 0) {
+            projectile.MaxUpdates *= 12;
         }
 
-        int r = 0;
-        int g = 0;
-        int b = 0;
-        int count = 0;
+        Color color = ProjectileDataSet.GetColor(projectile) with { A = 120 };
+        if (item.ItemData % 10 == 5 && Main.netMode != NetmodeID.Server) {
+            float scale = 1f;
 
-        try {
-            var clrs = texture.Value.Get1DColorArr(projectile.Frame());
-
-            for (int i = 0; i < clrs.Length; i++) {
-                if (clrs[i].A == 255) {
-                    r += clrs[i].R;
-                    g += clrs[i].G;
-                    b += clrs[i].B;
-                    count++;
-                }
-            }
+            Particle<RaygunTrail.Particle>._instance = ModContent.GetInstance<RaygunTrail>();
+            Particle<RaygunTrail.Particle>.New().Setup(projectile.Center, projectile.velocity, color, scale);
         }
-        catch {
-
+        if (projectile.Distance(Main.player[projectile.owner].Center) > 20f) {
+            Dust d = Dust.NewDustPerfect(projectile.Center, ModContent.DustType<MonoDust>(), newColor: color with { A = 0 } * 0.5f, Scale: 1.25f);
+            d.velocity *= 0.5f;
+            d.velocity -= projectile.velocity * 0.5f;
         }
 
-        if (count == 0)
-            return Color.White;
+        item.ItemData++;
 
-        return new Color(r / count, g / count, b / count);
+        return true;
     }
 
     public static void SpawnExplosion(IEntitySource source, Projectile projectile) {
+        if (!projectile.AllowSpecialAbilities()) {
+            return;
+        }
+
         if (source is EntitySource_OnHit onHit && onHit.Victim is NPC npc) {
             npc.SetIDStaticHitCooldown<RaygunExplosionProj>(10);
         }
+
         var center = projectile.Center;
         if (Main.netMode != NetmodeID.Server) {
-            int amt = (int)(75 * (ClientConfig.Instance.HighQuality ? 1f : 0.5f));
-            var color = GetColor(projectile).UseA(0);
+            int amt = (int)(75 * Math.Max(Main.gfxQuality, 0.5f));
+            var color = ProjectileDataSet.GetColor(projectile) with { A = 0 };
             for (int i = 0; i < amt; i++) {
                 float scale = Main.rand.NextFloat(1f, 3f);
                 var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, color, scale);
@@ -128,59 +98,66 @@ public class Raygun : ModItem, ItemHooks.IOnSpawnProjectile {
                 d.velocity = r * (speed - Math.Min(scale * 4f, speed - 0.1f));
             }
         }
-        if (projectile.type == ProjectileID.CrystalBullet) {
-            for (int i = 0; i < 6; i++) {
-                var r = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();
-                var explosionPos = projectile.Center + r * Main.rand.NextFloat(16f, 60f);
-                if (Main.netMode != NetmodeID.Server) {
-                    int amt = (int)(35 * (ClientConfig.Instance.HighQuality ? 1f : 0.5f));
-                    var color = GetColor(projectile).UseA(0) * 0.8f;
-                    for (int j = 0; j < amt; j++) {
-                        float scale = Main.rand.NextFloat(1f, 3f);
-                        var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, color, scale * 0.75f);
-                        var r2 = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();
-                        d.position = explosionPos + r2 * Main.rand.NextFloat(6f);
-                        float speed = Main.rand.NextFloat(9f, 14f);
-                        d.velocity = r2 * (speed - Math.Min(scale * 4f, speed - 0.1f)) * 1.2f;
+        switch (projectile.type) {
+            case ProjectileID.CrystalBullet: {
+                    for (int i = 0; i < 6; i++) {
+                        var r = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();
+                        var explosionPos = projectile.Center + r * Main.rand.NextFloat(16f, 60f);
+                        if (Main.netMode != NetmodeID.Server) {
+                            int amt = (int)(35 * Math.Max(Main.gfxQuality, 0.5f));
+                            var color = ProjectileDataSet.GetColor(projectile).UseA(0) * 0.8f;
+                            for (int j = 0; j < amt; j++) {
+                                float scale = Main.rand.NextFloat(1f, 3f);
+                                var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, color, scale * 0.75f);
+                                var r2 = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();
+                                d.position = explosionPos + r2 * Main.rand.NextFloat(6f);
+                                float speed = Main.rand.NextFloat(9f, 14f);
+                                d.velocity = r2 * (speed - Math.Min(scale * 4f, speed - 0.1f)) * 1.2f;
+                            }
+                        }
+                        if (Main.myPlayer == projectile.owner) {
+                            Projectile.NewProjectile(source, explosionPos, Vector2.Normalize(projectile.velocity), ModContent.ProjectileType<RaygunExplosionProj>(), projectile.damage, projectile.knockBack, projectile.owner);
+                            Projectile.NewProjectile(source, explosionPos, r * 8f, ProjectileID.CrystalShard, projectile.damage / 10, projectile.knockBack, projectile.owner);
+                        }
                     }
+
+                    break;
                 }
-                if (Main.myPlayer == projectile.owner) {
-                    Projectile.NewProjectile(source, explosionPos, Vector2.Normalize(projectile.velocity), ModContent.ProjectileType<RaygunExplosionProj>(), projectile.damage, projectile.knockBack, projectile.owner);
-                    Projectile.NewProjectile(source, explosionPos, r * 8f, ProjectileID.CrystalShard, projectile.damage / 10, projectile.knockBack, projectile.owner);
-                }
-            }
-        }
-        else if (projectile.type == ProjectileID.PartyBullet) {
-            if (Main.myPlayer == projectile.owner) {
-                for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver4 + 0.01f) {
-                    var r = f.ToRotationVector2();
-                    Projectile.NewProjectile(source, center + r * 50f, r * 8f, ProjectileID.ConfettiGun, 0, 0f, projectile.owner);
-                }
-            }
-        }
-        else if (projectile.type == ProjectileID.ExplosiveBullet) {
-            if (Main.netMode != NetmodeID.Server) {
-                int amt = (int)(175 * (ClientConfig.Instance.HighQuality ? 1f : 0.5f));
-                var color = GetColor(projectile).UseA(0) * 1.2f;
-                for (int j = 0; j < amt; j++) {
-                    float scale = Main.rand.NextFloat(0.6f, 2.5f);
-                    if (Main.rand.NextBool(4)) {
-                        scale *= 1.5f;
+
+            case ProjectileID.PartyBullet: {
+                    if (Main.myPlayer == projectile.owner) {
+                        Projectile.NewProjectile(source, center, Vector2.Normalize(projectile.velocity), ProjectileID.ConfettiGun, 0, 0f, projectile.owner);
                     }
-                    var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, color, scale);
-                    var r2 = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();
-                    d.position = center + r2 * Main.rand.NextFloat(50f);
-                    float speed = Main.rand.NextFloat(9f, 14f);
-                    d.velocity = r2 * (speed - Math.Min(scale * 4f, speed - 0.01f)) * 2.15f;
+
+                    break;
                 }
-            }
-            if (Main.myPlayer == projectile.owner) {
-                for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver4 + 0.01f) {
-                    var r = f.ToRotationVector2();
-                    var explosionPos = projectile.Center + r * Main.rand.NextFloat(42f, 68f);
-                    Projectile.NewProjectile(source, explosionPos, Vector2.Normalize(projectile.velocity), ModContent.ProjectileType<RaygunExplosionProj>(), projectile.damage / 2, projectile.knockBack, projectile.owner);
+
+            case ProjectileID.ExplosiveBullet: {
+                    if (Main.netMode != NetmodeID.Server) {
+                        int amt = (int)(175 * Math.Max(Main.gfxQuality, 0.5f));
+                        var color = ProjectileDataSet.GetColor(projectile).UseA(0) * 1.2f;
+                        for (int j = 0; j < amt; j++) {
+                            float scale = Main.rand.NextFloat(0.6f, 2.5f);
+                            if (Main.rand.NextBool(4)) {
+                                scale *= 1.5f;
+                            }
+                            var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, color, scale);
+                            var r2 = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();
+                            d.position = center + r2 * Main.rand.NextFloat(50f);
+                            float speed = Main.rand.NextFloat(9f, 14f);
+                            d.velocity = r2 * (speed - Math.Min(scale * 4f, speed - 0.01f)) * 2.15f;
+                        }
+                    }
+                    if (Main.myPlayer == projectile.owner) {
+                        for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver4 + 0.01f) {
+                            var r = f.ToRotationVector2();
+                            var explosionPos = projectile.Center + r * Main.rand.NextFloat(42f, 68f);
+                            Projectile.NewProjectile(source, explosionPos, Vector2.Normalize(projectile.velocity), ModContent.ProjectileType<RaygunExplosionProj>(), projectile.damage / 2, projectile.knockBack, projectile.owner);
+                        }
+                    }
+
+                    break;
                 }
-            }
         }
         if (Main.myPlayer == projectile.owner) {
             // A small bit of velocity is given to this explosion projectile to make it knockback enemies in the correct direction
@@ -189,9 +166,15 @@ public class Raygun : ModItem, ItemHooks.IOnSpawnProjectile {
         }
     }
 
-    public void InitalizeProjectile(Projectile projectile, AequusProjectile aequusProjectile) {
-        projectile.extraUpdates++;
-        projectile.extraUpdates *= 6;
+    void IManageProjectile.OnHitNPCProjectile(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone) {
+        SpawnExplosion(projectile.GetSource_OnHit(target), projectile);
+        projectile.GetGlobalProjectile<ProjectileItemData>().NoSpecialEffects = true;
+    }
+
+    void IManageProjectile.OnKillProjectile(Projectile projectile, int timeLeft) {
+        if (timeLeft <= 0) {
+            return;
+        }
+        SpawnExplosion(projectile.GetSource_Death(), projectile);
     }
 }
-*/

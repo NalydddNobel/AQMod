@@ -478,6 +478,35 @@ SkyHunterCrossbow: {
 		'''
 }
 
+SnowflakeCannon: {
+	DisplayName: Snowflake Cannon
+	Tooltip:
+		'''
+		Shoots charged snowflakes which arc off of enemies
+		66% chance to not consume ammo
+		'''
+}
+
+BoundBow: {
+	DisplayName: Bound Bow
+	Tooltip: Infinitely regenerates ammo over time
+}
+
+Hitscanner: {
+	DisplayName: Hitscanner
+	Tooltip:
+		'''
+		Ignores 5 points of enemy Defense
+		Fires a massive spread of instantly hitting bullets
+		'We will send unto them... only you.'
+		'''
+}
+
+Raygun: {
+	DisplayName: Raygun
+	Tooltip: Converts bullets into extremely fast rays
+}
+
 CrusadersCrossbow: {
 	DisplayName: Crusaders Crossbow
 	Tooltip: Shoots a bolt which can heal allies
@@ -1135,9 +1164,4 @@ StariteMaterial: {
 UnopenedChestItem: {
 	DisplayName: Unopened Chest Item
 	Tooltip: This is a debug item placed into chests upon worldgen to check if they have been opened
-}
-
-SeaFirefly: {
-	DisplayName: Sea Firefly
-	Tooltip: ""
 }

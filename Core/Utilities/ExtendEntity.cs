@@ -522,6 +522,20 @@ public static class ExtendShop {
 public static class ExtendProjectile {
     internal static readonly Projectile _dummyProjectile = new Projectile();
 
+    public static bool AllowSpecialAbilities(this Projectile projectile) {
+        if (projectile.TryGetGlobalProjectile(out ProjectileSource sources)) {
+            if (sources.parentProjectileIdentity >= 0) {
+                return false;
+            }
+        }
+        if (projectile.TryGetGlobalProjectile(out ProjectileItemData itemData)) {
+            if (itemData.NoSpecialEffects) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static IEnumerable<Projectile> Where(int owner, Predicate<Projectile> Condition) {
         for (int i = 0; i < Main.maxProjectiles; i++) {
             Projectile p = Main.projectile[i];

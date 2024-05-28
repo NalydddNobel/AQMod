@@ -14,7 +14,7 @@ public class StariteMaterial : ModItem {
         Item.width = 16;
         Item.height = 16;
         Item.maxStack = Item.CommonMaxStack;
-        Item.rare = Commons.Rare.GlimmerLoot - 1;
+        Item.rare = Commons.Rare.EventGlimmer - 1;
         Item.value = Item.sellPrice(silver: 2);
     }
 

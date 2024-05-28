@@ -25,8 +25,8 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
         Item.UseSound = AequusSounds.CrossbowShoot with { Volume = 0.6f, PitchVariance = 0.2f };
         Item.shootSpeed = 16f;
         Item.noMelee = true;
-        Item.rare = Commons.Rare.SkyMerchantShopItem + 1;
-        Item.value = Commons.Cost.SkyMerchantShopItem;
+        Item.rare = Commons.Rare.NPCSkyMerchant + 1;
+        Item.value = Commons.Cost.NPCSkyMerchant;
     }
 
     public override Vector2? HoldoutOffset() {

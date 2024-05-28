@@ -64,9 +64,6 @@
 	<AdditionalFiles Include="Old\**\*.png" />
 	<AdditionalFiles Include="Old\**\*.ogg" />
   </ItemGroup>
-  <ItemGroup>
-    <None Remove="Content\Items\Weapons\Summon\Whips\DemonCrimsonWhip\VasculashTagProj.png" />
-  </ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<Optimize>False</Optimize>

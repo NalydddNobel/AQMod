@@ -86,4 +86,5 @@ NightfallProj.DisplayName: "{$Items.Nightfall.DisplayName}"
 BreathConserverProj.DisplayName: "{$Items.BreathConserver.DisplayName}"
 HyperCrystalProj.DisplayName: "{$Items.HyperCrystal.DisplayName}"
 VasculashTagProj.DisplayName: "{$Items.DemonVasculash.DisplayName}"
-SoulscourgeTagProj.DisplayName: Soulscourge Tag Proj
+SoulscourgeTagProj.DisplayName: "{$Items.DemonSoulscourge.DisplayName}"
+RaygunExplosionProj.DisplayName: "{$Items.Raygun.DisplayName}"

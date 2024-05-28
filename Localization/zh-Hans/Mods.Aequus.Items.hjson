@@ -1137,7 +1137,31 @@ UnopenedChestItem: {
 	Tooltip: 这是Debug物品, 将其放置在世界生成的宝箱内以检测其是否被开启过
 }
 
-SeaFirefly: {
-	// DisplayName: Sea Firefly
-	// Tooltip: ""
+SnowflakeCannon: {
+	DisplayName: 雪花大炮
+	Tooltip:
+		'''
+		发射击中敌人时会回弹的电弧雪花
+		66%几率不消耗弹药
+		'''
+}
+
+Raygun: {
+	DisplayName: 射线枪
+	Tooltip: 将子弹转化为快速射线
+}
+
+BoundBow: {
+	DisplayName: 界限弓
+	Tooltip: 随时间流逝会不断再生弹药
+}
+
+Hitscanner: {
+	DisplayName: 命中扫描器
+	Tooltip:
+		'''
+		无视敌人5点的防御力
+		发射大量会瞬间命中敌人的子弹
+		'我们会向他们发送...只有你.'
+		'''
 }

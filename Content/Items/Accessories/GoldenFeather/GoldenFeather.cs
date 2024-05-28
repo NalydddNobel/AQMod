@@ -14,8 +14,8 @@ public class GoldenFeather : ModItem {
 
     public override void SetDefaults() {
         Item.DefaultToAccessory();
-        Item.rare = Commons.Rare.SkyMerchantShopItem;
-        Item.value = Commons.Cost.SkyMerchantShopItem;
+        Item.rare = Commons.Rare.NPCSkyMerchant;
+        Item.value = Commons.Cost.NPCSkyMerchant;
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {

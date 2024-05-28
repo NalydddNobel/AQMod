@@ -32,8 +32,8 @@ public class AnglerLamp : ModItem {
     public override void SetDefaults() {
         Item.width = 16;
         Item.height = 24;
-        Item.rare = Commons.Rare.PollutedOceanLoot;
-        Item.value = Commons.Cost.PollutedOceanLoot;
+        Item.rare = Commons.Rare.BiomeOcean;
+        Item.value = Commons.Cost.BiomeOcean;
         Item.useAmmo = AmmoID.Gel;
         Item.holdStyle = ItemHoldStyleID.HoldLamp;
         Item.useStyle = ItemUseStyleID.RaiseLamp;

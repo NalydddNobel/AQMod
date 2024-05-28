@@ -18,8 +18,8 @@ public class Bellows : ModItem {
         Item.reuseDelay = 5;
         Item.UseSound = SoundID.DoubleJump;
         Item.autoReuse = true;
-        Item.rare = Commons.Rare.SkyMerchantShopItem;
-        Item.value = Commons.Cost.SkyMerchantShopItem;
+        Item.rare = Commons.Rare.NPCSkyMerchant;
+        Item.value = Commons.Cost.NPCSkyMerchant;
         Item.shoot = ModContent.ProjectileType<BellowsProj>();
         Item.shootSpeed = 1f;
         Item.noUseGraphic = true;

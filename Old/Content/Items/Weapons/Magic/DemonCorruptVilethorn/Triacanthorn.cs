@@ -28,8 +28,8 @@ public class Triacanthorn : ModItem {
         Item.ArmorPenetration = 10;
         Item.shootSpeed = 16f;
         Item.noMelee = true;
-        Item.rare = Commons.Rare.DemonSiegeLoot;
-        Item.value = Commons.Cost.DemonSiegeLoot;
+        Item.rare = Commons.Rare.EventDemonSiege;
+        Item.value = Commons.Cost.EventDemonSiege;
     }
 
     public override Color? GetAlpha(Color lightColor) {
