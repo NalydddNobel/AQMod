@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 823) yo momma gai</summary>
+/// <summary>(Total Textures: 825) yo momma gai</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1311,6 +1311,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> BombarderRod = new("Aequus/Old/Content/Items/Weapons/Magic/DemonCrimsonRod/BombarderRod");
     /// <summary>Full Path: Old/Content/Items/Weapons/Magic/DemonCrimsonRod/BombarderRod_Glow</summary>
     public static readonly RequestCache<Texture2D> BombarderRod_Glow = new("Aequus/Old/Content/Items/Weapons/Magic/DemonCrimsonRod/BombarderRod_Glow");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Magic/Gamestar/Gamestar</summary>
+    public static readonly RequestCache<Texture2D> Gamestar = new("Aequus/Old/Content/Items/Weapons/Magic/Gamestar/Gamestar");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Magic/Gamestar/GamestarDebuff</summary>
+    public static readonly RequestCache<Texture2D> GamestarDebuff = new("Aequus/Old/Content/Items/Weapons/Magic/Gamestar/GamestarDebuff");
     /// <summary>Full Path: Old/Content/Items/Weapons/Magic/Nightfall/Nightfall</summary>
     public static readonly RequestCache<Texture2D> Nightfall = new("Aequus/Old/Content/Items/Weapons/Magic/Nightfall/Nightfall");
     /// <summary>Full Path: Old/Content/Items/Weapons/Magic/Nightfall/NightfallGlint</summary>

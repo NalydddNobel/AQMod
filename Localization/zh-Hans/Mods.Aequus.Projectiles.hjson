@@ -88,3 +88,4 @@ HyperCrystalProj.DisplayName: "{$Items.HyperCrystal.DisplayName}"
 VasculashTagProj.DisplayName: "{$Items.DemonVasculash.DisplayName}"
 SoulscourgeTagProj.DisplayName: "{$Items.DemonSoulscourge.DisplayName}"
 RaygunExplosionProj.DisplayName: "{$Items.Raygun.DisplayName}"
+// GamestarProj.DisplayName: Gamestar Proj

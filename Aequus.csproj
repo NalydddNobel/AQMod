@@ -65,6 +65,8 @@
 	<AdditionalFiles Include="Old\**\*.ogg" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Effects\Gamestar.fx" />
+    <None Remove="Old\Content\Items\Weapons\Magic\Gamestar\GamestarDebuff.png" />
     <None Remove="Old\Content\Items\Weapons\Summon\Minions\RedSpriteMinionBuff.png" />
     <None Remove="Old\Content\Items\Weapons\Summon\Minions\ScribbleNotebookBuff.png" />
     <None Remove="Old\Content\Items\Weapons\Summon\Minions\SnowflakeBuff.png" />

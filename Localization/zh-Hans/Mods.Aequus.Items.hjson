@@ -1,4 +1,5 @@
 CommonTooltips: {
+	// GuideHint: The Guide may be interested in this...
 	BuffTimeRange: "{0}-{1}分钟持续时间"
 	IncreasesInventorySlots: 获得{0}格物品栏
 	Cooldown: 有{0}秒冷却时间

@@ -41,7 +41,7 @@ internal class SeaFireflyRenderer : RequestHandler<SeaFireflyShaderRequest> {
     }
 
     protected override bool HandleRequests(IEnumerable<SeaFireflyShaderRequest> todo) {
-        if (Main.gameMenu || Main.instance.tileTarget == null || Main.instance.tileTarget.IsDisposed || Main.instance.tileTarget.IsContentLost) {
+        if (Main.instance.tileTarget == null || Main.instance.tileTarget.IsDisposed || Main.instance.tileTarget.IsContentLost) {
             return false;
         }
 

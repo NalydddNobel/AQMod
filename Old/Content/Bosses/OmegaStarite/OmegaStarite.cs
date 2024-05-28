@@ -1331,7 +1331,7 @@ public class OmegaStarite : LegacyAequusBoss {
         npcLoot.AddBossDrop(ItemDropRule.OneFromOptions(1,
             ModContent.ItemType<Items.Weapons.Melee.UltimateSword.UltimateSword>(),
             ModContent.ItemType<Items.Weapons.Ranged.Raygun.Raygun>(),
-            //ModContent.ItemType<Gamestar>(),
+            ModContent.ItemType<Items.Weapons.Magic.Gamestar.Gamestar>(),
             ModContent.ItemType<Items.Weapons.Summon.Minions.ScribbleMinion.ScribbleNotebook>()
         ));
 

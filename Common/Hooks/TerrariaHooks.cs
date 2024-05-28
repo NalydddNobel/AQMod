@@ -35,6 +35,7 @@ public partial class TerrariaHooks : ILoad {
         On_Main.UpdateTime_StartNight += On_Main_UpdateTime_StartNight;
 
         On_NPC.NPCLoot_DropMoney += NPC_NPCLoot_DropMoney;
+        On_NPC.UpdateNPC_Inner += NPC_UpdateNPC_Inner;
 
         IL_Player.PickTile += IL_Player_PickTile;
         IL_Player.PlaceThing_ValidTileForReplacement += IL_Player_PlaceThing_ValidTileForReplacement;

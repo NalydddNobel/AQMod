@@ -11,21 +11,23 @@ public abstract class ConcurrentParticles<T> : IParticleSystem, IParticleEmitter
 
     public bool Active => !_bag.IsEmpty;
 
-    private ConcurrentBag<T> _bag = [];
+    protected ConcurrentBag<T> _bag = [];
     private ConcurrentBag<T> _bagSwap = [];
 
+    public virtual void OnLoad() { }
+    public virtual void OnUnload() { }
     public abstract void Activate();
     public abstract void Deactivate();
     public abstract void Update(T t);
-    public abstract void Draw(SpriteBatch spriteBatch, T t);
+    public virtual void Draw(SpriteBatch spriteBatch, T t) { }
 
-    public void Draw(SpriteBatch spriteBatch) {
+    public virtual void Draw(SpriteBatch spriteBatch) {
         foreach (T item in _bag) {
             Draw(spriteBatch, item);
         }
     }
 
-    public void Update() {
+    public virtual void Update() {
         // Clear the swap bag.
         _bagSwap.Clear();
 
@@ -45,9 +47,13 @@ public abstract class ConcurrentParticles<T> : IParticleSystem, IParticleEmitter
 
     public void Load(Mod mod) {
         Instance = this;
+        OnLoad();
+        Particle<T>._instance = this;
     }
 
     public void Unload() {
+        Particle<T>._instance = null;
+        OnUnload();
         Instance = null;
     }
 

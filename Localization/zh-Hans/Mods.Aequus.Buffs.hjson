@@ -107,3 +107,8 @@ BoneRingDebuff: {
 	DisplayName: "{$Items.BoneRing.DisplayName}"
 	Description: Mods.Aequus.Buffs.BoneRingDebuff.Description
 }
+
+GamestarDebuff: {
+	// DisplayName: Gamestar Debuff
+	// Description: Mods.Aequus.Buffs.GamestarDebuff.Description
+}

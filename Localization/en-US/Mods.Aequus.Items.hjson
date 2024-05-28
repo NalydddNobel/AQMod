@@ -1,5 +1,5 @@
 CommonTooltips: {
-	GuideHint: "The Guide may be interested in this..."
+	GuideHint: The Guide may be interested in this...
 	BuffTimeRange: "{0}-{1} minute duration"
 	IncreasesInventorySlots: Grants {0} backpack slots
 	Cooldown: Has a {0} second cooldown

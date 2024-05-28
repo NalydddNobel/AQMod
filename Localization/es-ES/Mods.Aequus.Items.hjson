@@ -1,4 +1,5 @@
 CommonTooltips: {
+	// GuideHint: The Guide may be interested in this...
 	BuffTimeRange: "{0}-{1} minuto(s) de duración"
 	IncreasesInventorySlots: Otorga {0} ranuras de mochila
 	Cooldown: Tiene {0} segundos de recarga

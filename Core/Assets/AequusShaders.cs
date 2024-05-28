@@ -5,6 +5,7 @@ namespace Aequus.Core.Assets;
 public sealed partial class AequusShaders : AssetManager<Effect> {
     public static readonly string EffectPath = "Aequus/Effects/{0}";
 
+    public static readonly RequestCache<Effect> Gamestar = New("Gamestar");
     public static readonly RequestCache<Effect> SeaFirefly = New("SeaFireflies");
     public static readonly RequestCache<Effect> FadeToCenter = New("FadeToCenter");
     public static readonly RequestCache<Effect> UVVertexShader = New("UVVertexShader");

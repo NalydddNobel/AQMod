@@ -144,5 +144,5 @@ Eel: {
 SeaFirefly: {
 	// DisplayName: Sea Firefly
 	// Bestiary: Mods.Aequus.NPCs.SeaFirefly.Bestiary
-	// ItemTooltip: Mods.Aequus.NPCs.SeaFirefly.ItemTooltip
+	// ItemTooltip: ""
 }

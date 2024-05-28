@@ -50,7 +50,6 @@ public class Raygun : ModItem, IManageProjectile {
         if (item.ItemData % 10 == 5 && Main.netMode != NetmodeID.Server) {
             float scale = 1f;
 
-            Particle<RaygunTrail.Particle>._instance = ModContent.GetInstance<RaygunTrail>();
             Particle<RaygunTrail.Particle>.New().Setup(projectile.Center, projectile.velocity, color, scale);
         }
         if (projectile.Distance(Main.player[projectile.owner].Center) > 20f) {

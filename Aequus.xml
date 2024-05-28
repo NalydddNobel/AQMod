@@ -1386,6 +1386,9 @@
         <member name="T:Aequus.Core.Utilities.ChatTagWriter">
             <summary>Contains helper methods for generating chat tag strings. For item and glyphs, <see cref="T:Terraria.GameContent.UI.Chat.ItemTagHandler"/> and <see cref="T:Terraria.GameContent.UI.Chat.GlyphTagHandler"/> have static helper methods.</summary>
         </member>
+        <member name="M:Aequus.Core.Utilities.ExtendArray.ClearReturn``1(FNAUtils.ArrayPool{``0},``0[])">
+            <summary>Clears <paramref name="rent"/> and returns it to <paramref name="pool"/>.</summary>
+        </member>
         <member name="M:Aequus.Core.Utilities.ExtendArray.AddRangeSafe``1(``0[],``0[])">
             <summary>Safely adds <paramref name="other"/>'s contents into <paramref name="array"/> by resizing and inserting the elements from <paramref name="other"/> into <paramref name="array"/>.</summary>
             <returns>The combined array.</returns>
@@ -2370,7 +2373,7 @@
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 823) yo momma gai</summary>
+            <summary>(Total Textures: 825) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -4327,6 +4330,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.BombarderRod_Glow">
             <summary>Full Path: Old/Content/Items/Weapons/Magic/DemonCrimsonRod/BombarderRod_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Gamestar">
+            <summary>Full Path: Old/Content/Items/Weapons/Magic/Gamestar/Gamestar</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GamestarDebuff">
+            <summary>Full Path: Old/Content/Items/Weapons/Magic/Gamestar/GamestarDebuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Nightfall">
             <summary>Full Path: Old/Content/Items/Weapons/Magic/Nightfall/Nightfall</summary>

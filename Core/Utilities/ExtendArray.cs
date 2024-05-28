@@ -4,6 +4,14 @@ using System.Linq;
 namespace Aequus.Core.Utilities;
 
 public static class ExtendArray {
+    /// <summary>Clears <paramref name="rent"/> and returns it to <paramref name="pool"/>.</summary>
+    public static void ClearReturn<T>(this FNAUtils.ArrayPool<T> pool, T[] rent) {
+        for (int i = 0; i < rent.Length; i++) {
+            rent[i] = default(T);
+        }
+        pool.Return(rent);
+    }
+
     /// <summary>Safely adds <paramref name="other"/>'s contents into <paramref name="array"/> by resizing and inserting the elements from <paramref name="other"/> into <paramref name="array"/>.</summary>
     /// <returns>The combined array.</returns>
     public static T[] AddRangeSafe<T>(T[] array, T[] other) {
