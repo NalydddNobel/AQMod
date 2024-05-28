@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Aequus.Old.Content.Bosses.Cosmic.OmegaStarite;
+namespace Aequus.Old.Content.Bosses.OmegaStarite;
 
 public class OmegaStariteRing : ICloneable {
     public const int SEGMENTS_1 = 5;

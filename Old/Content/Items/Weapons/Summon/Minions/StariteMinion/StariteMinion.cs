@@ -1,4 +1,5 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequus.Core.CodeGeneration;
+using Aequus.Core.ContentGeneration;
 using Aequus.Old.Content.Particles;
 using Aequus.Old.Content.StatusEffects;
 using System;
@@ -6,6 +7,7 @@ using Terraria.GameContent;
 
 namespace Aequus.Old.Content.Items.Weapons.Summon.Minions.StariteMinion;
 
+[Gen.AequusPlayer_Field<bool>("minionStarite")]
 public class StariteMinion : UnifiedModMinion {
     public override void SetStaticDefaults() {
         base.SetStaticDefaults();

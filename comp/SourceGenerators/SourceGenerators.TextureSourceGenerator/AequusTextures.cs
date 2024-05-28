@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 817) yo momma gai</summary>
+/// <summary>(Total Textures: 823) yo momma gai</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -897,42 +897,42 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> icon_small = new("Aequus/icon_small");
     /// <summary>Full Path: icon_workshop</summary>
     public static readonly RequestCache<Texture2D> icon_workshop = new("Aequus/icon_workshop");
-    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteBag</summary>
-    public static readonly RequestCache<Texture2D> OmegaStariteBag = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteBag");
-    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteMask</summary>
-    public static readonly RequestCache<Texture2D> OmegaStariteMask = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteMask");
-    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteMask_Head</summary>
-    public static readonly RequestCache<Texture2D> OmegaStariteMask_Head = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteMask_Head");
-    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteRelic</summary>
-    public static readonly RequestCache<Texture2D> OmegaStariteRelic = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteRelic");
-    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteRelicItem</summary>
-    public static readonly RequestCache<Texture2D> OmegaStariteRelicItem = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteRelicItem");
-    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteTrophy</summary>
-    public static readonly RequestCache<Texture2D> OmegaStariteTrophy = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteTrophy");
-    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteTrophyItem</summary>
-    public static readonly RequestCache<Texture2D> OmegaStariteTrophyItem = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteTrophyItem");
-    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/OmegaStarite</summary>
-    public static readonly RequestCache<Texture2D> OmegaStarite = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/OmegaStarite");
-    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/OmegaStarite_Head_Boss</summary>
-    public static readonly RequestCache<Texture2D> OmegaStarite_Head_Boss = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/OmegaStarite_Head_Boss");
-    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Projectiles/OmegaStariteBullet</summary>
-    public static readonly RequestCache<Texture2D> OmegaStariteBullet = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Projectiles/OmegaStariteBullet");
-    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Projectiles/OmegaStariteDeathray</summary>
-    public static readonly RequestCache<Texture2D> OmegaStariteDeathray = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Projectiles/OmegaStariteDeathray");
-    /// <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Projectiles/OmegaStariteProj</summary>
-    public static readonly RequestCache<Texture2D> OmegaStariteProj = new("Aequus/Old/Content/Bosses/Cosmic/OmegaStarite/Projectiles/OmegaStariteProj");
-    /// <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/Items/UltraStariteRelic</summary>
-    public static readonly RequestCache<Texture2D> UltraStariteRelic = new("Aequus/Old/Content/Bosses/Cosmic/UltraStarite/Items/UltraStariteRelic");
-    /// <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/Items/UltraStariteRelicItem</summary>
-    public static readonly RequestCache<Texture2D> UltraStariteRelicItem = new("Aequus/Old/Content/Bosses/Cosmic/UltraStarite/Items/UltraStariteRelicItem");
-    /// <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/Items/UltraStariteTrophy</summary>
-    public static readonly RequestCache<Texture2D> UltraStariteTrophy = new("Aequus/Old/Content/Bosses/Cosmic/UltraStarite/Items/UltraStariteTrophy");
-    /// <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/Items/UltraStariteTrophyItem</summary>
-    public static readonly RequestCache<Texture2D> UltraStariteTrophyItem = new("Aequus/Old/Content/Bosses/Cosmic/UltraStarite/Items/UltraStariteTrophyItem");
-    /// <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/UltraStarite</summary>
-    public static readonly RequestCache<Texture2D> UltraStarite = new("Aequus/Old/Content/Bosses/Cosmic/UltraStarite/UltraStarite");
-    /// <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/UltraStarite_Head_Boss</summary>
-    public static readonly RequestCache<Texture2D> UltraStarite_Head_Boss = new("Aequus/Old/Content/Bosses/Cosmic/UltraStarite/UltraStarite_Head_Boss");
+    /// <summary>Full Path: Old/Content/Bosses/OmegaStarite/Items/OmegaStariteBag</summary>
+    public static readonly RequestCache<Texture2D> OmegaStariteBag = new("Aequus/Old/Content/Bosses/OmegaStarite/Items/OmegaStariteBag");
+    /// <summary>Full Path: Old/Content/Bosses/OmegaStarite/Items/OmegaStariteMask</summary>
+    public static readonly RequestCache<Texture2D> OmegaStariteMask = new("Aequus/Old/Content/Bosses/OmegaStarite/Items/OmegaStariteMask");
+    /// <summary>Full Path: Old/Content/Bosses/OmegaStarite/Items/OmegaStariteMask_Head</summary>
+    public static readonly RequestCache<Texture2D> OmegaStariteMask_Head = new("Aequus/Old/Content/Bosses/OmegaStarite/Items/OmegaStariteMask_Head");
+    /// <summary>Full Path: Old/Content/Bosses/OmegaStarite/Items/OmegaStariteRelic</summary>
+    public static readonly RequestCache<Texture2D> OmegaStariteRelic = new("Aequus/Old/Content/Bosses/OmegaStarite/Items/OmegaStariteRelic");
+    /// <summary>Full Path: Old/Content/Bosses/OmegaStarite/Items/OmegaStariteRelicItem</summary>
+    public static readonly RequestCache<Texture2D> OmegaStariteRelicItem = new("Aequus/Old/Content/Bosses/OmegaStarite/Items/OmegaStariteRelicItem");
+    /// <summary>Full Path: Old/Content/Bosses/OmegaStarite/Items/OmegaStariteTrophy</summary>
+    public static readonly RequestCache<Texture2D> OmegaStariteTrophy = new("Aequus/Old/Content/Bosses/OmegaStarite/Items/OmegaStariteTrophy");
+    /// <summary>Full Path: Old/Content/Bosses/OmegaStarite/Items/OmegaStariteTrophyItem</summary>
+    public static readonly RequestCache<Texture2D> OmegaStariteTrophyItem = new("Aequus/Old/Content/Bosses/OmegaStarite/Items/OmegaStariteTrophyItem");
+    /// <summary>Full Path: Old/Content/Bosses/OmegaStarite/OmegaStarite</summary>
+    public static readonly RequestCache<Texture2D> OmegaStarite = new("Aequus/Old/Content/Bosses/OmegaStarite/OmegaStarite");
+    /// <summary>Full Path: Old/Content/Bosses/OmegaStarite/OmegaStarite_Head_Boss</summary>
+    public static readonly RequestCache<Texture2D> OmegaStarite_Head_Boss = new("Aequus/Old/Content/Bosses/OmegaStarite/OmegaStarite_Head_Boss");
+    /// <summary>Full Path: Old/Content/Bosses/OmegaStarite/Projectiles/OmegaStariteBullet</summary>
+    public static readonly RequestCache<Texture2D> OmegaStariteBullet = new("Aequus/Old/Content/Bosses/OmegaStarite/Projectiles/OmegaStariteBullet");
+    /// <summary>Full Path: Old/Content/Bosses/OmegaStarite/Projectiles/OmegaStariteDeathray</summary>
+    public static readonly RequestCache<Texture2D> OmegaStariteDeathray = new("Aequus/Old/Content/Bosses/OmegaStarite/Projectiles/OmegaStariteDeathray");
+    /// <summary>Full Path: Old/Content/Bosses/OmegaStarite/Projectiles/OmegaStariteProj</summary>
+    public static readonly RequestCache<Texture2D> OmegaStariteProj = new("Aequus/Old/Content/Bosses/OmegaStarite/Projectiles/OmegaStariteProj");
+    /// <summary>Full Path: Old/Content/Bosses/UltraStarite/Items/UltraStariteRelic</summary>
+    public static readonly RequestCache<Texture2D> UltraStariteRelic = new("Aequus/Old/Content/Bosses/UltraStarite/Items/UltraStariteRelic");
+    /// <summary>Full Path: Old/Content/Bosses/UltraStarite/Items/UltraStariteRelicItem</summary>
+    public static readonly RequestCache<Texture2D> UltraStariteRelicItem = new("Aequus/Old/Content/Bosses/UltraStarite/Items/UltraStariteRelicItem");
+    /// <summary>Full Path: Old/Content/Bosses/UltraStarite/Items/UltraStariteTrophy</summary>
+    public static readonly RequestCache<Texture2D> UltraStariteTrophy = new("Aequus/Old/Content/Bosses/UltraStarite/Items/UltraStariteTrophy");
+    /// <summary>Full Path: Old/Content/Bosses/UltraStarite/Items/UltraStariteTrophyItem</summary>
+    public static readonly RequestCache<Texture2D> UltraStariteTrophyItem = new("Aequus/Old/Content/Bosses/UltraStarite/Items/UltraStariteTrophyItem");
+    /// <summary>Full Path: Old/Content/Bosses/UltraStarite/UltraStarite</summary>
+    public static readonly RequestCache<Texture2D> UltraStarite = new("Aequus/Old/Content/Bosses/UltraStarite/UltraStarite");
+    /// <summary>Full Path: Old/Content/Bosses/UltraStarite/UltraStarite_Head_Boss</summary>
+    public static readonly RequestCache<Texture2D> UltraStarite_Head_Boss = new("Aequus/Old/Content/Bosses/UltraStarite/UltraStarite_Head_Boss");
     /// <summary>Full Path: Old/Content/Building/LavaproofMitten</summary>
     public static readonly RequestCache<Texture2D> LavaproofMitten = new("Aequus/Old/Content/Building/LavaproofMitten");
     /// <summary>Full Path: Old/Content/Building/LavaproofMitten_HandsOff</summary>
@@ -1377,6 +1377,18 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Hitscanner = new("Aequus/Old/Content/Items/Weapons/Ranged/Hitscanner/Hitscanner");
     /// <summary>Full Path: Old/Content/Items/Weapons/Ranged/Raygun/Raygun</summary>
     public static readonly RequestCache<Texture2D> Raygun = new("Aequus/Old/Content/Items/Weapons/Ranged/Raygun/Raygun");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Summon/Minions/RedSpriteMinionBuff</summary>
+    public static readonly RequestCache<Texture2D> RedSpriteMinionBuff = new("Aequus/Old/Content/Items/Weapons/Summon/Minions/RedSpriteMinionBuff");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Summon/Minions/ScribbleMinion/ScribbleNotebook</summary>
+    public static readonly RequestCache<Texture2D> ScribbleNotebook = new("Aequus/Old/Content/Items/Weapons/Summon/Minions/ScribbleMinion/ScribbleNotebook");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Summon/Minions/ScribbleMinion/ScribbleNotebookMinion</summary>
+    public static readonly RequestCache<Texture2D> ScribbleNotebookMinion = new("Aequus/Old/Content/Items/Weapons/Summon/Minions/ScribbleMinion/ScribbleNotebookMinion");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Summon/Minions/ScribbleMinion/ScribbleNotebookMinionBuff</summary>
+    public static readonly RequestCache<Texture2D> ScribbleNotebookMinionBuff = new("Aequus/Old/Content/Items/Weapons/Summon/Minions/ScribbleMinion/ScribbleNotebookMinionBuff");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Summon/Minions/ScribbleMinion/ScribbleNotebook_Glow</summary>
+    public static readonly RequestCache<Texture2D> ScribbleNotebook_Glow = new("Aequus/Old/Content/Items/Weapons/Summon/Minions/ScribbleMinion/ScribbleNotebook_Glow");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Summon/Minions/SnowflakeBuff</summary>
+    public static readonly RequestCache<Texture2D> SnowflakeBuff = new("Aequus/Old/Content/Items/Weapons/Summon/Minions/SnowflakeBuff");
     /// <summary>Full Path: Old/Content/Items/Weapons/Summon/Minions/StariteMinion/StariteMinion</summary>
     public static readonly RequestCache<Texture2D> StariteMinion = new("Aequus/Old/Content/Items/Weapons/Summon/Minions/StariteMinion/StariteMinion");
     /// <summary>Full Path: Old/Content/Items/Weapons/Summon/Minions/StariteMinion/StariteMinionBuff</summary>

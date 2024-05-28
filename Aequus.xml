@@ -2352,25 +2352,25 @@
             <summary>Full Path: Old/Assets/Sounds/ZumboPettingSqueak</summary>
         </member>
         <member name="F:Aequus.AequusSounds.OmegaStariteDeathRay">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteDeathRay</summary>
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteDeathRay</summary>
         </member>
         <member name="F:Aequus.AequusSounds.OmegaStariteHit0">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit0</summary>
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteHit0</summary>
         </member>
         <member name="F:Aequus.AequusSounds.OmegaStariteHit1">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit1</summary>
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteHit1</summary>
         </member>
         <member name="F:Aequus.AequusSounds.OmegaStariteHit2">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteHit2</summary>
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteHit2</summary>
         </member>
         <member name="F:Aequus.AequusSounds.OmegaStariteKilled">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteKilled</summary>
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteKilled</summary>
         </member>
         <member name="F:Aequus.AequusSounds.OmegaStariteStarBullets">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 817) yo momma gai</summary>
+            <summary>(Total Textures: 823) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -3708,58 +3708,58 @@
             <summary>Full Path: icon_workshop</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteBag">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteBag</summary>
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Items/OmegaStariteBag</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteMask">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteMask</summary>
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Items/OmegaStariteMask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteMask_Head">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteMask_Head</summary>
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Items/OmegaStariteMask_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteRelic">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteRelic</summary>
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Items/OmegaStariteRelic</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteRelicItem">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteRelicItem</summary>
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Items/OmegaStariteRelicItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteTrophy">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteTrophy</summary>
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Items/OmegaStariteTrophy</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteTrophyItem">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Items/OmegaStariteTrophyItem</summary>
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Items/OmegaStariteTrophyItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStarite">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/OmegaStarite</summary>
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/OmegaStarite</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStarite_Head_Boss">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/OmegaStarite_Head_Boss</summary>
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/OmegaStarite_Head_Boss</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteBullet">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Projectiles/OmegaStariteBullet</summary>
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Projectiles/OmegaStariteBullet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteDeathray">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Projectiles/OmegaStariteDeathray</summary>
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Projectiles/OmegaStariteDeathray</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteProj">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/OmegaStarite/Projectiles/OmegaStariteProj</summary>
+            <summary>Full Path: Old/Content/Bosses/OmegaStarite/Projectiles/OmegaStariteProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltraStariteRelic">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/Items/UltraStariteRelic</summary>
+            <summary>Full Path: Old/Content/Bosses/UltraStarite/Items/UltraStariteRelic</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltraStariteRelicItem">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/Items/UltraStariteRelicItem</summary>
+            <summary>Full Path: Old/Content/Bosses/UltraStarite/Items/UltraStariteRelicItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltraStariteTrophy">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/Items/UltraStariteTrophy</summary>
+            <summary>Full Path: Old/Content/Bosses/UltraStarite/Items/UltraStariteTrophy</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltraStariteTrophyItem">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/Items/UltraStariteTrophyItem</summary>
+            <summary>Full Path: Old/Content/Bosses/UltraStarite/Items/UltraStariteTrophyItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltraStarite">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/UltraStarite</summary>
+            <summary>Full Path: Old/Content/Bosses/UltraStarite/UltraStarite</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltraStarite_Head_Boss">
-            <summary>Full Path: Old/Content/Bosses/Cosmic/UltraStarite/UltraStarite_Head_Boss</summary>
+            <summary>Full Path: Old/Content/Bosses/UltraStarite/UltraStarite_Head_Boss</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LavaproofMitten">
             <summary>Full Path: Old/Content/Building/LavaproofMitten</summary>
@@ -4427,6 +4427,24 @@
         <member name="F:Aequus.AequusTextures.Raygun">
             <summary>Full Path: Old/Content/Items/Weapons/Ranged/Raygun/Raygun</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteMinionBuff">
+            <summary>Full Path: Old/Content/Items/Weapons/Summon/Minions/RedSpriteMinionBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScribbleNotebook">
+            <summary>Full Path: Old/Content/Items/Weapons/Summon/Minions/ScribbleMinion/ScribbleNotebook</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScribbleNotebookMinion">
+            <summary>Full Path: Old/Content/Items/Weapons/Summon/Minions/ScribbleMinion/ScribbleNotebookMinion</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScribbleNotebookMinionBuff">
+            <summary>Full Path: Old/Content/Items/Weapons/Summon/Minions/ScribbleMinion/ScribbleNotebookMinionBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScribbleNotebook_Glow">
+            <summary>Full Path: Old/Content/Items/Weapons/Summon/Minions/ScribbleMinion/ScribbleNotebook_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SnowflakeBuff">
+            <summary>Full Path: Old/Content/Items/Weapons/Summon/Minions/SnowflakeBuff</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.StariteMinion">
             <summary>Full Path: Old/Content/Items/Weapons/Summon/Minions/StariteMinion/StariteMinion</summary>
         </member>
@@ -4879,7 +4897,7 @@
             <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Old.Common.Graphics.Camera.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Old.Common.Graphics.Camera.CameraPriority,System.Single,System.Int32)"/></param>
             <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
         </member>
-        <member name="M:Aequus.Old.Content.Bosses.Cosmic.OmegaStarite.OmegaStariteRing.#ctor(System.IO.BinaryReader)">
+        <member name="M:Aequus.Old.Content.Bosses.OmegaStarite.OmegaStariteRing.#ctor(System.IO.BinaryReader)">
             <summary>
             Creates a Ring through a net package
             </summary>

@@ -5,7 +5,7 @@ using Aequus.Content.Dusts;
 using Aequus.Core.ContentGeneration;
 using Aequus.DataSets;
 using Aequus.Old.Common.Graphics;
-using Aequus.Old.Content.Bosses.Cosmic.UltraStarite.Projectiles;
+using Aequus.Old.Content.Bosses.UltraStarite.Projectiles;
 using Aequus.Old.Content.Events.Glimmer;
 using Aequus.Old.Content.Events.Glimmer.CosmicMonolith;
 using Aequus.Old.Content.Items.Materials;
@@ -21,7 +21,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Utilities;
 
-namespace Aequus.Old.Content.Bosses.Cosmic.UltraStarite;
+namespace Aequus.Old.Content.Bosses.UltraStarite;
 
 [BestiaryBiome<GlimmerZone>()]
 [AutoloadBossHead]
@@ -499,7 +499,7 @@ public class UltraStarite : ModNPC {
                     float rotation = NPC.oldRot[i] + MathHelper.TwoPi / 5f * j;
                     var armPos = NPC.position + offset + (rotation - MathHelper.PiOver2).ToRotationVector2() * (armLength + oldArmsLength[i]) - screenPos;
                     armPositions[j].Add(armPos + screenPos);
-                    if (ExtendedMod.GameWorldActive && !NPC.IsABestiaryIconDummy && NPC.ai[1] < 125f && Main.rand.NextBool(2 + i * 15)) {
+                    if (GameWorldActive && !NPC.IsABestiaryIconDummy && NPC.ai[1] < 125f && Main.rand.NextBool(2 + i * 15)) {
                         float scale = Main.rand.NextFloat(0.4f, 1.5f);
                         var p = LegacyBloomParticle.New();
                         p.Location = armPos + Main.screenPosition + Main.rand.NextVector2Unit() * 30f;

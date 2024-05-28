@@ -1,4 +1,5 @@
 CommonTooltips: {
+	GuideHint: "The Guide may be interested in this..."
 	BuffTimeRange: "{0}-{1} minute duration"
 	IncreasesInventorySlots: Grants {0} backpack slots
 	Cooldown: Has a {0} second cooldown
@@ -367,6 +368,11 @@ Dynaknife: {
 		'''
 }
 
+UltimateSword: {
+	DisplayName: Ultimate Sword
+	Tooltip: "'Absorbed by Omega Starite, losing its true potential...'"
+}
+
 PhaseDisc: {
 	DisplayName: Phasebrink
 	Tooltip:
@@ -538,6 +544,11 @@ Furystar: {
 		'''
 }
 
+Gamestar: {
+	DisplayName: Gamestar
+	Tooltip: Shoots a stream of compressed data
+}
+
 Nightfall: {
 	DisplayName: Nightfall
 	Tooltip:
@@ -598,6 +609,11 @@ DemonVasculash: {
 		Defensive hungries are unleashed from enemies hit by summons
 		<right> or take damage to release all of the hungries as an attack
 		'''
+}
+
+ScribbleNotebook: {
+	DisplayName: Scribble Notebook
+	Tooltip: Summons a random object to fight for you
 }
 
 StariteStaff: {
@@ -796,7 +812,7 @@ PossessedShard: {
 
 AquaticEnergy: {
 	DisplayName: Aquatic Energy
-	Tooltip: "[c/C080FF:The guide may be interested in this...]"
+	Tooltip: ""
 }
 
 AtmosphericEnergy: {
@@ -1149,11 +1165,6 @@ CelestialEightBall: {
 CosmicMonolith: {
 	DisplayName: Cosmic Monolith
 	Tooltip: "'Sustain a fraction of cosmic power'"
-}
-
-UltimateSword: {
-	DisplayName: Mods.Aequus.Items.UltimateSword.DisplayName
-	Tooltip: ""
 }
 
 StariteMaterial: {

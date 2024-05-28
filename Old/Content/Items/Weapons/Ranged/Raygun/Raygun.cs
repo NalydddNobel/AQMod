@@ -4,8 +4,6 @@ using Aequus.Common.Projectiles;
 using Aequus.Content.Dusts;
 using Aequus.Core.Particles;
 using Aequus.DataSets;
-using Aequus.Old.Content.Items.Materials;
-using Aequus.Old.Content.Items.Materials.Energies;
 using System;
 using Terraria.DataStructures;
 
@@ -28,7 +26,6 @@ public class Raygun : ModItem, IManageProjectile {
         Item.UseSound = AequusSounds.Raygun with { Volume = 0.5f };
         Item.rare = Commons.Rare.BossOmegaStarite;
         Item.value = Commons.Cost.BossOmegaStarite;
-        Item.knockBack = 1f;
     }
 
     public override Color? GetAlpha(Color lightColor) {
@@ -40,15 +37,6 @@ public class Raygun : ModItem, IManageProjectile {
     }
 
     public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
-    }
-
-    public override void AddRecipes() {
-        CreateRecipe()
-            .AddIngredient<StariteMaterial>(16)
-            .AddIngredient(EnergyMaterial.Cosmic)
-            .AddTile(TileID.Anvils)
-            .Register()
-            .SortAfterFirstRecipesOf(ItemID.NightsEdge);
     }
 
     bool IManageProjectile.PreAIProjectile(Projectile projectile) {

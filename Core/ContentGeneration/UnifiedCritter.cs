@@ -1,4 +1,6 @@
-﻿namespace Aequus.Core.ContentGeneration;
+﻿using Terraria.Localization;
+
+namespace Aequus.Core.ContentGeneration;
 
 public abstract class UnifiedCritter() : ModNPC {
     public virtual int BestiaryCritterSort => 0;
@@ -42,6 +44,9 @@ public abstract class UnifiedCritter() : ModNPC {
 }
 
 internal sealed class InstancedCritterItem(UnifiedCritter Critter) : InstancedModItem(Critter.Name, Critter.Texture + "Item") {
+    public override LocalizedText DisplayName => Critter.DisplayName;
+    public override LocalizedText Tooltip => Critter.GetLocalization("ItemTooltip");
+
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 5;
     }

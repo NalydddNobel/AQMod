@@ -367,6 +367,11 @@ Dynaknife: {
 		'''
 }
 
+UltimateSword: {
+	DisplayName: 最终之剑
+	Tooltip: "'被终末之星所吸收, 失去了其真正的潜能...'"
+}
+
 PhaseDisc: {
 	DisplayName: 相位盘
 	Tooltip:
@@ -478,6 +483,35 @@ SkyHunterCrossbow: {
 		'''
 }
 
+SnowflakeCannon: {
+	DisplayName: 雪花大炮
+	Tooltip:
+		'''
+		发射击中敌人时会回弹的电弧雪花
+		66%几率不消耗弹药
+		'''
+}
+
+BoundBow: {
+	DisplayName: 界限弓
+	Tooltip: 随时间流逝会不断再生弹药
+}
+
+Hitscanner: {
+	DisplayName: 命中扫描器
+	Tooltip:
+		'''
+		无视敌人5点的防御力
+		发射大量会瞬间命中敌人的子弹
+		'我们会向他们发送...只有你.'
+		'''
+}
+
+Raygun: {
+	DisplayName: 射线枪
+	Tooltip: 将子弹转化为快速射线
+}
+
 CrusadersCrossbow: {
 	DisplayName: 十字军弩
 	Tooltip: 发射可以治疗队友的箭矢
@@ -507,6 +541,11 @@ Furystar: {
 		使星星从天而降
 		攻击会回复魔力值
 		'''
+}
+
+Gamestar: {
+	DisplayName: 游戏之星
+	Tooltip: 发送压缩数据流
 }
 
 Nightfall: {
@@ -569,6 +608,11 @@ DemonVasculash: {
 		被召唤物攻击的敌人会释放出防御性饿鬼
 		右键或受到伤害时会释放所有饿鬼进行攻击
 		'''
+}
+
+ScribbleNotebook: {
+	// DisplayName: Scribble Notebook
+	// Tooltip: Summons a random object to fight for you
 }
 
 StariteStaff: {
@@ -1122,11 +1166,6 @@ CosmicMonolith: {
 	Tooltip: "'维系宇宙力量的一小部分'"
 }
 
-UltimateSword: {
-	DisplayName: Mods.Aequus.Items.UltimateSword.DisplayName
-	Tooltip: ""
-}
-
 StariteMaterial: {
 	DisplayName: 核心碎片
 	Tooltip: ""
@@ -1135,33 +1174,4 @@ StariteMaterial: {
 UnopenedChestItem: {
 	DisplayName: 未开启的宝箱物品
 	Tooltip: 这是Debug物品, 将其放置在世界生成的宝箱内以检测其是否被开启过
-}
-
-SnowflakeCannon: {
-	DisplayName: 雪花大炮
-	Tooltip:
-		'''
-		发射击中敌人时会回弹的电弧雪花
-		66%几率不消耗弹药
-		'''
-}
-
-Raygun: {
-	DisplayName: 射线枪
-	Tooltip: 将子弹转化为快速射线
-}
-
-BoundBow: {
-	DisplayName: 界限弓
-	Tooltip: 随时间流逝会不断再生弹药
-}
-
-Hitscanner: {
-	DisplayName: 命中扫描器
-	Tooltip:
-		'''
-		无视敌人5点的防御力
-		发射大量会瞬间命中敌人的子弹
-		'我们会向他们发送...只有你.'
-		'''
 }

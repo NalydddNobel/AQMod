@@ -367,6 +367,11 @@ Dynaknife: {
 		'''
 }
 
+UltimateSword: {
+	// DisplayName: Ultimate Sword
+	// Tooltip: "'Absorbed by Omega Starite, losing its true potential...'"
+}
+
 PhaseDisc: {
 	// DisplayName: Phasebrink
 	/* Tooltip:
@@ -478,6 +483,35 @@ SkyHunterCrossbow: {
 		'''
 }
 
+SnowflakeCannon: {
+	// DisplayName: Snowflake Cannon
+	/* Tooltip:
+		'''
+		Shoots charged snowflakes which arc off of enemies
+		66% chance to not consume ammo
+		''' */
+}
+
+BoundBow: {
+	// DisplayName: Bound Bow
+	// Tooltip: Infinitely regenerates ammo over time
+}
+
+Hitscanner: {
+	// DisplayName: Hitscanner
+	/* Tooltip:
+		'''
+		Ignores 5 points of enemy Defense
+		Fires a massive spread of instantly hitting bullets
+		'We will send unto them... only you.'
+		''' */
+}
+
+Raygun: {
+	// DisplayName: Raygun
+	// Tooltip: Converts bullets into extremely fast rays
+}
+
 CrusadersCrossbow: {
 	DisplayName: Ballesta del Cruzado
 	Tooltip: Dispara dardos especiales que curan a aliados
@@ -507,6 +541,11 @@ Furystar: {
 		Hace que lluevan estrellas del cielo
 		Ataques restauran maná
 		'''
+}
+
+Gamestar: {
+	// DisplayName: Gamestar
+	// Tooltip: Shoots a stream of compressed data
 }
 
 Nightfall: {
@@ -569,6 +608,11 @@ DemonVasculash: {
 		Defensive hungries are unleashed from enemies hit by summons
 		<right> or take damage to release all of the hungries as an attack
 		''' */
+}
+
+ScribbleNotebook: {
+	// DisplayName: Scribble Notebook
+	// Tooltip: Summons a random object to fight for you
 }
 
 StariteStaff: {
@@ -1122,11 +1166,6 @@ CosmicMonolith: {
 	Tooltip: "'Sostiene una fracción de poder cosmico'"
 }
 
-UltimateSword: {
-	// DisplayName: Mods.Aequus.Items.UltimateSword.DisplayName
-	// Tooltip: ""
-}
-
 StariteMaterial: {
 	DisplayName: Fragmento de Núcleo
 	// Tooltip: ""
@@ -1135,14 +1174,4 @@ StariteMaterial: {
 UnopenedChestItem: {
 	DisplayName: Objeto de cofre sin abrir
 	// Tooltip: This is a debug item placed into chests upon worldgen to check if they have been opened
-}
-
-SeaFirefly: {
-	// DisplayName: Sea Firefly
-	// Tooltip: ""
-}
-
-Raygun: {
-	// DisplayName: Raygun
-	// Tooltip: ""
 }

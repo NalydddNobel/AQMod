@@ -64,6 +64,11 @@
 	<AdditionalFiles Include="Old\**\*.png" />
 	<AdditionalFiles Include="Old\**\*.ogg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Old\Content\Items\Weapons\Summon\Minions\RedSpriteMinionBuff.png" />
+    <None Remove="Old\Content\Items\Weapons\Summon\Minions\ScribbleNotebookBuff.png" />
+    <None Remove="Old\Content\Items\Weapons\Summon\Minions\SnowflakeBuff.png" />
+  </ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<Optimize>False</Optimize>

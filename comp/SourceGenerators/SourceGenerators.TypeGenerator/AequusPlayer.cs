@@ -55,6 +55,10 @@ public partial class AequusPlayer {
     [CompilerGenerated]
     public float buffNeutronYogurt;
     [CompilerGenerated]
+    public bool minionScribble;
+    [CompilerGenerated]
+    public bool minionStarite;
+    [CompilerGenerated]
     public int ghostChains;
     [CompilerGenerated]
     public float zombieDebuffMultiplier;

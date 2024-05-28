@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Bosses.Cosmic.OmegaStarite.Projectiles;
+namespace Aequus.Old.Content.Bosses.OmegaStarite.Projectiles;
 
 public class OmegaStariteDeathray : ModProjectile {
     public float rotationOffset;
@@ -91,7 +91,7 @@ public class OmegaStariteDeathray : ModProjectile {
             Main.spriteBatch.Draw(texture, basePosition2, frame2, drawColor, rotation, origin2, new Vector2(progress * baseScale, length), SpriteEffects.None, 0f);
         }
 
-        if (ExtendedMod.GameWorldActive) {
+        if (GameWorldActive) {
             return false;
         }
 

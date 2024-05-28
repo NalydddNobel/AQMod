@@ -4,7 +4,7 @@ using Aequus.Old.Content.Events.Glimmer;
 using System;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Bosses.Cosmic.OmegaStarite.Projectiles;
+namespace Aequus.Old.Content.Bosses.OmegaStarite.Projectiles;
 
 public class OmegaStariteBullet : ModProjectile {
     public override void SetStaticDefaults() {

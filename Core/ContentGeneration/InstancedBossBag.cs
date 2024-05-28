@@ -1,20 +1,10 @@
-﻿using Terraria.GameContent;
+﻿using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
 
 namespace Aequus.Core.ContentGeneration;
 
-internal class InstancedBossBag : InstancedModItem {
-    private readonly int InternalRarity;
-    private readonly bool PreHardmode;
-    private readonly ModNPC _parent;
-
-    public InstancedBossBag(ModNPC modNPC, int internalRarity, bool preHardmode = false) : base($"{modNPC.Name}Bag", $"{modNPC.NamespaceFilePath()}/Items/{modNPC.Name}Bag") {
-        _parent = modNPC;
-        InternalRarity = internalRarity;
-        PreHardmode = preHardmode;
-    }
-
-    public override LocalizedText DisplayName => Language.GetText("Mods.Aequus.Items.TreasureBag.DisplayName").WithFormatArgs(_parent.DisplayName);
+internal class InstancedBossBag(ModNPC ModNPC, int InternalRarity, bool PreHardmode = false) : InstancedModItem($"{ModNPC.Name}Bag", $"{ModNPC.NamespaceFilePath()}/Items/{ModNPC.Name}Bag") {
+    public override LocalizedText DisplayName => Language.GetText("Mods.Aequus.Items.TreasureBag.DisplayName").WithFormatArgs(ModNPC.DisplayName);
     public override LocalizedText Tooltip => Language.GetText("CommonItemTooltip.RightClickToOpen");
 
     public override void SetStaticDefaults() {
@@ -41,6 +31,11 @@ internal class InstancedBossBag : InstancedModItem {
         return Color.Lerp(lightColor, Color.White, 0.4f);
     }
 
+    public override void ModifyItemLoot(ItemLoot itemLoot) {
+        itemLoot.Add(ItemDropRule.CoinsBasedOnNPCValue(ModNPC.Type));
+    }
+
+    /*
     public override void PostUpdate() {
         Lighting.AddLight(Item.Center, Color.White.ToVector3() * 0.4f);
 
@@ -103,32 +98,33 @@ internal class InstancedBossBag : InstancedModItem {
         return true;
     }
 
-    //public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
-    //    Texture2D texture = TextureAssets.Item[Item.type].Value;
+    public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
+        Texture2D texture = TextureAssets.Item[Item.type].Value;
 
-    //    float time = Main.GlobalTimeWrappedHourly;
-    //    float timer = Main.GameUpdateCount / 240f + time * 0.04f;
+        float time = Main.GlobalTimeWrappedHourly;
+        float timer = Main.GameUpdateCount / 240f + time * 0.04f;
 
-    //    time %= 4f;
-    //    time /= 2f;
+        time %= 4f;
+        time /= 2f;
 
-    //    if (time >= 1f) {
-    //        time = 2f - time;
-    //    }
+        if (time >= 1f) {
+            time = 2f - time;
+        }
 
-    //    time = time * 0.5f + 0.5f;
+        time = time * 0.5f + 0.5f;
 
-    //    for (float i = 0f; i < 1f; i += 0.25f) {
-    //        float radians = (i + timer) * MathHelper.TwoPi;
+        for (float i = 0f; i < 1f; i += 0.25f) {
+            float radians = (i + timer) * MathHelper.TwoPi;
 
-    //        spriteBatch.Draw(texture, position + new Vector2(0f, 8f).RotatedBy(radians) * time * Main.inventoryScale, frame, new Color(90, 70, 255, 50), 0f, origin, scale, SpriteEffects.None, 0);
-    //    }
+            spriteBatch.Draw(texture, position + new Vector2(0f, 8f).RotatedBy(radians) * time * Main.inventoryScale, frame, new Color(90, 70, 255, 50), 0f, origin, scale, SpriteEffects.None, 0);
+        }
 
-    //    for (float i = 0f; i < 1f; i += 0.34f) {
-    //        float radians = (i + timer) * MathHelper.TwoPi;
+        for (float i = 0f; i < 1f; i += 0.34f) {
+            float radians = (i + timer) * MathHelper.TwoPi;
 
-    //        spriteBatch.Draw(texture, position + new Vector2(0f, 4f).RotatedBy(radians) * time * Main.inventoryScale, frame, new Color(140, 120, 255, 77), 0f, origin, scale, SpriteEffects.None, 0);
-    //    }
-    //    return true;
-    //}
+            spriteBatch.Draw(texture, position + new Vector2(0f, 4f).RotatedBy(radians) * time * Main.inventoryScale, frame, new Color(140, 120, 255, 77), 0f, origin, scale, SpriteEffects.None, 0);
+        }
+        return true;
+    }
+    */
 }

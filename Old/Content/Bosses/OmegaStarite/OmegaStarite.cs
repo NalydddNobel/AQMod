@@ -9,10 +9,9 @@ using Aequus.Core.ContentGeneration;
 using Aequus.DataSets;
 using Aequus.Old.Common.Graphics;
 using Aequus.Old.Common.Graphics.Camera;
-using Aequus.Old.Content.Bosses.Cosmic.OmegaStarite.Projectiles;
+using Aequus.Old.Content.Bosses.OmegaStarite.Projectiles;
 using Aequus.Old.Content.Events.Glimmer;
 using Aequus.Old.Content.Items.Materials.Energies;
-using Aequus.Old.Content.Items.Weapons.Melee.UltimateSword;
 using Aequus.Old.Content.Particles;
 using Aequus.Old.Content.StatusEffects;
 using System;
@@ -25,7 +24,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Utilities;
 
-namespace Aequus.Old.Content.Bosses.Cosmic.OmegaStarite;
+namespace Aequus.Old.Content.Bosses.OmegaStarite;
 
 [BestiaryBiome<GlimmerZone>()]
 [AutoloadBossHead]
@@ -1149,7 +1148,7 @@ public class OmegaStarite : LegacyAequusBoss {
         var spotlightColor = Main.tenthAnniversaryWorld ? Color.DeepPink with { A = 0 } * 0.5f : new Color(100, 100, 255, 0);
         var drawOmegite = new List<DrawDelegate>();
         drawColor = NPC.GetNPCColorTintedByBuffs(drawColor);
-        if (ExtendedMod.HighQualityEffects) {
+        if (HighQualityEffects) {
             drawOmegite.Add(delegate (Texture2D texture1, Vector2 position, Rectangle? frame1, Color color, float scale, Vector2 origin1, float rotation, SpriteEffects effects, float layerDepth) {
                 spriteBatch.Draw(spotlight, position, null, spotlightColor, rotation, spotlightOrig, scale * 1.33f, SpriteEffects.None, 0f);
             });
@@ -1329,7 +1328,12 @@ public class OmegaStarite : LegacyAequusBoss {
         npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.GetInstance<OmegaStaritePet>().PetItem.Type, chanceDenominator: 4));
         //npcLoot.AddBossDrop(ItemDropRule.Common(ModContent.ItemType<CelesteTorus>());
         npcLoot.Add(new DropPerPlayerOnThePlayer(EnergyMaterial.Cosmic.Type, chanceDenominator: 1, amountDroppedMinimum: 3, amountDroppedMaximum: 3, optionalCondition: null));
-        npcLoot.AddBossDrop(ItemDropRule.OneFromOptions(1, ModContent.ItemType<UltimateSword>()/*, ModContent.ItemType<Raygun>(), ModContent.ItemType<Gamestar>(), ModContent.ItemType<ScribbleNotebook>()*/));
+        npcLoot.AddBossDrop(ItemDropRule.OneFromOptions(1,
+            ModContent.ItemType<Items.Weapons.Melee.UltimateSword.UltimateSword>(),
+            ModContent.ItemType<Items.Weapons.Ranged.Raygun.Raygun>(),
+            //ModContent.ItemType<Gamestar>(),
+            ModContent.ItemType<Items.Weapons.Summon.Minions.ScribbleMinion.ScribbleNotebook>()
+        ));
 
         //npcLoot.Add(ItemDropRule.ByCondition(LootBuilder.GetCondition_OnFirstKill(() => AequusWorld.downedOmegaStarite), ModContent.ItemType<SupernovaFruit>()));
         //npcLoot.Add<FlawlessCondition>(ItemDropRule.Common(ModContent.ItemType<OriginPainting>()));

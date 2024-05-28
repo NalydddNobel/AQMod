@@ -31,7 +31,7 @@ public class BlackPhial : ModItem {
 
     public override void AddRecipes() {
         CreateRecipe()
-            .AddIngredient<PossessedShard>(3)
+            .AddIngredient<PossessedShard>(20)
             //.AddIngredient<RadonMoss>(16)
             .AddIngredient(ItemID.SoulofNight, 8)
             .Register();

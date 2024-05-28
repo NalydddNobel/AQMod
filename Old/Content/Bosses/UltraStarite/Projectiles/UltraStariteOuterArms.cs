@@ -1,6 +1,6 @@
 ﻿using Aequus.Old.Common.Projectiles;
 
-namespace Aequus.Old.Content.Bosses.Cosmic.UltraStarite.Projectiles;
+namespace Aequus.Old.Content.Bosses.UltraStarite.Projectiles;
 
 public class UltraStariteOuterArms : EnemyAttachedProjBase {
     public override string Texture => AequusTextures.None.Path;
