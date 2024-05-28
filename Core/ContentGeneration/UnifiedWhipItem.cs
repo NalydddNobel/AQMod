@@ -67,7 +67,7 @@ internal class InstancedWhipProjectile(IWhipController controller, string name, 
 
     public override void SetDefaults() {
         Projectile.DefaultToWhip();
-
+        Projectile.hide = true;
         _controller.SetWhipSettings(Projectile, ref Projectile.WhipSettings);
     }
 

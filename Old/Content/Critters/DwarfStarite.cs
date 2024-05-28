@@ -8,18 +8,17 @@ using Terraria.GameContent.Bestiary;
 
 namespace Aequus.Old.Content.Critters;
 
-[AutoloadCatchItem]
 [BestiaryBiome<GlimmerZone>()]
 [LegacyName("DwarfStariteCritter")]
-public class DwarfStarite : ModNPC {
+public class DwarfStarite : UnifiedCritter {
+    public override int BestiaryCritterSort => NPCID.LightningBug;
+
     public float rotationSpeed;
     public int constellation;
     public int Constellation { get => constellation - 1; set => constellation = value + 1; }
 
-    public override void SetStaticDefaults() {
+    public override void OnSetStaticDefaults() {
         Main.npcFrameCount[Type] = 2;
-        Main.npcCatchable[Type] = true;
-        NPCSets.CountsAsCritter[Type] = true;
         NPCSets.ShimmerTransformToNPC[Type] = NPCID.Shimmerfly;
         NPCSets.TrailingMode[Type] = 7;
         NPCSets.TrailCacheLength[Type] = 60;
@@ -30,13 +29,12 @@ public class DwarfStarite : ModNPC {
         this.CreateEntry(database, bestiaryEntry);
     }
 
-    public override void SetDefaults() {
+    public override void OnSetDefaults() {
         NPC.width = 12;
         NPC.height = 12;
         NPC.aiStyle = -1;
         NPC.damage = 0;
         NPC.defense = 0;
-        NPC.lifeMax = 5;
         NPC.HitSound = SoundID.NPCHit5;
         NPC.DeathSound = SoundID.NPCDeath55;
         NPC.npcSlots = 0.1f;
@@ -256,8 +254,10 @@ public class DwarfStarite : ModNPC {
         Main.spriteBatch.Draw(texture, drawPos, NPC.frame, NPC.GetNPCColorTintedByBuffs(NPC.GetAlpha(drawColor)), NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
         Main.spriteBatch.Draw(texture, drawPos, NPC.frame, new Color(20, 20, 20, 0), NPC.rotation, origin, NPC.scale + 0.3f, SpriteEffects.None, 0f);
 
-        var colorEnd = GlimmerColors.Blue;
-        var colorStart = GlimmerColors.Cyan;
+        DrawHelper.DrawBasicVertexLine(AequusTextures.Trail2, NPC.oldPos, Helper.GenerateRotationArr(NPC.oldPos),
+            p => Color.Lerp(GlimmerColors.Blue, GlimmerColors.Cyan, p) * (1f - p),
+            p => 4f + 2f * (1f - p),
+        offset: NPC.Size / 2f - Main.screenPosition);
 
         if (constellation > 0 && !NPC.IsABestiaryIconDummy) {
             var coords = LinearInterpolationBetween(NPC.Center - Main.screenPosition, Main.npc[Constellation].Center - Main.screenPosition, 50);

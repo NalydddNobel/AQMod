@@ -109,6 +109,6 @@ BoneRingDebuff: {
 }
 
 GamestarDebuff: {
-	// DisplayName: Gamestar Debuff
+	// DisplayName: "{$Items.Gamestar.DisplayName}"
 	// Description: Mods.Aequus.Buffs.GamestarDebuff.Description
 }

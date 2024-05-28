@@ -81,6 +81,7 @@ ChainedSoul.DisplayName: 链缚之魂
 DwarfStarite: {
 	DisplayName: 矮化源星
 	Bestiary: 如果一颗星源没有收集到足够的能量来进化, 那么它会逐渐萎缩成一个光点. 它的力量萎缩到了无用的地步, 尽管如此, 它仍然通过漫无目的的漂浮来享受着摸鱼生活.
+	// ItemTooltip: Mods.Aequus.NPCs.DwarfStarite.ItemTooltip
 }
 
 UltraStarite: {

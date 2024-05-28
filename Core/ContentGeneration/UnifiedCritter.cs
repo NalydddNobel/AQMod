@@ -24,6 +24,7 @@ public abstract class UnifiedCritter() : ModNPC {
     }
 
     public sealed override void SetStaticDefaults() {
+        Main.npcCatchable[Type] = true;
         NPCSets.CountsAsCritter[Type] = true;
         NPCSets.TakesDamageFromHostilesWithoutBeingFriendly[Type] = true;
         NPCSets.TownCritter[Type] = true;

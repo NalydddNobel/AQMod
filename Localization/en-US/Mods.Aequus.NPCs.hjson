@@ -81,6 +81,7 @@ ChainedSoul.DisplayName: Chained Soul
 DwarfStarite: {
 	DisplayName: Dwarf Starite
 	Bestiary: If a starite cannot gather enough energy to evolve, it will eventually wither into just a speck of light. Its powers atrophied into uselessness, it nonetheless enjoys its retirement by floating aimlessly.
+	ItemTooltip: ""
 }
 
 UltraStarite: {

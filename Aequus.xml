@@ -2373,7 +2373,7 @@
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 825) yo momma gai</summary>
+            <summary>(Total Textures: 828) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -3356,6 +3356,12 @@
         <member name="F:Aequus.AequusTextures.VasculashTagProj">
             <summary>Full Path: Content/Items/Weapons/Summon/Whips/DemonCrimsonWhip/VasculashTagProj</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.ElectricEelWhip">
+            <summary>Full Path: Content/Items/Weapons/Summon/Whips/EekWhip/ElectricEelWhip</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ElectricEelWhipProj">
+            <summary>Full Path: Content/Items/Weapons/Summon/Whips/EekWhip/ElectricEelWhipProj</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.HotAirBalloonBuff">
             <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
         </member>
@@ -3844,6 +3850,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.DwarfStarite">
             <summary>Full Path: Old/Content/Critters/DwarfStarite</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DwarfStariteItem">
+            <summary>Full Path: Old/Content/Critters/DwarfStariteItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CleanserDroneItem">
             <summary>Full Path: Old/Content/DronePylons/CleanserDroneItem</summary>

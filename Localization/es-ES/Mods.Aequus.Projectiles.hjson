@@ -88,4 +88,4 @@ DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 // VasculashTagProj.DisplayName: "{$Items.DemonVasculash.DisplayName}"
 // SoulscourgeTagProj.DisplayName: "{$Items.DemonSoulscourge.DisplayName}"
 // RaygunExplosionProj.DisplayName: "{$Items.Raygun.DisplayName}"
-// GamestarProj.DisplayName: Gamestar Proj
+// GamestarProj.DisplayName: "{$Items.Gamestar.DisplayName}"

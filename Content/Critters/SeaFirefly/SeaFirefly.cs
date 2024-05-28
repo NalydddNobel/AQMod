@@ -18,6 +18,8 @@ public class SeaFirefly : UnifiedCritter {
         NPC.height = 8;
         NPC.npcSlots = 0.1f;
         NPC.noGravity = true;
+        NPC.HitSound = SoundID.NPCHit1;
+        NPC.DeathSound = SoundID.NPCDeath1;
     }
 
     public override void SetItemDefaults(Item Item) {
@@ -29,11 +31,6 @@ public class SeaFirefly : UnifiedCritter {
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
         this.CreateEntry(database, bestiaryEntry);
-    }
-
-    public override void OnSpawn(IEntitySource source) {
-        if (source is EntitySource_SpawnNPC) {
-        }
     }
 
     public override void AI() {

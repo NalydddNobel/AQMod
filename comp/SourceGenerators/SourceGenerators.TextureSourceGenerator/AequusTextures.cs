@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 825) yo momma gai</summary>
+/// <summary>(Total Textures: 828) yo momma gai</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -661,6 +661,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> DemonVasculashProj = new("Aequus/Content/Items/Weapons/Summon/Whips/DemonCrimsonWhip/DemonVasculashProj");
     /// <summary>Full Path: Content/Items/Weapons/Summon/Whips/DemonCrimsonWhip/VasculashTagProj</summary>
     public static readonly RequestCache<Texture2D> VasculashTagProj = new("Aequus/Content/Items/Weapons/Summon/Whips/DemonCrimsonWhip/VasculashTagProj");
+    /// <summary>Full Path: Content/Items/Weapons/Summon/Whips/EekWhip/ElectricEelWhip</summary>
+    public static readonly RequestCache<Texture2D> ElectricEelWhip = new("Aequus/Content/Items/Weapons/Summon/Whips/EekWhip/ElectricEelWhip");
+    /// <summary>Full Path: Content/Items/Weapons/Summon/Whips/EekWhip/ElectricEelWhipProj</summary>
+    public static readonly RequestCache<Texture2D> ElectricEelWhipProj = new("Aequus/Content/Items/Weapons/Summon/Whips/EekWhip/ElectricEelWhipProj");
     /// <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
     public static readonly RequestCache<Texture2D> HotAirBalloonBuff = new("Aequus/Content/Mounts/HotAirBalloon/HotAirBalloonBuff");
     /// <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonItem</summary>
@@ -987,6 +991,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> HardSandstoneChest_Highlight = new("Aequus/Old/Content/Chests/HardSandstoneChest_Highlight");
     /// <summary>Full Path: Old/Content/Critters/DwarfStarite</summary>
     public static readonly RequestCache<Texture2D> DwarfStarite = new("Aequus/Old/Content/Critters/DwarfStarite");
+    /// <summary>Full Path: Old/Content/Critters/DwarfStariteItem</summary>
+    public static readonly RequestCache<Texture2D> DwarfStariteItem = new("Aequus/Old/Content/Critters/DwarfStariteItem");
     /// <summary>Full Path: Old/Content/DronePylons/CleanserDroneItem</summary>
     public static readonly RequestCache<Texture2D> CleanserDroneItem = new("Aequus/Old/Content/DronePylons/CleanserDroneItem");
     /// <summary>Full Path: Old/Content/DronePylons/GunnerDroneItem</summary>
