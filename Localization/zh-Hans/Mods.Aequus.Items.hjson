@@ -548,8 +548,8 @@ Triacanthorn: {
 
 //# Weapons: Summon
 ElectricEelWhip: {
-	// DisplayName: Stimulant
-	// Tooltip: "'The Eel - Eek!'"
+	DisplayName: 激励
+	Tooltip: "'鳗 - 呀!'"
 }
 
 DemonSoulscourge: {
