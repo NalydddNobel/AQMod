@@ -84,6 +84,16 @@ public class SeaFireflyClusters : ConcurrentParticles<SeaFireflyClusters.Particl
                 break;
         }
 
+        Vector2 oldVelocity = velocity;
+        velocity = Collision.TileCollision(t.Where - new Vector2(3f), velocity, 6, 6, true, true);
+
+        if (velocity.X != oldVelocity.X) {
+            velocity.X = -oldVelocity.X;
+        }
+        if (velocity.Y != oldVelocity.Y) {
+            velocity.Y = -oldVelocity.Y;
+        }
+
         t.Where += velocity.RotatedBy(Main.rand.NextFloat(-0.03f, 0.03f));
     }
 
