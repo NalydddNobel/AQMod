@@ -589,16 +589,17 @@ Triacanthorn: {
 //# Weapons: Summon
 ElectricEelWhip: {
 	DisplayName: 激励
-	Tooltip: "'鳗 - 呀!'"
-}
-
-DemonSoulscourge: {
-	DisplayName: 海蛇之疫
 	Tooltip:
 		'''
 		{$CommonItemTooltip.SummonTagDamage}
 		{$CommonItemTooltip.Whips}
+		'鳗 - 呀!'
 		'''
+}
+
+DemonSoulscourge: {
+	DisplayName: 海蛇之疫
+	Tooltip: "{$CommonItemTooltip.Whips}"
 }
 
 DemonVasculash: {
