@@ -367,7 +367,7 @@ public static partial class ExtendNPC {
     public static NPCDrawInfo GetDrawInfo(this NPC npc) {
         Texture2D texture = TextureAssets.Npc[npc.type].Value;
         Vector2 offset = npc.Size / 2f + new Vector2(0f, npc.gfxOffY);
-        Vector2 drawCoordinates = npc.Center - offset;
+        Vector2 drawCoordinates = npc.position + offset;
         Rectangle frame = npc.frame;
         Vector2 origin = frame.Size() / 2f;
         float rotation = npc.rotation;

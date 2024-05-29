@@ -10,7 +10,7 @@ namespace Aequus.Content.Critters.SeaFirefly;
 internal class SeaFireflyRenderer : RequestHandler<SeaFireflyShaderRequest> {
     public static SeaFireflyRenderer Instance { get; private set; }
 
-    public Effect Effect => AequusShaders.SeaFirefly.Value;
+    public static Effect Effect => AequusShaders.SeaFirefly.Value;
 
     public bool Ready { get; private set; }
 
@@ -140,7 +140,7 @@ internal class SeaFireflyRenderer : RequestHandler<SeaFireflyShaderRequest> {
         _glowMagnitude.SetValue(1f);
         _outlineGlowMagnitude.SetValue(3f);
         _imageSize.SetValue(new Vector2(_target.Width, _target.Height));
-        Instance.Effect.Parameters["glowOffsetUV"].SetValue((drawCoordinates + offsetSize) / _target.Size());
+        Effect.Parameters["glowOffsetUV"].SetValue((drawCoordinates + offsetSize) / _target.Size());
         _tilePass.Apply();
 
         //Vector2 drawCoordinates = Main.sceneTilePos - Main.screenPosition + new Vector2(0f, -300f) + (Main.GlobalTimeWrappedHourly).ToRotationVector2() * 4f;
@@ -149,7 +149,7 @@ internal class SeaFireflyRenderer : RequestHandler<SeaFireflyShaderRequest> {
         drawCoordinates = Main.sceneBackgroundPos - Main.screenPosition;
         _glowMagnitude.SetValue(0.5f);
         _outlineGlowMagnitude.SetValue(3f);
-        Instance.Effect.Parameters["glowOffsetUV"].SetValue((drawCoordinates + offsetSize) / _target.Size());
+        Effect.Parameters["glowOffsetUV"].SetValue((drawCoordinates + offsetSize) / _target.Size());
         _waterPass.Apply();
 
         spriteBatch.Draw(Main.instance.backWaterTarget, drawCoordinates, Color.White);

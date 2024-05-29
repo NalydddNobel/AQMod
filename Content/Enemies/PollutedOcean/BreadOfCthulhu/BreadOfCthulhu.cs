@@ -39,7 +39,6 @@ public class BreadOfCthulhu : ModNPC {
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
         this.CreateEntry(database, bestiaryEntry)
-            .AddMainSpawn(BestiaryBiomeTag.Caverns)
             .QuickUnlock();
     }
 

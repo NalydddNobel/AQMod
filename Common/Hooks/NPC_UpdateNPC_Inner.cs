@@ -1,4 +1,6 @@
-﻿using Aequus.Old.Content.Items.Weapons.Magic.Gamestar;
+﻿#if !DEBUG
+using Aequus.Old.Content.Items.Weapons.Magic.Gamestar;
+#endif
 
 namespace Aequus.Common.Hooks;
 

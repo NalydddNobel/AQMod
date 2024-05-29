@@ -95,6 +95,7 @@ internal class Eel : ModNPC {
         NPC.waterMovementSpeed = 1f;
     }
 
+    #region AI
     public override void AI() {
         // Initialize worm.
         if (SegmentNumber == 0) {
@@ -128,183 +129,184 @@ internal class Eel : ModNPC {
         else {
             BodyAI();
         }
+    }
 
-        void HeadAI(bool inWater, bool inGround) {
-            NPC.TargetClosest(faceTarget: true);
+    void HeadAI(bool inWater, bool inGround) {
+        NPC.TargetClosest(faceTarget: true);
 
-            bool hasTarget = NPC.HasValidTarget;
-            Player target = Main.player[NPC.target];
-            float distance = NPC.Distance(target.Center);
+        bool hasTarget = NPC.HasValidTarget;
+        Player target = Main.player[NPC.target];
+        float distance = NPC.Distance(target.Center);
 
-            if (NPC.collideX) {
-                NPC.velocity.X = -NPC.oldVelocity.X * 0.4f;
-            }
-            if (NPC.collideY) {
-                NPC.velocity.Y = -NPC.oldVelocity.Y * 0.4f;
-            }
+        if (NPC.collideX) {
+            NPC.velocity.X = -NPC.oldVelocity.X * 0.4f;
+        }
+        if (NPC.collideY) {
+            NPC.velocity.Y = -NPC.oldVelocity.Y * 0.4f;
+        }
 
-            if (NPC.soundDelay > 0) {
-                NPC.soundDelay--;
-            }
+        if (NPC.soundDelay > 0) {
+            NPC.soundDelay--;
+        }
 
-            NPC.rotation = NPC.velocity.ToRotation();
-            NPC.spriteDirection = Math.Sign(NPC.velocity.X);
+        NPC.rotation = NPC.velocity.ToRotation();
+        NPC.spriteDirection = Math.Sign(NPC.velocity.X);
 
-            float minSpeed = IdleMinSpeed;
+        float minSpeed = IdleMinSpeed;
 
-            switch (State) {
-                default: {
-                        bool normalState = State == Normal;
-                        if (normalState && NPC.direction != NPC.oldDirection && hasTarget && distance < 96f) {
-                            if (Timer > ShockDelay) {
-                                Timer = 0f;
-                                State = Shocking;
-                            }
-                            NPC.netUpdate = true;
+        switch (State) {
+            default: {
+                    bool normalState = State == Normal;
+                    if (normalState && NPC.direction != NPC.oldDirection && hasTarget && distance < 96f) {
+                        if (Timer > ShockDelay) {
+                            Timer = 0f;
+                            State = Shocking;
                         }
+                        NPC.netUpdate = true;
+                    }
 
-                        // Idle velocity.
-                        Vector2 wantedVelocity = new Vector2(NPC.spriteDirection, Helper.Oscillate(Timer * IdleWaveTimerMultiplier, -IdleWaveMagnitude, IdleWaveMagnitude));
-                        Timer++;
-                        // Idle speed
-                        float maxSpeed = IdleMaxSpeed;
-                        float speed = NPC.velocity.Length();
-                        bool canSeeTarget = hasTarget && Collision.CanHitLine(NPC.position, NPC.width, NPC.height, target.position, target.width, target.height);
+                    // Idle velocity.
+                    Vector2 wantedVelocity = new Vector2(NPC.spriteDirection, Helper.Oscillate(Timer * IdleWaveTimerMultiplier, -IdleWaveMagnitude, IdleWaveMagnitude));
+                    Timer++;
+                    // Idle speed
+                    float maxSpeed = IdleMaxSpeed;
+                    float speed = NPC.velocity.Length();
+                    bool canSeeTarget = hasTarget && Collision.CanHitLine(NPC.position, NPC.width, NPC.height, target.position, target.width, target.height);
 
-                        if (hasTarget) {
-                            Vector2 toTarget = NPC.DirectionTo(target.Center);
-                            if (canSeeTarget) {
-                                // Override idle velocity with a direct line to the target.
-                                wantedVelocity = toTarget;
-                                maxSpeed = AttackMaxSpeed;
-                                minSpeed = AttackMinSpeed;
+                    if (hasTarget) {
+                        Vector2 toTarget = NPC.DirectionTo(target.Center);
+                        if (canSeeTarget) {
+                            // Override idle velocity with a direct line to the target.
+                            wantedVelocity = toTarget;
+                            maxSpeed = AttackMaxSpeed;
+                            minSpeed = AttackMinSpeed;
 
-                                if (speed > maxSpeed / 6f) {
-                                    if (NPC.soundDelay <= 0) {
-                                        SoundEngine.PlaySound(AequusSounds.EelMoving with { Volume = 2f }, NPC.Center);
-                                    }
-                                    NPC.soundDelay = Math.Max(NPC.soundDelay, 16);
+                            if (speed > maxSpeed / 6f) {
+                                if (NPC.soundDelay <= 0) {
+                                    SoundEngine.PlaySound(AequusSounds.EelMoving with { Volume = 2f }, NPC.Center);
                                 }
-                            }
-                            else {
-                                wantedVelocity = Vector2.Lerp(wantedVelocity, toTarget, 0.3f);
-                            }
-                        }
-
-                        wantedVelocity = Utils.SafeNormalize(wantedVelocity, Vector2.UnitX);
-
-                        if (inWater || inGround) {
-                            if (State == Shocking) {
-                                float attackTime = ShockTime;
-
-                                NPC.velocity *= 0.9f;
-                                minSpeed = 0.5f + Timer / attackTime;
-                                if (Timer == 0f) {
-                                    HorizontalFrame = 1f;
-                                }
-
-                                float oldZapFrame = HorizontalFrame;
-                                HorizontalFrame = (HorizontalFrame + 0.33f) % 2f;
-
-                                /*if (oldZapFrame < 1f && HorizontalFrame > 1f) {
-
-                                }*/
-
-                                Timer++;
-                                if (Timer > attackTime) {
-                                    Timer = 0f;
-                                    State = ExitShocking;
-                                }
-                            }
-
-                            NPC.velocity.X += wantedVelocity.X * WaterXVelocityAccel;
-                            NPC.velocity.Y += wantedVelocity.Y * WaterYVelocityAccel;
-                            if (speed > maxSpeed) {
-                                NPC.velocity *= 0.9f;
+                                NPC.soundDelay = Math.Max(NPC.soundDelay, 16);
                             }
                         }
                         else {
-                            NPC.localAI[1] = 0f;
-                            NPC.velocity.X += wantedVelocity.X * AirXVelocityAccel;
-                            NPC.velocity.Y += Gravity;
-                            if (NPC.velocity.Y > TerminalVelocity) {
-                                NPC.velocity.Y = TerminalVelocity;
+                            wantedVelocity = Vector2.Lerp(wantedVelocity, toTarget, 0.3f);
+                        }
+                    }
+
+                    wantedVelocity = Utils.SafeNormalize(wantedVelocity, Vector2.UnitX);
+
+                    if (inWater || inGround) {
+                        if (State == Shocking) {
+                            float attackTime = ShockTime;
+
+                            NPC.velocity *= 0.9f;
+                            minSpeed = 0.5f + Timer / attackTime;
+                            if (Timer == 0f) {
+                                HorizontalFrame = 1f;
+                            }
+
+                            float oldZapFrame = HorizontalFrame;
+                            HorizontalFrame = (HorizontalFrame + 0.33f) % 2f;
+
+                            /*if (oldZapFrame < 1f && HorizontalFrame > 1f) {
+
+                            }*/
+
+                            Timer++;
+                            if (Timer > attackTime) {
+                                Timer = 0f;
+                                State = ExitShocking;
                             }
                         }
-                    }
-                    break;
 
-                case ExitShocking: {
-                        HorizontalFrame = 0f;
-
-                        Timer++;
-                        if (Timer > ShockRecoilTime) {
-                            State = Normal;
-                            Timer = -ShockRecoilCooldown;
+                        NPC.velocity.X += wantedVelocity.X * WaterXVelocityAccel;
+                        NPC.velocity.Y += wantedVelocity.Y * WaterYVelocityAccel;
+                        if (speed > maxSpeed) {
+                            NPC.velocity *= 0.9f;
                         }
                     }
-                    break;
-            }
-
-            if (NPC.velocity.Length() < minSpeed) {
-                NPC.velocity = Utils.SafeNormalize(NPC.velocity, Vector2.UnitX) * minSpeed;
-            }
-        }
-
-        void BodyAI() {
-            NPC.dontCountMe = true;
-            NPC.wetCount = 1;
-            NPC parentNPC = Main.npc[NextSegment];
-
-            if (!parentNPC.active) {
-                NPC.KillEffects(quiet: true);
-                return;
-            }
-
-            Vector2 wantedVector = Vector2.Normalize(parentNPC.velocity).UnNaN();
-            Vector2 difference = parentNPC.Center - NPC.Center;
-            float wantedDistance = (parentNPC.Size.Length() + NPC.Size.Length()) / 4f;
-            if (difference.Length() > wantedDistance) {
-                NPC.Center = parentNPC.Center - Vector2.Normalize(difference) * wantedDistance - wantedVector;
-                NPC.rotation = difference.ToRotation();
-                NPC.velocity = Vector2.Normalize(difference);
-                NPC.spriteDirection = Math.Sign(difference.X);
-            }
-        }
-
-        void BubbleEffects() {
-            Vector2 velocity = NPC.position - NPC.oldPosition;
-            if (velocity.Length() > 3f) {
-                int bubbleChance = Math.Clamp(10 - (int)velocity.Length(), 1, 20);
-                if (Main.rand.NextBool(bubbleChance)) {
-                    var bubble = UnderwaterBubbleParticles.New();
-                    bubble.Location = NPC.Center + Vector2.Normalize(NPC.velocity).RotatedBy(Main.rand.NextBool() ? MathHelper.PiOver2 : -MathHelper.PiOver2) * 12f;
-                    bubble.Frame = (byte)Main.rand.Next(4);
-                    bubble.Velocity = Main.rand.NextVector2Unit() * Main.rand.NextFloat(0.1f, 0.3f) + velocity * 0.1f;
-                    bubble.UpLift = 0.001f;
-                    bubble.Opacity = Main.rand.NextFloat(0.8f, 1f);
+                    else {
+                        NPC.localAI[1] = 0f;
+                        NPC.velocity.X += wantedVelocity.X * AirXVelocityAccel;
+                        NPC.velocity.Y += Gravity;
+                        if (NPC.velocity.Y > TerminalVelocity) {
+                            NPC.velocity.Y = TerminalVelocity;
+                        }
+                    }
                 }
-            }
+                break;
+
+            case ExitShocking: {
+                    HorizontalFrame = 0f;
+
+                    Timer++;
+                    if (Timer > ShockRecoilTime) {
+                        State = Normal;
+                        Timer = -ShockRecoilCooldown;
+                    }
+                }
+                break;
         }
 
-        void SpawnSegments() {
-            int length = Main.rand.Next(8, 12);
-            IEntitySource source = NPC.GetSource_FromThis();
-            NPC lastNPC = NPC;
-
-            for (int i = 0; i < length; i++) {
-                int newNPC = NPC.NewNPC(source, (int)lastNPC.Center.X, (int)lastNPC.Bottom.Y + 16, Type, lastNPC.whoAmI, lastNPC.ai[0] + 1f, lastNPC.whoAmI);
-                if (newNPC == Main.maxNPCs) {
-                    break;
-                }
-
-                lastNPC = Main.npc[newNPC];
-                lastNPC.realLife = NPC.whoAmI;
-            }
-
-            lastNPC.ai[0] = -lastNPC.ai[0];
+        if (NPC.velocity.Length() < minSpeed) {
+            NPC.velocity = Utils.SafeNormalize(NPC.velocity, Vector2.UnitX) * minSpeed;
         }
     }
+
+    void BodyAI() {
+        NPC.dontCountMe = true;
+        NPC.wetCount = 1;
+        NPC parentNPC = Main.npc[NextSegment];
+
+        if (!parentNPC.active) {
+            NPC.KillEffects(quiet: true);
+            return;
+        }
+
+        Vector2 wantedVector = Vector2.Normalize(parentNPC.velocity).UnNaN();
+        Vector2 difference = parentNPC.Center - NPC.Center;
+        float wantedDistance = (parentNPC.Size.Length() + NPC.Size.Length()) / 4f;
+        if (difference.Length() > wantedDistance) {
+            NPC.Center = parentNPC.Center - Vector2.Normalize(difference) * wantedDistance - wantedVector;
+            NPC.rotation = difference.ToRotation();
+            NPC.velocity = Vector2.Normalize(difference);
+            NPC.spriteDirection = Math.Sign(difference.X);
+        }
+    }
+
+    void BubbleEffects() {
+        Vector2 velocity = NPC.position - NPC.oldPosition;
+        if (velocity.Length() > 3f) {
+            int bubbleChance = Math.Clamp(10 - (int)velocity.Length(), 1, 20);
+            if (Main.rand.NextBool(bubbleChance)) {
+                var bubble = UnderwaterBubbleParticles.New();
+                bubble.Location = NPC.Center + Vector2.Normalize(NPC.velocity).RotatedBy(Main.rand.NextBool() ? MathHelper.PiOver2 : -MathHelper.PiOver2) * 12f;
+                bubble.Frame = (byte)Main.rand.Next(4);
+                bubble.Velocity = Main.rand.NextVector2Unit() * Main.rand.NextFloat(0.1f, 0.3f) + velocity * 0.1f;
+                bubble.UpLift = 0.001f;
+                bubble.Opacity = Main.rand.NextFloat(0.8f, 1f);
+            }
+        }
+    }
+
+    void SpawnSegments() {
+        int length = Main.rand.Next(8, 12);
+        IEntitySource source = NPC.GetSource_FromThis();
+        NPC lastNPC = NPC;
+
+        for (int i = 0; i < length; i++) {
+            int newNPC = NPC.NewNPC(source, (int)lastNPC.Center.X, (int)lastNPC.Bottom.Y + 16, Type, lastNPC.whoAmI, lastNPC.ai[0] + 1f, lastNPC.whoAmI);
+            if (newNPC == Main.maxNPCs) {
+                break;
+            }
+
+            lastNPC = Main.npc[newNPC];
+            lastNPC.realLife = NPC.whoAmI;
+        }
+
+        lastNPC.ai[0] = -lastNPC.ai[0];
+    }
+    #endregion
 
     public override void FindFrame(int frameHeight) {
         // Initialize frame.
