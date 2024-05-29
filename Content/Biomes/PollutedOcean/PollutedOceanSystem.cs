@@ -195,8 +195,8 @@ public class PollutedOceanSystem : ModSystem {
             pool[ModContent.NPCType<Eel>()] = 0.1f;
             pool[NPCID.Tumbleweed] = 1f; // Urchin
 
-            if (NPC.CountNPCS(ModContent.NPCType<SeaFirefly>()) < 25) {
-                pool[ModContent.NPCType<SeaFirefly>()] = 20f;
+            if (NPC.CountNPCS(ModContent.NPCType<SeaFirefly>()) < 3) {
+                pool[ModContent.NPCType<SeaFirefly>()] = 1f;
             }
         }
 

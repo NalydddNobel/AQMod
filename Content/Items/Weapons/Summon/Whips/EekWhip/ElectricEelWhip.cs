@@ -7,7 +7,7 @@ namespace Aequus.Content.Items.Weapons.Summon.Whips.EekWhip;
 [WorkInProgress]
 public class ElectricEelWhip : UnifiedWhipItem {
     public override void SetDefaults() {
-        Item.DefaultToWhip(WhipProjectile.Type, 10, 5f, 3f, animationTotalTime: 26);
+        Item.DefaultToWhip(WhipProjectile.Type, 10, 5f, 5f, animationTotalTime: 26);
         Item.rare = Commons.Rare.BiomeOcean;
         Item.value = Commons.Cost.BiomeOcean;
     }
@@ -52,7 +52,7 @@ public class ElectricEelWhip : UnifiedWhipItem {
     }
 
     public override void SetWhipSettings(Projectile projectile, ref WhipSettings settings) {
-        settings.Segments = 14;
+        settings.Segments = 18;
     }
 
     public override Color GetWhipStringColor(Vector2 position) {

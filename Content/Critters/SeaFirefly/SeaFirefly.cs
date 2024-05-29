@@ -4,7 +4,6 @@ using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics;
 using Aequus.Core.Particles;
 using System;
-using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 
 namespace Aequus.Content.Critters.SeaFirefly;
@@ -68,6 +67,10 @@ public class SeaFirefly : UnifiedCritter, DrawLayers.IDrawLayer {
 
             default:
                 if (NPC.wet) {
+                    if (IsLit) {
+                        Lighting.AddLight(NPC.Center, new Vector3(0.1f, 0.2f, 0.3f));
+                    }
+
                     if (NPC.direction == 0) {
                         NPC.TargetClosest(faceTarget: true);
                     }
@@ -102,20 +105,19 @@ public class SeaFirefly : UnifiedCritter, DrawLayers.IDrawLayer {
                 break;
         }
 
-        if (IsLit) {
-            Lighting.AddLight(NPC.Center, new Vector3(0.1f, 0.2f, 0.3f));
-        }
+        NPC.rotation = NPC.velocity.X * 0.2f;
+        NPC.spriteDirection = NPC.direction;
     }
 
     void AI_Initalize() {
         if (NPC.ai[2] == 0f) {
             NPC.ai[2] = 1f;
-            IEntitySource mySource = NPC.GetSource_FromThis();
-            int amount = Main.rand.Next(8);
-            for (int i = 0; i < amount; i++) {
-                Point spawnCoordinates = (NPC.Center + Main.rand.NextVector2Unit() * 4f).ToPoint();
-                NPC.NewNPC(mySource, spawnCoordinates.X, spawnCoordinates.Y, Type, NPC.whoAmI, ai2: NPC.ai[2]);
-            }
+            //IEntitySource mySource = NPC.GetSource_FromThis();
+            //int amount = Main.rand.Next(8);
+            //for (int i = 0; i < amount; i++) {
+            //    Point spawnCoordinates = (NPC.Center + Main.rand.NextVector2Unit() * 4f).ToPoint();
+            //    NPC.NewNPC(mySource, spawnCoordinates.X, spawnCoordinates.Y, Type, NPC.whoAmI, ai2: NPC.ai[2]);
+            //}
         }
     }
 
@@ -159,8 +161,15 @@ public class SeaFirefly : UnifiedCritter, DrawLayers.IDrawLayer {
     }
 
     void AI_DryMovement() {
-        NPC.velocity.Y += 0.3f;
         WetTimer = 0f;
+        if (NPC.velocity.Y == 0f) {
+            NPC.velocity.Y = -3f;
+
+            NPC.velocity.X += Main.rand.NextFloat(-3f, 3f);
+        }
+
+        NPC.velocity.Y += 0.3f;
+        NPC.velocity.X *= 0.94f;
     }
     #endregion
 
@@ -185,11 +194,15 @@ public class SeaFirefly : UnifiedCritter, DrawLayers.IDrawLayer {
     private void DrawSeaFirefly(SpriteBatch spriteBatch, Vector2 screenPos) {
         var draw = NPC.GetDrawInfo();
         Color drawColor = NPC.IsABestiaryIconDummy ? Color.White : NPC.GetNPCColorTintedByBuffs(ExtendLight.Get(NPC.Center));
+        SpriteEffects effects = NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
-        DrawSeaFirefly(spriteBatch, draw.Position, screenPos, drawColor, NPC.Opacity, NPC.IsABestiaryIconDummy ? 0 : LightOpacity, NPC.scale, 0, NPC.whoAmI, IsLit && !NPC.IsABestiaryIconDummy);
+        DrawSeaFirefly(spriteBatch, draw.Position, screenPos, drawColor, NPC.Opacity, NPC.IsABestiaryIconDummy ? 0 : LightOpacity, NPC.rotation, effects, NPC.scale, 0, NPC.whoAmI, IsLit && !NPC.IsABestiaryIconDummy);
     }
 
     public static void DrawSeaFirefly(SpriteBatch spriteBatch, Vector2 worldPosition, Vector2 screenPosition, Color drawColor, float globalOpacity, float lightOpacity, float scale = 1f, int frame = 0, int randomSeed = 0, bool isLit = false) {
+    }
+
+    public static void DrawSeaFirefly(SpriteBatch spriteBatch, Vector2 worldPosition, Vector2 screenPosition, Color drawColor, float globalOpacity, float lightOpacity, float rotation, SpriteEffects effects, float scale = 1f, int frame = 0, int randomSeed = 0, bool isLit = false) {
         Texture2D texture = AequusTextures.SeaFirefly;
         Rectangle frameRect = texture.Frame(HorizontalFrames, 2, frame, isLit ? 1 : 0);
         Vector2 origin = frameRect.Size() / 2f;
@@ -213,8 +226,8 @@ public class SeaFirefly : UnifiedCritter, DrawLayers.IDrawLayer {
             spriteBatch.Draw(AequusTextures.Bloom, drawCoordinates, null, new Color(2, 2, 20, 0) * globalOpacity, 0f, AequusTextures.Bloom.Size() / 2f, scale, SpriteEffects.None, 0f);
         }
 
-        spriteBatch.Draw(texture, drawCoordinates, frameRect, drawColor * globalOpacity * 0.75f, 0f, origin, scale, SpriteEffects.None, 0f);
-        spriteBatch.Draw(texture, drawCoordinates, frameRect.Frame(1, 0), Color.White * globalOpacity, 0f, origin, scale, SpriteEffects.None, 0f);
+        spriteBatch.Draw(texture, drawCoordinates, frameRect, drawColor * globalOpacity * 0.75f, rotation, origin, scale, effects, 0f);
+        spriteBatch.Draw(texture, drawCoordinates, frameRect.Frame(1, 0), Color.White * globalOpacity, rotation, origin, scale, effects, 0f);
     }
     #endregion
 }

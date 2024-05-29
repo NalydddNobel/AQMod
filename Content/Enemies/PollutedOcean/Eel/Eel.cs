@@ -309,6 +309,14 @@ internal class Eel : ModNPC {
     #endregion
 
     public override void FindFrame(int frameHeight) {
+        NPCSets.NPCBestiaryDrawOffset[Type] = new() {
+            Hide = false,
+            Scale = 1f,
+            Position = new Vector2(50f, 20f),
+            PortraitPositionXOverride = 0f,
+            CustomTexturePath = AequusTextures.Eel_Bestiary.Path,
+        };
+
         // Initialize frame.
         if (NPC.localAI[0] == 0f) {
             SetFrame();

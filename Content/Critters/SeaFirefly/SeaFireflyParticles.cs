@@ -78,6 +78,10 @@ public class SeaFireflyClusters : ConcurrentParticles<SeaFireflyClusters.Particl
                     }
                 }
                 break;
+
+            case 2:
+                velocity.Y *= 0.97f;
+                break;
         }
 
         t.Where += velocity.RotatedBy(Main.rand.NextFloat(-0.03f, 0.03f));
@@ -85,8 +89,10 @@ public class SeaFireflyClusters : ConcurrentParticles<SeaFireflyClusters.Particl
 
     public override void Draw(SpriteBatch spriteBatch, Particle t) {
         Color lightColor = ExtendLight.Get(t.Where);
+        float rotation = t.Velocity.X * 0.2f;
+        SpriteEffects effects = t.Velocity.X < 0f ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
-        SeaFirefly.DrawSeaFirefly(spriteBatch, t.Where, Main.screenPosition, lightColor, t.Opacity, t.LightOpacity * 0.7f, 1f, t.Frame * 2, t._randomSeed, t.IsLit);
+        SeaFirefly.DrawSeaFirefly(spriteBatch, t.Where, Main.screenPosition, lightColor, t.Opacity, t.LightOpacity * 0.7f, rotation, effects, 1f, t.Frame * 2, t._randomSeed, t.IsLit);
     }
 
     public class Particle : IParticle {
