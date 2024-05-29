@@ -589,16 +589,17 @@ Triacanthorn: {
 //# Weapons: Summon
 ElectricEelWhip: {
 	// DisplayName: Stimulant
-	// Tooltip: "'The Eel - Eek!'"
-}
-
-DemonSoulscourge: {
-	// DisplayName: Serpent's Blight
 	/* Tooltip:
 		'''
 		{$CommonItemTooltip.SummonTagDamage}
 		{$CommonItemTooltip.Whips}
+		'The Eel - Eek!'
 		''' */
+}
+
+DemonSoulscourge: {
+	// DisplayName: Serpent's Blight
+	// Tooltip: "{$CommonItemTooltip.Whips}"
 }
 
 DemonVasculash: {

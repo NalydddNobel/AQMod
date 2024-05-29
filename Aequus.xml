@@ -917,7 +917,7 @@
             This prevents some catches, like Jellyfishes being used as bait or being indicated as bait.
             </summary>
         </member>
-        <member name="T:Aequus.Content.Graphics.Particles.UnderwaterBubbleParticles">
+        <member name="T:Aequus.Content.Graphics.Particles.UnderwaterBubbles">
             <summary>Bubble particles which only work underwater. Floats upwards.</summary>
         </member>
         <member name="M:Aequus.Content.Items.Potions.PotionCanteen.UnifiedCanteen.HasBuffs">

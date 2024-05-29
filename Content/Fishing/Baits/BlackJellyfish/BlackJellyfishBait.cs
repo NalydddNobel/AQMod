@@ -105,7 +105,7 @@ public class BlackJellyfishBaitExplosion : ModProjectile, DrawLayers.IDrawLayer,
                     continue;
                 }
 
-                var particle = UnderwaterBubbleParticles.New();
+                var particle = UnderwaterBubbles.New();
                 particle.Location = location;
                 particle.Frame = (byte)Main.rand.Next(5);
                 particle.Velocity = velocity * Main.rand.NextFloat(1f);

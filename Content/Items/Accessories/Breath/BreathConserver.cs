@@ -52,7 +52,7 @@ public class BreathConserverProj : ModProjectile {
             Terraria.Dust d = Terraria.Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), newColor: new Color(30, 60, 88, 30), Scale: 2f);
             d.velocity *= 0.2f;
             if (Projectile.timeLeft % 12 == 0 && Collision.WetCollision(Projectile.position, Projectile.width, Projectile.height)) {
-                var bigBubble = UnderwaterBubbleParticles.New();
+                var bigBubble = UnderwaterBubbles.New();
                 bigBubble.Location = Projectile.Center;
                 bigBubble.Frame = (byte)Main.rand.Next(1, 3);
                 bigBubble.Velocity = Main.rand.NextVector2Unit() * -Projectile.velocity * 0.05f;
@@ -69,7 +69,7 @@ public class BreathConserverProj : ModProjectile {
         target.HealBreath(restoreBreath);
 
         if (Main.netMode != NetmodeID.Server) {
-            var bigBubble = UnderwaterBubbleParticles.New();
+            var bigBubble = UnderwaterBubbles.New();
             bigBubble.Location = target.MouthPosition ?? target.Center;
             bigBubble.Frame = (byte)Main.rand.Next(5, 7);
             bigBubble.Velocity = Vector2.Zero;

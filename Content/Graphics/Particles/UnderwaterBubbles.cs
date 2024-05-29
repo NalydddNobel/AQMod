@@ -6,7 +6,7 @@ using System;
 namespace Aequus.Content.Graphics.Particles;
 
 /// <summary>Bubble particles which only work underwater. Floats upwards.</summary>
-public class UnderwaterBubbleParticles : ParallelParticleArray<UnderwaterBubbleParticles.Bubble> {
+public class UnderwaterBubbles : ParallelParticleArray<UnderwaterBubbles.Bubble> {
     public const int FRAME_COUNT_X = 9;
     public const int FRAME_COUNT_Y = 5;
 
@@ -187,5 +187,13 @@ public class UnderwaterBubbleParticles : ParallelParticleArray<UnderwaterBubbleP
         public float Opacity;
 
         public byte Frame;
+
+        public void Setup(Vector2 position, Vector2 velocity, float upLift, byte frame, float opacity = 1f) {
+            Location = position;
+            Velocity = velocity;
+            UpLift = upLift;
+            Opacity = opacity;
+            Frame = frame;
+        }
     }
 }

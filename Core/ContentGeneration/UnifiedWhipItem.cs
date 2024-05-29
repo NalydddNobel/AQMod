@@ -8,6 +8,7 @@ public abstract class UnifiedWhipItem : ModItem, IWhipController {
     public abstract void SetWhipSettings(Projectile projectile, ref WhipSettings settings);
     public abstract void DrawWhip(IWhipController.WhipDrawParams drawInfo);
 
+    public virtual void ModifyWhipHitNPC(Projectile whip, NPC target, ref NPC.HitModifiers modifiers) { }
     public virtual void OnWhipHitNPC(ref float damagePenalty, Projectile whip, NPC target, in NPC.HitInfo hit, int damageDone) { }
 
     public virtual void WhipAI(Projectile projectile, List<Vector2> WhipPoints, float Progress) { }
@@ -42,6 +43,7 @@ public abstract class UnifiedWhipItem : ModItem, IWhipController {
 
 public interface IWhipController : ILocalizedModType {
     void SetWhipSettings(Projectile projectile, ref WhipSettings settings);
+    void ModifyWhipHitNPC(Projectile whip, NPC target, ref NPC.HitModifiers modifiers);
     /// <param name="damagePenalty">Defaults to 0.5.</param>
     /// <param name="whip"></param>
     /// <param name="target"></param>
@@ -78,6 +80,10 @@ internal class InstancedWhipProjectile(IWhipController controller, string name, 
         float progress = Projectile.ai[0] / timeToFlyOut;
 
         _controller.WhipAI(Projectile, _controlPoints, progress);
+    }
+
+    public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers) {
+        _controller.ModifyWhipHitNPC(Projectile, target, ref modifiers);
     }
 
     public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {

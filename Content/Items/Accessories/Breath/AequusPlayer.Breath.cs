@@ -17,7 +17,7 @@ public partial class AequusPlayer {
 
         if (Main.netMode != NetmodeID.Server) {
             Vector2 tileCenter = new Vector2(X, Y).ToWorldCoordinates();
-            foreach (var particle in UnderwaterBubbleParticles.NewMultipleReduced(12, 3)) {
+            foreach (var particle in UnderwaterBubbles.NewMultipleReduced(12, 3)) {
                 particle.Location = tileCenter;
                 particle.Frame = (byte)Main.rand.Next(2);
                 particle.Velocity = Main.rand.NextVector2Unit() * Main.rand.NextFloat(0.1f, 0.3f);
@@ -26,7 +26,7 @@ public partial class AequusPlayer {
                 particle.Opacity = Main.rand.NextFloat(0.8f, 1f);
             }
 
-            var bigBubble = UnderwaterBubbleParticles.New();
+            var bigBubble = UnderwaterBubbles.New();
             bigBubble.Location = tileCenter;
             bigBubble.Frame = (byte)Main.rand.Next(3, 6);
             bigBubble.Velocity = Vector2.Zero;
@@ -60,7 +60,7 @@ public partial class AequusPlayer {
             NPC npc = ContentSamples.NpcsByNetId[info.Type];
             int bubbleCount = Math.Clamp((int)(npc.Size.Length() / 4f), 12, 80);
             Vector2 bubbleSpawnSize = npc.Size / 4f;
-            foreach (var particle in UnderwaterBubbleParticles.NewMultipleReduced(bubbleCount, bubbleCount / 4)) {
+            foreach (var particle in UnderwaterBubbles.NewMultipleReduced(bubbleCount, bubbleCount / 4)) {
                 particle.Location = info.Center + Main.rand.NextVector2Unit() * bubbleSpawnSize;
                 particle.Frame = (byte)Main.rand.Next(2);
                 particle.Velocity = Main.rand.NextVector2Unit() * Main.rand.NextFloat(0.1f, 0.3f);
@@ -69,7 +69,7 @@ public partial class AequusPlayer {
                 particle.Opacity = Main.rand.NextFloat(0.8f, 1f);
             }
 
-            var bigBubble = UnderwaterBubbleParticles.New();
+            var bigBubble = UnderwaterBubbles.New();
             bigBubble.Location = info.Center;
             bigBubble.Frame = (byte)Main.rand.Next(3, 6);
             bigBubble.Velocity = Vector2.Zero;

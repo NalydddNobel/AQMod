@@ -66,6 +66,8 @@ internal class Eel : ModNPC {
 
     public bool IsHead => SegmentNumber == 1;
     public bool IsTail => SegmentNumber < 0;
+
+    public static readonly Color EyeFlareColor = new Color(180, 180, 60, 0);
     #endregion
 
     public override void SetStaticDefaults() {
@@ -279,7 +281,7 @@ internal class Eel : ModNPC {
         if (velocity.Length() > 3f) {
             int bubbleChance = Math.Clamp(10 - (int)velocity.Length(), 1, 20);
             if (Main.rand.NextBool(bubbleChance)) {
-                var bubble = UnderwaterBubbleParticles.New();
+                var bubble = UnderwaterBubbles.New();
                 bubble.Location = NPC.Center + Vector2.Normalize(NPC.velocity).RotatedBy(Main.rand.NextBool() ? MathHelper.PiOver2 : -MathHelper.PiOver2) * 12f;
                 bubble.Frame = (byte)Main.rand.Next(4);
                 bubble.Velocity = Main.rand.NextVector2Unit() * Main.rand.NextFloat(0.1f, 0.3f) + velocity * 0.1f;
@@ -392,7 +394,7 @@ internal class Eel : ModNPC {
     private void DrawEye(SpriteBatch spriteBatch, Vector2 drawCoords, float rotation) {
         Vector2 eyePosition = drawCoords + new Vector2(-1f, 5f * NPC.spriteDirection).RotatedBy(rotation) * NPC.scale;
         float intensity = Math.Min(Vector2.Distance(eyePosition, DrawHelper.ScreenSize / 2f) / 600f, 1f);
-        spriteBatch.Draw(AequusTextures.FlareSoft, eyePosition, null, new Color(180, 180, 60, 0) * intensity, 0f, AequusTextures.FlareSoft.Size() / 2f, new Vector2(2f, 1f) * NPC.scale * 0.3f, SpriteEffects.None, 0f);
+        spriteBatch.Draw(AequusTextures.FlareSoft, eyePosition, null, EyeFlareColor * intensity, 0f, AequusTextures.FlareSoft.Size() / 2f, new Vector2(2f, 1f) * NPC.scale * 0.3f, SpriteEffects.None, 0f);
         //DrawHelper.DrawMagicLensFlare(spriteBatch, eyePosition, Color.White, 0.3f);
     }
 
