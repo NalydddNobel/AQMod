@@ -17,8 +17,8 @@ public class RealBuriedChestsStep : AequusGenStep {
         int wantedChests = Math.Max(Main.maxTilesX * Main.maxTilesY / 20000, 5);
         for (int i = 0; i < wantedChests; i++) {
             for (int k = 0; k < 10000; k++) {
-                int x = WorldGen.genRand.Next(50, Main.maxTilesX + 50);
-                int y = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY + 50);
+                int x = WorldGen.genRand.Next(50, Main.maxTilesX - 50);
+                int y = WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY - 50);
                 if (TryGenerateChest(x, y)) {
                     break;
                 }
