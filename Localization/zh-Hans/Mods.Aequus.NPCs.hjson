@@ -145,21 +145,21 @@ Eel: {
 SeaFirefly: {
 	DisplayName: {
 		$parentVal: 海萤火虫
-		// Red: Red Sea Firefly
-		// Orange: Orange Sea Firefly
-		// Yellow: Yellow Sea Firefly
-		// Lime: Lime Sea Firefly
-		// Green: Green Sea Firefly
-		// Teal: Teal Sea Firefly
-		// Cyan: Cyan Sea Firefly
-		// SkyBlue: Sky Blue Sea Firefly
-		// Blue: Blue Sea Firefly
-		// Purple: Purple Sea Firefly
-		// Violet: Violet Sea Firefly
-		// Pink: Pink Sea Firefly
-		// Black: Black Sea Firefly
-		// White: Silver Sea Firefly
-		// Rainbow: Rainbow Sea Firefly
+		Red: 红色海萤火虫
+		Orange: 橙色海萤火虫
+		Yellow: 黄色海萤火虫
+		Lime: 青柠色海萤火虫
+		Green: 绿色海萤火虫
+		Teal: 深青色海萤火虫
+		Cyan: 青色海萤火虫
+		SkyBlue: 天蓝色海萤火虫
+		Blue: 蓝色海萤火虫
+		Purple: 紫色海萤火虫
+		Violet: 浅紫色海萤火虫
+		Pink: 粉色海萤火虫
+		Black: 黑色海萤火虫
+		White: 银色海萤火虫
+		Rainbow: 彩色海萤火虫
 	}
 
 	Bestiary: Mods.Aequus.NPCs.SeaFirefly.Bestiary
