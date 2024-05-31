@@ -33,25 +33,6 @@
     "Violet": "DeepVioletPaint",
     "Pink": "DeepPinkPaint"
   },
-  "Dyes": {
-    "Red": "RedDye",
-    "Orange": "OrangeDye",
-    "Yellow": "YellowDye",
-    "Lime": "LimeDye",
-    "Green": "GreenDye",
-    "Teal": "TealDye",
-    "Cyan": "CyanDye",
-    "SkyBlue": "SkyBlueDye",
-    "Blue": "BlueDye",
-    "Purple": "PurpleDye",
-    "Violet": "VioletDye",
-    "Pink": "PinkDye",
-    "Brown": "BrownDye",
-    "Black": "BlackDye",
-    "Shadow": "ShadowDye",
-    "Negative": "NegativeDye",
-    "Rainbow": "RainbowDye"
-  },
   "YoyoStrings": {
     "White": "WhiteString",
     "Red": "RedString",

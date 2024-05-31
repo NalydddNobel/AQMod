@@ -2388,7 +2388,7 @@
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 834) yo momma gai</summary>
+            <summary>(Total Textures: 835) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2722,6 +2722,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.SeaFireflyItem">
             <summary>Full Path: Content/Critters/SeaFirefly/SeaFireflyItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SeaFireflyItem_Dyed">
+            <summary>Full Path: Content/Critters/SeaFirefly/SeaFireflyItem_Dyed</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SeaFireflyJar">
             <summary>Full Path: Content/Critters/SeaFirefly/SeaFireflyJar</summary>

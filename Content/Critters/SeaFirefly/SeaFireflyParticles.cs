@@ -27,7 +27,7 @@ public class SeaFireflyClusters : ConcurrentParticles<SeaFireflyClusters.Particl
             }
 
             if (t.Frame == 1) {
-                Lighting.AddLight(t.Where, new Vector3(0f, 0f, 0.1f));
+                Lighting.AddLight(t.Where, t.Current.GetLightColor(t.Where) * 0.33f);
             }
         }
         else {
@@ -102,7 +102,7 @@ public class SeaFireflyClusters : ConcurrentParticles<SeaFireflyClusters.Particl
         float rotation = t.Velocity.X * 0.2f;
         SpriteEffects effects = t.Velocity.X < 0f ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
-        SeaFirefly.DrawSeaFirefly(spriteBatch, t.Where, Main.screenPosition, lightColor, t.Opacity, t.LightOpacity * 0.7f, rotation, effects, 1f, t.Frame * 2, t._randomSeed, t.IsLit);
+        SeaFirefly.DrawSeaFirefly(t.Current, spriteBatch, t.Where, Main.screenPosition, lightColor, t.Opacity, t.LightOpacity * 0.7f, rotation, effects, 1f, t.Frame * 2, t._randomSeed, t.IsLit);
     }
 
     public class Particle : IParticle {
@@ -116,10 +116,15 @@ public class SeaFireflyClusters : ConcurrentParticles<SeaFireflyClusters.Particl
         public float Opacity;
         public float LightOpacity;
         public byte _randomSeed;
+        public byte Color;
+
         public bool IsLit => CycleTime % SeaFirefly.CycleTime > SeaFirefly.DarkTime;
+
         public Vector2 Velocity => Where - WhereLast;
 
-        public void Setup(Vector2 where, byte frame, int time) {
+        public SeaFirefly.IColorVariant Current => SeaFirefly.GetColor(Color);
+
+        public void Setup(Vector2 where, byte frame, int time, byte color) {
             Where = where;
             WhereLast = where + Main.rand.NextVector2Unit() * Main.rand.NextFloat(0.35f);
             Frame = frame;
@@ -133,6 +138,7 @@ public class SeaFireflyClusters : ConcurrentParticles<SeaFireflyClusters.Particl
 
             ExistenceTime = 0;
 
+            Color = color;
             _randomSeed = (byte)Main.rand.Next(byte.MaxValue);
         }
     }

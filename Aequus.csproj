@@ -64,15 +64,7 @@
 	<AdditionalFiles Include="Old\**\*.png" />
 	<AdditionalFiles Include="Old\**\*.ogg" />
   </ItemGroup>
-  <ItemGroup>
-    <None Remove="Content\Items\PermaPowerups\BeyondLifeCrystal\BeyondHeart.png" />
-    <None Remove="Content\Items\PermaPowerups\BeyondLifeCrystal\BeyondHeartBar.png" />
-    <None Remove="Content\Items\PermaPowerups\BeyondLifeCrystal\BeyondLifeCrystal.png" />
-    <None Remove="Content\Items\PermaPowerups\BeyondManaCrystal\BeyondManaCrystal.png" />
-    <None Remove="Content\Items\PermaPowerups\BeyondManaCrystal\BeyondStar.png" />
-    <None Remove="Content\Items\PermaPowerups\BeyondManaCrystal\BeyondStarBar.png" />
-  </ItemGroup>
-
+  
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<Optimize>False</Optimize>
 	</PropertyGroup>

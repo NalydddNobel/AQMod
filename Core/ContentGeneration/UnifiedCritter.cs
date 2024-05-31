@@ -1,4 +1,5 @@
-﻿using Terraria.Localization;
+﻿using Terraria.DataStructures;
+using Terraria.Localization;
 
 namespace Aequus.Core.ContentGeneration;
 
@@ -42,9 +43,27 @@ public abstract class UnifiedCritter() : ModNPC {
         NPC.catchItem = CatchItem.Type;
         OnSetDefaults();
     }
+
+    public static bool FromCritterItem(IEntitySource source, out Item critterItem) {
+        if (source is EntitySource_Parent parentSource) {
+            if (parentSource.Entity is Player player) {
+                critterItem = player.HeldItemFixed();
+                return true;
+            }
+            else if (parentSource.Entity is Item sourceItem) {
+                critterItem = sourceItem;
+                return true;
+            }
+        }
+
+        critterItem = null;
+        return false;
+    }
 }
 
-internal sealed class InstancedCritterItem(UnifiedCritter Critter) : InstancedModItem(Critter.Name, Critter.Texture + "Item") {
+internal class InstancedCritterItem(UnifiedCritter Critter, string NameSuffix = "") : InstancedModItem(Critter.Name + NameSuffix, Critter.Texture + "Item") {
+    protected readonly UnifiedCritter Critter = Critter;
+
     public override LocalizedText DisplayName => Critter.DisplayName;
     public override LocalizedText Tooltip => Critter.GetLocalization("ItemTooltip");
 

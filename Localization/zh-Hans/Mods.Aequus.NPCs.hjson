@@ -143,7 +143,25 @@ Eel: {
 }
 
 SeaFirefly: {
-	DisplayName: 海萤火虫
+	DisplayName: {
+		$parentVal: 海萤火虫
+		// Red: Red Sea Firefly
+		// Orange: Orange Sea Firefly
+		// Yellow: Yellow Sea Firefly
+		// Lime: Lime Sea Firefly
+		// Green: Green Sea Firefly
+		// Teal: Teal Sea Firefly
+		// Cyan: Cyan Sea Firefly
+		// SkyBlue: Sky Blue Sea Firefly
+		// Blue: Blue Sea Firefly
+		// Purple: Purple Sea Firefly
+		// Violet: Violet Sea Firefly
+		// Pink: Pink Sea Firefly
+		// Black: Black Sea Firefly
+		// White: Silver Sea Firefly
+		// Rainbow: Rainbow Sea Firefly
+	}
+
 	Bestiary: Mods.Aequus.NPCs.SeaFirefly.Bestiary
 	ItemTooltip: ""
 }
