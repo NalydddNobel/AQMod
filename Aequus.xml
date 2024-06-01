@@ -454,6 +454,9 @@
             How long the item should float for. Set to 255 for permanent duration.
             </summary>
         </member>
+        <member name="P:Aequus.Common.Items.AequusRecipes.AnySeaFirefly">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for Sea Firefly variants.</summary>
+        </member>
         <member name="P:Aequus.Common.Items.AequusRecipes.AnyGoldBar">
             <summary><see cref="T:Terraria.RecipeGroup"/> for Gold Bar variants.</summary>
         </member>
@@ -1915,6 +1918,12 @@
         <member name="M:Aequus.Core.Utilities.TileHelper.TileColor(System.Int32,System.Int32)">
             <returns><inheritdoc cref="M:Aequus.Core.Utilities.TileHelper.TileColor(System.Int32,System.Int32,Terraria.Tile)"/></returns>
         </member>
+        <member name="M:Aequus.Core.Utilities.TileHelper.GetWaterLine(System.Int32,System.Int32)">
+            <returns>The water line in World Coordinates.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.TileHelper.GetWaterLine(Microsoft.Xna.Framework.Point)">
+            <returns><inheritdoc cref="M:Aequus.Core.Utilities.TileHelper.GetWaterLine(System.Int32,System.Int32)"/></returns>
+        </member>
         <member name="M:Aequus.Core.Utilities.TileHelper.KillLiquid(System.Int32,System.Int32,System.Boolean)">
             <summary>
             Properly removes a liquid at the given tile coordinates.
@@ -1922,6 +1931,18 @@
             <param name="x"></param>
             <param name="y"></param>
             <param name="quiet"></param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.TileHelper.LiquidMax(Terraria.Tile)">
+            <returns><see langword="true"/> if the tile has the maximum liquid amount. (<see cref="P:Terraria.Tile.LiquidAmount"/> == 255)</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.TileHelper.LiquidMax(System.Int32,System.Int32)">
+            <returns><inheritdoc cref="M:Aequus.Core.Utilities.TileHelper.LiquidMax(Terraria.Tile)"/></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.TileHelper.LiquidNoMax(Terraria.Tile)">
+            <returns><see langword="true"/> if the tile has a liquid amount below maximum. (<see cref="P:Terraria.Tile.LiquidAmount"/> != 255)</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.TileHelper.LiquidNoMax(System.Int32,System.Int32)">
+            <returns><inheritdoc cref="M:Aequus.Core.Utilities.TileHelper.LiquidNoMax(Terraria.Tile)"/></returns>
         </member>
         <member name="P:Aequus.Core.CrossMod.SupportedMod`1.Instance">
             <summary>The Supported Mod's instance. This property is <see langword="null" /> when the mod is not enabled.</summary>

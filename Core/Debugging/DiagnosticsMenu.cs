@@ -27,10 +27,25 @@ internal class DiagnosticsMenu : ModSystem {
         _stopwatch.Restart();
     }
     [Conditional("DEBUG")]
+    public static void ClearOrEndStopwatch(TimerType diag, bool end) {
+        if (end) {
+            ClearStopwatch(diag);
+        }
+        else {
+            EndStopwatch(diag);
+        }
+    }
+    [Conditional("DEBUG")]
     public static void EndStopwatch(TimerType diag) {
         _stopwatch.Stop();
         byte index = (byte)diag;
         _durations[index] = _stopwatch.Elapsed.TotalMilliseconds;
+    }
+    [Conditional("DEBUG")]
+    public static void ClearStopwatch(TimerType diag) {
+        _stopwatch.Stop();
+        byte index = (byte)diag;
+        _durations[index] = 0.0;
     }
 
     [Conditional("DEBUG")]

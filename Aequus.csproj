@@ -37,8 +37,7 @@
     <EmbeddedResource Remove="project\**" />
     <None Remove="project\**" />
 	<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" />
-	<AdditionalFiles Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
-	<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/SourceGenerators.Generator/**" />
+	<AdditionalFiles Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" />
 	<AdditionalFiles Include="**\*.png" />
 	<AdditionalFiles Include="**\*.ogg" />
 	<AdditionalFiles Include="**\Localization\*.hjson" />

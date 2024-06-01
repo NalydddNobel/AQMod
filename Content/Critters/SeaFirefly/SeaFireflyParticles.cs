@@ -1,5 +1,6 @@
 ﻿using Aequus.Core.Graphics;
 using Aequus.Core.Particles;
+using System;
 
 namespace Aequus.Content.Critters.SeaFirefly;
 
@@ -64,9 +65,11 @@ public class SeaFireflyClusters : ConcurrentParticles<SeaFireflyClusters.Particl
         switch (t.CycleTime % 5) {
             case 0: {
                     Point tileCoordinates = t.Where.ToTileCoordinates();
-                    tileCoordinates.Y--;
-                    Tile above = Framing.GetTileSafely(tileCoordinates);
-                    if (above.LiquidAmount != 255) {
+                    TileHelper.ScanUp(tileCoordinates, 2, out Point top, TileHelper.LiquidNoMax);
+                    Tile tile = Framing.GetTileSafely(top);
+
+                    int waterLine = TileHelper.GetWaterLine(top);
+                    if (t.Where.Y <= waterLine + 4) {
                         velocity.Y += 0.04f;
                     }
                 }
@@ -82,6 +85,12 @@ public class SeaFireflyClusters : ConcurrentParticles<SeaFireflyClusters.Particl
             case 2:
                 velocity.Y *= 0.97f;
                 break;
+
+            case 3:
+                if (Math.Abs(velocity.X) < 0.05f) {
+                    velocity.X *= 1.1f;
+                }
+                break;
         }
 
         Vector2 oldVelocity = velocity;
@@ -89,9 +98,11 @@ public class SeaFireflyClusters : ConcurrentParticles<SeaFireflyClusters.Particl
 
         if (velocity.X != oldVelocity.X) {
             velocity.X = -oldVelocity.X;
+            t.ExistenceTime *= 4;
         }
         if (velocity.Y != oldVelocity.Y) {
             velocity.Y = -oldVelocity.Y;
+            t.ExistenceTime *= 4;
         }
 
         t.Where += velocity.RotatedBy(Main.rand.NextFloat(-0.03f, 0.03f));

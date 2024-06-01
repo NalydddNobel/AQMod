@@ -1,10 +1,14 @@
-﻿using System;
+﻿using Aequus.Content.Critters.SeaFirefly;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria.Localization;
 
 namespace Aequus.Common.Items;
 
 public class AequusRecipes : ModSystem {
+    /// <summary><see cref="RecipeGroup"/> for Sea Firefly variants.</summary>
+    public static RecipeGroup AnySeaFirefly { get; private set; }
     /// <summary><see cref="RecipeGroup"/> for Gold Bar variants.</summary>
     public static RecipeGroup AnyGoldBar { get; private set; }
     /// <summary><see cref="RecipeGroup"/> for Silver Bar variants.</summary>
@@ -23,6 +27,7 @@ public class AequusRecipes : ModSystem {
     public static RecipeGroup AnyTrash { get; private set; }
 
     public override void AddRecipeGroups() {
+        AnySeaFirefly = NewGroup("AnySeaFirefly", GetItems((i) => i.makeNPC == ModContent.NPCType<SeaFirefly>()));
         AnyGoldBar = NewGroup("AnyGoldBar", ItemID.GoldBar, ItemID.PlatinumBar);
         AnySilverBar = NewGroup("AnySilverBar", ItemID.SilverBar, ItemID.TungstenBar);
         AnyCopperBar = NewGroup("AnyCopperBar", ItemID.CopperBar, ItemID.TinBar);
@@ -40,13 +45,14 @@ public class AequusRecipes : ModSystem {
     }
 
     private static int[] GetItems(Predicate<Item> predicate, bool vanillaOnly = false) {
-        List<int> list = [];
-        int count = vanillaOnly ? ItemID.Count : ItemLoader.ItemCount;
-        for (int i = 0; i < count; i++) {
+        return GetItemsInner(predicate, 0, vanillaOnly ? ItemID.Count : ItemLoader.ItemCount).ToArray();
+    }
+
+    private static IEnumerable<int> GetItemsInner(Predicate<Item> predicate, int minIdRange, int maxIdRange) {
+        for (int i = minIdRange; i < maxIdRange; i++) {
             if (predicate(ContentSamples.ItemsByType[i])) {
-                list.Add(i);
+                yield return i;
             }
         }
-        return list.ToArray();
     }
 }

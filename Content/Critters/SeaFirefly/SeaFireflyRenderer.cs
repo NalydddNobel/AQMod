@@ -31,13 +31,14 @@ internal class SeaFireflyRenderer : RequestHandler<SeaFireflyShaderRequest> {
         Ready = false;
         DrawLayers.Instance.PostUpdateScreenPosition -= HandleRequestsOnPreDraw;
         DrawLayers.Instance.PostDrawLiquids -= DrawOntoScreen;
+        DiagnosticsMenu.ClearStopwatch(DiagnosticsMenu.TimerType.SeaFireflies);
     }
 
     private void HandleRequestsOnPreDraw(SpriteBatch sb) {
         DiagnosticsMenu.StartStopwatch();
         HandleRequests();
         ClearQueue();
-        DiagnosticsMenu.EndStopwatch(DiagnosticsMenu.TimerType.SeaFireflies);
+        DiagnosticsMenu.ClearOrEndStopwatch(DiagnosticsMenu.TimerType.SeaFireflies, !Active);
     }
 
     protected override bool HandleRequests(IEnumerable<SeaFireflyShaderRequest> todo) {
@@ -61,7 +62,7 @@ internal class SeaFireflyRenderer : RequestHandler<SeaFireflyShaderRequest> {
             DrawRequests(spriteBatch, todo);
         }
         catch (Exception ex) {
-            ExtendedMod.Log.Error(ex);
+            Log.Error(ex);
         }
         finally {
             spriteBatch.End();
@@ -74,13 +75,10 @@ internal class SeaFireflyRenderer : RequestHandler<SeaFireflyShaderRequest> {
 
     private void DrawRequests(SpriteBatch spriteBatch, IEnumerable<SeaFireflyShaderRequest> todo) {
         Ready = false;
-        if (Main.drawToScreen || !Lighting.NotRetro || !ExtendedMod.HighQualityEffects) {
+        if (Main.drawToScreen || !Lighting.NotRetro || !HighQualityEffects) {
             return;
         }
 
-#if DEBUG
-        Load();
-#endif
         spriteBatch.GraphicsDevice.Textures[1] = AequusTextures.EffectWaterRefraction;
         Texture2D texture = AequusTextures.Bloom;
         Rectangle frame = texture.Bounds;

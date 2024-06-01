@@ -67,6 +67,16 @@ public static class TileHelper {
         return (1f - liquidAmount / 255f) * 16f;
     }
 
+    /// <returns>The water line in World Coordinates.</returns>
+    public static int GetWaterLine(int i, int j) {
+        Tile tile = Main.tile[i, j];
+        return j * 16 + (int)(GetWaterY(tile.LiquidAmount) * 16f);
+    }
+    /// <returns><inheritdoc cref="GetWaterLine(int, int)"/></returns>
+    public static int GetWaterLine(Point point) {
+        return GetWaterLine(point.X, point.Y);
+    }
+
     public static int GetTileDust(int sampleX, int sampleY, int tileType, int tileStyle) {
         lock (Main.instance.TilesRenderer) {
 
@@ -392,6 +402,28 @@ public static class TileHelper {
     }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool HasAnyLiquid(int i, int j) {
+        return Main.tile[i, j].HasAnyLiquid();
+    }
+
+    /// <returns><see langword="true"/> if the tile has the maximum liquid amount. (<see cref="Tile.LiquidAmount"/> == 255)</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool LiquidMax(this Tile tile) {
+        return tile.LiquidAmount == byte.MaxValue;
+    }
+    /// <returns><inheritdoc cref="LiquidMax(Tile)"/></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool LiquidMax(int i, int j) {
+        return Main.tile[i, j].HasAnyLiquid();
+    }
+
+    /// <returns><see langword="true"/> if the tile has a liquid amount below maximum. (<see cref="Tile.LiquidAmount"/> != 255)</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool LiquidNoMax(this Tile tile) {
+        return tile.LiquidAmount != byte.MaxValue;
+    }
+    /// <returns><inheritdoc cref="LiquidNoMax(Tile)"/></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool LiquidNoMax(int i, int j) {
         return Main.tile[i, j].HasAnyLiquid();
     }
 

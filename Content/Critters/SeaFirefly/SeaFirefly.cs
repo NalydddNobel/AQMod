@@ -1,4 +1,5 @@
-﻿using Aequus.Common.NPCs.Bestiary;
+﻿using Aequus.Common.Items;
+using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics;
@@ -28,7 +29,7 @@ public class SeaFirefly : UnifiedCritter, DrawLayers.IDrawLayer {
 
     #region Properties
     public const int HorizontalFrames = 8;
-    public static readonly int LightTime = 120;
+    public static readonly int LightTime = 1800;
     public static readonly int DarkTime = 240;
     public static readonly int CycleTime = LightTime + DarkTime;
 
@@ -147,7 +148,7 @@ public class SeaFirefly : UnifiedCritter, DrawLayers.IDrawLayer {
     }
 
     void AI_SpawnFireflies() {
-        if (Main.rand.NextBool(15)) {
+        if (Cull2D.Rectangle(NPC.Hitbox, 128, 128) && Main.rand.NextBool(15)) {
             int frame = Main.rand.NextBool(12) ? 1 : Main.rand.Next(2, 4);
             Particle<SeaFireflyClusters.Particle>.New().Setup(NPC.Center, (byte)frame, (int)WetTimer, color);
         }
@@ -180,7 +181,7 @@ public class SeaFirefly : UnifiedCritter, DrawLayers.IDrawLayer {
             NPC.velocity.X = -NPC.oldVelocity.X;
         }
         NPC.velocity.X += NPC.direction * 0.02f;
-        if (Math.Abs(NPC.velocity.X) > 2f) {
+        if (Math.Abs(NPC.velocity.X) > 0.75f) {
             NPC.velocity.X *= 0.95f;
         }
         if (Math.Abs(NPC.velocity.Y) > 0.5f) {
@@ -194,6 +195,7 @@ public class SeaFirefly : UnifiedCritter, DrawLayers.IDrawLayer {
             NPC.velocity.Y = -3f;
 
             NPC.velocity.X += Main.rand.NextFloat(-3f, 3f);
+            NPC.direction = Math.Sign(NPC.velocity.X);
         }
 
         NPC.velocity.Y += 0.3f;
@@ -235,7 +237,7 @@ public class SeaFirefly : UnifiedCritter, DrawLayers.IDrawLayer {
 
         lightOpacity *= globalOpacity;
 
-        if (lightOpacity > 0f) {
+        if (lightOpacity > 0f && frame < 5) {
             float wave = Helper.Oscillate(randomSeed + worldPosition.X * 0.01f + Main.GlobalTimeWrappedHourly * 4f, 1f);
 
             Color color = colorVariant.GetGlowColor(new GlowColorContext(worldPosition, randomSeed));
@@ -243,7 +245,7 @@ public class SeaFirefly : UnifiedCritter, DrawLayers.IDrawLayer {
             SeaFireflyRenderer.Instance.Enqueue(new SeaFireflyShaderRequest(worldPosition, scale * waveScale * lightOpacity, color * 0.5f));
         }
 
-        if (isLit) {
+        if (isLit && frame < 7) {
             spriteBatch.Draw(AequusTextures.Bloom, drawCoordinates, null, colorVariant.GetBugColor() * 0.01f * globalOpacity, 0f, AequusTextures.Bloom.Size() / 2f, scale, SpriteEffects.None, 0f);
         }
 
@@ -360,7 +362,7 @@ public class SeaFirefly : UnifiedCritter, DrawLayers.IDrawLayer {
 
             void AddRecipe() {
                 dyedItem.CreateRecipe()
-                    .AddIngredient(CatchItem.Type)
+                    .AddRecipeGroup(AequusRecipes.AnySeaFirefly)
                     .AddIngredient(DyeItem)
                     .Register();
             }
