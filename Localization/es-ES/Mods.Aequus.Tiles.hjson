@@ -398,7 +398,7 @@ MeadowWood: {
 }
 
 SeaFireflyBlock: {
-	// DisplayName: " Sea Firefly Block"
+	// DisplayName: Sea Firefly Block
 	// DisplayNameRed: Red Sea Firefly Block
 	// DisplayNameOrange: Orange Sea Firefly Block
 	// DisplayNameYellow: Yellow Sea Firefly Block
@@ -406,7 +406,7 @@ SeaFireflyBlock: {
 	// DisplayNameGreen: Green Sea Firefly Block
 	// DisplayNameTeal: Teal Sea Firefly Block
 	// DisplayNameCyan: Cyan Sea Firefly Block
-	// DisplayNameSkyBlue: SkyBlue Sea Firefly Block
+	// DisplayNameSkyBlue: Sky Blue Sea Firefly Block
 	// DisplayNameBlue: Blue Sea Firefly Block
 	// DisplayNamePurple: Purple Sea Firefly Block
 	// DisplayNameViolet: Violet Sea Firefly Block

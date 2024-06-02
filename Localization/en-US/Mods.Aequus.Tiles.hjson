@@ -394,7 +394,7 @@ MeadowWood: {
 }
 
 SeaFireflyBlock: {
-	DisplayName: "Sea Firefly Block"
+	DisplayName: Sea Firefly Block
 	DisplayNameRed: Red Sea Firefly Block
 	DisplayNameOrange: Orange Sea Firefly Block
 	DisplayNameYellow: Yellow Sea Firefly Block
