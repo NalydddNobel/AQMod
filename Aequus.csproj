@@ -63,6 +63,10 @@
 	<AdditionalFiles Include="Old\**\*.png" />
 	<AdditionalFiles Include="Old\**\*.ogg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Content\Tiles\Misc\SeaFireflyBlock.png" />
+    <None Remove="Content\Tiles\Misc\SeaFireflyBlockItem.png" />
+  </ItemGroup>
   
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<Optimize>False</Optimize>

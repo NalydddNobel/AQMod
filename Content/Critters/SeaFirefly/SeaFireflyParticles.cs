@@ -27,8 +27,13 @@ public class SeaFireflyClusters : ConcurrentParticles<SeaFireflyClusters.Particl
                 }
             }
 
-            if (t.Frame == 1) {
-                Lighting.AddLight(t.Where, t.Current.GetLightColor(t.Where) * 0.33f);
+            if (t.Frame < 2) {
+                try {
+                    Lighting.AddLight(t.Where, t.Current.GetLightColor(t.Where) * 0.33f);
+                }
+                catch (Exception ex) {
+                    Log.Error(ex);
+                }
             }
         }
         else {
@@ -133,7 +138,7 @@ public class SeaFireflyClusters : ConcurrentParticles<SeaFireflyClusters.Particl
 
         public Vector2 Velocity => Where - WhereLast;
 
-        public SeaFirefly.IColorVariant Current => SeaFirefly.GetColor(Color);
+        public ISeaFireflyInstanceData Current => SeaFirefly.GetPalette(Color);
 
         public void Setup(Vector2 where, byte frame, int time, byte color) {
             Where = where;

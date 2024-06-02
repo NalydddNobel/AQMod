@@ -6,7 +6,11 @@ namespace Aequus.Common.Items;
 [Gen.AequusPlayer_Field<byte>("disableItem")]
 public class UseEffects : GlobalItem {
     public override bool? UseItem(Item item, Player player) {
-        return player.GetModPlayer<AequusPlayer>().disableItem == 0 ? null : false;
+        if (player.GetModPlayer<AequusPlayer>().disableItem == 0) {
+            return null;
+        }
+        player.itemTime = player.itemAnimation;
+        return false;
     }
 
     public override bool CanShoot(Item item, Player player) {

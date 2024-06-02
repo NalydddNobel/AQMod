@@ -2409,7 +2409,7 @@
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 835) yo momma gai</summary>
+            <summary>(Total Textures: 837) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -3535,6 +3535,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.MeadowWoodItem">
             <summary>Full Path: Content/Tiles/Meadow/MeadowWoodItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SeaFireflyBlock">
+            <summary>Full Path: Content/Tiles/Misc/SeaFireflyBlock</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SeaFireflyBlockItem">
+            <summary>Full Path: Content/Tiles/Misc/SeaFireflyBlockItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PolymerStalactite1x1">
             <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x1</summary>

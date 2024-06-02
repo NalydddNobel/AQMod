@@ -40,6 +40,7 @@ public partial class TerrariaHooks : ILoad {
         IL_Player.PickTile += IL_Player_PickTile;
         IL_Player.PlaceThing_ValidTileForReplacement += IL_Player_PlaceThing_ValidTileForReplacement;
         IL_Player.UpdateManaRegen += IL_Player_UpdateManaRegen;
+        On_Player.ItemCheck_ReleaseCritter += On_Player_ItemCheck_ReleaseCritter;
         On_Player.FigureOutWhatToPlace += On_Player_FigureOutWhatToPlace; ;
         On_Player.GetPreferredGolfBallToUse += On_Player_GetPreferredGolfBallToUse;
         On_Player.RollLuck += On_Player_RollLuck;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aequus.Core.Graphics.Textures;
+using System;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Events;
@@ -176,26 +177,7 @@ public abstract class BackpackData : ModType, ILocalizedModType {
     }
 
     private static Texture2D HueSingleTexture2D(Texture2D baseTexture, float hue) {
-        Color[] textureColorsExtracted = new Color[baseTexture.Width * baseTexture.Height];
-        baseTexture.GetData(textureColorsExtracted);
-
-        for (int k = 0; k < textureColorsExtracted.Length; k++) {
-            Color color = textureColorsExtracted[k];
-            byte velocity = Math.Max(Math.Max(color.R, color.G), color.B);
-            textureColorsExtracted[k] = color.HueAdd(hue) with { A = color.A };
-        }
-
-        try {
-            Texture2D resultTexture = new Texture2D(Main.instance.GraphicsDevice, baseTexture.Width, baseTexture.Height);
-            resultTexture.SetData(textureColorsExtracted);
-            return resultTexture;
-        }
-        catch (Exception ex) {
-            Aequus.Log.Error(ex);
-
-            // return null if error occurs, this will retry rendering the textures next frame
-            return null;
-        }
+        return TextureGen.PerPixel(new EffectHueAdd(hue), baseTexture);
     }
     #endregion
 

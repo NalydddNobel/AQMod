@@ -40,7 +40,6 @@ public class PolymerSand : MultiMergeTile {
         AddMerge(TileID.HardenedSand);
         AddMerge(ModContent.TileType<PolymerSandstone>());
 
-        Main.tileSand[Type] = true;
         TileID.Sets.Conversion.Sand[Type] = true;
         TileID.Sets.ForAdvancedCollision.ForSandshark[Type] = true;
         TileID.Sets.CanBeDugByShovel[Type] = true;

@@ -116,13 +116,13 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction
         }
 
         player.noThrow = 2;
-        player.GetModPlayer<AequusPlayer>().disableItem = 2;
+        player.GetModPlayer<AequusPlayer>().disableItem = 8;
         player.cursorItemIconEnabled = true;
         player.cursorItemIconID = recipeResults.Results[0].type;
 
         i -= Main.tile[i, j].TileFrameX / 18;
         j -= Main.tile[i, j].TileFrameY / 18;
-        if (ExtendedMod.GameWorldActive && player.itemAnimation == player.itemAnimationMax - 2) {
+        if (GameWorldActive && player.itemAnimation == player.itemAnimationMax - 2) {
             UseExtractinator(i, j, heldItem, recipeResults, player);
             Recipe.FindRecipes();
         }
