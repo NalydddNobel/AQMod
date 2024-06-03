@@ -1,8 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
+﻿using ReLogic.Content;
 using System;
-using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Map;
@@ -36,8 +33,8 @@ public partial class SkyMerchant {
     public TextureDrawSet drawSet;
 
     private void LoadDrawSets() {
-        DefaultDrawSet = new(AequusTextures.Content_TownNPCs_SkyMerchant_Balloon, AequusTextures.Content_TownNPCs_SkyMerchant_Basket, AequusTextures.Content_TownNPCs_SkyMerchant_SkyMerchant_Aiming, AequusTextures.Content_TownNPCs_SkyMerchant_SkyMerchant_CrossbowArm);
-        ShimmerDrawSet = new(AequusTextures.Content_TownNPCs_SkyMerchant_Shimmer_Balloon, AequusTextures.Content_TownNPCs_SkyMerchant_Shimmer_Basket, AequusTextures.Content_TownNPCs_SkyMerchant_Shimmer_SkyMerchant_Aiming, AequusTextures.Content_TownNPCs_SkyMerchant_SkyMerchant_CrossbowArm);
+        DefaultDrawSet = new(AequusTextures.Balloon, AequusTextures.Basket, AequusTextures.SkyMerchant_Aiming, AequusTextures.SkyMerchant_CrossbowArm);
+        ShimmerDrawSet = new(AequusTextures.Balloon_Shimmer, AequusTextures.Basket_Shimmer, AequusTextures.SkyMerchant_Shimmer_Aiming, AequusTextures.SkyMerchant_Shimmer_CrossbowArm);
     }
 
     private void UnloadDrawSets() {

@@ -1,7 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System.IO;
-using Terraria;
-using Terraria.ID;
+﻿using System.IO;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Common.Renaming;
@@ -67,7 +64,7 @@ public sealed class RenamedNPCMarker {
             tileY = npc.Center.ToTileCoordinates().Y,
         };
 
-        if (NPCID.Sets.SpecialSpawningRules.TryGetValue(npc.netID, out int value)) {
+        if (NPCSets.SpecialSpawningRules.TryGetValue(npc.netID, out int value)) {
             switch (value) {
                 case 0: {
                         marker.tileX = (int)npc.ai[0];
@@ -76,7 +73,7 @@ public sealed class RenamedNPCMarker {
                     break;
             }
         }
-        if (NPCID.Sets.RespawnEnemyID.TryGetValue(npc.netID, out int respawnId) && respawnId == 0) {
+        if (NPCSets.RespawnEnemyID.TryGetValue(npc.netID, out int respawnId) && respawnId == 0) {
             marker.type = respawnId;
         }
 
@@ -88,7 +85,7 @@ public sealed class RenamedNPCMarker {
     }
 
     public void SetupNPC(NPC npc) {
-        if (NPCID.Sets.SpecialSpawningRules.TryGetValue(npc.netID, out int value)) {
+        if (NPCSets.SpecialSpawningRules.TryGetValue(npc.netID, out int value)) {
             switch (value) {
                 case 0: {
                         Point point = npc.Center.ToTileCoordinates();

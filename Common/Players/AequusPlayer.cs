@@ -1,14 +1,14 @@
-﻿using Aequus.Common.Players.Backpacks;
-using Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.DataStructures;
+﻿using Aequus.Content.Items.PermaPowerups.BeyondLifeCrystal;
+using Aequus.Content.Items.PermaPowerups.BeyondManaCrystal;
+using Aequus.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
+using Aequus.Core.CodeGeneration;
+using System.Runtime.CompilerServices;
 using Terraria.GameInput;
-using Terraria.ModLoader;
-using Terraria.UI;
+using Terraria.ModLoader.IO;
 
 namespace Aequus;
 
+[Gen.AequusPlayer_ResetField<StatModifier>("wingTime")]
 public partial class AequusPlayer : ModPlayer {
     public Vector2 transitionVelocity;
 
@@ -17,20 +17,6 @@ public partial class AequusPlayer : ModPlayer {
     public override void Load() {
         _resetEffects = new();
         _resetEffects.Generate();
-        On_Player.UpdateVisibleAccessories += On_Player_UpdateVisibleAccessories;
-        On_PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
-        On_ItemSlot.RightClick_ItemArray_int_int += ItemSlot_RightClick;
-        On_ChestUI.QuickStack += On_ChestUI_QuickStack;
-        On_Player.QuickStackAllChests += On_Player_QuickStackAllChests;
-        On_Player.ConsumeItem += On_Player_ConsumeItem;
-        On_Player.QuickMount_GetItemToUse += On_Player_QuickMount_GetItemToUse;
-        On_Player.QuickHeal_GetItemToUse += On_Player_QuickHeal_GetItemToUse;
-        On_Player.QuickMana_GetItemToUse += On_Player_QuickMana_GetItemToUse;
-        On_Player.HasUnityPotion += Player_HasUnityPotion;
-        On_Player.TakeUnityPotion += Player_TakeUnityPotion;
-        On_Player.GetRespawnTime += On_Player_GetRespawnTime;
-        On_Player.DashMovement += On_Player_DashMovement;
-        On_Player.PlaceThing_PaintScrapper_LongMoss += On_Player_PlaceThing_PaintScrapper_LongMoss;
     }
 
     public override void Unload() {
@@ -39,41 +25,35 @@ public partial class AequusPlayer : ModPlayer {
 
     public override void Initialize() {
         Timers = new();
-        InitializeItems();
-    }
-
-    public override void OnRespawn() {
-        timeSinceRespawn = 0;
     }
 
     public override void OnEnterWorld() {
         timeSinceRespawn = 0;
     }
 
+    public override void ModifyMaxStats(out StatModifier health, out StatModifier mana) {
+        health = StatModifier.Default;
+        health.Base += consumedBeyondLifeCrystals * BeyondLifeCrystal.LifeIncrease;
+
+        mana = StatModifier.Default;
+        mana.Base += consumedBeyondManaCrystals * BeyondManaCrystal.ManaIncrease;
+    }
+
     public override void PreUpdate() {
-        EquipmentModifierUpdate = false;
-        BackpackLoader.UpdateBackpacks(Player, backpacks);
+        UpdateGiftRing();
         UpdateTimers();
         UpdateItemFields();
     }
 
-    public override void PostUpdateBuffs() {
-        BackpackLoader.ResetEffects(Player, backpacks);
-    }
-
-    public override void UpdateEquips() {
-        EquipmentModifierUpdate = true;
-    }
-
     public override void PostUpdateEquips() {
-        UpdateCosmicChest();
-        UpdateWeightedHorseshoe();
-        UpdateNeutronYogurt();
+        PostUpdateEquipsInner();
         UpdateTeamEffects();
+        Player.wingTimeMax = (int)wingTime.ApplyTo(Player.wingTimeMax);
     }
 
     public override void PostUpdateMiscEffects() {
         HandleTileEffects();
+        UpdateScrapBlockState();
         if ((transitionVelocity - Player.velocity).Length() < 0.01f) {
             transitionVelocity = Player.velocity;
         }
@@ -82,7 +62,6 @@ public partial class AequusPlayer : ModPlayer {
 
     public override void PostUpdate() {
         UpdateDangers();
-        EquipmentModifierUpdate = false;
         timeSinceRespawn++;
     }
 
@@ -94,8 +73,50 @@ public partial class AequusPlayer : ModPlayer {
         }
     }
 
+    public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
+#if !DEBUG
+        ProcBoneRing(target);
+        ProcBlackPhial(target);
+#endif
+    }
+
+    internal void OnKillNPC(in KillInfo info) {
+        RestoreBreathOnKillNPC(in info);
+    }
+
+    public override void OnRespawn() {
+        timeSinceRespawn = 0;
+        OnRespawnInner();
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static void ResetObj<T>(ref T obj) {
+        obj = default(T);
+    }
+
+    #region IO
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static void SaveObj<T>(TagCompound tag, string name, T obj) {
+        if (obj?.Equals(default(T)) == true) {
+            tag[name] = obj;
+        }
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static void LoadObj<T>(TagCompound tag, string name, ref T obj) {
+        obj = default;
+        if (tag.TryGet(name, out T result)) {
+            obj = result;
+        }
+    }
+    #endregion
+
     #region Misc
-    private struct MiscDamageHit {
+    /// <param name="Center">The enemy's center.</param>
+    /// <param name="Type">The enemy's type.</param>
+    public record struct KillInfo(Vector2 Center, int Type);
+
+    public struct MiscDamageHit {
         public DamageClass DamageClass;
         public Rectangle DamagingHitbox;
         public double Damage;

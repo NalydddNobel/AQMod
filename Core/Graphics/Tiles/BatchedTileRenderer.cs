@@ -1,7 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.ModLoader;
+﻿using System.Collections.Generic;
 
 namespace Aequus.Core.Graphics.Tiles;
 
@@ -40,7 +37,10 @@ public sealed class BatchedTileRenderer : ModSystem {
         }
     }
 
-    public override void Unload() => _batches = null;
+    public override void Unload() {
+        _batches = null;
+    }
+
     public override void Load() {
     }
 

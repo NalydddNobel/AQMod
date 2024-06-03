@@ -1,0 +1,72 @@
+Avalon: {
+	Buffs: {
+		BacciliteSceptreDebuff: {
+			// DisplayName: "{Avalon.Items.BacciliteSceptre.DisplayName}"
+			// Description: Mods.Aequus.CrossMod.Avalon.Buffs.BacciliteSceptreDebuff.Description
+		}
+	}
+
+	Items: {
+		BacciliteSceptre: {
+			// DisplayName: Apoptosis Sceptre
+			// Tooltip: "{$Items.CorruptionSceptre.Tooltip}"
+		}
+	}
+
+	// Projectiles.BacciliteSceptreProj.DisplayName: "{Avalon.Items.BacciliteSceptre.DisplayName}"
+
+	ItemDropRules: {
+		// IsContagion: Drops in the Contagion
+		// IsNotContagion: Drops outside of Contagion worlds
+	}
+}
+
+Fargowiltas: {
+	Stats: {
+		MaxGhostSlots: Ranura de fantasmas: {0}
+		GhostDuration: Duración de fantasmas: {0} minutes
+		SceptreDebuffMultiplier: Daño de estado de cetros: {0}%
+		DropRolls: Rerolls de Botin: {0}
+		RespawnReduction: Reaparición reducida: {0} seconds
+	}
+}
+
+CalamityMod: {
+	Items: {
+		OmegaHoney: {
+			DisplayName: Omega Poción de miel
+			Tooltip: Mejora la regeneración de vida natural por un periodo extendido
+		}
+
+		SupremeHoney: {
+			DisplayName: Poción de miel Suprema
+			Tooltip: Mejora la regeneración de vida natural por un periodo prolongado
+		}
+
+		OmegaRestoration: {
+			DisplayName: Omega Poción de restauración
+			Tooltip: "{$ItemTooltip.RestorationPotion}"
+		}
+
+		SupremeRestoration: {
+			DisplayName: Poción de restauración Suprema
+			Tooltip: "{$ItemTooltip.RestorationPotion}"
+		}
+	}
+}
+
+Split: {
+	Items: {
+		// Prints: Poster: {0}
+
+		PollutedOceanEnvelope: {
+			// DisplayName: Ruined Sea Envelope
+			// Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+		}
+
+		GlimmerEnvelope: {
+			// DisplayName: Shooting Star Envelope
+			// Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+		}
+	}
+}

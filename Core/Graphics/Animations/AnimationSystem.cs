@@ -1,13 +1,11 @@
-﻿using System;
-using Terraria;
+﻿using Aequus.Core.Collections;
+using System;
 using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Core.Graphics.Animations;
 
 public sealed class AnimationSystem : ModSystem {
-    public static TrimmableDictionary<Point16, ITileAnimation> TileAnimations { get; private set; } = new();
+    public static DictionaryRemoveQueue<Point16, ITileAnimation> TileAnimations { get; private set; } = new();
 
     public static bool TryGet<T>(int x, int y, out T anim) where T : ITileAnimation {
         return TryGet(new(x, y), out anim);
@@ -27,12 +25,15 @@ public sealed class AnimationSystem : ModSystem {
     }
 
     public static T GetValueOrAddDefault<T>(Point16 xy) where T : ITileAnimation, new() {
-        if (TryGet(xy, out T anim)) {
-            return anim;
-        }
+        lock (TileAnimations) {
+            if (TryGet(xy, out T anim)) {
+                return anim;
+            }
 
-        TileAnimations[xy] = new T();
-        return (T)TileAnimations[xy];
+            var value = new T();
+            TileAnimations[xy] = value;
+            return value;
+        }
     }
 
     public override void PreUpdateEntities() {

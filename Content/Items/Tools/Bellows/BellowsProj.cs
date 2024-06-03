@@ -1,11 +1,5 @@
-﻿using Aequus;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using Terraria;
+﻿using System;
 using Terraria.GameContent;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Tools.Bellows;
 
@@ -47,7 +41,7 @@ public class BellowsProj : ModProjectile {
         }
 
         if (Projectile.numUpdates <= 0 && player.itemAnimation >= 45) {
-            var v = Utils.SafeNormalize(Projectile.velocity, new Vector2(player.direction, 0f));
+            var v = Projectile.velocity.SafeNormalize(new Vector2(player.direction, 0f));
             if (v.Y > 0f) {
                 v.Y *= player.gravity / 0.4f;
             }
@@ -102,7 +96,7 @@ public class BellowsProj : ModProjectile {
         drawCoords.Y += 2f + Projectile.gfxOffY;
         float rotation = difference.ToRotation() + (player.direction == -1 ? 0f : MathHelper.Pi);
         var spriteEffects = player.direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-        Main.EntitySpriteDraw(texture, drawCoords - Main.screenPosition, frame, LightHelper.GetLightColor(drawCoords),
+        Main.EntitySpriteDraw(texture, drawCoords - Main.screenPosition, frame, ExtendLight.Get(drawCoords),
              rotation, origin, 1f, spriteEffects, 0);
         return false;
     }

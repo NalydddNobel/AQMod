@@ -1,13 +1,9 @@
 ﻿using Aequus.Common.Projectiles;
-using Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
-using Microsoft.Xna.Framework;
+using Aequus.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Terraria;
 using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.TownNPCs.SkyMerchant;
 public class SkyMerchantProjectile : ModProjectile {
@@ -35,12 +31,12 @@ public class SkyMerchantProjectile : ModProjectile {
             _playedSound = true;
         }
 
-        if (!Projectile.TryGetGlobalProjectile<AequusProjectile>(out var aequusProjectile) || !aequusProjectile.HasNPCOwner) {
+        if (!Projectile.TryGetGlobalProjectile(out ProjectileSource projectileSource) || !projectileSource.HasNPCOwner) {
             Projectile.Kill();
             return true;
         }
 
-        var difference = Main.npc[aequusProjectile.parentNPCIndex].Center - Projectile.Center;
+        var difference = Main.npc[projectileSource.parentNPCIndex].Center - Projectile.Center;
         float distance = difference.Length();
         if (distance > SkyHunterCrossbow.MaximumDistance) {
             retreat = true;
@@ -118,11 +114,11 @@ public class SkyMerchantProjectile : ModProjectile {
     }
 
     public override bool PreDraw(ref Color lightColor) {
-        if (!Projectile.TryGetGlobalProjectile<AequusProjectile>(out var aequusProjectile) || !aequusProjectile.HasNPCOwner) {
+        if (!Projectile.TryGetGlobalProjectile(out ProjectileSource projectileSource) || !projectileSource.HasNPCOwner) {
             return false;
         }
 
-        SkyHunterCrossbow.DrawChain(Projectile.Center, Main.npc[aequusProjectile.parentNPCIndex].Center, Projectile.Opacity, animationTimer, Main.npc[aequusProjectile.parentNPCIndex].type, Projectile.timeLeft);
+        SkyHunterCrossbow.DrawChain(Projectile.Center, Main.npc[projectileSource.parentNPCIndex].Center, Projectile.Opacity, animationTimer, Main.npc[projectileSource.parentNPCIndex].type, Projectile.timeLeft);
         return true;
     }
 

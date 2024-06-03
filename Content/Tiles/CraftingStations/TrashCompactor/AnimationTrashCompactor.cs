@@ -1,8 +1,5 @@
 ﻿using Aequus.Core.Graphics.Animations;
-using Microsoft.Xna.Framework;
 using System;
-using Terraria.ModLoader;
-using Terraria;
 
 namespace Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 

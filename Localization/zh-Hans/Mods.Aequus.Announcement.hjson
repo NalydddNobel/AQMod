@@ -1,0 +1,37 @@
+Glimmer: {
+	Start: 一缕柔光出现在了天空中...
+	StartEast: 一缕柔光出现在了东边的天空中...
+	StartWest: 一缕柔光出现在了西边的天空中...
+	End: 柔光渐渐消失...
+}
+
+// --localization note-- the "giveitem" and "eventstart" lines go together, one random "giveitem" line is picked first and then follows up with a random "eventstart" line
+DemonSiege: {
+	GiveItem: {
+		0: "{Player}接受了魔鬼的契约..."
+		1: "{Player}接受了自己的命运..."
+		2: "{Player}无法想象自己的{Item}会发生什么..."
+		3: "{Player}没有想到它会吃掉自己的{Item}..."
+		4: "{Player}心爱的{Item}将自己引入黑暗..."
+		5: 你的{Item}正被进一步腐化...
+		6: 你{Item}的周围环绕着难以想象的恐怖...
+		7: 秘术师咧着嘴笑着{Player}...
+	}
+
+	EventStart: {
+		0: ...恶魔对{Player}不以为然!
+		1: ...{Player}的故事在此结束!
+		2: ...你的{Item}引来了不必要的关注!
+		3: ...{Player}没有想到有什么接近了!
+		4: ...{Player}将被杀害.
+		5: ...{Player}将面临后果.
+		6: ...恐惧就在此处!
+		7: ...末日与黑暗降临了!
+	}
+
+	FailEat: 遗境祭坛吞噬了你的{0}...
+	Fail: 遗境祭坛反刍出了你的{0}...
+}
+
+NPCWantsToMoveIn: "{0}希望能定居于此."
+HardmodeChests: 洞穴的宝箱中出现了新的宝藏...

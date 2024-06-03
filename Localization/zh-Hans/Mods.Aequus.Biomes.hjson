@@ -1,0 +1,25 @@
+DemonSiegeZone: {
+	DisplayName: 遗境祭坛
+	EventName: 恶魔围攻
+	TownNPCDialogueName: ""
+}
+
+GlimmerZone: {
+	DisplayName: 柔光
+	TownNPCDialogueName: 柔光
+}
+
+PeacefulGlimmerZone: {
+	DisplayName: 宁静柔光
+	TownNPCDialogueName: 柔光
+}
+
+PollutedOceanBiomeSurface: {
+	DisplayName: 被污染的海洋
+	TownNPCDialogueName: 被污染的海洋
+}
+
+PollutedOceanBiomeUnderground: {
+	DisplayName: 被污染的地底
+	TownNPCDialogueName: 被污染的地底
+}

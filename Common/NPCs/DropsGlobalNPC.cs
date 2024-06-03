@@ -1,15 +1,71 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Runtime.InteropServices;
-using Terraria;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ModLoader;
+using tModLoaderExtended.Networking;
 
 namespace Aequus.Common.NPCs;
-public sealed class DropsGlobalNPC : GlobalNPC {
-    private static bool _rerolling;
 
+public sealed class DropsGlobalNPC : GlobalNPC {
     private static readonly Dictionary<int, List<IItemDropRule>> _dropRules = new();
+
+    public bool noOnKillEffects;
+
+    public override bool InstancePerEntity => true;
+
+    public override void ModifyGlobalLoot(GlobalLoot globalLoot) {
+        globalLoot.Add(Content.Items.PermaPowerups.NoHit.NoHitReward.GetGlobalLoot());
+    }
+
+    public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot) {
+        if (_dropRules.TryGetValue(npc.netID, out var dropRules)) {
+            foreach (var rule in dropRules) {
+                npcLoot.Add(rule);
+            }
+        }
+    }
+
+    public override bool SpecialOnKill(NPC npc) {
+        if (noOnKillEffects) {
+            return true;
+        }
+
+        return base.SpecialOnKill(npc);
+    }
+
+    public override void OnKill(NPC npc) {
+        // Only activate on kill effects on NPCs which are not friendly and have greater than 5 HP.
+        if (npc.friendly || npc.lifeMax <= 5) {
+            return;
+        }
+
+        // Find the closest eligable player.
+        Player nearestPlayer = null;
+        float closestDistance = 2000f; // On kill range.
+        for (int i = 0; i < Main.maxPlayers; i++) {
+            Player player = Main.player[i];
+            if (!npc.playerInteraction[i] || !player.active || player.DeadOrGhost || !player.TryGetModPlayer<AequusPlayer>(out _)) {
+                continue;
+            }
+
+            float distance = npc.Distance(player.Center);
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                nearestPlayer = player;
+            }
+        }
+
+        if (nearestPlayer == null) {
+            return;
+        }
+
+        var killInfo = new AequusPlayer.KillInfo(npc.Center, npc.type);
+        nearestPlayer.GetModPlayer<AequusPlayer>().OnKillNPC(in killInfo);
+
+        if (Main.netMode == NetmodeID.Server) {
+            ExtendedMod.GetPacket<OnKillPacket>().Send(nearestPlayer, killInfo);
+        }
+    }
 
     /// <summary>
     /// Allows you to add a drop rule to an NPC. Please only call this in SetStaticDefaults/PostSetupContent.
@@ -21,62 +77,32 @@ public sealed class DropsGlobalNPC : GlobalNPC {
     }
 
     public override void Load() {
-        On_NPC.NPCLoot_DropMoney += NPC_NPCLoot_DropMoney;
-        On_ItemDropResolver.ResolveRule += ItemDropResolver_ResolveRule;
-    }
-
-    public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot) {
-        if (_dropRules.TryGetValue(npc.netID, out var dropRules)) {
-            foreach (var rule in dropRules) {
-                npcLoot.Add(rule);
-            }
-        }
     }
 
     public override void Unload() {
         _dropRules.Clear();
     }
+}
 
-    #region Hooks
-    private static void NPC_NPCLoot_DropMoney(On_NPC.orig_NPCLoot_DropMoney orig, NPC self, Player closestPlayer) {
-        if (closestPlayer.TryGetModPlayer<AequusPlayer>(out var aequusPlayer) && aequusPlayer.accGrandRewardDownside) {
+internal class OnKillPacket : PacketHandler {
+    public void Send(Player player, AequusPlayer.KillInfo info) {
+        ModPacket packet = GetPacket();
+        packet.WritePackedVector2(info.Center);
+        packet.Write(info.Type);
+        packet.Write((byte)player.whoAmI);
+        packet.Send();
+    }
+
+    public override void Receive(BinaryReader reader, int sender) {
+        Vector2 center = reader.ReadPackedVector2();
+        int type = reader.ReadInt32();
+        int player = reader.ReadByte();
+
+        if (!Main.player.IndexInRange(player) || Main.player[player].TryGetModPlayer(out AequusPlayer aequus)) {
             return;
         }
-        orig(self, closestPlayer);
+
+        var killInfo = new AequusPlayer.KillInfo(center, type);
+        aequus.OnKillNPC(killInfo);
     }
-
-    private static ItemDropAttemptResult ItemDropResolver_ResolveRule(On_ItemDropResolver.orig_ResolveRule orig, ItemDropResolver self, IItemDropRule rule, DropAttemptInfo info) {
-        var result = orig(self, rule, info);
-        if (_rerolling || result.State != ItemDropAttemptResultState.FailedRandomRoll) {
-            return result;
-        }
-
-        float rolls = 0f;
-        if (info.player != null) {
-            rolls += info.player.GetModPlayer<AequusPlayer>().dropRolls;
-        }
-        //if (info.npc != null) {
-        //    rolls += info.npc.GetGlobalNPC<AequusNPC>().dropRolls;
-        //}
-
-        do {
-            _rerolling = true;
-            try {
-                var result2 = orig(self, rule, info);
-                if (result2.State != ItemDropAttemptResultState.FailedRandomRoll) {
-                    _rerolling = false;
-                    return result2;
-                }
-            }
-            catch (Exception ex) {
-                Aequus.Instance.Logger.Error(ex);
-            }
-            _rerolling = false;
-            rolls--;
-        }
-        while (rolls > 0f && info.rng.NextFloat(1f) < rolls);
-
-        return result;
-    }
-    #endregion
 }

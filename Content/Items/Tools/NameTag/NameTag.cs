@@ -1,19 +1,13 @@
-﻿using Aequus;
-using Aequus.Common.Items.Components;
+﻿using Aequus.Common.Items.Components;
 using Aequus.Common.Renaming;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace Aequus.Content.Items.Tools.NameTag;
 
+[FilterOverride(FilterOverride.Tools)]
 public class NameTag : ModItem, ICustomNameTagPrice {
-    public static int ChestSpawnrate = 8;
-
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 5;
     }
@@ -42,8 +36,8 @@ public class NameTag : ModItem, ICustomNameTagPrice {
         int screenMouseX = Main.mouseX + (int)Main.screenPosition.X;
         int screenMouseY = Main.mouseY + (int)Main.screenPosition.Y;
         for (int i = 0; i < Main.maxNPCs; i++) {
-            var npc = Main.npc[i];
-            if (!npc.active || !npc.getRect().Contains(screenMouseX, screenMouseY) || !npc.TryGetGlobalNPC<RenameNPC>(out var npcNameTag) || npcNameTag.CustomName == itemNameTag.CustomName) {
+            NPC npc = Main.npc[i];
+            if (!npc.active || !npc.getRect().Contains(screenMouseX, screenMouseY) || !npc.TryGetGlobalNPC(out RenameNPC npcNameTag) || npcNameTag.CustomName == itemNameTag.CustomName) {
                 continue;
             }
 
@@ -60,12 +54,13 @@ public class NameTag : ModItem, ICustomNameTagPrice {
     public static void NametagEffects(int i, string nameTag) {
         if (Main.npc[i].TryGetGlobalNPC<RenameNPC>(out var npcNameTag)) {
             npcNameTag.CustomName = nameTag;
-            npcNameTag.nameTagAnimation = 1f;
         }
 
         SoundEngine.PlaySound(SoundID.Item92, Main.npc[i].Center);
 
         if (Main.netMode != NetmodeID.Server) {
+            ModContent.GetInstance<NPCNameTagPopup>().ShowRenamePopup(i);
+
             for (int k = 0; k < 15; k++) {
                 var d = Dust.NewDustDirect(Main.npc[i].position, Main.npc[i].width, Main.npc[i].height, DustID.AncientLight, 0f, 0f, Scale: Main.rand.NextFloat(0.5f, 0.8f));
                 d.velocity *= 0.1f;
@@ -87,7 +82,7 @@ public class NameTag : ModItem, ICustomNameTagPrice {
     public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
         if (!Item.TryGetGlobalItem<RenameItem>(out var itemNameTag) || !itemNameTag.HasCustomName) {
             Main.GetItemDrawFrame(Item.type, out var texture, out var frame);
-            spriteBatch.Draw(AequusTextures.NameTagBlank, ItemHelper.WorldDrawPos(Item, texture), frame, lightColor, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(AequusTextures.NameTagBlank, ExtendItem.WorldDrawPos(Item, frame), frame, lightColor, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
             return false;
         }
         return true;

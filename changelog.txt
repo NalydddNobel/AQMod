@@ -1,25 +1,78 @@
 Version 3.0 Changes -------------------------------------------------------------------------------------------
 
 I. Additions & Changes:
+- Added Spanish and German Translations!!! Thank you niker for your spanish tranlsations, and Edwin for your German Translations!!!
 - Completely remade the project from the ground up, many items have been tweaked or temporarily removed.
-- Ported the Rich Man's Monocle
-- Ported Lesser, Greater, and Super Restoration Potions, with adjusted stats and recipes.
-- Ported Radon Moss, Radon Moss Fishing Bobber, Radon Moss Bricks and Radon Moss Brick Walls.
-- Ported Neutron Yogurt.
-- Ported Slice.
-- Ported almost every Dye.
-- Ported Mono and Omni Gems.
-- Ported all of the Energies.
-- Ported Fluorescence and Frozen Tears.
-- Ported all of the Relics and Trophies, even for un-ported bosses.
+- Added emotes for Aequus' Town NPCs.
 
+- New Item: Rose Tinted Glasses, makes you ignore the Blood Moon.
+- New Item: Stellar Glasses, makes you ignore the Glimmer.
+- New Item: Eclipse Glasses, makes you ignore the Eclipse.
+- New Item: Argon, Krypton, Neon, & Xenon Plant Statues.
+- New Item: Bamboo Pole, an early game fishing rod.
+- New Item: Steampunker's Rod.
 - New Item: Convergent Heart.
-- New Item: Copper & Tin Conductors, pre-Skeletron wiring, with a few unique effects!
+- New Item: Greater Honey Potion.
+- New Item: Super Honey Potion.
+- New Item: Ancient Angel Statue.
+- New Item: Rain Totem, place down to increase the chance for rain, crafted with Bamboo and Aquatic Energy.
+
+- Reworked Possessed Shards
+	-- Can now be attacked, stuns for about 5 seconds upon reaching 0 HP.
+	-- Improved handling and multiplayer performance
+- Black Phial now works slightly different functionally, having a 0.5 second cooldown between buff inflictions instead of increasing the rarity of debuff infliction.
+- Phoenix Ring now inherits the true effect of Magma Stone, instead of allowing all items to inflict Hellfire.
+- Black Plague no longer resets debuffs to have atleast 3 seconds of duration, and has the Phoenix Ring nerf.
+- Resprited Greater and Super Restoration Potions.
+- Omnibait
+	-- Resprited.
+	-- Fishing power reduced from 40% to 30%.
+	-- Is now used to craft Journeyman Bait, Master Bait, Crate Bait, Legendberries, and all Popper variants.
+- Crate Bait
+	-- Resprited.
+	-- Now increases the chance for Iron/Mythril and Golden/Titanium Crates.
+	-- No longer instantly consumed upon catching a crate.
+	-- No longer obtained from biome crates or Angler, and is exclusively crafted.
+- Mystic Popper
+	-- Resprited.
+	-- Renamed to "Spectral Popper".
+	-- Bait power changed from (50% + 25%) to (20%+40%).
+- Ichor Popper bait power changed from (31%+35%) to (40%+20%), and resprited.
+- Legendberry fishing power has been reduced from 40% to 30%, and adjusted the shading on the sprite.
+- Resprited Cursed Popper.
+- Tweaked functionality of Legendberry bait, you should now get rare stuff more often.
+- The Occultist is now immune to enemies from the Underworld or Demon Siege.
+- Adjusted Lesser, Greater, and Super Restoration Potions stats & recipes.
+- Resprited The Christmas Spirit.
+- Slightly tweaked the Junk Jet, and it can use more types of ammo.
+- Resprited & Renamed the Cosmic Chest to Fortunate Souvenir.
+- Resprited Ash Tombstones, and added "Golden" variants for dying with 10+ gold.
+- Resprited Omega Starite's relic.
+- Renamed Sentry Potion to Sentinel Potion
+- Added a small fire effect for the Lavaproof Mitten when placing in lava.
+- Many new death messages are either removed or tweaked.
+- Added and tweaked many Game Tips.
 
 Polluted Ocean:
 - From what was previously the Crab Crevice, this biome features new and familiar content, all with great amounts of effort put in!
-- Added the Scavenger, a Skeleton which can use armor and accessories
-- Added the Scavenger Bag, grants 10 inventory slots
+- New Enemy: Scavenger, a Skeleton which can use armor and accessories!
+- New Item: Scavenger Bag, grants 10 inventory slots.
+- New Enemy: Black Jellyfish, an explosive threat!
+	-- Fish in the Polluted Ocean to catch a baby black jelly! When used as bait, it explodes on any caught enemies dealing high damage.
+- New Enemy: Opaque Slime!
+- New Item: Trash Compactor, lets you compress trash, and decraft furniture.
+- New Item: Spam Mail, a magic weapon which sends unsafe mail to enemies to damage them.
+- New Item: Copper & Tin Conductors, pre-Skeletron wiring, with a few unique effects!
+- New Item: Copper & Tin Sea Traps, lets you catch fish while away.
+- New Item: Obsidian Fish Trap, same as the Sea Traps, but works in lava.
+- New Item: Plastic Darts, an earlygame dart to use in the Blowpipe or Star Phish.
+- New Item: Angler Lantern & Wisp Lantern, lets you see inside pots and emits light.
+- New Item: Dumpster, a 2x3 chest with 2 containers worth of space.
+
+Meadow:
+- Floating Islands will now sometimes contain the Meadow biome.
+- New Item: Meadow Grass Seeds, sold by the Dryad while in Space.
+- New Item: Meadow Mushroom, heals mana instead of health.
 
 Sky Merchant:
 - Resprited.
@@ -33,11 +86,75 @@ Sky Merchant:
 - New Item: Flashway Shield, grants a dash, slightly longer than the Shield of Cthulhu but cannot bonk on enemies.
 - New Item: Miraculous Feather, increases life regen and decreases respawn time for yourself and everyone on your team.
 	-- Combines with the Band of Regeneration to create the Golden Wind, granting more life regeneration.
+- New Item: Valentines Ring, give it to a loved one for increased stats for both of you!
 - New Item: Stun Gun, allows you to stun enemies, making them heavily vulnerable.
 - New Item: Furystar, reminiscent of the orignal Starfury! Using mana and all! (Well, it deals magic damage now.)
 
+Demon Siege:
+- Gore Nest
+	-- Renamed to "Oblivion Altar"
+	-- No longer dropped by Wall of Flesh
+	-- Can now be crafted at a Demon Altar
+
+- Keeper Imps
+	-- Renamed Keeper Imp to just "Keeper"
+	-- Will now spawn new Chained Souls if its low
+	-- Chained Souls now drop hearts (1-4 in classic/journey  |  1-2 in expert/master)
+	-- Added new sound effects
+
+- Cinder Bat
+	-- No longer drops Ancient Hell Beams Dye
+
+- All demon siege enemies no longer drop Demonic Energy, and instead drop Empty Soul Gems
+- Empty Soul Gems can now only be filled by non-Underworld/Demon Siege enemies
+
 II. Vanilla Changes:
+- The Lesser Mana Potion can now be crafted using Meadow Mushrooms.
+- Toolbelt now spawns in Chests Underground
+	-- Grants +5 backpack slots, but they only store items
+	-- No longer sold by the Goblin Tinkerer
+- Celestial Magnet now shimmers into Treasure Magnet (configurable with the 'Move Treasure Magnet' config)
+- Starfury now shimmers into Furystar
+- Lucky Horseshoe now shimmers into the Weighted Horsehoe
+- Shiny Red Balloon now shimmers into the Slimy Blue Balloon
+- Slime Crowns now have a 14.28% chance to spawn in Surface Chests.
 - Name Tags now have a 12.5% chance to spawn in Gold Chests underground.
 - Treasure Magnet no longer appears in Shadow Chests or Shadow Lock Boxes. It is instead sold by the Sky Merchant.
 - Changed the recipe for Restoration Potions, now crafted using Lesser Restoration Potions and Glowing Mushrooms.
 - The new Scavenger Skeletons can drop the Portable Cement Mixer, Paint Sprayer, Extendo Grip, and Brick Layer items. Adding an alt way to obtain them other than the Traveling Merchant.
+
+III. Removals
+- Removed Bloody Tearstones
+- Removed most of the "Ancient" dyes, and a few bad ones.
+- Removed the Heartshatter Necklace.
+- Removed Steak Eyes.
+- Removed Florid Jewel.
+- Removed Lustrous Soulgem.
+- Removed Forged Card.
+- Removed Faulty Coin.
+- Removed Fool's Gold Ring.
+- Removed Halting Machine & Halting Magnet.
+- Removed Ammo Backpack.
+- Removed Sentry 6502 & Sentinel 6510.
+- Removed Little Inferno, again.
+- Removed Mendshroom, again.
+- Removed Mallet.
+- Removed Slingshot & Slingsaber.
+- Removed Liquid Gun, again.
+- Removed Crabax, again.
+- Removed Silk Pickaxe & Silk Hammer, again.
+- Removed Galaxy Commision & Moro, again.
+- Removed Horrific Energy & Frolic Energy, again.
+- Removed Shutterstocker Clips, again.
+- Removed Impenetrable Coating, again.
+- Removed Tub of Cookie Dough, again.
+- Removed Ultra Starite Banner, again.
+- Removed White Phial, again.
+
+IV. Fixes
+- Lavaproof Mitten now allows block swap near lava.
+- Crate Bait can now catch modded biome crates.
+- Omnibait now shuffles modded biomes when probing for fish.
+- Natural Glimmer Events now reset the cooldown of the Enchanted Sundial and Moondial.
+- Fixed a few enemy names on banners not matching the actual enemy's name.
+- Trophies and Paintings now glow when using the Spelunker Potion.

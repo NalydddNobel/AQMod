@@ -1,0 +1,67 @@
+DisplayName: Gameplay Config
+
+PollutedOceanSide: {
+	Label: "[i:Aequus/TrashCompactor] Polluted Ocean Side"
+	Tooltip:
+		'''
+		Determines which side of the world the Polluted Ocean should generate.
+		{$PollutedOceanGenerationSideConfig.Tooltip}
+
+		[{$ColorNote}:Utilize this config for personal preference, or to fix an issue with overlapping biomes.]
+		'''
+}
+
+CaveVariety: {
+	Label: "[i:BonePickaxe] Aequus Caves"
+	Tooltip:
+		'''
+		Adds more cave variants, and overall expands caves to have much less dead-ends.
+		This value determines the quanity of Aequus caves to spawn.
+		Setting this to 0 disables them from spawning entirely.
+		'''
+}
+
+TownNPCSettleDownMessage: {
+	Label: "[i:MusicBoxTownNight] Villagers Settle Down Message"
+	Tooltip:
+		'''
+		During the beginning of a day, a message may appear saying a specific town NPC would like to settle down.
+		Census or other mod features may make this Obsolete.
+
+		[{$ColorNote}:Utilize this config for personal preference.]
+		'''
+}
+
+HardmodeChests: {
+	Label: "[i:Aequus/AdamantiteChest] Hardmode Chests"
+	Tooltip:
+		'''
+		Determines whether the Hardmode Chests system would be active. This has multiple gameplay changes.
+		1. In Hardmode, unopened chests will be upgraded and contain new loot.
+		2. Mimics in Hardmode will appear as the Hardmode Chests.
+		'''
+}
+
+PreHardmodeMimics: {
+	Label: "[i:GoldChest] Pre Hardmode Mimics"
+	Tooltip: Whether Mimics should appear in Pre-Hardmode. (and drop Pre-Hardmode loot.)
+}
+
+ShadowMimics: {
+	Label: "[i:ShadowChest] Shadow Mimics"
+	Tooltip: Whether Shadow Mimics should appear after defeating Skeletron. (And drop Shadow Chest loot.)
+}
+
+HardmodeMimics: {
+	Label: "[i:Aequus/HardFrozenChest] Hardmode Mimics"
+	Tooltip: Whether Aequus' special Hardmode Mimics should appear, replacing regular Mimics. This config does nothing if "{$GameplayConfig.HardmodeChests.Label}" is false.
+}
+
+PDAGetsAequusItems: {
+	Label: "[i:PDA] Aequus PDA"
+	Tooltip:
+		'''
+		Whether Aequus' new Info Accessories should be added to the PDA and upgrades.
+		Any items which use the PDA or upgrades in their recipes will automatically inherit Aequus' info accessories.
+		'''
+}

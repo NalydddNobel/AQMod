@@ -1,10 +1,7 @@
 ﻿using Aequus.Common.Items.Components;
-using Aequus.Content.Items.Material.OmniGem;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Potions.Healing.Restoration;
+
 public class GreaterRestorationPotion : ModItem, IApplyPotionDelay {
     public bool ApplyPotionDelay(Player player) {
         player.potionDelay = player.restorationDelayTime;
@@ -44,11 +41,19 @@ public class GreaterRestorationPotion : ModItem, IApplyPotionDelay {
         //    }
         //}
         CreateRecipe(3)
-            .AddIngredient(ItemID.BottledWater, 3)
+            .AddIngredient(ItemID.RestorationPotion, 3)
             .AddIngredient(ItemID.PixieDust, 3)
-            .AddIngredient<OmniGem>()
+            .AddIngredient(ItemID.CrystalShard)
             .AddTile(TileID.Bottles)
             .Register()
+            .SortBeforeFirstRecipesOf(ItemID.GreaterHealingPotion)
+            .DisableDecraft();
+        CreateRecipe(3)
+            .AddIngredient(ItemID.GreaterHealingPotion, 3)
+            .AddIngredient(ItemID.PinkGel, 3)
+            .AddTile(TileID.Bottles)
+            .Register()
+            .SortBeforeFirstRecipesOf(ItemID.GreaterHealingPotion)
             .DisableDecraft();
     }
 }

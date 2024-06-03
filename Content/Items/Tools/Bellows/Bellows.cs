@@ -1,13 +1,12 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
 using System.Collections.Generic;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace Aequus.Content.Items.Tools.Bellows;
 
+[FilterOverride(FilterOverride.Tools)]
 public class Bellows : ModItem {
-    public static float MountPushForcePenalty = 0.33f;
+    public static float MountPushForcePenalty { get; set; } = 0.33f;
 
     public override void SetDefaults() {
         Item.width = 20;
@@ -19,8 +18,8 @@ public class Bellows : ModItem {
         Item.reuseDelay = 5;
         Item.UseSound = SoundID.DoubleJump;
         Item.autoReuse = true;
-        Item.rare = ItemCommons.Rarity.SkyMerchantShopItem;
-        Item.value = ItemCommons.Price.SkyMerchantShopItem;
+        Item.rare = Commons.Rare.NPCSkyMerchant;
+        Item.value = Commons.Cost.NPCSkyMerchant;
         Item.shoot = ModContent.ProjectileType<BellowsProj>();
         Item.shootSpeed = 1f;
         Item.noUseGraphic = true;
@@ -28,8 +27,8 @@ public class Bellows : ModItem {
 
     public override void ModifyTooltips(List<TooltipLine> tooltips) {
         try {
-            tooltips.Insert(tooltips.GetIndex("Knockback"), new TooltipLine(Mod, "Knockback", TextHelper.GetKnockbackText(Item.knockBack)));
-            tooltips.Insert(tooltips.GetIndex("Speed"), new TooltipLine(Mod, "Speed", TextHelper.GetUseAnimationText(Item.useAnimation)));
+            tooltips.Insert(tooltips.GetIndex("Knockback"), new TooltipLine(Mod, "Knockback", ExtendLanguage.GetKnockbackText(Item.knockBack)));
+            tooltips.Insert(tooltips.GetIndex("Speed"), new TooltipLine(Mod, "Speed", ExtendLanguage.GetUseAnimationText(Item.useAnimation)));
         }
         catch {
 

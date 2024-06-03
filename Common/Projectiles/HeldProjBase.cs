@@ -1,7 +1,4 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-
-namespace Aequus.Common.Projectiles; 
+﻿namespace Aequus.Common.Projectiles;
 
 public abstract class HeldProjBase : ModProjectile {
     public float armRotation;

@@ -1,8 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria;
-
-namespace Aequus;
+﻿namespace Aequus.Core.Utilities;
 
 public static class SpriteBatchExtensions {
     public static void BeginTiles(this SpriteBatch spriteBatch, bool shader = false) {

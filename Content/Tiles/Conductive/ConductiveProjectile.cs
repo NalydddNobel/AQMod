@@ -1,11 +1,7 @@
 ﻿using Aequus.Common.Wires;
-using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Tiles.Conductive;
 

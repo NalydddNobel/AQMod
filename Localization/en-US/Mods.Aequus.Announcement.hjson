@@ -1,0 +1,37 @@
+Glimmer: {
+	Start: A glimmer appears in the sky...
+	StartEast: A glimmer appears in the eastern sky...
+	StartWest: A glimmer appears in the western sky...
+	End: The glimmer begins to fade away...
+}
+
+// --localization note-- the "giveitem" and "eventstart" lines go together, one random "giveitem" line is picked first and then follows up with a random "eventstart" line
+DemonSiege: {
+	GiveItem: {
+		0: "{Player} accepted a contract with the devil..."
+		1: "{Player} begins to accept their fate..."
+		2: "{Player} fails to imagine what will happen to their {Item}..."
+		3: "{Player} didn't expect it to eat their {Item}..."
+		4: "{Player}'s beloved {Item} lured them to the darkness..."
+		5: Your {Item} is being corrupted even further...
+		6: Horrors beyond imagination surround your {Item}...
+		7: The Occultist grins at {Player}...
+	}
+
+	EventStart: {
+		0: ...The demons are not impressed by {Player}!
+		1: ...{Player}'s story ends here!
+		2: ...Your {Item} attracts unwanted attention!
+		3: ...{Player} wont expect what's approaching!
+		4: ...{Player} will be slain.
+		5: ...{Player} will face the consequences.
+		6: ...The horrors are here!
+		7: ...Doom and darkness approaches!
+	}
+
+	FailEat: The Oblivion Altar consumes your {0}...
+	Fail: The Oblivion Altar regurgitates your {0}...
+}
+
+NPCWantsToMoveIn: A {0} would like to settle down.
+HardmodeChests: The chests of the caverns are blessed with new treasures...

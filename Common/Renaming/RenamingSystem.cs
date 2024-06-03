@@ -1,13 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Core.IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Terraria;
 using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Common.Renaming;
@@ -54,7 +51,7 @@ public sealed class RenamingSystem : ModSystem {
 
         string result = "";
         foreach (var i in _decodedTextList) {
-            result += i.Type != DecodeType.None ? TextHelper.ColorCommand(i.Output, DecodeColors[i.Type], pulse) : i.Output;
+            result += i.Type != DecodeType.None ? ChatTagWriter.Color(Colors.AlphaDarken(DecodeColors[i.Type]), i.Output) : i.Output;
         }
 
         return result;
@@ -63,8 +60,15 @@ public sealed class RenamingSystem : ModSystem {
     public static void DecodeText(string input, List<DecodedText> output) {
         string text = "";
         for (int i = 0; i < input.Length; i++) {
+            if (input[i] == '\\' && i < input.Length - 2 && input[i + 1] == 'n') {
+                FlushOldOutput();
+                text = "";
+                output.Add(new DecodedText("\\n", "\n", DecodeType.LanguageKey));
+                continue;
+            }
             if (input[i] == CommandChar) {
                 FlushOldOutput();
+                text = "";
 
                 string subString = input[i..];
                 int endIndex = subString.IndexOf(CommandEndChar);
@@ -109,6 +113,10 @@ public sealed class RenamingSystem : ModSystem {
 
     public static int UpdateRate = 60;
     private static int _gameTime;
+
+    public override void Load() {
+        SaveActions.PreSaveWorld += EnsureTagCompoundContents;
+    }
 
     public override void ClearWorld() {
         SyncList.Clear();
@@ -196,7 +204,7 @@ public sealed class RenamingSystem : ModSystem {
         }
     }
 
-    public static void EnsureTagCompoundContents() {
+    public static void EnsureTagCompoundContents(bool toCloud) {
         foreach (var marker in RenamedNPCs.Values) {
             if (marker.IsTrackingNPC && marker.IsTrackedNPCValid) {
                 marker.UpdateTagCompound(Main.npc[marker.TrackNPC]);

@@ -5,7 +5,6 @@
 .idea/
 bin/
 obj/
-Assets/Shaders/.compiler
+Effects/.compiler
 *.ase
 *.ini
-*.Temp.json

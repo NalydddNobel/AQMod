@@ -1,13 +1,9 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Graphics;
+﻿using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Golf;
 using Terraria.Graphics;
-using Terraria.ID;
 
 namespace Aequus.Common.Golfing;
 

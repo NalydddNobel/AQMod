@@ -1,6 +1,4 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+﻿using Aequus.Core.Assets;
 
 namespace Aequus.Common.Systems;
 
@@ -9,5 +7,7 @@ public partial class AequusSystem : ModSystem {
         if (Main.netMode != NetmodeID.Server) {
             AequusPlayer.LocalTimers = Main.LocalPlayer.GetModPlayer<AequusPlayer>().Timers;
         }
+
+        AequusShaders.LoadAllShadersForDragonLensShaderDebuggingSinceItWillThrowAnErrorIfTheyAllAreNotLoaded();
     }
 }

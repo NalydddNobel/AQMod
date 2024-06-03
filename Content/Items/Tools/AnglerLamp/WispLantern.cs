@@ -1,17 +1,13 @@
-﻿using Aequus.Common.Items;
-using Aequus.Common.Items.EquipmentBooster;
-using Aequus.Common.Particles;
-using Aequus.Core.Autoloading;
-using Microsoft.Xna.Framework;
+﻿using Aequus.Common;
 using System;
 using System.Collections.Generic;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+using tModLoaderExtended.GlowMasks;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace Aequus.Content.Items.Tools.AnglerLamp;
 
 [AutoloadGlowMask]
+[FilterOverride(FilterOverride.Tools)]
 public class WispLantern : ModItem {
     public static int PotSightRange { get; set; } = 900;
 
@@ -25,16 +21,13 @@ public class WispLantern : ModItem {
     public static int FireDebuffTime { get; set; } = 720;
     public static int DebuffRange { get; set; } = 480;
 
+    [CloneByReference]
     private readonly List<Dust> _dustEffects = new();
-
-    public override void SetStaticDefaults() {
-        EquipBoostDatabase.Instance.SetNoEffect(Type);
-    }
 
     public override void SetDefaults() {
         Item.width = 16;
         Item.height = 24;
-        Item.rare = ItemCommons.Rarity.HardDungeonLoot;
+        Item.rare = Commons.Rare.BiomeDungeonHM;
         Item.value = Item.sellPrice(gold: 5, silver: 50);
         Item.holdStyle = ItemHoldStyleID.HoldLamp;
         Item.useStyle = ItemUseStyleID.RaiseLamp;
@@ -54,15 +47,14 @@ public class WispLantern : ModItem {
             return;
         }
 
-        if (Main.netMode == NetmodeID.Server) {
-            return;
-        }
-
-        for (int i = 0; i < 6; i++) {
-            var color = Color.Lerp(Color.Teal, Color.LightSkyBlue, Main.rand.NextFloat(0.15f, 0.85f));
-            float scale = Main.rand.NextFloat(0.5f, 0.9f);
-            ParticleSystem.New<WispLanternParticle>(ParticleLayer.AboveDust)
-                .Setup(Main.rand.NextVector2FromRectangle(Main.npc[npc].getRect()), Main.npc[npc].velocity * 0.05f, color, scale).npc = npc;
+        if (Main.netMode != NetmodeID.Server) {
+            int count = Math.Clamp(Math.Max(Main.npc[npc].width, Main.npc[npc].height) / 10, 3, 8);
+            foreach (var particle in WispLanternParticles.NewMultiple(count)) {
+                particle.Location = Main.rand.NextVector2FromRectangle(Main.npc[npc].getRect());
+                particle.Color = Color.Lerp(Color.Teal, Color.LightSkyBlue, Main.rand.NextFloat(0.15f, 0.85f));
+                particle.Scale = Main.rand.NextFloat(0.5f, 0.9f);
+                particle.NPCAnchor = npc;
+            }
         }
     }
 
@@ -117,7 +109,7 @@ public class WispLantern : ModItem {
                 return false;
             }
             var canHitOverride = CombinedHooks.CanPlayerHitNPCWithItem(player, Item, npc);
-            if ((canHitOverride.HasValue && canHitOverride == false) || ((!canHitOverride.HasValue || canHitOverride != true) && npc.friendly && (npc.type != NPCID.Guide || !player.killGuide) && (npc.type != NPCID.Clothier || !player.killClothier))) {
+            if (canHitOverride.HasValue && canHitOverride == false || (!canHitOverride.HasValue || canHitOverride != true) && npc.friendly && (npc.type != NPCID.Guide || !player.killGuide) && (npc.type != NPCID.Clothier || !player.killClothier)) {
                 return false;
             }
             return npc.noTileCollide || Collision.CanHitLine(player.position, player.width, player.height, npc.position, npc.width, npc.height);
@@ -138,7 +130,7 @@ public class WispLantern : ModItem {
                     i--;
                 }
                 else {
-                    _dustEffects[i].rotation = Utils.AngleLerp(_dustEffects[i].rotation, 0f, animationProgress);
+                    _dustEffects[i].rotation = _dustEffects[i].rotation.AngleLerp(0f, animationProgress);
                     _dustEffects[i].scale = Math.Max(_dustEffects[i].scale, 0.33f);
                     _dustEffects[i].position = Vector2.Lerp(_dustEffects[i].position, lampPosition + (i / (float)_dustEffects.Count * MathHelper.TwoPi).ToRotationVector2() * outwards, positionLerp);
                 }

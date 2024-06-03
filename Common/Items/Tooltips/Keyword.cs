@@ -1,11 +1,10 @@
-﻿using Microsoft.Xna.Framework;
-using ReLogic.Graphics;
+﻿using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
 using Terraria.UI.Chat;
 
-namespace Aequus.Common.Items.Tooltips; 
+namespace Aequus.Common.Items.Tooltips;
 
 public class Keyword {
     private string header;

@@ -1,11 +1,8 @@
 ﻿using Aequus.Common.Items.Components;
-using Aequus.Content.DataSets;
-using Microsoft.Xna.Framework;
+using Aequus.DataSets;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.IO;
-using Terraria;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Common.Renaming;
@@ -57,6 +54,7 @@ public sealed class RenameItem : GlobalItem {
 
     public override GlobalItem Clone(Item from, Item to) {
         var renameItem = (RenameItem)base.Clone(from, to);
+        renameItem._resetNameTag = false;
         renameItem.UpdateCustomName(to);
         return renameItem;
     }
@@ -66,6 +64,9 @@ public sealed class RenameItem : GlobalItem {
     }
 
     public override void PostUpdate(Item item) {
+        if (item.timeSinceItemSpawned % 60 == 0) {
+            _resetNameTag = false;
+        }
         UpdateCustomName(item);
     }
 
@@ -112,6 +113,6 @@ public sealed class RenameItem : GlobalItem {
     }
 
     public static bool CanRename(Item item) {
-        return !item.IsACoin && !ItemSets.CannotRename.Contains(item.type);
+        return !item.IsACoin && !ItemDataSet.CannotRename.Contains(item.type);
     }
 }

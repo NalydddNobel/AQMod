@@ -1,9 +1,5 @@
-﻿using Aequus.Common.Items;
-using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Aequus.Common;
 using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Weapons.Magic.Furystar;
 
@@ -25,7 +21,7 @@ public class Furystar : ModItem {
         Item.useTime = 10;
         Item.mana = 18;
         Item.rare = ItemRarityID.Green;
-        Item.value = ItemCommons.Price.SkyMerchantShopItem;
+        Item.value = Commons.Cost.NPCSkyMerchant;
         Item.shoot = ModContent.ProjectileType<FurystarProj>();
         Item.UseSound = SoundID.Item8;
         Item.shootSpeed = 24f;

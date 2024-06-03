@@ -1,9 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.Audio;
+﻿using Terraria.Audio;
 using Terraria.GameContent.Golf;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.Golfing;
 

@@ -1,0 +1,167 @@
+DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
+
+ConeheadZombie: {
+	// DisplayName: Armored Zombie
+	// Bestiary: Mindlessly wandering around the Polluted Beach, this zombie scrapped together a defensive attire from the debris.
+	// Slimed_Bestiary: "{$Bestiary_FlavorText.npc_SlimedZombie}"
+}
+
+Scavenger: {
+	DisplayName: Carroñero
+	Bestiary: Alguna vez piratas vicios navegando los mares, sus huesos retienen la necesidad de robar y saquear.
+	BannerName: Estandar de Carroñero
+}
+
+ScavengerLootBag.DisplayName: Bolsa Carroñera
+
+MonsterChestSummon: {
+	DisplayName: Cofre Monstruo
+	Bestiary: N/A
+}
+
+BlackJellyfish: {
+	DisplayName: Medusa Negra
+	Bestiary: Evolución en un ambiente tan contaminado es difícil, estas medusas descubrieron que obliterar a sus enemigos y así mismos sería la mejor forma de defender a su especie, su esperanza de vida varía entre un par de minutos a años.
+	BannerName: Estandarte de Medusa Negra
+}
+
+OilSlime: {
+	DisplayName: Slime Opaco
+	Bestiary: Estos Slimes Viscosos estan formados por aceites y residuos, Permitiendoles ser mas resistentes que los slimes normales. Es vulnerable al fuego.
+	BannerName: Estandarte de Slime Opaco
+}
+
+BreadOfCthulhu: {
+	DisplayName: Pan de Cthulhu
+	BannerName: Estandarte de Pan de Cthulhu
+	Bestiary: Un bocadillo perdido que obtuvo vida despues de caer por un portal maligno, ¡Esta rebanada no tiene planeado ser tu almuerzo! Ten cuidado cuando pezcas, porque podria tomar el anzuelo de un pezcador que parece presa fácil.
+}
+
+// --localization note-- "conductor" as in an orchestra conductor
+Conductor: {
+	DisplayName: Director
+	Bestiary: Un amalgama de tecnología anticuada. desesperado por demostrar que aun sirve de algo, trata de poner un espectaculo a quien sea que se acerce usando ondas de radio condensadas.
+	BannerName: Estandarte de Director
+	ProjectileName: Orquestra encantada
+}
+
+Mirage.Bestiary: Durante la lluvia, nubes toxicas se forman y acumulan formando este monstruo acídico, desea ser un nimbo real, pero tiene problemas haciéndose amigo hasta de un muñeco de pruebas.
+Pillbug.Bestiary: Bendecido con Energía Acuática, estos insectos corretean y se alimentan de la contaminación como si no fuera nada.
+Chromite.Bestiary: Un insecto con un caparazon metalico que cambia de color usando un mecanismo magnetico, Son una plaga dómestica común, y el colmo para los microondas. Podrían ser útil como carnada.
+Crabson.DisplayName: Crabson
+OmegaStarite.DisplayName: Omega Starite
+DustDevil.DisplayName: Demonio de Polvo
+
+BloodMimic: {
+	DisplayName: Cofre falso sangriento
+	BannerName: Estandarte de Cofre falso sangriento
+	Bestiary: Cuando la luz de la luna roja aparece, los cuerpos putrefactos de saqueadores pueden llegar a unirse con los cofres que trataron de robar, corrompiendo y mutando el tesoro que contenia.
+}
+
+CinderBat: {
+	Bestiary: Un demonio menor parecido a un murciélago, famoso por su cara fea y si actitud aun mas fea. Definitivamente no tiene un complejo.
+	DisplayName: Murciélago de Brasas
+	BannerName: Estandarte de Murciélago de Brasas
+}
+
+LeggedLava: {
+	DisplayName: Lava andante
+	Bestiary: Slimes de lava tocados por la "Bendición" carnosa de los altares de oblivio tienden a crecer piernas. Brincan libremente escupiendo energia sombría, pero afortunadamente son muy pesados como para escalar paredes.
+	BannerName: Estandarte de Lava andante
+}
+
+KeeperImp: {
+	DisplayName: Custodiante
+	Bestiary: Captura almas para si mismo, marchitando sus cuerpos, y rompiendo su voluntad, este diablillo consiguio mascotas mortales que siguen sus instrucciónes perfectamente.
+	BannerName: Estandarte de Custodiante
+}
+
+ChainedSoul.DisplayName: Alma encadenada
+
+DwarfStarite: {
+	DisplayName: Starite Enana
+	Bestiary: Si un Starite no consigue suficiente energia para evoluciónar, este se desolvera hasta quedar como una particula de luz. Apesar de tener sus poderes atrofiados, disfruta de su jubilación flotando sin rumbo.
+	// ItemTooltip: ""
+}
+
+UltraStarite: {
+	DisplayName: Ultra Starite
+	Bestiary: En su ultima etapa de crecimiento, starites elite pueden concentrar la energia de su núcleo expuesto para formar rayos mortales. ¡es casi como si el cielo estuviera cayendo!
+}
+
+HyperStarite: {
+	DisplayName: Hiper Starite
+	Bestiary: Cuando un Starite envejece, este se vuelve mas volátil y comienza a expandirse, lo que permite utilizar sus segmentos en orbita como armas.
+	BannerName: Estandarte de Hiper Starite
+}
+
+SuperStarite: {
+	DisplayName: Super Starite
+	Bestiary: Starites que consiguen suficiente energía pueden mudar de caparazón y evolucionar a esta forma blindada.
+	BannerName: Estandarte de Super Starite
+}
+
+Starite: {
+	DisplayName: Starite
+	Bestiary: A piece of animate stardust bearing a striking resemblance to fallen stars, their exterior seems gassy but will grow to have a sturdy shell.
+	BannerName: Estandarte de Starite
+}
+
+PhysicistPet: {
+	// DisplayName: Drone
+	// Bestiary: This tiny contraption follows the Physicist wherever she goes, constantly logging data from the environment to ensure nothing is missed. Miniaturized for personal use from a larger surveillance model.
+
+	Dialogue: {
+		// 0: Beep boop.
+		// 1: Beep bop.
+	}
+}
+
+CleanserDrone: {
+	// DisplayName: Cleanser Drone
+	// Bestiary: Created by the Physicist in collaboration with the Steampunker to keep your town pure and habitable. Draws energy from the town's pylon as power.
+}
+
+GunnerDrone: {
+	// DisplayName: Gunner Drone
+	// Bestiary: Created by the Physicist to protect your town, it draws energy from the town's pylon as power.
+}
+
+HealerDrone: {
+	// DisplayName: Healer Drone
+	// Bestiary: Created by the Physicist to keep your town healthy, it draws energy from the town's pylon as power.
+}
+
+AdamantiteMimic.DisplayName: Cofre falso de Adamantita
+// FrostMimic.DisplayName: Frost Mimic
+ShadowMimic.DisplayName: Cofre falso Oscuro
+
+Eel: {
+	// DisplayName: Eel
+	// BannerName: Eel Banner
+	// Bestiary: Constant consumption of live wires and machinery lead up to this eel's death, and later reanimation. The cables which lined through its body control its motion and behavior, bringing it new life.
+}
+
+SeaFirefly: {
+	DisplayName: {
+		// $parentVal: Sea Firefly
+		// Red: Red Sea Firefly
+		// Orange: Orange Sea Firefly
+		// Yellow: Yellow Sea Firefly
+		// Lime: Lime Sea Firefly
+		// Green: Green Sea Firefly
+		// Teal: Teal Sea Firefly
+		// Cyan: Cyan Sea Firefly
+		// SkyBlue: Sky Blue Sea Firefly
+		// Blue: Blue Sea Firefly
+		// Purple: Purple Sea Firefly
+		// Violet: Violet Sea Firefly
+		// Pink: Pink Sea Firefly
+		// Black: Black Sea Firefly
+		// White: Silver Sea Firefly
+		// Rainbow: Rainbow Sea Firefly
+	}
+
+	// Bestiary: Mods.Aequus.NPCs.SeaFirefly.Bestiary
+	// ItemTooltip: ""
+}

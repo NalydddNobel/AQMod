@@ -1,0 +1,167 @@
+DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
+
+ConeheadZombie: {
+	DisplayName: 带甲僵尸
+	Bestiary: 无意识的徘徊在被污染的沙滩, 这个僵尸从垃圾中拼凑出了一套防御服装.
+	Slimed_Bestiary: "{$Bestiary_FlavorText.npc_SlimedZombie}"
+}
+
+Scavenger: {
+	DisplayName: 拾荒者
+	Bestiary: 曾经在七大洋中航行的恶毒海盗, 他们偷窃和掠夺的欲望甚至存在于他们腐烂的骨头中.
+	BannerName: 拾荒者旗帜
+}
+
+ScavengerLootBag.DisplayName: 拾荒者袋子
+
+MonsterChestSummon: {
+	DisplayName: 怪物箱
+	Bestiary: copper chest
+}
+
+BlackJellyfish: {
+	DisplayName: 黑水母
+	Bestiary: 在这样一个被污染的环境中, 进化朝着奇怪的方向发展, 这些水母会为了保护血亲而过载自爆; 它们的寿命从几分钟到几年不等.
+	BannerName: 黑水母旗
+}
+
+OilSlime: {
+	DisplayName: 不透明的史莱姆
+	Bestiary: 这些具有粘性的史莱姆形成自近代的石油与废物, 使得它们比普通的史莱姆更耐造. 更加容易受到火焰的影响.
+	BannerName: 不透明的史莱姆旗
+}
+
+BreadOfCthulhu: {
+	DisplayName: 克苏鲁之面包
+	BannerName: 克苏鲁之面包旗
+	Bestiary: 一种遗失的食物, 当它穿过惊骇传送门后重新获得了生命, 这个令人厌恶的面包并不打算成为你的午餐! 钓鱼时要小心, 它可能会挑看起来容易捕食的没有经验的渔夫来诱惑.
+}
+
+// --localization note-- "conductor" as in an orchestra conductor
+Conductor: {
+	DisplayName: 指挥
+	Bestiary: 一种科技上的弗兰肯斯坦, 这一经典的历史电子产品可以引导和操纵无线电波来保护自己. 无论你喜欢与否, 它都一定会上演一出好戏.
+	BannerName: 指挥旗
+	ProjectileName: 魔法合奏
+}
+
+Mirage.Bestiary: 下雨时, 有毒的雾云形成并聚集在一起, 形成这种酸性怪物. 它希望自己能像真正的雨云一样, 但就连和目标假人交朋友都有困难.
+Pillbug.Bestiary: 被海蓝能量所祝福, 这些虫子到处乱爬, 以污染为食, 仿佛污染对它们来说不算什么.
+Chromite.Bestiary: 一种甲虫形状的虫子, 有着能够通过磁性机制来改变颜色以融入周围环境的金属外壳. 它们是常见的家庭害虫, 是微波炉的灾祸, 但也可能是一种有用的诱饵.
+Crabson.DisplayName: 巨蟹蛤
+OmegaStarite.DisplayName: 终末之星
+DustDevil.DisplayName: 沙尘恶魔
+
+BloodMimic: {
+	DisplayName: 血红模仿者
+	BannerName: 血红模仿者旗
+	Bestiary: 当可怕的红月照耀时, 被杀的宝箱劫掠者溃烂的尸体可能会试图与他们曾经想掠夺的宝箱合并, 腐蚀并突变内部的宝藏.
+}
+
+CinderBat: {
+	Bestiary: 蝙蝠般的小恶魔, 以其丑陋的面孔和更丑陋的态度而闻名. 绝对没有私人恩怨.
+	DisplayName: 幻形蝠
+	BannerName: 幻形蝠旗
+}
+
+LeggedLava: {
+	DisplayName: 有腿的岩浆
+	Bestiary: 被血巢的血肉'祝福'触碰的岩浆史莱姆会长出蜘蛛般的腿. 它们自由的跳来跳去并喷吐暗影能量, 万幸的是, 它们太重了, 没法爬上墙壁.
+	BannerName: 附腿熔岩旗
+}
+
+KeeperImp: {
+	DisplayName: 看守者
+	Bestiary: 通过捕捉灵魂, 使它们的身体枯萎, 并破坏它们的意志, 这只小淘气获得了完全听从其命令的致命宠物.
+	BannerName: 看守者旗
+}
+
+ChainedSoul.DisplayName: 链缚之魂
+
+DwarfStarite: {
+	DisplayName: 矮化源星
+	Bestiary: 如果一颗星源没有收集到足够的能量来进化, 那么它会逐渐萎缩成一个光点. 它的力量萎缩到了无用的地步, 尽管如此, 它仍然通过漫无目的的漂浮来享受着摸鱼生活.
+	ItemTooltip: ""
+}
+
+UltraStarite: {
+	DisplayName: 终耀源星
+	Bestiary: 处于成长最后阶段的精英星源可以将暴露的核心集中到致命的激光束上. 你认为天要塌下来了是可以理解的!
+}
+
+HyperStarite: {
+	DisplayName: 巨耀源星
+	Bestiary: 随着老化, 星源开始膨胀并变得更不稳定, 导致其部件被推入自身轨道内, 能够当做武器使用.
+	BannerName: 巨耀源星旗
+}
+
+SuperStarite: {
+	DisplayName: 极耀源星
+	Bestiary: 聚集了足够能量的星源最终会蜕去外壳进化为这种装甲形态.
+	BannerName: 极耀源星旗
+}
+
+Starite: {
+	DisplayName: 源星
+	Bestiary: 一块与坠落之星有着惊人相似度的活体星尘, 它们的外表看起来是气态的, 但实际上会长出坚硬的外壳.
+	BannerName: 源星旗
+}
+
+PhysicistPet: {
+	DisplayName: 无人机
+	Bestiary: 无论物理学家走到哪里, 这个小小的装置都会跟着她, 不断记录环境中的数据以确保没有遗漏. 小型化更大的监视模型以供个人使用.
+
+	Dialogue: {
+		0: 哔哔啵.
+		1: 哔啵.
+	}
+}
+
+CleanserDrone: {
+	DisplayName: 清扫无人机
+	Bestiary: 它是由物理学家和蒸汽朋克人为了保持你小镇的纯净和宜居而联合创造的. 它从小镇的晶塔中汲取能量作为动力.
+}
+
+GunnerDrone: {
+	DisplayName: 火炮无人机
+	Bestiary: 它是由物理学家为了保护你的小镇而创造的, 它从小镇的晶塔中汲取能量作为动力.
+}
+
+HealerDrone: {
+	DisplayName: 治疗无人机
+	Bestiary: 它是由物理学家为了保持你小镇的健康而创造的, 它从小镇的晶塔中汲取能量作为动力.
+}
+
+AdamantiteMimic.DisplayName: 精金宝箱怪
+FrostMimic.DisplayName: 寒霜宝箱怪
+ShadowMimic.DisplayName: 暗影宝箱怪
+
+Eel: {
+	DisplayName: 鳗鱼
+	BannerName: 鳗鱼旗
+	Bestiary: 恒定放电的电线和机械最终导致了这条鳗鱼的死亡, 随后它又被复活了. 穿过它身体的电缆控制着它的运动和行为, 为它带来了新生.
+}
+
+SeaFirefly: {
+	DisplayName: {
+		$parentVal: 海萤火虫
+		Red: 红色海萤火虫
+		Orange: 橙色海萤火虫
+		Yellow: 黄色海萤火虫
+		Lime: 青柠色海萤火虫
+		Green: 绿色海萤火虫
+		Teal: 深青色海萤火虫
+		Cyan: 青色海萤火虫
+		SkyBlue: 天蓝色海萤火虫
+		Blue: 蓝色海萤火虫
+		Purple: 紫色海萤火虫
+		Violet: 浅紫色海萤火虫
+		Pink: 粉色海萤火虫
+		Black: 黑色海萤火虫
+		White: 银色海萤火虫
+		Rainbow: 彩色海萤火虫
+	}
+
+	Bestiary: Mods.Aequus.NPCs.SeaFirefly.Bestiary
+	ItemTooltip: ""
+}

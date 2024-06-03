@@ -1,7 +1,5 @@
-﻿using Aequus.Core.Networking;
-using System.IO;
-using Terraria;
-using Terraria.ModLoader;
+﻿using System.IO;
+using tModLoaderExtended.Networking;
 
 namespace Aequus.Common.Tiles.Components;
 

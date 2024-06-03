@@ -1,0 +1,64 @@
+FishingPoles: {
+	SteampunkerFishingPole: {
+		DisplayName: 蒸汽朋克人之杖
+		Tooltip: 能够自动收杆并重新投出钓鱼浮标
+	}
+
+	BambooFishingPole: {
+		DisplayName: 竹竿
+		Tooltip: 大幅度增加捕获率
+	}
+}
+
+Bait: {
+	BlackJellyfishBait: {
+		DisplayName: "{$NPCs.BlackJellyfish.DisplayName}"
+		Tooltip: 爆炸并伤害被钓的敌人
+	}
+
+	CrateBait: {
+		DisplayName: 宝匣饵
+		Tooltip: 大幅度增加宝匣的捕获率
+	}
+
+	LegendberryBait: {
+		DisplayName: 传奇浆果
+		Tooltip: 增加稀有物品的捕获率
+	}
+
+	Omnibait: {
+		DisplayName: 全能鱼饵
+		Tooltip:
+			'''
+			视作在各种生物群落中钓鱼
+			也能够制作成不同的鱼饵
+			'''
+	}
+
+	CorruptPopper: {
+		DisplayName: 诅咒响饵
+		Tooltip: 在腐化之地钓鱼时增加{0}%鱼饵力
+	}
+
+	CrimsonPopper: {
+		DisplayName: 灵液响饵
+		Tooltip: 在猩红之地钓鱼时增加{0}%鱼饵力
+	}
+
+	HallowPopper: {
+		DisplayName: 秘圣响饵
+		Tooltip: 在神圣之地钓鱼时增加{0}%鱼饵力
+	}
+}
+
+Catches: {
+	Killifish: {
+		DisplayName: 鳉鱼
+		Tooltip: ""
+	}
+
+	Piraiba: {
+		DisplayName: 须鲇鱼
+		Tooltip: ""
+	}
+}

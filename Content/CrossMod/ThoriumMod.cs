@@ -1,27 +1,19 @@
-﻿using Aequus.Content.DataSets;
-using Aequus.Core.CrossMod;
-using Terraria.ID;
-using Terraria.ModLoader;
+﻿using Aequus.Core.CrossMod;
+using Aequus.DataSets;
 
-namespace Aequus.Content.CrossMod {
-    internal class ThoriumMod : ModSupport<ThoriumMod> {
-        public override void SafeLoad(Mod mod) {
-        }
+namespace Aequus.Content.CrossMod;
 
-        public override void AddRecipes() {
-            foreach (var b in BuffSets.PlayerDoTDebuff) {
-                if (b >= BuffID.Count && BuffLoader.GetBuff(b).Mod.Name == "Aequus") {
-                    Call("AddPlayerDoTBuffID", b);
-                }
-            }
-            foreach (var b in BuffSets.PlayerStatusDebuff) {
-                if (b >= BuffID.Count && BuffLoader.GetBuff(b).Mod.Name == "Aequus") {
-                    Call("AddPlayerStatusBuffID", b);
-                }
+internal class ThoriumMod : SupportedMod<ThoriumMod> {
+    public override void AddRecipes() {
+        foreach (int buffId in BuffDataSet.PlayerDoTDebuff) {
+            if (buffId >= BuffID.Count && BuffLoader.GetBuff(buffId)?.Mod == Aequus.Instance) {
+                Call("AddPlayerDoTBuffID", buffId);
             }
         }
-
-        public override void SafeUnload() {
+        foreach (int buffId in BuffDataSet.PlayerStatusDebuff) {
+            if (buffId >= BuffID.Count && BuffLoader.GetBuff(buffId)?.Mod == Aequus.Instance) {
+                Call("AddPlayerStatusBuffID", buffId);
+            }
         }
     }
 }

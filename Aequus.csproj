@@ -1,55 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\tModLoader.targets" />
-	
+
+  <!-- ASSEMBLY -->
   <PropertyGroup>
     <AssemblyName>Aequus</AssemblyName>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>latest</LangVersion>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+	<!-- Generates a file with all available documentation (xml comments (///) -->
+	<GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DocumentationFile>Aequus.xml</DocumentationFile>
   </PropertyGroup>
 
+  <!-- DEPENDANCIES -->
   <ItemGroup>
-    <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
-  </ItemGroup>
-		
-  <ItemGroup>
-    <None Remove="SourceGenerators\**" />
-	<EmbeddedResource Remove="SourceGenerators\**" />
-	<Compile Remove="SourceGenerators\**" />
+	<!-- tML nuget package -->
+	<PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
+	<!-- custom written FNAUtils dll -->
+	<Reference Include="FNAUtils">
+	  <HintPath>lib\FNAUtils.dll</HintPath>
+	</Reference>
+	<!-- custom written util dll -->
+	<Reference Include="tModLoaderExtended">
+	  <HintPath>lib\tModLoaderExtended.dll</HintPath>
+	</Reference>
+	<!-- Aequus Music dependancy -->
+	<ProjectReference Include="..\AequusMusic\AequusMusic.csproj" />
+	<!-- Source Generator (For AequusTextures and AequusSounds) -->
+	<ProjectReference Include="project\SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
+  <!-- FILE MANAGEMENT -->
   <ItemGroup>
-	<ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	<Compile Remove="project\**" />
+    <EmbeddedResource Remove="project\**" />
+    <None Remove="project\**" />
+	<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" />
+	<AdditionalFiles Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" />
 	<AdditionalFiles Include="**\*.png" />
 	<AdditionalFiles Include="**\*.ogg" />
 	<AdditionalFiles Include="**\Localization\*.hjson" />
-  	<AdditionalFiles Remove="**\bin\**" />
+	<AdditionalFiles Remove="**\bin\**" />
 	<AdditionalFiles Remove="**\obj\**" />
 	<AdditionalFiles Remove="**\SourceGenerators\**" />
 	<AdditionalFiles Remove="**\Properties\**" />
+	<AdditionalFiles Remove="project\**" />
   </ItemGroup>
 
+  <!-- SOURCE GENERATORS -->
   <PropertyGroup>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-    <CompilerGeneratedFilesOutputPath>Temp</CompilerGeneratedFilesOutputPath>
+    <CompilerGeneratedFilesOutputPath>comp</CompilerGeneratedFilesOutputPath>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
+  <!-- DEBUG -->
+  <ItemGroup Condition="'$(Configuration)' == 'Debug'">
+	<AdditionalFiles Remove="Old\**" />
+	<Compile Remove="Old\**" />
+	<None Remove="Old\**" />
+	<EmbeddedResource Remove="Old\**" />
+	<AdditionalFiles Include="Old\**\*.png" />
+	<AdditionalFiles Include="Old\**\*.ogg" />
   </ItemGroup>
-
   <ItemGroup>
-    <None Remove="Content\Equipment\Armor\Castaway\CastawayChestplate.png" />
-    <None Remove="Content\Equipment\Armor\Castaway\CastawayChestplate_Body.png" />
-    <None Remove="Content\Equipment\Armor\Castaway\CastawayHelmet.png" />
-    <None Remove="Content\Equipment\Armor\Castaway\CastawayHelmet_Head.png" />
-    <None Remove="Content\Equipment\Armor\Castaway\CastawayLeggings.png" />
-    <None Remove="Content\Equipment\Armor\Castaway\CastawayLeggings_Legs.png" />
-    <None Remove="Content\Equipment\Armor\Castaway\DefenseDamageIndicator.png" />
-    <None Remove="Localization\en-US_Mods.Aequus.Armor.hjson" />
+    <None Remove="Content\Tiles\Misc\SeaFireflyBlock.png" />
+    <None Remove="Content\Tiles\Misc\SeaFireflyBlockItem.png" />
   </ItemGroup>
+  
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<Optimize>False</Optimize>
+	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<Optimize>False</Optimize>
+	</PropertyGroup>
 </Project>

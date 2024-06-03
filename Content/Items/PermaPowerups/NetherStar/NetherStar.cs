@@ -1,30 +1,27 @@
-﻿using Aequus;
-using Aequus.Core.Assets;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Aequus.Core.Assets;
+using Aequus.Core.CodeGeneration;
 using System;
-using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.PermaPowerups.NetherStar;
 
+[WorkInProgress]
+[Gen.AequusPlayer_SavedField<bool>("usedConvergentHeart")]
 public class NetherStar : ModItem {
     public const string MiscShaderKey = "Aequus:NetherStar";
 
     public override void Load() {
         if (!Main.dedServ) {
-            GameShaders.Misc[MiscShaderKey] = new MiscShaderData(AequusShaders.FadeToCenter.Ref, "FadeToCenterPass")
+            GameShaders.Misc[MiscShaderKey] = new MiscShaderData(AequusShaders.FadeToCenter, "FadeToCenterPass")
                 .UseImage1(AequusTextures.NetherStarMask)
                 .UseImage2(AequusTextures.EffectNoise);
         }
     }
 
     public override void SetStaticDefaults() {
-        ItemID.Sets.ItemNoGravity[Type] = true;
+        ItemSets.ItemNoGravity[Type] = true;
     }
 
     public override void SetDefaults() {
@@ -34,9 +31,9 @@ public class NetherStar : ModItem {
         Item.width = 24;
         Item.height = 24;
         Item.consumable = true;
-        Item.rare = ItemRarityID.LightPurple;
         Item.UseSound = SoundID.Item92;
         Item.maxStack = Item.CommonMaxStack;
+        Item.rare = ItemRarityID.Purple;
         Item.value = Item.sellPrice(gold: 2);
     }
 

@@ -1,8 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Tiles.Conductive;
 public class ConductiveSystem : ModSystem {
@@ -16,9 +13,9 @@ public class ConductiveSystem : ModSystem {
             timeActive++;
         }
 
-        public static float GetDistance(int i, int j) {
-            int differenceX = Math.Abs(PoweredLocation.X - i);
-            int differenceY = Math.Abs(PoweredLocation.Y - j);
+        public static float GetDistance(int i, int j, Point origin) {
+            int differenceX = Math.Abs(origin.X - i);
+            int differenceY = Math.Abs(origin.Y - j);
             return Math.Max(differenceX, differenceY);
         }
 

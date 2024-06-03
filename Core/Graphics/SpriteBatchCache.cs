@@ -1,78 +1,31 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System.Reflection;
-using Terraria.ModLoader;
+﻿using System;
 
 namespace Aequus.Core.Graphics;
 
-public sealed class SpriteBatchCache : ILoadable {
-    private static FieldInfo sortModeField;
-    private static FieldInfo blendStateField;
-    private static FieldInfo depthStencilStateField;
-    private static FieldInfo rasterizerStateField;
-    private static FieldInfo samplerStateField;
-    private static FieldInfo customEffectField;
-    private static FieldInfo transformMatrixField;
+public sealed class SpriteBatchCache {
+    public BlendState BlendState { get; private set; }
+    public DepthStencilState DepthStencilState { get; private set; }
+    public RasterizerState RasterizerState { get; private set; }
+    public SamplerState SamplerState { get; private set; }
 
-    public SpriteSortMode sortMode;
-    public BlendState blendState;
-    public DepthStencilState depthStencilState;
-    public RasterizerState rasterizerState;
-    public SamplerState samplerState;
-    public Effect customEffect;
-    public Matrix transformMatrix;
-
-    public SpriteBatchCache() {
+    public void Begin(SpriteBatch spriteBatch, SpriteSortMode sortMode, Effect customEffect = null, Matrix? transform = null) {
+        spriteBatch.Begin(sortMode, BlendState, SamplerState, DepthStencilState, RasterizerState, customEffect, transform ?? Matrix.Identity);
     }
 
-    public SpriteBatchCache(SpriteSortMode sortMode, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState,
-        RasterizerState rasterizerState, Effect effect, Matrix transformMatrix) {
-        this.sortMode = sortMode;
-        this.blendState = blendState;
-        this.samplerState = samplerState;
-        this.depthStencilState = depthStencilState;
-        this.rasterizerState = rasterizerState;
-        customEffect = effect;
-        this.transformMatrix = transformMatrix;
-    }
+    /// <summary>
+    /// Note: This calls <see cref="SpriteBatch.End"/>, and then grabs all of the graphics device info and caches it into the various properties.
+    /// Use <see cref="Begin(SpriteBatch, SpriteSortMode, Effect, Matrix?)"/> to restart <paramref name="spriteBatch"/> back to its original state, with its <see cref="SpriteSortMode"/> needing to be respecified.
+    /// </summary>
+    /// <param name="spriteBatch"></param>
+    /// <exception cref="InvalidOperationException"></exception>
+    public void InheritFrom(SpriteBatch spriteBatch) {
+        spriteBatch.End();
 
-    public SpriteBatchCache(SpriteBatch spriteBatch) {
-        Inherit(spriteBatch);
-    }
+        GraphicsDevice g = spriteBatch.GraphicsDevice;
 
-    void ILoadable.Load(Mod mod) {
-        var t = typeof(SpriteBatch);
-        var flags = BindingFlags.NonPublic | BindingFlags.Instance;
-        sortModeField = t.GetField(nameof(sortMode), flags);
-        blendStateField = t.GetField(nameof(blendState), flags);
-        samplerStateField = t.GetField(nameof(samplerState), flags);
-        depthStencilStateField = t.GetField(nameof(depthStencilState), flags);
-        rasterizerStateField = t.GetField(nameof(rasterizerState), flags);
-        customEffectField = t.GetField(nameof(customEffect), flags);
-        transformMatrixField = t.GetField(nameof(transformMatrix), flags);
-    }
-
-    void ILoadable.Unload() {
-        sortModeField = null;
-        blendStateField = null;
-        samplerStateField = null;
-        depthStencilStateField = null;
-        rasterizerStateField = null;
-        customEffectField = null;
-        transformMatrixField = null;
-    }
-
-    public void Begin(SpriteBatch spriteBatch) {
-        spriteBatch.Begin(sortMode, blendState, samplerState, depthStencilState, rasterizerState, customEffect, transformMatrix);
-    }
-
-    public void Inherit(SpriteBatch spriteBatch) {
-        sortMode = sortModeField.GetValue<SpriteSortMode>(spriteBatch);
-        blendState = blendStateField.GetValue<BlendState>(spriteBatch);
-        samplerState = samplerStateField.GetValue<SamplerState>(spriteBatch);
-        depthStencilState = depthStencilStateField.GetValue<DepthStencilState>(spriteBatch);
-        rasterizerState = rasterizerStateField.GetValue<RasterizerState>(spriteBatch);
-        customEffect = customEffectField.GetValue<Effect>(spriteBatch);
-        transformMatrix = transformMatrixField.GetValue<Matrix>(spriteBatch);
+        BlendState = g.BlendState;
+        SamplerState = g.SamplerStates[0];
+        DepthStencilState = g.DepthStencilState;
+        RasterizerState = g.RasterizerState;
     }
 }

@@ -1,7 +1,5 @@
-﻿using Aequus.Core.Networking;
-using System.IO;
-using Terraria;
-using Terraria.ID;
+﻿using System.IO;
+using tModLoaderExtended.Networking;
 
 namespace Aequus.Content.Items.Tools.AnglerLamp;
 

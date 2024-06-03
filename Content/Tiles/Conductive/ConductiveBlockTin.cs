@@ -1,8 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Aequus.Content.Tiles.Conductive;
+﻿namespace Aequus.Content.Tiles.Conductive;
 
 [LegacyName("ConductiveBlockTileTin")]
 public class ConductiveBlockTin : ConductiveBlock {

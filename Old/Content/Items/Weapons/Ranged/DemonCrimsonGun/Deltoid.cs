@@ -1,0 +1,46 @@
+﻿using Aequus.Common;
+using Aequus.Content.Events.DemonSiege;
+using tModLoaderExtended.GlowMasks;
+
+namespace Aequus.Old.Content.Items.Weapons.Ranged.DemonCrimsonGun;
+
+[AutoloadGlowMask]
+public class Deltoid : ModItem {
+    public override void SetStaticDefaults() {
+        AltarSacrifices.Register(ItemID.TendonBow, Type);
+    }
+
+    public override void SetDefaults() {
+        Item.damage = 13;
+        Item.DamageType = DamageClass.Ranged;
+        Item.useTime = 8;
+        Item.useAnimation = Item.useTime * 3;
+        Item.reuseDelay = 20;
+        Item.width = 20;
+        Item.height = 30;
+        Item.noMelee = true;
+        Item.useStyle = ItemUseStyleID.Shoot;
+        Item.rare = Commons.Rare.EventDemonSiege;
+        Item.shoot = ProjectileID.WoodenArrowFriendly;
+        Item.shootSpeed = 12f;
+        Item.useAmmo = AmmoID.Arrow;
+        Item.UseSound = SoundID.Item5;
+        Item.value = Commons.Cost.EventDemonSiege;
+        Item.noMelee = true;
+        Item.autoReuse = true;
+        Item.knockBack = 3f;
+    }
+
+    public override Color? GetAlpha(Color lightColor) {
+        return lightColor.MaxRGBA(200);
+    }
+
+    public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
+        position += new Vector2(Main.rand.NextFloat(-20f, 20f), Main.rand.NextFloat(-20f, 20f));
+        velocity = Vector2.Normalize(Main.MouseWorld - position) * velocity.Length();
+
+        if (type == ProjectileID.WoodenArrowFriendly) {
+            type = ModContent.ProjectileType<DeltoidArrow>();
+        }
+    }
+}

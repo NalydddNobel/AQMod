@@ -1,11 +1,8 @@
-﻿using Aequus.Core.Generator;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ModLoader;
+﻿using Aequus.Core.CodeGeneration;
 
 namespace Aequus.Common.NPCs;
 
-public partial class AequusNPC : GlobalNPC {
+public partial class AequusNPC {
     [ResetEffects(1f)]
     public float statSpeedX = 1f;
     [ResetEffects(1f)]

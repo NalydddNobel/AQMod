@@ -1,8 +1,6 @@
 ﻿using Aequus.Common.Items.Components;
-using Aequus.Core.Autoloading;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+using Aequus.Content.Configuration;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Potions.Healing.Restoration;
 
@@ -42,23 +40,31 @@ public class LesserRestorationPotion : ModItem, IApplyPotionDelay, IPostAddRecip
             .AddIngredient(ItemID.Bottle, 3)
             .AddTile(TileID.Bottles)
             .Register()
+            .SortBeforeFirstRecipesOf(ItemID.LesserHealingPotion)
             .DisableDecraft();
 
-        Recipe.Create(ItemID.RestorationPotion, 1)
-            .AddIngredient(Type, 2)
-            .AddIngredient(ItemID.GlowingMushroom)
-            .AddTile(TileID.Bottles)
-            .Register()
-            .DisableDecraft();
+        if (VanillaChangesConfig.Instance.RestorationPotionRecipe) {
+            Recipe.Create(ItemID.RestorationPotion, 1)
+                .AddIngredient(Type, 2)
+                .AddIngredient(ItemID.GlowingMushroom)
+                .AddTile(TileID.Bottles)
+                .Register()
+                .SortBeforeFirstRecipesOf(ItemID.HealingPotion)
+                .DisableDecraft();
+        }
     }
 
-    public void PostAddRecipes(Aequus aequus) {
+    public void PostAddRecipes(Mod mod) {
+        if (!VanillaChangesConfig.Instance.RestorationPotionRecipe) {
+            return;
+        }
+
         for (int i = 0; i < Recipe.numRecipes; i++) {
             var recipe = Main.recipe[i];
             if (recipe == null || recipe.createItem.type != ItemID.RestorationPotion) {
                 continue;
             }
-            
+
             // shrug
             if (recipe.requiredItem.Find((i) => i.type == ItemID.Bottle) != null) {
                 recipe.DisableRecipe();

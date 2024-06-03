@@ -1,7 +1,4 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-
-namespace Aequus.Common.NPCs;
+﻿namespace Aequus.Common.NPCs;
 
 internal class NuclearOptionResist : GlobalNPC {
     public override bool IsLoadingEnabled(Mod mod) {

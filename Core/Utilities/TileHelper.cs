@@ -1,20 +1,80 @@
 ﻿using Aequus.Common.Tiles;
-using Microsoft.Xna.Framework;
 using System;
 using System.Runtime.CompilerServices;
-using Terraria;
 using Terraria.Enums;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus;
+namespace Aequus.Core.Utilities;
 
 public static class TileHelper {
     public static Vector2 DrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
 
+    public static bool ShowEcho { get; internal set; }
+    /// <param name="i">The X light sampling coordinate.</param>
+    /// <param name="j">The Y light sampling coordinate.</param>
+    /// <param name="tile">The tile.</param>
+    /// <returns>
+    /// The suggested color to draw this wall in. Colors returned are prioritized in this order:
+    /// <list type="number">
+    /// <item>
+    /// <see cref="Color.White"/> if <see cref="Tile.IsWallFullbright"/> equals <see langword="true"></see>
+    /// </item>
+    /// <item>
+    /// Otherwise, <see cref="Lighting.GetColor(int, int)"/> using <paramref name="i"/> and <paramref name="j"/>.
+    /// </item>
+    /// </list>
+    /// </returns>
+    public static Color WallColor(int i, int j, Tile tile) {
+        if (tile.IsWallFullbright) {
+            return Color.White;
+        }
+
+        return Lighting.GetColor(i, j);
+    }
+    /// <returns><inheritdoc cref="WallColor(int, int, Tile)"/></returns>
+    public static Color WallColor(int i, int j) {
+        return WallColor(i, j, Main.tile[i, j]);
+    }
+
+    /// <param name="i">The X light sampling coordinate.</param>
+    /// <param name="j">The Y light sampling coordinate.</param>
+    /// <param name="tile">The tile.</param>
+    /// <returns>
+    /// The suggested color to draw this tile in. Colors returned are prioritized in this order:
+    /// <list type="number">
+    /// <item>
+    /// <see cref="Color.White"/> if <see cref="Tile.IsTileFullbright"/> equals <see langword="true"></see>
+    /// </item>
+    /// <item>
+    /// Otherwise, <see cref="Lighting.GetColor(int, int)"/> using <paramref name="i"/> and <paramref name="j"/>.
+    /// </item>
+    /// </list>
+    /// </returns>
+    public static Color TileColor(int i, int j, Tile tile) {
+        if (tile.IsTileFullbright) {
+            return Color.White;
+        }
+
+        return Lighting.GetColor(i, j);
+    }
+
+    /// <returns><inheritdoc cref="TileColor(int, int, Tile)"/></returns>
+    public static Color TileColor(int i, int j) {
+        return TileColor(i, j, Main.tile[i, j]);
+    }
+
     public static float GetWaterY(byte liquidAmount) {
         return (1f - liquidAmount / 255f) * 16f;
+    }
+
+    /// <returns>The water line in World Coordinates.</returns>
+    public static int GetWaterLine(int i, int j) {
+        Tile tile = Main.tile[i, j];
+        return j * 16 + (int)(GetWaterY(tile.LiquidAmount) * 16f);
+    }
+    /// <returns><inheritdoc cref="GetWaterLine(int, int)"/></returns>
+    public static int GetWaterLine(Point point) {
+        return GetWaterLine(point.X, point.Y);
     }
 
     public static int GetTileDust(int sampleX, int sampleY, int tileType, int tileStyle) {
@@ -239,13 +299,13 @@ public static class TileHelper {
         return (i, j) => Main.tile[i, j].WallType == type;
     }
     public static Utils.TileActionAttempt HasWallAction(params int[] types) {
-        return (i, j) => types.ContainsAny(Main.tile[i, j].WallType);
+        return (i, j) => types.Match(Main.tile[i, j].WallType);
     }
     public static Utils.TileActionAttempt HasTileAction(int type) {
         return (i, j) => Main.tile[i, j].HasTile && Main.tile[i, j].TileType == type;
     }
     public static Utils.TileActionAttempt HasTileAction(params int[] types) {
-        return (i, j) => Main.tile[i, j].HasTile && types.ContainsAny(Main.tile[i, j].TileType);
+        return (i, j) => Main.tile[i, j].HasTile && types.Match(Main.tile[i, j].TileType);
     }
 
     public static bool HasNoTileAndNoWall(Tile tile) {
@@ -342,6 +402,28 @@ public static class TileHelper {
     }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool HasAnyLiquid(int i, int j) {
+        return Main.tile[i, j].HasAnyLiquid();
+    }
+
+    /// <returns><see langword="true"/> if the tile has the maximum liquid amount. (<see cref="Tile.LiquidAmount"/> == 255)</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool LiquidMax(this Tile tile) {
+        return tile.LiquidAmount == byte.MaxValue;
+    }
+    /// <returns><inheritdoc cref="LiquidMax(Tile)"/></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool LiquidMax(int i, int j) {
+        return Main.tile[i, j].HasAnyLiquid();
+    }
+
+    /// <returns><see langword="true"/> if the tile has a liquid amount below maximum. (<see cref="Tile.LiquidAmount"/> != 255)</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool LiquidNoMax(this Tile tile) {
+        return tile.LiquidAmount != byte.MaxValue;
+    }
+    /// <returns><inheritdoc cref="LiquidNoMax(Tile)"/></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool LiquidNoMax(int i, int j) {
         return Main.tile[i, j].HasAnyLiquid();
     }
 
@@ -457,4 +539,26 @@ public static class TileHelper {
         }
     }
     #endregion
+
+    public static void CloneStaticDefaults(this ModTile modTile, int tileId) {
+        CopyFromArr(Main.tileSpelunker);
+        CopyFromArr(Main.tileContainer);
+        CopyFromArr(Main.tileShine2);
+        CopyFromArr(Main.tileShine);
+        CopyFromArr(Main.tileFrameImportant);
+        CopyFromArr(Main.tileNoAttach);
+        CopyFromArr(Main.tileOreFinderPriority);
+        CopyFromArr(TileID.Sets.HasOutlines);
+        CopyFromArr(TileID.Sets.BasicChest);
+        CopyFromArr(TileID.Sets.DisableSmartCursor);
+
+        void CopyFromArr<T>(T[] arr) => arr[modTile.Type] = arr[tileId];
+    }
+
+    [Autoload(Side = ModSide.Client)]
+    private class TileHelper_InnerSystem_Client : ModSystem {
+        public override void PreUpdateEntities() {
+            ShowEcho = Main.ShouldShowInvisibleWalls();
+        }
+    }
 }

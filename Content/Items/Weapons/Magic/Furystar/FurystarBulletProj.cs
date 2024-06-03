@@ -1,12 +1,6 @@
-﻿using Aequus.Common.Particles;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using Terraria;
+﻿using System;
 using Terraria.Audio;
 using Terraria.GameContent;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Weapons.Magic.Furystar;
 
@@ -56,7 +50,7 @@ public class FurystarBulletProj : ModProjectile {
                 Gore.NewGore(Projectile.GetSource_FromThis(), Projectile.position, Projectile.velocity * 0.2f, Main.rand.Next(16, 18));
             }
             if (Main.rand.NextBool(4)) {
-                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 86, 0f, 0f, 127);
+                var d = Terraria.Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 86, 0f, 0f, 127);
                 d.velocity *= 0.7f;
                 d.noGravity = true;
                 d.velocity += Projectile.velocity * 0.3f;
@@ -77,10 +71,18 @@ public class FurystarBulletProj : ModProjectile {
         var player = Main.player[Projectile.owner];
         var color = Color.Lerp(Color.Cyan, Color.Blue, Main.rand.NextFloat(0.15f, 0.85f));
         float scale = Main.rand.NextFloat(0.2f, 0.4f);
-        ParticleSystem.New<FurystarParticle>(ParticleLayer.AboveDust)
-            .Setup(Main.rand.NextVector2FromRectangle(target.getRect()), Projectile.velocity * 0.05f, color, scale);
-        ParticleSystem.New<FurystarParticle>(ParticleLayer.AboveDust)
-            .Setup(Main.rand.NextVector2FromRectangle(Main.player[Projectile.owner].getRect()), Vector2.Zero, color, scale);
+        var particle = FurystarParticles.New();
+        particle.Location = Main.rand.NextVector2FromRectangle(target.getRect());
+        particle.Velocity = Projectile.velocity * 0.05f;
+        particle.Color = color;
+        particle.Scale = scale;
+
+        particle = FurystarParticles.New();
+        particle.Location = Main.rand.NextVector2FromRectangle(Main.player[Projectile.owner].getRect());
+        particle.Velocity = Main.player[Projectile.owner].velocity * 0.05f;
+        particle.Color = color;
+        particle.Scale = scale;
+
         int healMana = 10;
         player.statMana = Math.Min(player.statMana + healMana, player.statManaMax2);
         CombatText.NewText(player.getRect(), CombatText.HealMana * 0.8f, healMana, dot: true);
@@ -89,7 +91,7 @@ public class FurystarBulletProj : ModProjectile {
     public override void OnKill(int timeLeft) {
         SoundEngine.PlaySound(in SoundID.Item10, Projectile.Center);
         for (int i = 0; i < 10; i++) {
-            Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Enchanted_Pink, Projectile.velocity.X * 0.1f, Projectile.velocity.Y * 0.1f, Alpha: 150, Scale: Main.rand.NextFloat(1f, 1.5f));
+            Terraria.Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Enchanted_Pink, Projectile.velocity.X * 0.1f, Projectile.velocity.Y * 0.1f, Alpha: 150, Scale: Main.rand.NextFloat(1f, 1.5f));
         }
         for (int i = 0; i < 3; i++) {
             Gore.NewGore(Projectile.GetSource_FromThis(), Projectile.Center, new Vector2(Projectile.velocity.X * 0.05f, Projectile.velocity.Y * 0.05f), Main.rand.Next(16, 18));

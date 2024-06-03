@@ -1,0 +1,14 @@
+RadonMossBrickWall: {
+	ItemDisplayName: Radon Moss Brick Wall
+	ItemTooltip: ""
+}
+
+PolymerSandstoneWall: {
+	ItemDisplayName: Polymer Sandstone Wall
+	ItemTooltip: ""
+}
+
+PolymerSandstoneWallHostile: {
+	ItemDisplayName: Polluted Polymer Sandstone Wall
+	ItemTooltip: ""
+}

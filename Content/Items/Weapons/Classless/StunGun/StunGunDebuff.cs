@@ -1,11 +1,7 @@
-﻿using Aequus;
-using Aequus.Common.Buffs.Components;
+﻿using Aequus.Common.Buffs.Components;
 using Aequus.Common.NPCs;
-using Aequus.Content.DataSets;
-using Terraria;
+using Aequus.DataSets;
 using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Weapons.Classless.StunGun;
 
@@ -14,11 +10,11 @@ public class StunGunDebuff : ModBuff, IOnAddBuff/*, IAddRecipeGroups*/ {
 
     public override void SetStaticDefaults() {
         Main.debuff[Type] = true;
-        BuffSets.ModifiesMoveSpeed.AddEntry(Type);
+        BuffSets.GrantImmunityWith[Type].Add(BuffID.Slow);
     }
 
     #region On Add Buff
-    public void PostAddBuff(NPC npc, int duration, bool quiet) {
+    public void PostAddBuff(NPC npc, bool alreadyHasBuff, int duration, bool quiet) {
         if (npc.HasBuff<StunGunDebuff>()) {
             SoundEngine.PlaySound(AequusSounds.InflictStunned with { Volume = 0.3f, Pitch = 0.175f, PitchVariance = 0.05f });
         }
@@ -28,7 +24,7 @@ public class StunGunDebuff : ModBuff, IOnAddBuff/*, IAddRecipeGroups*/ {
         //}
     }
 
-    public void PostAddBuff(Player player, int duration, bool quiet, bool foodHack) {
+    public void PostAddBuff(Player player, bool alreadyHasBuff, int duration, bool quiet, bool foodHack) {
         if (player.HasBuff<StunGunDebuff>()) {
             SoundEngine.PlaySound(AequusSounds.InflictStunned);
         }
@@ -39,7 +35,7 @@ public class StunGunDebuff : ModBuff, IOnAddBuff/*, IAddRecipeGroups*/ {
         //if (npc.ModNPC?.Mod?.Name == "CalamityMod") {
         //    return true;
         //}
-        return !NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type] && (!npc.buffImmune[BuffID.Confused] || NPCSets.StunnableByTypeId.Contains(npc.type) || NPCSets.StunnableByAI.Contains(npc.aiStyle));
+        return !NPCSets.BelongsToInvasionOldOnesArmy[npc.type] && (!npc.buffImmune[BuffID.Confused] || NPCDataSet.StunnableByTypeId.Contains(npc.type) || NPCDataSet.StunnableByAI.Contains(npc.aiStyle));
     }
 
     private void EmitParticles(Entity entity, int[] buffTime, ref int buffIndex) {
@@ -50,23 +46,23 @@ public class StunGunDebuff : ModBuff, IOnAddBuff/*, IAddRecipeGroups*/ {
 
         if (buffTime[buffIndex] <= 1) {
             for (int i = 0; i < 2; i++) {
-                var d = Dust.NewDustPerfect(dustSpotFront + Main.rand.NextVector2Square(-dustSize, dustSize), DustID.Electric);
+                var d = Terraria.Dust.NewDustPerfect(dustSpotFront + Main.rand.NextVector2Square(-dustSize, dustSize), DustID.Electric);
                 d.velocity *= 2f;
                 d.fadeIn = d.scale + Main.rand.NextFloat(0.1f, 0.2f);
                 d.noGravity = true;
 
-                d = Dust.NewDustPerfect(dustSpotBack + Main.rand.NextVector2Square(-dustSize, dustSize), DustID.Electric);
+                d = Terraria.Dust.NewDustPerfect(dustSpotBack + Main.rand.NextVector2Square(-dustSize, dustSize), DustID.Electric);
                 d.velocity *= 0.5f;
                 d.fadeIn = d.scale + Main.rand.NextFloat(0.1f, 0.2f);
                 d.noGravity = true;
             }
         }
         if (Main.GameUpdateCount % 15 == 0) {
-            var d = Dust.NewDustPerfect(dustSpotFront + Main.rand.NextVector2Square(-dustSize, dustSize), DustID.Electric, Scale: 0.6f * dustScale);
+            var d = Terraria.Dust.NewDustPerfect(dustSpotFront + Main.rand.NextVector2Square(-dustSize, dustSize), DustID.Electric, Scale: 0.6f * dustScale);
             d.fadeIn = d.scale + Main.rand.NextFloat(0.1f, 0.2f);
             d.noGravity = true;
 
-            d = Dust.NewDustPerfect(dustSpotBack + Main.rand.NextVector2Square(-dustSize, dustSize), DustID.Electric, Scale: 0.6f * dustScale);
+            d = Terraria.Dust.NewDustPerfect(dustSpotBack + Main.rand.NextVector2Square(-dustSize, dustSize), DustID.Electric, Scale: 0.6f * dustScale);
             d.fadeIn = d.scale + Main.rand.NextFloat(0.1f, 0.2f);
             d.noGravity = true;
         }

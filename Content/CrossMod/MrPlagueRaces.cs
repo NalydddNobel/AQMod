@@ -1,18 +1,15 @@
 ﻿using Aequus.Core.CrossMod;
-using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Reflection;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.CrossMod;
 
-internal class MrPlagueRaces : ModSupport<MrPlagueRaces> {
+internal class MrPlagueRaces : SupportedMod<MrPlagueRaces> {
     public static ModPlayer MrPlagueRacesPlayer { get; private set; }
     public static List<FieldInfo> RacePlayerFieldInfo { get; private set; }
 
-    public override void SafeLoad(Mod mod) {
-        base.SafeLoad(mod);
+    public override void OnLoad(Mod mod) {
+        base.OnLoad(mod);
         RacePlayerFieldInfo = new List<FieldInfo>();
     }
 

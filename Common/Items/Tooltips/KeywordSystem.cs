@@ -1,10 +1,6 @@
-﻿using Aequus.Common.Items.Components;
-using Aequus.Common.UI.Inventory;
-using Microsoft.Xna.Framework;
+﻿using Aequus.Common.Backpacks;
+using Aequus.Common.Items.Components;
 using System.Collections.Generic;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.Items.Tooltips;
 public class KeywordSystem : ModSystem {
@@ -20,9 +16,6 @@ public class KeywordSystem : ModSystem {
     public static void AddItemKeywords(Item item) {
         if (item.ModItem is IAddKeywords addSpecialTooltips) {
             addSpecialTooltips.AddSpecialTooltips();
-        }
-        if (item.ModItem is IStorageItem storageItem && storageItem.Inventory != null) {
-            storageItem.AddKeywords(item);
         }
         BackpackSlotsUI.AddBackpackWarningTip(item);
     }

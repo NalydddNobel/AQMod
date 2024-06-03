@@ -1,14 +1,10 @@
-﻿using Aequus;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Aequus.Core.ContentGeneration;
 using System;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ID;
 
 namespace Aequus.Content.Pets.OmegaStarite;
 
-public class OmegaStaritePet : ModPet {
+public class OmegaStaritePet : UnifiedModPet {
     public override void SetStaticDefaults() {
         Main.projFrames[Projectile.type] = 4;
         Main.projPet[Projectile.type] = true;
@@ -85,7 +81,7 @@ public class OmegaStaritePet : ModPet {
             Projectile.Center = player.Center;
             Projectile.velocity *= 0.1f;
         }
-        Lighting.AddLight(Projectile.Center, LightHelper.ApplyLightBrightness(LightHelper.OmegaStarite, LightHelper.OmegaStariteBrightness));
+        Lighting.AddLight(Projectile.Center, ExtendLight.ApplyLightBrightness(CommonLight.OmegaStarite, CommonLight.OmegaStariteBrightness));
     }
 
     private void DrawGlowy(Texture2D texture, Vector2 drawCoordinates, Rectangle frame, Color color, float scale = 1f) {

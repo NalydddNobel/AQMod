@@ -1,0 +1,24 @@
+InfoDisplays: {
+	GeigerCounterInfoDisplay.DisplayName: 减益伤害/秒
+
+	CalendarInfoDisplay: {
+		DisplayName: 日期
+		Tooltip: "{0} ({1}天)"
+	}
+
+	AnglerBroadcasterIcon: {
+		DisplayName: 钓鱼任务
+		Unavailable: 不可用
+		Finished: 已完成
+	}
+}
+
+KeyUnbound: 按键未绑定
+
+Controls: {
+	Unbound: "{$Mods.Aequus.KeyUnbound}"
+	LeftControl: 左Control键
+	RightControl: 右Shift键
+	Control: Shift键
+	LeftShift: 左Shift键
+}

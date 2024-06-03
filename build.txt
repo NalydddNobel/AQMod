@@ -6,4 +6,6 @@ hideResources = false
 hideCode = false
 includeSource = false
 includePBD = true
-buildIgnore = *.csproj, *.user, *.sln, *.gitignore, *.editorconfig, *.md, *.ase, *.fx, *.Temp.json, obj\*, bin\*, .vs\*, .cache\*, Assets\Effects\.compiler\*, .idea\*, SourceGenerators\*
+modReferences = AequusMusic
+dllReferences = FNAUtils, tModLoaderExtended
+buildIgnore = *.csproj, *.user, *.sln, *.gitignore, *.editorconfig, *.md, *.ase, *.fx, obj\*, bin\*, .vs\*, project\*

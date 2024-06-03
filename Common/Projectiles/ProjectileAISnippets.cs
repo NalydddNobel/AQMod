@@ -1,7 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
-
-namespace Aequus.Common.Projectiles; 
+﻿namespace Aequus.Common.Projectiles;
 
 public class ProjectileAISnippets {
     public static void GenericPetGroundMovement(Projectile projectile, Vector2 to, float moveSpeed = 0.08f, float moveSpeedCap = 6.5f) {

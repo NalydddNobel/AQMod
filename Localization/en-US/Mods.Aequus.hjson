@@ -1,0 +1,24 @@
+InfoDisplays: {
+	GeigerCounterInfoDisplay.DisplayName: Damage Per Second (Debuff)
+
+	CalendarInfoDisplay: {
+		DisplayName: Date
+		Tooltip: "{0} (Day {1})"
+	}
+
+	AnglerBroadcasterIcon: {
+		DisplayName: Fish Quest
+		Unavailable: Unavailable
+		Finished: Finished
+	}
+}
+
+KeyUnbound: Unbound
+
+Controls: {
+	Unbound: "{$Mods.Aequus.KeyUnbound}"
+	LeftControl: Left Control
+	RightControl: Right Shift
+	Control: Shift
+	LeftShift: Left Shift
+}

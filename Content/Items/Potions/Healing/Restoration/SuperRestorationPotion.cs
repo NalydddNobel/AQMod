@@ -1,7 +1,4 @@
 ﻿using Aequus.Common.Items.Components;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Potions.Healing.Restoration;
 
@@ -41,6 +38,7 @@ public class SuperRestorationPotion : ModItem, IApplyPotionDelay {
             .AddIngredient(ItemID.FragmentVortex)
             .AddTile(TileID.Bottles)
             .Register()
+            .SortBeforeFirstRecipesOf(ItemID.SuperHealingPotion)
             .DisableDecraft();
     }
 }

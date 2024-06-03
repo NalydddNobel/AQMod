@@ -1,9 +1,5 @@
-﻿using Aequus.Core.Generator;
-using Aequus.Content.Items.Weapons.Classless.StunGun;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using Terraria;
+﻿using Aequus.Content.Items.Weapons.Classless.StunGun;
+using Aequus.Core.CodeGeneration;
 
 namespace Aequus.Common.NPCs;
 

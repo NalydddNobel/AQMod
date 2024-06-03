@@ -1,12 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Graphics;
+﻿using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
 namespace Aequus.Common.Items.Tooltips;
@@ -76,7 +72,7 @@ public partial class KeywordGlobalItem : GlobalItem {
 
         // Draw tooltip box
         if (Main.SettingsEnabled_OpaqueBoxBehindTooltips) {
-            Utils.DrawInvBG(spriteBatch, new(lineX - 10, lineStartY - 9, boxWidth + 20, keyword.lineTotalHeight + 40), new Color(23, 25, 81, 255) * 0.925f);
+            Utils.DrawInvBG(spriteBatch, new Rectangle(lineX - 10, lineStartY - 9, boxWidth + 20, keyword.lineTotalHeight + 40), new Color(23, 25, 81, 255) * 0.925f);
         }
 
         // Draw item icon, if there is one

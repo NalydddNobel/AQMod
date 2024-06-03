@@ -1,25 +1,22 @@
-﻿using Aequus.Common.Items;
-using Aequus.Common.Items.EquipmentBooster;
-using Aequus.Common.Particles;
-using Aequus.Core.Autoloading;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Aequus.Common;
+using Aequus.Core.CodeGeneration;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent;
-using Terraria.ID;
-using Terraria.ModLoader;
+using tModLoaderExtended.GlowMasks;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace Aequus.Content.Items.Tools.AnglerLamp;
 
 [AutoloadGlowMask]
+[FilterOverride(FilterOverride.Tools)]
+[Gen.AequusPlayer_ResetField<int>("potSightRange")]
 public class AnglerLamp : ModItem {
     public static int PotSightRange { get; set; } = 300;
 
     public static Vector3 LightColor { get; set; } = new Vector3(1f, 0.76f, 0.24f);
-    public static float LightBrightness { get; set; } = LightHelper.ShadowOrbBrightness;
-    public static float LightUseBrightness { get; set; } = LightHelper.ShadowOrbBrightness * 2.5f;
+    public static float LightBrightness { get; set; } = CommonLight.ShadowOrbBrightness;
+    public static float LightUseBrightness { get; set; } = CommonLight.ShadowOrbBrightness * 2.5f;
 
     public static int MiscDebuffType { get; set; } = BuffID.Confused;
     public static int MiscDebuffTime { get; set; } = 240;
@@ -27,19 +24,16 @@ public class AnglerLamp : ModItem {
     public static int FireDebuffTime { get; set; } = 180;
     public static int DebuffRange { get; set; } = 240;
 
+    [CloneByReference]
     private readonly List<Dust> _dustEffects = new();
 
     public float animation;
 
-    public override void SetStaticDefaults() {
-        EquipBoostDatabase.Instance.SetNoEffect(Type);
-    }
-
     public override void SetDefaults() {
         Item.width = 16;
         Item.height = 24;
-        Item.rare = ItemCommons.Rarity.PollutedOceanLoot;
-        Item.value = ItemCommons.Price.PollutedOceanLoot;
+        Item.rare = Commons.Rare.BiomeOcean;
+        Item.value = Commons.Cost.BiomeOcean;
         Item.useAmmo = AmmoID.Gel;
         Item.holdStyle = ItemHoldStyleID.HoldLamp;
         Item.useStyle = ItemUseStyleID.RaiseLamp;
@@ -63,15 +57,14 @@ public class AnglerLamp : ModItem {
             return;
         }
 
-        if (Main.netMode == NetmodeID.Server) {
-            return;
-        }
-
-        for (int i = 0; i < 6; i++) {
-            var color = Color.Lerp(Color.Red, Color.Yellow, Main.rand.NextFloat(0.15f, 0.85f));
-            float scale = Main.rand.NextFloat(0.4f, 0.76f);
-            ParticleSystem.New<AnglerLampParticle>(ParticleLayer.AboveDust)
-                .Setup(Main.rand.NextVector2FromRectangle(Main.npc[npc].getRect()), Main.npc[npc].velocity * 0.05f, color, scale).npc = npc;
+        if (Main.netMode != NetmodeID.Server) {
+            int count = Math.Clamp(Math.Max(Main.npc[npc].width, Main.npc[npc].height) / 10, 3, 8);
+            foreach (var particle in AnglerLampParticles.NewMultiple(count)) {
+                particle.Location = Main.rand.NextVector2FromRectangle(Main.npc[npc].getRect());
+                particle.Color = Color.Lerp(Color.Red, Color.Yellow, Main.rand.NextFloat(0.15f, 0.85f));
+                particle.Scale = Main.rand.NextFloat(0.4f, 0.76f);
+                particle.NPCAnchor = npc;
+            }
         }
     }
 
@@ -128,7 +121,7 @@ public class AnglerLamp : ModItem {
                 return false;
             }
             var canHitOverride = CombinedHooks.CanPlayerHitNPCWithItem(player, Item, npc);
-            if ((canHitOverride.HasValue && canHitOverride == false) || ((!canHitOverride.HasValue || canHitOverride != true) && npc.friendly && (npc.type != NPCID.Guide || !player.killGuide) && (npc.type != NPCID.Clothier || !player.killClothier))) {
+            if (canHitOverride.HasValue && canHitOverride == false || (!canHitOverride.HasValue || canHitOverride != true) && npc.friendly && (npc.type != NPCID.Guide || !player.killGuide) && (npc.type != NPCID.Clothier || !player.killClothier)) {
                 return false;
             }
             return npc.noTileCollide || Collision.CanHitLine(player.position, player.width, player.height, npc.position, npc.width, npc.height);
@@ -149,7 +142,7 @@ public class AnglerLamp : ModItem {
                     i--;
                 }
                 else {
-                    _dustEffects[i].rotation = Utils.AngleLerp(_dustEffects[i].rotation, 0f, animationProgress);
+                    _dustEffects[i].rotation = _dustEffects[i].rotation.AngleLerp(0f, animationProgress);
                     _dustEffects[i].scale = Math.Max(_dustEffects[i].scale, 0.33f);
                     _dustEffects[i].position = Vector2.Lerp(_dustEffects[i].position, lampPosition + (i / (float)_dustEffects.Count * MathHelper.TwoPi).ToRotationVector2() * outwards, positionLerp);
                 }
