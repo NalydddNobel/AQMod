@@ -1,11 +1,9 @@
-﻿using Aequus.Core.Initialization;
-using Steamworks;
-using System;
+﻿using System;
 using Terraria.GameContent;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Conductor;
 
-public partial class Conductor : IPostPopulateItemDropDatabase {
+public partial class Conductor {
     public const int FRAME_IDLE = 0;
 
     public const int FRAME_WALK_S = 1;
@@ -16,7 +14,7 @@ public partial class Conductor : IPostPopulateItemDropDatabase {
     public const int FRAME_SLIDE_S = 5;
     public const int FRAME_SLIDE_E = 6;
     public const int FRAME_SLIDE_RATE = 3;
-    public const int FRAME_SLIDE_FRAMES = FRAME_SLIDE_E- FRAME_SLIDE_S + 1;
+    public const int FRAME_SLIDE_FRAMES = FRAME_SLIDE_E - FRAME_SLIDE_S + 1;
 
     public const int FRAME_CONDUCT_S = 7;
     public const int FRAME_CONDUCT_E = 13;
@@ -42,7 +40,7 @@ public partial class Conductor : IPostPopulateItemDropDatabase {
 
         if (NPC.life <= 0) {
             for (int i = 0; i < 20; i++) {
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, Main.rand.NextBool(3) ? DustID.Iron : DustID.Bone, 2.5f * hit.HitDirection, -2.5f);
+                Terraria.Dust.NewDust(NPC.position, NPC.width, NPC.height, Main.rand.NextBool(3) ? DustID.Iron : DustID.Bone, 2.5f * hit.HitDirection, -2.5f);
             }
 
             NPC.NewGore(AequusTextures.ConductorGoreHead, NPC.position, NPC.velocity, Scale: NPC.scale);
@@ -53,7 +51,7 @@ public partial class Conductor : IPostPopulateItemDropDatabase {
         }
         else {
             for (int i = 0; i < hit.Damage / (double)NPC.lifeMax * 50f; i++) {
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, Main.rand.NextBool(3) ? DustID.Iron : DustID.Bone, hit.HitDirection, -1f);
+                Terraria.Dust.NewDust(NPC.position, NPC.width, NPC.height, Main.rand.NextBool(3) ? DustID.Iron : DustID.Bone, hit.HitDirection, -1f);
             }
         }
     }
@@ -96,16 +94,16 @@ public partial class Conductor : IPostPopulateItemDropDatabase {
                         NPC.localAI[3] = 1f;
                         NPC.frameCounter++;
 
-                        double conductAnimation = FRAME_CONDUCT_RATE * (FRAME_CONDUCT_FRAMES-1);
+                        double conductAnimation = FRAME_CONDUCT_RATE * (FRAME_CONDUCT_FRAMES - 1);
 
                         if (NPC.frameCounter > conductAnimation * 2) {
                             NPC.frameCounter = 0;
                         }
                         if (NPC.frameCounter >= conductAnimation) {
-                            frame = 13 - (int)Math.Min((NPC.frameCounter - conductAnimation) / FRAME_CONDUCT_RATE, FRAME_CONDUCT_FRAMES-1);
+                            frame = 13 - (int)Math.Min((NPC.frameCounter - conductAnimation) / FRAME_CONDUCT_RATE, FRAME_CONDUCT_FRAMES - 1);
                         }
                         else {
-                            frame = 7 + (int)Math.Min(NPC.frameCounter / FRAME_CONDUCT_RATE, FRAME_CONDUCT_FRAMES-1);
+                            frame = 7 + (int)Math.Min(NPC.frameCounter / FRAME_CONDUCT_RATE, FRAME_CONDUCT_FRAMES - 1);
                         }
                     }
                     else {

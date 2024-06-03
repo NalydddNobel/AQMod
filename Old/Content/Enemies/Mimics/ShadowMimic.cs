@@ -1,10 +1,10 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Configuration;
-using Aequus.Core.Initialization;
 using System;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Old.Content.Enemies.Mimics;
 
@@ -29,7 +29,7 @@ public class ShadowMimic : ModNPC, IAddRecipes {
         }
     }
 
-    public virtual void AddRecipes(Aequus aequus) {
+    public virtual void AddRecipes(Mod mod) {
         BestiaryBuilder.ReSort(this, NPCID.Mimic);
     }
 

@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.Items.Dedications;
 using Aequus.Content.CrossMod;
 using Aequus.Core.ContentGeneration;
-using Microsoft.Xna.Framework;
 
 namespace Aequus.Content.Dedicated.Familiar;
 
@@ -115,6 +114,6 @@ public class FamiliarPet : UnifiedModPet {
     }
 
     protected override void OnLoad() {
-        DedicationRegistry.Register(PetItem, new Dedication.Anonymous(new Color(200, 65, 70)));
+        DedicationRegistry.Register(PetItem, new AnonymousDedication(new Color(200, 65, 70)));
     }
 }

@@ -1,10 +1,9 @@
-﻿using Aequus.Common.Items.Dedications;
-using Aequus.Core.ContentGeneration;
+﻿using Aequus.Core.ContentGeneration;
 
 namespace Aequus.Content.Dedicated;
 
 [Autoload(false)]
-internal class DedicatedPetItem : InstancedPetItem, IDedicatedItem {
+internal class DedicatedPetItem : InstancedPetItem {
     private readonly string _dedicateeName;
     private readonly string _displayedDedicateeName;
     private readonly Color _dedicateeColor;

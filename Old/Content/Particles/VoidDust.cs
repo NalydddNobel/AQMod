@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Aequus.Content.Dusts;
 
 namespace Aequus.Old.Content.Particles;
 
@@ -12,7 +11,9 @@ public class VoidDust : MonoDust {
         dust.noLight = false;
     }
 
-    public override Color? GetAlpha(Dust dust, Color lightColor) => dust.color;
+    public override Color? GetAlpha(Dust dust, Color lightColor) {
+        return dust.color;
+    }
 
     public override bool Update(Dust dust) {
         dust.velocity = dust.velocity.RotatedBy(Main.rand.NextFloat(-0.4f, 0.4f));

@@ -1,6 +1,4 @@
-﻿using Aequus.Core;
-using Aequus.Core.Graphics.Animations;
-using Microsoft.Xna.Framework;
+﻿using Aequus.Core.Graphics.Animations;
 using System;
 using System.IO;
 using Terraria.DataStructures;
@@ -36,7 +34,7 @@ public class TECrabPot : ModTileEntity {
     public static int WaterStyle => LiquidsSystem.WaterStyle;
 
     public override bool IsTileValidForEntity(int x, int y) {
-        return Main.tile[x, y].HasTile && Main.tile[x, y].TileFrameX % 36 == 0 && Main.tile[x, y].TileFrameY == 0 && TileLoader.GetTile(Main.tile[x, y].TileType) is BaseCrabPot;
+        return Main.tile[x, y].HasTile && Main.tile[x, y].TileFrameX % 36 == 0 && Main.tile[x, y].TileFrameY == 0 && TileLoader.GetTile(Main.tile[x, y].TileType) is UnifiedCrabPot;
     }
 
     public static void PlacementEffects(int x, int y) {

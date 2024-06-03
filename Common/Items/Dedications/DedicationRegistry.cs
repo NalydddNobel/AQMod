@@ -13,6 +13,10 @@ public class DedicationRegistry : ModSystem {
             throw new Exception($"Dedication has already been registered for an item.");
         }
 
+        if (_doneAcceptingRegistries) {
+            throw new Exception($"{modItem.FullName} attempted to register dedicated item info after Aequus has been loaded.");
+        }
+
         RegisterInner(modItem, info);
     }
 
@@ -25,15 +29,21 @@ public class DedicationRegistry : ModSystem {
     }
 
     private static void RegisterInner(ModItem modItem, IDedicationInfo info) {
-        if (_doneAcceptingRegistries) {
-            throw new Exception($"{modItem.FullName} attempted to register dedicated item info after Aequus has been loaded.");
+        if (info.Faeling == null) {
+            // Register a colored faeling aswell.
+            info.Faeling = new DedicatedFaeling.FaelingItem(modItem, info);
+            ModContent.GetInstance<Aequus>().AddContent(info.Faeling);
         }
 
-        // Register a colored faeling aswell.
-        info.Faeling = new DedicatedFaeling.FaelingItem(modItem, info);
-        ModContent.GetInstance<Aequus>().AddContent(info.Faeling);
-
         _fromItem[modItem] = info;
+    }
+
+    public static bool Contains(int item) {
+        return Contains(ItemLoader.GetItem(item));
+    }
+
+    public static bool Contains(ModItem item) {
+        return item != null && _fromItem.ContainsKey(item);
     }
 
     public static IDedicationInfo Get(ModItem item) {

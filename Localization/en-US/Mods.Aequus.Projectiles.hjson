@@ -77,3 +77,16 @@ PolymerSand.DisplayName: Sand Ball
 PolymerSandSandGun.DisplayName: "{PolymerSand.DisplayName}"
 ScrapBlock.DisplayName: Junk Ball
 ScrapBlockSandGun.DisplayName: "{ScrapBlock.DisplayName}"
+PhaseDiscProj.DisplayName: "{$Items.PhaseDisc.DisplayName}"
+SickBeatProj.DisplayName: "{$Items.SickBeat.DisplayName}"
+ValariProj.DisplayName: "{$Items.Valari.DisplayName}"
+VrangProj.DisplayName: "{$Items.Vrang.DisplayName}"
+NightfallGlint.DisplayName: "{$Items.Nightfall.DisplayName}"
+NightfallProj.DisplayName: "{$Items.Nightfall.DisplayName}"
+BreathConserverProj.DisplayName: "{$Items.BreathConserver.DisplayName}"
+HyperCrystalProj.DisplayName: "{$Items.HyperCrystal.DisplayName}"
+VasculashTagProj.DisplayName: "{$Items.DemonVasculash.DisplayName}"
+SoulscourgeTagProj.DisplayName: "{$Items.DemonSoulscourge.DisplayName}"
+RaygunExplosionProj.DisplayName: "{$Items.Raygun.DisplayName}"
+GamestarProj.DisplayName: "{$Items.Gamestar.DisplayName}"
+CastawayProjExplosiveMine.DisplayName: Shrapnel

@@ -1,8 +1,6 @@
 ﻿using Aequus.Common.Items.Dedications;
-using Aequus.Common.Systems;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.CrossMod;
-using Aequus.Core.Initialization;
 using Aequus.Core.UI;
 using System;
 using System.Collections.Generic;
@@ -13,6 +11,8 @@ using Terraria.GameContent.Creative;
 using Terraria.Graphics.Renderers;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
+using tModLoaderExtended.Terraria.GameContent;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Content.Dedicated;
 
@@ -174,8 +174,7 @@ public class DedicatedFaeling : ModNPC {
             item.TurnToAir();
         }
 
-        ShimmerSystem.GetShimmeredEffects(item);
-        return;
+        ExtendedShimmer.GetShimmered(item);
     }
 
     private static void SpawnSparkles(Vector2 spawnCoordinates, IDedicationInfo dedication) {
@@ -290,7 +289,7 @@ public class DedicatedFaeling : ModNPC {
             ItemSets.ShimmerTransformToItem[Type] = _parentItem.Type;
         }
 
-        public void PostSetupContent(Aequus aequus) {
+        public void PostSetupContent(Mod mod) {
             if (CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId.TryGetValue(_parentItem.Type, out int parentResearchCount)) {
                 // Inherit the parent item's research count, capped at 5.
                 Item.ResearchUnlockCount = Math.Min(parentResearchCount, 5);

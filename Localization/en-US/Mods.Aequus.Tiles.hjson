@@ -363,3 +363,51 @@ HardJungleChestTrapped: {
 	ItemDisplayName: Trapped Tortoise Case
 	ItemTooltip: ""
 }
+
+CopperChest: {
+	MapEntry: Copper Chest
+	ItemDisplayName: "{$CopperChest.MapEntry}"
+	ItemTooltip: ""
+}
+
+CopperChestTrapped: {
+	ItemDisplayName: Trapped Copper Chest
+	ItemTooltip: ""
+}
+
+CopperChestLocked: {
+	MapEntry: Locked Copper Chest
+	ItemDisplayName: "{$CopperChestLocked.MapEntry}"
+	ItemTooltip: "{$Items.CommonTooltips.LockedWithKey}"
+}
+
+HiddenChest.MapEntry: Hidden Chest
+
+MeadowGrass: {
+	ItemDisplayName: Meadow Grass Seeds
+	ItemTooltip: ""
+}
+
+MeadowWood: {
+	ItemDisplayName: Meadow Wood
+	ItemTooltip: ""
+}
+
+SeaFireflyBlock: {
+	DisplayName: Sea Firefly Block
+	DisplayNameRed: Red Sea Firefly Block
+	DisplayNameOrange: Orange Sea Firefly Block
+	DisplayNameYellow: Yellow Sea Firefly Block
+	DisplayNameLime: Lime Sea Firefly Block
+	DisplayNameGreen: Green Sea Firefly Block
+	DisplayNameTeal: Teal Sea Firefly Block
+	DisplayNameCyan: Cyan Sea Firefly Block
+	DisplayNameSkyBlue: Sky Blue Sea Firefly Block
+	DisplayNameBlue: Blue Sea Firefly Block
+	DisplayNamePurple: Purple Sea Firefly Block
+	DisplayNameViolet: Violet Sea Firefly Block
+	DisplayNamePink: Pink Sea Firefly Block
+	DisplayNameBlack: Black Sea Firefly Block
+	DisplayNameWhite: White Sea Firefly Block
+	DisplayNameRainbow: Rainbow Sea Firefly Block
+}

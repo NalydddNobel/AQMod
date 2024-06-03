@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Aequus.Core.ContentGeneration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.GameContent;
 
 namespace Aequus.Common.Tiles.Rubblemaker;
 
-internal abstract class RubblemakerTile : AutoloadedInstanceableModTile {
+internal abstract class RubblemakerTile : AutoloadedInstancedModTile {
     public static ushort GetId<T>() where T : RubblemakerTile {
         return _registeredDict[typeof(T)].Item1.Type;
     }

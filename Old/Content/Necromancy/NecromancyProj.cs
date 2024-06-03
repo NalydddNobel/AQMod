@@ -1,6 +1,6 @@
 ﻿using Aequus.Common;
+using Aequus.Content.Dusts;
 using Aequus.Old.Content.Necromancy.Rendering;
-using Aequus.Old.Content.Particles;
 using System;
 using System.Collections.Generic;
 using System.IO;

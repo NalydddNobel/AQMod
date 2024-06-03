@@ -1,14 +1,10 @@
-﻿using Aequus.Common;
-using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+﻿using System;
 
-namespace Aequus.Old.Content.Events.Glimmer.Peaceful; 
+namespace Aequus.Old.Content.Events.Glimmer.Peaceful;
 public class PeacefulGlimmerZone : ModBiome {
     public const ushort MaxTiles = 500;
 
-    public static bool EventActive { get => TileLocationX != 0; }
+    public static bool EventActive => TileLocationX != 0;
 
     public static int TileLocationX { get; set; }
 

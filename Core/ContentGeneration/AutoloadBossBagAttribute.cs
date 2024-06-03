@@ -1,24 +1,16 @@
-﻿using Aequus.Content.Bosses;
-using Aequus.Core.Initialization;
-using System;
+﻿using System;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Core.ContentGeneration;
 
-internal class AutoloadBossBagAttribute : AutoloadXAttribute {
-    private readonly bool _preHardmode;
-    private readonly int _itemRarity;
-
-    public AutoloadBossBagAttribute(bool preHardmode, int itemRarity) {
-        _preHardmode = preHardmode;
-        _itemRarity = itemRarity;
-    }
-
-    internal override void Load(ModType modType) {
-        if (modType is not ModNPC modNPC) {
+[AttributeUsage(AttributeTargets.Class)]
+internal class AutoloadBossBagAttribute(bool preHardmode, int itemRarity) : Attribute, IAttributeOnModLoad {
+    public void OnModLoad(Mod mod, ILoad Content) {
+        if (Content is not ModNPC modNPC) {
             throw new Exception($"{nameof(AutoloadBossBagAttribute)} can only be applied to ModNPCs.");
         }
 
-        ModItem treasureBag = new InstancedBossBag(modNPC, _itemRarity, _preHardmode);
-        modType.Mod.AddContent(treasureBag);
+        ModItem treasureBag = new InstancedBossBag(modNPC, itemRarity, preHardmode);
+        mod.AddContent(treasureBag);
     }
 }

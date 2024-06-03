@@ -6,7 +6,7 @@ using System.Linq;
 namespace Aequus.Core.Initialization;
 
 public class BannerLoader : GlobalNPC {
-    public static readonly Dictionary<int, ModItem> NPCToBannerItemId = new();
+    public static readonly Dictionary<int, ModItem> NPCToBannerItemId = [];
 
     public static void RegisterBanner(ModNPC modNPC, int legacyId = -1) {
         var tile = new InstancedBannerTile(modNPC);

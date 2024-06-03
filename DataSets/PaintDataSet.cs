@@ -1,4 +1,5 @@
 ﻿using Aequus.DataSets.Structures;
+using Aequus.DataSets.Structures.Enums;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,15 +8,51 @@ namespace Aequus.DataSets;
 
 public class PaintDataSet : DataSet {
     [JsonProperty]
-    public static Dictionary<PaintColor, IDEntry<ItemID>> Paints { get; private set; } = new();
+    public static Dictionary<PaintColor, IDEntry<ItemID>> Paints { get; private set; } = [];
     [JsonProperty]
-    public static Dictionary<PaintColor, IDEntry<ItemID>> DeepPaints { get; private set; } = new();
+    public static Dictionary<PaintColor, IDEntry<ItemID>> DeepPaints { get; private set; } = [];
+    [JsonIgnore]
+    public static Dictionary<PaintColor, IDEntry<ItemID>> Dyes { get; private set; } = new() {
+        [PaintColor.Red] = ItemID.RedDye,
+        [PaintColor.Orange] = ItemID.OrangeDye,
+        [PaintColor.Yellow] = ItemID.YellowDye,
+        [PaintColor.Lime] = ItemID.LimeDye,
+        [PaintColor.Green] = ItemID.GreenDye,
+        [PaintColor.Teal] = ItemID.TealDye,
+        [PaintColor.Cyan] = ItemID.CyanDye,
+        [PaintColor.SkyBlue] = ItemID.SkyBlueDye,
+        [PaintColor.Blue] = ItemID.BlueDye,
+        [PaintColor.Purple] = ItemID.PurpleDye,
+        [PaintColor.Violet] = ItemID.VioletDye,
+        [PaintColor.Pink] = ItemID.PinkDye,
+        [PaintColor.Brown] = ItemID.BrownDye,
+        [PaintColor.Black] = ItemID.BlackDye,
+        [PaintColor.Rainbow] = ItemID.RainbowDye,
+        [PaintColor.White] = ItemID.SilverDye,
+    };
     [JsonProperty]
-    public static Dictionary<PaintColor, IDEntry<ItemID>> Dyes { get; private set; } = new();
+    public static Dictionary<PaintColor, IDEntry<ItemID>> YoyoStrings { get; private set; } = [];
     [JsonProperty]
-    public static Dictionary<PaintColor, IDEntry<ItemID>> YoyoStrings { get; private set; } = new();
-    [JsonProperty]
-    public static Dictionary<PaintColor, IDEntry<ItemID>> GolfBalls { get; private set; } = new();
+    public static Dictionary<PaintColor, IDEntry<ItemID>> GolfBalls { get; private set; } = [];
+    [JsonIgnore]
+    public static Dictionary<PaintColor, Color> RGB { get; private set; } = new() {
+        [PaintColor.Red] = Color.Red,
+        [PaintColor.Orange] = Color.Orange,
+        [PaintColor.Yellow] = Color.Yellow,
+        [PaintColor.Lime] = Color.LawnGreen,
+        [PaintColor.Green] = Color.ForestGreen,
+        [PaintColor.Teal] = Color.Teal,
+        [PaintColor.Cyan] = Color.Cyan,
+        [PaintColor.SkyBlue] = Color.SkyBlue,
+        [PaintColor.Blue] = Color.Blue,
+        [PaintColor.Purple] = Color.Purple,
+        [PaintColor.Violet] = Color.Violet,
+        [PaintColor.Pink] = Color.HotPink,
+        [PaintColor.Brown] = Color.Brown,
+        [PaintColor.Black] = Color.Black,
+        [PaintColor.Gray] = Color.Gray,
+        [PaintColor.White] = Color.White,
+    };
 
     public override void AddRecipes() {
         //AutogenerateEntries();

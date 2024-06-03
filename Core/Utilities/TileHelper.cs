@@ -1,9 +1,7 @@
 ﻿using Aequus.Common.Tiles;
-using Microsoft.Xna.Framework;
 using System;
 using System.Runtime.CompilerServices;
 using Terraria.Enums;
-using Terraria.GameContent.Drawing;
 using Terraria.ObjectData;
 
 namespace Aequus.Core.Utilities;
@@ -67,6 +65,16 @@ public static class TileHelper {
 
     public static float GetWaterY(byte liquidAmount) {
         return (1f - liquidAmount / 255f) * 16f;
+    }
+
+    /// <returns>The water line in World Coordinates.</returns>
+    public static int GetWaterLine(int i, int j) {
+        Tile tile = Main.tile[i, j];
+        return j * 16 + (int)(GetWaterY(tile.LiquidAmount) * 16f);
+    }
+    /// <returns><inheritdoc cref="GetWaterLine(int, int)"/></returns>
+    public static int GetWaterLine(Point point) {
+        return GetWaterLine(point.X, point.Y);
     }
 
     public static int GetTileDust(int sampleX, int sampleY, int tileType, int tileStyle) {
@@ -397,6 +405,28 @@ public static class TileHelper {
         return Main.tile[i, j].HasAnyLiquid();
     }
 
+    /// <returns><see langword="true"/> if the tile has the maximum liquid amount. (<see cref="Tile.LiquidAmount"/> == 255)</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool LiquidMax(this Tile tile) {
+        return tile.LiquidAmount == byte.MaxValue;
+    }
+    /// <returns><inheritdoc cref="LiquidMax(Tile)"/></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool LiquidMax(int i, int j) {
+        return Main.tile[i, j].HasAnyLiquid();
+    }
+
+    /// <returns><see langword="true"/> if the tile has a liquid amount below maximum. (<see cref="Tile.LiquidAmount"/> != 255)</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool LiquidNoMax(this Tile tile) {
+        return tile.LiquidAmount != byte.MaxValue;
+    }
+    /// <returns><inheritdoc cref="LiquidNoMax(Tile)"/></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool LiquidNoMax(int i, int j) {
+        return Main.tile[i, j].HasAnyLiquid();
+    }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool HasShimmer(this Tile tile) {
         return tile.LiquidAmount > 0 && tile.LiquidType == LiquidID.Shimmer;
@@ -509,6 +539,21 @@ public static class TileHelper {
         }
     }
     #endregion
+
+    public static void CloneStaticDefaults(this ModTile modTile, int tileId) {
+        CopyFromArr(Main.tileSpelunker);
+        CopyFromArr(Main.tileContainer);
+        CopyFromArr(Main.tileShine2);
+        CopyFromArr(Main.tileShine);
+        CopyFromArr(Main.tileFrameImportant);
+        CopyFromArr(Main.tileNoAttach);
+        CopyFromArr(Main.tileOreFinderPriority);
+        CopyFromArr(TileID.Sets.HasOutlines);
+        CopyFromArr(TileID.Sets.BasicChest);
+        CopyFromArr(TileID.Sets.DisableSmartCursor);
+
+        void CopyFromArr<T>(T[] arr) => arr[modTile.Type] = arr[tileId];
+    }
 
     [Autoload(Side = ModSide.Client)]
     private class TileHelper_InnerSystem_Client : ModSystem {

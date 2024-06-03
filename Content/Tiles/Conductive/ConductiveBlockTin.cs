@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-
-namespace Aequus.Content.Tiles.Conductive;
+﻿namespace Aequus.Content.Tiles.Conductive;
 
 [LegacyName("ConductiveBlockTileTin")]
 public class ConductiveBlockTin : ConductiveBlock {

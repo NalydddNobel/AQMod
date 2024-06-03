@@ -1,11 +1,10 @@
-﻿﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Aequus.Core.Particles;
 
 /// <summary>A basic particle array system, initializes an array of a specified size on-load.</summary>
 [Autoload(Side = ModSide.Client)]
-public abstract class ParticleArray<T> : IParticleSystem where T : IParticle, new() {
+public abstract class ParticleArray<T> : IParticleSystem, IParticleEmitter<T> where T : IParticle, new() {
     protected Mod Mod { get; private set; }
 
     protected T[] Particles;
@@ -13,8 +12,22 @@ public abstract class ParticleArray<T> : IParticleSystem where T : IParticle, ne
     public abstract int ParticleCount { get; }
     public bool Active { get; protected set; }
 
-    /// <returns>A single particle instance.</returns>
-    public T New() {
+    /// <returns><inheritdoc cref="IParticleEmitter{T}.New"/></returns>
+    public static T New() {
+        return Particle<T>.New();
+    }
+
+    /// <summary><inheritdoc cref="IParticleEmitter{T}.NewMultiple(int)"/></summary>
+    public static IEnumerable<T> NewMultiple(int count) {
+        return Particle<T>.NewMultiple(count);
+    }
+
+    /// <summary><inheritdoc cref="IParticleEmitter{T}.NewMultipleReduced(int, int)"/></summary>
+    public static IEnumerable<T> NewMultipleReduced(int count, int minimum = 1) {
+        return Particle<T>.NewMultipleReduced(count, minimum);
+    }
+
+    T IParticleEmitter<T>.New() {
         CheckInit();
 
         for (int i = 0; i < Particles.Length; i++) {
@@ -28,12 +41,7 @@ public abstract class ParticleArray<T> : IParticleSystem where T : IParticle, ne
         return Particles[^1];
     }
 
-    /// <summary>
-    /// Gets multiple particle instances, used to reduce <see cref="CheckInit"/> calls. Unlike <see cref="NewMultipleReduced(int, int)"/>, 
-    /// <paramref name="count"/> is NOT multiplied by <see cref="Main.gfxQuality"/>.
-    /// </summary>
-    /// <param name="count">The amount of particles wanted.</param>
-    public IEnumerable<T> NewMultiple(int count) {
+    IEnumerable<T> IParticleEmitter<T>.NewMultiple(int count) {
         if (Main.netMode == NetmodeID.Server) {
             yield break;
         }
@@ -45,21 +53,11 @@ public abstract class ParticleArray<T> : IParticleSystem where T : IParticle, ne
                 p.Active = true;
                 yield return p;
 
-                if(--count == 0) {
+                if (--count == 0) {
                     yield break;
                 }
             }
         }
-    }
-
-    /// <summary>
-    /// Gets multiple particle instances, used to reduce <see cref="CheckInit"/> calls. <paramref name="count"/> is multiplied by <see cref="Main.gfxQuality"/>, 
-    /// but returns atleast <paramref name="minimum"/> amount of particles.
-    /// </summary>
-    /// <param name="count">The amount of particles wanted. This is multiplied <see cref="Main.gfxQuality"/>.</param>
-    /// <param name="minimum">The minimum amount of particles to return. <paramref name="count"/> is multiplied by <see cref="Main.gfxQuality"/>, which reduces it depending on quality settings.</param>
-    public IEnumerable<T> NewMultipleReduced(int count, int minimum = 1) {
-        return NewMultiple(Math.Clamp((int)(count * Main.gfxQuality), minimum, count));
     }
 
     private void CheckInit() {
@@ -86,7 +84,7 @@ public abstract class ParticleArray<T> : IParticleSystem where T : IParticle, ne
     /// Allows the renderer to subscribe to various drawing actions.
     /// This is ran when the particle system is activated.
     /// </summary>
-    public virtual void OnActivate() { }
+    public abstract void OnActivate();
 
     /// <summary>
     /// Allows the renderer to unsubscribe to various drawing actions.
@@ -96,9 +94,11 @@ public abstract class ParticleArray<T> : IParticleSystem where T : IParticle, ne
 
     public void Load(Mod mod) {
         Mod = mod;
+        Particle<T>._instance = this;
     }
     public void Unload() {
         OnUnload();
+        Particle<T>._instance = null;
         Mod = null;
     }
     protected virtual void OnUnload() { }

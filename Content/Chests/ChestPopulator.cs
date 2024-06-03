@@ -1,24 +1,30 @@
 ﻿using Aequus.Common;
-using Aequus.Common.Chests;
 using Aequus.Content.Configuration;
-using Aequus.Content.Tools.NameTag;
-using Aequus.Core.Initialization;
+using Aequus.Content.Items.Tools.NameTag;
 using Aequus.DataSets;
+using Aequus.DataSets.Structures.DropRulesChest;
+using Aequus.DataSets.Structures.Enums;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Content.Chests;
 
-public class ChestPopulator : ISetStaticDefaults {
-    public void SetStaticDefaults(Aequus aequus) {
-        ChestLootDatabase.Instance.RegisterCommon(ChestLoot.Surface, ItemID.SlimeCrown, chanceDemoninator: 7, conditions: Commons.Conditions.ConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.SlimeCrownInSurfaceChests)));
-        ChestLootDatabase.Instance.RegisterCommon(ChestLoot.AllUnderground, ItemID.Toolbelt, chanceDemoninator: 7, conditions: Commons.Conditions.ConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveToolbelt)));
-        ChestLootDatabase.Instance.RegisterCommon(ChestLoot.AllUnderground, ModContent.ItemType<NameTag>(), chanceDemoninator: 4);
-        ChestLootDatabase.Instance.Register(ChestLoot.Shadow, new ChestRules.ReplaceItem(
+public class ChestPopulator : ISetupContent {
+    public void SetupContent(Mod mod) {
+        ChestLootDatabase.Instance.RegisterCommon(ChestPool.Surface, ItemID.SlimeCrown, chanceDemoninator: 7, conditions: Commons.Conditions.ConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.SlimeCrownInSurfaceChests)));
+
+        ChestLootDatabase.Instance.RegisterCommon(ChestPool.Underground, ItemID.Toolbelt, chanceDemoninator: 7, conditions: Commons.Conditions.ConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveToolbelt)));
+        ChestLootDatabase.Instance.RegisterCommon(ChestPool.Underground, ModContent.ItemType<NameTag>(), chanceDemoninator: 4);
+
+        ChestLootDatabase.Instance.Register(ChestPool.Shadow, new ReplaceItemChestRule(
             ItemIdToReplace: ItemID.TreasureMagnet,
-            new ChestRules.Remove(),
+            new RemoveItemChestRule(),
             Commons.Conditions.ConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveTreasureMagnet))
         ));
-    }
 
-    public void Load(Mod mod) { }
-    public void Unload() { }
+#if !DEBUG
+        ChestLootDatabase.Instance.RegisterIndexed(ChestPool.Dungeon, [
+            new CommonChestRule(ModContent.ItemType<Old.Content.Items.Weapons.Melee.Valari.Valari>())
+        ]);
+#endif
+    }
 }

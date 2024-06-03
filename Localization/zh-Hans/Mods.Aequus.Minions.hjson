@@ -1,0 +1,11 @@
+StariteMinion: {
+	DisplayName: "{$NPCs.Starite.DisplayName}"
+	BuffDisplayName: "{$StariteMinion.DisplayName}"
+	BuffDescription: 源星会为你而战
+}
+
+ScribbleNotebookMinion: {
+	DisplayName: 涂鸦
+	BuffDisplayName: "{$ScribbleNotebookMinion.DisplayName}"
+	BuffDescription: 物件会你而战!
+}

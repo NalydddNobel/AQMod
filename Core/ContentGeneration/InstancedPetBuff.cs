@@ -1,16 +1,15 @@
-﻿using Terraria.Localization;
+﻿using Aequus.Core.Structures;
+using Terraria.Localization;
 
 namespace Aequus.Core.ContentGeneration;
 
 [Autoload(false)]
 internal class InstancedPetBuff : InstancedBuff {
-    public delegate ref bool GetPlayerRef(Player player);
-
     private readonly UnifiedModPet _modPet;
-    public readonly GetPlayerRef _petFlag;
+    public readonly RefFunc<Player, bool> _petFlag;
     private readonly bool _lightPet;
 
-    public InstancedPetBuff(UnifiedModPet modPet, GetPlayerRef petFlag, bool lightPet) : base(modPet.Name + "Buff", modPet.NamespaceFilePath() + $"/{modPet.Name}Buff") {
+    public InstancedPetBuff(UnifiedModPet modPet, RefFunc<Player, bool> petFlag, bool lightPet) : base(modPet.Name + "Buff", modPet.NamespaceFilePath() + $"/{modPet.Name}Buff") {
         _modPet = modPet;
         _petFlag = petFlag;
         _lightPet = lightPet;

@@ -1,4 +1,50 @@
 {
+  "KeychainData": {
+    "CorruptionKey": {
+      "NonConsumable": false,
+      "Color": "48, 46, 99, 255"
+    },
+    "CrimsonKey": {
+      "NonConsumable": false,
+      "Color": "255, 30, 40, 255"
+    },
+    "DungeonDesertKey": {
+      "NonConsumable": false,
+      "Color": "242, 165, 100, 255"
+    },
+    "FrozenKey": {
+      "NonConsumable": false,
+      "Color": "205, 240, 255, 255"
+    },
+    "GoldenKey": {
+      "NonConsumable": false,
+      "Color": "200, 179, 73, 255"
+    },
+    "HallowedKey": {
+      "NonConsumable": false,
+      "Color": "255, 240, 65, 255"
+    },
+    "JungleKey": {
+      "NonConsumable": false,
+      "Color": "145, 220, 60, 255"
+    },
+    "ShadowKey": {
+      "NonConsumable": true,
+      "Color": "98, 88, 176, 255"
+    },
+    "TempleKey": {
+      "NonConsumable": false,
+      "Color": "205, 100, 20, 255"
+    },
+    "Aequus/CopperKey": {
+      "NonConsumable": false,
+      "Color": "183, 88, 25, 255"
+    },
+    "Aequus/TinKey": {
+      "NonConsumable": false,
+      "Color": "183, 88, 25, 255"
+    }
+  },
   "CannotTradeWithPhysicist": [
     "MartianConduitPlating",
     "MartianConduitWall",
@@ -192,7 +238,8 @@
     "ThoriumMod/HydrationPotion",
     "Polarities/PiercingPotion",
     "Polarities/TolerancePotion",
-    "Aequus/SentryPotion"
+    "Aequus/SentryPotion",
+    "Avalon/GamblerPotion"
   ],
   "PillarFragmentsByColor": [],
   "ShimmerTooltipResultIgnore": [
@@ -447,6 +494,7 @@
     "Polarities/ChlorophyteDart": "Polarities/ChlorophyteDartProjectile",
     "Polarities/VenomDart": "Polarities/VenomDartProjectile",
     "Polarities/WoodenDart": "Polarities/WoodenDartProjectile",
-    "Polarities/WoodenDartEndless": "Polarities/WoodenDartProjectile"
+    "Polarities/WoodenDartEndless": "Polarities/WoodenDartProjectile",
+    "Avalon/UltrabrightRazorbladeBullet": "Avalon/UltrabrightRazorbladeBullet"
   }
 }

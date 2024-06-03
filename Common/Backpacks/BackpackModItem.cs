@@ -104,14 +104,14 @@ public abstract class BackpackModItem : ModItem {
         }
 
         public override bool Active() {
-            return BackpackLoader.Get(Main.LocalPlayer, _backpack).IsActive(Main.LocalPlayer);
+            return BackpackLoader.GetPlayerInstance(Main.LocalPlayer, _backpack).IsActive(Main.LocalPlayer);
         }
 
         public override string DisplayValue() {
             return (CurrentState == 0 ? BuilderSlotTextOnCache : BuilderSlotTextOffCache).Value;
         }
 
-        public override Color DisplayColorTexture() {
+        public override Color DisplayColorTexture()/* tModPorter Note: Removed. Use BuilderToggle.Draw */ {
             return CurrentState == 0 ? Color.White : Color.Gray;
         }
     }

@@ -1,6 +1,4 @@
 ﻿using Aequus.Content.Events.DemonSiege;
-using Aequus.Core;
-using Aequus.Core.Networking;
 using Aequus.Old.Content.Events.DemonSiege.Spawners;
 using Aequus.Old.Content.Events.DemonSiege.Tiles;
 using System;
@@ -11,6 +9,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent.UI.Chat;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
+using tModLoaderExtended.Networking;
 
 namespace Aequus.Old.Content.Events.DemonSiege;
 
@@ -113,7 +112,7 @@ public class DemonSiegeSacrificeInfo {
         if (Main.netMode != NetmodeID.SinglePlayer) {
             NetUpdate++;
             if (NetUpdate > 120 && Main.netMode == NetmodeID.Server) {
-                Aequus.GetPacket<DemonSiegeStatusPacket>().Send(this);
+                ExtendedMod.GetPacket<DemonSiegeStatusPacket>().Send(this);
                 NetUpdate = 0;
             }
             // Timeout
@@ -144,7 +143,7 @@ public class DemonSiegeSacrificeInfo {
     public void InnerUpdate_OnStart() {
         TimeLeftMax = TimeLeft = DetermineLength();
         if (Main.netMode == NetmodeID.Server) {
-            Aequus.GetPacket<DemonSiegeStatusPacket>().Send(this);
+            ExtendedMod.GetPacket<DemonSiegeStatusPacket>().Send(this);
         }
 
         if (Main.netMode != NetmodeID.Server && player != 255) {

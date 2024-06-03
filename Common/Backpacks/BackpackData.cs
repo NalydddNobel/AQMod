@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aequus.Core.Graphics.Textures;
+using System;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Events;
@@ -12,7 +13,8 @@ public abstract class BackpackData : ModType, ILocalizedModType {
 
     public int Type { get; internal set; }
 
-    public Item[] Inventory { get; internal set; }
+    private Item[] _inventory;
+    public Item[] Inventory { get => _inventory; internal set => _inventory = value; }
     public int slotCount;
 
     protected bool activeOld;
@@ -63,16 +65,23 @@ public abstract class BackpackData : ModType, ILocalizedModType {
     protected virtual void OnUpdateItem(Player player, AequusPlayer aequusPlayer, int slot) {
     }
 
-    public virtual BackpackData CreateInstance() => (BackpackData)MemberwiseClone();
+    public virtual BackpackData CreateInstance() {
+        return (BackpackData)MemberwiseClone();
+    }
 
     protected virtual void SaveExtraData(TagCompound tag) { }
 
     protected virtual void LoadExtraData(TagCompound tag) { }
 
-    public virtual bool CanAcceptItem(int slot, Item incomingItem) => true;
+    public virtual bool CanAcceptItem(int slot, Item incomingItem) {
+        return true;
+    }
 
     /// <summary>Return false to override slot drawing.</summary>
-    public virtual bool PreDrawSlot(SpriteBatch spriteBatch, Vector2 slotCenter, Vector2 slotTopLeft, int slot) => true;
+    public virtual bool PreDrawSlot(SpriteBatch spriteBatch, Vector2 slotCenter, Vector2 slotTopLeft, int slot) {
+        return true;
+    }
+
     public virtual void PostDrawSlot(SpriteBatch spriteBatch, Vector2 slotCenter, Vector2 slotTopLeft, int slot) { }
 
     public void SaveData(TagCompound tag) {
@@ -124,9 +133,7 @@ public abstract class BackpackData : ModType, ILocalizedModType {
                         }
                     }
 
-                    Item[] arr = Inventory;
-                    Array.Resize(ref arr, capacity);
-                    Inventory = arr;
+                    Array.Resize(ref _inventory, capacity);
                 }
 
                 for (int i = 0; i < Inventory.Length; i++) {
@@ -145,6 +152,7 @@ public abstract class BackpackData : ModType, ILocalizedModType {
         DisplayNameCache = DisplayName;
     }
 
+    #region Rendering
     private float _hueRenderedWith;
     public Texture2D InventoryBack { get; private set; }
     public Texture2D InventoryBackFavorited { get; private set; }
@@ -169,25 +177,67 @@ public abstract class BackpackData : ModType, ILocalizedModType {
     }
 
     private static Texture2D HueSingleTexture2D(Texture2D baseTexture, float hue) {
-        Color[] textureTCommonColorExtracted = new Color[baseTexture.Width * baseTexture.Height];
-        baseTexture.GetData(textureTCommonColorExtracted);
+        return TextureGen.PerPixel(new EffectHueAdd(hue), baseTexture);
+    }
+    #endregion
 
-        for (int k = 0; k < textureTCommonColorExtracted.Length; k++) {
-            Color color = textureTCommonColorExtracted[k];
-            byte velocity = Math.Max(Math.Max(color.R, color.G), color.B);
-            textureTCommonColorExtracted[k] = color.HueAdd(hue) with { A = color.A };
+    internal void EnsureCapacity(int capacity) {
+        if (_inventory == null) {
+            _inventory = new Item[capacity];
+            UnNullItems();
         }
+        else if (_inventory.Length < capacity) {
+            Array.Resize(ref _inventory, capacity);
+            UnNullItems();
+        }
+    }
+
+    internal void UnNullItems() {
+        for (int i = 0; i < _inventory.Length; i++) {
+            if (_inventory[i] == null) {
+                _inventory[i] = new Item();
+            }
+        }
+    }
+
+    /// <returns>Whether any items needed syncing.</returns>
+    public bool SyncNetStates(Player player, BackpackData cloneBackpack) {
+        if (Inventory == null || cloneBackpack.Inventory == null || cloneBackpack.Inventory.Length < Inventory.Length) {
+            return false;
+        }
+
+        bool returnValue = false;
+        for (int i = 0; i < Inventory.Length; i++) {
+            if (Inventory[i] != null && cloneBackpack.Inventory[i] != null && Inventory[i].IsNetStateDifferent(cloneBackpack.Inventory[i])) {
+                ExtendedMod.GetPacket<BackpackPlayerSyncPacket>().SendSingleItem(player, this, i);
+                returnValue |= true;
+            }
+        }
+
+        return returnValue;
+    }
+
+    public void CopyClientState(Player player, BackpackData cloneBackpack) {
+        if (Inventory == null) {
+            return;
+        }
+
+        cloneBackpack.EnsureCapacity(Inventory.Length);
 
         try {
-            Texture2D resultTexture = new Texture2D(Main.instance.GraphicsDevice, baseTexture.Width, baseTexture.Height);
-            resultTexture.SetData(textureTCommonColorExtracted);
-            return resultTexture;
+            for (int i = 0; i < Inventory.Length; i++) {
+                if (Inventory[i] == null) {
+                    Inventory[i] = new();
+                }
+                if (cloneBackpack.Inventory[i] == null) {
+                    cloneBackpack.Inventory[i] = new();
+                }
+                Inventory[i].CopyNetStateTo(cloneBackpack.Inventory[i]);
+            }
         }
         catch (Exception ex) {
-            Aequus.Log.Error(ex);
-
-            // return null if error occurs, this will retry rendering the textures next frame
-            return null;
+            cloneBackpack.UnNullItems();
+            Aequus.Instance.Logger.Error(ex);
         }
     }
 }

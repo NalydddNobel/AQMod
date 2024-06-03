@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Graphics;
+﻿using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
@@ -16,7 +14,7 @@ public class CustomGolfPredictionLine {
 
     private readonly int _iterations;
 
-    private readonly Color[] _TCommonColor = new Color[2]
+    private readonly Color[] _colors = new Color[2]
     {
         Color.White,
         Color.Gray
@@ -87,13 +85,13 @@ public class CustomGolfPredictionLine {
 
     private Color GetColor(float index) {
         float num = index * 0.5f - _time * MathF.PI * 1.5f;
-        int colorIndex = (int)Math.Floor(num) % _TCommonColor.Length;
+        int colorIndex = (int)Math.Floor(num) % _colors.Length;
         if (colorIndex < 0) {
-            colorIndex += _TCommonColor.Length;
+            colorIndex += _colors.Length;
         }
 
         float amount = num - (float)Math.Floor(num);
-        return Color.Lerp(_TCommonColor[colorIndex], _TCommonColor[(colorIndex + 1) % _TCommonColor.Length], amount) with { A = 64 } * 0.6f;
+        return Color.Lerp(_colors[colorIndex], _colors[(colorIndex + 1) % _colors.Length], amount) with { A = 64 } * 0.6f;
     }
 
     private float GetScale(float travelledLength) {

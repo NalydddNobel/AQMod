@@ -1,4 +1,8 @@
 {
+  "CannotPickpocketItemsFrom": [
+    "EaterofWorldsBody",
+    "EaterofWorldsTail"
+  ],
   "Soulless": [
     "FireImp",
     "BoneSerpentHead",
@@ -82,7 +86,12 @@
     "GoblinShark",
     "BloodEelHead",
     "BloodEelBody",
-    "BloodEelTail"
+    "BloodEelTail",
+    "Avalon/ContaminatedBunny",
+    "Avalon/ContaminatedGoldfish",
+    "Avalon/ContaminatedPenguin",
+    "Avalon/BloodshotEye",
+    "Avalon/FallenHero"
   ],
   "IsCorrupt": [
     "Slimeling",
@@ -272,6 +281,15 @@
   "PrefixBlacklist": [],
   "PushableByTypeId": [
     "Aequus/BlackJellyfish",
+    "Aequus/Conductor",
+    "Aequus/ConductorProj",
+    "Aequus/ConeheadZombieBasic",
+    "Aequus/ConeheadZombieBald",
+    "Aequus/ConeheadZombiePincushion",
+    "Aequus/ConeheadZombieSlimed",
+    "Aequus/ConeheadZombieSwamp",
+    "Aequus/ConeheadZombieTwiggy",
+    "Aequus/ConeheadZombieFemale",
     "Aequus/OilSlime",
     "Aequus/Scavenger",
     "Aequus/ScavengerLootBag"

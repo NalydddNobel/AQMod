@@ -1,5 +1,5 @@
-﻿using Aequus.Common.JourneyMode;
-using Aequus.Core.ContentGeneration;
+﻿using Aequus.Core.ContentGeneration;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace Aequus.Content.Tiles.Statues;
 

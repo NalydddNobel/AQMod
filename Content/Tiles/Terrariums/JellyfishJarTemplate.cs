@@ -1,10 +1,10 @@
-﻿using Aequus.Common.JourneyMode;
-using Aequus.Core.ContentGeneration;
+﻿using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics.Tiles;
 using ReLogic.Content;
 using Terraria.GameContent;
 using Terraria.ObjectData;
 using Terraria.Utilities;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace Aequus.Content.Tiles.Terrariums;
 

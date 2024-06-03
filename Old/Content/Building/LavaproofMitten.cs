@@ -31,7 +31,7 @@ public class LavaproofMittenGlobalItem : GlobalItem {
         int x = Player.tileTargetX;
         int y = Player.tileTargetY;
         Tile tile = Framing.GetTileSafely(x, y);
-        if (Main.GameUpdateCount % 2 != 0 || !WorldGen.InWorld(x, y, 5) || 
+        if (Main.GameUpdateCount % 2 != 0 || !WorldGen.InWorld(x, y, 5) ||
             ((tile.LiquidAmount == 0 || tile.LiquidType != LiquidID.Lava) && (!player.TileReplacementEnabled || !WorldGen.WouldTileReplacementBeBlockedByLiquid(x, y, LiquidID.Lava)))) {
             return null;
         }

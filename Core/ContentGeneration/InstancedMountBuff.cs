@@ -5,7 +5,7 @@ namespace Aequus.Core.ContentGeneration;
 internal class InstancedMountBuff : InstancedModBuff {
     protected readonly UnifiedModMount _parent;
 
-    public InstancedMountBuff(UnifiedModMount parent) 
+    public InstancedMountBuff(UnifiedModMount parent)
         : base(parent.Name, parent.NamespaceFilePath() + $"/{parent.Name.Replace("Mount", "")}Buff") {
         _parent = parent;
     }

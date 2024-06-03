@@ -1,8 +1,9 @@
 ﻿using Aequus.Content.Configuration;
-using Aequus.Content.Equipment.Informational.Calendar;
-using Aequus.Content.Equipment.Informational.DebuffDPSMeter;
-using Aequus.Core.Initialization;
-using Aequus.Old.Content.Equipment.Info;
+using Aequus.Content.Items.Accessories.Informational.Calendar;
+using Aequus.Content.Items.Accessories.Informational.DebuffDPSMeter;
+using System.Collections.Generic;
+using Terraria.Localization;
+using tModLoaderExtended.Recipes;
 
 namespace Aequus.Content.VanillaChanges;
 
@@ -14,6 +15,10 @@ public class InfoAccessoryChanges {
 
         public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
             return entity.type == ItemID.PDA;
+        }
+
+        public override void SetDefaults(Item entity) {
+            entity.StatsModifiedBy.Add(Mod);
         }
 
         public override void UpdateInfoAccessory(Item item, Player player) {
@@ -32,7 +37,7 @@ public class InfoAccessoryChanges {
         public static void UpdateAequusInfoAccs(Player player) {
             AequusPlayer info = player.GetModPlayer<AequusPlayer>();
             info.accInfoDayCalendar = true;
-            info.accInfoDPSMeterDebuff = true;
+            info.accInfoDebuffDPS = true;
 #if !DEBUG
             info.accInfoQuestFish = true;
 #endif
@@ -48,17 +53,25 @@ public class InfoAccessoryChanges {
             return entity.type == ItemID.FishFinder;
         }
 
+        public override void SetDefaults(Item entity) {
+            entity.StatsModifiedBy.Add(Mod);
+        }
+
         public override void UpdateInfoAccessory(Item item, Player player) {
 #if !DEBUG
             player.GetModPlayer<AequusPlayer>().accInfoQuestFish = true;
 #endif
         }
 
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
+            tooltips.AddTooltip(new TooltipLine(Mod, "AnglerBroadcaster", Language.GetTextValue("Mods.Aequus.Items.Vanilla.FishFinder.Tooltip")));
+        }
+
         public void EditRecipe(Recipe recipe) {
             if (recipe.createItem.type == ItemID.FishFinder) {
                 Aequus.Log.Debug("Adding Aequus Fish Finder ingredients...");
 #if !DEBUG
-                recipe.AddIngredient(ModContent.ItemType<AnglerBroadcaster>());
+                recipe.AddIngredient(ModContent.ItemType<Old.Content.Items.Accessories.Info.AnglerBroadcaster>());
 #endif
             }
         }

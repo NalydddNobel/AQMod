@@ -1,4 +1,6 @@
 CommonTooltips: {
+	// KnockbackResist: "{0}% reduced knockback"
+	// GuideHint: The Guide may be interested in this...
 	BuffTimeRange: "{0}-{1} minuto(s) de duración"
 	IncreasesInventorySlots: Otorga {0} ranuras de mochila
 	Cooldown: Tiene {0} segundos de recarga
@@ -19,6 +21,12 @@ CommonTooltips: {
 	DisableItem: <right> para desactivar
 	EnableItem: Actualmente desactivado, <right> para reactivar
 	// GoblinTinkererRepair: Can be repaired at the Goblin Tinkerer
+	/* LockedWithKey:
+		'''
+		<right> to open
+		Requires a {0}
+		''' */
+	// UsedXOfXTimes: Used {0}/{1} times
 }
 
 Keywords: {
@@ -42,6 +50,15 @@ ValentineRing: {
 	BuffName: Valentín
 	BuffDescription: Incrementa regeneración de vida y daño
 	BuffDescription2: "{0} te esta favoreciendo!"
+}
+
+HyperCrystal: {
+	// DisplayName: Hyper Crystal
+	/* Tooltip:
+		'''
+		Shoot powerful crystals at your enemies as you attack
+		Your crystals shatter when out of range
+		''' */
 }
 
 GrandReward: {
@@ -153,6 +170,7 @@ LaserReticle: {
 	Tooltip: Disminuye la propagación de armas de rango por {0}%
 }
 
+// --localization note-- this is a pun. (high stakes + steak)
 HighSteaks: {
 	DisplayName: Apuistec
 	Tooltip:
@@ -172,6 +190,7 @@ KegOSpirits: {
 		'''
 }
 
+// --localization note-- this is also a pun. (savory + ivory)
 SaivoryKnife: {
 	DisplayName: cuchillo de marfil
 	Tooltip: Incrementa la dúracion de tus fantasmas por {0} minuto(s)
@@ -273,6 +292,7 @@ GeigerCounter: {
 	// Tooltip: Displays the damage per second from debuffs
 }
 
+// --localization note-- this may be a pun? (shimmer + monocle)
 ShimmerMonocle: {
 	DisplayName: Fulgóculo
 	Tooltip: Muestra si un objeto es un ingrediente de Fulgor
@@ -335,6 +355,11 @@ Meathook: {
 }
 
 //# Weapons: Melee
+AncientCutlass: {
+	// DisplayName: Ol' Yore Cutlass
+	// Tooltip: Enemies have a chance to drop bonus loot on hit
+}
+
 Dynaknife: {
 	DisplayName: El espíritu navideño
 	Tooltip:
@@ -344,6 +369,45 @@ Dynaknife: {
 		'''
 }
 
+UltimateSword: {
+	// DisplayName: Ultimate Sword
+	// Tooltip: "'Absorbed by Omega Starite, losing its true potential...'"
+}
+
+PhaseDisc: {
+	// DisplayName: Phasebrink
+	/* Tooltip:
+		'''
+		<left> and <right> to throw elemental discs
+		Throw them together for a powerful attack
+		''' */
+}
+
+SickBeat: {
+	// DisplayName: Sick Beat
+	/* Tooltip:
+		'''
+		Deals extra hits when returning back
+		Dropped from sickly enemies who'd love some beats
+		'This beat comes straight from Terraria!'
+		''' */
+}
+
+Valari: {
+	// DisplayName: Valari
+	// Tooltip: Can pick up items
+}
+
+Vrang: {
+	// DisplayName: Vrang
+	/* Tooltip:
+		'''
+		Throw 3 boomerangs at once
+		Dropped by flocking birds which travel in the skies while the wind is high
+		''' */
+}
+
+// translation note: the flavor text on the tooltip is taken straight from the sword ability flavor text from 'Kirby: Nightmare in Dream Land'
 SuperStarSword: {
 	DisplayName: Espada Super Estrella
 	Tooltip:
@@ -421,6 +485,35 @@ SkyHunterCrossbow: {
 		'''
 }
 
+SnowflakeCannon: {
+	// DisplayName: Snowflake Cannon
+	/* Tooltip:
+		'''
+		Shoots charged snowflakes which arc off of enemies
+		66% chance to not consume ammo
+		''' */
+}
+
+BoundBow: {
+	// DisplayName: Bound Bow
+	// Tooltip: Infinitely regenerates ammo over time
+}
+
+Hitscanner: {
+	// DisplayName: Hitscanner
+	/* Tooltip:
+		'''
+		Ignores 5 points of enemy Defense
+		Fires a massive spread of instantly hitting bullets
+		'We will send unto them... only you.'
+		''' */
+}
+
+Raygun: {
+	// DisplayName: Raygun
+	// Tooltip: Converts bullets into extremely fast rays
+}
+
 CrusadersCrossbow: {
 	DisplayName: Ballesta del Cruzado
 	Tooltip: Dispara dardos especiales que curan a aliados
@@ -431,6 +524,7 @@ Deltoid: {
 	Tooltip: Enciende flechas de madera con fuego infernal carmesí
 }
 
+// --localization note-- this bow is named after an actual real bow, probably should be left as is
 HamaYumi: {
 	DisplayName: Hama Yumi
 	Tooltip: Las flechas estan temporalmente mejoradas con una rafaga de corrupción
@@ -451,6 +545,20 @@ Furystar: {
 		'''
 }
 
+Gamestar: {
+	// DisplayName: Gamestar
+	// Tooltip: Shoots a stream of compressed data
+}
+
+Nightfall: {
+	// DisplayName: Nightfall
+	/* Tooltip:
+		'''
+		Attacks against grounded enemies throws them into the air
+		Airborne enemies slam to the ground, taking fall damage
+		''' */
+}
+
 StudiesOfTheInkblot: {
 	DisplayName: Estudios de la mancha de tinta
 	Tooltip:
@@ -469,7 +577,7 @@ BombarderRod: {
 		'''
 }
 
-// localization note: 'triacanthorn' is a portmanteau of 'Gleditsia triacanthos' (scientific name of a thorny plant) and the word 'thorn'
+// --localization note-- 'triacanthorn' is a portmanteau of 'Gleditsia triacanthos' (scientific name of a thorny plant) and the word 'thorn'
 Triacanthorn: {
 	DisplayName: Triacastilla
 	Tooltip:
@@ -480,11 +588,47 @@ Triacanthorn: {
 }
 
 //# Weapons: Summon
+ElectricEelWhip: {
+	// DisplayName: Stimulant
+	/* Tooltip:
+		'''
+		{$CommonItemTooltip.SummonTagDamage}
+		{$CommonItemTooltip.Whips}
+		'The Eel - Eek!'
+		''' */
+}
+
+DemonSoulscourge: {
+	// DisplayName: Serpent's Blight
+	// Tooltip: "{$CommonItemTooltip.Whips}"
+}
+
+DemonVasculash: {
+	// DisplayName: Flagellum
+	/* Tooltip:
+		'''
+		{$CommonItemTooltip.Whips}
+		Defensive hungries are unleashed from enemies hit by summons
+		<right> or take damage to release all of the hungries as an attack
+		''' */
+}
+
+ScribbleNotebook: {
+	// DisplayName: Scribble Notebook
+	// Tooltip: Summons a random object to fight for you
+}
+
+StariteStaff: {
+	// DisplayName: Starite Staff
+	// Tooltip: ""
+}
+
 PhysicistSentry: {
 	DisplayName: Torreta Tesla Portátil
 	Tooltip: Invoca una torreta tesla que dispara una rafaga de relampagos en cadena
 }
 
+//# Weapons: Necromancy
 Insurgency: {
 	DisplayName: Insurgencia
 	Tooltip:
@@ -536,6 +680,11 @@ StunGun: {
 }
 
 //# Potions
+MeadowMushroom: {
+	// DisplayName: Meadow Mushroom
+	// Tooltip: ""
+}
+
 SentryPotion: {
 	DisplayName: Poción de centinela
 	Tooltip: Incrementa tu numero maximo de centinelas por {0}
@@ -593,6 +742,51 @@ Baguette: {
 }
 
 //# Misc
+BeyondPlatinumCoin: {
+	// DisplayName: Beyond Coin
+	// Tooltip: Doesn't count as a coin, but stores 100 Platinum
+}
+
+ShimmerCoin: {
+	// DisplayName: Shimmer Coin
+	/* Tooltip:
+		'''
+		Permanently grant every shimmer powerup bonus at 1/5 effectiveness
+		Increases life regneration, mana regeneration, defense,
+		mining speed, building speed, fishing skill, luck, 
+		droprates, rolling positive prefixes from reforging,
+		defense & strength of villagers, and Traveling Merchant items
+		''' */
+}
+
+TinKey: {
+	// DisplayName: Tin Key
+	// Tooltip: Opens the Generator room door
+}
+
+CopperKey: {
+	// DisplayName: Copper Key
+	// Tooltip: Opens one locked Copper Chest
+}
+
+Keychain: {
+	// DisplayName: Keychain
+	/* Tooltip:
+		'''
+		<right> while holding a key over this item to add it
+		<shift> and <right> to remove all keys
+		''' */
+}
+
+MagicKeychain: {
+	// DisplayName: Spectre Keychain
+	/* Tooltip:
+		'''
+		{$Keychain.Tooltip}
+		Keys can be used infinitely
+		''' */
+}
+
 FrozenTechnology: {
 	DisplayName: Tecnología Congelada
 	Tooltip: Usado para crear aparatos informacionales
@@ -638,6 +832,7 @@ DemonicEnergy: {
 	Tooltip: ""
 }
 
+// --localization note-- 'hearth' is a very specific word so it can just be translated into anything relating to earth or ground
 OrganicEnergy: {
 	DisplayName: Energía Terrica
 	Tooltip: ""
@@ -974,11 +1169,6 @@ CosmicMonolith: {
 	Tooltip: "'Sostiene una fracción de poder cosmico'"
 }
 
-UltimateSword: {
-	// DisplayName: Mods.Aequus.Items.UltimateSword.DisplayName
-	// Tooltip: ""
-}
-
 StariteMaterial: {
 	DisplayName: Fragmento de Núcleo
 	// Tooltip: ""
@@ -987,4 +1177,14 @@ StariteMaterial: {
 UnopenedChestItem: {
 	DisplayName: Objeto de cofre sin abrir
 	// Tooltip: This is a debug item placed into chests upon worldgen to check if they have been opened
+}
+
+BeyondLifeCrystal: {
+	// DisplayName: Beyond Life Crystal
+	// Tooltip: ""
+}
+
+BeyondManaCrystal: {
+	// DisplayName: Beyond Mana Crystal
+	// Tooltip: ""
 }

@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Golfing;
-using Aequus.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,7 +10,7 @@ namespace Aequus.Common.Backpacks;
 
 public class BackpackLoader {
     public const string BackpacksSaveKey = "Backpacks";
-    
+
     public static readonly List<BackpackData> Backpacks = new();
     public static int Count => Backpacks.Count;
 
@@ -27,7 +26,7 @@ public class BackpackLoader {
     public static void SaveBackpacks(TagCompound tag, BackpackData[] backpacks, List<(string, TagCompound)> unloadedBackpacksList) {
         // Create a tag which will contain all of the individual backpack tag compounds.
         TagCompound backpacksSaveTag = new TagCompound();
-        
+
         for (int i = 0; i < backpacks.Length; i++) {
             // Create backpack tag compound, and save data to it
             TagCompound backpackTag = new TagCompound();
@@ -97,12 +96,6 @@ public class BackpackLoader {
                 ItemLoader.UpdateInventory(backpack.Inventory[i], player);
                 player.RefreshInfoAccsFromItemType(backpack.Inventory[i]);
                 player.RefreshMechanicalAccsFromItemType(backpack.Inventory[i].type);
-            }
-            if (backpack.Inventory[i].type == ItemID.GoldenKey && aequusPlayer.goldenKey == null) {
-                aequusPlayer.goldenKey = backpack.Inventory[i];
-            }
-            if (backpack.Inventory[i].type == ItemID.ShadowKey && (aequusPlayer.shadowKey == null || aequusPlayer.shadowKey.consumable)) {
-                aequusPlayer.shadowKey = backpack.Inventory[i];
             }
             if (backpack.Inventory[i].type == ItemID.Football) {
                 player.hasFootball = true;
@@ -208,15 +201,19 @@ public class BackpackLoader {
         return anyTransfers;
     }
 
-    public static void ConsumeItem(Player player, BackpackData backpack, int type, bool reverseOrder) {
+    public static bool ConsumeItem(Player player, BackpackData backpack, int type, bool reverseOrder) {
         for (int i = 0; i < backpack.Inventory.Length; i++) {
             if (!backpack.Inventory[i].IsAir && backpack.Inventory[i].type == type && ItemLoader.ConsumeItem(backpack.Inventory[i], player)) {
                 backpack.Inventory[i].stack--;
                 if (backpack.Inventory[i].stack <= 0) {
                     backpack.Inventory[i].TurnToAir();
                 }
+
+                return true;
             }
         }
+
+        return false;
     }
 
     public static Item GetQuickManaItem(Player player, BackpackData backpack) {
@@ -317,17 +314,21 @@ public class BackpackLoader {
         return false;
     }
 
-    public static BackpackData Get(BackpackPlayer player, BackpackData backpack) {
+    public static BackpackData GetPlayerInstance(BackpackPlayer player, BackpackData backpack) {
         return player.backpacks[backpack.Type];
     }
-    public static BackpackData Get(Player player, BackpackData backpack) {
-        return Get(player.GetModPlayer<BackpackPlayer>(), backpack);
+    public static BackpackData GetPlayerInstance(Player player, BackpackData backpack) {
+        return GetPlayerInstance(player.GetModPlayer<BackpackPlayer>(), backpack);
     }
-    public static T Get<T>(BackpackPlayer player) where T : BackpackData {
-        return (T)Get(player, ModContent.GetInstance<T>());
+    public static T GetPlayerInstance<T>(BackpackPlayer player) where T : BackpackData {
+        return (T)GetPlayerInstance(player, ModContent.GetInstance<T>());
     }
-    public static T Get<T>(Player player) where T : BackpackData {
-        return Get<T>(player.GetModPlayer<BackpackPlayer>());
+    public static T GetPlayerInstance<T>(Player player) where T : BackpackData {
+        return GetPlayerInstance<T>(player.GetModPlayer<BackpackPlayer>());
+    }
+
+    public static BackpackData Get(int type) {
+        return Backpacks[type];
     }
 
     [Conditional("DEBUG")]

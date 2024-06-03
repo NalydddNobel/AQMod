@@ -1,4 +1,6 @@
 CommonTooltips: {
+	// KnockbackResist: "{0}% reduced knockback"
+	GuideHint: 向导可能会对此物感兴趣...
 	BuffTimeRange: "{0}-{1}分钟持续时间"
 	IncreasesInventorySlots: 获得{0}格物品栏
 	Cooldown: 有{0}秒冷却时间
@@ -19,6 +21,12 @@ CommonTooltips: {
 	DisableItem: 右键无效化
 	EnableItem: 当前未激活, 右键以重新激活
 	GoblinTinkererRepair: 可以在哥布林工匠处修复
+	LockedWithKey:
+		'''
+		右键打开
+		需要一个{0}
+		'''
+	UsedXOfXTimes: 已使用{0}/{1}次
 }
 
 Keywords: {
@@ -42,6 +50,15 @@ ValentineRing: {
 	BuffName: 情人
 	BuffDescription: 生命再生速度和伤害增加
 	BuffDescription2: 你受到了{0}的强化!
+}
+
+HyperCrystal: {
+	DisplayName: 超晶体
+	Tooltip:
+		'''
+		攻击时会向敌人发射强大的晶体
+		晶体会在超出范围时碎裂
+		'''
 }
 
 GrandReward: {
@@ -153,6 +170,7 @@ LaserReticle: {
 	Tooltip: 降低{0}%远程武器的离散度
 }
 
+// --localization note-- this is a pun. (high stakes + steak)
 HighSteaks: {
 	DisplayName: 高级牛排
 	Tooltip:
@@ -172,6 +190,7 @@ KegOSpirits: {
 		'''
 }
 
+// --localization note-- this is also a pun. (savory + ivory)
 SaivoryKnife: {
 	DisplayName: 美味象牙刀
 	Tooltip: 延长{0}分钟幽魂仆从的存在时间
@@ -273,6 +292,7 @@ GeigerCounter: {
 	Tooltip: 显示每秒造成的持续伤害
 }
 
+// --localization note-- this may be a pun? (shimmer + monocle)
 ShimmerMonocle: {
 	DisplayName: 微光单片镜
 	Tooltip: 显示一个物品是否是微光材料
@@ -335,21 +355,65 @@ Meathook: {
 }
 
 //# Weapons: Melee
+AncientCutlass: {
+	DisplayName: 昔时短刀
+	Tooltip: 被击中的敌人有几率掉落更多战利品
+}
+
 Dynaknife: {
 	DisplayName: 圣诞精神
 	Tooltip:
 		'''
 		击中敌人时会施加炸弹并引爆
-		<right>向前冲刺并攻击
+		右键向前冲刺并攻击
 		'''
 }
 
+UltimateSword: {
+	DisplayName: 最终之剑
+	Tooltip: "'被终末之星所吸收, 失去了其真正的潜能...'"
+}
+
+PhaseDisc: {
+	DisplayName: 相位盘
+	Tooltip:
+		'''
+		左键和右键会分别丢出一个元素飞盘
+		组合在一起以形成强大的攻击
+		'''
+}
+
+SickBeat: {
+	DisplayName: 动感节拍
+	Tooltip:
+		'''
+		当折返时会造成额外的命中
+		掉落自喜欢某些节拍的生病的敌人
+		'这个节拍直接来自泰拉瑞亚!'
+		'''
+}
+
+Valari: {
+	DisplayName: 回旋镰
+	Tooltip: 可以拾取物品
+}
+
+Vrang: {
+	DisplayName: 镰刃
+	Tooltip:
+		'''
+		同时扔出3个回旋镖
+		从在大风时成群结队飞行的鸟儿处掉落
+		'''
+}
+
+// translation note: the flavor text on the tooltip is taken straight from the sword ability flavor text from 'Kirby: Nightmare in Dream Land'
 SuperStarSword: {
 	DisplayName: 超级星剑
 	Tooltip:
 		'''
 		生命值高于90%时会发射剑气
-		'会动的东西我砍, 动的很欢的我砍得更欢'
+		'如果谁想逃，就把他们砍了（不逃也砍了）'
 		'''
 }
 
@@ -421,6 +485,35 @@ SkyHunterCrossbow: {
 		'''
 }
 
+SnowflakeCannon: {
+	DisplayName: 雪花大炮
+	Tooltip:
+		'''
+		发射击中敌人时会回弹的电弧雪花
+		66%几率不消耗弹药
+		'''
+}
+
+BoundBow: {
+	DisplayName: 界限弓
+	Tooltip: 随时间流逝会不断再生弹药
+}
+
+Hitscanner: {
+	DisplayName: 命中扫描器
+	Tooltip:
+		'''
+		无视敌人5点的防御力
+		发射大量会瞬间命中敌人的子弹
+		'我们会向他们发送...只有你.'
+		'''
+}
+
+Raygun: {
+	DisplayName: 射线枪
+	Tooltip: 将子弹转化为快速射线
+}
+
 CrusadersCrossbow: {
 	DisplayName: 十字军弩
 	Tooltip: 发射可以治疗队友的箭矢
@@ -431,6 +524,7 @@ Deltoid: {
 	Tooltip: 用猩红狱火点燃木箭
 }
 
+// --localization note-- this bow is named after an actual real bow, probably should be left as is
 HamaYumi: {
 	DisplayName: 破魔弓
 	Tooltip: 箭矢会被穿透性腐化爆炸短暂增幅
@@ -448,6 +542,20 @@ Furystar: {
 		'''
 		使星星从天而降
 		攻击会回复魔力值
+		'''
+}
+
+Gamestar: {
+	DisplayName: 游戏之星
+	Tooltip: 发送压缩数据流
+}
+
+Nightfall: {
+	DisplayName: 夜陨
+	Tooltip:
+		'''
+		攻击地面敌人会将其抛向空中
+		在空中的敌人会砸向地面, 受到摔落伤害
 		'''
 }
 
@@ -469,7 +577,7 @@ BombarderRod: {
 		'''
 }
 
-// localization note: 'triacanthorn' is a portmanteau of 'Gleditsia triacanthos' (scientific name of a thorny plant) and the word 'thorn'
+// --localization note-- 'triacanthorn' is a portmanteau of 'Gleditsia triacanthos' (scientific name of a thorny plant) and the word 'thorn'
 Triacanthorn: {
 	DisplayName: 三刺棘
 	Tooltip:
@@ -480,11 +588,47 @@ Triacanthorn: {
 }
 
 //# Weapons: Summon
+ElectricEelWhip: {
+	DisplayName: 激励
+	Tooltip:
+		'''
+		{$CommonItemTooltip.SummonTagDamage}
+		{$CommonItemTooltip.Whips}
+		'鳗 - 呀!'
+		'''
+}
+
+DemonSoulscourge: {
+	DisplayName: 海蛇之疫
+	Tooltip: "{$CommonItemTooltip.Whips}"
+}
+
+DemonVasculash: {
+	DisplayName: 鞭毛
+	Tooltip:
+		'''
+		{$CommonItemTooltip.Whips}
+		被召唤物攻击的敌人会释放出防御性饿鬼
+		右键或受到伤害时会释放所有饿鬼进行攻击
+		'''
+}
+
+ScribbleNotebook: {
+	DisplayName: 涂鸦笔记本
+	Tooltip: 召唤一个随机物件为你而战
+}
+
+StariteStaff: {
+	DisplayName: 源星法杖
+	Tooltip: ""
+}
+
 PhysicistSentry: {
 	DisplayName: 便携式特斯拉炮塔
 	Tooltip: 召唤一个会发射大量连锁闪电的特斯拉炮塔
 }
 
+//# Weapons: Necromancy
 Insurgency: {
 	DisplayName: 叛乱
 	Tooltip:
@@ -536,6 +680,11 @@ StunGun: {
 }
 
 //# Potions
+MeadowMushroom: {
+	DisplayName: 草地菇
+	Tooltip: ""
+}
+
 SentryPotion: {
 	DisplayName: 哨兵药水
 	Tooltip: 增加{0}格最大哨兵栏位
@@ -593,6 +742,51 @@ Baguette: {
 }
 
 //# Misc
+BeyondPlatinumCoin: {
+	DisplayName: 彼界钱币
+	Tooltip: 不视作钱币, 但可拆分成100铂金币
+}
+
+ShimmerCoin: {
+	DisplayName: 微光钱币
+	Tooltip:
+		'''
+		永久性获得每个永久性微光加成道具1/5的效果
+		增加生命再生速度、魔力再生速度、防御力、
+		挖掘速度、建筑速度、渔力、运气、
+		物品掉率、重铸时出现正面前缀的几率、
+		镇民的防御力和力量和旅行商人的物品数量
+		'''
+}
+
+TinKey: {
+	DisplayName: 锡钥匙
+	Tooltip: 打开发电机房门
+}
+
+CopperKey: {
+	DisplayName: 铜钥匙
+	Tooltip: 打开上锁的铜宝箱
+}
+
+Keychain: {
+	DisplayName: 钥匙链
+	Tooltip:
+		'''
+		手持钥匙右键此物品以添加钥匙
+		Shift+右键移除所有钥匙
+		'''
+}
+
+MagicKeychain: {
+	DisplayName: 幽灵钥匙链
+	Tooltip:
+		'''
+		{$Keychain.Tooltip}
+		可以无限使用钥匙
+		'''
+}
+
 FrozenTechnology: {
 	DisplayName: 霜冻科技
 	Tooltip: 用于制作信息工具
@@ -638,8 +832,9 @@ DemonicEnergy: {
 	Tooltip: ""
 }
 
+// --localization note-- 'hearth' is a very specific word so it can just be translated into anything relating to earth or ground
 OrganicEnergy: {
-	DisplayName: 心象能量
+	DisplayName: 地象能量
 	Tooltip: ""
 }
 
@@ -694,7 +889,7 @@ NoHitReward: {
 
 TinkerersGuidebook: {
 	DisplayName: 工匠指南
-	Tooltip: 永久性增加在重铸前缀时出现正面前缀的几率
+	Tooltip: 永久性增加在重铸时出现正面前缀的几率
 	DisplayMessage: 哥布林工匠的利润开始减少了!
 }
 
@@ -974,11 +1169,6 @@ CosmicMonolith: {
 	Tooltip: "'维系宇宙力量的一小部分'"
 }
 
-UltimateSword: {
-	DisplayName: Mods.Aequus.Items.UltimateSword.DisplayName
-	Tooltip: ""
-}
-
 StariteMaterial: {
 	DisplayName: 核心碎片
 	Tooltip: ""
@@ -987,4 +1177,14 @@ StariteMaterial: {
 UnopenedChestItem: {
 	DisplayName: 未开启的宝箱物品
 	Tooltip: 这是Debug物品, 将其放置在世界生成的宝箱内以检测其是否被开启过
+}
+
+BeyondLifeCrystal: {
+	DisplayName: 彼界生命水晶
+	Tooltip: ""
+}
+
+BeyondManaCrystal: {
+	DisplayName: 彼界魔力水晶
+	Tooltip: ""
 }

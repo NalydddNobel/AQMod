@@ -5,7 +5,7 @@ namespace Aequus.Content.Dedicated.MirrorsCall;
 
 public class MirrorsCall : ModItem {
     public override void Load() {
-        DedicationRegistry.Register(this, new Dedication.Default("Mr. Gerd26", new Color(110, 110, 128)));
+        DedicationRegistry.Register(this, new DefaultDedication("Mr. Gerd26", new Color(110, 110, 128)));
     }
 
     public override void SetDefaults() {
@@ -81,7 +81,7 @@ public class MirrorsCall : ModItem {
 #if !DEBUG
         CreateRecipe()
             .AddIngredient(ItemID.PiercingStarlight)
-            .AddIngredient(ModContent.ItemType<Old.Content.Weapons.Melee.Slice.Slice>())
+            .AddIngredient(ModContent.ItemType<Old.Content.Items.Weapons.Melee.Slice.Slice>())
             .AddIngredient(ItemID.LunarBar, 10)
             //.AddIngredient(ModContent.ItemType<UltimateEnergy>(), 5)
             .AddIngredient(ItemID.WhitePearl)

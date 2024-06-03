@@ -1,11 +1,11 @@
 ﻿using Aequus.Common;
 using Aequus.Content.Configuration;
 using Aequus.Old.Content.DronePylons;
-using Aequus.Old.Content.Equipment.Accessories.LaserScope;
 using Aequus.Old.Content.Events.Glimmer.Spawners;
+using Aequus.Old.Content.Items.Accessories.LaserScope;
+using Aequus.Old.Content.Items.Tools;
+using Aequus.Old.Content.Items.Weapons.Summon.Sentries.PhysicistSentry;
 using Aequus.Old.Content.Tiles.GravityBlocks;
-using Aequus.Old.Content.Tools;
-using Aequus.Old.Content.Weapons.Sentries.PhysicistSentry;
 
 namespace Aequus.Old.Content.TownNPCs.PhysicistNPC;
 

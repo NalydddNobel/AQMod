@@ -1,6 +1,4 @@
-﻿using Aequus.Core;
-using Microsoft.Xna.Framework;
-using ReLogic.Utilities;
+﻿using ReLogic.Utilities;
 using System.Collections.Generic;
 using Terraria.Localization;
 

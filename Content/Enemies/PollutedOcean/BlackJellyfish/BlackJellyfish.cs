@@ -3,7 +3,6 @@ using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Content.Graphics.Particles;
 using Aequus.Core.ContentGeneration;
-using Aequus.Core.Graphics;
 using Aequus.DataSets;
 using System;
 using Terraria.Audio;
@@ -14,7 +13,7 @@ using Terraria.GameContent.Shaders;
 namespace Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
 
 [AutoloadBanner]
-[ModBiomes(typeof(PollutedOceanBiomeUnderground))]
+[BestiaryBiome<PollutedOceanBiomeUnderground>()]
 public partial class BlackJellyfish : AIJellyfish {
     public static int AttackRange => 60;
 
@@ -110,7 +109,7 @@ public partial class BlackJellyfish : AIJellyfish {
             NPC.netUpdate = true;
         }
         else {
-            Dust d = Dust.NewDustPerfect(NPC.Center + Main.rand.NextVector2Unit() * Main.rand.NextFloat(0.33f, 1f) * Math.Min(NPC.ai[2] / shockAttackLength, 1f) * AttackRange, DustID.MartianSaucerSpark, Alpha: 0, Scale: Main.rand.NextFloat(0.8f, 1.8f));
+            Terraria.Dust d = Terraria.Dust.NewDustPerfect(NPC.Center + Main.rand.NextVector2Unit() * Main.rand.NextFloat(0.33f, 1f) * Math.Min(NPC.ai[2] / shockAttackLength, 1f) * AttackRange, DustID.MartianSaucerSpark, Alpha: 0, Scale: Main.rand.NextFloat(0.8f, 1.8f));
             d.rotation = 0f;
             d.noGravity = true;
         }
@@ -146,7 +145,7 @@ public partial class BlackJellyfish : AIJellyfish {
         // Dusts
         for (int i = 0; i < 30; i++) {
             Vector2 randomVector = Main.rand.NextVector2Unit();
-            Dust d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.MartianSaucerSpark, Alpha: 0, Scale: Main.rand.NextFloat(0.8f, 1.8f));
+            Terraria.Dust d = Terraria.Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.MartianSaucerSpark, Alpha: 0, Scale: Main.rand.NextFloat(0.8f, 1.8f));
             d.rotation = 0f;
             d.velocity = randomVector * Main.rand.NextFloat(4f);
             d.fadeIn = d.scale + Main.rand.NextFloat(0.8f);
@@ -154,7 +153,7 @@ public partial class BlackJellyfish : AIJellyfish {
         }
         for (int i = 0; i < 60; i++) {
             Vector2 randomVector = Main.rand.NextVector2Unit();
-            Dust d = Dust.NewDustPerfect(NPC.Center + randomVector * Main.rand.NextFloat(0.8f, 1f) * NPC.ai[2] / shockAttackLength * AttackRange, DustID.MartianSaucerSpark, Alpha: 0, Scale: Main.rand.NextFloat(0.8f, 2.5f));
+            Terraria.Dust d = Terraria.Dust.NewDustPerfect(NPC.Center + randomVector * Main.rand.NextFloat(0.8f, 1f) * NPC.ai[2] / shockAttackLength * AttackRange, DustID.MartianSaucerSpark, Alpha: 0, Scale: Main.rand.NextFloat(0.8f, 2.5f));
             d.rotation = 0f;
             d.velocity += randomVector * 4f * Main.rand.NextFloat();
             d.noGravity = true;
@@ -162,15 +161,14 @@ public partial class BlackJellyfish : AIJellyfish {
 
         if (Collision.WetCollision(NPC.position, NPC.width, NPC.height)) {
             // Bubble particles if underwater
-            UnderwaterBubbleParticles bubbleParticles = ModContent.GetInstance<UnderwaterBubbleParticles>();
-            foreach (var particle in bubbleParticles.NewMultipleReduced(32, 8)) {
+            foreach (var particle in UnderwaterBubbles.NewMultipleReduced(32, 8)) {
                 particle.Location = NPC.Center;
                 particle.Frame = (byte)Main.rand.Next(3);
                 particle.Velocity = Main.rand.NextVector2Unit() * Main.rand.NextFloat(0.01f, 0.4f);
                 particle.UpLift = (1f - particle.Velocity.X) * 0.003f;
                 particle.Opacity = Main.rand.NextFloat(0.8f, 1f);
             }
-            var bigBubble = bubbleParticles.New();
+            var bigBubble = UnderwaterBubbles.New();
             bigBubble.Location = NPC.Center;
             bigBubble.Frame = 7;
             bigBubble.Velocity = Vector2.Zero;

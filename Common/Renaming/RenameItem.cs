@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.DataSets;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.IO;

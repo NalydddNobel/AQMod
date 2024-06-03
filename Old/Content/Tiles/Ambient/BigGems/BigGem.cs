@@ -9,7 +9,6 @@ using Terraria.GameContent;
 using Terraria.Localization;
 using Terraria.ObjectData;
 using Terraria.Utilities;
-using Terraria.ID;
 
 namespace Aequus.Old.Content.Tiles.Ambient.BigGems;
 
@@ -201,7 +200,7 @@ public class BigGem : ModTile {
             frame,
             lighting);
 
-        if (Aequus.GameWorldActive && Main.rand.NextBool(Main.tileShine[Type])) {
+        if (ExtendedMod.GameWorldActive && Main.rand.NextBool(Main.tileShine[Type])) {
             Dust d = Dust.NewDustDirect(new Vector2(i, j) * 16f, 16, 16, DustID.TintableDustLighted, Alpha: 254, newColor: gem.GemColor, Scale: 0.5f);
             d.velocity *= 0f;
             d.noLight = true;

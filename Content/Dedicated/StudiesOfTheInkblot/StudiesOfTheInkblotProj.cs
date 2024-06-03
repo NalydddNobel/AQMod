@@ -1,5 +1,4 @@
-﻿using ReLogic.Content;
-using System;
+﻿using System;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 
@@ -197,7 +196,7 @@ public class StudiesOfTheInkblotOrbiterProj : ModProjectile {
         Projectile.ai[0] += 0.01f;
         var color = Projectile.GetAlpha(default(Color)) * Projectile.scale;
         if (Main.netMode != NetmodeID.MultiplayerClient && Main.rand.NextBool(4)) {
-            Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.SilverFlame, 0f, 0f, 0, color);
+            Terraria.Dust d = Terraria.Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.SilverFlame, 0f, 0f, 0, color);
             d.noGravity = true;
         }
         Lighting.AddLight(Projectile.Center, color.ToVector3());

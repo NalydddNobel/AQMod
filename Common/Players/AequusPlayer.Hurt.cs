@@ -1,10 +1,7 @@
 ﻿using Aequus.Common.Tiles.Components;
 using Aequus.Core.CodeGeneration;
-using Aequus.Old.Content.StatusEffects;
-using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;
-using Terraria.Localization;
 
 namespace Aequus;
 
@@ -19,7 +16,7 @@ public partial class AequusPlayer {
     /// Sets the respawn time modifier without allowing it to stack.
     /// </summary>
     /// <param name="amount"></param>
-    public void SetAccRespawnTimeModifier(int amount) {
+    public void SetNonStackingRespawnTimeModifier(int amount) {
         if (amount < 0) {
             if (respawnTimeModifierFlat <= amount) {
                 return;
@@ -124,15 +121,15 @@ public partial class AequusPlayer {
             case DEATH_POISON:
             case DEATH_DST_STARVING:
                 // Dying of custom DoTs.
-                if (Player.HasBuff(ModContent.BuffType<BlueFire>())) {
+#if !DEBUG
+                if (Player.HasBuff(ModContent.BuffType<Old.Content.StatusEffects.BlueFire>())) {
                     SetReason("ManaFire", 4);
                 }
+#endif
                 break;
         }
 
-        void SetReason(string reason, int variants = 1) {
-            SignCustomDeathReason(damageSource, reason, variants);
-        }
+        void SetReason(string reason, int variants = 1) => SignCustomDeathReason(damageSource, reason, variants);
     }
 
     public static PlayerDeathReason CustomDeathReason(string reason, int variants = 1) {

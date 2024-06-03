@@ -1,6 +1,4 @@
-﻿using Aequus.Core;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Networking;
+﻿using Aequus.Core.ContentGeneration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,6 +6,7 @@ using System.Linq;
 using Terraria.DataStructures;
 using Terraria.GameContent.UI;
 using Terraria.Localization;
+using tModLoaderExtended.Networking;
 
 namespace Aequus.Old.Content.TownNPCs.OccultistNPC;
 
@@ -36,6 +35,8 @@ public class OccultistHostile : Occultist {
         NPC.townNPC = false;
         NPC.dontTakeDamage = true;
     }
+
+    public override string LocalizationCategory => "NPCs.Occultist";
 
     public override bool CanHitPlayer(Player target, ref int cooldownSlot) {
         return false;
@@ -147,7 +148,7 @@ public class OccultistHostile : Occultist {
         }
 
         if (Main.netMode == NetmodeID.MultiplayerClient) {
-            Aequus.GetPacket<OccultistRitualPacket>().Send(x, y, plr);
+            ExtendedMod.GetPacket<OccultistRitualPacket>().Send(x, y, plr);
         }
         else {
             int spawnX = (x + 1) * 16 + 8;

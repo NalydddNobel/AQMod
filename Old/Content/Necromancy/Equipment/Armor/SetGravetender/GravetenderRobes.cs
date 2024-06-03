@@ -27,7 +27,7 @@ public class GravetenderRobes : ModItem {
 
     public override void UpdateEquip(Player player) {
         player.GetModPlayer<AequusPlayer>().ghostSlotsMax++;
-        player.GetModPlayer<AequusPlayer>().ghostLifespan += 1800;
+        player.GetModPlayer<AequusPlayer>().ghostLifespan.Flat += GhostLifespanIncrease;
     }
 
     public override void AddRecipes() {

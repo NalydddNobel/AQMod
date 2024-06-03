@@ -1,5 +1,5 @@
-﻿using Aequus.Common.JourneyMode;
-using Terraria.Localization;
+﻿using Terraria.Localization;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace Aequus.Core.ContentGeneration;
 

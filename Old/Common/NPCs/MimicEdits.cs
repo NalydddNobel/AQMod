@@ -1,11 +1,11 @@
 ﻿using Aequus.Content.Configuration;
-using Aequus.Core.Initialization;
 using Aequus.Old.Content.Enemies.Mimics;
-using Aequus.Old.Content.Materials;
+using Aequus.Old.Content.Items.Materials;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Old.Common.NPCs;
 
@@ -66,7 +66,7 @@ public class MimicEdits : GlobalNPC, IPreExtractBestiaryItemDrops {
         }
     }
 
-    public void PreExtractBestiaryItemDrops(Aequus aequus, BestiaryDatabase bestiaryDatabase, ItemDropDatabase database) {
+    public void PreExtractBestiaryItemDrops(Mod mod, BestiaryDatabase bestiaryDatabase, ItemDropDatabase database) {
         if (!GameplayConfig.Instance.PreHardmodeMimics) {
             return;
         }
@@ -82,7 +82,7 @@ public class MimicEdits : GlobalNPC, IPreExtractBestiaryItemDrops {
             ItemID.BandofRegeneration, ItemID.MagicMirror, ItemID.CloudinaBottle, ItemID.HermesBoots, ItemID.Mace, ItemID.ShoeSpikes
         ));
         rules.Add(conditionRule);
-        
+
         var flareGunRule = ItemDropRule.Common(ItemID.FlareGun, 8);
         flareGunRule.OnSuccess(ItemDropRule.Common(ItemID.Flare, minimumDropped: 25, maximumDropped: 50));
         rules.Add(flareGunRule);
@@ -91,7 +91,7 @@ public class MimicEdits : GlobalNPC, IPreExtractBestiaryItemDrops {
 
         rules = ExtendLoot.GetNPCLoot(NPCID.IceMimic, database);
         rules.RemoveAll(i => i is not LeadingConditionRule conditionRule || conditionRule.condition is not Conditions.RemixSeedEasymode);
-        
+
         conditionRule = new LeadingConditionRule(new Conditions.NotRemixSeed());
         conditionRule.OnSuccess(new OneFromOptionsDropRule(1, 1,
             ItemID.IceBoomerang, ItemID.IceBlade, ItemID.IceSkates, ItemID.SnowballCannon, ItemID.BlizzardinaBottle, ItemID.FlurryBoots

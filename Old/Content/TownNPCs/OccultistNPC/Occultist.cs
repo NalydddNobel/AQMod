@@ -1,13 +1,8 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
 using Aequus.Common.Projectiles;
-using Aequus.Core;
 using Aequus.Core.ContentGeneration;
 using Aequus.DataSets;
-using Aequus.Old.Content.Equipment.GrapplingHooks.EnemyGrappleHook;
-using Aequus.Old.Content.Events.DemonSiege.Spawners;
-using Aequus.Old.Content.Events.DemonSiege.Tiles;
-using Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -36,7 +31,7 @@ public partial class Occultist : ModNPC, IModifyShoppingSettings {
     private bool _saidGhostDialogue;
 
     public override List<string> SetNPCNameList() {
-        return new() {
+        return [
             "Abadeer",
             "Cally",
             "Brimmy",
@@ -45,7 +40,7 @@ public partial class Occultist : ModNPC, IModifyShoppingSettings {
             "Spectre",
             "Kurskan",
             "Maykr",
-        };
+        ];
     }
 
     internal void SetupShopQuotes(Mod shopQuotes) {

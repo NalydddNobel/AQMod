@@ -1,15 +1,14 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
+using Aequus.Content.Dusts;
 using Aequus.Core.ContentGeneration;
 using Aequus.DataSets;
 using Aequus.Old.Content.Critters;
 using Aequus.Old.Content.Events.Glimmer;
-using Aequus.Old.Content.Materials;
-using Aequus.Old.Content.Particles;
-using Aequus.Old.Content.Potions.NeutronYogurt;
+using Aequus.Old.Content.Items.Materials;
+using Aequus.Old.Content.Items.Potions.NeutronYogurt;
 using Aequus.Old.Content.StatusEffects;
-using Aequus.Old.Core.Utilities;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -19,7 +18,7 @@ using Terraria.Utilities;
 
 namespace Aequus.Old.Content.Enemies.Glimmer.Super;
 
-[ModBiomes(typeof(GlimmerZone))]
+[BestiaryBiome<GlimmerZone>()]
 [AutoloadBanner]
 public class SuperStarite : ModNPC, ITrackTimeBetweenHits {
     public override void SetStaticDefaults() {
@@ -317,7 +316,7 @@ public class SuperStarite : ModNPC, ITrackTimeBetweenHits {
     }
 
     public override void UpdateLifeRegen(ref int damage) {
-        if (Main.dayTime && (int)NPC.ai[0] != -2f && !OldHelper.ShadedSpot(NPC.Center) && !Main.remixWorld) {
+        if (Main.dayTime && (int)NPC.ai[0] != -2f && !Helper.ShadedSpot(NPC.Center) && !Main.remixWorld) {
             NPC.lifeRegen = -30;
             damage = 5;
         }
@@ -381,7 +380,7 @@ public class SuperStarite : ModNPC, ITrackTimeBetweenHits {
         var bloom = AequusTextures.Bloom;
         //Main.spriteBatch.Draw(bloom, NPC.position + offset - screenPos, null, bloomColor * 0.5f, 0f, bloom.Size() / 2f, NPC.scale * 0.6f, SpriteEffects.None, 0f);
         //Main.spriteBatch.Draw(bloom, NPC.position + offset - screenPos, null, bloomColor * 0.25f, 0f, bloom.Size() / 2f, NPC.scale * 0.9f, SpriteEffects.None, 0f);
-        Main.spriteBatch.Draw(texture, NPC.position + offset - screenPos, coreFrame, drawColor, 0f, NPC.frame.Size()/2f, NPC.scale, SpriteEffects.None, 0f);
+        Main.spriteBatch.Draw(texture, NPC.position + offset - screenPos, coreFrame, drawColor, 0f, NPC.frame.Size() / 2f, NPC.scale, SpriteEffects.None, 0f);
         if ((int)NPC.ai[0] == -2) {
             DrawDeathExplosion(NPC.position + offset - screenPos);
         }

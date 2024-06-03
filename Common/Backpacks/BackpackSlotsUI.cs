@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Items.Tooltips;
-using Aequus.Content.Equipment.Accessories.ScavengerBag;
+using Aequus.Content.Items.Accessories.ScavengerBag;
 using Aequus.Core.UI;
 using System;
 using Terraria.GameContent;
@@ -105,7 +105,7 @@ public class BackpackSlotsUI : UILayer {
             else {
                 opacity = MathF.Min(slotsDrawn / 2.5f, 1f);
             }// new Vector2(496f, 22f)
-            Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, slotPositionOrigin + new Vector2(-28f, -20f), new(0, 0, 1, 1), slotColor * 0.5f * opacity, 0f, Vector2.Zero, new Vector2(2f, 230f), SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, slotPositionOrigin + new Vector2(-28f, -20f), new Rectangle(0, 0, 1, 1), slotColor * 0.5f * opacity, 0f, Vector2.Zero, new Vector2(2f, 230f), SpriteEffects.None, 0f);
 
             var backpackText = backpack.GetDisplayName(player);
             var textOrigin = ChatManager.GetStringSize(FontAssets.MouseText.Value, backpackText, Vector2.One);

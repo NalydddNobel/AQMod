@@ -1,7 +1,4 @@
-﻿using Aequus.NPCs.Town.PhysicistNPC.Analysis;
-using System;
-
-namespace Aequus.Old.Content.TownNPCs.PhysicistNPC.Analysis;
+﻿namespace Aequus.Old.Content.TownNPCs.PhysicistNPC.Analysis;
 
 public class AnalysisPickupItemTracker : GlobalItem {
     public override bool OnPickup(Item item, Player player) {
@@ -9,7 +6,7 @@ public class AnalysisPickupItemTracker : GlobalItem {
             int rare = item.OriginalRarity;
             if (!AnalysisSystem.IgnoreRarities.Contains(rare)) {
                 if (Main.netMode == NetmodeID.MultiplayerClient) {
-                    Aequus.GetPacket<AnalysisItemPickupPacket>().Send(player, item);
+                    ExtendedMod.GetPacket<AnalysisItemPickupPacket>().Send(player, item);
                 }
                 else {
                     AnalysisSystem.HandleItemPickup(player, item);

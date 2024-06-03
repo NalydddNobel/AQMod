@@ -1,5 +1,5 @@
 ﻿using Aequus.DataSets;
-using Aequus.Old.Content.Bosses.Cosmic.OmegaStarite;
+using Aequus.Old.Content.Bosses.OmegaStarite;
 using System.Linq;
 using Terraria.Audio;
 

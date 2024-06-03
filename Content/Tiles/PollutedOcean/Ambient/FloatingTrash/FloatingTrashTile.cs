@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Tiles;
+﻿using Aequus.Common.Hooks;
 using Aequus.Common.Tiles.Components;
 
 namespace Aequus.Content.Tiles.PollutedOcean.Ambient.FloatingTrash;
@@ -8,10 +8,10 @@ public class FloatingTrashTile : FloatingTrashBase, ITouchEffects {
 
     public override void SetStaticDefaults() {
         base.SetStaticDefaults();
-        AequusTile.OnRandomTileUpdate += OnRandomTileUpdate;
+        TerrariaHooks.OnRandomTileUpdate += OnRandomTileUpdate;
     }
 
-    private static void OnRandomTileUpdate(int i, int j, int type) {
+    private static void OnRandomTileUpdate(int i, int j) {
         if (Main.dayTime && WorldGen.oceanDepths(i, j) && Main.tile[i, j - 1].LiquidAmount > 0 && TileHelper.ScanUp(new(i, j - 1), 100, out var result, TileHelper.HasNoLiquid) && !Framing.GetTileSafely(result.X, result.Y + 1).HasTile) {
             WorldGen.PlaceTile(result.X, result.Y + 1, ModContent.TileType<FloatingTrashTile>(), mute: true);
         }

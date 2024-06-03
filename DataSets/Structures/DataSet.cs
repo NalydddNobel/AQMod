@@ -1,11 +1,11 @@
-﻿using Aequus.Core.Initialization;
-using Aequus.DataSets.Json;
+﻿using Aequus.DataSets.Json;
 using Newtonsoft.Json;
 using System.Reflection;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.DataSets.Structures;
 
-public abstract class DataSet : IModType, ILoad, ISetStaticDefaults, IPostSetupContent, IAddRecipes, IPostAddRecipes {
+public abstract class DataSet : IModType, ILoad, ISetupContent, IPostSetupContent, IAddRecipes, IPostAddRecipes {
     private readonly BindingFlags _memberBindingFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
 
     [JsonIgnore]
@@ -30,7 +30,7 @@ public abstract class DataSet : IModType, ILoad, ISetStaticDefaults, IPostSetupC
 
     public virtual void Load() {
     }
-    public virtual void SetStaticDefaults() {
+    public virtual void SetupContent() {
     }
     public virtual void PostSetupContent() {
     }
@@ -47,20 +47,20 @@ public abstract class DataSet : IModType, ILoad, ISetStaticDefaults, IPostSetupC
         Load();
     }
 
-    public void SetStaticDefaults(Aequus aequus) {
-        SetStaticDefaults();
+    public void SetupContent(Mod mod) {
+        SetupContent();
     }
 
-    public void PostSetupContent(Aequus aequus) {
+    public void PostSetupContent(Mod mod) {
         File.Apply();
         PostSetupContent();
     }
 
-    public void AddRecipes(Aequus aequus) {
+    public void AddRecipes(Mod mod) {
         AddRecipes();
     }
 
-    public void PostAddRecipes(Aequus aequus) {
+    public void PostAddRecipes(Mod mod) {
         PostAddRecipes();
         File.GenerateEmbeddedFiles();
     }

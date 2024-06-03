@@ -8,7 +8,43 @@ using Terraria.Utilities;
 
 namespace Aequus.Core.Utilities;
 
-public static class Helper {
+public static partial class Helper {
+    /// <returns>Returns 0f if <see cref="float.IsNaN(float)"/> returns true for <paramref name="value"/>.</returns>
+    public static float UnNaN(this float value) {
+        return float.IsNaN(value) ? 0f : value;
+    }
+    /// <returns><paramref name="value"/> but replaces <see cref="Vector2.X"/> or <see cref="Vector2.Y"/> with <c>0f</c> if <see cref="float.IsNaN(float)"/> is true for their values.</returns>
+    public static Vector2 UnNaN(this Vector2 value) {
+        return new Vector2(UnNaN(value.X), UnNaN(value.Y));
+    }
+
+    /// <summary>
+    /// Subtracts <paramref name="minThreshold"/> from <paramref name="value"/>, then multiplies the result by <paramref name="scaleMultiplier"/>, finally re-adding <paramref name="minThreshold"/> back.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="minThreshold"></param>
+    /// <param name="scaleMultiplier"></param>
+    /// <returns></returns>
+    public static float MultiplyAboveMin(float value, float minThreshold, float scaleMultiplier) {
+        return (value - minThreshold) * scaleMultiplier + minThreshold;
+    }
+
+    /// <summary>Converts <paramref name="value"/> to an int. And uses RNG to determine if value should be +1 higher depending on the remaining decimal number. For example, 10.5 has a 50% chance to return either 10 or 11, since the remaining decimal value gives it a 50% chance to be +1 higher.</summary>
+    /// <param name="value"></param>
+    /// <param name="random"></param>
+    /// <returns></returns>
+    public static int ToIntUsingRNGForDecimals(float value, UnifiedRandom random) {
+        int integerValue = (int)value;
+
+        value -= integerValue;
+
+        if (value > 0f && random.NextFloat(1f) < value) {
+            integerValue++;
+        }
+
+        return integerValue;
+    }
+
     public static bool TryReadInt(string s, out int value) {
         return int.TryParse(s, NumberStyles.Integer, CultureInfo.InvariantCulture.NumberFormat, out value);
     }
@@ -184,6 +220,17 @@ public static class Helper {
     #endregion
 
     #region World
+    public static bool InOuterPercentOfWorld(float tileX, float percent) {
+        if (percent <= 0f || percent >= 0.5f) {
+            throw new ArgumentException("Must be a value between 0 and 0.5.", nameof(percent));
+        }
+
+        float left = Main.maxTilesX * percent;
+        float right = Main.maxTilesX - left;
+
+        return tileX < left || tileX > right;
+    }
+
     public static bool FrozenTimeActive() {
         return CreativePowerManager.Instance.GetPower<CreativePowers.FreezeTime>().Enabled;
     }

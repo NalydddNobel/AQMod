@@ -1,8 +1,6 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.CrossMod;
 using Aequus.Content.CrossMod.CalamityModSupport;
-using Aequus.Content.TownNPCs;
-using Aequus.Core;
 using Aequus.Core.ContentGeneration;
 using Aequus.Old.Content.Events.Glimmer;
 using Aequus.Old.Content.TownNPCs.OccultistNPC;
@@ -179,7 +177,7 @@ public partial class Physicist : AequusTownNPC<Physicist> {
                 yield return this.GetDialogue($"ThoriumMod.StarScouter").Value;
             }
         }
-        
+
         if (ModLoader.TryGetMod("SpiritMod", out var spiritMod)) {
             if (NPC.downedBoss3) {
                 yield return this.GetDialogue($"SpiritMod.StarplateVoyager").Value;

@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Biomes.PollutedOcean;
-using Aequus.Content.Biomes.PollutedOcean.Background;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Dedicated.Baguette;
 using Aequus.Content.Enemies.PollutedOcean.BreadOfCthulhu.Items;
@@ -9,12 +8,12 @@ using System;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.GameContent.UI.Elements;
 
 namespace Aequus.Content.Enemies.PollutedOcean.BreadOfCthulhu;
 
 [AutoloadBanner]
-[ModBiomes(typeof(PollutedOceanBiomeSurface), typeof(PollutedOceanBiomeUnderground))]
+[BestiaryBiome<PollutedOceanBiomeSurface>()]
+[BestiaryBiome<PollutedOceanBiomeUnderground>()]
 public class BreadOfCthulhu : ModNPC {
     public override void SetStaticDefaults() {
         Main.npcFrameCount[NPC.type] = 5;
@@ -40,7 +39,6 @@ public class BreadOfCthulhu : ModNPC {
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
         this.CreateEntry(database, bestiaryEntry)
-            .AddMainSpawn(BestiaryBiomeTag.Caverns)
             .QuickUnlock();
     }
 
@@ -68,11 +66,11 @@ public class BreadOfCthulhu : ModNPC {
 
         if (NPC.life <= 0) {
             for (int i = 0; i < 30; i++) {
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.GreenBlood, hit.HitDirection * 2);
+                Terraria.Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.GreenBlood, hit.HitDirection * 2);
             }
 
             for (int i = 0; i < 30; i++) {
-                var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.FoodPiece,
+                var d = Terraria.Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.FoodPiece,
                     newColor: new Color(Main.rand.Next(20, 100), 200, 20, 200));
                 d.velocity = new Vector2(Main.rand.NextFloat(-1.5f, 1.5f), Main.rand.NextFloat(-3f, -6f));
             }
@@ -81,7 +79,7 @@ public class BreadOfCthulhu : ModNPC {
             NPC.NewGore(AequusTextures.BreadOfCthulhu_1, NPC.TopLeft, NPC.velocity);
             NPC.NewGore(AequusTextures.BreadOfCthulhu_2, NPC.Center, NPC.velocity);
         }
-        Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.GreenBlood, hit.HitDirection * 2);
+        Terraria.Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.GreenBlood, hit.HitDirection * 2);
     }
 
     public override bool CanHitPlayer(Player target, ref int cooldownSlot) {
@@ -105,14 +103,14 @@ public class BreadOfCthulhu : ModNPC {
                 NPC.velocity.Y = -5f;
                 NPC.velocity.X = 3f * NPC.direction;
                 NPC.ai[0] = 1f;
-                int waterDust = Dust.dustWater();
+                int waterDust = Terraria.Dust.dustWater();
                 for (int i = 0; i < 50; i++) {
-                    var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, waterDust);
+                    var d = Terraria.Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, waterDust);
                     d.velocity = new Vector2(Main.rand.NextFloat(-1.5f, 1.5f), Main.rand.NextFloat(-3f, -6f));
                 }
             }
             if (Main.rand.NextBool(10)) {
-                var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, Dust.dustWater());
+                var d = Terraria.Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, Terraria.Dust.dustWater());
                 d.velocity *= 0.2f;
                 d.velocity -= NPC.velocity * 0.2f;
             }

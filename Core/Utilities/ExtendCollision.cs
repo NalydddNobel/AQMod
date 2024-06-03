@@ -3,6 +3,10 @@
 namespace Aequus.Core.Utilities;
 
 public static class ExtendCollision {
+    public static bool SolidCollision(this Rectangle hitbox) {
+        return Collision.SolidCollision(hitbox.TopLeft(), hitbox.Width, hitbox.Height);
+    }
+
     /// <param name="startWorldPosition">The starting scan position.</param>
     /// <param name="worldHeight">How far (in world coordinates) it should scan down. 16 world coordinates = 1 tile coordinate.</param>
     /// <param name="floor">The resulting floor's position.</param>

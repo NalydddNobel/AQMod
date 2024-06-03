@@ -1,16 +1,15 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
+using Aequus.Content.Dusts;
 using Aequus.Core.ContentGeneration;
 using Aequus.DataSets;
 using Aequus.Old.Common.Graphics;
 using Aequus.Old.Content.Critters;
 using Aequus.Old.Content.Events.Glimmer;
-using Aequus.Old.Content.Materials;
-using Aequus.Old.Content.Particles;
-using Aequus.Old.Content.Potions.NeutronYogurt;
+using Aequus.Old.Content.Items.Materials;
+using Aequus.Old.Content.Items.Potions.NeutronYogurt;
 using Aequus.Old.Content.StatusEffects;
-using Aequus.Old.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
@@ -20,7 +19,7 @@ using Terraria.Utilities;
 
 namespace Aequus.Old.Content.Enemies.Glimmer.Hyper;
 
-[ModBiomes(typeof(GlimmerZone))]
+[BestiaryBiome<GlimmerZone>()]
 [AutoloadBanner]
 public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
     public const int STATE_ARMS_IN = 4;
@@ -198,7 +197,7 @@ public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
         Vector2 plrCenter = player.Center;
         float armsWantedLength = 320f;
         oldArmsLength[0] = NPC.ai[3];
-        OldHelper.UpdateCacheList(oldArmsLength);
+        Helper.UpdateCacheList(oldArmsLength);
         switch (State) {
             case STATE_IDLE: {
                     NPC.TargetClosest(faceTarget: false);
@@ -315,7 +314,7 @@ public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
     }
 
     public override void UpdateLifeRegen(ref int damage) {
-        if (Main.dayTime && State != STATE_DEAD && !OldHelper.ShadedSpot(NPC.Center) && !Main.remixWorld) {
+        if (Main.dayTime && State != STATE_DEAD && !Helper.ShadedSpot(NPC.Center) && !Main.remixWorld) {
             NPC.lifeRegen = -50;
             damage = 8;
         }
@@ -407,7 +406,7 @@ public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
 
             for (int j = 0; j < 5; j++) {
                 Vector2[] array = armPositions[j].ToArray();
-                float[] rotationsArray = OldDrawHelper.GenerateRotationArr(array);
+                float[] rotationsArray = Helper.GenerateRotationArr(array);
                 DrawHelper.DrawBasicVertexLine(TextureAssets.Extra[ExtrasID.RainbowRodTrailShape].Value, armPositions[j].ToArray(), rotationsArray,
                     (p) => GlimmerColors.Red with { A = 0 } * (1f - p),
                     (p) => 46f

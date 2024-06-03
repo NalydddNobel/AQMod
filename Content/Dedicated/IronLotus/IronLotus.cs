@@ -4,7 +4,7 @@ namespace Aequus.Content.Dedicated.IronLotus;
 
 public class IronLotus : ModItem {
     public override void Load() {
-        DedicationRegistry.Register(this, new Dedication.Default("Blossom", new Color(110, 60, 30)));
+        DedicationRegistry.Register(this, new DefaultDedication("Blossom", new Color(110, 60, 30)));
     }
 
     public override void SetStaticDefaults() {

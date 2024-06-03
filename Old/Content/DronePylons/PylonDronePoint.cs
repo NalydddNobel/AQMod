@@ -1,10 +1,10 @@
-﻿using Aequus.Core.Networking;
-using Aequus.Old.Content.DronePylons.NPCs;
+﻿using Aequus.Old.Content.DronePylons.NPCs;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria.DataStructures;
 using Terraria.ModLoader.IO;
+using tModLoaderExtended.Networking;
 
 namespace Aequus.Old.Content.DronePylons;
 
@@ -271,7 +271,7 @@ public class PylonDronePoint : TagSerializable {
             return;
         }
 
-        Aequus.GetPacket<SyncDronePointPacket>().Send(this);
+        ExtendedMod.GetPacket<SyncDronePointPacket>().Send(this);
     }
 
     public void WriteData(BinaryWriter p) {

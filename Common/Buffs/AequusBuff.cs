@@ -36,7 +36,7 @@ public partial class AequusBuff : GlobalBuff {
         //        if (aequus.soulCrystalDamage > npc.Aequus().debuffDamage) {
         //            npc.Aequus().debuffDamage = (byte)aequus.soulCrystalDamage;
         //            if (Main.netMode != NetmodeID.SinglePlayer) {
-        //                var p = Aequus.GetPacket(PacketType.SendDebuffFlatDamage);
+        //                var p = ExtendedMod.GetPacket(PacketType.SendDebuffFlatDamage);
         //                p.Write(npc.whoAmI);
         //                p.Write((byte)aequus.soulCrystalDamage);
         //                p.Send();

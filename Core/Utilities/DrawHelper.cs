@@ -1,16 +1,23 @@
-﻿using Aequus.Common.NPCs;
-using Aequus.Core.Assets;
+﻿using Aequus.Core.Assets;
 using Aequus.Core.Graphics;
+using FNAUtils.Drawing;
+using ReLogic.Graphics;
+using System;
+using System.Collections.Generic;
 using Terraria.GameContent;
 using Terraria.GameContent.Shaders;
 using Terraria.Graphics;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
+using Terraria.UI.Chat;
 
 namespace Aequus.Core.Utilities;
 
 public sealed class DrawHelper : ModSystem {
     public delegate void Draw(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth);
+
+    public static Vector2 ScreenCenter => Main.screenPosition + ScreenSize / 2f;
+    public static Vector2 ScreenSize => new Vector2(Main.screenWidth, Main.screenHeight);
 
     public static Matrix View => Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) * Matrix.CreateTranslation(Main.graphics.GraphicsDevice.Viewport.Width / 2f, Main.graphics.GraphicsDevice.Viewport.Height / -2f, 0) * Matrix.CreateRotationZ(MathHelper.Pi);
     public static Matrix Projection => Matrix.CreateOrthographic(Main.graphics.GraphicsDevice.Viewport.Width, Main.graphics.GraphicsDevice.Viewport.Height, 0, 1000);
@@ -40,8 +47,32 @@ public sealed class DrawHelper : ModSystem {
         }
     }
 
+    public static readonly GraphicsDeviceHelper graphics = new();
+
     public static int ColorOnlyShaderId => ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex;
     public static ArmorShaderData ColorOnlyShader => GameShaders.Armor.GetSecondaryShader(ColorOnlyShaderId, Main.LocalPlayer);
+
+    public static void DrawMagicLensFlare(SpriteBatch spriteBatch, Vector2 drawPosition, Color color, float scale = 1f) {
+        Vector2 screenCenter = new Vector2(Main.screenWidth, Main.screenHeight) / 2f;
+        float distance = Vector2.Distance(drawPosition, screenCenter);
+
+        float intensity = 1f - distance / (900f * scale);
+        if (intensity <= 0f || float.IsNaN(intensity)) {
+            return;
+        }
+
+        color *= intensity;
+        color.A = 0;
+
+        int textureCount = AequusTextures.LensFlares.Length;
+        float lerpAmount = 2f / textureCount * (1f - intensity);
+
+        for (int i = 0; i < textureCount; i++) {
+            Texture2D texture = AequusTextures.LensFlares[i].Value;
+            Vector2 position = Vector2.Lerp(drawPosition, screenCenter, lerpAmount * i);
+            spriteBatch.Draw(texture, position, null, color, 0f, texture.Size() / 2f, scale, SpriteEffects.None, 0f);
+        }
+    }
 
     public static void DrawLine(Draw draw, Vector2 start, float rotation, float length, float width, Color color) {
         draw(TextureAssets.MagicPixel.Value, start, new Rectangle(0, 0, 1, 1), color, rotation, new Vector2(1f, 0.5f), new Vector2(length, width), SpriteEffects.None, 0f);
@@ -78,12 +109,12 @@ public sealed class DrawHelper : ModSystem {
         view = View * Matrix.CreateScale(Main.GameViewMatrix.Zoom.X, Main.GameViewMatrix.Zoom.Y, 1f);
     }
 
-    public static void ApplyBasicEffect(Texture2D texture = default, bool vertexTCommonColorEnabled = true) {
+    public static void ApplyBasicEffect(Texture2D texture = default, bool vertexColorsEnabled = true) {
         GetWorldViewProjection(out var view, out var projection);
-        ApplyBasicEffect(view, projection, texture, vertexTCommonColorEnabled);
+        ApplyBasicEffect(view, projection, texture, vertexColorsEnabled);
     }
-    public static void ApplyBasicEffect(Matrix view, Matrix projection, Texture2D texture = default, bool vertexTCommonColorEnabled = true) {
-        _basicEffect.VertexColorEnabled = vertexTCommonColorEnabled;
+    public static void ApplyBasicEffect(Matrix view, Matrix projection, Texture2D texture = default, bool vertexColorsEnabled = true) {
+        _basicEffect.VertexColorEnabled = vertexColorsEnabled;
         _basicEffect.Projection = projection;
         _basicEffect.View = view;
 
@@ -116,25 +147,6 @@ public sealed class DrawHelper : ModSystem {
         return WorldGen.paintColor(stringColorId);
     }
 
-    public static void DiscardTarget(ref RenderTarget2D target) {
-        if (target == null) {
-            return;
-        }
-
-        if (!target.IsDisposed) {
-            Main.QueueMainThreadAction(target.Dispose);
-        }
-
-        target = null;
-    }
-
-    public static bool BadRenderTarget(RenderTarget2D renderTarget2D) {
-        return renderTarget2D == null || renderTarget2D.IsDisposed || renderTarget2D.IsContentLost;
-    }
-    public static bool BadRenderTarget(RenderTarget2D renderTarget2D, int wantedWidth, int wantedHeight) {
-        return BadRenderTarget(renderTarget2D) || renderTarget2D.Width != wantedWidth || renderTarget2D.Height != wantedHeight;
-    }
-
     public static Vector2 ApplyZoom(Vector2 screenCoordinate, float zoomFactor) {
         Vector2 screenCenter = new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f);
         Vector2 difference = screenCoordinate - screenCenter;
@@ -153,6 +165,15 @@ public sealed class DrawHelper : ModSystem {
         float zoom = zoomFactor;
         return screenCenterX + differenceX * zoom;
     }
+
+    #region Text
+    public static void DrawCenteredText(SpriteBatch sb, DynamicSpriteFont font, string text, Vector2 position, Color? color = null, float rotation = 0f, Vector2? scale = null) {
+        Vector2 realScale = scale ?? new Vector2(1f, 1f);
+        Color realColor = color ?? Color.White;
+        Vector2 origin = ChatManager.GetStringSize(font, text, new Vector2(1f, 1f));
+        ChatManager.DrawColorCodedString(sb, font, text, position, realColor, rotation, origin, realScale);
+    }
+    #endregion
 
     #region Dust
     public static int LiquidTypeToDustId(int liquidType) {
@@ -179,6 +200,76 @@ public sealed class DrawHelper : ModSystem {
     }
     #endregion
 
+    #region Textures
+    private static readonly List<RenderTarget2D> _loadedRenderTargets = new();
+
+    public static RenderTarget2D NewRenderTarget(GraphicsDevice gd, int width, int height, RenderTargetUsage usage = RenderTargetUsage.DiscardContents) {
+        return NewRenderTarget(new RenderTarget2D(gd, width, height, mipMap: false, SurfaceFormat.Color, DepthFormat.None, preferredMultiSampleCount: 0, usage));
+    }
+
+    public static RenderTarget2D NewRenderTarget(RenderTarget2D target) {
+        if (!_loadedRenderTargets.Contains(target)) {
+            _loadedRenderTargets.Add(target);
+        }
+
+        return target;
+    }
+
+    public static bool CheckTargetCycle(ref RenderTarget2D target, int desiredWidth, int desiredHeight, GraphicsDevice device = null, RenderTargetUsage usage = RenderTargetUsage.DiscardContents) {
+        if (!BadRenderTarget(target, desiredWidth, desiredHeight)) {
+            return true;
+        }
+
+        device ??= Main.instance.GraphicsDevice;
+        try {
+            DiscardTarget(ref target);
+
+            if (Main.IsGraphicsDeviceAvailable) {
+                target = NewRenderTarget(device, desiredWidth, desiredHeight, RenderTargetUsage.PreserveContents);
+            }
+        }
+        catch (Exception ex) {
+            Aequus.Log.Error(ex);
+        }
+        finally {
+        }
+        return false;
+    }
+
+    public static void DiscardTarget(ref RenderTarget2D target) {
+        if (target == null) {
+            return;
+        }
+
+        _loadedRenderTargets.Remove(target);
+        if (!target.IsDisposed) {
+            Main.QueueMainThreadAction(target.Dispose);
+        }
+
+        target = null;
+    }
+
+    public static bool BadRenderTarget(RenderTarget2D renderTarget2D) {
+        return renderTarget2D == null || renderTarget2D.IsDisposed || renderTarget2D.IsContentLost;
+    }
+    public static bool BadRenderTarget(RenderTarget2D renderTarget2D, int desiredWidth, int desiredHeight) {
+        return BadRenderTarget(renderTarget2D) || renderTarget2D.Width != desiredWidth || renderTarget2D.Height != desiredHeight;
+    }
+    #endregion
+
+    #region Hooks
+    private static readonly List<Action<GameTime>> _loadedPreDrawHooks = new();
+
+    public static void AddPreDrawHook(Action<GameTime> action) {
+        _loadedPreDrawHooks.Add(action);
+        Main.OnPreDraw += action;
+    }
+    public static void RemovePreDrawHook(Action<GameTime> action) {
+        _loadedPreDrawHooks.Remove(action);
+        Main.OnPreDraw -= action;
+    }
+    #endregion
+
     #region Initialization
     public override void Load() {
         if (Main.dedServ) {
@@ -187,47 +278,36 @@ public sealed class DrawHelper : ModSystem {
 
         SpriteBatchCache = new();
         VertexStrip = new();
-        On_Main.DrawNPC += On_Main_DrawNPC;
-        On_Main.DrawNPCs += On_Main_DrawNPCs;
-        On_Main.DrawItems += On_Main_DrawItems;
-        Main.QueueMainThreadAction(LoadShaders);
+        Main.QueueMainThreadAction(LoadOnMainThread);
     }
+
 
     public override void Unload() {
         SpriteBatchCache = null;
         VertexStrip = null;
-        Main.QueueMainThreadAction(UnloadShaders);
+
+        // Unload Render Targets.
+        for (int i = 0; i < _loadedRenderTargets.Count; i++) {
+            RenderTarget2D target = _loadedRenderTargets[i];
+            DiscardTarget(ref target);
+        }
+        _loadedRenderTargets.Clear();
+
+        // Unload pre draw hooks.
+        for (int i = 0; i < _loadedPreDrawHooks.Count; i++) {
+            RemovePreDrawHook(_loadedPreDrawHooks[i]);
+        }
+        _loadedRenderTargets.Clear();
+
+        Main.QueueMainThreadAction(UnloadOnMainThread);
     }
 
-    private static void LoadShaders() {
+    private static void LoadOnMainThread() {
         _basicEffect = new(Main.graphics.GraphicsDevice);
     }
-    private static void UnloadShaders() {
+    private static void UnloadOnMainThread() {
+        _basicEffect?.Dispose();
         _basicEffect = null;
-    }
-    #endregion
-
-    #region Hooks
-    private static void On_Main_DrawItems(On_Main.orig_DrawItems orig, Main main) {
-        orig(main);
-    }
-
-    private static void On_Main_DrawNPCs(On_Main.orig_DrawNPCs orig, Main main, bool behindTiles) {
-        orig(main, behindTiles);
-    }
-
-    private static void On_Main_DrawNPC(On_Main.orig_DrawNPC orig, Main main, int iNPCIndex, bool behindTiles) {
-        if (!Main.npc[iNPCIndex].TryGetGlobalNPC<AequusNPC>(out var aequusNPC)) {
-            orig(main, iNPCIndex, behindTiles);
-            return;
-        }
-
-        Vector2 drawOffset = Vector2.Zero;
-        aequusNPC.DrawBehindNPC(iNPCIndex, behindTiles, ref drawOffset);
-        Main.npc[iNPCIndex].position += drawOffset;
-        orig(main, iNPCIndex, behindTiles);
-        Main.npc[iNPCIndex].position -= drawOffset;
-        aequusNPC.DrawAboveNPC(iNPCIndex, behindTiles);
     }
     #endregion
 }

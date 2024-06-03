@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Graphics;
+﻿using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -59,7 +57,7 @@ public partial class KeywordGlobalItem : GlobalItem {
         }
 
         // Header values for proper placement
-        float headerHalfMeasurementX = ChatManager.GetStringSize(font, KeywordSystem.Tooltips[i].header, Vector2.One).X / 2f;
+        float headerHalfMeasurementX = ChatManager.GetStringSize(font, KeywordSystem.Tooltips[i].Header, Vector2.One).X / 2f;
         float headerMinX = headerHalfMeasurementX + 6f;
 
         int boxWidth = Math.Max(KeywordSystem.Tooltips[i].lineMaxWidth, (int)headerHalfMeasurementX * 2 + 10 + (keyword.itemIconId > 0 ? 32 : 0));
@@ -74,7 +72,7 @@ public partial class KeywordGlobalItem : GlobalItem {
 
         // Draw tooltip box
         if (Main.SettingsEnabled_OpaqueBoxBehindTooltips) {
-            Utils.DrawInvBG(spriteBatch, new(lineX - 10, lineStartY - 9, boxWidth + 20, keyword.lineTotalHeight + 40), new Color(23, 25, 81, 255) * 0.925f);
+            Utils.DrawInvBG(spriteBatch, new Rectangle(lineX - 10, lineStartY - 9, boxWidth + 20, keyword.lineTotalHeight + 40), new Color(23, 25, 81, 255) * 0.925f);
         }
 
         // Draw item icon, if there is one
@@ -96,9 +94,9 @@ public partial class KeywordGlobalItem : GlobalItem {
         ChatManager.DrawColorCodedStringWithShadow(
             spriteBatch,
             font,
-            keyword.header,
+            keyword.Header,
             new Vector2(lineX + Math.Max(boxWidth / 2f, headerMinX), lineStartY),
-            keyword.textColor * Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f, 1.5f, 2f),
+            keyword.textColor,
             0f,
             new Vector2(headerHalfMeasurementX, 0f),
             Vector2.One
@@ -112,7 +110,7 @@ public partial class KeywordGlobalItem : GlobalItem {
                 font,
                 keyword.tooltipLines[j],
                 new Vector2(lineX, textLineY),
-                keyword.textColor,
+                keyword.textColor * Helper.Oscillate(Main.GlobalTimeWrappedHourly, 1.5f, 2f),
                 0f,
                 Vector2.Zero,
                 Vector2.One

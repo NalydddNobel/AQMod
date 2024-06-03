@@ -1,5 +1,4 @@
 ﻿using Aequus.Core.Graphics.Animations;
-using Microsoft.Xna.Framework;
 using Terraria.Audio;
 
 namespace Aequus.Content.Fishing.CrabPots;
@@ -17,8 +16,8 @@ public class AnimationOpenCrabPot : ITileAnimation {
             FrameCount = 0;
             Frame++;
             RealFrame = Frame;
-            if (Frame >= BaseCrabPot.FramesCount) {
-                RealFrame = BaseCrabPot.FramesCount - (Frame - BaseCrabPot.FramesCount + 1);
+            if (Frame >= UnifiedCrabPot.FramesCount) {
+                RealFrame = UnifiedCrabPot.FramesCount - (Frame - UnifiedCrabPot.FramesCount + 1);
             }
         }
         return RealFrame > -1;

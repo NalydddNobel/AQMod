@@ -1,10 +1,11 @@
-﻿using Aequus.Core.Graphics;
-using Aequus.Old.Content.Materials.SoulGem;
+﻿using Aequus.Core.CodeGeneration;
+using Aequus.Core.Graphics;
+using Aequus.Old.Content.Items.Materials.SoulGem;
 using Aequus.Old.Content.Necromancy.Rendering;
-using Aequus.Old.Core.Utilities;
 
 namespace Aequus.Old.Content.Necromancy.Equipment.Accessories.Chains;
 
+[Gen.AequusPlayer_ResetField<int>("ghostChains")]
 public class SouljointCuffs : ModItem {
     public override void SetStaticDefaults() {
         if (Main.netMode != NetmodeID.Server) {
@@ -38,7 +39,7 @@ public class SouljointCuffs : ModItem {
             var t = AequusTextures.SoulChains;
             foreach (var v in GhostRenderer.ChainedUpNPCs) {
                 int i = 0;
-                OldDrawHelper.DrawChain(t, v.Item2.Center, v.Item1.Center, Main.screenPosition, (loc) => {
+                Helper.DrawChain(t, v.Item2.Center, v.Item1.Center, Main.screenPosition, (loc) => {
                     var zombie = v.Item1.GetGlobalNPC<NecromancyNPC>();
                     float m = 0.5f;
                     if (zombie.ghostChainsTime < 30) {

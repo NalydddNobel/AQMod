@@ -1,7 +1,6 @@
 ﻿using Aequus.DataSets;
 using System.Diagnostics;
 using System.IO;
-using Terraria;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Common.Renaming;

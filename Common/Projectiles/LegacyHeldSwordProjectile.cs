@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 
 namespace Aequus.Common.Projectiles;
 
@@ -18,12 +17,8 @@ public abstract class LegacyHeldSwordProjectile : HeldProjBase {
     public int hitsLeft;
 
     public int TimesSwinged {
-        get {
-            return Main.player[Projectile.owner].GetModPlayer<AequusPlayer>().itemUsage / 60;
-        }
-        set {
-            Main.player[Projectile.owner].GetModPlayer<AequusPlayer>().itemUsage = (ushort)(value * 60);
-        }
+        get => Main.player[Projectile.owner].GetModPlayer<AequusPlayer>().itemUsage / 60;
+        set => Main.player[Projectile.owner].GetModPlayer<AequusPlayer>().itemUsage = (ushort)(value * 60);
     }
 
     public virtual int AmountAllowedActive => 1;

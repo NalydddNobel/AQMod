@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
+﻿using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.Localization;
@@ -52,7 +51,7 @@ public class BaseFurnitureTile {
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
             TileObjectData.addTile(Type);
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair);
-            AddMapEntry(MapColor, LanguageDatabase.GetItemName(ItemID.Bathtub));
+            AddMapEntry(MapColor, Lang.GetItemName(ItemID.Bathtub));
             TileID.Sets.DisableSmartCursor[Type] = true;
         }
 
@@ -62,7 +61,7 @@ public class BaseFurnitureTile {
     }
 
     public abstract class Bed : Furniture {
-        public override Color MapColor => CommonColor.TILE_FURNITURE;
+        public override Color MapColor => CommonColor.MapWoodFurniture;
 
         public override void SetStaticDefaults() {
             FurnitureDefaults();
@@ -74,7 +73,7 @@ public class BaseFurnitureTile {
             TileObjectData.newTile.CopyFrom(TileObjectData.Style4x2);
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
             TileObjectData.addTile(Type);
-            AddMapEntry(MapColor, LanguageDatabase.GetItemName(ItemID.Bed));
+            AddMapEntry(MapColor, Lang.GetItemName(ItemID.Bed));
         }
 
         public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) {
@@ -134,7 +133,7 @@ public class BaseFurnitureTile {
     }
 
     public abstract class Bookcase : Furniture {
-        public override Color MapColor => CommonColor.TILE_FURNITURE;
+        public override Color MapColor => CommonColor.MapWoodFurniture;
 
         public override void SetStaticDefaults() {
             FurnitureDefaults();
@@ -146,7 +145,7 @@ public class BaseFurnitureTile {
             TileObjectData.addTile(Type);
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
 
-            AddMapEntry(MapColor, LanguageDatabase.GetItemName(ItemID.Bookcase));
+            AddMapEntry(MapColor, Lang.GetItemName(ItemID.Bookcase));
 
             TileID.Sets.DisableSmartCursor[Type] = true;
             AdjTiles = new int[] { TileID.Bookcases };
@@ -158,7 +157,7 @@ public class BaseFurnitureTile {
     }
 
     public abstract class Candelabra : LightedFurniture {
-        public override Color MapColor => CommonColor.TILE_FURNITURE_LIGHTED;
+        public override Color MapColor => CommonColor.MapTorch;
 
         public override void SetStaticDefaults() {
             FurnitureDefaults();
@@ -175,7 +174,7 @@ public class BaseFurnitureTile {
             TileObjectData.addTile(Type);
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
 
-            AddMapEntry(MapColor, LanguageDatabase.GetItemName(ItemID.Candelabra));
+            AddMapEntry(MapColor, Lang.GetItemName(ItemID.Candelabra));
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num) {
@@ -209,7 +208,7 @@ public class BaseFurnitureTile {
     }
 
     public abstract class Candle : LightedFurniture {
-        public override Color MapColor => CommonColor.TILE_FURNITURE_LIGHTED;
+        public override Color MapColor => CommonColor.MapTorch;
 
         public override void SetStaticDefaults() {
             FurnitureDefaults();
@@ -228,7 +227,7 @@ public class BaseFurnitureTile {
             TileObjectData.addTile(Type);
             AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
 
-            AddMapEntry(MapColor, LanguageDatabase.GetItemName(ItemID.Candle));
+            AddMapEntry(MapColor, Lang.GetItemName(ItemID.Candle));
         }
 
         public override void MouseOver(int i, int j) {
@@ -263,7 +262,7 @@ public class BaseFurnitureTile {
     }
 
     public abstract class Chandelier : LightedFurniture {
-        public override Color MapColor => CommonColor.TILE_FURNITURE_LIGHTED;
+        public override Color MapColor => CommonColor.MapTorch;
 
         public override void SetStaticDefaults() {
             FurnitureDefaults();
@@ -327,7 +326,7 @@ public class BaseFurnitureTile {
     }
 
     public abstract class Chair : Furniture {
-        public override Color MapColor => CommonColor.TILE_FURNITURE;
+        public override Color MapColor => CommonColor.MapWoodFurniture;
 
         protected virtual void AddMapEntry() {
             AddMapEntry(MapColor, Language.GetText("MapObject.Chair"));
@@ -408,7 +407,7 @@ public class BaseFurnitureTile {
     }
 
     public abstract class Clock : Furniture {
-        public override Color MapColor => CommonColor.TILE_FURNITURE;
+        public override Color MapColor => CommonColor.MapWoodFurniture;
 
         public override void SetStaticDefaults() {
             FurnitureDefaults();
@@ -420,7 +419,7 @@ public class BaseFurnitureTile {
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16, 16, 16 };
             TileObjectData.addTile(Type);
 
-            AddMapEntry(MapColor, LanguageDatabase.GetItemName(ItemID.GrandfatherClock));
+            AddMapEntry(MapColor, Lang.GetItemName(ItemID.GrandfatherClock));
             AdjTiles = new int[] { TileID.GrandfatherClocks };
 
             TileID.Sets.DisableSmartCursor[Type] = true;

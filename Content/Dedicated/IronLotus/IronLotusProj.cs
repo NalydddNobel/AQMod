@@ -50,14 +50,14 @@ public class IronLotusProj : LegacyHeldSlashingSwordProjectile {
             float particleRandomRotation = 0.3f;
             for (int i = 0; i < 15; i++) {
                 ExtendPlayer.SpawnEnchantmentDusts(Main.player[Projectile.owner].Center + AngleVector.RotatedBy(Main.rand.NextFloat(-particleRandomRotation, particleRandomRotation)) * Main.rand.NextFloat(particleDistance), AngleVector, Main.player[Projectile.owner], showMagmaStone: false);
-                var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector.RotatedBy(Main.rand.NextFloat(-particleRandomRotation, particleRandomRotation)) * Main.rand.NextFloat(particleDistance), DustID.Torch, Scale: Main.rand.NextFloat(0.5f, 2f));
+                var d = Terraria.Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector.RotatedBy(Main.rand.NextFloat(-particleRandomRotation, particleRandomRotation)) * Main.rand.NextFloat(particleDistance), DustID.Torch, Scale: Main.rand.NextFloat(0.5f, 2f));
                 d.velocity += AngleVector;
                 d.velocity *= 4f;
                 d.noGravity = true;
                 d.fadeIn = d.scale + 0.1f;
             }
             for (int i = 0; i < 2; i++) {
-                var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector.RotatedBy(Main.rand.NextFloat(-0.2f, 0.2f)) * (Main.rand.Next(150, 250) + animationGFXOutOffset), DustID.Torch, Scale: Main.rand.NextFloat(1f, 3f));
+                var d = Terraria.Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector.RotatedBy(Main.rand.NextFloat(-0.2f, 0.2f)) * (Main.rand.Next(150, 250) + animationGFXOutOffset), DustID.Torch, Scale: Main.rand.NextFloat(1f, 3f));
                 d.velocity = -AngleVector * 3f;
                 d.noGravity = true;
                 d.fadeIn = d.scale + 0.33f;

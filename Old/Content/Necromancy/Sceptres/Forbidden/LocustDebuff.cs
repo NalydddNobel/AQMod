@@ -1,5 +1,4 @@
 ﻿using Aequus.DataSets;
-using Aequus.Old.Content.Weapons.Demon;
 using System;
 
 namespace Aequus.Old.Content.Necromancy.Sceptres.Forbidden;
@@ -41,7 +40,7 @@ public class LocustDebuffNPC : GlobalNPC {
     public override bool InstancePerEntity => true;
 
     public override bool AppliesToEntity(NPC entity, bool lateInstantiation) {
-        return !entity.buffImmune[ModContent.BuffType<CorruptionHellfire>()];
+        return !entity.buffImmune[ModContent.BuffType<LocustDebuff>()];
     }
 
     public override void ResetEffects(NPC npc) {

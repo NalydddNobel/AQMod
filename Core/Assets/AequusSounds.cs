@@ -1,12 +1,14 @@
 ﻿using Terraria.Audio;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus;
 
-public sealed partial class AequusSounds : ILoad {
+public sealed partial class AequusSounds : IContentInstance {
     private static SoundStyle GetMultisound(SoundStyle zero, int variants) {
         return new(zero.SoundPath[..^1], 0, variants);
     }
 
+    public static SoundStyle EelMoving { get; private set; }
     public static SoundStyle PollutedOcean_AmbientB { get; private set; }
     public static SoundStyle PollutedOcean_AmbientA { get; private set; }
     public static SoundStyle ShardHit { get; private set; }
@@ -19,9 +21,10 @@ public sealed partial class AequusSounds : ILoad {
     public static SoundStyle ConductiveBlockPlaced { get; private set; }
     public static SoundStyle ChainedSoulAttackExplode { get; private set; }
 
-    public void Load(Mod mod) {
+    void IContentInstance.Load(Mod mod) {
         PollutedOcean_AmbientB = GetMultisound(PollutedOcean_AmbientB0, 2) with { Pitch = 0f, PitchVariance = 0.1f, MaxInstances = 1, Type = SoundType.Ambient };
         PollutedOcean_AmbientA = GetMultisound(PollutedOcean_AmbientA0, 3) with { Pitch = 0f, PitchVariance = 0.1f, MaxInstances = 1, Type = SoundType.Ambient };
+        EelMoving = GetMultisound(EelMoving0, 3) with { Pitch = 0f, PitchVariance = 0.1f, MaxInstances = 2 };
         ChainedSoulAttackExplode = GetMultisound(ChainedSoulAttackExplode0, 3) with { Pitch = 0f, PitchVariance = 0.1f, MaxInstances = 3 };
         ShardHit = GetMultisound(ShardHit0, 2) with { Volume = 0.5f, Pitch = -0.2f, PitchVariance = 0.15f, };
         JunkJetShoot = GetMultisound(JunkJetShoot0, 2) with { Volume = 0.66f, PitchVariance = 0.15f, MaxInstances = 3, };
@@ -31,8 +34,8 @@ public sealed partial class AequusSounds : ILoad {
         ConductiveBlockPlaced = ConductiveBlockBreak with { Pitch = 0.6f, PitchVariance = 0.05f };
         ScrapBlockBreak = GetMultisound(ScrapBlock0, 4);
         ScrapBlockPlaced = ScrapBlockBreak with { Pitch = 0.3f, PitchVariance = 0.05f };
-    }
-
-    public void Unload() {
+#if !DEBUG
+        LoadOldSounds();
+#endif
     }
 }

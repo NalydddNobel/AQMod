@@ -54,7 +54,7 @@ public abstract class UnifiedModTorch : ModTile {
         SafeSetStaticDefaults();
         TileObjectData.addTile(Type);
 
-        AddMapEntry(CommonColor.TILE_FURNITURE_LIGHTED, Language.GetText("ItemName.Torch"));
+        AddMapEntry(CommonColor.MapTorch, Language.GetText("ItemName.Torch"));
     }
     protected virtual void SafeSetStaticDefaults() { }
 
@@ -74,7 +74,9 @@ public abstract class UnifiedModTorch : ModTile {
         player.cursorItemIconID = TileLoader.GetItemDropFromTypeAndStyle(Type, style);
     }
 
-    public override void NumDust(int i, int j, bool fail, ref int num) => num = Main.rand.Next(1, 3);
+    public override void NumDust(int i, int j, bool fail, ref int num) {
+        num = Main.rand.Next(1, 3);
+    }
 
     public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) {
         offsetY = 0;

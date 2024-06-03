@@ -1,18 +1,18 @@
-﻿using Aequus.Common.Tiles;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Initialization;
+﻿using Aequus.Core.ContentGeneration;
 using System;
 using Terraria.Enums;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Fishing.CrabPots;
 
-public class ObsidianCrabPot : BaseCrabPot {
+public class ObsidianCrabPot : UnifiedCrabPot {
     public override void Load() {
         ModItem item = new InstancedTileItem(this, rarity: ItemRarityID.Orange, value: Item.sellPrice(silver: 50));
 
         Mod.AddContent(item);
-        Aequus.OnAddRecipes += () => {
+        Aequus.OnAddRecipes += AddRecipes;
+
+        void AddRecipes() {
             foreach (var otherItem in Mod.GetContent<ModItem>()) {
                 if (otherItem.Item.createTile != ModContent.TileType<CrabPot>()) {
                     continue;
@@ -24,7 +24,7 @@ public class ObsidianCrabPot : BaseCrabPot {
                     .AddTile(TileID.Hellforge)
                     .Register();
             }
-        };
+        }
     }
 
     protected override void SetupCrabPotContent() {
@@ -35,12 +35,12 @@ public class ObsidianCrabPot : BaseCrabPot {
         TileObjectData.newTile.CoordinateHeights = new int[] { 16, 24 };
         TileObjectData.newTile.DrawYOffset = -16;
         DustType = DustID.Obsidian;
-        AddMapEntry(new(123, 90, 68), CreateMapEntryName());
+        AddMapEntry(new Color(123, 90, 68), CreateMapEntryName());
     }
 
     protected override void CustomPreDraw(int x, int y, int waterYOffset, SpriteBatch spriteBatch, TECrabPot crabPot) {
-        if (!crabPot.item.IsAir && Aequus.GameWorldActive) {
-            var d = Dust.NewDustPerfect(new Vector2(x + 0.5f, y - 1.4f).ToWorldCoordinates(), crabPot.caught ? DustID.Frost : DustID.Torch, Scale: 2f);
+        if (!crabPot.item.IsAir && ExtendedMod.GameWorldActive) {
+            var d = Terraria.Dust.NewDustPerfect(new Vector2(x + 0.5f, y - 1.4f).ToWorldCoordinates(), crabPot.caught ? DustID.Frost : DustID.Torch, Scale: 2f);
             d.noGravity = true;
             d.velocity.X *= 0.1f;
             d.velocity.Y = -Math.Abs(d.velocity.Y * d.scale * 0.5f);

@@ -1,9 +1,9 @@
 ﻿using Aequus.Common.Projectiles;
 using Aequus.Core.CrossMod;
 using System;
+using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.GameContent;
-using Terraria.Localization;
 
 namespace Aequus.Core.Utilities;
 
@@ -20,6 +20,39 @@ public static class ExtendEntity {
 public static class ExtendPlayer {
     private static readonly Item[] _dummyInventory = ExtendArray.CreateArray(i => new Item(), Main.InventorySlotsTotal);
 
+    public static IEnumerable<Player> FindNearbyPlayersOnTeam(this Player player, float seeingDistance) {
+        yield return player;
+
+        for (int i = 0; i < Main.maxPlayers; i++) {
+            if (i == player.whoAmI) {
+                continue;
+            }
+
+            if (Main.player[i].active && !Main.player[i].DeadOrGhost && Main.player[i].team == player.team && player.Distance(Main.player[i].Center) < seeingDistance) {
+                yield return Main.player[i];
+            }
+        }
+    }
+
+    /// <summary>Restores player breath without going over <see cref="Player.breathMax"/>.</summary>
+    public static void HealBreath(this Player player, int breathAmount, bool showPopupText = true) {
+        if (player.breath >= player.breathMax) {
+            return;
+        }
+
+        player.breath = Math.Min(player.breath + breathAmount, player.breathMax);
+
+        if (Main.netMode != NetmodeID.Server && showPopupText) {
+            string seconds = $"{ExtendLanguage.Seconds(breathAmount * player.breathCDMax)}s";
+            int combatText = CombatText.NewText(player.getRect(), AequusPlayer.CombatText_RestoreBreath, seconds);
+
+            // Breath meter usually hides the text with its normal velocity.
+            if (Main.combatText.IndexInRange(combatText)) {
+                Main.combatText[combatText].velocity.Y *= 0.5f;
+            }
+        }
+    }
+
     /// <summary>
     /// Adds <paramref name="damageReduction"/> to <see cref="Player.endurance"/>, but the added DR gets multiplicatively weaker the higher the endurance stat is.
     /// (So adding 0.5 endurance to a player which has 0.75 endurance will grant (0.5 * (1 - 0.75)) 0.125 endurance.)
@@ -31,9 +64,17 @@ public static class ExtendPlayer {
         return player.endurance += damageReduction - damageReduction * Math.Clamp(player.endurance, 0f, 1f);
     }
 
-    public static Point GetSpawn(this Player player) => new Point(GetSpawnX(player), GetSpawnY(player));
-    public static int GetSpawnY(this Player player) => player.SpawnY > 0 ? player.SpawnY : Main.spawnTileY;
-    public static int GetSpawnX(this Player player) => player.SpawnX > 0 ? player.SpawnX : Main.spawnTileX;
+    public static Point GetSpawn(this Player player) {
+        return new Point(GetSpawnX(player), GetSpawnY(player));
+    }
+
+    public static int GetSpawnY(this Player player) {
+        return player.SpawnY > 0 ? player.SpawnY : Main.spawnTileY;
+    }
+
+    public static int GetSpawnX(this Player player) {
+        return player.SpawnX > 0 ? player.SpawnX : Main.spawnTileX;
+    }
 
     /// <param name="player">The player.</param>
     /// <param name="pickaxe">The pickaxe.</param>
@@ -110,9 +151,9 @@ public static class ExtendPlayer {
     }
 
     public static Item HeldItemFixed(this Player player) {
-        if (Main.myPlayer == player.whoAmI && player.selectedItem == 58 && Main.mouseItem != null && !Main.mouseItem.IsAir) {
-            return Main.mouseItem;
-        }
+        //if (Main.myPlayer == player.whoAmI && player.selectedItem == 58 && Main.mouseItem != null && !Main.mouseItem.IsAir) {
+        //    return Main.mouseItem;
+        //}
         return player.HeldItem;
     }
 
@@ -317,6 +358,44 @@ public static class ExtendPlayer {
 }
 
 public static partial class ExtendNPC {
+    public record struct NPCDrawInfo(Texture2D Texture, Vector2 Position, Rectangle Frame, float Rotation, Vector2 Origin, float Scale, SpriteEffects Effects, int TrailLength) {
+        public void Draw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+            spriteBatch.Draw(Texture, Position - screenPos, Frame, drawColor, Rotation, Origin, Scale, Effects, 0f);
+        }
+    }
+
+    public static NPCDrawInfo GetDrawInfo(this NPC npc) {
+        Texture2D texture = TextureAssets.Npc[npc.type].Value;
+        Vector2 offset = npc.Size / 2f + new Vector2(0f, npc.gfxOffY);
+        Vector2 drawCoordinates = npc.position + offset;
+        Rectangle frame = npc.frame;
+        Vector2 origin = frame.Size() / 2f;
+        float rotation = npc.rotation;
+        float scale = npc.scale;
+        SpriteEffects effects = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+        return new NPCDrawInfo(texture, drawCoordinates, frame, rotation, origin, scale, effects, NPCSets.TrailCacheLength[npc.type]);
+    }
+
+    [Obsolete]
+    public static void GetDrawInfo(this NPC npc, out Texture2D texture, out Vector2 offset, out Rectangle frame, out Vector2 origin, out int trailLength) {
+        texture = TextureAssets.Npc[npc.type].Value;
+        offset = npc.Size / 2f;
+        frame = npc.frame;
+        origin = frame.Size() / 2f;
+        trailLength = NPCSets.TrailCacheLength[npc.type];
+    }
+
+    public static void CollideWithOthers(this NPC npc, float speed = 0.05f) {
+        Rectangle rect = npc.getRect();
+        for (int i = 0; i < Main.maxNPCs; i++) {
+            NPC other = Main.npc[i];
+            if (other.active && i != npc.whoAmI && npc.type == other.type
+                && rect.Intersects(other.getRect())) {
+                npc.velocity += Utils.SafeNormalize(npc.Center - other.Center, Vector2.UnitY) * speed;
+            }
+        }
+    }
+
     /// <summary>Helper method which reflects an NPC against shimmer.</summary>
     public static void UpdateShimmerReflection(this NPC projectile) {
         if (ExtendEntity.CanReflectAgainstShimmer(projectile)) {
@@ -443,8 +522,78 @@ public static class ExtendShop {
 public static class ExtendProjectile {
     internal static readonly Projectile _dummyProjectile = new Projectile();
 
+    public static bool AllowSpecialAbilities(this Projectile projectile) {
+        if (projectile.TryGetGlobalProjectile(out ProjectileSource sources)) {
+            if (sources.parentProjectileIdentity >= 0) {
+                return false;
+            }
+        }
+        if (projectile.TryGetGlobalProjectile(out ProjectileItemData itemData)) {
+            if (itemData.NoSpecialEffects) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static IEnumerable<Projectile> Where(int owner, Predicate<Projectile> Condition) {
+        for (int i = 0; i < Main.maxProjectiles; i++) {
+            Projectile p = Main.projectile[i];
+            if (p.active && p.owner == owner && !p.hostile && Condition(p)) {
+                yield return p;
+            }
+        }
+    }
+
+    public static IEnumerable<Projectile> Where(Predicate<Projectile> Condition) {
+        for (int i = 0; i < Main.maxProjectiles; i++) {
+            Projectile p = Main.projectile[i];
+            if (p.active && Condition(p)) {
+                yield return p;
+            }
+        }
+    }
+
+    public static void CollideWithOthers(this Projectile proj, float speed = 0.05f) {
+        Rectangle rect = proj.getRect();
+        for (int i = 0; i < Main.maxProjectiles; i++) {
+            Projectile other = Main.projectile[i];
+            if (other.active && i != proj.whoAmI && proj.type == other.type
+                && rect.Intersects(other.getRect())) {
+                proj.velocity += Utils.SafeNormalize(proj.Center - other.Center, Vector2.UnitY) * speed;
+            }
+        }
+    }
+
+    public static int GetMinionTarget(this Projectile projectile, Vector2 position, out float distance, float maxDistance = 2000f, float? ignoreTilesDistance = 0f) {
+        if (Main.player[projectile.owner].HasMinionAttackTargetNPC) {
+            distance = Vector2.Distance(Main.npc[Main.player[projectile.owner].MinionAttackTargetNPC].Center, projectile.Center);
+            if (distance < maxDistance) {
+                return Main.player[projectile.owner].MinionAttackTargetNPC;
+            }
+        }
+        int target = -1;
+        distance = maxDistance;
+        for (int i = 0; i < Main.maxNPCs; i++) {
+            if (Main.npc[i].CanBeChasedBy(projectile)) {
+                float d = Vector2.Distance(position, Main.npc[i].Center);
+                if (d < distance) {
+                    if (!ignoreTilesDistance.HasValue || d < ignoreTilesDistance || Collision.CanHit(position - projectile.Size / 2f, projectile.width, projectile.height, Main.npc[i].position, Main.npc[i].width, Main.npc[i].height)) {
+                        distance = d;
+                        target = i;
+                    }
+                }
+            }
+        }
+        return target;
+    }
+
+    public static int GetMinionTarget(this Projectile projectile, out float distance, float maxDistance = 2000f, float? ignoreTilesDistance = 0f) {
+        return GetMinionTarget(projectile, projectile.Center, out distance, maxDistance, ignoreTilesDistance);
+    }
+
     public static bool IsChildOrNoSpecialEffects(this Projectile projectile) {
-        return projectile.GetGlobalProjectile<ProjectileItemData>().NoSpecialEffects || projectile.GetGlobalProjectile<ProjectileSource>().isProjectileChild;
+        return projectile.GetGlobalProjectile<ProjectileItemData>().NoSpecialEffects || projectile.GetGlobalProjectile<ProjectileSource>().IsProjectileChild;
     }
 
     public static void SetDefaultNoInteractions(this Projectile projectile) {

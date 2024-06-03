@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria.GameContent.Golf;
+﻿using Terraria.GameContent.Golf;
 using Terraria.Physics;
 
 namespace Aequus.Common.Golfing;

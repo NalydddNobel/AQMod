@@ -25,7 +25,7 @@ public struct TrashCompactorRecipe {
     public readonly List<Item> Results;
     public readonly Item Ingredient;
 
-    public bool Invalid => Ingredient == null || Results == null || Results.Count <= 0;
+    public readonly bool Invalid => Ingredient == null || Results == null || Results.Count <= 0;
 
     public static TrashCompactorRecipe FromItem(Item item) {
         if (ItemDataSet.CustomTrashCompactorRecipes.TryGetValue(item.type, out var recipeOverride)) {

@@ -2,7 +2,7 @@
 using Aequus.Core.ContentGeneration;
 using Aequus.DataSets;
 using Aequus.Old.Content.Events.DemonSiege;
-using Aequus.Old.Content.Materials.SoulGem;
+using Aequus.Old.Content.Items.Materials.SoulGem;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -12,7 +12,7 @@ using Terraria.GameContent.ItemDropRules;
 namespace Aequus.Old.Content.Enemies.DemonSiege.Keeper;
 
 [AutoloadBanner(legacyId: 9)]
-[ModBiomes(typeof(DemonSiegeZone))]
+[BestiaryBiome<DemonSiegeZone>()]
 public class KeeperImp : ModNPC {
     public const int TAIL_FRAME_COUNT = 15;
     public const int WING_FRAME_COUNT = 1;

@@ -5,6 +5,7 @@ Glimmer: {
 	End: 柔光渐渐消失...
 }
 
+// --localization note-- the "giveitem" and "eventstart" lines go together, one random "giveitem" line is picked first and then follows up with a random "eventstart" line
 DemonSiege: {
 	GiveItem: {
 		0: "{Player}接受了魔鬼的契约..."

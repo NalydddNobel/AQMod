@@ -1,11 +1,8 @@
-﻿using Aequus.Common.Tiles;
-using Aequus.Common.Tiles.Components;
+﻿using Aequus.Common.Tiles.Components;
 using Aequus.Content.Graphics.GameOverlays;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics.Animations;
 using Aequus.Core.Graphics.Tiles;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.IO;
@@ -33,10 +30,12 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction
         TileObjectData.addTile(Type);
         DustType = DustID.Stone;
         AdjTiles = new int[] { TileID.Extractinator };
-        AddMapEntry(new(65, 115, 75), CreateMapEntryName());
+        AddMapEntry(new Color(65, 115, 75), CreateMapEntryName());
     }
 
-    public override void NumDust(int i, int j, bool fail, ref int num) => num = 0;
+    public override void NumDust(int i, int j, bool fail, ref int num) {
+        num = 0;
+    }
 
     public static void UseItemAnimation(int i, int j, int totalAmount, int itemType) {
         var spawnLocation = new Vector2(i + 0.5f, j + 2.5f) * 16f;
@@ -108,22 +107,22 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction
     }
 
     public override void MouseOver(int i, int j) {
-        var player = Main.LocalPlayer;
-        var heldItem = player.HeldItemFixed();
-        var recipeResults = TrashCompactorRecipe.FromItem(heldItem);
+        Player player = Main.LocalPlayer;
+        Item heldItem = player.HeldItemFixed();
+        TrashCompactorRecipe recipeResults = TrashCompactorRecipe.FromItem(heldItem);
 
         if (recipeResults.Invalid) {
             return;
         }
 
         player.noThrow = 2;
-        player.GetModPlayer<AequusPlayer>().disableItem = 2;
+        player.GetModPlayer<AequusPlayer>().disableItem = 8;
         player.cursorItemIconEnabled = true;
         player.cursorItemIconID = recipeResults.Results[0].type;
 
         i -= Main.tile[i, j].TileFrameX / 18;
         j -= Main.tile[i, j].TileFrameY / 18;
-        if (Aequus.GameWorldActive && player.itemAnimation == player.itemAnimationMax - 2) {
+        if (GameWorldActive && player.itemAnimation == player.itemAnimationMax - 2) {
             UseExtractinator(i, j, heldItem, recipeResults, player);
             Recipe.FindRecipes();
         }

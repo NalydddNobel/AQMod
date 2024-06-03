@@ -46,7 +46,7 @@ public class NecromancyDebuff : ModBuff {
         }
 
         if (Main.netMode == NetmodeID.MultiplayerClient) {
-            Aequus.GetPacket<SyncNecromancyOwnerPacket>().Send(npc.whoAmI, player);
+            ExtendedMod.GetPacket<SyncNecromancyOwnerPacket>().Send(npc.whoAmI, player);
         }
     }
 }

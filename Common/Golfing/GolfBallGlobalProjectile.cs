@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
+﻿using Terraria.DataStructures;
 
 namespace Aequus.Common.Golfing;
 

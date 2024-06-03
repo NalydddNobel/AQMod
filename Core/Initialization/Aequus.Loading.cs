@@ -25,7 +25,7 @@ partial class Aequus {
             _action = null;
         }
 
-        public static LoadActions operator +(LoadActions a, Action b) { 
+        public static LoadActions operator +(LoadActions a, Action b) {
             if (a != null) {
                 if (a._action == null) {
                     ThrowLoadTimeError();

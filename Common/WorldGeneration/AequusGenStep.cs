@@ -1,11 +1,10 @@
-﻿using Aequus.Core.Initialization;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria.GameContent.Generation;
 using Terraria.IO;
-using Terraria.Localization;
 using Terraria.Utilities;
 using Terraria.WorldBuilding;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Common.WorldGeneration;
 
@@ -54,7 +53,7 @@ public abstract class AequusGenStep : ModType, ILocalizedModType, IPostSetupCont
         WorldGenSystem.GenerationSteps.Add(this);
     }
 
-    public void PostSetupContent(Aequus aequus) {
+    public void PostSetupContent(Mod mod) {
         this.GetLocalization("DisplayMessage");
         PostSetupContent();
     }

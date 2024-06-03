@@ -28,11 +28,15 @@ public class ToolbeltChanges : GlobalItem {
         _tooltip = Language.GetOrRegister("Mods.Aequus.Items.Toolbelt.Tooltip").WithFormatArgs(Capacity);
     }
 
+    public override void SetDefaults(Item entity) {
+        entity.StatsModifiedBy.Add(Mod);
+    }
+
     public override void UpdateAccessory(Item item, Player player, bool hideVisual) {
         if (!player.TryGetModPlayer(out BackpackPlayer backpackPlayer)) {
             return;
         }
-        BackpackLoader.Get<ToolbeltBackpack>(backpackPlayer).Toolbelt = item;
+        BackpackLoader.GetPlayerInstance<ToolbeltBackpack>(backpackPlayer).Toolbelt = item;
     }
 
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
@@ -100,7 +104,7 @@ public class ToolbeltChanges : GlobalItem {
         private LocalizedText _off;
 
         public override bool Active() {
-            return BackpackLoader.Get<ToolbeltBackpack>(Main.LocalPlayer).IsActive(Main.LocalPlayer);
+            return BackpackLoader.GetPlayerInstance<ToolbeltBackpack>(Main.LocalPlayer).IsActive(Main.LocalPlayer);
         }
 
         public override string DisplayValue() {

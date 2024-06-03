@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Items;
-using Aequus.Core.Initialization;
+﻿using Aequus.Common;
+using tModLoaderExtended.GlowMasks;
 
 namespace Aequus.Old.Content.Necromancy.Sceptres.Dungeon;
 
@@ -10,8 +10,8 @@ public class Revenant : ScepterBase {
         Item.SetWeaponValues(40, 1f, 0);
         Item.shoot = ModContent.ProjectileType<RevenantProj>();
         Item.shootSpeed = 6.5f;
-        Item.rare = ItemCommons.Rarity.DungeonLoot;
-        Item.value = ItemCommons.Price.DungeonLoot;
+        Item.rare = Commons.Rare.BiomeDungeon;
+        Item.value = Commons.Cost.BiomeDungeon;
         Item.mana = 15;
         Item.UseSound = SoundID.Item8;
     }

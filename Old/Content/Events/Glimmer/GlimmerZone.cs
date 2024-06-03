@@ -1,7 +1,6 @@
-﻿using Aequus.Content.Equipment.Accessories.EventPrevention;
-using Aequus.Core;
+﻿using Aequus.Content.Items.Accessories.EventPrevention;
 using Aequus.Old.Common.EventBars;
-using Aequus.Old.Content.Bosses.Cosmic.UltraStarite;
+using Aequus.Old.Content.Bosses.UltraStarite;
 using Aequus.Old.Content.Critters;
 using Aequus.Old.Content.Enemies.Glimmer.Hyper;
 using Aequus.Old.Content.Enemies.Glimmer.Proto;

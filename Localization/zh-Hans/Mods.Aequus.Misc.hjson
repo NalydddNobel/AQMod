@@ -44,6 +44,7 @@ Dyes: {
 	}
 }
 
+// --localization note-- these color names will go unused in the future so its not necessary to translate
 Rarity: {
 	-13.DisplayName: 火红色
 	-12.DisplayName: 彩虹色
@@ -77,6 +78,7 @@ Rarity: {
 
 BlocksDistance: 距离: {0}格物块
 Contains: 包含: {0}
+ContainsHeader: 包含
 MonocleToggleOn: 单片眼镜开启
 MonocleToggleOff: 单片眼镜关闭
 ShimmerMonocleToggleOn: 微光备注开启

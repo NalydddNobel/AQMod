@@ -1,5 +1,5 @@
-﻿using Aequus.Core.Networking;
-using System.IO;
+﻿using System.IO;
+using tModLoaderExtended.Networking;
 
 namespace Aequus.Common.Tiles.Components;
 

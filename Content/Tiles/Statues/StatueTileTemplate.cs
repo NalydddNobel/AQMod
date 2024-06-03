@@ -33,6 +33,6 @@ public abstract class StatueTileTemplate : ModTile {
 
         DustType = DustID.Silver;
 
-        AddMapEntry(CommonColor.TILE_STATUE, Language.GetText("MapObject.Statue"));
+        AddMapEntry(CommonColor.MapStatue, Language.GetText("MapObject.Statue"));
     }
 }

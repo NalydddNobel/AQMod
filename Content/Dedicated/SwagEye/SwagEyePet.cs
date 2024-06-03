@@ -1,7 +1,5 @@
 ﻿using Aequus.Common.Items.Dedications;
 using Aequus.Core.ContentGeneration;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria.GameContent;
 using Terraria.UI.Chat;
@@ -96,6 +94,6 @@ public class SwagEyePet : UnifiedModPet {
     }
 
     protected override void OnLoad() {
-        DedicationRegistry.Register(PetItem, new Dedication.Default("torra th", new Color(80, 60, 255)));
+        DedicationRegistry.Register(PetItem, new DefaultDedication("torra th", new Color(80, 60, 255)));
     }
 }

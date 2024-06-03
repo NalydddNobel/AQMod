@@ -1,6 +1,4 @@
-﻿using Aequus.Core.Assets;
-using ReLogic.Content;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using Terraria.DataStructures;
 
 namespace Aequus.Common.Players.Drawing;

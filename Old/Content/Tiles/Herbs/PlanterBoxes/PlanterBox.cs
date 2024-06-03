@@ -1,14 +1,14 @@
 ﻿using Aequus.Common;
-using Aequus.Common.JourneyMode;
 using Aequus.Common.Tiles.Components;
 using Aequus.Core.ContentGeneration;
-using Aequus.Core.Initialization;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.ObjectData;
+using tModLoaderExtended.Terraria.GameContent.Creative;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Old.Content.Tiles.Herbs.PlanterBoxes;
 
@@ -194,16 +194,16 @@ public sealed class PlanterBox : ModTile, IRandomUpdateOverride, IPostSetupConte
         //TileObjectData.newTile.StyleHorizontal = false;
         //TileObjectData.addTile(Type);
 
-        AddMapEntry(CommonColor.TILE_FURNITURE);
+        AddMapEntry(CommonColor.MapWoodFurniture);
         DustType = 37;
         AdjTiles = new int[] { TileID.PlanterBox };
     }
 
-    public void PostSetupContent(Aequus aequus) {
+    public void PostSetupContent(Mod mod) {
         AutomaticallyMakeHerbsAnchorToAequusPlanterBoxes();
     }
 
-    public void AddRecipes(Aequus aequus) {
+    public void AddRecipes(Mod mod) {
         AutomaticallyMergeWithSupportingModdedPlanterBoxes();
     }
 

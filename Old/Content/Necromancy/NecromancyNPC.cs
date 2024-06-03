@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.NPCs;
-using Aequus.Core.Initialization;
+using Aequus.Content.Dusts;
 using Aequus.DataSets;
 using Aequus.Old.Content.Necromancy.Networking;
 using Aequus.Old.Content.Necromancy.Rendering;
@@ -10,6 +10,7 @@ using System.IO;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Old.Content.Necromancy;
 
@@ -178,7 +179,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
                 info.SetZombieNPCInfo(npc, zombie);
                 zombie.ApplyStaticStats(npc);
                 if (Main.netMode != NetmodeID.SinglePlayer) {
-                    Aequus.GetPacket<SyncNecromancyOwnerPacket>().Send(npc.whoAmI, info.Player);
+                    ExtendedMod.GetPacket<SyncNecromancyOwnerPacket>().Send(npc.whoAmI, info.Player);
                 }
             }
         }
@@ -237,7 +238,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
                 npc.damage = ghostDamage;
             }
             if (zombieTimer == 0) {
-                int time = Main.player[zombieOwner].GetModPlayer<AequusPlayer>().ghostLifespan;
+                int time = (int)Main.player[zombieOwner].GetModPlayer<AequusPlayer>().ghostLifespan.ApplyTo(NecromancySystem.DefaultLifespan);
 
                 zombieTimerMax = time;
                 zombieTimer = time;
@@ -271,7 +272,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
 
             Zombie.PlayerOwner = zombieOwner;
 
-            npc.GivenName = Main.player[zombieOwner].name + "'s " + LanguageDatabase.GetNPCName(npc.netID);
+            npc.GivenName = Main.player[zombieOwner].name + "'s " + Lang.GetNPCName(npc.netID);
             npc.friendly = true;
             npc.boss = false;
             npc.alpha = Math.Max(npc.alpha, 60);
@@ -410,7 +411,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
         else {
             renderLayer = 0;
         }
-        
+
         Zombie.Reset();
     }
 
@@ -418,7 +419,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
         if (ghostDebuffDOT > 0) {
             float multiplier = 1f;
             if (zombieOwner > 0 && zombieOwner < Main.maxPlayers && Main.player[zombieOwner].active) {
-                multiplier = Main.player[zombieOwner].GetModPlayer<AequusPlayer>().zombieDebuffMultiplier;
+                multiplier += Main.player[zombieOwner].GetModPlayer<AequusPlayer>().zombieDebuffMultiplier;
             }
 
             if (npc.lifeRegen > 0) {
@@ -579,7 +580,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
             SpawnZombie_SetZombieStats(Main.npc[n], npc.Center, npc.velocity, npc.direction, npc.spriteDirection, out bool playSound);
             if (playSound) {
                 if (Main.netMode == NetmodeID.Server) {
-                    Aequus.GetPacket<ZombieConvertEffectsPacket>().Send(npc, zombieOwner, renderLayer);
+                    ExtendedMod.GetPacket<ZombieConvertEffectsPacket>().Send(npc, zombieOwner, renderLayer);
                 }
                 else {
                     ConvertEffects(npc.position, npc.width, npc.height, zombieOwner, renderLayer);
@@ -601,7 +602,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
         zombie.isZombie = true;
         zombie.zombieOwner = zombieOwner;
         zombie.zombieDebuffTier = zombieDebuffTier;
-        zombie.zombieTimer = zombie.zombieTimerMax = Main.player[zombieOwner].GetModPlayer<AequusPlayer>().ghostLifespan;
+        zombie.zombieTimer = zombie.zombieTimerMax = (int)Main.player[zombieOwner].GetModPlayer<AequusPlayer>().ghostLifespan.ApplyTo(NecromancySystem.DefaultLifespan);
         zombie.renderLayer = renderLayer;
         zombie.ghostSpeed = ghostSpeed;
         zombie.ghostDamage = ghostDamage;
@@ -775,14 +776,14 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
 
     public static void Sync(NPC npc) {
         if (Main.netMode != NetmodeID.SinglePlayer) {
-            Aequus.GetPacket<SyncNecromancyNPCPacket>().Send(npc);
+            ExtendedMod.GetPacket<SyncNecromancyNPCPacket>().Send(npc);
         }
     }
     public static void Sync(int npc) {
         Sync(Main.npc[npc]);
     }
 
-    void IAddRecipes.AddRecipes(Aequus aequus) {
+    void IAddRecipes.AddRecipes(Mod mod) {
     }
 
     public static void RestoreTarget() {

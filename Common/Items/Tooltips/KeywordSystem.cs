@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Backpacks;
 using Aequus.Common.Items.Components;
-using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 namespace Aequus.Common.Items.Tooltips;

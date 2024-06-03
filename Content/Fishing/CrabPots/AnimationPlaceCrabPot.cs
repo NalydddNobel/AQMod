@@ -1,5 +1,4 @@
 ﻿using Aequus.Core.Graphics.Animations;
-using Microsoft.Xna.Framework;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent.Shaders;
@@ -28,7 +27,7 @@ public class AnimationPlaceCrabPot : ITileAnimation {
             switch (liquidType) {
                 case LiquidID.Water:
                     for (int l = 0; l < 30; l++) {
-                        var d = Dust.NewDustDirect(dustPosition, dustW, dustH, dustType);
+                        var d = Terraria.Dust.NewDustDirect(dustPosition, dustW, dustH, dustType);
                         d.velocity.Y -= 4f;
                         d.velocity.X *= 2.5f;
                         d.scale *= 0.8f;
@@ -39,7 +38,7 @@ public class AnimationPlaceCrabPot : ITileAnimation {
 
                 case LiquidID.Lava:
                     for (int i = 0; i < 10; i++) {
-                        var d = Dust.NewDustDirect(dustPosition, dustW, dustH, dustType);
+                        var d = Terraria.Dust.NewDustDirect(dustPosition, dustW, dustH, dustType);
                         d.velocity.Y -= 1.5f;
                         d.velocity.X *= 2.5f;
                         d.scale = 1.3f;

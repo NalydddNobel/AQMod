@@ -1,19 +1,17 @@
 ﻿using Aequus.Common;
-using Aequus.Common.Items;
 using Aequus.Content.Configuration;
-using Aequus.Content.Equipment.Accessories.Balloons;
-using Aequus.Content.Equipment.Accessories.FlashwayShield;
-using Aequus.Content.Equipment.Accessories.GoldenFeather;
-using Aequus.Content.Equipment.Accessories.ValentinesRing;
-using Aequus.Content.Equipment.Accessories.WeightedHorseshoe;
-using Aequus.Content.Equipment.Informational.Calendar;
-using Aequus.Content.Equipment.Mounts.HotAirBalloon;
-using Aequus.Content.Potions.Healing.Restoration;
-using Aequus.Content.Tools.Bellows;
-using Aequus.Content.Tools.NameTag;
-using Aequus.Content.Weapons.Classless.StunGun;
-using Aequus.Content.Weapons.Magic.Furystar;
-using Aequus.Content.Weapons.Ranged.Bows.SkyHunterCrossbow;
+using Aequus.Content.Items.Accessories.Balloons;
+using Aequus.Content.Items.Accessories.FlashwayShield;
+using Aequus.Content.Items.Accessories.GoldenFeather;
+using Aequus.Content.Items.Accessories.Informational.Calendar;
+using Aequus.Content.Items.Accessories.WeightedHorseshoe;
+using Aequus.Content.Items.Potions.Healing.Restoration;
+using Aequus.Content.Items.Tools.Bellows;
+using Aequus.Content.Items.Tools.NameTag;
+using Aequus.Content.Items.Weapons.Classless.StunGun;
+using Aequus.Content.Items.Weapons.Magic.Furystar;
+using Aequus.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
+using Aequus.Content.Mounts.HotAirBalloon;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
@@ -25,19 +23,19 @@ public partial class SkyMerchant {
         int celestialMagnetAltId = VanillaChangesConfig.Instance.MoveTreasureMagnet ? ItemID.TreasureMagnet : ItemID.CelestialMagnet;
 
         new NPCShop(Type, "Shop")
-            .AddCustomValue<SkyHunterCrossbow>(ItemCommons.Price.SkyMerchantCustomPurchasePrice * 1.5)
-            .AddCustomValue<Bellows>(ItemCommons.Price.SkyMerchantCustomPurchasePrice)
-            .AddCustomValue(ModContent.GetInstance<HotAirBalloonMount>().MountItem.Type, ItemCommons.Price.SkyMerchantCustomPurchasePrice * 7)
+            .AddCustomValue<SkyHunterCrossbow>(Commons.Cost.NPCSkyMerchantCustomPrice * 1.5)
+            .AddCustomValue<Bellows>(Commons.Cost.NPCSkyMerchantCustomPrice)
+            .AddCustomValue(ModContent.GetInstance<HotAirBalloonMount>().MountItem.Type, Commons.Cost.NPCSkyMerchantCustomPrice * 7)
             .Add<NameTag>()
             .Add<Calendar>()
             .Add<LesserRestorationPotion>()
-            .AddCustomValue<SlimyBlueBalloon>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Commons.Conditions.BetweenDays(DayOfWeek.Sunday, DayOfWeek.Monday))
-            .AddCustomValue<GoldenFeather>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Commons.Conditions.BetweenDays(DayOfWeek.Monday, DayOfWeek.Tuesday))
-            .AddCustomValue(celestialMagnetAltId, ItemCommons.Price.SkyMerchantCustomPurchasePrice, Commons.Conditions.BetweenDays(DayOfWeek.Tuesday, DayOfWeek.Wednesday))
-            .AddCustomValue<StunGun>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Commons.Conditions.BetweenDays(DayOfWeek.Wednesday, DayOfWeek.Thursday))
-            .AddCustomValue<WeightedHorseshoe>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Commons.Conditions.BetweenDays(DayOfWeek.Thursday, DayOfWeek.Friday))
-            .AddCustomValue<Furystar>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Commons.Conditions.BetweenDays(DayOfWeek.Friday, DayOfWeek.Saturday))
-            .AddCustomValue<FlashwayShield>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, Commons.Conditions.DayOfTheWeek(DayOfWeek.Saturday))
+            .AddCustomValue<SlimyBlueBalloon>(Commons.Cost.NPCSkyMerchantCustomPrice, Commons.Conditions.BetweenDays(DayOfWeek.Sunday, DayOfWeek.Monday))
+            .AddCustomValue<GoldenFeather>(Commons.Cost.NPCSkyMerchantCustomPrice, Commons.Conditions.BetweenDays(DayOfWeek.Monday, DayOfWeek.Tuesday))
+            .AddCustomValue(celestialMagnetAltId, Commons.Cost.NPCSkyMerchantCustomPrice, Commons.Conditions.BetweenDays(DayOfWeek.Tuesday, DayOfWeek.Wednesday))
+            .AddCustomValue<StunGun>(Commons.Cost.NPCSkyMerchantCustomPrice, Commons.Conditions.BetweenDays(DayOfWeek.Wednesday, DayOfWeek.Thursday))
+            .AddCustomValue<WeightedHorseshoe>(Commons.Cost.NPCSkyMerchantCustomPrice, Commons.Conditions.BetweenDays(DayOfWeek.Thursday, DayOfWeek.Friday))
+            .AddCustomValue<Furystar>(Commons.Cost.NPCSkyMerchantCustomPrice, Commons.Conditions.BetweenDays(DayOfWeek.Friday, DayOfWeek.Saturday))
+            .AddCustomValue<FlashwayShield>(Commons.Cost.NPCSkyMerchantCustomPrice, Commons.Conditions.DayOfTheWeek(DayOfWeek.Saturday))
             .Register();
     }
 

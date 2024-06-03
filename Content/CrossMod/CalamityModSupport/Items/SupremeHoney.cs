@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Potions.Healing.Honey;
+﻿using Aequus.Content.Items.Potions.Healing.Honey;
 using Aequus.Core.CrossMod;
 
 namespace Aequus.Content.CrossMod.CalamityModSupport.Items;

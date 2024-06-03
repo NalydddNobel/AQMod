@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Terraria.Localization;
 using Terraria.Utilities;
 
 namespace Aequus.Core.Utilities;
 public static class ExtendLanguage {
     private record struct ColoredText(string Text, Color Color);
+
+    public static string PrettyPrint(string text) {
+        return Regex.Replace(text, "([A-Z])", " $1").Trim();
+    }
 
     /// <summary>Gets a <see cref="ILocalizedModType"/>'s "DisplayName" value.</summary>
     public static LocalizedText GetRandomLocalizationFromCategory(this ILocalizedModType localizedModType, string suffix, UnifiedRandom random = null) {
@@ -108,16 +113,16 @@ public static class ExtendLanguage {
         }
 
         if (platinum > 0) {
-            yield return new ColoredText(platinum + " " + LanguageDatabase.inter[15].Value, TCommonColor.CoinPlatinum);
+            yield return new ColoredText(platinum + " " + Lang.inter[15].Value, Colors.CoinPlatinum);
         }
         if (gold > 0) {
-            yield return new ColoredText(gold + " " + LanguageDatabase.inter[16].Value, TCommonColor.CoinGold);
+            yield return new ColoredText(gold + " " + Lang.inter[16].Value, Colors.CoinGold);
         }
         if (silver > 0) {
-            yield return new ColoredText(silver + " " + LanguageDatabase.inter[17].Value, TCommonColor.CoinSilver);
+            yield return new ColoredText(silver + " " + Lang.inter[17].Value, Colors.CoinSilver);
         }
         if (copper > 0) {
-            yield return new ColoredText(copper + " " + LanguageDatabase.inter[18].Value, TCommonColor.CoinCopper);
+            yield return new ColoredText(copper + " " + Lang.inter[18].Value, Colors.CoinCopper);
         }
     }
 

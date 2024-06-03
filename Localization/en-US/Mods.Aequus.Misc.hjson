@@ -44,6 +44,7 @@ Dyes: {
 	}
 }
 
+// --localization note-- these color names will go unused in the future so its not necessary to translate
 Rarity: {
 	-13.DisplayName: Fiery Red
 	-12.DisplayName: Rainbow
@@ -77,6 +78,7 @@ Rarity: {
 
 BlocksDistance: Distance: {0} blocks away
 Contains: Contains: {0}
+ContainsHeader: Contains
 MonocleToggleOn: Monocle On
 MonocleToggleOff: Monocle Off
 ShimmerMonocleToggleOn: Shimmer Notes On

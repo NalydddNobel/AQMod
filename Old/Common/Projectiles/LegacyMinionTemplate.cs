@@ -1,9 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Aequus.Old.Common.Projectiles;
+﻿namespace Aequus.Old.Common.Projectiles;
 
 public abstract class LegacyMinionTemplate : ModProjectile {
     public override void SetStaticDefaults() {
@@ -20,7 +15,9 @@ public abstract class LegacyMinionTemplate : ModProjectile {
         return player.Center;
     }
 
-    public override bool? CanCutTiles() => false;
+    public override bool? CanCutTiles() {
+        return false;
+    }
 
     protected void TurnTo(Vector2 to, float amount) {
         TurnTo(to, amount, Projectile.velocity.Length());

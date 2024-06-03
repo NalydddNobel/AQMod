@@ -55,7 +55,7 @@ public class LightMap : ModSystem {
                 return;
             }
 
-            RenderTargetBinding[] oldTargets = g.GetRenderTargets();
+            DrawHelper.graphics.EnqueueRenderTargetBindings(g);
 
             try {
                 g.SetRenderTarget(MapTarget);
@@ -91,7 +91,7 @@ public class LightMap : ModSystem {
             }
 
             TargetAvailable = true;
-            g.SetRenderTargets(oldTargets);
+            DrawHelper.graphics.DequeueRenderTargetBindings(g);
         }
     }
 

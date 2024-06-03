@@ -2,9 +2,8 @@
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
 using Aequus.Content.Biomes.PollutedOcean;
-using Aequus.Content.Equipment.Accessories.ScavengerBag;
+using Aequus.Content.Items.Accessories.ScavengerBag;
 using Aequus.Core.ContentGeneration;
-using Aequus.Core.Initialization;
 using Aequus.DataSets;
 using System.Collections.Generic;
 using System.IO;
@@ -15,12 +14,13 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader.IO;
 using Terraria.Utilities;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger;
 
 [AutoloadBanner]
 [AutoloadStatue]
-[ModBiomes(typeof(PollutedOceanBiomeUnderground))]
+[BestiaryBiome<PollutedOceanBiomeUnderground>()]
 public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateItemDropDatabase {
     public const int SLOT_HEAD = 0;
     public const int SLOT_BODY = 1;
@@ -75,7 +75,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         npcLoot.Add(ItemDropRule.Common(ItemID.BrickLayer, TravelingMerchantBuilderItemChance));
     }
 
-    public virtual void PostPopulateItemDropDatabase(Aequus aequus, ItemDropDatabase database) {
+    public virtual void PostPopulateItemDropDatabase(Mod mod, ItemDropDatabase database) {
         ExtendLoot.InheritDropRules(NPCID.Skeleton, Type, database);
     }
 

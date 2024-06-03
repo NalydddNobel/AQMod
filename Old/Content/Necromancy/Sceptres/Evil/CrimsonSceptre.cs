@@ -1,4 +1,4 @@
-﻿using Aequus.Core.Initialization;
+﻿using tModLoaderExtended.GlowMasks;
 
 namespace Aequus.Old.Content.Necromancy.Sceptres.Evil;
 

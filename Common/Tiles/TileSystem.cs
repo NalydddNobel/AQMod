@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Equipment.Informational.Calendar;
+﻿using Aequus.Content.Items.Accessories.Informational.Calendar;
 
 namespace Aequus.Common.Tiles;
 

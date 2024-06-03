@@ -1,8 +1,8 @@
 ﻿using Aequus.Content.CrossMod;
 using Aequus.Core.CrossMod;
-using Aequus.Core.Initialization;
 using Aequus.Old.Content.Necromancy;
 using Aequus.Old.Content.Necromancy.Sceptres.Evil;
+using tModLoaderExtended.GlowMasks;
 
 namespace Aequus.Old.CrossMod.AvalonSupport.Items;
 

@@ -1,6 +1,4 @@
-﻿using Terraria.ModLoader;
-
-namespace Aequus.Content.Biomes.PollutedOcean.Background; 
+﻿namespace Aequus.Content.Biomes.PollutedOcean.Background;
 
 public class PollutedOceanSurfaceBG : ModSurfaceBackgroundStyle {
     public override void Load() {

@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Renaming;
-using Aequus.Common.WorldGeneration;
+﻿using Aequus.Common.WorldGeneration;
 using Aequus.Content.Tiles.Tombstones;
 using Aequus.Old.Content.Events.DemonSiege.Tiles;
 using Aequus.Old.Content.Tiles.Ambient;
@@ -250,7 +249,7 @@ public class GoreNestsGeneration : AequusGenStep {
         for (int i = 0; i < 3500; i++) {
             var v = WorldGen.genRand.NextVector2FromRectangle(genTangle).ToPoint();
             if (!Main.tile[v.X, v.Y].HasTile) {
-                WorldGen.PlaceTile(v.X, v.Y, ModContent.TileType<Tombstones>(), style: WorldGen.genRand.Next(Tombstones.STYLE_GOLD_ASH_YIN, Tombstones.STYLE_GOLD_ASH_FIST+1));
+                WorldGen.PlaceTile(v.X, v.Y, ModContent.TileType<Tombstones>(), style: WorldGen.genRand.Next(Tombstones.STYLE_GOLD_ASH_YIN, Tombstones.STYLE_GOLD_ASH_FIST + 1));
                 if (Main.tile[v.X, v.Y].HasTile) {
                     int sign = Sign.ReadSign(v.X, v.Y);
                     if (sign >= 0) {
@@ -265,8 +264,8 @@ public class GoreNestsGeneration : AequusGenStep {
     private void TextSign(int sign) {
         LocalizedText name = Aequus.GetRandomName(WorldGen.genRand);
         string text = this.GetRandomLocalizationFromCategory("Tombstones", WorldGen.genRand)
-            .FormatWith(new { 
-                Name = name 
+            .FormatWith(new {
+                Name = name
             });
         string hint = this.GetRandomLocalizationFromCategory("TombstoneHints", WorldGen.genRand).Value;
         Sign.TextSign(sign, text + hint);

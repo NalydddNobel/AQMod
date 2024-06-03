@@ -1,9 +1,31 @@
 ﻿using System.Collections.Generic;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 
 namespace Aequus.Core.Utilities;
 
 public static class ExtendItem {
+    public static readonly IItemEntryFilter ToolFilter = new ItemFilters.Tools();
+
+    public static void CloneResearchCount(this Item item, int itemToCopy) {
+        if (CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId.TryGetValue(itemToCopy, out var researchCount)) {
+            item.ResearchUnlockCount = researchCount;
+        }
+        else {
+            item.ResearchUnlockCount = 0;
+        }
+    }
+
+    public static void DropHearts(IEntitySource source, Rectangle hitbox, int guaranteedAmount, int randomAmount) {
+        for (int i = 0; i < guaranteedAmount; i++) {
+            Item.NewItem(source, hitbox, ItemID.Heart);
+        }
+        randomAmount = Main.rand.Next(randomAmount);
+        for (int i = 0; i < randomAmount; i++) {
+            Item.NewItem(source, hitbox, ItemID.Heart);
+        }
+    }
+
     /// <summary>Returns all 'Overrides' of a specified item. (<see cref="ContentSamples.CreativeResearchItemPersistentIdOverride"/>)</summary>
     /// <param name="itemId"></param>
     /// <returns></returns>
@@ -62,27 +84,27 @@ public static class ExtendItem {
     #region Statics
     /// <summary>Registers this item as a drink (Potion).</summary>
     /// <param name="modItem"></param>
-    /// <param name="TCommonColor">Particle TCommonColor for when this potion is consumed.</param>
-    public static void StaticDefaultsToPotion(this ModItem modItem, params Color[] TCommonColor) {
-        ItemSets.DrinkParticleColors[modItem.Type] = TCommonColor;
+    /// <param name="colors">Particle Colors for when this potion is consumed.</param>
+    public static void StaticDefaultsToPotion(this ModItem modItem, params Color[] colors) {
+        ItemSets.DrinkParticleColors[modItem.Type] = colors;
         Main.RegisterItemAnimation(modItem.Type, new DrawAnimationVertical(int.MaxValue, 3));
     }
 
     /// <summary>Registers this item as a drink. The difference between this and <see cref="StaticDefaultsToPotion(ModItem, Color[])"/> is that drinks have held sprites.</summary>
     /// <param name="modItem"></param>
-    /// <param name="TCommonColor">Particle TCommonColor for when this drink is consumed.</param>
-    public static void StaticDefaultsToFoodDrink(this ModItem modItem, params Color[] TCommonColor) {
+    /// <param name="colors">Particle Colors for when this drink is consumed.</param>
+    public static void StaticDefaultsToFoodDrink(this ModItem modItem, params Color[] colors) {
         ItemSets.IsFood[modItem.Type] = true;
-        ItemSets.DrinkParticleColors[modItem.Type] = TCommonColor;
+        ItemSets.DrinkParticleColors[modItem.Type] = colors;
         Main.RegisterItemAnimation(modItem.Type, new DrawAnimationVertical(int.MaxValue, 3));
     }
 
     /// <summary>Registers this item as a food.</summary>
     /// <param name="modItem"></param>
-    /// <param name="TCommonColor">Particle TCommonColor for when this food is eaten.</param>
-    public static void StaticDefaultsToFood(this ModItem modItem, params Color[] TCommonColor) {
+    /// <param name="colors">Particle Colors for when this food is eaten.</param>
+    public static void StaticDefaultsToFood(this ModItem modItem, params Color[] colors) {
         ItemSets.IsFood[modItem.Type] = true;
-        ItemSets.FoodParticleColors[modItem.Type] = TCommonColor;
+        ItemSets.FoodParticleColors[modItem.Type] = colors;
         Main.RegisterItemAnimation(modItem.Type, new DrawAnimationVertical(int.MaxValue, 3));
     }
     #endregion

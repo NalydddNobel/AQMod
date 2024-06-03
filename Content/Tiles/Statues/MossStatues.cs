@@ -1,9 +1,5 @@
-﻿using Aequus.Common.JourneyMode;
-using Aequus.Common.Tiles;
-using Aequus.Core.ContentGeneration;
-using Terraria.Enums;
-using Terraria.Localization;
-using Terraria.ObjectData;
+﻿using Aequus.Core.ContentGeneration;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace Aequus.Content.Tiles.Statues;
 
@@ -19,8 +15,6 @@ public class MossStatues : StatueTileTemplate {
         AddItem(STYLE_NEON, "Neon");
         AddItem(STYLE_XENON, "Xenon");
 
-        void AddItem(int style, string name) {
-            Mod.AddContent(new InstancedTileItem(this, style, name, value: Item.sellPrice(copper: 60), journeyOverride: new JourneySortByTileId(TileID.Statues)));
-        }
+        void AddItem(int style, string name) => Mod.AddContent(new InstancedTileItem(this, style, name, value: Item.sellPrice(copper: 60), journeyOverride: new JourneySortByTileId(TileID.Statues)));
     }
 }

@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria.Graphics.Effects;
+﻿using Terraria.Graphics.Effects;
 
 namespace Aequus.Core.Graphics.GameOverlays;
 public abstract class AequusOverlay : Overlay, ILoad {

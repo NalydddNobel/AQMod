@@ -4,6 +4,7 @@ Statues.DisplayMessage: 正在放置更多雕像...
 GoreNestsGeneration: {
 	DisplayMessage: 正在使地狱更加邪恶...
 
+	// --localization note-- "tombstone" and "tombstonehints" work the same as the previous "giveitem" and "eventstart" lines, the two go together and it picks a random combination
 	Tombstones: {
 		0: "{Name}被撕成了碎片"
 		1: "{Name}被抹去了存在"
@@ -23,10 +24,9 @@ GoreNestsGeneration: {
 	}
 }
 
-LavaCleanupStep.DisplayMessage: 正在清理熔岩
-LavaCleanup.DisplayMessage: Mods.Aequus.GenStep.LavaCleanup.DisplayMessage
+LavaCleanup.DisplayMessage: 正在清理熔岩
 
-PollutedOcean: {
+PollutedBiome: {
 	DisplayMessage: {
 		0: 正在创建垃圾填埋场
 		1: 正在妨害海龟
@@ -45,7 +45,8 @@ PollutedOcean: {
 	Ores: ..增添美味
 }
 
-PollutedOceanAmbience.DisplayMessage: 正在倾倒垃圾...
+PollutedDecoration.DisplayMessage: 正在倾倒垃圾...
+PollutedCleanup.DisplayMessage: 正在清理垃圾
 Reset.DisplayMessage: ""
 
 NewCavesGeneration: {
@@ -55,3 +56,5 @@ NewCavesGeneration: {
 }
 
 BigGemsGeneration.DisplayMessage: 正在使冰变得超模...
+RealBuriedChests.DisplayMessage: 正在打卡更多宝箱...
+SkyMeadows.DisplayMessage: Mods.Aequus.GenStep.SkyMeadows.DisplayMessage

@@ -1,9 +1,9 @@
 ﻿using Aequus.Old.Content.Bosses;
-using Aequus.Old.Content.Bosses.Cosmic.OmegaStarite;
+using Aequus.Old.Content.Bosses.OmegaStarite;
 using Aequus.Old.Content.Events.Glimmer.CosmicMonolith;
 using Aequus.Old.Content.Events.Glimmer.Peaceful;
 using Aequus.Old.Content.Events.Glimmer.Sky;
-using Aequus.Old.Content.Weapons.Melee.UltimateSword;
+using Aequus.Old.Content.Items.Weapons.Melee.UltimateSword;
 using ReLogic.Content;
 using System;
 using Terraria.Audio;
@@ -125,7 +125,7 @@ public class GlimmerSceneEffect : ModSceneEffect {
                 Main.SmartCursorY = 0;
             }
             var mouseWorld = mouseScreen + Main.screenPosition;
-            if (!NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>()) && Aequus.GameWorldActive && Main.LocalPlayer.IsInTileInteractionRange((int)mouseWorld.X / 16, (int)mouseWorld.Y / 16, TileReachCheckSettings.Simple)) {
+            if (!NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>()) && ExtendedMod.GameWorldActive && Main.LocalPlayer.IsInTileInteractionRange((int)mouseWorld.X / 16, (int)mouseWorld.Y / 16, TileReachCheckSettings.Simple)) {
                 var plr = Main.LocalPlayer;
                 plr.noThrow = 2;
                 plr.cursorItemIconEnabled = true;

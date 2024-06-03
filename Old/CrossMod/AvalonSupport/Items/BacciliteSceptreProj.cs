@@ -1,4 +1,5 @@
-﻿using Aequus.Old.Content.Necromancy.Sceptres.Evil;
+﻿using Aequus.Content.Dusts;
+using Aequus.Old.Content.Necromancy.Sceptres.Evil;
 using Aequus.Old.Content.Particles;
 using Terraria.GameContent;
 
@@ -20,7 +21,7 @@ public class BacciliteSceptreProj : CorruptionSceptreProj {
             int trailCount = _trail.GetLength(0);
 
             for (int i = 0; i < trailCount; i++) {
-                var p = ModContent.GetInstance<LegacyBloomParticle>().New();
+                var p = LegacyBloomParticle.New();
                 p.Location = _trail[i][0];
                 p.Velocity = Projectile.velocity * -0.125f;
                 p.Color = new Color(10, 130, 50, 10) * Projectile.Opacity;

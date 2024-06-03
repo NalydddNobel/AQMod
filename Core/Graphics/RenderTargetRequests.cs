@@ -28,7 +28,7 @@ public class RenderTargetRequests : ILoad {
         }
 
         GraphicsDevice g = Main.instance.GraphicsDevice;
-        RenderTargetBinding[] oldRenderTargets = g?.GetRenderTargets();
+        DrawHelper.graphics.EnqueueRenderTargetBindings(g);
         try {
             SpriteBatch sb = Main.spriteBatch;
             for (int i = 0; i < _requests.Count; i++) {
@@ -52,7 +52,7 @@ public class RenderTargetRequests : ILoad {
         catch {
         }
         finally {
-            g?.SetRenderTargets(oldRenderTargets);
+            DrawHelper.graphics.DequeueRenderTargetBindings(g);
         }
     }
 

@@ -1,6 +1,4 @@
-﻿using System;
-using Terraria.Graphics.CameraModifiers;
-using static Terraria.ModLoader.PlayerDrawLayer;
+﻿using Terraria.Graphics.CameraModifiers;
 
 namespace Aequus.Old.Common.Graphics.Camera;
 

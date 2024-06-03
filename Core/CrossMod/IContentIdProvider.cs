@@ -1,6 +1,4 @@
-﻿using Steamworks;
-
-namespace Aequus.Core.CrossMod;
+﻿namespace Aequus.Core.CrossMod;
 
 internal interface IContentIdProvider {
     int GetId();
@@ -25,9 +23,13 @@ internal readonly record struct ProvideModContentId<T>(string Name, Mod Mod, int
 }
 
 internal readonly record struct ProvideInstanceModContentId<T>(T Instance) : IContentIdProvider where T : class {
-    public ProvideInstanceModContentId() : this(ModContent.GetInstance<T>()) { }
-
     public int GetId() {
         return ((dynamic)Instance).Type;
+    }
+}
+
+internal readonly record struct ProvideGenericTypeModContentId<T>(T Instance) : IContentIdProvider where T : class {
+    public int GetId() {
+        return ((dynamic)ModContent.GetInstance<T>()).Type;
     }
 }

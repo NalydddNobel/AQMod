@@ -1,18 +1,18 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Biomes.PollutedOcean;
-using Aequus.Content.Equipment.Armor.MiscHelmets;
+using Aequus.Content.Items.Armor.MiscHelmets;
 using Aequus.Core.ContentGeneration;
-using Aequus.Core.Initialization;
 using Aequus.DataSets;
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Conehead;
 
 public class ConeheadZombieLoader : ILoad {
-    public readonly List<ModNPC> Types = new();
+    public readonly List<ModNPC> Types = [];
 
     public void Load(Mod mod) {
         mod.AddContent(new InstancedConeheadZombie("Basic", NPCID.Zombie));
@@ -27,7 +27,7 @@ public class ConeheadZombieLoader : ILoad {
     public void Unload() { }
 }
 
-[ModBiomes(typeof(PollutedOceanBiomeSurface))]
+[BestiaryBiome<PollutedOceanBiomeSurface>()]
 internal class InstancedConeheadZombie : InstancedModNPC, IPostPopulateItemDropDatabase {
     private readonly int _zombieClone;
 
@@ -79,7 +79,7 @@ internal class InstancedConeheadZombie : InstancedModNPC, IPostPopulateItemDropD
         npcLoot.Add(ItemDropRule.Common(ModContent.GetInstance<ConeHelmet>().Items[0].Type, chanceDenominator: 50));
     }
 
-    public void PostPopulateItemDropDatabase(Aequus aequus, ItemDropDatabase database) {
+    public void PostPopulateItemDropDatabase(Mod mod, ItemDropDatabase database) {
         ExtendLoot.InheritDropRules(_zombieClone, Type, database);
     }
 

@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Tiles;
-using Aequus.Common.Tiles.Components;
+﻿using Aequus.Common.Tiles.Components;
 using Aequus.Core.ContentGeneration;
 
 namespace Aequus.Content.Tiles.PollutedOcean.PolymerSands;

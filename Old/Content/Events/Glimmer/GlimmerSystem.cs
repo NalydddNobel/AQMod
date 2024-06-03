@@ -1,12 +1,11 @@
-﻿using Aequus.Core;
-using Aequus.Core.Networking;
-using Aequus.Old.Content.Events.Glimmer.Peaceful;
+﻿using Aequus.Old.Content.Events.Glimmer.Peaceful;
 using System;
 using System.IO;
 using Terraria.Enums;
 using Terraria.GameContent.Creative;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
+using tModLoaderExtended.Networking;
 
 namespace Aequus.Old.Content.Events.Glimmer;
 public class GlimmerSystem : ModSystem {
@@ -42,7 +41,7 @@ public class GlimmerSystem : ModSystem {
             PeacefulGlimmerZone.TileLocationX = 0;
             if (endEvent) {
                 if (EndEvent() && Main.netMode != NetmodeID.MultiplayerClient) {
-                    WorldGen.BroadcastText(NetworkText.FromKey("Mods.Aequus.Announcement.Glimmer.End"), CommonColor.TEXT_EVENT);
+                    WorldGen.BroadcastText(NetworkText.FromKey("Mods.Aequus.Announcement.Glimmer.End"), CommonColor.TextEvent);
                 }
                 return;
             }
@@ -84,7 +83,7 @@ public class GlimmerSystem : ModSystem {
     public static void BeginEvent(Point where) {
         GlimmerZone.TileLocation = CheckGround(where);
 
-        WorldGen.BroadcastText(NetworkText.FromKey($"Mods.Aequus.Announcement.Glimmer.Start{(where.X * 2 > Main.maxTilesX ? "East" : "West")}"), CommonColor.TEXT_EVENT);
+        WorldGen.BroadcastText(NetworkText.FromKey($"Mods.Aequus.Announcement.Glimmer.Start{(where.X * 2 > Main.maxTilesX ? "East" : "West")}"), CommonColor.TextEvent);
         if (Main.netMode != NetmodeID.SinglePlayer) {
             SendGlimmerStatus();
         }
@@ -92,7 +91,7 @@ public class GlimmerSystem : ModSystem {
 
     public static bool BeginEvent() {
         if (Main.netMode == NetmodeID.MultiplayerClient) {
-            Aequus.GetPacket<RequestRandomGlimmerEventPacket>().Send();
+            ExtendedMod.GetPacket<RequestRandomGlimmerEventPacket>().Send();
             return false;
         }
 
@@ -268,7 +267,7 @@ public class GlimmerSystem : ModSystem {
     }
 
     public static void SendGlimmerStatus() {
-        Aequus.GetPacket<GlimmerEventLocationPacket>().Send();
+        ExtendedMod.GetPacket<GlimmerEventLocationPacket>().Send();
     }
 
     public static void ReadGlimmerStatus(BinaryReader r) {

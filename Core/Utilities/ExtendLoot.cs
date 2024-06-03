@@ -1,10 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.Utilities;
 
 namespace Aequus.Core.Utilities;
 
 public static class ExtendLoot {
+    /// <param name="npc"></param>
+    /// <param name="player"></param>
+    /// <param name="rng">RNG Override. Defaults to <see cref="Main.rand"/> when null.</param>
+    /// <returns>A <see cref="DropAttemptInfo"/> value for the current NPC.</returns>
+    public static DropAttemptInfo GetDropAttemptInfo(NPC npc, Player player, UnifiedRandom rng = null) {
+        return new DropAttemptInfo() {
+            IsExpertMode = Main.expertMode,
+            IsMasterMode = Main.masterMode,
+            npc = npc,
+            player = player,
+            rng = rng ?? Main.rand,
+            IsInSimulation = false
+        };
+    }
+
     public static void RemoveAll(this NPCLoot loot, Predicate<IItemDropRule> predicate) {
         foreach (IItemDropRule item in loot.Get(includeGlobalDrops: false)) {
             if (predicate(item)) {

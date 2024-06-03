@@ -67,7 +67,7 @@ public partial class Scavenger {
                 SoundEngine.PlaySound(SoundID.Run, npc.Center);
             }
             for (int i = 0; i < 4; i++) {
-                var d = Dust.NewDustDirect(new Vector2(npc.position.X - 4f, npc.position.Y), npc.width + 8, npc.height, dustID, (0f - npc.velocity.X) * 0.5f, npc.velocity.Y * 0.5f, 100, Scale: 1.5f + Main.rand.Next(-5, 3) * 0.1f);
+                var d = Terraria.Dust.NewDustDirect(new Vector2(npc.position.X - 4f, npc.position.Y), npc.width + 8, npc.height, dustID, (0f - npc.velocity.X) * 0.5f, npc.velocity.Y * 0.5f, 100, Scale: 1.5f + Main.rand.Next(-5, 3) * 0.1f);
                 d.noGravity = true;
                 d.velocity *= 0.2f;
             }

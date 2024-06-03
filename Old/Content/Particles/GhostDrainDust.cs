@@ -1,7 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using Terraria;
-using Terraria.ModLoader;
+﻿using System;
 
 namespace Aequus.Old.Content.Particles;
 
@@ -11,7 +8,9 @@ public class GhostDrainDust : ModDust {
         dust.noLight = false;
     }
 
-    public override Color? GetAlpha(Dust dust, Color lightColor) => new Color(dust.color.R - dust.alpha, dust.color.G - dust.alpha, dust.color.B - dust.alpha, dust.color.A - dust.alpha);
+    public override Color? GetAlpha(Dust dust, Color lightColor) {
+        return new Color(dust.color.R - dust.alpha, dust.color.G - dust.alpha, dust.color.B - dust.alpha, dust.color.A - dust.alpha);
+    }
 
     public override bool Update(Dust dust) {
         if (dust.customData == null) {

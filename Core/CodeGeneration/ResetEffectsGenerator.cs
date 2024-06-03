@@ -4,6 +4,7 @@ using System.Reflection.Emit;
 
 namespace Aequus.Core.CodeGeneration;
 
+[Obsolete("Replaced with PlayerGen/NPCGen.ResetEffectsAttribute")]
 public sealed class ResetEffectsGenerator<T> {
     private Action<T> ResetEffects;
 

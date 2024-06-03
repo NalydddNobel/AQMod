@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Tiles;
-using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Content.Tiles.PollutedOcean.Scrap;
 using Aequus.Core.ContentGeneration;
+using Aequus.DataSets;
 
 namespace Aequus.Content.Tiles.PollutedOcean.PolymerSands;
 
@@ -21,13 +21,15 @@ public class PolymerSand : MultiMergeTile {
         Mod.AddContent(SandBallProjectile);
         Mod.AddContent(SandGunProjectile);
 
-        Aequus.OnAddRecipes += () => {
+        Aequus.OnAddRecipes += AddRecipes;
+
+        void AddRecipes() {
             Item.CreateRecipe(5)
                 .AddIngredient(ItemID.SandBlock, 5)
                 .AddIngredient(ScrapBlock.Item)
                 .AddTile(TileID.Furnaces)
                 .Register();
-        };
+        }
     }
 
     public override void SetStaticDefaults() {
@@ -38,7 +40,6 @@ public class PolymerSand : MultiMergeTile {
         AddMerge(TileID.HardenedSand);
         AddMerge(ModContent.TileType<PolymerSandstone>());
 
-        Main.tileSand[Type] = true;
         TileID.Sets.Conversion.Sand[Type] = true;
         TileID.Sets.ForAdvancedCollision.ForSandshark[Type] = true;
         TileID.Sets.CanBeDugByShovel[Type] = true;
@@ -50,13 +51,13 @@ public class PolymerSand : MultiMergeTile {
         TileID.Sets.GeneralPlacementTiles[Type] = false;
         TileID.Sets.ChecksForMerge[Type] = true;
 
-
         AddMapEntry(new(117, 142, 154));
         DustType = DustID.Sand;
         HitSound = SoundID.Dig;
         MineResist = 0.75f;
 
-        PollutedOceanSystem.BiomeTiles.Add(Type);
+        TileDataSet.Polluted.Add(Type);
+        TileDataSet.GivesPollutedBiomePresence.Add(Type);
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) {

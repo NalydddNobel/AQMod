@@ -1,6 +1,8 @@
-﻿namespace Aequus.Content.Fishing.FishingPoles;
+﻿using Aequus.Core.ContentGeneration;
 
-public class BambooFishingPole : ModFishingPole {
+namespace Aequus.Content.Fishing.FishingPoles;
+
+public class BambooFishingPole : UnifiedFishingPole {
     public override bool BobberPreAI(Projectile bobber) {
         if (bobber.ai[1] == 0f && bobber.localAI[1] > 0f && bobber.localAI[1] < 660f && Main.myPlayer == bobber.owner) {
             bobber.localAI[1] += Main.rand.Next(1, 16);

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Aequus.Content.Tiles.PollutedOcean.Ambient.Television;
+﻿namespace Aequus.Content.Tiles.PollutedOcean.Ambient.Television;
 
 //public class Television : ModTile {
 //    public sealed override void SetStaticDefaults() {

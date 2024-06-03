@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Equipment.Mounts.HotAirBalloon;
+﻿using Aequus.Content.Mounts.HotAirBalloon;
 using Terraria.Audio;
 using Terraria.Localization;
 
@@ -12,7 +12,7 @@ internal class InstancedMountItem : InstancedModItem {
     private readonly int _value;
     private readonly SoundStyle _soundStyle;
 
-    public InstancedMountItem(UnifiedModMount parent, int itemRarity = ItemRarityID.Yellow, int value = Item.gold * 5, SoundStyle? SoundOverride = null) 
+    public InstancedMountItem(UnifiedModMount parent, int itemRarity = ItemRarityID.Yellow, int value = Item.gold * 5, SoundStyle? SoundOverride = null)
         : base(parent.Name + "Item", parent.NamespaceFilePath() + $"/{parent.Name.Replace("Mount", "")}Item") {
         _parent = parent;
         _rarity = itemRarity;

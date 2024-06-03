@@ -1,8 +1,7 @@
-﻿using Aequus.Core;
-using Aequus.Core.Graphics.Animations;
-using Aequus.Core.Networking;
+﻿using Aequus.Core.Graphics.Animations;
 using System.IO;
 using Terraria.DataStructures;
+using tModLoaderExtended.Networking;
 
 namespace Aequus.Content.Fishing.CrabPots;
 public class PacketCrabPotUse : PacketHandler {
@@ -26,7 +25,7 @@ public class PacketCrabPotUse : PacketHandler {
         }
 
         if (Main.myPlayer == plr) {
-            BaseCrabPot.GrabItem(x, y, plr, crabPot);
+            UnifiedCrabPot.GrabItem(x, y, plr, crabPot);
         }
         if (Main.netMode == NetmodeID.Server) {
             Send(x, y, plr, waterStyle);

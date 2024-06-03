@@ -31,23 +31,22 @@ internal sealed partial class PhotographyLoader : ModSystem {
         IContentIdProvider hellEnvelope = Split.GetContentProvider<ModItem>("FieryEnvelope", ItemID.ObsidianLockbox);
         IContentIdProvider dungeonEnvelope = Split.GetContentProvider<ModItem>("DungeonEnvelope", ItemID.DungeonFishingCrateHard);
         IContentIdProvider bloodMoonEnvelope = Split.GetContentProvider<ModItem>("HorrificEnvelope", ItemID.DungeonFishingCrateHard);
-
+#if !DEBUG
         AddPhotographyPage(
             order: 10f,
             specialReward: ModContent.GetInstance<FamiliarPet>().PetItem.Type,
-            new AlbumQuestInfo[] {
-#if !DEBUG
+            [
                 new(0, GetNPC<Enemies.PollutedOcean.BreadOfCthulhu.BreadOfCthulhu>(), Envelope(EnvelopePollutedOcean)),
                 new(1, GetNPC<Old.Content.Enemies.BloodMoon.BloodMimic>(), bloodMoonEnvelope),
-                new(2, GetNPC<Old.Content.Bosses.Cosmic.UltraStarite.UltraStarite>(), Envelope(EnvelopeGlimmer)),
+                new(2, GetNPC<Old.Content.Bosses.UltraStarite.UltraStarite>(), Envelope(EnvelopeGlimmer)),
                 /*new(3, new ProvideContentId(0) GetNPC<Heckto>(), dungeonEnvelope),*/
                 /*new(4, new ProvideContentId(1) GetNPC<Oblivision>(), hellEnvelope),*/
                 new(5, GetNPC<TownNPCs.SkyMerchant.SkyMerchant>(), spaceEnvelope),
+            ]);
 #endif
-            });
 
         IContentIdProvider Envelope(ModItem modItem) => new ProvideInstanceModContentId<ModItem>(modItem);
-        IContentIdProvider GetNPC<T>() where T : ModNPC => new ProvideInstanceModContentId<T>();
+        IContentIdProvider GetNPC<T>() where T : ModNPC => new ProvideGenericTypeModContentId<T>();
     }
 
     private void LoadPrintsAfterAlbums() {

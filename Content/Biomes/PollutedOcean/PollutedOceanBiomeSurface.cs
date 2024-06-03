@@ -5,7 +5,7 @@ using Aequus.Content.Tiles.Furniture.Trash;
 namespace Aequus.Content.Biomes.PollutedOcean;
 
 public class PollutedOceanBiomeSurface : ModBiome {
-    public override ModWaterStyle WaterStyle => ModContent.GetInstance<PollutedOceanWater>();
+    public override ModWaterStyle WaterStyle => ModContent.GetInstance<PollutedWater>();
     public override ModSurfaceBackgroundStyle SurfaceBackgroundStyle => ModContent.GetInstance<PollutedOceanSurfaceBG>();
     public override ModUndergroundBackgroundStyle UndergroundBackgroundStyle => ModContent.GetInstance<PollutedOceanUndergroundBG>();
 

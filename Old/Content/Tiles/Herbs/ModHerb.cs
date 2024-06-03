@@ -1,16 +1,19 @@
-﻿using Aequus.Common.Items.Components;
-using Aequus.Common.JourneyMode;
+﻿using Aequus.Common.Hooks;
 using Aequus.Core.ContentGeneration;
 using System.Collections.Generic;
 using Terraria.GameContent.Metadata;
 using Terraria.ObjectData;
+using tModLoaderExtended.Terraria.GameContent.Creative;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Old.Content.Tiles.Herbs;
 
-public abstract class ModHerb : ModTile {
+public abstract class ModHerb : ModTile, IAddRecipeGroups {
     public const int STAGE_IMMATURE = 0;
     public const int STAGE_MATURE = 1;
     public const int STAGE_BLOOMING = 2;
+
+    private static bool[] _validAnchors;
 
     protected short FrameWidth { get; private set; }
 
@@ -123,11 +126,14 @@ public abstract class ModHerb : ModTile {
         HitSound = SoundID.Grass;
 
         TileObjectData.newTile.CopyFrom(TileObjectData.StyleAlch);
-        // Aequus' planter boxes will automatically detect that this anchors to TileID.PlanterBox
-        // and add our planter box to this array accordingly.
-        TileObjectData.newTile.AnchorAlternateTiles = new int[] { TileID.ClayPot, TileID.PlanterBox };
+
+        TerrariaHooks.OnRandomTileUpdate += OnRandomTileUpdate;
 
         SafeSetStaticDefaults();
+
+        // Aequus' planter boxes will automatically detect that this anchors to TileID.PlanterBox
+        // and add our planter box to this array accordingly.
+        ExtendArray.AddRangeSafe(TileObjectData.newTile.AnchorAlternateTiles, new int[] { TileID.ClayPot, TileID.PlanterBox });
 
         FrameWidth = (short)TileObjectData.newTile.CoordinateFullWidth;
 
@@ -146,6 +152,31 @@ public abstract class ModHerb : ModTile {
             STAGE_MATURE => IsBlooming(i, j) ? STAGE_BLOOMING : STAGE_MATURE,
             _ => STAGE_IMMATURE
         };
+    }
+
+    public virtual bool CanNaturallyGrow(int X, int Y, Tile tile, bool[] anchoredTiles) {
+        return anchoredTiles[tile.TileType];
+    }
+    public virtual bool GrowthChance(int X, int Y, Tile tile) {
+        return Main.rand.NextBool(100);
+    }
+
+    public void OnRandomTileUpdate(int i, int j) {
+        Tile tile = Main.tile[i, j];
+        Tile topTile = Main.tile[i, j - 1];
+        if (!tile.HasUnactuatedTile || tile.Slope != SlopeType.Solid || !tile.IsHalfBlock || topTile.HasTile || !GrowthChance(i, j, tile) || !CanNaturallyGrow(i, j, tile, _validAnchors) || TileHelper.ScanTilesSquare(i, j, 20, TileHelper.HasTileAction(Type))) {
+            return;
+        }
+
+        WorldGen.PlaceTile(i, j - 1, Type, mute: true);
+    }
+
+    public void AddRecipeGroups(Mod mod) {
+        _validAnchors = new bool[TileLoader.TileCount];
+        TileObjectData objectData = TileObjectData.GetTileData(Type, 0, 0);
+        for (int i = 0; i < objectData.AnchorValidTiles.Length; i++) {
+            _validAnchors[objectData.AnchorValidTiles[i]] = true;
+        }
     }
 
     internal class InstancedSeedItem : InstancedModItem, IOverrideGroupOrder {

@@ -30,7 +30,7 @@ public class BackpackPlayer : ModPlayer {
     }
 
     public override IEnumerable<Item> AddMaterialsForCrafting(out ItemConsumedCallback itemConsumedCallback) {
-        itemConsumedCallback = null;
+        itemConsumedCallback = (item, slot) => item.NetStateChanged();
         return BackpackLoader.GetExtraCraftingItems(Player, backpacks);
     }
 
@@ -42,4 +42,30 @@ public class BackpackPlayer : ModPlayer {
         _unloadedBackpacks.Clear();
         BackpackLoader.LoadBackpacks(tag, backpacks, _unloadedBackpacks);
     }
+
+    #region Networking
+    public override void SyncPlayer(int toWho, int fromWho, bool newPlayer) {
+        if (newPlayer) {
+            for (int i = 0; i < backpacks.Length; i++) {
+                ExtendedMod.GetPacket<BackpackPlayerSyncPacket>().Send(Player, backpacks[i], toWho, fromWho);
+            }
+        }
+    }
+
+    public override void CopyClientState(ModPlayer targetCopy) {
+        BackpackPlayer clone = (BackpackPlayer)targetCopy;
+
+        for (int i = 0; i < backpacks.Length; i++) {
+            backpacks[i].CopyClientState(Player, clone.backpacks[i]);
+        }
+    }
+
+    public override void SendClientChanges(ModPlayer clientPlayer) {
+        BackpackPlayer clone = (BackpackPlayer)clientPlayer;
+
+        for (int i = 0; i < backpacks.Length; i++) {
+            backpacks[i].SyncNetStates(Player, clone.backpacks[i]);
+        }
+    }
+    #endregion
 }

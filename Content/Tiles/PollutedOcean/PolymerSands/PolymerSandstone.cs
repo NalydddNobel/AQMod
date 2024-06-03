@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Tiles;
-using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Core.ContentGeneration;
+using Aequus.DataSets;
 
 namespace Aequus.Content.Tiles.PollutedOcean.PolymerSands;
 
@@ -33,7 +33,8 @@ public class PolymerSandstone : MultiMergeTile {
         HitSound = SoundID.Tink;
         MineResist = 1.1f;
 
-        PollutedOceanSystem.BiomeTiles.Add(Type);
+        TileDataSet.Polluted.Add(Type);
+        TileDataSet.GivesPollutedBiomePresence.Add(Type);
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) {

@@ -1,10 +1,11 @@
 ﻿using Aequus.DataSets.Structures;
+using Aequus.DataSets.Structures.Enums;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Aequus.DataSets;
 
-public class TileDataSet : DataSet {
+public partial class TileDataSet : DataSet {
     [JsonProperty]
     public static Dictionary<ChestStyle, Biome> ChestToBiome { get; private set; } = new();
     [JsonProperty]
@@ -15,11 +16,20 @@ public class TileDataSet : DataSet {
     public static HashSet<IDEntry<TileID>> IsSmashablePot { get; private set; } = new();
     [JsonProperty]
     public static Dictionary<IDEntry<TileID>, Dictionary<int, Color>> PylonColors { get; private set; } = new();
+
     [JsonIgnore]
     public static HashSet<ushort> HasAnyConversions { get; private set; } = new();
+
     /// <summary>Prevents tiles below this tile from being sloped.</summary>
     [JsonIgnore]
     public static HashSet<ushort> PreventsSlopesBelow { get; private set; } = new();
+
+    [JsonIgnore]
+    public static bool[] All { get; private set; }
+
+    public override void PostSetupContent() {
+        All = ExtendArray.CreateArray((i) => true, TileLoader.TileCount);
+    }
 
     public override void AddRecipes() {
         for (ushort i = 0; i < (ushort)TileLoader.TileCount; i++) {

@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Wires;
-using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;

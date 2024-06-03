@@ -8,5 +8,25 @@
     "DemoniteBar",
     "CrimtaneBar",
     "Avalon/BacciliteBar"
+  ],
+  "CopperBar": [
+    "CopperBar",
+    "TinBar",
+    "Avalon/BronzeBar"
+  ],
+  "CopperHelmet": [
+    "CopperHelmet",
+    "TinHelmet",
+    "Avalon/BronzeHelmet"
+  ],
+  "CopperChainmail": [
+    "CopperChainmail",
+    "TinChainmail",
+    "Avalon/BronzeChainmail"
+  ],
+  "CopperGreaves": [
+    "CopperGreaves",
+    "TinGreaves",
+    "Avalon/BronzeGreaves"
   ]
 }

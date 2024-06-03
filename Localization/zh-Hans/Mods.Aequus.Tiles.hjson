@@ -363,3 +363,51 @@ HardJungleChestTrapped: {
 	ItemDisplayName: 机关陆龟保险箱
 	ItemTooltip: ""
 }
+
+CopperChest: {
+	MapEntry: 铜宝箱
+	ItemDisplayName: "{$CopperChest.MapEntry}"
+	ItemTooltip: ""
+}
+
+CopperChestTrapped: {
+	ItemDisplayName: 机关铜宝箱
+	ItemTooltip: ""
+}
+
+CopperChestLocked: {
+	MapEntry: 上锁铜宝箱
+	ItemDisplayName: "{$CopperChestLocked.MapEntry}"
+	ItemTooltip: "{$Items.CommonTooltips.LockedWithKey}"
+}
+
+HiddenChest.MapEntry: 隐藏宝箱
+
+MeadowGrass: {
+	ItemDisplayName: 草地种
+	ItemTooltip: ""
+}
+
+MeadowWood: {
+	ItemDisplayName: 草地木
+	ItemTooltip: ""
+}
+
+SeaFireflyBlock: {
+	DisplayName: 海萤火虫块
+	DisplayNameRed: 红色海萤火虫块
+	DisplayNameOrange: 橙色海萤火虫块
+	DisplayNameYellow: 黄色海萤火虫块
+	DisplayNameLime: 青柠色海萤火虫块
+	DisplayNameGreen: 绿色海萤火虫块
+	DisplayNameTeal: 深青色海萤火虫块
+	DisplayNameCyan: 青色海萤火虫块
+	DisplayNameSkyBlue: 天蓝色海萤火虫块
+	DisplayNameBlue: 蓝色海萤火虫块
+	DisplayNamePurple: 紫色海萤火虫块
+	DisplayNameViolet: 浅紫色海萤火虫块
+	DisplayNamePink: 粉色海萤火虫块
+	DisplayNameBlack: 黑色海萤火虫块
+	DisplayNameWhite: 银色海萤火虫块
+	DisplayNameRainbow: 彩色海萤火虫块
+}

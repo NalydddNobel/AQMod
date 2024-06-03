@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Content.Graphics.Particles;
+using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using Terraria.GameContent.Shaders;
 
 namespace Aequus.Content.Fishing.Baits.BlackJellyfish;
 
-public class BlackJellyfishBait : ModBait, IOnPullBobber {
+public class BlackJellyfishBait : UnifiedModBait, IOnPullBobber {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 3;
     }
@@ -96,7 +97,6 @@ public class BlackJellyfishBaitExplosion : ModProjectile, DrawLayers.IDrawLayer,
                 d.noGravity = true;
             }
 
-            UnderwaterBubbleParticles bubbleParticles = ModContent.GetInstance<UnderwaterBubbleParticles>();
             int particleCount = Math.Max((int)(Projectile.width / 2 * Main.gfxQuality), Projectile.width / 4);
             for (int i = 0; i < particleCount; i++) {
                 Vector2 velocity = Main.rand.NextVector2Unit();
@@ -105,7 +105,7 @@ public class BlackJellyfishBaitExplosion : ModProjectile, DrawLayers.IDrawLayer,
                     continue;
                 }
 
-                var particle = bubbleParticles.New();
+                var particle = UnderwaterBubbles.New();
                 particle.Location = location;
                 particle.Frame = (byte)Main.rand.Next(5);
                 particle.Velocity = velocity * Main.rand.NextFloat(1f);

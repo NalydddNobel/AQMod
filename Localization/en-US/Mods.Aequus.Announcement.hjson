@@ -5,6 +5,7 @@ Glimmer: {
 	End: The glimmer begins to fade away...
 }
 
+// --localization note-- the "giveitem" and "eventstart" lines go together, one random "giveitem" line is picked first and then follows up with a random "eventstart" line
 DemonSiege: {
 	GiveItem: {
 		0: "{Player} accepted a contract with the devil..."

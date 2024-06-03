@@ -1,13 +1,10 @@
-﻿using Aequus.Old.Content.Weapons.Ranged.Bows.CrusadersCrossbow;
-using Terraria.Localization;
+﻿using Terraria.Localization;
 
 namespace Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg;
 
 [LegacyName("BloodiedBucket")]
 public class SaivoryKnife : ModItem {
-    /// <summary>
-    /// Default Value: 3600 (1 minute)
-    /// </summary>
+    /// <summary>Default Value: 3600 (1 minute)</summary>
     public static int GhostLifespan { get; set; } = 3600;
 
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Minutes(GhostLifespan));

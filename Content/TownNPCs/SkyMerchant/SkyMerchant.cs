@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
+using Aequus.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
 using Aequus.Content.TownNPCs.SkyMerchant.UI;
-using Aequus.Content.Weapons.Ranged.Bows.SkyHunterCrossbow;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.UI;
 using System;
@@ -326,7 +326,7 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
         if (NPC.AnyNPCs(NPCID.Demolitionist) && Main.rand.NextBool(5)) {
             key = "Demolitionist";
         }
-        return this.GetLocalization("Dialogue." + key).FormatWith(LanguageDatabase.CreateDialogSubstitutionObject(NPC));
+        return this.GetLocalization("Dialogue." + key).FormatWith(Lang.CreateDialogSubstitutionObject(NPC));
     }
     #endregion
 

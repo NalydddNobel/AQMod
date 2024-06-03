@@ -1,6 +1,5 @@
-﻿using Aequus.Common.Tiles;
-using Aequus.Core.Graphics.Tiles;
-using Aequus.Old.Content.Potions.Prefixes.StuffedPotions;
+﻿using Aequus.Core.Graphics.Tiles;
+using Aequus.Old.Content.Items.Potions.Prefixes.StuffedPotions;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent.Drawing;
@@ -131,14 +130,6 @@ public class Moonflower : ModHerb, IDrawWindyGrass {
             TileID.Meteorite,
         };
 
-        RandomTick.AddUpdateByType(GrowMoonflower, TileID.Meteorite);
-
         AddMapEntry(new Color(186, 122, 255), CreateMapEntryName());
-    }
-
-    public static void GrowMoonflower(int i, int j, int type) {
-        if (!Main.tile[i, j - 1].HasTile && WorldGen.genRand.NextBool(100) && !TileHelper.ScanTilesSquare(i, j, 20, TileHelper.HasTileAction(ModContent.TileType<Moonflower>()))) {
-            WorldGen.PlaceTile(i, j - 1, ModContent.TileType<Moonflower>());
-        }
     }
 }

@@ -1,22 +1,21 @@
-﻿using Aequus.Common.JourneyMode;
-using Aequus.Common.Tiles;
+﻿using Aequus.Common.Tiles;
 using Aequus.Core.ContentGeneration;
-using Aequus.Core.Initialization;
-using Aequus.Old.Content.Potions.Prefixes.BoundedPotions;
-using Aequus.Old.Content.Potions.Prefixes.EmpoweredPotions;
-using Aequus.Old.Content.Potions.Prefixes.SplashPotions;
-using Aequus.Old.Content.Potions.Prefixes.StuffedPotions;
+using Aequus.Old.Content.Items.Potions.Prefixes.BoundedPotions;
+using Aequus.Old.Content.Items.Potions.Prefixes.EmpoweredPotions;
+using Aequus.Old.Content.Items.Potions.Prefixes.SplashPotions;
+using Aequus.Old.Content.Items.Potions.Prefixes.StuffedPotions;
 using System;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ObjectData;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace Aequus.Old.Content.Tiles.Herbs.HangingPots;
 
 internal class HangingPot : ModTile {
     public override void Load() {
         int style = 0;
-        AddItem("Moray", ItemID.PotSuspendedBlinkroot, ()=>ModContent.GetInstance<SplashPrefix>().Item.Type);
+        AddItem("Moray", ItemID.PotSuspendedBlinkroot, () => ModContent.GetInstance<SplashPrefix>().Item.Type);
         AddItem("Mistral", ItemID.PotSuspendedFireblossom, () => ModContent.GetInstance<EmpoweredPrefix>().Item.Type);
         AddItem("Manacle", ItemID.PotSuspendedBlinkroot, () => ModContent.GetInstance<BoundedPrefix>().Item.Type);
         AddItem("Moonflower", ItemID.PotSuspendedDeathweedCrimson, () => ModContent.GetInstance<StuffedPrefix>().Item.Type);

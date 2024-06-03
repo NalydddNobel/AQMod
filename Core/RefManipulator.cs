@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Aequus.Core;
+﻿namespace Aequus.Core;
 
 public record class RefManipulator<T>(RefManipulator<T>.GetReferenceDelegate GetReference) {
     public delegate ref T GetReferenceDelegate();
@@ -23,7 +21,7 @@ public record class RefManipulator<T>(RefManipulator<T>.GetReferenceDelegate Get
     }
 
     /// <summary>Restores overriden values back to their original value.</summary>
-    public void VoidOverriddenValue() { 
+    public void VoidOverriddenValue() {
         if (_hasOverridenValue) {
             GetReference() = _originalValue;
             _hasOverridenValue = false;

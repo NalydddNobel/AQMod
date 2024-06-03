@@ -1,5 +1,4 @@
 ﻿using Aequus.Core.Graphics.Animations;
-using Microsoft.Xna.Framework;
 using System;
 
 namespace Aequus.Content.Tiles.CraftingStations.TrashCompactor;

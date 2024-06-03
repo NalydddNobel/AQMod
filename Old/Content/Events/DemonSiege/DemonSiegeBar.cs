@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Old.Common.EventBars;
+﻿using Aequus.Old.Common.EventBars;
 using Terraria.Localization;
 
 namespace Aequus.Old.Content.Events.DemonSiege;

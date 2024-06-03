@@ -1,6 +1,5 @@
-﻿using Aequus.Common.Tiles;
-using Aequus.Core.Graphics.Tiles;
-using Aequus.Old.Content.Potions.Prefixes.EmpoweredPotions;
+﻿using Aequus.Core.Graphics.Tiles;
+using Aequus.Old.Content.Items.Potions.Prefixes.EmpoweredPotions;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent.Drawing;
@@ -124,15 +123,11 @@ public class Mistral : ModHerb, IDrawWindyGrass {
             TileID.SnowCloud,
         };
 
-        RandomTick.AddUpdateByType(GrowMistral, TileID.Cloud, TileID.RainCloud, TileID.SnowCloud);
-
         AddMapEntry(new Color(185, 235, 255), CreateMapEntryName());
     }
 
-    public static void GrowMistral(int i, int j, int type) {
-        if (Main.hardMode && !Main.tile[i, j - 1].HasTile && WorldGen.genRand.NextBool(100) && !TileHelper.ScanTilesSquare(i, j, 20, TileHelper.HasTileAction(ModContent.TileType<Mistral>()))) {
-            WorldGen.PlaceTile(i, j - 1, ModContent.TileType<Mistral>(), mute: true);
-        }
+    public override bool CanNaturallyGrow(int X, int Y, Tile tile, bool[] anchoredTiles) {
+        return Main.hardMode;
     }
 }
 //public class MistralTile : HerbTileBase, ISpecialTileRenderer {

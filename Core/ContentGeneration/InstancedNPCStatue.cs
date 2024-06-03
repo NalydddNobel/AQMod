@@ -1,8 +1,8 @@
-﻿using Aequus.Common.JourneyMode;
-using Terraria.DataStructures;
+﻿using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.Localization;
 using Terraria.ObjectData;
+using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace Aequus.Core.ContentGeneration;
 
@@ -40,7 +40,7 @@ internal class InstancedNPCStatue : InstancedModTile {
 
         DustType = DustID.Silver;
 
-        AddMapEntry(CommonColor.TILE_STATUE, Language.GetText("MapObject.Statue"));
+        AddMapEntry(CommonColor.MapStatue, Language.GetText("MapObject.Statue"));
     }
 
     public override void HitWire(int i, int j) {

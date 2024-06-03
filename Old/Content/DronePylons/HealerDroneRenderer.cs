@@ -35,9 +35,7 @@ public class HealerDroneRenderer : ModSystem {
     public override void Unload() {
         if (Main.netMode != NetmodeID.Server) {
             Main.OnPreDraw -= RenderToTarget;
-            Main.QueueMainThreadAction(() => {
-                DrawHelper.DiscardTarget(ref _swapTarget);
-            });
+            Main.QueueMainThreadAction(() => DrawHelper.DiscardTarget(ref _swapTarget));
         }
         Instance = null;
     }
