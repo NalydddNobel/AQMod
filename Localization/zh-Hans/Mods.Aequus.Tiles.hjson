@@ -394,20 +394,20 @@ MeadowWood: {
 }
 
 SeaFireflyBlock: {
-	// DisplayName: Sea Firefly Block
-	// DisplayNameRed: Red Sea Firefly Block
-	// DisplayNameOrange: Orange Sea Firefly Block
-	// DisplayNameYellow: Yellow Sea Firefly Block
-	// DisplayNameLime: Lime Sea Firefly Block
-	// DisplayNameGreen: Green Sea Firefly Block
-	// DisplayNameTeal: Teal Sea Firefly Block
-	// DisplayNameCyan: Cyan Sea Firefly Block
-	// DisplayNameSkyBlue: Sky Blue Sea Firefly Block
-	// DisplayNameBlue: Blue Sea Firefly Block
-	// DisplayNamePurple: Purple Sea Firefly Block
-	// DisplayNameViolet: Violet Sea Firefly Block
-	// DisplayNamePink: Pink Sea Firefly Block
-	// DisplayNameBlack: Black Sea Firefly Block
-	// DisplayNameWhite: White Sea Firefly Block
-	// DisplayNameRainbow: Rainbow Sea Firefly Block
+	DisplayName: 海萤火虫块
+	DisplayNameRed: 红色海萤火虫块
+	DisplayNameOrange: 橙色海萤火虫块
+	DisplayNameYellow: 黄色海萤火虫块
+	DisplayNameLime: 青柠色海萤火虫块
+	DisplayNameGreen: 绿色海萤火虫块
+	DisplayNameTeal: 深青色海萤火虫块
+	DisplayNameCyan: 青色海萤火虫块
+	DisplayNameSkyBlue: 天蓝色海萤火虫块
+	DisplayNameBlue: 蓝色海萤火虫块
+	DisplayNamePurple: 紫色海萤火虫块
+	DisplayNameViolet: 浅紫色海萤火虫块
+	DisplayNamePink: 粉色海萤火虫块
+	DisplayNameBlack: 黑色海萤火虫块
+	DisplayNameWhite: 银色海萤火虫块
+	DisplayNameRainbow: 彩色海萤火虫块
 }
