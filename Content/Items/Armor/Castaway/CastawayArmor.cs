@@ -8,7 +8,7 @@ using System.Linq;
 namespace Aequus.Content.Items.Armor.Castaway;
 
 public class CastawayArmor : UnifiedArmorSet {
-    public static int DefenseRegenerationCooldown => 420;
+    public static readonly int DefenseRegenerationCooldown = 420;
     public static readonly int DefenseRegenerationRate = 24;
 
     /// <summary>Determines how many spiky balls can be in the world at once before they're forced to despawn.</summary>
