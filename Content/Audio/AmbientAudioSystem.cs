@@ -1,6 +1,5 @@
 ﻿using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Core.Audio;
-using Terraria.Audio;
 
 namespace Aequus.Content.Audio;
 
@@ -8,44 +7,39 @@ namespace Aequus.Content.Audio;
 public class AmbientAudioSystem : ModSystem {
     private int _ambientAudioCooldown;
 
-    private void handleRainInDebug(in SoundStyle style) {
-        SoundStyle realStyle = style with { Volume = 0.7f, Type = SoundType.Ambient };
-        ActiveSound sound = SoundEngine.FindActiveSound(in realStyle);
-        if (sound == null) {
-            SoundEngine.PlaySound(realStyle);
-        }
-    }
-    private void stopSoundInDebug(in SoundStyle style) {
-        SoundStyle realStyle = style with { Volume = 0.5f, Type = SoundType.Ambient };
-        ActiveSound sound = SoundEngine.FindActiveSound(in realStyle);
-        sound?.Stop();
-    }
+    private readonly FadeInSound _pollutedCaveRainA = new FadeInSound(AequusSounds.PollutedOcean_RainA with { Volume = 0.3f });
+    private readonly FadeInSound _pollutedCaveRainB = new FadeInSound(AequusSounds.PollutedOcean_RainB with { Volume = 0.3f });
+    private readonly FadeInSound _pollutedCaveDrone = new FadeInSound(AequusSounds.PollutedOcean_CaveDrone with { Volume = 0.1f });
 
     private void UpdatePollutedOceanAmbience(Player player) {
         float rainIntensity = Main.raining ? Main.maxRaining : 0f;
 
         if (rainIntensity > 0.5f) {
-            if (Main.rand.NextBool(1200)) {
-                AudioEffects.PlayUnpanningAttenuationSound(AequusSounds.PollutedOcean_AmbientB, player.Center);
-                _ambientAudioCooldown = 600;
-            }
-            else if (Main.rand.NextBool(1200)) {
-                AudioEffects.PlayUnpanningAttenuationSound(AequusSounds.PollutedOcean_AmbientA, player.Center);
-                _ambientAudioCooldown = 300;
+            if (_ambientAudioCooldown == 0) {
+                if (Main.rand.NextBool(1200)) {
+                    AudioEffects.PlayUnpanningAttenuationSound(AequusSounds.PollutedOcean_AmbientB, player.Center);
+                    _ambientAudioCooldown = 600;
+                }
+                else if (Main.rand.NextBool(1200)) {
+                    AudioEffects.PlayUnpanningAttenuationSound(AequusSounds.PollutedOcean_AmbientA, player.Center);
+                    _ambientAudioCooldown = 300;
+                }
             }
 
-            stopSoundInDebug(in AequusSounds.PollutedOcean_RainA);
-            handleRainInDebug(in AequusSounds.PollutedOcean_RainB);
+            _pollutedCaveRainB.FadeIn(rainIntensity * 0.05f);
+            _pollutedCaveRainA.FadeOut(rainIntensity * 0.05f);
         }
         else {
-            if (Main.rand.NextBool(4800 - (int)(4800 * Main.maxRaining))) {
+            if (_ambientAudioCooldown == 0 && Main.rand.NextBool(4800 - (int)(4800 * Main.maxRaining))) {
                 AudioEffects.PlayUnpanningAttenuationSound(AequusSounds.PollutedOcean_AmbientA, player.Center);
                 _ambientAudioCooldown = 500;
             }
 
-            stopSoundInDebug(in AequusSounds.PollutedOcean_RainB);
-            handleRainInDebug(in AequusSounds.PollutedOcean_RainA);
+            _pollutedCaveRainA.FadeIn(rainIntensity * 0.05f + 0.01f);
+            _pollutedCaveRainB.FadeOut(rainIntensity * 0.05f + 0.01f);
         }
+
+        _pollutedCaveDrone.FadeIn(0.01f);
     }
 
     public override void PreUpdateEntities() {
@@ -61,6 +55,11 @@ public class AmbientAudioSystem : ModSystem {
         Player player = Main.LocalPlayer;
         if (player.InModBiome<PollutedOceanBiomeUnderground>() && player.position.Y > Main.worldSurface * 16) {
             UpdatePollutedOceanAmbience(player);
+        }
+        else {
+            _pollutedCaveRainA.FadeOut(0.01f);
+            _pollutedCaveRainB.FadeOut(0.01f);
+            _pollutedCaveDrone.FadeOut(0.01f);
         }
     }
 }

@@ -3,10 +3,28 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Sounds: 84)</summary>
+/// <summary>(Total Sounds: 93)</summary>
 [CompilerGenerated]
 public partial class AequusSounds {            
-        /// <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
+        /// <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_AmbientA0</summary>
+    public static readonly SoundStyle PollutedOcean_AmbientA0 = new("Aequus/Assets/Sounds/Ambient/PollutedOcean_AmbientA0");
+    /// <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_AmbientA1</summary>
+    public static readonly SoundStyle PollutedOcean_AmbientA1 = new("Aequus/Assets/Sounds/Ambient/PollutedOcean_AmbientA1");
+    /// <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_AmbientA2</summary>
+    public static readonly SoundStyle PollutedOcean_AmbientA2 = new("Aequus/Assets/Sounds/Ambient/PollutedOcean_AmbientA2");
+    /// <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_AmbientB0</summary>
+    public static readonly SoundStyle PollutedOcean_AmbientB0 = new("Aequus/Assets/Sounds/Ambient/PollutedOcean_AmbientB0");
+    /// <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_AmbientB1</summary>
+    public static readonly SoundStyle PollutedOcean_AmbientB1 = new("Aequus/Assets/Sounds/Ambient/PollutedOcean_AmbientB1");
+    /// <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_CaveDrone</summary>
+    public static readonly SoundStyle PollutedOcean_CaveDrone = new("Aequus/Assets/Sounds/Ambient/PollutedOcean_CaveDrone");
+    /// <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_RainA</summary>
+    public static readonly SoundStyle PollutedOcean_RainA = new("Aequus/Assets/Sounds/Ambient/PollutedOcean_RainA");
+    /// <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_RainA_Interior</summary>
+    public static readonly SoundStyle PollutedOcean_RainA_Interior = new("Aequus/Assets/Sounds/Ambient/PollutedOcean_RainA_Interior");
+    /// <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_RainB</summary>
+    public static readonly SoundStyle PollutedOcean_RainB = new("Aequus/Assets/Sounds/Ambient/PollutedOcean_RainB");
+    /// <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
     public static readonly SoundStyle BlackJellyfishCharge = new("Aequus/Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge");
     /// <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge_Underwater</summary>
     public static readonly SoundStyle BlackJellyfishCharge_Underwater = new("Aequus/Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge_Underwater");
