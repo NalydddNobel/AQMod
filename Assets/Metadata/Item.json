@@ -238,7 +238,8 @@
     "ThoriumMod/HydrationPotion",
     "Polarities/PiercingPotion",
     "Polarities/TolerancePotion",
-    "Aequus/SentryPotion"
+    "Aequus/SentryPotion",
+    "Avalon/GamblerPotion"
   ],
   "PillarFragmentsByColor": [],
   "ShimmerTooltipResultIgnore": [
@@ -493,6 +494,7 @@
     "Polarities/ChlorophyteDart": "Polarities/ChlorophyteDartProjectile",
     "Polarities/VenomDart": "Polarities/VenomDartProjectile",
     "Polarities/WoodenDart": "Polarities/WoodenDartProjectile",
-    "Polarities/WoodenDartEndless": "Polarities/WoodenDartProjectile"
+    "Polarities/WoodenDartEndless": "Polarities/WoodenDartProjectile",
+    "Avalon/UltrabrightRazorbladeBullet": "Avalon/UltrabrightRazorbladeBullet"
   }
 }

@@ -86,7 +86,12 @@
     "GoblinShark",
     "BloodEelHead",
     "BloodEelBody",
-    "BloodEelTail"
+    "BloodEelTail",
+    "Avalon/ContaminatedBunny",
+    "Avalon/ContaminatedGoldfish",
+    "Avalon/ContaminatedPenguin",
+    "Avalon/BloodshotEye",
+    "Avalon/FallenHero"
   ],
   "IsCorrupt": [
     "Slimeling",
