@@ -89,4 +89,4 @@ VasculashTagProj.DisplayName: "{$Items.DemonVasculash.DisplayName}"
 SoulscourgeTagProj.DisplayName: "{$Items.DemonSoulscourge.DisplayName}"
 RaygunExplosionProj.DisplayName: "{$Items.Raygun.DisplayName}"
 GamestarProj.DisplayName: "{$Items.Gamestar.DisplayName}"
-// CastawayProjExplosiveMine.DisplayName: Shrapnel
+CastawayProjExplosiveMine.DisplayName: 弹片
