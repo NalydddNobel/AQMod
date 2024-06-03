@@ -1,4 +1,5 @@
 CommonTooltips: {
+	// KnockbackResist: "{0}% reduced knockback"
 	GuideHint: 向导可能会对此物感兴趣...
 	BuffTimeRange: "{0}-{1}分钟持续时间"
 	IncreasesInventorySlots: 获得{0}格物品栏

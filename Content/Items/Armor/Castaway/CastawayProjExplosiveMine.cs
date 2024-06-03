@@ -1,13 +1,8 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-using System;
-using Terraria;
-using Terraria.GameContent;
-using Terraria.ID;
-using Terraria.ModLoader;
+﻿using System;
 using Terraria.Audio;
+using Terraria.GameContent;
 
-namespace Aequus.Content.Equipment.Armor.Castaway;
+namespace Aequus.Content.Items.Armor.Castaway;
 
 public class CastawayProjExplosiveMine : ModProjectile {
     public override string Texture => AequusTextures.Projectile(ProjectileID.SpikyBall);

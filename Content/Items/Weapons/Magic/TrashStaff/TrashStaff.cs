@@ -22,8 +22,8 @@ public class TrashStaff : ModItem {
 
     public override void AddRecipes() {
         CreateRecipe()
-            .AddIngredient<CompressedTrash>(12)
-            .AddIngredient(ItemID.FallenStar, 2)
+            .AddIngredient<CompressedTrash>(25)
+            .AddIngredient(ItemID.FallenStar, 10)
             .AddTile(TileID.Anvils)
             .Register();
     }

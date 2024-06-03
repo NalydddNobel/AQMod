@@ -1,6 +1,7 @@
 ﻿using Aequus.Core.Assets;
 using Aequus.Core.Graphics;
 using FNAUtils.Drawing;
+using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
@@ -8,6 +9,7 @@ using Terraria.GameContent.Shaders;
 using Terraria.Graphics;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
+using Terraria.UI.Chat;
 
 namespace Aequus.Core.Utilities;
 
@@ -163,6 +165,15 @@ public sealed class DrawHelper : ModSystem {
         float zoom = zoomFactor;
         return screenCenterX + differenceX * zoom;
     }
+
+    #region Text
+    public static void DrawCenteredText(SpriteBatch sb, DynamicSpriteFont font, string text, Vector2 position, Color? color = null, float rotation = 0f, Vector2? scale = null) {
+        Vector2 realScale = scale ?? new Vector2(1f, 1f);
+        Color realColor = color ?? Color.White;
+        Vector2 origin = ChatManager.GetStringSize(font, text, new Vector2(1f, 1f));
+        ChatManager.DrawColorCodedString(sb, font, text, position, realColor, rotation, origin, realScale);
+    }
+    #endregion
 
     #region Dust
     public static int LiquidTypeToDustId(int liquidType) {

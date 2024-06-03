@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 837) yo momma gai</summary>
+/// <summary>(Total Textures: 848) yo momma gai</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -521,6 +521,28 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> WeightedHorseshoe = new("Aequus/Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoe");
     /// <summary>Full Path: Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
     public static readonly RequestCache<Texture2D> WeightedHorseshoeVisual = new("Aequus/Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual");
+    /// <summary>Full Path: Content/Items/Armor/Castaway/CastawayChestplate</summary>
+    public static readonly RequestCache<Texture2D> CastawayChestplate = new("Aequus/Content/Items/Armor/Castaway/CastawayChestplate");
+    /// <summary>Full Path: Content/Items/Armor/Castaway/CastawayChestplate_Body</summary>
+    public static readonly RequestCache<Texture2D> CastawayChestplate_Body = new("Aequus/Content/Items/Armor/Castaway/CastawayChestplate_Body");
+    /// <summary>Full Path: Content/Items/Armor/Castaway/CastawayChestplate_Body_2</summary>
+    public static readonly RequestCache<Texture2D> CastawayChestplate_Body_2 = new("Aequus/Content/Items/Armor/Castaway/CastawayChestplate_Body_2");
+    /// <summary>Full Path: Content/Items/Armor/Castaway/CastawayHelmet</summary>
+    public static readonly RequestCache<Texture2D> CastawayHelmet = new("Aequus/Content/Items/Armor/Castaway/CastawayHelmet");
+    /// <summary>Full Path: Content/Items/Armor/Castaway/CastawayHelmet_Head</summary>
+    public static readonly RequestCache<Texture2D> CastawayHelmet_Head = new("Aequus/Content/Items/Armor/Castaway/CastawayHelmet_Head");
+    /// <summary>Full Path: Content/Items/Armor/Castaway/CastawayHelmet_Head_2</summary>
+    public static readonly RequestCache<Texture2D> CastawayHelmet_Head_2 = new("Aequus/Content/Items/Armor/Castaway/CastawayHelmet_Head_2");
+    /// <summary>Full Path: Content/Items/Armor/Castaway/CastawayLeggings</summary>
+    public static readonly RequestCache<Texture2D> CastawayLeggings = new("Aequus/Content/Items/Armor/Castaway/CastawayLeggings");
+    /// <summary>Full Path: Content/Items/Armor/Castaway/CastawayLeggings_Legs</summary>
+    public static readonly RequestCache<Texture2D> CastawayLeggings_Legs = new("Aequus/Content/Items/Armor/Castaway/CastawayLeggings_Legs");
+    /// <summary>Full Path: Content/Items/Armor/Castaway/DefenseDamageIndicator</summary>
+    public static readonly RequestCache<Texture2D> DefenseDamageIndicator = new("Aequus/Content/Items/Armor/Castaway/DefenseDamageIndicator");
+    /// <summary>Full Path: Content/Items/Armor/Castaway/Gores/CastawayChestplateBreak</summary>
+    public static readonly RequestCache<Texture2D> CastawayChestplateBreak = new("Aequus/Content/Items/Armor/Castaway/Gores/CastawayChestplateBreak");
+    /// <summary>Full Path: Content/Items/Armor/Castaway/Gores/CastawayHelmetBreak</summary>
+    public static readonly RequestCache<Texture2D> CastawayHelmetBreak = new("Aequus/Content/Items/Armor/Castaway/Gores/CastawayHelmetBreak");
     /// <summary>Full Path: Content/Items/Armor/MiscHelmets/ConeHelmet</summary>
     public static readonly RequestCache<Texture2D> ConeHelmet = new("Aequus/Content/Items/Armor/MiscHelmets/ConeHelmet");
     /// <summary>Full Path: Content/Items/Armor/MiscHelmets/ConeHelmet_1</summary>

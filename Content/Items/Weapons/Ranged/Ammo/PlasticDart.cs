@@ -19,7 +19,7 @@ public class PlasticDart : ModItem {
     }
 
     public override void AddRecipes() {
-        CreateRecipe(150)
+        CreateRecipe(50)
             .AddIngredient<CompressedTrash>()
             .AddTile(TileID.Anvils)
             .Register();

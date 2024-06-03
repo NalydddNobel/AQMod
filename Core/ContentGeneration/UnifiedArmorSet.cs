@@ -1,19 +1,15 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Common.Items.Tooltips;
-using Microsoft.Xna.Framework;
 using System;
-using Terraria;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
-namespace Aequus.Common.Items;
+namespace Aequus.Core.ContentGeneration;
 
-public abstract class ModArmor : ModTexturedType, ILocalizedModType {
+public abstract class UnifiedArmorSet : ModTexturedType, ILocalizedModType {
     public record struct ArmorStats(int Defense, int Rarity = ItemRarityID.White, int Value = 0, bool Vanity = false);
     public record struct Keyword(LocalizedText Name, LocalizedText Tooltip, int ShowcaseItem = ItemID.None, Color? TextColor = null);
 
-    public ModArmor() {
+    public UnifiedArmorSet() {
         _name = base.Name.Replace("Armor", "");
     }
 
@@ -35,20 +31,12 @@ public abstract class ModArmor : ModTexturedType, ILocalizedModType {
     }
 }
 
-internal abstract class InstancedArmor : InstancedModItem, IAddKeywords {
-    protected readonly ModArmor _armor;
-    protected readonly ModArmor.ArmorStats _stats;
-    protected readonly ModArmor.Keyword _keyword;
-    protected readonly string _suffix;
-    protected readonly object[] _tooltipArgs;
-
-    public InstancedArmor(ModArmor armor, ModArmor.ArmorStats stats, ModArmor.Keyword keyword = default, string suffix = "", params object[] tooltipArguments) : base(armor.Name + suffix, armor.Texture + suffix) {
-        _armor = armor;
-        _stats = stats;
-        _keyword = keyword;
-        _suffix = suffix;
-        _tooltipArgs = tooltipArguments;
-    }
+internal abstract class InstancedArmor(UnifiedArmorSet armor, UnifiedArmorSet.ArmorStats stats, UnifiedArmorSet.Keyword keyword = default, string suffix = "", params object[] tooltipArguments) : InstancedModItem(armor.Name + suffix, armor.Texture + suffix), IAddKeywords {
+    protected readonly UnifiedArmorSet _armor = armor;
+    protected readonly UnifiedArmorSet.ArmorStats _stats = stats;
+    protected readonly UnifiedArmorSet.Keyword _keyword = keyword;
+    protected readonly string _suffix = suffix;
+    protected readonly object[] _tooltipArgs = tooltipArguments;
 
     public override LocalizedText DisplayName => _armor.GetLocalization(_suffix + ".DisplayName", PrettyPrintName);
     public override LocalizedText Tooltip {
@@ -151,21 +139,12 @@ internal abstract class InstancedArmor : InstancedModItem, IAddKeywords {
 
 [Autoload(false)]
 [AutoloadEquip(EquipType.Head)]
-internal class InstancedHelmet : InstancedArmor {
-    public InstancedHelmet(ModArmor armor, ModArmor.ArmorStats stats, ModArmor.Keyword keyword = default, string suffix = "", params object[] tooltipArguments) : base(armor, stats, keyword, "Helmet" + suffix, tooltipArguments) {
-    }
-}
+internal class InstancedHelmet(UnifiedArmorSet armor, UnifiedArmorSet.ArmorStats stats, UnifiedArmorSet.Keyword keyword = default, string suffix = "", params object[] tooltipArguments) : InstancedArmor(armor, stats, keyword, "Helmet" + suffix, tooltipArguments) { }
 
 [Autoload(false)]
 [AutoloadEquip(EquipType.Body)]
-internal class InstancedBody : InstancedArmor {
-    public InstancedBody(ModArmor armor, ModArmor.ArmorStats stats, ModArmor.Keyword keyword = default, string suffix = "", params object[] tooltipArguments) : base(armor, stats, keyword, "Chestplate" + suffix, tooltipArguments) {
-    }
-}
+internal class InstancedBody(UnifiedArmorSet armor, UnifiedArmorSet.ArmorStats stats, UnifiedArmorSet.Keyword keyword = default, string suffix = "", params object[] tooltipArguments) : InstancedArmor(armor, stats, keyword, "Chestplate" + suffix, tooltipArguments) { }
 
 [Autoload(false)]
 [AutoloadEquip(EquipType.Legs)]
-internal class InstancedLegs : InstancedArmor {
-    public InstancedLegs(ModArmor armor, ModArmor.ArmorStats stats, ModArmor.Keyword keyword = default, string suffix = "", params object[] tooltipArguments) : base(armor, stats, keyword, "Leggings" + suffix, tooltipArguments) {
-    }
-}
+internal class InstancedLegs(UnifiedArmorSet armor, UnifiedArmorSet.ArmorStats stats, UnifiedArmorSet.Keyword keyword = default, string suffix = "", params object[] tooltipArguments) : InstancedArmor(armor, stats, keyword, "Leggings" + suffix, tooltipArguments) { }

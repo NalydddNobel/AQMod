@@ -1,4 +1,5 @@
 CommonTooltips: {
+	// KnockbackResist: "{0}% reduced knockback"
 	// GuideHint: The Guide may be interested in this...
 	BuffTimeRange: "{0}-{1} minuto(s) de duración"
 	IncreasesInventorySlots: Otorga {0} ranuras de mochila

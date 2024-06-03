@@ -20,7 +20,7 @@ public class CrabPot : UnifiedCrabPot {
                 item.CreateRecipe()
                     .AddIngredient(barItem, 10)
                     .AddIngredient(ItemID.Chain, 3)
-                    .AddIngredient<CompressedTrash>()
+                    .AddIngredient<CompressedTrash>(5)
                     .AddTile(TileID.Anvils)
                     .Register();
             }

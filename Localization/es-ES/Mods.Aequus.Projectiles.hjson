@@ -89,3 +89,4 @@ DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 // SoulscourgeTagProj.DisplayName: "{$Items.DemonSoulscourge.DisplayName}"
 // RaygunExplosionProj.DisplayName: "{$Items.Raygun.DisplayName}"
 // GamestarProj.DisplayName: "{$Items.Gamestar.DisplayName}"
+// CastawayProjExplosiveMine.DisplayName: Shrapnel

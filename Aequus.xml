@@ -923,6 +923,12 @@
         <member name="T:Aequus.Content.Graphics.Particles.UnderwaterBubbles">
             <summary>Bubble particles which only work underwater. Floats upwards.</summary>
         </member>
+        <member name="F:Aequus.Content.Items.Armor.Castaway.CastawayArmor.MaxBallsOut">
+            <summary>Determines how many spiky balls can be in the world at once before they're forced to despawn.</summary>
+        </member>
+        <member name="F:Aequus.Content.Items.Armor.Castaway.CastawayArmor.MaxBallsOnHit">
+            <summary>Determines how many spiky balls can be released at once when damaged.</summary>
+        </member>
         <member name="M:Aequus.Content.Items.Potions.PotionCanteen.UnifiedCanteen.HasBuffs">
             <summary>Determines if this canteen has any buffs at all.</summary>
         </member>
@@ -988,15 +994,7 @@
             </summary>
         </member>
         <member name="T:Aequus.DataSets.ItemTypeVariantDataSet">
-            <summary>
-            Dataset with lists of all supported variants of an item. 
-            </summary>
-        </member>
-        <member name="P:Aequus.DataSets.ItemTypeVariantDataSet.RottenChunk">
-            <summary><see cref="F:Terraria.ID.ItemID.RottenChunk"/>, <see cref="F:Terraria.ID.ItemID.Vertebrae"/>, Avalon/YuckyBit.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.ItemTypeVariantDataSet.DemoniteBar">
-            <summary><see cref="F:Terraria.ID.ItemID.DemoniteBar"/>, <see cref="F:Terraria.ID.ItemID.CrimtaneBar"/>, Avalon/BacciliteBar.</summary>
+            <summary>Dataset with lists of all supported 'alts' of an item.</summary>
         </member>
         <member name="P:Aequus.DataSets.NPCDataSet.CannotPickpocketItemsFrom">
             <summary>NPC Ids in this set cannot have their items stolen by the <see cref="T:Aequus.Content.Items.Weapons.Melee.AncientCutlass.AncientCutlass"/>.</summary>
@@ -1953,17 +1951,13 @@
         <member name="F:Aequus.Core.Graphics.DrawLayers.WorldBehindTiles">
             <summary>Invoked before NPCs behind tiles are drawn.</summary>
         </member>
-        <member name="T:Aequus.Core.Graphics.MiscWorldUI">
-            <summary>
-            Used to render any World elements which need to be on the UI layer. This renders after Entity Healthbars are drawn.
-            </summary>
+        <member name="F:Aequus.Core.Graphics.DrawLayers.PostDrawDust">
+            <summary>Invoked after Dusts have been drawn.</summary>
         </member>
-        <member name="F:Aequus.Core.Graphics.MiscWorldUI.Drawer">
-            <summary>
-            A drawdata list to add into, if you know how Player Layers work, this should be familiar. Currently doesn't support shaders.
-            </summary>
+        <member name="F:Aequus.Core.Graphics.DrawLayers.PostDrawLiquids">
+            <summary>Invoked after Liquids and Inferno Rings have been drawn, but before Wire Overlays are drawn.</summary>
         </member>
-        <member name="M:Aequus.Core.Graphics.RequestRenderer.ClearWorld">
+        <member name="M:Aequus.Core.Graphics.SpriteBatchCache.InheritFrom(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
             <summary>
             Note: This calls <see cref="M:Microsoft.Xna.Framework.Graphics.SpriteBatch.End"/>, and then grabs all of the graphics device info and caches it into the various properties.
             Use <see cref="M:Aequus.Core.Graphics.SpriteBatchCache.Begin(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.SpriteSortMode,Microsoft.Xna.Framework.Graphics.Effect,System.Nullable{Microsoft.Xna.Framework.Matrix})"/> to restart <paramref name="spriteBatch"/> back to its original state, with its <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteSortMode"/> needing to be respecified.
@@ -2413,7 +2407,7 @@
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 241)</summary>
+            <summary>(Total Textures: 848) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -3135,8 +3129,8 @@
         <member name="F:Aequus.AequusTextures.GoldenWindBuff">
             <summary>Full Path: Content/Items/Accessories/GoldenFeather/GoldenWindBuff</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.BreadOfCthulhuMask">
-            <summary>Full Path: Content/Equipment/Armor/Vanity/BreadOfCthulhuMask</summary>
+        <member name="F:Aequus.AequusTextures.Calendar">
+            <summary>Full Path: Content/Items/Accessories/Informational/Calendar/Calendar</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CalendarInfoDisplay">
             <summary>Full Path: Content/Items/Accessories/Informational/Calendar/CalendarInfoDisplay</summary>
@@ -3185,6 +3179,39 @@
         </member>
         <member name="F:Aequus.AequusTextures.WeightedHorseshoeVisual">
             <summary>Full Path: Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CastawayChestplate">
+            <summary>Full Path: Content/Items/Armor/Castaway/CastawayChestplate</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CastawayChestplate_Body">
+            <summary>Full Path: Content/Items/Armor/Castaway/CastawayChestplate_Body</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CastawayChestplate_Body_2">
+            <summary>Full Path: Content/Items/Armor/Castaway/CastawayChestplate_Body_2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CastawayHelmet">
+            <summary>Full Path: Content/Items/Armor/Castaway/CastawayHelmet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CastawayHelmet_Head">
+            <summary>Full Path: Content/Items/Armor/Castaway/CastawayHelmet_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CastawayHelmet_Head_2">
+            <summary>Full Path: Content/Items/Armor/Castaway/CastawayHelmet_Head_2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CastawayLeggings">
+            <summary>Full Path: Content/Items/Armor/Castaway/CastawayLeggings</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CastawayLeggings_Legs">
+            <summary>Full Path: Content/Items/Armor/Castaway/CastawayLeggings_Legs</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DefenseDamageIndicator">
+            <summary>Full Path: Content/Items/Armor/Castaway/DefenseDamageIndicator</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CastawayChestplateBreak">
+            <summary>Full Path: Content/Items/Armor/Castaway/Gores/CastawayChestplateBreak</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CastawayHelmetBreak">
+            <summary>Full Path: Content/Items/Armor/Castaway/Gores/CastawayHelmetBreak</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ConeHelmet">
             <summary>Full Path: Content/Items/Armor/MiscHelmets/ConeHelmet</summary>
@@ -4902,12 +4929,8 @@
         <member name="F:Aequus.AequusTextures.PhysicistPet_Glow">
             <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/PhysicistPet_Glow</summary>
         </member>
-        <member name="M:Aequus.TextHelper.GetDisplayName(Terraria.ModLoader.ILocalizedModType)">
-            <summary>
-            Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
+        <member name="F:Aequus.AequusTextures.Physicist_Head">
+            <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Physicist_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PhysicistPet_Shimmer">
             <summary>Full Path: Old/Content/TownNPCs/PhysicistNPC/Shimmer/PhysicistPet_Shimmer</summary>
