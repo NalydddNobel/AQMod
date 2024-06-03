@@ -3568,10 +3568,10 @@
             <summary>Full Path: Content/Tiles/Meadow/MeadowWoodItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SeaFireflyBlock">
-            <summary>Full Path: Content/Tiles/Misc/SeaFireflyBlock</summary>
+            <summary>Full Path: Content/Tiles/Misc/SeaFireflyBlock/SeaFireflyBlock</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SeaFireflyBlockItem">
-            <summary>Full Path: Content/Tiles/Misc/SeaFireflyBlockItem</summary>
+            <summary>Full Path: Content/Tiles/Misc/SeaFireflyBlock/SeaFireflyBlockItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PolymerStalactite1x1">
             <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x1</summary>

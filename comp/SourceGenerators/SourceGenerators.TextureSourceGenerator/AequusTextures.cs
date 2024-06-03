@@ -779,10 +779,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> MeadowWood = new("Aequus/Content/Tiles/Meadow/MeadowWood");
     /// <summary>Full Path: Content/Tiles/Meadow/MeadowWoodItem</summary>
     public static readonly RequestCache<Texture2D> MeadowWoodItem = new("Aequus/Content/Tiles/Meadow/MeadowWoodItem");
-    /// <summary>Full Path: Content/Tiles/Misc/SeaFireflyBlock</summary>
-    public static readonly RequestCache<Texture2D> SeaFireflyBlock = new("Aequus/Content/Tiles/Misc/SeaFireflyBlock");
-    /// <summary>Full Path: Content/Tiles/Misc/SeaFireflyBlockItem</summary>
-    public static readonly RequestCache<Texture2D> SeaFireflyBlockItem = new("Aequus/Content/Tiles/Misc/SeaFireflyBlockItem");
+    /// <summary>Full Path: Content/Tiles/Misc/SeaFireflyBlock/SeaFireflyBlock</summary>
+    public static readonly RequestCache<Texture2D> SeaFireflyBlock = new("Aequus/Content/Tiles/Misc/SeaFireflyBlock/SeaFireflyBlock");
+    /// <summary>Full Path: Content/Tiles/Misc/SeaFireflyBlock/SeaFireflyBlockItem</summary>
+    public static readonly RequestCache<Texture2D> SeaFireflyBlockItem = new("Aequus/Content/Tiles/Misc/SeaFireflyBlock/SeaFireflyBlockItem");
     /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x1</summary>
     public static readonly RequestCache<Texture2D> PolymerStalactite1x1 = new("Aequus/Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x1");
     /// <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x2</summary>

@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Biomes.PollutedOcean;
-using Aequus.Content.Tiles.Misc;
+using Aequus.Content.Tiles.Misc.SeaFireflyBlock;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics;
 using Aequus.Core.Particles;
@@ -300,7 +300,7 @@ public class SeaFirefly : UnifiedCritter, DrawLayers.IDrawLayer {
     }
 
     void LoadColors() {
-        AddVariant(new DefaultVariant(""));
+        AddVariantFull(new DefaultVariant(""));
 
         // Add basic dye variants.
         AddBasicDyes();
@@ -323,11 +323,15 @@ public class SeaFirefly : UnifiedCritter, DrawLayers.IDrawLayer {
         }
     }
 
-    byte AddVariant(ISeaFireflyInstanceData Variant) {
+    byte AddVariant(ref ISeaFireflyInstanceData Variant) {
         byte color = RegisterPalette(Variant);
         Variant.Type = color;
-        AddTile(Variant);
         return color;
+    }
+
+    void AddVariantFull(ISeaFireflyInstanceData Variant) {
+        byte result = AddVariant(ref Variant);
+        AddTile(Variant);
     }
 
     byte AddDyedColor(string Name, Color DyeColor, int DyeItem) {
@@ -335,11 +339,13 @@ public class SeaFirefly : UnifiedCritter, DrawLayers.IDrawLayer {
     }
 
     byte AddDyed(ISeaFireflyInstanceData Variant, int DyeItem) {
-        byte color = AddVariant(Variant);
+        byte color = AddVariant(ref Variant);
 
         ModItem dyedItem = new SeaFireflyItem(this, Variant.Name, color);
 
         Mod.AddContent(dyedItem);
+
+        AddTile(Variant);
 
         Aequus.OnAddRecipes += AddRecipe;
 

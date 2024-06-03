@@ -2,12 +2,11 @@
 using Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics.Textures;
-using Aequus.Core.Particles;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Localization;
 
-namespace Aequus.Content.Tiles.Misc;
+namespace Aequus.Content.Tiles.Misc.SeaFireflyBlock;
 
 internal class SeaFireflyBlock(string NameSuffix, byte ColorId) : InstancedTile($"SeaFireflyBlock{NameSuffix}", AequusTextures.SeaFireflyBlock.Path) {
     public readonly byte _color = ColorId;
@@ -23,9 +22,10 @@ internal class SeaFireflyBlock(string NameSuffix, byte ColorId) : InstancedTile(
             Main.QueueMainThreadAction(() => TextureAssets.Tile[Type] = TextureGen.PerPixel(Current.ColorEffect, TextureAssets.Tile[Type]));
         }
 
-        Main.tileSolid[Type] = true;
+        Main.tileSolid[Type] = false;
         Main.tileBlockLight[Type] = true;
         Main.tileLighted[Type] = true;
+        TileID.Sets.CanPlaceNextToNonSolidTile[Type] = true;
 
         AddMapEntry(Current.GetBugColor());
         DustType = DustID.AncientLight;
@@ -45,17 +45,9 @@ internal class SeaFireflyBlock(string NameSuffix, byte ColorId) : InstancedTile(
     }
 
     public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
-        if (!Main.rand.NextBool(16)) {
-            return;
+        if (Main.rand.NextBool(90) && GameWorldActive) {
+            ModContent.GetInstance<SeaFireflyBlockClusters>().New(new Point16(i, j));
         }
-
-        Vector2 spawnCoordinates = new Vector2(i, j).ToWorldCoordinates() + Main.rand.NextVector2Circular(32f, 32f);
-
-        if (!Collision.WetCollision(spawnCoordinates, 0, 0)) {
-            return;
-        }
-
-        Particle<SeaFireflyClusters.Particle>.New().Setup(spawnCoordinates, (byte)Main.rand.Next(1, 3), (int)Main.GameUpdateCount, _color);
     }
 }
 
