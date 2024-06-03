@@ -1,4 +1,5 @@
 ﻿using Aequus.Core.ContentGeneration;
+using Aequus.Core.Graphics.Textures;
 using Terraria.GameContent;
 using Terraria.Localization;
 
@@ -10,21 +11,24 @@ internal class SeaFireflyItem(UnifiedCritter Parent, string DyeName, byte Color)
 
     public override LocalizedText DisplayName => Critter.GetLocalization($"DisplayName.{DyeName}", () => $"{DyeName} Sea Firefly");
 
-    public ISeaFireflyInstanceData Current => SeaFirefly.GetPalette(Color);
+    public ISeaFireflyInstanceData Current => SeaFireflyRegistry.GetPalette(Color);
+
+    public override void SetStaticDefaults() {
+        if (!Main.dedServ && Current.ColorEffect != null) {
+            Main.QueueMainThreadAction(SetTexture);
+        }
+    }
+
+    void SetTexture() {
+        IColorEffect effect = SeaFireflyRegistry.SeaFireflyItemMaskEffect.WithEffect(Current.ColorEffect);
+        TextureAssets.Item[Type] = TextureGen.PerPixel(effect, TextureAssets.Item[Type]);
+    }
 
     public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
-        spriteBatch.Draw(TextureAssets.Item[Type].Value, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
-        spriteBatch.Draw(AequusTextures.SeaFireflyItem_Dyed, position, frame, Current.GetBugColor() with { A = 255 }, 0f, origin, scale, SpriteEffects.None, 0f);
-        return false;
+        return true;
     }
 
     public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
-        Main.GetItemDrawFrame(Type, out Texture2D texture, out Rectangle frame);
-        Vector2 position = ExtendItem.WorldDrawPos(Item, frame);
-        Vector2 origin = frame.Size() / 2f;
-
-        spriteBatch.Draw(texture, position, frame, lightColor, rotation, origin, scale, SpriteEffects.None, 0f);
-        spriteBatch.Draw(AequusTextures.SeaFireflyItem_Dyed, position, frame, Utils.MultiplyRGBA(lightColor, Current.GetBugColor() with { A = 255 }), rotation, origin, scale, SpriteEffects.None, 0f);
-        return false;
+        return true;
     }
 }

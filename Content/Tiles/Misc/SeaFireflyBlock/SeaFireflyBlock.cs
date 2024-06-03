@@ -10,7 +10,7 @@ namespace Aequus.Content.Tiles.Misc.SeaFireflyBlock;
 
 internal class SeaFireflyBlock(string NameSuffix, byte ColorId) : InstancedTile($"SeaFireflyBlock{NameSuffix}", AequusTextures.SeaFireflyBlock.Path) {
     public readonly byte _color = ColorId;
-    public ISeaFireflyInstanceData Current => SeaFirefly.GetPalette(_color);
+    public ISeaFireflyInstanceData Current => SeaFireflyRegistry.GetPalette(_color);
 
     public override void Load() {
         ModItem item = new SeaFireflyBlockItem(this);
@@ -54,7 +54,7 @@ internal class SeaFireflyBlock(string NameSuffix, byte ColorId) : InstancedTile(
 internal class SeaFireflyBlockItem(SeaFireflyBlock block) : InstancedModItem(block.Name, block.Texture + "Item") {
     public readonly ModTile _parent = block;
     public readonly byte _color = block._color;
-    public ISeaFireflyInstanceData Current => SeaFirefly.GetPalette(_color);
+    public ISeaFireflyInstanceData Current => SeaFireflyRegistry.GetPalette(_color);
 
     public override LocalizedText DisplayName => Language.GetOrRegister($"Mods.Aequus.Tiles.SeaFireflyBlock.DisplayName{Current.Name}", () => $"{Current.Name} Sea Firefly Block");
     public override LocalizedText Tooltip => LocalizedText.Empty;

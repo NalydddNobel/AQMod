@@ -138,7 +138,7 @@ public class SeaFireflyClusters : ConcurrentParticles<SeaFireflyClusters.Particl
 
         public Vector2 Velocity => Where - WhereLast;
 
-        public ISeaFireflyInstanceData Current => SeaFirefly.GetPalette(Color);
+        public ISeaFireflyInstanceData Current => SeaFireflyRegistry.GetPalette(Color);
 
         public void Setup(Vector2 where, byte frame, int time, byte color) {
             Where = where;

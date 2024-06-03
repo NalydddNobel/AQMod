@@ -1,12 +1,8 @@
-﻿using Aequus.Common.Items;
-using Aequus.Common.NPCs.Bestiary;
+﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Biomes.PollutedOcean;
-using Aequus.Content.Tiles.Misc.SeaFireflyBlock;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics;
 using Aequus.Core.Particles;
-using Aequus.DataSets;
-using Aequus.DataSets.Structures.Enums;
 using System;
 using System.IO;
 using Terraria.DataStructures;
@@ -41,7 +37,7 @@ public class SeaFirefly : UnifiedCritter, DrawLayers.IDrawLayer {
 
     #region Initialization
     public override void OnLoad() {
-        LoadColors();
+        SeaFireflyRegistry.LoadAll(this);
     }
 
     public override void OnSetStaticDefaults() {
@@ -70,7 +66,7 @@ public class SeaFirefly : UnifiedCritter, DrawLayers.IDrawLayer {
 
     public override void OnSpawn(IEntitySource source) {
         if (Main.remixWorld) {
-            color = RainbowIndex;
+            color = SeaFireflyRegistry.RainbowIndex;
         }
         if (FromCritterItem(source, out Item item) && item.ModItem is SeaFireflyItem fireflyItem) {
             color = fireflyItem.Color;
@@ -278,91 +274,6 @@ public class SeaFirefly : UnifiedCritter, DrawLayers.IDrawLayer {
     #region Colors
     public byte color;
 
-    public static byte RainbowIndex { get; private set; }
-
-    private static ISeaFireflyInstanceData[] _registeredPalettes = [];
-
-    public static ISeaFireflyInstanceData Default => _registeredPalettes[0];
-
-    public static int ColorCount => _registeredPalettes.Length;
-
-    public ISeaFireflyInstanceData Current => _registeredPalettes[color];
-
-    public static ISeaFireflyInstanceData GetPalette(int type) {
-        return _registeredPalettes[type];
-    }
-
-    public static byte RegisterPalette(ISeaFireflyInstanceData dye) {
-        Array.Resize(ref _registeredPalettes, _registeredPalettes.Length + 1);
-
-        _registeredPalettes[^1] = dye;
-        return (byte)(_registeredPalettes.Length - 1);
-    }
-
-    void LoadColors() {
-        AddVariantFull(new DefaultVariant(""));
-
-        // Add basic dye variants.
-        AddBasicDyes();
-
-        // Add rainbow dye variant
-        RainbowIndex = AddDyed(new RainbowVariant("Rainbow"), ItemID.RainbowDye);
-    }
-
-    void AddBasicDyes() {
-        foreach (var pair in PaintDataSet.RGB) {
-            // Skip entry if it's brown or doesn't have a related dye.
-            if (pair.Key == PaintColor.Brown || !PaintDataSet.Dyes.TryGetValue(pair.Key, out var item)) {
-                continue;
-            }
-
-            string name = pair.Key.ToString();
-            Color rgb = pair.Value with { A = 40 };
-            int dyeItem = item.Id;
-            AddDyedColor(name, rgb, dyeItem);
-        }
-    }
-
-    byte AddVariant(ref ISeaFireflyInstanceData Variant) {
-        byte color = RegisterPalette(Variant);
-        Variant.Type = color;
-        return color;
-    }
-
-    void AddVariantFull(ISeaFireflyInstanceData Variant) {
-        byte result = AddVariant(ref Variant);
-        AddTile(Variant);
-    }
-
-    byte AddDyedColor(string Name, Color DyeColor, int DyeItem) {
-        return AddDyed(new DyeVariant(Name, DyeColor), DyeItem);
-    }
-
-    byte AddDyed(ISeaFireflyInstanceData Variant, int DyeItem) {
-        byte color = AddVariant(ref Variant);
-
-        ModItem dyedItem = new SeaFireflyItem(this, Variant.Name, color);
-
-        Mod.AddContent(dyedItem);
-
-        AddTile(Variant);
-
-        Aequus.OnAddRecipes += AddRecipe;
-
-        return color;
-
-        void AddRecipe() {
-            dyedItem.CreateRecipe()
-                .AddRecipeGroup(AequusRecipes.AnySeaFirefly)
-                .AddIngredient(DyeItem)
-                .Register();
-        }
-    }
-
-    void AddTile(ISeaFireflyInstanceData Variant) {
-        ModTile tile = new SeaFireflyBlock(Variant.Name, Variant.Type);
-
-        Mod.AddContent(tile);
-    }
+    public ISeaFireflyInstanceData Current => SeaFireflyRegistry.GetPalette(color);
     #endregion
 }

@@ -106,7 +106,7 @@ public class SeaFireflyBlockClusters : ParticleSystem {
                 if (TileLoader.GetTile(Framing.GetTileSafely(pair.Key).TileType) is SeaFireflyBlock seaFireflyBlock) {
                     color = seaFireflyBlock._color;
                 }
-                ISeaFireflyInstanceData current = SeaFirefly.GetPalette(color);
+                ISeaFireflyInstanceData current = SeaFireflyRegistry.GetPalette(color);
 
                 foreach (var p in pair.Value) {
                     float rotation = p.Velocity.X * 0.1f;
