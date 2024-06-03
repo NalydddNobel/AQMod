@@ -898,6 +898,16 @@ CosmicChest: {
 	Tooltip: Permanently increases item droprates from enemies
 }
 
+BeyondLifeCrystal: {
+	DisplayName: Beyond Life Crystal
+	Tooltip: Permanently increases maximum life by {0}
+}
+
+BeyondManaCrystal: {
+	DisplayName: Beyond Mana Crystal
+	Tooltip: Permanently increases maximum mana by {0}
+}
+
 NetherStar: {
 	DisplayName: Convergent Heart
 	Tooltip: "{$ItemTooltip.DemonHeart}"
@@ -1177,14 +1187,4 @@ StariteMaterial: {
 UnopenedChestItem: {
 	DisplayName: Unopened Chest Item
 	Tooltip: This is a debug item placed into chests upon worldgen to check if they have been opened
-}
-
-BeyondLifeCrystal: {
-	DisplayName: Beyond Life Crystal
-	Tooltip: ""
-}
-
-BeyondManaCrystal: {
-	DisplayName: Beyond Mana Crystal
-	Tooltip: ""
 }

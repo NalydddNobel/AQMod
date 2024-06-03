@@ -1,4 +1,5 @@
 ﻿using Aequus.Core.CodeGeneration;
+using Terraria.Localization;
 
 namespace Aequus.Content.Items.PermaPowerups.BeyondLifeCrystal;
 
@@ -7,6 +8,8 @@ namespace Aequus.Content.Items.PermaPowerups.BeyondLifeCrystal;
 public class BeyondLifeCrystal : ModItem {
     public static readonly int MaxUses = 20;
     public static readonly int LifeIncrease = 5;
+
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(LifeIncrease);
 
     public override void SetStaticDefaults() {
         ItemSets.ItemNoGravity[Type] = true;

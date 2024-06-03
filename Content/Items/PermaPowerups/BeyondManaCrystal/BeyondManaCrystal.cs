@@ -1,4 +1,5 @@
 ﻿using Aequus.Core.CodeGeneration;
+using Terraria.Localization;
 
 namespace Aequus.Content.Items.PermaPowerups.BeyondManaCrystal;
 
@@ -7,6 +8,8 @@ namespace Aequus.Content.Items.PermaPowerups.BeyondManaCrystal;
 public class BeyondManaCrystal : ModItem {
     public static readonly int MaxUses = 20;
     public static readonly int ManaIncrease = 5;
+
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ManaIncrease);
 
     public override void SetStaticDefaults() {
         ItemSets.ItemNoGravity[Type] = true;

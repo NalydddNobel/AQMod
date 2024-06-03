@@ -898,6 +898,16 @@ CosmicChest: {
 	Tooltip: 永久性增加敌人的物品掉率
 }
 
+BeyondLifeCrystal: {
+	DisplayName: 彼界生命水晶
+	Tooltip: ""
+}
+
+BeyondManaCrystal: {
+	DisplayName: 彼界魔力水晶
+	Tooltip: ""
+}
+
 NetherStar: {
 	DisplayName: 聚敛之心
 	Tooltip: "{$ItemTooltip.DemonHeart}"
@@ -1177,14 +1187,4 @@ StariteMaterial: {
 UnopenedChestItem: {
 	DisplayName: 未开启的宝箱物品
 	Tooltip: 这是Debug物品, 将其放置在世界生成的宝箱内以检测其是否被开启过
-}
-
-BeyondLifeCrystal: {
-	DisplayName: 彼界生命水晶
-	Tooltip: ""
-}
-
-BeyondManaCrystal: {
-	DisplayName: 彼界魔力水晶
-	Tooltip: ""
 }
