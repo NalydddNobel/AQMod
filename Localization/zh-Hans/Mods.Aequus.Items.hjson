@@ -900,12 +900,12 @@ CosmicChest: {
 
 BeyondLifeCrystal: {
 	DisplayName: 彼界生命水晶
-	Tooltip: ""
+	Tooltip: 永久性增加{0}点最大生命值
 }
 
 BeyondManaCrystal: {
 	DisplayName: 彼界魔力水晶
-	Tooltip: ""
+	Tooltip: 永久性增加{0}点最大魔力值
 }
 
 NetherStar: {
