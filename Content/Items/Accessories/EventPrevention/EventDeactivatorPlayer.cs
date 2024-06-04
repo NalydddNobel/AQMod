@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Projectiles;
+﻿using Aequus.Common;
+using Aequus.Common.Projectiles;
 using Aequus.DataSets;
 
 namespace Aequus.Content.Items.Accessories.EventPrevention;
@@ -29,16 +30,16 @@ public class EventDeactivatorPlayer : ModPlayer {
 
     private void CheckFlagOverrides() {
         if (accDisableBloodMoon) {
-            CommonRefManipulators.BloodMoon.OverrideValue(false);
+            Commons.Refs.BloodMoon.OverrideValue(false);
         }
         if (accDisableEclipse) {
-            CommonRefManipulators.Eclipse.OverrideValue(false);
+            Commons.Refs.Eclipse.OverrideValue(false);
         }
         if (accDisablePumpkinMoon) {
-            CommonRefManipulators.PumpkinMoon.OverrideValue(false);
+            Commons.Refs.PumpkinMoon.OverrideValue(false);
         }
         if (accDisableFrostMoon) {
-            CommonRefManipulators.FrostMoon.OverrideValue(false);
+            Commons.Refs.FrostMoon.OverrideValue(false);
         }
     }
 
@@ -49,10 +50,10 @@ public class EventDeactivatorPlayer : ModPlayer {
     }
 
     public static void UndoPlayerFlagOverrides() {
-        CommonRefManipulators.BloodMoon.VoidOverriddenValue();
-        CommonRefManipulators.Eclipse.VoidOverriddenValue();
-        CommonRefManipulators.PumpkinMoon.VoidOverriddenValue();
-        CommonRefManipulators.FrostMoon.VoidOverriddenValue();
+        Commons.Refs.BloodMoon.VoidOverriddenValue();
+        Commons.Refs.Eclipse.VoidOverriddenValue();
+        Commons.Refs.PumpkinMoon.VoidOverriddenValue();
+        Commons.Refs.FrostMoon.VoidOverriddenValue();
     }
 
     public override void ResetEffects() {

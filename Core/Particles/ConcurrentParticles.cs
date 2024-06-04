@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using Aequus.Core.Concurrent;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -31,6 +32,8 @@ public abstract class ConcurrentParticles<T> : IParticleSystem, IParticleEmitter
         // Clear the swap bag.
         _bagSwap.Clear();
 
+        ParallelLighting.Instance.Begin();
+
         // Iterate over the current bag.
         Parallel.ForEach(_bag, item => {
             Update(item);
@@ -40,6 +43,8 @@ public abstract class ConcurrentParticles<T> : IParticleSystem, IParticleEmitter
                 _bagSwap.Add(item);
             }
         });
+
+        ParallelLighting.Instance.End();
 
         // Swap the bag with the swap bag.
         (_bag, _bagSwap) = (_bagSwap, _bag);

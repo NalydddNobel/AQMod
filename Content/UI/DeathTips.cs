@@ -118,9 +118,9 @@ public class DeathTips : UILayer {
                 GameTipID.FrostMoonStarting),
             FromId(WEIGHT_MISC, (p) => !NPC.downedQueenBee && Main.rand.NextBool(12),
                 GameTipID.WitchDoctorNeedsQueenBeeToMoveIn),
-            FromId(WEIGHT_MISC, (p) => WorldState.HardmodeTier && !NPC.savedWizard && Main.rand.NextBool(12),
+            FromId(WEIGHT_MISC, (p) => AequusSystem.HardmodeTier && !NPC.savedWizard && Main.rand.NextBool(12),
                 GameTipID.WizardLocation),
-            FromId(WEIGHT_MISC, (p) => WorldState.HardmodeTier && !NPC.savedTaxCollector && Main.rand.NextBool(12),
+            FromId(WEIGHT_MISC, (p) => AequusSystem.HardmodeTier && !NPC.savedTaxCollector && Main.rand.NextBool(12),
                 GameTipID.TaxCollectorNeedsToBePurified),
 
             // Town NPCs

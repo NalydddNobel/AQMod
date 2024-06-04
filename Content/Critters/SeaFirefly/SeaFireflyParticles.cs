@@ -1,4 +1,5 @@
-﻿using Aequus.Core.Graphics;
+﻿using Aequus.Core.Concurrent;
+using Aequus.Core.Graphics;
 using Aequus.Core.Particles;
 using System;
 
@@ -29,7 +30,7 @@ public class SeaFireflyClusters : ConcurrentParticles<SeaFireflyClusters.Particl
 
             if (t.Frame < 2) {
                 try {
-                    Lighting.AddLight(t.Where, t.Current.GetLightColor(t.Where) * 0.33f);
+                    ParallelLighting.Instance.Add(t.Where, t.Current.GetLightColor(t.Where) * 0.33f);
                 }
                 catch (Exception ex) {
                     Log.Error(ex);

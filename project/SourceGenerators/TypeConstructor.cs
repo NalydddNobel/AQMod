@@ -15,11 +15,8 @@ public class TypeConstructor(string Name, string Namespace, string[] Usings, Dic
         _methods.Clear();
     }
 
-    public void AddField(string name, string type, string initializer = null, bool instanced = true) {
+    public void AddField(string name, string type, string initializer = null) {
         string fieldDefinition = "public ";
-        if (!instanced) {
-            fieldDefinition += "static ";
-        }
         fieldDefinition += $"{type} {name}";
         if (initializer != null) {
             fieldDefinition += $" = new {type}({initializer});";
@@ -35,7 +32,7 @@ public class TypeConstructor(string Name, string Namespace, string[] Usings, Dic
             Code = $"{existingCode}\n{Code}";
         }
 
-        _methods[Define] = Code; 
+        _methods[Define] = Code;
     }
 
     public bool GetArgOverride(string type, out string argOverride) {
@@ -103,20 +100,12 @@ public class TypeConstructor(string Name, string Namespace, string[] Usings, Dic
 
         context.AddSource($"{Name}.cs", stringBuilder.ToString());
 
-        void TabFor() {
-            tabs += Utilities.TabForward;
-        }
+        void TabFor() => tabs += Utilities.TabForward;
 
-        void TabBack() {
-            tabs = tabs.Substring(0, tabs.Length - Utilities.TabForward.Length);
-        }
+        void TabBack() => tabs = tabs.Substring(0, tabs.Length - Utilities.TabForward.Length);
 
-        void Append(string text) {
-            stringBuilder.Append($"{tabs}{text.Replace("\n", $"\n{tabs}")}");
-        }
-        void AppendLine(string text = "") {
-            stringBuilder.AppendLine($"{tabs}{text.Replace("\n", $"\n{tabs}")}");
-        }
+        void Append(string text) => stringBuilder.Append($"{tabs}{text.Replace("\n", $"\n{tabs}")}");
+        void AppendLine(string text = "") => stringBuilder.AppendLine($"{tabs}{text.Replace("\n", $"\n{tabs}")}");
     }
 
     private string _debugText;

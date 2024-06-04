@@ -24,8 +24,28 @@ public class TypeGenerator : ISourceGenerator {
         ["SavedField"] = (type, name, attr) => {
             string fieldName = attr.GetTextArgument(0);
             type.AddField(fieldName, name.Right.GetGeneric(0));
-            type.AddMethod("SaveInner(TagCompound tag)", $"SaveObj(tag, \"{fieldName}\", {fieldName});");
-            type.AddMethod("LoadInner(TagCompound tag)", $"LoadObj(tag, \"{fieldName}\", ref {fieldName});");
+            type.AddMethod("SaveInner(TagCompound tag)", $"this.SaveObj(tag, \"{fieldName}\", {fieldName});");
+            type.AddMethod("LoadInner(TagCompound tag)", $"this.LoadObj(tag, \"{fieldName}\", ref {fieldName});");
+        },
+        ["WorldField"] = (type, name, attr) => {
+            string fieldName = attr.GetTextArgument(0);
+            string upperFieldName = $"{char.ToUpper(fieldName[0])}{fieldName.Substring(1)}";
+            string fieldType = name.Right.GetGeneric(0);
+
+            // Add static field.
+            type.AddField(fieldName, $"static {fieldType}");
+
+            if (fieldType == "bool") {
+                // Add condition.
+                type.AddField($"Condition{upperFieldName} = new(\"Mods.Aequus.Condition.{upperFieldName}\", () => {fieldName})", "static readonly Condition");
+                // Add reverse condition.
+                type.AddField($"ConditionNot{upperFieldName} = new(\"Mods.Aequus.Condition.{upperFieldName}\", () => !{fieldName})", "static readonly Condition");
+            }
+
+            type.AddMethod("SaveInner(TagCompound tag)", $"this.SaveObj(tag, \"{fieldName}\", {fieldName});");
+            type.AddMethod("LoadInner(TagCompound tag)", $"this.LoadObj(tag, \"{fieldName}\", ref {fieldName});");
+            type.AddMethod("SendDataInner(BinaryWriter writer)", $"this.SendObj(writer, {fieldName});");
+            type.AddMethod("ReceiveDataInner(BinaryReader reader)", $"this.ReceiveObj(reader, ref {fieldName});");
         },
     };
 
@@ -37,12 +57,12 @@ public class TypeGenerator : ISourceGenerator {
 
         string resultName = Utilities.ConvertNameSyntax(name.Right);
         int underscore = resultName.IndexOf('_');
-        if (underscore == -1 || underscore >= resultName.Length-1) {
+        if (underscore == -1 || underscore >= resultName.Length - 1) {
             goto FalseResult;
         }
 
         type = resultName.Substring(0, underscore);
-        action = resultName.Substring(underscore+1);
+        action = resultName.Substring(underscore + 1);
         return true;
 
     FalseResult:
@@ -66,6 +86,11 @@ public class TypeGenerator : ISourceGenerator {
              Usings: ["Terraria.ModLoader.IO", "Aequus.Core.Structures"],
              MethodInputConversions: new Dictionary<string, string>() {
                  ["AequusItem"] = "this",
+             }),
+            ["AequusSystem"] = new TypeConstructor("AequusSystem", "Aequus",
+             Usings: ["Terraria.ModLoader.IO", "Aequus.Core.Structures", "System.IO"],
+             MethodInputConversions: new Dictionary<string, string>() {
+                 ["AequusSystem"] = "this",
              }),
         };
         foreach (ClassDeclarationSyntax definedClass in context.Compilation.SyntaxTrees.SelectMany(tree => tree.GetRoot(context.CancellationToken)

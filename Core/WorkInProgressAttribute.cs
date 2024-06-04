@@ -3,5 +3,4 @@
 namespace Aequus.Core;
 
 [AttributeUsage(AttributeTargets.Class)]
-public sealed class WorkInProgressAttribute : Attribute {
-}
+public sealed class WorkInProgressAttribute : Attribute { }

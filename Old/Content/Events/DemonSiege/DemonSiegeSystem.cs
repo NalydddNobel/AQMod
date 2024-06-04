@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.Events.DemonSiege;
+using Aequus.Core.CodeGeneration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,6 +8,7 @@ using tModLoaderExtended.Networking;
 
 namespace Aequus.Old.Content.Events.DemonSiege;
 
+[Gen.AequusSystem_WorldField<bool>("downedDemonSiege")]
 public class DemonSiegeSystem : ModSystem {
     public static readonly Color TextColor = new Color(255, 210, 25, 255);
 

@@ -12,7 +12,7 @@ using Terraria.Localization;
 
 namespace Aequus.Content.TownNPCs.SkyMerchant;
 
-public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
+public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
     public enum MovementState {
         Init,
         Walking,

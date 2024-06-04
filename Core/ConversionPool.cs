@@ -28,6 +28,4 @@ public class ConversionPool<TFrom, TTo> {
     }
 }
 
-public class ConversionPool<T> : ConversionPool<T, T> {
-    public ConversionPool(Func<T, T> converter) : base(converter) { }
-}
+public class ConversionPool<T>(Func<T, T> converter) : ConversionPool<T, T>(converter) { }

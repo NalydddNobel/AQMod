@@ -213,7 +213,7 @@ internal class MinionTagNPC : GlobalNPC {
     }
 }
 
-public static partial class Extensions {
+internal static partial class Extensions {
     public static void RemoveTagBuff(this IMinionTagController tag, NPC npc) {
         npc.RequestBuffRemoval(tag.TagBuff.Type);
     }

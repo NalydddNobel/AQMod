@@ -2,6 +2,7 @@
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Bosses.Trophies;
 using Aequus.Content.Dusts;
+using Aequus.Core.CodeGeneration;
 using Aequus.Core.ContentGeneration;
 using Aequus.DataSets;
 using Aequus.Old.Common.Graphics;
@@ -23,6 +24,7 @@ using Terraria.Utilities;
 
 namespace Aequus.Old.Content.Bosses.UltraStarite;
 
+[Gen.AequusSystem_WorldField<bool>("downedUltraStarite")]
 [BestiaryBiome<GlimmerZone>()]
 [AutoloadBossHead]
 [AutoloadTrophies(LegacyBossTrophiesTile.UltraStarite)]
@@ -431,7 +433,7 @@ public class UltraStarite : ModNPC {
 
     public override void OnKill() {
         ExtendItem.DropHearts(new EntitySource_Loot(NPC), NPC.Hitbox, 4, 4);
-        NPC.SetEventFlagCleared(ref WorldState._downedCosmicBoss, -1);
+        NPC.SetEventFlagCleared(ref AequusSystem.downedUltraStarite, -1);
     }
 
     public override int SpawnNPC(int tileX, int tileY) {

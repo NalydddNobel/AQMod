@@ -6,7 +6,7 @@ namespace Aequus.Core.ContentGeneration;
 /// <param name="texture"></param>
 /// <param name="safe">Whether this dust is safe. (<see cref="ChildSafety.SafeDust"/>)</param>
 [Autoload(value: false)]
-public class InstancedModDust(string name, string texture, bool safe = true) : ModDust {
+internal class InstancedModDust(string name, string texture, bool safe = true) : ModDust {
     public override string Name => name;
 
     public override string Texture => texture;
@@ -16,7 +16,7 @@ public class InstancedModDust(string name, string texture, bool safe = true) : M
     }
 }
 
-public class InstancedCloneDust(string name, string texture, bool safe = true, int updateType = -1)
+internal class InstancedCloneDust(string name, string texture, bool safe = true, int updateType = -1)
     : InstancedModDust(name, texture, safe) {
     public override void SetStaticDefaults() {
         base.SetStaticDefaults();

@@ -3,6 +3,10 @@
 namespace Aequus.Core.Utilities;
 
 public static class ExtendColor {
+    public static byte Velocity(this Color color) {
+        return Math.Max(Math.Max(color.R, color.G), color.B);
+    }
+
     /// <returns><paramref name="color"/>, with its R,G,B,A Maxed to the specified <paramref name="amt"/>.</returns>
     public static Color MaxRGBA(this Color color, byte amt) {
         return color.MaxRGBA(amt, amt);

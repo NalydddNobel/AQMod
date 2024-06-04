@@ -129,7 +129,7 @@ public class Manacle : ModHerb, IDrawWindyGrass {
 
     public override bool CanNaturallyGrow(int X, int Y, Tile tile, bool[] anchoredTiles) {
         if (Main.remixWorld) {
-            Point range = WorldState.RemixWorldSafeUnderworldRange;
+            Point range = AequusSystem.RemixWorldSafeUnderworldRange;
 
             // Manacle plants cannot generate in the middle of remix seed worlds.
             if (X > range.X && X < range.Y && Y > Main.rockLayer) {

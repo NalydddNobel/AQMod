@@ -70,7 +70,7 @@ public abstract class UnifiedTownNPC : ModNPC, IModifyShoppingSettings, ITalkNPC
     }
 }
 
-public abstract class AequusTownNPC<T> : UnifiedTownNPC where T : AequusTownNPC<T> {
+public abstract class UnifiedTownNPC<T> : UnifiedTownNPC where T : UnifiedTownNPC<T> {
     public static int ShimmerHeadIndex { get; protected set; }
     public static StackedNPCProfile Profile { get; protected set; }
 

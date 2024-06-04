@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Common.Tiles.Components;
+﻿using Aequus.Common.Tiles.Components;
 using Aequus.Core.ContentGeneration;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
@@ -153,10 +152,10 @@ public sealed class PlanterBox : ModTile, IRandomUpdateOverride, IPostSetupConte
         IL_WorldGen.CanCutTile += IL_WorldGen_CanCutTile;
         IL_WorldGen.TryKillingReplaceableTile += IL_WorldGen_TryKillingReplaceableTile;
 
-        AddItem("Moray", ItemID.BlinkrootPlanterBox, Commons.Conditions.DownedAquaticBoss);
-        AddItem("Mistral", ItemID.FireBlossomPlanterBox, Commons.Conditions.DownedTrueAtmosphereBoss);
-        AddItem("Manacle", ItemID.ShiverthornPlanterBox, Commons.Conditions.DownedDemonBoss);
-        AddItem("Moonflower", ItemID.CrimsonPlanterBox, Commons.Conditions.DownedTrueCosmicBoss);
+        AddItem("Moray", ItemID.BlinkrootPlanterBox, AequusSystem.ConditionDownedSalamancer);
+        AddItem("Mistral", ItemID.FireBlossomPlanterBox, AequusSystem.ConditionDownedDustDevil);
+        AddItem("Manacle", ItemID.ShiverthornPlanterBox, AequusSystem.ConditionDownedDemonSiege);
+        AddItem("Moonflower", ItemID.CrimsonPlanterBox, AequusSystem.ConditionDownedOmegaStarite);
 
         void AddItem(string name, int shopSortItemIdTarget, Condition sellCondition) {
             InstancedTileItem planterBoxItem = new InstancedTileItem(this, style: RegisteredPlanterBoxItems.Count, name, rarity: ItemRarityID.White, value: Item.silver, researchSacrificeCount: 25, journeyOverride: new JourneySortByTileId(TileID.PlanterBox));

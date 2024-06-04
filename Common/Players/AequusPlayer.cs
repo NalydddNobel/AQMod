@@ -4,12 +4,11 @@ using Aequus.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
 using Aequus.Core.CodeGeneration;
 using System.Runtime.CompilerServices;
 using Terraria.GameInput;
-using Terraria.ModLoader.IO;
 
 namespace Aequus;
 
 [Gen.AequusPlayer_ResetField<StatModifier>("wingTime")]
-public partial class AequusPlayer : ModPlayer {
+public partial class AequusPlayer : ModPlayer, ISGUtil {
     public Vector2 transitionVelocity;
 
     public int timeSinceRespawn;
@@ -93,23 +92,6 @@ public partial class AequusPlayer : ModPlayer {
     private static void ResetObj<T>(ref T obj) {
         obj = default(T);
     }
-
-    #region IO
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static void SaveObj<T>(TagCompound tag, string name, T obj) {
-        if (obj?.Equals(default(T)) == true) {
-            tag[name] = obj;
-        }
-    }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static void LoadObj<T>(TagCompound tag, string name, ref T obj) {
-        obj = default;
-        if (tag.TryGet(name, out T result)) {
-            obj = result;
-        }
-    }
-    #endregion
 
     #region Misc
     /// <param name="Center">The enemy's center.</param>

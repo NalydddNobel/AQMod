@@ -111,7 +111,7 @@ public class SeaFireflyBlockClusters : ParticleSystem {
                 foreach (var p in pair.Value) {
                     float rotation = p.Velocity.X * 0.1f;
                     SpriteEffects effects = p.Velocity.X < 0f ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-                    SeaFirefly.DrawSeaFirefly(current, spriteBatch, p.position, Main.screenPosition, lightColor, p.scale, p.scale * 0.7f, rotation, effects, p.scale, p._frame * 2, 0, true);
+                    SeaFirefly.DrawSeaFirefly(current, spriteBatch, p.position, Main.screenPosition, lightColor, p.scale, p.scale * 1.25f, rotation, effects, p.scale, p._frame * 2, 0, true);
                 }
             }
         }

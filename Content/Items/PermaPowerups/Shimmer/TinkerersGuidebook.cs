@@ -1,5 +1,8 @@
-﻿namespace Aequus.Content.Items.PermaPowerups.Shimmer;
+﻿using Aequus.Core.CodeGeneration;
 
+namespace Aequus.Content.Items.PermaPowerups.Shimmer;
+
+[Gen.AequusSystem_WorldField<bool>("usedReforgeBook")]
 public class TinkerersGuidebook : ModItem {
     public static int BonusRerolls { get; set; } = 2;
 
@@ -17,11 +20,11 @@ public class TinkerersGuidebook : ModItem {
     }
 
     public override bool? UseItem(Player player) {
-        if (WorldState.UsedReforgeBook) {
+        if (AequusSystem.usedReforgeBook) {
             return false;
         }
 
-        WorldState.UsedReforgeBook = true;
+        AequusSystem.usedReforgeBook = true;
         if (Main.netMode == NetmodeID.Server) {
             NetMessage.SendData(MessageID.WorldData);
         }

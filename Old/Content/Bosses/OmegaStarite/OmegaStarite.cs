@@ -5,6 +5,7 @@ using Aequus.Content.Bosses;
 using Aequus.Content.Bosses.Trophies;
 using Aequus.Content.Dusts;
 using Aequus.Content.Pets.OmegaStarite;
+using Aequus.Core.CodeGeneration;
 using Aequus.Core.ContentGeneration;
 using Aequus.DataSets;
 using Aequus.Old.Common.Graphics;
@@ -26,6 +27,7 @@ using Terraria.Utilities;
 
 namespace Aequus.Old.Content.Bosses.OmegaStarite;
 
+[Gen.AequusSystem_WorldField<bool>("downedOmegaStarite")]
 [BestiaryBiome<GlimmerZone>()]
 [AutoloadBossHead]
 [AutoloadBossMask]
@@ -1343,7 +1345,7 @@ public class OmegaStarite : LegacyAequusBoss {
     public override void OnKill() {
         GlimmerSystem.EndEventDelay = 240;
 
-        NPC.SetEventFlagCleared(ref WorldState._downedTrueCosmicBoss, -1);
+        NPC.SetEventFlagCleared(ref AequusSystem.downedOmegaStarite, -1);
     }
 
     public override void SendExtraAI(BinaryWriter writer) {

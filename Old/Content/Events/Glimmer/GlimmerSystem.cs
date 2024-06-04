@@ -307,7 +307,7 @@ public class GlimmerSystem : ModSystem {
             stopEvents = true;
         }
         else {
-            if ((WorldState.DownedCosmicBoss || WorldState.DownedTrueCosmicBoss) && Main.rand.NextBool()) {
+            if ((AequusSystem.downedUltraStarite || AequusSystem.downedOmegaStarite) && Main.rand.NextBool()) {
                 PeacefulGlimmerZone.TileLocationX = Main.rand.Next(100, Main.maxTilesX - 100);
             }
         }

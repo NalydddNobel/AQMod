@@ -11,7 +11,7 @@ public class ItemPrefixesGlobalItem : GlobalItem {
     }
 
     private static bool RerollPrefixes(On_Item.orig_Prefix orig, Item item, int pre) {
-        if (pre != -2 || _loops != 0 || !WorldState.UsedReforgeBook) {
+        if (pre != -2 || _loops != 0 || !AequusSystem.usedReforgeBook) {
             return orig(item, pre);
         }
 

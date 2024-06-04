@@ -2,6 +2,7 @@
 using Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics.Textures;
+using System.Linq;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Localization;
@@ -18,8 +19,8 @@ internal class SeaFireflyBlock(string NameSuffix, byte ColorId) : InstancedTile(
     }
 
     public override void SetStaticDefaults() {
-        if (!Main.dedServ && Current.ColorEffect != null) {
-            Main.QueueMainThreadAction(() => TextureAssets.Tile[Type] = TextureGen.PerPixel(Current.ColorEffect, TextureAssets.Tile[Type]));
+        if (!Main.dedServ && Current.TileEffect != null) {
+            Main.QueueMainThreadAction(() => TextureAssets.Tile[Type] = TextureGen.PerPixel(Current.TileEffect, TextureAssets.Tile[Type]));
         }
 
         Main.tileSolid[Type] = false;
@@ -64,10 +65,17 @@ internal class SeaFireflyBlockItem(SeaFireflyBlock block) : InstancedModItem(blo
             Main.QueueMainThreadAction(() => TextureAssets.Item[Type] = TextureGen.PerPixel(Current.ColorEffect, TextureAssets.Item[Type]));
         }
 
-        foreach (SeaFireflyItem item in ModContent.GetContent<SeaFireflyItem>()) {
-            if (item.Color == _color) {
-                TrashCompactorRecipe.AddCustomRecipe(item.Type, (Type, 10));
+        foreach (var pair in ContentSamples.ItemsByType.Where(i => i.Value.makeNPC == ModContent.NPCType<SeaFirefly>())) {
+            if (pair.Value.ModItem is SeaFireflyItem seaFireflyItem) {
+                if (seaFireflyItem.Color != _color) {
+                    continue;
+                }
             }
+            else if (_color != 0) {
+                continue;
+            }
+
+            TrashCompactorRecipe.AddCustomRecipe(pair.Key, (Type, 10));
         }
 
         Item.ResearchUnlockCount = 100;

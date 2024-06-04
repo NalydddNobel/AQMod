@@ -6,7 +6,7 @@ using Aequus.DataSets.Structures.Enums;
 using System;
 
 namespace Aequus.Content.Critters.SeaFirefly;
-internal class SeaFireflyRegistry {
+public class SeaFireflyRegistry {
     public static byte RainbowIndex { get; private set; }
 
     private static ISeaFireflyInstanceData[] _registeredPalettes = [];

@@ -27,78 +27,6 @@
             Prevents the player from right clicking a certain buff type. This list is cleared right before the local player is updated.
             </summary>
         </member>
-        <member name="F:Aequus.Common.Commons.Conditions.DownedAquaticBoss">
-            <summary>Whether ??? was defeated.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Conditions.NotDownedAquaticBoss">
-            <summary>Whether ??? was not defeated.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Conditions.DownedCosmicBoss">
-            <summary>Whether Ultra Starite was defeated.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Conditions.NotDownedCosmicBoss">
-            <summary>Whether Ultra Starite not was defeated.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Conditions.DownedTrueCosmicBoss">
-            <summary>Whether Omega Starite was defeated.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Conditions.NotDownedTrueCosmicBoss">
-            <summary>Whether Omega Starite not was defeated.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Conditions.DownedDemonBoss">
-            <summary>Whether the Demon Siege was completed atleast once.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Conditions.NotDownedDemonBoss">
-            <summary>Whether the Demon Siege not was completed atleast once.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Conditions.DownedTrueDemonBoss">
-            <summary>Whether Upriser (Unimplemented) was defeated.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Conditions.NotDownedTrueDemonBoss">
-            <summary>Whether Upriser (Unimplemented) not was defeated.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Conditions.DownedAtmosphereBossFlame">
-            <summary>Whether Red Sprite was defeated.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Conditions.NotDownedAtmosphereBossFlame">
-            <summary>Whether Red Sprite was not defeated.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Conditions.DownedAtmosphereBossFrost">
-            <summary>Whether Space Squid was defeated.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Conditions.NotDownedAtmosphereBossFrost">
-            <summary>Whether Space Squid was not defeated.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Conditions.DownedTrueAtmosphereBoss">
-            <summary>Whether Dust Devil was defeated.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Conditions.NotDownedTrueAtmosphereBoss">
-            <summary>Whether Dust Devil was not defeated.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Conditions.DownedOrganicBossMight">
-            <summary>Whether ??? was defeated.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Conditions.NotDownedOrganicBossMight">
-            <summary>Whether ??? was not defeated.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Conditions.DownedOrganicBossSight">
-            <summary>Whether ??? was defeated.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Conditions.NotDownedOrganicBossSight">
-            <summary>Whether ??? was not defeated.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Conditions.DownedOrganicBossFright">
-            <summary>Whether ??? was defeated.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Conditions.NotDownedOrganicBossFright">
-            <summary>Whether ??? was not defeated.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Conditions.DownedTrueFinalBoss">
-            <summary>Whether ??? was defeated.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Conditions.NotDownedTrueFinalBoss">
-            <summary>Whether ??? was not defeated.</summary>
-        </member>
         <member name="M:Aequus.Common.Commons.Conditions.BetweenDays(System.DayOfWeek,System.DayOfWeek)">
             <param name="firstDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:Aequus.Common.Systems.TimeSystem.DayOfTheWeek"/>.</param>
             <param name="lastDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:Aequus.Common.Systems.TimeSystem.DayOfTheWeek"/>.</param>
@@ -788,6 +716,12 @@
             Helper for whether or not the player is in danger
             </summary>
         </member>
+        <member name="F:Aequus.AequusPlayer.dropRolls">
+            <summary>Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.</summary>
+        </member>
+        <member name="P:Aequus.AequusSystem.RemixWorldSafeUnderworldRange">
+            <summary>Returns a point with the beginning (left) (X) and end (right) (Y) of the 'safe' underworld in remix worlds. This does not represent a point in 2D space, but rather two X coordinates.</summary>
+        </member>
         <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.SafeTile">
             <summary>
             Similar to <see cref="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.ReplaceableTile"/>, except if tile Ids in this entry are false, the Crab Crevice will actively try to steer away from generating around them.
@@ -1069,7 +1003,7 @@
             <summary>Color of the projectile. Used mostly by guns.</summary>
         </member>
         <member name="P:Aequus.DataSets.ProjectileDataSet.OccultistIgnore">
-            <summary>Projectiles in this set do not damage the <see cref="!:Old.Content.TownNPCs.OccultistNPC.Occultist"/>.</summary>
+            <summary>Projectiles in this set do not damage the <see cref="T:Aequus.Old.Content.TownNPCs.OccultistNPC.Occultist"/>.</summary>
         </member>
         <member name="P:Aequus.DataSets.ProjectileDataSet.IsStar">
             <summary>Whether or not this projectile is a "Star", this is automatically populated with anything that has "Star" in their internal name.</summary>
@@ -1263,6 +1197,21 @@
         <member name="T:Aequus.Core.CodeGeneration.Gen.AequusItem_UseItem">
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusItem.UseItem(Terraria.Item,Terraria.Player)"/>.</summary>
         </member>
+        <member name="T:Aequus.Core.CodeGeneration.Gen.AequusSystem_FieldAttribute`1">
+            <summary>Generates a field with <paramref name="Name"/> in <see cref="T:Aequus.AequusSystem"/>.</summary>
+        </member>
+        <member name="M:Aequus.Core.CodeGeneration.Gen.AequusSystem_FieldAttribute`1.#ctor(System.String)">
+            <summary>Generates a field with <paramref name="Name"/> in <see cref="T:Aequus.AequusSystem"/>.</summary>
+        </member>
+        <member name="T:Aequus.Core.CodeGeneration.Gen.AequusSystem_WorldFieldAttribute`1">
+            <summary><inheritdoc cref="T:Aequus.Core.CodeGeneration.Gen.AequusSystem_FieldAttribute`1"/> This field is Saved and Loaded through <see cref="M:Aequus.AequusSystem.SaveWorldData(Terraria.ModLoader.IO.TagCompound)"/> and <see cref="M:Aequus.AequusSystem.LoadWorldData(Terraria.ModLoader.IO.TagCompound)"/>.</summary>
+        </member>
+        <member name="M:Aequus.Core.CodeGeneration.Gen.AequusSystem_WorldFieldAttribute`1.#ctor(System.String)">
+            <summary><inheritdoc cref="T:Aequus.Core.CodeGeneration.Gen.AequusSystem_FieldAttribute`1"/> This field is Saved and Loaded through <see cref="M:Aequus.AequusSystem.SaveWorldData(Terraria.ModLoader.IO.TagCompound)"/> and <see cref="M:Aequus.AequusSystem.LoadWorldData(Terraria.ModLoader.IO.TagCompound)"/>.</summary>
+        </member>
+        <member name="T:Aequus.Core.CodeGeneration.ISGUtil">
+            <summary>Determines that this object is expanded by source generators and needs source generator extensions.</summary>
+        </member>
         <member name="T:Aequus.Core.CodeGeneration.Publicization`2">
             <summary>Rough system which helps getting private fields from classes.</summary>
         </member>
@@ -1281,79 +1230,6 @@
             <exception cref="T:System.MissingMemberException"></exception>
             <exception cref="T:System.NotSupportedException"></exception>
             <exception cref="T:System.InvalidOperationException"></exception>
-        </member>
-        <member name="T:Aequus.Core.Collections.DictionaryRemoveQueue`2">
-            <summary>
-            A Dictionary with a removal queue. Allows for removals to occur in an iteration.
-            Call <see cref="M:Aequus.Core.Collections.DictionaryRemoveQueue`2.RemoveAllQueued"/> to remove all queued entries from the Dictionary.
-            </summary>
-        </member>
-        <member name="T:Aequus.Core.ContentGeneration.InstancedModDust">
-            <param name="name"></param>
-            <param name="texture"></param>
-            <param name="safe">Whether this dust is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeDust"/>)</param>
-        </member>
-        <member name="M:Aequus.Core.ContentGeneration.InstancedModDust.#ctor(System.String,System.String,System.Boolean)">
-            <param name="name"></param>
-            <param name="texture"></param>
-            <param name="safe">Whether this dust is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeDust"/>)</param>
-        </member>
-        <member name="T:Aequus.Core.ContentGeneration.InstancedModGore">
-            <param name="name"></param>
-            <param name="texture"></param>
-            <param name="safe">Whether this gore is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeGore"/>)</param>
-        </member>
-        <member name="M:Aequus.Core.ContentGeneration.InstancedModGore.#ctor(System.String,System.String,System.Boolean)">
-            <param name="name"></param>
-            <param name="texture"></param>
-            <param name="safe">Whether this gore is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeGore"/>)</param>
-        </member>
-        <member name="T:Aequus.Core.ContentGeneration.InstancedTileItem">
-            <param name="modTile"></param>
-            <param name="style"></param>
-            <param name="nameSuffix">Extra text added to the end of the name.</param>
-            <param name="dropItem">Whether or not the <paramref name="modTile"/> should drop this item.</param>
-            <param name="rarity">Item rarity.</param>
-            <param name="value">Item value.</param>
-            <param name="researchSacrificeCount">Research count override.</param>
-            <param name="journeyOverride">Journey Mode item group override, used to organize tiles all together in the menu. Utilize <see cref="T:tModLoaderExtended.Terraria.GameContent.Creative.JourneySortByTileId"/> to sort with tiles with a matching tile id, since many tiles do not have item groups, and are instead sorted by tile id.</param>
-            <param name="TileIdOverride">Overrides the place tile id.</param>
-        </member>
-        <member name="M:Aequus.Core.ContentGeneration.InstancedTileItem.#ctor(Terraria.ModLoader.ModTile,System.Int32,System.String,System.Boolean,System.Int32,System.Int32,System.Nullable{System.Int32},tModLoaderExtended.Terraria.GameContent.Creative.IJourneySortOverrideProvider,System.Nullable{System.Int32})">
-            <param name="modTile"></param>
-            <param name="style"></param>
-            <param name="nameSuffix">Extra text added to the end of the name.</param>
-            <param name="dropItem">Whether or not the <paramref name="modTile"/> should drop this item.</param>
-            <param name="rarity">Item rarity.</param>
-            <param name="value">Item value.</param>
-            <param name="researchSacrificeCount">Research count override.</param>
-            <param name="journeyOverride">Journey Mode item group override, used to organize tiles all together in the menu. Utilize <see cref="T:tModLoaderExtended.Terraria.GameContent.Creative.JourneySortByTileId"/> to sort with tiles with a matching tile id, since many tiles do not have item groups, and are instead sorted by tile id.</param>
-            <param name="TileIdOverride">Overrides the place tile id.</param>
-        </member>
-        <member name="T:Aequus.Core.ContentGeneration.InstancedWallItem">
-            <param name="modWall"></param>
-            <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
-        </member>
-        <member name="M:Aequus.Core.ContentGeneration.InstancedWallItem.#ctor(Terraria.ModLoader.ModWall,System.Boolean)">
-            <param name="modWall"></param>
-            <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
-        </member>
-        <member name="M:Aequus.Core.ContentGeneration.UnifiedCritter.SetItemDefaults(Terraria.Item)">
-            <summary>This method is not instanced.</summary>
-            <param name="Item"></param>
-        </member>
-        <member name="T:Aequus.Core.ContentGeneration.UnifiedModMount">
-            <summary>A <see cref="T:Terraria.ModLoader.ModMount"/> which automagically registers a related <see cref="T:Terraria.ModLoader.ModItem"/> and <see cref="T:Terraria.ModLoader.ModBuff"/>, suffixed with +"Item" and +"Buff" respectively.</summary>
-        </member>
-        <member name="T:Aequus.Core.ContentGeneration.UnifiedModPet">
-            <summary>A <see cref="T:Terraria.ModLoader.ModProjectile"/> which automagically registers a related <see cref="T:Terraria.ModLoader.ModItem"/> and <see cref="T:Terraria.ModLoader.ModBuff"/>, suffixed with +"Item" and +"Buff" respectively.</summary>
-        </member>
-        <member name="M:Aequus.Core.ContentGeneration.IWhipController.OnWhipHitNPC(System.Single@,Terraria.Projectile,Terraria.NPC,Terraria.NPC.HitInfo@,System.Int32)">
-            <param name="damagePenalty">Defaults to 0.5.</param>
-            <param name="whip"></param>
-            <param name="target"></param>
-            <param name="hit"></param>
-            <param name="damageDone"></param>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendNPC.AddBossDrop(Terraria.ModLoader.NPCLoot,Terraria.GameContent.ItemDropRules.IItemDropRule,System.Boolean)">
             <summary>Adds <paramref name="entry"/> to <paramref name="npcLoot"/>, and its boss bag.</summary>
@@ -1945,6 +1821,82 @@
         <member name="M:Aequus.Core.Utilities.TileHelper.LiquidNoMax(System.Int32,System.Int32)">
             <returns><inheritdoc cref="M:Aequus.Core.Utilities.TileHelper.LiquidNoMax(Terraria.Tile)"/></returns>
         </member>
+        <member name="T:Aequus.Core.Collections.DictionaryRemoveQueue`2">
+            <summary>
+            A Dictionary with a removal queue. Allows for removals to occur in an iteration.
+            Call <see cref="M:Aequus.Core.Collections.DictionaryRemoveQueue`2.RemoveAllQueued"/> to remove all queued entries from the Dictionary.
+            </summary>
+        </member>
+        <member name="T:Aequus.Core.Concurrent.ParallelLighting">
+            <summary>Allows for lights to be safely created in a parallel process.</summary>
+        </member>
+        <member name="T:Aequus.Core.ContentGeneration.InstancedModDust">
+            <param name="name"></param>
+            <param name="texture"></param>
+            <param name="safe">Whether this dust is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeDust"/>)</param>
+        </member>
+        <member name="M:Aequus.Core.ContentGeneration.InstancedModDust.#ctor(System.String,System.String,System.Boolean)">
+            <param name="name"></param>
+            <param name="texture"></param>
+            <param name="safe">Whether this dust is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeDust"/>)</param>
+        </member>
+        <member name="T:Aequus.Core.ContentGeneration.InstancedModGore">
+            <param name="name"></param>
+            <param name="texture"></param>
+            <param name="safe">Whether this gore is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeGore"/>)</param>
+        </member>
+        <member name="M:Aequus.Core.ContentGeneration.InstancedModGore.#ctor(System.String,System.String,System.Boolean)">
+            <param name="name"></param>
+            <param name="texture"></param>
+            <param name="safe">Whether this gore is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeGore"/>)</param>
+        </member>
+        <member name="T:Aequus.Core.ContentGeneration.InstancedTileItem">
+            <param name="modTile"></param>
+            <param name="style"></param>
+            <param name="nameSuffix">Extra text added to the end of the name.</param>
+            <param name="dropItem">Whether or not the <paramref name="modTile"/> should drop this item.</param>
+            <param name="rarity">Item rarity.</param>
+            <param name="value">Item value.</param>
+            <param name="researchSacrificeCount">Research count override.</param>
+            <param name="journeyOverride">Journey Mode item group override, used to organize tiles all together in the menu. Utilize <see cref="T:tModLoaderExtended.Terraria.GameContent.Creative.JourneySortByTileId"/> to sort with tiles with a matching tile id, since many tiles do not have item groups, and are instead sorted by tile id.</param>
+            <param name="TileIdOverride">Overrides the place tile id.</param>
+        </member>
+        <member name="M:Aequus.Core.ContentGeneration.InstancedTileItem.#ctor(Terraria.ModLoader.ModTile,System.Int32,System.String,System.Boolean,System.Int32,System.Int32,System.Nullable{System.Int32},tModLoaderExtended.Terraria.GameContent.Creative.IJourneySortOverrideProvider,System.Nullable{System.Int32})">
+            <param name="modTile"></param>
+            <param name="style"></param>
+            <param name="nameSuffix">Extra text added to the end of the name.</param>
+            <param name="dropItem">Whether or not the <paramref name="modTile"/> should drop this item.</param>
+            <param name="rarity">Item rarity.</param>
+            <param name="value">Item value.</param>
+            <param name="researchSacrificeCount">Research count override.</param>
+            <param name="journeyOverride">Journey Mode item group override, used to organize tiles all together in the menu. Utilize <see cref="T:tModLoaderExtended.Terraria.GameContent.Creative.JourneySortByTileId"/> to sort with tiles with a matching tile id, since many tiles do not have item groups, and are instead sorted by tile id.</param>
+            <param name="TileIdOverride">Overrides the place tile id.</param>
+        </member>
+        <member name="T:Aequus.Core.ContentGeneration.InstancedWallItem">
+            <param name="modWall"></param>
+            <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
+        </member>
+        <member name="M:Aequus.Core.ContentGeneration.InstancedWallItem.#ctor(Terraria.ModLoader.ModWall,System.Boolean)">
+            <param name="modWall"></param>
+            <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
+        </member>
+        <member name="M:Aequus.Core.ContentGeneration.UnifiedCritter.SetItemDefaults(Terraria.Item)">
+            <summary>This method is not instanced.</summary>
+            <param name="Item"></param>
+        </member>
+        <member name="T:Aequus.Core.ContentGeneration.UnifiedModMount">
+            <summary>A <see cref="T:Terraria.ModLoader.ModMount"/> which automagically registers a related <see cref="T:Terraria.ModLoader.ModItem"/> and <see cref="T:Terraria.ModLoader.ModBuff"/>, suffixed with +"Item" and +"Buff" respectively.</summary>
+        </member>
+        <member name="T:Aequus.Core.ContentGeneration.UnifiedModPet">
+            <summary>A <see cref="T:Terraria.ModLoader.ModProjectile"/> which automagically registers a related <see cref="T:Terraria.ModLoader.ModItem"/> and <see cref="T:Terraria.ModLoader.ModBuff"/>, suffixed with +"Item" and +"Buff" respectively.</summary>
+        </member>
+        <member name="M:Aequus.Core.ContentGeneration.IWhipController.OnWhipHitNPC(System.Single@,Terraria.Projectile,Terraria.NPC,Terraria.NPC.HitInfo@,System.Int32)">
+            <param name="damagePenalty">Defaults to 0.5.</param>
+            <param name="whip"></param>
+            <param name="target"></param>
+            <param name="hit"></param>
+            <param name="damageDone"></param>
+        </member>
         <member name="P:Aequus.Core.CrossMod.SupportedMod`1.Instance">
             <summary>The Supported Mod's instance. This property is <see langword="null" /> when the mod is not enabled.</summary>
         </member>
@@ -2107,11 +2059,11 @@
         <member name="T:Aequus.Core.PhysicsBehaviors.VICollisonNode">
             <summary>A Verlet Integrated node with Tile Collision.</summary>
         </member>
-        <member name="M:Aequus.Core.RefManipulator`1.OverrideValue(`0)">
+        <member name="M:Aequus.Core.ReferenceCache`1.OverrideValue(`0)">
             <summary>Replaces the referenced value with <paramref name="value"/>. The original value will be cached, and can be restored using <see cref="!:VoidOverriddenValue(ref T)"/>.</summary>
             <param name="value"></param>
         </member>
-        <member name="M:Aequus.Core.RefManipulator`1.VoidOverriddenValue">
+        <member name="M:Aequus.Core.ReferenceCache`1.VoidOverriddenValue">
             <summary>Restores overriden values back to their original value.</summary>
         </member>
         <member name="M:Aequus.Core.UI.Elements.ImprovedItemSlot.SetIcon(Terraria.UI.UIElement)">
@@ -2147,12 +2099,6 @@
             <param name="InsertLayer">Name of the layer to search the index of.</param>
             <param name="ScaleType">Scale Type of this layer.</param>
             <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
-        </member>
-        <member name="P:Aequus.Core.WorldState.RemixWorldSafeUnderworldRange">
-            <summary>Returns a point with the beginning (left) (X) and end (right) (Y) of the 'safe' underworld in remix worlds. This does not represent a point in 2D space, but rather two X coordinates.</summary>
-        </member>
-        <member name="F:Aequus.Core.WorldState._metOccultist">
-            <summary>Whether the Occultist has been met. This determines if the Hostile Occultist emote can be used.</summary>
         </member>
         <member name="T:Aequus.AequusSounds">
             <summary>(Total Sounds: 93)</summary>
@@ -4982,6 +4928,107 @@
         </member>
         <member name="F:Aequus.AequusTextures.BacciliteSceptre_Glow">
             <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre_Glow</summary>
+        </member>
+        <member name="T:Aequus.Old.Common.Graphics.Camera.CameraFocus">
+            <summary>
+            Manages screen panning
+            </summary>
+        </member>
+        <member name="P:Aequus.Old.Common.Graphics.Camera.CameraFocus.Context">
+            <summary>
+            A context string for the current focus
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.target">
+            <summary>
+            The target position for the camera in the world
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.cameraPosition">
+            <summary>
+            The camera's position 
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.priority">
+            <summary>
+            A priority for determining whether or not a new camera focus can be added
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.speed">
+            <summary>
+            The speed of the camera
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.cameraProgress">
+            <summary>
+            The progress of the camera from its original position to its destination
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.hold">
+            <summary>
+            How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Old.Common.Graphics.Camera.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Old.Common.Graphics.Camera.CameraPriority,System.Single,System.Int32)"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.returning">
+            <summary>
+            Whether or not the camera is returning
+            </summary>
+        </member>
+        <member name="M:Aequus.Old.Common.Graphics.Camera.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Old.Common.Graphics.Camera.CameraPriority,System.Single,System.Int32)">
+            <summary>
+            Sets the camera target to a position, may return false if your priority is below a current target's priority
+            </summary>
+            <param name="key">Context key, only really useful for 3rd party mods</param>
+            <param name="target">A world coordinate to point the camera at</param>
+            <param name="priority">The priority of this camera target. If there is a current camera target, and its priority is above, it will prevent you from setting a target and this method will return false</param>
+            <param name="speed">The speed of the camera, the exact time it will get there is: <code>speed / 50</code>So 6 speed means it will get into position in 8 frames. Clamped between 6 and 25</param>
+            <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Old.Common.Graphics.Camera.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Old.Common.Graphics.Camera.CameraPriority,System.Single,System.Int32)"/></param>
+            <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
+        </member>
+        <member name="M:Aequus.Old.Content.Bosses.OmegaStarite.OmegaStariteRing.#ctor(System.IO.BinaryReader)">
+            <summary>
+            Creates a Ring through a net package
+            </summary>
+            <param name="reader"></param>
+        </member>
+        <member name="T:Aequus.Old.Content.Events.DemonSiege.Tiles.OblivionAltarDummy">
+            <summary>Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.</summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Items.Accessories.HighSteaks.HighSteaks.NotStackableCritDamage">
+            <summary>
+            Default Value: 0.15
+            <para>This is only added on the first stack of the accessory.</para>
+            </summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Items.Accessories.HighSteaks.HighSteaks.WantedCost">
+            <summary>
+            The cost for performing a critical strike.
+            </summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg.SaivoryKnife.GhostLifespan">
+            <summary>Default Value: 3600 (1 minute)</summary>
+        </member>
+        <member name="F:Aequus.Old.Content.Particles.DashBlurParticle.Particle.ScaleX">
+            <summary>
+            Defaults to 0.5f.
+            </summary>
+        </member>
+        <member name="M:Aequus.Old.Content.Tiles.Herbs.ModHerb.GetDropParams(System.Int32,Terraria.Player,Terraria.Item,System.Int32@)">
+            <param name="growthStage">The growth stage (style) of this plant.</param>
+            <param name="closestPlayer">The closest player to the plant.</param>
+            <param name="playerHeldItem">The player's held item.</param>
+            <param name="plant">The plant item id to drop.</param>
+            <param name="seeds">The seed item id to drop.</param>
+        </member>
+        <member name="M:Aequus.Old.Content.Tiles.Herbs.ModHerb.GetDropStacks(System.Int32,Terraria.Player,Terraria.Item,System.Boolean,System.Int32,System.Int32,System.Int32@,System.Int32@)">
+            <param name="growthStage">The growth stage (style) of this plant.</param>
+            <param name="closestPlayer">The closest player to the plant.</param>
+            <param name="playerHeldItem">The player's held item.</param>
+            <param name="staffOfRegrowth">If the player is holding the Staff of Regrowth or Axe of Regrowth.</param>
+            <param name="plant">The plant item id to drop.</param>
+            <param name="seeds">The seed item id to drop.</param>
+            <param name="plantStack">The amount of plants to drop.</param>
+            <param name="seedStack">The amount of seeds to drop.</param>
         </member>
     </members>
 </doc>

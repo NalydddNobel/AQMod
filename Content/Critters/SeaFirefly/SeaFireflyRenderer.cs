@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace Aequus.Content.Critters.SeaFirefly;
 
 [Autoload(Side = ModSide.Client)]
-internal class SeaFireflyRenderer : RequestHandler<SeaFireflyShaderRequest> {
+public class SeaFireflyRenderer : RequestHandler<SeaFireflyShaderRequest> {
     public static SeaFireflyRenderer Instance { get; private set; }
 
     public static Effect Effect => AequusShaders.SeaFirefly.Value;

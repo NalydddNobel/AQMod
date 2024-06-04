@@ -62,7 +62,7 @@ public class PhysicistPet : ModNPC, IAddRecipes {
     }
 
     public override void Load() {
-        Mod.AddContent(new InstancedNPCEmote(this, EmoteID.Category.Town, () => WorldState.DownedCosmicBoss || WorldState.DownedTrueCosmicBoss));
+        Mod.AddContent(new InstancedNPCEmote(this, EmoteID.Category.Town, () => AequusSystem.downedUltraStarite || AequusSystem.downedOmegaStarite));
     }
 
     public override void SetStaticDefaults() {

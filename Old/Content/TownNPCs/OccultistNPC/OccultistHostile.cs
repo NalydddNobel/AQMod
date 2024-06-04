@@ -14,7 +14,7 @@ public class OccultistHostile : Occultist {
     public override LocalizedText DisplayName => ModContent.GetInstance<Occultist>().DisplayName;
 
     public override void Load() {
-        Mod.AddContent(new InstancedNPCEmote(this, EmoteID.Category.Town, () => WorldState._metOccultist));
+        Mod.AddContent(new InstancedNPCEmote(this, EmoteID.Category.Town, () => AequusSystem.metOccultist));
     }
 
     public override void SetStaticDefaults() {
@@ -43,7 +43,7 @@ public class OccultistHostile : Occultist {
     }
 
     public override bool PreAI() {
-        WorldState._metOccultist = true;
+        AequusSystem.metOccultist = true;
 
         if (Main.netMode != NetmodeID.Server && Main.GameUpdateCount % 180 == 0) {
             for (int i = 0; i < 50; i++) {
@@ -61,7 +61,7 @@ public class OccultistHostile : Occultist {
             NPC.direction = dir;
         }
 
-        if (WorldState.DownedDemonBoss) {
+        if (AequusSystem.downedDemonSiege) {
             NPC.ai[0] = 0f;
             NPC.ai[1] = 0f;
             NPC.Transform(ModContent.NPCType<Occultist>());
@@ -143,12 +143,12 @@ public class OccultistHostile : Occultist {
     }
 
     public static void CheckSpawn(int x, int y, int plr) {
-        if (WorldState.DownedDemonBoss || Main.player[plr].Distance(new Vector2(x * 16f, y * 16f)) <= 800f || Main.hardMode || NPC.AnyNPCs(ModContent.NPCType<OccultistHostile>())) {
+        if (AequusSystem.downedDemonSiege || Main.player[plr].Distance(new Vector2(x * 16f, y * 16f)) <= 800f || Main.hardMode || NPC.AnyNPCs(ModContent.NPCType<OccultistHostile>())) {
             return;
         }
 
         if (Main.netMode == NetmodeID.MultiplayerClient) {
-            ExtendedMod.GetPacket<OccultistRitualPacket>().Send(x, y, plr);
+            GetPacket<OccultistRitualPacket>().Send(x, y, plr);
         }
         else {
             int spawnX = (x + 1) * 16 + 8;

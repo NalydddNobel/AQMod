@@ -1,4 +1,5 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequus.Core.CodeGeneration;
+using Aequus.Core.ContentGeneration;
 using Aequus.Core.CrossMod;
 using Aequus.DataSets;
 using Aequus.DataSets.Structures;
@@ -21,6 +22,7 @@ using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace Aequus.Content.Chests.BuriedChests;
 
+[Gen.AequusSystem_WorldField<int>("buriedChestsLooted")]
 // Buried Chests use a fake chest before being unlocked
 // This allows them to generate their loot upon being opened
 public class UnifiedBuriedChest : UnifiedModChest {
@@ -99,7 +101,7 @@ public class UnifiedBuriedChest : UnifiedModChest {
             AddMapEntry(_parent._info.MapEntryColor, CreateMapEntryName());
 
             DustType = _parent.DustType;
-            AdjTiles = new int[] { TileID.Containers };
+            AdjTiles = [TileID.Containers];
         }
 
         public override void PostSetupTileMerge() {
@@ -141,7 +143,7 @@ public class UnifiedBuriedChest : UnifiedModChest {
 
             if (player.ConsumeItem(_parent._info.Key.GetId())) {
                 if (Main.netMode == NetmodeID.MultiplayerClient) {
-                    ExtendedMod.GetPacket<UnlockBuriedChestPacket>().Send(i, j, Main.myPlayer);
+                    GetPacket<UnlockBuriedChestPacket>().Send(i, j, Main.myPlayer);
                 }
                 else {
                     UnlockBuriedChest(i, j);
@@ -166,7 +168,7 @@ public class UnifiedBuriedChest : UnifiedModChest {
                 for (int y = top; y < top + 2; y++) {
                     Vector2 dustCoordinates = new Vector2(i * 16, j * 16);
                     for (int k = 0; k < 4; k++) {
-                        Terraria.Dust.NewDust(dustCoordinates, 16, 16, _parent.DustType);
+                        Dust.NewDust(dustCoordinates, 16, 16, _parent.DustType);
                     }
 
                     Tile chestTile = Framing.GetTileSafely(x, y);
@@ -182,9 +184,9 @@ public class UnifiedBuriedChest : UnifiedModChest {
 
                 if (Main.chest.IndexInRange(chest)) {
                     // Create an RNG seed using the world's seed and the number of buried chests opened.
-                    int seed = Main.ActiveWorldFileData.Seed + WorldState.BuriedChestsLooted;
+                    int seed = Main.ActiveWorldFileData.Seed + AequusSystem.buriedChestsLooted;
 
-                    WorldState.BuriedChestsLooted++;
+                    AequusSystem.buriedChestsLooted++;
 
                     UnifiedRandom chestSpecificRNG = new UnifiedRandom(seed);
 

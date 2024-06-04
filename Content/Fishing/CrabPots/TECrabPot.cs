@@ -1,4 +1,5 @@
-﻿using Aequus.Core.Graphics.Animations;
+﻿using Aequus.Common.Systems;
+using Aequus.Core.Graphics.Animations;
 using System;
 using System.IO;
 using Terraria.DataStructures;

@@ -90,7 +90,7 @@ public class GlimmerZone : ModBiome {
                 pool[superStarite] *= 0.5f;
 
                 if (NPC.CountNPCS(ultraStarite) < maxUltra) {
-                    pool.Add(ultraStarite, UltraStariteSpawn * (WorldState.DownedCosmicBoss ? 1f : 2f));
+                    pool.Add(ultraStarite, UltraStariteSpawn * (AequusSystem.downedUltraStarite ? 1f : 2f));
                 }
             }
         }

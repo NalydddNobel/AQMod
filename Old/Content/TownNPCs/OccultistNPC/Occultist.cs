@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
 using Aequus.Common.Projectiles;
+using Aequus.Core.CodeGeneration;
 using Aequus.Core.ContentGeneration;
 using Aequus.DataSets;
 using System;
@@ -17,6 +18,7 @@ using Terraria.Localization;
 
 namespace Aequus.Old.Content.TownNPCs.OccultistNPC;
 
+[Gen.AequusSystem_WorldField<bool>("metOccultist")]
 [AutoloadHead()]
 public partial class Occultist : ModNPC, IModifyShoppingSettings {
     public const byte STATE_Passive = 0;
@@ -49,7 +51,7 @@ public partial class Occultist : ModNPC, IModifyShoppingSettings {
     }
 
     public override void Load() {
-        Mod.AddContent(new InstancedNPCEmote(this, EmoteID.Category.Town, () => WorldState.DownedDemonBoss));
+        Mod.AddContent(new InstancedNPCEmote(this, EmoteID.Category.Town, () => AequusSystem.downedDemonSiege));
     }
 
     public override void SetStaticDefaults() {
@@ -111,7 +113,7 @@ public partial class Occultist : ModNPC, IModifyShoppingSettings {
     }
 
     public override bool CanTownNPCSpawn(int numTownNPCs) {
-        return WorldState.DownedDemonBoss;
+        return AequusSystem.downedDemonSiege;
     }
 
     public override string GetChat() {
@@ -208,7 +210,7 @@ public partial class Occultist : ModNPC, IModifyShoppingSettings {
     }
 
     public override bool PreAI() {
-        WorldState._metOccultist = true;
+        AequusSystem.metOccultist = true;
 
         if (NPC.shimmering) {
             if (state == STATE_Sleeping) {

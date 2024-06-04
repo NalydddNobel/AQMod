@@ -8,6 +8,7 @@ public interface ISeaFireflyInstanceData {
     byte Type { get; set; }
     string Name { get; set; }
     IColorEffect ColorEffect { get; }
+    IColorEffect TileEffect => ColorEffect;
     Vector3 GetLightColor(Vector2 position);
     Color GetBugColor();
     Color GetGlowColor(GlowColorContext context);
@@ -57,7 +58,8 @@ public record struct RainbowVariant(string Name) : ISeaFireflyInstanceData {
     byte ISeaFireflyInstanceData.Type { get; set; }
     string ISeaFireflyInstanceData.Name { get; set; } = Name;
 
-    readonly IColorEffect ISeaFireflyInstanceData.ColorEffect => new EffectVelocityGrayscale();
+    readonly IColorEffect ISeaFireflyInstanceData.ColorEffect => new EffectHorizontalRainbow();
+    readonly IColorEffect ISeaFireflyInstanceData.TileEffect => new EffectVelocityGrayscale();
 
     public Vector3 GetLightColor(Vector2 Location) {
         return GetGlowColor(new GlowColorContext(Location, 0)).ToVector3();

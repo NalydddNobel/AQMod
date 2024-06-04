@@ -4,7 +4,7 @@ namespace Aequus.Old.Common;
 
 public class FakeHardmode {
     public static void AddEnemies(IDictionary<int, float> pool, in NPCSpawnInfo spawnInfo) {
-        if (Main.hardMode || !WorldState.HardmodeTier) {
+        if (Main.hardMode || !AequusSystem.HardmodeTier) {
             return;
         }
 

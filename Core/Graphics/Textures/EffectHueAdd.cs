@@ -1,11 +1,8 @@
-﻿using System;
-
-namespace Aequus.Core.Graphics.Textures;
+﻿namespace Aequus.Core.Graphics.Textures;
 
 public struct EffectHueAdd(float Hue) : IColorEffect {
     Color IColorEffect.GetColor(in ColorEffectContext context) {
         Color color = context.Color;
-        byte velocity = Math.Max(Math.Max(color.R, color.G), color.B);
         return color.HueAdd(Hue) with { A = color.A };
     }
 }
