@@ -1,9 +1,10 @@
 ﻿using Aequus.Old.Content.Items.Materials.Energies;
 using Terraria.DataStructures;
 
-namespace Aequus.Old.Content.Items.Weapons.Melee.PhaseDisc;
+namespace Aequus.Old.Content.Items.Weapons.Melee.Phasebrink;
 
-public class PhaseDisc : ModItem {
+[LegacyName("PhaseDisc")]
+public class Phasebrink : ModItem {
     public override void SetStaticDefaults() {
         ItemSets.ItemsThatAllowRepeatedRightClick[Type] = true;
     }
@@ -21,7 +22,7 @@ public class PhaseDisc : ModItem {
         Item.DamageType = DamageClass.Melee;
         Item.noMelee = true;
         Item.noUseGraphic = true;
-        Item.shoot = ModContent.ProjectileType<PhaseDiscProj>();
+        Item.shoot = ModContent.ProjectileType<PhasebrinkProj>();
         Item.shootSpeed = 6f;
         Item.autoReuse = true;
     }

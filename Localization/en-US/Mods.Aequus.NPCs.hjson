@@ -49,8 +49,22 @@ Mirage.Bestiary: During the rain, toxic fog clouds form and bunch together formi
 Pillbug.Bestiary: Blessed with Aquatic Energy, these bugs scurry around and feed on the pollution like it means nothing to them.
 Chromite.Bestiary: A beetle-like bug with a metallic shell that can change color using a magnetic mechanism to help blend in. They're common household pests, the banes of microwaves everywhere, but might make useful fishing bait.
 Crabson.DisplayName: Crabson
-OmegaStarite.DisplayName: Omega Starite
-DustDevil.DisplayName: Dust Devil
+
+OmegaStarite: {
+	DisplayName: Omega Starite
+	TreasureBagDisplayName: Treasure Bag (Omega Starite)
+	TrophyDisplayName: Omega Starite Trophy
+	RelicDisplayName: Omega Starite Relic
+	MaskDisplayName: Omega Starite Mask
+}
+
+DustDevil: {
+	DisplayName: Dust Devil
+	TreasureBagDisplayName: Treasure Bag (Dust Devil)
+	TrophyDisplayName: Dust Devil Trophy
+	RelicDisplayName: Dust Devil Relic
+	MaskDisplayName: Dust Devil Mask
+}
 
 BloodMimic: {
 	DisplayName: Blood Mimic
@@ -87,6 +101,8 @@ DwarfStarite: {
 UltraStarite: {
 	DisplayName: Ultra Starite
 	Bestiary: Elite starites in their final stage of growth can focus their now exposed core into deadly laser beams. You'd be forgiven for thinking the sky was falling!
+	TrophyDisplayName: Ultra Starite Trophy
+	RelicDisplayName: Ultra Starite Relic
 }
 
 HyperStarite: {

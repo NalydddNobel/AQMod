@@ -3,86 +3,86 @@
 public partial class Commons {
     public class Rare {
         /// <summary>Rarity shared by early Pre Hardmode materials (Metal Bars, Ores, etc.)</summary>
-        public const int MaterialStart = 0;
+        public static readonly int MaterialStart = ItemRarityID.White;
         /// <summary>Rarity shared by mid Pre Hardmode materials (Demonite, Crimtane, etc.)</summary>
-        public const int MaterialMid = 1;
+        public static readonly int MaterialMid = ItemRarityID.Blue;
         /// <summary>Rarity shared by end Pre Hardmode materials (Meteorite, Hellstone, etc.)</summary>
-        public const int MaterialEnd = 2;
+        public static readonly int MaterialEnd = ItemRarityID.Green;
         /// <summary>Rarity shared by early Hardmode materials (Bars, Ores, etc.)</summary>
-        public const int MaterialStartHM = 3;
+        public static readonly int MaterialStartHM = ItemRarityID.Orange;
         /// <summary>Rarity shared by Lunar Fragments.</summary>
-        public const int MaterialPillars = 10;
+        public static readonly int MaterialPillars = ItemRarityID.Cyan;
 
         /// <summary>Rarity shared by items dropped by the King Slime.</summary>
-        public const int BossKingSlime = 1;
+        public static readonly int BossKingSlime = ItemRarityID.Blue;
         /// <summary>Rarity shared by items dropped by the Eye of Cthulhu.</summary>
-        public const int BossEyeOfCthulhu = 1;
+        public static readonly int BossEyeOfCthulhu = ItemRarityID.Blue;
         /// <summary>Rarity shared by items dropped by the Salamancer.</summary>
-        public const int BossSalamancer = 1;
+        public static readonly int BossSalamancer = ItemRarityID.Blue;
         /// <summary>Rarity shared by items dropped by the Eater of Worlds.</summary>
-        public const int BossEaterOfWorlds = 1;
+        public static readonly int BossEaterOfWorlds = ItemRarityID.Blue;
         /// <summary>Rarity shared by items dropped by the Brain of Cthulhu.</summary>
-        public const int BossBrainOfCthulhu = 1;
+        public static readonly int BossBrainOfCthulhu = ItemRarityID.Blue;
         /// <summary>Rarity shared by items dropped by the Queen Bee.</summary>
-        public const int BossQueenBee = 3;
+        public static readonly int BossQueenBee = ItemRarityID.Orange;
         /// <summary>Rarity shared by items dropped by Deerclops.</summary>
-        public const int BossDeerclops = 2;
+        public static readonly int BossDeerclops = ItemRarityID.Green;
         /// <summary>Rarity shared by items dropped by Skeletron.</summary>
-        public const int BossSkeletron = 2;
+        public static readonly int BossSkeletron = ItemRarityID.Green;
         /// <summary>Rarity shared by items dropped by Ultra Starite.</summary>
-        public const int BossUltraStarite = 3;
+        public static readonly int BossUltraStarite = ItemRarityID.Orange;
         /// <summary>Rarity shared by items dropped by Omega Starite.</summary>
-        public const int BossOmegaStarite = 5;
+        public static readonly int BossOmegaStarite = ItemRarityID.LightRed;
         /// <summary>Rarity shared by items dropped by the Wall of Flesh.</summary>
-        public const int BossWallOfFlesh = 4;
+        public static readonly int BossWallOfFlesh = ItemRarityID.LightRed;
         /// <summary>Rarity shared by items dropped by the Queen Slime.</summary>
-        public const int BossQueenSlime = 5;
+        public static readonly int BossQueenSlime = ItemRarityID.Pink;
         /// <summary>Rarity shared by items dropped by the Mechanical Bosses.</summary>
-        public const int BossMechanicalBosses = 5;
+        public static readonly int BossMechanicalBosses = ItemRarityID.Pink;
         /// <summary>Rarity shared by items dropped by the Dust Devil.</summary>
-        public const int BossDustDevil = 7;
+        public static readonly int BossDustDevil = ItemRarityID.Lime;
         /// <summary>Rarity shared by items dropped by Plantera.</summary>
-        public const int BossPlantera = 8;
+        public static readonly int BossPlantera = ItemRarityID.Yellow;
         /// <summary>Rarity shared by items dropped by Golem.</summary>
-        public const int BossGolem = 8;
+        public static readonly int BossGolem = ItemRarityID.Yellow;
         /// <summary>Rarity shared by items dropped by Duke Fishron.</summary>
-        public const int BossDukeFishron = 8;
+        public static readonly int BossDukeFishron = ItemRarityID.Yellow;
         /// <summary>Rarity shared by items dropped by the Empress of Light.</summary>
-        public const int BossEmpressOfLight = 8;
+        public static readonly int BossEmpressOfLight = ItemRarityID.Yellow;
         /// <summary>Rarity shared by items dropped by the Lunatic Cultist.</summary>
-        public const int BossLunaticCultist = 10;
+        public static readonly int BossLunaticCultist = ItemRarityID.Red;
         /// <summary>Rarity shared by items dropped by the Moon Lord.</summary>
-        public const int BossMoonLord = 10;
+        public static readonly int BossMoonLord = ItemRarityID.Red;
 
         /// <summary>Rarity shared by items found in the Goblin Invasion.</summary>
-        public const int EventGoblins = 1;
+        public static readonly int EventGoblins = ItemRarityID.Blue;
         /// <summary>Rarity shared by items found in the Glimmer.</summary>
-        public const int EventGlimmer = 2;
+        public static readonly int EventGlimmer = ItemRarityID.Green;
         /// <summary>Rarity shared by items found in the Demon Siege.</summary>
-        public const int EventDemonSiege = 4;
+        public static readonly int EventDemonSiege = ItemRarityID.LightRed;
         /// <summary>Rarity shared by items found in the Hardmode Sandstorm (Forbidden set).</summary>
-        public const int EventSandstormHM = 5;
+        public static readonly int EventSandstormHM = ItemRarityID.Pink;
         /// <summary>Rarity shared by items found in the Hardmode Blizzard (Frost set).</summary>
-        public const int EventBlizzardHM = 5;
+        public static readonly int EventBlizzardHM = ItemRarityID.Pink;
         /// <summary>Rarity shared by items found in the Gale Streams.</summary>
-        public const int EventGaleStreams = 5;
+        public static readonly int EventGaleStreams = ItemRarityID.Pink;
         /// <summary>Rarity shared by items crafted with Lunar Fragments.</summary>
-        public const int EventPillars = 10;
+        public static readonly int EventPillars = ItemRarityID.Red;
 
         /// <summary>Rarity shared by items from the Ocean and Polluted Ocean.</summary>
-        public const int BiomeOcean = 1;
+        public static readonly int BiomeOcean = ItemRarityID.Blue;
         /// <summary>Rarity shared by items found in the Jungle.</summary>
-        public const int BiomeJungle = 2;
+        public static readonly int BiomeJungle = ItemRarityID.Green;
         /// <summary>Rarity shared by items found in the Dungeon.</summary>
-        public const int BiomeDungeon = 2;
+        public static readonly int BiomeDungeon = ItemRarityID.Green;
         /// <summary>Rarity shared by items found in the Hardmode Dungeon.</summary>
-        public const int BiomeDungeonHM = 8;
+        public static readonly int BiomeDungeonHM = ItemRarityID.Yellow;
 
         /// <summary>Rarity shared by items sold by the Sky Merchant.</summary>
-        public const int NPCSkyMerchant = 2;
+        public static readonly int NPCSkyMerchant = ItemRarityID.Green;
 
         /// <summary>Rarity shared by items exclusive to the Shimmer.</summary>
-        public const int ShimmerExclusives = 6;
+        public static readonly int ShimmerExclusives = ItemRarityID.LightPurple;
     }
 
     public class Cost {

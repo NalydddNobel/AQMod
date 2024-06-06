@@ -1,6 +1,6 @@
-﻿using Aequus.Common.NPCs;
+﻿using Aequus.Common;
+using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Bestiary;
-using Aequus.Content.Bosses.Trophies;
 using Aequus.Content.Dusts;
 using Aequus.Core.CodeGeneration;
 using Aequus.Core.ContentGeneration;
@@ -27,8 +27,7 @@ namespace Aequus.Old.Content.Bosses.UltraStarite;
 [Gen.AequusSystem_WorldField<bool>("downedUltraStarite")]
 [BestiaryBiome<GlimmerZone>()]
 [AutoloadBossHead]
-[AutoloadTrophies(LegacyBossTrophiesTile.UltraStarite)]
-public class UltraStarite : ModNPC {
+public class UltraStarite : UnifiedBoss {
     public const float BossProgression = 4.61f;
 
     public const int STATE_DEATHRAY_TRANSITION_END = 5;
@@ -44,6 +43,15 @@ public class UltraStarite : ModNPC {
     public float ArmsLength { get => NPC.ai[3]; set => NPC.ai[3] = value; }
 
     public float[] oldArmsLength;
+
+    public UltraStarite() : base(new BossParams() {
+        ItemRarity = Commons.Rare.BossUltraStarite
+    }) { }
+
+    public override void Load() {
+        LoadTrophy(AequusTextures.UltraStariteTrophy.Path);
+        LoadRelic(new RelicRenderer(AequusTextures.UltraStariteRelic.Path));
+    }
 
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = 3;

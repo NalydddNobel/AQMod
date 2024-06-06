@@ -21,7 +21,7 @@ public class OmegaStariteProj : EnemyAttachedProjBase {
     }
 
     protected override bool CheckAttachmentConditions(NPC npc) {
-        return (int)npc.ai[0] != OmegaStarite.ACTION_DEAD && npc.ModNPC is OmegaStarite;
+        return (int)npc.ai[0] != OmegaStarite.DEAD && npc.ModNPC is OmegaStarite;
     }
 
     public override void AI() {

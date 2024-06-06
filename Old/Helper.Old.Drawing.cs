@@ -4,6 +4,19 @@ namespace Aequus.Core.Utilities;
 
 public static partial class Helper {
     [Obsolete]
+    public static void LoopingFrame(this Projectile projectile, int ticksPerFrame) {
+        if (++projectile.frameCounter > ticksPerFrame) {
+            projectile.frameCounter = 0;
+            projectile.frame = (projectile.frame + 1) % Main.projFrames[projectile.type];
+        }
+    }
+
+    [Obsolete]
+    public static float Abs(this float value) {
+        return Math.Abs(value);
+    }
+
+    [Obsolete]
     public static float CalcProgress(int length, int i) {
         return 1f - 1f / length * i;
     }

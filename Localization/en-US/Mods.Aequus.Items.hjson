@@ -374,7 +374,7 @@ UltimateSword: {
 	Tooltip: "'Absorbed by Omega Starite, losing its true potential...'"
 }
 
-PhaseDisc: {
+Phasebrink: {
 	DisplayName: Phasebrink
 	Tooltip:
 		'''
@@ -960,8 +960,6 @@ UnholyCoreSmall: {
 		'''
 }
 
-TreasureBag.DisplayName: Treasure Bag ({0})
-
 WispLantern: {
 	DisplayName: Wisp Lantern
 	Tooltip:
@@ -1126,16 +1124,6 @@ BreadOfCthulhuMask: {
 	Tooltip: ""
 }
 
-DustDevilMask: {
-	DisplayName: Dust Devil Mask
-	Tooltip: ""
-}
-
-OmegaStariteMask: {
-	DisplayName: Omega Starite Mask
-	Tooltip: ""
-}
-
 RedSpriteMask: {
 	DisplayName: Red Sprite Mask
 	Tooltip: ""
@@ -1187,4 +1175,9 @@ StariteMaterial: {
 UnopenedChestItem: {
 	DisplayName: Unopened Chest Item
 	Tooltip: This is a debug item placed into chests upon worldgen to check if they have been opened
+}
+
+DustDevilMask: {
+	DisplayName: Dust Devil Mask
+	Tooltip: ""
 }

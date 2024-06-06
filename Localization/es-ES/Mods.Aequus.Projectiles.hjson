@@ -77,7 +77,7 @@ DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 // PolymerSandSandGun.DisplayName: "{PolymerSand.DisplayName}"
 // ScrapBlock.DisplayName: Junk Ball
 // ScrapBlockSandGun.DisplayName: "{ScrapBlock.DisplayName}"
-// PhaseDiscProj.DisplayName: "{$Items.PhaseDisc.DisplayName}"
+// PhasebrinkProj.DisplayName: "{$Items.Phasebrink.DisplayName}"
 // SickBeatProj.DisplayName: "{$Items.SickBeat.DisplayName}"
 // ValariProj.DisplayName: "{$Items.Valari.DisplayName}"
 // VrangProj.DisplayName: "{$Items.Vrang.DisplayName}"
@@ -90,3 +90,7 @@ DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 // RaygunExplosionProj.DisplayName: "{$Items.Raygun.DisplayName}"
 // GamestarProj.DisplayName: "{$Items.Gamestar.DisplayName}"
 // CastawayProjExplosiveMine.DisplayName: Shrapnel
+// DustDevilFireball.DisplayName: Fireball
+// DustDevilFrostball.DisplayName: Frostspike
+// DustDevilTileProj.DisplayName: Suctioned Block
+// SuctionedEnemy.DisplayName: Suctioned Enemy

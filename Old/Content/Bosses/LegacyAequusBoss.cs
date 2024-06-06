@@ -1,13 +1,16 @@
-﻿using Terraria.GameContent;
+﻿using Aequus.Core.ContentGeneration;
+using Terraria.GameContent;
 
 namespace Aequus.Old.Content.Bosses;
 
-public abstract class LegacyAequusBoss : ModNPC {
-    public const int STATE_KILLED = -3;
-    public const int STATE_DEATH_ANIMATION = -2;
-    public const int STATE_GOODBYE = -1;
-    public const int STATE_INIT = 0;
-    public const int STATE_INTRO = 1;
+public abstract class LegacyAequusBoss(BossParams BossParams, TrophyParams Trophy = default) : UnifiedBoss(BossParams, Trophy) {
+    #region Common States
+    public const int KILLED = -3;
+    public const int DEATH_ANIMATION = -2;
+    public const int GOODBYE = -1;
+    public const int INIT = 0;
+    public const int INTRO = 1;
+    #endregion
 
     public int horizontalFrames = 1;
 

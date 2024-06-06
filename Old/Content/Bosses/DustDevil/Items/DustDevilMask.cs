@@ -1,11 +1,8 @@
 ﻿using Aequus.Core.ContentGeneration;
 
-namespace Aequus.Content.Bosses.BossMasks;
+namespace Aequus.Old.Content.Bosses.DustDevil.Items;
 
-internal class DustDevilMask : InstancedModItem {
-    public DustDevilMask(string name) : base($"{name}Mask", typeof(DustDevilMask).GetFilePath()) {
-    }
-
+internal class DustDevilMask(string name) : InstancedModItem($"{name}Mask", typeof(DustDevilMask).GetFilePath()) {
     private int _fireSide;
     private int _iceSide;
 

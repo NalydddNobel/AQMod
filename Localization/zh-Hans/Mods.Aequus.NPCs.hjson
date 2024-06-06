@@ -49,8 +49,22 @@ Mirage.Bestiary: 下雨时, 有毒的雾云形成并聚集在一起, 形成这�
 Pillbug.Bestiary: 被海蓝能量所祝福, 这些虫子到处乱爬, 以污染为食, 仿佛污染对它们来说不算什么.
 Chromite.Bestiary: 一种甲虫形状的虫子, 有着能够通过磁性机制来改变颜色以融入周围环境的金属外壳. 它们是常见的家庭害虫, 是微波炉的灾祸, 但也可能是一种有用的诱饵.
 Crabson.DisplayName: 巨蟹蛤
-OmegaStarite.DisplayName: 终末之星
-DustDevil.DisplayName: 沙尘恶魔
+
+OmegaStarite: {
+	DisplayName: 终末之星
+	TreasureBagDisplayName: 宝藏袋 (终末之星)
+	TrophyDisplayName: 终末之星纪念章
+	RelicDisplayName: 终末之星纪念物
+	MaskDisplayName: 终末之星面具
+}
+
+DustDevil: {
+	DisplayName: 沙尘恶魔
+	TreasureBagDisplayName: 宝藏袋 (沙尘恶魔)
+	TrophyDisplayName: 沙尘恶魔纪念章
+	RelicDisplayName: 沙尘恶魔纪念物
+	MaskDisplayName: 沙尘恶魔面具
+}
 
 BloodMimic: {
 	DisplayName: 血红模仿者
@@ -87,6 +101,8 @@ DwarfStarite: {
 UltraStarite: {
 	DisplayName: 终耀源星
 	Bestiary: 处于成长最后阶段的精英星源可以将暴露的核心集中到致命的激光束上. 你认为天要塌下来了是可以理解的!
+	TrophyDisplayName: 终耀源星纪念章
+	RelicDisplayName: 终耀源星纪念物
 }
 
 HyperStarite: {

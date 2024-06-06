@@ -49,8 +49,22 @@ Mirage.Bestiary: Durante la lluvia, nubes toxicas se forman y acumulan formando 
 Pillbug.Bestiary: Bendecido con Energía Acuática, estos insectos corretean y se alimentan de la contaminación como si no fuera nada.
 Chromite.Bestiary: Un insecto con un caparazon metalico que cambia de color usando un mecanismo magnetico, Son una plaga dómestica común, y el colmo para los microondas. Podrían ser útil como carnada.
 Crabson.DisplayName: Crabson
-OmegaStarite.DisplayName: Omega Starite
-DustDevil.DisplayName: Demonio de Polvo
+
+OmegaStarite: {
+	DisplayName: Omega Starite
+	TreasureBagDisplayName: Bolsa del Tesoro (Omega Starite)
+	TrophyDisplayName: Trofeo de Omega Starite
+	RelicDisplayName: Reliquia de Omega Starite
+	MaskDisplayName: Mascara de Omega Starite
+}
+
+DustDevil: {
+	DisplayName: Demonio de Polvo
+	TreasureBagDisplayName: Bolsa del Tesoro (Demonio de Polvo)
+	TrophyDisplayName: Trofeo del Demonio de Polvo
+	RelicDisplayName: Reliquia del Demonio de Polvo
+	MaskDisplayName: Mascara del Diablillo de Polvo
+}
 
 BloodMimic: {
 	DisplayName: Cofre falso sangriento
@@ -87,6 +101,8 @@ DwarfStarite: {
 UltraStarite: {
 	DisplayName: Ultra Starite
 	Bestiary: En su ultima etapa de crecimiento, starites elite pueden concentrar la energia de su núcleo expuesto para formar rayos mortales. ¡es casi como si el cielo estuviera cayendo!
+	TrophyDisplayName: Trofeo de Ultra Starite
+	RelicDisplayName: Reliquia de Ultra Starite
 }
 
 HyperStarite: {

@@ -9,6 +9,22 @@ using Terraria.Utilities;
 namespace Aequus.Core.Utilities;
 
 public static partial class Helper {
+    public static IEnumerable<Vector2> CircularVector(int count, float baseValue = 0f) {
+        float amount = 1f / count * MathHelper.TwoPi;
+        do {
+            yield return (amount * count + baseValue).ToRotationVector2();
+        }
+        while (--count > 0);
+    }
+
+    public static IEnumerable<float> Circular(int count, float baseValue = 0f) {
+        float amount = 1f / count;
+        do {
+            yield return amount * count + baseValue;
+        }
+        while (--count > 0);
+    }
+
     /// <returns>Returns 0f if <see cref="float.IsNaN(float)"/> returns true for <paramref name="value"/>.</returns>
     public static float UnNaN(this float value) {
         return float.IsNaN(value) ? 0f : value;

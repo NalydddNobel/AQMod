@@ -57,7 +57,7 @@ public class GlimmerSceneEffect : ModSceneEffect {
     }
 
     public static void DrawUltimateSword() {
-        if (!GlimmerZone.EventActive || GlimmerZone.omegaStarite != -1 && (int)Main.npc[GlimmerZone.omegaStarite].ai[0] != LegacyAequusBoss.STATE_INTRO && (int)Main.npc[GlimmerZone.omegaStarite].ai[0] != LegacyAequusBoss.STATE_INIT) {
+        if (!GlimmerZone.EventActive || GlimmerZone.omegaStarite != -1 && (int)Main.npc[GlimmerZone.omegaStarite].ai[0] != LegacyAequusBoss.INTRO && (int)Main.npc[GlimmerZone.omegaStarite].ai[0] != LegacyAequusBoss.INIT) {
             EatenAlpha = 255;
             renderedUltimateSword = false;
             ultimateSwordWorldDrawLocation = Vector2.Zero;

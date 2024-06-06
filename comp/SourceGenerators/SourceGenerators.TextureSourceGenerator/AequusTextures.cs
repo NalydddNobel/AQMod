@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 848) yo momma gai</summary>
+/// <summary>(Total Textures: 851) yo momma gai</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -165,12 +165,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CrabsonMask = new("Aequus/Content/Bosses/BossMasks/CrabsonMask");
     /// <summary>Full Path: Content/Bosses/BossMasks/CrabsonMask_Head</summary>
     public static readonly RequestCache<Texture2D> CrabsonMask_Head = new("Aequus/Content/Bosses/BossMasks/CrabsonMask_Head");
-    /// <summary>Full Path: Content/Bosses/BossMasks/DustDevilMask</summary>
-    public static readonly RequestCache<Texture2D> DustDevilMask = new("Aequus/Content/Bosses/BossMasks/DustDevilMask");
-    /// <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskFire_Head</summary>
-    public static readonly RequestCache<Texture2D> DustDevilMaskFire_Head = new("Aequus/Content/Bosses/BossMasks/DustDevilMaskFire_Head");
-    /// <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskIce_Head</summary>
-    public static readonly RequestCache<Texture2D> DustDevilMaskIce_Head = new("Aequus/Content/Bosses/BossMasks/DustDevilMaskIce_Head");
     /// <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask</summary>
     public static readonly RequestCache<Texture2D> RedSpriteMask = new("Aequus/Content/Bosses/BossMasks/RedSpriteMask");
     /// <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask_Head</summary>
@@ -181,8 +175,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SpaceSquidMask_Head = new("Aequus/Content/Bosses/BossMasks/SpaceSquidMask_Head");
     /// <summary>Full Path: Content/Bosses/TreasureBags/CrabsonBag</summary>
     public static readonly RequestCache<Texture2D> CrabsonBag = new("Aequus/Content/Bosses/TreasureBags/CrabsonBag");
-    /// <summary>Full Path: Content/Bosses/TreasureBags/DustDevilBag</summary>
-    public static readonly RequestCache<Texture2D> DustDevilBag = new("Aequus/Content/Bosses/TreasureBags/DustDevilBag");
     /// <summary>Full Path: Content/Bosses/Trophies/CrabsonRelic</summary>
     public static readonly RequestCache<Texture2D> CrabsonRelic = new("Aequus/Content/Bosses/Trophies/CrabsonRelic");
     /// <summary>Full Path: Content/Bosses/Trophies/CrabsonRelicItem</summary>
@@ -191,14 +183,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CrabsonTrophy = new("Aequus/Content/Bosses/Trophies/CrabsonTrophy");
     /// <summary>Full Path: Content/Bosses/Trophies/CrabsonTrophyItem</summary>
     public static readonly RequestCache<Texture2D> CrabsonTrophyItem = new("Aequus/Content/Bosses/Trophies/CrabsonTrophyItem");
-    /// <summary>Full Path: Content/Bosses/Trophies/DustDevilRelic</summary>
-    public static readonly RequestCache<Texture2D> DustDevilRelic = new("Aequus/Content/Bosses/Trophies/DustDevilRelic");
-    /// <summary>Full Path: Content/Bosses/Trophies/DustDevilRelicItem</summary>
-    public static readonly RequestCache<Texture2D> DustDevilRelicItem = new("Aequus/Content/Bosses/Trophies/DustDevilRelicItem");
-    /// <summary>Full Path: Content/Bosses/Trophies/DustDevilTrophy</summary>
-    public static readonly RequestCache<Texture2D> DustDevilTrophy = new("Aequus/Content/Bosses/Trophies/DustDevilTrophy");
-    /// <summary>Full Path: Content/Bosses/Trophies/DustDevilTrophyItem</summary>
-    public static readonly RequestCache<Texture2D> DustDevilTrophyItem = new("Aequus/Content/Bosses/Trophies/DustDevilTrophyItem");
     /// <summary>Full Path: Content/Bosses/Trophies/RedSpriteRelic</summary>
     public static readonly RequestCache<Texture2D> RedSpriteRelic = new("Aequus/Content/Bosses/Trophies/RedSpriteRelic");
     /// <summary>Full Path: Content/Bosses/Trophies/RedSpriteRelicItem</summary>
@@ -941,6 +925,28 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> icon_small = new("Aequus/icon_small");
     /// <summary>Full Path: icon_workshop</summary>
     public static readonly RequestCache<Texture2D> icon_workshop = new("Aequus/icon_workshop");
+    /// <summary>Full Path: Old/Content/Bosses/DustDevil/DustDevil</summary>
+    public static readonly RequestCache<Texture2D> DustDevil = new("Aequus/Old/Content/Bosses/DustDevil/DustDevil");
+    /// <summary>Full Path: Old/Content/Bosses/DustDevil/DustDevil_Head_Boss</summary>
+    public static readonly RequestCache<Texture2D> DustDevil_Head_Boss = new("Aequus/Old/Content/Bosses/DustDevil/DustDevil_Head_Boss");
+    /// <summary>Full Path: Old/Content/Bosses/DustDevil/DustParticle</summary>
+    public static readonly RequestCache<Texture2D> DustParticle = new("Aequus/Old/Content/Bosses/DustDevil/DustParticle");
+    /// <summary>Full Path: Old/Content/Bosses/DustDevil/Items/DustDevilBag</summary>
+    public static readonly RequestCache<Texture2D> DustDevilBag = new("Aequus/Old/Content/Bosses/DustDevil/Items/DustDevilBag");
+    /// <summary>Full Path: Old/Content/Bosses/DustDevil/Items/DustDevilMask</summary>
+    public static readonly RequestCache<Texture2D> DustDevilMask = new("Aequus/Old/Content/Bosses/DustDevil/Items/DustDevilMask");
+    /// <summary>Full Path: Old/Content/Bosses/DustDevil/Items/DustDevilMaskFire_Head</summary>
+    public static readonly RequestCache<Texture2D> DustDevilMaskFire_Head = new("Aequus/Old/Content/Bosses/DustDevil/Items/DustDevilMaskFire_Head");
+    /// <summary>Full Path: Old/Content/Bosses/DustDevil/Items/DustDevilMaskIce_Head</summary>
+    public static readonly RequestCache<Texture2D> DustDevilMaskIce_Head = new("Aequus/Old/Content/Bosses/DustDevil/Items/DustDevilMaskIce_Head");
+    /// <summary>Full Path: Old/Content/Bosses/DustDevil/Items/DustDevilRelic</summary>
+    public static readonly RequestCache<Texture2D> DustDevilRelic = new("Aequus/Old/Content/Bosses/DustDevil/Items/DustDevilRelic");
+    /// <summary>Full Path: Old/Content/Bosses/DustDevil/Items/DustDevilRelicItem</summary>
+    public static readonly RequestCache<Texture2D> DustDevilRelicItem = new("Aequus/Old/Content/Bosses/DustDevil/Items/DustDevilRelicItem");
+    /// <summary>Full Path: Old/Content/Bosses/DustDevil/Items/DustDevilTrophy</summary>
+    public static readonly RequestCache<Texture2D> DustDevilTrophy = new("Aequus/Old/Content/Bosses/DustDevil/Items/DustDevilTrophy");
+    /// <summary>Full Path: Old/Content/Bosses/DustDevil/Items/DustDevilTrophyItem</summary>
+    public static readonly RequestCache<Texture2D> DustDevilTrophyItem = new("Aequus/Old/Content/Bosses/DustDevil/Items/DustDevilTrophyItem");
     /// <summary>Full Path: Old/Content/Bosses/OmegaStarite/Items/OmegaStariteBag</summary>
     public static readonly RequestCache<Texture2D> OmegaStariteBag = new("Aequus/Old/Content/Bosses/OmegaStarite/Items/OmegaStariteBag");
     /// <summary>Full Path: Old/Content/Bosses/OmegaStarite/Items/OmegaStariteMask</summary>
@@ -1377,10 +1383,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Cauterizer = new("Aequus/Old/Content/Items/Weapons/Melee/DemonCrimsonSpear/Cauterizer");
     /// <summary>Full Path: Old/Content/Items/Weapons/Melee/DemonCrimsonSpear/CauterizerSlash</summary>
     public static readonly RequestCache<Texture2D> CauterizerSlash = new("Aequus/Old/Content/Items/Weapons/Melee/DemonCrimsonSpear/CauterizerSlash");
-    /// <summary>Full Path: Old/Content/Items/Weapons/Melee/PhaseDisc/PhaseDisc</summary>
-    public static readonly RequestCache<Texture2D> PhaseDisc = new("Aequus/Old/Content/Items/Weapons/Melee/PhaseDisc/PhaseDisc");
-    /// <summary>Full Path: Old/Content/Items/Weapons/Melee/PhaseDisc/PhaseDiscProj</summary>
-    public static readonly RequestCache<Texture2D> PhaseDiscProj = new("Aequus/Old/Content/Items/Weapons/Melee/PhaseDisc/PhaseDiscProj");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Melee/Phasebrink/Phasebrink</summary>
+    public static readonly RequestCache<Texture2D> Phasebrink = new("Aequus/Old/Content/Items/Weapons/Melee/Phasebrink/Phasebrink");
+    /// <summary>Full Path: Old/Content/Items/Weapons/Melee/Phasebrink/PhasebrinkProj</summary>
+    public static readonly RequestCache<Texture2D> PhasebrinkProj = new("Aequus/Old/Content/Items/Weapons/Melee/Phasebrink/PhasebrinkProj");
     /// <summary>Full Path: Old/Content/Items/Weapons/Melee/SickBeat/SickBeat</summary>
     public static readonly RequestCache<Texture2D> SickBeat = new("Aequus/Old/Content/Items/Weapons/Melee/SickBeat/SickBeat");
     /// <summary>Full Path: Old/Content/Items/Weapons/Melee/Slice/Slice</summary>

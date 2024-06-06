@@ -2383,7 +2383,7 @@
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 848) yo momma gai</summary>
+            <summary>(Total Textures: 851) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2622,15 +2622,6 @@
         <member name="F:Aequus.AequusTextures.CrabsonMask_Head">
             <summary>Full Path: Content/Bosses/BossMasks/CrabsonMask_Head</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.DustDevilMask">
-            <summary>Full Path: Content/Bosses/BossMasks/DustDevilMask</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DustDevilMaskFire_Head">
-            <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskFire_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DustDevilMaskIce_Head">
-            <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskIce_Head</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.RedSpriteMask">
             <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask</summary>
         </member>
@@ -2646,9 +2637,6 @@
         <member name="F:Aequus.AequusTextures.CrabsonBag">
             <summary>Full Path: Content/Bosses/TreasureBags/CrabsonBag</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.DustDevilBag">
-            <summary>Full Path: Content/Bosses/TreasureBags/DustDevilBag</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.CrabsonRelic">
             <summary>Full Path: Content/Bosses/Trophies/CrabsonRelic</summary>
         </member>
@@ -2660,18 +2648,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonTrophyItem">
             <summary>Full Path: Content/Bosses/Trophies/CrabsonTrophyItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DustDevilRelic">
-            <summary>Full Path: Content/Bosses/Trophies/DustDevilRelic</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DustDevilRelicItem">
-            <summary>Full Path: Content/Bosses/Trophies/DustDevilRelicItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DustDevilTrophy">
-            <summary>Full Path: Content/Bosses/Trophies/DustDevilTrophy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DustDevilTrophyItem">
-            <summary>Full Path: Content/Bosses/Trophies/DustDevilTrophyItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteRelic">
             <summary>Full Path: Content/Bosses/Trophies/RedSpriteRelic</summary>
@@ -3786,6 +3762,39 @@
         <member name="F:Aequus.AequusTextures.icon_workshop">
             <summary>Full Path: icon_workshop</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.DustDevil">
+            <summary>Full Path: Old/Content/Bosses/DustDevil/DustDevil</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevil_Head_Boss">
+            <summary>Full Path: Old/Content/Bosses/DustDevil/DustDevil_Head_Boss</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustParticle">
+            <summary>Full Path: Old/Content/Bosses/DustDevil/DustParticle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilBag">
+            <summary>Full Path: Old/Content/Bosses/DustDevil/Items/DustDevilBag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilMask">
+            <summary>Full Path: Old/Content/Bosses/DustDevil/Items/DustDevilMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilMaskFire_Head">
+            <summary>Full Path: Old/Content/Bosses/DustDevil/Items/DustDevilMaskFire_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilMaskIce_Head">
+            <summary>Full Path: Old/Content/Bosses/DustDevil/Items/DustDevilMaskIce_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilRelic">
+            <summary>Full Path: Old/Content/Bosses/DustDevil/Items/DustDevilRelic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilRelicItem">
+            <summary>Full Path: Old/Content/Bosses/DustDevil/Items/DustDevilRelicItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilTrophy">
+            <summary>Full Path: Old/Content/Bosses/DustDevil/Items/DustDevilTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilTrophyItem">
+            <summary>Full Path: Old/Content/Bosses/DustDevil/Items/DustDevilTrophyItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteBag">
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Items/OmegaStariteBag</summary>
         </member>
@@ -4440,11 +4449,11 @@
         <member name="F:Aequus.AequusTextures.CauterizerSlash">
             <summary>Full Path: Old/Content/Items/Weapons/Melee/DemonCrimsonSpear/CauterizerSlash</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PhaseDisc">
-            <summary>Full Path: Old/Content/Items/Weapons/Melee/PhaseDisc/PhaseDisc</summary>
+        <member name="F:Aequus.AequusTextures.Phasebrink">
+            <summary>Full Path: Old/Content/Items/Weapons/Melee/Phasebrink/Phasebrink</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PhaseDiscProj">
-            <summary>Full Path: Old/Content/Items/Weapons/Melee/PhaseDisc/PhaseDiscProj</summary>
+        <member name="F:Aequus.AequusTextures.PhasebrinkProj">
+            <summary>Full Path: Old/Content/Items/Weapons/Melee/Phasebrink/PhasebrinkProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SickBeat">
             <summary>Full Path: Old/Content/Items/Weapons/Melee/SickBeat/SickBeat</summary>

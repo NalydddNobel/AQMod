@@ -374,7 +374,7 @@ UltimateSword: {
 	Tooltip: "'被终末之星所吸收, 失去了其真正的潜能...'"
 }
 
-PhaseDisc: {
+Phasebrink: {
 	DisplayName: 相位盘
 	Tooltip:
 		'''
@@ -960,8 +960,6 @@ UnholyCoreSmall: {
 		'''
 }
 
-TreasureBag.DisplayName: 宝藏袋 ({0})
-
 WispLantern: {
 	DisplayName: 精灵灯笼
 	Tooltip:
@@ -1126,16 +1124,6 @@ BreadOfCthulhuMask: {
 	Tooltip: ""
 }
 
-DustDevilMask: {
-	DisplayName: 沙尘恶魔面具
-	Tooltip: ""
-}
-
-OmegaStariteMask: {
-	DisplayName: 终末之星面具
-	Tooltip: ""
-}
-
 RedSpriteMask: {
 	DisplayName: 红色精灵面具
 	Tooltip: ""
@@ -1187,4 +1175,9 @@ StariteMaterial: {
 UnopenedChestItem: {
 	DisplayName: 未开启的宝箱物品
 	Tooltip: 这是Debug物品, 将其放置在世界生成的宝箱内以检测其是否被开启过
+}
+
+DustDevilMask: {
+	// DisplayName: Dust Devil Mask
+	// Tooltip: ""
 }

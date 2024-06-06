@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Terraria.DataStructures;
 using Terraria.Localization;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 using tModLoaderExtended.Terraria.ModLoader;
@@ -132,35 +131,5 @@ internal class InstancedWallItem(ModWall modWall, bool dropItem = true) : Instan
                 .Register()
                 .DisableDecraft();
         }
-    }
-}
-
-internal class InstancedCaughtNPCItem(ModNPC parent) : InstancedModItem(parent.Name, parent.Texture), IPostSetupContent {
-    [CloneByReference]
-    private readonly ModNPC _parent = parent;
-
-    public override LocalizedText DisplayName => _parent.DisplayName;
-    public override LocalizedText Tooltip => LocalizedText.Empty;
-
-    public override void Load() {
-        ModTypeLookup<ModItem>.RegisterLegacyNames(this, $"{Name}Item");
-    }
-
-    public override void SetStaticDefaults() {
-        AutoNPCDefaults._npcToCritter.Add(_parent.Type, (short)Type);
-    }
-
-    public void PostSetupContent(Mod mod) {
-        if (Main.npcFrameCount[_parent.Type] > 1) {
-            Main.RegisterItemAnimation(Type, new DrawAnimationVertical(int.MaxValue - 1, Main.npcFrameCount[_parent.Type]));
-        }
-        if (_parent.NPC.lavaImmune) {
-            ItemSets.IsLavaImmuneRegardlessOfRarity[Type] = true;
-        }
-    }
-
-    public override void SetDefaults() {
-        Item.DefaultToCapturedCritter(_parent.Type);
-        Item.value = Item.sellPrice(silver: 10);
     }
 }

@@ -1,8 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Bestiary;
-using Aequus.Content.Bosses;
-using Aequus.Content.Bosses.Trophies;
 using Aequus.Content.Dusts;
 using Aequus.Content.Pets.OmegaStarite;
 using Aequus.Core.CodeGeneration;
@@ -30,21 +28,20 @@ namespace Aequus.Old.Content.Bosses.OmegaStarite;
 [Gen.AequusSystem_WorldField<bool>("downedOmegaStarite")]
 [BestiaryBiome<GlimmerZone>()]
 [AutoloadBossHead]
-[AutoloadBossMask]
-[AutoloadTrophies(LegacyBossTrophiesTile.OmegaStarite, typeof(OmegaStariteRelicRenderer))]
-[AutoloadBossBag(preHardmode: true, itemRarity: Commons.Rare.BossOmegaStarite)]
 public class OmegaStarite : LegacyAequusBoss {
     public const float BossProgression = 6.99f;
 
-    public const int ACTION_LASER_ORBITAL_2 = 8;
-    public const int ACTION_LASER_ORBITAL_1 = 7;
-    public const int ACTION_STARS = 6;
-    public const int ACTION_ASSAULT = 5;
-    public const int ACTION_ORBITAL_3 = 4;
-    public const int ACTION_ORBITAL_2 = 3;
-    public const int ACTION_ORBITAL_1 = 2;
-    public const int ACTION_UNUSED = -2;
-    public const int ACTION_DEAD = -3;
+    #region States
+    public const int LASER_ORBITAL_2 = 8;
+    public const int LASER_ORBITAL_1 = 7;
+    public const int STARS = 6;
+    public const int ASSAULT = 5;
+    public const int ORBITAL_3 = 4;
+    public const int ORBITAL_2 = 3;
+    public const int ORBITAL_1 = 2;
+    public const int UNUSED = -2;
+    public const int DEAD = -3;
+    #endregion
 
     public const float DIAMETER = 120;
     public const float RADIUS = DIAMETER / 2f;
@@ -53,6 +50,13 @@ public class OmegaStarite : LegacyAequusBoss {
     public List<OmegaStariteRing> rings;
     public float starDamageMultiplier;
     private byte _hitShake;
+
+    public OmegaStarite() : base(new BossParams(
+            Commons.Rare.BossOmegaStarite
+        ),
+        new TrophyParams() {
+            Renderer = new OmegaStariteRelicRenderer()
+        }) { }
 
     public override void SetStaticDefaults() {
         NPCSets.TrailingMode[NPC.type] = 7;
@@ -212,7 +216,7 @@ public class OmegaStarite : LegacyAequusBoss {
     }
 
     public override void AI() {
-        if (Main.dayTime && !Main.remixWorld && State != ACTION_DEAD) {
+        if (Main.dayTime && !Main.remixWorld && State != DEAD) {
             NPC.GetGlobalNPC<DropsGlobalNPC>().noOnKillEffects = true;
         }
 
@@ -229,7 +233,7 @@ public class OmegaStarite : LegacyAequusBoss {
                 }
                 break;
 
-            case ACTION_LASER_ORBITAL_2: {
+            case LASER_ORBITAL_2: {
                     if (NPC.ai[1] == 0f) {
                         CullRingRotations();
                     }
@@ -264,7 +268,7 @@ public class OmegaStarite : LegacyAequusBoss {
                                 rings[i].roll = 0f;
                             }
                             if (PlrCheck()) {
-                                NPC.ai[0] = ACTION_LASER_ORBITAL_1;
+                                NPC.ai[0] = LASER_ORBITAL_1;
                                 NPC.ai[1] = 0f;
                                 NPC.ai[3] = 3f + (1f - NPC.life / (float)NPC.lifeMax) * 1.5f;
                             }
@@ -279,7 +283,7 @@ public class OmegaStarite : LegacyAequusBoss {
                 }
                 break;
 
-            case ACTION_LASER_ORBITAL_1: {
+            case LASER_ORBITAL_1: {
                     NPC.ai[2]++;
                     if (NPC.ai[2] > 1200f) {
                         if (NPC.ai[1] > 0.0314) {
@@ -325,8 +329,8 @@ public class OmegaStarite : LegacyAequusBoss {
                             if (PlrCheck()) {
                                 var choices = new List<int>
                                 {
-                                    ACTION_ASSAULT,
-                                    ACTION_STARS,
+                                    ASSAULT,
+                                    STARS,
                                 };
                                 NPC.ai[0] = choices[Main.rand.Next(choices.Count)];
                                 NPC.ai[1] = 0f;
@@ -424,7 +428,7 @@ public class OmegaStarite : LegacyAequusBoss {
                 }
                 break;
 
-            case ACTION_STARS: {
+            case STARS: {
                     LerpToDefaultRotationVelocity();
 
                     NPC.ai[1]++;
@@ -475,7 +479,7 @@ public class OmegaStarite : LegacyAequusBoss {
                     }
 
                     if (NPC.ai[1] > 480f) {
-                        NPC.ai[0] = ACTION_ORBITAL_1;
+                        NPC.ai[0] = ORBITAL_1;
                         NPC.ai[1] = 0f;
                         NPC.ai[2] = 0f;
                         NPC.ai[3] = 0f;
@@ -483,11 +487,11 @@ public class OmegaStarite : LegacyAequusBoss {
                 }
                 break;
 
-            case ACTION_ASSAULT:
+            case ASSAULT:
                 Assault(center, plrCenter, player);
                 break;
 
-            case ACTION_ORBITAL_3: {
+            case ORBITAL_3: {
                     NPC.ai[2]++;
                     if (NPC.ai[2] > 300f) {
                         if (NPC.ai[1] > 0.0314) {
@@ -546,7 +550,7 @@ public class OmegaStarite : LegacyAequusBoss {
                 }
                 break;
 
-            case ACTION_ORBITAL_2: {
+            case ORBITAL_2: {
                     if (NPC.ai[1] == 0f) {
                         rings[0].pitch %= MathHelper.Pi;
                         rings[0].roll %= MathHelper.Pi;
@@ -572,7 +576,7 @@ public class OmegaStarite : LegacyAequusBoss {
                                 rings[i].roll = 0f;
                             }
                             if (PlrCheck()) {
-                                NPC.ai[0] = ACTION_ORBITAL_3;
+                                NPC.ai[0] = ORBITAL_3;
                                 NPC.ai[1] = 0f;
                                 NPC.ai[3] = 3f + (1f - NPC.life / (float)NPC.lifeMax) * 1.5f;
                             }
@@ -587,7 +591,7 @@ public class OmegaStarite : LegacyAequusBoss {
                 }
                 break;
 
-            case ACTION_ORBITAL_1: {
+            case ORBITAL_1: {
                     LerpToDefaultRotationVelocity();
                     if (NPC.ai[1] == 0f) {
                         if (PlrCheck()) {
@@ -606,10 +610,10 @@ public class OmegaStarite : LegacyAequusBoss {
                             if (PlrCheck()) {
                                 NPC.velocity *= 0.1f;
                                 if (NPC.life / (float)NPC.lifeMax < 0.5f) {
-                                    NPC.ai[0] = ACTION_LASER_ORBITAL_2;
+                                    NPC.ai[0] = LASER_ORBITAL_2;
                                 }
                                 else {
-                                    NPC.ai[0] = ACTION_ORBITAL_2;
+                                    NPC.ai[0] = ORBITAL_2;
                                 }
                                 NPC.ai[1] = 0f;
                                 NPC.ai[2] = 0f;
@@ -625,7 +629,7 @@ public class OmegaStarite : LegacyAequusBoss {
                 }
                 break;
 
-            case STATE_INTRO:
+            case INTRO:
                 var r = NPC.getRect();
                 r.Inflate(24, 24);
                 for (int i = 0; i < Main.maxItems; i++) {
@@ -645,7 +649,7 @@ public class OmegaStarite : LegacyAequusBoss {
                 Intro(center, plrCenter);
                 break;
 
-            case STATE_INIT:
+            case INIT:
                 int target = NPC.target;
                 if (!NPC.HasValidTarget) {
                     NPC.TargetClosest(faceTarget: false);
@@ -654,22 +658,22 @@ public class OmegaStarite : LegacyAequusBoss {
                 Initalize();
                 NPC.netUpdate = true;
                 NPC.target = target;
-                NPC.ai[0] = STATE_INTRO;
+                NPC.ai[0] = INTRO;
                 NPC.ai[2] = plrCenter.Y - DIAMETER * 2.5f;
                 break;
 
-            case STATE_GOODBYE:
+            case GOODBYE:
                 Goodbye();
                 break;
 
-            case ACTION_DEAD:
+            case DEAD:
                 Die();
                 break;
 
             case -100: {
                     int item = (int)NPC.ai[1];
                     if (!Main.item[item].active) {
-                        NPC.ai[0] = ACTION_ASSAULT;
+                        NPC.ai[0] = ASSAULT;
                         return;
                     }
                     Main.item[item].noGrabDelay = 120;
@@ -726,7 +730,7 @@ public class OmegaStarite : LegacyAequusBoss {
         for (int i = 0; i < rings.Count; i++) {
             rings[i].Update(center + NPC.velocity);
         }
-        if (NPC.ai[0] != ACTION_DEAD && State != -100) {
+        if (NPC.ai[0] != DEAD && State != -100) {
             int chance = 10 - (int)speed;
             if (chance < 2 || Main.rand.NextBool(chance)) {
                 if (speed < 2f) {
@@ -787,7 +791,7 @@ public class OmegaStarite : LegacyAequusBoss {
             if ((center - new Vector2(NPC.ai[1], NPC.ai[2])).Length() < DIAMETER) {
                 NPC.ai[3]++;
                 if (NPC.ai[3] > 5) {
-                    NPC.ai[0] = ACTION_ORBITAL_1;
+                    NPC.ai[0] = ORBITAL_1;
                     NPC.ai[1] = 0f;
                     NPC.ai[3] = 0f;
                 }
@@ -827,7 +831,7 @@ public class OmegaStarite : LegacyAequusBoss {
         }
         LerpToDefaultRotationVelocity();
         if (center.Y > NPC.ai[2]) {
-            int[] choices = new int[] { ACTION_ORBITAL_1, ACTION_ASSAULT };
+            int[] choices = new int[] { ORBITAL_1, ASSAULT };
             NPC.ai[0] = choices[Main.rand.Next(choices.Length)];
             NPC.ai[1] = 0f;
             NPC.ai[2] = 0f;
@@ -914,7 +918,7 @@ public class OmegaStarite : LegacyAequusBoss {
         NPC.TargetClosest(faceTarget: false);
         NPC.netUpdate = true;
         if (!NPC.HasValidTarget || NPC.Distance(Main.player[NPC.target].Center) > 4000f) {
-            NPC.ai[0] = STATE_GOODBYE;
+            NPC.ai[0] = GOODBYE;
             NPC.ai[1] = 0f;
             NPC.ai[2] = 0f;
             NPC.ai[3] = 0f;
@@ -991,10 +995,10 @@ public class OmegaStarite : LegacyAequusBoss {
             if (PlrCheck()) {
                 var choices = new List<int>
                 {
-                    ACTION_ASSAULT,
+                    ASSAULT,
                 };
                 if (NPC.life / (float)NPC.lifeMax < (Main.expertMode ? 0.5f : 0.33f))
-                    choices.Add(ACTION_STARS);
+                    choices.Add(STARS);
                 if (choices.Count == 1) {
                     NPC.ai[0] = choices[0];
                 }
@@ -1011,7 +1015,7 @@ public class OmegaStarite : LegacyAequusBoss {
     }
 
     public override void FindFrame(int frameHeight) {
-        if (NPC.ai[0] != ACTION_DEAD) {
+        if (NPC.ai[0] != DEAD) {
             NPC.frameCounter++;
             if (NPC.frameCounter >= 6) {
                 NPC.frameCounter = 0;
@@ -1023,7 +1027,7 @@ public class OmegaStarite : LegacyAequusBoss {
     }
 
     public override void UpdateLifeRegen(ref int damage) {
-        if (Main.dayTime && State != ACTION_DEAD && !Main.remixWorld) {
+        if (Main.dayTime && State != DEAD && !Main.remixWorld) {
             NPC.lifeRegen = -10000;
             damage = 100;
         }
@@ -1034,7 +1038,7 @@ public class OmegaStarite : LegacyAequusBoss {
             return true;
         }
         //NPC.GetGlobalNPC<NoHitting>().preventNoHitCheck = true;
-        NPC.ai[0] = ACTION_DEAD;
+        NPC.ai[0] = DEAD;
         NPC.ai[1] = 0f;
         NPC.ai[2] = 0f;
         NPC.ai[3] = 0f;
@@ -1109,7 +1113,7 @@ public class OmegaStarite : LegacyAequusBoss {
             ViewHelper.LegacyScreenShake(intensity * 0.5f);
             ModContent.GetInstance<CameraFocus>().SetTarget("Omega Starite", focus, CameraPriority.VeryImportant, 0.5f, 60);
         }
-        else if (State == ACTION_DEAD) {
+        else if (State == DEAD) {
             intensity += NPC.ai[1] / 20;
             if (NPC.CountNPCS(Type) == 1) {
                 ModContent.GetInstance<CameraFocus>().SetTarget("Omega Starite", NPC.Center, CameraPriority.BossDefeat, 12f, 60);
@@ -1324,8 +1328,7 @@ public class OmegaStarite : LegacyAequusBoss {
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
-        //    if (Main.rand.NextBool(3))
-        //        Item.NewItem(rect, ModContent.ItemType<CosmicTelescope>());
+        base.ModifyNPCLoot(npcLoot);
 
         npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.GetInstance<OmegaStaritePet>().PetItem.Type, chanceDenominator: 4));
         //npcLoot.AddBossDrop(ItemDropRule.Common(ModContent.ItemType<CelesteTorus>());
@@ -1375,10 +1378,48 @@ public class OmegaStarite : LegacyAequusBoss {
     }
 
     public bool IsUltimateRayActive() {
-        return NPC.ai[0] == ACTION_LASER_ORBITAL_1 && NPC.ai[2] < 1200f;
+        return NPC.ai[0] == LASER_ORBITAL_1 && NPC.ai[2] < 1200f;
     }
 
     private static bool CloseEnough(float comparison, float intendedValue, float closeEnoughMargin = 1f) {
         return Math.Abs(comparison - intendedValue) <= closeEnoughMargin;
+    }
+}
+
+public class OmegaStariteRelicRenderer : RelicRenderer {
+    public static readonly int FrameCount = 5;
+
+    public OmegaStariteRelicRenderer() : base(AequusTextures.OmegaStariteRelic.Path) { }
+
+    protected override void DrawInner(in DrawParams drawInfo) {
+        var tile = Main.tile[drawInfo.X, drawInfo.Y];
+        var baseFrame = new Rectangle(tile.TileFrameX, 0, 48, 48);
+
+        Vector2 drawCoordinates = drawInfo.Position;
+        var texture = Texture.Value;
+        var baseOrbFrame = new Rectangle(baseFrame.X, baseFrame.Y + baseFrame.Height + 2, 16, 16);
+        var orbFrame = baseOrbFrame;
+        var orbOrigin = orbFrame.Size() / 2f;
+        float f = Main.GlobalTimeWrappedHourly % (MathHelper.TwoPi / 5f) - MathHelper.PiOver2;
+        int k = 0;
+        int direction = drawInfo.SpriteEffects.HasFlag(SpriteEffects.FlipHorizontally) ? 1 : -1;
+        float oscYMagnitude = 0.7f * direction;
+        float oscXMagnitude = baseFrame.Width / 2f - 2f;
+        float orbYOffset = 4f;
+        for (; f <= MathHelper.Pi - MathHelper.PiOver2; f += MathHelper.TwoPi / 5f) {
+            float wave = (float)Math.Sin(f * -direction);
+            float z = (float)Math.Sin(f + MathHelper.PiOver2);
+            orbFrame.Y = baseOrbFrame.Y + (int)MathHelper.Clamp(2 + z * 2.5f, 0f, FrameCount) * orbFrame.Height;
+            k++;
+            DrawWithGlow(Main.spriteBatch, texture, drawCoordinates + new Vector2(wave * oscXMagnitude, wave * orbFrame.Height * oscYMagnitude + orbYOffset), orbFrame, drawInfo.DrawColor, orbOrigin, drawInfo.SpriteEffects, drawInfo.Glow);
+        }
+        DrawWithGlow(Main.spriteBatch, texture, drawCoordinates, baseFrame, drawInfo.DrawColor, baseFrame.Size() / 2f, drawInfo.SpriteEffects, drawInfo.Glow);
+        for (; k < 5; f += MathHelper.TwoPi / 5f) {
+            float wave = (float)Math.Sin(f * -direction);
+            float z = (float)Math.Sin(f + MathHelper.PiOver2);
+            orbFrame.Y = baseOrbFrame.Y + (int)MathHelper.Clamp(2 + z * 2.5f, 0f, FrameCount) * orbFrame.Height;
+            k++;
+            DrawWithGlow(Main.spriteBatch, texture, drawCoordinates + new Vector2(wave * oscXMagnitude, wave * orbFrame.Height * oscYMagnitude + orbYOffset), orbFrame, drawInfo.DrawColor, orbOrigin, drawInfo.SpriteEffects, drawInfo.Glow);
+        }
     }
 }

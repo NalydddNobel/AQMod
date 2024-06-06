@@ -5,9 +5,9 @@ using System;
 using Terraria.Audio;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Items.Weapons.Melee.PhaseDisc;
+namespace Aequus.Old.Content.Items.Weapons.Melee.Phasebrink;
 
-public class PhaseDiscProj : ValariProj {
+public class PhasebrinkProj : ValariProj {
     public bool IsIce => (int)Projectile.ai[1] == 1;
     public Color EffectColor => Projectile.frame == 0 ? new(30, 120, 190, 0) : new(255, 70, 30, 0);
 
