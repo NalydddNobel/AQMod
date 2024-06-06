@@ -54,12 +54,6 @@ ObsidianCrabPot: {
 Trophies: {
 	CrabsonTrophy.DisplayName: Crabson Trophy
 	CrabsonRelic.DisplayName: Crabson Relic
-	OmegaStariteTrophy.DisplayName: Omega Starite Trophy
-	OmegaStariteRelic.DisplayName: Omega Starite Relic
-	DustDevilTrophy.DisplayName: Dust Devil Trophy
-	DustDevilRelic.DisplayName: Dust Devil Relic
-	UltraStariteTrophy.DisplayName: Ultra Starite Trophy
-	UltraStariteRelic.DisplayName: Ultra Starite Relic
 	RedSpriteTrophy.DisplayName: Red Sprite Trophy
 	RedSpriteRelic.DisplayName: Red Sprite Relic
 	SpaceSquidTrophy.DisplayName: Space Squid Trophy
