@@ -90,7 +90,7 @@ SoulscourgeTagProj.DisplayName: "{$Items.DemonSoulscourge.DisplayName}"
 RaygunExplosionProj.DisplayName: "{$Items.Raygun.DisplayName}"
 GamestarProj.DisplayName: "{$Items.Gamestar.DisplayName}"
 CastawayProjExplosiveMine.DisplayName: 弹片
-// DustDevilFireball.DisplayName: Fireball
-// DustDevilFrostball.DisplayName: Frostspike
-// DustDevilTileProj.DisplayName: Suctioned Block
-// SuctionedEnemy.DisplayName: Suctioned Enemy
+DustDevilFireball.DisplayName: 火球
+DustDevilFrostball.DisplayName: 霜刺
+DustDevilTileProj.DisplayName: 牵引的方块
+SuctionedEnemy.DisplayName: 牵引的敌人

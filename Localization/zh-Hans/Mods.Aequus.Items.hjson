@@ -1178,6 +1178,6 @@ UnopenedChestItem: {
 }
 
 DustDevilMask: {
-	// DisplayName: Dust Devil Mask
-	// Tooltip: ""
+	DisplayName: 沙尘恶魔面具
+	Tooltip: ""
 }
