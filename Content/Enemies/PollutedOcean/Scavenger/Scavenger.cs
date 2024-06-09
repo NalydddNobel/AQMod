@@ -3,6 +3,7 @@ using Aequus.Common.NPCs.Bestiary;
 using Aequus.Common.NPCs.Components;
 using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Content.Items.Accessories.ScavengerBag;
+using Aequus.Content.Items.Tools.Keys;
 using Aequus.Core.ContentGeneration;
 using Aequus.DataSets;
 using System.Collections.Generic;
@@ -28,9 +29,9 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
     public const int SLOT_ACCS = 3;
     public const int ARMOR_COUNT = 4;
 
-    public static int ExtraEquipChance { get; set; } = 2;
-    public static int ItemDropChance { get; set; } = 8;
-    public static int TravelingMerchantBuilderItemChance { get; set; } = 30;
+    public static readonly int ExtraEquipChance = 2;
+    public static readonly int ItemDropChance = 8;
+    public static readonly int TravelingMerchantBuilderItemChance = 30;
 
     private int serverWhoAmI = Main.maxPlayers;
     private Player playerDummy;
@@ -73,6 +74,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         npcLoot.Add(ItemDropRule.Common(ItemID.PortableCementMixer, TravelingMerchantBuilderItemChance));
         npcLoot.Add(ItemDropRule.Common(ItemID.ExtendoGrip, TravelingMerchantBuilderItemChance));
         npcLoot.Add(ItemDropRule.Common(ItemID.BrickLayer, TravelingMerchantBuilderItemChance));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CopperKey>(), chanceDenominator: CopperKey.DropRate));
     }
 
     public virtual void PostPopulateItemDropDatabase(Mod mod, ItemDropDatabase database) {

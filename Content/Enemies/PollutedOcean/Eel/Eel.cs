@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Content.Graphics.Particles;
+using Aequus.Content.Items.Tools.Keys;
 using Aequus.Core.ContentGeneration;
 using System;
 using Terraria.Audio;
@@ -384,6 +385,7 @@ internal class Eel : ModNPC {
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Weapons.Summon.Whips.EekWhip.ElectricEelWhip>(), chanceDenominator: 15));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CopperKey>(), chanceDenominator: CopperKey.DropRate));
     }
 
     #region Drawing

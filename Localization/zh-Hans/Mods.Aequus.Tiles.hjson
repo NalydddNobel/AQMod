@@ -54,12 +54,6 @@ ObsidianCrabPot: {
 Trophies: {
 	CrabsonTrophy.DisplayName: 巨蟹蛤纪念物
 	CrabsonRelic.DisplayName: 巨蟹蛤纪念章
-	// OmegaStariteTrophy.DisplayName: Omega Starite Trophy
-	// OmegaStariteRelic.DisplayName: Omega Starite Relic
-	// DustDevilTrophy.DisplayName: Dust Devil Trophy
-	// DustDevilRelic.DisplayName: Dust Devil Relic
-	// UltraStariteTrophy.DisplayName: Ultra Starite Trophy
-	// UltraStariteRelic.DisplayName: Ultra Starite Relic
 	RedSpriteTrophy.DisplayName: 红色精灵纪念章
 	RedSpriteRelic.DisplayName: 红色精灵纪念物
 	SpaceSquidTrophy.DisplayName: 太空乌贼纪念章

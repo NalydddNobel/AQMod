@@ -1,11 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Utilities;
 
 namespace Aequus.Core.Utilities;
 
 public static class ExtendLoot {
+    private static readonly MethodInfo _resolveRule = typeof(ItemDropResolver).GetMethod("ResolveRule", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+
+    public static ItemDropAttemptResult ResolveRule(IItemDropRule rule, in DropAttemptInfo info) {
+        return (ItemDropAttemptResult)_resolveRule.Invoke(Main.ItemDropSolver, [rule, info]);
+    }
+
     /// <param name="npc"></param>
     /// <param name="player"></param>
     /// <param name="rng">RNG Override. Defaults to <see cref="Main.rand"/> when null.</param>

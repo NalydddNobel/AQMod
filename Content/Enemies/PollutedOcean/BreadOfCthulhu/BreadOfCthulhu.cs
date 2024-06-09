@@ -3,6 +3,7 @@ using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Dedicated.Baguette;
 using Aequus.Content.Enemies.PollutedOcean.BreadOfCthulhu.Items;
+using Aequus.Content.Items.Tools.Keys;
 using Aequus.Core.ContentGeneration;
 using System;
 using Terraria.DataStructures;
@@ -57,6 +58,8 @@ public class BreadOfCthulhu : ModNPC {
         npcLoot.Add(ItemDropRule.OneFromOptions(chanceDenominator: 1, ItemID.OldShoe, ItemID.TinCan, ItemID.FishingSeaweed));
         npcLoot.Add(ItemDropRule.Common(ItemID.TrifoldMap, chanceDenominator: 10));
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Baguette>(), chanceDenominator: 10));
+
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CopperKey>(), chanceDenominator: CopperKey.DropRate));
     }
 
     public override void HitEffect(NPC.HitInfo hit) {

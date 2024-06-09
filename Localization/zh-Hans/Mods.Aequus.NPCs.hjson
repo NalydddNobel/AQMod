@@ -16,7 +16,7 @@ ScavengerLootBag.DisplayName: 拾荒者袋子
 
 MonsterChestSummon: {
 	DisplayName: 怪物箱
-	Bestiary: copper chest
+	Bestiary: ""
 }
 
 BlackJellyfish: {

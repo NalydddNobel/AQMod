@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Items.Materials;
+using Aequus.Content.Items.Tools.Keys;
 using Aequus.DataSets;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -38,6 +39,7 @@ public partial class Conductor : IPostPopulateItemDropDatabase {
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CompressedTrash>(), minimumDropped: 1, maximumDropped: 4));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CopperKey>(), chanceDenominator: CopperKey.DropRate));
     }
 
     public virtual void PostPopulateItemDropDatabase(Mod mod, ItemDropDatabase database) {

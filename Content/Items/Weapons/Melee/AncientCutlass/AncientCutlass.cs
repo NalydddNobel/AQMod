@@ -1,16 +1,14 @@
 ﻿using Aequus.DataSets;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using Terraria.GameContent.ItemDropRules;
 using tModLoaderExtended.Terraria;
 
 namespace Aequus.Content.Items.Weapons.Melee.AncientCutlass;
 
 public class AncientCutlass : ModItem {
-    private readonly MethodInfo _resolveRules = typeof(ItemDropResolver).GetMethod("ResolveRule", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
-    public static int DropChance { get; private set; } = 2;
-    public static int ValueDropChanceDecrease { get; private set; } = Item.silver;
+    public static readonly int DropChance = 2;
+    public static readonly int ValueDropChanceDecrease = Item.silver;
 
     public override void SetDefaults() {
         Item.CloneDefaults(ItemID.DyeTradersScimitar);
@@ -42,7 +40,7 @@ public class AncientCutlass : ModItem {
                 IItemDropRule dropRule = Main.rand.Next(drops);
                 DropAttemptInfo dropInfo = ExtendLoot.GetDropAttemptInfo(realTarget, player);
 
-                result = (ItemDropAttemptResult)_resolveRules.Invoke(Main.ItemDropSolver, [dropRule, dropInfo]);
+                result = ExtendLoot.ResolveRule(dropRule, in dropInfo);
                 drops.RemoveAt(randomIndex);
             }
             while (drops.Count > 0 && result.State != ItemDropAttemptResultState.Success);

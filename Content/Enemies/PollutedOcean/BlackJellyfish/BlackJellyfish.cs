@@ -2,6 +2,7 @@
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Content.Graphics.Particles;
+using Aequus.Content.Items.Tools.Keys;
 using Aequus.Core.ContentGeneration;
 using Aequus.DataSets;
 using System;
@@ -46,6 +47,7 @@ public partial class BlackJellyfish : AIJellyfish {
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
         npcLoot.Add(ItemDropRule.Common(ItemID.Glowstick, minimumDropped: 1, maximumDropped: 4));
         npcLoot.Add(ItemDropRule.Common(ItemID.JellyfishNecklace, 100));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CopperKey>(), chanceDenominator: CopperKey.DropRate));
     }
     #endregion
 
