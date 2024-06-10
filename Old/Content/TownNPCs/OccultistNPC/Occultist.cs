@@ -501,7 +501,7 @@ public partial class Occultist : ModNPC, IModifyShoppingSettings {
     }
 
     public override bool CanBeHitByNPC(NPC attacker) {
-        return !NPCDataSet.Soulless.Contains(attacker.type);
+        return !NPCDataSet.CannotGrantSoulGems.Contains(attacker.type);
     }
 }
 

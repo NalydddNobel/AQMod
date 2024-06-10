@@ -64,12 +64,27 @@
 	<AdditionalFiles Include="Old\**\*.ogg" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Content\Elements\Air\AirMask.png" />
+    <None Remove="Content\Elements\Air\AirMask_Head.png" />
+    <None Remove="Content\Elements\Earth\EarthMask.png" />
+    <None Remove="Content\Elements\Earth\EarthMask_Head.png" />
+    <None Remove="Content\Elements\Flame\FlameMask.png" />
+    <None Remove="Content\Elements\Flame\FlameMask_Head.png" />
+    <None Remove="Content\Elements\Frost\FrostMask.png" />
+    <None Remove="Content\Elements\Frost\FrostMask_Head.png" />
+    <None Remove="Content\Elements\Light\LightMask.png" />
+    <None Remove="Content\Elements\Light\LightMask_Head.png" />
+    <None Remove="Content\Elements\Shadow\ShadowMask.png" />
+    <None Remove="Content\Elements\Shadow\ShadowMask_Head.png" />
+    <None Remove="Content\Elements\Water\WaterMask.png" />
+    <None Remove="Content\Elements\Water\WaterMask_Head.png" />
     <None Remove="Content\Items\Armor\Castaway\CastawayChestplate_Body_2.png" />
     <None Remove="Content\Items\Armor\Castaway\CastawayHelmet_Head_2.png" />
     <None Remove="Content\Items\Armor\Castaway\Gores\CastawayChestplateBreak.png" />
     <None Remove="Content\Items\Armor\Castaway\Gores\CastawayHelmetBreak.png" />
     <None Remove="Content\Tiles\Misc\SeaFireflyBlock.png" />
     <None Remove="Content\Tiles\Misc\SeaFireflyBlockItem.png" />
+    <None Remove="Localization\en-US\Mods.Aequus.Elements.hjson" />
   </ItemGroup>
   
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

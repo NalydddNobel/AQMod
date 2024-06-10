@@ -22,6 +22,9 @@
         <member name="M:Aequus.Common.Backpacks.BackpackPlayerSyncPacket.Send(Terraria.Player,Aequus.Common.Backpacks.BackpackData,System.Int32,System.Int32)">
             <summary>Invokes a full sync of a backpack.</summary>
         </member>
+        <member name="M:Aequus.Common.Bestiary.BestiaryTags.Add(Terraria.ModLoader.ModBiome)">
+            <summary>Call in PostSetupContent.</summary>
+        </member>
         <member name="F:Aequus.Common.Buffs.BuffUI.DisableRightClick">
             <summary>
             Prevents the player from right clicking a certain buff type. This list is cleared right before the local player is updated.
@@ -716,9 +719,6 @@
             Helper for whether or not the player is in danger
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.dropRolls">
-            <summary>Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.</summary>
-        </member>
         <member name="P:Aequus.AequusSystem.RemixWorldSafeUnderworldRange">
             <summary>Returns a point with the beginning (left) (X) and end (right) (Y) of the 'safe' underworld in remix worlds. This does not represent a point in 2D space, but rather two X coordinates.</summary>
         </member>
@@ -933,7 +933,7 @@
         <member name="P:Aequus.DataSets.NPCDataSet.CannotPickpocketItemsFrom">
             <summary>NPC Ids in this set cannot have their items stolen by the <see cref="T:Aequus.Content.Items.Weapons.Melee.AncientCutlass.AncientCutlass"/>.</summary>
         </member>
-        <member name="P:Aequus.DataSets.NPCDataSet.Soulless">
+        <member name="P:Aequus.DataSets.NPCDataSet.CannotGrantSoulGems">
             <summary>
             NPC Ids in this set cannot damage the Occultist, or have their souls trapped into Soul Gems.
             Automatically populated with all NPC Ids which have the Underworld or Gore Nest as bestiary tags.
@@ -945,26 +945,14 @@
         <member name="P:Aequus.DataSets.NPCDataSet.FromBloodMoon">
             <summary>Automatically populated with all NPC Ids which have the Blood Moon as bestiary tags.</summary>
         </member>
-        <member name="P:Aequus.DataSets.NPCDataSet.IsCorrupt">
-            <summary>Automatically populated with all NPC Ids which have the Corruption as bestiary tags.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.NPCDataSet.IsCrimson">
-            <summary>Automatically populated with all NPC Ids which have the Crimson as bestiary tags.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.NPCDataSet.IsHallow">
-            <summary>Automatically populated with all NPC Ids which have the Hallow as bestiary tags.</summary>
-        </member>
-        <member name="P:Aequus.DataSets.NPCDataSet.FromPillarEvent">
-            <summary>Automatically populated with all NPC Ids which have a Pillar as a bestiary tag.</summary>
-        </member>
         <member name="P:Aequus.DataSets.NPCDataSet.NameTagOverride">
             <summary>Entries in this set can completely override the Name Tag conditional check with their own value.</summary>
         </member>
         <member name="P:Aequus.DataSets.NPCDataSet.StunnableByTypeId">
-            <summary>Entries in this set are able to be stunned by the Stun Gun (<see cref="!:Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
+            <summary>Entries in this set are able to be stunned by the Stun Gun (<see cref="T:Aequus.Content.Items.Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
         </member>
         <member name="P:Aequus.DataSets.NPCDataSet.StunnableByAI">
-            <summary>Enemies with an AI Type in this set are able to be stunned by the Stun Gun (<see cref="!:Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
+            <summary>Enemies with an AI Type in this set are able to be stunned by the Stun Gun (<see cref="T:Aequus.Content.Items.Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
         </member>
         <member name="P:Aequus.DataSets.NPCDataSet.FriendablePreHardmodeSlime">
             <summary>Used for Royal Gel's Crown of Blood combination.</summary>
@@ -987,15 +975,6 @@
         <member name="P:Aequus.DataSets.NPCDataSet.PushableByAI">
             <summary>Enemies with an AI Type in this set are able to be pushed by the Pumpinator.</summary>
         </member>
-        <member name="M:Aequus.DataSets.NPCDataSet.ContainsBestiaryTags(System.Collections.Generic.List{Terraria.GameContent.Bestiary.IBestiaryInfoElement},System.Collections.Generic.List{Terraria.GameContent.Bestiary.IFilterInfoProvider})">
-            <summary>
-            Compares bestiary tags by comparing <see cref="M:Terraria.GameContent.Bestiary.IFilterInfoProvider.GetDisplayNameKey"/> results.
-            Biome/Event/Time/Ect Tags utilize <see cref="T:Terraria.GameContent.Bestiary.IFilterInfoProvider"/>.
-            </summary>
-            <param name="tags"></param>
-            <param name="searchTags"></param>
-            <returns></returns>
-        </member>
         <member name="P:Aequus.DataSets.ProjectileDataSet.SpriteRotation">
             <summary>Rotation offset of projectile sprites so it can be rotated correctly.</summary>
         </member>
@@ -1003,7 +982,7 @@
             <summary>Color of the projectile. Used mostly by guns.</summary>
         </member>
         <member name="P:Aequus.DataSets.ProjectileDataSet.OccultistIgnore">
-            <summary>Projectiles in this set do not damage the <see cref="T:Aequus.Old.Content.TownNPCs.OccultistNPC.Occultist"/>.</summary>
+            <summary>Projectiles in this set do not damage the <see cref="!:Old.Content.TownNPCs.OccultistNPC.Occultist"/>.</summary>
         </member>
         <member name="P:Aequus.DataSets.ProjectileDataSet.IsStar">
             <summary>Whether or not this projectile is a "Star", this is automatically populated with anything that has "Star" in their internal name.</summary>
@@ -1616,6 +1595,10 @@
             <summary>Gets Drop Rules registered to the specified NPC Id.</summary>
             <param name="npcId">The NPC Id.</param>
             <param name="database">Database instance. Set to null to use <see cref="F:Terraria.Main.ItemDropsDB"/>.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.ExtendRecipe.ForEachRecipe(System.Func{Terraria.Recipe,System.Boolean})">
+            <summary></summary>
+            <param name="action">Return <see langword="false"/> to stop looping over recipes.</param>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendRecipe.NotDisabledAndConditionsMet(Terraria.Recipe)">
             <returns><see langword="true"/>, if the recipe is not disabled, and conditions have been met. Otherwise <see langword="false"/>.</returns>
@@ -2383,7 +2366,7 @@
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 851) yo momma gai</summary>
+            <summary>(Total Textures: 865) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2834,6 +2817,48 @@
         </member>
         <member name="F:Aequus.AequusTextures.MonoDust">
             <summary>Full Path: Content/Dusts/MonoDust</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AirMask">
+            <summary>Full Path: Content/Elements/Air/AirMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AirMask_Head">
+            <summary>Full Path: Content/Elements/Air/AirMask_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EarthMask">
+            <summary>Full Path: Content/Elements/Earth/EarthMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EarthMask_Head">
+            <summary>Full Path: Content/Elements/Earth/EarthMask_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlameMask">
+            <summary>Full Path: Content/Elements/Flame/FlameMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlameMask_Head">
+            <summary>Full Path: Content/Elements/Flame/FlameMask_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FrostMask">
+            <summary>Full Path: Content/Elements/Frost/FrostMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FrostMask_Head">
+            <summary>Full Path: Content/Elements/Frost/FrostMask_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LightMask">
+            <summary>Full Path: Content/Elements/Light/LightMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LightMask_Head">
+            <summary>Full Path: Content/Elements/Light/LightMask_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShadowMask">
+            <summary>Full Path: Content/Elements/Shadow/ShadowMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShadowMask_Head">
+            <summary>Full Path: Content/Elements/Shadow/ShadowMask_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WaterMask">
+            <summary>Full Path: Content/Elements/Water/WaterMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WaterMask_Head">
+            <summary>Full Path: Content/Elements/Water/WaterMask_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BlackJellyfish">
             <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
@@ -4937,107 +4962,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.BacciliteSceptre_Glow">
             <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre_Glow</summary>
-        </member>
-        <member name="T:Aequus.Old.Common.Graphics.Camera.CameraFocus">
-            <summary>
-            Manages screen panning
-            </summary>
-        </member>
-        <member name="P:Aequus.Old.Common.Graphics.Camera.CameraFocus.Context">
-            <summary>
-            A context string for the current focus
-            </summary>
-        </member>
-        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.target">
-            <summary>
-            The target position for the camera in the world
-            </summary>
-        </member>
-        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.cameraPosition">
-            <summary>
-            The camera's position 
-            </summary>
-        </member>
-        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.priority">
-            <summary>
-            A priority for determining whether or not a new camera focus can be added
-            </summary>
-        </member>
-        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.speed">
-            <summary>
-            The speed of the camera
-            </summary>
-        </member>
-        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.cameraProgress">
-            <summary>
-            The progress of the camera from its original position to its destination
-            </summary>
-        </member>
-        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.hold">
-            <summary>
-            How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Old.Common.Graphics.Camera.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Old.Common.Graphics.Camera.CameraPriority,System.Single,System.Int32)"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.Old.Common.Graphics.Camera.CameraFocus.returning">
-            <summary>
-            Whether or not the camera is returning
-            </summary>
-        </member>
-        <member name="M:Aequus.Old.Common.Graphics.Camera.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Old.Common.Graphics.Camera.CameraPriority,System.Single,System.Int32)">
-            <summary>
-            Sets the camera target to a position, may return false if your priority is below a current target's priority
-            </summary>
-            <param name="key">Context key, only really useful for 3rd party mods</param>
-            <param name="target">A world coordinate to point the camera at</param>
-            <param name="priority">The priority of this camera target. If there is a current camera target, and its priority is above, it will prevent you from setting a target and this method will return false</param>
-            <param name="speed">The speed of the camera, the exact time it will get there is: <code>speed / 50</code>So 6 speed means it will get into position in 8 frames. Clamped between 6 and 25</param>
-            <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Old.Common.Graphics.Camera.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Old.Common.Graphics.Camera.CameraPriority,System.Single,System.Int32)"/></param>
-            <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
-        </member>
-        <member name="M:Aequus.Old.Content.Bosses.OmegaStarite.OmegaStariteRing.#ctor(System.IO.BinaryReader)">
-            <summary>
-            Creates a Ring through a net package
-            </summary>
-            <param name="reader"></param>
-        </member>
-        <member name="T:Aequus.Old.Content.Events.DemonSiege.Tiles.OblivionAltarDummy">
-            <summary>Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.</summary>
-        </member>
-        <member name="P:Aequus.Old.Content.Items.Accessories.HighSteaks.HighSteaks.NotStackableCritDamage">
-            <summary>
-            Default Value: 0.15
-            <para>This is only added on the first stack of the accessory.</para>
-            </summary>
-        </member>
-        <member name="P:Aequus.Old.Content.Items.Accessories.HighSteaks.HighSteaks.WantedCost">
-            <summary>
-            The cost for performing a critical strike.
-            </summary>
-        </member>
-        <member name="P:Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg.SaivoryKnife.GhostLifespan">
-            <summary>Default Value: 3600 (1 minute)</summary>
-        </member>
-        <member name="F:Aequus.Old.Content.Particles.DashBlurParticle.Particle.ScaleX">
-            <summary>
-            Defaults to 0.5f.
-            </summary>
-        </member>
-        <member name="M:Aequus.Old.Content.Tiles.Herbs.ModHerb.GetDropParams(System.Int32,Terraria.Player,Terraria.Item,System.Int32@)">
-            <param name="growthStage">The growth stage (style) of this plant.</param>
-            <param name="closestPlayer">The closest player to the plant.</param>
-            <param name="playerHeldItem">The player's held item.</param>
-            <param name="plant">The plant item id to drop.</param>
-            <param name="seeds">The seed item id to drop.</param>
-        </member>
-        <member name="M:Aequus.Old.Content.Tiles.Herbs.ModHerb.GetDropStacks(System.Int32,Terraria.Player,Terraria.Item,System.Boolean,System.Int32,System.Int32,System.Int32@,System.Int32@)">
-            <param name="growthStage">The growth stage (style) of this plant.</param>
-            <param name="closestPlayer">The closest player to the plant.</param>
-            <param name="playerHeldItem">The player's held item.</param>
-            <param name="staffOfRegrowth">If the player is holding the Staff of Regrowth or Axe of Regrowth.</param>
-            <param name="plant">The plant item id to drop.</param>
-            <param name="seeds">The seed item id to drop.</param>
-            <param name="plantStack">The amount of plants to drop.</param>
-            <param name="seedStack">The amount of seeds to drop.</param>
         </member>
     </members>
 </doc>

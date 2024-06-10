@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 851) yo momma gai</summary>
+/// <summary>(Total Textures: 865) yo momma gai</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -307,6 +307,34 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SwagEyePetItem = new("Aequus/Content/Dedicated/SwagEye/SwagEyePetItem");
     /// <summary>Full Path: Content/Dusts/MonoDust</summary>
     public static readonly RequestCache<Texture2D> MonoDust = new("Aequus/Content/Dusts/MonoDust");
+    /// <summary>Full Path: Content/Elements/Air/AirMask</summary>
+    public static readonly RequestCache<Texture2D> AirMask = new("Aequus/Content/Elements/Air/AirMask");
+    /// <summary>Full Path: Content/Elements/Air/AirMask_Head</summary>
+    public static readonly RequestCache<Texture2D> AirMask_Head = new("Aequus/Content/Elements/Air/AirMask_Head");
+    /// <summary>Full Path: Content/Elements/Earth/EarthMask</summary>
+    public static readonly RequestCache<Texture2D> EarthMask = new("Aequus/Content/Elements/Earth/EarthMask");
+    /// <summary>Full Path: Content/Elements/Earth/EarthMask_Head</summary>
+    public static readonly RequestCache<Texture2D> EarthMask_Head = new("Aequus/Content/Elements/Earth/EarthMask_Head");
+    /// <summary>Full Path: Content/Elements/Flame/FlameMask</summary>
+    public static readonly RequestCache<Texture2D> FlameMask = new("Aequus/Content/Elements/Flame/FlameMask");
+    /// <summary>Full Path: Content/Elements/Flame/FlameMask_Head</summary>
+    public static readonly RequestCache<Texture2D> FlameMask_Head = new("Aequus/Content/Elements/Flame/FlameMask_Head");
+    /// <summary>Full Path: Content/Elements/Frost/FrostMask</summary>
+    public static readonly RequestCache<Texture2D> FrostMask = new("Aequus/Content/Elements/Frost/FrostMask");
+    /// <summary>Full Path: Content/Elements/Frost/FrostMask_Head</summary>
+    public static readonly RequestCache<Texture2D> FrostMask_Head = new("Aequus/Content/Elements/Frost/FrostMask_Head");
+    /// <summary>Full Path: Content/Elements/Light/LightMask</summary>
+    public static readonly RequestCache<Texture2D> LightMask = new("Aequus/Content/Elements/Light/LightMask");
+    /// <summary>Full Path: Content/Elements/Light/LightMask_Head</summary>
+    public static readonly RequestCache<Texture2D> LightMask_Head = new("Aequus/Content/Elements/Light/LightMask_Head");
+    /// <summary>Full Path: Content/Elements/Shadow/ShadowMask</summary>
+    public static readonly RequestCache<Texture2D> ShadowMask = new("Aequus/Content/Elements/Shadow/ShadowMask");
+    /// <summary>Full Path: Content/Elements/Shadow/ShadowMask_Head</summary>
+    public static readonly RequestCache<Texture2D> ShadowMask_Head = new("Aequus/Content/Elements/Shadow/ShadowMask_Head");
+    /// <summary>Full Path: Content/Elements/Water/WaterMask</summary>
+    public static readonly RequestCache<Texture2D> WaterMask = new("Aequus/Content/Elements/Water/WaterMask");
+    /// <summary>Full Path: Content/Elements/Water/WaterMask_Head</summary>
+    public static readonly RequestCache<Texture2D> WaterMask_Head = new("Aequus/Content/Elements/Water/WaterMask_Head");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
     public static readonly RequestCache<Texture2D> BlackJellyfish = new("Aequus/Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishVertexStrip</summary>

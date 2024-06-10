@@ -7,4 +7,8 @@ public class PollutedOceanBiomeUnderground : PollutedOceanBiomeSurface {
     public override bool IsBiomeActive(Player player) {
         return player.position.Y > Main.worldSurface * 16.0 && PollutedOceanSystem.CheckBiome(player);
     }
+
+    public override void PostSetupContent(Mod mod) {
+        base.PostSetupContent(mod);
+    }
 }

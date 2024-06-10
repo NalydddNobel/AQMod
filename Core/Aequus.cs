@@ -12,6 +12,8 @@ global using static tModLoaderExtended.ExtendedMod;
 global using BestiaryTimeTag = Terraria.GameContent.Bestiary.BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times;
 global using BestiaryBiomeTag = Terraria.GameContent.Bestiary.BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes;
 global using BestiaryEventTag = Terraria.GameContent.Bestiary.BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Events;
+global using BestiaryInvasionTag = Terraria.GameContent.Bestiary.BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Invasions;
+global using BestiaryVisualsTag = Terraria.GameContent.Bestiary.BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Visuals;
 global using ILoad = Terraria.ModLoader.ILoadable;
 global using ItemSets = Terraria.ID.ItemID.Sets;
 global using NPCSets = Terraria.ID.NPCID.Sets;

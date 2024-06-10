@@ -1,8 +1,7 @@
-﻿using Aequus.DataSets.Structures;
+﻿using Aequus.Common.Bestiary;
+using Aequus.DataSets.Structures;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Linq;
-using Terraria.GameContent.Bestiary;
 
 namespace Aequus.DataSets;
 
@@ -16,38 +15,25 @@ public class NPCDataSet : DataSet {
     /// Automatically populated with all NPC Ids which have the Underworld or Gore Nest as bestiary tags.
     /// </summary>
     [JsonProperty]
-    public static HashSet<IDEntry<NPCID>> Soulless { get; private set; } = new();
+    public static HashSet<IDEntry<NPCID>> CannotGrantSoulGems { get; private set; } = [];
 
     [JsonProperty]
-    public static HashSet<IDEntry<NPCID>> FromGlimmer { get; private set; } = new();
+    public static HashSet<IDEntry<NPCID>> FromGlimmer { get; private set; } = [];
     /// <summary>Automatically populated with all NPC Ids which have the Eclipse as bestiary tags.</summary>
     [JsonProperty]
-    public static HashSet<IDEntry<NPCID>> FromEclipse { get; private set; } = new();
+    public static HashSet<IDEntry<NPCID>> FromEclipse { get; private set; } = [];
     /// <summary>Automatically populated with all NPC Ids which have the Blood Moon as bestiary tags.</summary>
     [JsonProperty]
-    public static HashSet<IDEntry<NPCID>> FromBloodMoon { get; private set; } = new();
-
-    /// <summary>Automatically populated with all NPC Ids which have the Corruption as bestiary tags.</summary>
-    [JsonProperty]
-    public static HashSet<IDEntry<NPCID>> IsCorrupt { get; private set; } = new();
-    /// <summary>Automatically populated with all NPC Ids which have the Crimson as bestiary tags.</summary>
-    [JsonProperty]
-    public static HashSet<IDEntry<NPCID>> IsCrimson { get; private set; } = new();
-    /// <summary>Automatically populated with all NPC Ids which have the Hallow as bestiary tags.</summary>
-    [JsonProperty]
-    public static HashSet<IDEntry<NPCID>> IsHallow { get; private set; } = new();
-    /// <summary>Automatically populated with all NPC Ids which have a Pillar as a bestiary tag.</summary>
-    [JsonProperty]
-    public static HashSet<IDEntry<NPCID>> FromPillarEvent { get; private set; } = new();
+    public static HashSet<IDEntry<NPCID>> FromBloodMoon { get; private set; } = [];
 
     /// <summary>Entries in this set can completely override the Name Tag conditional check with their own value.</summary>
     [JsonProperty]
     public static Dictionary<IDEntry<NPCID>, bool> NameTagOverride { get; private set; } = new();
 
-    /// <summary>Entries in this set are able to be stunned by the Stun Gun (<see cref="Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
+    /// <summary>Entries in this set are able to be stunned by the Stun Gun (<see cref="Content.Items.Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
     [JsonProperty]
     public static HashSet<IDEntry<NPCID>> StunnableByTypeId { get; private set; } = new();
-    /// <summary>Enemies with an AI Type in this set are able to be stunned by the Stun Gun (<see cref="Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
+    /// <summary>Enemies with an AI Type in this set are able to be stunned by the Stun Gun (<see cref="Content.Items.Weapons.Classless.StunGun.StunGunDebuff"/>).</summary>
     [JsonProperty]
     public static HashSet<IDEntry<NPCAIStyleID>> StunnableByAI { get; private set; } = new();
 
@@ -78,74 +64,8 @@ public class NPCDataSet : DataSet {
     [JsonProperty]
     public static HashSet<IDEntry<NPCAIStyleID>> PushableByAI { get; private set; } = new();
 
-    #region Bestiary
-    [JsonIgnore]
-    public static List<IFilterInfoProvider> EclipseTags { get; private set; } = new();
-    [JsonIgnore]
-    public static List<IFilterInfoProvider> BloodMoonTags { get; private set; } = new();
-    [JsonIgnore]
-    public static List<IFilterInfoProvider> CorruptionTags { get; private set; } = new();
-    [JsonIgnore]
-    public static List<IFilterInfoProvider> CrimsonTags { get; private set; } = new();
-    [JsonIgnore]
-    public static List<IFilterInfoProvider> HallowTags { get; private set; } = new();
-    [JsonIgnore]
-    public static List<IFilterInfoProvider> PillarTags { get; private set; } = new();
-    [JsonIgnore]
-    public static List<IFilterInfoProvider> UnderworldTags { get; private set; } = new();
-
-    /// <summary>
-    /// Compares bestiary tags by comparing <see cref="IFilterInfoProvider.GetDisplayNameKey"/> results.
-    /// Biome/Event/Time/Ect Tags utilize <see cref="IFilterInfoProvider"/>.
-    /// </summary>
-    /// <param name="tags"></param>
-    /// <param name="searchTags"></param>
-    /// <returns></returns>
-    private static bool ContainsBestiaryTags(List<IBestiaryInfoElement> tags, List<IFilterInfoProvider> searchTags) {
-        return tags?.Where(t => t is IFilterInfoProvider).Select(t => (IFilterInfoProvider)t)
-            .Any(t => searchTags.Any(s => t.GetDisplayNameKey() == s.GetDisplayNameKey())) ?? false;
-    }
-    #endregion
-
     #region Loading
     public override void SetupContent() {
-        EclipseTags.AddRange(new IFilterInfoProvider[] {
-            BestiaryEventTag.Eclipse
-        });
-        BloodMoonTags.AddRange(new IFilterInfoProvider[] {
-            BestiaryEventTag.BloodMoon
-        });
-        CorruptionTags.AddRange(new IFilterInfoProvider[] {
-            BestiaryBiomeTag.TheCorruption,
-            BestiaryBiomeTag.UndergroundCorruption,
-            BestiaryBiomeTag.CorruptDesert,
-            BestiaryBiomeTag.CorruptUndergroundDesert,
-            BestiaryBiomeTag.CorruptIce,
-        });
-        CrimsonTags.AddRange(new IFilterInfoProvider[] {
-            BestiaryBiomeTag.TheCrimson,
-            BestiaryBiomeTag.UndergroundCrimson,
-            BestiaryBiomeTag.CrimsonDesert,
-            BestiaryBiomeTag.CrimsonUndergroundDesert,
-            BestiaryBiomeTag.CrimsonIce,
-        });
-        HallowTags.AddRange(new IFilterInfoProvider[] {
-            BestiaryBiomeTag.TheHallow,
-            BestiaryBiomeTag.UndergroundHallow,
-            BestiaryBiomeTag.HallowDesert,
-            BestiaryBiomeTag.HallowUndergroundDesert,
-            BestiaryBiomeTag.HallowIce,
-        });
-        PillarTags.AddRange(new IFilterInfoProvider[] {
-            BestiaryBiomeTag.SolarPillar,
-            BestiaryBiomeTag.VortexPillar,
-            BestiaryBiomeTag.NebulaPillar,
-            BestiaryBiomeTag.StardustPillar,
-        });
-        UnderworldTags.AddRange(new IFilterInfoProvider[] {
-            BestiaryBiomeTag.TheUnderworld,
-        });
-
         // Make all of these NPCs immune to the vanilla "Slow" debuff.
         // Debuffs which modify movement speed should inherit this immunity.
         NPCSets.SpecificDebuffImmunity[NPCID.HallowBoss][BuffID.Slow] = true;
@@ -188,32 +108,14 @@ public class NPCDataSet : DataSet {
 
     public override void AddRecipes() {
         for (int i = NPCID.NegativeIDCount + 1; i < NPCLoader.NPCCount; i++) {
-            BestiaryEntry bestiaryEntry = Main.BestiaryDB.FindEntryByNPCID(i);
-            if (bestiaryEntry == null || bestiaryEntry.Info == null) {
-                continue;
-            }
-
-            List<IBestiaryInfoElement> info = bestiaryEntry.Info;
-            if (ContainsBestiaryTags(info, EclipseTags)) {
-                FromEclipse.Add(i);
-            }
-            if (ContainsBestiaryTags(info, BloodMoonTags)) {
+            if (BestiaryTags.BloodMoon.ContainsNPCIdInner(i)) {
                 FromBloodMoon.Add(i);
             }
-            if (ContainsBestiaryTags(info, CorruptionTags)) {
-                IsCorrupt.Add(i);
+            if (BestiaryTags.Eclipse.ContainsNPCIdInner(i)) {
+                FromEclipse.Add(i);
             }
-            if (ContainsBestiaryTags(info, CrimsonTags)) {
-                IsCrimson.Add(i);
-            }
-            if (ContainsBestiaryTags(info, HallowTags)) {
-                IsHallow.Add(i);
-            }
-            if (ContainsBestiaryTags(info, PillarTags)) {
-                FromPillarEvent.Add(i);
-            }
-            if (ContainsBestiaryTags(info, UnderworldTags)) {
-                Soulless.Add(i);
+            if (BestiaryTags.Underworld.ContainsNPCIdInner(i)) {
+                CannotGrantSoulGems.Add(i);
             }
         }
     }

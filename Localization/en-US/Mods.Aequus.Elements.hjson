@@ -1,0 +1,64 @@
+Shadow: {
+	DisplayName: Shadow
+
+	Mask: {
+		DisplayName: Shadow Mask
+		Tooltip: ""
+	}
+}
+
+Flame: {
+	DisplayName: Flame
+
+	Mask: {
+		DisplayName: Flame Mask
+		Tooltip: ""
+	}
+}
+
+Water: {
+	DisplayName: Water
+
+	Mask: {
+		DisplayName: Water Mask
+		Tooltip: ""
+	}
+}
+
+Earth: {
+	DisplayName: Earth
+
+	Mask: {
+		DisplayName: Earth Mask
+		Tooltip: ""
+	}
+}
+
+LightElement.DisplayName: Light
+
+Light: {
+	DisplayName: Light
+
+	Mask: {
+		DisplayName: Light Mask
+		Tooltip: ""
+	}
+}
+
+Air: {
+	DisplayName: Air
+
+	Mask: {
+		DisplayName: Air Mask
+		Tooltip: ""
+	}
+}
+
+Frost: {
+	DisplayName: Frost
+
+	Mask: {
+		DisplayName: Frost Mask
+		Tooltip: ""
+	}
+}

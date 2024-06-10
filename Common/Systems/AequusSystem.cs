@@ -13,7 +13,11 @@ public partial class AequusSystem : ModSystem, ISGUtil {
     /// <summary>Returns a point with the beginning (left) (X) and end (right) (Y) of the 'safe' underworld in remix worlds. This does not represent a point in 2D space, but rather two X coordinates.</summary>
     public static Point RemixWorldSafeUnderworldRange => new Point((int)(Main.maxTilesX * 0.38) + 50, (int)(Main.maxTilesX * 0.62));
 
+#if DEBUG
+    public static bool HardmodeTier => Main.hardMode;
+#else
     public static bool HardmodeTier => Main.hardMode || downedOmegaStarite;
+#endif
 
     public override void PostUpdatePlayers() {
         if (Main.netMode != NetmodeID.Server) {

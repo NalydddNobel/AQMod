@@ -1,6 +1,20 @@
-﻿namespace Aequus.Core.Utilities;
+﻿using System;
+
+namespace Aequus.Core.Utilities;
 
 public static class ExtendRecipe {
+    /// <summary></summary>
+    /// <param name="action">Return <see langword="false"/> to stop looping over recipes.</param>
+    public static void ForEachRecipe(Func<Recipe, bool> action) {
+        for (int i = 0; i < Recipe.numRecipes; i++) {
+            if (Main.recipe[i]?.createItem?.IsAir == false) {
+                if (!action(Main.recipe[i])) {
+                    return;
+                }
+            }
+        }
+    }
+
     /// <returns><see langword="true"/>, if the recipe is not disabled, and conditions have been met. Otherwise <see langword="false"/>.</returns>
     public static bool NotDisabledAndConditionsMet(this Recipe recipe) {
         if (recipe.Disabled) {

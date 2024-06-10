@@ -1,4 +1,4 @@
-﻿using Aequus.DataSets;
+﻿using Aequus.Common.Bestiary;
 using Aequus.Old.Common.EventBars;
 using Aequus.Old.Content.Enemies.DemonSiege.CinderBat;
 using Aequus.Old.Content.Enemies.DemonSiege.Keeper;
@@ -7,11 +7,10 @@ using System.Collections.Generic;
 using Terraria.GameContent;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
-using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Old.Content.Events.DemonSiege;
 
-public class DemonSiegeZone : ModBiome, IPostSetupContent {
+public class DemonSiegeZone : ModBiome {
     public const string ScreenFilterKey = "Aequus:DemonSiegeFilter";
 
     public override int Music => MusicID.Monsoon;
@@ -59,8 +58,6 @@ public class DemonSiegeZone : ModBiome, IPostSetupContent {
         }
     }
 
-
-
     public override bool IsBiomeActive(Player player) {
         return player.GetModPlayer<DemonSiegePlayer>().GoreNest.X != 0;
     }
@@ -83,7 +80,7 @@ public class DemonSiegeZone : ModBiome, IPostSetupContent {
         pool.Add(ModContent.NPCType<KeeperImp>(), 1f);
     }
 
-    void IPostSetupContent.PostSetupContent(Mod mod) {
-        NPCDataSet.UnderworldTags.Add(ModBiomeBestiaryInfoElement);
+    public override void SetStaticDefaults() {
+        BestiaryTags.Underworld.Add(this);
     }
 }

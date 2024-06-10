@@ -17,7 +17,7 @@ public class ChainedSoul : ModNPC {
         NPCSets.CantTakeLunchMoney[Type] = true;
         NPCSets.ImmuneToRegularBuffs[Type] = true;
         NPCDataSet.DealsHeatDamage.Add(Type);
-        NPCDataSet.Soulless.Add(Type);
+        NPCDataSet.CannotGrantSoulGems.Add(Type);
 
         BannerLoader.AddBannerBuff<KeeperImp>(this);
     }
