@@ -1,64 +1,64 @@
 Shadow: {
-	// DisplayName: Shadow
+	DisplayName: 暗影
 
 	Mask: {
-		// DisplayName: Shadow Mask
-		// Tooltip: ""
+		DisplayName: 暗影面具
+		Tooltip: ""
 	}
 }
 
 Flame: {
-	// DisplayName: Flame
+	DisplayName: 火焰
 
 	Mask: {
-		// DisplayName: Flame Mask
-		// Tooltip: ""
+		DisplayName: 火焰面具
+		Tooltip: ""
 	}
 }
 
 Water: {
-	// DisplayName: Water
+	DisplayName: 水流
 
 	Mask: {
-		// DisplayName: Water Mask
-		// Tooltip: ""
+		DisplayName: 水流面具
+		Tooltip: ""
 	}
 }
 
 Earth: {
-	// DisplayName: Earth
+	DisplayName: 大地
 
 	Mask: {
-		// DisplayName: Earth Mask
-		// Tooltip: ""
+		DisplayName: 大地面具
+		Tooltip: ""
 	}
 }
 
-// LightElement.DisplayName: Light
+LightElement.DisplayName: 光明
 
 Light: {
-	// DisplayName: Light
+	DisplayName: 光明
 
 	Mask: {
-		// DisplayName: Light Mask
-		// Tooltip: ""
+		DisplayName: 光明面具
+		Tooltip: ""
 	}
 }
 
 Air: {
-	// DisplayName: Air
+	DisplayName: 空气
 
 	Mask: {
-		// DisplayName: Air Mask
-		// Tooltip: ""
+		DisplayName: 空气面具
+		Tooltip: ""
 	}
 }
 
 Frost: {
-	// DisplayName: Frost
+	DisplayName: 冰霜
 
 	Mask: {
-		// DisplayName: Frost Mask
-		// Tooltip: ""
+		DisplayName: 冰霜面具
+		Tooltip: ""
 	}
 }
