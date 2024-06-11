@@ -10,7 +10,7 @@ public class Flame : Element {
         Flame = this;
     }
 
-    public override void SetupRelations() {
+    protected override void SetupRelations() {
         AddBestiaryRelations(BestiaryTags.Underworld, BestiaryTags.PumpkinMoon, BestiaryTags.SolarPillar);
 
         RemoveNPC(NPCID.WallofFlesh);
@@ -18,6 +18,7 @@ public class Flame : Element {
 
         AddItemRelationsFromNPCs();
 
+        AddItem(ItemID.Ruby);
         AddItem(ItemID.FireWhip);
         AddItem(ItemID.WandofSparking);
         AddItem(ItemID.Torch);
@@ -28,8 +29,12 @@ public class Flame : Element {
         AddItem(ItemID.Flamelash);
         AddItem(ItemID.Sunfury);
         AddItem(ItemID.Sunfury);
+        AddItem("ThoriumMod/SoulofPlight");
+        AddItem("ThoriumMod/InfernoEssence");
+        AddItem("ThoriumMod/DraconicMagmaStaff");
 
-        AddItem(ItemID.Ruby);
+        RemoveItem(ItemID.WandofFrosting);
+        RemoveItem(ItemID.IceTorch);
 
         AddItemRelationsFromRecipes();
     }

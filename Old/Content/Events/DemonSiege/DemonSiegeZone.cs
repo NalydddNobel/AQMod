@@ -7,10 +7,11 @@ using System.Collections.Generic;
 using Terraria.GameContent;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Old.Content.Events.DemonSiege;
 
-public class DemonSiegeZone : ModBiome {
+public class DemonSiegeZone : ModBiome, IPostSetupContent {
     public const string ScreenFilterKey = "Aequus:DemonSiegeFilter";
 
     public override int Music => MusicID.Monsoon;
@@ -80,7 +81,7 @@ public class DemonSiegeZone : ModBiome {
         pool.Add(ModContent.NPCType<KeeperImp>(), 1f);
     }
 
-    public override void SetStaticDefaults() {
+    void IPostSetupContent.PostSetupContent(Mod mod) {
         BestiaryTags.Underworld.Add(this);
     }
 }

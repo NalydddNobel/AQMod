@@ -10,15 +10,16 @@ public class Frost : Element {
         Frost = this;
     }
 
-    public override void SetupRelations() {
+    protected override void SetupRelations() {
         AddBestiaryRelations(BestiaryTags.Snow, BestiaryTags.FrostLegion, BestiaryTags.FrostMoon, BestiaryTags.StardustPillar);
         AddItemRelationsFromNPCs();
 
+        AddItem(ItemID.Sapphire);
         AddItem(ItemID.WandofFrosting);
         AddItem(ItemID.IceRod);
         AddItem(ItemID.StaffoftheFrostHydra);
-
-        AddItem(ItemID.Sapphire);
+        AddItem(ItemID.IceTorch);
+        AddItem(ItemID.FrostDaggerfish);
 
         AddItemRelationsFromRecipes();
     }

@@ -25,13 +25,6 @@ public partial class BestiaryTags {
         BestiaryBiomeTag.HallowIce
     );
 
-    public static readonly BestiaryTags CelestialPillars = new BestiaryTags(
-        BestiaryBiomeTag.SolarPillar,
-        BestiaryBiomeTag.VortexPillar,
-        BestiaryBiomeTag.NebulaPillar,
-        BestiaryBiomeTag.StardustPillar
-    );
-
     public static readonly BestiaryTags SolarPillar = new BestiaryTags(
         BestiaryBiomeTag.SolarPillar
     );
@@ -47,6 +40,8 @@ public partial class BestiaryTags {
     public static readonly BestiaryTags StardustPillar = new BestiaryTags(
         BestiaryBiomeTag.StardustPillar
     );
+
+    public static readonly BestiaryTags CelestialPillars = new BestiaryTags(SolarPillar, VortexPillar, NebulaPillar, StardustPillar);
 
     public static readonly BestiaryTags Underworld = new BestiaryTags(
         BestiaryBiomeTag.TheUnderworld

@@ -5,14 +5,14 @@ using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.DataSets.Structures;
 
-public abstract class DataSet : IModType, ILoad, ISetupContent, IPostSetupContent, IAddRecipes, IPostAddRecipes {
+public abstract class DataSet : IModType, ILoad, ISetupContent, IPostSetupContent, IAddRecipes, IPostAddRecipes, IJsonHolder {
     private readonly BindingFlags _memberBindingFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
 
     [JsonIgnore]
     protected EmbeddedJsonFile File { get; private set; }
 
     [JsonIgnore]
-    public virtual string FilePath => $"{Mod.Name}/Assets/Metadata/{Name.Replace("DataSet", "")}";
+    public virtual string FilePath => Name.Replace("DataSet", "");
 
     [JsonIgnore]
     public Mod Mod { get; set; }

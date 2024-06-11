@@ -1,5 +1,7 @@
 ﻿using Aequus.Common.Bestiary;
 using Aequus.Core.CodeGeneration;
+using Aequus.Core.CrossMod;
+using Aequus.DataSets.Structures;
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -9,6 +11,8 @@ namespace Aequus.Common.Elements;
 public partial class Element {
     private readonly HashSet<int> _npcs = [];
     private readonly HashSet<int> _items = [];
+
+    private readonly Dictionary<IDEntry<ItemID>, bool> _manualItems = [];
 
     public bool ContainsNPC(int i) {
         return _npcs.Contains(i);
@@ -27,10 +31,50 @@ public partial class Element {
     }
 
     public bool AddItem(int i) {
-        return _items.Add(i);
+        _manualItems[i] = true;
+        return AddItemInner(i);
     }
 
     public bool RemoveItem(int i) {
+        _manualItems[i] = false;
+        return RemoveItemInner(i);
+    }
+
+    /// <summary>Attempts to add a ModNPC's type using its full name.</summary>
+    /// <param name="fullName">The full name of the mod npc. Example: ThoriumMod/Viscount</param>
+    public bool AddNPC(string fullName) {
+        if (!ExtendCrossMod.GetContentFromName(fullName, out ModNPC modNPC)) {
+            return false;
+        }
+
+        return AddNPC(modNPC.Type);
+    }
+
+    /// <summary>Attempts to add a ModItem's type using its full name.</summary>
+    /// <param name="fullName">The full name of the mod item. Example: ThoriumMod/IllumiteBar</param>
+    public bool AddItem(string fullName) {
+        if (!ExtendCrossMod.GetContentFromName(fullName, out ModItem modItem)) {
+            return false;
+        }
+
+        return AddItem(modItem.Type);
+    }
+
+    /// <summary>Attempts to remove a ModItem's type using its full name.</summary>
+    /// <param name="fullName">The full name of the mod item. Example: ThoriumMod/IllumiteBar</param>
+    public bool RemoveItem(string fullName) {
+        if (!ExtendCrossMod.GetContentFromName(fullName, out ModItem modItem)) {
+            return false;
+        }
+
+        return RemoveItem(modItem.Type);
+    }
+
+    private bool AddItemInner(int i) {
+        return _items.Add(i);
+    }
+
+    private bool RemoveItemInner(int i) {
         return _items.Remove(i);
     }
 
@@ -53,20 +97,22 @@ public partial class Element {
 
             foreach (ItemDropBestiaryInfoElement drops in entry.Info.SelectWhereOfType<ItemDropBestiaryInfoElement>()) {
                 DropRateInfo info = Publicization<ItemDropBestiaryInfoElement, DropRateInfo>.GetField(drops, "_droprateInfo");
-                AddItem(info.itemId);
+                if (!_manualItems.ContainsKey(info.itemId)) {
+                    AddItemInner(info.itemId);
+                }
             }
         }
 
         // Remove common items.
-        RemoveItem(ItemID.Gel);
-        RemoveItem(ItemID.WoodenArrow);
-        RemoveItem(ItemID.Shackle);
-        RemoveItem(ItemID.ZombieArm);
-        RemoveItem(ItemID.SpiffoPlush);
-        RemoveItem(ItemID.Hook);
-        RemoveItem(ItemID.SharkFin);
-        RemoveItem(ItemID.BoneSword);
-        RemoveItem(ItemID.SlimeStaff);
+        RemoveItemInner(ItemID.Gel);
+        RemoveItemInner(ItemID.WoodenArrow);
+        RemoveItemInner(ItemID.Shackle);
+        RemoveItemInner(ItemID.ZombieArm);
+        RemoveItemInner(ItemID.SpiffoPlush);
+        RemoveItemInner(ItemID.Hook);
+        RemoveItemInner(ItemID.SharkFin);
+        RemoveItemInner(ItemID.BoneSword);
+        RemoveItemInner(ItemID.SlimeStaff);
     }
 
     public void AddItemRelationsFromRecipes() {
@@ -80,9 +126,9 @@ public partial class Element {
 
                 // Make result item inherit elements of parents.
                 foreach (Item ingredient in r.requiredItem) {
-                    if (_items.Contains(ingredient.type)) {
+                    if (_items.Contains(ingredient.type) && !_manualItems.ContainsKey(r.createItem.type)) {
                         any = true; // Keep looping so the inheritance trees can be fully complete.
-                        AddItem(r.createItem.type);
+                        AddItemInner(r.createItem.type);
                         return true;
                     }
                 }

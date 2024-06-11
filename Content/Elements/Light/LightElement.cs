@@ -10,11 +10,16 @@ public class LightElement : Element {
         Light = this;
     }
 
-    public override void SetupRelations() {
-        AddBestiaryRelations(BestiaryTags.Hallow, BestiaryTags.CelestialPillars);
+    protected override void SetupRelations() {
+        AddBestiaryRelations(
+            BestiaryTags.Hallow,
+            BestiaryTags.CelestialPillars,
+            BestiaryTags.CalamityAstral
+        );
 
         AddItemRelationsFromNPCs();
 
+        AddItem(ItemID.Diamond);
         AddItem(ItemID.HallowedSeeds);
         AddItem(ItemID.RainbowGun);
         AddItem(ItemID.CrystalShard);
@@ -27,7 +32,9 @@ public class LightElement : Element {
         AddItem(ItemID.CrystalSerpent);
         AddItem(ItemID.PrincessWeapon);
 
-        AddItem(ItemID.Topaz);
+        AddItem("ThoriumMod/EnchantedCane");
+
+        RemoveItem(ItemID.Sandgun);
 
         AddItemRelationsFromRecipes();
     }

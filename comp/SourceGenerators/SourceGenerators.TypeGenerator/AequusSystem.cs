@@ -39,30 +39,6 @@ public partial class AequusSystem {
     public static readonly Condition ConditionUsedReforgeBook = new("Mods.Aequus.Condition.UsedReforgeBook", () => usedReforgeBook);
     [CompilerGenerated]
     public static readonly Condition ConditionNotUsedReforgeBook = new("Mods.Aequus.Condition.UsedReforgeBook", () => !usedReforgeBook);
-    [CompilerGenerated]
-    public static bool downedOmegaStarite;
-    [CompilerGenerated]
-    public static readonly Condition ConditionDownedOmegaStarite = new("Mods.Aequus.Condition.DownedOmegaStarite", () => downedOmegaStarite);
-    [CompilerGenerated]
-    public static readonly Condition ConditionNotDownedOmegaStarite = new("Mods.Aequus.Condition.DownedOmegaStarite", () => !downedOmegaStarite);
-    [CompilerGenerated]
-    public static bool downedUltraStarite;
-    [CompilerGenerated]
-    public static readonly Condition ConditionDownedUltraStarite = new("Mods.Aequus.Condition.DownedUltraStarite", () => downedUltraStarite);
-    [CompilerGenerated]
-    public static readonly Condition ConditionNotDownedUltraStarite = new("Mods.Aequus.Condition.DownedUltraStarite", () => !downedUltraStarite);
-    [CompilerGenerated]
-    public static bool downedDemonSiege;
-    [CompilerGenerated]
-    public static readonly Condition ConditionDownedDemonSiege = new("Mods.Aequus.Condition.DownedDemonSiege", () => downedDemonSiege);
-    [CompilerGenerated]
-    public static readonly Condition ConditionNotDownedDemonSiege = new("Mods.Aequus.Condition.DownedDemonSiege", () => !downedDemonSiege);
-    [CompilerGenerated]
-    public static bool metOccultist;
-    [CompilerGenerated]
-    public static readonly Condition ConditionMetOccultist = new("Mods.Aequus.Condition.MetOccultist", () => metOccultist);
-    [CompilerGenerated]
-    public static readonly Condition ConditionNotMetOccultist = new("Mods.Aequus.Condition.MetOccultist", () => !metOccultist);
     
     [CompilerGenerated]
     private void SaveInner(TagCompound tag) {
@@ -72,10 +48,6 @@ public partial class AequusSystem {
         this.SaveObj(tag, "downedSpaceSquid", downedSpaceSquid);
         this.SaveObj(tag, "buriedChestsLooted", buriedChestsLooted);
         this.SaveObj(tag, "usedReforgeBook", usedReforgeBook);
-        this.SaveObj(tag, "downedOmegaStarite", downedOmegaStarite);
-        this.SaveObj(tag, "downedUltraStarite", downedUltraStarite);
-        this.SaveObj(tag, "downedDemonSiege", downedDemonSiege);
-        this.SaveObj(tag, "metOccultist", metOccultist);
     }
     
     [CompilerGenerated]
@@ -86,10 +58,6 @@ public partial class AequusSystem {
         this.LoadObj(tag, "downedSpaceSquid", ref downedSpaceSquid);
         this.LoadObj(tag, "buriedChestsLooted", ref buriedChestsLooted);
         this.LoadObj(tag, "usedReforgeBook", ref usedReforgeBook);
-        this.LoadObj(tag, "downedOmegaStarite", ref downedOmegaStarite);
-        this.LoadObj(tag, "downedUltraStarite", ref downedUltraStarite);
-        this.LoadObj(tag, "downedDemonSiege", ref downedDemonSiege);
-        this.LoadObj(tag, "metOccultist", ref metOccultist);
     }
     
     [CompilerGenerated]
@@ -100,10 +68,6 @@ public partial class AequusSystem {
         this.SendObj(writer, downedSpaceSquid);
         this.SendObj(writer, buriedChestsLooted);
         this.SendObj(writer, usedReforgeBook);
-        this.SendObj(writer, downedOmegaStarite);
-        this.SendObj(writer, downedUltraStarite);
-        this.SendObj(writer, downedDemonSiege);
-        this.SendObj(writer, metOccultist);
     }
     
     [CompilerGenerated]
@@ -114,9 +78,5 @@ public partial class AequusSystem {
         this.ReceiveObj(reader, ref downedSpaceSquid);
         this.ReceiveObj(reader, ref buriedChestsLooted);
         this.ReceiveObj(reader, ref usedReforgeBook);
-        this.ReceiveObj(reader, ref downedOmegaStarite);
-        this.ReceiveObj(reader, ref downedUltraStarite);
-        this.ReceiveObj(reader, ref downedDemonSiege);
-        this.ReceiveObj(reader, ref metOccultist);
     }
 }

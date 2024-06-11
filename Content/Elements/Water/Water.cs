@@ -10,8 +10,16 @@ public class Water : Element {
         Water = this;
     }
 
-    public override void SetupRelations() {
-        AddBestiaryRelations(BestiaryTags.Ocean, BestiaryTags.Rain);
+    protected override void SetupRelations() {
+        AddBestiaryRelations(
+            BestiaryTags.Ocean,
+            BestiaryTags.Rain,
+            BestiaryTags.CalamitySunkenSea,
+            BestiaryTags.CalamitySulphurSea,
+            BestiaryTags.CalamityAbyss,
+            BestiaryTags.CalamityAcidRain,
+            BestiaryTags.ThoriumAquaticDepths
+        );
 
         AddNPC(NPCID.ZombieMerman);
         AddNPC(NPCID.EyeballFlyingFish);
@@ -24,6 +32,10 @@ public class Water : Element {
 
         AddItemRelationsFromNPCs();
 
+        AddItem(ItemID.Coral);
+        AddItem(ItemID.Starfish);
+        AddItem(ItemID.Seashell);
+        AddItem(ItemID.Topaz);
         AddItem(ItemID.BottledWater);
         AddItem(ItemID.Muramasa);
         //AddItem(ItemID.Valor);
@@ -41,8 +53,9 @@ public class Water : Element {
         AddItem(ItemID.Toxikarp);
         AddItem(ItemID.Anchor);
         AddItem(ItemID.FalconBlade);
-
-        AddItem(ItemID.Sapphire);
+        AddItem("ThoriumMod/WhirlpoolSaber");
+        AddItem("ThoriumMod/NaiadShiv");
+        AddItem("ThoriumMod/OceanEssence");
 
         AddItemRelationsFromRecipes();
     }

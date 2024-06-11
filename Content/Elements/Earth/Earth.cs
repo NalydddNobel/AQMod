@@ -10,11 +10,12 @@ public class Earth : Element {
         Earth = this;
     }
 
-    public override void SetupRelations() {
+    protected override void SetupRelations() {
         AddBestiaryRelations(BestiaryTags.Jungle, BestiaryTags.GlowingMushroom, BestiaryTags.VortexPillar);
 
         AddItemRelationsFromNPCs();
 
+        AddItem(ItemID.Emerald);
         AddItem(ItemID.Hive);
         AddItem(ItemID.HoneyBlock);
         AddItem(ItemID.BottledHoney);
@@ -28,8 +29,7 @@ public class Earth : Element {
         AddItem(ItemID.NaturesGift);
         AddItem(ItemID.JungleRose);
         AddItem(ItemID.ChlorophyteOre);
-
-        AddItem(ItemID.Emerald);
+        AddItem("ThoriumMod/DeathEssence");
 
         RemoveItem(ItemID.Uzi);
         RemoveItem(ItemID.HeatRay);

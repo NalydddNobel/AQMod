@@ -1,0 +1,20 @@
+{
+  "ManualItems": {
+    "Aequus/Flame": true,
+    "Ruby": true,
+    "FireWhip": true,
+    "WandofSparking": true,
+    "Torch": true,
+    "Hellstone": true,
+    "Meteorite": true,
+    "HeatRay": true,
+    "InfernoFork": true,
+    "Flamelash": true,
+    "Sunfury": true,
+    "ThoriumMod/SoulofPlight": true,
+    "ThoriumMod/InfernoEssence": true,
+    "ThoriumMod/DraconicMagmaStaff": true,
+    "WandofFrosting": false,
+    "IceTorch": false
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "ManualItems": {
+    "Aequus/Water": true,
+    "Coral": true,
+    "Starfish": true,
+    "Seashell": true,
+    "Topaz": true,
+    "BottledWater": true,
+    "Muramasa": true,
+    "WaterBolt": true,
+    "AquaScepter": true,
+    "MagicMissile": true,
+    "BlueMoon": true,
+    "CobaltShield": true,
+    "Trident": true,
+    "NeptunesShell": true,
+    "SharkFin": true,
+    "CrystalSerpent": true,
+    "Bladetongue": true,
+    "Toxikarp": true,
+    "Anchor": true,
+    "FalconBlade": true,
+    "ThoriumMod/WhirlpoolSaber": true,
+    "ThoriumMod/NaiadShiv": true,
+    "ThoriumMod/OceanEssence": true
+  }
+}

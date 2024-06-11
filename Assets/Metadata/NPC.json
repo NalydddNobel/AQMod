@@ -19,7 +19,27 @@
     "DemonTaxCollector",
     "HellButterfly",
     "Lavafly",
-    "MagmaSnail"
+    "MagmaSnail",
+    "ThoriumMod/BoneFlayer",
+    "ThoriumMod/Beholder",
+    "ThoriumMod/FallenBeholder",
+    "ThoriumMod/RedHag",
+    "ThoriumMod/EpiDermon",
+    "ThoriumMod/HellBringerMimic",
+    "ThoriumMod/InfernalHound",
+    "ThoriumMod/MoltenMortar",
+    "ThoriumMod/SoulCorrupter",
+    "ThoriumMod/UnderworldPot1",
+    "ThoriumMod/WeaponMaster",
+    "CalamityMod/ImpiousImmolator",
+    "CalamityMod/ProfanedEnergyBody",
+    "CalamityMod/ScornEater",
+    "CalamityMod/ProfanedGuardianCommander",
+    "CalamityMod/ProfanedGuardianDefender",
+    "CalamityMod/ProfanedGuardianHealer",
+    "CalamityMod/Providence",
+    "CalamityMod/CosmicLantern",
+    "CalamityMod/Signus"
   ],
   "FromGlimmer": [],
   "FromEclipse": [
@@ -39,7 +59,9 @@
     "ThePossessed",
     "Mothron",
     "MothronEgg",
-    "MothronSpawn"
+    "MothronSpawn",
+    "ThoriumMod/LeFantome",
+    "ThoriumMod/ScissorStalker"
   ],
   "FromBloodMoon": [
     "CorruptBunny",
@@ -66,7 +88,17 @@
     "Avalon/ContaminatedGoldfish",
     "Avalon/ContaminatedPenguin",
     "Avalon/BloodshotEye",
-    "Avalon/FallenHero"
+    "Avalon/FallenHero",
+    "ThoriumMod/Abomination",
+    "ThoriumMod/BloodDrop",
+    "ThoriumMod/BloodMage",
+    "ThoriumMod/BloodyWarg",
+    "ThoriumMod/EngorgedEye",
+    "ThoriumMod/GraveLimb",
+    "ThoriumMod/SeveredLegs",
+    "ThoriumMod/SmotheringShade",
+    "ThoriumMod/FamishedMaggot",
+    "ThoriumMod/PatchWerk"
   ],
   "NameTagOverride": {
     "EaterofWorldsBody": false,

@@ -10,10 +10,11 @@ public class Air : Element {
         Air = this;
     }
 
-    public override void SetupRelations() {
+    protected override void SetupRelations() {
         AddBestiaryRelations(BestiaryTags.SkySpace, BestiaryTags.NebulaPillar);
         AddItemRelationsFromNPCs();
 
+        AddItem(ItemID.Amber);
         AddItem(ItemID.Cloud);
         AddItem(ItemID.RainCloud);
         AddItem(ItemID.SnowCloudBlock);
@@ -24,8 +25,9 @@ public class Air : Element {
         AddItem(ItemID.AnkletoftheWind);
         AddItem(ItemID.StormTigerStaff);
         AddItem(ItemID.StarWrath);
-
-        AddItem(ItemID.Diamond);
+        AddItem(ItemID.SandBlock);
+        AddItem(ItemID.AntlionMandible);
+        AddItem(ItemID.FossilOre);
 
         AddItemRelationsFromRecipes();
     }

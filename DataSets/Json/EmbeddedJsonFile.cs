@@ -1,5 +1,4 @@
-﻿using Aequus.DataSets.Structures;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -8,17 +7,20 @@ using System.Text;
 namespace Aequus.DataSets.Json;
 
 public sealed class EmbeddedJsonFile {
-    private readonly DataSet _dataSet;
+    private readonly IJsonHolder _dataSet;
     public readonly string FilePath;
-    public readonly string ModFileStreamPath;
+    public readonly string FullFilePath;
     public readonly string FileData;
 
-    public EmbeddedJsonFile(DataSet dataSet) {
-        _dataSet = dataSet;
-        FilePath = dataSet.FilePath;
-        ModFileStreamPath = $"{FilePath}.json"[(dataSet.Mod.Name.Length + 1)..];
-        if (dataSet.Mod.FileExists(ModFileStreamPath)) {
-            using var stream = dataSet.Mod.GetFileStream(ModFileStreamPath, newFileStream: true);
+    private static Mod Mod => Aequus.Instance;
+
+    internal EmbeddedJsonFile(IJsonHolder holder) {
+        _dataSet = holder;
+        FilePath = holder.FilePath;
+        FullFilePath = $"Assets/Metadata/{FilePath}.json";
+
+        if (Mod.FileExists(FullFilePath)) {
+            using var stream = Mod.GetFileStream(FullFilePath, newFileStream: true);
             using var streamReader = new StreamReader(stream);
             FileData = streamReader.ReadToEnd();
         }
@@ -31,14 +33,14 @@ public sealed class EmbeddedJsonFile {
             }
         }
         catch (Exception ex) {
-            _dataSet.Mod.Logger.Error(ex);
+            Log.Error(ex);
         }
     }
 
     [Conditional("DEBUG")]
     internal void GenerateEmbeddedFiles() {
-        string fileLocation = Path.Join(Aequus.DEBUG_FILES_PATH, "ModSources", FilePath.Replace($"Content/DataSets/", "Assets/Metadata/") + ".json").Replace('/', Path.DirectorySeparatorChar);
-        _dataSet.Mod.Logger.Debug(fileLocation);
+        string fileLocation = Path.Join(Aequus.DEBUG_FILES_PATH, "ModSources/Aequus", FullFilePath).Replace('/', Path.DirectorySeparatorChar);
+        Log.Debug(fileLocation);
         try {
             // Only attempt to create the file if this Directory even exists.
             if (!Directory.Exists(Path.GetDirectoryName(fileLocation))) {
@@ -56,7 +58,7 @@ public sealed class EmbeddedJsonFile {
             }
         }
         catch (Exception ex) {
-            _dataSet.Mod.Logger.Error(ex);
+            Log.Error(ex);
         }
         finally {
         }

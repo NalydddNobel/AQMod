@@ -13,7 +13,6 @@ global using BestiaryTimeTag = Terraria.GameContent.Bestiary.BestiaryDatabaseNPC
 global using BestiaryBiomeTag = Terraria.GameContent.Bestiary.BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes;
 global using BestiaryEventTag = Terraria.GameContent.Bestiary.BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Events;
 global using BestiaryInvasionTag = Terraria.GameContent.Bestiary.BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Invasions;
-global using BestiaryVisualsTag = Terraria.GameContent.Bestiary.BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Visuals;
 global using ILoad = Terraria.ModLoader.ILoadable;
 global using ItemSets = Terraria.ID.ItemID.Sets;
 global using NPCSets = Terraria.ID.NPCID.Sets;
@@ -31,7 +30,7 @@ using Terraria.Utilities;
 namespace Aequus;
 
 public partial class Aequus : ExtendedMod {
-    public static new Mod Instance => ExtendedMod.Instance;
+    public static new Mod Instance => ModContent.GetInstance<Aequus>();
     public static Mod MusicMod { get; private set; }
 
     public override void OnLoad() {

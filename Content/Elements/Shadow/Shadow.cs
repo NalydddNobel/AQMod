@@ -10,13 +10,21 @@ public class Shadow : Element {
         Shadow = this;
     }
 
-    public override void SetupRelations() {
-        AddBestiaryRelations(BestiaryTags.GoblinInvaison, BestiaryTags.PumpkinMoon, BestiaryTags.Corruption, BestiaryTags.Crimson);
+    protected override void SetupRelations() {
+        AddBestiaryRelations(
+            BestiaryTags.GoblinInvaison,
+            BestiaryTags.PumpkinMoon,
+            BestiaryTags.Corruption,
+            BestiaryTags.Crimson,
+            BestiaryTags.CalamityBrimstoneCrags
+        );
 
         AddNPC(NPCID.RedDevil);
+        AddNPC("ThoriumMod/Viscount");
 
         AddItemRelationsFromNPCs();
 
+        AddItem(ItemID.Amethyst);
         AddItem(ItemID.BallOHurt);
         AddItem(ItemID.BandofStarpower);
         AddItem(ItemID.Vilethorn);
@@ -39,11 +47,13 @@ public class Shadow : Element {
         AddItem(ItemID.Bladetongue);
         AddItem(ItemID.Toxikarp);
         AddItem(ItemID.ShadowJoustingLance);
-
-        AddItem(ItemID.Amethyst);
+        AddItem(ItemID.Bone);
+        AddItem("ThoriumMod/Blood");
+        AddItem("ThoriumMod/BloodFeasterStaff");
 
         RemoveItem(ItemID.SpikyBall);
         RemoveItem(ItemID.Harpoon);
+        RemoveItem("ThoriumMod/IcyShard");
 
         AddItemRelationsFromRecipes();
     }

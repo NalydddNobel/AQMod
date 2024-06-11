@@ -19,7 +19,7 @@ public partial class ElementLoader : ModSystem {
 
     public override void PostSetupRecipes() {
         foreach (Element e in Elements) {
-            e.SetupRelations();
+            e.OnPostSetupRecipes();
         }
     }
 

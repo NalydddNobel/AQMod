@@ -1,0 +1,19 @@
+{
+  "ManualItems": {
+    "Aequus/Light": true,
+    "Diamond": true,
+    "HallowedSeeds": true,
+    "RainbowGun": true,
+    "CrystalShard": true,
+    "SoulofLight": true,
+    "HallowedBar": true,
+    "Pwnhammer": true,
+    "SunStone": true,
+    "BeamSword": true,
+    "EnchantedSword": true,
+    "CrystalSerpent": true,
+    "PrincessWeapon": true,
+    "ThoriumMod/EnchantedCane": true,
+    "Sandgun": false
+  }
+}

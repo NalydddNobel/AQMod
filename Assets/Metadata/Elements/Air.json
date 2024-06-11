@@ -1,0 +1,19 @@
+{
+  "ManualItems": {
+    "Aequus/Air": true,
+    "Amber": true,
+    "Cloud": true,
+    "RainCloud": true,
+    "SnowCloudBlock": true,
+    "Starfury": true,
+    "ShinyRedBalloon": true,
+    "LuckyHorseshoe": true,
+    "CelestialMagnet": true,
+    "AnkletoftheWind": true,
+    "StormTigerStaff": true,
+    "StarWrath": true,
+    "SandBlock": true,
+    "AntlionMandible": true,
+    "FossilOre": true
+  }
+}

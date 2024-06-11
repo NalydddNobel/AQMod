@@ -1,0 +1,23 @@
+{
+  "ManualItems": {
+    "Aequus/Earth": true,
+    "Emerald": true,
+    "Hive": true,
+    "HoneyBlock": true,
+    "BottledHoney": true,
+    "JungleSpores": true,
+    "DirtBlock": true,
+    "GrassSeeds": true,
+    "GlowingMushroom": true,
+    "AnkletoftheWind": true,
+    "FeralClaws": true,
+    "StaffofRegrowth": true,
+    "NaturesGift": true,
+    "JungleRose": true,
+    "ChlorophyteOre": true,
+    "ThoriumMod/DeathEssence": true,
+    "Uzi": false,
+    "HeatRay": false,
+    "GrenadeLauncher": false
+  }
+}
