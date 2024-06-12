@@ -47,6 +47,7 @@ Dialogue: {
 	Cultists: 你见过那些在地牢里鬼鬼祟祟的邪教徒吗? 看起来他们正在准备一个相当大的仪式! 我迫不及待地想看看会发生什么, 哈哈哈!
 	EarlyHardmode: 光明与黑暗再次共舞...我想, 有趣的时刻即将到来!
 	Waffles: 奇怪, 我本以为现在已经能见到阴了...我们现在有个超级酷的计划, 杀- 我的意思是, 与公主成为朋友!
+			//reminder to change this line because it doesnt make any sense ^
 	WindyDay: 风不断吹灭我的蜡烛! 我意识到今天是你的生日或其他什么, 但我需要工作!
 	Rain: 我想我知道一种可以驱散这场雨的仪式. 还是说要把它变成巧克力牛奶?
 	Thunderstorm: 我得试着捕捉一些闪电. 大自然的愤怒是一个令人惊讶的多功能施法组件!
