@@ -1,8 +1,8 @@
 DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
 
 ConeheadZombie: {
-	// DisplayName: Armored Zombie
-	// Bestiary: Mindlessly wandering around the Polluted Beach, this zombie scrapped together a defensive attire from the debris.
+	DisplayName: Zombi Blindado
+	Bestiary: Deambulando por la superficie contaminada, este zombi adquirio una capa de defensa usando chatarra.
 	// Slimed_Bestiary: "{$Bestiary_FlavorText.npc_SlimedZombie}"
 }
 
@@ -124,58 +124,58 @@ Starite: {
 }
 
 PhysicistPet: {
-	// DisplayName: Drone
-	// Bestiary: This tiny contraption follows the Physicist wherever she goes, constantly logging data from the environment to ensure nothing is missed. Miniaturized for personal use from a larger surveillance model.
+	DisplayName: Dron
+	Bestiary: Este pequeño aparato sigue a la Física a donde sea que vaya, constantemente registra cada detalle en su entorno para asegurar de que no se escape nada. Está basado en un modelo de inspección y miniaturizado para uso personal.
 
 	Dialogue: {
-		// 0: Beep boop.
-		// 1: Beep bop.
+		0: Bip bup.
+		1: Bip bop.
 	}
 }
 
 CleanserDrone: {
-	// DisplayName: Cleanser Drone
-	// Bestiary: Created by the Physicist in collaboration with the Steampunker to keep your town pure and habitable. Draws energy from the town's pylon as power.
+	DisplayName: Dron Depurador
+	Bestiary: Creado por la Física en colaboración con la Steampunker para mantener tu ciudad habitable. Extrae energia de la torre de la ciudad para funcionar.
 }
 
 GunnerDrone: {
-	// DisplayName: Gunner Drone
-	// Bestiary: Created by the Physicist to protect your town, it draws energy from the town's pylon as power.
+	DisplayName: Dron Tirador
+	Bestiary: Creado por la Física para protejer tu ciudad, Extrae energia de la torre de la ciudad para funcionar.
 }
 
 HealerDrone: {
-	// DisplayName: Healer Drone
-	// Bestiary: Created by the Physicist to keep your town healthy, it draws energy from the town's pylon as power.
+	DisplayName: Dron Medico
+	Bestiary: Creado por la Física para mantener tu ciudad saludable, Extrae energia de la torre de la ciudad para funcionar.
 }
 
 AdamantiteMimic.DisplayName: Cofre falso de Adamantita
-// FrostMimic.DisplayName: Frost Mimic
+FrostMimic.DisplayName: Cofre falso Congelado
 ShadowMimic.DisplayName: Cofre falso Oscuro
 
 Eel: {
-	// DisplayName: Eel
-	// BannerName: Eel Banner
-	// Bestiary: Constant consumption of live wires and machinery lead up to this eel's death, and later reanimation. The cables which lined through its body control its motion and behavior, bringing it new life.
+	DisplayName: Anguila
+	BannerName: Estandarte de Anguila
+	Bestiary: La dieta de cables y maquinaria descompuesta resulto en la muerte y reanimación de esta anguila, los metales que atraviesan su cuerpo ahora le dan nueva vida.
 }
 
 SeaFirefly: {
 	DisplayName: {
-		// $parentVal: Sea Firefly
-		// Red: Red Sea Firefly
-		// Orange: Orange Sea Firefly
-		// Yellow: Yellow Sea Firefly
-		// Lime: Lime Sea Firefly
-		// Green: Green Sea Firefly
-		// Teal: Teal Sea Firefly
-		// Cyan: Cyan Sea Firefly
-		// SkyBlue: Sky Blue Sea Firefly
-		// Blue: Blue Sea Firefly
-		// Purple: Purple Sea Firefly
-		// Violet: Violet Sea Firefly
-		// Pink: Pink Sea Firefly
-		// Black: Black Sea Firefly
-		// White: Silver Sea Firefly
-		// Rainbow: Rainbow Sea Firefly
+		$parentVal: Luciernaga de Mar
+		Red: Luciernaga de Mar Roja
+		Orange: Luciernaga de Mar Naranja
+		Yellow: Luciernaga de Mar Amarilla
+		Lime: Luciernaga de Mar Lima
+		Green: Luciernaga de Mar Verde
+		Teal: Luciernaga de Mar Azulada
+		Cyan: Luciernaga de Mar Turquesa
+		SkyBlue: Luciernaga de Mar Celeste
+		Blue: Luciernaga de Mar Azul
+		Purple: Luciernaga de Mar Morada
+		Violet: Luciernaga de Mar Violeta
+		Pink: Luciernaga de Mar Rosa
+		Black: Luciernaga de Mar Negra
+		White: Luciernaga de Mar Plateada
+		Rainbow: Luciernaga de Mar Arcoíris
 	}
 
 	// Bestiary: Mods.Aequus.NPCs.SeaFirefly.Bestiary

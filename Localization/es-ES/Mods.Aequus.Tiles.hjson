@@ -65,50 +65,50 @@ Trophies: {
 }
 
 OblivionAltar: {
-	// MapEntry: Oblivion Altar
+	MapEntry: Altar de Oblivio
 	// ItemDisplayName: "{$OblivionAltar.MapEntry}"
 	/* ItemTooltip:
 		'''
-		<right> to upgrade evil weapons
-		Counts as a Demon/Crimson Altar for crafting
+		<right> para mejorar armas malvadas
+		cuenta como un altar demoniaco/carmesí
 		''' */
 }
 
 ScavengerStatue: {
-	ItemDisplayName: Scavenger Statue
+	ItemDisplayName: Estatua Carroñera
 	ItemTooltip: ""
 }
 
 MossStatues: {
 	Argon: {
-		// ItemDisplayName: Argon Plant Statue
+		ItemDisplayName: Estatua de Planta Argon
 		// ItemTooltip: ""
 	}
 
 	Krypton: {
-		// ItemDisplayName: Krypton Plant Statue
+		// ItemDisplayName: Estatua de Planta Krypton
 		// ItemTooltip: ""
 	}
 
 	Neon: {
-		// ItemDisplayName: Neon Plant Statue
+		ItemDisplayName: Estatua de Planta Neon
 		// ItemTooltip: ""
 	}
 
 	Xenon: {
-		// ItemDisplayName: Xenon Plant Statue
+		ItemDisplayName: Estatua de Planta Xenón
 		// ItemTooltip: ""
 	}
 }
 
 OblivionChest: {
-	// MapEntry: Oblivion Chest
+	MapEntry: Cofre de Oblivio
 	// ItemDisplayName: "{$Tiles.OblivionChest.MapEntry}"
 	// ItemTooltip: ""
 }
 
 OblivionChestTrapped: {
-	// ItemDisplayName: Trapped Oblivion Chest
+	ItemDisplayName: Cofre de Oblivio Atrapado
 	// ItemTooltip: ""
 }
 
