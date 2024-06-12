@@ -3,8 +3,8 @@ using Aequus.Common.Elements;
 
 namespace Aequus.Content.Elements.Shadow;
 
-public class Shadow : Element {
-    public Shadow() : base(Color.BlueViolet) { }
+public class Shadow : VanillaElement {
+    public Shadow() : base(ShadowFrame, Color.BlueViolet) { }
 
     public override void Load() {
         Shadow = this;
@@ -22,9 +22,10 @@ public class Shadow : Element {
         AddNPC(NPCID.RedDevil);
         AddNPC("ThoriumMod/Viscount");
 
-        AddItemRelationsFromNPCs();
+        AddItemRelationsFromNPCDrops();
 
         AddItem(ItemID.Amethyst);
+        AddItem(ItemID.Deathweed);
         AddItem(ItemID.BallOHurt);
         AddItem(ItemID.BandofStarpower);
         AddItem(ItemID.Vilethorn);

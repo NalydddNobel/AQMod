@@ -3,8 +3,8 @@ using Aequus.Common.Elements;
 
 namespace Aequus.Content.Elements.Air;
 
-public class Air : Element {
-    public Air() : base(Color.LightSkyBlue) { }
+public class Air : VanillaElement {
+    public Air() : base(AirFrame, Color.LightSkyBlue) { }
 
     public override void Load() {
         Air = this;
@@ -12,9 +12,10 @@ public class Air : Element {
 
     protected override void SetupRelations() {
         AddBestiaryRelations(BestiaryTags.SkySpace, BestiaryTags.NebulaPillar);
-        AddItemRelationsFromNPCs();
+        AddItemRelationsFromNPCDrops();
 
         AddItem(ItemID.Amber);
+        AddItem(ItemID.Blinkroot);
         AddItem(ItemID.Cloud);
         AddItem(ItemID.RainCloud);
         AddItem(ItemID.SnowCloudBlock);
@@ -28,6 +29,7 @@ public class Air : Element {
         AddItem(ItemID.SandBlock);
         AddItem(ItemID.AntlionMandible);
         AddItem(ItemID.FossilOre);
+        AddItem(ItemID.SunplateBlock);
 
         AddItemRelationsFromRecipes();
     }

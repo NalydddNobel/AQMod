@@ -1,7 +1,8 @@
 {
-  "ManualItems": {
-    "Aequus/Flame": true,
+  "Items": {
+    "Aequus/FlameMask": true,
     "Ruby": true,
+    "Fireblossom": true,
     "FireWhip": true,
     "WandofSparking": true,
     "Torch": true,
@@ -11,10 +12,9 @@
     "InfernoFork": true,
     "Flamelash": true,
     "Sunfury": true,
-    "ThoriumMod/SoulofPlight": true,
-    "ThoriumMod/InfernoEssence": true,
-    "ThoriumMod/DraconicMagmaStaff": true,
     "WandofFrosting": false,
-    "IceTorch": false
+    "IceTorch": false,
+    "GoldCrown": false,
+    "PlatinumCrown": false
   }
 }

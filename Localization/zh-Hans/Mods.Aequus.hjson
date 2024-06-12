@@ -22,3 +22,11 @@ Controls: {
 	Control: Shift键
 	LeftShift: 左Shift键
 }
+
+Cheats: {
+	// ToggleOn: "{0}: on"
+	// ToggleOff: "{0}: off"
+	// VisibleElements.DisplayName: Visible Elements
+	// ItemInternalNames.DisplayName: Item Internal Names
+	// RevealAllElements.DisplayName: Reveal All Elements
+}

@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Bestiary;
 using Aequus.Core.CodeGeneration;
 using Aequus.Core.CrossMod;
+using Aequus.DataSets;
 using Aequus.DataSets.Structures;
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;
@@ -81,15 +82,21 @@ public partial class Element {
     public void AddBestiaryRelations(params BestiaryTags[] tags) {
         foreach (var tag in tags) {
             foreach (NPC npc in ContentSamples.NpcsByNetId.Values) {
-                if (npc != null && !npc.townNPC && !ContainsNPC(npc.netID) && tag.ContainsNPCIdInner(npc.netID)) {
-                    AddNPC(npc.netID);
+                if (npc == null || npc.townNPC || ContainsNPC(npc.netID) || !tag.ContainsNPCIdInner(npc.netID) || NPCDataSet.NoBestiaryElementInheritence.Contains(npc.type)) {
+                    continue;
                 }
+
+                AddNPC(npc.netID);
             }
         }
     }
 
-    public void AddItemRelationsFromNPCs() {
+    public void AddItemRelationsFromNPCDrops() {
         foreach (int i in _npcs) {
+            if (NPCDataSet.NoDropElementInheritence.Contains(i)) {
+                continue;
+            }
+
             BestiaryEntry entry = Main.BestiaryDB.FindEntryByNPCID(i);
             if (entry == null) {
                 continue;
@@ -97,22 +104,11 @@ public partial class Element {
 
             foreach (ItemDropBestiaryInfoElement drops in entry.Info.SelectWhereOfType<ItemDropBestiaryInfoElement>()) {
                 DropRateInfo info = Publicization<ItemDropBestiaryInfoElement, DropRateInfo>.GetField(drops, "_droprateInfo");
-                if (!_manualItems.ContainsKey(info.itemId)) {
+                if (!_manualItems.ContainsKey(info.itemId) && !ItemDataSet.NoNPCElementInheritence.Contains(info.itemId)) {
                     AddItemInner(info.itemId);
                 }
             }
         }
-
-        // Remove common items.
-        RemoveItemInner(ItemID.Gel);
-        RemoveItemInner(ItemID.WoodenArrow);
-        RemoveItemInner(ItemID.Shackle);
-        RemoveItemInner(ItemID.ZombieArm);
-        RemoveItemInner(ItemID.SpiffoPlush);
-        RemoveItemInner(ItemID.Hook);
-        RemoveItemInner(ItemID.SharkFin);
-        RemoveItemInner(ItemID.BoneSword);
-        RemoveItemInner(ItemID.SlimeStaff);
     }
 
     public void AddItemRelationsFromRecipes() {
@@ -120,7 +116,7 @@ public partial class Element {
         do {
             any = false;
             ExtendRecipe.ForEachRecipe(r => {
-                if (_items.Contains(r.createItem.type)) {
+                if (_items.Contains(r.createItem.type) || ItemDataSet.NoRecipeElementInheritence.Contains(r.createItem.type)) {
                     return true;
                 }
 

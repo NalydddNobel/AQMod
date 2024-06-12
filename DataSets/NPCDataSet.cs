@@ -6,6 +6,53 @@ using System.Collections.Generic;
 namespace Aequus.DataSets;
 
 public class NPCDataSet : DataSet {
+    /// <summary>NPCs in this set will not inherit elements from their Bestiary Tags.</summary>
+    [JsonProperty]
+    public static HashSet<IDEntry<NPCID>> NoBestiaryElementInheritence { get; private set; } = [];
+
+    /// <summary>NPCs in this set will not pass down their elements to items in their loot pool.</summary>
+    [JsonProperty]
+    public static HashSet<IDEntry<NPCID>> NoDropElementInheritence { get; private set; } = [
+        NPCID.Zombie,
+        NPCID.BaldZombie,
+        NPCID.PincushionZombie,
+        NPCID.SlimedZombie,
+        NPCID.SwampZombie,
+        NPCID.TwiggyZombie,
+        NPCID.FemaleZombie,
+        NPCID.ZombieDoctor,
+        NPCID.ZombiePixie,
+        NPCID.ZombieRaincoat,
+        NPCID.ZombieSuperman,
+        NPCID.ZombieSweater,
+        NPCID.ZombieXmas,
+        NPCID.TorchZombie,
+        NPCID.ZombieEskimo,
+        NPCID.ArmedZombie,
+        NPCID.ArmedZombieCenx,
+        NPCID.ArmedZombieEskimo,
+        NPCID.ArmedZombiePincussion,
+        NPCID.ArmedZombieSlimed,
+        NPCID.ArmedZombieSwamp,
+        NPCID.ArmedZombieTwiggy,
+        NPCID.ArmedTorchZombie,
+        NPCID.Skeleton,
+        NPCID.SkeletonAlien,
+        NPCID.SkeletonArcher,
+        NPCID.SkeletonAstonaut,
+        NPCID.SkeletonTopHat,
+        NPCID.ArmoredSkeleton,
+        NPCID.HeadacheSkeleton,
+        NPCID.BoneThrowingSkeleton,
+        NPCID.BoneThrowingSkeleton2,
+        NPCID.BoneThrowingSkeleton3,
+        NPCID.BoneThrowingSkeleton4,
+        NPCID.HeavySkeleton,
+        NPCID.MisassembledSkeleton,
+        NPCID.PantlessSkeleton,
+        NPCID.SporeSkeleton,
+    ];
+
     /// <summary>NPC Ids in this set cannot have their items stolen by the <see cref="Content.Items.Weapons.Melee.AncientCutlass.AncientCutlass"/>.</summary>
     [JsonProperty]
     public static HashSet<IDEntry<NPCID>> CannotPickpocketItemsFrom { get; private set; } = [NPCID.EaterofWorldsBody, NPCID.EaterofWorldsTail];

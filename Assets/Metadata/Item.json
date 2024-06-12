@@ -1,5 +1,26 @@
 {
+  "NoRecipeElementInheritence": [],
+  "NoNPCElementInheritence": [
+    "Gel",
+    "Hook",
+    "SharkFin",
+    "SlimeStaff",
+    "Ectoplasm",
+    "CopperCoin",
+    "SilverCoin",
+    "GoldCoin",
+    "PlatinumCoin",
+    "Leather"
+  ],
   "KeychainData": {
+    "Aequus/CopperKey": {
+      "NonConsumable": false,
+      "Color": "183, 88, 25, 255"
+    },
+    "Aequus/TinKey": {
+      "NonConsumable": false,
+      "Color": "183, 88, 25, 255"
+    },
     "CorruptionKey": {
       "NonConsumable": false,
       "Color": "48, 46, 99, 255"
@@ -35,14 +56,6 @@
     "TempleKey": {
       "NonConsumable": false,
       "Color": "205, 100, 20, 255"
-    },
-    "Aequus/CopperKey": {
-      "NonConsumable": false,
-      "Color": "183, 88, 25, 255"
-    },
-    "Aequus/TinKey": {
-      "NonConsumable": false,
-      "Color": "183, 88, 25, 255"
     }
   },
   "CannotTradeWithPhysicist": [

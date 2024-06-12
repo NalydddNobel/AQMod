@@ -11,7 +11,7 @@ public partial class Element {
         private readonly Element _element = Element;
 
         [JsonProperty]
-        public Dictionary<IDEntry<ItemID>, bool> ManualItems => _element._manualItems;
+        public Dictionary<IDEntry<ItemID>, bool> Items => _element._manualItems;
 
         [JsonIgnore]
         public string FilePath => $"Elements/{_element.Name}";

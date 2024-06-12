@@ -5,6 +5,7 @@ using Aequus.Content.Dedicated.Baguette;
 using Aequus.Content.Enemies.PollutedOcean.BreadOfCthulhu.Items;
 using Aequus.Content.Items.Tools.Keys;
 using Aequus.Core.ContentGeneration;
+using Aequus.DataSets;
 using System;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
@@ -19,6 +20,7 @@ public class BreadOfCthulhu : ModNPC {
     public override void SetStaticDefaults() {
         Main.npcFrameCount[NPC.type] = 5;
         ItemSets.KillsToBanner[BannerItem] = 10;
+        NPCDataSet.NoDropElementInheritence.Add(Type);
     }
 
     public override void SetDefaults() {

@@ -1,10 +1,11 @@
 {
-  "ManualItems": {
-    "Aequus/Water": true,
+  "Items": {
+    "Aequus/WaterMask": true,
+    "Topaz": true,
+    "Waterleaf": true,
     "Coral": true,
     "Starfish": true,
     "Seashell": true,
-    "Topaz": true,
     "BottledWater": true,
     "Muramasa": true,
     "WaterBolt": true,
@@ -19,9 +20,6 @@
     "Bladetongue": true,
     "Toxikarp": true,
     "Anchor": true,
-    "FalconBlade": true,
-    "ThoriumMod/WhirlpoolSaber": true,
-    "ThoriumMod/NaiadShiv": true,
-    "ThoriumMod/OceanEssence": true
+    "FalconBlade": true
   }
 }

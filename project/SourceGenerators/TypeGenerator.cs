@@ -77,18 +77,18 @@ public class TypeGenerator : ISourceGenerator {
     public void Execute(GeneratorExecutionContext context) {
         Dictionary<string, TypeConstructor> constructors = new() {
             ["AequusPlayer"] = new TypeConstructor("AequusPlayer", "Aequus",
-             Usings: ["Terraria.ModLoader.IO", "Aequus.Core.Structures"],
+             Usings: ["Terraria.ModLoader.IO", "Aequus.Core.Structures", "System.Collections.Generic"],
              MethodInputConversions: new Dictionary<string, string>() {
                  ["AequusPlayer"] = "this",
                  ["Player"] = "Player",
              }),
             ["AequusItem"] = new TypeConstructor("AequusItem", "Aequus",
-             Usings: ["Terraria.ModLoader.IO", "Aequus.Core.Structures"],
+             Usings: ["Terraria.ModLoader.IO", "Aequus.Core.Structures", "System.Collections.Generic"],
              MethodInputConversions: new Dictionary<string, string>() {
                  ["AequusItem"] = "this",
              }),
             ["AequusSystem"] = new TypeConstructor("AequusSystem", "Aequus",
-             Usings: ["Terraria.ModLoader.IO", "Aequus.Core.Structures", "System.IO"],
+             Usings: ["Terraria.ModLoader.IO", "Aequus.Core.Structures", "System.IO", "System.Collections.Generic"],
              MethodInputConversions: new Dictionary<string, string>() {
                  ["AequusSystem"] = "this",
              }),

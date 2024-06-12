@@ -1,7 +1,8 @@
 {
-  "ManualItems": {
-    "Aequus/Air": true,
+  "Items": {
+    "Aequus/AirMask": true,
     "Amber": true,
+    "Blinkroot": true,
     "Cloud": true,
     "RainCloud": true,
     "SnowCloudBlock": true,
@@ -14,6 +15,7 @@
     "StarWrath": true,
     "SandBlock": true,
     "AntlionMandible": true,
-    "FossilOre": true
+    "FossilOre": true,
+    "SunplateBlock": true
   }
 }

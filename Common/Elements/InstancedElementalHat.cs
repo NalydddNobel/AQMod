@@ -4,7 +4,7 @@ using Terraria.Localization;
 namespace Aequus.Common.Elements;
 
 [AutoloadEquip(EquipType.Head)]
-internal class InstancedElementalHat(Element parent) : InstancedModItem(parent.Name, $"{parent.Texture}Mask") {
+internal class InstancedElementalHat(Element parent) : InstancedModItem($"{parent.Name}Mask", $"{parent.Texture}Mask") {
     public override LocalizedText DisplayName => parent.GetLocalization("Mask.DisplayName", () => $"{parent.Name} Mask");
     public override LocalizedText Tooltip => parent.GetLocalization("Mask.Tooltip", () => "");
 

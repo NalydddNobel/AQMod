@@ -1,5 +1,5 @@
-﻿using Aequus.DataSets.Json;
-using ReLogic.Content;
+﻿using Aequus.Core.Structures;
+using Aequus.DataSets.Json;
 using Terraria.Localization;
 
 namespace Aequus.Common.Elements;
@@ -11,7 +11,7 @@ public abstract partial class Element(Color color) : ModTexturedType, ILocalized
 
     public override string Name => base.Name.Replace("Element", "");
 
-    internal Asset<Texture2D> texture { get; private set; }
+    public ISpriteProvider Sprite { get; set; }
 
     public int Type { get; internal set; }
 
@@ -33,12 +33,25 @@ public abstract partial class Element(Color color) : ModTexturedType, ILocalized
     }
 
     public sealed override void SetupContent() {
-        texture = ModContent.Request<Texture2D>(Texture);
         SetStaticDefaults();
     }
 
     internal void OnPostSetupRecipes() {
         SetupRelations();
         _file.GenerateEmbeddedFiles();
+    }
+}
+
+public abstract class VanillaElement(int Frame, Color color) : Element(color) {
+    public const int AirFrame = 0;
+    public const int EarthFrame = 1;
+    public const int WaterFrame = 2;
+    public const int FlameFrame = 3;
+    public const int FrostFrame = 4;
+    public const int LightFrame = 5;
+    public const int ShadowFrame = 6;
+
+    public override void SetStaticDefaults() {
+        Sprite = new FramedSpriteProvider(AequusTextures.ElementIcons, horizontalFrames: 7, frameX: Frame, verticalFrames: 2, frameY: 0);
     }
 }

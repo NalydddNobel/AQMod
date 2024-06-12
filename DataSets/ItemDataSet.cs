@@ -8,19 +8,22 @@ using System.Linq;
 namespace Aequus.DataSets;
 
 public class ItemDataSet : DataSet {
+    /// <summary>Items in this set ignore element inheritence from recipe ingredients.</summary>
+    [JsonProperty]
+    public static HashSet<IDEntry<ItemID>> NoRecipeElementInheritence { get; private set; } = [];
+
+    /// <summary>Items in this set ignore element inheritence from enemies which drop this item.</summary>
+    [JsonProperty]
+    public static HashSet<IDEntry<ItemID>> NoNPCElementInheritence { get; private set; } = [
+        ItemID.Gel,
+        ItemID.Hook,
+        ItemID.SharkFin,
+        ItemID.SlimeStaff,
+    ];
+
     /// <summary>Items in this set are unable to be submitted to the Physicist.</summary>
     [JsonProperty]
-    public static Dictionary<IDEntry<ItemID>, Keychain.KeychainInfo> KeychainData { get; private set; } = new Dictionary<IDEntry<ItemID>, Keychain.KeychainInfo>() {
-        [ItemID.CorruptionKey] = new(NonConsumable: false, Color: new Color(48, 46, 99)),
-        [ItemID.CrimsonKey] = new(NonConsumable: false, Color: new Color(255, 30, 40)),
-        [ItemID.DungeonDesertKey] = new(NonConsumable: false, Color: new Color(242, 165, 100)),
-        [ItemID.FrozenKey] = new(NonConsumable: false, Color: new Color(205, 240, 255)),
-        [ItemID.GoldenKey] = new(NonConsumable: false, Color: new Color(200, 179, 73)),
-        [ItemID.HallowedKey] = new(NonConsumable: false, Color: new Color(255, 240, 65)),
-        [ItemID.JungleKey] = new(NonConsumable: false, Color: new Color(145, 220, 60)),
-        [ItemID.ShadowKey] = new(NonConsumable: true, Color: new Color(98, 88, 176)),
-        [ItemID.TempleKey] = new(NonConsumable: false, Color: new Color(205, 100, 20)),
-    };
+    public static Dictionary<IDEntry<ItemID>, Keychain.KeychainInfo> KeychainData { get; private set; } = [];
     /// <summary>Items in this set are unable to be submitted to the Physicist.</summary>
     [JsonProperty]
     public static HashSet<IDEntry<ItemID>> CannotTradeWithPhysicist { get; private set; } = new();

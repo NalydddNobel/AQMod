@@ -2,6 +2,7 @@
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Aequus.Core.Structures;
+using System.Collections.Generic;
 
 namespace Aequus;
 

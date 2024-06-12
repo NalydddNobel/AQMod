@@ -1,7 +1,8 @@
 {
-  "ManualItems": {
-    "Aequus/Light": true,
+  "Items": {
+    "Aequus/LightMask": true,
     "Diamond": true,
+    "Daybloom": true,
     "HallowedSeeds": true,
     "RainbowGun": true,
     "CrystalShard": true,
@@ -13,7 +14,6 @@
     "EnchantedSword": true,
     "CrystalSerpent": true,
     "PrincessWeapon": true,
-    "ThoriumMod/EnchantedCane": true,
     "Sandgun": false
   }
 }

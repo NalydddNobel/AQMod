@@ -204,7 +204,7 @@ public sealed class RenamingSystem : ModSystem {
         }
     }
 
-    public static void EnsureTagCompoundContents(bool toCloud) {
+    private static void EnsureTagCompoundContents(bool toCloud) {
         foreach (var marker in RenamedNPCs.Values) {
             if (marker.IsTrackingNPC && marker.IsTrackedNPCValid) {
                 marker.UpdateTagCompound(Main.npc[marker.TrackNPC]);

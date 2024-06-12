@@ -1,7 +1,8 @@
 {
-  "ManualItems": {
-    "Aequus/Shadow": true,
+  "Items": {
+    "Aequus/ShadowMask": true,
     "Amethyst": true,
+    "Deathweed": true,
     "BallOHurt": true,
     "BandofStarpower": true,
     "Vilethorn": true,
@@ -25,10 +26,7 @@
     "Toxikarp": true,
     "ShadowJoustingLance": true,
     "Bone": true,
-    "ThoriumMod/Blood": true,
-    "ThoriumMod/BloodFeasterStaff": true,
     "SpikyBall": false,
-    "Harpoon": false,
-    "ThoriumMod/IcyShard": false
+    "Harpoon": false
   }
 }

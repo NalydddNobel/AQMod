@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Text;
 using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Utilities;
@@ -9,6 +11,15 @@ using Terraria.Utilities;
 namespace Aequus.Core.Utilities;
 
 public static partial class Helper {
+    /// <summary>Writes a string with no prefix or suffix to indicate length.</summary>
+    public static void WriteLiteral(this BinaryWriter writer, string text, Encoding encoding = null) {
+        encoding ??= Encoding.UTF8;
+        Stream stream = writer.BaseStream;
+        if (text != null) {
+            stream.Write(encoding.GetBytes(text));
+        }
+    }
+
     public static IEnumerable<Vector2> CircularVector(int count, float baseValue = 0f) {
         float amount = 1f / count * MathHelper.TwoPi;
         do {

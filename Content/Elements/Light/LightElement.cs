@@ -3,8 +3,8 @@ using Aequus.Common.Elements;
 
 namespace Aequus.Content.Elements.Light;
 
-public class LightElement : Element {
-    public LightElement() : base(Color.LightPink) { }
+public class LightElement : VanillaElement {
+    public LightElement() : base(LightFrame, Color.LightPink) { }
 
     public override void Load() {
         Light = this;
@@ -17,9 +17,10 @@ public class LightElement : Element {
             BestiaryTags.CalamityAstral
         );
 
-        AddItemRelationsFromNPCs();
+        AddItemRelationsFromNPCDrops();
 
         AddItem(ItemID.Diamond);
+        AddItem(ItemID.Daybloom);
         AddItem(ItemID.HallowedSeeds);
         AddItem(ItemID.RainbowGun);
         AddItem(ItemID.CrystalShard);
@@ -31,8 +32,10 @@ public class LightElement : Element {
         AddItem(ItemID.EnchantedSword);
         AddItem(ItemID.CrystalSerpent);
         AddItem(ItemID.PrincessWeapon);
-
         AddItem("ThoriumMod/EnchantedCane");
+        AddItem("CalamityMod/AuricOre");
+        AddItem("CalamityMod/HallowedOre");
+        AddItem("CalamityMod/AstralOre");
 
         RemoveItem(ItemID.Sandgun);
 

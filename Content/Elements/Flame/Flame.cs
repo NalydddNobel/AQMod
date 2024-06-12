@@ -3,8 +3,8 @@ using Aequus.Common.Elements;
 
 namespace Aequus.Content.Elements.Flame;
 
-public class Flame : Element {
-    public Flame() : base(Color.Orange) { }
+public class Flame : VanillaElement {
+    public Flame() : base(FlameFrame, Color.Orange) { }
 
     public override void Load() {
         Flame = this;
@@ -16,9 +16,10 @@ public class Flame : Element {
         RemoveNPC(NPCID.WallofFlesh);
         RemoveNPC(NPCID.WallofFleshEye);
 
-        AddItemRelationsFromNPCs();
+        AddItemRelationsFromNPCDrops();
 
         AddItem(ItemID.Ruby);
+        AddItem(ItemID.Fireblossom);
         AddItem(ItemID.FireWhip);
         AddItem(ItemID.WandofSparking);
         AddItem(ItemID.Torch);
@@ -32,9 +33,12 @@ public class Flame : Element {
         AddItem("ThoriumMod/SoulofPlight");
         AddItem("ThoriumMod/InfernoEssence");
         AddItem("ThoriumMod/DraconicMagmaStaff");
+        AddItem("CalamityMod/ScoriaOre");
 
         RemoveItem(ItemID.WandofFrosting);
         RemoveItem(ItemID.IceTorch);
+        RemoveItem(ItemID.GoldCrown);
+        RemoveItem(ItemID.PlatinumCrown);
 
         AddItemRelationsFromRecipes();
     }

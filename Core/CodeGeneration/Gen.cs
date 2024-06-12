@@ -33,9 +33,13 @@ internal class Gen {
     /// <summary>Adds a reference to the target method in <see cref="AequusPlayer.PostUpdateEquips"/>.</summary>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
     internal class AequusPlayer_PostUpdateEquips : Attribute { }
+
     /// <summary>Adds a reference to the target method in <see cref="AequusItem.UseItem"/>.</summary>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
     internal class AequusItem_UseItem : Attribute { }
+    /// <summary>Adds a reference to the target method in <see cref="AequusItem.ModifyTooltips(Item, System.Collections.Generic.List{TooltipLine})"/>.</summary>
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
+    internal class AequusItem_ModifyTooltips : Attribute { }
 
     /// <summary>Generates a field with <paramref name="Name"/> in <see cref="AequusSystem"/>.</summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]

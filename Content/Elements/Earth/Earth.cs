@@ -3,8 +3,8 @@ using Aequus.Common.Elements;
 
 namespace Aequus.Content.Elements.Earth;
 
-public class Earth : Element {
-    public Earth() : base(Color.ForestGreen) { }
+public class Earth : VanillaElement {
+    public Earth() : base(EarthFrame, Color.ForestGreen) { }
 
     public override void Load() {
         Earth = this;
@@ -13,9 +13,16 @@ public class Earth : Element {
     protected override void SetupRelations() {
         AddBestiaryRelations(BestiaryTags.Jungle, BestiaryTags.GlowingMushroom, BestiaryTags.VortexPillar);
 
-        AddItemRelationsFromNPCs();
+        AddItemRelationsFromNPCDrops();
 
         AddItem(ItemID.Emerald);
+        AddItem(ItemID.Blinkroot);
+        AddItem(ItemID.Daybloom);
+        AddItem(ItemID.Shiverthorn);
+        AddItem(ItemID.Deathweed);
+        AddItem(ItemID.Fireblossom);
+        AddItem(ItemID.Moonglow);
+        AddItem(ItemID.Waterleaf);
         AddItem(ItemID.Hive);
         AddItem(ItemID.HoneyBlock);
         AddItem(ItemID.BottledHoney);
@@ -30,6 +37,8 @@ public class Earth : Element {
         AddItem(ItemID.JungleRose);
         AddItem(ItemID.ChlorophyteOre);
         AddItem("ThoriumMod/DeathEssence");
+        AddItem("CalamityMod/PerennialOre");
+        AddItem("CalamityMod/UelibloomOre");
 
         RemoveItem(ItemID.Uzi);
         RemoveItem(ItemID.HeatRay);

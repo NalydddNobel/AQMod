@@ -1,7 +1,8 @@
 {
-  "ManualItems": {
-    "Aequus/Frost": true,
+  "Items": {
+    "Aequus/FrostMask": true,
     "Sapphire": true,
+    "Shiverthorn": true,
     "WandofFrosting": true,
     "IceRod": true,
     "StaffoftheFrostHydra": true,

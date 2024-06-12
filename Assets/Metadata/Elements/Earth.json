@@ -1,7 +1,14 @@
 {
-  "ManualItems": {
-    "Aequus/Earth": true,
+  "Items": {
+    "Aequus/EarthMask": true,
     "Emerald": true,
+    "Blinkroot": true,
+    "Daybloom": true,
+    "Shiverthorn": true,
+    "Deathweed": true,
+    "Fireblossom": true,
+    "Moonglow": true,
+    "Waterleaf": true,
     "Hive": true,
     "HoneyBlock": true,
     "BottledHoney": true,
@@ -15,7 +22,6 @@
     "NaturesGift": true,
     "JungleRose": true,
     "ChlorophyteOre": true,
-    "ThoriumMod/DeathEssence": true,
     "Uzi": false,
     "HeatRay": false,
     "GrenadeLauncher": false

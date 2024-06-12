@@ -204,6 +204,18 @@
         <member name="F:Aequus.Common.Commons.Cost.NPCSkyMerchantCustomPrice">
             <summary>5 Gold</summary>
         </member>
+        <member name="M:Aequus.Common.Elements.Element.AddNPC(System.String)">
+            <summary>Attempts to add a ModNPC's type using its full name.</summary>
+            <param name="fullName">The full name of the mod npc. Example: ThoriumMod/Viscount</param>
+        </member>
+        <member name="M:Aequus.Common.Elements.Element.AddItem(System.String)">
+            <summary>Attempts to add a ModItem's type using its full name.</summary>
+            <param name="fullName">The full name of the mod item. Example: ThoriumMod/IllumiteBar</param>
+        </member>
+        <member name="M:Aequus.Common.Elements.Element.RemoveItem(System.String)">
+            <summary>Attempts to remove a ModItem's type using its full name.</summary>
+            <param name="fullName">The full name of the mod item. Example: ThoriumMod/IllumiteBar</param>
+        </member>
         <member name="M:Aequus.Common.Golfing.GolfingSystem.SetGolfBallStatus(System.Boolean)">
             <summary>
             Sets all fake golf balls to be counted or not counted as golf balls.
@@ -902,6 +914,12 @@
         <member name="P:Aequus.DataSets.FishDataSet.Junk">
             <summary>Items in this set are fishing junk.</summary>
         </member>
+        <member name="P:Aequus.DataSets.ItemDataSet.NoRecipeElementInheritence">
+            <summary>Items in this set ignore element inheritence from recipe ingredients.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.ItemDataSet.NoNPCElementInheritence">
+            <summary>Items in this set ignore element inheritence from enemies which drop this item.</summary>
+        </member>
         <member name="P:Aequus.DataSets.ItemDataSet.KeychainData">
             <summary>Items in this set are unable to be submitted to the Physicist.</summary>
         </member>
@@ -929,6 +947,12 @@
         </member>
         <member name="T:Aequus.DataSets.ItemTypeVariantDataSet">
             <summary>Dataset with lists of all supported 'alts' of an item.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.NoBestiaryElementInheritence">
+            <summary>NPCs in this set will not inherit elements from their Bestiary Tags.</summary>
+        </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.NoDropElementInheritence">
+            <summary>NPCs in this set will not pass down their elements to items in their loot pool.</summary>
         </member>
         <member name="P:Aequus.DataSets.NPCDataSet.CannotPickpocketItemsFrom">
             <summary>NPC Ids in this set cannot have their items stolen by the <see cref="T:Aequus.Content.Items.Weapons.Melee.AncientCutlass.AncientCutlass"/>.</summary>
@@ -1175,6 +1199,9 @@
         </member>
         <member name="T:Aequus.Core.CodeGeneration.Gen.AequusItem_UseItem">
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusItem.UseItem(Terraria.Item,Terraria.Player)"/>.</summary>
+        </member>
+        <member name="T:Aequus.Core.CodeGeneration.Gen.AequusItem_ModifyTooltips">
+            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusItem.ModifyTooltips(Terraria.Item,System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})"/>.</summary>
         </member>
         <member name="T:Aequus.Core.CodeGeneration.Gen.AequusSystem_FieldAttribute`1">
             <summary>Generates a field with <paramref name="Name"/> in <see cref="T:Aequus.AequusSystem"/>.</summary>
@@ -1664,6 +1691,9 @@
             Draws something with its position set to the center of the inventory slot.
             Only use in Pre/PostDraw hooks for items.
             </summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.Helper.WriteLiteral(System.IO.BinaryWriter,System.String,System.Text.Encoding)">
+            <summary>Writes a string with no prefix or suffix to indicate length.</summary>
         </member>
         <member name="M:Aequus.Core.Utilities.Helper.UnNaN(System.Single)">
             <returns>Returns 0f if <see cref="M:System.Single.IsNaN(System.Single)"/> returns true for <paramref name="value"/>.</returns>
@@ -2366,7 +2396,7 @@
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 872) yo momma gai</summary>
+            <summary>(Total Textures: 866) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2818,17 +2848,11 @@
         <member name="F:Aequus.AequusTextures.MonoDust">
             <summary>Full Path: Content/Dusts/MonoDust</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Air">
-            <summary>Full Path: Content/Elements/Air/Air</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.AirMask">
             <summary>Full Path: Content/Elements/Air/AirMask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AirMask_Head">
             <summary>Full Path: Content/Elements/Air/AirMask_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Earth">
-            <summary>Full Path: Content/Elements/Earth/Earth</summary>
         </member>
         <member name="F:Aequus.AequusTextures.EarthMask">
             <summary>Full Path: Content/Elements/Earth/EarthMask</summary>
@@ -2836,8 +2860,8 @@
         <member name="F:Aequus.AequusTextures.EarthMask_Head">
             <summary>Full Path: Content/Elements/Earth/EarthMask_Head</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Flame">
-            <summary>Full Path: Content/Elements/Flame/Flame</summary>
+        <member name="F:Aequus.AequusTextures.ElementIcons">
+            <summary>Full Path: Content/Elements/ElementIcons</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FlameMask">
             <summary>Full Path: Content/Elements/Flame/FlameMask</summary>
@@ -2845,17 +2869,11 @@
         <member name="F:Aequus.AequusTextures.FlameMask_Head">
             <summary>Full Path: Content/Elements/Flame/FlameMask_Head</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Frost">
-            <summary>Full Path: Content/Elements/Frost/Frost</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.FrostMask">
             <summary>Full Path: Content/Elements/Frost/FrostMask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FrostMask_Head">
             <summary>Full Path: Content/Elements/Frost/FrostMask_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Light">
-            <summary>Full Path: Content/Elements/Light/Light</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LightMask">
             <summary>Full Path: Content/Elements/Light/LightMask</summary>
@@ -2863,17 +2881,11 @@
         <member name="F:Aequus.AequusTextures.LightMask_Head">
             <summary>Full Path: Content/Elements/Light/LightMask_Head</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Shadow">
-            <summary>Full Path: Content/Elements/Shadow/Shadow</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.ShadowMask">
             <summary>Full Path: Content/Elements/Shadow/ShadowMask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ShadowMask_Head">
             <summary>Full Path: Content/Elements/Shadow/ShadowMask_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Water">
-            <summary>Full Path: Content/Elements/Water/Water</summary>
         </member>
         <member name="F:Aequus.AequusTextures.WaterMask">
             <summary>Full Path: Content/Elements/Water/WaterMask</summary>

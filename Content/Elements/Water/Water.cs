@@ -3,8 +3,8 @@ using Aequus.Common.Elements;
 
 namespace Aequus.Content.Elements.Water;
 
-public class Water : Element {
-    public Water() : base(Color.SkyBlue) { }
+public class Water : VanillaElement {
+    public Water() : base(WaterFrame, Color.SkyBlue) { }
 
     public override void Load() {
         Water = this;
@@ -30,12 +30,13 @@ public class Water : Element {
         AddNPC(NPCID.BloodNautilus);
         RemoveNPC(NPCID.IceGolem);
 
-        AddItemRelationsFromNPCs();
+        AddItemRelationsFromNPCDrops();
 
+        AddItem(ItemID.Topaz);
+        AddItem(ItemID.Waterleaf);
         AddItem(ItemID.Coral);
         AddItem(ItemID.Starfish);
         AddItem(ItemID.Seashell);
-        AddItem(ItemID.Topaz);
         AddItem(ItemID.BottledWater);
         AddItem(ItemID.Muramasa);
         //AddItem(ItemID.Valor);

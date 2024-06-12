@@ -38,7 +38,7 @@ internal class InstancedConeheadZombie : InstancedModNPC, IPostPopulateItemDropD
         _zombieClone = zombieClone;
     }
 
-    public override LocalizedText DisplayName => Language.GetOrRegister("Mods.Aequus.NPCs.ConeheadZombie.DisplayName");
+    public override LocalizedText DisplayName => this.GetCategoryText("ConeheadZombie.DisplayName");
 
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = Main.npcFrameCount[_zombieClone];
@@ -48,6 +48,7 @@ internal class InstancedConeheadZombie : InstancedModNPC, IPostPopulateItemDropD
         }
 
         NPCDataSet.PushableByTypeId.Add(Type);
+        NPCDataSet.NoDropElementInheritence.Add(Type);
     }
 
     public override void SetDefaults() {
