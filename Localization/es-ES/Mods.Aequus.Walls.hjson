@@ -4,11 +4,11 @@ RadonMossBrickWall: {
 }
 
 PolymerSandstoneWall: {
-	// ItemDisplayName: Polymer Sandstone Wall
+	ItemDisplayName: Pared de Arenisca de Polímeros
 	// ItemTooltip: ""
 }
 
 PolymerSandstoneWallHostile: {
-	// ItemDisplayName: Polluted Polymer Sandstone Wall
+	ItemDisplayName: Pared de Arenisca de Polímeros Contaminada
 	// ItemTooltip: ""
 }
