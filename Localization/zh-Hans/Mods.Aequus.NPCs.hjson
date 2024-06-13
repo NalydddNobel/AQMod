@@ -178,7 +178,7 @@ SeaFirefly: {
 		Rainbow: 彩色海萤火虫
 	}
 
-	Bestiary: Mods.Aequus.NPCs.SeaFirefly.Bestiary
+	// Bestiary: These shrimp-like creatures cast an eerie luminance which deters most fish from eating them.
 	ItemTooltip: ""
 }
 
@@ -195,5 +195,5 @@ SpaceSquid: {
 	Bestiary: 作为一名来自先进星际文明的外星侦察员, 他们将自己的意识移植到由高科技压缩水分子制成的身体中, 以便于远距离传送.
 	TrophyDisplayName: 太空乌贼纪念章
 	RelicDisplayName: 太空乌贼纪念物
-	MaskDisplayName: SpaceSquid Mask
+	MaskDisplayName: 太空乌贼面具
 }
