@@ -65,10 +65,18 @@ public class LanternCatPet : UnifiedModPet {
     }
 
     public override bool PreDraw(ref Color lightColor) {
+        Vector2 lanternPosition = Projectile.Center;
+        if (Projectile.isAPreviewDummy) {
+            lanternPosition += new Vector2(-24f + MathF.Sin(Main.GlobalTimeWrappedHourly) * 3f, -4f);
+            Projectile.spriteDirection = -1;
+        }
+
         Projectile.frame = this.frame;
         var lantern = AequusTextures.LanternCatPet_Lantern.Value;
-        var lanternPosition = Projectile.Center + (new Vector2(24f * -Projectile.spriteDirection, -24f + MathF.Sin(Main.GlobalTimeWrappedHourly * 2f) * 8f) + new Vector2(Projectile.velocity.X * 2f, Projectile.velocity.Y * -0.1f - Math.Abs(Projectile.velocity.X) * 0.5f)) * Projectile.scale;
+        lanternPosition += (new Vector2(24f * -Projectile.spriteDirection, -24f + MathF.Sin(Main.GlobalTimeWrappedHourly * 2f) * 8f) + new Vector2(Projectile.velocity.X * 2f, Projectile.velocity.Y * -0.1f - Math.Abs(Projectile.velocity.X) * 0.5f)) * Projectile.scale;
         float lanternRotation = Projectile.velocity.X * 0.1f * Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f, 0.5f, 1f);
+
+
         var spriteEffects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
         Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out _);
         Main.EntitySpriteDraw(
@@ -82,6 +90,7 @@ public class LanternCatPet : UnifiedModPet {
             spriteEffects,
             0
         );
+
         Main.EntitySpriteDraw(
             lantern,
             lanternPosition - Main.screenPosition,
@@ -109,7 +118,7 @@ public class LanternCatPet : UnifiedModPet {
     }
 
     internal override InstancedPetBuff CreatePetBuff() {
-        return new(this, (p) => ref p.GetModPlayer<AequusPlayer>().petLanternLuckCat, lightPet: false);
+        return new(this, (p) => ref p.GetModPlayer<AequusPlayer>().petLanternLuckCat, lightPet: true);
     }
 
     protected override void OnLoad() {
