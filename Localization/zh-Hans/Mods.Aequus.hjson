@@ -24,9 +24,9 @@ Controls: {
 }
 
 Cheats: {
-	// ToggleOn: "{0}: on"
-	// ToggleOff: "{0}: off"
-	// VisibleElements.DisplayName: Visible Elements
-	// ItemInternalNames.DisplayName: Item Internal Names
-	// RevealAllElements.DisplayName: Reveal All Elements
+	ToggleOn: "{0}: 开启"
+	ToggleOff: "{0}: 关闭"
+	VisibleElements.DisplayName: 可见元素
+	ItemInternalNames.DisplayName: 物品内部名称
+	RevealAllElements.DisplayName: 显示所有元素
 }
