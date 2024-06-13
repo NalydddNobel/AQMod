@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Common.Elements;
 using Aequus.Content.Items.Materials;
 using Aequus.DataSets;
 using System;
@@ -40,6 +41,7 @@ public class JunkJet : ModItem {
 
     #region Initialization
     public override void SetStaticDefaults() {
+        Element.Air.AddItem(Type);
         AmmoOverrides[AmmoID.FallenStar] = new AmmoData() { ProjectileId = ProjectileID.StarCannonStar, Damage = 50, Knockback = 1f, ProjectileCount = 1, BaseSpread = 0.2f, MaxSpread = 0f, ShootSpeed = 8f };
         AmmoOverrides[AmmoID.Gel] = new AmmoData() { ProjectileId = ProjectileID.Flames, Damage = 10, Knockback = -2.3f, ShootSpeed = -1f, AttackSpeedMultiplier = 0.25f, ProjectileCount = 1, BaseSpread = 0.1f, MaxSpread = 0f };
         AmmoOverrides[ItemID.SandBlock] = new AmmoData() { ProjectileId = ProjectileID.SandBallGun, Damage = 20, Knockback = 3f, ProjectileCount = 1, BaseSpread = 0f, MaxSpread = 0f };

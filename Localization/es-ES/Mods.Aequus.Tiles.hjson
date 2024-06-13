@@ -69,8 +69,8 @@ OblivionAltar: {
 	// ItemDisplayName: "{$OblivionAltar.MapEntry}"
 	/* ItemTooltip:
 		'''
-		<right> para mejorar armas malvadas
-		cuenta como un altar demoniaco/carmesí
+		<right> to upgrade evil weapons
+		Counts as a Demon/Crimson Altar for crafting
 		''' */
 }
 
@@ -86,7 +86,7 @@ MossStatues: {
 	}
 
 	Krypton: {
-		// ItemDisplayName: Estatua de Planta Krypton
+		// ItemDisplayName: Krypton Plant Statue
 		// ItemTooltip: ""
 	}
 

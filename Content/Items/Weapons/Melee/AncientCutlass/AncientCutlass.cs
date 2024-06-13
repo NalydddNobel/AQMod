@@ -1,4 +1,5 @@
-﻿using Aequus.DataSets;
+﻿using Aequus.Common.Elements;
+using Aequus.DataSets;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
@@ -9,6 +10,10 @@ namespace Aequus.Content.Items.Weapons.Melee.AncientCutlass;
 public class AncientCutlass : ModItem {
     public static readonly int DropChance = 2;
     public static readonly int ValueDropChanceDecrease = Item.silver;
+
+    public override void SetStaticDefaults() {
+        Element.Water.AddItem(Type);
+    }
 
     public override void SetDefaults() {
         Item.CloneDefaults(ItemID.DyeTradersScimitar);

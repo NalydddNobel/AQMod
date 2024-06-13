@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Common.Elements;
 using Aequus.Core.ContentGeneration;
 using System.Collections.Generic;
 using Terraria.DataStructures;
@@ -9,6 +10,10 @@ namespace Aequus.Content.Items.Weapons.Summon.Whips.DemonCorruptWhip;
 public class DemonSoulscourge : UnifiedWhipItem, IMinionTagController {
     public ModBuff TagBuff { get; set; }
     public int TagDuration => 240;
+
+    public override void SetStaticDefaults() {
+        Element.Flame.AddItem(Type);
+    }
 
     public override void SetDefaults() {
         Item.DefaultToWhip(WhipProjectile.Type, 32, 2f, 5f, animationTotalTime: 30);

@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Common.Elements;
 using Aequus.Common.Items.Components;
 using Aequus.Common.Projectiles;
 using System;
@@ -11,6 +12,10 @@ namespace Aequus.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
 public class SkyHunterCrossbow : ModItem, IManageProjectile {
     public static int ItemPickupHitSquareSize { get; set; } = 64;
     public static int MaximumDistance { get; set; } = 600;
+
+    public override void SetStaticDefaults() {
+        Element.Air.AddItem(Type);
+    }
 
     public override void SetDefaults() {
         Item.width = 24;

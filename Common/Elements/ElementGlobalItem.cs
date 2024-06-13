@@ -1,16 +1,23 @@
 ﻿using Aequus.Core.Debugging.CheatCodes;
 using System.Collections.Generic;
 using Terraria.GameContent;
-using Terraria.Localization;
 
 namespace Aequus.Common.Elements;
 
 public class ElementGlobalItem : GlobalItem {
     private static IEnumerable<Element> GetVisibleElements(Item item) {
-        if (CheatCode.IsActive<CheatCode.RevealAllElements>()) {
-            return ElementLoader.Elements;
+#if !DEBUG
+        return null;
+#endif
+
+        // Cheat code
+        switch (ModContent.GetInstance<RevealElements>()?.State?.CurrentState) {
+            case RevealElements.All: return ElementLoader.Elements;
+            case RevealElements.WeaponsOnly: { if (item.damage > 0) return ElementLoader.Elements; } break;
+            default: break;
         }
 
+        // Only show elements on items with a damage value.
         if (item.damage > 0) {
             return Main.LocalPlayer.GetModPlayer<ElementalPlayer>().visibleElements;
         }
@@ -19,6 +26,11 @@ public class ElementGlobalItem : GlobalItem {
     }
 
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
+        ElementVisibility visibility = ModContent.GetInstance<ElementVisibility>();
+        if (visibility == null || visibility.State.CurrentState == ElementVisibility.IconsOnly) {
+            return;
+        }
+
         IEnumerable<Element> elements = GetVisibleElements(item);
         if (elements == null) {
             return;
@@ -34,7 +46,7 @@ public class ElementGlobalItem : GlobalItem {
                 text += "\n";
             }
 
-            text += ChatTagWriter.Color(Colors.AlphaDarken(e.Color), Language.GetOrRegister("Mods.Aequus.Elements.ElementTip").Format(e.DisplayName.Value));
+            text += ChatTagWriter.Color(Colors.AlphaDarken(e.Color), e.GetCategoryText("ElementTip").Format(e.DisplayName.Value));
         }
 
         if (!string.IsNullOrEmpty(text)) {
@@ -45,7 +57,8 @@ public class ElementGlobalItem : GlobalItem {
     }
 
     public override void PostDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
-        if (!CheatCode.IsActive<CheatCode.VisibleElements>()) {
+        ElementVisibility visibility = ModContent.GetInstance<ElementVisibility>();
+        if (visibility == null || visibility.State.CurrentState < ElementVisibility.IconsOnly) {
             return;
         }
 

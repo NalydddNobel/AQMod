@@ -47,9 +47,10 @@ Dialogue: {
 	Cultists: ¿Has visto a los cultistas merodeando por la mazmorra? ¡Parece que están preparando un ritual grande! no puedo esperar jajaja.
 	EarlyHardmode: La luz y la oscuridad danzan juntas una vez más... ¡creo que las cosas se van a poner interesantes!
 	// Waffles: Strange, I would've expected to have met Yin by now... We had this super cool plan to ki- I mean befriend the Princess!
+	//reminder to change this line because it doesnt make any sense ^
 	WindyDay: ¡El viento sigue apagando mis velas! entiendo que sea tu cumpleaños mundo, ¡pero necesito trabajar!
 	// Rain: I think I know a ritual that would dispel this rain. Or was it for turning it into chocolate milk?
-	Thunderstorm: Voy a tratar de atrapar uno de estos rayos, ¡la furia de la naturaleza es un componente sorprendentemente versátil para la hechicería! 
+	Thunderstorm: Voy a tratar de atrapar uno de estos rayos, ¡la furia de la naturaleza es un componente sorprendentemente versátil para la hechicería!
 	Party: No me querían que embrujara la tarta para que se regenerara. ¡Prometo que no le agregue nada más... esta vez!.
 	Graveyard: Oh, ¡hola fantasmitas! ustedes servirán como el combustible perfecto para mis rituales...
 	Glimmer: ¿Qué? ¡No! ¡Dónde se fue mi oscuridad, devuélvemela!

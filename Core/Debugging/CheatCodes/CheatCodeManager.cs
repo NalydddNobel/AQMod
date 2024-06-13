@@ -7,13 +7,37 @@ using System.Linq;
 namespace Aequus.Core.Debugging.CheatCodes;
 
 public class CheatCodeManager : ModSystem {
-    private static readonly List<CheatCode> Codes = [];
+    private static readonly List<ICheatCode> Codes = [];
     private static bool CheatCodesNeedSaving { get; set; }
 
     private static readonly string CheatCodesFilePath = $"{Aequus.DEBUG_FILES_PATH}/Mods/Aequus/Cheats".Replace('/', Path.DirectorySeparatorChar);
 
-    internal static void Register(CheatCode code) {
-        foreach (CheatCode compareCode in Codes) {
+    // Actually handle cheat code input.
+    public override void PostUpdateInput() {
+        if (!Main.chatText.StartsWith("aequus", StringComparison.CurrentCultureIgnoreCase) || Main.oldKeyState == Main.keyState) {
+            return;
+        }
+
+        bool anyPressed = false;
+        foreach (ICheatCode code in Codes) {
+            if (!anyPressed && code.CheckKeys(in Main.keyState)) {
+                if (!code.IsPressed) {
+                    code.States.OnPress(code);
+                }
+
+                code.IsPressed = true;
+                CheatCodesNeedSaving = true;
+                anyPressed = true;
+            }
+            else if (code.IsPressed) {
+                code.States.OnDepress(code);
+                code.IsPressed = false;
+            }
+        }
+    }
+
+    internal static void Register(ICheatCode code) {
+        foreach (ICheatCode compareCode in Codes) {
             if (code.MatchingKeys(compareCode)) {
                 Log.Error($"{code.GetType().FullName} matches keys with {compareCode.GetType().FullName}");
                 return;
@@ -33,24 +57,8 @@ public class CheatCodeManager : ModSystem {
         Codes.Clear();
     }
 
-    public override void PostUpdateInput() {
-        if (!Main.chatText.StartsWith("aequus", StringComparison.CurrentCultureIgnoreCase) || Main.oldKeyState == Main.keyState) {
-            return;
-        }
-
-        foreach (CheatCode code in Codes) {
-            if (code.CheckKeys(in Main.keyState)) {
-                code.Toggle();
-                CheatCodesNeedSaving = true;
-            }
-            else if (code.Active && !code.Params.HasFlag(Params.Toggle)) {
-                code.Toggle();
-            }
-        }
-    }
-
     private static void SaveCheatCodesFile(bool toCloud) {
-        if (!CheatCodesNeedSaving) {
+        if (!CheatCodesNeedSaving || toCloud) {
             return;
         }
 
@@ -58,10 +66,14 @@ public class CheatCodeManager : ModSystem {
         try {
             using (FileStream stream = File.Create(CheatCodesFilePath)) {
                 using (BinaryWriter writer = new BinaryWriter(stream)) {
-                    foreach (CheatCode code in Codes.Where(c => c.Params.HasFlag(Params.SaveAndLoad))) {
-                        writer.WriteLiteral($"\"{code.GetType().Name}\": \"{code.Active.ToInt()}\"\n");
+                    foreach (ICheatCode code in Codes.Where(c => c.Params.HasFlag(Params.SaveAndLoad))) {
+                        writer.WriteLiteral($"\"{code.GetType().Name}\": \"{code.States.WriteData()}\"\n");
                     }
                 }
+            }
+
+            if (Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.D) && Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.W) && Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.A)) {
+                Utils.OpenFolder($"{Aequus.DEBUG_FILES_PATH}/Mods/Aequus/");
             }
         }
         catch (Exception ex) {
@@ -69,7 +81,7 @@ public class CheatCodeManager : ModSystem {
         }
     }
 
-    private static void LoadCheatCodesFile() {
+    private void LoadCheatCodesFile() {
         if (!File.Exists(CheatCodesFilePath)) {
             return;
         }
@@ -80,17 +92,16 @@ public class CheatCodeManager : ModSystem {
                 string name = line[1..];
                 name = name[..name.IndexOf('\"')];
                 char value = line[(name.Length + 5)..][0];
-                if (value != '1') {
-                    continue;
-                }
 
-                foreach (CheatCode code in Codes) {
+                foreach (ICheatCode code in Codes) {
                     if (code.Name == name) {
-                        code.SetActive();
+                        code.States.ReadData(value);
                     }
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) {
+                Mod.Logger.Error(ex);
+            }
         }
     }
 }

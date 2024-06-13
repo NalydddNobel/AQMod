@@ -1,5 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Common.DamageClasses;
+using Aequus.Common.Elements;
 using Aequus.Common.Items.Components;
 using System;
 using Terraria.Localization;
@@ -14,6 +15,10 @@ public class StunGun : ModItem, ICooldownItem {
     int ICooldownItem.CooldownTime => CooldownTime;
 
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Seconds(DebuffTime), ExtendLanguage.Seconds(CooldownTime));
+
+    public override void SetStaticDefaults() {
+        Element.Flame.AddItem(Type);
+    }
 
     public override void SetDefaults() {
         Item.width = 24;

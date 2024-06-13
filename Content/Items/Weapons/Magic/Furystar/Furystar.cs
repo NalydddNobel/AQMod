@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Common.Elements;
 using Terraria.DataStructures;
 
 namespace Aequus.Content.Items.Weapons.Magic.Furystar;
@@ -8,6 +9,7 @@ public class Furystar : ModItem {
     public static int MaxExtraStars = 5;
 
     public override void SetStaticDefaults() {
+        Element.Air.AddItem(Type);
         Item.staff[Type] = true;
     }
 

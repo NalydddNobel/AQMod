@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Common.Elements;
 using Aequus.Core.ContentGeneration;
 using System.Collections.Generic;
 using Terraria.DataStructures;
@@ -14,6 +15,10 @@ public class DemonVasculash : UnifiedWhipItem, IMinionTagController {
 
     ModBuff IMinionTagController.TagBuff { get; set; }
     int IMinionTagController.TagDuration => 240;
+
+    public override void SetStaticDefaults() {
+        Element.Flame.AddItem(Type);
+    }
 
     public override void SetDefaults() {
         Item.DefaultToWhip(WhipProjectile.Type, 90, 2f, 3.2f, animationTotalTime: 42);

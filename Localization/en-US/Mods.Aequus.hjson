@@ -22,11 +22,3 @@ Controls: {
 	Control: Shift
 	LeftShift: Left Shift
 }
-
-Cheats: {
-	ToggleOn: "{0}: on"
-	ToggleOff: "{0}: off"
-	VisibleElements.DisplayName: Visible Elements
-	ItemInternalNames.DisplayName: Item Internal Names
-	RevealAllElements.DisplayName: Reveal All Elements
-}

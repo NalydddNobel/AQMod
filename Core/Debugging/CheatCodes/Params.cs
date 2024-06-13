@@ -6,6 +6,5 @@ namespace Aequus.Core.Debugging.CheatCodes;
 public enum Params : byte {
     None = 0,
     DebugOnly = 1 << 0,
-    Toggle = 1 << 1,
-    SaveAndLoad = 1 << 2,
+    SaveAndLoad = 1 << 1,
 }

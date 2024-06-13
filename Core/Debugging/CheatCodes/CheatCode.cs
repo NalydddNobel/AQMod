@@ -1,36 +1,24 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using System.Linq;
-using Terraria.Localization;
 
 namespace Aequus.Core.Debugging.CheatCodes;
 
-internal abstract partial class CheatCode(Params parameters, params Keys[] inputs) : ModType, ILocalizedModType {
-    public Params Params = parameters;
-    public int Type { get; internal set; }
-    public bool Active { get; protected set; } = false;
+public interface ICheatCode {
+    int Type { get; internal set; }
 
-    public string LocalizationCategory => "Cheats";
+    string Name { get; }
+    string DisplayName { get; internal set; }
 
-    public LocalizedText DisplayName { get; private set; }
-    public LocalizedText ToggleOnText { get; private set; }
-    public LocalizedText ToggleOffText { get; private set; }
+    Params Params { get; }
+    internal IStateProvider States { get; }
 
-    protected readonly Keys[] _inputs = inputs;
+    internal bool IsPressed { get; set; }
 
-    protected sealed override void Register() {
-        CheatCodeManager.Register(this);
-    }
-
-    public sealed override void SetupContent() {
-        DisplayName = this.GetLocalization("DisplayName", PrettyPrintName);
-        ToggleOnText = Language.GetOrRegister("Mods.Aequus.Cheats.ToggleOn").WithFormatArgs(DisplayName);
-        ToggleOffText = Language.GetOrRegister("Mods.Aequus.Cheats.ToggleOff").WithFormatArgs(DisplayName);
-        SetStaticDefaults();
-    }
+    protected Keys[] Inputs { get; }
 
     public bool CheckKeys(in KeyboardState keyboard) {
-        for (int i = 0; i < _inputs.Length; i++) {
-            if (!keyboard.IsKeyDown(_inputs[i])) {
+        for (int i = 0; i < Inputs.Length; i++) {
+            if (!keyboard.IsKeyDown(Inputs[i])) {
                 return false;
             }
         }
@@ -38,27 +26,33 @@ internal abstract partial class CheatCode(Params parameters, params Keys[] input
         return true;
     }
 
-    public void Toggle() {
-        Active = !Active;
+    public bool MatchingKeys(ICheatCode other) {
+        return Inputs.All(c => other.Inputs.Any(c2 => c == c2));
+    }
+}
 
-        if (Active) {
-            Main.NewText(ToggleOnText);
-        }
-        else {
-            Main.NewText(ToggleOffText);
-        }
+internal abstract partial class CheatCode<T>(Params parameters, T stateProvider, params Keys[] inputs) : ModType, ICheatCode where T : IStateProvider {
+    int ICheatCode.Type { get; set; }
+    string ICheatCode.Name => Name;
+
+    public string DisplayName { get; set; }
+
+    public Params Params { get; init; } = parameters;
+
+    IStateProvider ICheatCode.States => State;
+    public T State => stateProvider;
+
+    public Keys[] Inputs { get; init; } = inputs;
+
+    bool ICheatCode.IsPressed { get; set; }
+
+    protected sealed override void Register() {
+        CheatCodeManager.Register(this);
     }
 
-    internal void SetActive() {
-        Active = true;
-    }
-
-    public static bool IsActive<T>() where T : CheatCode {
-        return ModContent.GetInstance<T>()?.Active ?? false;
-    }
-
-    public bool MatchingKeys(CheatCode other) {
-        return _inputs.All(c => other._inputs.Any(c2 => c == c2));
+    public sealed override void SetupContent() {
+        DisplayName = PrettyPrintName();
+        SetStaticDefaults();
     }
 
     public override bool IsLoadingEnabled(Mod mod) {

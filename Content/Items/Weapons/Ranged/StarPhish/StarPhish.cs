@@ -1,9 +1,14 @@
 ﻿using Aequus.Common;
+using Aequus.Common.Elements;
 using Terraria.DataStructures;
 
 namespace Aequus.Content.Items.Weapons.Ranged.StarPhish;
 
 public class StarPhish : ModItem {
+    public override void SetStaticDefaults() {
+        Element.Water.AddItem(Type);
+    }
+
     public override void SetDefaults() {
         Item.width = 24;
         Item.height = 8;
