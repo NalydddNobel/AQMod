@@ -416,6 +416,14 @@ public static partial class ExtendNPC {
         }
     }
 
+    public static void SilentKill(this NPC npc, bool quiet = false) {
+        npc.life = Math.Min(npc.life, -1);
+        npc.active = false;
+        if (Main.netMode != NetmodeID.SinglePlayer && !quiet) {
+            NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, npc.whoAmI, 9999 + npc.lifeMax * 2 + npc.defense * 2);
+        }
+    }
+
     /// <summary>Manually sends a <see cref="MessageID.SyncNPC"/> packet to sync this NPC.</summary>
     public static void SyncNPC(NPC npc) {
         NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, npc.whoAmI);

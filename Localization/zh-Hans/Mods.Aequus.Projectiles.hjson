@@ -94,10 +94,10 @@ DustDevilFireball.DisplayName: 火球
 DustDevilFrostball.DisplayName: 霜刺
 DustDevilTileProj.DisplayName: 牵引的方块
 SuctionedEnemy.DisplayName: 牵引的敌人
-// RedSpriteCloud.DisplayName: Red Sprite Cloud
-// RedSpriteCloudLightning.DisplayName: Red Sprite Cloud Lightning
-// RedSpriteThunderClap.DisplayName: Red Sprite Thunder Clap
-// RedSpriteWindFire.DisplayName: Red Sprite Wind Fire
-// SpaceSquidDeathray.DisplayName: Space Squid Deathray
-// SpaceSquidLaser.DisplayName: Space Squid Laser
-// SpaceSquidSnowflake.DisplayName: Space Squid Snowflake
+// RedSpriteCloud.DisplayName: "{$NPCs.RedSprite.DisplayName}"
+// RedSpriteCloudLightning.DisplayName: "{$NPCs.RedSprite.DisplayName}"
+// RedSpriteThunderClap.DisplayName: "{$NPCs.RedSprite.DisplayName}"
+// RedSpriteWindFire.DisplayName: "{$NPCs.RedSprite.DisplayName}"
+// SpaceSquidDeathray.DisplayName: "{$NPCs.SpaceSquid.DisplayName}"
+// SpaceSquidLaser.DisplayName: "{$NPCs.SpaceSquid.DisplayName}"
+// SpaceSquidSnowflake.DisplayName: "{$NPCs.SpaceSquid.DisplayName}"

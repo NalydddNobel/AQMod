@@ -1,11 +1,11 @@
 ﻿using Aequus.Common;
 using Aequus.Common.NPCs.Bestiary;
+using Aequus.Content.Events.GaleStreams;
 using Aequus.Core.Assets;
 using Aequus.Core.CodeGeneration;
 using Aequus.Core.ContentGeneration;
 using Aequus.DataSets;
 using Aequus.Old.Content.Bosses.RedSprite.Projectiles;
-using Aequus.Old.Content.Events.Glimmer;
 using Aequus.Old.Core;
 using Microsoft.Xna.Framework.Audio;
 using ReLogic.Content;
@@ -19,7 +19,7 @@ using Terraria.Utilities;
 namespace Aequus.Old.Content.Bosses.RedSprite;
 
 [Gen.AequusSystem_WorldField<bool>("downedRedSprite")]
-[BestiaryBiome<GlimmerZone>()]
+[BestiaryBiome<GaleStreamsZone>()]
 [AutoloadBossHead()]
 public class RedSprite : UnifiedBoss {
     public const int PHASE_DEAD = -2;
@@ -997,13 +997,15 @@ public class RedSprite : UnifiedBoss {
             AequusShaders.LegacyMiscEffects.Value.Parameters["uColor"].SetValue(Color.Red.ToVector3());
             AequusShaders.LegacyMiscEffects.Value.Parameters["uSecondaryColor"].SetValue(Color.Orange.ToVector3());
             AequusShaders.LegacyMiscEffects.Value.Parameters["uSourceRect"].SetValue(new Vector4(realFrame.X, realFrame.Y, realFrame.Width, realFrame.Height));
+            AequusShaders.LegacyMiscEffects.Value.Parameters["uImageSize0"].SetValue(new Vector2(texture.Width, texture.Height));
+            AequusShaders.LegacyMiscEffects.Value.CurrentTechnique.Passes["VerticalGradientPass"].Apply();
 
             foreach (var v in circular) {
                 Main.spriteBatch.Draw(texture, drawPosition + v * (aura / 4f), frame, color, rotation, origin, scale, SpriteEffects.None, 0f);
             }
 
             spriteBatch.End();
-            DrawHelper.SpriteBatchCache.Begin(spriteBatch, SpriteSortMode.Deferred);
+            DrawHelper.SpriteBatchCache.Begin(spriteBatch, SpriteSortMode.Deferred, transform: bestiary ? Main.UIScaleMatrix : Main.GameViewMatrix.EffectMatrix);
         }
         Main.spriteBatch.Draw(texture, drawPosition, frame, drawColor, rotation, origin, scale, SpriteEffects.None, 0f);
     }

@@ -30,6 +30,10 @@ public sealed partial class AequusTextures : AssetManager<Texture2D> {
     #endregion
 
     #region Texture Paths
+    public static string MapBG(int id) {
+        return $"Terraria/Images/MapBG{id}";
+    }
+
     public static string Buff(int id) {
         return $"Terraria/Images/Buff_{id}";
     }

@@ -23,3 +23,8 @@ PollutedOceanBiomeUnderground: {
 	DisplayName: Aquífero Contaminado
 	TownNPCDialogueName: el Aquífero Contaminado
 }
+
+GaleStreamsZone: {
+	// DisplayName: Gale Streams Zone
+	// TownNPCDialogueName: the Gale Streams Zone
+}

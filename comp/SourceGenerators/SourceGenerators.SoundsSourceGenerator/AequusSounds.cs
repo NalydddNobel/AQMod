@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Sounds: 98)</summary>
+/// <summary>(Total Sounds: 99)</summary>
 [CompilerGenerated]
 public partial class AequusSounds {            
         /// <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_AmbientA0</summary>
@@ -66,6 +66,8 @@ public partial class AequusSounds {
     public static readonly SoundStyle SpaceSquidGun = new("Aequus/Assets/Sounds/Enemy/SpaceSquid/SpaceSquidGun");
     /// <summary>Full Path: Assets/Sounds/Enemy/SpaceSquid/SpaceSquidSnowflakeShoot</summary>
     public static readonly SoundStyle SpaceSquidSnowflakeShoot = new("Aequus/Assets/Sounds/Enemy/SpaceSquid/SpaceSquidSnowflakeShoot");
+    /// <summary>Full Path: Assets/Sounds/Enemy/WhiteSlime/WhiteSlimeWompWomp</summary>
+    public static readonly SoundStyle WhiteSlimeWompWomp = new("Aequus/Assets/Sounds/Enemy/WhiteSlime/WhiteSlimeWompWomp");
     /// <summary>Full Path: Assets/Sounds/Items/CanteenBuzzer</summary>
     public static readonly SoundStyle CanteenBuzzer = new("Aequus/Assets/Sounds/Items/CanteenBuzzer");
     /// <summary>Full Path: Assets/Sounds/Items/CanteenUse</summary>

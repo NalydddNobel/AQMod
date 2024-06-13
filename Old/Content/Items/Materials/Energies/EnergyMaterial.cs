@@ -113,6 +113,8 @@ public class EnergyMaterial : ModSystem {
             Vector2 position = GetWorldDrawCoordinates(origin);
 
             DrawGodItem(spriteBatch, texture, frame, origin, position, rotation, scale, lensFlareScale: 1f);
+
+            DrawHelper.DrawMagicLensFlare(spriteBatch, position, _lightRGB with { A = 0 } * 0.9f * GetPulseOscillation(), 0.7f);
         }
 
         public override void Update(ref float gravity, ref float maxFallSpeed) {
@@ -139,13 +141,13 @@ public class EnergyMaterial : ModSystem {
             spriteBatch.Draw(texture, position, frame, Color.White, rotation, origin, scale, SpriteEffects.None, 0f);
             spriteBatch.Draw(texture, position, frame, new Color(80, 80, 80, 0) * pulse, 0f, origin, scale * (1f + pulse * 0.2f), SpriteEffects.None, 0f);
 
-            if (tModLoaderExtended.ExtendedMod.HighQualityEffects && lensFlareScale > 0f) {
+            if (HighQualityEffects && lensFlareScale > 0f) {
                 spriteBatch.Draw(AequusTextures.LensFlare, position - new Vector2(0f, 4f) * Main.inventoryScale, null, _lightRGB with { A = 0 } * pulse, -0.1f, AequusTextures.LensFlare.Size() / 2f, scale * lensFlareScale * (0.8f + pulse * 0.2f), SpriteEffects.None, 0f);
             }
         }
 
         private void DrawRays(SpriteBatch spriteBatch, Vector2 position, float scale, int randomizer = 0) {
-            if (!tModLoaderExtended.ExtendedMod.HighQualityEffects) {
+            if (!HighQualityEffects) {
                 return;
             }
 

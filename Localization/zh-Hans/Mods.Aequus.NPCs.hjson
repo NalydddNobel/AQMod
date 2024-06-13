@@ -197,3 +197,20 @@ SpaceSquid: {
 	RelicDisplayName: 太空乌贼纪念物
 	MaskDisplayName: 太空乌贼面具
 }
+
+Vraine: {
+	DisplayName: 镰鸟
+	Bestiary: 随风而成群迁徙的候鸟. 它的喙对温度的微小变化非常敏感, 会相应地改变自身的行为.
+	BannerName: 镰鸟旗
+}
+
+WhiteSlime: {
+	DisplayName: 白色史莱姆
+	Bestiary: 暴露在高海拔阳光下的史莱姆最终会开始发光. 据说味道像肉桂.
+	BannerName: 白色史莱姆旗
+}
+
+StreamingBalloon: {
+	DisplayName: 紊流气球
+	Bestiary: 一些有创业精神的史莱姆会附着在热气球上, 使其飞的更高. 它们会漂浮在猎物上方, 然后坠落并吞噬它们.
+}

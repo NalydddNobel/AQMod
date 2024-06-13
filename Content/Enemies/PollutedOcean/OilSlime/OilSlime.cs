@@ -1,9 +1,9 @@
-﻿using Aequus.Common.NPCs.Bestiary;
+﻿using Aequus.Common.Items.DropRules;
+using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Content.Items.Tools.Keys;
 using Aequus.Core.ContentGeneration;
 using Aequus.DataSets;
-using System.Collections.Generic;
 using System.Linq;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
@@ -14,8 +14,9 @@ namespace Aequus.Content.Enemies.PollutedOcean.OilSlime;
 [AutoloadBanner]
 [BestiaryBiome<PollutedOceanBiomeSurface>()]
 [BestiaryBiome<PollutedOceanBiomeUnderground>()]
-public class OilSlime : ModNPC {
-    public int ItemDrop { get => (int)NPC.ai[1]; set => NPC.ai[1] = value; }
+public class OilSlime : ModNPC, IBodyItemContainer {
+    public int ItemId { get => (int)NPC.ai[1]; set => NPC.ai[1] = value; }
+    public int Stack { get => (int)NPC.ai[2]; set => NPC.ai[2] = value; }
 
     #region Initialization
     public override void SetStaticDefaults() {
@@ -54,36 +55,26 @@ public class OilSlime : ModNPC {
         npcLoot.Add(ItemDropRule.NormalvsExpert(ItemID.SlimeStaff, 8000, 5600));
 
         // 1/15 chance to contain a Copper Key inside of its body.
-        IItemDropRule bodyRules = new CommonOilSlimeBodyDropRule(ModContent.ItemType<CopperKey>(), CopperKey.DropRate);
+        IItemDropRule bodyRules = new CommonBodyDropRule(ModContent.ItemType<CopperKey>(), CopperKey.DropRate);
 
         // If it doesn't roll a Copper Key inside of its body, instead attempt rolling junk with a 25% chance.
         int[] junk = FishDataSet.Junk.Where(i => i.ValidEntry).Select(i => i.Id).ToArray();
-        bodyRules.OnFailedRoll(new OneFromOptionsOilSlimeBodyDropRule(4, 1, junk));
+        bodyRules.OnFailedRoll(new OneFromOptionsBodyDropRule(4, 1, junk));
         npcLoot.Add(bodyRules);
     }
     #endregion
 
     public override void AI() {
-        if (ItemDrop == 0 && Main.netMode != NetmodeID.MultiplayerClient && NPC.value > 0f) {
+        if (ItemId == 0 && Main.netMode != NetmodeID.MultiplayerClient && NPC.value > 0f) {
             NPC.TargetClosest(faceTarget: false);
 
-            ItemDropAttemptResult result = default;
-            DropAttemptInfo info = ExtendLoot.GetDropAttemptInfo(NPC, Main.player[NPC.target]);
-            List<IItemDropRule> rules = ExtendLoot.GetDropRules(Type);
-
-            // Iterate through all oil slime drop rules until one returns a success.
-            foreach (IItemDropRule rule in rules.Where(r => r is IOilSlimeBodyDropRule)) {
-                result = ExtendLoot.ResolveRule(rule, in info);
-                if (result.State == ItemDropAttemptResultState.Success) {
-                    break;
-                }
-            }
+            ItemDropAttemptResult result = IBodyItemContainer.RollRules(NPC, Main.player[NPC.target]);
 
             // Set item drop to -1 if nothing is rolled to signify that it shouldn't roll again.
             if (result.State != ItemDropAttemptResultState.Success) {
-                ItemDrop = -1;
+                ItemId = -1;
             }
-            else if (ItemDrop > 0) {
+            else if (ItemId > 0) {
                 NPC.Opacity *= 0.6f;
             }
 
@@ -112,9 +103,7 @@ public class OilSlime : ModNPC {
     }
 
     public override void OnKill() {
-        if (ItemDrop > ItemID.None) {
-            Item.NewItem(NPC.GetSource_Death(), NPC.Hitbox, ItemDrop);
-        }
+        (this as IBodyItemContainer).DropItem(NPC.GetSource_Loot(), NPC.Hitbox);
     }
 
     public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo) {
@@ -125,9 +114,9 @@ public class OilSlime : ModNPC {
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
         // Interpreted vanilla code for rendering items inside of slimes.
-        if (!NPC.IsABestiaryIconDummy && ItemDrop > ItemID.None) {
+        if (!NPC.IsABestiaryIconDummy && ItemId > ItemID.None) {
             Color color = drawColor;
-            int itemDrop = ItemDrop;
+            int itemDrop = ItemId;
             float scale = 1f;
             float maxWidth = 22f * NPC.scale;
             float maxHeight = 18f * NPC.scale;
@@ -158,70 +147,5 @@ public class OilSlime : ModNPC {
         }
 
         return true;
-    }
-}
-
-public interface IOilSlimeBodyDropRule { }
-
-public class CommonOilSlimeBodyDropRule(int itemId, int chanceDenominator, int amountDroppedMinimum = 1, int amountDroppedMaximum = 1, int chanceNumerator = 1) : CommonDrop(itemId, chanceDenominator, amountDroppedMinimum, amountDroppedMaximum, chanceNumerator), IOilSlimeBodyDropRule {
-    // Prevent on-kill drop rule logic.
-    public override bool CanDrop(DropAttemptInfo info) {
-        return false;
-    }
-
-    public override ItemDropAttemptResult TryDroppingItem(DropAttemptInfo info) {
-        // An Opaque Slime is required for special logic.
-        if (info.npc?.ModNPC is not OilSlime oilSlime) {
-            return base.TryDroppingItem(info);
-        }
-
-        if (info.player.RollLuck(chanceDenominator) < chanceNumerator) {
-            oilSlime.ItemDrop = itemId;
-            return new ItemDropAttemptResult() with { State = ItemDropAttemptResultState.Success };
-        }
-
-        return new ItemDropAttemptResult() with { State = ItemDropAttemptResultState.FailedRandomRoll };
-    }
-}
-
-public class OneFromOptionsOilSlimeBodyDropRule(int chanceDenominator, int chanceNumerator, params int[] options) : IItemDropRule, IOilSlimeBodyDropRule {
-    public int[] dropIds = options;
-    public int chanceDenominator = chanceDenominator;
-    public int chanceNumerator = chanceNumerator;
-
-    public List<IItemDropRuleChainAttempt> ChainedRules { get; private set; } = new();
-
-    // Prevent on-kill drop rule logic.
-    public bool CanDrop(DropAttemptInfo info) {
-        return false;
-    }
-
-    public ItemDropAttemptResult TryDroppingItem(DropAttemptInfo info) {
-        if (info.player.RollLuck(chanceDenominator) < chanceNumerator) {
-            int itemToDrop = dropIds[info.rng.Next(dropIds.Length)];
-
-            // An Opaque Slime is required for special logic.
-            if (info.npc?.ModNPC is OilSlime oilSlime) {
-                oilSlime.ItemDrop = itemToDrop;
-            }
-            else {
-                CommonCode.DropItem(info, itemToDrop, 1);
-            }
-
-            return new ItemDropAttemptResult() with { State = ItemDropAttemptResultState.Success };
-        }
-
-        return new ItemDropAttemptResult() with { State = ItemDropAttemptResultState.FailedRandomRoll };
-    }
-
-    public void ReportDroprates(List<DropRateInfo> drops, DropRateInfoChainFeed ratesInfo) {
-        float num = (float)chanceNumerator / (float)chanceDenominator;
-        float num2 = num * ratesInfo.parentDroprateChance;
-        float dropRate = 1f / (float)dropIds.Length * num2;
-        for (int i = 0; i < dropIds.Length; i++) {
-            drops.Add(new DropRateInfo(dropIds[i], 1, 1, dropRate, ratesInfo.conditions));
-        }
-
-        Chains.ReportDroprates(ChainedRules, num, drops, ratesInfo);
     }
 }

@@ -23,3 +23,8 @@ PollutedOceanBiomeUnderground: {
 	DisplayName: Polluted Underground
 	TownNPCDialogueName: the Polluted Underground
 }
+
+GaleStreamsZone: {
+	DisplayName: Gale Streams
+	TownNPCDialogueName: the Gale Streams
+}

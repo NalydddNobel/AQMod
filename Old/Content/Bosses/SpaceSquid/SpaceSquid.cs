@@ -1,12 +1,12 @@
 ﻿using Aequus.Common;
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Dusts;
+using Aequus.Content.Events.GaleStreams;
 using Aequus.Core.Assets;
 using Aequus.Core.CodeGeneration;
 using Aequus.Core.ContentGeneration;
 using Aequus.DataSets;
 using Aequus.Old.Content.Bosses.SpaceSquid.Projectiles;
-using Aequus.Old.Content.Events.Glimmer;
 using Aequus.Old.Core;
 using ReLogic.Content;
 using System;
@@ -18,7 +18,7 @@ using Terraria.GameContent.Bestiary;
 namespace Aequus.Old.Content.Bosses.SpaceSquid;
 
 [Gen.AequusSystem_WorldField<bool>("downedSpaceSquid")]
-[BestiaryBiome<GlimmerZone>()]
+[BestiaryBiome<GaleStreamsZone>()]
 [AutoloadBossHead()]
 public class SpaceSquid : UnifiedBoss {
     public const int FramesX = 8;
@@ -742,13 +742,15 @@ public class SpaceSquid : UnifiedBoss {
             AequusShaders.LegacyMiscEffects.Value.Parameters["uColor"].SetValue(Color.Cyan.ToVector3());
             AequusShaders.LegacyMiscEffects.Value.Parameters["uSecondaryColor"].SetValue(Color.Blue.ToVector3());
             AequusShaders.LegacyMiscEffects.Value.Parameters["uSourceRect"].SetValue(new Vector4(frame.X, frame.Y, frame.Width, frame.Height));
+            AequusShaders.LegacyMiscEffects.Value.Parameters["uImageSize0"].SetValue(new Vector2(texture.Width, texture.Height));
+            AequusShaders.LegacyMiscEffects.Value.CurrentTechnique.Passes["VerticalGradientPass"].Apply();
 
             foreach (var v in Helper.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f)) {
-                Main.spriteBatch.Draw(texture, drawPosition + v * (aura / 4f), frame, Color.White, rotation, origin, scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(texture, drawPosition - screenPos + v * (aura / 4f), frame, Color.White, rotation, origin, scale, SpriteEffects.None, 0f);
             }
 
             spriteBatch.End();
-            DrawHelper.SpriteBatchCache.Begin(spriteBatch, SpriteSortMode.Deferred);
+            DrawHelper.SpriteBatchCache.Begin(spriteBatch, SpriteSortMode.Deferred, transform: bestiary ? Main.UIScaleMatrix : Main.GameViewMatrix.EffectMatrix);
         }
     }
 

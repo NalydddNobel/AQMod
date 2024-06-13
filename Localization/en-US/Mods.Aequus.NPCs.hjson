@@ -197,3 +197,20 @@ SpaceSquid: {
 	RelicDisplayName: Space Squid Relic
 	MaskDisplayName: Space Squid Mask
 }
+
+Vraine: {
+	DisplayName: Vraine
+	BannerName: Vraine Banner
+	Bestiary: Migratory birds that travel in flocks, going where the wind takes them. Its beak is highly sensitive to minute changes in temperatures, and it will change its behavior accordingly.
+}
+
+WhiteSlime: {
+	DisplayName: White Slime
+	Bestiary: A slime exposed to high-altitude sunrays will eventually begin to take on a glow of its own. Rumored to taste like cinnamon.
+	BannerName: White Slime Banner
+}
+
+StreamingBalloon: {
+	DisplayName: Streaming Balloon
+	Bestiary: Some enterprising slimes will attach to hot air balloons to take them even higher. They float above their quarry before dropping down and engulfing them.
+}

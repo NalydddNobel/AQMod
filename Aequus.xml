@@ -2127,7 +2127,7 @@
             <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 98)</summary>
+            <summary>(Total Sounds: 99)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.PollutedOcean_AmbientA0">
             <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_AmbientA0</summary>
@@ -2218,6 +2218,9 @@
         </member>
         <member name="F:Aequus.AequusSounds.SpaceSquidSnowflakeShoot">
             <summary>Full Path: Assets/Sounds/Enemy/SpaceSquid/SpaceSquidSnowflakeShoot</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.WhiteSlimeWompWomp">
+            <summary>Full Path: Assets/Sounds/Enemy/WhiteSlime/WhiteSlimeWompWomp</summary>
         </member>
         <member name="F:Aequus.AequusSounds.CanteenBuzzer">
             <summary>Full Path: Assets/Sounds/Items/CanteenBuzzer</summary>
@@ -2424,7 +2427,7 @@
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 884) yo momma gai</summary>
+            <summary>(Total Textures: 892) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -4211,6 +4214,33 @@
         <member name="F:Aequus.AequusTextures.LeggedLavaBannerItem">
             <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/Tiles/LeggedLavaBannerItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.StreamingBalloon">
+            <summary>Full Path: Old/Content/Enemies/GaleStreams/Balloon/StreamingBalloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.VraineBanner">
+            <summary>Full Path: Old/Content/Enemies/GaleStreams/Vraine/Tiles/VraineBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.VraineBannerItem">
+            <summary>Full Path: Old/Content/Enemies/GaleStreams/Vraine/Tiles/VraineBannerItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Vraine">
+            <summary>Full Path: Old/Content/Enemies/GaleStreams/Vraine/Vraine</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Vraine_Cold">
+            <summary>Full Path: Old/Content/Enemies/GaleStreams/Vraine/Vraine_Cold</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Vraine_Hot">
+            <summary>Full Path: Old/Content/Enemies/GaleStreams/Vraine/Vraine_Hot</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WhiteSlimeBanner">
+            <summary>Full Path: Old/Content/Enemies/GaleStreams/WhiteSlime/Tiles/WhiteSlimeBanner</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WhiteSlimeBannerItem">
+            <summary>Full Path: Old/Content/Enemies/GaleStreams/WhiteSlime/Tiles/WhiteSlimeBannerItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WhiteSlime">
+            <summary>Full Path: Old/Content/Enemies/GaleStreams/WhiteSlime/WhiteSlime</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.HyperStarite">
             <summary>Full Path: Old/Content/Enemies/Glimmer/Hyper/HyperStarite</summary>
         </member>
@@ -4250,12 +4280,6 @@
         <member name="F:Aequus.AequusTextures.TrapSkeletonBanner">
             <summary>Full Path: Old/Content/Enemies/TrapSkeletonBanner</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.VraineBanner">
-            <summary>Full Path: Old/Content/Enemies/VraineBanner</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.WhiteSlimeBanner">
-            <summary>Full Path: Old/Content/Enemies/WhiteSlimeBanner</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.UnholyCore">
             <summary>Full Path: Old/Content/Events/DemonSiege/Spawners/UnholyCore</summary>
         </member>
@@ -4279,6 +4303,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.OblivionAltar_Highlight">
             <summary>Full Path: Old/Content/Events/DemonSiege/Tiles/OblivionAltar_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GaleStreamsBestiaryIcon">
+            <summary>Full Path: Old/Content/Events/GaleStreams/Textures/GaleStreamsBestiaryIcon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CosmicMonolith">
             <summary>Full Path: Old/Content/Events/Glimmer/CosmicMonolith/CosmicMonolith</summary>

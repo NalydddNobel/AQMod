@@ -1,11 +1,11 @@
 ﻿using Aequus.Common;
 using Aequus.Common.NPCs.Bestiary;
+using Aequus.Content.Events.GaleStreams;
 using Aequus.Content.Items.Potions.Healing.Restoration;
 using Aequus.Core.CodeGeneration;
 using Aequus.Core.ContentGeneration;
 using Aequus.Old.Content.Bosses.DustDevil.Items;
 using Aequus.Old.Content.Bosses.DustDevil.Projectiles;
-using Aequus.Old.Content.Events.Glimmer;
 using Aequus.Old.Content.Items.Materials.Energies;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ using Terraria.GameContent.ItemDropRules;
 namespace Aequus.Old.Content.Bosses.DustDevil;
 
 [Gen.AequusSystem_WorldField<bool>("downedDustDevil")]
-[BestiaryBiome<GlimmerZone>()]
+[BestiaryBiome<GaleStreamsZone>()]
 [AutoloadBossHead]
 public class DustDevil : LegacyAequusBoss {
     public const float BossProgression = 8.5f;

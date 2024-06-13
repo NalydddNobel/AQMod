@@ -23,3 +23,8 @@ PollutedOceanBiomeUnderground: {
 	DisplayName: 被污染的地底
 	TownNPCDialogueName: 被污染的地底
 }
+
+GaleStreamsZone: {
+	DisplayName: 紊流风暴
+	TownNPCDialogueName: 紊流风暴
+}

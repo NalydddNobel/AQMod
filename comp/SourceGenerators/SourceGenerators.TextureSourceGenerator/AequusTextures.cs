@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 884) yo momma gai</summary>
+/// <summary>(Total Textures: 892) yo momma gai</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1197,6 +1197,24 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> LeggedLavaBanner = new("Aequus/Old/Content/Enemies/DemonSiege/LavaLegs/Tiles/LeggedLavaBanner");
     /// <summary>Full Path: Old/Content/Enemies/DemonSiege/LavaLegs/Tiles/LeggedLavaBannerItem</summary>
     public static readonly RequestCache<Texture2D> LeggedLavaBannerItem = new("Aequus/Old/Content/Enemies/DemonSiege/LavaLegs/Tiles/LeggedLavaBannerItem");
+    /// <summary>Full Path: Old/Content/Enemies/GaleStreams/Balloon/StreamingBalloon</summary>
+    public static readonly RequestCache<Texture2D> StreamingBalloon = new("Aequus/Old/Content/Enemies/GaleStreams/Balloon/StreamingBalloon");
+    /// <summary>Full Path: Old/Content/Enemies/GaleStreams/Vraine/Tiles/VraineBanner</summary>
+    public static readonly RequestCache<Texture2D> VraineBanner = new("Aequus/Old/Content/Enemies/GaleStreams/Vraine/Tiles/VraineBanner");
+    /// <summary>Full Path: Old/Content/Enemies/GaleStreams/Vraine/Tiles/VraineBannerItem</summary>
+    public static readonly RequestCache<Texture2D> VraineBannerItem = new("Aequus/Old/Content/Enemies/GaleStreams/Vraine/Tiles/VraineBannerItem");
+    /// <summary>Full Path: Old/Content/Enemies/GaleStreams/Vraine/Vraine</summary>
+    public static readonly RequestCache<Texture2D> Vraine = new("Aequus/Old/Content/Enemies/GaleStreams/Vraine/Vraine");
+    /// <summary>Full Path: Old/Content/Enemies/GaleStreams/Vraine/Vraine_Cold</summary>
+    public static readonly RequestCache<Texture2D> Vraine_Cold = new("Aequus/Old/Content/Enemies/GaleStreams/Vraine/Vraine_Cold");
+    /// <summary>Full Path: Old/Content/Enemies/GaleStreams/Vraine/Vraine_Hot</summary>
+    public static readonly RequestCache<Texture2D> Vraine_Hot = new("Aequus/Old/Content/Enemies/GaleStreams/Vraine/Vraine_Hot");
+    /// <summary>Full Path: Old/Content/Enemies/GaleStreams/WhiteSlime/Tiles/WhiteSlimeBanner</summary>
+    public static readonly RequestCache<Texture2D> WhiteSlimeBanner = new("Aequus/Old/Content/Enemies/GaleStreams/WhiteSlime/Tiles/WhiteSlimeBanner");
+    /// <summary>Full Path: Old/Content/Enemies/GaleStreams/WhiteSlime/Tiles/WhiteSlimeBannerItem</summary>
+    public static readonly RequestCache<Texture2D> WhiteSlimeBannerItem = new("Aequus/Old/Content/Enemies/GaleStreams/WhiteSlime/Tiles/WhiteSlimeBannerItem");
+    /// <summary>Full Path: Old/Content/Enemies/GaleStreams/WhiteSlime/WhiteSlime</summary>
+    public static readonly RequestCache<Texture2D> WhiteSlime = new("Aequus/Old/Content/Enemies/GaleStreams/WhiteSlime/WhiteSlime");
     /// <summary>Full Path: Old/Content/Enemies/Glimmer/Hyper/HyperStarite</summary>
     public static readonly RequestCache<Texture2D> HyperStarite = new("Aequus/Old/Content/Enemies/Glimmer/Hyper/HyperStarite");
     /// <summary>Full Path: Old/Content/Enemies/Glimmer/Hyper/Tiles/HyperStariteBanner</summary>
@@ -1223,10 +1241,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> FrostMimic = new("Aequus/Old/Content/Enemies/Mimics/FrostMimic");
     /// <summary>Full Path: Old/Content/Enemies/TrapSkeletonBanner</summary>
     public static readonly RequestCache<Texture2D> TrapSkeletonBanner = new("Aequus/Old/Content/Enemies/TrapSkeletonBanner");
-    /// <summary>Full Path: Old/Content/Enemies/VraineBanner</summary>
-    public static readonly RequestCache<Texture2D> VraineBanner = new("Aequus/Old/Content/Enemies/VraineBanner");
-    /// <summary>Full Path: Old/Content/Enemies/WhiteSlimeBanner</summary>
-    public static readonly RequestCache<Texture2D> WhiteSlimeBanner = new("Aequus/Old/Content/Enemies/WhiteSlimeBanner");
     /// <summary>Full Path: Old/Content/Events/DemonSiege/Spawners/UnholyCore</summary>
     public static readonly RequestCache<Texture2D> UnholyCore = new("Aequus/Old/Content/Events/DemonSiege/Spawners/UnholyCore");
     /// <summary>Full Path: Old/Content/Events/DemonSiege/Spawners/UnholyCoreSmall</summary>
@@ -1243,6 +1257,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OblivionAltarItem = new("Aequus/Old/Content/Events/DemonSiege/Tiles/OblivionAltarItem");
     /// <summary>Full Path: Old/Content/Events/DemonSiege/Tiles/OblivionAltar_Highlight</summary>
     public static readonly RequestCache<Texture2D> OblivionAltar_Highlight = new("Aequus/Old/Content/Events/DemonSiege/Tiles/OblivionAltar_Highlight");
+    /// <summary>Full Path: Old/Content/Events/GaleStreams/Textures/GaleStreamsBestiaryIcon</summary>
+    public static readonly RequestCache<Texture2D> GaleStreamsBestiaryIcon = new("Aequus/Old/Content/Events/GaleStreams/Textures/GaleStreamsBestiaryIcon");
     /// <summary>Full Path: Old/Content/Events/Glimmer/CosmicMonolith/CosmicMonolith</summary>
     public static readonly RequestCache<Texture2D> CosmicMonolith = new("Aequus/Old/Content/Events/Glimmer/CosmicMonolith/CosmicMonolith");
     /// <summary>Full Path: Old/Content/Events/Glimmer/CosmicMonolith/CosmicMonolithTile</summary>
