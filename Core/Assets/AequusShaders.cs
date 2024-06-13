@@ -13,6 +13,8 @@ public sealed partial class AequusShaders : AssetManager<Effect> {
     public static readonly RequestCache<Effect> Multiply = New("Multiply");
     public static readonly RequestCache<Effect> LuminentMultiply = New("LuminentMultiply");
     public static readonly RequestCache<Effect> VertexShader = New("VertexShader");
+    public static readonly RequestCache<Effect> LegacyMiscEffects = New("LegacyMiscEffects");
+    public static readonly RequestCache<Effect> LegacyVertexShader = New("LegacyVertexShader");
 
     private static RequestCache<Effect> New(string name) {
         return new RequestCache<Effect>(string.Format(EffectPath, name));

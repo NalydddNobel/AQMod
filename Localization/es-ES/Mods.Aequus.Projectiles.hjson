@@ -94,3 +94,10 @@ DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 // DustDevilFrostball.DisplayName: Frostspike
 // DustDevilTileProj.DisplayName: Suctioned Block
 // SuctionedEnemy.DisplayName: Suctioned Enemy
+// RedSpriteCloud.DisplayName: Red Sprite Cloud
+// RedSpriteCloudLightning.DisplayName: Red Sprite Cloud Lightning
+// RedSpriteThunderClap.DisplayName: Red Sprite Thunder Clap
+// RedSpriteWindFire.DisplayName: Red Sprite Wind Fire
+// SpaceSquidDeathray.DisplayName: Space Squid Deathray
+// SpaceSquidLaser.DisplayName: Space Squid Laser
+// SpaceSquidSnowflake.DisplayName: Space Squid Snowflake

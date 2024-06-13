@@ -6,6 +6,10 @@ using System.Collections.Generic;
 namespace Aequus.DataSets;
 
 public class NPCDataSet : DataSet {
+    /// <summary>NPCs in this set will not spawn a ice cube when killed by Snowgrave.</summary>
+    [JsonProperty]
+    public static HashSet<IDEntry<NPCID>> NoSnowgraveEffects { get; private set; } = [];
+
     /// <summary>NPCs in this set will not inherit elements from their Bestiary Tags.</summary>
     [JsonProperty]
     public static HashSet<IDEntry<NPCID>> NoBestiaryElementInheritence { get; private set; } = [];

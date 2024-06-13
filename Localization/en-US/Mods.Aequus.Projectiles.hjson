@@ -94,3 +94,10 @@ DustDevilFireball.DisplayName: Fireball
 DustDevilFrostball.DisplayName: Frostspike
 DustDevilTileProj.DisplayName: Suctioned Block
 SuctionedEnemy.DisplayName: Suctioned Enemy
+RedSpriteCloud.DisplayName: "{$NPCs.RedSprite.DisplayName}"
+RedSpriteCloudLightning.DisplayName: "{$NPCs.RedSprite.DisplayName}"
+RedSpriteThunderClap.DisplayName: "{$NPCs.RedSprite.DisplayName}"
+RedSpriteWindFire.DisplayName: "{$NPCs.RedSprite.DisplayName}"
+SpaceSquidDeathray.DisplayName: "{$NPCs.SpaceSquid.DisplayName}"
+SpaceSquidLaser.DisplayName: "{$NPCs.SpaceSquid.DisplayName}"
+SpaceSquidSnowflake.DisplayName: "{$NPCs.SpaceSquid.DisplayName}"

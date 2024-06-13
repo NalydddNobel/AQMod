@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Sounds: 93)</summary>
+/// <summary>(Total Sounds: 98)</summary>
 [CompilerGenerated]
 public partial class AequusSounds {            
         /// <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_AmbientA0</summary>
@@ -56,6 +56,16 @@ public partial class AequusSounds {
     public static readonly SoundStyle PhilBugHurt = new("Aequus/Assets/Sounds/Enemy/Pillbug/PhilBugHurt");
     /// <summary>Full Path: Assets/Sounds/Enemy/Pillbug/PhilBugKilled</summary>
     public static readonly SoundStyle PhilBugKilled = new("Aequus/Assets/Sounds/Enemy/Pillbug/PhilBugKilled");
+    /// <summary>Full Path: Assets/Sounds/Enemy/RedSprite/RedSpriteThunderClap0</summary>
+    public static readonly SoundStyle RedSpriteThunderClap0 = new("Aequus/Assets/Sounds/Enemy/RedSprite/RedSpriteThunderClap0");
+    /// <summary>Full Path: Assets/Sounds/Enemy/RedSprite/RedSpriteThunderClap1</summary>
+    public static readonly SoundStyle RedSpriteThunderClap1 = new("Aequus/Assets/Sounds/Enemy/RedSprite/RedSpriteThunderClap1");
+    /// <summary>Full Path: Assets/Sounds/Enemy/SpaceSquid/SpaceSquidDeathray</summary>
+    public static readonly SoundStyle SpaceSquidDeathray = new("Aequus/Assets/Sounds/Enemy/SpaceSquid/SpaceSquidDeathray");
+    /// <summary>Full Path: Assets/Sounds/Enemy/SpaceSquid/SpaceSquidGun</summary>
+    public static readonly SoundStyle SpaceSquidGun = new("Aequus/Assets/Sounds/Enemy/SpaceSquid/SpaceSquidGun");
+    /// <summary>Full Path: Assets/Sounds/Enemy/SpaceSquid/SpaceSquidSnowflakeShoot</summary>
+    public static readonly SoundStyle SpaceSquidSnowflakeShoot = new("Aequus/Assets/Sounds/Enemy/SpaceSquid/SpaceSquidSnowflakeShoot");
     /// <summary>Full Path: Assets/Sounds/Items/CanteenBuzzer</summary>
     public static readonly SoundStyle CanteenBuzzer = new("Aequus/Assets/Sounds/Items/CanteenBuzzer");
     /// <summary>Full Path: Assets/Sounds/Items/CanteenUse</summary>

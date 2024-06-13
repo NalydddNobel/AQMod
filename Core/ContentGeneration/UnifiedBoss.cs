@@ -329,7 +329,7 @@ internal class InstancedRelicItem(ModNPC modNPC, ModTile modTile, RelicRenderer 
     private readonly ModNPC _parentNPC = modNPC;
     private readonly RelicRenderer _renderer = renderer;
 
-    public override string Texture => _renderer.TexturePath;
+    public override string Texture => _renderer.TexturePath + "Item";
 
     public override LocalizedText DisplayName => _parentNPC.GetLocalization("RelicDisplayName", () => $"{_parentNPC.Name} Relic");
     public override LocalizedText Tooltip => LocalizedText.Empty;

@@ -181,3 +181,17 @@ SeaFirefly: {
 	Bestiary: Mods.Aequus.NPCs.SeaFirefly.Bestiary
 	ItemTooltip: ""
 }
+
+RedSprite: {
+	TrophyDisplayName: RedSprite Trophy
+	RelicDisplayName: RedSprite Relic
+	MaskDisplayName: RedSprite Mask
+	DisplayName: Red Sprite
+}
+
+SpaceSquid: {
+	TrophyDisplayName: SpaceSquid Trophy
+	RelicDisplayName: SpaceSquid Relic
+	MaskDisplayName: SpaceSquid Mask
+	DisplayName: Space Squid
+}

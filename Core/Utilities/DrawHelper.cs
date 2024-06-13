@@ -52,6 +52,17 @@ public sealed class DrawHelper : ModSystem {
     public static int ColorOnlyShaderId => ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex;
     public static ArmorShaderData ColorOnlyShader => GameShaders.Armor.GetSecondaryShader(ColorOnlyShaderId, Main.LocalPlayer);
 
+    /// <summary><inheritdoc cref="Quality(float, float)"/></summary>
+    public static int Quality(int value, int min) {
+        return (int)Quality((float)value, (float)min);
+    }
+
+    /// <summary>Multiplies <paramref name="value"/> by <see cref="Main.gfxQuality"/>, ensuring it is above <paramref name="min"/>.</summary>
+    /// <returns></returns>
+    public static float Quality(float value, float min) {
+        return Math.Clamp(value * Main.gfxQuality, min, value);
+    }
+
     public static void DrawMagicLensFlare(SpriteBatch spriteBatch, Vector2 drawPosition, Color color, float scale = 1f) {
         Vector2 screenCenter = new Vector2(Main.screenWidth, Main.screenHeight) / 2f;
         float distance = Vector2.Distance(drawPosition, screenCenter);

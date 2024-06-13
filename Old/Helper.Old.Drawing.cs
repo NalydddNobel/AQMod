@@ -4,6 +4,21 @@ namespace Aequus.Core.Utilities;
 
 public static partial class Helper {
     [Obsolete]
+    public static void ScreenFlip(Vector2[] value) {
+        for (int i = 0; i < value.Length; i++) {
+            value[i] = ScreenFlip(value[i]);
+        }
+    }
+    [Obsolete]
+    public static Vector2 ScreenFlip(Vector2 value) {
+        return new Vector2(value.X, ScreenFlip(value.Y));
+    }
+    [Obsolete]
+    public static float ScreenFlip(float value) {
+        return -value + Main.screenHeight;
+    }
+
+    [Obsolete]
     public static void LoopingFrame(this Projectile projectile, int ticksPerFrame) {
         if (++projectile.frameCounter > ticksPerFrame) {
             projectile.frameCounter = 0;

@@ -4,7 +4,7 @@ using Terraria.DataStructures;
 using Terraria.Localization;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Bosses.Trophies;
+namespace Aequus.Old.Content.Tiles;
 
 [LegacyName("Trophies", "BossTrophiesTile")]
 [Obsolete("Replaced with instanced Mod Tiles for each trophy.")]

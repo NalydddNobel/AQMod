@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Old.Common.Graphics.Camera;
+namespace Aequus.Old.Core;
 
 /// <summary>
 /// Manages screen panning

@@ -4,7 +4,7 @@ using System;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 
-namespace Aequus.Old.Common.Graphics;
+namespace Aequus.Old.Core;
 
 public class ScreenFlash : ModSceneEffect {
     public const string FlashFilterName = "Aequus:Flash";
@@ -14,6 +14,8 @@ public class ScreenFlash : ModSceneEffect {
 
     public static Filter FlashFilter { get => Filters.Scene[FlashFilterName]; set => Filters.Scene[FlashFilterName] = value; }
 
+    [Obsolete("Use \"ScreenFlash.Instance\" instead.")]
+    public static ScreenFlashData Flash => Instance;
     public static ScreenFlashData Instance { get; private set; }
 
     public override SceneEffectPriority Priority => SceneEffectPriority.BossHigh;

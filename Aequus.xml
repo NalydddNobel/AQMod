@@ -731,6 +731,9 @@
             Helper for whether or not the player is in danger
             </summary>
         </member>
+        <member name="F:Aequus.AequusPlayer.dropRolls">
+            <summary>Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.</summary>
+        </member>
         <member name="P:Aequus.AequusSystem.RemixWorldSafeUnderworldRange">
             <summary>Returns a point with the beginning (left) (X) and end (right) (Y) of the 'safe' underworld in remix worlds. This does not represent a point in 2D space, but rather two X coordinates.</summary>
         </member>
@@ -948,6 +951,9 @@
         <member name="T:Aequus.DataSets.ItemTypeVariantDataSet">
             <summary>Dataset with lists of all supported 'alts' of an item.</summary>
         </member>
+        <member name="P:Aequus.DataSets.NPCDataSet.NoSnowgraveEffects">
+            <summary>NPCs in this set will not spawn a ice cube when killed by Snowgrave.</summary>
+        </member>
         <member name="P:Aequus.DataSets.NPCDataSet.NoBestiaryElementInheritence">
             <summary>NPCs in this set will not inherit elements from their Bestiary Tags.</summary>
         </member>
@@ -1006,7 +1012,7 @@
             <summary>Color of the projectile. Used mostly by guns.</summary>
         </member>
         <member name="P:Aequus.DataSets.ProjectileDataSet.OccultistIgnore">
-            <summary>Projectiles in this set do not damage the <see cref="!:Old.Content.TownNPCs.OccultistNPC.Occultist"/>.</summary>
+            <summary>Projectiles in this set do not damage the <see cref="T:Aequus.Old.Content.TownNPCs.OccultistNPC.Occultist"/>.</summary>
         </member>
         <member name="P:Aequus.DataSets.ProjectileDataSet.IsStar">
             <summary>Whether or not this projectile is a "Star", this is automatically populated with anything that has "Star" in their internal name.</summary>
@@ -1268,6 +1274,13 @@
         </member>
         <member name="T:Aequus.Core.Utilities.ChatTagWriter">
             <summary>Contains helper methods for generating chat tag strings. For item and glyphs, <see cref="T:Terraria.GameContent.UI.Chat.ItemTagHandler"/> and <see cref="T:Terraria.GameContent.UI.Chat.GlyphTagHandler"/> have static helper methods.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.DrawHelper.Quality(System.Int32,System.Int32)">
+            <summary><inheritdoc cref="M:Aequus.Core.Utilities.DrawHelper.Quality(System.Single,System.Single)"/></summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.DrawHelper.Quality(System.Single,System.Single)">
+            <summary>Multiplies <paramref name="value"/> by <see cref="F:Terraria.Main.gfxQuality"/>, ensuring it is above <paramref name="min"/>.</summary>
+            <returns></returns>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendArray.ClearReturn``1(FNAUtils.ArrayPool{``0},``0[])">
             <summary>Clears <paramref name="rent"/> and returns it to <paramref name="pool"/>.</summary>
@@ -2114,7 +2127,7 @@
             <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 93)</summary>
+            <summary>(Total Sounds: 98)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.PollutedOcean_AmbientA0">
             <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_AmbientA0</summary>
@@ -2190,6 +2203,21 @@
         </member>
         <member name="F:Aequus.AequusSounds.PhilBugKilled">
             <summary>Full Path: Assets/Sounds/Enemy/Pillbug/PhilBugKilled</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.RedSpriteThunderClap0">
+            <summary>Full Path: Assets/Sounds/Enemy/RedSprite/RedSpriteThunderClap0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.RedSpriteThunderClap1">
+            <summary>Full Path: Assets/Sounds/Enemy/RedSprite/RedSpriteThunderClap1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.SpaceSquidDeathray">
+            <summary>Full Path: Assets/Sounds/Enemy/SpaceSquid/SpaceSquidDeathray</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.SpaceSquidGun">
+            <summary>Full Path: Assets/Sounds/Enemy/SpaceSquid/SpaceSquidGun</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.SpaceSquidSnowflakeShoot">
+            <summary>Full Path: Assets/Sounds/Enemy/SpaceSquid/SpaceSquidSnowflakeShoot</summary>
         </member>
         <member name="F:Aequus.AequusSounds.CanteenBuzzer">
             <summary>Full Path: Assets/Sounds/Items/CanteenBuzzer</summary>
@@ -2396,7 +2424,7 @@
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 866) yo momma gai</summary>
+            <summary>(Total Textures: 884) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2628,66 +2656,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.PollutedWater_Waterfall">
             <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Waterfall</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabsonMask">
-            <summary>Full Path: Content/Bosses/BossMasks/CrabsonMask</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabsonMask_Head">
-            <summary>Full Path: Content/Bosses/BossMasks/CrabsonMask_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RedSpriteMask">
-            <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RedSpriteMask_Head">
-            <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SpaceSquidMask">
-            <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SpaceSquidMask_Head">
-            <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabsonBag">
-            <summary>Full Path: Content/Bosses/TreasureBags/CrabsonBag</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabsonRelic">
-            <summary>Full Path: Content/Bosses/Trophies/CrabsonRelic</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabsonRelicItem">
-            <summary>Full Path: Content/Bosses/Trophies/CrabsonRelicItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabsonTrophy">
-            <summary>Full Path: Content/Bosses/Trophies/CrabsonTrophy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabsonTrophyItem">
-            <summary>Full Path: Content/Bosses/Trophies/CrabsonTrophyItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RedSpriteRelic">
-            <summary>Full Path: Content/Bosses/Trophies/RedSpriteRelic</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RedSpriteRelicItem">
-            <summary>Full Path: Content/Bosses/Trophies/RedSpriteRelicItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RedSpriteTrophy">
-            <summary>Full Path: Content/Bosses/Trophies/RedSpriteTrophy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RedSpriteTrophyItem">
-            <summary>Full Path: Content/Bosses/Trophies/RedSpriteTrophyItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SpaceSquidRelic">
-            <summary>Full Path: Content/Bosses/Trophies/SpaceSquidRelic</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SpaceSquidRelicItem">
-            <summary>Full Path: Content/Bosses/Trophies/SpaceSquidRelicItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SpaceSquidTrophy">
-            <summary>Full Path: Content/Bosses/Trophies/SpaceSquidTrophy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SpaceSquidTrophyItem">
-            <summary>Full Path: Content/Bosses/Trophies/SpaceSquidTrophyItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Trophy">
-            <summary>Full Path: Content/Bosses/Trophies/Trophy</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CopperChest">
             <summary>Full Path: Content/Chests/BuriedChests/CopperChest</summary>
@@ -3820,6 +3788,27 @@
         <member name="F:Aequus.AequusTextures.icon_workshop">
             <summary>Full Path: icon_workshop</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CrabsonBag">
+            <summary>Full Path: Old/Content/Bosses/CrabsonMKII/Items/CrabsonBag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonMask">
+            <summary>Full Path: Old/Content/Bosses/CrabsonMKII/Items/CrabsonMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonMask_Head">
+            <summary>Full Path: Old/Content/Bosses/CrabsonMKII/Items/CrabsonMask_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonRelic">
+            <summary>Full Path: Old/Content/Bosses/CrabsonMKII/Items/CrabsonRelic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonRelicItem">
+            <summary>Full Path: Old/Content/Bosses/CrabsonMKII/Items/CrabsonRelicItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonTrophy">
+            <summary>Full Path: Old/Content/Bosses/CrabsonMKII/Items/CrabsonTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonTrophyItem">
+            <summary>Full Path: Old/Content/Bosses/CrabsonMKII/Items/CrabsonTrophyItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.DustDevil">
             <summary>Full Path: Old/Content/Bosses/DustDevil/DustDevil</summary>
         </member>
@@ -3888,6 +3877,99 @@
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteProj">
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Projectiles/OmegaStariteProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteMask">
+            <summary>Full Path: Old/Content/Bosses/RedSprite/Items/RedSpriteMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteMask_Head">
+            <summary>Full Path: Old/Content/Bosses/RedSprite/Items/RedSpriteMask_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteRelic">
+            <summary>Full Path: Old/Content/Bosses/RedSprite/Items/RedSpriteRelic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteRelicItem">
+            <summary>Full Path: Old/Content/Bosses/RedSprite/Items/RedSpriteRelicItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteTrophy">
+            <summary>Full Path: Old/Content/Bosses/RedSprite/Items/RedSpriteTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteTrophyItem">
+            <summary>Full Path: Old/Content/Bosses/RedSprite/Items/RedSpriteTrophyItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteCloud">
+            <summary>Full Path: Old/Content/Bosses/RedSprite/Projectiles/RedSpriteCloud</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteCloudLightning">
+            <summary>Full Path: Old/Content/Bosses/RedSprite/Projectiles/RedSpriteCloudLightning</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteThunderClap">
+            <summary>Full Path: Old/Content/Bosses/RedSprite/Projectiles/RedSpriteThunderClap</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteWindFire">
+            <summary>Full Path: Old/Content/Bosses/RedSprite/Projectiles/RedSpriteWindFire</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSprite">
+            <summary>Full Path: Old/Content/Bosses/RedSprite/RedSprite</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteDust">
+            <summary>Full Path: Old/Content/Bosses/RedSprite/RedSpriteDust</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteFriendly">
+            <summary>Full Path: Old/Content/Bosses/RedSprite/RedSpriteFriendly</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSprite_Glow">
+            <summary>Full Path: Old/Content/Bosses/RedSprite/RedSprite_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSprite_Head_Boss">
+            <summary>Full Path: Old/Content/Bosses/RedSprite/RedSprite_Head_Boss</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidMask">
+            <summary>Full Path: Old/Content/Bosses/SpaceSquid/Items/SpaceSquidMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidMask_Head">
+            <summary>Full Path: Old/Content/Bosses/SpaceSquid/Items/SpaceSquidMask_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidRelic">
+            <summary>Full Path: Old/Content/Bosses/SpaceSquid/Items/SpaceSquidRelic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidRelicItem">
+            <summary>Full Path: Old/Content/Bosses/SpaceSquid/Items/SpaceSquidRelicItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidTrophy">
+            <summary>Full Path: Old/Content/Bosses/SpaceSquid/Items/SpaceSquidTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidTrophyItem">
+            <summary>Full Path: Old/Content/Bosses/SpaceSquid/Items/SpaceSquidTrophyItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidDeathray">
+            <summary>Full Path: Old/Content/Bosses/SpaceSquid/Projectiles/SpaceSquidDeathray</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidLaser">
+            <summary>Full Path: Old/Content/Bosses/SpaceSquid/Projectiles/SpaceSquidLaser</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidSnowflake">
+            <summary>Full Path: Old/Content/Bosses/SpaceSquid/Projectiles/SpaceSquidSnowflake</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquid">
+            <summary>Full Path: Old/Content/Bosses/SpaceSquid/SpaceSquid</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidBlood">
+            <summary>Full Path: Old/Content/Bosses/SpaceSquid/SpaceSquidBlood</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidDefeated">
+            <summary>Full Path: Old/Content/Bosses/SpaceSquid/SpaceSquidDefeated</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidDefeated_Glow">
+            <summary>Full Path: Old/Content/Bosses/SpaceSquid/SpaceSquidDefeated_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidFriendly">
+            <summary>Full Path: Old/Content/Bosses/SpaceSquid/SpaceSquidFriendly</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquid_Glow">
+            <summary>Full Path: Old/Content/Bosses/SpaceSquid/SpaceSquid_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquid_Head_Boss">
+            <summary>Full Path: Old/Content/Bosses/SpaceSquid/SpaceSquid_Head_Boss</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltraStariteRelic">
             <summary>Full Path: Old/Content/Bosses/UltraStarite/Items/UltraStariteRelic</summary>
@@ -4995,6 +5077,110 @@
         </member>
         <member name="F:Aequus.AequusTextures.BacciliteSceptre_Glow">
             <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre_Glow</summary>
+        </member>
+        <member name="M:Aequus.Old.Content.Bosses.OmegaStarite.OmegaStariteRing.#ctor(System.IO.BinaryReader)">
+            <summary>
+            Creates a Ring through a net package
+            </summary>
+            <param name="reader"></param>
+        </member>
+        <member name="T:Aequus.Old.Content.Events.DemonSiege.Tiles.OblivionAltarDummy">
+            <summary>Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.</summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Items.Accessories.HighSteaks.HighSteaks.NotStackableCritDamage">
+            <summary>
+            Default Value: 0.15
+            <para>This is only added on the first stack of the accessory.</para>
+            </summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Items.Accessories.HighSteaks.HighSteaks.WantedCost">
+            <summary>
+            The cost for performing a critical strike.
+            </summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg.SaivoryKnife.GhostLifespan">
+            <summary>Default Value: 3600 (1 minute)</summary>
+        </member>
+        <member name="F:Aequus.Old.Content.Particles.DashBlurParticle.Particle.ScaleX">
+            <summary>
+            Defaults to 0.5f.
+            </summary>
+        </member>
+        <member name="M:Aequus.Old.Content.Tiles.Herbs.ModHerb.GetDropParams(System.Int32,Terraria.Player,Terraria.Item,System.Int32@)">
+            <param name="growthStage">The growth stage (style) of this plant.</param>
+            <param name="closestPlayer">The closest player to the plant.</param>
+            <param name="playerHeldItem">The player's held item.</param>
+            <param name="plant">The plant item id to drop.</param>
+            <param name="seeds">The seed item id to drop.</param>
+        </member>
+        <member name="M:Aequus.Old.Content.Tiles.Herbs.ModHerb.GetDropStacks(System.Int32,Terraria.Player,Terraria.Item,System.Boolean,System.Int32,System.Int32,System.Int32@,System.Int32@)">
+            <param name="growthStage">The growth stage (style) of this plant.</param>
+            <param name="closestPlayer">The closest player to the plant.</param>
+            <param name="playerHeldItem">The player's held item.</param>
+            <param name="staffOfRegrowth">If the player is holding the Staff of Regrowth or Axe of Regrowth.</param>
+            <param name="plant">The plant item id to drop.</param>
+            <param name="seeds">The seed item id to drop.</param>
+            <param name="plantStack">The amount of plants to drop.</param>
+            <param name="seedStack">The amount of seeds to drop.</param>
+        </member>
+        <member name="T:Aequus.Old.Core.CameraFocus">
+            <summary>
+            Manages screen panning
+            </summary>
+        </member>
+        <member name="P:Aequus.Old.Core.CameraFocus.Context">
+            <summary>
+            A context string for the current focus
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Core.CameraFocus.target">
+            <summary>
+            The target position for the camera in the world
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Core.CameraFocus.cameraPosition">
+            <summary>
+            The camera's position 
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Core.CameraFocus.priority">
+            <summary>
+            A priority for determining whether or not a new camera focus can be added
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Core.CameraFocus.speed">
+            <summary>
+            The speed of the camera
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Core.CameraFocus.cameraProgress">
+            <summary>
+            The progress of the camera from its original position to its destination
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Core.CameraFocus.hold">
+            <summary>
+            How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Old.Core.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Old.Core.CameraPriority,System.Single,System.Int32)"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Core.CameraFocus.returning">
+            <summary>
+            Whether or not the camera is returning
+            </summary>
+        </member>
+        <member name="M:Aequus.Old.Core.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Old.Core.CameraPriority,System.Single,System.Int32)">
+            <summary>
+            Sets the camera target to a position, may return false if your priority is below a current target's priority
+            </summary>
+            <param name="key">Context key, only really useful for 3rd party mods</param>
+            <param name="target">A world coordinate to point the camera at</param>
+            <param name="priority">The priority of this camera target. If there is a current camera target, and its priority is above, it will prevent you from setting a target and this method will return false</param>
+            <param name="speed">The speed of the camera, the exact time it will get there is: <code>speed / 50</code>So 6 speed means it will get into position in 8 frames. Clamped between 6 and 25</param>
+            <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Old.Core.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Old.Core.CameraPriority,System.Single,System.Int32)"/></param>
+            <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
+        </member>
+        <member name="T:Aequus.Old.Core.SkyDarkness">
+            <summary>Used for darken-ing the sky for flashy visual effects</summary>
         </member>
     </members>
 </doc>

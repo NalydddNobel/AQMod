@@ -3,6 +3,11 @@
 namespace Aequus.Core.Utilities;
 
 public static partial class Helper {
+    [Obsolete]
+    public static int FixedDamage(this NPC npc) {
+        return Main.masterMode ? npc.damage / 3 : Main.expertMode ? npc.damage / 2 : npc.damage;
+    }
+
     public static void SetIDStaticHitCooldown(this NPC npc, int projID, uint time) {
         Projectile.perIDStaticNPCImmunity[projID][npc.whoAmI] = Main.GameUpdateCount + time;
     }

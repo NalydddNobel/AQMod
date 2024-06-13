@@ -1,4 +1,4 @@
-ElementTip: "- {0}元素 -"
+ElementTip: - {0}元素 -
 
 Shadow: {
 	DisplayName: 暗影

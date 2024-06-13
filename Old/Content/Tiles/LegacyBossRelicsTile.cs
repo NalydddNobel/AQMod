@@ -5,7 +5,7 @@ using Terraria.Enums;
 using Terraria.Localization;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Bosses.Trophies;
+namespace Aequus.Old.Content.Tiles;
 
 [LegacyName("BossRelics", "BossRelicsTile")]
 [Obsolete("Replaced with instanced Mod Tiles for each relic.")]
@@ -45,7 +45,7 @@ public class LegacyBossRelicsTile : ModTile {
         TileObjectData.addAlternate(1);
         TileObjectData.addTile(Type);
 
-        AdjTiles = new int[] { TileID.MasterTrophyBase, };
+        AdjTiles = [TileID.MasterTrophyBase];
 
         AddMapEntry(new Color(233, 207, 94, 255), Language.GetText("MapObject.Relic"));
     }

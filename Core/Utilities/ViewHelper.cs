@@ -30,7 +30,7 @@ public static class ViewHelper {
         }
 
         if (Main.netMode != NetmodeID.Server) {
-            Main.instance.CameraModifiers.Add(new Old.Common.Graphics.Camera.LegacyScreenShakeModifier(intensity, multiplyPerTick));
+            Main.instance.CameraModifiers.Add(new Old.Core.LegacyScreenShakeModifier(intensity, multiplyPerTick));
         }
 #endif
     }
