@@ -178,20 +178,22 @@ SeaFirefly: {
 		Rainbow: Rainbow Sea Firefly
 	}
 
-	Bestiary: Mods.Aequus.NPCs.SeaFirefly.Bestiary
+	Bestiary: These shrimp-like creatures cast an eerie luminance which deters most fish from eating them.
 	ItemTooltip: ""
 }
 
 RedSprite: {
-	TrophyDisplayName: RedSprite Trophy
-	RelicDisplayName: RedSprite Relic
-	MaskDisplayName: RedSprite Mask
 	DisplayName: Red Sprite
+	Bestiary: When a strange bolt of thunder merged with an angry nimbus, this seething stormcloud was born. Lashing scarlet surges in every direction make its presence impossible to miss.
+	TrophyDisplayName: Red Sprite Trophy
+	RelicDisplayName: Red Sprite Relic
+	MaskDisplayName: Red Sprite Mask
 }
 
 SpaceSquid: {
-	TrophyDisplayName: SpaceSquid Trophy
-	RelicDisplayName: SpaceSquid Relic
-	MaskDisplayName: SpaceSquid Mask
 	DisplayName: Space Squid
+	Bestiary: An alien scout from an advanced interstellar civilization, they transplant their consciousness into bodies made of high-tech compacted water molecules for easier teleportation.
+	TrophyDisplayName: Space Squid Trophy
+	RelicDisplayName: Space Squid Relic
+	MaskDisplayName: Space Squid Mask
 }

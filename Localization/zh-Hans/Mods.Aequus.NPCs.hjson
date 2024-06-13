@@ -183,15 +183,17 @@ SeaFirefly: {
 }
 
 RedSprite: {
-	// TrophyDisplayName: RedSprite Trophy
-	// RelicDisplayName: RedSprite Relic
-	// MaskDisplayName: RedSprite Mask
-	// DisplayName: Red Sprite
+	DisplayName: 红色精灵
+	Bestiary: 当一道奇怪的闪电与一道愤怒的闪电汇合时, 这朵怒火中烧的风暴云就诞生了. 每个方向都有的猩红涌云使它的存在不可忽视.
+	TrophyDisplayName: 红色精灵纪念章
+	RelicDisplayName: 红色精灵纪念物
+	MaskDisplayName: 红色精灵面具
 }
 
 SpaceSquid: {
-	// TrophyDisplayName: SpaceSquid Trophy
-	// RelicDisplayName: SpaceSquid Relic
-	// MaskDisplayName: SpaceSquid Mask
-	// DisplayName: Space Squid
+	DisplayName: 太空乌贼
+	Bestiary: 作为一名来自先进星际文明的外星侦察员, 他们将自己的意识移植到由高科技压缩水分子制成的身体中, 以便于远距离传送.
+	TrophyDisplayName: 太空乌贼纪念章
+	RelicDisplayName: 太空乌贼纪念物
+	MaskDisplayName: SpaceSquid Mask
 }
