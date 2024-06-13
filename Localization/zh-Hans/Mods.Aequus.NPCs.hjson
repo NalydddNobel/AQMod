@@ -178,7 +178,7 @@ SeaFirefly: {
 		Rainbow: 彩色海萤火虫
 	}
 
-	// Bestiary: These shrimp-like creatures cast an eerie luminance which deters most fish from eating them.
+	Bestiary: 这些类似虾的生物散发出的诡异光芒阻止了想要捕食它们的大多数鱼类.
 	ItemTooltip: ""
 }
 
