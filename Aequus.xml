@@ -1164,6 +1164,9 @@
         <member name="M:Aequus.Core.Audio.AudioEffects.PlayUnpanningAttenuationSound(Terraria.Audio.SoundStyle,Microsoft.Xna.Framework.Vector2,System.Single)">
             <summary>Plays a sound which does not pan, but will get quieter with distance.</summary>
         </member>
+        <member name="T:Aequus.Core.Audio.DynamicSoundStyle">
+            <summary>Currently only supports .ogg</summary>
+        </member>
         <member name="T:Aequus.Core.CodeGeneration.Gen">
             <summary>Parent type which holds attributes which allow generation of Fields and Methods in <see cref="T:Aequus.AequusPlayer"/>.</summary>
         </member>

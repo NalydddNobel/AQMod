@@ -200,8 +200,8 @@ SpaceSquid: {
 
 Vraine: {
 	DisplayName: 镰鸟
-	Bestiary: 随风而成群迁徙的候鸟. 它的喙对温度的微小变化非常敏感, 会相应地改变自身的行为.
 	BannerName: 镰鸟旗
+	Bestiary: 随风而成群迁徙的候鸟. 它的喙对温度的微小变化非常敏感, 会相应地改变自身的行为.
 }
 
 WhiteSlime: {

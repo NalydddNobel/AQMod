@@ -25,6 +25,6 @@ PollutedOceanBiomeUnderground: {
 }
 
 GaleStreamsZone: {
-	// DisplayName: Gale Streams Zone
-	// TownNPCDialogueName: the Gale Streams Zone
+	// DisplayName: Gale Streams
+	// TownNPCDialogueName: the Gale Streams
 }

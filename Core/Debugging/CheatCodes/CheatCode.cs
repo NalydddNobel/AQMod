@@ -59,7 +59,7 @@ internal abstract partial class CheatCode<T>(Params parameters, T stateProvider,
 #if DEBUG
         return true;
 #else
-        return !parameters.HasFlag(Params.DebugOnly);
+        return !Params.HasFlag(Params.DebugOnly);
 #endif
     }
 }
