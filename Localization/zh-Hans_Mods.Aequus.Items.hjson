@@ -663,7 +663,7 @@ VictorsReward: {
 }
 
 CosmicChest: {
-	DisplayName: 宇宙箱
+	DisplayName: 好运礼物
 	Tooltip: 永久性增加敌人的物品掉率
 }
 

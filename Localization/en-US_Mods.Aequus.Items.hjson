@@ -663,7 +663,7 @@ VictorsReward: {
 }
 
 CosmicChest: {
-	DisplayName: Cosmic Chest
+	DisplayName: Fortunate Souvenir
 	Tooltip: Permanently increases item droprates from enemies
 }
 
