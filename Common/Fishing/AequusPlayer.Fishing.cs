@@ -14,6 +14,7 @@ using Aequus.Items.Misc.Trash;
 using Aequus.Items.Tools.FishingPoles;
 using Aequus.NPCs.Monsters;
 using Aequus.Tiles.Paintings.Canvas6x4;
+using System.Collections.Generic;
 using System.Reflection;
 using Terraria.DataStructures;
 

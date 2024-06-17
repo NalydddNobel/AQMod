@@ -2,11 +2,27 @@
 
 namespace Aequus;
 
-public sealed partial class AequusTextures {
+public sealed partial class AequusTextures : ILoadable {
     public const string TemporaryBuffIcon = "Terraria/Images/Buff_188";
     public const string TemporaryDebuffIcon = "Terraria/Images/Buff_164";
 
     public static Asset<Texture2D>[] LensFlares { get; private set; }
+
+    void ILoadable.Load(Mod mod) {
+        if (Main.netMode == NetmodeID.Server) { return; }
+
+        LensFlares = GetAssets("LensFlare/FlareSprite", 9);
+
+        static Asset<Texture2D>[] GetAssets(string path, int amount) {
+            path = $"Aequus/Assets/Textures/{path}";
+            Asset<Texture2D>[] arr = new Asset<Texture2D>[amount];
+            for (int i = 0; i < amount; i++) {
+                arr[i] = ModContent.Request<Texture2D>($"{path}{i}");
+            }
+
+            return arr;
+        }
+    }
 
     #region Frame Counts
     public const int FogFrameCount = 8;

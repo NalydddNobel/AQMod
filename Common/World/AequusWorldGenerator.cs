@@ -13,6 +13,8 @@ using Aequus.Items.Materials;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Ranged.Misc.Slingshot;
 using Aequus.Tiles.Misc.BigGems;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Terraria.GameContent.Biomes;
 using Terraria.GameContent.Generation;

@@ -1,9 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Aequus.Items.Equipment.Accessories.Misc.Fishing.RadonFishingBobber;
+﻿namespace Aequus.Items.Equipment.Accessories.Misc.Fishing.RadonFishingBobber;
 
 public class RadonFishingBobberProj : ModProjectile {
     public override void SetDefaults() {
@@ -11,15 +6,5 @@ public class RadonFishingBobberProj : ModProjectile {
         Projectile.light = 0f;
         Projectile.glowMask = -1;
         AIType = ProjectileID.FishingBobber;
-    }
-
-    public override void ModifyFishingLine(ref Vector2 lineOriginOffset, ref Color lineColor) {
-        if (Main.player[Projectile.owner].HeldItem.type >= ItemID.Count) {
-            return;
-        }
-
-        if (Main.player[Projectile.owner].direction == -1) {
-            lineOriginOffset.X -= 13f; // Stupid
-        }
     }
 }

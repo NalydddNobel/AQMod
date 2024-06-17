@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\tModLoader.targets" />
 	
   <PropertyGroup>
     <AssemblyName>Aequus</AssemblyName>
-    <TargetFramework>net8.0</TargetFramework>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>latest</LangVersion>
+	<TargetFramework>net8.0</TargetFramework>
+	<PlatformTarget>AnyCPU</PlatformTarget>
+	<LangVersion>latest</LangVersion>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DocumentationFile>Aequus.xml</DocumentationFile>
   </PropertyGroup>
@@ -17,18 +17,14 @@
 		
 	<ItemGroup>
 		<None Remove="Old\**" Condition="'$(Configuration)' == 'Debug'" />
-		<EmbeddedResource Remove="Content\Currency\**" />
 		<EmbeddedResource Remove="Old\**" Condition="'$(Configuration)' == 'Debug'" />
 		<None Remove="Temp\SourceGenerators.Generator\**" />
 		<EmbeddedResource Remove="Temp\SourceGenerators.Generator\**" />
 		<Compile Remove="Content\Currency\**" />
 		<Compile Remove="Temp\SourceGenerators.Generator\**" />
-		<None Remove="UnitTesting\**" />
-		<EmbeddedResource Remove="UnitTesting\**" />
-		<Compile Remove="UnitTesting\**" />
-		<None Remove="TerrariaProxy\**" />
-		<EmbeddedResource Remove="TerrariaProxy\**" />
-		<Compile Remove="TerrariaProxy\**" />
+		<None Remove="project\**" />
+		<EmbeddedResource Remove="project\**" />
+		<Compile Remove="project\**" />
 		<None Remove="SourceGenerators\**" />
 		<EmbeddedResource Remove="SourceGenerators\**" />
 		<Compile Remove="SourceGenerators\**" />

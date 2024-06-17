@@ -62,15 +62,6 @@ public class Generator : ISourceGenerator {
                     /// <summary>(Amt Textures: $Count)</summary>
                     [CompilerGenerated]
                     public partial class AequusTextures : ILoadable {
-                        public void Load(Mod mod) {
-                        }
-
-                        public void Unload() {
-                            foreach (var f in GetType().GetFields()) {
-                                ((TextureAsset)f.GetValue(this))?.Unload();
-                            }
-                        }
-            
                         $TextureFields
                     }
                 }
