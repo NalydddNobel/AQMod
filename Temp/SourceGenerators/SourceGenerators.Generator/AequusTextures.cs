@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1286)</summary>
+    /// <summary>(Amt Textures: 1287)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -2237,6 +2237,8 @@ namespace Aequus {
         public static readonly TextureAsset StatusBubble = new("Aequus/Assets/UI/StatusBubble");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/CriticalStrike/SteakEyes</summary>
         public static readonly TextureAsset SteakEyes = new("Aequus/Items/Equipment/Accessories/Combat/CriticalStrike/SteakEyes");
+        /// <summary>Full Path: Aequus/Items/Tools/FishingPoles/SteampunkerFishingPole</summary>
+        public static readonly TextureAsset SteampunkerFishingPole = new("Aequus/Items/Tools/FishingPoles/SteampunkerFishingPole");
         /// <summary>Full Path: Aequus/Items/Equipment/PetsVanity/Stinky/StinkyPet</summary>
         public static readonly TextureAsset StinkyPet = new("Aequus/Items/Equipment/PetsVanity/Stinky/StinkyPet");
         /// <summary>Full Path: Aequus/Items/Equipment/PetsVanity/Stinky/StinkyPet_Flying</summary>
