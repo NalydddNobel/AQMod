@@ -50,12 +50,4 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Assets\Textures\Bloom.png" />
-    <None Remove="Assets\Textures\BloomStrong.png" />
-    <None Remove="Assets\Textures\FlareSoft.png" />
-    <None Remove="Assets\Textures\Shatter.png" />
-    <None Remove="Assets\Textures\Sparkles.png" />
-  </ItemGroup>
-
 </Project>
