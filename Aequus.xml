@@ -360,12 +360,6 @@
             A tracker of the total amount of Shadow Orbs broken in the world, this is currently unused.
             </summary>
         </member>
-        <member name="F:Aequus.AequusWorld.tinkererRerolls">
-            <summary>
-            How many times the tinkerer should re-roll items for a potential higher value prefix. 
-            This value flips between 0 and 3 depending on if the <see cref="T:Aequus.Items.Misc.PermanentUpgrades.TinkerersGuidebook"/> has been consumed.
-            </summary>
-        </member>
         <member name="M:Aequus.AequusWorld.OreTiers">
             <summary>
             
@@ -1535,7 +1529,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1286)</summary>
+            <summary>(Amt Textures: 1305)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -1762,6 +1756,12 @@
         <member name="F:Aequus.AequusTextures.BestiaryNotebook">
             <summary>Full Path: Aequus/Assets/UI/BestiaryNotebook</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.BeyondPlatinumCoin">
+            <summary>Full Path: Aequus/Items/Misc/BeyondCoin/BeyondPlatinumCoin</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BeyondPlatinumCoin_World">
+            <summary>Full Path: Aequus/Items/Misc/BeyondCoin/BeyondPlatinumCoin_World</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.BigGemsTile">
             <summary>Full Path: Aequus/Tiles/Misc/BigGems/BigGemsTile</summary>
         </member>
@@ -1810,6 +1810,9 @@
         <member name="F:Aequus.AequusTextures.BloodyTearstone">
             <summary>Full Path: Aequus/Items/Materials/BloodyTearstone</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Bloom">
+            <summary>Full Path: Aequus/Assets/Textures/Bloom</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Bloom_20x20">
             <summary>Full Path: Aequus/Assets/Bloom_20x20</summary>
         </member>
@@ -1833,6 +1836,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.Bloom6">
             <summary>Full Path: Aequus/Assets/Bloom6</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BloomStrong">
+            <summary>Full Path: Aequus/Assets/Textures/BloomStrong</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BlueFire">
             <summary>Full Path: Aequus/Buffs/Debuffs/BlueFire</summary>
@@ -2748,6 +2754,36 @@
         </member>
         <member name="F:Aequus.AequusTextures.Flare">
             <summary>Full Path: Aequus/Assets/Textures/Flare</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlareSoft">
+            <summary>Full Path: Aequus/Assets/Textures/FlareSoft</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlareSprite0">
+            <summary>Full Path: Aequus/Assets/Textures/LensFlare/FlareSprite0</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlareSprite1">
+            <summary>Full Path: Aequus/Assets/Textures/LensFlare/FlareSprite1</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlareSprite2">
+            <summary>Full Path: Aequus/Assets/Textures/LensFlare/FlareSprite2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlareSprite3">
+            <summary>Full Path: Aequus/Assets/Textures/LensFlare/FlareSprite3</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlareSprite4">
+            <summary>Full Path: Aequus/Assets/Textures/LensFlare/FlareSprite4</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlareSprite5">
+            <summary>Full Path: Aequus/Assets/Textures/LensFlare/FlareSprite5</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlareSprite6">
+            <summary>Full Path: Aequus/Assets/Textures/LensFlare/FlareSprite6</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlareSprite7">
+            <summary>Full Path: Aequus/Assets/Textures/LensFlare/FlareSprite7</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlareSprite8">
+            <summary>Full Path: Aequus/Assets/Textures/LensFlare/FlareSprite8</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FlashwayNecklace">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/Dodge/FlashwayNecklace/FlashwayNecklace</summary>
@@ -4579,8 +4615,14 @@
         <member name="F:Aequus.AequusTextures.ShadowVeer">
             <summary>Full Path: Aequus/Content/Necromancy/Equipment/Accessories/ShadowVeer</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Shatter">
+        <member name="F:Aequus.AequusTextures.Shatter_Assets">
             <summary>Full Path: Aequus/Assets/Shatter</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Shatter_Textures">
+            <summary>Full Path: Aequus/Assets/Textures/Shatter</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShimmerCoin">
+            <summary>Full Path: Aequus/Items/Misc/PermanentUpgrades/ShimmerCoin</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ShimmerFish">
             <summary>Full Path: Aequus/Items/Misc/FishCatches/ShimmerFish</summary>
@@ -4810,6 +4852,9 @@
         <member name="F:Aequus.AequusTextures.SpamMail">
             <summary>Full Path: Aequus/Items/Weapons/Magic/SpamMail/SpamMail</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Sparkles">
+            <summary>Full Path: Aequus/Assets/Textures/Sparkles</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.SpicyEel">
             <summary>Full Path: Aequus/Items/Misc/Foods/SpicyEel/SpicyEel</summary>
         </member>
@@ -4869,6 +4914,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.SteakEyes">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/CriticalStrike/SteakEyes</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SteampunkerBobber">
+            <summary>Full Path: Aequus/Items/Tools/FishingPoles/SteampunkerBobber</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SteampunkerFishingPole">
+            <summary>Full Path: Aequus/Items/Tools/FishingPoles/SteampunkerFishingPole</summary>
         </member>
         <member name="F:Aequus.AequusTextures.StinkyPet">
             <summary>Full Path: Aequus/Items/Equipment/PetsVanity/Stinky/StinkyPet</summary>
@@ -5705,6 +5756,17 @@
             <summary>
             Determines whether or not the mouse has an item
             </summary>
+        </member>
+        <member name="M:Aequus.Helper.ToIntUsingRNGForDecimals(System.Single,Terraria.Utilities.UnifiedRandom)">
+            <summary>Converts <paramref name="value"/> to an int. And uses RNG to determine if value should be +1 higher depending on the remaining decimal number. For example, 10.5 has a 50% chance to return either 10 or 11, since the remaining decimal value gives it a 50% chance to be +1 higher.</summary>
+            <param name="value"></param>
+            <param name="random"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Helper.WorldDrawPos(Terraria.Item,Microsoft.Xna.Framework.Rectangle)">
+            <param name="item"></param>
+            <param name="frame"></param>
+            <returns>Vanilla-based method for calculating the draw position for an item in the world.</returns>
         </member>
         <member name="M:Aequus.Helper.IsInTileInteractionRange(Terraria.Player,System.Int32,System.Int32)">
             <summary>

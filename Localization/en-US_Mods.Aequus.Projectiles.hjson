@@ -255,3 +255,4 @@ InsurgencyProj.DisplayName: Insurgency Proj
 RevenantProj.DisplayName: Revenant Proj
 CorruptionSceptreProj.DisplayName: Corruption Sceptre Proj
 OsirisProj.DisplayName: Osiris Proj
+SteampunkerBobber.DisplayName: "{$Items.SteampunkerFishingPole.DisplayName}"

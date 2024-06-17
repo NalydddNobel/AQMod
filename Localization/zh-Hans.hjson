@@ -2689,6 +2689,21 @@ Mods: {
 				DisplayName: Narry
 				Tooltip: "{$PaintingSignature.NalydT}"
 			}
+
+			BeyondPlatinumCoin: {
+				// DisplayName: Beyond Platinum Coin
+				// Tooltip: ""
+			}
+
+			ShimmerCoin: {
+				// DisplayName: Shimmer Coin
+				// Tooltip: ""
+			}
+
+			SteampunkerFishingPole: {
+				// DisplayName: Steampunker Fishing Pole
+				// Tooltip: ""
+			}
 		}
 
 		ItemTooltip: {
@@ -2767,6 +2782,7 @@ Mods: {
 		}
 
 		WorldGeneration: {
+			// SkyMeadows: Adding Magic...
 			OmniGem: 正在添加闪光宝石...
 			BigGems: 正在添加更大的宝石...
 			RadonBiome: 迷雾正在到来...

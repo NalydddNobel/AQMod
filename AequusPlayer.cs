@@ -672,7 +672,7 @@ public partial class AequusPlayer : ModPlayer {
         debuffs.Clear(Player);
         buffDuration = 1f;
         debuffDuration = 1f;
-        dropRerolls = usedPermaLootLuck ? 0.05f : 0f;
+        dropRerolls = usedPermaLootLuck ? Items.Misc.PermanentUpgrades.CosmicChest.DropRerolls : 0f;
         luckRerolls = 0f;
         antiGravityItemRadius = 0f;
         pickTileDamage = 1f;

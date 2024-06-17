@@ -1,23 +1,21 @@
-﻿using Aequus.Common.DataSets;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+﻿using Aequus.Common.Items.Dedications;
 
-namespace Aequus.Items.Equipment.PetsVanity.SwagEye {
-    public class SwagLookingEye : PetItemBase {
-        public override int ProjId => ModContent.ProjectileType<TorraPet>();
-        public override int BuffId => ModContent.BuffType<TorraBuff>();
+namespace Aequus.Items.Equipment.PetsVanity.SwagEye;
+public class SwagLookingEye : PetItemBase {
+    public override int ProjId => ModContent.ProjectileType<TorraPet>();
+    public override int BuffId => ModContent.BuffType<TorraBuff>();
 
-        public override void SetStaticDefaults() {
-            ItemSets.DedicatedContent[Type] = new("torra th", new Color(80, 60, 255, 255));
-            ItemID.Sets.ShimmerTransformToItem[ItemID.SuspiciousLookingEye] = Type;
-        }
+    public override void Load() {
+        DedicationRegistry.Register(this, new DefaultDedication("torra th", new Color(80, 60, 255, 255)));
+    }
 
-        public override void SetDefaults() {
-            base.SetDefaults();
-            Item.useStyle = ItemUseStyleID.HoldUp;
-            Item.value = Item.sellPrice(gold: 1);
-        }
+    public override void SetStaticDefaults() {
+        ItemID.Sets.ShimmerTransformToItem[ItemID.SuspiciousLookingEye] = Type;
+    }
+
+    public override void SetDefaults() {
+        base.SetDefaults();
+        Item.useStyle = ItemUseStyleID.HoldUp;
+        Item.value = Item.sellPrice(gold: 1);
     }
 }

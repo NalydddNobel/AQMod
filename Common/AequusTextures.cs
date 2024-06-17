@@ -24,6 +24,8 @@ public sealed partial class AequusTextures : ILoadable {
         }
     }
 
+    void ILoadable.Unload() { }
+
     #region Frame Counts
     public const int FogFrameCount = 8;
     #endregion

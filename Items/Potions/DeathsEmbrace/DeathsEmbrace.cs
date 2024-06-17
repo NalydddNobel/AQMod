@@ -1,15 +1,17 @@
-﻿using Aequus.Common.DataSets;
+﻿using Aequus.Common.Items.Dedications;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Necromancy.Equipment.Accessories.SpiritKeg;
 using System.Collections.Generic;
 
 namespace Aequus.Items.Potions.DeathsEmbrace;
 public class DeathsEmbrace : ModItem {
+    public override void Load() {
+        DedicationRegistry.Register(this, new DefaultDedication("bubbyboytoo", new Color(20, 70, 30, 255)));
+    }
+
     public override void SetStaticDefaults() {
         ItemID.Sets.DrinkParticleColors[Type] = [Color.Black * 0.66f, Color.DarkRed.UseA(180) * 0.66f,];
         DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ModContent.ItemType<BottleOSpirits>(), Type, EventTier.PreHardmode) { Hide = true, });
-        ItemSets.DedicatedContent[Type] = new("bubbyboytoo", new Color(20, 70, 30, 255));
-        Item.ResearchUnlockCount = 1;
     }
 
     public override void SetDefaults() {

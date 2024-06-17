@@ -68,7 +68,7 @@ namespace Aequus.Common.CrossMod.ModCalls {
                     case "shadowOrbsBrokenTotal":
                         return GetterSetter(ref AequusWorld.shadowOrbsBrokenTotal);
                     case "tinkererRerolls":
-                        return GetterSetter(ref AequusWorld.tinkererRerolls);
+                        return GetterSetter(ref AequusWorld.UsedTinkererBook);
                     case "usedWhiteFlag":
                         return GetterSetter(ref AequusWorld.usedWhiteFlag);
                     case "xmasHats":

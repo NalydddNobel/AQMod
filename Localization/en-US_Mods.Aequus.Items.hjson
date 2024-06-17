@@ -1,3 +1,31 @@
+CommonTooltips: {
+	DedicatedItem: Thank you, {0}!
+	DedicatedItemAnonymous: Dedicated Item
+	UsedXOfXTimes: Used {0}/{1} times
+}
+
+BeyondPlatinumCoin: {
+	DisplayName: Beyond Coin
+	Tooltip: Doesn't count as a coin, but stores 100 Platinum
+}
+
+ShimmerCoin: {
+	DisplayName: Shimmer Coin
+	Tooltip:
+		'''
+		Permanently grant every shimmer powerup bonus at 1/5 effectiveness
+		Increases life regneration, mana regeneration, defense,
+		mining speed, building speed, fishing skill, luck, 
+		droprates, rolling positive prefixes from reforging,
+		defense & strength of villagers, and Traveling Merchant items
+		'''
+}
+
+SteampunkerFishingPole: {
+	DisplayName: Steampunker's Rod
+	Tooltip: Automatically pulls and recasts the fishing bobber
+}
+
 // Equipment
 SpiritBottle: {
 	DisplayName: Bottle O' Spirits

@@ -1,16 +1,15 @@
-﻿using Aequus.Common.DataSets;
-using Aequus.Common.Items;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+﻿using Aequus.Common.Items;
+using Aequus.Common.Items.Dedications;
 
 namespace Aequus.Items.Weapons.Melee.Swords.IronLotus;
 
 public class IronLotus : ModItem {
+    public override void Load() {
+        DedicationRegistry.Register(this, new DefaultDedication("Blossom", new Color(110, 60, 30, 255)));
+    }
+
     public override void SetStaticDefaults() {
         ItemID.Sets.Spears[Type] = true;
-        ItemSets.DedicatedContent[Type] = new("Blossom", new Color(110, 60, 30, 255));
     }
 
     public override void SetDefaults() {
