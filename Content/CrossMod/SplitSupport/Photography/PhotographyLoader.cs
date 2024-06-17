@@ -29,7 +29,7 @@ internal sealed partial class PhotographyLoader : ModSystem {
     private void LoadAlbumsAfterEnvelopes() {
         IContentIdProvider spaceEnvelope = Split.GetContentProvider<ModItem>("BlueSkyEnvelope", ItemID.FloatingIslandFishingCrate);
         IContentIdProvider hellEnvelope = Split.GetContentProvider<ModItem>("FieryEnvelope", ItemID.ObsidianLockbox);
-        IContentIdProvider dungeonEnvelope = Split.GetContentProvider<ModItem>("DungeonEnvelope", ItemID.DungeonFishingCrateHard);
+        //IContentIdProvider dungeonEnvelope = Split.GetContentProvider<ModItem>("DungeonEnvelope", ItemID.DungeonFishingCrateHard);
         IContentIdProvider bloodMoonEnvelope = Split.GetContentProvider<ModItem>("HorrificEnvelope", ItemID.DungeonFishingCrateHard);
 #if !DEBUG
         AddPhotographyPage(
@@ -39,8 +39,11 @@ internal sealed partial class PhotographyLoader : ModSystem {
                 new(0, GetNPC<Enemies.PollutedOcean.BreadOfCthulhu.BreadOfCthulhu>(), Envelope(EnvelopePollutedOcean)),
                 new(1, GetNPC<Old.Content.Enemies.BloodMoon.BloodMimic>(), bloodMoonEnvelope),
                 new(2, GetNPC<Old.Content.Bosses.UltraStarite.UltraStarite>(), Envelope(EnvelopeGlimmer)),
-                /*new(3, new ProvideContentId(0) GetNPC<Heckto>(), dungeonEnvelope),*/
-                /*new(4, new ProvideContentId(1) GetNPC<Oblivision>(), hellEnvelope),*/
+                new(3, GetNPC<Old.Content.Enemies.DemonSiege.CinderBat.CinderBat>(), hellEnvelope),
+
+                // Oblivision
+                new(4, GetNPC<Old.Content.Enemies.DemonSiege.CinderBat.CinderBat>(), hellEnvelope),
+
                 new(5, GetNPC<TownNPCs.SkyMerchant.SkyMerchant>(), spaceEnvelope),
             ]);
 #endif
