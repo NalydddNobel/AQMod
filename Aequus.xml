@@ -660,6 +660,12 @@
             <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Common.Effects.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Common.Effects.CameraPriority,System.Single,System.Int32)"/></param>
             <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
         </member>
+        <member name="F:Aequus.Common.Items.ItemDefaults.NPCSkyMerchant">
+            <summary>1 Gold</summary>
+        </member>
+        <member name="F:Aequus.Common.Items.ItemDefaults.NPCSkyMerchantCustomPrice">
+            <summary>5 Gold</summary>
+        </member>
         <member name="P:Aequus.Common.Items.ItemDefaults.ValueCrabCrevice">
             <summary>
             50 silver
@@ -1403,6 +1409,23 @@
             Outward offset, only effects rendering. Updated every game update.
             </summary>
         </member>
+        <member name="T:Aequus.Common.Projectiles.IManageProjectile">
+            <summary>
+            Allows the item to grant various effects to fired projectiles. All of these methods are not instanced, do NOT use <see cref="P:Terraria.ModLoader.ModItem.Item"/> data.
+            The methods granted by this interface are:
+            <list type="bullet">
+            <item><see cref="M:Aequus.Common.Projectiles.IManageProjectile.PreAIProjectile(Terraria.Projectile)"/></item>
+            <item><see cref="M:Aequus.Common.Projectiles.IManageProjectile.AIProjectile(Terraria.Projectile)"/></item>
+            <item><see cref="M:Aequus.Common.Projectiles.IManageProjectile.PostAIProjectile(Terraria.Projectile)"/></item>
+            <item><see cref="M:Aequus.Common.Projectiles.IManageProjectile.PreDrawProjectile(Terraria.Projectile,Microsoft.Xna.Framework.Color@)"/></item>
+            <item><see cref="M:Aequus.Common.Projectiles.IManageProjectile.PostDrawProjectile(Terraria.Projectile,Microsoft.Xna.Framework.Color@)"/></item>
+            <item><see cref="M:Aequus.Common.Projectiles.IManageProjectile.OnHitNPCProjectile(Terraria.Projectile,Terraria.NPC,Terraria.NPC.HitInfo,System.Int32)"/></item>
+            <item><see cref="M:Aequus.Common.Projectiles.IManageProjectile.OnTileCollideProjectile(Terraria.Projectile,Microsoft.Xna.Framework.Vector2)"/></item>
+            <item><see cref="M:Aequus.Common.Projectiles.IManageProjectile.PreKillProjectile(Terraria.Projectile,System.Int32)"/></item>
+            <item><see cref="M:Aequus.Common.Projectiles.IManageProjectile.OnKillProjectile(Terraria.Projectile,System.Int32)"/></item>
+            </list>
+            </summary>
+        </member>
         <member name="M:Aequus.Common.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Common.Projectiles.SentryChip.SentryAccessoriesGlobalProj@)">
             <summary>
             Gets an owner. Returns a santank dummy player if the projOwner is greater than -1.
@@ -1411,6 +1434,16 @@
             <param name="aequus">The "AequusPlayer" instance on the player.</param>
             <param name="projOwner">The "Projectile owner". This defaults to -1 unless this projectile is spawned with a projectile owner, then it returns their index in <see cref="F:Terraria.Main.projectile"/></param>
             <param name="santank">The Projectile owner's <see cref="T:Aequus.Common.Projectiles.SentryChip.SentryAccessoriesGlobalProj"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
+        </member>
+        <member name="P:Aequus.Common.Projectiles.ProjectileItemData.ItemData">
+            <summary>
+            Custom data to be used by items which utilize the <see cref="T:Aequus.Common.Projectiles.IManageProjectile"/> interface or by channeled items. This data is synced in multiplayer.
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Projectiles.ProjectileItemData.NoSpecialEffects">
+            <summary>
+            If this is true, special effects should be disabled on the projectile. This is only set to true by Javelin-like projectiles.
+            </summary>
         </member>
         <member name="P:Aequus.Common.Recipes.AequusRecipes.AnyEctoplasm">
             <summary>
@@ -1529,7 +1562,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1305)</summary>
+            <summary>(Amt Textures: 1309)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -2037,6 +2070,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.CensorDye">
             <summary>Full Path: Aequus/Items/Misc/Dyes/CensorDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Chain">
+            <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ChlorophytePowder">
             <summary>Full Path: Aequus/Items/Misc/Powders/ChlorophytePowder</summary>
@@ -3036,6 +3072,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.GravityTable">
             <summary>Full Path: Aequus/Tiles/Furniture/Gravity/GravityTable</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GreaterHoney">
+            <summary>Full Path: Aequus/Items/Potions/Healing/Honey/GreaterHoney</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GreaterRestorationPotion">
             <summary>Full Path: Aequus/Items/Potions/Healing/Restoration/GreaterRestorationPotion</summary>
@@ -4672,6 +4711,9 @@
         <member name="F:Aequus.AequusTextures.SkeletonMerchantHead">
             <summary>Full Path: Aequus/Assets/UI/SkeletonMerchantHead</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.SkyHunterCrossbow">
+            <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.SkyMerchant">
             <summary>Full Path: Aequus/NPCs/Town/SkyMerchantNPC/SkyMerchant</summary>
         </member>
@@ -4974,6 +5016,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.SuperDartTrapHat_Head">
             <summary>Full Path: Aequus/Items/Equipment/Armor/SetTrap/SuperDartTrapHat_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SuperHoney">
+            <summary>Full Path: Aequus/Items/Potions/Healing/Honey/SuperHoney</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SupernovaFruit">
             <summary>Full Path: Aequus/Items/Misc/Spawners/SupernovaFruit</summary>
@@ -5757,6 +5802,30 @@
             Determines whether or not the mouse has an item
             </summary>
         </member>
+        <member name="M:Aequus.Helper.GiveItem(Terraria.Player,Terraria.Item,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings)">
+            <summary>
+            Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
+            <para>Automatically syncs the item in multiplayer.</para>
+            <para>Note: May only work if <see cref="F:Terraria.Main.myPlayer"/> is the <paramref name="player"/>.</para>
+            </summary>
+            <param name="player">The player.</param>
+            <param name="item">The Item.</param>
+            <param name="source">Item source.</param>
+            <param name="getItemSettings">The Get Item settings.</param>
+        </member>
+        <member name="M:Aequus.Helper.GiveItem(Terraria.Player,System.Int32,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings,System.Int32,System.Int32)">
+            <summary>
+            Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
+            <para>Automatically syncs the item in multiplayer.</para>
+            <para>Note: May only work if <see cref="F:Terraria.Main.myPlayer"/> is the <paramref name="player"/>.</para>
+            </summary>
+            <param name="player">The player.</param>
+            <param name="type">The Item Id.</param>
+            <param name="stack">The Item's stack.</param>
+            <param name="prefix">The Item's prefix.</param>
+            <param name="source">Item source.</param>
+            <param name="getItemSettings">The Get Item settings.</param>
+        </member>
         <member name="M:Aequus.Helper.ToIntUsingRNGForDecimals(System.Single,Terraria.Utilities.UnifiedRandom)">
             <summary>Converts <paramref name="value"/> to an int. And uses RNG to determine if value should be +1 higher depending on the remaining decimal number. For example, 10.5 has a 50% chance to return either 10 or 11, since the remaining decimal value gives it a 50% chance to be +1 higher.</summary>
             <param name="value"></param>
@@ -6026,7 +6095,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Amt Sounds: 130)</summary>
+            <summary>(Amt Sounds: 133)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.Attack_DeathRay">
             <summary>Full Path: Aequus/NPCs/BossMonsters/OmegaStarite/Sounds/Attack_DeathRay<para>Num Variants: 1</para></summary>
@@ -6081,6 +6150,12 @@
         </member>
         <member name="F:Aequus.AequusSounds.concoction1">
             <summary>Full Path: Aequus/Assets/Sounds/concoction1<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.CrossbowReload">
+            <summary>Full Path: Aequus/Assets/Sounds/CrossbowReload<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.CrossbowShoot">
+            <summary>Full Path: Aequus/Assets/Sounds/CrossbowShoot<para>Num Variants: 1</para></summary>
         </member>
         <member name="F:Aequus.AequusSounds.dagger">
             <summary>Full Path: Aequus/Assets/Sounds/Item/Sword/dagger<para>Num Variants: 1</para></summary>
@@ -6273,6 +6348,9 @@
         </member>
         <member name="F:Aequus.AequusSounds.RecruitZombie">
             <summary>Full Path: Aequus/Assets/Sounds/RecruitZombie<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.RopeRetract">
+            <summary>Full Path: Aequus/Assets/Sounds/RopeRetract<para>Num Variants: 1</para></summary>
         </member>
         <member name="F:Aequus.AequusSounds.savingGraceCast">
             <summary>Full Path: Aequus/Assets/Sounds/Item/savingGraceCast<para>Num Variants: 1</para></summary>

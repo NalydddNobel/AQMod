@@ -5,6 +5,7 @@ using Aequus.Common.DataSets;
 using Aequus.Common.EntitySources;
 using Aequus.Common.IO;
 using Aequus.Common.Items.EquipmentBooster;
+using Aequus.Common.Projectiles;
 using Aequus.Common.Projectiles.SentryChip;
 using Aequus.Common.Recipes;
 using Aequus.Common.Tiles;
@@ -73,6 +74,47 @@ public static partial class Helper {
     private static Mod Mod => ModContent.GetInstance<Aequus>();
 
     private const char FULL_NAME_SEPERATOR = '/';
+
+    public static bool IsChildOrNoSpecialEffects(this Projectile projectile) {
+        return projectile.GetGlobalProjectile<ProjectileItemData>().NoSpecialEffects || projectile.GetGlobalProjectile<AequusProjectile>().HasProjectileOwner;
+    }
+
+    /// <summary>
+    /// Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
+    /// <para>Automatically syncs the item in multiplayer.</para>
+    /// <para>Note: May only work if <see cref="Main.myPlayer"/> is the <paramref name="player"/>.</para>
+    /// </summary>
+    /// <param name="player">The player.</param>
+    /// <param name="item">The Item.</param>
+    /// <param name="source">Item source.</param>
+    /// <param name="getItemSettings">The Get Item settings.</param>
+    public static void GiveItem(this Player player, Item item, IEntitySource source, GetItemSettings getItemSettings) {
+        item.Center = player.Center;
+        item = player.GetItem(player.whoAmI, item, getItemSettings);
+
+        if (item != null && !item.IsAir) {
+            int newItemIndex = Item.NewItem(source, player.getRect(), item);
+            Main.item[newItemIndex].newAndShiny = false;
+            if (Main.netMode == NetmodeID.MultiplayerClient) {
+                NetMessage.SendData(MessageID.SyncItem, number: newItemIndex, number2: 1f);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
+    /// <para>Automatically syncs the item in multiplayer.</para>
+    /// <para>Note: May only work if <see cref="Main.myPlayer"/> is the <paramref name="player"/>.</para>
+    /// </summary>
+    /// <param name="player">The player.</param>
+    /// <param name="type">The Item Id.</param>
+    /// <param name="stack">The Item's stack.</param>
+    /// <param name="prefix">The Item's prefix.</param>
+    /// <param name="source">Item source.</param>
+    /// <param name="getItemSettings">The Get Item settings.</param>
+    public static void GiveItem(this Player player, int type, IEntitySource source, GetItemSettings getItemSettings, int stack = 1, int prefix = 0) {
+        player.GiveItem(new Item(type, stack, prefix), source, getItemSettings);
+    }
 
     public static Color HueShift(this Color color, float multiplier) {
         var hsl = Main.rgbToHsl(color);

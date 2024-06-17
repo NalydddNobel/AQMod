@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1305)</summary>
+    /// <summary>(Amt Textures: 1309)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         /// <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -344,6 +344,8 @@ namespace Aequus {
         public static readonly TextureAsset CelesteTorusProj = new("Aequus/Items/Equipment/Accessories/Combat/Passive/CelesteTorus/CelesteTorusProj");
         /// <summary>Full Path: Aequus/Items/Misc/Dyes/CensorDye</summary>
         public static readonly TextureAsset CensorDye = new("Aequus/Items/Misc/Dyes/CensorDye");
+        /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
+        public static readonly TextureAsset Chain = new("Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain");
         /// <summary>Full Path: Aequus/Items/Misc/Powders/ChlorophytePowder</summary>
         public static readonly TextureAsset ChlorophytePowder = new("Aequus/Items/Misc/Powders/ChlorophytePowder");
         /// <summary>Full Path: Aequus/NPCs/Monsters/DemonSiege/Cindera</summary>
@@ -1010,6 +1012,8 @@ namespace Aequus {
         public static readonly TextureAsset GravitySofa = new("Aequus/Tiles/Furniture/Gravity/GravitySofa");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Gravity/GravityTable</summary>
         public static readonly TextureAsset GravityTable = new("Aequus/Tiles/Furniture/Gravity/GravityTable");
+        /// <summary>Full Path: Aequus/Items/Potions/Healing/Honey/GreaterHoney</summary>
+        public static readonly TextureAsset GreaterHoney = new("Aequus/Items/Potions/Healing/Honey/GreaterHoney");
         /// <summary>Full Path: Aequus/Items/Potions/Healing/Restoration/GreaterRestorationPotion</summary>
         public static readonly TextureAsset GreaterRestorationPotion = new("Aequus/Items/Potions/Healing/Restoration/GreaterRestorationPotion");
         /// <summary>Full Path: Aequus/Content/DronePylons/NPCs/GunnerDrone</summary>
@@ -2100,6 +2104,8 @@ namespace Aequus {
         public static readonly TextureAsset SkeletonKey = new("Aequus/Items/Tools/SkeletonKey");
         /// <summary>Full Path: Aequus/Assets/UI/SkeletonMerchantHead</summary>
         public static readonly TextureAsset SkeletonMerchantHead = new("Aequus/Assets/UI/SkeletonMerchantHead");
+        /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
+        public static readonly TextureAsset SkyHunterCrossbow = new("Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow");
         /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchantNPC/SkyMerchant</summary>
         public static readonly TextureAsset SkyMerchant = new("Aequus/NPCs/Town/SkyMerchantNPC/SkyMerchant");
         /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchantNPC/SkyMerchant_Head</summary>
@@ -2302,6 +2308,8 @@ namespace Aequus {
         public static readonly TextureAsset SuperDartTrapHat = new("Aequus/Items/Equipment/Armor/SetTrap/SuperDartTrapHat");
         /// <summary>Full Path: Aequus/Items/Equipment/Armor/SetTrap/SuperDartTrapHat_Head</summary>
         public static readonly TextureAsset SuperDartTrapHat_Head = new("Aequus/Items/Equipment/Armor/SetTrap/SuperDartTrapHat_Head");
+        /// <summary>Full Path: Aequus/Items/Potions/Healing/Honey/SuperHoney</summary>
+        public static readonly TextureAsset SuperHoney = new("Aequus/Items/Potions/Healing/Honey/SuperHoney");
         /// <summary>Full Path: Aequus/Items/Misc/Spawners/SupernovaFruit</summary>
         public static readonly TextureAsset SupernovaFruit = new("Aequus/Items/Misc/Spawners/SupernovaFruit");
         /// <summary>Full Path: Aequus/Items/Potions/Healing/Restoration/SuperRestorationPotion</summary>

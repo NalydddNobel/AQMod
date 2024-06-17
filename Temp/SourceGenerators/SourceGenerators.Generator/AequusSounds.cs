@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Sounds: 130)</summary>
+    /// <summary>(Amt Sounds: 133)</summary>
     [CompilerGenerated]
     public class AequusSounds : ILoadable {                    
         public void Load(Mod mod) {
@@ -51,6 +51,10 @@ namespace Aequus {
         public static readonly SoundAsset concoction0 = new SoundAsset("Aequus/Assets/Sounds/concoction0", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/concoction1<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset concoction1 = new SoundAsset("Aequus/Assets/Sounds/concoction1", 1);
+        /// <summary>Full Path: Aequus/Assets/Sounds/CrossbowReload<para>Num Variants: 1</para></summary>
+        public static readonly SoundAsset CrossbowReload = new SoundAsset("Aequus/Assets/Sounds/CrossbowReload", 1);
+        /// <summary>Full Path: Aequus/Assets/Sounds/CrossbowShoot<para>Num Variants: 1</para></summary>
+        public static readonly SoundAsset CrossbowShoot = new SoundAsset("Aequus/Assets/Sounds/CrossbowShoot", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Item/Sword/dagger<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset dagger = new SoundAsset("Aequus/Assets/Sounds/Item/Sword/dagger", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Item/Sword/daggerHit<para>Num Variants: 3</para></summary>
@@ -179,6 +183,8 @@ namespace Aequus {
         public static readonly SoundAsset raygun = new SoundAsset("Aequus/Assets/Sounds/Item/raygun", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/RecruitZombie<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset RecruitZombie = new SoundAsset("Aequus/Assets/Sounds/RecruitZombie", 1);
+        /// <summary>Full Path: Aequus/Assets/Sounds/RopeRetract<para>Num Variants: 1</para></summary>
+        public static readonly SoundAsset RopeRetract = new SoundAsset("Aequus/Assets/Sounds/RopeRetract", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Item/savingGraceCast<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset savingGraceCast = new SoundAsset("Aequus/Assets/Sounds/Item/savingGraceCast", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Item/savingGraceHeal<para>Num Variants: 1</para></summary>
