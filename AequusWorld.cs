@@ -5,6 +5,7 @@ using Aequus.Content.Biomes;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.UI;
 using Aequus.Items.Tools;
+using Aequus.NPCs;
 using Aequus.NPCs.BossMonsters.Crabson;
 using Aequus.NPCs.BossMonsters.DustDevil;
 using Aequus.NPCs.BossMonsters.OmegaStarite;
@@ -216,7 +217,13 @@ public partial class AequusWorld : ModSystem {
     private static void LoadHooks() {
         Terraria.On_Main.ShouldNormalEventsBeAbleToStart += Main_ShouldNormalEventsBeAbleToStart;
         Terraria.On_Main.UpdateTime_StartNight += Main_UpdateTime_StartNight;
+        Terraria.On_Main.UpdateTime_StartDay += On_Main_UpdateTime_StartDay;
         Terraria.On_SceneMetrics.ExportTileCountsToMain += SceneMetrics_ExportTileCountsToMain;
+    }
+
+    private static void On_Main_UpdateTime_StartDay(On_Main.orig_UpdateTime_StartDay orig, ref bool stopEvents) {
+        orig(ref stopEvents);
+        NPCWantsToMoveIn.OnStartDay();
     }
 
     private static bool Main_ShouldNormalEventsBeAbleToStart(Terraria.On_Main.orig_ShouldNormalEventsBeAbleToStart orig) {
