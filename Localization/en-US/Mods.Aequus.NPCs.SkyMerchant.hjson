@@ -1,3 +1,6 @@
+DisplayName: Sky Merchant
+Bestiary: Half deliveryman and half thrillseeker, this elf crosses the world on his hot air balloon. If you can catch up with him on a windy day, he'll be happy to share some of his stock!
+
 Dialogue: {
 	0: My stock is just flying off the shelves today!
 	1: What goes up must come down, except my prices! Or, wait, was it stocks?

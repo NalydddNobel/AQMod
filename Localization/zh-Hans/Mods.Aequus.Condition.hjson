@@ -28,5 +28,11 @@ NotDownedTrueFinalBoss: Mods.Aequus.Condition.NotDownedTrueFinalBoss
 ConfigIsTrue: 如果{1}/{0}配置选项设为True
 SilverOre: Mods.Aequus.Condition.SilverOre
 DownedSalamancer: Mods.Aequus.Condition.DownedSalamancer
+DownedDustDevil: Mods.Aequus.Condition.DownedDustDevil
+DownedRedSprite: Mods.Aequus.Condition.DownedRedSprite
+DownedSpaceSquid: Mods.Aequus.Condition.DownedSpaceSquid
 UsedReforgeBook: Mods.Aequus.Condition.UsedReforgeBook
+DownedOmegaStarite: Mods.Aequus.Condition.DownedOmegaStarite
+DownedUltraStarite: Mods.Aequus.Condition.DownedUltraStarite
+DownedDemonSiege: Mods.Aequus.Condition.DownedDemonSiege
 MetOccultist: Mods.Aequus.Condition.MetOccultist

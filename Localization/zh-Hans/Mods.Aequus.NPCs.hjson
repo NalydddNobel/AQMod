@@ -1,3 +1,5 @@
+DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
+
 ConeheadZombie: {
 	DisplayName: 带甲僵尸
 	Bestiary: 无意识的徘徊在被污染的沙滩, 这个僵尸从垃圾中拼凑出了一套防御服装.
@@ -29,7 +31,11 @@ OilSlime: {
 	BannerName: 不透明的史莱姆旗
 }
 
-BreadOfCthulhu.BannerName: 克苏鲁之面包旗
+BreadOfCthulhu: {
+	DisplayName: 克苏鲁之面包
+	BannerName: 克苏鲁之面包旗
+	Bestiary: 一种遗失的食物, 当它穿过惊骇传送门后重新获得了生命, 这个令人厌恶的面包并不打算成为你的午餐! 钓鱼时要小心, 它可能会挑看起来容易捕食的没有经验的渔夫来诱惑.
+}
 
 // --localization note-- "conductor" as in an orchestra conductor
 Conductor: {
@@ -42,8 +48,10 @@ Conductor: {
 Mirage.Bestiary: 下雨时, 有毒的雾云形成并聚集在一起, 形成这种酸性怪物. 它希望自己能像真正的雨云一样, 但就连和目标假人交朋友都有困难.
 Pillbug.Bestiary: 被海蓝能量所祝福, 这些虫子到处乱爬, 以污染为食, 仿佛污染对它们来说不算什么.
 Chromite.Bestiary: 一种甲虫形状的虫子, 有着能够通过磁性机制来改变颜色以融入周围环境的金属外壳. 它们是常见的家庭害虫, 是微波炉的灾祸, 但也可能是一种有用的诱饵.
+Crabson.DisplayName: 巨蟹蛤
 
 OmegaStarite: {
+	DisplayName: 终末之星
 	TreasureBagDisplayName: 宝藏袋 (终末之星)
 	TrophyDisplayName: 终末之星纪念章
 	RelicDisplayName: 终末之星纪念物
@@ -51,13 +59,18 @@ OmegaStarite: {
 }
 
 DustDevil: {
+	DisplayName: 沙尘恶魔
 	TreasureBagDisplayName: 宝藏袋 (沙尘恶魔)
 	TrophyDisplayName: 沙尘恶魔纪念章
 	RelicDisplayName: 沙尘恶魔纪念物
 	MaskDisplayName: 沙尘恶魔面具
 }
 
-BloodMimic.BannerName: 血红模仿者旗
+BloodMimic: {
+	DisplayName: 血红模仿者
+	BannerName: 血红模仿者旗
+	Bestiary: 当可怕的红月照耀时, 被杀的宝箱劫掠者溃烂的尸体可能会试图与他们曾经想掠夺的宝箱合并, 腐蚀并突变内部的宝藏.
+}
 
 CinderBat: {
 	Bestiary: 蝙蝠般的小恶魔, 以其丑陋的面孔和更丑陋的态度而闻名. 绝对没有私人恩怨.
@@ -78,18 +91,42 @@ KeeperImp: {
 }
 
 ChainedSoul.DisplayName: 链缚之魂
-DwarfStarite.ItemTooltip: ""
+
+DwarfStarite: {
+	DisplayName: 矮化源星
+	Bestiary: 如果一颗星源没有收集到足够的能量来进化, 那么它会逐渐萎缩成一个光点. 它的力量萎缩到了无用的地步, 尽管如此, 它仍然通过漫无目的的漂浮来享受着摸鱼生活.
+	ItemTooltip: ""
+}
 
 UltraStarite: {
+	DisplayName: 终耀源星
+	Bestiary: 处于成长最后阶段的精英星源可以将暴露的核心集中到致命的激光束上. 你认为天要塌下来了是可以理解的!
 	TrophyDisplayName: 终耀源星纪念章
 	RelicDisplayName: 终耀源星纪念物
 }
 
-HyperStarite.BannerName: 巨耀源星旗
-SuperStarite.BannerName: 极耀源星旗
-Starite.BannerName: 源星旗
+HyperStarite: {
+	DisplayName: 巨耀源星
+	Bestiary: 随着老化, 星源开始膨胀并变得更不稳定, 导致其部件被推入自身轨道内, 能够当做武器使用.
+	BannerName: 巨耀源星旗
+}
+
+SuperStarite: {
+	DisplayName: 极耀源星
+	Bestiary: 聚集了足够能量的星源最终会蜕去外壳进化为这种装甲形态.
+	BannerName: 极耀源星旗
+}
+
+Starite: {
+	DisplayName: 源星
+	Bestiary: 一块与坠落之星有着惊人相似度的活体星尘, 它们的外表看起来是气态的, 但实际上会长出坚硬的外壳.
+	BannerName: 源星旗
+}
 
 PhysicistPet: {
+	DisplayName: 无人机
+	Bestiary: 无论物理学家走到哪里, 这个小小的装置都会跟着她, 不断记录环境中的数据以确保没有遗漏. 小型化更大的监视模型以供个人使用.
+
 	Dialogue: {
 		0: 哔哔啵.
 		1: 哔啵.
@@ -97,13 +134,23 @@ PhysicistPet: {
 }
 
 CleanserDrone: {
+	DisplayName: 清扫无人机
+	Bestiary: 它是由物理学家和蒸汽朋克人为了保持你小镇的纯净和宜居而联合创造的. 它从小镇的晶塔中汲取能量用以运行.
 }
 
 GunnerDrone: {
+	DisplayName: 火炮无人机
+	Bestiary: 它是由物理学家为了保护你的小镇而创造的, 它从小镇的晶塔中汲取能量用以运行.
 }
 
 HealerDrone: {
+	DisplayName: 治疗无人机
+	Bestiary: 它是由物理学家为了保持你小镇的健康而创造的, 它从小镇的晶塔中汲取能量用以运行.
 }
+
+AdamantiteMimic.DisplayName: 精金宝箱怪
+FrostMimic.DisplayName: 寒霜宝箱怪
+ShadowMimic.DisplayName: 暗影宝箱怪
 
 Eel: {
 	DisplayName: 鳗鱼
@@ -136,19 +183,34 @@ SeaFirefly: {
 }
 
 RedSprite: {
+	DisplayName: 红色精灵
+	Bestiary: 当一道奇怪的闪电与一道愤怒的闪电汇合时, 这朵怒火中烧的风暴云就诞生了. 每个方向都有的猩红涌云使它的存在不可忽视.
 	TrophyDisplayName: 红色精灵纪念章
 	RelicDisplayName: 红色精灵纪念物
 	MaskDisplayName: 红色精灵面具
 }
 
 SpaceSquid: {
+	DisplayName: 太空乌贼
+	Bestiary: 作为一名来自先进星际文明的外星侦察员, 他们将自己的意识移植到由高科技压缩水分子制成的身体中, 以便于远距离传送.
 	TrophyDisplayName: 太空乌贼纪念章
 	RelicDisplayName: 太空乌贼纪念物
 	MaskDisplayName: 太空乌贼面具
 }
 
-Vraine.BannerName: 镰鸟旗
-WhiteSlime.BannerName: 白色史莱姆旗
+Vraine: {
+	DisplayName: 镰鸟
+	BannerName: 镰鸟旗
+	Bestiary: 随风而成群迁徙的候鸟. 它的喙对温度的微小变化非常敏感, 会相应地改变自身的行为.
+}
+
+WhiteSlime: {
+	DisplayName: 白色史莱姆
+	Bestiary: 暴露在高海拔阳光下的史莱姆最终会开始发光. 据说味道像肉桂.
+	BannerName: 白色史莱姆旗
+}
 
 StreamingBalloon: {
+	DisplayName: 紊流气球
+	Bestiary: 一些有创业精神的史莱姆会附着在热气球上, 使其飞的更高. 它们会漂浮在猎物上方, 然后坠落并吞噬它们.
 }

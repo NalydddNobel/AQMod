@@ -1,4 +1,27 @@
+DisplayName: Ocultista
+Bestiary: Una ex-cultista que decidió apoyar al equipo ganador. Dice estar reformada, pero todavía intenta lanzar maldiciones cuando nadie está mirando.
+
 TownNPCMood: {
+	Content: Este lugar es decente. Podria ser mas sombrío, pero cuando hay hambre no hay pan duro, ¿sabes?
+	NoHome: Mmm. por lo visto, no tengo un lugar en donde quedarme.
+	FarFromHome: Oh, ¡al parecer me has atrapado husmeando! Estaré de vuelta al anochezer, lo prometo.
+	// LoveSpace: Plenty of room to practice my spells here... hahaha...
+	DislikeCrowded: ¡No puedo ni caminar por aquí sin lanzar maldiciones accidentalmente!, no que me importe esa última parte, pero entiendes la idea.
+	HateCrowded: ¡Hay demasiada gente aquí! no puedo escabullirme cuando hay alguien mirando en cada esquina.
+	// LoveBiome: "{BiomeName} is one of my favorite places to practice rituals! You should join me in one someday."
+	// LikeBiome: The temperatures are a bit more agreeable in the Desert, I think.
+	// DislikeBiome: Mm, yes, the Hallow. One of my favorite places to dump my trash.
+	// HateBiome: "[HateBiomeQuote]|{BiomeName}+"
+	HateBiome_Snow: E-está demasiado helado... no si-siento mis manos, y las necesito para lanzar hechizos...
+	HateBiome_Evils: Como una "buena person" certificada, {BiomeName} no es un lugar para mi, ¡Obviamente!
+	LoveNPC: "{NPCName}... ¡Por fin hay alguien que respeta una buena maldición! oh, cómo nos vamos a divertir jajaja."
+	// LikeNPC: "[LikeNPCQuote]|{NPCName}+"
+	// LikeNPC_Clothier: "{NPCName} has never flinched away from my spells even once. I like that kind of resilience."
+	// LikeNPC_Demolitionist: "{NPCName} sows so much chaos with his crafts! If only I could get him to let me enchant his bombs..."
+	// DislikeNPC: "{NPCName} is such a goody two-shoes! That kind of attitude really grates on me!"
+	// HateNPC: "{NPCName} is already cursed and she doesn't even CARE! What am I supposed to do with that?!"
+	LikeNPC_Princess: "{NPCName} es tan... ¡crédula! se cree cada palabra que digo, me encanta."
+	// Princess_LovesNPC: "{NPCName} has been casting nice healing spells on me!"
 }
 
 Dialogue: {

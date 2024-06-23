@@ -1,4 +1,27 @@
+DisplayName: Occultist
+Bestiary: A ex-cultist that's decided to bat for the winning team. She claims to be reformed, but still attempts to cast curses and hexes whenever she thinks nobody's looking.
+
 TownNPCMood: {
+	Content: This place is pleasant enough. Could use more suffering, but beggars can't be choosers, you know?
+	NoHome: Hmm. Hm hm hm. I haven't got a place to stay at the moment.
+	FarFromHome: Oh, you've caught me snooping about, it seems! I'll be home by nightfall, promise.
+	LoveSpace: Plenty of room to practice my spells here... hahaha...
+	DislikeCrowded: I can't swing a cat around here without accidentally cursing someone! Not that I mind that part, but, you know.
+	HateCrowded: There's too many people here! I can't sneak around when there's eyes around every corner!
+	LoveBiome: "{BiomeName} is one of my favorite places to practice rituals! You should join me in one someday."
+	LikeBiome: The temperatures are a bit more agreeable in the Desert, I think.
+	DislikeBiome: Mm, yes, the Hallow. One of my favorite places to dump my trash.
+	HateBiome: "[HateBiomeQuote]|{BiomeName}+"
+	HateBiome_Snow: I-it's too c-cold here... Can't c-cast spells because my f-fingers are numb....
+	HateBiome_Evils: As a certified Good Person, {BiomeName} is no place for me to be! Obviously!
+	LoveNPC: "{NPCName}... now there's someone who respects and fears a good curse. Oh, the fun I could have with him! Hahaha!"
+	LikeNPC: "[LikeNPCQuote]|{NPCName}+"
+	LikeNPC_Clothier: "{NPCName} has never flinched away from my spells even once. I like that kind of resilience."
+	LikeNPC_Demolitionist: "{NPCName} sows so much chaos with his crafts! If only I could get him to let me enchant his bombs..."
+	DislikeNPC: "{NPCName} is such a goody two-shoes! That kind of attitude really grates on me!"
+	HateNPC: "{NPCName} is already cursed and she doesn't even CARE! What am I supposed to do with that?!"
+	LikeNPC_Princess: "{NPCName} is so... gullible! She latches on to every word I say, I love it!"
+	Princess_LovesNPC: "{NPCName} has been casting nice healing spells on me!"
 }
 
 Dialogue: {
