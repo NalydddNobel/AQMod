@@ -6,6 +6,10 @@ namespace Aequus.Common.NPCs;
 public class ShopEdits : GlobalNPC {
     public override void ModifyShop(NPCShop shop) {
         switch ((shop.NpcType, shop.Name)) {
+            case (NPCID.ArmsDealer, "Shop"):
+                shop.Add(ModContent.ItemType<Content.Items.Weapons.Ranged.GasCan.GasCan>(), Condition.PlayerCarriesItem(ModContent.ItemType<Content.Items.Weapons.Ranged.GasCan.GasCan>()));
+                break;
+
             case (NPCID.Dryad, "Shop"):
                 shop.InsertAfter(ItemID.GrassSeeds,
                     ModContent.GetInstance<MeadowGrass>().MeadowGrassSeeds.Type, Condition.InSpace);

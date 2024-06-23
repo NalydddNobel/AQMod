@@ -2433,7 +2433,7 @@
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 893) yo momma gai</summary>
+            <summary>(Total Textures: 894) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -3406,6 +3406,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.PlasticDart_Outline">
             <summary>Full Path: Content/Items/Weapons/Ranged/Ammo/PlasticDart_Outline</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GasCan">
+            <summary>Full Path: Content/Items/Weapons/Ranged/GasCan/GasCan</summary>
         </member>
         <member name="F:Aequus.AequusTextures.JunkJet">
             <summary>Full Path: Content/Items/Weapons/Ranged/JunkJet/JunkJet</summary>

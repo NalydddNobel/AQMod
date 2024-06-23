@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.Items.DropRules;
 using Aequus.Common.NPCs.Bestiary;
 using Aequus.Content.Biomes.PollutedOcean;
-using Aequus.Content.Items.Tools.Keys;
 using Aequus.Core.ContentGeneration;
 using Aequus.DataSets;
 using System.Linq;
@@ -55,16 +54,21 @@ public class OilSlime : ModNPC, IBodyItemContainer {
         npcLoot.Add(ItemDropRule.NormalvsExpert(ItemID.SlimeStaff, 8000, 5600));
 
         // 1/15 chance to contain a Copper Key inside of its body.
-        IItemDropRule bodyRules = new CommonBodyDropRule(ModContent.ItemType<CopperKey>(), CopperKey.DropRate);
+        IItemDropRule bodyRules = new CommonBodyDropRule(ModContent.ItemType<Items.Tools.Keys.CopperKey>(), Items.Tools.Keys.CopperKey.DropRate);
 
-        // If it doesn't roll a Copper Key inside of its body, instead attempt rolling junk with a 25% chance.
         int[] junk = FishDataSet.Junk.Where(i => i.ValidEntry).Select(i => i.Id).ToArray();
-        bodyRules.OnFailedRoll(new OneFromOptionsBodyDropRule(4, 1, junk));
+        bodyRules
+            // If it doesn't roll a Copper Key inside of its body, instead attempt rolling the gas can.
+            .OnFailedRoll(new CommonBodyDropRule(ModContent.ItemType<Items.Weapons.Ranged.GasCan.GasCan>(), 4, amountDroppedMinimum: 20, amountDroppedMaximum: 40))
+            // If it doesn't roll a Copper Key inside of its body, instead attempt rolling junk with a 25% chance.
+            .OnFailedRoll(new OneFromOptionsBodyDropRule(4, 1, junk));
         npcLoot.Add(bodyRules);
     }
     #endregion
 
     public override void AI() {
+        //NPC.oiled = true; // Add oiled state to make fire damage more powerful.
+
         if (ItemId == 0 && Main.netMode != NetmodeID.MultiplayerClient && NPC.value > 0f) {
             NPC.TargetClosest(faceTarget: false);
 
