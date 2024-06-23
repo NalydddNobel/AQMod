@@ -14,12 +14,13 @@ public class OilSlimeDeathProj() : FloorHazard(new Info(HurtsPlayers: true, Hurt
         if (HazardPoints.Count <= 0) {
             Projectile.position.Y += 2f;
             MarkAllAvailable();
+            Projectile.timeLeft = 600;
             return;
         }
 
         base.AI();
 
-        int timeBetweenSpread = 35;
+        int timeBetweenSpread = 2;
         int spreadCount = 5;
         if ((int)Projectile.ai[0] <= timeBetweenSpread * spreadCount) {
             if ((int)Projectile.ai[0] == 0) {
@@ -32,11 +33,15 @@ public class OilSlimeDeathProj() : FloorHazard(new Info(HurtsPlayers: true, Hurt
         }
 
         if (burning) {
-            int dustPerTick = Math.Max((TileWidth + TileHeight) / 4, 1);
+            int dustPerTick = (int)Math.Max((TileWidth + TileHeight) * (1f + Main.gfxQuality) * 0.33f, 1);
             for (int i = 0; i < dustPerTick; i++) {
+                if (!Main.rand.NextBool(Projectile.alpha / 20 + 1)) {
+                    continue;
+                }
+
                 Point p = Main.rand.Next(HazardPoints);
-                Vector2 worldCoordinates = p.ToWorldCoordinates(Main.rand.NextFloat(16f), 0f);
-                worldCoordinates.Y += 4f;
+                Vector2 worldCoordinates = p.ToWorldCoordinates(Main.rand.NextFloat(16f), Main.rand.NextFloat(24f));
+                worldCoordinates.Y -= 4f;
                 float scale = Main.rand.NextFloat(0.3f, 2f);
 
                 if (Main.rand.NextBool()) {
@@ -45,13 +50,19 @@ public class OilSlimeDeathProj() : FloorHazard(new Info(HurtsPlayers: true, Hurt
                         d.fadeIn = d.scale;
                         d.noGravity = true;
                         d.scale *= 0.3f;
+                        d.velocity.Y -= scale * 0.5f;
+                    }
+                    else if (!Main.rand.NextBool(3)) {
+                        d.scale *= 2;
+                        d.noGravity = true;
+                        d.velocity *= Main.rand.NextFloat(0.1f);
                     }
                     else {
                         d.scale *= 0.8f;
                         d.noLight = true;
                         d.noLightEmittence = true;
+                        d.velocity.Y -= scale * 1f;
                     }
-                    d.velocity.Y -= scale * 0.6f;
                 }
                 else {
                     Dust d = Dust.NewDustPerfect(worldCoordinates, DustID.Smoke, Alpha: 150, Scale: scale * 0.5f);
@@ -59,6 +70,10 @@ public class OilSlimeDeathProj() : FloorHazard(new Info(HurtsPlayers: true, Hurt
                     d.velocity.Y -= scale * 0.3f;
                 }
             }
+        }
+
+        if (Projectile.timeLeft < 180) {
+            Projectile.alpha += 2;
         }
 
         void OnSpread(int i, int j) {
@@ -73,7 +88,6 @@ public class OilSlimeDeathProj() : FloorHazard(new Info(HurtsPlayers: true, Hurt
                 d.velocity.Y -= scale * 0.3f;
             }
         }
-
     }
 
     public override void OnHazardCollideWithPlayer(Player target) {
@@ -114,17 +128,22 @@ public class OilSlimeDeathProj() : FloorHazard(new Info(HurtsPlayers: true, Hurt
 
         if (Element.Flame.ContainsItem(itemSource) || Element.Flame.ContainsItem(ammoSource)) {
             burning = true;
+            Projectile.timeLeft = 1000;
+            Projectile.alpha = 0;
+            Projectile.netUpdate = true;
         }
     }
 
     public override bool PreDraw(ref Color lightColor) {
         Texture2D texture = TextureAssets.Projectile[Type].Value;
         float opacity = Projectile.Opacity;
+
+        Vector2 origin = new Vector2(8f, 8f);
         foreach (Point p in HazardPoints) {
             FastRandom random = Helper.RandomTileCoordinates(p.X, p.Y);
             Vector2 worldCoordinates = p.ToWorldCoordinates();
-            Color hazardColor = Lighting.GetColor(p) * opacity;
-            Rectangle frame = new Rectangle(18 * random.Next(6), 0, 18, 18);
+            Color hazardColor = Lighting.GetColor(p);
+            Rectangle frame = new Rectangle(18 * random.Next(6), 0, 16, 34);
             SpriteEffects effects = SpriteEffects.None;
             Vector2 scale = new Vector2(1f, 1f);
             float rotation = 0f;
@@ -132,23 +151,8 @@ public class OilSlimeDeathProj() : FloorHazard(new Info(HurtsPlayers: true, Hurt
             Tile tile = Framing.GetTileSafely(p);
 
             if (tile.IsHalfBlock) {
-                worldCoordinates.Y += 7f;
+                worldCoordinates.Y += 6f;
                 frame.Y = 36;
-            }
-            else if (tile.Slope > 0) {
-                switch (tile.Slope) {
-                    case SlopeType.SlopeDownLeft:
-                        rotation = MathHelper.PiOver4;
-                        worldCoordinates.Y += 6f;
-                        scale.X *= 1.33f;
-                        break;
-
-                    case SlopeType.SlopeDownRight:
-                        rotation = -MathHelper.PiOver4;
-                        worldCoordinates.Y += 6f;
-                        scale.X *= 1.33f;
-                        break;
-                }
             }
             else {
                 byte connection = 0;
@@ -160,18 +164,27 @@ public class OilSlimeDeathProj() : FloorHazard(new Info(HurtsPlayers: true, Hurt
                     effects = SpriteEffects.FlipHorizontally;
                 }
 
-                frame.Y += 18 * connection switch {
+                frame.Y += 36 * connection switch {
                     0 => 0,
                     4 => 2,
                     _ => 1,
                 };
 
-                worldCoordinates.Y -= 1f;
+                if (tile.Slope > 0) {
+                    effects = tile.Slope != SlopeType.SlopeDownLeft ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+
+                    frame.Y = 108;
+                }
+
+                worldCoordinates.Y -= 4f;
             }
 
-            hazardColor = hazardColor.MultiplyRGB(new Color(40, 40, 40, 200));
+            if (burning) {
+                hazardColor = hazardColor.MultiplyRGB(new Color(40, 40, 40, 255));
+            }
+            hazardColor *= 0.8f;
 
-            Main.EntitySpriteDraw(texture, worldCoordinates - Main.screenPosition, frame, hazardColor, rotation, frame.Size() / 2f, scale, effects);
+            Main.EntitySpriteDraw(texture, worldCoordinates - Main.screenPosition, frame, hazardColor * opacity, rotation, origin, scale, effects);
         }
 
         bool CheckConnection(int i, int j) => !Contains(i, j) || Framing.GetTileSafely(i, j).IsHalfBlock;
