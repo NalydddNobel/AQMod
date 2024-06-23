@@ -1,27 +1,4 @@
-DisplayName: 秘术师
-Bestiary: 一为决定为获胜队伍而战的前教徒. 她声称自己已经改过自新, 但每当她认为没人注意时, 她仍会试图施下诅咒和巫术.
-
 TownNPCMood: {
-	Content: 这个地方很宜人. 可能需要更多的痛苦, 但你懂得, 乞丐没有选择, 对吧?
-	NoHome: Hmm. Hm hm hm. 我现在没有地方住.
-	FarFromHome: 哦, 你好像发现我在四处窥探了! 我会在黄昏前到家, 我保证.
-	LoveSpace: 这里有足够的空间来练习我的咒语...哈哈哈...
-	DislikeCrowded: 我在这里晃来晃去都会不小心诅咒到别人! 实际上我对那部分并不在意, 但是, 你懂得.
-	HateCrowded: 这里人太多了! 当每个角落都有眼睛的时候, 我就不能鬼鬼祟祟的行动了!
-	LoveBiome: "{BiomeName}是我最喜欢练习仪式的地方之一! 总有一天你应该加入我."
-	LikeBiome: 我认为沙漠的温度更适宜一些.
-	DislikeBiome: 嗯, 是的, 神圣之地. 我最喜欢倒垃圾的地方之一.
-	HateBiome: "[HateBiomeQuote]|{BiomeName}+"
-	HateBiome_Snow: 这-这里太冷了...无法施-放咒语, 因为我的手指都-冻麻了....
-	HateBiome_Evils: 作为一个认证过的好人, {BiomeName}这个地方不适合我! 显而易见!
-	LoveNPC: "{NPCName}...这现在有一个尊重并害怕好诅咒的人. 哦, 我和他在一起肯定会有很多乐子的! 哈哈哈哈!"
-	LikeNPC: "[LikeNPCQuote]|{NPCName}+"
-	LikeNPC_Clothier: "{NPCName}从未对我的咒语退缩过哪怕一次. 我喜欢那种坚韧."
-	LikeNPC_Demolitionist: "{NPCName}用他的工艺制造了如此多的混乱! 如果我能让他让我为他的炸弹附魔就好了..."
-	DislikeNPC: "{NPCName}真是个老好人呀! 那种态度真让我恼火!"
-	HateNPC: "{NPCName}已经被诅咒了, 但她根本不在乎! 我该怎么办?!"
-	LikeNPC_Princess: "{NPCName}是如此的...好骗! 她记住了我说的每个单词, 我爱它!"
-	Princess_LovesNPC: "{NPCName}一直在给我施很好的治疗魔法!"
 }
 
 Dialogue: {

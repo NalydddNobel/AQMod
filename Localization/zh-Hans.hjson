@@ -1,0 +1,3639 @@
+Mods: {
+	Aequus: {
+		Announcement: {
+			DemonSiege: {
+				GiveItem: {
+					0: "{Player}接受了魔鬼的契约..."
+					1: "{Player}接受了自己的命运..."
+					2: "{Player}无法想象自己的{Item}会发生什么..."
+					3: "{Player}没有想到它会吃掉自己的{Item}..."
+					4: "{Player}心爱的{Item}将自己引入黑暗..."
+					5: 你的{Item}正被进一步腐化...
+					6: 你{Item}的周围环绕着难以想象的恐怖...
+					7: 秘术师咧着嘴笑着{Player}...
+				}
+
+				EventStart: {
+					0: ...恶魔对{Player}不以为然!
+					1: ...{Player}的故事在此结束!
+					2: ...你的{Item}引来了不必要的关注!
+					3: ...{Player}没有想到有什么接近了!
+					4: ...{Player}将被杀害.
+					5: ...{Player}将面临后果.
+					6: ...恐惧就在此处!
+					7: ...末日与黑暗降临了!
+				}
+			}
+
+			DisabledEffect: 已禁用{0}效果
+			TinkerersGuidebook: 哥布林工匠的利润开始减少!
+			EyeOfCthulhuDontDigUp: 恐惧撕裂并穿过了地表...
+			EyeOfCthulhuDrunk: 恐惧溃烂并在洞穴中生长...
+			EyeOfCthulhuDemonite: 魔矿的存在在洞穴中生长...
+			EyeOfCthulhuCrimtane: 猩红矿溃烂在洞穴的深处...
+			HardmodeChests: 洞穴的宝箱中出现了新的宝藏...
+			DemonSiegeFailEat: 血巢吞噬了你的{0}...
+			DemonSiegeFail: 血巢反刍出了你的{0}...
+			YinYang: 光与暗的远古魂灵变的不耐烦了...
+			DustDevilSpaceSquid: 风开始分离...
+			DustDevilRedSprite: 风开始旋转...
+			OrganicEventSight: 丛林的神经被刺激了...
+			OrganicEventFright: 丛林的恐惧蔓延开来...
+			OrganicEventMight: 丛林的根须立于地面之上...
+			GlimmerStart: 一缕柔光出现在了天空中...
+			GlimmerStartWest: 一缕柔光出现在了西边的天空中...
+			GlimmerStartEast: 一缕柔光出现在了东边的天空中...
+			GlimmerEnd: 柔光渐渐消失...
+		}
+
+		Achievement: {
+			Name: {
+				OmegaStarite: 空间分形
+				Crabson: 我的珍珠女儿
+				DemonSiege: 毁灭猎手
+				Glimmer: 星宇之憎
+				GlimmerHyperStarite: 触星
+				GlimmerBeaten: 狂热之源
+			}
+
+			Description: {
+				OmegaStarite: 击败终末之星, 一种可捕获所有终极能量源头的精锐星源武器...
+				Crabson: 击败巨蟹蛤, 一只蟹蛤怪物躲在自己的地下海洞里, 它在搜寻着稀有的珍珠...
+				DemonSiege: 唤醒血巢, 升级武器!
+				Glimmer: 发现柔光!
+				GlimmerHyperStarite: 深入柔光!
+				GlimmerBeaten: 与柔光之源互动!
+			}
+		}
+
+		DropCondition: {
+			DuringGlimmer: 当柔光事件发生时
+			Boss2: 仅会在一位邪恶环境Boss被击败后掉落
+			ShadowMimic: 仅会掉落自暗影宝箱怪
+			NameTag: 仅会在命名为{NameTag}时掉落
+			AllMechs: 仅会在3个机械Boss全部被击败时掉落
+			NotBeatenDemonSiege: 仅在恶魔围攻未完成时掉落
+			OtherwiseChance: 在'{0}'满足条件时拥有100%掉落几率
+			OnFirstKill: 仅在首次击败时掉落
+
+			OreTier: {
+				0: 仅会在世界中有着铜矿石时掉落
+				1: 仅会在世界中有着锡矿石时掉落
+				2: 仅会在世界中有着铁矿石时掉落
+				3: 仅会在世界中有着铅矿石时掉落
+				4: 仅会在世界中有着银矿石时掉落
+				5: 仅会在世界中有着钨矿石时掉落
+				6: 仅会在世界中有着金矿石时掉落
+				7: 仅会在世界中有着铂金矿石时掉落
+			}
+
+			Flawless: 仅在无伤击败时掉落
+			Trophy: 在无伤击败时拥有100%掉落几率
+		}
+
+		nalyd: "'闻起来像玫瑰'"
+
+		ArmorSetBonus: {
+			MoonlunaHat: 增加1格最大召唤栏位
+			Necromancer:
+				'''
+				召唤一个强大的骷髅来协助你战斗
+				装备的护胫的属性会翻倍
+				'''
+			Seraphim:
+				'''
+				召唤一个强大的地牢骷髅来协助你战斗
+				装备的护胫的属性会翻倍
+				'''
+			Gravetender: 当光标悬浮在幽魂仆从上方时双击{0}以强化它们
+		}
+
+		Items: {
+			LavaproofMitten: {
+				DisplayName: 防熔岩连指手套
+				Tooltip: 允许你在熔岩中放置方块
+			}
+
+			Stormcloak: {
+				DisplayName: 风暴披风
+				Tooltip: 可吸收至多{0}个敌对弹幕, 在攻击时会将吸收的弹幕掷出
+				BoostTooltip: 敌对弹幕会爆炸并造成额外伤害
+			}
+
+			ShadowVeer: {
+				DisplayName: 影行者
+				Tooltip: 幽魂仆从会对被标记的敌人进行暗影冲刺
+				BoostTooltip: 幽魂仆从冲刺的距离更远
+			}
+
+			SouljointCuffs: {
+				DisplayName: 魂结镣铐
+				Tooltip: 幽魂仆从在近战击中敌人时会链在敌人身上
+				BoostTooltip:
+					'''
+					增加1格最大哨兵栏位
+					哨兵造成的冻伤减益的持续时间翻倍
+					'''
+			}
+
+			NaturesCruelty: {
+				DisplayName: 大自然的残忍
+				Tooltip: 你的幽魂仆从会承受25%你所受到的伤害
+			}
+
+			SpiritKeg: {
+				DisplayName: 魂灵之桶
+				Tooltip:
+					'''
+					增加1格最大幽魂仆从栏位
+					延长1分钟幽魂仆从的存在时间
+					'''
+			}
+
+			CartilageRing: {
+				DisplayName: 骨质戒指
+				Tooltip:
+					'''
+					{$Items.PandorasBox.Tooltip}
+					{$Items.BoneRing.Tooltip}
+					'''
+				BoostTooltip:
+					'''
+					{$Items.PandorasBox.Tooltip}
+					{$Items.BoneRing.Tooltip}
+					'''
+			}
+
+			LittleInferno: {
+				DisplayName: 小小炼狱
+				Tooltip:
+					'''
+					攻击造成暴击时会造成狱火减益
+					弹幕和燃烧的敌人身上会带有狱火药水的效果
+					'记住...火焰可以很温暖! 火可以很有趣! 火可以很危险!'
+					'''
+			}
+
+			HeartshatterNecklace: {
+				DisplayName: 碎心者项链
+				Tooltip:
+					'''
+					{$Mods.Aequus.Items.FlashwayNecklace.Tooltip}
+					{$ItemTooltip.PanicNecklace}
+					'''
+				BoostTooltip: "{$Items.FlashwayNecklace.BoostTooltip}"
+			}
+
+			FlashwayNecklace: {
+				DisplayName: 晖耀项链
+				Tooltip: 允许你在受到攻击之前无敌一小段时间
+				BoostTooltip: 冷却时间减半
+			}
+
+			HaltingMagnet: {
+				DisplayName: 凝滞磁铁
+				Tooltip:
+					'''
+					{$ItemTooltip.TreasureMagnet}
+					{$Items.HaltingMachine.Tooltip}
+					'''
+				BoostTooltip: "{$Items.HaltingMachine.BoostTooltip}"
+			}
+
+			HaltingMachine: {
+				DisplayName: 凝滞仪
+				Tooltip: 附近的物品会现在漂浮而非下落
+				BoostTooltip: 影响范围翻倍
+			}
+
+			AmmoBackpack: {
+				DisplayName: 弹药包
+				Tooltip: 击杀敌人时会为你补充弹药
+				BoostTooltip: 增加掉落的弹药
+			}
+
+			PandorasBox: {
+				DisplayName: 潘多拉魔盒
+				Tooltip:
+					'''
+					敌人会受到更多来自权杖减益的伤害
+					幽魂仆从的弹幕速度翻倍
+					'''
+			}
+
+			TheReconstruction: {
+				DisplayName: 变造
+				Tooltip:
+					'''
+					召唤微型机械暴乱
+					'它们的联合混乱不可阻挡!'
+					'''
+			}
+
+			GlowCore: {
+				DisplayName: 发光信标
+				Tooltip:
+					'''
+					你和你的弹幕会发光
+					'一只新的手触到了信标...'
+					'''
+				BoostTooltip: 发出的光更亮
+			}
+
+			Sentinel6510: {
+				DisplayName: 尖兵6510
+				Tooltip:
+					'''
+					{$Items.Sentry6502.Tooltip}
+					使你额外获得一格只能由哨兵使用的饰品栏位
+					'''
+			}
+
+			Sentry6502: {
+				DisplayName: 哨兵6502
+				Tooltip:
+					'''
+					哨兵会装备你的饰品
+					可用的饰品栏位会有一个特殊的图案
+					'''
+			}
+
+			BloodiedBucket: {
+				DisplayName: 血污桶
+				Tooltip:
+					'''
+					延长1分钟幽魂仆从的存在时间
+					'我知道你的成分: 高大、暗黑以及是死的'
+					'''
+			}
+
+			RitualisticSkull: {
+				DisplayName: 仪式颅骨
+				Tooltip: 将你的所有召唤栏位转化为幽魂栏位
+			}
+
+			RadonFishingBobber: {
+				DisplayName: 氡苔藓钓鱼浮标
+				Tooltip:
+					'''
+					{$ItemTooltip.FishingBobber}
+					{$Buffs.RadonFishingBobberBuff.Description}
+					'''
+			}
+
+			Ramishroom: {
+				DisplayName: 分支菇
+				Tooltip: 钓竿会额外扔出一个浮标
+			}
+
+			DevilsTongue: {
+				DisplayName: 魔鬼之舌
+				Tooltip: 将非稀有渔获转化为垃圾
+			}
+
+			InspirationCursor: {
+				DisplayName: 灵感光标
+				Tooltip: 你的光标会随着你当前灵感值的降低而变暗
+			}
+
+			EyeGlint: {
+				DisplayName: 点亮你的眼
+				Tooltip: 使你的眼睛变得明亮
+			}
+
+			XmasCursor: {
+				DisplayName: 圣诞老人-NK1的光标
+				Tooltip: 变换你的光标
+			}
+
+			PumpkingCloak: {
+				DisplayName: 南瓜王斗篷
+				Tooltip: 将你的身体和腿从这个领域移除
+			}
+
+			PumpkingCursor: {
+				DisplayName: 南瓜王光标
+				Tooltip: 改变你的鼠标光标
+			}
+
+			DyableCursor: {
+				DisplayName: 可染色光标
+				Tooltip: 将独特的染料应用于你的光标
+			}
+
+			HealthCursor: {
+				DisplayName: 生命光标
+				Tooltip: 你的光标会随着你当前生命值的降低而变暗
+			}
+
+			ManaCursor: {
+				DisplayName: 法力光标
+				Tooltip: 你的光标会随着你当前魔力值的降低而变暗
+			}
+
+			SwordCursor: {
+				DisplayName: 剑刃光标
+				Tooltip: 改变你的鼠标光标
+			}
+
+			DemonCursor: {
+				DisplayName: 恶魔光标
+				Tooltip: 改变你的鼠标光标
+			}
+
+			Headless: {
+				DisplayName: 无头
+				Tooltip: 将你斩首
+			}
+
+			SickBeat: {
+				# Melee Weapons
+				DisplayName: 动感节拍
+				# Melee Weapons
+				Tooltip:
+					'''
+					当折返时会造成额外的命中
+					掉落自喜欢某些节拍的生病的敌人
+					'这个节拍直接来自泰拉瑞亚!'
+					'''
+			}
+
+			Cauterizer: {
+				DisplayName: 灼烧者
+				Tooltip: "{$CommonTooltips.OmnidirectionMelee}"
+			}
+
+			HellsBoon: {
+				DisplayName: 地狱之赐
+				Tooltip: 用远距离黑暗和灰烬尖刺攻击敌人
+			}
+
+			Valari: {
+				DisplayName: 回旋镰
+				Tooltip: 可以拾取物品
+			}
+
+			ThunderClap: {
+				DisplayName: 雷霆一击
+				Tooltip: 召唤两个大手拍打你的敌人
+			}
+
+			Vrang: {
+				DisplayName: 镰刃
+				Tooltip:
+					'''
+					同时扔出3个回旋镖
+					从在大风时成群结队飞行的鸟儿处掉落
+					'''
+			}
+
+			Mallet: {
+				DisplayName: 棒槌
+				Tooltip:
+					'''
+					打击你光标附近的敌人
+					'这就像打松鼠一样'
+					'''
+			}
+
+			SuperStarSword: {
+				DisplayName: 超级星剑
+				Tooltip:
+					'''
+					生命值高于90%时会发射剑气
+					'如果谁想逃，就把他们砍了（不逃也砍了）'
+					'''
+			}
+
+			UltimateSword: {
+				DisplayName: 最终之剑
+				Tooltip: "'被终末之星所吸收, 失去了其真正的潜能...'"
+			}
+
+			RockMan: {
+				DisplayName: 摇滚者
+				Tooltip:
+					'''
+					一件远古遗物, 最初被用来切柠檬
+					'被封箱了...'
+					'''
+			}
+
+			MirrorsCall: {
+				DisplayName: 镜之召
+				Tooltip: 从你舒适的沙发上打击敌人!
+			}
+
+			Slice: {
+				DisplayName: 利刃
+				Tooltip:
+					'''
+					持续获得速度加成, 击中敌人时会造成冻伤减益
+					{$CommonTooltips.OmnidirectionMelee}
+					'不要和骰子混淆'
+					'''
+			}
+
+			BlockGlove: {
+				# Name is a combination of the words "Boxing" and "Blocks"
+				# If this is untranslatable, instead use the simplified name: "Block Throwing Glove"
+				DisplayName: 拳块手套
+				Tooltip: 消耗方块作为弹药
+			}
+
+			Deltoid: {
+				DisplayName: 三角肌
+				Tooltip: 用猩红狱火点燃木箭
+			}
+
+			StarPhish: {
+				DisplayName: 螺旋海星吹筒
+				Tooltip: "{$CommonTooltips.UsesDarts}"
+			}
+
+			SnowflakeCannon: {
+				DisplayName: 雪花大炮
+				Tooltip:
+					'''
+					发射击中敌人时会回弹的电弧雪花
+					66%几率不消耗弹药
+					'''
+			}
+
+			Raygun: {
+				DisplayName: 射线枪
+				Tooltip: 将子弹转化为快速射线
+			}
+
+			BoundBow: {
+				DisplayName: 界限弓
+				Tooltip: 随时间流逝会不断再生弹药
+			}
+
+			Slingsaber: {
+				DisplayName: 弹剑弓
+				Tooltip:
+					'''
+					向射击的方向拉动光标以增加射击强度
+					使用鸟作为弹药
+					'''
+			}
+
+			Slingshot: {
+				DisplayName: 弹弓
+				Tooltip:
+					'''
+					向射击的方向拉动光标以增加射击强度
+					使用鸟作为弹药
+					可在天域箱里发现
+					'''
+			}
+
+			WindFan: {
+				DisplayName: 风扇
+				Tooltip:
+					'''
+					释放可控的风暴, 其会牵引敌人和弹幕
+					敌人会在碰撞时受到伤害
+					'''
+			}
+
+			Narrizuul: {
+				DisplayName: 纳里祖尔
+				Tooltip:
+					'''
+					来自另一个宇宙的遗物
+					'闻起来像玫瑰'
+					'''
+			}
+
+			StudiesOfTheInkblot: {
+				DisplayName: 墨迹研究学
+				Tooltip:
+					'''
+					左键释放'弹幕的墨迹测验'
+					右键释放'地底蔷薇'
+					'''
+			}
+
+			LiquidGun: {
+				DisplayName: 液体枪
+				Tooltip: ""
+			}
+
+			GhastlyBlaster: {
+				DisplayName: 阴森冲击波
+				Tooltip: "'你的眼睛欺骗了你, 我不是一把剑'"
+			}
+
+			SurgeRod: {
+				DisplayName: 电涌杖
+				Tooltip:
+					'''
+					投射雷云网来轰击你的敌人
+					至多同时存在6朵雷云
+					'''
+			}
+
+			PentalScythe: {
+				DisplayName: 回旋魔镰
+				Tooltip:
+					'''
+					发射爆炸性烈焰魔镰
+					会多次命中大型目标
+					'''
+			}
+
+			Gamestar: {
+				DisplayName: 游戏之星
+				Tooltip: 发送压缩数据流
+			}
+
+			Snowgrave: {
+				DisplayName: 冰雪之墓
+				Tooltip:
+					'''
+					在下方召唤向上喷涌的致命冰雪风暴
+					魔力消耗降低效果降低80%
+					'当我施放一个连我自己都不知道是什么的咒语时会发生什么?!'
+					'''
+			}
+
+			BombarderRod: {
+				DisplayName: 轰炸者手杖
+				Tooltip:
+					'''
+					攻击造成暴击时对附近的敌人造成猩红减益
+					近距离时并不精准
+					'''
+			}
+
+			Triacanthorn: {
+				DisplayName: 三刺棘
+				Tooltip:
+					'''
+					施放出会分裂的邪恶刺须
+					无视敌人10点的防御力
+					'''
+			}
+
+			BrainwaveStaff: {
+				DisplayName: 脑波法杖
+				Tooltip: 召唤一颗脑菜花为你而战
+			}
+
+			MindfungusStaff: {
+				DisplayName: 心灵真菌法杖
+				Tooltip: 召唤一颗猩红眠菇为你而战
+			}
+
+			StariteStaff: {
+				DisplayName: 源星法杖
+				Tooltip: ""
+			}
+
+			ScribbleNotebook: {
+				DisplayName: 涂鸦笔记本
+				Tooltip: 召唤一个随机物件为你而战
+			}
+
+			CorruptPot: {
+				DisplayName: 腐食罐
+				Tooltip: 召唤一株腐化植物为你而战
+			}
+
+			DisturbanceStaff: {
+				DisplayName: 扰乱法杖
+				Tooltip: 召唤一个神秘的红色精灵折磨你的敌人
+			}
+
+			HailstormStaff: {
+				DisplayName: 雹暴法杖
+				Tooltip:
+					'''
+					召唤雪花为你而战
+					占据半格召唤栏位
+					'''
+			}
+
+			Malediction: {
+				DisplayName: 咒灭
+				Tooltip: 双击{0}以为幽魂仆从装备骷髅王的手臂
+				BoostTooltip: 骷髅王的手臂造成的伤害翻倍
+			}
+
+			DragonsBreath: {
+				DisplayName: 龙之绝息
+				Tooltip: 召唤一条幻影龙为你而战
+			}
+
+			CrimsonCandle: {
+				DisplayName: 灼光者
+				Tooltip: 召唤一只血爬虫为你而战
+			}
+
+			CorruptionCandle: {
+				DisplayName: 噬光者
+				Tooltip: 召唤一只灵魂吞噬者为你而战
+			}
+
+			PixieCandle: {
+				DisplayName: 堕落天使
+				Tooltip: 召唤一只精灵为你而战
+			}
+
+			BloodMoonCandle: {
+				DisplayName: 火河
+				Tooltip: 召唤一只血僵尸为你而战
+			}
+
+			DungeonCandle: {
+				DisplayName: 不幸
+				Tooltip: 召唤一颗诅咒颅骨为你而战
+			}
+
+			OccultistCandle: {
+				DisplayName: 炼狱
+				Tooltip: 召唤一只恶魔为你而战
+			}
+
+			TornadoWhip: {
+				DisplayName: 龙卷鞭
+				Tooltip:
+					'''
+					你的召唤物将集中攻击被标记的敌人
+					攻击敌人时会召唤友善的雨云
+					被召唤物击中的敌人会发出具有强大吸力的风
+					'''
+			}
+
+			NecromancerHood: {
+				DisplayName: 死灵法师兜帽
+				Tooltip:
+					'''
+					增加8%魔法和召唤伤害
+					增加最大幽魂仆从栏位
+					'''
+			}
+
+			NecromancerRobe: {
+				DisplayName: 死灵法师长袍
+				Tooltip:
+					'''
+					增加10%魔法和召唤伤害
+					延长30秒幽魂仆从的存在时间
+					增加2格最大幽魂仆从栏位
+					'''
+			}
+
+			GravetenderHood: {
+				DisplayName: 守墓人兜帽
+				Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
+			}
+
+			GravetenderRobes: {
+				DisplayName: 守墓人长袍
+				Tooltip:
+					'''
+					{$CommonTooltips.StatGhostDuration}
+					{$CommonTooltips.StatGhostSlots@1}
+					'''
+			}
+
+			SeraphimHood: {
+				DisplayName: 六翼天使兜帽
+				Tooltip:
+					'''
+					增加20%召唤伤害
+					增加最大幽魂仆从栏位
+					'''
+			}
+
+			SeraphimRobes: {
+				DisplayName: 六翼天使长袍
+				Tooltip:
+					'''
+					增加20%召唤伤害
+					延长1分钟幽魂仆从的存在时间
+					增加2格最大幽魂仆从栏位
+					'''
+			}
+
+			MoonlunaHat: {
+				DisplayName: 银月神帽
+				Tooltip:
+					'''
+					增加1格最大召唤栏位
+					会在身后留下伤害性星座
+					'''
+			}
+
+			VenomDartTrapHat: {
+				DisplayName: 毒液飞镖帽
+				Tooltip:
+					'''
+					增加10%召唤伤害
+					增加1格最大召唤栏位
+					无视敌人15点的防御力
+					'''
+			}
+
+			DartTrapHat: {
+				DisplayName: 飞镖帽
+				Tooltip:
+					'''
+					无视敌人10点的防御力
+					掉落自喜欢修缮陷阱的缺德骷髅
+					'''
+			}
+
+			SuperDartTrapHat: {
+				DisplayName: 超级飞镖帽
+				Tooltip:
+					'''
+					增加40%召唤伤害
+					增加1格最大召唤栏位
+					无视敌人15点的防御力
+					'''
+			}
+
+			BattleAxe: {
+				# Tools
+				DisplayName: 战斧
+				Tooltip: 攻击有几率使敌人流失生命
+			}
+
+			SilkHammer: {
+				DisplayName: 丝绸锤
+				Tooltip: ""
+			}
+
+			SilkPickaxe: {
+				DisplayName: 丝绸镐
+				Tooltip: ""
+			}
+
+			Crabax: {
+				DisplayName: 蟹斧
+				# Tools #
+				Tooltip:
+					'''
+					能够同时砍伐多颗树木
+					砍伐时长按右键以禁用此能力
+					'''
+			}
+
+			Heliosis: {
+				DisplayName: 日射病
+				Tooltip: ""
+			}
+
+			XenonBait: {
+				DisplayName: 氙鱼饵
+				Tooltip: ""
+			}
+
+			RegrowingBait: {
+				DisplayName: 再生鱼饵
+				Tooltip: 当消耗完后会在你的背包中生成鱼饵
+			}
+
+			LegendberryBait: {
+				DisplayName: 传奇浆果
+				Tooltip: 有更高的几率钓到稀有鱼类
+			}
+
+			Omnibait: {
+				DisplayName: 全能鱼饵
+				Tooltip: 视作在各种生物群落中钓鱼
+			}
+
+			CursedPopper: {
+				DisplayName: 诅咒响饵
+				Tooltip: 在腐化之地钓鱼时增加30%鱼饵力
+			}
+
+			IchorPopper: {
+				DisplayName: 灵液响饵
+				Tooltip: 在猩红之地钓鱼时增加35%鱼饵力
+			}
+
+			MysticPopper: {
+				DisplayName: 秘圣响饵
+				Tooltip: 在神圣之地钓鱼时增加25%鱼饵力
+			}
+
+			TubOfCookieDough: {
+				# Foods & Potions
+				DisplayName: 一桶饼干面团
+				Tooltip: "{$Buffs.AstralCookieBuff.Description}"
+			}
+
+			AstralCookie: {
+				DisplayName: 星体饼干
+				Tooltip: "{$Buffs.AstralCookieBuff.Description}"
+			}
+
+			HolographicMeatloaf: {
+				DisplayName: 全息肉饼
+				Tooltip:
+					'''
+					{$Items.NotConsumable}
+					'哦, 好极了. 又是全息肉饼! 我什么时候才能吃到真正的食物?'
+					{$CommonItemTooltip.MinorStats}
+					'''
+			}
+
+			NeutronYogurt: {
+				DisplayName: 中子酸奶
+				Tooltip: 获得具有加速度翻倍的附魔下落
+			}
+
+			CinnamonRoll: {
+				DisplayName: 肉桂卷
+				Tooltip: "{$CommonItemTooltip.MajorStats}"
+			}
+
+			SpicyEel: {
+				DisplayName: 香辣鳗鱼
+				Tooltip:
+					'''
+					大幅度增加移动速度
+					从各种蠕动的生物处掉落
+					'可能会给那些在地下搜索的人带来好运'
+					'''
+			}
+
+			NecromancyPotion: {
+				DisplayName: 死灵药水
+				Tooltip: "{$Buffs.NecromancyPotionBuff.Description}"
+				EmpoweredTooltip: "{$Buffs.NecromancyBuffEmpowered.Description}"
+			}
+
+			BloodthirstPotion: {
+				DisplayName: 嗜血药水
+				Tooltip:
+					'''
+					{$Buffs.BloodthirstBuff.Description}
+					所有的生命治疗都会随时间的流逝而生效
+					'''
+			}
+
+			SentryPotion: {
+				DisplayName: 哨兵药水
+				Tooltip: 增加{0}格最大哨兵栏位
+				EmpoweredPotion: "{$Buffs.EmpoweredSentry.Description}"
+			}
+
+			FrostPotion: {
+				DisplayName: 冰霜药水
+				Tooltip: "{$Buffs.FrostBuff.Description}"
+			}
+
+			PotionOfResurrection: {
+				DisplayName: 复活药水
+				Tooltip:
+					'''
+					将你传送至上次死亡时的位置
+					'最近经历过死亡的人喜欢的饮料'
+					'''
+			}
+
+			SnobsterItem: {
+				# Critter Items
+				DisplayName: 势利鬼虾
+				Tooltip: ""
+			}
+
+			DwarfStariteItem: {
+				DisplayName: 矮化源星
+				Tooltip: ""
+			}
+
+			CrabDaughter: {
+				# Legendary Fish
+				DisplayName: 蟹蛤之女
+				# Legendary Fish
+				Tooltip:
+					'''
+					一种身上带有海蓝能量的传奇鱼类
+					抓捕位置: 蟹伏岩隙'
+					'''
+			}
+
+			XenonFish: {
+				DisplayName: 氙鱼
+				Tooltip:
+					'''
+					一种身上带有氙苔藓的传奇鱼类
+					'抓捕位置: 地底 & 洞穴'
+					'''
+			}
+
+			KryptonFish: {
+				DisplayName: 氪鱼
+				Tooltip:
+					'''
+					一种身上带有氪苔藓的传奇鱼类
+					'抓捕位置: 地底 & 洞穴'
+					'''
+			}
+
+			ArgonFish: {
+				DisplayName: 氩鱼
+				Tooltip:
+					'''
+					一种身上带有氩苔藓的传奇鱼类
+					'抓捕位置: 地底 & 洞穴'
+					'''
+			}
+
+			RadonFish: {
+				DisplayName: 氖鱼
+				Tooltip:
+					'''
+					一种身上带有氖苔藓的传奇鱼类
+					'抓捕位置: 地底 & 洞穴'
+					'''
+			}
+
+			Blobfish: {
+				DisplayName: 水滴鱼
+				Tooltip:
+					'''
+					一种身上带有...丑陋...的受祝福鱼类
+					'只是...看看它!'
+					'抓捕时间: 柔光'
+					'''
+			}
+
+			GoreFish: {
+				DisplayName: 肉块鱼
+				Tooltip:
+					'''
+					一种身上带有恶魔能量的传奇鱼类
+					'抓捕位置: 血巢附近的熔岩中'
+					'''
+			}
+
+			BrickFish: {
+				DisplayName: 砖块鱼
+				Tooltip: "'抓捕位置: 镇民建筑附近'"
+			}
+
+			CrabRod: {
+				# Fishing Rods
+				DisplayName: 螃蟹钓竿
+				Tooltip: 从成功捕获中获得钱币
+			}
+
+			Starcatcher: {
+				DisplayName: 捕星者
+				Tooltip: 当星星出现时会变得更强效
+			}
+
+			Buzzer: {
+				DisplayName: 蜂鸣钓竿
+				Tooltip:
+					'''
+					扔出一个飞行的蜜蜂浮标
+					使用时会使你获得蜂蜜增益
+					'''
+			}
+
+			Nimrod: {
+				DisplayName: 猎手
+				Tooltip: 召唤一朵捕鱼云, 其会生成三个闪电浮标来捕鱼
+			}
+
+			MiningPetSpawner: {
+				DisplayName: 破损的矿工头盔
+				Tooltip: 召唤一个不死矿工与你一起挖掘
+			}
+
+			PersonalDronePack: {
+				DisplayName: 个人无人机包
+				Tooltip:
+					'''
+					召唤一架提供光照的无人机
+					可以探测稀有物体和生物
+					'''
+			}
+
+			LightningRod: {
+				DisplayName: 引雷杖
+				Tooltip:
+					'''
+					召唤一朵提供光照的愤怒雷云
+					'它一直在询问旅途何时结束!'
+					'''
+			}
+
+			ToySpaceGun: {
+				DisplayName: 玩具太空枪
+				Tooltip:
+					'''
+					召唤一只跟着你的太空乌贼
+					'太可爱了'
+					'''
+			}
+
+			SwagLookingEye: {
+				DisplayName: 潮流眼球
+				Tooltip:
+					'''
+					召唤一只潮流眼睛跟着你
+					'玻璃...'
+					'''
+			}
+
+			DragonBall: {
+				DisplayName: 龙珠
+				Tooltip:
+					'''
+					召唤一颗迷你终末之星
+					'球之化身'
+					'''
+			}
+
+			CrabCreviceCrate: {
+				DisplayName: 甲壳匣
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			CrabCreviceCrateHard: {
+				DisplayName: 硬壳匣
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			JungleSlotMachine: {
+				DisplayName: 丛林老虎机
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			OceanSlotMachine: {
+				DisplayName: 海洋老虎机
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			ShadowRoulette: {
+				DisplayName: 暗影老虎机
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			SnowRoulette: {
+				DisplayName: 雪原老虎机
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			DesertRoulette: {
+				DisplayName: 沙漠老虎机
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			SkyRoulette: {
+				DisplayName: 天空老虎机
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			GoldenRoulette: {
+				DisplayName: 黄金老虎机
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			Roulette: {
+				DisplayName: 老虎机
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			RedSpriteMask: {
+				# Vanity
+				DisplayName: 红色精灵面具
+				Tooltip: ""
+			}
+
+			SpaceSquidMask: {
+				DisplayName: 太空乌贼面具
+				Tooltip: ""
+			}
+
+			BreadOfCthulhuMask: {
+				DisplayName: 克苏鲁之面包面具
+				Tooltip: ""
+			}
+
+			EmancipationGrill: {
+				DisplayName: 解放栅格
+				Tooltip:
+					'''
+					会抹去与其接触的传送门
+					被物理学枪抓取的方块在接触此方块时会被抹去
+					阻止物理学枪和传送门枪的弹幕穿过
+					'''
+			}
+
+			PhysicsBlock: {
+				DisplayName: 物理学块
+				Tooltip: 无法被物理学枪抓取
+			}
+
+			GravityBlock: {
+				DisplayName: 重力块
+				Tooltip:
+					'''
+					迫使上方的玩家服从重力
+					当放置在墙壁前方时, 影响范围会扩大
+					'''
+			}
+
+			AncientGravityBlock: {
+				DisplayName: 远古重力块
+				Tooltip: "{$Items.GravityBlock.Tooltip}"
+			}
+
+			AntiGravityBlock: {
+				DisplayName: 反重力块
+				Tooltip:
+					'''
+					迫使下方的玩家翻转重力
+					当放置在墙壁前方时, 影响范围会扩大
+					'''
+			}
+
+			AncientAntiGravityBlock: {
+				DisplayName: 远古反重力块
+				Tooltip: "{$Items.AntiGravityBlock.Tooltip}"
+			}
+
+			OmegaStaritePainting: {
+				DisplayName: "'{$Mods.Aequus.NPCs.OmegaStarite.DisplayName}'"
+				Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
+			}
+
+			BreadRoachPainting: {
+				DisplayName: 面包和虫子
+				Tooltip: "{$Mods.Aequus.PaintingSignature.torra}"
+			}
+
+			SkyrimRock3: {
+				DisplayName: 推力
+				Tooltip: ""
+			}
+
+			SkyrimRock2: {
+				DisplayName: 平衡
+				Tooltip: ""
+			}
+
+			SkyrimRock1: {
+				DisplayName: 力量
+				Tooltip: ""
+			}
+
+			OliverPainting: {
+				DisplayName: 奥利弗
+				Tooltip: "{$Mods.Aequus.PaintingSignature.NalydT}"
+			}
+
+			GoreNestPainting: {
+				DisplayName: 血雨腥风
+				Tooltip: "{$Mods.Aequus.PaintingSignature.NalydT}"
+			}
+
+			ExLydSpacePainting: {
+				DisplayName: 空间
+				Tooltip: "{$Mods.Aequus.PaintingSignature.NalydT}"
+			}
+
+			HomeworldPainting: {
+				DisplayName: 家园
+				Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
+			}
+
+			YangPainting: {
+				DisplayName: 你能感觉到阳光吗?
+				Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
+			}
+
+			YinPainting: {
+				DisplayName: 黑暗, 更加黑暗...
+				Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
+			}
+
+			YinYangPainting: {
+				DisplayName: 均衡
+				Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
+			}
+
+			InsurgentPainting: {
+				DisplayName: 变革
+				Tooltip: "{$Mods.Aequus.PaintingSignature.ForHummer}"
+			}
+
+			BongBongPainting: {
+				DisplayName: 邦邦
+				Tooltip: "{$Mods.Aequus.PaintingSignature.Water}"
+			}
+
+			CatalystPainting: {
+				DisplayName: 来自另一个宇宙的岩石
+				Tooltip:
+					'''
+					星际星云的宏伟之力!
+					'N.T... 来自另一个宇宙'
+					'''
+			}
+
+			OriginPainting: {
+				DisplayName: 起源
+				Tooltip:
+					'''
+					Aequus之起源
+					{$Mods.Aequus.PaintingSignature.NalydT}
+					'''
+			}
+
+			UltraStariteTrophy: {
+				DisplayName: 终耀源星纪念章
+				Tooltip: ""
+			}
+
+			DustDevilTrophy: {
+				DisplayName: 沙尘恶魔纪念章
+				Tooltip: ""
+			}
+
+			CrabsonTrophy: {
+				DisplayName: 巨蟹蛤纪念章
+				Tooltip: ""
+			}
+
+			OmegaStariteTrophy: {
+				DisplayName: 终末之星纪念章
+				Tooltip: ""
+			}
+
+			SpaceSquidTrophy: {
+				DisplayName: 太空乌贼纪念章
+				Tooltip: ""
+			}
+
+			RedSpriteTrophy: {
+				DisplayName: 红色精灵纪念章
+				Tooltip: ""
+			}
+
+			UltraStariteRelic: {
+				DisplayName: 终耀源星纪念物
+				Tooltip: ""
+			}
+
+			DustDevilRelic: {
+				DisplayName: 沙尘恶魔纪念物
+				Tooltip: ""
+			}
+
+			SpaceSquidRelic: {
+				DisplayName: 太空乌贼纪念物
+				Tooltip: ""
+			}
+
+			RedSpriteRelic: {
+				DisplayName: 红色精灵纪念物
+				Tooltip: ""
+			}
+
+			CrabsonRelic: {
+				DisplayName: 巨蟹蛤纪念物
+				Tooltip: ""
+			}
+
+			OmegaStariteRelic: {
+				DisplayName: 终末之星纪念物
+				Tooltip: ""
+			}
+
+			TrapSkeletonBanner: {
+				# Banners
+				DisplayName: 布陷骷髅旗
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.TrapSkeleton.DisplayName}"
+			}
+
+			BreadOfCthulhuBanner: {
+				DisplayName: 克苏鲁之面包旗
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.BreadOfCthulhu.DisplayName}"
+			}
+
+			CoconutCrabBanner: {
+				DisplayName: 椰子蟹旗
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.CoconutCrab.DisplayName}"
+			}
+
+			SoldierCrabBanner: {
+				DisplayName: 兵蟹旗
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.SoldierCrab.DisplayName}"
+			}
+
+			HijivarchCrabBanner: {
+				DisplayName: 活巢体蟹旗
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.SummonerCrab}和{$Mods.Aequus.NPCs.SummonerCrabMinion.DisplayName}"
+			}
+
+			CrabFishBanner: {
+				DisplayName: 蟹鱼旗
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.CrabFish.DisplayName}"
+			}
+
+			StariteBanner: {
+				DisplayName: 源星旗
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.Starite.DisplayName}"
+			}
+
+			SuperStariteBanner: {
+				DisplayName: 极耀源星旗
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.SuperStarite.DisplayName}"
+			}
+
+			HyperStariteBanner: {
+				DisplayName: 巨耀源星旗
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.HyperStarite.DisplayName}"
+			}
+
+			UltraStariteBanner: {
+				DisplayName: 终耀源星旗
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.UltraStarite.DisplayName}"
+			}
+
+			CinderaBanner: {
+				DisplayName: 幻形蝠旗
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Cindera.DisplayName}"
+			}
+
+			MagmabubbleBanner: {
+				DisplayName: 附腿熔岩旗
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Magmabubble.DisplayName}"
+			}
+
+			TrapperImpBanner: {
+				DisplayName: 捕魂小鬼旗
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.TrapperImp.DisplayName}"
+			}
+
+			VraineBanner: {
+				DisplayName: 镰鸟旗
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Vraine.DisplayName}"
+			}
+
+			WhiteSlimeBanner: {
+				DisplayName: 白色史莱姆旗
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.WhiteSlime.DisplayName}"
+			}
+
+			FishSign: {
+				# Furniture Misc
+				DisplayName: 钓鱼池标志
+				# Furniture Misc
+				Tooltip: 显示附近钓鱼池的各项信息
+			}
+
+			AshCrossGraveMarker: {
+				DisplayName: 余烬十字碑
+				Tooltip: ""
+			}
+
+			AshGraveMarker: {
+				DisplayName: 余烬墓标
+				Tooltip: ""
+			}
+
+			AshGravestone: {
+				DisplayName: 余烬墓碑
+				Tooltip: ""
+			}
+
+			AshHeadstone: {
+				DisplayName: 余烬碑石
+				Tooltip: ""
+			}
+
+			AshObelisk: {
+				DisplayName: 余烬尖碑
+				Tooltip: ""
+			}
+
+			AshTombstone: {
+				DisplayName: 余烬墓石
+				Tooltip: ""
+			}
+
+			CrabClock: {
+				DisplayName: 螃蟹挂钟
+				Tooltip: "'现在是什么时间? 螃躁时间.'"
+			}
+
+			UnholyCoreSmall: {
+				DisplayName: 暗黑泪石
+				Tooltip:
+					'''
+					可在遗境祭坛处使用
+					掉落自地狱的神秘实体
+					'''
+			}
+
+			UnholyCore: {
+				DisplayName: 不洁核心
+				Tooltip:
+					'''
+					可在遗境祭坛处使用
+					降低恶魔围攻事件的进攻时间
+					'''
+			}
+
+			HypnoticPearl: {
+				DisplayName: 催眠珍珠
+				Tooltip:
+					'''
+					{$Items.NotConsumable}
+					在海洋使用以召唤巨蟹蛤
+					可在海洋之底发现
+					'''
+			}
+
+			SupernovaFruit: {
+				DisplayName: 超新星果
+				Tooltip:
+					'''
+					{$Items.NotConsumable}
+					在夜晚使用以召唤终末之星
+					'''
+			}
+
+			TornadoInABottle: {
+				DisplayName: 瓶中风暴
+				Tooltip:
+					'''
+					{$Items.NotConsumable}
+					在太空使用以召唤沙尘恶魔
+					'''
+			}
+
+			GalacticStarfruit: {
+				DisplayName: 星河杨桃
+				Tooltip: 创造一道奇异柔光
+			}
+
+			PearlShardPink: {
+				# Misc (and Legacy)
+				DisplayName: 粉珍珠碎块
+				Tooltip: ""
+			}
+
+			PearlShardBlack: {
+				DisplayName: 黑珍珠碎块
+				Tooltip: ""
+			}
+
+			PearlShardWhite: {
+				DisplayName: 白珍珠碎块
+				Tooltip: ""
+			}
+
+			ManaclePollen: {
+				DisplayName: 镣铐花粉
+				Tooltip: 允许药水增益在死亡后保留
+			}
+
+			MorayPollen: {
+				DisplayName: 海鳝花粉
+				Tooltip: 允许投掷药水
+			}
+
+			MistralPollen: {
+				DisplayName: 梦幻花粉
+				Tooltip: 强化药水, 同时只能激活一个强化药水
+			}
+
+			MoonflowerPollen: {
+				DisplayName: 月光花粉
+				Tooltip: 翻倍药水的持续时间
+			}
+
+			DustDevilBag: {
+				DisplayName: 宝藏袋 (沙尘恶魔)
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			CrabsonBag: {
+				DisplayName: 宝藏袋 (巨蟹蛤)
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			OmegaStariteBag: {
+				DisplayName: 宝藏袋 (终末之星)
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			GalaxyCommission: {
+				DisplayName: 星河铸托
+				Tooltip: 永久性扩大建筑增益的范围
+			}
+
+			GiftingSpirit: {
+				DisplayName: 冰雪女皇的魂灵
+				Tooltip: 切换镇民是否会佩戴圣诞帽子
+			}
+
+			ShimmerFish: {
+				DisplayName: 微光鱼
+				Tooltip: 开始新的钓鱼任务
+			}
+
+			ChlorophytePowder: {
+				DisplayName: 叶绿箱
+				Tooltip:
+					'''
+					强制附近的所有物块进行狂野生长
+					33%几率不消耗
+					'''
+			}
+
+			FertilePowder: {
+				DisplayName: 肥料箱
+				Tooltip: 强制附近的所有物块进行生长
+			}
+
+			WhitePhial: {
+				DisplayName: 白色药瓶
+				Tooltip: 永久性延长25%增益持续时间
+			}
+
+			TinkerersGuidebook: {
+				DisplayName: 工匠指南
+				Tooltip: 永久性增加在重铸时出现正面前缀的几率
+			}
+
+			Moro: {
+				DisplayName: 摩洛
+				Tooltip: 永久性加快召唤法杖的使用速度且召唤法杖不再消耗魔力值
+			}
+
+			AdvancedRuler: {
+				DisplayName: 高级标尺
+				Tooltip:
+					'''
+					'用法'
+					* 单击{LEFTMOUSE}以放置标尺节点
+					* 长按{LEFTMOUSE}时单击{RIGHTMOUSE}以在你的当前位置放置标尺节点
+					* 长按{SHIFT}时单击{LEFTMOUSE}以移除最后一个被放置的标尺节点
+					* 长按{CTRL}时单击{LEFTMOUSE}以在{LINE}标尺和{GRID}标尺模式之间切换
+					'备注'
+					* 将一个标尺节点放置在另一个标尺节点上会移除此标尺节点
+					'''
+			}
+
+			CarpenterResetSheet: {
+				DisplayName: 木匠的辞呈
+				Tooltip: 重置木匠的赏金进度
+			}
+
+			CarpenterBountyItem: {
+				DisplayName: 木匠赏金
+				Tooltip: ""
+			}
+
+			AdventuringMap.DisplayName: 冒险地图
+
+			SkeletonKey: {
+				DisplayName: 骷髅钥匙
+				Tooltip: 打开所有的金色宝箱和金色锁盒
+			}
+
+			WhiteFlag: {
+				DisplayName: 白色旗帜
+				Tooltip: 使用后会禁用自然发生的入侵事件
+			}
+
+			GhostlyGrave: {
+				DisplayName: 幽魂冢
+				Tooltip: 使用后会当你死亡时会将你的墓碑转化为幽魂
+			}
+
+			Driftwood: {
+				DisplayName: 浮木
+				Tooltip: ""
+			}
+
+			PlasticBottle: {
+				DisplayName: 塑料瓶
+				Tooltip: ""
+			}
+
+			HoloLens: {
+				DisplayName: 全息透镜
+				Tooltip: 允许你在不打开箱子的情况下查看箱中的内容
+			}
+
+			HyperJet: {
+				DisplayName: 心脏起搏器
+				Tooltip: 当它变得安全时会缩减重生时间
+			}
+
+			AnglerBroadcaster: {
+				DisplayName: 渔夫广播
+				Tooltip: 显示当前渔夫任务
+			}
+
+			RichMansMonocle: {
+				DisplayName: 富翁的单片眼镜
+				Tooltip: 在NPC商店外查看商品价格
+			}
+
+			ImpenetrableCoating: {
+				DisplayName: 无法穿过的涂料
+				Tooltip: 防止物块被武器摧毁
+			}
+
+			PeonyPhotobook: {
+				DisplayName: 牡丹相片书
+				Tooltip: 可储存32张快门储相机的照片
+			}
+
+			PhotobookItem: {
+				DisplayName: 相片书
+				Tooltip: 允许储存{0}张快门快门储像机的照片
+			}
+
+			MercerTonic: {
+				DisplayName: 商人补药
+				Tooltip: 大幅度增加刷怪率
+			}
+
+			PixelCamera: {
+				DisplayName: 像素存图机
+				Tooltip:
+					'''
+					使用以拍摄物块并将其地图颜色打印在剪片上
+					使用滚轮以更改照片模式
+					'''
+			}
+
+			PixelCameraClip: {
+				DisplayName: 像素存图机剪片
+				Tooltip: ""
+			}
+
+			PixelCameraClipAmmo: {
+				DisplayName: "{$Mods.Aequus.Items.PixelCameraClip.DisplayName}"
+				Tooltip: 可在拍摄照片后放置
+			}
+
+			PhysicsGun: {
+				DisplayName: 物理枪
+				Tooltip: 可以抓取并扔出方块
+			}
+
+			Bellows: {
+				DisplayName: 风箱
+				Tooltip:
+					'''
+					推动你
+					'还挺容易'
+					'''
+			}
+
+			RadonMoss: {
+				DisplayName: 氡苔藓
+				Tooltip: ""
+			}
+
+			MistralSeeds: {
+				DisplayName: 寒风花种
+				Tooltip: ""
+			}
+
+			MoraySeeds: {
+				DisplayName: 海鳝花种
+				Tooltip: 会在雨夜开花并产生花粉
+			}
+
+			ManacleSeeds: {
+				DisplayName: 镣铐花种
+				Tooltip: ""
+			}
+
+			MoonflowerSeeds: {
+				DisplayName: 月光花种
+				Tooltip: ""
+			}
+
+			FamiliarPickaxe: {
+				DisplayName: 令人熟悉的镐子
+				Tooltip: 召唤一个迷你版的你自己
+			}
+
+			HardSandstoneChest: {
+				DisplayName: 禁戒箱
+				Tooltip: ""
+			}
+
+			HardMushroomChest: {
+				DisplayName: 蘑菇箱
+				Tooltip: ""
+			}
+
+			HardMarbleChest: {
+				DisplayName: 大理石宝藏
+				Tooltip: ""
+			}
+
+			HardJungleChest: {
+				DisplayName: 乌龟保险箱
+				Tooltip: ""
+			}
+
+			HardGraniteChest: {
+				DisplayName: 活体花岗岩箱
+				Tooltip: ""
+			}
+
+			HardFrozenChest: {
+				DisplayName: 冰霜箱
+				Tooltip: ""
+			}
+
+			AdamantiteChest: {
+				DisplayName: 精金箱
+				Tooltip: ""
+			}
+
+			GravityChest: {
+				DisplayName: 重力箱
+				Tooltip: 可能会拾起附近的物品
+			}
+
+			OblivionChest: {
+				DisplayName: 遗境箱
+				Tooltip: ""
+			}
+
+			StariteBottle: {
+				DisplayName: 瓶中星源
+				Tooltip: 为附近的玩家回复魔力值
+			}
+
+			MoonLeech: {
+				DisplayName: 月噬
+				Tooltip: 攻击会汲取敌人的法力
+			}
+
+			DreamCatcher.DisplayName: 捕梦者
+			MagikaAmulet.DisplayName: 神奇护符
+			JellyAmulet.DisplayName: 水母护符
+			Quasicrystal.DisplayName: 准晶体护符
+			ExtractorHelmet.DisplayName: 顶板
+			ExtractorAirMask.DisplayName: 空气过滤器
+			GlowBand.DisplayName: 发光手环
+			Amulet.DisplayName: 护符
+			TargeoftheBlodded.DisplayName: 尖刺盾牌
+			SpiritualRelic.DisplayName: 心灵护符
+			Dreadsoul.DisplayName: 燃烧的心
+			Breadsoul.DisplayName: 噬魂者
+
+			RustyKnife: {
+				DisplayName: 刀刃
+				Tooltip:
+					'''
+					召唤你的朋友为你而战
+					当你死亡时会为你回复至1点生命值而非死亡, 此效果有5分钟冷却时间
+					'为什么你要拿着锋利的刀锋而不是刀把?'
+					'''
+			}
+
+			CelesteTorus: {
+				DisplayName: 天界圆环
+				Tooltip:
+					'''
+					在你的周围召唤一圈环绕着你的球体
+					球体的半径和速度都根据你不同的属性决定
+					'''
+				BoostTooltip: 召唤一圈额外的球体并增加伤害
+			}
+
+			Thunderbird.DisplayName: 远古雷鸟
+			ArachnotronVisor.DisplayName: 机械蜘蛛面具
+			ArachnotronRibcage.DisplayName: 机械蜘蛛胸甲
+			ArachnotronRevvers.DisplayName: 机械蜘蛛护胫
+
+			CrabsonMask: {
+				DisplayName: 巨蟹蛤面具
+				Tooltip: ""
+			}
+
+			Hitscanner: {
+				DisplayName: 命中扫描器
+				Tooltip:
+					'''
+					无视敌人5点的防御力
+					发射大量会瞬间命中敌人的子弹
+					'我们会向他们发送...只有你.'
+					'''
+			}
+
+			Flameblaster: {
+				DisplayName: 火焰冲击波
+				Tooltip:
+					'''
+					<right>发射气爆
+					无视敌人15点的防御力
+					33%几率不消耗弹药
+					{$Items.UsesGel}
+					'[c/{Color}:最热的]家用燃烧装置'
+					'''
+			}
+
+			CrusadersCrossbow: {
+				DisplayName: 十字军弩
+				Tooltip: 发射可以治疗队友的箭矢
+			}
+
+			Baozhu: {
+				DisplayName: 爆竹
+				Tooltip:
+					'''
+					会产生巨大的爆炸并引燃敌人
+					爆炸成会燃烧一段时间的火焰
+					'''
+			}
+
+			JerryClawFlail.DisplayName: 蟹蛤之爪
+
+			PiranhaPot: {
+				DisplayName: 食人罐
+				# Minion Staffs
+				Tooltip: 召唤一株邪恶的植物为你而战
+			}
+
+			NuclearFeather.DisplayName: 核子之羽
+
+			CrabPot: {
+				DisplayName: 蟹笼
+				Tooltip: 使用鱼饵来捕捉水里的东西
+			}
+
+			PalePufferfish: {
+				DisplayName: 苍白息豚
+				Tooltip:
+					'''
+					能治愈你身上的多种减益和血咒
+					当月光闪耀着可怖的红色时可捕获
+					'''
+			}
+
+			VampireSquid: {
+				DisplayName: 吸血乌贼
+				Tooltip:
+					'''
+					使你获得血咒, 在该效果消失后会'永久性'将你转化为吸血鬼
+					成为吸血鬼后, 你会在夜晚获得生命汲取和移动速度
+					然而太阳会大幅度降低你的各项属性
+					永久性效果可被苍白息豚治愈
+					'''
+			}
+
+			HellTombstone.DisplayName: 地狱墓石
+			OceanRavineWall.DisplayName: 蟹伏岩隙墙
+			PotionofContainers.DisplayName: 传箱药水
+			PotionofContainersTag.DisplayName: "{$Mods.Aequus.ItemName.PotionofContainers}"
+
+			NoonPotion: {
+				DisplayName: 午光药水
+				Tooltip: "{$Buffs.NoonBuff.Description}"
+			}
+
+			OpposingPotion.DisplayName: 对立药水
+
+			Baguette: {
+				DisplayName: 法棍
+				Tooltip:
+					'''
+					大幅度提升所有属性
+					大幅度增加生命再生速度
+					'''
+			}
+
+			HeartLamp.DisplayName: 心灯
+			YuckyOrb.DisplayName: 迷人诱饵
+			WaterFisg.DisplayName: 水鱼
+
+			Transistor: {
+				DisplayName: 晶体管
+				Tooltip: 阻止柔光的自然生成
+			}
+
+			EclipseGlasses: {
+				DisplayName: 日食眼镜
+				Tooltip: 无视日食的敌人生成
+			}
+
+			Cosmicanon: {
+				DisplayName: 星宇律则
+				Tooltip: 阻止血月的自然生成
+			}
+
+			JeweledChalice: {
+				DisplayName: 宝石杯
+				Tooltip: ""
+			}
+
+			JeweledCandelabra: {
+				DisplayName: 宝石烛台
+				Tooltip: ""
+			}
+
+			JeweledChandelier.DisplayName: 宝石大吊灯
+			GhostAmulet.DisplayName: 鬼灵护符
+			CopperSeal.DisplayName: 铜制容器
+			SilverSeal.DisplayName: 银制容器
+			GoldSeal.DisplayName: 金制容器
+			PlatinumSeal.DisplayName: 钛制容器
+			MoonShoes.DisplayName: 月之行者
+			BlurryDiscountCard.DisplayName: 字迹模糊的优惠卡
+
+			BusinessCard: {
+				DisplayName: 商务卡
+				Tooltip: 增加5%出售价格
+			}
+
+			Crabsol.DisplayName: Crabsol
+
+			OmegaStariteMask: {
+				DisplayName: 终末之星面具
+				Tooltip: ""
+			}
+
+			SuspiciousLookingSteak: {
+				DisplayName: 可疑牛排
+				Tooltip: "'你是个可怕的人'"
+			}
+
+			MoonlightWall.DisplayName: 月光墙
+			ExoticCoral.DisplayName: 奇异珊瑚
+			ExoticStarfish.DisplayName: 奇异海星
+			FishingCraftingStation.DisplayName: 渔具加工站
+			PlaceableShadowOrb.DisplayName: 暗影珠 (可放置)
+			PlaceableCrimsonHeart.DisplayName: 猩红之心 (可放置)
+			MonoxideHat.DisplayName: 金乌之巢
+			SunbaskMirror.DisplayName: 日光魔镜
+			UnityMirror.DisplayName: 月光魔镜
+			Bubbler.DisplayName: 泡泡法杖
+			GebulbaStaff.DisplayName: 弹球法杖
+			MagmalbulbiaStaff.DisplayName: 邪弹法杖
+			PowPunch.DisplayName: 链拳
+			ArgonSpear.DisplayName: 氩制长枪
+			HorizonSkies.DisplayName: 空之视界
+			Aphrodite.DisplayName: 阿芙罗狄忒
+			Venus.DisplayName: 维纳斯
+			Dysesthesia.DisplayName: 苦痛之触
+			Galactium.DisplayName: 辰星坠
+			CinnabarBow.DisplayName: 朱砂弓
+
+			HamaYumi: {
+				DisplayName: 破魔弓
+				Tooltip: 箭矢会被穿透性腐化爆炸短暂增幅
+			}
+
+			ManathirstPotion: {
+				Tooltip:
+					'''
+					{$Buffs.ManathirstBuff.Description}
+					所有的魔力治疗都会随时间的流逝而生效
+					'''
+				DisplayName: 嗜魔药水
+			}
+
+			CosmicMonolith: {
+				Tooltip: "'维系宇宙力量的一小部分'"
+				DisplayName: 宇宙石
+			}
+
+			IronLotus: {
+				DisplayName: 铁莲花
+				Tooltip:
+					'''
+					挥舞会扩散火焰的长矛
+					'点燃那些胆敢在乎我的人'
+					'''
+			}
+
+			Pumpinator: {
+				DisplayName: 泵风器
+				Tooltip:
+					'''
+					逐次更改风速
+					强大的阵风几乎可以推动任何东西
+					'''
+			}
+
+			HueshiftDye: {
+				DisplayName: 色彩偏移染料
+				Tooltip: ""
+			}
+
+			AncientHueshiftDye: {
+				DisplayName: 单色染料
+				Tooltip: ""
+			}
+
+			GustDye: {
+				DisplayName: 阵风染料
+				Tooltip: ""
+			}
+
+			TidalDye: {
+				DisplayName: 潮汐染料
+				Tooltip: ""
+			}
+
+			ScorchingDye: {
+				DisplayName: 烧灼染料
+				Tooltip: ""
+			}
+
+			FrostbiteDye: {
+				DisplayName: 霜寒染料
+				Tooltip: ""
+			}
+
+			EnchantedDye: {
+				DisplayName: 附魔染料
+				Tooltip: ""
+			}
+
+			ScrollDye: {
+				DisplayName: 眩惑染料
+				Tooltip: ""
+			}
+
+			DiscoDye: {
+				DisplayName: 迪斯科染料
+				Tooltip: ""
+			}
+
+			SimplifiedDye: {
+				DisplayName: 简化染料
+				Tooltip: ""
+			}
+
+			OutlineDye: {
+				DisplayName: 轮廓描边染料
+				Tooltip: ""
+			}
+
+			RainbowOutlineDye: {
+				DisplayName: 彩虹轮廓描边染料
+				Tooltip: ""
+			}
+
+			CensorDye: {
+				DisplayName: 监察染料
+				Tooltip: ""
+			}
+
+			AncientHellBeamDye: {
+				DisplayName: 远古狱光染料
+				Tooltip: ""
+			}
+
+			AncientBreakdownDye: {
+				DisplayName: 远古故障染料
+				Tooltip: ""
+			}
+
+			AncientTidalDye: {
+				DisplayName: 远古潮汐染料
+				Tooltip: ""
+			}
+
+			AncientScorchingDye: {
+				DisplayName: 远古烧灼染料
+				Tooltip: ""
+			}
+
+			AncientFrostbiteDye: {
+				DisplayName: 远古霜寒染料
+				Tooltip: ""
+			}
+
+			FrolicEnergy: {
+				DisplayName: 狂欢能量
+				Tooltip: 来自霜月的黑暗祝福, 能以一定的代价带来欢乐节日的天界物件
+			}
+
+			HorrificEnergy: {
+				DisplayName: 惊惧能量
+				Tooltip: 来自南瓜月的黑暗祝福, 象征着麦田的血腥收割的天界物件
+			}
+
+			OrganicEnergy: {
+				DisplayName: 地象能量
+				Tooltip: ""
+			}
+
+			DemonicEnergy: {
+				DisplayName: 幻象能量
+				Tooltip: ""
+			}
+
+			CosmicEnergy: {
+				DisplayName: 星宇能量
+				Tooltip: ""
+			}
+
+			AtmosphericEnergy: {
+				DisplayName: 天权能量
+				Tooltip: ""
+			}
+
+			AquaticEnergy: {
+				DisplayName: 海蓝能量
+				Tooltip: ""
+			}
+
+			UltimateEnergy: {
+				DisplayName: 终极能量
+				Tooltip: ""
+			}
+
+			MonoGem: {
+				DisplayName: 单项宝石
+				Tooltip: "'被晦涩的精华所诅咒'"
+			}
+
+			OmniGem: {
+				DisplayName: 全能宝石
+				Tooltip: "'被以太的存在所附魔'"
+			}
+
+			SoulGem: {
+				DisplayName: 空白灵魂宝石
+				Tooltip: 无法使用, 直到其捕获敌人的灵魂
+			}
+
+			SoulGemFilled: {
+				DisplayName: 灵魂宝石
+				Tooltip:
+					'''
+					用于制作死灵装备
+					掉落自最黑暗的恶魔...
+					'''
+			}
+
+			BloodyTearstone: {
+				DisplayName: 血泪石
+				Tooltip: ""
+			}
+
+			Fluorescence: {
+				DisplayName: 荧光
+				Tooltip: 猛烈的跳动着
+			}
+
+			FrozenTear: {
+				DisplayName: 冰霜之泪
+				Tooltip: 一种水晶, 传说是一种乌贼冻结的眼泪
+			}
+
+			ItemScrap: {
+				DisplayName: 废料
+				Tooltip: 可以在制作时代替其他{ItemRarity}的稀有物品
+			}
+
+			Leecheel: {
+				DisplayName: 蛭血鱼
+				Tooltip: 适应了猩红之地的恶劣水域
+			}
+
+			Depthscale: {
+				DisplayName: 深鳞鱼
+				Tooltip: 阴暗的身体藏匿于腐化之地的水中
+			}
+
+			IcebergFish: {
+				DisplayName: 冰川鱼
+				Tooltip: "'它冰冷的身体只是对环境的反应, 最好在新鲜时使用!'"
+			}
+
+			EnvelopeUndergroundOcean: {
+				DisplayName: 弃海来信
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			EnvelopeGlimmer: {
+				DisplayName: 流星来信
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+			}
+
+			SplitPoster: 画报:
+
+			PosterBloodMimic: {
+				DisplayName: "{$Items.SplitPoster} {$NPCs.BloodMimic.DisplayName}"
+				Tooltip: ""
+			}
+
+			PosterBreadOfCthulhu: {
+				DisplayName: "{$Items.SplitPoster} {$NPCs.BreadOfCthulhu.DisplayName}"
+				Tooltip: ""
+			}
+
+			PosterHeckto: {
+				DisplayName: "{$Items.SplitPoster} {$NPCs.Heckto.DisplayName}"
+				Tooltip: ""
+			}
+
+			PosterOblivision: {
+				DisplayName: "{$Items.SplitPoster} {$NPCs.Oblivision.DisplayName}"
+				Tooltip: ""
+			}
+
+			PosterSkyMerchant: {
+				DisplayName: "{$Items.SplitPoster} {$NPCs.SkyMerchant.DisplayName}"
+				Tooltip: ""
+			}
+
+			PosterUltraStarite: {
+				DisplayName: "{$Items.SplitPoster} {$NPCs.UltraStarite.DisplayName}"
+				Tooltip: ""
+			}
+
+			PylonDrone.Tooltip: 在晶塔附近使用以激活, 每个晶塔只能存在两架无人机
+
+			PylonCleanserItem: {
+				DisplayName: 晶塔清扫机
+				Tooltip:
+					'''
+					{$Mods.Aequus.Items.PylonDrone.Tooltip}
+					喷洒溶液以扩散晶塔的生物群落
+					'''
+			}
+
+			PylonHealerItem: {
+				DisplayName: 晶塔治疗机
+				Tooltip:
+					'''
+					{$Mods.Aequus.Items.PylonDrone.Tooltip}
+					治疗受伤的镇民和小动物
+					'''
+			}
+
+			PylonGunnerItem: {
+				DisplayName: 晶塔火炮机
+				Tooltip:
+					'''
+					{$Mods.Aequus.Items.PylonDrone.Tooltip}
+					保护该区域免受敌人攻击
+					'''
+			}
+
+			ElitePlantArgon: {
+				DisplayName: 氩蘑菇
+				Tooltip: ""
+			}
+
+			ElitePlantKrypton: {
+				DisplayName: 氪灌丛
+				Tooltip: ""
+			}
+
+			ElitePlantNeon: {
+				DisplayName: 氖旋植
+				Tooltip: ""
+			}
+
+			ElitePlantXenon: {
+				DisplayName: 氙真菌
+				Tooltip: ""
+			}
+
+			ElitePlantArgonHostile: {
+				DisplayName: 诅咒氩蘑菇
+				Tooltip: 使附近的敌人获得'宏伟'前缀
+			}
+
+			ElitePlantKryptonHostile: {
+				DisplayName: 诅咒氪灌丛
+				Tooltip: 使附近的敌人获得'守御'前缀
+			}
+
+			ElitePlantNeonHostile: {
+				DisplayName: 诅咒氖旋植
+				Tooltip: 使附近的敌人获得'隐秘'前缀
+			}
+
+			ElitePlantXenonHostile: {
+				DisplayName: 诅咒氙真菌
+				Tooltip: 使附近的敌人获得'放射'前缀
+			}
+
+			TatteredDemonHorn: {
+				DisplayName: 破烂的恶魔号角
+				Tooltip: ""
+			}
+
+			PossessedShard: {
+				DisplayName: 附魔碎块
+				Tooltip: 掉落自附魔的盔甲和工具
+			}
+
+			StariteMaterial: {
+				DisplayName: 核心碎片
+				Tooltip: ""
+			}
+
+			BloodMimicBanner: {
+				DisplayName: 血红模仿者旗
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.BloodMimic.DisplayName}"
+			}
+
+			AmethystDeposit: {
+				DisplayName: 紫水晶矿床
+				Tooltip: ""
+			}
+
+			DiamondDeposit: {
+				DisplayName: 钻石矿床
+				Tooltip: ""
+			}
+
+			EmeraldDeposit: {
+				DisplayName: 翡翠矿床
+				Tooltip: ""
+			}
+
+			RubyDeposit: {
+				DisplayName: 红玉矿床
+				Tooltip: ""
+			}
+
+			SapphireDeposit: {
+				DisplayName: 蓝宝石矿床
+				Tooltip: ""
+			}
+
+			TopazDeposit: {
+				DisplayName: 黄玉矿床
+				Tooltip: ""
+			}
+
+			JumpMushroom: {
+				DisplayName: 高跃菇
+				Tooltip: ""
+			}
+
+			VeinminerPotion: {
+				DisplayName: 地脉爆破药水
+				Tooltip: "{$Mods.Aequus.Buffs.VeinminerBuff.Description}"
+				EmpoweredTooltip: "{$Mods.Aequus.Buffs.VeinminerBuffEmpowered.Description}"
+			}
+
+			FriendshipMagick: {
+				DisplayName: 友谊魔法学
+				Tooltip:
+					'''
+					治疗友好和敌对生物
+					与生命值为满的敌对生物成为朋友
+					'''
+			}
+
+			LeechHook: {
+				DisplayName: 水蛭钩
+				Tooltip:
+					'''
+					无视敌人{0}点的防御力
+					吸住敌人并治疗你
+					伤害被吸住的敌人以获得额外治疗
+					'''
+			}
+
+			Meathook: {
+				DisplayName: 血肉钩
+				Tooltip:
+					'''
+					你的钩爪会抓住敌人
+					你会对被你的钩爪抓住的敌怪额外造成{0}%伤害
+					'''
+			}
+
+			CinematicCam: {
+				Tooltip:
+					'''
+					用于将相机变为你的光标
+					再次使用以重置相机
+					测试物品
+					'''
+				DisplayName: 电影摄影机
+			}
+
+			EnthrallingScepter: {
+				Tooltip:
+					'''
+					可将任何敌人转化为幽魂仆从
+					测试物品
+					'''
+				DisplayName: 奴役节杖
+			}
+
+			FlashEffect: {
+				Tooltip:
+					'''
+					在你的光标处激活闪光效果
+					测试物品
+					'''
+				DisplayName: 闪光效果
+			}
+
+			KeyOfHardmode: {
+				Tooltip:
+					'''
+					放到一个箱子里以将其内容物升级为困难模式物品
+					测试物品
+					'''
+				DisplayName: 困难模式之匙
+			}
+
+			PhysicsGun2: {
+				Tooltip:
+					'''
+					几乎可以拾取任何东西, 包括尘埃
+					测试物品
+					'''
+				DisplayName: 超级物理枪
+			}
+
+			ShakeEffect: {
+				Tooltip:
+					'''
+					在你的光标处激光抖动效果
+					测试物品
+					'''
+				DisplayName: 抖动效果
+			}
+
+			ArmorPrefixItemArgon: {
+				Tooltip:
+					'''
+					Applys the argon prefix to armors
+					Right click on an armor while holding this to apply the prefix
+					Work in progress.
+					'''
+				DisplayName: Armor Prefix Item Argon
+			}
+
+			ArmorPrefixItemKrypton: {
+				Tooltip:
+					'''
+					Applys the krypton prefix to armors
+					Right click on an armor while holding this to apply the prefix
+					Work in progress.
+					'''
+				DisplayName: Armor Prefix Item Krypton
+			}
+
+			ArmorPrefixItemNeon: {
+				Tooltip:
+					'''
+					Applys the neon prefix to armors
+					Right click on an armor while holding this to apply the prefix
+					Work in progress.
+					'''
+				DisplayName: Armor Prefix Item Neon
+			}
+
+			ArmorPrefixItemXenon: {
+				Tooltip:
+					'''
+					Applys the xenon prefix to armors
+					Right click on an armor while holding this to apply the prefix
+					Work in progress.
+					'''
+				DisplayName: Armor Prefix Item Xenon
+			}
+
+			HalloweenEnergy: {
+				DisplayName: 万圣能量
+				Tooltip: ""
+			}
+
+			XmasEnergy: {
+				DisplayName: 圣诞能量
+				Tooltip: ""
+			}
+
+			Nightfall: {
+				DisplayName: 夜陨
+				Tooltip:
+					'''
+					攻击地面敌人会将其抛向空中
+					在空中的敌人会砸向地面, 受到摔落伤害
+					'''
+			}
+
+			Nettlebane: {
+				DisplayName: 荨麻之祸
+				Tooltip:
+					'''
+					手持此物品时会增加防御
+					攻击时会强化该剑的能力
+					'''
+			}
+
+			JunkJet: {
+				DisplayName: 垃圾喷射器
+				Tooltip:
+					'''
+					可以使用任意弹药
+					{0}%几率不消耗弹药
+					'''
+			}
+
+			TesterItem: {
+				DisplayName: 测试者物品
+				Tooltip: ""
+			}
+
+			CommonItemTooltip: {
+				NoDoubledStats: 无法被强化
+				NecromancyStaff: 被击杀的敌人有几率转化为幽魂仆从
+				NewPotionsBalancing: 无法与{PotionName}药水一同使用
+				// Example: Cannot be used with Summoning and Sentry Potions
+				NewPotionsBalancing2: 无法与{PotionName}和{PotionName2}药水一同使用
+			}
+
+			Mendshroom: {
+				DisplayName: 愈灵菇
+				Tooltip: ""
+			}
+
+			EmpoweredTooltips: {
+				ArcheryPotion: "{$Buffs.EmpoweredArchery.Description}"
+				EndurancePotion: "{$Buffs.EmpoweredEndurance.Description}"
+				FishingPotion: "{$Buffs.EmpoweredFishing.Description}"
+				IronskinPotion: "{$Buffs.EmpoweredIronskin.Description}"
+				MagicPowerPotion: "{$Buffs.EmpoweredMagicPower.Description}"
+				ManaRegenerationPotion: "{$Buffs.EmpoweredManaRegeneration.Description}"
+				MiningPotion: "{$Buffs.EmpoweredMining.Description}"
+				RagePotion: "{$Buffs.EmpoweredRage.Description}"
+				RegenerationPotion: "{$Buffs.EmpoweredRegeneration.Description}"
+				ShinePotion: "{$Buffs.EmpoweredShine.Description}"
+				SummoningPotion: "{$Buffs.EmpoweredSummoning.Description}"
+				SwiftnessPotion: "{$Buffs.EmpoweredSwiftness.Description}"
+				ThornsPotion: "{$Buffs.EmpoweredThorns.Description}"
+				WrathPotion: "{$Buffs.EmpoweredWrath.Description}"
+			}
+
+			Dynaknife: {
+				DisplayName: 圣诞精神
+				Tooltip:
+					'''
+					击中敌人时会施加炸弹并引爆
+					右键向前冲刺并攻击
+					'''
+			}
+
+			PyramidStatue: {
+				DisplayName: 锥形雕像
+				Tooltip: 未完成的物品。
+			}
+
+			CrabCreviceMusicBox: {
+				DisplayName: 音乐盒 (蟹伏岩隙)
+				Tooltip: ""
+			}
+
+			GaleStreamsMusicBox: {
+				DisplayName: 音乐盒 (风暴紊流)
+				Tooltip: ""
+			}
+
+			GlimmerMusicBox: {
+				DisplayName: 音乐盒 (光谱, 柔光)
+				Tooltip: ""
+			}
+
+			OmegaStariteMusicBox: {
+				DisplayName: 音乐盒 (终末之星)
+				Tooltip: ""
+			}
+
+			TitleScreenMusicBox: {
+				DisplayName: 音乐盒 (主界面: Aequus)
+				Tooltip: ""
+			}
+
+			PyramidStatueBroken1: {
+				DisplayName: 破损的均等祭坛
+				Tooltip: ""
+			}
+
+			PyramidStatueBroken2: {
+				DisplayName: "{$Items.PyramidStatueBroken1.DisplayName}"
+				Tooltip: ""
+			}
+
+			PhysicistSentry: {
+				DisplayName: 便携式特斯拉炮塔
+				Tooltip: 召唤一个会发射大量连锁闪电的特斯拉炮塔
+			}
+
+			LihzahrdKusariyari: {
+				DisplayName: 神庙锁矛
+				Tooltip:
+					'''
+					长按左键为斧子的挥舞进行充能
+					<right>发射一个会刺入敌人并使其受到易伤效果的矛头
+					'''
+			}
+
+			Glimmer2MusicBox: {
+				DisplayName: 音乐盒 (柔光)
+				Tooltip: ""
+			}
+
+			CrabsonMusicBox: {
+				DisplayName: 音乐盒 (巨蟹蛤)
+				Tooltip: ""
+			}
+
+			NarryPainting: {
+				DisplayName: Narry
+				Tooltip: "{$PaintingSignature.NalydT}"
+			}
+
+			GreaterHoney: {
+				DisplayName: 强效蜂蜜药水
+				Tooltip: 提高自然恢复
+			}
+
+			SuperHoney: {
+				DisplayName: 超级蜂蜜药水
+				Tooltip: 在长时间内提高自然恢复
+			}
+
+			SkyHunterCrossbow: {
+				DisplayName: 天空猎手的十字弓
+				Tooltip:
+					'''
+					发射可以拾取物品的箭矢
+					右键缩放视域
+					'''
+			}
+		}
+
+		ItemTooltip: {
+			LiquidGun: {
+				$parentVal: 自动使用最近的液体重新装填
+				AmountLeft: 剩余{Amount}%{Liquid}
+			}
+
+			AdvancedRuler: {
+				ControlButton: CTRL
+				ShiftButton: SHIFT
+				LeftMouseButton: 左键
+				RightMouseButton: 右键
+				Line: 直线
+				Grid: 网格
+			}
+
+			ShutterstockerClip.Reviewed: 这张剪片已经被木匠查看过了
+		}
+
+		ItemRarity: {
+			-13: 大师
+			-12: 专家
+			-11: 任务
+			-1: 垃圾
+			0: 白色
+			1: 蓝色
+			2: 绿色
+			3: 橙色
+			4: 浅红色
+			5: 粉色
+			6: 浅紫色
+			7: 青柠色
+			8: 黄色
+			9: 青色
+			10: 红色
+			11: 紫色
+
+			CalamityMod: {
+				Turquoise: 绿松石色
+				PureGreen: 纯绿色
+				DarkBlue: 深蓝色
+				Violet: 紫罗兰色
+				HotPink: 桃红色
+				CalamityRed: 灾厄红色
+				DarkOrange: 深橙色
+			}
+
+			CatalystMod.SuperbossRarity: 水晶
+		}
+
+		WhiteFlag: {
+			False: 入侵已禁用
+			True: 入侵已启用
+		}
+
+		GhostlyGrave: {
+			False: 你现在会掉落墓碑
+			True: 你现在不会掉落墓碑
+		}
+
+		MapObject: {
+			FishSignTile: {
+				NoLiquid: 附近无液体
+				LiquidAmount: 总计{LiquidName}: {WaterAmount}
+				DepthLayer: 层: {Layer}
+				Biomes: 附近的生物群落: {Biomes}
+			}
+
+			Banners: Mods.Aequus.MapObject.Banners
+			WallClocks: Mods.Aequus.MapObject.WallClocks
+			ManacleTile: Mods.Aequus.MapObject.ManacleTile
+			MistralTile: Mods.Aequus.MapObject.MistralTile
+			MoonflowerTile: Mods.Aequus.MapObject.MoonflowerTile
+			MorayTile: Mods.Aequus.MapObject.MorayTile
+		}
+
+		WorldGeneration: {
+			// SkyMeadows: Adding Magic...
+			OmniGem: 正在添加闪光宝石...
+			BigGems: 正在添加更大的宝石...
+			RadonBiome: 迷雾正在到来...
+			WeirdCaves: 正在添加怪异的洞穴...
+			Rockman: 正在保护历史...
+			CrabCrevicePots: 正在迁移蟹类...
+			CrabCreviceGrowth: 正在完成被污染的海洋...
+			CrabCrevice: 正在生成被污染的海洋...
+			GoreNestCleanup: 正在清理血迹...
+			GoreNests: 正在使地狱更加邪恶...
+		}
+
+		QuestFish: {
+			WaterFisg: 虽然说这些话有些不真实, 但我快渴死了.我曾见过一条内部充满清水的鱼. 是不是有点怪? 怪就对了! 快给我把它抓来!
+			Crabdaughter: 看起来海洋中最近涌入了某些新的鱼, 其中一条鱼似乎与爪子为蛤蜊的巨大螃蟹有关联. 尽管我所能想到的唯一关联是它的爪子为螃蟹爪子. 真是个奇观, 所以快给我抓一条!
+		}
+
+		FishingLocation: {
+			Anywhere: 抓捕位置: 任意位置
+			Beach: 抓捕位置: 海洋
+		}
+
+		Transistor: {
+			False: 柔光可自然发生
+			True: 柔光不再自然发生
+		}
+
+		EclipseGlasses: {
+			False: 日食可自然发生
+			True: 日食不再自然发生
+		}
+
+		Cosmicanon: {
+			False: 血月可自然发生
+			True: 血月不再自然发生
+		}
+
+		NPCs: {
+			Upriser: {
+				DisplayName: 暴乱者
+				Bestiary: 曾是地牢的居民, 现在是遗境的统治者. 决心为自己找到一种治愈困扰他旧家园的不死诅咒的方法, 无论付出什么代价.
+
+				BossChecklistIntegration: {
+					EntryName: "{$Mods.Aequus.NPCs.Upriser.DisplayName}"
+					SpawnInfo: 在第一次完成恶魔围攻 (T2) 后召唤, 或者在血巢处使用 [Aequus/VoidBand]
+				}
+			}
+
+			DustDevil: {
+				DisplayName: 沙尘恶魔
+				Bestiary: 一种同时控制着火焰和冰霜的强大元素灵. 它利用这种力量卷起强大的飓风, 在其身体周围形成持续的龙卷风以保护自己.
+
+				BossChecklistIntegration: {
+					EntryName: "{$Mods.Aequus.NPCs.DustDevil.DisplayName}"
+					SpawnInfo: 通过[i:Aequus/TornadoInABottle]召唤
+				}
+			}
+
+			OmegaStarite: {
+				DisplayName: 终末之星
+				Bestiary: 超新星的力量在其厚重的壳下隆隆作响. 这是星源生命周期中的一个异常现象, 它会搜寻能量源头以使自身变大, 使用轨道球体进攻或防御.
+
+				BossChecklistIntegration: {
+					EntryName: "{$Mods.Aequus.NPCs.OmegaStarite.DisplayName}"
+					SpawnInfo: 通过与柔光之源中心的剑互动召唤. 或者通过[i:Aequus/SupernovaFruit]召唤
+				}
+			}
+
+			Crabson: {
+				DisplayName: 巨蟹蛤
+				Bestiary: 许多奇怪的海洋杂交物种之一, 这种巨大的甲壳类动物一半是螃蟹, 一半是蛤蜊.  它潜伏在岩隙的深处, 产生能够吸引较小的螃蟹服从它命令的奇异珍珠.
+
+				BossChecklistIntegration: {
+					EntryName: "{$Mods.Aequus.NPCs.Crabson.DisplayName}"
+					SpawnInfo: 通过[i:Aequus/HypnoticPearl]召唤
+				}
+			}
+
+			CrabsonOld: {
+				DisplayName: "{$NPCs.Crabson.DisplayName}"
+				Bestiary: "{$NPCs.Crabson.Bestiary}"
+
+				BossChecklistIntegration: {
+					EntryName: "{$NPCs.Crabson.BossChecklistIntegration.EntryName}"
+					SpawnInfo: "{$NPCs.Crabson.BossChecklistIntegration.SpawnInfo}"
+				}
+			}
+
+			CrabsonClaw.DisplayName: 巨蟹蛤之爪
+
+			SpaceSquid: {
+				DisplayName: 太空乌贼
+				Bestiary: 作为一名来自先进星际文明的外星侦察员, 他们将自己的意识移植到由高科技压缩水分子制成的身体中, 以便于远距离传送.
+
+				BossChecklistIntegration: {
+					EntryName: "{$Mods.Aequus.NPCs.SpaceSquid.DisplayName}"
+					SpawnInfo: 在风暴紊的战斗期间.
+				}
+			}
+
+			RedSprite: {
+				DisplayName: 红色精灵
+				Bestiary: 当一道奇怪的闪电与一道愤怒的闪电汇合时, 这朵怒火中烧的风暴云就诞生了. 每个方向都有的猩红涌云使它的存在不可忽视.
+
+				BossChecklistIntegration: {
+					EntryName: "{$Mods.Aequus.NPCs.RedSprite.DisplayName}"
+					SpawnInfo: 在风暴紊的战斗期间.
+				}
+			}
+
+			UltraStarite: {
+				DisplayName: 终耀源星
+				Bestiary: 处于成长最后阶段的精英星源可以将暴露的核心集中到致命的激光束上. 你认为天要塌下来了是可以理解的!
+
+				BossChecklistIntegration: {
+					EntryName: "{$Mods.Aequus.NPCs.UltraStarite.DisplayName}"
+					SpawnInfo: 在柔光的战斗期间.
+				}
+			}
+
+			HyperStarite: {
+				DisplayName: 巨耀源星
+				Bestiary: 随着老化, 星源开始膨胀并变得更不稳定, 导致其部件被推入自身轨道内, 能够当做武器使用.
+			}
+
+			SuperStarite: {
+				DisplayName: 极耀源星
+				Bestiary: 聚集了足够能量的星源最终会蜕去外壳进化为这种装甲形态.
+			}
+
+			Starite: {
+				DisplayName: 源星
+				Bestiary: 一块与坠落之星有着惊人相似度的活体星尘, 它们的外表看起来是气态的, 但实际上会长出坚硬的外壳.
+			}
+
+			DwarfStarite: {
+				DisplayName: 矮化源星
+				Bestiary: 如果一颗星源没有收集到足够的能量来进化, 那么它会逐渐萎缩成一个光点. 它的力量萎缩到了无用的地步, 尽管如此, 它仍然通过漫无目的的漂浮来享受着摸鱼生活.
+			}
+
+			WhiteSlime: {
+				DisplayName: 白色史莱姆
+				Bestiary: 暴露在高海拔阳光下的史莱姆最终会开始发光. 据说味道像肉桂.
+			}
+
+			StreamingBalloon: {
+				DisplayName: 紊流气球
+				Bestiary: 一些有创业精神的史莱姆会附着在热气球上, 使其飞的更高. 它们会漂浮在猎物上方, 然后坠落并吞噬它们.
+			}
+
+			Vraine: {
+				DisplayName: 镰鸟
+				Bestiary: 随风而成群迁徙的候鸟. 它的喙对温度的微小变化非常敏感, 会相应地改变自身的行为.
+			}
+
+			Meteor: {
+				DisplayName: 轨道流星体
+				Bestiary: 爱好和平的陨石头近亲, 这些大块岩石通常只会随风飘流. 如果这恰好发生在地面上, 好吧, 这几乎不是它们的错.
+			}
+
+			BreadOfCthulhu: {
+				DisplayName: 克苏鲁之面包
+				Bestiary: 一种遗失的食物, 当它穿过惊骇传送门后重新获得了生命, 这个令人厌恶的面包并不打算成为你的午餐! 钓鱼时要小心, 它可能会挑看起来容易捕食的没有经验的渔夫来诱惑.
+			}
+
+			Snobster: {
+				DisplayName: 势利鬼虾
+				Bestiary: 史莱姆会自然演化到适应的环境中, 看起来这只决定成为一只龙虾是正确的选择.
+			}
+
+			SummonerCrabMinion: {
+				DisplayName: 蟹蚤
+				Bestiary: 这些小型翼蟹会与活巢体蟹共存, 会运送食物给活巢体蟹并保护它免受捕食者的攻击以换取一个家.
+			}
+
+			SummonerCrab: {
+				DisplayName: 活体巢蟹
+				Bestiary: 四大传奇级螃蟹之一. 它的额外外壳的部分允许蟹蚤在其中存活从而形成一种独特的共生关系.
+			}
+
+			CrabFish: {
+				DisplayName: 蟹鱼
+				Bestiary: 这条鱼是一位熟练的模仿者, 既能模仿"螃蟹"又能模仿"钱"! 它用闪闪发光的金色诱饵吸引贪婪的冒险家和其他享受闪闪发光物体的人走向灭亡.
+			}
+
+			CoconutCrab: {
+				DisplayName: 椰子蟹
+				Bestiary: 它厚厚的棕色外壳既可以把自身伪装成椰子, 又能保护它免受捕食者的袭击. 它会躲在棕榈树上, 并且会掉落在任何站在错误位置的人的头上.
+			}
+
+			SoldierCrab: {
+				DisplayName: 兵蟹
+				Bestiary: 蟹虾内战中的关键战士. 它们用锋利的利爪英勇的保护岩隙不受入侵者的侵害, 敏锐到足以将致命的海浪从空中劈开.
+			}
+
+			Oblivision: {
+				DisplayName: 遗忘者
+				Bestiary: 血巢入口造成的空间扰动形成了一个奇怪的裂缝. 它们看起来无害, 但它们无误的、分析性的凝视让人很不安...
+			}
+
+			Magmabubble: {
+				DisplayName: 有腿的岩浆
+				Bestiary: 被血巢的血肉'祝福'触碰的岩浆史莱姆会长出蜘蛛般的腿. 它们自由的跳来跳去并喷吐暗影能量, 万幸的是, 它们太重了, 没法爬上墙壁.
+			}
+
+			TrapperImp: {
+				DisplayName: 看守小恶魔
+				Bestiary: 通过捕捉灵魂, 使它们的身体枯萎, 并破坏它们的意志, 这只小淘气获得了完全听从其命令的致命宠物.
+			}
+
+			Trapper.DisplayName: 缚灵
+
+			Cindera: {
+				DisplayName: 幻形蝠
+				Bestiary: 蝙蝠般的小恶魔, 以其丑陋的面孔和更丑陋的态度而闻名. 绝对没有私人恩怨.
+			}
+
+			TrapSkeleton: {
+				DisplayName: 布陷骷髅
+				Bestiary: 在还活着时, 这些骷髅就是专业的骗子, 喜欢用自己制造的装置制造混乱. 现在他们从死者中复生了, 他们被诅咒要永远在洞穴里游荡, 埋下陷阱, 以和洞穴探险者分享他们的命运.
+			}
+
+			BloodMimic: {
+				DisplayName: 血红模仿者
+				Bestiary: 当可怕的红月照耀时, 被杀的宝箱劫掠者溃烂的尸体可能会试图与他们曾经想掠夺的宝箱合并, 腐蚀并突变内部的宝藏.
+			}
+
+			Heckto: {
+				DisplayName: 冥狱之魂
+				Bestiary: 当熔火军团的军队在血巢宣誓效忠于遗境的力量时, 他们的灵魂不可逆转地被地狱能量污染了, 在解脱后形成了这些奇怪的灵体.
+			}
+
+			Carpenter: {
+				DisplayName: 木匠
+				Bestiary: 在被它们的殖民地抛弃后, 这只迷路的蚂蚁试图独自重建巢穴, 之后它对建筑产生了热情. 不过他有点势利, 只会搬进有足够装饰的房子.
+
+				TownNPCMood: {
+					Content: 我对于我的房子没有任何可以抱怨的. 结构和装饰都很棒!
+					NoHome: 我不能再忍受我旧居住地的规则了. 你现在能给我盖一座新房子吗?
+					FarFromHome: 我喜欢在户外工作, 但我很快就会回到我熟悉的地面.
+					LoveSpace: 规划和建设的空间如此之大! 这个地方令我激动不已!
+					DislikeCrowded: 这里变得有些拥挤了. 如果声音太大, 那就很难起草蓝图...
+					HateCrowded: 这么多人共用一块地毯, 我担心我会像虫子一样被压扁!
+					LikeBiome: "[LikeBiomeQuote]"
+					LikeBiome_Forest: 森林是一个宁静的游乐场! 在这里, 建造的机会比比皆是.
+					LikeBiome_Underground: 地底有数英里的石头可供雕刻和收集, 地底是适合昆虫的好地方.
+					LoveBiome: 住在{BiomeName}对我来说很棒, 让我想起了我以前的居住地.
+					DislikeBiome: 丛林是我旧巢穴的所在地...恐怕我不能待在这里.
+					HateBiome: 对于{BiomeName}, 我必须离开! 一旦走错一步, 我肯定我会再次陷入困境!
+					LoveNPC: "{NPCName}有着独一无二的审美! 有了他, 我可以建立一个联邦!"
+					LikeNPC: "{NPCName}喜爱大自然的拥抱, 在他周围我帮不上什么忙, 但我感到安全."
+					LikeNPC_Princess: "{NPCName} 要求我建一座城堡! 我必须快速工作以免惹麻烦!"
+					DislikeNPC: "{NPCName}的枪留下了许多要修补的洞. 这是工作, 但我不能说我和他是一对."
+					HateNPC: "{NPCName}酿造炸弹和爆炸物...在他周围, 我的建筑肯定不会长久存在."
+					Princess_LovesNPC: "{NPCName}真的很可爱! 我很想让他给我盖一栋房子!"
+				}
+			}
+
+			SkyMerchant: {
+				DisplayName: 天空商人
+				Bestiary: 一半是快递员, 一半是寻求刺激者, 这个精灵乘坐热气球穿越了世界. 如果你能在刮风的日子赶上他, 他会很高兴和你分享他的货物!
+			}
+
+			Occultist: {
+				DisplayName: 秘术师
+				Bestiary: 一为决定为获胜队伍而战的前教徒. 她声称自己已经改过自新, 但每当她认为没人注意时, 她仍会试图施下诅咒和巫术.
+
+				TownNPCMood: {
+					Content: 这个地方很宜人. 可能需要更多的痛苦, 但你懂得, 乞丐没有选择, 对吧?
+					NoHome: Hmm. Hm hm hm. 我现在没有地方住.
+					FarFromHome: 哦, 你好像发现我在四处窥探了! 我会在黄昏前到家, 我保证.
+					LoveSpace: 这里有足够的空间来练习我的咒语...哈哈哈...
+					DislikeCrowded: 我在这里晃来晃去都会不小心诅咒到别人! 实际上我对那部分并不在意, 但是, 你懂得.
+					HateCrowded: 这里人太多了! 当每个角落都有眼睛的时候, 我就不能鬼鬼祟祟的行动了!
+					LoveBiome: "{BiomeName}是我最喜欢练习仪式的地方之一! 总有一天你应该加入我."
+					LikeBiome: 我认为沙漠的温度更适宜一些.
+					DislikeBiome: 嗯, 是的, 神圣之地. 我最喜欢倒垃圾的地方之一.
+					HateBiome: "[HateBiomeQuote]|{BiomeName}+"
+					HateBiome_Snow: 这-这里太冷了...无法施-放咒语, 因为我的手指都-冻麻了....
+					HateBiome_Evils: 作为一个认证过的好人, {BiomeName}这个地方不适合我! 显而易见!
+					LoveNPC: "{NPCName}...这现在有一个尊重并害怕好诅咒的人. 哦, 我和他在一起肯定会有很多乐子的! 哈哈哈哈!"
+					LikeNPC: "[LikeNPCQuote]|{NPCName}+"
+					LikeNPC_Clothier: "{NPCName}从未对我的咒语退缩过哪怕一次. 我喜欢那种坚韧."
+					LikeNPC_Demolitionist: "{NPCName}用他的工艺制造了如此多的混乱! 如果我能让他让我为他的炸弹附魔就好了..."
+					DislikeNPC: "{NPCName}真是个老好人呀! 那种态度真让我恼火!"
+					HateNPC: "{NPCName}已经被诅咒了, 但她根本不在乎! 我该怎么办?!"
+					LikeNPC_Princess: "{NPCName}是如此的...好骗! 她记住了我说的每个单词, 我爱它!"
+					Princess_LovesNPC: "{NPCName}一直在给我施很好的治疗魔法!"
+				}
+			}
+
+			OccultistHostile.DisplayName: "{$Mods.Aequus.NPCs.Occultist.DisplayName}"
+
+			Physicist: {
+				DisplayName: 物理学家
+				Bestiary: 一位来自邻近星球的外星科学家, 被派往地球调查非自然现象. 尽管她有着天文数字般的智商, 但她还是有点傻; 她忘了带无线电广播以向家里报告.
+
+				TownNPCMood: {
+					Content: 我周围的环境是可以接受的. 就像火星上的俗语说的, 活着的士兵就是快乐的士兵.
+					NoHome: 我想从我的家乡申请一个降落舱实验室, 但...我忘了带我的无线电通信. 你能为我建造一个居住地吗?
+					FarFromHome: 科学家的工作不适合心智薄弱的人. 例如, 我有时不得不离开我的房子.
+					LoveSpace: 我喜欢在各种定义中的空间. 有足够的空间来安装我所有的设备真是太好了.
+					DislikeCrowded: 附近大量的生命形式干扰了我的读数. 如果有更大的空间将不胜感激.
+					HateCrowded: 我听说过你们的种族有不体贴的居住习惯. 不幸的是, 这些都是真的.
+					LikeBiome: 沙漠晴朗的天气非常适合远程观测和将通信发送回我的家乡. 太棒了!
+					LoveBiome: 住在{BiomeName}对我和我的无人机来说都很棒, 让我想起了我的家乡.
+					DislikeBiome: 真的, 我拒绝相信我面前的地方是真实的, 一定是你为外来游客搭建的海市蜃楼.
+					HateBiome: "[HateBiomeQuote]|{BiomeName}+"
+					HateBiome_Hallow: 神圣之地是个多么幼稚的地方啊. 这是对像我这样聪明的人的侮辱.
+					HateBiome_Evils: 我的设备在{BiomeName}中一直出现故障, 好像空气中有某种持久的病毒.
+					LoveNPC: "{NPCName}非常迷人! 即使是我们最好的科学家也只能做一个有着真正有智慧的人工智能的梦!"
+					LikeNPC: "{NPCName}是一位称职的工程师. 很高兴能和一个能跟上我的专业知识的人交谈."
+					LikeNPC_Princess: "{NPCName}就我与我种族的关系联系了我, 我不是使者. 但很高兴看到你们的统治者是公平公正的."
+					DislikeNPC: "{NPCName}的方法使我困惑和不安. 仪式和预言在理解世界上没有任何作用."
+					HateNPC: 在我看来, {NPCName}太异想天开了. 难道他不知道'魔法'只是足够先进的科技吗?
+					Princess_LovesNPC: "{NPCName}如此神秘...我希望她能留下来!"
+				}
+			}
+
+			PhysicistPet: {
+				DisplayName: 无人机
+				Bestiary: 无论物理学家走到哪里, 这个小小的装置都会跟着她, 不断记录环境中的数据以确保没有遗漏. 小型化更大的监视模型以供个人使用.
+			}
+
+			Exporter: {
+				DisplayName: 发货人
+				Bestiary: 一个不择手段的龙虾商人, 他总是盯着最好的交易, 愿意漂洋过海赚大钱. 他最近的一次航行在螃蟹码头以不体面的方式结束.
+
+				TownNPCMood: {
+					Content: "[NeutralQuote]"
+					Content_Male: 一切对我来说都很好, 小伙子. 尽管可以更好...
+					Content_Female: 一切对我来说都很好, 小姑娘. 尽管可以更好...
+					NoHome: "[HomelessQuote]"
+					NoHome_Male: 连一艘小船都没有, 小伙子. 恁能给这只老龙虾造个房子吗?
+					NoHome_Female: 连一艘小船都没有, 小姑娘. 恁能给这只老龙虾造个房子吗?
+					FarFromHome: 嗯, 我是不是不小心偷了我自己的房子? 哦, 它就在那边. 愚蠢的老龙虾.
+					LoveSpace: 这里有足够的地方来放我的合法货物. 哟吼吼!
+					DislikeCrowded: "[CrowdedQuote1]"
+					DislikeCrowded_Male: 不能说我是密集区域的爱好者, 小伙子. 肯定会有人怀疑我的行踪.
+					DislikeCrowded_Female: 不能说我是密集区域的爱好者,小姑娘. 肯定会有人怀疑我的行踪.
+					HateCrowded: 每个角落都有眼睛! 龙虾怎么能生活在这样的地方呢?
+					LikeBiome: Arhhg, {BiomeName}还不错, 伙计, 比我的船好!
+					LoveBiome: 海洋是我的地盘. 啊, 不受法律约束的水...
+					DislikeBiome: "[DislikeBiomeQuote]"
+					DislikeBiome_Desert: 不能说我喜欢沙漠, 哥儿们. 这个地方把我的壳都晒干了!
+					DislikeBiome_Snow: 不能说我喜欢雪原, 哥儿们. 这个地方把我的壳都冻脆了!
+					HateBiome: "[HateBiomeQuote]|{BiomeName}+"
+					HateBiome_CrabCrevice: 无法忍受蟹伏岩隙...感觉那个怪物随时都会把我拖回深渊...
+					HateBiome_Evils: "{BiomeName}这个地方没有任何可以欺诈的对象. 媲美船底!"
+					LoveNPC: "{NPCName}是我老朋友! 我们在公海上一起经历了很多冒险."
+					LikeNPC: "{NPCName}为了得到想要的东西, 不惜铤而走险, 我当然很欣赏这种态度!"
+					LikeNPC_Princess: "{NPCName}正在努力让我得到王国的赦免. 我被陷害了, 我告诉恁...我是被陷害的."
+					DislikeNPC: "{NPCName}...现在, 这有一个旱鸭子, 如果我见过的话."
+					HateNPC: 我不想去任何靠近{NPCName}的地方! 那个卑鄙小人举报了我所有的逃税行为!
+					Princess_LovesNPC: "{NPCName}总是愿意给我高档珠宝!"
+				}
+			}
+
+			CleanserDrone: {
+				DisplayName: 清扫无人机
+				Bestiary: 它是由物理学家和蒸汽朋克人为了保持你小镇的纯净和宜居而联合创造的. 它从小镇的晶塔中汲取能量用以运行.
+			}
+
+			GunnerDrone: {
+				DisplayName: 火炮无人机
+				Bestiary: 它是由物理学家为了保护你的小镇而创造的, 它从小镇的晶塔中汲取能量用以运行.
+			}
+
+			HealerDrone: {
+				DisplayName: 治疗无人机
+				Bestiary: 它是由物理学家为了保持你小镇的健康而创造的, 它从小镇的晶塔中汲取能量用以运行.
+			}
+
+			KryptonShield.DisplayName: 氪盾
+			AdamantiteMimic.DisplayName: 精金宝箱怪
+			FrostMimic.DisplayName: 寒霜宝箱怪
+			ShadowMimic.DisplayName: 暗影宝箱怪
+			PossessedShardNPC.DisplayName: "{$Items.PossessedShard.DisplayName}"
+			DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
+		}
+
+		PaintingSignature: {
+			Water: "'W. Ter'"
+			ForHummer: "'作: Nal. T, 致: Dr. Cool'"
+			NalydT: "'Nal. T.'"
+			niker: "'N.'"
+			torra: "'T. Th.'"
+		}
+
+		RecipeGroup: {
+			AnyPaint: 任意画作
+			AnyQuestFish: 任意任务鱼
+			AnyMosshroom: 任意苔藓蘑菇
+			AnyEctoplasm: 任意灵质
+			Shellphone: "{$ItemName.ShellphoneDummy}"
+		}
+
+		GameTips: {
+			GlimmerEvent: Aequus: 在柔光事件持续时间, 一个神秘的天体将从太空中坠落! 试试在日出前接触它...
+			DemonSiege: Aequus: 地狱到处都是血腥丘陵, 腐化和猩红中的某些物块似乎与它们产生了共鸣...
+			GaleStreams: Aequus: 试试在有风的日子去太空...某些生物只有在大风的时候才会出现!
+			CrabCrevice: Aequus: 海洋深处是一个受潮汐力量支配的水生社会...
+			MothmanMaskSecret: Aequus: 试试无伤击败拜月教邪教徒...
+			Necromancy: Aequus: 亡灵法术的力量可以让任何敌人为你而战!
+			LegendaryFish: Aequus: 渔夫可能会对传奇鱼类感兴趣...
+			LegendaryFishBlobfish: Aequus: 试试在柔光持续期间钓鱼!
+			LegendaryFishGoreFish: Aequus: 试试在血巢附近的熔岩中钓鱼!
+			CarpenterRequirements: Aequus: 试试在你的房子里做些额外的装饰...它可能会吸引房屋大师!
+			SkyMerchant: "{$Misc.GameTipPretense} 留意天空商人! 他访问了云层之上的城镇, 并出售奇异的商品和装备."
+			Vampirism: Aequus: 食用吸血鱿鱼时要小心...他们说唯一的治愈方法是在血月期间!
+			Drones: Aequus: 物理学家让你用无人机保护你的城镇! 但要明智地选择无人机, 每种无人机都提供完全不同的服务!
+			BreadofCthulhu: Aequus: 钓鱼时要小心...一个邪恶的垃圾怪物可能会摧毁你!
+			Moonflower: "{$Misc.GameTipPretense} 月光花是一种生长在陨石上的奇异植物. 将它的花粉与你的药水混合在一起并使用后能够翻倍药水的增益持续时间."
+			Pumpinator: "{$Misc.GameTipPretense} 希望凉快凉快? 试试天空商人出售的泵风器."
+			GhostlyGrave: Aequus: 讨厌墓碑? 但仍然喜欢折磨你的朋友? 试试幽魂冢!
+		}
+
+		Chat: {
+			Occultist: {
+				Basic: {
+					0: 蠢货! 通过和我说话, 你触发了一个陷阱, 迫使你服从我的命令! 现在, 请买点东西.
+					1: 啊啊啊啊...哈哈哈哈- 哦. 呃. 你好, 专做好事的人?
+					2: 知道我在这件斗篷下的样子? 哈哈哈, 在你的梦里! 事实上, 不要做梦, 因为我在你的床上放了一个探知符文, 我会知道你做了什么梦的.
+					3: 你的维度太冷了, 我可得把自己裹得严严实实.
+					4: 我爱菠萝! -- 我同样喜欢, 呃...剪刀!
+					Rare: 请愿者? 别开玩笑了, 我什么都没记住. 我的咒语书替我记得那些.
+				}
+
+				Night: {
+					0: 黑暗笼罩着这片大地...这就是我活着的目的. 是的,我知道这里每天都会发生, 让我拥有这个.
+					1: 打扰一下, 你能快点握住这团虚无的火焰吗? 我马上回来~!
+				}
+
+				BloodMoon: {
+					0: 安静点, 求你了! 我现在正在开一个内部会议!
+					1: 无路可逃. 即使是最长寿的人也会在红月的照耀下受苦.
+					2: 我一直在想一个新的诅咒. 想成为我的测试对象吗? 过来...
+					3: 离远点! 我现在不需要你! 我不需要任何人!
+				}
+
+				Princess: 我最想做的就是从内部推翻君主制. 当然, 这只是假设.
+				Cultists: 你见过那些在地牢里鬼鬼祟祟的邪教徒吗? 看起来他们正在准备一个相当大的仪式! 我迫不及待地想看看会发生什么, 哈哈哈!
+				EarlyHardmode: 光明与黑暗再次共舞...我想, 有趣的时刻即将到来!
+				Waffles: 奇怪, 我本以为现在已经能见到阴了...我们现在有个超级酷的计划, 杀- 我的意思是, 与公主成为朋友!
+				WindyDay: 风不断吹灭我的蜡烛! 我意识到今天是你的生日或其他什么, 但我需要工作!
+				Rain: 我想我知道一种可以驱散这场雨的仪式. 还是说要把它变成巧克力牛奶?
+				Thunderstorm: 我得试着捕捉一些闪电. 大自然的愤怒是一个令人惊讶的多功能施法组件!
+				Party: 他们不想让我把蛋糕变回原来的样子. 我保证我这次没在蛋糕内混入任何东西!
+				Graveyard: 哦, 你好, 幽灵! 你会为我的仪式提供极好的燃料...
+				Glimmer: 什么? 不! 我的黑暗去哪了? 把它还回来!
+				Awaken: AAAAAGGH!!!!!!!!
+
+				Hostile: {
+					0: 你也能听见它们吗? 一直在呼唤你?
+					1: 我愿意付出一切来取悦黑暗领主...我的思想, 我的身躯...你也一样...
+					2: 我之前见过许多'天选之人'...但他们迟早都会倒下. 你也一样...
+					3: 扼杀光明, 散播黑暗...只要像他们一样加入我们, 你就会看到真相...
+					LightsBane: 如果你胆敢在这地方一直挥舞魔光剑, 我的一些朋友可能会来拜访你...
+					BloodButcherer: 如果你在这地方一直挥舞血腥屠刀, 必定会受到我的朋友的欢迎...
+					DemonBow: 恶魔弓的黑暗投影...会是我们暗影的完美容器...
+					TendonBow: 肌腱弓的肉质韧性...会给我们带来一场精彩的盛宴...
+					Vilethorn: 魔刺...无尽的刺痛, 以血献祭...多么美妙...
+					CrimsonRod: 猩红魔杖, 从高处倾泻无尽的鲜血...多么美妙的景象...
+					CorruptPot: 这有关于一个腐食罐的传说, 它会让任何生长在里面的东西都充满邪恶...如果我能拥有一个...
+					Mindfungus: 心灵真菌, 侵染躯体和灵魂...这对我们多么有用...
+					Corruption: 自腐化之地锻造出来的黑暗武器...只有他们持有我们所追寻的邪恶...
+					Crimson: 自猩红之地锻造出来的黑暗武器...只有他们持有我们所追寻的邪恶...
+					Bunny: 等下, 你听到那个了吗? 这附近有只兔子?
+				}
+
+				ListenButton: 倾听
+			}
+
+			Guide.Glimmer: 你看见那些光了吗? 那光芒预示着生命之星的到来. 试着去寻找它的源头, 看看你能找到什么!
+			Merchant.Glimmer: 我想这闪闪发光的夜晚会从你的硬币上反射出奇妙的光芒! 为什么不试试呢, 嗯?
+			Nurse.Glimmer: 哦, 这是一个美妙的景象. 我一直都喜欢这个世界藏匿起来的美好事物, 但看起来这件似乎决定来主动找我!
+			Demolitionist.Glimmer: 当我还是一个小- 好吧, 小男孩, 我想去拜访星星, 但矮人不能飞得很高. 现在我只满足于看到它们这样发光.
+			DyeTrader.Glimmer: 那些色彩...美妙至极! 如果你能找到一种能重现那种光彩的染料配方, 你必须和我分享!
+
+			Angler: {
+				LegendaryFishReward: 谢谢你, 失! 败! 者! 你对这玩意的威力一无所知, 不是么?
+				LegendaryFish: 嘿, 嘿! 我看见你身上的传奇鱼类了, 你觉得我能拥有它吗? 如果我给你些闪闪发光的奖励的话.
+			}
+
+			Dryad.Glimmer: 那些光是什么? 我这么多年来从未见过这样的事...
+			ArmsDealer.Glimmer: 我想我看到了一把彩虹剑. 为什么总是剑, 嗯? 难道我们就不能有一次枪支圣地或是其它的生命吗?
+			DD2Bartender.Glimmer: 我通常不喜欢混合幻想饮料, 但这片天空给了我新的灵感. 特殊星源怎样?
+			Stylist.Glimmer: 嗯...今晚我有心情练习梯度. 你介意暂时看起来有点傻吗, 嗯?
+			GoblinTinkerer.Glimmer: 看, 这就是我所说的! 其他哥布林根本不在乎这样的景象. 我很高兴你们有品味.
+			WitchDoctor.Glimmer: 天空中的辉光似乎很平静, 但自然界中明亮的颜色是致命的警告g. 今晚要小心, 我的朋友.
+			PartyGirl.Glimmer: 哇哦, i就像天空也在开派对! 我希望每晚都是这样!
+			Wizard.Glimmer: 等下, 天空...哦, 豆茎, 我把那个咒语忘了吗?
+			TaxCollector.Glimmer: 那些亮光...让我想起了假期. 呸.
+			Truffle.Glimmer: 我感到...今晚, 来自星星的某些东西. 我也不确定这是一件好事.
+			Pirate.Glimmer: 夜晚的红色天空, 水手们的快乐...err, 那夜晚蓝紫色的天空意味着什么?
+			SantaClaus.Glimmer: 哦不, 这天空棒极了! 就像北极的极光一样!
+			Princess.Glimmer: 今晚的天空简直令人着迷! 这让我想起了他们在城堡里举办的灯光秀...
+			TravellingMerchant.Glimmer: 今晚的天空多么美丽! 如果这里一直都是这样的话, 我就得多呆一晚了!
+			SkeletonMerchant.Glimmer: 我不断听到从上面传来的砰砰声, 好像有什么东西在狠狠地砸在地上. 你们在上面干什么?
+			BestiaryGirl.Glimmer: 天空很好, 但我只希望坠落的星星不会伤害任何动物...
+			Painter.Glimmer: 颜色融合在一起的方式...就像我后院的星云! 谈论励志!
+			Golfer.Glimmer: 现在有一个背景来终结所有的背景. 太糟糕了, 打高尔夫球主要是盯着地面.
+			Clothier.Glimmer: 你看到很多人过着和我一样的生活, 但这片天空绝对是我不介意重复的天空之一.
+			Mechanic.Glimmer: 我想...你认为这种星星能量会成为一种良好的绿色能源吗
+			Steampunker.Glimmer: 啊呀, 这是一种景象! 我跟你说, 这和我来的地方的沉闷天气完全不同.
+			Cyborg.Glimmer: 我的理论是, 这些大气光是由与恒星有关的异常能量的干扰造成的.
+
+			PhysicistPet: {
+				0: 哔哔啵.
+				1: 哔啵.
+			}
+
+			Physicist: {
+				Basic: {
+					0: 你这里有着奇特的重力. 我星球的引力对于这里来说只有38%.
+					1: 好吧, 看来混沌理论是有点道理的...
+					2: 并非所有人都要站在巨人的肩膀上才能看到更远. 有些人选择用飞碟.
+					# Do not translate the 'alien text' in brackets '[]'
+					3: "[⍀⏃⋏⎅⍜⋔ ⌇⟒⋏⏁⟒⋏☊⟒]. 哦, 抱歉, 我一定是又切换回了我的母语."
+				}
+
+				Night.0: 从这里应该能够看到我就家园...你看见它了吗? 嗯, 有着这样的眼部感受器大概不行.
+
+				BloodMoon: {
+					0: 这些状况似乎对人类生物学有影响, 但要调查起来...非常困难.
+					1: 我无法用简单的红灯重现这些事件造成的不稳定行为. 一定有更多的东西在发挥作用.
+				}
+
+				Graveyard: {
+					0: 这就是你埋葬死者的方式吗? 与我家乡的万人坑相比, 这是相当正式的.
+					1: 你听见那声音了吗? 我是否又将我的PKE仪表置入了调试模式?
+				}
+
+				Glimmer: {
+					0: 闪烁的亮光意味着星星的到来...仍有很多东西要学习.
+					1: 我所有的数据探测器都被坠落的星星击中了! 令人恼火!
+				}
+
+				MartianMadness: 发生了什么?! 我没有授权入侵! 我和这件事无关!
+				MartianMadness2: 我为我...过度好战的上级道歉. 至少你挡住了他们.
+				LunarPillars: 我所有的传感器都乱了! 这个世界上的月球正在发射出令人难以置信的强大能量波, 其投射的区域直接集中在这座岛屿上!
+				Pylon: 这种"晶塔"技术令人难以置信. 我的家园应该可以很好的利用它, 只要幸福度不为负数.
+				WindyDay: 我的眼睛对风很敏感. 如果我带了一副护目镜就好了...
+				Rain: 令人着迷! 我以前就知道, 当然, 但亲眼目睹液体沉淀是完全不同的体验.
+				Thunderstorm: 那是什么声音? 我们的星球上没有这样的东西!
+				Party: "'派对'是最反常的. 你如何维持这样的节日水平?"
+
+				SoTSMod: {
+					0: 当我第一次校准传送门以将我传送至此时, 我发现了一种由某种漂浮的船只物体造成的干扰. 调查此事可能符合我的最大利益.
+					1: 你没有和任何类似猫的生物做过交易...对吗?
+				}
+
+				PolaritiesMod: 嘿, 你看到我的大型磁铁了吗? 它大约有12英尺长? 我差不多有一刻没看着它, 它就直接消失了.
+				AnalysisRarityQuest: 我的扫描仪显示出有{Rarity}稀有度物件的迹象. 如果你能从你的世界中找到一件这样的圣物, 那对我和我的部门都会有很大的帮助.
+				AnalysisRarityCoinsQuest:
+					'''
+					我的扫描仪显示出有{Rarity}稀有度物件的迹象.
+					物件至少价值[{Coins}]白金. 如果你能从你的世界中找到一件这样的圣物, 那对我和我的部门都会有很大的帮助.
+					'''
+				AnalysisRarityQuest2: "'{Item}'将是我们研究的完美样本, 可以给我们吗?"
+				AnalysisRarityQuestComplete: 感谢你的服务.
+				AnalysisRarityQuestNoQuest: 你现在做的工作已经够多了. 尽管我有一个待定的样本请求, 如果你感兴趣, 将会在{Time}收到.
+				AnalysisButton: 分析
+				AnalysisButtonComplete: 提交
+			}
+
+			# The Carpenter speaks like an American's children's book, which is why some of this text may sound weird.
+			Carpenter: {
+				UI: {
+					BountyButton: 赏金
+					SubmitPhoto: 提交照片
+					Blueprint: 蓝图
+					BlueprintFakeCopyright: Ⓒ 2023 木匠蚁, 锌. 版权所有
+					Reward: 奖励
+					PurchaseBounty: 以{Coins}的价格购买此赏金的副本
+				}
+			}
+
+			Exporter: {
+				Basic: {
+					0: 还是不敢相信你吃了那只被遗弃的螃蟹. 该死的东西一爪击沉了我的船!
+					1: 仅为恁, 我的朋友. 我们来做个交易. 买一件东西, 然后以相同的价格再买一个吧!
+					2: 所有收益都会捐给慈善机构! 并且这只老龙虾是我认识的最慈善的家伙!
+					3: 啊啊, 柠檬与牛奶混合- 七海之中的最佳饮品...
+					Male: "{PlayerName}, 我的小伙子! 恁手上拿着什么呢?"
+					Female: "{PlayerName}, 我的小姑娘! 恁手上拿着什么呢?"
+				}
+
+				Night: {
+					0: 今晚夜色真美. 非常适合买点什么!
+					Male: 恁知道的, 最大的鱼会在月亮出来的时候更活跃. 你喜欢钓鱼吗, 小伙子?
+					Female: 恁知道的, 最大的鱼会在月亮出来的时候更活跃. 你喜欢钓鱼吗, 小姑娘?
+				}
+
+				BloodMoon: {
+					0: 我正要吃晚饭, 突然它复活并袭击了我! 现在我看到了一切.
+					1: 当大海变红时, 海盗的意志和技艺将面临最严峻的考验. 你敢用里面的宝藏来对付一群可怕的野兽吗?
+					WanderingEyeFish: 又一次我在红色的水中钓鱼, 钓上来了一颗大眼球! 我从那个美人身上弄到了三十个达布隆.
+				}
+
+				Glimmer: 闪闪发光的天空让我想起了宝藏堆的闪光. 不知道我能不能偷一颗星星...
+				Ocean: 如果愿望是鱼...我就不会因为骗税而被通缉.
+				CrabCrevice: 我宁愿呆在戴维·琼斯的柜子里, 也不愿呆在这个...有螃蟹出没的地狱里!
+				WindyDay: 我的木头在颤抖, 多么大的风啊! 这将是一个完美的一天!
+				Rain: 下雨对我们甲壳类动物来说是件好事. 保持甲壳湿润.
+				Thunderstorm: 是的, 这是一种使船只沉没的天气. 很高兴我这次是在陆地上.
+				Party: 最爱派对了, 我愿意! 趁着人们分心的时候溜来溜去拿战利品的好借口!
+				MusicBox: 是的, 你好! 我在想你能不能再弹一次那首歌?
+				Graveyard: 我真的会为了钱而玷污这些坟墓吗? 我当然会了!!
+				Angler: "{Angler}一直向我展示他挖出来的奇怪的鱼. 我不想这样说, 但蟋蟀是个天才. 我想我某一天会向公爵开枪."
+				Pirate: Yarrgh! 我和{Pirate}在公海上相遇过几次. 那是美好的过去了...
+				Truffle: "{Truffle}提醒了我...某次我在地下发现了一条长满蘑菇的虫子! 我试着用它当诱饵, 但什么也没钓上来."
+				TaxCollector: 我躲着{TaxCollector}已经七年了! 别让他知道我在这里!
+				Stylist: 有一次我要求{Stylist}给我修剪头发, 但她却砍掉了我的触角! 我想我应该指定传感器毛发...
+				Crabson: 吓我一跳! 恁杀了那个被上帝遗弃的螃蟹怪物. 那个野兽就是去年把我的船撞沉的那个!
+				PirateInvasion: 是的, 我认识那些小伙子. 他们是七海中第十七个最可怕的海盗船员!
+				DukeFishron: 恁甚至成功地消除了变种人恐惧?! 全能的波塞冬啊, 或许我应该给恁一个折扣.
+				MoonLord: 那是我见过的最奇怪的克拉肯.
+				Evils: 恁闻到了吗? 那闻起来...那气味闻起来就像闻到...那气味?
+
+				ThieveryComplete: {
+					0: 就在这里! 这是恁的战利品. 剩下的就全都归我了.
+					1: 没被抓住, 干得好! ...恁什么意思, 他们不在乎恁拿走他们的ItemName}? 啊管他呢, 这是恁的报酬.
+					2: 哦不, 现在它可能是个好的{ItemName}! 恁去藏东西吧...并且这有属于你自己的东西!
+					3: 恁觉得这个{ItemName}值多少? 二十个金达布隆? 三十? Mm, 也许应该再高点. 五十. 这是恁的奖励.
+					4: 当小偷感觉如何? 我觉得感觉不错, 拿走一些可怜傻瓜的东西然后卖掉. 现在, 让我反向偷窃这个战利品给你.
+					Male: 干得漂亮, 小伙子! 没那么难吧? 这是你的付款, 看紧了!
+					Female: 干得漂亮, 小姑娘! 没那么难吧? 这是你的付款, 看紧了!
+				}
+
+				ThieveryFailed: {
+					0: 你放在{WorldName}世界各地的旱鸭子们有时会陈列处一些精美的小饰品. 这些就是我要寻找的!
+					1: 留意那些精美的圣物. 不是那些Boss掉落的, 而是你的镇子里居民乱丢的镀金的东西.
+					Male: 恁身上没有我想要的东西, 小伙子! 我在找你的镇民喜欢的珠宝家具.
+					Female: 恁身上没有我想要的东西, 小姑娘! 我在找你的镇民喜欢的珠宝家具.
+				}
+
+				UpgradeBurgerButton: 升级汉堡?
+				ThieveryButton: 偷窃
+				SlotMachineButton: 刷新
+				SlotMachineHint: 刷新必定掉落的物品
+
+				ShopPrice: {
+					Platinum: 白金达布隆
+					Gold: 黄金达布隆
+					Silver: 银达布隆
+					Copper: 铜达布隆
+				}
+			}
+
+			SkyMerchant: {
+				Basic: {
+					0: 今儿我的货刚被一扫而空!
+					1: 上升的东西一定会下降, 除了我的卖价! 或者, 会是我的货物吗?
+					2: 我最好的买家是鸟妖们! 哦, 我开玩笑的. 其实她们一直想戳爆我的热气球, 我害怕极了.
+					3: 我现在是在{WorldName}没错吧? 好, 太棒了, 这样说来我这幅打折买来的地图就不是假货了. 真让我松了一口气.
+					4: 我的商品会让你的钱包飘飘欲飞! 这句怎么样? 我有很多时间来想宣传口号.
+				}
+
+				Night: 这可是一天中最让人放松的时刻. 你可以近距离地看着流行划过这些云雾缭绕的空岛. 多么神奇.
+				BloodMoon: 伙计, 今晚地上看起来真吓人. 好在这天上是安全的, 没错吧? 没...没错吧?
+				Glimmer: 抱歉我看起来有些紧张! 今晚我得给我的热气球打几个补丁, 因为它被星星击穿了三次!
+				SolarEclipse: 我总是喜欢追踪日食并找到能看见日全食的那条航道. 如今我正处在这永不过时的胜景之下!
+				Thunderstorm: 我可不想夸大我现在的危险处境. 你能多买点东西好让我买得起一份人寿保险吗?
+				Graveyard: 虽然不能说这是我最喜欢的着陆点, 但这让我想到了或许可以把灵气填进我的热气球里...
+				Merchant: 我相信你见过的商人们都会吹嘘他们的销售额如何如何, 但他们乘过热气球么? 我可不这么认为, 伙计.
+				TravellingMerchant: 我不明白为什么{TravellingMerchant}如此的...高效. 他甚至不用航空邮件!
+				Pirate: 你觉得我能说服海盗把他手下的那一艘飞天战舰借给我吗? 我敢打赌, 这将让我的营业额再创新高!
+				Steampunker: 你认识'{Steampunker}'吗? 我在一艘飞艇上补给的时候遇到了她, 她看起来对这座岛很感兴趣.
+				Demolitionist: 矮人住在地下, 那么精灵就住到天上. 这是很简单的道理, 真的.
+				PlaceHere: 将你的物品放在此处以重命名
+				PressHere: 按下这个按键来设定物品名称
+				RenameChatButton: 重命名物品
+			}
+		}
+
+		GoreNestTombstones: {
+			0: "{Name}被撕成了碎片."
+			1: "{Name}被抹去了存在."
+			2: "{Name}被控制了."
+			3: 怪力撕碎了{Name}.
+
+			Hint: {
+				0: ...恶魔...它们到处都是...根本就没有机会...
+				1: .屠戮者的印记...留下武器, 任由其腐烂.
+				2: .让他们被血巢吞噬, 他们的传说黑暗剑会被它的黑暗能量吸引.
+				3: .夜之圣刃的预言之力在这次并未被填满...
+				4: ...尸体被扔进入口后, 就再也看不到了.
+				5: ...他们的命运不得而知.
+			}
+
+			Names: {
+				0: Starlight
+				1: Dylan
+				2: Gerd
+				3: Triangle
+				4: Someone
+				5: Fry
+				6: Spectra
+				7: Square
+				8: Terra
+				9: Chill
+				10: Bubby
+			}
+
+			// EXAMPLE: Fry's Sword of Darkness
+			Sword: "'的黑暗剑"
+		}
+
+		InfoDisplays.AnglerBroadcasterIcon.DisplayName: 钓鱼任务
+		DeathMessage.DeathsEmbrace: "{0}饮下了最后一口药水..."
+		Water: 水
+		Lava: 熔岩
+		Honey: 蜂蜜
+		Shimmer: 微光
+		NeedsMod: 需要[{0}]以启用
+		KeyUnbound: 按键未绑定
+		Finished: 完成的
+		Unknown: 位置
+		OmegaStariteEasterEgg: "{0}已满足!"
+		OccultistEasterEgg: <秘术师, {Name}> 看到你像其他人一样倒下, 我很难过...一位没有完成'预言'的英雄. 一切都很好, {PlayerName}, 黑暗领主会喜欢收割你的灵魂的.
+		OblivisionEasterEgg: <遗忘者> 你好, {PlayerName}! 很高兴在这个位面上见到更多的幽灵.
+		Complete: 完成
+		Active: 已激活
+		Inactive: 未激活
+		BloodMoonsPrevented: 阻止血月: {0}
+		GlimmersPrevented: 阻止柔光: {0}
+		EclipsesPrevented: 阻止日蚀: {0}
+		YourCoordinates: 你的坐标为 (X: {0}, Y: {1})
+		GaleStreamsHint: 强烈的太空风可能会导致新的生物出现
+		OpenedLink: 点击并发送至
+
+		# Census doesn't actually have language support, so these are not actually used ingame
+		Census: {
+			Carpenter: 使用4件独特的家具物件来建造一个房屋 (不包括桌子、椅子和火把)
+			Exporter: 击败巨蟹蛤
+			Occultist: 完成一次恶魔围攻
+			Physicist: 击败终末之星
+		}
+
+		Condition: {
+			DownedCrabson: 在击败巨蟹蛤后
+			DownedOmegaStarite: Mods.Aequus.Condition.DownedOmegaStarite
+			DownedDustDevil: Mods.Aequus.Condition.DownedDustDevil
+			DownedUpriser: 在击败暴乱者后
+			DownedHyperStarite: 在击败巨耀源星后
+			DownedUltraStarite: Mods.Aequus.Condition.DownedUltraStarite
+			DownedRedSprite: Mods.Aequus.Condition.DownedRedSprite
+			DownedSpaceSquid: Mods.Aequus.Condition.DownedSpaceSquid
+			DownedGlimmer: 在到达柔光的中心后
+			DownedGaleStreams: 在击败太空乌贼或红色精灵后
+			InCrabCrevice: 当处于蟹伏岩隙时
+			InGlimmer: 当柔光事件发生时
+			InDemonSiege: 当恶魔围攻事件发生时
+			InGoreNest: 当在血巢附件时
+			InPeacefulGlimmer: 当宁静柔光事件发生时
+			EarlyPortalGun: 当'{$Configuration.Gameplay.EarlyPortalGun}'选项已启用.
+			EarlyGravityGlobe: 当'{$Configuration.Gameplay.EarlyGravityGlobe}'选项已启用.
+			DownedDemonSiege: Mods.Aequus.Condition.DownedDemonSiege
+			HasCompletedBuildChallenge: 在完成{0}挑战后
+			AllCarpenterBountiesComplete: 在完成木匠所有的建筑挑战后
+		}
+
+		# Time Left: 1m 20s
+		TimeLeft: 剩余时间
+		# Distance: 10 blocks away
+		Distance: 距离
+		BlocksAway: 格物块
+		Terraria: 泰拉瑞亚
+
+		ModName: {
+			Aequus: Aequus
+			AequusMusic: Aequus
+			CalamityMod: 灾厄
+			CalamityModMusic: 灾厄
+			CatalystMod: 灾劫
+			Split: 裂痕
+			SpiritMod: 魂灵
+			Redemption: 救赎
+			Fargowiltas: Fargo
+			FargowiltasSouls: Fargo
+			TheConfectionRebirth: Confection Rebaked
+			ThoriumMod: 瑟银
+		}
+
+		EliteName: {
+			ArgonElite: 宏伟
+			KryptonElite: 守御
+			NeonElite: 隐秘
+			XenonElite: 放射
+		}
+
+		AnglerQuest: {
+			BrickFish: {
+				Description: 当他们位于海边的房子上的一块砖跳走时, 木匠非常惊慌, 整个建筑都倒塌了! 事实证明, 砖块长出了鳍, 并且非常渴望水! 我不知道他们是从哪里得到他们的材料的, 但那件显然是被人占有的. 把它装起来然后带给我, 我一直想用鱼砸人的头!
+				CatchLocation: 抓捕位置: 镇民建筑附近
+			}
+		}
+
+		CarpenterBounty: {
+			Rule: {
+				FindBridgeStep: 建造一座{0}格方块长的桥, 下方至少有{1}格方块深的水
+				WaterfallHeightStep: 瀑布必须向下流过至少{0}格方块
+				CraftableTilesStep: 必须是由可制作的方块组成的 (例如: 灰砖)
+				CraftableTilesStep_2: 必须是由至少{0}可制作的方块组成的 (例如: 灰砖)
+				NotCraftableTilesStep: 须是由不可制作的方块组成的 (例如: 泥土, 淤泥, 石头)
+				NotCraftableTilesStep_2: 必须是由至少{0}不可制作的方块组成的 (例如: 泥土, 淤泥, 石头)
+				SymmetricHorizontalStep: 必须水平镜像
+				FindHousesStep: 适合{0}位城镇NPC
+				FurnitureCountStep: "{0}+独特的家具或装饰物件"
+				WaterLineStep: 墙壁必须浸没在水下
+				BiomePaletteStep: 房屋必须使用符合生物群落颜色的物块和墙壁建造
+			}
+
+			BountyHeader: - 赏金 -
+			Default: 无法形容之物映入双眼! 然这建筑摇摇欲塌无需明言!
+			NoWaterfalls: 不见瀑布于此饰! 离水之像徒顽石!
+			ShortWaterfalls: 不如房檐之高瀑布怎能恢弘. 应当抬高来受引力鬼斧神工!
+			NoCraftedBlocks: 日期将近但仍有砖材待我制造. 请问你的箱中可有砖块助我提交?
+			NotSymmetric: 时间无多但它要是镜子不假! 一切材料都应严丝合缝, 完美无瑕!
+			NotEnoughFurniture: 平平无奇流于俗套! 请再放些家具将此处建成仙窑!
+			NoHouses: 与我所想之屋相差甚远. 可有蓝图展示这应有的庭院?
+		}
+
+		Interface: {
+			PyramidStatue: {
+				Offerings: {
+					MoneyOffering:
+						'''
+						祭献1金
+						增加幸运度
+						'''
+					LightShard:
+						'''
+						祭献光明碎块
+						增加对不洁敌人的伤害
+						'''
+					DarkShard:
+						'''
+						祭献暗黑碎块
+						增加对神圣敌人的伤害
+						'''
+					FailedOffering: 无法祭献!
+				}
+			}
+		}
+
+		BossChecklistIntegration: {
+			Glimmer: {
+				EntryName: 柔光
+				SpawnInfo: 在树妖入住后的夜晚自然生成, 或者通过[i:Aequus/GalacticStarfruit]召唤. 持续到日出.
+			}
+
+			DemonSiege: {
+				EntryName: 恶魔围攻
+				SpawnInfo: 在血巢处使用: ({0}) .
+			}
+
+			GaleStreams: {
+				EntryName: 风暴紊流
+				SpawnInfo: 在太空中, 世界外侧的三分之一区域, 当风速大于30 mph时. 风速可以被[i:Aequus/Pumpinator]影响.
+			}
+		}
+
+		ItemName: {
+			JeweledCandelabra: Mods.Aequus.ItemName.JeweledCandelabra
+			JeweledChalice: Mods.Aequus.ItemName.JeweledChalice
+		}
+	}
+}
+
+ItemTooltip.SoulofMight: "'充满活力的生物的精华'"

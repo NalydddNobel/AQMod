@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Wires;
+using Aequus.Core.Entities.Projectiles;
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;

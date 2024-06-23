@@ -2,6 +2,7 @@
 using Aequus.Common.Elements;
 using Aequus.Common.Items.Components;
 using Aequus.Common.Projectiles;
+using Aequus.Core.Entities.Projectiles;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;

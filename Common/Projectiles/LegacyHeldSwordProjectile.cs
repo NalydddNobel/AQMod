@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aequus.Core.Entities.Projectiles;
+using System;
 
 namespace Aequus.Common.Projectiles;
 
@@ -75,7 +76,7 @@ public abstract class LegacyHeldSwordProjectile : HeldProjBase {
 
     private void DoInitialize(Player player, AequusPlayer aequus) {
         if (player.whoAmI == Projectile.owner) {
-            ExtendProjectile.MeleeScale(Projectile);
+            XProjectile.MeleeScale(Projectile);
         }
 
         swingTimeMax = player.itemAnimationMax;

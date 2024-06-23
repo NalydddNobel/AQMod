@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Projectiles;
-using Aequus.Core.ContentGeneration;
+﻿using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Projectiles;
 using Terraria.DataStructures;
 
 namespace Aequus.Content.Fishing.FishingPoles;

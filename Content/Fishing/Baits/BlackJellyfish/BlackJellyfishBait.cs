@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Content.Graphics.Particles;
 using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Projectiles;
 using Aequus.Core.Graphics;
 using System;
 using System.Collections.Generic;

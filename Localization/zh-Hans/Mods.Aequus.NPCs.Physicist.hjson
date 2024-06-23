@@ -1,25 +1,4 @@
-DisplayName: 物理学家
-Bestiary: 一位来自邻近星球的外星科学家, 被派往地球调查非自然现象. 尽管她有着天文数字般的智商, 但她还是有点傻; 她忘了带无线电广播以向家里报告.
-
 TownNPCMood: {
-	Content: 我周围的环境是可以接受的. 就像火星上的俗语说的, 活着的士兵就是快乐的士兵.
-	NoHome: 我想从我的家乡申请一个降落舱实验室, 但...我忘了带我的无线电通信. 你能为我建造一个居住地吗?
-	FarFromHome: 科学家的工作不适合心智薄弱的人. 例如, 我有时不得不离开我的房子.
-	LoveSpace: 我喜欢在各种定义中的空间. 有足够的空间来安装我所有的设备真是太好了.
-	DislikeCrowded: 附近大量的生命形式干扰了我的读数. 如果有更大的空间将不胜感激.
-	HateCrowded: 我听说过你们的种族有不体贴的居住习惯. 不幸的是, 这些都是真的.
-	LikeBiome: 沙漠晴朗的天气非常适合远程观测和将通信发送回我的家乡. 太棒了!
-	LoveBiome: 住在{BiomeName}对我和我的无人机来说都很棒, 让我想起了我的家乡.
-	DislikeBiome: 真的, 我拒绝相信我面前的地方是真实的, 一定是你为外来游客搭建的海市蜃楼.
-	HateBiome: "[HateBiomeQuote]|{BiomeName}+"
-	HateBiome_Hallow: 神圣之地是个多么幼稚的地方啊. 这是对像我这样聪明的人的侮辱.
-	HateBiome_Evils: 我的设备在{BiomeName}中一直出现故障, 好像空气中有某种持久的病毒.
-	LoveNPC: "{NPCName}非常迷人! 即使是我们最好的科学家也只能做一个有着真正有智慧的人工智能的梦!"
-	LikeNPC: "{NPCName}是一位称职的工程师. 很高兴能和一个能跟上我的专业知识的人交谈."
-	LikeNPC_Princess: "{NPCName}就我与我种族的关系联系了我, 我不是使者. 但很高兴看到你们的统治者是公平公正的."
-	DislikeNPC: "{NPCName}的方法使我困惑和不安. 仪式和预言在理解世界上没有任何作用."
-	HateNPC: 在我看来, {NPCName}太异想天开了. 难道他不知道'魔法'只是足够先进的科技吗?
-	Princess_LovesNPC: "{NPCName}如此神秘...我希望她能留下来!"
 }
 
 Dialogue: {

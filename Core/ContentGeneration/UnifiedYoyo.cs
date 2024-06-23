@@ -1,6 +1,9 @@
-﻿namespace Aequus.Common.Projectiles;
+﻿using System;
 
-public abstract class YoyoProjectileBase : ModProjectile {
+namespace Aequus.Core.ContentGeneration;
+
+[Obsolete("Unfinished.")]
+public abstract class UnifiedYoyo : ModProjectile {
     public override void SetDefaults() {
         Projectile.aiStyle = ProjAIStyleID.Yoyo;
         Projectile.friendly = true;

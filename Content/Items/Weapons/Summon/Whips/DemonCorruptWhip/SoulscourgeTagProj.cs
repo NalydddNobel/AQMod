@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.Core.Entities.Projectiles;
+using System.Collections.Generic;
 using Terraria.Audio;
 
 namespace Aequus.Content.Items.Weapons.Summon.Whips.DemonCorruptWhip;

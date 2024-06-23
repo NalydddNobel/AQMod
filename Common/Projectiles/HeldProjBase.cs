@@ -1,5 +1,8 @@
-﻿namespace Aequus.Common.Projectiles;
+﻿using System;
 
+namespace Aequus.Common.Projectiles;
+
+[Obsolete]
 public abstract class HeldProjBase : ModProjectile {
     public float armRotation;
     protected virtual void SetArmRotation(Player player) {

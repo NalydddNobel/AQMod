@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aequus.Core.Entities.Projectiles;
+using System;
 using System.IO;
 
 namespace Aequus.Common.Projectiles;

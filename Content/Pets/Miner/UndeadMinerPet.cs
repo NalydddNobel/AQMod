@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Projectiles;
-using Aequus.Core.ContentGeneration;
+﻿using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Projectiles;
 using System;
 using System.IO;
 using Terraria.Audio;
@@ -105,7 +105,7 @@ public class UndeadMinerPet : UnifiedModPet {
             Projectile.rotation = 0f;
             Projectile.tileCollide = true;
             var tileWorld = new Vector2(tileX * 16f + 8f, tileY * 16f + 8f);
-            ProjectileAISnippets.GenericPetGroundMovement(Projectile, tileWorld);
+            AIClones.GenericPetGroundMovement(Projectile, tileWorld);
             Projectile.spriteDirection = -Projectile.direction;
             if (Projectile.getRect().ClosestPointInRect(tileWorld).Distance(tileWorld) < 40f) {
                 if (swingPick <= 0) {

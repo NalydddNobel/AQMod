@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aequus.Core.Entities.Projectiles;
+using System;
 
 namespace Aequus.Content.Dedicated.IronLotus;
 

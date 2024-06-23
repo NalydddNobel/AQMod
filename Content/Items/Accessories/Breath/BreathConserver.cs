@@ -1,8 +1,8 @@
 ﻿using Aequus.Common;
-using Aequus.Common.Projectiles;
 using Aequus.Content.Dusts;
 using Aequus.Content.Graphics.Particles;
 using Aequus.Core.CodeGeneration;
+using Aequus.Core.Entities.Projectiles;
 using System;
 
 namespace Aequus.Content.Items.Accessories.Breath;

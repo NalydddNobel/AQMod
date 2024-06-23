@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aequus.Core.Entities.Projectiles;
+using System;
 
 namespace Aequus.Core.Utilities;
 
@@ -68,8 +69,8 @@ public static class ExtendColor {
         return Main.hslToRgb(MathHelper.Lerp(lastPrismHue, lastPrismHue2, Math.Abs(index) % 1f), 1f, luminance);
     }
     public static Color GetLastPrismColor(int player, float position) {
-        ExtendProjectile._dummyProjectile.owner = player;
-        return GetLastPrismColor(ExtendProjectile._dummyProjectile, position);
+        XProjectile._dummyProjectile.owner = player;
+        return GetLastPrismColor(XProjectile._dummyProjectile, position);
     }
     public static Color GetLastPrismColor(Player player, float position) {
         return GetLastPrismColor(player.whoAmI, position);

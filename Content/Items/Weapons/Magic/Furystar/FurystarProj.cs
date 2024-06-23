@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Projectiles;
+using Aequus.Core.Entities.Projectiles;
 using System;
 using Terraria.DataStructures;
 

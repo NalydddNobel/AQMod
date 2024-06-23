@@ -7,13 +7,10 @@ InfoDisplays: {
 	}
 
 	AnglerBroadcasterIcon: {
-		DisplayName: 钓鱼任务
 		Unavailable: 不可用
 		Finished: 已完成
 	}
 }
-
-KeyUnbound: 按键未绑定
 
 Controls: {
 	Unbound: "{$Mods.Aequus.KeyUnbound}"

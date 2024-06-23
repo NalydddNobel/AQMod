@@ -28,11 +28,5 @@ NotDownedTrueAtmosphereBoss: Ants de derrotar al Demonio de Polvo
 ConfigIsTrue: Si la configuracion {1}/{0} esta activada
 // SilverOre: Mods.Aequus.Condition.SilverOre
 // DownedSalamancer: Mods.Aequus.Condition.DownedSalamancer
-// DownedDustDevil: Mods.Aequus.Condition.DownedDustDevil
-// DownedRedSprite: Mods.Aequus.Condition.DownedRedSprite
-// DownedSpaceSquid: Mods.Aequus.Condition.DownedSpaceSquid
 // UsedReforgeBook: Mods.Aequus.Condition.UsedReforgeBook
-// DownedOmegaStarite: Mods.Aequus.Condition.DownedOmegaStarite
-// DownedUltraStarite: Mods.Aequus.Condition.DownedUltraStarite
-// DownedDemonSiege: Mods.Aequus.Condition.DownedDemonSiege
 // MetOccultist: Mods.Aequus.Condition.MetOccultist

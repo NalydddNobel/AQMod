@@ -1,6 +1,7 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Elements;
 using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Projectiles;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 
@@ -109,7 +110,7 @@ public class DemonVasculash : UnifiedWhipItem, IMinionTagController {
             int petsCount = 0;
             Vector2 wantedVelocity = player.DirectionTo(Main.MouseWorld) * Item.shootSpeed;
             int petType = ModContent.ProjectileType<VasculashTagProj>();
-            foreach (Projectile pet in ExtendProjectile.Where(player.whoAmI, (p) => p.type == petType)) {
+            foreach (Projectile pet in XProjectile.Where(player.whoAmI, (p) => p.type == petType)) {
                 pet.ai[0] = 4f + petsCount * 2f;
                 pet.ai[2] = 10f;
                 pet.netUpdate = true;

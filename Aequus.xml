@@ -513,24 +513,8 @@
             Outward offset, only effects rendering. Updated every game update.
             </summary>
         </member>
-        <member name="P:Aequus.Common.Projectiles.ProjectileItemData.ItemData">
-            <summary>
-            Custom data to be used by items which utilize the <see cref="T:Aequus.Common.Items.Components.IManageProjectile"/> interface or by channeled items. This data is synced in multiplayer.
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Projectiles.ProjectileItemData.NoSpecialEffects">
-            <summary>
-            If this is true, special effects should be disabled on the projectile. This is only set to true by Javelin-like projectiles.
-            </summary>
-        </member>
         <member name="P:Aequus.Common.Projectiles.ProjectileSource.IsProjectileChild">
             <summary>Whether this projectile was spawned by another projectile. Use this to prevent effects occuring multiple times (Like ammo retrival)</summary>
-        </member>
-        <member name="M:Aequus.Common.Projectiles.YoyoProjectileBase.IsYoyoGloveYoyo">
-            <summary>
-            Determines whether this projectile is the orbiting yoyo from the Yoyo Glove.
-            </summary>
-            <returns></returns>
         </member>
         <member name="T:Aequus.Common.Tiles.BaseFurnitureTile.Furniture">
             <summary>
@@ -730,9 +714,6 @@
             <summary>
             Helper for whether or not the player is in danger
             </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.dropRolls">
-            <summary>Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.</summary>
         </member>
         <member name="P:Aequus.AequusSystem.RemixWorldSafeUnderworldRange">
             <summary>Returns a point with the beginning (left) (X) and end (right) (Y) of the 'safe' underworld in remix worlds. This does not represent a point in 2D space, but rather two X coordinates.</summary>
@@ -1012,7 +993,7 @@
             <summary>Color of the projectile. Used mostly by guns.</summary>
         </member>
         <member name="P:Aequus.DataSets.ProjectileDataSet.OccultistIgnore">
-            <summary>Projectiles in this set do not damage the <see cref="T:Aequus.Old.Content.TownNPCs.OccultistNPC.Occultist"/>.</summary>
+            <summary>Projectiles in this set do not damage the <see cref="!:Old.Content.TownNPCs.OccultistNPC.Occultist"/>.</summary>
         </member>
         <member name="P:Aequus.DataSets.ProjectileDataSet.IsStar">
             <summary>Whether or not this projectile is a "Star", this is automatically populated with anything that has "Star" in their internal name.</summary>
@@ -1275,6 +1256,26 @@
             <param name="npc"></param>
             <param name="buffId">The Buff Id to clear from this NPC.</param>
         </member>
+        <member name="M:Aequus.Core.Utilities.XProjectile.TryFindProjectileIdentity(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Attempts to find a projectile index using the identity and owner provided. Returns true if the projectile output is not -1.
+            </summary>
+            <param name="owner"></param>
+            <param name="identity"></param>
+            <param name="projectile"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.XProjectile.FindProjectileIdentity(System.Int32,System.Int32)">
+            <summary>
+            Attempts to find a projectile index using the identity and owner provided. Returns -1 otherwise.
+            </summary>
+            <param name="owner"></param>
+            <param name="identity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.XProjectile.UpdateShimmerReflection(Terraria.Projectile)">
+            <summary>Helper method which reflects a projectile against shimmer.</summary>
+        </member>
         <member name="T:Aequus.Core.Utilities.ChatTagWriter">
             <summary>Contains helper methods for generating chat tag strings. For item and glyphs, <see cref="T:Terraria.GameContent.UI.Chat.ItemTagHandler"/> and <see cref="T:Terraria.GameContent.UI.Chat.GlyphTagHandler"/> have static helper methods.</summary>
         </member>
@@ -1437,26 +1438,6 @@
             <param name="shop"></param>
             <param name="itemName">The internal name of the item.</param>
             <param name="conditions">Conditions for this item.</param>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendProjectile.TryFindProjectileIdentity(System.Int32,System.Int32,System.Int32@)">
-            <summary>
-            Attempts to find a projectile index using the identity and owner provided. Returns true if the projectile output is not -1.
-            </summary>
-            <param name="owner"></param>
-            <param name="identity"></param>
-            <param name="projectile"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendProjectile.FindProjectileIdentity(System.Int32,System.Int32)">
-            <summary>
-            Attempts to find a projectile index using the identity and owner provided. Returns -1 otherwise.
-            </summary>
-            <param name="owner"></param>
-            <param name="identity"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendProjectile.UpdateShimmerReflection(Terraria.Projectile)">
-            <summary>Helper method which reflects a projectile against shimmer.</summary>
         </member>
         <member name="M:Aequus.Core.Utilities.ExtendEnumerable.Match``1(System.Collections.Generic.IEnumerable{``0},``0)">
             <summary>Forces an Enumeration.</summary>
@@ -1926,8 +1907,30 @@
             <param name="hit"></param>
             <param name="damageDone"></param>
         </member>
+        <member name="M:Aequus.Core.ContentGeneration.UnifiedYoyo.IsYoyoGloveYoyo">
+            <summary>
+            Determines whether this projectile is the orbiting yoyo from the Yoyo Glove.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="P:Aequus.Core.CrossMod.SupportedMod`1.Instance">
             <summary>The Supported Mod's instance. This property is <see langword="null" /> when the mod is not enabled.</summary>
+        </member>
+        <member name="T:Aequus.Core.Entities.FloorHazard">
+            <summary>An abstract projectile which represents a floor hazard.</summary>
+        </member>
+        <member name="M:Aequus.Core.Entities.FloorHazard.#ctor(Aequus.Core.Entities.FloorHazard.Info)">
+            <summary>An abstract projectile which represents a floor hazard.</summary>
+        </member>
+        <member name="P:Aequus.Core.Entities.Projectiles.ProjectileItemData.ItemData">
+            <summary>
+            Custom data to be used by items which utilize the <see cref="T:Aequus.Common.Items.Components.IManageProjectile"/> interface or by channeled items. This data is synced in multiplayer.
+            </summary>
+        </member>
+        <member name="P:Aequus.Core.Entities.Projectiles.ProjectileItemData.NoSpecialEffects">
+            <summary>
+            If this is true, special effects should be disabled on the projectile. This is only set to true by Javelin-like projectiles.
+            </summary>
         </member>
         <member name="F:Aequus.Core.Graphics.DrawLayers.PostUpdateScreenPosition">
             <summary>Invoked before anything has begun rendering, but after the screen position has been determined.</summary>
@@ -2430,7 +2433,7 @@
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 892) yo momma gai</summary>
+            <summary>(Total Textures: 893) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2968,6 +2971,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.OilSlime">
             <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/OilSlime</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OilSlimeDeathProj">
+            <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/OilSlimeDeathProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OilSlimeBanner">
             <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/Tiles/OilSlimeBanner</summary>
@@ -5107,110 +5113,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.BacciliteSceptre_Glow">
             <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre_Glow</summary>
-        </member>
-        <member name="M:Aequus.Old.Content.Bosses.OmegaStarite.OmegaStariteRing.#ctor(System.IO.BinaryReader)">
-            <summary>
-            Creates a Ring through a net package
-            </summary>
-            <param name="reader"></param>
-        </member>
-        <member name="T:Aequus.Old.Content.Events.DemonSiege.Tiles.OblivionAltarDummy">
-            <summary>Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.</summary>
-        </member>
-        <member name="P:Aequus.Old.Content.Items.Accessories.HighSteaks.HighSteaks.NotStackableCritDamage">
-            <summary>
-            Default Value: 0.15
-            <para>This is only added on the first stack of the accessory.</para>
-            </summary>
-        </member>
-        <member name="P:Aequus.Old.Content.Items.Accessories.HighSteaks.HighSteaks.WantedCost">
-            <summary>
-            The cost for performing a critical strike.
-            </summary>
-        </member>
-        <member name="P:Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg.SaivoryKnife.GhostLifespan">
-            <summary>Default Value: 3600 (1 minute)</summary>
-        </member>
-        <member name="F:Aequus.Old.Content.Particles.DashBlurParticle.Particle.ScaleX">
-            <summary>
-            Defaults to 0.5f.
-            </summary>
-        </member>
-        <member name="M:Aequus.Old.Content.Tiles.Herbs.ModHerb.GetDropParams(System.Int32,Terraria.Player,Terraria.Item,System.Int32@)">
-            <param name="growthStage">The growth stage (style) of this plant.</param>
-            <param name="closestPlayer">The closest player to the plant.</param>
-            <param name="playerHeldItem">The player's held item.</param>
-            <param name="plant">The plant item id to drop.</param>
-            <param name="seeds">The seed item id to drop.</param>
-        </member>
-        <member name="M:Aequus.Old.Content.Tiles.Herbs.ModHerb.GetDropStacks(System.Int32,Terraria.Player,Terraria.Item,System.Boolean,System.Int32,System.Int32,System.Int32@,System.Int32@)">
-            <param name="growthStage">The growth stage (style) of this plant.</param>
-            <param name="closestPlayer">The closest player to the plant.</param>
-            <param name="playerHeldItem">The player's held item.</param>
-            <param name="staffOfRegrowth">If the player is holding the Staff of Regrowth or Axe of Regrowth.</param>
-            <param name="plant">The plant item id to drop.</param>
-            <param name="seeds">The seed item id to drop.</param>
-            <param name="plantStack">The amount of plants to drop.</param>
-            <param name="seedStack">The amount of seeds to drop.</param>
-        </member>
-        <member name="T:Aequus.Old.Core.CameraFocus">
-            <summary>
-            Manages screen panning
-            </summary>
-        </member>
-        <member name="P:Aequus.Old.Core.CameraFocus.Context">
-            <summary>
-            A context string for the current focus
-            </summary>
-        </member>
-        <member name="F:Aequus.Old.Core.CameraFocus.target">
-            <summary>
-            The target position for the camera in the world
-            </summary>
-        </member>
-        <member name="F:Aequus.Old.Core.CameraFocus.cameraPosition">
-            <summary>
-            The camera's position 
-            </summary>
-        </member>
-        <member name="F:Aequus.Old.Core.CameraFocus.priority">
-            <summary>
-            A priority for determining whether or not a new camera focus can be added
-            </summary>
-        </member>
-        <member name="F:Aequus.Old.Core.CameraFocus.speed">
-            <summary>
-            The speed of the camera
-            </summary>
-        </member>
-        <member name="F:Aequus.Old.Core.CameraFocus.cameraProgress">
-            <summary>
-            The progress of the camera from its original position to its destination
-            </summary>
-        </member>
-        <member name="F:Aequus.Old.Core.CameraFocus.hold">
-            <summary>
-            How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Old.Core.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Old.Core.CameraPriority,System.Single,System.Int32)"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.Old.Core.CameraFocus.returning">
-            <summary>
-            Whether or not the camera is returning
-            </summary>
-        </member>
-        <member name="M:Aequus.Old.Core.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Old.Core.CameraPriority,System.Single,System.Int32)">
-            <summary>
-            Sets the camera target to a position, may return false if your priority is below a current target's priority
-            </summary>
-            <param name="key">Context key, only really useful for 3rd party mods</param>
-            <param name="target">A world coordinate to point the camera at</param>
-            <param name="priority">The priority of this camera target. If there is a current camera target, and its priority is above, it will prevent you from setting a target and this method will return false</param>
-            <param name="speed">The speed of the camera, the exact time it will get there is: <code>speed / 50</code>So 6 speed means it will get into position in 8 frames. Clamped between 6 and 25</param>
-            <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Old.Core.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Old.Core.CameraPriority,System.Single,System.Int32)"/></param>
-            <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
-        </member>
-        <member name="T:Aequus.Old.Core.SkyDarkness">
-            <summary>Used for darken-ing the sky for flashy visual effects</summary>
         </member>
     </members>
 </doc>

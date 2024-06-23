@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Assets\Sounds\Enemy\WhiteSlime\WhiteSlimeWompWomp.ogg" />
+    <None Remove="Content\Enemies\PollutedOcean\OilSlime\OilSlimeDeathProj.png" />
     <None Remove="Old\Content\Enemies\GaleStreams\Balloon\StreamingBalloon.png" />
     <None Remove="Old\Content\Enemies\GaleStreams\Vraine\Tiles\VraineBanner.png" />
     <None Remove="Old\Content\Enemies\GaleStreams\Vraine\Vraine.png" />

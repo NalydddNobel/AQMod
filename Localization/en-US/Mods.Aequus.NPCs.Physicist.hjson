@@ -1,25 +1,4 @@
-DisplayName: Physicist
-Bestiary: An alien scientist from a neighboring planet, sent to Earth to survey for unnatural phenomena. Kind of an airhead despite her astronomical IQ; she forgot to bring a radio to report back home with.
-
 TownNPCMood: {
-	Content: My surroundings are acceptable. As they say on Mars, an alive soldier is a happy soldier.
-	NoHome: I would request a drop-pod laboratory from my homeworld, but... I neglected to bring my radio. May you construct a habitat for me?
-	FarFromHome: A scientist's work is not for the weak of mind. For instance, I occasionally have to leave my house.
-	LoveSpace: I enjoy space in all definitions. It's nice to have ample room to set up all of my equipment.
-	DislikeCrowded: The abundance of nearby lifeforms is throwing off my readings. More room would be appreciated.
-	HateCrowded: I had heard rumors of your species' inconsiderate housing habits. It's unfortunate to see they're true.
-	LikeBiome: The clear weather of the Desert is ideal for both long-range observation and sending communications back to my homeworld. Excellent!
-	LoveBiome: Living in {BiomeName} has been great for me and my drone, reminds me a lot of my homeworld.
-	DislikeBiome: Really I refuse to believe the place before me is real, must be a mirage you put up for outside visitors.
-	HateBiome: "[HateBiomeQuote]|{BiomeName}+"
-	HateBiome_Hallow: What a childish place the Hallow is. This is an insult to someone of my intelligence.
-	HateBiome_Evils: My equipment keeps malfunctioning in {BiomeName}, as if there is some kind of persistent virus in the air.
-	LoveNPC: "{NPCName} is utterly fascinating! Even our best scientists could only dream of a truly sapient AI!"
-	LikeNPC: "{NPCName} is a competent engineer. It's nice to talk to someone that can keep up with my expertise."
-	LikeNPC_Princess: "{NPCName} has reached out to me about relations with my race. I am no ambassador, but it's nice to see your rulers are fair and just."
-	DislikeNPC: "{NPCName}'s methods confuse and upset me. Rituals and prophecies have no role in understanding the world."
-	HateNPC: "{NPCName} is far too whimsical for my tastes. Don't they know 'magic' is just sufficiently advanced technology?"
-	Princess_LovesNPC: "{NPCName} is so mysterious... I would love for her to stick around!"
 }
 
 Dialogue: {

@@ -71,12 +71,6 @@ GrandReward: {
 }
 
 RadonFishingBobber: {
-	DisplayName: Radon Moss Fishing Bobber
-	Tooltip:
-		'''
-		{$ItemTooltip.FishingBobber}
-		{$Buffs.RadonFishingBobberBuff.Description}
-		'''
 }
 
 CrownOfDarkness: {
@@ -232,27 +226,15 @@ PotionCanteen: {
 }
 
 SouljointCuffs: {
-	DisplayName: Souljoint Cuffs
-	Tooltip: Ghost minions become attached to an enemy after dealing a melee hit
 }
 
 PandorasBox: {
-	DisplayName: Pandoras Box
-	Tooltip:
-		'''
-		Enemies take extra damage from scepter debuffs
-		Ghost minion projectiles travel at twice the speed
-		'''
 }
 
 RitualisticSkull: {
-	DisplayName: Ritualistic Skull
-	Tooltip: Converts all but one of your minion slots into ghost slots
 }
 
 ShadowVeer: {
-	DisplayName: Shadow Veer
-	Tooltip: Ghost minions will do shadow dashes at targeted enemies
 }
 
 //# Equipment: Misc
@@ -267,8 +249,6 @@ StellarGlasses: {
 }
 
 EclipseGlasses: {
-	DisplayName: Eclipse Glasses
-	Tooltip: Ignore enemy spawns of the Eclipse
 }
 
 RabbitsFoot: {
@@ -277,8 +257,6 @@ RabbitsFoot: {
 }
 
 LavaproofMitten: {
-	DisplayName: Lavaproof Mitten
-	Tooltip: Allows block placement in lava
 }
 
 Pacemaker: {
@@ -299,8 +277,6 @@ ShimmerMonocle: {
 }
 
 RichMansMonocle: {
-	DisplayName: Rich Man's Monocle
-	Tooltip: Displays item prices outside of shops
 }
 
 Calendar: {
@@ -309,49 +285,21 @@ Calendar: {
 }
 
 AnglerBroadcaster: {
-	DisplayName: Angler Broadcaster
-	Tooltip: Displays the current Angler quest
 }
 
 HoloLens: {
-	DisplayName: Holo Lens
-	Tooltip: Allows you to view the contents of chests without opening them
 }
 
-//# Equipment: Armor
-GravetenderHood: {
-	DisplayName: Gravetender Hood
-	Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
-	Setbonus: Summon a wisp which empowers your closest ghost minion
-}
+GravetenderHood.Setbonus: Summon a wisp which empowers your closest ghost minion
 
 GravetenderRobes: {
-	DisplayName: Gravetender Robes
-	Tooltip:
-		'''
-		{$CommonTooltips.StatGhostDuration}
-		{$CommonTooltips.StatGhostSlots@1}
-		'''
 }
 
 //# Equipment: Grappling Hooks
 LeechHook: {
-	DisplayName: Leech Hook
-	Tooltip:
-		'''
-		Ignores {0} points of enemy Defense
-		Latches onto enemies, healing you
-		Damage the victim to restore extra life
-		'''
 }
 
 Meathook: {
-	DisplayName: Meathook
-	Tooltip:
-		'''
-		Allows you to grapple to enemies
-		Deal {0}% increased damage to the enemy you grapple onto
-		'''
 }
 
 //# Weapons: Melee
@@ -361,17 +309,9 @@ AncientCutlass: {
 }
 
 Dynaknife: {
-	DisplayName: The Christmas Spirit
-	Tooltip:
-		'''
-		Hits apply a bomb which will explode on enemies
-		<right> to dash foward and attack
-		'''
 }
 
 UltimateSword: {
-	DisplayName: Ultimate Sword
-	Tooltip: "'Absorbed by Omega Starite, losing its true potential...'"
 }
 
 Phasebrink: {
@@ -384,71 +324,31 @@ Phasebrink: {
 }
 
 SickBeat: {
-	DisplayName: Sick Beat
-	Tooltip:
-		'''
-		Deals extra hits when returning back
-		Dropped from sickly enemies who'd love some beats
-		'This beat comes straight from Terraria!'
-		'''
 }
 
 Valari: {
-	DisplayName: Valari
-	Tooltip: Can pick up items
 }
 
 Vrang: {
-	DisplayName: Vrang
-	Tooltip:
-		'''
-		Throw 3 boomerangs at once
-		Dropped by flocking birds which travel in the skies while the wind is high
-		'''
 }
 
 // translation note: the flavor text on the tooltip is taken straight from the sword ability flavor text from 'Kirby: Nightmare in Dream Land'
 SuperStarSword: {
-	DisplayName: Super Star Sword
-	Tooltip:
-		'''
-		Fires a slash while above 90% health
-		'If they zig, I cut 'em (If they zag, I cut 'em too)'
-		'''
 }
 
 Slice: {
-	DisplayName: Slice
-	Tooltip:
-		'''
-		Gains speed over time and inflicts frostbite on hit
-		{$CommonTooltips.OmnidirectionMelee}
-		'Not to be confused with Dice'
-		'''
 }
 
 MirrorsCall: {
-	DisplayName: Mirror's Call
-	Tooltip: Strike the enemy from the comfort of your couch!
 }
 
 IronLotus: {
-	DisplayName: Iron Lotus
-	Tooltip:
-		'''
-		Brandish a spear which inflicts spreading flames
-		'Burn those who dare to care for me'
-		'''
 }
 
 Cauterizer: {
-	DisplayName: Cauterizer
-	Tooltip: "{$CommonTooltips.OmnidirectionMelee}"
 }
 
 HellsBoon: {
-	DisplayName: Hells Boon
-	Tooltip: Attack enemies with long range darkness and ash spikes
 }
 
 //# Ranged Ammo
@@ -463,71 +363,34 @@ PlasticDart: {
 
 //# Weapons: Ranged
 StarPhish: {
-	DisplayName: Star Phish
-	Tooltip: "{$CommonTooltips.UsesDarts}"
 }
 
 JunkJet: {
-	DisplayName: Junk Jet
-	Tooltip:
-		'''
-		Can use most ammo
-		{0}% chance to not consume ammo
-		'''
 }
 
 SkyHunterCrossbow: {
-	DisplayName: Sky Hunter Crossbow
-	Tooltip:
-		'''
-		Fire connected arrows which can pick up items
-		<right> to zoom out
-		'''
 }
 
 SnowflakeCannon: {
-	DisplayName: Snowflake Cannon
-	Tooltip:
-		'''
-		Shoots charged snowflakes which arc off of enemies
-		66% chance to not consume ammo
-		'''
 }
 
 BoundBow: {
-	DisplayName: Bound Bow
-	Tooltip: Infinitely regenerates ammo over time
 }
 
 Hitscanner: {
-	DisplayName: Hitscanner
-	Tooltip:
-		'''
-		Ignores 5 points of enemy Defense
-		Fires a massive spread of instantly hitting bullets
-		'We will send unto them... only you.'
-		'''
 }
 
 Raygun: {
-	DisplayName: Raygun
-	Tooltip: Converts bullets into extremely fast rays
 }
 
 CrusadersCrossbow: {
-	DisplayName: Crusaders Crossbow
-	Tooltip: Shoots a bolt which can heal allies
 }
 
 Deltoid: {
-	DisplayName: Deltoid
-	Tooltip: Ignites wooden arrows with crimson hellfire
 }
 
 // --localization note-- this bow is named after an actual real bow, probably should be left as is
 HamaYumi: {
-	DisplayName: Hama Yumi
-	Tooltip: Arrows are temporarily buffed with a piercing corruption blast
 }
 
 //# Weapons: Magic
@@ -546,45 +409,19 @@ Furystar: {
 }
 
 Gamestar: {
-	DisplayName: Gamestar
-	Tooltip: Shoots a stream of compressed data
 }
 
 Nightfall: {
-	DisplayName: Nightfall
-	Tooltip:
-		'''
-		Attacks against grounded enemies throws them into the air
-		Airborne enemies slam to the ground, taking fall damage
-		'''
 }
 
 StudiesOfTheInkblot: {
-	DisplayName: Studies Of The Inkblot
-	Tooltip:
-		'''
-		Left Click for 'Rorschach in Danmaku'
-		Right Click for 'Subterranean Rose'
-		'''
 }
 
 BombarderRod: {
-	DisplayName: Bombarder Rod
-	Tooltip:
-		'''
-		Critical strikes inflict crimson fire to nearby enemies
-		Imprecise at close range
-		'''
 }
 
 // --localization note-- 'triacanthorn' is a portmanteau of 'Gleditsia triacanthos' (scientific name of a thorny plant) and the word 'thorn'
 Triacanthorn: {
-	DisplayName: Triacanthorn
-	Tooltip:
-		'''
-		Cast splitting vile tendrils
-		Ignores 10 points of enemy Defense
-		'''
 }
 
 //# Weapons: Summon
@@ -614,18 +451,12 @@ DemonVasculash: {
 }
 
 ScribbleNotebook: {
-	DisplayName: Scribble Notebook
-	Tooltip: Summons a random object to fight for you
 }
 
 StariteStaff: {
-	DisplayName: Starite Staff
-	Tooltip: ""
 }
 
 PhysicistSentry: {
-	DisplayName: Portable Tesla Turret
-	Tooltip: Summons a tesla turret which fires a barrage of chaining lightning
 }
 
 //# Weapons: Necromancy
@@ -685,11 +516,7 @@ MeadowMushroom: {
 	Tooltip: ""
 }
 
-SentryPotion: {
-	DisplayName: Sentinel Potion
-	Tooltip: Increases your maximum amount of sentries by {0}
-	BuffName: Sentinel
-}
+SentryPotion.BuffName: Sentinel
 
 TaintedSeafood: {
 	DisplayName: Tainted Seafood
@@ -701,8 +528,6 @@ TaintedSeafood: {
 }
 
 NeutronYogurt: {
-	DisplayName: Neutron Yogurt
-	Tooltip: Grants an enchanted fall with doubled acceleration
 }
 
 DeathsEmbrace: {
@@ -718,27 +543,13 @@ DeathsEmbrace: {
 }
 
 SuspiciousLookingSteak: {
-	DisplayName: Suspicious Looking Steak
-	Tooltip: "'You are a terrible person'"
 }
 
 PotionOfResurrection: {
-	DisplayName: Potion Of Resurrection
-	Tooltip:
-		'''
-		Teleports you to the location of your most recent death
-		'A drink favored by those who have experienced death recently'
-		'''
 }
 
 //# Foods
 Baguette: {
-	DisplayName: Baguette
-	Tooltip:
-		'''
-		Supreme improvements to all stats
-		Greatly improves life regeneration
-		'''
 }
 
 //# Misc
@@ -808,59 +619,37 @@ NecroFragment: {
 }
 
 PossessedShard: {
-	DisplayName: Possessed Shard
-	Tooltip: Dropped from possessed armors and tools
 }
 
 AquaticEnergy: {
-	DisplayName: Aquatic Energy
-	Tooltip: ""
 }
 
 AtmosphericEnergy: {
-	DisplayName: Atmospheric Energy
-	Tooltip: ""
 }
 
 CosmicEnergy: {
-	DisplayName: Cosmic Energy
-	Tooltip: ""
 }
 
 DemonicEnergy: {
-	DisplayName: Eidolic Energy
-	Tooltip: ""
 }
 
 // --localization note-- 'hearth' is a very specific word so it can just be translated into anything relating to earth or ground
 OrganicEnergy: {
-	DisplayName: Hearthic Energy
-	Tooltip: ""
 }
 
 UltimateEnergy: {
-	DisplayName: Ultimate Energy
-	Tooltip: ""
 }
 
 MonoGem: {
-	DisplayName: Mono Gem
-	Tooltip: "'Cursed with the essence of obscurity'"
 }
 
 OmniGem: {
-	DisplayName: Omni Gem
-	Tooltip: "'Enchanted with the presence of the Aether'"
 }
 
 GreaterHoney: {
-	DisplayName: Greater Honey Potion
-	Tooltip: Improves natural healing
 }
 
 SuperHoney: {
-	DisplayName: Super Honey Potion
-	Tooltip: Improves natural healing for a long time
 }
 
 LesserRestorationPotion: {
@@ -887,11 +676,7 @@ NoHitReward: {
 		'''
 }
 
-TinkerersGuidebook: {
-	DisplayName: Tinkerer's Guidebook
-	Tooltip: Permanently increases odds of rolling positive prefixes from reforge services
-	DisplayMessage: The Goblin Tinkerer's profits begin to dwindle!
-}
+TinkerersGuidebook.DisplayMessage: The Goblin Tinkerer's profits begin to dwindle!
 
 CosmicChest: {
 	DisplayName: Fortunate Souvenir
@@ -919,45 +704,21 @@ CompressedTrash: {
 }
 
 BloodyTearstone: {
-	DisplayName: Bloody Tearstone
-	Tooltip: ""
 }
 
 SoulGem: {
-	DisplayName: Empty Soul Gem
-	Tooltip: Unusable until it captures the soul of an enemy
 }
 
 SoulGemFilled: {
-	DisplayName: Soul Gem
-	Tooltip:
-		'''
-		Used to craft necromantic equipment
-		Dropped by the darkest of demons...
-		'''
 }
 
 GalacticStarfruit: {
-	DisplayName: Galactic Starfruit
-	Tooltip: Creates a strange glimmer
 }
 
 UnholyCore: {
-	DisplayName: Unholy Core
-	Tooltip:
-		'''
-		Can be used at the Oblivion Altar
-		Decreases the length of the Demon Siege event
-		'''
 }
 
 UnholyCoreSmall: {
-	DisplayName: Dark Tearstone
-	Tooltip:
-		'''
-		Can be used at the Oblivion Altar
-		Dropped from mysterious entites around the Underworld
-		'''
 }
 
 WispLantern: {
@@ -1025,26 +786,12 @@ DedicatedFaelingItem: {
 }
 
 PhysicsGun: {
-	DisplayName: Physics Gun
-	Tooltip: Can grab and throw blocks
 }
 
 Bellows: {
-	DisplayName: Bellows
-	Tooltip:
-		'''
-		Pushes you
-		'Quite the pushover'
-		'''
 }
 
 Pumpinator: {
-	DisplayName: Pumpinator
-	Tooltip:
-		'''
-		Gradually changes the speed of the wind
-		Can push almost anything with its powerful gusts
-		'''
 }
 
 NameTag: {
@@ -1055,8 +802,6 @@ NameTag: {
 		Use on villagers, critters, or enemies to rename them
 		'''
 }
-
-PylonDrone.Tooltip: Use near a pylon to activate the drone, pylons can only have two drones each
 
 CleanserDrone: {
 	DisplayName: "{$NPCs.CleanserDrone.DisplayName}"
@@ -1086,18 +831,12 @@ HealerDrone: {
 }
 
 MoonflowerSeeds: {
-	DisplayName: Moonflower Seeds
-	Tooltip: ""
 }
 
 MistralSeeds: {
-	DisplayName: Mistral Seeds
-	Tooltip: ""
 }
 
 ManacleSeeds: {
-	DisplayName: Manacle Seeds
-	Tooltip: ""
 }
 
 //# Backpacks
@@ -1120,18 +859,12 @@ Toolbelt: {
 
 //# Vanity
 BreadOfCthulhuMask: {
-	DisplayName: Bread Of Cthulhu Mask
-	Tooltip: ""
 }
 
 RedSpriteMask: {
-	DisplayName: Red Sprite Mask
-	Tooltip: ""
 }
 
 SpaceSquidMask: {
-	DisplayName: Space Squid Mask
-	Tooltip: ""
 }
 
 CelestialEightBall: {
@@ -1163,13 +896,9 @@ CelestialEightBall: {
 }
 
 CosmicMonolith: {
-	DisplayName: Cosmic Monolith
-	Tooltip: "'Sustain a fraction of cosmic power'"
 }
 
 StariteMaterial: {
-	DisplayName: Core Fragment
-	Tooltip: ""
 }
 
 UnopenedChestItem: {

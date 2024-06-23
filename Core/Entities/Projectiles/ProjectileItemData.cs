@@ -2,7 +2,7 @@
 using System.IO;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Common.Projectiles;
+namespace Aequus.Core.Entities.Projectiles;
 
 public partial class ProjectileItemData : GlobalProjectile {
     protected override bool CloneNewInstances => true;

@@ -103,6 +103,7 @@ public class OilSlime : ModNPC, IBodyItemContainer {
     }
 
     public override void OnKill() {
+        Projectile.NewProjectile(NPC.GetSource_Death(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<OilSlimeDeathProj>(), NPC.damage, 1f, Main.myPlayer);
         (this as IBodyItemContainer).DropItem(NPC.GetSource_Loot(), NPC.Hitbox);
     }
 
