@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Sounds: 99)</summary>
+/// <summary>(Total Sounds: 104)</summary>
 [CompilerGenerated]
 public partial class AequusSounds {            
         /// <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_AmbientA0</summary>
@@ -52,6 +52,16 @@ public partial class AequusSounds {
     public static readonly SoundStyle KeeperImpSummon = new("Aequus/Assets/Sounds/Enemy/KeeperImp/KeeperImpSummon");
     /// <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/KeeperImpSummonTelegraph</summary>
     public static readonly SoundStyle KeeperImpSummonTelegraph = new("Aequus/Assets/Sounds/Enemy/KeeperImp/KeeperImpSummonTelegraph");
+    /// <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_0</summary>
+    public static readonly SoundStyle Hit_OilSlime_0 = new("Aequus/Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_0");
+    /// <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_1</summary>
+    public static readonly SoundStyle Hit_OilSlime_1 = new("Aequus/Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_1");
+    /// <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_2</summary>
+    public static readonly SoundStyle Hit_OilSlime_2 = new("Aequus/Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_2");
+    /// <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Killed_OilSlime</summary>
+    public static readonly SoundStyle Killed_OilSlime = new("Aequus/Assets/Sounds/Enemy/OilSlime/Killed_OilSlime");
+    /// <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Looping_Oil</summary>
+    public static readonly SoundStyle Looping_Oil = new("Aequus/Assets/Sounds/Enemy/OilSlime/Looping_Oil");
     /// <summary>Full Path: Assets/Sounds/Enemy/Pillbug/PhilBugHurt</summary>
     public static readonly SoundStyle PhilBugHurt = new("Aequus/Assets/Sounds/Enemy/Pillbug/PhilBugHurt");
     /// <summary>Full Path: Assets/Sounds/Enemy/Pillbug/PhilBugKilled</summary>

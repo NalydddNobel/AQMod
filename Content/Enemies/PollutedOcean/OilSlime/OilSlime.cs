@@ -41,8 +41,8 @@ public class OilSlime : ModNPC, IBodyItemContainer, IOilSlimeInheritedBurning {
         NPC.defense = 15;
         NPC.lifeMax = 40;
         NPC.knockBackResist = 0.25f;
-        NPC.HitSound = SoundID.NPCHit1;
-        NPC.DeathSound = SoundID.NPCDeath1;
+        NPC.HitSound = AequusSounds.HitOilSlime;
+        NPC.DeathSound = AequusSounds.Killed_OilSlime with { PitchVariance = 0.15f };
         NPC.alpha = 40;
         NPC.value = 25f;
         AnimationType = NPCID.BlueSlime;

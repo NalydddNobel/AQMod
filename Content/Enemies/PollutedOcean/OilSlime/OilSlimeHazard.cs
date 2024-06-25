@@ -25,6 +25,16 @@ public class OilSlimeHazard() : FloorHazard(new Info(HurtsPlayers: true, HurtsNP
             return;
         }
 
+        if (OnFire) {
+            if (Projectile.soundDelay == 0) {
+                SoundEngine.PlaySound(AequusSounds.Looping_Oil with { Volume = 0.25f, PitchVariance = 0.5f, MaxInstances = 20 }, Main.rand.NextVector2FromRectangle(Projectile.Hitbox));
+                Projectile.soundDelay = Main.rand.Next(150, 500);
+            }
+            else {
+                Projectile.soundDelay--;
+            }
+        }
+
         base.AI();
 
         int timeBetweenSpread = 5;

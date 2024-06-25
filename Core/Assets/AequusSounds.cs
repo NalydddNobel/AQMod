@@ -8,6 +8,7 @@ public sealed partial class AequusSounds : IContentInstance {
         return new(zero.SoundPath[..^1], 0, variants);
     }
 
+    public static SoundStyle HitOilSlime { get; private set; }
     public static SoundStyle EelMoving { get; private set; }
     public static SoundStyle PollutedOcean_AmbientB { get; private set; }
     public static SoundStyle PollutedOcean_AmbientA { get; private set; }
@@ -22,6 +23,7 @@ public sealed partial class AequusSounds : IContentInstance {
     public static SoundStyle ChainedSoulAttackExplode { get; private set; }
 
     void IContentInstance.Load(Mod mod) {
+        HitOilSlime = GetMultisound(Hit_OilSlime_0, 2) with { Pitch = 0f, PitchVariance = 0.1f, MaxInstances = 3 };
         PollutedOcean_AmbientB = GetMultisound(PollutedOcean_AmbientB0, 2) with { Pitch = 0f, PitchVariance = 0.1f, MaxInstances = 1, Type = SoundType.Ambient };
         PollutedOcean_AmbientA = GetMultisound(PollutedOcean_AmbientA0, 3) with { Pitch = 0f, PitchVariance = 0.1f, MaxInstances = 1, Type = SoundType.Ambient };
         EelMoving = GetMultisound(EelMoving0, 3) with { Pitch = 0f, PitchVariance = 0.1f, MaxInstances = 2 };

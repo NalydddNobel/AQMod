@@ -2136,7 +2136,7 @@
             <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 99)</summary>
+            <summary>(Total Sounds: 104)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.PollutedOcean_AmbientA0">
             <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_AmbientA0</summary>
@@ -2206,6 +2206,21 @@
         </member>
         <member name="F:Aequus.AequusSounds.KeeperImpSummonTelegraph">
             <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/KeeperImpSummonTelegraph</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.Hit_OilSlime_0">
+            <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.Hit_OilSlime_1">
+            <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.Hit_OilSlime_2">
+            <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_2</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.Killed_OilSlime">
+            <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Killed_OilSlime</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.Looping_Oil">
+            <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Looping_Oil</summary>
         </member>
         <member name="F:Aequus.AequusSounds.PhilBugHurt">
             <summary>Full Path: Assets/Sounds/Enemy/Pillbug/PhilBugHurt</summary>
