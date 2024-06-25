@@ -7,7 +7,7 @@ namespace Aequus.Core.Entities;
 
 /// <summary>An abstract projectile which represents a floor hazard.</summary>
 public abstract class FloorHazard(FloorHazard.Info info) : ModProjectile {
-    private readonly List<Point> _hazardPoints = [];
+    private List<Point> _hazardPoints;
     private bool[] _hazardLookup;
 
     public List<Point> HazardPoints => _hazardPoints;
@@ -28,10 +28,15 @@ public abstract class FloorHazard(FloorHazard.Info info) : ModProjectile {
         Projectile.ignoreWater = true;
         Projectile.tileCollide = false;
 
+        _hazardPoints = [];
         SetSize(_info.StartWidth, _info.StartHeight);
     }
 
     public override void AI() {
+        if (_info.HurtsProjectiles) {
+            FloorHazardGlobalProjectile._nextHazards.Add(this);
+        }
+
         // Stick to 16x16 grid.
         Projectile.position.X -= Projectile.position.X % 16f;
         Projectile.position.Y -= Projectile.position.Y % 16f;
@@ -56,17 +61,6 @@ public abstract class FloorHazard(FloorHazard.Info info) : ModProjectile {
 
                 if (npc.active && !npc.dontTakeDamage && Projectile.Colliding(hitbox, npcHitbox)) {
                     OnHazardCollideWithNPC(npc);
-                }
-            }
-        }
-
-        if (true || _info.HurtsProjectiles) {
-            for (int i = 0; i < Main.maxProjectiles; i++) {
-                Projectile other = Main.projectile[i];
-                Rectangle otherHitbox = other.getRect();
-
-                if (i != Projectile.whoAmI && other.active && Projectile.Colliding(hitbox, otherHitbox) && other.Colliding(otherHitbox, hitbox)) {
-                    OnHazardCollideWithProjectile(other);
                 }
             }
         }
@@ -188,6 +182,11 @@ public abstract class FloorHazard(FloorHazard.Info info) : ModProjectile {
         return false;
     }
 
+    public override void OnKill(int timeLeft) {
+        FloorHazardGlobalProjectile._nextHazards.Remove(this);
+        FloorHazardGlobalProjectile.ActiveHazards.Remove(this);
+    }
+
     #region Common Behaviors
     protected void MarkAllAvailable() {
         for (int i = X; i < X + TileWidth; i++) {
@@ -244,4 +243,32 @@ public abstract class FloorHazard(FloorHazard.Info info) : ModProjectile {
         }
     }
     #endregion
+}
+
+public class FloorHazardGlobalProjectile : GlobalProjectile {
+    internal static List<FloorHazard> _nextHazards = [];
+    public static List<FloorHazard> ActiveHazards = [];
+
+    internal static void SwapHazardList() {
+        (ActiveHazards, _nextHazards) = (_nextHazards, ActiveHazards);
+        _nextHazards.Clear();
+    }
+
+    public override void AI(Projectile projectile) {
+        for (int i = 0; i < ActiveHazards.Count; i++) {
+            FloorHazard hazard = ActiveHazards[i];
+            Rectangle hitbox = hazard.Projectile.Hitbox;
+            Rectangle otherHitbox = projectile.Hitbox;
+
+            if (hazard.Projectile.Colliding(hitbox, otherHitbox) && projectile.Colliding(otherHitbox, hitbox)) {
+                hazard.OnHazardCollideWithProjectile(projectile);
+            }
+        }
+    }
+}
+
+public class FloorHazardSystem : ModSystem {
+    public override void PreUpdateEntities() {
+        FloorHazardGlobalProjectile.SwapHazardList();
+    }
 }

@@ -18,7 +18,7 @@ public class OilSlimeDeathProj : ModProjectile, IOilSlimeInheritedBurning {
     }
 
     public override void OnSpawn(IEntitySource source) {
-        if (source is EntitySource_Parent parent && parent.Entity is IOilSlimeInheritedBurning burningInst) {
+        if (source is EntitySource_Parent parent && parent.Entity is NPC npc && npc.ModNPC is IOilSlimeInheritedBurning burningInst) {
             OnFire = burningInst.OnFire;
         }
     }
@@ -42,6 +42,16 @@ public class OilSlimeDeathProj : ModProjectile, IOilSlimeInheritedBurning {
                         d.velocity += velocity * 4f;
                         d.noGravity = true;
                     }
+                    if (OnFire) {
+                        for (int i = 0; i < Projectile.frame * 9; i++) {
+                            Vector2 wantedPosition = Projectile.Center;
+                            Vector2 velocity = Main.rand.NextVector2Unit();
+                            Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
+                            d.velocity += velocity * 4f;
+                            d.noGravity = true;
+                            d.scale *= 2f;
+                        }
+                    }
                 }
             }
 
@@ -61,6 +71,13 @@ public class OilSlimeDeathProj : ModProjectile, IOilSlimeInheritedBurning {
             d.velocity -= Projectile.velocity * 0.2f;
             d.noGravity = true;
             d.scale *= 1.8f;
+        }
+        else if (OnFire) {
+            Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
+            d.velocity *= 0.25f;
+            d.velocity -= Projectile.velocity * 0.2f;
+            d.noGravity = true;
+            d.scale *= 2f;
         }
 
         if (Projectile.tileCollide && Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height)) {

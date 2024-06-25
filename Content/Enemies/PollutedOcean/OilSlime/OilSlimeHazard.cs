@@ -12,7 +12,7 @@ public class OilSlimeHazard() : FloorHazard(new Info(HurtsPlayers: true, HurtsNP
     public bool OnFire { get; set; }
 
     public override void OnSpawn(IEntitySource source) {
-        if (source is EntitySource_Parent parent && parent.Entity is IOilSlimeInheritedBurning burningInst) {
+        if (source is EntitySource_Parent parent && parent.Entity is Projectile projectile && projectile.ModProjectile is IOilSlimeInheritedBurning burningInst) {
             OnFire = burningInst.OnFire;
         }
     }
@@ -21,14 +21,14 @@ public class OilSlimeHazard() : FloorHazard(new Info(HurtsPlayers: true, HurtsNP
         if (HazardPoints.Count <= 0) {
             Projectile.position.Y += 2f;
             MarkAllAvailable();
-            Projectile.timeLeft = 600;
+            Projectile.timeLeft = 3600;
             return;
         }
 
         base.AI();
 
-        int timeBetweenSpread = 2;
-        int spreadCount = 5;
+        int timeBetweenSpread = 5;
+        int spreadCount = 6;
         if ((int)Projectile.ai[0] <= timeBetweenSpread * spreadCount) {
             if ((int)Projectile.ai[0] == 0) {
                 HazardPoints.Clear();
@@ -39,7 +39,7 @@ public class OilSlimeHazard() : FloorHazard(new Info(HurtsPlayers: true, HurtsNP
             }
         }
 
-        if (OnFire) {
+        if (OnFire && HazardPoints.Count > 0) {
             int dustPerTick = (int)Math.Max((TileWidth + TileHeight) * (1f + Main.gfxQuality) * 0.33f, 1);
             for (int i = 0; i < dustPerTick; i++) {
                 if (!Main.rand.NextBool(Projectile.alpha / 20 + 1)) {
@@ -79,11 +79,11 @@ public class OilSlimeHazard() : FloorHazard(new Info(HurtsPlayers: true, HurtsNP
             }
         }
 
-        if (Projectile.timeLeft < 180) {
-            Projectile.alpha += 2;
+        if (Projectile.timeLeft < 30) {
+            Projectile.alpha += 9;
         }
 
-        static void OnSpread(int i, int j) {
+        void OnSpread(int i, int j) {
             SoundEngine.PlaySound(SoundID.Item154, new Vector2(i, j) * 16f);
             for (int k = 0; k < 9; k++) {
                 float scale = Main.rand.NextFloat(0.3f, 2f);
@@ -93,6 +93,19 @@ public class OilSlimeHazard() : FloorHazard(new Info(HurtsPlayers: true, HurtsNP
                 Dust d = Dust.NewDustPerfect(worldCoordinates, DustID.TintableDust, Scale: scale * 0.5f, newColor: OilSlime.SlimeColor);
                 d.velocity *= 0.4f;
                 d.velocity.Y -= scale * 0.3f;
+            }
+
+            if (OnFire) {
+                for (int k = 0; k < 9; k++) {
+                    float scale = Main.rand.NextFloat(0.3f, 2f);
+                    Vector2 worldCoordinates = new Vector2(i + Main.rand.NextFloat(1f), j + Main.rand.NextFloat(0.25f)) * 16f;
+                    worldCoordinates.Y += 4f;
+
+                    Dust d = Dust.NewDustPerfect(worldCoordinates, DustID.Torch, Scale: Main.rand.NextFloat(1f, 2.5f));
+                    d.velocity *= 0.4f;
+                    d.velocity.Y -= Math.Abs(Projectile.Center.X - worldCoordinates.X) * Main.rand.NextFloat(0.01f, 0.04f);
+                    d.noGravity = true;
+                }
             }
         }
     }
@@ -105,8 +118,14 @@ public class OilSlimeHazard() : FloorHazard(new Info(HurtsPlayers: true, HurtsNP
             target.slippy = true;
         }
 
-        if (target.onFire || target.onFire2 || target.onFire3) {
-            OnFire = true;
+        bool flammableTarget = target.onFire || target.onFire2 || target.onFire3;
+        Item heldItem = target.HeldItem;
+        if (heldItem != null && heldItem.createTile > -1 && TileID.Sets.Torch[heldItem.createTile]) {
+            flammableTarget = true;
+        }
+
+        if (flammableTarget) {
+            StartBurning();
         }
     }
 
@@ -129,15 +148,21 @@ public class OilSlimeHazard() : FloorHazard(new Info(HurtsPlayers: true, HurtsNP
     }
 
     public override void OnHazardCollideWithProjectile(Projectile other) {
-        if (OnFire || !other.GetItemSource(out int itemSource, out int ammoSource)) {
+        if (Projectile.timeLeft <= 60 || OnFire || !other.GetItemSource(out int itemSource, out int ammoSource)) {
             return;
         }
 
         if (Element.Flame.ContainsItem(itemSource) || Element.Flame.ContainsItem(ammoSource)) {
-            OnFire = true;
-            Projectile.timeLeft = 1000;
-            Projectile.alpha = 0;
-            Projectile.netUpdate = true;
+            StartBurning();
+        }
+    }
+
+    private void StartBurning() {
+        if (!OnFire && Projectile.timeLeft > 60 && Main.myPlayer == Projectile.owner) {
+            Projectile.timeLeft = 30;
+
+            int p = Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Projectile.velocity, Type, Projectile.damage, Projectile.knockBack, Projectile.owner);
+            (Main.projectile[p].ModProjectile as OilSlimeHazard).OnFire = true;
         }
     }
 

@@ -120,13 +120,13 @@ public class OilSlime : ModNPC, IBodyItemContainer, IOilSlimeInheritedBurning {
         // Create oil mess in expert mode.
 
         Vector2 center = NPC.Center;
-        Vector2 projectileVelocity = Vector2.Zero;
+        Vector2 projectileVelocity = new Vector2(Main.rand.NextFloat(-3f, 3f), -5f);
 
         // FTW exclusive fun!
         if (NPC.HasValidTarget && Main.getGoodWorld) {
             Vector2 endPoint = Main.player[NPC.target].Center;
             float wantedHeight = center.Y - endPoint.Y + 80f;
-            Helper.GetTrajectoryTo(center, Main.player[NPC.target].Center, wantedHeight);
+            projectileVelocity = Helper.GetTrajectoryTo(center, Main.player[NPC.target].Center, wantedHeight);
         }
 
         Projectile.NewProjectile(NPC.GetSource_Death(), NPC.Center, projectileVelocity, ModContent.ProjectileType<OilSlimeDeathProj>(), NPC.damage, 1f, Main.myPlayer);

@@ -101,5 +101,5 @@ RedSpriteWindFire.DisplayName: "{$NPCs.RedSprite.DisplayName}"
 SpaceSquidDeathray.DisplayName: "{$NPCs.SpaceSquid.DisplayName}"
 SpaceSquidLaser.DisplayName: "{$NPCs.SpaceSquid.DisplayName}"
 SpaceSquidSnowflake.DisplayName: "{$NPCs.SpaceSquid.DisplayName}"
-// OilSlimeDeathProj.DisplayName: Oil Slime Death Proj
-// OilSlimeHazard.DisplayName: Oil Slime Hazard
+// OilSlimeDeathProj.DisplayName: "{$NPCs.OilSlime.DisplayName}"
+// OilSlimeHazard.DisplayName: "{$NPCs.OilSlime.DisplayName}"

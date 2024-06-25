@@ -12,6 +12,8 @@ namespace Aequus.Core.Utilities;
 
 public static partial class Helper {
     public static Vector2 GetTrajectoryTo(Vector2 startPoint, Vector2 endPoint, float wantedHeight) {
+        wantedHeight = Math.Max(wantedHeight, 8f);
+
         float gravity = 0.3f;
 
         float verticalDistance = endPoint.Y - startPoint.Y;
