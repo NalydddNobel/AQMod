@@ -2451,7 +2451,7 @@
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 895) yo momma gai</summary>
+            <summary>(Total Textures: 903) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2683,6 +2683,30 @@
         </member>
         <member name="F:Aequus.AequusTextures.PollutedWater_Waterfall">
             <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Waterfall</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SalamancerBag">
+            <summary>Full Path: Content/Bosses/Salamancer/Items/SalamancerBag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SalamancerMask">
+            <summary>Full Path: Content/Bosses/Salamancer/Items/SalamancerMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SalamancerMask_Head">
+            <summary>Full Path: Content/Bosses/Salamancer/Items/SalamancerMask_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SalamancerRelic">
+            <summary>Full Path: Content/Bosses/Salamancer/Items/SalamancerRelic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SalamancerRelicItem">
+            <summary>Full Path: Content/Bosses/Salamancer/Items/SalamancerRelicItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SalamancerTrophy">
+            <summary>Full Path: Content/Bosses/Salamancer/Items/SalamancerTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SalamancerTrophyItem">
+            <summary>Full Path: Content/Bosses/Salamancer/Items/SalamancerTrophyItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Salamancer">
+            <summary>Full Path: Content/Bosses/Salamancer/Salamancer</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CopperChest">
             <summary>Full Path: Content/Chests/BuriedChests/CopperChest</summary>

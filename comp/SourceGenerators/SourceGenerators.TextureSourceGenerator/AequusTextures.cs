@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 895) yo momma gai</summary>
+/// <summary>(Total Textures: 903) yo momma gai</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -161,6 +161,22 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> PollutedWater_Slope = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedWater_Slope");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Waterfall</summary>
     public static readonly RequestCache<Texture2D> PollutedWater_Waterfall = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedWater_Waterfall");
+    /// <summary>Full Path: Content/Bosses/Salamancer/Items/SalamancerBag</summary>
+    public static readonly RequestCache<Texture2D> SalamancerBag = new("Aequus/Content/Bosses/Salamancer/Items/SalamancerBag");
+    /// <summary>Full Path: Content/Bosses/Salamancer/Items/SalamancerMask</summary>
+    public static readonly RequestCache<Texture2D> SalamancerMask = new("Aequus/Content/Bosses/Salamancer/Items/SalamancerMask");
+    /// <summary>Full Path: Content/Bosses/Salamancer/Items/SalamancerMask_Head</summary>
+    public static readonly RequestCache<Texture2D> SalamancerMask_Head = new("Aequus/Content/Bosses/Salamancer/Items/SalamancerMask_Head");
+    /// <summary>Full Path: Content/Bosses/Salamancer/Items/SalamancerRelic</summary>
+    public static readonly RequestCache<Texture2D> SalamancerRelic = new("Aequus/Content/Bosses/Salamancer/Items/SalamancerRelic");
+    /// <summary>Full Path: Content/Bosses/Salamancer/Items/SalamancerRelicItem</summary>
+    public static readonly RequestCache<Texture2D> SalamancerRelicItem = new("Aequus/Content/Bosses/Salamancer/Items/SalamancerRelicItem");
+    /// <summary>Full Path: Content/Bosses/Salamancer/Items/SalamancerTrophy</summary>
+    public static readonly RequestCache<Texture2D> SalamancerTrophy = new("Aequus/Content/Bosses/Salamancer/Items/SalamancerTrophy");
+    /// <summary>Full Path: Content/Bosses/Salamancer/Items/SalamancerTrophyItem</summary>
+    public static readonly RequestCache<Texture2D> SalamancerTrophyItem = new("Aequus/Content/Bosses/Salamancer/Items/SalamancerTrophyItem");
+    /// <summary>Full Path: Content/Bosses/Salamancer/Salamancer</summary>
+    public static readonly RequestCache<Texture2D> Salamancer = new("Aequus/Content/Bosses/Salamancer/Salamancer");
     /// <summary>Full Path: Content/Chests/BuriedChests/CopperChest</summary>
     public static readonly RequestCache<Texture2D> CopperChest = new("Aequus/Content/Chests/BuriedChests/CopperChest");
     /// <summary>Full Path: Content/Chests/BuriedChests/CopperChestItem</summary>

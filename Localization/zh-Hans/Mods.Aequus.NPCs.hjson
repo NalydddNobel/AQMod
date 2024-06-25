@@ -214,3 +214,11 @@ StreamingBalloon: {
 	DisplayName: 紊流气球
 	Bestiary: 一些有创业精神的史莱姆会附着在热气球上, 使其飞的更高. 它们会漂浮在猎物上方, 然后坠落并吞噬它们.
 }
+
+Salamancer: {
+	// TreasureBagDisplayName: Treasure Bag (Salamancer)
+	// TrophyDisplayName: Salamancer Trophy
+	// RelicDisplayName: Salamancer Relic
+	// MaskDisplayName: Salamancer Mask
+	// DisplayName: Salamancer
+}

@@ -214,3 +214,11 @@ StreamingBalloon: {
 	DisplayName: Streaming Balloon
 	Bestiary: Some enterprising slimes will attach to hot air balloons to take them even higher. They float above their quarry before dropping down and engulfing them.
 }
+
+Salamancer: {
+	DisplayName: Salamancer
+	TreasureBagDisplayName: Treasure Bag (Salamancer)
+	TrophyDisplayName: Salamancer Trophy
+	RelicDisplayName: Salamancer Relic
+	MaskDisplayName: Salamancer Mask
+}
