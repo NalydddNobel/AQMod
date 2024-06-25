@@ -1183,6 +1183,6 @@ DustDevilMask: {
 }
 
 GasCan: {
-	// DisplayName: Jerry's Can
-	// Tooltip: ""
+	DisplayName: 杰瑞的手杖
+	Tooltip: ""
 }
