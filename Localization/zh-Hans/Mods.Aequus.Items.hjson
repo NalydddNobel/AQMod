@@ -1181,3 +1181,8 @@ DustDevilMask: {
 	DisplayName: 沙尘恶魔面具
 	Tooltip: ""
 }
+
+GasCan: {
+	// DisplayName: Gas Can
+	// Tooltip: ""
+}

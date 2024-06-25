@@ -11,6 +11,21 @@ using Terraria.Utilities;
 namespace Aequus.Core.Utilities;
 
 public static partial class Helper {
+    public static Vector2 GetTrajectoryTo(Vector2 startPoint, Vector2 endPoint, float wantedHeight) {
+        float gravity = 0.3f;
+
+        float verticalDistance = endPoint.Y - startPoint.Y;
+
+        float timeToPeak = (float)Math.Sqrt(2 * wantedHeight / gravity);
+
+        float totalTime = timeToPeak + (float)Math.Sqrt(2 * (wantedHeight + verticalDistance) / gravity);
+
+        float horizontalSpeed = (endPoint.X - startPoint.X) / totalTime;
+        float verticalSpeed = -(gravity * timeToPeak);
+
+        return new Vector2(horizontalSpeed, verticalSpeed);
+    }
+
     /// <summary>Writes a string with no prefix or suffix to indicate length.</summary>
     public static void WriteLiteral(this BinaryWriter writer, string text, Encoding encoding = null) {
         encoding ??= Encoding.UTF8;

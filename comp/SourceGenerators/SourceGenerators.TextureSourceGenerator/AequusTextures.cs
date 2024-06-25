@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 894) yo momma gai</summary>
+/// <summary>(Total Textures: 895) yo momma gai</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -367,6 +367,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OilSlime = new("Aequus/Content/Enemies/PollutedOcean/OilSlime/OilSlime");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/OilSlimeDeathProj</summary>
     public static readonly RequestCache<Texture2D> OilSlimeDeathProj = new("Aequus/Content/Enemies/PollutedOcean/OilSlime/OilSlimeDeathProj");
+    /// <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/OilSlimeHazard</summary>
+    public static readonly RequestCache<Texture2D> OilSlimeHazard = new("Aequus/Content/Enemies/PollutedOcean/OilSlime/OilSlimeHazard");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/Tiles/OilSlimeBanner</summary>
     public static readonly RequestCache<Texture2D> OilSlimeBanner = new("Aequus/Content/Enemies/PollutedOcean/OilSlime/Tiles/OilSlimeBanner");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/Tiles/OilSlimeBannerItem</summary>

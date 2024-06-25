@@ -1181,3 +1181,8 @@ DustDevilMask: {
 	// DisplayName: Dust Devil Mask
 	// Tooltip: ""
 }
+
+GasCan: {
+	// DisplayName: Gas Can
+	// Tooltip: ""
+}

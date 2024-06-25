@@ -13,9 +13,13 @@ namespace Aequus.Content.Enemies.PollutedOcean.OilSlime;
 [AutoloadBanner]
 [BestiaryBiome<PollutedOceanBiomeSurface>()]
 [BestiaryBiome<PollutedOceanBiomeUnderground>()]
-public class OilSlime : ModNPC, IBodyItemContainer {
+public class OilSlime : ModNPC, IBodyItemContainer, IOilSlimeInheritedBurning {
     public int ItemId { get => (int)NPC.ai[1]; set => NPC.ai[1] = value; }
     public int Stack { get => (int)NPC.ai[2]; set => NPC.ai[2] = value; }
+
+    public static Color SlimeColor => new Color(10, 10, 10, 140);
+
+    bool IOilSlimeInheritedBurning.OnFire => NPC.onFire || NPC.onFire2 || NPC.onFire3 || NPC.shadowFlame;
 
     #region Initialization
     public override void SetStaticDefaults() {
@@ -92,7 +96,7 @@ public class OilSlime : ModNPC, IBodyItemContainer {
 
     public override void HitEffect(NPC.HitInfo hit) {
         // Interpreted vanilla code for slime on hit effects.
-        Color slimeColor = ContentSamples.NpcsByNetId[NPCID.BlackSlime].color;
+        Color slimeColor = SlimeColor;
         if (NPC.life > 0) {
             double dustCount = hit.Damage / (double)NPC.lifeMax * 100.0;
             for (int i = 0; i < dustCount; i++) {
@@ -107,8 +111,25 @@ public class OilSlime : ModNPC, IBodyItemContainer {
     }
 
     public override void OnKill() {
-        Projectile.NewProjectile(NPC.GetSource_Death(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<OilSlimeDeathProj>(), NPC.damage, 1f, Main.myPlayer);
         (this as IBodyItemContainer).DropItem(NPC.GetSource_Loot(), NPC.Hitbox);
+
+        if (!Main.expertMode) {
+            return;
+        }
+
+        // Create oil mess in expert mode.
+
+        Vector2 center = NPC.Center;
+        Vector2 projectileVelocity = Vector2.Zero;
+
+        // FTW exclusive fun!
+        if (NPC.HasValidTarget && Main.getGoodWorld) {
+            Vector2 endPoint = Main.player[NPC.target].Center;
+            float wantedHeight = center.Y - endPoint.Y + 80f;
+            Helper.GetTrajectoryTo(center, Main.player[NPC.target].Center, wantedHeight);
+        }
+
+        Projectile.NewProjectile(NPC.GetSource_Death(), NPC.Center, projectileVelocity, ModContent.ProjectileType<OilSlimeDeathProj>(), NPC.damage, 1f, Main.myPlayer);
     }
 
     public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo) {

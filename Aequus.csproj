@@ -63,19 +63,6 @@
 	<AdditionalFiles Include="Old\**\*.png" />
 	<AdditionalFiles Include="Old\**\*.ogg" />
   </ItemGroup>
-  <ItemGroup>
-    <None Remove="Assets\Sounds\Enemy\WhiteSlime\WhiteSlimeWompWomp.ogg" />
-    <None Remove="Content\Enemies\PollutedOcean\OilSlime\OilSlimeDeathProj.png" />
-    <None Remove="Content\Items\Weapons\Ranged\GasCan\GasCan.png" />
-    <None Remove="Old\Content\Enemies\GaleStreams\Balloon\StreamingBalloon.png" />
-    <None Remove="Old\Content\Enemies\GaleStreams\Vraine\Tiles\VraineBanner.png" />
-    <None Remove="Old\Content\Enemies\GaleStreams\Vraine\Vraine.png" />
-    <None Remove="Old\Content\Enemies\GaleStreams\Vraine\Vraine_Cold.png" />
-    <None Remove="Old\Content\Enemies\GaleStreams\Vraine\Vraine_Hot.png" />
-    <None Remove="Old\Content\Enemies\GaleStreams\WhiteSlime.png" />
-    <None Remove="Old\Content\Enemies\GaleStreams\WhiteSlime\Tiles\WhiteSlimeBanner.png" />
-    <None Remove="Old\Content\Enemies\GaleStreams\WhiteSlime\Tiles\WhiteSlimeBannerItem.png" />
-  </ItemGroup>
   
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<Optimize>False</Optimize>

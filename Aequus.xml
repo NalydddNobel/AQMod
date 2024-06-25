@@ -1767,6 +1767,9 @@
             <param name="text"></param>
             <param name="color"></param>
         </member>
+        <member name="T:Aequus.Core.Utilities.TextureRedirect">
+            <summary>Lazy shorthand workaround for utilizing fields found in <see cref="T:Terraria.GameContent.TextureAssets"/>.</summary>
+        </member>
         <member name="M:Aequus.Core.Utilities.TileHelper.WallColor(System.Int32,System.Int32,Terraria.Tile)">
             <param name="i">The X light sampling coordinate.</param>
             <param name="j">The Y light sampling coordinate.</param>
@@ -2433,7 +2436,7 @@
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 894) yo momma gai</summary>
+            <summary>(Total Textures: 895) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2974,6 +2977,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.OilSlimeDeathProj">
             <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/OilSlimeDeathProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OilSlimeHazard">
+            <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/OilSlimeHazard</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OilSlimeBanner">
             <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/Tiles/OilSlimeBanner</summary>
