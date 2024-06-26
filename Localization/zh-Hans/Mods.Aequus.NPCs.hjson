@@ -216,9 +216,9 @@ StreamingBalloon: {
 }
 
 Salamancer: {
-	// TreasureBagDisplayName: Treasure Bag (Salamancer)
-	// TrophyDisplayName: Salamancer Trophy
-	// RelicDisplayName: Salamancer Relic
-	// MaskDisplayName: Salamancer Mask
-	// DisplayName: Salamancer
+	DisplayName: 暴飞龙
+	TreasureBagDisplayName: 宝藏袋 (暴飞龙)
+	TrophyDisplayName: 暴飞龙纪念章
+	RelicDisplayName: 暴飞龙纪念物
+	MaskDisplayName: 暴飞龙面具
 }
