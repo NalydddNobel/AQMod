@@ -407,12 +407,12 @@ TrashCampfire: {
 }
 
 Furniture: {
-	// TrashBathtub.ItemDisplayName: Scrap Bathtub
-	// TrashBed.ItemDisplayName: Scrap Bed
-	// TrashBookcase.ItemDisplayName: Scrap Bookcase
-	// TrashChair.ItemDisplayName: Scrap Chair
-	// TrashCandelabra.ItemDisplayName: Scrap Candelabra
-	// TrashCandle.ItemDisplayName: Scrap Candle
-	// TrashTable.ItemDisplayName: Scrap Table
-	// TrashClock.ItemDisplayName: Digital Clock
+	TrashBathtub.ItemDisplayName: 废料浴缸
+	TrashBed.ItemDisplayName: 废料床
+	TrashBookcase.ItemDisplayName: 废料书架
+	TrashChair.ItemDisplayName: 废料椅
+	TrashCandelabra.ItemDisplayName: 废料烛台
+	TrashCandle.ItemDisplayName: 废料蜡烛
+	TrashTable.ItemDisplayName: 废料桌
+	TrashClock.ItemDisplayName: 数字时钟
 }
