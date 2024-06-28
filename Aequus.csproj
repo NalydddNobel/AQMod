@@ -63,26 +63,6 @@
 	<AdditionalFiles Include="Old\**\*.png" />
 	<AdditionalFiles Include="Old\**\*.ogg" />
   </ItemGroup>
-  <ItemGroup>
-    <None Remove="Content\Tiles\Furniture\Trash\TrashBathtub.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashBathtubItem.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashBed.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashBedItem.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashBed_Highlight.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashBookcase.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashBookcaseItem.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashCandelabra.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashCandelabraItem.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashCandelabra_Flame.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashCandle.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashCandleItem.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashCandle_Flame.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashChair.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashChairItem.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashChair_Highlight.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashTable.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashTableItem.png" />
-  </ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<Optimize>False</Optimize>

@@ -414,4 +414,5 @@ Furniture: {
 	TrashCandelabra.ItemDisplayName: Scrap Candelabra
 	TrashCandle.ItemDisplayName: Scrap Candle
 	TrashTable.ItemDisplayName: Scrap Table
+	TrashClock.ItemDisplayName: Digital Clock
 }

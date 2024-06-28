@@ -11,6 +11,21 @@ using Terraria.Utilities;
 namespace Aequus.Core.Utilities;
 
 public static partial class Helper {
+    public static float Get24HourTimeStartingAtMidnight() {
+        return Utils.GetDayTimeAs24FloatStartingFromMidnight() % 24f;
+    }
+
+    public static int[] GetTimeDigits(float hourTime) {
+        int length = 4;
+        int[] digits = new int[length];
+
+        digits[0] = (int)(hourTime / 10f);
+        digits[1] = (int)(hourTime % 10f);
+        digits[2] = (int)(hourTime % 1f * 6f);
+        digits[3] = (int)(hourTime % 1f * 60f % 10f);
+        return digits;
+    }
+
     public static Vector2 GetTrajectoryTo(Vector2 startPoint, Vector2 endPoint, float wantedHeight) {
         wantedHeight = Math.Max(wantedHeight, 8f);
 

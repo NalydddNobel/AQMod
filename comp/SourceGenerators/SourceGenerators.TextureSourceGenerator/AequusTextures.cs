@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 921) yo momma gai</summary>
+/// <summary>(Total Textures: 924) yo momma gai</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -779,6 +779,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> TrashChestItem = new("Aequus/Content/Tiles/Furniture/Trash/TrashChestItem");
     /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChest_Highlight</summary>
     public static readonly RequestCache<Texture2D> TrashChest_Highlight = new("Aequus/Content/Tiles/Furniture/Trash/TrashChest_Highlight");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashClock</summary>
+    public static readonly RequestCache<Texture2D> TrashClock = new("Aequus/Content/Tiles/Furniture/Trash/TrashClock");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashClockItem</summary>
+    public static readonly RequestCache<Texture2D> TrashClockItem = new("Aequus/Content/Tiles/Furniture/Trash/TrashClockItem");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashClock_Highlight</summary>
+    public static readonly RequestCache<Texture2D> TrashClock_Highlight = new("Aequus/Content/Tiles/Furniture/Trash/TrashClock_Highlight");
     /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTable</summary>
     public static readonly RequestCache<Texture2D> TrashTable = new("Aequus/Content/Tiles/Furniture/Trash/TrashTable");
     /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTableItem</summary>

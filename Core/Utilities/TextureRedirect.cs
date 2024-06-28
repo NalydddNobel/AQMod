@@ -9,4 +9,5 @@ public class TextureRedirect {
     public static Asset<Texture2D>[] ProjectileTexture => TextureAssets.Projectile;
     public static Asset<Texture2D>[] ItemTexture => TextureAssets.Item;
     public static Asset<Texture2D>[] NPCTexture => TextureAssets.Npc;
+    public static Asset<Texture2D>[] TileTexture => TextureAssets.Tile;
 }

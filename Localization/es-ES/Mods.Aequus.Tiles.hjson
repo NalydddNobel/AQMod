@@ -410,33 +410,13 @@ TrashCampfire: {
 	// ItemTooltip: ""
 }
 
-TrashCandle: {
-	// ItemDisplayName: Scrap Candle
-	// ItemTooltip: ""
-}
-
-TrashChair: {
-	// ItemDisplayName: Scrap Chair
-	// ItemTooltip: ""
-	// Chair.ItemDisplayName: Mods.Aequus.Tiles.TrashChair.Chair.ItemDisplayName
-}
-
-TrashTable: {
-	// ItemDisplayName: Scrap Table
-	// ItemTooltip: ""
-	// Table.ItemDisplayName: Mods.Aequus.Tiles.TrashTable.Table.ItemDisplayName
-}
-
-// TrashBathtub.Bathtub.ItemDisplayName: Mods.Aequus.Tiles.TrashBathtub.Bathtub.ItemDisplayName
-// TrashBed.Bed.ItemDisplayName: Mods.Aequus.Tiles.TrashBed.Bed.ItemDisplayName
-// TrashBookcase.Bookcase.ItemDisplayName: Mods.Aequus.Tiles.TrashBookcase.Bookcase.ItemDisplayName
-
 Furniture: {
-	// TrashBathtub.ItemDisplayName: Mods.Aequus.Tiles.Furniture.TrashBathtub.ItemDisplayName
-	// TrashBed.ItemDisplayName: Mods.Aequus.Tiles.Furniture.TrashBed.ItemDisplayName
-	// TrashBookcase.ItemDisplayName: Mods.Aequus.Tiles.Furniture.TrashBookcase.ItemDisplayName
-	// TrashChair.ItemDisplayName: Mods.Aequus.Tiles.Furniture.TrashChair.ItemDisplayName
-	// TrashCandelabra.ItemDisplayName: Mods.Aequus.Tiles.Furniture.TrashCandelabra.ItemDisplayName
-	// TrashCandle.ItemDisplayName: Mods.Aequus.Tiles.Furniture.TrashCandle.ItemDisplayName
-	// TrashTable.ItemDisplayName: Mods.Aequus.Tiles.Furniture.TrashTable.ItemDisplayName
+	// TrashBathtub.ItemDisplayName: Scrap Bathtub
+	// TrashBed.ItemDisplayName: Scrap Bed
+	// TrashBookcase.ItemDisplayName: Scrap Bookcase
+	// TrashChair.ItemDisplayName: Scrap Chair
+	// TrashCandelabra.ItemDisplayName: Scrap Candelabra
+	// TrashCandle.ItemDisplayName: Scrap Candle
+	// TrashTable.ItemDisplayName: Scrap Table
+	// TrashClock.ItemDisplayName: Digital Clock
 }

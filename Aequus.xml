@@ -2460,7 +2460,7 @@
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 921) yo momma gai</summary>
+            <summary>(Total Textures: 924) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -3619,6 +3619,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.TrashChest_Highlight">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChest_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashClock">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashClock</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashClockItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashClockItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashClock_Highlight">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashClock_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrashTable">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTable</summary>
