@@ -216,9 +216,9 @@ StreamingBalloon: {
 }
 
 Salamancer: {
+	// DisplayName: Salamancer
 	// TreasureBagDisplayName: Treasure Bag (Salamancer)
 	// TrophyDisplayName: Salamancer Trophy
 	// RelicDisplayName: Salamancer Relic
 	// MaskDisplayName: Salamancer Mask
-	// DisplayName: Salamancer
 }

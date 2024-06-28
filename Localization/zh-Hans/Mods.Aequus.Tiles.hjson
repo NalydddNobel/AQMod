@@ -194,22 +194,6 @@ PolymerSand: {
 	ItemTooltip: ""
 }
 
-TrashChest: {
-	MapEntry: 垃圾箱
-	ItemDisplayName: "{$Tiles.TrashChest.MapEntry}"
-	ItemTooltip: 垃圾箱的两侧是不同的箱子
-}
-
-TrashTorch: {
-	ItemDisplayName: Mods.Aequus.Tiles.TrashTorch.ItemDisplayName
-	ItemTooltip: ""
-}
-
-TrashCampfire: {
-	ItemDisplayName: Mods.Aequus.Tiles.TrashCampfire.ItemDisplayName
-	ItemTooltip: ""
-}
-
 BlackJellyfishJar: {
 	MapEntry: 黑水母罐
 	ItemDisplayName: "{$Tiles.BlackJellyfishJar.MapEntry}"
@@ -404,4 +388,51 @@ SeaFireflyBlock: {
 	DisplayNameBlack: 黑色海萤火虫块
 	DisplayNameWhite: 银色海萤火虫块
 	DisplayNameRainbow: 彩色海萤火虫块
+}
+
+TrashChest: {
+	MapEntry: 垃圾箱
+	ItemDisplayName: "{$Tiles.TrashChest.MapEntry}"
+	ItemTooltip: 垃圾箱的两侧是不同的箱子
+}
+
+TrashTorch: {
+	ItemDisplayName: Mods.Aequus.Tiles.TrashTorch.ItemDisplayName
+	ItemTooltip: ""
+}
+
+TrashCampfire: {
+	ItemDisplayName: Mods.Aequus.Tiles.TrashCampfire.ItemDisplayName
+	ItemTooltip: ""
+}
+
+TrashCandle: {
+	// ItemDisplayName: Scrap Candle
+	// ItemTooltip: ""
+}
+
+TrashChair: {
+	// ItemDisplayName: Scrap Chair
+	// ItemTooltip: ""
+	// Chair.ItemDisplayName: Mods.Aequus.Tiles.TrashChair.Chair.ItemDisplayName
+}
+
+TrashTable: {
+	// ItemDisplayName: Scrap Table
+	// ItemTooltip: ""
+	// Table.ItemDisplayName: Mods.Aequus.Tiles.TrashTable.Table.ItemDisplayName
+}
+
+// TrashBathtub.Bathtub.ItemDisplayName: Mods.Aequus.Tiles.TrashBathtub.Bathtub.ItemDisplayName
+// TrashBed.Bed.ItemDisplayName: Mods.Aequus.Tiles.TrashBed.Bed.ItemDisplayName
+// TrashBookcase.Bookcase.ItemDisplayName: Mods.Aequus.Tiles.TrashBookcase.Bookcase.ItemDisplayName
+
+Furniture: {
+	// TrashBathtub.ItemDisplayName: Mods.Aequus.Tiles.Furniture.TrashBathtub.ItemDisplayName
+	// TrashBed.ItemDisplayName: Mods.Aequus.Tiles.Furniture.TrashBed.ItemDisplayName
+	// TrashBookcase.ItemDisplayName: Mods.Aequus.Tiles.Furniture.TrashBookcase.ItemDisplayName
+	// TrashChair.ItemDisplayName: Mods.Aequus.Tiles.Furniture.TrashChair.ItemDisplayName
+	// TrashCandelabra.ItemDisplayName: Mods.Aequus.Tiles.Furniture.TrashCandelabra.ItemDisplayName
+	// TrashCandle.ItemDisplayName: Mods.Aequus.Tiles.Furniture.TrashCandle.ItemDisplayName
+	// TrashTable.ItemDisplayName: Mods.Aequus.Tiles.Furniture.TrashTable.ItemDisplayName
 }

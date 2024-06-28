@@ -10,6 +10,18 @@ public static class TileHelper {
     public static Vector2 DrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
 
     public static bool ShowEcho { get; internal set; }
+
+    public static Vector2 GetTorchOffset(ref ulong seed) {
+        float xx = Utils.RandomInt(ref seed, -10, 11) * 0.15f;
+        float yy = Utils.RandomInt(ref seed, -10, 1) * 0.35f;
+
+        return new Vector2(xx, yy);
+    }
+
+    public static ulong GetTorchSeed(int i, int j) {
+        return Main.TileFrameSeed ^ (ulong)((long)j << 32 | (uint)i);
+    }
+
     /// <param name="i">The X light sampling coordinate.</param>
     /// <param name="j">The Y light sampling coordinate.</param>
     /// <param name="tile">The tile.</param>

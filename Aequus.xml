@@ -1279,6 +1279,9 @@
         <member name="T:Aequus.Core.Utilities.ChatTagWriter">
             <summary>Contains helper methods for generating chat tag strings. For item and glyphs, <see cref="T:Terraria.GameContent.UI.Chat.ItemTagHandler"/> and <see cref="T:Terraria.GameContent.UI.Chat.GlyphTagHandler"/> have static helper methods.</summary>
         </member>
+        <member name="F:Aequus.Core.Utilities.CommonColor.TextInteractable">
+            <summary>Yellow text used by Beds, Clocks, etc.</summary>
+        </member>
         <member name="M:Aequus.Core.Utilities.DrawHelper.Quality(System.Int32,System.Int32)">
             <summary><inheritdoc cref="M:Aequus.Core.Utilities.DrawHelper.Quality(System.Single,System.Single)"/></summary>
         </member>
@@ -1897,6 +1900,12 @@
             <summary>This method is not instanced.</summary>
             <param name="Item"></param>
         </member>
+        <member name="M:Aequus.Core.ContentGeneration.UnifiedFurniture.AddRecipes(Terraria.ModLoader.ModTile,Terraria.ModLoader.ModItem,Terraria.Recipe)">
+            <summary>Allows you to edit recipes added by furniture.</summary>
+            <param name="Tile">The furniture tile.</param>
+            <param name="Item">The furniture item.</param>
+            <param name="Recipe">The template recipe. Uses wood and various other materials (like Silk for beds, Torches for Candles, Water Buckets for Sinks, Iron and Glass for Clocks, etc.)</param>
+        </member>
         <member name="T:Aequus.Core.ContentGeneration.UnifiedModMount">
             <summary>A <see cref="T:Terraria.ModLoader.ModMount"/> which automagically registers a related <see cref="T:Terraria.ModLoader.ModItem"/> and <see cref="T:Terraria.ModLoader.ModBuff"/>, suffixed with +"Item" and +"Buff" respectively.</summary>
         </member>
@@ -2451,7 +2460,7 @@
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 903) yo momma gai</summary>
+            <summary>(Total Textures: 921) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -3545,6 +3554,27 @@
         <member name="F:Aequus.AequusTextures.TrashCompactorItem">
             <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.TrashBathtub">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashBathtub</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashBathtubItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashBathtubItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashBed">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashBed</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashBedItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashBedItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashBed_Highlight">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashBed_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashBookcase">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashBookcase</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashBookcaseItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashBookcaseItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.TrashCampfire">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCampfire</summary>
         </member>
@@ -3554,6 +3584,33 @@
         <member name="F:Aequus.AequusTextures.TrashCampfire_Highlight">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCampfire_Highlight</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.TrashCandelabra">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCandelabra</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashCandelabraItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCandelabraItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashCandelabra_Flame">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCandelabra_Flame</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashCandle">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCandle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashCandleItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCandleItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashCandle_Flame">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCandle_Flame</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashChair">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChair</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashChairItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChairItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashChair_Highlight">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChair_Highlight</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.TrashChest">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChest</summary>
         </member>
@@ -3562,6 +3619,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.TrashChest_Highlight">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChest_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashTable">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTable</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashTableItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTableItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrashTorch">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTorch</summary>

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 903) yo momma gai</summary>
+/// <summary>(Total Textures: 921) yo momma gai</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -735,18 +735,54 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> TrashCompactor = new("Aequus/Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor");
     /// <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
     public static readonly RequestCache<Texture2D> TrashCompactorItem = new("Aequus/Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashBathtub</summary>
+    public static readonly RequestCache<Texture2D> TrashBathtub = new("Aequus/Content/Tiles/Furniture/Trash/TrashBathtub");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashBathtubItem</summary>
+    public static readonly RequestCache<Texture2D> TrashBathtubItem = new("Aequus/Content/Tiles/Furniture/Trash/TrashBathtubItem");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashBed</summary>
+    public static readonly RequestCache<Texture2D> TrashBed = new("Aequus/Content/Tiles/Furniture/Trash/TrashBed");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashBedItem</summary>
+    public static readonly RequestCache<Texture2D> TrashBedItem = new("Aequus/Content/Tiles/Furniture/Trash/TrashBedItem");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashBed_Highlight</summary>
+    public static readonly RequestCache<Texture2D> TrashBed_Highlight = new("Aequus/Content/Tiles/Furniture/Trash/TrashBed_Highlight");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashBookcase</summary>
+    public static readonly RequestCache<Texture2D> TrashBookcase = new("Aequus/Content/Tiles/Furniture/Trash/TrashBookcase");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashBookcaseItem</summary>
+    public static readonly RequestCache<Texture2D> TrashBookcaseItem = new("Aequus/Content/Tiles/Furniture/Trash/TrashBookcaseItem");
     /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCampfire</summary>
     public static readonly RequestCache<Texture2D> TrashCampfire = new("Aequus/Content/Tiles/Furniture/Trash/TrashCampfire");
     /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCampfireItem</summary>
     public static readonly RequestCache<Texture2D> TrashCampfireItem = new("Aequus/Content/Tiles/Furniture/Trash/TrashCampfireItem");
     /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCampfire_Highlight</summary>
     public static readonly RequestCache<Texture2D> TrashCampfire_Highlight = new("Aequus/Content/Tiles/Furniture/Trash/TrashCampfire_Highlight");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCandelabra</summary>
+    public static readonly RequestCache<Texture2D> TrashCandelabra = new("Aequus/Content/Tiles/Furniture/Trash/TrashCandelabra");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCandelabraItem</summary>
+    public static readonly RequestCache<Texture2D> TrashCandelabraItem = new("Aequus/Content/Tiles/Furniture/Trash/TrashCandelabraItem");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCandelabra_Flame</summary>
+    public static readonly RequestCache<Texture2D> TrashCandelabra_Flame = new("Aequus/Content/Tiles/Furniture/Trash/TrashCandelabra_Flame");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCandle</summary>
+    public static readonly RequestCache<Texture2D> TrashCandle = new("Aequus/Content/Tiles/Furniture/Trash/TrashCandle");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCandleItem</summary>
+    public static readonly RequestCache<Texture2D> TrashCandleItem = new("Aequus/Content/Tiles/Furniture/Trash/TrashCandleItem");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCandle_Flame</summary>
+    public static readonly RequestCache<Texture2D> TrashCandle_Flame = new("Aequus/Content/Tiles/Furniture/Trash/TrashCandle_Flame");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChair</summary>
+    public static readonly RequestCache<Texture2D> TrashChair = new("Aequus/Content/Tiles/Furniture/Trash/TrashChair");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChairItem</summary>
+    public static readonly RequestCache<Texture2D> TrashChairItem = new("Aequus/Content/Tiles/Furniture/Trash/TrashChairItem");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChair_Highlight</summary>
+    public static readonly RequestCache<Texture2D> TrashChair_Highlight = new("Aequus/Content/Tiles/Furniture/Trash/TrashChair_Highlight");
     /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChest</summary>
     public static readonly RequestCache<Texture2D> TrashChest = new("Aequus/Content/Tiles/Furniture/Trash/TrashChest");
     /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChestItem</summary>
     public static readonly RequestCache<Texture2D> TrashChestItem = new("Aequus/Content/Tiles/Furniture/Trash/TrashChestItem");
     /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChest_Highlight</summary>
     public static readonly RequestCache<Texture2D> TrashChest_Highlight = new("Aequus/Content/Tiles/Furniture/Trash/TrashChest_Highlight");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTable</summary>
+    public static readonly RequestCache<Texture2D> TrashTable = new("Aequus/Content/Tiles/Furniture/Trash/TrashTable");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTableItem</summary>
+    public static readonly RequestCache<Texture2D> TrashTableItem = new("Aequus/Content/Tiles/Furniture/Trash/TrashTableItem");
     /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTorch</summary>
     public static readonly RequestCache<Texture2D> TrashTorch = new("Aequus/Content/Tiles/Furniture/Trash/TrashTorch");
     /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTorchItem</summary>

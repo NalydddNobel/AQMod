@@ -194,22 +194,6 @@ PolymerSand: {
 	ItemTooltip: ""
 }
 
-TrashChest: {
-	MapEntry: Dumpster
-	ItemDisplayName: "{$Tiles.TrashChest.MapEntry}"
-	ItemTooltip: Both sides of the dumpster are different chests
-}
-
-TrashTorch: {
-	ItemDisplayName: Mods.Aequus.Tiles.TrashTorch.ItemDisplayName
-	ItemTooltip: ""
-}
-
-TrashCampfire: {
-	ItemDisplayName: Mods.Aequus.Tiles.TrashCampfire.ItemDisplayName
-	ItemTooltip: ""
-}
-
 BlackJellyfishJar: {
 	MapEntry: Black Jellyfish Jar
 	ItemDisplayName: "{$Tiles.BlackJellyfishJar.MapEntry}"
@@ -404,4 +388,30 @@ SeaFireflyBlock: {
 	DisplayNameBlack: Black Sea Firefly Block
 	DisplayNameWhite: White Sea Firefly Block
 	DisplayNameRainbow: Rainbow Sea Firefly Block
+}
+
+TrashChest: {
+	MapEntry: Dumpster
+	ItemDisplayName: "{$Tiles.TrashChest.MapEntry}"
+	ItemTooltip: Both sides of the dumpster are different chests
+}
+
+TrashTorch: {
+	ItemDisplayName: Mods.Aequus.Tiles.TrashTorch.ItemDisplayName
+	ItemTooltip: ""
+}
+
+TrashCampfire: {
+	ItemDisplayName: Mods.Aequus.Tiles.TrashCampfire.ItemDisplayName
+	ItemTooltip: ""
+}
+
+Furniture: {
+	TrashBathtub.ItemDisplayName: Scrap Bathtub
+	TrashBed.ItemDisplayName: Scrap Bed
+	TrashBookcase.ItemDisplayName: Scrap Bookcase
+	TrashChair.ItemDisplayName: Scrap Chair
+	TrashCandelabra.ItemDisplayName: Scrap Candelabra
+	TrashCandle.ItemDisplayName: Scrap Candle
+	TrashTable.ItemDisplayName: Scrap Table
 }
