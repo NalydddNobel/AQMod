@@ -14,7 +14,7 @@ public partial class Commons {
         /// <returns>A condition for a specific time range between two days of the week.</returns>
         public static Condition BetweenDays(DayOfWeek firstDay, DayOfWeek lastDay) {
             LocalizedText text = Language.GetText("Mods.Aequus.Condition.BetweenDays")
-                .WithFormatArgs(ExtendLanguage.DayOfWeek(firstDay), ExtendLanguage.DayOfWeek(lastDay));
+                .WithFormatArgs(XLanguage.DayOfWeek(firstDay), XLanguage.DayOfWeek(lastDay));
 
             if (firstDay > lastDay) {
                 // For example, if something were to be sold between Friday (5) and Monday (1)
@@ -31,7 +31,7 @@ public partial class Commons {
         /// <param name="dayOfWeek">The <see cref="DayOfWeek"/> to compare against <see cref="TimeSystem.DayOfTheWeek"/>.</param>
         /// <returns>A condition for a specific day of the week.</returns>
         public static Condition DayOfTheWeek(DayOfWeek dayOfWeek) {
-            return new Condition(Language.GetText("Mods.Aequus.Condition.DayOfTheWeek").WithFormatArgs(ExtendLanguage.DayOfWeek(dayOfWeek)),
+            return new Condition(Language.GetText("Mods.Aequus.Condition.DayOfTheWeek").WithFormatArgs(XLanguage.DayOfWeek(dayOfWeek)),
                 () => TimeSystem.DayOfTheWeek == dayOfWeek);
         }
         #endregion

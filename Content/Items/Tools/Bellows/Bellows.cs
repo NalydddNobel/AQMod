@@ -27,8 +27,8 @@ public class Bellows : ModItem {
 
     public override void ModifyTooltips(List<TooltipLine> tooltips) {
         try {
-            tooltips.Insert(tooltips.GetIndex("Knockback"), new TooltipLine(Mod, "Knockback", ExtendLanguage.GetKnockbackText(Item.knockBack)));
-            tooltips.Insert(tooltips.GetIndex("Speed"), new TooltipLine(Mod, "Speed", ExtendLanguage.GetUseAnimationText(Item.useAnimation)));
+            tooltips.Insert(tooltips.GetIndex("Knockback"), new TooltipLine(Mod, "Knockback", XLanguage.GetKnockbackText(Item.knockBack)));
+            tooltips.Insert(tooltips.GetIndex("Speed"), new TooltipLine(Mod, "Speed", XLanguage.GetUseAnimationText(Item.useAnimation)));
         }
         catch {
 

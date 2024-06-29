@@ -37,7 +37,7 @@ public class JunkJet : ModItem {
 
     public static readonly Dictionary<int, AmmoData> AmmoOverrides = new();
 
-    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Percent(AmmoReserveChance));
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(XLanguage.Percent(AmmoReserveChance));
 
     #region Initialization
     public override void SetStaticDefaults() {

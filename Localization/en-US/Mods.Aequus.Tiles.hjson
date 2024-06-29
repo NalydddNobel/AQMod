@@ -428,6 +428,7 @@ Furniture: {
 		MapEntry: Scrap Chest
 		ItemDisplayName: "{$Tiles.Furniture.TrashChestSmall.MapEntry}"
 	}
+
 	TrashChestSmallTrapped: {
 		MapEntry: Trapped Scrap Chest
 		ItemDisplayName: "{$Tiles.Furniture.TrashChestSmallTrapped.MapEntry}"

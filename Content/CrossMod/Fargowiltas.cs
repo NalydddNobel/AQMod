@@ -19,6 +19,6 @@ internal class Fargowiltas : SupportedMod<Fargowiltas> {
         AddStat(ModContent.ItemType<Old.Content.Necromancy.Equipment.Accessories.PandorasBox>(), "SceptreDebuffMultiplier", () => ExtendLanguage.Percent(Main.LocalPlayer.GetModPlayer<AequusPlayer>().zombieDebuffMultiplier));
         AddStat(ModContent.ItemType<Old.Content.Items.Accessories.GrandReward.GrandReward>(), "DropRolls", () => Main.LocalPlayer.GetModPlayer<AequusPlayer>().dropRolls);
 #endif
-        AddStat(ModContent.ItemType<GoldenFeather>(), "RespawnReduction", () => ExtendLanguage.Seconds(-Main.LocalPlayer.GetModPlayer<AequusPlayer>().respawnTimeModifierFlat));
+        AddStat(ModContent.ItemType<GoldenFeather>(), "RespawnReduction", () => XLanguage.Seconds(-Main.LocalPlayer.GetModPlayer<AequusPlayer>().respawnTimeModifierFlat));
     }
 }

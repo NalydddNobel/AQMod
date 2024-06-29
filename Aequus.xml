@@ -1493,74 +1493,6 @@
             <param name="modItem"></param>
             <param name="colors">Particle Colors for when this food is eaten.</param>
         </member>
-        <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetRandomLocalizationFromCategory(Terraria.ModLoader.ILocalizedModType,System.String,Terraria.Utilities.UnifiedRandom)">
-            <summary>Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.</summary>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetDisplayName(Terraria.ModLoader.ILocalizedModType)">
-            <summary>Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.</summary>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetDisplayName``1">
-            <summary><inheritdoc cref="M:Aequus.Core.Utilities.ExtendLanguage.GetDisplayName(Terraria.ModLoader.ILocalizedModType)"/></summary>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendLanguage.ContainsKey(System.String)">
-            <returns>Whether this key has a value. (<see cref="M:Terraria.Localization.Language.GetTextValue(System.String)"/> doesnt return the key.)</returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendLanguage.TryGet(System.String,Terraria.Localization.LocalizedText@)">
-            <returns>Whether the text exists. (<see cref="M:Terraria.Localization.Language.GetTextValue(System.String)"/> doesnt return the key.)</returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendLanguage.TryGetValue(System.String,System.String@)">
-            <returns><inheritdoc cref="M:Aequus.Core.Utilities.ExtendLanguage.TryGet(System.String,Terraria.Localization.LocalizedText@)"/></returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetCategoryKey(Terraria.ModLoader.ILocalizedModType,System.String,System.Func{System.String})">
-            <returns>The Category Key. (Mods.ModName.Category.Suffix)</returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetCategoryText(Terraria.ModLoader.ILocalizedModType,System.String,System.Func{System.String})">
-            <returns>A localized text using a category key. (Mods.ModName.Category.Suffix)</returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetCategoryTextValue(Terraria.ModLoader.ILocalizedModType,System.String)">
-            <returns>A text value using a category key. (Mods.ModName.Category.Suffix)</returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendLanguage.DayOfWeek(System.DayOfWeek)">
-            <returns>Localized name of a <see cref="T:System.DayOfWeek"/> value.</returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendLanguage.PriceText(System.Int64,System.String)">
-            <returns>Price Text for the specified value, or <paramref name="NoValueText"/> if value is less than or equal to 0.</returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendLanguage.PriceTextColored(System.Int64,System.String,System.Boolean)">
-            <returns><inheritdoc cref="M:Aequus.Core.Utilities.ExtendLanguage.PriceText(System.Int64,System.String)"/> Colored using chat commands.</returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetUseAnimationText(System.Single)">
-            <param name="useAnimation">Item use animation.</param>
-            <returns>Localized use animation (speed) text based off vanilla thresholds.</returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetKnockbackText(System.Single)">
-            <param name="knockback">Weapon Knockback.</param>
-            <returns>Localized knockback text based off vanilla thresholds.</returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendLanguage.GetKeybindKeys(Terraria.ModLoader.ModKeybind)">
-            <param name="keybind"></param>
-            <returns>An enumerable of each key for this keybind. Returns "Unbound Key" if no keys are assigned.</returns>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendLanguage.WatchTime(System.Double,System.Boolean)">
-            <summary>Copied from example mod and doesnt put any effort to localize. Uses Terraria day/night cycle styled time data.</summary>
-            <param name="time">The Day/Night cycle time.</param>
-            <param name="dayTime">Whether it's day or night.</param>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendLanguage.Minutes(System.Double)">
-            <summary>Converts ticks to seconds, up to 1 decimal place.</summary>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendLanguage.Seconds(System.Double)">
-            <summary>Converts ticks to seconds, up to 1 decimal place.</summary>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendLanguage.Percent(System.Double)">
-            <summary>Converts a decimal value into percentage text, up to 1 decimal place.</summary>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendLanguage.Decimals(System.Double)">
-            <summary>Converts value into decimal text, up to 1 decimal place.</summary>
-        </member>
-        <member name="M:Aequus.Core.Utilities.ExtendLanguage.RegisterKey(System.String)">
-            <summary>Registers a localization key if it doesn't exist. Only ran if compiled with a DEBUG symbol.</summary>
-        </member>
         <member name="M:Aequus.Core.Utilities.ExtendLight.GetLightBrightness(Microsoft.Xna.Framework.Vector3)">
             <param name="rgb">The RGB.</param>
             <returns>Gets the Brightness of a Light Vector. (The largest X,Y,Z value.)</returns>
@@ -1836,6 +1768,74 @@
         </member>
         <member name="M:Aequus.Core.Utilities.TileHelper.LiquidNoMax(System.Int32,System.Int32)">
             <returns><inheritdoc cref="M:Aequus.Core.Utilities.TileHelper.LiquidNoMax(Terraria.Tile)"/></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.XLanguage.GetRandomLocalizationFromCategory(Terraria.ModLoader.ILocalizedModType,System.String,Terraria.Utilities.UnifiedRandom)">
+            <summary>Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.XLanguage.GetDisplayName(Terraria.ModLoader.ILocalizedModType)">
+            <summary>Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.XLanguage.GetDisplayName``1">
+            <summary><inheritdoc cref="M:Aequus.Core.Utilities.XLanguage.GetDisplayName(Terraria.ModLoader.ILocalizedModType)"/></summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.XLanguage.ContainsKey(System.String)">
+            <returns>Whether this key has a value. (<see cref="M:Terraria.Localization.Language.GetTextValue(System.String)"/> doesnt return the key.)</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.XLanguage.TryGet(System.String,Terraria.Localization.LocalizedText@)">
+            <returns>Whether the text exists. (<see cref="M:Terraria.Localization.Language.GetTextValue(System.String)"/> doesnt return the key.)</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.XLanguage.TryGetValue(System.String,System.String@)">
+            <returns><inheritdoc cref="M:Aequus.Core.Utilities.XLanguage.TryGet(System.String,Terraria.Localization.LocalizedText@)"/></returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.XLanguage.GetCategoryKey(Terraria.ModLoader.ILocalizedModType,System.String,System.Func{System.String})">
+            <returns>The Category Key. (Mods.ModName.Category.Suffix)</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.XLanguage.GetCategoryText(Terraria.ModLoader.ILocalizedModType,System.String,System.Func{System.String})">
+            <returns>A localized text using a category key. (Mods.ModName.Category.Suffix)</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.XLanguage.GetCategoryTextValue(Terraria.ModLoader.ILocalizedModType,System.String)">
+            <returns>A text value using a category key. (Mods.ModName.Category.Suffix)</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.XLanguage.DayOfWeek(System.DayOfWeek)">
+            <returns>Localized name of a <see cref="T:System.DayOfWeek"/> value.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.XLanguage.PriceText(System.Int64,System.String)">
+            <returns>Price Text for the specified value, or <paramref name="NoValueText"/> if value is less than or equal to 0.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.XLanguage.PriceTextColored(System.Int64,System.String,System.Boolean)">
+            <returns><inheritdoc cref="M:Aequus.Core.Utilities.XLanguage.PriceText(System.Int64,System.String)"/> Colored using chat commands.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.XLanguage.GetUseAnimationText(System.Single)">
+            <param name="useAnimation">Item use animation.</param>
+            <returns>Localized use animation (speed) text based off vanilla thresholds.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.XLanguage.GetKnockbackText(System.Single)">
+            <param name="knockback">Weapon Knockback.</param>
+            <returns>Localized knockback text based off vanilla thresholds.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.XLanguage.GetKeybindKeys(Terraria.ModLoader.ModKeybind)">
+            <param name="keybind"></param>
+            <returns>An enumerable of each key for this keybind. Returns "Unbound Key" if no keys are assigned.</returns>
+        </member>
+        <member name="M:Aequus.Core.Utilities.XLanguage.WatchTime(System.Double,System.Boolean)">
+            <summary>Copied from example mod and doesnt put any effort to localize. Uses Terraria day/night cycle styled time data.</summary>
+            <param name="time">The Day/Night cycle time.</param>
+            <param name="dayTime">Whether it's day or night.</param>
+        </member>
+        <member name="M:Aequus.Core.Utilities.XLanguage.Minutes(System.Double)">
+            <summary>Converts ticks to seconds, up to 1 decimal place.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.XLanguage.Seconds(System.Double)">
+            <summary>Converts ticks to seconds, up to 1 decimal place.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.XLanguage.Percent(System.Double)">
+            <summary>Converts a decimal value into percentage text, up to 1 decimal place.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.XLanguage.Decimals(System.Double)">
+            <summary>Converts value into decimal text, up to 1 decimal place.</summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.XLanguage.RegisterKey(System.String)">
+            <summary>Registers a localization key if it doesn't exist. Only ran if compiled with a DEBUG symbol.</summary>
         </member>
         <member name="T:Aequus.Core.Collections.DictionaryRemoveQueue`2">
             <summary>

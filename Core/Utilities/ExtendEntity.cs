@@ -42,7 +42,7 @@ public static class ExtendPlayer {
         player.breath = Math.Min(player.breath + breathAmount, player.breathMax);
 
         if (Main.netMode != NetmodeID.Server && showPopupText) {
-            string seconds = $"{ExtendLanguage.Seconds(breathAmount * player.breathCDMax)}s";
+            string seconds = $"{XLanguage.Seconds(breathAmount * player.breathCDMax)}s";
             int combatText = CombatText.NewText(player.getRect(), AequusPlayer.CombatText_RestoreBreath, seconds);
 
             // Breath meter usually hides the text with its normal velocity.

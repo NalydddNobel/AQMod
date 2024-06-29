@@ -47,12 +47,12 @@ internal static class BestiaryBuilder {
 
     public static EntryEditor CreateEntry(this ModNPC modNPC, BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
         string key = modNPC.GetLocalizationKey("Bestiary");
-        ExtendLanguage.RegisterKey(key);
+        XLanguage.RegisterKey(key);
         return new EntryEditor(key, database, bestiaryEntry, modNPC);
     }
 
     public static EntryEditor CreateEntry(this ModNPC modNPC, string key, BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-        ExtendLanguage.RegisterKey(key);
+        XLanguage.RegisterKey(key);
         return new EntryEditor(key, database, bestiaryEntry, modNPC);
     }
 

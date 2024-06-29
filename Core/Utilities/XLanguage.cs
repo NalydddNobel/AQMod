@@ -7,7 +7,8 @@ using Terraria.Localization;
 using Terraria.Utilities;
 
 namespace Aequus.Core.Utilities;
-public static class ExtendLanguage {
+
+public static class XLanguage {
     private record struct ColoredText(string Text, Color Color);
 
     public static LocalizedText GetOrEmpty(string key) {

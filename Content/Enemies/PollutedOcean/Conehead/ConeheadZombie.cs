@@ -68,7 +68,7 @@ internal class InstancedConeheadZombie : InstancedModNPC, IPostPopulateItemDropD
         string key = $"Mods.Aequus.NPCs.ConeheadZombie.{_realName}_Bestiary";
 
         // Use the default key if there is not one specified for this zombie type.
-        if (!ExtendLanguage.ContainsKey(key)) {
+        if (!XLanguage.ContainsKey(key)) {
             key = "Mods.Aequus.NPCs.ConeheadZombie.Bestiary";
         }
 

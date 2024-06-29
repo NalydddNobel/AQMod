@@ -8,7 +8,7 @@ public class ConeHelmet : BrittleArmor {
     public static float BonusEndurance { get; set; } = 0.25f;
 
     internal override LocalizedText GetTooltip(BrittleArmorItem armor) {
-        return base.GetTooltip(armor).WithFormatArgs(ExtendLanguage.Percent(BonusEndurance / (armor.Tier + 1)));
+        return base.GetTooltip(armor).WithFormatArgs(XLanguage.Percent(BonusEndurance / (armor.Tier + 1)));
     }
 
     internal override void SetItemStaticDefaults(Item Item, BrittleArmorItem armor) {

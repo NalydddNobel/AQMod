@@ -430,21 +430,16 @@ Furniture: {
 
 	TrashChestSmall: {
 		// MapEntry: Scrap Chest
-		// ItemDisplayName: "{$Tiles.Furniture.TrashChest.MapEntry}"
+		// ItemDisplayName: "{$Tiles.Furniture.TrashChestSmall.MapEntry}"
+	}
+
+	TrashChestSmallTrapped: {
+		// MapEntry: Trapped Scrap Chest
+		// ItemDisplayName: "{$Tiles.Furniture.TrashChestSmallTrapped.MapEntry}"
 	}
 
 	TrashDresser: {
 		// MapEntry: Scrap Dresser
 		// ItemDisplayName: "{$Tiles.Furniture.TrashDresser.MapEntry}"
 	}
-}
-
-TrashChestSmall: {
-	// ItemDisplayName: Mods.Aequus.Tiles.TrashChestSmall.ItemDisplayName
-	// ItemTooltip: ""
-}
-
-TrashChestSmallTrapped: {
-	// ItemDisplayName: Mods.Aequus.Tiles.TrashChestSmallTrapped.ItemDisplayName
-	// ItemTooltip: ""
 }

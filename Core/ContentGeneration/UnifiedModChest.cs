@@ -25,7 +25,7 @@ public abstract class UnifiedModChest : ModTile {
         Mod.AddContent(DropItem);
 
         if (LoadTrappedChest) {
-            TrappedChest trappedVariant = new TrappedChest(this);
+            InstancedTrappedChest trappedVariant = new InstancedTrappedChest(this);
             Mod.AddContent(trappedVariant);
         }
     }
@@ -239,14 +239,12 @@ public abstract class UnifiedModChest : ModTile {
 }
 
 [Autoload(false)]
-internal class TrappedChest : InstancedModTile, IAddRecipes {
-    private readonly UnifiedModChest _baseChest;
+internal class InstancedTrappedChest(UnifiedModChest chest) : InstancedModTile(chest.Name + "Trapped", chest.Texture), IAddRecipes {
+    private readonly UnifiedModChest _baseChest = chest;
 
     private ModItem _item;
 
-    public TrappedChest(UnifiedModChest chest) : base(chest.Name + "Trapped", chest.Texture) {
-        _baseChest = chest;
-    }
+    public override string LocalizationCategory => _baseChest.LocalizationCategory;
 
     public override void Load() {
         _item = new InstancedTileItem(this, rarity: _baseChest.DropItem.Item.rare, value: _baseChest.DropItem.Item.value, journeyOverride: new JourneySortByTileId(TileID.FakeContainers2));

@@ -16,7 +16,7 @@ public class ValentineRing : ModItem {
     public static int LifeRegenerationAmount { get; set; } = 2;
     public static float DamageAmount { get; set; } = 0.1f;
 
-    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Decimals(LifeRegenerationAmount / 2f), ExtendLanguage.Percent(DamageAmount));
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(XLanguage.Decimals(LifeRegenerationAmount / 2f), XLanguage.Percent(DamageAmount));
 
     public static LocalizedText GiftTooltip { get; private set; }
     public static LocalizedText AltTooltip { get; private set; }

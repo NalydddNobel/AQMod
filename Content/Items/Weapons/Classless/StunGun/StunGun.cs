@@ -14,7 +14,7 @@ public class StunGun : ModItem, ICooldownItem {
 
     int ICooldownItem.CooldownTime => CooldownTime;
 
-    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Seconds(DebuffTime), ExtendLanguage.Seconds(CooldownTime));
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(XLanguage.Seconds(DebuffTime), XLanguage.Seconds(CooldownTime));
 
     public override void SetStaticDefaults() {
         Element.Flame.AddItem(Type);

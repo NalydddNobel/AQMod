@@ -39,7 +39,7 @@ internal class InstancedFurnitureItem(InstancedFurniture parent) : InstancedModI
     internal readonly InstancedFurniture Parent = parent;
 
     public override LocalizedText DisplayName => Parent.GetLocalization($"ItemDisplayName");
-    public override LocalizedText Tooltip => ExtendLanguage.GetOrEmpty(Parent.GetLocalizationKey($"ItemTooltip"));
+    public override LocalizedText Tooltip => XLanguage.GetOrEmpty(Parent.GetLocalizationKey($"ItemTooltip"));
 
     public override void SetDefaults() {
         Item.DefaultToPlaceableTile(Parent.Type);
