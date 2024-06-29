@@ -413,29 +413,29 @@ Furniture: {
 	TrashChair.ItemDisplayName: 废料椅
 	TrashCandelabra.ItemDisplayName: 废料烛台
 	TrashCandle.ItemDisplayName: 废料蜡烛
-	// TrashChandelier.ItemDisplayName: Scrap Chandelier
+	TrashChandelier.ItemDisplayName: 废料吊灯
 	TrashTable.ItemDisplayName: 废料桌
 	TrashClock.ItemDisplayName: 数字时钟
-	// TrashDoor.ItemDisplayName: Scrap Door
-	// TrashLamp.ItemDisplayName: Scrap Lamp
-	// TrashLantern.ItemDisplayName: Scrap Lantern
-	// TrashPiano.ItemDisplayName: Scrap Piano
-	// TrashSink.ItemDisplayName: Scrap Sink
-	// TrashSofa.ItemDisplayName: Scrap Sofa
-	// TrashWorkBench.ItemDisplayName: Scrap Work Bench
+	TrashDoor.ItemDisplayName: 废料门
+	TrashLamp.ItemDisplayName: 废料灯
+	TrashLantern.ItemDisplayName: 废料灯笼
+	TrashPiano.ItemDisplayName: 废料钢琴
+	TrashSink.ItemDisplayName: 废料水槽
+	TrashSofa.ItemDisplayName: 废料沙发
+	TrashWorkBench.ItemDisplayName: 废料工作台
 
 	TrashChestSmall: {
-		// MapEntry: Scrap Chest
-		// ItemDisplayName: "{$Tiles.Furniture.TrashChestSmall.MapEntry}"
+		MapEntry: 废料宝箱
+		ItemDisplayName: "{$Tiles.Furniture.TrashChestSmall.MapEntry}"
 	}
 
 	TrashChestSmallTrapped: {
-		// MapEntry: Trapped Scrap Chest
-		// ItemDisplayName: "{$Tiles.Furniture.TrashChestSmallTrapped.MapEntry}"
+		MapEntry: 上锁废料宝箱
+		ItemDisplayName: "{$Tiles.Furniture.TrashChestSmallTrapped.MapEntry}"
 	}
 
 	TrashDresser: {
-		// MapEntry: Scrap Dresser
-		// ItemDisplayName: "{$Tiles.Furniture.TrashDresser.MapEntry}"
+		MapEntry: 废料梳妆台
+		ItemDisplayName: "{$Tiles.Furniture.TrashDresser.MapEntry}"
 	}
 }
