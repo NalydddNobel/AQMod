@@ -1906,6 +1906,18 @@
             <param name="Item">The furniture item.</param>
             <param name="Recipe">The template recipe. Uses wood and various other materials (like Silk for beds, Torches for Candles, Water Buckets for Sinks, Iron and Glass for Clocks, etc.)</param>
         </member>
+        <member name="T:Aequus.Core.ContentGeneration.InstancedFurnitureSofa">
+            <summary>Subtype of <see cref="T:Aequus.Core.ContentGeneration.InstancedFurnitureChair"/></summary>
+        </member>
+        <member name="M:Aequus.Core.ContentGeneration.InstancedFurnitureSofa.#ctor(Aequus.Core.ContentGeneration.UnifiedFurniture)">
+            <summary>Subtype of <see cref="T:Aequus.Core.ContentGeneration.InstancedFurnitureChair"/></summary>
+        </member>
+        <member name="T:Aequus.Core.ContentGeneration.InstancedFurniturePiano">
+            <summary>Subtype of <see cref="T:Aequus.Core.ContentGeneration.InstancedFurnitureTable"/>.</summary>
+        </member>
+        <member name="M:Aequus.Core.ContentGeneration.InstancedFurniturePiano.#ctor(Aequus.Core.ContentGeneration.UnifiedFurniture)">
+            <summary>Subtype of <see cref="T:Aequus.Core.ContentGeneration.InstancedFurnitureTable"/>.</summary>
+        </member>
         <member name="T:Aequus.Core.ContentGeneration.UnifiedModMount">
             <summary>A <see cref="T:Terraria.ModLoader.ModMount"/> which automagically registers a related <see cref="T:Terraria.ModLoader.ModItem"/> and <see cref="T:Terraria.ModLoader.ModBuff"/>, suffixed with +"Item" and +"Buff" respectively.</summary>
         </member>
@@ -2460,7 +2472,7 @@
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 938) yo momma gai</summary>
+            <summary>(Total Textures: 943) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -3670,6 +3682,21 @@
         </member>
         <member name="F:Aequus.AequusTextures.TrashLantern_Flame">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashLantern_Flame</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashPiano">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashPiano</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashPianoItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashPianoItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashSofa">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashSofa</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashSofaItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashSofaItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashSofa_Highlight">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashSofa_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrashTable">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTable</summary>

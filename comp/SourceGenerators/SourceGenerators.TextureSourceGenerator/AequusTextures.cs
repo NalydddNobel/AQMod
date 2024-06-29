@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 938) yo momma gai</summary>
+/// <summary>(Total Textures: 943) yo momma gai</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -813,6 +813,16 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> TrashLanternItem = new("Aequus/Content/Tiles/Furniture/Trash/TrashLanternItem");
     /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashLantern_Flame</summary>
     public static readonly RequestCache<Texture2D> TrashLantern_Flame = new("Aequus/Content/Tiles/Furniture/Trash/TrashLantern_Flame");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashPiano</summary>
+    public static readonly RequestCache<Texture2D> TrashPiano = new("Aequus/Content/Tiles/Furniture/Trash/TrashPiano");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashPianoItem</summary>
+    public static readonly RequestCache<Texture2D> TrashPianoItem = new("Aequus/Content/Tiles/Furniture/Trash/TrashPianoItem");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashSofa</summary>
+    public static readonly RequestCache<Texture2D> TrashSofa = new("Aequus/Content/Tiles/Furniture/Trash/TrashSofa");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashSofaItem</summary>
+    public static readonly RequestCache<Texture2D> TrashSofaItem = new("Aequus/Content/Tiles/Furniture/Trash/TrashSofaItem");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashSofa_Highlight</summary>
+    public static readonly RequestCache<Texture2D> TrashSofa_Highlight = new("Aequus/Content/Tiles/Furniture/Trash/TrashSofa_Highlight");
     /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTable</summary>
     public static readonly RequestCache<Texture2D> TrashTable = new("Aequus/Content/Tiles/Furniture/Trash/TrashTable");
     /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTableItem</summary>

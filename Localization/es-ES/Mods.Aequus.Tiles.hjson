@@ -426,6 +426,8 @@ Furniture: {
 	}
 
 	// TrashDoor.ItemDisplayName: Scrap Door
-	// TrashLamp.ItemDisplayName: Mods.Aequus.Tiles.Furniture.TrashLamp.ItemDisplayName
-	// TrashLantern.ItemDisplayName: Mods.Aequus.Tiles.Furniture.TrashLantern.ItemDisplayName
+	// TrashLamp.ItemDisplayName: Scrap Lamp
+	// TrashLantern.ItemDisplayName: Scrap Lantern
+	// TrashPiano.ItemDisplayName: Mods.Aequus.Tiles.Furniture.TrashPiano.ItemDisplayName
+	// TrashSofa.ItemDisplayName: Mods.Aequus.Tiles.Furniture.TrashSofa.ItemDisplayName
 }

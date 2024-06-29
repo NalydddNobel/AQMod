@@ -373,7 +373,7 @@ internal class InstancedFurnitureCandle(UnifiedFurniture parent, FlameInfo info)
     }
 }
 
-internal class InstancedFurnitureChair(UnifiedFurniture parent) : InstancedFurniture(parent, "Chair") {
+internal class InstancedFurnitureChair(UnifiedFurniture parent, string suffix = "Chair") : InstancedFurniture(parent, suffix) {
     public override void SetStaticDefaults() {
         Main.tileFrameImportant[Type] = true;
         Main.tileNoAttach[Type] = true;
@@ -430,7 +430,7 @@ internal class InstancedFurnitureChair(UnifiedFurniture parent) : InstancedFurni
     public override bool RightClick(int i, int j) {
         Player player = Main.LocalPlayer;
 
-        if (player.IsWithinSnappngRangeToTile(i, j, PlayerSittingHelper.ChairSittingMaxDistance)) { // Avoid being able to trigger it from long range
+        if (player.IsWithinSnappngRangeToTile(i, j, PlayerSittingHelper.ChairSittingMaxDistance)) {
             player.GamepadEnableGrappleCooldown();
             player.sitting.SitDown(player, i, j);
         }
@@ -441,7 +441,7 @@ internal class InstancedFurnitureChair(UnifiedFurniture parent) : InstancedFurni
     public override void MouseOver(int i, int j) {
         Player player = Main.LocalPlayer;
 
-        if (!player.IsWithinSnappngRangeToTile(i, j, PlayerSittingHelper.ChairSittingMaxDistance)) { // Match condition in RightClick. Interaction should only show if clicking it does something
+        if (!player.IsWithinSnappngRangeToTile(i, j, PlayerSittingHelper.ChairSittingMaxDistance)) {
             return;
         }
 
@@ -463,8 +463,8 @@ internal class InstancedFurnitureChair(UnifiedFurniture parent) : InstancedFurni
     }
 }
 
-
 //Chandelier
+
 internal class InstancedFurnitureClock(UnifiedFurniture parent) : InstancedFurniture(parent, "Clock") {
     public override void SetStaticDefaults() {
         Main.tileFrameImportant[Type] = true;
@@ -943,7 +943,69 @@ internal class InstancedFurnitureLantern(UnifiedFurniture parent, FlameInfo info
     }
 }
 
-internal class InstancedFurnitureTable(UnifiedFurniture parent) : InstancedFurniture(parent, "Table") {
+/// <summary>Subtype of <see cref="InstancedFurnitureChair"/></summary>
+internal class InstancedFurnitureSofa(UnifiedFurniture parent) : InstancedFurnitureChair(parent, "Sofa") {
+    public override void SetStaticDefaults() {
+        Main.tileFrameImportant[Type] = true;
+        Main.tileLavaDeath[Type] = true;
+        TileID.Sets.CanBeSatOnForPlayers[Type] = true;
+        TileID.Sets.HasOutlines[Type] = true;
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
+        PreAddTileObjectData();
+        TileObjectData.addTile(Type);
+
+        AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair);
+        AddMapEntry(CommonColor.MapWoodFurniture, Language.GetText("ItemName.Sofa"));
+    }
+
+    public override void ModifySittingTargetInfo(int i, int j, ref TileRestingInfo info) {
+        Tile tile = Framing.GetTileSafely(i, j);
+        Player player = Main.LocalPlayer;
+
+        info.DirectionOffset = 0;
+        float offset = 0f;
+        if (tile.TileFrameX < 17 && player.direction == 1)
+            offset = 8f;
+        if (tile.TileFrameX < 17 && player.direction == -1)
+            offset = -8f;
+        if (tile.TileFrameX > 34 && player.direction == 1)
+            offset = -8f;
+        if (tile.TileFrameX > 34 && player.direction == -1)
+            offset = 8f;
+        info.VisualOffset = new Vector2(offset, 0f);
+        info.TargetDirection = player.direction;
+
+        info.AnchorTilePosition.X = i;
+        info.AnchorTilePosition.Y = j;
+
+        if (tile.TileFrameY % NextStyleHeight == 0) {
+            info.AnchorTilePosition.Y++;
+        }
+    }
+
+    public override void MouseOver(int i, int j) {
+        Player player = Main.LocalPlayer;
+
+        if (!player.IsWithinSnappngRangeToTile(i, j, PlayerSittingHelper.ChairSittingMaxDistance)) {
+            return;
+        }
+
+        player.noThrow = 2;
+        player.cursorItemIconEnabled = true;
+        player.cursorItemIconID = DropItem.Type;
+    }
+
+    public override void AddRecipes() {
+        Parent.AddRecipes(this, DropItem,
+            DropItem.CreateRecipe()
+                .AddIngredient(ItemID.Wood, 5)
+                .AddIngredient(ItemID.Silk, 2)
+                .AddTile(TileID.WorkBenches)
+        );
+    }
+}
+
+internal class InstancedFurnitureTable(UnifiedFurniture parent, string suffix = "Table") : InstancedFurniture(parent, suffix) {
     public override void SetStaticDefaults() {
         Main.tileTable[Type] = true;
         Main.tileSolidTop[Type] = true;
@@ -971,6 +1033,19 @@ internal class InstancedFurnitureTable(UnifiedFurniture parent) : InstancedFurni
         Parent.AddRecipes(this, DropItem,
             DropItem.CreateRecipe()
                 .AddIngredient(ItemID.Wood, 8)
+                .AddTile(TileID.WorkBenches)
+        );
+    }
+}
+
+/// <summary>Subtype of <see cref="InstancedFurnitureTable"/>.</summary>
+internal class InstancedFurniturePiano(UnifiedFurniture parent) : InstancedFurnitureTable(parent, "Piano") {
+    public override void AddRecipes() {
+        Parent.AddRecipes(this, DropItem,
+            DropItem.CreateRecipe()
+                .AddIngredient(ItemID.Bone, 4)
+                .AddIngredient(ItemID.Wood, 8)
+                .AddIngredient(ItemID.Book)
                 .AddTile(TileID.WorkBenches)
         );
     }

@@ -63,24 +63,6 @@
 	<AdditionalFiles Include="Old\**\*.png" />
 	<AdditionalFiles Include="Old\**\*.ogg" />
   </ItemGroup>
-  <ItemGroup>
-    <None Remove="Content\Tiles\Furniture\TrashDoor.png" />
-    <None Remove="Content\Tiles\Furniture\TrashDoor_Highlight.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashDoor.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashDoorItem.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashDoorOpen.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashDoorOpen_Highlight.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashDoor_Highlight.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashDresser.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashDresserItem.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashDresser_Highlight.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashLamp.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashLampItem.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashLamp_Flame.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashLantern.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashLanternItem.png" />
-    <None Remove="Content\Tiles\Furniture\Trash\TrashLantern_Flame.png" />
-  </ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<Optimize>False</Optimize>

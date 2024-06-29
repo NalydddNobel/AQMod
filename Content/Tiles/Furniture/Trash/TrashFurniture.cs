@@ -28,6 +28,8 @@ public class TrashFurniture : UnifiedFurniture {
         Mod.AddContent(new InstancedFurnitureDresser(this));
         Mod.AddContent(new TrashLamp(this));
         Mod.AddContent(new TrashLantern(this));
+        Mod.AddContent(new InstancedFurniturePiano(this));
+        Mod.AddContent(new InstancedFurnitureSofa(this));
         Mod.AddContent(new InstancedFurnitureTable(this));
     }
 
