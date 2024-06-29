@@ -2460,7 +2460,7 @@
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 924) yo momma gai</summary>
+            <summary>(Total Textures: 938) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -3628,6 +3628,48 @@
         </member>
         <member name="F:Aequus.AequusTextures.TrashClock_Highlight">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashClock_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashDoor">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDoor</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashDoorItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDoorItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashDoorOpen">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDoorOpen</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashDoorOpen_Highlight">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDoorOpen_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashDoor_Highlight">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDoor_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashDresser">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDresser</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashDresserItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDresserItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashDresser_Highlight">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDresser_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashLamp">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashLamp</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashLampItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashLampItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashLamp_Flame">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashLamp_Flame</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashLantern">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashLantern</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashLanternItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashLanternItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashLantern_Flame">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashLantern_Flame</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrashTable">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTable</summary>

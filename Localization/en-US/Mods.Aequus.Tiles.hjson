@@ -415,4 +415,13 @@ Furniture: {
 	TrashCandle.ItemDisplayName: Scrap Candle
 	TrashTable.ItemDisplayName: Scrap Table
 	TrashClock.ItemDisplayName: Digital Clock
+
+	TrashDresser: {
+		MapEntry: Scrap Dresser
+		ItemDisplayName: "{$Tiles.Furniture.TrashDresser.MapEntry}"
+	}
+
+	TrashDoor.ItemDisplayName: Scrap Door
+	TrashLamp.ItemDisplayName: Scrap Lamp
+	TrashLantern.ItemDisplayName: Scrap Lantern
 }

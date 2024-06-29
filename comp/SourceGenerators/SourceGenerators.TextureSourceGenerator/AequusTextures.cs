@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 924) yo momma gai</summary>
+/// <summary>(Total Textures: 938) yo momma gai</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -785,6 +785,34 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> TrashClockItem = new("Aequus/Content/Tiles/Furniture/Trash/TrashClockItem");
     /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashClock_Highlight</summary>
     public static readonly RequestCache<Texture2D> TrashClock_Highlight = new("Aequus/Content/Tiles/Furniture/Trash/TrashClock_Highlight");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDoor</summary>
+    public static readonly RequestCache<Texture2D> TrashDoor = new("Aequus/Content/Tiles/Furniture/Trash/TrashDoor");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDoorItem</summary>
+    public static readonly RequestCache<Texture2D> TrashDoorItem = new("Aequus/Content/Tiles/Furniture/Trash/TrashDoorItem");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDoorOpen</summary>
+    public static readonly RequestCache<Texture2D> TrashDoorOpen = new("Aequus/Content/Tiles/Furniture/Trash/TrashDoorOpen");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDoorOpen_Highlight</summary>
+    public static readonly RequestCache<Texture2D> TrashDoorOpen_Highlight = new("Aequus/Content/Tiles/Furniture/Trash/TrashDoorOpen_Highlight");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDoor_Highlight</summary>
+    public static readonly RequestCache<Texture2D> TrashDoor_Highlight = new("Aequus/Content/Tiles/Furniture/Trash/TrashDoor_Highlight");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDresser</summary>
+    public static readonly RequestCache<Texture2D> TrashDresser = new("Aequus/Content/Tiles/Furniture/Trash/TrashDresser");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDresserItem</summary>
+    public static readonly RequestCache<Texture2D> TrashDresserItem = new("Aequus/Content/Tiles/Furniture/Trash/TrashDresserItem");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDresser_Highlight</summary>
+    public static readonly RequestCache<Texture2D> TrashDresser_Highlight = new("Aequus/Content/Tiles/Furniture/Trash/TrashDresser_Highlight");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashLamp</summary>
+    public static readonly RequestCache<Texture2D> TrashLamp = new("Aequus/Content/Tiles/Furniture/Trash/TrashLamp");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashLampItem</summary>
+    public static readonly RequestCache<Texture2D> TrashLampItem = new("Aequus/Content/Tiles/Furniture/Trash/TrashLampItem");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashLamp_Flame</summary>
+    public static readonly RequestCache<Texture2D> TrashLamp_Flame = new("Aequus/Content/Tiles/Furniture/Trash/TrashLamp_Flame");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashLantern</summary>
+    public static readonly RequestCache<Texture2D> TrashLantern = new("Aequus/Content/Tiles/Furniture/Trash/TrashLantern");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashLanternItem</summary>
+    public static readonly RequestCache<Texture2D> TrashLanternItem = new("Aequus/Content/Tiles/Furniture/Trash/TrashLanternItem");
+    /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashLantern_Flame</summary>
+    public static readonly RequestCache<Texture2D> TrashLantern_Flame = new("Aequus/Content/Tiles/Furniture/Trash/TrashLantern_Flame");
     /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTable</summary>
     public static readonly RequestCache<Texture2D> TrashTable = new("Aequus/Content/Tiles/Furniture/Trash/TrashTable");
     /// <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTableItem</summary>

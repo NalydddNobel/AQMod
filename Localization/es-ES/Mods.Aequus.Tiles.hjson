@@ -419,4 +419,13 @@ Furniture: {
 	// TrashCandle.ItemDisplayName: Scrap Candle
 	// TrashTable.ItemDisplayName: Scrap Table
 	// TrashClock.ItemDisplayName: Digital Clock
+
+	TrashDresser: {
+		// MapEntry: Scrap Dresser
+		// ItemDisplayName: "{$Tiles.Furniture.TrashDresser.MapEntry}"
+	}
+
+	// TrashDoor.ItemDisplayName: Scrap Door
+	// TrashLamp.ItemDisplayName: Mods.Aequus.Tiles.Furniture.TrashLamp.ItemDisplayName
+	// TrashLantern.ItemDisplayName: Mods.Aequus.Tiles.Furniture.TrashLantern.ItemDisplayName
 }

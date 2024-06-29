@@ -5,6 +5,7 @@ using Aequus.Core.Graphics.Animations;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent.Drawing;
+using Terraria.GameContent.ObjectInteractions;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Tiles.Furniture.Trash;
@@ -22,6 +23,11 @@ public class TrashFurniture : UnifiedFurniture {
         Mod.AddContent(new TrashCandelabra(this));
         Mod.AddContent(new TrashCandle(this));
         Mod.AddContent(new TrashClock(this));
+        //Mod.AddContent(new TrashClock(this));
+        Mod.AddContent(new InstancedFurnitureDoor(this));
+        Mod.AddContent(new InstancedFurnitureDresser(this));
+        Mod.AddContent(new TrashLamp(this));
+        Mod.AddContent(new TrashLantern(this));
         Mod.AddContent(new InstancedFurnitureTable(this));
     }
 
@@ -32,6 +38,50 @@ public class TrashFurniture : UnifiedFurniture {
         Recipe.AddTile(ModContent.TileType<TrashCompactor>());
         base.AddRecipes(Tile, Item, Recipe);
     }
+
+    public static bool CheckLightFlicker(int i, int j, int styleWidth) {
+        Tile tile = Main.tile[i, j];
+        if (tile.TileFrameX > styleWidth) {
+            return true;
+        }
+
+        int left = i - tile.TileFrameX / 18;
+        int top = j - tile.TileFrameY / 18;
+
+        return AnimationSystem.TryGet(left, top, out AnimationTrashFurnitureFlicker flicker) && flicker.NoLight <= 0;
+    }
+
+    public static bool DrawLightFlickerTile(SpriteBatch spriteBatch, int Type, Texture2D flameTexture, int i, int j, int styleWidth) {
+        Tile tile = Main.tile[i, j];
+        if (tile.TileFrameX > styleWidth) {
+            return true;
+        }
+
+        int left = i - tile.TileFrameX / 18;
+        int top = j - tile.TileFrameY / 18;
+
+        Vector2 drawCoordinates = new Vector2(i * 16f, j * 16f) - Main.screenPosition + TileHelper.DrawOffset;
+        Rectangle frame = new Rectangle(tile.TileFrameX, tile.TileFrameY, 16, 16);
+        Color lightColor = GetTileColor(i, j, tile);
+
+        if (!AnimationSystem.TryGet(left, top, out AnimationTrashFurnitureFlicker flicker)) {
+            flicker = new AnimationTrashFurnitureFlicker(Type);
+            AnimationSystem.TileAnimations[new(i, j)] = flicker;
+        }
+
+        frame.X += flicker.NoLight == 0 ? 0 : styleWidth;
+
+        if (TileDrawing.IsVisible(tile)) {
+            spriteBatch.Draw(GetTileTexture(i, j, tile), drawCoordinates, frame, lightColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+        }
+
+        if (flicker.NoLight > 0) {
+            return false;
+        }
+
+        spriteBatch.Draw(flameTexture, drawCoordinates, frame, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+        return false;
+    }
 }
 
 public class AnimationTrashFurnitureFlicker(int AnchorTileType) : ITileAnimation {
@@ -40,7 +90,14 @@ public class AnimationTrashFurnitureFlicker(int AnchorTileType) : ITileAnimation
     public bool Update(int x, int y) {
         Tile tile = Main.tile[x, y];
 
-        if (NoLight == 0 && Main.rand.NextBool(720)) {
+        int flickerChance = 720;
+#if DEBUG
+        if (Main.mouseRight) {
+            flickerChance = 30;
+        }
+#endif
+
+        if (NoLight == 0 && Main.rand.NextBool(flickerChance)) {
             NoLight = Main.rand.Next(20);
         }
         else if (NoLight > 0) {
@@ -53,49 +110,13 @@ public class AnimationTrashFurnitureFlicker(int AnchorTileType) : ITileAnimation
 
 internal class TrashCandelabra(UnifiedFurniture parent) : InstancedFurnitureCandelabra(parent, default) {
     public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
-        Tile tile = Main.tile[i, j];
-        if (tile.TileFrameX > NextStyleWidth) {
-            return;
+        if (TrashFurniture.CheckLightFlicker(i, j, NextStyleWidth)) {
+            base.ModifyLight(i, j, ref r, ref g, ref b);
         }
-
-        int left = i - tile.TileFrameX / 18;
-        int top = j - tile.TileFrameY / 18;
-
-        if (!AnimationSystem.TryGet(left, top, out AnimationTrashFurnitureFlicker flicker) || flicker.NoLight > 0) {
-            return;
-        }
-
-        base.ModifyLight(i, j, ref r, ref g, ref b);
     }
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
-        Tile tile = Main.tile[i, j];
-        if (tile.TileFrameX > NextStyleWidth) {
-            return true;
-        }
-
-        int left = i - tile.TileFrameX / 18;
-        int top = j - tile.TileFrameY / 18;
-
-        Vector2 drawCoordinates = new Vector2(i * 16f, j * 16f) - Main.screenPosition + TileHelper.DrawOffset;
-        Rectangle frame = new Rectangle(tile.TileFrameX, tile.TileFrameY, 16, 16);
-        Color lightColor = Lighting.GetColor(i, j);
-
-        if (!AnimationSystem.TryGet(left, top, out AnimationTrashFurnitureFlicker flicker)) {
-            flicker = new AnimationTrashFurnitureFlicker(Type);
-            AnimationSystem.TileAnimations[new(left, top)] = flicker;
-        }
-
-        frame.X += flicker.NoLight == 0 ? 0 : NextStyleWidth;
-
-        spriteBatch.Draw(TileTexture[Type].Value, drawCoordinates, frame, lightColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-
-        if (flicker.NoLight > 0) {
-            return false;
-        }
-
-        spriteBatch.Draw(AequusTextures.TrashCandelabra_Flame, drawCoordinates, frame, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-        return false;
+        return TrashFurniture.DrawLightFlickerTile(spriteBatch, Type, AequusTextures.TrashCandelabra_Flame, i, j, NextStyleWidth);
     }
 
     public override void PostDraw(int i, int j, SpriteBatch spriteBatch) { }
@@ -103,49 +124,41 @@ internal class TrashCandelabra(UnifiedFurniture parent) : InstancedFurnitureCand
 
 internal class TrashCandle(UnifiedFurniture parent) : InstancedFurnitureCandle(parent, default) {
     public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
-        Tile tile = Main.tile[i, j];
-        if (tile.TileFrameX > NextStyleWidth) {
-            return;
+        if (TrashFurniture.CheckLightFlicker(i, j, NextStyleWidth)) {
+            base.ModifyLight(i, j, ref r, ref g, ref b);
         }
-
-        int left = i - tile.TileFrameX / 18;
-        int top = j - tile.TileFrameY / 18;
-
-        if (!AnimationSystem.TryGet(i, j, out AnimationTrashFurnitureFlicker flicker) || flicker.NoLight > 0) {
-            return;
-        }
-
-        base.ModifyLight(i, j, ref r, ref g, ref b);
     }
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
-        Tile tile = Main.tile[i, j];
-        if (tile.TileFrameX > NextStyleWidth) {
-            return true;
+        return TrashFurniture.DrawLightFlickerTile(spriteBatch, Type, AequusTextures.TrashCandle, i, j, NextStyleWidth);
+    }
+
+    public override void PostDraw(int i, int j, SpriteBatch spriteBatch) { }
+}
+
+internal class TrashLamp(UnifiedFurniture parent) : InstancedFurnitureLamp(parent, default) {
+    public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
+        if (TrashFurniture.CheckLightFlicker(i, j, NextStyleWidth)) {
+            base.ModifyLight(i, j, ref r, ref g, ref b);
         }
+    }
 
-        int left = i - tile.TileFrameX / 18;
-        int top = j - tile.TileFrameY / 18;
+    public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
+        return TrashFurniture.DrawLightFlickerTile(spriteBatch, Type, AequusTextures.TrashLamp_Flame, i, j, NextStyleWidth);
+    }
 
-        Vector2 drawCoordinates = new Vector2(i * 16f, j * 16f) - Main.screenPosition + TileHelper.DrawOffset;
-        Rectangle frame = new Rectangle(tile.TileFrameX, tile.TileFrameY, 16, 16);
-        Color lightColor = Lighting.GetColor(i, j);
+    public override void PostDraw(int i, int j, SpriteBatch spriteBatch) { }
+}
 
-        if (!AnimationSystem.TryGet(left, top, out AnimationTrashFurnitureFlicker flicker)) {
-            flicker = new AnimationTrashFurnitureFlicker(Type);
-            AnimationSystem.TileAnimations[new(i, j)] = flicker;
+internal class TrashLantern(UnifiedFurniture parent) : InstancedFurnitureLantern(parent, default) {
+    public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
+        if (TrashFurniture.CheckLightFlicker(i, j, NextStyleWidth)) {
+            base.ModifyLight(i, j, ref r, ref g, ref b);
         }
+    }
 
-        frame.X += flicker.NoLight == 0 ? 0 : NextStyleWidth;
-
-        spriteBatch.Draw(TileTexture[Type].Value, drawCoordinates, frame, lightColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-
-        if (flicker.NoLight > 0) {
-            return false;
-        }
-
-        spriteBatch.Draw(AequusTextures.TrashCandle_Flame, drawCoordinates, frame, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-        return false;
+    public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
+        return TrashFurniture.DrawLightFlickerTile(spriteBatch, Type, AequusTextures.TrashLantern_Flame, i, j, NextStyleWidth);
     }
 
     public override void PostDraw(int i, int j, SpriteBatch spriteBatch) { }
@@ -170,6 +183,10 @@ internal class TrashClock(UnifiedFurniture parent) : InstancedFurnitureClock(par
         AddMapEntry(CommonColor.MapWoodFurniture, Lang.GetItemName(ItemID.GrandfatherClock));
     }
 
+    public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) {
+        return true;
+    }
+
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
         Tile tile = Main.tile[i, j];
         Texture2D texture = GetTileTexture(i, j, tile);
@@ -183,7 +200,7 @@ internal class TrashClock(UnifiedFurniture parent) : InstancedFurnitureClock(par
 
         // Clock Digits inherit the paint color and light of the bottom right tile.
         if (tile.TileFrameX == 36 && tile.TileFrameY == 18) {
-            DrawDigits(spriteBatch, texture, drawCoordinates, lightColor);
+            DrawDigits(spriteBatch, texture, drawCoordinates, lightColor.SaturationMultiply(0.4f));
         }
 
         return false;
