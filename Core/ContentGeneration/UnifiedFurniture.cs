@@ -39,12 +39,7 @@ internal class InstancedFurnitureItem(InstancedFurniture parent) : InstancedModI
     internal readonly InstancedFurniture Parent = parent;
 
     public override LocalizedText DisplayName => Parent.GetLocalization($"ItemDisplayName");
-    public override LocalizedText Tooltip {
-        get {
-            LocalizedText tooltip = Language.GetText(Parent.GetLocalizationKey($"ItemTooltip"));
-            return tooltip.Key == tooltip.Value ? LocalizedText.Empty : tooltip;
-        }
-    }
+    public override LocalizedText Tooltip => ExtendLanguage.GetOrEmpty(Parent.GetLocalizationKey($"ItemTooltip"));
 
     public override void SetDefaults() {
         Item.DefaultToPlaceableTile(Parent.Type);
@@ -463,7 +458,64 @@ internal class InstancedFurnitureChair(UnifiedFurniture parent, string suffix = 
     }
 }
 
-//Chandelier
+internal class InstancedFurnitureChandelier(UnifiedFurniture parent, FlameInfo info) : InstancedFurnitureLighted(parent, "Chandelier", info) {
+    public override void SetStaticDefaults() {
+        Main.tileFrameImportant[Type] = true;
+        Main.tileLavaDeath[Type] = true;
+        Main.tileNoAttach[Type] = true;
+        Main.tileLighted[Type] = true;
+        TileID.Sets.DisableSmartCursor[Type] = true;
+
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
+        TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide, 1, 1);
+        TileObjectData.newTile.AnchorBottom = AnchorData.Empty;
+        TileObjectData.newTile.Origin = new Point16(1, 0);
+        TileObjectData.newTile.StyleHorizontal = true;
+        PreAddTileObjectData();
+        TileObjectData.addTile(Type);
+
+        AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTorch);
+
+        AddMapEntry(CommonColor.MapTorch, Language.GetText("MapObject.Chandelier"));
+    }
+
+    public override void AddRecipes() {
+        Parent.AddRecipes(this, DropItem,
+            DropItem.CreateRecipe()
+                .AddIngredient(ItemID.Wood, 4)
+                .AddIngredient(ItemID.Torch, 4)
+                .AddIngredient(ItemID.Chain, 1)
+                .AddTile(TileID.Anvils)
+        );
+    }
+}
+
+[Autoload(false)]
+internal class InstancedFurnitureChest(UnifiedFurniture parent, string suffix = "Chest") : UnifiedModChest {
+    public readonly UnifiedFurniture Parent = parent;
+
+    public override string Name => $"{Parent.Name}{suffix}";
+    public override string Texture => $"{Parent.Texture}{suffix}";
+
+    public override string LocalizationCategory => Parent.LocalizationCategory;
+
+    public override void Load() {
+        base.Load();
+        Aequus.OnAddRecipes += AddRecipe;
+        void AddRecipe() {
+            Parent.AddRecipes(this, DropItem,
+                DropItem.CreateRecipe()
+                .AddIngredient(ItemID.Wood, 8)
+                .AddRecipeGroup(RecipeGroupID.IronBar, 2)
+                .AddTile(TileID.WorkBenches)
+            );
+        }
+    }
+
+    public override void SafeSetStaticDefaults() {
+        DustType = Parent.DustType;
+    }
+}
 
 internal class InstancedFurnitureClock(UnifiedFurniture parent) : InstancedFurniture(parent, "Clock") {
     public override void SetStaticDefaults() {
@@ -923,7 +975,6 @@ internal class InstancedFurnitureLantern(UnifiedFurniture parent, FlameInfo info
         TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2);
         TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide, 1, 1);
         TileObjectData.newTile.AnchorBottom = AnchorData.Empty;
-        TileObjectData.newTile.Origin = new Point16(1, 0);
         TileObjectData.newTile.StyleHorizontal = true;
         PreAddTileObjectData();
         TileObjectData.addTile(Type);
@@ -942,6 +993,106 @@ internal class InstancedFurnitureLantern(UnifiedFurniture parent, FlameInfo info
         );
     }
 }
+
+/// <param name="parent"></param>
+/// <param name="flags">Used to determine what liquids this tile counts as. By default, sinks count as a source of Water.</param>
+internal class InstancedFurnitureSink(UnifiedFurniture parent, InstancedFurnitureSink.SinkSource flags = InstancedFurnitureSink.SinkSource.Water) : InstancedFurniture(parent, "Sink") {
+    public enum SinkSource : byte {
+        Water = 1 << 0,
+        Lava = 1 << 1,
+        Honey = 1 << 2,
+        Shimmer = 1 << 3,
+    }
+
+    public readonly SinkSource Flags = flags;
+
+    public override void SetStaticDefaults() {
+        Main.tileFrameImportant[Type] = true;
+        TileID.Sets.CountsAsWaterSource[Type] = Flags.HasFlag(SinkSource.Water);
+        TileID.Sets.CountsAsHoneySource[Type] = Flags.HasFlag(SinkSource.Honey);
+        TileID.Sets.CountsAsLavaSource[Type] = Flags.HasFlag(SinkSource.Lava);
+        TileID.Sets.CountsAsShimmerSource[Type] = Flags.HasFlag(SinkSource.Shimmer);
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
+        PreAddTileObjectData();
+        TileObjectData.addTile(Type);
+
+        AddMapEntry(CommonColor.MapWoodFurniture, Language.GetText("MapObject.Sink"));
+    }
+
+    public override void AddRecipes() {
+        Parent.AddRecipes(this, DropItem,
+            DropItem.CreateRecipe()
+                .AddIngredient(ItemID.Wood, 6)
+                .AddIngredient(ItemID.WaterBucket)
+                .AddTile(TileID.WorkBenches)
+        );
+    }
+}
+
+internal class InstancedFurnitureTable(UnifiedFurniture parent, string suffix = "Table") : InstancedFurniture(parent, suffix) {
+    public override void SetStaticDefaults() {
+        Main.tileTable[Type] = true;
+        Main.tileSolidTop[Type] = true;
+        Main.tileNoAttach[Type] = true;
+        Main.tileLavaDeath[Type] = true;
+        Main.tileFrameImportant[Type] = true;
+        TileID.Sets.DisableSmartCursor[Type] = true;
+        TileID.Sets.IgnoredByNpcStepUp[Type] = true;
+
+        DustType = Parent.DustType;
+        AdjTiles = [TileID.Tables];
+
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
+        TileObjectData.newTile.StyleHorizontal = true;
+        TileObjectData.newTile.CoordinateHeights = [16, 18];
+        PreAddTileObjectData();
+        TileObjectData.addTile(Type);
+
+        AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
+
+        AddMapEntry(CommonColor.MapWoodFurniture, Language.GetText("MapObject.Table"));
+    }
+
+    public override void AddRecipes() {
+        Parent.AddRecipes(this, DropItem,
+            DropItem.CreateRecipe()
+                .AddIngredient(ItemID.Wood, 8)
+                .AddTile(TileID.WorkBenches)
+        );
+    }
+}
+
+internal class InstancedFurnitureWorkBench(UnifiedFurniture parent) : InstancedFurniture(parent, "WorkBench") {
+    public override void SetStaticDefaults() {
+        Main.tileTable[Type] = true;
+        Main.tileSolidTop[Type] = true;
+        Main.tileNoAttach[Type] = true;
+        Main.tileLavaDeath[Type] = true;
+        Main.tileFrameImportant[Type] = true;
+        TileID.Sets.DisableSmartCursor[Type] = true;
+        TileID.Sets.IgnoredByNpcStepUp[Type] = true;
+
+        DustType = Parent.DustType;
+        AdjTiles = [TileID.WorkBenches];
+
+        TileObjectData.newTile.CopyFrom(TileObjectData.Style2x1);
+        TileObjectData.newTile.CoordinateHeights = [18];
+        PreAddTileObjectData();
+        TileObjectData.addTile(Type);
+
+        AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
+
+        AddMapEntry(CommonColor.MapWoodFurniture, Language.GetText("ItemName.WorkBench"));
+    }
+
+    public override void AddRecipes() {
+        Parent.AddRecipes(this, DropItem,
+            DropItem.CreateRecipe()
+                .AddIngredient(ItemID.Wood, 10)
+        );
+    }
+}
+
 
 /// <summary>Subtype of <see cref="InstancedFurnitureChair"/></summary>
 internal class InstancedFurnitureSofa(UnifiedFurniture parent) : InstancedFurnitureChair(parent, "Sofa") {
@@ -1000,39 +1151,6 @@ internal class InstancedFurnitureSofa(UnifiedFurniture parent) : InstancedFurnit
             DropItem.CreateRecipe()
                 .AddIngredient(ItemID.Wood, 5)
                 .AddIngredient(ItemID.Silk, 2)
-                .AddTile(TileID.WorkBenches)
-        );
-    }
-}
-
-internal class InstancedFurnitureTable(UnifiedFurniture parent, string suffix = "Table") : InstancedFurniture(parent, suffix) {
-    public override void SetStaticDefaults() {
-        Main.tileTable[Type] = true;
-        Main.tileSolidTop[Type] = true;
-        Main.tileNoAttach[Type] = true;
-        Main.tileLavaDeath[Type] = true;
-        Main.tileFrameImportant[Type] = true;
-        TileID.Sets.DisableSmartCursor[Type] = true;
-        TileID.Sets.IgnoredByNpcStepUp[Type] = true;
-
-        DustType = Parent.DustType;
-        AdjTiles = [TileID.Tables];
-
-        TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
-        TileObjectData.newTile.StyleHorizontal = true;
-        TileObjectData.newTile.CoordinateHeights = [16, 18];
-        PreAddTileObjectData();
-        TileObjectData.addTile(Type);
-
-        AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-
-        AddMapEntry(CommonColor.MapWoodFurniture, Language.GetText("MapObject.Table"));
-    }
-
-    public override void AddRecipes() {
-        Parent.AddRecipes(this, DropItem,
-            DropItem.CreateRecipe()
-                .AddIngredient(ItemID.Wood, 8)
                 .AddTile(TileID.WorkBenches)
         );
     }

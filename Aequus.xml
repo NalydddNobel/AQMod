@@ -1906,6 +1906,14 @@
             <param name="Item">The furniture item.</param>
             <param name="Recipe">The template recipe. Uses wood and various other materials (like Silk for beds, Torches for Candles, Water Buckets for Sinks, Iron and Glass for Clocks, etc.)</param>
         </member>
+        <member name="T:Aequus.Core.ContentGeneration.InstancedFurnitureSink">
+            <param name="parent"></param>
+            <param name="flags">Used to determine what liquids this tile counts as. By default, sinks count as a source of Water.</param>
+        </member>
+        <member name="M:Aequus.Core.ContentGeneration.InstancedFurnitureSink.#ctor(Aequus.Core.ContentGeneration.UnifiedFurniture,Aequus.Core.ContentGeneration.InstancedFurnitureSink.SinkSource)">
+            <param name="parent"></param>
+            <param name="flags">Used to determine what liquids this tile counts as. By default, sinks count as a source of Water.</param>
+        </member>
         <member name="T:Aequus.Core.ContentGeneration.InstancedFurnitureSofa">
             <summary>Subtype of <see cref="T:Aequus.Core.ContentGeneration.InstancedFurnitureChair"/></summary>
         </member>
@@ -2472,7 +2480,7 @@
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 943) yo momma gai</summary>
+            <summary>(Total Textures: 953) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -3623,11 +3631,29 @@
         <member name="F:Aequus.AequusTextures.TrashChair_Highlight">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChair_Highlight</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.TrashChandelier">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChandelier</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashChandelierItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChandelierItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashChandelier_Flame">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChandelier_Flame</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.TrashChest">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChest</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrashChestItem">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChestItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashChestSmall">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChestSmall</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashChestSmallItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChestSmallItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashChestSmall_Highlight">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChestSmall_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrashChest_Highlight">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChest_Highlight</summary>
@@ -3689,6 +3715,12 @@
         <member name="F:Aequus.AequusTextures.TrashPianoItem">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashPianoItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.TrashSink">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashSink</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashSinkItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashSinkItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.TrashSofa">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashSofa</summary>
         </member>
@@ -3712,6 +3744,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.TrashTorchItem_Flame">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTorchItem_Flame</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashWorkBench">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashWorkBench</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashWorkBenchItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashWorkBenchItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MeadowGrass">
             <summary>Full Path: Content/Tiles/Meadow/MeadowGrass</summary>

@@ -33,14 +33,14 @@ public abstract class UnifiedModChest : ModTile {
     public sealed override void SetStaticDefaults() {
         this.CloneStaticDefaults(TileID.Containers);
 
-        AdjTiles = new int[] { TileID.Containers };
+        AdjTiles = [TileID.Containers];
 
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
         TileObjectData.newTile.Origin = new Point16(0, 1);
-        TileObjectData.newTile.CoordinateHeights = new[] { 16, 18 };
+        TileObjectData.newTile.CoordinateHeights = [16, 18];
         TileObjectData.newTile.HookCheckIfCanPlace = new PlacementHook(FindEmptyChest, -1, 0, true);
         TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(AfterPlacement_Hook, -1, 0, false);
-        TileObjectData.newTile.AnchorInvalidTiles = new int[] { TileID.MagicalIceBlock };
+        TileObjectData.newTile.AnchorInvalidTiles = [TileID.MagicalIceBlock];
         TileObjectData.newTile.StyleHorizontal = true;
         TileObjectData.newTile.LavaDeath = false;
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);

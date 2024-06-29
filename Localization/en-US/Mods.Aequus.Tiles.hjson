@@ -424,14 +424,17 @@ Furniture: {
 	TrashSofa.ItemDisplayName: Scrap Sofa
 	TrashWorkBench.ItemDisplayName: Scrap Work Bench
 
-	TrashChest: {
+	TrashChestSmall: {
 		MapEntry: Scrap Chest
-		ItemDisplayName: "{$Tiles.Furniture.TrashChest.MapEntry}"
+		ItemDisplayName: "{$Tiles.Furniture.TrashChestSmall.MapEntry}"
+	}
+	TrashChestSmallTrapped: {
+		MapEntry: Trapped Scrap Chest
+		ItemDisplayName: "{$Tiles.Furniture.TrashChestSmallTrapped.MapEntry}"
 	}
 
 	TrashDresser: {
 		MapEntry: Scrap Dresser
 		ItemDisplayName: "{$Tiles.Furniture.TrashDresser.MapEntry}"
 	}
-
 }

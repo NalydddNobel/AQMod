@@ -61,7 +61,7 @@ internal class InstancedTileItem(ModTile modTile, int style = 0, string nameSuff
     [CloneByReference]
     internal readonly ModTile _modTile = modTile;
 
-    public override string LocalizationCategory => "Tiles";
+    public override string LocalizationCategory => _modTile.LocalizationCategory;
 
     private string KeyPrefix => Name != _modTile.Name ? $"{Name.Replace(_modTile.Name, "")}." : "";
     public override LocalizedText DisplayName => Language.GetOrRegister(_modTile.GetLocalizationKey(KeyPrefix + "ItemDisplayName"));

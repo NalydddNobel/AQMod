@@ -413,17 +413,34 @@ Furniture: {
 	TrashChair.ItemDisplayName: 废料椅
 	TrashCandelabra.ItemDisplayName: 废料烛台
 	TrashCandle.ItemDisplayName: 废料蜡烛
+	// TrashChandelier.ItemDisplayName: Scrap Chandelier
 	TrashTable.ItemDisplayName: 废料桌
 	TrashClock.ItemDisplayName: 数字时钟
+	// TrashDoor.ItemDisplayName: Scrap Door
+	// TrashLamp.ItemDisplayName: Scrap Lamp
+	// TrashLantern.ItemDisplayName: Scrap Lantern
+	// TrashPiano.ItemDisplayName: Scrap Piano
+	// TrashSink.ItemDisplayName: Scrap Sink
+	// TrashSofa.ItemDisplayName: Scrap Sofa
+	// TrashWorkBench.ItemDisplayName: Scrap Work Bench
+
+	TrashChestSmall: {
+		// MapEntry: Scrap Chest
+		// ItemDisplayName: "{$Tiles.Furniture.TrashChest.MapEntry}"
+	}
 
 	TrashDresser: {
 		// MapEntry: Scrap Dresser
 		// ItemDisplayName: "{$Tiles.Furniture.TrashDresser.MapEntry}"
 	}
+}
 
-	// TrashDoor.ItemDisplayName: Scrap Door
-	// TrashLamp.ItemDisplayName: Scrap Lamp
-	// TrashLantern.ItemDisplayName: Scrap Lantern
-	// TrashPiano.ItemDisplayName: Mods.Aequus.Tiles.Furniture.TrashPiano.ItemDisplayName
-	// TrashSofa.ItemDisplayName: Mods.Aequus.Tiles.Furniture.TrashSofa.ItemDisplayName
+TrashChestSmall: {
+	// ItemDisplayName: Mods.Aequus.Tiles.TrashChestSmall.ItemDisplayName
+	// ItemTooltip: ""
+}
+
+TrashChestSmallTrapped: {
+	// ItemDisplayName: Mods.Aequus.Tiles.TrashChestSmallTrapped.ItemDisplayName
+	// ItemTooltip: ""
 }

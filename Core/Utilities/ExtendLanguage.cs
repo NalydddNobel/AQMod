@@ -10,6 +10,11 @@ namespace Aequus.Core.Utilities;
 public static class ExtendLanguage {
     private record struct ColoredText(string Text, Color Color);
 
+    public static LocalizedText GetOrEmpty(string key) {
+        LocalizedText tooltip = Language.GetText(key);
+        return tooltip.Key == tooltip.Value ? LocalizedText.Empty : tooltip;
+    }
+
     public static string PrettyPrint(string text) {
         return Regex.Replace(text, "([A-Z])", " $1").Trim();
     }
