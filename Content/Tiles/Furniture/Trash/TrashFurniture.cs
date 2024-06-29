@@ -4,6 +4,7 @@ using Aequus.Core.ContentGeneration;
 using Aequus.Core.Graphics.Animations;
 using Terraria.DataStructures;
 using Terraria.Enums;
+using Terraria.GameContent.Drawing;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Tiles.Furniture.Trash;
@@ -171,30 +172,38 @@ internal class TrashClock(UnifiedFurniture parent) : InstancedFurnitureClock(par
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
         Tile tile = Main.tile[i, j];
-
+        Texture2D texture = GetTileTexture(i, j, tile);
         Vector2 drawCoordinates = new Vector2(i * 16f, j * 16f) - Main.screenPosition + TileHelper.DrawOffset;
-        Rectangle frame = new Rectangle(tile.TileFrameX, tile.TileFrameY, 16, tile.TileFrameY <= 0 ? 16 : 18);
-        Color lightColor = Lighting.GetColor(i, j);
-        spriteBatch.Draw(TileTexture[Type].Value, drawCoordinates, frame, lightColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+        Color lightColor = GetTileColor(i, j, tile);
 
+        if (TileDrawing.IsVisible(tile)) {
+            Rectangle frame = new Rectangle(tile.TileFrameX, tile.TileFrameY, 16, tile.TileFrameY <= 0 ? 16 : 18);
+            spriteBatch.Draw(texture, drawCoordinates, frame, lightColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+        }
+
+        // Clock Digits inherit the paint color and light of the bottom right tile.
         if (tile.TileFrameX == 36 && tile.TileFrameY == 18) {
-            int[] digits = Helper.GetTimeDigits(Helper.Get24HourTimeStartingAtMidnight());
-
-            for (int k = 0; k < digits.Length; k++) {
-                int digit = (digits[k] - 1);
-                Rectangle digitFrame = digit switch {
-                    -1 => new Rectangle(8, 62, 6, 10),
-                    _ => new Rectangle(8 * (digit % 4), 38 + 12 * (digit / 4), 6, 10),
-                };
-                //Rectangle digitFrame = new Rectangle(0, 38, 6, 10);
-                int offset = 8 * k;
-                offset += k > 1 ? 4 : 0;
-                spriteBatch.Draw(TileTexture[Type].Value, drawCoordinates + new Vector2(-26f + offset, 2f), digitFrame, lightColor * 2f, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-            }
-
-            spriteBatch.Draw(TileTexture[Type].Value, drawCoordinates + new Vector2(-12f, 2f), new Rectangle(16, 62, 6, 10), lightColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            DrawDigits(spriteBatch, texture, drawCoordinates, lightColor);
         }
 
         return false;
+    }
+
+    private void DrawDigits(SpriteBatch spriteBatch, Texture2D texture, Vector2 drawCoordinates, Color lightColor) {
+        int[] digits = Helper.GetTimeDigits(Helper.Get24HourTimeStartingAtMidnight());
+
+        for (int k = 0; k < digits.Length; k++) {
+            int digit = digits[k] - 1;
+            Rectangle digitFrame = digit switch {
+                -1 => new Rectangle(8, 62, 6, 10),
+                _ => new Rectangle(8 * (digit % 4), 38 + 12 * (digit / 4), 6, 10),
+            };
+            //Rectangle digitFrame = new Rectangle(0, 38, 6, 10);
+            int offset = 8 * k;
+            offset += k > 1 ? 4 : 0;
+            spriteBatch.Draw(texture, drawCoordinates + new Vector2(-26f + offset, 2f), digitFrame, lightColor * 2f, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+        }
+
+        spriteBatch.Draw(texture, drawCoordinates + new Vector2(-12f, 2f), new Rectangle(16, 62, 6, 10), lightColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
     }
 }
