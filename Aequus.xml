@@ -1846,6 +1846,18 @@
         <member name="T:Aequus.Core.Concurrent.ParallelLighting">
             <summary>Allows for lights to be safely created in a parallel process.</summary>
         </member>
+        <member name="T:Aequus.Core.ContentGeneration.InstancedCampfireTorch">
+            <summary>A subtype of <see cref="T:Aequus.Core.ContentGeneration.InstancedCampfireTile"/> which inherits traits from <see cref="T:Aequus.Core.ContentGeneration.UnifiedModTorch"/>.</summary>
+        </member>
+        <member name="M:Aequus.Core.ContentGeneration.InstancedCampfireTorch.#ctor(Aequus.Core.ContentGeneration.UnifiedModTorch)">
+            <summary>A subtype of <see cref="T:Aequus.Core.ContentGeneration.InstancedCampfireTile"/> which inherits traits from <see cref="T:Aequus.Core.ContentGeneration.UnifiedModTorch"/>.</summary>
+        </member>
+        <member name="T:Aequus.Core.ContentGeneration.InstancedFurnitureCampfire">
+            <summary>A subtype of <see cref="T:Aequus.Core.ContentGeneration.InstancedCampfireTile"/> which inherits traits from <see cref="T:Aequus.Core.ContentGeneration.UnifiedFurniture"/>.</summary>
+        </member>
+        <member name="M:Aequus.Core.ContentGeneration.InstancedFurnitureCampfire.#ctor(Aequus.Core.ContentGeneration.UnifiedFurniture)">
+            <summary>A subtype of <see cref="T:Aequus.Core.ContentGeneration.InstancedCampfireTile"/> which inherits traits from <see cref="T:Aequus.Core.ContentGeneration.UnifiedFurniture"/>.</summary>
+        </member>
         <member name="T:Aequus.Core.ContentGeneration.InstancedModDust">
             <param name="name"></param>
             <param name="texture"></param>
@@ -3574,6 +3586,15 @@
         <member name="F:Aequus.AequusTextures.TrashCompactorItem">
             <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.SeaPickleTorch">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/SeaPickleTorch</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SeaPickleTorchItem">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/SeaPickleTorchItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SeaPickleTorchItem_Flame">
+            <summary>Full Path: Content/Tiles/Furniture/Trash/SeaPickleTorchItem_Flame</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.TrashBathtub">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashBathtub</summary>
         </member>
@@ -3735,15 +3756,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.TrashTableItem">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTableItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.TrashTorch">
-            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTorch</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.TrashTorchItem">
-            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTorchItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.TrashTorchItem_Flame">
-            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTorchItem_Flame</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrashWorkBench">
             <summary>Full Path: Content/Tiles/Furniture/Trash/TrashWorkBench</summary>

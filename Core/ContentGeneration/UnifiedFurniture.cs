@@ -1,4 +1,5 @@
-﻿using ReLogic.Content;
+﻿using Aequus.Core.Structures;
+using ReLogic.Content;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -6,6 +7,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.Localization;
 using Terraria.ObjectData;
+using tModLoaderExtended.Terraria.ModLoader;
 using static Aequus.Core.ContentGeneration.InstancedFurnitureLighted;
 
 namespace Aequus.Core.ContentGeneration;
@@ -25,6 +27,11 @@ public abstract class UnifiedFurniture : ModTexturedType, ILocalizedModType {
         SetStaticDefaults();
     }
 
+    internal (T, ModItem) AddContent<T>(T furnitureObject) where T : ModTile, IModItemProvider {
+        Mod.AddContent(furnitureObject);
+        return (furnitureObject, furnitureObject.Item);
+    }
+
     /// <summary>Allows you to edit recipes added by furniture.</summary>
     /// <param name="Tile">The furniture tile.</param>
     /// <param name="Item">The furniture item.</param>
@@ -34,23 +41,7 @@ public abstract class UnifiedFurniture : ModTexturedType, ILocalizedModType {
     }
 }
 
-internal class InstancedFurnitureItem(InstancedFurniture parent) : InstancedModItem(parent.Name, $"{parent.Texture}Item") {
-    [CloneByReference]
-    internal readonly InstancedFurniture Parent = parent;
-
-    public override LocalizedText DisplayName => Parent.GetLocalization($"ItemDisplayName");
-    public override LocalizedText Tooltip => XLanguage.GetOrEmpty(Parent.GetLocalizationKey($"ItemTooltip"));
-
-    public override void SetDefaults() {
-        Item.DefaultToPlaceableTile(Parent.Type);
-    }
-
-    public override void AddRecipes() {
-        Parent.AddRecipes();
-    }
-}
-
-internal abstract class InstancedFurniture(UnifiedFurniture parent, string suffix) : InstancedModTile($"{parent.Name}{suffix}", $"{parent.Texture}{suffix}") {
+internal abstract class InstancedFurniture(UnifiedFurniture parent, string suffix) : InstancedModTile($"{parent.Name}{suffix}", $"{parent.Texture}{suffix}"), IAddRecipes, IModItemProvider {
     public readonly UnifiedFurniture Parent = parent;
 
     public readonly string Suffix = suffix;
@@ -63,8 +54,15 @@ internal abstract class InstancedFurniture(UnifiedFurniture parent, string suffi
 
     public override string LocalizationCategory => Parent.LocalizationCategory;
 
+    public abstract void AddRecipes();
+
+    public virtual void PreAddTileObjectData() {
+        NextStyleWidth = TileObjectData.newTile.CoordinateFullWidth;
+        NextStyleHeight = TileObjectData.newTile.CoordinateFullHeight;
+    }
+
     public override void Load() {
-        DropItem = new InstancedFurnitureItem(this);
+        DropItem = new InstancedTileItem(this);
         Mod.AddContent(DropItem);
     }
 
@@ -72,11 +70,10 @@ internal abstract class InstancedFurniture(UnifiedFurniture parent, string suffi
         num = fail ? 1 : 3;
     }
 
-    public abstract void AddRecipes();
+    ModItem IModItemProvider.Item => DropItem;
 
-    public virtual void PreAddTileObjectData() {
-        NextStyleWidth = TileObjectData.newTile.CoordinateFullWidth;
-        NextStyleHeight = TileObjectData.newTile.CoordinateFullHeight;
+    void IAddRecipes.AddRecipes(Mod mod) {
+        AddRecipes();
     }
 }
 
@@ -95,23 +92,8 @@ internal abstract class InstancedFurnitureLighted(UnifiedFurniture parent, strin
 
     // Common Wire-hit code
     public override void HitWire(int i, int j) {
-        Tile tile = Main.tile[i, j];
-        TileObjectData data = TileObjectData.GetTileData(tile);
-        int left = i - tile.TileFrameX / data.CoordinateWidth % data.Width;
-        int top = j - tile.TileFrameY / 18 % data.Height;
-        // Expects tiles to use horizontal styles.
-        short frameAdjustment = (short)(tile.TileFrameX >= NextStyleWidth ? -NextStyleWidth : NextStyleWidth);
-
-        for (int k = 0; k < data.Width; k++) {
-            for (int l = 0; l < data.Height; l++) {
-                Main.tile[left + k, top + l].TileFrameX += frameAdjustment;
-                Wiring.SkipWire(left + k, top + l);
-            }
-        }
-
-        NetMessage.SendTileSquare(-1, left, top, 1, 3, TileChangeType.None);
+        TileHelper.LightToggle(i, j, NextStyleWidth);
     }
-
 
     // Common flame drawing
     public override void PostDraw(int i, int j, SpriteBatch spriteBatch) {
@@ -491,7 +473,7 @@ internal class InstancedFurnitureChandelier(UnifiedFurniture parent, FlameInfo i
 }
 
 [Autoload(false)]
-internal class InstancedFurnitureChest(UnifiedFurniture parent, string suffix = "Chest") : UnifiedModChest {
+internal class InstancedFurnitureChest(UnifiedFurniture parent, string suffix = "Chest") : UnifiedModChest, IModItemProvider {
     public readonly UnifiedFurniture Parent = parent;
 
     public override string Name => $"{Parent.Name}{suffix}";
@@ -515,6 +497,8 @@ internal class InstancedFurnitureChest(UnifiedFurniture parent, string suffix = 
     public override void SafeSetStaticDefaults() {
         DustType = Parent.DustType;
     }
+
+    ModItem IModItemProvider.Item => DropItem;
 }
 
 internal class InstancedFurnitureClock(UnifiedFurniture parent) : InstancedFurniture(parent, "Clock") {

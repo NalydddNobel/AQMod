@@ -1,4 +1,5 @@
-﻿using Terraria.Audio;
+﻿using Aequus.Core.Structures;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent.ObjectInteractions;
@@ -6,29 +7,19 @@ using Terraria.Localization;
 using Terraria.ObjectData;
 using Terraria.Utilities;
 using tModLoaderExtended.Terraria.GameContent.Creative;
+using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Core.ContentGeneration;
 
-internal class InstancedCampfireTile : InstancedModTile {
-    private readonly UnifiedModTorch _modTorch;
-    public ModItem Item { get; private set; }
+internal class InstancedCampfireTile(string name, string texture) : InstancedModTile(name, texture) {
+    public ModItem DropItem { get; protected set; }
 
-    public InstancedCampfireTile(UnifiedModTorch parentTorch) : base(parentTorch.Name.Replace("Torch", "Campfire"), parentTorch.NamespaceFilePath() + "/" + parentTorch.Name.Replace("Torch", "Campfire")) {
-        _modTorch = parentTorch;
-    }
+    public Vector3 LightRGB { get; set; }
 
     public override void Load() {
-        Item = new InstancedTileItem(this, journeyOverride: new JourneySortByTileId(TileID.Campfire));
+        DropItem = new InstancedTileItem(this, journeyOverride: new JourneySortByTileId(TileID.Campfire));
 
-        Mod.AddContent(Item);
-
-        Aequus.OnAddRecipes += () => {
-            Item.CreateRecipe()
-                .AddRecipeGroup(RecipeGroupID.Wood, 10)
-                .AddIngredient(_modTorch.Type, 5)
-                .Register()
-                .SortAfterFirstRecipesOf(ItemID.RainbowCampfire);
-        };
+        Mod.AddContent(DropItem);
     }
 
     public override void SetStaticDefaults() {
@@ -40,25 +31,27 @@ internal class InstancedCampfireTile : InstancedModTile {
         TileID.Sets.Campfire[Type] = true;
 
         DustType = -1;
-        AdjTiles = new int[] { TileID.Campfire };
+        AdjTiles = [TileID.Campfire];
         VanillaFallbackOnModDeletion = TileID.Campfire;
 
         TileObjectData.newTile.CopyFrom(TileObjectData.GetTileData(TileID.Campfire, 0));
         TileObjectData.newTile.StyleLineSkip = 9;
-        if (_modTorch.AllowWaterPlacement) {
-            TileObjectData.newTile.WaterDeath = false;
-            TileObjectData.newTile.WaterPlacement = LiquidPlacement.Allowed;
-        }
-        else {
-            Main.tileWaterDeath[Type] = true;
-        }
+        PreAddTileObjectData();
         TileObjectData.addTile(Type);
 
         AddMapEntry(new Color(254, 121, 2), Language.GetText("ItemName.Campfire"));
     }
 
+    protected virtual void PreAddTileObjectData() {
+        Main.tileWaterDeath[Type] = true;
+    }
+
     public override void NearbyEffects(int i, int j, bool closer) {
-        Main.SceneMetrics.HasCampfire = true;
+        Tile tile = Main.tile[i, j];
+        TileObjectData data = TileObjectData.GetTileData(tile);
+        if (tile.TileFrameY < data.CoordinateFullHeight) {
+            Main.SceneMetrics.HasCampfire = true;
+        }
     }
 
     public override void MouseOver(int i, int j) {
@@ -86,23 +79,12 @@ internal class InstancedCampfireTile : InstancedModTile {
 
     private static void ToggleCampfire(int i, int j) {
         Tile tile = Main.tile[i, j];
-        int topX = i - tile.TileFrameX % 54 / 18;
-        int topY = j - tile.TileFrameY % 36 / 18;
-
-        short frameAdjustment = (short)(tile.TileFrameY >= 36 ? -36 : 36);
-
-        for (int x = topX; x < topX + 3; x++) {
-            for (int y = topY; y < topY + 2; y++) {
-                Main.tile[x, y].TileFrameY += frameAdjustment;
-
-                if (Wiring.running) {
-                    Wiring.SkipWire(x, y);
-                }
-            }
+        TileObjectData data = TileObjectData.GetTileData(tile);
+        if (tile.TileFrameY < data.CoordinateFullHeight) {
+            TileHelper.AdjustTileFrame(i, j, new(0, data.CoordinateFullHeight));
         }
-
-        if (Main.netMode != NetmodeID.SinglePlayer) {
-            NetMessage.SendTileSquare(-1, topX, topY, 3, 2);
+        else {
+            TileHelper.AdjustTileFrame(i, j, new(0, -data.CoordinateFullHeight));
         }
     }
 
@@ -114,12 +96,13 @@ internal class InstancedCampfireTile : InstancedModTile {
     }
 
     public override void AnimateIndividualTile(int type, int i, int j, ref int frameXOffset, ref int frameYOffset) {
-        var tile = Main.tile[i, j];
-        if (tile.TileFrameY < 36) {
-            frameYOffset = Main.tileFrame[type] * 36;
+        Tile tile = Main.tile[i, j];
+        TileObjectData data = TileObjectData.GetTileData(tile);
+        if (tile.TileFrameY < data.CoordinateFullHeight) {
+            frameYOffset = Main.tileFrame[type] * data.CoordinateFullHeight;
         }
         else {
-            frameYOffset = 252;
+            frameYOffset = data.CoordinateFullHeight * 7;
         }
     }
 
@@ -156,9 +139,57 @@ internal class InstancedCampfireTile : InstancedModTile {
         float pulse = Main.rand.Next(28, 42) * 0.005f;
         pulse += (270 - Main.mouseTextColor) / 700f;
 
-        Vector3 color = _modTorch.LightColor;
+        Vector3 color = LightRGB;
         r = color.X + pulse;
         g = color.Y + pulse;
         b = color.Z + pulse;
     }
+}
+
+/// <summary>A subtype of <see cref="InstancedCampfireTile"/> which inherits traits from <see cref="UnifiedModTorch"/>.</summary>
+internal class InstancedCampfireTorch(UnifiedModTorch parentTorch) : InstancedCampfireTile(parentTorch.Name.Replace("Torch", "Campfire"), parentTorch.NamespaceFilePath() + "/" + parentTorch.Name.Replace("Torch", "Campfire")) {
+    private readonly UnifiedModTorch _modTorch = parentTorch;
+
+    public override void Load() {
+        base.Load();
+
+        Aequus.OnAddRecipes += () => {
+            DropItem.CreateRecipe()
+                .AddRecipeGroup(RecipeGroupID.Wood, 10)
+                .AddIngredient(_modTorch.Type, 5)
+                .Register()
+                .SortAfterFirstRecipesOf(ItemID.RainbowCampfire);
+        };
+    }
+
+    protected override void PreAddTileObjectData() {
+        base.PreAddTileObjectData();
+        if (_modTorch.AllowWaterPlacement) {
+            Main.tileWaterDeath[Type] = false;
+            TileObjectData.newTile.WaterDeath = false;
+            TileObjectData.newTile.WaterPlacement = LiquidPlacement.Allowed;
+        }
+    }
+
+    public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
+        LightRGB = _modTorch.LightColor;
+        base.ModifyLight(i, j, ref r, ref g, ref b);
+    }
+}
+
+/// <summary>A subtype of <see cref="InstancedCampfireTile"/> which inherits traits from <see cref="UnifiedFurniture"/>.</summary>
+internal class InstancedFurnitureCampfire(UnifiedFurniture parent) : InstancedCampfireTile($"{parent.Name}Campfire", $"{parent.Texture}Campfire"), IAddRecipes, IModItemProvider {
+    public readonly UnifiedFurniture Parent = parent;
+
+    public override string LocalizationCategory => Parent.LocalizationCategory;
+
+    public void AddRecipes(Mod mod) {
+        Parent.AddRecipes(this, DropItem,
+            DropItem.CreateRecipe()
+                .AddIngredient(ItemID.Wood, 10)
+                .AddIngredient(ItemID.Torch, 5)
+        );
+    }
+
+    ModItem IModItemProvider.Item => DropItem;
 }

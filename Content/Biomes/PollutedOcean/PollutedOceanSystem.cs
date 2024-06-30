@@ -111,7 +111,7 @@ public class PollutedOceanSystem : ModSystem {
             ChanceDenominator: 3, ChanceNumerator: 2
         ));
 
-        ChestLootDatabase.Instance.RegisterCommon(ChestPool.PollutedOcean, ModContent.GetInstance<TrashTorch>().Item.Type,
+        ChestLootDatabase.Instance.RegisterCommon(ChestPool.PollutedOcean, ModContent.GetInstance<SeaPickleTorch>().Item.Type,
             minStack: 10, maxStack: 20,
             chanceDemoninator: 2
         );

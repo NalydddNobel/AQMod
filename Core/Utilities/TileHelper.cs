@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Tiles;
 using System;
 using System.Runtime.CompilerServices;
+using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ObjectData;
 
@@ -10,6 +11,59 @@ public static class TileHelper {
     public static Vector2 DrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
 
     public static bool ShowEcho { get; internal set; }
+    public static void GetTileCorner(int i, int j, out int left, out int top) {
+        Tile tile = Main.tile[i, j];
+        TileObjectData data = TileObjectData.GetTileData(tile);
+        if (data == null) {
+            left = i;
+            top = j;
+            return;
+        }
+        left = i - tile.TileFrameX / data.CoordinateWidth % data.Width;
+        top = j;
+        int frame = tile.TileFrameY % data.CoordinateFullHeight;
+        int index = 0;
+        do {
+            frame -= data.CoordinateHeights[index];
+            index++;
+        }
+        while (frame > 0);
+        top -= index - 1;
+    }
+
+    public static void AdjustTileFrame(int i, int j, Point16 frameAdjustment) {
+        Tile tile = Main.tile[i, j];
+        TileObjectData data = TileObjectData.GetTileData(tile);
+        GetTileCorner(i, j, out int left, out int top);
+        // Expects tiles to use horizontal styles.
+
+        for (int k = 0; k < data.Width; k++) {
+            for (int l = 0; l < data.Height; l++) {
+                Main.tile[left + k, top + l].TileFrameX += frameAdjustment.X;
+                Main.tile[left + k, top + l].TileFrameY += frameAdjustment.Y;
+                Wiring.SkipWire(left + k, top + l);
+            }
+        }
+
+        NetMessage.SendTileSquare(-1, left, top, data.Width, data.Height, TileChangeType.None);
+    }
+    public static void LightToggle(int i, int j, int nextStyleWidth) {
+        Tile tile = Main.tile[i, j];
+        TileObjectData data = TileObjectData.GetTileData(tile);
+        int left = i - tile.TileFrameX / data.CoordinateWidth % data.Width;
+        int top = j - tile.TileFrameY / 18 % data.Height;
+        // Expects tiles to use horizontal styles.
+        short frameAdjustment = (short)(tile.TileFrameX >= nextStyleWidth ? -nextStyleWidth : nextStyleWidth);
+
+        for (int k = 0; k < data.Width; k++) {
+            for (int l = 0; l < data.Height; l++) {
+                Main.tile[left + k, top + l].TileFrameX += frameAdjustment;
+                Wiring.SkipWire(left + k, top + l);
+            }
+        }
+
+        NetMessage.SendTileSquare(-1, left, top, 1, 3, TileChangeType.None);
+    }
 
     public static Vector2 GetTorchOffset(ref ulong seed) {
         float xx = Utils.RandomInt(ref seed, -10, 11) * 0.15f;

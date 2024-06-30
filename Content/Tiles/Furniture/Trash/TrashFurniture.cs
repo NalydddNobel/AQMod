@@ -10,31 +10,36 @@ public class TrashFurniture : UnifiedFurniture {
     public override int DustType => DustID.Iron;
     public override Vector3 LightRGB => new Vector3(0.6f, 0.5f, 0.1f) * Main.rand.NextFloat(0.9f, 1f);
 
+    #region Instance Caches
+    public ModTile Campfire { get; private set; }
+    public ModItem CampfireItem { get; private set; }
+    #endregion
+
     public override void Load() {
         var flameInfo = new InstancedFurnitureLighted.FlameInfo(null, new Vector2(0f, 0f), Color.White, 1);
-        Mod.AddContent(new InstancedFurnitureBathtub(this));
-        Mod.AddContent(new InstancedFurnitureBed(this, new()));
-        Mod.AddContent(new InstancedFurnitureBookcase(this));
-        Mod.AddContent(new InstancedFurnitureChair(this));
-        Mod.AddContent(new TrashCandelabra(this));
-        Mod.AddContent(new TrashCandle(this));
-        Mod.AddContent(new TrashClock(this));
-        Mod.AddContent(new TrashChandelier(this));
-        Mod.AddContent(new InstancedFurnitureChest(this, "ChestSmall"));
-        Mod.AddContent(new InstancedFurnitureDoor(this));
-        Mod.AddContent(new InstancedFurnitureDresser(this));
-        Mod.AddContent(new TrashLamp(this));
-        Mod.AddContent(new TrashLantern(this));
-        Mod.AddContent(new InstancedFurniturePiano(this));
-        Mod.AddContent(new InstancedFurnitureSink(this));
-        Mod.AddContent(new InstancedFurnitureSofa(this));
-        Mod.AddContent(new InstancedFurnitureTable(this));
-        Mod.AddContent(new InstancedFurnitureWorkBench(this));
+        AddContent(new InstancedFurnitureBathtub(this));
+        AddContent(new InstancedFurnitureBed(this, new()));
+        AddContent(new InstancedFurnitureBookcase(this));
+        AddContent(new InstancedFurnitureChair(this));
+        AddContent(new TrashCandelabra(this));
+        AddContent(new TrashCandle(this));
+        AddContent(new TrashClock(this));
+        AddContent(new TrashChandelier(this));
+        AddContent(new InstancedFurnitureChest(this, "ChestSmall"));
+        AddContent(new InstancedFurnitureDoor(this));
+        AddContent(new InstancedFurnitureDresser(this));
+        AddContent(new TrashLamp(this));
+        AddContent(new TrashLantern(this));
+        AddContent(new InstancedFurniturePiano(this));
+        AddContent(new InstancedFurnitureSink(this));
+        AddContent(new InstancedFurnitureSofa(this));
+        AddContent(new InstancedFurnitureTable(this));
+        AddContent(new InstancedFurnitureWorkBench(this));
+        (Campfire, CampfireItem) = AddContent(new TrashCampfire(this));
     }
 
     public override void AddRecipes(ModTile Tile, ModItem Item, Recipe Recipe) {
         Recipe.ReplaceItem(ItemID.Wood, ScrapBlock.Item.Type);
-        Recipe.ReplaceItem(ItemID.Torch, ModContent.GetInstance<TrashTorch>().Item.Type);
 
         // Requires the Trash Compactor for crafting (except the work bench)
         if (Recipe.requiredTile.Count > 0) {

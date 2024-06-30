@@ -15,8 +15,8 @@ public class PollutedOceanBiomeSurface : ModBiome, IPostSetupContent {
 
     public override int Music => PollutedOceanSystem.Music;
 
-    public override int BiomeTorchItemType => ModContent.GetInstance<TrashTorch>().Item.Type;
-    public override int BiomeCampfireItemType => ModContent.GetInstance<TrashTorch>().CampfireItem.Type;
+    public override int BiomeTorchItemType => ModContent.GetInstance<SeaPickleTorch>().Item.Type;
+    public override int BiomeCampfireItemType => ModContent.GetInstance<TrashFurniture>().CampfireItem.Type;
 
     public override string MapBackground => BackgroundPath;
 

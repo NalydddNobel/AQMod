@@ -390,22 +390,6 @@ SeaFireflyBlock: {
 	DisplayNameRainbow: 彩色海萤火虫块
 }
 
-TrashChest: {
-	MapEntry: 垃圾箱
-	ItemDisplayName: "{$Tiles.TrashChest.MapEntry}"
-	ItemTooltip: 垃圾箱的两侧是不同的箱子
-}
-
-TrashTorch: {
-	ItemDisplayName: Mods.Aequus.Tiles.TrashTorch.ItemDisplayName
-	ItemTooltip: ""
-}
-
-TrashCampfire: {
-	ItemDisplayName: Mods.Aequus.Tiles.TrashCampfire.ItemDisplayName
-	ItemTooltip: ""
-}
-
 Furniture: {
 	TrashBathtub.ItemDisplayName: 废料浴缸
 	TrashBed.ItemDisplayName: 废料床
@@ -423,6 +407,13 @@ Furniture: {
 	// TrashSink.ItemDisplayName: Scrap Sink
 	// TrashSofa.ItemDisplayName: Scrap Sofa
 	// TrashWorkBench.ItemDisplayName: Scrap Work Bench
+	// TrashCampfire.ItemDisplayName: Scrap Campfire
+
+	TrashChest: {
+		MapEntry: 垃圾箱
+		ItemDisplayName: "{$Tiles.TrashChest.MapEntry}"
+		ItemTooltip: 垃圾箱的两侧是不同的箱子
+	}
 
 	TrashChestSmall: {
 		// MapEntry: Scrap Chest
@@ -439,3 +430,5 @@ Furniture: {
 		// ItemDisplayName: "{$Tiles.Furniture.TrashDresser.MapEntry}"
 	}
 }
+
+// SeaPickleTorch.ItemDisplayName: Mods.Aequus.Tiles.SeaPickleTorch.ItemDisplayName

@@ -394,22 +394,6 @@ SeaFireflyBlock: {
 	// DisplayNameRainbow: Rainbow Sea Firefly Block
 }
 
-TrashChest: {
-	// MapEntry: Dumpster
-	// ItemDisplayName: "{$Tiles.TrashChest.MapEntry}"
-	// ItemTooltip: Both sides of the dumpster are different chests
-}
-
-TrashTorch: {
-	// ItemDisplayName: Mods.Aequus.Tiles.TrashTorch.ItemDisplayName
-	// ItemTooltip: ""
-}
-
-TrashCampfire: {
-	// ItemDisplayName: Mods.Aequus.Tiles.TrashCampfire.ItemDisplayName
-	// ItemTooltip: ""
-}
-
 Furniture: {
 	// TrashBathtub.ItemDisplayName: Scrap Bathtub
 	// TrashBed.ItemDisplayName: Scrap Bed
@@ -427,6 +411,13 @@ Furniture: {
 	// TrashSink.ItemDisplayName: Scrap Sink
 	// TrashSofa.ItemDisplayName: Scrap Sofa
 	// TrashWorkBench.ItemDisplayName: Scrap Work Bench
+	// TrashCampfire.ItemDisplayName: Scrap Campfire
+
+	TrashChest: {
+		// MapEntry: Dumpster
+		// ItemDisplayName: "{$Tiles.TrashChest.MapEntry}"
+		// ItemTooltip: Both sides of the dumpster are different chests
+	}
 
 	TrashChestSmall: {
 		// MapEntry: Scrap Chest
@@ -443,3 +434,5 @@ Furniture: {
 		// ItemDisplayName: "{$Tiles.Furniture.TrashDresser.MapEntry}"
 	}
 }
+
+// SeaPickleTorch.ItemDisplayName: Mods.Aequus.Tiles.SeaPickleTorch.ItemDisplayName

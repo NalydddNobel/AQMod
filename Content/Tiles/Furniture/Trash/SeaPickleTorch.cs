@@ -6,7 +6,7 @@ using Terraria.DataStructures;
 
 namespace Aequus.Content.Tiles.Furniture.Trash;
 
-public class TrashTorch : UnifiedModTorch {
+public class SeaPickleTorch : UnifiedModTorch {
     public override int TorchIngredient => ModContent.ItemType<CompressedTrash>();
     public override int TorchCraftAmount => 20;
 
@@ -14,15 +14,8 @@ public class TrashTorch : UnifiedModTorch {
 
     public override bool AllowWaterPlacement => true;
 
-    public ModTile CampfireTile { get; private set; }
-    public ModItem CampfireItem { get; private set; }
-
     public override void Load() {
         base.Load();
-        InstancedCampfireTile campfire = new InstancedCampfireTile(this);
-        CampfireTile = campfire;
-        Mod.AddContent(CampfireTile);
-        CampfireItem = campfire.Item;
     }
 
     public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
@@ -34,14 +27,14 @@ public class TrashTorch : UnifiedModTorch {
     }
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
-        AnimationSystem.GetValueOrAddDefault<AnimationTrashTorch>(new Point16(i, j));
+        AnimationSystem.GetValueOrAddDefault<AnimationSeaPickleTorch>(new Point16(i, j));
         return true;
     }
 }
 
-public class AnimationTrashTorch : ITileAnimation {
+public class AnimationSeaPickleTorch : ITileAnimation {
     public bool Update(int x, int y) {
         var tile = Main.tile[x, y];
-        return tile.HasTile && tile.TileType == ModContent.TileType<TrashTorch>() && Cull2D.Tile(x, y);
+        return tile.HasTile && tile.TileType == ModContent.TileType<SeaPickleTorch>() && Cull2D.Tile(x, y);
     }
 }
