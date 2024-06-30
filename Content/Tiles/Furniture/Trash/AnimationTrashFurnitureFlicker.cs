@@ -11,7 +11,7 @@ public class AnimationTrashFurnitureFlicker(int AnchorTileType) : ITileAnimation
         int flickerChance = 720;
 #if DEBUG
         if (Main.mouseRight) {
-            flickerChance = 30;
+            flickerChance = 240;
         }
 #endif
 
