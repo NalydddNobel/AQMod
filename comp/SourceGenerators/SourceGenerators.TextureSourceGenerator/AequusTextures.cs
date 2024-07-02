@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 953) yo momma gai</summary>
+/// <summary>(Total Textures: 961) yo momma gai</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -943,6 +943,22 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ScrapBrick = new("Aequus/Content/Tiles/PollutedOcean/Scrap/ScrapBrick");
     /// <summary>Full Path: Content/Tiles/PollutedOcean/Scrap/ScrapBrickItem</summary>
     public static readonly RequestCache<Texture2D> ScrapBrickItem = new("Aequus/Content/Tiles/PollutedOcean/Scrap/ScrapBrickItem");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapPalmTree</summary>
+    public static readonly RequestCache<Texture2D> ScrapPalmTree = new("Aequus/Content/Tiles/PollutedOcean/Trees/ScrapPalmTree");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapPalmTreeItem</summary>
+    public static readonly RequestCache<Texture2D> ScrapPalmTreeItem = new("Aequus/Content/Tiles/PollutedOcean/Trees/ScrapPalmTreeItem");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapPalmTreeTop</summary>
+    public static readonly RequestCache<Texture2D> ScrapPalmTreeTop = new("Aequus/Content/Tiles/PollutedOcean/Trees/ScrapPalmTreeTop");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapPalmTreeTopItem</summary>
+    public static readonly RequestCache<Texture2D> ScrapPalmTreeTopItem = new("Aequus/Content/Tiles/PollutedOcean/Trees/ScrapPalmTreeTopItem");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapTree</summary>
+    public static readonly RequestCache<Texture2D> ScrapTree = new("Aequus/Content/Tiles/PollutedOcean/Trees/ScrapTree");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapTreeItem</summary>
+    public static readonly RequestCache<Texture2D> ScrapTreeItem = new("Aequus/Content/Tiles/PollutedOcean/Trees/ScrapTreeItem");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapTreeTop</summary>
+    public static readonly RequestCache<Texture2D> ScrapTreeTop = new("Aequus/Content/Tiles/PollutedOcean/Trees/ScrapTreeTop");
+    /// <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapTreeTopItem</summary>
+    public static readonly RequestCache<Texture2D> ScrapTreeTopItem = new("Aequus/Content/Tiles/PollutedOcean/Trees/ScrapTreeTopItem");
     /// <summary>Full Path: Content/Tiles/RainTotem/RainTotem</summary>
     public static readonly RequestCache<Texture2D> RainTotem = new("Aequus/Content/Tiles/RainTotem/RainTotem");
     /// <summary>Full Path: Content/Tiles/RainTotem/RainTotemItem</summary>

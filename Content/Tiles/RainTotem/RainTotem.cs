@@ -153,15 +153,6 @@ public abstract class RainTotemTileTemplate : ModTile, IOverridePlacement {
             }
         }
 
-        //for (int m = 0; m < 2; m++) {
-        //    int x = left + m;
-        //    int y = top - 1;
-        //    Tile checkTile = Framing.GetTileSafely(x, y);
-        //    if (checkTile.HasTile && checkTile.TileType != Type) {
-        //        return 4; // Bottom Frame
-        //    }
-        //}
-
         return WorldGen.genRand.Next(1, 4); // Middle frames
     }
     #endregion

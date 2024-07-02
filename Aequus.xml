@@ -2491,7 +2491,7 @@
             <summary>Full Path: Old/Content/Bosses/OmegaStarite/Sounds/OmegaStariteStarBullets</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 953) yo momma gai</summary>
+            <summary>(Total Textures: 961) yo momma gai</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -3896,6 +3896,30 @@
         </member>
         <member name="F:Aequus.AequusTextures.ScrapBrickItem">
             <summary>Full Path: Content/Tiles/PollutedOcean/Scrap/ScrapBrickItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScrapPalmTree">
+            <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapPalmTree</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScrapPalmTreeItem">
+            <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapPalmTreeItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScrapPalmTreeTop">
+            <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapPalmTreeTop</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScrapPalmTreeTopItem">
+            <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapPalmTreeTopItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScrapTree">
+            <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapTree</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScrapTreeItem">
+            <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapTreeItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScrapTreeTop">
+            <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapTreeTop</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScrapTreeTopItem">
+            <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapTreeTopItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RainTotem">
             <summary>Full Path: Content/Tiles/RainTotem/RainTotem</summary>

@@ -432,3 +432,16 @@ Furniture: {
 }
 
 SeaPickleTorch.ItemDisplayName: Hydroanther Torch
+ScrapPalmTree.ItemDisplayName: Artificial Palm Tower Beam
+ScrapTree.ItemDisplayName: Artificial Tree Tower Beam
+ScrapTreeDevice.ItemDisplayName: Tree Tower Device
+
+ScrapPalmTreeTop: {
+	ItemDisplayName: Artificial Palm Tower Topper
+	ItemTooltip: Must be placed on top of an artifical palm tower
+}
+
+ScrapTreeTop: {
+	ItemDisplayName: Artificial Tree Tower Topper
+	ItemTooltip: Must be placed on top of an artifical tree tower
+}
