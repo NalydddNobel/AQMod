@@ -1,8 +1,8 @@
-﻿using Aequus.Common.NPCs.Bestiary;
-using Aequus.Common.NPCs.Components;
-using Aequus.Common.Projectiles;
+﻿using Aequus.Core.Entities.Projectiles;
 using Aequus.Core.CodeGeneration;
+using Aequus.Core.Components.NPCs;
 using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Bestiary;
 using Aequus.DataSets;
 using System;
 using System.Collections.Generic;

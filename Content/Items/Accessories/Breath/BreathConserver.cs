@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Core;
 using Aequus.Content.Dusts;
 using Aequus.Content.Graphics.Particles;
 using Aequus.Core.CodeGeneration;

@@ -28,7 +28,7 @@ public class EmpoweredPrefix : PotionPrefix {
         }
 
         yield return new TooltipLine(Mod, "PrefixEmpowered", this.GetLocalization("Ability")
-            .Format(ExtendLanguage.Percent(percent + 1f) + "%")) { IsModifier = true, IsModifierBad = false, };
+            .Format(XLanguage.Percent(percent + 1f) + "%")) { IsModifier = true, IsModifierBad = false, };
         yield return new TooltipLine(Mod, "PrefixEmpoweredDownside", this.GetLocalization("Downside")
             .Format("50%")) { IsModifier = true, IsModifierBad = true, };
     }

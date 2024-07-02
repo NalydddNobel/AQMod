@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Content.Systems;
 using Aequus.Content.Tiles.Misc.SeaFireflyBlock;
 using Aequus.Core.Graphics.Textures;
 using Aequus.DataSets;
@@ -63,7 +63,7 @@ public class SeaFireflyRegistry {
 
         void AddRecipe() {
             dyedItem.CreateRecipe()
-                .AddRecipeGroup(AequusRecipes.AnySeaFirefly)
+                .AddRecipeGroup(RecipeSystem.AnySeaFirefly)
                 .AddIngredient(DyeItem)
                 .Register();
         }

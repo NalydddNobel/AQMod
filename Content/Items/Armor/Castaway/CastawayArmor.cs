@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Core;
 using Aequus.Content.Items.Materials;
 using Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 using Aequus.Core.ContentGeneration;

@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Core;
 using Aequus.Content.Events.DemonSiege;
 using tModLoaderExtended.GlowMasks;
 

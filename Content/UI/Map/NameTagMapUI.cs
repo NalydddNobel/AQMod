@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Renaming;
+﻿using Aequus.Content.Systems.Renaming;
 using Terraria.Map;
 using Terraria.UI;
 

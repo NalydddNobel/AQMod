@@ -1,5 +1,5 @@
-﻿using Aequus.Common.NPCs.Bestiary;
-using Aequus.Core.ContentGeneration;
+﻿using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Bestiary;
 using Aequus.DataSets;
 using Aequus.Old.Content.Events.DemonSiege;
 using Aequus.Old.Content.Items.Accessories.WarHorn;

@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Backpacks;
+﻿using Aequus.Content.Backpacks;
 using Aequus.Content.Configuration;
 using System.Collections.Generic;
 using Terraria.DataStructures;

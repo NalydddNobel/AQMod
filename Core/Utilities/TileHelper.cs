@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Tiles;
+﻿using Aequus.Core.Entities.Tiles;
 using System;
 using System.Runtime.CompilerServices;
 using Terraria.DataStructures;

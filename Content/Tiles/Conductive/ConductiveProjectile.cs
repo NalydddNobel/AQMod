@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Wires;
+﻿using Aequus.Content.Systems;
 using Aequus.Core.Entities.Projectiles;
 using System;
 using System.Collections.Generic;

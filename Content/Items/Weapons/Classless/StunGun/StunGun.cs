@@ -1,7 +1,7 @@
-﻿using Aequus.Common;
-using Aequus.Common.DamageClasses;
-using Aequus.Common.Elements;
-using Aequus.Common.Items.Components;
+﻿using Aequus.Core;
+using Aequus.Content.Elements;
+using Aequus.Core.Entities.DamageClasses;
+using Aequus.Core.Entities.Items.Components;
 using System;
 using Terraria.Localization;
 

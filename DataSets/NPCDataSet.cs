@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Bestiary;
+﻿using Aequus.Core.Entites.Bestiary;
 using Aequus.DataSets.Structures;
 using Newtonsoft.Json;
 using System.Collections.Generic;

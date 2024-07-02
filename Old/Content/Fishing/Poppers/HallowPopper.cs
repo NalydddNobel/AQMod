@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Items.Components;
-using Aequus.Core.ContentGeneration;
+﻿using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Items.Components;
 using Terraria.Localization;
 
 namespace Aequus.Old.Content.Fishing.Poppers;
@@ -8,7 +8,7 @@ namespace Aequus.Old.Content.Fishing.Poppers;
 public class HallowPopper : UnifiedModBait, IModifyFishingPower {
     public static float IncreasedFishingPowerInHallow { get; set; } = 0.4f;
 
-    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Percent(IncreasedFishingPowerInHallow));
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(XLanguage.Percent(IncreasedFishingPowerInHallow));
 
     public override void SetDefaults() {
         Item.bait = 20;

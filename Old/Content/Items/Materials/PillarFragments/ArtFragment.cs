@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Core.Entities.Items;
 
 namespace Aequus.Old.Content.Items.Materials.PillarFragments;
 

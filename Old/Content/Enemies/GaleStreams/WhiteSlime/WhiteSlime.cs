@@ -1,7 +1,7 @@
-﻿using Aequus.Common.NPCs.Bestiary;
-using Aequus.Content.Dusts;
+﻿using Aequus.Content.Dusts;
 using Aequus.Content.Events.GaleStreams;
 using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Bestiary;
 using Aequus.DataSets;
 using Aequus.Old.Content.Particles;
 using System;

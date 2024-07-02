@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Common.Projectiles;
+﻿using Aequus.Core.Entities.Projectiles;
 using Aequus.DataSets;
 
 namespace Aequus.Content.Items.Accessories.EventPrevention;

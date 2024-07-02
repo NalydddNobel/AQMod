@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Core.Entities.Items;
 using System;
 using System.Collections.Generic;
 using tModLoaderExtended.Terraria;

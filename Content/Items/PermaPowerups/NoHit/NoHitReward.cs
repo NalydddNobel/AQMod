@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Items.DropRules;
-using Aequus.Core.CodeGeneration;
+﻿using Aequus.Core.CodeGeneration;
+using Aequus.Core.Entities.Items.DropRules;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;

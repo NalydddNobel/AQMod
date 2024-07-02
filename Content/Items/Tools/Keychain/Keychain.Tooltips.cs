@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Items.Components;
-using Aequus.Common.Items.Tooltips;
+﻿using Aequus.Core.Entities.Items.Components;
+using Aequus.Core.Entities.Items.Tooltips;
 using System.Collections.Generic;
 using Terraria.GameContent.UI;
 using Terraria.GameContent.UI.Chat;

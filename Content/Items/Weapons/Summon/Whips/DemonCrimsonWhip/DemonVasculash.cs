@@ -1,5 +1,5 @@
-﻿using Aequus.Common;
-using Aequus.Common.Elements;
+﻿using Aequus.Core;
+using Aequus.Content.Elements;
 using Aequus.Core.ContentGeneration;
 using Aequus.Core.Entities.Projectiles;
 using System.Collections.Generic;

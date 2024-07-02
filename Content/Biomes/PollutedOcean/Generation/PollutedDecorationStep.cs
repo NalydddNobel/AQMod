@@ -1,11 +1,11 @@
-﻿using Aequus.Common.Tiles;
-using Aequus.Common.Tiles.Rubblemaker;
-using Aequus.Common.WorldGeneration;
-using Aequus.Content.Tiles.Furniture.Trash;
+﻿using Aequus.Content.Tiles.Furniture.Trash;
 using Aequus.Content.Tiles.PollutedOcean.Ambient;
 using Aequus.Content.Tiles.PollutedOcean.Ambient.Dripstones;
 using Aequus.Content.Tiles.PollutedOcean.Ambient.Pots;
 using Aequus.Content.Tiles.PollutedOcean.Ambient.SeaPickles;
+using Aequus.Core.Entities.Tiles;
+using Aequus.Core.Entities.Tiles.Rubblemaker;
+using Aequus.Core.WorldGeneration;
 using Aequus.DataSets;
 using Aequus.DataSets.Structures.DropRulesChest;
 using Aequus.DataSets.Structures.Enums;

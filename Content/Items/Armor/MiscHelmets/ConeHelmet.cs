@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Core;
 using Terraria.Audio;
 using Terraria.Localization;
 

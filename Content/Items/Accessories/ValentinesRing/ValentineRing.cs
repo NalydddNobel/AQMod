@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Core;
 using Aequus.Core.CodeGeneration;
 using System.Collections.Generic;
 using System.IO;

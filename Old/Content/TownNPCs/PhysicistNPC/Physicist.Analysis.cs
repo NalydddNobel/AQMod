@@ -32,7 +32,7 @@ public partial class Physicist {
         }
 
         if (!questPlayer.quest.isValid || questPlayer.timeForNextQuest > 0) {
-            Main.npcChatText = this.GetLocalization("Analysis.ChatNoQuest").FormatWith(new { Time = ExtendLanguage.WatchTime(questPlayer.timeForNextQuest, questPlayer.dayTimeForNextQuest), });
+            Main.npcChatText = this.GetLocalization("Analysis.ChatNoQuest").FormatWith(new { Time = XLanguage.WatchTime(questPlayer.timeForNextQuest, questPlayer.dayTimeForNextQuest), });
             return;
         }
 

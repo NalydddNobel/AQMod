@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Tiles.Rubblemaker;
+﻿using Aequus.Core.Entities.Tiles.Rubblemaker;
 using Aequus.Core.Graphics.Animations;
 using Terraria.GameContent;
 using Terraria.ObjectData;

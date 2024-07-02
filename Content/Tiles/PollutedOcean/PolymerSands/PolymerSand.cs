@@ -1,6 +1,6 @@
-﻿using Aequus.Common.Tiles;
-using Aequus.Content.Tiles.PollutedOcean.Scrap;
+﻿using Aequus.Content.Tiles.PollutedOcean.Scrap;
 using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Tiles;
 using Aequus.DataSets;
 
 namespace Aequus.Content.Tiles.PollutedOcean.PolymerSands;

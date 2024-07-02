@@ -1,7 +1,7 @@
-﻿using Aequus.Common.Items.DropRules;
-using Aequus.Common.NPCs.Bestiary;
-using Aequus.Content.Events.GaleStreams;
+﻿using Aequus.Content.Events.GaleStreams;
 using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Bestiary;
+using Aequus.Core.Entities.Items.DropRules;
 using ReLogic.Content;
 using System.IO;
 using Terraria.Audio;

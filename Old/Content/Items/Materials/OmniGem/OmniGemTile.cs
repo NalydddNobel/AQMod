@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Hooks;
-using Aequus.Common.Tiles;
+﻿using Aequus.Core.Hooks;
 using Aequus.Content.Items.Vanity.Dyes;
 using Aequus.Core.Graphics.Tiles;
 using System.Collections.Generic;
@@ -8,6 +7,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
 using Terraria.Localization;
+using Aequus.Core.Entities.Tiles;
 
 namespace Aequus.Old.Content.Items.Materials.OmniGem;
 

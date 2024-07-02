@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Tiles;
+﻿using Aequus.Core.Entities.Tiles;
 using Terraria.GameContent;
 
 namespace Aequus.Old.Content.Items.Materials.MonoGem;

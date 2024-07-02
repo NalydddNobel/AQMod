@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Items.Components;
-using Aequus.Core.CrossMod;
+﻿using Aequus.Core.CrossMod;
+using Aequus.Core.Entities.Items.Components;
 
 namespace Aequus.Content.CrossMod.CalamityModSupport.Items;
 

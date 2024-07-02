@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Tiles.Components;
-using Aequus.Core.ContentGeneration;
+﻿using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Tiles.Components;
 using Aequus.Core.Graphics.Tiles;
 using System;
 using System.IO;

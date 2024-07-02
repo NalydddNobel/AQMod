@@ -1,10 +1,10 @@
-﻿using Aequus.Common.NPCs;
-using Aequus.Common.NPCs.Bestiary;
-using Aequus.Common.NPCs.Components;
-using Aequus.Content.Biomes.PollutedOcean;
+﻿using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Content.Items.Accessories.ScavengerBag;
 using Aequus.Content.Items.Tools.Keys;
+using Aequus.Core.Components.NPCs;
 using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Bestiary;
+using Aequus.Core.Entities.NPCs;
 using Aequus.DataSets;
 using System.Collections.Generic;
 using System.IO;

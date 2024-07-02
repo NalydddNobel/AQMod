@@ -1,7 +1,7 @@
 ﻿using Aequus.Content.Items.Weapons.Classless.StunGun;
 using Aequus.Core.CodeGeneration;
 
-namespace Aequus.Common.NPCs;
+namespace Aequus.Core.Entities.NPCs;
 
 public partial class AequusNPC {
     [ResetEffects]

@@ -7,7 +7,7 @@ public class SaivoryKnife : ModItem {
     /// <summary>Default Value: 3600 (1 minute)</summary>
     public static int GhostLifespan { get; set; } = 3600;
 
-    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Minutes(GhostLifespan));
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(XLanguage.Minutes(GhostLifespan));
 
     public override void SetDefaults() {
         Item.width = 24;

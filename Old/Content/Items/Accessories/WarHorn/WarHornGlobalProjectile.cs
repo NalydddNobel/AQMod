@@ -77,7 +77,7 @@ public class WarHornActivatorGlobalProjectile : GlobalProjectile {
 
     public override void AI(Projectile projectile) {
         if (_sourceMinion != -1) {
-            int proj = ExtendProjectile.FindProjectileIdentity(projectile.owner, _sourceMinion);
+            int proj = XProjectile.FindProjectileIdentity(projectile.owner, _sourceMinion);
             if (proj == -1 || !Main.projectile[proj].active || Main.projectile[proj].owner != projectile.owner || !Main.projectile[proj].TryGetGlobalProjectile<WarHornMinionGlobalProjectile>(out _)) {
                 _sourceMinion = -1;
             }
@@ -110,7 +110,7 @@ public class WarHornActivatorGlobalProjectile : GlobalProjectile {
             proj = projectile.whoAmI;
         }
         else {
-            proj = ExtendProjectile.FindProjectileIdentity(projectile.owner, _sourceMinion);
+            proj = XProjectile.FindProjectileIdentity(projectile.owner, _sourceMinion);
         }
 
         if (proj != -1 && Main.projectile[proj].TryGetGlobalProjectile(out WarHornMinionGlobalProjectile minion)) {

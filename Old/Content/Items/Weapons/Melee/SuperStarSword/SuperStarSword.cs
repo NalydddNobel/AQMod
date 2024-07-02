@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Core;
 using Aequus.Old.Content.Items.Materials;
 
 namespace Aequus.Old.Content.Items.Weapons.Melee.SuperStarSword;

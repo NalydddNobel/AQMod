@@ -102,7 +102,7 @@ public class PhasebrinkProj : ValariProj {
             }
             if (Projectile.ai[1] > 2f) {
                 int identity = (int)(Projectile.ai[1] - 3);
-                int proj = ExtendProjectile.FindProjectileIdentity(Projectile.owner, identity);
+                int proj = XProjectile.FindProjectileIdentity(Projectile.owner, identity);
                 if (proj != -1) {
                     Projectile.rotation = Main.projectile[proj].rotation + MathHelper.Pi;
                     Projectile.Center = Main.projectile[proj].Center;

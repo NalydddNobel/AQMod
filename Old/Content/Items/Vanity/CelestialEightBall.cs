@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items.Components;
+﻿using Aequus.Core.Entities.Items.Components;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -39,7 +39,7 @@ public class CelestialEightBall : ModItem, ICooldownItem {
 
     public override void SetStaticDefaults() {
         for (int i = 0; i < MaxIDs; ++i) {
-            ExtendLanguage.RegisterKey(this.GetLocalizationKey($"Answer.{i}"));
+            XLanguage.RegisterKey(this.GetLocalizationKey($"Answer.{i}"));
         }
     }
 

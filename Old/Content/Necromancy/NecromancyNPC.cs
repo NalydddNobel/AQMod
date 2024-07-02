@@ -1,4 +1,4 @@
-﻿using Aequus.Common.NPCs;
+﻿using Aequus.Core.Entities.NPCs;
 using Aequus.Content.Dusts;
 using Aequus.DataSets;
 using Aequus.Old.Content.Necromancy.Networking;

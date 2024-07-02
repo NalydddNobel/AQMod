@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items.Components;
+﻿using Aequus.Core.Entities.Items.Components;
 using Aequus.Core.Graphics;
 using Aequus.DataSets;
 using Newtonsoft.Json;

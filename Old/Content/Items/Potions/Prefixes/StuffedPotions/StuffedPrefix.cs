@@ -28,7 +28,7 @@ public class StuffedPrefix : PotionPrefix {
             float percent = item.buffTime / (float)defaultItem.buffTime;
 
             yield return new TooltipLine(Mod, "PrefixStuffed", this.GetLocalization("Ability")
-                .Format(ExtendLanguage.Percent(percent) + "%")) { IsModifier = true, IsModifierBad = item.buffTime < defaultItem.buffTime, };
+                .Format(XLanguage.Percent(percent) + "%")) { IsModifier = true, IsModifierBad = item.buffTime < defaultItem.buffTime, };
         }
     }
 }

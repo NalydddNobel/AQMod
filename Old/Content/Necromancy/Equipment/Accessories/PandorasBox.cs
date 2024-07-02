@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Core;
 using Aequus.Core.CodeGeneration;
 
 namespace Aequus.Old.Content.Necromancy.Equipment.Accessories;

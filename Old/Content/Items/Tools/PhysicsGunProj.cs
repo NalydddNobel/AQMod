@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Projectiles;
-using Aequus.Content.Dusts;
+﻿using Aequus.Content.Dusts;
+using Aequus.Core.Entities.Projectiles;
 using Aequus.DataSets;
 using Aequus.Old.Content.Particles;
 using System;

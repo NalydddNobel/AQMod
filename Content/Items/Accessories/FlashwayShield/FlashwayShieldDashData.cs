@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Players;
+﻿using Aequus.Core.Entities.Players;
 using Terraria.Graphics.Shaders;
 
 namespace Aequus.Content.Items.Accessories.FlashwayShield;

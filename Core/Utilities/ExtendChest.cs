@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Tiles;
-using Aequus.Content.Chests;
+﻿using Aequus.Content.Chests;
+using Aequus.Core.Entities.Tiles;
 using Aequus.DataSets;
 using System;
 using System.Collections.Generic;

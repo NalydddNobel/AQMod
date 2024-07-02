@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items.Dedications;
+﻿using Aequus.Core.Entities.Items.Dedications;
 using Aequus.Core.Graphics;
 using Terraria.GameContent;
 using Terraria.Graphics.Renderers;

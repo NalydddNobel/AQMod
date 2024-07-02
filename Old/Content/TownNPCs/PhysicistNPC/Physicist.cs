@@ -1,7 +1,7 @@
-﻿using Aequus.Common.NPCs.Bestiary;
-using Aequus.Content.CrossMod;
+﻿using Aequus.Content.CrossMod;
 using Aequus.Content.CrossMod.CalamityModSupport;
 using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Bestiary;
 using Aequus.Old.Content.Events.Glimmer;
 using Aequus.Old.Content.TownNPCs.OccultistNPC;
 using System;

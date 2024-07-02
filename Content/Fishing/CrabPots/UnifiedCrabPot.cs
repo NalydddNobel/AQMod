@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Backpacks;
-using Aequus.Common.Tiles.Components;
+﻿using Aequus.Content.Backpacks;
+using Aequus.Core.Entities.Tiles.Components;
 using Aequus.Core.Graphics.Animations;
 using Aequus.Core.Graphics.Tiles;
 using ReLogic.Content;

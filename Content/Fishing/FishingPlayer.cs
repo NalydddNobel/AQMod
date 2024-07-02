@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Items.Components;
-using Aequus.Content.Biomes.PollutedOcean;
+﻿using Aequus.Content.Biomes.PollutedOcean;
+using Aequus.Core.Entities.Items.Components;
 using Terraria.DataStructures;
 
 namespace Aequus.Content.Fishing;

@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Items.Components;
-using Aequus.Content.Configuration;
+﻿using Aequus.Content.Configuration;
+using Aequus.Core.Entities.Items.Components;
 using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Potions.Healing.Restoration;

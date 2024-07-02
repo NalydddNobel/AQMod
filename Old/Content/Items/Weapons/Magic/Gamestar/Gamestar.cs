@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Core;
 
 namespace Aequus.Old.Content.Items.Weapons.Magic.Gamestar;
 

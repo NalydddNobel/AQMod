@@ -12,7 +12,7 @@ namespace Aequus.Old.Content.Necromancy.Equipment.Armor.SetGravetender;
 public class GravetenderHood : ModItem {
     public static float SummonDamageIncrease { get; set; } = 0.1f;
 
-    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Percent(SummonDamageIncrease));
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(XLanguage.Percent(SummonDamageIncrease));
 
     public override void SetDefaults() {
         Item.defense = 2;

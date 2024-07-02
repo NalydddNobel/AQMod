@@ -1,9 +1,9 @@
-﻿using Aequus.Common;
-using Aequus.Common.NPCs.Bestiary;
+﻿using Aequus.Core;
 using Aequus.Content.Events.GaleStreams;
 using Aequus.Content.Items.Potions.Healing.Restoration;
 using Aequus.Core.CodeGeneration;
 using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Bestiary;
 using Aequus.Old.Content.Bosses.DustDevil.Items;
 using Aequus.Old.Content.Bosses.DustDevil.Projectiles;
 using Aequus.Old.Content.Items.Materials.Energies;

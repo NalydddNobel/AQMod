@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Items.Components;
-using Aequus.Common.Renaming;
+﻿using Aequus.Content.Systems.Renaming;
+using Aequus.Core.Entities.Items.Components;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using tModLoaderExtended.Terraria.GameContent.Creative;

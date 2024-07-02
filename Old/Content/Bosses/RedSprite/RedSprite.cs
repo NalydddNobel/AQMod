@@ -1,9 +1,9 @@
-﻿using Aequus.Common;
-using Aequus.Common.NPCs.Bestiary;
+﻿using Aequus.Core;
 using Aequus.Content.Events.GaleStreams;
 using Aequus.Core.Assets;
 using Aequus.Core.CodeGeneration;
 using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Bestiary;
 using Aequus.DataSets;
 using Aequus.Old.Content.Bosses.RedSprite.Projectiles;
 using Aequus.Old.Core;

@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items.Dedications;
+﻿using Aequus.Core.Entities.Items.Dedications;
 using System.Collections.Generic;
 
 namespace Aequus.Content.Dedicated.DeathsEmbrace;
@@ -9,7 +9,7 @@ public class DeathsEmbrace : ModItem {
     }
 
     public override void SetStaticDefaults() {
-        ItemSets.DrinkParticleColors[Type] = new Color[] { Color.Black * 0.66f, Color.DarkRed with { A = 180 } * 0.66f, };
+        ItemSets.DrinkParticleColors[Type] = [Color.Black * 0.66f, Color.DarkRed with { A = 180 } * 0.66f,];
     }
 
     public override void SetDefaults() {

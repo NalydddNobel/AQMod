@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Core;
 using System.Collections.Generic;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 

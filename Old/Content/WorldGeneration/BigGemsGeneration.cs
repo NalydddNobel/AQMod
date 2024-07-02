@@ -1,4 +1,4 @@
-﻿using Aequus.Common.WorldGeneration;
+﻿using Aequus.Core.WorldGeneration;
 using Aequus.Old.Content.Tiles.Ambient.BigGems;
 using System.Collections.Generic;
 using Terraria.IO;

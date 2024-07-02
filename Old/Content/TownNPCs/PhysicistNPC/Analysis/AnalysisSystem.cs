@@ -177,7 +177,7 @@ public class AnalysisSystem : ModSystem {
         }
 
         ModRarity modRarity = RarityLoader.GetRarity(rarity);
-        if (ExtendLanguage.TryGet($"Mods.Aequus.Misc.Rarity.{modRarity.Mod.Name}.{modRarity.Name}.DisplayName", out LocalizedText modRarityName)) {
+        if (XLanguage.TryGet($"Mods.Aequus.Misc.Rarity.{modRarity.Mod.Name}.{modRarity.Name}.DisplayName", out LocalizedText modRarityName)) {
             return modRarityName;
         }
 

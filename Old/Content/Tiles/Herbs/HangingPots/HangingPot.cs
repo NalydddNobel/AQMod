@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Tiles;
-using Aequus.Core.ContentGeneration;
+﻿using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Tiles;
 using Aequus.Old.Content.Items.Potions.Prefixes.BoundedPotions;
 using Aequus.Old.Content.Items.Potions.Prefixes.EmpoweredPotions;
 using Aequus.Old.Content.Items.Potions.Prefixes.SplashPotions;

@@ -1,9 +1,9 @@
-﻿using Aequus.Common.NPCs;
-using Aequus.Common.NPCs.Bestiary;
-using Aequus.Content.Biomes.PollutedOcean;
+﻿using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Content.Graphics.Particles;
 using Aequus.Content.Items.Tools.Keys;
 using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Bestiary;
+using Aequus.Core.Entities.NPCs;
 using Aequus.DataSets;
 using System;
 using Terraria.Audio;

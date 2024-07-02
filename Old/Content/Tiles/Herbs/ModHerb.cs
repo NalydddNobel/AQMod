@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Hooks;
+﻿using Aequus.Core.Hooks;
 using Aequus.Core.ContentGeneration;
 using System.Collections.Generic;
 using Terraria.GameContent.Metadata;

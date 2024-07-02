@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Core;
 using Aequus.Content.Configuration;
 using Aequus.Content.Items.Accessories.Balloons;
 using Aequus.Content.Items.Accessories.FlashwayShield;

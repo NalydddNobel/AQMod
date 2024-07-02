@@ -1,8 +1,9 @@
-﻿using Aequus.Common.NPCs;
-using Aequus.Common.NPCs.Bestiary;
-using Aequus.Common.NPCs.Components;
+﻿using Aequus.Core.Entities.NPCs;
 using Aequus.Content.Dusts;
+using Aequus.Core.Components.NPCs;
 using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Bestiary;
+using Aequus.Core.Entities.NPCs;
 using Aequus.DataSets;
 using Aequus.Old.Content.Events.Glimmer;
 using Aequus.Old.Content.Items.Materials;

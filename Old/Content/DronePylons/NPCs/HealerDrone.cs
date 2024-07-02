@@ -1,4 +1,4 @@
-﻿using Aequus.Common.NPCs;
+﻿using Aequus.Core.Entities.NPCs;
 using Aequus.Content.Dusts;
 using System;
 using System.Collections.Generic;

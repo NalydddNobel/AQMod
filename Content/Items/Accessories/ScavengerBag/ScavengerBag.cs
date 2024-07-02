@@ -1,5 +1,5 @@
-﻿using Aequus.Common;
-using Aequus.Common.Backpacks;
+﻿using Aequus.Core;
+using Aequus.Content.Backpacks;
 using Terraria.Localization;
 
 namespace Aequus.Content.Items.Accessories.ScavengerBag;

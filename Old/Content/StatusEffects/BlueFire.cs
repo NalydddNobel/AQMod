@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Buffs.Components;
+﻿using Aequus.Core.Components.Buffs;
 using Aequus.DataSets;
 using System;
 using Terraria.Audio;

@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Core;
 using tModLoaderExtended.GlowMasks;
 
 namespace Aequus.Old.Content.Necromancy.Sceptres.Forbidden;

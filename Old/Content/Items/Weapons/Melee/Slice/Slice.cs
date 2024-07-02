@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Core;
 using Terraria.DataStructures;
 
 namespace Aequus.Old.Content.Items.Weapons.Melee.Slice;

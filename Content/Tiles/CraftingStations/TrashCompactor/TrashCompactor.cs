@@ -1,6 +1,6 @@
-﻿using Aequus.Common.Tiles.Components;
-using Aequus.Content.Graphics.GameOverlays;
+﻿using Aequus.Content.Graphics.GameOverlays;
 using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Tiles.Components;
 using Aequus.Core.Graphics.Animations;
 using Aequus.Core.Graphics.Tiles;
 using Microsoft.Xna.Framework.Input;

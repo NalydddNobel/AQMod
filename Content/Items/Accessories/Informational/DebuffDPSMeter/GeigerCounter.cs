@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Items;
-using Aequus.Core.CodeGeneration;
+﻿using Aequus.Core.CodeGeneration;
+using Aequus.Core.Entities.Items;
 using Terraria.Localization;
 
 namespace Aequus.Content.Items.Accessories.Informational.DebuffDPSMeter;

@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Content.Systems;
 using Aequus.DataSets;
 using Aequus.DataSets.Structures.Enums;
 
@@ -33,7 +33,7 @@ public class FrozenTechnology : ModItem {
 
     private void RadarRecipe() {
         Recipe.Create(ItemID.Radar)
-            .AddRecipeGroup(AequusRecipes.AnyCopperBar, 15)
+            .AddRecipeGroup(RecipeSystem.AnyCopperBar, 15)
             .AddRecipeGroup(RecipeGroupID.IronBar, 10)
             .AddIngredient(Type)
             .Register()
@@ -42,23 +42,23 @@ public class FrozenTechnology : ModItem {
 
     private void CavernDropRecipes() {
         Recipe.Create(ItemID.DepthMeter)
-            .AddRecipeGroup(AequusRecipes.AnyCopperBar, 10)
-            .AddRecipeGroup(AequusRecipes.AnySilverBar, 8)
-            .AddRecipeGroup(AequusRecipes.AnyGoldBar, 6)
+            .AddRecipeGroup(RecipeSystem.AnyCopperBar, 10)
+            .AddRecipeGroup(RecipeSystem.AnySilverBar, 8)
+            .AddRecipeGroup(RecipeSystem.AnyGoldBar, 6)
             .AddIngredient(Type)
             .Register()
             .SortAfterFirstRecipesOf(ItemID.PlatinumWatch);
 
         Recipe.Create(ItemID.Compass)
             .AddRecipeGroup(RecipeGroupID.IronBar, 8)
-            .AddRecipeGroup(AequusRecipes.AnySilverBar, 6)
-            .AddRecipeGroup(AequusRecipes.AnyGoldBar, 4)
+            .AddRecipeGroup(RecipeSystem.AnySilverBar, 6)
+            .AddRecipeGroup(RecipeSystem.AnyGoldBar, 4)
             .AddIngredient(Type)
             .Register()
             .SortAfterFirstRecipesOf(ItemID.PlatinumWatch);
 
         Recipe.Create(ItemID.MetalDetector)
-            .AddRecipeGroup(AequusRecipes.AnyGoldBar, 25)
+            .AddRecipeGroup(RecipeSystem.AnyGoldBar, 25)
             .AddIngredient(ItemID.FlinxFur, 3)
             .AddIngredient(ItemID.FallenStar, 5)
             .AddIngredient(Type)
@@ -68,22 +68,22 @@ public class FrozenTechnology : ModItem {
 
     private void TravellingMerchantRecipes() {
         Recipe.Create(ItemID.DPSMeter)
-            .AddRecipeGroup(AequusRecipes.AnyCopperBar, 10)
-            .AddRecipeGroup(AequusRecipes.AnySilverBar, 8)
-            .AddRecipeGroup(AequusRecipes.AnyGoldBar, 6)
+            .AddRecipeGroup(RecipeSystem.AnyCopperBar, 10)
+            .AddRecipeGroup(RecipeSystem.AnySilverBar, 8)
+            .AddRecipeGroup(RecipeSystem.AnyGoldBar, 6)
             .AddIngredient(Type)
             .Register()
             .SortAfterFirstRecipesOf(ItemID.PlatinumWatch);
 
         Recipe.Create(ItemID.Stopwatch)
-            .AddRecipeGroup(AequusRecipes.AnySilverBar, 25)
+            .AddRecipeGroup(RecipeSystem.AnySilverBar, 25)
             .AddRecipeGroup(RecipeGroupID.PressurePlate)
             .AddIngredient(Type)
             .Register()
             .SortAfterFirstRecipesOf(ItemID.PlatinumWatch);
 
         Recipe.Create(ItemID.LifeformAnalyzer)
-            .AddRecipeGroup(AequusRecipes.AnyGoldBar, 25)
+            .AddRecipeGroup(RecipeSystem.AnyGoldBar, 25)
             .AddIngredient(ItemID.AntlionMandible, 3)
             .AddIngredient(ItemID.FallenStar, 5)
             .AddIngredient(Type)
@@ -95,7 +95,7 @@ public class FrozenTechnology : ModItem {
         // Tally counter is normally locked to post-Skeletron,
         // but this makes it obtainable earlier
         Recipe.Create(ItemID.TallyCounter)
-            .AddRecipeGroup(AequusRecipes.AnyGoldBar, 25)
+            .AddRecipeGroup(RecipeSystem.AnyGoldBar, 25)
             .AddIngredient<GlowLichen>(3)
             .AddIngredient(ItemID.FallenStar, 5)
             .AddIngredient(Type)
@@ -115,7 +115,7 @@ public class FrozenTechnology : ModItem {
             .SortAfterFirstRecipesOf(ItemID.PlatinumWatch);
 
         Recipe.Create(ItemID.Sextant)
-            .AddRecipeGroup(AequusRecipes.AnyGoldBar, 25)
+            .AddRecipeGroup(RecipeSystem.AnyGoldBar, 25)
             .AddIngredient(ItemID.Lens, 3)
             .AddIngredient(ItemID.FallenStar, 5)
             .AddIngredient(Type)

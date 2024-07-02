@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items.Dedications;
+﻿using Aequus.Core.Entities.Items.Dedications;
 
 namespace Aequus.Content.Dedicated.Baguette;
 

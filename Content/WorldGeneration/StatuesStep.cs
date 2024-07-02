@@ -1,5 +1,5 @@
-﻿using Aequus.Common.WorldGeneration;
-using Aequus.Content.Tiles.Statues;
+﻿using Aequus.Content.Tiles.Statues;
+using Aequus.Core.WorldGeneration;
 using System;
 using Terraria.IO;
 using Terraria.WorldBuilding;

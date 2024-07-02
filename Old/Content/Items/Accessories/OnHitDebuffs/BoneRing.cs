@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Core;
 using Terraria.Localization;
 
 namespace Aequus.Old.Content.Items.Accessories.OnHitDebuffs;
@@ -9,7 +9,7 @@ public class BoneRing : ModItem {
     public static int DebuffDuration { get; set; } = 30;
     public static float MovementSpeedMultiplier { get; set; } = 0.4f;
 
-    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Percent(MovementSpeedMultiplier), ExtendLanguage.Seconds(DebuffDuration));
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(XLanguage.Percent(MovementSpeedMultiplier), XLanguage.Seconds(DebuffDuration));
 
     public override void SetDefaults() {
         Item.DefaultToAccessory(20, 14);

@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Hooks;
-using Aequus.Common.Tiles;
+﻿using Aequus.Core.Hooks;
 using Aequus.Content.Chests;
 using Aequus.Content.Configuration;
 using Aequus.Content.Items.Potions.Healing.Restoration;
@@ -9,6 +8,7 @@ using Aequus.DataSets.Structures.Enums;
 using System;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
+using Aequus.Core.Entities.Tiles;
 
 namespace Aequus.Old.Content.Chests;
 

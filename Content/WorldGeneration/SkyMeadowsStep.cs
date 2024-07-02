@@ -1,5 +1,5 @@
-﻿using Aequus.Common.WorldGeneration;
-using Aequus.Content.Tiles.Meadow;
+﻿using Aequus.Content.Tiles.Meadow;
+using Aequus.Core.WorldGeneration;
 using System;
 using Terraria.IO;
 using Terraria.WorldBuilding;

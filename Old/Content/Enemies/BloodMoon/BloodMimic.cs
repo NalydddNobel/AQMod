@@ -1,6 +1,6 @@
-﻿using Aequus.Common.Items.DropRules;
-using Aequus.Common.NPCs.Bestiary;
-using Aequus.Core.ContentGeneration;
+﻿using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Bestiary;
+using Aequus.Core.Entities.Items.DropRules;
 using Aequus.Old.Content.Items.Accessories.HighSteaks;
 using Aequus.Old.Content.Items.GrapplingHooks.HealingGrappleHook;
 using Aequus.Old.Content.Items.Potions.Foods.SusSteak;

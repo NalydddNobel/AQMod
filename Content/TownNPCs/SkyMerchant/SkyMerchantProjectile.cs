@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Projectiles;
+﻿using Aequus.Core.Entities.Projectiles;
 using Aequus.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Content.Systems;
 
 namespace Aequus.Old.Content.Items.Tools.MagicMirrors.PhasePhone;
 
@@ -52,8 +52,8 @@ public class PhasePhoneInstantiator : ModSystem {
 
     public override void AddRecipes() {
         Recipe.Create(PhasePhone.Type)
-            .AddRecipeGroup(AequusRecipes.Shellphone)
-            .AddIngredient<Old.Content.Items.Tools.MagicMirrors.PhaseMirror.PhaseMirror>()
+            .AddRecipeGroup(RecipeSystem.Shellphone)
+            .AddIngredient<PhaseMirror.PhaseMirror>()
             .AddTile(TileID.TinkerersWorkbench)
             .Register();
     }

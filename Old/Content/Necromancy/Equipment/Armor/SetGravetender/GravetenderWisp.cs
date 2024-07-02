@@ -1,4 +1,4 @@
-﻿using Aequus.Common.NPCs;
+﻿using Aequus.Core.Entities.NPCs;
 using Aequus.Old.Common.Projectiles;
 using System;
 

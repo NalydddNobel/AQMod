@@ -1,6 +1,6 @@
-﻿using Aequus.Common.Items.Dedications;
-using Aequus.Content.CrossMod;
+﻿using Aequus.Content.CrossMod;
 using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Items.Dedications;
 
 namespace Aequus.Content.Dedicated.Familiar;
 

@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Core;
 using System;
 using System.Collections.Generic;
 using tModLoaderExtended.GlowMasks;

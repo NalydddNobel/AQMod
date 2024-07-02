@@ -1,6 +1,5 @@
-﻿using Aequus.Common.Items.Dedications;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Projectiles;
+﻿using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Items.Dedications;
 using System;
 
 namespace Aequus.Content.Dedicated.LanternCat;

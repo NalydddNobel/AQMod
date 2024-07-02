@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Core;
 using Aequus.Core.ContentGeneration;
 
 namespace Aequus.Content.Bosses.Salamancer;

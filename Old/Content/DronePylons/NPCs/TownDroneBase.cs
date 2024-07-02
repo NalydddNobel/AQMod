@@ -1,4 +1,4 @@
-﻿using Aequus.Common.NPCs.Bestiary;
+﻿using Aequus.Core.Entities.Bestiary;
 using Aequus.DataSets;
 using Aequus.Old.Content.TownNPCs.PhysicistNPC;
 using System;

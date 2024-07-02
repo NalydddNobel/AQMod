@@ -1,6 +1,6 @@
-﻿using Aequus.Common.Items.Components;
-using Aequus.Content.Items.Potions.Healing.Restoration;
+﻿using Aequus.Content.Items.Potions.Healing.Restoration;
 using Aequus.Core.CrossMod;
+using Aequus.Core.Entities.Items.Components;
 
 namespace Aequus.Content.CrossMod.CalamityModSupport.Items;
 

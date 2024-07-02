@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Projectiles;
-using Aequus.Content.Graphics.Particles;
+﻿using Aequus.Content.Graphics.Particles;
+using Aequus.Core.Entities.Projectiles;
 using System;
 using Terraria.Audio;
 

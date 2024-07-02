@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Buffs;
-using Aequus.Common.Items.Components;
+﻿using Aequus.Core.Entities.Buffs;
+using Aequus.Core.Entities.Items.Components;
 using Aequus.Core.IO;
 using Aequus.Core.UI;
 using Aequus.DataSets;

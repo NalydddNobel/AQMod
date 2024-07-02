@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Golfing;
-using Aequus.Common.Projectiles;
+﻿using Aequus.Core.Entities.Projectiles;
+using Aequus.Core.Entities.Golfing;
 using Aequus.Core.Entities.Projectiles;
 using System;
 using System.IO;

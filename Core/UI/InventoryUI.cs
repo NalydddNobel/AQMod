@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Backpacks;
+﻿using Aequus.Content.Backpacks;
 using MonoMod.Cil;
 using System;
 using System.Collections.Generic;

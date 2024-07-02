@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Core;
 using Aequus.Core.Collections;
 using Aequus.Core.UI;
 using System;

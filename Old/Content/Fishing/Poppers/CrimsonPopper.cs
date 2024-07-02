@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Items.Components;
-using Aequus.Core.ContentGeneration;
+﻿using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Items.Components;
 using Terraria.Localization;
 
 namespace Aequus.Old.Content.Fishing.Poppers;
@@ -7,7 +7,7 @@ namespace Aequus.Old.Content.Fishing.Poppers;
 public class CrimsonPopper : UnifiedModBait, IModifyFishingPower {
     public static float IncreasedFishingPowerInCrimson { get; set; } = 0.2f;
 
-    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Percent(IncreasedFishingPowerInCrimson));
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(XLanguage.Percent(IncreasedFishingPowerInCrimson));
 
     public override void SetDefaults() {
         Item.bait = 40;

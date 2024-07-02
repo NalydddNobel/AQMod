@@ -1,5 +1,5 @@
-﻿using Aequus.Common.WorldGeneration;
-using Aequus.Content.VanillaChanges;
+﻿using Aequus.Content.VanillaChanges;
+using Aequus.Core.WorldGeneration;
 using Terraria.IO;
 using Terraria.WorldBuilding;
 

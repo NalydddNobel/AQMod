@@ -1,4 +1,4 @@
-﻿using Aequus.Common.WorldGeneration;
+﻿using Aequus.Core.WorldGeneration;
 using Aequus.DataSets;
 using Terraria.IO;
 using Terraria.WorldBuilding;

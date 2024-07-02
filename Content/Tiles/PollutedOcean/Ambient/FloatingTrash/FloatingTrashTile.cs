@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Hooks;
-using Aequus.Common.Tiles.Components;
+﻿using Aequus.Core.Hooks;
+using Aequus.Core.Entities.Tiles.Components;
 
 namespace Aequus.Content.Tiles.PollutedOcean.Ambient.FloatingTrash;
 

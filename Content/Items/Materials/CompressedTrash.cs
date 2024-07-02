@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Content.Systems;
 using Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 
 namespace Aequus.Content.Items.Materials;
@@ -20,7 +20,7 @@ public class CompressedTrash : ModItem {
 
     public override void AddRecipes() {
         CreateRecipe()
-            .AddRecipeGroup(AequusRecipes.AnyTrash, 3)
+            .AddRecipeGroup(RecipeSystem.AnyTrash, 3)
             .AddTile<TrashCompactor>()
             .Register()
             .DisableDecraft();

@@ -1,7 +1,7 @@
-﻿using Aequus.Common.Bestiary;
-using Aequus.Content.Biomes.PollutedOcean.Background;
+﻿using Aequus.Content.Biomes.PollutedOcean.Background;
 using Aequus.Content.Biomes.PollutedOcean.Water;
 using Aequus.Content.Tiles.Furniture.Trash;
+using Aequus.Core.Entites.Bestiary;
 using tModLoaderExtended.Terraria.ModLoader;
 
 namespace Aequus.Content.Biomes.PollutedOcean;

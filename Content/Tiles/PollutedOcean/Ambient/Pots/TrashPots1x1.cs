@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Tiles;
-using Aequus.Content.Biomes.PollutedOcean;
+﻿using Aequus.Content.Biomes.PollutedOcean;
+using Aequus.Core.Entities.Tiles;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Tiles.PollutedOcean.Ambient.Pots;

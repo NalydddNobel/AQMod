@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ItemPrefixes.Components;
+﻿using Aequus.Core.Components.Prefixes;
 using Aequus.DataSets;
 using ReLogic.Content;
 

@@ -10,7 +10,7 @@ namespace Aequus.Old.Content.Items.Accessories.LaserScope;
 public class LaserReticle : ModItem {
     public static float BulletSpreadMultiplier { get; set; } = 0.5f;
 
-    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Percent(BulletSpreadMultiplier));
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(XLanguage.Percent(BulletSpreadMultiplier));
 
     public override void SetDefaults() {
         Item.width = 20;

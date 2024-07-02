@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items.Components;
+﻿using Aequus.Core.Entities.Items.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +24,7 @@ public class HighSteaks : ModItem, IHaveDownsideTip {
     /// </summary>
     public static int WantedCost => Main.expertMode ? ExpertModeCost : ClassicModeCost;
 
-    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Percent(NotStackableCritDamage + StackableCritDamage), this.GetLocalization("Downside"));
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(XLanguage.Percent(NotStackableCritDamage + StackableCritDamage), this.GetLocalization("Downside"));
 
     public override void SetDefaults() {
         Item.DefaultToAccessory(16, 16);
@@ -46,7 +46,7 @@ public class HighSteaks : ModItem, IHaveDownsideTip {
 
     public override void ModifyTooltips(List<TooltipLine> tooltips) {
         const string REPLACE = "{Price}";
-        string replaceValue = ExtendLanguage.PriceTextColored(WantedCost, pulse: true);
+        string replaceValue = XLanguage.PriceTextColored(WantedCost, pulse: true);
 
         foreach (var t in tooltips.Where(t => t.Name.StartsWith("Tooltip") && t.Text.Contains(REPLACE))) {
             t.Text = t.Text.Replace(REPLACE, replaceValue);

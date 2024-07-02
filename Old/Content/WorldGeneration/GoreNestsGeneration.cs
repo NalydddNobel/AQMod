@@ -1,5 +1,5 @@
-﻿using Aequus.Common.WorldGeneration;
-using Aequus.Content.Tiles.Tombstones;
+﻿using Aequus.Content.Tiles.Tombstones;
+using Aequus.Core.WorldGeneration;
 using Aequus.Old.Content.Events.DemonSiege.Tiles;
 using Aequus.Old.Content.Tiles.Ambient;
 using Aequus.Old.Content.Tiles.Furniture.Oblivion;

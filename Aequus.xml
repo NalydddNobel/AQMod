@@ -4,720 +4,6 @@
         <name>Aequus</name>
     </assembly>
     <members>
-        <member name="M:Aequus.Common.Backpacks.BackpackData.Deactivate(Terraria.Player)">
-            <summary>
-            Runs when the Backpack is no longer active. Use this hook to deposit items from the Backpack.
-            </summary>
-            <param name="player"></param>
-        </member>
-        <member name="M:Aequus.Common.Backpacks.BackpackData.PreDrawSlot(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32)">
-            <summary>Return false to override slot drawing.</summary>
-        </member>
-        <member name="M:Aequus.Common.Backpacks.BackpackData.SyncNetStates(Terraria.Player,Aequus.Common.Backpacks.BackpackData)">
-            <returns>Whether any items needed syncing.</returns>
-        </member>
-        <member name="M:Aequus.Common.Backpacks.BackpackPlayerSyncPacket.SendSingleItem(Terraria.Player,Aequus.Common.Backpacks.BackpackData,System.Int32,System.Int32,System.Int32)">
-            <summary>Invokes a single item being sent from a backpack.</summary>
-        </member>
-        <member name="M:Aequus.Common.Backpacks.BackpackPlayerSyncPacket.Send(Terraria.Player,Aequus.Common.Backpacks.BackpackData,System.Int32,System.Int32)">
-            <summary>Invokes a full sync of a backpack.</summary>
-        </member>
-        <member name="M:Aequus.Common.Bestiary.BestiaryTags.Add(Terraria.ModLoader.ModBiome)">
-            <summary>Call in PostSetupContent.</summary>
-        </member>
-        <member name="F:Aequus.Common.Buffs.BuffUI.DisableRightClick">
-            <summary>
-            Prevents the player from right clicking a certain buff type. This list is cleared right before the local player is updated.
-            </summary>
-        </member>
-        <member name="M:Aequus.Common.Commons.Conditions.BetweenDays(System.DayOfWeek,System.DayOfWeek)">
-            <param name="firstDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:Aequus.Common.Systems.TimeSystem.DayOfTheWeek"/>.</param>
-            <param name="lastDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:Aequus.Common.Systems.TimeSystem.DayOfTheWeek"/>.</param>
-            <returns>A condition for a specific time range between two days of the week.</returns>
-        </member>
-        <member name="M:Aequus.Common.Commons.Conditions.DayOfTheWeek(System.DayOfWeek)">
-            <param name="dayOfWeek">The <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:Aequus.Common.Systems.TimeSystem.DayOfTheWeek"/>.</param>
-            <returns>A condition for a specific day of the week.</returns>
-        </member>
-        <member name="M:Aequus.Common.Commons.Conditions.ConfigIsTrue(Terraria.ModLoader.Config.ModConfig,System.String)">
-            <returns><inheritdoc cref="M:Aequus.Common.Commons.Conditions.Config(Terraria.ModLoader.Config.ModConfig,System.String,Terraria.Localization.LocalizedText,System.Func{System.Object,System.Boolean})"/> Defaults to checking if the value equals true.</returns>
-        </member>
-        <member name="M:Aequus.Common.Commons.Conditions.Config(Terraria.ModLoader.Config.ModConfig,System.String,Terraria.Localization.LocalizedText,System.Func{System.Object,System.Boolean})">
-            <returns>A condition which depends on a certain config setting.</returns>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.MaterialStart">
-            <summary>Rarity shared by early Pre Hardmode materials (Metal Bars, Ores, etc.)</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.MaterialMid">
-            <summary>Rarity shared by mid Pre Hardmode materials (Demonite, Crimtane, etc.)</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.MaterialEnd">
-            <summary>Rarity shared by end Pre Hardmode materials (Meteorite, Hellstone, etc.)</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.MaterialStartHM">
-            <summary>Rarity shared by early Hardmode materials (Bars, Ores, etc.)</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.MaterialPillars">
-            <summary>Rarity shared by Lunar Fragments.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BossKingSlime">
-            <summary>Rarity shared by items dropped by the King Slime.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BossEyeOfCthulhu">
-            <summary>Rarity shared by items dropped by the Eye of Cthulhu.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BossSalamancer">
-            <summary>Rarity shared by items dropped by the Salamancer.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BossEaterOfWorlds">
-            <summary>Rarity shared by items dropped by the Eater of Worlds.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BossBrainOfCthulhu">
-            <summary>Rarity shared by items dropped by the Brain of Cthulhu.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BossQueenBee">
-            <summary>Rarity shared by items dropped by the Queen Bee.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BossDeerclops">
-            <summary>Rarity shared by items dropped by Deerclops.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BossSkeletron">
-            <summary>Rarity shared by items dropped by Skeletron.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BossUltraStarite">
-            <summary>Rarity shared by items dropped by Ultra Starite.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BossOmegaStarite">
-            <summary>Rarity shared by items dropped by Omega Starite.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BossWallOfFlesh">
-            <summary>Rarity shared by items dropped by the Wall of Flesh.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BossQueenSlime">
-            <summary>Rarity shared by items dropped by the Queen Slime.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BossMechanicalBosses">
-            <summary>Rarity shared by items dropped by the Mechanical Bosses.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BossDustDevil">
-            <summary>Rarity shared by items dropped by the Dust Devil.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BossPlantera">
-            <summary>Rarity shared by items dropped by Plantera.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BossGolem">
-            <summary>Rarity shared by items dropped by Golem.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BossDukeFishron">
-            <summary>Rarity shared by items dropped by Duke Fishron.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BossEmpressOfLight">
-            <summary>Rarity shared by items dropped by the Empress of Light.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BossLunaticCultist">
-            <summary>Rarity shared by items dropped by the Lunatic Cultist.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BossMoonLord">
-            <summary>Rarity shared by items dropped by the Moon Lord.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.EventGoblins">
-            <summary>Rarity shared by items found in the Goblin Invasion.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.EventGlimmer">
-            <summary>Rarity shared by items found in the Glimmer.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.EventDemonSiege">
-            <summary>Rarity shared by items found in the Demon Siege.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.EventSandstormHM">
-            <summary>Rarity shared by items found in the Hardmode Sandstorm (Forbidden set).</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.EventBlizzardHM">
-            <summary>Rarity shared by items found in the Hardmode Blizzard (Frost set).</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.EventGaleStreams">
-            <summary>Rarity shared by items found in the Gale Streams.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.EventPillars">
-            <summary>Rarity shared by items crafted with Lunar Fragments.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BiomeOcean">
-            <summary>Rarity shared by items from the Ocean and Polluted Ocean.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BiomeJungle">
-            <summary>Rarity shared by items found in the Jungle.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BiomeDungeon">
-            <summary>Rarity shared by items found in the Dungeon.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.BiomeDungeonHM">
-            <summary>Rarity shared by items found in the Hardmode Dungeon.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.NPCSkyMerchant">
-            <summary>Rarity shared by items sold by the Sky Merchant.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Rare.ShimmerExclusives">
-            <summary>Rarity shared by items exclusive to the Shimmer.</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Cost.BossSalamancer">
-            <summary>75 Silver</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Cost.BossUltraStarite">
-            <summary>3 Gold</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Cost.BossOmegaStarite">
-            <summary>3 Gold</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Cost.BossDustDevil">
-            <summary>3 Gold 50 Silver</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Cost.BossMoonLord">
-            <summary>10 Gold</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Cost.EventGlimmer">
-            <summary>1 Gold</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Cost.EventDemonSiege">
-            <summary>2 Gold</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Cost.EventBlizzardHM">
-            <summary>2 Gold</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Cost.EventSandstormHM">
-            <summary>2 Gold</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Cost.EventGaleStreams">
-            <summary>3 Gold</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Cost.BiomeOcean">
-            <summary>50 Silver</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Cost.BiomeDungeon">
-            <summary>1 Gold 75 Silver</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Cost.BiomeDungeonHard">
-            <summary>6 Gold</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Cost.NPCSkyMerchant">
-            <summary>1 Gold</summary>
-        </member>
-        <member name="F:Aequus.Common.Commons.Cost.NPCSkyMerchantCustomPrice">
-            <summary>5 Gold</summary>
-        </member>
-        <member name="M:Aequus.Common.Elements.Element.AddNPC(System.String)">
-            <summary>Attempts to add a ModNPC's type using its full name.</summary>
-            <param name="fullName">The full name of the mod npc. Example: ThoriumMod/Viscount</param>
-        </member>
-        <member name="M:Aequus.Common.Elements.Element.AddItem(System.String)">
-            <summary>Attempts to add a ModItem's type using its full name.</summary>
-            <param name="fullName">The full name of the mod item. Example: ThoriumMod/IllumiteBar</param>
-        </member>
-        <member name="M:Aequus.Common.Elements.Element.RemoveItem(System.String)">
-            <summary>Attempts to remove a ModItem's type using its full name.</summary>
-            <param name="fullName">The full name of the mod item. Example: ThoriumMod/IllumiteBar</param>
-        </member>
-        <member name="M:Aequus.Common.Golfing.GolfingSystem.SetGolfBallStatus(System.Boolean)">
-            <summary>
-            Sets all fake golf balls to be counted or not counted as golf balls.
-            </summary>
-            <param name="value"></param>
-        </member>
-        <member name="M:Aequus.Common.Golfing.IGolfBallProjectile.OverrideGolfBallId(Terraria.Player,Terraria.Item,System.Int32)">
-            <summary>
-            Return true to override <paramref name="projType"/> with this projectile Id.
-            By default, returns true when <paramref name="projType"/> equals <see cref="F:Terraria.ID.ProjectileID.DirtGolfBall"/> (Default golf ball).
-            </summary>
-            <param name="player">The player.</param>
-            <param name="golfBall">The golf ball item.</param>
-            <param name="projType">The projectile Id of the previously chosen golf ball.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.On_ChestUI_QuickStack(Terraria.UI.On_ChestUI.orig_QuickStack,Terraria.DataStructures.ContainerTransferContext,System.Boolean)">
-            <summary>Allows backpacks to quick stack to nearby chests.</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.On_GolfHelper_StepGolfBall(Terraria.GameContent.Golf.On_GolfHelper.orig_StepGolfBall,Terraria.Entity,System.Single@)">
-            <summary>Allows custom golf ball prediction lines for projectiles which implement <see cref="T:Aequus.Common.Golfing.IGolfBallProjectile"/>.</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.ItemDropResolver_ResolveRule(Terraria.GameContent.ItemDropRules.On_ItemDropResolver.orig_ResolveRule,Terraria.GameContent.ItemDropRules.ItemDropResolver,Terraria.GameContent.ItemDropRules.IItemDropRule,Terraria.GameContent.ItemDropRules.DropAttemptInfo)">
-            <summary>Allows for re-rolling item drops (if they fail an RNG roll) for the Grand Reward.</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.On_ItemSlot_PickItemMovementAction(Terraria.UI.On_ItemSlot.orig_PickItemMovementAction,Terraria.Item[],System.Int32,System.Int32,Terraria.Item)">
-            <summary>Allows custom item movement action overrides for hovered modded items which implement <see cref="T:Aequus.Common.Items.Components.IPickItemMovementAction"/>.</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.ItemSlot_RightClick(Terraria.UI.On_ItemSlot.orig_RightClick_ItemArray_int_int,Terraria.Item[],System.Int32,System.Int32)">
-            <summary>Allows for:
-            <list type="number">
-            <item>
-            Right click overrides for held modded items which implement <see cref="T:Aequus.Common.Items.Components.IRightClickOverrideWhenHeld"/>.
-            </item>
-            <item>
-            Handling custom golden key and shadow key logic.
-            </item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.On_Main_UpdateTime_StartDay(Terraria.On_Main.orig_UpdateTime_StartDay,System.Boolean@)">
-            <summary>Handles incrementing the day counter, and the NPC wants to settle down system.</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.On_Main_UpdateTime_StartNight(Terraria.On_Main.orig_UpdateTime_StartNight,System.Boolean@)">
-            <summary>Handles spawning the Glimmer event.</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.NPC_NPCLoot_DropMoney(Terraria.On_NPC.orig_NPCLoot_DropMoney,Terraria.NPC,Terraria.Player)">
-            <summary>Allows the Grand Reward to disable money drops when equipped by the closest player.</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.On_Player_ConsumeItem(Terraria.On_Player.orig_ConsumeItem,Terraria.Player,System.Int32,System.Boolean,System.Boolean)">
-            <summary>Allows items in backpacks to be consumed.</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.On_Player_DashMovement(Terraria.On_Player.orig_DashMovement,Terraria.Player)">
-            <summary>Allows for custom dash accessories added by Aequus to update dash movement.</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.On_Player_GetPreferredGolfBallToUse(Terraria.On_Player.orig_GetPreferredGolfBallToUse,Terraria.Player,System.Int32@)">
-            <summary>Allows for custom golf ball projectiles to be picked by this method. And allows golf balls in backpacks to be chosen aswell.</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.On_Player_GetRespawnTime(Terraria.On_Player.orig_GetRespawnTime,Terraria.Player,System.Boolean)">
-            <summary>Allows for respawn time modifications to be perfomed. (<see cref="F:Aequus.AequusPlayer.respawnTimeModifierFlat"/>)</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.IL_Player_PickTile(MonoMod.Cil.ILContext)">
-            <summary>Allows for the breath conserver to restore breath upon breaking a tile.</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.On_Player_PlaceThing_PaintScrapper_LongMoss(Terraria.On_Player.orig_PlaceThing_PaintScrapper_LongMoss,Terraria.Player,System.Int32,System.Int32)">
-            <summary>Allows for custom mosses to be broken by the Paint Scraper.</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.IL_Player_PlaceThing_ValidTileForReplacement(MonoMod.Cil.ILContext)">
-            <summary>Allows for the Lavaproof Mitten to grant block placement in lava for blockswap.</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.On_Player_QuickHeal_GetItemToUse(Terraria.On_Player.orig_QuickHeal_GetItemToUse,Terraria.Player)">
-            <summary>Allows for backpacks to provide healing items. Backpack healing potions do not calculate with the life restoration bias used for Restoration potions.</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.On_Player_QuickMana_GetItemToUse(Terraria.On_Player.orig_QuickMana_GetItemToUse,Terraria.Player)">
-            <summary>Allows for backpacks to provide mana healing items.</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.On_Player_QuickMount_GetItemToUse(Terraria.On_Player.orig_QuickMount_GetItemToUse,Terraria.Player)">
-            <summary>Allows for backpacks to provide mount items.</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.On_Player_QuickStackAllChests(Terraria.On_Player.orig_QuickStackAllChests,Terraria.Player)">
-            <summary>Allows for backpacks to quick stack their items to nearby chests.</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.On_Player_RollLuck(Terraria.On_Player.orig_RollLuck,Terraria.Player,System.Int32)">
-            <summary>Re-rolls luck for the Rabbit's Foot.</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.On_Player_TakeUnityPotion(Terraria.On_Player.orig_TakeUnityPotion,Terraria.Player)">
-            <summary>Prevents the player from consuming a wormhole potion when having the Phase Mirror. (<see cref="F:Aequus.AequusPlayer.infiniteWormhole"/>)</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.On_Player_UpdateVisibleAccessories(Terraria.On_Player.orig_UpdateVisibleAccessories,Terraria.Player)">
-            <summary>Allows for custom dash accessories added by Aequus to update visual effects.</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.On_PlayerDeathReason_GetDeathText(Terraria.DataStructures.On_PlayerDeathReason.orig_GetDeathText,Terraria.DataStructures.PlayerDeathReason,System.String)">
-            <summary>Translates Aequus' death text. Since this isn't supported yet for some dumb reason.</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.PlayerDrawLayers_DrawPlayer_RenderAllLayers(Terraria.DataStructures.On_PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers,Terraria.DataStructures.PlayerDrawSet@)">
-            <summary>Allows for custom dash accessories added by Aequus to update dash movement.</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.Player_HasUnityPotion(Terraria.On_Player.orig_HasUnityPotion,Terraria.Player)">
-            <summary>Allows infinite wormhole usage for the Phase Mirror. (<see cref="F:Aequus.AequusPlayer.infiniteWormhole"/>)</summary>
-        </member>
-        <member name="M:Aequus.Common.Hooks.TerrariaHooks.On_Player_PlaceThing_Tiles_CheckLavaBlocking(Terraria.On_Player.orig_PlaceThing_Tiles_CheckLavaBlocking,Terraria.Player)">
-            <summary>Allows for the Lavaproof Mitten to grant block placement in lava.</summary>
-        </member>
-        <member name="P:Aequus.Common.Hooks.TerrariaHooks.OnRandomTileUpdate">
-            <summary>int1 = X, int2 = Y</summary>
-        </member>
-        <member name="T:Aequus.Common.Items.Components.IManageProjectile">
-            <summary>
-            Allows the item to grant various effects to fired projectiles. All of these methods are not instanced, do NOT use <see cref="P:Terraria.ModLoader.ModItem.Item"/> data.
-            The methods granted by this interface are:
-            <list type="bullet">
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreAIProjectile(Terraria.Projectile)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.AIProjectile(Terraria.Projectile)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PostAIProjectile(Terraria.Projectile)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreDrawProjectile(Terraria.Projectile,Microsoft.Xna.Framework.Color@)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PostDrawProjectile(Terraria.Projectile,Microsoft.Xna.Framework.Color@)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnHitNPCProjectile(Terraria.Projectile,Terraria.NPC,Terraria.NPC.HitInfo,System.Int32)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnTileCollideProjectile(Terraria.Projectile,Microsoft.Xna.Framework.Vector2)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreKillProjectile(Terraria.Projectile,System.Int32)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnKillProjectile(Terraria.Projectile,System.Int32)"/></item>
-            </list>
-            </summary>
-        </member>
-        <member name="T:Aequus.Common.Items.Components.IModifyFishAttempt">
-            <summary>Only works on Fishing Pole or Bait items.</summary>
-        </member>
-        <member name="M:Aequus.Common.Items.Components.IModifyFishAttempt.PreCatchFish(Terraria.Projectile,Terraria.DataStructures.FishingAttempt@)">
-            <returns>Return false to prevent vanilla rolling fish</returns>
-        </member>
-        <member name="T:Aequus.Common.Items.Components.IModifyFishItem">
-            <summary>Only works on Fishing Pole or Bait items.</summary>
-        </member>
-        <member name="T:Aequus.Common.Items.Components.IOmniclassItem">
-            <summary>Signifies that this item is an omniclass weapon, and can receive multiple class modifiers.</summary>
-        </member>
-        <member name="T:Aequus.Common.Items.Components.IOnPullBobber">
-            <summary>Only works on Fishing Pole or Bait items.</summary>
-        </member>
-        <member name="M:Aequus.Common.Items.Components.IOnPullBobber.PrePullBobber(Terraria.Player,Terraria.Projectile,System.Int32@)">
-            <returns><see langword="true" /> to override default pulling operations.</returns>
-        </member>
-        <member name="F:Aequus.Common.Items.Components.IPickItemMovementAction.RESULT_SIMPLE_SWAP">
-            <summary>Returning this result will attempt to place the item into the slot.</summary>
-        </member>
-        <member name="F:Aequus.Common.Items.Components.IPickItemMovementAction.RESULT_EQUIPMENT_SWAP">
-            <summary>Returning this result will attempt to place the item into the slot, if it is an equipable and follows conditions depending on the context.</summary>
-        </member>
-        <member name="F:Aequus.Common.Items.Components.IPickItemMovementAction.RESULT_DYE_SWAP">
-            <summary>Returning this result will attempt to place the item into the slot, if it is a Dye.</summary>
-        </member>
-        <member name="F:Aequus.Common.Items.Components.IPickItemMovementAction.RESULT_BUY_ITEM">
-            <summary>Returning this result will attempt to purchase the item.</summary>
-        </member>
-        <member name="F:Aequus.Common.Items.Components.IPickItemMovementAction.RESULT_SELL_ITEM">
-            <summary>Returning this result will attempt to sell the item.</summary>
-        </member>
-        <member name="F:Aequus.Common.Items.Components.IPickItemMovementAction.RESULT_JOURNEY_DUPE">
-            <summary>Returning this result will attempt dupe the item from the item slot, stacking it onto the mouse item.</summary>
-        </member>
-        <member name="M:Aequus.Common.Items.Components.IRightClickOverrideWhenHeld.RightClickOverrideWhileHeld(Terraria.Item@,Terraria.Item[],System.Int32,System.Int32,Terraria.Player,Aequus.AequusPlayer)">
-            <returns>true to prevent vanilla right click actions.</returns>
-        </member>
-        <member name="M:Aequus.Common.Items.Components.IRightClickOverrideWhenHovered.RightClickOverrideWhenHovered(Terraria.Item@,Terraria.Item[],System.Int32,System.Int32,Terraria.Player,Aequus.AequusPlayer)">
-            <returns>true to prevent vanilla right click actions.</returns>
-        </member>
-        <member name="M:Aequus.Common.Items.Components.IUpdateItemDye.Player_UpdateItemDye(Terraria.On_Player.orig_UpdateItemDye,Terraria.Player,System.Boolean,System.Boolean,Terraria.Item,Terraria.Item)">
-            <summary>
-            
-            </summary>
-            <param name="orig"></param>
-            <param name="self"></param>
-            <param name="isNotInVanitySlot"></param>
-            <param name="isSetToHidden"></param>
-            <param name="armorItem">If you are an equipped item, this is you.</param>
-            <param name="dyeItem">If you are a dye, this is you.</param>
-        </member>
-        <member name="F:Aequus.Common.Items.GravityGlobalItem.itemGravityCheck">
-            <summary>
-            How long the item should float for. Set to 255 for permanent duration.
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Items.AequusRecipes.AnySeaFirefly">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for Sea Firefly variants.</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.AequusRecipes.AnyGoldBar">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for Gold Bar variants.</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.AequusRecipes.AnySilverBar">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for Silver Bar variants.</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.AequusRecipes.AnyCopperBar">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for Copper Bar variants.</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.AequusRecipes.AnyQuestFish">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for all IDs in <see cref="F:Terraria.Main.anglerQuestItemNetIDs"/>.</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.AequusRecipes.Shellphone">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for the Shellphone and its alternative modes.</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.AequusRecipes.AnyPaints">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for paints.</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.AequusRecipes.AnyCoatings">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for coatings.</summary>
-        </member>
-        <member name="P:Aequus.Common.Items.AequusRecipes.AnyTrash">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for trash items.</summary>
-        </member>
-        <member name="F:Aequus.Common.NPCs.AIJellyfish.shockRampUpDistance">
-            <summary>
-            When the target is within this range, the delay for activating the electric state is dramatically decreased.
-            <para><see cref="F:Aequus.Common.NPCs.AIJellyfish.shockStartRampUp"/> is used to decrease the cooldown of the attack.</para>
-            <para><see cref="F:Aequus.Common.NPCs.AIJellyfish.shockEndRampUp"/> is used to increase the duration of the attack.</para>
-            <para>Defaults to 150.</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.NPCs.AIJellyfish.shockStartRampUp">
-            <summary>
-            Decreases the cooldown of the shock attack when within <see cref="F:Aequus.Common.NPCs.AIJellyfish.shockRampUpDistance"/>.
-            <para>Defaults to 2f.</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.NPCs.AIJellyfish.shockEndRampUp">
-            <summary>
-            Increases the duration of the shock attack when within <see cref="F:Aequus.Common.NPCs.AIJellyfish.shockRampUpDistance"/>.
-            <para>Defaults to 0.25f.</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.NPCs.AIJellyfish.shockAttackCooldown">
-            <summary>
-            The duration of the shock attack's cooldown.
-            <para>Defaults to 420. (7 seconds)</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.NPCs.AIJellyfish.shockAttackLength">
-            <summary>
-            The duration of the shock attack.
-            <para>Defaults to 120. (2 seconds)</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.NPCs.AIJellyfish.dashSpeed">
-            <summary>
-            Defaults to 7.
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.NPCs.AIJellyfish.dashAttackSlowdown">
-            <summary>
-            Multiplier on velocity when it wants to slow down for a dash attack.
-            <para>Defaults to 0.98f.</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.NPCs.AIJellyfish.dashAttackSpeedThreshold">
-            <summary>
-            How slow the Jellyfish must be moving in order for it to be allowed to dash.
-            <para>Defaults to 0.2f.</para>
-            </summary>
-        </member>
-        <member name="T:Aequus.Common.NPCs.Bestiary.BestiaryBuilder">
-            <summary>
-            Helper class for initializing bestiary entries.
-            </summary>
-        </member>
-        <member name="M:Aequus.Common.NPCs.DropsGlobalNPC.AddNPCLoot(System.Int32,Terraria.GameContent.ItemDropRules.IItemDropRule)">
-            <summary>
-            Allows you to add a drop rule to an NPC. Please only call this in SetStaticDefaults/PostSetupContent.
-            </summary>
-            <param name="npcId">The NPC type.</param>
-            <param name="rule">The item drop rule.</param>
-        </member>
-        <member name="F:Aequus.Common.NPCs.NPCSpawns.OverrideAequusBiomes">
-            <summary>A list of <see cref="T:Terraria.ModLoader.ModBiome"/>s which will override Aequus biome spawns.</summary>
-        </member>
-        <member name="P:Aequus.Common.Players.CustomDashData.DashHaltSpeedMultiplier">
-            <summary>
-            Multiplier used to reduce velocity when above the dash's halting speed.
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.Projectiles.LegacyHeldSlashingSwordProjectile.swordHeight">
-            <summary>
-            Stat which determines how far the sword's laser hitbox will reach, in pixels.
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.Projectiles.LegacyHeldSlashingSwordProjectile.swordWidth">
-            <summary>
-            Stat which determines how wide the sword's laser hitbox will be, in pixels.
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.Projectiles.LegacyHeldSlashingSwordProjectile.gfxOutOffset">
-            <summary>
-            Outward offset, only effects rendering.
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.Projectiles.LegacyHeldSlashingSwordProjectile.animationGFXOutOffset">
-            <summary>
-            Outward offset, only effects rendering. Updated every game update.
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Projectiles.ProjectileSource.IsProjectileChild">
-            <summary>Whether this projectile was spawned by another projectile. Use this to prevent effects occuring multiple times (Like ammo retrival)</summary>
-        </member>
-        <member name="T:Aequus.Common.Tiles.BaseFurnitureTile.Furniture">
-            <summary>
-            A base furntiure tile, Furniture in Aequus is handled on an individual ModTile basis instead of through a big multi-styled tile.
-            </summary>
-        </member>
-        <member name="M:Aequus.Common.Tiles.Components.IPlaceChestHook.PlaceChest(System.Int32,System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            Return -2 to allow vanilla function to occur.
-            </summary>
-            <param name="x"></param>
-            <param name="y"></param>
-            <param name="style"></param>
-            <param name="notNearOtherChests"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Common.Tiles.Components.IPlaceChestHook.PlaceChestDirect(System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Return true to allow vanilla function to occur.
-            </summary>
-            <param name="x"></param>
-            <param name="y"></param>
-            <param name="style"></param>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Common.Tiles.Components.IRandomUpdateOverride.PreRandomUpdate(System.Int32,System.Int32)">
-            <param name="i"></param>
-            <param name="j"></param>
-            <returns>Whether to override random update logic. Returns false by default.</returns>
-        </member>
-        <member name="T:Aequus.Common.Tiles.Components.IWaterVisibleWall">
-            <summary>
-            Allows modded walls to be seen behind water.
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Tiles.Components.IWaterVisibleWall.WaterMapEntry">
-            <summary>
-            The Entry Id for when this wall is behind water.
-            Use <see cref="M:Aequus.Common.Tiles.Components.WaterVisibleWall.CreateWaterEntry``1(``0,Microsoft.Xna.Framework.Color,Terraria.Localization.LocalizedText,System.Int32)"/> to generate an entry for this automatically.
-            <para>Defaults to 0, which uses the wall's first registered map color. (After AddRecipes, this is offset by the wall's map entry id.)</para>
-            </summary>
-        </member>
-        <member name="M:Aequus.Common.Tiles.Components.WaterVisibleWall.CreateWaterEntry``1(``0,Microsoft.Xna.Framework.Color,Terraria.Localization.LocalizedText,System.Int32)">
-            <summary>
-            Creates a map entry for the tile being covered in water.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="wall"></param>
-            <param name="baseColor"></param>
-            <param name="text"></param>
-            <param name="entryNumber">Offsets the map Id lookup by this value. Defaults to 1, meaning that it assumes that this is the 2nd registered color for this wall.</param>
-        </member>
-        <member name="M:Aequus.Common.WorldGeneration.AequusGenStep.SetMessage(Terraria.WorldBuilding.GenerationProgress,System.Object)">
-            <summary>
-            Safely sets the progress message.
-            </summary>
-            <param name="progress"></param>
-            <param name="keySuffix"></param>
-        </member>
-        <member name="M:Aequus.Common.WorldGeneration.AequusGenStep.RectangleProgress(System.Int32,System.Int32)">
-            <summary>Determines the progress of an ij loop in a rectangle. Using 0-<see cref="F:Terraria.Main.maxTilesX"/> and 0-<see cref="F:Terraria.Main.maxTilesY"/> as the edges.</summary>
-            <param name="i"></param>
-            <param name="j"></param>
-        </member>
-        <member name="M:Aequus.Common.WorldGeneration.AequusGenStep.RectangleProgress(System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>Determines the progress of an ij loop in a rectangle. Using 0-<see cref="F:Terraria.Main.maxTilesY"/> as the vertical edges.</summary>
-            <param name="i"></param>
-            <param name="j"></param>
-            <param name="leftSide">X coordinate of the Left edge of the rectangle.</param>
-            <param name="rightSide">X coordinate of the Right edge of the rectnagle.</param>
-        </member>
-        <member name="M:Aequus.Common.WorldGeneration.AequusGenStep.RectangleProgress(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>Determines the progress of an ij loop in a rectangle.</summary>
-            <param name="i"></param>
-            <param name="j"></param>
-            <param name="leftSide">X coordinate of the Left edge of the rectangle.</param>
-            <param name="rightSide">X coordinate of the Right edge of the rectnagle.</param>
-            <param name="topSide">Y coordinate of the Top Edge of the rectangle.</param>
-            <param name="bottomSide">Y coordinate of the Bottom Edge of the rectangle.</param>
-        </member>
-        <member name="M:Aequus.Common.WorldGeneration.AequusGenStep.SetProgress(Terraria.WorldBuilding.GenerationProgress,System.Double,System.Double,System.Double)">
-            <summary>
-            Safely sets the progress bar.
-            </summary>
-        </member>
-        <member name="T:Aequus.AequusPlayer.KillInfo">
-            <param name="Center">The enemy's center.</param>
-            <param name="Type">The enemy's type.</param>
-        </member>
-        <member name="M:Aequus.AequusPlayer.KillInfo.#ctor(Microsoft.Xna.Framework.Vector2,System.Int32)">
-            <param name="Center">The enemy's center.</param>
-            <param name="Type">The enemy's type.</param>
-        </member>
-        <member name="P:Aequus.AequusPlayer.KillInfo.Center">
-            <summary>The enemy's center.</summary>
-        </member>
-        <member name="P:Aequus.AequusPlayer.KillInfo.Type">
-            <summary>The enemy's type.</summary>
-        </member>
-        <member name="P:Aequus.AequusPlayer.MinimumRespawnTime">
-            <summary>The lowest any respawn-time reducing items can go.</summary>
-        </member>
-        <member name="M:Aequus.AequusPlayer.SetNonStackingRespawnTimeModifier(System.Int32)">
-            <summary>
-            Sets the respawn time modifier without allowing it to stack.
-            </summary>
-            <param name="amount"></param>
-        </member>
-        <member name="F:Aequus.AequusPlayer.DEATH_FALLING">
-            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for Fall Damage.</summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.DEATH_DROWNED">
-            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for Drowning.</summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.DEATH_LAVA">
-            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for Lava Damage.</summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.DEATH_DEFAULT">
-            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for Misc Deaths. Used by:
-            <list type="bullet">
-            <item>Cactus in DST worlds.</item>
-            <item>Tiles in <see cref="F:Terraria.ID.TileID.Sets.TouchDamageImmediate"/></item>
-            </list>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.DEATH_WAS_SLAIN_1">
-            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for Misc Deaths. Used by:
-            <list type="bullet">
-            <item>Hammering a Demon Altar in Pre-Hardmode.</item>
-            </list>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.DEATH_WAS_SLAIN_2">
-            <summary>Seemingly unused, emits the same text as <see cref="F:Aequus.AequusPlayer.DEATH_WAS_SLAIN_1"/>.</summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.DEATH_PETRIFIED">
-            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying while petrified (<see cref="F:Terraria.Player.stoned"/>).</summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.DEATH_COMPANION_CUBE_STAB">
-            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to the Companion Cube's stab.</summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.DEATH_SUFFOCATING">
-            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to suffocation damage (<see cref="F:Terraria.Player.suffocating"/>).</summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.DEATH_BURNING">
-            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to fire damage. Is also the fallback death message for dying to any Damage Over Time effect.</summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.DEATH_POISON">
-            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to poison or venom damage. (<see cref="F:Terraria.Player.poisoned"/>, <see cref="F:Terraria.Player.venom"/>)</summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.DEATH_ELECTRIFIED">
-            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to electrified damage. (<see cref="F:Terraria.Player.electrified"/>)</summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.DEATH_WALL_OF_FLESH_ESCAPE">
-            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for trying to escape Wall of Flesh.</summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.DEATH_WALL_OF_FLESH_LICK">
-            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for being tongued by Wall of Flesh. (<see cref="F:Terraria.Player.tongued"/>)</summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.DEATH_CHAOS_STATE_GENDERLESS_LINES">
-            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to Chaos State. These are genderless lines which have a 50% chance of appearing instead of the gendered lines. (<see cref="F:Terraria.Player.chaosState"/>)</summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.DEATH_CHAOS_STATE_MALE_LINES">
-            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to Chaos State. These are male lines which have a 50% chance of appearing instead of the genderless lines. (<see cref="F:Terraria.Player.chaosState"/>)</summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.DEATH_CHAOS_STATE_FEMALE_LINES">
-            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to Chaos State. These are female lines which have a 50% chance of appearing instead of the genderless lines. (<see cref="F:Terraria.Player.chaosState"/>)</summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.DEATH_HOSTILE_PLAYER_INFERNO_POTION">
-            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to a hostile player's Inferno Potion effect. (<see cref="F:Terraria.Player.inferno"/>)</summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.DEATH_DST_DARKNESS">
-            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to darkness in the DST seed. (<see cref="T:Terraria.GameContent.DontStarveDarknessDamageDealer"/>)</summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.DEATH_DST_STARVING">
-            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to starvation in the DST seed. (<see cref="F:Terraria.Player.starving"/>)</summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.DEATH_REMIX_SPACE">
-            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying from going offscreen to space. (<see cref="F:Terraria.Main.remixWorld"/>, <see cref="F:Terraria.Player.forcedGravity"/>)</summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.lastSelectedItem">
-            <summary>Tracks <see cref="F:Terraria.Player.selectedItem"/></summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.itemUsage">
-            <summary>Increments when the player uses an item. Does not increment when the player is using the alt function of an item.</summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.itemSwitch">
-            <summary>A short lived timer which gets set to 30 when the player has a different selected item.</summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.closestEnemy">
-            <summary>
-            The closest 'enemy' NPC to the player. Updated in <see cref="M:Aequus.AequusPlayer.PostUpdate"/>
-            </summary>
-        </member>
-        <member name="P:Aequus.AequusPlayer.InDanger">
-            <summary>
-            Helper for whether or not the player is in danger
-            </summary>
-        </member>
-        <member name="P:Aequus.AequusSystem.RemixWorldSafeUnderworldRange">
-            <summary>Returns a point with the beginning (left) (X) and end (right) (Y) of the 'safe' underworld in remix worlds. This does not represent a point in 2D space, but rather two X coordinates.</summary>
-        </member>
         <member name="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.SafeTile">
             <summary>
             Similar to <see cref="P:Aequus.Content.Biomes.PollutedOcean.Generation.PollutedBiomeStep.ReplaceableTile"/>, except if tile Ids in this entry are false, the Crab Crevice will actively try to steer away from generating around them.
@@ -754,6 +40,18 @@
             <param name="order">Sorting value for this album.</param>
             <param name="specialReward">Special reward for this album</param>
             <param name="values">Must have a length of 6.</param>
+        </member>
+        <member name="M:Aequus.Content.Elements.Element.AddNPC(System.String)">
+            <summary>Attempts to add a ModNPC's type using its full name.</summary>
+            <param name="fullName">The full name of the mod npc. Example: ThoriumMod/Viscount</param>
+        </member>
+        <member name="M:Aequus.Content.Elements.Element.AddItem(System.String)">
+            <summary>Attempts to add a ModItem's type using its full name.</summary>
+            <param name="fullName">The full name of the mod item. Example: ThoriumMod/IllumiteBar</param>
+        </member>
+        <member name="M:Aequus.Content.Elements.Element.RemoveItem(System.String)">
+            <summary>Attempts to remove a ModItem's type using its full name.</summary>
+            <param name="fullName">The full name of the mod item. Example: ThoriumMod/IllumiteBar</param>
         </member>
         <member name="M:Aequus.Content.Enemies.PollutedOcean.BlackJellyfish.BlackJellyfish.GetLightMagnitude">
             <summary>Gets the lighting magnitude for this Jellyfish. Returns 1f if <see cref="F:Terraria.NPC.IsABestiaryIconDummy"/> is <see langword="true"></see>.</summary>
@@ -861,6 +159,51 @@
         </member>
         <member name="M:Aequus.Content.Items.Potions.PotionCanteen.UnifiedCanteen.HasBuffs">
             <summary>Determines if this canteen has any buffs at all.</summary>
+        </member>
+        <member name="M:Aequus.Content.Backpacks.BackpackData.Deactivate(Terraria.Player)">
+            <summary>
+            Runs when the Backpack is no longer active. Use this hook to deposit items from the Backpack.
+            </summary>
+            <param name="player"></param>
+        </member>
+        <member name="M:Aequus.Content.Backpacks.BackpackData.PreDrawSlot(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32)">
+            <summary>Return false to override slot drawing.</summary>
+        </member>
+        <member name="M:Aequus.Content.Backpacks.BackpackData.SyncNetStates(Terraria.Player,Aequus.Content.Backpacks.BackpackData)">
+            <returns>Whether any items needed syncing.</returns>
+        </member>
+        <member name="M:Aequus.Content.Backpacks.BackpackPlayerSyncPacket.SendSingleItem(Terraria.Player,Aequus.Content.Backpacks.BackpackData,System.Int32,System.Int32,System.Int32)">
+            <summary>Invokes a single item being sent from a backpack.</summary>
+        </member>
+        <member name="M:Aequus.Content.Backpacks.BackpackPlayerSyncPacket.Send(Terraria.Player,Aequus.Content.Backpacks.BackpackData,System.Int32,System.Int32)">
+            <summary>Invokes a full sync of a backpack.</summary>
+        </member>
+        <member name="P:Aequus.Content.Systems.RecipeSystem.AnySeaFirefly">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for Sea Firefly variants.</summary>
+        </member>
+        <member name="P:Aequus.Content.Systems.RecipeSystem.AnyGoldBar">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for Gold Bar variants.</summary>
+        </member>
+        <member name="P:Aequus.Content.Systems.RecipeSystem.AnySilverBar">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for Silver Bar variants.</summary>
+        </member>
+        <member name="P:Aequus.Content.Systems.RecipeSystem.AnyCopperBar">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for Copper Bar variants.</summary>
+        </member>
+        <member name="P:Aequus.Content.Systems.RecipeSystem.AnyQuestFish">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for all IDs in <see cref="F:Terraria.Main.anglerQuestItemNetIDs"/>.</summary>
+        </member>
+        <member name="P:Aequus.Content.Systems.RecipeSystem.Shellphone">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for the Shellphone and its alternative modes.</summary>
+        </member>
+        <member name="P:Aequus.Content.Systems.RecipeSystem.AnyPaints">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for paints.</summary>
+        </member>
+        <member name="P:Aequus.Content.Systems.RecipeSystem.AnyCoatings">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for coatings.</summary>
+        </member>
+        <member name="P:Aequus.Content.Systems.RecipeSystem.AnyTrash">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for trash items.</summary>
         </member>
         <member name="P:Aequus.Content.Tiles.RainTotem.RainTotem.RainTotemMax">
             <summary>Amount of Rain Totems on screen required to reach <see cref="P:Aequus.Content.Tiles.RainTotem.RainTotem.BonusRainChanceMax"/></summary>
@@ -993,7 +336,7 @@
             <summary>Color of the projectile. Used mostly by guns.</summary>
         </member>
         <member name="P:Aequus.DataSets.ProjectileDataSet.OccultistIgnore">
-            <summary>Projectiles in this set do not damage the <see cref="!:Old.Content.TownNPCs.OccultistNPC.Occultist"/>.</summary>
+            <summary>Projectiles in this set do not damage the <see cref="T:Aequus.Old.Content.TownNPCs.OccultistNPC.Occultist"/>.</summary>
         </member>
         <member name="P:Aequus.DataSets.ProjectileDataSet.IsStar">
             <summary>Whether or not this projectile is a "Star", this is automatically populated with anything that has "Star" in their internal name.</summary>
@@ -1139,8 +482,374 @@
             <summary>Set <see cref="P:Aequus.DataSets.Structures.IIDEntry.Id"/> directly. Use this to update the name or other values if needed.</summary>
             <param name="id">The Content's Id.</param>
         </member>
-        <member name="M:Aequus.Aequus.GetRandomName(Terraria.Utilities.UnifiedRandom)">
-            <returns>A random name. Used in naturally generated underworld tombstones.</returns>
+        <member name="T:Aequus.AequusPlayer.KillInfo">
+            <param name="Center">The enemy's center.</param>
+            <param name="Type">The enemy's type.</param>
+        </member>
+        <member name="M:Aequus.AequusPlayer.KillInfo.#ctor(Microsoft.Xna.Framework.Vector2,System.Int32)">
+            <param name="Center">The enemy's center.</param>
+            <param name="Type">The enemy's type.</param>
+        </member>
+        <member name="P:Aequus.AequusPlayer.KillInfo.Center">
+            <summary>The enemy's center.</summary>
+        </member>
+        <member name="P:Aequus.AequusPlayer.KillInfo.Type">
+            <summary>The enemy's type.</summary>
+        </member>
+        <member name="P:Aequus.AequusPlayer.MinimumRespawnTime">
+            <summary>The lowest any respawn-time reducing items can go.</summary>
+        </member>
+        <member name="M:Aequus.AequusPlayer.SetNonStackingRespawnTimeModifier(System.Int32)">
+            <summary>
+            Sets the respawn time modifier without allowing it to stack.
+            </summary>
+            <param name="amount"></param>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_FALLING">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for Fall Damage.</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_DROWNED">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for Drowning.</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_LAVA">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for Lava Damage.</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_DEFAULT">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for Misc Deaths. Used by:
+            <list type="bullet">
+            <item>Cactus in DST worlds.</item>
+            <item>Tiles in <see cref="F:Terraria.ID.TileID.Sets.TouchDamageImmediate"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_WAS_SLAIN_1">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for Misc Deaths. Used by:
+            <list type="bullet">
+            <item>Hammering a Demon Altar in Pre-Hardmode.</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_WAS_SLAIN_2">
+            <summary>Seemingly unused, emits the same text as <see cref="F:Aequus.AequusPlayer.DEATH_WAS_SLAIN_1"/>.</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_PETRIFIED">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying while petrified (<see cref="F:Terraria.Player.stoned"/>).</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_COMPANION_CUBE_STAB">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to the Companion Cube's stab.</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_SUFFOCATING">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to suffocation damage (<see cref="F:Terraria.Player.suffocating"/>).</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_BURNING">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to fire damage. Is also the fallback death message for dying to any Damage Over Time effect.</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_POISON">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to poison or venom damage. (<see cref="F:Terraria.Player.poisoned"/>, <see cref="F:Terraria.Player.venom"/>)</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_ELECTRIFIED">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to electrified damage. (<see cref="F:Terraria.Player.electrified"/>)</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_WALL_OF_FLESH_ESCAPE">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for trying to escape Wall of Flesh.</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_WALL_OF_FLESH_LICK">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for being tongued by Wall of Flesh. (<see cref="F:Terraria.Player.tongued"/>)</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_CHAOS_STATE_GENDERLESS_LINES">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to Chaos State. These are genderless lines which have a 50% chance of appearing instead of the gendered lines. (<see cref="F:Terraria.Player.chaosState"/>)</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_CHAOS_STATE_MALE_LINES">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to Chaos State. These are male lines which have a 50% chance of appearing instead of the genderless lines. (<see cref="F:Terraria.Player.chaosState"/>)</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_CHAOS_STATE_FEMALE_LINES">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to Chaos State. These are female lines which have a 50% chance of appearing instead of the genderless lines. (<see cref="F:Terraria.Player.chaosState"/>)</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_HOSTILE_PLAYER_INFERNO_POTION">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to a hostile player's Inferno Potion effect. (<see cref="F:Terraria.Player.inferno"/>)</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_DST_DARKNESS">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to darkness in the DST seed. (<see cref="T:Terraria.GameContent.DontStarveDarknessDamageDealer"/>)</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_DST_STARVING">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying to starvation in the DST seed. (<see cref="F:Terraria.Player.starving"/>)</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.DEATH_REMIX_SPACE">
+            <summary><see cref="P:Terraria.DataStructures.PlayerDeathReason.SourceOtherIndex"/> for dying from going offscreen to space. (<see cref="F:Terraria.Main.remixWorld"/>, <see cref="F:Terraria.Player.forcedGravity"/>)</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.lastSelectedItem">
+            <summary>Tracks <see cref="F:Terraria.Player.selectedItem"/></summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.itemUsage">
+            <summary>Increments when the player uses an item. Does not increment when the player is using the alt function of an item.</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.itemSwitch">
+            <summary>A short lived timer which gets set to 30 when the player has a different selected item.</summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.closestEnemy">
+            <summary>
+            The closest 'enemy' NPC to the player. Updated in <see cref="M:Aequus.AequusPlayer.PostUpdate"/>
+            </summary>
+        </member>
+        <member name="P:Aequus.AequusPlayer.InDanger">
+            <summary>
+            Helper for whether or not the player is in danger
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.dropRolls">
+            <summary>Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.</summary>
+        </member>
+        <member name="F:Aequus.Core.Entities.NPCs.AIJellyfish.shockRampUpDistance">
+            <summary>
+            When the target is within this range, the delay for activating the electric state is dramatically decreased.
+            <para><see cref="F:Aequus.Core.Entities.NPCs.AIJellyfish.shockStartRampUp"/> is used to decrease the cooldown of the attack.</para>
+            <para><see cref="F:Aequus.Core.Entities.NPCs.AIJellyfish.shockEndRampUp"/> is used to increase the duration of the attack.</para>
+            <para>Defaults to 150.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Core.Entities.NPCs.AIJellyfish.shockStartRampUp">
+            <summary>
+            Decreases the cooldown of the shock attack when within <see cref="F:Aequus.Core.Entities.NPCs.AIJellyfish.shockRampUpDistance"/>.
+            <para>Defaults to 2f.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Core.Entities.NPCs.AIJellyfish.shockEndRampUp">
+            <summary>
+            Increases the duration of the shock attack when within <see cref="F:Aequus.Core.Entities.NPCs.AIJellyfish.shockRampUpDistance"/>.
+            <para>Defaults to 0.25f.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Core.Entities.NPCs.AIJellyfish.shockAttackCooldown">
+            <summary>
+            The duration of the shock attack's cooldown.
+            <para>Defaults to 420. (7 seconds)</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Core.Entities.NPCs.AIJellyfish.shockAttackLength">
+            <summary>
+            The duration of the shock attack.
+            <para>Defaults to 120. (2 seconds)</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Core.Entities.NPCs.AIJellyfish.dashSpeed">
+            <summary>
+            Defaults to 7.
+            </summary>
+        </member>
+        <member name="F:Aequus.Core.Entities.NPCs.AIJellyfish.dashAttackSlowdown">
+            <summary>
+            Multiplier on velocity when it wants to slow down for a dash attack.
+            <para>Defaults to 0.98f.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Core.Entities.NPCs.AIJellyfish.dashAttackSpeedThreshold">
+            <summary>
+            How slow the Jellyfish must be moving in order for it to be allowed to dash.
+            <para>Defaults to 0.2f.</para>
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.Entities.NPCs.DropsGlobalNPC.AddNPCLoot(System.Int32,Terraria.GameContent.ItemDropRules.IItemDropRule)">
+            <summary>
+            Allows you to add a drop rule to an NPC. Please only call this in SetStaticDefaults/PostSetupContent.
+            </summary>
+            <param name="npcId">The NPC type.</param>
+            <param name="rule">The item drop rule.</param>
+        </member>
+        <member name="F:Aequus.Core.Entities.NPCs.NPCSpawns.OverrideAequusBiomes">
+            <summary>A list of <see cref="T:Terraria.ModLoader.ModBiome"/>s which will override Aequus biome spawns.</summary>
+        </member>
+        <member name="T:Aequus.Core.Entities.Items.Components.IManageProjectile">
+            <summary>
+            Allows the item to grant various effects to fired projectiles. All of these methods are not instanced, do NOT use <see cref="P:Terraria.ModLoader.ModItem.Item"/> data.
+            The methods granted by this interface are:
+            <list type="bullet">
+            <item><see cref="M:Aequus.Core.Entities.Items.Components.IManageProjectile.PreAIProjectile(Terraria.Projectile)"/></item>
+            <item><see cref="M:Aequus.Core.Entities.Items.Components.IManageProjectile.AIProjectile(Terraria.Projectile)"/></item>
+            <item><see cref="M:Aequus.Core.Entities.Items.Components.IManageProjectile.PostAIProjectile(Terraria.Projectile)"/></item>
+            <item><see cref="M:Aequus.Core.Entities.Items.Components.IManageProjectile.PreDrawProjectile(Terraria.Projectile,Microsoft.Xna.Framework.Color@)"/></item>
+            <item><see cref="M:Aequus.Core.Entities.Items.Components.IManageProjectile.PostDrawProjectile(Terraria.Projectile,Microsoft.Xna.Framework.Color@)"/></item>
+            <item><see cref="M:Aequus.Core.Entities.Items.Components.IManageProjectile.OnHitNPCProjectile(Terraria.Projectile,Terraria.NPC,Terraria.NPC.HitInfo,System.Int32)"/></item>
+            <item><see cref="M:Aequus.Core.Entities.Items.Components.IManageProjectile.OnTileCollideProjectile(Terraria.Projectile,Microsoft.Xna.Framework.Vector2)"/></item>
+            <item><see cref="M:Aequus.Core.Entities.Items.Components.IManageProjectile.PreKillProjectile(Terraria.Projectile,System.Int32)"/></item>
+            <item><see cref="M:Aequus.Core.Entities.Items.Components.IManageProjectile.OnKillProjectile(Terraria.Projectile,System.Int32)"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="T:Aequus.Core.Entities.Items.Components.IModifyFishAttempt">
+            <summary>Only works on Fishing Pole or Bait items.</summary>
+        </member>
+        <member name="M:Aequus.Core.Entities.Items.Components.IModifyFishAttempt.PreCatchFish(Terraria.Projectile,Terraria.DataStructures.FishingAttempt@)">
+            <returns>Return false to prevent vanilla rolling fish</returns>
+        </member>
+        <member name="T:Aequus.Core.Entities.Items.Components.IModifyFishItem">
+            <summary>Only works on Fishing Pole or Bait items.</summary>
+        </member>
+        <member name="T:Aequus.Core.Entities.Items.Components.IOmniclassItem">
+            <summary>Signifies that this item is an omniclass weapon, and can receive multiple class modifiers.</summary>
+        </member>
+        <member name="T:Aequus.Core.Entities.Items.Components.IOnPullBobber">
+            <summary>Only works on Fishing Pole or Bait items.</summary>
+        </member>
+        <member name="M:Aequus.Core.Entities.Items.Components.IOnPullBobber.PrePullBobber(Terraria.Player,Terraria.Projectile,System.Int32@)">
+            <returns><see langword="true" /> to override default pulling operations.</returns>
+        </member>
+        <member name="F:Aequus.Core.Entities.Items.Components.IPickItemMovementAction.RESULT_SIMPLE_SWAP">
+            <summary>Returning this result will attempt to place the item into the slot.</summary>
+        </member>
+        <member name="F:Aequus.Core.Entities.Items.Components.IPickItemMovementAction.RESULT_EQUIPMENT_SWAP">
+            <summary>Returning this result will attempt to place the item into the slot, if it is an equipable and follows conditions depending on the context.</summary>
+        </member>
+        <member name="F:Aequus.Core.Entities.Items.Components.IPickItemMovementAction.RESULT_DYE_SWAP">
+            <summary>Returning this result will attempt to place the item into the slot, if it is a Dye.</summary>
+        </member>
+        <member name="F:Aequus.Core.Entities.Items.Components.IPickItemMovementAction.RESULT_BUY_ITEM">
+            <summary>Returning this result will attempt to purchase the item.</summary>
+        </member>
+        <member name="F:Aequus.Core.Entities.Items.Components.IPickItemMovementAction.RESULT_SELL_ITEM">
+            <summary>Returning this result will attempt to sell the item.</summary>
+        </member>
+        <member name="F:Aequus.Core.Entities.Items.Components.IPickItemMovementAction.RESULT_JOURNEY_DUPE">
+            <summary>Returning this result will attempt dupe the item from the item slot, stacking it onto the mouse item.</summary>
+        </member>
+        <member name="M:Aequus.Core.Entities.Items.Components.IRightClickOverrideWhenHeld.RightClickOverrideWhileHeld(Terraria.Item@,Terraria.Item[],System.Int32,System.Int32,Terraria.Player,Aequus.AequusPlayer)">
+            <returns>true to prevent vanilla right click actions.</returns>
+        </member>
+        <member name="M:Aequus.Core.Entities.Items.Components.IRightClickOverrideWhenHovered.RightClickOverrideWhenHovered(Terraria.Item@,Terraria.Item[],System.Int32,System.Int32,Terraria.Player,Aequus.AequusPlayer)">
+            <returns>true to prevent vanilla right click actions.</returns>
+        </member>
+        <member name="M:Aequus.Core.Entities.Items.Components.IUpdateItemDye.Player_UpdateItemDye(Terraria.On_Player.orig_UpdateItemDye,Terraria.Player,System.Boolean,System.Boolean,Terraria.Item,Terraria.Item)">
+            <summary>
+            
+            </summary>
+            <param name="orig"></param>
+            <param name="self"></param>
+            <param name="isNotInVanitySlot"></param>
+            <param name="isSetToHidden"></param>
+            <param name="armorItem">If you are an equipped item, this is you.</param>
+            <param name="dyeItem">If you are a dye, this is you.</param>
+        </member>
+        <member name="F:Aequus.Core.Entities.Items.GravityGlobalItem.itemGravityCheck">
+            <summary>
+            How long the item should float for. Set to 255 for permanent duration.
+            </summary>
+        </member>
+        <member name="T:Aequus.Core.Entities.Bestiary.BestiaryBuilder">
+            <summary>Helper class for initializing bestiary entries.</summary>
+        </member>
+        <member name="F:Aequus.Core.Entities.Buffs.BuffUI.DisableRightClick">
+            <summary>Prevents the player from right clicking a certain buff type. This list is cleared right before the local player is updated.</summary>
+        </member>
+        <member name="T:Aequus.Core.Entities.FloorHazard">
+            <summary>An abstract projectile which represents a floor hazard.</summary>
+        </member>
+        <member name="M:Aequus.Core.Entities.FloorHazard.#ctor(Aequus.Core.Entities.FloorHazard.Info)">
+            <summary>An abstract projectile which represents a floor hazard.</summary>
+        </member>
+        <member name="M:Aequus.Core.Entities.Golfing.GolfingSystem.SetGolfBallStatus(System.Boolean)">
+            <summary>
+            Sets all fake golf balls to be counted or not counted as golf balls.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Aequus.Core.Entities.Golfing.IGolfBallProjectile.OverrideGolfBallId(Terraria.Player,Terraria.Item,System.Int32)">
+            <summary>
+            Return true to override <paramref name="projType"/> with this projectile Id.
+            By default, returns true when <paramref name="projType"/> equals <see cref="F:Terraria.ID.ProjectileID.DirtGolfBall"/> (Default golf ball).
+            </summary>
+            <param name="player">The player.</param>
+            <param name="golfBall">The golf ball item.</param>
+            <param name="projType">The projectile Id of the previously chosen golf ball.</param>
+            <returns></returns>
+        </member>
+        <member name="P:Aequus.Core.Entities.Players.CustomDashData.DashHaltSpeedMultiplier">
+            <summary>
+            Multiplier used to reduce velocity when above the dash's halting speed.
+            </summary>
+        </member>
+        <member name="F:Aequus.Core.Entities.Projectiles.LegacyHeldSlashingSwordProjectile.swordHeight">
+            <summary>
+            Stat which determines how far the sword's laser hitbox will reach, in pixels.
+            </summary>
+        </member>
+        <member name="F:Aequus.Core.Entities.Projectiles.LegacyHeldSlashingSwordProjectile.swordWidth">
+            <summary>
+            Stat which determines how wide the sword's laser hitbox will be, in pixels.
+            </summary>
+        </member>
+        <member name="F:Aequus.Core.Entities.Projectiles.LegacyHeldSlashingSwordProjectile.gfxOutOffset">
+            <summary>
+            Outward offset, only effects rendering.
+            </summary>
+        </member>
+        <member name="F:Aequus.Core.Entities.Projectiles.LegacyHeldSlashingSwordProjectile.animationGFXOutOffset">
+            <summary>
+            Outward offset, only effects rendering. Updated every game update.
+            </summary>
+        </member>
+        <member name="P:Aequus.Core.Entities.Projectiles.ProjectileItemData.ItemData">
+            <summary>
+            Custom data to be used by items which utilize the <see cref="T:Aequus.Core.Entities.Items.Components.IManageProjectile"/> interface or by channeled items. This data is synced in multiplayer.
+            </summary>
+        </member>
+        <member name="P:Aequus.Core.Entities.Projectiles.ProjectileItemData.NoSpecialEffects">
+            <summary>
+            If this is true, special effects should be disabled on the projectile. This is only set to true by Javelin-like projectiles.
+            </summary>
+        </member>
+        <member name="P:Aequus.Core.Entities.Projectiles.ProjectileSource.IsProjectileChild">
+            <summary>Whether this projectile was spawned by another projectile. Use this to prevent effects occuring multiple times (Like ammo retrival)</summary>
+        </member>
+        <member name="T:Aequus.Core.Entities.Tiles.BaseFurnitureTile.Furniture">
+            <summary>
+            A base furntiure tile, Furniture in Aequus is handled on an individual ModTile basis instead of through a big multi-styled tile.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.Entities.Tiles.Components.IPlaceChestHook.PlaceChest(System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Return -2 to allow vanilla function to occur.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="style"></param>
+            <param name="notNearOtherChests"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Core.Entities.Tiles.Components.IPlaceChestHook.PlaceChestDirect(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Return true to allow vanilla function to occur.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="style"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Core.Entities.Tiles.Components.IRandomUpdateOverride.PreRandomUpdate(System.Int32,System.Int32)">
+            <param name="i"></param>
+            <param name="j"></param>
+            <returns>Whether to override random update logic. Returns false by default.</returns>
+        </member>
+        <member name="T:Aequus.Core.Entities.Tiles.Components.IWaterVisibleWall">
+            <summary>
+            Allows modded walls to be seen behind water.
+            </summary>
+        </member>
+        <member name="P:Aequus.Core.Entities.Tiles.Components.IWaterVisibleWall.WaterMapEntry">
+            <summary>
+            The Entry Id for when this wall is behind water.
+            Use <see cref="M:Aequus.Core.Entities.Tiles.Components.WaterVisibleWall.CreateWaterEntry``1(``0,Microsoft.Xna.Framework.Color,Terraria.Localization.LocalizedText,System.Int32)"/> to generate an entry for this automatically.
+            <para>Defaults to 0, which uses the wall's first registered map color. (After AddRecipes, this is offset by the wall's map entry id.)</para>
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.Entities.Tiles.Components.WaterVisibleWall.CreateWaterEntry``1(``0,Microsoft.Xna.Framework.Color,Terraria.Localization.LocalizedText,System.Int32)">
+            <summary>
+            Creates a map entry for the tile being covered in water.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="wall"></param>
+            <param name="baseColor"></param>
+            <param name="text"></param>
+            <param name="entryNumber">Offsets the map Id lookup by this value. Defaults to 1, meaning that it assumes that this is the 2nd registered color for this wall.</param>
         </member>
         <member name="M:Aequus.Core.Audio.AudioEffects.PlayUnpanningAttenuationSound(Terraria.Audio.SoundStyle,Microsoft.Xna.Framework.Vector2,System.Single)">
             <summary>Plays a sound which does not pan, but will get quieter with distance.</summary>
@@ -1843,6 +1552,180 @@
             Call <see cref="M:Aequus.Core.Collections.DictionaryRemoveQueue`2.RemoveAllQueued"/> to remove all queued entries from the Dictionary.
             </summary>
         </member>
+        <member name="M:Aequus.Core.Commons.Conditions.BetweenDays(System.DayOfWeek,System.DayOfWeek)">
+            <param name="firstDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:Aequus.Core.Systems.TimeSystem.DayOfTheWeek"/>.</param>
+            <param name="lastDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:Aequus.Core.Systems.TimeSystem.DayOfTheWeek"/>.</param>
+            <returns>A condition for a specific time range between two days of the week.</returns>
+        </member>
+        <member name="M:Aequus.Core.Commons.Conditions.DayOfTheWeek(System.DayOfWeek)">
+            <param name="dayOfWeek">The <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:Aequus.Core.Systems.TimeSystem.DayOfTheWeek"/>.</param>
+            <returns>A condition for a specific day of the week.</returns>
+        </member>
+        <member name="M:Aequus.Core.Commons.Conditions.ConfigIsTrue(Terraria.ModLoader.Config.ModConfig,System.String)">
+            <returns><inheritdoc cref="M:Aequus.Core.Commons.Conditions.Config(Terraria.ModLoader.Config.ModConfig,System.String,Terraria.Localization.LocalizedText,System.Func{System.Object,System.Boolean})"/> Defaults to checking if the value equals true.</returns>
+        </member>
+        <member name="M:Aequus.Core.Commons.Conditions.Config(Terraria.ModLoader.Config.ModConfig,System.String,Terraria.Localization.LocalizedText,System.Func{System.Object,System.Boolean})">
+            <returns>A condition which depends on a certain config setting.</returns>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.MaterialStart">
+            <summary>Rarity shared by early Pre Hardmode materials (Metal Bars, Ores, etc.)</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.MaterialMid">
+            <summary>Rarity shared by mid Pre Hardmode materials (Demonite, Crimtane, etc.)</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.MaterialEnd">
+            <summary>Rarity shared by end Pre Hardmode materials (Meteorite, Hellstone, etc.)</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.MaterialStartHM">
+            <summary>Rarity shared by early Hardmode materials (Bars, Ores, etc.)</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.MaterialPillars">
+            <summary>Rarity shared by Lunar Fragments.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BossKingSlime">
+            <summary>Rarity shared by items dropped by the King Slime.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BossEyeOfCthulhu">
+            <summary>Rarity shared by items dropped by the Eye of Cthulhu.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BossSalamancer">
+            <summary>Rarity shared by items dropped by the Salamancer.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BossEaterOfWorlds">
+            <summary>Rarity shared by items dropped by the Eater of Worlds.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BossBrainOfCthulhu">
+            <summary>Rarity shared by items dropped by the Brain of Cthulhu.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BossQueenBee">
+            <summary>Rarity shared by items dropped by the Queen Bee.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BossDeerclops">
+            <summary>Rarity shared by items dropped by Deerclops.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BossSkeletron">
+            <summary>Rarity shared by items dropped by Skeletron.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BossUltraStarite">
+            <summary>Rarity shared by items dropped by Ultra Starite.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BossOmegaStarite">
+            <summary>Rarity shared by items dropped by Omega Starite.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BossWallOfFlesh">
+            <summary>Rarity shared by items dropped by the Wall of Flesh.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BossQueenSlime">
+            <summary>Rarity shared by items dropped by the Queen Slime.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BossMechanicalBosses">
+            <summary>Rarity shared by items dropped by the Mechanical Bosses.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BossDustDevil">
+            <summary>Rarity shared by items dropped by the Dust Devil.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BossPlantera">
+            <summary>Rarity shared by items dropped by Plantera.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BossGolem">
+            <summary>Rarity shared by items dropped by Golem.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BossDukeFishron">
+            <summary>Rarity shared by items dropped by Duke Fishron.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BossEmpressOfLight">
+            <summary>Rarity shared by items dropped by the Empress of Light.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BossLunaticCultist">
+            <summary>Rarity shared by items dropped by the Lunatic Cultist.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BossMoonLord">
+            <summary>Rarity shared by items dropped by the Moon Lord.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.EventGoblins">
+            <summary>Rarity shared by items found in the Goblin Invasion.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.EventGlimmer">
+            <summary>Rarity shared by items found in the Glimmer.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.EventDemonSiege">
+            <summary>Rarity shared by items found in the Demon Siege.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.EventSandstormHM">
+            <summary>Rarity shared by items found in the Hardmode Sandstorm (Forbidden set).</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.EventBlizzardHM">
+            <summary>Rarity shared by items found in the Hardmode Blizzard (Frost set).</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.EventGaleStreams">
+            <summary>Rarity shared by items found in the Gale Streams.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.EventPillars">
+            <summary>Rarity shared by items crafted with Lunar Fragments.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BiomeOcean">
+            <summary>Rarity shared by items from the Ocean and Polluted Ocean.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BiomeJungle">
+            <summary>Rarity shared by items found in the Jungle.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BiomeDungeon">
+            <summary>Rarity shared by items found in the Dungeon.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.BiomeDungeonHM">
+            <summary>Rarity shared by items found in the Hardmode Dungeon.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.NPCSkyMerchant">
+            <summary>Rarity shared by items sold by the Sky Merchant.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Rare.ShimmerExclusives">
+            <summary>Rarity shared by items exclusive to the Shimmer.</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Cost.BossSalamancer">
+            <summary>75 Silver</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Cost.BossUltraStarite">
+            <summary>3 Gold</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Cost.BossOmegaStarite">
+            <summary>3 Gold</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Cost.BossDustDevil">
+            <summary>3 Gold 50 Silver</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Cost.BossMoonLord">
+            <summary>10 Gold</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Cost.EventGlimmer">
+            <summary>1 Gold</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Cost.EventDemonSiege">
+            <summary>2 Gold</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Cost.EventBlizzardHM">
+            <summary>2 Gold</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Cost.EventSandstormHM">
+            <summary>2 Gold</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Cost.EventGaleStreams">
+            <summary>3 Gold</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Cost.BiomeOcean">
+            <summary>50 Silver</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Cost.BiomeDungeon">
+            <summary>1 Gold 75 Silver</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Cost.BiomeDungeonHard">
+            <summary>6 Gold</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Cost.NPCSkyMerchant">
+            <summary>1 Gold</summary>
+        </member>
+        <member name="F:Aequus.Core.Commons.Cost.NPCSkyMerchantCustomPrice">
+            <summary>5 Gold</summary>
+        </member>
         <member name="T:Aequus.Core.Concurrent.ParallelLighting">
             <summary>Allows for lights to be safely created in a parallel process.</summary>
         </member>
@@ -1960,21 +1843,8 @@
         <member name="P:Aequus.Core.CrossMod.SupportedMod`1.Instance">
             <summary>The Supported Mod's instance. This property is <see langword="null" /> when the mod is not enabled.</summary>
         </member>
-        <member name="T:Aequus.Core.Entities.FloorHazard">
-            <summary>An abstract projectile which represents a floor hazard.</summary>
-        </member>
-        <member name="M:Aequus.Core.Entities.FloorHazard.#ctor(Aequus.Core.Entities.FloorHazard.Info)">
-            <summary>An abstract projectile which represents a floor hazard.</summary>
-        </member>
-        <member name="P:Aequus.Core.Entities.Projectiles.ProjectileItemData.ItemData">
-            <summary>
-            Custom data to be used by items which utilize the <see cref="T:Aequus.Common.Items.Components.IManageProjectile"/> interface or by channeled items. This data is synced in multiplayer.
-            </summary>
-        </member>
-        <member name="P:Aequus.Core.Entities.Projectiles.ProjectileItemData.NoSpecialEffects">
-            <summary>
-            If this is true, special effects should be disabled on the projectile. This is only set to true by Javelin-like projectiles.
-            </summary>
+        <member name="M:Aequus.Core.Entites.Bestiary.BestiaryTags.Add(Terraria.ModLoader.ModBiome)">
+            <summary>Call in PostSetupContent.</summary>
         </member>
         <member name="F:Aequus.Core.Graphics.DrawLayers.PostUpdateScreenPosition">
             <summary>Invoked before anything has begun rendering, but after the screen position has been determined.</summary>
@@ -2047,6 +1917,96 @@
             </summary>
             <param name="spriteBatch"></param>
             <param name="graphicsDevice"></param>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.On_ChestUI_QuickStack(Terraria.UI.On_ChestUI.orig_QuickStack,Terraria.DataStructures.ContainerTransferContext,System.Boolean)">
+            <summary>Allows backpacks to quick stack to nearby chests.</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.On_GolfHelper_StepGolfBall(Terraria.GameContent.Golf.On_GolfHelper.orig_StepGolfBall,Terraria.Entity,System.Single@)">
+            <summary>Allows custom golf ball prediction lines for projectiles which implement <see cref="T:Aequus.Core.Entities.Golfing.IGolfBallProjectile"/>.</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.ItemDropResolver_ResolveRule(Terraria.GameContent.ItemDropRules.On_ItemDropResolver.orig_ResolveRule,Terraria.GameContent.ItemDropRules.ItemDropResolver,Terraria.GameContent.ItemDropRules.IItemDropRule,Terraria.GameContent.ItemDropRules.DropAttemptInfo)">
+            <summary>Allows for re-rolling item drops (if they fail an RNG roll) for the Grand Reward.</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.On_ItemSlot_PickItemMovementAction(Terraria.UI.On_ItemSlot.orig_PickItemMovementAction,Terraria.Item[],System.Int32,System.Int32,Terraria.Item)">
+            <summary>Allows custom item movement action overrides for hovered modded items which implement <see cref="T:Aequus.Core.Entities.Items.Components.IPickItemMovementAction"/>.</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.ItemSlot_RightClick(Terraria.UI.On_ItemSlot.orig_RightClick_ItemArray_int_int,Terraria.Item[],System.Int32,System.Int32)">
+            <summary>Allows for:
+            <list type="number">
+            <item>
+            Right click overrides for held modded items which implement <see cref="T:Aequus.Core.Entities.Items.Components.IRightClickOverrideWhenHeld"/>.
+            </item>
+            <item>
+            Handling custom golden key and shadow key logic.
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.On_Main_UpdateTime_StartDay(Terraria.On_Main.orig_UpdateTime_StartDay,System.Boolean@)">
+            <summary>Handles incrementing the day counter, and the NPC wants to settle down system.</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.On_Main_UpdateTime_StartNight(Terraria.On_Main.orig_UpdateTime_StartNight,System.Boolean@)">
+            <summary>Handles spawning the Glimmer event.</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.NPC_NPCLoot_DropMoney(Terraria.On_NPC.orig_NPCLoot_DropMoney,Terraria.NPC,Terraria.Player)">
+            <summary>Allows the Grand Reward to disable money drops when equipped by the closest player.</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.On_Player_ConsumeItem(Terraria.On_Player.orig_ConsumeItem,Terraria.Player,System.Int32,System.Boolean,System.Boolean)">
+            <summary>Allows items in backpacks to be consumed.</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.On_Player_DashMovement(Terraria.On_Player.orig_DashMovement,Terraria.Player)">
+            <summary>Allows for custom dash accessories added by Aequus to update dash movement.</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.On_Player_GetPreferredGolfBallToUse(Terraria.On_Player.orig_GetPreferredGolfBallToUse,Terraria.Player,System.Int32@)">
+            <summary>Allows for custom golf ball projectiles to be picked by this method. And allows golf balls in backpacks to be chosen aswell.</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.On_Player_GetRespawnTime(Terraria.On_Player.orig_GetRespawnTime,Terraria.Player,System.Boolean)">
+            <summary>Allows for respawn time modifications to be perfomed. (<see cref="F:Aequus.AequusPlayer.respawnTimeModifierFlat"/>)</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.IL_Player_PickTile(MonoMod.Cil.ILContext)">
+            <summary>Allows for the breath conserver to restore breath upon breaking a tile.</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.On_Player_PlaceThing_PaintScrapper_LongMoss(Terraria.On_Player.orig_PlaceThing_PaintScrapper_LongMoss,Terraria.Player,System.Int32,System.Int32)">
+            <summary>Allows for custom mosses to be broken by the Paint Scraper.</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.IL_Player_PlaceThing_ValidTileForReplacement(MonoMod.Cil.ILContext)">
+            <summary>Allows for the Lavaproof Mitten to grant block placement in lava for blockswap.</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.On_Player_QuickHeal_GetItemToUse(Terraria.On_Player.orig_QuickHeal_GetItemToUse,Terraria.Player)">
+            <summary>Allows for backpacks to provide healing items. Backpack healing potions do not calculate with the life restoration bias used for Restoration potions.</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.On_Player_QuickMana_GetItemToUse(Terraria.On_Player.orig_QuickMana_GetItemToUse,Terraria.Player)">
+            <summary>Allows for backpacks to provide mana healing items.</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.On_Player_QuickMount_GetItemToUse(Terraria.On_Player.orig_QuickMount_GetItemToUse,Terraria.Player)">
+            <summary>Allows for backpacks to provide mount items.</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.On_Player_QuickStackAllChests(Terraria.On_Player.orig_QuickStackAllChests,Terraria.Player)">
+            <summary>Allows for backpacks to quick stack their items to nearby chests.</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.On_Player_RollLuck(Terraria.On_Player.orig_RollLuck,Terraria.Player,System.Int32)">
+            <summary>Re-rolls luck for the Rabbit's Foot.</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.On_Player_TakeUnityPotion(Terraria.On_Player.orig_TakeUnityPotion,Terraria.Player)">
+            <summary>Prevents the player from consuming a wormhole potion when having the Phase Mirror. (<see cref="F:Aequus.AequusPlayer.infiniteWormhole"/>)</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.On_Player_UpdateVisibleAccessories(Terraria.On_Player.orig_UpdateVisibleAccessories,Terraria.Player)">
+            <summary>Allows for custom dash accessories added by Aequus to update visual effects.</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.On_PlayerDeathReason_GetDeathText(Terraria.DataStructures.On_PlayerDeathReason.orig_GetDeathText,Terraria.DataStructures.PlayerDeathReason,System.String)">
+            <summary>Translates Aequus' death text. Since this isn't supported yet for some dumb reason.</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.PlayerDrawLayers_DrawPlayer_RenderAllLayers(Terraria.DataStructures.On_PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers,Terraria.DataStructures.PlayerDrawSet@)">
+            <summary>Allows for custom dash accessories added by Aequus to update dash movement.</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.Player_HasUnityPotion(Terraria.On_Player.orig_HasUnityPotion,Terraria.Player)">
+            <summary>Allows infinite wormhole usage for the Phase Mirror. (<see cref="F:Aequus.AequusPlayer.infiniteWormhole"/>)</summary>
+        </member>
+        <member name="M:Aequus.Core.Hooks.TerrariaHooks.On_Player_PlaceThing_Tiles_CheckLavaBlocking(Terraria.On_Player.orig_PlaceThing_Tiles_CheckLavaBlocking,Terraria.Player)">
+            <summary>Allows for the Lavaproof Mitten to grant block placement in lava.</summary>
+        </member>
+        <member name="P:Aequus.Core.Hooks.TerrariaHooks.OnRandomTileUpdate">
+            <summary>int1 = X, int2 = Y</summary>
         </member>
         <member name="M:Aequus.Core.Initialization.BannerLoader.AddBannerBuff``1(Terraria.ModLoader.ModNPC)">
             <summary>
@@ -2175,6 +2135,45 @@
             <param name="InsertLayer">Name of the layer to search the index of.</param>
             <param name="ScaleType">Scale Type of this layer.</param>
             <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
+        </member>
+        <member name="M:Aequus.Core.WorldGeneration.AequusGenStep.SetMessage(Terraria.WorldBuilding.GenerationProgress,System.Object)">
+            <summary>
+            Safely sets the progress message.
+            </summary>
+            <param name="progress"></param>
+            <param name="keySuffix"></param>
+        </member>
+        <member name="M:Aequus.Core.WorldGeneration.AequusGenStep.RectangleProgress(System.Int32,System.Int32)">
+            <summary>Determines the progress of an ij loop in a rectangle. Using 0-<see cref="F:Terraria.Main.maxTilesX"/> and 0-<see cref="F:Terraria.Main.maxTilesY"/> as the edges.</summary>
+            <param name="i"></param>
+            <param name="j"></param>
+        </member>
+        <member name="M:Aequus.Core.WorldGeneration.AequusGenStep.RectangleProgress(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>Determines the progress of an ij loop in a rectangle. Using 0-<see cref="F:Terraria.Main.maxTilesY"/> as the vertical edges.</summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <param name="leftSide">X coordinate of the Left edge of the rectangle.</param>
+            <param name="rightSide">X coordinate of the Right edge of the rectnagle.</param>
+        </member>
+        <member name="M:Aequus.Core.WorldGeneration.AequusGenStep.RectangleProgress(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>Determines the progress of an ij loop in a rectangle.</summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <param name="leftSide">X coordinate of the Left edge of the rectangle.</param>
+            <param name="rightSide">X coordinate of the Right edge of the rectnagle.</param>
+            <param name="topSide">Y coordinate of the Top Edge of the rectangle.</param>
+            <param name="bottomSide">Y coordinate of the Bottom Edge of the rectangle.</param>
+        </member>
+        <member name="M:Aequus.Core.WorldGeneration.AequusGenStep.SetProgress(Terraria.WorldBuilding.GenerationProgress,System.Double,System.Double,System.Double)">
+            <summary>
+            Safely sets the progress bar.
+            </summary>
+        </member>
+        <member name="P:Aequus.AequusSystem.RemixWorldSafeUnderworldRange">
+            <summary>Returns a point with the beginning (left) (X) and end (right) (Y) of the 'safe' underworld in remix worlds. This does not represent a point in 2D space, but rather two X coordinates.</summary>
+        </member>
+        <member name="M:Aequus.Aequus.GetRandomName(Terraria.Utilities.UnifiedRandom)">
+            <returns>A random name. Used in naturally generated underworld tombstones.</returns>
         </member>
         <member name="T:Aequus.AequusSounds">
             <summary>(Total Sounds: 104)</summary>
@@ -5352,6 +5351,110 @@
         </member>
         <member name="F:Aequus.AequusTextures.BacciliteSceptre_Glow">
             <summary>Full Path: Old/CrossMod/AvalonSupport/Items/BacciliteSceptre_Glow</summary>
+        </member>
+        <member name="M:Aequus.Old.Content.Bosses.OmegaStarite.OmegaStariteRing.#ctor(System.IO.BinaryReader)">
+            <summary>
+            Creates a Ring through a net package
+            </summary>
+            <param name="reader"></param>
+        </member>
+        <member name="T:Aequus.Old.Content.Events.DemonSiege.Tiles.OblivionAltarDummy">
+            <summary>Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.</summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Items.Accessories.HighSteaks.HighSteaks.NotStackableCritDamage">
+            <summary>
+            Default Value: 0.15
+            <para>This is only added on the first stack of the accessory.</para>
+            </summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Items.Accessories.HighSteaks.HighSteaks.WantedCost">
+            <summary>
+            The cost for performing a critical strike.
+            </summary>
+        </member>
+        <member name="P:Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg.SaivoryKnife.GhostLifespan">
+            <summary>Default Value: 3600 (1 minute)</summary>
+        </member>
+        <member name="F:Aequus.Old.Content.Particles.DashBlurParticle.Particle.ScaleX">
+            <summary>
+            Defaults to 0.5f.
+            </summary>
+        </member>
+        <member name="M:Aequus.Old.Content.Tiles.Herbs.ModHerb.GetDropParams(System.Int32,Terraria.Player,Terraria.Item,System.Int32@)">
+            <param name="growthStage">The growth stage (style) of this plant.</param>
+            <param name="closestPlayer">The closest player to the plant.</param>
+            <param name="playerHeldItem">The player's held item.</param>
+            <param name="plant">The plant item id to drop.</param>
+            <param name="seeds">The seed item id to drop.</param>
+        </member>
+        <member name="M:Aequus.Old.Content.Tiles.Herbs.ModHerb.GetDropStacks(System.Int32,Terraria.Player,Terraria.Item,System.Boolean,System.Int32,System.Int32,System.Int32@,System.Int32@)">
+            <param name="growthStage">The growth stage (style) of this plant.</param>
+            <param name="closestPlayer">The closest player to the plant.</param>
+            <param name="playerHeldItem">The player's held item.</param>
+            <param name="staffOfRegrowth">If the player is holding the Staff of Regrowth or Axe of Regrowth.</param>
+            <param name="plant">The plant item id to drop.</param>
+            <param name="seeds">The seed item id to drop.</param>
+            <param name="plantStack">The amount of plants to drop.</param>
+            <param name="seedStack">The amount of seeds to drop.</param>
+        </member>
+        <member name="T:Aequus.Old.Core.CameraFocus">
+            <summary>
+            Manages screen panning
+            </summary>
+        </member>
+        <member name="P:Aequus.Old.Core.CameraFocus.Context">
+            <summary>
+            A context string for the current focus
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Core.CameraFocus.target">
+            <summary>
+            The target position for the camera in the world
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Core.CameraFocus.cameraPosition">
+            <summary>
+            The camera's position 
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Core.CameraFocus.priority">
+            <summary>
+            A priority for determining whether or not a new camera focus can be added
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Core.CameraFocus.speed">
+            <summary>
+            The speed of the camera
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Core.CameraFocus.cameraProgress">
+            <summary>
+            The progress of the camera from its original position to its destination
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Core.CameraFocus.hold">
+            <summary>
+            How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Old.Core.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Old.Core.CameraPriority,System.Single,System.Int32)"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Old.Core.CameraFocus.returning">
+            <summary>
+            Whether or not the camera is returning
+            </summary>
+        </member>
+        <member name="M:Aequus.Old.Core.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Old.Core.CameraPriority,System.Single,System.Int32)">
+            <summary>
+            Sets the camera target to a position, may return false if your priority is below a current target's priority
+            </summary>
+            <param name="key">Context key, only really useful for 3rd party mods</param>
+            <param name="target">A world coordinate to point the camera at</param>
+            <param name="priority">The priority of this camera target. If there is a current camera target, and its priority is above, it will prevent you from setting a target and this method will return false</param>
+            <param name="speed">The speed of the camera, the exact time it will get there is: <code>speed / 50</code>So 6 speed means it will get into position in 8 frames. Clamped between 6 and 25</param>
+            <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Old.Core.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Old.Core.CameraPriority,System.Single,System.Int32)"/></param>
+            <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
+        </member>
+        <member name="T:Aequus.Old.Core.SkyDarkness">
+            <summary>Used for darken-ing the sky for flashy visual effects</summary>
         </member>
     </members>
 </doc>

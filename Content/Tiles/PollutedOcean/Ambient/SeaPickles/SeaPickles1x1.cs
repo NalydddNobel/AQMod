@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Tiles.Rubblemaker;
-using Aequus.Content.Tiles.PollutedOcean.PolymerSands;
+﻿using Aequus.Content.Tiles.PollutedOcean.PolymerSands;
+using Aequus.Core.Entities.Tiles.Rubblemaker;
 using Terraria.GameContent;
 using Terraria.ObjectData;
 

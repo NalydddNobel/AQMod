@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Systems;
+﻿using Aequus.Core.Systems;
 using Terraria.Localization;
 
 namespace Aequus.Content.Items.Accessories.Informational.Calendar;

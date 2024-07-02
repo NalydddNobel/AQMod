@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Items.Components;
-using Aequus.Content.Graphics.Particles;
+﻿using Aequus.Content.Graphics.Particles;
+using Aequus.Core.Entities.Items.Components;
 using System;
 using tModLoaderExtended.GlowMasks;
 

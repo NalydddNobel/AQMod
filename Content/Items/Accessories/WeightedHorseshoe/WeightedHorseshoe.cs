@@ -1,6 +1,6 @@
-﻿using Aequus.Common;
-using Aequus.Common.Items.Components;
+﻿using Aequus.Core;
 using Aequus.Core.CodeGeneration;
+using Aequus.Core.Entities.Items.Components;
 using System;
 
 namespace Aequus.Content.Items.Accessories.WeightedHorseshoe;

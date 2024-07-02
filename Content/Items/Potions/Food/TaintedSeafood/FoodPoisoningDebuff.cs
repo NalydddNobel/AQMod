@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Buffs.Components;
+﻿using Aequus.Core.Components.Buffs;
 
 namespace Aequus.Content.Items.Potions.Food.TaintedSeafood;
 

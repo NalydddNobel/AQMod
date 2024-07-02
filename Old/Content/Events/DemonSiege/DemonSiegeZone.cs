@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Bestiary;
+﻿using Aequus.Core.Entites.Bestiary;
 using Aequus.Old.Common.EventBars;
 using Aequus.Old.Content.Enemies.DemonSiege.CinderBat;
 using Aequus.Old.Content.Enemies.DemonSiege.Keeper;

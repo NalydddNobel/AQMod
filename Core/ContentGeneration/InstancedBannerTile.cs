@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Tiles;
+﻿using Aequus.Core.Entities.Tiles;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.Enums;

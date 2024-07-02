@@ -1,7 +1,7 @@
-﻿using Aequus.Common;
-using Aequus.Common.Items.Components;
-using Aequus.Common.Projectiles;
+﻿using Aequus.Core;
 using Aequus.Content.Dusts;
+using Aequus.Core.Entities.Items.Components;
+using Aequus.Core.Entities.Projectiles;
 using Aequus.Core.Particles;
 using Aequus.DataSets;
 using System;

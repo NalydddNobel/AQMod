@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Core;
 
 namespace Aequus.Content.Items.Accessories.FlashwayShield;
 

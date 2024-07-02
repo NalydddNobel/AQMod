@@ -21,6 +21,6 @@ public class OblivionAltarDummy : ModTile {
         DustType = DustID.Blood;
         AdjTiles = new int[] { TileID.DemonAltar };
         MineResist = 110;
-        AddMapEntry(new Color(175, 15, 15), ExtendLanguage.GetMapEntry<OblivionAltar>());
+        AddMapEntry(new Color(175, 15, 15), XLanguage.GetMapEntry<OblivionAltar>());
     }
 }

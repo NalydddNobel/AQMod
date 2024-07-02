@@ -1,8 +1,8 @@
-﻿using Aequus.Common;
-using Aequus.Common.Items.Components;
-using Aequus.Common.Items.Tooltips;
-using Aequus.Common.Players.Drawing;
+﻿using Aequus.Core;
 using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Items.Components;
+using Aequus.Core.Entities.Items.Tooltips;
+using Aequus.Core.Entities.Players.Drawing;
 using Aequus.Core.UI;
 using ReLogic.Content;
 using System;

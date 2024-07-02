@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Elements;
+﻿using Aequus.Content.Elements;
 using Aequus.Core.Entities;
 using System;
 using Terraria.Audio;

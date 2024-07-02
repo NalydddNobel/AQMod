@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Content.Configuration;
+﻿using Aequus.Content.Configuration;
 using Aequus.Content.Critters.SeaFirefly;
 using Aequus.Content.CrossMod.SplitSupport.Photography;
 using Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;

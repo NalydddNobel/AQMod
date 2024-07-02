@@ -7,7 +7,7 @@ namespace Aequus.Old.Content.Items.GrapplingHooks.EnemyGrappleHook;
 public class Meathook : ModItem {
     public const string IMMUNE_TIMER = "Meathook Immunity";
     public static float DamageBonus { get; set; } = 0.1f;
-    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ExtendLanguage.Percent(DamageBonus));
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(XLanguage.Percent(DamageBonus));
 
     public override void SetDefaults() {
         Item.CloneDefaults(ItemID.DualHook);

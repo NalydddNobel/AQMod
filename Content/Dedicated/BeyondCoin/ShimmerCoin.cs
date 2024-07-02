@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items.Dedications;
+﻿using Aequus.Core.Entities.Items.Dedications;
 using System.Collections.Generic;
 using Terraria.Localization;
 using tModLoaderExtended.Terraria.GameContent;

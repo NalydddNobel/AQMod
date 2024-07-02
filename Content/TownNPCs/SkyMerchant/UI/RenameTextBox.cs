@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Renaming;
+﻿using Aequus.Content.Systems.Renaming;
 using Aequus.Core.UI.Elements;
 
 namespace Aequus.Content.TownNPCs.SkyMerchant.UI;

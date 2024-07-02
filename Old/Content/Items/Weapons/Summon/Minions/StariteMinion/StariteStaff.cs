@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Core;
 using Aequus.Old.Content.Items.Materials;
 using Terraria.DataStructures;
 using tModLoaderExtended.GlowMasks;

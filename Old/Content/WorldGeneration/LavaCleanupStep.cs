@@ -1,4 +1,4 @@
-﻿using Aequus.Common.WorldGeneration;
+﻿using Aequus.Core.WorldGeneration;
 using Aequus.Old.Content.Events.DemonSiege.Tiles;
 using Terraria.IO;
 using Terraria.WorldBuilding;

@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ItemPrefixes;
+﻿using Aequus.Core.Entities.Prefixes;
 
 namespace Aequus.Content.Prefixes;
 

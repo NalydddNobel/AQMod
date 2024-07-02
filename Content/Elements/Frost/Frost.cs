@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Bestiary;
-using Aequus.Common.Elements;
+﻿using Aequus.Core.Entites.Bestiary;
 
 namespace Aequus.Content.Elements.Frost;
 

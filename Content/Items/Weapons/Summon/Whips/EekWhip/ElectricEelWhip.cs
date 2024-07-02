@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Core;
 using Aequus.Content.Enemies.PollutedOcean.Eel;
 using Aequus.Content.Graphics.Particles;
 using Aequus.Core.ContentGeneration;

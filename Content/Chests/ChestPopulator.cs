@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus.Core;
 using Aequus.Content.Configuration;
 using Aequus.Content.Items.Tools.NameTag;
 using Aequus.DataSets;

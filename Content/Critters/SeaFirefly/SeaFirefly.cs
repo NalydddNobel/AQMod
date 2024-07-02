@@ -1,6 +1,6 @@
-﻿using Aequus.Common.NPCs.Bestiary;
-using Aequus.Content.Biomes.PollutedOcean;
+﻿using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Bestiary;
 using Aequus.Core.Graphics;
 using Aequus.Core.Particles;
 using System;

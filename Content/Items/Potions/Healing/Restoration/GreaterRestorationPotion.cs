@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items.Components;
+﻿using Aequus.Core.Entities.Items.Components;
 
 namespace Aequus.Content.Items.Potions.Healing.Restoration;
 

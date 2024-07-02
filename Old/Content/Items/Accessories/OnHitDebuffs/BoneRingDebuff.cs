@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Buffs.Components;
-using Aequus.Common.NPCs;
+﻿using Aequus.Core.Entities.NPCs;
+using Aequus.Core.Components.Buffs;
 using Aequus.DataSets;
 using Terraria.Audio;
 

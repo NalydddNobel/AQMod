@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Items.Components;
-using Aequus.Core.ContentGeneration;
+﻿using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Items.Components;
 using Aequus.Old.Content.Items.Tools.MagicMirrors.PhaseMirror;
 using System;
 using System.Collections.Generic;

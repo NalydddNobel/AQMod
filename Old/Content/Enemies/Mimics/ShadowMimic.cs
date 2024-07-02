@@ -1,5 +1,5 @@
-﻿using Aequus.Common.NPCs.Bestiary;
-using Aequus.Content.Configuration;
+﻿using Aequus.Content.Configuration;
+using Aequus.Core.Entities.Bestiary;
 using System;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;

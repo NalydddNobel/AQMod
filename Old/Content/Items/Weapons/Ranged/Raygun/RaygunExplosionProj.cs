@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Projectiles;
+﻿using Aequus.Core.Entities.Projectiles;
 
 namespace Aequus.Old.Content.Items.Weapons.Ranged.Raygun;
 

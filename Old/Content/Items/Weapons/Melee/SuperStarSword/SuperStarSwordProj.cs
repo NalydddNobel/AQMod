@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Projectiles;
+﻿using Aequus.Core.Entities.Projectiles;
 using Aequus.Old.Content.StatusEffects;
 using System;
 using Terraria.Audio;

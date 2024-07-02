@@ -1,5 +1,5 @@
-﻿using Aequus.Common;
-using Aequus.Common.NPCs;
+﻿using Aequus.Core;
+using Aequus.Core.Entities.NPCs;
 
 namespace Aequus.Old.Content.Items.Materials.PossessedShard;
 
