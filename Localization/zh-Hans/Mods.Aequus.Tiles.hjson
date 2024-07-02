@@ -407,7 +407,10 @@ Furniture: {
 	TrashSink.ItemDisplayName: 废料水槽
 	TrashSofa.ItemDisplayName: 废料沙发
 	TrashWorkBench.ItemDisplayName: 废料工作台
-	// TrashCampfire.ItemDisplayName: Scrap Campfire
+	TrashCampfire: {
+		ItemDisplayName: 废料篝火
+		ItemTooltip: "{$ItemTooltip.Campfire}"
+	}
 
 	TrashChest: {
 		MapEntry: 垃圾箱
@@ -431,4 +434,4 @@ Furniture: {
 	}
 }
 
-// SeaPickleTorch.ItemDisplayName: Hydroanther Torch
+SeaPickleTorch.ItemDisplayName: 水和花药火把
