@@ -1,12 +1,12 @@
-﻿using Aequus.Core.CrossMod;
+﻿using Aequus.Core.Structures.ID;
 using System;
 
 namespace Aequus.Content.CrossMod.SplitSupport.Photography;
 
-internal record struct AlbumQuestInfo(int Frame, IContentIdProvider[] NPCIds, IContentIdProvider Envelope, Predicate<NPC> SpecialCondition = null) {
-    public AlbumQuestInfo(int Frame, IContentIdProvider NPCId, IContentIdProvider Envelope, Predicate<NPC> SpecialCondition = null)
-        : this(Frame, new IContentIdProvider[] { NPCId, }, Envelope, SpecialCondition) { }
+internal record struct AlbumQuestInfo(int Frame, IProvideId[] NPCIds, IProvideId Envelope, Predicate<NPC> SpecialCondition = null) {
+    public AlbumQuestInfo(int Frame, IProvideId NPCId, IProvideId Envelope, Predicate<NPC> SpecialCondition = null)
+        : this(Frame, new IProvideId[] { NPCId, }, Envelope, SpecialCondition) { }
 
-    public IContentIdProvider NPC => NPCIds[0];
+    public IProvideId NPC => NPCIds[0];
     public ModItem Poster { get; internal set; }
 }

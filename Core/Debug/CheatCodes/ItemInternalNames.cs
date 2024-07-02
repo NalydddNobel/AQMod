@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
-namespace Aequus.Core.Debugging.CheatCodes;
+namespace Aequus.Core.Debug.CheatCodes;
 
 internal class ItemInternalNames() : CheatCode<HoldStateProvider>(
     Params.DebugOnly,

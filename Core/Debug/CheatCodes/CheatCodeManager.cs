@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Aequus.Core.Debugging.CheatCodes;
+namespace Aequus.Core.Debug.CheatCodes;
 
 public class CheatCodeManager : ModSystem {
     private static readonly List<ICheatCode> Codes = [];

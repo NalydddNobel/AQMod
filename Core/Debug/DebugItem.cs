@@ -1,6 +1,6 @@
 ﻿using Terraria.Localization;
 
-namespace Aequus.Core.Debugging;
+namespace Aequus.Core.Debug;
 
 internal class DebugItem : ModItem {
     private static int _debugItemsRegistered;

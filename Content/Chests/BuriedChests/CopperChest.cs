@@ -1,6 +1,6 @@
 ﻿using Aequus.Content.Items.Potions.Healing.Restoration;
 using Aequus.Content.Items.Tools.Keys;
-using Aequus.Core.CrossMod;
+using Aequus.Core.Structures.ID;
 using Aequus.DataSets;
 using Aequus.DataSets.Structures.DropRulesChest;
 using Aequus.DataSets.Structures.Enums;
@@ -9,7 +9,7 @@ namespace Aequus.Content.Chests.BuriedChests;
 
 public class CopperChest : UnifiedBuriedChest {
     internal CopperChest() : base(new ChestInfo(
-            Key: new ProvideGenericTypeModContentId<CopperKey>(),
+            Key: new TypeId<CopperKey>(),
             LootPool: ChestPool.BuriedCopperChest,
             MapEntryColor: Color.OrangeRed.SaturationMultiply(0.4f)
         )) {

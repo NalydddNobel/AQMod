@@ -739,12 +739,6 @@
         <member name="F:Aequus.Core.Entities.Buffs.BuffUI.DisableRightClick">
             <summary>Prevents the player from right clicking a certain buff type. This list is cleared right before the local player is updated.</summary>
         </member>
-        <member name="T:Aequus.Core.Entities.FloorHazard">
-            <summary>An abstract projectile which represents a floor hazard.</summary>
-        </member>
-        <member name="M:Aequus.Core.Entities.FloorHazard.#ctor(Aequus.Core.Entities.FloorHazard.Info)">
-            <summary>An abstract projectile which represents a floor hazard.</summary>
-        </member>
         <member name="M:Aequus.Core.Entities.Golfing.GolfingSystem.SetGolfBallStatus(System.Boolean)">
             <summary>
             Sets all fake golf balls to be counted or not counted as golf balls.
@@ -798,6 +792,12 @@
         </member>
         <member name="P:Aequus.Core.Entities.Projectiles.ProjectileSource.IsProjectileChild">
             <summary>Whether this projectile was spawned by another projectile. Use this to prevent effects occuring multiple times (Like ammo retrival)</summary>
+        </member>
+        <member name="T:Aequus.Core.Entities.FloorHazard">
+            <summary>An abstract projectile which represents a floor hazard.</summary>
+        </member>
+        <member name="M:Aequus.Core.Entities.FloorHazard.#ctor(Aequus.Core.Entities.FloorHazard.Info)">
+            <summary>An abstract projectile which represents a floor hazard.</summary>
         </member>
         <member name="T:Aequus.Core.Entities.Tiles.BaseFurnitureTile.Furniture">
             <summary>
@@ -860,6 +860,12 @@
         <member name="T:Aequus.Core.CodeGeneration.Gen">
             <summary>Parent type which holds attributes which allow generation of Fields and Methods in <see cref="T:Aequus.AequusPlayer"/>.</summary>
         </member>
+        <member name="T:Aequus.Core.CodeGeneration.Gen.AequusItem_UseItem">
+            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusItem.UseItem(Terraria.Item,Terraria.Player)"/>.</summary>
+        </member>
+        <member name="T:Aequus.Core.CodeGeneration.Gen.AequusItem_ModifyTooltips">
+            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusItem.ModifyTooltips(Terraria.Item,System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})"/>.</summary>
+        </member>
         <member name="T:Aequus.Core.CodeGeneration.Gen.AequusPlayer_FieldAttribute`1">
             <summary>Generates a field with <paramref name="Name"/> in <see cref="T:Aequus.AequusPlayer"/>.</summary>
         </member>
@@ -896,12 +902,6 @@
         <member name="T:Aequus.Core.CodeGeneration.Gen.AequusPlayer_PostUpdateEquips">
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusPlayer.PostUpdateEquips"/>.</summary>
         </member>
-        <member name="T:Aequus.Core.CodeGeneration.Gen.AequusItem_UseItem">
-            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusItem.UseItem(Terraria.Item,Terraria.Player)"/>.</summary>
-        </member>
-        <member name="T:Aequus.Core.CodeGeneration.Gen.AequusItem_ModifyTooltips">
-            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusItem.ModifyTooltips(Terraria.Item,System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})"/>.</summary>
-        </member>
         <member name="T:Aequus.Core.CodeGeneration.Gen.AequusSystem_FieldAttribute`1">
             <summary>Generates a field with <paramref name="Name"/> in <see cref="T:Aequus.AequusSystem"/>.</summary>
         </member>
@@ -914,7 +914,7 @@
         <member name="M:Aequus.Core.CodeGeneration.Gen.AequusSystem_WorldFieldAttribute`1.#ctor(System.String)">
             <summary><inheritdoc cref="T:Aequus.Core.CodeGeneration.Gen.AequusSystem_FieldAttribute`1"/> This field is Saved and Loaded through <see cref="M:Aequus.AequusSystem.SaveWorldData(Terraria.ModLoader.IO.TagCompound)"/> and <see cref="M:Aequus.AequusSystem.LoadWorldData(Terraria.ModLoader.IO.TagCompound)"/>.</summary>
         </member>
-        <member name="T:Aequus.Core.CodeGeneration.ISGUtil">
+        <member name="T:Aequus.Core.CodeGeneration.IExpandedBySourceGenerator">
             <summary>Determines that this object is expanded by source generators and needs source generator extensions.</summary>
         </member>
         <member name="T:Aequus.Core.CodeGeneration.Publicization`2">
@@ -1546,12 +1546,6 @@
         <member name="M:Aequus.Core.Utilities.XLanguage.RegisterKey(System.String)">
             <summary>Registers a localization key if it doesn't exist. Only ran if compiled with a DEBUG symbol.</summary>
         </member>
-        <member name="T:Aequus.Core.Collections.DictionaryRemoveQueue`2">
-            <summary>
-            A Dictionary with a removal queue. Allows for removals to occur in an iteration.
-            Call <see cref="M:Aequus.Core.Collections.DictionaryRemoveQueue`2.RemoveAllQueued"/> to remove all queued entries from the Dictionary.
-            </summary>
-        </member>
         <member name="M:Aequus.Core.Commons.Conditions.BetweenDays(System.DayOfWeek,System.DayOfWeek)">
             <param name="firstDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:Aequus.Core.Systems.TimeSystem.DayOfTheWeek"/>.</param>
             <param name="lastDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:Aequus.Core.Systems.TimeSystem.DayOfTheWeek"/>.</param>
@@ -1725,6 +1719,39 @@
         </member>
         <member name="F:Aequus.Core.Commons.Cost.NPCSkyMerchantCustomPrice">
             <summary>5 Gold</summary>
+        </member>
+        <member name="M:Aequus.Core.Components.AGenStep.SetMessage(Terraria.WorldBuilding.GenerationProgress,System.Object)">
+            <summary>
+            Safely sets the progress message.
+            </summary>
+            <param name="progress"></param>
+            <param name="keySuffix"></param>
+        </member>
+        <member name="M:Aequus.Core.Components.AGenStep.RectangleProgress(System.Int32,System.Int32)">
+            <summary>Determines the progress of an ij loop in a rectangle. Using 0-<see cref="F:Terraria.Main.maxTilesX"/> and 0-<see cref="F:Terraria.Main.maxTilesY"/> as the edges.</summary>
+            <param name="i"></param>
+            <param name="j"></param>
+        </member>
+        <member name="M:Aequus.Core.Components.AGenStep.RectangleProgress(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>Determines the progress of an ij loop in a rectangle. Using 0-<see cref="F:Terraria.Main.maxTilesY"/> as the vertical edges.</summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <param name="leftSide">X coordinate of the Left edge of the rectangle.</param>
+            <param name="rightSide">X coordinate of the Right edge of the rectnagle.</param>
+        </member>
+        <member name="M:Aequus.Core.Components.AGenStep.RectangleProgress(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>Determines the progress of an ij loop in a rectangle.</summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <param name="leftSide">X coordinate of the Left edge of the rectangle.</param>
+            <param name="rightSide">X coordinate of the Right edge of the rectnagle.</param>
+            <param name="topSide">Y coordinate of the Top Edge of the rectangle.</param>
+            <param name="bottomSide">Y coordinate of the Bottom Edge of the rectangle.</param>
+        </member>
+        <member name="M:Aequus.Core.Components.AGenStep.SetProgress(Terraria.WorldBuilding.GenerationProgress,System.Double,System.Double,System.Double)">
+            <summary>
+            Safely sets the progress bar.
+            </summary>
         </member>
         <member name="T:Aequus.Core.Concurrent.ParallelLighting">
             <summary>Allows for lights to be safely created in a parallel process.</summary>
@@ -2095,11 +2122,17 @@
         <member name="T:Aequus.Core.PhysicsBehaviors.VICollisonNode">
             <summary>A Verlet Integrated node with Tile Collision.</summary>
         </member>
-        <member name="M:Aequus.Core.ReferenceCache`1.OverrideValue(`0)">
+        <member name="T:Aequus.Core.Structures.Collections.DictionaryRemoveQueue`2">
+            <summary>
+            A Dictionary with a removal queue. Allows for removals to occur in an iteration.
+            Call <see cref="M:Aequus.Core.Structures.Collections.DictionaryRemoveQueue`2.RemoveAllQueued"/> to remove all queued entries from the Dictionary.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.Structures.ReferenceCache`1.OverrideValue(`0)">
             <summary>Replaces the referenced value with <paramref name="value"/>. The original value will be cached, and can be restored using <see cref="!:VoidOverriddenValue(ref T)"/>.</summary>
             <param name="value"></param>
         </member>
-        <member name="M:Aequus.Core.ReferenceCache`1.VoidOverriddenValue">
+        <member name="M:Aequus.Core.Structures.ReferenceCache`1.VoidOverriddenValue">
             <summary>Restores overriden values back to their original value.</summary>
         </member>
         <member name="M:Aequus.Core.UI.Elements.ImprovedItemSlot.SetIcon(Terraria.UI.UIElement)">
@@ -2135,39 +2168,6 @@
             <param name="InsertLayer">Name of the layer to search the index of.</param>
             <param name="ScaleType">Scale Type of this layer.</param>
             <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
-        </member>
-        <member name="M:Aequus.Core.WorldGeneration.AequusGenStep.SetMessage(Terraria.WorldBuilding.GenerationProgress,System.Object)">
-            <summary>
-            Safely sets the progress message.
-            </summary>
-            <param name="progress"></param>
-            <param name="keySuffix"></param>
-        </member>
-        <member name="M:Aequus.Core.WorldGeneration.AequusGenStep.RectangleProgress(System.Int32,System.Int32)">
-            <summary>Determines the progress of an ij loop in a rectangle. Using 0-<see cref="F:Terraria.Main.maxTilesX"/> and 0-<see cref="F:Terraria.Main.maxTilesY"/> as the edges.</summary>
-            <param name="i"></param>
-            <param name="j"></param>
-        </member>
-        <member name="M:Aequus.Core.WorldGeneration.AequusGenStep.RectangleProgress(System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>Determines the progress of an ij loop in a rectangle. Using 0-<see cref="F:Terraria.Main.maxTilesY"/> as the vertical edges.</summary>
-            <param name="i"></param>
-            <param name="j"></param>
-            <param name="leftSide">X coordinate of the Left edge of the rectangle.</param>
-            <param name="rightSide">X coordinate of the Right edge of the rectnagle.</param>
-        </member>
-        <member name="M:Aequus.Core.WorldGeneration.AequusGenStep.RectangleProgress(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>Determines the progress of an ij loop in a rectangle.</summary>
-            <param name="i"></param>
-            <param name="j"></param>
-            <param name="leftSide">X coordinate of the Left edge of the rectangle.</param>
-            <param name="rightSide">X coordinate of the Right edge of the rectnagle.</param>
-            <param name="topSide">Y coordinate of the Top Edge of the rectangle.</param>
-            <param name="bottomSide">Y coordinate of the Bottom Edge of the rectangle.</param>
-        </member>
-        <member name="M:Aequus.Core.WorldGeneration.AequusGenStep.SetProgress(Terraria.WorldBuilding.GenerationProgress,System.Double,System.Double,System.Double)">
-            <summary>
-            Safely sets the progress bar.
-            </summary>
         </member>
         <member name="P:Aequus.AequusSystem.RemixWorldSafeUnderworldRange">
             <summary>Returns a point with the beginning (left) (X) and end (right) (Y) of the 'safe' underworld in remix worlds. This does not represent a point in 2D space, but rather two X coordinates.</summary>
@@ -2802,8 +2802,8 @@
         <member name="F:Aequus.AequusTextures.PosterBreadOfCthulhuItem">
             <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterBreadOfCthulhuItem</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PosterHecktoItem">
-            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterHecktoItem</summary>
+        <member name="F:Aequus.AequusTextures.PosterCinderBatItem">
+            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterCinderBatItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PosterOblivisionItem">
             <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterOblivisionItem</summary>

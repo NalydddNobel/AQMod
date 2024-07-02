@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Aequus.Core.Collections;
+namespace Aequus.Core.Structures.Collections;
 
 /// <summary>
 /// A Dictionary with a removal queue. Allows for removals to occur in an iteration.

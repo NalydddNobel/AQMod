@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.Core.Components;
+using System.Collections.Generic;
 using Terraria.WorldBuilding;
 
-namespace Aequus.Core.WorldGeneration;
+namespace Aequus.Content.Systems;
 
 public class WorldGenSystem : ModSystem {
-    public static readonly List<AequusGenStep> GenerationSteps = new();
+    public static readonly List<AGenStep> GenerationSteps = [];
 
-    public static readonly HashSet<int> PlacedItems = new();
+    public static readonly HashSet<int> PlacedItems = [];
 
     public override void Unload() {
         GenerationSteps.Clear();

@@ -1,10 +1,10 @@
-﻿using Aequus.Core.WorldGeneration;
+﻿using Aequus.Core.Components;
 using Aequus.DataSets;
 using Terraria.IO;
 using Terraria.WorldBuilding;
 
 namespace Aequus.Content.Biomes.PollutedOcean.Generation;
-internal class PollutedCleanupStep : AequusGenStep {
+internal class PollutedCleanupStep : AGenStep {
     public override string InsertAfter => "Stalac";
 
     protected override double GenWeight => 30f;

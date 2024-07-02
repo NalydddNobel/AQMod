@@ -1,4 +1,6 @@
-﻿namespace Aequus.Core;
+﻿using Aequus.Core.Structures;
+
+namespace Aequus.Core;
 
 public partial class Commons {
     public class Refs {

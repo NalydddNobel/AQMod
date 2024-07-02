@@ -1,4 +1,5 @@
 ﻿using Aequus.Core.Graphics;
+using Aequus.Core.Structures;
 using Aequus.DataSets;
 using System;
 

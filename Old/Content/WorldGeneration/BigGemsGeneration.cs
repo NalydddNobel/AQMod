@@ -1,4 +1,4 @@
-﻿using Aequus.Core.WorldGeneration;
+﻿using Aequus.Core.Components;
 using Aequus.Old.Content.Tiles.Ambient.BigGems;
 using System.Collections.Generic;
 using Terraria.IO;
@@ -7,7 +7,7 @@ using Terraria.WorldBuilding;
 
 namespace Aequus.Old.Content.WorldGeneration;
 
-internal class BigGemsGeneration : AequusGenStep {
+internal class BigGemsGeneration : AGenStep {
     private int _bigGemId;
     private List<BigGem.GemInfo> _gems;
 

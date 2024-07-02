@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Aequus.Core.Debugging.CheatCodes;
+namespace Aequus.Core.Debug.CheatCodes;
 
 [EditorBrowsable(EditorBrowsableState.Never)]
 public enum Params : byte {

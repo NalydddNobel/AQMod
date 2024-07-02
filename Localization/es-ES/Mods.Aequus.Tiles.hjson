@@ -411,7 +411,11 @@ Furniture: {
 	// TrashSink.ItemDisplayName: Scrap Sink
 	// TrashSofa.ItemDisplayName: Scrap Sofa
 	// TrashWorkBench.ItemDisplayName: Scrap Work Bench
-	// TrashCampfire.ItemDisplayName: Scrap Campfire
+
+	TrashCampfire: {
+		// ItemDisplayName: Scrap Campfire
+		// ItemTooltip: "{$ItemTooltip.Campfire}"
+	}
 
 	TrashChest: {
 		// MapEntry: Dumpster

@@ -10,7 +10,7 @@ public partial class AequusItem {
     
     [CompilerGenerated]
     private void ModifyTooltipsInner(Item item, List<TooltipLine> tooltips) {
-        Core.Debugging.CheatCodes.ItemInternalNames.ShowInternalNames(item, tooltips);
+        Core.Debug.CheatCodes.ItemInternalNames.ShowInternalNames(item, tooltips);
     }
     
     [CompilerGenerated]

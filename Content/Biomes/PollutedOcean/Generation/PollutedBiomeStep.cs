@@ -1,7 +1,7 @@
 ﻿using Aequus.Content.Configuration;
 using Aequus.Content.CrossMod.CalamityModSupport;
 using Aequus.Content.Tiles.PollutedOcean.PolymerSands;
-using Aequus.Core.WorldGeneration;
+using Aequus.Core.Components;
 using System;
 using Terraria.IO;
 using Terraria.Utilities;
@@ -9,7 +9,7 @@ using Terraria.WorldBuilding;
 
 namespace Aequus.Content.Biomes.PollutedOcean.Generation;
 
-public sealed class PollutedBiomeStep : AequusGenStep {
+public sealed class PollutedBiomeStep : AGenStep {
     public override string InsertAfter => "Create Ocean Caves";
 
     private static int x;

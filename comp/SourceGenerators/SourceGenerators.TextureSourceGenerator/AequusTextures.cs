@@ -213,8 +213,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> PosterBloodMimicItem = new("Aequus/Content/CrossMod/SplitSupport/Photography/PosterBloodMimicItem");
     /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterBreadOfCthulhuItem</summary>
     public static readonly RequestCache<Texture2D> PosterBreadOfCthulhuItem = new("Aequus/Content/CrossMod/SplitSupport/Photography/PosterBreadOfCthulhuItem");
-    /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterHecktoItem</summary>
-    public static readonly RequestCache<Texture2D> PosterHecktoItem = new("Aequus/Content/CrossMod/SplitSupport/Photography/PosterHecktoItem");
+    /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterCinderBatItem</summary>
+    public static readonly RequestCache<Texture2D> PosterCinderBatItem = new("Aequus/Content/CrossMod/SplitSupport/Photography/PosterCinderBatItem");
     /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterOblivisionItem</summary>
     public static readonly RequestCache<Texture2D> PosterOblivisionItem = new("Aequus/Content/CrossMod/SplitSupport/Photography/PosterOblivisionItem");
     /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterSkyMerchantItem</summary>

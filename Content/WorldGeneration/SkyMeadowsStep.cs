@@ -1,12 +1,12 @@
 ﻿using Aequus.Content.Tiles.Meadow;
-using Aequus.Core.WorldGeneration;
+using Aequus.Core.Components;
 using System;
 using Terraria.IO;
 using Terraria.WorldBuilding;
 
 namespace Aequus.Content.WorldGeneration;
 
-public class SkyMeadowsStep : AequusGenStep {
+public class SkyMeadowsStep : AGenStep {
     public override string InsertAfter => "Floating Islands";
 
     public override void Apply(GenerationProgress progress, GameConfiguration config) {

@@ -1,4 +1,4 @@
-﻿using Aequus.Core.Collections;
+﻿using Aequus.Core.Structures.Collections;
 using Aequus.Core.UI;
 using System;
 using Terraria.GameContent;

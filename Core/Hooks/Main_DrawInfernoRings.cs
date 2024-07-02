@@ -1,4 +1,4 @@
-﻿using Aequus.Core.Debugging;
+﻿using Aequus.Core.Debug;
 using Aequus.Core.Graphics;
 
 namespace Aequus.Core.Hooks;

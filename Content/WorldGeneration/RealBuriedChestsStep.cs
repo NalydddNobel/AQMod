@@ -1,12 +1,12 @@
 ﻿using Aequus.Content.Chests.BuriedChests;
-using Aequus.Core.WorldGeneration;
+using Aequus.Core.Components;
 using System;
 using Terraria.IO;
 using Terraria.WorldBuilding;
 
 namespace Aequus.Content.WorldGeneration;
 
-public class RealBuriedChestsStep : AequusGenStep {
+public class RealBuriedChestsStep : AGenStep {
     public override string InsertAfter => "Buried Chests";
 
     protected override double GenWeight => 72f;

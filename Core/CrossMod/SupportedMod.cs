@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aequus.Core.Structures.ID;
+using System;
 using System.Collections.Generic;
 using Terraria.Localization;
 
@@ -78,8 +79,8 @@ internal class SupportedMod<TMod> : ModSystem, ISupportedMod<TMod>, ILocalizedMo
         return TryFind<ModNPC>(name, out var value) ? value.Type : defaultNPC;
     }
 
-    public static IContentIdProvider GetContentProvider<T>(string name, int defaultItem = 0) where T : IModType {
-        return new ProvideModContentId<T>(name, ModName, defaultItem);
+    public static IProvideId GetContentProvider<T>(string name, int defaultItem = 0) where T : IModType {
+        return new ModId<T>(name, ModName, defaultItem);
     }
 
     public static string GetLocalizationKey(string suffix) {

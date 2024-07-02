@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aequus.Content.Systems;
+using System;
 using System.Collections.Generic;
 using Terraria.GameContent.Generation;
 using Terraria.IO;
@@ -6,9 +7,9 @@ using Terraria.Utilities;
 using Terraria.WorldBuilding;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequus.Core.WorldGeneration;
+namespace Aequus.Core.Components;
 
-public abstract class AequusGenStep : ModType, ILocalizedModType, IPostSetupContent {
+public abstract class AGenStep : ModType, ILocalizedModType, IPostSetupContent {
     public abstract string InsertAfter { get; }
 
     public double Weight { get; private set; } = 1f;
@@ -24,7 +25,7 @@ public abstract class AequusGenStep : ModType, ILocalizedModType, IPostSetupCont
 
     private string _genMessage;
 
-    public AequusGenStep() {
+    public AGenStep() {
         name = base.Name.Replace("Generator", "").Replace("Step", "");
     }
 

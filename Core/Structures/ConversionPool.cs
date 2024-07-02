@@ -1,20 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Aequus.Core;
+namespace Aequus.Core.Structures;
 
-public class ConversionPool<TFrom, TTo> {
-    private readonly Dictionary<TFrom, TTo> _conversionCache;
-    private readonly Func<TFrom, TTo> _converter;
-
-    public ConversionPool(Func<TFrom, TTo> converter) {
-        _converter = converter;
-        _conversionCache = [];
-    }
+public class ConversionPool<TFrom, TTo>(Func<TFrom, TTo> converter) {
+    private readonly Dictionary<TFrom, TTo> _conversionCache = [];
+    private readonly Func<TFrom, TTo> _converter = converter;
 
     public TTo Get(TFrom from) {
-        if (_conversionCache.TryGetValue(from, out var result)) return result;
-        return Put(from);
+        return _conversionCache.TryGetValue(from, out var result) ? result : Put(from);
     }
 
     public bool ContainsCache(TFrom from) {

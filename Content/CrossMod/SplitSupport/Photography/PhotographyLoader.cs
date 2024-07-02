@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.Dedicated.Familiar;
-using Aequus.Core.CrossMod;
+using Aequus.Core.Structures.ID;
 using System.Collections.Generic;
 
 namespace Aequus.Content.CrossMod.SplitSupport.Photography;
@@ -27,10 +27,10 @@ internal sealed partial class PhotographyLoader : ModSystem {
     }
 
     private void LoadAlbumsAfterEnvelopes() {
-        IContentIdProvider spaceEnvelope = Split.GetContentProvider<ModItem>("BlueSkyEnvelope", ItemID.FloatingIslandFishingCrate);
-        IContentIdProvider hellEnvelope = Split.GetContentProvider<ModItem>("FieryEnvelope", ItemID.ObsidianLockbox);
+        IProvideId spaceEnvelope = Split.GetContentProvider<ModItem>("BlueSkyEnvelope", ItemID.FloatingIslandFishingCrate);
+        IProvideId hellEnvelope = Split.GetContentProvider<ModItem>("FieryEnvelope", ItemID.ObsidianLockbox);
         //IContentIdProvider dungeonEnvelope = Split.GetContentProvider<ModItem>("DungeonEnvelope", ItemID.DungeonFishingCrateHard);
-        IContentIdProvider bloodMoonEnvelope = Split.GetContentProvider<ModItem>("HorrificEnvelope", ItemID.DungeonFishingCrateHard);
+        IProvideId bloodMoonEnvelope = Split.GetContentProvider<ModItem>("HorrificEnvelope", ItemID.DungeonFishingCrateHard);
 #if !DEBUG
         AddPhotographyPage(
             order: 10f,
@@ -42,22 +42,24 @@ internal sealed partial class PhotographyLoader : ModSystem {
                 new(3, GetNPC<Old.Content.Enemies.DemonSiege.CinderBat.CinderBat>(), hellEnvelope),
 
                 // Oblivision
-                new(4, GetNPC<Old.Content.Enemies.DemonSiege.CinderBat.CinderBat>(), hellEnvelope),
+                new(4, new Id(0), hellEnvelope),
 
                 new(5, GetNPC<TownNPCs.SkyMerchant.SkyMerchant>(), spaceEnvelope),
             ]);
 #endif
 
-        IContentIdProvider Envelope(ModItem modItem) => new ProvideInstanceModContentId<ModItem>(modItem);
-        IContentIdProvider GetNPC<T>() where T : ModNPC => new ProvideGenericTypeModContentId<T>();
+        IProvideId Envelope(ModItem modItem) => new TypeId<ModItem>(modItem);
+        IProvideId GetNPC<T>() where T : ModNPC => new TypeId<T>();
     }
 
     private void LoadPrintsAfterAlbums() {
         foreach (Album album in _albumsToRegister) {
             for (int i = 0; i < album.Quests.Length; i++) {
-                InstancedPosterItem poster = new InstancedPosterItem(album.Quests[i]);
-                Mod.AddContent(poster);
-                album.Quests[i].Poster = poster;
+                if (album.Quests[i].NPC.GetId() > 0) {
+                    InstancedPosterItem poster = new InstancedPosterItem(album.Quests[i]);
+                    Mod.AddContent(poster);
+                    album.Quests[i].Poster = poster;
+                }
             }
         }
     }

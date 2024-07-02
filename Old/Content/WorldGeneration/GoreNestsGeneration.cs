@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.Tiles.Tombstones;
-using Aequus.Core.WorldGeneration;
+using Aequus.Core.Components;
 using Aequus.Old.Content.Events.DemonSiege.Tiles;
 using Aequus.Old.Content.Tiles.Ambient;
 using Aequus.Old.Content.Tiles.Furniture.Oblivion;
@@ -10,7 +10,7 @@ using Terraria.WorldBuilding;
 
 namespace Aequus.Old.Content.WorldGeneration;
 
-public class GoreNestsGeneration : AequusGenStep {
+public class GoreNestsGeneration : AGenStep {
     public override string InsertAfter => "Underworld";
 
     protected override double GenWeight => 4000f;

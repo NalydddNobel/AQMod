@@ -14,7 +14,7 @@ public class RainTotemPlayer : ModPlayer {
     }
 
     public override void SyncPlayer(int toWho, int fromWho, bool newPlayer) {
-        tModLoaderExtended.ExtendedMod.GetPacket<RainPlayerSyncPacket>().Send(this, toWho, fromWho);
+        GetPacket<RainPlayerSyncPacket>().Send(this, toWho, fromWho);
     }
 
     public override void CopyClientState(ModPlayer targetCopy) {

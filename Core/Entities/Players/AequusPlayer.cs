@@ -8,7 +8,7 @@ using Terraria.GameInput;
 namespace Aequus;
 
 [Gen.AequusPlayer_ResetField<StatModifier>("wingTime")]
-public partial class AequusPlayer : ModPlayer, ISGUtil {
+public partial class AequusPlayer : ModPlayer, IExpandedBySourceGenerator {
     public Vector2 transitionVelocity;
 
     public int timeSinceRespawn;

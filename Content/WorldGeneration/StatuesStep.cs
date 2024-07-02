@@ -1,12 +1,12 @@
 ﻿using Aequus.Content.Tiles.Statues;
-using Aequus.Core.WorldGeneration;
+using Aequus.Core.Components;
 using System;
 using Terraria.IO;
 using Terraria.WorldBuilding;
 
 namespace Aequus.Content.WorldGeneration;
 
-public class StatuesStep : AequusGenStep {
+public class StatuesStep : AGenStep {
     public override string InsertAfter => "Moss";
 
     protected override double GenWeight => 72f;

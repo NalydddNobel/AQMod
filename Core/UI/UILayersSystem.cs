@@ -1,4 +1,4 @@
-﻿using Aequus.Core.Debugging;
+﻿using Aequus.Core.Debug;
 using System;
 using System.Collections.Generic;
 using Terraria.UI;

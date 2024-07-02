@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.Elements;
-using Aequus.Core.Debugging.CheatCodes;
+using Aequus.Core.Debug.CheatCodes;
 using System.Collections.Generic;
 using Terraria.GameContent;
 

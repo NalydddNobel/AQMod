@@ -1,4 +1,4 @@
-﻿using Aequus.Core.Debugging;
+﻿using Aequus.Core.Debug;
 using Terraria.Cinematics;
 
 namespace Aequus.Content.Cinematics;

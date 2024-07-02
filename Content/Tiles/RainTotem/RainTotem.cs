@@ -1,7 +1,7 @@
 ﻿using Aequus.Core.ContentGeneration;
+using Aequus.Core.Entities.Tiles.Components;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -123,8 +123,7 @@ public class RainTotemInactive : RainTotemTileTemplate {
     }
 }
 
-[Browsable(browsable: false)]
-public abstract class RainTotemTileTemplate : ModTile {
+public abstract class RainTotemTileTemplate : ModTile, IOverridePlacement {
     #region Framing
     public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak) {
         Tile originalTile = Main.tile[i, j];
@@ -141,7 +140,7 @@ public abstract class RainTotemTileTemplate : ModTile {
             }
         }
 
-        return base.TileFrame(i, j, ref resetFrame, ref noBreak);
+        return true;
     }
 
     private int GetFrameY(int left, int top) {
@@ -261,20 +260,20 @@ public abstract class RainTotemTileTemplate : ModTile {
         TileID.Sets.DisableSmartCursor[Type] = true;
         TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
         TileObjectData.newTile.DrawYOffset = 2;
-        TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.AlternateTile, 2, 0);
-        // Stupid
-        TileObjectData.newTile.AnchorAlternateTiles = new int[] {
-            TileID.Mud, TileID.JungleGrass, TileID.CorruptJungleGrass, TileID.CrimsonJungleGrass,
-            TileID.LihzahrdBrick,
-            TileID.MushroomGrass, TileID.MushroomBlock,
-            TileID.RichMahogany, TileID.LivingMahogany, TileID.LivingMahoganyLeaves,
-            TileID.BambooBlock, TileID.LargeBambooBlock,
+        TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.AlternateTile, TileObjectData.newTile.Width, 0);
+        TileObjectData.newTile.AnchorAlternateTiles = [
             ModContent.TileType<RainTotem>(), ModContent.TileType<RainTotemInactive>(),
-        };
+        ];
         TileObjectData.newTile.HookCheckIfCanPlace = new PlacementHook(PlacementPreviewHook_CheckIfCanPlace, 1, 0, true);
         TileObjectData.newTile.StyleHorizontal = true;
-        TileObjectData.newTile.StyleWrapLimit = 3;
+        TileObjectData.newTile.StyleWrapLimit = 6;
         TileObjectData.newTile.RandomStyleRange = 3;
+        TileObjectData.newTile.StyleMultiplier = 3;
+
+        TileObjectData.newSubTile.CopyFrom(TileObjectData.newTile);
+        TileObjectData.newSubTile.AnchorBottom = new AnchorData(AnchorType.SolidTile, TileObjectData.newTile.Width, 0);
+        TileObjectData.addSubTile(1, 3, 5, 7);
+
         TileObjectData.addTile(Type);
 
         DustType = DustID.JunglePlants;
@@ -282,14 +281,9 @@ public abstract class RainTotemTileTemplate : ModTile {
     }
 
     private int PlacementPreviewHook_CheckIfCanPlace(int x, int y, int type, int style = 0, int direction = 1, int alternate = 0) {
-        int l = y + 1;
-        for (int i = 0; i < 2; i++) {
-            int k = x + i;
-            Tile tile = Main.tile[k, l];
-
-            if (tile.Slope != 0 || tile.IsHalfBlock) {
-                return 1;
-            }
+        Tile connectingTile = Framing.GetTileSafely(x, y + 1);
+        if (TileLoader.GetTile(connectingTile.TileType) is RainTotemTileTemplate) {
+            return (connectingTile.TileFrameX % 36) == 0 ? 0 : 1;
         }
         return 0;
     }
@@ -301,5 +295,15 @@ public abstract class RainTotemTileTemplate : ModTile {
 
     public override IEnumerable<Item> GetItemDrops(int i, int j) {
         yield return new Item(RainTotem.DropItem.Type);
+    }
+
+    void IOverridePlacement.OverridePlacementCheck(Player player, Tile targetTile, Item item, ref int tileToCreate, ref int previewPlaceStyle, ref bool? overrideCanPlace, ref int? forcedRandom) {
+        int x = Player.tileTargetX;
+        int y = Player.tileTargetY;
+
+        Tile belowTile = Framing.GetTileSafely(x, y + 1);
+        if (belowTile.IsSolid()) {
+            previewPlaceStyle = 1;
+        }
     }
 }

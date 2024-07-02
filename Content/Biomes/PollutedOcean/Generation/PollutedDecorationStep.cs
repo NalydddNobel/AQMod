@@ -3,9 +3,9 @@ using Aequus.Content.Tiles.PollutedOcean.Ambient;
 using Aequus.Content.Tiles.PollutedOcean.Ambient.Dripstones;
 using Aequus.Content.Tiles.PollutedOcean.Ambient.Pots;
 using Aequus.Content.Tiles.PollutedOcean.Ambient.SeaPickles;
+using Aequus.Core.Components;
 using Aequus.Core.Entities.Tiles;
 using Aequus.Core.Entities.Tiles.Rubblemaker;
-using Aequus.Core.WorldGeneration;
 using Aequus.DataSets;
 using Aequus.DataSets.Structures.DropRulesChest;
 using Aequus.DataSets.Structures.Enums;
@@ -14,7 +14,7 @@ using Terraria.IO;
 using Terraria.WorldBuilding;
 
 namespace Aequus.Content.Biomes.PollutedOcean.Generation;
-internal class PollutedDecorationStep : AequusGenStep {
+internal class PollutedDecorationStep : AGenStep {
     public override string InsertAfter => "Pots";
 
     protected override double GenWeight => 50f;

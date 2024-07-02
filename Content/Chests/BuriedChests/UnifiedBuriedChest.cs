@@ -1,6 +1,6 @@
 ﻿using Aequus.Core.CodeGeneration;
 using Aequus.Core.ContentGeneration;
-using Aequus.Core.CrossMod;
+using Aequus.Core.Structures.ID;
 using Aequus.DataSets;
 using Aequus.DataSets.Structures;
 using Aequus.DataSets.Structures.DropRulesChest;
@@ -34,7 +34,7 @@ public class UnifiedBuriedChest : UnifiedModChest {
         _info = info;
     }
 
-    internal record struct ChestInfo(IContentIdProvider Key, ChestPool LootPool, Color MapEntryColor);
+    internal record struct ChestInfo(IProvideId Key, ChestPool LootPool, Color MapEntryColor);
 
     public override void Load() {
         base.Load();

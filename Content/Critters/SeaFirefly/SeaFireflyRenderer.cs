@@ -1,5 +1,5 @@
 ﻿using Aequus.Core.Assets;
-using Aequus.Core.Debugging;
+using Aequus.Core.Debug;
 using Aequus.Core.Graphics;
 using System;
 using System.Collections.Generic;

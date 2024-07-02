@@ -1,6 +1,4 @@
-﻿using Aequus.Core.Structures;
-
-namespace Aequus.Core;
+﻿namespace Aequus.Core.Structures;
 
 public record class ReferenceCache<T>(RefFunc<T> GetReference) {
     private T _originalValue;
