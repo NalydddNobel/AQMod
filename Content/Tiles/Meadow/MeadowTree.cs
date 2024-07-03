@@ -1,9 +1,9 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.ContentGeneration;
 using System.Collections.Generic;
 using Terraria.Enums;
 using Terraria.GameContent;
 
-namespace Aequus.Content.Tiles.Meadow;
+namespace Aequu2.Content.Tiles.Meadow;
 
 public class MeadowTree : UnifiedModTree {
     public override IEnumerable<int> ValidTiles {

@@ -1,7 +1,7 @@
-﻿using Aequus.Content.Tiles.CraftingStations.TrashCompactor;
+﻿using Aequu2.Content.Tiles.CraftingStations.TrashCompactor;
 using Terraria.GameContent.Creative;
 
-namespace Aequus.Content.VanillaChanges;
+namespace Aequu2.Content.VanillaChanges;
 
 public class BoneBlockChanges : GlobalItem {
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {

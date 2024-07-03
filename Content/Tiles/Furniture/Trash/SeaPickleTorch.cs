@@ -1,10 +1,10 @@
-﻿using Aequus.Content.Biomes.PollutedOcean;
-using Aequus.Content.Items.Materials;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Graphics.Animations;
+﻿using Aequu2.Content.Biomes.PollutedOcean;
+using Aequu2.Content.Items.Materials;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Graphics.Animations;
 using Terraria.DataStructures;
 
-namespace Aequus.Content.Tiles.Furniture.Trash;
+namespace Aequu2.Content.Tiles.Furniture.Trash;
 
 public class SeaPickleTorch : UnifiedModTorch {
     public override int TorchIngredient => ModContent.ItemType<CompressedTrash>();

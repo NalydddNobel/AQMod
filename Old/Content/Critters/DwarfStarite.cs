@@ -1,12 +1,12 @@
-﻿using Aequus.Content.Dusts;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.Old.Content.Events.Glimmer;
+﻿using Aequu2.Content.Dusts;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.Old.Content.Events.Glimmer;
 using System;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 
-namespace Aequus.Old.Content.Critters;
+namespace Aequu2.Old.Content.Critters;
 
 [BestiaryBiome<GlimmerZone>()]
 [LegacyName("DwarfStariteCritter")]
@@ -254,14 +254,14 @@ public class DwarfStarite : UnifiedCritter {
         Main.spriteBatch.Draw(texture, drawPos, NPC.frame, NPC.GetNPCColorTintedByBuffs(NPC.GetAlpha(drawColor)), NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
         Main.spriteBatch.Draw(texture, drawPos, NPC.frame, new Color(20, 20, 20, 0), NPC.rotation, origin, NPC.scale + 0.3f, SpriteEffects.None, 0f);
 
-        DrawHelper.DrawBasicVertexLine(AequusTextures.Trail2, NPC.oldPos, Helper.GenerateRotationArr(NPC.oldPos),
+        DrawHelper.DrawBasicVertexLine(Aequu2Textures.Trail2, NPC.oldPos, Helper.GenerateRotationArr(NPC.oldPos),
             p => Color.Lerp(GlimmerColors.Blue, GlimmerColors.Cyan, p) * (1f - p),
             p => 4f + 2f * (1f - p),
         offset: NPC.Size / 2f - Main.screenPosition);
 
         if (constellation > 0 && !NPC.IsABestiaryIconDummy) {
             var coords = LinearInterpolationBetween(NPC.Center - Main.screenPosition, Main.npc[Constellation].Center - Main.screenPosition, 50);
-            DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, coords, Helper.GenerateRotationArr(coords),
+            DrawHelper.DrawBasicVertexLine(Aequu2Textures.Trail, coords, Helper.GenerateRotationArr(coords),
                 p => Color.Lerp(GlimmerColors.Cyan, GlimmerColors.Blue, MathF.Pow(MathF.Sin(p * MathHelper.Pi), 2f) * 0.6f) * MathF.Sin(p * MathHelper.Pi) * 0.5f,
                 p => 1f + 1f * MathF.Sin(p * MathHelper.Pi)
             );

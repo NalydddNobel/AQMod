@@ -1,9 +1,9 @@
-﻿using Aequus.Old.Content.Items.Potions.Prefixes.BoundedPotions;
-using Aequus.Old.Content.Items.Potions.Prefixes.EmpoweredPotions;
+﻿using Aequu2.Old.Content.Items.Potions.Prefixes.BoundedPotions;
+using Aequu2.Old.Content.Items.Potions.Prefixes.EmpoweredPotions;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 
-namespace Aequus.Old.Content.Items.Potions.Prefixes;
+namespace Aequu2.Old.Content.Items.Potions.Prefixes;
 
 public class PotionPrefixGlobalBuff : GlobalBuff {
     public override void Update(int type, Player player, ref int buffIndex) {

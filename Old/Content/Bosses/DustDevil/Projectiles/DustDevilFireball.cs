@@ -1,9 +1,9 @@
-﻿using Aequus.DataSets;
+﻿using Aequu2.DataSets;
 using System;
 
-namespace Aequus.Old.Content.Bosses.DustDevil.Projectiles;
+namespace Aequu2.Old.Content.Bosses.DustDevil.Projectiles;
 public class DustDevilFireball : ModProjectile {
-    public override string Texture => AequusTextures.Projectile(ProjectileID.Flamelash);
+    public override string Texture => Aequu2Textures.Projectile(ProjectileID.Flamelash);
 
     public override void SetStaticDefaults() {
         Main.projFrames[Type] = Main.projFrames[ProjectileID.Flamelash];

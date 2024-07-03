@@ -5,7 +5,7 @@ using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace Aequus.Core.CodeGeneration;
+namespace Aequu2.Core.CodeGeneration;
 
 /// <summary>Rough system which helps getting private fields from classes.</summary>
 public class Publicization<T, TReturnValue> {
@@ -29,7 +29,7 @@ public class Publicization<T, TReturnValue> {
     public static TReturnValue GetField(T obj, string name) {
         GetDelegate getter = CollectionsMarshal.GetValueRefOrAddDefault(_delegates, name, out _) ??= GenerateFieldGetter(name);
         TReturnValue value = getter.Invoke(obj);
-        //Aequus.Log.Info(value?.ToString() ?? "null");
+        //Aequu2.Log.Info(value?.ToString() ?? "null");
         return value;
     }
 

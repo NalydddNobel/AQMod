@@ -1,7 +1,7 @@
-﻿namespace Aequus.Old.Content.Enemies.DemonSiege.Keeper;
+﻿namespace Aequu2.Old.Content.Enemies.DemonSiege.Keeper;
 
 public class ChainedSoulExplosion : ModProjectile {
-    public override string Texture => AequusTextures.GenericExplosion.Path;
+    public override string Texture => Aequu2Textures.GenericExplosion.Path;
 
     public override void SetStaticDefaults() {
         Main.projFrames[Type] = 7;

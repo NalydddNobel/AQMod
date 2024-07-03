@@ -1,11 +1,11 @@
-﻿using Aequus.DataSets;
-using Aequus.Old.Content.Items.Weapons.Melee.Valari;
-using Aequus.Old.Content.Particles;
+﻿using Aequu2.DataSets;
+using Aequu2.Old.Content.Items.Weapons.Melee.Valari;
+using Aequu2.Old.Content.Particles;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Items.Weapons.Melee.Phasebrink;
+namespace Aequu2.Old.Content.Items.Weapons.Melee.Phasebrink;
 
 public class PhasebrinkProj : ValariProj {
     public bool IsIce => (int)Projectile.ai[1] == 1;
@@ -160,7 +160,7 @@ public class PhasebrinkProj : ValariProj {
                     Main.projectile[i].velocity = Vector2.Zero;
                     Main.projectile[i].netUpdate = true;
 
-                    SoundEngine.PlaySound(AequusSounds.PowerReady with { Volume = 0.5f }, Projectile.Center);
+                    SoundEngine.PlaySound(Aequu2Sounds.PowerReady with { Volume = 0.5f }, Projectile.Center);
                     return;
                 }
             }
@@ -205,8 +205,8 @@ public class PhasebrinkProj : ValariProj {
 
         var drawPosition = Projectile.position + off - Main.screenPosition;
         Color color = EffectColor;
-        Main.spriteBatch.Draw(AequusTextures.Bloom, drawPosition,
-            null, color * Projectile.Opacity * 0.6f, 0f, AequusTextures.Bloom.Size() / 2f, Projectile.scale * 0.7f, SpriteEffects.None, 0f);
+        Main.spriteBatch.Draw(Aequu2Textures.Bloom, drawPosition,
+            null, color * Projectile.Opacity * 0.6f, 0f, Aequu2Textures.Bloom.Size() / 2f, Projectile.scale * 0.7f, SpriteEffects.None, 0f);
         Main.spriteBatch.Draw(texture, drawPosition,
             frame, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
 

@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Aequus.Core.Assets;
+namespace Aequu2.Core.Assets;
 
 public abstract class AssetManager<T> : ILoad where T : class {
     public void Load(Mod mod) {

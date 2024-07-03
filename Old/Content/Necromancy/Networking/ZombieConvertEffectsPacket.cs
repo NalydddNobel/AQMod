@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using tModLoaderExtended.Networking;
 
-namespace Aequus.Old.Content.Necromancy.Networking;
+namespace Aequu2.Old.Content.Necromancy.Networking;
 
 public class ZombieConvertEffectsPacket : PacketHandler {
     public void Send(NPC npc, int zombieOwner, int renderLayer, int ignoreClient = -1) {

@@ -1,7 +1,7 @@
-﻿using Aequus.Content.Configuration;
+﻿using Aequu2.Content.Configuration;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Content.VanillaChanges;
+namespace Aequu2.Content.VanillaChanges;
 
 public class MagicConchChanges : GlobalItem {
     public override bool IsLoadingEnabled(Mod mod) {

@@ -1,10 +1,10 @@
-﻿using Aequus.Core.Graphics.Animations;
+﻿using Aequu2.Core.Graphics.Animations;
 using System.IO;
 using Terraria.DataStructures;
 using Terraria.ModLoader.IO;
 using tModLoaderExtended.Networking;
 
-namespace Aequus.Content.Fishing.CrabPots;
+namespace Aequu2.Content.Fishing.CrabPots;
 
 public class PacketCrabPotAddBait : PacketHandler {
     public void Send(int x, int y, int player, Item bait, int ignoreClient = -1) {

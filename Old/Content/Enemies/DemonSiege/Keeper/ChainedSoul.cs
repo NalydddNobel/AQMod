@@ -1,10 +1,10 @@
-﻿using Aequus.Core.Initialization;
-using Aequus.DataSets;
+﻿using Aequu2.Core.Initialization;
+using Aequu2.DataSets;
 using System;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Enemies.DemonSiege.Keeper;
+namespace Aequu2.Old.Content.Enemies.DemonSiege.Keeper;
 
 public class ChainedSoul : ModNPC {
     public Vector2 keeperLocationForDrawing;
@@ -60,13 +60,13 @@ public class ChainedSoul : ModNPC {
 
             for (int i = -1; i <= 1; i += 2) {
                 for (int j = -1; j <= 1; j++) {
-                    NPC.NewGore(AequusTextures.ChainedSoulGoreTooth, NPC.Center + new Vector2(10f * i, 4f * j - 10f), NPC.velocity);
+                    NPC.NewGore(Aequu2Textures.ChainedSoulGoreTooth, NPC.Center + new Vector2(10f * i, 4f * j - 10f), NPC.velocity);
                 }
-                NPC.NewGore(AequusTextures.ChainedSoulGoreMouth, NPC.position, NPC.velocity);
-                NPC.NewGore(AequusTextures.ChainedSoulGoreMuscle, NPC.position, NPC.velocity);
+                NPC.NewGore(Aequu2Textures.ChainedSoulGoreMouth, NPC.position, NPC.velocity);
+                NPC.NewGore(Aequu2Textures.ChainedSoulGoreMuscle, NPC.position, NPC.velocity);
             }
 
-            Texture2D trapperChain = AequusTextures.ChainedSoul_Chain;
+            Texture2D trapperChain = Aequu2Textures.ChainedSoul_Chain;
             if (keeperLocationForDrawing != Vector2.Zero) {
                 Vector2 difference = keeperLocationForDrawing - NPC.Center;
 
@@ -74,8 +74,8 @@ public class ChainedSoul : ModNPC {
                 Vector2 chainSegment = difference / length;
 
                 int[] options = new int[] {
-                    ExtendGore.GetModdedGoreType(AequusTextures.ChainedSoulGoreChain1),
-                    ExtendGore.GetModdedGoreType(AequusTextures.ChainedSoulGoreChain2),
+                    ExtendGore.GetModdedGoreType(Aequu2Textures.ChainedSoulGoreChain1),
+                    ExtendGore.GetModdedGoreType(Aequu2Textures.ChainedSoulGoreChain2),
                 };
                 for (int i = length; i > 0; i--) {
                     Gore.NewGoreDirect(NPC.GetSource_Death(), NPC.Center + chainSegment * i, Main.rand.NextVector2Unit(), Main.rand.Next(options));
@@ -195,7 +195,7 @@ public class ChainedSoul : ModNPC {
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
         if (!NPC.IsABestiaryIconDummy) {
-            Texture2D chainTexture = AequusTextures.ChainedSoul_Chain;
+            Texture2D chainTexture = Aequu2Textures.ChainedSoul_Chain;
             int npcOwner = (int)NPC.ai[1] - 1;
             int height = chainTexture.Height - 2;
             Vector2 npcCenter = NPC.Center;

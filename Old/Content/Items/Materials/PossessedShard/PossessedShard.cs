@@ -1,7 +1,7 @@
-﻿using Aequus.Core;
-using Aequus.Core.Entities.NPCs;
+﻿using Aequu2.Core;
+using Aequu2.Core.Entities.NPCs;
 
-namespace Aequus.Old.Content.Items.Materials.PossessedShard;
+namespace Aequu2.Old.Content.Items.Materials.PossessedShard;
 
 public class PossessedShard : ModItem {
     public override void SetStaticDefaults() {

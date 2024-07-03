@@ -1,15 +1,15 @@
-﻿using Aequus.Old.Content.Events.Glimmer.Sky;
+﻿using Aequu2.Old.Content.Events.Glimmer.Sky;
 using Terraria.Graphics.Effects;
 
-namespace Aequus.Old.Content.Events.Glimmer.CosmicMonolith;
+namespace Aequu2.Old.Content.Events.Glimmer.CosmicMonolith;
 
 public class CosmicMonolithScene : ModSceneEffect {
-    public const string Key = "Aequus:CosmicMonolith";
+    public const string Key = "Aequu2:CosmicMonolith";
 
     public static bool MonolithNearby { get; set; }
 
     public override bool IsSceneEffectActive(Player player) {
-        return MonolithNearby || player.GetModPlayer<AequusPlayer>().cosmicMonolithShader;
+        return MonolithNearby || player.GetModPlayer<Aequu2Player>().cosmicMonolithShader;
     }
 
     public override void Load() {

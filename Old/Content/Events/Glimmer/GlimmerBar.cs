@@ -1,8 +1,8 @@
-﻿using Aequus.Old.Common.EventBars;
+﻿using Aequu2.Old.Common.EventBars;
 using System;
 using Terraria.Localization;
 
-namespace Aequus.Old.Content.Events.Glimmer;
+namespace Aequu2.Old.Content.Events.Glimmer;
 
 public class GlimmerBar : EventBar {
     public override bool IsActive() {
@@ -14,6 +14,6 @@ public class GlimmerBar : EventBar {
     }
 
     public override string GetProgressText(float progress) {
-        return Language.GetText("Mods.Aequus.Misc.BlocksDistance").Format(GlimmerSystem.GetTileDistance(Main.LocalPlayer));
+        return Language.GetText("Mods.Aequu2.Misc.BlocksDistance").Format(GlimmerSystem.GetTileDistance(Main.LocalPlayer));
     }
 }

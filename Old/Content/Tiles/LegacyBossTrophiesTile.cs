@@ -4,7 +4,7 @@ using Terraria.DataStructures;
 using Terraria.Localization;
 using Terraria.ObjectData;
 
-namespace Aequus.Old.Content.Tiles;
+namespace Aequu2.Old.Content.Tiles;
 
 [LegacyName("Trophies", "BossTrophiesTile")]
 [Obsolete("Replaced with instanced Mod Tiles for each trophy.")]
@@ -18,7 +18,7 @@ public class LegacyBossTrophiesTile : ModTile {
 
     public static Dictionary<int, ModTile> LegacyConverter { get; private set; } = new();
 
-    public override string Texture => AequusTextures.Tile(TileID.Painting3X3);
+    public override string Texture => Aequu2Textures.Tile(TileID.Painting3X3);
 
     public override void SetStaticDefaults() {
         Main.tileSpelunker[Type] = true;

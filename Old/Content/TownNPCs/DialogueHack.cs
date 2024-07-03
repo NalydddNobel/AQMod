@@ -1,7 +1,7 @@
 ﻿using System;
 using Terraria.Localization;
 
-namespace Aequus.Old.Content.TownNPCs;
+namespace Aequu2.Old.Content.TownNPCs;
 
 internal class DialogueHack {
     public static string ReplaceKeys(ref string text, string needsToStartWith, string key, Func<string[], object> turnStringArgsIntoObject) {

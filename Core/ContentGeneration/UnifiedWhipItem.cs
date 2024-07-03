@@ -2,7 +2,7 @@
 using Terraria.GameContent;
 using Terraria.Localization;
 
-namespace Aequus.Core.ContentGeneration;
+namespace Aequu2.Core.ContentGeneration;
 
 public abstract class UnifiedWhipItem : ModItem, IWhipController {
     public abstract void SetWhipSettings(Projectile projectile, ref WhipSettings settings);

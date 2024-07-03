@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Elements;
+﻿namespace Aequu2.Content.Elements;
 
 public partial class Element {
     public static Element Shadow { get; internal set; }

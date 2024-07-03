@@ -1,12 +1,12 @@
-﻿using Aequus.Core.CodeGeneration;
-using Aequus.Old.Content.Items.Accessories.OnHitDebuffs;
+﻿using Aequu2.Core.CodeGeneration;
+using Aequu2.Old.Content.Items.Accessories.OnHitDebuffs;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.Audio;
 
-namespace Aequus;
+namespace Aequu2;
 
-public partial class AequusPlayer {
+public partial class Aequu2Player {
     [ResetEffects]
     public int accBlackPhial;
 
@@ -25,7 +25,7 @@ public partial class AequusPlayer {
 
         if (target.HasBuff(chosenDebuff)) {
             SetTimer(BlackPhial.COOLDOWN_KEY, BlackPhial.CooldownDuration);
-            SoundEngine.PlaySound(AequusSounds.InflictBlackPhial with { Volume = 0.33f, }, target.Center);
+            SoundEngine.PlaySound(Aequu2Sounds.InflictBlackPhial with { Volume = 0.33f, }, target.Center);
         }
     }
 }

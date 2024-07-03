@@ -1,7 +1,7 @@
-﻿using Aequus.Core;
+﻿using Aequu2.Core;
 using tModLoaderExtended.GlowMasks;
 
-namespace Aequus.Old.Content.Necromancy.Sceptres.Dungeon;
+namespace Aequu2.Old.Content.Necromancy.Sceptres.Dungeon;
 
 [AutoloadGlowMask]
 public class Revenant : ScepterBase {

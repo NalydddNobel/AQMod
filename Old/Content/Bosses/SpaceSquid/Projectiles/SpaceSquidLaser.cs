@@ -1,8 +1,8 @@
-﻿using Aequus.DataSets;
-using Aequus.Old.Core;
+﻿using Aequu2.DataSets;
+using Aequu2.Old.Core;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Bosses.SpaceSquid.Projectiles;
+namespace Aequu2.Old.Content.Bosses.SpaceSquid.Projectiles;
 
 public class SpaceSquidLaser : ModProjectile {
     private TrailRenderer prim;
@@ -37,12 +37,12 @@ public class SpaceSquidLaser : ModProjectile {
         var drawColor = new Color(10, 200, 80, 0);
         var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
         if (prim == null) {
-            prim = new TrailRenderer(AequusTextures.Trail2.Value, "Texture", (p) => new Vector2(Projectile.width - p * Projectile.width), (p) => drawColor * (1f - p),
+            prim = new TrailRenderer(Aequu2Textures.Trail2.Value, "Texture", (p) => new Vector2(Projectile.width - p * Projectile.width), (p) => drawColor * (1f - p),
                 drawOffset: Projectile.Size / 2f);
         }
         prim.Draw(Projectile.oldPos);
         Main.spriteBatch.Draw(texture, drawPos, null, new Color(drawColor.R, drawColor.G, drawColor.B, 0), Projectile.rotation, orig, Projectile.scale, SpriteEffects.None, 0f);
-        var spotlight = AequusTextures.Bloom;
+        var spotlight = Aequu2Textures.Bloom;
         Main.spriteBatch.Draw(spotlight, drawPos, null, new Color(drawColor.R, drawColor.G, drawColor.B, 0), Projectile.rotation, spotlight.Size() / 2f, Projectile.scale * 0.22f, SpriteEffects.None, 0f);
         return false;
     }

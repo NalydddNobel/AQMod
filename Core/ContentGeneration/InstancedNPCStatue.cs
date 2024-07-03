@@ -4,7 +4,7 @@ using Terraria.Localization;
 using Terraria.ObjectData;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 
-namespace Aequus.Core.ContentGeneration;
+namespace Aequu2.Core.ContentGeneration;
 
 internal class InstancedNPCStatue : InstancedModTile {
     private readonly ModNPC _modNPC;

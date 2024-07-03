@@ -1,15 +1,15 @@
-﻿using Aequus.Core.Hooks;
-using Aequus.Content.Items.Vanity.Dyes;
-using Aequus.Core.Graphics.Tiles;
+﻿using Aequu2.Core.Hooks;
+using Aequu2.Content.Items.Vanity.Dyes;
+using Aequu2.Core.Graphics.Tiles;
 using System.Collections.Generic;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
 using Terraria.Localization;
-using Aequus.Core.Entities.Tiles;
+using Aequu2.Core.Entities.Tiles;
 
-namespace Aequus.Old.Content.Items.Materials.OmniGem;
+namespace Aequu2.Old.Content.Items.Materials.OmniGem;
 
 public class OmniGemTile : BaseGemTile, IBatchedTile {
     public const int GROW_RANGE_HORIZONTAL = 30;
@@ -66,7 +66,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
             return true;
         }
 
-        SoundEngine.PlaySound(AequusSounds.OmniGemBreak with { Volume = 1.66f, Pitch = 0.55f, PitchVariance = 0.1f, MaxInstances = 10, }, new Vector2(i * 16f + 8f, j * 16f + 8f));
+        SoundEngine.PlaySound(Aequu2Sounds.OmniGemBreak with { Volume = 1.66f, Pitch = 0.55f, PitchVariance = 0.1f, MaxInstances = 10, }, new Vector2(i * 16f + 8f, j * 16f + 8f));
         return false;
     }
 
@@ -87,7 +87,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
 
         var effect = GameShaders.Armor.GetShaderFromItemId(DyeLoader.HueshiftDye.Type);
 
-        var maskTexture = AequusTextures.OmniGemTile_Mask.Value;
+        var maskTexture = Aequu2Textures.OmniGemTile_Mask.Value;
         var glowOffset = new Vector2(-1f, -1f);
         for (var i = 0; i < count; i++) {
             var info = tiles[i];
@@ -125,7 +125,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
 
         var effect = GameShaders.Armor.GetShaderFromItemId(DyeLoader.HueshiftDye.Type);
 
-        var texture = AequusTextures.OmniGemTile_Mask.Value;
+        var texture = Aequu2Textures.OmniGemTile_Mask.Value;
         var glowOffset = new Vector2(7f, 7f);
         for (var i = 0; i < count; i++) {
             var info = tiles[i];
@@ -161,7 +161,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
         Main.spriteBatch.BeginWorld(shader: true);
 
         effect = GameShaders.Armor.GetShaderFromItemId(ItemID.StardustDye);
-        texture = AequusTextures.BloomStrong;
+        texture = Aequu2Textures.BloomStrong;
         var color = Color.BlueViolet with { A = 0 } * 0.3f;
         glowOffset = new Vector2(8f, 8f);
         var textureOrigin = texture.Size() / 2f;

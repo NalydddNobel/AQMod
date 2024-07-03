@@ -1,5 +1,5 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Tiles.Components;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Tiles.Components;
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;
@@ -10,7 +10,7 @@ using Terraria.GameContent.Drawing;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Tiles.RainTotem;
+namespace Aequu2.Content.Tiles.RainTotem;
 
 public class RainTotem : RainTotemTileTemplate {
     #region Update
@@ -73,7 +73,7 @@ public class RainTotem : RainTotemTileTemplate {
         DropItem = new InstancedTileItem(this, rarity: ItemRarityID.Blue, value: Item.silver, researchSacrificeCount: 3);
         Mod.AddContent(DropItem);
 
-        Aequus.OnAddRecipes += AddRecipes;
+        Aequu2.OnAddRecipes += AddRecipes;
 
         void AddRecipes() {
             DropItem.CreateRecipe()

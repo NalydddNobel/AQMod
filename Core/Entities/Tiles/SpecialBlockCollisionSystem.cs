@@ -1,8 +1,8 @@
-﻿using Aequus.Core.Entities.Tiles.Components;
+﻿using Aequu2.Core.Entities.Tiles.Components;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Aequus.Core.Entities.Tiles;
+namespace Aequu2.Core.Entities.Tiles;
 
 internal class SpecialBlockCollisionSystem : ModSystem {
     private List<ModTile> _solidToProjsAndItems;

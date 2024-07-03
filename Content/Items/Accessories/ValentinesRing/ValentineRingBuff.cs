@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria.Localization;
 
-namespace Aequus.Content.Items.Accessories.ValentinesRing;
+namespace Aequu2.Content.Items.Accessories.ValentinesRing;
 
 public class ValentineRingBuff : ModBuff {
     public override LocalizedText DisplayName => ModContent.GetInstance<ValentineRing>().GetLocalization("BuffName");

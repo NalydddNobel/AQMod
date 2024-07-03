@@ -1,7 +1,7 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.ContentGeneration;
 using System;
 
-namespace Aequus.Content.Fishing;
+namespace Aequu2.Content.Fishing;
 
 public class FishingPoleGlobalProjectile : GlobalProjectile {
     public override bool AppliesToEntity(Projectile entity, bool lateInstantiation) {

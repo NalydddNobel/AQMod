@@ -1,10 +1,10 @@
-﻿using Aequus.Core.Assets;
-using Aequus.Core.Debug;
-using Aequus.Core.Graphics;
+﻿using Aequu2.Core.Assets;
+using Aequu2.Core.Debug;
+using Aequu2.Core.Graphics;
 using System;
 using System.Collections.Generic;
 
-namespace Aequus.Content.Critters.SeaFirefly;
+namespace Aequu2.Content.Critters.SeaFirefly;
 
 [Autoload(Side = ModSide.Client)]
 public class SeaFireflyRenderer : RequestHandler<SeaFireflyShaderRequest> {

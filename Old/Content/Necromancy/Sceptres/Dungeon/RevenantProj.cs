@@ -1,12 +1,12 @@
-﻿using Aequus.Core;
-using Aequus.Content.Dusts;
-using Aequus.Old.Content.Necromancy.Sceptres.Evil;
-using Aequus.Old.Content.Particles;
+﻿using Aequu2.Core;
+using Aequu2.Content.Dusts;
+using Aequu2.Old.Content.Necromancy.Sceptres.Evil;
+using Aequu2.Old.Content.Particles;
 
-namespace Aequus.Old.Content.Necromancy.Sceptres.Dungeon;
+namespace Aequu2.Old.Content.Necromancy.Sceptres.Dungeon;
 
 public class RevenantProj : CorruptionSceptreProj {
-    public override string Texture => AequusTextures.CorruptionSceptreProj.Path;
+    public override string Texture => Aequu2Textures.CorruptionSceptreProj.Path;
 
     public override void SetStaticDefaults() {
         ProjectileID.Sets.TrailCacheLength[Type] = 10;

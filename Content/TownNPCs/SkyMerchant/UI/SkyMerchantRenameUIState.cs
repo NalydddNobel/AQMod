@@ -1,6 +1,6 @@
-﻿using Aequus.Content.Systems.Renaming;
-using Aequus.Core.UI;
-using Aequus.Core.UI.Elements;
+﻿using Aequu2.Content.Systems.Renaming;
+using Aequu2.Core.UI;
+using Aequu2.Core.UI.Elements;
 using ReLogic.Content;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -10,7 +10,7 @@ using Terraria.Localization;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace Aequus.Content.TownNPCs.SkyMerchant.UI;
+namespace Aequu2.Content.TownNPCs.SkyMerchant.UI;
 
 public class SkyMerchantRenameUIState : UIState, ILoad {
     public ImprovedItemSlot SendItem { get; private set; }
@@ -186,7 +186,7 @@ public class SkyMerchantRenameUIState : UIState, ILoad {
         int price = RenameItem.GetRenamePrice(SendItem.Item);
 
         string cost = Language.GetTextValue("LegacyInterface.46") + ": ";
-        string priceText = XLanguage.PriceTextColored(price, NoValueText: Language.GetTextValue("Mods.Aequus.Misc.PriceFree"), pulse: true);
+        string priceText = XLanguage.PriceTextColored(price, NoValueText: Language.GetTextValue("Mods.Aequu2.Misc.PriceFree"), pulse: true);
 
         var font = FontAssets.MouseText.Value;
         ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, cost, new Vector2(savingsX, savingsY + 24f), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One, -1f, 2f);

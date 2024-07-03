@@ -3,7 +3,7 @@ using Terraria.DataStructures;
 using Terraria.Localization;
 using tModLoaderExtended.GlowMasks;
 
-namespace Aequus.Old.Content.Items.Accessories.LaserScope;
+namespace Aequu2.Old.Content.Items.Accessories.LaserScope;
 
 [AutoloadGlowMask()]
 [LegacyName("PrecisionGloves")]
@@ -21,7 +21,7 @@ public class LaserReticle : ModItem {
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
-        player.GetModPlayer<AequusPlayer>().bulletSpreadReduction *= BulletSpreadMultiplier;
+        player.GetModPlayer<Aequu2Player>().bulletSpreadReduction *= BulletSpreadMultiplier;
     }
 }
 
@@ -32,7 +32,7 @@ public class LaserScopeGlobalProjectile : GlobalProjectile {
 
     public override void OnSpawn(Projectile projectile, IEntitySource source) {
         if (source is EntitySource_Parent parent && parent.Entity is Player player
-            && Main.myPlayer == player.whoAmI && player.TryGetModPlayer(out AequusPlayer laserScopePlayer)) {
+            && Main.myPlayer == player.whoAmI && player.TryGetModPlayer(out Aequu2Player laserScopePlayer)) {
 
             Vector2 wantedVelocity = player.DirectionTo(Main.MouseWorld) * projectile.velocity.Length();
             projectile.velocity = Vector2.Lerp(wantedVelocity, projectile.velocity, Math.Clamp(laserScopePlayer.bulletSpreadReduction, 0f, 1f));

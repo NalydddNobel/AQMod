@@ -1,15 +1,15 @@
-﻿using Aequus.Content.Configuration;
-using Aequus.Core.Entities.Bestiary;
+﻿using Aequu2.Content.Configuration;
+using Aequu2.Core.Entities.Bestiary;
 using System;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequus.Old.Content.Enemies.Mimics;
+namespace Aequu2.Old.Content.Enemies.Mimics;
 
 public class ShadowMimic : ModNPC, IAddRecipes {
-    public override string Texture => AequusTextures.NPC(NPCID.Mimic);
+    public override string Texture => Aequu2Textures.NPC(NPCID.Mimic);
 
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Mimic];

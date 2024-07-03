@@ -1,9 +1,9 @@
-﻿using Aequus.DataSets.Json;
+﻿using Aequu2.DataSets.Json;
 using Newtonsoft.Json;
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Aequus.DataSets.Structures;
+namespace Aequu2.DataSets.Structures;
 
 /// <summary>
 /// Represents an entry for a piece of content which uses an Id system.

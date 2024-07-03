@@ -1,7 +1,7 @@
-﻿using Aequus.Old.Content.TownNPCs.PhysicistNPC.Analysis;
+﻿using Aequu2.Old.Content.TownNPCs.PhysicistNPC.Analysis;
 using System;
 
-namespace Aequus.Old.Content.Items.Accessories.Pacemaker;
+namespace Aequu2.Old.Content.Items.Accessories.Pacemaker;
 
 [LegacyName("HyperJet")]
 public class Pacemaker : ModItem {

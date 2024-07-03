@@ -1,7 +1,7 @@
 ﻿using System;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Core.Hooks;
+namespace Aequu2.Core.Hooks;
 
 public partial class TerrariaHooks {
     private static bool _rerollingItemDropResolve;
@@ -17,10 +17,10 @@ public partial class TerrariaHooks {
 
         float rolls = 0f;
         if (info.player != null) {
-            rolls += info.player.GetModPlayer<AequusPlayer>().dropRolls;
+            rolls += info.player.GetModPlayer<Aequu2Player>().dropRolls;
         }
         //if (info.npc != null) {
-        //    rolls += info.npc.GetGlobalNPC<AequusNPC>().dropRolls;
+        //    rolls += info.npc.GetGlobalNPC<Aequu2NPC>().dropRolls;
         //}
 
         do {
@@ -33,7 +33,7 @@ public partial class TerrariaHooks {
                 }
             }
             catch (Exception ex) {
-                Aequus.Instance.Logger.Error(ex);
+                Aequu2.Instance.Logger.Error(ex);
             }
             _rerollingItemDropResolve = false;
             rolls--;

@@ -1,7 +1,7 @@
-﻿using Aequus.DataSets;
+﻿using Aequu2.DataSets;
 using Terraria.Localization;
 
-namespace Aequus.Content.Items.Potions.Buffs.Sentry;
+namespace Aequu2.Content.Items.Potions.Buffs.Sentry;
 
 public class SentryBuff : ModBuff {
     public override LocalizedText DisplayName => ModContent.GetInstance<SentryPotion>().GetLocalization("BuffName");

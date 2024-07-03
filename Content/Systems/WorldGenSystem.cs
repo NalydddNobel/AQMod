@@ -1,8 +1,8 @@
-﻿using Aequus.Core.Components;
+﻿using Aequu2.Core.Components;
 using System.Collections.Generic;
 using Terraria.WorldBuilding;
 
-namespace Aequus.Content.Systems;
+namespace Aequu2.Content.Systems;
 
 public class WorldGenSystem : ModSystem {
     public static readonly List<AGenStep> GenerationSteps = [];

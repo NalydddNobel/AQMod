@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Core.Entities.NPCs;
+namespace Aequu2.Core.Entities.NPCs;
 
 public abstract class AIFighterLegacy : ModNPC {
     public virtual bool WiderNPC => false;

@@ -1,10 +1,10 @@
-﻿using Aequus.Old.Content.Particles;
+﻿using Aequu2.Old.Content.Particles;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ObjectData;
 
-namespace Aequus.Old.Content.Events.Glimmer.CosmicMonolith;
+namespace Aequu2.Old.Content.Events.Glimmer.CosmicMonolith;
 
 public class CosmicMonolithTile : ModTile {
     public override void SetStaticDefaults() {

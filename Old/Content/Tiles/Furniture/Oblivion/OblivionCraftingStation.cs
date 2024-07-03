@@ -1,10 +1,10 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Graphics.Tiles;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Graphics.Tiles;
 using System;
 using Terraria.DataStructures;
 using Terraria.ObjectData;
 
-namespace Aequus.Old.Content.Tiles.Furniture.Oblivion;
+namespace Aequu2.Old.Content.Tiles.Furniture.Oblivion;
 
 public class OblivionCraftingStation : ModTile, ISpecialTileRenderer {
     public static ModItem Item { get; private set; }
@@ -48,10 +48,10 @@ public class OblivionCraftingStation : ModTile, ISpecialTileRenderer {
         float portalSquishMagnitude = 0.1f;
         Vector2 portalHoveringPosition = portalPosition + new Vector2(0f, Helper.Oscillate(Main.GlobalTimeWrappedHourly, -2f, 2f));
 
-        Texture2D portalTexture = AequusTextures.OblivionCraftingStation_Portal.Value;
+        Texture2D portalTexture = Aequu2Textures.OblivionCraftingStation_Portal.Value;
         Main.spriteBatch.Draw(portalTexture, portalHoveringPosition, null, Color.White, 0f, portalTexture.Size() / 2f, new Vector2(1f + MathF.Sin(portalAnimation) * portalSquishMagnitude, 1f + MathF.Cos(portalAnimation) * portalSquishMagnitude), SpriteEffects.None, 0f);
 
-        Texture2D stickTexture = AequusTextures.OblivionCraftingStation_Stick.Value;
+        Texture2D stickTexture = Aequu2Textures.OblivionCraftingStation_Stick.Value;
         Rectangle stickFrame = stickTexture.Frame(verticalFrames: 10, frameY: (int)Main.GameUpdateCount / 6 % 10);
         stickFrame.Height -= 2;
         Vector2 stickOrigin = stickFrame.Size() / 2f;

@@ -1,6 +1,6 @@
-﻿using Aequus.Old.Common.Projectiles;
+﻿using Aequu2.Old.Common.Projectiles;
 
-namespace Aequus.Old.Content.Bosses.OmegaStarite.Projectiles;
+namespace Aequu2.Old.Content.Bosses.OmegaStarite.Projectiles;
 
 public class OmegaStariteProj : EnemyAttachedProjBase {
     public const float HurtRadius = 84.85f / 2f;

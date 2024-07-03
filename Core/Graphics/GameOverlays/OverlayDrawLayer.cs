@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Terraria.Graphics.Effects;
 
-namespace Aequus.Core.Graphics.GameOverlays;
+namespace Aequu2.Core.Graphics.GameOverlays;
 
-public abstract class OverlayDrawLayer(EffectPriority priority, RenderLayers layer) : AequusOverlay(priority, layer) {
+public abstract class OverlayDrawLayer(EffectPriority priority, RenderLayers layer) : Aequu2Overlay(priority, layer) {
     public readonly List<IOverlayDrawer> Drawers = [];
 
     public void Add(IOverlayDrawer anim) {

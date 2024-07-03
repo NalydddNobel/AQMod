@@ -1,9 +1,9 @@
-﻿using Aequus.Content.Elements;
-using Aequus.Core.Debug.CheatCodes;
+﻿using Aequu2.Content.Elements;
+using Aequu2.Core.Debug.CheatCodes;
 using System.Collections.Generic;
 using Terraria.GameContent;
 
-namespace Aequus.Content.Elements;
+namespace Aequu2.Content.Elements;
 
 public class ElementGlobalItem : GlobalItem {
     private static IEnumerable<Element> GetVisibleElements(Item item) {

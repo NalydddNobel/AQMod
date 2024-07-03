@@ -1,6 +1,6 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.ContentGeneration;
 
-namespace Aequus.Old.Content.DronePylons;
+namespace Aequu2.Old.Content.DronePylons;
 
 internal class InstancedDroneItem : InstancedModItem {
     private readonly DroneSlot _parent;

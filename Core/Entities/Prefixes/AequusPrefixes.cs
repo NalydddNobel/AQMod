@@ -1,10 +1,10 @@
-﻿using Aequus.Core.Entities.Items.Components;
+﻿using Aequu2.Core.Entities.Items.Components;
 using System.Collections.Generic;
 using Terraria.Utilities;
 
-namespace Aequus.Core.Entities.Prefixes;
+namespace Aequu2.Core.Entities.Prefixes;
 
-public class AequusPrefixes : GlobalItem {
+public class Aequu2Prefixes : GlobalItem {
     internal static List<CooldownPrefix> RegisteredCooldownPrefixes { get; private set; } = new();
 
     public override void Unload() {

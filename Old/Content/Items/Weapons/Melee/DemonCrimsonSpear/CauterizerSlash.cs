@@ -1,7 +1,7 @@
-﻿using Aequus.DataSets;
+﻿using Aequu2.DataSets;
 using Terraria.Audio;
 
-namespace Aequus.Old.Content.Items.Weapons.Melee.DemonCrimsonSpear;
+namespace Aequu2.Old.Content.Items.Weapons.Melee.DemonCrimsonSpear;
 
 public class CauterizerSlash : ModProjectile {
     private bool _didEffects;
@@ -87,7 +87,7 @@ public class CauterizerSlash : ModProjectile {
 
     public override bool PreDraw(ref Color lightColor) {
         Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int trailLength);
-        Main.EntitySpriteDraw(AequusTextures.Bloom, Projectile.position + offset - Main.screenPosition, null, new Color(255, 40, 20, 50) * Projectile.Opacity * 0.8f, Projectile.rotation, AequusTextures.Bloom.Size() / 2f, new Vector2(1.5f, 1f) * Projectile.scale, SpriteEffects.FlipHorizontally, 0);
+        Main.EntitySpriteDraw(Aequu2Textures.Bloom, Projectile.position + offset - Main.screenPosition, null, new Color(255, 40, 20, 50) * Projectile.Opacity * 0.8f, Projectile.rotation, Aequu2Textures.Bloom.Size() / 2f, new Vector2(1.5f, 1f) * Projectile.scale, SpriteEffects.FlipHorizontally, 0);
         for (int i = 0; i < trailLength; i++) {
             float progress = 1f - i / trailLength;
             Main.EntitySpriteDraw(texture, Projectile.oldPos[i] + offset - Main.screenPosition, null, new Color(128, 20, 10, 30) * Projectile.Opacity * progress * 0.5f, Projectile.oldRot[i], origin, Projectile.scale * (1.5f - progress * 0.4f), SpriteEffects.FlipHorizontally, 0);

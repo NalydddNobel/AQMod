@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Entities.Projectiles;
-using Aequus.Old.Content.StatusEffects;
+﻿using Aequu2.Core.Entities.Projectiles;
+using Aequu2.Old.Content.StatusEffects;
 using System;
 using Terraria.Audio;
 
-namespace Aequus.Old.Content.Items.Weapons.Melee.SuperStarSword;
+namespace Aequu2.Old.Content.Items.Weapons.Melee.SuperStarSword;
 
 public class SuperStarSwordProj : LegacyHeldSlashingSwordProjectile {
     private bool _spawnedProjectile;
@@ -12,7 +12,7 @@ public class SuperStarSwordProj : LegacyHeldSlashingSwordProjectile {
     private static readonly Color[] DustColorsAnniversary = new Color[] { Color.Pink with { A = 0 }, Color.LightPink with { A = 0 }, Color.HotPink with { A = 0 }, };
     public static Color[] DustColors => Main.tenthAnniversaryWorld ? DustColorsAnniversary : DustColorsNormal;
 
-    public override string Texture => AequusTextures.SuperStarSword.Path;
+    public override string Texture => Aequu2Textures.SuperStarSword.Path;
 
     public override bool ShouldUpdatePlayerDirection() {
         return AnimProgress > 0.1f && AnimProgress < 0.3f;
@@ -38,7 +38,7 @@ public class SuperStarSwordProj : LegacyHeldSlashingSwordProjectile {
         base.AI();
         if (!playedSound && AnimProgress > 0.4f) {
             playedSound = true;
-            SoundEngine.PlaySound(AequusSounds.HeavySwing with { Pitch = 0.2f }, Projectile.Center);
+            SoundEngine.PlaySound(Aequu2Sounds.HeavySwing with { Pitch = 0.2f }, Projectile.Center);
         }
 
         if (AnimProgress < 0.3f) {
@@ -114,7 +114,7 @@ public class SuperStarSwordProj : LegacyHeldSlashingSwordProjectile {
             float swishProgress = AnimProgress / 0.4f;
             float intensity = (float)Math.Sin((float)Math.Pow(swishProgress, 2f) * MathHelper.Pi);
 
-            var swish = AequusTextures.SlashForward.Value;
+            var swish = Aequu2Textures.SlashForward.Value;
             var swishOrigin = swish.Size() / 2f;
             var swishColor = (Main.tenthAnniversaryWorld ? Color.HotPink with { A = 10 } : new Color(10, 30, 100, 10)) * intensity * intensity * Projectile.Opacity;
             float r = BaseAngleVector.ToRotation() + (swishProgress * 2f - 1f) * -swingDirection * 0.4f;

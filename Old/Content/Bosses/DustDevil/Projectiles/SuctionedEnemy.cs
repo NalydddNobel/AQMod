@@ -4,11 +4,11 @@ using System.IO;
 using Terraria.Audio;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Bosses.DustDevil.Projectiles;
+namespace Aequu2.Old.Content.Bosses.DustDevil.Projectiles;
 public class SuctionedEnemy : ModProjectile {
     public static List<int> SelectableEnemies { get; private set; }
 
-    public override string Texture => AequusTextures.None.Path;
+    public override string Texture => Aequu2Textures.None.Path;
 
     public float randomYOffset;
     public float wave;

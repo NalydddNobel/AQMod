@@ -1,8 +1,8 @@
-﻿using Aequus.DataSets.Structures;
+﻿using Aequu2.DataSets.Structures;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace Aequus.DataSets;
+namespace Aequu2.DataSets;
 
 public class FishDataSet : DataSet {
     [JsonProperty]

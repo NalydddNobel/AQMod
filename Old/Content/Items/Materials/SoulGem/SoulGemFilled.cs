@@ -1,6 +1,6 @@
 ﻿using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Items.Materials.SoulGem;
+namespace Aequu2.Old.Content.Items.Materials.SoulGem;
 
 public class SoulGemFilled : ModItem {
     public override void SetStaticDefaults() {

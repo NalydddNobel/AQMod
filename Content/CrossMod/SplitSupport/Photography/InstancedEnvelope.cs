@@ -1,9 +1,9 @@
-﻿using Aequus.Core.CrossMod;
-using Aequus.Core.Entities.Items.DropRules;
+﻿using Aequu2.Core.CrossMod;
+using Aequu2.Core.Entities.Items.DropRules;
 using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Content.CrossMod.SplitSupport.Photography;
+namespace Aequu2.Content.CrossMod.SplitSupport.Photography;
 
 [Autoload(false)]
 internal class InstancedEnvelope : CrossModItem {

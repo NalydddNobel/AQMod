@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Events.Glimmer;
+﻿namespace Aequu2.Old.Content.Events.Glimmer;
 
 public class GlimmerColors : ModSystem {
     public static Color Red { get; private set; }

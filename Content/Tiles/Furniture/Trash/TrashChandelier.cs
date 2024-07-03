@@ -1,6 +1,6 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.ContentGeneration;
 
-namespace Aequus.Content.Tiles.Furniture.Trash;
+namespace Aequu2.Content.Tiles.Furniture.Trash;
 
 internal class TrashChandelier(UnifiedFurniture parent) : InstancedFurnitureChandelier(parent, default) {
     public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {

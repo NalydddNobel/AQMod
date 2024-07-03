@@ -1,13 +1,13 @@
-﻿using Aequus.Core.Assets;
-using Aequus.Core.Graphics;
-using Aequus.Core.Particles;
+﻿using Aequu2.Core.Assets;
+using Aequu2.Core.Graphics;
+using Aequu2.Core.Particles;
 using ReLogic.Content;
 using System;
 using Terraria.GameContent;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 
-namespace Aequus.Old.Content.Items.Weapons.Magic.Gamestar;
+namespace Aequu2.Old.Content.Items.Weapons.Magic.Gamestar;
 
 public sealed class GamestarBits : ConcurrentParticles<GamestarBits.Particle> {
     public class GamestarScreenShaderData(Asset<Effect> shader, string passName) : ScreenShaderData(shader, passName) {
@@ -20,13 +20,13 @@ public sealed class GamestarBits : ConcurrentParticles<GamestarBits.Particle> {
         }
     }
 
-    private const string ScreenShaderKey = "Aequus:Gamestar";
+    private const string ScreenShaderKey = "Aequu2:Gamestar";
 
     private RenderTarget2D _target;
     private bool _ready;
 
     public override void OnLoad() {
-        Filters.Scene[ScreenShaderKey] = new Filter(new GamestarScreenShaderData(AequusShaders.Gamestar.Preload(), "ModdersToolkitShaderPass"), EffectPriority.Low);
+        Filters.Scene[ScreenShaderKey] = new Filter(new GamestarScreenShaderData(Aequu2Shaders.Gamestar.Preload(), "ModdersToolkitShaderPass"), EffectPriority.Low);
     }
 
     public override void Activate() {

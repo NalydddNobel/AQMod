@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Aequus.Old.Content.Items.Tools.MagicMirrors.PhaseMirror;
+namespace Aequu2.Old.Content.Items.Tools.MagicMirrors.PhaseMirror;
 public interface IPhaseMirror {
     List<(int, int, Dust)> DustEffectCache { get; set; }
     int UseAnimationMax { get; }
@@ -38,15 +38,15 @@ public interface IPhaseMirror {
             if (curPiece < pieces - 1 && curPiece >= pieces - 3) {
                 float progression = (player.itemAnimation - 40) / 16f;
                 y = (int)(hitbox.Height * (1f - progression)) - 6;
-                player.GetModPlayer<AequusPlayer>().CustomDrawShadow = (float)Math.Pow(1f - progression, 2f);
+                player.GetModPlayer<Aequu2Player>().CustomDrawShadow = (float)Math.Pow(1f - progression, 2f);
             }
             else if (curPiece < 2) {
                 float progression = 1f - player.itemAnimation / 16f;
-                player.GetModPlayer<AequusPlayer>().CustomDrawShadow = progression > 0.9f ? null : 1f - progression;
+                player.GetModPlayer<Aequu2Player>().CustomDrawShadow = progression > 0.9f ? null : 1f - progression;
                 y = (int)(hitbox.Height * (1f - progression)) - 4;
             }
             else if (curPiece < pieces - 1) {
-                player.GetModPlayer<AequusPlayer>().CustomDrawShadow = 1f;
+                player.GetModPlayer<Aequu2Player>().CustomDrawShadow = 1f;
             }
             if (curPiece > 4 || curPiece < 2) {
                 for (int i = 0; i < hitbox.Width; i += 3) {

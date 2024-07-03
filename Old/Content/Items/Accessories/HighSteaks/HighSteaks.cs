@@ -1,10 +1,10 @@
-﻿using Aequus.Core.Entities.Items.Components;
+﻿using Aequu2.Core.Entities.Items.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.Localization;
 
-namespace Aequus.Old.Content.Items.Accessories.HighSteaks;
+namespace Aequu2.Old.Content.Items.Accessories.HighSteaks;
 
 [LegacyName("SteakEyes")]
 [AutoloadEquip(EquipType.Waist)]

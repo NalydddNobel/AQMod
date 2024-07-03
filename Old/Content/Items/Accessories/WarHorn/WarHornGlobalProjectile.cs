@@ -1,6 +1,6 @@
 ﻿using Terraria.DataStructures;
 
-namespace Aequus.Old.Content.Items.Accessories.WarHorn;
+namespace Aequu2.Old.Content.Items.Accessories.WarHorn;
 
 public class WarHornMinionGlobalProjectile : GlobalProjectile {
     private static bool _loop;
@@ -41,7 +41,7 @@ public class WarHornMinionGlobalProjectile : GlobalProjectile {
 
         float frenzyOpacity = warHornFrenzyTime < 60 ? warHornFrenzyTime / 60f : 1f;
 
-        var texture = AequusTextures.WarHornEffect.Value;
+        var texture = Aequu2Textures.WarHornEffect.Value;
 
         var color = Color.Red;
         var drawCoords = projectile.Center - Main.screenPosition;
@@ -57,7 +57,7 @@ public class WarHornMinionGlobalProjectile : GlobalProjectile {
             swishOpacity *= 1f - (swishTimeMax - swishTime) / 8f;
         }
 
-        Main.EntitySpriteDraw(AequusTextures.BloomStrong, drawCoords, null, color, 0f, AequusTextures.BloomStrong.Size() / 2f, scale, SpriteEffects.None, 0);
+        Main.EntitySpriteDraw(Aequu2Textures.BloomStrong, drawCoords, null, color, 0f, Aequu2Textures.BloomStrong.Size() / 2f, scale, SpriteEffects.None, 0);
         for (int i = -1; i <= 1; i += 2) {
             Main.EntitySpriteDraw(texture, drawCoords + new Vector2(i * projectile.Frame().Width * (1f - warHornFrenzyTime % swishTimeMax / (float)swishTimeMax), 0f), null, color with { A = 128 } * swishOpacity, MathHelper.PiOver2 * i, textureOrigin, scale * 0.5f, SpriteEffects.None, 0);
         }
@@ -97,8 +97,8 @@ public class WarHornActivatorGlobalProjectile : GlobalProjectile {
 
     public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone) {
         if (target.SpawnedFromStatue || target.immortal
-            || !Main.player[projectile.owner].TryGetModPlayer(out AequusPlayer aequusPlayer)
-            || aequusPlayer.accWarHorn <= 0 || Main.player[projectile.owner].HasBuff<WarHornCooldown>()) {
+            || !Main.player[projectile.owner].TryGetModPlayer(out Aequu2Player Aequu2Player)
+            || Aequu2Player.accWarHorn <= 0 || Main.player[projectile.owner].HasBuff<WarHornCooldown>()) {
             return;
         }
         ActivateWarhorn(projectile);
@@ -118,7 +118,7 @@ public class WarHornActivatorGlobalProjectile : GlobalProjectile {
             if (minion.warHornFrenzyTime <= 30) {
                 // Play Sound
             }
-            minion.warHornFrenzyTime = (ushort)(240 * Main.player[projectile.owner].GetModPlayer<AequusPlayer>().accWarHorn);
+            minion.warHornFrenzyTime = (ushort)(240 * Main.player[projectile.owner].GetModPlayer<Aequu2Player>().accWarHorn);
             for (int i = 0; i < 20; i++) {
                 var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height,
                     DustID.RedTorch, Scale: Main.rand.NextFloat(0.8f, 1.5f));

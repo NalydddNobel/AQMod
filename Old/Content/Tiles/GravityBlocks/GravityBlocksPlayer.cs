@@ -1,7 +1,7 @@
 ﻿using System;
 using Terraria.Audio;
 
-namespace Aequus.Old.Content.Tiles.GravityBlocks;
+namespace Aequu2.Old.Content.Tiles.GravityBlocks;
 public class GravityBlocksPlayer : ModPlayer {
     public int gravityTileOld;
     public int gravityTile;

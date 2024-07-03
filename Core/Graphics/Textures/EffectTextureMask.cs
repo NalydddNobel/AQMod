@@ -1,7 +1,7 @@
 ﻿using ReLogic.Content;
 using System;
 
-namespace Aequus.Core.Graphics.Textures;
+namespace Aequu2.Core.Graphics.Textures;
 
 public class EffectTextureMask : IColorEffect {
     private Texture2D _maskTexture;

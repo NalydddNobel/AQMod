@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Items.Accessories.OnHitDebuffs;
+﻿namespace Aequu2.Old.Content.Items.Accessories.OnHitDebuffs;
 
 public class BoneRingDebuffGlobalNPC : GlobalNPC {
     public bool debuffBoneRing;

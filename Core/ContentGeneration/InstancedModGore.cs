@@ -1,6 +1,6 @@
 ﻿using Terraria.GameContent;
 
-namespace Aequus.Core.ContentGeneration;
+namespace Aequu2.Core.ContentGeneration;
 
 /// <param name="name"></param>
 /// <param name="texture"></param>

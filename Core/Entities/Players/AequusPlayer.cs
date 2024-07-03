@@ -1,11 +1,11 @@
-﻿using Aequus.Content.Items.PermaPowerups.BeyondLifeCrystal;
-using Aequus.Content.Items.PermaPowerups.BeyondManaCrystal;
-using Aequus.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
-using Aequus.Core.CodeGeneration;
+﻿using Aequu2.Content.Items.PermaPowerups.BeyondLifeCrystal;
+using Aequu2.Content.Items.PermaPowerups.BeyondManaCrystal;
+using Aequu2.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
+using Aequu2.Core.CodeGeneration;
 using System.Runtime.CompilerServices;
 using Terraria.GameInput;
 
-namespace Aequus;
+namespace Aequu2;
 
 [Gen.AequusPlayer_ResetField<StatModifier>("wingTime")]
 public partial class AequusPlayer : ModPlayer, IExpandedBySourceGenerator {

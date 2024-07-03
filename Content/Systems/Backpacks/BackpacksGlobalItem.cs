@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Backpacks;
+﻿namespace Aequu2.Content.Backpacks;
 
 public sealed class BackpacksGlobalItem : GlobalItem {
     public override bool ItemSpace(Item item, Player player) {

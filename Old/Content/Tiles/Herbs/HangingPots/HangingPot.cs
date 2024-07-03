@@ -1,16 +1,16 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Tiles;
-using Aequus.Old.Content.Items.Potions.Prefixes.BoundedPotions;
-using Aequus.Old.Content.Items.Potions.Prefixes.EmpoweredPotions;
-using Aequus.Old.Content.Items.Potions.Prefixes.SplashPotions;
-using Aequus.Old.Content.Items.Potions.Prefixes.StuffedPotions;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Tiles;
+using Aequu2.Old.Content.Items.Potions.Prefixes.BoundedPotions;
+using Aequu2.Old.Content.Items.Potions.Prefixes.EmpoweredPotions;
+using Aequu2.Old.Content.Items.Potions.Prefixes.SplashPotions;
+using Aequu2.Old.Content.Items.Potions.Prefixes.StuffedPotions;
 using System;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ObjectData;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 
-namespace Aequus.Old.Content.Tiles.Herbs.HangingPots;
+namespace Aequu2.Old.Content.Tiles.Herbs.HangingPots;
 
 internal class HangingPot : ModTile {
     public override void Load() {
@@ -26,7 +26,7 @@ internal class HangingPot : ModTile {
             Mod.AddContent(hangingPlantItem);
 
             style++;
-            Aequus.OnAddRecipes += () => {
+            Aequu2.OnAddRecipes += () => {
                 hangingPlantItem.CreateRecipe()
                     .AddIngredient(ItemID.PotSuspended)
                     .AddIngredient(getIngredientId())

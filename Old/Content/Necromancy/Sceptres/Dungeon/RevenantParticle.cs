@@ -1,8 +1,8 @@
-﻿using Aequus.Core.Graphics;
-using Aequus.Core.Particles;
+﻿using Aequu2.Core.Graphics;
+using Aequu2.Core.Particles;
 using System;
 
-namespace Aequus.Old.Content.Particles;
+namespace Aequu2.Old.Content.Particles;
 
 public class RevenantParticle : ParallelParticleArray<RevenantParticle.Particle> {
     public override int ParticleCount => 600;
@@ -10,10 +10,10 @@ public class RevenantParticle : ParallelParticleArray<RevenantParticle.Particle>
     public override void Draw(SpriteBatch spriteBatch) {
         spriteBatch.BeginDusts();
 
-        Texture2D texture = AequusTextures.CorruptionSceptreProj.Value;
+        Texture2D texture = Aequu2Textures.CorruptionSceptreProj.Value;
         Rectangle frame = texture.Bounds;
         Vector2 origin = frame.Size() / 2f;
-        Texture2D bloomTexture = AequusTextures.BloomStrong;
+        Texture2D bloomTexture = Aequu2Textures.BloomStrong;
         Vector2 bloomOrigin = bloomTexture.Size() / 2f;
         lock (this) {
             for (int k = 0; k < Particles.Length; k++) {

@@ -1,7 +1,7 @@
-﻿using Aequus.Core.Entities.Items.Components;
+﻿using Aequu2.Core.Entities.Items.Components;
 using System;
 
-namespace Aequus.Core.Hooks;
+namespace Aequu2.Core.Hooks;
 
 public partial class TerrariaHooks {
     private static bool On_PrefixLoader_CanRoll(Func<Item, int, bool> orig, Item item, int prefix) {

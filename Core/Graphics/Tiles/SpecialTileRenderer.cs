@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Terraria.GameContent.Drawing;
 
-namespace Aequus.Core.Graphics.Tiles;
+namespace Aequu2.Core.Graphics.Tiles;
 
 internal sealed class SpecialTileRenderer : ModSystem {
     public static Action UpdateTileEffects;

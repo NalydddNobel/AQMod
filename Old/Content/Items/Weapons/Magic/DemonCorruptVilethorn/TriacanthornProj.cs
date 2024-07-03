@@ -1,8 +1,8 @@
-﻿using Aequus.DataSets;
-using Aequus.Old.Content.Items.Weapons.Ranged.DemonCorruptBow;
+﻿using Aequu2.DataSets;
+using Aequu2.Old.Content.Items.Weapons.Ranged.DemonCorruptBow;
 using Terraria.Audio;
 
-namespace Aequus.Old.Content.Items.Weapons.Magic.DemonCorruptVilethorn;
+namespace Aequu2.Old.Content.Items.Weapons.Magic.DemonCorruptVilethorn;
 
 public class TriacanthornProj : ModProjectile {
     private float _glowy;

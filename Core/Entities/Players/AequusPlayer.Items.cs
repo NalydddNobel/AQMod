@@ -1,9 +1,9 @@
-﻿using Aequus.Core.CodeGeneration;
-using Aequus.Core.Entities.Items.Components;
+﻿using Aequu2.Core.CodeGeneration;
+using Aequu2.Core.Entities.Items.Components;
 using System;
 using Terraria.UI;
 
-namespace Aequus;
+namespace Aequu2;
 
 [Gen.AequusPlayer_ResetField<Item>("goldenKey")]
 [Gen.AequusPlayer_ResetField<Item>("shadowKey")]

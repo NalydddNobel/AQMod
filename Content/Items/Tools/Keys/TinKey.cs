@@ -1,7 +1,7 @@
-﻿using Aequus.Core;
-using Aequus.DataSets;
+﻿using Aequu2.Core;
+using Aequu2.DataSets;
 
-namespace Aequus.Content.Items.Tools.Keys;
+namespace Aequu2.Content.Items.Tools.Keys;
 
 public class TinKey : ModItem {
     public override void SetStaticDefaults() {

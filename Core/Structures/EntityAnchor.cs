@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.Structures;
+﻿namespace Aequu2.Core.Structures;
 
 public interface IEntityAnchor {
     int Index { get; set; }

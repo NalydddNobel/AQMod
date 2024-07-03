@@ -1,6 +1,6 @@
 ﻿using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Fishing.CrabPots;
+namespace Aequu2.Content.Fishing.CrabPots;
 
 public struct CrabPotBiomeData {
     public int LiquidStyle { get; private set; }

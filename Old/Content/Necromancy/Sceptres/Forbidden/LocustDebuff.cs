@@ -1,7 +1,7 @@
-﻿using Aequus.DataSets;
+﻿using Aequu2.DataSets;
 using System;
 
-namespace Aequus.Old.Content.Necromancy.Sceptres.Forbidden;
+namespace Aequu2.Old.Content.Necromancy.Sceptres.Forbidden;
 
 public class LocustDebuff : ModBuff {
     public static int BaseDamage { get; set; } = 2;
@@ -10,7 +10,7 @@ public class LocustDebuff : ModBuff {
     public static int BaseDamageNumber { get; set; } = 1;
     public static int StackDamageNumber { get; set; } = 1;
 
-    public override string Texture => AequusTextures.TemporaryDebuffIcon;
+    public override string Texture => Aequu2Textures.TemporaryDebuffIcon;
 
     public override void SetStaticDefaults() {
         Main.debuff[Type] = true;

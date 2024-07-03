@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Components.Buffs;
-using Aequus.DataSets;
+﻿using Aequu2.Core.Components.Buffs;
+using Aequu2.DataSets;
 using System;
 using Terraria.Audio;
 
-namespace Aequus.Old.Content.StatusEffects;
+namespace Aequu2.Old.Content.StatusEffects;
 
 public class BlueFire : ModBuff, IOnAddBuff {
     public static int Damage { get; set; } = 20;
@@ -22,7 +22,7 @@ public class BlueFire : ModBuff, IOnAddBuff {
 
     public void PostAddBuff(NPC npc, bool alreadyHasBuff, int duration, bool quiet) {
         if (npc.HasBuff<BlueFire>()) {
-            SoundEngine.PlaySound(AequusSounds.InflictFireDebuff, npc.Center);
+            SoundEngine.PlaySound(Aequu2Sounds.InflictFireDebuff, npc.Center);
         }
     }
 }

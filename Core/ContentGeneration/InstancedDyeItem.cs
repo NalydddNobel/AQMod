@@ -1,9 +1,9 @@
-﻿using Aequus.Content.Items.Vanity.Dyes;
-using Aequus.Core.Assets;
+﻿using Aequu2.Content.Items.Vanity.Dyes;
+using Aequu2.Core.Assets;
 using System;
 using Terraria.Graphics.Shaders;
 
-namespace Aequus.Core.ContentGeneration;
+namespace Aequu2.Core.ContentGeneration;
 
 [Autoload(false)]
 internal sealed class InstancedDyeItem : InstancedModItem {

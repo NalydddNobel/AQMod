@@ -2,7 +2,7 @@
 using System.IO;
 using tModLoaderExtended.Networking;
 
-namespace Aequus.Old.Content.Items.Potions.Prefixes;
+namespace Aequu2.Old.Content.Items.Potions.Prefixes;
 
 public class PotionsPlayerSyncPacket : PacketHandler {
     private readonly List<int> _potionData = new();

@@ -1,7 +1,7 @@
 ﻿using Terraria.Audio;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequus;
+namespace Aequu2;
 
 public sealed partial class AequusSounds : IContentInstance {
     private static SoundStyle GetMultisound(SoundStyle zero, int variants) {

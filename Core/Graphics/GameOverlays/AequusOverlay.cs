@@ -1,7 +1,7 @@
 ﻿using Terraria.Graphics.Effects;
 
-namespace Aequus.Core.Graphics.GameOverlays;
-public abstract class AequusOverlay : Overlay, ILoad {
+namespace Aequu2.Core.Graphics.GameOverlays;
+public abstract class Aequu2Overlay : Overlay, ILoad {
     public Mod Mod { get; private set; }
 
     public string Name => GetType().Name;
@@ -9,7 +9,7 @@ public abstract class AequusOverlay : Overlay, ILoad {
     public string EffectKey { get; private set; }
     protected bool active;
 
-    protected AequusOverlay(EffectPriority priority, RenderLayers layer) : base(priority, layer) {
+    protected Aequu2Overlay(EffectPriority priority, RenderLayers layer) : base(priority, layer) {
     }
 
     public override void Activate(Vector2 position, params object[] args) {

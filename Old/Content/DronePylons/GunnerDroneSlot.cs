@@ -1,6 +1,6 @@
-﻿using Aequus.Old.Content.DronePylons.NPCs;
+﻿using Aequu2.Old.Content.DronePylons.NPCs;
 
-namespace Aequus.Old.Content.DronePylons;
+namespace Aequu2.Old.Content.DronePylons;
 
 public class GunnerDroneSlot : DroneSlot {
     public override int ItemValue => Item.buyPrice(gold: 10);

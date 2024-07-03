@@ -1,8 +1,8 @@
-﻿using Aequus.DataSets;
+﻿using Aequu2.DataSets;
 using System;
 using Terraria.Audio;
 
-namespace Aequus.Old.Content.Enemies.DemonSiege.LavaLegs;
+namespace Aequu2.Old.Content.Enemies.DemonSiege.LavaLegs;
 
 public class LeggedLavaProj : ModProjectile {
     public override void SetStaticDefaults() {

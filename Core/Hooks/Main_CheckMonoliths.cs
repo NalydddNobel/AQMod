@@ -1,6 +1,6 @@
-﻿using Aequus.Core.Graphics;
+﻿using Aequu2.Core.Graphics;
 
-namespace Aequus.Core.Hooks;
+namespace Aequu2.Core.Hooks;
 
 public partial class TerrariaHooks {
     private static void On_Main_CheckMonoliths(On_Main.orig_CheckMonoliths orig) {

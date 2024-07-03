@@ -1,7 +1,7 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.ContentGeneration;
 using Terraria.Localization;
 
-namespace Aequus.Content.CrossMod.SplitSupport.Photography;
+namespace Aequu2.Content.CrossMod.SplitSupport.Photography;
 
 internal class InstancedPosterItem : InstancedTileItem {
     private AlbumQuestInfo _quest;

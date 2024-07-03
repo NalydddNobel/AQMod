@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Items.Potions;
+﻿namespace Aequu2.Old.Content.Items.Potions;
 
 public class PotionSystem : ModSystem {
     public override void ModifyLightingBrightness(ref float scale) {

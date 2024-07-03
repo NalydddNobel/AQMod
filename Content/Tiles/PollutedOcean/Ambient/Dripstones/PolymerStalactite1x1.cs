@@ -2,7 +2,7 @@
 using Terraria.Enums;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Tiles.PollutedOcean.Ambient.Dripstones;
+namespace Aequu2.Content.Tiles.PollutedOcean.Ambient.Dripstones;
 
 public class PolymerStalactite1x1 : ModTile {
     public override void SetStaticDefaults() {

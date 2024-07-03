@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Items.Accessories.OnHitDebuffs;
+﻿namespace Aequu2.Old.Content.Items.Accessories.OnHitDebuffs;
 
 [AutoloadEquip(EquipType.HandsOn)]
 public class PhoenixRing : ModItem {
@@ -9,7 +9,7 @@ public class PhoenixRing : ModItem {
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
-        player.GetModPlayer<AequusPlayer>().accBoneRing++;
+        player.GetModPlayer<Aequu2Player>().accBoneRing++;
         player.magmaStone = true;
     }
 

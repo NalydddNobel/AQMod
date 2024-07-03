@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using Terraria.Graphics.Effects;
 
-namespace Aequus.Core.Graphics.GameOverlays;
+namespace Aequu2.Core.Graphics.GameOverlays;
 
 public sealed class OverlaysSceneEffect : ModSceneEffect {
-    public static readonly List<AequusOverlay> RegisteredOverlays = new();
+    public static readonly List<Aequu2Overlay> RegisteredOverlays = new();
 
     public override void Unload() {
         RegisteredOverlays.Clear();

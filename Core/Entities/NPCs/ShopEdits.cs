@@ -1,7 +1,7 @@
-﻿using Aequus.Content.Fishing.FishingPoles;
-using Aequus.Content.Tiles.Meadow;
+﻿using Aequu2.Content.Fishing.FishingPoles;
+using Aequu2.Content.Tiles.Meadow;
 
-namespace Aequus.Core.Entities.NPCs;
+namespace Aequu2.Core.Entities.NPCs;
 
 public class ShopEdits : GlobalNPC {
     public override void ModifyShop(NPCShop shop) {

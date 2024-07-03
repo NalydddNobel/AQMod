@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Entities.Items.Components;
+﻿using Aequu2.Core.Entities.Items.Components;
 using System.IO;
 using Terraria.DataStructures;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Core.Entities.Projectiles;
+namespace Aequu2.Core.Entities.Projectiles;
 
 public class ProjectileSource : GlobalProjectile {
     public short parentNPCIndex;

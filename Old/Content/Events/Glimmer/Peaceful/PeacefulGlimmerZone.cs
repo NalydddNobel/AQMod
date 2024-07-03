@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Old.Content.Events.Glimmer.Peaceful;
+namespace Aequu2.Old.Content.Events.Glimmer.Peaceful;
 public class PeacefulGlimmerZone : ModBiome {
     public const ushort MaxTiles = 500;
 

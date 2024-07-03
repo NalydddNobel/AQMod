@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Common.Projectiles;
+﻿namespace Aequu2.Old.Common.Projectiles;
 
 public abstract class LegacyMinionTemplate : ModProjectile {
     public override void SetStaticDefaults() {

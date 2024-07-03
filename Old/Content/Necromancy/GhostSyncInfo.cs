@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Necromancy;
+﻿namespace Aequu2.Old.Content.Necromancy;
 
 public struct GhostSyncInfo {
     public bool IsZombie;

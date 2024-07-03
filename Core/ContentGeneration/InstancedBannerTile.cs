@@ -1,11 +1,11 @@
-﻿using Aequus.Core.Entities.Tiles;
+﻿using Aequu2.Core.Entities.Tiles;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.Localization;
 using Terraria.ObjectData;
 
-namespace Aequus.Core.ContentGeneration;
+namespace Aequu2.Core.ContentGeneration;
 
 internal class InstancedBannerTile : InstancedModTile {
     internal readonly ModNPC _modNPC;

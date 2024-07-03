@@ -1,6 +1,6 @@
-﻿using Aequus.Core.Entities.Bestiary;
-using Aequus.DataSets;
-using Aequus.Old.Content.TownNPCs.PhysicistNPC;
+﻿using Aequu2.Core.Entities.Bestiary;
+using Aequu2.DataSets;
+using Aequu2.Old.Content.TownNPCs.PhysicistNPC;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +9,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequus.Old.Content.DronePylons.NPCs;
+namespace Aequu2.Old.Content.DronePylons.NPCs;
 
 public abstract class TownDroneBase : ModNPC, IAddRecipes {
     public Point pylonSpot;

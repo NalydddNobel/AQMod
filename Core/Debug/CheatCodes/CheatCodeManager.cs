@@ -1,20 +1,20 @@
-﻿using Aequus.Core.IO;
+﻿using Aequu2.Core.IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Aequus.Core.Debug.CheatCodes;
+namespace Aequu2.Core.Debug.CheatCodes;
 
 public class CheatCodeManager : ModSystem {
     private static readonly List<ICheatCode> Codes = [];
     private static bool CheatCodesNeedSaving { get; set; }
 
-    private static readonly string CheatCodesFilePath = $"{Aequus.DEBUG_FILES_PATH}/Mods/Aequus/Cheats".Replace('/', Path.DirectorySeparatorChar);
+    private static readonly string CheatCodesFilePath = $"{Aequu2.DEBUG_FILES_PATH}/Mods/Aequu2/Cheats".Replace('/', Path.DirectorySeparatorChar);
 
     // Actually handle cheat code input.
     public override void PostUpdateInput() {
-        if (!Main.chatText.StartsWith("aequus", StringComparison.CurrentCultureIgnoreCase) || Main.oldKeyState == Main.keyState) {
+        if (!Main.chatText.StartsWith("Aequu2", StringComparison.CurrentCultureIgnoreCase) || Main.oldKeyState == Main.keyState) {
             return;
         }
 
@@ -73,7 +73,7 @@ public class CheatCodeManager : ModSystem {
             }
 
             if (Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.D) && Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.W) && Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.A)) {
-                Utils.OpenFolder($"{Aequus.DEBUG_FILES_PATH}/Mods/Aequus/");
+                Utils.OpenFolder($"{Aequu2.DEBUG_FILES_PATH}/Mods/Aequu2/");
             }
         }
         catch (Exception ex) {

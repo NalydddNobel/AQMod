@@ -1,16 +1,16 @@
-﻿using Aequus.Core.Hooks;
-using Aequus.Content.Chests;
-using Aequus.Content.Configuration;
-using Aequus.Content.Items.Potions.Healing.Restoration;
-using Aequus.DataSets;
-using Aequus.DataSets.Structures.DropRulesChest;
-using Aequus.DataSets.Structures.Enums;
+﻿using Aequu2.Core.Hooks;
+using Aequu2.Content.Chests;
+using Aequu2.Content.Configuration;
+using Aequu2.Content.Items.Potions.Healing.Restoration;
+using Aequu2.DataSets;
+using Aequu2.DataSets.Structures.DropRulesChest;
+using Aequu2.DataSets.Structures.Enums;
 using System;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
-using Aequus.Core.Entities.Tiles;
+using Aequu2.Core.Entities.Tiles;
 
-namespace Aequus.Old.Content.Chests;
+namespace Aequu2.Old.Content.Chests;
 
 public sealed class HardmodeChestSystem : ModSystem {
     public override bool IsLoadingEnabled(Mod mod) {
@@ -29,7 +29,7 @@ public sealed class HardmodeChestSystem : ModSystem {
     private static void CobaltTierChests() {
         PlaceNewChests();
         HardmodifyChests();
-        WorldGen.BroadcastText(NetworkText.FromKey("Mods.Aequus.Announcement.HardmodeChests"), CommonColor.TextEvent.HueAdd(0.075f));
+        WorldGen.BroadcastText(NetworkText.FromKey("Mods.Aequu2.Announcement.HardmodeChests"), CommonColor.TextEvent.HueAdd(0.075f));
     }
 
     private static void GetChestParams(int x, int y, out int style) {
@@ -236,7 +236,7 @@ public sealed class HardmodeChestSystem : ModSystem {
         }, new CommonChestRule(ItemID.UnholyArrow, MinStack: ammoMin, MaxStack: ammoMax)));
 
         // Replace Shurikens, Throwing Knives, and Flares with Silver/Tungsten bullets.
-        Condition silverBulletCondition = new Condition("Mods.Aequus.Condition.SilverOre", () => WorldGen.SavedOreTiers.Silver == TileID.Silver);
+        Condition silverBulletCondition = new Condition("Mods.Aequu2.Condition.SilverOre", () => WorldGen.SavedOreTiers.Silver == TileID.Silver);
         RegisterGenericHardmodeChestRule(new ReplaceMultipleItemsChestRule(new int[] {
             ItemID.Shuriken, ItemID.ThrowingKnife, ItemID.Flare
         }, new CommonChestRule(ItemID.SilverBullet, MinStack: ammoMin, MaxStack: ammoMax, OptionalConditions: silverBulletCondition)

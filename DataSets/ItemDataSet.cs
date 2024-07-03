@@ -1,11 +1,11 @@
-﻿using Aequus.Content.Items.Tools.Keychain;
-using Aequus.Content.Tiles.CraftingStations.TrashCompactor;
-using Aequus.DataSets.Structures;
+﻿using Aequu2.Content.Items.Tools.Keychain;
+using Aequu2.Content.Tiles.CraftingStations.TrashCompactor;
+using Aequu2.DataSets.Structures;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Aequus.DataSets;
+namespace Aequu2.DataSets;
 
 public class ItemDataSet : DataSet {
     /// <summary>Items in this set ignore element inheritence from recipe ingredients.</summary>
@@ -44,7 +44,7 @@ public class ItemDataSet : DataSet {
     /// <summary>
     /// Items marked as important will have special properties:
     /// <list type="bullet">
-    /// <item>If this item is inside a chest, the chest will not gain Aequus loot, or Hardmode Chest Loot.</item>
+    /// <item>If this item is inside a chest, the chest will not gain Aequu2 loot, or Hardmode Chest Loot.</item>
     /// </list>
     /// </summary>
     [JsonProperty]

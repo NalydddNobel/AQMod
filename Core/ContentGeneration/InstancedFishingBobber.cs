@@ -1,7 +1,7 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.ContentGeneration;
 using Terraria.Localization;
 
-namespace Aequus.Content.Fishing;
+namespace Aequu2.Content.Fishing;
 
 internal class InstancedFishingBobber : InstancedModProjectile {
     public InstancedFishingBobber(ModItem fishingPole) : base(fishingPole.Name + "Bobber", fishingPole.Texture + "Bobber") { }

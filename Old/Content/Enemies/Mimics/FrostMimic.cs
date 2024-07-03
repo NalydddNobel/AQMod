@@ -1,6 +1,6 @@
 ﻿using Terraria.GameContent.Bestiary;
 
-namespace Aequus.Old.Content.Enemies.Mimics;
+namespace Aequu2.Old.Content.Enemies.Mimics;
 
 public class FrostMimic : AdamantiteMimic {
     protected override int CloneNPC => NPCID.IceMimic;

@@ -1062,7 +1062,7 @@ CleanserDrone: {
 	DisplayName: "{$NPCs.CleanserDrone.DisplayName}"
 	Tooltip:
 		'''
-		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		{$Mods.Aequu2.Items.PylonDrone.Tooltip}
 		喷洒溶液以扩散晶塔的生物群落
 		'''
 }
@@ -1071,7 +1071,7 @@ GunnerDrone: {
 	DisplayName: "{$NPCs.GunnerDrone.DisplayName}"
 	Tooltip:
 		'''
-		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		{$Mods.Aequu2.Items.PylonDrone.Tooltip}
 		保护该区域免受敌人攻击
 		'''
 }
@@ -1080,7 +1080,7 @@ HealerDrone: {
 	DisplayName: "{$NPCs.HealerDrone.DisplayName}"
 	Tooltip:
 		'''
-		{$Mods.Aequus.Items.PylonDrone.Tooltip}
+		{$Mods.Aequu2.Items.PylonDrone.Tooltip}
 		治疗受伤的镇民和小动物
 		'''
 }

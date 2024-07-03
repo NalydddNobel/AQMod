@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using tModLoaderExtended.Networking;
 
-namespace Aequus.Content.Items.Tools.AnglerLamp;
+namespace Aequu2.Content.Items.Tools.AnglerLamp;
 
 public class AnglerLampEffectPacket : PacketHandler {
     public void Send(int npc) {

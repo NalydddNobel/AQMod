@@ -1,9 +1,9 @@
-﻿using Aequus.Core.CodeGeneration;
-using Aequus.Core.Entities.Tiles.Components;
+﻿using Aequu2.Core.CodeGeneration;
+using Aequu2.Core.Entities.Tiles.Components;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 
-namespace Aequus;
+namespace Aequu2;
 
 public partial class AequusPlayer {
     /// <summary>The lowest any respawn-time reducing items can go.</summary>
@@ -139,7 +139,7 @@ public partial class AequusPlayer {
     }
 
     private static void SignCustomDeathReason(PlayerDeathReason damageSource, string reason, int variants = 1) {
-        damageSource.SourceCustomReason = $"Mods.Aequus.Player.DeathMessage.{reason}.{(variants > 1 ? Main.rand.Next(variants) : "")}";
+        damageSource.SourceCustomReason = $"Mods.Aequu2.Player.DeathMessage.{reason}.{(variants > 1 ? Main.rand.Next(variants) : "")}";
     }
     #endregion
 }

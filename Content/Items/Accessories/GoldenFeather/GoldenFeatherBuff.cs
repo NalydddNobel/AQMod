@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Items.Accessories.GoldenFeather;
+﻿namespace Aequu2.Content.Items.Accessories.GoldenFeather;
 
 public class GoldenFeatherBuff : ModBuff {
     public override void SetStaticDefaults() {
@@ -8,11 +8,11 @@ public class GoldenFeatherBuff : ModBuff {
     }
 
     public override void Update(Player player, ref int buffIndex) {
-        if (!player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
+        if (!player.TryGetModPlayer<AequusPlayer>(out var Aequu2Player)) {
             return;
         }
         player.lifeRegen += GoldenFeather.LifeRegenerationAmount;
-        aequusPlayer.SetNonStackingRespawnTimeModifier(GoldenFeather.RespawnTimeAmount);
+        Aequu2Player.SetNonStackingRespawnTimeModifier(GoldenFeather.RespawnTimeAmount);
     }
 
     public override bool RightClick(int buffIndex) {

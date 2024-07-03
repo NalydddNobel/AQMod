@@ -13,11 +13,11 @@
     "Leather"
   ],
   "KeychainData": {
-    "Aequus/CopperKey": {
+    "Aequu2/CopperKey": {
       "NonConsumable": false,
       "Color": "183, 88, 25, 255"
     },
-    "Aequus/TinKey": {
+    "Aequu2/TinKey": {
       "NonConsumable": false,
       "Color": "183, 88, 25, 255"
     },
@@ -128,7 +128,7 @@
     "LuckPotion",
     "LuckPotionGreater",
     "BiomeSightPotion",
-    "Aequus/NeutronYogurt",
+    "Aequu2/NeutronYogurt",
     "Avalon/AdvAmmoReservationPotion",
     "Avalon/AdvArcheryPotion",
     "Avalon/AdvAuraPotion",
@@ -251,7 +251,7 @@
     "ThoriumMod/HydrationPotion",
     "Polarities/PiercingPotion",
     "Polarities/TolerancePotion",
-    "Aequus/SentryPotion",
+    "Aequu2/SentryPotion",
     "Avalon/GamblerPotion",
     "CalamityMod/BloodyMary",
     "CalamityMod/CaribbeanRum",
@@ -441,7 +441,7 @@
     "EbonsandBlock": "EbonsandBallFalling",
     "CrimsandBlock": "CrimsandBallFalling",
     "PearlsandBlock": "PearlSandBallFalling",
-    "Aequus/PlasticDart": "Aequus/PlasticDartProjectile",
+    "Aequu2/PlasticDart": "Aequu2/PlasticDartProjectile",
     "Grenade": "Grenade",
     "Avalon/BloodyArrow": "Avalon/BloodyArrow",
     "Avalon/ContagionSolution": "Avalon/ContagionSpray",

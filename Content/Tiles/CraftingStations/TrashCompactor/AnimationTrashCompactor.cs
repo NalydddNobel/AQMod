@@ -1,7 +1,7 @@
-﻿using Aequus.Core.Graphics.Animations;
+﻿using Aequu2.Core.Graphics.Animations;
 using System;
 
-namespace Aequus.Content.Tiles.CraftingStations.TrashCompactor;
+namespace Aequu2.Content.Tiles.CraftingStations.TrashCompactor;
 
 public class AnimationTrashCompactor : ITileAnimation {
     public Vector2 Shake;

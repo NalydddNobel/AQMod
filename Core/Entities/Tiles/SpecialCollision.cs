@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.Entities.Tiles;
+﻿namespace Aequu2.Core.Entities.Tiles;
 
 //public class SpecialCollision {
 //    private static void SetCollision<T>(bool value, out bool oldValue) where T : ModTile {

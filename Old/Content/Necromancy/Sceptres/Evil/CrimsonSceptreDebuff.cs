@@ -1,10 +1,10 @@
-﻿using Aequus.Old.Content.Necromancy.Rendering;
+﻿using Aequu2.Old.Content.Necromancy.Rendering;
 using System;
 
-namespace Aequus.Old.Content.Necromancy.Sceptres.Evil;
+namespace Aequu2.Old.Content.Necromancy.Sceptres.Evil;
 
 public class CrimsonSceptreDebuff : NecromancyDebuff {
-    public override string Texture => AequusTextures.TemporaryDebuffIcon;
+    public override string Texture => Aequu2Textures.TemporaryDebuffIcon;
 
     public override float Tier => 1f;
     public override int DamageSet => 20;

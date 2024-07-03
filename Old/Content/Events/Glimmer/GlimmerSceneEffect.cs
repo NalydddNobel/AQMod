@@ -1,9 +1,9 @@
-﻿using Aequus.Old.Content.Bosses;
-using Aequus.Old.Content.Bosses.OmegaStarite;
-using Aequus.Old.Content.Events.Glimmer.CosmicMonolith;
-using Aequus.Old.Content.Events.Glimmer.Peaceful;
-using Aequus.Old.Content.Events.Glimmer.Sky;
-using Aequus.Old.Content.Items.Weapons.Melee.UltimateSword;
+﻿using Aequu2.Old.Content.Bosses;
+using Aequu2.Old.Content.Bosses.OmegaStarite;
+using Aequu2.Old.Content.Events.Glimmer.CosmicMonolith;
+using Aequu2.Old.Content.Events.Glimmer.Peaceful;
+using Aequu2.Old.Content.Events.Glimmer.Sky;
+using Aequu2.Old.Content.Items.Weapons.Melee.UltimateSword;
 using ReLogic.Content;
 using System;
 using Terraria.Audio;
@@ -12,7 +12,7 @@ using Terraria.GameContent;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 
-namespace Aequus.Old.Content.Events.Glimmer;
+namespace Aequu2.Old.Content.Events.Glimmer;
 
 public class GlimmerSceneEffect : ModSceneEffect {
     public static Asset<Effect> StarShader { get; private set; }
@@ -24,8 +24,8 @@ public class GlimmerSceneEffect : ModSceneEffect {
 
     public override void Load() {
         if (!Main.dedServ) {
-            StarShader = ModContent.Request<Effect>("Aequus/Old/Assets/Shaders/GlimmerBackgroundShaders");
-            //StarShader = new("Aequus/Assets/Effects/GlimmerBackgroundShaders", "Aequus:GlimmerBackgroundStars", "StarsPass", true);
+            StarShader = ModContent.Request<Effect>("Aequu2/Old/Assets/Shaders/GlimmerBackgroundShaders");
+            //StarShader = new("Aequu2/Assets/Effects/GlimmerBackgroundShaders", "Aequu2:GlimmerBackgroundStars", "StarsPass", true);
             //StarShader.ShaderData.UseImage1(ModContent.Request<Texture2D>("Terraria/Images/Misc/noise", AssetRequestMode.ImmediateLoad));
             SkyManager.Instance[GlimmerSky.Key] = new GlimmerSky() { checkDistance = true, };
         }
@@ -57,7 +57,7 @@ public class GlimmerSceneEffect : ModSceneEffect {
     }
 
     public static void DrawUltimateSword() {
-        if (!GlimmerZone.EventActive || GlimmerZone.omegaStarite != -1 && (int)Main.npc[GlimmerZone.omegaStarite].ai[0] != LegacyAequusBoss.INTRO && (int)Main.npc[GlimmerZone.omegaStarite].ai[0] != LegacyAequusBoss.INIT) {
+        if (!GlimmerZone.EventActive || GlimmerZone.omegaStarite != -1 && (int)Main.npc[GlimmerZone.omegaStarite].ai[0] != LegacyAequu2Boss.INTRO && (int)Main.npc[GlimmerZone.omegaStarite].ai[0] != LegacyAequu2Boss.INIT) {
             EatenAlpha = 255;
             renderedUltimateSword = false;
             ultimateSwordWorldDrawLocation = Vector2.Zero;
@@ -117,7 +117,7 @@ public class GlimmerSceneEffect : ModSceneEffect {
 
         var mouseScreen = ViewHelper.ScaledMouseScreen;
         bool hovering = interactionRect.Contains(mouseScreen.ToPoint());
-        //AequusHelpers.DrawRectangle(interactionRect, hovering ? Color.Yellow * 0.2f : Color.Red * 0.2f);
+        //Aequu2Helpers.DrawRectangle(interactionRect, hovering ? Color.Yellow * 0.2f : Color.Red * 0.2f);
         float opacity = 1f - EatenAlpha / 255f;
         if (hovering) {
             if (Main.SmartCursorIsUsed) {

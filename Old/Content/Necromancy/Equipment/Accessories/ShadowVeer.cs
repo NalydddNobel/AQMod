@@ -1,10 +1,10 @@
-﻿using Aequus.Core.CodeGeneration;
-using Aequus.DataSets;
+﻿using Aequu2.Core.CodeGeneration;
+using Aequu2.DataSets;
 using System.Linq;
 
-namespace Aequus.Old.Content.Necromancy.Equipment.Accessories;
+namespace Aequu2.Old.Content.Necromancy.Equipment.Accessories;
 
-[Gen.AequusPlayer_ResetField<int>("ghostShadowDash")]
+[Gen.Aequu2Player_ResetField<int>("ghostShadowDash")]
 public class ShadowVeer : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 1;
@@ -19,7 +19,7 @@ public class ShadowVeer : ModItem {
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
-        player.GetModPlayer<AequusPlayer>().ghostShadowDash++;
+        player.GetModPlayer<Aequu2Player>().ghostShadowDash++;
     }
 
     public override void AddRecipes() {

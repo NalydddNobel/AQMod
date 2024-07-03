@@ -1,11 +1,11 @@
-﻿using Aequus.Content.Dusts;
-using Aequus.Old.Content.Particles;
+﻿using Aequu2.Content.Dusts;
+using Aequu2.Old.Content.Particles;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Necromancy.Sceptres.Evil;
+namespace Aequu2.Old.Content.Necromancy.Sceptres.Evil;
 
 public class CrimsonSceptreProj : CorruptionSceptreProj {
-    public override string Texture => AequusTextures.CorruptionSceptreProj.Path;
+    public override string Texture => Aequu2Textures.CorruptionSceptreProj.Path;
 
     public override Color? GetAlpha(Color lightColor) {
         return new Color(255, 140, 100, 255 - Projectile.alpha);

@@ -1,6 +1,6 @@
-﻿using Aequus.Core.Entites.Bestiary;
+﻿using Aequu2.Core.Entites.Bestiary;
 
-namespace Aequus.Content.Elements.Water;
+namespace Aequu2.Content.Elements.Water;
 
 public class Water : VanillaElement {
     public Water() : base(WaterFrame, Color.SkyBlue) { }

@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Items.Weapons.Melee.UltimateSword;
+﻿namespace Aequu2.Old.Content.Items.Weapons.Melee.UltimateSword;
 
 public class UltimateSwordBuff : ModBuff {
     public override bool RightClick(int buffIndex) {

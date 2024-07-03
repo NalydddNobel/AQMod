@@ -1,7 +1,7 @@
-﻿using Aequus.Content.Items.Materials;
-using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Content.Items.Materials;
+using Aequu2.Core.ContentGeneration;
 
-namespace Aequus.Content.Fishing.CrabPots;
+namespace Aequu2.Content.Fishing.CrabPots;
 public class CrabPot : UnifiedCrabPot {
     public const int CopperPot = 0;
     public const int TinPot = 1;
@@ -14,7 +14,7 @@ public class CrabPot : UnifiedCrabPot {
         void AddItem(int style, int barItem, string name) {
             ModItem item = new InstancedTileItem(this, style: style, nameSuffix: name, rarity: ItemRarityID.Blue, value: Item.sellPrice(silver: 20));
             Mod.AddContent(item);
-            Aequus.OnAddRecipes += AddRecipes;
+            Aequu2.OnAddRecipes += AddRecipes;
 
             void AddRecipes() {
                 item.CreateRecipe()

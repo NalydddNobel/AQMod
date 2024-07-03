@@ -1,8 +1,8 @@
-﻿using Aequus.Content.Configuration;
-using Aequus.Core.Entities.Items.Components;
+﻿using Aequu2.Content.Configuration;
+using Aequu2.Core.Entities.Items.Components;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequus.Content.Items.Potions.Healing.Restoration;
+namespace Aequu2.Content.Items.Potions.Healing.Restoration;
 
 public class LesserRestorationPotion : ModItem, IApplyPotionDelay, IPostAddRecipes {
     public override string Texture => AequusTextures.Item(ItemID.LesserRestorationPotion);

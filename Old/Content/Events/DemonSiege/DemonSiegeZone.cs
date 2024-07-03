@@ -1,24 +1,24 @@
-﻿using Aequus.Core.Entites.Bestiary;
-using Aequus.Old.Common.EventBars;
-using Aequus.Old.Content.Enemies.DemonSiege.CinderBat;
-using Aequus.Old.Content.Enemies.DemonSiege.Keeper;
-using Aequus.Old.Content.Enemies.DemonSiege.LavaLegs;
+﻿using Aequu2.Core.Entites.Bestiary;
+using Aequu2.Old.Common.EventBars;
+using Aequu2.Old.Content.Enemies.DemonSiege.CinderBat;
+using Aequu2.Old.Content.Enemies.DemonSiege.Keeper;
+using Aequu2.Old.Content.Enemies.DemonSiege.LavaLegs;
 using System.Collections.Generic;
 using Terraria.GameContent;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequus.Old.Content.Events.DemonSiege;
+namespace Aequu2.Old.Content.Events.DemonSiege;
 
 public class DemonSiegeZone : ModBiome, IPostSetupContent {
-    public const string ScreenFilterKey = "Aequus:DemonSiegeFilter";
+    public const string ScreenFilterKey = "Aequu2:DemonSiegeFilter";
 
     public override int Music => MusicID.Monsoon;
 
     public override SceneEffectPriority Priority => SceneEffectPriority.Event;
 
-    public override string BestiaryIcon => AequusTextures.DemonSiegeBestiaryIcon.Path;
+    public override string BestiaryIcon => Aequu2Textures.DemonSiegeBestiaryIcon.Path;
 
     public override string BackgroundPath => "Terraria/Images/MapBG3";
     public override string MapBackground => BackgroundPath;
@@ -27,9 +27,9 @@ public class DemonSiegeZone : ModBiome, IPostSetupContent {
         if (!Main.dedServ) {
             Filters.Scene[ScreenFilterKey] = new(new ScreenShaderData("FilterBloodMoon").UseColor(1f, -0.46f, -0.2f), EffectPriority.High);
             if (!Main.dedServ) {
-                AequusEventBarLoader.AddBar(new DemonSiegeBar() {
+                Aequu2EventBarLoader.AddBar(new DemonSiegeBar() {
                     DisplayName = this.GetLocalization("EventName"),
-                    Icon = AequusTextures.DemonSiegeEventIcon,
+                    Icon = Aequu2Textures.DemonSiegeEventIcon,
                     backgroundColor = new Color(180, 100, 20, 128),
                 });
             }
@@ -40,7 +40,7 @@ public class DemonSiegeZone : ModBiome, IPostSetupContent {
         orig(self, flat);
 
         if (DemonSiegeSystem.ActiveSacrifices.Count > 0) {
-            var texture = AequusTextures.Bloom;
+            var texture = Aequu2Textures.Bloom;
             foreach (var sacrifice in DemonSiegeSystem.ActiveSacrifices) {
                 var v = sacrifice.Value;
                 var center = v.WorldCenter;

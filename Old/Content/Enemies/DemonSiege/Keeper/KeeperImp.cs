@@ -1,15 +1,15 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.DataSets;
-using Aequus.Old.Content.Events.DemonSiege;
-using Aequus.Old.Content.Items.Materials.SoulGem;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.DataSets;
+using Aequu2.Old.Content.Events.DemonSiege;
+using Aequu2.Old.Content.Items.Materials.SoulGem;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Old.Content.Enemies.DemonSiege.Keeper;
+namespace Aequu2.Old.Content.Enemies.DemonSiege.Keeper;
 
 [AutoloadBanner(legacyId: 9)]
 [BestiaryBiome<DemonSiegeZone>()]
@@ -87,7 +87,7 @@ public class KeeperImp : ModNPC {
             if (NPC.ai[1] < 0f) {
                 float progress = Math.Abs(NPC.ai[1]) / CHAINED_SOUL_RITUAL_TIME;
                 if ((int)NPC.ai[1] == -90f) {
-                    SoundEngine.PlaySound(AequusSounds.KeeperImpSummonTelegraph, NPC.Center);
+                    SoundEngine.PlaySound(Aequu2Sounds.KeeperImpSummonTelegraph, NPC.Center);
                 }
                 speed /= 4f;
 
@@ -110,7 +110,7 @@ public class KeeperImp : ModNPC {
 
             // Summon new trapper
             if ((int)NPC.ai[1] == 0f) {
-                SoundEngine.PlaySound(AequusSounds.KeeperImpSummon, NPC.Center);
+                SoundEngine.PlaySound(Aequu2Sounds.KeeperImpSummon, NPC.Center);
                 NPC.NewNPC(NPC.GetSource_FromThis(), (int)NPC.Center.X, (int)NPC.Center.Y, trapperId, Start: NPC.whoAmI, ai1: whoAmI);
             }
 
@@ -181,13 +181,13 @@ public class KeeperImp : ModNPC {
             count = 28;
 
             for (int i = -1; i <= 1; i += 2) {
-                NPC.NewGore(AequusTextures.KeeperGoreHorn, NPC.Center + new Vector2(12f * i, -20f), NPC.velocity);
-                NPC.NewGore(AequusTextures.KeeperGoreEar, NPC.Center + new Vector2(12f * i, 0f), NPC.velocity);
-                NPC.NewGore(AequusTextures.KeeperGoreEar, NPC.Center + new Vector2(12f * i, 20f), NPC.velocity);
-                NPC.NewGore(AequusTextures.KeeperGoreWing, NPC.Center + new Vector2(12f * i, 0f), NPC.velocity);
+                NPC.NewGore(Aequu2Textures.KeeperGoreHorn, NPC.Center + new Vector2(12f * i, -20f), NPC.velocity);
+                NPC.NewGore(Aequu2Textures.KeeperGoreEar, NPC.Center + new Vector2(12f * i, 0f), NPC.velocity);
+                NPC.NewGore(Aequu2Textures.KeeperGoreEar, NPC.Center + new Vector2(12f * i, 20f), NPC.velocity);
+                NPC.NewGore(Aequu2Textures.KeeperGoreWing, NPC.Center + new Vector2(12f * i, 0f), NPC.velocity);
             }
 
-            NPC.NewGore(AequusTextures.KeeperGoreHead, NPC.position, NPC.velocity);
+            NPC.NewGore(Aequu2Textures.KeeperGoreHead, NPC.position, NPC.velocity);
         }
         for (int i = 0; i < count; i++) {
             var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Torch);
@@ -214,7 +214,7 @@ public class KeeperImp : ModNPC {
         drawPosition.Y -= 10.5f;
 
         Texture2D texture = TextureAssets.Npc[Type].Value;
-        Texture2D glowTexture = AequusTextures.KeeperImp_Glow.Value;
+        Texture2D glowTexture = Aequu2Textures.KeeperImp_Glow.Value;
         Vector2 orig = new Vector2(NPC.frame.Width / 2f, NPC.frame.Height / 2f);
 
         DrawWings(spriteBatch, drawPosition, screenPos, drawColor);
@@ -225,7 +225,7 @@ public class KeeperImp : ModNPC {
         return false;
     }
     public void DrawTail(SpriteBatch spriteBatch, Vector2 drawPosition, Vector2 screenPos, Color drawColor) {
-        Texture2D tailTexture = AequusTextures.KeeperImpTail.Value;
+        Texture2D tailTexture = Aequu2Textures.KeeperImpTail.Value;
         int frameTime = (int)(Main.GlobalTimeWrappedHourly * 15f);
         int animation = frameTime % (TAIL_FRAME_COUNT * 2);
         int frame;
@@ -244,7 +244,7 @@ public class KeeperImp : ModNPC {
     }
     public void DrawWings(SpriteBatch spriteBatch, Vector2 drawPosition, Vector2 screenPos, Color drawColor) {
         drawPosition.Y -= 10f;
-        Texture2D wingsTexture = AequusTextures.KeeperImpWings.Value;
+        Texture2D wingsTexture = Aequu2Textures.KeeperImpWings.Value;
         Rectangle wingFrame = new Rectangle(0, 0, wingsTexture.Width / 2 - 2, wingsTexture.Height);
         Vector2 wingOrig = new Vector2(wingFrame.Width, 4f);
         float wingRotation = NPC.rotation + (float)Math.Sin(Main.GlobalTimeWrappedHourly * 25f) * 0.314f;

@@ -1,10 +1,10 @@
-﻿using Aequus.DataSets;
-using Aequus.Old.Content.Items.Potions.Prefixes.BoundedPotions;
-using Aequus.Old.Content.Items.Potions.Prefixes.EmpoweredPotions;
-using Aequus.Old.Content.Items.Potions.Prefixes.SplashPotions;
+﻿using Aequu2.DataSets;
+using Aequu2.Old.Content.Items.Potions.Prefixes.BoundedPotions;
+using Aequu2.Old.Content.Items.Potions.Prefixes.EmpoweredPotions;
+using Aequu2.Old.Content.Items.Potions.Prefixes.SplashPotions;
 using System.Collections.Generic;
 
-namespace Aequus.Old.Content.Items.Potions.Prefixes;
+namespace Aequu2.Old.Content.Items.Potions.Prefixes;
 public class PotionPrefixGlobalItem : GlobalItem {
     internal float _reforgeAnimation;
 

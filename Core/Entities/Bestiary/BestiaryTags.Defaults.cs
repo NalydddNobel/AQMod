@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.Entites.Bestiary;
+﻿namespace Aequu2.Core.Entites.Bestiary;
 
 public partial class BestiaryTags {
     public static readonly BestiaryTags Corruption = new BestiaryTags(

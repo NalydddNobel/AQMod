@@ -1,17 +1,17 @@
-﻿using Aequus.Core.CodeGeneration;
+﻿using Aequu2.Core.CodeGeneration;
 using Terraria.Localization;
 using Terraria.UI;
 
-namespace Aequus.Old.Content.Items.Accessories.Info;
+namespace Aequu2.Old.Content.Items.Accessories.Info;
 
-[Gen.AequusPlayer_InfoField("accInfoQuestFish")]
+[Gen.Aequu2Player_InfoField("accInfoQuestFish")]
 public class AnglerBroadcaster : ModItem {
     public override void SetDefaults() {
         Item.CloneDefaults(ItemID.LifeformAnalyzer);
     }
 
     public override void UpdateInfoAccessory(Player player) {
-        player.GetModPlayer<AequusPlayer>().accInfoQuestFish = true;
+        player.GetModPlayer<Aequu2Player>().accInfoQuestFish = true;
     }
 }
 
@@ -83,6 +83,6 @@ public class AnglerBroadcasterIcon : InfoDisplay {
     }
 
     public override bool Active() {
-        return Main.LocalPlayer.GetModPlayer<AequusPlayer>().accInfoQuestFish;
+        return Main.LocalPlayer.GetModPlayer<Aequu2Player>().accInfoQuestFish;
     }
 }

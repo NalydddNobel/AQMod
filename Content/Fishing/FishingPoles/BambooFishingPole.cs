@@ -1,6 +1,6 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.ContentGeneration;
 
-namespace Aequus.Content.Fishing.FishingPoles;
+namespace Aequu2.Content.Fishing.FishingPoles;
 
 public class BambooFishingPole : UnifiedFishingPole {
     public override bool BobberPreAI(Projectile bobber) {

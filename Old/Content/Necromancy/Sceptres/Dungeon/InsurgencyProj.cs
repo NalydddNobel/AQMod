@@ -1,12 +1,12 @@
-﻿using Aequus.Core;
-using Aequus.Content.Dusts;
-using Aequus.Old.Content.Necromancy.Sceptres.Evil;
+﻿using Aequu2.Core;
+using Aequu2.Content.Dusts;
+using Aequu2.Old.Content.Necromancy.Sceptres.Evil;
 using System;
 using System.IO;
 using Terraria.Audio;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Necromancy.Sceptres.Dungeon;
+namespace Aequu2.Old.Content.Necromancy.Sceptres.Dungeon;
 
 public class InsurgencyProj : CorruptionSceptreProj {
     public int homingDelay;
@@ -135,7 +135,7 @@ public class InsurgencyProj : CorruptionSceptreProj {
     public void SpawnExtraSouls() {
         var center = Projectile.Center;
         int count = 1;
-        var source = Projectile.GetSource_Death("Aequus:InsurgentSpawn");
+        var source = Projectile.GetSource_Death("Aequu2:InsurgentSpawn");
         int collisionChecks = 0;
         int distance = 20;
         if (Projectile.ai[1] > 0f) {
@@ -220,11 +220,11 @@ public class InsurgencyProj : CorruptionSceptreProj {
             //Main.spriteBatch.End();
             //Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
 
-            DrawHelper.DrawBasicVertexLineWithProceduralPadding(AequusTextures.TrailShootingStar, Projectile.oldPos, Projectile.oldRot,
+            DrawHelper.DrawBasicVertexLineWithProceduralPadding(Aequu2Textures.TrailShootingStar, Projectile.oldPos, Projectile.oldRot,
                 (p) => new Color(100, 200, 150, 0) * 0.5f * Projectile.Opacity * (1f - p),
                 (p) => 60f * Projectile.scale * (1f - p),
                 Projectile.Size / 2f - Main.screenPosition);
-            //DrawHelper.DrawBasicVertexLine(AequusTextures.Trail3, Projectile.oldPos, Projectile.oldRot,
+            //DrawHelper.DrawBasicVertexLine(Aequu2Textures.Trail3, Projectile.oldPos, Projectile.oldRot,
             //    (p) => new Color(100, 200, 150, 0) * Projectile.Opacity * (1f - p),
             //    (p) => 12f * Projectile.scale * (1f - p),
             //    Projectile.Size / 2f - Main.screenPosition);
@@ -234,7 +234,7 @@ public class InsurgencyProj : CorruptionSceptreProj {
             //DrawHelper.SpriteBatchCache.Begin(Main.spriteBatch);
         }
 
-        Texture2D bloom = AequusTextures.Bloom;
+        Texture2D bloom = Aequu2Textures.Bloom;
         Vector2 drawCoordinates = Projectile.Center - Main.screenPosition;
         Main.EntitySpriteDraw(bloom, drawCoordinates, null, drawColor * 0.5f, Projectile.rotation, bloom.Size() / 2f, Projectile.scale * 0.75f, effects, 0);
         Main.EntitySpriteDraw(texture, drawCoordinates, frame, drawColor, Projectile.rotation, origin, Projectile.scale, effects, 0);

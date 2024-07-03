@@ -1,12 +1,12 @@
-﻿using Aequus.Core.Entities.NPCs;
-using Aequus.Core.Components.Buffs;
-using Aequus.DataSets;
+﻿using Aequu2.Core.Entities.NPCs;
+using Aequu2.Core.Components.Buffs;
+using Aequu2.DataSets;
 using Terraria.Audio;
 
-namespace Aequus.Old.Content.Items.Accessories.OnHitDebuffs;
+namespace Aequu2.Old.Content.Items.Accessories.OnHitDebuffs;
 
 public class BoneRingDebuff : ModBuff, IOnAddBuff {
-    public override string Texture => AequusTextures.Buff(BuffID.Weak);
+    public override string Texture => Aequu2Textures.Buff(BuffID.Weak);
 
     public override void SetStaticDefaults() {
         Main.debuff[Type] = true;
@@ -20,9 +20,9 @@ public class BoneRingDebuff : ModBuff, IOnAddBuff {
             boneRingNPC.debuffBoneRing = true;
         }
 
-        if (npc.TryGetGlobalNPC(out AequusNPC aequusNPC)) {
-            aequusNPC.statSpeedX *= BoneRing.MovementSpeedMultiplier;
-            aequusNPC.statSpeedY *= BoneRing.MovementSpeedMultiplier;
+        if (npc.TryGetGlobalNPC(out Aequu2NPC Aequu2NPC)) {
+            Aequu2NPC.statSpeedX *= BoneRing.MovementSpeedMultiplier;
+            Aequu2NPC.statSpeedY *= BoneRing.MovementSpeedMultiplier;
         }
     }
 
@@ -31,7 +31,7 @@ public class BoneRingDebuff : ModBuff, IOnAddBuff {
             return;
         }
 
-        SoundEngine.PlaySound(AequusSounds.InflictWeakness, npc.Center);
+        SoundEngine.PlaySound(Aequu2Sounds.InflictWeakness, npc.Center);
 
         for (int i = 0; i < 12; i++) {
             var v = Main.rand.NextVector2Unit();

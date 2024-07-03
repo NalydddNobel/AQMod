@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.Structures.ID;
+﻿namespace Aequu2.Core.Structures.ID;
 
 internal readonly record struct InstanceId<T>(T Instance) : IProvideId where T : class {
     public int GetId() {

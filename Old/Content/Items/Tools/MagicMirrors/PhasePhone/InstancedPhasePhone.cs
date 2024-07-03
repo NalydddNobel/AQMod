@@ -1,6 +1,6 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Items.Components;
-using Aequus.Old.Content.Items.Tools.MagicMirrors.PhaseMirror;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Items.Components;
+using Aequu2.Old.Content.Items.Tools.MagicMirrors.PhaseMirror;
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;
@@ -8,7 +8,7 @@ using Terraria.DataStructures;
 using Terraria.Localization;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 
-namespace Aequus.Old.Content.Items.Tools.MagicMirrors.PhasePhone;
+namespace Aequu2.Old.Content.Items.Tools.MagicMirrors.PhasePhone;
 
 [Autoload(false)]
 [FilterOverride(FilterOverride.Tools)]
@@ -98,7 +98,7 @@ internal class InstancedPhasePhone : InstancedModItem, IPhaseMirror, ITransformI
     }
 
     public override void UpdateInfoAccessory(Player player) {
-        player.GetModPlayer<AequusPlayer>().infiniteWormhole = true;
+        player.GetModPlayer<Aequu2Player>().infiniteWormhole = true;
         //player.accWatch = 3;
         //player.accCompass = 1;
         //player.accDepthMeter = 1;

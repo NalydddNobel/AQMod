@@ -1,6 +1,6 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.ContentGeneration;
 
-namespace Aequus.Content.Biomes.PollutedOcean.Water;
+namespace Aequu2.Content.Biomes.PollutedOcean.Water;
 
 public class PollutedWater : UnifiedWaterStyle {
     public override void OnLoad() {

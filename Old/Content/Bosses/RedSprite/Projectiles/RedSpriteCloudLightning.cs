@@ -1,7 +1,7 @@
-﻿using Aequus.DataSets;
+﻿using Aequu2.DataSets;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Bosses.RedSprite.Projectiles;
+namespace Aequu2.Old.Content.Bosses.RedSprite.Projectiles;
 
 public class RedSpriteCloudLightning : ModProjectile {
     public override void SetStaticDefaults() {

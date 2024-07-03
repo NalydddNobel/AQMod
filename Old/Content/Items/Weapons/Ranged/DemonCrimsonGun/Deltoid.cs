@@ -1,8 +1,8 @@
-﻿using Aequus.Core;
-using Aequus.Content.Events.DemonSiege;
+﻿using Aequu2.Core;
+using Aequu2.Content.Events.DemonSiege;
 using tModLoaderExtended.GlowMasks;
 
-namespace Aequus.Old.Content.Items.Weapons.Ranged.DemonCrimsonGun;
+namespace Aequu2.Old.Content.Items.Weapons.Ranged.DemonCrimsonGun;
 
 [AutoloadGlowMask]
 public class Deltoid : ModItem {

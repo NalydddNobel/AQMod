@@ -1,6 +1,6 @@
-﻿using Aequus.Core.CodeGeneration;
+﻿using Aequu2.Core.CodeGeneration;
 
-namespace Aequus.Content.Items.Accessories.Informational.Monocle;
+namespace Aequu2.Content.Items.Accessories.Informational.Monocle;
 
 [Gen.AequusPlayer_InfoField("accInfoMoneyMonocle")]
 public class RichMansMonocle : ModItem {

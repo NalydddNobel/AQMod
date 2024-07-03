@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.CrossMod;
+﻿namespace Aequu2.Core.CrossMod;
 
 internal class ModCompatabilityFlags : ILoad {
     public static bool RemoveExpertExclusivity { get; set; }

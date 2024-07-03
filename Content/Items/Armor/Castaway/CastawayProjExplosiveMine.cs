@@ -2,7 +2,7 @@
 using Terraria.Audio;
 using Terraria.GameContent;
 
-namespace Aequus.Content.Items.Armor.Castaway;
+namespace Aequu2.Content.Items.Armor.Castaway;
 
 public class CastawayProjExplosiveMine : ModProjectile {
     public override string Texture => AequusTextures.Projectile(ProjectileID.SpikyBall);

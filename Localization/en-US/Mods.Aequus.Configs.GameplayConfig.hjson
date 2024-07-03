@@ -1,7 +1,7 @@
 DisplayName: Gameplay Config
 
 PollutedOceanSide: {
-	Label: "[i:Aequus/TrashCompactor] Polluted Ocean Side"
+	Label: "[i:Aequu2/TrashCompactor] Polluted Ocean Side"
 	Tooltip:
 		'''
 		Determines which side of the world the Polluted Ocean should generate.
@@ -12,11 +12,11 @@ PollutedOceanSide: {
 }
 
 CaveVariety: {
-	Label: "[i:BonePickaxe] Aequus Caves"
+	Label: "[i:BonePickaxe] Aequu2 Caves"
 	Tooltip:
 		'''
 		Adds more cave variants, and overall expands caves to have much less dead-ends.
-		This value determines the quanity of Aequus caves to spawn.
+		This value determines the quanity of Aequu2 caves to spawn.
 		Setting this to 0 disables them from spawning entirely.
 		'''
 }
@@ -33,7 +33,7 @@ TownNPCSettleDownMessage: {
 }
 
 HardmodeChests: {
-	Label: "[i:Aequus/AdamantiteChest] Hardmode Chests"
+	Label: "[i:Aequu2/AdamantiteChest] Hardmode Chests"
 	Tooltip:
 		'''
 		Determines whether the Hardmode Chests system would be active. This has multiple gameplay changes.
@@ -53,15 +53,15 @@ ShadowMimics: {
 }
 
 HardmodeMimics: {
-	Label: "[i:Aequus/HardFrozenChest] Hardmode Mimics"
-	Tooltip: Whether Aequus' special Hardmode Mimics should appear, replacing regular Mimics. This config does nothing if "{$GameplayConfig.HardmodeChests.Label}" is false.
+	Label: "[i:Aequu2/HardFrozenChest] Hardmode Mimics"
+	Tooltip: Whether Aequu2' special Hardmode Mimics should appear, replacing regular Mimics. This config does nothing if "{$GameplayConfig.HardmodeChests.Label}" is false.
 }
 
-PDAGetsAequusItems: {
-	Label: "[i:PDA] Aequus PDA"
+PDAGetsAequu2Items: {
+	Label: "[i:PDA] Aequu2 PDA"
 	Tooltip:
 		'''
-		Whether Aequus' new Info Accessories should be added to the PDA and upgrades.
-		Any items which use the PDA or upgrades in their recipes will automatically inherit Aequus' info accessories.
+		Whether Aequu2' new Info Accessories should be added to the PDA and upgrades.
+		Any items which use the PDA or upgrades in their recipes will automatically inherit Aequu2' info accessories.
 		'''
 }

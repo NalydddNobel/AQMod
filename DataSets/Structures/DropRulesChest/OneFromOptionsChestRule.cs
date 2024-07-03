@@ -1,10 +1,10 @@
-﻿using Aequus.DataSets.Structures.DropRulesItem;
+﻿using Aequu2.DataSets.Structures.DropRulesItem;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.GameContent.ItemDropRules;
 using tModLoaderExtended.Terraria;
 
-namespace Aequus.DataSets.Structures.DropRulesChest;
+namespace Aequu2.DataSets.Structures.DropRulesChest;
 
 public record class OneFromOptionsChestRule(IChestLootRule[] Options, int ChanceDenominator = 1, int ChanceNumerator = 1, params Condition[] OptionalConditions)
     : IChestLootRule, IConvertDropRules {

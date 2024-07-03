@@ -1,6 +1,6 @@
 ﻿using Terraria.Localization;
 
-namespace Aequus.Core.ContentGeneration;
+namespace Aequu2.Core.ContentGeneration;
 
 internal class InstancedMountBuff : InstancedModBuff {
     protected readonly UnifiedModMount _parent;

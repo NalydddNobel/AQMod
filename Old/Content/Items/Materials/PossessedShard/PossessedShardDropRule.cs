@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Old.Content.Items.Materials.PossessedShard;
+namespace Aequu2.Old.Content.Items.Materials.PossessedShard;
 
 public class PossessedShardDropRule : IItemDropRule {
     public int chanceDenominator;

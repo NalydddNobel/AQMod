@@ -1,19 +1,19 @@
-﻿using Aequus.Old.Content.Events.Glimmer.Sky;
+﻿using Aequu2.Old.Content.Events.Glimmer.Sky;
 using ReLogic.Content;
 using System;
 using System.Diagnostics;
 using Terraria.Enums;
 using Terraria.Graphics.Effects;
 
-namespace Aequus.Old.Content.MainMenu;
+namespace Aequu2.Old.Content.MainMenu;
 
 public class GlimmerMenu : ModMenu {
-    public override Asset<Texture2D> MoonTexture => AequusTextures.None;
+    public override Asset<Texture2D> MoonTexture => Aequu2Textures.None;
 
     public static float Intro;
     public static float Opacity;
 
-    public override int Music => MusicLoader.GetMusicSlot("AequusMusic/Assets/Music/Title");
+    public override int Music => MusicLoader.GetMusicSlot("Aequu2Music/Assets/Music/Title");
 
     public override void OnSelected() {
         Opacity = 0f;
@@ -75,7 +75,7 @@ public class GlimmerMenu : ModMenu {
 
     public override bool PreDrawLogo(SpriteBatch spriteBatch, ref Vector2 logoDrawCenter, ref float logoRotation, ref float logoScale, ref Color drawColor) {
         //DebugDrawBiomes();
-        var texture = AequusTextures.GlimmerMenu;
+        var texture = Aequu2Textures.GlimmerMenu;
         Main.moonPhase = (int)MoonPhase.Empty;
         for (float progress = 0f; ; progress += 0.01f) {
             logoScale = MathF.Pow(Math.Clamp((Intro - 30f * (1f - progress)) / 40f, 0f, 1f), 8f);

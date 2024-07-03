@@ -1,8 +1,8 @@
-﻿using Aequus.Core.CodeGeneration;
-using Aequus.Core.Entities.Items;
+﻿using Aequu2.Core.CodeGeneration;
+using Aequu2.Core.Entities.Items;
 using Terraria.Localization;
 
-namespace Aequus.Content.Items.Accessories.Informational.DebuffDPSMeter;
+namespace Aequu2.Content.Items.Accessories.Informational.DebuffDPSMeter;
 
 [Gen.AequusPlayer_InfoField("accInfoDebuffDPS")]
 public class GeigerCounter : ModItem {

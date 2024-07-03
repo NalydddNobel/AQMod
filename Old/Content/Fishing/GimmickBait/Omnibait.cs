@@ -1,11 +1,11 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Items.Components;
-using Aequus.Old.Content.Fishing.Poppers;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Items.Components;
+using Aequu2.Old.Content.Fishing.Poppers;
 using System.Collections;
 using System.Reflection;
 using Terraria.DataStructures;
 
-namespace Aequus.Old.Content.Fishing.GimmickBait;
+namespace Aequu2.Old.Content.Fishing.GimmickBait;
 
 public class Omnibait : UnifiedModBait, IModifyFishAttempt {
     public const int RECIPE_POPPER_AMOUNT = 10;

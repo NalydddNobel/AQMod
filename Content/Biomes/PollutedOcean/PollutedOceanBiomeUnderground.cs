@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Biomes.PollutedOcean;
+﻿namespace Aequu2.Content.Biomes.PollutedOcean;
 
 /// <summary>Main class for general things related to the Polluted Ocean biome. Also counts as the Underground Polluted Ocean.</summary>
 public class PollutedOceanBiomeUnderground : PollutedOceanBiomeSurface {

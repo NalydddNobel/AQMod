@@ -1,7 +1,7 @@
-﻿using Aequus.Core.Components.Buffs;
+﻿using Aequu2.Core.Components.Buffs;
 
-namespace Aequus.Core.Entities.Buffs;
-public partial class AequusBuff : GlobalBuff {
+namespace Aequu2.Core.Entities.Buffs;
+public partial class Aequu2Buff : GlobalBuff {
     public override void Load() {
         On_NPC.AddBuff += NPC_AddBuff;
         On_Player.AddBuff += Player_AddBuff;
@@ -22,23 +22,23 @@ public partial class AequusBuff : GlobalBuff {
         IOnAddBuff onAddBuff = BuffLoader.GetBuff(type) as IOnAddBuff;
         onAddBuff?.PreAddBuff(npc, hasBuff, ref time, ref quiet);
         //if (Main.debuff[type] || BuffSets.ProbablyFireDebuff.Contains(type)) {
-        //    var player = AequusPlayer.CurrentPlayerContext();
+        //    var player = Aequu2Player.CurrentPlayerContext();
         //    if (player != null) {
-        //        var aequus = player.Aequus();
-        //        time = (int)(time * aequus.DebuffsInfliction.GetBuffMultipler(player, type));
-        //        if (aequus.accResetEnemyDebuffs && !npc.HasBuff(type)) {
+        //        var Aequu2 = player.Aequu2();
+        //        time = (int)(time * Aequu2.DebuffsInfliction.GetBuffMultipler(player, type));
+        //        if (Aequu2.accResetEnemyDebuffs && !npc.HasBuff(type)) {
         //            for (int i = 0; i < NPC.maxBuffs; i++) {
         //                if (npc.buffTime[i] > 0 && npc.buffType[i] > 0 && IsDebuff(npc.buffType[i])) {
         //                    npc.buffTime[i] = Math.Max(npc.buffTime[i], 180);
         //                }
         //            }
         //        }
-        //        if (aequus.soulCrystalDamage > npc.Aequus().debuffDamage) {
-        //            npc.Aequus().debuffDamage = (byte)aequus.soulCrystalDamage;
+        //        if (Aequu2.soulCrystalDamage > npc.Aequu2().debuffDamage) {
+        //            npc.Aequu2().debuffDamage = (byte)Aequu2.soulCrystalDamage;
         //            if (Main.netMode != NetmodeID.SinglePlayer) {
         //                var p = ExtendedMod.GetPacket(PacketType.SendDebuffFlatDamage);
         //                p.Write(npc.whoAmI);
-        //                p.Write((byte)aequus.soulCrystalDamage);
+        //                p.Write((byte)Aequu2.soulCrystalDamage);
         //                p.Send();
         //            }
         //        }

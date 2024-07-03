@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.Audio;
+﻿namespace Aequu2.Core.Audio;
 internal class audioTest {
     public static void echotest() {
         int milliseconds = Main.rand.Next(350, 650);

@@ -1,7 +1,7 @@
-﻿using Aequus.Content.Events.DemonSiege;
+﻿using Aequu2.Content.Events.DemonSiege;
 using Terraria.Localization;
 
-namespace Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg;
+namespace Aequu2.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg;
 
 [LegacyName("Malediction", "CartilageRing", "NaturesCruelty")]
 public class BottleOSpirits : ModItem {
@@ -20,6 +20,6 @@ public class BottleOSpirits : ModItem {
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
-        player.GetModPlayer<AequusPlayer>().ghostSlotsMax++;
+        player.GetModPlayer<Aequu2Player>().ghostSlotsMax++;
     }
 }

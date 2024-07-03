@@ -1,7 +1,7 @@
-﻿using Aequus.Core.Graphics;
-using Aequus.Core.Particles;
+﻿using Aequu2.Core.Graphics;
+using Aequu2.Core.Particles;
 
-namespace Aequus.Old.Content.StatusEffects;
+namespace Aequu2.Old.Content.StatusEffects;
 
 public sealed class BlueFireSparkle : ParallelParticleArray<BlueFireSparkle.Particle> {
     public override int ParticleCount => 1000;
@@ -9,7 +9,7 @@ public sealed class BlueFireSparkle : ParallelParticleArray<BlueFireSparkle.Part
     public override void Draw(SpriteBatch spriteBatch) {
         spriteBatch.BeginDusts();
 
-        Texture2D texture = AequusTextures.BlueFireSparkle;
+        Texture2D texture = Aequu2Textures.BlueFireSparkle;
         lock (this) {
             for (int k = 0; k < Particles.Length; k++) {
                 Particle particle = Particles[k];

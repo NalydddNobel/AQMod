@@ -1,8 +1,8 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Items.Components;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Items.Components;
 using Terraria.Localization;
 
-namespace Aequus.Old.Content.Fishing.Poppers;
+namespace Aequu2.Old.Content.Fishing.Poppers;
 
 [LegacyName("MysticPopper")]
 public class HallowPopper : UnifiedModBait, IModifyFishingPower {

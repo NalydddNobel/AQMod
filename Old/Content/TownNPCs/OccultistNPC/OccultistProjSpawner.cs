@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using Terraria.DataStructures;
 
-namespace Aequus.Old.Content.TownNPCs.OccultistNPC;
+namespace Aequu2.Old.Content.TownNPCs.OccultistNPC;
 
 public class OccultistProjSpawner : ModProjectile {
-    public override string Texture => AequusTextures.TemporaryBuffIcon;
+    public override string Texture => Aequu2Textures.TemporaryBuffIcon;
 
     public int NPCIndex { get => (int)Projectile.ai[0] - 1; set => Projectile.ai[0] = value + 1; }
 

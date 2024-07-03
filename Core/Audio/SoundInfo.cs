@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Audio;
 
-namespace Aequus.Core.Audio;
+namespace Aequu2.Core.Audio;
 
 public readonly struct SoundInfo {
     public readonly byte[] Buffer;

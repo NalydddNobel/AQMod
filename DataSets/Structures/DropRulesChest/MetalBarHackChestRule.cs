@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Entities.Items;
+﻿using Aequu2.Core.Entities.Items;
 using System;
 using System.Collections.Generic;
 using tModLoaderExtended.Terraria;
 
-namespace Aequus.DataSets.Structures.DropRulesChest;
+namespace Aequu2.DataSets.Structures.DropRulesChest;
 
 public record class MetalBarHackChestRule(Func<int> GetOreTileId, int MinStack = 1, int MaxStack = 1, params Condition[] OptionalConditions) : IChestLootRule {
     public List<IChestLootChain> ChainedRules { get; set; } = new();

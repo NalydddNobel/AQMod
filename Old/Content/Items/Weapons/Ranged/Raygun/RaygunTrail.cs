@@ -1,8 +1,8 @@
-﻿using Aequus.Core.Graphics;
-using Aequus.Core.Particles;
+﻿using Aequu2.Core.Graphics;
+using Aequu2.Core.Particles;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Items.Weapons.Ranged.Raygun;
+namespace Aequu2.Old.Content.Items.Weapons.Ranged.Raygun;
 
 public class RaygunTrail : ConcurrentParticles<RaygunTrail.Particle> {
     public override void Activate() {

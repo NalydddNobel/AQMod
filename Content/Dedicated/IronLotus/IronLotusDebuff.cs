@@ -1,6 +1,6 @@
-﻿using Aequus.DataSets;
+﻿using Aequu2.DataSets;
 
-namespace Aequus.Content.Dedicated.IronLotus;
+namespace Aequu2.Content.Dedicated.IronLotus;
 
 public class IronLotusDebuff : ModBuff {
     public static int Damage { get; set; } = 300;

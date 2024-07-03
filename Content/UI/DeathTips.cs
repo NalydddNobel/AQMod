@@ -1,6 +1,6 @@
-﻿using Aequus.Content.Configuration;
-using Aequus.Core.IO;
-using Aequus.Core.UI;
+﻿using Aequu2.Content.Configuration;
+using Aequu2.Core.IO;
+using Aequu2.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ using Terraria.ModLoader.IO;
 using Terraria.UI;
 using Terraria.Utilities;
 
-namespace Aequus.Content.UI;
+namespace Aequu2.Content.UI;
 
 public class DeathTips : UILayer {
     public bool resetGameTips;

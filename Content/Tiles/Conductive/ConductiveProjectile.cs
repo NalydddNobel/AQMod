@@ -1,10 +1,10 @@
-﻿using Aequus.Content.Systems;
-using Aequus.Core.Entities.Projectiles;
+﻿using Aequu2.Content.Systems;
+using Aequu2.Core.Entities.Projectiles;
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;
 
-namespace Aequus.Content.Tiles.Conductive;
+namespace Aequu2.Content.Tiles.Conductive;
 
 public class ConductiveProjectile : ModProjectile {
     public override string Texture => AequusTextures.TemporaryBuffIcon;

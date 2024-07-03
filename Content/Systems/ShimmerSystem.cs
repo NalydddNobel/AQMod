@@ -1,16 +1,16 @@
-﻿using Aequus.Content.Configuration;
-using Aequus.Content.Dedicated;
-using Aequus.Content.Dedicated.SwagEye;
-using Aequus.Content.Items.Accessories.Balloons;
-using Aequus.Content.Items.Accessories.Informational.Monocle;
-using Aequus.Content.Items.Accessories.WeightedHorseshoe;
-using Aequus.Content.Items.PermaPowerups.Shimmer;
-using Aequus.Content.Items.Weapons.Magic.Furystar;
-using Aequus.Core.Components.Prefixes;
-using Aequus.Core.Entities.Items.Dedications;
+﻿using Aequu2.Content.Configuration;
+using Aequu2.Content.Dedicated;
+using Aequu2.Content.Dedicated.SwagEye;
+using Aequu2.Content.Items.Accessories.Balloons;
+using Aequu2.Content.Items.Accessories.Informational.Monocle;
+using Aequu2.Content.Items.Accessories.WeightedHorseshoe;
+using Aequu2.Content.Items.PermaPowerups.Shimmer;
+using Aequu2.Content.Items.Weapons.Magic.Furystar;
+using Aequu2.Core.Components.Prefixes;
+using Aequu2.Core.Entities.Items.Dedications;
 using tModLoaderExtended.Terraria.GameContent;
 
-namespace Aequus.Core.Systems;
+namespace Aequu2.Core.Systems;
 
 public class ShimmerSystem : ModSystem {
     public override void PostSetupContent() {

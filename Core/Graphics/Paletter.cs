@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Aequus.Core.Graphics;
+namespace Aequu2.Core.Graphics;
 
 internal class Paletter : IDisposable {
     private Texture2D _templatePalette;
@@ -90,7 +90,7 @@ internal class Paletter : IDisposable {
             _finishedPalettes[palette] = resultTexture;
         }
         catch (Exception ex) {
-            Aequus.Instance.Logger.Error(ex);
+            Aequu2.Instance.Logger.Error(ex);
         }
     }
 

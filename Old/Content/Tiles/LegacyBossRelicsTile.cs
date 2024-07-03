@@ -5,12 +5,12 @@ using Terraria.Enums;
 using Terraria.Localization;
 using Terraria.ObjectData;
 
-namespace Aequus.Old.Content.Tiles;
+namespace Aequu2.Old.Content.Tiles;
 
 [LegacyName("BossRelics", "BossRelicsTile")]
 [Obsolete("Replaced with instanced Mod Tiles for each relic.")]
 public class LegacyBossRelicsTile : ModTile {
-    public override string Texture => AequusTextures.Tile(TileID.MasterTrophyBase);
+    public override string Texture => Aequu2Textures.Tile(TileID.MasterTrophyBase);
 
     private const int FrameWidth = 18 * 3;
     private const int FrameHeight = 18 * 4;

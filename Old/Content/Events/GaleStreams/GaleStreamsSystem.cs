@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Content.Events.GaleStreams;
+namespace Aequu2.Content.Events.GaleStreams;
 
 public class GaleStreamsSystem : ModSystem {
     private byte _updateTimer;

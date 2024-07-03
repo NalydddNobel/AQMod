@@ -1,9 +1,9 @@
-﻿using Aequus.Core.CodeGeneration;
+﻿using Aequu2.Core.CodeGeneration;
 using System;
 
-namespace Aequus;
+namespace Aequu2;
 
-public partial class AequusPlayer {
+public partial class Aequu2Player {
     [ResetEffects]
     public float accRabbitFootLuck;
     private static int _rabbitFootRerolls;

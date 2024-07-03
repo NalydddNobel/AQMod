@@ -1,6 +1,6 @@
-﻿using Aequus.Old.Content.Events.Glimmer.CosmicMonolith;
+﻿using Aequu2.Old.Content.Events.Glimmer.CosmicMonolith;
 
-namespace Aequus.Old.Content.Tiles;
+namespace Aequu2.Old.Content.Tiles;
 
 public class MonolithsSystem : ModSystem {
     public override void ResetNearbyTileEffects() {

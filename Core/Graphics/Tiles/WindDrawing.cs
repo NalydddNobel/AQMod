@@ -2,7 +2,7 @@
 using MonoMod.Cil;
 using Terraria.GameContent.Drawing;
 
-namespace Aequus.Core.Graphics.Tiles;
+namespace Aequu2.Core.Graphics.Tiles;
 
 public class WindDrawing : ModSystem {
     public override void Load() {

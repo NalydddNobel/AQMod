@@ -1,11 +1,11 @@
-﻿using Aequus.DataSets.Structures;
+﻿using Aequu2.DataSets.Structures;
 using Newtonsoft.Json;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
 
-namespace Aequus.DataSets;
+namespace Aequu2.DataSets;
 
 public class ProjectileDataSet : DataSet {
     /// <summary>Rotation offset of projectile sprites so it can be rotated correctly.</summary>

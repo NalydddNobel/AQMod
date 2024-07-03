@@ -1,7 +1,7 @@
 ﻿using Terraria.GameContent.Golf;
 using Terraria.Physics;
 
-namespace Aequus.Core.Entities.Golfing;
+namespace Aequu2.Core.Entities.Golfing;
 
 public interface IGolfBallProjectile {
     /// <summary>

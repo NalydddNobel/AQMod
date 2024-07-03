@@ -1,7 +1,7 @@
-﻿using Aequus.Core.Entities.NPCs;
+﻿using Aequu2.Core.Entities.NPCs;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Core.Entities.Items.DropRules;
+namespace Aequu2.Core.Entities.Items.DropRules;
 
 public class ConditionNoDamageTaken : IItemDropRuleCondition {
     public bool CanDrop(DropAttemptInfo info) {

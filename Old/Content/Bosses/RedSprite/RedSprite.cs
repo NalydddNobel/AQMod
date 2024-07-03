@@ -1,12 +1,12 @@
-﻿using Aequus.Core;
-using Aequus.Content.Events.GaleStreams;
-using Aequus.Core.Assets;
-using Aequus.Core.CodeGeneration;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.DataSets;
-using Aequus.Old.Content.Bosses.RedSprite.Projectiles;
-using Aequus.Old.Core;
+﻿using Aequu2.Core;
+using Aequu2.Content.Events.GaleStreams;
+using Aequu2.Core.Assets;
+using Aequu2.Core.CodeGeneration;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.DataSets;
+using Aequu2.Old.Content.Bosses.RedSprite.Projectiles;
+using Aequu2.Old.Core;
 using Microsoft.Xna.Framework.Audio;
 using ReLogic.Content;
 using System;
@@ -16,9 +16,9 @@ using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.Utilities;
 
-namespace Aequus.Old.Content.Bosses.RedSprite;
+namespace Aequu2.Old.Content.Bosses.RedSprite;
 
-[Gen.AequusSystem_WorldField<bool>("downedRedSprite")]
+[Gen.Aequu2System_WorldField<bool>("downedRedSprite")]
 [BestiaryBiome<GaleStreamsZone>()]
 [AutoloadBossHead()]
 public class RedSprite : UnifiedBoss {
@@ -57,9 +57,9 @@ public class RedSprite : UnifiedBoss {
     }) { }
 
     public override void Load() {
-        LoadTrophy(AequusTextures.RedSpriteTrophy.Path);
-        LoadRelic(new RelicRenderer(AequusTextures.RedSpriteRelic.Path));
-        LoadMask(AequusTextures.RedSpriteMask.Path);
+        LoadTrophy(Aequu2Textures.RedSpriteTrophy.Path);
+        LoadRelic(new RelicRenderer(Aequu2Textures.RedSpriteRelic.Path));
+        LoadMask(Aequu2Textures.RedSpriteMask.Path);
     }
 
     public override void SetStaticDefaults() {
@@ -341,7 +341,7 @@ public class RedSprite : UnifiedBoss {
                                     }
                                     ScreenShake.SetShake(30f, where: NPC.Center);
                                     if (Main.netMode != NetmodeID.Server) {
-                                        SoundEngine.PlaySound(AequusSounds.RedSpriteThunderClap, NPC.Center);
+                                        SoundEngine.PlaySound(Aequu2Sounds.RedSpriteThunderClap, NPC.Center);
                                     }
                                     int dustAmount = DrawHelper.Quality(50, 25);
                                     float rot = MathHelper.TwoPi / dustAmount;
@@ -399,7 +399,7 @@ public class RedSprite : UnifiedBoss {
                             }
                             NPC.HitEffect(0, NPC.lifeMax);
                             if (NPC.Distance(Main.LocalPlayer.Center) < 2000f) {
-                                bool reduceFX = AequusSystem.downedRedSprite || NPC.CountNPCS(Type) > 1;
+                                bool reduceFX = Aequu2System.downedRedSprite || NPC.CountNPCS(Type) > 1;
                                 ScreenFlash.Instance.Set(NPC.Center, reduceFX ? 2f : 7.5f, 0.6f);
                                 ScreenShake.SetShake(reduceFX ? 18f : 20f);
                             }
@@ -839,7 +839,7 @@ public class RedSprite : UnifiedBoss {
             return true;
         }
 
-        _importantDeath = !AequusSystem.downedRedSprite && NPC.CountNPCS(Type) <= 1;
+        _importantDeath = !Aequu2System.downedRedSprite && NPC.CountNPCS(Type) <= 1;
         NPC.ai[0] = PHASE_DEAD;
         NPC.ai[1] = 0f;
         NPC.ai[2] = 0f;
@@ -852,7 +852,7 @@ public class RedSprite : UnifiedBoss {
 
     public override void OnKill() {
         ExtendItem.DropHearts(new EntitySource_Loot(NPC), NPC.Hitbox, 4, 4);
-        NPC.SetEventFlagCleared(ref AequusSystem.downedRedSprite, -1);
+        NPC.SetEventFlagCleared(ref Aequu2System.downedRedSprite, -1);
     }
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
@@ -928,7 +928,7 @@ public class RedSprite : UnifiedBoss {
     public void GenerateLightning() {
         _redSpriteLightningCoords = new Vector2[7][];
         for (int i = 0; i < _redSpriteLightningCoords.GetLength(0); i++) {
-            _redSpriteLightningCoords[i] = new Vector2[Aequus.HighQualityEffects ? 20 : 5];
+            _redSpriteLightningCoords[i] = new Vector2[Aequu2.HighQualityEffects ? 20 : 5];
             var end = (MathHelper.PiOver4 * 0.1f * (i - 3) - MathHelper.PiOver2).ToRotationVector2() * 1080f;
             GenerateLightningStrip(ref _redSpriteLightningCoords[i], Main.GlobalTimeWrappedHourly * (i + 1), end);
         }
@@ -962,11 +962,11 @@ public class RedSprite : UnifiedBoss {
     }
     public void CheckPrims() {
         if (prim == null) {
-            prim = new TrailRenderer(AequusTextures.Trail, "Texture",
+            prim = new TrailRenderer(Aequu2Textures.Trail, "Texture",
                 (p) => new Vector2(8f) * GetRealProgress(p), (p) => new Color(255, 100, 40, 40) * LightningDrawOpacity * GetRealProgress(p) * GetRealProgress(p), obeyReversedGravity: false, worldTrail: false);
         }
         if (bloomPrim == null) {
-            bloomPrim = new TrailRenderer(AequusTextures.Trail, "Texture",
+            bloomPrim = new TrailRenderer(Aequu2Textures.Trail, "Texture",
                 (p) => new Vector2(44f) * GetRealProgress(p), (p) => lightningBloomColor * LightningDrawOpacity * GetRealProgress(p) * GetRealProgress(p), obeyReversedGravity: false, worldTrail: false);
         }
     }
@@ -994,11 +994,11 @@ public class RedSprite : UnifiedBoss {
             }
 
             Rectangle realFrame = frame ?? texture.Bounds;
-            AequusShaders.LegacyMiscEffects.Value.Parameters["uColor"].SetValue(Color.Red.ToVector3());
-            AequusShaders.LegacyMiscEffects.Value.Parameters["uSecondaryColor"].SetValue(Color.Orange.ToVector3());
-            AequusShaders.LegacyMiscEffects.Value.Parameters["uSourceRect"].SetValue(new Vector4(realFrame.X, realFrame.Y, realFrame.Width, realFrame.Height));
-            AequusShaders.LegacyMiscEffects.Value.Parameters["uImageSize0"].SetValue(new Vector2(texture.Width, texture.Height));
-            AequusShaders.LegacyMiscEffects.Value.CurrentTechnique.Passes["VerticalGradientPass"].Apply();
+            Aequu2Shaders.LegacyMiscEffects.Value.Parameters["uColor"].SetValue(Color.Red.ToVector3());
+            Aequu2Shaders.LegacyMiscEffects.Value.Parameters["uSecondaryColor"].SetValue(Color.Orange.ToVector3());
+            Aequu2Shaders.LegacyMiscEffects.Value.Parameters["uSourceRect"].SetValue(new Vector4(realFrame.X, realFrame.Y, realFrame.Width, realFrame.Height));
+            Aequu2Shaders.LegacyMiscEffects.Value.Parameters["uImageSize0"].SetValue(new Vector2(texture.Width, texture.Height));
+            Aequu2Shaders.LegacyMiscEffects.Value.CurrentTechnique.Passes["VerticalGradientPass"].Apply();
 
             foreach (var v in circular) {
                 Main.spriteBatch.Draw(texture, drawPosition + v * (aura / 4f), frame, color, rotation, origin, scale, SpriteEffects.None, 0f);

@@ -1,8 +1,8 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.ContentGeneration;
 using System;
 using Terraria.GameContent;
 
-namespace Aequus.Content.Pets.OmegaStarite;
+namespace Aequu2.Content.Pets.OmegaStarite;
 
 public class OmegaStaritePet : UnifiedModPet {
     public override void SetStaticDefaults() {

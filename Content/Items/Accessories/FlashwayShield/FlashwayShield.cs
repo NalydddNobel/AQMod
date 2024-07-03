@@ -1,6 +1,6 @@
-﻿using Aequus.Core;
+﻿using Aequu2.Core;
 
-namespace Aequus.Content.Items.Accessories.FlashwayShield;
+namespace Aequu2.Content.Items.Accessories.FlashwayShield;
 
 [LegacyName("FlashwayNecklace", "HeartshatterNecklace")]
 [AutoloadEquip(EquipType.Shield)]

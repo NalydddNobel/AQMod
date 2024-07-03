@@ -1,4 +1,4 @@
-﻿using Aequus.Core.IO;
+﻿using Aequu2.Core.IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +7,7 @@ using Terraria.DataStructures;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Systems.Renaming;
+namespace Aequu2.Content.Systems.Renaming;
 
 public sealed class RenamingSystem : ModSystem {
     #region Text
@@ -182,7 +182,7 @@ public sealed class RenamingSystem : ModSystem {
                     if (SpawnRectangles[j].Intersects(marker.SpawnBox)) {
                         _gameTime = UpdateRate;
 
-                        int newNPC = NPC.NewNPC(new EntitySource_Misc("Aequus: Name Tag Respawn"), marker.tileX * 16 + 8, marker.tileY * 16 + 8, marker.type);
+                        int newNPC = NPC.NewNPC(new EntitySource_Misc("Aequu2: Name Tag Respawn"), marker.tileX * 16 + 8, marker.tileY * 16 + 8, marker.type);
                         if (newNPC == Main.maxNPCs) {
                             break;
                         }

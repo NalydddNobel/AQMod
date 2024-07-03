@@ -1,16 +1,16 @@
-﻿using Aequus.Content.Dusts;
-using Aequus.Content.Events.GaleStreams;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.DataSets;
-using Aequus.Old.Content.Particles;
+﻿using Aequu2.Content.Dusts;
+using Aequu2.Content.Events.GaleStreams;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.DataSets;
+using Aequu2.Old.Content.Particles;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Old.Content.Enemies.GaleStreams.WhiteSlime;
+namespace Aequu2.Old.Content.Enemies.GaleStreams.WhiteSlime;
 
 [BestiaryBiome<GaleStreamsZone>()]
 [AutoloadBanner]
@@ -54,7 +54,7 @@ public class WhiteSlime : ModNPC {
     public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: balance -> balance (bossAdjustment is different, see the docs for details) */
     {
         NPC.lifeMax = (int)(NPC.lifeMax * 0.75f);
-        if (AequusSystem.HardmodeTier) {
+        if (Aequu2System.HardmodeTier) {
             NPC.lifeMax *= 2;
             NPC.knockBackResist *= 0.25f;
         }
@@ -89,7 +89,7 @@ public class WhiteSlime : ModNPC {
                 else {
                     if (NPC.velocity.X.Abs() <= 3f) {
                         if (NPC.localAI[0] == 0 && Main.netMode != NetmodeID.Server) {
-                            SoundEngine.PlaySound(AequusSounds.WhiteSlimeWompWomp, NPC.Center);
+                            SoundEngine.PlaySound(Aequu2Sounds.WhiteSlimeWompWomp, NPC.Center);
                         }
                         NPC.localAI[0]++;
                     }

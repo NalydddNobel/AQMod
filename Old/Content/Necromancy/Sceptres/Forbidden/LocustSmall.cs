@@ -1,8 +1,8 @@
-﻿using Aequus.Core;
-using Aequus.DataSets;
+﻿using Aequu2.Core;
+using Aequu2.DataSets;
 using System;
 
-namespace Aequus.Old.Content.Necromancy.Sceptres.Forbidden;
+namespace Aequu2.Old.Content.Necromancy.Sceptres.Forbidden;
 
 public class LocustSmall : ModProjectile {
     public override void SetStaticDefaults() {

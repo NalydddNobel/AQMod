@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Fishing;
+﻿namespace Aequu2.Content.Fishing;
 
 public class FishInstantiator : ILoadable {
     public static ModItem Killifish { get; private set; }

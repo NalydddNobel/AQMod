@@ -3,9 +3,9 @@ using System;
 using Terraria.GameContent.Events;
 using Terraria.UI;
 
-namespace Aequus.Core.UI.Elements;
+namespace Aequu2.Core.UI.Elements;
 
-public class AequusItemSlotElement : UIElement {
+public class Aequu2ItemSlotElement : UIElement {
     public readonly Texture2D InventoryBackTexture;
     public readonly Asset<Texture2D> IconTexture;
     public readonly Rectangle IconFrame;
@@ -25,7 +25,7 @@ public class AequusItemSlotElement : UIElement {
 
     public event Action<Item, Item> OnItemSwap;
 
-    public AequusItemSlotElement(int slotContext, Texture2D back, Asset<Texture2D> icon = null, Rectangle? frame = null) {
+    public Aequu2ItemSlotElement(int slotContext, Texture2D back, Asset<Texture2D> icon = null, Rectangle? frame = null) {
         _item = new Item();
         InventoryBackTexture = back;
         IconTexture = icon;

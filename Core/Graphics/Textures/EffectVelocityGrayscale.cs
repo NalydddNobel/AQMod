@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Core.Graphics.Textures;
+namespace Aequu2.Core.Graphics.Textures;
 
 public struct EffectVelocityGrayscale : IColorEffect {
     Color IColorEffect.GetColor(in ColorEffectContext context) {

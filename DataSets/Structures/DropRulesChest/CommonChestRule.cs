@@ -2,7 +2,7 @@
 using Terraria.GameContent.ItemDropRules;
 using tModLoaderExtended.Terraria;
 
-namespace Aequus.DataSets.Structures.DropRulesChest;
+namespace Aequu2.DataSets.Structures.DropRulesChest;
 
 public record class CommonChestRule(int Item, int MinStack = 1, int MaxStack = 1, int ChanceDenominator = 1, int ChanceNumerator = 1, params Condition[] OptionalConditions)
     : IChestLootRule, IConvertDropRules {

@@ -1,9 +1,9 @@
-﻿using Aequus.NPCs.Town.PhysicistNPC.Analysis;
+﻿using Aequu2.NPCs.Town.PhysicistNPC.Analysis;
 using System;
 using System.Collections.Generic;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Old.Content.TownNPCs.PhysicistNPC.Analysis;
+namespace Aequu2.Old.Content.TownNPCs.PhysicistNPC.Analysis;
 
 public class AnalysisPlayer : ModPlayer {
     public int completed;

@@ -1,11 +1,11 @@
-﻿using Aequus.Core.Entities.Prefixes;
-using Aequus.Core.UI;
+﻿using Aequu2.Core.Entities.Prefixes;
+using Aequu2.Core.UI;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
 using Terraria.Localization;
 
-namespace Aequus.Core.Entities.Items.Components;
+namespace Aequu2.Core.Entities.Items.Components;
 
 public interface ICooldownItem {
     int CooldownTime { get; }
@@ -28,7 +28,7 @@ public sealed class CooldownGlobalItem : GlobalItem {
             return;
         }
 
-        tooltips.AddTooltip(new(Mod, "CooldownTip", Language.GetTextValue("Mods.Aequus.Items.CommonTooltips.Cooldown", XLanguage.Seconds(cooldownItem.GetCooldownTime(item.prefix)))));
+        tooltips.AddTooltip(new(Mod, "CooldownTip", Language.GetTextValue("Mods.Aequu2.Items.CommonTooltips.Cooldown", XLanguage.Seconds(cooldownItem.GetCooldownTime(item.prefix)))));
     }
 
     private static void DrawBackground(float time, float timeMax, SpriteBatch spriteBatch, Vector2 position) {

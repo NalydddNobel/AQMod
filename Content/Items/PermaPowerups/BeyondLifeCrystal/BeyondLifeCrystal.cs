@@ -1,7 +1,7 @@
-﻿using Aequus.Core.CodeGeneration;
+﻿using Aequu2.Core.CodeGeneration;
 using Terraria.Localization;
 
-namespace Aequus.Content.Items.PermaPowerups.BeyondLifeCrystal;
+namespace Aequu2.Content.Items.PermaPowerups.BeyondLifeCrystal;
 
 [WorkInProgress]
 [Gen.AequusPlayer_SavedField<int>("consumedBeyondLifeCrystals")]
@@ -33,12 +33,12 @@ public class BeyondLifeCrystal : ModItem {
     }
 
     public override bool? UseItem(Player player) {
-        AequusPlayer aequusPlayer = player.GetModPlayer<AequusPlayer>();
-        if (aequusPlayer.consumedBeyondLifeCrystals >= MaxUses) {
+        AequusPlayer Aequu2Player = player.GetModPlayer<AequusPlayer>();
+        if (Aequu2Player.consumedBeyondLifeCrystals >= MaxUses) {
             return false;
         }
 
-        aequusPlayer.consumedBeyondLifeCrystals++;
+        Aequu2Player.consumedBeyondLifeCrystals++;
         return true;
     }
 }

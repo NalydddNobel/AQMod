@@ -1,7 +1,7 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.ContentGeneration;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 
-namespace Aequus.Content.Tiles.Statues;
+namespace Aequu2.Content.Tiles.Statues;
 
 public class AncientAngelStatue : StatueTileTemplate {
     public ModItem ItemDrop { get; private set; }

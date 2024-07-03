@@ -1,8 +1,8 @@
-﻿using Aequus.Core;
-using Aequus.Content.Elements;
-using Aequus.Content.Items.Materials;
+﻿using Aequu2.Core;
+using Aequu2.Content.Elements;
+using Aequu2.Content.Items.Materials;
 
-namespace Aequus.Content.Items.Weapons.Magic.TrashStaff;
+namespace Aequu2.Content.Items.Weapons.Magic.TrashStaff;
 
 [LegacyName("LiquidGun")]
 public class TrashStaff : ModItem {

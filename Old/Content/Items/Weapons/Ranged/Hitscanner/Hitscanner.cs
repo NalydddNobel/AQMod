@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Items.Weapons.Ranged.Hitscanner;
+﻿namespace Aequu2.Old.Content.Items.Weapons.Ranged.Hitscanner;
 
 /*
 public class Hitscanner : ModItem, IManageProjectile {
@@ -19,7 +19,7 @@ public class Hitscanner : ModItem, IManageProjectile {
         Item.shootSpeed = 16f;
         Item.ArmorPenetration = 5;
         Item.useAmmo = AmmoID.Bullet;
-        Item.UseSound = AequusSounds.doomShotgun;
+        Item.UseSound = Aequu2Sounds.doomShotgun;
         Item.value = Item.sellPrice(gold: 4);
         Item.autoReuse = true;
         Item.knockBack = 1f;
@@ -46,7 +46,7 @@ public class Hitscanner : ModItem, IManageProjectile {
         return true;
     }
 
-    public void InitalizeProjectile(Projectile projectile, AequusProjectile aequusProjectile) {
+    public void InitalizeProjectile(Projectile projectile, Aequu2Projectile Aequu2Projectile) {
         projectile.extraUpdates++;
         if (projectile.type == ProjectileID.ChlorophyteBullet) {
             projectile.extraUpdates *= 10;
@@ -83,7 +83,7 @@ public class Hitscanner : ModItem, IManageProjectile {
     }
 }
 
-public partial class AequusProjectile {
+public partial class Aequu2Projectile {
     private void Hitscanner_ProjectileSpecificAttributes(Projectile projectile) {
         if (projectile.type == ProjectileID.ChlorophyteBullet) {
             projectile.alpha = 255;

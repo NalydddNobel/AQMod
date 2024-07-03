@@ -1,8 +1,8 @@
-﻿using Aequus.Core.Entities.Items.Components;
-using Aequus.DataSets;
+﻿using Aequu2.Core.Entities.Items.Components;
+using Aequu2.DataSets;
 using Terraria.UI;
 
-namespace Aequus.Core.Hooks;
+namespace Aequu2.Core.Hooks;
 
 public partial class TerrariaHooks {
     /// <summary>Allows for:
@@ -18,14 +18,14 @@ public partial class TerrariaHooks {
     private static void ItemSlot_RightClick(On_ItemSlot.orig_RightClick_ItemArray_int_int orig, Item[] inv, int context, int slot) {
         if (Main.mouseRight && Main.mouseRightRelease) {
             Player player = Main.LocalPlayer;
-            AequusPlayer aequus = player.GetModPlayer<AequusPlayer>();
-            if (!Main.mouseItem.IsAir && Main.mouseItem.ModItem is IRightClickOverrideWhenHeld hold && hold.RightClickOverrideWhileHeld(ref Main.mouseItem, inv, context, slot, player, aequus)) {
+            AequusPlayer Aequu2 = player.GetModPlayer<AequusPlayer>();
+            if (!Main.mouseItem.IsAir && Main.mouseItem.ModItem is IRightClickOverrideWhenHeld hold && hold.RightClickOverrideWhileHeld(ref Main.mouseItem, inv, context, slot, player, Aequu2)) {
                 Main.mouseRightRelease = false;
                 // Set stack split delay to 3 seconds (so you don't instantly pick up the item with rclick)
                 Main.stackSplit = 180;
                 return;
             }
-            if (!inv[slot].IsAir && inv[slot].ModItem is IRightClickOverrideWhenHovered hover && hover.RightClickOverrideWhenHovered(ref Main.mouseItem, inv, context, slot, player, aequus)) {
+            if (!inv[slot].IsAir && inv[slot].ModItem is IRightClickOverrideWhenHovered hover && hover.RightClickOverrideWhenHovered(ref Main.mouseItem, inv, context, slot, player, Aequu2)) {
                 Main.mouseRightRelease = false;
                 // Set stack split delay to 3 seconds (so you don't instantly pick up the item with rclick)
                 Main.stackSplit = 180;
@@ -33,10 +33,10 @@ public partial class TerrariaHooks {
             }
 
             if (context == ItemSlot.Context.InventoryItem) {
-                if (UseGoldenKey(inv, slot, player, aequus)) {
+                if (UseGoldenKey(inv, slot, player, Aequu2)) {
                     return;
                 }
-                if (UseShadowKey(inv, slot, player, aequus)) {
+                if (UseShadowKey(inv, slot, player, Aequu2)) {
                     return;
                 }
             }
@@ -45,8 +45,8 @@ public partial class TerrariaHooks {
         orig(inv, context, slot);
     }
 
-    private static bool UseGoldenKey(Item[] inv, int slot, Player Player, AequusPlayer aequus) {
-        Item goldenKey = aequus.goldenKey;
+    private static bool UseGoldenKey(Item[] inv, int slot, Player Player, AequusPlayer Aequu2) {
+        Item goldenKey = Aequu2.goldenKey;
         if (goldenKey == null) {
             return false;
         }
@@ -92,8 +92,8 @@ public partial class TerrariaHooks {
         return false;
     }
 
-    private static bool UseShadowKey(Item[] inv, int slot, Player Player, AequusPlayer aequus) {
-        Item shadowKey = aequus.shadowKey;
+    private static bool UseShadowKey(Item[] inv, int slot, Player Player, AequusPlayer Aequu2) {
+        Item shadowKey = Aequu2.shadowKey;
         if (shadowKey == null) {
             return false;
         }

@@ -1,7 +1,7 @@
-﻿using Aequus.Core.Entities.Projectiles;
+﻿using Aequu2.Core.Entities.Projectiles;
 using System;
 
-namespace Aequus.Content.Dedicated.IronLotus;
+namespace Aequu2.Content.Dedicated.IronLotus;
 
 public class IronLotusFlare : ModProjectile {
     public override string Texture => AequusTextures.Flare.Path;

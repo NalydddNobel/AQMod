@@ -1,15 +1,15 @@
-﻿using Aequus.Core;
-using Aequus.Old.Common.Items.Variants;
+﻿using Aequu2.Core;
+using Aequu2.Old.Common.Items.Variants;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Items;
 
-namespace Aequus.Old.Content.Items.Weapons.Summon.Sentries.PhysicistSentry;
+namespace Aequu2.Old.Content.Items.Weapons.Summon.Sentries.PhysicistSentry;
 
 public class PhysicistSentry : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 25;
-        AequusItemVariants.AddVariant(Type, ItemVariants.StrongerVariant, Condition.RemixWorld);
+        Aequu2ItemVariants.AddVariant(Type, ItemVariants.StrongerVariant, Condition.RemixWorld);
     }
 
     public override void SetDefaults() {
@@ -208,13 +208,13 @@ public class PhysicistSentryProj : ModProjectile {
             Main.EntitySpriteDraw(texture, Projectile.oldPos[i] + offset - Main.screenPosition, frame, lightColor with { A = 0 } * p * 0.2f, Projectile.oldRot[i], origin, Projectile.scale, SpriteEffects.None, 0);
         }
         Main.EntitySpriteDraw(texture, drawPosition, frame, lightColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
-        Main.EntitySpriteDraw(AequusTextures.PhysicistSentryProj_Glow, drawPosition, frame, Color.White, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
+        Main.EntitySpriteDraw(Aequu2Textures.PhysicistSentryProj_Glow, drawPosition, frame, Color.White, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
         return false;
     }
 }
 
 public class PhysicistSentryLightning : ModProjectile {
-    public override string Texture => AequusTextures.Projectile(ProjectileID.ThunderSpearShot);
+    public override string Texture => Aequu2Textures.Projectile(ProjectileID.ThunderSpearShot);
 
     public Vector2 baseVelocity;
 

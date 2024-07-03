@@ -1,8 +1,8 @@
-﻿using Aequus.Core.Entities.Golfing;
+﻿using Aequu2.Core.Entities.Golfing;
 using Terraria.GameContent.Golf;
 using Terraria.Physics;
 
-namespace Aequus.Core.Hooks;
+namespace Aequu2.Core.Hooks;
 
 public partial class TerrariaHooks {
     /// <summary>Allows custom golf ball prediction lines for projectiles which implement <see cref="IGolfBallProjectile"/>.</summary>

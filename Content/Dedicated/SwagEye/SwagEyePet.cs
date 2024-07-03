@@ -1,10 +1,10 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Items.Dedications;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Items.Dedications;
 using System;
 using Terraria.GameContent;
 using Terraria.UI.Chat;
 
-namespace Aequus.Content.Dedicated.SwagEye;
+namespace Aequu2.Content.Dedicated.SwagEye;
 
 public class SwagEyePet : UnifiedModPet {
     public override void SetStaticDefaults() {

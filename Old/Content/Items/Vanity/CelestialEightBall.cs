@@ -1,4 +1,4 @@
-﻿using Aequus.Core.Entities.Items.Components;
+﻿using Aequu2.Core.Entities.Items.Components;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using Terraria.GameContent;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Old.Content.Items.Vanity;
+namespace Aequu2.Old.Content.Items.Vanity;
 
 [LegacyName("CelesitalEightBall")]
 public class CelestialEightBall : ModItem, ICooldownItem {

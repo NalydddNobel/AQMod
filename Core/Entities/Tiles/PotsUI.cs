@@ -1,11 +1,11 @@
-﻿using Aequus.Core.UI;
+﻿using Aequu2.Core.UI;
 using System;
 using Terraria.GameContent;
 using Terraria.UI;
 using Terraria.UI.Chat;
 using Terraria.Utilities;
 
-namespace Aequus.Core.Entities.Tiles;
+namespace Aequu2.Core.Entities.Tiles;
 
 public class PotsUI : UILayer {
     public override bool OnUIUpdate(GameTime gameTime) {

@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Backpacks;
+﻿using Aequu2.Content.Backpacks;
 using MonoMod.Cil;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using Terraria.GameContent;
 using Terraria.UI;
 using Terraria.UI.Gamepad;
 
-namespace Aequus.Core.UI;
+namespace Aequu2.Core.UI;
 
 public class InventoryUI : ModSystem {
     public static int CoinsAmmoOffsetX { get; internal set; }
@@ -36,10 +36,10 @@ public class InventoryUI : ModSystem {
     }
 
     public override void UpdateUI(GameTime gameTime) {
-        if (!Main.LocalPlayer.TryGetModPlayer(out BackpackPlayer aequusPlayer)) {
+        if (!Main.LocalPlayer.TryGetModPlayer(out BackpackPlayer Aequu2Player)) {
             return;
         }
-        BackpackLoader.AnimateBackpacks(aequusPlayer.backpacks, out int totalInventorySlots, out int activeBackpacks);
+        BackpackLoader.AnimateBackpacks(Aequu2Player.backpacks, out int totalInventorySlots, out int activeBackpacks);
 
         int coinsAmmoOffsetWantedX = 0;
         if (totalInventorySlots > 0) {
@@ -73,7 +73,7 @@ public class InventoryUI : ModSystem {
 
     #region Hooks
     private void IL_Main_DrawEmoteAndBestiaryButton(ILContext il) {
-        //MonoModHooks.DumpIL(ModContent.GetInstance<Aequus>(), il);
+        //MonoModHooks.DumpIL(ModContent.GetInstance<Aequu2>(), il);
         var cursor = new ILCursor(il);
         if (!cursor.TryGotoNext((i) => i.MatchLdsfld(typeof(Main), nameof(Main.player)))) {
             Mod.Logger.Error($"Could not find {nameof(Main)}.{nameof(Main.player)} loading code."); return;
@@ -176,7 +176,7 @@ public class InventoryUI : ModSystem {
             MoveChestIcons(cursor);
         }
         catch {
-            MonoModHooks.DumpIL(ModContent.GetInstance<Aequus>(), il);
+            MonoModHooks.DumpIL(ModContent.GetInstance<Aequu2>(), il);
         }
     }
     #endregion

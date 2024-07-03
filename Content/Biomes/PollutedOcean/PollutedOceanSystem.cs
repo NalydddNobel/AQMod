@@ -1,30 +1,30 @@
-﻿using Aequus.Content.Configuration;
-using Aequus.Content.Critters.SeaFirefly;
-using Aequus.Content.CrossMod.SplitSupport.Photography;
-using Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
-using Aequus.Content.Enemies.PollutedOcean.BreadOfCthulhu;
-using Aequus.Content.Enemies.PollutedOcean.Conductor;
-using Aequus.Content.Enemies.PollutedOcean.Conehead;
-using Aequus.Content.Enemies.PollutedOcean.Eel;
-using Aequus.Content.Enemies.PollutedOcean.OilSlime;
-using Aequus.Content.Enemies.PollutedOcean.Scavenger;
-using Aequus.Content.Fishing;
-using Aequus.Content.Fishing.Baits.BlackJellyfish;
-using Aequus.Content.Items.Potions.Healing.Restoration;
-using Aequus.Content.Items.Potions.PotionCanteen;
-using Aequus.Content.Items.Tools.AnglerLamp;
-using Aequus.Content.Items.Weapons.Ranged.Ammo;
-using Aequus.Content.Items.Weapons.Ranged.StarPhish;
-using Aequus.Content.Tiles.Furniture.Trash;
-using Aequus.Content.Tiles.Statues;
-using Aequus.DataSets;
-using Aequus.DataSets.Structures.DropRulesChest;
-using Aequus.DataSets.Structures.Enums;
+﻿using Aequu2.Content.Configuration;
+using Aequu2.Content.Critters.SeaFirefly;
+using Aequu2.Content.CrossMod.SplitSupport.Photography;
+using Aequu2.Content.Enemies.PollutedOcean.BlackJellyfish;
+using Aequu2.Content.Enemies.PollutedOcean.BreadOfCthulhu;
+using Aequu2.Content.Enemies.PollutedOcean.Conductor;
+using Aequu2.Content.Enemies.PollutedOcean.Conehead;
+using Aequu2.Content.Enemies.PollutedOcean.Eel;
+using Aequu2.Content.Enemies.PollutedOcean.OilSlime;
+using Aequu2.Content.Enemies.PollutedOcean.Scavenger;
+using Aequu2.Content.Fishing;
+using Aequu2.Content.Fishing.Baits.BlackJellyfish;
+using Aequu2.Content.Items.Potions.Healing.Restoration;
+using Aequu2.Content.Items.Potions.PotionCanteen;
+using Aequu2.Content.Items.Tools.AnglerLamp;
+using Aequu2.Content.Items.Weapons.Ranged.Ammo;
+using Aequu2.Content.Items.Weapons.Ranged.StarPhish;
+using Aequu2.Content.Tiles.Furniture.Trash;
+using Aequu2.Content.Tiles.Statues;
+using Aequu2.DataSets;
+using Aequu2.DataSets.Structures.DropRulesChest;
+using Aequu2.DataSets.Structures.Enums;
 using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 
-namespace Aequus.Content.Biomes.PollutedOcean;
+namespace Aequu2.Content.Biomes.PollutedOcean;
 
 public class PollutedOceanSystem : ModSystem {
     public static int PollutedTileThreshold { get; set; } = 800;
@@ -32,7 +32,7 @@ public class PollutedOceanSystem : ModSystem {
     public static int PollutedTileCount { get; set; }
 
     private static int? _music;
-    public static int Music => _music ??= MusicLoader.GetMusicSlot("AequusMusic/Assets/Music/PollutedOcean");
+    public static int Music => _music ??= MusicLoader.GetMusicSlot("Aequu2Music/Assets/Music/PollutedOcean");
 
     public override void SetStaticDefaults() {
         PopulateCrateDrops();

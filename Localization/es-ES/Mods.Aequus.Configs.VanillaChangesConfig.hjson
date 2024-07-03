@@ -17,7 +17,7 @@ RestorationPotionRecipe: {
 	Tooltip:
 		'''
 		Cuando [{$ColorImportant}:Activo], La receta Vanilla de la [{$ColorImportant}:Poción de recuperación] sera [{$ColorImportant}:removida].
-		Aequus añade una [{$ColorImportant}:receta alternativa], usando dos [{$ColorImportant2}:Pociónes de recuperación menor] y un [{$ColorImportant2}:Champiñón brillante].
+		Aequu2 añade una [{$ColorImportant}:receta alternativa], usando dos [{$ColorImportant2}:Pociónes de recuperación menor] y un [{$ColorImportant2}:Champiñón brillante].
 
 		[{$ColorNote}:Desactiva esta configuración por preferencia personal, o si se presenta un problema al remover esta receta.]
 		'''

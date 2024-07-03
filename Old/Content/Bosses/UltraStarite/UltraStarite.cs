@@ -1,18 +1,18 @@
-﻿using Aequus.Core;
-using Aequus.Content.Dusts;
-using Aequus.Core.CodeGeneration;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.Core.Entities.NPCs;
-using Aequus.DataSets;
-using Aequus.Old.Content.Bosses.UltraStarite.Projectiles;
-using Aequus.Old.Content.Events.Glimmer;
-using Aequus.Old.Content.Events.Glimmer.CosmicMonolith;
-using Aequus.Old.Content.Items.Materials;
-using Aequus.Old.Content.Items.Potions.NeutronYogurt;
-using Aequus.Old.Content.Particles;
-using Aequus.Old.Content.StatusEffects;
-using Aequus.Old.Core;
+﻿using Aequu2.Core;
+using Aequu2.Content.Dusts;
+using Aequu2.Core.CodeGeneration;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.Core.Entities.NPCs;
+using Aequu2.DataSets;
+using Aequu2.Old.Content.Bosses.UltraStarite.Projectiles;
+using Aequu2.Old.Content.Events.Glimmer;
+using Aequu2.Old.Content.Events.Glimmer.CosmicMonolith;
+using Aequu2.Old.Content.Items.Materials;
+using Aequu2.Old.Content.Items.Potions.NeutronYogurt;
+using Aequu2.Old.Content.Particles;
+using Aequu2.Old.Content.StatusEffects;
+using Aequu2.Old.Core;
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;
@@ -22,9 +22,9 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Utilities;
 
-namespace Aequus.Old.Content.Bosses.UltraStarite;
+namespace Aequu2.Old.Content.Bosses.UltraStarite;
 
-[Gen.AequusSystem_WorldField<bool>("downedUltraStarite")]
+[Gen.Aequu2System_WorldField<bool>("downedUltraStarite")]
 [BestiaryBiome<GlimmerZone>()]
 [AutoloadBossHead]
 public class UltraStarite : UnifiedBoss {
@@ -49,8 +49,8 @@ public class UltraStarite : UnifiedBoss {
     }) { }
 
     public override void Load() {
-        LoadTrophy(AequusTextures.UltraStariteTrophy.Path);
-        LoadRelic(new RelicRenderer(AequusTextures.UltraStariteRelic.Path));
+        LoadTrophy(Aequu2Textures.UltraStariteTrophy.Path);
+        LoadRelic(new RelicRenderer(Aequu2Textures.UltraStariteRelic.Path));
     }
 
     public override void SetStaticDefaults() {
@@ -98,7 +98,7 @@ public class UltraStarite : UnifiedBoss {
         NPC.knockBackResist = 0f;
         NPC.value = Item.buyPrice(silver: 50);
         NPC.npcSlots = 8f;
-        NPC.BossBar = ModContent.GetInstance<LegacyAequusBossSupportedBar>();
+        NPC.BossBar = ModContent.GetInstance<LegacyAequu2BossSupportedBar>();
 
         oldArmsLength = new float[NPCSets.TrailCacheLength[Type]];
     }
@@ -155,7 +155,7 @@ public class UltraStarite : UnifiedBoss {
     }
 
     public override void AI() {
-        //if (AequusHelpers.debugKey)
+        //if (Aequu2Helpers.debugKey)
         //{
         //    if (State != STATE_DEAD)
         //    {
@@ -441,7 +441,7 @@ public class UltraStarite : UnifiedBoss {
 
     public override void OnKill() {
         ExtendItem.DropHearts(new EntitySource_Loot(NPC), NPC.Hitbox, 4, 4);
-        NPC.SetEventFlagCleared(ref AequusSystem.downedUltraStarite, -1);
+        NPC.SetEventFlagCleared(ref Aequu2System.downedUltraStarite, -1);
     }
 
     public override int SpawnNPC(int tileX, int tileY) {
@@ -457,7 +457,7 @@ public class UltraStarite : UnifiedBoss {
         float mult = 1f / NPCSets.TrailCacheLength[NPC.type];
         var armFrame = NPC.frame;
         var coreFrame = new Rectangle(NPC.frame.X, NPC.frame.Y + NPC.frame.Height * 2, NPC.frame.Width, NPC.frame.Height);
-        var bloom = AequusTextures.Bloom.Value;
+        var bloom = Aequu2Textures.Bloom.Value;
         var bloomFrame = new Rectangle(0, 0, bloom.Width, bloom.Height);
         var bloomOrigin = bloomFrame.Size() / 2f;
 
@@ -525,12 +525,12 @@ public class UltraStarite : UnifiedBoss {
                 Vector2[] arr = armPositions[j].ToArray();
                 float[] rotations = Helper.GenerateRotationArr(arr);
 
-                DrawHelper.DrawBasicVertexLine(AequusTextures.Trail2, arr, rotations,
+                DrawHelper.DrawBasicVertexLine(Aequu2Textures.Trail2, arr, rotations,
                     (p) => Color.BlueViolet with { A = 0 } * 1.25f * (float)Math.Pow(1f - p, 2f),
                     (p) => 60f,
                     -Main.screenPosition);
 
-                DrawHelper.ApplyUVEffect(AequusTextures.Trail3, new Vector2(1f, 1f), new Vector2(Main.GameUpdateCount / 60f % 1f, 0f));
+                DrawHelper.ApplyUVEffect(Aequu2Textures.Trail3, new Vector2(1f, 1f), new Vector2(Main.GameUpdateCount / 60f % 1f, 0f));
                 DrawHelper.VertexStrip.PrepareStrip(arr, rotations,
                     (p) => Color.Blue with { A = 0 } * (1f - p) * 0.8f,
                     (p) => 50f,
@@ -637,7 +637,7 @@ public class UltraStarite : UnifiedBoss {
             bloomProgress += deathScaleBloom;
         }
 
-        Texture2D ray = AequusTextures.LightRayFlat;
+        Texture2D ray = Aequu2Textures.LightRayFlat;
         float hpRatio = (1f - MathF.Pow(NPC.life / (float)NPC.lifeMax, 2f)) * 1f + 0.5f;
         Main.rand.NextBool(3);
         float rayProgress = Math.Max(bloomProgress, 0.4f);
@@ -674,7 +674,7 @@ public class UltraStarite : UnifiedBoss {
                 bloomProgress -= deathScaleBloom * 0.5f;
             }
 
-            bloom = AequusTextures.Bloom;
+            bloom = Aequu2Textures.Bloom;
 
             Main.spriteBatch.Draw(bloom, drawCoords, null, new Color(255, 233, 200, 0) * bloomProgress, 0f, bloom.Size() / 2f, NPC.scale * bloomProgress * 1.1f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(bloom, drawCoords, null, new Color(255, 120, 20, 0) * bloomProgress, 0f, bloom.Size() / 2f, NPC.scale * bloomProgress * 1.35f, SpriteEffects.None, 0f);
@@ -682,13 +682,13 @@ public class UltraStarite : UnifiedBoss {
         }
         //var toPlayer = NPC.DirectionTo(Main.player[NPC.target].Center);
 
-        //AequusHelpers.DrawLine(NPC.Center - screenPos, NPC.Center + toPlayer * 100f - screenPos, 4f, Color.Red);
+        //Aequu2Helpers.DrawLine(NPC.Center - screenPos, NPC.Center + toPlayer * 100f - screenPos, 4f, Color.Red);
 
         //for (int i = 1; i < 5; i++)
-        //    AequusHelpers.DrawLine(NPC.Center - screenPos, NPC.Center + (NPC.rotation + MathHelper.TwoPi / 5f * i).ToRotationVector2() * 100f - screenPos, 4f, Color.Blue);
+        //    Aequu2Helpers.DrawLine(NPC.Center - screenPos, NPC.Center + (NPC.rotation + MathHelper.TwoPi / 5f * i).ToRotationVector2() * 100f - screenPos, 4f, Color.Blue);
 
-        //AequusHelpers.DrawLine(NPC.Center - screenPos, NPC.Center + NPC.rotation.ToRotationVector2() * 100f - screenPos, 4f, Color.Red);
-        //AequusHelpers.DrawLine(NPC.Center - screenPos, NPC.Center + (NPC.rotation).ToRotationVector2() * 100f - screenPos, 4f, Color.Lime);
+        //Aequu2Helpers.DrawLine(NPC.Center - screenPos, NPC.Center + NPC.rotation.ToRotationVector2() * 100f - screenPos, 4f, Color.Red);
+        //Aequu2Helpers.DrawLine(NPC.Center - screenPos, NPC.Center + (NPC.rotation).ToRotationVector2() * 100f - screenPos, 4f, Color.Lime);
         return false;
     }
 }

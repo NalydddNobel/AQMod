@@ -1,7 +1,7 @@
 ﻿using Terraria.DataStructures;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Items.Accessories.Informational.Calendar;
+namespace Aequu2.Content.Items.Accessories.Informational.Calendar;
 
 public class CalendarTile : ModTile {
     public static bool Nearby;

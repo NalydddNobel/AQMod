@@ -1,10 +1,10 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Items.Components;
-using Aequus.DataSets;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Items.Components;
+using Aequu2.DataSets;
 using Terraria.Audio;
 using Terraria.Localization;
 
-namespace Aequus.Old.Content.Items.Potions.Prefixes;
+namespace Aequu2.Old.Content.Items.Potions.Prefixes;
 
 internal class PotionPrefixItem : InstancedModItem, IRightClickOverrideWhenHeld {
     [CloneByReference]
@@ -29,7 +29,7 @@ internal class PotionPrefixItem : InstancedModItem, IRightClickOverrideWhenHeld 
         Item.maxStack = Item.CommonMaxStack;
     }
 
-    public bool RightClickOverrideWhileHeld(ref Item heldItem, Item[] inv, int context, int slot, Player player, AequusPlayer aequus) {
+    public bool RightClickOverrideWhileHeld(ref Item heldItem, Item[] inv, int context, int slot, Player player, Aequu2Player Aequu2) {
         Item potion = inv[slot];
         int wantedPrefix = _parent.Type;
 
@@ -57,7 +57,7 @@ internal class PotionPrefixItem : InstancedModItem, IRightClickOverrideWhenHeld 
         }
 
         if (potion.prefix == wantedPrefix) {
-            SoundEngine.PlaySound(AequusSounds.PotionPrefix with { Volume = 0.75f, PitchVariance = 0.2f });
+            SoundEngine.PlaySound(Aequu2Sounds.PotionPrefix with { Volume = 0.75f, PitchVariance = 0.2f });
             heldItem.stack -= potion.stack;
             if (heldItem.stack <= 0) {
                 heldItem.TurnToAir();

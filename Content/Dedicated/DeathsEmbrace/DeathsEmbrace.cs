@@ -1,7 +1,7 @@
-﻿using Aequus.Core.Entities.Items.Dedications;
+﻿using Aequu2.Core.Entities.Items.Dedications;
 using System.Collections.Generic;
 
-namespace Aequus.Content.Dedicated.DeathsEmbrace;
+namespace Aequu2.Content.Dedicated.DeathsEmbrace;
 
 public class DeathsEmbrace : ModItem {
     public override void Load() {

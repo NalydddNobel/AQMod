@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Entities.Projectiles;
+﻿using Aequu2.Core.Entities.Projectiles;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
 
-namespace Aequus.Content.Dedicated.IronLotus;
+namespace Aequu2.Content.Dedicated.IronLotus;
 
 public class IronLotusProj : LegacyHeldSlashingSwordProjectile {
     public override void SetDefaults() {
@@ -22,7 +22,7 @@ public class IronLotusProj : LegacyHeldSlashingSwordProjectile {
     public override void AI() {
         base.AI();
         //if (Main.player[Projectile.owner].itemAnimation <= 1) {
-        //    Main.player[Projectile.owner].Aequus().itemCombo = (ushort)(combo == 0 ? 20 : 0);
+        //    Main.player[Projectile.owner].Aequu2().itemCombo = (ushort)(combo == 0 ? 20 : 0);
         //}
     }
 
@@ -37,7 +37,7 @@ public class IronLotusProj : LegacyHeldSlashingSwordProjectile {
     public override float SwingProgress(float progress) {
         if (progress >= 0.5f)
             return progress;
-        return SwingProgressAequus(progress);
+        return SwingProgressAequu2(progress);
     }
 
     public override void UpdateSwing(float progress, float interpolatedSwingProgress) {

@@ -1,9 +1,9 @@
-﻿using Aequus.Content.Biomes.PollutedOcean;
+﻿using Aequu2.Content.Biomes.PollutedOcean;
 using System;
 using Terraria.GameContent.Drawing;
 using Terraria.Graphics.Light;
 
-namespace Aequus.Core.Graphics;
+namespace Aequu2.Core.Graphics;
 
 [Autoload(Side = ModSide.Client)]
 public class CavernsLightEmitter : ModSystem {

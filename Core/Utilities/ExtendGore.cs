@@ -1,7 +1,7 @@
-﻿using Aequus.Core.Assets;
+﻿using Aequu2.Core.Assets;
 using Terraria.DataStructures;
 
-namespace Aequus.Core.Utilities;
+namespace Aequu2.Core.Utilities;
 
 public static class ExtendGore {
 
@@ -26,6 +26,6 @@ public static class ExtendGore {
     }
 
     internal static int GetModdedGoreType(RequestCache<Texture2D> Texture) {
-        return Aequus.Instance.Find<ModGore>(Texture.Name)?.Type ?? 0;
+        return Aequu2.Instance.Find<ModGore>(Texture.Name)?.Type ?? 0;
     }
 }

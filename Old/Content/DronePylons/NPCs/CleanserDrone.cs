@@ -1,7 +1,7 @@
 ﻿using System;
 using Terraria.Audio;
 
-namespace Aequus.Old.Content.DronePylons.NPCs;
+namespace Aequu2.Old.Content.DronePylons.NPCs;
 
 public class CleanserDrone : TownDroneBase {
     public override DroneSlot Slot => ModContent.GetInstance<CleanserDroneSlot>();
@@ -222,7 +222,7 @@ public class CleanserDrone : TownDroneBase {
         var color = GetPylonColor();
 
         float gunRotation = NPC.localAI[3];
-        var gun = AequusTextures.CleanserDrone_Gun.Value;
+        var gun = Aequu2Textures.CleanserDrone_Gun.Value;
         var gunOrigin = new Vector2(29.5f, gun.Height / 2f);
         var lightColor = NPC.GetNPCColorTintedByBuffs(drawColor) * NPC.Opacity;
 
@@ -245,12 +245,12 @@ public class CleanserDrone : TownDroneBase {
         }
         spriteBatch.Draw(texture, NPC.position + off - screenPos, frame, lightColor,
             NPC.rotation, origin, NPC.scale, effects, 0f);
-        spriteBatch.Draw(AequusTextures.CleanserDrone_Glow, NPC.position + off - screenPos, frame, color * SpawnInOpacity * NPC.Opacity,
+        spriteBatch.Draw(Aequu2Textures.CleanserDrone_Glow, NPC.position + off - screenPos, frame, color * SpawnInOpacity * NPC.Opacity,
             NPC.rotation, origin, NPC.scale, effects, 0f);
 
         spriteBatch.Draw(gun, gunPosition - screenPos, null, lightColor,
             gunRotation + MathHelper.Pi, gunOrigin, NPC.scale, gunEffects, 0f);
-        spriteBatch.Draw(AequusTextures.CleanserDrone_Gun_Glow, gunPosition - screenPos, null, color * SpawnInOpacity * NPC.Opacity,
+        spriteBatch.Draw(Aequu2Textures.CleanserDrone_Gun_Glow, gunPosition - screenPos, null, color * SpawnInOpacity * NPC.Opacity,
             gunRotation + MathHelper.Pi, gunOrigin, NPC.scale, gunEffects, 0f);
         return false;
     }

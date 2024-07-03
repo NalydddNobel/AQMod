@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Old.Content.Items.Accessories.Pacemaker;
+namespace Aequu2.Old.Content.Items.Accessories.Pacemaker;
 
 public class PacemakerPlayer : ModPlayer {
     public int respawnSpeedupTime;

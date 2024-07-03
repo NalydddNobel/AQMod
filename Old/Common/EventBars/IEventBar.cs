@@ -1,7 +1,7 @@
 ﻿using ReLogic.Content;
 using Terraria.Localization;
 
-namespace Aequus.Old.Common.EventBars;
+namespace Aequu2.Old.Common.EventBars;
 
 public interface IEventBar {
     Asset<Texture2D> Icon { get; set; }

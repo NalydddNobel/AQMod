@@ -1,7 +1,7 @@
-﻿using Aequus.Core;
-using Aequus.Old.Content.Items.Materials;
+﻿using Aequu2.Core;
+using Aequu2.Old.Content.Items.Materials;
 
-namespace Aequus.Old.Content.Items.Weapons.Melee.SuperStarSword;
+namespace Aequu2.Old.Content.Items.Weapons.Melee.SuperStarSword;
 
 public class SuperStarSword : ModItem {
     public override void SetDefaults() {

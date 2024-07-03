@@ -1,7 +1,7 @@
-﻿using Aequus.Content.Dusts;
-using Aequus.Core.Entities.Projectiles;
-using Aequus.DataSets;
-using Aequus.Old.Content.Particles;
+﻿using Aequu2.Content.Dusts;
+using Aequu2.Core.Entities.Projectiles;
+using Aequu2.DataSets;
+using Aequu2.Old.Content.Particles;
 using System;
 using System.IO;
 using Terraria.Audio;
@@ -10,7 +10,7 @@ using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
 using tModLoaderExtended.Networking;
 
-namespace Aequus.Old.Content.Items.Tools;
+namespace Aequu2.Old.Content.Items.Tools;
 
 public class PhysicsGunProj : HeldProjBase {
     public Vector2 mouseWorld;
@@ -453,7 +453,7 @@ public class PhysicsGunProj : HeldProjBase {
             vertices[0] = start;
             vertices[^1] = end;
 
-            DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, vertices, Helper.GenerateRotationArr(vertices),
+            DrawHelper.DrawBasicVertexLine(Aequu2Textures.Trail, vertices, Helper.GenerateRotationArr(vertices),
                 p => beamColor with { A = 0 },
                 p => 4f,
             -Main.screenPosition);

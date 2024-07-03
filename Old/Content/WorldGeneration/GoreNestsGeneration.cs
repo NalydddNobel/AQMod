@@ -1,14 +1,14 @@
-﻿using Aequus.Content.Tiles.Tombstones;
-using Aequus.Core.Components;
-using Aequus.Old.Content.Events.DemonSiege.Tiles;
-using Aequus.Old.Content.Tiles.Ambient;
-using Aequus.Old.Content.Tiles.Furniture.Oblivion;
+﻿using Aequu2.Content.Tiles.Tombstones;
+using Aequu2.Core.Components;
+using Aequu2.Old.Content.Events.DemonSiege.Tiles;
+using Aequu2.Old.Content.Tiles.Ambient;
+using Aequu2.Old.Content.Tiles.Furniture.Oblivion;
 using System;
 using Terraria.IO;
 using Terraria.Localization;
 using Terraria.WorldBuilding;
 
-namespace Aequus.Old.Content.WorldGeneration;
+namespace Aequu2.Old.Content.WorldGeneration;
 
 public class GoreNestsGeneration : AGenStep {
     public override string InsertAfter => "Underworld";
@@ -262,7 +262,7 @@ public class GoreNestsGeneration : AGenStep {
     }
 
     private void TextSign(int sign) {
-        LocalizedText name = Aequus.GetRandomName(WorldGen.genRand);
+        LocalizedText name = Aequu2.GetRandomName(WorldGen.genRand);
         string text = this.GetRandomLocalizationFromCategory("Tombstones", WorldGen.genRand)
             .FormatWith(new {
                 Name = name
@@ -274,7 +274,7 @@ public class GoreNestsGeneration : AGenStep {
     private static void FillChest(Chest chest) {
         int slot = 0;
         chest.item[slot].SetDefaults(WorldGen.crimson ? ItemID.LightsBane : ItemID.BloodButcherer); // Opposite evil sword
-        //chest.item[slot++].GetGlobalItem<RenameItem>().CustomName = "$Mods.Aequus.Names." + WorldGen.genRand.Next(11) + "|$Mods.Aequus.GoreNestTombstones.Sword";
+        //chest.item[slot++].GetGlobalItem<RenameItem>().CustomName = "$Mods.Aequu2.Names." + WorldGen.genRand.Next(11) + "|$Mods.Aequu2.GoreNestTombstones.Sword";
         if (WorldGen.genRand.NextBool()) {
             chest.item[slot++].SetDefaults(Utils.SelectRandom(WorldGen.genRand, ItemID.SilverPickaxe, ItemID.TungstenPickaxe, ItemID.GoldPickaxe, ItemID.PlatinumPickaxe));
         }

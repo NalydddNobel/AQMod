@@ -1,9 +1,9 @@
-﻿using Aequus.Old.Common.Projectiles;
+﻿using Aequu2.Old.Common.Projectiles;
 
-namespace Aequus.Old.Content.Enemies.Glimmer.Super;
+namespace Aequu2.Old.Content.Enemies.Glimmer.Super;
 
 public class SuperStariteProj : EnemyAttachedProjBase {
-    public override string Texture => AequusTextures.None.Path;
+    public override string Texture => Aequu2Textures.None.Path;
 
     public override void SetDefaults() {
         Projectile.width = 50;

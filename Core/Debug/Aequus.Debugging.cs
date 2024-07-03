@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 
-namespace Aequus;
+namespace Aequu2;
 
-partial class Aequus {
+partial class Aequu2 {
     internal const bool DEBUG_MODE =
 #if DEBUG
             true;

@@ -1,6 +1,6 @@
-﻿using Aequus.Content.Backpacks;
+﻿using Aequu2.Content.Backpacks;
 
-namespace Aequus.Core.Hooks;
+namespace Aequu2.Core.Hooks;
 
 public partial class TerrariaHooks {
     /// <summary>Allows for backpacks to provide mount items.</summary>

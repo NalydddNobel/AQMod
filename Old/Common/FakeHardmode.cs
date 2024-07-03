@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace Aequus.Old.Common;
+namespace Aequu2.Old.Common;
 
 public class FakeHardmode {
     public static void AddEnemies(IDictionary<int, float> pool, in NPCSpawnInfo spawnInfo) {
-        if (Main.hardMode || !AequusSystem.HardmodeTier) {
+        if (Main.hardMode || !Aequu2System.HardmodeTier) {
             return;
         }
 

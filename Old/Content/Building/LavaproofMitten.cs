@@ -1,6 +1,6 @@
 ﻿using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Building;
+namespace Aequu2.Old.Content.Building;
 
 [AutoloadEquip(EquipType.HandsOn, EquipType.HandsOff)]
 public class LavaproofMitten : ModItem {
@@ -11,7 +11,7 @@ public class LavaproofMitten : ModItem {
     }
 
     public override void UpdateEquip(Player player) {
-        player.GetModPlayer<AequusPlayer>().accLavaPlacement = true;
+        player.GetModPlayer<Aequu2Player>().accLavaPlacement = true;
     }
 }
 

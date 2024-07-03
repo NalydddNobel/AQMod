@@ -1,6 +1,6 @@
-﻿using Aequus.Core.Entites.Bestiary;
+﻿using Aequu2.Core.Entites.Bestiary;
 
-namespace Aequus.Content.Elements.Earth;
+namespace Aequu2.Content.Elements.Earth;
 
 public class Earth : VanillaElement {
     public Earth() : base(EarthFrame, Color.ForestGreen) { }

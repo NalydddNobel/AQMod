@@ -1,7 +1,7 @@
-﻿using Aequus.DataSets.Structures.DropRulesChest;
+﻿using Aequu2.DataSets.Structures.DropRulesChest;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.DataSets.Structures;
+namespace Aequu2.DataSets.Structures;
 
 public interface IConvertDropRules {
     IItemDropRule ToItemDropRule();

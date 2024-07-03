@@ -1,6 +1,6 @@
-﻿using Aequus.Core;
+﻿using Aequu2.Core;
 
-namespace Aequus.Old.Content.Items.Weapons.Melee.Valari;
+namespace Aequu2.Old.Content.Items.Weapons.Melee.Valari;
 
 public class Valari : ModItem {
     public override void SetDefaults() {

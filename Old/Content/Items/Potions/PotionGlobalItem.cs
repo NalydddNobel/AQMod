@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Items.Potions;
+﻿namespace Aequu2.Old.Content.Items.Potions;
 
 public class PotionGlobalItem : GlobalItem {
     public override void GrabRange(Item item, Player player, ref int grabRange) {

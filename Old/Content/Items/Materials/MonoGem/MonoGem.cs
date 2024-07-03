@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Items.Materials.MonoGem;
+﻿namespace Aequu2.Old.Content.Items.Materials.MonoGem;
 
 public class MonoGem : ModItem {
     public override void SetStaticDefaults() {

@@ -1,10 +1,10 @@
-﻿using Aequus.Core.Particles;
-using Aequus.DataSets;
+﻿using Aequu2.Core.Particles;
+using Aequu2.DataSets;
 using System;
 using System.IO;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Old.Content.Items.Weapons.Magic.Gamestar;
+namespace Aequu2.Old.Content.Items.Weapons.Magic.Gamestar;
 
 public class GamestarDebuff : ModBuff {
     public static readonly byte LagTicks = 7;

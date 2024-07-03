@@ -2,7 +2,7 @@
 using MonoMod.Cil;
 using System;
 
-namespace Aequus.Core.Hooks;
+namespace Aequu2.Core.Hooks;
 
 public partial class TerrariaHooks {
     /// <summary>Allows for the Lavaproof Mitten to grant block placement in lava for blockswap.</summary>
@@ -16,7 +16,7 @@ public partial class TerrariaHooks {
         c.Emit(OpCodes.Ldarg_0); // Push Player
         c.EmitDelegate<Func<bool, Player, bool>>((originalValue, player) => {
 #if !DEBUG
-            originalValue = player.GetModPlayer<AequusPlayer>().accLavaPlacement ? false : originalValue;
+            originalValue = player.GetModPlayer<Aequu2Player>().accLavaPlacement ? false : originalValue;
             //Main.NewText(originalValue);
 #endif
             return originalValue;

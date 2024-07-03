@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Terraria.GameContent.UI;
 
-namespace Aequus.Content.Items.Accessories.Informational.Monocle;
+namespace Aequu2.Content.Items.Accessories.Informational.Monocle;
 
 public sealed class MonocleGlobalItem : GlobalItem {
     private TooltipLine GetMonoclePriceTip(Item item, Player player) {

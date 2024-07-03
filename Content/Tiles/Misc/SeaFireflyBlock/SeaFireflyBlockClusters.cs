@@ -1,12 +1,12 @@
-﻿using Aequus.Content.Critters.SeaFirefly;
-using Aequus.Core.Graphics;
-using Aequus.Core.Particles;
+﻿using Aequu2.Content.Critters.SeaFirefly;
+using Aequu2.Core.Graphics;
+using Aequu2.Core.Particles;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Terraria.DataStructures;
 
-namespace Aequus.Content.Tiles.Misc.SeaFireflyBlock;
+namespace Aequu2.Content.Tiles.Misc.SeaFireflyBlock;
 
 public class SeaFireflyBlockClusters : ParticleSystem {
     private readonly Dictionary<Point16, List<AmbientParticle>> _particleAnchorPairs = [];

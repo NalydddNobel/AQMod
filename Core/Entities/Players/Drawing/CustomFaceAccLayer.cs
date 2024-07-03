@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using Terraria.DataStructures;
 
-namespace Aequus.Core.Entities.Players.Drawing;
+namespace Aequu2.Core.Entities.Players.Drawing;
 
 [Browsable(false)]
 internal class CustomFaceAccLayer : PlayerDrawLayer {

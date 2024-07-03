@@ -1,8 +1,8 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Items.Components;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Items.Components;
 using Terraria.DataStructures;
 
-namespace Aequus.Old.Content.Fishing.GimmickBait;
+namespace Aequu2.Old.Content.Fishing.GimmickBait;
 public class CrateBait : UnifiedModBait, IModifyFishAttempt {
     public override void SetDefaults() {
         Item.width = 6;

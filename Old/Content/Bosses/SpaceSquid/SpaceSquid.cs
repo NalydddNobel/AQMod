@@ -1,13 +1,13 @@
-﻿using Aequus.Core;
-using Aequus.Content.Dusts;
-using Aequus.Content.Events.GaleStreams;
-using Aequus.Core.Assets;
-using Aequus.Core.CodeGeneration;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.DataSets;
-using Aequus.Old.Content.Bosses.SpaceSquid.Projectiles;
-using Aequus.Old.Core;
+﻿using Aequu2.Core;
+using Aequu2.Content.Dusts;
+using Aequu2.Content.Events.GaleStreams;
+using Aequu2.Core.Assets;
+using Aequu2.Core.CodeGeneration;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.DataSets;
+using Aequu2.Old.Content.Bosses.SpaceSquid.Projectiles;
+using Aequu2.Old.Core;
 using ReLogic.Content;
 using System;
 using Terraria.Audio;
@@ -15,9 +15,9 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 
-namespace Aequus.Old.Content.Bosses.SpaceSquid;
+namespace Aequu2.Old.Content.Bosses.SpaceSquid;
 
-[Gen.AequusSystem_WorldField<bool>("downedSpaceSquid")]
+[Gen.Aequu2System_WorldField<bool>("downedSpaceSquid")]
 [BestiaryBiome<GaleStreamsZone>()]
 [AutoloadBossHead()]
 public class SpaceSquid : UnifiedBoss {
@@ -29,13 +29,13 @@ public class SpaceSquid : UnifiedBoss {
     public const int PHASE_TRANSITION_CHANGEDIRECTION = 2;
     public const int PHASE_SNOWFLAKESPIRAL = 3;
 
-    public Asset<Texture2D> GlowmaskTexture => AequusTextures.SpaceSquid_Glow;
-    public Asset<Texture2D> DefeatedTexture => AequusTextures.SpaceSquidDefeated;
-    public Asset<Texture2D> DefeatedGlowTexture => AequusTextures.SpaceSquidDefeated_Glow;
+    public Asset<Texture2D> GlowmaskTexture => Aequu2Textures.SpaceSquid_Glow;
+    public Asset<Texture2D> DefeatedTexture => Aequu2Textures.SpaceSquidDefeated;
+    public Asset<Texture2D> DefeatedGlowTexture => Aequu2Textures.SpaceSquidDefeated_Glow;
 
-    public static SoundStyle SpaceGunSound => AequusSounds.SpaceSquidGun;
-    public static SoundStyle SnowflakeShootSound => AequusSounds.SpaceSquidSnowflakeShoot;
-    public static SoundStyle AwesomeDeathraySound => AequusSounds.SpaceSquidDeathray;
+    public static SoundStyle SpaceGunSound => Aequu2Sounds.SpaceSquidGun;
+    public static SoundStyle SnowflakeShootSound => Aequu2Sounds.SpaceSquidSnowflakeShoot;
+    public static SoundStyle AwesomeDeathraySound => Aequu2Sounds.SpaceSquidDeathray;
 
     public int frameIndex;
 
@@ -52,9 +52,9 @@ public class SpaceSquid : UnifiedBoss {
     }) { }
 
     public override void Load() {
-        LoadTrophy(AequusTextures.SpaceSquidTrophy.Path);
-        LoadRelic(new RelicRenderer(AequusTextures.SpaceSquidRelic.Path));
-        LoadMask(AequusTextures.SpaceSquidMask.Path);
+        LoadTrophy(Aequu2Textures.SpaceSquidTrophy.Path);
+        LoadRelic(new RelicRenderer(Aequu2Textures.SpaceSquidRelic.Path));
+        LoadMask(Aequu2Textures.SpaceSquidMask.Path);
     }
 
     public override void SetStaticDefaults() {
@@ -605,7 +605,7 @@ public class SpaceSquid : UnifiedBoss {
             return true;
         }
 
-        _importantDeath = !AequusSystem.downedSpaceSquid && NPC.CountNPCS(Type) <= 1;
+        _importantDeath = !Aequu2System.downedSpaceSquid && NPC.CountNPCS(Type) <= 1;
         NPC.ai[0] = PHASE_DEAD;
         NPC.ai[1] = 0f;
         NPC.ai[2] = 0f;
@@ -625,7 +625,7 @@ public class SpaceSquid : UnifiedBoss {
 
     public override void OnKill() {
         ExtendItem.DropHearts(new EntitySource_Loot(NPC), NPC.Hitbox, 4, 4);
-        NPC.SetEventFlagCleared(ref AequusSystem.downedSpaceSquid, -1);
+        NPC.SetEventFlagCleared(ref Aequu2System.downedSpaceSquid, -1);
     }
 
     //public override void NPCLoot()
@@ -739,11 +739,11 @@ public class SpaceSquid : UnifiedBoss {
                 spriteBatch.BeginWorld(shader: true);
             }
 
-            AequusShaders.LegacyMiscEffects.Value.Parameters["uColor"].SetValue(Color.Cyan.ToVector3());
-            AequusShaders.LegacyMiscEffects.Value.Parameters["uSecondaryColor"].SetValue(Color.Blue.ToVector3());
-            AequusShaders.LegacyMiscEffects.Value.Parameters["uSourceRect"].SetValue(new Vector4(frame.X, frame.Y, frame.Width, frame.Height));
-            AequusShaders.LegacyMiscEffects.Value.Parameters["uImageSize0"].SetValue(new Vector2(texture.Width, texture.Height));
-            AequusShaders.LegacyMiscEffects.Value.CurrentTechnique.Passes["VerticalGradientPass"].Apply();
+            Aequu2Shaders.LegacyMiscEffects.Value.Parameters["uColor"].SetValue(Color.Cyan.ToVector3());
+            Aequu2Shaders.LegacyMiscEffects.Value.Parameters["uSecondaryColor"].SetValue(Color.Blue.ToVector3());
+            Aequu2Shaders.LegacyMiscEffects.Value.Parameters["uSourceRect"].SetValue(new Vector4(frame.X, frame.Y, frame.Width, frame.Height));
+            Aequu2Shaders.LegacyMiscEffects.Value.Parameters["uImageSize0"].SetValue(new Vector2(texture.Width, texture.Height));
+            Aequu2Shaders.LegacyMiscEffects.Value.CurrentTechnique.Passes["VerticalGradientPass"].Apply();
 
             foreach (var v in Helper.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f)) {
                 Main.spriteBatch.Draw(texture, drawPosition - screenPos + v * (aura / 4f), frame, Color.White, rotation, origin, scale, SpriteEffects.None, 0f);

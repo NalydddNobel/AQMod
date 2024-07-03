@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Core.Graphics.Primitives;
+namespace Aequu2.Core.Graphics.Primitives;
 
 [Obsolete]
 public class UVVertexStrip : VertexStripClone {

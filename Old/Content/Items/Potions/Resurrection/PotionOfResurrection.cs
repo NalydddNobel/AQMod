@@ -1,7 +1,7 @@
-﻿using Aequus.Old.Content.Items.Materials;
+﻿using Aequu2.Old.Content.Items.Materials;
 using System;
 
-namespace Aequus.Old.Content.Items.Potions.Resurrection;
+namespace Aequu2.Old.Content.Items.Potions.Resurrection;
 
 public class PotionOfResurrection : ModItem {
     public override void SetStaticDefaults() {

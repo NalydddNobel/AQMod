@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.ContentGeneration;
+﻿namespace Aequu2.Core.ContentGeneration;
 
 public abstract class UnifiedModMinion : ModProjectile {
     internal InstancedMinionBuff MinionBuff { get; set; }

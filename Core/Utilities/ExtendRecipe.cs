@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Core.Utilities;
+namespace Aequu2.Core.Utilities;
 
 public static class ExtendRecipe {
     /// <summary></summary>

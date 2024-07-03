@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.Utilities;
+﻿namespace Aequu2.Core.Utilities;
 
 public class CommonLight {
     public static readonly Vector3 ShadowOrb = new Vector3(0.6f, 0.1f, 1f);

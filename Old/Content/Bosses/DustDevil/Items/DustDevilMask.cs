@@ -1,6 +1,6 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.ContentGeneration;
 
-namespace Aequus.Old.Content.Bosses.DustDevil.Items;
+namespace Aequu2.Old.Content.Bosses.DustDevil.Items;
 
 internal class DustDevilMask(string name) : InstancedModItem($"{name}Mask", typeof(DustDevilMask).GetFilePath()) {
     private int _fireSide;
@@ -8,8 +8,8 @@ internal class DustDevilMask(string name) : InstancedModItem($"{name}Mask", type
 
     public override void Load() {
         if (Main.netMode != NetmodeID.MultiplayerClient) {
-            _fireSide = EquipLoader.AddEquipTexture(Mod, AequusTextures.DustDevilMaskFire_Head.Path, EquipType.Head, this);
-            _iceSide = EquipLoader.AddEquipTexture(Mod, AequusTextures.DustDevilMaskIce_Head.Path, EquipType.Head, this);
+            _fireSide = EquipLoader.AddEquipTexture(Mod, Aequu2Textures.DustDevilMaskFire_Head.Path, EquipType.Head, this);
+            _iceSide = EquipLoader.AddEquipTexture(Mod, Aequu2Textures.DustDevilMaskIce_Head.Path, EquipType.Head, this);
         }
     }
 

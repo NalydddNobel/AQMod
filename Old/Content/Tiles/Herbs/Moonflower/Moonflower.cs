@@ -1,11 +1,11 @@
-﻿using Aequus.Core.Graphics.Tiles;
-using Aequus.Old.Content.Items.Potions.Prefixes.StuffedPotions;
+﻿using Aequu2.Core.Graphics.Tiles;
+using Aequu2.Old.Content.Items.Potions.Prefixes.StuffedPotions;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent.Drawing;
 using Terraria.ObjectData;
 
-namespace Aequus.Old.Content.Tiles.Herbs.Moonflower;
+namespace Aequu2.Old.Content.Tiles.Herbs.Moonflower;
 
 [LegacyName("MoonflowerTile")]
 public class Moonflower : ModHerb, IDrawWindyGrass {
@@ -55,8 +55,8 @@ public class Moonflower : ModHerb, IDrawWindyGrass {
     }
 
     private static void DrawLightFlare(int i, int j, SpriteBatch spriteBatch, Vector2 position) {
-        Texture2D bloom = AequusTextures.BloomStrong;
-        Texture2D ray = AequusTextures.MoonflowerEffect;
+        Texture2D bloom = Aequu2Textures.BloomStrong;
+        Texture2D ray = Aequu2Textures.MoonflowerEffect;
         float wave = Helper.Oscillate(Main.GlobalTimeWrappedHourly * 2f, 1f, 1.25f);
         float hueWave = MathF.Sin(Main.GlobalTimeWrappedHourly * 7.1f + i);
         Color rayColor = new Color(120, 100, 25).HueAdd(hueWave * 0.04f - 0.02f) with { A = 0 } * wave;
@@ -110,7 +110,7 @@ public class Moonflower : ModHerb, IDrawWindyGrass {
 
     public override bool KillSound(int i, int j, bool fail) {
         if (GetGrowthStage(i, j) == STAGE_BLOOMING) {
-            SoundEngine.PlaySound(AequusSounds.MoonflowerBreak with { PitchVariance = 0.1f }, new Vector2(i * 16f, j * 16f));
+            SoundEngine.PlaySound(Aequu2Sounds.MoonflowerBreak with { PitchVariance = 0.1f }, new Vector2(i * 16f, j * 16f));
             //return false;
         }
 

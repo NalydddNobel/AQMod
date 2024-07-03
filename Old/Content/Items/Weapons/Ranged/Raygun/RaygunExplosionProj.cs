@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Entities.Projectiles;
+﻿using Aequu2.Core.Entities.Projectiles;
 
-namespace Aequus.Old.Content.Items.Weapons.Ranged.Raygun;
+namespace Aequu2.Old.Content.Items.Weapons.Ranged.Raygun;
 
 public class RaygunExplosionProj : ModProjectile {
-    public override string Texture => AequusTextures.None.Path;
+    public override string Texture => Aequu2Textures.None.Path;
 
     public override void SetDefaults() {
         Projectile.width = 120;

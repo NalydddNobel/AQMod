@@ -1,9 +1,9 @@
 ﻿using Terraria.Localization;
 
-namespace Aequus.Old.Content.Items.GrapplingHooks.EnemyGrappleHook;
+namespace Aequu2.Old.Content.Items.GrapplingHooks.EnemyGrappleHook;
 
 public class MeathookDebuff : ModBuff {
-    public override string Texture => AequusTextures.TemporaryDebuffIcon;
+    public override string Texture => Aequu2Textures.TemporaryDebuffIcon;
 
     public override void SetStaticDefaults() {
         Main.debuff[Type] = true;

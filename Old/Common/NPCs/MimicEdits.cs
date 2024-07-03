@@ -1,13 +1,13 @@
-﻿using Aequus.Content.Configuration;
-using Aequus.Old.Content.Enemies.Mimics;
-using Aequus.Old.Content.Items.Materials;
+﻿using Aequu2.Content.Configuration;
+using Aequu2.Old.Content.Enemies.Mimics;
+using Aequu2.Old.Content.Items.Materials;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequus.Old.Common.NPCs;
+namespace Aequu2.Old.Common.NPCs;
 
 public class MimicEdits : GlobalNPC, IPreExtractBestiaryItemDrops {
     public override bool AppliesToEntity(NPC npc, bool lateInstantiation) {

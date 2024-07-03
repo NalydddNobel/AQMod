@@ -1,13 +1,13 @@
-﻿using Aequus.Content.Biomes.PollutedOcean;
+﻿using Aequu2.Content.Biomes.PollutedOcean;
 using System.Collections.Generic;
 
-namespace Aequus.Core.Entities.NPCs;
+namespace Aequu2.Core.Entities.NPCs;
 public class NPCSpawns : GlobalNPC {
-    /// <summary>A list of <see cref="ModBiome"/>s which will override Aequus biome spawns.</summary>
-    public readonly static List<ModBiome> OverrideAequusBiomes = new();
+    /// <summary>A list of <see cref="ModBiome"/>s which will override Aequu2 biome spawns.</summary>
+    public readonly static List<ModBiome> OverrideAequu2Biomes = new();
 
     public override void Unload() {
-        OverrideAequusBiomes.Clear();
+        OverrideAequu2Biomes.Clear();
     }
 
     public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns) {
@@ -25,7 +25,7 @@ public class NPCSpawns : GlobalNPC {
             return;
         }
 
-        foreach (var b in OverrideAequusBiomes) {
+        foreach (var b in OverrideAequu2Biomes) {
             if (spawnInfo.Player.InModBiome(b)) {
                 return;
             }

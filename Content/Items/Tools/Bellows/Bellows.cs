@@ -1,8 +1,8 @@
-﻿using Aequus.Core;
+﻿using Aequu2.Core;
 using System.Collections.Generic;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 
-namespace Aequus.Content.Items.Tools.Bellows;
+namespace Aequu2.Content.Items.Tools.Bellows;
 
 [FilterOverride(FilterOverride.Tools)]
 public class Bellows : ModItem {

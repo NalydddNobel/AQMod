@@ -1,6 +1,6 @@
-﻿using Aequus.Core.Entities.Prefixes;
+﻿using Aequu2.Core.Entities.Prefixes;
 
-namespace Aequus.Content.Prefixes;
+namespace Aequu2.Content.Prefixes;
 
 public sealed class CooldownPrefixInitializer : ILoad {
     public void Load(Mod mod) {

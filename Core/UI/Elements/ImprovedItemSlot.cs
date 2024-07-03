@@ -1,7 +1,7 @@
 ﻿using Terraria.GameContent.Events;
 using Terraria.UI;
 
-namespace Aequus.Core.UI.Elements;
+namespace Aequu2.Core.UI.Elements;
 
 public class ImprovedItemSlot : UIElement {
     private UIElement _icon;

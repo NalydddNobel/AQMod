@@ -1,7 +1,7 @@
-﻿using Aequus.Core.Entities.Projectiles;
+﻿using Aequu2.Core.Entities.Projectiles;
 using System;
 
-namespace Aequus.Core.Utilities;
+namespace Aequu2.Core.Utilities;
 
 public static class ExtendColor {
     public static byte Velocity(this Color color) {

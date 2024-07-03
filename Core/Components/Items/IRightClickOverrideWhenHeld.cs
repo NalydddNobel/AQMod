@@ -1,6 +1,6 @@
-﻿namespace Aequus.Core.Entities.Items.Components;
+﻿namespace Aequu2.Core.Entities.Items.Components;
 
 internal interface IRightClickOverrideWhenHeld {
     /// <returns>true to prevent vanilla right click actions.</returns>
-    bool RightClickOverrideWhileHeld(ref Item heldItem, Item[] inv, int context, int slot, Player player, AequusPlayer aequus);
+    bool RightClickOverrideWhileHeld(ref Item heldItem, Item[] inv, int context, int slot, Player player, AequusPlayer Aequu2);
 }

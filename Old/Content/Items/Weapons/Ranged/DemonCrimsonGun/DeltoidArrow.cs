@@ -1,9 +1,9 @@
-﻿using Aequus.DataSets;
-using Aequus.Old.Content.Particles;
+﻿using Aequu2.DataSets;
+using Aequu2.Old.Content.Particles;
 using Terraria.Audio;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Items.Weapons.Ranged.DemonCrimsonGun;
+namespace Aequu2.Old.Content.Items.Weapons.Ranged.DemonCrimsonGun;
 
 public class DeltoidArrow : ModProjectile {
     public static readonly Color FireColor = new Color(205, 15, 30, 60);
@@ -95,7 +95,7 @@ public class DeltoidArrow : ModProjectile {
 }
 
 public class DeltoidExplosion : ModProjectile {
-    public override string Texture => AequusTextures.GenericExplosion.Path;
+    public override string Texture => Aequu2Textures.GenericExplosion.Path;
 
     public override void SetStaticDefaults() {
         Main.projFrames[Type] = 7;

@@ -8,7 +8,7 @@ using Terraria.GameContent.Metadata;
 using Terraria.Localization;
 using Terraria.ObjectData;
 
-namespace Aequus.Core.ContentGeneration;
+namespace Aequu2.Core.ContentGeneration;
 
 internal interface IUnifiedTree : IModType {
     ModTile Sapling { get; }

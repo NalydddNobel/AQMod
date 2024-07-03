@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Core.Entities.Projectiles;
+namespace Aequu2.Core.Entities.Projectiles;
 
 public static class AIClones {
     public static void AI_52_Heal(Projectile projectile, Player target, Action<Player> OnHealEvent) {

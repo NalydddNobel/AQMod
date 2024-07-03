@@ -1,8 +1,8 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Items.Dedications;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Items.Dedications;
 using System;
 
-namespace Aequus.Content.Dedicated.LanternCat;
+namespace Aequu2.Content.Dedicated.LanternCat;
 
 public class LanternCatPet : UnifiedModPet {
     private int frame;

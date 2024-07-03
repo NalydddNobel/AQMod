@@ -1,13 +1,13 @@
-﻿using Aequus.Content.Dusts;
-using Aequus.DataSets;
-using Aequus.Old.Content.StatusEffects;
+﻿using Aequu2.Content.Dusts;
+using Aequu2.DataSets;
+using Aequu2.Old.Content.StatusEffects;
 using System;
 using Terraria.Audio;
 
-namespace Aequus.Old.Content.Items.Weapons.Melee.SuperStarSword;
+namespace Aequu2.Old.Content.Items.Weapons.Melee.SuperStarSword;
 
 public class SuperStarSwordSlash : ModProjectile {
-    public override string Texture => AequusTextures.SlashVanillaAlt.Path;
+    public override string Texture => Aequu2Textures.SlashVanillaAlt.Path;
 
     private bool _didEffects;
 
@@ -120,7 +120,7 @@ public class SuperStarSwordSlash : ModProjectile {
         Vector2 rotationVector = Projectile.rotation.ToRotationVector2();
         Vector2 slashCoordinates = Projectile.position + offset - Main.screenPosition + rotationVector * 30f;
 
-        Texture2D bloom = AequusTextures.Bloom;
+        Texture2D bloom = Aequu2Textures.Bloom;
         Vector2 bloomOrigin = bloom.Size() / 2f;
         float slashScale = Projectile.scale * 0.75f;
 

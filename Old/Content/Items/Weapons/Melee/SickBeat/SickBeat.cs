@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Items.Weapons.Melee.SickBeat;
+﻿namespace Aequu2.Old.Content.Items.Weapons.Melee.SickBeat;
 
 public class SickBeat : ModItem {
     public static int DropRate { get; set; } = 20;

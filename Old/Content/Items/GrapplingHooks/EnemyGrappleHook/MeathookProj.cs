@@ -3,7 +3,7 @@ using System.IO;
 using Terraria.Audio;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Items.GrapplingHooks.EnemyGrappleHook;
+namespace Aequu2.Old.Content.Items.GrapplingHooks.EnemyGrappleHook;
 
 public class MeathookProj : ModProjectile {
     private bool _playedChainSound;
@@ -60,15 +60,15 @@ public class MeathookProj : ModProjectile {
                 float size = Main.npc[ConnectedNPC].Size.Length();
                 if (distance < size * 6f) {
                     if (!_playedChainSound) {
-                        SoundEngine.PlaySound(AequusSounds.MeathookPull with { Volume = 0.8f, Pitch = -0.1f, PitchVariance = 0.1f, }, Main.npc[ConnectedNPC].Center);
+                        SoundEngine.PlaySound(Aequu2Sounds.MeathookPull with { Volume = 0.8f, Pitch = -0.1f, PitchVariance = 0.1f, }, Main.npc[ConnectedNPC].Center);
                         _playedChainSound = true;
                     }
                 }
 
-                if (distance < size * 2f && player.TryGetModPlayer(out AequusPlayer aequusPlayer) && !aequusPlayer.TimerActive(Meathook.IMMUNE_TIMER)) {
+                if (distance < size * 2f && player.TryGetModPlayer(out Aequu2Player Aequu2Player) && !Aequu2Player.TimerActive(Meathook.IMMUNE_TIMER)) {
                     player.immune = true;
                     player.immuneTime = 12;
-                    player.GetModPlayer<AequusPlayer>().SetTimer(Meathook.IMMUNE_TIMER, player.immuneTime * 2);
+                    player.GetModPlayer<Aequu2Player>().SetTimer(Meathook.IMMUNE_TIMER, player.immuneTime * 2);
                 }
                 if (distance < 64f) {
                     Projectile.timeLeft = Math.Min(Projectile.timeLeft, 2);
@@ -140,7 +140,7 @@ public class MeathookProj : ModProjectile {
         ConnectedNPC = target.whoAmI;
         Projectile.tileCollide = false;
         Projectile.netUpdate = true;
-        SoundEngine.PlaySound(AequusSounds.Meathook, target.Center);
+        SoundEngine.PlaySound(Aequu2Sounds.Meathook, target.Center);
     }
 
     public override bool PreDrawExtras() {
@@ -150,7 +150,7 @@ public class MeathookProj : ModProjectile {
     public override bool PreDraw(ref Color lightColor) {
         var player = Main.player[Projectile.owner];
         float playerLength = (player.Center - Projectile.Center).Length();
-        Helper.DrawChain(AequusTextures.MeathookProj_Chain, Projectile.Center, player.Center, Main.screenPosition);
+        Helper.DrawChain(Aequu2Textures.MeathookProj_Chain, Projectile.Center, player.Center, Main.screenPosition);
         var texture = TextureAssets.Projectile[Type].Value;
         var drawPosition = Projectile.Center - Main.screenPosition;
         Main.EntitySpriteDraw(texture, drawPosition, null, lightColor, Projectile.rotation, texture.Size() / 2f, 1f, SpriteEffects.None, 0);

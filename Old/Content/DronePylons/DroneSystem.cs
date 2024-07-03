@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Old.Content.DronePylons;
+namespace Aequu2.Old.Content.DronePylons;
 
 public class DroneSystem : ModSystem {
     public static Dictionary<Point, PylonDronePoint> Drones { get; private set; }
@@ -143,7 +143,7 @@ public class DroneSystem : ModSystem {
     }
 
     public static void RecievePacket(BinaryReader reader, Point dronePoint) {
-        //Aequus.Instance.Logger.Debug($"Syncing drone data at point: {dronePoint}");
+        //Aequu2.Instance.Logger.Debug($"Syncing drone data at point: {dronePoint}");
         var d = FindOrAddDrone(dronePoint);
         d.ReadData(reader);
     }

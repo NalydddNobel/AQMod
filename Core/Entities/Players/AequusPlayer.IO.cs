@@ -1,7 +1,7 @@
-﻿using Aequus.Core.IO;
+﻿using Aequu2.Core.IO;
 using Terraria.ModLoader.IO;
 
-namespace Aequus;
+namespace Aequu2;
 
 public partial class AequusPlayer {
     public override void SaveData(TagCompound tag) {

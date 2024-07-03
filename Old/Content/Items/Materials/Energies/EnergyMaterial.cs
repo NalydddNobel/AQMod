@@ -1,11 +1,11 @@
-﻿using Aequus.Core;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.UI;
+﻿using Aequu2.Core;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.UI;
 using System;
 using Terraria.GameContent;
 using Terraria.Utilities;
 
-namespace Aequus.Old.Content.Items.Materials.Energies;
+namespace Aequu2.Old.Content.Items.Materials.Energies;
 
 public class EnergyMaterial : ModSystem {
     public static ModItem Aquatic { get; private set; }
@@ -142,7 +142,7 @@ public class EnergyMaterial : ModSystem {
             spriteBatch.Draw(texture, position, frame, new Color(80, 80, 80, 0) * pulse, 0f, origin, scale * (1f + pulse * 0.2f), SpriteEffects.None, 0f);
 
             if (HighQualityEffects && lensFlareScale > 0f) {
-                spriteBatch.Draw(AequusTextures.LensFlare, position - new Vector2(0f, 4f) * Main.inventoryScale, null, _lightRGB with { A = 0 } * pulse, -0.1f, AequusTextures.LensFlare.Size() / 2f, scale * lensFlareScale * (0.8f + pulse * 0.2f), SpriteEffects.None, 0f);
+                spriteBatch.Draw(Aequu2Textures.LensFlare, position - new Vector2(0f, 4f) * Main.inventoryScale, null, _lightRGB with { A = 0 } * pulse, -0.1f, Aequu2Textures.LensFlare.Size() / 2f, scale * lensFlareScale * (0.8f + pulse * 0.2f), SpriteEffects.None, 0f);
             }
         }
 
@@ -153,12 +153,12 @@ public class EnergyMaterial : ModSystem {
 
             float pulse = GetPulseOscillation(0.5f, 1f);
 
-            Texture2D shadow = AequusTextures.Bloom;
+            Texture2D shadow = Aequu2Textures.Bloom;
             spriteBatch.Draw(shadow, position, null, new Color(0, 0, 0, 200) * pulse, 0f, shadow.Size() / 2f, scale * 0.55f, SpriteEffects.None, 0f);
 
             FastRandom rand = new FastRandom(Type).WithModifier((ulong)randomizer);
 
-            Texture2D rayTexture = AequusTextures.LightRayFlat;
+            Texture2D rayTexture = Aequu2Textures.LightRayFlat;
             Vector2 rayOrigin = rayTexture.Size() / 2f;
             Color rayColor = _lightRGB with { A = 0 };
             int amt = 8;

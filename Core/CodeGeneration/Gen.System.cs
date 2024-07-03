@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Core.CodeGeneration;
+namespace Aequu2.Core.CodeGeneration;
 
 /// <summary>Parent type which holds attributes which allow generation of Fields and Methods in <see cref="AequusPlayer"/>.</summary>
 internal partial class Gen {

@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Entities.Projectiles;
+﻿using Aequu2.Core.Entities.Projectiles;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
 
-namespace Aequus.Content.Dedicated.MirrorsCall;
+namespace Aequu2.Content.Dedicated.MirrorsCall;
 
 public class MirrorsCallProj : LegacyHeldSwordProjectile {
     public override string Texture => ModContent.GetInstance<MirrorsCall>().Texture;
@@ -18,7 +18,7 @@ public class MirrorsCallProj : LegacyHeldSwordProjectile {
         hitsLeft = int.MaxValue;
     }
 
-    protected override void Initialize(Player player, AequusPlayer aequus) {
+    protected override void Initialize(Player player, AequusPlayer Aequu2) {
         var npc = Projectile.FindTargetWithinRange(300f);
         if (npc != null) {
             BaseAngleVector = Projectile.DirectionTo(npc.Center);
@@ -33,7 +33,7 @@ public class MirrorsCallProj : LegacyHeldSwordProjectile {
         swingTimeMax *= 6;
     }
 
-    protected override void UpdateSword(Player player, AequusPlayer aequus, float progress) {
+    protected override void UpdateSword(Player player, AequusPlayer Aequu2, float progress) {
         Projectile.rotation = Projectile.velocity.ToRotation();
         Projectile.Center = player.Center + BaseAngleVector * Projectile.ai[0];
         swingTime--;
@@ -49,7 +49,7 @@ public class MirrorsCallProj : LegacyHeldSwordProjectile {
 
     public override bool PreDraw(ref Color lightColor) {
         Main.instance.LoadProjectile(ProjectileID.NightsEdge);
-        float progress = SwingProgressAequus(AnimProgress);
+        float progress = SwingProgressAequu2(AnimProgress);
         var texture = TextureAssets.Projectile[ProjectileID.NightsEdge].Value;
         var swordPosition = Projectile.Center - Main.screenPosition;
         float opacity = MathF.Sin(progress * MathHelper.Pi);

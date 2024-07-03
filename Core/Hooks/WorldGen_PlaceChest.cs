@@ -1,7 +1,7 @@
-﻿using Aequus.Core.Entities.Tiles.Components;
+﻿using Aequu2.Core.Entities.Tiles.Components;
 using System;
 
-namespace Aequus.Core.Hooks;
+namespace Aequu2.Core.Hooks;
 
 public partial class TerrariaHooks {
     private static int On_WorldGen_PlaceChest(On_WorldGen.orig_PlaceChest orig, int x, int y, ushort type, bool notNearOtherChests, int style) {

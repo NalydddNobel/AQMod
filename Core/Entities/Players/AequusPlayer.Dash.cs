@@ -1,6 +1,6 @@
-﻿using Aequus.Core.Entities.Players;
+﻿using Aequu2.Core.Entities.Players;
 
-namespace Aequus;
+namespace Aequu2;
 
 public partial class AequusPlayer {
     public CustomDashData DashData { get; private set; }

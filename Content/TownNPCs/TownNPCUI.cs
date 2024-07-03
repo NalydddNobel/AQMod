@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Structures.Collections;
-using Aequus.Core.UI;
+﻿using Aequu2.Core.Structures.Collections;
+using Aequu2.Core.UI;
 using System;
 using Terraria.UI;
 
-namespace Aequus.Content.TownNPCs;
+namespace Aequu2.Content.TownNPCs;
 
 public class TownNPCUI : UILayer {
     private readonly DictionaryRemoveQueue<int, Exclamation> NPCExclamations = new();

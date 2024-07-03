@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Common.Projectiles;
+﻿namespace Aequu2.Old.Common.Projectiles;
 
 public abstract class EnemyAttachedProjBase : ModProjectile {
     public int AttachedNPC { get => (int)Projectile.ai[0] - 1; set => Projectile.ai[0] = value + 1; }

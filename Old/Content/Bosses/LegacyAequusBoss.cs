@@ -1,9 +1,9 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.ContentGeneration;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Bosses;
+namespace Aequu2.Old.Content.Bosses;
 
-public abstract class LegacyAequusBoss(BossParams BossParams, TrophyParams Trophy = default) : UnifiedBoss(BossParams, Trophy) {
+public abstract class LegacyAequu2Boss(BossParams BossParams, TrophyParams Trophy = default) : UnifiedBoss(BossParams, Trophy) {
     #region Common States
     public const int KILLED = -3;
     public const int DEATH_ANIMATION = -2;

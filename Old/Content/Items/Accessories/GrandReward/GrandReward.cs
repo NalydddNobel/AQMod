@@ -1,6 +1,6 @@
-﻿using Aequus.Core.Entities.Items.Components;
+﻿using Aequu2.Core.Entities.Items.Components;
 
-namespace Aequus.Old.Content.Items.Accessories.GrandReward;
+namespace Aequu2.Old.Content.Items.Accessories.GrandReward;
 
 [LegacyName("BusinessCard", "ForgedCard")]
 [LegacyName("FaultyCoin", "FoolsGoldRing")]
@@ -14,7 +14,7 @@ public class GrandReward : ModItem, IHaveDownsideTip {
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
-        player.GetModPlayer<AequusPlayer>().dropRolls += LuckIncrease;
-        player.GetModPlayer<AequusPlayer>().accGrandRewardDownside = true;
+        player.GetModPlayer<Aequu2Player>().dropRolls += LuckIncrease;
+        player.GetModPlayer<Aequu2Player>().accGrandRewardDownside = true;
     }
 }

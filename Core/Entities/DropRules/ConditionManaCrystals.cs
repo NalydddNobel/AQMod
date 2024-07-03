@@ -1,6 +1,6 @@
 ﻿using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Core.Entities.Items.DropRules;
+namespace Aequu2.Core.Entities.Items.DropRules;
 
 public class ConditionManaCrystals : IItemDropRuleCondition {
     public bool CanDrop(DropAttemptInfo info) {

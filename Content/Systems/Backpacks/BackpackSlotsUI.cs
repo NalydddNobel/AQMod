@@ -1,6 +1,6 @@
-﻿using Aequus.Content.Items.Accessories.ScavengerBag;
-using Aequus.Core.Entities.Items.Tooltips;
-using Aequus.Core.UI;
+﻿using Aequu2.Content.Items.Accessories.ScavengerBag;
+using Aequu2.Core.Entities.Items.Tooltips;
+using Aequu2.Core.UI;
 using System;
 using Terraria.GameContent;
 using Terraria.GameInput;
@@ -8,7 +8,7 @@ using Terraria.Localization;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace Aequus.Content.Backpacks;
+namespace Aequu2.Content.Backpacks;
 
 public class BackpackSlotsUI : UILayer {
     public const int SlotWidth = 56;
@@ -127,10 +127,10 @@ public class BackpackSlotsUI : UILayer {
         if (!string.IsNullOrEmpty(HoveringBackpackSlotName)) {
             Keyword tooltip = new Keyword(HoveringBackpackSlotName, Color.Lerp(Color.SaddleBrown * 1.5f, Color.White, 0.75f), ModContent.ItemType<ScavengerBag>());
             if (item.buffType > 0 && item.buffTime > 0) {
-                tooltip.AddLine(Language.GetTextValue("Mods.Aequus.Misc.BagWarningQuickBuff"));
+                tooltip.AddLine(Language.GetTextValue("Mods.Aequu2.Misc.BagWarningQuickBuff"));
             }
             if (item.ammo > 0 && !item.notAmmo) {
-                tooltip.AddLine(Language.GetTextValue("Mods.Aequus.Misc.BagWarningAmmo"));
+                tooltip.AddLine(Language.GetTextValue("Mods.Aequu2.Misc.BagWarningAmmo"));
             }
             if (tooltip.tooltipLines.Count > 0) {
                 KeywordSystem.Tooltips.Add(tooltip);

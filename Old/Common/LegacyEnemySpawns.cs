@@ -1,9 +1,9 @@
-﻿using Aequus.Old.Content.Enemies.BloodMoon;
-using Aequus.Old.Content.Events.DemonSiege;
-using Aequus.Old.Content.Events.Glimmer;
+﻿using Aequu2.Old.Content.Enemies.BloodMoon;
+using Aequu2.Old.Content.Events.DemonSiege;
+using Aequu2.Old.Content.Events.Glimmer;
 using System.Collections.Generic;
 
-namespace Aequus.Old.Common;
+namespace Aequu2.Old.Common;
 
 public class LegacyEnemySpawns : GlobalNPC {
     public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
@@ -13,7 +13,7 @@ public class LegacyEnemySpawns : GlobalNPC {
         }
 
         // Determine if you can actually edit the spawn pool
-        // Prevents aequus enemies from improperly spawning in the Dungeon, Temple,
+        // Prevents Aequu2 enemies from improperly spawning in the Dungeon, Temple,
         // or during invasions and events
         if (CanEditSpawnPool(spawnInfo)) {
             return;

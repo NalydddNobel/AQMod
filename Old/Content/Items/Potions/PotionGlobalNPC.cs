@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Items.Potions;
+﻿namespace Aequu2.Old.Content.Items.Potions;
 
 internal class PotionGlobalNPC : GlobalNPC {
     public override void DrawEffects(NPC npc, ref Color drawColor) {

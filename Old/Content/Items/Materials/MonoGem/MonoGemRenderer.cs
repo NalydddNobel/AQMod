@@ -1,5 +1,5 @@
-﻿using Aequus.Core.Graphics;
-using Aequus.Core.Graphics.Tiles;
+﻿using Aequu2.Core.Graphics;
+using Aequu2.Core.Graphics.Tiles;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using Terraria.DataStructures;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 
-namespace Aequus.Old.Content.Items.Materials.MonoGem;
+namespace Aequu2.Old.Content.Items.Materials.MonoGem;
 
 public class MonoGemRenderer : RequestHandler<Point> {
     private class MonoGemScreenShaderData : ScreenShaderData {
@@ -22,7 +22,7 @@ public class MonoGemRenderer : RequestHandler<Point> {
 
     public static MonoGemRenderer Instance { get; private set; }
 
-    public const string ScreenShaderKey = "Aequus:MonoGem";
+    public const string ScreenShaderKey = "Aequu2:MonoGem";
 
     private RenderTarget2D _target;
 
@@ -77,11 +77,11 @@ public class MonoGemRenderer : RequestHandler<Point> {
     }
 
     private static void DrawFog(SpriteBatch sb, IEnumerable<Point> todo) {
-        Texture2D fogTexture = AequusTextures.Fog;
-        int fogFrameCount = AequusTextures.FogFrameCount;
+        Texture2D fogTexture = Aequu2Textures.Fog;
+        int fogFrameCount = Aequu2Textures.FogFrameCount;
         Rectangle fogTextureFrame = fogTexture.Frame(verticalFrames: fogFrameCount, frameY: 0);
         Vector2 fogTextureOrigin = fogTextureFrame.Size() / 2f;
-        Texture2D bloomStrong = AequusTextures.BloomStrong;
+        Texture2D bloomStrong = Aequu2Textures.BloomStrong;
         Vector2 bloomStrongOrigin = bloomStrong.Size() / 2f;
         Color white = Color.White;
         Color fogColor = Color.White with { A = 0 };

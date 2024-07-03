@@ -1,13 +1,13 @@
-﻿using Aequus.Content.Dusts;
-using Aequus.Core.Entities.Projectiles;
+﻿using Aequu2.Content.Dusts;
+using Aequu2.Core.Entities.Projectiles;
 using System;
 using System.IO;
 using Terraria.Audio;
 
-namespace Aequus.Old.Content.Items.Weapons.Melee.UltimateSword;
+namespace Aequu2.Old.Content.Items.Weapons.Melee.UltimateSword;
 
 public class UltimateSwordProj : LegacyHeldSlashingSwordProjectile {
-    public override string Texture => AequusTextures.UltimateSword.Path;
+    public override string Texture => Aequu2Textures.UltimateSword.Path;
 
     public override void SetDefaults() {
         base.SetDefaults();
@@ -28,11 +28,11 @@ public class UltimateSwordProj : LegacyHeldSlashingSwordProjectile {
     public override void AI() {
         base.AI();
         //if (Main.player[Projectile.owner].itemAnimation <= 1) {
-        //    Main.player[Projectile.owner].GetModPlayer<AequusPlayer>().itemCombo = (ushort)(combo == 0 ? 20 : 0);
+        //    Main.player[Projectile.owner].GetModPlayer<Aequu2Player>().itemCombo = (ushort)(combo == 0 ? 20 : 0);
         //}
         if (!playedSound && AnimProgress > 0.4f) {
             playedSound = true;
-            SoundEngine.PlaySound(AequusSounds.HeavySwing with { Pitch = 0.4f, }, Projectile.Center);
+            SoundEngine.PlaySound(Aequu2Sounds.HeavySwing with { Pitch = 0.4f, }, Projectile.Center);
         }
     }
 
@@ -87,7 +87,7 @@ public class UltimateSwordProj : LegacyHeldSlashingSwordProjectile {
     }
 
     public override float SwingProgress(float progress) {
-        return SwingProgressAequus(progress);
+        return SwingProgressAequu2(progress);
     }
     public override float GetScale(float progress) {
         float scale = base.GetScale(progress);
@@ -102,7 +102,7 @@ public class UltimateSwordProj : LegacyHeldSlashingSwordProjectile {
 
     public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
         base.OnHitNPC(target, hit, damageDone);
-        //AequusBuff.ApplyBuff<AethersWrath>(target, 360, out bool canPlaySound);
+        //Aequu2Buff.ApplyBuff<AethersWrath>(target, 360, out bool canPlaySound);
         //if (canPlaySound) {
         //    ModContent.GetInstance<AethersWrathSound>().Play(target.Center);
         //}
@@ -121,7 +121,7 @@ public class UltimateSwordProj : LegacyHeldSlashingSwordProjectile {
         var auraColor = GetAuraColor(0f);
         var drawColor = Projectile.GetAlpha(lightColor) * Projectile.Opacity;
         float size = texture.Size().Length();
-        var glowmask = AequusTextures.UltimateSword_Glow.Value;
+        var glowmask = Aequu2Textures.UltimateSword_Glow.Value;
         float animProgress = AnimProgress;
         float swishProgress = 0f;
         float intensity = 0f;
@@ -160,7 +160,7 @@ public class UltimateSwordProj : LegacyHeldSlashingSwordProjectile {
         if (intensity > 0f) {
             float progress2 = 1f - (float)Math.Pow(1f - swishProgress, 2f);
 
-            var swish = AequusTextures.SlashForward.Value;
+            var swish = Aequu2Textures.SlashForward.Value;
             var swishOrigin = swish.Size() / 2f;
             var swishColor = auraColor with { A = 0 } * MathF.Pow(intensity, 2f) * Projectile.Opacity;
             float r = BaseAngleVector.ToRotation();

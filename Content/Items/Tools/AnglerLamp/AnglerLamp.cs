@@ -1,12 +1,12 @@
-﻿using Aequus.Core;
-using Aequus.Core.CodeGeneration;
+﻿using Aequu2.Core;
+using Aequu2.Core.CodeGeneration;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
 using tModLoaderExtended.GlowMasks;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 
-namespace Aequus.Content.Items.Tools.AnglerLamp;
+namespace Aequu2.Content.Items.Tools.AnglerLamp;
 
 [AutoloadGlowMask]
 [FilterOverride(FilterOverride.Tools)]

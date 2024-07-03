@@ -1,7 +1,7 @@
-﻿using Aequus.Core.Graphics;
-using Aequus.Core.Particles;
+﻿using Aequu2.Core.Graphics;
+using Aequu2.Core.Particles;
 
-namespace Aequus.Old.Content.Particles;
+namespace Aequu2.Old.Content.Particles;
 
 public class LegacyBloomParticle : ParallelParticleArray<LegacyBloomParticle.Particle> {
     public override int ParticleCount => 2000;
@@ -9,8 +9,8 @@ public class LegacyBloomParticle : ParallelParticleArray<LegacyBloomParticle.Par
     public override void Draw(SpriteBatch spriteBatch) {
         spriteBatch.BeginDusts();
 
-        Texture2D texture = AequusTextures.BaseParticleTexture;
-        Texture2D bloomTexture = AequusTextures.BloomStrong;
+        Texture2D texture = Aequu2Textures.BaseParticleTexture;
+        Texture2D bloomTexture = Aequu2Textures.BloomStrong;
         Vector2 bloomOrigin = bloomTexture.Size() / 2f;
         lock (this) {
             for (int k = 0; k < Particles.Length; k++) {

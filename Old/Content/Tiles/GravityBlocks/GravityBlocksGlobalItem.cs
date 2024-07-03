@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Tiles.GravityBlocks;
+﻿namespace Aequu2.Old.Content.Tiles.GravityBlocks;
 
 public class GravityBlocksGlobalItem : GlobalItem {
     public bool HasReversedGravity;

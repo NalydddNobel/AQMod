@@ -1,7 +1,7 @@
-﻿using Aequus.Content.Elements;
+﻿using Aequu2.Content.Elements;
 using System.Collections.Generic;
 
-namespace Aequus.Content.Elements;
+namespace Aequu2.Content.Elements;
 
 public partial class ElementLoader : ModSystem {
     public static readonly List<Element> Elements = [];

@@ -1,17 +1,17 @@
-﻿using Aequus.Core.CodeGeneration;
+﻿using Aequu2.Core.CodeGeneration;
 
-namespace Aequus.Old.Content.Necromancy;
+namespace Aequu2.Old.Content.Necromancy;
 
-[Gen.AequusPlayer_Field<int>("ghostSlots")]
-[Gen.AequusPlayer_Field<int>("ghostSlotsOld")]
-[Gen.AequusPlayer_ResetField<int>("ghostSlotsMax")]
-[Gen.AequusPlayer_ResetField<StatModifier>("ghostLifespan")]
+[Gen.Aequu2Player_Field<int>("ghostSlots")]
+[Gen.Aequu2Player_Field<int>("ghostSlotsOld")]
+[Gen.Aequu2Player_ResetField<int>("ghostSlotsMax")]
+[Gen.Aequu2Player_ResetField<StatModifier>("ghostLifespan")]
 public class NecromancySystem {
     public static int DefaultLifespan => 3600;
 
-    [Gen.AequusPlayer_ResetEffects]
-    internal static void OnResetEffects(AequusPlayer aequusPlayer) {
-        aequusPlayer.ghostSlotsOld = aequusPlayer.ghostSlots;
-        aequusPlayer.ghostSlots = 0;
+    [Gen.Aequu2Player_ResetEffects]
+    internal static void OnResetEffects(Aequu2Player Aequu2Player) {
+        Aequu2Player.ghostSlotsOld = Aequu2Player.ghostSlots;
+        Aequu2Player.ghostSlots = 0;
     }
 }

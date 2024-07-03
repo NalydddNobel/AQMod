@@ -1,4 +1,4 @@
-﻿using Aequus.Old.Content.Events.Glimmer.Peaceful;
+﻿using Aequu2.Old.Content.Events.Glimmer.Peaceful;
 using System;
 using System.IO;
 using Terraria.Enums;
@@ -7,7 +7,7 @@ using Terraria.Localization;
 using Terraria.ModLoader.IO;
 using tModLoaderExtended.Networking;
 
-namespace Aequus.Old.Content.Events.Glimmer;
+namespace Aequu2.Old.Content.Events.Glimmer;
 public class GlimmerSystem : ModSystem {
     public static int EndEventDelay { get; set; }
 
@@ -41,7 +41,7 @@ public class GlimmerSystem : ModSystem {
             PeacefulGlimmerZone.TileLocationX = 0;
             if (endEvent) {
                 if (EndEvent() && Main.netMode != NetmodeID.MultiplayerClient) {
-                    WorldGen.BroadcastText(NetworkText.FromKey("Mods.Aequus.Announcement.Glimmer.End"), CommonColor.TextEvent);
+                    WorldGen.BroadcastText(NetworkText.FromKey("Mods.Aequu2.Announcement.Glimmer.End"), CommonColor.TextEvent);
                 }
                 return;
             }
@@ -83,7 +83,7 @@ public class GlimmerSystem : ModSystem {
     public static void BeginEvent(Point where) {
         GlimmerZone.TileLocation = CheckGround(where);
 
-        WorldGen.BroadcastText(NetworkText.FromKey($"Mods.Aequus.Announcement.Glimmer.Start{(where.X * 2 > Main.maxTilesX ? "East" : "West")}"), CommonColor.TextEvent);
+        WorldGen.BroadcastText(NetworkText.FromKey($"Mods.Aequu2.Announcement.Glimmer.Start{(where.X * 2 > Main.maxTilesX ? "East" : "West")}"), CommonColor.TextEvent);
         if (Main.netMode != NetmodeID.SinglePlayer) {
             SendGlimmerStatus();
         }
@@ -105,7 +105,7 @@ public class GlimmerSystem : ModSystem {
                 bool nearBed = false;
                 for (int j = 0; j < Main.maxPlayers; j++) {
                     if (Main.player[j].active && !Main.player[j].dead && Main.player[j].GetSpawnY() <= Main.worldSurface) {
-                        //AequusText.Broadcast($"{j}/{(x - Main.player[j].GetSpawnX()).Abs()}", Color.Red);
+                        //Aequu2Text.Broadcast($"{j}/{(x - Main.player[j].GetSpawnX()).Abs()}", Color.Red);
                         if (Math.Abs(x - Main.player[j].GetSpawnX()) <= GlimmerZone.HyperStariteTile) {
                             nearBed = true;
                             break;
@@ -116,7 +116,7 @@ public class GlimmerSystem : ModSystem {
                     continue;
                 }
             }
-            //AequusText.Broadcast((x - Main.spawnTileX).Abs().ToString(), Main.DiscoColor);
+            //Aequu2Text.Broadcast((x - Main.spawnTileX).Abs().ToString(), Main.DiscoColor);
             BeginEvent(new Point(x, -1));
             return true;
         }
@@ -307,7 +307,7 @@ public class GlimmerSystem : ModSystem {
             stopEvents = true;
         }
         else {
-            if ((AequusSystem.downedUltraStarite || AequusSystem.downedOmegaStarite) && Main.rand.NextBool()) {
+            if ((Aequu2System.downedUltraStarite || Aequu2System.downedOmegaStarite) && Main.rand.NextBool()) {
                 PeacefulGlimmerZone.TileLocationX = Main.rand.Next(100, Main.maxTilesX - 100);
             }
         }

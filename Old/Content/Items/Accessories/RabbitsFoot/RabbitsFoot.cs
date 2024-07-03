@@ -1,7 +1,7 @@
-﻿using Aequus.Core;
-using Aequus.Content.Events.DemonSiege;
+﻿using Aequu2.Core;
+using Aequu2.Content.Events.DemonSiege;
 
-namespace Aequus.Old.Content.Items.Accessories.RabbitsFoot;
+namespace Aequu2.Old.Content.Items.Accessories.RabbitsFoot;
 
 public class RabbitsFoot : ModItem {
     public static float LuckRerolls { get; set; } = 1f;
@@ -19,6 +19,6 @@ public class RabbitsFoot : ModItem {
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
-        player.GetModPlayer<AequusPlayer>().accRabbitFootLuck += LuckRerolls;
+        player.GetModPlayer<Aequu2Player>().accRabbitFootLuck += LuckRerolls;
     }
 }

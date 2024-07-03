@@ -1,13 +1,13 @@
-﻿using Aequus.Core;
-using Aequus.Content.Dusts;
-using Aequus.Old.Content.Necromancy.Rendering;
+﻿using Aequu2.Core;
+using Aequu2.Content.Dusts;
+using Aequu2.Old.Content.Necromancy.Rendering;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria.DataStructures;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Old.Content.Necromancy;
+namespace Aequu2.Old.Content.Necromancy;
 
 public class NecromancyProj : GlobalProjectile {
     public static HashSet<int> BlacklistExtraUpdates { get; private set; }
@@ -96,11 +96,11 @@ public class NecromancyProj : GlobalProjectile {
     public override bool PreAI(Projectile projectile) {
         NecromancyNPC.Zombie.Reset();
         if (isZombie) {
-            var aequus = Main.player[projectile.owner].GetModPlayer<AequusPlayer>();
+            var Aequu2 = Main.player[projectile.owner].GetModPlayer<Aequu2Player>();
             if (!appliedEffects) {
-                if (aequus.ghostProjExtraUpdates > 0) {
+                if (Aequu2.ghostProjExtraUpdates > 0) {
                     if (!BlacklistExtraUpdates.Contains(projectile.type))
-                        projectile.extraUpdates = (projectile.extraUpdates + 1) * (aequus.ghostProjExtraUpdates + 1) - 1;
+                        projectile.extraUpdates = (projectile.extraUpdates + 1) * (Aequu2.ghostProjExtraUpdates + 1) - 1;
                 }
                 appliedEffects = true;
             }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aequus.Old.Content.Items.Potions.Prefixes.SplashPotions;
+namespace Aequu2.Old.Content.Items.Potions.Prefixes.SplashPotions;
 
 public class SplashPrefix : PotionPrefix {
     private TooltipLine _tooltipLine;

@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Aequus.Core.Entities.Tiles.Components;
+namespace Aequu2.Core.Entities.Tiles.Components;
 public interface INetTileInteraction {
     public void Send(int i, int j, BinaryWriter binaryWriter) {
     }

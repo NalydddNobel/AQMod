@@ -1,14 +1,14 @@
-﻿using Aequus.Content.Events.DemonSiege;
-using Aequus.Core.CodeGeneration;
+﻿using Aequu2.Content.Events.DemonSiege;
+using Aequu2.Core.CodeGeneration;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria.ModLoader.IO;
 using tModLoaderExtended.Networking;
 
-namespace Aequus.Old.Content.Events.DemonSiege;
+namespace Aequu2.Old.Content.Events.DemonSiege;
 
-[Gen.AequusSystem_WorldField<bool>("downedDemonSiege")]
+[Gen.Aequu2System_WorldField<bool>("downedDemonSiege")]
 public class DemonSiegeSystem : ModSystem {
     public static readonly Color TextColor = new Color(255, 210, 25, 255);
 
@@ -65,7 +65,7 @@ public class DemonSiegeSystem : ModSystem {
             return;
         }
 
-        var auraTexture = AequusTextures.GoreNestAura.Value;
+        var auraTexture = Aequu2Textures.GoreNestAura.Value;
         var screenCenter = Main.screenPosition + new Vector2(Main.screenWidth, Main.screenHeight) / 2f;
         float screenSize = MathF.Sqrt(Main.screenWidth * Main.screenWidth + Main.screenHeight + Main.screenHeight);
         Main.spriteBatch.BeginWorld(shader: false);

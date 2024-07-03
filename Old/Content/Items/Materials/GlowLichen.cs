@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Items.Materials;
+﻿namespace Aequu2.Old.Content.Items.Materials;
 
 public class GlowLichen : ModItem {
     public override void SetStaticDefaults() {

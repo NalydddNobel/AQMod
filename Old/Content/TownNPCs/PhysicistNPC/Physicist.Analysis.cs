@@ -1,11 +1,11 @@
-﻿using Aequus.DataSets;
-using Aequus.Old.Content.TownNPCs.PhysicistNPC.Analysis;
+﻿using Aequu2.DataSets;
+using Aequu2.Old.Content.TownNPCs.PhysicistNPC.Analysis;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.UI;
 
-namespace Aequus.Old.Content.TownNPCs.PhysicistNPC;
+namespace Aequu2.Old.Content.TownNPCs.PhysicistNPC;
 
 public partial class Physicist {
     public void SetAnalaysisButton(ref string button) {

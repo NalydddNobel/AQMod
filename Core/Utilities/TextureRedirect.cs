@@ -1,8 +1,8 @@
-﻿global using static Aequus.Core.Utilities.TextureRedirect;
+﻿global using static Aequu2.Core.Utilities.TextureRedirect;
 using ReLogic.Content;
 using Terraria.GameContent;
 
-namespace Aequus.Core.Utilities;
+namespace Aequu2.Core.Utilities;
 
 /// <summary>Lazy shorthand workaround for utilizing fields found in <see cref="TextureAssets"/>.</summary>
 public class TextureRedirect {

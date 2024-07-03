@@ -1,10 +1,10 @@
 ﻿using System;
 using Terraria.Audio;
 
-namespace Aequus.Old.Content.Items.Weapons.Melee.Slice;
+namespace Aequu2.Old.Content.Items.Weapons.Melee.Slice;
 
 public class SliceOnHitEffect : ModProjectile {
-    public override string Texture => AequusTextures.Flare.Path;
+    public override string Texture => Aequu2Textures.Flare.Path;
 
     private bool _playedSound;
 
@@ -29,7 +29,7 @@ public class SliceOnHitEffect : ModProjectile {
     public override void AI() {
         if (!_playedSound) {
             _playedSound = true;
-            SoundEngine.PlaySound(AequusSounds.SwordHit, Projectile.Center);
+            SoundEngine.PlaySound(Aequu2Sounds.SwordHit, Projectile.Center);
         }
         if (Projectile.numUpdates == -1 && Projectile.ai[0] > 0f) {
             var npc = Main.npc[(int)Projectile.ai[0] - 1];

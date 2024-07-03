@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Items.Accessories.WarHorn;
+﻿namespace Aequu2.Old.Content.Items.Accessories.WarHorn;
 
 public class WarHornCooldown : ModBuff {
     public override void SetStaticDefaults() {

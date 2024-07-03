@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Items.Accessories.HighSteaks;
+namespace Aequu2.Old.Content.Items.Accessories.HighSteaks;
 
 public class HighSteaksMoneyConsumeEffect : PlayerDrawLayer {
     public static readonly List<float> CoinAnimations = new();

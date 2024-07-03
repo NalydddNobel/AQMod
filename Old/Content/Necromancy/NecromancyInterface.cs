@@ -1,7 +1,7 @@
-﻿using Aequus.Core.UI;
+﻿using Aequu2.Core.UI;
 using Terraria.UI;
 
-namespace Aequus.Old.Content.Necromancy;
+namespace Aequu2.Old.Content.Necromancy;
 public class NecromancyInterface : UILayer {
     protected override bool DrawSelf() {
         bool anyDrawn = false;

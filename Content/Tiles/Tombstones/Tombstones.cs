@@ -1,11 +1,11 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.ContentGeneration;
 using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.Localization;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Tiles.Tombstones;
+namespace Aequu2.Content.Tiles.Tombstones;
 
 [LegacyName("AshTombstones", "AshTombstonesTile")]
 public class Tombstones : ModTile {

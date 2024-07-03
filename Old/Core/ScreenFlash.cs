@@ -1,13 +1,13 @@
-﻿using Aequus.Content.Configuration;
+﻿using Aequu2.Content.Configuration;
 using ReLogic.Content;
 using System;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 
-namespace Aequus.Old.Core;
+namespace Aequu2.Old.Core;
 
 public class ScreenFlash : ModSceneEffect {
-    public const string FlashFilterName = "Aequus:Flash";
+    public const string FlashFilterName = "Aequu2:Flash";
 
     public static Asset<Effect> FlashShader { get; private set; }
     public static bool UsingOldFlashShader { get; private set; }
@@ -32,14 +32,14 @@ public class ScreenFlash : ModSceneEffect {
     private void LoadFlashShader() {
         UsingOldFlashShader = false;
         try {
-            FlashShader = ModContent.Request<Effect>("Aequus/Old/Assets/Shaders/Flash", AssetRequestMode.ImmediateLoad);
+            FlashShader = ModContent.Request<Effect>("Aequu2/Old/Assets/Shaders/Flash", AssetRequestMode.ImmediateLoad);
             return;
         }
         catch {
-            Aequus.Instance.Logger.Error("Couldn't load HiDef ps_3_0 flash shader... Loading old instead");
+            Aequu2.Instance.Logger.Error("Couldn't load HiDef ps_3_0 flash shader... Loading old instead");
         }
         UsingOldFlashShader = true;
-        FlashShader = ModContent.Request<Effect>("Aequus/Old/Assets/Shaders/Flash_Old", AssetRequestMode.ImmediateLoad);
+        FlashShader = ModContent.Request<Effect>("Aequu2/Old/Assets/Shaders/Flash_Old", AssetRequestMode.ImmediateLoad);
     }
 
     public override void Unload() {

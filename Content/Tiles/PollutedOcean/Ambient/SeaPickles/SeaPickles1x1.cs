@@ -1,9 +1,9 @@
-﻿using Aequus.Content.Tiles.PollutedOcean.PolymerSands;
-using Aequus.Core.Entities.Tiles.Rubblemaker;
+﻿using Aequu2.Content.Tiles.PollutedOcean.PolymerSands;
+using Aequu2.Core.Entities.Tiles.Rubblemaker;
 using Terraria.GameContent;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Tiles.PollutedOcean.Ambient.SeaPickles;
+namespace Aequu2.Content.Tiles.PollutedOcean.Ambient.SeaPickles;
 
 internal class SeaPickles1x1 : SeaPicklesTileBase {
     public SeaPickles1x1() : base() { }

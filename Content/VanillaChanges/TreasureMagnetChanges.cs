@@ -1,7 +1,7 @@
-﻿using Aequus.Content.Configuration;
+﻿using Aequu2.Content.Configuration;
 using Terraria.WorldBuilding;
 
-namespace Aequus.Content.VanillaChanges;
+namespace Aequu2.Content.VanillaChanges;
 
 public class TreasureMagnetChanges : GlobalItem {
     public override bool IsLoadingEnabled(Mod mod) {

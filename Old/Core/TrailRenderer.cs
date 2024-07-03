@@ -1,11 +1,11 @@
-﻿using Aequus.Core.Assets;
+﻿using Aequu2.Core.Assets;
 using System;
 using System.Collections.Generic;
 
-namespace Aequus.Old.Core;
+namespace Aequu2.Old.Core;
 
 public class TrailRenderer : IPrimRenderer {
-    public static Effect Shader => AequusShaders.LegacyVertexShader;
+    public static Effect Shader => Aequu2Shaders.LegacyVertexShader;
 
     public static Vector2 CurrentlyDrawnLocation;
 

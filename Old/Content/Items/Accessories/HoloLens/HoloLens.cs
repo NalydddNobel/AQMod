@@ -1,6 +1,6 @@
-﻿using Aequus.Old.Content.TownNPCs.PhysicistNPC.Analysis;
+﻿using Aequu2.Old.Content.TownNPCs.PhysicistNPC.Analysis;
 
-namespace Aequus.Old.Content.Items.Accessories.HoloLens;
+namespace Aequu2.Old.Content.Items.Accessories.HoloLens;
 
 public class HoloLens : ModItem {
     public override void SetStaticDefaults() {
@@ -14,7 +14,7 @@ public class HoloLens : ModItem {
     }
 
     public override void UpdateInfoAccessory(Player player) {
-        player.GetModPlayer<AequusPlayer>().accHoloLens = true;
+        player.GetModPlayer<Aequu2Player>().accHoloLens = true;
         if (player.whoAmI == Main.myPlayer) {
             ModContent.GetInstance<ChestLensInterface>().Activate();
         }

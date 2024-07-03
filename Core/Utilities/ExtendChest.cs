@@ -1,10 +1,10 @@
-﻿using Aequus.Content.Chests;
-using Aequus.Core.Entities.Tiles;
-using Aequus.DataSets;
+﻿using Aequu2.Content.Chests;
+using Aequu2.Core.Entities.Tiles;
+using Aequu2.DataSets;
 using System;
 using System.Collections.Generic;
 
-namespace Aequus.Core.Utilities;
+namespace Aequu2.Core.Utilities;
 
 public static class ExtendChest {
     /// <returns>Whether the chest contains any items within the <see cref="ItemDataSet.ImportantItem"/> set.</returns>

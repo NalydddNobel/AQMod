@@ -1,24 +1,24 @@
-﻿using Aequus.Core;
-using Aequus.Content.Events.GaleStreams;
-using Aequus.Content.Items.Potions.Healing.Restoration;
-using Aequus.Core.CodeGeneration;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.Old.Content.Bosses.DustDevil.Items;
-using Aequus.Old.Content.Bosses.DustDevil.Projectiles;
-using Aequus.Old.Content.Items.Materials.Energies;
+﻿using Aequu2.Core;
+using Aequu2.Content.Events.GaleStreams;
+using Aequu2.Content.Items.Potions.Healing.Restoration;
+using Aequu2.Core.CodeGeneration;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.Old.Content.Bosses.DustDevil.Items;
+using Aequu2.Old.Content.Bosses.DustDevil.Projectiles;
+using Aequu2.Old.Content.Items.Materials.Energies;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Old.Content.Bosses.DustDevil;
+namespace Aequu2.Old.Content.Bosses.DustDevil;
 
-[Gen.AequusSystem_WorldField<bool>("downedDustDevil")]
+[Gen.Aequu2System_WorldField<bool>("downedDustDevil")]
 [BestiaryBiome<GaleStreamsZone>()]
 [AutoloadBossHead]
-public class DustDevil : LegacyAequusBoss {
+public class DustDevil : LegacyAequu2Boss {
     public const float BossProgression = 8.5f;
 
     #region States
@@ -435,7 +435,7 @@ public class DustDevil : LegacyAequusBoss {
     }
 
     public override void OnKill() {
-        NPC.SetEventFlagCleared(ref AequusSystem.downedOmegaStarite, -1);
+        NPC.SetEventFlagCleared(ref Aequu2System.downedOmegaStarite, -1);
     }
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {

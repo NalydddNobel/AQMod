@@ -1,8 +1,8 @@
 ﻿#if !DEBUG
-using Aequus.Old.Content.Items.Weapons.Magic.Gamestar;
+using Aequu2.Old.Content.Items.Weapons.Magic.Gamestar;
 #endif
 
-namespace Aequus.Core.Hooks;
+namespace Aequu2.Core.Hooks;
 
 public partial class TerrariaHooks {
     private static void NPC_UpdateNPC_Inner(On_NPC.orig_UpdateNPC_Inner orig, NPC npc, int i) {

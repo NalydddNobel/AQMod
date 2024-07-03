@@ -1,7 +1,7 @@
-﻿using Aequus.Content.Biomes.PollutedOcean;
-using Aequus.Core.Audio;
+﻿using Aequu2.Content.Biomes.PollutedOcean;
+using Aequu2.Core.Audio;
 
-namespace Aequus.Content.Audio;
+namespace Aequu2.Content.Audio;
 
 [Autoload(Side = ModSide.Client)]
 public class AmbientAudioSystem : ModSystem {

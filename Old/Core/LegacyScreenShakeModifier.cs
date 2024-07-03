@@ -1,6 +1,6 @@
 ﻿using Terraria.Graphics.CameraModifiers;
 
-namespace Aequus.Old.Core;
+namespace Aequu2.Old.Core;
 
 public class LegacyScreenShakeModifier : ICameraModifier {
     public string UniqueIdentity { get; private set; }

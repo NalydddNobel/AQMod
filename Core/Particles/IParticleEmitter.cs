@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Aequus.Core.Particles;
+namespace Aequu2.Core.Particles;
 
 internal interface IParticleEmitter<T> where T : IParticle, new() {
     /// <returns>A single particle instance.</returns>

@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Entities.Players.Drawing;
+﻿using Aequu2.Core.Entities.Players.Drawing;
 using System;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 
-namespace Aequus.Content.Items.Accessories.EventPrevention;
+namespace Aequu2.Content.Items.Accessories.EventPrevention;
 
 public class StellarGlasses : ModItem {
     private class StellarGlassesEquipTexture : EquipTexture, IEquipTextureDraw {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria.Localization;
 
-namespace Aequus.Old.Content.Items.GrapplingHooks.HealingGrappleHook;
+namespace Aequu2.Old.Content.Items.GrapplingHooks.HealingGrappleHook;
 
 public class LeechHook : ModItem {
     public static int ArmorPenetration { get; set; } = 5;

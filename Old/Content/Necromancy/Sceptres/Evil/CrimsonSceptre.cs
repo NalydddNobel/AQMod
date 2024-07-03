@@ -1,6 +1,6 @@
 ﻿using tModLoaderExtended.GlowMasks;
 
-namespace Aequus.Old.Content.Necromancy.Sceptres.Evil;
+namespace Aequu2.Old.Content.Necromancy.Sceptres.Evil;
 
 [AutoloadGlowMask]
 public class CrimsonSceptre : ScepterBase {

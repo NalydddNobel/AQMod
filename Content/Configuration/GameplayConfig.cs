@@ -1,8 +1,8 @@
-﻿using Aequus.Content.Biomes.PollutedOcean.Generation;
+﻿using Aequu2.Content.Biomes.PollutedOcean.Generation;
 using System.ComponentModel;
 using Terraria.ModLoader.Config;
 
-namespace Aequus.Content.Configuration;
+namespace Aequu2.Content.Configuration;
 internal class GameplayConfig : ModConfig {
     public override ConfigScope Mode => ConfigScope.ClientSide;
 
@@ -36,5 +36,5 @@ internal class GameplayConfig : ModConfig {
 
     [DefaultValue(true)]
     [ReloadRequired]
-    public bool PDAGetsAequusItems;
+    public bool PDAGetsAequu2Items;
 }

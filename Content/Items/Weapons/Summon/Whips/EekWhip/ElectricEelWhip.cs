@@ -1,13 +1,13 @@
-﻿using Aequus.Core;
-using Aequus.Content.Enemies.PollutedOcean.Eel;
-using Aequus.Content.Graphics.Particles;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Particles;
+﻿using Aequu2.Core;
+using Aequu2.Content.Enemies.PollutedOcean.Eel;
+using Aequu2.Content.Graphics.Particles;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Particles;
 using System;
 using System.Collections.Generic;
 using Terraria.Localization;
 
-namespace Aequus.Content.Items.Weapons.Summon.Whips.EekWhip;
+namespace Aequu2.Content.Items.Weapons.Summon.Whips.EekWhip;
 
 [WorkInProgress]
 public class ElectricEelWhip : UnifiedWhipItem, IMinionTagController {

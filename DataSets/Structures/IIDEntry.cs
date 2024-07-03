@@ -1,4 +1,4 @@
-﻿namespace Aequus.DataSets.Structures;
+﻿namespace Aequu2.DataSets.Structures;
 
 public interface IIDEntry {
     /// <summary>Name for the content entry.</summary>

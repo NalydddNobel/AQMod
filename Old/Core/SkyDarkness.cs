@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Old.Core;
+namespace Aequu2.Old.Core;
 
 /// <summary>Used for darken-ing the sky for flashy visual effects</summary>
 public class SkyDarkness : ModSystem {

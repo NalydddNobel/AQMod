@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aequus.Core.Entities.Tiles;
+namespace Aequu2.Core.Entities.Tiles;
 public class ChestType : ModSystem {
     public static HashSet<TileKey> GenericUndergroundChest { get; private set; }
 

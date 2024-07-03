@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria.GameContent;
 using Terraria.UI.Chat;
 
-namespace Aequus.Core.Entities.Items.Dedications;
+namespace Aequu2.Core.Entities.Items.Dedications;
 
 public sealed class DedicatedGlobalItem : GlobalItem {
     public override bool AppliesToEntity(Item item, bool lateInstantiation) {

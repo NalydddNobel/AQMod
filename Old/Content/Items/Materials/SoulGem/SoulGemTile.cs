@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Items.Materials.SoulGem;
+﻿namespace Aequu2.Old.Content.Items.Materials.SoulGem;
 
 [LegacyName("EmptySoulGemTile")]
 public class SoulGemTile : ModTile {

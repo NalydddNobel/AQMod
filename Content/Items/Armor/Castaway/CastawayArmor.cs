@@ -1,11 +1,11 @@
-﻿using Aequus.Core;
-using Aequus.Content.Items.Materials;
-using Aequus.Content.Tiles.CraftingStations.TrashCompactor;
-using Aequus.Core.ContentGeneration;
-using Aequus.DataSets;
+﻿using Aequu2.Core;
+using Aequu2.Content.Items.Materials;
+using Aequu2.Content.Tiles.CraftingStations.TrashCompactor;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.DataSets;
 using System.Linq;
 
-namespace Aequus.Content.Items.Armor.Castaway;
+namespace Aequu2.Content.Items.Armor.Castaway;
 
 public class CastawayArmor : UnifiedArmorSet {
     public static readonly int DefenseRegenerationCooldown = 420;
@@ -65,7 +65,7 @@ public class CastawayArmor : UnifiedArmorSet {
         Head2TextureId = EquipLoader.AddEquipTexture(Mod, $"{_head.Texture}_Head_2", EquipType.Head, null, $"{_head.Name}2");
         Body2TextureId = EquipLoader.AddEquipTexture(Mod, $"{_body.Texture}_Body_2", EquipType.Body, null, $"{_body.Name}2");
 
-        Aequus.OnAddRecipes += AddRecipes;
+        Aequu2.OnAddRecipes += AddRecipes;
     }
 
     bool IsSet(Item head, Item body, Item legs) {

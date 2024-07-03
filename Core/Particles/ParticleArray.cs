@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aequus.Core.Particles;
+namespace Aequu2.Core.Particles;
 
 /// <summary>A basic particle array system, initializes an array of a specified size on-load.</summary>
 [Autoload(Side = ModSide.Client)]

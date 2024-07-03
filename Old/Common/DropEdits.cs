@@ -1,8 +1,8 @@
-﻿using Aequus.Old.Content.Items.Accessories.OnHitDebuffs;
-using Aequus.Old.Content.Items.Materials.Energies;
+﻿using Aequu2.Old.Content.Items.Accessories.OnHitDebuffs;
+using Aequu2.Old.Content.Items.Materials.Energies;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Old.Common;
+namespace Aequu2.Old.Common;
 
 public class EnemyDropEdits : GlobalNPC {
     public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot) {

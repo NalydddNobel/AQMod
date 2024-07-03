@@ -1,12 +1,12 @@
-﻿using Aequus.Core.Graphics.Tiles;
-using Aequus.Old.Content.Items.Potions.Prefixes.BoundedPotions;
+﻿using Aequu2.Core.Graphics.Tiles;
+using Aequu2.Old.Content.Items.Potions.Prefixes.BoundedPotions;
 using System;
 using Terraria.Audio;
 using Terraria.Enums;
 using Terraria.GameContent.Drawing;
 using Terraria.ObjectData;
 
-namespace Aequus.Old.Content.Tiles.Herbs.Manacle;
+namespace Aequu2.Old.Content.Tiles.Herbs.Manacle;
 
 public class Manacle : ModHerb, IDrawWindyGrass {
     private readonly Color GlowColor = new Color(60, 60, 60, 0);
@@ -52,7 +52,7 @@ public class Manacle : ModHerb, IDrawWindyGrass {
 
     private void DrawGlowmask(SpriteBatch spriteBatch, Vector2 drawCoordinates, Rectangle? frame, float rotation, Vector2 origin, SpriteEffects effects) {
         for (int k = 0; k < 4; k++) {
-            spriteBatch.Draw(AequusTextures.Manacle_Glow,
+            spriteBatch.Draw(Aequu2Textures.Manacle_Glow,
                 drawCoordinates + (k * MathHelper.PiOver2 + Main.GlobalTimeWrappedHourly * 2.5f).ToRotationVector2() * MathF.Sin(Main.GlobalTimeWrappedHourly * 0.61f) * 2f, frame, GlowColor, rotation, origin, 1f, effects, 0f);
         }
     }
@@ -94,7 +94,7 @@ public class Manacle : ModHerb, IDrawWindyGrass {
 
     public override bool KillSound(int i, int j, bool fail) {
         if (GetGrowthStage(i, j) == STAGE_BLOOMING) {
-            SoundEngine.PlaySound(AequusSounds.MoonflowerBreak with { PitchVariance = 0.1f }, new Vector2(i * 16f, j * 16f));
+            SoundEngine.PlaySound(Aequu2Sounds.MoonflowerBreak with { PitchVariance = 0.1f }, new Vector2(i * 16f, j * 16f));
         }
 
         return base.KillSound(i, j, fail);
@@ -129,7 +129,7 @@ public class Manacle : ModHerb, IDrawWindyGrass {
 
     public override bool CanNaturallyGrow(int X, int Y, Tile tile, bool[] anchoredTiles) {
         if (Main.remixWorld) {
-            Point range = AequusSystem.RemixWorldSafeUnderworldRange;
+            Point range = Aequu2System.RemixWorldSafeUnderworldRange;
 
             // Manacle plants cannot generate in the middle of remix seed worlds.
             if (X > range.X && X < range.Y && Y > Main.rockLayer) {

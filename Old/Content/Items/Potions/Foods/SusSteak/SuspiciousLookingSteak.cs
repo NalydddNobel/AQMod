@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Items.Potions.Foods.SusSteak;
+﻿namespace Aequu2.Old.Content.Items.Potions.Foods.SusSteak;
 
 public class SuspiciousLookingSteak : ModItem {
     public override void SetStaticDefaults() {

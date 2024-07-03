@@ -1,4 +1,4 @@
-﻿using Aequus.Old.Content.DronePylons.NPCs;
+﻿using Aequu2.Old.Content.DronePylons.NPCs;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +6,7 @@ using Terraria.DataStructures;
 using Terraria.ModLoader.IO;
 using tModLoaderExtended.Networking;
 
-namespace Aequus.Old.Content.DronePylons;
+namespace Aequu2.Old.Content.DronePylons;
 
 public class PylonDronePoint : TagSerializable {
     public static int DefaultMaxDrones { get; set; }
@@ -288,10 +288,10 @@ public class PylonDronePoint : TagSerializable {
     public void ReadData(BinaryReader reader) {
         MaxDrones = reader.ReadInt32();
         int amt = reader.ReadInt32();
-        //Aequus.Instance.Logger.Debug($"Has {amt} drones");
+        //Aequu2.Instance.Logger.Debug($"Has {amt} drones");
         for (int i = 0; i < amt; i++) {
             int netID = reader.ReadInt32();
-            //Aequus.Instance.Logger.Debug($"NetID: {netID} ({DroneSlot.NetIDToDroneType[netID].FullName})");
+            //Aequu2.Instance.Logger.Debug($"NetID: {netID} ({DroneSlot.NetIDToDroneType[netID].FullName})");
             if (ActiveDrones.Count <= i) {
                 ActiveDrones.Add((DroneSlot)DroneSlot.NetIDToDroneType[netID].Clone());
             }

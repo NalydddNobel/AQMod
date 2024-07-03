@@ -1,6 +1,6 @@
 ﻿using Terraria.Localization;
 
-namespace Aequus.Core.Entities.Items.Dedications;
+namespace Aequu2.Core.Entities.Items.Dedications;
 
 public record struct AnonymousDedication(Color TextColor) : IDedicationInfo {
     private LocalizedText _lineCache;
@@ -8,6 +8,6 @@ public record struct AnonymousDedication(Color TextColor) : IDedicationInfo {
     public ModItem Faeling { get; set; }
 
     public LocalizedText GetDedicatedLine() {
-        return _lineCache ??= Language.GetText("Mods.Aequus.Items.CommonTooltips.DedicatedItemAnonymous");
+        return _lineCache ??= Language.GetText("Mods.Aequu2.Items.CommonTooltips.DedicatedItemAnonymous");
     }
 }

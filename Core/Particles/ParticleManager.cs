@@ -1,7 +1,7 @@
-﻿using Aequus.Core.Debug;
+﻿using Aequu2.Core.Debug;
 using System.Collections.Generic;
 
-namespace Aequus.Core.Particles;
+namespace Aequu2.Core.Particles;
 
 /// <summary>
 /// Handles and updates particle systems.

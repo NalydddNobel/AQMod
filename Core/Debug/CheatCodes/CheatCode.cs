@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using System.Linq;
 
-namespace Aequus.Core.Debug.CheatCodes;
+namespace Aequu2.Core.Debug.CheatCodes;
 
 public interface ICheatCode {
     int Type { get; internal set; }

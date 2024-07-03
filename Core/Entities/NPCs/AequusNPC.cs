@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Aequus.Core.Entities.NPCs;
+namespace Aequu2.Core.Entities.NPCs;
 
-public partial class AequusNPC : GlobalNPC {
+public partial class Aequu2NPC : GlobalNPC {
     public override bool InstancePerEntity => true;
     protected override bool CloneNewInstances => true;
 
@@ -12,15 +12,15 @@ public partial class AequusNPC : GlobalNPC {
     public override void Load() {
         Load_AutomaticResetEffects();
         On_NPC.UpdateCollision += NPC_UpdateCollision;
-        HookManager.ApplyAndCacheHook(typeof(NPCLoader).GetMethod(nameof(NPCLoader.NPCAI)), typeof(AequusNPC).GetMethod(nameof(On_NPCLoader_NPCAI), BindingFlags.NonPublic | BindingFlags.Static));
+        HookManager.ApplyAndCacheHook(typeof(NPCLoader).GetMethod(nameof(NPCLoader.NPCAI)), typeof(Aequu2NPC).GetMethod(nameof(On_NPCLoader_NPCAI), BindingFlags.NonPublic | BindingFlags.Static));
     }
 
     private static void On_NPCLoader_NPCAI(Action<NPC> orig, NPC npc) {
-        if (!npc.TryGetGlobalNPC<AequusNPC>(out var aequusNPC)) {
+        if (!npc.TryGetGlobalNPC<Aequu2NPC>(out var Aequu2NPC)) {
             orig(npc);
             return;
         }
-        if (aequusNPC.AI_StunGun(npc)) {
+        if (Aequu2NPC.AI_StunGun(npc)) {
             return;
         }
         orig(npc);
@@ -36,8 +36,8 @@ public partial class AequusNPC : GlobalNPC {
     }
 
     public override bool CanHitNPC(NPC npc, NPC target) {
-        if (target.TryGetGlobalNPC(out AequusNPC aequus)) {
-            return aequus.immuneToDamageTime == 0;
+        if (target.TryGetGlobalNPC(out Aequu2NPC Aequu2)) {
+            return Aequu2.immuneToDamageTime == 0;
         }
 
         return true;

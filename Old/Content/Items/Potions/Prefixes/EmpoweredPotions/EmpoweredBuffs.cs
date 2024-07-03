@@ -1,10 +1,10 @@
-﻿using Aequus.DataSets.Structures;
+﻿using Aequu2.DataSets.Structures;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using Terraria.Localization;
 
-namespace Aequus.Old.Content.Items.Potions.Prefixes.EmpoweredPotions;
+namespace Aequu2.Old.Content.Items.Potions.Prefixes.EmpoweredPotions;
 
 public class EmpoweredBuffs : DataSet {
     [JsonProperty]
@@ -33,8 +33,8 @@ public class EmpoweredBuffs : DataSet {
             p.buffImmune[BuffID.Chilled] = true;
             p.buffImmune[BuffID.Frozen] = true;
         }));
-        Override.Add(BuffID.Invisibility, new(CustomAction: (p) => p.aggro -= 400, Tooltip: Language.GetText("Mods.Aequus.Items.CommonTooltips.DecreaseAggro").WithFormatArgs(1)));
-        Override.Add(BuffID.Featherfall, new(CustomAction: (p) => p.GetModPlayer<AequusPlayer>().wingTime += 60, Tooltip: Language.GetText("Mods.Aequus.Items.CommonTooltips.StatWingTime").WithFormatArgs(1)));
+        Override.Add(BuffID.Invisibility, new(CustomAction: (p) => p.aggro -= 400, Tooltip: Language.GetText("Mods.Aequu2.Items.CommonTooltips.DecreaseAggro").WithFormatArgs(1)));
+        Override.Add(BuffID.Featherfall, new(CustomAction: (p) => p.GetModPlayer<Aequu2Player>().wingTime += 60, Tooltip: Language.GetText("Mods.Aequu2.Items.CommonTooltips.StatWingTime").WithFormatArgs(1)));
         Override.Add(BuffID.ObsidianSkin, new(CustomAction: (p) => {
             if (p.wet) {
                 p.statDefense += 20;

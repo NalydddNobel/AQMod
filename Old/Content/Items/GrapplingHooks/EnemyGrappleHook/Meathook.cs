@@ -2,7 +2,7 @@
 using Terraria.Audio;
 using Terraria.Localization;
 
-namespace Aequus.Old.Content.Items.GrapplingHooks.EnemyGrappleHook;
+namespace Aequu2.Old.Content.Items.GrapplingHooks.EnemyGrappleHook;
 
 public class Meathook : ModItem {
     public const string IMMUNE_TIMER = "Meathook Immunity";
@@ -36,7 +36,7 @@ public class Meathook : ModItem {
 
     public static void CheckMeathookSound(NPC target) {
         if (target.HasBuff<MeathookDebuff>()) {
-            SoundEngine.PlaySound(AequusSounds.Meathook, target.Center);
+            SoundEngine.PlaySound(Aequu2Sounds.Meathook, target.Center);
         }
     }
 }

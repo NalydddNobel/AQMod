@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Entities.NPCs;
-using Aequus.Content.Dusts;
-using Aequus.DataSets;
-using Aequus.Old.Content.Necromancy.Networking;
-using Aequus.Old.Content.Necromancy.Rendering;
-using Aequus.Old.Content.Particles;
+﻿using Aequu2.Core.Entities.NPCs;
+using Aequu2.Content.Dusts;
+using Aequu2.DataSets;
+using Aequu2.Old.Content.Necromancy.Networking;
+using Aequu2.Old.Content.Necromancy.Rendering;
+using Aequu2.Old.Content.Particles;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +12,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequus.Old.Content.Necromancy;
+namespace Aequu2.Old.Content.Necromancy;
 
 public class NecromancyNPC : GlobalNPC, IAddRecipes {
     public class ActiveZombieInfo {
@@ -232,24 +232,24 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
         Zombie.Reset();
         if (isZombie) {
             var player = Main.player[zombieOwner];
-            var aequus = player.GetModPlayer<AequusPlayer>();
+            var Aequu2 = player.GetModPlayer<Aequu2Player>();
             if (ghostDamage > 0) {
                 npc.defDamage = ghostDamage;
                 npc.damage = ghostDamage;
             }
             if (zombieTimer == 0) {
-                int time = (int)Main.player[zombieOwner].GetModPlayer<AequusPlayer>().ghostLifespan.ApplyTo(NecromancySystem.DefaultLifespan);
+                int time = (int)Main.player[zombieOwner].GetModPlayer<Aequu2Player>().ghostLifespan.ApplyTo(NecromancySystem.DefaultLifespan);
 
                 zombieTimerMax = time;
                 zombieTimer = time;
             }
-            AequusNPC aequusNPC = npc.GetGlobalNPC<AequusNPC>();
-            aequusNPC.statSpeedX += ghostSpeed;
-            aequusNPC.statSpeedY += ghostSpeed;
-            aequus.ghostSlots += slotsConsumed;
-            if (aequus.gravetenderGhost == npc.whoAmI) {
-                aequusNPC.statSpeedX *= 1.33f;
-                aequusNPC.statSpeedY *= 1.33f;
+            Aequu2NPC Aequu2NPC = npc.GetGlobalNPC<Aequu2NPC>();
+            Aequu2NPC.statSpeedX += ghostSpeed;
+            Aequu2NPC.statSpeedY += ghostSpeed;
+            Aequu2.ghostSlots += slotsConsumed;
+            if (Aequu2.gravetenderGhost == npc.whoAmI) {
+                Aequu2NPC.statSpeedX *= 1.33f;
+                Aequu2NPC.statSpeedY *= 1.33f;
                 statFreezeLifespan = true;
             }
             if (!statFreezeLifespan) {
@@ -336,9 +336,9 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
                 npc.damage = ghostDamage;
             }
             var player = Main.player[zombieOwner];
-            var aequus = player.GetModPlayer<AequusPlayer>();
+            var Aequu2 = player.GetModPlayer<Aequu2Player>();
 
-            if (aequus.ghostShadowDash > 0 && Zombie != null && Zombie.NPCTarget > -1 && Zombie.NPCTarget == player.MinionAttackTargetNPC) {
+            if (Aequu2.ghostShadowDash > 0 && Zombie != null && Zombie.NPCTarget > -1 && Zombie.NPCTarget == player.MinionAttackTargetNPC) {
                 shadowDashTimer++;
                 if (shadowDashTimer < 200) {
                     if (Math.Sign(npc.velocity.X) == Math.Sign(Main.npc[Zombie.NPCTarget].Center.X - npc.Center.X)) {
@@ -380,7 +380,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
                     d.scale *= npc.scale;
                     d.noGravity = true;
                 }
-                if (aequus.gravetenderGhost == npc.whoAmI && Main.rand.NextBool(6)) {
+                if (Aequu2.gravetenderGhost == npc.whoAmI && Main.rand.NextBool(6)) {
                     var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, DustID.SilverFlame, newColor: new Color(200, 50, 128, 25));
                     d.velocity *= 0.5f;
                     d.velocity += -npc.velocity * 0.2f;
@@ -419,7 +419,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
         if (ghostDebuffDOT > 0) {
             float multiplier = 1f;
             if (zombieOwner > 0 && zombieOwner < Main.maxPlayers && Main.player[zombieOwner].active) {
-                multiplier += Main.player[zombieOwner].GetModPlayer<AequusPlayer>().zombieDebuffMultiplier;
+                multiplier += Main.player[zombieOwner].GetModPlayer<Aequu2Player>().zombieDebuffMultiplier;
             }
 
             if (npc.lifeRegen > 0) {
@@ -529,9 +529,9 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
     public bool CanSpawnZombie(NPC npc, bool justChecking = true) {
         ApplyStaticStats(npc);
         bool forceSpawn = false;
-        var aequus = Main.player[zombieOwner].GetModPlayer<AequusPlayer>();
+        var Aequu2 = Main.player[zombieOwner].GetModPlayer<Aequu2Player>();
         if (Main.player[zombieOwner].HasMinionAttackTargetNPC && Main.player[zombieOwner].MinionAttackTargetNPC == npc.whoAmI) {
-            if (aequus.ghostSlots + slotsConsumed > aequus.ghostSlotsMax) {
+            if (Aequu2.ghostSlots + slotsConsumed > Aequu2.ghostSlotsMax) {
                 MakeRoomForMe(npc, out int killMinion);
                 if (!justChecking && killMinion != -1) {
                     forceSpawn = true;
@@ -546,7 +546,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
         }
         if (!forceSpawn) {
             int slotsToConsume = slotsConsumed;
-            if (aequus.ghostSlotsOld + slotsToConsume > aequus.ghostSlotsMax) {
+            if (Aequu2.ghostSlotsOld + slotsToConsume > Aequu2.ghostSlotsMax) {
                 int myPriority = DespawnPriority(npc);
                 for (int i = 0; i < Main.maxNPCs; i++) {
                     if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var zombie)
@@ -573,8 +573,8 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
         if (!myZombie.CanSpawnZombie(npc, justChecking: false)) {
             return;
         }
-        var myAequus = Main.player[myZombie.zombieOwner].GetModPlayer<AequusPlayer>();
-        int n = NPC.NewNPC(new EntitySource_Misc("Aequus:Zombie"), (int)npc.position.X + npc.width / 2, (int)npc.position.Y + npc.height / 2, npc.netID, npc.whoAmI + 1);
+        var myAequu2 = Main.player[myZombie.zombieOwner].GetModPlayer<Aequu2Player>();
+        int n = NPC.NewNPC(new EntitySource_Misc("Aequu2:Zombie"), (int)npc.position.X + npc.width / 2, (int)npc.position.Y + npc.height / 2, npc.netID, npc.whoAmI + 1);
         if (n < 200) {
             Main.npc[n].whoAmI = n;
             SpawnZombie_SetZombieStats(Main.npc[n], npc.Center, npc.velocity, npc.direction, npc.spriteDirection, out bool playSound);
@@ -595,14 +595,14 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
             d.customData = Main.player[player];
             d.velocity = Main.rand.NextVector2Unit() * Main.rand.NextFloat(8f);
         }
-        SoundEngine.PlaySound(AequusSounds.RecruitZombie, position);
+        SoundEngine.PlaySound(Aequu2Sounds.RecruitZombie, position);
     }
     public void SpawnZombie_SetZombieStats(NPC zombieNPC, Vector2 position, Vector2 velocity, int direction, int spriteDirection, out bool playSound) {
         var zombie = zombieNPC.GetGlobalNPC<NecromancyNPC>();
         zombie.isZombie = true;
         zombie.zombieOwner = zombieOwner;
         zombie.zombieDebuffTier = zombieDebuffTier;
-        zombie.zombieTimer = zombie.zombieTimerMax = (int)Main.player[zombieOwner].GetModPlayer<AequusPlayer>().ghostLifespan.ApplyTo(NecromancySystem.DefaultLifespan);
+        zombie.zombieTimer = zombie.zombieTimerMax = (int)Main.player[zombieOwner].GetModPlayer<Aequu2Player>().ghostLifespan.ApplyTo(NecromancySystem.DefaultLifespan);
         zombie.renderLayer = renderLayer;
         zombie.ghostSpeed = ghostSpeed;
         zombie.ghostDamage = ghostDamage;
@@ -657,7 +657,7 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
         if (distance < 800f) {
             distance = 800f;
         }
-        int closestToPlayer = player.GetModPlayer<AequusPlayer>().closestEnemy;
+        int closestToPlayer = player.GetModPlayer<Aequu2Player>().closestEnemy;
         int minionTarget = -1;
         if (player.HasMinionAttackTargetNPC) {
             minionTarget = player.MinionAttackTargetNPC;

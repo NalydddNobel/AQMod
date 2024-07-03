@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Events.Glimmer.CosmicMonolith;
+﻿namespace Aequu2.Old.Content.Events.Glimmer.CosmicMonolith;
 
 public class CosmicMonolith : ModItem {
     public override void SetDefaults() {
@@ -11,10 +11,10 @@ public class CosmicMonolith : ModItem {
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
-        player.GetModPlayer<AequusPlayer>().cosmicMonolithShader = true;
+        player.GetModPlayer<Aequu2Player>().cosmicMonolithShader = true;
     }
 
     public override void UpdateVanity(Player player) {
-        player.GetModPlayer<AequusPlayer>().cosmicMonolithShader = true;
+        player.GetModPlayer<Aequu2Player>().cosmicMonolithShader = true;
     }
 }

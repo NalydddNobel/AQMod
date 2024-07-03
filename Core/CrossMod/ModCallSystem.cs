@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.CrossMod;
+﻿namespace Aequu2.Core.CrossMod;
 
 internal class ModCallSystem : ModSystem {
     public static object HandleModCall(object[] args) {

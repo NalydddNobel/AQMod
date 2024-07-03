@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Entities.Projectiles;
+﻿using Aequu2.Core.Entities.Projectiles;
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;
 
-namespace Aequus.Content.Items.Weapons.Melee.DynaKnife;
+namespace Aequu2.Content.Items.Weapons.Melee.DynaKnife;
 
 public class DynaknifeStabProj : ModProjectile {
     public const int ExplodeDelay = 120;

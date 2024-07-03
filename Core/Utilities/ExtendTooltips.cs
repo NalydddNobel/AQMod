@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.UI.Chat;
 
-namespace Aequus.Core.Utilities;
+namespace Aequu2.Core.Utilities;
 
 public static class ExtendTooltips {
     internal static readonly string[] VanillaTooltipNames = new[] {
@@ -125,7 +125,7 @@ public static class ExtendTooltips {
         List<string> dropTable = GetListOfDrops(Main.ItemDropsDB.GetRulesForItemID(item.type));
 
         for (int i = 0; i < dropTable.Count; i++) {
-            tooltips.Add(new TooltipLine(Aequus.Instance, $"Drop{i}", dropTable[i]));
+            tooltips.Add(new TooltipLine(Aequu2.Instance, $"Drop{i}", dropTable[i]));
         }
     }
 

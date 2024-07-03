@@ -1,6 +1,6 @@
-﻿using Aequus.Content.Systems;
+﻿using Aequu2.Content.Systems;
 
-namespace Aequus.Old.Content.Items.Tools.MagicMirrors.PhasePhone;
+namespace Aequu2.Old.Content.Items.Tools.MagicMirrors.PhasePhone;
 
 public class PhasePhoneInstantiator : ModSystem {
     public ModItem PhasePhone { get; private set; }

@@ -1,8 +1,8 @@
-﻿using Aequus.Content.Dedicated.BeyondCoin;
+﻿using Aequu2.Content.Dedicated.BeyondCoin;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 
-namespace Aequus.Core.Hooks;
+namespace Aequu2.Core.Hooks;
 
 public partial class TerrariaHooks {
     private void IL_Player_UpdateManaRegen(ILContext il) {

@@ -1,6 +1,6 @@
-﻿using Aequus.Core.Entities.Items.Components;
+﻿using Aequu2.Core.Entities.Items.Components;
 
-namespace Aequus.Content.Items.Potions.Healing.Restoration;
+namespace Aequu2.Content.Items.Potions.Healing.Restoration;
 
 public class SuperRestorationPotion : ModItem, IApplyPotionDelay {
     public bool ApplyPotionDelay(Player player) {

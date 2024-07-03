@@ -1,11 +1,11 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Projectiles;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Projectiles;
 using System;
 using System.IO;
 using Terraria.Audio;
 using Terraria.GameContent;
 
-namespace Aequus.Content.Pets.Miner;
+namespace Aequu2.Content.Pets.Miner;
 
 public class UndeadMinerPet : UnifiedModPet {
     public int swingPick;

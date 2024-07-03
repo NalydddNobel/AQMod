@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Enemies;
+﻿namespace Aequu2.Old.Content.Enemies;
 
 public abstract class LegacyAIBat : ModNPC {
     protected virtual float BumpSpeedLoose => 0.5f;

@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Core;
+﻿namespace Aequu2.Old.Core;
 
 public class ScreenShake {
     public static void SetShake(float intensity, float multiplyPerTick, Vector2 where = default) {

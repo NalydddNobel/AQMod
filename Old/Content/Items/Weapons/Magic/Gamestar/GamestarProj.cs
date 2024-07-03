@@ -1,11 +1,11 @@
-﻿using Aequus.Core.Particles;
-using Aequus.DataSets;
+﻿using Aequu2.Core.Particles;
+using Aequu2.DataSets;
 using System;
 
-namespace Aequus.Old.Content.Items.Weapons.Magic.Gamestar;
+namespace Aequu2.Old.Content.Items.Weapons.Magic.Gamestar;
 
 public class GamestarProj : ModProjectile {
-    public override string Texture => AequusTextures.None.Path;
+    public override string Texture => Aequu2Textures.None.Path;
 
     public override void SetStaticDefaults() {
         this.SetTrail(10);

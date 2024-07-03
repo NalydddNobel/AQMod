@@ -1,11 +1,11 @@
-﻿using Aequus.Core.Entities.Projectiles;
+﻿using Aequu2.Core.Entities.Projectiles;
 using System;
 using Terraria.Audio;
 
-namespace Aequus.Old.Content.Items.Weapons.Melee.DemonCrimsonSpear;
+namespace Aequu2.Old.Content.Items.Weapons.Melee.DemonCrimsonSpear;
 
 public class CauterizerProj : LegacyHeldSlashingSwordProjectile {
-    public override string Texture => AequusTextures.Cauterizer.Path;
+    public override string Texture => Aequu2Textures.Cauterizer.Path;
 
     public override void SetDefaults() {
         base.SetDefaults();
@@ -52,11 +52,11 @@ public class CauterizerProj : LegacyHeldSlashingSwordProjectile {
     public override Vector2 GetOffsetVector(float progress) {
         return progress < 0.5f
             ? base.GetOffsetVector(progress)
-            : BaseAngleVector.RotatedBy((progress * (MathHelper.Pi * 1.5f) - MathHelper.PiOver2 * 1.5f) * -swingDirection * (0.8f + 0.2f * Math.Min(Main.player[Projectile.owner].GetModPlayer<AequusPlayer>().itemUsage / 300f, 1f)));
+            : BaseAngleVector.RotatedBy((progress * (MathHelper.Pi * 1.5f) - MathHelper.PiOver2 * 1.5f) * -swingDirection * (0.8f + 0.2f * Math.Min(Main.player[Projectile.owner].GetModPlayer<Aequu2Player>().itemUsage / 300f, 1f)));
     }
 
     public override float SwingProgress(float progress) {
-        return SwingProgressAequus(progress);
+        return SwingProgressAequu2(progress);
     }
     public override float GetScale(float progress) {
         float scale = base.GetScale(progress);
@@ -101,7 +101,7 @@ public class CauterizerProj : LegacyHeldSlashingSwordProjectile {
         DrawSword(texture, handPosition, frame, Projectile.GetAlpha(lightColor) * Projectile.Opacity, rotationOffset, origin, effects);
 
         if (intensity > 0f) {
-            var shine = AequusTextures.Flare;
+            var shine = Aequu2Textures.Flare;
             var shineOrigin = shine.Size() / 2f;
             var shineColor = new Color(200, 120, 40, 100) * intensity * intensity * Projectile.Opacity;
             var shineLocation = handPosition - Main.screenPosition + AngleVector * (size - 8f) * Projectile.scale;

@@ -1,16 +1,16 @@
-﻿using Aequus.Core.Entities.NPCs;
-using Aequus.Content.Dusts;
-using Aequus.Core.Components.NPCs;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.Core.Entities.NPCs;
-using Aequus.DataSets;
-using Aequus.Old.Content.Events.Glimmer;
-using Aequus.Old.Content.Items.Materials;
-using Aequus.Old.Content.Items.Potions.NeutronYogurt;
-using Aequus.Old.Content.Items.Vanity;
-using Aequus.Old.Content.Particles;
-using Aequus.Old.Content.StatusEffects;
+﻿using Aequu2.Core.Entities.NPCs;
+using Aequu2.Content.Dusts;
+using Aequu2.Core.Components.NPCs;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.Core.Entities.NPCs;
+using Aequu2.DataSets;
+using Aequu2.Old.Content.Events.Glimmer;
+using Aequu2.Old.Content.Items.Materials;
+using Aequu2.Old.Content.Items.Potions.NeutronYogurt;
+using Aequu2.Old.Content.Items.Vanity;
+using Aequu2.Old.Content.Particles;
+using Aequu2.Old.Content.StatusEffects;
 using System;
 using System.IO;
 using Terraria.Audio;
@@ -18,7 +18,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Old.Content.Enemies.Glimmer.Proto;
+namespace Aequu2.Old.Content.Enemies.Glimmer.Proto;
 
 [BestiaryBiome<GlimmerZone>()]
 [AutoloadBanner]
@@ -117,7 +117,7 @@ public class Starite : ModNPC, ITrackTimeBetweenHits {
     }
 
     public override void AI() {
-        var aequus = NPC.GetGlobalNPC<AequusNPC>();
+        var Aequu2 = NPC.GetGlobalNPC<Aequu2NPC>();
         if (!fallenStar) {
             FallenStarAI();
             return;
@@ -403,7 +403,7 @@ public class Starite : ModNPC, ITrackTimeBetweenHits {
             float scale = (float)Math.Pow(Math.Min(NPC.scale * (-NPC.ai[3] / 60f), 1f), 3f) * 1.25f;
             var shineColor = new Color(120, 120, 180, 0) * scale * NPC.Opacity;
 
-            Texture2D lightRay = AequusTextures.LightRayFlat;
+            Texture2D lightRay = Aequu2Textures.LightRayFlat;
             var lightRayOrigin = lightRay.Size() / 2f;
 
             for (int i = 0; i < 8; i++) {
@@ -416,7 +416,7 @@ public class Starite : ModNPC, ITrackTimeBetweenHits {
                 i++;
             }
 
-            var spotlightTexture = AequusTextures.Bloom;
+            var spotlightTexture = Aequu2Textures.Bloom;
             var spotlightOrigin = spotlightTexture.Size() / 2f;
             Main.spriteBatch.Draw(spotlightTexture, drawPos, null, shineColor * scale * NPC.Opacity, 0f, spotlightOrigin, scale, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(spotlightTexture, drawPos, null, shineColor * 0.5f * scale * NPC.Opacity, 0f, spotlightOrigin, scale * 2f, SpriteEffects.None, 0f);

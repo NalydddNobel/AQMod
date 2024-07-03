@@ -1,4 +1,4 @@
-﻿namespace Aequus.DataSets.Structures.Enums;
+﻿namespace Aequu2.DataSets.Structures.Enums;
 
 public enum PaintColor : byte {
     White,

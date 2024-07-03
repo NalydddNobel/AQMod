@@ -1,13 +1,13 @@
-﻿using Aequus.Core.CodeGeneration;
-using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.CodeGeneration;
+using Aequu2.Core.ContentGeneration;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Items.Weapons.Summon.Minions.ScribbleMinion;
+namespace Aequu2.Old.Content.Items.Weapons.Summon.Minions.ScribbleMinion;
 
-[Gen.AequusPlayer_Field<bool>("minionScribble")]
+[Gen.Aequu2Player_Field<bool>("minionScribble")]
 public class ScribbleNotebookMinion : UnifiedModMinion {
     public const int HorizontalFrames = 12;
 
@@ -312,6 +312,6 @@ public class ScribbleNotebookMinion : UnifiedModMinion {
     }
 
     internal override InstancedMinionBuff CreateMinionBuff() {
-        return new InstancedMinionBuff(this, (p) => ref p.GetModPlayer<AequusPlayer>().minionScribble);
+        return new InstancedMinionBuff(this, (p) => ref p.GetModPlayer<Aequu2Player>().minionScribble);
     }
 }

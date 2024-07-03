@@ -1,11 +1,11 @@
-﻿using Aequus.Content.Configuration;
-using Aequus.Core.Entities.Bestiary;
+﻿using Aequu2.Content.Configuration;
+using Aequu2.Core.Entities.Bestiary;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequus.Old.Content.Enemies.Mimics;
+namespace Aequu2.Old.Content.Enemies.Mimics;
 
 public class AdamantiteMimic : ModNPC, IPostPopulateItemDropDatabase, IAddRecipes {
     protected virtual int CloneNPC => NPCID.Mimic;

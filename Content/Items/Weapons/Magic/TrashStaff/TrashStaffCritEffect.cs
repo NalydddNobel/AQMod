@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Entities.Projectiles;
+﻿using Aequu2.Core.Entities.Projectiles;
 using System;
 using System.Collections.Generic;
 using Terraria.Localization;
 
-namespace Aequus.Content.Items.Weapons.Magic.TrashStaff;
+namespace Aequu2.Content.Items.Weapons.Magic.TrashStaff;
 
 public class TrashStaffCritEffect : ModProjectile {
     public override LocalizedText DisplayName => ModContent.GetInstance<TrashStaff>().DisplayName;

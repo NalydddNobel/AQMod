@@ -1,10 +1,10 @@
-﻿using Aequus.Content.Chests.BuriedChests;
-using Aequus.Core.Components;
+﻿using Aequu2.Content.Chests.BuriedChests;
+using Aequu2.Core.Components;
 using System;
 using Terraria.IO;
 using Terraria.WorldBuilding;
 
-namespace Aequus.Content.WorldGeneration;
+namespace Aequu2.Content.WorldGeneration;
 
 public class RealBuriedChestsStep : AGenStep {
     public override string InsertAfter => "Buried Chests";

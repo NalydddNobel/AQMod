@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Dedicated.BeyondCoin;
+namespace Aequu2.Content.Dedicated.BeyondCoin;
 
 public class ShimmerCoinSystem : ModSystem {
     public const string TAG_NAME = "CoinStacks";

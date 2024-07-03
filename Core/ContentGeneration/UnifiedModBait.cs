@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.ContentGeneration;
+﻿namespace Aequu2.Core.ContentGeneration;
 
 public abstract class UnifiedModBait : ModItem {
     public override string LocalizationCategory => "Fishing.Bait";

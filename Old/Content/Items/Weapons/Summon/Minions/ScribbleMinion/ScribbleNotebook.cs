@@ -1,8 +1,8 @@
-﻿using Aequus.Core;
+﻿using Aequu2.Core;
 using Terraria.DataStructures;
 using tModLoaderExtended.GlowMasks;
 
-namespace Aequus.Old.Content.Items.Weapons.Summon.Minions.ScribbleMinion;
+namespace Aequu2.Old.Content.Items.Weapons.Summon.Minions.ScribbleMinion;
 
 [AutoloadGlowMask]
 public class ScribbleNotebook : ModItem {

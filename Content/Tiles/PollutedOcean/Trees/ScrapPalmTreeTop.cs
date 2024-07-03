@@ -1,10 +1,10 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.ContentGeneration;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.Localization;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Tiles.PollutedOcean.Trees;
+namespace Aequu2.Content.Tiles.PollutedOcean.Trees;
 
 internal class ScrapPalmTreeTop(ScrapPalmTree parent) : InstancedModTile($"{parent.Name}Top", $"{parent.Texture}Top") {
     public ModItem DropItem { get; protected set; }

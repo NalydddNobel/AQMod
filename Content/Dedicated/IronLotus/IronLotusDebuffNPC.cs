@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Dedicated.IronLotus;
+﻿namespace Aequu2.Content.Dedicated.IronLotus;
 
 public class IronLotusDebuffNPC : GlobalNPC {
     public bool hasDebuff;

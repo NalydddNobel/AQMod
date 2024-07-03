@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aequus.Core;
+namespace Aequu2.Core;
 
 public abstract class RequestHandler<T> : ModType {
     public bool Prepared { get; private set; }

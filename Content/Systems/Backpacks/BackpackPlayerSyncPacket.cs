@@ -2,7 +2,7 @@
 using Terraria.ModLoader.IO;
 using tModLoaderExtended.Networking;
 
-namespace Aequus.Content.Backpacks;
+namespace Aequu2.Content.Backpacks;
 
 public class BackpackPlayerSyncPacket : PacketHandler {
     /// <summary>Invokes a single item being sent from a backpack.</summary>

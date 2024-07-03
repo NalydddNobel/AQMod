@@ -1,13 +1,13 @@
-﻿using Aequus.DataSets;
-using Aequus.Old.Content.Items.Weapons.Ranged.DemonCrimsonGun;
+﻿using Aequu2.DataSets;
+using Aequu2.Old.Content.Items.Weapons.Ranged.DemonCrimsonGun;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Items.Weapons.Magic.DemonCrimsonRod;
+namespace Aequu2.Old.Content.Items.Weapons.Magic.DemonCrimsonRod;
 
 public class BombarderRodProj : ModProjectile {
-    public override string Texture => AequusTextures.Projectile(ProjectileID.Flamelash);
+    public override string Texture => Aequu2Textures.Projectile(ProjectileID.Flamelash);
 
     public override void SetStaticDefaults() {
         Main.projFrames[Type] = Main.projFrames[ProjectileID.Flamelash];
@@ -130,7 +130,7 @@ public class BombarderRodProj : ModProjectile {
         var textureFrame = Projectile.Frame();
         var textureOrigin = textureFrame.Size() / 2f;
 
-        var bloom = AequusTextures.Bloom;
+        var bloom = Aequu2Textures.Bloom;
         var bloomFrame = bloom.Value.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame);
         var bloomOrigin = bloomFrame.Size() / 2f;
 

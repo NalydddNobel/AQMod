@@ -1,9 +1,9 @@
-﻿using Aequus.DataSets.Json;
+﻿using Aequu2.DataSets.Json;
 using Newtonsoft.Json;
 using System.Reflection;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequus.DataSets.Structures;
+namespace Aequu2.DataSets.Structures;
 
 public abstract class DataSet : IModType, ILoad, ISetupContent, IPostSetupContent, IAddRecipes, IPostAddRecipes, IJsonHolder {
     private readonly BindingFlags _memberBindingFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;

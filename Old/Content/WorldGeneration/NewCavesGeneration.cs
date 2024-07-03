@@ -1,10 +1,10 @@
-﻿using Aequus.Content.Configuration;
-using Aequus.Core.Components;
+﻿using Aequu2.Content.Configuration;
+using Aequu2.Core.Components;
 using System;
 using Terraria.IO;
 using Terraria.WorldBuilding;
 
-namespace Aequus.Content.World.Generation;
+namespace Aequu2.Content.World.Generation;
 
 public class NewCavesGeneration : AGenStep {
     public override string InsertAfter => "Wavy Caves";

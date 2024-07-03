@@ -1,6 +1,6 @@
-﻿using Aequus.Content.Events.DemonSiege;
-using Aequus.Old.Content.Events.DemonSiege.Spawners;
-using Aequus.Old.Content.Events.DemonSiege.Tiles;
+﻿using Aequu2.Content.Events.DemonSiege;
+using Aequu2.Old.Content.Events.DemonSiege.Spawners;
+using Aequu2.Old.Content.Events.DemonSiege.Tiles;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +11,7 @@ using Terraria.Localization;
 using Terraria.ModLoader.IO;
 using tModLoaderExtended.Networking;
 
-namespace Aequus.Old.Content.Events.DemonSiege;
+namespace Aequu2.Old.Content.Events.DemonSiege;
 
 public class DemonSiegeSacrificeInfo {
     public int TileX { get; internal set; }
@@ -86,14 +86,14 @@ public class DemonSiegeSacrificeInfo {
             _playedSound = true;
             if (Main.netMode != NetmodeID.Server) {
                 if (player != 255) {
-                    string text = Language.GetTextValueWith("Mods.Aequus.Announcement.DemonSiege.GiveItem." + Main.rand.Next(8), new {
+                    string text = Language.GetTextValueWith("Mods.Aequu2.Announcement.DemonSiege.GiveItem." + Main.rand.Next(8), new {
                         Player = Main.player[player].name,
                         Item = Items[0].Name
                     });
                     // Runs on each individual client, not needing the server to send the message to everyone.
                     Main.NewText(text, DemonSiegeSystem.TextColor);
                 }
-                SoundEngine.PlaySound(AequusSounds.BeginDemonSiege, new Vector2(TileX * 16f + 24f, TileY * 16f));
+                SoundEngine.PlaySound(Aequu2Sounds.BeginDemonSiege, new Vector2(TileX * 16f + 24f, TileY * 16f));
             }
         }
 
@@ -147,7 +147,7 @@ public class DemonSiegeSacrificeInfo {
         }
 
         if (Main.netMode != NetmodeID.Server && player != 255) {
-            string text = Language.GetTextValueWith("Mods.Aequus.Announcement.DemonSiege.EventStart." + Main.rand.Next(8), new {
+            string text = Language.GetTextValueWith("Mods.Aequu2.Announcement.DemonSiege.EventStart." + Main.rand.Next(8), new {
                 Player = Main.player[player].name,
                 Item = Items[0].Name
             });
@@ -171,8 +171,8 @@ public class DemonSiegeSacrificeInfo {
         Vector2 itemSpawn = WorldCenter;
         itemSpawn.Y -= 20f;
         if (Main.netMode != NetmodeID.MultiplayerClient) {
-            var source = new EntitySource_TileBreak(TileX, TileY, "Aequus:GoreNest");
-            //AequusText.Broadcast("Should be spawning these items: " + AequusText.ItemText(Items[0].type), Color.Red);
+            var source = new EntitySource_TileBreak(TileX, TileY, "Aequu2:GoreNest");
+            //Aequu2Text.Broadcast("Should be spawning these items: " + Aequu2Text.ItemText(Items[0].type), Color.Red);
             foreach (var i in Items) {
                 AltarSacrifices.OriginalToConversion.TryGetValue(i.type, out var value);
                 if (i.type == value.NewItem) {
@@ -189,7 +189,7 @@ public class DemonSiegeSacrificeInfo {
             DemonSiegeSystem.SacrificeRemovalQueue.Add(new Point(TileX, TileY));
 
             // Mark this event as cleared, and initiate a Lantern Night tommorow night.
-            NPC.SetEventFlagCleared(ref AequusSystem.downedDemonSiege, -1);
+            NPC.SetEventFlagCleared(ref Aequu2System.downedDemonSiege, -1);
         }
         if (Main.netMode != NetmodeID.Server) {
             for (int i = 0; i < 40; i++) {
@@ -232,7 +232,7 @@ public class DemonSiegeSacrificeInfo {
             itemList += i.Name;
         }
         if (!clientOnly && !string.IsNullOrEmpty(itemList)) {
-            TextBroadcast.NewText("Mods.Aequus.Announcement.DemonSiege.Fail", DemonSiegeSystem.TextColor, itemList);
+            TextBroadcast.NewText("Mods.Aequu2.Announcement.DemonSiege.Fail", DemonSiegeSystem.TextColor, itemList);
         }
     }
     public void OnFail_EatItems(bool clientOnly) {
@@ -248,7 +248,7 @@ public class DemonSiegeSacrificeInfo {
             itemList += ItemTagHandler.GenerateTag(i);
         }
         if (!clientOnly && !string.IsNullOrEmpty(itemList)) {
-            TextBroadcast.NewText("Mods.Aequus.Announcement.DemonSiege.FailEat", new Color(255, 210, 25, 255), itemList);
+            TextBroadcast.NewText("Mods.Aequu2.Announcement.DemonSiege.FailEat", new Color(255, 210, 25, 255), itemList);
         }
     }
     public void SummonBoss1(bool voidRing) {

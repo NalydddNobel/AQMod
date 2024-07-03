@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using tModLoaderExtended.Networking;
 
-namespace Aequus.Content.Enemies.PollutedOcean.Scavenger.UI;
+namespace Aequu2.Content.Enemies.PollutedOcean.Scavenger.UI;
 
 public class ScavengerLootBagGrabPacket : PacketHandler {
     public void Send(int talkNPC, int player, int slot) {

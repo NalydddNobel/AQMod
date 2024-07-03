@@ -1,6 +1,6 @@
-﻿using Aequus.Core.CodeGeneration;
+﻿using Aequu2.Core.CodeGeneration;
 
-namespace Aequus.Content.Items.PermaPowerups.Shimmer;
+namespace Aequu2.Content.Items.PermaPowerups.Shimmer;
 
 [LegacyName("GalaxyCommission", "Moro", "GhostlyGrave")]
 [Gen.AequusPlayer_SavedField<bool>("usedCosmicChest")]
@@ -21,20 +21,20 @@ public class CosmicChest : ModItem {
     }
 
     public override bool? UseItem(Player player) {
-        var aequusPlayer = player.GetModPlayer<AequusPlayer>();
-        if (aequusPlayer.usedCosmicChest) {
+        var Aequu2Player = player.GetModPlayer<AequusPlayer>();
+        if (Aequu2Player.usedCosmicChest) {
             return false;
         }
 
-        aequusPlayer.usedCosmicChest = true;
+        Aequu2Player.usedCosmicChest = true;
         return true;
     }
 
     [Gen.AequusPlayer_PostUpdateEquips]
-    internal static void OnPostUpdateEquips(AequusPlayer aequusPlayer) {
-        if (aequusPlayer.usedCosmicChest) {
+    internal static void OnPostUpdateEquips(AequusPlayer Aequu2Player) {
+        if (Aequu2Player.usedCosmicChest) {
 #if !DEBUG
-            aequusPlayer.dropRolls += LuckIncrease;
+            Aequu2Player.dropRolls += LuckIncrease;
 #endif
         }
     }

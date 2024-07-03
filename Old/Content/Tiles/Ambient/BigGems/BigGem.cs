@@ -1,4 +1,4 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.ContentGeneration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using Terraria.Localization;
 using Terraria.ObjectData;
 using Terraria.Utilities;
 
-namespace Aequus.Old.Content.Tiles.Ambient.BigGems;
+namespace Aequu2.Old.Content.Tiles.Ambient.BigGems;
 
 [LegacyName("BigGemsTile")]
 public class BigGem : ModTile {
@@ -68,7 +68,7 @@ public class BigGem : ModTile {
             Mod.AddContent(gore);
             ModTypeLookup<ModItem>.RegisterLegacyNames(item, $"{name}Deposit");
 
-            Aequus.OnAddRecipes += () => {
+            Aequu2.OnAddRecipes += () => {
                 item.CreateRecipe()
                     .AddIngredient(vanillaGem, GEMS_NEEDED_FOR_RECIPE)
                     .AddTile(TileID.Solidifier)
@@ -182,7 +182,7 @@ public class BigGem : ModTile {
         //}
 
         if (tile.TileFrameX % 36 == 0 && tile.TileFrameY == 0) {
-            Texture2D bloom = AequusTextures.Bloom;
+            Texture2D bloom = Aequu2Textures.Bloom;
             Vector2 bloomOrigin = bloom.Size() / 2f;
             Color bloomColor = gem.GemColor with { A = 0 } * 0.5f * intensity;
             float scale = 0.66f;

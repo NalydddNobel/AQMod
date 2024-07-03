@@ -1,6 +1,6 @@
 ﻿using Terraria.Localization;
 
-namespace Aequus.Core.ContentGeneration;
+namespace Aequu2.Core.ContentGeneration;
 
 internal class InstancedSpawnNPCItem : InstancedModItem {
     protected readonly ModNPC _parent;

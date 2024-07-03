@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.Entities.Tiles;
+﻿namespace Aequu2.Core.Entities.Tiles;
 
 public enum TileAnchorDirection : byte {
     Invalid = 0,

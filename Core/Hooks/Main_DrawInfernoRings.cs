@@ -1,7 +1,7 @@
-﻿using Aequus.Core.Debug;
-using Aequus.Core.Graphics;
+﻿using Aequu2.Core.Debug;
+using Aequu2.Core.Graphics;
 
-namespace Aequus.Core.Hooks;
+namespace Aequu2.Core.Hooks;
 
 public partial class TerrariaHooks {
     private static void On_Main_DrawInfernoRings(On_Main.orig_DrawInfernoRings orig, Main self) {

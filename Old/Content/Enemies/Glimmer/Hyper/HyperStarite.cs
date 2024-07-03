@@ -1,16 +1,16 @@
-﻿using Aequus.Core.Entities.NPCs;
-using Aequus.Content.Dusts;
-using Aequus.Core.Components.NPCs;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.Core.Entities.NPCs;
-using Aequus.DataSets;
-using Aequus.Old.Content.Critters;
-using Aequus.Old.Content.Events.Glimmer;
-using Aequus.Old.Content.Items.Materials;
-using Aequus.Old.Content.Items.Potions.NeutronYogurt;
-using Aequus.Old.Content.StatusEffects;
-using Aequus.Old.Core;
+﻿using Aequu2.Core.Entities.NPCs;
+using Aequu2.Content.Dusts;
+using Aequu2.Core.Components.NPCs;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.Core.Entities.NPCs;
+using Aequu2.DataSets;
+using Aequu2.Old.Content.Critters;
+using Aequu2.Old.Content.Events.Glimmer;
+using Aequu2.Old.Content.Items.Materials;
+using Aequu2.Old.Content.Items.Potions.NeutronYogurt;
+using Aequu2.Old.Content.StatusEffects;
+using Aequu2.Old.Core;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
@@ -18,7 +18,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Utilities;
 
-namespace Aequus.Old.Content.Enemies.Glimmer.Hyper;
+namespace Aequu2.Old.Content.Enemies.Glimmer.Hyper;
 
 [BestiaryBiome<GlimmerZone>()]
 [AutoloadBanner]
@@ -131,7 +131,7 @@ public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
     }
 
     public override void AI() {
-        var aequus = NPC.GetGlobalNPC<AequusNPC>();
+        var Aequu2 = NPC.GetGlobalNPC<Aequu2NPC>();
         if (State == STATE_DEAD) {
             if (NPC.localAI[0] == 0) {
                 NPC.localAI[0] = Main.rand.Next(100);
@@ -364,7 +364,7 @@ public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
         float mult = 1f / NPCSets.TrailCacheLength[NPC.type];
         var armFrame = NPC.frame;
         var coreFrame = new Rectangle(NPC.frame.X, NPC.frame.Y + NPC.frame.Height * 2, NPC.frame.Width, NPC.frame.Height);
-        var bloom = AequusTextures.Bloom.Value;
+        var bloom = Aequu2Textures.Bloom.Value;
         var bloomFrame = new Rectangle(0, 0, bloom.Width, bloom.Height);
         var bloomOrigin = bloomFrame.Size() / 2f;
 
@@ -456,7 +456,7 @@ public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
         float scale = (float)Math.Min(NPC.scale * (-NPC.ai[2] / 60f), 1f) * 2f;
         var shineColor = GlimmerColors.Pink * scale * NPC.Opacity;
 
-        Texture2D lightRay = AequusTextures.LightRayFlat;
+        Texture2D lightRay = Aequu2Textures.LightRayFlat;
         var lightRayOrigin = lightRay.Size() / 2f;
 
         FastRandom r = new FastRandom(NPC.whoAmI).WithModifier((ulong)NPC.whoAmI);
@@ -472,7 +472,7 @@ public class HyperStarite : ModNPC, ITrackTimeBetweenHits {
             Main.spriteBatch.Draw(lightRay, drawPos, null, shineColor * 0.5f * scale * NPC.Opacity, f, lightRayOrigin, scale * rayScale * 2f, SpriteEffects.None, 0f);
         }
 
-        var bloom = AequusTextures.Bloom;
+        var bloom = Aequu2Textures.Bloom;
         var bloomOrigin = bloom.Size() / 2f;
         scale *= 0.7f;
         Main.spriteBatch.Draw(bloom, drawPos, null, shineColor * scale * NPC.Opacity, 0f, bloomOrigin, scale, SpriteEffects.None, 0f);

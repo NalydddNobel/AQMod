@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using tModLoaderExtended.Networking;
 
-namespace Aequus.Old.Content.TownNPCs.PhysicistNPC.Analysis;
+namespace Aequu2.Old.Content.TownNPCs.PhysicistNPC.Analysis;
 
 public class AnalysisItemPickupPacket : PacketHandler {
     public void Send(Player player, Item item) {

@@ -1,13 +1,13 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Projectiles;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Projectiles;
 using Terraria.DataStructures;
 
-namespace Aequus.Content.Fishing.FishingPoles;
+namespace Aequu2.Content.Fishing.FishingPoles;
 
 public class SteampunkerFishingPole : UnifiedFishingPole {
     public override bool BobberPreAI(Projectile bobber) {
-        if ((int)bobber.ai[0] == 0 && bobber.ai[1] < 0f && bobber.ai[1] > -30f && bobber.TryGetGlobalProjectile<ProjectileItemData>(out var aequusProjectile)) {
-            aequusProjectile.ItemData = 1;
+        if ((int)bobber.ai[0] == 0 && bobber.ai[1] < 0f && bobber.ai[1] > -30f && bobber.TryGetGlobalProjectile<ProjectileItemData>(out var Aequu2Projectile)) {
+            Aequu2Projectile.ItemData = 1;
             Main.player[bobber.owner].GetModPlayer<AequusPlayer>().forceUseItem = true;
         }
 
@@ -15,7 +15,7 @@ public class SteampunkerFishingPole : UnifiedFishingPole {
     }
 
     public override void BobberOnKill(Projectile bobber, int timeLeft) {
-        if (bobber.TryGetGlobalProjectile<ProjectileItemData>(out var aequusProjectile) && aequusProjectile.ItemData == 1) {
+        if (bobber.TryGetGlobalProjectile<ProjectileItemData>(out var Aequu2Projectile) && Aequu2Projectile.ItemData == 1) {
             Main.player[bobber.owner].GetModPlayer<AequusPlayer>().forceUseItem = true;
         }
     }

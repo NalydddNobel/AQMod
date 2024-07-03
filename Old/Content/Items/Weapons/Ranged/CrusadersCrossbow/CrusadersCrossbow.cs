@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Items.Weapons.Ranged.CrusadersCrossbow;
+﻿namespace Aequu2.Old.Content.Items.Weapons.Ranged.CrusadersCrossbow;
 
 public class CrusadersCrossbow : ModItem {
     public override void SetDefaults() {

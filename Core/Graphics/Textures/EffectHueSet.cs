@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.Graphics.Textures;
+﻿namespace Aequu2.Core.Graphics.Textures;
 
 public struct EffectHueSet(float Hue) : IColorEffect {
     Color IColorEffect.GetColor(in ColorEffectContext context) {

@@ -1,9 +1,9 @@
-﻿using Aequus.Content.Backpacks;
+﻿using Aequu2.Content.Backpacks;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.UI;
 
-namespace Aequus.Core.Hooks;
+namespace Aequu2.Core.Hooks;
 
 public partial class TerrariaHooks {
     /// <summary>Allows backpacks to quick stack to nearby chests.</summary>

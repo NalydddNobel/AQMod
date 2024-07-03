@@ -1,10 +1,10 @@
-﻿using Aequus.DataSets.Structures.DropRulesItem;
+﻿using Aequu2.DataSets.Structures.DropRulesItem;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.GameContent.ItemDropRules;
 using tModLoaderExtended.Terraria;
 
-namespace Aequus.DataSets.Structures.DropRulesChest;
+namespace Aequu2.DataSets.Structures.DropRulesChest;
 
 /// <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
 public record class IndexedChestRule(IChestLootRule[] Options, params Condition[] OptionalConditions)

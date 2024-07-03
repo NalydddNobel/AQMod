@@ -2,7 +2,7 @@
 using Terraria.Localization;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Tiles.Statues;
+namespace Aequu2.Content.Tiles.Statues;
 
 public abstract class StatueTileTemplate : ModTile {
     protected virtual void SafeSetStaticDefaults() { }

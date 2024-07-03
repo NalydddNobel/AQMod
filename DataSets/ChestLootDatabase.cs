@@ -1,12 +1,12 @@
-﻿using Aequus.DataSets.Structures.DropRulesChest;
-using Aequus.DataSets.Structures.Enums;
+﻿using Aequu2.DataSets.Structures.DropRulesChest;
+using Aequu2.DataSets.Structures.Enums;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.DataSets;
+namespace Aequu2.DataSets;
 
-/// <summary>Replica of <see cref="ItemDropDatabase"/>/<see cref="ItemDropResolver"/>, except for Aequus' chest loot.</summary>
+/// <summary>Replica of <see cref="ItemDropDatabase"/>/<see cref="ItemDropResolver"/>, except for Aequu2' chest loot.</summary>
 public class ChestLootDatabase : ILoad {
     public static ChestLootDatabase Instance { get; private set; }
 

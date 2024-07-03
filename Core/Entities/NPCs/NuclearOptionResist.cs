@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.Entities.NPCs;
+﻿namespace Aequu2.Core.Entities.NPCs;
 
 internal class NuclearOptionResist : GlobalNPC {
     public override bool IsLoadingEnabled(Mod mod) {

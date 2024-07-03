@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Entities.NPCs;
-using Aequus.Core.Components.Buffs;
-using Aequus.DataSets;
+﻿using Aequu2.Core.Entities.NPCs;
+using Aequu2.Core.Components.Buffs;
+using Aequu2.DataSets;
 using Terraria.Audio;
 
-namespace Aequus.Content.Items.Weapons.Classless.StunGun;
+namespace Aequu2.Content.Items.Weapons.Classless.StunGun;
 
 public class StunGunDebuff : ModBuff, IOnAddBuff/*, IAddRecipeGroups*/ {
     public override string Texture => AequusTextures.TemporaryDebuffIcon;
@@ -69,17 +69,17 @@ public class StunGunDebuff : ModBuff, IOnAddBuff/*, IAddRecipeGroups*/ {
     }
 
     public override void Update(NPC npc, ref int buffIndex) {
-        if (!npc.TryGetGlobalNPC<AequusNPC>(out var aequusNPC)) {
+        if (!npc.TryGetGlobalNPC<Aequu2NPC>(out var Aequu2NPC)) {
             return;
         }
 
-        aequusNPC.stunGunVisual = true;
+        Aequu2NPC.stunGunVisual = true;
         if (IsStunnable(npc)) {
-            aequusNPC.stunGun = true;
+            Aequu2NPC.stunGun = true;
         }
         else {
-            aequusNPC.statSpeedX *= 0.5f;
-            aequusNPC.statSpeedY *= 0.5f;
+            Aequu2NPC.statSpeedX *= 0.5f;
+            Aequu2NPC.statSpeedY *= 0.5f;
         }
         //npc.netOffset.X = Main.rand.NextFloat(-2f, 2f);
 

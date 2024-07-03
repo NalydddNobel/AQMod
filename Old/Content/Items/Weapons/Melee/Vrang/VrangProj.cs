@@ -1,4 +1,4 @@
-﻿using Aequus.DataSets;
+﻿using Aequu2.DataSets;
 using ReLogic.Content;
 using System;
 using System.IO;
@@ -6,7 +6,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Items.Weapons.Melee.Vrang;
+namespace Aequu2.Old.Content.Items.Weapons.Melee.Vrang;
 
 public class VrangProj : ModProjectile {
     public static Asset<Texture2D> HotTexture { get; private set; }
@@ -49,7 +49,7 @@ public class VrangProj : ModProjectile {
             Projectile.ai[0] = 1f;
 
             OnSpawn_DetermineTemperatureValues(Main.player[Projectile.owner], out sbyte leftTemperature, out sbyte rightTemperature);
-            //if (Main.player[Projectile.owner].Aequus().itemCombo > 0) {
+            //if (Main.player[Projectile.owner].Aequu2().itemCombo > 0) {
             //    Utils.Swap(ref leftTemperature, ref rightTemperature);
             //}
             float rotationAmt = MathHelper.PiOver4 * 3f;
@@ -108,15 +108,15 @@ public class VrangProj : ModProjectile {
     public override void AI() {
         if (temperature < 0) {
             Projectile.coldDamage = true;
-            //Projectile.Aequus().heatDamage = false;
+            //Projectile.Aequu2().heatDamage = false;
         }
         else if (temperature > 0) {
             Projectile.coldDamage = false;
-            //Projectile.Aequus().heatDamage = true;
+            //Projectile.Aequu2().heatDamage = true;
         }
         else {
             Projectile.coldDamage = false;
-            //Projectile.Aequus().heatDamage = false;
+            //Projectile.Aequu2().heatDamage = false;
         }
         if ((int)Projectile.ai[0] == -1) {
             Projectile.alpha += 3;

@@ -1,9 +1,9 @@
-﻿using Aequus.DataSets;
-using Aequus.DataSets.Structures.DropRulesChest;
-using Aequus.DataSets.Structures.Enums;
+﻿using Aequu2.DataSets;
+using Aequu2.DataSets.Structures.DropRulesChest;
+using Aequu2.DataSets.Structures.Enums;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Chests;
+namespace Aequu2.Content.Chests;
 
 public class ChestLootSystem : ModSystem {
     private static bool CanAddLoot(Chest chest) {
@@ -12,7 +12,7 @@ public class ChestLootSystem : ModSystem {
                 continue;
             }
 
-            // Prevent Aequus from adjusting chest loot at all if it contains an important item
+            // Prevent Aequu2 from adjusting chest loot at all if it contains an important item
             if (ItemDataSet.ImportantItem.Contains(chest.item[m].type)) {
                 return false;
             }

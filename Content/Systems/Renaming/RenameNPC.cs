@@ -1,9 +1,9 @@
-﻿using Aequus.DataSets;
+﻿using Aequu2.DataSets;
 using System.Diagnostics;
 using System.IO;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Systems.Renaming;
+namespace Aequu2.Content.Systems.Renaming;
 
 [LegacyName("NPCNameTag")]
 [LegacyName("NameTagGlobalNPC")]

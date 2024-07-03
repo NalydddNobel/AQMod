@@ -1,7 +1,7 @@
-﻿using Aequus.Old.Content.Items.Materials.Energies;
+﻿using Aequu2.Old.Content.Items.Materials.Energies;
 using Terraria.DataStructures;
 
-namespace Aequus.Old.Content.Items.Weapons.Melee.Phasebrink;
+namespace Aequu2.Old.Content.Items.Weapons.Melee.Phasebrink;
 
 [LegacyName("PhaseDisc")]
 public class Phasebrink : ModItem {

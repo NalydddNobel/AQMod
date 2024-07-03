@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aequus.Old.Content.Necromancy.Aggression;
+namespace Aequu2.Old.Content.Necromancy.Aggression;
 
 public class AggressionType : ILoad {
     public static Dictionary<string, IEnemyAggressor> AggressorFromName { get; private set; }

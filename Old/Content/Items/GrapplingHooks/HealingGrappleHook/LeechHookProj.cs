@@ -1,8 +1,8 @@
-﻿using Aequus.Old.Content.Items.GrapplingHooks.EnemyGrappleHook;
+﻿using Aequu2.Old.Content.Items.GrapplingHooks.EnemyGrappleHook;
 using System;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Items.GrapplingHooks.HealingGrappleHook;
+namespace Aequu2.Old.Content.Items.GrapplingHooks.HealingGrappleHook;
 
 public class LeechHookProj : MeathookProj {
     public override void SetStaticDefaults() {
@@ -101,7 +101,7 @@ public class LeechHookProj : MeathookProj {
         float playerLength = (player.Center - Projectile.Center).Length();
         var texture = TextureAssets.Projectile[Type].Value;
         var drawPosition = Projectile.Center - Main.screenPosition;
-        DrawChain(AequusTextures.LeechHookProj_Chain, Projectile.Center, player.Center);
+        DrawChain(Aequu2Textures.LeechHookProj_Chain, Projectile.Center, player.Center);
         Main.EntitySpriteDraw(texture, drawPosition, null, lightColor, Projectile.rotation, texture.Size() / 2f, 1f, SpriteEffects.None, 0);
         return false;
     }

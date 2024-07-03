@@ -1,8 +1,8 @@
-﻿using Aequus.Content.Items.Potions.Healing.Restoration;
-using Aequus.Core.CrossMod;
-using Aequus.Core.Entities.Items.Components;
+﻿using Aequu2.Content.Items.Potions.Healing.Restoration;
+using Aequu2.Core.CrossMod;
+using Aequu2.Core.Entities.Items.Components;
 
-namespace Aequus.Content.CrossMod.CalamityModSupport.Items;
+namespace Aequu2.Content.CrossMod.CalamityModSupport.Items;
 
 public class SupremeRestoration : CrossModItem, IApplyPotionDelay {
     public bool ApplyPotionDelay(Player player) {

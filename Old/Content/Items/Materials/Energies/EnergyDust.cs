@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Old.Content.Items.Materials.Energies;
+namespace Aequu2.Old.Content.Items.Materials.Energies;
 
 public class EnergyDust : ModDust {
     public override void OnSpawn(Dust dust) {

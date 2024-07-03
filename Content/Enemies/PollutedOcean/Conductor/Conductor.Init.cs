@@ -1,12 +1,12 @@
-﻿using Aequus.Content.Items.Materials;
-using Aequus.Content.Items.Tools.Keys;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.DataSets;
+﻿using Aequu2.Content.Items.Materials;
+using Aequu2.Content.Items.Tools.Keys;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.DataSets;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequus.Content.Enemies.PollutedOcean.Conductor;
+namespace Aequu2.Content.Enemies.PollutedOcean.Conductor;
 
 public partial class Conductor : IPostPopulateItemDropDatabase {
     public override void SetStaticDefaults() {

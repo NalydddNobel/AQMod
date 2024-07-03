@@ -1,7 +1,7 @@
 ﻿using System;
 using Terraria.Audio;
 
-namespace Aequus.Old.Content.DronePylons.NPCs;
+namespace Aequu2.Old.Content.DronePylons.NPCs;
 
 public class GunnerDrone : TownDroneBase {
     public override DroneSlot Slot => ModContent.GetInstance<GunnerDroneSlot>();
@@ -146,16 +146,16 @@ public class GunnerDrone : TownDroneBase {
         if (npcTarget > -1) {
             turretRotation = (Main.npc[npcTarget].Center - NPC.Center).ToRotation() + MathHelper.PiOver2;
         }
-        var extra = AequusTextures.GunnerDrone_Extras;
+        var extra = Aequu2Textures.GunnerDrone_Extras;
         var clr = NPC.GetNPCColorTintedByBuffs(drawColor);
         spriteBatch.Draw(extra, NPC.position + off - screenPos, null, clr,
             0f, extra.Size() / 2f, NPC.scale, NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
-        spriteBatch.Draw(AequusTextures.GunnerDrone_Extras_Glow, NPC.position + off - screenPos, null, color * SpawnInOpacity,
+        spriteBatch.Draw(Aequu2Textures.GunnerDrone_Extras_Glow, NPC.position + off - screenPos, null, color * SpawnInOpacity,
             0f, extra.Size() / 2f, NPC.scale, NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
 
         spriteBatch.Draw(texture, NPC.position + off - screenPos, frame, clr,
             NPC.rotation, origin, NPC.scale, NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
-        spriteBatch.Draw(AequusTextures.GunnerDrone_Glow, NPC.position + off - screenPos, frame, color * SpawnInOpacity,
+        spriteBatch.Draw(Aequu2Textures.GunnerDrone_Glow, NPC.position + off - screenPos, frame, color * SpawnInOpacity,
             NPC.rotation, origin, NPC.scale, NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
         return false;
     }

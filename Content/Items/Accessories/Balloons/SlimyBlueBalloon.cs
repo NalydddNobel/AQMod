@@ -1,6 +1,6 @@
-﻿using Aequus.Core;
+﻿using Aequu2.Core;
 
-namespace Aequus.Content.Items.Accessories.Balloons;
+namespace Aequu2.Content.Items.Accessories.Balloons;
 
 [AutoloadEquip(EquipType.Balloon)]
 public class SlimyBlueBalloon : ModItem {

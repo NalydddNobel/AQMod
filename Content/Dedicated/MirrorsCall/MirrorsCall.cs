@@ -1,7 +1,7 @@
-﻿using Aequus.Core.Entities.Items.Dedications;
+﻿using Aequu2.Core.Entities.Items.Dedications;
 using Terraria.DataStructures;
 
-namespace Aequus.Content.Dedicated.MirrorsCall;
+namespace Aequu2.Content.Dedicated.MirrorsCall;
 
 public class MirrorsCall : ModItem {
     public override void Load() {

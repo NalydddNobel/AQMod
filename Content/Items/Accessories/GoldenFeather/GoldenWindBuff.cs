@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Items.Accessories.GoldenFeather;
+﻿namespace Aequu2.Content.Items.Accessories.GoldenFeather;
 
 public class GoldenWindBuff : ModBuff {
     public override void SetStaticDefaults() {

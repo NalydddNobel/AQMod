@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Core.Audio;
+namespace Aequu2.Core.Audio;
 
 public class EchoEffect(int DelayInMilliseconds, float DecayFactor) : IAudioEffect {
     private readonly int delayMilliseconds = DelayInMilliseconds;

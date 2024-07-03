@@ -1,6 +1,6 @@
 ﻿using Terraria.UI;
 
-namespace Aequus.Core.UI;
+namespace Aequu2.Core.UI;
 
 public interface IUserInterfaceLayer {
     bool IsActive { get; set; }

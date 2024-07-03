@@ -2,7 +2,7 @@
 using MonoMod.Cil;
 using System;
 
-namespace Aequus.Core.Utilities;
+namespace Aequu2.Core.Utilities;
 
 public static class ExtendIL {
     public static bool MatchPropertySetter(this Instruction instr, Type type, string propertyName) {

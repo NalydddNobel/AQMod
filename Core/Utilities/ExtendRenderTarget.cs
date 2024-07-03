@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.Utilities;
+﻿namespace Aequu2.Core.Utilities;
 
 public static class ExtendRenderTarget {
     public static void CheckRenderTarget2D(ref RenderTarget2D renderTarget, int wantedWidth, int wantedHeight, RenderTargetUsage usage = RenderTargetUsage.DiscardContents) {

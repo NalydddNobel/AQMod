@@ -1,10 +1,10 @@
-﻿using Aequus.Old.Content.Necromancy.Networking;
-using Aequus.Old.Content.Necromancy.Rendering;
+﻿using Aequu2.Old.Content.Necromancy.Networking;
+using Aequu2.Old.Content.Necromancy.Rendering;
 
-namespace Aequus.Old.Content.Necromancy.Sceptres.Evil;
+namespace Aequu2.Old.Content.Necromancy.Sceptres.Evil;
 
 public class NecromancyDebuff : ModBuff {
-    public override string Texture => AequusTextures.TemporaryDebuffIcon;
+    public override string Texture => Aequu2Textures.TemporaryDebuffIcon;
 
     public virtual float Tier => 1f;
     public virtual int DamageSet => 20;

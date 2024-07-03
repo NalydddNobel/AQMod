@@ -1,7 +1,7 @@
 ﻿using Terraria.Chat;
 using Terraria.Localization;
 
-namespace Aequus.Core.Utilities;
+namespace Aequu2.Core.Utilities;
 
 public class TextBroadcast {
     /// <summary>

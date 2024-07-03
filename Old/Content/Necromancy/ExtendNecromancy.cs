@@ -1,6 +1,6 @@
-﻿using Aequus.Core;
+﻿using Aequu2.Core;
 
-namespace Aequus.Old.Content.Necromancy;
+namespace Aequu2.Old.Content.Necromancy;
 public static class ExtendNecromancy {
     public static void DefaultToNecromancy(this Item item, int timeBetweenShots) {
         item.useTime = timeBetweenShots;

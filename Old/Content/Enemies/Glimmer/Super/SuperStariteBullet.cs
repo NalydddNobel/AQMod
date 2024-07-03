@@ -1,11 +1,11 @@
-﻿using Aequus.Content.Dusts;
-using Aequus.DataSets;
-using Aequus.Old.Content.Events.Glimmer;
+﻿using Aequu2.Content.Dusts;
+using Aequu2.DataSets;
+using Aequu2.Old.Content.Events.Glimmer;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Enemies.Glimmer.Super;
+namespace Aequu2.Old.Content.Enemies.Glimmer.Super;
 
 public class SuperStariteBullet : ModProjectile {
     public override void SetStaticDefaults() {
@@ -65,7 +65,7 @@ public class SuperStariteBullet : ModProjectile {
         Main.spriteBatch.Draw(texture, Projectile.position + offset, frame, color, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
         Main.spriteBatch.Draw(texture, Projectile.position + offset, bloomFrame, color * 0.5f, Projectile.rotation, origin, Projectile.scale + 0.5f, SpriteEffects.None, 0f);
 
-        var bloom = AequusTextures.Bloom;
+        var bloom = Aequu2Textures.Bloom;
         Main.spriteBatch.Draw(bloom, Projectile.position + offset, null, bloomColor, Projectile.rotation, bloom.Size() / 2f, Projectile.scale * 0.6f, SpriteEffects.None, 0f);
         return false;
     }

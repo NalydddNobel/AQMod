@@ -8,7 +8,7 @@ using System.Linq;
 namespace SourceGenerators;
 
 public static class Utilities {
-    public const string Parent = "Aequus";
+    public const string Parent = "Aequu2";
     public const string ParentS = $"{Parent}/";
     public const string ParentD = $"{Parent}.";
     public const string TabForward = "    ";
@@ -20,7 +20,7 @@ public static class Utilities {
         }
         return result;
     }
-    
+
     public static IEnumerable<(string, string)> GetArguments(this MethodDeclarationSyntax method) {
         return method.ParameterList.Parameters.Select(parameter => {
             (string type, string name) = (parameter.Type.GetText().ToString().Trim(), parameter.Identifier.ToString().Trim());
@@ -79,7 +79,7 @@ public static class Utilities {
             _ => "Unresolved",
         };
 
-        static string ResolveQualifiedName(QualifiedNameSyntax qualifiedNameSyntax) 
+        static string ResolveQualifiedName(QualifiedNameSyntax qualifiedNameSyntax)
             => $"{ConvertNameSyntax(qualifiedNameSyntax.Left)}.{ConvertNameSyntax(qualifiedNameSyntax.Right)}";
     }
 
@@ -88,7 +88,7 @@ public static class Utilities {
         var fileList = new List<T>();
         foreach (var file in context.AdditionalFiles.Where(f => f.Path.EndsWith(fileType))) {
             var safePath = file.Path.Replace('\\', '/');
-            int index = safePath.LastIndexOf("Aequus/") + 7;
+            int index = safePath.LastIndexOf(ParentS) + 7;
             safePath = safePath.Substring(index, safePath.Length - fileType.Length - index);
 
             fileList.Add(initializer(safePath));

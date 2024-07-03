@@ -3,10 +3,10 @@ using NVorbis;
 using System.IO;
 using Terraria.ModLoader.Assets;
 
-namespace Aequus.Core.Audio;
+namespace Aequu2.Core.Audio;
 
 public class RawSoundReader {
-    private static Mod Mod => Aequus.Instance;
+    private static Mod Mod => Aequu2.Instance;
 
     public static void ReadOgg(string path, out float[] buffer, out long totalSamples, out int sampleRate, out AudioChannels channels) {
         Stream stream = Mod.GetFileStream(path, newFileStream: true);

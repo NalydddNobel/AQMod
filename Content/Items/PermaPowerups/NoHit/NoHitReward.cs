@@ -1,10 +1,10 @@
-﻿using Aequus.Core.CodeGeneration;
-using Aequus.Core.Entities.Items.DropRules;
+﻿using Aequu2.Core.CodeGeneration;
+using Aequu2.Core.Entities.Items.DropRules;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Content.Items.PermaPowerups.NoHit;
+namespace Aequu2.Content.Items.PermaPowerups.NoHit;
 
 [LegacyName("VictorsReward")]
 [Gen.AequusPlayer_SavedField<bool>("usedMaxHPRespawnReward")]
@@ -34,11 +34,11 @@ public class NoHitReward : ModItem {
     }
 
     public override bool? UseItem(Player player) {
-        AequusPlayer aequusPlayer = player.GetModPlayer<AequusPlayer>();
-        if (aequusPlayer.usedMaxHPRespawnReward) {
+        AequusPlayer Aequu2Player = player.GetModPlayer<AequusPlayer>();
+        if (Aequu2Player.usedMaxHPRespawnReward) {
             return false;
         }
-        aequusPlayer.usedMaxHPRespawnReward = true;
+        Aequu2Player.usedMaxHPRespawnReward = true;
         return true;
     }
 
@@ -196,8 +196,8 @@ public class NoHitReward : ModItem {
     }
 
     [Gen.AequusPlayer_OnRespawn]
-    internal static void DoPermanentMaxHPRespawn(Player player, AequusPlayer aequusPlayer) {
-        if (aequusPlayer.usedMaxHPRespawnReward) {
+    internal static void DoPermanentMaxHPRespawn(Player player, AequusPlayer Aequu2Player) {
+        if (Aequu2Player.usedMaxHPRespawnReward) {
             player.statLife = Math.Max(player.statLife, player.statLifeMax2);
         }
     }

@@ -1,12 +1,12 @@
-﻿using Aequus.Core.Hooks;
-using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.Hooks;
+using Aequu2.Core.ContentGeneration;
 using System.Collections.Generic;
 using Terraria.GameContent.Metadata;
 using Terraria.ObjectData;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequus.Old.Content.Tiles.Herbs;
+namespace Aequu2.Old.Content.Tiles.Herbs;
 
 public abstract class ModHerb : ModTile, IAddRecipeGroups {
     public const int STAGE_IMMATURE = 0;
@@ -131,7 +131,7 @@ public abstract class ModHerb : ModTile, IAddRecipeGroups {
 
         SafeSetStaticDefaults();
 
-        // Aequus' planter boxes will automatically detect that this anchors to TileID.PlanterBox
+        // Aequu2' planter boxes will automatically detect that this anchors to TileID.PlanterBox
         // and add our planter box to this array accordingly.
         ExtendArray.AddRangeSafe(TileObjectData.newTile.AnchorAlternateTiles, new int[] { TileID.ClayPot, TileID.PlanterBox });
 

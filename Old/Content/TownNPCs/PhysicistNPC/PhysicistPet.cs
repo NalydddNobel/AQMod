@@ -1,7 +1,7 @@
-﻿using Aequus.Content.Systems.Renaming;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.DataSets;
+﻿using Aequu2.Content.Systems.Renaming;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.DataSets;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +13,7 @@ using Terraria.Localization;
 using Terraria.ModLoader.IO;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequus.Old.Content.TownNPCs.PhysicistNPC;
+namespace Aequu2.Old.Content.TownNPCs.PhysicistNPC;
 
 public class PhysicistPet : ModNPC, IAddRecipes {
     public int Owner { get => (int)NPC.ai[0]; set => NPC.ai[0] = value; }
@@ -62,7 +62,7 @@ public class PhysicistPet : ModNPC, IAddRecipes {
     }
 
     public override void Load() {
-        Mod.AddContent(new InstancedNPCEmote(this, EmoteID.Category.Town, () => AequusSystem.downedUltraStarite || AequusSystem.downedOmegaStarite));
+        Mod.AddContent(new InstancedNPCEmote(this, EmoteID.Category.Town, () => Aequu2System.downedUltraStarite || Aequu2System.downedOmegaStarite));
     }
 
     public override void SetStaticDefaults() {
@@ -137,7 +137,7 @@ public class PhysicistPet : ModNPC, IAddRecipes {
             return;
         }
 
-        SoundEngine.PlaySound(AequusSounds.ZumboPettingSqueak with { Volume = 0.5f, });
+        SoundEngine.PlaySound(Aequu2Sounds.ZumboPettingSqueak with { Volume = 0.5f, });
     }
 
     public override string GetChat() {
@@ -266,7 +266,7 @@ public class PhysicistPet : ModNPC, IAddRecipes {
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
         var texture = TextureAssets.Npc[Type].Value;
-        var glowTexture = AequusTextures.PhysicistPet_Glow.Value;
+        var glowTexture = Aequu2Textures.PhysicistPet_Glow.Value;
         var frame = NPC.frame;
         float opacity = 1f;
         bool shimmer = NPC.IsShimmerVariant;
@@ -277,8 +277,8 @@ public class PhysicistPet : ModNPC, IAddRecipes {
         }
 
         if (shimmer) {
-            texture = AequusTextures.PhysicistPet_Shimmer.Value;
-            glowTexture = AequusTextures.PhysicistPet_Shimmer_Glow.Value;
+            texture = Aequu2Textures.PhysicistPet_Shimmer.Value;
+            glowTexture = Aequu2Textures.PhysicistPet_Shimmer_Glow.Value;
             int frameY = frame.Y / frame.Height;
             frame = texture.Frame(verticalFrames: Main.npcFrameCount[Type], frameY: Math.Clamp(frameY, 0, Main.npcFrameCount[Type] - 1));
         }

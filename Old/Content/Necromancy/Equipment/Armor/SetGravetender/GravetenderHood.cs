@@ -1,14 +1,14 @@
-﻿using Aequus.Core.CodeGeneration;
-using Aequus.Core.Structures;
-using Aequus.DataSets;
+﻿using Aequu2.Core.CodeGeneration;
+using Aequu2.Core.Structures;
+using Aequu2.DataSets;
 using System.Linq;
 using Terraria.Localization;
 
-namespace Aequus.Old.Content.Necromancy.Equipment.Armor.SetGravetender;
+namespace Aequu2.Old.Content.Necromancy.Equipment.Armor.SetGravetender;
 
 [LegacyName("NecromancerHood", "SeraphimHood")]
 [AutoloadEquip(EquipType.Head)]
-[Gen.AequusPlayer_ResetField<NPCAnchor>("gravetenderGhost")]
+[Gen.Aequu2Player_ResetField<NPCAnchor>("gravetenderGhost")]
 public class GravetenderHood : ModItem {
     public static float SummonDamageIncrease { get; set; } = 0.1f;
 
@@ -35,7 +35,7 @@ public class GravetenderHood : ModItem {
         if (player.ownedProjectileCounts[wispMinion] == 0 && Main.myPlayer == player.whoAmI) {
             Projectile.NewProjectile(player.GetSource_Accessory(Item), player.Center, player.velocity, wispMinion, 0, 0f, player.whoAmI);
         }
-        var aequus = player.GetModPlayer<AequusPlayer>();
+        var Aequu2 = player.GetModPlayer<Aequu2Player>();
 
         int closestNPC = -1;
         float closestDistance = float.MaxValue;
@@ -49,7 +49,7 @@ public class GravetenderHood : ModItem {
             }
         }
 
-        aequus.gravetenderGhost = closestNPC;
+        Aequu2.gravetenderGhost = closestNPC;
     }
 
     public override void UpdateEquip(Player player) {

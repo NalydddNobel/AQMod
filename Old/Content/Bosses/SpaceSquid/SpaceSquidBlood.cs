@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Old.Content.Bosses.SpaceSquid;
+namespace Aequu2.Old.Content.Bosses.SpaceSquid;
 
 public class SpaceSquidBlood : ModDust {
     public override void OnSpawn(Dust dust) {

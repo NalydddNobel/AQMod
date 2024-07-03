@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Input;
 
-namespace Aequus.Core.Debug.CheatCodes;
+namespace Aequu2.Core.Debug.CheatCodes;
 
 internal class ElementVisibility() : CheatCode<MultiStateProvider>(
     Params.DebugOnly | Params.SaveAndLoad,

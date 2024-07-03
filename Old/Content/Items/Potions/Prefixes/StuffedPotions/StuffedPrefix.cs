@@ -1,7 +1,7 @@
-﻿using Aequus.DataSets;
+﻿using Aequu2.DataSets;
 using System.Collections.Generic;
 
-namespace Aequus.Old.Content.Items.Potions.Prefixes.StuffedPotions;
+namespace Aequu2.Old.Content.Items.Potions.Prefixes.StuffedPotions;
 
 [LegacyName("DoubledTimePrefix")]
 public class StuffedPrefix : PotionPrefix {

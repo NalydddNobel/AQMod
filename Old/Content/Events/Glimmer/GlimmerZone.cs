@@ -1,13 +1,13 @@
-﻿using Aequus.Content.Items.Accessories.EventPrevention;
-using Aequus.Old.Common.EventBars;
-using Aequus.Old.Content.Bosses.UltraStarite;
-using Aequus.Old.Content.Critters;
-using Aequus.Old.Content.Enemies.Glimmer.Hyper;
-using Aequus.Old.Content.Enemies.Glimmer.Proto;
-using Aequus.Old.Content.Enemies.Glimmer.Super;
+﻿using Aequu2.Content.Items.Accessories.EventPrevention;
+using Aequu2.Old.Common.EventBars;
+using Aequu2.Old.Content.Bosses.UltraStarite;
+using Aequu2.Old.Content.Critters;
+using Aequu2.Old.Content.Enemies.Glimmer.Hyper;
+using Aequu2.Old.Content.Enemies.Glimmer.Proto;
+using Aequu2.Old.Content.Enemies.Glimmer.Super;
 using System.Collections.Generic;
 
-namespace Aequus.Old.Content.Events.Glimmer;
+namespace Aequu2.Old.Content.Events.Glimmer;
 
 public class GlimmerZone : ModBiome {
     public static int MaxTiles => (int)(Main.maxTilesX * 0.4f);
@@ -29,18 +29,18 @@ public class GlimmerZone : ModBiome {
 
     public override SceneEffectPriority Priority => SceneEffectPriority.Event;
 
-    public override string BestiaryIcon => AequusTextures.GlimmerBestiaryIcon.Path;
+    public override string BestiaryIcon => Aequu2Textures.GlimmerBestiaryIcon.Path;
 
-    public override string BackgroundPath => AequusTextures.GlimmerMapBackground.Path;
+    public override string BackgroundPath => Aequu2Textures.GlimmerMapBackground.Path;
     public override string MapBackground => BackgroundPath;
 
-    public override int Music => MusicLoader.GetMusicSlot("AequusMusic/Assets/Music/Glimmer");
+    public override int Music => MusicLoader.GetMusicSlot("Aequu2Music/Assets/Music/Glimmer");
 
     public override void Load() {
         if (!Main.dedServ) {
-            AequusEventBarLoader.AddBar(new GlimmerBar() {
+            Aequu2EventBarLoader.AddBar(new GlimmerBar() {
                 DisplayName = DisplayName,
-                Icon = AequusTextures.GlimmerEventIcon,
+                Icon = Aequu2Textures.GlimmerEventIcon,
                 backgroundColor = new Color(20, 75, 180, 128),
             });
         }
@@ -90,7 +90,7 @@ public class GlimmerZone : ModBiome {
                 pool[superStarite] *= 0.5f;
 
                 if (NPC.CountNPCS(ultraStarite) < maxUltra) {
-                    pool.Add(ultraStarite, UltraStariteSpawn * (AequusSystem.downedUltraStarite ? 1f : 2f));
+                    pool.Add(ultraStarite, UltraStariteSpawn * (Aequu2System.downedUltraStarite ? 1f : 2f));
                 }
             }
         }

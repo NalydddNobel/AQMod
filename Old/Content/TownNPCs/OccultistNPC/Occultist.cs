@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Entities.Projectiles;
-using Aequus.Core.CodeGeneration;
-using Aequus.Core.Components.NPCs;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.DataSets;
+﻿using Aequu2.Core.Entities.Projectiles;
+using Aequu2.Core.CodeGeneration;
+using Aequu2.Core.Components.NPCs;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.DataSets;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,9 +16,9 @@ using Terraria.GameContent.Personalities;
 using Terraria.GameContent.UI;
 using Terraria.Localization;
 
-namespace Aequus.Old.Content.TownNPCs.OccultistNPC;
+namespace Aequu2.Old.Content.TownNPCs.OccultistNPC;
 
-[Gen.AequusSystem_WorldField<bool>("metOccultist")]
+[Gen.Aequu2System_WorldField<bool>("metOccultist")]
 [AutoloadHead()]
 public partial class Occultist : ModNPC, IModifyShoppingSettings {
     public const byte STATE_Passive = 0;
@@ -51,7 +51,7 @@ public partial class Occultist : ModNPC, IModifyShoppingSettings {
     }
 
     public override void Load() {
-        Mod.AddContent(new InstancedNPCEmote(this, EmoteID.Category.Town, () => AequusSystem.downedDemonSiege));
+        Mod.AddContent(new InstancedNPCEmote(this, EmoteID.Category.Town, () => Aequu2System.downedDemonSiege));
     }
 
     public override void SetStaticDefaults() {
@@ -113,7 +113,7 @@ public partial class Occultist : ModNPC, IModifyShoppingSettings {
     }
 
     public override bool CanTownNPCSpawn(int numTownNPCs) {
-        return AequusSystem.downedDemonSiege;
+        return Aequu2System.downedDemonSiege;
     }
 
     public override string GetChat() {
@@ -210,7 +210,7 @@ public partial class Occultist : ModNPC, IModifyShoppingSettings {
     }
 
     public override bool PreAI() {
-        AequusSystem.metOccultist = true;
+        Aequu2System.metOccultist = true;
 
         if (NPC.shimmering) {
             if (state == STATE_Sleeping) {
@@ -364,7 +364,7 @@ public partial class Occultist : ModNPC, IModifyShoppingSettings {
         if (Main.netMode != NetmodeID.Server) {
             if (!_saidGhostDialogue && Main.LocalPlayer.Distance(NPC.Center) < 200f && Main.LocalPlayer.ghost) {
                 _saidGhostDialogue = true;
-                Main.NewText(Language.GetTextValueWith("Mods.Aequus.OccultistEasterEgg", new { Name = NPC.GivenName, PlayerName = Main.LocalPlayer.name }));
+                Main.NewText(Language.GetTextValueWith("Mods.Aequu2.OccultistEasterEgg", new { Name = NPC.GivenName, PlayerName = Main.LocalPlayer.name }));
             }
         }
     }
@@ -386,12 +386,12 @@ public partial class Occultist : ModNPC, IModifyShoppingSettings {
             Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, NPC.velocity.X, NPC.velocity.Y, newColor: Color.Violet);
         }
         if (NPC.life <= 0) {
-            NPC.NewGore(AequusTextures.OccultistGoreWing, NPC.position, NPC.velocity);
-            NPC.NewGore(AequusTextures.OccultistGoreWing, NPC.position, NPC.velocity).rotation += MathHelper.Pi;
-            NPC.NewGore(AequusTextures.OccultistGoreHead, NPC.position, NPC.velocity);
+            NPC.NewGore(Aequu2Textures.OccultistGoreWing, NPC.position, NPC.velocity);
+            NPC.NewGore(Aequu2Textures.OccultistGoreWing, NPC.position, NPC.velocity).rotation += MathHelper.Pi;
+            NPC.NewGore(Aequu2Textures.OccultistGoreHead, NPC.position, NPC.velocity);
 
             if (Main.rand.NextBool(4)) {
-                NPC.NewGore(AequusTextures.OccultistGoreBook, NPC.position, Vector2.UnitY * -2f);
+                NPC.NewGore(Aequu2Textures.OccultistGoreBook, NPC.position, Vector2.UnitY * -2f);
             }
         }
     }
@@ -433,8 +433,8 @@ public partial class Occultist : ModNPC, IModifyShoppingSettings {
 
         if (state == STATE_Sleeping || state == STATE_SleepFalling) {
             NPC.frame.Y = NPC.frame.Height * 1;
-            var sleepingTexture = AequusTextures.OccultistSleep;
-            var sleepingGlow = AequusTextures.OccultistSleep_Glow;
+            var sleepingTexture = Aequu2Textures.OccultistSleep;
+            var sleepingGlow = Aequu2Textures.OccultistSleep_Glow;
             if (state == STATE_Sleeping) {
                 var sleepingFrame = sleepingTexture.Frame(verticalFrames: 19, frameY: NPC.ai[0] > 0f ? 1 : 0);
                 var sleepingOrigin = new Vector2(sleepingTexture.Value.Width / 2f, 0f);
@@ -465,11 +465,11 @@ public partial class Occultist : ModNPC, IModifyShoppingSettings {
         Vector2 origin = frame.Size() / 2f;
 
         spriteBatch.Draw(texture, NPC.position + offset - screenPos, frame, NPC.GetNPCColorTintedByBuffs(drawColor), NPC.rotation, origin, NPC.scale, spriteEffect, 0f);
-        spriteBatch.Draw(AequusTextures.Occultist_Glow.Value, NPC.position + offset - screenPos, frame, NPC.GetNPCColorTintedByBuffs(Color.White), NPC.rotation, origin, NPC.scale, spriteEffect, 0f);
+        spriteBatch.Draw(Aequu2Textures.Occultist_Glow.Value, NPC.position + offset - screenPos, frame, NPC.GetNPCColorTintedByBuffs(Color.White), NPC.rotation, origin, NPC.scale, spriteEffect, 0f);
         if ((int)NPC.ai[0] == 14) {
-            var bloomFrame = AequusTextures.Bloom.Frame(verticalFrames: 2);
-            spriteBatch.Draw(AequusTextures.Bloom, NPC.position + offset - screenPos + new Vector2(2f * -NPC.spriteDirection, NPC.height / 2f + 6f).RotatedBy(NPC.rotation),
-                bloomFrame, Color.BlueViolet * 0.5f, NPC.rotation, AequusTextures.Bloom.Size() / 2f, NPC.scale * 0.5f, spriteEffect, 0f);
+            var bloomFrame = Aequu2Textures.Bloom.Frame(verticalFrames: 2);
+            spriteBatch.Draw(Aequu2Textures.Bloom, NPC.position + offset - screenPos + new Vector2(2f * -NPC.spriteDirection, NPC.height / 2f + 6f).RotatedBy(NPC.rotation),
+                bloomFrame, Color.BlueViolet * 0.5f, NPC.rotation, Aequu2Textures.Bloom.Size() / 2f, NPC.scale * 0.5f, spriteEffect, 0f);
             var auraFrame = TextureAssets.Extra[51].Value.Frame(verticalFrames: 4, frameY: (int)(Main.GlobalTimeWrappedHourly * 9f) % 4);
             spriteBatch.Draw(TextureAssets.Extra[51].Value, NPC.position + offset - screenPos + new Vector2(4f * -NPC.spriteDirection, NPC.height / 2f + 8f).RotatedBy(NPC.rotation),
                 auraFrame, Color.BlueViolet * 0.7f, NPC.rotation, new Vector2(auraFrame.Width / 2f, auraFrame.Height), NPC.scale, spriteEffect, 0f);
@@ -479,9 +479,9 @@ public partial class Occultist : ModNPC, IModifyShoppingSettings {
 
     public void ModifyShoppingSettings(Player player, NPC npc, ref ShoppingSettings settings, ShopHelper shopHelper) {
         DialogueHack.ReplaceKeys(ref settings.HappinessReport, "[HateBiomeQuote]|",
-            $"Mods.Aequus.TownNPCMood.Occultist.HateBiome_{(player.ZoneSnow ? "Snow" : "Evils")}", (s) => new { BiomeName = s[1], });
+            $"Mods.Aequu2.TownNPCMood.Occultist.HateBiome_{(player.ZoneSnow ? "Snow" : "Evils")}", (s) => new { BiomeName = s[1], });
         DialogueHack.ReplaceKeys(ref settings.HappinessReport, "[LikeNPCQuote]|",
-            $"Mods.Aequus.TownNPCMood.Occultist.LikeNPC_{(player.isNearNPC(NPCID.Demolitionist) ? "Demolitionist" : "Clothier")}", (s) => new { NPCName = s[1], });
+            $"Mods.Aequu2.TownNPCMood.Occultist.LikeNPC_{(player.isNearNPC(NPCID.Demolitionist) ? "Demolitionist" : "Clothier")}", (s) => new { NPCName = s[1], });
     }
 
     public override bool? CanBeHitByProjectile(Projectile projectile) {
@@ -511,7 +511,7 @@ public partial class Occultist : ModNPC, IModifyShoppingSettings {
 //    public float scale;
 
 //    protected override void SetDefaults() {
-//        SetHorizontalAndVerticallyFramedTexture(AequusTextures.OccultistRune, 3, 14, 0);
+//        SetHorizontalAndVerticallyFramedTexture(Aequu2Textures.OccultistRune, 3, 14, 0);
 //        t = Main.rand.Next(100);
 //        opacity = 0f;
 //        scale = Scale;

@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Concurrent;
+﻿using Aequu2.Core.Concurrent;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Aequus.Core.Particles;
+namespace Aequu2.Core.Particles;
 
 public abstract class ConcurrentParticles<T> : IParticleSystem, IParticleEmitter<T> where T : IParticle, new() {
     internal static ConcurrentParticles<T> Instance { get; private set; }

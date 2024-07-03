@@ -2,7 +2,7 @@
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
 
-namespace Aequus.Core.Utilities;
+namespace Aequu2.Core.Utilities;
 
 public static class ExtendItem {
     public static readonly IItemEntryFilter ToolFilter = new ItemFilters.Tools();

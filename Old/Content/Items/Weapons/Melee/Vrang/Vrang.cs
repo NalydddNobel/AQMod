@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Items.Weapons.Melee.Vrang;
+﻿namespace Aequu2.Old.Content.Items.Weapons.Melee.Vrang;
 
 public class Vrang : ModItem {
     public override void SetDefaults() {

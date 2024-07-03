@@ -1,10 +1,10 @@
-﻿using Aequus.Content.Dusts;
-using Aequus.Old.Content.Events.Glimmer;
+﻿using Aequu2.Content.Dusts;
+using Aequu2.Old.Content.Events.Glimmer;
 using System;
 using System.IO;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Bosses.OmegaStarite.Projectiles;
+namespace Aequu2.Old.Content.Bosses.OmegaStarite.Projectiles;
 
 public class OmegaStariteDeathray : ModProjectile {
     public float rotationOffset;

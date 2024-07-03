@@ -1,7 +1,7 @@
-﻿using Aequus.Content.Items.PermaPowerups.Shimmer;
+﻿using Aequu2.Content.Items.PermaPowerups.Shimmer;
 using System;
 
-namespace Aequus.Content.Dedicated.BeyondCoin;
+namespace Aequu2.Content.Dedicated.BeyondCoin;
 
 public class ShimmerCoinPlayer : ModPlayer {
     public override void PostUpdateEquips() {
@@ -20,7 +20,7 @@ public class ShimmerCoinPlayer : ModPlayer {
 
 #if !DEBUG
         // Cosmic Chest
-        Player.GetModPlayer<AequusPlayer>().dropRolls += CosmicChest.LuckIncrease * effectiveness;
+        Player.GetModPlayer<Aequu2Player>().dropRolls += CosmicChest.LuckIncrease * effectiveness;
 #endif
     }
 

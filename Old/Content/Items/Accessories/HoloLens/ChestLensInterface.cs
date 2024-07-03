@@ -1,6 +1,6 @@
-﻿using Aequus.Core;
-using Aequus.Core.Structures.Collections;
-using Aequus.Core.UI;
+﻿using Aequu2.Core;
+using Aequu2.Core.Structures.Collections;
+using Aequu2.Core.UI;
 using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;
@@ -8,7 +8,7 @@ using Terraria.GameContent;
 using Terraria.ObjectData;
 using Terraria.UI;
 
-namespace Aequus.Old.Content.Items.Accessories.HoloLens;
+namespace Aequu2.Old.Content.Items.Accessories.HoloLens;
 
 public class ChestLensInterface : UILayer {
 
@@ -19,7 +19,7 @@ public class ChestLensInterface : UILayer {
     }
 
     public override void OnPreUpdatePlayers() {
-        if (!Main.LocalPlayer.GetModPlayer<AequusPlayer>().accHoloLens) {
+        if (!Main.LocalPlayer.GetModPlayer<Aequu2Player>().accHoloLens) {
             this.Deactivate();
         }
     }

@@ -1,16 +1,16 @@
-﻿using Aequus.Content.Systems.Renaming;
-using Aequus.Core.Graphics.Primitives;
+﻿using Aequu2.Content.Systems.Renaming;
+using Aequu2.Core.Graphics.Primitives;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.Localization;
 
-namespace Aequus.Old.Content.Items.Materials.PossessedShard;
+namespace Aequu2.Old.Content.Items.Materials.PossessedShard;
 
 public class PossessedShardNPC : ModNPC {
     private Item _giveItem;
 
-    public override string Texture => AequusTextures.PossessedShard.Path;
+    public override string Texture => Aequu2Textures.PossessedShard.Path;
 
     public override void SetStaticDefaults() {
         NPCSets.TrailingMode[Type] = 7;
@@ -31,7 +31,7 @@ public class PossessedShardNPC : ModNPC {
         NPC.defense = 20;
         NPC.noGravity = true;
         NPC.aiStyle = -1;
-        NPC.HitSound = AequusSounds.ShardHit;
+        NPC.HitSound = Aequu2Sounds.ShardHit;
     }
 
     public override void HitEffect(NPC.HitInfo hit) {
@@ -90,7 +90,7 @@ public class PossessedShardNPC : ModNPC {
         }
 
         if (NPC.soundDelay <= 0) {
-            SoundEngine.PlaySound(AequusSounds.ShardHit, NPC.Center);
+            SoundEngine.PlaySound(Aequu2Sounds.ShardHit, NPC.Center);
         }
 
         NPC.localAI[2] = 8f;
@@ -173,7 +173,7 @@ public class PossessedShardNPC : ModNPC {
                             NPC.netUpdate = true;
                         }
                         else if ((int)NPC.ai[1] == 1) {
-                            SoundEngine.PlaySound(AequusSounds.Dash with { Volume = 0.6f }, NPC.Center);
+                            SoundEngine.PlaySound(Aequu2Sounds.Dash with { Volume = 0.6f }, NPC.Center);
                             for (int j = 0; j < 8; j++) {
                                 var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.PurpleTorch, Scale: Main.rand.NextFloat(2f));
                                 d.velocity = Vector2.Normalize(NPC.velocity) * Main.rand.NextFloat(3f);
@@ -289,13 +289,13 @@ public class PossessedShardNPC : ModNPC {
         var origin = frame.Size() / 2f;
 
         if ((int)NPC.ai[0] != 1) {
-            DrawHelper.DrawBasicVertexLine(AequusTextures.Trail2, NPC.oldPos, NPC.oldRot, (p) => Color.BlueViolet with { A = 0 } * MathF.Pow(1f - p, 2f) * NPC.localAI[1] * 0.7f, (p) => 6f - 4f * p, NPC.Size / 2f - screenPos);
+            DrawHelper.DrawBasicVertexLine(Aequu2Textures.Trail2, NPC.oldPos, NPC.oldRot, (p) => Color.BlueViolet with { A = 0 } * MathF.Pow(1f - p, 2f) * NPC.localAI[1] * 0.7f, (p) => 6f - 4f * p, NPC.Size / 2f - screenPos);
         }
 
-        //DrawHelper.ApplyBasicEffect(AequusTextures.Trail3);
+        //DrawHelper.ApplyBasicEffect(Aequu2Textures.Trail3);
         UVVertexStrip.Instance.PrepareUV(1f, 0f);
         UVVertexStrip.Instance.PrepareStripWithProceduralPadding(NPC.oldPos, NPC.oldRot, (p) => Color.BlueViolet with { A = 0 } * MathF.Pow(1f - p, 4f) * NPC.localAI[1] * 1.2f, (p) => 14f + 20f * MathF.Pow(p, 2f), NPC.Size / 2f - screenPos, includeBacksides: true);
-        DrawHelper.ApplyUVEffect(AequusTextures.Trail3, new Vector2(1f, 1f), new Vector2((1f - Main.GlobalTimeWrappedHourly % 1f) * 1.5f, 0f));
+        DrawHelper.ApplyUVEffect(Aequu2Textures.Trail3, new Vector2(1f, 1f), new Vector2((1f - Main.GlobalTimeWrappedHourly % 1f) * 1.5f, 0f));
         UVVertexStrip.Instance.DrawTrail();
 
         //flameTrail.coord1 = 0f;

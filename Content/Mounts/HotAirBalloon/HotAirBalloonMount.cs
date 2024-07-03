@@ -1,4 +1,4 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.ContentGeneration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.Utilities;
 
-namespace Aequus.Content.Mounts.HotAirBalloon;
+namespace Aequu2.Content.Mounts.HotAirBalloon;
 
 public class HotAirBalloonMount : UnifiedModMount {
     public const int BalloonFrames = 2;

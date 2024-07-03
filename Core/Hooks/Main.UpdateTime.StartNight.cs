@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.Hooks;
+﻿namespace Aequu2.Core.Hooks;
 
 public partial class TerrariaHooks {
     /// <summary>Handles spawning the Glimmer event.</summary>

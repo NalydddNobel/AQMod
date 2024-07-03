@@ -15,19 +15,19 @@ public class TextureSourceGenerator : ISourceGenerator {
         Utilities.FixFileNames(files, static f => f.Name = f.Name = f.Path.Replace("/", "_"));
         context.AddSource("AequusTextures.cs", SourceText.From(
             $$"""
-                using Aequus.Core.Assets;
+                using Aequu2.Core.Assets;
                 using Microsoft.Xna.Framework.Graphics;
                 using System.Runtime.CompilerServices;
 
-                namespace Aequus;
+                namespace Aequu2;
 
-                /// <summary>(Total Textures: {{files.Count}}) yo momma gai</summary>
+                /// <summary>(Total Textures: {{files.Count}})</summary>
                 [CompilerGenerated]
                 public partial class AequusTextures {            
                     {{string.Join("\n", files.Select((file) =>
                     $"""
                         /// <summary>Full Path: {file.Path}</summary>
-                        public static readonly RequestCache<Texture2D> {file.Name} = new("Aequus/{file.Path}");
+                        public static readonly RequestCache<Texture2D> {file.Name} = new("Aequu2/{file.Path}");
                     """))}}
                 }
                 """, Encoding.UTF8)

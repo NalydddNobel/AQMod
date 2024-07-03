@@ -1,13 +1,13 @@
-﻿using Aequus.Core;
-using Aequus.Content.Dusts;
-using Aequus.Core.Entities.Items.Components;
-using Aequus.Core.Entities.Projectiles;
-using Aequus.Core.Particles;
-using Aequus.DataSets;
+﻿using Aequu2.Core;
+using Aequu2.Content.Dusts;
+using Aequu2.Core.Entities.Items.Components;
+using Aequu2.Core.Entities.Projectiles;
+using Aequu2.Core.Particles;
+using Aequu2.DataSets;
 using System;
 using Terraria.DataStructures;
 
-namespace Aequus.Old.Content.Items.Weapons.Ranged.Raygun;
+namespace Aequu2.Old.Content.Items.Weapons.Ranged.Raygun;
 
 public class Raygun : ModItem, IManageProjectile {
     public override void SetDefaults() {
@@ -23,7 +23,7 @@ public class Raygun : ModItem, IManageProjectile {
         Item.shoot = ProjectileID.Bullet;
         Item.shootSpeed = 1.5f;
         Item.autoReuse = true;
-        Item.UseSound = AequusSounds.Raygun with { Volume = 0.5f };
+        Item.UseSound = Aequu2Sounds.Raygun with { Volume = 0.5f };
         Item.rare = Commons.Rare.BossOmegaStarite;
         Item.value = Commons.Cost.BossOmegaStarite;
     }

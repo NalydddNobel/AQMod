@@ -1,14 +1,14 @@
-﻿using Aequus.Old.Common.Projectiles;
+﻿using Aequu2.Old.Common.Projectiles;
 using System;
 using System.Collections.Generic;
 
-namespace Aequus.Old.Content.Bosses.UltraStarite.Projectiles;
+namespace Aequu2.Old.Content.Bosses.UltraStarite.Projectiles;
 public class UltraStariteDeathray : EnemyAttachedProjBase {
     public const float DEATHRAY_SIZE = 60f;
     public const float DEATHRAY_LENGTH = 1000f;
     public const int DEATHRAY_KILL_TIME = 25;
 
-    public override string Texture => AequusTextures.None.Path;
+    public override string Texture => Aequu2Textures.None.Path;
 
     public override void SetStaticDefaults() {
         Main.projFrames[Projectile.type] = 2;
@@ -87,24 +87,24 @@ public class UltraStariteDeathray : EnemyAttachedProjBase {
         int amount = (int)(50 * (HighQualityEffects ? 1f : 0.5f));
         var center = Projectile.Center;
 
-        DrawHelper.DrawBasicVertexLine(AequusTextures.Trail2, arr, rotations,
+        DrawHelper.DrawBasicVertexLine(Aequu2Textures.Trail2, arr, rotations,
             (p) => Color.BlueViolet with { A = 0 } * 1.4f * (float)Math.Pow(1f - p, 2f) * Projectile.Opacity * FadeLaser(p),
             (p) => 70f);
         DrawHelper.VertexStrip.DrawTrail();
 
-        DrawHelper.ApplyUVEffect(AequusTextures.Trail3, new Vector2(1f, 1f), new Vector2(Main.GameUpdateCount / 60f % 1f, 0f));
+        DrawHelper.ApplyUVEffect(Aequu2Textures.Trail3, new Vector2(1f, 1f), new Vector2(Main.GameUpdateCount / 60f % 1f, 0f));
         DrawHelper.VertexStrip.PrepareStrip(arr, rotations,
             (p) => new Color(60, 160, 255, 0) * (1f - p) * 0.8f * Projectile.Opacity * FadeLaser(p),
             (p) => 80f, includeBacksides: true);
         DrawHelper.VertexStrip.DrawTrail();
 
-        DrawHelper.ApplyUVEffect(AequusTextures.Trail3, new Vector2(1f, 1f), new Vector2(Main.GameUpdateCount / 40f % 1f, 0f));
+        DrawHelper.ApplyUVEffect(Aequu2Textures.Trail3, new Vector2(1f, 1f), new Vector2(Main.GameUpdateCount / 40f % 1f, 0f));
         DrawHelper.VertexStrip.DrawTrail();
 
-        DrawHelper.ApplyUVEffect(AequusTextures.Trail3, new Vector2(1f, 1f), new Vector2(Main.GameUpdateCount / 20f % 1f, 0f));
+        DrawHelper.ApplyUVEffect(Aequu2Textures.Trail3, new Vector2(1f, 1f), new Vector2(Main.GameUpdateCount / 20f % 1f, 0f));
         DrawHelper.VertexStrip.DrawTrail();
 
-        var spotlight = AequusTextures.BloomStrong;
+        var spotlight = Aequu2Textures.BloomStrong;
         Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.4f, Projectile.rotation, spotlight.Size() / 2f, Projectile.scale * (Projectile.height / 32f), SpriteEffects.None, 0f);
         Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor, Projectile.rotation, spotlight.Size() / 2f, Projectile.scale * 0.5f * (Projectile.height / 32f), SpriteEffects.None, 0f);
         return false;

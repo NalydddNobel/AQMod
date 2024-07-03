@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Events.DemonSiege;
+﻿namespace Aequu2.Old.Content.Events.DemonSiege;
 
 public class DemonSiegePlayer : ModPlayer {
     public Point GoreNest { get; private set; }

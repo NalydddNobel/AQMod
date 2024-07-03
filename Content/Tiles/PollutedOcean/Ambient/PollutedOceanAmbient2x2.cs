@@ -1,7 +1,7 @@
-﻿using Aequus.Content.Items.Materials;
-using Aequus.Core.Entities.Tiles.Rubblemaker;
+﻿using Aequu2.Content.Items.Materials;
+using Aequu2.Core.Entities.Tiles.Rubblemaker;
 
-namespace Aequus.Content.Tiles.PollutedOcean.Ambient;
+namespace Aequu2.Content.Tiles.PollutedOcean.Ambient;
 
 internal class PollutedOceanAmbient2x2 : Rubble2x2 {
     public PollutedOceanAmbient2x2() : base() { }

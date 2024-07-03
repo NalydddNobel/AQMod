@@ -1,12 +1,12 @@
-﻿using Aequus.Old.Content.Necromancy;
-using Aequus.Old.Content.Necromancy.Rendering;
-using Aequus.Old.Content.Necromancy.Sceptres.Evil;
+﻿using Aequu2.Old.Content.Necromancy;
+using Aequu2.Old.Content.Necromancy.Rendering;
+using Aequu2.Old.Content.Necromancy.Sceptres.Evil;
 using System;
 
-namespace Aequus.Old.CrossMod.AvalonSupport.Items;
+namespace Aequu2.Old.CrossMod.AvalonSupport.Items;
 
 public class BacciliteSceptreDebuff : NecromancyDebuff {
-    public override string Texture => AequusTextures.TemporaryDebuffIcon;
+    public override string Texture => Aequu2Textures.TemporaryDebuffIcon;
 
     public override float Tier => 1f;
     public override int DamageSet => 20;

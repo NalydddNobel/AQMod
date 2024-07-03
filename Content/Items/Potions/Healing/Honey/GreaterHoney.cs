@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Items.Potions.Healing.Honey;
+﻿namespace Aequu2.Content.Items.Potions.Healing.Honey;
 
 public class GreaterHoney : ModItem {
     public override void SetStaticDefaults() {

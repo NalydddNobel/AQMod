@@ -1,7 +1,7 @@
-﻿using Aequus.Core.Structures.ID;
+﻿using Aequu2.Core.Structures.ID;
 using System;
 
-namespace Aequus.Content.CrossMod.SplitSupport.Photography;
+namespace Aequu2.Content.CrossMod.SplitSupport.Photography;
 
 internal record struct AlbumQuestInfo(int Frame, IProvideId[] NPCIds, IProvideId Envelope, Predicate<NPC> SpecialCondition = null) {
     public AlbumQuestInfo(int Frame, IProvideId NPCId, IProvideId Envelope, Predicate<NPC> SpecialCondition = null)

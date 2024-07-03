@@ -1,8 +1,8 @@
-﻿using Aequus.Core.Graphics;
+﻿using Aequu2.Core.Graphics;
 using System.Collections.Generic;
 using Terraria.Graphics.Shaders;
 
-namespace Aequus.Old.Content.DronePylons;
+namespace Aequu2.Old.Content.DronePylons;
 
 public class HealerDroneRenderer : ModSystem {
     public readonly List<(int, int, float)> HealPairs;

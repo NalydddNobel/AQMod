@@ -1,13 +1,13 @@
-﻿using Aequus.Core.CodeGeneration;
-using Aequus.Old.Content.Items.Materials;
+﻿using Aequu2.Core.CodeGeneration;
+using Aequu2.Old.Content.Items.Materials;
 using System;
 using Terraria.DataStructures;
 
-namespace Aequus.Old.Content.Items.Accessories.HyperCrystal;
+namespace Aequu2.Old.Content.Items.Accessories.HyperCrystal;
 
-[Gen.AequusPlayer_ResetField<Item>("accHyperCrystal")]
-[Gen.AequusPlayer_ResetField<int>("hyperCrystalCooldownMax")]
-[Gen.AequusPlayer_ResetField<int>("cHyperCrystal")]
+[Gen.Aequu2Player_ResetField<Item>("accHyperCrystal")]
+[Gen.Aequu2Player_ResetField<int>("hyperCrystalCooldownMax")]
+[Gen.Aequu2Player_ResetField<int>("cHyperCrystal")]
 public class HyperCrystal : ModItem {
     public const string TimerKey = "HyperCrystal";
 
@@ -25,18 +25,18 @@ public class HyperCrystal : ModItem {
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
-        var aequus = player.Aequus();
-        aequus.accHyperCrystal = Item;
-        if (aequus.hyperCrystalCooldownMax > 0) {
-            aequus.hyperCrystalCooldownMax = Math.Max(aequus.hyperCrystalCooldownMax / 2, 1);
+        var Aequu2 = player.Aequu2();
+        Aequu2.accHyperCrystal = Item;
+        if (Aequu2.hyperCrystalCooldownMax > 0) {
+            Aequu2.hyperCrystalCooldownMax = Math.Max(Aequu2.hyperCrystalCooldownMax / 2, 1);
         }
         else {
-            aequus.hyperCrystalCooldownMax = 60;
+            Aequu2.hyperCrystalCooldownMax = 60;
         }
     }
 
     public void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem) {
-        player.Aequus().cHyperCrystal = dyeItem.dye;
+        player.Aequu2().cHyperCrystal = dyeItem.dye;
     }
 
     public override void AddRecipes() {
@@ -47,15 +47,15 @@ public class HyperCrystal : ModItem {
             .Register();
     }
 
-    [Gen.AequusItem_UseItem]
-    internal static void OnUseItem(Item item, Player player, AequusPlayer aequusPlayer) {
-        if (item.damage <= 0 || aequusPlayer.accHyperCrystal == null || aequusPlayer.TimerActive(TimerKey)) {
+    [Gen.Aequu2Item_UseItem]
+    internal static void OnUseItem(Item item, Player player, Aequu2Player Aequu2Player) {
+        if (item.damage <= 0 || Aequu2Player.accHyperCrystal == null || Aequu2Player.TimerActive(TimerKey)) {
             return;
         }
 
-        Item hyperCrystal = aequusPlayer.accHyperCrystal;
+        Item hyperCrystal = Aequu2Player.accHyperCrystal;
         IEntitySource source = player.GetSource_Accessory(hyperCrystal);
-        aequusPlayer.SetTimer(TimerKey, aequusPlayer.hyperCrystalCooldownMax);
+        Aequu2Player.SetTimer(TimerKey, Aequu2Player.hyperCrystalCooldownMax);
         if (Main.myPlayer == player.whoAmI) {
             Projectile.NewProjectile(source, player.Center, Vector2.Normalize(Main.MouseWorld - player.Center) * 4f,
                 ModContent.ProjectileType<HyperCrystalProj>(), player.GetWeaponDamage(item) * 2, player.GetWeaponKnockback(item), player.whoAmI, ai0: 3f);

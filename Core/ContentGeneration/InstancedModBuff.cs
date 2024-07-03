@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.ContentGeneration;
+﻿namespace Aequu2.Core.ContentGeneration;
 
 internal class InstancedModBuff(string name, string texture) : ModBuff {
     protected readonly string _name = name;

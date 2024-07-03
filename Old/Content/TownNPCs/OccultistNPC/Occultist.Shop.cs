@@ -1,9 +1,9 @@
-﻿using Aequus.Old.Content.Events.DemonSiege.Spawners;
-using Aequus.Old.Content.Events.DemonSiege.Tiles;
-using Aequus.Old.Content.Items.GrapplingHooks.EnemyGrappleHook;
-using Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg;
+﻿using Aequu2.Old.Content.Events.DemonSiege.Spawners;
+using Aequu2.Old.Content.Events.DemonSiege.Tiles;
+using Aequu2.Old.Content.Items.GrapplingHooks.EnemyGrappleHook;
+using Aequu2.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg;
 
-namespace Aequus.Old.Content.TownNPCs.OccultistNPC;
+namespace Aequu2.Old.Content.TownNPCs.OccultistNPC;
 
 public partial class Occultist {
     public override void AddShops() {

@@ -1,11 +1,11 @@
-﻿using Aequus.Core.IO;
-using Aequus.Old.Content.Items.Potions.Prefixes;
+﻿using Aequu2.Core.IO;
+using Aequu2.Old.Content.Items.Potions.Prefixes;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.DataStructures;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Old.Content.Items.Potions;
+namespace Aequu2.Old.Content.Items.Potions;
 
 public class PotionsPlayer : ModPlayer {
     public static bool UsingQuickBuffHack { get; private set; }

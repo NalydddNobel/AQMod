@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Entities.Items.Dedications;
-using Aequus.Core.Graphics;
+﻿using Aequu2.Core.Entities.Items.Dedications;
+using Aequu2.Core.Graphics;
 using Terraria.GameContent;
 using Terraria.Graphics.Renderers;
 
-namespace Aequus.Content.Dedicated.BeyondCoin;
+namespace Aequu2.Content.Dedicated.BeyondCoin;
 
 public class BeyondPlatinumCoin : ModItem, DrawLayers.IDrawLayer {
     public override void SetDefaults() {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Old.Core;
+namespace Aequu2.Old.Core;
 
 /// <summary>
 /// Manages screen panning

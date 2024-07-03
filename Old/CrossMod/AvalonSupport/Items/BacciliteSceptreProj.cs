@@ -1,12 +1,12 @@
-﻿using Aequus.Content.Dusts;
-using Aequus.Old.Content.Necromancy.Sceptres.Evil;
-using Aequus.Old.Content.Particles;
+﻿using Aequu2.Content.Dusts;
+using Aequu2.Old.Content.Necromancy.Sceptres.Evil;
+using Aequu2.Old.Content.Particles;
 using Terraria.GameContent;
 
-namespace Aequus.Old.CrossMod.AvalonSupport.Items;
+namespace Aequu2.Old.CrossMod.AvalonSupport.Items;
 
 public class BacciliteSceptreProj : CorruptionSceptreProj {
-    public override string Texture => AequusTextures.CorruptionSceptreProj.Path;
+    public override string Texture => Aequu2Textures.CorruptionSceptreProj.Path;
 
     public override string LocalizationCategory => "CrossMod.Avalon.Projectiles";
 

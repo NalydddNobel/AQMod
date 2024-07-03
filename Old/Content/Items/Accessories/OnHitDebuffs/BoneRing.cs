@@ -1,7 +1,7 @@
-﻿using Aequus.Core;
+﻿using Aequu2.Core;
 using Terraria.Localization;
 
-namespace Aequus.Old.Content.Items.Accessories.OnHitDebuffs;
+namespace Aequu2.Old.Content.Items.Accessories.OnHitDebuffs;
 
 [AutoloadEquip(EquipType.HandsOn)]
 [LegacyName("BoneHawkRing")]
@@ -18,6 +18,6 @@ public class BoneRing : ModItem {
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
-        player.GetModPlayer<AequusPlayer>().accBoneRing++;
+        player.GetModPlayer<Aequu2Player>().accBoneRing++;
     }
 }

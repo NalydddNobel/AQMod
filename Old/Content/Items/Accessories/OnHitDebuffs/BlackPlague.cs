@@ -1,6 +1,6 @@
-﻿using Aequus.Old.Content.Items.Materials.Energies;
+﻿using Aequu2.Old.Content.Items.Materials.Energies;
 
-namespace Aequus.Old.Content.Items.Accessories.OnHitDebuffs;
+namespace Aequu2.Old.Content.Items.Accessories.OnHitDebuffs;
 
 [AutoloadEquip(EquipType.HandsOn)]
 public class BlackPlague : ModItem {
@@ -11,9 +11,9 @@ public class BlackPlague : ModItem {
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
-        AequusPlayer aequus = player.GetModPlayer<AequusPlayer>();
-        aequus.accBoneRing++;
-        aequus.accBlackPhial++;
+        Aequu2Player Aequu2 = player.GetModPlayer<Aequu2Player>();
+        Aequu2.accBoneRing++;
+        Aequu2.accBlackPhial++;
         player.magmaStone = true;
     }
 

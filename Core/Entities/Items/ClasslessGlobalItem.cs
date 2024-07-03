@@ -1,8 +1,8 @@
-﻿using Aequus.Core.Entities.Items.Components;
+﻿using Aequu2.Core.Entities.Items.Components;
 using System.Collections.Generic;
 using Terraria.Utilities;
 
-namespace Aequus.Core.Entities.Items;
+namespace Aequu2.Core.Entities.Items;
 
 public class ClasslessGlobalItem : GlobalItem {
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {

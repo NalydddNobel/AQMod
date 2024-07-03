@@ -1,7 +1,7 @@
-﻿using Aequus.DataSets;
+﻿using Aequu2.DataSets;
 using System.Collections.Generic;
 
-namespace Aequus.Content.Fishing;
+namespace Aequu2.Content.Fishing;
 internal class AnglerRewards : ModPlayer {
 #if !DEBUG
     public override void AnglerQuestReward(float rareMultiplier, List<Item> rewardItems) {

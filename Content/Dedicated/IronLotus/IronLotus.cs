@@ -1,6 +1,6 @@
-﻿using Aequus.Core.Entities.Items.Dedications;
+﻿using Aequu2.Core.Entities.Items.Dedications;
 
-namespace Aequus.Content.Dedicated.IronLotus;
+namespace Aequu2.Content.Dedicated.IronLotus;
 
 public class IronLotus : ModItem {
     public override void Load() {

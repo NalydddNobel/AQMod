@@ -1,7 +1,7 @@
-﻿using Aequus.Old.Core;
+﻿using Aequu2.Old.Core;
 using System;
 
-namespace Aequus.Old.Content.Bosses.SpaceSquid.Projectiles;
+namespace Aequu2.Old.Content.Bosses.SpaceSquid.Projectiles;
 
 public class SpaceSquidDeathray : ModProjectile {
     public const int DEATHRAY_LENGTH = 2000;
@@ -86,16 +86,16 @@ public class SpaceSquidDeathray : ModProjectile {
                 drawPos + new Vector2(Main.screenWidth * Projectile.direction, 0f),
                 drawPos + new Vector2(Main.screenWidth * 2f * Projectile.direction, 0f), };
         if (prim == null) {
-            prim = new TrailRenderer(AequusTextures.Trail.Value, "Texture", (p) => new Vector2(Projectile.height * (1f - p * p)), (p) => drawColor * (1f - p), obeyReversedGravity: false, worldTrail: false);
+            prim = new TrailRenderer(Aequu2Textures.Trail.Value, "Texture", (p) => new Vector2(Projectile.height * (1f - p * p)), (p) => drawColor * (1f - p), obeyReversedGravity: false, worldTrail: false);
         }
         if (smokePrim == null) {
-            smokePrim = new TrailRenderer(AequusTextures.Trail3.Value, "Texture", (p) => new Vector2(Projectile.height), (p) => drawColor * ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 12f) + 2f) * (1f - p), obeyReversedGravity: false, worldTrail: false);
+            smokePrim = new TrailRenderer(Aequu2Textures.Trail3.Value, "Texture", (p) => new Vector2(Projectile.height), (p) => drawColor * ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 12f) + 2f) * (1f - p), obeyReversedGravity: false, worldTrail: false);
         }
         if (Main.LocalPlayer.gravDir == -1) {
             Helper.ScreenFlip(arr);
         }
         var smokeLineColor = drawColor * ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 12f) + 2f);
-        int amount = (int)(5 * (Aequus.HighQualityEffects ? 1f : 0.5f));
+        int amount = (int)(5 * (Aequu2.HighQualityEffects ? 1f : 0.5f));
         var initialArr = new Vector2[amount];
         var center = Projectile.Center;
 
@@ -112,7 +112,7 @@ public class SpaceSquidDeathray : ModProjectile {
         prim.Draw(arr);
         smokePrim.Draw(arr, -Main.GlobalTimeWrappedHourly, 2f);
 
-        var spotlight = AequusTextures.Bloom;
+        var spotlight = Aequu2Textures.Bloom;
         Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.4f, Projectile.rotation, spotlight.Size() / 2f, Projectile.scale * (Projectile.height / 32f), SpriteEffects.None, 0f);
         Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor, Projectile.rotation, spotlight.Size() / 2f, Projectile.scale * 0.5f * (Projectile.height / 32f), SpriteEffects.None, 0f);
         return false;

@@ -2,9 +2,9 @@
 using Terraria.GameContent;
 using Terraria.GameContent.UI.BigProgressBar;
 
-namespace Aequus.Old.Content.Bosses;
+namespace Aequu2.Old.Content.Bosses;
 
-public class LegacyAequusBossSupportedBar : ModBossBar {
+public class LegacyAequu2BossSupportedBar : ModBossBar {
     private int _headIndex;
 
     public override Asset<Texture2D> GetIconTexture(ref Rectangle? iconFrame) {

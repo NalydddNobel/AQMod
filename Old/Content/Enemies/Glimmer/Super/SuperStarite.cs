@@ -1,14 +1,14 @@
-﻿using Aequus.Content.Dusts;
-using Aequus.Core.Components.NPCs;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.Core.Entities.NPCs;
-using Aequus.DataSets;
-using Aequus.Old.Content.Critters;
-using Aequus.Old.Content.Events.Glimmer;
-using Aequus.Old.Content.Items.Materials;
-using Aequus.Old.Content.Items.Potions.NeutronYogurt;
-using Aequus.Old.Content.StatusEffects;
+﻿using Aequu2.Content.Dusts;
+using Aequu2.Core.Components.NPCs;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.Core.Entities.NPCs;
+using Aequu2.DataSets;
+using Aequu2.Old.Content.Critters;
+using Aequu2.Old.Content.Events.Glimmer;
+using Aequu2.Old.Content.Items.Materials;
+using Aequu2.Old.Content.Items.Potions.NeutronYogurt;
+using Aequu2.Old.Content.StatusEffects;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -16,7 +16,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Utilities;
 
-namespace Aequus.Old.Content.Enemies.Glimmer.Super;
+namespace Aequu2.Old.Content.Enemies.Glimmer.Super;
 
 [BestiaryBiome<GlimmerZone>()]
 [AutoloadBanner]
@@ -377,7 +377,7 @@ public class SuperStarite : ModNPC, ITrackTimeBetweenHits {
 
         Main.spriteBatch.Draw(texture, NPC.position + offset - screenPos + new Vector2(1f, 4f), NPC.frame, drawColor, rotation, origin, NPC.scale, SpriteEffects.None, 0f);
 
-        var bloom = AequusTextures.Bloom;
+        var bloom = Aequu2Textures.Bloom;
         //Main.spriteBatch.Draw(bloom, NPC.position + offset - screenPos, null, bloomColor * 0.5f, 0f, bloom.Size() / 2f, NPC.scale * 0.6f, SpriteEffects.None, 0f);
         //Main.spriteBatch.Draw(bloom, NPC.position + offset - screenPos, null, bloomColor * 0.25f, 0f, bloom.Size() / 2f, NPC.scale * 0.9f, SpriteEffects.None, 0f);
         Main.spriteBatch.Draw(texture, NPC.position + offset - screenPos, coreFrame, drawColor, 0f, NPC.frame.Size() / 2f, NPC.scale, SpriteEffects.None, 0f);
@@ -391,7 +391,7 @@ public class SuperStarite : ModNPC, ITrackTimeBetweenHits {
         float scale = (float)Math.Min(NPC.scale * (-NPC.ai[3] / 60f), 1f) * 1.5f;
         var shineColor = new Color(200, 40, 150, 0) * scale * NPC.Opacity;
 
-        Texture2D lightRay = AequusTextures.LightRayFlat;
+        Texture2D lightRay = Aequu2Textures.LightRayFlat;
         var lightRayOrigin = lightRay.Size() / 2f;
 
         FastRandom r = new FastRandom(NPC.whoAmI).WithModifier((ulong)NPC.whoAmI);
@@ -407,7 +407,7 @@ public class SuperStarite : ModNPC, ITrackTimeBetweenHits {
             Main.spriteBatch.Draw(lightRay, drawPos, null, shineColor * 0.5f * scale * NPC.Opacity, f, lightRayOrigin, scale * rayScale * 2f, SpriteEffects.None, 0f);
         }
 
-        var bloom = AequusTextures.Bloom;
+        var bloom = Aequu2Textures.Bloom;
         var bloomOrigin = bloom.Size() / 2f;
         scale *= 0.5f;
         Main.spriteBatch.Draw(bloom, drawPos, null, shineColor * scale * NPC.Opacity, 0f, bloomOrigin, scale, SpriteEffects.None, 0f);

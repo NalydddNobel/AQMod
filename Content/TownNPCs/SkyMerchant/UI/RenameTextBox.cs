@@ -1,7 +1,7 @@
-﻿using Aequus.Content.Systems.Renaming;
-using Aequus.Core.UI.Elements;
+﻿using Aequu2.Content.Systems.Renaming;
+using Aequu2.Core.UI.Elements;
 
-namespace Aequus.Content.TownNPCs.SkyMerchant.UI;
+namespace Aequu2.Content.TownNPCs.SkyMerchant.UI;
 
 public class RenameTextBox : ImprovedTextBox {
     public RenameTextBox(string text, float textScale = 1, bool large = false) : base(text, textScale, large) {

@@ -1,6 +1,6 @@
 ﻿using Terraria.DataStructures;
 
-namespace Aequus.Content.Enemies.PollutedOcean.OilSlime;
+namespace Aequu2.Content.Enemies.PollutedOcean.OilSlime;
 
 public class OilSlimeDeathProj : ModProjectile, IOilSlimeInheritedBurning {
     public bool OnFire { get; set; }

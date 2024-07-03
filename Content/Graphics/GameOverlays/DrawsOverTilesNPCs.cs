@@ -1,7 +1,7 @@
-﻿using Aequus.Core.Graphics.GameOverlays;
+﻿using Aequu2.Core.Graphics.GameOverlays;
 using Terraria.Graphics.Effects;
 
-namespace Aequus.Content.Graphics.GameOverlays;
+namespace Aequu2.Content.Graphics.GameOverlays;
 
 public sealed class DrawsOverTilesNPCs : OverlayDrawLayer {
     public DrawsOverTilesNPCs() : base(EffectPriority.Medium, RenderLayers.ForegroundWater) {

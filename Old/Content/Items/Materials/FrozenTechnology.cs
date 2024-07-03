@@ -1,8 +1,8 @@
-﻿using Aequus.Content.Systems;
-using Aequus.DataSets;
-using Aequus.DataSets.Structures.Enums;
+﻿using Aequu2.Content.Systems;
+using Aequu2.DataSets;
+using Aequu2.DataSets.Structures.Enums;
 
-namespace Aequus.Old.Content.Items.Materials;
+namespace Aequu2.Old.Content.Items.Materials;
 
 public class FrozenTechnology : ModItem {
     public override void SetStaticDefaults() {

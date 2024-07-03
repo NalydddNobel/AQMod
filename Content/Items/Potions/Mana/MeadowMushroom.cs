@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Items.Potions.Mana;
+﻿namespace Aequu2.Content.Items.Potions.Mana;
 
 public class MeadowMushroom : ModItem {
     public override void SetStaticDefaults() {

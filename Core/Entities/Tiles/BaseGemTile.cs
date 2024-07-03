@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aequus.Core.Entities.Tiles;
+namespace Aequu2.Core.Entities.Tiles;
 
 public abstract class BaseGemTile : ModTile {
     public override void SetStaticDefaults() {

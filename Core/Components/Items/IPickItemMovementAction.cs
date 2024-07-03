@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.Entities.Items.Components;
+﻿namespace Aequu2.Core.Entities.Items.Components;
 
 public interface IPickItemMovementAction {
     public const int RESULT_NONE = -1;

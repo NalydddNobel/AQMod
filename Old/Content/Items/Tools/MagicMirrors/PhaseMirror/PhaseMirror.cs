@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 
-namespace Aequus.Old.Content.Items.Tools.MagicMirrors.PhaseMirror;
+namespace Aequu2.Old.Content.Items.Tools.MagicMirrors.PhaseMirror;
 
 [FilterOverride(FilterOverride.Tools)]
 public class PhaseMirror : ModItem, IPhaseMirror {
@@ -35,7 +35,7 @@ public class PhaseMirror : ModItem, IPhaseMirror {
     }
 
     public override void UpdateInfoAccessory(Player player) {
-        player.GetModPlayer<AequusPlayer>().infiniteWormhole = true;
+        player.GetModPlayer<Aequu2Player>().infiniteWormhole = true;
     }
 
     public void GetPhaseMirrorDust(Player player, Item item, IPhaseMirror me, out int dustType, out Color dustColor) {

@@ -1,7 +1,7 @@
 DisplayName: 游戏配置
 
 PollutedOceanSide: {
-	Label: "[i:Aequus/TrashCompactor] 被污染的海洋位置"
+	Label: "[i:Aequu2/TrashCompactor] 被污染的海洋位置"
 	Tooltip:
 		'''
 		决定被污染的海洋生成在世界的哪个位置.
@@ -12,11 +12,11 @@ PollutedOceanSide: {
 }
 
 CaveVariety: {
-	Label: "[i:BonePickaxe] Aequus洞穴"
+	Label: "[i:BonePickaxe] Aequu2洞穴"
 	Tooltip:
 		'''
 		增加了更多的洞穴种类, 总体上扩大了洞穴, 并减少了死胡同.
-		此值会影响Aequus洞穴的生成数量.
+		此值会影响Aequu2洞穴的生成数量.
 		设为0以完全禁止生成.
 		'''
 }
@@ -33,7 +33,7 @@ TownNPCSettleDownMessage: {
 }
 
 HardmodeChests: {
-	Label: "[i:Aequus/AdamantiteChest] 困难模式宝箱"
+	Label: "[i:Aequu2/AdamantiteChest] 困难模式宝箱"
 	Tooltip:
 		'''
 		决定是否激活困难模式宝箱系统. 会有导致游戏出现多种变化.
@@ -53,15 +53,15 @@ ShadowMimics: {
 }
 
 HardmodeMimics: {
-	Label: "[i:Aequus/HardFrozenChest] 困难模式宝箱怪"
-	Tooltip: 决定Aequus的特殊困难模式宝箱怪是否会生成, 替代普通宝箱怪. 在"{$GameplayConfig.HardmodeChests.Label}"为False时, 此配置不生效.
+	Label: "[i:Aequu2/HardFrozenChest] 困难模式宝箱怪"
+	Tooltip: 决定Aequu2的特殊困难模式宝箱怪是否会生成, 替代普通宝箱怪. 在"{$GameplayConfig.HardmodeChests.Label}"为False时, 此配置不生效.
 }
 
-PDAGetsAequusItems: {
-	Label: "[i:PDA] Aequus个人数字助手"
+PDAGetsAequu2Items: {
+	Label: "[i:PDA] Aequu2个人数字助手"
 	Tooltip:
 		'''
-		决定Aequus的新信息饰品是否会添加到个人数字助手及其上位升级中.
-		任何使用个人数字助手及其上位升级的物品的配方中都会自动继承Aequus的信息饰品.
+		决定Aequu2的新信息饰品是否会添加到个人数字助手及其上位升级中.
+		任何使用个人数字助手及其上位升级的物品的配方中都会自动继承Aequu2的信息饰品.
 		'''
 }

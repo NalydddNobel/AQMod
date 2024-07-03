@@ -1,9 +1,9 @@
-﻿using Aequus.Content.Events.DemonSiege;
-using Aequus.Core.Assets;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Graphics.Tiles;
-using Aequus.DataSets;
-using Aequus.Old.Content.TownNPCs.OccultistNPC;
+﻿using Aequu2.Content.Events.DemonSiege;
+using Aequu2.Core.Assets;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Graphics.Tiles;
+using Aequu2.DataSets;
+using Aequu2.Old.Content.TownNPCs.OccultistNPC;
 using System;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -11,7 +11,7 @@ using Terraria.GameContent.ObjectInteractions;
 using Terraria.ObjectData;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 
-namespace Aequus.Old.Content.Events.DemonSiege.Tiles;
+namespace Aequu2.Old.Content.Events.DemonSiege.Tiles;
 
 [LegacyName("GoreNestTile", "GoreNest")]
 public class OblivionAltar : ModTile, ISpecialTileRenderer {
@@ -22,7 +22,7 @@ public class OblivionAltar : ModTile, ISpecialTileRenderer {
 
     public override void Load() {
         if (!Main.dedServ) {
-            GoreNestPortal = new("Aequus/Old/Assets/Shaders/GoreNestPortal");
+            GoreNestPortal = new("Aequu2/Old/Assets/Shaders/GoreNestPortal");
         }
 
         Item = new InstancedTileItem(this, rarity: ItemRarityID.Orange, value: Terraria.Item.buyPrice(gold: 5), journeyOverride: new JourneyOverrideGroup(ContentSamples.CreativeHelper.ItemGroup.CraftingObjects));

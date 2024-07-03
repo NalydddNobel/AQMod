@@ -1,7 +1,7 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.ContentGeneration;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Tiles.Furniture.Trash;
+namespace Aequu2.Content.Tiles.Furniture.Trash;
 
 internal class TrashCampfire(UnifiedFurniture parent) : InstancedFurnitureCampfire(parent) {
     protected override void PreAddTileObjectData() {

@@ -1,7 +1,7 @@
-﻿using Aequus.DataSets;
+﻿using Aequu2.DataSets;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Bosses.SpaceSquid.Projectiles;
+namespace Aequu2.Old.Content.Bosses.SpaceSquid.Projectiles;
 
 public class SpaceSquidSnowflake : ModProjectile {
     public override void SetStaticDefaults() {
@@ -41,7 +41,7 @@ public class SpaceSquidSnowflake : ModProjectile {
         var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
         var frame = texture.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame);
         Main.spriteBatch.Draw(texture, drawPos, frame, new Color(255, 255, 255, 128), Projectile.rotation, frame.Size() / 2f, Projectile.scale, SpriteEffects.None, 0f);
-        var spotlight = AequusTextures.Bloom;
+        var spotlight = Aequu2Textures.Bloom;
         var bloomAura = spotlight.Size() / 2f;
         Main.spriteBatch.Draw(spotlight, drawPos, null, new Color(128, 128, 128, 128), Projectile.rotation, bloomAura, Projectile.scale * 0.22f, SpriteEffects.None, 0f);
         Main.spriteBatch.Draw(spotlight, drawPos, null, new Color(30, 30, 30, 0), Projectile.rotation, bloomAura, Projectile.scale * 0.55f, SpriteEffects.None, 0f);

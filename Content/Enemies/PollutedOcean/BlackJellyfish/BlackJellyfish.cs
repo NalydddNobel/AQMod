@@ -1,17 +1,17 @@
-﻿using Aequus.Content.Biomes.PollutedOcean;
-using Aequus.Content.Graphics.Particles;
-using Aequus.Content.Items.Tools.Keys;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.Core.Entities.NPCs;
-using Aequus.DataSets;
+﻿using Aequu2.Content.Biomes.PollutedOcean;
+using Aequu2.Content.Graphics.Particles;
+using Aequu2.Content.Items.Tools.Keys;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.Core.Entities.NPCs;
+using Aequu2.DataSets;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.Shaders;
 
-namespace Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
+namespace Aequu2.Content.Enemies.PollutedOcean.BlackJellyfish;
 
 [AutoloadBanner]
 [BestiaryBiome<PollutedOceanBiomeUnderground>()]

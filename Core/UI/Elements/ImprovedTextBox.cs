@@ -7,7 +7,7 @@ using Terraria.GameInput;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace Aequus.Core.UI.Elements;
+namespace Aequu2.Core.UI.Elements;
 
 // TODO -- Add controller support?
 // TODO -- Better selection support?

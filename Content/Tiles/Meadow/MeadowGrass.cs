@@ -1,10 +1,10 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Tiles.Components;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Tiles.Components;
 using Terraria.Audio;
 using Terraria.GameContent.Metadata;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 
-namespace Aequus.Content.Tiles.Meadow;
+namespace Aequu2.Content.Tiles.Meadow;
 
 public class MeadowGrass : ModTile, IOverridePlacement, IOnPlaceTile {
     public ModItem MeadowGrassSeeds { get; private set; }

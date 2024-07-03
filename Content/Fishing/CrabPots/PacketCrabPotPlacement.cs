@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Systems;
+﻿using Aequu2.Core.Systems;
 using System.IO;
 using Terraria.DataStructures;
 using tModLoaderExtended.Networking;
 
-namespace Aequus.Content.Fishing.CrabPots;
+namespace Aequu2.Content.Fishing.CrabPots;
 
 public class PacketCrabPotPlacement : PacketHandler {
     public void Send(int x, int y, int waterStyleId) {

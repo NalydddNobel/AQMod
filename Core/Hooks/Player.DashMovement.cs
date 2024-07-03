@@ -1,21 +1,21 @@
-﻿using Aequus.Core.Entities.Players;
+﻿using Aequu2.Core.Entities.Players;
 using System;
 
-namespace Aequus.Core.Hooks;
+namespace Aequu2.Core.Hooks;
 
 public partial class TerrariaHooks {
-    /// <summary>Allows for custom dash accessories added by Aequus to update dash movement.</summary>
+    /// <summary>Allows for custom dash accessories added by Aequu2 to update dash movement.</summary>
     private static void On_Player_DashMovement(On_Player.orig_DashMovement orig, Player player) {
         orig(player);
 
-        if (player.mount.Active || player.dash != -1 || !player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer) || aequusPlayer.DashData == null) {
+        if (player.mount.Active || player.dash != -1 || !player.TryGetModPlayer<AequusPlayer>(out var Aequu2Player) || Aequu2Player.DashData == null) {
             return;
         }
 
-        CustomDashData dashData = aequusPlayer.DashData;
+        CustomDashData dashData = Aequu2Player.DashData;
 
         if (player.dashDelay > 0) {
-            dashData.OnUpdateDashDelay(player, aequusPlayer);
+            dashData.OnUpdateDashDelay(player, Aequu2Player);
         }
         else if (player.dashDelay < 0) {
             float dashSpeed = dashData.DashHaltSpeed;
@@ -26,7 +26,7 @@ public partial class TerrariaHooks {
             int dashDelay = dashData.DashDelay;
             player.doorHelper.AllowOpeningDoorsByVelocityAloneForATime(dashDelay * 3);
             player.vortexStealthActive = false;
-            dashData.OnUpdateRampDown(player, aequusPlayer);
+            dashData.OnUpdateRampDown(player, Aequu2Player);
             if (player.velocity.X > dashSpeed || player.velocity.X < -dashSpeed) {
                 player.velocity.X *= dashSpeedPenalty;
                 return;
@@ -42,10 +42,10 @@ public partial class TerrariaHooks {
             else if (player.velocity.X > 0f) {
                 player.velocity.X = movementSpeed;
             }
-            dashData.OnApplyDash(player, aequusPlayer);
+            dashData.OnApplyDash(player, Aequu2Player);
         }
         else {
-            aequusPlayer.DoCommonDashHandle(player, out int direction, out bool dashing, dashData);
+            Aequu2Player.DoCommonDashHandle(player, out int direction, out bool dashing, dashData);
             if (dashing) {
                 player.velocity.X = dashData.DashSpeed * direction;
 
@@ -56,7 +56,7 @@ public partial class TerrariaHooks {
                 }
                 player.dashDelay = -1;
 
-                dashData.OnDashVelocityApplied(player, aequusPlayer, direction);
+                dashData.OnDashVelocityApplied(player, Aequu2Player, direction);
             }
         }
     }

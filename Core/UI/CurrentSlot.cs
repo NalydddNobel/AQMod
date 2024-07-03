@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.UI;
+﻿namespace Aequu2.Core.UI;
 
 public sealed class CurrentSlot {
     public static CurrentSlot Instance { get; private set; } = new();

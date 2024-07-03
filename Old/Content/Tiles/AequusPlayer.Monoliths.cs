@@ -1,8 +1,8 @@
-﻿using Aequus.Core.CodeGeneration;
+﻿using Aequu2.Core.CodeGeneration;
 
-namespace Aequus;
+namespace Aequu2;
 
-public partial class AequusPlayer {
+public partial class Aequu2Player {
     [ResetEffects]
     public bool cosmicMonolithShader;
 }

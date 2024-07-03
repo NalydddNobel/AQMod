@@ -1,8 +1,8 @@
-﻿using Aequus.Content.Backpacks;
-using Aequus.Core.Entities.Items.Components;
+﻿using Aequu2.Content.Backpacks;
+using Aequu2.Core.Entities.Items.Components;
 using System.Collections.Generic;
 
-namespace Aequus.Core.Entities.Items.Tooltips;
+namespace Aequu2.Core.Entities.Items.Tooltips;
 public class KeywordSystem : ModSystem {
     public static int HoveredItemID { get; internal set; }
     public static int LastHoveredItemID { get; internal set; }
@@ -41,12 +41,12 @@ public class KeywordSystem : ModSystem {
     //}
 
     public static void AddPlayerSpecificKeywords(Player player, Item item) {
-        var aequusPlayer = player.GetModPlayer<AequusPlayer>();
-        //if (aequusPlayer.accCrownOfBlood != null && item.ModItem is not CrownOfBloodItem && item.accessory && !item.vanity && item.createTile != TileID.MusicBoxes) {
+        var Aequu2Player = player.GetModPlayer<AequusPlayer>();
+        //if (Aequu2Player.accCrownOfBlood != null && item.ModItem is not CrownOfBloodItem && item.accessory && !item.vanity && item.createTile != TileID.MusicBoxes) {
         //    AddCrownOfBloodTooltip(item);
         //}
-        //if (aequusPlayer.accSentryInheritence != null && item.accessory && !item.vanity && item.createTile != TileID.MusicBoxes) {
-        //    SpecialAbilityTooltipInfo tooltip = new(aequusPlayer.accSentryInheritence.Name, Color.LawnGreen, aequusPlayer.accSentryInheritence.type);
+        //if (Aequu2Player.accSentryInheritence != null && item.accessory && !item.vanity && item.createTile != TileID.MusicBoxes) {
+        //    SpecialAbilityTooltipInfo tooltip = new(Aequu2Player.accSentryInheritence.Name, Color.LawnGreen, Aequu2Player.accSentryInheritence.type);
         //    tooltip.AddLine("Sentries will summon Spores around them to damage enemies");
         //    _tooltips.Add(tooltip);
         //}

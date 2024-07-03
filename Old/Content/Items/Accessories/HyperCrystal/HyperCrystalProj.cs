@@ -1,10 +1,10 @@
-﻿using Aequus.Core.Entities.Projectiles;
-using Aequus.Content.Dusts;
+﻿using Aequu2.Core.Entities.Projectiles;
+using Aequu2.Content.Dusts;
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;
 
-namespace Aequus.Old.Content.Items.Accessories.HyperCrystal;
+namespace Aequu2.Old.Content.Items.Accessories.HyperCrystal;
 
 public class HyperCrystalProj : ModProjectile {
     public const float MaxDistance = 300f;
@@ -32,13 +32,13 @@ public class HyperCrystalProj : ModProjectile {
         }
         Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
 
-        var aequus = Projectile.GetGlobalProjectile<ProjectileSource>();
-        Projectile parentProj = aequus.GetSourceProj(Projectile);
+        var Aequu2 = Projectile.GetGlobalProjectile<ProjectileSource>();
+        Projectile parentProj = Aequu2.GetSourceProj(Projectile);
         if (parentProj != null && parentProj.active) {
             if (parentProj.whoAmI == Main.player[Projectile.owner].heldProj) {
                 Projectile.velocity = parentProj.DirectionFrom(Main.player[Projectile.owner].Center).UnNaN();
                 Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
-                aequus.parentProjectileIdentity = -1;
+                Aequu2.parentProjectileIdentity = -1;
                 return;
             }
             Projectile.ai[1] += 0.055f;
@@ -137,7 +137,7 @@ public class HyperCrystalProj : ModProjectile {
     }
 
     public override bool PreDraw(ref Color lightColor) {
-        Main.instance.PrepareDrawnEntityDrawing(Projectile, Main.player[Projectile.owner].Aequus().cHyperCrystal, null);
+        Main.instance.PrepareDrawnEntityDrawing(Projectile, Main.player[Projectile.owner].Aequu2().cHyperCrystal, null);
         Projectile.GetDrawInfo(out var t, out var off, out var frame, out var origin, out int trailLength);
         frame.Width /= 4;
         frame.X = frame.Width * Projectile.frame;
@@ -150,7 +150,7 @@ public class HyperCrystalProj : ModProjectile {
         }
         Main.EntitySpriteDraw(t, Projectile.position + off - Main.screenPosition, frame, Color.White * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
 
-        Texture2D flareTexture = AequusTextures.Flare;
+        Texture2D flareTexture = Aequu2Textures.Flare;
         Vector2 flareOrigin = flareTexture.Size() / 2f;
         Vector2 originPoint = Main.player[Projectile.owner].Center;
         Vector2 toEdge = Projectile.DirectionFrom(originPoint) * MaxDistance;

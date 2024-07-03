@@ -1,6 +1,6 @@
 ﻿using Terraria.Localization;
 
-namespace Aequus.Old.Content.Items.Accessories.WarHorn;
+namespace Aequu2.Old.Content.Items.Accessories.WarHorn;
 
 public class WarHorn : ModItem {
     public static int FrenzyTime { get; set; } = 240;
@@ -15,6 +15,6 @@ public class WarHorn : ModItem {
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
-        player.GetModPlayer<AequusPlayer>().accWarHorn++;
+        player.GetModPlayer<Aequu2Player>().accWarHorn++;
     }
 }

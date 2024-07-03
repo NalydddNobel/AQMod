@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Core.Components.NPCs;
+namespace Aequu2.Core.Components.NPCs;
 
 public interface ITrackTimeBetweenHits {
 }

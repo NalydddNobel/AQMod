@@ -4,13 +4,13 @@
 
   <!-- ASSEMBLY -->
   <PropertyGroup>
-    <AssemblyName>Aequus</AssemblyName>
+    <AssemblyName>Aequu2</AssemblyName>
     <TargetFramework>net8.0</TargetFramework>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>latest</LangVersion>
 	<!-- Generates a file with all available documentation (xml comments (///) -->
 	<GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DocumentationFile>Aequus.xml</DocumentationFile>
+    <DocumentationFile>Aequu2.xml</DocumentationFile>
   </PropertyGroup>
 
   <!-- DEPENDANCIES -->
@@ -26,8 +26,8 @@
 	  <HintPath>lib\tModLoaderExtended.dll</HintPath>
 	</Reference>
 	<!-- Aequus Music dependancy -->
-	<ProjectReference Include="..\AequusMusic\AequusMusic.csproj" />
-	<!-- Source Generator (For AequusTextures and AequusSounds) -->
+	<ProjectReference Include="..\Aequu2Music\Aequu2Music.csproj" />
+	<!-- Source Generator (For Aequu2Textures and Aequu2Sounds) -->
 	<ProjectReference Include="project\SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 

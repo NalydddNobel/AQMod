@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;
 
-namespace Aequus.Core.Entities.Bestiary;
+namespace Aequu2.Core.Entities.Bestiary;
 
 /// <summary>Helper class for initializing bestiary entries.</summary>
 internal static class BestiaryBuilder {
@@ -90,7 +90,7 @@ internal static class BestiaryBuilder {
             sorting[modNPC.Type] = sortingID;
         }
         catch (Exception ex) {
-            Aequus.Instance.Logger.Error($"Failed to move entry for {modNPC.Type} ({modNPC.Name}) to {npcIdToSortAfter} ({(NPCID.Search.TryGetName(npcIdToSortAfter, out string name) ? name : "Unknown")}).\n{ex}");
+            Aequu2.Instance.Logger.Error($"Failed to move entry for {modNPC.Type} ({modNPC.Name}) to {npcIdToSortAfter} ({(NPCID.Search.TryGetName(npcIdToSortAfter, out string name) ? name : "Unknown")}).\n{ex}");
         }
     }
 

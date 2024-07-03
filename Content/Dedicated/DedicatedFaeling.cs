@@ -1,7 +1,7 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.CrossMod;
-using Aequus.Core.Entities.Items.Dedications;
-using Aequus.Core.UI;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.CrossMod;
+using Aequu2.Core.Entities.Items.Dedications;
+using Aequu2.Core.UI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,7 +14,7 @@ using Terraria.ModLoader.IO;
 using tModLoaderExtended.Terraria.GameContent;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequus.Content.Dedicated;
+namespace Aequu2.Content.Dedicated;
 
 public class DedicatedFaeling : ModNPC {
     public const int FRAMES_VERTICAL = 5;

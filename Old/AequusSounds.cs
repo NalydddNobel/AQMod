@@ -1,8 +1,8 @@
 ﻿using Terraria.Audio;
 
-namespace Aequus;
+namespace Aequu2;
 
-public partial class AequusSounds {
+public partial class Aequu2Sounds {
     public static SoundStyle RedSpriteThunderClap { get; private set; }
     public static SoundStyle HighSteaks { get; private set; }
     public static SoundStyle Meathook { get; private set; }

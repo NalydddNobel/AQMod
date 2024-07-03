@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Entities.Tiles.Rubblemaker;
-using Aequus.Core.Graphics.Animations;
+﻿using Aequu2.Core.Entities.Tiles.Rubblemaker;
+using Aequu2.Core.Graphics.Animations;
 using Terraria.GameContent;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Tiles.PollutedOcean.Ambient.SeaPickles;
+namespace Aequu2.Content.Tiles.PollutedOcean.Ambient.SeaPickles;
 
 internal abstract class SeaPicklesTileBase : RubblemakerTile {
     protected float LightMagnitudeMultiplier = 1f;

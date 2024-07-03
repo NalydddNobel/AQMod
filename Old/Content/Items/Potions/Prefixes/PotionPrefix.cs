@@ -1,8 +1,8 @@
-﻿using Aequus.Core.Components.Prefixes;
-using Aequus.DataSets;
+﻿using Aequu2.Core.Components.Prefixes;
+using Aequu2.DataSets;
 using ReLogic.Content;
 
-namespace Aequus.Old.Content.Items.Potions.Prefixes;
+namespace Aequu2.Old.Content.Items.Potions.Prefixes;
 
 public abstract class PotionPrefix : ModPrefix, IRemovedByShimmerPrefix {
     public ModItem Item { get; private set; }

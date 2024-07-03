@@ -4,7 +4,7 @@ using System.IO;
 using Terraria.Audio;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Bosses.DustDevil.Projectiles;
+namespace Aequu2.Old.Content.Bosses.DustDevil.Projectiles;
 public class DustDevilTileProj : ModProjectile {
     public const int STATE_INIT = 0;
     public const int STATE_ORBITING = 1;
@@ -14,7 +14,7 @@ public class DustDevilTileProj : ModProjectile {
 
     public static HashSet<int> TileTextureBlacklist { get; private set; }
 
-    public override string Texture => AequusTextures.None.Path;
+    public override string Texture => Aequu2Textures.None.Path;
 
     public int State { get => (int)Projectile.ai[0]; set => Projectile.ai[0] = value; }
     public ushort tileTexture;

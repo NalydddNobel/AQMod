@@ -1,8 +1,8 @@
-﻿using Aequus.Core.Graphics;
-using Aequus.Core.Particles;
+﻿using Aequu2.Core.Graphics;
+using Aequu2.Core.Particles;
 using System;
 
-namespace Aequus.Content.Items.Tools.AnglerLamp;
+namespace Aequu2.Content.Items.Tools.AnglerLamp;
 
 public class WispLanternParticles : ParticleArray<WispLanternParticles.Particle> {
     public override int ParticleCount => 50;
@@ -132,7 +132,7 @@ public class WispLanternParticles : ParticleArray<WispLanternParticles.Particle>
     public Vector2 npcOffset;
 
     protected override void SetDefaults() {
-        SetTexture(AequusTextures.Flare2);
+        SetTexture(Aequu2Textures.Flare2);
         Rotation = Main.rand.NextFloat(-0.05f, 0.05f);
         Animation = 0f;
         npc = -1;

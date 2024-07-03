@@ -1,16 +1,16 @@
-﻿using Aequus.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
-using Aequus.Content.TownNPCs.SkyMerchant.UI;
-using Aequus.Core.Components.NPCs;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.Core.UI;
+﻿using Aequu2.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
+using Aequu2.Content.TownNPCs.SkyMerchant.UI;
+using Aequu2.Core.Components.NPCs;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.Core.UI;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.UI;
 using Terraria.Localization;
 
-namespace Aequus.Content.TownNPCs.SkyMerchant;
+namespace Aequu2.Content.TownNPCs.SkyMerchant;
 
 public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
     public enum MovementState {

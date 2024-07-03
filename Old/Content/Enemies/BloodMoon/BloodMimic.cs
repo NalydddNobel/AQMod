@@ -1,17 +1,17 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.Core.Entities.Items.DropRules;
-using Aequus.Old.Content.Items.Accessories.HighSteaks;
-using Aequus.Old.Content.Items.GrapplingHooks.HealingGrappleHook;
-using Aequus.Old.Content.Items.Potions.Foods.SusSteak;
-using Aequus.Old.Content.Items.Potions.Resurrection;
-using Aequus.Old.Content.Items.Weapons.Ranged.CrusadersCrossbow;
-using Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.Core.Entities.Items.DropRules;
+using Aequu2.Old.Content.Items.Accessories.HighSteaks;
+using Aequu2.Old.Content.Items.GrapplingHooks.HealingGrappleHook;
+using Aequu2.Old.Content.Items.Potions.Foods.SusSteak;
+using Aequu2.Old.Content.Items.Potions.Resurrection;
+using Aequu2.Old.Content.Items.Weapons.Ranged.CrusadersCrossbow;
+using Aequu2.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg;
 using System;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Old.Content.Enemies.BloodMoon;
+namespace Aequu2.Old.Content.Enemies.BloodMoon;
 
 [AutoloadBanner(legacyId: 17)]
 public class BloodMimic : LegacyAIMimic {
@@ -80,9 +80,9 @@ public class BloodMimic : LegacyAIMimic {
             for (int i = 0; i < 50; i++) {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hit.HitDirection * 2);
             }
-            NPC.NewGore(AequusTextures.BloodMimicGoreEyeball, NPC.Center, NPC.velocity);
-            NPC.NewGore(AequusTextures.BloodMimicGoreLid, NPC.position, NPC.velocity);
-            NPC.NewGore(AequusTextures.BloodMimicGoreLid, NPC.position, NPC.velocity).rotation += MathHelper.Pi;
+            NPC.NewGore(Aequu2Textures.BloodMimicGoreEyeball, NPC.Center, NPC.velocity);
+            NPC.NewGore(Aequu2Textures.BloodMimicGoreLid, NPC.position, NPC.velocity);
+            NPC.NewGore(Aequu2Textures.BloodMimicGoreLid, NPC.position, NPC.velocity).rotation += MathHelper.Pi;
         }
         for (int i = 0; i < 3; i++) {
             Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hit.HitDirection * 2);
@@ -104,7 +104,7 @@ public class BloodMimic : LegacyAIMimic {
             NPC.spriteDirection = -NPC.spriteDirection;
         }
         var tileCoords = NPC.Center.ToTileCoordinates();
-        //AequusHelpers.dustDebug(tileCoords);
+        //Aequu2Helpers.dustDebug(tileCoords);
         if (WorldGen.InWorld(tileCoords.X + NPC.direction, tileCoords.Y, 10) && Main.tile[tileCoords.X + NPC.direction, tileCoords.Y].IsFullySolid()) {
             NPC.velocity.X = NPC.direction * 5f;
             NPC.velocity.Y = -6f;

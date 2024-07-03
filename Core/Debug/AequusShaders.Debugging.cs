@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using Terraria.ModLoader.Core;
 
-namespace Aequus.Core.Assets;
+namespace Aequu2.Core.Assets;
 
 public partial class AequusShaders {
     private static bool _loadedAllShaders = false;
@@ -22,7 +22,7 @@ public partial class AequusShaders {
         }
 
         MethodInfo info = typeof(Mod).GetProperty("File", BindingFlags.NonPublic | BindingFlags.Instance).GetGetMethod(true);
-        TmodFile file = info.Invoke(Aequus.Instance, null) as TmodFile;
+        TmodFile file = info.Invoke(Aequu2.Instance, null) as TmodFile;
 
         if (file is null) {
             return;
@@ -33,7 +33,7 @@ public partial class AequusShaders {
         foreach (TmodFile.FileEntry i in shaders) {
             string name = Path.ChangeExtension(i.Name, "").TrimEnd('.');
 
-            Aequus.Instance.RequestAssetIfExists<Effect>(name, out _);
+            Aequu2.Instance.RequestAssetIfExists<Effect>(name, out _);
         }
     }
 }

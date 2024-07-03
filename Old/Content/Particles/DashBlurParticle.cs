@@ -1,8 +1,8 @@
-﻿using Aequus.Core.Graphics;
-using Aequus.Core.Particles;
+﻿using Aequu2.Core.Graphics;
+using Aequu2.Core.Particles;
 using System;
 
-namespace Aequus.Old.Content.Particles;
+namespace Aequu2.Old.Content.Particles;
 
 public class DashBlurParticle : ParallelParticleArray<DashBlurParticle.Particle> {
     public override int ParticleCount => 2000;
@@ -10,7 +10,7 @@ public class DashBlurParticle : ParallelParticleArray<DashBlurParticle.Particle>
     public override void Draw(SpriteBatch spriteBatch) {
         spriteBatch.BeginDusts();
 
-        Texture2D texture = AequusTextures.FlareSoft;
+        Texture2D texture = Aequu2Textures.FlareSoft;
         Rectangle frame = texture.Frame();
         Vector2 origin = frame.Size() / 2f;
         lock (this) {

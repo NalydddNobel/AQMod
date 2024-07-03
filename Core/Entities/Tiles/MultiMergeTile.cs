@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using Terraria.GameContent.Drawing;
 using Terraria.Utilities;
 
-namespace Aequus.Core.Entities.Tiles;
+namespace Aequu2.Core.Entities.Tiles;
 
 public abstract class MultiMergeTile : ModTile {
     public const int Right = 0;
@@ -72,7 +72,7 @@ public abstract class MultiMergeTile : ModTile {
 
     private static byte[][] _mergeCache;
     private static Asset<Texture2D>[] _mergeTextures = Array.Empty<Asset<Texture2D>>();
-    private const string Path = "Aequus/Assets/Textures/TileMerges/";
+    private const string Path = "Aequu2/Assets/Textures/TileMerges/";
 
     public List<int> Merges { get; private set; } = new();
 
@@ -91,11 +91,11 @@ public abstract class MultiMergeTile : ModTile {
         Merges.Add(with);
 
         if (Main.netMode != NetmodeID.Server) {
-            Aequus.OnPostSetupContent += () => {
+            Aequu2.OnPostSetupContent += () => {
                 if (_mergeTextures.Length <= with) {
                     Array.Resize(ref _mergeTextures, with + 1);
                 }
-                _mergeTextures[with] ??= ModContent.Request<Texture2D>($"{Path}{TileID.Search.GetName(with).Replace("Aequus/", "")}");
+                _mergeTextures[with] ??= ModContent.Request<Texture2D>($"{Path}{TileID.Search.GetName(with).Replace("Aequu2/", "")}");
             };
         }
     }

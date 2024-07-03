@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using tModLoaderExtended.Networking;
 
-namespace Aequus.Old.Content.Necromancy.Networking;
+namespace Aequu2.Old.Content.Necromancy.Networking;
 
 public class SyncNecromancyOwnerPacket : PacketHandler {
     public void Send(int npc, int player) {

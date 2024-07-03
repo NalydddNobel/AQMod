@@ -1,7 +1,7 @@
-﻿using Aequus.Old.Content.Items.GrapplingHooks.EnemyGrappleHook;
-using Aequus.Old.Content.Items.GrapplingHooks.HealingGrappleHook;
+﻿using Aequu2.Old.Content.Items.GrapplingHooks.EnemyGrappleHook;
+using Aequu2.Old.Content.Items.GrapplingHooks.HealingGrappleHook;
 
-namespace Aequus.Old.Content.Items.GrapplingHooks;
+namespace Aequu2.Old.Content.Items.GrapplingHooks;
 
 public class GrapplingHooksNPC : GlobalNPC {
     public override void ModifyIncomingHit(NPC npc, ref NPC.HitModifiers modifiers) {

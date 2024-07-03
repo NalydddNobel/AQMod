@@ -1,9 +1,9 @@
-﻿using Aequus.Old.Content.DronePylons.NPCs;
+﻿using Aequu2.Old.Content.DronePylons.NPCs;
 using System.Collections.Generic;
 using System.IO;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Old.Content.DronePylons;
+namespace Aequu2.Old.Content.DronePylons;
 
 public abstract class DroneSlot : ModType, TagSerializable {
     public abstract int NPCType { get; }

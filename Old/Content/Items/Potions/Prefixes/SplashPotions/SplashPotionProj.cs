@@ -1,4 +1,4 @@
-﻿using Aequus.DataSets;
+﻿using Aequu2.DataSets;
 using System;
 using System.IO;
 using System.Linq;
@@ -6,10 +6,10 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Items.Potions.Prefixes.SplashPotions;
+namespace Aequu2.Old.Content.Items.Potions.Prefixes.SplashPotions;
 
 public class SplashPotionProj : ModProjectile {
-    public override string Texture => AequusTextures.Item(ItemID.RegenerationPotion);
+    public override string Texture => Aequu2Textures.Item(ItemID.RegenerationPotion);
 
     public int ItemType { get => Math.Abs((int)Projectile.ai[0]); set => Projectile.ai[0] = value; }
     public int BuffTime { get => (int)Projectile.ai[1]; set => Projectile.ai[1] = value; }

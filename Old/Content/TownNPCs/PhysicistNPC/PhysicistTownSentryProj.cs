@@ -1,10 +1,10 @@
-﻿using Aequus.Old.Content.Items.Weapons.Summon.Sentries.PhysicistSentry;
+﻿using Aequu2.Old.Content.Items.Weapons.Summon.Sentries.PhysicistSentry;
 using System.Collections.Generic;
 
-namespace Aequus.Old.Content.TownNPCs.PhysicistNPC;
+namespace Aequu2.Old.Content.TownNPCs.PhysicistNPC;
 
 public class PhysicistTownSentryProj : PhysicistSentryProj {
-    public override string Texture => AequusTextures.PhysicistSentryProj.Path;
+    public override string Texture => Aequu2Textures.PhysicistSentryProj.Path;
 
     public override void SetDefaults() {
         base.SetDefaults();

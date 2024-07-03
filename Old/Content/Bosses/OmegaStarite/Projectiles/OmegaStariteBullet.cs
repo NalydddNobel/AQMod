@@ -1,10 +1,10 @@
-﻿using Aequus.Content.Dusts;
-using Aequus.DataSets;
-using Aequus.Old.Content.Events.Glimmer;
+﻿using Aequu2.Content.Dusts;
+using Aequu2.DataSets;
+using Aequu2.Old.Content.Events.Glimmer;
 using System;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Bosses.OmegaStarite.Projectiles;
+namespace Aequu2.Old.Content.Bosses.OmegaStarite.Projectiles;
 
 public class OmegaStariteBullet : ModProjectile {
     public override void SetStaticDefaults() {
@@ -44,7 +44,7 @@ public class OmegaStariteBullet : ModProjectile {
         drawColor.A = 0;
         var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
 
-        DrawHelper.DrawBasicVertexLineWithProceduralPadding(AequusTextures.Trail2, Projectile.oldPos, Projectile.oldRot,
+        DrawHelper.DrawBasicVertexLineWithProceduralPadding(Aequu2Textures.Trail2, Projectile.oldPos, Projectile.oldRot,
             (p) => GlimmerColors.CosmicEnergy with { A = 0 } * (1f - p),
             (p) => Projectile.width - p * Projectile.width,
             -Main.screenPosition + Projectile.Size / 2f);
@@ -56,10 +56,10 @@ public class OmegaStariteBullet : ModProjectile {
         }
 
         if (intensity > 0f) {
-            var spotlight = AequusTextures.BloomStrong;
+            var spotlight = Aequu2Textures.BloomStrong;
             var spotlightOrig = spotlight.Size() / 2f;
             Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.25f, Projectile.rotation, spotlightOrig, Projectile.scale * intensity, SpriteEffects.None, 0f);
-            spotlight = AequusTextures.Bloom;
+            spotlight = Aequu2Textures.Bloom;
             spotlightOrig = spotlight.Size() / 2f;
             var crossScale = new Vector2(0.04f * intensity, (3f + (float)Math.Sin(Main.GlobalTimeWrappedHourly * 16f) * 0.2f) * intensity);
             var spotlightDrawColor = drawColor * 0.2f;

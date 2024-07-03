@@ -1,6 +1,6 @@
-﻿using Aequus.Content.Configuration;
+﻿using Aequu2.Content.Configuration;
 
-namespace Aequus.Content.VanillaChanges;
+namespace Aequu2.Content.VanillaChanges;
 
 internal class GravityGlobeChanges : GlobalItem {
     public override bool IsLoadingEnabled(Mod mod) {

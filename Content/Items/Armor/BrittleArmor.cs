@@ -1,9 +1,9 @@
-﻿using Aequus.Core;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Items.Components;
-using Aequus.Core.Entities.Items.Tooltips;
-using Aequus.Core.Entities.Players.Drawing;
-using Aequus.Core.UI;
+﻿using Aequu2.Core;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Items.Components;
+using Aequu2.Core.Entities.Items.Tooltips;
+using Aequu2.Core.Entities.Players.Drawing;
+using Aequu2.Core.UI;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ using Terraria.Localization;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
 
-namespace Aequus.Content.Items.Armor;
+namespace Aequu2.Content.Items.Armor;
 
 public abstract class BrittleArmor : ModTexturedType, ILocalizedModType {
     public readonly int MaxHits;
@@ -149,12 +149,12 @@ internal sealed class BrittleArmorItem : InstancedModItem, IPickItemMovementActi
 
     #region Keywords
     public void AddSpecialTooltips() {
-        Keyword tooltip = new Keyword(Language.GetTextValue("Mods.Aequus.Items.Keywords.Brittle.DisplayName"), Color.Lerp(Color.Blue, Color.White, 0.75f), _parent.Items[^1].Type);
+        Keyword tooltip = new Keyword(Language.GetTextValue("Mods.Aequu2.Items.Keywords.Brittle.DisplayName"), Color.Lerp(Color.Blue, Color.White, 0.75f), _parent.Items[^1].Type);
 
         if (HitsLeft > 0) {
-            tooltip.AddLine(Language.GetTextValue("Mods.Aequus.Items.Keywords.Brittle.Description", HitsLeft));
+            tooltip.AddLine(Language.GetTextValue("Mods.Aequu2.Items.Keywords.Brittle.Description", HitsLeft));
         }
-        tooltip.AddLine(Language.GetTextValue("Mods.Aequus.Items.CommonTooltips.GoblinTinkererRepair", HitsLeft));
+        tooltip.AddLine(Language.GetTextValue("Mods.Aequu2.Items.CommonTooltips.GoblinTinkererRepair", HitsLeft));
 
         KeywordSystem.Tooltips.Add(tooltip);
     }

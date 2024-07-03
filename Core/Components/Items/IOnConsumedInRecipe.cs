@@ -1,6 +1,6 @@
 ﻿using Terraria.DataStructures;
 
-namespace Aequus.Core.Entities.Items.Components;
+namespace Aequu2.Core.Entities.Items.Components;
 internal interface IOnConsumedInRecipe {
     void OnConsumedInRecipe(Item createdItem, RecipeItemCreationContext context);
 }

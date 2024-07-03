@@ -1,16 +1,16 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.DataSets;
-using Aequus.Old.Content.Events.DemonSiege;
-using Aequus.Old.Content.Items.Accessories.WarHorn;
-using Aequus.Old.Content.Items.Materials.SoulGem;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.DataSets;
+using Aequu2.Old.Content.Events.DemonSiege;
+using Aequu2.Old.Content.Items.Accessories.WarHorn;
+using Aequu2.Old.Content.Items.Materials.SoulGem;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Old.Content.Enemies.DemonSiege.CinderBat;
+namespace Aequu2.Old.Content.Enemies.DemonSiege.CinderBat;
 
 [LegacyName("Cindera")]
 [AutoloadBanner(legacyId: 7)]
@@ -372,7 +372,7 @@ public class CinderBat : LegacyAIBat {
             float value = (intensity - 150) / 33f;
             var c = drawColor * 0.08f * value;
             if (ExtendedMod.HighQualityEffects) {
-                var spotlight = AequusTextures.BloomStrong;
+                var spotlight = Aequu2Textures.BloomStrong;
                 var spotlightOrigin = spotlight.Size() / 2f;
                 Main.spriteBatch.Draw(spotlight, NPC.position + offset - screenPos, null, new Color(255, 150, 10, 0) * value, NPC.rotation, spotlightOrigin, NPC.scale * value * 0.15f, effects, 0f);
                 Main.spriteBatch.Draw(spotlight, NPC.position + offset - screenPos, null, new Color(255, 150, 10, 0) * value * 0.1f, NPC.rotation, spotlightOrigin, NPC.scale * value * 0.3f, effects, 0f);

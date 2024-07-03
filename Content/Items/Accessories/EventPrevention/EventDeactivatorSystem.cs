@@ -2,7 +2,7 @@
 using MonoMod.Cil;
 using System.Reflection;
 
-namespace Aequus.Content.Items.Accessories.EventPrevention;
+namespace Aequu2.Content.Items.Accessories.EventPrevention;
 public class EventDeactivatorSystem : ModSystem {
     public override void Load() {
         On_NPC.SpawnNPC += SpawnNPCUndoFlags;

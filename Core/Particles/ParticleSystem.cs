@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.Particles;
+﻿namespace Aequu2.Core.Particles;
 
 [Autoload(Side = ModSide.Client)]
 public abstract class ParticleSystem : IParticleSystem {

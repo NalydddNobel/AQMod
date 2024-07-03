@@ -1,9 +1,9 @@
-﻿using Aequus.Content.Items.Accessories.GoldenFeather;
-using Aequus.Core.CrossMod;
+﻿using Aequu2.Content.Items.Accessories.GoldenFeather;
+using Aequu2.Core.CrossMod;
 using System;
 using Terraria.Localization;
 
-namespace Aequus.Content.CrossMod;
+namespace Aequu2.Content.CrossMod;
 
 internal class Fargowiltas : SupportedMod<Fargowiltas> {
     private void AddStat(int itemDisplay, string statKey, Func<object> getStat) {
@@ -14,10 +14,10 @@ internal class Fargowiltas : SupportedMod<Fargowiltas> {
 
     public override void PostSetupContent() {
 #if !DEBUG
-        AddStat(ModContent.ItemType<Old.Content.Necromancy.Equipment.Accessories.SpiritKeg.BottleOSpirits>(), "MaxGhostSlots", () => Main.LocalPlayer.GetModPlayer<AequusPlayer>().ghostSlotsMax);
-        AddStat(ModContent.ItemType<Old.Content.Necromancy.Equipment.Accessories.SpiritKeg.SaivoryKnife>(), "GhostDuration", () => XLanguage.Minutes(Main.LocalPlayer.GetModPlayer<AequusPlayer>().ghostLifespan.ApplyTo(Old.Content.Necromancy.NecromancySystem.DefaultLifespan)));
-        AddStat(ModContent.ItemType<Old.Content.Necromancy.Equipment.Accessories.PandorasBox>(), "SceptreDebuffMultiplier", () => XLanguage.Percent(Main.LocalPlayer.GetModPlayer<AequusPlayer>().zombieDebuffMultiplier));
-        AddStat(ModContent.ItemType<Old.Content.Items.Accessories.GrandReward.GrandReward>(), "DropRolls", () => Main.LocalPlayer.GetModPlayer<AequusPlayer>().dropRolls);
+        AddStat(ModContent.ItemType<Old.Content.Necromancy.Equipment.Accessories.SpiritKeg.BottleOSpirits>(), "MaxGhostSlots", () => Main.LocalPlayer.GetModPlayer<Aequu2Player>().ghostSlotsMax);
+        AddStat(ModContent.ItemType<Old.Content.Necromancy.Equipment.Accessories.SpiritKeg.SaivoryKnife>(), "GhostDuration", () => XLanguage.Minutes(Main.LocalPlayer.GetModPlayer<Aequu2Player>().ghostLifespan.ApplyTo(Old.Content.Necromancy.NecromancySystem.DefaultLifespan)));
+        AddStat(ModContent.ItemType<Old.Content.Necromancy.Equipment.Accessories.PandorasBox>(), "SceptreDebuffMultiplier", () => XLanguage.Percent(Main.LocalPlayer.GetModPlayer<Aequu2Player>().zombieDebuffMultiplier));
+        AddStat(ModContent.ItemType<Old.Content.Items.Accessories.GrandReward.GrandReward>(), "DropRolls", () => Main.LocalPlayer.GetModPlayer<Aequu2Player>().dropRolls);
 #endif
         AddStat(ModContent.ItemType<GoldenFeather>(), "RespawnReduction", () => XLanguage.Seconds(-Main.LocalPlayer.GetModPlayer<AequusPlayer>().respawnTimeModifierFlat));
     }

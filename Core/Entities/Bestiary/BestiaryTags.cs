@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria.GameContent.Bestiary;
 
-namespace Aequus.Core.Entites.Bestiary;
+namespace Aequu2.Core.Entites.Bestiary;
 
 public partial class BestiaryTags(IEnumerable<IFilterInfoProvider> ValidTags) {
     public BestiaryTags(params IFilterInfoProvider[] ValidTags) : this(ValidTags as IEnumerable<IFilterInfoProvider>) { }

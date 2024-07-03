@@ -1,5 +1,5 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Tiles.Components;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Tiles.Components;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using System;
@@ -9,7 +9,7 @@ using Terraria.ObjectData;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequus.Old.Content.Tiles.Herbs.PlanterBoxes;
+namespace Aequu2.Old.Content.Tiles.Herbs.PlanterBoxes;
 
 public sealed class PlanterBox : ModTile, IRandomUpdateOverride, IPostSetupContent, IAddRecipes {
     public const int STYLE_MORAY = 0;
@@ -123,7 +123,7 @@ public sealed class PlanterBox : ModTile, IRandomUpdateOverride, IPostSetupConte
                 // TileDrawing._meteorColor
                 Color meteorColor = new Color(100, 100, 100, 0);
 
-                spriteBatch.Draw(AequusTextures.PlanterBoxGlow, new Vector2(i, j) * 16f + TileHelper.DrawOffset - Main.screenPosition, new Rectangle(Main.tile[i, j].TileFrameX, Main.tile[i, j].TileFrameY, 16, 16), meteorColor);
+                spriteBatch.Draw(Aequu2Textures.PlanterBoxGlow, new Vector2(i, j) * 16f + TileHelper.DrawOffset - Main.screenPosition, new Rectangle(Main.tile[i, j].TileFrameX, Main.tile[i, j].TileFrameY, 16, 16), meteorColor);
                 break;
         }
     }
@@ -152,10 +152,10 @@ public sealed class PlanterBox : ModTile, IRandomUpdateOverride, IPostSetupConte
         IL_WorldGen.CanCutTile += IL_WorldGen_CanCutTile;
         IL_WorldGen.TryKillingReplaceableTile += IL_WorldGen_TryKillingReplaceableTile;
 
-        AddItem("Moray", ItemID.BlinkrootPlanterBox, AequusSystem.ConditionDownedSalamancer);
-        AddItem("Mistral", ItemID.FireBlossomPlanterBox, AequusSystem.ConditionDownedDustDevil);
-        AddItem("Manacle", ItemID.ShiverthornPlanterBox, AequusSystem.ConditionDownedDemonSiege);
-        AddItem("Moonflower", ItemID.CrimsonPlanterBox, AequusSystem.ConditionDownedOmegaStarite);
+        AddItem("Moray", ItemID.BlinkrootPlanterBox, Aequu2System.ConditionDownedSalamancer);
+        AddItem("Mistral", ItemID.FireBlossomPlanterBox, Aequu2System.ConditionDownedDustDevil);
+        AddItem("Manacle", ItemID.ShiverthornPlanterBox, Aequu2System.ConditionDownedDemonSiege);
+        AddItem("Moonflower", ItemID.CrimsonPlanterBox, Aequu2System.ConditionDownedOmegaStarite);
 
         void AddItem(string name, int shopSortItemIdTarget, Condition sellCondition) {
             InstancedTileItem planterBoxItem = new InstancedTileItem(this, style: RegisteredPlanterBoxItems.Count, name, rarity: ItemRarityID.White, value: Item.silver, researchSacrificeCount: 25, journeyOverride: new JourneySortByTileId(TileID.PlanterBox));
@@ -199,14 +199,14 @@ public sealed class PlanterBox : ModTile, IRandomUpdateOverride, IPostSetupConte
     }
 
     public void PostSetupContent(Mod mod) {
-        AutomaticallyMakeHerbsAnchorToAequusPlanterBoxes();
+        AutomaticallyMakeHerbsAnchorToAequu2PlanterBoxes();
     }
 
     public void AddRecipes(Mod mod) {
         AutomaticallyMergeWithSupportingModdedPlanterBoxes();
     }
 
-    private void AutomaticallyMakeHerbsAnchorToAequusPlanterBoxes() {
+    private void AutomaticallyMakeHerbsAnchorToAequu2PlanterBoxes() {
         for (int i = 0; i < TileLoader.TileCount; i++) {
             TileObjectData objData = TileObjectData.GetTileData(i, 0);
             if (objData == null || objData.AnchorAlternateTiles == null || objData.AnchorAlternateTiles.Length == 0) {
@@ -216,7 +216,7 @@ public sealed class PlanterBox : ModTile, IRandomUpdateOverride, IPostSetupConte
             // Check if this tile anchors to Planter Boxes
             if (objData.AnchorAlternateTiles.Any(tileId => tileId == TileID.PlanterBox)) {
                 lock (objData) {
-                    // If so, add Aequus' planter box automatically.
+                    // If so, add Aequu2' planter box automatically.
                     int[] anchorAlternates = objData.AnchorAlternateTiles;
                     Array.Resize(ref anchorAlternates, anchorAlternates.Length + 1);
                     anchorAlternates[^1] = Type;

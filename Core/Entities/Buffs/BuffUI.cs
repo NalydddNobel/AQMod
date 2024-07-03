@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aequus.Core.Entities.Buffs;
+namespace Aequu2.Core.Entities.Buffs;
 
 public class BuffUI : GlobalBuff {
     /// <summary>Prevents the player from right clicking a certain buff type. This list is cleared right before the local player is updated.</summary>

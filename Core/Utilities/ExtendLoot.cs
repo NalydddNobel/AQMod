@@ -4,7 +4,7 @@ using System.Reflection;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Utilities;
 
-namespace Aequus.Core.Utilities;
+namespace Aequu2.Core.Utilities;
 
 public static class ExtendLoot {
     private static readonly MethodInfo _resolveRule = typeof(ItemDropResolver).GetMethod("ResolveRule", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);

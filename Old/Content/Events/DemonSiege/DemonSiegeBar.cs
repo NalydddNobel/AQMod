@@ -1,7 +1,7 @@
-﻿using Aequus.Old.Common.EventBars;
+﻿using Aequu2.Old.Common.EventBars;
 using Terraria.Localization;
 
-namespace Aequus.Old.Content.Events.DemonSiege;
+namespace Aequu2.Old.Content.Events.DemonSiege;
 
 public class DemonSiegeBar : EventBar {
     public override bool IsActive() {
@@ -18,7 +18,7 @@ public class DemonSiegeBar : EventBar {
 
     public override string GetProgressText(float progress) {
         Point p = Main.LocalPlayer.GetModPlayer<DemonSiegePlayer>().GoreNest;
-        LocalizedText timeLeft = Language.GetText("Mods.Aequus.Misc.TimeLeft");
+        LocalizedText timeLeft = Language.GetText("Mods.Aequu2.Misc.TimeLeft");
         if (p == Point.Zero || !DemonSiegeSystem.ActiveSacrifices.TryGetValue(p, out var info)) {
             return timeLeft.Format("X");
         }

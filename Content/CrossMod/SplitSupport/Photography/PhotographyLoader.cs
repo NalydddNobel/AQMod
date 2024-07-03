@@ -1,8 +1,8 @@
-﻿using Aequus.Content.Dedicated.Familiar;
-using Aequus.Core.Structures.ID;
+﻿using Aequu2.Content.Dedicated.Familiar;
+using Aequu2.Core.Structures.ID;
 using System.Collections.Generic;
 
-namespace Aequus.Content.CrossMod.SplitSupport.Photography;
+namespace Aequu2.Content.CrossMod.SplitSupport.Photography;
 
 internal sealed partial class PhotographyLoader : ModSystem {
     public static InstancedEnvelope EnvelopePollutedOcean { get; private set; }
@@ -72,7 +72,7 @@ internal sealed partial class PhotographyLoader : ModSystem {
         foreach (Album album in _albumsToRegister) {
             var args = new object[35];
             args[0] = "Photography.AddPage";
-            args[1] = Aequus.Instance;
+            args[1] = Aequu2.Instance;
             args[2] = album.Order;
             args[3] = album.SpecialReward;
             args[4] = Main.dedServ ? null : AequusTextures.SplitAlbum.Value;

@@ -1,15 +1,15 @@
-﻿using Aequus.Content.Biomes.PollutedOcean;
-using Aequus.Content.Items.Armor.MiscHelmets;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.DataSets;
+﻿using Aequu2.Content.Biomes.PollutedOcean;
+using Aequu2.Content.Items.Armor.MiscHelmets;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.DataSets;
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequus.Content.Enemies.PollutedOcean.Conehead;
+namespace Aequu2.Content.Enemies.PollutedOcean.Conehead;
 
 public class ConeheadZombieLoader : ILoad {
     public readonly List<ModNPC> Types = [];
@@ -65,11 +65,11 @@ internal class InstancedConeheadZombie : InstancedModNPC, IPostPopulateItemDropD
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-        string key = $"Mods.Aequus.NPCs.ConeheadZombie.{_realName}_Bestiary";
+        string key = $"Mods.Aequu2.NPCs.ConeheadZombie.{_realName}_Bestiary";
 
         // Use the default key if there is not one specified for this zombie type.
         if (!XLanguage.ContainsKey(key)) {
-            key = "Mods.Aequus.NPCs.ConeheadZombie.Bestiary";
+            key = "Mods.Aequu2.NPCs.ConeheadZombie.Bestiary";
         }
 
         this.CreateEntry(key, database, bestiaryEntry)

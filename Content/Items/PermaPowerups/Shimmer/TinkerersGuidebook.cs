@@ -1,6 +1,6 @@
-﻿using Aequus.Core.CodeGeneration;
+﻿using Aequu2.Core.CodeGeneration;
 
-namespace Aequus.Content.Items.PermaPowerups.Shimmer;
+namespace Aequu2.Content.Items.PermaPowerups.Shimmer;
 
 [Gen.AequusSystem_WorldField<bool>("usedReforgeBook")]
 public class TinkerersGuidebook : ModItem {

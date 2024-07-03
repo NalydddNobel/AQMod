@@ -1,7 +1,7 @@
-﻿using Aequus.Core.CodeGeneration;
+﻿using Aequu2.Core.CodeGeneration;
 using Terraria.Localization;
 
-namespace Aequus.Content.Items.PermaPowerups.BeyondManaCrystal;
+namespace Aequu2.Content.Items.PermaPowerups.BeyondManaCrystal;
 
 [WorkInProgress]
 [Gen.AequusPlayer_SavedField<int>("consumedBeyondManaCrystals")]
@@ -33,12 +33,12 @@ public class BeyondManaCrystal : ModItem {
     }
 
     public override bool? UseItem(Player player) {
-        AequusPlayer aequusPlayer = player.GetModPlayer<AequusPlayer>();
-        if (aequusPlayer.consumedBeyondManaCrystals >= MaxUses) {
+        AequusPlayer Aequu2Player = player.GetModPlayer<AequusPlayer>();
+        if (Aequu2Player.consumedBeyondManaCrystals >= MaxUses) {
             return false;
         }
 
-        aequusPlayer.consumedBeyondManaCrystals++;
+        Aequu2Player.consumedBeyondManaCrystals++;
         return true;
     }
 }

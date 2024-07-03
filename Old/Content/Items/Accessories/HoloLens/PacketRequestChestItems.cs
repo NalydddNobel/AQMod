@@ -2,7 +2,7 @@
 using Terraria.ModLoader.IO;
 using tModLoaderExtended.Networking;
 
-namespace Aequus.Old.Content.Items.Accessories.HoloLens;
+namespace Aequu2.Old.Content.Items.Accessories.HoloLens;
 
 public class PacketRequestChestItems : PacketHandler {
     public void Send(int player, int chestId) {

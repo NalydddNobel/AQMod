@@ -55,37 +55,37 @@ CrimsonHellfire: {
 
 IronLotusDebuff: {
 	// DisplayName: "{$Items.IronLotus.DisplayName}"
-	// Description: Mods.Aequus.Buffs.IronLotusDebuff.Description
+	// Description: Mods.Aequu2.Buffs.IronLotusDebuff.Description
 }
 
 LocustDebuff: {
-	// DisplayName: Mods.Aequus.Buffs.LocustDebuff.DisplayName
-	// Description: Mods.Aequus.Buffs.LocustDebuff.Description
+	// DisplayName: Mods.Aequu2.Buffs.LocustDebuff.DisplayName
+	// Description: Mods.Aequu2.Buffs.LocustDebuff.Description
 }
 
 InsurgentDebuff: {
 	// DisplayName: "{$Items.Insurgency.DisplayName}"
-	// Description: Mods.Aequus.Buffs.InsurgentDebuff.Description
+	// Description: Mods.Aequu2.Buffs.InsurgentDebuff.Description
 }
 
 RevenantDebuff: {
 	// DisplayName: "{$Items.Revenant.DisplayName}"
-	// Description: Mods.Aequus.Buffs.RevenantDebuff.Description
+	// Description: Mods.Aequu2.Buffs.RevenantDebuff.Description
 }
 
 NecromancyDebuff: {
 	// DisplayName: "{$Items.CorruptionSceptre.DisplayName}"
-	// Description: Mods.Aequus.Buffs.NecromancyDebuff.Description
+	// Description: Mods.Aequu2.Buffs.NecromancyDebuff.Description
 }
 
 OsirisDebuff: {
 	// DisplayName: "{$Items.Osiris.DisplayName}"
-	// Description: Mods.Aequus.Buffs.OsirisDebuff.Description
+	// Description: Mods.Aequu2.Buffs.OsirisDebuff.Description
 }
 
 CrimsonSceptreDebuff: {
 	// DisplayName: "{$Items.CrimsonSceptre.DisplayName}"
-	// Description: Mods.Aequus.Buffs.CrimsonSceptreDebuff.Description
+	// Description: Mods.Aequu2.Buffs.CrimsonSceptreDebuff.Description
 }
 
 GravetenderMinionBuff: {
@@ -99,16 +99,16 @@ BlueFire: {
 }
 
 UltimateSwordBuff: {
-	// DisplayName: Mods.Aequus.Buffs.UltimateSwordBuff.DisplayName
-	// Description: Mods.Aequus.Buffs.UltimateSwordBuff.Description
+	// DisplayName: Mods.Aequu2.Buffs.UltimateSwordBuff.DisplayName
+	// Description: Mods.Aequu2.Buffs.UltimateSwordBuff.Description
 }
 
 BoneRingDebuff: {
 	// DisplayName: "{$Items.BoneRing.DisplayName}"
-	// Description: Mods.Aequus.Buffs.BoneRingDebuff.Description
+	// Description: Mods.Aequu2.Buffs.BoneRingDebuff.Description
 }
 
 GamestarDebuff: {
 	// DisplayName: "{$Items.Gamestar.DisplayName}"
-	// Description: Mods.Aequus.Buffs.GamestarDebuff.Description
+	// Description: Mods.Aequu2.Buffs.GamestarDebuff.Description
 }

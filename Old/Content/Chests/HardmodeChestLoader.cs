@@ -1,9 +1,9 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.DataSets.Structures.Enums;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.DataSets.Structures.Enums;
 using ReLogic.Content;
 using System.Collections.Generic;
 
-namespace Aequus.Old.Content.Chests;
+namespace Aequu2.Old.Content.Chests;
 
 public sealed class HardmodeChestLoader : ILoad {
     public const int RECIPE_CREATE_AMOUNT = 5;
@@ -99,7 +99,7 @@ public sealed class HardmodeChestLoader : ILoad {
 
         public override void Load() {
             base.Load();
-            Aequus.OnAddRecipes += () => {
+            Aequu2.OnAddRecipes += () => {
                 Recipe recipe = DropItem.CreateRecipe(RECIPE_CREATE_AMOUNT)
                     .AddIngredient(_info.PreHardmodeChestItemId, RECIPE_CREATE_AMOUNT)
                     .AddTile(TileID.MythrilAnvil);

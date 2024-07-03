@@ -1,11 +1,11 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Graphics.Tiles;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Graphics.Tiles;
 using ReLogic.Content;
 using System;
 using Terraria.Audio;
 using Terraria.Utilities;
 
-namespace Aequus.Old.Content.Tiles.GravityBlocks;
+namespace Aequu2.Old.Content.Tiles.GravityBlocks;
 
 public class GravityBlocks : ModSystem {
     public static int MaximumSupportedReach { get; set; } = 24;
@@ -71,14 +71,14 @@ public class GravityBlocks : ModSystem {
     }
 
     public override void Load() {
-        _normalGravityBlock = new InstancedGravityBlock("GravityBlock", AequusTextures.GravityBlock.Path,
+        _normalGravityBlock = new InstancedGravityBlock("GravityBlock", Aequu2Textures.GravityBlock.Path,
             new InstancedGravityBlock.GravityBlockData(
                 Reach: MaximumSupportedReach,
                 Direction: 1,
                 Color.Cyan,
                 DustID.BlueCrystalShard
             ));
-        _reverseGravityBlock = new InstancedGravityBlock("AntiGravityBlock", AequusTextures.AntiGravityBlock.Path,
+        _reverseGravityBlock = new InstancedGravityBlock("AntiGravityBlock", Aequu2Textures.AntiGravityBlock.Path,
             new InstancedGravityBlock.GravityBlockData(
                 Reach: MaximumSupportedReach,
                 Direction: -1,

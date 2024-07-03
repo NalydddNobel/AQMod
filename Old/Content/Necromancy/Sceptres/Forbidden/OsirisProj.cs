@@ -1,12 +1,12 @@
-﻿using Aequus.Core;
-using Aequus.Content.Dusts;
-using Aequus.Old.Content.Necromancy.Sceptres.Evil;
-using Aequus.Old.Content.Particles;
+﻿using Aequu2.Core;
+using Aequu2.Content.Dusts;
+using Aequu2.Old.Content.Necromancy.Sceptres.Evil;
+using Aequu2.Old.Content.Particles;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Necromancy.Sceptres.Forbidden;
+namespace Aequu2.Old.Content.Necromancy.Sceptres.Forbidden;
 public class OsirisProj : CorruptionSceptreProj {
-    public override string Texture => AequusTextures.CorruptionSceptreProj.Path;
+    public override string Texture => Aequu2Textures.CorruptionSceptreProj.Path;
 
     public override void SetStaticDefaults() {
         ProjectileID.Sets.TrailCacheLength[Type] = 15;
@@ -76,7 +76,7 @@ public class OsirisProj : CorruptionSceptreProj {
     }
 
     public void SpawnLocusts(Entity target) {
-        var source = Projectile.GetSource_OnHit(target, "Aequus:Osiris");
+        var source = Projectile.GetSource_OnHit(target, "Aequu2:Osiris");
         int distance = (int)(target.Size.Length() / 2f);
         for (int i = 0; i < 3; i++) {
             var normal = Main.rand.NextVector2Unit();

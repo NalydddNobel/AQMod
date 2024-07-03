@@ -1,7 +1,7 @@
-﻿using Aequus.Core.Structures;
+﻿using Aequu2.Core.Structures;
 using Terraria.Localization;
 
-namespace Aequus.Core.ContentGeneration;
+namespace Aequu2.Core.ContentGeneration;
 
 internal class InstancedMinionBuff : InstancedBuff {
     private readonly UnifiedModMinion _parent;

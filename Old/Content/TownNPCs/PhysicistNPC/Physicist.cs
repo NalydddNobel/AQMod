@@ -1,9 +1,9 @@
-﻿using Aequus.Content.CrossMod;
-using Aequus.Content.CrossMod.CalamityModSupport;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.Old.Content.Events.Glimmer;
-using Aequus.Old.Content.TownNPCs.OccultistNPC;
+﻿using Aequu2.Content.CrossMod;
+using Aequu2.Content.CrossMod.CalamityModSupport;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.Old.Content.Events.Glimmer;
+using Aequu2.Old.Content.TownNPCs.OccultistNPC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ using Terraria.GameContent.Personalities;
 using Terraria.GameContent.UI;
 using Terraria.Localization;
 
-namespace Aequus.Old.Content.TownNPCs.PhysicistNPC;
+namespace Aequu2.Old.Content.TownNPCs.PhysicistNPC;
 
 [AutoloadHead()]
 public partial class Physicist : UnifiedTownNPC<Physicist> {
@@ -40,8 +40,8 @@ public partial class Physicist : UnifiedTownNPC<Physicist> {
     }
 
     public override void Load() {
-        ShimmerHeadIndex = Mod.AddNPCHeadTexture(Type, AequusTextures.Physicist_Shimmer_Head.Path);
-        Mod.AddContent(new InstancedNPCEmote(this, EmoteID.Category.Town, () => AequusSystem.downedUltraStarite || AequusSystem.downedOmegaStarite));
+        ShimmerHeadIndex = Mod.AddNPCHeadTexture(Type, Aequu2Textures.Physicist_Shimmer_Head.Path);
+        Mod.AddContent(new InstancedNPCEmote(this, EmoteID.Category.Town, () => Aequu2System.downedUltraStarite || Aequu2System.downedOmegaStarite));
     }
 
     public override void SetStaticDefaults() {
@@ -95,7 +95,7 @@ public partial class Physicist : UnifiedTownNPC<Physicist> {
     }
 
     public override bool CanTownNPCSpawn(int numTownNPCs) {
-        return AequusSystem.downedUltraStarite || AequusSystem.downedOmegaStarite;
+        return Aequu2System.downedUltraStarite || Aequu2System.downedOmegaStarite;
     }
 
     public override ITownNPCProfile TownNPCProfile() {
@@ -287,7 +287,7 @@ public partial class Physicist : UnifiedTownNPC<Physicist> {
         if (NPC.IsShimmerVariant && (int)NPC.ai[0] != 25) {
             var spriteEffects = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             spriteBatch.Draw(
-                AequusTextures.Physicist_Shimmer_Glow,
+                Aequu2Textures.Physicist_Shimmer_Glow,
                 NPC.Center + new Vector2(0f, -6f + NPC.gfxOffY) - Main.screenPosition,
                 NPC.frame,
                 Color.White * (NPC.Opacity * (1f - NPC.shimmerTransparency)),
@@ -300,7 +300,7 @@ public partial class Physicist : UnifiedTownNPC<Physicist> {
 
     public override void ModifyShoppingSettings(Player player, NPC npc, ref ShoppingSettings settings, ShopHelper shopHelper) {
         DialogueHack.ReplaceKeys(ref settings.HappinessReport, "[HateBiomeQuote]|",
-            $"Mods.Aequus.TownNPCMood.Physicist.HateBiome_{(player.ZoneHallow ? "Hallow" : "Evils")}", (s) => new { BiomeName = s[1], });
+            $"Mods.Aequu2.TownNPCMood.Physicist.HateBiome_{(player.ZoneHallow ? "Hallow" : "Evils")}", (s) => new { BiomeName = s[1], });
     }
 
     public struct PetInfo {

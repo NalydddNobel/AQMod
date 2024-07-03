@@ -1,6 +1,6 @@
-﻿using Aequus.Content.Dusts;
+﻿using Aequu2.Content.Dusts;
 
-namespace Aequus.Old.Content.Particles;
+namespace Aequu2.Old.Content.Particles;
 
 public class VoidDust : MonoDust {
     public override float VelocityMultiplier => 0.95f;

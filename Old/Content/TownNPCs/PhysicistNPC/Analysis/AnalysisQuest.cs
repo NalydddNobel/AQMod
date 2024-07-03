@@ -1,8 +1,8 @@
-﻿using Aequus.Core.IO;
+﻿using Aequu2.Core.IO;
 using System.IO;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Old.Content.TownNPCs.PhysicistNPC.Analysis;
+namespace Aequu2.Old.Content.TownNPCs.PhysicistNPC.Analysis;
 
 public struct AnalysisQuest {
     public const string SAVEKEY_RARITY_NAME = "r";

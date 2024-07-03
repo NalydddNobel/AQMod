@@ -1,6 +1,6 @@
 ﻿using Terraria.Audio;
 
-namespace Aequus.Old.Content.Items.Accessories.HighSteaks;
+namespace Aequu2.Old.Content.Items.Accessories.HighSteaks;
 
 public class HighSteaksPlayer : ModPlayer {
     public float highSteaksDamage;
@@ -31,7 +31,7 @@ public class HighSteaksPlayer : ModPlayer {
         }
 
         if (Main.rand.NextBool(8)) {
-            SoundEngine.PlaySound(AequusSounds.HighSteaks, target.Center);
+            SoundEngine.PlaySound(Aequu2Sounds.HighSteaks, target.Center);
         }
 
         if (highSteaksCost != 0) {
@@ -39,7 +39,7 @@ public class HighSteaksPlayer : ModPlayer {
                 return;
             }
 
-            SoundEngine.PlaySound(AequusSounds.HighSteaksCriticalStrike with { PitchVariance = 0.2f }, target.Center);
+            SoundEngine.PlaySound(Aequu2Sounds.HighSteaksCriticalStrike with { PitchVariance = 0.2f }, target.Center);
             if (!target.immortal) {
                 // This should only consume coins in the inventory
                 // since we checked earlier if the inventory has the desired amount of coins.

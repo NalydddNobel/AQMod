@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Events.DemonSiege;
+﻿namespace Aequu2.Content.Events.DemonSiege;
 
 public enum EventTier : byte {
     PreHardmode = 0,

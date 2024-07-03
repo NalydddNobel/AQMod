@@ -1,5 +1,5 @@
-﻿using Aequus.Core.Systems;
-using Aequus.Core.Graphics.Animations;
+﻿using Aequu2.Core.Systems;
+using Aequu2.Core.Graphics.Animations;
 using System;
 using System.IO;
 using Terraria.DataStructures;
@@ -7,7 +7,7 @@ using Terraria.ModLoader.IO;
 using Terraria.ObjectData;
 using Terraria.Utilities;
 
-namespace Aequus.Content.Fishing.CrabPots;
+namespace Aequu2.Content.Fishing.CrabPots;
 
 public class TECrabPot : ModTileEntity {
     public static int ChancePerTick { get; set; } = 100000;

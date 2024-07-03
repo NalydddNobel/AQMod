@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Aequus.Old.Content.Items.Potions.Prefixes.EmpoweredPotions;
+namespace Aequu2.Old.Content.Items.Potions.Prefixes.EmpoweredPotions;
 
 public class EmpoweredPrefix : PotionPrefix {
     public override void Load() {

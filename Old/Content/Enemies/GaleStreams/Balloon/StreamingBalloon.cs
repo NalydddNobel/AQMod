@@ -1,6 +1,6 @@
-﻿using Aequus.Content.Events.GaleStreams;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.Core.Entities.Items.DropRules;
+﻿using Aequu2.Content.Events.GaleStreams;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.Core.Entities.Items.DropRules;
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;
@@ -8,7 +8,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Old.Content.Enemies.GaleStreams.Balloon;
+namespace Aequu2.Old.Content.Enemies.GaleStreams.Balloon;
 
 [BestiaryBiome<GaleStreamsZone>()]
 public class StreamingBalloon : ModNPC, IBodyItemContainer {
@@ -239,7 +239,7 @@ public class StreamingBalloon : ModNPC, IBodyItemContainer {
             NPCID.SpikedJungleSlime,
             NPCID.SpikedIceSlime,
         };
-        if (AequusSystem.HardmodeTier) {
+        if (Aequu2System.HardmodeTier) {
             selectableEnemies.Add(NPCID.ToxicSludge);
         }
         if (Main.hardMode && Main.player[NPC.target].ZoneHallow) {

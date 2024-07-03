@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Graphics;
-using Aequus.Core.Structures;
-using Aequus.DataSets;
+﻿using Aequu2.Core.Graphics;
+using Aequu2.Core.Structures;
+using Aequu2.DataSets;
 using System;
 
-namespace Aequus.Content.Items.Tools.Keychain;
+namespace Aequu2.Content.Items.Tools.Keychain;
 
 public partial class Keychain {
     internal static Paletter KeyTextures;
@@ -12,8 +12,8 @@ public partial class Keychain {
             return "Unknown";
         }
 
-        name = name.Replace("Aequus/", "");
-        return $"Aequus/Assets/Textures/Keychain/{name}Palette";
+        name = name.Replace("Aequu2/", "");
+        return $"Aequu2/Assets/Textures/Keychain/{name}Palette";
     });
 
     public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {

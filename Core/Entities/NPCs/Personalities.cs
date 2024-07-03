@@ -1,8 +1,8 @@
-﻿using Aequus.Core.Components.NPCs;
+﻿using Aequu2.Core.Components.NPCs;
 using System;
 using Terraria.GameContent;
 
-namespace Aequus.Core.Entities.NPCs;
+namespace Aequu2.Core.Entities.NPCs;
 
 public class Personalities : ILoad {
     public void Load(Mod mod) {

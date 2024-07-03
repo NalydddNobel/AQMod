@@ -2,14 +2,14 @@
 using Terraria.Localization;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 
-namespace Aequus.Core.ContentGeneration;
+namespace Aequu2.Core.ContentGeneration;
 
 internal class InstancedBannerItem : InstancedModItem, IOverrideGroupOrder {
     private readonly ModNPC _npc;
     private readonly ModTile _banner;
 
     public override LocalizedText DisplayName => _npc.GetLocalization("BannerName", () => _npc.DisplayName.Value + " Banner");
-    public override LocalizedText Tooltip => Language.GetText("Mods.Aequus.Items.CommonTooltips.Banner").WithFormatArgs(_npc.DisplayName);
+    public override LocalizedText Tooltip => Language.GetText("Mods.Aequu2.Items.CommonTooltips.Banner").WithFormatArgs(_npc.DisplayName);
 
     public InstancedBannerItem(ModNPC modNPC, ModTile banner) : base(banner.Name, banner.Texture + "Item") {
         _npc = modNPC;

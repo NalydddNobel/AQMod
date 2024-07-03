@@ -8,7 +8,7 @@ using Terraria.ObjectData;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequus.Core.ContentGeneration;
+namespace Aequu2.Core.ContentGeneration;
 
 public abstract class UnifiedModChest : ModTile {
     private LocalizedText _nameCache;

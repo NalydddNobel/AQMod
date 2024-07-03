@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Old.Content.Bosses.RedSprite;
+namespace Aequu2.Old.Content.Bosses.RedSprite;
 
 public class RedSpriteDust : ModDust {
     public override void OnSpawn(Dust dust) {

@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Graphics;
+﻿using Aequu2.Core.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Aequus.Old.Content.Items.Weapons.Magic.Nightfall;
+namespace Aequu2.Old.Content.Items.Weapons.Magic.Nightfall;
 
 public class NightfallEffectRenderer : RequestHandler<NightfallEffectRenderer.NightfallEffectDrawData> {
     public record struct NightfallEffectDrawData(NPC NPC, float Opacity);
@@ -35,12 +35,12 @@ public class NightfallEffectRenderer : RequestHandler<NightfallEffectRenderer.Ni
             return false;
         }
 
-        Texture2D bloomTexture = AequusTextures.Bloom;
+        Texture2D bloomTexture = Aequu2Textures.Bloom;
         Vector2 bloomSize = bloomTexture.Size();
         Vector2 bloomOrigin = bloomSize / 2f;
         float flareScale = Helper.Oscillate(Main.GlobalTimeWrappedHourly * 40f, 0.3f, 0.5f);
         var flareColor = Color.BlueViolet with { A = 0 };
-        Texture2D flare = AequusTextures.FlareSoft;
+        Texture2D flare = Aequu2Textures.FlareSoft;
         Vector2 flareOrigin = flare.Size() / 2f;
         Color white = Color.White with { A = 0 };
 

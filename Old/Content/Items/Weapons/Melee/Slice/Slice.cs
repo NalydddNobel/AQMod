@@ -1,7 +1,7 @@
-﻿using Aequus.Core;
+﻿using Aequu2.Core;
 using Terraria.DataStructures;
 
-namespace Aequus.Old.Content.Items.Weapons.Melee.Slice;
+namespace Aequu2.Old.Content.Items.Weapons.Melee.Slice;
 
 public class Slice : ModItem {
     public static float ProjectilePiercingPenalty { get; set; } = 0.5f;

@@ -1,6 +1,6 @@
-﻿using Aequus.Core.Entites.Bestiary;
+﻿using Aequu2.Core.Entites.Bestiary;
 
-namespace Aequus.Content.Elements.Light;
+namespace Aequu2.Content.Elements.Light;
 
 public class LightElement : VanillaElement {
     public LightElement() : base(LightFrame, Color.LightPink) { }

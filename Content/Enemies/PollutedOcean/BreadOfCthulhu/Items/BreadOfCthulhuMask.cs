@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Enemies.PollutedOcean.BreadOfCthulhu.Items;
+﻿namespace Aequu2.Content.Enemies.PollutedOcean.BreadOfCthulhu.Items;
 
 [AutoloadEquip(EquipType.Head)]
 public class BreadOfCthulhuMask : ModItem {

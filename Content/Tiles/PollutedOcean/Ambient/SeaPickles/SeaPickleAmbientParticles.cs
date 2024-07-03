@@ -1,11 +1,11 @@
-﻿using Aequus.Core.Graphics;
-using Aequus.Core.Particles;
+﻿using Aequu2.Core.Graphics;
+using Aequu2.Core.Particles;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Terraria.DataStructures;
 
-namespace Aequus.Content.Tiles.PollutedOcean.Ambient.SeaPickles;
+namespace Aequu2.Content.Tiles.PollutedOcean.Ambient.SeaPickles;
 
 public class SeaPickleAmbientParticles : ParticleSystem {
     private readonly Dictionary<Point16, List<AmbientParticle>> _particleAnchorPairs = new();

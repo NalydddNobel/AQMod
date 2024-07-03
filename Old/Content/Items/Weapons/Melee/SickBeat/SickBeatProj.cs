@@ -1,10 +1,10 @@
-﻿using Aequus.DataSets;
+﻿using Aequu2.DataSets;
 using System;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Items.Weapons.Melee.SickBeat;
+namespace Aequu2.Old.Content.Items.Weapons.Melee.SickBeat;
 
 public class SickBeatProj : ModProjectile {
     public override string Texture => ModContent.GetInstance<SickBeat>().Texture;

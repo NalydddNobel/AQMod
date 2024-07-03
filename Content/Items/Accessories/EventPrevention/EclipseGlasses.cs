@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Items.Accessories.EventPrevention;
+﻿namespace Aequu2.Content.Items.Accessories.EventPrevention;
 
 [AutoloadEquip(EquipType.Face)]
 public class EclipseGlasses : ModItem {

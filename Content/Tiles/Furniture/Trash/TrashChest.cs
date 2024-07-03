@@ -1,11 +1,11 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Tiles.Components;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Tiles.Components;
 using System;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Tiles.Furniture.Trash;
+namespace Aequu2.Content.Tiles.Furniture.Trash;
 
 public class TrashChest : UnifiedModChest, IPlaceChestHook {
     public override bool LoadTrappedChest => false;

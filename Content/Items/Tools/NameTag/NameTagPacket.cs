@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using tModLoaderExtended.Networking;
 
-namespace Aequus.Content.Items.Tools.NameTag;
+namespace Aequu2.Content.Items.Tools.NameTag;
 
 public class NameTagPacket : PacketHandler {
     public void Send(int i, string nameTag) {

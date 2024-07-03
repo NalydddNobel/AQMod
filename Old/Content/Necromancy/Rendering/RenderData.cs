@@ -1,8 +1,8 @@
-﻿using Aequus.Content.Configuration;
+﻿using Aequu2.Content.Configuration;
 using System;
 using System.Collections.Generic;
 
-namespace Aequus.Old.Content.Necromancy.Rendering;
+namespace Aequu2.Old.Content.Necromancy.Rendering;
 
 public class RenderData {
     public readonly List<Projectile> Projs;

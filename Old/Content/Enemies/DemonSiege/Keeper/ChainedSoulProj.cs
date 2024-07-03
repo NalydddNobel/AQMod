@@ -1,8 +1,8 @@
-﻿using Aequus.DataSets;
+﻿using Aequu2.DataSets;
 using System;
 using Terraria.Audio;
 
-namespace Aequus.Old.Content.Enemies.DemonSiege.Keeper;
+namespace Aequu2.Old.Content.Enemies.DemonSiege.Keeper;
 
 public class ChainedSoulProj : ModProjectile {
     public override void SetStaticDefaults() {
@@ -26,7 +26,7 @@ public class ChainedSoulProj : ModProjectile {
         if (Projectile.localAI[0] == 0f) {
             Projectile.localAI[0] = 1f;
             SoundEngine.PlaySound(SoundID.NPCDeath13, Projectile.Center);
-            SoundEngine.PlaySound(AequusSounds.ChainedSoulAttack with { PitchVariance = 0.2f }, Projectile.Center);
+            SoundEngine.PlaySound(Aequu2Sounds.ChainedSoulAttack with { PitchVariance = 0.2f }, Projectile.Center);
         }
 
         int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.DemonTorch);
@@ -84,7 +84,7 @@ public class ChainedSoulProj : ModProjectile {
             return;
         }
 
-        SoundEngine.PlaySound(AequusSounds.ChainedSoulAttackExplode, Projectile.position);
+        SoundEngine.PlaySound(Aequu2Sounds.ChainedSoulAttackExplode, Projectile.position);
 
         var bvelo = -Projectile.velocity * 0.4f;
         for (int i = 0; i < 3; i++) {

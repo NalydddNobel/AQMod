@@ -1,12 +1,12 @@
-﻿using Aequus.Core;
-using Aequus.Content.Configuration;
-using Aequus.Content.Items.Tools.NameTag;
-using Aequus.DataSets;
-using Aequus.DataSets.Structures.DropRulesChest;
-using Aequus.DataSets.Structures.Enums;
+﻿using Aequu2.Core;
+using Aequu2.Content.Configuration;
+using Aequu2.Content.Items.Tools.NameTag;
+using Aequu2.DataSets;
+using Aequu2.DataSets.Structures.DropRulesChest;
+using Aequu2.DataSets.Structures.Enums;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequus.Content.Chests;
+namespace Aequu2.Content.Chests;
 
 public class ChestPopulator : ISetupContent {
     public void SetupContent(Mod mod) {

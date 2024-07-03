@@ -1,6 +1,6 @@
-﻿using Aequus.Content.Items.Accessories.ValentinesRing;
+﻿using Aequu2.Content.Items.Accessories.ValentinesRing;
 
-namespace Aequus;
+namespace Aequu2;
 
 public partial class AequusPlayer {
     public void UpdateGiftRing() {

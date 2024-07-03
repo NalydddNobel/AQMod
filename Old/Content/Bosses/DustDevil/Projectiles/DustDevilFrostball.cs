@@ -1,10 +1,10 @@
-﻿using Aequus.DataSets;
+﻿using Aequu2.DataSets;
 using System;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Bosses.DustDevil.Projectiles;
+namespace Aequu2.Old.Content.Bosses.DustDevil.Projectiles;
 public class DustDevilFrostball : ModProjectile {
-    public override string Texture => AequusTextures.Projectile(ProjectileID.RainbowCrystalExplosion);
+    public override string Texture => Aequu2Textures.Projectile(ProjectileID.RainbowCrystalExplosion);
 
     public override void SetStaticDefaults() {
         ProjectileDataSet.PushableByTypeId.Add(Type);

@@ -1,9 +1,9 @@
-﻿using Aequus.Content.Graphics.Particles;
-using Aequus.Core.Entities.Projectiles;
+﻿using Aequu2.Content.Graphics.Particles;
+using Aequu2.Core.Entities.Projectiles;
 using System;
 using Terraria.Audio;
 
-namespace Aequus.Content.Items.Weapons.Melee.DynaKnife;
+namespace Aequu2.Content.Items.Weapons.Melee.DynaKnife;
 
 public class DynaknifeProj : LegacyHeldSlashingSwordProjectile {
     public override void SetDefaults() {
@@ -41,7 +41,7 @@ public class DynaknifeProj : LegacyHeldSlashingSwordProjectile {
         SoundEngine.PlaySound(AequusSounds.InflictBlood, Projectile.Center);
     }
 
-    protected override void InitializeSword(Player player, AequusPlayer aequus) {
+    protected override void InitializeSword(Player player, AequusPlayer Aequu2) {
         swingDirection = -player.direction;
         rotationOffset = -MathHelper.PiOver4 * swingDirection;
     }
@@ -106,7 +106,7 @@ public class DynaknifeProj : LegacyHeldSlashingSwordProjectile {
         DrawSword(AequusTextures.DynaknifeProj_Glow, handPosition, frame, Color.White with { A = 0 } * Projectile.Opacity, rotOffset, origin, effects);
 
         //if (intensity > 0f) {
-        //    var swish = AequusTextures.Swish.Value;
+        //    var swish = Aequu2Textures.Swish.Value;
         //    var swishOrigin = swish.Size() / 2f;
         //    float r = BaseAngleVector.ToRotation();
         //    r += (MathF.Sin(animProgress * MathHelper.PiOver2) - 0.5f - 0.05f) * -swingDirection * 5f;

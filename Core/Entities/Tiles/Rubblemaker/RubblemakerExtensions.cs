@@ -1,6 +1,6 @@
 ﻿using Terraria.GameContent;
 
-namespace Aequus.Core.Entities.Tiles.Rubblemaker;
+namespace Aequu2.Core.Entities.Tiles.Rubblemaker;
 public static class RubblemakerExtensions {
     public static void AddToSmallRubblemaker(this ModTile modTile, int itemId, params int[] styles) {
         FlexibleTileWand.RubblePlacementSmall.AddVariations(itemId, modTile.Type, styles);

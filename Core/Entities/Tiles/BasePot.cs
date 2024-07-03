@@ -1,11 +1,11 @@
-﻿using Aequus.DataSets;
+﻿using Aequu2.DataSets;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.Localization;
 using Terraria.ObjectData;
 using Terraria.Utilities;
 
-namespace Aequus.Core.Entities.Tiles;
+namespace Aequu2.Core.Entities.Tiles;
 
 public abstract class BasePot : ModTile {
     public virtual Color MapColor => new Color(81, 84, 101);

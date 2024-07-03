@@ -1,9 +1,9 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Items.Components;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Items.Components;
 using System;
 using System.Collections.Generic;
 
-namespace Aequus.Core.Entities.Prefixes;
+namespace Aequu2.Core.Entities.Prefixes;
 
 [Autoload(false)]
 internal class CooldownPrefix : InstancedModPrefix {
@@ -16,7 +16,7 @@ internal class CooldownPrefix : InstancedModPrefix {
     public override PrefixCategory Category => PrefixCategory.Custom;
 
     public override void Load() {
-        AequusPrefixes.RegisteredCooldownPrefixes.Add(this);
+        Aequu2Prefixes.RegisteredCooldownPrefixes.Add(this);
     }
 
     public override bool CanRoll(Item item) {

@@ -1,6 +1,6 @@
-﻿using Aequus.Core.CodeGeneration;
+﻿using Aequu2.Core.CodeGeneration;
 
-namespace Aequus;
+namespace Aequu2;
 
 public partial class AequusPlayer {
     [ResetEffects]

@@ -1,7 +1,7 @@
-﻿using Aequus.Core;
+﻿using Aequu2.Core;
 using Terraria.DataStructures;
 
-namespace Aequus.Old.Content.Items.Materials;
+namespace Aequu2.Old.Content.Items.Materials;
 
 public class StariteMaterial : ModItem {
     public override void SetStaticDefaults() {

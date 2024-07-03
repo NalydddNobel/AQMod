@@ -1,10 +1,10 @@
 ﻿using Terraria.ObjectData;
 
-namespace Aequus.Old.Content.Events.DemonSiege.Tiles;
+namespace Aequu2.Old.Content.Events.DemonSiege.Tiles;
 
 /// <summary>Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.</summary>
 public class OblivionAltarDummy : ModTile {
-    public override string Texture => AequusTextures.OblivionAltar.Path;
+    public override string Texture => Aequu2Textures.OblivionAltar.Path;
 
     public override void SetStaticDefaults() {
         Main.tileFrameImportant[Type] = true;

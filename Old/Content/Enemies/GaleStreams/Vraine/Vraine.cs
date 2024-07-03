@@ -1,7 +1,7 @@
-﻿using Aequus.Content.Events.GaleStreams;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.Core.Entities.Items.DropRules;
+﻿using Aequu2.Content.Events.GaleStreams;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.Core.Entities.Items.DropRules;
 using ReLogic.Content;
 using System.IO;
 using Terraria.Audio;
@@ -9,7 +9,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Old.Content.Enemies.GaleStreams.Vraine;
+namespace Aequu2.Old.Content.Enemies.GaleStreams.Vraine;
 
 [BestiaryBiome<GaleStreamsZone>()]
 [AutoloadBanner]
@@ -18,8 +18,8 @@ public class Vraine : ModNPC {
     public int transitionMax;
     public int temperature;
 
-    private static Asset<Texture2D> HotTexture => AequusTextures.Vraine_Hot;
-    private static Asset<Texture2D> ColdTexture => AequusTextures.Vraine_Cold;
+    private static Asset<Texture2D> HotTexture => Aequu2Textures.Vraine_Hot;
+    private static Asset<Texture2D> ColdTexture => Aequu2Textures.Vraine_Cold;
 
     public override void SetStaticDefaults() {
         Main.npcFrameCount[NPC.type] = 16;
@@ -49,7 +49,7 @@ public class Vraine : ModNPC {
     }
 
     public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment) {
-        if (AequusSystem.HardmodeTier) {
+        if (Aequu2System.HardmodeTier) {
             NPC.lifeMax = (int)(NPC.lifeMax * 1.375f);
         }
         else {

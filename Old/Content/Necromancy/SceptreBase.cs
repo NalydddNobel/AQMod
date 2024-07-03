@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Necromancy;
+﻿namespace Aequu2.Old.Content.Necromancy;
 
 public abstract class ScepterBase : ModItem, ISceptreItem {
     public override void SetStaticDefaults() {

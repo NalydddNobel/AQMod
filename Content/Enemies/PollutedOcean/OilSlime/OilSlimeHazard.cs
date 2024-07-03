@@ -1,12 +1,12 @@
-﻿using Aequus.Content.Elements;
-using Aequus.Core.Entities;
+﻿using Aequu2.Content.Elements;
+using Aequu2.Core.Entities;
 using System;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Utilities;
 
-namespace Aequus.Content.Enemies.PollutedOcean.OilSlime;
+namespace Aequu2.Content.Enemies.PollutedOcean.OilSlime;
 
 public class OilSlimeHazard() : FloorHazard(new Info(HurtsPlayers: true, HurtsNPCs: true, HurtsProjectiles: true)) {
     public bool OnFire { get; set; }

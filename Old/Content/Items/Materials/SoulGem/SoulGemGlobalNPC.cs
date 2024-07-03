@@ -1,6 +1,6 @@
-﻿using Aequus.DataSets;
+﻿using Aequu2.DataSets;
 
-namespace Aequus.Old.Content.Items.Materials.SoulGem;
+namespace Aequu2.Old.Content.Items.Materials.SoulGem;
 
 public class SoulGemGlobalNPC : GlobalNPC {
     public override bool AppliesToEntity(NPC entity, bool lateInstantiation) {

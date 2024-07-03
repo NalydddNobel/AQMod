@@ -1,8 +1,8 @@
-﻿using Aequus.Old.Content.Items.Weapons.Melee.SickBeat;
+﻿using Aequu2.Old.Content.Items.Weapons.Melee.SickBeat;
 using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Old.Content.VanillaChanges;
+namespace Aequu2.Old.Content.VanillaChanges;
 
 public class ToxicSludgeItems : GlobalNPC {
     public int containsItem;

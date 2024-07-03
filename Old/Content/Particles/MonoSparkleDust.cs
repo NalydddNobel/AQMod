@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Particles;
+﻿namespace Aequu2.Old.Content.Particles;
 
 public class MonoSparkleDust : ModDust {
     public override void OnSpawn(Dust dust) {

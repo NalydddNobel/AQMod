@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Core.Graphics.Textures;
+namespace Aequu2.Core.Graphics.Textures;
 
 public struct EffectHSLShift(float Hue, float Saturation, float Light) : IColorEffect {
     public EffectHSLShift(Vector3 hsl) : this(hsl.X, hsl.Y, hsl.Z) { }

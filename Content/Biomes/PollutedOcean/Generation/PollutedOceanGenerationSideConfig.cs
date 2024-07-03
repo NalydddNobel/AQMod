@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Biomes.PollutedOcean.Generation;
+﻿namespace Aequu2.Content.Biomes.PollutedOcean.Generation;
 
 public enum PollutedOceanGenerationSideConfig {
     Automatic,

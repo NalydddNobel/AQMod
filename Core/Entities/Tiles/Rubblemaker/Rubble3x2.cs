@@ -1,7 +1,7 @@
 ﻿using Terraria.GameContent;
 using Terraria.ObjectData;
 
-namespace Aequus.Core.Entities.Tiles.Rubblemaker;
+namespace Aequu2.Core.Entities.Tiles.Rubblemaker;
 
 internal abstract class Rubble3x2 : RubblemakerTile {
     protected Rubble3x2() : base() {

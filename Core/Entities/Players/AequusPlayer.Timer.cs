@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Aequus;
+namespace Aequu2;
 
 public partial class AequusPlayer {
     public class TimerData {

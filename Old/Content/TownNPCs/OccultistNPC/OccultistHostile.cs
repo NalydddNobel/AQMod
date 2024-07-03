@@ -1,4 +1,4 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.ContentGeneration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,13 +8,13 @@ using Terraria.GameContent.UI;
 using Terraria.Localization;
 using tModLoaderExtended.Networking;
 
-namespace Aequus.Old.Content.TownNPCs.OccultistNPC;
+namespace Aequu2.Old.Content.TownNPCs.OccultistNPC;
 
 public class OccultistHostile : Occultist {
     public override LocalizedText DisplayName => ModContent.GetInstance<Occultist>().DisplayName;
 
     public override void Load() {
-        Mod.AddContent(new InstancedNPCEmote(this, EmoteID.Category.Town, () => AequusSystem.metOccultist));
+        Mod.AddContent(new InstancedNPCEmote(this, EmoteID.Category.Town, () => Aequu2System.metOccultist));
     }
 
     public override void SetStaticDefaults() {
@@ -43,7 +43,7 @@ public class OccultistHostile : Occultist {
     }
 
     public override bool PreAI() {
-        AequusSystem.metOccultist = true;
+        Aequu2System.metOccultist = true;
 
         if (Main.netMode != NetmodeID.Server && Main.GameUpdateCount % 180 == 0) {
             for (int i = 0; i < 50; i++) {
@@ -61,7 +61,7 @@ public class OccultistHostile : Occultist {
             NPC.direction = dir;
         }
 
-        if (AequusSystem.downedDemonSiege) {
+        if (Aequu2System.downedDemonSiege) {
             NPC.ai[0] = 0f;
             NPC.ai[1] = 0f;
             NPC.Transform(ModContent.NPCType<Occultist>());
@@ -131,8 +131,8 @@ public class OccultistHostile : Occultist {
     }
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
-        var texture = AequusTextures.OccultistHostile_Sit;
-        var glow = AequusTextures.OccultistHostile_Sit_Glow;
+        var texture = Aequu2Textures.OccultistHostile_Sit;
+        var glow = Aequu2Textures.OccultistHostile_Sit_Glow;
         var frame = texture.Frame(verticalFrames: 5, frameY: (int)Main.GameUpdateCount / 5 % 4 + 1);
         var origin = frame.Size() / 2f;
         var drawCoords = NPC.Center - screenPos + new Vector2(0f, -6f);
@@ -143,7 +143,7 @@ public class OccultistHostile : Occultist {
     }
 
     public static void CheckSpawn(int x, int y, int plr) {
-        if (AequusSystem.downedDemonSiege || Main.player[plr].Distance(new Vector2(x * 16f, y * 16f)) <= 800f || Main.hardMode || NPC.AnyNPCs(ModContent.NPCType<OccultistHostile>())) {
+        if (Aequu2System.downedDemonSiege || Main.player[plr].Distance(new Vector2(x * 16f, y * 16f)) <= 800f || Main.hardMode || NPC.AnyNPCs(ModContent.NPCType<OccultistHostile>())) {
             return;
         }
 

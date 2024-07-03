@@ -1,8 +1,8 @@
-﻿using Aequus.Old.Content.TownNPCs.PhysicistNPC.Analysis;
+﻿using Aequu2.Old.Content.TownNPCs.PhysicistNPC.Analysis;
 using System;
 using System.IO;
 
-namespace Aequus.NPCs.Town.PhysicistNPC.Analysis;
+namespace Aequu2.NPCs.Town.PhysicistNPC.Analysis;
 
 public class TrackedItemRarity {
     public int rare;

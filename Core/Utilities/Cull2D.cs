@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.Utilities;
+﻿namespace Aequu2.Core.Utilities;
 
 public static class Cull2D {
     public static bool Vector2(Vector2 input, int paddingX = 32, int paddingY = 32) {

@@ -1,11 +1,11 @@
-﻿using Aequus.Core;
-using Aequus.Old.Content.Necromancy.Rendering;
+﻿using Aequu2.Core;
+using Aequu2.Old.Content.Necromancy.Rendering;
 using System;
 
-namespace Aequus.Old.Content.Necromancy;
+namespace Aequu2.Old.Content.Necromancy;
 
 public class GhostHitbox : ModProjectile {
-    public override string Texture => AequusTextures.TemporaryBuffIcon;
+    public override string Texture => Aequu2Textures.TemporaryBuffIcon;
 
     public int NPC => (int)Projectile.ai[0];
 
@@ -67,9 +67,9 @@ public class GhostHitbox : ModProjectile {
     }
 
     public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
-        if (target.life > 0 && Main.player[Projectile.owner].GetModPlayer<AequusPlayer>().ghostChains > 0) {
+        if (target.life > 0 && Main.player[Projectile.owner].GetModPlayer<Aequu2Player>().ghostChains > 0) {
             var zombie = Main.npc[NPC].GetGlobalNPC<NecromancyNPC>();
-            zombie.ghostChainsTime = 300 * Main.player[Projectile.owner].GetModPlayer<AequusPlayer>().ghostChains;
+            zombie.ghostChainsTime = 300 * Main.player[Projectile.owner].GetModPlayer<Aequu2Player>().ghostChains;
             if (zombie.ghostChainsNPC != target.whoAmI) {
                 zombie.ghostChainsNPC = target.whoAmI;
                 var diff = target.Center - Projectile.Center;

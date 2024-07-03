@@ -1,5 +1,5 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Tiles.Components;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Tiles.Components;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -7,7 +7,7 @@ using Terraria.Localization;
 using Terraria.ObjectData;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequus.Content.Tiles.PollutedOcean.Trees;
+namespace Aequu2.Content.Tiles.PollutedOcean.Trees;
 
 public class ScrapPalmTree : ModTile, IOverridePlacement, IAddRecipes {
     public ModItem DropItem { get; protected set; }

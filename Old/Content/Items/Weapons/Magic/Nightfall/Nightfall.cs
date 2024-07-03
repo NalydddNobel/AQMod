@@ -1,15 +1,15 @@
-﻿using Aequus.Core;
-using Aequus.Content.Dusts;
-using Aequus.DataSets;
-using Aequus.Old.Content.Items.Materials;
-using Aequus.Old.Content.Particles;
+﻿using Aequu2.Core;
+using Aequu2.Content.Dusts;
+using Aequu2.DataSets;
+using Aequu2.Old.Content.Items.Materials;
+using Aequu2.Old.Content.Particles;
 using System;
 using System.IO;
 using Terraria.Audio;
 using Terraria.GameContent;
 using tModLoaderExtended.Networking;
 
-namespace Aequus.Old.Content.Items.Weapons.Magic.Nightfall;
+namespace Aequu2.Old.Content.Items.Weapons.Magic.Nightfall;
 
 [LegacyName("WowHat")]
 public class Nightfall : ModItem {
@@ -151,7 +151,7 @@ public class NightfallProj : ModProjectile {
         }
 
         if (playSound) {
-            SoundEngine.PlaySound(AequusSounds.NightfallPushUp with { Volume = 0.7f, PitchVariance = 0.2f, }, where);
+            SoundEngine.PlaySound(Aequu2Sounds.NightfallPushUp with { Volume = 0.7f, PitchVariance = 0.2f, }, where);
         }
     }
 
@@ -200,7 +200,7 @@ public class NightfallProj : ModProjectile {
             }
         }
 
-        SoundEngine.PlaySound(AequusSounds.NightfallPushDown with { Volume = 0.8f, PitchVariance = 0.1f, }, target.Center);
+        SoundEngine.PlaySound(Aequu2Sounds.NightfallPushDown with { Volume = 0.8f, PitchVariance = 0.1f, }, target.Center);
 
         target.velocity.Y -= 3f;
         target.position.Y = (tileCoordinates.Y + fallHeight) * 16f - target.height;

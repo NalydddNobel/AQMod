@@ -2,7 +2,7 @@
 using Terraria.Audio;
 using Terraria.DataStructures;
 
-namespace Aequus.Old.Content.Necromancy;
+namespace Aequu2.Old.Content.Necromancy;
 
 public class NecromancyGlobalItem : GlobalItem {
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {

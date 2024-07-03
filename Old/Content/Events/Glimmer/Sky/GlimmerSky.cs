@@ -1,13 +1,13 @@
-﻿using Aequus.Old.Content.Events.Glimmer.Peaceful;
-using Aequus.Old.Content.MainMenu;
+﻿using Aequu2.Old.Content.Events.Glimmer.Peaceful;
+using Aequu2.Old.Content.MainMenu;
 using ReLogic.Content;
 using System;
 using Terraria.DataStructures;
 using Terraria.Graphics.Effects;
 
-namespace Aequus.Old.Content.Events.Glimmer.Sky;
+namespace Aequu2.Old.Content.Events.Glimmer.Sky;
 public class GlimmerSky : CustomSky {
-    public const string Key = "Aequus:GlimmerEventSky";
+    public const string Key = "Aequu2:GlimmerEventSky";
 
     public Asset<Texture2D> skyTexture;
     public Asset<Texture2D> pixelTexture;
@@ -59,7 +59,7 @@ public class GlimmerSky : CustomSky {
             Update(Main.gameTimeCache);
         }
         if (maxDepth == float.MaxValue && minDepth != float.MaxValue) {
-            spriteBatch.Draw(AequusTextures.GlimmerSky.Value, destinationRectangle, skyColor);
+            spriteBatch.Draw(Aequu2Textures.GlimmerSky.Value, destinationRectangle, skyColor);
             return;
         }
 
@@ -73,7 +73,7 @@ public class GlimmerSky : CustomSky {
         float approxProgress = Math.Max(minDepth / 10f, 0.1f);
         destinationRectangle.Y += (int)(y * approxProgress);
 
-        spriteBatch.Draw(AequusTextures.GlimmerSky.Value, destinationRectangle, Color.Lerp(skyColor, Color.Blue * 0.01f, 1f - approxProgress));
+        spriteBatch.Draw(Aequu2Textures.GlimmerSky.Value, destinationRectangle, Color.Lerp(skyColor, Color.Blue * 0.01f, 1f - approxProgress));
 
         try {
             if (Main.spriteBatch != null && !Main.spriteBatch.IsDisposed && Main.instance.GraphicsDevice != null && !Main.instance.GraphicsDevice.IsDisposed) {
@@ -92,7 +92,7 @@ public class GlimmerSky : CustomSky {
         DrawHelper.SpriteBatchCache.InheritFrom(spriteBatch);
         spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.Default, Main.Rasterizer);
 
-        var drawData = new DrawData(AequusTextures.Pixel.Value, drawRectangle, Color.White * realOpacity);
+        var drawData = new DrawData(Aequu2Textures.Pixel.Value, drawRectangle, Color.White * realOpacity);
         var effect = GlimmerSceneEffect.StarShader.Value;
 
         effect.Parameters["uRotation"].SetValue(6f - realOpacity * 0.5f);

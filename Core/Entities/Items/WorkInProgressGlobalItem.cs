@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Terraria.Localization;
 
-namespace Aequus.Core.Entities.Items;
+namespace Aequu2.Core.Entities.Items;
 
 public sealed class WorkInProgressGlobalItem : GlobalItem {
     public override bool AppliesToEntity(Item item, bool lateInstantiation) {
@@ -10,6 +10,6 @@ public sealed class WorkInProgressGlobalItem : GlobalItem {
     }
 
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
-        tooltips.Insert(tooltips.GetIndex("OneDropLogo"), new TooltipLine(Mod, "WorkInProgress", Language.GetTextValue("Mods.Aequus.Items.CommonTooltips.WorkInProgress")) { OverrideColor = Color.LightCoral * 1.33f, });
+        tooltips.Insert(tooltips.GetIndex("OneDropLogo"), new TooltipLine(Mod, "WorkInProgress", Language.GetTextValue("Mods.Aequu2.Items.CommonTooltips.WorkInProgress")) { OverrideColor = Color.LightCoral * 1.33f, });
     }
 }

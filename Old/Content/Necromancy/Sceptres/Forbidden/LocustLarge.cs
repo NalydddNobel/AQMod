@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Necromancy.Sceptres.Forbidden;
+﻿namespace Aequu2.Old.Content.Necromancy.Sceptres.Forbidden;
 
 public class LocustLarge : LocustSmall {
     public override void SetDefaults() {

@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Enemies;
+﻿namespace Aequu2.Old.Content.Enemies;
 
 public abstract class LegacyAIMimic : ModNPC {
     protected virtual int JumpTimer => NPC.ai[1] == 0f ? 12 : 20;

@@ -2,7 +2,7 @@
 using System.Globalization;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Core.IO;
+namespace Aequu2.Core.IO;
 
 /// <summary>Helper for loading content which uses a legacy Id system.</summary>
 public class IDLoader<T> where T : class {

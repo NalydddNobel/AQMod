@@ -1,11 +1,11 @@
-﻿using Aequus.Core.Entities.Items.Components;
-using Aequus.DataSets;
+﻿using Aequu2.Core.Entities.Items.Components;
+using Aequu2.DataSets;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.IO;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Systems.Renaming;
+namespace Aequu2.Content.Systems.Renaming;
 
 public sealed class RenameItem : GlobalItem {
     public static int RenamePrice { get; set; } = Item.buyPrice(silver: 25);

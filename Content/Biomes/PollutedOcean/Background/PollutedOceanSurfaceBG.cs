@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Biomes.PollutedOcean.Background;
+﻿namespace Aequu2.Content.Biomes.PollutedOcean.Background;
 
 public class PollutedOceanSurfaceBG : ModSurfaceBackgroundStyle {
     public override void Load() {

@@ -1,6 +1,6 @@
 ﻿using Terraria.ObjectData;
 
-namespace Aequus.Old.Content.Tiles.Ambient;
+namespace Aequu2.Old.Content.Tiles.Ambient;
 
 public class GoreNestStalagmite : ModTile {
     public override void SetStaticDefaults() {

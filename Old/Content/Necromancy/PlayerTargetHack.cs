@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.Necromancy;
+﻿namespace Aequu2.Old.Content.Necromancy;
 
 public readonly struct PlayerTargetHack {
     public static PlayerTargetHack None => default(PlayerTargetHack);

@@ -1,7 +1,7 @@
-﻿using Aequus.Content.Backpacks;
-using Aequus.Core.Entities.Golfing;
+﻿using Aequu2.Content.Backpacks;
+using Aequu2.Core.Entities.Golfing;
 
-namespace Aequus.Core.Hooks;
+namespace Aequu2.Core.Hooks;
 
 public partial class TerrariaHooks {
     /// <summary>Allows for custom golf ball projectiles to be picked by this method. And allows golf balls in backpacks to be chosen aswell.</summary>

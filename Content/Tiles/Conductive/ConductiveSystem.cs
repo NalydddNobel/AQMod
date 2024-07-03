@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Aequus.Content.Tiles.Conductive;
+namespace Aequu2.Content.Tiles.Conductive;
 public class ConductiveSystem : ModSystem {
     public class ActivationEffect {
         public float electricAnimation;

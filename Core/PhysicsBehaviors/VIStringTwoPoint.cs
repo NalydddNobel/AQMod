@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.PhysicsBehaviors;
+﻿namespace Aequu2.Core.PhysicsBehaviors;
 
 public class VIStringTwoPoint<T> : VIString<T> where T : IVerletIntegrationNode, new() {
     public Vector2 EndPosition { get; set; }

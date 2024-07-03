@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Core.Graphics.Textures;
+namespace Aequu2.Core.Graphics.Textures;
 
 public class EffectHorizontalRainbow : IColorEffect {
     private int _left;

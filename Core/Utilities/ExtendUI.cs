@@ -1,7 +1,7 @@
-﻿using Aequus.Core.UI;
+﻿using Aequu2.Core.UI;
 using Terraria.UI;
 
-namespace Aequus.Core.Utilities;
+namespace Aequu2.Core.Utilities;
 
 public static class ExtendUI {
     // TODO: Make this actually check the item slot contexts

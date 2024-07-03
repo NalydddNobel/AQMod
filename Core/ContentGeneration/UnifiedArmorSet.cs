@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Entities.Items.Components;
-using Aequus.Core.Entities.Items.Tooltips;
+﻿using Aequu2.Core.Entities.Items.Components;
+using Aequu2.Core.Entities.Items.Tooltips;
 using System;
 using Terraria.Localization;
 
-namespace Aequus.Core.ContentGeneration;
+namespace Aequu2.Core.ContentGeneration;
 
 public abstract class UnifiedArmorSet : ModTexturedType, ILocalizedModType {
     public record struct ArmorStats(int Defense, int Rarity = ItemRarityID.White, int Value = 0, bool Vanity = false);

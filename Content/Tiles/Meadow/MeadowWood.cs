@@ -1,7 +1,7 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.ContentGeneration;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequus.Content.Tiles.Meadow;
+namespace Aequu2.Content.Tiles.Meadow;
 
 internal class MeadowWood : ModTile, IAddRecipeGroups {
     public ModItem Item { get; private set; }

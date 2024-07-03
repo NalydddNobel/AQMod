@@ -1,9 +1,9 @@
-﻿using Aequus.Content.Items.Weapons.Classless.StunGun;
-using Aequus.Core.CodeGeneration;
+﻿using Aequu2.Content.Items.Weapons.Classless.StunGun;
+using Aequu2.Core.CodeGeneration;
 
-namespace Aequus.Core.Entities.NPCs;
+namespace Aequu2.Core.Entities.NPCs;
 
-public partial class AequusNPC {
+public partial class Aequu2NPC {
     [ResetEffects]
     public bool stunGun;
     [ResetEffects]

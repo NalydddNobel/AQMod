@@ -1,13 +1,13 @@
-﻿using Aequus.Core.CodeGeneration;
-using Aequus.Core.ContentGeneration;
-using Aequus.Old.Content.Particles;
-using Aequus.Old.Content.StatusEffects;
+﻿using Aequu2.Core.CodeGeneration;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Old.Content.Particles;
+using Aequu2.Old.Content.StatusEffects;
 using System;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Items.Weapons.Summon.Minions.StariteMinion;
+namespace Aequu2.Old.Content.Items.Weapons.Summon.Minions.StariteMinion;
 
-[Gen.AequusPlayer_Field<bool>("minionStarite")]
+[Gen.Aequu2Player_Field<bool>("minionStarite")]
 public class StariteMinion : UnifiedModMinion {
     public override void SetStaticDefaults() {
         base.SetStaticDefaults();
@@ -49,7 +49,7 @@ public class StariteMinion : UnifiedModMinion {
     public override void AI() {
         base.AI();
         Player player = Main.player[Projectile.owner];
-        AequusPlayer aequus = player.GetModPlayer<AequusPlayer>();
+        Aequu2Player Aequu2 = player.GetModPlayer<Aequu2Player>();
         Vector2 center = Projectile.Center;
         Projectile.CollideWithOthers();
 
@@ -171,7 +171,7 @@ public class StariteMinion : UnifiedModMinion {
         Color trailStartColor = Main.tenthAnniversaryWorld ? Color.LightPink with { A = 0 } : Color.LightCyan with { A = 0 };
         Color trailEndColor = Main.tenthAnniversaryWorld ? Color.Pink with { A = 0 } : Color.Blue with { A = 0 };
 
-        DrawHelper.DrawBasicVertexLineWithProceduralPadding(AequusTextures.Trail, Projectile.oldPos, Projectile.oldRot,
+        DrawHelper.DrawBasicVertexLineWithProceduralPadding(Aequu2Textures.Trail, Projectile.oldPos, Projectile.oldRot,
             p => Color.Lerp(trailStartColor, trailEndColor, 1f - MathF.Pow(1f - p, 2f)) * (1f - p),
             p => 12f * (1f - p),
             -Main.screenPosition + Projectile.Size / 2f);
@@ -208,6 +208,6 @@ public class StariteMinion : UnifiedModMinion {
     }
 
     internal override InstancedMinionBuff CreateMinionBuff() {
-        return new InstancedMinionBuff(this, (p) => ref p.GetModPlayer<AequusPlayer>().minionStarite);
+        return new InstancedMinionBuff(this, (p) => ref p.GetModPlayer<Aequu2Player>().minionStarite);
     }
 }

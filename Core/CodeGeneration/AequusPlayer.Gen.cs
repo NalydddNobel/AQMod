@@ -1,4 +1,4 @@
-﻿namespace Aequus;
+﻿namespace Aequu2;
 
 public partial class AequusPlayer {
     public override void SetControls() {

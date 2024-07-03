@@ -1,10 +1,10 @@
-﻿using Aequus.Old.Content.Necromancy.Rendering;
-using Aequus.Old.Content.Necromancy.Sceptres.Evil;
+﻿using Aequu2.Old.Content.Necromancy.Rendering;
+using Aequu2.Old.Content.Necromancy.Sceptres.Evil;
 
-namespace Aequus.Old.Content.Necromancy.Sceptres.Forbidden;
+namespace Aequu2.Old.Content.Necromancy.Sceptres.Forbidden;
 
 public class OsirisDebuff : NecromancyDebuff {
-    public override string Texture => AequusTextures.TemporaryDebuffIcon;
+    public override string Texture => Aequu2Textures.TemporaryDebuffIcon;
 
     public override float Tier => 3f;
     public override int DamageSet => 75;

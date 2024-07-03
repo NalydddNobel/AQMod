@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Core.Entities.NPCs;
+namespace Aequu2.Core.Entities.NPCs;
 
 public abstract class AIJellyfish : ModNPC {
     public virtual bool CanShock() {

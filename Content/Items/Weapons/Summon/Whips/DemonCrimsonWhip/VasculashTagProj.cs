@@ -1,10 +1,10 @@
-﻿using Aequus.Core.Entities.Projectiles;
+﻿using Aequu2.Core.Entities.Projectiles;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.Utilities;
 
-namespace Aequus.Content.Items.Weapons.Summon.Whips.DemonCrimsonWhip;
+namespace Aequu2.Content.Items.Weapons.Summon.Whips.DemonCrimsonWhip;
 
 public class VasculashTagProj : ModProjectile {
     public static readonly int IdleTeleportDistance = 2000;

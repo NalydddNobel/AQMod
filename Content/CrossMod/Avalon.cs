@@ -1,8 +1,8 @@
-﻿using Aequus.Core.CrossMod;
+﻿using Aequu2.Core.CrossMod;
 using System.Reflection;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Content.CrossMod;
+namespace Aequu2.Content.CrossMod;
 
 internal class Avalon : SupportedMod<Avalon> {
     private static ModSystem _AvalonWorld;

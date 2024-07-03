@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequus.Core.Graphics;
+namespace Aequu2.Core.Graphics;
 
 [Autoload(Side = ModSide.Client)]
 public class DrawLayers : IContentInstance {

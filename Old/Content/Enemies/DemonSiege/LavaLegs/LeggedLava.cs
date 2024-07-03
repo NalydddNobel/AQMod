@@ -1,15 +1,15 @@
-﻿using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.DataSets;
-using Aequus.Old.Content.Events.DemonSiege;
-using Aequus.Old.Content.Items.Materials.SoulGem;
+﻿using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.DataSets;
+using Aequu2.Old.Content.Events.DemonSiege;
+using Aequu2.Old.Content.Items.Materials.SoulGem;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Old.Content.Enemies.DemonSiege.LavaLegs;
+namespace Aequu2.Old.Content.Enemies.DemonSiege.LavaLegs;
 
 [AutoloadBanner(legacyId: 8)]
 [BestiaryBiome<DemonSiegeZone>()]
@@ -78,8 +78,8 @@ public class LeggedLava : ModNPC {
         if (NPC.life <= 0) {
             count = 20;
             for (int i = -1; i <= 1; i++) {
-                NPC.NewGore(AequusTextures.LeggedLavaGoreFoot, NPC.Center + new Vector2(12f * i, 10f), NPC.velocity);
-                NPC.NewGore(AequusTextures.LeggedLavaGoreMuscle, NPC.Center + new Vector2(12f * i, 0f), NPC.velocity);
+                NPC.NewGore(Aequu2Textures.LeggedLavaGoreFoot, NPC.Center + new Vector2(12f * i, 10f), NPC.velocity);
+                NPC.NewGore(Aequu2Textures.LeggedLavaGoreMuscle, NPC.Center + new Vector2(12f * i, 0f), NPC.velocity);
             }
         }
         for (int i = 0; i < count; i++) {
@@ -321,7 +321,7 @@ public class LeggedLava : ModNPC {
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
         var texture = TextureAssets.Npc[Type].Value;
-        var legsTexture = AequusTextures.LeggedLavaLegs.Value;
+        var legsTexture = Aequu2Textures.LeggedLavaLegs.Value;
         var drawPosition = new Vector2(NPC.position.X + NPC.width / 2f, NPC.position.Y + NPC.height / 2f);
         drawPosition.Y -= 10.5f;
         var orig = new Vector2(NPC.frame.Width / 2f, NPC.frame.Height / 2f);
@@ -336,7 +336,7 @@ public class LeggedLava : ModNPC {
                 progress = timer / 40f;
             }
             progress = 1f - progress;
-            var spotlight = AequusTextures.BloomStrong;
+            var spotlight = Aequu2Textures.BloomStrong;
             var color = Color.Lerp(Color.Red, Color.OrangeRed, ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 25f) + 1f) / 2f);
             color *= progress;
             var spotlightOrigin = spotlight.Size() / 2f;

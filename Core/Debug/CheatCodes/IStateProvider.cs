@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Core.Debug.CheatCodes;
+namespace Aequu2.Core.Debug.CheatCodes;
 
 internal interface IStateProvider {
     void OnPress(ICheatCode code);

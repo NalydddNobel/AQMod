@@ -1,8 +1,8 @@
-﻿using Aequus.Core.Graphics.Tiles;
+﻿using Aequu2.Core.Graphics.Tiles;
 using System.Collections.Generic;
 using Terraria.GameContent.Drawing;
 
-namespace Aequus.Core.Entities.Tiles;
+namespace Aequu2.Core.Entities.Tiles;
 
 public class VineDrawing : ILoad {
     public static readonly Dictionary<int, Point> VineLength = new();

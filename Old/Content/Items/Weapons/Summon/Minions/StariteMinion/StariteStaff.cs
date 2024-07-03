@@ -1,9 +1,9 @@
-﻿using Aequus.Core;
-using Aequus.Old.Content.Items.Materials;
+﻿using Aequu2.Core;
+using Aequu2.Old.Content.Items.Materials;
 using Terraria.DataStructures;
 using tModLoaderExtended.GlowMasks;
 
-namespace Aequus.Old.Content.Items.Weapons.Summon.Minions.StariteMinion;
+namespace Aequu2.Old.Content.Items.Weapons.Summon.Minions.StariteMinion;
 
 [AutoloadGlowMask]
 public class StariteStaff : ModItem {

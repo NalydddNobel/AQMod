@@ -1,8 +1,8 @@
-﻿using Aequus.Core.Entities.NPCs;
-using Aequus.Old.Common.Projectiles;
+﻿using Aequu2.Core.Entities.NPCs;
+using Aequu2.Old.Common.Projectiles;
 using System;
 
-namespace Aequus.Old.Content.Necromancy.Equipment.Armor.SetGravetender;
+namespace Aequu2.Old.Content.Necromancy.Equipment.Armor.SetGravetender;
 
 public class GravetenderWisp : LegacyMinionTemplate {
     public override void SetStaticDefaults() {
@@ -43,16 +43,16 @@ public class GravetenderWisp : LegacyMinionTemplate {
         }
 
         Projectile.rotation = Projectile.velocity.X * 0.075f;
-        var aequus = Main.player[Projectile.owner].GetModPlayer<AequusPlayer>();
-        var gotoPosition = aequus.gravetenderGhost > -1 ?
-            Main.npc[aequus.gravetenderGhost].Center + new Vector2(0f, -Main.npc[aequus.gravetenderGhost].height - Projectile.height)
+        var Aequu2 = Main.player[Projectile.owner].GetModPlayer<Aequu2Player>();
+        var gotoPosition = Aequu2.gravetenderGhost > -1 ?
+            Main.npc[Aequu2.gravetenderGhost].Center + new Vector2(0f, -Main.npc[Aequu2.gravetenderGhost].height - Projectile.height)
             : DefaultIdlePosition();
         var velocityMin = 4f;
         var diff = gotoPosition - Projectile.Center;
         if ((Main.player[Projectile.owner].Center - Projectile.Center).Length() > 2000f) {
             Projectile.Center = Main.player[Projectile.owner].Center;
             Projectile.velocity *= 0.1f;
-            aequus.gravetenderGhost = -1;
+            Aequu2.gravetenderGhost = -1;
             diff = Vector2.UnitY;
         }
         var ovalDiff = new Vector2(diff.X, diff.Y * 3f);
@@ -71,17 +71,17 @@ public class GravetenderWisp : LegacyMinionTemplate {
         else {
             Projectile.velocity *= 0.95f;
         }
-        if (aequus.gravetenderGhost > -1) {
-            AequusNPC aequusNPC = Main.npc[aequus.gravetenderGhost].GetGlobalNPC<AequusNPC>();
+        if (Aequu2.gravetenderGhost > -1) {
+            Aequu2NPC Aequu2NPC = Main.npc[Aequu2.gravetenderGhost].GetGlobalNPC<Aequu2NPC>();
             if (Projectile.numUpdates == -1) {
-                Projectile.position += (aequus.gravetenderGhost > -1 ? Main.npc[aequus.gravetenderGhost].velocity * new Vector2(aequusNPC.statSpeedX, aequusNPC.statSpeedY) : Main.player[Projectile.owner].velocity) * 0.97f;
+                Projectile.position += (Aequu2.gravetenderGhost > -1 ? Main.npc[Aequu2.gravetenderGhost].velocity * new Vector2(Aequu2NPC.statSpeedX, Aequu2NPC.statSpeedY) : Main.player[Projectile.owner].velocity) * 0.97f;
             }
         }
 
         Lighting.AddLight(Projectile.Center, new Vector3(0.2f, 0f, 0.05f));
 
-        if (aequus.gravetenderGhost != -1) {
-            Projectile.spriteDirection = Math.Sign(Main.npc[aequus.gravetenderGhost].velocity.X);
+        if (Aequu2.gravetenderGhost != -1) {
+            Projectile.spriteDirection = Math.Sign(Main.npc[Aequu2.gravetenderGhost].velocity.X);
         }
         else {
             Projectile.spriteDirection = Main.player[Projectile.owner].direction;

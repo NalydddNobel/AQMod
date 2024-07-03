@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.PhysicsBehaviors;
+﻿namespace Aequu2.Core.PhysicsBehaviors;
 
 public struct VINode : IVerletIntegrationNode {
     public Vector2 Position { get; set; }

@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.Components.Buffs;
+﻿namespace Aequu2.Core.Components.Buffs;
 
 internal interface IOnAddBuff {
     void PreAddBuff(NPC npc, bool alreadyHasBuff, ref int duration, ref bool quiet) {

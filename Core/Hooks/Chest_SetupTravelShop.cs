@@ -1,9 +1,9 @@
-﻿using Aequus.Content.Dedicated.BeyondCoin;
+﻿using Aequu2.Content.Dedicated.BeyondCoin;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using System;
 
-namespace Aequus.Core.Hooks;
+namespace Aequu2.Core.Hooks;
 
 public partial class TerrariaHooks {
     public const int MaxTravellingMerchantSlotsAdded = 20;

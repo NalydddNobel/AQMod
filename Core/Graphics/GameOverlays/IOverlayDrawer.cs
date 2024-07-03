@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.Graphics.GameOverlays;
+﻿namespace Aequu2.Core.Graphics.GameOverlays;
 
 public interface IOverlayDrawer {
     bool Update();

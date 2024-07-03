@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Core.Utilities;
+namespace Aequu2.Core.Utilities;
 
 public static partial class Helper {
     [Obsolete]
@@ -29,8 +29,8 @@ public static partial class Helper {
     }
 
     [Obsolete]
-    public static AequusPlayer Aequus(this Player player) {
-        return player.GetModPlayer<AequusPlayer>();
+    public static Aequu2Player Aequu2(this Player player) {
+        return player.GetModPlayer<Aequu2Player>();
     }
 
     [Obsolete]

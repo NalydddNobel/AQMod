@@ -1,15 +1,15 @@
-﻿namespace Aequus.Content.Events.GaleStreams;
+﻿namespace Aequu2.Content.Events.GaleStreams;
 
 public class GaleStreamsZone : ModBiome {
-    public static bool EventActive => AequusSystem.HardmodeTier && Main.WindyEnoughForKiteDrops;
+    public static bool EventActive => Aequu2System.HardmodeTier && Main.WindyEnoughForKiteDrops;
 
-    public override int Music => MusicLoader.GetMusicSlot("AequusMusic/Assets/Music/GaleStreamsOld");
+    public override int Music => MusicLoader.GetMusicSlot("Aequu2Music/Assets/Music/GaleStreamsOld");
 
     public override SceneEffectPriority Priority => SceneEffectPriority.Event;
 
-    public override string BestiaryIcon => AequusTextures.GaleStreamsBestiaryIcon.Path;
+    public override string BestiaryIcon => Aequu2Textures.GaleStreamsBestiaryIcon.Path;
 
-    public override string BackgroundPath => AequusTextures.MapBG(33);
+    public override string BackgroundPath => Aequu2Textures.MapBG(33);
     public override string MapBackground => BackgroundPath;
 
     public override bool IsBiomeActive(Player player) {

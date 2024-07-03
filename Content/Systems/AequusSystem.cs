@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Assets;
-using Aequus.Core.CodeGeneration;
+﻿using Aequu2.Core.Assets;
+using Aequu2.Core.CodeGeneration;
 using System.IO;
 using Terraria.ModLoader.IO;
 
-namespace Aequus;
+namespace Aequu2;
 
 [Gen.AequusSystem_WorldField<bool>("downedSalamancer")]
 public partial class AequusSystem : ModSystem, IExpandedBySourceGenerator {

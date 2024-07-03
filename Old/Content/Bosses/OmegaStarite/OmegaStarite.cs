@@ -1,17 +1,17 @@
-﻿using Aequus.Core;
-using Aequus.Content.Dusts;
-using Aequus.Content.Pets.OmegaStarite;
-using Aequus.Core.CodeGeneration;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.Core.Entities.NPCs;
-using Aequus.DataSets;
-using Aequus.Old.Content.Bosses.OmegaStarite.Projectiles;
-using Aequus.Old.Content.Events.Glimmer;
-using Aequus.Old.Content.Items.Materials.Energies;
-using Aequus.Old.Content.Particles;
-using Aequus.Old.Content.StatusEffects;
-using Aequus.Old.Core;
+﻿using Aequu2.Core;
+using Aequu2.Content.Dusts;
+using Aequu2.Content.Pets.OmegaStarite;
+using Aequu2.Core.CodeGeneration;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.Core.Entities.NPCs;
+using Aequu2.DataSets;
+using Aequu2.Old.Content.Bosses.OmegaStarite.Projectiles;
+using Aequu2.Old.Content.Events.Glimmer;
+using Aequu2.Old.Content.Items.Materials.Energies;
+using Aequu2.Old.Content.Particles;
+using Aequu2.Old.Content.StatusEffects;
+using Aequu2.Old.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,12 +22,12 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Utilities;
 
-namespace Aequus.Old.Content.Bosses.OmegaStarite;
+namespace Aequu2.Old.Content.Bosses.OmegaStarite;
 
-[Gen.AequusSystem_WorldField<bool>("downedOmegaStarite")]
+[Gen.Aequu2System_WorldField<bool>("downedOmegaStarite")]
 [BestiaryBiome<GlimmerZone>()]
 [AutoloadBossHead]
-public class OmegaStarite : LegacyAequusBoss {
+public class OmegaStarite : LegacyAequu2Boss {
     public const float BossProgression = 6.99f;
 
     #region States
@@ -99,7 +99,7 @@ public class OmegaStarite : LegacyAequusBoss {
         NPC.noTileCollide = true;
         NPC.trapImmune = true;
         NPC.lavaImmune = true;
-        NPC.BossBar = ModContent.GetInstance<LegacyAequusBossSupportedBar>();
+        NPC.BossBar = ModContent.GetInstance<LegacyAequu2BossSupportedBar>();
 
         starDamageMultiplier = 0.8f;
 
@@ -108,7 +108,7 @@ public class OmegaStarite : LegacyAequusBoss {
             starDamageMultiplier *= 0.5f;
         }
 
-        Music = MusicLoader.GetMusicSlot("AequusMusic/Assets/Music/OmegaStariteOld");
+        Music = MusicLoader.GetMusicSlot("Aequu2Music/Assets/Music/OmegaStariteOld");
         SceneEffectPriority = SceneEffectPriority.BossLow;
     }
 
@@ -167,7 +167,7 @@ public class OmegaStarite : LegacyAequusBoss {
             }
         }
         else if (NPC.life <= 0) {
-            SoundEngine.PlaySound(AequusSounds.OmegaStariteKilled, NPC.Center);
+            SoundEngine.PlaySound(Aequu2Sounds.OmegaStariteKilled, NPC.Center);
             for (int k = 0; k < 60; k++) {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Enchanted_Pink, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);
             }
@@ -185,7 +185,7 @@ public class OmegaStarite : LegacyAequusBoss {
             }
         }
         else {
-            SoundEngine.PlaySound(AequusSounds.OmegaStariteHit0 with { Volume = 0.6f, Pitch = -0.025f, PitchVariance = 0.05f }, NPC.Center);
+            SoundEngine.PlaySound(Aequu2Sounds.OmegaStariteHit0 with { Volume = 0.6f, Pitch = -0.025f, PitchVariance = 0.05f }, NPC.Center);
             byte shake = (byte)MathHelper.Clamp(hit.Damage / 8, 4, 10);
             if (shake > _hitShake) {
                 _hitShake = shake;
@@ -445,7 +445,7 @@ public class OmegaStarite : LegacyAequusBoss {
 
                     if (NPC.ai[1] % NPC.ai[3] == 0f) {
                         if (PlrCheck()) {
-                            SoundEngine.PlaySound(AequusSounds.OmegaStariteStarBullets with { Volume = 0.3f, Pitch = 0.5f, PitchVariance = 0.1f }, NPC.Center);
+                            SoundEngine.PlaySound(Aequu2Sounds.OmegaStariteStarBullets with { Volume = 0.3f, Pitch = 0.5f, PitchVariance = 0.1f }, NPC.Center);
 
                             int type = ModContent.ProjectileType<OmegaStariteBullet>();
                             float speed2 = Main.expertMode ? 12.5f : 5.5f;
@@ -683,7 +683,7 @@ public class OmegaStarite : LegacyAequusBoss {
                     NPC.ai[3]++;
                     NPC.localAI[3]++;
                     //if ((int)NPC.localAI[3] == 100) {
-                    //    SoundEngine.PlaySound(AequusSounds.explosion with { Volume = 0.66f, Pitch = -0.05f }, NPC.Center);
+                    //    SoundEngine.PlaySound(Aequu2Sounds.explosion with { Volume = 0.66f, Pitch = -0.05f }, NPC.Center);
                     //}
 
                     if (NPC.ai[3] > 60f) {
@@ -858,7 +858,7 @@ public class OmegaStarite : LegacyAequusBoss {
         NPC.ai[1] += 0.5f;
 
         //if ((int)(NPC.ai[1] * 2f) == 40) {
-        //    SoundEngine.PlaySound(AequusSounds.explosion with { Volume = 0.66f, Pitch = -0.05f }, NPC.Center);
+        //    SoundEngine.PlaySound(Aequu2Sounds.explosion with { Volume = 0.66f, Pitch = -0.05f }, NPC.Center);
         //}
 
         if (NPC.ai[1] > DEATHTIME * 1.314f) {
@@ -1148,7 +1148,7 @@ public class OmegaStarite : LegacyAequusBoss {
         float deathSpotlightScale = 0f;
         if (intensity > 3f)
             deathSpotlightScale = NPC.scale * (intensity - 2.1f) * ((float)Math.Sin(NPC.ai[1] * 0.1f) + 1f) / 2f;
-        var spotlight = AequusTextures.Bloom;
+        var spotlight = Aequu2Textures.Bloom;
         var spotlightOrig = spotlight.Size() / 2f;
         var spotlightColor = Main.tenthAnniversaryWorld ? Color.DeepPink with { A = 0 } * 0.5f : new Color(100, 100, 255, 0);
         var drawOmegite = new List<DrawDelegate>();
@@ -1229,7 +1229,7 @@ public class OmegaStarite : LegacyAequusBoss {
             //Main.spriteBatch.BeginWorld(shader: true);
 
             if ((NPC.position - NPC.oldPos[1]).Length() > 0.01f) {
-                DrawHelper.DrawBasicVertexLineWithProceduralPadding(AequusTextures.Trail, NPC.oldPos, Helper.GenerateRotationArr(NPC.oldPos),
+                DrawHelper.DrawBasicVertexLineWithProceduralPadding(Aequu2Textures.Trail, NPC.oldPos, Helper.GenerateRotationArr(NPC.oldPos),
                     (p) => GlimmerColors.Blue * (1f - p),
                     (p) => 20 * (1f - p),
                     -Main.screenPosition + NPC.Size / 2f);
@@ -1285,7 +1285,7 @@ public class OmegaStarite : LegacyAequusBoss {
 
             var shineColor = new Color(200, 40, 150, 0) * Math.Min(raysScaler, 1f) * NPC.Opacity;
 
-            var lightRay = AequusTextures.LightRayFlat;
+            var lightRay = Aequu2Textures.LightRayFlat;
             var lightRayOrigin = lightRay.Size() / 2f;
 
             var r = new FastRandom((int)NPC.localAI[0]);
@@ -1301,7 +1301,7 @@ public class OmegaStarite : LegacyAequusBoss {
                 i++;
             }
 
-            var bloom = AequusTextures.Bloom;
+            var bloom = Aequu2Textures.Bloom;
             var bloomOrigin = bloom.Size() / 2f;
             raysScaler *= 0.7f;
             Main.spriteBatch.Draw(bloom, drawPos, null, shineColor * raysScaler * NPC.Opacity, 0f, bloomOrigin, raysScaler, SpriteEffects.None, 0f);
@@ -1339,7 +1339,7 @@ public class OmegaStarite : LegacyAequusBoss {
             ModContent.ItemType<Items.Weapons.Summon.Minions.ScribbleMinion.ScribbleNotebook>()
         ));
 
-        //npcLoot.Add(ItemDropRule.ByCondition(LootBuilder.GetCondition_OnFirstKill(() => AequusWorld.downedOmegaStarite), ModContent.ItemType<SupernovaFruit>()));
+        //npcLoot.Add(ItemDropRule.ByCondition(LootBuilder.GetCondition_OnFirstKill(() => Aequu2World.downedOmegaStarite), ModContent.ItemType<SupernovaFruit>()));
         //npcLoot.Add<FlawlessCondition>(ItemDropRule.Common(ModContent.ItemType<OriginPainting>()));
     }
     #endregion
@@ -1347,7 +1347,7 @@ public class OmegaStarite : LegacyAequusBoss {
     public override void OnKill() {
         GlimmerSystem.EndEventDelay = 240;
 
-        NPC.SetEventFlagCleared(ref AequusSystem.downedOmegaStarite, -1);
+        NPC.SetEventFlagCleared(ref Aequu2System.downedOmegaStarite, -1);
     }
 
     public override void SendExtraAI(BinaryWriter writer) {
@@ -1388,7 +1388,7 @@ public class OmegaStarite : LegacyAequusBoss {
 public class OmegaStariteRelicRenderer : RelicRenderer {
     public static readonly int FrameCount = 5;
 
-    public OmegaStariteRelicRenderer() : base(AequusTextures.OmegaStariteRelic.Path) { }
+    public OmegaStariteRelicRenderer() : base(Aequu2Textures.OmegaStariteRelic.Path) { }
 
     protected override void DrawInner(in DrawParams drawInfo) {
         var tile = Main.tile[drawInfo.X, drawInfo.Y];

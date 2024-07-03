@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aequus;
+namespace Aequu2;
 
 public partial class AequusItem : GlobalItem {
     public override bool? UseItem(Item item, Player player) {

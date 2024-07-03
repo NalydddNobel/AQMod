@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aequus.Core.Graphics.Tiles;
+namespace Aequu2.Core.Graphics.Tiles;
 
 /// <summary>
 /// Tile draw info used internally with <see cref="BatchedTileRenderer"/>.

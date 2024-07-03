@@ -1,12 +1,12 @@
-﻿using Aequus.Content.Dusts;
-using Aequus.DataSets;
-using Aequus.Old.Core;
+﻿using Aequu2.Content.Dusts;
+using Aequu2.DataSets;
+using Aequu2.Old.Core;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
 using Terraria.Utilities;
 
-namespace Aequus.Old.Content.Bosses.RedSprite.Projectiles;
+namespace Aequu2.Old.Content.Bosses.RedSprite.Projectiles;
 
 public class RedSpriteThunderClap : ModProjectile {
     public override void SetStaticDefaults() {
@@ -97,7 +97,7 @@ public class RedSpriteThunderClap : ModProjectile {
         //float electric = 2f + ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 5f) + 1f) * 2f;
 
         int separation = frame.Height - 4;
-        var glow = AequusTextures.Bloom.Value;
+        var glow = Aequu2Textures.Bloom.Value;
         var glowScale = new Vector2(1f, scale.X * 2f);
         var thunderGlowOrig = new Vector2(glow.Width / 2f, glow.Height / 2f);
         var glowBright = new Color(200, 140, 30) * (float)Math.Pow(Projectile.Opacity, 3f);
@@ -137,7 +137,7 @@ public class RedSpriteThunderClap : ModProjectile {
 
         float length = Projectile.ai[0];
 
-        var glow2 = AequusTextures.Bloom;
+        var glow2 = Aequu2Textures.Bloom;
         var glow2Orig = glow2.Size() / 2f;
         Main.spriteBatch.Draw(glow2, drawPosition + new Vector2(0f, -frame.Height / 2f) - Main.screenPosition, null, glowBright, Projectile.rotation, glow2Orig, scale * 2f, SpriteEffects.None, 0f);
 

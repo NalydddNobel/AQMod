@@ -1,7 +1,7 @@
 ﻿using System;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Items.Weapons.Ranged.CrusadersCrossbow;
+namespace Aequu2.Old.Content.Items.Weapons.Ranged.CrusadersCrossbow;
 
 public class CrusadersCrossbowProj : ModProjectile {
     public override void SetStaticDefaults() {
@@ -72,7 +72,7 @@ public class CrusadersCrossbowProj : ModProjectile {
         var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f) - Main.screenPosition;
         var drawColor = Projectile.GetAlpha(lightColor);
 
-        Main.spriteBatch.GraphicsDevice.Textures[0] = AequusTextures.Trail.Value;
+        Main.spriteBatch.GraphicsDevice.Textures[0] = Aequu2Textures.Trail.Value;
         DrawHelper.VertexStrip.PrepareStrip(Projectile.oldPos, Projectile.oldRot,
             (p) => Projectile.GetAlpha(Color.White) with { A = 0 } * 0.9f * (float)Math.Pow(1f - p, 2f),
             (p) => 6f * (1f - p),

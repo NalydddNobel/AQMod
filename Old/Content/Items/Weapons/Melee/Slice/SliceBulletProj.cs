@@ -1,8 +1,8 @@
-﻿using Aequus.DataSets;
+﻿using Aequu2.DataSets;
 using System;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Items.Weapons.Melee.Slice;
+namespace Aequu2.Old.Content.Items.Weapons.Melee.Slice;
 
 public class SliceBulletProj : ModProjectile {
     public override void SetStaticDefaults() {
@@ -109,14 +109,14 @@ public class SliceBulletProj : ModProjectile {
 
         Main.EntitySpriteDraw(texture, Projectile.position + drawOffset, frame, Projectile.GetAlpha(lightColor) * opacity, Projectile.rotation, origin, 1f, SpriteEffects.None, 0);
 
-        var swish = AequusTextures.SlashVanillaSmall;
+        var swish = Aequu2Textures.SlashVanillaSmall;
         var swishFrame = swish.Frame(verticalFrames: 4);
         var swishColor = new Color(60, 120, 255, 0) * opacity;
         var swishOrigin = swishFrame.Size() / 2f;
         float swishScale = Projectile.scale * 1f;
         var swishPosition = Projectile.position + drawOffset;
 
-        var flare = AequusTextures.Flare.Value;
+        var flare = Aequu2Textures.Flare.Value;
         var flareOrigin = flare.Size() / 2f;
         float flareOffset = (swish.Width() / 2f - 4f) * Projectile.scale;
         var flareDirectionNormal = Vector2.Normalize(Projectile.velocity) * flareOffset;

@@ -1,16 +1,16 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.ContentGeneration;
 using System;
 using Terraria.Enums;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Fishing.CrabPots;
+namespace Aequu2.Content.Fishing.CrabPots;
 
 public class ObsidianCrabPot : UnifiedCrabPot {
     public override void Load() {
         ModItem item = new InstancedTileItem(this, rarity: ItemRarityID.Orange, value: Item.sellPrice(silver: 50));
 
         Mod.AddContent(item);
-        Aequus.OnAddRecipes += AddRecipes;
+        Aequu2.OnAddRecipes += AddRecipes;
 
         void AddRecipes() {
             foreach (var otherItem in Mod.GetContent<ModItem>()) {

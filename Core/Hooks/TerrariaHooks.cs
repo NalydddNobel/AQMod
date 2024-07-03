@@ -4,7 +4,7 @@ using Terraria.GameContent.Golf;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.UI;
 
-namespace Aequus.Core.Hooks;
+namespace Aequu2.Core.Hooks;
 
 public partial class TerrariaHooks : ILoad {
     private Mod Mod { get; set; }

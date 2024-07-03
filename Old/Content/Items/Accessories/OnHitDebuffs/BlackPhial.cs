@@ -1,7 +1,7 @@
-﻿using Aequus.Old.Content.Items.Materials.PossessedShard;
+﻿using Aequu2.Old.Content.Items.Materials.PossessedShard;
 using System.Collections.Generic;
 
-namespace Aequus.Old.Content.Items.Accessories.OnHitDebuffs;
+namespace Aequu2.Old.Content.Items.Accessories.OnHitDebuffs;
 
 [AutoloadEquip(EquipType.Waist)]
 public class BlackPhial : ModItem {
@@ -26,7 +26,7 @@ public class BlackPhial : ModItem {
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
-        player.GetModPlayer<AequusPlayer>().accBlackPhial++;
+        player.GetModPlayer<Aequu2Player>().accBlackPhial++;
     }
 
     public override void AddRecipes() {

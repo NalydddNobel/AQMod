@@ -1,4 +1,4 @@
-﻿using Aequus.Core.Entities.Golfing;
+﻿using Aequu2.Core.Entities.Golfing;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -6,7 +6,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Backpacks;
+namespace Aequu2.Content.Backpacks;
 
 public class BackpackLoader {
     public const string BackpacksSaveKey = "Backpacks";
@@ -82,15 +82,15 @@ public class BackpackLoader {
     }
 
     public static void UpdateInfoAccessories(Player player, BackpackData[] backpacks) {
-        var aequusPlayer = player.GetModPlayer<AequusPlayer>();
+        var Aequu2Player = player.GetModPlayer<AequusPlayer>();
         for (int i = 0; i < backpacks.Length; i++) {
             if (!backpacks[i].SupportsInfoAccessories || !backpacks[i].IsActive(player)) {
                 continue;
             }
-            UpdateSingleInfoAccessory(player, aequusPlayer, backpacks[i]);
+            UpdateSingleInfoAccessory(player, Aequu2Player, backpacks[i]);
         }
     }
-    private static void UpdateSingleInfoAccessory(Player player, AequusPlayer aequusPlayer, BackpackData backpack) {
+    private static void UpdateSingleInfoAccessory(Player player, AequusPlayer Aequu2Player, BackpackData backpack) {
         for (int i = 0; i < backpack.Inventory.Length; i++) {
             if (ItemSets.WorksInVoidBag[backpack.Inventory[i].type]) {
                 ItemLoader.UpdateInventory(backpack.Inventory[i], player);
@@ -100,7 +100,7 @@ public class BackpackLoader {
             if (backpack.Inventory[i].type == ItemID.Football) {
                 player.hasFootball = true;
             }
-            backpack.UpdateItem(player, aequusPlayer, i);
+            backpack.UpdateItem(player, Aequu2Player, i);
         }
     }
 

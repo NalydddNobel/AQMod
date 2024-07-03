@@ -1,7 +1,7 @@
 ﻿using System;
 using Terraria.Audio;
 
-namespace Aequus.Old.Content.Items.Materials.SoulGem;
+namespace Aequu2.Old.Content.Items.Materials.SoulGem;
 
 public class SoulGem : ModItem {
     public virtual int TransformID => ModContent.ItemType<SoulGemFilled>();

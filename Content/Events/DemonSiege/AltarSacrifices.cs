@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace Aequus.Content.Events.DemonSiege;
+namespace Aequu2.Content.Events.DemonSiege;
 
 public class AltarSacrifices : ModSystem {
     public static readonly Dictionary<int, Conversion> OriginalToConversion = new();

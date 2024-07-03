@@ -1,6 +1,6 @@
 ﻿using ReLogic.Content;
 
-namespace Aequus.Core.Graphics.Textures;
+namespace Aequu2.Core.Graphics.Textures;
 
 public interface IColorEffect {
     void Prepare(in ColorEffectContext context) { }

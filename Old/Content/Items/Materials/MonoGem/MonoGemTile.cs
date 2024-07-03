@@ -1,7 +1,7 @@
-﻿using Aequus.Core.Entities.Tiles;
+﻿using Aequu2.Core.Entities.Tiles;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Items.Materials.MonoGem;
+namespace Aequu2.Old.Content.Items.Materials.MonoGem;
 
 public class MonoGemTile : BaseGemTile {
     public override void SetStaticDefaults() {
@@ -28,12 +28,12 @@ public class MonoGemTile : BaseGemTile {
             float pulse = Helper.Oscillate(Main.GlobalTimeWrappedHourly * 0.1f + Utils.RandomFloat(ref seed) * 20f, 0.7f, 1f);
 
             Main.spriteBatch.Draw(
-                AequusTextures.Bloom,
+                Aequu2Textures.Bloom,
                 drawCoordinates + new Vector2(8f),
                 null,
                 Color.Black * pulse * 0.2f,
                 0f,
-                AequusTextures.Bloom.Size() / 2f,
+                Aequu2Textures.Bloom.Size() / 2f,
                 0.45f * pulse + 0.33f, SpriteEffects.None, 0f);
 
             Main.spriteBatch.Draw(

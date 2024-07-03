@@ -1,10 +1,10 @@
-﻿using Aequus.DataSets;
-using Aequus.Old.Content.Particles;
+﻿using Aequu2.DataSets;
+using Aequu2.Old.Content.Particles;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Items.Weapons.Ranged.DemonCorruptBow;
+namespace Aequu2.Old.Content.Items.Weapons.Ranged.DemonCorruptBow;
 
 public class HamaYumiArrow : ModProjectile {
     public static readonly Color FireColor = new Color(100, 28, 160, 60);
@@ -111,7 +111,7 @@ public class HamaYumiArrow : ModProjectile {
 }
 
 public class HamaYumiExplosion : ModProjectile {
-    public override string Texture => AequusTextures.GenericExplosion.Path;
+    public override string Texture => Aequu2Textures.GenericExplosion.Path;
 
     public override void SetStaticDefaults() {
         Main.projFrames[Type] = 7;

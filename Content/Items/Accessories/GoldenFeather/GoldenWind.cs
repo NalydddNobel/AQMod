@@ -1,6 +1,6 @@
 ﻿using Terraria.Localization;
 
-namespace Aequus.Content.Items.Accessories.GoldenFeather;
+namespace Aequu2.Content.Items.Accessories.GoldenFeather;
 
 [LegacyName("AloeVera")]
 public class GoldenWind : GoldenFeather {

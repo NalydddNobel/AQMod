@@ -1,10 +1,10 @@
-﻿using Aequus.Content.Dusts;
+﻿using Aequu2.Content.Dusts;
 using System;
 
-namespace Aequus.Old.Content.DronePylons.NPCs;
+namespace Aequu2.Old.Content.DronePylons.NPCs;
 
 public class GunnerDroneProj : ModProjectile {
-    public override string Texture => AequusTextures.None.Path;
+    public override string Texture => Aequu2Textures.None.Path;
 
     public override void SetDefaults() {
         Projectile.width = 2;
@@ -102,11 +102,11 @@ public class GunnerDroneProj : ModProjectile {
 
         float[] rotations = Helper.GenerateRotationArr(indices);
         Color laserColor = townDrone.GetPylonColor() with { A = 100 } * MathF.Pow(Projectile.Opacity, 2f);
-        DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, indices, rotations,
+        DrawHelper.DrawBasicVertexLine(Aequu2Textures.Trail, indices, rotations,
             p => laserColor,
             p => 4f
         );
-        DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, indices, rotations,
+        DrawHelper.DrawBasicVertexLine(Aequu2Textures.Trail, indices, rotations,
             p => laserColor with { A = 0 } * 0.5f,
             p => 8f
         );

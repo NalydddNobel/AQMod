@@ -1,12 +1,12 @@
-﻿using Aequus.Core.Entities.NPCs;
-using Aequus.Content.Dusts;
+﻿using Aequu2.Core.Entities.NPCs;
+using Aequu2.Content.Dusts;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria.Audio;
 using Terraria.Graphics.Shaders;
 
-namespace Aequus.Old.Content.DronePylons.NPCs;
+namespace Aequu2.Old.Content.DronePylons.NPCs;
 
 public class HealerDrone : TownDroneBase {
     public override DroneSlot Slot => ModContent.GetInstance<HealerDroneSlot>();
@@ -67,7 +67,7 @@ public class HealerDrone : TownDroneBase {
                     int healAmt = (int)Math.Max(target.lifeMax * 0.064f, 1);
                     if (target.life + healAmt > target.lifeMax) {
                         healAmt = target.lifeMax - target.life;
-                        target.GetGlobalNPC<AequusNPC>().immuneToDamageTime = Math.Max((byte)120, target.GetGlobalNPC<AequusNPC>().immuneToDamageTime);
+                        target.GetGlobalNPC<Aequu2NPC>().immuneToDamageTime = Math.Max((byte)120, target.GetGlobalNPC<Aequu2NPC>().immuneToDamageTime);
                     }
                     target.life += healAmt;
 
@@ -253,7 +253,7 @@ public class HealerDrone : TownDroneBase {
 
         spriteBatch.Draw(texture, drawCoords, frame, NPC.GetNPCColorTintedByBuffs(drawColor),
             NPC.rotation, origin, NPC.scale, NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
-        spriteBatch.Draw(AequusTextures.HealerDrone_Glow, drawCoords, frame, color * SpawnInOpacity,
+        spriteBatch.Draw(Aequu2Textures.HealerDrone_Glow, drawCoords, frame, color * SpawnInOpacity,
             NPC.rotation, origin, NPC.scale, NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
 
 
@@ -292,7 +292,7 @@ public class HealerDrone : TownDroneBase {
 
             pos.X = MathHelper.Lerp(pos.X, endPos.X, 0.005f);
             pos.Y = MathHelper.Lerp(pos.Y, endPos.Y, 0.01f);
-            //AequusHelpers.dustDebug(pos);
+            //Aequu2Helpers.dustDebug(pos);
             list.Add(pos);
         }
         //list.Add(new Vector2(NPC.Center.X, list[0].Y));
@@ -300,7 +300,7 @@ public class HealerDrone : TownDroneBase {
         Vector2[] array = list.ToArray();
 
         float opacity = (float)Math.Pow(healingAuraOpacity, 2f);
-        DrawHelper.DrawBasicVertexLine(AequusTextures.Trail, array, Helper.GenerateRotationArr(array),
+        DrawHelper.DrawBasicVertexLine(Aequu2Textures.Trail, array, Helper.GenerateRotationArr(array),
             p => Color.Lerp(GetPylonColor(), CombatText.HealLife, p) with { A = 60 } * opacity,
             p => 6f,
             -Main.screenPosition);

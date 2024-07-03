@@ -1,11 +1,11 @@
-﻿using Aequus.Core.Graphics.Tiles;
-using Aequus.Old.Content.Items.Potions.Prefixes.EmpoweredPotions;
+﻿using Aequu2.Core.Graphics.Tiles;
+using Aequu2.Old.Content.Items.Potions.Prefixes.EmpoweredPotions;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent.Drawing;
 using Terraria.ObjectData;
 
-namespace Aequus.Old.Content.Tiles.Herbs.Mistral;
+namespace Aequu2.Old.Content.Tiles.Herbs.Mistral;
 
 public class Mistral : ModHerb, IDrawWindyGrass {
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
@@ -49,7 +49,7 @@ public class Mistral : ModHerb, IDrawWindyGrass {
     }
 
     private void DrawPinwheel(int i, int j, SpriteBatch spriteBatch, Vector2 position) {
-        Texture2D pinwheel = AequusTextures.Mistral_Pinwheel;
+        Texture2D pinwheel = Aequu2Textures.Mistral_Pinwheel;
         int frame = Main.tileFrame[Type];
         spriteBatch.Draw(pinwheel, position, null, Lighting.GetColor(i, j), frame / 16f * MathHelper.TwoPi, pinwheel.Size() / 2f, 1f, SpriteEffects.None, 0f);
     }
@@ -102,7 +102,7 @@ public class Mistral : ModHerb, IDrawWindyGrass {
 
     public override bool KillSound(int i, int j, bool fail) {
         if (GetGrowthStage(i, j) == STAGE_BLOOMING) {
-            SoundEngine.PlaySound(AequusSounds.MoonflowerBreak with { PitchVariance = 0.1f }, new Vector2(i * 16f, j * 16f));
+            SoundEngine.PlaySound(Aequu2Sounds.MoonflowerBreak with { PitchVariance = 0.1f }, new Vector2(i * 16f, j * 16f));
             //return false;
         }
 
@@ -209,13 +209,13 @@ public class Mistral : ModHerb, IDrawWindyGrass {
 //            return;
 //        }
 //        var groundPosition = new Vector2(i * 16f + 8f, j * 16f + 16f).Floor();
-//        var pinwheel = PaintsRenderer.TryGetPaintedTexture(i, j, AequusTextures.MistralTile_Pinwheel.Path);
+//        var pinwheel = PaintsRenderer.TryGetPaintedTexture(i, j, Aequu2Textures.MistralTile_Pinwheel.Path);
 //        Main.spriteBatch.Draw(pinwheel, groundPosition - Main.screenPosition - new Vector2(0f, 20f), null, Lighting.GetColor(i, j),
 //            Main.tileFrame[Type] / (float)TurnFrames, pinwheel.Size() / 2f, 1f, SpriteEffects.None, 0f);
 //    }
 
 //    public static void GlobalRandomUpdate(int i, int j) {
-//        if (!AequusWorld.downedDustDevil || j >= Main.rockLayer || WorldGen.genRand.NextBool(1600)) {
+//        if (!Aequu2World.downedDustDevil || j >= Main.rockLayer || WorldGen.genRand.NextBool(1600)) {
 //            return;
 //        }
 

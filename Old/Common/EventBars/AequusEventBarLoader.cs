@@ -1,12 +1,12 @@
-﻿using Aequus.Core.UI;
+﻿using Aequu2.Core.UI;
 using System.Collections.Generic;
 using Terraria.GameContent;
 using Terraria.UI;
 
-namespace Aequus.Old.Common.EventBars;
+namespace Aequu2.Old.Common.EventBars;
 
 // Replica of vanilla's invasion progress bars.
-public class AequusEventBarLoader : UILayer {
+public class Aequu2EventBarLoader : UILayer {
     private static byte _activeBarReal;
     public static byte ActiveBar { get; internal set; } = 255;
     public static bool PlayerSafe { get; internal set; }
@@ -126,5 +126,5 @@ public class AequusEventBarLoader : UILayer {
         _progressBars.Clear();
     }
 
-    public AequusEventBarLoader() : base("EventBars", InterfaceLayerNames.InvasionProgressBars_17, InterfaceScaleType.UI) { }
+    public Aequu2EventBarLoader() : base("EventBars", InterfaceLayerNames.InvasionProgressBars_17, InterfaceScaleType.UI) { }
 }

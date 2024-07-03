@@ -1,9 +1,9 @@
-﻿using Aequus.Core.Components;
-using Aequus.Old.Content.Events.DemonSiege.Tiles;
+﻿using Aequu2.Core.Components;
+using Aequu2.Old.Content.Events.DemonSiege.Tiles;
 using Terraria.IO;
 using Terraria.WorldBuilding;
 
-namespace Aequus.Old.Content.WorldGeneration;
+namespace Aequu2.Old.Content.WorldGeneration;
 public class LavaCleanupStep : AGenStep {
     public override string InsertAfter => "Tile Cleanup";
 

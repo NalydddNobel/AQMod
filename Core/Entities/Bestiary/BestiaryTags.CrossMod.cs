@@ -1,8 +1,8 @@
-﻿using Aequus.Core.CrossMod;
+﻿using Aequu2.Core.CrossMod;
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;
 
-namespace Aequus.Core.Entites.Bestiary;
+namespace Aequu2.Core.Entites.Bestiary;
 
 public partial class BestiaryTags {
     public BestiaryTags(params string[] names) : this(GetFiltersFromModBiomeNames(names)) { }

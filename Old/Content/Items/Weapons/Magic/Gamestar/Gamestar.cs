@@ -1,6 +1,6 @@
-﻿using Aequus.Core;
+﻿using Aequu2.Core;
 
-namespace Aequus.Old.Content.Items.Weapons.Magic.Gamestar;
+namespace Aequu2.Old.Content.Items.Weapons.Magic.Gamestar;
 
 public class Gamestar : ModItem {
     public override void SetDefaults() {

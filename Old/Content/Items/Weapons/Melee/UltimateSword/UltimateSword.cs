@@ -1,7 +1,7 @@
-﻿using Aequus.Core;
+﻿using Aequu2.Core;
 using tModLoaderExtended.GlowMasks;
 
-namespace Aequus.Old.Content.Items.Weapons.Melee.UltimateSword;
+namespace Aequu2.Old.Content.Items.Weapons.Melee.UltimateSword;
 
 [AutoloadGlowMask]
 public class UltimateSword : ModItem {

@@ -1,11 +1,11 @@
-﻿using Aequus.Core.Graphics;
+﻿using Aequu2.Core.Graphics;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.DataStructures;
 
-namespace Aequus.Old.Content.Necromancy.Rendering;
+namespace Aequu2.Old.Content.Necromancy.Rendering;
 
 public class GhostRenderer : ModSystem {
     public static Asset<Effect> OutlineShader { get; private set; }
@@ -157,7 +157,7 @@ public class GhostRenderer : ModSystem {
                 }
             });
 
-            OutlineShader = ModContent.Request<Effect>("Aequus/Old/Assets/Shaders/NecromancyOutline");
+            OutlineShader = ModContent.Request<Effect>("Aequu2/Old/Assets/Shaders/NecromancyOutline");
         }
     }
 

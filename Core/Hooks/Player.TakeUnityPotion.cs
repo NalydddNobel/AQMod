@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.Hooks;
+﻿namespace Aequu2.Core.Hooks;
 
 public partial class TerrariaHooks {
     /// <summary>Prevents the player from consuming a wormhole potion when having the Phase Mirror. (<see cref="AequusPlayer.infiniteWormhole"/>)</summary>

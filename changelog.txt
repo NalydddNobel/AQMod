@@ -3,7 +3,7 @@ Version 3.0 Changes ------------------------------------------------------------
 I. Additions & Changes:
 - Added Spanish and German Translations!!! Thank you niker for your spanish tranlsations, and Edwin for your German Translations!!!
 - Completely remade the project from the ground up, many items have been tweaked or temporarily removed.
-- Added emotes for Aequus' Town NPCs.
+- Added emotes for Aequu2' Town NPCs.
 
 - New Item: Rose Tinted Glasses, makes you ignore the Blood Moon.
 - New Item: Stellar Glasses, makes you ignore the Glimmer.

@@ -1,12 +1,12 @@
-﻿using Aequus.Core.Entities.Projectiles;
+﻿using Aequu2.Core.Entities.Projectiles;
 using System;
 using System.IO;
 using Terraria.Audio;
 
-namespace Aequus.Old.Content.Items.Weapons.Melee.Slice;
+namespace Aequu2.Old.Content.Items.Weapons.Melee.Slice;
 
 public class SliceProj : LegacyHeldSlashingSwordProjectile {
-    public override string Texture => AequusTextures.Slice.Path;
+    public override string Texture => Aequu2Textures.Slice.Path;
 
     public override void SetStaticDefaults() {
         base.SetStaticDefaults();
@@ -38,7 +38,7 @@ public class SliceProj : LegacyHeldSlashingSwordProjectile {
         target.AddBuff(BuffID.Frostburn, Slice.SwordDebuffDuration);
     }
 
-    protected override void InitializeSword(Player player, AequusPlayer aequus) {
+    protected override void InitializeSword(Player player, Aequu2Player Aequu2) {
         swingTimeMax = Math.Max(swingTimeMax - Math.Clamp(TimesSwinged, 0, 10), 10);
     }
 
@@ -66,7 +66,7 @@ public class SliceProj : LegacyHeldSlashingSwordProjectile {
 
         if (!playedSound && AnimProgress > 0.4f) {
             playedSound = true;
-            SoundEngine.PlaySound(AequusSounds.HeavySwing with { Volume = 0.7f, }, Projectile.Center);
+            SoundEngine.PlaySound(Aequu2Sounds.HeavySwing with { Volume = 0.7f, }, Projectile.Center);
         }
     }
 
@@ -126,7 +126,7 @@ public class SliceProj : LegacyHeldSlashingSwordProjectile {
         }
 
         float swishIntensity = MathF.Sin(animProgress * MathHelper.Pi);
-        var swish = AequusTextures.SlashVanilla.Value;
+        var swish = Aequu2Textures.SlashVanilla.Value;
         var swishFrame = swish.Frame(verticalFrames: 4, frameY: 0);
         var swishOrigin = swishFrame.Size() / 2f;
         var swishColor = glowColor with { A = 58 } * 0.7f * MathF.Pow(intensity, 1.5f) * Projectile.Opacity;

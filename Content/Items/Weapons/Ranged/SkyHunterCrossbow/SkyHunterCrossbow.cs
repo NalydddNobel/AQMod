@@ -1,14 +1,14 @@
-﻿using Aequus.Core;
-using Aequus.Content.Elements;
-using Aequus.Core.Entities.Projectiles;
-using Aequus.Core.Entities.Items.Components;
-using Aequus.Core.Entities.Projectiles;
+﻿using Aequu2.Core;
+using Aequu2.Content.Elements;
+using Aequu2.Core.Entities.Projectiles;
+using Aequu2.Core.Entities.Items.Components;
+using Aequu2.Core.Entities.Projectiles;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.Utilities;
 
-namespace Aequus.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
+namespace Aequu2.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
 
 public class SkyHunterCrossbow : ModItem, IManageProjectile {
     public static int ItemPickupHitSquareSize { get; set; } = 64;
@@ -42,18 +42,18 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
     #region Projectiles
     public bool PreAIProjectile(Projectile projectile) {
         ProjectileSource projectileSource = projectile.GetGlobalProjectile<ProjectileSource>();
-        ProjectileItemData aequusProjectile = projectile.GetGlobalProjectile<ProjectileItemData>();
+        ProjectileItemData Aequu2Projectile = projectile.GetGlobalProjectile<ProjectileItemData>();
         if (projectileSource.IsProjectileChild) {
             return true;
         }
-        if (aequusProjectile.NoSpecialEffects) {
-            if (aequusProjectile.ItemData != 0) {
+        if (Aequu2Projectile.NoSpecialEffects) {
+            if (Aequu2Projectile.ItemData != 0) {
                 BreakRopeParticles(projectile, 14f, 3f);
-                aequusProjectile.ItemData = 0;
+                Aequu2Projectile.ItemData = 0;
             }
             return true;
         }
-        if (aequusProjectile.ItemData == 0) {
+        if (Aequu2Projectile.ItemData == 0) {
             if (projectile.penetrate == -1) {
                 projectile.penetrate = -2;
             }
@@ -67,16 +67,16 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
         }
         var difference = Main.player[projectile.owner].Center - projectile.Center;
         float distance = difference.Length();
-        if (aequusProjectile.ItemData >= 0) {
-            aequusProjectile.ItemData++;
+        if (Aequu2Projectile.ItemData >= 0) {
+            Aequu2Projectile.ItemData++;
             ProjectileTryPickupItems(projectile);
             if (projectile.penetrate == -1) {
-                aequusProjectile.ItemData = Math.Max(aequusProjectile.ItemData, 1000 - 4);
+                Aequu2Projectile.ItemData = Math.Max(Aequu2Projectile.ItemData, 1000 - 4);
             }
-            if (distance > MaximumDistance || aequusProjectile.ItemData > 1000) {
-                aequusProjectile.ItemData = -1;
+            if (distance > MaximumDistance || Aequu2Projectile.ItemData > 1000) {
+                Aequu2Projectile.ItemData = -1;
             }
-            if (aequusProjectile.ItemData > 990) {
+            if (Aequu2Projectile.ItemData > 990) {
                 projectile.tileCollide = false;
             }
             return true;
@@ -99,16 +99,16 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
             projectile.timeLeft++;
         }
         else {
-            if (aequusProjectile.ItemData == -1) {
+            if (Aequu2Projectile.ItemData == -1) {
                 projectile.velocity /= projectile.MaxUpdates;
                 projectile.netUpdate = true;
             }
-            if (aequusProjectile.ItemData == -2) {
+            if (Aequu2Projectile.ItemData == -2) {
                 SoundEngine.PlaySound(AequusSounds.RopeRetract with { Volume = 1.2f, PitchVariance = 0.2f }, projectile.Center);
             }
-            aequusProjectile.ItemData--;
+            Aequu2Projectile.ItemData--;
             projectile.rotation = projectile.rotation.AngleTowards(arrowRotationVector.ToRotation(), 0.02f);
-            projectile.velocity = Vector2.Lerp(projectile.velocity, Vector2.Normalize(difference) * speed, MathF.Min(-aequusProjectile.ItemData * 0.01f, 1f));
+            projectile.velocity = Vector2.Lerp(projectile.velocity, Vector2.Normalize(difference) * speed, MathF.Min(-Aequu2Projectile.ItemData * 0.01f, 1f));
         }
         if (distance < 32f) {
             if (Main.myPlayer == projectile.owner) {
@@ -189,13 +189,13 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
     }
 
     public bool OnTileCollideProjectile(Projectile projectile, Vector2 oldVelocity) {
-        //if (aequusProjectile.IsChildOrNoSpecialEffects) {
+        //if (Aequu2Projectile.IsChildOrNoSpecialEffects) {
         //    return true;
         //}
         //if (projectile.type == ProjectileID.ChlorophyteArrow) {
         //    return true;
         //}
-        //aequusProjectile.itemData = -1;
+        //Aequu2Projectile.itemData = -1;
         //projectile.tileCollide = false;
         //projectile.velocity = oldVelocity;
         //return false;
@@ -221,8 +221,8 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
         }
     }
 
-    public void OnKillProjectile(Projectile projectile, ProjectileItemData aequusProjectile, int timeLeft) {
-        if (Main.dedServ || aequusProjectile.ItemData <= -3 || projectile.IsChildOrNoSpecialEffects()) {
+    public void OnKillProjectile(Projectile projectile, ProjectileItemData Aequu2Projectile, int timeLeft) {
+        if (Main.dedServ || Aequu2Projectile.ItemData <= -3 || projectile.IsChildOrNoSpecialEffects()) {
             return;
         }
 

@@ -4,7 +4,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Items.Weapons.Melee.DemonCorruptSword;
+namespace Aequu2.Old.Content.Items.Weapons.Melee.DemonCorruptSword;
 
 public class HellsBoonProj : ModProjectile {
     private const int GO_OUT_TIME = 15;
@@ -130,7 +130,7 @@ public class HellsBoonProj : ModProjectile {
 }
 
 public class HellsBoonSpawner : ModProjectile {
-    public override string Texture => AequusTextures.TemporaryBuffIcon;
+    public override string Texture => Aequu2Textures.TemporaryBuffIcon;
 
     public override void SetDefaults() {
         Projectile.width = 2;

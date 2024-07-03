@@ -1,8 +1,8 @@
-﻿using Aequus.Core.CodeGeneration;
+﻿using Aequu2.Core.CodeGeneration;
 
-namespace Aequus.Old.Content.Necromancy.Equipment.Accessories;
+namespace Aequu2.Old.Content.Necromancy.Equipment.Accessories;
 
-[Gen.AequusPlayer_ResetField<bool>("accRitualSkull")]
+[Gen.Aequu2Player_ResetField<bool>("accRitualSkull")]
 public class RitualisticSkull : ModItem {
     public override void SetDefaults() {
         Item.width = 24;
@@ -13,7 +13,7 @@ public class RitualisticSkull : ModItem {
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
-        player.GetModPlayer<AequusPlayer>().accRitualSkull = true;
+        player.GetModPlayer<Aequu2Player>().accRitualSkull = true;
     }
 
     public override void AddRecipes() {
@@ -26,10 +26,10 @@ public class RitualisticSkull : ModItem {
             .SortAfterFirstRecipesOf(ItemID.PapyrusScarab);
     }
 
-    [Gen.AequusPlayer_PostUpdateEquips]
-    internal static void OnPostUpdateEquips(Player player, AequusPlayer aequusPlayer) {
-        if (aequusPlayer.accRitualSkull) {
-            aequusPlayer.ghostSlots += player.maxMinions;
+    [Gen.Aequu2Player_PostUpdateEquips]
+    internal static void OnPostUpdateEquips(Player player, Aequu2Player Aequu2Player) {
+        if (Aequu2Player.accRitualSkull) {
+            Aequu2Player.ghostSlots += player.maxMinions;
             player.maxMinions = 1;
         }
     }

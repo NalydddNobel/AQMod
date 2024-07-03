@@ -1,6 +1,6 @@
 ﻿using Terraria.Localization;
 
-namespace Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg;
+namespace Aequu2.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg;
 
 public class KegOSpirits : ModItem {
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(XLanguage.Minutes(SaivoryKnife.GhostLifespan), BottleOSpirits.GhostSlotIncrease);
@@ -14,9 +14,9 @@ public class KegOSpirits : ModItem {
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
-        var aequus = player.GetModPlayer<AequusPlayer>();
-        aequus.ghostLifespan.Flat += 3600;
-        aequus.ghostSlotsMax++;
+        var Aequu2 = player.GetModPlayer<Aequu2Player>();
+        Aequu2.ghostLifespan.Flat += 3600;
+        Aequu2.ghostSlotsMax++;
     }
 
     public override void AddRecipes() {

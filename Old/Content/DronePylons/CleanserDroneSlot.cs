@@ -1,8 +1,8 @@
-﻿using Aequus.DataSets;
-using Aequus.Old.Content.DronePylons.NPCs;
+﻿using Aequu2.DataSets;
+using Aequu2.Old.Content.DronePylons.NPCs;
 using System.Collections.Generic;
 
-namespace Aequus.Old.Content.DronePylons;
+namespace Aequu2.Old.Content.DronePylons;
 
 public class CleanserDroneSlot : DroneSlot {
     public static Dictionary<Point, int> SpecialSolutions { get; private set; }

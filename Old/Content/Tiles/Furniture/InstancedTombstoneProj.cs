@@ -1,7 +1,7 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.ContentGeneration;
 using Terraria.Audio;
 
-namespace Aequus.Old.Content.Tiles.Furniture;
+namespace Aequu2.Old.Content.Tiles.Furniture;
 
 internal class InstancedTombstoneProj : InstancedModProjectile {
     [CloneByReference]

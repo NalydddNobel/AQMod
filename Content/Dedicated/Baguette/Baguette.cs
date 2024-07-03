@@ -1,6 +1,6 @@
-﻿using Aequus.Core.Entities.Items.Dedications;
+﻿using Aequu2.Core.Entities.Items.Dedications;
 
-namespace Aequus.Content.Dedicated.Baguette;
+namespace Aequu2.Content.Dedicated.Baguette;
 
 public class Baguette : ModItem {
     public override void Load() {

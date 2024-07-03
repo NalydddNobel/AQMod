@@ -1,14 +1,14 @@
-﻿using Aequus.Content.Biomes.PollutedOcean;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.Core.Entities.Items.DropRules;
-using Aequus.DataSets;
+﻿using Aequu2.Content.Biomes.PollutedOcean;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.Core.Entities.Items.DropRules;
+using Aequu2.DataSets;
 using System.Linq;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Content.Enemies.PollutedOcean.OilSlime;
+namespace Aequu2.Content.Enemies.PollutedOcean.OilSlime;
 
 [AutoloadBanner]
 [BestiaryBiome<PollutedOceanBiomeSurface>()]

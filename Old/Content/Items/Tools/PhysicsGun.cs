@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria.GameContent;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 
-namespace Aequus.Old.Content.Items.Tools;
+namespace Aequu2.Old.Content.Items.Tools;
 
 [FilterOverride(FilterOverride.Tools)]
 public class PhysicsGun : ModItem {

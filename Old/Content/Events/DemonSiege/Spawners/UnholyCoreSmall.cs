@@ -1,6 +1,6 @@
-﻿using Aequus.Content.Events.DemonSiege;
+﻿using Aequu2.Content.Events.DemonSiege;
 
-namespace Aequus.Old.Content.Events.DemonSiege.Spawners;
+namespace Aequu2.Old.Content.Events.DemonSiege.Spawners;
 
 public class UnholyCoreSmall : ModItem {
     public override void SetStaticDefaults() {

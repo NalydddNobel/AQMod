@@ -1,9 +1,9 @@
 ﻿using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Items.Materials.SoulGem;
+namespace Aequu2.Old.Content.Items.Materials.SoulGem;
 
 public class SoulGemFilledTile : SoulGemTile {
-    public override string Texture => AequusTextures.SoulGemTile.Path;
+    public override string Texture => Aequu2Textures.SoulGemTile.Path;
     protected override int Item => ModContent.ItemType<SoulGemFilled>();
     protected override Color MapColor => new Color(40, 140, 180);
 

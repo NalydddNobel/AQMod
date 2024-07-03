@@ -1,10 +1,10 @@
-﻿using Aequus.DataSets;
+﻿using Aequu2.DataSets;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Necromancy.Sceptres.Dungeon;
+namespace Aequu2.Old.Content.Necromancy.Sceptres.Dungeon;
 
 public class InsurgentBolt : InsurgencyProj {
-    public override string Texture => AequusTextures.Projectile(ProjectileID.RainbowCrystalExplosion);
+    public override string Texture => Aequu2Textures.Projectile(ProjectileID.RainbowCrystalExplosion);
 
     public override void SetStaticDefaults() {
         ProjectileID.Sets.TrailCacheLength[Type] = 20;
@@ -92,13 +92,13 @@ public class InsurgentBolt : InsurgencyProj {
         var drawColor = Projectile.GetAlpha(lightColor) * Projectile.Opacity;
 
         if ((int)Projectile.ai[0] != 2) {
-            DrawHelper.DrawBasicVertexLineWithProceduralPadding(AequusTextures.Trail, Projectile.oldPos, Projectile.oldRot,
+            DrawHelper.DrawBasicVertexLineWithProceduralPadding(Aequu2Textures.Trail, Projectile.oldPos, Projectile.oldRot,
                 (p) => drawColor * 0.8f * Projectile.Opacity * (1f - p),
                 (p) => 4f * Projectile.scale * (1f - p),
                 Projectile.Size / 2f - Main.screenPosition);
         }
 
-        Texture2D bloom = AequusTextures.Bloom;
+        Texture2D bloom = Aequu2Textures.Bloom;
         Vector2 drawCoordinates = Projectile.Center - Main.screenPosition;
         Main.EntitySpriteDraw(texture, drawCoordinates, frame, drawColor, Projectile.rotation + MathHelper.PiOver2, origin, Projectile.scale, effects, 0);
         return false;

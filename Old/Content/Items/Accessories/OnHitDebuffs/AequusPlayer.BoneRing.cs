@@ -1,9 +1,9 @@
-﻿using Aequus.Core.CodeGeneration;
-using Aequus.Old.Content.Items.Accessories.OnHitDebuffs;
+﻿using Aequu2.Core.CodeGeneration;
+using Aequu2.Old.Content.Items.Accessories.OnHitDebuffs;
 
-namespace Aequus;
+namespace Aequu2;
 
-public partial class AequusPlayer {
+public partial class Aequu2Player {
     [ResetEffects]
     public int accBoneRing;
 

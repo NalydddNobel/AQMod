@@ -1,10 +1,10 @@
-﻿using Aequus.Core.CodeGeneration;
+﻿using Aequu2.Core.CodeGeneration;
 using System;
 using Terraria.DataStructures;
 
-namespace Aequus.Old.Content.Items.Potions.NeutronYogurt;
+namespace Aequu2.Old.Content.Items.Potions.NeutronYogurt;
 
-[Gen.AequusPlayer_ResetField<float>("buffNeutronYogurt")]
+[Gen.Aequu2Player_ResetField<float>("buffNeutronYogurt")]
 public class NeutronYogurt : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 20;
@@ -28,13 +28,13 @@ public class NeutronYogurt : ModItem {
         Item.buffTime = 28800;
     }
 
-    [Gen.AequusPlayer_PostUpdateEquips]
-    internal static void UpdateNeutronYogurt(Player Player, AequusPlayer aequusPlayer) {
-        if (aequusPlayer.buffNeutronYogurt <= 0f || Player.slowFall && !Player.controlDown) {
+    [Gen.Aequu2Player_PostUpdateEquips]
+    internal static void UpdateNeutronYogurt(Player Player, Aequu2Player Aequu2Player) {
+        if (Aequu2Player.buffNeutronYogurt <= 0f || Player.slowFall && !Player.controlDown) {
             return;
         }
 
-        float gravityMultiplier = aequusPlayer.buffNeutronYogurt + 1f;
+        float gravityMultiplier = Aequu2Player.buffNeutronYogurt + 1f;
         int velocityYDirection = Math.Sign(Player.velocity.Y);
         int gravityDirection = Math.Sign(Player.gravDir);
         if (velocityYDirection != gravityDirection) {

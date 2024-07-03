@@ -1,15 +1,15 @@
-﻿using Aequus.Content.Biomes.PollutedOcean;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.Core.Graphics;
-using Aequus.Core.Particles;
+﻿using Aequu2.Content.Biomes.PollutedOcean;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.Core.Graphics;
+using Aequu2.Core.Particles;
 using System;
 using System.IO;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Critters.SeaFirefly;
+namespace Aequu2.Content.Critters.SeaFirefly;
 
 [WorkInProgress]
 [BestiaryBiome<PollutedOceanBiomeSurface>]

@@ -1,9 +1,9 @@
-﻿using Aequus.DataSets;
+﻿using Aequu2.DataSets;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Items.Weapons.Melee.Valari;
+namespace Aequu2.Old.Content.Items.Weapons.Melee.Valari;
 
 public class ValariProj : ModProjectile {
     public string BaseTexture => base.Texture;

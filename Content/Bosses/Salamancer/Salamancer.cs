@@ -1,7 +1,7 @@
-﻿using Aequus.Core;
-using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core;
+using Aequu2.Core.ContentGeneration;
 
-namespace Aequus.Content.Bosses.Salamancer;
+namespace Aequu2.Content.Bosses.Salamancer;
 
 public class Salamancer() : UnifiedBoss(new(ItemRarity: Commons.Rare.BossSalamancer)) {
 }

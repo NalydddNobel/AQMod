@@ -1,11 +1,10 @@
-﻿using Aequus.Core;
-using Aequus.Content.Dusts;
-using Aequus.Content.Graphics.Particles;
-using Aequus.Core.CodeGeneration;
-using Aequus.Core.Entities.Projectiles;
+﻿using Aequu2.Content.Dusts;
+using Aequu2.Content.Graphics.Particles;
+using Aequu2.Core.CodeGeneration;
+using Aequu2.Core.Entities.Projectiles;
 using System;
 
-namespace Aequus.Content.Items.Accessories.Breath;
+namespace Aequu2.Content.Items.Accessories.Breath;
 
 [AutoloadEquip(EquipType.Back)]
 [Gen.AequusPlayer_ResetField<Item>("accBreathRestore")]
@@ -38,10 +37,10 @@ public class BreathConserverProj : ModProjectile {
 
     public override void AI() {
         Player owner = Main.player[Projectile.owner];
-        AequusPlayer aequus = owner.GetModPlayer<AequusPlayer>();
+        AequusPlayer Aequu2 = owner.GetModPlayer<AequusPlayer>();
         Player target = Main.player[(int)Projectile.ai[0]];
 
-        if (aequus.accBreathRestoreStacks <= 0 || target.breath >= target.breathMax) {
+        if (Aequu2.accBreathRestoreStacks <= 0 || target.breath >= target.breathMax) {
             Projectile.Kill();
             return;
         }
@@ -63,9 +62,9 @@ public class BreathConserverProj : ModProjectile {
 
     private void HealBreath(Player target) {
         Player owner = Main.player[Projectile.owner];
-        AequusPlayer aequus = owner.GetModPlayer<AequusPlayer>();
+        AequusPlayer Aequu2 = owner.GetModPlayer<AequusPlayer>();
 
-        int restoreBreath = Math.Max((int)(target.breathMax * BreathConserver.RestoreBreathMaxOnEnemyKill), 1) * aequus.accBreathRestoreStacks;
+        int restoreBreath = Math.Max((int)(target.breathMax * BreathConserver.RestoreBreathMaxOnEnemyKill), 1) * Aequu2.accBreathRestoreStacks;
         target.HealBreath(restoreBreath);
 
         if (Main.netMode != NetmodeID.Server) {

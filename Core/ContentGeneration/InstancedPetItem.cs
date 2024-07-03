@@ -1,7 +1,7 @@
 ﻿using Terraria.DataStructures;
 using Terraria.Localization;
 
-namespace Aequus.Core.ContentGeneration;
+namespace Aequu2.Core.ContentGeneration;
 
 [Autoload(false)]
 internal class InstancedPetItem : InstancedModItem {

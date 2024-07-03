@@ -1,6 +1,6 @@
-﻿using Aequus.Core.Entities.Items;
+﻿using Aequu2.Core.Entities.Items;
 
-namespace Aequus.Old.Content.Items.Materials.PillarFragments;
+namespace Aequu2.Old.Content.Items.Materials.PillarFragments;
 
 public class NecroFragment : ModItem {
     public override void SetStaticDefaults() {

@@ -1,6 +1,6 @@
-﻿using Aequus.DataSets;
+﻿using Aequu2.DataSets;
 
-namespace Aequus.Old.Content.Tiles.Herbs;
+namespace Aequu2.Old.Content.Tiles.Herbs;
 
 public class StaffOfRegrowthHelper : ModSystem {
     public override void Load() {

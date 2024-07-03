@@ -3,7 +3,7 @@ using Terraria.Localization;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequus.Core.ContentGeneration;
+namespace Aequu2.Core.ContentGeneration;
 
 [Autoload(false)]
 internal abstract class InstancedModItem : ModItem {

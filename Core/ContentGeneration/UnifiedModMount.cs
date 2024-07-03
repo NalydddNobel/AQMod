@@ -1,4 +1,4 @@
-﻿namespace Aequus.Core.ContentGeneration;
+﻿namespace Aequu2.Core.ContentGeneration;
 
 /// <summary>A <see cref="ModMount"/> which automagically registers a related <see cref="ModItem"/> and <see cref="ModBuff"/>, suffixed with +"Item" and +"Buff" respectively.</summary>
 public abstract class UnifiedModMount : ModMount, ILocalizedModType {

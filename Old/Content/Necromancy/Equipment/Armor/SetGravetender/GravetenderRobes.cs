@@ -1,9 +1,9 @@
-﻿using Aequus.DataSets;
-using Aequus.Old.Common.PlayerLayers;
+﻿using Aequu2.DataSets;
+using Aequu2.Old.Common.PlayerLayers;
 using System.Linq;
 using Terraria.Localization;
 
-namespace Aequus.Old.Content.Necromancy.Equipment.Armor.SetGravetender;
+namespace Aequu2.Old.Content.Necromancy.Equipment.Armor.SetGravetender;
 
 [LegacyName("NecromancerRobe", "SeraphimRobes")]
 [AutoloadEquip(EquipType.Body)]
@@ -26,8 +26,8 @@ public class GravetenderRobes : ModItem {
     }
 
     public override void UpdateEquip(Player player) {
-        player.GetModPlayer<AequusPlayer>().ghostSlotsMax++;
-        player.GetModPlayer<AequusPlayer>().ghostLifespan.Flat += GhostLifespanIncrease;
+        player.GetModPlayer<Aequu2Player>().ghostSlotsMax++;
+        player.GetModPlayer<Aequu2Player>().ghostLifespan.Flat += GhostLifespanIncrease;
     }
 
     public override void AddRecipes() {

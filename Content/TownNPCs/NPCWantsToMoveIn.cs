@@ -2,7 +2,7 @@
 using Terraria.DataStructures;
 using Terraria.Localization;
 
-namespace Aequus.Content.TownNPCs;
+namespace Aequu2.Content.TownNPCs;
 
 public class NPCWantsToMoveIn : GlobalNPC {
     private static int _lastNPCAnnounced;
@@ -32,7 +32,7 @@ public class NPCWantsToMoveIn : GlobalNPC {
         }
 
         LocalizedText npcName = Lang.GetNPCName(wantedNPC);
-        WorldGen.BroadcastText(NetworkText.FromKey("Mods.Aequus.Announcement.NPCWantsToMoveIn", npcName), CommonColor.TextVillagerHasArrived);
+        WorldGen.BroadcastText(NetworkText.FromKey("Mods.Aequu2.Announcement.NPCWantsToMoveIn", npcName), CommonColor.TextVillagerHasArrived);
         _lastNPCAnnounced = wantedNPC;
     }
 

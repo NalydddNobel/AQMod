@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Tiles.Conductive;
+﻿namespace Aequu2.Content.Tiles.Conductive;
 
 [LegacyName("ConductiveBlockTileTin")]
 public class ConductiveBlockTin : ConductiveBlock {

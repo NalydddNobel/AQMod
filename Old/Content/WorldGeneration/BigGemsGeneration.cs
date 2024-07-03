@@ -1,11 +1,11 @@
-﻿using Aequus.Core.Components;
-using Aequus.Old.Content.Tiles.Ambient.BigGems;
+﻿using Aequu2.Core.Components;
+using Aequu2.Old.Content.Tiles.Ambient.BigGems;
 using System.Collections.Generic;
 using Terraria.IO;
 using Terraria.Utilities;
 using Terraria.WorldBuilding;
 
-namespace Aequus.Old.Content.WorldGeneration;
+namespace Aequu2.Old.Content.WorldGeneration;
 
 internal class BigGemsGeneration : AGenStep {
     private int _bigGemId;

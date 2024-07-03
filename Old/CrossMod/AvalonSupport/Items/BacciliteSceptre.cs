@@ -1,10 +1,10 @@
-﻿using Aequus.Content.CrossMod;
-using Aequus.Core.CrossMod;
-using Aequus.Old.Content.Necromancy;
-using Aequus.Old.Content.Necromancy.Sceptres.Evil;
+﻿using Aequu2.Content.CrossMod;
+using Aequu2.Core.CrossMod;
+using Aequu2.Old.Content.Necromancy;
+using Aequu2.Old.Content.Necromancy.Sceptres.Evil;
 using tModLoaderExtended.GlowMasks;
 
-namespace Aequus.Old.CrossMod.AvalonSupport.Items;
+namespace Aequu2.Old.CrossMod.AvalonSupport.Items;
 
 [AutoloadGlowMask]
 public class BacciliteSceptre : CrossModItem {

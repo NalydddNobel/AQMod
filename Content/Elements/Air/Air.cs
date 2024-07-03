@@ -1,6 +1,6 @@
-﻿using Aequus.Core.Entites.Bestiary;
+﻿using Aequu2.Core.Entites.Bestiary;
 
-namespace Aequus.Content.Elements.Air;
+namespace Aequu2.Content.Elements.Air;
 
 public class Air : VanillaElement {
     public Air() : base(AirFrame, Color.LightSkyBlue) { }

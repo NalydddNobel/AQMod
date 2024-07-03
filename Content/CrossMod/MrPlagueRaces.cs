@@ -1,8 +1,8 @@
-﻿using Aequus.Core.CrossMod;
+﻿using Aequu2.Core.CrossMod;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Aequus.Content.CrossMod;
+namespace Aequu2.Content.CrossMod;
 
 internal class MrPlagueRaces : SupportedMod<MrPlagueRaces> {
     public static ModPlayer MrPlagueRacesPlayer { get; private set; }

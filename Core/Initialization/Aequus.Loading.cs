@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Aequus;
+namespace Aequu2;
 
-partial class Aequus {
+partial class Aequu2 {
     internal static LoadActions OnPostSetupContent;
     internal static LoadActions OnAddRecipes;
     internal static LoadActions OnPostAddRecipes;

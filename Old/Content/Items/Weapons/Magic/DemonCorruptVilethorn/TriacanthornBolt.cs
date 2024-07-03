@@ -1,6 +1,6 @@
-﻿using Aequus.DataSets;
+﻿using Aequu2.DataSets;
 
-namespace Aequus.Old.Content.Items.Weapons.Magic.DemonCorruptVilethorn;
+namespace Aequu2.Old.Content.Items.Weapons.Magic.DemonCorruptVilethorn;
 
 public class TriacanthornBolt : ModProjectile {
     public override void SetStaticDefaults() {

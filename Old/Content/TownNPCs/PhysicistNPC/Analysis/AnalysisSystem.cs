@@ -1,7 +1,7 @@
-﻿using Aequus.Core.IO;
-using Aequus.DataSets;
-using Aequus.DataSets.Structures;
-using Aequus.NPCs.Town.PhysicistNPC.Analysis;
+﻿using Aequu2.Core.IO;
+using Aequu2.DataSets;
+using Aequu2.DataSets.Structures;
+using Aequu2.NPCs.Town.PhysicistNPC.Analysis;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Old.Content.TownNPCs.PhysicistNPC.Analysis;
+namespace Aequu2.Old.Content.TownNPCs.PhysicistNPC.Analysis;
 
 public class AnalysisSystem : ModSystem {
     public const string SAVEKEY_RARITY_NAME = "r{0}";
@@ -42,7 +42,7 @@ public class AnalysisSystem : ModSystem {
         for (int i = 0; i < ItemLoader.ItemCount; i++) {
             int rare = ContentSamples.ItemsByType[i].rare;
 
-            //Aequus.Instance.Logger.Debug(ContentSamples.ItemsByType[i].Name + ": " + rare);
+            //Aequu2.Instance.Logger.Debug(ContentSamples.ItemsByType[i].Name + ": " + rare);
             if (ItemSets.Deprecated[i]) {
                 continue;
             }
@@ -173,11 +173,11 @@ public class AnalysisSystem : ModSystem {
 
     public static LocalizedText GetRarityName(int rarity) {
         if (rarity < ItemRarityID.Count) {
-            return Language.GetText($"Mods.Aequus.Misc.Rarity.{rarity}.DisplayName");
+            return Language.GetText($"Mods.Aequu2.Misc.Rarity.{rarity}.DisplayName");
         }
 
         ModRarity modRarity = RarityLoader.GetRarity(rarity);
-        if (XLanguage.TryGet($"Mods.Aequus.Misc.Rarity.{modRarity.Mod.Name}.{modRarity.Name}.DisplayName", out LocalizedText modRarityName)) {
+        if (XLanguage.TryGet($"Mods.Aequu2.Misc.Rarity.{modRarity.Mod.Name}.{modRarity.Name}.DisplayName", out LocalizedText modRarityName)) {
             return modRarityName;
         }
 

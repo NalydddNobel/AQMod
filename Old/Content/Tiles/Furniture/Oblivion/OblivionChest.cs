@@ -1,6 +1,6 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequu2.Core.ContentGeneration;
 
-namespace Aequus.Old.Content.Tiles.Furniture.Oblivion;
+namespace Aequu2.Old.Content.Tiles.Furniture.Oblivion;
 
 [LegacyName("OblivionChestTile")]
 public class OblivionChest : UnifiedModChest {
@@ -10,6 +10,6 @@ public class OblivionChest : UnifiedModChest {
     }
 
     public override void PostDraw(int i, int j, SpriteBatch spriteBatch) {
-        DrawBasicGlowmask(i, j, spriteBatch, AequusTextures.OblivionChest_Glow, Color.White);
+        DrawBasicGlowmask(i, j, spriteBatch, Aequu2Textures.OblivionChest_Glow, Color.White);
     }
 }

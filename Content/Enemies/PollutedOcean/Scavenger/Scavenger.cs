@@ -1,11 +1,11 @@
-﻿using Aequus.Content.Biomes.PollutedOcean;
-using Aequus.Content.Items.Accessories.ScavengerBag;
-using Aequus.Content.Items.Tools.Keys;
-using Aequus.Core.Components.NPCs;
-using Aequus.Core.ContentGeneration;
-using Aequus.Core.Entities.Bestiary;
-using Aequus.Core.Entities.NPCs;
-using Aequus.DataSets;
+﻿using Aequu2.Content.Biomes.PollutedOcean;
+using Aequu2.Content.Items.Accessories.ScavengerBag;
+using Aequu2.Content.Items.Tools.Keys;
+using Aequu2.Core.Components.NPCs;
+using Aequu2.Core.ContentGeneration;
+using Aequu2.Core.Entities.Bestiary;
+using Aequu2.Core.Entities.NPCs;
+using Aequu2.DataSets;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,7 +17,7 @@ using Terraria.ModLoader.IO;
 using Terraria.Utilities;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequus.Content.Enemies.PollutedOcean.Scavenger;
+namespace Aequu2.Content.Enemies.PollutedOcean.Scavenger;
 
 [AutoloadBanner]
 [AutoloadStatue]
@@ -206,15 +206,15 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         if (!armor[SLOT_ACCS].IsAir) {
             playerDummy.ApplyEquipFunctional(armor[SLOT_ACCS], hideVisual: false);
         }
-        if (NPC.TryGetGlobalNPC<AequusNPC>(out var aequusNPC)) {
+        if (NPC.TryGetGlobalNPC<Aequu2NPC>(out var Aequu2NPC)) {
             acceleration += playerDummy.runAcceleration;
-            aequusNPC.statSpeedX += playerDummy.moveSpeed - 1f;
+            Aequu2NPC.statSpeedX += playerDummy.moveSpeed - 1f;
             runSpeedCap += playerDummy.accRunSpeed / 1.5f;
             if (NPC.velocity.Y < 0f) {
                 if (playerDummy.jumpBoost) {
-                    aequusNPC.statSpeedY += 0.5f;
+                    Aequu2NPC.statSpeedY += 0.5f;
                 }
-                aequusNPC.statSpeedY += playerDummy.jumpSpeedBoost / 4f;
+                Aequu2NPC.statSpeedY += playerDummy.jumpSpeedBoost / 4f;
             }
         }
 

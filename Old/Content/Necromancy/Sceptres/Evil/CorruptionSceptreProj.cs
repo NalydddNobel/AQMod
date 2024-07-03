@@ -1,10 +1,10 @@
-﻿using Aequus.Core;
-using Aequus.Content.Dusts;
-using Aequus.DataSets;
-using Aequus.Old.Content.Particles;
+﻿using Aequu2.Core;
+using Aequu2.Content.Dusts;
+using Aequu2.DataSets;
+using Aequu2.Old.Content.Particles;
 using Terraria.GameContent;
 
-namespace Aequus.Old.Content.Necromancy.Sceptres.Evil;
+namespace Aequu2.Old.Content.Necromancy.Sceptres.Evil;
 
 [LegacyName("ZombieBolt")]
 public class CorruptionSceptreProj : ModProjectile {
@@ -115,7 +115,7 @@ public class CorruptionSceptreProj : ModProjectile {
     protected void DrawTrail(float waveSize = 8f, int maxLength = -1) {
         int trailCount = _trail.Length;
         for (int i = 0; i < trailCount; i++) {
-            DrawHelper.DrawBasicVertexLineWithProceduralPadding(AequusTextures.Trail, _trail[i], Projectile.oldRot,
+            DrawHelper.DrawBasicVertexLineWithProceduralPadding(Aequu2Textures.Trail, _trail[i], Projectile.oldRot,
                 (p) => primColor * (1f - p),
                 (p) => primScale * (1f - p),
                 -Main.screenPosition);

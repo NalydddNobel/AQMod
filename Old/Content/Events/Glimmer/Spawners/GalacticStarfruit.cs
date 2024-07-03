@@ -1,9 +1,9 @@
-﻿using Aequus.DataSets;
-using Aequus.Old.Content.Bosses.OmegaStarite;
+﻿using Aequu2.DataSets;
+using Aequu2.Old.Content.Bosses.OmegaStarite;
 using System.Linq;
 using Terraria.Audio;
 
-namespace Aequus.Old.Content.Events.Glimmer.Spawners;
+namespace Aequu2.Old.Content.Events.Glimmer.Spawners;
 
 public class GalacticStarfruit : ModItem {
     public override void SetStaticDefaults() {

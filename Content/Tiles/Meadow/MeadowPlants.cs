@@ -1,8 +1,8 @@
-﻿using Aequus.Content.Items.Potions.Mana;
+﻿using Aequu2.Content.Items.Potions.Mana;
 using System.Collections.Generic;
 using Terraria.GameContent.Metadata;
 
-namespace Aequus.Content.Tiles.Meadow;
+namespace Aequu2.Content.Tiles.Meadow;
 public class MeadowPlants : ModTile {
     public override void SetStaticDefaults() {
         Main.tileCut[Type] = true;

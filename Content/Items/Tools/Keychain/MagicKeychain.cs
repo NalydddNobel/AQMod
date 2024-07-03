@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Items.Tools.Keychain;
+﻿namespace Aequu2.Content.Items.Tools.Keychain;
 
 internal class MagicKeychain : Keychain {
     public override void SetDefaults() {

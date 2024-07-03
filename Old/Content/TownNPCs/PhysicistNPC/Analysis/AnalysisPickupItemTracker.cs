@@ -1,4 +1,4 @@
-﻿namespace Aequus.Old.Content.TownNPCs.PhysicistNPC.Analysis;
+﻿namespace Aequu2.Old.Content.TownNPCs.PhysicistNPC.Analysis;
 
 public class AnalysisPickupItemTracker : GlobalItem {
     public override bool OnPickup(Item item, Player player) {
@@ -12,8 +12,8 @@ public class AnalysisPickupItemTracker : GlobalItem {
                     AnalysisSystem.HandleItemPickup(player, item);
                 }
 
-                //Main.NewText($"{item.value} | {rare}:{AequusText.GetRarityNameValue(rare)}");
-                //Main.NewText($"{AnalysisSystem.quest.itemValue} | {AnalysisSystem.quest.itemRarity}:{AequusText.GetRarityNameValue(AnalysisSystem.quest.itemRarity)} | {AnalysisSystem.quest.itemValue}", Main.DiscoColor);
+                //Main.NewText($"{item.value} | {rare}:{Aequu2Text.GetRarityNameValue(rare)}");
+                //Main.NewText($"{AnalysisSystem.quest.itemValue} | {AnalysisSystem.quest.itemRarity}:{Aequu2Text.GetRarityNameValue(AnalysisSystem.quest.itemRarity)} | {AnalysisSystem.quest.itemValue}", Main.DiscoColor);
                 //Main.NewText($"{AnalysisSystem.RareTracker[rare].highestValueObtained}", Main.DiscoColor);
             }
         }

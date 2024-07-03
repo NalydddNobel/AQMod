@@ -1,10 +1,10 @@
-﻿using Aequus.Core;
-using Aequus.Core.CodeGeneration;
+﻿using Aequu2.Core;
+using Aequu2.Core.CodeGeneration;
 
-namespace Aequus.Old.Content.Necromancy.Equipment.Accessories;
+namespace Aequu2.Old.Content.Necromancy.Equipment.Accessories;
 
-[Gen.AequusPlayer_ResetField<float>("zombieDebuffMultiplier")]
-[Gen.AequusPlayer_ResetField<int>("ghostProjExtraUpdates")]
+[Gen.Aequu2Player_ResetField<float>("zombieDebuffMultiplier")]
+[Gen.Aequu2Player_ResetField<int>("ghostProjExtraUpdates")]
 public class PandorasBox : ModItem {
     public override void SetDefaults() {
         Item.width = 24;
@@ -15,8 +15,8 @@ public class PandorasBox : ModItem {
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
-        var aequus = player.GetModPlayer<AequusPlayer>();
-        aequus.zombieDebuffMultiplier++;
-        aequus.ghostProjExtraUpdates += 1;
+        var Aequu2 = player.GetModPlayer<Aequu2Player>();
+        Aequu2.zombieDebuffMultiplier++;
+        Aequu2.ghostProjExtraUpdates += 1;
     }
 }

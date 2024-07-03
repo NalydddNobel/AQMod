@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Core.CodeGeneration;
+namespace Aequu2.Core.CodeGeneration;
 
 [AttributeUsage(AttributeTargets.Field)]
 [Obsolete("Replaced with PlayerGen/NPCGen.ResetEffectsAttribute")]

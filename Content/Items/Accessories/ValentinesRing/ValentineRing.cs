@@ -1,11 +1,11 @@
-﻿using Aequus.Core;
-using Aequus.Core.CodeGeneration;
+﻿using Aequu2.Core;
+using Aequu2.Core.CodeGeneration;
 using System.Collections.Generic;
 using System.IO;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Items.Accessories.ValentinesRing;
+namespace Aequu2.Content.Items.Accessories.ValentinesRing;
 
 [Gen.AequusPlayer_ResetField<string>("accGifterRing")]
 public class ValentineRing : ModItem {

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using Terraria.Audio;
 
-namespace Aequus.Old.Content.TownNPCs.OccultistNPC;
+namespace Aequu2.Old.Content.TownNPCs.OccultistNPC;
 
 public class OccultistProj : ModProjectile {
-    public override string Texture => AequusTextures.Projectile(ProjectileID.DemonScythe);
+    public override string Texture => Aequu2Textures.Projectile(ProjectileID.DemonScythe);
 
     public override void SetDefaults() {
         Projectile.width = 48;

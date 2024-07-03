@@ -1,6 +1,6 @@
 ﻿using Terraria.Localization;
 
-namespace Aequus.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg;
+namespace Aequu2.Old.Content.Necromancy.Equipment.Accessories.SpiritKeg;
 
 [LegacyName("BloodiedBucket")]
 public class SaivoryKnife : ModItem {
@@ -18,6 +18,6 @@ public class SaivoryKnife : ModItem {
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
-        //player.Aequus().ghostLifespan += GhostLifespan;
+        //player.Aequu2().ghostLifespan += GhostLifespan;
     }
 }

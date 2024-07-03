@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Events.DemonSiege;
+﻿namespace Aequu2.Content.Events.DemonSiege;
 
 public struct Conversion {
     public readonly int OriginalItem;

@@ -1,7 +1,7 @@
-﻿using Aequus.Content.Backpacks;
-using Aequus.Content.Items.Tools.Keychain;
+﻿using Aequu2.Content.Backpacks;
+using Aequu2.Content.Items.Tools.Keychain;
 
-namespace Aequus.Core.Hooks;
+namespace Aequu2.Core.Hooks;
 
 public partial class TerrariaHooks {
     /// <summary>Allows items in backpacks to be consumed.</summary>
