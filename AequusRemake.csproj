@@ -65,6 +65,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Content\Items\Materials\BloodyTearstone.png" />
+    <None Remove="Localization\en-US\Mods.AequusRemake.Items\Accessories.hjson" />
+    <None Remove="Localization\en-US\Mods.AequusRemake.Items\CommonTooltips.hjson" />
+    <None Remove="Localization\en-US\Mods.AequusRemake.Items\Potions.hjson" />
+    <None Remove="Localization\en-US\Mods.AequusRemake.Items\Weapons.hjson" />
+    <None Remove="Localization\en-US\Mods.AequusRemake.Items\Weapons_Magic.hjson" />
+    <None Remove="Localization\en-US\Mods.AequusRemake.Items\Weapons_Melee.hjson" />
+    <None Remove="Localization\en-US\Mods.AequusRemake.Items\Weapons_Ranged.hjson" />
+    <None Remove="Localization\en-US\Mods.AequusRemake.Items\Weapons_Summon.hjson" />
+    <None Remove="Localization\en-US\Mods.AequusRemake.Tiles\Furniture.hjson" />
   </ItemGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

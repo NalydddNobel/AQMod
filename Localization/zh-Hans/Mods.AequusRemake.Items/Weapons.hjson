@@ -1,0 +1,4 @@
+StunGun: {
+	DisplayName: 电击枪
+	Tooltip: 使敌人减速或眩晕{0}秒
+}

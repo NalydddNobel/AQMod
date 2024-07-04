@@ -1,0 +1,18 @@
+AncientCutlass: {
+	DisplayName: Ol' Yore Cutlass
+	Tooltip: Enemies have a chance to drop bonus loot on hit
+}
+
+MirrorsCall: {
+	DisplayName: Mirror's Call
+	Tooltip: Strike the enemy from the comfort of your couch!
+}
+
+IronLotus: {
+	DisplayName: Iron Lotus
+	Tooltip:
+		'''
+		Brandish a spear which inflicts spreading flames
+		'Burn those who dare to care for me'
+		'''
+}

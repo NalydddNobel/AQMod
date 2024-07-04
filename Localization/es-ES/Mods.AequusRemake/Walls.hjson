@@ -1,0 +1,16 @@
+Walls: {
+	RadonMossBrickWall: {
+		ItemDisplayName: Pared de Ladrillo de Musgo de Radón
+		ItemTooltip: ""
+	}
+
+	PolymerSandstoneWall: {
+		ItemDisplayName: Pared de Arenisca de Polímeros
+		// ItemTooltip: ""
+	}
+
+	PolymerSandstoneWallHostile: {
+		ItemDisplayName: Pared de Arenisca de Polímeros Contaminada
+		// ItemTooltip: ""
+	}
+}

@@ -1,0 +1,33 @@
+//# Weapons: Ranged
+StarPhish: {
+	DisplayName: Star Phish
+	Tooltip: "{$CommonTooltips.UsesDarts}"
+}
+
+JunkJet: {
+	DisplayName: Junk Jet
+	Tooltip:
+		'''
+		Puede usar casi cualquier munición
+		{0}% probabilidad de no consumir munición
+		'''
+}
+
+SkyHunterCrossbow: {
+	DisplayName: Ballesta del Cazador del Cielo
+	Tooltip:
+		'''
+		Dispara flechas conectadas con una cuerda capaz de recoger objetos  
+		<right> para aumenta el alcance de la visión
+		'''
+}
+
+//# Ranged Ammo
+PlasticDart: {
+	DisplayName: Dardo Plastico
+	Tooltip:
+		'''
+		Se puede recoger si golpea un bloque suave
+		'Su punta parece desafilada '
+		'''
+}

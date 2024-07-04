@@ -1,0 +1,30 @@
+CommonTooltips: {
+	KnockbackResist: "{0}% reduced knockback"
+	GuideHint: The Guide may be interested in this...
+	BuffTimeRange: "{0}-{1} minute duration"
+	IncreasesInventorySlots: Grants {0} backpack slots
+	Cooldown: Has a {0} second cooldown
+	Shimmerable: Shimmer Ingredient
+	ShimmerableToNPC: Shimmer Ingredient
+	OmnidirectionMelee: Can be swung in any direction
+	WorkInProgress: This item is a Work In Progress, and may have incomplete behavior
+	DedicatedItem: Thank you, {0}!
+	DedicatedItemAnonymous: Dedicated Item
+	UsesDarts: Uses seeds and darts as ammo
+	Banner: "{$CommonItemTooltip.BannerBonus}{0}"
+	NecromancyStaff: Slain enemies will convert into ghost minions
+	StatGhostDuration: Increases the duration of your ghost minions by {0} seconds
+	StatGhostSlots: Increases your max number of ghosts by {0}
+	StatWingTime: Increases flight duration
+	DecreaseAggro: Enemies are less likely to target you
+	IncreaseAggro: Enemies are more likely to target you
+	DisableItem: <right> to deactivate
+	EnableItem: Currently inactive, <right> to reactivate
+	GoblinTinkererRepair: Can be repaired at the Goblin Tinkerer
+	LockedWithKey:
+		'''
+		<right> to open
+		Requires a {0}
+		'''
+	UsedXOfXTimes: Used {0}/{1} times
+}

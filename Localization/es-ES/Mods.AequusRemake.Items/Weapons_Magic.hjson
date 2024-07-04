@@ -1,0 +1,13 @@
+TrashStaff: {
+	DisplayName: Correo Spam
+	Tooltip: Ataques críticos envían un virus a enemigos cercanos
+}
+
+Furystar: {
+	DisplayName: Estrella de furia
+	Tooltip:
+		'''
+		Hace que lluevan estrellas del cielo
+		Ataques restauran maná
+		'''
+}

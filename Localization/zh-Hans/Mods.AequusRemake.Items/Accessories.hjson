@@ -1,0 +1,105 @@
+//# Equipment: Accessories
+BreathConserver: {
+	DisplayName: 呼吸救生器
+	Tooltip: 摧毁物块以及击杀敌人时会回复呼吸条
+}
+
+ValentineRing: {
+	DisplayName: 情人节礼物
+	Tooltip: 赠与朋友以使对方和你自身获得生命再生和伤害加成
+	Tooltip2: 增加你自身和赠礼者的生命再生速度和伤害
+	GiftTooltip: 来自你真诚的, {0}
+	BuffName: 情人
+	BuffDescription: 生命再生速度和伤害增加
+	BuffDescription2: 你受到了{0}的强化!
+}
+
+GoldenWind: {
+	DisplayName: 黄金之风
+	Tooltip: "{$Items.GoldenFeather.Tooltip}"
+}
+
+GoldenFeather: {
+	DisplayName: 奇迹之羽
+	Tooltip:
+		'''
+		每秒为你所处队伍中的所有玩家和你恢复{1}点生命值
+		你和你队友的重生速度缩短{0}秒
+		'''
+}
+
+FlashwayShield: {
+	DisplayName: 闪光盾
+	Tooltip:
+		'''
+		使你获得冲刺能力
+		双击方向键冲刺
+		'''
+}
+
+PurpleBalloon: {
+	DisplayName: 哑光紫色气球
+	Tooltip:
+		'''
+		{$ItemTooltip.ShinyRedBalloon}
+		{$SlimyBlueBalloon.Tooltip}
+		'不要与气球气球混淆'
+		'''
+}
+
+SlimyBlueBalloon: {
+	DisplayName: 黏糊糊的蓝色气球
+	Tooltip:
+		'''
+		减缓下落速度
+		长按下键以正常速度下落
+		'''
+}
+
+WeightedHorseshoe: {
+	DisplayName: 重力马蹄铁
+	Tooltip:
+		'''
+		翻倍最大下落速度
+		在速度较高时会伤害并穿过敌人
+		'你应该在这上面使用韦尔莱链, 这样它就不会出错了!'
+		'''
+}
+
+//# Equipment: Misc
+RoseTintedGlasses: {
+	DisplayName: 玫瑰色眼镜
+	Tooltip: 无视血月的敌人生成
+}
+
+StellarGlasses: {
+	DisplayName: 星体眼镜
+	Tooltip: 无视柔光的敌人生成
+}
+
+EclipseGlasses: {
+	DisplayName: 日食眼镜
+	Tooltip: 无视日食的敌人生成
+}
+
+//# Equipment: Informational
+GeigerCounter: {
+	DisplayName: 盖革计数器
+	Tooltip: 显示每秒造成的持续伤害
+}
+
+// --localization note-- this may be a pun? (shimmer + monocle)
+ShimmerMonocle: {
+	DisplayName: 微光单片镜
+	Tooltip: 显示一个物品是否是微光材料
+}
+
+RichMansMonocle: {
+	DisplayName: 富翁的单片眼镜
+	Tooltip: 在NPC商店外查看商品价格
+}
+
+Calendar: {
+	DisplayName: 日历
+	Tooltip: 显示关于日期的信息
+}

@@ -1,0 +1,18 @@
+AncientCutlass: {
+	// DisplayName: Ol' Yore Cutlass
+	// Tooltip: Enemies have a chance to drop bonus loot on hit
+}
+
+MirrorsCall: {
+	DisplayName: Llamada del Espejo
+	Tooltip: Ataca al enemigo desde la comodidad de tu sillon!
+}
+
+IronLotus: {
+	DisplayName: Loto de Hierro
+	Tooltip:
+		'''
+		Sosten una lanza que esparce el fuego
+		'Quema a aquellos que le importe'
+		'''
+}

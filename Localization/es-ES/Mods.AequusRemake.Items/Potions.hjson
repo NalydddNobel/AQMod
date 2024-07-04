@@ -1,0 +1,39 @@
+MeadowMushroom: {
+	// DisplayName: Meadow Mushroom
+	// Tooltip: ""
+}
+
+SentryPotion: {
+}
+
+TaintedSeafood: {
+	DisplayName: Comida marina Contaminada
+	Tooltip:
+		'''
+		Puede dar mejoras menores, medianas, or o mayores a todas las estadisticas
+		Tambien tiene una probabilidad de dar intoxicación alimenticia
+		'''
+}
+
+DeathsEmbrace: {
+	DisplayName: Abrazo de la Muerte
+	Tooltip:
+		'''
+		No se consume cuando se usa
+		Aumenta un 20% el daño y la probabilidad de ataque crítico
+		Los ataques son un poco menos precisos
+		Los ataques hacen que vuelvas a tomar la poción automáticamente
+		{{Una vez que el efecto acabe, morirás instantáneamente...}}
+		'''
+}
+
+// Foods
+
+Baguette: {
+	DisplayName: Baguette
+	Tooltip:
+		'''
+		Mejoras supremas a todas las características
+		regeneración de vida muy incrementada
+		'''
+}

@@ -1,0 +1,33 @@
+//# Weapons: Ranged
+StarPhish: {
+	DisplayName: 螺旋海星吹筒
+	Tooltip: "{$CommonTooltips.UsesDarts}"
+}
+
+JunkJet: {
+	DisplayName: 垃圾喷射器
+	Tooltip:
+		'''
+		可以使用任意弹药
+		{0}%几率不消耗弹药
+		'''
+}
+
+SkyHunterCrossbow: {
+	DisplayName: 天空猎手的十字弓
+	Tooltip:
+		'''
+		发射可以拾取物品的箭矢
+		右键缩放视域
+		'''
+}
+
+//# Ranged Ammo
+PlasticDart: {
+	DisplayName: 塑料镖
+	Tooltip:
+		'''
+		在命中软方块后可以回收
+		'它扁平的头部无法造成更多伤害'
+		'''
+}

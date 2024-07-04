@@ -1,0 +1,32 @@
+Biomes: {
+	DemonSiegeZone: {
+		DisplayName: Oblivion Altar
+		EventName: Demon Siege
+		TownNPCDialogueName: ""
+	}
+
+	GlimmerZone: {
+		DisplayName: Glimmer
+		TownNPCDialogueName: the Glimmer
+	}
+
+	PeacefulGlimmerZone: {
+		DisplayName: Peaceful Glimmer
+		TownNPCDialogueName: the Glimmer
+	}
+
+	PollutedOceanBiomeSurface: {
+		DisplayName: Polluted Ocean
+		TownNPCDialogueName: the Polluted Ocean
+	}
+
+	PollutedOceanBiomeUnderground: {
+		DisplayName: Polluted Underground
+		TownNPCDialogueName: the Polluted Underground
+	}
+
+	GaleStreamsZone: {
+		DisplayName: Gale Streams
+		TownNPCDialogueName: the Gale Streams
+	}
+}

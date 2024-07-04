@@ -1,0 +1,66 @@
+Elements: {
+	ElementTip: - {0}元素 -
+
+	Shadow: {
+		DisplayName: 暗影
+
+		Mask: {
+			DisplayName: 暗影面具
+			Tooltip: ""
+		}
+	}
+
+	Flame: {
+		DisplayName: 火焰
+
+		Mask: {
+			DisplayName: 火焰面具
+			Tooltip: ""
+		}
+	}
+
+	Water: {
+		DisplayName: 水流
+
+		Mask: {
+			DisplayName: 水流面具
+			Tooltip: ""
+		}
+	}
+
+	Earth: {
+		DisplayName: 大地
+
+		Mask: {
+			DisplayName: 大地面具
+			Tooltip: ""
+		}
+	}
+
+	Light: {
+		DisplayName: 光明
+
+		Mask: {
+			DisplayName: 光明面具
+			Tooltip: ""
+		}
+	}
+
+	Air: {
+		DisplayName: 空气
+
+		Mask: {
+			DisplayName: 空气面具
+			Tooltip: ""
+		}
+	}
+
+	Frost: {
+		DisplayName: 冰霜
+
+		Mask: {
+			DisplayName: 冰霜面具
+			Tooltip: ""
+		}
+	}
+}

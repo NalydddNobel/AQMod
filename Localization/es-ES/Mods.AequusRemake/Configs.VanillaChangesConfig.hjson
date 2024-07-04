@@ -1,0 +1,75 @@
+Configs: {
+	VanillaChangesConfig: {
+		DisplayName: Cambios Vanilla
+		NoteExploit: "[{$ColorNote}:Desactiva esta configuración por preferencia personal, o para prevenir ventajas no deseadas.]"
+
+		MoveTreasureMagnet: {
+			Label: "[i:TreasureMagnet] Mover Imán de tesoros"
+			Tooltip:
+				'''
+				Cuando [{$ColorImportant}:Activo], el [{$ColorImportant}:Imán de tesoros] sera vendido por el [{$ColorImportant}:Mercader del cielo],
+				y [{$ColorImportant}:no aparecera] en [{$ColorImportant2}:Cofres de las sombras] o en [{$ColorImportant2}:Caja con cierre de obsidiana].
+
+				{$NoteExploit}
+				'''
+		}
+
+		RestorationPotionRecipe: {
+			Label: "[i:RestorationPotion] Receta de Poción de recuperación"
+			Tooltip:
+				'''
+				Cuando [{$ColorImportant}:Activo], La receta Vanilla de la [{$ColorImportant}:Poción de recuperación] sera [{$ColorImportant}:removida].
+				AequusRemake añade una [{$ColorImportant}:receta alternativa], usando dos [{$ColorImportant2}:Pociónes de recuperación menor] y un [{$ColorImportant2}:Champiñón brillante].
+
+				[{$ColorNote}:Desactiva esta configuración por preferencia personal, o si se presenta un problema al remover esta receta.]
+				'''
+		}
+
+		MoveToolbelt: {
+			Label: "[i:Toolbelt] Mover Cinturón de Herramientas"
+			Tooltip:
+				'''
+				Al [{$ColorImportant}:Activar], el [{$ColorImportant}:Cinturón de Herramientas] se podra encontrar en [{$ColorImportant}:Cofres bajo tierra],
+				Y [{$ColorImportant}:no sera vendido] por el [{$ColorImportant2}:Duende chapucero].
+
+				{$NoteExploit}
+				'''
+		}
+
+		SlimeCrownInSurfaceChests: {
+			Label: "[i:SlimeCrown] Corona de slime en cofres de la superficie"
+			Tooltip: Al [{$ColorImportant}:Activar], la [{$ColorImportant}:Corona de slime] se podra encontrar en [{$ColorImportant}:Cofres de la superficie].
+		}
+
+		MoveGravityGlobe: {
+			Label: "[i:GravityGlobe] Mover Globo gravitacional"
+			Tooltip:
+				'''
+				Al [{$ColorImportant}:Activar], el [{$ColorImportant}:Globo gravitacional] sera vendido por la [{$ColorImportant}:Física],
+				y [{$ColorImportant}:dejara de caer] del [{$ColorImportant2}:Señor de la Luna].
+
+				{$NoteExploit}
+				'''
+		}
+
+		MovePortalGun: {
+			Label: "[i:PortalGun] Mover Arma de portales"
+			Tooltip:
+				'''
+				Al [{$ColorImportant}:Activar], el [{$ColorImportant}:Arma de portales] sera vendido por la [{$ColorImportant}:Física],
+				y [{$ColorImportant}:dejara de caer] del [{$ColorImportant2}:Señor de la Luna].
+
+				{$NoteExploit}
+				'''
+		}
+
+		MoveMagicConch: {
+			Label: "[i:MagicConch] Mover Concha mágica"
+			Tooltip:
+				'''
+				Al [{$ColorImportant}:Activar], la [{$ColorImportant}:Concha mágica] se podra encontrar en el [{$ColorImportant}:Oceano contaminado],
+				Y [{$ColorImportant}:dejara de aparecer] en el [{$ColorImportant2}:desierto subterráneo].
+				'''
+		}
+	}
+}

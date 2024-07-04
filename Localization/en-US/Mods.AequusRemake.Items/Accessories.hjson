@@ -1,0 +1,105 @@
+//# Equipment: Accessories
+BreathConserver: {
+	DisplayName: Breath Conserver
+	Tooltip: Restore breath upon breaking tiles and slaying foes
+}
+
+ValentineRing: {
+	DisplayName: Valentine's Gift
+	Tooltip: Gift to a friend to grant them and yourself increased regneration and damage
+	Tooltip2: Increased regneration and damage for yourself and the gifter
+	GiftTooltip: From yours truly, {0}
+	BuffName: Valentine
+	BuffDescription: Increased life regeneration and damage
+	BuffDescription2: You are being buffed by {0}!
+}
+
+GoldenWind: {
+	DisplayName: Golden Wind
+	Tooltip: "{$Items.GoldenFeather.Tooltip}"
+}
+
+GoldenFeather: {
+	DisplayName: Miraculous Feather
+	Tooltip:
+		'''
+		Regenerate {1} life per second for yourself and all players on your team
+		Respawn time for you and teammates is reduced by {0} seconds
+		'''
+}
+
+FlashwayShield: {
+	DisplayName: Flashway Shield
+	Tooltip:
+		'''
+		Allows the ability to dash
+		Double tap a direction
+		'''
+}
+
+PurpleBalloon: {
+	DisplayName: Matte Purple Balloon
+	Tooltip:
+		'''
+		{$ItemTooltip.ShinyRedBalloon}
+		{$SlimyBlueBalloon.Tooltip}
+		'Not to be confused with a Balloon in a Balloon'
+		'''
+}
+
+SlimyBlueBalloon: {
+	DisplayName: Slimy Blue Balloon
+	Tooltip:
+		'''
+		Slows falling speed
+		Hold down to fall at regular speed
+		'''
+}
+
+WeightedHorseshoe: {
+	DisplayName: Weighted Horseshoe
+	Tooltip:
+		'''
+		Doubled maximum fall speed
+		Damage and fall through enemies while at high speeds
+		'You should put a verlet chain on this, it won't be buggy!'
+		'''
+}
+
+//# Equipment: Misc
+RoseTintedGlasses: {
+	DisplayName: Rose Tinted Glasses
+	Tooltip: Ignore enemy spawns of the Blood Moon
+}
+
+StellarGlasses: {
+	DisplayName: Stellar Glasses
+	Tooltip: Ignore enemy spawns of the Glimmer
+}
+
+EclipseGlasses: {
+	DisplayName: Eclipse Glasses
+	Tooltip: Ignore enemy spawns of the Eclipse
+}
+
+//# Equipment: Informational
+GeigerCounter: {
+	DisplayName: Geiger Counter
+	Tooltip: Displays the damage per second from debuffs
+}
+
+// --localization note-- this may be a pun? (shimmer + monocle)
+ShimmerMonocle: {
+	DisplayName: Shmonocle
+	Tooltip: Displays if an item is a Shimmer Ingredient
+}
+
+RichMansMonocle: {
+	DisplayName: Rich Man's Monocle
+	Tooltip: Displays item prices outside of shops
+}
+
+Calendar: {
+	DisplayName: Calendar
+	Tooltip: Displays information about the date
+}

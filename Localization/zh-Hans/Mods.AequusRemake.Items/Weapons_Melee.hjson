@@ -1,0 +1,18 @@
+AncientCutlass: {
+	DisplayName: 昔时短刀
+	Tooltip: 被击中的敌人有几率掉落更多战利品
+}
+
+MirrorsCall: {
+	DisplayName: 镜之召
+	Tooltip: 从你舒适的沙发上打击敌人!
+}
+
+IronLotus: {
+	DisplayName: 铁莲花
+	Tooltip:
+		'''
+		挥舞会扩散火焰的长矛
+		'点燃那些胆敢在乎我的人'
+		'''
+}

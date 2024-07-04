@@ -1,0 +1,30 @@
+CommonTooltips: {
+	KnockbackResist: "{0}%击退减免"
+	GuideHint: 向导可能会对此物感兴趣...
+	BuffTimeRange: "{0}-{1}分钟持续时间"
+	IncreasesInventorySlots: 获得{0}格物品栏
+	Cooldown: 有{0}秒冷却时间
+	Shimmerable: 微光材料
+	ShimmerableToNPC: 微光材料
+	OmnidirectionMelee: 可以向任意方向挥舞
+	WorkInProgress: 此项物品正在进行中并且无法获得
+	DedicatedItem: 谢谢你, {0}!
+	DedicatedItemAnonymous: 专属物品
+	UsesDarts: 使用种子和飞镖作为弹药
+	Banner: "{$CommonItemTooltip.BannerBonus}{0}"
+	NecromancyStaff: 被击杀敌人会转化为幽魂仆从
+	StatGhostDuration: 延长{0}秒幽魂仆从的存在时间
+	StatGhostSlots: 增加{0}格最大幽魂仆从栏位
+	StatWingTime: 延长飞行时间
+	DecreaseAggro: 敌人不大可能以你为攻击目标
+	IncreaseAggro: 敌人更有可能以你为攻击目标
+	DisableItem: 右键无效化
+	EnableItem: 当前未激活, 右键以重新激活
+	GoblinTinkererRepair: 可以在哥布林工匠处修复
+	LockedWithKey:
+		'''
+		右键打开
+		需要一个{0}
+		'''
+	UsedXOfXTimes: 已使用{0}/{1}次
+}

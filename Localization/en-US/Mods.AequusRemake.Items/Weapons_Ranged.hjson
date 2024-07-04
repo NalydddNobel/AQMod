@@ -1,0 +1,33 @@
+//# Weapons: Ranged
+StarPhish: {
+	DisplayName: Star Phish
+	Tooltip: "{$CommonTooltips.UsesDarts}"
+}
+
+JunkJet: {
+	DisplayName: Junk Jet
+	Tooltip:
+		'''
+		Can use most ammo
+		{0}% chance to not consume ammo
+		'''
+}
+
+SkyHunterCrossbow: {
+	DisplayName: Sky Hunter Crossbow
+	Tooltip:
+		'''
+		Fire connected arrows which can pick up items
+		<right> to zoom out
+		'''
+}
+
+//# Ranged Ammo
+PlasticDart: {
+	DisplayName: Plastic Dart
+	Tooltip:
+		'''
+		Can be recollected after hitting a soft block
+		'Its flat head cannot deal much more than blunt damage'
+		'''
+}

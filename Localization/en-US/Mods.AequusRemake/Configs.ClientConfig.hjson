@@ -1,0 +1,25 @@
+Configs: {
+	ClientConfig: {
+		DisplayName: Client Config
+
+		ShowDeathTips: {
+			Label: "[i:Tombstone] Death Tips"
+			Tooltip: "[{$ColorImportant}:Game Tips] will be displayed while Respawning."
+		}
+
+		FlashIntensity: {
+			Label: "[i:CosmicMonolith] Flash Intensity"
+			Tooltip: ""
+		}
+
+		FlashLoops: {
+			Label: "[i:CosmicMonolith] Flash Loops"
+			Tooltip: ""
+		}
+
+		ShowNecromancyOutlines: {
+			Label: Show Necromancy Outlines
+			Tooltip: ""
+		}
+	}
+}

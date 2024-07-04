@@ -1,0 +1,19 @@
+Configs: {
+	ColorImportant: c/ffffbb
+	ColorImportant2: c/ffcc99
+	ColorNote: c/aaacff
+
+	PollutedOceanGenerationSideConfig: {
+		Tooltip:
+			'''
+			{$Automatic.Label}: 自动更改位置 [{$ColorImportant2}:取决于启用了哪些Mod].
+			{$DungeonSide.Label}: 在世界的地牢一侧生成.
+			{$JungleSide.Label}: 在世界的丛林一侧生成.
+			{$CompleteRandom.Label}: 在随机一侧生成.
+			'''
+		Automatic.Label: "[{$ColorImportant}:自动]"
+		DungeonSide.Label: "[{$ColorImportant}:地牢侧]"
+		JungleSide.Label: "[{$ColorImportant}:丛林侧]"
+		CompleteRandom.Label: "[{$ColorImportant}:完全随机]"
+	}
+}

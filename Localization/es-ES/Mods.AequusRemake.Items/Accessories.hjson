@@ -1,0 +1,105 @@
+//# Equipment: Accessories
+BreathConserver: {
+	DisplayName: Conservador de aire
+	Tooltip: Restaura respiración al romper bloques y derrotar enemigos
+}
+
+ValentineRing: {
+	DisplayName: anillo de valentín
+	Tooltip: Regalaselo a un amigo para darle regeneración y daño a ambos de ustedes
+	Tooltip2: Incrementa regeneración de vida y daño para ti y el regalador
+	GiftTooltip: Atentamente, {0}
+	BuffName: Valentín
+	BuffDescription: Incrementa regeneración de vida y daño
+	BuffDescription2: "{0} te esta favoreciendo!"
+}
+
+GoldenWind: {
+	DisplayName: Viento Aureo
+	Tooltip: "{$Items.GoldenFeather.Tooltip}"
+}
+
+GoldenFeather: {
+	DisplayName: Pluma Milagrosa
+	Tooltip:
+		'''
+		Regenera {1} de vida por segundo para ti y todo tu equipo
+		El tiempo de reaparición para ti y tu equipo es reducido por {0} segundos
+		'''
+}
+
+FlashwayShield: {
+	DisplayName: Escudo destellante
+	Tooltip:
+		'''
+		Otorga la habilidad de embestir
+		Pulsa dos veces una dirección
+		'''
+}
+
+PurpleBalloon: {
+	DisplayName: Globo morado mate
+	Tooltip:
+		'''
+		{$ItemTooltip.ShinyRedBalloon}
+		{$SlimyBlueBalloon.Tooltip}
+		'No confundir con el globo en un globo'
+		'''
+}
+
+SlimyBlueBalloon: {
+	DisplayName: Globo Azul Pegajoso
+	Tooltip:
+		'''
+		Disminuye la velocidad de caída
+		Mantén presionado Abajo para caer a velocidad normal
+		'''
+}
+
+WeightedHorseshoe: {
+	DisplayName: Herradura Pesada
+	Tooltip:
+		'''
+		Duplica la velocidad de caída
+		Daña enemigos al caer a través de ellos a altas velocidades
+		'¡Deberías usar una cadena de verlet, seguro no pasa nada!'
+		'''
+}
+
+//# Equipment: Misc
+RoseTintedGlasses: {
+	DisplayName: Gafas teñidas de rosa
+	Tooltip: Ignora la aparición de enemigos de la luna sangrienta
+}
+
+StellarGlasses: {
+	DisplayName: Gafas Estelares
+	Tooltip: Ignora la aparición de enemigos del destello
+}
+
+EclipseGlasses: {
+	DisplayName: Gafas de Eclipse
+	Tooltip: Ignora la aparición de enemigos del eclipse
+}
+
+//# Equipment: Informational
+GeigerCounter: {
+	// DisplayName: Geiger Counter
+	// Tooltip: Displays the damage per second from debuffs
+}
+
+// --localization note-- this may be a pun? (shimmer + monocle)
+ShimmerMonocle: {
+	DisplayName: Fulgóculo
+	Tooltip: Muestra si un objeto es un ingrediente de Fulgor
+}
+
+RichMansMonocle: {
+	DisplayName: Monóculo del Adinerado
+	Tooltip: Muestra los precios de objetos fuera de tiendas
+}
+
+Calendar: {
+	DisplayName: Calendario
+	Tooltip: Muestra la fecha
+}

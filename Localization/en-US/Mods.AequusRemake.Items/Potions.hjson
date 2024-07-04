@@ -1,0 +1,39 @@
+MeadowMushroom: {
+	DisplayName: Meadow Mushroom
+	Tooltip: ""
+}
+
+SentryPotion: {
+}
+
+TaintedSeafood: {
+	DisplayName: Tainted Seafood
+	Tooltip:
+		'''
+		May grant minor, medium, or major improvments to all stats
+		Has a small chance to instead grant food poisoning
+		'''
+}
+
+DeathsEmbrace: {
+	DisplayName: Death's Embrace
+	Tooltip:
+		'''
+		Not consumed when used
+		15% increased damage and critical strike chance
+		Makes attacks slightly inaccurate
+		Attacks make you redrink the potion automatically
+		{{Once the buff wears off, you instantly die...}}
+		'''
+}
+
+// Foods
+
+Baguette: {
+	DisplayName: Baguette
+	Tooltip:
+		'''
+		Supreme improvements to all stats
+		Greatly improves life regeneration
+		'''
+}

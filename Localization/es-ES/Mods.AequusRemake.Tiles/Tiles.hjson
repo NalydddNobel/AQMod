@@ -1,0 +1,264 @@
+ConductiveBlock: {
+	MapEntry: Conductor de Cobre
+	ItemDisplayName: "{$Tiles.ConductiveBlock.MapEntry}"
+	ItemTooltip: Se comporta como cables, puede ser activado con electricidad o con un cable
+}
+
+ConductiveBlockTin: {
+	MapEntry: Conductor de Estaño
+	ItemDisplayName: "{$Tiles.ConductiveBlockTin.MapEntry}"
+	ItemTooltip: "{$Tiles.ConductiveBlock.ItemTooltip}"
+}
+
+CrabPot: {
+	MapEntryCopper: Trampa Marina de Cobre
+	MapEntryTin: Trampa Marina de Estaño
+
+	Copper: {
+		ItemDisplayName: "{$Tiles.CrabPot.MapEntryCopper}"
+		ItemTooltip: Puede atrapar peces por su cuenta
+	}
+
+	Tin: {
+		ItemDisplayName: "{$Tiles.CrabPot.MapEntryTin}"
+		ItemTooltip: "{$Tiles.CrabPot.Copper.ItemTooltip}"
+	}
+}
+
+TrashCompactor: {
+	MapEntry: Compactador de Basura
+	ItemDisplayName: "{$Tiles.TrashCompactor.MapEntry}"
+	ItemTooltip:
+		'''
+		Usado para compactar basura
+		Colocar muebles en el compactador lo deconstruirá en sus componentes básicos
+		'''
+}
+
+RadonMoss: {
+	ItemDisplayName: Musgo de Radón
+	ItemTooltip: "'Podría ser un poco radioactivo'"
+}
+
+RadonMossBrick.ItemDisplayName: Ladrillo de Musgo de Radón
+
+ObsidianCrabPot: {
+	MapEntry: Trampa de Pesca de Obsidiana
+	ItemDisplayName: "{$Tiles.ObsidianCrabPot.MapEntry}"
+	ItemTooltip:
+		'''
+		Usa carnada de lava para atrapar peces en la lava
+		{$Tiles.CrabPot.Copper.ItemTooltip}
+		'''
+}
+
+Trophies: {
+	CrabsonTrophy.DisplayName: Trofeo de Crabson
+	CrabsonRelic.DisplayName: Reliquia de Crabson
+	RedSpriteTrophy.DisplayName: Trofeo del Espectro Rojo
+	RedSpriteRelic.DisplayName: Reliquia del Espectro Rojo
+	SpaceSquidTrophy.DisplayName: Trofeo del Calamar Espacial
+	SpaceSquidRelic.DisplayName: Reliquia del Calamar Espacial
+}
+
+OblivionAltar: {
+	MapEntry: Altar de Oblivio
+	// ItemDisplayName: "{$OblivionAltar.MapEntry}"
+	/* ItemTooltip:
+		'''
+		<right> to upgrade evil weapons
+		Counts as a Demon/Crimson Altar for crafting
+		''' */
+}
+
+ScavengerStatue.ItemDisplayName: Estatua Carroñera
+
+MossStatues: {
+	Argon.ItemDisplayName: Estatua de Planta Argon
+	// Krypton.ItemDisplayName: Krypton Plant Statue
+	Neon.ItemDisplayName: Estatua de Planta Neon
+	Xenon.ItemDisplayName: Estatua de Planta Xenón
+}
+
+OblivionChest: {
+	MapEntry: Cofre de Oblivio
+	// ItemDisplayName: "{$Tiles.OblivionChest.MapEntry}"
+}
+
+OblivionChestTrapped.ItemDisplayName: Cofre de Oblivio Atrapado
+
+OblivionCraftingStation: {
+	// ItemDisplayName: Oblivion Reformatory
+	// ItemTooltip: "{$CommonItemTooltip.SpecialCrafting}"
+}
+
+PlanterBox: {
+	// Moray.ItemDisplayName: Moray Planter Box
+	// Moonflower.ItemDisplayName: Moonflower Planter Box
+	// Manacle.ItemDisplayName: Manacle Planter Box
+	// Mistral.ItemDisplayName: Mistral Planter Box
+}
+
+HangingPot: {
+	// Moray.ItemDisplayName: Hanging Moray
+	// Mistral.ItemDisplayName: Hanging Mistral
+	// Manacle.ItemDisplayName: Hanging Manacle
+	// Moonflower.ItemDisplayName: Hanging Moonflower
+}
+
+// Moonflower.MapEntry: Moonflower
+// Mistral.MapEntry: Mistral
+// Manacle.MapEntry: Manacle
+
+GravityBlock: {
+	// MapEntry: Normal Gravity Block
+	// ItemDisplayName: "{$Tiles.GravityBlock.MapEntry}"
+}
+
+AntiGravityBlock: {
+	// MapEntry: Reversed Gravity Block
+	// ItemDisplayName: "{$Tiles.AntiGravityBlock.MapEntry}"
+}
+
+ScrapBlock: {
+	// MapEntry: Junk Block
+	// ItemDisplayName: "{$Tiles.ScrapBlock.MapEntry}"
+}
+
+// ScrapBrick.ItemDisplayName: Scrap Brick
+// PolymerSandstone.ItemDisplayName: Polymer Sandstone
+// PolymerSand.ItemDisplayName: Polymer Sand
+
+BlackJellyfishJar: {
+	// MapEntry: Black Jellyfish Jar
+	// ItemDisplayName: "{$Tiles.BlackJellyfishJar.MapEntry}"
+}
+
+Tombstones: {
+	MapEntry: {
+		// 0: Underworld Tombstone
+		// 1: Underworld Grave Marker
+		// 2: Underworld Resting Fern
+		// 3: Underworld Resting Shrub
+		// 4: Underworld Resting Hedge
+		// 5: Underworld Obelisk
+		// 6: Reaper Sepulcher
+		// 7: Grim Sepulcher
+		// 8: Imp Sepulcher
+		// 9: Fire Quartz Sepulcher
+		// 10: Duke Sepulcher
+	}
+}
+
+RainTotem: {
+	// MapEntry: Rain Totem
+	// ItemDisplayName: "{$Tiles.RainTotem.MapEntry}"
+	// ItemTooltip: Increases the chance for rain while nearby
+}
+
+// RainTotemInactive.MapEntry: "{$Tiles.RainTotem.MapEntry}"
+
+BigGem: {
+	// Amethyst.ItemDisplayName: Amethyst Deposit
+	// Topaz.ItemDisplayName: Topaz Deposit
+	// Sapphire.ItemDisplayName: Sapphire Deposit
+	// Emerald.ItemDisplayName: Emerald Deposit
+	// Ruby.ItemDisplayName: Ruby Deposit
+	// Diamond.ItemDisplayName: Diamond Deposit
+}
+
+// AncientAngelStatue.ItemDisplayName: Ancient Angel Statue
+
+AdamantiteChest: {
+	// MapEntry: Adamantite Chest
+	// ItemDisplayName: "{$AdamantiteChest.MapEntry}"
+}
+
+HardGraniteChest: {
+	// MapEntry: Living Granite Chest
+	// ItemDisplayName: "{$HardGraniteChest.MapEntry}"
+}
+
+HardMarbleChest: {
+	// MapEntry: Marble Trove
+	// ItemDisplayName: "{$HardMarbleChest.MapEntry}"
+}
+
+HardMushroomChest: {
+	// MapEntry: Shroomite Chest
+	// ItemDisplayName: "{$HardMushroomChest.MapEntry}"
+}
+
+HardFrozenChest: {
+	// MapEntry: Frost Chest
+	// ItemDisplayName: "{$HardFrozenChest.MapEntry}"
+}
+
+HardSandstoneChest: {
+	// MapEntry: Forbidden Chest
+	// ItemDisplayName: "{$HardSandstoneChest.MapEntry}"
+}
+
+HardJungleChest: {
+	// MapEntry: Tortoise Case
+	// ItemDisplayName: "{$HardJungleChest.MapEntry}"
+}
+
+// AdamantiteChestTrapped.ItemDisplayName: Trapped Adamantite Chest
+// HardGraniteChestTrapped.ItemDisplayName: Trapped Living Granite Chest
+// HardMarbleChestTrapped.ItemDisplayName: Trapped Marble Trove
+// HardMushroomChestTrapped.ItemDisplayName: Trapped Shroomite Chest
+// HardFrozenChestTrapped.ItemDisplayName: Trapped Frost Chest
+// HardSandstoneChestTrapped.ItemDisplayName: Trapped Forbidden Chest
+// HardJungleChestTrapped.ItemDisplayName: Trapped Tortoise Case
+
+CopperChest: {
+	// MapEntry: Copper Chest
+	// ItemDisplayName: "{$CopperChest.MapEntry}"
+}
+
+// CopperChestTrapped.ItemDisplayName: Trapped Copper Chest
+
+CopperChestLocked: {
+	// MapEntry: Locked Copper Chest
+	// ItemDisplayName: "{$CopperChestLocked.MapEntry}"
+	// ItemTooltip: "{$Items.CommonTooltips.LockedWithKey}"
+}
+
+// HiddenChest.MapEntry: Hidden Chest
+// MeadowGrass.ItemDisplayName: Meadow Grass Seeds
+// MeadowWood.ItemDisplayName: Meadow Wood
+
+SeaFireflyBlock: {
+	// DisplayName: Sea Firefly Block
+	// DisplayNameRed: Red Sea Firefly Block
+	// DisplayNameOrange: Orange Sea Firefly Block
+	// DisplayNameYellow: Yellow Sea Firefly Block
+	// DisplayNameLime: Lime Sea Firefly Block
+	// DisplayNameGreen: Green Sea Firefly Block
+	// DisplayNameTeal: Teal Sea Firefly Block
+	// DisplayNameCyan: Cyan Sea Firefly Block
+	// DisplayNameSkyBlue: Sky Blue Sea Firefly Block
+	// DisplayNameBlue: Blue Sea Firefly Block
+	// DisplayNamePurple: Purple Sea Firefly Block
+	// DisplayNameViolet: Violet Sea Firefly Block
+	// DisplayNamePink: Pink Sea Firefly Block
+	// DisplayNameBlack: Black Sea Firefly Block
+	// DisplayNameWhite: White Sea Firefly Block
+	// DisplayNameRainbow: Rainbow Sea Firefly Block
+}
+
+// SeaPickleTorch.ItemDisplayName: Hydroanther Torch
+// ScrapPalmTree.ItemDisplayName: Artificial Palm Tower Beam
+// ScrapTree.ItemDisplayName: Artificial Tree Tower Beam
+// ScrapTreeDevice.ItemDisplayName: Tree Tower Device
+
+ScrapPalmTreeTop: {
+	// ItemDisplayName: Artificial Palm Tower Topper
+	// ItemTooltip: Must be placed on top of an artifical palm tower
+}
+
+ScrapTreeTop: {
+	// ItemDisplayName: Artificial Tree Tower Topper
+	// ItemTooltip: Must be placed on top of an artifical tree tower
+}

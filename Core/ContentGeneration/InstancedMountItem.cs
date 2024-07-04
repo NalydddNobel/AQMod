@@ -5,20 +5,13 @@ using Terraria.Localization;
 namespace AequusRemake.Core.ContentGeneration;
 
 [Autoload(false)]
-internal class InstancedMountItem : InstancedModItem {
+internal class InstancedMountItem(UnifiedModMount parent, int itemRarity = ItemRarityID.Yellow, int value = Item.gold * 5, SoundStyle? SoundOverride = null)
+    : InstancedModItem(parent.Name + "Item", parent.NamespaceFilePath() + $"/{parent.Name.Replace("Mount", "")}Item") {
     [CloneByReference]
-    private readonly UnifiedModMount _parent;
-    private readonly int _rarity;
-    private readonly int _value;
-    private readonly SoundStyle _soundStyle;
-
-    public InstancedMountItem(UnifiedModMount parent, int itemRarity = ItemRarityID.Yellow, int value = Item.gold * 5, SoundStyle? SoundOverride = null)
-        : base(parent.Name + "Item", parent.NamespaceFilePath() + $"/{parent.Name.Replace("Mount", "")}Item") {
-        _parent = parent;
-        _rarity = itemRarity;
-        _value = value;
-        _soundStyle = SoundOverride ?? SoundID.Item34;
-    }
+    private readonly UnifiedModMount _parent = parent;
+    private readonly int _rarity = itemRarity;
+    private readonly int _value = value;
+    private readonly SoundStyle _soundStyle = SoundOverride ?? SoundID.Item34;
 
     public override string LocalizationCategory => "Pets";
 
