@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Content.Tiles.PollutedOcean.Ambient.FloatingTrash;
+﻿namespace AequusRemake.Content.Tiles.PollutedOcean.Ambient.FloatingTrash;
 public abstract class FloatingTrashBase : ModTile {
     protected static bool UpdateActive(int i, int j) {
         var tile = Main.tile[i, j];

@@ -1,10 +1,10 @@
-﻿using Aequu2.Core.UI;
+﻿using AequusRemake.Core.UI;
 using System;
 using Terraria.GameContent;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace Aequu2.Content.Items.Armor.Castaway;
+namespace AequusRemake.Content.Items.Armor.Castaway;
 
 public class DefenseDamageUI : UILayer {
     public DefenseDamageUI() : base("DefenseDamage", InterfaceLayerNames.EntityHealthBars_16, InterfaceScaleType.Game, 0) { }

@@ -1,8 +1,8 @@
-﻿using Aequu2.Content.Fishing;
+﻿using AequusRemake.Content.Fishing;
 using System.Collections.Generic;
 using Terraria.Localization;
 
-namespace Aequu2.Content.Items.Potions.Food.TaintedSeafood;
+namespace AequusRemake.Content.Items.Potions.Food.TaintedSeafood;
 
 public class TaintedSeafood : ModItem {
     public static readonly List<int> BuffOptions = new();
@@ -20,7 +20,7 @@ public class TaintedSeafood : ModItem {
         BuffOptions.Add(BuffID.WellFed3);
         BuffOptions.Add(ModContent.BuffType<FoodPoisoningDebuff>());
 
-        BuffTimeRangeText = Language.GetOrRegister("Mods.Aequu2.Items.CommonTooltips.BuffTimeRange");
+        BuffTimeRangeText = Language.GetOrRegister("Mods.AequusRemake.Items.CommonTooltips.BuffTimeRange");
 
         ItemSets.ShimmerTransformToItem[Type] = ItemID.CookedFish;
     }

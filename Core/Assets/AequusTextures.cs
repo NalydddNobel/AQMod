@@ -1,7 +1,7 @@
-﻿using Aequu2.Core.Assets;
+﻿using AequusRemake.Core.Assets;
 using ReLogic.Content;
 
-namespace Aequu2;
+namespace AequusRemake;
 
 public sealed partial class AequusTextures : AssetManager<Texture2D> {
     public const string TemporaryBuffIcon = "Terraria/Images/Buff_188";
@@ -15,7 +15,7 @@ public sealed partial class AequusTextures : AssetManager<Texture2D> {
         LensFlares = GetAssets("LensFlare/FlareSprite", 9);
 
         static Asset<Texture2D>[] GetAssets(string path, int amount) {
-            path = $"Aequu2/Assets/Textures/{path}";
+            path = $"AequusRemake/Assets/Textures/{path}";
             Asset<Texture2D>[] arr = new Asset<Texture2D>[amount];
             for (int i = 0; i < amount; i++) {
                 arr[i] = ModContent.Request<Texture2D>($"{path}{i}");

@@ -1,6 +1,6 @@
 ﻿using Terraria.Localization;
 
-namespace Aequu2.Core.Debug;
+namespace AequusRemake.Core.Debug;
 
 internal class DebugItem : ModItem {
     private static int _debugItemsRegistered;
@@ -14,7 +14,7 @@ internal class DebugItem : ModItem {
     public override LocalizedText Tooltip => LocalizedText.Empty;
 
     public override bool IsLoadingEnabled(Mod mod) {
-        return Aequu2.DEBUG_MODE;
+        return AequusRemake.DEBUG_MODE;
     }
 
     public override void Load() {

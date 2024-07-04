@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Aequu2.Core.Entities.Items;
+namespace AequusRemake.Core.Entities.Items;
 
 public class ItemScanner {
     private static readonly Dictionary<int, int> _oreTileToBar = new();

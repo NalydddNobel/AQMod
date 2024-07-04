@@ -1,8 +1,8 @@
-﻿using Aequu2.Core.ContentGeneration;
-using Aequu2.Core.Entities.Tiles;
-using Aequu2.DataSets;
+﻿using AequusRemake.Core.ContentGeneration;
+using AequusRemake.Core.Entities.Tiles;
+using AequusRemake.DataSets;
 
-namespace Aequu2.Content.Tiles.PollutedOcean.PolymerSands;
+namespace AequusRemake.Content.Tiles.PollutedOcean.PolymerSands;
 
 [LegacyName("SedimentaryRockTile", "SedimentaryRock")]
 public class PolymerSandstone : MultiMergeTile {
@@ -10,7 +10,7 @@ public class PolymerSandstone : MultiMergeTile {
         ModItem item = new InstancedTileItem(this);
         Mod.AddContent(item);
 
-        Aequu2.OnAddRecipes += () => {
+        AequusRemake.OnAddRecipes += () => {
             item.CreateRecipe()
                 .AddIngredient(PolymerSand.Item)
                 .AddIngredient(ItemID.StoneBlock)

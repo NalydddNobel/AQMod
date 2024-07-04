@@ -1,9 +1,9 @@
-﻿using Aequu2.Core.CodeGeneration;
-using Aequu2.Core.Entities.Tiles.Components;
+﻿using AequusRemake.Core.CodeGeneration;
+using AequusRemake.Core.Entities.Tiles.Components;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 
-namespace Aequu2;
+namespace AequusRemake;
 
 public partial class AequusPlayer {
     /// <summary>The lowest any respawn-time reducing items can go.</summary>
@@ -121,11 +121,9 @@ public partial class AequusPlayer {
             case DEATH_POISON:
             case DEATH_DST_STARVING:
                 // Dying of custom DoTs.
-#if !DEBUG
-                if (Player.HasBuff(ModContent.BuffType<Old.Content.StatusEffects.BlueFire>())) {
-                    SetReason("ManaFire", 4);
-                }
-#endif
+                //if (Player.HasBuff(ModContent.BuffType<Old.Content.StatusEffects.BlueFire>())) {
+                //    SetReason("ManaFire", 4);
+                //}
                 break;
         }
 
@@ -139,7 +137,7 @@ public partial class AequusPlayer {
     }
 
     private static void SignCustomDeathReason(PlayerDeathReason damageSource, string reason, int variants = 1) {
-        damageSource.SourceCustomReason = $"Mods.Aequu2.Player.DeathMessage.{reason}.{(variants > 1 ? Main.rand.Next(variants) : "")}";
+        damageSource.SourceCustomReason = $"Mods.AequusRemake.Player.DeathMessage.{reason}.{(variants > 1 ? Main.rand.Next(variants) : "")}";
     }
     #endregion
 }

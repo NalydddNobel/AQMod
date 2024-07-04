@@ -1,7 +1,7 @@
-﻿using Aequu2.Core;
+﻿using AequusRemake.Core;
 using Terraria.Localization;
 
-namespace Aequu2.Content.Items.Accessories.GoldenFeather;
+namespace AequusRemake.Content.Items.Accessories.GoldenFeather;
 
 [LegacyName("BloodCrystal", "BloodCurcleav")]
 public class GoldenFeather : ModItem {

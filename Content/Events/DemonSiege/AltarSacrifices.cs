@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace Aequu2.Content.Events.DemonSiege;
+namespace AequusRemake.Content.Events.DemonSiege;
 
 public class AltarSacrifices : ModSystem {
     public static readonly Dictionary<int, Conversion> OriginalToConversion = new();
@@ -22,17 +22,17 @@ public class AltarSacrifices : ModSystem {
                 continue;
             }
 
+            /*
             Recipe recipe = Recipe.Create(sacrifice.NewItem)
                 .AddIngredient(sacrifice.OriginalItem)
-#if !DEBUG
                 .AddTile<Old.Content.Events.DemonSiege.Tiles.OblivionAltarDummy>()
                 .Register()
-#endif
                 .SortAfterFirstRecipesOf(sacrifice.OriginalItem);
 
             if (sacrifice.DisableDecraft) {
                 recipe.DisableDecraft();
             }
+            */
         }
     }
 

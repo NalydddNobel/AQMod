@@ -1,7 +1,7 @@
-﻿using Aequu2.Core.Entities.Items.Dedications;
+﻿using AequusRemake.Core.Entities.Items.Dedications;
 using Terraria.DataStructures;
 
-namespace Aequu2.Content.Dedicated.StudiesOfTheInkblot;
+namespace AequusRemake.Content.Dedicated.StudiesOfTheInkblot;
 
 public class StudiesOfTheInkblot : ModItem {
     public const string ALTERNATE_COLORS_TIMER = nameof(StudiesOfTheInkblot);
@@ -57,9 +57,9 @@ public class StudiesOfTheInkblot : ModItem {
     }
 
     public override void HoldItem(Player player) {
-        var Aequu2 = player.GetModPlayer<AequusPlayer>();
+        var AequusRemake = player.GetModPlayer<AequusPlayer>();
         if (Main.myPlayer == player.whoAmI) {
-            if (player.ownedProjectileCounts[Item.shoot] == 0 && !player.ItemAnimationActive && !Aequu2.TimerActive(ALTERNATE_COLORS_TIMER)) {
+            if (player.ownedProjectileCounts[Item.shoot] == 0 && !player.ItemAnimationActive && !AequusRemake.TimerActive(ALTERNATE_COLORS_TIMER)) {
                 for (int i = 0; i < Main.maxProjectiles; i++) {
                     if (Main.projectile[i].active && Main.projectile[i].type == Item.shoot && Main.projectile[i].owner == player.whoAmI) {
                         Main.projectile[i].Kill();
@@ -71,7 +71,7 @@ public class StudiesOfTheInkblot : ModItem {
     }
 
     public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
-        var Aequu2 = player.GetModPlayer<AequusPlayer>();
+        var AequusRemake = player.GetModPlayer<AequusPlayer>();
         float speed = velocity.Length();
         if (player.altFunctionUse == 2) {
             for (int i = 0; i < Main.maxProjectiles; i++) {
@@ -80,7 +80,7 @@ public class StudiesOfTheInkblot : ModItem {
                 }
             }
             int rand = Main.rand.Next(62);
-            bool alternateColors = Aequu2.TimerActive(ALTERNATE_COLORS_TIMER);
+            bool alternateColors = AequusRemake.TimerActive(ALTERNATE_COLORS_TIMER);
             for (int i = 0; i < 62; i++) {
                 int p = Projectile.NewProjectile(source, position, new Vector2(speed * 0.3f, 0f).RotatedBy(MathHelper.TwoPi / 62f * i),
                     ModContent.ProjectileType<StudiesOfTheInkblotProj>(), damage * 3, knockback, player.whoAmI, 100f + 40f * (1f / 62f * ((i + rand) % 62f)), speed * 0.5f);
@@ -88,11 +88,11 @@ public class StudiesOfTheInkblot : ModItem {
                 Main.projectile[p].frame = alternateColors ? 1 : 5;
             }
 
-            if (alternateColors && Aequu2.TryGetTimer(ALTERNATE_COLORS_TIMER, out var timer)) {
+            if (alternateColors && AequusRemake.TryGetTimer(ALTERNATE_COLORS_TIMER, out var timer)) {
                 timer.TimePassed = timer.MaxTime - 1;
             }
             else {
-                Aequu2.SetTimer(ALTERNATE_COLORS_TIMER, Item.useTime * 2);
+                AequusRemake.SetTimer(ALTERNATE_COLORS_TIMER, Item.useTime * 2);
             }
             DefaultUse();
         }

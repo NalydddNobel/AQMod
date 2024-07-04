@@ -1,7 +1,7 @@
-﻿using Aequu2.Core.CodeGeneration;
+﻿using AequusRemake.Core.CodeGeneration;
 using Terraria.DataStructures;
 
-namespace Aequu2;
+namespace AequusRemake;
 
 public partial class AequusPlayer {
     [ResetEffects]

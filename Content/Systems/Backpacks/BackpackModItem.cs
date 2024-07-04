@@ -1,6 +1,6 @@
 ﻿using Terraria.Localization;
 
-namespace Aequu2.Content.Backpacks;
+namespace AequusRemake.Content.Backpacks;
 
 public abstract class BackpackModItem : ModItem {
     public abstract int Capacity { get; set; }

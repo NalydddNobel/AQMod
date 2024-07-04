@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Content.Items.Accessories.EventPrevention;
+﻿namespace AequusRemake.Content.Items.Accessories.EventPrevention;
 
 [AutoloadEquip(EquipType.Face)]
 public class RoseTintedGlasses : ModItem {
@@ -13,12 +13,10 @@ public class RoseTintedGlasses : ModItem {
     }
 
     public override void AddRecipes() {
-#if !DEBUG
         CreateRecipe()
             .AddIngredient(ItemID.BlackLens)
-            .AddIngredient<Old.Content.Items.Materials.BloodyTearstone>(5)
+            .AddIngredient<Materials.BloodyTearstone>(5)
             .AddTile(TileID.Anvils)
             .Register();
-#endif
     }
 }

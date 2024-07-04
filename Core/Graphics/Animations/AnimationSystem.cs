@@ -1,8 +1,8 @@
-﻿using Aequu2.Core.Structures.Collections;
+﻿using AequusRemake.Core.Structures.Collections;
 using System;
 using Terraria.DataStructures;
 
-namespace Aequu2.Core.Graphics.Animations;
+namespace AequusRemake.Core.Graphics.Animations;
 
 public sealed class AnimationSystem : ModSystem {
     public static DictionaryRemoveQueue<Point16, ITileAnimation> TileAnimations { get; private set; } = new();

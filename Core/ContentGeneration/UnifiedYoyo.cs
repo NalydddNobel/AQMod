@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequu2.Core.ContentGeneration;
+namespace AequusRemake.Core.ContentGeneration;
 
 [Obsolete("Unfinished.")]
 public abstract class UnifiedYoyo : ModProjectile {

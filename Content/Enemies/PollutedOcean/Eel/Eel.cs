@@ -1,8 +1,8 @@
-﻿using Aequu2.Content.Biomes.PollutedOcean;
-using Aequu2.Content.Graphics.Particles;
-using Aequu2.Content.Items.Tools.Keys;
-using Aequu2.Core.ContentGeneration;
-using Aequu2.Core.Entities.Bestiary;
+﻿using AequusRemake.Content.Biomes.PollutedOcean;
+using AequusRemake.Content.Graphics.Particles;
+using AequusRemake.Content.Items.Tools.Keys;
+using AequusRemake.Core.ContentGeneration;
+using AequusRemake.Core.Entities.Bestiary;
 using System;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -10,7 +10,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequu2.Content.Enemies.PollutedOcean.Eel;
+namespace AequusRemake.Content.Enemies.PollutedOcean.Eel;
 
 [AutoloadBanner]
 [BestiaryBiome<PollutedOceanBiomeSurface>()]

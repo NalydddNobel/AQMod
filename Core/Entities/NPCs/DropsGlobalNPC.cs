@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using Terraria.GameContent.ItemDropRules;
 using tModLoaderExtended.Networking;
 
-namespace Aequu2.Core.Entities.NPCs;
+namespace AequusRemake.Core.Entities.NPCs;
 
 public sealed class DropsGlobalNPC : GlobalNPC {
     private static readonly Dictionary<int, List<IItemDropRule>> _dropRules = new();
@@ -98,11 +98,11 @@ internal class OnKillPacket : PacketHandler {
         int type = reader.ReadInt32();
         int player = reader.ReadByte();
 
-        if (!Main.player.IndexInRange(player) || Main.player[player].TryGetModPlayer(out AequusPlayer Aequu2)) {
+        if (!Main.player.IndexInRange(player) || Main.player[player].TryGetModPlayer(out AequusPlayer AequusRemake)) {
             return;
         }
 
         var killInfo = new AequusPlayer.KillInfo(center, type);
-        Aequu2.OnKillNPC(killInfo);
+        AequusRemake.OnKillNPC(killInfo);
     }
 }

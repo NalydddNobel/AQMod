@@ -1,10 +1,10 @@
-﻿using Aequu2.Core.CodeGeneration;
-using Aequu2.Core.ContentGeneration;
-using Aequu2.Core.Structures.ID;
-using Aequu2.DataSets;
-using Aequu2.DataSets.Structures;
-using Aequu2.DataSets.Structures.DropRulesChest;
-using Aequu2.DataSets.Structures.Enums;
+﻿using AequusRemake.Core.CodeGeneration;
+using AequusRemake.Core.ContentGeneration;
+using AequusRemake.Core.Structures.ID;
+using AequusRemake.DataSets;
+using AequusRemake.DataSets.Structures;
+using AequusRemake.DataSets.Structures.DropRulesChest;
+using AequusRemake.DataSets.Structures.Enums;
 using System.IO;
 using System.Linq;
 using Terraria.Audio;
@@ -20,7 +20,7 @@ using Terraria.Utilities;
 using tModLoaderExtended.Networking;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 
-namespace Aequu2.Content.Chests.BuriedChests;
+namespace AequusRemake.Content.Chests.BuriedChests;
 
 [Gen.AequusSystem_WorldField<int>("buriedChestsLooted")]
 // Buried Chests use a fake chest before being unlocked
@@ -238,7 +238,7 @@ public class UnifiedBuriedChest : UnifiedModChest {
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
             TileObjectData.addTile(Type);
 
-            AddMapEntry(Color.Lerp(Color.LightGray, Color.Gray, 0.5f), Language.GetOrRegister("Mods.Aequu2.Tiles.HiddenChest.MapEntry"));
+            AddMapEntry(Color.Lerp(Color.LightGray, Color.Gray, 0.5f), Language.GetOrRegister("Mods.AequusRemake.Tiles.HiddenChest.MapEntry"));
 
             DustType = _parent.DustType;
             AdjTiles = new int[] { TileID.Containers };

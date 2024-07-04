@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core.Entities.Items.Components;
+﻿namespace AequusRemake.Core.Entities.Items.Components;
 
 public class ItemComponentLoader : ILoad {
     public void Load(Mod mod) {

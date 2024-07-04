@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Aequu2.Core.Entities.Tiles;
+namespace AequusRemake.Core.Entities.Tiles;
 public struct TileKey {
     public ushort TileType;
     public int TileStyle;

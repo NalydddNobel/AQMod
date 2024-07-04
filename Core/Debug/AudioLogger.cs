@@ -2,7 +2,7 @@
 using System;
 using Terraria.Audio;
 
-namespace Aequu2.Core.Debug;
+namespace AequusRemake.Core.Debug;
 
 internal class AudioLogger : ModSystem {
     public static bool DisableLogs;
@@ -29,6 +29,6 @@ internal class AudioLogger : ModSystem {
     }
 
     public override bool IsLoadingEnabled(Mod mod) {
-        return Aequu2.DEBUG_MODE;
+        return AequusRemake.DEBUG_MODE;
     }
 }

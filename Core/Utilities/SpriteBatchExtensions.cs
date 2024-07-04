@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core.Utilities;
+﻿namespace AequusRemake.Core.Utilities;
 
 public static class SpriteBatchExtensions {
     public static void BeginTiles(this SpriteBatch spriteBatch, bool shader = false) {

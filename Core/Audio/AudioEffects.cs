@@ -1,6 +1,6 @@
 ﻿using Terraria.Audio;
 
-namespace Aequu2.Core.Audio;
+namespace AequusRemake.Core.Audio;
 
 public class AudioEffects {
     /// <summary>Plays a sound which does not pan, but will get quieter with distance.</summary>

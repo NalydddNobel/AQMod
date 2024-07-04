@@ -1,9 +1,9 @@
-﻿using Aequu2.DataSets.Json;
-using Aequu2.DataSets.Structures;
+﻿using AequusRemake.DataSets.Json;
+using AequusRemake.DataSets.Structures;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace Aequu2.Content.Elements;
+namespace AequusRemake.Content.Elements;
 
 public partial class Element {
     private class JSON(Element Element) : IJsonHolder {

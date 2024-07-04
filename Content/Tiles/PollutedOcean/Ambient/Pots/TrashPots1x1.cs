@@ -1,8 +1,8 @@
-﻿using Aequu2.Content.Biomes.PollutedOcean;
-using Aequu2.Core.Entities.Tiles;
+﻿using AequusRemake.Content.Biomes.PollutedOcean;
+using AequusRemake.Core.Entities.Tiles;
 using Terraria.ObjectData;
 
-namespace Aequu2.Content.Tiles.PollutedOcean.Ambient.Pots;
+namespace AequusRemake.Content.Tiles.PollutedOcean.Ambient.Pots;
 
 public class TrashPots1x1 : BasePot {
     protected override void SetupTileObjectData() {

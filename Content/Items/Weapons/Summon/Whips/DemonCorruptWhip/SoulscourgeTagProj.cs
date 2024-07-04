@@ -1,8 +1,8 @@
-﻿using Aequu2.Core.Entities.Projectiles;
+﻿using AequusRemake.Core.Entities.Projectiles;
 using System.Collections.Generic;
 using Terraria.Audio;
 
-namespace Aequu2.Content.Items.Weapons.Summon.Whips.DemonCorruptWhip;
+namespace AequusRemake.Content.Items.Weapons.Summon.Whips.DemonCorruptWhip;
 
 public class SoulscourgeTagProj : ModProjectile {
     public override string Texture => AequusTextures.NPC(NPCID.BoneSerpentBody);

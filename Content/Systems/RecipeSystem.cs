@@ -1,10 +1,10 @@
-﻿using Aequu2.Content.Critters.SeaFirefly;
+﻿using AequusRemake.Content.Critters.SeaFirefly;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.Localization;
 
-namespace Aequu2.Content.Systems;
+namespace AequusRemake.Content.Systems;
 
 public class RecipeSystem : ModSystem {
     /// <summary><see cref="RecipeGroup"/> for Sea Firefly variants.</summary>
@@ -39,7 +39,7 @@ public class RecipeSystem : ModSystem {
     }
 
     private static RecipeGroup NewGroup(string name, params int[] items) {
-        RecipeGroup group = new RecipeGroup(() => Language.GetOrRegister("Mods.Aequu2.Items.RecipeGroups." + name + ".DisplayName").Value, items);
+        RecipeGroup group = new RecipeGroup(() => Language.GetOrRegister("Mods.AequusRemake.Items.RecipeGroups." + name + ".DisplayName").Value, items);
         RecipeGroup.RegisterGroup(name, group);
         return group;
     }

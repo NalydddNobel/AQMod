@@ -1,10 +1,10 @@
-﻿using Aequu2.Content.Biomes.PollutedOcean;
-using Aequu2.Core.ContentGeneration;
-using Aequu2.Core.Entities.Bestiary;
+﻿using AequusRemake.Content.Biomes.PollutedOcean;
+using AequusRemake.Core.ContentGeneration;
+using AequusRemake.Core.Entities.Bestiary;
 using System;
 using Terraria.Audio;
 
-namespace Aequu2.Content.Enemies.PollutedOcean.Conductor;
+namespace AequusRemake.Content.Enemies.PollutedOcean.Conductor;
 
 [AutoloadBanner]
 [BestiaryBiome<PollutedOceanBiomeUnderground>()]

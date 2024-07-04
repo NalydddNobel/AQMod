@@ -2,7 +2,7 @@
 using Terraria.GameContent.Creative;
 using Terraria.GameContent.Events;
 
-namespace Aequu2.Content.Tiles.RainTotem;
+namespace AequusRemake.Content.Tiles.RainTotem;
 
 public class RainTotemSystem : ModSystem {
     public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts) {

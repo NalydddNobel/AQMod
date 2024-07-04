@@ -1,16 +1,16 @@
-﻿using Aequu2.Core.Assets;
-using Aequu2.Core.CodeGeneration;
+﻿using AequusRemake.Core.Assets;
+using AequusRemake.Core.CodeGeneration;
 using System;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
 
-namespace Aequu2.Content.Items.PermaPowerups.NetherStar;
+namespace AequusRemake.Content.Items.PermaPowerups.NetherStar;
 
 [WorkInProgress]
 [Gen.AequusPlayer_SavedField<bool>("usedConvergentHeart")]
 public class NetherStar : ModItem {
-    public const string MiscShaderKey = "Aequu2:NetherStar";
+    public const string MiscShaderKey = "AequusRemake:NetherStar";
 
     public override void Load() {
         if (!Main.dedServ) {
@@ -42,11 +42,11 @@ public class NetherStar : ModItem {
     }
 
     public override bool? UseItem(Player player) {
-        var Aequu2Player = player.GetModPlayer<AequusPlayer>();
-        if (Aequu2Player.usedConvergentHeart) {
+        var AequusRemakePlayer = player.GetModPlayer<AequusPlayer>();
+        if (AequusRemakePlayer.usedConvergentHeart) {
             return false;
         }
-        Aequu2Player.usedConvergentHeart = true;
+        AequusRemakePlayer.usedConvergentHeart = true;
         return true;
     }
 

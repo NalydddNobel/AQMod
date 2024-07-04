@@ -17,7 +17,7 @@ RestorationPotionRecipe: {
 	Tooltip:
 		'''
 		When [{$ColorImportant}:Enabled], the vanilla [{$ColorImportant}:Restoration Potion] recipe will be [{$ColorImportant}:removed].
-		Aequu2 adds an [{$ColorImportant}:alternative recipe], using two [{$ColorImportant2}:Lesser Restoration Potions] and a [{$ColorImportant2}:Glowing Mushroom].
+		AequusRemake adds an [{$ColorImportant}:alternative recipe], using two [{$ColorImportant2}:Lesser Restoration Potions] and a [{$ColorImportant2}:Glowing Mushroom].
 
 		[{$ColorNote}:Disable this config for personal preference, or if any issues arise from this recipe being removed.]
 		'''

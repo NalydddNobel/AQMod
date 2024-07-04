@@ -1,13 +1,13 @@
-﻿using Aequu2.Core.Entities.Projectiles;
-using Aequu2.Core.Entities.Golfing;
-using Aequu2.Core.Entities.Projectiles;
+﻿using AequusRemake.Core.Entities.Projectiles;
+using AequusRemake.Core.Entities.Golfing;
+using AequusRemake.Core.Entities.Projectiles;
 using System;
 using System.IO;
 using Terraria.GameContent.Golf;
 using Terraria.GameContent.Metadata;
 using Terraria.Physics;
 
-namespace Aequu2.Content.Items.Weapons.Ranged.Ammo;
+namespace AequusRemake.Content.Items.Weapons.Ranged.Ammo;
 
 public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
     public const byte InitState = 0;

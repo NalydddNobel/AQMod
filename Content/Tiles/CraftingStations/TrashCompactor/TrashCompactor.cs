@@ -1,8 +1,8 @@
-﻿using Aequu2.Content.Graphics.GameOverlays;
-using Aequu2.Core.ContentGeneration;
-using Aequu2.Core.Entities.Tiles.Components;
-using Aequu2.Core.Graphics.Animations;
-using Aequu2.Core.Graphics.Tiles;
+﻿using AequusRemake.Content.Graphics.GameOverlays;
+using AequusRemake.Core.ContentGeneration;
+using AequusRemake.Core.Entities.Tiles.Components;
+using AequusRemake.Core.Graphics.Animations;
+using AequusRemake.Core.Graphics.Tiles;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.IO;
@@ -11,7 +11,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ObjectData;
 
-namespace Aequu2.Content.Tiles.CraftingStations.TrashCompactor;
+namespace AequusRemake.Content.Tiles.CraftingStations.TrashCompactor;
 
 public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction {
     public const int FrameCount = 14;
@@ -88,7 +88,7 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction
                 var dropAmount = (int)Math.Min(amount, maxStack);
                 if (dropAmount > 0) {
                     player.GiveItem(
-                        source: new EntitySource_TileInteraction(player, i, j, "Aequu2: Extractinator"),
+                        source: new EntitySource_TileInteraction(player, i, j, "AequusRemake: Extractinator"),
                         type: dropType,
                         stack: dropAmount,
                         getItemSettings: GetItemSettings.ItemCreatedFromItemUsage);

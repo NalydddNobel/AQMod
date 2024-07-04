@@ -2,7 +2,7 @@
 using System;
 using Terraria.Audio;
 
-namespace Aequu2.Content.Audio;
+namespace AequusRemake.Content.Audio;
 
 public record class FadeInSound(SoundStyle Sound) {
     private SlotId _slotId;

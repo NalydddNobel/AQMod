@@ -1,11 +1,11 @@
-﻿using Aequu2.Core.Structures.Collections;
-using Aequu2.Core.UI;
+﻿using AequusRemake.Core.Structures.Collections;
+using AequusRemake.Core.UI;
 using System;
 using Terraria.GameContent;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace Aequu2.Content.Systems.Renaming;
+namespace AequusRemake.Content.Systems.Renaming;
 
 public class NPCNameTagPopup : UILayer {
     private readonly DictionaryRemoveQueue<int, Popup> NPCPopups = new();

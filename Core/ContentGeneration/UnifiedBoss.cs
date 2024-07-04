@@ -1,4 +1,4 @@
-﻿using Aequu2.Core.Graphics.Tiles;
+﻿using AequusRemake.Core.Graphics.Tiles;
 using ReLogic.Content;
 using System;
 using Terraria.DataStructures;
@@ -8,7 +8,7 @@ using Terraria.Localization;
 using Terraria.ObjectData;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 
-namespace Aequu2.Core.ContentGeneration;
+namespace AequusRemake.Core.ContentGeneration;
 
 public abstract class UnifiedBoss(BossParams BossParams, TrophyParams Trophy = default) : ModNPC {
     public BossParams BossParams { get; private set; } = BossParams;

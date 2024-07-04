@@ -1,4 +1,4 @@
-﻿namespace Aequu2.DataSets.Structures.Enums;
+﻿namespace AequusRemake.DataSets.Structures.Enums;
 
 public enum ChestStyle : ushort {
     /* Containers */
@@ -74,8 +74,8 @@ public enum ChestStyle : ushort {
     Balloon,
     Ashwood,
 
-    /* Aequu2 */
-    Oblivion = ChestStyleConversion.Aequu2_START,
+    /* AequusRemake */
+    Oblivion = ChestStyleConversion.AequusRemake_START,
     Dumpster,
 
     Unknown = ushort.MaxValue
@@ -84,7 +84,7 @@ public enum ChestStyle : ushort {
 public class ChestStyleConversion {
     internal const ushort CONTAINERS_START = 0;
     internal const ushort CONTAINERS2_START = 100;
-    internal const ushort Aequu2_START = 200;
+    internal const ushort AequusRemake_START = 200;
 
     public static void ToTile(ChestStyle style, out int chestType, out int chestStyle) {
         chestType = TileID.Containers;
@@ -94,13 +94,13 @@ public class ChestStyleConversion {
             return;
         }
 
-        if (chestStyle < Aequu2_START) {
+        if (chestStyle < AequusRemake_START) {
             chestType = TileID.Containers2;
             chestStyle -= CONTAINERS2_START;
             return;
         }
 
-        // TODO -- Add impl for enum -> Aequu2 chest
+        // TODO -- Add impl for enum -> AequusRemake chest
     }
     public static ChestStyle ToEnum(int chestType, int chestStyle) {
         if (chestType == TileID.Containers) {
@@ -111,7 +111,7 @@ public class ChestStyleConversion {
             return (ChestStyle)(chestStyle + CONTAINERS2_START);
         }
 
-        // TODO -- Add impl for Aequu2 chest -> enum
+        // TODO -- Add impl for AequusRemake chest -> enum
         return ChestStyle.Unknown;
     }
 

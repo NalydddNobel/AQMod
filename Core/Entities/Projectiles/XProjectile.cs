@@ -1,10 +1,10 @@
-﻿using Aequu2.Core.Entities.Projectiles;
-using Aequu2.Core.Entities.Projectiles;
+﻿using AequusRemake.Core.Entities.Projectiles;
+using AequusRemake.Core.Entities.Projectiles;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
 
-namespace Aequu2.Core.Utilities;
+namespace AequusRemake.Core.Utilities;
 
 public static class XProjectile {
     internal static readonly Projectile _dummyProjectile = new Projectile();

@@ -1,7 +1,7 @@
-﻿using Aequu2.Content.Elements;
+﻿using AequusRemake.Content.Elements;
 using System.Collections.Generic;
 
-namespace Aequu2.Content.Elements;
+namespace AequusRemake.Content.Elements;
 
 public class ElementalPlayer : ModPlayer {
     public HashSet<Element> visibleElements = [];

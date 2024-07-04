@@ -1,6 +1,6 @@
-﻿using Aequu2.Content.Fishing;
+﻿using AequusRemake.Content.Fishing;
 
-namespace Aequu2.Core.ContentGeneration;
+namespace AequusRemake.Core.ContentGeneration;
 
 public abstract class UnifiedFishingPole : ModItem {
     protected ModProjectile _bobber;

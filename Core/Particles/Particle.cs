@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aequu2.Core.Particles;
+namespace AequusRemake.Core.Particles;
 
 public static class Particle<T> where T : IParticle, new() {
     internal static IParticleEmitter<T> _instance;

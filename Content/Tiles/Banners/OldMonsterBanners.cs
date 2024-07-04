@@ -5,7 +5,7 @@ using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ObjectData;
 
-namespace Aequu2.Content.Tiles.Banners;
+namespace AequusRemake.Content.Tiles.Banners;
 
 [Browsable(false)]
 [Obsolete]

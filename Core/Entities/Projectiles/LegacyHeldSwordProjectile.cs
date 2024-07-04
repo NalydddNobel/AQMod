@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequu2.Core.Entities.Projectiles;
+namespace AequusRemake.Core.Entities.Projectiles;
 
 public abstract class LegacyHeldSwordProjectile : HeldProjBase {
     public const string SwordSwingFlipTimer = "SwordSwingFlip";
@@ -37,7 +37,7 @@ public abstract class LegacyHeldSwordProjectile : HeldProjBase {
 
     public override void AI() {
         var player = Main.player[Projectile.owner];
-        var Aequu2 = player.GetModPlayer<AequusPlayer>();
+        var AequusRemake = player.GetModPlayer<AequusPlayer>();
         Projectile.aiStyle = -1;
         player.heldProj = Projectile.whoAmI;
 
@@ -56,7 +56,7 @@ public abstract class LegacyHeldSwordProjectile : HeldProjBase {
 
         if (!player.frozen && !player.stoned) {
             float progress = AnimProgress;
-            UpdateSword(player, Aequu2, progress);
+            UpdateSword(player, AequusRemake, progress);
         }
         else {
             Projectile.timeLeft++;
@@ -71,16 +71,16 @@ public abstract class LegacyHeldSwordProjectile : HeldProjBase {
         return baseSwordScale;
     }
 
-    protected abstract void UpdateSword(Player player, AequusPlayer Aequu2, float progress);
+    protected abstract void UpdateSword(Player player, AequusPlayer AequusRemake, float progress);
 
-    private void DoInitialize(Player player, AequusPlayer Aequu2) {
+    private void DoInitialize(Player player, AequusPlayer AequusRemake) {
         if (player.whoAmI == Projectile.owner) {
             XProjectile.MeleeScale(Projectile);
         }
 
         swingTimeMax = player.itemAnimationMax;
 
-        Initialize(player, Aequu2);
+        Initialize(player, AequusRemake);
 
         baseSwordScale = Projectile.scale;
         if (AmountAllowedActive == 1) {
@@ -95,7 +95,7 @@ public abstract class LegacyHeldSwordProjectile : HeldProjBase {
         Projectile.timeLeft = swingTimeMax + 2;
     }
 
-    protected virtual void Initialize(Player player, AequusPlayer Aequu2) {
+    protected virtual void Initialize(Player player, AequusPlayer AequusRemake) {
     }
 
     public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
@@ -108,8 +108,8 @@ public abstract class LegacyHeldSwordProjectile : HeldProjBase {
 
     public override void OnKill(int timeLeft) {
         Main.player[Projectile.owner].ownedProjectileCounts[Type]--;
-        var Aequu2Player = Main.player[Projectile.owner].GetModPlayer<AequusPlayer>();
-        if (Aequu2Player.TryGetTimer(SwordSwingFlipTimer, out var timer)) {
+        var AequusRemakePlayer = Main.player[Projectile.owner].GetModPlayer<AequusPlayer>();
+        if (AequusRemakePlayer.TryGetTimer(SwordSwingFlipTimer, out var timer)) {
             timer.MaxTime = swingTimeMax + 8;
             if (timer.Active) {
                 timer.TimePassed = timer.MaxTime;
@@ -119,22 +119,22 @@ public abstract class LegacyHeldSwordProjectile : HeldProjBase {
             }
         }
         else {
-            Aequu2Player.SetTimer(SwordSwingFlipTimer, swingTimeMax + 8);
+            AequusRemakePlayer.SetTimer(SwordSwingFlipTimer, swingTimeMax + 8);
         }
         TimesSwinged++;
     }
 
     #region Swing Progress methods
     public static float SwingProgressStariteSword(float progress) {
-        return MathF.Max(MathF.Sqrt(MathF.Sqrt(MathF.Sqrt(SwingProgressAequu2(progress)))), MathHelper.Lerp(progress, 1f, progress));
+        return MathF.Max(MathF.Sqrt(MathF.Sqrt(MathF.Sqrt(SwingProgressAequusRemake(progress)))), MathHelper.Lerp(progress, 1f, progress));
     }
 
     public static float SwingProgressSplit(float progress) {
         return progress >= 0.5f ? 0.5f + (0.5f - MathF.Pow(2f, 20f * (0.5f - (progress - 0.5f)) - 10f) / 2f) : MathF.Pow(2f, 20f * progress - 10f) / 2f;
     }
-    public static float SwingProgressAequu2(float progress, float pow = 2f) {
+    public static float SwingProgressAequusRemake(float progress, float pow = 2f) {
         if (progress > 0.5f) {
-            return 0.5f - SwingProgressAequu2(0.5f - (progress - 0.5f), pow) + 0.5f;
+            return 0.5f - SwingProgressAequusRemake(0.5f - (progress - 0.5f), pow) + 0.5f;
         }
         return ((float)Math.Sin(Math.Pow(progress, pow) * MathHelper.TwoPi - MathHelper.PiOver2) + 1f) / 2f;
     }

@@ -1,11 +1,11 @@
-﻿using Aequu2.Content.Items.PermaPowerups.BeyondLifeCrystal;
-using Aequu2.Content.Items.PermaPowerups.BeyondManaCrystal;
-using Aequu2.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
-using Aequu2.Core.CodeGeneration;
+﻿using AequusRemake.Content.Items.PermaPowerups.BeyondLifeCrystal;
+using AequusRemake.Content.Items.PermaPowerups.BeyondManaCrystal;
+using AequusRemake.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
+using AequusRemake.Core.CodeGeneration;
 using System.Runtime.CompilerServices;
 using Terraria.GameInput;
 
-namespace Aequu2;
+namespace AequusRemake;
 
 [Gen.AequusPlayer_ResetField<StatModifier>("wingTime")]
 public partial class AequusPlayer : ModPlayer, IExpandedBySourceGenerator {
@@ -73,10 +73,6 @@ public partial class AequusPlayer : ModPlayer, IExpandedBySourceGenerator {
     }
 
     public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
-#if !DEBUG
-        ProcBoneRing(target);
-        ProcBlackPhial(target);
-#endif
     }
 
     internal void OnKillNPC(in KillInfo info) {

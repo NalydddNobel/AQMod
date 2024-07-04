@@ -1,7 +1,7 @@
-﻿using Aequu2.Core.Entities.Items.Dedications;
+﻿using AequusRemake.Core.Entities.Items.Dedications;
 using Terraria.DataStructures;
 
-namespace Aequu2.Content.Dedicated.MirrorsCall;
+namespace AequusRemake.Content.Dedicated.MirrorsCall;
 
 public class MirrorsCall : ModItem {
     public override void Load() {
@@ -78,15 +78,11 @@ public class MirrorsCall : ModItem {
     }
 
     public override void AddRecipes() {
-#if !DEBUG
         CreateRecipe()
             .AddIngredient(ItemID.PiercingStarlight)
-            .AddIngredient(ModContent.ItemType<Old.Content.Items.Weapons.Melee.Slice.Slice>())
             .AddIngredient(ItemID.LunarBar, 10)
-            //.AddIngredient(ModContent.ItemType<UltimateEnergy>(), 5)
             .AddIngredient(ItemID.WhitePearl)
             .AddTile(TileID.LunarCraftingStation)
             .Register();
-#endif
     }
 }

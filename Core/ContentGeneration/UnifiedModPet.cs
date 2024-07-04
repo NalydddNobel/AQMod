@@ -1,6 +1,6 @@
 ﻿using Terraria.Localization;
 
-namespace Aequu2.Core.ContentGeneration;
+namespace AequusRemake.Core.ContentGeneration;
 
 /// <summary>A <see cref="ModProjectile"/> which automagically registers a related <see cref="ModItem"/> and <see cref="ModBuff"/>, suffixed with +"Item" and +"Buff" respectively.</summary>
 public abstract class UnifiedModPet : ModProjectile {

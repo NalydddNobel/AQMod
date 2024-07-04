@@ -1,7 +1,7 @@
-﻿using Aequu2.Core.ContentGeneration;
-using Aequu2.Core.Entities.Tiles.Components;
+﻿using AequusRemake.Core.ContentGeneration;
+using AequusRemake.Core.Entities.Tiles.Components;
 
-namespace Aequu2.Content.Tiles.PollutedOcean.PolymerSands;
+namespace AequusRemake.Content.Tiles.PollutedOcean.PolymerSands;
 
 [LegacyName("SedimentaryRockWall", "PolymerSandWall")]
 public class PolymerSandstoneWall : ModWall, IWaterVisibleWall {

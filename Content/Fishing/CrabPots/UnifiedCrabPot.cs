@@ -1,7 +1,7 @@
-﻿using Aequu2.Content.Backpacks;
-using Aequu2.Core.Entities.Tiles.Components;
-using Aequu2.Core.Graphics.Animations;
-using Aequu2.Core.Graphics.Tiles;
+﻿using AequusRemake.Content.Backpacks;
+using AequusRemake.Core.Entities.Tiles.Components;
+using AequusRemake.Core.Graphics.Animations;
+using AequusRemake.Core.Graphics.Tiles;
 using ReLogic.Content;
 using System;
 using Terraria.Audio;
@@ -11,7 +11,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ObjectData;
 
-namespace Aequu2.Content.Fishing.CrabPots;
+namespace AequusRemake.Content.Fishing.CrabPots;
 
 public abstract class UnifiedCrabPot : ModTile, ISpecialTileRenderer, IModifyPlacementPreview {
     public const int FramesCount = 4;

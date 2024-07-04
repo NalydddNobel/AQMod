@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequu2.Core.Entities.Projectiles;
+namespace AequusRemake.Core.Entities.Projectiles;
 
 [Obsolete]
 public abstract class HeldProjBase : ModProjectile {

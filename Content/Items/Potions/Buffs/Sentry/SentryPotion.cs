@@ -1,7 +1,7 @@
-﻿using Aequu2.Content.Fishing;
+﻿using AequusRemake.Content.Fishing;
 using Terraria.Localization;
 
-namespace Aequu2.Content.Items.Potions.Buffs.Sentry;
+namespace AequusRemake.Content.Items.Potions.Buffs.Sentry;
 
 public class SentryPotion : ModItem {
     public static int IncreaseSentryAmount { get; set; } = 1;

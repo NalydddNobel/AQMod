@@ -1,7 +1,7 @@
-﻿using Aequu2.Content.Enemies.PollutedOcean.Scavenger.UI;
-using Aequu2.Content.Items.Accessories.ScavengerBag;
-using Aequu2.Core.UI;
-using Aequu2.DataSets;
+﻿using AequusRemake.Content.Enemies.PollutedOcean.Scavenger.UI;
+using AequusRemake.Content.Items.Accessories.ScavengerBag;
+using AequusRemake.Core.UI;
+using AequusRemake.DataSets;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +10,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader.IO;
 using tModLoaderExtended.Terraria;
 
-namespace Aequu2.Content.Enemies.PollutedOcean.Scavenger;
+namespace AequusRemake.Content.Enemies.PollutedOcean.Scavenger;
 
 public class ScavengerLootBag : ModNPC {
     public const int SmartCursorInteractionDistance = 54;

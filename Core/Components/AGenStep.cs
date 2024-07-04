@@ -1,4 +1,4 @@
-﻿using Aequu2.Content.Systems;
+﻿using AequusRemake.Content.Systems;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.Generation;
@@ -7,7 +7,7 @@ using Terraria.Utilities;
 using Terraria.WorldBuilding;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequu2.Core.Components;
+namespace AequusRemake.Core.Components;
 
 public abstract class AGenStep : ModType, ILocalizedModType, IPostSetupContent {
     public abstract string InsertAfter { get; }

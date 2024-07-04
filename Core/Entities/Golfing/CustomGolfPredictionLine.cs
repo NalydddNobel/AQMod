@@ -5,7 +5,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.Golf;
 using Terraria.Graphics;
 
-namespace Aequu2.Core.Entities.Golfing;
+namespace AequusRemake.Core.Entities.Golfing;
 
 public class CustomGolfPredictionLine {
     private static CustomGolfPredictionLine Instance { get; set; }

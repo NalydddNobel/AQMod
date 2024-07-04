@@ -1,6 +1,6 @@
 ﻿using Terraria.Localization;
 
-namespace Aequu2.Core.Entities.DamageClasses;
+namespace AequusRemake.Core.Entities.DamageClasses;
 
 public class OmniDamageClass : DamageClass {
     public override LocalizedText DisplayName => Generic.DisplayName;

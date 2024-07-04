@@ -1,6 +1,6 @@
-﻿using Aequu2.DataSets;
+﻿using AequusRemake.DataSets;
 
-namespace Aequu2.Core.Entities.Tiles;
+namespace AequusRemake.Core.Entities.Tiles;
 
 public class Slopes : GlobalTile {
     public override bool Slope(int i, int j, int type) {

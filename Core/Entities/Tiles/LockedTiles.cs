@@ -1,8 +1,8 @@
-﻿using Aequu2.Content.Backpacks;
-using Aequu2.Content.Items.Tools.Keychain;
-using Aequu2.DataSets.Structures.Enums;
+﻿using AequusRemake.Content.Backpacks;
+using AequusRemake.Content.Items.Tools.Keychain;
+using AequusRemake.DataSets.Structures.Enums;
 
-namespace Aequu2.Core.Entities.Tiles;
+namespace AequusRemake.Core.Entities.Tiles;
 public class LockedTiles : GlobalTile {
     public static void CheckVanillaKeyInteractions(int i, int j, int type) {
         Tile tile = Main.tile[i, j];

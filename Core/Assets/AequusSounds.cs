@@ -1,7 +1,7 @@
 ﻿using Terraria.Audio;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequu2;
+namespace AequusRemake;
 
 public sealed partial class AequusSounds : IContentInstance {
     private static SoundStyle GetMultisound(SoundStyle zero, int variants) {
@@ -36,8 +36,5 @@ public sealed partial class AequusSounds : IContentInstance {
         ConductiveBlockPlaced = ConductiveBlockBreak with { Pitch = 0.6f, PitchVariance = 0.05f };
         ScrapBlockBreak = GetMultisound(ScrapBlock0, 4);
         ScrapBlockPlaced = ScrapBlockBreak with { Pitch = 0.3f, PitchVariance = 0.05f };
-#if !DEBUG
-        LoadOldSounds();
-#endif
     }
 }

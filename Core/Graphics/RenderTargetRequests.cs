@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Aequu2.Core.Graphics;
+namespace AequusRemake.Core.Graphics;
 
 public class RenderTargetRequests : ILoad {
     private readonly List<IRenderTargetRequest> _requests = new(4);

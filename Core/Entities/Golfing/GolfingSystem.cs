@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aequu2.Core.Entities.Golfing;
+namespace AequusRemake.Core.Entities.Golfing;
 
 public class GolfingSystem : ModSystem {
     public static List<int> FakeGolfBalls { get; private set; } = new();

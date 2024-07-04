@@ -1,6 +1,6 @@
-﻿using Aequu2.Content.Items.Materials;
+﻿using AequusRemake.Content.Items.Materials;
 
-namespace Aequu2.Content.Items.Weapons.Ranged.Ammo;
+namespace AequusRemake.Content.Items.Weapons.Ranged.Ammo;
 
 public class PlasticDart : ModItem {
     public override void SetDefaults() {

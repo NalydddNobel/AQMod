@@ -1,6 +1,6 @@
-﻿using Aequu2.Core.CrossMod;
+﻿using AequusRemake.Core.CrossMod;
 
-namespace Aequu2.Content.CrossMod.CalamityModSupport;
+namespace AequusRemake.Content.CrossMod.CalamityModSupport;
 
 internal class CalamityMod : SupportedMod<CalamityMod> {
     public static int RarityTurqouise_12 = ItemRarityID.Purple;

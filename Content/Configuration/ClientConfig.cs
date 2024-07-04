@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using Terraria.ModLoader.Config;
 
-namespace Aequu2.Content.Configuration;
+namespace AequusRemake.Content.Configuration;
 
 public class ClientConfig : ModConfig {
     public override ConfigScope Mode => ConfigScope.ClientSide;

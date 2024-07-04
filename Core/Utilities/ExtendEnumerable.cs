@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Aequu2.Core.Utilities;
+namespace AequusRemake.Core.Utilities;
 
 public static class ExtendEnumerable {
     public static IEnumerable<T2> SelectWhereOfType<T2>(this IEnumerable en) where T2 : class {

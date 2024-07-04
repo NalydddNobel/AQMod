@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequu2.Core;
+namespace AequusRemake.Core;
 
 [AttributeUsage(AttributeTargets.Class)]
 public sealed class WorkInProgressAttribute : Attribute { }

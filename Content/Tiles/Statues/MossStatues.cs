@@ -1,7 +1,7 @@
-﻿using Aequu2.Core.ContentGeneration;
+﻿using AequusRemake.Core.ContentGeneration;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 
-namespace Aequu2.Content.Tiles.Statues;
+namespace AequusRemake.Content.Tiles.Statues;
 
 public class MossStatues : StatueTileTemplate {
     public const int STYLE_ARGON = 0;

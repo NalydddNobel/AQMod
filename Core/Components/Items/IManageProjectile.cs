@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core.Entities.Items.Components;
+﻿namespace AequusRemake.Core.Entities.Items.Components;
 
 /// <summary>
 /// Allows the item to grant various effects to fired projectiles. All of these methods are not instanced, do NOT use <see cref="ModItem.Item"/> data.

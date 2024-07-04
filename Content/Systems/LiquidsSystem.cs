@@ -1,7 +1,7 @@
-﻿using Aequu2.Content.Fishing.CrabPots;
+﻿using AequusRemake.Content.Fishing.CrabPots;
 using System.IO;
 
-namespace Aequu2.Core.Systems;
+namespace AequusRemake.Core.Systems;
 
 public class LiquidsSystem : ModSystem {
     public static int WaterStyle { get; set; }

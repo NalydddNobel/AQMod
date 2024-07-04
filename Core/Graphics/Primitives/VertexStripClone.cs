@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using static Terraria.Graphics.VertexStrip;
 
-namespace Aequu2.Core.Graphics.Primitives;
+namespace AequusRemake.Core.Graphics.Primitives;
 
 public abstract class VertexStripClone {
     protected struct CustomVertexInfo : IVertexType {

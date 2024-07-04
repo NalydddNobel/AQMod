@@ -1,6 +1,6 @@
-﻿using Aequu2.Core.Entites.Bestiary;
+﻿using AequusRemake.Core.Entites.Bestiary;
 
-namespace Aequu2.Content.Elements.Flame;
+namespace AequusRemake.Content.Elements.Flame;
 
 public class Flame : VanillaElement {
     public Flame() : base(FlameFrame, Color.Orange) { }

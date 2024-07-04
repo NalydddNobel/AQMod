@@ -1,10 +1,10 @@
-﻿using Aequu2.Content.Biomes.PollutedOcean.Background;
-using Aequu2.Content.Biomes.PollutedOcean.Water;
-using Aequu2.Content.Tiles.Furniture.Trash;
-using Aequu2.Core.Entites.Bestiary;
+﻿using AequusRemake.Content.Biomes.PollutedOcean.Background;
+using AequusRemake.Content.Biomes.PollutedOcean.Water;
+using AequusRemake.Content.Tiles.Furniture.Trash;
+using AequusRemake.Core.Entites.Bestiary;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequu2.Content.Biomes.PollutedOcean;
+namespace AequusRemake.Content.Biomes.PollutedOcean;
 
 public class PollutedOceanBiomeSurface : ModBiome, IPostSetupContent {
     public override ModWaterStyle WaterStyle => ModContent.GetInstance<PollutedWater>();

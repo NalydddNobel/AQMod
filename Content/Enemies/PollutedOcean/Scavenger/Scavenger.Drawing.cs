@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
 
-namespace Aequu2.Content.Enemies.PollutedOcean.Scavenger;
+namespace AequusRemake.Content.Enemies.PollutedOcean.Scavenger;
 
 public partial class Scavenger {
     public static readonly HashSet<int> HeadSkinOverride = new();

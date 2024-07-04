@@ -1,10 +1,10 @@
-﻿using Aequu2.Content.Fishing.CrabPots;
+﻿using AequusRemake.Content.Fishing.CrabPots;
 using Terraria.Cinematics;
 using Terraria.DataStructures;
 
-namespace Aequu2.Content.Cinematics;
+namespace AequusRemake.Content.Cinematics;
 
-internal class CrabPotFilm : Aequu2Film {
+internal class CrabPotFilm : AequusRemakeFilm {
     private readonly Point[] _crabPots;
 
     public CrabPotFilm() {
@@ -195,6 +195,6 @@ internal class CrabPotFilm : Aequu2Film {
         player.BottomLeft = new Vector2(x, y);
         player.velocity.X = 6f;
         player.isControlledByFilm = true;
-        player.inventory[0].SetDefaults(Aequu2.Instance.Find<ModItem>("CrabPotCopper").Type);
+        player.inventory[0].SetDefaults(AequusRemake.Instance.Find<ModItem>("CrabPotCopper").Type);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Terraria.UI;
 
-namespace Aequu2.Core.UI;
+namespace AequusRemake.Core.UI;
 
 [Autoload(Side = ModSide.Client)]
 public class UIStateLayer : UIState, IUserInterfaceLayer, ILoad {
@@ -19,7 +19,7 @@ public class UIStateLayer : UIState, IUserInterfaceLayer, ILoad {
     protected UIStateLayer(string Name, string InsertLayer, InterfaceScaleType ScaleType, int InsertOffset = 1) {
         this.InsertLayer = InsertLayer;
         this.InsertOffset = InsertOffset;
-        _name = $"Aequu2: {Name}";
+        _name = $"AequusRemake: {Name}";
         _scaleType = ScaleType;
     }
 

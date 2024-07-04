@@ -1,7 +1,7 @@
 ﻿using Terraria.Audio;
 using Terraria.GameContent.Golf;
 
-namespace Aequu2.Core.Entities.Golfing;
+namespace AequusRemake.Core.Entities.Golfing;
 
 public class GolfClubGlobalProjectile : GlobalProjectile {
     public override bool AppliesToEntity(Projectile entity, bool lateInstantiation) {

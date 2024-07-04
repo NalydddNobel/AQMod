@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Aequu2.Core.Utilities;
+namespace AequusRemake.Core.Utilities;
 
 public static class ReflectionHelper {
     public static bool HasAttribute<T>(this object instance) where T : Attribute {

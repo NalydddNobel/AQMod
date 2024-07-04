@@ -1,4 +1,4 @@
-﻿using Aequu2.Core.Graphics.Textures;
+﻿using AequusRemake.Core.Graphics.Textures;
 using System;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -6,7 +6,7 @@ using Terraria.GameContent.Events;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
 
-namespace Aequu2.Content.Backpacks;
+namespace AequusRemake.Content.Backpacks;
 
 public abstract class BackpackData : ModType, ILocalizedModType {
     private const string InventoryTagKey = "Inventory";
@@ -62,7 +62,7 @@ public abstract class BackpackData : ModType, ILocalizedModType {
     public virtual void ResetEffects(Player player) {
     }
 
-    protected virtual void OnUpdateItem(Player player, AequusPlayer Aequu2Player, int slot) {
+    protected virtual void OnUpdateItem(Player player, AequusPlayer AequusRemakePlayer, int slot) {
     }
 
     public virtual BackpackData CreateInstance() {
@@ -104,11 +104,11 @@ public abstract class BackpackData : ModType, ILocalizedModType {
         LoadExtraData(tag);
     }
 
-    public void UpdateItem(Player player, AequusPlayer Aequu2Player, int slot) {
+    public void UpdateItem(Player player, AequusPlayer AequusRemakePlayer, int slot) {
         if (Inventory[slot].type == ItemID.DD2EnergyCrystal && !DD2Event.Ongoing) {
             Inventory[slot].TurnToAir();
         }
-        OnUpdateItem(player, Aequu2Player, slot);
+        OnUpdateItem(player, AequusRemakePlayer, slot);
     }
 
     public void Update(Player player) {
@@ -127,7 +127,7 @@ public abstract class BackpackData : ModType, ILocalizedModType {
                 }
                 else {
                     if (capacity < Inventory.Length) {
-                        IEntitySource source = new EntitySource_Misc("Aequu2: Backpack");
+                        IEntitySource source = new EntitySource_Misc("AequusRemake: Backpack");
                         for (int i = capacity; i < Inventory.Length; i++) {
                             player.QuickSpawnItem(source, Inventory[i], Inventory[i].stack);
                         }
@@ -237,7 +237,7 @@ public abstract class BackpackData : ModType, ILocalizedModType {
         }
         catch (Exception ex) {
             cloneBackpack.UnNullItems();
-            Aequu2.Instance.Logger.Error(ex);
+            AequusRemake.Instance.Logger.Error(ex);
         }
     }
 }

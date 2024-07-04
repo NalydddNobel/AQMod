@@ -1,9 +1,9 @@
-﻿using Aequu2.Core;
-using Aequu2.Core.CodeGeneration;
-using Aequu2.Core.Entities.Items.Components;
+﻿using AequusRemake.Core;
+using AequusRemake.Core.CodeGeneration;
+using AequusRemake.Core.Entities.Items.Components;
 using System;
 
-namespace Aequu2.Content.Items.Accessories.WeightedHorseshoe;
+namespace AequusRemake.Content.Items.Accessories.WeightedHorseshoe;
 
 [Gen.AequusPlayer_ResetField<Item>("accWeightedHorseshoe")]
 [Gen.AequusPlayer_ResetField<bool>("showHorseshoeAnvilRope")]
@@ -26,9 +26,9 @@ public class WeightedHorseshoe : ModItem, IUpdateItemDye {
             return;
         }
 
-        var Aequu2Player = player.GetModPlayer<AequusPlayer>();
+        var AequusRemakePlayer = player.GetModPlayer<AequusPlayer>();
         player.maxFallSpeed *= MaxFallSpeedMultiplier;
-        Aequu2Player.accWeightedHorseshoe = Item;
+        AequusRemakePlayer.accWeightedHorseshoe = Item;
 
         int gravityDirection = Math.Sign(player.gravDir);
         if (Math.Sign(player.velocity.Y) != gravityDirection) {
@@ -37,11 +37,11 @@ public class WeightedHorseshoe : ModItem, IUpdateItemDye {
 
         float fallSpeed = Math.Abs(player.velocity.Y);
         if (fallSpeed > DamagingFallSpeedThreshold) {
-            Aequu2Player.visualAfterImages = true;
+            AequusRemakePlayer.visualAfterImages = true;
         }
     }
 
-    private void UpdateFloorEffects(Player player, AequusPlayer Aequu2Player) {
+    private void UpdateFloorEffects(Player player, AequusPlayer AequusRemakePlayer) {
         int gravDir = Math.Sign(player.gravDir);
         float playerHeight = gravDir == -1 ? -2f : player.height + 2f;
         var floorCoordinates = new Vector2(player.position.X + player.width / 2f, player.position.Y + playerHeight);
@@ -51,8 +51,8 @@ public class WeightedHorseshoe : ModItem, IUpdateItemDye {
         }
 
         var floorTile = Framing.GetTileSafely(floorTileCoordinates);
-        if (floorTile.HasUnactuatedTile && (Main.tileSolid[floorTile.TileType] || Main.tileSolidTop[floorTile.TileType]) && Helper.IsFalling(Aequu2Player.transitionVelocity, player.gravDir)) {
-            float oldFallSpeed = Math.Abs(Aequu2Player.transitionVelocity.Y);
+        if (floorTile.HasUnactuatedTile && (Main.tileSolid[floorTile.TileType] || Main.tileSolidTop[floorTile.TileType]) && Helper.IsFalling(AequusRemakePlayer.transitionVelocity, player.gravDir)) {
+            float oldFallSpeed = Math.Abs(AequusRemakePlayer.transitionVelocity.Y);
             if (oldFallSpeed > DamagingFallSpeedThreshold && player.velocity.Y < 1f) {
                 float intensity = Math.Min((oldFallSpeed - DamagingFallSpeedThreshold) / 10f, 1f);
                 int particleAmount = (int)Math.Max(60f * intensity, 5f);
@@ -81,11 +81,11 @@ public class WeightedHorseshoe : ModItem, IUpdateItemDye {
             return;
         }
 
-        var Aequu2Player = player.GetModPlayer<AequusPlayer>();
-        Aequu2Player.showHorseshoeAnvilRope = true;
-        Aequu2Player.cHorseshoeAnvil = dyeItem.dye;
+        var AequusRemakePlayer = player.GetModPlayer<AequusPlayer>();
+        AequusRemakePlayer.showHorseshoeAnvilRope = true;
+        AequusRemakePlayer.cHorseshoeAnvil = dyeItem.dye;
 
-        UpdateFloorEffects(player, Aequu2Player);
+        UpdateFloorEffects(player, AequusRemakePlayer);
     }
 
     private static void AdjustDamage(Player player, ref AequusPlayer.MiscDamageHit hitInfo) {
@@ -109,13 +109,13 @@ public class WeightedHorseshoe : ModItem, IUpdateItemDye {
     }
 
     [Gen.AequusPlayer_PostUpdateEquips]
-    internal static void OnPostUpdateEquips(Player player, AequusPlayer Aequu2Player) {
+    internal static void OnPostUpdateEquips(Player player, AequusPlayer AequusRemakePlayer) {
         int visualProj = ModContent.ProjectileType<WeightedHorseshoeVisual>();
-        if (Aequu2Player.showHorseshoeAnvilRope && Main.myPlayer == player.whoAmI && player.ownedProjectileCounts[visualProj] < 1) {
+        if (AequusRemakePlayer.showHorseshoeAnvilRope && Main.myPlayer == player.whoAmI && player.ownedProjectileCounts[visualProj] < 1) {
             Projectile.NewProjectile(player.GetSource_FromThis(), player.Center, player.velocity * 0.5f, visualProj, 0, 0f, player.whoAmI);
         }
 
-        if (Aequu2Player.accWeightedHorseshoe == null || player.velocity.Y < DamagingFallSpeedThreshold) {
+        if (AequusRemakePlayer.accWeightedHorseshoe == null || player.velocity.Y < DamagingFallSpeedThreshold) {
             return;
         }
 

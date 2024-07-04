@@ -1,22 +1,22 @@
-﻿using Aequu2.Content.Configuration;
-using Aequu2.Content.VanillaChanges;
+﻿using AequusRemake.Content.Configuration;
+using AequusRemake.Content.VanillaChanges;
 using System.Collections.Generic;
 using System.Linq;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequu2.Core.Entities.Items;
+namespace AequusRemake.Core.Entities.Items;
 
 public class PDAEffects : GlobalItem, IPostSetupRecipes {
     public static HashSet<int> PDAUpgrades { get; private set; } = new();
 
     public override void UpdateInfoAccessory(Item item, Player player) {
         if (PDAUpgrades.Contains(item.type)) {
-            if (item.ModItem?.Mod == Aequu2.Instance) {
+            if (item.ModItem?.Mod == AequusRemake.Instance) {
                 player.RefreshInfoAccsFromItemType(ContentSamples.ItemsByType[ItemID.PDA]);
             }
 
-            if (GameplayConfig.Instance.PDAGetsAequu2Items) {
-                InfoAccessoryChanges.PDA.UpdateAequu2InfoAccs(player);
+            if (GameplayConfig.Instance.PDAGetsAequusRemakeItems) {
+                InfoAccessoryChanges.PDA.UpdateAequusRemakeInfoAccs(player);
             }
         }
     }

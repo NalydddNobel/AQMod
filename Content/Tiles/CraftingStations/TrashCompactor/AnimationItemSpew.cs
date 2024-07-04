@@ -1,11 +1,11 @@
-﻿using Aequu2.Core.Graphics.Animations;
-using Aequu2.Core.Graphics.GameOverlays;
+﻿using AequusRemake.Core.Graphics.Animations;
+using AequusRemake.Core.Graphics.GameOverlays;
 using System;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Utilities;
 
-namespace Aequu2.Content.Tiles.CraftingStations.TrashCompactor;
+namespace AequusRemake.Content.Tiles.CraftingStations.TrashCompactor;
 
 public struct AnimationItemSpew : IOverlayDrawer {
     public readonly Vector2 Location;

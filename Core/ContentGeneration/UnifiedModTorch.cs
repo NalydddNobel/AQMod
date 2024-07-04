@@ -3,7 +3,7 @@ using Terraria.Enums;
 using Terraria.Localization;
 using Terraria.ObjectData;
 
-namespace Aequu2.Core.ContentGeneration;
+namespace AequusRemake.Core.ContentGeneration;
 
 // TODO -- Fix Torch God's Favor disliking underwater torches.
 public abstract class UnifiedModTorch : ModTile {

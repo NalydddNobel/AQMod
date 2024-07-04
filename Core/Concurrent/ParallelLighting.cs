@@ -1,6 +1,6 @@
 ﻿using System.Collections.Concurrent;
 
-namespace Aequu2.Core.Concurrent;
+namespace AequusRemake.Core.Concurrent;
 
 /// <summary>Allows for lights to be safely created in a parallel process.</summary>
 public class ParallelLighting {

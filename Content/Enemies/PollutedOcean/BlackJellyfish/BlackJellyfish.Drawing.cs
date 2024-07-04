@@ -1,8 +1,8 @@
-﻿using Aequu2.Core.Graphics;
+﻿using AequusRemake.Core.Graphics;
 using System;
 using Terraria.GameContent;
 
-namespace Aequu2.Content.Enemies.PollutedOcean.BlackJellyfish;
+namespace AequusRemake.Content.Enemies.PollutedOcean.BlackJellyfish;
 
 public partial class BlackJellyfish : DrawLayers.IDrawLayer, RenderTargetRequests.IRenderTargetRequest {
     private const int LightningSegments = 36;
@@ -138,7 +138,7 @@ public partial class BlackJellyfish : DrawLayers.IDrawLayer, RenderTargetRequest
             Vector2.Zero, includeBacksides: true);
         DrawHelper.VertexStrip.DrawTrail();
 
-        //DrawHelper.DrawBasicVertexLine(Aequu2Textures.BlackJellyfishVertexStrip, lightningDrawCoordinates, lightningDrawRotations,
+        //DrawHelper.DrawBasicVertexLine(AequusRemakeTextures.BlackJellyfishVertexStrip, lightningDrawCoordinates, lightningDrawRotations,
         //    p => lightningColor * attackRangeNormalized * NPC.Opacity,
         //    p => Math.Max(attackRangeNormalized < 1f ? attackRangeNormalized : MathF.Pow(attackRangeNormalized, 1.5f), 0.25f) * NPC.Opacity * 8f
         //);

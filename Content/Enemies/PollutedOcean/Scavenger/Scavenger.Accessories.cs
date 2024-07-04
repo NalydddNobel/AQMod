@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Terraria.Audio;
 
-namespace Aequu2.Content.Enemies.PollutedOcean.Scavenger;
+namespace AequusRemake.Content.Enemies.PollutedOcean.Scavenger;
 
 public partial class Scavenger {
     public delegate void AccessoryUpdate(Scavenger scavenger, bool attacking);

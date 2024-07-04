@@ -1,6 +1,6 @@
 ﻿using Terraria.GameContent;
 
-namespace Aequu2.Content.Items.Potions.PotionCanteen;
+namespace AequusRemake.Content.Items.Potions.PotionCanteen;
 
 public class PotionCanteen : UnifiedCanteen {
     public PotionCanteen() : base(new CanteenInfo(

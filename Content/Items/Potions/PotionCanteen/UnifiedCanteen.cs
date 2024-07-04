@@ -1,8 +1,8 @@
-﻿using Aequu2.Core.Entities.Buffs;
-using Aequu2.Core.Entities.Items.Components;
-using Aequu2.Core.IO;
-using Aequu2.Core.UI;
-using Aequu2.DataSets;
+﻿using AequusRemake.Core.Entities.Buffs;
+using AequusRemake.Core.Entities.Items.Components;
+using AequusRemake.Core.IO;
+using AequusRemake.Core.UI;
+using AequusRemake.DataSets;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ using Terraria.ModLoader.IO;
 using Terraria.UI;
 using tModLoaderExtended.Terraria.GameContent;
 
-namespace Aequu2.Content.Items.Potions.PotionCanteen;
+namespace AequusRemake.Content.Items.Potions.PotionCanteen;
 
 public abstract class UnifiedCanteen : ModItem, IShimmerOverride, IRightClickOverrideWhenHovered {
     protected readonly CanteenInfo _info;
@@ -124,7 +124,7 @@ public abstract class UnifiedCanteen : ModItem, IShimmerOverride, IRightClickOve
         return item.buffType > 0 && item.buffTime > 0 && item.consumable && item.maxStack >= 30 && !Buffs.Any(b => b.BuffId == item.buffType) && !BuffDataSet.CannotChangeDuration.Contains(item.buffType) && ItemDataSet.Potions.Contains(item.type);
     }
 
-    bool IRightClickOverrideWhenHovered.RightClickOverrideWhenHovered(ref Item heldItem, Item[] inv, int context, int slot, Player player, AequusPlayer Aequu2) {
+    bool IRightClickOverrideWhenHovered.RightClickOverrideWhenHovered(ref Item heldItem, Item[] inv, int context, int slot, Player player, AequusPlayer AequusRemake) {
         int aContext = Math.Abs(context);
         if (!InventoryUI.ContextsInv.Contains(context)) {
             return false;

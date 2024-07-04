@@ -1,10 +1,10 @@
-﻿using Aequu2.Core.Graphics.GameOverlays;
-using Aequu2.Core.Graphics.Tiles;
+﻿using AequusRemake.Core.Graphics.GameOverlays;
+using AequusRemake.Core.Graphics.Tiles;
 using Terraria.Graphics.Effects;
 
-namespace Aequu2.Content.Graphics.GameOverlays;
+namespace AequusRemake.Content.Graphics.GameOverlays;
 
-public sealed class TileOverWaterOverlay : Aequu2Overlay {
+public sealed class TileOverWaterOverlay : AequusRemakeOverlay {
     private TileOverWaterOverlay() : base(EffectPriority.Medium, RenderLayers.ForegroundWater) {
     }
 

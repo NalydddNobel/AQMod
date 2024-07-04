@@ -1,6 +1,6 @@
-﻿using Aequu2.Core.ContentGeneration;
+﻿using AequusRemake.Core.ContentGeneration;
 
-namespace Aequu2.Content.Tiles.Furniture.Trash;
+namespace AequusRemake.Content.Tiles.Furniture.Trash;
 
 internal class TrashLamp(UnifiedFurniture parent) : InstancedFurnitureLamp(parent, default) {
     public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {

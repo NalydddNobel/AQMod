@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Content.Items.Potions.Food.TaintedSeafood;
+﻿namespace AequusRemake.Content.Items.Potions.Food.TaintedSeafood;
 
 public class FoodPoisoningGlobalItem : GlobalItem {
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {

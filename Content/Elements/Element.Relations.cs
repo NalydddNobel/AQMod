@@ -1,13 +1,13 @@
-﻿using Aequu2.Core.CodeGeneration;
-using Aequu2.Core.CrossMod;
-using Aequu2.Core.Entites.Bestiary;
-using Aequu2.DataSets;
-using Aequu2.DataSets.Structures;
+﻿using AequusRemake.Core.CodeGeneration;
+using AequusRemake.Core.CrossMod;
+using AequusRemake.Core.Entites.Bestiary;
+using AequusRemake.DataSets;
+using AequusRemake.DataSets.Structures;
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequu2.Content.Elements;
+namespace AequusRemake.Content.Elements;
 
 public partial class Element {
     private readonly HashSet<int> _npcs = [];

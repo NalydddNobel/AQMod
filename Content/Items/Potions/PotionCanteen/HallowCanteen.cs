@@ -1,7 +1,7 @@
-﻿using Aequu2.Core.Assets;
+﻿using AequusRemake.Core.Assets;
 using Terraria.GameContent;
 
-namespace Aequu2.Content.Items.Potions.PotionCanteen;
+namespace AequusRemake.Content.Items.Potions.PotionCanteen;
 
 public class HallowCanteen : UnifiedCanteen {
     public HallowCanteen() : base(new CanteenInfo(

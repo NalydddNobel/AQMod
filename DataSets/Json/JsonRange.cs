@@ -3,7 +3,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using Terraria.Utilities;
 
-namespace Aequu2.DataSets.Json;
+namespace AequusRemake.DataSets.Json;
 
 [JsonConverter(typeof(JsonRangeConverter))]
 public record struct JsonRange(int Min, int Max) {

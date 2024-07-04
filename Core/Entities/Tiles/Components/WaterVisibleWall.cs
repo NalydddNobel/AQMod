@@ -5,7 +5,7 @@ using System.Linq;
 using Terraria.Localization;
 using Terraria.Map;
 
-namespace Aequu2.Core.Entities.Tiles.Components;
+namespace AequusRemake.Core.Entities.Tiles.Components;
 
 /// <summary>
 /// Allows modded walls to be seen behind water.

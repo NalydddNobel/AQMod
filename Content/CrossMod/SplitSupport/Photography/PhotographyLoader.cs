@@ -1,8 +1,7 @@
-﻿using Aequu2.Content.Dedicated.Familiar;
-using Aequu2.Core.Structures.ID;
+﻿using AequusRemake.Core.Structures.ID;
 using System.Collections.Generic;
 
-namespace Aequu2.Content.CrossMod.SplitSupport.Photography;
+namespace AequusRemake.Content.CrossMod.SplitSupport.Photography;
 
 internal sealed partial class PhotographyLoader : ModSystem {
     public static InstancedEnvelope EnvelopePollutedOcean { get; private set; }
@@ -31,7 +30,8 @@ internal sealed partial class PhotographyLoader : ModSystem {
         IProvideId hellEnvelope = Split.GetContentProvider<ModItem>("FieryEnvelope", ItemID.ObsidianLockbox);
         //IContentIdProvider dungeonEnvelope = Split.GetContentProvider<ModItem>("DungeonEnvelope", ItemID.DungeonFishingCrateHard);
         IProvideId bloodMoonEnvelope = Split.GetContentProvider<ModItem>("HorrificEnvelope", ItemID.DungeonFishingCrateHard);
-#if !DEBUG
+
+        /*
         AddPhotographyPage(
             order: 10f,
             specialReward: ModContent.GetInstance<FamiliarPet>().PetItem.Type,
@@ -46,7 +46,7 @@ internal sealed partial class PhotographyLoader : ModSystem {
 
                 new(5, GetNPC<TownNPCs.SkyMerchant.SkyMerchant>(), spaceEnvelope),
             ]);
-#endif
+        */
 
         IProvideId Envelope(ModItem modItem) => new TypeId<ModItem>(modItem);
         IProvideId GetNPC<T>() where T : ModNPC => new TypeId<T>();
@@ -72,7 +72,7 @@ internal sealed partial class PhotographyLoader : ModSystem {
         foreach (Album album in _albumsToRegister) {
             var args = new object[35];
             args[0] = "Photography.AddPage";
-            args[1] = Aequu2.Instance;
+            args[1] = AequusRemake.Instance;
             args[2] = album.Order;
             args[3] = album.SpecialReward;
             args[4] = Main.dedServ ? null : AequusTextures.SplitAlbum.Value;

@@ -1,6 +1,6 @@
-﻿using Aequu2.Content.Backpacks;
+﻿using AequusRemake.Content.Backpacks;
 
-namespace Aequu2.Core.Hooks;
+namespace AequusRemake.Core.Hooks;
 
 public partial class TerrariaHooks {
     /// <summary>Allows for backpacks to quick stack their items to nearby chests.</summary>

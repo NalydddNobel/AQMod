@@ -1,5 +1,5 @@
-global using Aequu2.Core;
-global using Aequu2.Core.Utilities;
+global using AequusRemake.Core;
+global using AequusRemake.Core.Utilities;
 global using Microsoft.Xna.Framework;
 global using Microsoft.Xna.Framework.Graphics;
 global using Terraria;
@@ -27,14 +27,14 @@ global using GoreSets = Terraria.ID.GoreID.Sets;
 using Terraria.Localization;
 using Terraria.Utilities;
 
-namespace Aequu2;
+namespace AequusRemake;
 
-public partial class Aequu2 : ExtendedMod {
-    public static new Mod Instance => ModContent.GetInstance<Aequu2>();
+public partial class AequusRemake : ExtendedMod {
+    public static new Mod Instance => ModContent.GetInstance<AequusRemake>();
     public static Mod MusicMod { get; private set; }
 
     public override void OnLoad() {
-        MusicMod = ModLoader.GetMod("AequusMusic");
+        MusicMod = ModLoader.GetMod("AequusRemakeMusic");
         LoadModCalls();
     }
 
@@ -46,7 +46,7 @@ public partial class Aequu2 : ExtendedMod {
 
     /// <returns>A random name. Used in naturally generated underworld tombstones.</returns>
     public static LocalizedText GetRandomName(UnifiedRandom random = null) {
-        string filter = "Mods.Aequu2.Names";
+        string filter = "Mods.AequusRemake.Names";
         return Language.SelectRandom((key, value) => key.StartsWith(filter), random);
     }
 }

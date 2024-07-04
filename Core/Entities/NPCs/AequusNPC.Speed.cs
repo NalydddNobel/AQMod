@@ -1,20 +1,20 @@
-﻿using Aequu2.Core.CodeGeneration;
+﻿using AequusRemake.Core.CodeGeneration;
 
-namespace Aequu2.Core.Entities.NPCs;
+namespace AequusRemake.Core.Entities.NPCs;
 
-public partial class Aequu2NPC {
+public partial class AequusRemakeNPC {
     [ResetEffects(1f)]
     public float statSpeedX = 1f;
     [ResetEffects(1f)]
     public float statSpeedY = 1f;
 
     private static void NPC_UpdateCollision(On_NPC.orig_UpdateCollision orig, NPC npc) {
-        if (!npc.TryGetGlobalNPC<Aequu2NPC>(out var Aequu2NPC)) {
+        if (!npc.TryGetGlobalNPC<AequusRemakeNPC>(out var AequusRemakeNPC)) {
             orig(npc);
             return;
         }
 
-        var velocityBoost = new Vector2(Aequu2NPC.statSpeedX, Aequu2NPC.statSpeedY);
+        var velocityBoost = new Vector2(AequusRemakeNPC.statSpeedX, AequusRemakeNPC.statSpeedY);
         npc.velocity.X *= velocityBoost.X;
         npc.velocity.Y *= velocityBoost.Y;
         orig(npc);

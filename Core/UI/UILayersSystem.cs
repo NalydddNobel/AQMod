@@ -1,9 +1,9 @@
-﻿using Aequu2.Core.Debug;
+﻿using AequusRemake.Core.Debug;
 using System;
 using System.Collections.Generic;
 using Terraria.UI;
 
-namespace Aequu2.Core.UI;
+namespace AequusRemake.Core.UI;
 
 /// <summary>Only loads in singleplayer or on multiplayer clients.</summary>
 [Autoload(Side = ModSide.Client)]

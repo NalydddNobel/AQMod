@@ -1,9 +1,9 @@
-﻿using Aequu2.DataSets;
+﻿using AequusRemake.DataSets;
 using Terraria.GameContent;
 using Terraria.ObjectData;
 using tModLoaderExtended.Terraria;
 
-namespace Aequu2.Core.Entities.Tiles;
+namespace AequusRemake.Core.Entities.Tiles;
 
 public class PotsGlobalTile : GlobalTile {
     public override bool? IsTileDangerous(int i, int j, int type, Player player) {

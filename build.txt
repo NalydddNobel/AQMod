@@ -1,11 +1,11 @@
-displayName = Aequu2
+displayName = AequusRemake
 author = Nalyd T. & Team
 version = 3.0
-homepage = https://terrariamods.wiki.gg/wiki/Aequu2
+homepage = https://terrariamods.wiki.gg/wiki/AequusRemake
 hideResources = false
 hideCode = false
 includeSource = false
 includePBD = true
-modReferences = Aequu2Music
+modReferences = AequusRemakeMusic
 dllReferences = FNAUtils, tModLoaderExtended
 buildIgnore = *.csproj, *.user, *.sln, *.gitignore, *.editorconfig, *.md, *.ase, *.fx, obj\*, bin\*, .vs\*, project\*

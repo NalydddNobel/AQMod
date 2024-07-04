@@ -1,7 +1,7 @@
 ﻿using Terraria.DataStructures;
 using Terraria.Localization;
 
-namespace Aequu2.Core.ContentGeneration;
+namespace AequusRemake.Core.ContentGeneration;
 
 public abstract class UnifiedCritter() : ModNPC {
     public virtual int BestiaryCritterSort => 0;

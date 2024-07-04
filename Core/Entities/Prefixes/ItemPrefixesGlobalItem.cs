@@ -1,7 +1,7 @@
-﻿using Aequu2.Content.Dedicated.BeyondCoin;
-using Aequu2.Content.Items.PermaPowerups.Shimmer;
+﻿using AequusRemake.Content.Dedicated.BeyondCoin;
+using AequusRemake.Content.Items.PermaPowerups.Shimmer;
 
-namespace Aequu2.Core.Entities.Prefixes;
+namespace AequusRemake.Core.Entities.Prefixes;
 
 public class ItemPrefixesGlobalItem : GlobalItem {
     private static int _loops;

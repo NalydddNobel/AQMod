@@ -1,11 +1,11 @@
-﻿using Aequu2.Core.Entities.Tiles;
+﻿using AequusRemake.Core.Entities.Tiles;
 using System;
 using System.Runtime.CompilerServices;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ObjectData;
 
-namespace Aequu2.Core.Utilities;
+namespace AequusRemake.Core.Utilities;
 
 public static class TileHelper {
     public static Vector2 DrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);

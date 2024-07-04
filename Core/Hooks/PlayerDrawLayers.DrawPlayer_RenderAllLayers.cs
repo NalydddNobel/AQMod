@@ -1,13 +1,13 @@
 ﻿using Terraria.DataStructures;
 
-namespace Aequu2.Core.Hooks;
+namespace AequusRemake.Core.Hooks;
 
 public partial class TerrariaHooks {
     private static bool drawingPlayer;
 
-    /// <summary>Allows for custom dash accessories added by Aequu2 to update dash movement.</summary>
+    /// <summary>Allows for custom dash accessories added by AequusRemake to update dash movement.</summary>
     private static void PlayerDrawLayers_DrawPlayer_RenderAllLayers(On_PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers orig, ref PlayerDrawSet drawinfo) {
-        if (drawingPlayer || !drawinfo.drawPlayer.TryGetModPlayer<AequusPlayer>(out var Aequu2Player)) {
+        if (drawingPlayer || !drawinfo.drawPlayer.TryGetModPlayer<AequusPlayer>(out var AequusRemakePlayer)) {
             orig(ref drawinfo);
             return;
         }
@@ -25,13 +25,13 @@ public partial class TerrariaHooks {
             return;
         }
 
-        AequusPlayer Aequu2Player = info.drawPlayer.GetModPlayer<AequusPlayer>();
+        AequusPlayer AequusRemakePlayer = info.drawPlayer.GetModPlayer<AequusPlayer>();
 
-        if (Aequu2Player.DrawScale != null) {
-            ScalePlayer(info.drawPlayer, ref info, Aequu2Player.DrawScale.Value);
+        if (AequusRemakePlayer.DrawScale != null) {
+            ScalePlayer(info.drawPlayer, ref info, AequusRemakePlayer.DrawScale.Value);
         }
-        if (Aequu2Player.DrawForceDye != null) {
-            DyePlayer(ref info, Aequu2Player.DrawForceDye.Value);
+        if (AequusRemakePlayer.DrawForceDye != null) {
+            DyePlayer(ref info, AequusRemakePlayer.DrawForceDye.Value);
         }
     }
 

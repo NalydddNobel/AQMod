@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core.ContentGeneration;
+﻿namespace AequusRemake.Core.ContentGeneration;
 
 internal class InstancedModBuff(string name, string texture) : ModBuff {
     protected readonly string _name = name;

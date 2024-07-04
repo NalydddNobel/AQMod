@@ -2,7 +2,7 @@
 using System.IO;
 using Terraria.ModLoader.IO;
 
-namespace Aequu2.Content.Systems.Renaming;
+namespace AequusRemake.Content.Systems.Renaming;
 
 public sealed class RenamedNPCMarkerManager : GlobalNPC {
     public override bool InstancePerEntity => true;

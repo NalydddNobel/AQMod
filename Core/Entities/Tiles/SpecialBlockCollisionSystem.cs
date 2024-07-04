@@ -1,8 +1,8 @@
-﻿using Aequu2.Core.Entities.Tiles.Components;
+﻿using AequusRemake.Core.Entities.Tiles.Components;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Aequu2.Core.Entities.Tiles;
+namespace AequusRemake.Core.Entities.Tiles;
 
 internal class SpecialBlockCollisionSystem : ModSystem {
     private List<ModTile> _solidToProjsAndItems;

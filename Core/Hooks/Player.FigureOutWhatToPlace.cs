@@ -1,7 +1,7 @@
-﻿using Aequu2.Core.ContentGeneration;
-using Aequu2.Core.Entities.Tiles.Components;
+﻿using AequusRemake.Core.ContentGeneration;
+using AequusRemake.Core.Entities.Tiles.Components;
 
-namespace Aequu2.Core.Hooks;
+namespace AequusRemake.Core.Hooks;
 
 public partial class TerrariaHooks {
     private static void On_Player_FigureOutWhatToPlace(On_Player.orig_FigureOutWhatToPlace orig, Player self, Tile targetTile, Item sItem, out int tileToCreate, out int previewPlaceStyle, out bool? overrideCanPlace, out int? forcedRandom) {

@@ -1,7 +1,7 @@
 ﻿using System;
 using Terraria.DataStructures;
 
-namespace Aequu2.Content.TownNPCs.SkyMerchant;
+namespace AequusRemake.Content.TownNPCs.SkyMerchant;
 
 public class SkyMerchantSystem : ModSystem {
     public static int SkyMerchantX;
@@ -16,7 +16,7 @@ public class SkyMerchantSystem : ModSystem {
                 continue;
             }
         }
-        NPC.NewNPC(new EntitySource_Misc("Aequu2: Sky Merchant"), (int)minX, Main.rand.Next((int)Helper.ZoneSkyHeightY / 2, (int)Helper.ZoneSkyHeightY) * 16, ModContent.NPCType<SkyMerchant>());
+        NPC.NewNPC(new EntitySource_Misc("AequusRemake: Sky Merchant"), (int)minX, Main.rand.Next((int)Helper.ZoneSkyHeightY / 2, (int)Helper.ZoneSkyHeightY) * 16, ModContent.NPCType<SkyMerchant>());
         return true;
     }
 

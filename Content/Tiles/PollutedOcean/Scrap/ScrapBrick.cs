@@ -1,13 +1,13 @@
-﻿using Aequu2.Core.ContentGeneration;
+﻿using AequusRemake.Core.ContentGeneration;
 
-namespace Aequu2.Content.Tiles.PollutedOcean.Scrap;
+namespace AequusRemake.Content.Tiles.PollutedOcean.Scrap;
 
 public class ScrapBrick : ModTile {
     public override void Load() {
         ModItem item = new InstancedTileItem(this);
         Mod.AddContent(item);
 
-        Aequu2.OnAddRecipes += () => {
+        AequusRemake.OnAddRecipes += () => {
             item.CreateRecipe()
                 .AddIngredient(ScrapBlock.Item)
                 .AddIngredient(ItemID.StoneBlock)

@@ -1,7 +1,7 @@
-﻿using Aequu2.Core.Graphics;
-using Aequu2.Core.Particles;
+﻿using AequusRemake.Core.Graphics;
+using AequusRemake.Core.Particles;
 
-namespace Aequu2.Content.Graphics.Particles;
+namespace AequusRemake.Content.Graphics.Particles;
 
 public class DashParticles : ParallelParticleArray<DashParticles.Particle> {
     public override int ParticleCount => 100;

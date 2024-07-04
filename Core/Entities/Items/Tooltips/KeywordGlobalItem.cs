@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 using Terraria.GameContent;
 using Terraria.UI.Chat;
 
-namespace Aequu2.Core.Entities.Items.Tooltips;
+namespace AequusRemake.Core.Entities.Items.Tooltips;
 
 public partial class KeywordGlobalItem : GlobalItem {
     private void CheckLinesInit(Item item) {

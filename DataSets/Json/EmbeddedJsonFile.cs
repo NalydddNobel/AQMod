@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 
-namespace Aequu2.DataSets.Json;
+namespace AequusRemake.DataSets.Json;
 
 public sealed class EmbeddedJsonFile {
     private readonly IJsonHolder _dataSet;
@@ -12,7 +12,7 @@ public sealed class EmbeddedJsonFile {
     public readonly string FullFilePath;
     public readonly string FileData;
 
-    private static Mod Mod => Aequu2.Instance;
+    private static Mod Mod => AequusRemake.Instance;
 
     internal EmbeddedJsonFile(IJsonHolder holder) {
         _dataSet = holder;
@@ -39,7 +39,7 @@ public sealed class EmbeddedJsonFile {
 
     [Conditional("DEBUG")]
     internal void GenerateEmbeddedFiles() {
-        string fileLocation = Path.Join(Aequu2.DEBUG_FILES_PATH, "ModSources/Aequu2", FullFilePath).Replace('/', Path.DirectorySeparatorChar);
+        string fileLocation = Path.Join(AequusRemake.DEBUG_FILES_PATH, "ModSources/AequusRemake", FullFilePath).Replace('/', Path.DirectorySeparatorChar);
         Log.Debug(fileLocation);
         try {
             // Only attempt to create the file if this Directory even exists.

@@ -1,10 +1,10 @@
-﻿using Aequu2.Core.UI;
+﻿using AequusRemake.Core.UI;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameInput;
 using Terraria.UI;
 
-namespace Aequu2.Content.Enemies.PollutedOcean.Scavenger.UI;
+namespace AequusRemake.Content.Enemies.PollutedOcean.Scavenger.UI;
 
 public class ScavengerLootBagUI : UIState, ILoad {
     public override void OnActivate() {

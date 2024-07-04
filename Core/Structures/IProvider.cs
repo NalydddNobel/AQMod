@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core.Structures;
+﻿namespace AequusRemake.Core.Structures;
 
 public interface IProvider<TValue> {
     TValue GetColor();

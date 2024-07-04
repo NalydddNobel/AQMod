@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequu2.Core.Entities.Bestiary;
+namespace AequusRemake.Core.Entities.Bestiary;
 
 internal interface IModBiomesAttribute {
     ModBiome GetModBiome();

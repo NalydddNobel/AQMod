@@ -1,8 +1,8 @@
-﻿using Aequu2.Core;
-using Aequu2.Content.Elements;
+﻿using AequusRemake.Core;
+using AequusRemake.Content.Elements;
 using Terraria.DataStructures;
 
-namespace Aequu2.Content.Items.Weapons.Magic.Furystar;
+namespace AequusRemake.Content.Items.Weapons.Magic.Furystar;
 
 public class Furystar : ModItem {
     public static float ExtraStarChance = 0.25f;

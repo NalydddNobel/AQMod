@@ -1,14 +1,14 @@
-﻿using Aequu2.Content.Items.Accessories.GoldenFeather;
-using Aequu2.Core.CodeGeneration;
+﻿using AequusRemake.Content.Items.Accessories.GoldenFeather;
+using AequusRemake.Core.CodeGeneration;
 
-namespace Aequu2;
+namespace AequusRemake;
 
 public partial class AequusPlayer {
     [ResetEffects]
     public Item accGoldenFeather;
 
-    private void UpdateGoldenFeather(Player teammate, AequusPlayer teammateAequu2Player) {
-        if (teammateAequu2Player.accGoldenFeather?.ModItem is GoldenFeather goldenFeather) {
+    private void UpdateGoldenFeather(Player teammate, AequusPlayer teammateAequusRemakePlayer) {
+        if (teammateAequusRemakePlayer.accGoldenFeather?.ModItem is GoldenFeather goldenFeather) {
             Player.AddBuff(goldenFeather.BuffType, 16, quiet: true);
         }
     }

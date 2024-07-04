@@ -3,7 +3,7 @@ using System.Linq;
 using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequu2.Core.Entities.Items.DropRules;
+namespace AequusRemake.Core.Entities.Items.DropRules;
 
 // Drop Rules related to items being inside an NPC when they spawn.
 public interface IBodyDropRule { }

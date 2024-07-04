@@ -1,4 +1,4 @@
-﻿using Aequu2.Core.Structures;
+﻿using AequusRemake.Core.Structures;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
@@ -9,7 +9,7 @@ using Terraria.Utilities;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequu2.Core.ContentGeneration;
+namespace AequusRemake.Core.ContentGeneration;
 
 internal class InstancedCampfireTile(string name, string texture) : InstancedModTile(name, texture) {
     public ModItem DropItem { get; protected set; }
@@ -153,7 +153,7 @@ internal class InstancedCampfireTorch(UnifiedModTorch parentTorch) : InstancedCa
     public override void Load() {
         base.Load();
 
-        Aequu2.OnAddRecipes += () => {
+        AequusRemake.OnAddRecipes += () => {
             DropItem.CreateRecipe()
                 .AddRecipeGroup(RecipeGroupID.Wood, 10)
                 .AddIngredient(_modTorch.Type, 5)

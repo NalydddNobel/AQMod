@@ -2,7 +2,7 @@
 using System.IO;
 using Terraria.DataStructures;
 
-namespace Aequu2.Core.Entities.Items;
+namespace AequusRemake.Core.Entities.Items;
 
 public sealed class GravityGlobalItem : GlobalItem {
     public override bool InstancePerEntity => true;
@@ -20,12 +20,12 @@ public sealed class GravityGlobalItem : GlobalItem {
     }
 
     public void SetNoGrav(Item item, byte duration) {
-        var Aequu2 = item.GetGlobalItem<GravityGlobalItem>();
-        if (Aequu2.itemGravityCheck > Math.Max(duration - 15, 15)) {
+        var AequusRemake = item.GetGlobalItem<GravityGlobalItem>();
+        if (AequusRemake.itemGravityCheck > Math.Max(duration - 15, 15)) {
             return;
         }
         CheckNoGravity(item);
-        Aequu2.itemGravityCheck = duration;
+        AequusRemake.itemGravityCheck = duration;
     }
 
     private void CheckNoGravity(Item item) {
@@ -41,7 +41,7 @@ public sealed class GravityGlobalItem : GlobalItem {
 
     public override void OnSpawn(Item item, IEntitySource source) {
         if (source is EntitySource_Parent entitySource_Parent) {
-            //if (parent is not NPC npc || !npc.GetGlobalNPC<Aequu2NPC>().noGravityDrops || Helper.FindFloor(parent.Center, 20) != -1) {
+            //if (parent is not NPC npc || !npc.GetGlobalNPC<AequusRemakeNPC>().noGravityDrops || Helper.FindFloor(parent.Center, 20) != -1) {
             //    return;
             //}
 

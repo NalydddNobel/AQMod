@@ -1,8 +1,8 @@
-﻿using Aequu2.Core.Initialization;
+﻿using AequusRemake.Core.Initialization;
 using System;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequu2.Core.ContentGeneration;
+namespace AequusRemake.Core.ContentGeneration;
 
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
 internal sealed class AutoloadBannerAttribute : Attribute, IAttributeOnModLoad {

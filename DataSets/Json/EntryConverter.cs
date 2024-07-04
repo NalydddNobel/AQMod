@@ -1,9 +1,9 @@
-﻿using Aequu2.DataSets.Structures;
+﻿using AequusRemake.DataSets.Structures;
 using Newtonsoft.Json;
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Aequu2.DataSets.Json;
+namespace AequusRemake.DataSets.Json;
 
 internal class EntryConverter : JsonConverter<IIDEntry> {
     public override void WriteJson(JsonWriter writer, [AllowNull] IIDEntry value, JsonSerializer serializer) {

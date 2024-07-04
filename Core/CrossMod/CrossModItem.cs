@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria.Localization;
 
-namespace Aequu2.Core.CrossMod;
+namespace AequusRemake.Core.CrossMod;
 
 public abstract class CrossModItem : ModItem {
     public virtual void OnSetStaticDefaults() { }
@@ -39,7 +39,7 @@ internal sealed class CrossModGlobalItem : GlobalItem {
 
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
         if (item.ModItem is CrossModItem crossModItem && !ModLoader.HasMod(crossModItem.CrossModName)) {
-            tooltips.Add(new TooltipLine(Mod, "NeedsMod", Language.GetTextValue("Mods.Aequu2.Misc.NeedsMod", crossModItem.CrossModName)) {
+            tooltips.Add(new TooltipLine(Mod, "NeedsMod", Language.GetTextValue("Mods.AequusRemake.Misc.NeedsMod", crossModItem.CrossModName)) {
                 OverrideColor = TooltipColor
             });
         }

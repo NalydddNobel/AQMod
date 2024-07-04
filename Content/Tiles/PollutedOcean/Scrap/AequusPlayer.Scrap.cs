@@ -1,11 +1,11 @@
-﻿using Aequu2.Content.Tiles.PollutedOcean.Scrap;
-using Aequu2.Core.CodeGeneration;
+﻿using AequusRemake.Content.Tiles.PollutedOcean.Scrap;
+using AequusRemake.Core.CodeGeneration;
 using System;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Utilities;
 
-namespace Aequu2;
+namespace AequusRemake;
 
 public partial class AequusPlayer {
     public bool oldTouchingScrapBlock;
@@ -71,7 +71,7 @@ public partial class AequusPlayer {
                             SoundEngine.PlaySound(SoundID.SplashWeak);
                             Dust.NewDust(new Vector2(x, bottomY - i).ToWorldCoordinates(0f, 0f), 16, 16, GetScrapDustId(Main.rand));
                             if (Main.rand.NextBool(5)) {
-                                Gore.NewGore(new EntitySource_TileInteraction(Player, x, bottomY - i, "Aequu2: Scrap Block"), new Vector2(x, bottomY - i).ToWorldCoordinates() + Main.rand.NextVector2Square(-8f, 8f), Main.rand.NextVector2Unit(), GetScrapGoreId(Main.rand));
+                                Gore.NewGore(new EntitySource_TileInteraction(Player, x, bottomY - i, "AequusRemake: Scrap Block"), new Vector2(x, bottomY - i).ToWorldCoordinates() + Main.rand.NextVector2Square(-8f, 8f), Main.rand.NextVector2Unit(), GetScrapGoreId(Main.rand));
                             }
                         }
                     }
@@ -118,7 +118,7 @@ public partial class AequusPlayer {
                     for (int i = 0; i < amount; i++) {
                         Dust.NewDustPerfect(effectPosition + Main.rand.NextVector2Square(-8f, 8f), GetScrapDustId(Main.rand), new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-amount / 10f, 0f)), Scale: Main.rand.NextFloat(0.75f, 2f));
                         if (Main.rand.NextBool(5)) {
-                            Gore.NewGore(new EntitySource_TileInteraction(Player, x, bottomY, "Aequu2: Scrap Block"), effectPosition + Main.rand.NextVector2Square(-8f, 8f), new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-amount / 10f, 0f)), GetScrapGoreId(Main.rand));
+                            Gore.NewGore(new EntitySource_TileInteraction(Player, x, bottomY, "AequusRemake: Scrap Block"), effectPosition + Main.rand.NextVector2Square(-8f, 8f), new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-amount / 10f, 0f)), GetScrapGoreId(Main.rand));
                         }
                     }
                 }

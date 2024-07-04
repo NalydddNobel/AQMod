@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequu2.Core.CodeGeneration;
+namespace AequusRemake.Core.CodeGeneration;
 
 internal partial class Gen {
     /// <summary>Adds a reference to the target method in <see cref="AequusItem.UseItem"/>.</summary>

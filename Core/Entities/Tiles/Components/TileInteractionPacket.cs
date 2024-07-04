@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using tModLoaderExtended.Networking;
 
-namespace Aequu2.Core.Entities.Tiles.Components;
+namespace AequusRemake.Core.Entities.Tiles.Components;
 
 public class TileInteractionPacket : PacketHandler {
     public void Send(int i, int j, int toClient = -1, int ignoreClient = -1) {

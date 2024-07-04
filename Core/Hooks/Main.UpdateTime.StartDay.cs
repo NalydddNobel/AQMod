@@ -1,7 +1,7 @@
-﻿using Aequu2.Core.Systems;
-using Aequu2.Content.TownNPCs;
+﻿using AequusRemake.Core.Systems;
+using AequusRemake.Content.TownNPCs;
 
-namespace Aequu2.Core.Hooks;
+namespace AequusRemake.Core.Hooks;
 
 public partial class TerrariaHooks {
     /// <summary>Handles incrementing the day counter, and the NPC wants to settle down system.</summary>

@@ -1,10 +1,10 @@
-﻿using Aequu2.Content.Tiles.Meadow;
-using Aequu2.Core.Components;
+﻿using AequusRemake.Content.Tiles.Meadow;
+using AequusRemake.Core.Components;
 using System;
 using Terraria.IO;
 using Terraria.WorldBuilding;
 
-namespace Aequu2.Content.WorldGeneration;
+namespace AequusRemake.Content.WorldGeneration;
 
 public class SkyMeadowsStep : AGenStep {
     public override string InsertAfter => "Floating Islands";

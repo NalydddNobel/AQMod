@@ -1,13 +1,13 @@
-﻿using Aequu2.Content.Configuration;
-using Aequu2.Content.CrossMod.CalamityModSupport;
-using Aequu2.Content.Tiles.PollutedOcean.PolymerSands;
-using Aequu2.Core.Components;
+﻿using AequusRemake.Content.Configuration;
+using AequusRemake.Content.CrossMod.CalamityModSupport;
+using AequusRemake.Content.Tiles.PollutedOcean.PolymerSands;
+using AequusRemake.Core.Components;
 using System;
 using Terraria.IO;
 using Terraria.Utilities;
 using Terraria.WorldBuilding;
 
-namespace Aequu2.Content.Biomes.PollutedOcean.Generation;
+namespace AequusRemake.Content.Biomes.PollutedOcean.Generation;
 
 public sealed class PollutedBiomeStep : AGenStep {
     public override string InsertAfter => "Create Ocean Caves";

@@ -1,6 +1,6 @@
-﻿using Aequu2.Core.ContentGeneration;
-using Aequu2.Core.Entities.Tiles.Components;
-using Aequu2.Core.Graphics.Tiles;
+﻿using AequusRemake.Core.ContentGeneration;
+using AequusRemake.Core.Entities.Tiles.Components;
+using AequusRemake.Core.Graphics.Tiles;
 using System;
 using System.IO;
 using Terraria.Audio;
@@ -8,7 +8,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequu2.Content.Tiles.Conductive;
+namespace AequusRemake.Content.Tiles.Conductive;
 
 [LegacyName("ConductiveBlockTile")]
 public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRenderer, ICustomPlaceSound, ITouchEffects, IAddRecipes {
@@ -19,7 +19,7 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
         ModItem item = new InstancedTileItem(this, value: Item.buyPrice(silver: 1));
         Mod.AddContent(item);
 
-        Aequu2.OnAddRecipes += () => {
+        AequusRemake.OnAddRecipes += () => {
             item.CreateRecipe()
                 .AddIngredient(BarItem, 1)
                 .AddTile(TileID.Furnaces)
@@ -174,7 +174,7 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
         }
     }
 
-    public void Touch(int i, int j, Player player, AequusPlayer Aequu2Player) {
+    public void Touch(int i, int j, Player player, AequusPlayer AequusRemakePlayer) {
         if (!ConductiveSystem.ActivationPoints.TryGetValue(new(i, j), out var effect) || effect.electricAnimation < 0.5f) {
             return;
         }

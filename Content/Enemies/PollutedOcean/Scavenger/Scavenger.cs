@@ -1,11 +1,11 @@
-﻿using Aequu2.Content.Biomes.PollutedOcean;
-using Aequu2.Content.Items.Accessories.ScavengerBag;
-using Aequu2.Content.Items.Tools.Keys;
-using Aequu2.Core.Components.NPCs;
-using Aequu2.Core.ContentGeneration;
-using Aequu2.Core.Entities.Bestiary;
-using Aequu2.Core.Entities.NPCs;
-using Aequu2.DataSets;
+﻿using AequusRemake.Content.Biomes.PollutedOcean;
+using AequusRemake.Content.Items.Accessories.ScavengerBag;
+using AequusRemake.Content.Items.Tools.Keys;
+using AequusRemake.Core.Components.NPCs;
+using AequusRemake.Core.ContentGeneration;
+using AequusRemake.Core.Entities.Bestiary;
+using AequusRemake.Core.Entities.NPCs;
+using AequusRemake.DataSets;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,7 +17,7 @@ using Terraria.ModLoader.IO;
 using Terraria.Utilities;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequu2.Content.Enemies.PollutedOcean.Scavenger;
+namespace AequusRemake.Content.Enemies.PollutedOcean.Scavenger;
 
 [AutoloadBanner]
 [AutoloadStatue]
@@ -206,15 +206,15 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         if (!armor[SLOT_ACCS].IsAir) {
             playerDummy.ApplyEquipFunctional(armor[SLOT_ACCS], hideVisual: false);
         }
-        if (NPC.TryGetGlobalNPC<Aequu2NPC>(out var Aequu2NPC)) {
+        if (NPC.TryGetGlobalNPC<AequusRemakeNPC>(out var AequusRemakeNPC)) {
             acceleration += playerDummy.runAcceleration;
-            Aequu2NPC.statSpeedX += playerDummy.moveSpeed - 1f;
+            AequusRemakeNPC.statSpeedX += playerDummy.moveSpeed - 1f;
             runSpeedCap += playerDummy.accRunSpeed / 1.5f;
             if (NPC.velocity.Y < 0f) {
                 if (playerDummy.jumpBoost) {
-                    Aequu2NPC.statSpeedY += 0.5f;
+                    AequusRemakeNPC.statSpeedY += 0.5f;
                 }
-                Aequu2NPC.statSpeedY += playerDummy.jumpSpeedBoost / 4f;
+                AequusRemakeNPC.statSpeedY += playerDummy.jumpSpeedBoost / 4f;
             }
         }
 

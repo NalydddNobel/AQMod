@@ -16,7 +16,7 @@ InfoDisplays: {
 KeyUnbound: 按键未绑定
 
 Controls: {
-	Unbound: "{$Mods.Aequu2.KeyUnbound}"
+	Unbound: "{$Mods.AequusRemake.KeyUnbound}"
 	LeftControl: 左Control键
 	RightControl: 右Shift键
 	Control: Shift键

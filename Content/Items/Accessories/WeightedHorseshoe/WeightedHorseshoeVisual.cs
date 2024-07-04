@@ -1,8 +1,8 @@
-﻿using Aequu2.Core.PhysicsBehaviors;
+﻿using AequusRemake.Core.PhysicsBehaviors;
 using System;
 using Terraria.GameContent;
 
-namespace Aequu2.Content.Items.Accessories.WeightedHorseshoe;
+namespace AequusRemake.Content.Items.Accessories.WeightedHorseshoe;
 
 public class WeightedHorseshoeVisual : ModProjectile {
     public VIStringTwoPoint<VINode> horseshoeAnvilRope;
@@ -19,11 +19,11 @@ public class WeightedHorseshoeVisual : ModProjectile {
 
     public override void AI() {
         var player = Main.player[Projectile.owner];
-        var Aequu2Player = player.GetModPlayer<AequusPlayer>();
+        var AequusRemakePlayer = player.GetModPlayer<AequusPlayer>();
         if (player.DeadOrGhost) {
-            Aequu2Player.showHorseshoeAnvilRope = false;
+            AequusRemakePlayer.showHorseshoeAnvilRope = false;
         }
-        if (Aequu2Player.showHorseshoeAnvilRope) {
+        if (AequusRemakePlayer.showHorseshoeAnvilRope) {
             Projectile.timeLeft = 2;
         }
         float chainLength = 46f;
@@ -128,8 +128,8 @@ public class WeightedHorseshoeVisual : ModProjectile {
         }
 
         var player = Main.player[Projectile.owner];
-        var Aequu2Player = player.GetModPlayer<AequusPlayer>();
-        Main.instance.PrepareDrawnEntityDrawing(Projectile, Aequu2Player.cHorseshoeAnvil, null);
+        var AequusRemakePlayer = player.GetModPlayer<AequusPlayer>();
+        Main.instance.PrepareDrawnEntityDrawing(Projectile, AequusRemakePlayer.cHorseshoeAnvil, null);
         var stringColor = DrawHelper.GetYoyoStringColor(player.stringColor);
         for (int i = 1; i < horseshoeAnvilRope.segments.Length; i++) {
             var start = horseshoeAnvilRope.segments[i].Position;

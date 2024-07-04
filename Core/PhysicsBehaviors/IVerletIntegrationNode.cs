@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core.PhysicsBehaviors;
+﻿namespace AequusRemake.Core.PhysicsBehaviors;
 
 public interface IVerletIntegrationNode {
     Vector2 Position { get; set; }

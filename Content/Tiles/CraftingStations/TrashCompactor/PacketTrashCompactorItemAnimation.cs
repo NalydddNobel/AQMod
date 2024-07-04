@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using tModLoaderExtended.Networking;
 
-namespace Aequu2.Content.Tiles.CraftingStations.TrashCompactor;
+namespace AequusRemake.Content.Tiles.CraftingStations.TrashCompactor;
 
 public class PacketTrashCompactorItemAnimation : PacketHandler {
     public void Send(int x, int y, int totalAmount, int itemType, int ignoreClient = -1) {

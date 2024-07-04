@@ -1,38 +1,38 @@
 DayOfTheWeek: Cuando sea {0}
 BetweenDays: Entre {0}-{1}
 InPollutedOcean: En el Oceano Contaminado
-// DownedAquaticBoss: Mods.Aequu2.Condition.DownedAquaticBoss
+// DownedAquaticBoss: Mods.AequusRemake.Condition.DownedAquaticBoss
 DownedCosmicBoss: Despues de derrotar a Ultra Starite
 DownedTrueCosmicBoss: Despues de derrotar a Omega Starite
 DownedDemonBoss: Despues de completar tu primer Asedio Demoniaco
-// DownedTrueDemonBoss: Mods.Aequu2.Condition.DownedTrueDemonBoss
+// DownedTrueDemonBoss: Mods.AequusRemake.Condition.DownedTrueDemonBoss
 DownedAtmosphereBossFlame: Despues de luchar contra el Epectro Rojo
 DownedAtmosphereBossFrost: Despues de luchar contra el Calamar espacial
 DownedTrueAtmosphereBoss: Despues de derrotar al Demonio de Polvo
-// DownedOrganicBossMight: Mods.Aequu2.Condition.DownedOrganicBossMight
-// DownedOrganicBossSight: Mods.Aequu2.Condition.DownedOrganicBossSight
-// DownedOrganicBossFright: Mods.Aequu2.Condition.DownedOrganicBossFright
-// DownedTrueFinalBoss: Mods.Aequu2.Condition.DownedTrueFinalBoss
-// NotDownedAquaticBoss: Mods.Aequu2.Condition.NotDownedAquaticBoss
+// DownedOrganicBossMight: Mods.AequusRemake.Condition.DownedOrganicBossMight
+// DownedOrganicBossSight: Mods.AequusRemake.Condition.DownedOrganicBossSight
+// DownedOrganicBossFright: Mods.AequusRemake.Condition.DownedOrganicBossFright
+// DownedTrueFinalBoss: Mods.AequusRemake.Condition.DownedTrueFinalBoss
+// NotDownedAquaticBoss: Mods.AequusRemake.Condition.NotDownedAquaticBoss
 NotDownedCosmicBoss: Antes de derrotar a Ultra Starite
 NotDownedTrueCosmicBoss: Antes de derrotar a Omega Starite
 NotDownedDemonBoss: Antes de completar tu primer Asedio Demoniaco
-// NotDownedTrueDemonBoss: Mods.Aequu2.Condition.NotDownedTrueDemonBoss
+// NotDownedTrueDemonBoss: Mods.AequusRemake.Condition.NotDownedTrueDemonBoss
 NotDownedAtmosphereBossFlame: Antes de luchar contra el Epectro Rojo
 NotDownedAtmosphereBossFrost: Antes de luchar contra el Calamar espacial
 NotDownedTrueAtmosphereBoss: Ants de derrotar al Demonio de Polvo
-// NotDownedOrganicBossMight: Mods.Aequu2.Condition.NotDownedOrganicBossMight
-// NotDownedOrganicBossSight: Mods.Aequu2.Condition.NotDownedOrganicBossSight
-// NotDownedOrganicBossFright: Mods.Aequu2.Condition.NotDownedOrganicBossFright
-// NotDownedTrueFinalBoss: Mods.Aequu2.Condition.NotDownedTrueFinalBoss
+// NotDownedOrganicBossMight: Mods.AequusRemake.Condition.NotDownedOrganicBossMight
+// NotDownedOrganicBossSight: Mods.AequusRemake.Condition.NotDownedOrganicBossSight
+// NotDownedOrganicBossFright: Mods.AequusRemake.Condition.NotDownedOrganicBossFright
+// NotDownedTrueFinalBoss: Mods.AequusRemake.Condition.NotDownedTrueFinalBoss
 ConfigIsTrue: Si la configuracion {1}/{0} esta activada
-// SilverOre: Mods.Aequu2.Condition.SilverOre
-// DownedSalamancer: Mods.Aequu2.Condition.DownedSalamancer
-// DownedDustDevil: Mods.Aequu2.Condition.DownedDustDevil
-// DownedRedSprite: Mods.Aequu2.Condition.DownedRedSprite
-// DownedSpaceSquid: Mods.Aequu2.Condition.DownedSpaceSquid
-// UsedReforgeBook: Mods.Aequu2.Condition.UsedReforgeBook
-// DownedOmegaStarite: Mods.Aequu2.Condition.DownedOmegaStarite
-// DownedUltraStarite: Mods.Aequu2.Condition.DownedUltraStarite
-// DownedDemonSiege: Mods.Aequu2.Condition.DownedDemonSiege
-// MetOccultist: Mods.Aequu2.Condition.MetOccultist
+// SilverOre: Mods.AequusRemake.Condition.SilverOre
+// DownedSalamancer: Mods.AequusRemake.Condition.DownedSalamancer
+// DownedDustDevil: Mods.AequusRemake.Condition.DownedDustDevil
+// DownedRedSprite: Mods.AequusRemake.Condition.DownedRedSprite
+// DownedSpaceSquid: Mods.AequusRemake.Condition.DownedSpaceSquid
+// UsedReforgeBook: Mods.AequusRemake.Condition.UsedReforgeBook
+// DownedOmegaStarite: Mods.AequusRemake.Condition.DownedOmegaStarite
+// DownedUltraStarite: Mods.AequusRemake.Condition.DownedUltraStarite
+// DownedDemonSiege: Mods.AequusRemake.Condition.DownedDemonSiege
+// MetOccultist: Mods.AequusRemake.Condition.MetOccultist

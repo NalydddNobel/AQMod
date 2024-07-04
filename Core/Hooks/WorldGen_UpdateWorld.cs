@@ -1,7 +1,7 @@
-﻿using Aequu2.Core.Entities.Tiles.Components;
+﻿using AequusRemake.Core.Entities.Tiles.Components;
 using System;
 
-namespace Aequu2.Core.Hooks;
+namespace AequusRemake.Core.Hooks;
 
 public partial class TerrariaHooks {
     /// <summary>int1 = X, int2 = Y</summary>

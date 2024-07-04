@@ -1,7 +1,7 @@
-﻿using Aequu2.Core.Hooks;
-using Aequu2.Core.Entities.Tiles.Components;
+﻿using AequusRemake.Core.Hooks;
+using AequusRemake.Core.Entities.Tiles.Components;
 
-namespace Aequu2.Content.Tiles.PollutedOcean.Ambient.FloatingTrash;
+namespace AequusRemake.Content.Tiles.PollutedOcean.Ambient.FloatingTrash;
 
 public class FloatingTrashTile : FloatingTrashBase, ITouchEffects {
     public override string Texture => AequusTextures.Tile(TileID.Iron);
@@ -17,7 +17,7 @@ public class FloatingTrashTile : FloatingTrashBase, ITouchEffects {
         }
     }
 
-    public void Touch(int i, int j, Player player, AequusPlayer Aequu2Player) {
+    public void Touch(int i, int j, Player player, AequusPlayer AequusRemakePlayer) {
         var tile = Main.tile[i, j];
         tile.HasTile = false;
         if (Main.netMode != NetmodeID.SinglePlayer && Main.myPlayer == player.whoAmI) {

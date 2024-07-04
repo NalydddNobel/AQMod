@@ -1,6 +1,6 @@
-﻿using Aequu2.Core.Entites.Bestiary;
+﻿using AequusRemake.Core.Entites.Bestiary;
 
-namespace Aequu2.Content.Elements.Shadow;
+namespace AequusRemake.Content.Elements.Shadow;
 
 public class Shadow : VanillaElement {
     public Shadow() : base(ShadowFrame, Color.BlueViolet) { }

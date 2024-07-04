@@ -1,7 +1,7 @@
-﻿using Aequu2.Core.Graphics.Animations;
+﻿using AequusRemake.Core.Graphics.Animations;
 using Terraria.DataStructures;
 
-namespace Aequu2.Content.Tiles.PollutedOcean.Ambient.SeaPickles;
+namespace AequusRemake.Content.Tiles.PollutedOcean.Ambient.SeaPickles;
 
 public class SeaPickleLightTracker : ITileAnimation {
     private bool noPlayer = true;

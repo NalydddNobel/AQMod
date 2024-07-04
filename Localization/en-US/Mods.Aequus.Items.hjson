@@ -1062,7 +1062,7 @@ CleanserDrone: {
 	DisplayName: "{$NPCs.CleanserDrone.DisplayName}"
 	Tooltip:
 		'''
-		{$Mods.Aequu2.Items.PylonDrone.Tooltip}
+		{$Mods.AequusRemake.Items.PylonDrone.Tooltip}
 		Sprays solution to spread the pylon's biome
 		'''
 }
@@ -1071,7 +1071,7 @@ GunnerDrone: {
 	DisplayName: "{$NPCs.GunnerDrone.DisplayName}"
 	Tooltip:
 		'''
-		{$Mods.Aequu2.Items.PylonDrone.Tooltip}
+		{$Mods.AequusRemake.Items.PylonDrone.Tooltip}
 		Defends the area from enemies
 		'''
 }
@@ -1080,7 +1080,7 @@ HealerDrone: {
 	DisplayName: "{$NPCs.HealerDrone.DisplayName}"
 	Tooltip:
 		'''
-		{$Mods.Aequu2.Items.PylonDrone.Tooltip}
+		{$Mods.AequusRemake.Items.PylonDrone.Tooltip}
 		Heals wounded villagers and critters
 		'''
 }

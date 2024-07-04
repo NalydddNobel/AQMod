@@ -2,7 +2,7 @@
 using Terraria.DataStructures;
 using Terraria.GameContent;
 
-namespace Aequu2.Content.Dedicated.StudiesOfTheInkblot;
+namespace AequusRemake.Content.Dedicated.StudiesOfTheInkblot;
 
 public class StudiesOfTheInkblotProj : ModProjectile {
     public override void SetStaticDefaults() {

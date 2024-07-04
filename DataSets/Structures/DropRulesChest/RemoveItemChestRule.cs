@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using tModLoaderExtended.Terraria;
 
-namespace Aequu2.DataSets.Structures.DropRulesChest;
+namespace AequusRemake.DataSets.Structures.DropRulesChest;
 
 /// <summary>Usually used in conjunction with <see cref="ReplaceItemChestRule"/> to pull all of the item slots backwards after deleting the item.</summary>
 public class RemoveItemChestRule : IChestLootRule {

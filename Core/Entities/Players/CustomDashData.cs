@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core.Entities.Players;
+﻿namespace AequusRemake.Core.Entities.Players;
 
 public abstract class CustomDashData : ModType {
     protected sealed override void Register() {
@@ -20,22 +20,22 @@ public abstract class CustomDashData : ModType {
 
     public virtual bool ShowShield => false;
 
-    public virtual void OnHandledStart(Player player, AequusPlayer Aequu2Player, int direction) {
+    public virtual void OnHandledStart(Player player, AequusPlayer AequusRemakePlayer, int direction) {
     }
 
-    public virtual void OnDashVelocityApplied(Player player, AequusPlayer Aequu2Player, int direction) {
+    public virtual void OnDashVelocityApplied(Player player, AequusPlayer AequusRemakePlayer, int direction) {
     }
 
-    public virtual void OnApplyDash(Player player, AequusPlayer Aequu2Player) {
+    public virtual void OnApplyDash(Player player, AequusPlayer AequusRemakePlayer) {
     }
 
-    public virtual void OnUpdateRampDown(Player player, AequusPlayer Aequu2Player) {
+    public virtual void OnUpdateRampDown(Player player, AequusPlayer AequusRemakePlayer) {
     }
 
-    public virtual void OnUpdateDashDelay(Player player, AequusPlayer Aequu2Player) {
+    public virtual void OnUpdateDashDelay(Player player, AequusPlayer AequusRemakePlayer) {
     }
 
-    public virtual void OnPlayerFrame(Player player, AequusPlayer Aequu2Player) {
+    public virtual void OnPlayerFrame(Player player, AequusPlayer AequusRemakePlayer) {
         if (ShowShield) {
             if (player.velocity.Y != 0f) {
                 player.bodyFrame.Y = player.bodyFrame.Height * 6;
@@ -43,13 +43,13 @@ public abstract class CustomDashData : ModType {
         }
     }
 
-    public virtual void PreUpdateVisibleAccessories(Player player, AequusPlayer Aequu2Player) {
+    public virtual void PreUpdateVisibleAccessories(Player player, AequusPlayer AequusRemakePlayer) {
         if (ShowShield) {
             player.eocDash = 1;
         }
     }
 
-    public virtual void PostUpdateVisibleAccessories(Player player, AequusPlayer Aequu2Player) {
+    public virtual void PostUpdateVisibleAccessories(Player player, AequusPlayer AequusRemakePlayer) {
         if (ShowShield) {
             player.eocDash = 0;
         }

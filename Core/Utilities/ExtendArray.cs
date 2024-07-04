@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace Aequu2.Core.Utilities;
+namespace AequusRemake.Core.Utilities;
 
 public static class ExtendArray {
     /// <summary>Clears <paramref name="rent"/> and returns it to <paramref name="pool"/>.</summary>

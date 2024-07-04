@@ -1,7 +1,7 @@
 ﻿using Terraria.Audio;
 using Terraria.DataStructures;
 
-namespace Aequu2.Core.ContentGeneration;
+namespace AequusRemake.Core.ContentGeneration;
 
 public abstract class UnifiedWaterStyle : ModWaterStyle {
     public ModGore DropletType { get; private set; }

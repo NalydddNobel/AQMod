@@ -20,8 +20,8 @@
   ],
   "PhysicsGunBlocksLaser": [],
   "IsSmashablePot": [
-    "Aequu2/TrashPots1x1",
-    "Aequu2/TrashPots2x2",
+    "AequusRemake/TrashPots1x1",
+    "AequusRemake/TrashPots2x2",
     "Pots",
     "PotsEcho",
     "CalamityMod/SulphurousPots",

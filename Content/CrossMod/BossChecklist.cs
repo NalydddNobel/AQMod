@@ -1,10 +1,10 @@
-﻿using Aequu2.Core.CrossMod;
+﻿using AequusRemake.Core.CrossMod;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.Localization;
 
-namespace Aequu2.Content.CrossMod;
+namespace AequusRemake.Content.CrossMod;
 
 /// <summary><see href="link">https://github.com/JavidPack/BossChecklist/wiki/%5B1.4.4%5D-Boss-Log-Entry-Mod-Call#arguments</see></summary>
 internal class BossChecklist : SupportedMod<BossChecklist> {

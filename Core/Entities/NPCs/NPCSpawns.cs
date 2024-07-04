@@ -1,13 +1,13 @@
-﻿using Aequu2.Content.Biomes.PollutedOcean;
+﻿using AequusRemake.Content.Biomes.PollutedOcean;
 using System.Collections.Generic;
 
-namespace Aequu2.Core.Entities.NPCs;
+namespace AequusRemake.Core.Entities.NPCs;
 public class NPCSpawns : GlobalNPC {
-    /// <summary>A list of <see cref="ModBiome"/>s which will override Aequu2 biome spawns.</summary>
-    public readonly static List<ModBiome> OverrideAequu2Biomes = new();
+    /// <summary>A list of <see cref="ModBiome"/>s which will override AequusRemake biome spawns.</summary>
+    public readonly static List<ModBiome> OverrideAequusRemakeBiomes = new();
 
     public override void Unload() {
-        OverrideAequu2Biomes.Clear();
+        OverrideAequusRemakeBiomes.Clear();
     }
 
     public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns) {
@@ -25,7 +25,7 @@ public class NPCSpawns : GlobalNPC {
             return;
         }
 
-        foreach (var b in OverrideAequu2Biomes) {
+        foreach (var b in OverrideAequusRemakeBiomes) {
             if (spawnInfo.Player.InModBiome(b)) {
                 return;
             }
@@ -37,10 +37,5 @@ public class NPCSpawns : GlobalNPC {
         else if (spawnInfo.Player.InModBiome<PollutedOceanBiomeUnderground>()) {
             PollutedOceanSystem.PopulateUndergroundSpawnPool(pool, spawnInfo);
         }
-
-#if !DEBUG
-        Old.Common.NPCs.MimicEdits.AddPHMMimics(pool, in spawnInfo);
-        Old.Common.FakeHardmode.AddEnemies(pool, in spawnInfo);
-#endif
     }
 }

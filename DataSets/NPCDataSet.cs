@@ -1,9 +1,9 @@
-﻿using Aequu2.Core.Entites.Bestiary;
-using Aequu2.DataSets.Structures;
+﻿using AequusRemake.Core.Entites.Bestiary;
+using AequusRemake.DataSets.Structures;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace Aequu2.DataSets;
+namespace AequusRemake.DataSets;
 
 public class NPCDataSet : DataSet {
     /// <summary>NPCs in this set will not spawn a ice cube when killed by Snowgrave.</summary>

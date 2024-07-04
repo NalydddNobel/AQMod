@@ -8,7 +8,7 @@ using System.Linq;
 namespace SourceGenerators;
 
 public static class Utilities {
-    public const string Parent = "Aequu2";
+    public const string Parent = "AequusRemake";
     public const string ParentS = $"{Parent}/";
     public const string ParentD = $"{Parent}.";
     public const string TabForward = "    ";

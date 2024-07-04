@@ -1,6 +1,6 @@
-﻿using Aequu2.Core.Structures;
+﻿using AequusRemake.Core.Structures;
 
-namespace Aequu2.Core;
+namespace AequusRemake.Core;
 
 public partial class Commons {
     public class Refs {

@@ -1,6 +1,6 @@
 ﻿using Terraria.UI;
 
-namespace Aequu2.Core.UI;
+namespace AequusRemake.Core.UI;
 
 /// <summary>Used to simplify UI implementation. Only loads in singleplayer or on multiplayer clients.</summary>
 [Autoload(Side = ModSide.Client)]
@@ -15,7 +15,7 @@ public abstract class UILayer : GameInterfaceLayer, IUserInterfaceLayer, ILoad {
     /// <param name="InsertLayer">Name of the layer to search the index of.</param>
     /// <param name="ScaleType">Scale Type of this layer.</param>
     /// <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
-    protected UILayer(string Name, string InsertLayer, InterfaceScaleType ScaleType, int InsertOffset = 1) : base("Aequu2: " + Name, ScaleType) {
+    protected UILayer(string Name, string InsertLayer, InterfaceScaleType ScaleType, int InsertOffset = 1) : base("AequusRemake: " + Name, ScaleType) {
         this.InsertLayer = InsertLayer;
         this.InsertOffset = InsertOffset;
     }

@@ -1,14 +1,14 @@
-﻿using Aequu2.Core.Entities.Players;
+﻿using AequusRemake.Core.Entities.Players;
 using Terraria.Graphics.Shaders;
 
-namespace Aequu2.Content.Items.Accessories.FlashwayShield;
+namespace AequusRemake.Content.Items.Accessories.FlashwayShield;
 
 public class FlashwayShieldDashData : CustomDashData {
     public override float DashSpeed => FlashwayShield.DashSpeed;
 
     public override bool ShowShield => true;
 
-    public override void OnDashVelocityApplied(Player player, AequusPlayer Aequu2Player, int direction) {
+    public override void OnDashVelocityApplied(Player player, AequusPlayer AequusRemakePlayer, int direction) {
         for (int i = 0; i < 10; i++) {
             var d = Terraria.Dust.NewDustDirect(player.position, player.width, player.height, DustID.Electric);
             d.velocity *= 0.2f;
@@ -18,7 +18,7 @@ public class FlashwayShieldDashData : CustomDashData {
         }
     }
 
-    public override void OnUpdateRampDown(Player player, AequusPlayer Aequu2Player) {
+    public override void OnUpdateRampDown(Player player, AequusPlayer AequusRemakePlayer) {
         if (player.miscCounter % 4 == 0) {
             var d = Terraria.Dust.NewDustDirect(player.position, player.width, player.height, DustID.Electric);
             d.velocity *= 0.3f;

@@ -1,9 +1,9 @@
-﻿using Aequu2.Core.Graphics.Animations;
+﻿using AequusRemake.Core.Graphics.Animations;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent.Shaders;
 
-namespace Aequu2.Content.Fishing.CrabPots;
+namespace AequusRemake.Content.Fishing.CrabPots;
 
 public class AnimationPlaceCrabPot : ITileAnimation {
     public float AnimationTime;

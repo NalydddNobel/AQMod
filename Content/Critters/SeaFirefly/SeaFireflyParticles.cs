@@ -1,9 +1,9 @@
-﻿using Aequu2.Core.Concurrent;
-using Aequu2.Core.Graphics;
-using Aequu2.Core.Particles;
+﻿using AequusRemake.Core.Concurrent;
+using AequusRemake.Core.Graphics;
+using AequusRemake.Core.Particles;
 using System;
 
-namespace Aequu2.Content.Critters.SeaFirefly;
+namespace AequusRemake.Content.Critters.SeaFirefly;
 
 public class SeaFireflyClusters : ConcurrentParticles<SeaFireflyClusters.Particle> {
     public override void Activate() {

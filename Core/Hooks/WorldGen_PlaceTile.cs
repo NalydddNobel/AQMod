@@ -1,6 +1,6 @@
-﻿using Aequu2.Core.Entities.Tiles.Components;
+﻿using AequusRemake.Core.Entities.Tiles.Components;
 
-namespace Aequu2.Core.Hooks;
+namespace AequusRemake.Core.Hooks;
 
 public partial class TerrariaHooks {
     private static void On_WorldGen_PlaceTile_TryPlayCustomSound(int i, int j, ModTile modTile, bool forced, int plr, int style, bool PlaceTile) {

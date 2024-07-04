@@ -1,7 +1,7 @@
-﻿using Aequu2.Core.Components.Buffs;
+﻿using AequusRemake.Core.Components.Buffs;
 
-namespace Aequu2.Core.Entities.Buffs;
-public partial class Aequu2Buff : GlobalBuff {
+namespace AequusRemake.Core.Entities.Buffs;
+public partial class AequusRemakeBuff : GlobalBuff {
     public override void Load() {
         On_NPC.AddBuff += NPC_AddBuff;
         On_Player.AddBuff += Player_AddBuff;
@@ -22,23 +22,23 @@ public partial class Aequu2Buff : GlobalBuff {
         IOnAddBuff onAddBuff = BuffLoader.GetBuff(type) as IOnAddBuff;
         onAddBuff?.PreAddBuff(npc, hasBuff, ref time, ref quiet);
         //if (Main.debuff[type] || BuffSets.ProbablyFireDebuff.Contains(type)) {
-        //    var player = Aequu2Player.CurrentPlayerContext();
+        //    var player = AequusRemakePlayer.CurrentPlayerContext();
         //    if (player != null) {
-        //        var Aequu2 = player.Aequu2();
-        //        time = (int)(time * Aequu2.DebuffsInfliction.GetBuffMultipler(player, type));
-        //        if (Aequu2.accResetEnemyDebuffs && !npc.HasBuff(type)) {
+        //        var AequusRemake = player.AequusRemake();
+        //        time = (int)(time * AequusRemake.DebuffsInfliction.GetBuffMultipler(player, type));
+        //        if (AequusRemake.accResetEnemyDebuffs && !npc.HasBuff(type)) {
         //            for (int i = 0; i < NPC.maxBuffs; i++) {
         //                if (npc.buffTime[i] > 0 && npc.buffType[i] > 0 && IsDebuff(npc.buffType[i])) {
         //                    npc.buffTime[i] = Math.Max(npc.buffTime[i], 180);
         //                }
         //            }
         //        }
-        //        if (Aequu2.soulCrystalDamage > npc.Aequu2().debuffDamage) {
-        //            npc.Aequu2().debuffDamage = (byte)Aequu2.soulCrystalDamage;
+        //        if (AequusRemake.soulCrystalDamage > npc.AequusRemake().debuffDamage) {
+        //            npc.AequusRemake().debuffDamage = (byte)AequusRemake.soulCrystalDamage;
         //            if (Main.netMode != NetmodeID.SinglePlayer) {
         //                var p = ExtendedMod.GetPacket(PacketType.SendDebuffFlatDamage);
         //                p.Write(npc.whoAmI);
-        //                p.Write((byte)Aequu2.soulCrystalDamage);
+        //                p.Write((byte)AequusRemake.soulCrystalDamage);
         //                p.Send();
         //            }
         //        }

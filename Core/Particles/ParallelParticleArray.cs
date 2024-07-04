@@ -1,6 +1,6 @@
 ﻿using ReLogic.Threading;
 
-namespace Aequu2.Core.Particles;
+namespace AequusRemake.Core.Particles;
 
 /// <summary>
 /// A basic particle array system which updates particles in parallel.

@@ -1,10 +1,10 @@
-﻿using Aequu2.Core.Systems;
+﻿using AequusRemake.Core.Systems;
 using System;
 using System.Reflection;
 using Terraria.Localization;
 using Terraria.ModLoader.Config;
 
-namespace Aequu2.Core;
+namespace AequusRemake.Core;
 
 public partial class Commons {
     public class Conditions {
@@ -13,7 +13,7 @@ public partial class Commons {
         /// <param name="lastDay">A <see cref="DayOfWeek"/> to compare against <see cref="TimeSystem.DayOfTheWeek"/>.</param>
         /// <returns>A condition for a specific time range between two days of the week.</returns>
         public static Condition BetweenDays(DayOfWeek firstDay, DayOfWeek lastDay) {
-            LocalizedText text = Language.GetText("Mods.Aequu2.Condition.BetweenDays")
+            LocalizedText text = Language.GetText("Mods.AequusRemake.Condition.BetweenDays")
                 .WithFormatArgs(XLanguage.DayOfWeek(firstDay), XLanguage.DayOfWeek(lastDay));
 
             if (firstDay > lastDay) {
@@ -31,7 +31,7 @@ public partial class Commons {
         /// <param name="dayOfWeek">The <see cref="DayOfWeek"/> to compare against <see cref="TimeSystem.DayOfTheWeek"/>.</param>
         /// <returns>A condition for a specific day of the week.</returns>
         public static Condition DayOfTheWeek(DayOfWeek dayOfWeek) {
-            return new Condition(Language.GetText("Mods.Aequu2.Condition.DayOfTheWeek").WithFormatArgs(XLanguage.DayOfWeek(dayOfWeek)),
+            return new Condition(Language.GetText("Mods.AequusRemake.Condition.DayOfTheWeek").WithFormatArgs(XLanguage.DayOfWeek(dayOfWeek)),
                 () => TimeSystem.DayOfTheWeek == dayOfWeek);
         }
         #endregion
@@ -39,7 +39,7 @@ public partial class Commons {
         #region Config
         /// <returns><inheritdoc cref="Config(ModConfig, string, LocalizedText, Func{object, bool})"/> Defaults to checking if the value equals true.</returns>
         public static Condition ConfigIsTrue(ModConfig config, string settingName) {
-            return Config(config, settingName, Language.GetText("Mods.Aequu2.Condition.ConfigIsTrue"), (value) => value.Equals(true));
+            return Config(config, settingName, Language.GetText("Mods.AequusRemake.Condition.ConfigIsTrue"), (value) => value.Equals(true));
         }
         /// <returns>A condition which depends on a certain config setting.</returns>
         public static Condition Config(ModConfig config, string settingName, LocalizedText description, Func<object, bool> CheckSetting) {

@@ -1,9 +1,9 @@
-﻿using Aequu2.Core.CodeGeneration;
+﻿using AequusRemake.Core.CodeGeneration;
 using System.IO;
 using System.Runtime.CompilerServices;
 using Terraria.ModLoader.IO;
 
-namespace Aequu2.Core.Utilities;
+namespace AequusRemake.Core.Utilities;
 
 internal static class SourceGeneratorExtensions {
     // TODO -- Optimize booleans?

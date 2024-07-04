@@ -1,8 +1,8 @@
-﻿using Aequu2.Content.CrossMod;
-using Aequu2.Core.ContentGeneration;
-using Aequu2.Core.Entities.Items.Dedications;
+﻿using AequusRemake.Content.CrossMod;
+using AequusRemake.Core.ContentGeneration;
+using AequusRemake.Core.Entities.Items.Dedications;
 
-namespace Aequu2.Content.Dedicated.Familiar;
+namespace AequusRemake.Content.Dedicated.Familiar;
 
 public class FamiliarPet : UnifiedModPet {
     public override string Texture => AequusTextures.NPC(NPCID.Guide);

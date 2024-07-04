@@ -1,19 +1,19 @@
-﻿using Aequu2.Content.Tiles.Furniture.Trash;
-using Aequu2.Content.Tiles.PollutedOcean.Ambient;
-using Aequu2.Content.Tiles.PollutedOcean.Ambient.Dripstones;
-using Aequu2.Content.Tiles.PollutedOcean.Ambient.Pots;
-using Aequu2.Content.Tiles.PollutedOcean.Ambient.SeaPickles;
-using Aequu2.Core.Components;
-using Aequu2.Core.Entities.Tiles;
-using Aequu2.Core.Entities.Tiles.Rubblemaker;
-using Aequu2.DataSets;
-using Aequu2.DataSets.Structures.DropRulesChest;
-using Aequu2.DataSets.Structures.Enums;
+﻿using AequusRemake.Content.Tiles.Furniture.Trash;
+using AequusRemake.Content.Tiles.PollutedOcean.Ambient;
+using AequusRemake.Content.Tiles.PollutedOcean.Ambient.Dripstones;
+using AequusRemake.Content.Tiles.PollutedOcean.Ambient.Pots;
+using AequusRemake.Content.Tiles.PollutedOcean.Ambient.SeaPickles;
+using AequusRemake.Core.Components;
+using AequusRemake.Core.Entities.Tiles;
+using AequusRemake.Core.Entities.Tiles.Rubblemaker;
+using AequusRemake.DataSets;
+using AequusRemake.DataSets.Structures.DropRulesChest;
+using AequusRemake.DataSets.Structures.Enums;
 using System;
 using Terraria.IO;
 using Terraria.WorldBuilding;
 
-namespace Aequu2.Content.Biomes.PollutedOcean.Generation;
+namespace AequusRemake.Content.Biomes.PollutedOcean.Generation;
 internal class PollutedDecorationStep : AGenStep {
     public override string InsertAfter => "Pots";
 

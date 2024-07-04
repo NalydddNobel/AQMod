@@ -1,6 +1,6 @@
 ﻿using ReLogic.Content;
 
-namespace Aequu2.Core.Utilities;
+namespace AequusRemake.Core.Utilities;
 
 public static class ExtendTexture {
     public static Texture2D Wait(Asset<Texture2D> Asset) {

@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core.Structures;
+﻿namespace AequusRemake.Core.Structures;
 
 public delegate ref TResult RefFunc<TResult>();
 public delegate ref TResult RefFunc<T1, TResult>(T1 t);

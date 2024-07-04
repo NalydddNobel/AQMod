@@ -1,11 +1,11 @@
-﻿using Aequu2.Core.Entities.Items.Components;
-using Aequu2.Core.Graphics;
-using Aequu2.DataSets;
+﻿using AequusRemake.Core.Entities.Items.Components;
+using AequusRemake.Core.Graphics;
+using AequusRemake.DataSets;
 using Newtonsoft.Json;
 using Terraria.Audio;
 using Terraria.DataStructures;
 
-namespace Aequu2.Content.Items.Tools.Keychain;
+namespace AequusRemake.Content.Items.Tools.Keychain;
 
 public partial class Keychain : ModItem, IRightClickOverrideWhenHovered, IOnConsumedInRecipe {
     public const int KEYS_FRAME_COUNT = 5;
@@ -36,7 +36,7 @@ public partial class Keychain : ModItem, IRightClickOverrideWhenHovered, IOnCons
         player.GetModPlayer<KeychainPlayer>().hasKeyChain = true;
     }
 
-    bool IRightClickOverrideWhenHovered.RightClickOverrideWhenHovered(ref Item heldItem, Item[] inv, int context, int slot, Player player, AequusPlayer Aequu2) {
+    bool IRightClickOverrideWhenHovered.RightClickOverrideWhenHovered(ref Item heldItem, Item[] inv, int context, int slot, Player player, AequusPlayer AequusRemake) {
         if (Main.keyState.PressingControl() && Main.mouseRight && Main.mouseRightRelease) {
             Main.LocalPlayer.GetModPlayer<KeychainPlayer>().SpewItems(Main.LocalPlayer.GetSource_ItemUse(Item));
             return true;

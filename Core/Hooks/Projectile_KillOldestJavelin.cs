@@ -1,6 +1,6 @@
-﻿using Aequu2.Core.Entities.Projectiles;
+﻿using AequusRemake.Core.Entities.Projectiles;
 
-namespace Aequu2.Core.Hooks;
+namespace AequusRemake.Core.Hooks;
 
 public partial class TerrariaHooks {
     private static void On_Projectile_KillOldestJavelin(On_Projectile.orig_KillOldestJavelin orig, int protectedProjectileIndex, int projectileType, int targetNPCIndex, Point[] bufferForScan) {

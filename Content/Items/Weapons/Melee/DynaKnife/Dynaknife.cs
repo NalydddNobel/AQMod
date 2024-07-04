@@ -1,9 +1,9 @@
-﻿using Aequu2.Content.Graphics.Particles;
-using Aequu2.Core.Entities.Items.Components;
+﻿using AequusRemake.Content.Graphics.Particles;
+using AequusRemake.Core.Entities.Items.Components;
 using System;
 using tModLoaderExtended.GlowMasks;
 
-namespace Aequu2.Content.Items.Weapons.Melee.DynaKnife;
+namespace AequusRemake.Content.Items.Weapons.Melee.DynaKnife;
 
 [LegacyName("CrystalDagger", "Mallet")]
 [AutoloadGlowMask]

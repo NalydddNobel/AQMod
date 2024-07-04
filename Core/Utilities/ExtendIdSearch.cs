@@ -1,6 +1,6 @@
 ﻿using ReLogic.Reflection;
 
-namespace Aequu2.Core.Utilities;
+namespace AequusRemake.Core.Utilities;
 
 public static class ExtendIdSearch {
     public static string GetNPCName(int Id) {
@@ -9,7 +9,7 @@ public static class ExtendIdSearch {
 
     private static string Get<TID>(int Id, IModType modType, IdDictionary idDictionary) where TID : class {
         if (idDictionary.TryGetName(Id, out string name)) {
-            return name.Replace("Aequu2/", "");
+            return name.Replace("AequusRemake/", "");
         }
 
         if (modType != null) {

@@ -5,7 +5,7 @@ using Terraria.GameContent;
 using Terraria.Map;
 using Terraria.UI;
 
-namespace Aequu2.Content.TownNPCs.SkyMerchant;
+namespace AequusRemake.Content.TownNPCs.SkyMerchant;
 
 public partial class SkyMerchant {
     public readonly struct TextureDrawSet {

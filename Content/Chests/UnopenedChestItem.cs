@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Content.Chests;
+﻿namespace AequusRemake.Content.Chests;
 
 /// <summary>Item used to determine if a chest has been opened or not.</summary>
 public class UnopenedChestItem : ModItem {

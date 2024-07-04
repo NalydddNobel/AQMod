@@ -1,9 +1,9 @@
-﻿using Aequu2.Core.Entities.Items.Dedications;
+﻿using AequusRemake.Core.Entities.Items.Dedications;
 using System.Collections.Generic;
 using Terraria.Localization;
 using tModLoaderExtended.Terraria.GameContent;
 
-namespace Aequu2.Content.Dedicated.BeyondCoin;
+namespace AequusRemake.Content.Dedicated.BeyondCoin;
 
 public class ShimmerCoin : ModItem, IShimmerOverride {
     public static int TimesUsed { get; set; }
@@ -38,7 +38,7 @@ public class ShimmerCoin : ModItem, IShimmerOverride {
     }
 
     public override void ModifyTooltips(List<TooltipLine> tooltips) {
-        tooltips.AddTooltip(new TooltipLine(Mod, "Uses", Language.GetTextValue("Mods.Aequu2.Items.CommonTooltips.UsedXOfXTimes", TimesUsed, MaxTimesUsed)));
+        tooltips.AddTooltip(new TooltipLine(Mod, "Uses", Language.GetTextValue("Mods.AequusRemake.Items.CommonTooltips.UsedXOfXTimes", TimesUsed, MaxTimesUsed)));
     }
 
     bool? IShimmerOverride.IsTransformLocked(int type) {

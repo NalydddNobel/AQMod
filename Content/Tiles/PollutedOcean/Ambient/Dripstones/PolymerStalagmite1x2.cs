@@ -1,6 +1,6 @@
 ﻿using Terraria.ObjectData;
 
-namespace Aequu2.Content.Tiles.PollutedOcean.Ambient.Dripstones;
+namespace AequusRemake.Content.Tiles.PollutedOcean.Ambient.Dripstones;
 
 public class PolymerStalagmite1x2 : ModTile {
     public override void SetStaticDefaults() {

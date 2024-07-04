@@ -1,9 +1,9 @@
-﻿using Aequu2.Core.CrossMod;
+﻿using AequusRemake.Core.CrossMod;
 
-namespace Aequu2.Content.CrossMod;
+namespace AequusRemake.Content.CrossMod;
 
 internal class Wikithis : SupportedMod<Wikithis> {
     public override void PostSetupContent() {
-        Instance.Call("AddModURL", Mod, "https://terrariamods.wiki.gg/wiki/Aequu2/{}");
+        Instance.Call("AddModURL", Mod, "https://terrariamods.wiki.gg/wiki/AequusRemake/{}");
     }
 }

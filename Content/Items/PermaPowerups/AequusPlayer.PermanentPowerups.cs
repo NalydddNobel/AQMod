@@ -1,4 +1,4 @@
-﻿namespace Aequu2;
+﻿namespace AequusRemake;
 
 public partial class AequusPlayer {
 }

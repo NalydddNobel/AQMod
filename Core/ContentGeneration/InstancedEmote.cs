@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequu2.Core.ContentGeneration;
+namespace AequusRemake.Core.ContentGeneration;
 
 [Autoload(false)]
 internal class InstancedEmote : ModEmoteBubble {

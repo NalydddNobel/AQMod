@@ -1,7 +1,7 @@
-﻿using Aequu2.Content.Fishing.FishingPoles;
-using Aequu2.Content.Tiles.Meadow;
+﻿using AequusRemake.Content.Fishing.FishingPoles;
+using AequusRemake.Content.Tiles.Meadow;
 
-namespace Aequu2.Core.Entities.NPCs;
+namespace AequusRemake.Core.Entities.NPCs;
 
 public class ShopEdits : GlobalNPC {
     public override void ModifyShop(NPCShop shop) {
@@ -14,18 +14,14 @@ public class ShopEdits : GlobalNPC {
                 shop.InsertAfter(ItemID.GrassSeeds,
                     ModContent.GetInstance<MeadowGrass>().MeadowGrassSeeds.Type, Condition.InSpace);
 
-#if !DEBUG
                 // Add new planter boxes to the Dryad's shop.
-                foreach (var planterBox in ModContent.GetInstance<Old.Content.Tiles.Herbs.PlanterBoxes.PlanterBox>().RegisteredPlanterBoxItems) {
-                    shop.InsertAfter(planterBox.ShopSortingItemIdTarget, planterBox.ModItem.Type, planterBox.SellCondition);
-                }
-#endif
+                //foreach (var planterBox in ModContent.GetInstance<Old.Content.Tiles.Herbs.PlanterBoxes.PlanterBox>().RegisteredPlanterBoxItems) {
+                //    shop.InsertAfter(planterBox.ShopSortingItemIdTarget, planterBox.ModItem.Type, planterBox.SellCondition);
+                //}
                 break;
 
             case (NPCID.Mechanic, "Shop"):
-#if !DEBUG
-                shop.Add(ModContent.ItemType<Old.Content.Items.Weapons.Summon.Sentries.PhysicistSentry.PhysicistSentry>(), Condition.RemixWorld);
-#endif
+                //shop.Add(ModContent.ItemType<Old.Content.Items.Weapons.Summon.Sentries.PhysicistSentry.PhysicistSentry>(), Condition.RemixWorld);
                 break;
 
             case (NPCID.Steampunker, "Shop"):

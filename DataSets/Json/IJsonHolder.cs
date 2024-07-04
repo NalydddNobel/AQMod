@@ -1,4 +1,4 @@
-﻿namespace Aequu2.DataSets.Json;
+﻿namespace AequusRemake.DataSets.Json;
 
 internal interface IJsonHolder {
     string FilePath { get; }

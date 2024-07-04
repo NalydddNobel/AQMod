@@ -1,8 +1,8 @@
-﻿using Aequu2.Core;
+﻿using AequusRemake.Core;
 using Terraria.Audio;
 using Terraria.Localization;
 
-namespace Aequu2.Content.Items.Armor.MiscHelmets;
+namespace AequusRemake.Content.Items.Armor.MiscHelmets;
 
 public class ConeHelmet : BrittleArmor {
     public static float BonusEndurance { get; set; } = 0.25f;

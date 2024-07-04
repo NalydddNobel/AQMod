@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequu2.Core.CrossMod;
+namespace AequusRemake.Core.CrossMod;
 
 internal static class ExtendCrossMod {
     private const char FULL_NAME_SEPERATOR = '/';

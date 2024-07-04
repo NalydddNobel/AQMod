@@ -1,10 +1,10 @@
-﻿using Aequu2.Core.CrossMod;
+﻿using AequusRemake.Core.CrossMod;
 using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 
-namespace Aequu2.Core.Utilities;
+namespace AequusRemake.Core.Utilities;
 
 public static class ExtendEntity {
     public static bool CanReflectAgainstShimmer(Entity entity) {

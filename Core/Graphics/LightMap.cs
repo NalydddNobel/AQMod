@@ -1,7 +1,7 @@
-﻿using Aequu2.Core.Assets;
+﻿using AequusRemake.Core.Assets;
 using System;
 
-namespace Aequu2.Core.Graphics;
+namespace AequusRemake.Core.Graphics;
 
 public class LightMap : ModSystem {
     public static RenderTarget2D MapTarget { get; private set; }

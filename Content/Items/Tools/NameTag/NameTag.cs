@@ -1,10 +1,10 @@
-﻿using Aequu2.Content.Systems.Renaming;
-using Aequu2.Core.Entities.Items.Components;
+﻿using AequusRemake.Content.Systems.Renaming;
+using AequusRemake.Core.Entities.Items.Components;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 
-namespace Aequu2.Content.Items.Tools.NameTag;
+namespace AequusRemake.Content.Items.Tools.NameTag;
 
 [FilterOverride(FilterOverride.Tools)]
 public class NameTag : ModItem, ICustomNameTagPrice {

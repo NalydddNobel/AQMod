@@ -1,6 +1,6 @@
-﻿using Aequu2.Core.CrossMod;
+﻿using AequusRemake.Core.CrossMod;
 
-namespace Aequu2.Content.CrossMod.CalamityModSupport.Items;
+namespace AequusRemake.Content.CrossMod.CalamityModSupport.Items;
 
 public class OmegaHoney : CrossModItem {
     public override void OnSetStaticDefaults() {

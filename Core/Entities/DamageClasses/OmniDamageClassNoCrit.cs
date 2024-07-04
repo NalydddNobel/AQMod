@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core.Entities.DamageClasses;
+﻿namespace AequusRemake.Core.Entities.DamageClasses;
 
 public class OmniDamageClassNoCrit : OmniDamageClass {
     public override bool UseStandardCritCalcs => false;

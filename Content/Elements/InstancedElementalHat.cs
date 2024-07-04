@@ -1,9 +1,9 @@
-﻿using Aequu2.Core;
-using Aequu2.Content.Elements;
-using Aequu2.Core.ContentGeneration;
+﻿using AequusRemake.Core;
+using AequusRemake.Content.Elements;
+using AequusRemake.Core.ContentGeneration;
 using Terraria.Localization;
 
-namespace Aequu2.Content.Elements;
+namespace AequusRemake.Content.Elements;
 
 [AutoloadEquip(EquipType.Head)]
 internal class InstancedElementalHat(Element parent) : InstancedModItem($"{parent.Name}Mask", $"{parent.Texture}Mask") {

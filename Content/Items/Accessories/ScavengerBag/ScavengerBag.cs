@@ -1,8 +1,8 @@
-﻿using Aequu2.Core;
-using Aequu2.Content.Backpacks;
+﻿using AequusRemake.Core;
+using AequusRemake.Content.Backpacks;
 using Terraria.Localization;
 
-namespace Aequu2.Content.Items.Accessories.ScavengerBag;
+namespace AequusRemake.Content.Items.Accessories.ScavengerBag;
 
 [LegacyName("AmmoBackpack")]
 [AutoloadEquip(EquipType.Back)]

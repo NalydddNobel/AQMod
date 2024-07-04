@@ -1,11 +1,11 @@
-﻿using Aequu2.Content.Elements;
-using Aequu2.DataSets;
+﻿using AequusRemake.Content.Elements;
+using AequusRemake.DataSets;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
 using tModLoaderExtended.Terraria;
 
-namespace Aequu2.Content.Items.Weapons.Melee.AncientCutlass;
+namespace AequusRemake.Content.Items.Weapons.Melee.AncientCutlass;
 
 public class AncientCutlass : ModItem {
     public static readonly int DropChance = 2;
@@ -67,7 +67,7 @@ public class AncientCutlass : ModItem {
                 continue;
             }
 
-            Item.NewItem(target.GetSource_Loot("Aequu2: Steal"), hitbox, item);
+            Item.NewItem(target.GetSource_Loot("AequusRemake: Steal"), hitbox, item);
         }
     }
 }

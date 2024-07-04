@@ -1,6 +1,6 @@
-﻿using Aequu2.Core.Entites.Bestiary;
+﻿using AequusRemake.Core.Entites.Bestiary;
 
-namespace Aequu2.Content.Elements.Frost;
+namespace AequusRemake.Content.Elements.Frost;
 
 public class Frost : VanillaElement {
     public Frost() : base(FrostFrame, Color.Cyan) { }

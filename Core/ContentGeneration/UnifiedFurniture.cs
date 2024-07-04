@@ -1,4 +1,4 @@
-﻿using Aequu2.Core.Structures;
+﻿using AequusRemake.Core.Structures;
 using ReLogic.Content;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -8,9 +8,9 @@ using Terraria.GameContent.ObjectInteractions;
 using Terraria.Localization;
 using Terraria.ObjectData;
 using tModLoaderExtended.Terraria.ModLoader;
-using static Aequu2.Core.ContentGeneration.InstancedFurnitureLighted;
+using static AequusRemake.Core.ContentGeneration.InstancedFurnitureLighted;
 
-namespace Aequu2.Core.ContentGeneration;
+namespace AequusRemake.Core.ContentGeneration;
 
 public abstract class UnifiedFurniture : ModTexturedType, ILocalizedModType {
     public abstract int DustType { get; }
@@ -483,7 +483,7 @@ internal class InstancedFurnitureChest(UnifiedFurniture parent, string suffix = 
 
     public override void Load() {
         base.Load();
-        Aequu2.OnAddRecipes += AddRecipe;
+        AequusRemake.OnAddRecipes += AddRecipe;
         void AddRecipe() {
             Parent.AddRecipes(this, DropItem,
                 DropItem.CreateRecipe()

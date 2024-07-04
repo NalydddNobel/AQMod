@@ -1,6 +1,6 @@
 ﻿using Terraria.DataStructures;
 
-namespace Aequu2.Core.Entities.Items.Components;
+namespace AequusRemake.Core.Entities.Items.Components;
 
 /// <summary>Only works on Fishing Pole or Bait items.</summary>
 internal interface IModifyFishAttempt {

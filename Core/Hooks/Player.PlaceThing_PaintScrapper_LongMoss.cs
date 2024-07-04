@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core.Hooks;
+﻿namespace AequusRemake.Core.Hooks;
 
 public partial class TerrariaHooks {
     /// <summary>Allows for custom mosses to be broken by the Paint Scraper.</summary>

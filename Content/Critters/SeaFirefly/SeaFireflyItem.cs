@@ -1,9 +1,9 @@
-﻿using Aequu2.Core.ContentGeneration;
-using Aequu2.Core.Graphics.Textures;
+﻿using AequusRemake.Core.ContentGeneration;
+using AequusRemake.Core.Graphics.Textures;
 using Terraria.GameContent;
 using Terraria.Localization;
 
-namespace Aequu2.Content.Critters.SeaFirefly;
+namespace AequusRemake.Content.Critters.SeaFirefly;
 
 internal class SeaFireflyItem(UnifiedCritter Parent, string DyeName, byte Color) : InstancedCritterItem(Parent, DyeName) {
     public readonly byte Color = Color;

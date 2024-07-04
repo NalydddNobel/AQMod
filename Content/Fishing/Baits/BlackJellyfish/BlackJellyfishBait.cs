@@ -1,15 +1,15 @@
-﻿using Aequu2.Content.Graphics.Particles;
-using Aequu2.Core.ContentGeneration;
-using Aequu2.Core.Entities.Items.Components;
-using Aequu2.Core.Entities.Projectiles;
-using Aequu2.Core.Graphics;
+﻿using AequusRemake.Content.Graphics.Particles;
+using AequusRemake.Core.ContentGeneration;
+using AequusRemake.Core.Entities.Items.Components;
+using AequusRemake.Core.Entities.Projectiles;
+using AequusRemake.Core.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Shaders;
 
-namespace Aequu2.Content.Fishing.Baits.BlackJellyfish;
+namespace AequusRemake.Content.Fishing.Baits.BlackJellyfish;
 
 public class BlackJellyfishBait : UnifiedModBait, IOnPullBobber {
     public override void SetStaticDefaults() {

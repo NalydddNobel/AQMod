@@ -1,6 +1,6 @@
-﻿using Aequu2.DataSets;
+﻿using AequusRemake.DataSets;
 
-namespace Aequu2.Core.Hooks;
+namespace AequusRemake.Core.Hooks;
 
 public partial class TerrariaHooks {
     private static bool On_Item_CanHavePrefixes(On_Item.orig_CanHavePrefixes orig, Item self) {

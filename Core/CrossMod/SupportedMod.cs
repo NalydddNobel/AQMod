@@ -1,9 +1,9 @@
-﻿using Aequu2.Core.Structures.ID;
+﻿using AequusRemake.Core.Structures.ID;
 using System;
 using System.Collections.Generic;
 using Terraria.Localization;
 
-namespace Aequu2.Core.CrossMod;
+namespace AequusRemake.Core.CrossMod;
 
 internal interface ISupportedMod<TMod> where TMod : SupportedMod<TMod> {
     public static Mod Instance { get; private set; }
@@ -30,12 +30,12 @@ internal class SupportedMod<TMod> : ModSystem, ISupportedMod<TMod>, ILocalizedMo
         try {
             var value = Instance?.Call(args);
             if (value is Exception ex) {
-                Aequu2.Instance.Logger.Error(ex);
+                AequusRemake.Instance.Logger.Error(ex);
             }
             return value;
         }
         catch (Exception ex) {
-            Aequu2.Instance.Logger.Error(ex);
+            AequusRemake.Instance.Logger.Error(ex);
         }
 
         return null;
@@ -84,7 +84,7 @@ internal class SupportedMod<TMod> : ModSystem, ISupportedMod<TMod>, ILocalizedMo
     }
 
     public static string GetLocalizationKey(string suffix) {
-        return $"Mods.Aequu2.CrossMod.{ModName}.{suffix}";
+        return $"Mods.AequusRemake.CrossMod.{ModName}.{suffix}";
     }
     public static LocalizedText GetLocalization(string suffix) {
         return Language.GetOrRegister(GetLocalizationKey(suffix));
@@ -154,7 +154,7 @@ internal static class SupportedModExtensions {
     }
 
     public static Recipe SortBeforeModItem(this Recipe recipe, string name, CrossModItem crossModItem) {
-        Aequu2.OnPostAddRecipes += () => {
+        AequusRemake.OnPostAddRecipes += () => {
             if (ModLoader.TryGetMod(crossModItem.CrossModName, out Mod mod) && mod.TryFind(name, out ModItem modItem)) {
                 recipe.SortBeforeFirstRecipesOf(modItem.Type);
             }
@@ -164,7 +164,7 @@ internal static class SupportedModExtensions {
     }
 
     public static Recipe SortAfterModItem(this Recipe recipe, string name, CrossModItem crossModItem) {
-        Aequu2.OnPostAddRecipes += () => {
+        AequusRemake.OnPostAddRecipes += () => {
             if (ModLoader.TryGetMod(crossModItem.CrossModName, out Mod mod) && mod.TryFind(name, out ModItem modItem)) {
                 recipe.SortAfterFirstRecipesOf(modItem.Type);
             }

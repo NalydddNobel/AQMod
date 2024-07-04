@@ -1,10 +1,10 @@
-﻿using Aequu2.Core.ContentGeneration;
+﻿using AequusRemake.Core.ContentGeneration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.GameContent;
 
-namespace Aequu2.Core.Entities.Tiles.Rubblemaker;
+namespace AequusRemake.Core.Entities.Tiles.Rubblemaker;
 
 internal abstract class RubblemakerTile : AutoloadedInstancedModTile {
     public static ushort GetId<T>() where T : RubblemakerTile {

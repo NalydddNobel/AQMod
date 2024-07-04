@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core.Entities.Tiles.Components;
+﻿namespace AequusRemake.Core.Entities.Tiles.Components;
 
 public interface IRandomUpdateOverride {
     /// <param name="i"></param>

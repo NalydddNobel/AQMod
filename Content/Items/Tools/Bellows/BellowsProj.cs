@@ -1,8 +1,8 @@
-﻿using Aequu2.Core.Entities.Projectiles;
+﻿using AequusRemake.Core.Entities.Projectiles;
 using System;
 using Terraria.GameContent;
 
-namespace Aequu2.Content.Items.Tools.Bellows;
+namespace AequusRemake.Content.Items.Tools.Bellows;
 
 public class BellowsProj : ModProjectile {
     public override void SetStaticDefaults() {

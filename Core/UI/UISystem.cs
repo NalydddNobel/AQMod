@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria.GameInput;
 using Terraria.UI;
 
-namespace Aequu2.Core.UI;
+namespace AequusRemake.Core.UI;
 
 public partial class UISystem : ModSystem {
     public static int bottomLeftInventoryOffsetX;

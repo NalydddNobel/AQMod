@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Content.Tiles.PollutedOcean.Ambient.Television;
+﻿namespace AequusRemake.Content.Tiles.PollutedOcean.Ambient.Television;
 
 //public class Television : ModTile {
 //    public sealed override void SetStaticDefaults() {

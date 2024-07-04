@@ -1,8 +1,8 @@
-﻿using Aequu2.Content.Dedicated;
+﻿using AequusRemake.Content.Dedicated;
 using System;
 using System.Collections.Generic;
 
-namespace Aequu2.Core.Entities.Items.Dedications;
+namespace AequusRemake.Core.Entities.Items.Dedications;
 
 public class DedicationRegistry : ModSystem {
     private static readonly Dictionary<ModItem, IDedicationInfo> _fromItem = new();
@@ -14,7 +14,7 @@ public class DedicationRegistry : ModSystem {
         }
 
         if (_doneAcceptingRegistries) {
-            throw new Exception($"{modItem.FullName} attempted to register dedicated item info after Aequu2 has been loaded.");
+            throw new Exception($"{modItem.FullName} attempted to register dedicated item info after AequusRemake has been loaded.");
         }
 
         RegisterInner(modItem, info);
@@ -32,7 +32,7 @@ public class DedicationRegistry : ModSystem {
         if (info.Faeling == null) {
             // Register a colored faeling aswell.
             info.Faeling = new DedicatedFaeling.FaelingItem(modItem, info);
-            ModContent.GetInstance<Aequu2>().AddContent(info.Faeling);
+            ModContent.GetInstance<AequusRemake>().AddContent(info.Faeling);
         }
 
         _fromItem[modItem] = info;

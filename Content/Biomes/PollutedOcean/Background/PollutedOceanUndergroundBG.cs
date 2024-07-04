@@ -1,9 +1,9 @@
-﻿using Aequu2.Core.Graphics;
+﻿using AequusRemake.Core.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
 
-namespace Aequu2.Content.Biomes.PollutedOcean.Background;
+namespace AequusRemake.Content.Biomes.PollutedOcean.Background;
 
 public class PollutedOceanUndergroundBG : CustomDrawnUGBackground {
     public override void FillTextureArray(int[] textureSlots) {

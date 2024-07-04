@@ -1,5 +1,5 @@
-﻿using Aequu2.Core.Assets;
-using Aequu2.Core.Graphics;
+﻿using AequusRemake.Core.Assets;
+using AequusRemake.Core.Graphics;
 using FNAUtils.Drawing;
 using ReLogic.Graphics;
 using System;
@@ -11,7 +11,7 @@ using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 using Terraria.UI.Chat;
 
-namespace Aequu2.Core.Utilities;
+namespace AequusRemake.Core.Utilities;
 
 public sealed class DrawHelper : ModSystem {
     public delegate void Draw(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth);
@@ -240,7 +240,7 @@ public sealed class DrawHelper : ModSystem {
             }
         }
         catch (Exception ex) {
-            Aequu2.Log.Error(ex);
+            AequusRemake.Log.Error(ex);
         }
         finally {
         }

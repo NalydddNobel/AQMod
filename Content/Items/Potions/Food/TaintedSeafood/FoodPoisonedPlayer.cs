@@ -1,6 +1,6 @@
 ﻿using Terraria.GameContent.UI;
 
-namespace Aequu2.Content.Items.Potions.Food.TaintedSeafood;
+namespace AequusRemake.Content.Items.Potions.Food.TaintedSeafood;
 
 public class FoodPoisonedPlayer : ModPlayer {
     public bool foodPoisoned;

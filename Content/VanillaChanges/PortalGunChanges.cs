@@ -1,6 +1,6 @@
-﻿using Aequu2.Content.Configuration;
+﻿using AequusRemake.Content.Configuration;
 
-namespace Aequu2.Content.VanillaChanges;
+namespace AequusRemake.Content.VanillaChanges;
 internal class PortalGunChanges : GlobalItem {
     public override bool IsLoadingEnabled(Mod mod) {
         return VanillaChangesConfig.Instance.MovePortalGun;

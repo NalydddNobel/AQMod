@@ -1,7 +1,7 @@
 ﻿using System;
 using Terraria.GameContent;
 
-namespace Aequu2.Content.Enemies.PollutedOcean.Conductor;
+namespace AequusRemake.Content.Enemies.PollutedOcean.Conductor;
 
 public partial class Conductor {
     public const int FRAME_IDLE = 0;

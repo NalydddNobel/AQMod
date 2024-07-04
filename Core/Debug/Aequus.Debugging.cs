@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 
-namespace Aequu2;
+namespace AequusRemake;
 
-partial class Aequu2 {
+partial class AequusRemake {
     internal const bool DEBUG_MODE =
 #if DEBUG
             true;

@@ -1,8 +1,8 @@
-﻿using Aequu2.Core.Graphics;
-using Aequu2.Core.Particles;
+﻿using AequusRemake.Core.Graphics;
+using AequusRemake.Core.Particles;
 using System;
 
-namespace Aequu2.Content.Items.Tools.AnglerLamp;
+namespace AequusRemake.Content.Items.Tools.AnglerLamp;
 
 public class AnglerLampParticles : ParticleArray<AnglerLampParticles.Particle> {
     public override int ParticleCount => 50;
@@ -122,7 +122,7 @@ public class AnglerLampParticles : ParticleArray<AnglerLampParticles.Particle> {
     public Vector2 npcOffset;
 
     protected override void SetDefaults() {
-        SetTexture(Aequu2Textures.Flare2);
+        SetTexture(AequusRemakeTextures.Flare2);
         Rotation = Main.rand.NextFloat(-0.05f, 0.05f);
         Animation = 0f;
         npc = -1;

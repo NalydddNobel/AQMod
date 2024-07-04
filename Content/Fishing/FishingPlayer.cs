@@ -1,8 +1,8 @@
-﻿using Aequu2.Content.Biomes.PollutedOcean;
-using Aequu2.Core.Entities.Items.Components;
+﻿using AequusRemake.Content.Biomes.PollutedOcean;
+using AequusRemake.Core.Entities.Items.Components;
 using Terraria.DataStructures;
 
-namespace Aequu2.Content.Fishing;
+namespace AequusRemake.Content.Fishing;
 
 public class FishingPlayer : ModPlayer {
     private FishingAttempt _fishingAttemptCache;

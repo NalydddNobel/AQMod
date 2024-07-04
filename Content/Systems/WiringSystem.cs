@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Content.Systems;
+﻿namespace AequusRemake.Content.Systems;
 
 public class WiringSystem : ModSystem {
     public static float MechCooldownMultiplier { get; set; }

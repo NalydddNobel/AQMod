@@ -1,7 +1,7 @@
 ﻿using System;
 using Terraria.DataStructures;
 
-namespace Aequu2.Content.Items.Armor.Castaway;
+namespace AequusRemake.Content.Items.Armor.Castaway;
 
 public class CastawayPlayer : ModPlayer {
     public bool setbonus;

@@ -1,7 +1,7 @@
-﻿using Aequu2.Core.Entities.Projectiles;
-using Aequu2.DataSets;
+﻿using AequusRemake.Core.Entities.Projectiles;
+using AequusRemake.DataSets;
 
-namespace Aequu2.Content.Items.Accessories.EventPrevention;
+namespace AequusRemake.Content.Items.Accessories.EventPrevention;
 
 public class EventDeactivatorPlayer : ModPlayer {
     public bool accDisableBloodMoon;

@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core.Hooks;
+﻿namespace AequusRemake.Core.Hooks;
 
 public partial class TerrariaHooks {
     /// <summary>Allows infinite wormhole usage for the Phase Mirror. (<see cref="AequusPlayer.infiniteWormhole"/>)</summary>

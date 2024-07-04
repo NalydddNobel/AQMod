@@ -2,7 +2,7 @@ Avalon: {
 	Buffs: {
 		BacciliteSceptreDebuff: {
 			// DisplayName: "{Avalon.Items.BacciliteSceptre.DisplayName}"
-			// Description: Mods.Aequu2.CrossMod.Avalon.Buffs.BacciliteSceptreDebuff.Description
+			// Description: Mods.AequusRemake.CrossMod.Avalon.Buffs.BacciliteSceptreDebuff.Description
 		}
 	}
 

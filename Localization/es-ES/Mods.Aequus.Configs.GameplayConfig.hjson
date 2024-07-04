@@ -1,7 +1,7 @@
 DisplayName: Configuraciones de Gameplay
 
 PollutedOceanSide: {
-	Label: "[i:Aequu2/TrashCompactor] Lado del Oceano Contaminado"
+	Label: "[i:AequusRemake/TrashCompactor] Lado del Oceano Contaminado"
 	Tooltip:
 		'''
 		Determina el lado del mundo en el cual el Oceano Contaminado deberia generarse.
@@ -12,7 +12,7 @@ PollutedOceanSide: {
 }
 
 CaveVariety: {
-	Label: "[i:BonePickaxe] Cuevas de Aequu2"
+	Label: "[i:BonePickaxe] Cuevas de AequusRemake"
 	Tooltip:
 		'''
 		Añade variación y expande a las cuevas para que haya menos túneles sin salida.
@@ -33,7 +33,7 @@ TownNPCSettleDownMessage: {
 }
 
 HardmodeChests: {
-	// Label: "[i:Aequu2/AdamantiteChest] Hardmode Chests"
+	// Label: "[i:AequusRemake/AdamantiteChest] Hardmode Chests"
 	/* Tooltip:
 		'''
 		Determines whether the Hardmode Chests system would be active. This has multiple gameplay changes.
@@ -53,15 +53,15 @@ ShadowMimics: {
 }
 
 HardmodeMimics: {
-	// Label: "[i:Aequu2/HardFrozenChest] Hardmode Mimics"
-	// Tooltip: Whether Aequu2' special Hardmode Mimics should appear, replacing regular Mimics. This config does nothing if "{$GameplayConfig.HardmodeChests.Label}" is false.
+	// Label: "[i:AequusRemake/HardFrozenChest] Hardmode Mimics"
+	// Tooltip: Whether AequusRemake' special Hardmode Mimics should appear, replacing regular Mimics. This config does nothing if "{$GameplayConfig.HardmodeChests.Label}" is false.
 }
 
-PDAGetsAequu2Items: {
-	// Label: "[i:PDA] Aequu2 PDA"
+PDAGetsAequusRemakeItems: {
+	// Label: "[i:PDA] AequusRemake PDA"
 	/* Tooltip:
 		'''
-		Whether Aequu2' new Info Accessories should be added to the PDA and upgrades.
-		Any items which use the PDA or upgrades in their recipes will automatically inherit Aequu2' info accessories.
+		Whether AequusRemake' new Info Accessories should be added to the PDA and upgrades.
+		Any items which use the PDA or upgrades in their recipes will automatically inherit AequusRemake' info accessories.
 		''' */
 }

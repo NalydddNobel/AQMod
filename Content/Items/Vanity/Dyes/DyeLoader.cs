@@ -1,10 +1,10 @@
-﻿using Aequu2.Core.Assets;
-using Aequu2.Core.ContentGeneration;
+﻿using AequusRemake.Core.Assets;
+using AequusRemake.Core.ContentGeneration;
 using ReLogic.Content;
 using System;
 using Terraria.Graphics.Shaders;
 
-namespace Aequu2.Content.Items.Vanity.Dyes;
+namespace AequusRemake.Content.Items.Vanity.Dyes;
 
 public sealed class DyeLoader : ModSystem {
     public static ModItem HueshiftDye { get; private set; }

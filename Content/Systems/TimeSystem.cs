@@ -2,7 +2,7 @@
 using System.IO;
 using Terraria.ModLoader.IO;
 
-namespace Aequu2.Core.Systems;
+namespace AequusRemake.Core.Systems;
 
 public class TimeSystem : ModSystem {
     public static int DaysPassed { get; private set; }

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using Terraria.DataStructures;
 
-namespace Aequu2.Core.Entities.Players.Drawing;
+namespace AequusRemake.Core.Entities.Players.Drawing;
 
 [Browsable(false)]
 internal class CustomHeadArmorLayer : PlayerDrawLayer {

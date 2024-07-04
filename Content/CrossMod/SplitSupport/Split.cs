@@ -1,6 +1,6 @@
-﻿using Aequu2.Core.CrossMod;
+﻿using AequusRemake.Core.CrossMod;
 
-namespace Aequu2.Content.CrossMod.SplitSupport;
+namespace AequusRemake.Content.CrossMod.SplitSupport;
 
 internal partial class Split : SupportedMod<Split> {
     public override void PostSetupContent() {

@@ -1,6 +1,6 @@
-﻿using Aequu2.Core.Graphics.Animations;
+﻿using AequusRemake.Core.Graphics.Animations;
 
-namespace Aequu2.Content.Tiles.Furniture.Trash;
+namespace AequusRemake.Content.Tiles.Furniture.Trash;
 
 public class AnimationTrashFurnitureFlicker(int AnchorTileType) : ITileAnimation {
     public int NoLight;

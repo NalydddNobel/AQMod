@@ -1,6 +1,6 @@
-﻿using Aequu2.Core.CodeGeneration;
+﻿using AequusRemake.Core.CodeGeneration;
 
-namespace Aequu2.Content.Items.Accessories.Informational.Calendar;
+namespace AequusRemake.Content.Items.Accessories.Informational.Calendar;
 
 [Gen.AequusPlayer_InfoField("accInfoDayCalendar")]
 public class Calendar : ModItem {

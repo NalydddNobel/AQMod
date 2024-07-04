@@ -4,7 +4,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.Utilities;
 using tModLoaderExtended.Terraria;
 
-namespace Aequu2.DataSets.Structures.DropRulesChest;
+namespace AequusRemake.DataSets.Structures.DropRulesChest;
 
 public interface IChestLootRule {
     List<IChestLootChain> ChainedRules { get; }

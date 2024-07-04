@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core.Utilities;
+﻿namespace AequusRemake.Core.Utilities;
 
 public static class CommonColor {
     public static readonly Color MapBathtub = new Color(144, 148, 144);

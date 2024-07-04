@@ -1,6 +1,6 @@
-﻿using Aequu2.Content.Items.Materials;
+﻿using AequusRemake.Content.Items.Materials;
 
-namespace Aequu2.Content.Tiles.PollutedOcean.Trees;
+namespace AequusRemake.Content.Tiles.PollutedOcean.Trees;
 
 public class ScrapTree : ScrapPalmTree {
     public override void AddRecipes() {

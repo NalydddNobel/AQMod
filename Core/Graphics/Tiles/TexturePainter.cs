@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Terraria.GameContent;
 
-namespace Aequu2.Core.Graphics.Tiles;
+namespace AequusRemake.Core.Graphics.Tiles;
 
 internal class TexturePainter : ModSystem {
     public static readonly Dictionary<TextureVariantKey, TextureRenderTargetHolder> Renderers = new();
@@ -48,7 +48,7 @@ internal class TexturePainter : ModSystem {
         }
 
         RequestTile(ref lookupKey);
-        return Aequu2.Instance.Assets.Request<Texture2D>(lookupKey.Texture, AssetRequestMode.ImmediateLoad).Value;
+        return AequusRemake.Instance.Assets.Request<Texture2D>(lookupKey.Texture, AssetRequestMode.ImmediateLoad).Value;
     }
 
     public static Texture2D TryGetPaintedTexture(Tile tile, string texture) {
@@ -86,7 +86,7 @@ public class TextureRenderTargetHolder : TilePaintSystemV2.ARenderTargetHolder {
     public TextureVariantKey Key;
 
     public override void Prepare() {
-        PrepareTextureIfNecessary(Aequu2.Instance.Assets.Request<Texture2D>(Key.Texture, AssetRequestMode.ImmediateLoad).Value);
+        PrepareTextureIfNecessary(AequusRemake.Instance.Assets.Request<Texture2D>(Key.Texture, AssetRequestMode.ImmediateLoad).Value);
     }
 
     public override void PrepareShader() {

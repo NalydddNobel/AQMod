@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Aequu2.Core.Entities;
+namespace AequusRemake.Core.Entities;
 
 // Heavily inspired by instrex's floor hazards system!
 

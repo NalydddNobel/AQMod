@@ -1,6 +1,6 @@
-﻿using Aequu2.Core;
+﻿using AequusRemake.Core;
 
-namespace Aequu2.Content.Items.Weapons.Ranged.GasCan;
+namespace AequusRemake.Content.Items.Weapons.Ranged.GasCan;
 
 [WorkInProgress]
 public class GasCan : ModItem {

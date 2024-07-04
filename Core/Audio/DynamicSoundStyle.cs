@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Audio;
 using System;
 
-namespace Aequu2.Core.Audio;
+namespace AequusRemake.Core.Audio;
 
 /// <summary>Currently only supports .ogg</summary>
 public class DynamicSoundStyle {

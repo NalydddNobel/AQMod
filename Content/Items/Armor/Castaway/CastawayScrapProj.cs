@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Content.Items.Armor.Castaway;
+﻿namespace AequusRemake.Content.Items.Armor.Castaway;
 
 public class CastawayScrapProj {
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Aequu2.Core.Entities.Projectiles;
+namespace AequusRemake.Core.Entities.Projectiles;
 
 public abstract class LegacyHeldSlashingSwordProjectile : LegacyHeldSwordProjectile {
     protected bool _halfWayMark;
@@ -51,7 +51,7 @@ public abstract class LegacyHeldSlashingSwordProjectile : LegacyHeldSwordProject
         return AnimProgress > 0.4f && AnimProgress < 0.6f && freezeFrame <= 0 ? null : false;
     }
 
-    protected override void UpdateSword(Player player, AequusPlayer Aequu2, float progress) {
+    protected override void UpdateSword(Player player, AequusPlayer AequusRemake, float progress) {
         var arm = Main.GetPlayerArmPosition(Projectile);
         if (!_halfWayMark && progress >= 0.5f) {
             if (Projectile.numUpdates != -1 || freezeFrame > 0) {
@@ -105,7 +105,7 @@ public abstract class LegacyHeldSlashingSwordProjectile : LegacyHeldSwordProject
         base.AI();
     }
 
-    protected sealed override void Initialize(Player player, AequusPlayer Aequu2) {
+    protected sealed override void Initialize(Player player, AequusPlayer AequusRemake) {
         AngleVector = Projectile.velocity;
 
         swingDirection = 1;
@@ -113,14 +113,14 @@ public abstract class LegacyHeldSlashingSwordProjectile : LegacyHeldSwordProject
         swingDirection *= Projectile.direction;
 
         // Flip direction
-        if (Aequu2.TryGetTimer(SwordSwingFlipTimer, out var timer) && timer.Active) {
+        if (AequusRemake.TryGetTimer(SwordSwingFlipTimer, out var timer) && timer.Active) {
             swingDirection *= -1;
         }
 
-        InitializeSword(player, Aequu2);
+        InitializeSword(player, AequusRemake);
     }
 
-    protected virtual void InitializeSword(Player player, AequusPlayer Aequu2) {
+    protected virtual void InitializeSword(Player player, AequusPlayer AequusRemake) {
 
     }
 

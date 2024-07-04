@@ -1,11 +1,11 @@
-﻿using Aequu2.Core.Entities.Projectiles;
-using Aequu2.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
+﻿using AequusRemake.Core.Entities.Projectiles;
+using AequusRemake.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria.Audio;
 
-namespace Aequu2.Content.TownNPCs.SkyMerchant;
+namespace AequusRemake.Content.TownNPCs.SkyMerchant;
 public class SkyMerchantProjectile : ModProjectile {
     public override string Texture => AequusTextures.Projectile(ProjectileID.WoodenArrowFriendly);
 

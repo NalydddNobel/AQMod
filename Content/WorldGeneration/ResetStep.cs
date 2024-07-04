@@ -1,10 +1,10 @@
-﻿using Aequu2.Content.Systems;
-using Aequu2.Content.VanillaChanges;
-using Aequu2.Core.Components;
+﻿using AequusRemake.Content.Systems;
+using AequusRemake.Content.VanillaChanges;
+using AequusRemake.Core.Components;
 using Terraria.IO;
 using Terraria.WorldBuilding;
 
-namespace Aequu2.Content.WorldGeneration;
+namespace AequusRemake.Content.WorldGeneration;
 
 public sealed class ResetStep : AGenStep {
     public override string InsertAfter => "Reset";

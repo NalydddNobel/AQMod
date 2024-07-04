@@ -1,11 +1,11 @@
-﻿using Aequu2.Content.Systems;
-using Aequu2.Content.Tiles.Misc.SeaFireflyBlock;
-using Aequu2.Core.Graphics.Textures;
-using Aequu2.DataSets;
-using Aequu2.DataSets.Structures.Enums;
+﻿using AequusRemake.Content.Systems;
+using AequusRemake.Content.Tiles.Misc.SeaFireflyBlock;
+using AequusRemake.Core.Graphics.Textures;
+using AequusRemake.DataSets;
+using AequusRemake.DataSets.Structures.Enums;
 using System;
 
-namespace Aequu2.Content.Critters.SeaFirefly;
+namespace AequusRemake.Content.Critters.SeaFirefly;
 public class SeaFireflyRegistry {
     public static byte RainbowIndex { get; private set; }
 
@@ -15,7 +15,7 @@ public class SeaFireflyRegistry {
 
     public static int ColorCount => _registeredPalettes.Length;
 
-    private static Mod Mod => ModContent.GetInstance<Aequu2>();
+    private static Mod Mod => ModContent.GetInstance<AequusRemake>();
 
     public static EffectTextureMask SeaFireflyItemMaskEffect { get; private set; }
 
@@ -57,7 +57,7 @@ public class SeaFireflyRegistry {
 
         AddSeaFireflyBlock(Variant);
 
-        Aequu2.OnAddRecipes += AddRecipe;
+        AequusRemake.OnAddRecipes += AddRecipe;
 
         return color;
 

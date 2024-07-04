@@ -1,11 +1,11 @@
-﻿using Aequu2.Content.Items.Potions.Healing.Restoration;
-using Aequu2.Content.Items.Tools.Keys;
-using Aequu2.Core.Structures.ID;
-using Aequu2.DataSets;
-using Aequu2.DataSets.Structures.DropRulesChest;
-using Aequu2.DataSets.Structures.Enums;
+﻿using AequusRemake.Content.Items.Potions.Healing.Restoration;
+using AequusRemake.Content.Items.Tools.Keys;
+using AequusRemake.Core.Structures.ID;
+using AequusRemake.DataSets;
+using AequusRemake.DataSets.Structures.DropRulesChest;
+using AequusRemake.DataSets.Structures.Enums;
 
-namespace Aequu2.Content.Chests.BuriedChests;
+namespace AequusRemake.Content.Chests.BuriedChests;
 
 public class CopperChest : UnifiedBuriedChest {
     internal CopperChest() : base(new ChestInfo(

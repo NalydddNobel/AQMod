@@ -1,12 +1,11 @@
-﻿using Aequu2.Core;
-using Aequu2.Content.Configuration;
-using Aequu2.Content.Items.Tools.NameTag;
-using Aequu2.DataSets;
-using Aequu2.DataSets.Structures.DropRulesChest;
-using Aequu2.DataSets.Structures.Enums;
+﻿using AequusRemake.Content.Configuration;
+using AequusRemake.Content.Items.Tools.NameTag;
+using AequusRemake.DataSets;
+using AequusRemake.DataSets.Structures.DropRulesChest;
+using AequusRemake.DataSets.Structures.Enums;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequu2.Content.Chests;
+namespace AequusRemake.Content.Chests;
 
 public class ChestPopulator : ISetupContent {
     public void SetupContent(Mod mod) {
@@ -20,11 +19,5 @@ public class ChestPopulator : ISetupContent {
             new RemoveItemChestRule(),
             Commons.Conditions.ConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveTreasureMagnet))
         ));
-
-#if !DEBUG
-        ChestLootDatabase.Instance.RegisterIndexed(ChestPool.Dungeon, [
-            new CommonChestRule(ModContent.ItemType<Old.Content.Items.Weapons.Melee.Valari.Valari>())
-        ]);
-#endif
     }
 }

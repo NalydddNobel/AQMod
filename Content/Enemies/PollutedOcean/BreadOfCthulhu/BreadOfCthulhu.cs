@@ -1,17 +1,17 @@
-﻿using Aequu2.Content.Biomes.PollutedOcean;
-using Aequu2.Content.CrossMod;
-using Aequu2.Content.Dedicated.Baguette;
-using Aequu2.Content.Enemies.PollutedOcean.BreadOfCthulhu.Items;
-using Aequu2.Content.Items.Tools.Keys;
-using Aequu2.Core.ContentGeneration;
-using Aequu2.Core.Entities.Bestiary;
-using Aequu2.DataSets;
+﻿using AequusRemake.Content.Biomes.PollutedOcean;
+using AequusRemake.Content.CrossMod;
+using AequusRemake.Content.Dedicated.Baguette;
+using AequusRemake.Content.Enemies.PollutedOcean.BreadOfCthulhu.Items;
+using AequusRemake.Content.Items.Tools.Keys;
+using AequusRemake.Core.ContentGeneration;
+using AequusRemake.Core.Entities.Bestiary;
+using AequusRemake.DataSets;
 using System;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequu2.Content.Enemies.PollutedOcean.BreadOfCthulhu;
+namespace AequusRemake.Content.Enemies.PollutedOcean.BreadOfCthulhu;
 
 [AutoloadBanner]
 [BestiaryBiome<PollutedOceanBiomeSurface>()]

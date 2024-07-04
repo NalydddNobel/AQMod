@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core.Entities.Buffs;
+﻿namespace AequusRemake.Core.Entities.Buffs;
 
 public class BuffsPlayer : ModPlayer {
     public override void PreUpdateBuffs() {

@@ -1,7 +1,7 @@
-﻿using Aequu2.Core.ContentGeneration;
+﻿using AequusRemake.Core.ContentGeneration;
 using System;
 
-namespace Aequu2.Content.Fishing;
+namespace AequusRemake.Content.Fishing;
 
 internal class InstancedFishItem : InstancedModItem {
     private readonly int _rarity;

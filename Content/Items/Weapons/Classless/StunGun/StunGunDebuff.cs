@@ -1,9 +1,9 @@
-﻿using Aequu2.Core.Entities.NPCs;
-using Aequu2.Core.Components.Buffs;
-using Aequu2.DataSets;
+﻿using AequusRemake.Core.Entities.NPCs;
+using AequusRemake.Core.Components.Buffs;
+using AequusRemake.DataSets;
 using Terraria.Audio;
 
-namespace Aequu2.Content.Items.Weapons.Classless.StunGun;
+namespace AequusRemake.Content.Items.Weapons.Classless.StunGun;
 
 public class StunGunDebuff : ModBuff, IOnAddBuff/*, IAddRecipeGroups*/ {
     public override string Texture => AequusTextures.TemporaryDebuffIcon;
@@ -69,17 +69,17 @@ public class StunGunDebuff : ModBuff, IOnAddBuff/*, IAddRecipeGroups*/ {
     }
 
     public override void Update(NPC npc, ref int buffIndex) {
-        if (!npc.TryGetGlobalNPC<Aequu2NPC>(out var Aequu2NPC)) {
+        if (!npc.TryGetGlobalNPC<AequusRemakeNPC>(out var AequusRemakeNPC)) {
             return;
         }
 
-        Aequu2NPC.stunGunVisual = true;
+        AequusRemakeNPC.stunGunVisual = true;
         if (IsStunnable(npc)) {
-            Aequu2NPC.stunGun = true;
+            AequusRemakeNPC.stunGun = true;
         }
         else {
-            Aequu2NPC.statSpeedX *= 0.5f;
-            Aequu2NPC.statSpeedY *= 0.5f;
+            AequusRemakeNPC.statSpeedX *= 0.5f;
+            AequusRemakeNPC.statSpeedY *= 0.5f;
         }
         //npc.netOffset.X = Main.rand.NextFloat(-2f, 2f);
 

@@ -1,4 +1,4 @@
-﻿namespace Aequu2.DataSets.Structures.Enums;
+﻿namespace AequusRemake.DataSets.Structures.Enums;
 
 public enum ChestPool {
     /// <summary>Extra loot pool for Vanilla's Surface Wooden Chests.</summary>

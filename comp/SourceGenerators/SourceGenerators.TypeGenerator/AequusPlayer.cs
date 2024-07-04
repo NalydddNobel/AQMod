@@ -1,10 +1,10 @@
 ﻿using System.Runtime.CompilerServices;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Aequu2.Core.Structures;
+using AequusRemake.Core.Structures;
 using System.Collections.Generic;
 
-namespace Aequu2;
+namespace AequusRemake;
 
 public partial class AequusPlayer {
     [CompilerGenerated]
@@ -83,7 +83,6 @@ public partial class AequusPlayer {
     [CompilerGenerated]
     private void PostUpdateEquipsInner() {
         Content.Items.Accessories.WeightedHorseshoe.WeightedHorseshoe.OnPostUpdateEquips(Player, this);
-        Content.Items.PermaPowerups.Shimmer.CosmicChest.OnPostUpdateEquips(this);
     }
     
     [CompilerGenerated]

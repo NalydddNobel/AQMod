@@ -1,6 +1,6 @@
 ﻿using Terraria.GameContent.ItemDropRules;
 
-namespace Aequu2.DataSets.Structures.DropRulesChest;
+namespace AequusRemake.DataSets.Structures.DropRulesChest;
 
 public class ChainTryIfSucceed : IChestLootChain {
     public IChestLootRule RuleToChain { get; private set; }

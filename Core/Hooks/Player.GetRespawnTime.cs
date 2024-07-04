@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequu2.Core.Hooks;
+namespace AequusRemake.Core.Hooks;
 
 public partial class TerrariaHooks {
     /// <summary>Allows for respawn time modifications to be perfomed. (<see cref="AequusPlayer.respawnTimeModifierFlat"/>)</summary>

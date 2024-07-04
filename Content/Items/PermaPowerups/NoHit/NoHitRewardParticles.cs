@@ -1,9 +1,9 @@
-﻿using Aequu2.Core.Graphics;
-using Aequu2.Core.Particles;
+﻿using AequusRemake.Core.Graphics;
+using AequusRemake.Core.Particles;
 using System;
 using System.Collections.Generic;
 
-namespace Aequu2.Content.Items.PermaPowerups.NoHit;
+namespace AequusRemake.Content.Items.PermaPowerups.NoHit;
 
 public class NoHitRewardParticles : ParticleSystem {
     private static int _nextSlot;

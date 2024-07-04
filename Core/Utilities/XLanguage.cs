@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using Terraria.Localization;
 using Terraria.Utilities;
 
-namespace Aequu2.Core.Utilities;
+namespace AequusRemake.Core.Utilities;
 
 public static class XLanguage {
     private record struct ColoredText(string Text, Color Color);
@@ -78,7 +78,7 @@ public static class XLanguage {
 
     /// <returns>Localized name of a <see cref="System.DayOfWeek"/> value.</returns>
     public static LocalizedText DayOfWeek(DayOfWeek dayOfWeek) {
-        return Language.GetText("Mods.Aequu2.Misc.DayOfTheWeek." + dayOfWeek.ToString());
+        return Language.GetText("Mods.AequusRemake.Misc.DayOfTheWeek." + dayOfWeek.ToString());
     }
 
     /// <returns>Price Text for the specified value, or <paramref name="NoValueText"/> if value is less than or equal to 0.</returns>
@@ -195,7 +195,7 @@ public static class XLanguage {
         List<string> keys = keybind.GetAssignedKeys();
 
         if (keys.Count == 0) {
-            yield return Language.GetTextValue("Mods.Aequu2.KeyUnbound");
+            yield return Language.GetTextValue("Mods.AequusRemake.KeyUnbound");
         }
         else {
             foreach (var s in keys) {

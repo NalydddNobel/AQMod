@@ -1,6 +1,6 @@
-﻿using Aequu2.DataSets;
+﻿using AequusRemake.DataSets;
 
-namespace Aequu2.Core.Entities.Items;
+namespace AequusRemake.Core.Entities.Items;
 
 public class PotionsGlobalItem : GlobalItem {
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {

@@ -1,11 +1,11 @@
-﻿using Aequu2.Content.Backpacks;
-using Aequu2.Content.Configuration;
+﻿using AequusRemake.Content.Backpacks;
+using AequusRemake.Content.Configuration;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
 
-namespace Aequu2.Content.VanillaChanges;
+namespace AequusRemake.Content.VanillaChanges;
 
 public class ToolbeltChanges : GlobalItem {
     public override bool IsLoadingEnabled(Mod mod) {
@@ -25,7 +25,7 @@ public class ToolbeltChanges : GlobalItem {
     }
 
     public override void Load() {
-        _tooltip = Language.GetOrRegister("Mods.Aequu2.Items.Toolbelt.Tooltip").WithFormatArgs(Capacity);
+        _tooltip = Language.GetOrRegister("Mods.AequusRemake.Items.Toolbelt.Tooltip").WithFormatArgs(Capacity);
     }
 
     public override void SetDefaults(Item entity) {
@@ -40,7 +40,7 @@ public class ToolbeltChanges : GlobalItem {
     }
 
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
-        tooltips.AddTooltip(new TooltipLine(Mod, "Aequu2Tooltip", _tooltip.Value));
+        tooltips.AddTooltip(new TooltipLine(Mod, "AequusRemakeTooltip", _tooltip.Value));
     }
 
     public override void ModifyItemLoot(Item item, ItemLoot itemLoot) {
@@ -117,8 +117,8 @@ public class ToolbeltChanges : GlobalItem {
         }
 
         public override void Load() {
-            _on = Language.GetOrRegister("Mods.Aequu2.Items.Toolbelt.BackpackEnabled");
-            _off = Language.GetOrRegister("Mods.Aequu2.Items.Toolbelt.BackpackDisabled");
+            _on = Language.GetOrRegister("Mods.AequusRemake.Items.Toolbelt.BackpackEnabled");
+            _off = Language.GetOrRegister("Mods.AequusRemake.Items.Toolbelt.BackpackDisabled");
         }
 
         public override bool IsLoadingEnabled(Mod mod) {

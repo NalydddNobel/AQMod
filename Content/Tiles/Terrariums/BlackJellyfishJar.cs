@@ -1,6 +1,6 @@
-﻿using Aequu2.Content.Fishing.Baits.BlackJellyfish;
+﻿using AequusRemake.Content.Fishing.Baits.BlackJellyfish;
 
-namespace Aequu2.Content.Tiles.Terrariums;
+namespace AequusRemake.Content.Tiles.Terrariums;
 
 public class BlackJellyfishJar : JellyfishJarTemplate {
     public override void SetStaticDefaults() {

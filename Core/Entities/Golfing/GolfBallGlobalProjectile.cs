@@ -1,6 +1,6 @@
 ﻿using Terraria.DataStructures;
 
-namespace Aequu2.Core.Entities.Golfing;
+namespace AequusRemake.Core.Entities.Golfing;
 
 public class GolfBallGlobalProjectile : GlobalProjectile {
     public override bool AppliesToEntity(Projectile entity, bool lateInstantiation) {

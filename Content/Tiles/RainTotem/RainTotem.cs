@@ -1,5 +1,5 @@
-﻿using Aequu2.Core.ContentGeneration;
-using Aequu2.Core.Entities.Tiles.Components;
+﻿using AequusRemake.Core.ContentGeneration;
+using AequusRemake.Core.Entities.Tiles.Components;
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;
@@ -10,7 +10,7 @@ using Terraria.GameContent.Drawing;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ObjectData;
 
-namespace Aequu2.Content.Tiles.RainTotem;
+namespace AequusRemake.Content.Tiles.RainTotem;
 
 public class RainTotem : RainTotemTileTemplate {
     #region Update
@@ -73,17 +73,12 @@ public class RainTotem : RainTotemTileTemplate {
         DropItem = new InstancedTileItem(this, rarity: ItemRarityID.Blue, value: Item.silver, researchSacrificeCount: 3);
         Mod.AddContent(DropItem);
 
-        Aequu2.OnAddRecipes += AddRecipes;
+        AequusRemake.OnAddRecipes += AddRecipes;
 
         void AddRecipes() {
             DropItem.CreateRecipe()
                 .AddIngredient(ItemID.BambooBlock, 30)
                 .AddIngredient(ItemID.RainCloud, 10)
-#if DEBUG
-                            .AddIngredient(ItemID.FallenStar)
-#else
-                .AddIngredient(Old.Content.Items.Materials.Energies.EnergyMaterial.Aquatic.Type)
-#endif
                 .AddTile(TileID.Sawmill)
                 .Register()
                 .SortBeforeFirstRecipesOf(ItemID.GoblinBattleStandard);

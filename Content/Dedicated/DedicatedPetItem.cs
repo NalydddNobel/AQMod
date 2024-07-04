@@ -1,6 +1,6 @@
-﻿using Aequu2.Core.ContentGeneration;
+﻿using AequusRemake.Core.ContentGeneration;
 
-namespace Aequu2.Content.Dedicated;
+namespace AequusRemake.Content.Dedicated;
 
 [Autoload(false)]
 internal class DedicatedPetItem : InstancedPetItem {

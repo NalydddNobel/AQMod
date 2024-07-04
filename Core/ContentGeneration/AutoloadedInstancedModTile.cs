@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core.ContentGeneration;
+﻿namespace AequusRemake.Core.ContentGeneration;
 
 [Autoload(true)]
 internal abstract class AutoloadedInstancedModTile : InstancedModTile {

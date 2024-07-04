@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core;
+﻿namespace AequusRemake.Core;
 
 public partial class Commons {
     public class Rare {

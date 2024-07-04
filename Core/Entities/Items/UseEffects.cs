@@ -1,6 +1,6 @@
-﻿using Aequu2.Core.CodeGeneration;
+﻿using AequusRemake.Core.CodeGeneration;
 
-namespace Aequu2.Core.Entities.Items;
+namespace AequusRemake.Core.Entities.Items;
 
 [Gen.AequusPlayer_Field<bool>("forceUseItem")]
 [Gen.AequusPlayer_Field<byte>("disableItem")]
@@ -18,12 +18,12 @@ public class UseEffects : GlobalItem {
     }
 
     [Gen.AequusPlayer_SetControls]
-    internal static void ForceItemUse(Player player, AequusPlayer Aequu2Player) {
-        if (Aequu2Player.forceUseItem) {
+    internal static void ForceItemUse(Player player, AequusPlayer AequusRemakePlayer) {
+        if (AequusRemakePlayer.forceUseItem) {
             player.controlUseItem = true;
             player.releaseUseItem = true;
             player.itemAnimation = 0;
         }
-        Aequu2Player.forceUseItem = false;
+        AequusRemakePlayer.forceUseItem = false;
     }
 }

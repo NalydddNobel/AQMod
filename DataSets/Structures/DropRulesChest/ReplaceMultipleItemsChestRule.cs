@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using tModLoaderExtended.Terraria;
 
-namespace Aequu2.DataSets.Structures.DropRulesChest;
+namespace AequusRemake.DataSets.Structures.DropRulesChest;
 
 /// <summary>
 /// Finds any item which is in <paramref name="ItemIdsToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="InsertToChest"/> context.

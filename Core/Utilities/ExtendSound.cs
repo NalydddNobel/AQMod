@@ -1,6 +1,6 @@
 ﻿using Terraria.Audio;
 
-namespace Aequu2.Core.Utilities;
+namespace AequusRemake.Core.Utilities;
 
 public static class ExtendSound {
     /// <returns>The Sound's path with the first directory removed.</returns>

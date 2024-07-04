@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequu2.Core.PhysicsBehaviors;
+namespace AequusRemake.Core.PhysicsBehaviors;
 
 public class VIString<T> where T : IVerletIntegrationNode, new() {
     public T[] segments;

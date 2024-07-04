@@ -1,4 +1,4 @@
-﻿using Aequu2.DataSets;
+﻿using AequusRemake.DataSets;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,7 +6,7 @@ using Terraria.DataStructures;
 using Terraria.ModLoader.IO;
 using tModLoaderExtended.Networking;
 
-namespace Aequu2.Content.Items.Tools.Keychain;
+namespace AequusRemake.Content.Items.Tools.Keychain;
 
 public class KeychainPlayer : ModPlayer {
     public const sbyte MAX_KEYS_ALLOWED = 32;

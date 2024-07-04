@@ -1,4 +1,4 @@
-﻿namespace Aequu2.DataSets.Structures.DropRulesChest;
+﻿namespace AequusRemake.DataSets.Structures.DropRulesChest;
 
 public interface IAddToChest {
     void AddItem(int item, int stack, in ChestLootInfo info, int prefix = -1);

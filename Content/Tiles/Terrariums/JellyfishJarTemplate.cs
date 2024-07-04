@@ -1,12 +1,12 @@
-﻿using Aequu2.Core.ContentGeneration;
-using Aequu2.Core.Graphics.Tiles;
+﻿using AequusRemake.Core.ContentGeneration;
+using AequusRemake.Core.Graphics.Tiles;
 using ReLogic.Content;
 using Terraria.GameContent;
 using Terraria.ObjectData;
 using Terraria.Utilities;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 
-namespace Aequu2.Content.Tiles.Terrariums;
+namespace AequusRemake.Content.Tiles.Terrariums;
 
 public abstract class JellyfishJarTemplate : ModTile {
     protected readonly byte[] _mode = new byte[Main.cageFrames];
@@ -24,7 +24,7 @@ public abstract class JellyfishJarTemplate : ModTile {
         Mod.AddContent(jarItem);
 
         SpecialTileRenderer.PreDrawNonSolidTiles += () => _onScreen = false;
-        Aequu2.OnAddRecipes += () => {
+        AequusRemake.OnAddRecipes += () => {
             jarItem.CreateRecipe()
                 .AddIngredient(JellyfishItem)
                 .AddIngredient(ItemID.BottledWater)

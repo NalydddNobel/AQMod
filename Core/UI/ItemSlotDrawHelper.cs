@@ -3,7 +3,7 @@ using Terraria.GameContent;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace Aequu2.Core.UI;
+namespace AequusRemake.Core.UI;
 
 public class ItemSlotDrawHelper {
     public static void DrawSimple(SpriteBatch spriteBatch, Item item, Vector2 position, int context, float scale = 1f, Color? color = null, float maxSize = 32f) {

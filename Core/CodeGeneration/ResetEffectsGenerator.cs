@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Reflection.Emit;
 
-namespace Aequu2.Core.CodeGeneration;
+namespace AequusRemake.Core.CodeGeneration;
 
 [Obsolete("Replaced with PlayerGen/NPCGen.ResetEffectsAttribute")]
 public sealed class ResetEffectsGenerator<T> {

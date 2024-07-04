@@ -1,8 +1,8 @@
-﻿using Aequu2.DataSets;
-using Aequu2.DataSets.Structures.DropRulesChest;
-using Aequu2.DataSets.Structures.Enums;
+﻿using AequusRemake.DataSets;
+using AequusRemake.DataSets.Structures.DropRulesChest;
+using AequusRemake.DataSets.Structures.Enums;
 
-namespace Aequu2.Core.Utilities;
+namespace AequusRemake.Core.Utilities;
 
 public static class ExtendChestLoot {
     public static void RegisterCommon(this ChestLootDatabase database, ChestPool type, int item, int minStack = 1, int maxStack = 1, int chanceDemoninator = 1, int chanceNumerator = 1, params Condition[] conditions) {

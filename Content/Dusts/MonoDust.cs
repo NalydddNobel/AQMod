@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequu2.Content.Dusts;
+namespace AequusRemake.Content.Dusts;
 
 public class MonoDust : ModDust {
     public virtual float VelocityMultiplier => 0.9f;

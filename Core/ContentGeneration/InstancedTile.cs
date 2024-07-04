@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core.ContentGeneration;
+﻿namespace AequusRemake.Core.ContentGeneration;
 
 internal class InstancedTile : ModTile {
     private readonly string _name;

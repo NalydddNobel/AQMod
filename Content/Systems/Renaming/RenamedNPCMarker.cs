@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Terraria.ModLoader.IO;
 
-namespace Aequu2.Content.Systems.Renaming;
+namespace AequusRemake.Content.Systems.Renaming;
 
 public sealed class RenamedNPCMarker {
     public static readonly Vector2 BoxSize = new Vector2(2160f, 1440f);

@@ -1,7 +1,7 @@
-﻿using Aequu2.Core.Assets;
+﻿using AequusRemake.Core.Assets;
 using System.Runtime.CompilerServices;
 
-namespace Aequu2.Core.Utilities;
+namespace AequusRemake.Core.Utilities;
 
 public static class RequestCacheExtensions {
     public static int Width(this RequestCache<Texture2D> asset) {

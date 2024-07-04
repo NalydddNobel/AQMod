@@ -1,8 +1,8 @@
-﻿using Aequu2.Core.CodeGeneration;
+﻿using AequusRemake.Core.CodeGeneration;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
-namespace Aequu2.Core.Debug.CheatCodes;
+namespace AequusRemake.Core.Debug.CheatCodes;
 
 internal class ItemInternalNames() : CheatCode<HoldStateProvider>(
     Params.DebugOnly,

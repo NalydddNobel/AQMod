@@ -1,8 +1,8 @@
-﻿using Aequu2.Core.Graphics;
-using Aequu2.Core.Particles;
+﻿using AequusRemake.Core.Graphics;
+using AequusRemake.Core.Particles;
 using System;
 
-namespace Aequu2.Content.Items.Weapons.Magic.Furystar;
+namespace AequusRemake.Content.Items.Weapons.Magic.Furystar;
 
 public class FurystarParticles : ParticleArray<FurystarParticles.Particle> {
     public override int ParticleCount => 50;

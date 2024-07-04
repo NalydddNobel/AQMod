@@ -1,10 +1,10 @@
-﻿using Aequu2.DataSets;
+﻿using AequusRemake.DataSets;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria.Utilities;
 using tModLoaderExtended.Terraria;
 
-namespace Aequu2.Core.Entities.Tiles;
+namespace AequusRemake.Core.Entities.Tiles;
 
 // TODO -- Make the angler lantern systems no longer need to use a global tile to get on-screen pots for optimization
 public class PotsSystem : ModSystem {
@@ -65,8 +65,8 @@ public class PotsSystem : ModSystem {
         }
 
         lock (LootPreviews) {
-            var Aequu2Player = Main.LocalPlayer.GetModPlayer<AequusPlayer>();
-            int effectRange = Aequu2Player.potSightRange;
+            var AequusRemakePlayer = Main.LocalPlayer.GetModPlayer<AequusPlayer>();
+            int effectRange = AequusRemakePlayer.potSightRange;
             foreach (var preview in LootPreviews) {
                 if (!Main.tile[preview.Key].HasTile || !TileDataSet.IsSmashablePot.Contains(Main.tile[preview.Key].TileType) || !InPotSightRange(Main.LocalPlayer, preview.Key, effectRange)) {
                     preview.Value.Opacity -= 0.04f;

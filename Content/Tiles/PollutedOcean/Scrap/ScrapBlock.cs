@@ -1,12 +1,12 @@
-﻿using Aequu2.Content.Items.Materials;
-using Aequu2.Core.ContentGeneration;
-using Aequu2.Core.Entities.Tiles.Components;
-using Aequu2.Core.Graphics.Tiles;
+﻿using AequusRemake.Content.Items.Materials;
+using AequusRemake.Core.ContentGeneration;
+using AequusRemake.Core.Entities.Tiles.Components;
+using AequusRemake.Core.Graphics.Tiles;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.Localization;
 
-namespace Aequu2.Content.Tiles.PollutedOcean.Scrap;
+namespace AequusRemake.Content.Tiles.PollutedOcean.Scrap;
 
 public class ScrapBlock : ModTile, ISpecialTileRenderer, ICustomPlaceSound, ITouchEffects, ISolidToProjectilesAndItems, ISolidToNPCs {
     public static ModItem Item { get; private set; }
@@ -24,7 +24,7 @@ public class ScrapBlock : ModTile, ISpecialTileRenderer, ICustomPlaceSound, ITou
         Mod.AddContent(SandBallProjectile);
         Mod.AddContent(SandGunProjectile);
 
-        Aequu2.OnAddRecipes += () => {
+        AequusRemake.OnAddRecipes += () => {
             Item.CreateRecipe(10)
                 .AddIngredient(ModContent.ItemType<CompressedTrash>())
                 .AddTile(TileID.WorkBenches)
@@ -62,8 +62,8 @@ public class ScrapBlock : ModTile, ISpecialTileRenderer, ICustomPlaceSound, ITou
         return (ushort)Utils.RandomInt(ref seed, 0, 5);
     }
 
-    public void Touch(int i, int j, Player player, AequusPlayer Aequu2Player) {
-        Aequu2Player.touchingScrapBlock = true;
+    public void Touch(int i, int j, Player player, AequusPlayer AequusRemakePlayer) {
+        AequusRemakePlayer.touchingScrapBlock = true;
     }
 
     public void PlaySound(int i, int j, bool forced, int plr, int style, bool PlaceTile) {

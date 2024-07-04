@@ -1,7 +1,7 @@
-﻿using Aequu2.Core.Entities.Items.Components;
+﻿using AequusRemake.Core.Entities.Items.Components;
 using Terraria.UI;
 
-namespace Aequu2.Core.Hooks;
+namespace AequusRemake.Core.Hooks;
 
 public partial class TerrariaHooks {
     /// <summary>Allows custom item movement action overrides for hovered modded items which implement <see cref="IPickItemMovementAction"/>.</summary>

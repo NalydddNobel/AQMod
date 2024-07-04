@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core.Structures.ID;
+﻿namespace AequusRemake.Core.Structures.ID;
 
 internal readonly record struct ModId<T>(string Name, Mod Mod, int BackupVanillaId) : IProvideId where T : IModType {
     public ModId(string Name, string Mod, int BackupVanillaId) : this(Name, ModLoader.TryGetMod(Mod, out Mod mod) ? mod : null, BackupVanillaId) { }

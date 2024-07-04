@@ -1,7 +1,7 @@
 ﻿using System;
 using Terraria.UI.Chat;
 
-namespace Aequu2.Core.Entities.Items.Components;
+namespace AequusRemake.Core.Entities.Items.Components;
 public interface IHaveDownsideTip {
 }
 

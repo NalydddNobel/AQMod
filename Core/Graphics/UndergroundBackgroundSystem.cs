@@ -1,8 +1,8 @@
-﻿using Aequu2.Core.Assets;
+﻿using AequusRemake.Core.Assets;
 using System;
 using System.Collections.Generic;
 
-namespace Aequu2.Core.Graphics;
+namespace AequusRemake.Core.Graphics;
 
 public class UndergroundBackgroundSystem : ModSystem {
     internal static Dictionary<int, CustomDrawnUGBackground> _customDrawBGLookup = new();

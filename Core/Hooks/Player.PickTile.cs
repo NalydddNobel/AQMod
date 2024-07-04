@@ -2,7 +2,7 @@
 using MonoMod.Cil;
 using Terraria.GameContent.Achievements;
 
-namespace Aequu2.Core.Hooks;
+namespace AequusRemake.Core.Hooks;
 
 public partial class TerrariaHooks {
     /// <summary>Allows for the breath conserver to restore breath upon breaking a tile.</summary>

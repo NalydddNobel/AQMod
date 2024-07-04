@@ -1,10 +1,10 @@
-﻿using Aequu2.Core.Systems;
-using Aequu2.Core.Graphics.Animations;
+﻿using AequusRemake.Core.Systems;
+using AequusRemake.Core.Graphics.Animations;
 using System.IO;
 using Terraria.DataStructures;
 using tModLoaderExtended.Networking;
 
-namespace Aequu2.Content.Fishing.CrabPots;
+namespace AequusRemake.Content.Fishing.CrabPots;
 public class PacketCrabPotUse : PacketHandler {
     public void Send(int x, int y, int player, int waterStyleId) {
         var packet = GetPacket();

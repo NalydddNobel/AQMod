@@ -1,6 +1,6 @@
 ﻿using Terraria.GameContent.ItemDropRules;
 
-namespace Aequu2.Core.Entities.Items.DropRules;
+namespace AequusRemake.Core.Entities.Items.DropRules;
 
 public class ConditionLastAlive : IItemDropRuleCondition, IProvideItemConditionDescription {
     private readonly int type;

@@ -17,7 +17,7 @@ public class SoundsSourceGenerator : ISourceGenerator {
                 using Terraria.Audio;
                 using System.Runtime.CompilerServices;
 
-                namespace Aequu2;
+                namespace AequusRemake;
 
                 /// <summary>(Total Sounds: {{files.Count}})</summary>
                 [CompilerGenerated]
@@ -25,7 +25,7 @@ public class SoundsSourceGenerator : ISourceGenerator {
                     {{string.Join("\n", files.Select((file) =>
                     $"""
                         /// <summary>Full Path: {file.Path}</summary>
-                        public static readonly SoundStyle {file.Name} = new("Aequu2/{file.Path}");
+                        public static readonly SoundStyle {file.Name} = new("AequusRemake/{file.Path}");
                     """))}}
                 }
                 """, Encoding.UTF8)

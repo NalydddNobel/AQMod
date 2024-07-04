@@ -1,9 +1,9 @@
-﻿using Aequu2.DataSets;
+﻿using AequusRemake.DataSets;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.ObjectData;
 
-namespace Aequu2.Content.Tiles.CraftingStations.TrashCompactor;
+namespace AequusRemake.Content.Tiles.CraftingStations.TrashCompactor;
 
 public struct TrashCompactorRecipe {
     public static readonly TrashCompactorRecipe None = default(TrashCompactorRecipe);

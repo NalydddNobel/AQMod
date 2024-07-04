@@ -1,10 +1,10 @@
-﻿using Aequu2.Content.Tiles.CraftingStations.TrashCompactor;
-using Aequu2.Content.Tiles.PollutedOcean.Scrap;
-using Aequu2.Core.ContentGeneration;
-using Aequu2.Core.Graphics.Animations;
+﻿using AequusRemake.Content.Tiles.CraftingStations.TrashCompactor;
+using AequusRemake.Content.Tiles.PollutedOcean.Scrap;
+using AequusRemake.Core.ContentGeneration;
+using AequusRemake.Core.Graphics.Animations;
 using Terraria.GameContent.Drawing;
 
-namespace Aequu2.Content.Tiles.Furniture.Trash;
+namespace AequusRemake.Content.Tiles.Furniture.Trash;
 
 public class TrashFurniture : UnifiedFurniture {
     public override int DustType => DustID.Iron;

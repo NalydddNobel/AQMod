@@ -1,7 +1,7 @@
-﻿using Aequu2.Core.CrossMod;
-using Aequu2.Core.Entities.Items.Components;
+﻿using AequusRemake.Core.CrossMod;
+using AequusRemake.Core.Entities.Items.Components;
 
-namespace Aequu2.Content.CrossMod.CalamityModSupport.Items;
+namespace AequusRemake.Content.CrossMod.CalamityModSupport.Items;
 
 public class OmegaRestoration : CrossModItem, IApplyPotionDelay {
     public bool ApplyPotionDelay(Player player) {

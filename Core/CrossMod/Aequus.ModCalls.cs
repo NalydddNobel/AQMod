@@ -1,4 +1,4 @@
-﻿using Aequu2.Core.CrossMod;
+﻿using AequusRemake.Core.CrossMod;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,11 +7,11 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace Aequu2;
+namespace AequusRemake;
 
-// Check https://terrariamods.wiki.gg/wiki/Aequu2/Mod_Calls for more info.
+// Check https://terrariamods.wiki.gg/wiki/AequusRemake/Mod_Calls for more info.
 
-public partial class Aequu2 {
+public partial class AequusRemake {
     #region Fargos
     [ModCall]
     public static bool AbominationnClearEvents(bool canClearEvents) {
@@ -105,7 +105,7 @@ public partial class Aequu2 {
     private readonly Dictionary<string, CallMethod> Calls = new();
 
     private void LoadModCalls() {
-        foreach (var call in typeof(Aequu2).GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static)) {
+        foreach (var call in typeof(AequusRemake).GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static)) {
             var modCallAttribute = call.GetCustomAttribute<ModCallAttribute>();
             if (modCallAttribute == null) {
                 continue;
@@ -139,7 +139,7 @@ public partial class Aequu2 {
         Assembly caller = Assembly.GetCallingAssembly();
 
         if (args[0] is not string key) {
-            return new ArgumentException($"All mod calls must have a string identifier (argument 0, Check https://terrariamods.wiki.gg/wiki/Aequu2/Mod_Calls for more info.). From Mod: {caller.Name()}.");
+            return new ArgumentException($"All mod calls must have a string identifier (argument 0, Check https://terrariamods.wiki.gg/wiki/AequusRemake/Mod_Calls for more info.). From Mod: {caller.Name()}.");
         }
 
         if (Calls.TryGetValue(key, out var call)) {
@@ -162,7 +162,7 @@ public partial class Aequu2 {
 
     [Conditional("DEBUG")]
     private void GenerateWikiPage() {
-        string path = $"{DEBUG_FILES_PATH}/ModSources/Aequu2/Assets/Metadata/ModCallsWikiPage.Temp";
+        string path = $"{DEBUG_FILES_PATH}/ModSources/AequusRemake/Assets/Metadata/ModCallsWikiPage.Temp";
         if (!Directory.Exists(Path.GetDirectoryName(path))) {
             return;
         }
@@ -170,11 +170,11 @@ public partial class Aequu2 {
         try {
             using StreamWriter w = new StreamWriter(File.Create(path));
 
-            w.Write("{{mod sub-page}}<!--DO NOT REMOVE THIS LINE! It is required for Mod sub-pages to work properly.-->\r\nMod Calls are special functions provided by tModLoader that mod creators can use to interact with Aequu2 in certain ways. They are accessible through <code>Mod.Call</code> and a given call name; for more details, see the [https://github.com/tModLoader/tModLoader/wiki/Expert-Cross-Mod-Content#call-aka-modcall-intermediate tModLoader wiki]. This page lists the mod call functions Aequu2 currently adds.\r\n");
+            w.Write("{{mod sub-page}}<!--DO NOT REMOVE THIS LINE! It is required for Mod sub-pages to work properly.-->\r\nMod Calls are special functions provided by tModLoader that mod creators can use to interact with AequusRemake in certain ways. They are accessible through <code>Mod.Call</code> and a given call name; for more details, see the [https://github.com/tModLoader/tModLoader/wiki/Expert-Cross-Mod-Content#call-aka-modcall-intermediate tModLoader wiki]. This page lists the mod call functions AequusRemake currently adds.\r\n");
             w.Write("\r\nThis page expects you to have an understanding of Terraria mod coding, and how to utilize Mod.Call.\r\n");
-            w.Write("\r\nIf you would like to view the code for handling mod calls, you can find it [https://github.com/NalydddNobel/AQMod/blob/reboot/Core/CrossMod/Aequu2.ModCalls.cs here]\r\n");
+            w.Write("\r\nIf you would like to view the code for handling mod calls, you can find it [https://github.com/NalydddNobel/AQMod/blob/reboot/Core/CrossMod/AequusRemake.ModCalls.cs here]\r\n");
             w.Write("\r\n== Important Information ==\r\nAll Calls are required to have atleast 1 parameter. A <code>string</code>, which is the name of the call.\r\n");
-            w.Write("\r\n== Examples ==\r\nThe simplest way to get an instance of Aequu2:\r\n if (ModLoader.TryGetMod(\"Aequu2\", out Mod Aequu2))\r\n }\r\n     // A call goes here\r\n }\r\n\r\nExample of some mod calls.\r\n Aequu2.Call(\"downedCrabson\", Mod); // Returns whether Crabson has been defeated.\r\n Aequu2.Call(\"downedCrabson\", Mod, true); // Sets Crabson to defeated.\r\n");
+            w.Write("\r\n== Examples ==\r\nThe simplest way to get an instance of AequusRemake:\r\n if (ModLoader.TryGetMod(\"AequusRemake\", out Mod AequusRemake))\r\n }\r\n     // A call goes here\r\n }\r\n\r\nExample of some mod calls.\r\n AequusRemake.Call(\"downedCrabson\", Mod); // Returns whether Crabson has been defeated.\r\n AequusRemake.Call(\"downedCrabson\", Mod, true); // Sets Crabson to defeated.\r\n");
             w.Write("\r\n== Mod Calls ==");
             w.Write("\r\n{| class=\"terraria sortable lined align-center\"\r\n! class=unsortable | Call !! Parameters !! Result");
             foreach (var call in NonAliasCalls) {

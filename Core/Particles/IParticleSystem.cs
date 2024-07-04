@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core.Particles;
+﻿namespace AequusRemake.Core.Particles;
 
 public interface IParticleSystem : ILoad {
     void Update();

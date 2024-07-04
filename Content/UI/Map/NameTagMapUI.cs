@@ -1,8 +1,8 @@
-﻿using Aequu2.Content.Systems.Renaming;
+﻿using AequusRemake.Content.Systems.Renaming;
 using Terraria.Map;
 using Terraria.UI;
 
-namespace Aequu2.Content.UI.Map;
+namespace AequusRemake.Content.UI.Map;
 
 public class NameTagMapUI : ModMapLayer {
     public override bool IsLoadingEnabled(Mod mod) {

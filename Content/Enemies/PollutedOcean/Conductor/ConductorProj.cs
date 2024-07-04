@@ -1,10 +1,10 @@
-﻿using Aequu2.DataSets;
+﻿using AequusRemake.DataSets;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.Localization;
 
-namespace Aequu2.Content.Enemies.PollutedOcean.Conductor;
+namespace AequusRemake.Content.Enemies.PollutedOcean.Conductor;
 
 public class ConductorProj : ModNPC {
     public override string Texture => AequusTextures.ScrapBlockItem.Path;

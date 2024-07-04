@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core.Entities.NPCs;
+﻿namespace AequusRemake.Core.Entities.NPCs;
 
 public class DamagedPlayersTracker : GlobalNPC {
     public bool anyInteractedPlayersAreDamaged;

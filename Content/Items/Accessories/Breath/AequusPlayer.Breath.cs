@@ -1,8 +1,8 @@
-﻿using Aequu2.Content.Graphics.Particles;
-using Aequu2.Content.Items.Accessories.Breath;
+﻿using AequusRemake.Content.Graphics.Particles;
+using AequusRemake.Content.Items.Accessories.Breath;
 using System;
 
-namespace Aequu2;
+namespace AequusRemake;
 
 public partial class AequusPlayer {
     public static readonly Color CombatText_RestoreBreath = new Color(100, 150, 150);

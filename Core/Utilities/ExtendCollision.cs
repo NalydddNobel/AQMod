@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequu2.Core.Utilities;
+namespace AequusRemake.Core.Utilities;
 
 public static class ExtendCollision {
     public static bool SolidCollision(this Rectangle hitbox) {

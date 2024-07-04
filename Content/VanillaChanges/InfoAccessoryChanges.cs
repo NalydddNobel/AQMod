@@ -1,16 +1,16 @@
-﻿using Aequu2.Content.Configuration;
-using Aequu2.Content.Items.Accessories.Informational.Calendar;
-using Aequu2.Content.Items.Accessories.Informational.DebuffDPSMeter;
+﻿using AequusRemake.Content.Configuration;
+using AequusRemake.Content.Items.Accessories.Informational.Calendar;
+using AequusRemake.Content.Items.Accessories.Informational.DebuffDPSMeter;
 using System.Collections.Generic;
 using Terraria.Localization;
 using tModLoaderExtended.Recipes;
 
-namespace Aequu2.Content.VanillaChanges;
+namespace AequusRemake.Content.VanillaChanges;
 
 public class InfoAccessoryChanges {
     public class PDA : GlobalItem, IRecipeEditor {
         public override bool IsLoadingEnabled(Mod mod) {
-            return GameplayConfig.Instance.PDAGetsAequu2Items;
+            return GameplayConfig.Instance.PDAGetsAequusRemakeItems;
         }
 
         public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
@@ -22,31 +22,28 @@ public class InfoAccessoryChanges {
         }
 
         public override void UpdateInfoAccessory(Item item, Player player) {
-            UpdateAequu2InfoAccs(player);
+            UpdateAequusRemakeInfoAccs(player);
         }
 
         public void EditRecipe(Recipe recipe) {
             if (recipe.createItem.type == ItemID.PDA) {
-                Aequu2.Log.Debug("Adding Aequu2 PDA ingredients...");
+                AequusRemake.Log.Debug("Adding AequusRemake PDA ingredients...");
                 recipe.AddIngredient(ModContent.ItemType<Calendar>());
 
                 recipe.AddIngredient(ModContent.ItemType<GeigerCounter>());
             }
         }
 
-        public static void UpdateAequu2InfoAccs(Player player) {
+        public static void UpdateAequusRemakeInfoAccs(Player player) {
             AequusPlayer info = player.GetModPlayer<AequusPlayer>();
             info.accInfoDayCalendar = true;
             info.accInfoDebuffDPS = true;
-#if !DEBUG
-            info.accInfoQuestFish = true;
-#endif
         }
     }
 
     public class FishFinder : GlobalItem, IRecipeEditor {
         public override bool IsLoadingEnabled(Mod mod) {
-            return GameplayConfig.Instance.PDAGetsAequu2Items;
+            return GameplayConfig.Instance.PDAGetsAequusRemakeItems;
         }
 
         public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
@@ -58,21 +55,15 @@ public class InfoAccessoryChanges {
         }
 
         public override void UpdateInfoAccessory(Item item, Player player) {
-#if !DEBUG
-            player.GetModPlayer<Aequu2Player>().accInfoQuestFish = true;
-#endif
         }
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
-            tooltips.AddTooltip(new TooltipLine(Mod, "AnglerBroadcaster", Language.GetTextValue("Mods.Aequu2.Items.Vanilla.FishFinder.Tooltip")));
+            tooltips.AddTooltip(new TooltipLine(Mod, "AnglerBroadcaster", Language.GetTextValue("Mods.AequusRemake.Items.Vanilla.FishFinder.Tooltip")));
         }
 
         public void EditRecipe(Recipe recipe) {
             if (recipe.createItem.type == ItemID.FishFinder) {
-                Aequu2.Log.Debug("Adding Aequu2 Fish Finder ingredients...");
-#if !DEBUG
-                recipe.AddIngredient(ModContent.ItemType<Old.Content.Items.Accessories.Info.AnglerBroadcaster>());
-#endif
+                Log.Debug("Adding AequusRemake Fish Finder ingredients...");
             }
         }
     }

@@ -1,9 +1,9 @@
-﻿using Aequu2.Content.Tiles.Banners;
-using Aequu2.Core.ContentGeneration;
+﻿using AequusRemake.Content.Tiles.Banners;
+using AequusRemake.Core.ContentGeneration;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Aequu2.Core.Initialization;
+namespace AequusRemake.Core.Initialization;
 
 public class BannerLoader : GlobalNPC {
     public static readonly Dictionary<int, ModItem> NPCToBannerItemId = [];
@@ -19,7 +19,7 @@ public class BannerLoader : GlobalNPC {
             MonsterBanners.StyleToNewBannerTileConversion.Add((byte)legacyId, tile);
         }
 
-        Aequu2.OnPostSetupContent += () => NPCToBannerItemId.Add(modNPC.Type, item);
+        AequusRemake.OnPostSetupContent += () => NPCToBannerItemId.Add(modNPC.Type, item);
     }
 
     /// <summary>

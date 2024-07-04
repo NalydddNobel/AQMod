@@ -1,7 +1,7 @@
-﻿using Aequu2.Content.Items.Potions.Healing.Honey;
-using Aequu2.Core.CrossMod;
+﻿using AequusRemake.Content.Items.Potions.Healing.Honey;
+using AequusRemake.Core.CrossMod;
 
-namespace Aequu2.Content.CrossMod.CalamityModSupport.Items;
+namespace AequusRemake.Content.CrossMod.CalamityModSupport.Items;
 
 public class SupremeHoney : CrossModItem {
     public override void OnSetStaticDefaults() {

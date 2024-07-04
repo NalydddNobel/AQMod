@@ -1,23 +1,23 @@
 {{mod sub-page}}<!--DO NOT REMOVE THIS LINE! It is required for Mod sub-pages to work properly.-->
-Mod Calls are special functions provided by tModLoader that mod creators can use to interact with Aequu2 in certain ways. They are accessible through <code>Mod.Call</code> and a given call name; for more details, see the [https://github.com/tModLoader/tModLoader/wiki/Expert-Cross-Mod-Content#call-aka-modcall-intermediate tModLoader wiki]. This page lists the mod call functions Aequu2 currently adds.
+Mod Calls are special functions provided by tModLoader that mod creators can use to interact with AequusRemake in certain ways. They are accessible through <code>Mod.Call</code> and a given call name; for more details, see the [https://github.com/tModLoader/tModLoader/wiki/Expert-Cross-Mod-Content#call-aka-modcall-intermediate tModLoader wiki]. This page lists the mod call functions AequusRemake currently adds.
 
 This page expects you to have an understanding of Terraria mod coding, and how to utilize Mod.Call.
 
-If you would like to view the code for handling mod calls, you can find it [https://github.com/NalydddNobel/AQMod/blob/reboot/Core/CrossMod/Aequu2.ModCalls.cs here]
+If you would like to view the code for handling mod calls, you can find it [https://github.com/NalydddNobel/AQMod/blob/reboot/Core/CrossMod/AequusRemake.ModCalls.cs here]
 
 == Important Information ==
 All Calls are required to have atleast 1 parameter. A <code>string</code>, which is the name of the call.
 
 == Examples ==
-The simplest way to get an instance of Aequu2:
- if (ModLoader.TryGetMod("Aequu2", out Mod Aequu2))
+The simplest way to get an instance of AequusRemake:
+ if (ModLoader.TryGetMod("AequusRemake", out Mod AequusRemake))
  }
      // A call goes here
  }
 
 Example of some mod calls.
- Aequu2.Call("downedCrabson", Mod); // Returns whether Crabson has been defeated.
- Aequu2.Call("downedCrabson", Mod, true); // Sets Crabson to defeated.
+ AequusRemake.Call("downedCrabson", Mod); // Returns whether Crabson has been defeated.
+ AequusRemake.Call("downedCrabson", Mod, true); // Sets Crabson to defeated.
 
 == Mod Calls ==
 {| class="terraria sortable lined align-center"

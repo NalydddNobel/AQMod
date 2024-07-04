@@ -4,11 +4,11 @@ using Terraria.GameContent.ObjectInteractions;
 using Terraria.Localization;
 using Terraria.ObjectData;
 
-namespace Aequu2.Core.Entities.Tiles;
+namespace AequusRemake.Core.Entities.Tiles;
 
 public class BaseFurnitureTile {
     /// <summary>
-    /// A base furntiure tile, Furniture in Aequu2 is handled on an individual ModTile basis instead of through a big multi-styled tile.
+    /// A base furntiure tile, Furniture in AequusRemake is handled on an individual ModTile basis instead of through a big multi-styled tile.
     /// </summary>
     public abstract class Furniture : ModTile {
         public abstract int FurnitureDust { get; }

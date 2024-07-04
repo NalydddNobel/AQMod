@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequu2.Core.PhysicsBehaviors;
+namespace AequusRemake.Core.PhysicsBehaviors;
 
 /// <summary>A Verlet Integrated node with Tile Collision.</summary>
 public struct VICollisonNode : IVerletIntegrationNode {

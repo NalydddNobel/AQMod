@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core.Components.NPCs;
+﻿namespace AequusRemake.Core.Components.NPCs;
 
 public class NPCComponentLoader : ILoad {
     public void Load(Mod mod) {

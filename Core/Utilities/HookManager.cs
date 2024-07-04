@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Aequu2.Core.Utilities;
+namespace AequusRemake.Core.Utilities;
 
 public class HookManager : ILoad {
     /// <summary><inheritdoc cref="ApplyAndCacheHook(MethodInfo, MethodInfo)"/></summary>

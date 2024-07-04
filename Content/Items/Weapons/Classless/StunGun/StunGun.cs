@@ -1,11 +1,11 @@
-﻿using Aequu2.Core;
-using Aequu2.Content.Elements;
-using Aequu2.Core.Entities.DamageClasses;
-using Aequu2.Core.Entities.Items.Components;
+﻿using AequusRemake.Core;
+using AequusRemake.Content.Elements;
+using AequusRemake.Core.Entities.DamageClasses;
+using AequusRemake.Core.Entities.Items.Components;
 using System;
 using Terraria.Localization;
 
-namespace Aequu2.Content.Items.Weapons.Classless.StunGun;
+namespace AequusRemake.Content.Items.Weapons.Classless.StunGun;
 
 public class StunGun : ModItem, ICooldownItem {
     public static float VisualTimer => Main.GlobalTimeWrappedHourly * 5f;

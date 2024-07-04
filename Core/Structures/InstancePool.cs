@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aequu2.Core;
+namespace AequusRemake.Core;
 public interface IPoolable {
     bool Resting { get; set; }
 }

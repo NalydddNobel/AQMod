@@ -1,7 +1,7 @@
-﻿using Aequu2.Content.Items.PermaPowerups.Shimmer;
+﻿using AequusRemake.Content.Items.PermaPowerups.Shimmer;
 using System;
 
-namespace Aequu2.Content.Dedicated.BeyondCoin;
+namespace AequusRemake.Content.Dedicated.BeyondCoin;
 
 public class ShimmerCoinPlayer : ModPlayer {
     public override void PostUpdateEquips() {
@@ -17,11 +17,6 @@ public class ShimmerCoinPlayer : ModPlayer {
         Player.pickSpeed -= 0.05f * effectiveness;
         Player.tileSpeed += 0.05f * effectiveness;
         Player.wallSpeed += 0.05f * effectiveness;
-
-#if !DEBUG
-        // Cosmic Chest
-        Player.GetModPlayer<Aequu2Player>().dropRolls += CosmicChest.LuckIncrease * effectiveness;
-#endif
     }
 
     public override void UpdateLifeRegen() {

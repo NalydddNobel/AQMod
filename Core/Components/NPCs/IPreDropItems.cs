@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core.Components.NPCs;
+﻿namespace AequusRemake.Core.Components.NPCs;
 public interface IPreDropItems {
     bool PreDropItems(Player closestPlayer);
 

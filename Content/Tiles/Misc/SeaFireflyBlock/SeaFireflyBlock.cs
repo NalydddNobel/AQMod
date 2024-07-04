@@ -1,13 +1,13 @@
-﻿using Aequu2.Content.Critters.SeaFirefly;
-using Aequu2.Content.Tiles.CraftingStations.TrashCompactor;
-using Aequu2.Core.ContentGeneration;
-using Aequu2.Core.Graphics.Textures;
+﻿using AequusRemake.Content.Critters.SeaFirefly;
+using AequusRemake.Content.Tiles.CraftingStations.TrashCompactor;
+using AequusRemake.Core.ContentGeneration;
+using AequusRemake.Core.Graphics.Textures;
 using System.Linq;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Localization;
 
-namespace Aequu2.Content.Tiles.Misc.SeaFireflyBlock;
+namespace AequusRemake.Content.Tiles.Misc.SeaFireflyBlock;
 
 internal class SeaFireflyBlock(string NameSuffix, byte ColorId) : InstancedTile($"SeaFireflyBlock{NameSuffix}", AequusTextures.SeaFireflyBlock.Path) {
     public readonly byte _color = ColorId;
@@ -57,7 +57,7 @@ internal class SeaFireflyBlockItem(SeaFireflyBlock block) : InstancedModItem(blo
     public readonly byte _color = block._color;
     public ISeaFireflyInstanceData Current => SeaFireflyRegistry.GetPalette(_color);
 
-    public override LocalizedText DisplayName => Language.GetOrRegister($"Mods.Aequu2.Tiles.SeaFireflyBlock.DisplayName{Current.Name}", () => $"{Current.Name} Sea Firefly Block");
+    public override LocalizedText DisplayName => Language.GetOrRegister($"Mods.AequusRemake.Tiles.SeaFireflyBlock.DisplayName{Current.Name}", () => $"{Current.Name} Sea Firefly Block");
     public override LocalizedText Tooltip => LocalizedText.Empty;
 
     public override void SetStaticDefaults() {

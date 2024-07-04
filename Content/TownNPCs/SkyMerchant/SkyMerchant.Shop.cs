@@ -1,22 +1,22 @@
-﻿using Aequu2.Core;
-using Aequu2.Content.Configuration;
-using Aequu2.Content.Items.Accessories.Balloons;
-using Aequu2.Content.Items.Accessories.FlashwayShield;
-using Aequu2.Content.Items.Accessories.GoldenFeather;
-using Aequu2.Content.Items.Accessories.Informational.Calendar;
-using Aequu2.Content.Items.Accessories.WeightedHorseshoe;
-using Aequu2.Content.Items.Potions.Healing.Restoration;
-using Aequu2.Content.Items.Tools.Bellows;
-using Aequu2.Content.Items.Tools.NameTag;
-using Aequu2.Content.Items.Weapons.Classless.StunGun;
-using Aequu2.Content.Items.Weapons.Magic.Furystar;
-using Aequu2.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
-using Aequu2.Content.Mounts.HotAirBalloon;
+﻿using AequusRemake.Core;
+using AequusRemake.Content.Configuration;
+using AequusRemake.Content.Items.Accessories.Balloons;
+using AequusRemake.Content.Items.Accessories.FlashwayShield;
+using AequusRemake.Content.Items.Accessories.GoldenFeather;
+using AequusRemake.Content.Items.Accessories.Informational.Calendar;
+using AequusRemake.Content.Items.Accessories.WeightedHorseshoe;
+using AequusRemake.Content.Items.Potions.Healing.Restoration;
+using AequusRemake.Content.Items.Tools.Bellows;
+using AequusRemake.Content.Items.Tools.NameTag;
+using AequusRemake.Content.Items.Weapons.Classless.StunGun;
+using AequusRemake.Content.Items.Weapons.Magic.Furystar;
+using AequusRemake.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
+using AequusRemake.Content.Mounts.HotAirBalloon;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequu2.Content.TownNPCs.SkyMerchant;
+namespace AequusRemake.Content.TownNPCs.SkyMerchant;
 
 public partial class SkyMerchant {
     public override void AddShops() {

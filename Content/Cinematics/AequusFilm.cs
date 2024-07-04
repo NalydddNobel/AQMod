@@ -1,9 +1,9 @@
 ﻿using Terraria.Cinematics;
 
-namespace Aequu2.Content.Cinematics;
+namespace AequusRemake.Content.Cinematics;
 
 /// <summary><see cref="DD2Film"/> <see cref="DSTFilm"/></summary>
-internal abstract class Aequu2Film : Film {
+internal abstract class AequusRemakeFilm : Film {
     protected Vector2 _startPoint;
     protected string Name => GetType().Name;
 

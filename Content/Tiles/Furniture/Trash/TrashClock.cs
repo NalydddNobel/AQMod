@@ -1,11 +1,11 @@
-﻿using Aequu2.Core.ContentGeneration;
+﻿using AequusRemake.Core.ContentGeneration;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent.Drawing;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ObjectData;
 
-namespace Aequu2.Content.Tiles.Furniture.Trash;
+namespace AequusRemake.Content.Tiles.Furniture.Trash;
 
 internal class TrashClock(UnifiedFurniture parent) : InstancedFurnitureClock(parent) {
     public override void SetStaticDefaults() {

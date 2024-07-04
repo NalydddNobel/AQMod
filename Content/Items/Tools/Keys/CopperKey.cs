@@ -1,6 +1,6 @@
-﻿using Aequu2.DataSets;
+﻿using AequusRemake.DataSets;
 
-namespace Aequu2.Content.Items.Tools.Keys;
+namespace AequusRemake.Content.Items.Tools.Keys;
 
 public class CopperKey : ModItem {
     public static readonly int DropRate = 65;

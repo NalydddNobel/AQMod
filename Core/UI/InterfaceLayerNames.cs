@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core.UI;
+﻿namespace AequusRemake.Core.UI;
 
 public class InterfaceLayerNames {
     public const string InterfaceLogic1_0 = "Vanilla: Interface Logic 1";

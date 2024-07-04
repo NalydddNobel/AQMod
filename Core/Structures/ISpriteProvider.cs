@@ -1,6 +1,6 @@
 ﻿using ReLogic.Content;
 
-namespace Aequu2.Core.Structures;
+namespace AequusRemake.Core.Structures;
 
 public interface ISpriteProvider {
     void GetSpriteParams(out Texture2D texture, out Rectangle frame);

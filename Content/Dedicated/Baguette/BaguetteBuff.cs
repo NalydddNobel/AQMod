@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Content.Dedicated.Baguette;
+﻿namespace AequusRemake.Content.Dedicated.Baguette;
 
 public class BaguetteBuff : ModBuff {
     public override void SetStaticDefaults() {

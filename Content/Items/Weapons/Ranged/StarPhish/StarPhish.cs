@@ -1,8 +1,8 @@
-﻿using Aequu2.Core;
-using Aequu2.Content.Elements;
+﻿using AequusRemake.Core;
+using AequusRemake.Content.Elements;
 using Terraria.DataStructures;
 
-namespace Aequu2.Content.Items.Weapons.Ranged.StarPhish;
+namespace AequusRemake.Content.Items.Weapons.Ranged.StarPhish;
 
 public class StarPhish : ModItem {
     public override void SetStaticDefaults() {

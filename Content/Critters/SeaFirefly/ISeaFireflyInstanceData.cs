@@ -1,6 +1,6 @@
-﻿using Aequu2.Core.Graphics.Textures;
+﻿using AequusRemake.Core.Graphics.Textures;
 
-namespace Aequu2.Content.Critters.SeaFirefly;
+namespace AequusRemake.Content.Critters.SeaFirefly;
 
 public readonly record struct GlowColorContext(Vector2 Position, int RandomSeed);
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using tModLoaderExtended.Terraria.ModLoader;
 
-namespace Aequu2.Core.ContentGeneration;
+namespace AequusRemake.Core.ContentGeneration;
 
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
 internal sealed class AutoloadStatueAttribute : Attribute, IAttributeOnModLoad {

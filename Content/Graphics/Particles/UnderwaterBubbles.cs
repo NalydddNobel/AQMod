@@ -1,9 +1,9 @@
-﻿using Aequu2.Core.Assets;
-using Aequu2.Core.Graphics;
-using Aequu2.Core.Particles;
+﻿using AequusRemake.Core.Assets;
+using AequusRemake.Core.Graphics;
+using AequusRemake.Core.Particles;
 using System;
 
-namespace Aequu2.Content.Graphics.Particles;
+namespace AequusRemake.Content.Graphics.Particles;
 
 /// <summary>Bubble particles which only work underwater. Floats upwards.</summary>
 public class UnderwaterBubbles : ParallelParticleArray<UnderwaterBubbles.Bubble> {

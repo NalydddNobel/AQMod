@@ -1,6 +1,6 @@
-﻿using Aequu2.Core.CodeGeneration;
+﻿using AequusRemake.Core.CodeGeneration;
 
-namespace Aequu2.Content.Items.Accessories.Informational.Monocle;
+namespace AequusRemake.Content.Items.Accessories.Informational.Monocle;
 
 [Gen.AequusPlayer_InfoField("accInfoShimmerMonocle")]
 public class ShimmerMonocle : ModItem {

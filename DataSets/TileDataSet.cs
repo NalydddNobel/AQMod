@@ -1,9 +1,9 @@
-﻿using Aequu2.DataSets.Structures;
-using Aequu2.DataSets.Structures.Enums;
+﻿using AequusRemake.DataSets.Structures;
+using AequusRemake.DataSets.Structures.Enums;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace Aequu2.DataSets;
+namespace AequusRemake.DataSets;
 
 public partial class TileDataSet : DataSet {
     [JsonProperty]

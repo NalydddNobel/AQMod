@@ -1,4 +1,4 @@
-﻿namespace Aequu2.DataSets.Structures.DropRulesChest;
+﻿namespace AequusRemake.DataSets.Structures.DropRulesChest;
 
 public class AlwaysChestChain : IChestLootChain {
     public IChestLootRule RuleToChain { get; private set; }

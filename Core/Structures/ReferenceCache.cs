@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Core.Structures;
+﻿namespace AequusRemake.Core.Structures;
 
 public record class ReferenceCache<T>(RefFunc<T> GetReference) {
     private T _originalValue;
@@ -12,7 +12,7 @@ public record class ReferenceCache<T>(RefFunc<T> GetReference) {
             _hasOverridenValue = true;
         }
         //else {
-        //    Aequu2.Instance.Logger.Info(Environment.StackTrace);
+        //    AequusRemake.Instance.Logger.Info(Environment.StackTrace);
         //}
 
         GetReference() = value;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Aequu2.Core.Structures;
+namespace AequusRemake.Core.Structures;
 
 public class ConversionPool<TFrom, TTo>(Func<TFrom, TTo> converter) {
     private readonly Dictionary<TFrom, TTo> _conversionCache = [];

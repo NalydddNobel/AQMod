@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequu2.DataSets.Structures.DropRulesItem;
+namespace AequusRemake.DataSets.Structures.DropRulesItem;
 
 public record class OneRuleFromOptionsDropRule(IItemDropRule[] Options, int ChanceDenominator = 1, int ChanceNumerator = 1) : IItemDropRule {
     public List<IItemDropRuleChainAttempt> ChainedRules { get; private set; } = new();

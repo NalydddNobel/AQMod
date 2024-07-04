@@ -1,9 +1,9 @@
 ﻿using ReLogic.Content;
 
-namespace Aequu2.Core.Assets;
+namespace AequusRemake.Core.Assets;
 
 public sealed partial class AequusShaders : AssetManager<Effect> {
-    public static readonly string EffectPath = "Aequu2/Effects/{0}";
+    public static readonly string EffectPath = "AequusRemake/Effects/{0}";
 
     public static readonly RequestCache<Effect> Gamestar = New("Gamestar");
     public static readonly RequestCache<Effect> SeaFirefly = New("SeaFireflies");

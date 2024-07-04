@@ -1,7 +1,7 @@
 ﻿using Terraria.DataStructures;
 using Terraria.ObjectData;
 
-namespace Aequu2.Content.CrossMod.SplitSupport.Photography;
+namespace AequusRemake.Content.CrossMod.SplitSupport.Photography;
 
 [LegacyName("PrintsTile")]
 public class Poster : ModTile {

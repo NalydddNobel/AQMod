@@ -1,9 +1,9 @@
-﻿using Aequu2.Content.Tiles.PollutedOcean.Scrap;
-using Aequu2.Core.ContentGeneration;
-using Aequu2.Core.Entities.Tiles;
-using Aequu2.DataSets;
+﻿using AequusRemake.Content.Tiles.PollutedOcean.Scrap;
+using AequusRemake.Core.ContentGeneration;
+using AequusRemake.Core.Entities.Tiles;
+using AequusRemake.DataSets;
 
-namespace Aequu2.Content.Tiles.PollutedOcean.PolymerSands;
+namespace AequusRemake.Content.Tiles.PollutedOcean.PolymerSands;
 
 public class PolymerSand : MultiMergeTile {
     public static ModItem Item { get; private set; }
@@ -21,7 +21,7 @@ public class PolymerSand : MultiMergeTile {
         Mod.AddContent(SandBallProjectile);
         Mod.AddContent(SandGunProjectile);
 
-        Aequu2.OnAddRecipes += AddRecipes;
+        AequusRemake.OnAddRecipes += AddRecipes;
 
         void AddRecipes() {
             Item.CreateRecipe(5)

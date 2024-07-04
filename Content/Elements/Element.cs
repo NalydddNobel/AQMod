@@ -1,9 +1,9 @@
-﻿using Aequu2.Content.Elements;
-using Aequu2.Core.Structures;
-using Aequu2.DataSets.Json;
+﻿using AequusRemake.Content.Elements;
+using AequusRemake.Core.Structures;
+using AequusRemake.DataSets.Json;
 using Terraria.Localization;
 
-namespace Aequu2.Content.Elements;
+namespace AequusRemake.Content.Elements;
 
 public abstract partial class Element(Color color) : ModTexturedType, ILocalizedModType {
     public string LocalizationCategory => "Elements";

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Terraria.ModLoader.IO;
 
-namespace Aequu2.Core.IO;
+namespace AequusRemake.Core.IO;
 
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
 public sealed class SaveDataAttribute : Attribute {
@@ -43,17 +43,17 @@ public sealed class SaveDataAttribute : Attribute {
         if (obj == null) {
             return false; // wtf tagcompound lies
         }
-        //Aequu2.Instance.Logger.Debug(Name);
-        //Aequu2.Instance.Logger.Debug(obj.GetType().FullName + ": " + obj.ToString());
+        //AequusRemake.Instance.Logger.Debug(Name);
+        //AequusRemake.Instance.Logger.Debug(obj.GetType().FullName + ": " + obj.ToString());
         if (info is FieldInfo field) {
             obj = TagIO.Deserialize(field.FieldType, obj);
             field.SetValue(me, obj);
-            //Aequu2.Instance.Logger.Debug(field.FieldType + ": " + field.GetValue(me));
+            //AequusRemake.Instance.Logger.Debug(field.FieldType + ": " + field.GetValue(me));
         }
         else if (info is PropertyInfo property) {
             obj = TagIO.Deserialize(property.PropertyType, obj);
             property.SetValue(me, obj);
-            //Aequu2.Instance.Logger.Debug(property.PropertyType + ": " + property.GetValue(me));
+            //AequusRemake.Instance.Logger.Debug(property.PropertyType + ": " + property.GetValue(me));
         }
 
         return false;

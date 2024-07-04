@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequu2.Core.Graphics;
+namespace AequusRemake.Core.Graphics;
 
 public sealed class SpriteBatchCache {
     public BlendState BlendState { get; private set; }

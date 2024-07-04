@@ -1,6 +1,6 @@
-﻿using Aequu2.Core.Components.Buffs;
+﻿using AequusRemake.Core.Components.Buffs;
 
-namespace Aequu2.Content.Items.Potions.Food.TaintedSeafood;
+namespace AequusRemake.Content.Items.Potions.Food.TaintedSeafood;
 
 public class FoodPoisoningDebuff : ModBuff, ICheckQuickBuff {
     bool ICheckQuickBuff.CheckQuickBuff(Player player) {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aequu2.Core.Graphics.Tiles;
+namespace AequusRemake.Core.Graphics.Tiles;
 
 /// <summary>
 /// Grants a ModTile the ability to render post-draw elements in a batch to reduce on Begin/End calls.

@@ -1,9 +1,9 @@
-﻿using Aequu2.Content.TownNPCs;
-using Aequu2.Core.Components.NPCs;
+﻿using AequusRemake.Content.TownNPCs;
+using AequusRemake.Core.Components.NPCs;
 using Terraria.GameContent;
 using static Terraria.GameContent.Profiles;
 
-namespace Aequu2.Core.ContentGeneration;
+namespace AequusRemake.Core.ContentGeneration;
 
 public abstract class UnifiedTownNPC : ModNPC, IModifyShoppingSettings, ITalkNPCUpdate {
     public bool ShowExclamation { get; protected set; }

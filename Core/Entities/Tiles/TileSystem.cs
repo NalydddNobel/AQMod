@@ -1,6 +1,6 @@
-﻿using Aequu2.Content.Items.Accessories.Informational.Calendar;
+﻿using AequusRemake.Content.Items.Accessories.Informational.Calendar;
 
-namespace Aequu2.Core.Entities.Tiles;
+namespace AequusRemake.Core.Entities.Tiles;
 
 public class TileSystem : ModSystem {
     public override void ResetNearbyTileEffects() {

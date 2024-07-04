@@ -1,8 +1,8 @@
-﻿using Aequu2.Content.Mounts.HotAirBalloon;
+﻿using AequusRemake.Content.Mounts.HotAirBalloon;
 using Terraria.Audio;
 using Terraria.Localization;
 
-namespace Aequu2.Core.ContentGeneration;
+namespace AequusRemake.Core.ContentGeneration;
 
 [Autoload(false)]
 internal class InstancedMountItem : InstancedModItem {

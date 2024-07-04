@@ -2,7 +2,7 @@
 using System.IO;
 using tModLoaderExtended.Networking;
 
-namespace Aequu2.Content.Tiles.RainTotem;
+namespace AequusRemake.Content.Tiles.RainTotem;
 
 public class RainTotemPlayer : ModPlayer {
     public byte rainTotems;

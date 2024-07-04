@@ -1,9 +1,9 @@
-﻿using Aequu2.Core.Entities.Players.Drawing;
+﻿using AequusRemake.Core.Entities.Players.Drawing;
 using System;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 
-namespace Aequu2.Content.Items.Accessories.EventPrevention;
+namespace AequusRemake.Content.Items.Accessories.EventPrevention;
 
 public class StellarGlasses : ModItem {
     private class StellarGlassesEquipTexture : EquipTexture, IEquipTextureDraw {
@@ -43,12 +43,11 @@ public class StellarGlasses : ModItem {
     }
 
     public override void AddRecipes() {
-#if !DEBUG
         CreateRecipe()
             .AddIngredient(ItemID.BlackLens)
-            .AddIngredient<Old.Content.Items.Materials.StariteMaterial>(5)
+            .AddIngredient(ItemID.FallenStar, 5)
+            //.AddIngredient<Content.Items.Materials.StariteMaterial>(5)
             .AddTile(TileID.Anvils)
             .Register();
-#endif
     }
 }

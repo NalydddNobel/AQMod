@@ -37,9 +37,9 @@ public class TypeGenerator : ISourceGenerator {
 
             if (fieldType == "bool") {
                 // Add condition.
-                type.AddField($"Condition{upperFieldName} = new(\"Mods.Aequu2.Condition.{upperFieldName}\", () => {fieldName})", "static readonly Condition");
+                type.AddField($"Condition{upperFieldName} = new(\"Mods.AequusRemake.Condition.{upperFieldName}\", () => {fieldName})", "static readonly Condition");
                 // Add reverse condition.
-                type.AddField($"ConditionNot{upperFieldName} = new(\"Mods.Aequu2.Condition.{upperFieldName}\", () => !{fieldName})", "static readonly Condition");
+                type.AddField($"ConditionNot{upperFieldName} = new(\"Mods.AequusRemake.Condition.{upperFieldName}\", () => !{fieldName})", "static readonly Condition");
             }
 
             type.AddMethod("SaveInner(TagCompound tag)", $"this.SaveObj(tag, \"{fieldName}\", {fieldName});");
@@ -76,19 +76,19 @@ public class TypeGenerator : ISourceGenerator {
 
     public void Execute(GeneratorExecutionContext context) {
         Dictionary<string, TypeConstructor> constructors = new() {
-            ["AequusPlayer"] = new TypeConstructor("AequusPlayer", "Aequu2",
-             Usings: ["Terraria.ModLoader.IO", "Aequu2.Core.Structures", "System.Collections.Generic"],
+            ["AequusPlayer"] = new TypeConstructor("AequusPlayer", "AequusRemake",
+             Usings: ["Terraria.ModLoader.IO", "AequusRemake.Core.Structures", "System.Collections.Generic"],
              MethodInputConversions: new Dictionary<string, string>() {
                  ["AequusPlayer"] = "this",
                  ["Player"] = "Player",
              }),
-            ["AequusItem"] = new TypeConstructor("AequusItem", "Aequu2",
-             Usings: ["Terraria.ModLoader.IO", "Aequu2.Core.Structures", "System.Collections.Generic"],
+            ["AequusItem"] = new TypeConstructor("AequusItem", "AequusRemake",
+             Usings: ["Terraria.ModLoader.IO", "AequusRemake.Core.Structures", "System.Collections.Generic"],
              MethodInputConversions: new Dictionary<string, string>() {
                  ["AequusItem"] = "this",
              }),
-            ["AequusSystem"] = new TypeConstructor("AequusSystem", "Aequu2",
-             Usings: ["Terraria.ModLoader.IO", "Aequu2.Core.Structures", "System.IO", "System.Collections.Generic"],
+            ["AequusSystem"] = new TypeConstructor("AequusSystem", "AequusRemake",
+             Usings: ["Terraria.ModLoader.IO", "AequusRemake.Core.Structures", "System.IO", "System.Collections.Generic"],
              MethodInputConversions: new Dictionary<string, string>() {
                  ["AequusSystem"] = "this",
              }),

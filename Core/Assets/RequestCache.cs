@@ -1,14 +1,14 @@
 ﻿using ReLogic.Content;
 using System.Linq;
 
-namespace Aequu2.Core.Assets;
+namespace AequusRemake.Core.Assets;
 
 public class RequestCache<T> where T : class {
     public readonly string Path;
 
     private string _modPath;
     public string ModPath =>
-            // "Aequu2/" is 7 characters long
+            // "AequusRemake/" is 7 characters long
             _modPath ??= Path[7..];
 
     private string _name;

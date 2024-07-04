@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequu2.Core.CodeGeneration;
+namespace AequusRemake.Core.CodeGeneration;
 
 internal partial class Gen {
     /// <summary>Generates a field with <paramref name="Name"/> in <see cref="AequusPlayer"/>.</summary>
@@ -11,7 +11,7 @@ internal partial class Gen {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
     public class AequusPlayer_ResetFieldAttribute<T>(string Name) : Attribute { }
 
-    /// <summary><inheritdoc cref="AequusPlayer_FieldAttribute{T}"/> This field is reset in <see cref="AequusPlayer.ResetInfoAccessories"/> and copied to other Aequu2Player instances in <see cref="AequusPlayer.RefreshInfoAccessoriesFromTeamPlayers(Player)"/>.</summary>
+    /// <summary><inheritdoc cref="AequusPlayer_FieldAttribute{T}"/> This field is reset in <see cref="AequusPlayer.ResetInfoAccessories"/> and copied to other AequusRemakePlayer instances in <see cref="AequusPlayer.RefreshInfoAccessoriesFromTeamPlayers(Player)"/>.</summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
     public class AequusPlayer_InfoFieldAttribute(string Name) : Attribute { }
 

@@ -1,6 +1,6 @@
 ﻿using Terraria.GameContent.UI.Chat;
 
-namespace Aequu2.Core.Utilities;
+namespace AequusRemake.Core.Utilities;
 
 /// <summary>Contains helper methods for generating chat tag strings. For item and glyphs, <see cref="ItemTagHandler"/> and <see cref="GlyphTagHandler"/> have static helper methods.</summary>
 public class ChatTagWriter {

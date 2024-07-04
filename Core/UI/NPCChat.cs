@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using Terraria.UI;
 
-namespace Aequu2.Core.UI;
+namespace AequusRemake.Core.UI;
 
 [Autoload(Side = ModSide.Client)]
 public class NPCChat : ModSystem {
-    public const string INTERFACE_LAYER_KEY = "Aequu2: NPC Talk Interface";
+    public const string INTERFACE_LAYER_KEY = "AequusRemake: NPC Talk Interface";
 
     public readonly UserInterface Interface = new();
     private GameInterfaceLayer _layer;

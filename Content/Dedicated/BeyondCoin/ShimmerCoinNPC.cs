@@ -1,4 +1,4 @@
-﻿namespace Aequu2.Content.Dedicated.BeyondCoin;
+﻿namespace AequusRemake.Content.Dedicated.BeyondCoin;
 
 public class ShimmerCoinNPC : GlobalNPC {
     // Combat Techniques Volume Two

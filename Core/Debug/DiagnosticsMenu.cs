@@ -3,7 +3,7 @@ using System.Diagnostics;
 using Terraria.GameContent;
 using Terraria.UI.Chat;
 
-namespace Aequu2.Core.Debug;
+namespace AequusRemake.Core.Debug;
 
 internal class DiagnosticsMenu : ModSystem {
     public enum TimerType : byte {
@@ -65,7 +65,7 @@ internal class DiagnosticsMenu : ModSystem {
         float numberX = 180f;
         float y = 660f;
         float yOffset = 20f;
-        ChatManager.DrawColorCodedString(spriteBatch, font, "Aequu2", new Vector2(wordX, y), Color.White, 0f, Vector2.Zero, Vector2.One);
+        ChatManager.DrawColorCodedString(spriteBatch, font, "AequusRemake", new Vector2(wordX, y), Color.White, 0f, Vector2.Zero, Vector2.One);
 
         for (int i = 0; i < _durations.Length; i++) {
             if (_durations[i] < 0.01) {
@@ -90,7 +90,7 @@ internal class DiagnosticsMenu : ModSystem {
     }
 
     public override bool IsLoadingEnabled(Mod mod) {
-        return Aequu2.DEBUG_MODE;
+        return AequusRemake.DEBUG_MODE;
     }
 
     public override void Load() {
