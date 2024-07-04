@@ -279,6 +279,6 @@ public class HotAirBalloonMount : UnifiedModMount {
     }
 
     protected override void OnLoad() {
-        ModTypeLookup<ModItem>.RegisterLegacyNames(MountItem, "BalloonKit");
+        //ModTypeLookup<ModItem>.RegisterLegacyNames(MountItem, "BalloonKit");
     }
 }

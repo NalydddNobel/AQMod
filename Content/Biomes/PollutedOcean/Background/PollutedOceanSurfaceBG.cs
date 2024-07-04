@@ -2,7 +2,7 @@
 
 public class PollutedOceanSurfaceBG : ModSurfaceBackgroundStyle {
     public override void Load() {
-        BackgroundTextureLoader.AddBackgroundTexture(Mod, AequusTextures.SurfaceBG_Far.Path);
+        BackgroundTextureLoader.AddBackgroundTexture(Mod, AequusTextures.SurfaceBG_Far.FullPath);
     }
 
     public override void ModifyFarFades(float[] fades, float transitionSpeed) {
@@ -23,7 +23,7 @@ public class PollutedOceanSurfaceBG : ModSurfaceBackgroundStyle {
     }
 
     public override int ChooseFarTexture() {
-        return BackgroundTextureLoader.GetBackgroundSlot(Mod, AequusTextures.SurfaceBG_Far.ModPath);
+        return BackgroundTextureLoader.GetBackgroundSlot(Mod, AequusTextures.SurfaceBG_Far.Path);
     }
 
     public override int ChooseMiddleTexture() {

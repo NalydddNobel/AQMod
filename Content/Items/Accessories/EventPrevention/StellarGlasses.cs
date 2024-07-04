@@ -24,7 +24,7 @@ public class StellarGlasses : ModItem {
     }
 
     public override void Load() {
-        Item.faceSlot = EquipLoader.AddEquipTexture(Mod, AequusTextures.StellarGlasses_Face.Path, EquipType.Face, this, null, new StellarGlassesEquipTexture());
+        Item.faceSlot = EquipLoader.AddEquipTexture(Mod, AequusTextures.StellarGlasses_Face.FullPath, EquipType.Face, this, null, new StellarGlassesEquipTexture());
     }
 
     public override void SetDefaults() {

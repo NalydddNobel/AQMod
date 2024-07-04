@@ -9,7 +9,7 @@ using Terraria.Localization;
 
 namespace AequusRemake.Content.Tiles.Misc.SeaFireflyBlock;
 
-internal class SeaFireflyBlock(string NameSuffix, byte ColorId) : InstancedTile($"SeaFireflyBlock{NameSuffix}", AequusTextures.SeaFireflyBlock.Path) {
+internal class SeaFireflyBlock(string NameSuffix, byte ColorId) : InstancedTile($"SeaFireflyBlock{NameSuffix}", AequusTextures.SeaFireflyBlock.FullPath) {
     public readonly byte _color = ColorId;
     public ISeaFireflyInstanceData Current => SeaFireflyRegistry.GetPalette(_color);
 

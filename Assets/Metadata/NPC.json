@@ -90,7 +90,8 @@
     "CalamityMod/ProfanedGuardianHealer",
     "CalamityMod/Providence",
     "CalamityMod/CosmicLantern",
-    "CalamityMod/Signus"
+    "CalamityMod/Signus",
+    "Aequus/ShadowMimic"
   ],
   "FromGlimmer": [],
   "FromEclipse": [
@@ -149,7 +150,8 @@
     "ThoriumMod/SeveredLegs",
     "ThoriumMod/SmotheringShade",
     "ThoriumMod/FamishedMaggot",
-    "ThoriumMod/PatchWerk"
+    "ThoriumMod/PatchWerk",
+    "Aequus/BloodMimic"
   ],
   "NameTagOverride": {
     "EaterofWorldsBody": false,

@@ -4,7 +4,7 @@ using System;
 namespace AequusRemake.Content.Dedicated.IronLotus;
 
 public class IronLotusFlare : ModProjectile {
-    public override string Texture => AequusTextures.Flare.Path;
+    public override string Texture => AequusTextures.Flare.FullPath;
 
     public override void SetDefaults() {
         Projectile.width = 200;

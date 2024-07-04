@@ -7,7 +7,7 @@ using Terraria.Localization;
 namespace AequusRemake.Content.Enemies.PollutedOcean.Conductor;
 
 public class ConductorProj : ModNPC {
-    public override string Texture => AequusTextures.ScrapBlockItem.Path;
+    public override string Texture => AequusTextures.ScrapBlockItem.FullPath;
 
     public int State => (int)NPC.ai[0];
     public int Parent => (int)NPC.ai[2];

@@ -76,7 +76,7 @@ internal class Eel : ModNPC {
         NPCSets.NPCBestiaryDrawOffset[Type] = new() {
             Hide = false,
             Scale = 1f,
-            CustomTexturePath = AequusTextures.Eel_Bestiary.Path,
+            CustomTexturePath = AequusTextures.Eel_Bestiary.FullPath,
         };
     }
 
@@ -317,7 +317,7 @@ internal class Eel : ModNPC {
             Scale = 1f,
             Position = new Vector2(50f, 20f),
             PortraitPositionXOverride = 0f,
-            CustomTexturePath = AequusTextures.Eel_Bestiary.Path,
+            CustomTexturePath = AequusTextures.Eel_Bestiary.FullPath,
         };
 
         // Initialize frame.

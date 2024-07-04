@@ -205,7 +205,7 @@ public class DedicatedFaeling : ModNPC {
         public readonly ModItem _parentItem;
         public readonly IDedicationInfo _dedication;
 
-        public FaelingItem(ModItem dedicatedItem, IDedicationInfo info) : base("Faeling" + dedicatedItem.Name, AequusTextures.DedicatedFaelingItem.Path) {
+        public FaelingItem(ModItem dedicatedItem, IDedicationInfo info) : base("Faeling" + dedicatedItem.Name, AequusTextures.DedicatedFaelingItem.FullPath) {
             _parentItem = dedicatedItem;
             _dedication = info;
         }

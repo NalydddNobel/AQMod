@@ -8,7 +8,7 @@ internal class DebugItem : ModItem {
 
     protected override bool CloneNewInstances => true;
 
-    public override string Texture => AequusTextures.StunEffect.Path;
+    public override string Texture => AequusTextures.StunEffect.FullPath;
 
     public override LocalizedText DisplayName => Language.GetText(PrettyPrintName());
     public override LocalizedText Tooltip => LocalizedText.Empty;

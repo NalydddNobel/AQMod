@@ -23,7 +23,7 @@ internal class TallHelmetTexture : EquipTexture, IEquipTextureDraw {
     }
 
     public static int RegisterTo(ModItem modItem) {
-        return EquipLoader.AddEquipTexture(modItem.Mod, AequusTextures.None.Path, EquipType.Head, modItem, null,
+        return EquipLoader.AddEquipTexture(modItem.Mod, AequusTextures.None.FullPath, EquipType.Head, modItem, null,
             new TallHelmetTexture(modItem.Texture + "_Head"));
     }
 }

@@ -2170,1837 +2170,1837 @@
             <summary>(Total Sounds: 86)</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.PollutedOcean_AmbientA0">
-            <summary>Full Path: emake/Assets/Sounds/Ambient/PollutedOcean_AmbientA0</summary>
+            <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_AmbientA0</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.PollutedOcean_AmbientA1">
-            <summary>Full Path: emake/Assets/Sounds/Ambient/PollutedOcean_AmbientA1</summary>
+            <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_AmbientA1</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.PollutedOcean_AmbientA2">
-            <summary>Full Path: emake/Assets/Sounds/Ambient/PollutedOcean_AmbientA2</summary>
+            <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_AmbientA2</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.PollutedOcean_AmbientB0">
-            <summary>Full Path: emake/Assets/Sounds/Ambient/PollutedOcean_AmbientB0</summary>
+            <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_AmbientB0</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.PollutedOcean_AmbientB1">
-            <summary>Full Path: emake/Assets/Sounds/Ambient/PollutedOcean_AmbientB1</summary>
+            <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_AmbientB1</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.PollutedOcean_CaveDrone">
-            <summary>Full Path: emake/Assets/Sounds/Ambient/PollutedOcean_CaveDrone</summary>
+            <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_CaveDrone</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.PollutedOcean_RainA">
-            <summary>Full Path: emake/Assets/Sounds/Ambient/PollutedOcean_RainA</summary>
+            <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_RainA</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.PollutedOcean_RainA_Interior">
-            <summary>Full Path: emake/Assets/Sounds/Ambient/PollutedOcean_RainA_Interior</summary>
+            <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_RainA_Interior</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.PollutedOcean_RainB">
-            <summary>Full Path: emake/Assets/Sounds/Ambient/PollutedOcean_RainB</summary>
+            <summary>Full Path: Assets/Sounds/Ambient/PollutedOcean_RainB</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.BlackJellyfishCharge">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.BlackJellyfishCharge_Underwater">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge_Underwater</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishCharge_Underwater</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.BlackJellyfishExplosion">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishExplosion</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishExplosion</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.BlackJellyfishExplosion_Underwater">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishExplosion_Underwater</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishExplosion_Underwater</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.BlackJellyfishUnderwaterBubbles">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishUnderwaterBubbles</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/BlackJellyfish/BlackJellyfishUnderwaterBubbles</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.EelMoving0">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/Eel/EelMoving0</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/Eel/EelMoving0</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.EelMoving1">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/Eel/EelMoving1</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/Eel/EelMoving1</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.EelMoving2">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/Eel/EelMoving2</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/Eel/EelMoving2</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.ChainedSoulAttack">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttack</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttack</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.ChainedSoulAttackExplode0">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttackExplode0</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttackExplode0</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.ChainedSoulAttackExplode1">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttackExplode1</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttackExplode1</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.ChainedSoulAttackExplode2">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttackExplode2</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/ChainedSoulAttackExplode2</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.KeeperImpSummon">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/KeeperImp/KeeperImpSummon</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/KeeperImpSummon</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.KeeperImpSummonTelegraph">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/KeeperImp/KeeperImpSummonTelegraph</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/KeeperImp/KeeperImpSummonTelegraph</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.Hit_OilSlime_0">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_0</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_0</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.Hit_OilSlime_1">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_1</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_1</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.Hit_OilSlime_2">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_2</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Hit_OilSlime_2</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.Killed_OilSlime">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/OilSlime/Killed_OilSlime</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Killed_OilSlime</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.Looping_Oil">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/OilSlime/Looping_Oil</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/OilSlime/Looping_Oil</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.PhilBugHurt">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/Pillbug/PhilBugHurt</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/Pillbug/PhilBugHurt</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.PhilBugKilled">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/Pillbug/PhilBugKilled</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/Pillbug/PhilBugKilled</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.RedSpriteThunderClap0">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/RedSprite/RedSpriteThunderClap0</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/RedSprite/RedSpriteThunderClap0</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.RedSpriteThunderClap1">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/RedSprite/RedSpriteThunderClap1</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/RedSprite/RedSpriteThunderClap1</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.SpaceSquidDeathray">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/SpaceSquid/SpaceSquidDeathray</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/SpaceSquid/SpaceSquidDeathray</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.SpaceSquidGun">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/SpaceSquid/SpaceSquidGun</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/SpaceSquid/SpaceSquidGun</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.SpaceSquidSnowflakeShoot">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/SpaceSquid/SpaceSquidSnowflakeShoot</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/SpaceSquid/SpaceSquidSnowflakeShoot</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.WhiteSlimeWompWomp">
-            <summary>Full Path: emake/Assets/Sounds/Enemy/WhiteSlime/WhiteSlimeWompWomp</summary>
+            <summary>Full Path: Assets/Sounds/Enemy/WhiteSlime/WhiteSlimeWompWomp</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.CanteenBuzzer">
-            <summary>Full Path: emake/Assets/Sounds/Items/CanteenBuzzer</summary>
+            <summary>Full Path: Assets/Sounds/Items/CanteenBuzzer</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.CanteenUse">
-            <summary>Full Path: emake/Assets/Sounds/Items/CanteenUse</summary>
+            <summary>Full Path: Assets/Sounds/Items/CanteenUse</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.CrossbowReload">
-            <summary>Full Path: emake/Assets/Sounds/Items/CrossbowReload</summary>
+            <summary>Full Path: Assets/Sounds/Items/CrossbowReload</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.CrossbowShoot">
-            <summary>Full Path: emake/Assets/Sounds/Items/CrossbowShoot</summary>
+            <summary>Full Path: Assets/Sounds/Items/CrossbowShoot</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.HeavySwing0">
-            <summary>Full Path: emake/Assets/Sounds/Items/HeavySwing0</summary>
+            <summary>Full Path: Assets/Sounds/Items/HeavySwing0</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.HeavySwing1">
-            <summary>Full Path: emake/Assets/Sounds/Items/HeavySwing1</summary>
+            <summary>Full Path: Assets/Sounds/Items/HeavySwing1</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.HeavySwing2">
-            <summary>Full Path: emake/Assets/Sounds/Items/HeavySwing2</summary>
+            <summary>Full Path: Assets/Sounds/Items/HeavySwing2</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.HeavySwing3">
-            <summary>Full Path: emake/Assets/Sounds/Items/HeavySwing3</summary>
+            <summary>Full Path: Assets/Sounds/Items/HeavySwing3</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.HeavySwing4">
-            <summary>Full Path: emake/Assets/Sounds/Items/HeavySwing4</summary>
+            <summary>Full Path: Assets/Sounds/Items/HeavySwing4</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.HeavySwing5">
-            <summary>Full Path: emake/Assets/Sounds/Items/HeavySwing5</summary>
+            <summary>Full Path: Assets/Sounds/Items/HeavySwing5</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.ItemBreak">
-            <summary>Full Path: emake/Assets/Sounds/Items/ItemBreak</summary>
+            <summary>Full Path: Assets/Sounds/Items/ItemBreak</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.JunkJetShoot0">
-            <summary>Full Path: emake/Assets/Sounds/Items/JunkJetShoot0</summary>
+            <summary>Full Path: Assets/Sounds/Items/JunkJetShoot0</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.JunkJetShoot1">
-            <summary>Full Path: emake/Assets/Sounds/Items/JunkJetShoot1</summary>
+            <summary>Full Path: Assets/Sounds/Items/JunkJetShoot1</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.NightfallPushDown">
-            <summary>Full Path: emake/Assets/Sounds/Items/NightfallPushDown</summary>
+            <summary>Full Path: Assets/Sounds/Items/NightfallPushDown</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.NightfallPushUp">
-            <summary>Full Path: emake/Assets/Sounds/Items/NightfallPushUp</summary>
+            <summary>Full Path: Assets/Sounds/Items/NightfallPushUp</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.NoHitRewardAmbient">
-            <summary>Full Path: emake/Assets/Sounds/Items/NoHitRewardAmbient</summary>
+            <summary>Full Path: Assets/Sounds/Items/NoHitRewardAmbient</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.NoHitRewardSpawn">
-            <summary>Full Path: emake/Assets/Sounds/Items/NoHitRewardSpawn</summary>
+            <summary>Full Path: Assets/Sounds/Items/NoHitRewardSpawn</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.Dash">
-            <summary>Full Path: emake/Assets/Sounds/Items/PossessedShard/Dash</summary>
+            <summary>Full Path: Assets/Sounds/Items/PossessedShard/Dash</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.ShardHit0">
-            <summary>Full Path: emake/Assets/Sounds/Items/PossessedShard/ShardHit0</summary>
+            <summary>Full Path: Assets/Sounds/Items/PossessedShard/ShardHit0</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.ShardHit1">
-            <summary>Full Path: emake/Assets/Sounds/Items/PossessedShard/ShardHit1</summary>
+            <summary>Full Path: Assets/Sounds/Items/PossessedShard/ShardHit1</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.PotionPrefix">
-            <summary>Full Path: emake/Assets/Sounds/Items/PotionPrefix</summary>
+            <summary>Full Path: Assets/Sounds/Items/PotionPrefix</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.RopeRetract">
-            <summary>Full Path: emake/Assets/Sounds/Items/RopeRetract</summary>
+            <summary>Full Path: Assets/Sounds/Items/RopeRetract</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.StudiesOfTheInkblotUse">
-            <summary>Full Path: emake/Assets/Sounds/Items/StudiesOfTheInkblotUse</summary>
+            <summary>Full Path: Assets/Sounds/Items/StudiesOfTheInkblotUse</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.UseDagger">
-            <summary>Full Path: emake/Assets/Sounds/Items/UseDagger</summary>
+            <summary>Full Path: Assets/Sounds/Items/UseDagger</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.DaggerHit0">
-            <summary>Full Path: emake/Assets/Sounds/OnHit/DaggerHit0</summary>
+            <summary>Full Path: Assets/Sounds/OnHit/DaggerHit0</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.DaggerHit1">
-            <summary>Full Path: emake/Assets/Sounds/OnHit/DaggerHit1</summary>
+            <summary>Full Path: Assets/Sounds/OnHit/DaggerHit1</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.DaggerHit2">
-            <summary>Full Path: emake/Assets/Sounds/OnHit/DaggerHit2</summary>
+            <summary>Full Path: Assets/Sounds/OnHit/DaggerHit2</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.InflictBlackPhial">
-            <summary>Full Path: emake/Assets/Sounds/OnHit/InflictBlackPhial</summary>
+            <summary>Full Path: Assets/Sounds/OnHit/InflictBlackPhial</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.InflictBlood">
-            <summary>Full Path: emake/Assets/Sounds/OnHit/InflictBlood</summary>
+            <summary>Full Path: Assets/Sounds/OnHit/InflictBlood</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.InflictStunned">
-            <summary>Full Path: emake/Assets/Sounds/OnHit/InflictStunned</summary>
+            <summary>Full Path: Assets/Sounds/OnHit/InflictStunned</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.InflictWeakness">
-            <summary>Full Path: emake/Assets/Sounds/OnHit/InflictWeakness</summary>
+            <summary>Full Path: Assets/Sounds/OnHit/InflictWeakness</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.LanternConfuse">
-            <summary>Full Path: emake/Assets/Sounds/OnHit/LanternConfuse</summary>
+            <summary>Full Path: Assets/Sounds/OnHit/LanternConfuse</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.SwordHit0">
-            <summary>Full Path: emake/Assets/Sounds/OnHit/SwordHit0</summary>
+            <summary>Full Path: Assets/Sounds/OnHit/SwordHit0</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.SwordHit1">
-            <summary>Full Path: emake/Assets/Sounds/OnHit/SwordHit1</summary>
+            <summary>Full Path: Assets/Sounds/OnHit/SwordHit1</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.SwordHit2">
-            <summary>Full Path: emake/Assets/Sounds/OnHit/SwordHit2</summary>
+            <summary>Full Path: Assets/Sounds/OnHit/SwordHit2</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.SwordHit3">
-            <summary>Full Path: emake/Assets/Sounds/OnHit/SwordHit3</summary>
+            <summary>Full Path: Assets/Sounds/OnHit/SwordHit3</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.PowerReady">
-            <summary>Full Path: emake/Assets/Sounds/PowerReady</summary>
+            <summary>Full Path: Assets/Sounds/PowerReady</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.BuriedChestReveal">
-            <summary>Full Path: emake/Assets/Sounds/Tile/BuriedChestReveal</summary>
+            <summary>Full Path: Assets/Sounds/Tile/BuriedChestReveal</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.ConductiveBlock0">
-            <summary>Full Path: emake/Assets/Sounds/Tile/ConductiveBlock0</summary>
+            <summary>Full Path: Assets/Sounds/Tile/ConductiveBlock0</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.ConductiveBlock1">
-            <summary>Full Path: emake/Assets/Sounds/Tile/ConductiveBlock1</summary>
+            <summary>Full Path: Assets/Sounds/Tile/ConductiveBlock1</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.ConductiveBlock2">
-            <summary>Full Path: emake/Assets/Sounds/Tile/ConductiveBlock2</summary>
+            <summary>Full Path: Assets/Sounds/Tile/ConductiveBlock2</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.ConductiveBlock3">
-            <summary>Full Path: emake/Assets/Sounds/Tile/ConductiveBlock3</summary>
+            <summary>Full Path: Assets/Sounds/Tile/ConductiveBlock3</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.MoonflowerBreak">
-            <summary>Full Path: emake/Assets/Sounds/Tile/MoonflowerBreak</summary>
+            <summary>Full Path: Assets/Sounds/Tile/MoonflowerBreak</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.OmniGemBreak">
-            <summary>Full Path: emake/Assets/Sounds/Tile/OmniGemBreak</summary>
+            <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.RadioAmbient">
-            <summary>Full Path: emake/Assets/Sounds/Tile/RadioAmbient</summary>
+            <summary>Full Path: Assets/Sounds/Tile/RadioAmbient</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.ScrapBlock0">
-            <summary>Full Path: emake/Assets/Sounds/Tile/ScrapBlock0</summary>
+            <summary>Full Path: Assets/Sounds/Tile/ScrapBlock0</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.ScrapBlock1">
-            <summary>Full Path: emake/Assets/Sounds/Tile/ScrapBlock1</summary>
+            <summary>Full Path: Assets/Sounds/Tile/ScrapBlock1</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.ScrapBlock2">
-            <summary>Full Path: emake/Assets/Sounds/Tile/ScrapBlock2</summary>
+            <summary>Full Path: Assets/Sounds/Tile/ScrapBlock2</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.ScrapBlock3">
-            <summary>Full Path: emake/Assets/Sounds/Tile/ScrapBlock3</summary>
+            <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
         </member>
         <member name="F:AequusRemake.AequusSounds.TrashBag">
-            <summary>Full Path: emake/Assets/Sounds/Tile/TrashBag</summary>
+            <summary>Full Path: Assets/Sounds/Tile/TrashBag</summary>
         </member>
         <member name="T:AequusRemake.AequusTextures">
             <summary>(Total Textures: 524)</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Achievements">
-            <summary>Full Path: emake/Assets/Textures/Achievements</summary>
+            <summary>Full Path: Assets/Textures/Achievements</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BaseParticleTexture">
-            <summary>Full Path: emake/Assets/Textures/BaseParticleTexture</summary>
+            <summary>Full Path: Assets/Textures/BaseParticleTexture</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Bloom">
-            <summary>Full Path: emake/Assets/Textures/Bloom</summary>
+            <summary>Full Path: Assets/Textures/Bloom</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BloomStrong">
-            <summary>Full Path: emake/Assets/Textures/BloomStrong</summary>
+            <summary>Full Path: Assets/Textures/BloomStrong</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Debuff">
-            <summary>Full Path: emake/Assets/Textures/Debuff</summary>
+            <summary>Full Path: Assets/Textures/Debuff</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.EffectNoise">
-            <summary>Full Path: emake/Assets/Textures/EffectNoise</summary>
+            <summary>Full Path: Assets/Textures/EffectNoise</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.EffectPerlin">
-            <summary>Full Path: emake/Assets/Textures/EffectPerlin</summary>
+            <summary>Full Path: Assets/Textures/EffectPerlin</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.EffectWaterRefraction">
-            <summary>Full Path: emake/Assets/Textures/EffectWaterRefraction</summary>
+            <summary>Full Path: Assets/Textures/EffectWaterRefraction</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Exclamation">
-            <summary>Full Path: emake/Assets/Textures/Exclamation</summary>
+            <summary>Full Path: Assets/Textures/Exclamation</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Flare">
-            <summary>Full Path: emake/Assets/Textures/Flare</summary>
+            <summary>Full Path: Assets/Textures/Flare</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Flare2">
-            <summary>Full Path: emake/Assets/Textures/Flare2</summary>
+            <summary>Full Path: Assets/Textures/Flare2</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.FlareSoft">
-            <summary>Full Path: emake/Assets/Textures/FlareSoft</summary>
+            <summary>Full Path: Assets/Textures/FlareSoft</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Fog">
-            <summary>Full Path: emake/Assets/Textures/Fog</summary>
+            <summary>Full Path: Assets/Textures/Fog</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.GenericExplosion">
-            <summary>Full Path: emake/Assets/Textures/GenericExplosion</summary>
+            <summary>Full Path: Assets/Textures/GenericExplosion</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ItemCooldown">
-            <summary>Full Path: emake/Assets/Textures/ItemCooldown</summary>
+            <summary>Full Path: Assets/Textures/ItemCooldown</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CopperKeyPalette">
-            <summary>Full Path: emake/Assets/Textures/Keychain/CopperKeyPalette</summary>
+            <summary>Full Path: Assets/Textures/Keychain/CopperKeyPalette</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CorruptionKeyPalette">
-            <summary>Full Path: emake/Assets/Textures/Keychain/CorruptionKeyPalette</summary>
+            <summary>Full Path: Assets/Textures/Keychain/CorruptionKeyPalette</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CrimsonKeyPalette">
-            <summary>Full Path: emake/Assets/Textures/Keychain/CrimsonKeyPalette</summary>
+            <summary>Full Path: Assets/Textures/Keychain/CrimsonKeyPalette</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.DungeonDesertKeyPalette">
-            <summary>Full Path: emake/Assets/Textures/Keychain/DungeonDesertKeyPalette</summary>
+            <summary>Full Path: Assets/Textures/Keychain/DungeonDesertKeyPalette</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.FrozenKeyPalette">
-            <summary>Full Path: emake/Assets/Textures/Keychain/FrozenKeyPalette</summary>
+            <summary>Full Path: Assets/Textures/Keychain/FrozenKeyPalette</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.GoldenKeyPalette">
-            <summary>Full Path: emake/Assets/Textures/Keychain/GoldenKeyPalette</summary>
+            <summary>Full Path: Assets/Textures/Keychain/GoldenKeyPalette</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.HallowedKeyPalette">
-            <summary>Full Path: emake/Assets/Textures/Keychain/HallowedKeyPalette</summary>
+            <summary>Full Path: Assets/Textures/Keychain/HallowedKeyPalette</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.JungleKeyPalette">
-            <summary>Full Path: emake/Assets/Textures/Keychain/JungleKeyPalette</summary>
+            <summary>Full Path: Assets/Textures/Keychain/JungleKeyPalette</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.KeychainKeys">
-            <summary>Full Path: emake/Assets/Textures/Keychain/KeychainKeys</summary>
+            <summary>Full Path: Assets/Textures/Keychain/KeychainKeys</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.KeychainKeysTemplate">
-            <summary>Full Path: emake/Assets/Textures/Keychain/KeychainKeysTemplate</summary>
+            <summary>Full Path: Assets/Textures/Keychain/KeychainKeysTemplate</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PaletteKey">
-            <summary>Full Path: emake/Assets/Textures/Keychain/PaletteKey</summary>
+            <summary>Full Path: Assets/Textures/Keychain/PaletteKey</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ShadowKeyPalette">
-            <summary>Full Path: emake/Assets/Textures/Keychain/ShadowKeyPalette</summary>
+            <summary>Full Path: Assets/Textures/Keychain/ShadowKeyPalette</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SilverKeyPalette">
-            <summary>Full Path: emake/Assets/Textures/Keychain/SilverKeyPalette</summary>
+            <summary>Full Path: Assets/Textures/Keychain/SilverKeyPalette</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TempleKeyPalette">
-            <summary>Full Path: emake/Assets/Textures/Keychain/TempleKeyPalette</summary>
+            <summary>Full Path: Assets/Textures/Keychain/TempleKeyPalette</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TinKeyPalette">
-            <summary>Full Path: emake/Assets/Textures/Keychain/TinKeyPalette</summary>
+            <summary>Full Path: Assets/Textures/Keychain/TinKeyPalette</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.LensFlare">
-            <summary>Full Path: emake/Assets/Textures/LensFlare</summary>
+            <summary>Full Path: Assets/Textures/LensFlare</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.FlareSprite0">
-            <summary>Full Path: emake/Assets/Textures/LensFlare/FlareSprite0</summary>
+            <summary>Full Path: Assets/Textures/LensFlare/FlareSprite0</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.FlareSprite1">
-            <summary>Full Path: emake/Assets/Textures/LensFlare/FlareSprite1</summary>
+            <summary>Full Path: Assets/Textures/LensFlare/FlareSprite1</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.FlareSprite2">
-            <summary>Full Path: emake/Assets/Textures/LensFlare/FlareSprite2</summary>
+            <summary>Full Path: Assets/Textures/LensFlare/FlareSprite2</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.FlareSprite3">
-            <summary>Full Path: emake/Assets/Textures/LensFlare/FlareSprite3</summary>
+            <summary>Full Path: Assets/Textures/LensFlare/FlareSprite3</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.FlareSprite4">
-            <summary>Full Path: emake/Assets/Textures/LensFlare/FlareSprite4</summary>
+            <summary>Full Path: Assets/Textures/LensFlare/FlareSprite4</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.FlareSprite5">
-            <summary>Full Path: emake/Assets/Textures/LensFlare/FlareSprite5</summary>
+            <summary>Full Path: Assets/Textures/LensFlare/FlareSprite5</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.FlareSprite6">
-            <summary>Full Path: emake/Assets/Textures/LensFlare/FlareSprite6</summary>
+            <summary>Full Path: Assets/Textures/LensFlare/FlareSprite6</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.FlareSprite7">
-            <summary>Full Path: emake/Assets/Textures/LensFlare/FlareSprite7</summary>
+            <summary>Full Path: Assets/Textures/LensFlare/FlareSprite7</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.FlareSprite8">
-            <summary>Full Path: emake/Assets/Textures/LensFlare/FlareSprite8</summary>
+            <summary>Full Path: Assets/Textures/LensFlare/FlareSprite8</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.LightRayCircular">
-            <summary>Full Path: emake/Assets/Textures/LightRayCircular</summary>
+            <summary>Full Path: Assets/Textures/LightRayCircular</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.LightRayFlat">
-            <summary>Full Path: emake/Assets/Textures/LightRayFlat</summary>
+            <summary>Full Path: Assets/Textures/LightRayFlat</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.None">
-            <summary>Full Path: emake/Assets/Textures/None</summary>
+            <summary>Full Path: Assets/Textures/None</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Pixel">
-            <summary>Full Path: emake/Assets/Textures/Pixel</summary>
+            <summary>Full Path: Assets/Textures/Pixel</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Shatter">
-            <summary>Full Path: emake/Assets/Textures/Shatter</summary>
+            <summary>Full Path: Assets/Textures/Shatter</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SlashForward">
-            <summary>Full Path: emake/Assets/Textures/SlashForward</summary>
+            <summary>Full Path: Assets/Textures/SlashForward</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SlashVanilla">
-            <summary>Full Path: emake/Assets/Textures/SlashVanilla</summary>
+            <summary>Full Path: Assets/Textures/SlashVanilla</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SlashVanillaAlt">
-            <summary>Full Path: emake/Assets/Textures/SlashVanillaAlt</summary>
+            <summary>Full Path: Assets/Textures/SlashVanillaAlt</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SlashVanillaSmall">
-            <summary>Full Path: emake/Assets/Textures/SlashVanillaSmall</summary>
+            <summary>Full Path: Assets/Textures/SlashVanillaSmall</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SmallLightParticle">
-            <summary>Full Path: emake/Assets/Textures/SmallLightParticle</summary>
+            <summary>Full Path: Assets/Textures/SmallLightParticle</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Sparkles">
-            <summary>Full Path: emake/Assets/Textures/Sparkles</summary>
+            <summary>Full Path: Assets/Textures/Sparkles</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.HardenedSand">
-            <summary>Full Path: emake/Assets/Textures/TileMerges/HardenedSand</summary>
+            <summary>Full Path: Assets/Textures/TileMerges/HardenedSand</summary>
         </member>
-        <member name="F:AequusRemake.AequusTextures.emake_Assets_Textures_TileMerges_PolymerSandstone">
-            <summary>Full Path: emake/Assets/Textures/TileMerges/PolymerSandstone</summary>
+        <member name="F:AequusRemake.AequusTextures.Assets_Textures_TileMerges_PolymerSandstone">
+            <summary>Full Path: Assets/Textures/TileMerges/PolymerSandstone</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Sand">
-            <summary>Full Path: emake/Assets/Textures/TileMerges/Sand</summary>
+            <summary>Full Path: Assets/Textures/TileMerges/Sand</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TownNPCExclamation">
-            <summary>Full Path: emake/Assets/Textures/TownNPCExclamation</summary>
+            <summary>Full Path: Assets/Textures/TownNPCExclamation</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Trail">
-            <summary>Full Path: emake/Assets/Textures/Trail</summary>
+            <summary>Full Path: Assets/Textures/Trail</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Trail2">
-            <summary>Full Path: emake/Assets/Textures/Trail2</summary>
+            <summary>Full Path: Assets/Textures/Trail2</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Trail3">
-            <summary>Full Path: emake/Assets/Textures/Trail3</summary>
+            <summary>Full Path: Assets/Textures/Trail3</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrailShootingStar">
-            <summary>Full Path: emake/Assets/Textures/TrailShootingStar</summary>
+            <summary>Full Path: Assets/Textures/TrailShootingStar</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Durability">
-            <summary>Full Path: emake/Assets/Textures/UI/Durability</summary>
+            <summary>Full Path: Assets/Textures/UI/Durability</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.VignetteSmall">
-            <summary>Full Path: emake/Assets/Textures/VignetteSmall</summary>
+            <summary>Full Path: Assets/Textures/VignetteSmall</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BackgroundRainDroplets">
-            <summary>Full Path: emake/Content/Biomes/PollutedOcean/Background/BackgroundRainDroplets</summary>
+            <summary>Full Path: Content/Biomes/PollutedOcean/Background/BackgroundRainDroplets</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.OceanCreviceBG_0">
-            <summary>Full Path: emake/Content/Biomes/PollutedOcean/Background/OceanCreviceBG_0</summary>
+            <summary>Full Path: Content/Biomes/PollutedOcean/Background/OceanCreviceBG_0</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.OceanCreviceBG_1">
-            <summary>Full Path: emake/Content/Biomes/PollutedOcean/Background/OceanCreviceBG_1</summary>
+            <summary>Full Path: Content/Biomes/PollutedOcean/Background/OceanCreviceBG_1</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.OceanCreviceBG_2">
-            <summary>Full Path: emake/Content/Biomes/PollutedOcean/Background/OceanCreviceBG_2</summary>
+            <summary>Full Path: Content/Biomes/PollutedOcean/Background/OceanCreviceBG_2</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.OceanCreviceBG_3">
-            <summary>Full Path: emake/Content/Biomes/PollutedOcean/Background/OceanCreviceBG_3</summary>
+            <summary>Full Path: Content/Biomes/PollutedOcean/Background/OceanCreviceBG_3</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SurfaceBG_Far">
-            <summary>Full Path: emake/Content/Biomes/PollutedOcean/Background/SurfaceBG_Far</summary>
+            <summary>Full Path: Content/Biomes/PollutedOcean/Background/SurfaceBG_Far</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PollutedOceanBiomeSurface_Background">
-            <summary>Full Path: emake/Content/Biomes/PollutedOcean/PollutedOceanBiomeSurface_Background</summary>
+            <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeSurface_Background</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PollutedOceanBiomeSurface_Icon">
-            <summary>Full Path: emake/Content/Biomes/PollutedOcean/PollutedOceanBiomeSurface_Icon</summary>
+            <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeSurface_Icon</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PollutedOceanBiomeUnderground_Background">
-            <summary>Full Path: emake/Content/Biomes/PollutedOcean/PollutedOceanBiomeUnderground_Background</summary>
+            <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeUnderground_Background</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PollutedOceanBiomeUnderground_Icon">
-            <summary>Full Path: emake/Content/Biomes/PollutedOcean/PollutedOceanBiomeUnderground_Icon</summary>
+            <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeUnderground_Icon</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PollutedWater">
-            <summary>Full Path: emake/Content/Biomes/PollutedOcean/Water/PollutedWater</summary>
+            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PollutedWater_Block">
-            <summary>Full Path: emake/Content/Biomes/PollutedOcean/Water/PollutedWater_Block</summary>
+            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Block</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PollutedWater_Droplet">
-            <summary>Full Path: emake/Content/Biomes/PollutedOcean/Water/PollutedWater_Droplet</summary>
+            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Droplet</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PollutedWater_Dust">
-            <summary>Full Path: emake/Content/Biomes/PollutedOcean/Water/PollutedWater_Dust</summary>
+            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Dust</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PollutedWater_Slope">
-            <summary>Full Path: emake/Content/Biomes/PollutedOcean/Water/PollutedWater_Slope</summary>
+            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Slope</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PollutedWater_Waterfall">
-            <summary>Full Path: emake/Content/Biomes/PollutedOcean/Water/PollutedWater_Waterfall</summary>
+            <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedWater_Waterfall</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SalamancerBag">
-            <summary>Full Path: emake/Content/Bosses/Salamancer/Items/SalamancerBag</summary>
+            <summary>Full Path: Content/Bosses/Salamancer/Items/SalamancerBag</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SalamancerMask">
-            <summary>Full Path: emake/Content/Bosses/Salamancer/Items/SalamancerMask</summary>
+            <summary>Full Path: Content/Bosses/Salamancer/Items/SalamancerMask</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SalamancerMask_Head">
-            <summary>Full Path: emake/Content/Bosses/Salamancer/Items/SalamancerMask_Head</summary>
+            <summary>Full Path: Content/Bosses/Salamancer/Items/SalamancerMask_Head</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SalamancerRelic">
-            <summary>Full Path: emake/Content/Bosses/Salamancer/Items/SalamancerRelic</summary>
+            <summary>Full Path: Content/Bosses/Salamancer/Items/SalamancerRelic</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SalamancerRelicItem">
-            <summary>Full Path: emake/Content/Bosses/Salamancer/Items/SalamancerRelicItem</summary>
+            <summary>Full Path: Content/Bosses/Salamancer/Items/SalamancerRelicItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SalamancerTrophy">
-            <summary>Full Path: emake/Content/Bosses/Salamancer/Items/SalamancerTrophy</summary>
+            <summary>Full Path: Content/Bosses/Salamancer/Items/SalamancerTrophy</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SalamancerTrophyItem">
-            <summary>Full Path: emake/Content/Bosses/Salamancer/Items/SalamancerTrophyItem</summary>
+            <summary>Full Path: Content/Bosses/Salamancer/Items/SalamancerTrophyItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Salamancer">
-            <summary>Full Path: emake/Content/Bosses/Salamancer/Salamancer</summary>
+            <summary>Full Path: Content/Bosses/Salamancer/Salamancer</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CopperChest">
-            <summary>Full Path: emake/Content/Chests/BuriedChests/CopperChest</summary>
+            <summary>Full Path: Content/Chests/BuriedChests/CopperChest</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CopperChestItem">
-            <summary>Full Path: emake/Content/Chests/BuriedChests/CopperChestItem</summary>
+            <summary>Full Path: Content/Chests/BuriedChests/CopperChestItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CopperChestLockedItem">
-            <summary>Full Path: emake/Content/Chests/BuriedChests/CopperChestLockedItem</summary>
+            <summary>Full Path: Content/Chests/BuriedChests/CopperChestLockedItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CopperChest_Highlight">
-            <summary>Full Path: emake/Content/Chests/BuriedChests/CopperChest_Highlight</summary>
+            <summary>Full Path: Content/Chests/BuriedChests/CopperChest_Highlight</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SeaFirefly">
-            <summary>Full Path: emake/Content/Critters/SeaFirefly/SeaFirefly</summary>
+            <summary>Full Path: Content/Critters/SeaFirefly/SeaFirefly</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SeaFireflyItem">
-            <summary>Full Path: emake/Content/Critters/SeaFirefly/SeaFireflyItem</summary>
+            <summary>Full Path: Content/Critters/SeaFirefly/SeaFireflyItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SeaFireflyItem_Dyed">
-            <summary>Full Path: emake/Content/Critters/SeaFirefly/SeaFireflyItem_Dyed</summary>
+            <summary>Full Path: Content/Critters/SeaFirefly/SeaFireflyItem_Dyed</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SeaFireflyJar">
-            <summary>Full Path: emake/Content/Critters/SeaFirefly/SeaFireflyJar</summary>
+            <summary>Full Path: Content/Critters/SeaFirefly/SeaFireflyJar</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SeaFireflyJarItem">
-            <summary>Full Path: emake/Content/Critters/SeaFirefly/SeaFireflyJarItem</summary>
+            <summary>Full Path: Content/Critters/SeaFirefly/SeaFireflyJarItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.OmegaHoney">
-            <summary>Full Path: emake/Content/CrossMod/CalamityModSupport/Items/OmegaHoney</summary>
+            <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/OmegaHoney</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.OmegaRestoration">
-            <summary>Full Path: emake/Content/CrossMod/CalamityModSupport/Items/OmegaRestoration</summary>
+            <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/OmegaRestoration</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SupremeHoney">
-            <summary>Full Path: emake/Content/CrossMod/CalamityModSupport/Items/SupremeHoney</summary>
+            <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/SupremeHoney</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SupremeRestoration">
-            <summary>Full Path: emake/Content/CrossMod/CalamityModSupport/Items/SupremeRestoration</summary>
+            <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/SupremeRestoration</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.GlimmerEnvelope">
-            <summary>Full Path: emake/Content/CrossMod/SplitSupport/Photography/Envelopes/GlimmerEnvelope</summary>
+            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/Envelopes/GlimmerEnvelope</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PollutedOceanEnvelope">
-            <summary>Full Path: emake/Content/CrossMod/SplitSupport/Photography/Envelopes/PollutedOceanEnvelope</summary>
+            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/Envelopes/PollutedOceanEnvelope</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Poster">
-            <summary>Full Path: emake/Content/CrossMod/SplitSupport/Photography/Poster</summary>
+            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/Poster</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PosterBloodMimicItem">
-            <summary>Full Path: emake/Content/CrossMod/SplitSupport/Photography/PosterBloodMimicItem</summary>
+            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterBloodMimicItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PosterBreadOfCthulhuItem">
-            <summary>Full Path: emake/Content/CrossMod/SplitSupport/Photography/PosterBreadOfCthulhuItem</summary>
+            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterBreadOfCthulhuItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PosterCinderBatItem">
-            <summary>Full Path: emake/Content/CrossMod/SplitSupport/Photography/PosterCinderBatItem</summary>
+            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterCinderBatItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PosterOblivisionItem">
-            <summary>Full Path: emake/Content/CrossMod/SplitSupport/Photography/PosterOblivisionItem</summary>
+            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterOblivisionItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PosterSkyMerchantItem">
-            <summary>Full Path: emake/Content/CrossMod/SplitSupport/Photography/PosterSkyMerchantItem</summary>
+            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterSkyMerchantItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PosterUltraStariteItem">
-            <summary>Full Path: emake/Content/CrossMod/SplitSupport/Photography/PosterUltraStariteItem</summary>
+            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterUltraStariteItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SplitAlbum">
-            <summary>Full Path: emake/Content/CrossMod/SplitSupport/Photography/SplitAlbum</summary>
+            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/SplitAlbum</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Baguette">
-            <summary>Full Path: emake/Content/Dedicated/Baguette/Baguette</summary>
+            <summary>Full Path: Content/Dedicated/Baguette/Baguette</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BaguetteBuff">
-            <summary>Full Path: emake/Content/Dedicated/Baguette/BaguetteBuff</summary>
+            <summary>Full Path: Content/Dedicated/Baguette/BaguetteBuff</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BeyondPlatinumCoin">
-            <summary>Full Path: emake/Content/Dedicated/BeyondCoin/BeyondPlatinumCoin</summary>
+            <summary>Full Path: Content/Dedicated/BeyondCoin/BeyondPlatinumCoin</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BeyondPlatinumCoin_World">
-            <summary>Full Path: emake/Content/Dedicated/BeyondCoin/BeyondPlatinumCoin_World</summary>
+            <summary>Full Path: Content/Dedicated/BeyondCoin/BeyondPlatinumCoin_World</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ShimmerCoin">
-            <summary>Full Path: emake/Content/Dedicated/BeyondCoin/ShimmerCoin</summary>
+            <summary>Full Path: Content/Dedicated/BeyondCoin/ShimmerCoin</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.DeathsEmbrace">
-            <summary>Full Path: emake/Content/Dedicated/DeathsEmbrace/DeathsEmbrace</summary>
+            <summary>Full Path: Content/Dedicated/DeathsEmbrace/DeathsEmbrace</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.DeathsEmbraceBuff">
-            <summary>Full Path: emake/Content/Dedicated/DeathsEmbrace/DeathsEmbraceBuff</summary>
+            <summary>Full Path: Content/Dedicated/DeathsEmbrace/DeathsEmbraceBuff</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.DedicatedFaelingItem">
-            <summary>Full Path: emake/Content/Dedicated/DedicatedFaelingItem</summary>
+            <summary>Full Path: Content/Dedicated/DedicatedFaelingItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.DedicatedFaelingItem_Mask">
-            <summary>Full Path: emake/Content/Dedicated/DedicatedFaelingItem_Mask</summary>
+            <summary>Full Path: Content/Dedicated/DedicatedFaelingItem_Mask</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.FamiliarPetBuff">
-            <summary>Full Path: emake/Content/Dedicated/Familiar/FamiliarPetBuff</summary>
+            <summary>Full Path: Content/Dedicated/Familiar/FamiliarPetBuff</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.FamiliarPetItem">
-            <summary>Full Path: emake/Content/Dedicated/Familiar/FamiliarPetItem</summary>
+            <summary>Full Path: Content/Dedicated/Familiar/FamiliarPetItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.IronLotus">
-            <summary>Full Path: emake/Content/Dedicated/IronLotus/IronLotus</summary>
+            <summary>Full Path: Content/Dedicated/IronLotus/IronLotus</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.IronLotusProj">
-            <summary>Full Path: emake/Content/Dedicated/IronLotus/IronLotusProj</summary>
+            <summary>Full Path: Content/Dedicated/IronLotus/IronLotusProj</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.IronLotusProj_Edges">
-            <summary>Full Path: emake/Content/Dedicated/IronLotus/IronLotusProj_Edges</summary>
+            <summary>Full Path: Content/Dedicated/IronLotus/IronLotusProj_Edges</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.IronLotusProj_EdgesAura">
-            <summary>Full Path: emake/Content/Dedicated/IronLotus/IronLotusProj_EdgesAura</summary>
+            <summary>Full Path: Content/Dedicated/IronLotus/IronLotusProj_EdgesAura</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.LanternCatPet">
-            <summary>Full Path: emake/Content/Dedicated/LanternCat/LanternCatPet</summary>
+            <summary>Full Path: Content/Dedicated/LanternCat/LanternCatPet</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.LanternCatPetBuff">
-            <summary>Full Path: emake/Content/Dedicated/LanternCat/LanternCatPetBuff</summary>
+            <summary>Full Path: Content/Dedicated/LanternCat/LanternCatPetBuff</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.LanternCatPetItem">
-            <summary>Full Path: emake/Content/Dedicated/LanternCat/LanternCatPetItem</summary>
+            <summary>Full Path: Content/Dedicated/LanternCat/LanternCatPetItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.LanternCatPet_Lantern">
-            <summary>Full Path: emake/Content/Dedicated/LanternCat/LanternCatPet_Lantern</summary>
+            <summary>Full Path: Content/Dedicated/LanternCat/LanternCatPet_Lantern</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MirrorsCall">
-            <summary>Full Path: emake/Content/Dedicated/MirrorsCall/MirrorsCall</summary>
+            <summary>Full Path: Content/Dedicated/MirrorsCall/MirrorsCall</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MirrorsCall_Aura">
-            <summary>Full Path: emake/Content/Dedicated/MirrorsCall/MirrorsCall_Aura</summary>
+            <summary>Full Path: Content/Dedicated/MirrorsCall/MirrorsCall_Aura</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MirrorsCall_Edges">
-            <summary>Full Path: emake/Content/Dedicated/MirrorsCall/MirrorsCall_Edges</summary>
+            <summary>Full Path: Content/Dedicated/MirrorsCall/MirrorsCall_Edges</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MirrorsCall_Edges_Aura">
-            <summary>Full Path: emake/Content/Dedicated/MirrorsCall/MirrorsCall_Edges_Aura</summary>
+            <summary>Full Path: Content/Dedicated/MirrorsCall/MirrorsCall_Edges_Aura</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.NikoPetItem">
-            <summary>Full Path: emake/Content/Dedicated/Niko/NikoPetItem</summary>
+            <summary>Full Path: Content/Dedicated/Niko/NikoPetItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.StudiesOfTheInkblot">
-            <summary>Full Path: emake/Content/Dedicated/StudiesOfTheInkblot/StudiesOfTheInkblot</summary>
+            <summary>Full Path: Content/Dedicated/StudiesOfTheInkblot/StudiesOfTheInkblot</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.StudiesOfTheInkblotProj">
-            <summary>Full Path: emake/Content/Dedicated/StudiesOfTheInkblot/StudiesOfTheInkblotProj</summary>
+            <summary>Full Path: Content/Dedicated/StudiesOfTheInkblot/StudiesOfTheInkblotProj</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SwagEyePet">
-            <summary>Full Path: emake/Content/Dedicated/SwagEye/SwagEyePet</summary>
+            <summary>Full Path: Content/Dedicated/SwagEye/SwagEyePet</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SwagEyePetBuff">
-            <summary>Full Path: emake/Content/Dedicated/SwagEye/SwagEyePetBuff</summary>
+            <summary>Full Path: Content/Dedicated/SwagEye/SwagEyePetBuff</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SwagEyePetItem">
-            <summary>Full Path: emake/Content/Dedicated/SwagEye/SwagEyePetItem</summary>
+            <summary>Full Path: Content/Dedicated/SwagEye/SwagEyePetItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MonoDust">
-            <summary>Full Path: emake/Content/Dusts/MonoDust</summary>
+            <summary>Full Path: Content/Dusts/MonoDust</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.AirMask">
-            <summary>Full Path: emake/Content/Elements/Air/AirMask</summary>
+            <summary>Full Path: Content/Elements/Air/AirMask</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.AirMask_Head">
-            <summary>Full Path: emake/Content/Elements/Air/AirMask_Head</summary>
+            <summary>Full Path: Content/Elements/Air/AirMask_Head</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.EarthMask">
-            <summary>Full Path: emake/Content/Elements/Earth/EarthMask</summary>
+            <summary>Full Path: Content/Elements/Earth/EarthMask</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.EarthMask_Head">
-            <summary>Full Path: emake/Content/Elements/Earth/EarthMask_Head</summary>
+            <summary>Full Path: Content/Elements/Earth/EarthMask_Head</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ElementIcons">
-            <summary>Full Path: emake/Content/Elements/ElementIcons</summary>
+            <summary>Full Path: Content/Elements/ElementIcons</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.FlameMask">
-            <summary>Full Path: emake/Content/Elements/Flame/FlameMask</summary>
+            <summary>Full Path: Content/Elements/Flame/FlameMask</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.FlameMask_Head">
-            <summary>Full Path: emake/Content/Elements/Flame/FlameMask_Head</summary>
+            <summary>Full Path: Content/Elements/Flame/FlameMask_Head</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.FrostMask">
-            <summary>Full Path: emake/Content/Elements/Frost/FrostMask</summary>
+            <summary>Full Path: Content/Elements/Frost/FrostMask</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.FrostMask_Head">
-            <summary>Full Path: emake/Content/Elements/Frost/FrostMask_Head</summary>
+            <summary>Full Path: Content/Elements/Frost/FrostMask_Head</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.LightMask">
-            <summary>Full Path: emake/Content/Elements/Light/LightMask</summary>
+            <summary>Full Path: Content/Elements/Light/LightMask</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.LightMask_Head">
-            <summary>Full Path: emake/Content/Elements/Light/LightMask_Head</summary>
+            <summary>Full Path: Content/Elements/Light/LightMask_Head</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ShadowMask">
-            <summary>Full Path: emake/Content/Elements/Shadow/ShadowMask</summary>
+            <summary>Full Path: Content/Elements/Shadow/ShadowMask</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ShadowMask_Head">
-            <summary>Full Path: emake/Content/Elements/Shadow/ShadowMask_Head</summary>
+            <summary>Full Path: Content/Elements/Shadow/ShadowMask_Head</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.WaterMask">
-            <summary>Full Path: emake/Content/Elements/Water/WaterMask</summary>
+            <summary>Full Path: Content/Elements/Water/WaterMask</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.WaterMask_Head">
-            <summary>Full Path: emake/Content/Elements/Water/WaterMask_Head</summary>
+            <summary>Full Path: Content/Elements/Water/WaterMask_Head</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BlackJellyfish">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BlackJellyfishVertexStrip">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishVertexStrip</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishVertexStrip</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BlackJellyfish_Bag">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish_Bag</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish_Bag</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BlackJellyfishBanner">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBanner</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBanner</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BlackJellyfishBannerItem">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBannerItem</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/Tiles/BlackJellyfishBannerItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BreadOfCthulhu">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/BreadOfCthulhu/BreadOfCthulhu</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/BreadOfCthulhu</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BreadOfCthulhu_0">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/BreadOfCthulhu/Gores/BreadOfCthulhu_0</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Gores/BreadOfCthulhu_0</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BreadOfCthulhu_1">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/BreadOfCthulhu/Gores/BreadOfCthulhu_1</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Gores/BreadOfCthulhu_1</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BreadOfCthulhu_2">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/BreadOfCthulhu/Gores/BreadOfCthulhu_2</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Gores/BreadOfCthulhu_2</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BreadOfCthulhuMask">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/BreadOfCthulhu/Items/BreadOfCthulhuMask</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Items/BreadOfCthulhuMask</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BreadOfCthulhuMask_Head">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/BreadOfCthulhu/Items/BreadOfCthulhuMask_Head</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Items/BreadOfCthulhuMask_Head</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BreadOfCthulhuBanner">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/BreadOfCthulhu/Tiles/BreadOfCthulhuBanner</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Tiles/BreadOfCthulhuBanner</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BreadOfCthulhuBannerItem">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/BreadOfCthulhu/Tiles/BreadOfCthulhuBannerItem</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/BreadOfCthulhu/Tiles/BreadOfCthulhuBannerItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Conductor">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Conductor/Conductor</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Conductor</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Conductor_Wave">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Conductor/Conductor_Wave</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Conductor_Wave</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ConductorGoreHead">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Conductor/Gores/ConductorGoreHead</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Gores/ConductorGoreHead</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ConductorBanner">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Conductor/Tiles/ConductorBanner</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Tiles/ConductorBanner</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ConductorBannerItem">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Conductor/Tiles/ConductorBannerItem</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conductor/Tiles/ConductorBannerItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ConeheadZombieBald">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Conehead/ConeheadZombieBald</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieBald</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ConeheadZombieBasic">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Conehead/ConeheadZombieBasic</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieBasic</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ConeheadZombieFemale">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Conehead/ConeheadZombieFemale</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieFemale</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ConeheadZombieHeadless">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Conehead/ConeheadZombieHeadless</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieHeadless</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ConeheadZombiePincushion">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Conehead/ConeheadZombiePincushion</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombiePincushion</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ConeheadZombieSlimed">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Conehead/ConeheadZombieSlimed</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieSlimed</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ConeheadZombieSwamp">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Conehead/ConeheadZombieSwamp</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieSwamp</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ConeheadZombieTwiggy">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Conehead/ConeheadZombieTwiggy</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Conehead/ConeheadZombieTwiggy</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Eel">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Eel/Eel</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Eel/Eel</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Eel_Bestiary">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Eel/Eel_Bestiary</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Eel/Eel_Bestiary</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.EekGoreBody">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Eel/Gores/EekGoreBody</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Eel/Gores/EekGoreBody</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.EekGoreHead">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Eel/Gores/EekGoreHead</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Eel/Gores/EekGoreHead</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.EekGoreTail">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Eel/Gores/EekGoreTail</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Eel/Gores/EekGoreTail</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.EelBanner">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Eel/Tiles/EelBanner</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Eel/Tiles/EelBanner</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.EelBannerItem">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Eel/Tiles/EelBannerItem</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Eel/Tiles/EelBannerItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.OilSlime">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/OilSlime/OilSlime</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/OilSlime</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.OilSlimeDeathProj">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/OilSlime/OilSlimeDeathProj</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/OilSlimeDeathProj</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.OilSlimeHazard">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/OilSlime/OilSlimeHazard</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/OilSlimeHazard</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.OilSlimeBanner">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/OilSlime/Tiles/OilSlimeBanner</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/Tiles/OilSlimeBanner</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.OilSlimeBannerItem">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/OilSlime/Tiles/OilSlimeBannerItem</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/OilSlime/Tiles/OilSlimeBannerItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScavengerGoreHead">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Scavenger/Gores/ScavengerGoreHead</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Gores/ScavengerGoreHead</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Scavenger">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Scavenger/Scavenger</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Scavenger</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScavengerBody">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Scavenger/ScavengerBody</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/ScavengerBody</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScavengerHead">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Scavenger/ScavengerHead</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/ScavengerHead</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScavengerLootBag">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScavengerLootBag_Outline">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScavengerBanner">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerBanner</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerBanner</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScavengerBannerItem">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerBannerItem</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerBannerItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScavengerStatue">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatue</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatue</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScavengerStatueItem">
-            <summary>Full Path: emake/Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatueItem</summary>
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatueItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BlackJellyfishBait">
-            <summary>Full Path: emake/Content/Fishing/Baits/BlackJellyfish/BlackJellyfishBait</summary>
+            <summary>Full Path: Content/Fishing/Baits/BlackJellyfish/BlackJellyfishBait</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CrabPot">
-            <summary>Full Path: emake/Content/Fishing/CrabPots/CrabPot</summary>
+            <summary>Full Path: Content/Fishing/CrabPots/CrabPot</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CrabPot_Back">
-            <summary>Full Path: emake/Content/Fishing/CrabPots/CrabPot_Back</summary>
+            <summary>Full Path: Content/Fishing/CrabPots/CrabPot_Back</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CrabPot_Highlight">
-            <summary>Full Path: emake/Content/Fishing/CrabPots/CrabPot_Highlight</summary>
+            <summary>Full Path: Content/Fishing/CrabPots/CrabPot_Highlight</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CrabPotCopperItem">
-            <summary>Full Path: emake/Content/Fishing/CrabPots/Items/CrabPotCopperItem</summary>
+            <summary>Full Path: Content/Fishing/CrabPots/Items/CrabPotCopperItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CrabPotTinItem">
-            <summary>Full Path: emake/Content/Fishing/CrabPots/Items/CrabPotTinItem</summary>
+            <summary>Full Path: Content/Fishing/CrabPots/Items/CrabPotTinItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ObsidianCrabPotItem">
-            <summary>Full Path: emake/Content/Fishing/CrabPots/Items/ObsidianCrabPotItem</summary>
+            <summary>Full Path: Content/Fishing/CrabPots/Items/ObsidianCrabPotItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ObsidianCrabPot">
-            <summary>Full Path: emake/Content/Fishing/CrabPots/ObsidianCrabPot</summary>
+            <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ObsidianCrabPot_Back">
-            <summary>Full Path: emake/Content/Fishing/CrabPots/ObsidianCrabPot_Back</summary>
+            <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot_Back</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ObsidianCrabPot_Highlight">
-            <summary>Full Path: emake/Content/Fishing/CrabPots/ObsidianCrabPot_Highlight</summary>
+            <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot_Highlight</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BambooFishingPole">
-            <summary>Full Path: emake/Content/Fishing/FishingPoles/BambooFishingPole</summary>
+            <summary>Full Path: Content/Fishing/FishingPoles/BambooFishingPole</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BambooFishingPoleBobber">
-            <summary>Full Path: emake/Content/Fishing/FishingPoles/BambooFishingPoleBobber</summary>
+            <summary>Full Path: Content/Fishing/FishingPoles/BambooFishingPoleBobber</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SteampunkerFishingPole">
-            <summary>Full Path: emake/Content/Fishing/FishingPoles/SteampunkerFishingPole</summary>
+            <summary>Full Path: Content/Fishing/FishingPoles/SteampunkerFishingPole</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SteampunkerFishingPoleBobber">
-            <summary>Full Path: emake/Content/Fishing/FishingPoles/SteampunkerFishingPoleBobber</summary>
+            <summary>Full Path: Content/Fishing/FishingPoles/SteampunkerFishingPoleBobber</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Killifish">
-            <summary>Full Path: emake/Content/Fishing/Fish/Killifish</summary>
+            <summary>Full Path: Content/Fishing/Fish/Killifish</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Piraiba">
-            <summary>Full Path: emake/Content/Fishing/Fish/Piraiba</summary>
+            <summary>Full Path: Content/Fishing/Fish/Piraiba</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BubbleParticles">
-            <summary>Full Path: emake/Content/Graphics/Particles/BubbleParticles</summary>
+            <summary>Full Path: Content/Graphics/Particles/BubbleParticles</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.DashParticles">
-            <summary>Full Path: emake/Content/Graphics/Particles/DashParticles</summary>
+            <summary>Full Path: Content/Graphics/Particles/DashParticles</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PurpleBalloon">
-            <summary>Full Path: emake/Content/Items/Accessories/Balloons/PurpleBalloon</summary>
+            <summary>Full Path: Content/Items/Accessories/Balloons/PurpleBalloon</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PurpleBalloon_Balloon">
-            <summary>Full Path: emake/Content/Items/Accessories/Balloons/PurpleBalloon_Balloon</summary>
+            <summary>Full Path: Content/Items/Accessories/Balloons/PurpleBalloon_Balloon</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SlimyBlueBalloon">
-            <summary>Full Path: emake/Content/Items/Accessories/Balloons/SlimyBlueBalloon</summary>
+            <summary>Full Path: Content/Items/Accessories/Balloons/SlimyBlueBalloon</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SlimyBlueBalloon_Balloon">
-            <summary>Full Path: emake/Content/Items/Accessories/Balloons/SlimyBlueBalloon_Balloon</summary>
+            <summary>Full Path: Content/Items/Accessories/Balloons/SlimyBlueBalloon_Balloon</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BreathConserver">
-            <summary>Full Path: emake/Content/Items/Accessories/Breath/BreathConserver</summary>
+            <summary>Full Path: Content/Items/Accessories/Breath/BreathConserver</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BreathConserver_Back">
-            <summary>Full Path: emake/Content/Items/Accessories/Breath/BreathConserver_Back</summary>
+            <summary>Full Path: Content/Items/Accessories/Breath/BreathConserver_Back</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.EclipseGlasses">
-            <summary>Full Path: emake/Content/Items/Accessories/EventPrevention/EclipseGlasses</summary>
+            <summary>Full Path: Content/Items/Accessories/EventPrevention/EclipseGlasses</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.EclipseGlasses_Face">
-            <summary>Full Path: emake/Content/Items/Accessories/EventPrevention/EclipseGlasses_Face</summary>
+            <summary>Full Path: Content/Items/Accessories/EventPrevention/EclipseGlasses_Face</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.RoseTintedGlasses">
-            <summary>Full Path: emake/Content/Items/Accessories/EventPrevention/RoseTintedGlasses</summary>
+            <summary>Full Path: Content/Items/Accessories/EventPrevention/RoseTintedGlasses</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.RoseTintedGlasses_Face">
-            <summary>Full Path: emake/Content/Items/Accessories/EventPrevention/RoseTintedGlasses_Face</summary>
+            <summary>Full Path: Content/Items/Accessories/EventPrevention/RoseTintedGlasses_Face</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.StellarGlasses">
-            <summary>Full Path: emake/Content/Items/Accessories/EventPrevention/StellarGlasses</summary>
+            <summary>Full Path: Content/Items/Accessories/EventPrevention/StellarGlasses</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.StellarGlasses_Face">
-            <summary>Full Path: emake/Content/Items/Accessories/EventPrevention/StellarGlasses_Face</summary>
+            <summary>Full Path: Content/Items/Accessories/EventPrevention/StellarGlasses_Face</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.FlashwayShield">
-            <summary>Full Path: emake/Content/Items/Accessories/FlashwayShield/FlashwayShield</summary>
+            <summary>Full Path: Content/Items/Accessories/FlashwayShield/FlashwayShield</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.FlashwayShield_Shield">
-            <summary>Full Path: emake/Content/Items/Accessories/FlashwayShield/FlashwayShield_Shield</summary>
+            <summary>Full Path: Content/Items/Accessories/FlashwayShield/FlashwayShield_Shield</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.GoldenFeather">
-            <summary>Full Path: emake/Content/Items/Accessories/GoldenFeather/GoldenFeather</summary>
+            <summary>Full Path: Content/Items/Accessories/GoldenFeather/GoldenFeather</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.GoldenFeatherBuff">
-            <summary>Full Path: emake/Content/Items/Accessories/GoldenFeather/GoldenFeatherBuff</summary>
+            <summary>Full Path: Content/Items/Accessories/GoldenFeather/GoldenFeatherBuff</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.GoldenWind">
-            <summary>Full Path: emake/Content/Items/Accessories/GoldenFeather/GoldenWind</summary>
+            <summary>Full Path: Content/Items/Accessories/GoldenFeather/GoldenWind</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.GoldenWindBuff">
-            <summary>Full Path: emake/Content/Items/Accessories/GoldenFeather/GoldenWindBuff</summary>
+            <summary>Full Path: Content/Items/Accessories/GoldenFeather/GoldenWindBuff</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Calendar">
-            <summary>Full Path: emake/Content/Items/Accessories/Informational/Calendar/Calendar</summary>
+            <summary>Full Path: Content/Items/Accessories/Informational/Calendar/Calendar</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CalendarInfoDisplay">
-            <summary>Full Path: emake/Content/Items/Accessories/Informational/Calendar/CalendarInfoDisplay</summary>
+            <summary>Full Path: Content/Items/Accessories/Informational/Calendar/CalendarInfoDisplay</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CalendarTile">
-            <summary>Full Path: emake/Content/Items/Accessories/Informational/Calendar/CalendarTile</summary>
+            <summary>Full Path: Content/Items/Accessories/Informational/Calendar/CalendarTile</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.GeigerCounter">
-            <summary>Full Path: emake/Content/Items/Accessories/Informational/DebuffDPSMeter/GeigerCounter</summary>
+            <summary>Full Path: Content/Items/Accessories/Informational/DebuffDPSMeter/GeigerCounter</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.GeigerCounterInfoDisplay">
-            <summary>Full Path: emake/Content/Items/Accessories/Informational/DebuffDPSMeter/GeigerCounterInfoDisplay</summary>
+            <summary>Full Path: Content/Items/Accessories/Informational/DebuffDPSMeter/GeigerCounterInfoDisplay</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MonocleBuilderToggle">
-            <summary>Full Path: emake/Content/Items/Accessories/Informational/Monocle/MonocleBuilderToggle</summary>
+            <summary>Full Path: Content/Items/Accessories/Informational/Monocle/MonocleBuilderToggle</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.RichMansMonocle">
-            <summary>Full Path: emake/Content/Items/Accessories/Informational/Monocle/RichMansMonocle</summary>
+            <summary>Full Path: Content/Items/Accessories/Informational/Monocle/RichMansMonocle</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ShimmerMonocle">
-            <summary>Full Path: emake/Content/Items/Accessories/Informational/Monocle/ShimmerMonocle</summary>
+            <summary>Full Path: Content/Items/Accessories/Informational/Monocle/ShimmerMonocle</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ShimmerMonocleBuilderToggle">
-            <summary>Full Path: emake/Content/Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
+            <summary>Full Path: Content/Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScavengerBag">
-            <summary>Full Path: emake/Content/Items/Accessories/ScavengerBag/ScavengerBag</summary>
+            <summary>Full Path: Content/Items/Accessories/ScavengerBag/ScavengerBag</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScavengerBagBuilderToggle">
-            <summary>Full Path: emake/Content/Items/Accessories/ScavengerBag/ScavengerBagBuilderToggle</summary>
+            <summary>Full Path: Content/Items/Accessories/ScavengerBag/ScavengerBagBuilderToggle</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScavengerBag_Back">
-            <summary>Full Path: emake/Content/Items/Accessories/ScavengerBag/ScavengerBag_Back</summary>
+            <summary>Full Path: Content/Items/Accessories/ScavengerBag/ScavengerBag_Back</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScavengerBag_Strap">
-            <summary>Full Path: emake/Content/Items/Accessories/ScavengerBag/ScavengerBag_Strap</summary>
+            <summary>Full Path: Content/Items/Accessories/ScavengerBag/ScavengerBag_Strap</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ValentineRing">
-            <summary>Full Path: emake/Content/Items/Accessories/ValentinesRing/ValentineRing</summary>
+            <summary>Full Path: Content/Items/Accessories/ValentinesRing/ValentineRing</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ValentineRingBuff">
-            <summary>Full Path: emake/Content/Items/Accessories/ValentinesRing/ValentineRingBuff</summary>
+            <summary>Full Path: Content/Items/Accessories/ValentinesRing/ValentineRingBuff</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.WeightedHorseshoe">
-            <summary>Full Path: emake/Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoe</summary>
+            <summary>Full Path: Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoe</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.WeightedHorseshoeVisual">
-            <summary>Full Path: emake/Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
+            <summary>Full Path: Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CastawayChestplate">
-            <summary>Full Path: emake/Content/Items/Armor/Castaway/CastawayChestplate</summary>
+            <summary>Full Path: Content/Items/Armor/Castaway/CastawayChestplate</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CastawayChestplate_Body">
-            <summary>Full Path: emake/Content/Items/Armor/Castaway/CastawayChestplate_Body</summary>
+            <summary>Full Path: Content/Items/Armor/Castaway/CastawayChestplate_Body</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CastawayChestplate_Body_2">
-            <summary>Full Path: emake/Content/Items/Armor/Castaway/CastawayChestplate_Body_2</summary>
+            <summary>Full Path: Content/Items/Armor/Castaway/CastawayChestplate_Body_2</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CastawayHelmet">
-            <summary>Full Path: emake/Content/Items/Armor/Castaway/CastawayHelmet</summary>
+            <summary>Full Path: Content/Items/Armor/Castaway/CastawayHelmet</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CastawayHelmet_Head">
-            <summary>Full Path: emake/Content/Items/Armor/Castaway/CastawayHelmet_Head</summary>
+            <summary>Full Path: Content/Items/Armor/Castaway/CastawayHelmet_Head</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CastawayHelmet_Head_2">
-            <summary>Full Path: emake/Content/Items/Armor/Castaway/CastawayHelmet_Head_2</summary>
+            <summary>Full Path: Content/Items/Armor/Castaway/CastawayHelmet_Head_2</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CastawayLeggings">
-            <summary>Full Path: emake/Content/Items/Armor/Castaway/CastawayLeggings</summary>
+            <summary>Full Path: Content/Items/Armor/Castaway/CastawayLeggings</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CastawayLeggings_Legs">
-            <summary>Full Path: emake/Content/Items/Armor/Castaway/CastawayLeggings_Legs</summary>
+            <summary>Full Path: Content/Items/Armor/Castaway/CastawayLeggings_Legs</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.DefenseDamageIndicator">
-            <summary>Full Path: emake/Content/Items/Armor/Castaway/DefenseDamageIndicator</summary>
+            <summary>Full Path: Content/Items/Armor/Castaway/DefenseDamageIndicator</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CastawayChestplateBreak">
-            <summary>Full Path: emake/Content/Items/Armor/Castaway/Gores/CastawayChestplateBreak</summary>
+            <summary>Full Path: Content/Items/Armor/Castaway/Gores/CastawayChestplateBreak</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CastawayHelmetBreak">
-            <summary>Full Path: emake/Content/Items/Armor/Castaway/Gores/CastawayHelmetBreak</summary>
+            <summary>Full Path: Content/Items/Armor/Castaway/Gores/CastawayHelmetBreak</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ConeHelmet">
-            <summary>Full Path: emake/Content/Items/Armor/MiscHelmets/ConeHelmet</summary>
+            <summary>Full Path: Content/Items/Armor/MiscHelmets/ConeHelmet</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ConeHelmet_1">
-            <summary>Full Path: emake/Content/Items/Armor/MiscHelmets/ConeHelmet_1</summary>
+            <summary>Full Path: Content/Items/Armor/MiscHelmets/ConeHelmet_1</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ConeHelmet_1_Head">
-            <summary>Full Path: emake/Content/Items/Armor/MiscHelmets/ConeHelmet_1_Head</summary>
+            <summary>Full Path: Content/Items/Armor/MiscHelmets/ConeHelmet_1_Head</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ConeHelmet_2">
-            <summary>Full Path: emake/Content/Items/Armor/MiscHelmets/ConeHelmet_2</summary>
+            <summary>Full Path: Content/Items/Armor/MiscHelmets/ConeHelmet_2</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ConeHelmet_2_Head">
-            <summary>Full Path: emake/Content/Items/Armor/MiscHelmets/ConeHelmet_2_Head</summary>
+            <summary>Full Path: Content/Items/Armor/MiscHelmets/ConeHelmet_2_Head</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ConeHelmet_Head">
-            <summary>Full Path: emake/Content/Items/Armor/MiscHelmets/ConeHelmet_Head</summary>
+            <summary>Full Path: Content/Items/Armor/MiscHelmets/ConeHelmet_Head</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BloodyTearstone">
-            <summary>Full Path: emake/Content/Items/Materials/BloodyTearstone</summary>
+            <summary>Full Path: Content/Items/Materials/BloodyTearstone</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CompressedTrash">
-            <summary>Full Path: emake/Content/Items/Materials/CompressedTrash</summary>
+            <summary>Full Path: Content/Items/Materials/CompressedTrash</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BeyondHeart">
-            <summary>Full Path: emake/Content/Items/PermaPowerups/BeyondLifeCrystal/BeyondHeart</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/BeyondLifeCrystal/BeyondHeart</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BeyondHeartBar">
-            <summary>Full Path: emake/Content/Items/PermaPowerups/BeyondLifeCrystal/BeyondHeartBar</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/BeyondLifeCrystal/BeyondHeartBar</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BeyondLifeCrystal">
-            <summary>Full Path: emake/Content/Items/PermaPowerups/BeyondLifeCrystal/BeyondLifeCrystal</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/BeyondLifeCrystal/BeyondLifeCrystal</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BeyondManaCrystal">
-            <summary>Full Path: emake/Content/Items/PermaPowerups/BeyondManaCrystal/BeyondManaCrystal</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/BeyondManaCrystal/BeyondManaCrystal</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BeyondStar">
-            <summary>Full Path: emake/Content/Items/PermaPowerups/BeyondManaCrystal/BeyondStar</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/BeyondManaCrystal/BeyondStar</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BeyondStarBar">
-            <summary>Full Path: emake/Content/Items/PermaPowerups/BeyondManaCrystal/BeyondStarBar</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/BeyondManaCrystal/BeyondStarBar</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.NetherStar">
-            <summary>Full Path: emake/Content/Items/PermaPowerups/NetherStar/NetherStar</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStar</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.NetherStarBackground">
-            <summary>Full Path: emake/Content/Items/PermaPowerups/NetherStar/NetherStarBackground</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStarBackground</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.NetherStarMask">
-            <summary>Full Path: emake/Content/Items/PermaPowerups/NetherStar/NetherStarMask</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStarMask</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.NetherStar_Glow">
-            <summary>Full Path: emake/Content/Items/PermaPowerups/NetherStar/NetherStar_Glow</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStar_Glow</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.NoHitReward">
-            <summary>Full Path: emake/Content/Items/PermaPowerups/NoHit/NoHitReward</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/NoHit/NoHitReward</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CosmicChest">
-            <summary>Full Path: emake/Content/Items/PermaPowerups/Shimmer/CosmicChest</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/Shimmer/CosmicChest</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TinkerersGuidebook">
-            <summary>Full Path: emake/Content/Items/PermaPowerups/Shimmer/TinkerersGuidebook</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/Shimmer/TinkerersGuidebook</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SentryBuff">
-            <summary>Full Path: emake/Content/Items/Potions/Buffs/Sentry/SentryBuff</summary>
+            <summary>Full Path: Content/Items/Potions/Buffs/Sentry/SentryBuff</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SentryPotion">
-            <summary>Full Path: emake/Content/Items/Potions/Buffs/Sentry/SentryPotion</summary>
+            <summary>Full Path: Content/Items/Potions/Buffs/Sentry/SentryPotion</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.FoodPoisoningDebuff">
-            <summary>Full Path: emake/Content/Items/Potions/Food/TaintedSeafood/FoodPoisoningDebuff</summary>
+            <summary>Full Path: Content/Items/Potions/Food/TaintedSeafood/FoodPoisoningDebuff</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TaintedSeafood">
-            <summary>Full Path: emake/Content/Items/Potions/Food/TaintedSeafood/TaintedSeafood</summary>
+            <summary>Full Path: Content/Items/Potions/Food/TaintedSeafood/TaintedSeafood</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.GreaterHoney">
-            <summary>Full Path: emake/Content/Items/Potions/Healing/Honey/GreaterHoney</summary>
+            <summary>Full Path: Content/Items/Potions/Healing/Honey/GreaterHoney</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SuperHoney">
-            <summary>Full Path: emake/Content/Items/Potions/Healing/Honey/SuperHoney</summary>
+            <summary>Full Path: Content/Items/Potions/Healing/Honey/SuperHoney</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.GreaterRestorationPotion">
-            <summary>Full Path: emake/Content/Items/Potions/Healing/Restoration/GreaterRestorationPotion</summary>
+            <summary>Full Path: Content/Items/Potions/Healing/Restoration/GreaterRestorationPotion</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SuperRestorationPotion">
-            <summary>Full Path: emake/Content/Items/Potions/Healing/Restoration/SuperRestorationPotion</summary>
+            <summary>Full Path: Content/Items/Potions/Healing/Restoration/SuperRestorationPotion</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MeadowMushroom">
-            <summary>Full Path: emake/Content/Items/Potions/Mana/MeadowMushroom</summary>
+            <summary>Full Path: Content/Items/Potions/Mana/MeadowMushroom</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.HallowCanteen">
-            <summary>Full Path: emake/Content/Items/Potions/PotionCanteen/HallowCanteen</summary>
+            <summary>Full Path: Content/Items/Potions/PotionCanteen/HallowCanteen</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.HallowCanteenEmpty">
-            <summary>Full Path: emake/Content/Items/Potions/PotionCanteen/HallowCanteenEmpty</summary>
+            <summary>Full Path: Content/Items/Potions/PotionCanteen/HallowCanteenEmpty</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PotionCanteen">
-            <summary>Full Path: emake/Content/Items/Potions/PotionCanteen/PotionCanteen</summary>
+            <summary>Full Path: Content/Items/Potions/PotionCanteen/PotionCanteen</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PotionCanteenEmpty">
-            <summary>Full Path: emake/Content/Items/Potions/PotionCanteen/PotionCanteenEmpty</summary>
+            <summary>Full Path: Content/Items/Potions/PotionCanteen/PotionCanteenEmpty</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.AnglerLamp">
-            <summary>Full Path: emake/Content/Items/Tools/AnglerLamp/AnglerLamp</summary>
+            <summary>Full Path: Content/Items/Tools/AnglerLamp/AnglerLamp</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.AnglerLampOff">
-            <summary>Full Path: emake/Content/Items/Tools/AnglerLamp/AnglerLampOff</summary>
+            <summary>Full Path: Content/Items/Tools/AnglerLamp/AnglerLampOff</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.AnglerLamp_Glow">
-            <summary>Full Path: emake/Content/Items/Tools/AnglerLamp/AnglerLamp_Glow</summary>
+            <summary>Full Path: Content/Items/Tools/AnglerLamp/AnglerLamp_Glow</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.WispLantern">
-            <summary>Full Path: emake/Content/Items/Tools/AnglerLamp/WispLantern</summary>
+            <summary>Full Path: Content/Items/Tools/AnglerLamp/WispLantern</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.WispLantern_Glow">
-            <summary>Full Path: emake/Content/Items/Tools/AnglerLamp/WispLantern_Glow</summary>
+            <summary>Full Path: Content/Items/Tools/AnglerLamp/WispLantern_Glow</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Bellows">
-            <summary>Full Path: emake/Content/Items/Tools/Bellows/Bellows</summary>
+            <summary>Full Path: Content/Items/Tools/Bellows/Bellows</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BellowsProj">
-            <summary>Full Path: emake/Content/Items/Tools/Bellows/BellowsProj</summary>
+            <summary>Full Path: Content/Items/Tools/Bellows/BellowsProj</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Keychain">
-            <summary>Full Path: emake/Content/Items/Tools/Keychain/Keychain</summary>
+            <summary>Full Path: Content/Items/Tools/Keychain/Keychain</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MagicKeychain">
-            <summary>Full Path: emake/Content/Items/Tools/Keychain/MagicKeychain</summary>
+            <summary>Full Path: Content/Items/Tools/Keychain/MagicKeychain</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CopperKey">
-            <summary>Full Path: emake/Content/Items/Tools/Keys/CopperKey</summary>
+            <summary>Full Path: Content/Items/Tools/Keys/CopperKey</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TinKey">
-            <summary>Full Path: emake/Content/Items/Tools/Keys/TinKey</summary>
+            <summary>Full Path: Content/Items/Tools/Keys/TinKey</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.NameTag">
-            <summary>Full Path: emake/Content/Items/Tools/NameTag/NameTag</summary>
+            <summary>Full Path: Content/Items/Tools/NameTag/NameTag</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.NameTagBlank">
-            <summary>Full Path: emake/Content/Items/Tools/NameTag/NameTagBlank</summary>
+            <summary>Full Path: Content/Items/Tools/NameTag/NameTagBlank</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CensorDye">
-            <summary>Full Path: emake/Content/Items/Vanity/Dyes/CensorDye</summary>
+            <summary>Full Path: Content/Items/Vanity/Dyes/CensorDye</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.DiscoDye">
-            <summary>Full Path: emake/Content/Items/Vanity/Dyes/DiscoDye</summary>
+            <summary>Full Path: Content/Items/Vanity/Dyes/DiscoDye</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.EnchantedDye">
-            <summary>Full Path: emake/Content/Items/Vanity/Dyes/EnchantedDye</summary>
+            <summary>Full Path: Content/Items/Vanity/Dyes/EnchantedDye</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.EnchantedDyeEffect">
-            <summary>Full Path: emake/Content/Items/Vanity/Dyes/EnchantedDyeEffect</summary>
+            <summary>Full Path: Content/Items/Vanity/Dyes/EnchantedDyeEffect</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.FrostbiteDye">
-            <summary>Full Path: emake/Content/Items/Vanity/Dyes/FrostbiteDye</summary>
+            <summary>Full Path: Content/Items/Vanity/Dyes/FrostbiteDye</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.FrostbiteDyeEffect">
-            <summary>Full Path: emake/Content/Items/Vanity/Dyes/FrostbiteDyeEffect</summary>
+            <summary>Full Path: Content/Items/Vanity/Dyes/FrostbiteDyeEffect</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.HueshiftDye">
-            <summary>Full Path: emake/Content/Items/Vanity/Dyes/HueshiftDye</summary>
+            <summary>Full Path: Content/Items/Vanity/Dyes/HueshiftDye</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScorchingDye">
-            <summary>Full Path: emake/Content/Items/Vanity/Dyes/ScorchingDye</summary>
+            <summary>Full Path: Content/Items/Vanity/Dyes/ScorchingDye</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.StunEffect">
-            <summary>Full Path: emake/Content/Items/Weapons/Classless/StunGun/StunEffect</summary>
+            <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunEffect</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.StunGun">
-            <summary>Full Path: emake/Content/Items/Weapons/Classless/StunGun/StunGun</summary>
+            <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunGun</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Furystar">
-            <summary>Full Path: emake/Content/Items/Weapons/Magic/Furystar/Furystar</summary>
+            <summary>Full Path: Content/Items/Weapons/Magic/Furystar/Furystar</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashStaff">
-            <summary>Full Path: emake/Content/Items/Weapons/Magic/TrashStaff/TrashStaff</summary>
+            <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaff</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashStaffCritEffect">
-            <summary>Full Path: emake/Content/Items/Weapons/Magic/TrashStaff/TrashStaffCritEffect</summary>
+            <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaffCritEffect</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashStaffCritEffectStrip">
-            <summary>Full Path: emake/Content/Items/Weapons/Magic/TrashStaff/TrashStaffCritEffectStrip</summary>
+            <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaffCritEffectStrip</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashStaffProj">
-            <summary>Full Path: emake/Content/Items/Weapons/Magic/TrashStaff/TrashStaffProj</summary>
+            <summary>Full Path: Content/Items/Weapons/Magic/TrashStaff/TrashStaffProj</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.AncientCutlass">
-            <summary>Full Path: emake/Content/Items/Weapons/Melee/AncientCutlass/AncientCutlass</summary>
+            <summary>Full Path: Content/Items/Weapons/Melee/AncientCutlass/AncientCutlass</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Dynaknife">
-            <summary>Full Path: emake/Content/Items/Weapons/Melee/DynaKnife/Dynaknife</summary>
+            <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/Dynaknife</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.DynaknifeProj">
-            <summary>Full Path: emake/Content/Items/Weapons/Melee/DynaKnife/DynaknifeProj</summary>
+            <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/DynaknifeProj</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.DynaknifeProj_Glow">
-            <summary>Full Path: emake/Content/Items/Weapons/Melee/DynaKnife/DynaknifeProj_Glow</summary>
+            <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/DynaknifeProj_Glow</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Dynaknife_Glow">
-            <summary>Full Path: emake/Content/Items/Weapons/Melee/DynaKnife/Dynaknife_Glow</summary>
+            <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/Dynaknife_Glow</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PlasticDart">
-            <summary>Full Path: emake/Content/Items/Weapons/Ranged/Ammo/PlasticDart</summary>
+            <summary>Full Path: Content/Items/Weapons/Ranged/Ammo/PlasticDart</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PlasticDart_Outline">
-            <summary>Full Path: emake/Content/Items/Weapons/Ranged/Ammo/PlasticDart_Outline</summary>
+            <summary>Full Path: Content/Items/Weapons/Ranged/Ammo/PlasticDart_Outline</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.GasCan">
-            <summary>Full Path: emake/Content/Items/Weapons/Ranged/GasCan/GasCan</summary>
+            <summary>Full Path: Content/Items/Weapons/Ranged/GasCan/GasCan</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.JunkJet">
-            <summary>Full Path: emake/Content/Items/Weapons/Ranged/JunkJet/JunkJet</summary>
+            <summary>Full Path: Content/Items/Weapons/Ranged/JunkJet/JunkJet</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Chain">
-            <summary>Full Path: emake/Content/Items/Weapons/Ranged/SkyHunterCrossbow/Chain</summary>
+            <summary>Full Path: Content/Items/Weapons/Ranged/SkyHunterCrossbow/Chain</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SkyHunterCrossbow">
-            <summary>Full Path: emake/Content/Items/Weapons/Ranged/SkyHunterCrossbow/SkyHunterCrossbow</summary>
+            <summary>Full Path: Content/Items/Weapons/Ranged/SkyHunterCrossbow/SkyHunterCrossbow</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.StarPhish">
-            <summary>Full Path: emake/Content/Items/Weapons/Ranged/StarPhish/StarPhish</summary>
+            <summary>Full Path: Content/Items/Weapons/Ranged/StarPhish/StarPhish</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.DemonSoulscourge">
-            <summary>Full Path: emake/Content/Items/Weapons/Summon/Whips/DemonCorruptWhip/DemonSoulscourge</summary>
+            <summary>Full Path: Content/Items/Weapons/Summon/Whips/DemonCorruptWhip/DemonSoulscourge</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.DemonSoulscourgeProj">
-            <summary>Full Path: emake/Content/Items/Weapons/Summon/Whips/DemonCorruptWhip/DemonSoulscourgeProj</summary>
+            <summary>Full Path: Content/Items/Weapons/Summon/Whips/DemonCorruptWhip/DemonSoulscourgeProj</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.DemonVasculash">
-            <summary>Full Path: emake/Content/Items/Weapons/Summon/Whips/DemonCrimsonWhip/DemonVasculash</summary>
+            <summary>Full Path: Content/Items/Weapons/Summon/Whips/DemonCrimsonWhip/DemonVasculash</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.DemonVasculashProj">
-            <summary>Full Path: emake/Content/Items/Weapons/Summon/Whips/DemonCrimsonWhip/DemonVasculashProj</summary>
+            <summary>Full Path: Content/Items/Weapons/Summon/Whips/DemonCrimsonWhip/DemonVasculashProj</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.VasculashTagProj">
-            <summary>Full Path: emake/Content/Items/Weapons/Summon/Whips/DemonCrimsonWhip/VasculashTagProj</summary>
+            <summary>Full Path: Content/Items/Weapons/Summon/Whips/DemonCrimsonWhip/VasculashTagProj</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ElectricEelWhip">
-            <summary>Full Path: emake/Content/Items/Weapons/Summon/Whips/EekWhip/ElectricEelWhip</summary>
+            <summary>Full Path: Content/Items/Weapons/Summon/Whips/EekWhip/ElectricEelWhip</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ElectricEelWhipProj">
-            <summary>Full Path: emake/Content/Items/Weapons/Summon/Whips/EekWhip/ElectricEelWhipProj</summary>
+            <summary>Full Path: Content/Items/Weapons/Summon/Whips/EekWhip/ElectricEelWhipProj</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.HotAirBalloonBuff">
-            <summary>Full Path: emake/Content/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
+            <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.HotAirBalloonItem">
-            <summary>Full Path: emake/Content/Mounts/HotAirBalloon/HotAirBalloonItem</summary>
+            <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.HotAirBalloonMount">
-            <summary>Full Path: emake/Content/Mounts/HotAirBalloon/HotAirBalloonMount</summary>
+            <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonMount</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.HotAirBalloonMount_Back">
-            <summary>Full Path: emake/Content/Mounts/HotAirBalloon/HotAirBalloonMount_Back</summary>
+            <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonMount_Back</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.HotAirBalloonMount_Front">
-            <summary>Full Path: emake/Content/Mounts/HotAirBalloon/HotAirBalloonMount_Front</summary>
+            <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonMount_Front</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.HotAirBalloonMount_Glow">
-            <summary>Full Path: emake/Content/Mounts/HotAirBalloon/HotAirBalloonMount_Glow</summary>
+            <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonMount_Glow</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.UndeadMinerPet">
-            <summary>Full Path: emake/Content/Pets/Miner/UndeadMinerPet</summary>
+            <summary>Full Path: Content/Pets/Miner/UndeadMinerPet</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.UndeadMinerPetBuff">
-            <summary>Full Path: emake/Content/Pets/Miner/UndeadMinerPetBuff</summary>
+            <summary>Full Path: Content/Pets/Miner/UndeadMinerPetBuff</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.UndeadMinerPetItem">
-            <summary>Full Path: emake/Content/Pets/Miner/UndeadMinerPetItem</summary>
+            <summary>Full Path: Content/Pets/Miner/UndeadMinerPetItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.OmegaStaritePet">
-            <summary>Full Path: emake/Content/Pets/OmegaStarite/OmegaStaritePet</summary>
+            <summary>Full Path: Content/Pets/OmegaStarite/OmegaStaritePet</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.OmegaStaritePetBuff">
-            <summary>Full Path: emake/Content/Pets/OmegaStarite/OmegaStaritePetBuff</summary>
+            <summary>Full Path: Content/Pets/OmegaStarite/OmegaStaritePetBuff</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.OmegaStaritePetItem">
-            <summary>Full Path: emake/Content/Pets/OmegaStarite/OmegaStaritePetItem</summary>
+            <summary>Full Path: Content/Pets/OmegaStarite/OmegaStaritePetItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.OldMonsterBanners">
-            <summary>Full Path: emake/Content/Tiles/Banners/OldMonsterBanners</summary>
+            <summary>Full Path: Content/Tiles/Banners/OldMonsterBanners</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ConductiveBlock">
-            <summary>Full Path: emake/Content/Tiles/Conductive/ConductiveBlock</summary>
+            <summary>Full Path: Content/Tiles/Conductive/ConductiveBlock</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ConductiveBlockItem">
-            <summary>Full Path: emake/Content/Tiles/Conductive/ConductiveBlockItem</summary>
+            <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ConductiveBlockTin">
-            <summary>Full Path: emake/Content/Tiles/Conductive/ConductiveBlockTin</summary>
+            <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTin</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ConductiveBlockTinItem">
-            <summary>Full Path: emake/Content/Tiles/Conductive/ConductiveBlockTinItem</summary>
+            <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTinItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashCompactor">
-            <summary>Full Path: emake/Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor</summary>
+            <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashCompactorItem">
-            <summary>Full Path: emake/Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
+            <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SeaPickleTorch">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/SeaPickleTorch</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/SeaPickleTorch</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SeaPickleTorchItem">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/SeaPickleTorchItem</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/SeaPickleTorchItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SeaPickleTorchItem_Flame">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/SeaPickleTorchItem_Flame</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/SeaPickleTorchItem_Flame</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashBathtub">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashBathtub</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashBathtub</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashBathtubItem">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashBathtubItem</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashBathtubItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashBed">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashBed</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashBed</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashBedItem">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashBedItem</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashBedItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashBed_Highlight">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashBed_Highlight</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashBed_Highlight</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashBookcase">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashBookcase</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashBookcase</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashBookcaseItem">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashBookcaseItem</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashBookcaseItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashCampfire">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashCampfire</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCampfire</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashCampfireItem">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashCampfireItem</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCampfireItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashCampfire_Highlight">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashCampfire_Highlight</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCampfire_Highlight</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashCandelabra">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashCandelabra</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCandelabra</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashCandelabraItem">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashCandelabraItem</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCandelabraItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashCandelabra_Flame">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashCandelabra_Flame</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCandelabra_Flame</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashCandle">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashCandle</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCandle</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashCandleItem">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashCandleItem</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCandleItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashCandle_Flame">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashCandle_Flame</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashCandle_Flame</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashChair">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashChair</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChair</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashChairItem">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashChairItem</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChairItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashChair_Highlight">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashChair_Highlight</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChair_Highlight</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashChandelier">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashChandelier</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChandelier</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashChandelierItem">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashChandelierItem</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChandelierItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashChandelier_Flame">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashChandelier_Flame</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChandelier_Flame</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashChest">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashChest</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChest</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashChestItem">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashChestItem</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChestItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashChestSmall">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashChestSmall</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChestSmall</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashChestSmallItem">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashChestSmallItem</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChestSmallItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashChestSmall_Highlight">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashChestSmall_Highlight</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChestSmall_Highlight</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashChest_Highlight">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashChest_Highlight</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashChest_Highlight</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashClock">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashClock</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashClock</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashClockItem">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashClockItem</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashClockItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashClock_Highlight">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashClock_Highlight</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashClock_Highlight</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashDoor">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashDoor</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDoor</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashDoorItem">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashDoorItem</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDoorItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashDoorOpen">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashDoorOpen</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDoorOpen</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashDoorOpen_Highlight">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashDoorOpen_Highlight</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDoorOpen_Highlight</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashDoor_Highlight">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashDoor_Highlight</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDoor_Highlight</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashDresser">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashDresser</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDresser</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashDresserItem">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashDresserItem</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDresserItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashDresser_Highlight">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashDresser_Highlight</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashDresser_Highlight</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashLamp">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashLamp</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashLamp</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashLampItem">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashLampItem</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashLampItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashLamp_Flame">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashLamp_Flame</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashLamp_Flame</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashLantern">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashLantern</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashLantern</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashLanternItem">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashLanternItem</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashLanternItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashLantern_Flame">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashLantern_Flame</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashLantern_Flame</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashPiano">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashPiano</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashPiano</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashPianoItem">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashPianoItem</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashPianoItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashSink">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashSink</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashSink</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashSinkItem">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashSinkItem</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashSinkItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashSofa">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashSofa</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashSofa</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashSofaItem">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashSofaItem</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashSofaItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashSofa_Highlight">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashSofa_Highlight</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashSofa_Highlight</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashTable">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashTable</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTable</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashTableItem">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashTableItem</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashTableItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashWorkBench">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashWorkBench</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashWorkBench</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashWorkBenchItem">
-            <summary>Full Path: emake/Content/Tiles/Furniture/Trash/TrashWorkBenchItem</summary>
+            <summary>Full Path: Content/Tiles/Furniture/Trash/TrashWorkBenchItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MeadowGrass">
-            <summary>Full Path: emake/Content/Tiles/Meadow/MeadowGrass</summary>
+            <summary>Full Path: Content/Tiles/Meadow/MeadowGrass</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MeadowGrassItem">
-            <summary>Full Path: emake/Content/Tiles/Meadow/MeadowGrassItem</summary>
+            <summary>Full Path: Content/Tiles/Meadow/MeadowGrassItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MeadowPlants">
-            <summary>Full Path: emake/Content/Tiles/Meadow/MeadowPlants</summary>
+            <summary>Full Path: Content/Tiles/Meadow/MeadowPlants</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MeadowTree">
-            <summary>Full Path: emake/Content/Tiles/Meadow/MeadowTree</summary>
+            <summary>Full Path: Content/Tiles/Meadow/MeadowTree</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MeadowTreeDust">
-            <summary>Full Path: emake/Content/Tiles/Meadow/MeadowTreeDust</summary>
+            <summary>Full Path: Content/Tiles/Meadow/MeadowTreeDust</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MeadowTreeLeaves">
-            <summary>Full Path: emake/Content/Tiles/Meadow/MeadowTreeLeaves</summary>
+            <summary>Full Path: Content/Tiles/Meadow/MeadowTreeLeaves</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MeadowTreeSapling">
-            <summary>Full Path: emake/Content/Tiles/Meadow/MeadowTreeSapling</summary>
+            <summary>Full Path: Content/Tiles/Meadow/MeadowTreeSapling</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MeadowTree_Branches">
-            <summary>Full Path: emake/Content/Tiles/Meadow/MeadowTree_Branches</summary>
+            <summary>Full Path: Content/Tiles/Meadow/MeadowTree_Branches</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MeadowTree_Tops">
-            <summary>Full Path: emake/Content/Tiles/Meadow/MeadowTree_Tops</summary>
+            <summary>Full Path: Content/Tiles/Meadow/MeadowTree_Tops</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MeadowWood">
-            <summary>Full Path: emake/Content/Tiles/Meadow/MeadowWood</summary>
+            <summary>Full Path: Content/Tiles/Meadow/MeadowWood</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MeadowWoodItem">
-            <summary>Full Path: emake/Content/Tiles/Meadow/MeadowWoodItem</summary>
+            <summary>Full Path: Content/Tiles/Meadow/MeadowWoodItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SeaFireflyBlock">
-            <summary>Full Path: emake/Content/Tiles/Misc/SeaFireflyBlock/SeaFireflyBlock</summary>
+            <summary>Full Path: Content/Tiles/Misc/SeaFireflyBlock/SeaFireflyBlock</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SeaFireflyBlockItem">
-            <summary>Full Path: emake/Content/Tiles/Misc/SeaFireflyBlock/SeaFireflyBlockItem</summary>
+            <summary>Full Path: Content/Tiles/Misc/SeaFireflyBlock/SeaFireflyBlockItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PolymerStalactite1x1">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x1</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x1</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PolymerStalactite1x2">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x2</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalactite1x2</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PolymerStalagmite1x1">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalagmite1x1</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalagmite1x1</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PolymerStalagmite1x2">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalagmite1x2</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Dripstones/PolymerStalagmite1x2</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PollutedOceanAmbient1x1">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Ambient/PollutedOceanAmbient1x1</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/PollutedOceanAmbient1x1</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PollutedOceanAmbient2x2">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Ambient/PollutedOceanAmbient2x2</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/PollutedOceanAmbient2x2</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashPots1x1_0">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots1x1_0</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots1x1_0</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashPots1x1_1">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots1x1_1</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots1x1_1</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashPots1x1_2">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots1x1_2</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots1x1_2</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashPots2x2_0">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots2x2_0</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots2x2_0</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashPots2x2_1">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots2x2_1</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots2x2_1</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashPots2x2_2">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots2x2_2</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Pots/Gores/TrashPots2x2_2</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashPots1x1">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Ambient/Pots/TrashPots1x1</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Pots/TrashPots1x1</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TrashPots2x2">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Ambient/Pots/TrashPots2x2</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Pots/TrashPots2x2</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SeaPickles1x1">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Ambient/SeaPickles/SeaPickles1x1</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/SeaPickles/SeaPickles1x1</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SeaPickles1x2">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Ambient/SeaPickles/SeaPickles1x2</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/SeaPickles/SeaPickles1x2</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SeaPickles2x2">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Ambient/SeaPickles/SeaPickles2x2</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/SeaPickles/SeaPickles2x2</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BrokenTelevision">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Ambient/Television/BrokenTelevision</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Television/BrokenTelevision</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Television">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Ambient/Television/Television</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Television/Television</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.TelevisionItem">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Ambient/Television/TelevisionItem</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Ambient/Television/TelevisionItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PolymerSand">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/PolymerSands/PolymerSand</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/PolymerSands/PolymerSand</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PolymerSandFalling">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/PolymerSands/PolymerSandFalling</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/PolymerSands/PolymerSandFalling</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PolymerSandItem">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/PolymerSands/PolymerSandItem</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/PolymerSands/PolymerSandItem</summary>
         </member>
-        <member name="F:AequusRemake.AequusTextures.emake_Content_Tiles_PollutedOcean_PolymerSands_PolymerSandstone">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/PolymerSands/PolymerSandstone</summary>
+        <member name="F:AequusRemake.AequusTextures.Content_Tiles_PollutedOcean_PolymerSands_PolymerSandstone">
+            <summary>Full Path: Content/Tiles/PollutedOcean/PolymerSands/PolymerSandstone</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PolymerSandstoneItem">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/PolymerSands/PolymerSandstoneItem</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/PolymerSands/PolymerSandstoneItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PolymerSandstoneWall">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/PolymerSands/PolymerSandstoneWall</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/PolymerSands/PolymerSandstoneWall</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PolymerSandstoneWallItem">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/PolymerSands/PolymerSandstoneWallItem</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/PolymerSands/PolymerSandstoneWallItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScrapBlock">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Scrap/ScrapBlock</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Scrap/ScrapBlock</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScrapBlockFalling">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Scrap/ScrapBlockFalling</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Scrap/ScrapBlockFalling</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScrapBlockItem">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Scrap/ScrapBlockItem</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Scrap/ScrapBlockItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScrapBrick">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Scrap/ScrapBrick</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Scrap/ScrapBrick</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScrapBrickItem">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Scrap/ScrapBrickItem</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Scrap/ScrapBrickItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScrapPalmTree">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Trees/ScrapPalmTree</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapPalmTree</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScrapPalmTreeItem">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Trees/ScrapPalmTreeItem</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapPalmTreeItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScrapPalmTreeTop">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Trees/ScrapPalmTreeTop</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapPalmTreeTop</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScrapPalmTreeTopItem">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Trees/ScrapPalmTreeTopItem</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapPalmTreeTopItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScrapTree">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Trees/ScrapTree</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapTree</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScrapTreeItem">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Trees/ScrapTreeItem</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapTreeItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScrapTreeTop">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Trees/ScrapTreeTop</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapTreeTop</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ScrapTreeTopItem">
-            <summary>Full Path: emake/Content/Tiles/PollutedOcean/Trees/ScrapTreeTopItem</summary>
+            <summary>Full Path: Content/Tiles/PollutedOcean/Trees/ScrapTreeTopItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.RainTotem">
-            <summary>Full Path: emake/Content/Tiles/RainTotem/RainTotem</summary>
+            <summary>Full Path: Content/Tiles/RainTotem/RainTotem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.RainTotemItem">
-            <summary>Full Path: emake/Content/Tiles/RainTotem/RainTotemItem</summary>
+            <summary>Full Path: Content/Tiles/RainTotem/RainTotemItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.RainTotem_Glow">
-            <summary>Full Path: emake/Content/Tiles/RainTotem/RainTotem_Glow</summary>
+            <summary>Full Path: Content/Tiles/RainTotem/RainTotem_Glow</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.RainTotem_Highlight">
-            <summary>Full Path: emake/Content/Tiles/RainTotem/RainTotem_Highlight</summary>
+            <summary>Full Path: Content/Tiles/RainTotem/RainTotem_Highlight</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.AncientAngelStatue">
-            <summary>Full Path: emake/Content/Tiles/Statues/AncientAngelStatue</summary>
+            <summary>Full Path: Content/Tiles/Statues/AncientAngelStatue</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.AncientAngelStatueItem">
-            <summary>Full Path: emake/Content/Tiles/Statues/AncientAngelStatueItem</summary>
+            <summary>Full Path: Content/Tiles/Statues/AncientAngelStatueItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MossStatues">
-            <summary>Full Path: emake/Content/Tiles/Statues/MossStatues</summary>
+            <summary>Full Path: Content/Tiles/Statues/MossStatues</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MossStatuesArgonItem">
-            <summary>Full Path: emake/Content/Tiles/Statues/MossStatuesArgonItem</summary>
+            <summary>Full Path: Content/Tiles/Statues/MossStatuesArgonItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MossStatuesKryptonItem">
-            <summary>Full Path: emake/Content/Tiles/Statues/MossStatuesKryptonItem</summary>
+            <summary>Full Path: Content/Tiles/Statues/MossStatuesKryptonItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MossStatuesNeonItem">
-            <summary>Full Path: emake/Content/Tiles/Statues/MossStatuesNeonItem</summary>
+            <summary>Full Path: Content/Tiles/Statues/MossStatuesNeonItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MossStatuesXenonItem">
-            <summary>Full Path: emake/Content/Tiles/Statues/MossStatuesXenonItem</summary>
+            <summary>Full Path: Content/Tiles/Statues/MossStatuesXenonItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BlackJellyfishJar">
-            <summary>Full Path: emake/Content/Tiles/Terrariums/BlackJellyfishJar</summary>
+            <summary>Full Path: Content/Tiles/Terrariums/BlackJellyfishJar</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BlackJellyfishJarItem">
-            <summary>Full Path: emake/Content/Tiles/Terrariums/BlackJellyfishJarItem</summary>
+            <summary>Full Path: Content/Tiles/Terrariums/BlackJellyfishJarItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BlackJellyfishJar_Glow">
-            <summary>Full Path: emake/Content/Tiles/Terrariums/BlackJellyfishJar_Glow</summary>
+            <summary>Full Path: Content/Tiles/Terrariums/BlackJellyfishJar_Glow</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.AshGoldTombstone0">
-            <summary>Full Path: emake/Content/Tiles/Tombstones/AshGold/AshGoldTombstone0</summary>
+            <summary>Full Path: Content/Tiles/Tombstones/AshGold/AshGoldTombstone0</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.AshGoldTombstone1">
-            <summary>Full Path: emake/Content/Tiles/Tombstones/AshGold/AshGoldTombstone1</summary>
+            <summary>Full Path: Content/Tiles/Tombstones/AshGold/AshGoldTombstone1</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.AshGoldTombstone2">
-            <summary>Full Path: emake/Content/Tiles/Tombstones/AshGold/AshGoldTombstone2</summary>
+            <summary>Full Path: Content/Tiles/Tombstones/AshGold/AshGoldTombstone2</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.AshGoldTombstone3">
-            <summary>Full Path: emake/Content/Tiles/Tombstones/AshGold/AshGoldTombstone3</summary>
+            <summary>Full Path: Content/Tiles/Tombstones/AshGold/AshGoldTombstone3</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.AshGoldTombstone4">
-            <summary>Full Path: emake/Content/Tiles/Tombstones/AshGold/AshGoldTombstone4</summary>
+            <summary>Full Path: Content/Tiles/Tombstones/AshGold/AshGoldTombstone4</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.AshTombstone0">
-            <summary>Full Path: emake/Content/Tiles/Tombstones/Ash/AshTombstone0</summary>
+            <summary>Full Path: Content/Tiles/Tombstones/Ash/AshTombstone0</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.AshTombstone1">
-            <summary>Full Path: emake/Content/Tiles/Tombstones/Ash/AshTombstone1</summary>
+            <summary>Full Path: Content/Tiles/Tombstones/Ash/AshTombstone1</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.AshTombstone2">
-            <summary>Full Path: emake/Content/Tiles/Tombstones/Ash/AshTombstone2</summary>
+            <summary>Full Path: Content/Tiles/Tombstones/Ash/AshTombstone2</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.AshTombstone3">
-            <summary>Full Path: emake/Content/Tiles/Tombstones/Ash/AshTombstone3</summary>
+            <summary>Full Path: Content/Tiles/Tombstones/Ash/AshTombstone3</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.AshTombstone4">
-            <summary>Full Path: emake/Content/Tiles/Tombstones/Ash/AshTombstone4</summary>
+            <summary>Full Path: Content/Tiles/Tombstones/Ash/AshTombstone4</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.AshTombstone5">
-            <summary>Full Path: emake/Content/Tiles/Tombstones/Ash/AshTombstone5</summary>
+            <summary>Full Path: Content/Tiles/Tombstones/Ash/AshTombstone5</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Tombstones">
-            <summary>Full Path: emake/Content/Tiles/Tombstones/Tombstones</summary>
+            <summary>Full Path: Content/Tiles/Tombstones/Tombstones</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Tombstones_Glow">
-            <summary>Full Path: emake/Content/Tiles/Tombstones/Tombstones_Glow</summary>
+            <summary>Full Path: Content/Tiles/Tombstones/Tombstones_Glow</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Tombstones_Highlight">
-            <summary>Full Path: emake/Content/Tiles/Tombstones/Tombstones_Highlight</summary>
+            <summary>Full Path: Content/Tiles/Tombstones/Tombstones_Highlight</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Balloon">
-            <summary>Full Path: emake/Content/TownNPCs/SkyMerchant/Balloon</summary>
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Balloon</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Basket">
-            <summary>Full Path: emake/Content/TownNPCs/SkyMerchant/Basket</summary>
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Basket</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SkyMerchantEmote">
-            <summary>Full Path: emake/Content/TownNPCs/SkyMerchant/Emotes/SkyMerchantEmote</summary>
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Emotes/SkyMerchantEmote</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Balloon_Shimmer">
-            <summary>Full Path: emake/Content/TownNPCs/SkyMerchant/Shimmer/Balloon_Shimmer</summary>
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/Balloon_Shimmer</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Basket_Shimmer">
-            <summary>Full Path: emake/Content/TownNPCs/SkyMerchant/Shimmer/Basket_Shimmer</summary>
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/Basket_Shimmer</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SkyMerchant_Shimmer">
-            <summary>Full Path: emake/Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer</summary>
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SkyMerchant_Shimmer_Aiming">
-            <summary>Full Path: emake/Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Aiming</summary>
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Aiming</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SkyMerchant_Shimmer_CrossbowArm">
-            <summary>Full Path: emake/Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CrossbowArm</summary>
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CrossbowArm</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SkyMerchant_Shimmer_Head">
-            <summary>Full Path: emake/Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Head</summary>
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Head</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SkyMerchant">
-            <summary>Full Path: emake/Content/TownNPCs/SkyMerchant/SkyMerchant</summary>
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SkyMerchant_Aiming">
-            <summary>Full Path: emake/Content/TownNPCs/SkyMerchant/SkyMerchant_Aiming</summary>
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant_Aiming</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SkyMerchant_CrossbowArm">
-            <summary>Full Path: emake/Content/TownNPCs/SkyMerchant/SkyMerchant_CrossbowArm</summary>
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant_CrossbowArm</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SkyMerchant_CustomHead">
-            <summary>Full Path: emake/Content/TownNPCs/SkyMerchant/SkyMerchant_CustomHead</summary>
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant_CustomHead</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SkyMerchant_Head">
-            <summary>Full Path: emake/Content/TownNPCs/SkyMerchant/SkyMerchant_Head</summary>
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant_Head</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.NameTagBlip">
-            <summary>Full Path: emake/Content/UI/Map/NameTagBlip</summary>
+            <summary>Full Path: Content/UI/Map/NameTagBlip</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.ToolbeltBuilderToggle">
-            <summary>Full Path: emake/Content/VanillaChanges/ToolbeltBuilderToggle</summary>
+            <summary>Full Path: Content/VanillaChanges/ToolbeltBuilderToggle</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.icon">
-            <summary>Full Path: emake/icon</summary>
+            <summary>Full Path: icon</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.icon_small">
-            <summary>Full Path: emake/icon_small</summary>
+            <summary>Full Path: icon_small</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.icon_workshop">
-            <summary>Full Path: emake/icon_workshop</summary>
+            <summary>Full Path: icon_workshop</summary>
         </member>
     </members>
 </doc>

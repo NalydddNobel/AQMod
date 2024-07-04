@@ -105,7 +105,7 @@ internal sealed class BrittleArmorItem : InstancedModItem, IPickItemMovementActi
     }
 
     public override void Load() {
-        Item.headSlot = EquipLoader.AddEquipTexture(Mod, AequusTextures.None.Path, _parent.EquipType, this, null, new BrittleEquipTexture(Texture + $"_{_parent.EquipType}"));
+        Item.headSlot = EquipLoader.AddEquipTexture(Mod, AequusTextures.None.FullPath, _parent.EquipType, this, null, new BrittleEquipTexture(Texture + $"_{_parent.EquipType}"));
     }
 
     public override void SetStaticDefaults() {

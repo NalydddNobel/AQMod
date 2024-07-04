@@ -139,8 +139,8 @@ public class UndergroundBackgroundSystem : ModSystem {
     #endregion
 
     public override void Load() {
-        BackgroundTextureLoader.AddBackgroundTexture(Mod, AequusTextures.None.Path);
-        EmptyBackgroundSlot = BackgroundTextureLoader.GetBackgroundSlot(Mod, AequusTextures.None.ModPath);
+        BackgroundTextureLoader.AddBackgroundTexture(Mod, AequusTextures.None.FullPath);
+        EmptyBackgroundSlot = BackgroundTextureLoader.GetBackgroundSlot(Mod, AequusTextures.None.Path);
 
         On_Main.DoDraw_WallsTilesNPCs += On_Main_DoDraw_WallsTilesNPCs;
         Main.OnPreDraw += Main_OnPreDraw;

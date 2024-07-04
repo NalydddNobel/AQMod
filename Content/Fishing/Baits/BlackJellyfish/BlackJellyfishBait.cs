@@ -46,7 +46,7 @@ public class BlackJellyfishBait : UnifiedModBait, IOnPullBobber {
 }
 
 public class BlackJellyfishBaitExplosion : ModProjectile, DrawLayers.IDrawLayer, RenderTargetRequests.IRenderTargetRequest {
-    public override string Texture => AequusTextures.None.Path;
+    public override string Texture => AequusTextures.None.FullPath;
 
     public Point Dimensions => new Point(270, 270);
     public RenderTarget2D RenderTarget { get; set; }

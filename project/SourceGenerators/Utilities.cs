@@ -88,7 +88,7 @@ public static class Utilities {
         var fileList = new List<T>();
         foreach (var file in context.AdditionalFiles.Where(f => f.Path.EndsWith(fileType))) {
             var safePath = file.Path.Replace('\\', '/');
-            int index = safePath.LastIndexOf(ParentS) + 7;
+            int index = safePath.LastIndexOf(ParentS) + ParentS.Length;
             safePath = safePath.Substring(index, safePath.Length - fileType.Length - index);
 
             fileList.Add(initializer(safePath));

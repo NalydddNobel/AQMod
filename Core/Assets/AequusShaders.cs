@@ -3,7 +3,7 @@
 namespace AequusRemake.Core.Assets;
 
 public sealed partial class AequusShaders : AssetManager<Effect> {
-    public static readonly string EffectPath = "AequusRemake/Effects/{0}";
+    public static readonly string EffectPath = "Effects/{0}";
 
     public static readonly RequestCache<Effect> Gamestar = New("Gamestar");
     public static readonly RequestCache<Effect> SeaFirefly = New("SeaFireflies");
@@ -21,6 +21,6 @@ public sealed partial class AequusShaders : AssetManager<Effect> {
     }
 
     public static Asset<Effect> Get(string name) {
-        return ModContent.Request<Effect>(string.Format(EffectPath, name));
+        return ModContent.Request<Effect>(string.Format($"AequusRemake/{EffectPath}", name));
     }
 }

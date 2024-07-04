@@ -106,7 +106,7 @@ public class RainTotem : RainTotemTileTemplate {
 }
 
 public class RainTotemInactive : RainTotemTileTemplate {
-    public override string Texture => AequusTextures.RainTotem.Path;
+    public override string Texture => AequusTextures.RainTotem.FullPath;
 
     public override void SetStaticDefaults() {
         base.SetStaticDefaults();

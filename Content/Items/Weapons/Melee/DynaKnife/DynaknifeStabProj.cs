@@ -12,7 +12,7 @@ public class DynaknifeStabProj : ModProjectile {
 
     public int NPC { get => (int)Projectile.ai[0]; set => Projectile.ai[0] = value; }
 
-    public override string Texture => AequusTextures.DynaknifeProj.Path;
+    public override string Texture => AequusTextures.DynaknifeProj.FullPath;
 
     public override void SetDefaults() {
         Projectile.width = 100;

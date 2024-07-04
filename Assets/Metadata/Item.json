@@ -285,7 +285,9 @@
     "CalamityMod/SulphurskinPotion",
     "CalamityMod/TeslaPotion",
     "CalamityMod/ZenPotion",
-    "CalamityMod/ZergPotion"
+    "CalamityMod/ZergPotion",
+    "Aequus/SentryPotion",
+    "Aequus/NeutronYogurt"
   ],
   "PillarFragmentsByColor": [],
   "ShimmerTooltipResultIgnore": [
@@ -547,6 +549,7 @@
     "CalamityMod/HailstormBullet": "CalamityMod/HailstormBulletProj",
     "CalamityMod/HallowPointRound": "CalamityMod/HallowPointRoundProj",
     "CalamityMod/SproutingArrow": "CalamityMod/SproutingArrowMain",
-    "CalamityMod/VeriumBolt": "CalamityMod/VeriumBoltProj"
+    "CalamityMod/VeriumBolt": "CalamityMod/VeriumBoltProj",
+    "Aequus/PlasticDart": "Aequus/PlasticDartProjectile"
   }
 }

@@ -209,7 +209,7 @@ public class UnifiedBuriedChest : UnifiedModChest {
     internal class InstancedHiddenBuriedChest : InstancedModTile {
         internal InstancedLockedBuriedChest _parent;
 
-        public InstancedHiddenBuriedChest(InstancedLockedBuriedChest parent) : base(parent.Name + "Hidden", AequusTextures.None.Path) {
+        public InstancedHiddenBuriedChest(InstancedLockedBuriedChest parent) : base(parent.Name + "Hidden", AequusTextures.None.FullPath) {
             _parent = parent;
         }
 
