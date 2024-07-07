@@ -1,5 +1,6 @@
 ﻿using AequusRemake.Content.Graphics.Particles;
 using AequusRemake.Core.Entities.Items.Components;
+using AequusRemake.Core.Util.Helpers;
 using System;
 using tModLoaderExtended.GlowMasks;
 
@@ -44,7 +45,7 @@ public class Dynaknife : ModItem, ICooldownItem {
 
         if (Main.netMode != NetmodeID.Server) {
             Rectangle hitbox = player.getRect();
-            if (Cull2D.Rectangle(hitbox)) {
+            if (Cull.ClipXYWH(hitbox)) {
                 foreach (var particle in DashParticles.NewMultipleReduced(16, 8)) {
                     particle.Location = Main.rand.NextVector2FromRectangle(hitbox);
                     particle.Velocity = new Vector2(dir * Main.rand.NextFloat(10f, 16f), 0f);

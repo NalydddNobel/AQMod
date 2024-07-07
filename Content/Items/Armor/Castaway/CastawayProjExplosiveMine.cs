@@ -97,7 +97,7 @@ public class CastawayProjExplosiveMine : ModProjectile {
             Main.EntitySpriteDraw(flareTexture, drawCoordinates, null, flareColor, Projectile.rotation + MathHelper.PiOver2, flareOrigin, flareScale, SpriteEffects.None, 0f);
         }
         else {
-            float wave = Helper.Oscillate(Projectile.localAI[0], 0f, 1f);
+            float wave = sin(Projectile.localAI[0], 0f, 1f);
             Main.EntitySpriteDraw(texture, drawCoordinates, null, lightColor, Projectile.rotation, texture.Size() / 2f, Projectile.scale, SpriteEffects.None, 0f);
             Main.EntitySpriteDraw(texture, drawCoordinates, null, flareColor * wave, Projectile.rotation, texture.Size() / 2f, Projectile.scale + 0.1f * wave, SpriteEffects.None, 0f);
         }

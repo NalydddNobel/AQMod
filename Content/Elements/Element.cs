@@ -1,5 +1,5 @@
 ﻿using AequusRemake.Content.Elements;
-using AequusRemake.Core.Structures;
+using AequusRemake.Core.Structures.Pooling;
 using AequusRemake.DataSets.Json;
 using Terraria.Localization;
 

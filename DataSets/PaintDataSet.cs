@@ -1,5 +1,5 @@
-﻿using AequusRemake.DataSets.Structures;
-using AequusRemake.DataSets.Structures.Enums;
+﻿using AequusRemake.Core.Structures.Enums;
+using AequusRemake.DataSets.Structures;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Diagnostics;

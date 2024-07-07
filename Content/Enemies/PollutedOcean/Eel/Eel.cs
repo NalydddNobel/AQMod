@@ -3,6 +3,7 @@ using AequusRemake.Content.Graphics.Particles;
 using AequusRemake.Content.Items.Tools.Keys;
 using AequusRemake.Core.ContentGeneration;
 using AequusRemake.Core.Entities.Bestiary;
+using AequusRemake.Core.Util.Helpers;
 using System;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -169,7 +170,7 @@ internal class Eel : ModNPC {
                     }
 
                     // Idle velocity.
-                    Vector2 wantedVelocity = new Vector2(NPC.spriteDirection, Helper.Oscillate(Timer * IdleWaveTimerMultiplier, -IdleWaveMagnitude, IdleWaveMagnitude));
+                    Vector2 wantedVelocity = new Vector2(NPC.spriteDirection, sin(Timer * IdleWaveTimerMultiplier, -IdleWaveMagnitude, IdleWaveMagnitude));
                     Timer++;
                     // Idle speed
                     float maxSpeed = IdleMaxSpeed;

@@ -1,5 +1,6 @@
 ﻿using AequusRemake.Content.Graphics.Particles;
 using AequusRemake.Core.Entities.Projectiles;
+using AequusRemake.Core.Util.Helpers;
 using System;
 using Terraria.Audio;
 
@@ -60,7 +61,7 @@ public class DynaknifeProj : LegacyHeldSlashingSwordProjectile {
 
         if (Main.netMode != NetmodeID.Server) {
             Rectangle hitbox = Main.player[Projectile.owner].getRect();
-            if (Cull2D.Rectangle(hitbox) && Main.player[Projectile.owner].velocity.Length() > 6f && Main.player[Projectile.owner].altFunctionUse == 2 && (Main.player[Projectile.owner].itemTimeMax - Main.player[Projectile.owner].itemTime + 1) % 10 == 0) {
+            if (Cull.ClipXYWH(hitbox) && Main.player[Projectile.owner].velocity.Length() > 6f && Main.player[Projectile.owner].altFunctionUse == 2 && (Main.player[Projectile.owner].itemTimeMax - Main.player[Projectile.owner].itemTime + 1) % 10 == 0) {
                 var particle = DashParticles.New();
                 particle.Location = Main.rand.NextVector2FromRectangle(hitbox) - Main.player[Projectile.owner].velocity;
                 particle.Velocity = new Vector2(Main.player[Projectile.owner].velocity.X * 0.8f, Main.player[Projectile.owner].velocity.Y * 0.4f);

@@ -1,4 +1,5 @@
 ﻿using AequusRemake.Core.Graphics.Animations;
+using AequusRemake.Core.Util.Helpers;
 
 namespace AequusRemake.Content.Tiles.Furniture.Trash;
 
@@ -22,6 +23,6 @@ public class AnimationTrashFurnitureFlicker(int AnchorTileType) : ITileAnimation
             NoLight--;
         }
 
-        return tile.HasTile && tile.TileType == AnchorTileType && Cull2D.Tile(x, y);
+        return tile.HasTile && tile.TileType == AnchorTileType && Cull.ClipIJ(x, y, Main.offScreenRange, Main.offScreenRange);
     }
 }

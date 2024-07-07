@@ -1,6 +1,7 @@
-﻿using AequusRemake.DataSets;
+﻿using AequusRemake.Core.Structures.Chests;
+using AequusRemake.Core.Structures.Enums;
+using AequusRemake.DataSets;
 using AequusRemake.DataSets.Structures.DropRulesChest;
-using AequusRemake.DataSets.Structures.Enums;
 using Terraria.ObjectData;
 
 namespace AequusRemake.Content.Chests;

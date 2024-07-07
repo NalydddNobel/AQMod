@@ -1,5 +1,6 @@
-﻿using AequusRemake.DataSets.Structures;
-using AequusRemake.DataSets.Structures.Enums;
+﻿using AequusRemake.Core.Structures.Enums;
+using AequusRemake.Core.Util.Helpers;
+using AequusRemake.DataSets.Structures;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
@@ -28,7 +29,7 @@ public partial class TileDataSet : DataSet {
     public static bool[] All { get; private set; }
 
     public override void PostSetupContent() {
-        All = ExtendArray.CreateArray((i) => true, TileLoader.TileCount);
+        All = ArrayHelper.PopulateNewArray((i) => true, TileLoader.TileCount);
     }
 
     public override void AddRecipes() {

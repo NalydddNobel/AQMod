@@ -1,5 +1,6 @@
 ﻿using AequusRemake.Core.Graphics.Animations;
 using AequusRemake.Core.Graphics.GameOverlays;
+using AequusRemake.Core.Util.Helpers;
 using System;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -84,7 +85,7 @@ public struct AnimationItemSpew : IOverlayDrawer {
             opacity *= 1f - MathF.Pow(fallProgress, 5f);
         }
 
-        lightColor = ExtendLight.Get(drawLocation);
+        lightColor = LightingHelper.Get(drawLocation);
         scale = rng.NextFloat(0.6f, 0.8f);
     }
 

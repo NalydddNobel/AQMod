@@ -1,4 +1,5 @@
 ﻿using AequusRemake.Core.Graphics;
+using AequusRemake.Core.Structures.Pooling;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;

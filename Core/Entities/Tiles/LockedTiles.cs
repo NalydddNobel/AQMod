@@ -1,6 +1,6 @@
 ﻿using AequusRemake.Content.Backpacks;
 using AequusRemake.Content.Items.Tools.Keychain;
-using AequusRemake.DataSets.Structures.Enums;
+using AequusRemake.Core.Structures.Enums;
 
 namespace AequusRemake.Core.Entities.Tiles;
 public class LockedTiles : GlobalTile {

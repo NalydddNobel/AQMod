@@ -2,7 +2,8 @@
 using AequusRemake.Core.ContentGeneration;
 using AequusRemake.Core.Entities.Bestiary;
 using AequusRemake.Core.Graphics;
-using AequusRemake.Core.Particles;
+using AequusRemake.Core.Structures.Particles;
+using AequusRemake.Core.Util.Helpers;
 using System;
 using System.IO;
 using Terraria.DataStructures;
@@ -143,7 +144,7 @@ public class SeaFirefly : UnifiedCritter, DrawLayers.IDrawLayer {
     }
 
     void AI_SpawnFireflies() {
-        if (Cull2D.Rectangle(NPC.Hitbox, 128, 128) && Main.rand.NextBool(15)) {
+        if (Cull.ClipXYWH(NPC.Hitbox, 128, 128) && Main.rand.NextBool(15)) {
             int frame = Main.rand.NextBool(12) ? 1 : Main.rand.Next(2, 4);
             Particle<SeaFireflyClusters.Particle>.New().Setup(NPC.Center, (byte)frame, (int)WetTimer, color);
         }
@@ -169,7 +170,7 @@ public class SeaFirefly : UnifiedCritter, DrawLayers.IDrawLayer {
             }
         }
 
-        NPC.velocity.Y += Helper.Oscillate(WetTimer * 0.02f, -0.004f, 0.004f);
+        NPC.velocity.Y += sin(WetTimer * 0.02f, -0.004f, 0.004f);
 
         if (NPC.collideX) {
             NPC.direction = -NPC.direction;
@@ -211,14 +212,14 @@ public class SeaFirefly : UnifiedCritter, DrawLayers.IDrawLayer {
 
     void DrawLayers.IDrawLayer.DrawOntoLayer(SpriteBatch spriteBatch, DrawLayers.DrawLayer layer) {
         var draw = NPC.GetDrawInfo();
-        Color drawColor = NPC.GetNPCColorTintedByBuffs(ExtendLight.Get(NPC.Center));
+        Color drawColor = NPC.GetNPCColorTintedByBuffs(LightingHelper.Get(NPC.Center));
 
         DrawSeaFirefly(spriteBatch, Main.screenPosition);
     }
 
     private void DrawSeaFirefly(SpriteBatch spriteBatch, Vector2 screenPos) {
         var draw = NPC.GetDrawInfo();
-        Color drawColor = NPC.IsABestiaryIconDummy ? Color.White : NPC.GetNPCColorTintedByBuffs(ExtendLight.Get(NPC.Center));
+        Color drawColor = NPC.IsABestiaryIconDummy ? Color.White : NPC.GetNPCColorTintedByBuffs(LightingHelper.Get(NPC.Center));
         SpriteEffects effects = NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
         DrawSeaFirefly(Current, spriteBatch, draw.Position, screenPos, drawColor, NPC.Opacity, NPC.IsABestiaryIconDummy ? 0 : LightOpacity, NPC.rotation, effects, NPC.scale, 0, NPC.whoAmI, IsLit && !NPC.IsABestiaryIconDummy);
@@ -233,10 +234,10 @@ public class SeaFirefly : UnifiedCritter, DrawLayers.IDrawLayer {
         lightOpacity *= globalOpacity;
 
         if (lightOpacity > 0f && frame < 5) {
-            float wave = Helper.Oscillate(randomSeed + worldPosition.X * 0.01f + Main.GlobalTimeWrappedHourly * 4f, 1f);
+            float wave = sin(randomSeed + worldPosition.X * 0.01f + Main.GlobalTimeWrappedHourly * 4f, 1f);
 
             Color color = colorVariant.GetGlowColor(new GlowColorContext(worldPosition, randomSeed));
-            float waveScale = Helper.Oscillate(randomSeed + Main.GlobalTimeWrappedHourly, 0.4f, 0.8f);
+            float waveScale = sin(randomSeed + Main.GlobalTimeWrappedHourly, 0.4f, 0.8f);
             SeaFireflyRenderer.Instance.Enqueue(new SeaFireflyShaderRequest(worldPosition, scale * waveScale * lightOpacity, color * 0.5f));
         }
 

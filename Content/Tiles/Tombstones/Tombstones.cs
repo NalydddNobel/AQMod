@@ -102,7 +102,7 @@ public class Tombstones : ModTile {
         Tile tile = Main.tile[i, j];
         Vector2 drawCoordinates = new Vector2(i, j) * 16f - Main.screenPosition + TileHelper.DrawOffset;
         Rectangle frame = new Rectangle(tile.TileFrameX, tile.TileFrameY, 16, 16);
-        spriteBatch.Draw(AequusTextures.Tombstones_Glow.Value, drawCoordinates, frame, Color.White * Helper.Oscillate(Main.GlobalTimeWrappedHourly, 0.5f, 0.8f));
+        spriteBatch.Draw(AequusTextures.Tombstones_Glow.Value, drawCoordinates, frame, Color.White * sin(Main.GlobalTimeWrappedHourly, 0.5f, 0.8f));
     }
 
     public record class TombstoneDropGroup(TombstoneSet Regular, TombstoneSet Gold);

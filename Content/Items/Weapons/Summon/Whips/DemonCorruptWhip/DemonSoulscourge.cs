@@ -3,6 +3,7 @@ using AequusRemake.Content.Elements;
 using AequusRemake.Core.ContentGeneration;
 using System.Collections.Generic;
 using Terraria.DataStructures;
+using AequusRemake.Core.Util.Helpers;
 
 namespace AequusRemake.Content.Items.Weapons.Summon.Whips.DemonCorruptWhip;
 
@@ -27,7 +28,7 @@ public class DemonSoulscourge : UnifiedWhipItem, IMinionTagController {
     }
 
     public override Color GetWhipStringColor(Vector2 position) {
-        return ExtendLight.Get(position, Color.BlueViolet);
+        return LightingHelper.Get(position, Color.BlueViolet);
     }
 
     public override void DrawWhip(IWhipController.WhipDrawParams drawInfo) {
@@ -49,7 +50,7 @@ public class DemonSoulscourge : UnifiedWhipItem, IMinionTagController {
 
         Rectangle frame = texture.Frame(2, 5, 0, frameIndex);
 
-        Color lightColor = ExtendLight.Get(drawInfo.Position);
+        Color lightColor = LightingHelper.Get(drawInfo.Position);
         float rotation = (drawInfo.Position - drawInfo.Next).ToRotation() - MathHelper.PiOver2;
         Vector2 origin = frame.Size() / 2f + originOffset;
         float scale = drawInfo.Projectile.scale;

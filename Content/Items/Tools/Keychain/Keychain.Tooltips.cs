@@ -1,5 +1,6 @@
 ﻿using AequusRemake.Core.Entities.Items.Components;
 using AequusRemake.Core.Entities.Items.Tooltips;
+using AequusRemake.Core.Util.Helpers;
 using System.Collections.Generic;
 using Terraria.GameContent.UI;
 using Terraria.GameContent.UI.Chat;
@@ -20,7 +21,7 @@ public partial class Keychain : IAddKeywords {
             int stack = item.stack;
             item.stack = 1;
             Color color = item.rare == ItemRarityID.White ? Color.White : ItemRarity.GetColor(item.rare);
-            string text = $"{ItemTagHandler.GenerateTag(item)}{ChatTagWriter.Color(color, item.Name)}";
+            string text = $"{ItemTagHandler.GenerateTag(item)}{ColorTagProvider.Color(color, item.Name)}";
             item.stack = stack;
 
             if (item.stack > 1) {

@@ -1,9 +1,9 @@
 ﻿using AequusRemake.Content.Items.Potions.Healing.Restoration;
 using AequusRemake.Content.Items.Tools.Keys;
+using AequusRemake.Core.Structures.Chests;
+using AequusRemake.Core.Structures.Enums;
 using AequusRemake.Core.Structures.ID;
-using AequusRemake.DataSets;
 using AequusRemake.DataSets.Structures.DropRulesChest;
-using AequusRemake.DataSets.Structures.Enums;
 
 namespace AequusRemake.Content.Chests.BuriedChests;
 

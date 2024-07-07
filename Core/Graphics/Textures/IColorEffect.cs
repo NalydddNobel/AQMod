@@ -1,4 +1,5 @@
-﻿using ReLogic.Content;
+﻿using AequusRemake.Core.Util.Helpers;
+using ReLogic.Content;
 
 namespace AequusRemake.Core.Graphics.Textures;
 
@@ -17,7 +18,7 @@ public record struct ColorEffectContext(Texture2D Texture, Color[] Colors) {
     public readonly Color Color => Colors[index];
 
     public static ColorEffectContext FromTexture(Asset<Texture2D> Texture) {
-        return FromTexture(ExtendTexture.Wait(Texture));
+        return FromTexture(AssetTools.ForceLoad(ref Texture));
     }
 
     public static ColorEffectContext FromTexture(Texture2D Texture) {

@@ -4,6 +4,7 @@ using AequusRemake.Content.Items.Tools.Keys;
 using AequusRemake.Core.ContentGeneration;
 using AequusRemake.Core.Entities.Bestiary;
 using AequusRemake.Core.Entities.NPCs;
+using AequusRemake.Core.Util.Helpers;
 using AequusRemake.DataSets;
 using System;
 using Terraria.Audio;
@@ -104,7 +105,7 @@ public partial class BlackJellyfish : AIJellyfish {
         }
 
         if ((int)NPC.ai[2] == shockAttackLength) {
-            if (Main.netMode != NetmodeID.Server && Cull2D.Rectangle(NPC.getRect(), 240, 240)) {
+            if (Main.netMode != NetmodeID.Server && Cull.ClipXYWH(NPC.getRect(), 240, 240)) {
                 ShockEffects();
             }
             NPC.velocity = Vector2.Zero;
@@ -182,7 +183,7 @@ public partial class BlackJellyfish : AIJellyfish {
         }
 
         // Screen Shake
-        ViewHelper.PunchCameraTo(NPC.Center, strength: 6f, frames: 60);
+        CameraHelper.PunchTowards(NPC.Center, strength: 6f, frames: 60);
     }
 
     public override bool CanHitPlayer(Player target, ref int cooldownSlot) {
@@ -203,7 +204,7 @@ public partial class BlackJellyfish : AIJellyfish {
         if (NPC.IsABestiaryIconDummy) {
             return 1f;
         }
-        return GetLightMagnitude(ExtendLight.Get(NPC.Center));
+        return GetLightMagnitude(LightingHelper.Get(NPC.Center));
     }
     /// <param name="lightColor">The Light color</param>
     /// <returns>A value between 0.45 and 1 which represents the light's magnitude.</returns>

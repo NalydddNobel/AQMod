@@ -1,6 +1,6 @@
 ﻿using AequusRemake.Content.Enemies.PollutedOcean.Scavenger.UI;
 using AequusRemake.Content.Items.Accessories.ScavengerBag;
-using AequusRemake.Core.UI;
+using AequusRemake.Core.GUI;
 using AequusRemake.DataSets;
 using System;
 using System.Collections.Generic;

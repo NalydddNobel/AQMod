@@ -1,4 +1,4 @@
-﻿using AequusRemake.Core.Structures;
+﻿using AequusRemake.Core.Structures.Pooling;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;

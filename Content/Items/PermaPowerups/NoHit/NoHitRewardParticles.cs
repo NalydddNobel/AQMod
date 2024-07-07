@@ -1,5 +1,6 @@
 ﻿using AequusRemake.Core.Graphics;
-using AequusRemake.Core.Particles;
+using AequusRemake.Core.Structures.Particles;
+using AequusRemake.Core.Util.Helpers;
 using System;
 using System.Collections.Generic;
 
@@ -52,7 +53,7 @@ public class NoHitRewardParticles : ParticleSystem {
                 }
 
                 Item item = Main.item[slot.Item];
-                bool floorFound = ExtendCollision.GetFloor(item.Center, 192, out Vector2 floorPoint);
+                bool floorFound = CollisionTools.GetFloor(item.Center, 192, out Vector2 floorPoint);
 
                 if (item.beingGrabbed) {
                     if (slot.Opacity > 0f) {

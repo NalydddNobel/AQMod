@@ -1,4 +1,5 @@
 ﻿using AequusRemake.Core.IO;
+using AequusRemake.Core.Util.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -51,7 +52,7 @@ public sealed class RenamingSystem : ModSystem {
 
         string result = "";
         foreach (var i in _decodedTextList) {
-            result += i.Type != DecodeType.None ? ChatTagWriter.Color(Colors.AlphaDarken(DecodeColors[i.Type]), i.Output) : i.Output;
+            result += i.Type != DecodeType.None ? ColorTagProvider.Color(Colors.AlphaDarken(DecodeColors[i.Type]), i.Output) : i.Output;
         }
 
         return result;

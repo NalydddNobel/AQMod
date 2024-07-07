@@ -18,7 +18,7 @@ internal sealed class DownsideTooltips : GlobalItem {
         }
 
         string realText = line.Text[Identifier.Length..];
-        float intensity = Helper.Oscillate(Math.Max((Main.mouseTextColor - 220) / 35f, 0f) * MathHelper.PiOver2, 1f);
+        float intensity = sin(Math.Max((Main.mouseTextColor - 220) / 35f, 0f) * MathHelper.PiOver2, 1f);
         var lineColor = Color.Lerp(line.OverrideColor ?? line.Color, Color.Red, intensity * 0.5f);
         var shadowColor = Color.Lerp(Color.Black, Color.Red, intensity * 0.3f);
         var drawCoordinates = new Vector2(line.X, line.Y) + Main.rand.NextVector2Square(-2f, 2f) * Math.Max(intensity - 0.5f, 0f) * line.BaseScale;

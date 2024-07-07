@@ -19,13 +19,13 @@ public struct IDEntry<T> : IIDEntry where T : class {
 
     /// <summary><inheritdoc cref="IIDEntry.Name"/> Automatically grabbed from <typeparamref name="T"/>.Search.GetName(<see cref="Id"/>). Returns "Unknown" or a name of an invalid entry if no name exists.</summary>
     [JsonProperty]
-    public string Name => IDCommons<T>.Search.TryGetName(Id, out string name) ? name :
+    public readonly string Name => IDCommons<T>.Search.TryGetName(Id, out string name) ? name :
         _unloadedNames.IndexInRange(-Id + InvalidEntryOffset) ? _unloadedNames[-Id + InvalidEntryOffset] : "Unknown";
 
-    public bool ValidEntry => Id > IDCommons<T>.StartCount;
+    public readonly bool ValidEntry => Id > IDCommons<T>.StartCount;
 
     /// <summary><inheritdoc cref="IIDEntry.VanillaEntry"/> Automatically determined by checking if <see cref="Id"/> is less than <typeparamref name="T"/>.Count.</summary>
-    public bool VanillaEntry => Id < IDCommons<T>.Count;
+    public readonly bool VanillaEntry => Id < IDCommons<T>.Count;
 
     public int Id { get; private set; }
 

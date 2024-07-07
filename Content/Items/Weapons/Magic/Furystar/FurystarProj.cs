@@ -90,7 +90,7 @@ public class FurystarProj : HeldProjBase {
                 Projectile.netUpdate = true;
             }
 
-            float wantedRotation = Helper.Oscillate(Projectile.localAI[1], rotationBase - 0.3f, rotationBase + 0.3f);
+            float wantedRotation = sin(Projectile.localAI[1], rotationBase - 0.3f, rotationBase + 0.3f);
             Projectile.rotation = Projectile.rotation.AngleLerp(wantedRotation, 0.33f);
             DrawOffsetX = (int)(wantedRotation * 4f);
             DrawOriginOffsetY = (int)Math.Abs(wantedRotation * 5f);

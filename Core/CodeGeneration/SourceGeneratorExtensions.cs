@@ -3,7 +3,7 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using Terraria.ModLoader.IO;
 
-namespace AequusRemake.Core.Utilities;
+namespace AequusRemake.Core.Util;
 
 internal static class SourceGeneratorExtensions {
     // TODO -- Optimize booleans?

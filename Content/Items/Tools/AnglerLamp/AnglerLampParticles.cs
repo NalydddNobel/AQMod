@@ -1,5 +1,5 @@
 ﻿using AequusRemake.Core.Graphics;
-using AequusRemake.Core.Particles;
+using AequusRemake.Core.Structures.Particles;
 using System;
 
 namespace AequusRemake.Content.Items.Tools.AnglerLamp;

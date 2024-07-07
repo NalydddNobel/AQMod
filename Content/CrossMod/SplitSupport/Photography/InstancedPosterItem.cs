@@ -1,4 +1,5 @@
 ﻿using AequusRemake.Core.ContentGeneration;
+using AequusRemake.Core.Util.Helpers;
 using Terraria.Localization;
 
 namespace AequusRemake.Content.CrossMod.SplitSupport.Photography;
@@ -7,7 +8,7 @@ internal class InstancedPosterItem : InstancedTileItem {
     private AlbumQuestInfo _quest;
 
     public InstancedPosterItem(AlbumQuestInfo Quest)
-        : base(ModContent.GetInstance<Poster>(), Quest.Frame, ExtendIdSearch.GetNPCName(Quest.NPC.GetId()), rarity: ItemRarityID.LightRed, value: Item.sellPrice(gold: 1)) {
+        : base(ModContent.GetInstance<Poster>(), Quest.Frame, IdDictHelper.GetNPCName(Quest.NPC.GetId()), rarity: ItemRarityID.LightRed, value: Item.sellPrice(gold: 1)) {
         _quest = Quest;
     }
 

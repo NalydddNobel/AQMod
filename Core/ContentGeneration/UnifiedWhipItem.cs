@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using AequusRemake.Core.Util.Helpers;
+using System.Collections.Generic;
 using Terraria.GameContent;
 using Terraria.Localization;
 
@@ -14,7 +15,7 @@ public abstract class UnifiedWhipItem : ModItem, IWhipController {
     public virtual void WhipAI(Projectile projectile, List<Vector2> WhipPoints, float Progress) { }
 
     public virtual Color GetWhipStringColor(Vector2 position) {
-        return ExtendLight.Get(position);
+        return LightingHelper.Get(position);
     }
 
     [CloneByReference]

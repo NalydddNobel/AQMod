@@ -24,7 +24,7 @@ public class TreasureMagnetChanges : GlobalItem {
 
     public static void RemoveTreasureMagnetFromHellChestArray() {
         if (VanillaChangesConfig.Instance.MoveTreasureMagnet) {
-            ExtendArray.Remove(ref GenVars.hellChestItem, ItemID.TreasureMagnet);
+            ArrayExtensions.Remove(ref GenVars.hellChestItem, ItemID.TreasureMagnet);
         }
     }
 

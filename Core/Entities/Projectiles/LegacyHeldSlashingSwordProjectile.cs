@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AequusRemake.Core.Util.Helpers;
+using System;
 using System.IO;
 
 namespace AequusRemake.Core.Entities.Projectiles;
@@ -145,7 +146,7 @@ public abstract class LegacyHeldSlashingSwordProjectile : LegacyHeldSwordProject
         var center = Main.player[Projectile.owner].Center;
         //Helper.DebugDust(center - AngleVector * 20f);
         //Helper.DebugDust(center + AngleVector * (swordHeight * Projectile.scale * baseSwordScale), DustID.CursedTorch);
-        return ExtendCollision.LineHitbox(center - AngleVector * 20f, center + AngleVector * (swordHeight * Projectile.scale * baseSwordScale), targetHitbox, swordWidth * Projectile.scale * baseSwordScale);
+        return CollisionTools.LineHitbox(center - AngleVector * 20f, center + AngleVector * (swordHeight * Projectile.scale * baseSwordScale), targetHitbox, swordWidth * Projectile.scale * baseSwordScale);
     }
 
     public void UpdatePlayerDirection(Player player) {

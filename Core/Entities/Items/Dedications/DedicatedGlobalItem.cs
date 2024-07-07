@@ -43,7 +43,7 @@ public sealed class DedicatedGlobalItem : GlobalItem {
         var bloomTexture = AequusTextures.Bloom.Value;
         var bloomOrigin = bloomTexture.Size() / 2f;
         Vector2 bloomScale = new Vector2(measurement.X / bloomTexture.Width, (measurement.Y / bloomTexture.Height + 0.1f) / 5f);
-        float bloomPulse = Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f, 0f, 1f);
+        float bloomPulse = sin(Main.GlobalTimeWrappedHourly * 5f, 0f, 1f);
         Color bloomColor = (line.Color.SaturationSet(1f).HueShift(0.1f)) with { A = 0 } * 0.23f;
         Vector2 textCenter = coords - line.Origin / 2f + measurement / 2f + new Vector2(0f, -4f);
         Main.spriteBatch.Draw(bloomTexture, textCenter, null, bloomColor, 0f, bloomOrigin, bloomScale + new Vector2(0.8f, 0.4f), SpriteEffects.None, 0f);
@@ -53,7 +53,7 @@ public sealed class DedicatedGlobalItem : GlobalItem {
         Vector2 origin = new Vector2(6f, 5f);
         int sparkleCount = (int)measurement.X / 2;
         for (int i = 0; i < sparkleCount; i++) {
-            Color sparkleColor = line.Color.HueAdd(Helper.Oscillate(i, -0.05f, 0.05f)) with { A = 0 } * 1.2f;
+            Color sparkleColor = line.Color.HueAdd(sin(i, -0.05f, 0.05f)) with { A = 0 } * 1.2f;
             float timer = i / measurement.X * 8f + Main.GlobalTimeWrappedHourly * 0.25f;
             float timerWrapped = timer % 2f;
             SpriteEffects spriteEffects = Utils.RandomInt(ref seed, 2) == 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
@@ -71,12 +71,12 @@ public sealed class DedicatedGlobalItem : GlobalItem {
             float scale = MathF.Sin(timerWrapped * MathHelper.Pi);
             Main.spriteBatch.Draw(
                 texture,
-                sparklePosition + new Vector2(Helper.Oscillate(timer * 11f, -4f, 3f), MathF.Pow(timerWrapped * 2f, 2f) * -12f + 12f),
+                sparklePosition + new Vector2(sin(timer * 11f, -4f, 3f), MathF.Pow(timerWrapped * 2f, 2f) * -12f + 12f),
                 frame,
                 sparkleColor * MathF.Pow(scale, 30f),
                 0f,
                 origin,
-                scale * Helper.Oscillate(timer * 20f, 0.5f, 1.1f),
+                scale * sin(timer * 20f, 0.5f, 1.1f),
                 spriteEffects,
                 0f
             );

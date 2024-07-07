@@ -1,5 +1,5 @@
 ﻿using AequusRemake.Core.Entities.Prefixes;
-using AequusRemake.Core.UI;
+using AequusRemake.Core.GUI;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;

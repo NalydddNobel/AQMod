@@ -110,7 +110,7 @@ public partial class KeywordGlobalItem : GlobalItem {
                 font,
                 keyword.tooltipLines[j],
                 new Vector2(lineX, textLineY),
-                keyword.textColor * Helper.Oscillate(Main.GlobalTimeWrappedHourly, 1.5f, 2f),
+                keyword.textColor * sin(Main.GlobalTimeWrappedHourly, 1.5f, 2f),
                 0f,
                 Vector2.Zero,
                 Vector2.One

@@ -1,5 +1,6 @@
 ﻿using AequusRemake.Core.Graphics;
-using AequusRemake.Core.Particles;
+using AequusRemake.Core.Structures.Particles;
+using AequusRemake.Core.Util.Helpers;
 
 namespace AequusRemake.Content.Graphics.Particles;
 
@@ -25,7 +26,7 @@ public class DashParticles : ParallelParticleArray<DashParticles.Particle> {
                 float scale = particle.Scale;
                 Vector2 drawLocation = particle.Location - Main.screenPosition;
                 Vector2 velocity = particle.Velocity;
-                Color color = ExtendLight.Get(particle.Location) * 0.66f * particle.Opacity;
+                Color color = LightingHelper.Get(particle.Location) * 0.66f * particle.Opacity;
 
                 for (int i = 0; i < 3; i++) {
                     spriteBatch.Draw(texture, drawLocation - velocity * i, frame, color * 0.1f, rotation, origin, scale, SpriteEffects.None, 0f);

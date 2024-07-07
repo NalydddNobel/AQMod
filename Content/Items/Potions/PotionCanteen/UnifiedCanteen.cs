@@ -1,7 +1,7 @@
 ﻿using AequusRemake.Core.Entities.Buffs;
 using AequusRemake.Core.Entities.Items.Components;
 using AequusRemake.Core.IO;
-using AequusRemake.Core.UI;
+using AequusRemake.Core.GUI;
 using AequusRemake.DataSets;
 using Microsoft.Xna.Framework.Input;
 using System;

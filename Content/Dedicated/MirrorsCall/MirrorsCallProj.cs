@@ -55,7 +55,7 @@ public class MirrorsCallProj : LegacyHeldSwordProjectile {
         float opacity = MathF.Sin(progress * MathHelper.Pi);
         var frame = texture.Frame(verticalFrames: 4, frameY: 0);
         var origin = frame.Size() / 2f;
-        var rainbowColor = ExtendColor.GetLastPrismColor(Main.LocalPlayer, Projectile.localAI[0] + progress * 2f) with { A = 0 };
+        var rainbowColor = ColorExtensions.GetLastPrismColor(Main.LocalPlayer, Projectile.localAI[0] + progress * 2f) with { A = 0 };
         var scale = new Vector2(1f, 1.5f) * Projectile.scale;
         var swordTexture = AequusTextures.MirrorsCall_Aura;
         var swordOrigin = new Vector2(0f, swordTexture.Height());
@@ -102,7 +102,7 @@ public class MirrorsCallProj : LegacyHeldSwordProjectile {
                 texture,
                 slashPosition + spinningPoint * 2f * Projectile.scale,
                 frame,
-                ExtendColor.GetLastPrismColor(Main.LocalPlayer, f * 6f) with { A = 0 } * opacity,
+                ColorExtensions.GetLastPrismColor(Main.LocalPlayer, f * 6f) with { A = 0 } * opacity,
                 slashRotation,
                 origin,
                 scale,

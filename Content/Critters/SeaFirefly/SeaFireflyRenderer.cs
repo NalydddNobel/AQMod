@@ -84,7 +84,7 @@ public class SeaFireflyRenderer : RequestHandler<SeaFireflyShaderRequest> {
         Rectangle frame = texture.Bounds;
         Vector2 origin = frame.Size() / 2f;
         Texture2D maskTexture = AequusTextures.EffectWaterRefraction;
-        _glowMagnitude.SetValue(Helper.Oscillate(Main.GlobalTimeWrappedHourly * 2.5f, 2f, 4f));
+        _glowMagnitude.SetValue(sin(Main.GlobalTimeWrappedHourly * 2.5f, 2f, 4f));
 
         foreach (SeaFireflyShaderRequest request in todo) {
             _imageSize.SetValue(request.Where * 0.01f + new Vector2(0f, Main.GlobalTimeWrappedHourly * -0.03f + request.Where.X * 0.001f));

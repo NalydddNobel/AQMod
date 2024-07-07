@@ -1,7 +1,7 @@
 ﻿using AequusRemake.Core.ContentGeneration;
 using AequusRemake.Core.CrossMod;
 using AequusRemake.Core.Entities.Items.Dedications;
-using AequusRemake.Core.UI;
+using AequusRemake.Core.GUI;
 using System;
 using System.Collections.Generic;
 using System.IO;

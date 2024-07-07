@@ -1,5 +1,6 @@
 ﻿using AequusRemake.Content.Elements;
 using AequusRemake.Core.Debug.CheatCodes;
+using AequusRemake.Core.Util.Helpers;
 using System.Collections.Generic;
 using Terraria.GameContent;
 
@@ -47,7 +48,7 @@ public class ElementGlobalItem : GlobalItem {
                 text += "\n";
             }
 
-            text += ChatTagWriter.Color(Colors.AlphaDarken(e.Color), e.GetCategoryText("ElementTip").Format(e.DisplayName.Value));
+            text += ColorTagProvider.Color(Colors.AlphaDarken(e.Color), e.GetCategoryText("ElementTip").Format(e.DisplayName.Value));
         }
 
         if (!string.IsNullOrEmpty(text)) {

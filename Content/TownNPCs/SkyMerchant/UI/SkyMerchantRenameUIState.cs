@@ -1,6 +1,6 @@
 ﻿using AequusRemake.Content.Systems.Renaming;
-using AequusRemake.Core.UI;
-using AequusRemake.Core.UI.Elements;
+using AequusRemake.Core.GUI;
+using AequusRemake.Core.GUI.Elements;
 using ReLogic.Content;
 using Terraria.Audio;
 using Terraria.DataStructures;

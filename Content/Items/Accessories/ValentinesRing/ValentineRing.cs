@@ -1,5 +1,6 @@
 ﻿using AequusRemake.Core;
 using AequusRemake.Core.CodeGeneration;
+using AequusRemake.Core.Util.Helpers;
 using System.Collections.Generic;
 using System.IO;
 using Terraria.Localization;
@@ -59,7 +60,7 @@ public class ValentineRing : ModItem {
             }
         }
         if (HasGifter) {
-            tooltips.AddTooltip(new TooltipLine(Mod, "ValentineTooltip", GiftTooltip.Format(ChatTagWriter.Color(Colors.AlphaDarken(Color.Pink), gifterName))));
+            tooltips.AddTooltip(new TooltipLine(Mod, "ValentineTooltip", GiftTooltip.Format(ColorTagProvider.Color(Colors.AlphaDarken(Color.Pink), gifterName))));
         }
     }
 

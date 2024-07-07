@@ -1,5 +1,6 @@
 ﻿using AequusRemake.Core.ContentGeneration;
 using AequusRemake.Core.Entities.Items.Dedications;
+using AequusRemake.Core.Util.Helpers;
 using System;
 using Terraria.GameContent;
 using Terraria.UI.Chat;
@@ -62,8 +63,8 @@ public class SwagEyePet : UnifiedModPet {
         for (int i = 0; i < 6; i++) {
             var rotation = i + MathHelper.TwoPi / 6f + Main.GameUpdateCount * 0.05f;
             var frame = texture.Frame(verticalFrames: 5, frameY: (Projectile.identity + i) % 5);
-            var icicleDrawCoords = drawCoords + rotation.ToRotationVector2() * icicleDistance * Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f + i * MathHelper.Pi / 3f, 0.8f, 1f) * Projectile.scale;
-            Main.EntitySpriteDraw(texture, icicleDrawCoords - Main.screenPosition, frame, ExtendLight.Get(icicleDrawCoords), rotation - MathHelper.PiOver2, new Vector2(frame.Width / 2f, frame.Height - 6), Projectile.scale, SpriteEffects.None, 0);
+            var icicleDrawCoords = drawCoords + rotation.ToRotationVector2() * icicleDistance * sin(Main.GlobalTimeWrappedHourly * 5f + i * MathHelper.Pi / 3f, 0.8f, 1f) * Projectile.scale;
+            Main.EntitySpriteDraw(texture, icicleDrawCoords - Main.screenPosition, frame, LightingHelper.Get(icicleDrawCoords), rotation - MathHelper.PiOver2, new Vector2(frame.Width / 2f, frame.Height - 6), Projectile.scale, SpriteEffects.None, 0);
         }
 
         if (Projectile.isAPreviewDummy) {

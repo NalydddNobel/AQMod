@@ -74,7 +74,7 @@ public class LanternCatPet : UnifiedModPet {
         Projectile.frame = this.frame;
         var lantern = AequusTextures.LanternCatPet_Lantern.Value;
         lanternPosition += (new Vector2(24f * -Projectile.spriteDirection, -24f + MathF.Sin(Main.GlobalTimeWrappedHourly * 2f) * 8f) + new Vector2(Projectile.velocity.X * 2f, Projectile.velocity.Y * -0.1f - Math.Abs(Projectile.velocity.X) * 0.5f)) * Projectile.scale;
-        float lanternRotation = Projectile.velocity.X * 0.1f * Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f, 0.5f, 1f);
+        float lanternRotation = Projectile.velocity.X * 0.1f * sin(Main.GlobalTimeWrappedHourly * 5f, 0.5f, 1f);
 
 
         var spriteEffects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;

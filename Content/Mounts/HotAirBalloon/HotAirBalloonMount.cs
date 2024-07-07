@@ -1,4 +1,5 @@
 ﻿using AequusRemake.Core.ContentGeneration;
+using AequusRemake.Core.Util.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -95,7 +96,7 @@ public class HotAirBalloonMount : UnifiedModMount {
     private void LoadEasterEggs() {
         EasterEggs.Clear();
         EasterEggs["modzilla"] = new BalloonData(1, Color.White);
-        EasterEggs["nalyddd"] = new DynamicColorBalloonData(0, () => Color.Lerp(Color.Violet, Color.BlueViolet, Helper.Oscillate(Main.GlobalTimeWrappedHourly, 1f)), () => Color.BlueViolet);
+        EasterEggs["nalyddd"] = new DynamicColorBalloonData(0, () => Color.Lerp(Color.Violet, Color.BlueViolet, sin(Main.GlobalTimeWrappedHourly, 1f)), () => Color.BlueViolet);
     }
     #endregion
 
@@ -248,13 +249,13 @@ public class HotAirBalloonMount : UnifiedModMount {
             var balloonFrame = balloonTexture.Frame(verticalFrames: BalloonFrames, frameY: balloonFrameY);
             var balloonDrawPos = drawPosition + new Vector2(drawPlayer.width / 2f - 10f, -balloonFrame.Height / 2f - frame.Height + 33f);
             balloonDrawPos.X -= MountData.xOffset * drawPlayer.direction;
-            var lightColor = ExtendLight.GetBrightestLight((balloonDrawPos + Main.screenPosition).ToTileCoordinates(), 8);
+            var lightColor = LightingHelper.GetBrightestLight((balloonDrawPos + Main.screenPosition).ToTileCoordinates(), 8);
             float lightIntensity = (lightColor.R + lightColor.G + lightColor.B) / 3f / 255f * 0.9f;
             var balloonColor = lightColor.MultiplyRGB(color);
             if (HighQualityEffects) {
                 playerDrawData.Add(new(balloonTexture, balloonDrawPos, balloonFrame, balloonColor, rotation, balloonFrame.Size() / 2f, 1f, spriteEffects, 0) { shader = drawPlayer.cMount });
                 if (lightIntensity < 0.99f) {
-                    var balloonFlameColor = flameColor with { A = 0 } * Helper.Oscillate(Main.GlobalTimeWrappedHourly * 2f, 0.75f, 1f);
+                    var balloonFlameColor = flameColor with { A = 0 } * sin(Main.GlobalTimeWrappedHourly * 2f, 0.75f, 1f);
                     playerDrawData.Add(new(AequusTextures.Bloom, balloonDrawPos, null, balloonFlameColor, 0f, AequusTextures.Bloom.Size() / 2f, new Vector2(0.8f, 1f), spriteEffects, 0) { shader = drawPlayer.cMount });
                     playerDrawData.Add(new(AequusTextures.HotAirBalloonMount_Glow, balloonDrawPos, null, balloonFlameColor, rotation, balloonFrame.Size() / 2f, 1f, spriteEffects, 0) { shader = drawPlayer.cMount });
                     var random = new FastRandom(drawPlayer.name.GetHashCode());

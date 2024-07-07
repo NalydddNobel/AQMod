@@ -5,6 +5,7 @@ using AequusRemake.Content.Enemies.PollutedOcean.BreadOfCthulhu.Items;
 using AequusRemake.Content.Items.Tools.Keys;
 using AequusRemake.Core.ContentGeneration;
 using AequusRemake.Core.Entities.Bestiary;
+using AequusRemake.Core.Util.Helpers;
 using AequusRemake.DataSets;
 using System;
 using Terraria.DataStructures;

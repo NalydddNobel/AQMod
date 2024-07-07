@@ -1,4 +1,5 @@
-﻿using ReLogic.Content;
+﻿using AequusRemake.Core.Util.Helpers;
+using ReLogic.Content;
 using System;
 using System.Reflection;
 
@@ -6,7 +7,7 @@ namespace AequusRemake.Core.Graphics.Textures;
 
 public static class TextureGen {
     public static Asset<Texture2D> PerPixel(IColorEffect color, Asset<Texture2D> texture) {
-        Texture2D next = PerPixel(color, ExtendTexture.Wait(texture));
+        Texture2D next = PerPixel(color, AssetTools.ForceLoad(ref texture));
 
         string name = $"AequusRemake/Gen/{texture.Name}";
         Asset<Texture2D> nextAsset = (Asset<Texture2D>)Activator.CreateInstance(typeof(Asset<Texture2D>), BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.CreateInstance, null, [name], null, null);

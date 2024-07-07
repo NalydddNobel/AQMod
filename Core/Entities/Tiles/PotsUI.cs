@@ -1,4 +1,4 @@
-﻿using AequusRemake.Core.UI;
+﻿using AequusRemake.Core.GUI;
 using System;
 using Terraria.GameContent;
 using Terraria.UI;
@@ -24,7 +24,7 @@ public class PotsUI : UILayer {
     private static void DrawPreview(Point tileCoordinates, PotsSystem.PotLootPreview preview) {
         var seed = Helper.TileSeed(tileCoordinates) % 10000f;
 
-        float scale = Math.Min(preview.Opacity, Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f + seed, 0.9f, 1f));
+        float scale = Math.Min(preview.Opacity, sin(Main.GlobalTimeWrappedHourly * 5f + seed, 0.9f, 1f));
         float pulseScale = scale;
 
         var frame = preview.Frame ?? preview.Texture.Bounds;
@@ -34,12 +34,12 @@ public class PotsUI : UILayer {
         }
 
         var drawCoordinates = new Vector2(tileCoordinates.X * 16f + 16f, tileCoordinates.Y * 16f + 20f) - Main.screenPosition;
-        var itemWobbleOffset = new Vector2(Helper.Oscillate(Main.GlobalTimeWrappedHourly * 3f + seed * 0.9f, -1f, 1f), Helper.Oscillate(Main.GlobalTimeWrappedHourly * 1.2f + seed * 0.8f, -2f, 2f));
-        float rotation = Helper.Oscillate(Main.GlobalTimeWrappedHourly * 4.2f, -0.1f, 0.1f);
+        var itemWobbleOffset = new Vector2(sin(Main.GlobalTimeWrappedHourly * 3f + seed * 0.9f, -1f, 1f), sin(Main.GlobalTimeWrappedHourly * 1.2f + seed * 0.8f, -2f, 2f));
+        float rotation = sin(Main.GlobalTimeWrappedHourly * 4.2f, -0.1f, 0.1f);
         float opacity = 1f;
         bool dangerView = preview.Dangerous && Main.LocalPlayer.dangerSense;
         if (dangerView) {
-            opacity *= Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f + seed, 0.3f, 1f);
+            opacity *= sin(Main.GlobalTimeWrappedHourly * 5f + seed, 0.3f, 1f);
         }
         Main.spriteBatch.Draw(AequusTextures.BloomStrong, drawCoordinates, null, Color.Black * opacity * (dangerView ? 0.33f : 0.75f) * preview.Opacity, 0f, AequusTextures.BloomStrong.Size() / 2f, 0.4f, SpriteEffects.None, 0f);
         Main.spriteBatch.Draw(preview.Texture, drawCoordinates + itemWobbleOffset + new Vector2(2f) * scale, frame, Color.Black * 0.33f * opacity * preview.Opacity, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);

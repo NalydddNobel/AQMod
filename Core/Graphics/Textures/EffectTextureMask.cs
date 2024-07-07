@@ -1,4 +1,5 @@
-﻿using ReLogic.Content;
+﻿using AequusRemake.Core.Util.Helpers;
+using ReLogic.Content;
 using System;
 
 namespace AequusRemake.Core.Graphics.Textures;
@@ -14,11 +15,11 @@ public class EffectTextureMask : IColorEffect {
 
     public EffectTextureMask(Texture2D Texture) {
         _maskTexture = Texture;
-        _sampleColors = ExtendTexture.GetDataFull(Texture);
+        _sampleColors = TextureExtensions.AllocData(Texture);
         _workingColors = _sampleColors;
         MaskEffect = null;
     }
-    public EffectTextureMask(Asset<Texture2D> Asset) : this(ExtendTexture.Wait(Asset)) { }
+    public EffectTextureMask(Asset<Texture2D> Asset) : this(AssetTools.ForceLoad(ref Asset)) { }
 
     public EffectTextureMask WithEffect(IColorEffect effect) {
         MaskEffect = effect;

@@ -1,7 +1,8 @@
 ﻿using AequusRemake.Core.Structures.Collections;
-using AequusRemake.Core.UI;
+using AequusRemake.Core.GUI;
 using System;
 using Terraria.UI;
+using AequusRemake.Core.Util.Helpers;
 
 namespace AequusRemake.Content.TownNPCs;
 
@@ -14,7 +15,7 @@ public class TownNPCUI : UILayer {
             return;
         }
 
-        if (active && Cull2D.Rectangle(Main.npc[npcIndex].getRect())) {
+        if (active && Cull.ClipXYWH(Main.npc[npcIndex].getRect())) {
             Exclamation popup = NPCExclamations[npcIndex] = new Exclamation();
             popup.Opacity = 0f;
 
@@ -56,7 +57,7 @@ public class TownNPCUI : UILayer {
 
             Texture2D texture = AequusTextures.TownNPCExclamation;
             float opacity = exclamation.Opacity;
-            float scale = Helper.Oscillate(Main.GlobalTimeWrappedHourly * 2.5f, 0.9f, 1.1f) * opacity;
+            float scale = sin(Main.GlobalTimeWrappedHourly * 2.5f, 0.9f, 1.1f) * opacity;
             Vector2 drawPosition = (npc.Top + new Vector2(0f, -6f - 20f * MathF.Pow(opacity, 3f)) - Main.screenPosition).Floor();
             Vector2 origin = texture.Size() / 2f;
             Color color = new Color(150, 150, 255, 222) * opacity;

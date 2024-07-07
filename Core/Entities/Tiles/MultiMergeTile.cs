@@ -1,4 +1,5 @@
-﻿using ReLogic.Content;
+﻿using AequusRemake.Core.Util.Extensions;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -299,7 +300,7 @@ public abstract class MultiMergeTile : ModTile {
     public static void EnsureCacheLength() {
         _mergeCache ??= Array.Empty<byte[]>();
         if (_mergeCache.Length != TileLoader.TileCount) {
-            ExtendArray.ResizeAndPopulate(ref _mergeCache, TileLoader.TileCount, Array.Empty<byte>);
+            ArrayExtensions.ResizeAndPopulate(ref _mergeCache, TileLoader.TileCount, Array.Empty<byte>);
         }
     }
 

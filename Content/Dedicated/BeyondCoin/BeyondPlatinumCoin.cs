@@ -76,12 +76,12 @@ public class BeyondPlatinumCoin : ModItem, DrawLayers.IDrawLayer {
         float timer = Main.GameUpdateCount / 60f;
 
         spriteBatch.Draw(AequusTextures.Bloom, drawCoordinates, null, Color.Blue with { A = 0 } * 0.4f, 0f, AequusTextures.Bloom.Size() / 2f, scale, SpriteEffects.None, 0f);
-        spriteBatch.Draw(AequusTextures.FlareSoft, drawCoordinates - new Vector2(0f, 2f) * scale, null, Color.White with { A = 0 } * Helper.Oscillate(timer, 0.2f, 0.45f), 0f, AequusTextures.FlareSoft.Size() / 2f, new Vector2(1f, 0.7f) * scale, SpriteEffects.None, 0f);
+        spriteBatch.Draw(AequusTextures.FlareSoft, drawCoordinates - new Vector2(0f, 2f) * scale, null, Color.White with { A = 0 } * sin(timer, 0.2f, 0.45f), 0f, AequusTextures.FlareSoft.Size() / 2f, new Vector2(1f, 0.7f) * scale, SpriteEffects.None, 0f);
 
         spriteBatch.Draw(texture, drawCoordinates, frame, color, rotation, origin, scale, SpriteEffects.None, 0f);
 
-        float outwards = Helper.Oscillate(timer, 4f, 6f);
-        float colorIntensity = Helper.Oscillate(timer * 2f, 0f, 1f);
+        float outwards = sin(timer, 4f, 6f);
+        float colorIntensity = sin(timer * 2f, 0f, 1f);
 
         for (int i = 0; i < 4; i++) {
             spriteBatch.Draw(texture, drawCoordinates + (i * MathHelper.PiOver2 + timer).ToRotationVector2() * outwards, frame, outlineColor * colorIntensity, rotation, origin, scale, SpriteEffects.None, 0f);

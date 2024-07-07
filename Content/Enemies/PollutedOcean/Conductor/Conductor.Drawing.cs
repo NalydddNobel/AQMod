@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AequusRemake.Core.Util.Helpers;
+using System;
 using Terraria.GameContent;
 
 namespace AequusRemake.Content.Enemies.PollutedOcean.Conductor;

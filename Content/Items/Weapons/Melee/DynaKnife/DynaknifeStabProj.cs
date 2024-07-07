@@ -1,4 +1,4 @@
-﻿using AequusRemake.Core.Entities.Projectiles;
+﻿using AequusRemake.Core.Util.Helpers;
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;
@@ -75,7 +75,7 @@ public class DynaknifeStabProj : ModProjectile {
                 d.noGravity = true;
                 d.fadeIn = d.scale + 0.2f;
             }
-            ViewHelper.PunchCameraTo(Projectile.Center);
+            CameraHelper.PunchTowards(Projectile.Center);
         }
     }
 

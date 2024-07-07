@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using AequusRemake.Core.Util.Helpers;
+using System.Collections.Generic;
 using Terraria.Localization;
 
 namespace AequusRemake.Content.Items.Accessories.ValentinesRing;
@@ -32,7 +33,7 @@ public class ValentineRingBuff : ModBuff {
                 addTip += ", & ";
             }
 
-            addTip += ChatTagWriter.Color(Color.Pink, p.name);
+            addTip += ColorTagProvider.Color(Color.Pink, p.name);
         }
 
         if (!string.IsNullOrEmpty(addTip)) {

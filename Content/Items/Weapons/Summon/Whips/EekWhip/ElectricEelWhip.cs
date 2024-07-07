@@ -2,10 +2,11 @@
 using AequusRemake.Content.Enemies.PollutedOcean.Eel;
 using AequusRemake.Content.Graphics.Particles;
 using AequusRemake.Core.ContentGeneration;
-using AequusRemake.Core.Particles;
 using System;
 using System.Collections.Generic;
 using Terraria.Localization;
+using AequusRemake.Core.Structures.Particles;
+using AequusRemake.Core.Util.Helpers;
 
 namespace AequusRemake.Content.Items.Weapons.Summon.Whips.EekWhip;
 
@@ -78,7 +79,7 @@ public class ElectricEelWhip : UnifiedWhipItem, IMinionTagController {
 
         Rectangle frame = texture.Frame(2, 5, 0, frameIndex);
 
-        Color lightColor = ExtendLight.Get(drawInfo.Position);
+        Color lightColor = LightingHelper.Get(drawInfo.Position);
         float rotation = (drawInfo.Position - drawInfo.Next).ToRotation() - MathHelper.PiOver2;
         Vector2 origin = frame.Size() / 2f + originOffset;
         float scale = drawInfo.Projectile.scale;

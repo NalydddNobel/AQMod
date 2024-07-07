@@ -1,10 +1,11 @@
 ﻿using AequusRemake.Core.CodeGeneration;
 using AequusRemake.Core.ContentGeneration;
+using AequusRemake.Core.Structures.Chests;
+using AequusRemake.Core.Structures.Conversion;
+using AequusRemake.Core.Structures.Enums;
 using AequusRemake.Core.Structures.ID;
 using AequusRemake.DataSets;
-using AequusRemake.DataSets.Structures;
 using AequusRemake.DataSets.Structures.DropRulesChest;
-using AequusRemake.DataSets.Structures.Enums;
 using System.IO;
 using System.Linq;
 using Terraria.Audio;

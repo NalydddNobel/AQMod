@@ -4,6 +4,7 @@ using AequusRemake.Core.ContentGeneration;
 using AequusRemake.Core.Entities.Projectiles;
 using System.Collections.Generic;
 using Terraria.DataStructures;
+using AequusRemake.Core.Util.Helpers;
 
 namespace AequusRemake.Content.Items.Weapons.Summon.Whips.DemonCrimsonWhip;
 
@@ -56,7 +57,7 @@ public class DemonVasculash : UnifiedWhipItem, IMinionTagController {
 
         Rectangle frame = texture.Frame(1, 4, 0, frameIndex);
 
-        Color lightColor = ExtendLight.Get(drawInfo.Position);
+        Color lightColor = LightingHelper.Get(drawInfo.Position);
         Color drawColor = Color.Lerp(Color.White, lightColor, 0.5f);
         float rotation = (drawInfo.Position - drawInfo.Next).ToRotation() - MathHelper.PiOver2;
         Vector2 origin = frame.Size() / 2f + originOffset;

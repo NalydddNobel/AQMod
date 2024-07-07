@@ -1,6 +1,6 @@
 ﻿using AequusRemake.Content.Configuration;
 using AequusRemake.Core.IO;
-using AequusRemake.Core.UI;
+using AequusRemake.Core.GUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;

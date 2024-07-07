@@ -17,9 +17,10 @@ using AequusRemake.Content.Items.Weapons.Ranged.Ammo;
 using AequusRemake.Content.Items.Weapons.Ranged.StarPhish;
 using AequusRemake.Content.Tiles.Furniture.Trash;
 using AequusRemake.Content.Tiles.Statues;
+using AequusRemake.Core.Structures.Chests;
+using AequusRemake.Core.Structures.Enums;
 using AequusRemake.DataSets;
 using AequusRemake.DataSets.Structures.DropRulesChest;
-using AequusRemake.DataSets.Structures.Enums;
 using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;
@@ -50,7 +51,7 @@ public class PollutedOceanSystem : ModSystem {
 
     private static void PopulateChestDrops() {
         ChestLootDatabase.Instance.RegisterIndexed(ChestPool.PollutedOcean,
-            new CommonChestRule(ItemID.MagicConch, OptionalConditions: Commons.Conditions.ConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveMagicConch))),
+            new CommonChestRule(ItemID.MagicConch, OptionalConditions: ConfigConditions.IsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveMagicConch))),
             new CommonChestRule(ModContent.ItemType<AnglerLamp>()),
             new CommonChestRule(ModContent.ItemType<PotionCanteen>()),
             new CommonChestRule(ModContent.ItemType<StarPhish>()).OnSucceed(new CommonChestRule(ModContent.ItemType<PlasticDart>(), MinStack: 25, MaxStack: 50))
@@ -134,7 +135,7 @@ public class PollutedOceanSystem : ModSystem {
                     new CommonChestRule(ItemID.FlyingCarpet)
                 }
             ),
-            Commons.Conditions.ConfigIsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveMagicConch))
+            ConfigConditions.IsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveMagicConch))
         ));
     }
 

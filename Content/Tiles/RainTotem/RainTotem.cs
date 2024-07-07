@@ -96,7 +96,7 @@ public class RainTotem : RainTotemTileTemplate {
         //}
 
         float brightest = Math.Max(Math.Max(Math.Max(lightColor.R, lightColor.G), lightColor.B) / 255f, 0.2f);
-        Color drawColor = Color.Cyan with { A = 0 } * Helper.Oscillate(Main.GlobalTimeWrappedHourly, 0.8f, 1f) * brightest;
+        Color drawColor = Color.Cyan with { A = 0 } * sin(Main.GlobalTimeWrappedHourly, 0.8f, 1f) * brightest;
         spriteBatch.Draw(AequusTextures.RainTotem_Glow, drawCoordinates, frame, drawColor);
     }
 

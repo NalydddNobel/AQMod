@@ -1,4 +1,5 @@
 ﻿using AequusRemake.Core.Entities.Projectiles;
+using AequusRemake.Core.Util.Helpers;
 using System;
 using Terraria.GameContent;
 
@@ -97,7 +98,7 @@ public class BellowsProj : ModProjectile {
         drawCoords.Y += 2f + Projectile.gfxOffY;
         float rotation = difference.ToRotation() + (player.direction == -1 ? 0f : MathHelper.Pi);
         var spriteEffects = player.direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-        Main.EntitySpriteDraw(texture, drawCoords - Main.screenPosition, frame, ExtendLight.Get(drawCoords),
+        Main.EntitySpriteDraw(texture, drawCoords - Main.screenPosition, frame, LightingHelper.Get(drawCoords),
              rotation, origin, 1f, spriteEffects, 0);
         return false;
     }

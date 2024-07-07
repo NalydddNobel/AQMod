@@ -1,5 +1,6 @@
 global using AequusRemake.Core;
-global using AequusRemake.Core.Utilities;
+global using AequusRemake.Core.Util;
+global using AequusRemake.Core.Util.Extensions;
 global using Microsoft.Xna.Framework;
 global using Microsoft.Xna.Framework.Graphics;
 global using Terraria;

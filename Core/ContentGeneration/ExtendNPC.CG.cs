@@ -3,7 +3,7 @@ using AequusRemake.Core.ContentGeneration;
 using System;
 using Terraria.GameContent.ItemDropRules;
 
-namespace AequusRemake.Core.Utilities;
+namespace AequusRemake.Core.Util;
 
 public static partial class ExtendNPC {
     /// <summary>Adds <paramref name="entry"/> to <paramref name="npcLoot"/>, and its boss bag.</summary>

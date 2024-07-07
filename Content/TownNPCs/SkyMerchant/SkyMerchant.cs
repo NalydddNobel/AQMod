@@ -3,7 +3,7 @@ using AequusRemake.Content.TownNPCs.SkyMerchant.UI;
 using AequusRemake.Core.Components.NPCs;
 using AequusRemake.Core.ContentGeneration;
 using AequusRemake.Core.Entities.Bestiary;
-using AequusRemake.Core.UI;
+using AequusRemake.Core.GUI;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;
@@ -86,7 +86,7 @@ public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
     }
 
     private void BalloonMovement() {
-        Vector2 gotoPosition = new Vector2(SkyMerchantSystem.SkyMerchantX * 16f, Helper.Oscillate((float)Main.time / 1000f, (float)Helper.ZoneSkyHeightY / 2f, (float)Helper.ZoneSkyHeightY * 16f - 200f));
+        Vector2 gotoPosition = new Vector2(SkyMerchantSystem.SkyMerchantX * 16f, sin((float)Main.time / 1000f, (float)Helper.ZoneSkyHeightY / 2f, (float)Helper.ZoneSkyHeightY * 16f - 200f));
         //Dust.NewDustPerfect(gotoPosition, DustID.Torch);
         var wantedVelocity = NPC.DirectionTo(gotoPosition);
         NPC.direction = 1;

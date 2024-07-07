@@ -1,4 +1,5 @@
 ﻿using AequusRemake.Core.ContentGeneration;
+using AequusRemake.Core.Util.Helpers;
 using System;
 using Terraria.GameContent;
 
@@ -81,13 +82,13 @@ public class OmegaStaritePet : UnifiedModPet {
             Projectile.Center = player.Center;
             Projectile.velocity *= 0.1f;
         }
-        Lighting.AddLight(Projectile.Center, ExtendLight.ApplyLightBrightness(CommonLight.OmegaStarite, CommonLight.OmegaStariteBrightness));
+        Lighting.AddLight(Projectile.Center, LightingHelper.ApplyLightBrightness(CommonLight.OmegaStarite, CommonLight.OmegaStariteBrightness));
     }
 
     private void DrawGlowy(Texture2D texture, Vector2 drawCoordinates, Rectangle frame, Color color, float scale = 1f) {
         var origin = frame.Size() / 2f;
         for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver2) {
-            Main.EntitySpriteDraw(texture, drawCoordinates + (f + Projectile.rotation).ToRotationVector2() * 2f * scale, frame, color with { A = 0 } * Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f, 0.6f, 0.95f), Projectile.rotation, origin, Projectile.scale * scale, SpriteEffects.None, 0);
+            Main.EntitySpriteDraw(texture, drawCoordinates + (f + Projectile.rotation).ToRotationVector2() * 2f * scale, frame, color with { A = 0 } * sin(Main.GlobalTimeWrappedHourly * 5f, 0.6f, 0.95f), Projectile.rotation, origin, Projectile.scale * scale, SpriteEffects.None, 0);
         }
 
         Main.EntitySpriteDraw(texture, drawCoordinates, frame, color, Projectile.rotation, origin, Projectile.scale * scale, SpriteEffects.None, 0);
@@ -97,7 +98,7 @@ public class OmegaStaritePet : UnifiedModPet {
         var texture = TextureAssets.Projectile[Type].Value;
         var center = Projectile.Center;
 
-        var drawPosition = ViewHelper.GetViewPoint(new Vector2(center.X + orb.X, center.Y + orb.Y), orb.Z * 0.0314f) - Main.screenPosition;
+        var drawPosition = ParallaxHelper.GetViewPoint(new Vector2(center.X + orb.X, center.Y + orb.Y), orb.Z * 0.0314f) - Main.screenPosition;
         int frameNumber = 1;
         if (scale <= 0.925f)
             frameNumber = 2;
@@ -116,7 +117,7 @@ public class OmegaStaritePet : UnifiedModPet {
         float[] orbScales = new float[5];
         for (int i = 0; i < 5; i++) {
             orbs[i] = Vector3.Transform(new Vector3(frame.Width, 0f, 0f), Matrix.CreateFromYawPitchRoll(innerRingPitch, innerRingRoll, innerRingRotation + rotMult * i));
-            orbScales[i] = ViewHelper.GetViewScale(Projectile.scale, orbs[i].Z * 0.157f);
+            orbScales[i] = ParallaxHelper.GetViewScale(Projectile.scale, orbs[i].Z * 0.157f);
             if (orbs[i].Z > 0f) {
                 RenderOrb(orbs[i], orbScales[i], frame);
             }

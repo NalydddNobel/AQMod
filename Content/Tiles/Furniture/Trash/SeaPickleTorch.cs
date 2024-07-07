@@ -2,6 +2,7 @@
 using AequusRemake.Content.Items.Materials;
 using AequusRemake.Core.ContentGeneration;
 using AequusRemake.Core.Graphics.Animations;
+using AequusRemake.Core.Util.Helpers;
 using Terraria.DataStructures;
 
 namespace AequusRemake.Content.Tiles.Furniture.Trash;
@@ -35,6 +36,6 @@ public class SeaPickleTorch : UnifiedModTorch {
 public class AnimationSeaPickleTorch : ITileAnimation {
     public bool Update(int x, int y) {
         var tile = Main.tile[x, y];
-        return tile.HasTile && tile.TileType == ModContent.TileType<SeaPickleTorch>() && Cull2D.Tile(x, y);
+        return tile.HasTile && tile.TileType == ModContent.TileType<SeaPickleTorch>() && Cull.ClipIJ(x, y);
     }
 }

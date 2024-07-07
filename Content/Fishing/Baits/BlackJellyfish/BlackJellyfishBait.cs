@@ -1,8 +1,8 @@
 ﻿using AequusRemake.Content.Graphics.Particles;
 using AequusRemake.Core.ContentGeneration;
 using AequusRemake.Core.Entities.Items.Components;
-using AequusRemake.Core.Entities.Projectiles;
 using AequusRemake.Core.Graphics;
+using AequusRemake.Core.Util.Helpers;
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;
@@ -73,7 +73,7 @@ public class BlackJellyfishBaitExplosion : ModProjectile, DrawLayers.IDrawLayer,
 
     public override void AI() {
         Rectangle hitbox = Projectile.Hitbox;
-        if (Main.netMode == NetmodeID.Server || !Cull2D.Rectangle(hitbox)) {
+        if (Main.netMode == NetmodeID.Server || !Cull.ClipXYWH(hitbox)) {
             return;
         }
 
@@ -119,7 +119,7 @@ public class BlackJellyfishBaitExplosion : ModProjectile, DrawLayers.IDrawLayer,
             DrawHelper.AddWaterRipple(Projectile.Center, 0.5f, 0.8f, 0f, new Vector2(60f, 60f), RippleShape.Circle, 0f);
 
             // Screen Shake
-            ViewHelper.PunchCameraTo(Projectile.Center, strength: 8f, frames: Projectile.timeLeft + 12);
+            CameraHelper.PunchTowards(Projectile.Center, strength: 8f, frames: Projectile.timeLeft + 12);
         }
 
         if (Main.rand.NextBool()) {

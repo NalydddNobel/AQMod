@@ -1,5 +1,5 @@
 ﻿using AequusRemake.Core.Graphics;
-using AequusRemake.Core.Structures;
+using AequusRemake.Core.Structures.Conversion;
 using AequusRemake.DataSets;
 using System;
 
@@ -7,7 +7,7 @@ namespace AequusRemake.Content.Items.Tools.Keychain;
 
 public partial class Keychain {
     internal static Paletter KeyTextures;
-    internal static readonly ConversionPool<int, string> KeyTextureNames = new((i) => {
+    internal static readonly ConvertPool<int, string> KeyTextureNames = new((i) => {
         if (!ItemID.Search.TryGetName(i, out var name)) {
             return "Unknown";
         }

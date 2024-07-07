@@ -55,11 +55,11 @@ public class NetherStar : ModItem {
         var backgroundOrigin = backgroundTexture.Size() / 2f;
         var shader = GameShaders.Misc[MiscShaderKey];
         float timer = Main.GlobalTimeWrappedHourly * 4f;
-        float backgroundScale = Helper.Oscillate(timer, 1f);
-        float sautration = (1f - MathF.Pow(Helper.Oscillate(timer, 1f), 2f)) * 10f;
+        float backgroundScale = sin(timer, 1f);
+        float sautration = (1f - MathF.Pow(sin(timer, 1f), 2f)) * 10f;
         shader.UseSaturation(sautration);
         for (int i = 0; i < 2; i++) {
-            var backgroundColor = Color.Lerp(Color.Violet, Color.Blue, Helper.Oscillate(timer + i * MathHelper.PiOver2, 1f)) with { A = 0 } * backgroundScale * 0.35f;
+            var backgroundColor = Color.Lerp(Color.Violet, Color.Blue, sin(timer + i * MathHelper.PiOver2, 1f)) with { A = 0 } * backgroundScale * 0.35f;
             DrawData dd = new(backgroundTexture, drawCoordinates, null, backgroundColor, (int)(timer / MathHelper.TwoPi) * (1 + i), backgroundOrigin, scale * (0.4f + backgroundScale * 0.66f), SpriteEffects.None, 0f);
             shader.Apply(dd);
             dd.Draw(spriteBatch);
@@ -70,12 +70,12 @@ public class NetherStar : ModItem {
         var texture = TextureAssets.Item[Type].Value;
         float beatTime = Main.GlobalTimeWrappedHourly * 4f;
         float colorSwapTime = MathF.Sin(beatTime / 2f);
-        Color bloomColor = Color.Lerp(Color.Violet, Color.Blue, Helper.Oscillate(beatTime, 1f)) with { A = 0 };
+        Color bloomColor = Color.Lerp(Color.Violet, Color.Blue, sin(beatTime, 1f)) with { A = 0 };
         Color flareColor = colorSwapTime > 0f ? drawColor with { A = 0 } * 0.6f : Color.Black with { A = drawColor.A } * 0.6f;
         float pulse = 1f + (MathF.Sin(Main.GlobalTimeWrappedHourly * 5f) * 0.05f + 0.05f);
         itemScale *= pulse;
         bloomScale *= pulse;
-        float shakeIntensity = MathF.Pow(Helper.Oscillate(beatTime, 1f), 10f) * 2f * itemScale;
+        float shakeIntensity = MathF.Pow(sin(beatTime, 1f), 10f) * 2f * itemScale;
         drawCoordinates += Main.rand.NextVector2Square(-shakeIntensity, shakeIntensity);
 
         spriteBatch.Draw(AequusTextures.BloomStrong, drawCoordinates, null, bloomColor * 0.08f, 0f, AequusTextures.BloomStrong.Size() / 2f, bloomScale * 1.5f, SpriteEffects.None, 0f);
@@ -86,7 +86,7 @@ public class NetherStar : ModItem {
             spriteBatch.Draw(AequusTextures.NetherStar_Glow, drawCoordinates, itemFrame, drawColor * colorSwapTime, rotation, origin, itemScale, SpriteEffects.None, 0f);
         }
 
-        float beatScale = Math.Max(MathF.Pow(Helper.Oscillate(beatTime, 1f), 4f) * 1.05f, MathF.Pow(Helper.Oscillate(beatTime - 1.4f, 1f), 4f) * 0.8f);
+        float beatScale = Math.Max(MathF.Pow(sin(beatTime, 1f), 4f) * 1.05f, MathF.Pow(sin(beatTime - 1.4f, 1f), 4f) * 0.8f);
         spriteBatch.Draw(texture, drawCoordinates, itemFrame, drawColor with { A = 0 } * beatScale * 0.66f, rotation, origin, itemScale * Math.Max(beatScale * 1.2f, 1f), SpriteEffects.None, 0f);
 
         var flareCoords = drawCoordinates + new Vector2(1f, 2f) * itemScale;

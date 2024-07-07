@@ -1,6 +1,7 @@
 ﻿using AequusRemake.Core.Concurrent;
 using AequusRemake.Core.Graphics;
-using AequusRemake.Core.Particles;
+using AequusRemake.Core.Structures.Particles;
+using AequusRemake.Core.Util.Helpers;
 using System;
 
 namespace AequusRemake.Content.Critters.SeaFirefly;
@@ -115,7 +116,7 @@ public class SeaFireflyClusters : ConcurrentParticles<SeaFireflyClusters.Particl
     }
 
     public override void Draw(SpriteBatch spriteBatch, Particle t) {
-        Color lightColor = ExtendLight.Get(t.Where);
+        Color lightColor = LightingHelper.Get(t.Where);
         float rotation = t.Velocity.X * 0.2f;
         SpriteEffects effects = t.Velocity.X < 0f ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 

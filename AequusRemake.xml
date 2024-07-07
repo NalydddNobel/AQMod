@@ -23,6 +23,12 @@
         <member name="T:AequusRemake.Content.Cinematics.AequusRemakeFilm">
             <summary><see cref="T:Terraria.Cinematics.DD2Film"/> <see cref="T:Terraria.Cinematics.DSTFilm"/></summary>
         </member>
+        <member name="M:AequusRemake.Content.Configuration.ConfigConditions.IsTrue(Terraria.ModLoader.Config.ModConfig,System.String)">
+            <returns><inheritdoc cref="M:AequusRemake.Content.Configuration.ConfigConditions.GetCondition(Terraria.ModLoader.Config.ModConfig,System.String,Terraria.Localization.LocalizedText,System.Func{System.Object,System.Boolean})"/> Defaults to checking if the value equals true.</returns>
+        </member>
+        <member name="M:AequusRemake.Content.Configuration.ConfigConditions.GetCondition(Terraria.ModLoader.Config.ModConfig,System.String,Terraria.Localization.LocalizedText,System.Func{System.Object,System.Boolean})">
+            <returns>A condition which depends on a certain config setting.</returns>
+        </member>
         <member name="T:AequusRemake.Content.CrossMod.BossChecklist">
             <summary><see href="link">https://github.com/JavidPack/BossChecklist/wiki/%5B1.4.4%5D-Boss-Log-Entry-Mod-Call#arguments</see></summary>
         </member>
@@ -226,6 +232,108 @@
         <member name="P:AequusRemake.DataSets.TileDataSet.PreventsSlopesBelow">
             <summary>Prevents tiles below this tile from being sloped.</summary>
         </member>
+        <member name="M:AequusRemake.DataSets.Structures.DropRulesChest.IChestLootRule.AddItem(AequusRemake.DataSets.Structures.DropRulesChest.ChestLootInfo@)">
+            <summary>Add the item into the chest here. <see cref="P:AequusRemake.DataSets.Structures.DropRulesChest.ChestLootInfo.ChestId"/> should safely index into <see cref="F:Terraria.Main.chest"/>.</summary>
+        </member>
+        <member name="M:AequusRemake.DataSets.Structures.DropRulesChest.IChestLootRule.CanDrop(AequusRemake.DataSets.Structures.DropRulesChest.ChestLootInfo@)">
+            <summary>Condition for whether this rule should be ran.</summary>
+        </member>
+        <member name="M:AequusRemake.DataSets.Structures.DropRulesChest.IChestLootRule.Reset">
+            <summary>Called upon <see cref="M:Terraria.ModLoader.ModSystem.ClearWorld"/> and Hardmode Chests. Use to reset values before world generation and etc.</summary>
+        </member>
+        <member name="T:AequusRemake.DataSets.Structures.DropRulesChest.IndexedChestRule">
+            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
+        </member>
+        <member name="M:AequusRemake.DataSets.Structures.DropRulesChest.IndexedChestRule.#ctor(AequusRemake.DataSets.Structures.DropRulesChest.IChestLootRule[],Terraria.Condition[])">
+            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
+        </member>
+        <member name="T:AequusRemake.DataSets.Structures.DropRulesChest.RemoveItemChestRule">
+            <summary>Usually used in conjunction with <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.ReplaceItemChestRule"/> to pull all of the item slots backwards after deleting the item.</summary>
+        </member>
+        <member name="T:AequusRemake.DataSets.Structures.DropRulesChest.ReplaceFirstSlotChestRule">
+            <summary>
+            Deletes the first slot, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="M:AequusRemake.DataSets.Structures.DropRulesChest.ReplaceFirstSlotChestRule.#ctor(AequusRemake.DataSets.Structures.DropRulesChest.IChestLootRule,Terraria.Condition[])">
+            <summary>
+            Deletes the first slot, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="T:AequusRemake.DataSets.Structures.DropRulesChest.ReplaceItemChestRule">
+            <summary>
+            Finds <paramref name="ItemIdToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="M:AequusRemake.DataSets.Structures.DropRulesChest.ReplaceItemChestRule.#ctor(System.Int32,AequusRemake.DataSets.Structures.DropRulesChest.IChestLootRule,Terraria.Condition[])">
+            <summary>
+            Finds <paramref name="ItemIdToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="T:AequusRemake.DataSets.Structures.DropRulesChest.ReplaceMultipleItemsChestRule">
+            <summary>
+            Finds any item which is in <paramref name="ItemIdsToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="M:AequusRemake.DataSets.Structures.DropRulesChest.ReplaceMultipleItemsChestRule.#ctor(System.Int32[],AequusRemake.DataSets.Structures.DropRulesChest.IChestLootRule,Terraria.Condition[])">
+            <summary>
+            Finds any item which is in <paramref name="ItemIdsToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="T:AequusRemake.DataSets.Structures.IDEntry`1">
+            <summary>
+            Represents an entry for a piece of content which uses an Id system.
+            <para>
+            <typeparamref name="T"/> should be one of the "X-ID" classes, like <see cref="T:Terraria.ID.ItemID"/>, <see cref="T:Terraria.ID.BuffID"/>, ect.
+            The ID class must also have an <see cref="T:ReLogic.Reflection.IdDictionary"/> named "Search", and a value for the total amount of vanilla entries labled "Count" (which can also be converted into an <see cref="T:System.Int32"/>)
+            </para>
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:AequusRemake.DataSets.Structures.IDEntry`1.Name">
+            <summary><inheritdoc cref="P:AequusRemake.DataSets.Structures.IIDEntry.Name"/> Automatically grabbed from <typeparamref name="T"/>.Search.GetName(<see cref="P:AequusRemake.DataSets.Structures.IDEntry`1.Id"/>). Returns "Unknown" or a name of an invalid entry if no name exists.</summary>
+        </member>
+        <member name="P:AequusRemake.DataSets.Structures.IDEntry`1.VanillaEntry">
+            <summary><inheritdoc cref="P:AequusRemake.DataSets.Structures.IIDEntry.VanillaEntry"/> Automatically determined by checking if <see cref="P:AequusRemake.DataSets.Structures.IDEntry`1.Id"/> is less than <typeparamref name="T"/>.Count.</summary>
+        </member>
+        <member name="P:AequusRemake.DataSets.Structures.IIDEntry.Name">
+            <summary>Name for the content entry.</summary>
+        </member>
+        <member name="P:AequusRemake.DataSets.Structures.IIDEntry.Id">
+            <summary>ID for the content.</summary>
+        </member>
+        <member name="P:AequusRemake.DataSets.Structures.IIDEntry.ValidEntry">
+            <summary>Whether this is a valid entry. Entries for content from other mods will be marked as Invalid if the mod is not enabled.</summary>
+        </member>
+        <member name="P:AequusRemake.DataSets.Structures.IIDEntry.VanillaEntry">
+            <summary>Whether this is a vanilla entry.</summary>
+        </member>
+        <member name="M:AequusRemake.DataSets.Structures.IIDEntry.SetName(System.String)">
+            <summary>Set <see cref="P:AequusRemake.DataSets.Structures.IIDEntry.Id"/> using <paramref name="name"/>. Called when loading the .json metadata files.</summary>
+            <param name="name">Name of the content.</param>
+        </member>
+        <member name="M:AequusRemake.DataSets.Structures.IIDEntry.SetId(System.Int32)">
+            <summary>Set <see cref="P:AequusRemake.DataSets.Structures.IIDEntry.Id"/> directly. Use this to update the name or other values if needed.</summary>
+            <param name="id">The Content's Id.</param>
+        </member>
         <member name="P:AequusRemake.DataSets.BuffDataSet.CannotChangeDuration">
             <summary>Buffs in this set should not have their duration altered, like the Luck Potion effect.</summary>
         </member>
@@ -234,9 +342,6 @@
         </member>
         <member name="P:AequusRemake.DataSets.BuffDataSet.PlayerDoTDebuff">
             <summary>Set for compatibility with Thorium.</summary>
-        </member>
-        <member name="T:AequusRemake.DataSets.ChestLootDatabase">
-            <summary>Replica of <see cref="T:Terraria.GameContent.ItemDropRules.ItemDropDatabase"/>/<see cref="T:Terraria.GameContent.ItemDropRules.ItemDropResolver"/>, except for AequusRemake' chest loot.</summary>
         </member>
         <member name="P:AequusRemake.DataSets.FishDataSet.Junk">
             <summary>Items in this set are fishing junk.</summary>
@@ -343,144 +448,6 @@
         </member>
         <member name="P:AequusRemake.DataSets.ProjectileDataSet.DealsHeatDamage">
             <summary>Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.</summary>
-        </member>
-        <member name="M:AequusRemake.DataSets.Structures.DropRulesChest.IChestLootRule.AddItem(AequusRemake.DataSets.Structures.DropRulesChest.ChestLootInfo@)">
-            <summary>Add the item into the chest here. <see cref="P:AequusRemake.DataSets.Structures.DropRulesChest.ChestLootInfo.ChestId"/> should safely index into <see cref="F:Terraria.Main.chest"/>.</summary>
-        </member>
-        <member name="M:AequusRemake.DataSets.Structures.DropRulesChest.IChestLootRule.CanDrop(AequusRemake.DataSets.Structures.DropRulesChest.ChestLootInfo@)">
-            <summary>Condition for whether this rule should be ran.</summary>
-        </member>
-        <member name="M:AequusRemake.DataSets.Structures.DropRulesChest.IChestLootRule.Reset">
-            <summary>Called upon <see cref="M:Terraria.ModLoader.ModSystem.ClearWorld"/> and Hardmode Chests. Use to reset values before world generation and etc.</summary>
-        </member>
-        <member name="T:AequusRemake.DataSets.Structures.DropRulesChest.IndexedChestRule">
-            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
-        </member>
-        <member name="M:AequusRemake.DataSets.Structures.DropRulesChest.IndexedChestRule.#ctor(AequusRemake.DataSets.Structures.DropRulesChest.IChestLootRule[],Terraria.Condition[])">
-            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
-        </member>
-        <member name="T:AequusRemake.DataSets.Structures.DropRulesChest.RemoveItemChestRule">
-            <summary>Usually used in conjunction with <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.ReplaceItemChestRule"/> to pull all of the item slots backwards after deleting the item.</summary>
-        </member>
-        <member name="T:AequusRemake.DataSets.Structures.DropRulesChest.ReplaceFirstSlotChestRule">
-            <summary>
-            Deletes the first slot, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="M:AequusRemake.DataSets.Structures.DropRulesChest.ReplaceFirstSlotChestRule.#ctor(AequusRemake.DataSets.Structures.DropRulesChest.IChestLootRule,Terraria.Condition[])">
-            <summary>
-            Deletes the first slot, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="T:AequusRemake.DataSets.Structures.DropRulesChest.ReplaceItemChestRule">
-            <summary>
-            Finds <paramref name="ItemIdToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="M:AequusRemake.DataSets.Structures.DropRulesChest.ReplaceItemChestRule.#ctor(System.Int32,AequusRemake.DataSets.Structures.DropRulesChest.IChestLootRule,Terraria.Condition[])">
-            <summary>
-            Finds <paramref name="ItemIdToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="T:AequusRemake.DataSets.Structures.DropRulesChest.ReplaceMultipleItemsChestRule">
-            <summary>
-            Finds any item which is in <paramref name="ItemIdsToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="M:AequusRemake.DataSets.Structures.DropRulesChest.ReplaceMultipleItemsChestRule.#ctor(System.Int32[],AequusRemake.DataSets.Structures.DropRulesChest.IChestLootRule,Terraria.Condition[])">
-            <summary>
-            Finds any item which is in <paramref name="ItemIdsToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="F:AequusRemake.DataSets.Structures.Enums.ChestPool.Surface">
-            <summary>Extra loot pool for Vanilla's Surface Wooden Chests.</summary>
-        </member>
-        <member name="F:AequusRemake.DataSets.Structures.Enums.ChestPool.Underground">
-            <summary>Extra loot pool for Vanilla's Underground Chests, this includes Gold, Frozen, Rich Mahogany, etc.</summary>
-        </member>
-        <member name="F:AequusRemake.DataSets.Structures.Enums.ChestPool.Sky">
-            <summary>Extra loot pool for Vanilla's Sky Chests. This includes Skyware and Locked Gold Chests located above the surface line.</summary>
-        </member>
-        <member name="F:AequusRemake.DataSets.Structures.Enums.ChestPool.UndergroundDesert">
-            <summary>Extra loot pool for Chests located in the Underground Desert.</summary>
-        </member>
-        <member name="F:AequusRemake.DataSets.Structures.Enums.ChestPool.Pyramid">
-            <summary>Extra loot pool for Chests located in the Pyramid.</summary>
-        </member>
-        <member name="F:AequusRemake.DataSets.Structures.Enums.ChestPool.Dungeon">
-            <summary>Extra loot pool for Locked Gold Chests located in the Dungeon.</summary>
-        </member>
-        <member name="F:AequusRemake.DataSets.Structures.Enums.ChestPool.Temple">
-            <summary>Extra loot pool for Chests located in the Temple.</summary>
-        </member>
-        <member name="F:AequusRemake.DataSets.Structures.Enums.ChestPool.Gold">
-            <summary>Extra loot pool for Vanilla's Gold Chests.</summary>
-        </member>
-        <member name="F:AequusRemake.DataSets.Structures.Enums.ChestPool.Shadow">
-            <summary>Extra loot pool for Vanilla's Shadow Chests.</summary>
-        </member>
-        <member name="F:AequusRemake.DataSets.Structures.Enums.ChestPool.Frozen">
-            <summary>Extra loot pool for Vanilla's Frozen Chests. Note this is NOT the Biome Chest.</summary>
-        </member>
-        <member name="F:AequusRemake.DataSets.Structures.Enums.ChestPool.Ivy">
-            <summary>Extra loot pool for Vanilla's Ivy Chests.</summary>
-        </member>
-        <member name="F:AequusRemake.DataSets.Structures.Enums.ChestPool.PollutedOcean">
-            <summary>Loot pool for Polluted Ocean Trash Cans.</summary>
-        </member>
-        <member name="T:AequusRemake.DataSets.Structures.IDEntry`1">
-            <summary>
-            Represents an entry for a piece of content which uses an Id system.
-            <para>
-            <typeparamref name="T"/> should be one of the "X-ID" classes, like <see cref="T:Terraria.ID.ItemID"/>, <see cref="T:Terraria.ID.BuffID"/>, ect.
-            The ID class must also have an <see cref="T:ReLogic.Reflection.IdDictionary"/> named "Search", and a value for the total amount of vanilla entries labled "Count" (which can also be converted into an <see cref="T:System.Int32"/>)
-            </para>
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="P:AequusRemake.DataSets.Structures.IDEntry`1.Name">
-            <summary><inheritdoc cref="P:AequusRemake.DataSets.Structures.IIDEntry.Name"/> Automatically grabbed from <typeparamref name="T"/>.Search.GetName(<see cref="P:AequusRemake.DataSets.Structures.IDEntry`1.Id"/>). Returns "Unknown" or a name of an invalid entry if no name exists.</summary>
-        </member>
-        <member name="P:AequusRemake.DataSets.Structures.IDEntry`1.VanillaEntry">
-            <summary><inheritdoc cref="P:AequusRemake.DataSets.Structures.IIDEntry.VanillaEntry"/> Automatically determined by checking if <see cref="P:AequusRemake.DataSets.Structures.IDEntry`1.Id"/> is less than <typeparamref name="T"/>.Count.</summary>
-        </member>
-        <member name="P:AequusRemake.DataSets.Structures.IIDEntry.Name">
-            <summary>Name for the content entry.</summary>
-        </member>
-        <member name="P:AequusRemake.DataSets.Structures.IIDEntry.Id">
-            <summary>ID for the content.</summary>
-        </member>
-        <member name="P:AequusRemake.DataSets.Structures.IIDEntry.ValidEntry">
-            <summary>Whether this is a valid entry. Entries for content from other mods will be marked as Invalid if the mod is not enabled.</summary>
-        </member>
-        <member name="P:AequusRemake.DataSets.Structures.IIDEntry.VanillaEntry">
-            <summary>Whether this is a vanilla entry.</summary>
-        </member>
-        <member name="M:AequusRemake.DataSets.Structures.IIDEntry.SetName(System.String)">
-            <summary>Set <see cref="P:AequusRemake.DataSets.Structures.IIDEntry.Id"/> using <paramref name="name"/>. Called when loading the .json metadata files.</summary>
-            <param name="name">Name of the content.</param>
-        </member>
-        <member name="M:AequusRemake.DataSets.Structures.IIDEntry.SetId(System.Int32)">
-            <summary>Set <see cref="P:AequusRemake.DataSets.Structures.IIDEntry.Id"/> directly. Use this to update the name or other values if needed.</summary>
-            <param name="id">The Content's Id.</param>
         </member>
         <member name="T:AequusRemake.AequusPlayer.KillInfo">
             <param name="Center">The enemy's center.</param>
@@ -848,6 +815,18 @@
             <param name="text"></param>
             <param name="entryNumber">Offsets the map Id lookup by this value. Defaults to 1, meaning that it assumes that this is the 2nd registered color for this wall.</param>
         </member>
+        <member name="M:AequusRemake.Core.Systems.TimeSystem.ConditionBetweenDaysOfWeek(System.DayOfWeek,System.DayOfWeek)">
+            <param name="firstDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:AequusRemake.Core.Systems.TimeSystem.DayOfTheWeek"/>.</param>
+            <param name="lastDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:AequusRemake.Core.Systems.TimeSystem.DayOfTheWeek"/>.</param>
+            <returns>A condition for a specific time range between two days of the week.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Systems.TimeSystem.ConditionByDayOfWeek(System.DayOfWeek)">
+            <param name="dayOfWeek">The <see cref="M:AequusRemake.Core.Systems.TimeSystem.GetWeekText(System.DayOfWeek)"/> to compare against <see cref="P:AequusRemake.Core.Systems.TimeSystem.DayOfTheWeek"/>.</param>
+            <returns>A condition for a specific day of the week.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Systems.TimeSystem.GetWeekText(System.DayOfWeek)">
+            <returns>Localized name of a <see cref="T:System.DayOfWeek"/> value.</returns>
+        </member>
         <member name="M:AequusRemake.Core.Audio.AudioEffects.PlayUnpanningAttenuationSound(Terraria.Audio.SoundStyle,Microsoft.Xna.Framework.Vector2,System.Single)">
             <summary>Plays a sound which does not pan, but will get quieter with distance.</summary>
         </member>
@@ -933,36 +912,45 @@
             <exception cref="T:System.NotSupportedException"></exception>
             <exception cref="T:System.InvalidOperationException"></exception>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendNPC.AddBossDrop(Terraria.ModLoader.NPCLoot,Terraria.GameContent.ItemDropRules.IItemDropRule,System.Boolean)">
+        <member name="M:AequusRemake.Core.Util.ExtendNPC.AddBossDrop(Terraria.ModLoader.NPCLoot,Terraria.GameContent.ItemDropRules.IItemDropRule,System.Boolean)">
             <summary>Adds <paramref name="entry"/> to <paramref name="npcLoot"/>, and its boss bag.</summary>
             <param name="npcLoot"></param>
             <param name="entry"></param>
             <param name="throwError">Whether or not to throw an error if a Treasure Bag does not exist. Defaults to true.</param>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendNPC.AddToBossBag(Terraria.ModLoader.NPCLoot,Terraria.GameContent.ItemDropRules.IItemDropRule,System.Boolean)">
+        <member name="M:AequusRemake.Core.Util.ExtendNPC.AddToBossBag(Terraria.ModLoader.NPCLoot,Terraria.GameContent.ItemDropRules.IItemDropRule,System.Boolean)">
             <summary>Adds <paramref name="entry"/> to <paramref name="npcLoot"/>'s boss bag. Throws errors if a boss bag doesn't exist.</summary>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendNPC.UpdateShimmerReflection(Terraria.NPC)">
+        <member name="M:AequusRemake.Core.Util.ExtendNPC.NewGore(Terraria.NPC,AequusRemake.Core.Assets.RequestCache{Microsoft.Xna.Framework.Graphics.Texture2D},Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Terraria.DataStructures.IEntitySource,System.Single)">
+            <summary><inheritdoc cref="M:AequusRemake.Core.Util.Helpers.GoreTool.NewGore(AequusRemake.Core.Assets.RequestCache{Microsoft.Xna.Framework.Graphics.Texture2D},Terraria.DataStructures.IEntitySource,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single)"/></summary>
+            <param name="npc"></param>
+            <param name="Texture">The Gore texture. (Must be located in a "Gore/" directory)</param>
+            <param name="Position">The Position to spawn the gore.</param>
+            <param name="Velocity">The Velocity to spawn the gore.</param>
+            <param name="Source">The Source of the gore, if null, defaults to <see cref="M:Terraria.Entity.GetSource_FromThis(System.String)"/>.</param>
+            <param name="Scale">The Scale of the gore.</param>
+        </member>
+        <member name="M:AequusRemake.Core.Util.ExtendNPC.UpdateShimmerReflection(Terraria.NPC)">
             <summary>Helper method which reflects an NPC against shimmer.</summary>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendNPC.SyncNPC(Terraria.NPC)">
+        <member name="M:AequusRemake.Core.Util.ExtendNPC.SyncNPC(Terraria.NPC)">
             <summary>Manually sends a <see cref="F:Terraria.ID.MessageID.SyncNPC"/> packet to sync this NPC.</summary>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendNPC.TryRetargeting(Terraria.NPC,System.Boolean)">
+        <member name="M:AequusRemake.Core.Util.ExtendNPC.TryRetargeting(Terraria.NPC,System.Boolean)">
             <summary>Runs <see cref="M:Terraria.NPC.TargetClosest(System.Boolean)"/>, and returns <see cref="P:Terraria.NPC.HasValidTarget"/>.</summary>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendNPC.IsProbablyACritter(Terraria.NPC)">
+        <member name="M:AequusRemake.Core.Util.ExtendNPC.IsProbablyACritter(Terraria.NPC)">
             <returns>Whether or not this is most likely a critter, dependant on multiple checks of their stats and values in data sets.</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendNPC.DrawNPCStatusEffects(Microsoft.Xna.Framework.Graphics.SpriteBatch,Terraria.NPC,Microsoft.Xna.Framework.Vector2)">
+        <member name="M:AequusRemake.Core.Util.ExtendNPC.DrawNPCStatusEffects(Microsoft.Xna.Framework.Graphics.SpriteBatch,Terraria.NPC,Microsoft.Xna.Framework.Vector2)">
             <summary>Replicates the drawing of misc vanilla status effects. This is used to support these effects on NPCs with custom rendering.</summary>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendNPC.ClearBuff(Terraria.NPC,System.Int32)">
+        <member name="M:AequusRemake.Core.Util.ExtendNPC.ClearBuff(Terraria.NPC,System.Int32)">
             <summary>Clears a buff of the specified ID from this NPC.</summary>
             <param name="npc"></param>
             <param name="buffId">The Buff Id to clear from this NPC.</param>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.XProjectile.TryFindProjectileIdentity(System.Int32,System.Int32,System.Int32@)">
+        <member name="M:AequusRemake.Core.Util.XProjectile.TryFindProjectileIdentity(System.Int32,System.Int32,System.Int32@)">
             <summary>
             Attempts to find a projectile index using the identity and owner provided. Returns true if the projectile output is not -1.
             </summary>
@@ -971,7 +959,7 @@
             <param name="projectile"></param>
             <returns></returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.XProjectile.FindProjectileIdentity(System.Int32,System.Int32)">
+        <member name="M:AequusRemake.Core.Util.XProjectile.FindProjectileIdentity(System.Int32,System.Int32)">
             <summary>
             Attempts to find a projectile index using the identity and owner provided. Returns -1 otherwise.
             </summary>
@@ -979,71 +967,23 @@
             <param name="identity"></param>
             <returns></returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.XProjectile.UpdateShimmerReflection(Terraria.Projectile)">
+        <member name="M:AequusRemake.Core.Util.XProjectile.UpdateShimmerReflection(Terraria.Projectile)">
             <summary>Helper method which reflects a projectile against shimmer.</summary>
         </member>
-        <member name="T:AequusRemake.Core.Utilities.ChatTagWriter">
-            <summary>Contains helper methods for generating chat tag strings. For item and glyphs, <see cref="T:Terraria.GameContent.UI.Chat.ItemTagHandler"/> and <see cref="T:Terraria.GameContent.UI.Chat.GlyphTagHandler"/> have static helper methods.</summary>
-        </member>
-        <member name="F:AequusRemake.Core.Utilities.CommonColor.TextInteractable">
+        <member name="F:AequusRemake.Core.Util.CommonColor.TextInteractable">
             <summary>Yellow text used by Beds, Clocks, etc.</summary>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.DrawHelper.Quality(System.Int32,System.Int32)">
-            <summary><inheritdoc cref="M:AequusRemake.Core.Utilities.DrawHelper.Quality(System.Single,System.Single)"/></summary>
+        <member name="M:AequusRemake.Core.Util.DrawHelper.Quality(System.Int32,System.Int32)">
+            <summary><inheritdoc cref="M:AequusRemake.Core.Util.DrawHelper.Quality(System.Single,System.Single)"/></summary>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.DrawHelper.Quality(System.Single,System.Single)">
+        <member name="M:AequusRemake.Core.Util.DrawHelper.Quality(System.Single,System.Single)">
             <summary>Multiplies <paramref name="value"/> by <see cref="F:Terraria.Main.gfxQuality"/>, ensuring it is above <paramref name="min"/>.</summary>
             <returns></returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendArray.ClearReturn``1(FNAUtils.ArrayPool{``0},``0[])">
-            <summary>Clears <paramref name="rent"/> and returns it to <paramref name="pool"/>.</summary>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendArray.AddRangeSafe``1(``0[],``0[])">
-            <summary>Safely adds <paramref name="other"/>'s contents into <paramref name="array"/> by resizing and inserting the elements from <paramref name="other"/> into <paramref name="array"/>.</summary>
-            <returns>The combined array.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendArray.Copy``1(``0[])">
-            <returns>A new array with the same contents.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendArray.CreateArray``1(System.Func{System.Int32,``0},System.Int32)">
-            <returns>An array with the Length of <paramref name="length"/>, populated using <paramref name="dataFactory"/> where <see cref="T:System.Int32"/> is the index of the array being populated and <typeparamref name="T"/> is the value stored.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendArray.RemoveAt``1(``0[]@,System.Int32)">
-            <summary>Removes at <paramref name="index"/> and resizes <paramref name="arr"/> to fit.</summary>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendArray.Remove``1(``0[]@,``0)">
-            <summary>Removes <paramref name="value"/> from <paramref name="arr"/>, and resizes <paramref name="arr"/> to fit if necessary.</summary>
-            <returns>Whether anything was removed at all.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendChest.HasImportantItem(Terraria.Chest)">
-            <returns>Whether the chest contains any items within the <see cref="P:AequusRemake.DataSets.ItemDataSet.ImportantItem"/> set.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendChest.IsUnopened(System.Int32)">
-            <returns><inheritdoc cref="M:AequusRemake.Core.Utilities.ExtendChest.IsUnopened(Terraria.Chest)"/></returns>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendChest.IsUnopened(Terraria.Chest)">
-            <returns>Whether the chest contains <see cref="T:AequusRemake.Content.Chests.UnopenedChestItem"/>.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendCollision.GetFloor(Microsoft.Xna.Framework.Vector2,System.Int32,Microsoft.Xna.Framework.Vector2@,System.Boolean)">
-            <param name="startWorldPosition">The starting scan position.</param>
-            <param name="worldHeight">How far (in world coordinates) it should scan down. 16 world coordinates = 1 tile coordinate.</param>
-            <param name="floor">The resulting floor's position.</param>
-            <param name="acceptTopSurfaces">Whether or not to accept surfaces like Platforms, Tables, Planter Boxes, etc.</param>
-            <returns>Whether or not a solid floor was found.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendColor.MaxRGBA(Microsoft.Xna.Framework.Color,System.Byte)">
-            <returns><paramref name="color"/>, with its R,G,B,A Maxed to the specified <paramref name="amt"/>.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendColor.MaxRGBA(Microsoft.Xna.Framework.Color,System.Byte,System.Byte)">
-            <returns><paramref name="color"/>, with R,G,B Maxed to the specified <paramref name="amt"/>, and <see cref="P:Microsoft.Xna.Framework.Color.A"/> maxed to <paramref name="a"/>.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendColor.MaxRGBA(Microsoft.Xna.Framework.Color,System.Byte,System.Byte,System.Byte,System.Byte)">
-            <returns><paramref name="color"/>, with R,G,B,A Maxed to <paramref name="r"/>,<paramref name="g"/>,<paramref name="b"/>,<paramref name="a"/> accordingly.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendPlayer.HealBreath(Terraria.Player,System.Int32,System.Boolean)">
+        <member name="M:AequusRemake.Core.Util.ExtendPlayer.HealBreath(Terraria.Player,System.Int32,System.Boolean)">
             <summary>Restores player breath without going over <see cref="F:Terraria.Player.breathMax"/>.</summary>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendPlayer.SafelyAddDamageReduction(Terraria.Player,System.Single)">
+        <member name="M:AequusRemake.Core.Util.ExtendPlayer.SafelyAddDamageReduction(Terraria.Player,System.Single)">
             <summary>
             Adds <paramref name="damageReduction"/> to <see cref="F:Terraria.Player.endurance"/>, but the added DR gets multiplicatively weaker the higher the endurance stat is.
             (So adding 0.5 endurance to a player which has 0.75 endurance will grant (0.5 * (1 - 0.75)) 0.125 endurance.)
@@ -1052,14 +992,14 @@
             <param name="damageReduction">The damage reduction to add. The formula for the final endurance addition looks like this: (<paramref name="damageReduction"/> - <paramref name="damageReduction"/> * <see cref="F:Terraria.Player.endurance"/>)</param>
             <returns></returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendPlayer.CheckPickPower(Terraria.Player,Terraria.Item,System.Int32,System.Int32)">
+        <member name="M:AequusRemake.Core.Util.ExtendPlayer.CheckPickPower(Terraria.Player,Terraria.Item,System.Int32,System.Int32)">
             <param name="player">The player.</param>
             <param name="pickaxe">The pickaxe.</param>
             <param name="x">Tile X coordinate.</param>
             <param name="y">Tile Y coordinate.</param>
             <returns>Whether or not the player has enough pickaxe power to break this tile.</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendPlayer.GiveItem(Terraria.Player,Terraria.Item,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings)">
+        <member name="M:AequusRemake.Core.Util.ExtendPlayer.GiveItem(Terraria.Player,Terraria.Item,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings)">
             <summary>
             Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
             <para>Automatically syncs the item in multiplayer.</para>
@@ -1070,7 +1010,7 @@
             <param name="source">Item source.</param>
             <param name="getItemSettings">The Get Item settings.</param>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendPlayer.GiveItem(Terraria.Player,System.Int32,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings,System.Int32,System.Int32)">
+        <member name="M:AequusRemake.Core.Util.ExtendPlayer.GiveItem(Terraria.Player,System.Int32,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings,System.Int32,System.Int32)">
             <summary>
             Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
             <para>Automatically syncs the item in multiplayer.</para>
@@ -1083,7 +1023,7 @@
             <param name="source">Item source.</param>
             <param name="getItemSettings">The Get Item settings.</param>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendPlayer.GetPlayerFocusPosition(Terraria.Player)">
+        <member name="M:AequusRemake.Core.Util.ExtendPlayer.GetPlayerFocusPosition(Terraria.Player)">
             <summary>
             Gets the "Player Focus". This is by default the player's centre, but when using the Drone, this returns the drone's position.
             <para>This position is used to make Radon Fog disappear when approched by the player, or by their controlled drone.</para>
@@ -1092,7 +1032,7 @@
             <param name="player"></param>
             <returns></returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendPlayer.SpawnEnchantmentDusts(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Terraria.Player,System.Boolean)">
+        <member name="M:AequusRemake.Core.Util.ExtendPlayer.SpawnEnchantmentDusts(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Terraria.Player,System.Boolean)">
             <summary>
             Spawns Flask and other "Enchantment" dusts, like the Magma Stone flames.
             </summary>
@@ -1102,244 +1042,230 @@
             <param name="showMagmaStone"></param>
             <returns>A potential dust instance, if any spawn. If none spawn, the result will be null.</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendPlayer.WeirdNPCHitRestrictions(Terraria.NPC)">
+        <member name="M:AequusRemake.Core.Util.ExtendPlayer.WeirdNPCHitRestrictions(Terraria.NPC)">
             <summary>
             Checks weird damage restrictions for NPCs. This literally only checks for Fairies as of right now.
             </summary>
             <param name="npc"></param>
             <returns>Whether the enemy should be immune to this hit (true = Do not hit)</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendShop.FindNextIndex(Terraria.Item[])">
+        <member name="M:AequusRemake.Core.Util.ExtendShop.FindNextIndex(Terraria.Item[])">
             <summary>Finds the next null index in an item array. Items which are "Air" are empty slots which were added to not contain any items inside them.</summary>
             <param name="itemList">The shop's item list.</param>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Int32,Terraria.Condition[])">
+        <member name="M:AequusRemake.Core.Util.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Int32,Terraria.Condition[])">
             <summary>Adds an item with a custom value. (<paramref name="customValue"/>)</summary>
             <param name="shop"></param>
             <param name="itemType">The Item Id to add.</param>
             <param name="customValue">The custom value to assign.</param>
             <param name="conditions">Conditions for this item.</param>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendShop.AddCustomValue``1(Terraria.ModLoader.NPCShop,System.Int32,Terraria.Condition[])">
-            <summary><inheritdoc cref="M:AequusRemake.Core.Utilities.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Int32,Terraria.Condition[])"/></summary>
+        <member name="M:AequusRemake.Core.Util.ExtendShop.AddCustomValue``1(Terraria.ModLoader.NPCShop,System.Int32,Terraria.Condition[])">
+            <summary><inheritdoc cref="M:AequusRemake.Core.Util.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Int32,Terraria.Condition[])"/></summary>
             <typeparam name="T"></typeparam>
             <param name="shop"></param>
             <param name="customValue">The custom value to assign.</param>
             <param name="conditions">Conditions for this item.</param>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Double,Terraria.Condition[])">
-            <summary><inheritdoc cref="M:AequusRemake.Core.Utilities.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Int32,Terraria.Condition[])"/></summary>
+        <member name="M:AequusRemake.Core.Util.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Double,Terraria.Condition[])">
+            <summary><inheritdoc cref="M:AequusRemake.Core.Util.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Int32,Terraria.Condition[])"/></summary>
             <param name="itemType">The Item Id to add.</param>
             <param name="shop"></param>
             <param name="customValue">The custom value to assign.</param>
             <param name="conditions">Conditions for this item.</param>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendShop.AddCustomValue``1(Terraria.ModLoader.NPCShop,System.Double,Terraria.Condition[])">
-            <summary><inheritdoc cref="M:AequusRemake.Core.Utilities.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Int32,Terraria.Condition[])"/></summary>
+        <member name="M:AequusRemake.Core.Util.ExtendShop.AddCustomValue``1(Terraria.ModLoader.NPCShop,System.Double,Terraria.Condition[])">
+            <summary><inheritdoc cref="M:AequusRemake.Core.Util.ExtendShop.AddCustomValue(Terraria.ModLoader.NPCShop,System.Int32,System.Int32,Terraria.Condition[])"/></summary>
             <typeparam name="T"></typeparam>
             <param name="shop"></param>
             <param name="customValue">The custom value to assign.</param>
             <param name="conditions">Conditions for this item.</param>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendShop.AddCrossMod``1(Terraria.ModLoader.NPCShop,System.String,Terraria.Condition[])">
+        <member name="M:AequusRemake.Core.Util.ExtendShop.AddCrossMod``1(Terraria.ModLoader.NPCShop,System.String,Terraria.Condition[])">
             <summary>Attempts to add an item from another mod, if it exists and that mod is loaded.</summary>
             <typeparam name="T">The Mod.</typeparam>
             <param name="shop"></param>
             <param name="itemName">The internal name of the item.</param>
             <param name="conditions">Conditions for this item.</param>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendEnumerable.Match``1(System.Collections.Generic.IEnumerable{``0},``0)">
-            <summary>Forces an Enumeration.</summary>
-            <returns>Whether an instance of <paramref name="en2"/> is in <paramref name="en"/>.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendGore.NewGore(AequusRemake.Core.Assets.RequestCache{Microsoft.Xna.Framework.Graphics.Texture2D},Terraria.DataStructures.IEntitySource,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single)">
-            <summary>Spawns gore using a Texture. Removes the need for using silent string literals for getting gores.</summary>
-            <param name="Texture">The Gore texture. (Must be located in a "Gore/" directory)</param>
-            <param name="Source">The Source of the gore.</param>
-            <param name="Position">The Position to spawn the gore.</param>
-            <param name="Velocity">The Velocity to spawn the gore.</param>
-            <param name="Scale">The Scale of the gore.</param>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendGore.NewGore(Terraria.NPC,AequusRemake.Core.Assets.RequestCache{Microsoft.Xna.Framework.Graphics.Texture2D},Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Terraria.DataStructures.IEntitySource,System.Single)">
-            <summary><inheritdoc cref="M:AequusRemake.Core.Utilities.ExtendGore.NewGore(AequusRemake.Core.Assets.RequestCache{Microsoft.Xna.Framework.Graphics.Texture2D},Terraria.DataStructures.IEntitySource,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single)"/></summary>
-            <param name="npc"></param>
-            <param name="Texture">The Gore texture. (Must be located in a "Gore/" directory)</param>
-            <param name="Position">The Position to spawn the gore.</param>
-            <param name="Velocity">The Velocity to spawn the gore.</param>
-            <param name="Source">The Source of the gore, if null, defaults to <see cref="M:Terraria.Entity.GetSource_FromThis(System.String)"/>.</param>
-            <param name="Scale">The Scale of the gore.</param>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendItem.GetAllOverridesOfItemId(System.Int32)">
+        <member name="M:AequusRemake.Core.Util.ExtendItem.GetAllOverridesOfItemId(System.Int32)">
             <summary>Returns all 'Overrides' of a specified item. (<see cref="F:Terraria.ID.ContentSamples.CreativeResearchItemPersistentIdOverride"/>)</summary>
             <param name="itemId"></param>
             <returns></returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendItem.Transform(Terraria.Item,System.Int32)">
+        <member name="M:AequusRemake.Core.Util.ExtendItem.Transform(Terraria.Item,System.Int32)">
             <summary>Attempts to transform an item into a different item id, while preserving its positon, prefix, and stack</summary>
             <param name="item"></param>
             <param name="newType"></param>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendItem.WorldDrawPos(Terraria.Item,Microsoft.Xna.Framework.Rectangle)">
+        <member name="M:AequusRemake.Core.Util.ExtendItem.WorldDrawPos(Terraria.Item,Microsoft.Xna.Framework.Rectangle)">
             <param name="item"></param>
             <param name="frame"></param>
             <returns>Vanilla-based method for calculating the draw position for an item in the world.</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendItem.StaticDefaultsToPotion(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])">
+        <member name="M:AequusRemake.Core.Util.ExtendItem.StaticDefaultsToPotion(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])">
             <summary>Registers this item as a drink (Potion).</summary>
             <param name="modItem"></param>
             <param name="colors">Particle Colors for when this potion is consumed.</param>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendItem.StaticDefaultsToFoodDrink(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])">
-            <summary>Registers this item as a drink. The difference between this and <see cref="M:AequusRemake.Core.Utilities.ExtendItem.StaticDefaultsToPotion(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])"/> is that drinks have held sprites.</summary>
+        <member name="M:AequusRemake.Core.Util.ExtendItem.StaticDefaultsToFoodDrink(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])">
+            <summary>Registers this item as a drink. The difference between this and <see cref="M:AequusRemake.Core.Util.ExtendItem.StaticDefaultsToPotion(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])"/> is that drinks have held sprites.</summary>
             <param name="modItem"></param>
             <param name="colors">Particle Colors for when this drink is consumed.</param>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendItem.StaticDefaultsToFood(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])">
+        <member name="M:AequusRemake.Core.Util.ExtendItem.StaticDefaultsToFood(Terraria.ModLoader.ModItem,Microsoft.Xna.Framework.Color[])">
             <summary>Registers this item as a food.</summary>
             <param name="modItem"></param>
             <param name="colors">Particle Colors for when this food is eaten.</param>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendLight.GetLightBrightness(Microsoft.Xna.Framework.Vector3)">
-            <param name="rgb">The RGB.</param>
-            <returns>Gets the Brightness of a Light Vector. (The largest X,Y,Z value.)</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendLight.ApplyLightBrightness(Microsoft.Xna.Framework.Vector3,System.Single)">
-            <param name="rgb">The RGB.</param>
-            <param name="lightPower">The Light Magnitude</param>
-            <returns>Gets a Light Vector with a specified Light Magnitude. (Light Power)</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendLight.GetBrightestLight(Microsoft.Xna.Framework.Point,System.Int32)">
-            <param name="tilePosition">The Center tile coordinates.</param>
-            <param name="tilesSize">The size, in tiles, this is divided by 2 for some dumb reason.</param>
-            <returns>The brightest light found within the specified area.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendLight.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>Gets the mean of light surrounding a point.</summary>
-            <param name="x">The top left tile X</param>
-            <param name="y">The top left tile Y</param>
-            <param name="width">The width in tiles</param>
-            <param name="height">The width in tiles</param>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendLight.GetLightingSection(Microsoft.Xna.Framework.Point,System.Int32)">
-            <summary><inheritdoc cref="M:AequusRemake.Core.Utilities.ExtendLight.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)"/></summary>
-            <param name="tilePosition">The tile top left position.</param>
-            <param name="tilesSize">The size in tile coordinates</param>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendLight.GetLightingSection(System.Int32,System.Int32,System.Int32)">
-            <summary><inheritdoc cref="M:AequusRemake.Core.Utilities.ExtendLight.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)"/></summary>
-            <param name="x">The top left tile X</param>
-            <param name="y">The top left tile Y</param>
-            <param name="tilesSize">The size in tile coordinates</param>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendLight.Get(Microsoft.Xna.Framework.Vector2)">
-            <param name="worldCoordinates">The World coordinates.</param>
-            <returns>The Light Color at a specified world coordinate.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendLight.Get(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)">
-            <param name="worldCoordinates">The World coordinates.</param>
-            <returns>The Light Color at a specified world coordinate.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendLoot.GetDropAttemptInfo(Terraria.NPC,Terraria.Player,Terraria.Utilities.UnifiedRandom)">
+        <member name="M:AequusRemake.Core.Util.ExtendLoot.GetDropAttemptInfo(Terraria.NPC,Terraria.Player,Terraria.Utilities.UnifiedRandom)">
             <param name="npc"></param>
             <param name="player"></param>
             <param name="rng">RNG Override. Defaults to <see cref="P:Terraria.Main.rand"/> when null.</param>
             <returns>A <see cref="T:Terraria.GameContent.ItemDropRules.DropAttemptInfo"/> value for the current NPC.</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendLoot.InheritDropRules(System.Int32,System.Int32,Terraria.GameContent.ItemDropRules.ItemDropDatabase)">
+        <member name="M:AequusRemake.Core.Util.ExtendLoot.InheritDropRules(System.Int32,System.Int32,Terraria.GameContent.ItemDropRules.ItemDropDatabase)">
             <summary>Inherits all of the Drop Rules from a specified NPC Id. (<paramref name="parentNPCId"/>)</summary>
             <param name="parentNPCId">The NPC Id to take the Drop Rules from.</param>
             <param name="childNPCId">The NPC Id to give the Drop Rules to.</param>
             <param name="database">Database instance. Set to null to use <see cref="F:Terraria.Main.ItemDropsDB"/>.</param>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendLoot.GetNPCLoot(System.Int32,Terraria.GameContent.ItemDropRules.ItemDropDatabase)">
+        <member name="M:AequusRemake.Core.Util.ExtendLoot.GetNPCLoot(System.Int32,Terraria.GameContent.ItemDropRules.ItemDropDatabase)">
             <summary>Gets an <see cref="T:Terraria.ModLoader.NPCLoot"/> from an NPC Id.</summary>
             <param name="npcId">The NPC Id.</param>
             <param name="database">Database instance. Set to null to use <see cref="F:Terraria.Main.ItemDropsDB"/>.</param>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendLoot.GetDropRules(System.Int32,Terraria.GameContent.ItemDropRules.ItemDropDatabase)">
+        <member name="M:AequusRemake.Core.Util.ExtendLoot.GetDropRules(System.Int32,Terraria.GameContent.ItemDropRules.ItemDropDatabase)">
             <summary>Gets Drop Rules registered to the specified NPC Id.</summary>
             <param name="npcId">The NPC Id.</param>
             <param name="database">Database instance. Set to null to use <see cref="F:Terraria.Main.ItemDropsDB"/>.</param>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendRecipe.ForEachRecipe(System.Func{Terraria.Recipe,System.Boolean})">
-            <summary></summary>
-            <param name="action">Return <see langword="false"/> to stop looping over recipes.</param>
+        <member name="M:AequusRemake.Core.Util.ExtendUI.Activate(AequusRemake.Core.GUI.IUserInterfaceLayer)">
+            <summary>Activates the UI Layer.</summary>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendRecipe.NotDisabledAndConditionsMet(Terraria.Recipe)">
+        <member name="M:AequusRemake.Core.Util.ExtendUI.Deactivate(AequusRemake.Core.GUI.IUserInterfaceLayer)">
+            <summary>Deactivates the UI Layer. This does not instantly remove the layer, instead it will be removed on the next ui update.</summary>
+        </member>
+        <member name="M:AequusRemake.Core.Util.ExtendUI.InventoryDrawCentered(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Draws something with its position set to the center of the inventory slot.
+            Only use in Pre/PostDraw hooks for items.
+            </summary>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Extensions.ArrayExtensions.NewClone``1(``0[])">
+            <returns>A new array with the same contents.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Extensions.ArrayExtensions.RemoveAt``1(``0[]@,System.Int32)">
+            <summary>Removes at <paramref name="index"/> and resizes <paramref name="arr"/> to fit.</summary>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Extensions.ArrayExtensions.Remove``1(``0[]@,``0)">
+            <summary>Removes <paramref name="value"/> from <paramref name="arr"/>, and resizes <paramref name="arr"/> to fit if necessary.</summary>
+            <returns>Whether anything was removed at all.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Extensions.ArrayPoolExtensions.ClearReturn``1(FNAUtils.ArrayPool{``0},``0[])">
+            <summary>Clears <paramref name="rent"/> and returns it to <paramref name="pool"/>.</summary>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Extensions.ChestExtensions.HasImportantItem(Terraria.Chest)">
+            <returns>Whether the chest contains any items within the <see cref="P:AequusRemake.DataSets.ItemDataSet.ImportantItem"/> set.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Extensions.ChestExtensions.IsUnopened(Terraria.Chest)">
+            <returns>Whether the chest contains <see cref="T:AequusRemake.Content.Chests.UnopenedChestItem"/>.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Extensions.ColorExtensions.MaxRGBA(Microsoft.Xna.Framework.Color,System.Byte)">
+            <returns><paramref name="color"/>, with its R,G,B,A Maxed to the specified <paramref name="amt"/>.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Extensions.ColorExtensions.MaxRGBA(Microsoft.Xna.Framework.Color,System.Byte,System.Byte)">
+            <returns><paramref name="color"/>, with R,G,B Maxed to the specified <paramref name="amt"/>, and <see cref="P:Microsoft.Xna.Framework.Color.A"/> maxed to <paramref name="a"/>.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Extensions.ColorExtensions.MaxRGBA(Microsoft.Xna.Framework.Color,System.Byte,System.Byte,System.Byte,System.Byte)">
+            <returns><paramref name="color"/>, with R,G,B,A Maxed to <paramref name="r"/>,<paramref name="g"/>,<paramref name="b"/>,<paramref name="a"/> accordingly.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Extensions.EnumerableExtensions.AllocLookup``1(``0[],System.Boolean)">
+            <summary>Allocates a lookup table for values->index for the <paramref name="array"/>. This is useful for creating reverse lookups for datasets.</summary>
+            <param name="array">The Array.</param>
+            <param name="throwOnDuplicates">Whether or not to throw an error if any duplicate values are found. If this is false, the lookup will point to the last duplicate value found in the array.</param>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Extensions.EnumerableExtensions.Match``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>Forces an Enumeration.</summary>
+            <returns>Whether an instance of <paramref name="en2"/> is in <paramref name="en"/>.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Extensions.RecipeExtensions.NotDisabledAndConditionsMet(Terraria.Recipe)">
             <returns><see langword="true"/>, if the recipe is not disabled, and conditions have been met. Otherwise <see langword="false"/>.</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendRecipe.FindIngredient(Terraria.Recipe,System.Int32)">
+        <member name="M:AequusRemake.Core.Util.Extensions.RecipeExtensions.FindIngredient(Terraria.Recipe,System.Int32)">
             <summary>Finds an ingredient of a specified type in the recipe.</summary>
             <param name="recipe"></param>
             <param name="itemID">The Item Id to search for.</param>
             <returns>An Item instance if it was found in the recipe. Otherwise <see langword="null"/>.</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendRecipe.TryFindIngredient(Terraria.Recipe,System.Int32,Terraria.Item@)">
-            <summary><inheritdoc cref="M:AequusRemake.Core.Utilities.ExtendRecipe.FindIngredient(Terraria.Recipe,System.Int32)"/></summary>
+        <member name="M:AequusRemake.Core.Util.Extensions.RecipeExtensions.TryFindIngredient(Terraria.Recipe,System.Int32,Terraria.Item@)">
+            <summary><inheritdoc cref="M:AequusRemake.Core.Util.Extensions.RecipeExtensions.FindIngredient(Terraria.Recipe,System.Int32)"/></summary>
             <param name="recipe"></param>
             <param name="itemID">The Item Id to search for.</param>
             <param name="result">The Item instance.</param>
             <returns><see langword="true"/>, if the Item was found in the recipe. Otherwise <see langword="false"/>.</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendRecipe.ReplaceItem(Terraria.Recipe,System.Int32,System.Int32,System.Int32)">
+        <member name="M:AequusRemake.Core.Util.Extensions.RecipeExtensions.ReplaceItem(Terraria.Recipe,System.Int32,System.Int32,System.Int32)">
             <summary>Replaces an item of a specified id with another item of a specified id.</summary>
             <param name="recipe"></param>
             <param name="oldItem">The Item Id to be replaced by <paramref name="newItem"/>.</param>
             <param name="newItem">The Item Id to replace <paramref name="oldItem"/> with.</param>
             <param name="newItemStack">Stack override for <paramref name="newItem"/>. A value of -1 will keep the stack of <paramref name="oldItem"/></param>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendSound.ModPath(Terraria.Audio.SoundStyle)">
+        <member name="M:AequusRemake.Core.Util.Extensions.ReflectionExtensions.GetConstantFields(System.Object,System.Reflection.BindingFlags)">
+            <returns>Returns all constant fields from <paramref name="obj"/>'s <see cref="T:System.Type"/>.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Extensions.ReflectionExtensions.GetConstantFields(System.Type,System.Reflection.BindingFlags)">
+            <returns>Returns all constant fields from <paramref name="type"/>.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Extensions.SoundStyleExtensions.ModPath(Terraria.Audio.SoundStyle)">
             <returns>The Sound's path with the first directory removed.</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendTooltips.AddTooltip(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine},Terraria.ModLoader.TooltipLine)">
+        <member name="M:AequusRemake.Core.Util.Extensions.TooltipExtensions.AddTooltip(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine},Terraria.ModLoader.TooltipLine)">
             <summary>Inserts a new tooltip line to the end of the item's tooltip.</summary>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendTooltips.GetIndex(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine},System.String,System.Int32)">
+        <member name="M:AequusRemake.Core.Util.Extensions.TooltipExtensions.GetIndex(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine},System.String,System.Int32)">
             <summary>
             Attempts to find a suitable index to insert a tooltip using a pre-baked list of tooltip line names.
             </summary>
             <param name="tooltips"></param>
-            <param name="lineName">The line's name, make sure this matches one of the entries in <see cref="F:AequusRemake.Core.Utilities.ExtendTooltips.VanillaTooltipNames"/></param>
+            <param name="lineName">The line's name, make sure this matches one of the entries in <see cref="!:VanillaTooltipNames"/></param>
             <param name="resultOffset">A flat offset to the line result.</param>
             <returns>The best index to insert a new line into.</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendTooltips.Find(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine},System.String)">
+        <member name="M:AequusRemake.Core.Util.Extensions.TooltipExtensions.Find(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine},System.String)">
             <returns>The <see cref="T:Terraria.ModLoader.TooltipLine"/> with a specified name. (And is marked as "Terraria")</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendTooltips.ItemName(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})">
+        <member name="M:AequusRemake.Core.Util.Extensions.TooltipExtensions.ItemName(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})">
             <returns>The <see cref="T:Terraria.ModLoader.TooltipLine"/> for an Item's name.</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendTooltips.RemoveKnockback(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})">
+        <member name="M:AequusRemake.Core.Util.Extensions.TooltipExtensions.RemoveKnockback(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})">
             <summary>Removes the "Knockback" tooltip line, if it exists.</summary>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendTooltips.RemoveCritChance(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})">
+        <member name="M:AequusRemake.Core.Util.Extensions.TooltipExtensions.RemoveCritChance(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})">
             <summary>Removes the "CritChance" tooltip line, if it exists.</summary>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendTooltips.RemoveCritChanceModifier(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})">
+        <member name="M:AequusRemake.Core.Util.Extensions.TooltipExtensions.RemoveCritChanceModifier(System.Collections.Generic.List{Terraria.ModLoader.TooltipLine})">
             <summary>Removes the "PrefixCritChance" tooltip line, if it exists.</summary>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendUI.Activate(AequusRemake.Core.UI.IUserInterfaceLayer)">
-            <summary>Activates the UI Layer.</summary>
+        <member name="M:AequusRemake.Core.Util.Extensions.RecipeTools.ForEach(System.Func{Terraria.Recipe,System.Boolean})">
+            <summary>Safely iterates over all valid recipes.</summary>
+            <param name="action">Return <see langword="false"/> to stop looping over recipes.</param>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendUI.Deactivate(AequusRemake.Core.UI.IUserInterfaceLayer)">
-            <summary>Deactivates the UI Layer. This does not instantly remove the layer, instead it will be removed on the next ui update.</summary>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ExtendUI.InventoryDrawCentered(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2)">
-            <summary>
-            Draws something with its position set to the center of the inventory slot.
-            Only use in Pre/PostDraw hooks for items.
-            </summary>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.Helper.WriteLiteral(System.IO.BinaryWriter,System.String,System.Text.Encoding)">
+        <member name="M:AequusRemake.Core.Util.Helper.WriteLiteral(System.IO.BinaryWriter,System.String,System.Text.Encoding)">
             <summary>Writes a string with no prefix or suffix to indicate length.</summary>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.Helper.UnNaN(System.Single)">
+        <member name="M:AequusRemake.Core.Util.Helper.UnNaN(System.Single)">
             <returns>Returns 0f if <see cref="M:System.Single.IsNaN(System.Single)"/> returns true for <paramref name="value"/>.</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.Helper.UnNaN(Microsoft.Xna.Framework.Vector2)">
+        <member name="M:AequusRemake.Core.Util.Helper.UnNaN(Microsoft.Xna.Framework.Vector2)">
             <returns><paramref name="value"/> but replaces <see cref="F:Microsoft.Xna.Framework.Vector2.X"/> or <see cref="F:Microsoft.Xna.Framework.Vector2.Y"/> with <c>0f</c> if <see cref="M:System.Single.IsNaN(System.Single)"/> is true for their values.</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.Helper.MultiplyAboveMin(System.Single,System.Single,System.Single)">
+        <member name="M:AequusRemake.Core.Util.Helper.MultiplyAboveMin(System.Single,System.Single,System.Single)">
             <summary>
             Subtracts <paramref name="minThreshold"/> from <paramref name="value"/>, then multiplies the result by <paramref name="scaleMultiplier"/>, finally re-adding <paramref name="minThreshold"/> back.
             </summary>
@@ -1348,13 +1274,13 @@
             <param name="scaleMultiplier"></param>
             <returns></returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.Helper.ToIntUsingRNGForDecimals(System.Single,Terraria.Utilities.UnifiedRandom)">
+        <member name="M:AequusRemake.Core.Util.Helper.ToIntUsingRNGForDecimals(System.Single,Terraria.Utilities.UnifiedRandom)">
             <summary>Converts <paramref name="value"/> to an int. And uses RNG to determine if value should be +1 higher depending on the remaining decimal number. For example, 10.5 has a 50% chance to return either 10 or 11, since the remaining decimal value gives it a 50% chance to be +1 higher.</summary>
             <param name="value"></param>
             <param name="random"></param>
             <returns></returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.Helper.RandomTileCoordinates(System.Int32,System.Int32)">
+        <member name="M:AequusRemake.Core.Util.Helper.RandomTileCoordinates(System.Int32,System.Int32)">
             <summary>
             Gets a consistent <see cref="T:Terraria.Utilities.FastRandom"/> for these tile coordinates.
             </summary>
@@ -1362,31 +1288,14 @@
             <param name="j"></param>
             <returns></returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.HookManager.ApplyAndCacheHook(System.Type,System.Type,System.String,System.Reflection.BindingFlags,System.Reflection.BindingFlags)">
-            <summary><inheritdoc cref="M:AequusRemake.Core.Utilities.HookManager.ApplyAndCacheHook(System.Reflection.MethodInfo,System.Reflection.MethodInfo)"/></summary>
-            <exception cref="T:System.MissingMethodException"></exception>
+        <member name="M:AequusRemake.Core.Util.Helpers.ArrayHelper.PopulateNewArray``1(System.Func{System.Int32,``0},System.Int32)">
+            <returns>An array with the Length of <paramref name="length"/>, populated using <paramref name="dataFactory"/> where <see cref="T:System.Int32"/> is the index of the array being populated and <typeparamref name="T"/> is the value stored.</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.HookManager.ApplyAndCacheHook(System.Reflection.MethodInfo,System.Reflection.MethodInfo)">
-            <summary>Applies a hook to a method, and caches it to prevent it from unloading.</summary>
-            <param name="source"></param>
-            <param name="target"></param>
-            <returns></returns>
+        <member name="M:AequusRemake.Core.Util.Helpers.ArrayHelper.AddRangeSafe``1(``0[],``0[])">
+            <summary>Safely adds <paramref name="other"/>'s contents into <paramref name="array"/> by resizing and inserting the elements from <paramref name="other"/> into <paramref name="array"/>.</summary>
+            <returns>The combined array.</returns>
         </member>
-        <member name="F:AequusRemake.Core.Utilities.IDCommons`1.Count">
-            <summary>The vanilla count.</summary>
-        </member>
-        <member name="F:AequusRemake.Core.Utilities.IDCommons`1.StartCount">
-            <summary>The starting Id. This is usually 0, but in some cases like <see cref="T:Terraria.ID.NPCID"/> it will be equal to <see cref="F:Terraria.ID.NPCID.NegativeIDCount"/>.</summary>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ReflectionHelper.GetConstantFields(System.Object,System.Reflection.BindingFlags)">
-            <returns>Returns all constant fields from <paramref name="obj"/>'s <see cref="T:System.Type"/>.</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.ReflectionHelper.GetConstantFields(System.Type,System.Reflection.BindingFlags)">
-            <returns>Returns all constant fields from <paramref name="type"/>.</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.TextBroadcast.NewText(System.String,Microsoft.Xna.Framework.Color,System.Object[])">
+        <member name="M:AequusRemake.Core.Util.Helpers.ChatBroadcastTool.New(System.String,Microsoft.Xna.Framework.Color,System.Object[])">
             <summary>
             Broadcasts a message. Only does something when <see cref="F:Terraria.Main.netMode"/> is not equal to <see cref="F:Terraria.ID.NetmodeID.MultiplayerClient"/>.
             </summary>
@@ -1394,24 +1303,107 @@
             <param name="color"></param>
             <param name="args"></param>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.TextBroadcast.NewText(System.String,Microsoft.Xna.Framework.Color)">
+        <member name="M:AequusRemake.Core.Util.Helpers.ChatBroadcastTool.New(System.String,Microsoft.Xna.Framework.Color)">
             <summary>
             Broadcasts a language key.
             </summary>
             <param name="text"></param>
             <param name="color"></param>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.TextBroadcast.NewTextLiteral(System.String,Microsoft.Xna.Framework.Color)">
+        <member name="M:AequusRemake.Core.Util.Helpers.ChatBroadcastTool.NewLiteral(System.String,Microsoft.Xna.Framework.Color)">
             <summary>
             Broadcasts a literal key.
             </summary>
             <param name="text"></param>
             <param name="color"></param>
         </member>
-        <member name="T:AequusRemake.Core.Utilities.TextureRedirect">
+        <member name="M:AequusRemake.Core.Util.Helpers.CollisionTools.GetFloor(Microsoft.Xna.Framework.Vector2,System.Int32,Microsoft.Xna.Framework.Vector2@,System.Boolean)">
+            <param name="startWorldPosition">The starting scan position.</param>
+            <param name="worldHeight">How far (in world coordinates) it should scan down. 16 world coordinates = 1 tile coordinate.</param>
+            <param name="floor">The resulting floor's position.</param>
+            <param name="acceptTopSurfaces">Whether or not to accept surfaces like Platforms, Tables, Planter Boxes, etc.</param>
+            <returns>Whether or not a solid floor was found.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Helpers.Cull.ClipIJ(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <returns>Whether a tile is in a screen clipping zone.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Helpers.GoreTool.NewGore(AequusRemake.Core.Assets.RequestCache{Microsoft.Xna.Framework.Graphics.Texture2D},Terraria.DataStructures.IEntitySource,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single)">
+            <summary>Spawns gore using a Texture. Removes the need for using silent string literals for getting gores.</summary>
+            <param name="Texture">The Gore texture. (Must be located in a "Gore/" directory)</param>
+            <param name="Source">The Source of the gore.</param>
+            <param name="Position">The Position to spawn the gore.</param>
+            <param name="Velocity">The Velocity to spawn the gore.</param>
+            <param name="Scale">The Scale of the gore.</param>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Helpers.IdDictHelper.GetItemName(System.Int32)">
+            <param name="Type"></param>
+            <returns>The internal name of an Item of <paramref name="Type"/>.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Helpers.IdDictHelper.GetNPCName(System.Int32)">
+            <param name="Type"></param>
+            <returns>The internal name of an NPC of <paramref name="Type"/>.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Helpers.LightingHelper.GetLightBrightness(Microsoft.Xna.Framework.Vector3)">
+            <param name="rgb">The RGB.</param>
+            <returns>Gets the Brightness of a Light Vector. (The largest X,Y,Z value.)</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Helpers.LightingHelper.ApplyLightBrightness(Microsoft.Xna.Framework.Vector3,System.Single)">
+            <param name="rgb">The RGB.</param>
+            <param name="lightPower">The Light Magnitude</param>
+            <returns>Gets a Light Vector with a specified Light Magnitude. (Light Power)</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Helpers.LightingHelper.GetBrightestLight(Microsoft.Xna.Framework.Point,System.Int32)">
+            <param name="tilePosition">The Center tile coordinates.</param>
+            <param name="tilesSize">The size, in tiles, this is divided by 2 for some dumb reason.</param>
+            <returns>The brightest light found within the specified area.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Helpers.LightingHelper.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>Gets the mean of light surrounding a point.</summary>
+            <param name="x">The top left tile X</param>
+            <param name="y">The top left tile Y</param>
+            <param name="width">The width in tiles</param>
+            <param name="height">The width in tiles</param>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Helpers.LightingHelper.GetLightingSection(Microsoft.Xna.Framework.Point,System.Int32)">
+            <summary><inheritdoc cref="M:AequusRemake.Core.Util.Helpers.LightingHelper.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)"/></summary>
+            <param name="tilePosition">The tile top left position.</param>
+            <param name="tilesSize">The size in tile coordinates</param>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Helpers.LightingHelper.GetLightingSection(System.Int32,System.Int32,System.Int32)">
+            <summary><inheritdoc cref="M:AequusRemake.Core.Util.Helpers.LightingHelper.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)"/></summary>
+            <param name="x">The top left tile X</param>
+            <param name="y">The top left tile Y</param>
+            <param name="tilesSize">The size in tile coordinates</param>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Helpers.LightingHelper.Get(Microsoft.Xna.Framework.Vector2)">
+            <returns>The Light Color at a specified world coordinate.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Helpers.LightingHelper.Get(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)">
+            <returns>The Light Color at a specified world coordinate.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Helpers.ReflectionTools.GetDefaultValue(System.Type)">
+            <summary>If the type represents a value type (struct), returns a blank instance of the value type. Otherwise returns null.</summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.Helpers.TooltipServices.GetIndex(System.String)">
+            <summary>Attempts to get the index of the tooltip which matches <paramref name="name"/>.</summary>
+            <param name="name">The name of the tooltip line.</param>
+            <returns>-1 if there is no match.</returns>
+        </member>
+        <member name="T:AequusRemake.Core.Util.ColorTagProvider">
+            <summary>Contains helper methods for generating chat tag strings. For item and glyphs, <see cref="T:Terraria.GameContent.UI.Chat.ItemTagHandler"/> and <see cref="T:Terraria.GameContent.UI.Chat.GlyphTagHandler"/> have static helper methods.</summary>
+        </member>
+        <member name="F:AequusRemake.Core.Util.IDCommons`1.Count">
+            <summary>The vanilla count.</summary>
+        </member>
+        <member name="F:AequusRemake.Core.Util.IDCommons`1.StartCount">
+            <summary>The starting Id. This is usually 0, but in some cases like <see cref="T:Terraria.ID.NPCID"/> it will be equal to <see cref="F:Terraria.ID.NPCID.NegativeIDCount"/>.</summary>
+        </member>
+        <member name="T:AequusRemake.Core.Util.TextureRedirect">
             <summary>Lazy shorthand workaround for utilizing fields found in <see cref="T:Terraria.GameContent.TextureAssets"/>.</summary>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.TileHelper.WallColor(System.Int32,System.Int32,Terraria.Tile)">
+        <member name="M:AequusRemake.Core.Util.TileHelper.WallColor(System.Int32,System.Int32,Terraria.Tile)">
             <param name="i">The X light sampling coordinate.</param>
             <param name="j">The Y light sampling coordinate.</param>
             <param name="tile">The tile.</param>
@@ -1427,10 +1419,10 @@
             </list>
             </returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.TileHelper.WallColor(System.Int32,System.Int32)">
-            <returns><inheritdoc cref="M:AequusRemake.Core.Utilities.TileHelper.WallColor(System.Int32,System.Int32,Terraria.Tile)"/></returns>
+        <member name="M:AequusRemake.Core.Util.TileHelper.WallColor(System.Int32,System.Int32)">
+            <returns><inheritdoc cref="M:AequusRemake.Core.Util.TileHelper.WallColor(System.Int32,System.Int32,Terraria.Tile)"/></returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.TileHelper.TileColor(System.Int32,System.Int32,Terraria.Tile)">
+        <member name="M:AequusRemake.Core.Util.TileHelper.TileColor(System.Int32,System.Int32,Terraria.Tile)">
             <param name="i">The X light sampling coordinate.</param>
             <param name="j">The Y light sampling coordinate.</param>
             <param name="tile">The tile.</param>
@@ -1446,16 +1438,16 @@
             </list>
             </returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.TileHelper.TileColor(System.Int32,System.Int32)">
-            <returns><inheritdoc cref="M:AequusRemake.Core.Utilities.TileHelper.TileColor(System.Int32,System.Int32,Terraria.Tile)"/></returns>
+        <member name="M:AequusRemake.Core.Util.TileHelper.TileColor(System.Int32,System.Int32)">
+            <returns><inheritdoc cref="M:AequusRemake.Core.Util.TileHelper.TileColor(System.Int32,System.Int32,Terraria.Tile)"/></returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.TileHelper.GetWaterLine(System.Int32,System.Int32)">
+        <member name="M:AequusRemake.Core.Util.TileHelper.GetWaterLine(System.Int32,System.Int32)">
             <returns>The water line in World Coordinates.</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.TileHelper.GetWaterLine(Microsoft.Xna.Framework.Point)">
-            <returns><inheritdoc cref="M:AequusRemake.Core.Utilities.TileHelper.GetWaterLine(System.Int32,System.Int32)"/></returns>
+        <member name="M:AequusRemake.Core.Util.TileHelper.GetWaterLine(Microsoft.Xna.Framework.Point)">
+            <returns><inheritdoc cref="M:AequusRemake.Core.Util.TileHelper.GetWaterLine(System.Int32,System.Int32)"/></returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.TileHelper.KillLiquid(System.Int32,System.Int32,System.Boolean)">
+        <member name="M:AequusRemake.Core.Util.TileHelper.KillLiquid(System.Int32,System.Int32,System.Boolean)">
             <summary>
             Properly removes a liquid at the given tile coordinates.
             </summary>
@@ -1463,100 +1455,86 @@
             <param name="y"></param>
             <param name="quiet"></param>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.TileHelper.LiquidMax(Terraria.Tile)">
+        <member name="M:AequusRemake.Core.Util.TileHelper.LiquidMax(Terraria.Tile)">
             <returns><see langword="true"/> if the tile has the maximum liquid amount. (<see cref="P:Terraria.Tile.LiquidAmount"/> == 255)</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.TileHelper.LiquidMax(System.Int32,System.Int32)">
-            <returns><inheritdoc cref="M:AequusRemake.Core.Utilities.TileHelper.LiquidMax(Terraria.Tile)"/></returns>
+        <member name="M:AequusRemake.Core.Util.TileHelper.LiquidMax(System.Int32,System.Int32)">
+            <returns><inheritdoc cref="M:AequusRemake.Core.Util.TileHelper.LiquidMax(Terraria.Tile)"/></returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.TileHelper.LiquidNoMax(Terraria.Tile)">
+        <member name="M:AequusRemake.Core.Util.TileHelper.LiquidNoMax(Terraria.Tile)">
             <returns><see langword="true"/> if the tile has a liquid amount below maximum. (<see cref="P:Terraria.Tile.LiquidAmount"/> != 255)</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.TileHelper.LiquidNoMax(System.Int32,System.Int32)">
-            <returns><inheritdoc cref="M:AequusRemake.Core.Utilities.TileHelper.LiquidNoMax(Terraria.Tile)"/></returns>
+        <member name="M:AequusRemake.Core.Util.TileHelper.LiquidNoMax(System.Int32,System.Int32)">
+            <returns><inheritdoc cref="M:AequusRemake.Core.Util.TileHelper.LiquidNoMax(Terraria.Tile)"/></returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.XLanguage.GetRandomLocalizationFromCategory(Terraria.ModLoader.ILocalizedModType,System.String,Terraria.Utilities.UnifiedRandom)">
+        <member name="M:AequusRemake.Core.Util.XLanguage.GetText(System.String)">
+            <param name="key"></param>
+            <returns>A <see cref="T:Terraria.Localization.LocalizedText"/> value for <paramref name="key"/> appended to the end of "Mods.AequusRemake"</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.XLanguage.GetRandomLocalizationFromCategory(Terraria.ModLoader.ILocalizedModType,System.String,Terraria.Utilities.UnifiedRandom)">
             <summary>Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.</summary>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.XLanguage.GetDisplayName(Terraria.ModLoader.ILocalizedModType)">
+        <member name="M:AequusRemake.Core.Util.XLanguage.GetDisplayName(Terraria.ModLoader.ILocalizedModType)">
             <summary>Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.</summary>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.XLanguage.GetDisplayName``1">
-            <summary><inheritdoc cref="M:AequusRemake.Core.Utilities.XLanguage.GetDisplayName(Terraria.ModLoader.ILocalizedModType)"/></summary>
+        <member name="M:AequusRemake.Core.Util.XLanguage.GetDisplayName``1">
+            <summary><inheritdoc cref="M:AequusRemake.Core.Util.XLanguage.GetDisplayName(Terraria.ModLoader.ILocalizedModType)"/></summary>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.XLanguage.ContainsKey(System.String)">
+        <member name="M:AequusRemake.Core.Util.XLanguage.ContainsKey(System.String)">
             <returns>Whether this key has a value. (<see cref="M:Terraria.Localization.Language.GetTextValue(System.String)"/> doesnt return the key.)</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.XLanguage.TryGet(System.String,Terraria.Localization.LocalizedText@)">
+        <member name="M:AequusRemake.Core.Util.XLanguage.TryGet(System.String,Terraria.Localization.LocalizedText@)">
             <returns>Whether the text exists. (<see cref="M:Terraria.Localization.Language.GetTextValue(System.String)"/> doesnt return the key.)</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.XLanguage.TryGetValue(System.String,System.String@)">
-            <returns><inheritdoc cref="M:AequusRemake.Core.Utilities.XLanguage.TryGet(System.String,Terraria.Localization.LocalizedText@)"/></returns>
+        <member name="M:AequusRemake.Core.Util.XLanguage.TryGetValue(System.String,System.String@)">
+            <returns><inheritdoc cref="M:AequusRemake.Core.Util.XLanguage.TryGet(System.String,Terraria.Localization.LocalizedText@)"/></returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.XLanguage.GetCategoryKey(Terraria.ModLoader.ILocalizedModType,System.String,System.Func{System.String})">
+        <member name="M:AequusRemake.Core.Util.XLanguage.GetCategoryKey(Terraria.ModLoader.ILocalizedModType,System.String,System.Func{System.String})">
             <returns>The Category Key. (Mods.ModName.Category.Suffix)</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.XLanguage.GetCategoryText(Terraria.ModLoader.ILocalizedModType,System.String,System.Func{System.String})">
+        <member name="M:AequusRemake.Core.Util.XLanguage.GetCategoryText(Terraria.ModLoader.ILocalizedModType,System.String,System.Func{System.String})">
             <returns>A localized text using a category key. (Mods.ModName.Category.Suffix)</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.XLanguage.GetCategoryTextValue(Terraria.ModLoader.ILocalizedModType,System.String)">
+        <member name="M:AequusRemake.Core.Util.XLanguage.GetCategoryTextValue(Terraria.ModLoader.ILocalizedModType,System.String)">
             <returns>A text value using a category key. (Mods.ModName.Category.Suffix)</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.XLanguage.DayOfWeek(System.DayOfWeek)">
-            <returns>Localized name of a <see cref="T:System.DayOfWeek"/> value.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Utilities.XLanguage.PriceText(System.Int64,System.String)">
+        <member name="M:AequusRemake.Core.Util.XLanguage.PriceText(System.Int64,System.String)">
             <returns>Price Text for the specified value, or <paramref name="NoValueText"/> if value is less than or equal to 0.</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.XLanguage.PriceTextColored(System.Int64,System.String,System.Boolean)">
-            <returns><inheritdoc cref="M:AequusRemake.Core.Utilities.XLanguage.PriceText(System.Int64,System.String)"/> Colored using chat commands.</returns>
+        <member name="M:AequusRemake.Core.Util.XLanguage.PriceTextColored(System.Int64,System.String,System.Boolean)">
+            <returns><inheritdoc cref="M:AequusRemake.Core.Util.XLanguage.PriceText(System.Int64,System.String)"/> Colored using chat commands.</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.XLanguage.GetUseAnimationText(System.Single)">
+        <member name="M:AequusRemake.Core.Util.XLanguage.GetUseAnimationText(System.Single)">
             <param name="useAnimation">Item use animation.</param>
             <returns>Localized use animation (speed) text based off vanilla thresholds.</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.XLanguage.GetKnockbackText(System.Single)">
+        <member name="M:AequusRemake.Core.Util.XLanguage.GetKnockbackText(System.Single)">
             <param name="knockback">Weapon Knockback.</param>
             <returns>Localized knockback text based off vanilla thresholds.</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.XLanguage.GetKeybindKeys(Terraria.ModLoader.ModKeybind)">
+        <member name="M:AequusRemake.Core.Util.XLanguage.GetKeybindKeys(Terraria.ModLoader.ModKeybind)">
             <param name="keybind"></param>
             <returns>An enumerable of each key for this keybind. Returns "Unbound Key" if no keys are assigned.</returns>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.XLanguage.WatchTime(System.Double,System.Boolean)">
+        <member name="M:AequusRemake.Core.Util.XLanguage.WatchTime(System.Double,System.Boolean)">
             <summary>Copied from example mod and doesnt put any effort to localize. Uses Terraria day/night cycle styled time data.</summary>
             <param name="time">The Day/Night cycle time.</param>
             <param name="dayTime">Whether it's day or night.</param>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.XLanguage.Minutes(System.Double)">
+        <member name="M:AequusRemake.Core.Util.XLanguage.Minutes(System.Double)">
             <summary>Converts ticks to seconds, up to 1 decimal place.</summary>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.XLanguage.Seconds(System.Double)">
+        <member name="M:AequusRemake.Core.Util.XLanguage.Seconds(System.Double)">
             <summary>Converts ticks to seconds, up to 1 decimal place.</summary>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.XLanguage.Percent(System.Double)">
+        <member name="M:AequusRemake.Core.Util.XLanguage.Percent(System.Double)">
             <summary>Converts a decimal value into percentage text, up to 1 decimal place.</summary>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.XLanguage.Decimals(System.Double)">
+        <member name="M:AequusRemake.Core.Util.XLanguage.Decimals(System.Double)">
             <summary>Converts value into decimal text, up to 1 decimal place.</summary>
         </member>
-        <member name="M:AequusRemake.Core.Utilities.XLanguage.RegisterKey(System.String)">
+        <member name="M:AequusRemake.Core.Util.XLanguage.RegisterKey(System.String)">
             <summary>Registers a localization key if it doesn't exist. Only ran if compiled with a DEBUG symbol.</summary>
-        </member>
-        <member name="M:AequusRemake.Core.Commons.Conditions.BetweenDays(System.DayOfWeek,System.DayOfWeek)">
-            <param name="firstDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:AequusRemake.Core.Systems.TimeSystem.DayOfTheWeek"/>.</param>
-            <param name="lastDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:AequusRemake.Core.Systems.TimeSystem.DayOfTheWeek"/>.</param>
-            <returns>A condition for a specific time range between two days of the week.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Commons.Conditions.DayOfTheWeek(System.DayOfWeek)">
-            <param name="dayOfWeek">The <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:AequusRemake.Core.Systems.TimeSystem.DayOfTheWeek"/>.</param>
-            <returns>A condition for a specific day of the week.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Commons.Conditions.ConfigIsTrue(Terraria.ModLoader.Config.ModConfig,System.String)">
-            <returns><inheritdoc cref="M:AequusRemake.Core.Commons.Conditions.Config(Terraria.ModLoader.Config.ModConfig,System.String,Terraria.Localization.LocalizedText,System.Func{System.Object,System.Boolean})"/> Defaults to checking if the value equals true.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Commons.Conditions.Config(Terraria.ModLoader.Config.ModConfig,System.String,Terraria.Localization.LocalizedText,System.Func{System.Object,System.Boolean})">
-            <returns>A condition which depends on a certain config setting.</returns>
         </member>
         <member name="F:AequusRemake.Core.Commons.Rare.MaterialStart">
             <summary>Rarity shared by early Pre Hardmode materials (Metal Bars, Ores, etc.)</summary>
@@ -1942,6 +1920,40 @@
             <param name="spriteBatch"></param>
             <param name="graphicsDevice"></param>
         </member>
+        <member name="M:AequusRemake.Core.GUI.Elements.ImprovedItemSlot.SetIcon(Terraria.UI.UIElement)">
+            <summary>Adds the UI Element as an icon to display when no item is in the slot.</summary>
+        </member>
+        <member name="T:AequusRemake.Core.GUI.Elements.ImprovedTextBox">
+            <summary>Improved text box based off of <see cref="T:Terraria.GameContent.UI.Elements.UITextBox"/>.</summary>
+        </member>
+        <member name="F:AequusRemake.Core.GUI.InventoryUI.ContextsInv">
+            <summary>Contains Item Slot Contexts which are usually related to normal inventory slots. Check the current slot context to determine drawing item status UI like cooldowns and etc.</summary>
+        </member>
+        <member name="M:AequusRemake.Core.GUI.IUserInterfaceLayer.OnUIUpdate(Microsoft.Xna.Framework.GameTime)">
+            <param name="gameTime"></param>
+            <returns>Whether or not to deactivate this UI.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.GUI.IUserInterfaceLayer.OnRemove">
+            <summary>Called right before this UI Layer node is removed.</summary>
+        </member>
+        <member name="T:AequusRemake.Core.GUI.UILayer">
+            <summary>Used to simplify UI implementation. Only loads in singleplayer or on multiplayer clients.</summary>
+        </member>
+        <member name="M:AequusRemake.Core.GUI.UILayer.#ctor(System.String,System.String,Terraria.UI.InterfaceScaleType,System.Int32)">
+            <param name="Name">Name of this layer.</param>
+            <param name="InsertLayer">Name of the layer to search the index of.</param>
+            <param name="ScaleType">Scale Type of this layer.</param>
+            <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
+        </member>
+        <member name="T:AequusRemake.Core.GUI.UILayersSystem">
+            <summary>Only loads in singleplayer or on multiplayer clients.</summary>
+        </member>
+        <member name="M:AequusRemake.Core.GUI.UIStateLayer.#ctor(System.String,System.String,Terraria.UI.InterfaceScaleType,System.Int32)">
+            <param name="Name">Name of this layer.</param>
+            <param name="InsertLayer">Name of the layer to search the index of.</param>
+            <param name="ScaleType">Scale Type of this layer.</param>
+            <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
+        </member>
         <member name="M:AequusRemake.Core.Hooks.TerrariaHooks.On_ChestUI_QuickStack(Terraria.UI.On_ChestUI.orig_QuickStack,Terraria.DataStructures.ContainerTransferContext,System.Boolean)">
             <summary>Allows backpacks to quick stack to nearby chests.</summary>
         </member>
@@ -2026,6 +2038,16 @@
         <member name="P:AequusRemake.Core.Hooks.TerrariaHooks.OnRandomTileUpdate">
             <summary>int1 = X, int2 = Y</summary>
         </member>
+        <member name="M:AequusRemake.Core.Hooks.HookManager.ApplyAndCacheHook(System.Type,System.Type,System.String,System.Reflection.BindingFlags,System.Reflection.BindingFlags)">
+            <summary><inheritdoc cref="M:AequusRemake.Core.Hooks.HookManager.ApplyAndCacheHook(System.Reflection.MethodInfo,System.Reflection.MethodInfo)"/></summary>
+            <exception cref="T:System.MissingMethodException"></exception>
+        </member>
+        <member name="M:AequusRemake.Core.Hooks.HookManager.ApplyAndCacheHook(System.Reflection.MethodInfo,System.Reflection.MethodInfo)">
+            <summary>Applies a hook to a method, and caches it to prevent it from unloading.</summary>
+            <param name="source"></param>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
         <member name="M:AequusRemake.Core.Initialization.BannerLoader.AddBannerBuff``1(Terraria.ModLoader.ModNPC)">
             <summary>
             Adds a banner buff for this NPC to <typeparamref name="TBannerNPC"/>'s registered banner. This is used grant a buff against Chained Souls when near the Keeper's Banner.
@@ -2036,82 +2058,8 @@
         <member name="T:AequusRemake.Core.IO.IDLoader`1">
             <summary>Helper for loading content which uses a legacy Id system.</summary>
         </member>
-        <member name="M:AequusRemake.Core.Particles.IParticleEmitter`1.New">
-            <returns>A single particle instance.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Particles.IParticleEmitter`1.NewMultiple(System.Int32)">
-            <summary>
-            Gets multiple particle instances.
-            Use <see cref="M:AequusRemake.Core.Particles.IParticleEmitter`1.NewMultipleReduced(System.Int32,System.Int32)"/>, if you want to spawn particles based on <see cref="F:Terraria.Main.gfxQuality"/>.
-            </summary>
-            <param name="count">The amount of particles wanted.</param>
-        </member>
-        <member name="M:AequusRemake.Core.Particles.IParticleEmitter`1.NewMultipleReduced(System.Int32,System.Int32)">
-            <summary>
-            Gets multiple particle instances. <paramref name="count"/> is multiplied by <see cref="F:Terraria.Main.gfxQuality"/>, 
-            but returns atleast <paramref name="minimum"/> amount of particles.
-            </summary>
-            <param name="count">The amount of particles wanted. This is multiplied <see cref="F:Terraria.Main.gfxQuality"/>.</param>
-            <param name="minimum">The minimum amount of particles to return. <paramref name="count"/> is multiplied by <see cref="F:Terraria.Main.gfxQuality"/>, which reduces it depending on quality settings.</param>
-        </member>
-        <member name="T:AequusRemake.Core.Particles.ParallelParticleArray`1">
-            <summary>
-            A basic particle array system which updates particles in parallel.
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="M:AequusRemake.Core.Particles.Particle`1.New">
-            <returns><inheritdoc cref="M:AequusRemake.Core.Particles.IParticleEmitter`1.New"/></returns>
-        </member>
-        <member name="M:AequusRemake.Core.Particles.Particle`1.NewMultiple(System.Int32)">
-            <summary><inheritdoc cref="M:AequusRemake.Core.Particles.IParticleEmitter`1.NewMultiple(System.Int32)"/></summary>
-        </member>
-        <member name="M:AequusRemake.Core.Particles.Particle`1.NewMultipleReduced(System.Int32,System.Int32)">
-            <summary><inheritdoc cref="M:AequusRemake.Core.Particles.IParticleEmitter`1.NewMultipleReduced(System.Int32,System.Int32)"/></summary>
-        </member>
-        <member name="T:AequusRemake.Core.Particles.ParticleArray`1">
-            <summary>A basic particle array system, initializes an array of a specified size on-load.</summary>
-        </member>
-        <member name="M:AequusRemake.Core.Particles.ParticleArray`1.New">
-            <returns><inheritdoc cref="M:AequusRemake.Core.Particles.IParticleEmitter`1.New"/></returns>
-        </member>
-        <member name="M:AequusRemake.Core.Particles.ParticleArray`1.NewMultiple(System.Int32)">
-            <summary><inheritdoc cref="M:AequusRemake.Core.Particles.IParticleEmitter`1.NewMultiple(System.Int32)"/></summary>
-        </member>
-        <member name="M:AequusRemake.Core.Particles.ParticleArray`1.NewMultipleReduced(System.Int32,System.Int32)">
-            <summary><inheritdoc cref="M:AequusRemake.Core.Particles.IParticleEmitter`1.NewMultipleReduced(System.Int32,System.Int32)"/></summary>
-        </member>
-        <member name="M:AequusRemake.Core.Particles.ParticleArray`1.OnActivate">
-            <summary>
-            Allows the renderer to subscribe to various drawing actions.
-            This is ran when the particle system is activated.
-            </summary>
-        </member>
-        <member name="M:AequusRemake.Core.Particles.ParticleArray`1.Deactivate">
-            <summary>
-            Allows the renderer to unsubscribe to various drawing actions.
-            This is ran when all particles are cleared from the system.
-            </summary>
-        </member>
-        <member name="T:AequusRemake.Core.Particles.ParticleManager">
-            <summary>
-            Handles and updates particle systems.
-            </summary>
-        </member>
-        <member name="M:AequusRemake.Core.Particles.ParticleSystem.OnActivate">
-            <summary>
-            Allows the renderer to subscribe to various drawing actions.
-            This is ran when the particle system is activated.
-            </summary>
-        </member>
-        <member name="M:AequusRemake.Core.Particles.ParticleSystem.Deactivate">
-            <summary>
-            Allows the renderer to unsubscribe to various drawing actions.
-            This is ran when all particles are cleared from the system.
-            </summary>
-        </member>
-        <member name="T:AequusRemake.Core.PhysicsBehaviors.VICollisonNode">
-            <summary>A Verlet Integrated node with Tile Collision.</summary>
+        <member name="T:AequusRemake.Core.Structures.Chests.ChestLootDatabase">
+            <summary>Replica of <see cref="T:Terraria.GameContent.ItemDropRules.ItemDropDatabase"/>/<see cref="T:Terraria.GameContent.ItemDropRules.ItemDropResolver"/>, except for AequusRemake' chest loot.</summary>
         </member>
         <member name="T:AequusRemake.Core.Structures.Collections.DictionaryRemoveQueue`2">
             <summary>
@@ -2119,46 +2067,125 @@
             Call <see cref="M:AequusRemake.Core.Structures.Collections.DictionaryRemoveQueue`2.RemoveAllQueued"/> to remove all queued entries from the Dictionary.
             </summary>
         </member>
-        <member name="M:AequusRemake.Core.Structures.ReferenceCache`1.OverrideValue(`0)">
+        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.Surface">
+            <summary>Extra loot pool for Vanilla's Surface Wooden Chests.</summary>
+        </member>
+        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.Underground">
+            <summary>Extra loot pool for Vanilla's Underground Chests, this includes Gold, Frozen, Rich Mahogany, etc.</summary>
+        </member>
+        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.Sky">
+            <summary>Extra loot pool for Vanilla's Sky Chests. This includes Skyware and Locked Gold Chests located above the surface line.</summary>
+        </member>
+        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.UndergroundDesert">
+            <summary>Extra loot pool for Chests located in the Underground Desert.</summary>
+        </member>
+        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.Pyramid">
+            <summary>Extra loot pool for Chests located in the Pyramid.</summary>
+        </member>
+        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.Dungeon">
+            <summary>Extra loot pool for Locked Gold Chests located in the Dungeon.</summary>
+        </member>
+        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.Temple">
+            <summary>Extra loot pool for Chests located in the Temple.</summary>
+        </member>
+        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.Gold">
+            <summary>Extra loot pool for Vanilla's Gold Chests.</summary>
+        </member>
+        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.Shadow">
+            <summary>Extra loot pool for Vanilla's Shadow Chests.</summary>
+        </member>
+        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.Frozen">
+            <summary>Extra loot pool for Vanilla's Frozen Chests. Note this is NOT the Biome Chest.</summary>
+        </member>
+        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.Ivy">
+            <summary>Extra loot pool for Vanilla's Ivy Chests.</summary>
+        </member>
+        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.PollutedOcean">
+            <summary>Loot pool for Polluted Ocean Trash Cans.</summary>
+        </member>
+        <member name="M:AequusRemake.Core.Structures.Particles.IParticleEmitter`1.New">
+            <returns>A single particle instance.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Structures.Particles.IParticleEmitter`1.NewMultiple(System.Int32)">
+            <summary>
+            Gets multiple particle instances.
+            Use <see cref="M:AequusRemake.Core.Structures.Particles.IParticleEmitter`1.NewMultipleReduced(System.Int32,System.Int32)"/>, if you want to spawn particles based on <see cref="F:Terraria.Main.gfxQuality"/>.
+            </summary>
+            <param name="count">The amount of particles wanted.</param>
+        </member>
+        <member name="M:AequusRemake.Core.Structures.Particles.IParticleEmitter`1.NewMultipleReduced(System.Int32,System.Int32)">
+            <summary>
+            Gets multiple particle instances. <paramref name="count"/> is multiplied by <see cref="F:Terraria.Main.gfxQuality"/>, 
+            but returns atleast <paramref name="minimum"/> amount of particles.
+            </summary>
+            <param name="count">The amount of particles wanted. This is multiplied <see cref="F:Terraria.Main.gfxQuality"/>.</param>
+            <param name="minimum">The minimum amount of particles to return. <paramref name="count"/> is multiplied by <see cref="F:Terraria.Main.gfxQuality"/>, which reduces it depending on quality settings.</param>
+        </member>
+        <member name="T:AequusRemake.Core.Structures.Particles.ParallelParticleArray`1">
+            <summary>
+            A basic particle array system which updates particles in parallel.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:AequusRemake.Core.Structures.Particles.Particle`1.New">
+            <returns><inheritdoc cref="M:AequusRemake.Core.Structures.Particles.IParticleEmitter`1.New"/></returns>
+        </member>
+        <member name="M:AequusRemake.Core.Structures.Particles.Particle`1.NewMultiple(System.Int32)">
+            <summary><inheritdoc cref="M:AequusRemake.Core.Structures.Particles.IParticleEmitter`1.NewMultiple(System.Int32)"/></summary>
+        </member>
+        <member name="M:AequusRemake.Core.Structures.Particles.Particle`1.NewMultipleReduced(System.Int32,System.Int32)">
+            <summary><inheritdoc cref="M:AequusRemake.Core.Structures.Particles.IParticleEmitter`1.NewMultipleReduced(System.Int32,System.Int32)"/></summary>
+        </member>
+        <member name="T:AequusRemake.Core.Structures.Particles.ParticleArray`1">
+            <summary>A basic particle array system, initializes an array of a specified size on-load.</summary>
+        </member>
+        <member name="M:AequusRemake.Core.Structures.Particles.ParticleArray`1.New">
+            <returns><inheritdoc cref="M:AequusRemake.Core.Structures.Particles.IParticleEmitter`1.New"/></returns>
+        </member>
+        <member name="M:AequusRemake.Core.Structures.Particles.ParticleArray`1.NewMultiple(System.Int32)">
+            <summary><inheritdoc cref="M:AequusRemake.Core.Structures.Particles.IParticleEmitter`1.NewMultiple(System.Int32)"/></summary>
+        </member>
+        <member name="M:AequusRemake.Core.Structures.Particles.ParticleArray`1.NewMultipleReduced(System.Int32,System.Int32)">
+            <summary><inheritdoc cref="M:AequusRemake.Core.Structures.Particles.IParticleEmitter`1.NewMultipleReduced(System.Int32,System.Int32)"/></summary>
+        </member>
+        <member name="M:AequusRemake.Core.Structures.Particles.ParticleArray`1.OnActivate">
+            <summary>
+            Allows the renderer to subscribe to various drawing actions.
+            This is ran when the particle system is activated.
+            </summary>
+        </member>
+        <member name="M:AequusRemake.Core.Structures.Particles.ParticleArray`1.Deactivate">
+            <summary>
+            Allows the renderer to unsubscribe to various drawing actions.
+            This is ran when all particles are cleared from the system.
+            </summary>
+        </member>
+        <member name="T:AequusRemake.Core.Structures.Particles.ParticleManager">
+            <summary>
+            Handles and updates particle systems.
+            </summary>
+        </member>
+        <member name="M:AequusRemake.Core.Structures.Particles.ParticleSystem.OnActivate">
+            <summary>
+            Allows the renderer to subscribe to various drawing actions.
+            This is ran when the particle system is activated.
+            </summary>
+        </member>
+        <member name="M:AequusRemake.Core.Structures.Particles.ParticleSystem.Deactivate">
+            <summary>
+            Allows the renderer to unsubscribe to various drawing actions.
+            This is ran when all particles are cleared from the system.
+            </summary>
+        </member>
+        <member name="T:AequusRemake.Core.Structures.PhysicsBehaviors.VICollisonNode">
+            <summary>A Verlet Integrated node with Tile Collision.</summary>
+        </member>
+        <member name="M:AequusRemake.Core.Structures.RefCache`1.OverrideWith(`0)">
             <summary>Replaces the referenced value with <paramref name="value"/>. The original value will be cached, and can be restored using <see cref="!:VoidOverriddenValue(ref T)"/>.</summary>
             <param name="value"></param>
         </member>
-        <member name="M:AequusRemake.Core.Structures.ReferenceCache`1.VoidOverriddenValue">
+        <member name="M:AequusRemake.Core.Structures.RefCache`1.RestoreOriginalValue">
             <summary>Restores overriden values back to their original value.</summary>
-        </member>
-        <member name="M:AequusRemake.Core.UI.Elements.ImprovedItemSlot.SetIcon(Terraria.UI.UIElement)">
-            <summary>Adds the UI Element as an icon to display when no item is in the slot.</summary>
-        </member>
-        <member name="T:AequusRemake.Core.UI.Elements.ImprovedTextBox">
-            <summary>Improved text box based off of <see cref="T:Terraria.GameContent.UI.Elements.UITextBox"/>.</summary>
-        </member>
-        <member name="F:AequusRemake.Core.UI.InventoryUI.ContextsInv">
-            <summary>Contains Item Slot Contexts which are usually related to normal inventory slots. Check the current slot context to determine drawing item status UI like cooldowns and etc.</summary>
-        </member>
-        <member name="M:AequusRemake.Core.UI.IUserInterfaceLayer.OnUIUpdate(Microsoft.Xna.Framework.GameTime)">
-            <param name="gameTime"></param>
-            <returns>Whether or not to deactivate this UI.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.UI.IUserInterfaceLayer.OnRemove">
-            <summary>Called right before this UI Layer node is removed.</summary>
-        </member>
-        <member name="T:AequusRemake.Core.UI.UILayer">
-            <summary>Used to simplify UI implementation. Only loads in singleplayer or on multiplayer clients.</summary>
-        </member>
-        <member name="M:AequusRemake.Core.UI.UILayer.#ctor(System.String,System.String,Terraria.UI.InterfaceScaleType,System.Int32)">
-            <param name="Name">Name of this layer.</param>
-            <param name="InsertLayer">Name of the layer to search the index of.</param>
-            <param name="ScaleType">Scale Type of this layer.</param>
-            <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
-        </member>
-        <member name="T:AequusRemake.Core.UI.UILayersSystem">
-            <summary>Only loads in singleplayer or on multiplayer clients.</summary>
-        </member>
-        <member name="M:AequusRemake.Core.UI.UIStateLayer.#ctor(System.String,System.String,Terraria.UI.InterfaceScaleType,System.Int32)">
-            <param name="Name">Name of this layer.</param>
-            <param name="InsertLayer">Name of the layer to search the index of.</param>
-            <param name="ScaleType">Scale Type of this layer.</param>
-            <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
         </member>
         <member name="P:AequusRemake.AequusSystem.RemixWorldSafeUnderworldRange">
             <summary>Returns a point with the beginning (left) (X) and end (right) (Y) of the 'safe' underworld in remix worlds. This does not represent a point in 2D space, but rather two X coordinates.</summary>

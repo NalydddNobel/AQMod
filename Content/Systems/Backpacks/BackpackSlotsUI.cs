@@ -1,6 +1,6 @@
 ﻿using AequusRemake.Content.Items.Accessories.ScavengerBag;
 using AequusRemake.Core.Entities.Items.Tooltips;
-using AequusRemake.Core.UI;
+using AequusRemake.Core.GUI;
 using System;
 using Terraria.GameContent;
 using Terraria.GameInput;

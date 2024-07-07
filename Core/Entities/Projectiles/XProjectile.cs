@@ -4,10 +4,10 @@ using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
 
-namespace AequusRemake.Core.Utilities;
+namespace AequusRemake.Core.Util;
 
 public static class XProjectile {
-    internal static readonly Projectile _dummyProjectile = new Projectile();
+    internal static readonly Projectile dummy = new Projectile();
 
     public static bool GetItemSource(this Projectile projectile, out int itemSource, out int ammoSource) {
         if (!projectile.TryGetGlobalProjectile(out ProjectileSource source)) {

@@ -6,7 +6,8 @@ namespace AequusRemake.Content.Items.Accessories.Informational.Calendar;
 public class CalendarInfoDisplay : InfoDisplay {
     private LocalizedText Tooltip;
 
-    public override void Load() {
+    public override void SetStaticDefaults() {
+        Tooltip = this.GetLocalization("Tooltip");
     }
 
     public override bool Active() {
@@ -14,7 +15,6 @@ public class CalendarInfoDisplay : InfoDisplay {
     }
 
     public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor) {
-        Tooltip ??= this.GetLocalization("Tooltip");
-        return string.Format(Tooltip.Value, XLanguage.DayOfWeek(TimeSystem.DayOfTheWeek).Value, TimeSystem.DaysPassed);
+        return string.Format(Tooltip.Value, TimeSystem.GetWeekText(TimeSystem.DayOfTheWeek).Value, TimeSystem.DaysPassed);
     }
 }

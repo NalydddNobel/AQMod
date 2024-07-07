@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AequusRemake.Core.Util.Helpers;
+using System;
 using Terraria.DataStructures;
 
 namespace AequusRemake.Content.Items.Armor.Castaway;
@@ -73,14 +74,14 @@ public class CastawayPlayer : ModPlayer {
         if (drawInfo.drawPlayer.head == CastawayArmor.HeadTextureId) {
             drawInfo.drawPlayer.head = CastawayArmor.Head2TextureId;
             if (!breakArmorAnim) {
-                ExtendGore.NewGore(AequusTextures.CastawayHelmetBreak, Player.GetSource_FromThis(), Player.Top, Player.velocity);
+                GoreTool.NewGore(AequusTextures.CastawayHelmetBreak, Player.GetSource_FromThis(), Player.Top, Player.velocity);
             }
         }
         if (drawInfo.drawPlayer.body == CastawayArmor.BodyTextureId) {
             drawInfo.drawPlayer.body = CastawayArmor.Body2TextureId;
             if (!breakArmorAnim) {
                 for (int i = 0; i < 2; i++) {
-                    ExtendGore.NewGore(AequusTextures.CastawayChestplateBreak, Player.GetSource_FromThis(), Player.Center + Main.rand.NextVector2Circular(Player.width / 3f, 8), Player.velocity);
+                    GoreTool.NewGore(AequusTextures.CastawayChestplateBreak, Player.GetSource_FromThis(), Player.Center + Main.rand.NextVector2Circular(Player.width / 3f, 8), Player.velocity);
                 }
             }
         }

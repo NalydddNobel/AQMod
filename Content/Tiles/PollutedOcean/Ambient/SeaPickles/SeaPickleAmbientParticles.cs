@@ -1,5 +1,6 @@
 ﻿using AequusRemake.Core.Graphics;
-using AequusRemake.Core.Particles;
+using AequusRemake.Core.Structures.Particles;
+using AequusRemake.Core.Structures.Pooling;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;

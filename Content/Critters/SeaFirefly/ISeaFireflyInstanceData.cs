@@ -48,7 +48,7 @@ public record struct DefaultVariant(string Name) : ISeaFireflyInstanceData {
     }
 
     public Color GetGlowColor(GlowColorContext context) {
-        float wave = Helper.Oscillate(context.RandomSeed + context.Position.X * 0.01f + Main.GlobalTimeWrappedHourly * 4f, 1f);
+        float wave = sin(context.RandomSeed + context.Position.X * 0.01f + Main.GlobalTimeWrappedHourly * 4f, 1f);
 
         return Color.Lerp(new Color(30, 90, 255, 50), new Color(40, 255, 255, 50), wave);
     }
@@ -70,8 +70,8 @@ public record struct RainbowVariant(string Name) : ISeaFireflyInstanceData {
     }
 
     public Color GetGlowColor(GlowColorContext context) {
-        float wave = Helper.Oscillate(context.Position.X * 0.01f + Main.GlobalTimeWrappedHourly, 1f);
+        float wave = sin(context.Position.X * 0.01f + Main.GlobalTimeWrappedHourly, 1f);
 
-        return ExtendColor.HueSet(Color.Red, wave) with { A = 0 };
+        return ColorExtensions.HueSet(Color.Red, wave) with { A = 0 };
     }
 }

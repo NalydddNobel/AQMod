@@ -115,7 +115,7 @@ public partial class Element {
         bool any;
         do {
             any = false;
-            ExtendRecipe.ForEachRecipe(r => {
+            RecipeTools.ForEach(r => {
                 if (_items.Contains(r.createItem.type) || ItemDataSet.NoRecipeElementInheritence.Contains(r.createItem.type)) {
                     return true;
                 }

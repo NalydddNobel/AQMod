@@ -1,5 +1,5 @@
 ﻿using AequusRemake.Content.Systems.Renaming;
-using AequusRemake.Core.UI.Elements;
+using AequusRemake.Core.GUI.Elements;
 
 namespace AequusRemake.Content.TownNPCs.SkyMerchant.UI;
 

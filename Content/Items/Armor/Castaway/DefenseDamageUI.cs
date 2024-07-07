@@ -1,4 +1,4 @@
-﻿using AequusRemake.Core.UI;
+﻿using AequusRemake.Core.GUI;
 using System;
 using Terraria.GameContent;
 using Terraria.UI;

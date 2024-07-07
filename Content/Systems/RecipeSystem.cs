@@ -1,4 +1,5 @@
 ﻿using AequusRemake.Content.Critters.SeaFirefly;
+using AequusRemake.Core.Util.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,7 @@ public class RecipeSystem : ModSystem {
         AnyGoldBar = NewGroup("AnyGoldBar", ItemID.GoldBar, ItemID.PlatinumBar);
         AnySilverBar = NewGroup("AnySilverBar", ItemID.SilverBar, ItemID.TungstenBar);
         AnyCopperBar = NewGroup("AnyCopperBar", ItemID.CopperBar, ItemID.TinBar);
-        AnyQuestFish = NewGroup("AnyQuestFish", Main.anglerQuestItemNetIDs.Copy());
+        AnyQuestFish = NewGroup("AnyQuestFish", Main.anglerQuestItemNetIDs.NewClone());
         Shellphone = NewGroup("Shellphone", ItemID.ShellphoneDummy, ItemID.Shellphone, ItemID.ShellphoneHell, ItemID.ShellphoneOcean, ItemID.ShellphoneSpawn);
         AnyTrash = NewGroup("AnyTrash", ItemID.OldShoe, ItemID.FishingSeaweed, ItemID.TinCan);
         AnyPaints = NewGroup("AnyPaint", GetItems((i) => i.paint > PaintID.None));

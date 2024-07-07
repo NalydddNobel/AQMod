@@ -1,4 +1,5 @@
 ﻿using AequusRemake.Core.Entities.Projectiles;
+using AequusRemake.Core.Util.Helpers;
 using System;
 using System.Collections.Generic;
 using Terraria.Localization;
@@ -68,7 +69,7 @@ public class TrashStaffCritEffect : ModProjectile {
     }
 
     public override bool PreDraw(ref Color lightColor) {
-        lightColor = ExtendLight.Get(Projectile.Center);
+        lightColor = LightingHelper.Get(Projectile.Center);
         Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int trailLength);
         var drawCoordinates = Projectile.Center - Main.screenPosition;
         var drawColor = Color.Lerp(lightColor, Color.White, 0.6f) * Projectile.Opacity;

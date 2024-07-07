@@ -1,5 +1,6 @@
 ﻿using AequusRemake.Core.CodeGeneration;
 using AequusRemake.Core.Entities.Items.DropRules;
+using AequusRemake.Core.Util.Helpers;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
@@ -72,7 +73,7 @@ public class NoHitReward : ModItem {
     }
 
     private void CheckFloor() {
-        if (ExtendCollision.GetFloor(Item.Center, 80, out Vector2 floor)) {
+        if (CollisionTools.GetFloor(Item.Center, 80, out Vector2 floor)) {
             if (Item.velocity.Y > 0f) {
                 Item.velocity.Y *= 0.6f;
             }
@@ -121,7 +122,7 @@ public class NoHitReward : ModItem {
         }
 
         Vector2 drawCoordinates = Item.Center - Main.screenPosition;
-        Vector2 itemCoordinates = drawCoordinates + new Vector2(-1f, Helper.Oscillate(Main.GlobalTimeWrappedHourly, -4f, 4f));
+        Vector2 itemCoordinates = drawCoordinates + new Vector2(-1f, sin(Main.GlobalTimeWrappedHourly, -4f, 4f));
         Main.GetItemDrawFrame(Type, out Texture2D itemTexture, out Rectangle itemFrame);
         Vector2 origin = itemFrame.Size() / 2f;
         Color drawColor = Color.Lerp(lightColor, Color.White, 0.75f);

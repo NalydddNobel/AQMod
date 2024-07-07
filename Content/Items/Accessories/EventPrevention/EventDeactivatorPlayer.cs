@@ -29,16 +29,16 @@ public class EventDeactivatorPlayer : ModPlayer {
 
     private void CheckFlagOverrides() {
         if (accDisableBloodMoon) {
-            Commons.Refs.BloodMoon.OverrideValue(false);
+            Commons.Refs.BloodMoon.OverrideWith(false);
         }
         if (accDisableEclipse) {
-            Commons.Refs.Eclipse.OverrideValue(false);
+            Commons.Refs.Eclipse.OverrideWith(false);
         }
         if (accDisablePumpkinMoon) {
-            Commons.Refs.PumpkinMoon.OverrideValue(false);
+            Commons.Refs.PumpkinMoon.OverrideWith(false);
         }
         if (accDisableFrostMoon) {
-            Commons.Refs.FrostMoon.OverrideValue(false);
+            Commons.Refs.FrostMoon.OverrideWith(false);
         }
     }
 
@@ -49,10 +49,10 @@ public class EventDeactivatorPlayer : ModPlayer {
     }
 
     public static void UndoPlayerFlagOverrides() {
-        Commons.Refs.BloodMoon.VoidOverriddenValue();
-        Commons.Refs.Eclipse.VoidOverriddenValue();
-        Commons.Refs.PumpkinMoon.VoidOverriddenValue();
-        Commons.Refs.FrostMoon.VoidOverriddenValue();
+        Commons.Refs.BloodMoon.RestoreOriginalValue();
+        Commons.Refs.Eclipse.RestoreOriginalValue();
+        Commons.Refs.PumpkinMoon.RestoreOriginalValue();
+        Commons.Refs.FrostMoon.RestoreOriginalValue();
     }
 
     public override void ResetEffects() {
