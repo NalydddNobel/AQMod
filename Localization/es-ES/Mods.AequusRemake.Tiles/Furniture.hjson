@@ -23,7 +23,7 @@ Furniture: {
 
 	TrashChest: {
 		// MapEntry: Dumpster
-		// ItemDisplayName: "{$Tiles.TrashChest.MapEntry}"
+		// ItemDisplayName: "{$Tiles.Furniture.TrashChest.MapEntry}"
 		// ItemTooltip: Both sides of the dumpster are different chests
 	}
 
