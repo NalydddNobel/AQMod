@@ -20,9 +20,6 @@
         <member name="T:AequusRemake.Content.Chests.UnopenedChestItem">
             <summary>Item used to determine if a chest has been opened or not.</summary>
         </member>
-        <member name="T:AequusRemake.Content.Cinematics.AequusRemakeFilm">
-            <summary><see cref="T:Terraria.Cinematics.DD2Film"/> <see cref="T:Terraria.Cinematics.DSTFilm"/></summary>
-        </member>
         <member name="M:AequusRemake.Content.Configuration.ConfigConditions.IsTrue(Terraria.ModLoader.Config.ModConfig,System.String)">
             <returns><inheritdoc cref="M:AequusRemake.Content.Configuration.ConfigConditions.GetCondition(Terraria.ModLoader.Config.ModConfig,System.String,Terraria.Localization.LocalizedText,System.Func{System.Object,System.Boolean})"/> Defaults to checking if the value equals true.</returns>
         </member>

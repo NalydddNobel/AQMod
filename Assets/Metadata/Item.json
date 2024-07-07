@@ -287,7 +287,15 @@
     "CalamityMod/ZenPotion",
     "CalamityMod/ZergPotion",
     "Aequus/SentryPotion",
-    "Aequus/NeutronYogurt"
+    "Aequus/NeutronYogurt",
+    "Aequus/VampireSquid",
+    "Aequus/BloodthirstPotion",
+    "Aequus/FrostPotion",
+    "Aequus/ManathirstPotion",
+    "Aequus/NoonPotion",
+    "Aequus/MercerTonic",
+    "Aequus/VeinminerPotion",
+    "Aequus/NecromancyPotion"
   ],
   "PillarFragmentsByColor": [],
   "ShimmerTooltipResultIgnore": [
@@ -550,6 +558,15 @@
     "CalamityMod/HallowPointRound": "CalamityMod/HallowPointRoundProj",
     "CalamityMod/SproutingArrow": "CalamityMod/SproutingArrowMain",
     "CalamityMod/VeriumBolt": "CalamityMod/VeriumBoltProj",
-    "Aequus/PlasticDart": "Aequus/PlasticDartProjectile"
+    "Aequus/PlasticDart": "Aequus/PlasticDartProjectile",
+    "Bird": "None",
+    "BlueJay": "None",
+    "Cardinal": "None",
+    "MallardDuck": "None",
+    "Duck": "None",
+    "GoldBird": "None",
+    "Seagull": "None",
+    "Grebe": "None",
+    "Aequus/PixelCameraClipAmmo": "None"
   }
 }
