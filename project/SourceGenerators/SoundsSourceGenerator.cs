@@ -25,7 +25,7 @@ public class SoundsSourceGenerator : ISourceGenerator {
                     {{string.Join("\n", files.Select((file) =>
                     $"""
                         /// <summary>Full Path: {file.Path}</summary>
-                        public static readonly SoundStyle {file.Name} = new("{file.Path}");
+                        public static readonly SoundStyle {file.Name} = new("Aequus/{file.Path}");
                     """))}}
                 }
                 """, Encoding.UTF8)
