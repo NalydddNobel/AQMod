@@ -43,13 +43,13 @@ public class CastawayArmor : UnifiedArmorSet {
                 this,
                 new ArmorStats(Defense: 10, Rarity: Commons.Rare.BiomeOcean, Value: Item.sellPrice(silver: 37, copper: 50)),
                 keyword,
-                tooltipArguments: XLanguage.Percent(KnockbackResistanceBody)
+                tooltipArguments: ALanguage.Percent(KnockbackResistanceBody)
             ), out _body);
         AddArmor(new InstancedLegs(
                 this,
                 new ArmorStats(Defense: 9, Rarity: Commons.Rare.BiomeOcean, Value: Item.sellPrice(silver: 30)),
                 keyword,
-                tooltipArguments: XLanguage.Percent(KnockbackResistanceLegs)
+                tooltipArguments: ALanguage.Percent(KnockbackResistanceLegs)
             ), out _legs);
 
         _head.HookUpdateEquip(UpdateBrokenDefense)

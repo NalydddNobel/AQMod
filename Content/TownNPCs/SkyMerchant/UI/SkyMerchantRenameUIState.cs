@@ -186,7 +186,7 @@ public class SkyMerchantRenameUIState : UIState, ILoad {
         int price = RenameItem.GetRenamePrice(SendItem.Item);
 
         string cost = Language.GetTextValue("LegacyInterface.46") + ": ";
-        string priceText = XLanguage.PriceTextColored(price, NoValueText: Language.GetTextValue("Mods.AequusRemake.Misc.PriceFree"), pulse: true);
+        string priceText = ALanguage.PriceTextColored(price, NoValueText: Language.GetTextValue("Mods.AequusRemake.Misc.PriceFree"), pulse: true);
 
         var font = FontAssets.MouseText.Value;
         ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, cost, new Vector2(savingsX, savingsY + 24f), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One, -1f, 2f);

@@ -16,7 +16,7 @@ public class TimeSystem : ModSystem {
     /// <param name="lastDay">A <see cref="DayOfWeek"/> to compare against <see cref="DayOfTheWeek"/>.</param>
     /// <returns>A condition for a specific time range between two days of the week.</returns>
     public static Condition ConditionBetweenDaysOfWeek(DayOfWeek firstDay, DayOfWeek lastDay) {
-        LocalizedText text = XLanguage.GetText("Condition.BetweenDays")
+        LocalizedText text = ALanguage.GetText("Condition.BetweenDays")
             .WithFormatArgs(GetWeekText(firstDay), GetWeekText(lastDay));
 
         if (firstDay > lastDay) {
@@ -34,12 +34,12 @@ public class TimeSystem : ModSystem {
     /// <param name="dayOfWeek">The <see cref="GetWeekText"/> to compare against <see cref="TimeSystem.DayOfTheWeek"/>.</param>
     /// <returns>A condition for a specific day of the week.</returns>
     public static Condition ConditionByDayOfWeek(DayOfWeek dayOfWeek) {
-        return new Condition(XLanguage.GetText("Condition.DayOfTheWeek").WithFormatArgs(GetWeekText(dayOfWeek)), () => DayOfTheWeek == dayOfWeek);
+        return new Condition(ALanguage.GetText("Condition.DayOfTheWeek").WithFormatArgs(GetWeekText(dayOfWeek)), () => DayOfTheWeek == dayOfWeek);
     }
 
     /// <returns>Localized name of a <see cref="System.DayOfWeek"/> value.</returns>
     public static LocalizedText GetWeekText(DayOfWeek dayOfWeek) {
-        return XLanguage.GetText("Misc.DayOfTheWeek." + dayOfWeek.ToString());
+        return ALanguage.GetText("Misc.DayOfTheWeek." + dayOfWeek.ToString());
     }
 
     public override void ClearWorld() {

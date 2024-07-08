@@ -13,6 +13,6 @@ internal class Fargowiltas : SupportedMod<Fargowiltas> {
     }
 
     public override void PostSetupContent() {
-        AddStat(ModContent.ItemType<GoldenFeather>(), "RespawnReduction", () => XLanguage.Seconds(-Main.LocalPlayer.GetModPlayer<AequusPlayer>().respawnTimeModifierFlat));
+        AddStat(ModContent.ItemType<GoldenFeather>(), "RespawnReduction", () => ALanguage.Seconds(-Main.LocalPlayer.GetModPlayer<AequusPlayer>().respawnTimeModifierFlat));
     }
 }

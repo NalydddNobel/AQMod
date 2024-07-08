@@ -1,9 +1,8 @@
-﻿global using static AequusRemake.Core.Util.Common.MathCommon;
-using System;
+﻿using System;
 
-namespace AequusRemake.Core.Util.Common;
+namespace NALib.Common;
 
-internal class MathCommon {
+public sealed class MathCommon {
     public static float abs(int value) {
         return Math.Abs(value);
     }
