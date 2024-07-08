@@ -18,8 +18,8 @@ Pets: {
 	}
 
 	LanternCatPet: {
-		BuffDisplayName: 黑光扇
-		BuffDescription: 召唤一只提供幸运的猫和一盏提供光照的灯笼
+		BuffDisplayName: 猫与灯笼
+		BuffDescription: 一只猫和一盏灯笼会为你提供幸运和光照
 		ItemDisplayName: 黑光扇
 		ItemTooltip: 召唤一只提供幸运的猫和一盏提供光照的灯笼
 	}

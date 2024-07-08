@@ -1,16 +1,16 @@
 Walls: {
 	RadonMossBrickWall: {
-		// ItemDisplayName: Radon Moss Brick Wall
-		// ItemTooltip: ""
+		ItemDisplayName: 氡苔藓砖墙
+		ItemTooltip: ""
 	}
 
 	PolymerSandstoneWall: {
-		// ItemDisplayName: Polymer Sandstone Wall
-		// ItemTooltip: ""
+		ItemDisplayName: 聚合沙岩墙
+		ItemTooltip: ""
 	}
 
 	PolymerSandstoneWallHostile: {
-		// ItemDisplayName: Polluted Polymer Sandstone Wall
-		// ItemTooltip: ""
+		ItemDisplayName: 被污染的聚合沙岩墙
+		ItemTooltip: ""
 	}
 }
