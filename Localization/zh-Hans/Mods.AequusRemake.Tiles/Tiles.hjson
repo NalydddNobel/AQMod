@@ -149,11 +149,7 @@ Tombstones: {
 RainTotem: {
 	MapEntry: 雨图腾
 	ItemDisplayName: "{$Tiles.RainTotem.MapEntry}"
-	ItemTooltip:
-		'''
-		在附近时增加下雨几率
-		必须放置在丛林方块上
-		'''
+	ItemTooltip: 在附近时增加下雨几率
 }
 
 RainTotemInactive.MapEntry: "{$Tiles.RainTotem.MapEntry}"
@@ -249,16 +245,16 @@ SeaFireflyBlock: {
 }
 
 SeaPickleTorch.ItemDisplayName: 水和花药火把
-// ScrapPalmTree.ItemDisplayName: Artificial Palm Tower Beam
-// ScrapTree.ItemDisplayName: Artificial Tree Tower Beam
-// ScrapTreeDevice.ItemDisplayName: Tree Tower Device
+ScrapPalmTree.ItemDisplayName: 人造棕榈塔梁
+ScrapTree.ItemDisplayName: 人造树塔梁
+ScrapTreeDevice.ItemDisplayName: 树塔装置
 
 ScrapPalmTreeTop: {
-	// ItemDisplayName: Artificial Palm Tower Topper
-	// ItemTooltip: Must be placed on top of an artifical palm tower
+	ItemDisplayName: 人造棕榈塔顶盖
+	ItemTooltip: 必须放置在人造棕榈塔顶部
 }
 
 ScrapTreeTop: {
-	// ItemDisplayName: Artificial Tree Tower Topper
-	// ItemTooltip: Must be placed on top of an artifical tree tower
+	ItemDisplayName: 人造树塔顶盖
+	ItemTooltip: 必须放置在人造树塔顶部
 }
