@@ -1,6 +1,7 @@
 ﻿using AequusRemake.Core.Assets;
 using AequusRemake.Core.CrossMod;
 using AequusRemake.Core.Util.Helpers;
+using NALib.Helpers;
 using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;
@@ -19,7 +20,7 @@ public static class ExtendEntity {
 }
 
 public static class ExtendPlayer {
-    private static readonly Item[] _dummyInventory = ArrayHelper.PopulateNewArray(i => new Item(), Main.InventorySlotsTotal);
+    private static readonly Item[] _dummyInventory = ArrayTools.PopulateNewArray(i => new Item(), Main.InventorySlotsTotal);
 
     public static IEnumerable<Player> FindNearbyPlayersOnTeam(this Player player, float seeingDistance) {
         yield return player;

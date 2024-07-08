@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NALib</name>
+    </assembly>
+    <members>
+        <member name="M:NALib.Extensions.ArrayExtensions.NewClone``1(``0[])">
+            <returns>A new array with the same contents.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:NALib.Extensions.ArrayExtensions.ResizeAndPopulate``1(``0[]@,System.Int32,System.Func{``0})">
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:NALib.Extensions.ArrayExtensions.RemoveAt``1(``0[]@,System.Int32)">
+            <summary>Removes at <paramref name="index"/> and resizes <paramref name="array"/> to fit.</summary>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:NALib.Extensions.ArrayExtensions.Remove``1(``0[]@,``0)">
+            <summary>Removes <paramref name="value"/> from <paramref name="array"/>, and resizes <paramref name="array"/> to fit if necessary.</summary>
+            <returns>Whether anything was removed at all.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:NALib.Extensions.ReflectionExtensions.GetConstantFields(System.Object,System.Reflection.BindingFlags)">
+            <returns>Returns all constant fields from <paramref name="obj"/>'s <see cref="T:System.Type"/>.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:NALib.Extensions.ReflectionExtensions.GetConstantFields(System.Type,System.Reflection.BindingFlags)">
+            <returns>Returns all constant fields from <paramref name="type"/>.</returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:NALib.Helpers.ArrayTools.AllocAdd``1(``0[]@,``0)">
+            <summary>Resizes <paramref name="array"/> and adds <paramref name="value"/> to the end of the array.</summary>
+        </member>
+        <member name="M:NALib.Helpers.ArrayTools.AllocAddRange``1(``0[],``0[])">
+            <summary>Safely adds <paramref name="other"/>'s contents into <paramref name="array"/> by resizing and inserting the elements from <paramref name="other"/> into <paramref name="array"/>.</summary>
+            <returns>The combined array.</returns>
+        </member>
+        <member name="M:NALib.Helpers.ArrayTools.PopulateNewArray``1(System.Func{System.Int32,``0},System.Int32)">
+            <returns>An array with the Length of <paramref name="length"/>, populated using <paramref name="dataFactory"/> where <see cref="T:System.Int32"/> is the index of the array being populated and <typeparamref name="T"/> is the value stored.</returns>
+        </member>
+        <member name="M:NALib.Helpers.ReflectionTools.GetDefaultValue(System.Type)">
+            <summary>If the type represents a value type (struct), returns a blank instance of the value type. Otherwise returns null.</summary>
+            <param name="t"></param>
+            <returns>The default value of the Type.</returns>
+        </member>
+    </members>
+</doc>

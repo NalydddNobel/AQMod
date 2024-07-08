@@ -2,7 +2,7 @@
 using AequusRemake.Content.CrossMod.CalamityModSupport;
 using AequusRemake.Content.Tiles.PollutedOcean.PolymerSands;
 using AequusRemake.Core.Components;
-using AequusRemake.Core.Util.Helpers;
+using NALib.Helpers;
 using System;
 using Terraria.IO;
 using Terraria.Utilities;
@@ -493,8 +493,8 @@ public sealed class PollutedBiomeStep : AGenStep {
 
     private static void GenerateTileArrays() {
         int length = TileLoader.TileCount;
-        ReplaceableTile = ArrayHelper.PopulateNewArray((i) => true, length);
-        SafeTile = ArrayHelper.PopulateNewArray((i) => true, length);
+        ReplaceableTile = ArrayTools.PopulateNewArray((i) => true, length);
+        SafeTile = ArrayTools.PopulateNewArray((i) => true, length);
 
         for (int i = 0; i < length; i++) {
             if (Main.tileDungeon[i]) {
@@ -536,7 +536,7 @@ public sealed class PollutedBiomeStep : AGenStep {
 
     private static void GenerateWallArrays() {
         int length = WallLoader.WallCount;
-        ReplaceableWall = ArrayHelper.PopulateNewArray((i) => true, length);
+        ReplaceableWall = ArrayTools.PopulateNewArray((i) => true, length);
 
         for (int i = 0; i < length; i++) {
             if (Main.wallDungeon[i] || WallID.Sets.Corrupt[i] || WallID.Sets.Crimson[i] || WallID.Sets.Hallow[i]) {

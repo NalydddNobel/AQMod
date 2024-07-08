@@ -1,0 +1,21 @@
+﻿<Project InitialTargets="CopyFiles" Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+	<LangVersion>latest</LangVersion>
+	<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	<DocumentationFile>NALib.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <Target Name="CopyFiles">
+	  
+	<ItemGroup>
+	  <SourceFile Include="$(OutputPath)\NALib.dll" />
+	  <OutputFile Include="..\..\..\AequusRemake\lib\" />
+	</ItemGroup>
+
+	<Copy SourceFiles="@(SourceFile)" DestinationFolder="..\..\..\..\AequusRemake\lib\" />
+  </Target>
+		
+</Project>

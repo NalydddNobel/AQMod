@@ -1,4 +1,5 @@
 ﻿using AequusRemake.Core.Structures.Pooling;
+using NALib.Helpers;
 using ReLogic.Content;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -1067,6 +1068,8 @@ internal class InstancedFurnitureWorkBench(UnifiedFurniture parent) : InstancedF
         AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
 
         AddMapEntry(CommonColor.MapWoodFurniture, Language.GetText("ItemName.WorkBench"));
+
+        ArrayTools.AllocAdd(ref ItemSets.Workbenches, (short)DropItem.Type);
     }
 
     public override void AddRecipes() {

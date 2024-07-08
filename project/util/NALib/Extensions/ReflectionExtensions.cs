@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace AequusRemake.Core.Util.Extensions;
+namespace NALib.Extensions;
 
 public static class ReflectionExtensions {
     public static bool HasAttribute<T>(this object instance) where T : Attribute {
@@ -47,11 +47,27 @@ public static class ReflectionExtensions {
         return l;
     }
 
-    public static T GetValue<T>(this PropertyInfo property, object obj) {
-        return (T)property.GetValue(obj);
+    public static T? GetValueAs<T>(this PropertyInfo? property, object? obj) {
+        ArgumentNullException.ThrowIfNull(property, nameof(property));
+
+        object? result = property.GetValue(obj);
+
+        if (result is not T) {
+            return default(T);
+        }
+
+        return (T)result;
     }
-    public static T GetValue<T>(this FieldInfo field, object obj) {
-        return (T)field.GetValue(obj);
+
+    public static T? GetValueAs<T>(this FieldInfo? field, object? obj) {
+        ArgumentNullException.ThrowIfNull(field, nameof(field));
+        object? result = field.GetValue(obj);
+
+        if (result is not T) {
+            return default(T);
+        }
+
+        return (T)result;
     }
 
     public static bool HasMethodOverride(this Type t, string methodName, BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Public) {

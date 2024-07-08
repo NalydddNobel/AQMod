@@ -108,7 +108,7 @@ internal class InstancedTileItem(ModTile modTile, int style = 0, string nameSuff
 
 /// <param name="modWall"></param>
 /// <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
-internal class InstancedWallItem(ModWall modWall, bool dropItem = true) : InstancedModItem(modWall.Name, modWall.Texture + "Item") {
+internal class InstancedWallItem(ModWall modWall, bool dropItem = true) : InstancedModItem(modWall.Name, modWall.Texture + "Item"), IPostSetupContent {
     private string KeyPrefix => Name != modWall.Name ? $"{Name.Replace(modWall.Name, "")}." : "";
     public override LocalizedText DisplayName => Language.GetOrRegister(modWall.GetLocalizationKey(KeyPrefix + "ItemDisplayName"));
     public override LocalizedText Tooltip => Language.GetOrRegister(modWall.GetLocalizationKey(KeyPrefix + "ItemTooltip"), () => "");
@@ -116,6 +116,9 @@ internal class InstancedWallItem(ModWall modWall, bool dropItem = true) : Instan
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 400;
         ItemSets.DisableAutomaticPlaceableDrop[Type] = !dropItem;
+    }
+
+    void IPostSetupContent.PostSetupContent(Mod mod) {
     }
 
     public override void SetDefaults() {

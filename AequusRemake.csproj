@@ -25,6 +25,9 @@
 	<Reference Include="tModLoaderExtended">
 	  <HintPath>lib\tModLoaderExtended.dll</HintPath>
 	</Reference>
+	<Reference Include="NALib">
+	  <HintPath>lib\NALib.dll</HintPath>
+	</Reference>
 	<!-- Aequus Music dependancy -->
 	<ProjectReference Include="..\AequusRemakeMusic\AequusRemakeMusic.csproj" />
 	<!-- Source Generator (For AequusRemakeTextures and AequusRemakeSounds) -->

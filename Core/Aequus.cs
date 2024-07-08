@@ -1,3 +1,4 @@
+global using NALib.Extensions;
 global using AequusRemake.Core;
 global using AequusRemake.Core.Util;
 global using AequusRemake.Core.Util.Extensions;

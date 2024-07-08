@@ -1149,16 +1149,6 @@
             Only use in Pre/PostDraw hooks for items.
             </summary>
         </member>
-        <member name="M:AequusRemake.Core.Util.Extensions.ArrayExtensions.NewClone``1(``0[])">
-            <returns>A new array with the same contents.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Util.Extensions.ArrayExtensions.RemoveAt``1(``0[]@,System.Int32)">
-            <summary>Removes at <paramref name="index"/> and resizes <paramref name="arr"/> to fit.</summary>
-        </member>
-        <member name="M:AequusRemake.Core.Util.Extensions.ArrayExtensions.Remove``1(``0[]@,``0)">
-            <summary>Removes <paramref name="value"/> from <paramref name="arr"/>, and resizes <paramref name="arr"/> to fit if necessary.</summary>
-            <returns>Whether anything was removed at all.</returns>
-        </member>
         <member name="M:AequusRemake.Core.Util.Extensions.ArrayPoolExtensions.ClearReturn``1(FNAUtils.ArrayPool{``0},``0[])">
             <summary>Clears <paramref name="rent"/> and returns it to <paramref name="pool"/>.</summary>
         </member>
@@ -1285,13 +1275,6 @@
             <param name="j"></param>
             <returns></returns>
         </member>
-        <member name="M:AequusRemake.Core.Util.Helpers.ArrayHelper.PopulateNewArray``1(System.Func{System.Int32,``0},System.Int32)">
-            <returns>An array with the Length of <paramref name="length"/>, populated using <paramref name="dataFactory"/> where <see cref="T:System.Int32"/> is the index of the array being populated and <typeparamref name="T"/> is the value stored.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Util.Helpers.ArrayHelper.AddRangeSafe``1(``0[],``0[])">
-            <summary>Safely adds <paramref name="other"/>'s contents into <paramref name="array"/> by resizing and inserting the elements from <paramref name="other"/> into <paramref name="array"/>.</summary>
-            <returns>The combined array.</returns>
-        </member>
         <member name="M:AequusRemake.Core.Util.Helpers.ChatBroadcastTool.New(System.String,Microsoft.Xna.Framework.Color,System.Object[])">
             <summary>
             Broadcasts a message. Only does something when <see cref="F:Terraria.Main.netMode"/> is not equal to <see cref="F:Terraria.ID.NetmodeID.MultiplayerClient"/>.
@@ -1377,11 +1360,6 @@
         </member>
         <member name="M:AequusRemake.Core.Util.Helpers.LightingHelper.Get(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)">
             <returns>The Light Color at a specified world coordinate.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Util.Helpers.ReflectionTools.GetDefaultValue(System.Type)">
-            <summary>If the type represents a value type (struct), returns a blank instance of the value type. Otherwise returns null.</summary>
-            <param name="t"></param>
-            <returns></returns>
         </member>
         <member name="M:AequusRemake.Core.Util.Helpers.TooltipServices.GetIndex(System.String)">
             <summary>Attempts to get the index of the tooltip which matches <paramref name="name"/>.</summary>
