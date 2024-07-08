@@ -1,5 +1,5 @@
-﻿using AequusRemake.Content.Backpacks;
-using AequusRemake.Content.Configuration;
+﻿using AequusRemake.Content.Configuration;
+using AequusRemake.Systems.Backpacks;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;

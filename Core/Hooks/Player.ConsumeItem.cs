@@ -1,5 +1,5 @@
-﻿using AequusRemake.Content.Backpacks;
-using AequusRemake.Content.Items.Tools.Keychain;
+﻿using AequusRemake.Content.Items.Tools.Keychain;
+using AequusRemake.Systems.Backpacks;
 
 namespace AequusRemake.Core.Hooks;
 

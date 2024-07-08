@@ -1,4 +1,4 @@
-﻿using AequusRemake.Content.Backpacks;
+﻿using AequusRemake.Systems.Backpacks;
 
 namespace AequusRemake.Core.Hooks;
 

@@ -8,7 +8,7 @@ using Terraria.DataStructures;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
 
-namespace AequusRemake.Content.Systems.Renaming;
+namespace AequusRemake.Systems.Renaming;
 
 public sealed class RenamingSystem : ModSystem {
     #region Text

@@ -1,5 +1,5 @@
-﻿using AequusRemake.Content.Systems.Renaming;
-using AequusRemake.Core.Entities.Items.Components;
+﻿using AequusRemake.Core.Entities.Items.Components;
+using AequusRemake.Systems.Renaming;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using tModLoaderExtended.Terraria.GameContent.Creative;

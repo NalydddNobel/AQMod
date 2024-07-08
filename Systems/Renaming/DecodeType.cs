@@ -1,4 +1,4 @@
-﻿namespace AequusRemake.Content.Systems.Renaming;
+﻿namespace AequusRemake.Systems.Renaming;
 
 public enum DecodeType {
     None,

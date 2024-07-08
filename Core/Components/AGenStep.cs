@@ -1,4 +1,4 @@
-﻿using AequusRemake.Content.Systems;
+﻿using AequusRemake.Systems;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.Generation;

@@ -11,7 +11,7 @@ using AequusRemake.Content.Items.Weapons.Classless.StunGun;
 using AequusRemake.Content.Items.Weapons.Magic.Furystar;
 using AequusRemake.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
 using AequusRemake.Content.Mounts.HotAirBalloon;
-using AequusRemake.Core.Systems;
+using AequusRemake.Systems;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;

@@ -1,8 +1,8 @@
-﻿using AequusRemake.Core.Systems;
-using AequusRemake.Core.Graphics.Animations;
+﻿using AequusRemake.Core.Graphics.Animations;
 using System.IO;
 using Terraria.DataStructures;
 using tModLoaderExtended.Networking;
+using AequusRemake.Systems;
 
 namespace AequusRemake.Content.Fishing.CrabPots;
 public class PacketCrabPotUse : PacketHandler {

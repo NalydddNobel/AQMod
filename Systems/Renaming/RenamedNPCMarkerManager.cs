@@ -2,7 +2,7 @@
 using System.IO;
 using Terraria.ModLoader.IO;
 
-namespace AequusRemake.Content.Systems.Renaming;
+namespace AequusRemake.Systems.Renaming;
 
 public sealed class RenamedNPCMarkerManager : GlobalNPC {
     public override bool InstancePerEntity => true;
@@ -16,12 +16,13 @@ public sealed class RenamedNPCMarkerManager : GlobalNPC {
     }
 
     public override void AI(NPC npc) {
-        if (!npc.TryGetGlobalNPC<RenameNPC>(out var renameNPC) || !renameNPC.HasCustomName) {
+        if (!npc.TryGetGlobalNPC<RenameNPC>(out var renameNPC)) {
             return;
         }
 
-        if (npc.immortal || !renameNPC.HasCustomName) {
-            RenamingSystem.RenamedNPCs.Remove(MarkerId);
+        // Stinky hacks to prevent npcs from getting revived when killed.
+        if (npc.dontTakeDamage || npc.immortal || npc.life * 2 < npc.lifeMax || !renameNPC.HasCustomName) {
+            RenamingSystem.Remove(MarkerId, quiet: Main.netMode == NetmodeID.MultiplayerClient);
             return;
         }
 

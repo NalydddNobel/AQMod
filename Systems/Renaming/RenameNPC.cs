@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using Terraria.ModLoader.IO;
 
-namespace AequusRemake.Content.Systems.Renaming;
+namespace AequusRemake.Systems.Renaming;
 
 [LegacyName("NPCNameTag")]
 [LegacyName("NameTagGlobalNPC")]
@@ -79,7 +79,7 @@ public sealed class RenameNPC : GlobalNPC {
             return canBeRenamedOverride;
         }
 
-        if (!npc.townNPC && !NPCSets.SpawnsWithCustomName[npc.type] && (npc.boss || NPCSets.ShouldBeCountedAsBoss[npc.type] || npc.immortal || npc.dontTakeDamage || npc.SpawnedFromStatue || (npc.realLife != -1 && npc.realLife != npc.whoAmI))) {
+        if (!npc.townNPC && !NPCSets.SpawnsWithCustomName[npc.type] && (npc.boss || NPCSets.ShouldBeCountedAsBoss[npc.type] || npc.immortal || npc.dontTakeDamage || npc.SpawnedFromStatue || npc.realLife != -1 && npc.realLife != npc.whoAmI)) {
             return false;
         }
 

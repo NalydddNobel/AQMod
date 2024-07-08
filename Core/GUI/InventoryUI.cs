@@ -1,4 +1,4 @@
-﻿using AequusRemake.Content.Backpacks;
+﻿using AequusRemake.Systems.Backpacks;
 using MonoMod.Cil;
 using System;
 using System.Collections.Generic;

@@ -1,5 +1,5 @@
-﻿using AequusRemake.Core.Systems;
-using AequusRemake.Content.TownNPCs;
+﻿using AequusRemake.Content.TownNPCs;
+using AequusRemake.Systems;
 
 namespace AequusRemake.Core.Hooks;
 

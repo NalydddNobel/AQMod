@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria.ModLoader.IO;
 
-namespace AequusRemake.Content.Backpacks;
+namespace AequusRemake.Systems.Backpacks;
 
 public class BackpackPlayer : ModPlayer {
     public BackpackData[] backpacks;

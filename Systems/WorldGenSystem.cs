@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Terraria.WorldBuilding;
 
-namespace AequusRemake.Content.Systems;
+namespace AequusRemake.Systems;
 
 public class WorldGenSystem : ModSystem {
     public static readonly List<AGenStep> GenerationSteps = [];

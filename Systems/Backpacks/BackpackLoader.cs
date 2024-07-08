@@ -6,7 +6,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ModLoader.IO;
 
-namespace AequusRemake.Content.Backpacks;
+namespace AequusRemake.Systems.Backpacks;
 
 public class BackpackLoader {
     public const string BackpacksSaveKey = "Backpacks";

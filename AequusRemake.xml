@@ -163,51 +163,6 @@
         <member name="M:AequusRemake.Content.Items.Potions.PotionCanteen.UnifiedCanteen.HasBuffs">
             <summary>Determines if this canteen has any buffs at all.</summary>
         </member>
-        <member name="M:AequusRemake.Content.Backpacks.BackpackData.Deactivate(Terraria.Player)">
-            <summary>
-            Runs when the Backpack is no longer active. Use this hook to deposit items from the Backpack.
-            </summary>
-            <param name="player"></param>
-        </member>
-        <member name="M:AequusRemake.Content.Backpacks.BackpackData.PreDrawSlot(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32)">
-            <summary>Return false to override slot drawing.</summary>
-        </member>
-        <member name="M:AequusRemake.Content.Backpacks.BackpackData.SyncNetStates(Terraria.Player,AequusRemake.Content.Backpacks.BackpackData)">
-            <returns>Whether any items needed syncing.</returns>
-        </member>
-        <member name="M:AequusRemake.Content.Backpacks.BackpackPlayerSyncPacket.SendSingleItem(Terraria.Player,AequusRemake.Content.Backpacks.BackpackData,System.Int32,System.Int32,System.Int32)">
-            <summary>Invokes a single item being sent from a backpack.</summary>
-        </member>
-        <member name="M:AequusRemake.Content.Backpacks.BackpackPlayerSyncPacket.Send(Terraria.Player,AequusRemake.Content.Backpacks.BackpackData,System.Int32,System.Int32)">
-            <summary>Invokes a full sync of a backpack.</summary>
-        </member>
-        <member name="P:AequusRemake.Content.Systems.RecipeSystem.AnySeaFirefly">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for Sea Firefly variants.</summary>
-        </member>
-        <member name="P:AequusRemake.Content.Systems.RecipeSystem.AnyGoldBar">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for Gold Bar variants.</summary>
-        </member>
-        <member name="P:AequusRemake.Content.Systems.RecipeSystem.AnySilverBar">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for Silver Bar variants.</summary>
-        </member>
-        <member name="P:AequusRemake.Content.Systems.RecipeSystem.AnyCopperBar">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for Copper Bar variants.</summary>
-        </member>
-        <member name="P:AequusRemake.Content.Systems.RecipeSystem.AnyQuestFish">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for all IDs in <see cref="F:Terraria.Main.anglerQuestItemNetIDs"/>.</summary>
-        </member>
-        <member name="P:AequusRemake.Content.Systems.RecipeSystem.Shellphone">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for the Shellphone and its alternative modes.</summary>
-        </member>
-        <member name="P:AequusRemake.Content.Systems.RecipeSystem.AnyPaints">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for paints.</summary>
-        </member>
-        <member name="P:AequusRemake.Content.Systems.RecipeSystem.AnyCoatings">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for coatings.</summary>
-        </member>
-        <member name="P:AequusRemake.Content.Systems.RecipeSystem.AnyTrash">
-            <summary><see cref="T:Terraria.RecipeGroup"/> for trash items.</summary>
-        </member>
         <member name="P:AequusRemake.Content.Tiles.RainTotem.RainTotem.RainTotemMax">
             <summary>Amount of Rain Totems on screen required to reach <see cref="P:AequusRemake.Content.Tiles.RainTotem.RainTotem.BonusRainChanceMax"/></summary>
         </member>
@@ -811,18 +766,6 @@
             <param name="baseColor"></param>
             <param name="text"></param>
             <param name="entryNumber">Offsets the map Id lookup by this value. Defaults to 1, meaning that it assumes that this is the 2nd registered color for this wall.</param>
-        </member>
-        <member name="M:AequusRemake.Core.Systems.TimeSystem.ConditionBetweenDaysOfWeek(System.DayOfWeek,System.DayOfWeek)">
-            <param name="firstDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:AequusRemake.Core.Systems.TimeSystem.DayOfTheWeek"/>.</param>
-            <param name="lastDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:AequusRemake.Core.Systems.TimeSystem.DayOfTheWeek"/>.</param>
-            <returns>A condition for a specific time range between two days of the week.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Systems.TimeSystem.ConditionByDayOfWeek(System.DayOfWeek)">
-            <param name="dayOfWeek">The <see cref="M:AequusRemake.Core.Systems.TimeSystem.GetWeekText(System.DayOfWeek)"/> to compare against <see cref="P:AequusRemake.Core.Systems.TimeSystem.DayOfTheWeek"/>.</param>
-            <returns>A condition for a specific day of the week.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Systems.TimeSystem.GetWeekText(System.DayOfWeek)">
-            <returns>Localized name of a <see cref="T:System.DayOfWeek"/> value.</returns>
         </member>
         <member name="M:AequusRemake.Core.Audio.AudioEffects.PlayUnpanningAttenuationSound(Terraria.Audio.SoundStyle,Microsoft.Xna.Framework.Vector2,System.Single)">
             <summary>Plays a sound which does not pan, but will get quieter with distance.</summary>
@@ -2153,9 +2096,6 @@
         </member>
         <member name="M:AequusRemake.Core.Structures.RefCache`1.RestoreOriginalValue">
             <summary>Restores overriden values back to their original value.</summary>
-        </member>
-        <member name="P:AequusRemake.AequusSystem.RemixWorldSafeUnderworldRange">
-            <summary>Returns a point with the beginning (left) (X) and end (right) (Y) of the 'safe' underworld in remix worlds. This does not represent a point in 2D space, but rather two X coordinates.</summary>
         </member>
         <member name="M:AequusRemake.AequusRemake.GetRandomName(Terraria.Utilities.UnifiedRandom)">
             <returns>A random name. Used in naturally generated underworld tombstones.</returns>
@@ -3995,6 +3935,66 @@
         </member>
         <member name="F:AequusRemake.AequusTextures.icon_workshop">
             <summary>Full Path: icon_workshop</summary>
+        </member>
+        <member name="P:AequusRemake.AequusSystem.RemixWorldSafeUnderworldRange">
+            <summary>Returns a point with the beginning (left) (X) and end (right) (Y) of the 'safe' underworld in remix worlds. This does not represent a point in 2D space, but rather two X coordinates.</summary>
+        </member>
+        <member name="M:AequusRemake.Systems.Backpacks.BackpackData.Deactivate(Terraria.Player)">
+            <summary>
+            Runs when the Backpack is no longer active. Use this hook to deposit items from the Backpack.
+            </summary>
+            <param name="player"></param>
+        </member>
+        <member name="M:AequusRemake.Systems.Backpacks.BackpackData.PreDrawSlot(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32)">
+            <summary>Return false to override slot drawing.</summary>
+        </member>
+        <member name="M:AequusRemake.Systems.Backpacks.BackpackData.SyncNetStates(Terraria.Player,AequusRemake.Systems.Backpacks.BackpackData)">
+            <returns>Whether any items needed syncing.</returns>
+        </member>
+        <member name="M:AequusRemake.Systems.Backpacks.BackpackPlayerSyncPacket.SendSingleItem(Terraria.Player,AequusRemake.Systems.Backpacks.BackpackData,System.Int32,System.Int32,System.Int32)">
+            <summary>Invokes a single item being sent from a backpack.</summary>
+        </member>
+        <member name="M:AequusRemake.Systems.Backpacks.BackpackPlayerSyncPacket.Send(Terraria.Player,AequusRemake.Systems.Backpacks.BackpackData,System.Int32,System.Int32)">
+            <summary>Invokes a full sync of a backpack.</summary>
+        </member>
+        <member name="P:AequusRemake.Systems.RecipeSystem.AnySeaFirefly">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for Sea Firefly variants.</summary>
+        </member>
+        <member name="P:AequusRemake.Systems.RecipeSystem.AnyGoldBar">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for Gold Bar variants.</summary>
+        </member>
+        <member name="P:AequusRemake.Systems.RecipeSystem.AnySilverBar">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for Silver Bar variants.</summary>
+        </member>
+        <member name="P:AequusRemake.Systems.RecipeSystem.AnyCopperBar">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for Copper Bar variants.</summary>
+        </member>
+        <member name="P:AequusRemake.Systems.RecipeSystem.AnyQuestFish">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for all IDs in <see cref="F:Terraria.Main.anglerQuestItemNetIDs"/>.</summary>
+        </member>
+        <member name="P:AequusRemake.Systems.RecipeSystem.Shellphone">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for the Shellphone and its alternative modes.</summary>
+        </member>
+        <member name="P:AequusRemake.Systems.RecipeSystem.AnyPaints">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for paints.</summary>
+        </member>
+        <member name="P:AequusRemake.Systems.RecipeSystem.AnyCoatings">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for coatings.</summary>
+        </member>
+        <member name="P:AequusRemake.Systems.RecipeSystem.AnyTrash">
+            <summary><see cref="T:Terraria.RecipeGroup"/> for trash items.</summary>
+        </member>
+        <member name="M:AequusRemake.Systems.TimeSystem.ConditionBetweenDaysOfWeek(System.DayOfWeek,System.DayOfWeek)">
+            <param name="firstDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:AequusRemake.Systems.TimeSystem.DayOfTheWeek"/>.</param>
+            <param name="lastDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:AequusRemake.Systems.TimeSystem.DayOfTheWeek"/>.</param>
+            <returns>A condition for a specific time range between two days of the week.</returns>
+        </member>
+        <member name="M:AequusRemake.Systems.TimeSystem.ConditionByDayOfWeek(System.DayOfWeek)">
+            <param name="dayOfWeek">The <see cref="M:AequusRemake.Systems.TimeSystem.GetWeekText(System.DayOfWeek)"/> to compare against <see cref="P:AequusRemake.Systems.TimeSystem.DayOfTheWeek"/>.</param>
+            <returns>A condition for a specific day of the week.</returns>
+        </member>
+        <member name="M:AequusRemake.Systems.TimeSystem.GetWeekText(System.DayOfWeek)">
+            <returns>Localized name of a <see cref="T:System.DayOfWeek"/> value.</returns>
         </member>
     </members>
 </doc>

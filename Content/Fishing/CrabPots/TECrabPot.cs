@@ -1,11 +1,11 @@
-﻿using AequusRemake.Core.Systems;
-using AequusRemake.Core.Graphics.Animations;
+﻿using AequusRemake.Core.Graphics.Animations;
 using System;
 using System.IO;
 using Terraria.DataStructures;
 using Terraria.ModLoader.IO;
 using Terraria.ObjectData;
 using Terraria.Utilities;
+using AequusRemake.Systems;
 
 namespace AequusRemake.Content.Fishing.CrabPots;
 

@@ -1,5 +1,5 @@
-﻿using AequusRemake.Content.Systems;
-using AequusRemake.Core.Entities.Projectiles;
+﻿using AequusRemake.Core.Entities.Projectiles;
+using AequusRemake.Systems;
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;

@@ -8,7 +8,7 @@ using Terraria.Localization;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace AequusRemake.Content.Backpacks;
+namespace AequusRemake.Systems.Backpacks;
 
 public class BackpackSlotsUI : UILayer {
     public const int SlotWidth = 56;

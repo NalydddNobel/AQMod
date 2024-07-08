@@ -1,8 +1,8 @@
-﻿using AequusRemake.Content.Systems;
-using AequusRemake.Content.Tiles.Misc.SeaFireflyBlock;
+﻿using AequusRemake.Content.Tiles.Misc.SeaFireflyBlock;
 using AequusRemake.Core.Graphics.Textures;
 using AequusRemake.Core.Structures.Enums;
 using AequusRemake.DataSets;
+using AequusRemake.Systems;
 using System;
 
 namespace AequusRemake.Content.Critters.SeaFirefly;

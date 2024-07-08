@@ -1,6 +1,6 @@
 ﻿using AequusRemake.Core;
-using AequusRemake.Content.Backpacks;
 using Terraria.Localization;
+using AequusRemake.Systems.Backpacks;
 
 namespace AequusRemake.Content.Items.Accessories.ScavengerBag;
 

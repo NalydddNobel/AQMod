@@ -1,4 +1,4 @@
-﻿using AequusRemake.Content.Backpacks;
+﻿using AequusRemake.Systems.Backpacks;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.UI;

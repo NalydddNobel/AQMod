@@ -1,5 +1,5 @@
-﻿using AequusRemake.Content.Backpacks;
-using AequusRemake.Core.Entities.Golfing;
+﻿using AequusRemake.Core.Entities.Golfing;
+using AequusRemake.Systems.Backpacks;
 
 namespace AequusRemake.Core.Hooks;
 

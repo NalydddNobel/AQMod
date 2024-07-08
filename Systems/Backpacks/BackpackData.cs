@@ -6,7 +6,7 @@ using Terraria.GameContent.Events;
 using Terraria.Localization;
 using Terraria.ModLoader.IO;
 
-namespace AequusRemake.Content.Backpacks;
+namespace AequusRemake.Systems.Backpacks;
 
 public abstract class BackpackData : ModType, ILocalizedModType {
     private const string InventoryTagKey = "Inventory";

@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using tModLoaderExtended.Networking;
 
-namespace AequusRemake.Content.Systems.Renaming;
+namespace AequusRemake.Systems.Renaming;
 
 public sealed class PacketAddMarker : PacketHandler {
     public void Send(int markerId, RenamedNPCMarker marker) {

@@ -1,5 +1,5 @@
-﻿using AequusRemake.Content.Systems;
-using AequusRemake.Content.Tiles.CraftingStations.TrashCompactor;
+﻿using AequusRemake.Content.Tiles.CraftingStations.TrashCompactor;
+using AequusRemake.Systems;
 
 namespace AequusRemake.Content.Items.Materials;
 

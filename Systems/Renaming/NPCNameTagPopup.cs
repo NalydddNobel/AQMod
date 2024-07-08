@@ -5,7 +5,7 @@ using Terraria.GameContent;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace AequusRemake.Content.Systems.Renaming;
+namespace AequusRemake.Systems.Renaming;
 
 public class NPCNameTagPopup : UILayer {
     private readonly DictionaryRemoveQueue<int, Popup> NPCPopups = new();

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria.Localization;
 
-namespace AequusRemake.Content.Systems;
+namespace AequusRemake.Systems;
 
 public class RecipeSystem : ModSystem {
     /// <summary><see cref="RecipeGroup"/> for Sea Firefly variants.</summary>

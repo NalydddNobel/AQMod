@@ -1,7 +1,7 @@
-﻿using AequusRemake.Content.Backpacks;
-using AequusRemake.Core.Entities.Tiles.Components;
+﻿using AequusRemake.Core.Entities.Tiles.Components;
 using AequusRemake.Core.Graphics.Animations;
 using AequusRemake.Core.Graphics.Tiles;
+using AequusRemake.Systems.Backpacks;
 using ReLogic.Content;
 using System;
 using Terraria.Audio;

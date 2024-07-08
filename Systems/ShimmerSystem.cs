@@ -10,7 +10,7 @@ using AequusRemake.Core.Components.Prefixes;
 using AequusRemake.Core.Entities.Items.Dedications;
 using tModLoaderExtended.Terraria.GameContent;
 
-namespace AequusRemake.Core.Systems;
+namespace AequusRemake.Systems;
 
 public class ShimmerSystem : ModSystem {
     public override void PostSetupContent() {

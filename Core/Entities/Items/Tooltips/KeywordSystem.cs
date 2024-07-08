@@ -1,5 +1,5 @@
-﻿using AequusRemake.Content.Backpacks;
-using AequusRemake.Core.Entities.Items.Components;
+﻿using AequusRemake.Core.Entities.Items.Components;
+using AequusRemake.Systems.Backpacks;
 using System.Collections.Generic;
 
 namespace AequusRemake.Core.Entities.Items.Tooltips;

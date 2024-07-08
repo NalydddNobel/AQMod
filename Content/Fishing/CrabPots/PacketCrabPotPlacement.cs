@@ -1,4 +1,4 @@
-﻿using AequusRemake.Core.Systems;
+﻿using AequusRemake.Systems;
 using System.IO;
 using Terraria.DataStructures;
 using tModLoaderExtended.Networking;
