@@ -6,7 +6,7 @@ namespace AequusRemake.Content.Items.Accessories.GoldenFeather;
 public class GoldenWind : GoldenFeather {
     public static new int LifeRegenerationAmount { get; set; } = 3;
 
-    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(XLanguage.Seconds(-RespawnTimeAmount), XLanguage.Decimals(LifeRegenerationAmount / 2f));
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ALanguage.Seconds(-RespawnTimeAmount), ALanguage.Decimals(LifeRegenerationAmount / 2f));
 
     public override int BuffType => ModContent.BuffType<GoldenWindBuff>();
 

@@ -967,6 +967,75 @@
         <member name="M:AequusRemake.Core.Util.XProjectile.UpdateShimmerReflection(Terraria.Projectile)">
             <summary>Helper method which reflects a projectile against shimmer.</summary>
         </member>
+        <member name="M:AequusRemake.Core.Util.ALanguage.GetText(System.String)">
+            <param name="key"></param>
+            <returns>A <see cref="T:Terraria.Localization.LocalizedText"/> value for <paramref name="key"/> appended to the end of "Mods.AequusRemake"</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.ALanguage.GetRandomLocalizationFromCategory(Terraria.ModLoader.ILocalizedModType,System.String,Terraria.Utilities.UnifiedRandom)">
+            <summary>Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.</summary>
+        </member>
+        <member name="M:AequusRemake.Core.Util.ALanguage.GetDisplayName(Terraria.ModLoader.ILocalizedModType)">
+            <summary>Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.</summary>
+        </member>
+        <member name="M:AequusRemake.Core.Util.ALanguage.GetDisplayName``1">
+            <summary><inheritdoc cref="M:AequusRemake.Core.Util.ALanguage.GetDisplayName(Terraria.ModLoader.ILocalizedModType)"/></summary>
+        </member>
+        <member name="M:AequusRemake.Core.Util.ALanguage.ContainsKey(System.String)">
+            <returns>Whether this key has a value. (<see cref="M:Terraria.Localization.Language.GetTextValue(System.String)"/> doesnt return the key.)</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.ALanguage.TryGet(System.String,Terraria.Localization.LocalizedText@)">
+            <returns>Whether the text exists. (<see cref="M:Terraria.Localization.Language.GetTextValue(System.String)"/> doesnt return the key.)</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.ALanguage.TryGetValue(System.String,System.String@)">
+            <returns><inheritdoc cref="M:AequusRemake.Core.Util.ALanguage.TryGet(System.String,Terraria.Localization.LocalizedText@)"/></returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.ALanguage.GetCategoryKey(Terraria.ModLoader.ILocalizedModType,System.String,System.Func{System.String})">
+            <returns>The Category Key. (Mods.ModName.Category.Suffix)</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.ALanguage.GetCategoryText(Terraria.ModLoader.ILocalizedModType,System.String,System.Func{System.String})">
+            <returns>A localized text using a category key. (Mods.ModName.Category.Suffix)</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.ALanguage.GetCategoryTextValue(Terraria.ModLoader.ILocalizedModType,System.String)">
+            <returns>A text value using a category key. (Mods.ModName.Category.Suffix)</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.ALanguage.PriceText(System.Int64,System.String)">
+            <returns>Price Text for the specified value, or <paramref name="NoValueText"/> if value is less than or equal to 0.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.ALanguage.PriceTextColored(System.Int64,System.String,System.Boolean)">
+            <returns><inheritdoc cref="M:AequusRemake.Core.Util.ALanguage.PriceText(System.Int64,System.String)"/> Colored using chat commands.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.ALanguage.GetUseAnimationText(System.Single)">
+            <param name="useAnimation">Item use animation.</param>
+            <returns>Localized use animation (speed) text based off vanilla thresholds.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.ALanguage.GetKnockbackText(System.Single)">
+            <param name="knockback">Weapon Knockback.</param>
+            <returns>Localized knockback text based off vanilla thresholds.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.ALanguage.GetKeybindKeys(Terraria.ModLoader.ModKeybind)">
+            <param name="keybind"></param>
+            <returns>An enumerable of each key for this keybind. Returns "Unbound Key" if no keys are assigned.</returns>
+        </member>
+        <member name="M:AequusRemake.Core.Util.ALanguage.WatchTime(System.Double,System.Boolean)">
+            <summary>Copied from example mod and doesnt put any effort to localize. Uses Terraria day/night cycle styled time data.</summary>
+            <param name="time">The Day/Night cycle time.</param>
+            <param name="dayTime">Whether it's day or night.</param>
+        </member>
+        <member name="M:AequusRemake.Core.Util.ALanguage.Minutes(System.Double)">
+            <summary>Converts ticks to seconds, up to 1 decimal place.</summary>
+        </member>
+        <member name="M:AequusRemake.Core.Util.ALanguage.Seconds(System.Double)">
+            <summary>Converts ticks to seconds, up to 1 decimal place.</summary>
+        </member>
+        <member name="M:AequusRemake.Core.Util.ALanguage.Percent(System.Double)">
+            <summary>Converts a decimal value into percentage text, up to 1 decimal place.</summary>
+        </member>
+        <member name="M:AequusRemake.Core.Util.ALanguage.Decimals(System.Double)">
+            <summary>Converts value into decimal text, up to 1 decimal place.</summary>
+        </member>
+        <member name="M:AequusRemake.Core.Util.ALanguage.RegisterKey(System.String)">
+            <summary>Registers a localization key if it doesn't exist. Only ran if compiled with a DEBUG symbol.</summary>
+        </member>
         <member name="F:AequusRemake.Core.Util.CommonColor.TextInteractable">
             <summary>Yellow text used by Beds, Clocks, etc.</summary>
         </member>
@@ -1201,14 +1270,6 @@
             <param name="newItem">The Item Id to replace <paramref name="oldItem"/> with.</param>
             <param name="newItemStack">Stack override for <paramref name="newItem"/>. A value of -1 will keep the stack of <paramref name="oldItem"/></param>
         </member>
-        <member name="M:AequusRemake.Core.Util.Extensions.ReflectionExtensions.GetConstantFields(System.Object,System.Reflection.BindingFlags)">
-            <returns>Returns all constant fields from <paramref name="obj"/>'s <see cref="T:System.Type"/>.</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-        </member>
-        <member name="M:AequusRemake.Core.Util.Extensions.ReflectionExtensions.GetConstantFields(System.Type,System.Reflection.BindingFlags)">
-            <returns>Returns all constant fields from <paramref name="type"/>.</returns>
-            <exception cref="T:System.ArgumentNullException"></exception>
-        </member>
         <member name="M:AequusRemake.Core.Util.Extensions.SoundStyleExtensions.ModPath(Terraria.Audio.SoundStyle)">
             <returns>The Sound's path with the first directory removed.</returns>
         </member>
@@ -1441,75 +1502,6 @@
         </member>
         <member name="M:AequusRemake.Core.Util.TileHelper.LiquidNoMax(System.Int32,System.Int32)">
             <returns><inheritdoc cref="M:AequusRemake.Core.Util.TileHelper.LiquidNoMax(Terraria.Tile)"/></returns>
-        </member>
-        <member name="M:AequusRemake.Core.Util.XLanguage.GetText(System.String)">
-            <param name="key"></param>
-            <returns>A <see cref="T:Terraria.Localization.LocalizedText"/> value for <paramref name="key"/> appended to the end of "Mods.AequusRemake"</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Util.XLanguage.GetRandomLocalizationFromCategory(Terraria.ModLoader.ILocalizedModType,System.String,Terraria.Utilities.UnifiedRandom)">
-            <summary>Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.</summary>
-        </member>
-        <member name="M:AequusRemake.Core.Util.XLanguage.GetDisplayName(Terraria.ModLoader.ILocalizedModType)">
-            <summary>Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.</summary>
-        </member>
-        <member name="M:AequusRemake.Core.Util.XLanguage.GetDisplayName``1">
-            <summary><inheritdoc cref="M:AequusRemake.Core.Util.XLanguage.GetDisplayName(Terraria.ModLoader.ILocalizedModType)"/></summary>
-        </member>
-        <member name="M:AequusRemake.Core.Util.XLanguage.ContainsKey(System.String)">
-            <returns>Whether this key has a value. (<see cref="M:Terraria.Localization.Language.GetTextValue(System.String)"/> doesnt return the key.)</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Util.XLanguage.TryGet(System.String,Terraria.Localization.LocalizedText@)">
-            <returns>Whether the text exists. (<see cref="M:Terraria.Localization.Language.GetTextValue(System.String)"/> doesnt return the key.)</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Util.XLanguage.TryGetValue(System.String,System.String@)">
-            <returns><inheritdoc cref="M:AequusRemake.Core.Util.XLanguage.TryGet(System.String,Terraria.Localization.LocalizedText@)"/></returns>
-        </member>
-        <member name="M:AequusRemake.Core.Util.XLanguage.GetCategoryKey(Terraria.ModLoader.ILocalizedModType,System.String,System.Func{System.String})">
-            <returns>The Category Key. (Mods.ModName.Category.Suffix)</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Util.XLanguage.GetCategoryText(Terraria.ModLoader.ILocalizedModType,System.String,System.Func{System.String})">
-            <returns>A localized text using a category key. (Mods.ModName.Category.Suffix)</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Util.XLanguage.GetCategoryTextValue(Terraria.ModLoader.ILocalizedModType,System.String)">
-            <returns>A text value using a category key. (Mods.ModName.Category.Suffix)</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Util.XLanguage.PriceText(System.Int64,System.String)">
-            <returns>Price Text for the specified value, or <paramref name="NoValueText"/> if value is less than or equal to 0.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Util.XLanguage.PriceTextColored(System.Int64,System.String,System.Boolean)">
-            <returns><inheritdoc cref="M:AequusRemake.Core.Util.XLanguage.PriceText(System.Int64,System.String)"/> Colored using chat commands.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Util.XLanguage.GetUseAnimationText(System.Single)">
-            <param name="useAnimation">Item use animation.</param>
-            <returns>Localized use animation (speed) text based off vanilla thresholds.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Util.XLanguage.GetKnockbackText(System.Single)">
-            <param name="knockback">Weapon Knockback.</param>
-            <returns>Localized knockback text based off vanilla thresholds.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Util.XLanguage.GetKeybindKeys(Terraria.ModLoader.ModKeybind)">
-            <param name="keybind"></param>
-            <returns>An enumerable of each key for this keybind. Returns "Unbound Key" if no keys are assigned.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Util.XLanguage.WatchTime(System.Double,System.Boolean)">
-            <summary>Copied from example mod and doesnt put any effort to localize. Uses Terraria day/night cycle styled time data.</summary>
-            <param name="time">The Day/Night cycle time.</param>
-            <param name="dayTime">Whether it's day or night.</param>
-        </member>
-        <member name="M:AequusRemake.Core.Util.XLanguage.Minutes(System.Double)">
-            <summary>Converts ticks to seconds, up to 1 decimal place.</summary>
-        </member>
-        <member name="M:AequusRemake.Core.Util.XLanguage.Seconds(System.Double)">
-            <summary>Converts ticks to seconds, up to 1 decimal place.</summary>
-        </member>
-        <member name="M:AequusRemake.Core.Util.XLanguage.Percent(System.Double)">
-            <summary>Converts a decimal value into percentage text, up to 1 decimal place.</summary>
-        </member>
-        <member name="M:AequusRemake.Core.Util.XLanguage.Decimals(System.Double)">
-            <summary>Converts value into decimal text, up to 1 decimal place.</summary>
-        </member>
-        <member name="M:AequusRemake.Core.Util.XLanguage.RegisterKey(System.String)">
-            <summary>Registers a localization key if it doesn't exist. Only ran if compiled with a DEBUG symbol.</summary>
         </member>
         <member name="F:AequusRemake.Core.Commons.Rare.MaterialStart">
             <summary>Rarity shared by early Pre Hardmode materials (Metal Bars, Ores, etc.)</summary>

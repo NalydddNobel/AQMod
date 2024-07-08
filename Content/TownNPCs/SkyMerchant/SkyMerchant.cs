@@ -4,6 +4,7 @@ using AequusRemake.Core.Components.NPCs;
 using AequusRemake.Core.ContentGeneration;
 using AequusRemake.Core.Entities.Bestiary;
 using AequusRemake.Core.GUI;
+using AequusRemake.Core.Localization;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;
@@ -292,41 +293,7 @@ public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
     }
 
     public override string GetChat() {
-        string key = Main.rand.Next(5).ToString();
-        if (!Main.dayTime && Main.rand.NextBool(3)) {
-            key = "Night";
-        }
-        if (Main.LocalPlayer.ZoneGraveyard && Main.rand.NextBool(3)) {
-            key = "Graveyard";
-        }
-        if (Main.IsItStorming && Main.rand.NextBool(3)) {
-            key = "Thunderstorm";
-        }
-        if (Main.bloodMoon && Main.rand.NextBool(3)) {
-            key = "BloodMoon";
-        }
-        if (Main.LocalPlayer.ZoneGlimmer() && Main.rand.NextBool(3)) {
-            key = "Glimmer";
-        }
-        if (Main.eclipse && Main.rand.NextBool(3)) {
-            key = "Eclipse";
-        }
-        if (NPC.AnyNPCs(NPCID.Merchant) && Main.rand.NextBool(5)) {
-            key = "Merchant";
-        }
-        if (NPC.AnyNPCs(NPCID.Pirate) && Main.rand.NextBool(5)) {
-            key = "Pirate";
-        }
-        if (NPC.AnyNPCs(NPCID.Steampunker) && Main.rand.NextBool(5)) {
-            key = "Steampunker";
-        }
-        if (NPC.AnyNPCs(NPCID.TravellingMerchant) && Main.rand.NextBool(3)) {
-            key = "TravellingMerchant";
-        }
-        if (NPC.AnyNPCs(NPCID.Demolitionist) && Main.rand.NextBool(5)) {
-            key = "Demolitionist";
-        }
-        return this.GetLocalization("Dialogue." + key).FormatWith(Lang.CreateDialogSubstitutionObject(NPC));
+        return DialogueSelector.Instance.GetRandomValidText(this.GetDialogueKey()).FormatWith(Lang.CreateDialogSubstitutionObject());
     }
     #endregion
 

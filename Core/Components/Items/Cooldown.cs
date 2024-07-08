@@ -28,7 +28,7 @@ public sealed class CooldownGlobalItem : GlobalItem {
             return;
         }
 
-        tooltips.AddTooltip(new(Mod, "CooldownTip", Language.GetTextValue("Mods.AequusRemake.Items.CommonTooltips.Cooldown", XLanguage.Seconds(cooldownItem.GetCooldownTime(item.prefix)))));
+        tooltips.AddTooltip(new(Mod, "CooldownTip", Language.GetTextValue("Mods.AequusRemake.Items.CommonTooltips.Cooldown", ALanguage.Seconds(cooldownItem.GetCooldownTime(item.prefix)))));
     }
 
     private static void DrawBackground(float time, float timeMax, SpriteBatch spriteBatch, Vector2 position) {

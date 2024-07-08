@@ -8,7 +8,7 @@ public class GoldenFeather : ModItem {
     public static int RespawnTimeAmount { get; set; } = -300;
     public static int LifeRegenerationAmount { get; set; } = 1;
 
-    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(XLanguage.Seconds(-RespawnTimeAmount), XLanguage.Decimals(LifeRegenerationAmount / 2f));
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ALanguage.Seconds(-RespawnTimeAmount), ALanguage.Decimals(LifeRegenerationAmount / 2f));
 
     public virtual int BuffType => ModContent.BuffType<GoldenFeatherBuff>();
 

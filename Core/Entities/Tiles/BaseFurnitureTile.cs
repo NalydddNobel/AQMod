@@ -430,7 +430,7 @@ public class BaseFurnitureTile {
         }
 
         public override bool RightClick(int x, int y) {
-            Main.NewText($"Time: {XLanguage.WatchTime(Main.time, Main.dayTime)}", new Color(255, 240, 20));
+            Main.NewText($"Time: {ALanguage.WatchTime(Main.time, Main.dayTime)}", new Color(255, 240, 20));
             return true;
         }
     }

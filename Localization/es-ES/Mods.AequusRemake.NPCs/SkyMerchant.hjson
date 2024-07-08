@@ -11,14 +11,14 @@ SkyMerchant: {
 		Night: Esta hora del día es tan relajante. Tienes una mejor vista de las estrellas fugaces pasando a través de las islas nubladas, es increíble.
 		BloodMoon: Vaya, no se ve muy bien abajo. Menos mal que estoy seguro en el cielo, ¿verdad?... ¿V-verdad?
 		Glimmer: Disculpa si parezco un poco tenso, ¡He tenido que parchar mi globo unas tres veces esta noche por las estrellas!
-		SolarEclipse: Siempre trato de seguir los eclipses para acabar en el camino de la totalidad. ¡Nunca me canso de esta vista!
+		Eclipse: Siempre trato de seguir los eclipses para acabar en el camino de la totalidad. ¡Nunca me canso de esta vista!
 		Thunderstorm: No creo que pueda expresar la cantidad de peligro en la que me encuentro. ¿Puedes comprar algo para poder conseguirme un seguro de vida?
 		Graveyard: Este no es el sitio de aterrizaje más elegante que he visto, pero hizo que se me ocurriera algo ¿Qué pasaría si lleno un globo con ectoplasma...?
-		Merchant: Estoy seguro de que tus mercaderes siempre están alardeando sobre como sus precios son tan altos o lo que sea, ¿pero acaso ellos están literalmente en el cielo? Eso pensé.
-		TravellingMerchant: No entiendo como {TravellingMerchant} es tan... eficiente. ¡Ni siquiera usa correo aéreo!
-		Pirate: ¿Crees que podría convencer a tu socio pirata de que me preste uno de sus botes aéreos? ¡Estoy seguro de que haría milagros para mi marketing!
-		Steampunker: ¿Conoces a una '{Steampunker}'? Conocí a esta chica mientras estaba reabasteciendo su nave y se veía muy interesada en esta isla.
-		Demolitionist: Los enanos viven en el subterráneo, y los elfos en el cielo. Es simple.
+		NPC_Merchant: Estoy seguro de que tus mercaderes siempre están alardeando sobre como sus precios son tan altos o lo que sea, ¿pero acaso ellos están literalmente en el cielo? Eso pensé.
+		NPC_TravellingMerchant: No entiendo como {TravellingMerchant} es tan... eficiente. ¡Ni siquiera usa correo aéreo!
+		NPC_Pirate: ¿Crees que podría convencer a tu socio pirata de que me preste uno de sus botes aéreos? ¡Estoy seguro de que haría milagros para mi marketing!
+		NPC_Steampunker: ¿Conoces a una '{Steampunker}'? Conocí a esta chica mientras estaba reabasteciendo su nave y se veía muy interesada en esta isla.
+		NPC_Demolitionist: Los enanos viven en el subterráneo, y los elfos en el cielo. Es simple.
 	}
 
 	Interface: {

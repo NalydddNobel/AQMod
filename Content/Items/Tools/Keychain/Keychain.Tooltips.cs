@@ -37,7 +37,7 @@ public partial class Keychain : IAddKeywords {
     public override void ModifyTooltips(List<TooltipLine> tooltips) {
         string smartSelectButton = PlayerInput.GenerateInputTag_ForCurrentGamemode_WithHacks(tagForGameplay: false, "SmartSelect");
         if (!smartSelectButton.Contains('[')) {
-            smartSelectButton = XLanguage.PrettyPrint(smartSelectButton);
+            smartSelectButton = ALanguage.PrettyPrint(smartSelectButton);
         }
 
         foreach (TooltipLine line in tooltips) {

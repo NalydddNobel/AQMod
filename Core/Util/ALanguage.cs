@@ -1,5 +1,4 @@
-﻿using AequusRemake.Core.Util.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -9,7 +8,7 @@ using Terraria.Utilities;
 
 namespace AequusRemake.Core.Util;
 
-public static class XLanguage {
+public static class ALanguage {
     private record struct ColoredText(string Text, Color Color);
 
     /// <param name="key"></param>
@@ -45,6 +44,9 @@ public static class XLanguage {
 
     public static LocalizedText GetDialogue(this ILocalizedModType localizedModType, string suffix) {
         return localizedModType.GetLocalization($"Dialogue.{suffix}");
+    }
+    public static string GetDialogueKey(this ILocalizedModType localizedModType, string suffix = "") {
+        return localizedModType.GetLocalizationKey($"Dialogue.{suffix}");
     }
 
     public static LocalizedText GetMapEntry<T>() where T : ModTile, ILocalizedModType {

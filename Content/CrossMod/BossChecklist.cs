@@ -69,7 +69,7 @@ internal class BossChecklist : SupportedMod<BossChecklist> {
             Language.GetOrRegister(boss.GetLocalizationKey("DespawnMessage"));
 
             // NOTE -- Despawn Messages can also be Func<NPC, LocalizedText>
-            if (XLanguage.TryGet(boss.GetLocalizationKey("DespawnMessage"), out LocalizedText despawnMessage)) {
+            if (ALanguage.TryGet(boss.GetLocalizationKey("DespawnMessage"), out LocalizedText despawnMessage)) {
                 optionalArguments["despawnMessage"] = despawnMessage;
             }
 

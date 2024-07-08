@@ -9,6 +9,7 @@ global using Terraria.ID;
 global using Terraria.ModLoader;
 global using tModLoaderExtended;
 global using static tModLoaderExtended.ExtendedMod;
+global using static NALib.Common.MathCommon;
 
 #region Aliases
 global using BestiaryTimeTag = Terraria.GameContent.Bestiary.BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times;
