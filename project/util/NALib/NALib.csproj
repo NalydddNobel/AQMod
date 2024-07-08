@@ -12,7 +12,6 @@
 	  
 	<ItemGroup>
 	  <SourceFile Include="$(OutputPath)\NALib.dll" />
-	  <OutputFile Include="..\..\..\AequusRemake\lib\" />
 	</ItemGroup>
 
 	<Copy SourceFiles="@(SourceFile)" DestinationFolder="..\..\..\..\AequusRemake\lib\" />
