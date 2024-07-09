@@ -26,14 +26,14 @@ public class HookManager : ILoad {
         return hook;
     }
 
-    private static readonly List<Hook> _loadedHooks = new();
+    internal static readonly List<object> _loadedHooks = [];
 
     public void Load(Mod mod) { }
 
     public void Unload() {
-        foreach (var hook in _loadedHooks) {
-            hook.Undo();
-        }
+        //foreach (var hook in _loadedHooks) {
+        //    hook.Undo();
+        //}
         _loadedHooks.Clear();
     }
 }

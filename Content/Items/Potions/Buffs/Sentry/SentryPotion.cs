@@ -1,8 +1,10 @@
 ﻿using AequusRemake.Content.Biomes.PollutedOcean;
+using AequusRemake.Systems.Synergy;
 using Terraria.Localization;
 
 namespace AequusRemake.Content.Items.Potions.Buffs.Sentry;
 
+[Replacement]
 public class SentryPotion : ModItem {
     public static int IncreaseSentryAmount { get; set; } = 1;
 

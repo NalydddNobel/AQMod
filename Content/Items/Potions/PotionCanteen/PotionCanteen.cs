@@ -1,7 +1,10 @@
-﻿using Terraria.GameContent;
+﻿using AequusRemake.Systems.Synergy;
+using Terraria.GameContent;
 
 namespace AequusRemake.Content.Items.Potions.PotionCanteen;
 
+[Replacement]
+[Replacement("PotionCanteenEmpty")]
 public class PotionCanteen : UnifiedCanteen {
     public PotionCanteen() : base(new CanteenInfo(
         MaxBuffs: 1,

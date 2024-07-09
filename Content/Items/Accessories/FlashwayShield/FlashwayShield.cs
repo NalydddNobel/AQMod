@@ -1,9 +1,10 @@
-﻿using AequusRemake.Core;
+﻿using AequusRemake.Systems.Synergy;
 
 namespace AequusRemake.Content.Items.Accessories.FlashwayShield;
 
-[LegacyName("FlashwayNecklace", "HeartshatterNecklace")]
 [AutoloadEquip(EquipType.Shield)]
+[Replacement("FlashwayNecklace")]
+[Replacement("HeartshatterNecklace")]
 public class FlashwayShield : ModItem {
     public static float DashSpeed { get; set; } = 14.5f;
 

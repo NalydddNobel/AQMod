@@ -2,6 +2,7 @@
 using AequusRemake.Content.Graphics.Particles;
 using AequusRemake.Core.CodeGeneration;
 using AequusRemake.Core.Entities.Projectiles;
+using AequusRemake.Systems.Synergy;
 using System;
 
 namespace AequusRemake.Content.Items.Accessories.Breath;
@@ -9,6 +10,7 @@ namespace AequusRemake.Content.Items.Accessories.Breath;
 [AutoloadEquip(EquipType.Back)]
 [Gen.AequusPlayer_ResetField<Item>("accBreathRestore")]
 [Gen.AequusPlayer_ResetField<int>("accBreathRestoreStacks")]
+[Replacement]
 public class BreathConserver : ModItem {
     public static float RestoreBreathMaxOnTileBreak { get; private set; } = 1f / 15f;
     public static float RestoreBreathMaxOnEnemyKill { get; private set; } = 1f / 3f;

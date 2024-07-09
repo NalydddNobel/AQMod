@@ -3993,6 +3993,14 @@
         <member name="P:AequusRemake.Systems.RecipeSystem.AnyTrash">
             <summary><see cref="T:Terraria.RecipeGroup"/> for trash items.</summary>
         </member>
+        <member name="T:AequusRemake.Systems.Synergy.ReplacementAttribute">
+            <summary>Notifies a piece of content is a replacement for old Aequus content.</summary>
+            <param name="Name"></param>
+        </member>
+        <member name="M:AequusRemake.Systems.Synergy.ReplacementAttribute.#ctor(System.String)">
+            <summary>Notifies a piece of content is a replacement for old Aequus content.</summary>
+            <param name="Name"></param>
+        </member>
         <member name="M:AequusRemake.Systems.TimeSystem.ConditionBetweenDaysOfWeek(System.DayOfWeek,System.DayOfWeek)">
             <param name="firstDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:AequusRemake.Systems.TimeSystem.DayOfTheWeek"/>.</param>
             <param name="lastDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:AequusRemake.Systems.TimeSystem.DayOfTheWeek"/>.</param>

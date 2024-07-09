@@ -1,6 +1,8 @@
-﻿namespace AequusRemake.Content.Items.Materials;
+﻿using AequusRemake.Systems.Synergy;
 
-[LegacyName("BloodyTearFragment")]
+namespace AequusRemake.Content.Items.Materials;
+
+[Replacement]
 public class BloodyTearstone : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 25;

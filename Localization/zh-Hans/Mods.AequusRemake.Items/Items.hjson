@@ -42,6 +42,16 @@ Meathook: {
 }
 
 //# Misc
+PollutedOceanCrate: {
+	// DisplayName: Shipping Container
+	// Tooltip: ""
+}
+
+PollutedOceanCrateHard: {
+	// DisplayName: "{$Items.PollutedOceanCrate.DisplayName}"
+	// Tooltip: ""
+}
+
 BeyondPlatinumCoin: {
 	DisplayName: 彼界钱币
 	Tooltip: 不视作钱币, 但可拆分成100铂金币

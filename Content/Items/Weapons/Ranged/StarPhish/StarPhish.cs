@@ -1,9 +1,10 @@
-﻿using AequusRemake.Core;
-using AequusRemake.Content.Elements;
+﻿using AequusRemake.Content.Elements;
+using AequusRemake.Systems.Synergy;
 using Terraria.DataStructures;
 
 namespace AequusRemake.Content.Items.Weapons.Ranged.StarPhish;
 
+[Replacement]
 public class StarPhish : ModItem {
     public override void SetStaticDefaults() {
         Element.Water.AddItem(Type);

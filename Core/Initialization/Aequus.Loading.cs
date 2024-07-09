@@ -7,6 +7,9 @@ partial class AequusRemake {
     internal static LoadActions OnAddRecipes;
     internal static LoadActions OnPostAddRecipes;
 
+    internal bool PostSetupContentOccured { get; private set; } = false;
+    internal bool AddRecipesOccured { get; private set; } = false;
+
     private static void UnloadLoadingSteps() {
         OnPostSetupContent = null;
         OnAddRecipes = null;
@@ -47,10 +50,12 @@ partial class AequusRemake {
 
     private class LoadingSteps : ModSystem {
         public override void PostSetupContent() {
+            Instance.PostSetupContentOccured = true;
             OnPostSetupContent?.Invoke();
         }
 
         public override void AddRecipes() {
+            Instance.AddRecipesOccured = true;
             OnAddRecipes?.Invoke();
         }
 

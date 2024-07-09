@@ -1,10 +1,11 @@
-﻿using AequusRemake.Core;
+﻿using AequusRemake.Systems.Synergy;
 using System.Collections.Generic;
 using tModLoaderExtended.Terraria.GameContent.Creative;
 
 namespace AequusRemake.Content.Items.Tools.Bellows;
 
 [FilterOverride(FilterOverride.Tools)]
+[Replacement]
 public class Bellows : ModItem {
     public static float MountPushForcePenalty { get; set; } = 0.33f;
 

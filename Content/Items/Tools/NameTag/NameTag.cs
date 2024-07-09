@@ -1,5 +1,6 @@
 ﻿using AequusRemake.Core.Entities.Items.Components;
 using AequusRemake.Systems.Renaming;
+using AequusRemake.Systems.Synergy;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using tModLoaderExtended.Terraria.GameContent.Creative;
@@ -7,6 +8,7 @@ using tModLoaderExtended.Terraria.GameContent.Creative;
 namespace AequusRemake.Content.Items.Tools.NameTag;
 
 [FilterOverride(FilterOverride.Tools)]
+[Replacement]
 public class NameTag : ModItem, ICustomNameTagPrice {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 5;

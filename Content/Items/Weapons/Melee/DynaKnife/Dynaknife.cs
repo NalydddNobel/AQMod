@@ -1,6 +1,7 @@
 ﻿using AequusRemake.Content.Graphics.Particles;
 using AequusRemake.Core.Entities.Items.Components;
 using AequusRemake.Core.Util.Helpers;
+using AequusRemake.Systems.Synergy;
 using System;
 using tModLoaderExtended.GlowMasks;
 
@@ -8,6 +9,7 @@ namespace AequusRemake.Content.Items.Weapons.Melee.DynaKnife;
 
 [LegacyName("CrystalDagger", "Mallet")]
 [AutoloadGlowMask]
+[Replacement]
 public class Dynaknife : ModItem, ICooldownItem {
     public int CooldownTime => 120;
 

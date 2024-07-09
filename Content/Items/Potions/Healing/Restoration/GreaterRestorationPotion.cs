@@ -1,7 +1,9 @@
 ﻿using AequusRemake.Core.Entities.Items.Components;
+using AequusRemake.Systems.Synergy;
 
 namespace AequusRemake.Content.Items.Potions.Healing.Restoration;
 
+[Replacement]
 public class GreaterRestorationPotion : ModItem, IApplyPotionDelay {
     public bool ApplyPotionDelay(Player player) {
         player.potionDelay = player.restorationDelayTime;

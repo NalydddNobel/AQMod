@@ -1,8 +1,10 @@
 ﻿using AequusRemake.Core.CodeGeneration;
+using AequusRemake.Systems.Synergy;
 
 namespace AequusRemake.Content.Items.Accessories.Informational.Monocle;
 
 [Gen.AequusPlayer_InfoField("accInfoMoneyMonocle")]
+[Replacement]
 public class RichMansMonocle : ModItem {
     public override void SetStaticDefaults() {
         ItemSets.WorksInVoidBag[Type] = true;

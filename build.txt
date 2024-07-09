@@ -6,6 +6,7 @@ hideResources = false
 hideCode = false
 includeSource = false
 includePBD = true
+loadAfter = Aequus
 modReferences = AequusRemakeMusic
 dllReferences = FNAUtils, tModLoaderExtended, NALib
 buildIgnore = *.csproj, *.user, *.sln, *.gitignore, *.editorconfig, *.md, *.ase, *.fx, obj\*, bin\*, .vs\*, project\*

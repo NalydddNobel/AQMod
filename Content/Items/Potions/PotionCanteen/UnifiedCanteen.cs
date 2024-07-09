@@ -1,7 +1,7 @@
 ﻿using AequusRemake.Core.Entities.Buffs;
 using AequusRemake.Core.Entities.Items.Components;
-using AequusRemake.Core.IO;
 using AequusRemake.Core.GUI;
+using AequusRemake.Core.IO;
 using AequusRemake.DataSets;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -17,17 +17,11 @@ using tModLoaderExtended.Terraria.GameContent;
 
 namespace AequusRemake.Content.Items.Potions.PotionCanteen;
 
-public abstract class UnifiedCanteen : ModItem, IShimmerOverride, IRightClickOverrideWhenHovered {
-    protected readonly CanteenInfo _info;
-
-    public UnifiedCanteen(CanteenInfo info) {
-        _info = info;
-    }
+public abstract class UnifiedCanteen(UnifiedCanteen.CanteenInfo info) : ModItem, IShimmerOverride, IRightClickOverrideWhenHovered {
+    protected readonly CanteenInfo _info = info;
 
     [CloneByReference]
     public Buff[] Buffs { get; private set; }
-
-    public ModItem EmptyCanteenItem { get; private set; }
 
     [CloneByReference]
     public LocalizedText AltName { get; private set; }

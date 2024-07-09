@@ -33,15 +33,18 @@ using Terraria.Utilities;
 namespace AequusRemake;
 
 public partial class AequusRemake : ExtendedMod {
-    public static new Mod Instance => ModContent.GetInstance<AequusRemake>();
+    public static new AequusRemake Instance => ModContent.GetInstance<AequusRemake>();
+    public static Mod Aequus { get; private set; }
     public static Mod MusicMod { get; private set; }
 
     public override void OnLoad() {
+        ModLoader.TryGetMod("Aequus", out Mod aequus); Aequus = aequus;
         MusicMod = ModLoader.GetMod("AequusRemakeMusic");
         LoadModCalls();
     }
 
     public override void OnUnload() {
+        Aequus = null;
         MusicMod = null;
         UnloadLoadingSteps();
         UnloadModCalls();

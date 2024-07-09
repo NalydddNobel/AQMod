@@ -1,7 +1,7 @@
-﻿using AequusRemake.Core;
-using AequusRemake.Content.Elements;
+﻿using AequusRemake.Content.Elements;
 using AequusRemake.Content.Items.Materials;
 using AequusRemake.DataSets;
+using AequusRemake.Systems.Synergy;
 using System;
 using System.Collections.Generic;
 using Terraria.DataStructures;
@@ -10,6 +10,7 @@ using Terraria.Localization;
 namespace AequusRemake.Content.Items.Weapons.Ranged.JunkJet;
 
 [LegacyName("Slingshot")]
+[Replacement]
 public class JunkJet : ModItem {
     public struct AmmoData {
         public int ProjectileId;
