@@ -43,13 +43,13 @@ Meathook: {
 
 //# Misc
 PollutedOceanCrate: {
-	// DisplayName: Shipping Container
-	// Tooltip: ""
+	DisplayName: 船运集装箱
+	Tooltip: ""
 }
 
 PollutedOceanCrateHard: {
-	// DisplayName: "{$Items.PollutedOceanCrate.DisplayName}"
-	// Tooltip: ""
+	DisplayName: 货运集装箱
+	Tooltip: ""
 }
 
 BeyondPlatinumCoin: {
