@@ -11,7 +11,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ObjectData;
 
-namespace AequusRemake.Content.Fishing.CrabPots;
+namespace AequusRemake.Systems.Fishing.CrabPots;
 
 public abstract class UnifiedCrabPot : ModTile, ISpecialTileRenderer, IModifyPlacementPreview {
     public const int FramesCount = 4;

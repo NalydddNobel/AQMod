@@ -1,5 +1,5 @@
-﻿using AequusRemake.Content.Fishing.FishingPoles;
-using AequusRemake.Content.Tiles.Meadow;
+﻿using AequusRemake.Content.Tiles.Meadow;
+using AequusRemake.Systems.Fishing.FishingPoles;
 
 namespace AequusRemake.Core.Entities.NPCs;
 

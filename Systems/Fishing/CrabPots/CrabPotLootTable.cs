@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace AequusRemake.Content.Fishing.CrabPots;
+namespace AequusRemake.Systems.Fishing.CrabPots;
 
 public class CrabPotLootTable : ILoad {
     public static Dictionary<int, List<CrabPotCatchRule>> Table { get; private set; } = new();

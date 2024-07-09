@@ -1,6 +1,6 @@
 ﻿using AequusRemake.Core.ContentGeneration;
 
-namespace AequusRemake.Content.Fishing.FishingPoles;
+namespace AequusRemake.Systems.Fishing.FishingPoles;
 
 public class BambooFishingPole : UnifiedFishingPole {
     public override bool BobberPreAI(Projectile bobber) {

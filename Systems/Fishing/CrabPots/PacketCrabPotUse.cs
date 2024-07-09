@@ -4,7 +4,7 @@ using Terraria.DataStructures;
 using tModLoaderExtended.Networking;
 using AequusRemake.Systems;
 
-namespace AequusRemake.Content.Fishing.CrabPots;
+namespace AequusRemake.Systems.Fishing.CrabPots;
 public class PacketCrabPotUse : PacketHandler {
     public void Send(int x, int y, int player, int waterStyleId) {
         var packet = GetPacket();

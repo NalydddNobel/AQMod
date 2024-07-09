@@ -1,4 +1,4 @@
-﻿using AequusRemake.Content.Fishing.Baits.BlackJellyfish;
+﻿using AequusRemake.Systems.Fishing.Baits.BlackJellyfish;
 
 namespace AequusRemake.Content.Tiles.Terrariums;
 

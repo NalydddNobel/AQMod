@@ -2,7 +2,7 @@
 using AequusRemake.Core.Entities.Projectiles;
 using Terraria.DataStructures;
 
-namespace AequusRemake.Content.Fishing.FishingPoles;
+namespace AequusRemake.Systems.Fishing.FishingPoles;
 
 public class SteampunkerFishingPole : UnifiedFishingPole {
     public override bool BobberPreAI(Projectile bobber) {

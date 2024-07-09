@@ -7,7 +7,7 @@ using Terraria.ObjectData;
 using Terraria.Utilities;
 using AequusRemake.Systems;
 
-namespace AequusRemake.Content.Fishing.CrabPots;
+namespace AequusRemake.Systems.Fishing.CrabPots;
 
 public class TECrabPot : ModTileEntity {
     public static int ChancePerTick { get; set; } = 100000;

@@ -4,7 +4,7 @@ using Terraria.DataStructures;
 using Terraria.ModLoader.IO;
 using tModLoaderExtended.Networking;
 
-namespace AequusRemake.Content.Fishing.CrabPots;
+namespace AequusRemake.Systems.Fishing.CrabPots;
 
 public class PacketCrabPotAddBait : PacketHandler {
     public void Send(int x, int y, int player, Item bait, int ignoreClient = -1) {

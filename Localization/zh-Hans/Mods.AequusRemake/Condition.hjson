@@ -37,4 +37,6 @@ Condition: {
 	DownedUltraStarite: Mods.AequusRemake.Condition.DownedUltraStarite
 	DownedDemonSiege: Mods.AequusRemake.Condition.DownedDemonSiege
 	MetOccultist: Mods.AequusRemake.Condition.MetOccultist
+	// InSurfacePollutedOcean: Mods.AequusRemake.Condition.InSurfacePollutedOcean
+	// InUndergroundPollutedOcean: Mods.AequusRemake.Condition.InUndergroundPollutedOcean
 }

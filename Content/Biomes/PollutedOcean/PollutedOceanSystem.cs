@@ -2,14 +2,12 @@
 using AequusRemake.Content.Critters.SeaFirefly;
 using AequusRemake.Content.CrossMod.SplitSupport.Photography;
 using AequusRemake.Content.Enemies.PollutedOcean.BlackJellyfish;
-using AequusRemake.Content.Enemies.PollutedOcean.BreadOfCthulhu;
 using AequusRemake.Content.Enemies.PollutedOcean.Conductor;
 using AequusRemake.Content.Enemies.PollutedOcean.Conehead;
 using AequusRemake.Content.Enemies.PollutedOcean.Eel;
 using AequusRemake.Content.Enemies.PollutedOcean.OilSlime;
 using AequusRemake.Content.Enemies.PollutedOcean.Scavenger;
 using AequusRemake.Content.Fishing;
-using AequusRemake.Content.Fishing.Baits.BlackJellyfish;
 using AequusRemake.Content.Items.Potions.Healing.Restoration;
 using AequusRemake.Content.Items.Potions.PotionCanteen;
 using AequusRemake.Content.Items.Tools.AnglerLamp;
@@ -18,12 +16,13 @@ using AequusRemake.Content.Items.Weapons.Ranged.StarPhish;
 using AequusRemake.Content.Tiles.Furniture.Trash;
 using AequusRemake.Content.Tiles.Statues;
 using AequusRemake.Core.Structures.Chests;
+using AequusRemake.Core.Structures.Conditions;
 using AequusRemake.Core.Structures.Enums;
 using AequusRemake.DataSets;
 using AequusRemake.DataSets.Structures.DropRulesChest;
+using AequusRemake.Systems.Fishing;
 using System;
 using System.Collections.Generic;
-using Terraria.DataStructures;
 
 namespace AequusRemake.Content.Biomes.PollutedOcean;
 
@@ -35,9 +34,31 @@ public class PollutedOceanSystem : ModSystem {
     private static int? _music;
     public static int Music => _music ??= MusicLoader.GetMusicSlot("AequusRemakeMusic/Assets/Music/PollutedOcean");
 
+    public ModItem Killifish { get; private set; }
+    public ModItem Piraiba { get; private set; }
+
+    public readonly Condition InSurfacePollutedOcean = ACondition.New("InSurfacePollutedOcean", () => Main.LocalPlayer.InModBiome<PollutedOceanBiomeSurface>());
+    public readonly Condition InUndergroundPollutedOcean = ACondition.New("InUndergroundPollutedOcean", () => Main.LocalPlayer.InModBiome<PollutedOceanBiomeUnderground>());
+    public readonly Condition InPollutedOcean = ACondition.New("InPollutedOcean", () => Main.LocalPlayer.InModBiome<PollutedOceanBiomeSurface>() || Main.LocalPlayer.InModBiome<PollutedOceanBiomeUnderground>());
+
+    public override void Load() {
+        AddFish();
+    }
+
     public override void SetStaticDefaults() {
         PopulateCrateDrops();
         PopulateChestDrops();
+    }
+
+    private void AddFish() {
+        Killifish = new InstancedFishItem("Killifish", AequusTextures.Killifish.FullPath, ItemRarityID.Blue, Item.silver * 15, InstancedFishItem.SeafoodDinnerRecipe);
+        Piraiba = new InstancedFishItem("Piraiba", AequusTextures.Piraiba.FullPath, ItemRarityID.Blue, Item.silver * 15, null);
+
+        Mod.AddContent(Killifish);
+        Mod.AddContent(Piraiba);
+
+        FishLootDatabase.Instance.Add(new FishItemDropRule(Killifish.Type, ChanceDenominator: 3, Condition: InPollutedOcean), CatchTier.Common);
+        FishLootDatabase.Instance.Add(new FishItemDropRule(Piraiba.Type, ChanceDenominator: 3, Condition: InPollutedOcean), CatchTier.Common);
     }
 
     private static void PopulateCrateDrops() {
@@ -206,34 +227,5 @@ public class PollutedOceanSystem : ModSystem {
 
         pool[NPCID.Buggy] = 0.1f; // Chromite
         pool[NPCID.Sluggy] = 0.1f; // Horseshoe Crab
-    }
-
-    public static void CatchSurfaceFish(in FishingAttempt attempt, ref int itemDrop, ref int npcSpawn) {
-        CatchCommonFish(in attempt, ref itemDrop, ref npcSpawn);
-    }
-
-    public static void CatchUndergroundFish(in FishingAttempt attempt, ref int itemDrop, ref int npcSpawn) {
-        if (attempt.rare && Main.rand.NextBool(5)) {
-            itemDrop = ModContent.ItemType<BlackJellyfishBait>();
-            return;
-        }
-
-        CatchCommonFish(in attempt, ref itemDrop, ref npcSpawn);
-    }
-
-    private static void CatchCommonFish(in FishingAttempt attempt, ref int itemDrop, ref int npcSpawn) {
-        if (attempt.common && Main.rand.NextBool()) {
-            if (Main.rand.NextBool()) {
-                itemDrop = FishInstantiator.Killifish.Type;
-            }
-            else {
-                itemDrop = FishInstantiator.Piraiba.Type;
-            }
-        }
-
-        int chance = BreadOfCthulhu.GetFishingChance(in attempt);
-        if (Main.rand.NextBool(chance)) {
-            npcSpawn = ModContent.NPCType<BreadOfCthulhu>();
-        }
     }
 }

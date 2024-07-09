@@ -1,7 +1,7 @@
 ﻿using AequusRemake.Core.Graphics.Animations;
 using Terraria.Audio;
 
-namespace AequusRemake.Content.Fishing.CrabPots;
+namespace AequusRemake.Systems.Fishing.CrabPots;
 
 public class AnimationOpenCrabPot : ITileAnimation {
     public int Frame;

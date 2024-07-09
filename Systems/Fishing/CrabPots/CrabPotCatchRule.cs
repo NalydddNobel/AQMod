@@ -1,6 +1,6 @@
 ﻿using Terraria.Utilities;
 
-namespace AequusRemake.Content.Fishing.CrabPots;
+namespace AequusRemake.Systems.Fishing.CrabPots;
 
 public record struct CrabPotCatchRule(int ItemId, int ChanceDenominator, int ChanceNumerator = 1, int MinStack = 1, int MaxStack = 1, CrabPotCatchRule.CrabPotCondition Condition = null) {
     public delegate bool CrabPotCondition(int x, int y);

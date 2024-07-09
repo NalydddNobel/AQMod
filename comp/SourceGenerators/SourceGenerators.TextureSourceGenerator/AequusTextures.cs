@@ -141,6 +141,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OceanCreviceBG_3 = new("Content/Biomes/PollutedOcean/Background/OceanCreviceBG_3");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/Background/SurfaceBG_Far</summary>
     public static readonly RequestCache<Texture2D> SurfaceBG_Far = new("Content/Biomes/PollutedOcean/Background/SurfaceBG_Far");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Fish/Killifish</summary>
+    public static readonly RequestCache<Texture2D> Killifish = new("Content/Biomes/PollutedOcean/Fish/Killifish");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Fish/Piraiba</summary>
+    public static readonly RequestCache<Texture2D> Piraiba = new("Content/Biomes/PollutedOcean/Fish/Piraiba");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeSurface_Background</summary>
     public static readonly RequestCache<Texture2D> PollutedOceanBiomeSurface_Background = new("Content/Biomes/PollutedOcean/PollutedOceanBiomeSurface_Background");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeSurface_Icon</summary>
@@ -409,38 +413,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ScavengerStatue = new("Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatue");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatueItem</summary>
     public static readonly RequestCache<Texture2D> ScavengerStatueItem = new("Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatueItem");
-    /// <summary>Full Path: Content/Fishing/Baits/BlackJellyfish/BlackJellyfishBait</summary>
-    public static readonly RequestCache<Texture2D> BlackJellyfishBait = new("Content/Fishing/Baits/BlackJellyfish/BlackJellyfishBait");
-    /// <summary>Full Path: Content/Fishing/CrabPots/CrabPot</summary>
-    public static readonly RequestCache<Texture2D> CrabPot = new("Content/Fishing/CrabPots/CrabPot");
-    /// <summary>Full Path: Content/Fishing/CrabPots/CrabPot_Back</summary>
-    public static readonly RequestCache<Texture2D> CrabPot_Back = new("Content/Fishing/CrabPots/CrabPot_Back");
-    /// <summary>Full Path: Content/Fishing/CrabPots/CrabPot_Highlight</summary>
-    public static readonly RequestCache<Texture2D> CrabPot_Highlight = new("Content/Fishing/CrabPots/CrabPot_Highlight");
-    /// <summary>Full Path: Content/Fishing/CrabPots/Items/CrabPotCopperItem</summary>
-    public static readonly RequestCache<Texture2D> CrabPotCopperItem = new("Content/Fishing/CrabPots/Items/CrabPotCopperItem");
-    /// <summary>Full Path: Content/Fishing/CrabPots/Items/CrabPotTinItem</summary>
-    public static readonly RequestCache<Texture2D> CrabPotTinItem = new("Content/Fishing/CrabPots/Items/CrabPotTinItem");
-    /// <summary>Full Path: Content/Fishing/CrabPots/Items/ObsidianCrabPotItem</summary>
-    public static readonly RequestCache<Texture2D> ObsidianCrabPotItem = new("Content/Fishing/CrabPots/Items/ObsidianCrabPotItem");
-    /// <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot</summary>
-    public static readonly RequestCache<Texture2D> ObsidianCrabPot = new("Content/Fishing/CrabPots/ObsidianCrabPot");
-    /// <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot_Back</summary>
-    public static readonly RequestCache<Texture2D> ObsidianCrabPot_Back = new("Content/Fishing/CrabPots/ObsidianCrabPot_Back");
-    /// <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot_Highlight</summary>
-    public static readonly RequestCache<Texture2D> ObsidianCrabPot_Highlight = new("Content/Fishing/CrabPots/ObsidianCrabPot_Highlight");
-    /// <summary>Full Path: Content/Fishing/FishingPoles/BambooFishingPole</summary>
-    public static readonly RequestCache<Texture2D> BambooFishingPole = new("Content/Fishing/FishingPoles/BambooFishingPole");
-    /// <summary>Full Path: Content/Fishing/FishingPoles/BambooFishingPoleBobber</summary>
-    public static readonly RequestCache<Texture2D> BambooFishingPoleBobber = new("Content/Fishing/FishingPoles/BambooFishingPoleBobber");
-    /// <summary>Full Path: Content/Fishing/FishingPoles/SteampunkerFishingPole</summary>
-    public static readonly RequestCache<Texture2D> SteampunkerFishingPole = new("Content/Fishing/FishingPoles/SteampunkerFishingPole");
-    /// <summary>Full Path: Content/Fishing/FishingPoles/SteampunkerFishingPoleBobber</summary>
-    public static readonly RequestCache<Texture2D> SteampunkerFishingPoleBobber = new("Content/Fishing/FishingPoles/SteampunkerFishingPoleBobber");
-    /// <summary>Full Path: Content/Fishing/Fish/Killifish</summary>
-    public static readonly RequestCache<Texture2D> Killifish = new("Content/Fishing/Fish/Killifish");
-    /// <summary>Full Path: Content/Fishing/Fish/Piraiba</summary>
-    public static readonly RequestCache<Texture2D> Piraiba = new("Content/Fishing/Fish/Piraiba");
     /// <summary>Full Path: Content/Graphics/Particles/BubbleParticles</summary>
     public static readonly RequestCache<Texture2D> BubbleParticles = new("Content/Graphics/Particles/BubbleParticles");
     /// <summary>Full Path: Content/Graphics/Particles/DashParticles</summary>
@@ -1055,4 +1027,32 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> icon_small = new("icon_small");
     /// <summary>Full Path: icon_workshop</summary>
     public static readonly RequestCache<Texture2D> icon_workshop = new("icon_workshop");
+    /// <summary>Full Path: Systems/Fishing/Baits/BlackJellyfish/BlackJellyfishBait</summary>
+    public static readonly RequestCache<Texture2D> BlackJellyfishBait = new("Systems/Fishing/Baits/BlackJellyfish/BlackJellyfishBait");
+    /// <summary>Full Path: Systems/Fishing/CrabPots/CrabPot</summary>
+    public static readonly RequestCache<Texture2D> CrabPot = new("Systems/Fishing/CrabPots/CrabPot");
+    /// <summary>Full Path: Systems/Fishing/CrabPots/CrabPot_Back</summary>
+    public static readonly RequestCache<Texture2D> CrabPot_Back = new("Systems/Fishing/CrabPots/CrabPot_Back");
+    /// <summary>Full Path: Systems/Fishing/CrabPots/CrabPot_Highlight</summary>
+    public static readonly RequestCache<Texture2D> CrabPot_Highlight = new("Systems/Fishing/CrabPots/CrabPot_Highlight");
+    /// <summary>Full Path: Systems/Fishing/CrabPots/Items/CrabPotCopperItem</summary>
+    public static readonly RequestCache<Texture2D> CrabPotCopperItem = new("Systems/Fishing/CrabPots/Items/CrabPotCopperItem");
+    /// <summary>Full Path: Systems/Fishing/CrabPots/Items/CrabPotTinItem</summary>
+    public static readonly RequestCache<Texture2D> CrabPotTinItem = new("Systems/Fishing/CrabPots/Items/CrabPotTinItem");
+    /// <summary>Full Path: Systems/Fishing/CrabPots/Items/ObsidianCrabPotItem</summary>
+    public static readonly RequestCache<Texture2D> ObsidianCrabPotItem = new("Systems/Fishing/CrabPots/Items/ObsidianCrabPotItem");
+    /// <summary>Full Path: Systems/Fishing/CrabPots/ObsidianCrabPot</summary>
+    public static readonly RequestCache<Texture2D> ObsidianCrabPot = new("Systems/Fishing/CrabPots/ObsidianCrabPot");
+    /// <summary>Full Path: Systems/Fishing/CrabPots/ObsidianCrabPot_Back</summary>
+    public static readonly RequestCache<Texture2D> ObsidianCrabPot_Back = new("Systems/Fishing/CrabPots/ObsidianCrabPot_Back");
+    /// <summary>Full Path: Systems/Fishing/CrabPots/ObsidianCrabPot_Highlight</summary>
+    public static readonly RequestCache<Texture2D> ObsidianCrabPot_Highlight = new("Systems/Fishing/CrabPots/ObsidianCrabPot_Highlight");
+    /// <summary>Full Path: Systems/Fishing/FishingPoles/BambooFishingPole</summary>
+    public static readonly RequestCache<Texture2D> BambooFishingPole = new("Systems/Fishing/FishingPoles/BambooFishingPole");
+    /// <summary>Full Path: Systems/Fishing/FishingPoles/BambooFishingPoleBobber</summary>
+    public static readonly RequestCache<Texture2D> BambooFishingPoleBobber = new("Systems/Fishing/FishingPoles/BambooFishingPoleBobber");
+    /// <summary>Full Path: Systems/Fishing/FishingPoles/SteampunkerFishingPole</summary>
+    public static readonly RequestCache<Texture2D> SteampunkerFishingPole = new("Systems/Fishing/FishingPoles/SteampunkerFishingPole");
+    /// <summary>Full Path: Systems/Fishing/FishingPoles/SteampunkerFishingPoleBobber</summary>
+    public static readonly RequestCache<Texture2D> SteampunkerFishingPoleBobber = new("Systems/Fishing/FishingPoles/SteampunkerFishingPoleBobber");
 }

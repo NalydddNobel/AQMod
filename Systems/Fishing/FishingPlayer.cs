@@ -1,9 +1,8 @@
-﻿using AequusRemake.Content.Biomes.PollutedOcean;
-using AequusRemake.Core.Entities.Items.Components;
+﻿using AequusRemake.Core.Entities.Items.Components;
 using AequusRemake.Core.Hooks;
 using Terraria.DataStructures;
 
-namespace AequusRemake.Content.Fishing;
+namespace AequusRemake.Systems.Fishing;
 
 public class FishingPlayer : ModPlayer {
     private FishingAttempt _fishingAttemptCache;
@@ -54,13 +53,11 @@ public class FishingPlayer : ModPlayer {
 
     public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition) {
         _fishingAttemptCache = attempt;
+        FishDropInfo dropInfo = new(Player, attempt, itemDrop, npcSpawn, sonar, sonarPosition, Main.rand);
 
-        if (Player.InModBiome<PollutedOceanBiomeSurface>()) {
-            PollutedOceanSystem.CatchSurfaceFish(in attempt, ref itemDrop, ref npcSpawn);
-        }
-        else if (Player.InModBiome<PollutedOceanBiomeUnderground>()) {
-            PollutedOceanSystem.CatchUndergroundFish(in attempt, ref itemDrop, ref npcSpawn);
-        }
+        FishLootDatabase.Instance.Solve(ref dropInfo);
+
+        dropInfo.ApplyTo(ref itemDrop, ref npcSpawn, ref sonar, ref sonarPosition);
     }
 
     public override void ModifyCaughtFish(Item fish) {

@@ -1,4 +1,4 @@
-﻿using AequusRemake.Content.Fishing.CrabPots;
+﻿using AequusRemake.Systems.Fishing.CrabPots;
 using System.IO;
 
 namespace AequusRemake.Systems;

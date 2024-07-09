@@ -1,7 +1,7 @@
 ﻿using AequusRemake.Core.ContentGeneration;
 using System;
 
-namespace AequusRemake.Content.Fishing;
+namespace AequusRemake.Systems.Fishing;
 
 public class FishingPoleGlobalProjectile : GlobalProjectile {
     public override bool AppliesToEntity(Projectile entity, bool lateInstantiation) {

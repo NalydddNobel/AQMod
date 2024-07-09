@@ -1,4 +1,4 @@
-﻿using AequusRemake.Content.Fishing;
+﻿using AequusRemake.Content.Biomes.PollutedOcean;
 using System.Collections.Generic;
 using Terraria.Localization;
 
@@ -62,7 +62,7 @@ public class TaintedSeafood : ModItem {
 
     public override void AddRecipes() {
         CreateRecipe()
-            .AddIngredient(FishInstantiator.Piraiba)
+            .AddIngredient(ModContent.GetInstance<PollutedOceanSystem>().Piraiba)
             .AddTile(TileID.CookingPots)
             .Register()
             .DisableDecraft();

@@ -3,7 +3,7 @@ using System.IO;
 using Terraria.DataStructures;
 using tModLoaderExtended.Networking;
 
-namespace AequusRemake.Content.Fishing.CrabPots;
+namespace AequusRemake.Systems.Fishing.CrabPots;
 
 public class PacketCrabPotPlacement : PacketHandler {
     public void Send(int x, int y, int waterStyleId) {

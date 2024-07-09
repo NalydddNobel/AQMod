@@ -3,7 +3,6 @@ using AequusRemake.Content.Graphics.Particles;
 using AequusRemake.Content.Items.Tools.Keys;
 using AequusRemake.Core.ContentGeneration;
 using AequusRemake.Core.Entities.Bestiary;
-using AequusRemake.Core.Util.Helpers;
 using System;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -60,7 +59,7 @@ internal class Eel : ModNPC {
     public float Timer { get => (int)NPC.ai[3]; set => NPC.ai[3] = value; }
 
     /// <summary>Represents NPC.localAI[1]. This value is used as a frame offset in order to alternate between the zapping and regular frames. Use <see cref="RealHorizontalFrame"/> for drawing.</summary>
-    public float HorizontalFrame { get => (int)NPC.localAI[1]; set => NPC.localAI[1] = value; }
+    public float HorizontalFrame { get => NPC.localAI[1]; set => NPC.localAI[1] = value; }
     /// <summary>Gets the real horizontal frame from the head NPC. (or <see cref="HorizontalFrame"/> if it is the head.)</summary>
     public int RealHorizontalFrame => (int)(NPC.realLife > -1 ? Main.npc[NPC.realLife].localAI[1] : HorizontalFrame);
 
@@ -211,7 +210,6 @@ internal class Eel : ModNPC {
 
                             float oldZapFrame = HorizontalFrame;
                             HorizontalFrame = (HorizontalFrame + 0.33f) % 2f;
-
                             /*if (oldZapFrame < 1f && HorizontalFrame > 1f) {
 
                             }*/
@@ -230,7 +228,7 @@ internal class Eel : ModNPC {
                         }
                     }
                     else {
-                        NPC.localAI[1] = 0f;
+                        HorizontalFrame = 0f;
                         NPC.velocity.X += wantedVelocity.X * AirXVelocityAccel;
                         NPC.velocity.Y += Gravity;
                         if (NPC.velocity.Y > TerminalVelocity) {
@@ -406,6 +404,7 @@ internal class Eel : ModNPC {
             return true;
         }
 
+        drawColor = NPC.GetNPCColorTintedByBuffs(drawColor);
         NPC parent = Main.npc.IndexInRange(NPC.realLife) ? Main.npc[NPC.realLife] : NPC;
         Texture2D texture = TextureAssets.Npc[Type].Value;
         Vector2 drawCoords = NPC.Center - screenPos;

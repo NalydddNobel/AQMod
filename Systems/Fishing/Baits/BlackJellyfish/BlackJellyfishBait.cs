@@ -1,4 +1,5 @@
-﻿using AequusRemake.Content.Graphics.Particles;
+﻿using AequusRemake.Content.Biomes.PollutedOcean;
+using AequusRemake.Content.Graphics.Particles;
 using AequusRemake.Core.ContentGeneration;
 using AequusRemake.Core.Entities.Items.Components;
 using AequusRemake.Core.Graphics;
@@ -9,11 +10,12 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Shaders;
 
-namespace AequusRemake.Content.Fishing.Baits.BlackJellyfish;
+namespace AequusRemake.Systems.Fishing.Baits.BlackJellyfish;
 
 public class BlackJellyfishBait : UnifiedModBait, IOnPullBobber {
     public override void SetStaticDefaults() {
-        Item.ResearchUnlockCount = 3;
+        Item.CloneResearchCount(ItemID.BlueJellyfish);
+        FishLootDatabase.Instance.Add(new FishItemDropRule(Type, ChanceDenominator: 5, Condition: ModContent.GetInstance<PollutedOceanSystem>().InPollutedOcean), CatchTier.Rare);
     }
 
     public override void SetDefaults() {

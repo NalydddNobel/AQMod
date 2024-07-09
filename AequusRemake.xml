@@ -134,23 +134,6 @@
         <member name="P:AequusRemake.Content.Enemies.PollutedOcean.Eel.Eel.RealHorizontalFrame">
             <summary>Gets the real horizontal frame from the head NPC. (or <see cref="P:AequusRemake.Content.Enemies.PollutedOcean.Eel.Eel.HorizontalFrame"/> if it is the head.)</summary>
         </member>
-        <member name="P:AequusRemake.Content.Fishing.CrabPots.TECrabPot.LavaEffectiveness">
-            <summary>
-            Multiplier to <see cref="P:AequusRemake.Content.Fishing.CrabPots.TECrabPot.ChancePerTick"/> for crab pots inside of lava. Defaults to 2 (chance is twice as rare)
-            </summary>
-        </member>
-        <member name="P:AequusRemake.Content.Fishing.CrabPots.TECrabPot.BaitEffectiveness">
-            <summary>
-            Determines how effective bait is. Defaults to 0.5 (50% effectiveness)
-            <para>Bait divides <see cref="P:AequusRemake.Content.Fishing.CrabPots.TECrabPot.ChancePerTick"/> by its bait power multiplied by this value. So a 50 bait power bait would divide <see cref="P:AequusRemake.Content.Fishing.CrabPots.TECrabPot.ChancePerTick"/> by 25 by default.</para>
-            </summary>
-        </member>
-        <member name="F:AequusRemake.Content.Fishing.CrabPots.TECrabPot.caught">
-            <summary>
-            Determines whether or not the item was from a catch.
-            This prevents some catches, like Jellyfishes being used as bait or being indicated as bait.
-            </summary>
-        </member>
         <member name="T:AequusRemake.Content.Graphics.Particles.UnderwaterBubbles">
             <summary>Bubble particles which only work underwater. Floats upwards.</summary>
         </member>
@@ -2565,6 +2548,12 @@
         <member name="F:AequusRemake.AequusTextures.SurfaceBG_Far">
             <summary>Full Path: Content/Biomes/PollutedOcean/Background/SurfaceBG_Far</summary>
         </member>
+        <member name="F:AequusRemake.AequusTextures.Killifish">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Fish/Killifish</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.Piraiba">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Fish/Piraiba</summary>
+        </member>
         <member name="F:AequusRemake.AequusTextures.PollutedOceanBiomeSurface_Background">
             <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBiomeSurface_Background</summary>
         </member>
@@ -2966,54 +2955,6 @@
         </member>
         <member name="F:AequusRemake.AequusTextures.ScavengerStatueItem">
             <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatueItem</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.BlackJellyfishBait">
-            <summary>Full Path: Content/Fishing/Baits/BlackJellyfish/BlackJellyfishBait</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.CrabPot">
-            <summary>Full Path: Content/Fishing/CrabPots/CrabPot</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.CrabPot_Back">
-            <summary>Full Path: Content/Fishing/CrabPots/CrabPot_Back</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.CrabPot_Highlight">
-            <summary>Full Path: Content/Fishing/CrabPots/CrabPot_Highlight</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.CrabPotCopperItem">
-            <summary>Full Path: Content/Fishing/CrabPots/Items/CrabPotCopperItem</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.CrabPotTinItem">
-            <summary>Full Path: Content/Fishing/CrabPots/Items/CrabPotTinItem</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.ObsidianCrabPotItem">
-            <summary>Full Path: Content/Fishing/CrabPots/Items/ObsidianCrabPotItem</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.ObsidianCrabPot">
-            <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.ObsidianCrabPot_Back">
-            <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot_Back</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.ObsidianCrabPot_Highlight">
-            <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot_Highlight</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.BambooFishingPole">
-            <summary>Full Path: Content/Fishing/FishingPoles/BambooFishingPole</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.BambooFishingPoleBobber">
-            <summary>Full Path: Content/Fishing/FishingPoles/BambooFishingPoleBobber</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.SteampunkerFishingPole">
-            <summary>Full Path: Content/Fishing/FishingPoles/SteampunkerFishingPole</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.SteampunkerFishingPoleBobber">
-            <summary>Full Path: Content/Fishing/FishingPoles/SteampunkerFishingPoleBobber</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.Killifish">
-            <summary>Full Path: Content/Fishing/Fish/Killifish</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.Piraiba">
-            <summary>Full Path: Content/Fishing/Fish/Piraiba</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BubbleParticles">
             <summary>Full Path: Content/Graphics/Particles/BubbleParticles</summary>
@@ -3936,6 +3877,48 @@
         <member name="F:AequusRemake.AequusTextures.icon_workshop">
             <summary>Full Path: icon_workshop</summary>
         </member>
+        <member name="F:AequusRemake.AequusTextures.BlackJellyfishBait">
+            <summary>Full Path: Systems/Fishing/Baits/BlackJellyfish/BlackJellyfishBait</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.CrabPot">
+            <summary>Full Path: Systems/Fishing/CrabPots/CrabPot</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.CrabPot_Back">
+            <summary>Full Path: Systems/Fishing/CrabPots/CrabPot_Back</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.CrabPot_Highlight">
+            <summary>Full Path: Systems/Fishing/CrabPots/CrabPot_Highlight</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.CrabPotCopperItem">
+            <summary>Full Path: Systems/Fishing/CrabPots/Items/CrabPotCopperItem</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.CrabPotTinItem">
+            <summary>Full Path: Systems/Fishing/CrabPots/Items/CrabPotTinItem</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.ObsidianCrabPotItem">
+            <summary>Full Path: Systems/Fishing/CrabPots/Items/ObsidianCrabPotItem</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.ObsidianCrabPot">
+            <summary>Full Path: Systems/Fishing/CrabPots/ObsidianCrabPot</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.ObsidianCrabPot_Back">
+            <summary>Full Path: Systems/Fishing/CrabPots/ObsidianCrabPot_Back</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.ObsidianCrabPot_Highlight">
+            <summary>Full Path: Systems/Fishing/CrabPots/ObsidianCrabPot_Highlight</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.BambooFishingPole">
+            <summary>Full Path: Systems/Fishing/FishingPoles/BambooFishingPole</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.BambooFishingPoleBobber">
+            <summary>Full Path: Systems/Fishing/FishingPoles/BambooFishingPoleBobber</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.SteampunkerFishingPole">
+            <summary>Full Path: Systems/Fishing/FishingPoles/SteampunkerFishingPole</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.SteampunkerFishingPoleBobber">
+            <summary>Full Path: Systems/Fishing/FishingPoles/SteampunkerFishingPoleBobber</summary>
+        </member>
         <member name="P:AequusRemake.AequusSystem.RemixWorldSafeUnderworldRange">
             <summary>Returns a point with the beginning (left) (X) and end (right) (Y) of the 'safe' underworld in remix worlds. This does not represent a point in 2D space, but rather two X coordinates.</summary>
         </member>
@@ -3956,6 +3939,23 @@
         </member>
         <member name="M:AequusRemake.Systems.Backpacks.BackpackPlayerSyncPacket.Send(Terraria.Player,AequusRemake.Systems.Backpacks.BackpackData,System.Int32,System.Int32)">
             <summary>Invokes a full sync of a backpack.</summary>
+        </member>
+        <member name="P:AequusRemake.Systems.Fishing.CrabPots.TECrabPot.LavaEffectiveness">
+            <summary>
+            Multiplier to <see cref="P:AequusRemake.Systems.Fishing.CrabPots.TECrabPot.ChancePerTick"/> for crab pots inside of lava. Defaults to 2 (chance is twice as rare)
+            </summary>
+        </member>
+        <member name="P:AequusRemake.Systems.Fishing.CrabPots.TECrabPot.BaitEffectiveness">
+            <summary>
+            Determines how effective bait is. Defaults to 0.5 (50% effectiveness)
+            <para>Bait divides <see cref="P:AequusRemake.Systems.Fishing.CrabPots.TECrabPot.ChancePerTick"/> by its bait power multiplied by this value. So a 50 bait power bait would divide <see cref="P:AequusRemake.Systems.Fishing.CrabPots.TECrabPot.ChancePerTick"/> by 25 by default.</para>
+            </summary>
+        </member>
+        <member name="F:AequusRemake.Systems.Fishing.CrabPots.TECrabPot.caught">
+            <summary>
+            Determines whether or not the item was from a catch.
+            This prevents some catches, like Jellyfishes being used as bait or being indicated as bait.
+            </summary>
         </member>
         <member name="P:AequusRemake.Systems.RecipeSystem.AnySeaFirefly">
             <summary><see cref="T:Terraria.RecipeGroup"/> for Sea Firefly variants.</summary>

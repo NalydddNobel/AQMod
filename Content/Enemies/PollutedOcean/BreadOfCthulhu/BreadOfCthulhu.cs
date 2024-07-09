@@ -5,10 +5,9 @@ using AequusRemake.Content.Enemies.PollutedOcean.BreadOfCthulhu.Items;
 using AequusRemake.Content.Items.Tools.Keys;
 using AequusRemake.Core.ContentGeneration;
 using AequusRemake.Core.Entities.Bestiary;
-using AequusRemake.Core.Util.Helpers;
 using AequusRemake.DataSets;
+using AequusRemake.Systems.Fishing;
 using System;
-using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 
@@ -22,6 +21,7 @@ public class BreadOfCthulhu : ModNPC {
         Main.npcFrameCount[NPC.type] = 5;
         ItemSets.KillsToBanner[BannerItem] = 10;
         NPCDataSet.NoDropElementInheritence.Add(Type);
+        FishLootDatabase.Instance.Add(new BreadOfCthulhuFishCatchRule());
     }
 
     public override void SetDefaults() {
@@ -274,18 +274,35 @@ public class BreadOfCthulhu : ModNPC {
         return NPC.HasValidTarget && Main.player[NPC.target].position.Y > NPC.Bottom.Y;
     }
 
-    public static int GetFishingChance(in FishingAttempt attempt) {
-        int chance = 50;
-        if (!Main.dayTime) {
-            chance = 25;
+    public class BreadOfCthulhuFishCatchRule : IFishDropRule {
+        bool IFishDropRule.CanCatch(in FishDropInfo dropInfo) {
+            return dropInfo.Player.InModBiome<PollutedOceanBiomeSurface>() || dropInfo.Player.InModBiome<PollutedOceanBiomeUnderground>();
+        }
 
-            if (Main.bloodMoon) {
-                chance = 6;
-                if (attempt.playerFishingConditions.PoleItemType == ItemID.BloodFishingRod) {
-                    chance = 3;
-                }
+        void IFishDropRule.TryCatching(ref FishDropInfo dropInfo) {
+            int chance = GetFishingChance(ref dropInfo);
+
+            if (Main.rand.NextBool(chance)) {
+                dropInfo.NPC = ModContent.NPCType<BreadOfCthulhu>();
             }
         }
-        return chance;
+
+        public static int GetFishingChance(ref FishDropInfo dropInfo) {
+            int chance = 50;
+
+            if (!Main.dayTime) {
+                chance = 25;
+
+                if (Main.bloodMoon) {
+                    chance = 6;
+
+                    if (dropInfo.Attempt.playerFishingConditions.PoleItemType == ItemID.BloodFishingRod) {
+                        chance = 3;
+                    }
+                }
+            }
+
+            return chance;
+        }
     }
 }

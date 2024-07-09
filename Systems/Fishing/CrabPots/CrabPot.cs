@@ -1,7 +1,7 @@
 ﻿using AequusRemake.Content.Items.Materials;
 using AequusRemake.Core.ContentGeneration;
 
-namespace AequusRemake.Content.Fishing.CrabPots;
+namespace AequusRemake.Systems.Fishing.CrabPots;
 public class CrabPot : UnifiedCrabPot {
     public const int CopperPot = 0;
     public const int TinPot = 1;

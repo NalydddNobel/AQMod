@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AequusRemake.Content.Fishing;
+namespace AequusRemake.Systems.Fishing;
 internal class AnglerRewards : ModPlayer {
 #if !DEBUG
     public override void AnglerQuestReward(float rareMultiplier, List<Item> rewardItems) {
