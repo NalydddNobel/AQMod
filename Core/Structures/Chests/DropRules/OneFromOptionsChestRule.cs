@@ -1,6 +1,5 @@
 ﻿using AequusRemake.Core.Structures.Chests;
 using AequusRemake.Core.Structures.Conversion;
-using AequusRemake.Core.Structures.ItemDropRules;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.GameContent.ItemDropRules;
@@ -33,8 +32,8 @@ public record class OneFromOptionsChestRule(IChestLootRule[] Options, int Chance
     }
 
     public IItemDropRule ToItemDropRule() {
-        return new OneRuleFromOptionsDropRule(Options.SelectWhereOfType<IConvertDropRules>()
+        return new OneFromRulesRule(ChanceDenominator, ChanceNumerator, Options.SelectWhereOfType<IConvertDropRules>()
             .Select(convert => convert.ToItemDropRule())
-            .ToArray(), ChanceDenominator, ChanceNumerator);
+            .ToArray());
     }
 }
