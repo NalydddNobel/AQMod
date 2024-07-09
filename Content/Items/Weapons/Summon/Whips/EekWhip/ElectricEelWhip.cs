@@ -1,12 +1,12 @@
 ﻿using AequusRemake.Core;
 using AequusRemake.Content.Enemies.PollutedOcean.Eel;
-using AequusRemake.Content.Graphics.Particles;
 using AequusRemake.Core.ContentGeneration;
 using System;
 using System.Collections.Generic;
 using Terraria.Localization;
 using AequusRemake.Core.Structures.Particles;
 using AequusRemake.Core.Util.Helpers;
+using AequusRemake.Systems.Particles.Common;
 
 namespace AequusRemake.Content.Items.Weapons.Summon.Whips.EekWhip;
 

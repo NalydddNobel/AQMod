@@ -1,6 +1,6 @@
-﻿using AequusRemake.Content.Graphics.Particles;
-using AequusRemake.Core.Entities.Items.Components;
+﻿using AequusRemake.Core.Entities.Items.Components;
 using AequusRemake.Core.Util.Helpers;
+using AequusRemake.Systems.Particles.Common;
 using AequusRemake.Systems.Synergy;
 using System;
 using tModLoaderExtended.GlowMasks;

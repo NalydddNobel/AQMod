@@ -1,11 +1,11 @@
 ﻿using AequusRemake.Content.Biomes.PollutedOcean;
-using AequusRemake.Content.Graphics.Particles;
 using AequusRemake.Content.Items.Tools.Keys;
 using AequusRemake.Core.ContentGeneration;
 using AequusRemake.Core.Entities.Bestiary;
 using AequusRemake.Core.Entities.NPCs;
 using AequusRemake.Core.Util.Helpers;
 using AequusRemake.DataSets;
+using AequusRemake.Systems.Particles.Common;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;

@@ -4,7 +4,7 @@ using AequusRemake.Core.Structures.Particles;
 using AequusRemake.Core.Util.Helpers;
 using System;
 
-namespace AequusRemake.Content.Graphics.Particles;
+namespace AequusRemake.Systems.Particles.Common;
 
 /// <summary>Bubble particles which only work underwater. Floats upwards.</summary>
 public class UnderwaterBubbles : ParallelParticleArray<UnderwaterBubbles.Bubble> {
@@ -19,7 +19,7 @@ public class UnderwaterBubbles : ParallelParticleArray<UnderwaterBubbles.Bubble>
 
     public override int ParticleCount => 100;
 
-    public static bool AllowMergeDrawing => ExtendedMod.HighQualityEffects;
+    public static bool AllowMergeDrawing => HighQualityEffects;
 
     public override void Draw(SpriteBatch spriteBatch) {
         if (!AllowMergeDrawing) {
@@ -58,7 +58,7 @@ public class UnderwaterBubbles : ParallelParticleArray<UnderwaterBubbles.Bubble>
     }
 
     private void DrawAll(SpriteBatch spriteBatch, int frameY, float minOpacity = 0f) {
-        Texture2D texture = AequusTextures.BubbleParticles;
+        Texture2D texture = AequusTextures.UnderwaterBubbles;
         lock (this) {
             for (int k = 0; k < Particles.Length; k++) {
                 Bubble bubble = Particles[k];

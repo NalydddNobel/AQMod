@@ -1,5 +1,5 @@
-﻿using AequusRemake.Content.Graphics.Particles;
-using AequusRemake.Content.Items.Accessories.Breath;
+﻿using AequusRemake.Content.Items.Accessories.Breath;
+using AequusRemake.Systems.Particles.Common;
 using System;
 
 namespace AequusRemake;

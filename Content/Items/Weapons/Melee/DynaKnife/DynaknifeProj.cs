@@ -1,6 +1,6 @@
-﻿using AequusRemake.Content.Graphics.Particles;
-using AequusRemake.Core.Entities.Projectiles;
+﻿using AequusRemake.Core.Entities.Projectiles;
 using AequusRemake.Core.Util.Helpers;
+using AequusRemake.Systems.Particles.Common;
 using System;
 using Terraria.Audio;
 

@@ -413,10 +413,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ScavengerStatue = new("Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatue");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatueItem</summary>
     public static readonly RequestCache<Texture2D> ScavengerStatueItem = new("Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatueItem");
-    /// <summary>Full Path: Content/Graphics/Particles/BubbleParticles</summary>
-    public static readonly RequestCache<Texture2D> BubbleParticles = new("Content/Graphics/Particles/BubbleParticles");
-    /// <summary>Full Path: Content/Graphics/Particles/DashParticles</summary>
-    public static readonly RequestCache<Texture2D> DashParticles = new("Content/Graphics/Particles/DashParticles");
     /// <summary>Full Path: Content/Items/Accessories/Balloons/PurpleBalloon</summary>
     public static readonly RequestCache<Texture2D> PurpleBalloon = new("Content/Items/Accessories/Balloons/PurpleBalloon");
     /// <summary>Full Path: Content/Items/Accessories/Balloons/PurpleBalloon_Balloon</summary>
@@ -1061,4 +1057,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SteampunkerFishingPole = new("Systems/Fishing/FishingPoles/SteampunkerFishingPole");
     /// <summary>Full Path: Systems/Fishing/FishingPoles/SteampunkerFishingPoleBobber</summary>
     public static readonly RequestCache<Texture2D> SteampunkerFishingPoleBobber = new("Systems/Fishing/FishingPoles/SteampunkerFishingPoleBobber");
+    /// <summary>Full Path: Systems/Particles/Common/DashParticles</summary>
+    public static readonly RequestCache<Texture2D> DashParticles = new("Systems/Particles/Common/DashParticles");
+    /// <summary>Full Path: Systems/Particles/Common/UnderwaterBubbles</summary>
+    public static readonly RequestCache<Texture2D> UnderwaterBubbles = new("Systems/Particles/Common/UnderwaterBubbles");
 }

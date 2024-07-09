@@ -1,9 +1,9 @@
 ﻿using AequusRemake.Content.Biomes.PollutedOcean;
-using AequusRemake.Content.Graphics.Particles;
 using AequusRemake.Core.ContentGeneration;
 using AequusRemake.Core.Entities.Items.Components;
 using AequusRemake.Core.Graphics;
 using AequusRemake.Core.Util.Helpers;
+using AequusRemake.Systems.Particles.Common;
 using System;
 using System.Collections.Generic;
 using Terraria.Audio;

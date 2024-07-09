@@ -134,9 +134,6 @@
         <member name="P:AequusRemake.Content.Enemies.PollutedOcean.Eel.Eel.RealHorizontalFrame">
             <summary>Gets the real horizontal frame from the head NPC. (or <see cref="P:AequusRemake.Content.Enemies.PollutedOcean.Eel.Eel.HorizontalFrame"/> if it is the head.)</summary>
         </member>
-        <member name="T:AequusRemake.Content.Graphics.Particles.UnderwaterBubbles">
-            <summary>Bubble particles which only work underwater. Floats upwards.</summary>
-        </member>
         <member name="F:AequusRemake.Content.Items.Armor.Castaway.CastawayArmor.MaxBallsOut">
             <summary>Determines how many spiky balls can be in the world at once before they're forced to despawn.</summary>
         </member>
@@ -1996,6 +1993,16 @@
         <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.PollutedOcean">
             <summary>Loot pool for Polluted Ocean Trash Cans.</summary>
         </member>
+        <member name="T:AequusRemake.Core.Structures.PhysicsBehaviors.VICollisonNode">
+            <summary>A Verlet Integrated node with Tile Collision.</summary>
+        </member>
+        <member name="M:AequusRemake.Core.Structures.RefCache`1.OverrideWith(`0)">
+            <summary>Replaces the referenced value with <paramref name="value"/>. The original value will be cached, and can be restored using <see cref="!:VoidOverriddenValue(ref T)"/>.</summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:AequusRemake.Core.Structures.RefCache`1.RestoreOriginalValue">
+            <summary>Restores overriden values back to their original value.</summary>
+        </member>
         <member name="M:AequusRemake.Core.Structures.Particles.IParticleEmitter`1.New">
             <returns>A single particle instance.</returns>
         </member>
@@ -2069,16 +2076,6 @@
             Allows the renderer to unsubscribe to various drawing actions.
             This is ran when all particles are cleared from the system.
             </summary>
-        </member>
-        <member name="T:AequusRemake.Core.Structures.PhysicsBehaviors.VICollisonNode">
-            <summary>A Verlet Integrated node with Tile Collision.</summary>
-        </member>
-        <member name="M:AequusRemake.Core.Structures.RefCache`1.OverrideWith(`0)">
-            <summary>Replaces the referenced value with <paramref name="value"/>. The original value will be cached, and can be restored using <see cref="!:VoidOverriddenValue(ref T)"/>.</summary>
-            <param name="value"></param>
-        </member>
-        <member name="M:AequusRemake.Core.Structures.RefCache`1.RestoreOriginalValue">
-            <summary>Restores overriden values back to their original value.</summary>
         </member>
         <member name="M:AequusRemake.AequusRemake.GetRandomName(Terraria.Utilities.UnifiedRandom)">
             <returns>A random name. Used in naturally generated underworld tombstones.</returns>
@@ -2955,12 +2952,6 @@
         </member>
         <member name="F:AequusRemake.AequusTextures.ScavengerStatueItem">
             <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Tiles/ScavengerStatueItem</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.BubbleParticles">
-            <summary>Full Path: Content/Graphics/Particles/BubbleParticles</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.DashParticles">
-            <summary>Full Path: Content/Graphics/Particles/DashParticles</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.PurpleBalloon">
             <summary>Full Path: Content/Items/Accessories/Balloons/PurpleBalloon</summary>
@@ -3928,6 +3919,12 @@
         <member name="F:AequusRemake.AequusTextures.SteampunkerFishingPoleBobber">
             <summary>Full Path: Systems/Fishing/FishingPoles/SteampunkerFishingPoleBobber</summary>
         </member>
+        <member name="F:AequusRemake.AequusTextures.DashParticles">
+            <summary>Full Path: Systems/Particles/Common/DashParticles</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.UnderwaterBubbles">
+            <summary>Full Path: Systems/Particles/Common/UnderwaterBubbles</summary>
+        </member>
         <member name="P:AequusRemake.AequusSystem.RemixWorldSafeUnderworldRange">
             <summary>Returns a point with the beginning (left) (X) and end (right) (Y) of the 'safe' underworld in remix worlds. This does not represent a point in 2D space, but rather two X coordinates.</summary>
         </member>
@@ -3965,6 +3962,9 @@
             Determines whether or not the item was from a catch.
             This prevents some catches, like Jellyfishes being used as bait or being indicated as bait.
             </summary>
+        </member>
+        <member name="T:AequusRemake.Systems.Particles.Common.UnderwaterBubbles">
+            <summary>Bubble particles which only work underwater. Floats upwards.</summary>
         </member>
         <member name="P:AequusRemake.Systems.RecipeSystem.AnySeaFirefly">
             <summary><see cref="T:Terraria.RecipeGroup"/> for Sea Firefly variants.</summary>
