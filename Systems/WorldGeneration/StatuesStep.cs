@@ -1,10 +1,9 @@
 ﻿using AequusRemake.Content.Tiles.Statues;
-using AequusRemake.Core.Components;
 using System;
 using Terraria.IO;
 using Terraria.WorldBuilding;
 
-namespace AequusRemake.Content.WorldGeneration;
+namespace AequusRemake.Systems.WorldGeneration;
 
 public class StatuesStep : AGenStep {
     public override string InsertAfter => "Moss";

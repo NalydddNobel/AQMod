@@ -90,7 +90,7 @@ internal static class BestiaryBuilder {
             sorting[modNPC.Type] = sortingID;
         }
         catch (Exception ex) {
-            AequusRemake.Instance.Logger.Error($"Failed to move entry for {modNPC.Type} ({modNPC.Name}) to {npcIdToSortAfter} ({(NPCID.Search.TryGetName(npcIdToSortAfter, out string name) ? name : "Unknown")}).\n{ex}");
+            Log.Error($"Failed to move entry for {modNPC.Type} ({modNPC.Name}) to {npcIdToSortAfter} ({(NPCID.Search.TryGetName(npcIdToSortAfter, out string name) ? name : "Unknown")}).\n{ex}");
         }
     }
 

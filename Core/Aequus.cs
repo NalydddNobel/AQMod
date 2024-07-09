@@ -9,6 +9,7 @@ global using Terraria.ID;
 global using Terraria.ModLoader;
 global using tModLoaderExtended;
 global using static tModLoaderExtended.ExtendedMod;
+global using static AequusRemake.Core.GlobalCommons;
 global using static NALib.Common.MathCommon;
 
 #region Aliases
@@ -33,7 +34,6 @@ using Terraria.Utilities;
 namespace AequusRemake;
 
 public partial class AequusRemake : ExtendedMod {
-    public static new AequusRemake Instance => ModContent.GetInstance<AequusRemake>();
     public static Mod Aequus { get; private set; }
     public static Mod MusicMod { get; private set; }
 

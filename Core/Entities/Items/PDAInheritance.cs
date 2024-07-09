@@ -11,7 +11,7 @@ public class PDAEffects : GlobalItem, IPostSetupRecipes {
 
     public override void UpdateInfoAccessory(Item item, Player player) {
         if (PDAUpgrades.Contains(item.type)) {
-            if (item.ModItem?.Mod == AequusRemake.Instance) {
+            if (item.ModItem?.Mod == mod) {
                 player.RefreshInfoAccsFromItemType(ContentSamples.ItemsByType[ItemID.PDA]);
             }
 

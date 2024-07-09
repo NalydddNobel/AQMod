@@ -1,8 +1,8 @@
 ﻿using AequusRemake.Core.Entities.Prefixes;
 
-namespace AequusRemake.Content.Prefixes;
+namespace AequusRemake.Systems.Items;
 
-public sealed class CooldownPrefixInitializer : ILoad {
+public sealed class ItemPrefixesLoader : ILoad {
     public void Load(Mod mod) {
         // Good Prefixes
         mod.AddContent(new CooldownPrefix("Constant", priceMultiplier: 1.66f, cooldownMultiplier: 0.80f, new() {

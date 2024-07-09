@@ -72,7 +72,7 @@ internal sealed partial class PhotographyLoader : ModSystem {
         foreach (Album album in _albumsToRegister) {
             var args = new object[35];
             args[0] = "Photography.AddPage";
-            args[1] = AequusRemake.Instance;
+            args[1] = Mod;
             args[2] = album.Order;
             args[3] = album.SpecialReward;
             args[4] = Main.dedServ ? null : AequusTextures.SplitAlbum.Value;

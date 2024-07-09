@@ -22,7 +22,7 @@ public partial class AequusShaders {
         }
 
         MethodInfo info = typeof(Mod).GetProperty("File", BindingFlags.NonPublic | BindingFlags.Instance).GetGetMethod(true);
-        TmodFile file = info.Invoke(AequusRemake.Instance, null) as TmodFile;
+        TmodFile file = info.Invoke(mod, null) as TmodFile;
 
         if (file is null) {
             return;
@@ -33,7 +33,7 @@ public partial class AequusShaders {
         foreach (TmodFile.FileEntry i in shaders) {
             string name = Path.ChangeExtension(i.Name, "").TrimEnd('.');
 
-            AequusRemake.Instance.RequestAssetIfExists<Effect>(name, out _);
+            mod.RequestAssetIfExists<Effect>(name, out _);
         }
     }
 }

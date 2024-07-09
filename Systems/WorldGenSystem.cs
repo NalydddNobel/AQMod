@@ -1,4 +1,4 @@
-﻿using AequusRemake.Core.Components;
+﻿using AequusRemake.Systems.WorldGeneration;
 using System.Collections.Generic;
 using Terraria.WorldBuilding;
 

@@ -90,7 +90,7 @@ internal class Paletter : IDisposable {
             _finishedPalettes[palette] = resultTexture;
         }
         catch (Exception ex) {
-            AequusRemake.Instance.Logger.Error(ex);
+            Log.Error(ex);
         }
     }
 

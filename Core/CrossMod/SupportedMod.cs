@@ -30,12 +30,12 @@ internal class SupportedMod<TMod> : ModSystem, ISupportedMod<TMod>, ILocalizedMo
         try {
             var value = Instance?.Call(args);
             if (value is Exception ex) {
-                AequusRemake.Instance.Logger.Error(ex);
+                Log.Error(ex);
             }
             return value;
         }
         catch (Exception ex) {
-            AequusRemake.Instance.Logger.Error(ex);
+            Log.Error(ex);
         }
 
         return null;

@@ -12,7 +12,7 @@ public record class RefCache<T>(RefFunc<T> GetReference) {
             _hasOverridenValue = true;
         }
         //else {
-        //    AequusRemake.Instance.Logger.Info(Environment.StackTrace);
+        //    Log.Info(Environment.StackTrace);
         //}
 
         GetReference() = value;

@@ -1,7 +1,7 @@
 ﻿using AequusRemake.Content.Configuration;
 using AequusRemake.Content.CrossMod.CalamityModSupport;
 using AequusRemake.Content.Tiles.PollutedOcean.PolymerSands;
-using AequusRemake.Core.Components;
+using AequusRemake.Systems.WorldGeneration;
 using NALib.Helpers;
 using System;
 using Terraria.IO;

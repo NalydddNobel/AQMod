@@ -237,7 +237,7 @@ public abstract class BackpackData : ModType, ILocalizedModType {
         }
         catch (Exception ex) {
             cloneBackpack.UnNullItems();
-            AequusRemake.Instance.Logger.Error(ex);
+            Log.Error(ex);
         }
     }
 }

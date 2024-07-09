@@ -34,7 +34,7 @@ public partial class TerrariaHooks {
                 }
             }
             catch (Exception ex) {
-                AequusRemake.Instance.Logger.Error(ex);
+                Log.Error(ex);
             }
             _rerollingItemDropResolve = false;
             rolls--;

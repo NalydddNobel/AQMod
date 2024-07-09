@@ -735,12 +735,6 @@
             <param name="text"></param>
             <param name="entryNumber">Offsets the map Id lookup by this value. Defaults to 1, meaning that it assumes that this is the 2nd registered color for this wall.</param>
         </member>
-        <member name="M:AequusRemake.Core.Audio.AudioEffects.PlayUnpanningAttenuationSound(Terraria.Audio.SoundStyle,Microsoft.Xna.Framework.Vector2,System.Single)">
-            <summary>Plays a sound which does not pan, but will get quieter with distance.</summary>
-        </member>
-        <member name="T:AequusRemake.Core.Audio.DynamicSoundStyle">
-            <summary>Currently only supports .ogg</summary>
-        </member>
         <member name="T:AequusRemake.Core.CodeGeneration.Gen">
             <summary>Parent type which holds attributes which allow generation of Fields and Methods in <see cref="T:AequusRemake.AequusPlayer"/>.</summary>
         </member>
@@ -1573,39 +1567,6 @@
         <member name="F:AequusRemake.Core.Commons.Cost.NPCSkyMerchantCustomPrice">
             <summary>5 Gold</summary>
         </member>
-        <member name="M:AequusRemake.Core.Components.AGenStep.SetMessage(Terraria.WorldBuilding.GenerationProgress,System.Object)">
-            <summary>
-            Safely sets the progress message.
-            </summary>
-            <param name="progress"></param>
-            <param name="keySuffix"></param>
-        </member>
-        <member name="M:AequusRemake.Core.Components.AGenStep.RectangleProgress(System.Int32,System.Int32)">
-            <summary>Determines the progress of an ij loop in a rectangle. Using 0-<see cref="F:Terraria.Main.maxTilesX"/> and 0-<see cref="F:Terraria.Main.maxTilesY"/> as the edges.</summary>
-            <param name="i"></param>
-            <param name="j"></param>
-        </member>
-        <member name="M:AequusRemake.Core.Components.AGenStep.RectangleProgress(System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>Determines the progress of an ij loop in a rectangle. Using 0-<see cref="F:Terraria.Main.maxTilesY"/> as the vertical edges.</summary>
-            <param name="i"></param>
-            <param name="j"></param>
-            <param name="leftSide">X coordinate of the Left edge of the rectangle.</param>
-            <param name="rightSide">X coordinate of the Right edge of the rectnagle.</param>
-        </member>
-        <member name="M:AequusRemake.Core.Components.AGenStep.RectangleProgress(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>Determines the progress of an ij loop in a rectangle.</summary>
-            <param name="i"></param>
-            <param name="j"></param>
-            <param name="leftSide">X coordinate of the Left edge of the rectangle.</param>
-            <param name="rightSide">X coordinate of the Right edge of the rectnagle.</param>
-            <param name="topSide">Y coordinate of the Top Edge of the rectangle.</param>
-            <param name="bottomSide">Y coordinate of the Bottom Edge of the rectangle.</param>
-        </member>
-        <member name="M:AequusRemake.Core.Components.AGenStep.SetProgress(Terraria.WorldBuilding.GenerationProgress,System.Double,System.Double,System.Double)">
-            <summary>
-            Safely sets the progress bar.
-            </summary>
-        </member>
         <member name="T:AequusRemake.Core.Concurrent.ParallelLighting">
             <summary>Allows for lights to be safely created in a parallel process.</summary>
         </member>
@@ -1725,6 +1686,9 @@
         </member>
         <member name="M:AequusRemake.Core.Entites.Bestiary.BestiaryTags.Add(Terraria.ModLoader.ModBiome)">
             <summary>Call in PostSetupContent.</summary>
+        </member>
+        <member name="P:AequusRemake.Core.GlobalCommons.mod">
+            <summary>Shorthand of ModContent.GetInstance{AequusRemake}()</summary>
         </member>
         <member name="F:AequusRemake.Core.Graphics.DrawLayers.PostUpdateScreenPosition">
             <summary>Invoked before anything has begun rendering, but after the screen position has been determined.</summary>
@@ -1929,13 +1893,6 @@
             <param name="target"></param>
             <returns></returns>
         </member>
-        <member name="M:AequusRemake.Core.Initialization.BannerLoader.AddBannerBuff``1(Terraria.ModLoader.ModNPC)">
-            <summary>
-            Adds a banner buff for this NPC to <typeparamref name="TBannerNPC"/>'s registered banner. This is used grant a buff against Chained Souls when near the Keeper's Banner.
-            </summary>
-            <typeparam name="TBannerNPC"></typeparam>
-            <param name="npcWithoutBanner"></param>
-        </member>
         <member name="T:AequusRemake.Core.IO.IDLoader`1">
             <summary>Helper for loading content which uses a legacy Id system.</summary>
         </member>
@@ -2067,6 +2024,13 @@
             Allows the renderer to unsubscribe to various drawing actions.
             This is ran when all particles are cleared from the system.
             </summary>
+        </member>
+        <member name="M:AequusRemake.Core.Initialization.BannerLoader.AddBannerBuff``1(Terraria.ModLoader.ModNPC)">
+            <summary>
+            Adds a banner buff for this NPC to <typeparamref name="TBannerNPC"/>'s registered banner. This is used grant a buff against Chained Souls when near the Keeper's Banner.
+            </summary>
+            <typeparam name="TBannerNPC"></typeparam>
+            <param name="npcWithoutBanner"></param>
         </member>
         <member name="M:AequusRemake.AequusRemake.GetRandomName(Terraria.Utilities.UnifiedRandom)">
             <returns>A random name. Used in naturally generated underworld tombstones.</returns>
@@ -3919,6 +3883,12 @@
         <member name="P:AequusRemake.AequusSystem.RemixWorldSafeUnderworldRange">
             <summary>Returns a point with the beginning (left) (X) and end (right) (Y) of the 'safe' underworld in remix worlds. This does not represent a point in 2D space, but rather two X coordinates.</summary>
         </member>
+        <member name="M:AequusRemake.Systems.Audio.AudioEffects.PlayUnpanningAttenuationSound(Terraria.Audio.SoundStyle,Microsoft.Xna.Framework.Vector2,System.Single)">
+            <summary>Plays a sound which does not pan, but will get quieter with distance.</summary>
+        </member>
+        <member name="T:AequusRemake.Systems.Audio.DynamicSoundStyle">
+            <summary>Currently only supports .ogg</summary>
+        </member>
         <member name="M:AequusRemake.Systems.Backpacks.BackpackData.Deactivate(Terraria.Player)">
             <summary>
             Runs when the Backpack is no longer active. Use this hook to deposit items from the Backpack.
@@ -3965,6 +3935,9 @@
             Determines whether or not the item was from a catch.
             This prevents some catches, like Jellyfishes being used as bait or being indicated as bait.
             </summary>
+        </member>
+        <member name="T:AequusRemake.Systems.PaintSystem">
+            <summary>Allows painting of arbitrary textures.</summary>
         </member>
         <member name="T:AequusRemake.Systems.Particles.Common.UnderwaterBubbles">
             <summary>Bubble particles which only work underwater. Floats upwards.</summary>
@@ -4015,6 +3988,39 @@
         </member>
         <member name="M:AequusRemake.Systems.TimeSystem.GetWeekText(System.DayOfWeek)">
             <returns>Localized name of a <see cref="T:System.DayOfWeek"/> value.</returns>
+        </member>
+        <member name="M:AequusRemake.Systems.WorldGeneration.AGenStep.SetMessage(Terraria.WorldBuilding.GenerationProgress,System.Object)">
+            <summary>
+            Safely sets the progress message.
+            </summary>
+            <param name="progress"></param>
+            <param name="keySuffix"></param>
+        </member>
+        <member name="M:AequusRemake.Systems.WorldGeneration.AGenStep.RectangleProgress(System.Int32,System.Int32)">
+            <summary>Determines the progress of an ij loop in a rectangle. Using 0-<see cref="F:Terraria.Main.maxTilesX"/> and 0-<see cref="F:Terraria.Main.maxTilesY"/> as the edges.</summary>
+            <param name="i"></param>
+            <param name="j"></param>
+        </member>
+        <member name="M:AequusRemake.Systems.WorldGeneration.AGenStep.RectangleProgress(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>Determines the progress of an ij loop in a rectangle. Using 0-<see cref="F:Terraria.Main.maxTilesY"/> as the vertical edges.</summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <param name="leftSide">X coordinate of the Left edge of the rectangle.</param>
+            <param name="rightSide">X coordinate of the Right edge of the rectnagle.</param>
+        </member>
+        <member name="M:AequusRemake.Systems.WorldGeneration.AGenStep.RectangleProgress(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>Determines the progress of an ij loop in a rectangle.</summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <param name="leftSide">X coordinate of the Left edge of the rectangle.</param>
+            <param name="rightSide">X coordinate of the Right edge of the rectnagle.</param>
+            <param name="topSide">Y coordinate of the Top Edge of the rectangle.</param>
+            <param name="bottomSide">Y coordinate of the Bottom Edge of the rectangle.</param>
+        </member>
+        <member name="M:AequusRemake.Systems.WorldGeneration.AGenStep.SetProgress(Terraria.WorldBuilding.GenerationProgress,System.Double,System.Double,System.Double)">
+            <summary>
+            Safely sets the progress bar.
+            </summary>
         </member>
     </members>
 </doc>

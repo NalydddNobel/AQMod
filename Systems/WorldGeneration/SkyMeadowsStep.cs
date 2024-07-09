@@ -1,10 +1,9 @@
 ﻿using AequusRemake.Content.Tiles.Meadow;
-using AequusRemake.Core.Components;
 using System;
 using Terraria.IO;
 using Terraria.WorldBuilding;
 
-namespace AequusRemake.Content.WorldGeneration;
+namespace AequusRemake.Systems.WorldGeneration;
 
 public class SkyMeadowsStep : AGenStep {
     public override string InsertAfter => "Floating Islands";
@@ -20,7 +19,7 @@ public class SkyMeadowsStep : AGenStep {
                 int x = GenVars.floatingIslandHouseX[i];
                 int y = GenVars.floatingIslandHouseY[i];
 
-                if ((x == 0 && y == 0) || !Helper.InOuterPercentOfWorld(x, inWorldPercent)) {
+                if (x == 0 && y == 0 || !Helper.InOuterPercentOfWorld(x, inWorldPercent)) {
                     continue;
                 }
 

@@ -15,6 +15,6 @@ public sealed class GoreTool {
     }
 
     internal static int GetModdedGoreType(RequestCache<Texture2D> Texture) {
-        return AequusRemake.Instance.Find<ModGore>(Texture.Name)?.Type ?? 0;
+        return mod.Find<ModGore>(Texture.Name)?.Type ?? 0;
     }
 }

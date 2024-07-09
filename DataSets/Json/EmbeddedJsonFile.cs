@@ -12,15 +12,13 @@ public sealed class EmbeddedJsonFile {
     public readonly string FullFilePath;
     public readonly string FileData;
 
-    private static Mod Mod => AequusRemake.Instance;
-
     internal EmbeddedJsonFile(IJsonHolder holder) {
         _dataSet = holder;
         FilePath = holder.FilePath;
         FullFilePath = $"Assets/Metadata/{FilePath}.json";
 
-        if (Mod.FileExists(FullFilePath)) {
-            using var stream = Mod.GetFileStream(FullFilePath, newFileStream: true);
+        if (mod.FileExists(FullFilePath)) {
+            using var stream = mod.GetFileStream(FullFilePath, newFileStream: true);
             using var streamReader = new StreamReader(stream);
             FileData = streamReader.ReadToEnd();
         }

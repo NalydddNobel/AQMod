@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AequusRemake.Core.Audio;
+namespace AequusRemake.Systems.Audio;
 
 public class EchoEffect(int DelayInMilliseconds, float DecayFactor) : IAudioEffect {
     private readonly int delayMilliseconds = DelayInMilliseconds;
@@ -23,7 +23,7 @@ public class EchoEffect(int DelayInMilliseconds, float DecayFactor) : IAudioEffe
 
             for (int i = 0; i < buffer.Length / 2; i++) {
                 int sampleIndex = i * sampleSize;
-                int echoIndex = (i) * sampleSize + start;
+                int echoIndex = i * sampleSize + start;
 
                 short originalSample = BitConverter.ToInt16(newBuffer, echoIndex);
                 short echoSample = BitConverter.ToInt16(buffer, sampleIndex);

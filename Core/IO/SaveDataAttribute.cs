@@ -43,17 +43,17 @@ public sealed class SaveDataAttribute : Attribute {
         if (obj == null) {
             return false; // wtf tagcompound lies
         }
-        //AequusRemake.Instance.Logger.Debug(Name);
-        //AequusRemake.Instance.Logger.Debug(obj.GetType().FullName + ": " + obj.ToString());
+        //Log.Debug(Name);
+        //Log.Debug(obj.GetType().FullName + ": " + obj.ToString());
         if (info is FieldInfo field) {
             obj = TagIO.Deserialize(field.FieldType, obj);
             field.SetValue(me, obj);
-            //AequusRemake.Instance.Logger.Debug(field.FieldType + ": " + field.GetValue(me));
+            //Log.Debug(field.FieldType + ": " + field.GetValue(me));
         }
         else if (info is PropertyInfo property) {
             obj = TagIO.Deserialize(property.PropertyType, obj);
             property.SetValue(me, obj);
-            //AequusRemake.Instance.Logger.Debug(property.PropertyType + ": " + property.GetValue(me));
+            //Log.Debug(property.PropertyType + ": " + property.GetValue(me));
         }
 
         return false;

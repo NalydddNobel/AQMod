@@ -1,7 +1,6 @@
 ﻿using AequusRemake.Content.Biomes.PollutedOcean;
-using AequusRemake.Core.Audio;
 
-namespace AequusRemake.Content.Audio;
+namespace AequusRemake.Systems.Audio;
 
 [Autoload(Side = ModSide.Client)]
 public class AmbientAudioSystem : ModSystem {

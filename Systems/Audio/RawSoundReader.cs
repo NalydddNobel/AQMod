@@ -3,13 +3,11 @@ using NVorbis;
 using System.IO;
 using Terraria.ModLoader.Assets;
 
-namespace AequusRemake.Core.Audio;
+namespace AequusRemake.Systems.Audio;
 
 public class RawSoundReader {
-    private static Mod Mod => AequusRemake.Instance;
-
     public static void ReadOgg(string path, out float[] buffer, out long totalSamples, out int sampleRate, out AudioChannels channels) {
-        Stream stream = Mod.GetFileStream(path, newFileStream: true);
+        Stream stream = mod.GetFileStream(path, newFileStream: true);
 
         using var reader = new VorbisReader(stream, true);
 

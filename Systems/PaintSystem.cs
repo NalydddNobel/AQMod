@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using Terraria.GameContent;
 
-namespace AequusRemake.Core.Graphics.Tiles;
+namespace AequusRemake.Systems;
 
-internal class TexturePainter : ModSystem {
+/// <summary>Allows painting of arbitrary textures.</summary>
+internal class PaintSystem : ModSystem {
     public static readonly Dictionary<TextureVariantKey, TextureRenderTargetHolder> Renderers = new();
     public static readonly List<TilePaintSystemV2.ARenderTargetHolder> Requests = new();
 
@@ -48,7 +49,7 @@ internal class TexturePainter : ModSystem {
         }
 
         RequestTile(ref lookupKey);
-        return AequusRemake.Instance.Assets.Request<Texture2D>(lookupKey.Texture, AssetRequestMode.ImmediateLoad).Value;
+        return mod.Assets.Request<Texture2D>(lookupKey.Texture, AssetRequestMode.ImmediateLoad).Value;
     }
 
     public static Texture2D TryGetPaintedTexture(Tile tile, string texture) {
@@ -73,11 +74,11 @@ internal class TexturePainter : ModSystem {
 }
 
 public record struct TextureVariantKey(string Texture, int TileType, int TileStyle, byte PaintColor) {
-    public bool Equals(TextureVariantKey other) {
+    public readonly bool Equals(TextureVariantKey other) {
         return Texture == other.Texture && PaintColor == other.PaintColor;
     }
 
-    public override int GetHashCode() {
+    public override readonly int GetHashCode() {
         return Texture.GetHashCode() + PaintColor;
     }
 }
@@ -86,7 +87,7 @@ public class TextureRenderTargetHolder : TilePaintSystemV2.ARenderTargetHolder {
     public TextureVariantKey Key;
 
     public override void Prepare() {
-        PrepareTextureIfNecessary(AequusRemake.Instance.Assets.Request<Texture2D>(Key.Texture, AssetRequestMode.ImmediateLoad).Value);
+        PrepareTextureIfNecessary(mod.Assets.Request<Texture2D>(Key.Texture, AssetRequestMode.ImmediateLoad).Value);
     }
 
     public override void PrepareShader() {

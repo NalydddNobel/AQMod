@@ -23,7 +23,7 @@ public partial class AequusRemake {
     public static bool RemoveExpertExclusivity(Assembly caller, [Optional] bool? value) {
         if (value.HasValue) {
             ModCompatabilityFlags.RemoveExpertExclusivity = value.Value;
-            Instance.Logger.Info($"Remove Expert Exclusivity set to {ModCompatabilityFlags.RemoveExpertExclusivity} by {caller.Name()}.");
+            Log.Info($"Remove Expert Exclusivity set to {ModCompatabilityFlags.RemoveExpertExclusivity} by {caller.Name()}.");
         }
 
         return ModCompatabilityFlags.RemoveExpertExclusivity;
@@ -156,7 +156,7 @@ public partial class AequusRemake {
         object result = Call(args);
 
         if (result is Exception ex) {
-            Instance.Logger.Error(ex.Message + "\n" + ex.StackTrace);
+            Log.Error(ex.Message + "\n" + ex.StackTrace);
         }
     }
 

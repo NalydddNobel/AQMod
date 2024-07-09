@@ -50,12 +50,12 @@ partial class AequusRemake {
 
     private class LoadingSteps : ModSystem {
         public override void PostSetupContent() {
-            Instance.PostSetupContentOccured = true;
+            mod.PostSetupContentOccured = true;
             OnPostSetupContent?.Invoke();
         }
 
         public override void AddRecipes() {
-            Instance.AddRecipesOccured = true;
+            mod.AddRecipesOccured = true;
             OnAddRecipes?.Invoke();
         }
 

@@ -1,5 +1,5 @@
-﻿using AequusRemake.Core.Components;
-using AequusRemake.DataSets;
+﻿using AequusRemake.DataSets;
+using AequusRemake.Systems.WorldGeneration;
 using Terraria.IO;
 using Terraria.WorldBuilding;
 

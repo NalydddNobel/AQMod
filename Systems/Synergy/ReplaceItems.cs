@@ -43,7 +43,7 @@ public class ReplaceItems : GlobalItem, IAddRecipes {
 
     private static void On_Item_SetDefaults(On_Item.orig_SetDefaults_int_bool_ItemVariant orig, Item self, int Type, bool noMatCheck, Terraria.GameContent.Items.ItemVariant variant) {
         if (Replace.TryGetValue(Type, out int replaceType)) {
-            if (AequusRemake.Instance.PostSetupContentOccured) {
+            if (mod.PostSetupContentOccured) {
                 Type = replaceType;
             }
             else {
