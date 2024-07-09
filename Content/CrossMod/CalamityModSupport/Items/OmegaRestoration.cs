@@ -1,9 +1,9 @@
 ﻿using AequusRemake.Core.CrossMod;
-using AequusRemake.Core.Entities.Items.Components;
+using AequusRemake.Systems.Items;
 
 namespace AequusRemake.Content.CrossMod.CalamityModSupport.Items;
 
-public class OmegaRestoration : CrossModItem, IApplyPotionDelay {
+public class OmegaRestoration : CrossModItem, IModifyPotionDelay {
     public bool ApplyPotionDelay(Player player) {
         player.potionDelay = player.restorationDelayTime;
         player.AddBuff(BuffID.PotionSickness, player.potionDelay);

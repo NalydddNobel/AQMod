@@ -1,6 +1,6 @@
 ﻿using AequusRemake.Core;
 using AequusRemake.Core.CodeGeneration;
-using AequusRemake.Core.Entities.Items.Components;
+using AequusRemake.Systems.Items;
 using System;
 
 namespace AequusRemake.Content.Items.Accessories.WeightedHorseshoe;

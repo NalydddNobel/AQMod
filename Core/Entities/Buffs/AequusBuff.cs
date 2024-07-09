@@ -1,4 +1,4 @@
-﻿using AequusRemake.Core.Components.Buffs;
+﻿using AequusRemake.Systems.Buffs;
 
 namespace AequusRemake.Core.Entities.Buffs;
 public partial class AequusRemakeBuff : GlobalBuff {

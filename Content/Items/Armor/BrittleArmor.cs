@@ -4,6 +4,7 @@ using AequusRemake.Core.Entities.Items.Components;
 using AequusRemake.Core.Entities.Items.Tooltips;
 using AequusRemake.Core.Entities.Players.Drawing;
 using AequusRemake.Core.GUI;
+using AequusRemake.Systems.Items;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;

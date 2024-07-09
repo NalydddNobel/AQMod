@@ -1,4 +1,4 @@
-﻿using AequusRemake.Core.Components.Buffs;
+﻿using AequusRemake.Systems.Buffs;
 
 namespace AequusRemake.Content.Items.Potions.Food.TaintedSeafood;
 

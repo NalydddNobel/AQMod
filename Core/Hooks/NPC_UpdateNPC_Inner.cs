@@ -2,7 +2,7 @@
 namespace AequusRemake.Core.Hooks;
 
 public partial class TerrariaHooks {
-    private static void NPC_UpdateNPC_Inner(On_NPC.orig_UpdateNPC_Inner orig, NPC npc, int i) {
+    private static void On_NPC_UpdateNPC_Inner(On_NPC.orig_UpdateNPC_Inner orig, NPC npc, int i) {
         bool frozen = false;
         if (frozen) {
             npc.lifeRegen = 0;

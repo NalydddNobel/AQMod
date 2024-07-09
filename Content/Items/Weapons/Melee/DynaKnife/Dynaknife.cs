@@ -1,5 +1,5 @@
-﻿using AequusRemake.Core.Entities.Items.Components;
-using AequusRemake.Core.Util.Helpers;
+﻿using AequusRemake.Core.Util.Helpers;
+using AequusRemake.Systems.Items;
 using AequusRemake.Systems.Particles.Common;
 using AequusRemake.Systems.Synergy;
 using System;

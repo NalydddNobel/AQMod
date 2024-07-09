@@ -7,7 +7,7 @@ public partial class TerrariaHooks {
     private static bool _rerollingItemDropResolve;
 
     /// <summary>Allows for re-rolling item drops (if they fail an RNG roll) for the Grand Reward.</summary>
-    private static ItemDropAttemptResult ItemDropResolver_ResolveRule(On_ItemDropResolver.orig_ResolveRule orig, ItemDropResolver self, IItemDropRule rule, DropAttemptInfo info) {
+    private static ItemDropAttemptResult On_ItemDropResolver_ResolveRule(On_ItemDropResolver.orig_ResolveRule orig, ItemDropResolver self, IItemDropRule rule, DropAttemptInfo info) {
         ItemDropAttemptResult result = orig(self, rule, info);
 
 #if !DEBUG

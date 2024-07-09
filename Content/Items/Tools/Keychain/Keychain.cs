@@ -1,6 +1,6 @@
-﻿using AequusRemake.Core.Entities.Items.Components;
-using AequusRemake.Core.Graphics;
+﻿using AequusRemake.Core.Graphics;
 using AequusRemake.DataSets;
+using AequusRemake.Systems.Items;
 using Newtonsoft.Json;
 using Terraria.Audio;
 using Terraria.DataStructures;

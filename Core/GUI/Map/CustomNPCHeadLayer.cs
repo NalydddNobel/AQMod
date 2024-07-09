@@ -1,4 +1,4 @@
-﻿using AequusRemake.Core.Components.NPCs;
+﻿using AequusRemake.Systems.NPCs;
 using Terraria.Map;
 
 namespace AequusRemake.Core.GUI.Map;

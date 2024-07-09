@@ -1,11 +1,11 @@
 ﻿using AequusRemake.Content.Biomes.PollutedOcean;
 using AequusRemake.Content.Items.Accessories.ScavengerBag;
 using AequusRemake.Content.Items.Tools.Keys;
-using AequusRemake.Core.Components.NPCs;
 using AequusRemake.Core.ContentGeneration;
 using AequusRemake.Core.Entities.Bestiary;
 using AequusRemake.Core.Entities.NPCs;
 using AequusRemake.DataSets;
+using AequusRemake.Systems.NPCs;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;

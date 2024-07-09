@@ -1,5 +1,5 @@
-﻿using AequusRemake.Core.Entities.Items.Components;
-using AequusRemake.DataSets;
+﻿using AequusRemake.DataSets;
+using AequusRemake.Systems.Items;
 using Terraria.UI;
 
 namespace AequusRemake.Core.Hooks;

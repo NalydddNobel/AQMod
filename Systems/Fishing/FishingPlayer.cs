@@ -1,5 +1,4 @@
-﻿using AequusRemake.Core.Entities.Items.Components;
-using AequusRemake.Core.Hooks;
+﻿using AequusRemake.Core.Hooks;
 using Terraria.DataStructures;
 
 namespace AequusRemake.Systems.Fishing;

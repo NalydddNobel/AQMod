@@ -1,10 +1,10 @@
-﻿using AequusRemake.Core.Entities.Items.Components;
+﻿using AequusRemake.Systems.Items;
 using AequusRemake.Systems.Synergy;
 
 namespace AequusRemake.Content.Items.Potions.Healing.Restoration;
 
 [Replacement]
-public class SuperRestorationPotion : ModItem, IApplyPotionDelay {
+public class SuperRestorationPotion : ModItem, IModifyPotionDelay {
     public bool ApplyPotionDelay(Player player) {
         player.potionDelay = player.restorationDelayTime;
         player.AddBuff(BuffID.PotionSickness, player.potionDelay);

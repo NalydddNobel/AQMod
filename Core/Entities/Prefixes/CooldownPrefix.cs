@@ -1,5 +1,5 @@
 ﻿using AequusRemake.Core.ContentGeneration;
-using AequusRemake.Core.Entities.Items.Components;
+using AequusRemake.Systems.Items;
 using System;
 using System.Collections.Generic;
 

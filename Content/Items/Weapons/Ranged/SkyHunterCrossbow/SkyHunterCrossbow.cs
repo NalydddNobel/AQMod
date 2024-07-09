@@ -1,12 +1,12 @@
 ﻿using AequusRemake.Core;
 using AequusRemake.Systems.Elements;
 using AequusRemake.Core.Entities.Projectiles;
-using AequusRemake.Core.Entities.Items.Components;
 using AequusRemake.Core.Entities.Projectiles;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.Utilities;
+using AequusRemake.Systems.Items;
 
 namespace AequusRemake.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
 

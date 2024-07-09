@@ -1,12 +1,12 @@
 ﻿using AequusRemake.Content.Configuration;
-using AequusRemake.Core.Entities.Items.Components;
+using AequusRemake.Systems.Items;
 using AequusRemake.Systems.Synergy;
 using tModLoaderExtended.Terraria.ModLoader;
 
 namespace AequusRemake.Content.Items.Potions.Healing.Restoration;
 
 [Replacement]
-public class LesserRestorationPotion : ModItem, IApplyPotionDelay, IPostAddRecipes {
+public class LesserRestorationPotion : ModItem, IModifyPotionDelay, IPostAddRecipes {
     public override string Texture => AequusTextures.Item(ItemID.LesserRestorationPotion);
 
     public bool ApplyPotionDelay(Player player) {

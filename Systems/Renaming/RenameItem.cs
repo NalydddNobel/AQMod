@@ -1,5 +1,4 @@
-﻿using AequusRemake.Core.Entities.Items.Components;
-using AequusRemake.DataSets;
+﻿using AequusRemake.DataSets;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.IO;

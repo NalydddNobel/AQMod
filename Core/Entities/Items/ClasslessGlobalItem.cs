@@ -1,4 +1,4 @@
-﻿using AequusRemake.Core.Entities.Items.Components;
+﻿using AequusRemake.Systems.Items;
 using System.Collections.Generic;
 using Terraria.Utilities;
 

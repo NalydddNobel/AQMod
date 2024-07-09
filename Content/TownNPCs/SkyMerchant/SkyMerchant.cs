@@ -1,10 +1,10 @@
 ﻿using AequusRemake.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
 using AequusRemake.Content.TownNPCs.SkyMerchant.UI;
-using AequusRemake.Core.Components.NPCs;
 using AequusRemake.Core.ContentGeneration;
 using AequusRemake.Core.Entities.Bestiary;
 using AequusRemake.Core.GUI;
 using AequusRemake.Core.Localization;
+using AequusRemake.Systems.NPCs;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;

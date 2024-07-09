@@ -1,8 +1,8 @@
 ﻿using AequusRemake.Core.Entities.Buffs;
-using AequusRemake.Core.Entities.Items.Components;
 using AequusRemake.Core.GUI;
 using AequusRemake.Core.IO;
 using AequusRemake.DataSets;
+using AequusRemake.Systems.Items;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;

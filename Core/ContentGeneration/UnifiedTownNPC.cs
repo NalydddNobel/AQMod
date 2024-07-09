@@ -1,5 +1,5 @@
 ﻿using AequusRemake.Content.TownNPCs;
-using AequusRemake.Core.Components.NPCs;
+using AequusRemake.Systems.NPCs;
 using Terraria.GameContent;
 using static Terraria.GameContent.Profiles;
 

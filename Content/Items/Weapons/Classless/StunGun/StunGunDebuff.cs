@@ -1,7 +1,7 @@
 ﻿using AequusRemake.Core.Entities.NPCs;
-using AequusRemake.Core.Components.Buffs;
 using AequusRemake.DataSets;
 using Terraria.Audio;
+using AequusRemake.Systems.Buffs;
 
 namespace AequusRemake.Content.Items.Weapons.Classless.StunGun;
 

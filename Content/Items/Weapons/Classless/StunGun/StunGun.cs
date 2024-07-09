@@ -1,9 +1,9 @@
 ﻿using AequusRemake.Core;
 using AequusRemake.Systems.Elements;
 using AequusRemake.Core.Entities.DamageClasses;
-using AequusRemake.Core.Entities.Items.Components;
 using System;
 using Terraria.Localization;
+using AequusRemake.Systems.Items;
 
 namespace AequusRemake.Content.Items.Weapons.Classless.StunGun;
 

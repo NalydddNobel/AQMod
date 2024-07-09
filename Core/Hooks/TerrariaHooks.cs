@@ -20,7 +20,7 @@ public partial class TerrariaHooks : ILoad {
 
         On_Item.CanHavePrefixes += On_Item_CanHavePrefixes;
 
-        On_ItemDropResolver.ResolveRule += ItemDropResolver_ResolveRule;
+        On_ItemDropResolver.ResolveRule += On_ItemDropResolver_ResolveRule;
 
         On_ItemSlot.PickItemMovementAction += On_ItemSlot_PickItemMovementAction;
         On_ItemSlot.RightClick_ItemArray_int_int += ItemSlot_RightClick;
@@ -34,12 +34,15 @@ public partial class TerrariaHooks : ILoad {
         On_Main.UpdateTime_StartDay += On_Main_UpdateTime_StartDay;
         On_Main.UpdateTime_StartNight += On_Main_UpdateTime_StartNight;
 
-        On_NPC.NPCLoot_DropMoney += NPC_NPCLoot_DropMoney;
-        On_NPC.UpdateNPC_Inner += NPC_UpdateNPC_Inner;
+        On_NPC.NPCLoot_DropItems += On_NPC_NPCLoot_DropItems;
+        On_NPC.NPCLoot_DropMoney += On_NPC_NPCLoot_DropMoney;
+        On_NPC.UpdateNPC_Inner += On_NPC_UpdateNPC_Inner;
 
         IL_Player.PickTile += IL_Player_PickTile;
         IL_Player.PlaceThing_ValidTileForReplacement += IL_Player_PlaceThing_ValidTileForReplacement;
         IL_Player.UpdateManaRegen += IL_Player_UpdateManaRegen;
+        On_Player.UpdateItemDye += Player_UpdateItemDye;
+        On_Player.ApplyPotionDelay += On_Player_ApplyPotionDelay;
         On_Player.ItemCheck_ReleaseCritter += On_Player_ItemCheck_ReleaseCritter;
         On_Player.FigureOutWhatToPlace += On_Player_FigureOutWhatToPlace; ;
         On_Player.GetPreferredGolfBallToUse += On_Player_GetPreferredGolfBallToUse;

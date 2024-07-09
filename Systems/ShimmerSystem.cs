@@ -6,8 +6,8 @@ using AequusRemake.Content.Items.Accessories.Informational.Monocle;
 using AequusRemake.Content.Items.Accessories.WeightedHorseshoe;
 using AequusRemake.Content.Items.PermaPowerups.Shimmer;
 using AequusRemake.Content.Items.Weapons.Magic.Furystar;
-using AequusRemake.Core.Components.Prefixes;
 using AequusRemake.Core.Entities.Items.Dedications;
+using AequusRemake.Systems.Items;
 using tModLoaderExtended.Terraria.GameContent;
 
 namespace AequusRemake.Systems;
@@ -49,7 +49,7 @@ public class ShimmerSystem : ModSystem {
 
     public struct PrefixClearingOverride : IShimmerOverride {
         readonly bool IShimmerOverride.GetShimmered(Item item, int type) {
-            if (item.prefix >= PrefixID.Count && PrefixLoader.GetPrefix(item.prefix) is IRemovedByShimmerPrefix shimmerablePrefix && shimmerablePrefix.CanBeRemovedByShimmer) {
+            if (item.prefix >= PrefixID.Count && PrefixLoader.GetPrefix(item.prefix) is IPrefixWhichCanBeRemovedByShimmer shimmerablePrefix && shimmerablePrefix.CanBeRemovedByShimmer) {
                 int oldStack = item.stack;
                 item.SetDefaults(item.netID);
                 item.stack = oldStack;

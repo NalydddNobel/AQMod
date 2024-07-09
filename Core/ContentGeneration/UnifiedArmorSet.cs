@@ -1,5 +1,5 @@
-﻿using AequusRemake.Core.Entities.Items.Components;
-using AequusRemake.Core.Entities.Items.Tooltips;
+﻿using AequusRemake.Core.Entities.Items.Tooltips;
+using AequusRemake.Systems.Items;
 using System;
 using Terraria.Localization;
 
