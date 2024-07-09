@@ -1,5 +1,4 @@
-﻿using AequusRemake.Core.Util.Helpers;
-using System;
+﻿using System;
 using tModLoaderExtended.Terraria.ModLoader;
 
 namespace AequusRemake.Systems.Synergy;
@@ -18,15 +17,7 @@ internal class ReplacementAttribute(string Name = null) : Attribute, IAttributeO
         string name = _name ?? ((dynamic)Content).Name;
 
         if (Content is ModItem ModItem) {
-            if (AequusRemake.Aequus.TryFind(name, out ModItem oldModItem)) {
-                ReplaceItems.Replace.Add(oldModItem.Type, ModItem.Type);
-
-                ILTool.DeleteMethod(oldModItem.GetType(), "AddRecipes");
-                AequusRemake.OnPostSetupContent += () => ItemID.Sets.Deprecated[oldModItem.Type] = true;
-            }
-            else {
-                Log.Info($"Item Type of \"{name}\" was not found.");
-            }
+            ReplaceItems.TryAdd(name, ModItem.Type);
         }
     }
 }

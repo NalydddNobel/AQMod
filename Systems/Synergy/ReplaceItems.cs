@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AequusRemake.Core.Util.Helpers;
+using System;
 using System.Collections.Generic;
 using tModLoaderExtended.Terraria.ModLoader;
 
@@ -10,6 +11,22 @@ public class ReplaceItems : GlobalItem, IAddRecipes {
 
     public override bool IsLoadingEnabled(Mod mod) {
         return ModLoader.HasMod("Aequus");
+    }
+
+    internal static void TryAdd(string name, int replaceType) {
+        if (AequusRemake.Aequus == null) {
+            return;
+        }
+
+        if (AequusRemake.Aequus.TryFind(name, out ModItem oldModItem)) {
+            Replace.Add(oldModItem.Type, replaceType);
+
+            ILTool.DeleteMethod(oldModItem.GetType(), "AddRecipes");
+            AequusRemake.OnPostSetupContent += () => ItemID.Sets.Deprecated[oldModItem.Type] = true;
+        }
+        else {
+            Log.Info($"Item Type of \"{name}\" was not found.");
+        }
     }
 
     public override void Load() {
