@@ -1,5 +1,5 @@
 ﻿using AequusRemake.Content.Configuration;
-using AequusRemake.Content.VanillaChanges;
+using AequusRemake.Systems.VanillaChanges;
 using System.Collections.Generic;
 using System.Linq;
 using tModLoaderExtended.Terraria.ModLoader;

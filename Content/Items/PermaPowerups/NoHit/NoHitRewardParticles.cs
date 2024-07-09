@@ -126,11 +126,11 @@ public class NoHitRewardParticles : ParticleSystem {
     }
 
     public override void OnActivate() {
-        DrawLayers.Instance.WorldBehindTiles += Draw;
+        DrawLayers.Instance.BehindTiles += Draw;
     }
 
     public override void Deactivate() {
-        DrawLayers.Instance.WorldBehindTiles -= Draw;
+        DrawLayers.Instance.BehindTiles -= Draw;
     }
 
     public record ParticleSlot(int SlotId) {

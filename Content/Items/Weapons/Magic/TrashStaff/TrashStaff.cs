@@ -1,5 +1,5 @@
 ﻿using AequusRemake.Core;
-using AequusRemake.Content.Elements;
+using AequusRemake.Systems.Elements;
 using AequusRemake.Content.Items.Materials;
 
 namespace AequusRemake.Content.Items.Weapons.Magic.TrashStaff;

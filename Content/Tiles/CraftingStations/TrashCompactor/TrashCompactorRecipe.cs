@@ -55,8 +55,8 @@ public struct TrashCompactorRecipe {
                     continue;
                 }
 
-                // Item has multiple recipes, cannot decraft!
-                if (!resultList.Invalid) {
+                // Item has multiple recipes or recipe groups, cannot decraft!
+                if (!resultList.Invalid || Main.recipe[i].acceptedGroups.Count > 0) {
                     return None;
                 }
 

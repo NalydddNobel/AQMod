@@ -1,5 +1,5 @@
 ﻿using AequusRemake.Core;
-using AequusRemake.Content.Elements;
+using AequusRemake.Systems.Elements;
 using AequusRemake.Core.ContentGeneration;
 using System.Collections.Generic;
 using Terraria.DataStructures;

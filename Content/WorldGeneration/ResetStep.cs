@@ -1,6 +1,6 @@
-﻿using AequusRemake.Content.VanillaChanges;
-using AequusRemake.Core.Components;
+﻿using AequusRemake.Core.Components;
 using AequusRemake.Systems;
+using AequusRemake.Systems.VanillaChanges;
 using Terraria.IO;
 using Terraria.WorldBuilding;
 

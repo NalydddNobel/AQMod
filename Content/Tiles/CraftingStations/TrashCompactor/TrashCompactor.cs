@@ -1,8 +1,8 @@
-﻿using AequusRemake.Content.Graphics.GameOverlays;
-using AequusRemake.Core.ContentGeneration;
+﻿using AequusRemake.Core.ContentGeneration;
 using AequusRemake.Core.Entities.Tiles.Components;
 using AequusRemake.Core.Graphics.Animations;
 using AequusRemake.Core.Graphics.Tiles;
+using AequusRemake.Core.Structures.Particles;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.IO;
@@ -40,9 +40,8 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction
     public static void UseItemAnimation(int i, int j, int totalAmount, int itemType) {
         var spawnLocation = new Vector2(i + 0.5f, j + 2.5f) * 16f;
         for (int l = 0; l < Math.Min(totalAmount, 4); l++) {
-            ModContent.GetInstance<DrawsOverTilesNPCs>().Add(new AnimationItemSpew(spawnLocation + Main.rand.NextVector2Square(-4f, 4f), new(i, j), itemType) {
-                AnimationTime = Main.rand.Next(-10, 2) * l - 45
-            });
+            Particle<ItemSpewParticles.Particle>.New()
+                .Setup(spawnLocation + Main.rand.NextVector2Square(-4f, 4f), new(i, j), itemType, Main.rand.Next(-10, 2) * l - 45);
         }
     }
 

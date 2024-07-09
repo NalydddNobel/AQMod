@@ -1,5 +1,5 @@
 ﻿using AequusRemake.Core;
-using AequusRemake.Content.Elements;
+using AequusRemake.Systems.Elements;
 using AequusRemake.Core.Entities.Projectiles;
 using AequusRemake.Core.Entities.Items.Components;
 using AequusRemake.Core.Entities.Projectiles;

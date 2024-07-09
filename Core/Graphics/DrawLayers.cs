@@ -9,7 +9,9 @@ public class DrawLayers : IContentInstance {
     /// <summary>Invoked before anything has begun rendering, but after the screen position has been determined.</summary>
     public DrawLayer PostUpdateScreenPosition;
     /// <summary>Invoked before NPCs behind tiles are drawn.</summary>
-    public DrawLayer WorldBehindTiles;
+    public DrawLayer BehindTiles;
+    /// <summary>Invoked after NPCs are drawn.</summary>
+    public DrawLayer PostDrawNPCs;
     /// <summary>Invoked after Dusts have been drawn.</summary>
     public DrawLayer PostDrawDust;
     /// <summary>Invoked after Liquids and Inferno Rings have been drawn, but before Wire Overlays are drawn.</summary>

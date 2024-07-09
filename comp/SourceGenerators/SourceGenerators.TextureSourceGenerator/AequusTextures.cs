@@ -287,36 +287,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SwagEyePetItem = new("Content/Dedicated/SwagEye/SwagEyePetItem");
     /// <summary>Full Path: Content/Dusts/MonoDust</summary>
     public static readonly RequestCache<Texture2D> MonoDust = new("Content/Dusts/MonoDust");
-    /// <summary>Full Path: Content/Elements/Air/AirMask</summary>
-    public static readonly RequestCache<Texture2D> AirMask = new("Content/Elements/Air/AirMask");
-    /// <summary>Full Path: Content/Elements/Air/AirMask_Head</summary>
-    public static readonly RequestCache<Texture2D> AirMask_Head = new("Content/Elements/Air/AirMask_Head");
-    /// <summary>Full Path: Content/Elements/Earth/EarthMask</summary>
-    public static readonly RequestCache<Texture2D> EarthMask = new("Content/Elements/Earth/EarthMask");
-    /// <summary>Full Path: Content/Elements/Earth/EarthMask_Head</summary>
-    public static readonly RequestCache<Texture2D> EarthMask_Head = new("Content/Elements/Earth/EarthMask_Head");
-    /// <summary>Full Path: Content/Elements/ElementIcons</summary>
-    public static readonly RequestCache<Texture2D> ElementIcons = new("Content/Elements/ElementIcons");
-    /// <summary>Full Path: Content/Elements/Flame/FlameMask</summary>
-    public static readonly RequestCache<Texture2D> FlameMask = new("Content/Elements/Flame/FlameMask");
-    /// <summary>Full Path: Content/Elements/Flame/FlameMask_Head</summary>
-    public static readonly RequestCache<Texture2D> FlameMask_Head = new("Content/Elements/Flame/FlameMask_Head");
-    /// <summary>Full Path: Content/Elements/Frost/FrostMask</summary>
-    public static readonly RequestCache<Texture2D> FrostMask = new("Content/Elements/Frost/FrostMask");
-    /// <summary>Full Path: Content/Elements/Frost/FrostMask_Head</summary>
-    public static readonly RequestCache<Texture2D> FrostMask_Head = new("Content/Elements/Frost/FrostMask_Head");
-    /// <summary>Full Path: Content/Elements/Light/LightMask</summary>
-    public static readonly RequestCache<Texture2D> LightMask = new("Content/Elements/Light/LightMask");
-    /// <summary>Full Path: Content/Elements/Light/LightMask_Head</summary>
-    public static readonly RequestCache<Texture2D> LightMask_Head = new("Content/Elements/Light/LightMask_Head");
-    /// <summary>Full Path: Content/Elements/Shadow/ShadowMask</summary>
-    public static readonly RequestCache<Texture2D> ShadowMask = new("Content/Elements/Shadow/ShadowMask");
-    /// <summary>Full Path: Content/Elements/Shadow/ShadowMask_Head</summary>
-    public static readonly RequestCache<Texture2D> ShadowMask_Head = new("Content/Elements/Shadow/ShadowMask_Head");
-    /// <summary>Full Path: Content/Elements/Water/WaterMask</summary>
-    public static readonly RequestCache<Texture2D> WaterMask = new("Content/Elements/Water/WaterMask");
-    /// <summary>Full Path: Content/Elements/Water/WaterMask_Head</summary>
-    public static readonly RequestCache<Texture2D> WaterMask_Head = new("Content/Elements/Water/WaterMask_Head");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
     public static readonly RequestCache<Texture2D> BlackJellyfish = new("Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishVertexStrip</summary>
@@ -1015,14 +985,42 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SkyMerchant_Head = new("Content/TownNPCs/SkyMerchant/SkyMerchant_Head");
     /// <summary>Full Path: Content/UI/Map/NameTagBlip</summary>
     public static readonly RequestCache<Texture2D> NameTagBlip = new("Content/UI/Map/NameTagBlip");
-    /// <summary>Full Path: Content/VanillaChanges/ToolbeltBuilderToggle</summary>
-    public static readonly RequestCache<Texture2D> ToolbeltBuilderToggle = new("Content/VanillaChanges/ToolbeltBuilderToggle");
     /// <summary>Full Path: icon</summary>
     public static readonly RequestCache<Texture2D> icon = new("icon");
     /// <summary>Full Path: icon_small</summary>
     public static readonly RequestCache<Texture2D> icon_small = new("icon_small");
     /// <summary>Full Path: icon_workshop</summary>
     public static readonly RequestCache<Texture2D> icon_workshop = new("icon_workshop");
+    /// <summary>Full Path: Systems/Elements/Air/AirMask</summary>
+    public static readonly RequestCache<Texture2D> AirMask = new("Systems/Elements/Air/AirMask");
+    /// <summary>Full Path: Systems/Elements/Air/AirMask_Head</summary>
+    public static readonly RequestCache<Texture2D> AirMask_Head = new("Systems/Elements/Air/AirMask_Head");
+    /// <summary>Full Path: Systems/Elements/Earth/EarthMask</summary>
+    public static readonly RequestCache<Texture2D> EarthMask = new("Systems/Elements/Earth/EarthMask");
+    /// <summary>Full Path: Systems/Elements/Earth/EarthMask_Head</summary>
+    public static readonly RequestCache<Texture2D> EarthMask_Head = new("Systems/Elements/Earth/EarthMask_Head");
+    /// <summary>Full Path: Systems/Elements/ElementIcons</summary>
+    public static readonly RequestCache<Texture2D> ElementIcons = new("Systems/Elements/ElementIcons");
+    /// <summary>Full Path: Systems/Elements/Flame/FlameMask</summary>
+    public static readonly RequestCache<Texture2D> FlameMask = new("Systems/Elements/Flame/FlameMask");
+    /// <summary>Full Path: Systems/Elements/Flame/FlameMask_Head</summary>
+    public static readonly RequestCache<Texture2D> FlameMask_Head = new("Systems/Elements/Flame/FlameMask_Head");
+    /// <summary>Full Path: Systems/Elements/Frost/FrostMask</summary>
+    public static readonly RequestCache<Texture2D> FrostMask = new("Systems/Elements/Frost/FrostMask");
+    /// <summary>Full Path: Systems/Elements/Frost/FrostMask_Head</summary>
+    public static readonly RequestCache<Texture2D> FrostMask_Head = new("Systems/Elements/Frost/FrostMask_Head");
+    /// <summary>Full Path: Systems/Elements/Light/LightMask</summary>
+    public static readonly RequestCache<Texture2D> LightMask = new("Systems/Elements/Light/LightMask");
+    /// <summary>Full Path: Systems/Elements/Light/LightMask_Head</summary>
+    public static readonly RequestCache<Texture2D> LightMask_Head = new("Systems/Elements/Light/LightMask_Head");
+    /// <summary>Full Path: Systems/Elements/Shadow/ShadowMask</summary>
+    public static readonly RequestCache<Texture2D> ShadowMask = new("Systems/Elements/Shadow/ShadowMask");
+    /// <summary>Full Path: Systems/Elements/Shadow/ShadowMask_Head</summary>
+    public static readonly RequestCache<Texture2D> ShadowMask_Head = new("Systems/Elements/Shadow/ShadowMask_Head");
+    /// <summary>Full Path: Systems/Elements/Water/WaterMask</summary>
+    public static readonly RequestCache<Texture2D> WaterMask = new("Systems/Elements/Water/WaterMask");
+    /// <summary>Full Path: Systems/Elements/Water/WaterMask_Head</summary>
+    public static readonly RequestCache<Texture2D> WaterMask_Head = new("Systems/Elements/Water/WaterMask_Head");
     /// <summary>Full Path: Systems/Fishing/Baits/BlackJellyfish/BlackJellyfishBait</summary>
     public static readonly RequestCache<Texture2D> BlackJellyfishBait = new("Systems/Fishing/Baits/BlackJellyfish/BlackJellyfishBait");
     /// <summary>Full Path: Systems/Fishing/CrabPots/CrabPot</summary>
@@ -1061,4 +1059,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> DashParticles = new("Systems/Particles/Common/DashParticles");
     /// <summary>Full Path: Systems/Particles/Common/UnderwaterBubbles</summary>
     public static readonly RequestCache<Texture2D> UnderwaterBubbles = new("Systems/Particles/Common/UnderwaterBubbles");
+    /// <summary>Full Path: Systems/VanillaChanges/ToolbeltBuilderToggle</summary>
+    public static readonly RequestCache<Texture2D> ToolbeltBuilderToggle = new("Systems/VanillaChanges/ToolbeltBuilderToggle");
 }

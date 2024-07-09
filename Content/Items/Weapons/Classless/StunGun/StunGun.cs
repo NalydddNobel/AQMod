@@ -1,5 +1,5 @@
 ﻿using AequusRemake.Core;
-using AequusRemake.Content.Elements;
+using AequusRemake.Systems.Elements;
 using AequusRemake.Core.Entities.DamageClasses;
 using AequusRemake.Core.Entities.Items.Components;
 using System;

@@ -1,4 +1,4 @@
-﻿using AequusRemake.Content.Elements;
+﻿using AequusRemake.Systems.Elements;
 using AequusRemake.Systems.Synergy;
 using Terraria.DataStructures;
 

@@ -44,18 +44,6 @@
             <param name="specialReward">Special reward for this album</param>
             <param name="values">Must have a length of 6.</param>
         </member>
-        <member name="M:AequusRemake.Content.Elements.Element.AddNPC(System.String)">
-            <summary>Attempts to add a ModNPC's type using its full name.</summary>
-            <param name="fullName">The full name of the mod npc. Example: ThoriumMod/Viscount</param>
-        </member>
-        <member name="M:AequusRemake.Content.Elements.Element.AddItem(System.String)">
-            <summary>Attempts to add a ModItem's type using its full name.</summary>
-            <param name="fullName">The full name of the mod item. Example: ThoriumMod/IllumiteBar</param>
-        </member>
-        <member name="M:AequusRemake.Content.Elements.Element.RemoveItem(System.String)">
-            <summary>Attempts to remove a ModItem's type using its full name.</summary>
-            <param name="fullName">The full name of the mod item. Example: ThoriumMod/IllumiteBar</param>
-        </member>
         <member name="M:AequusRemake.Content.Enemies.PollutedOcean.BlackJellyfish.BlackJellyfish.GetLightMagnitude">
             <summary>Gets the lighting magnitude for this Jellyfish. Returns 1f if <see cref="F:Terraria.NPC.IsABestiaryIconDummy"/> is <see langword="true"></see>.</summary>
             <returns><inheritdoc cref="M:AequusRemake.Content.Enemies.PollutedOcean.BlackJellyfish.BlackJellyfish.GetLightMagnitude(Microsoft.Xna.Framework.Color)"/></returns>
@@ -1741,8 +1729,11 @@
         <member name="F:AequusRemake.Core.Graphics.DrawLayers.PostUpdateScreenPosition">
             <summary>Invoked before anything has begun rendering, but after the screen position has been determined.</summary>
         </member>
-        <member name="F:AequusRemake.Core.Graphics.DrawLayers.WorldBehindTiles">
+        <member name="F:AequusRemake.Core.Graphics.DrawLayers.BehindTiles">
             <summary>Invoked before NPCs behind tiles are drawn.</summary>
+        </member>
+        <member name="F:AequusRemake.Core.Graphics.DrawLayers.PostDrawNPCs">
+            <summary>Invoked after NPCs are drawn.</summary>
         </member>
         <member name="F:AequusRemake.Core.Graphics.DrawLayers.PostDrawDust">
             <summary>Invoked after Dusts have been drawn.</summary>
@@ -2763,51 +2754,6 @@
         </member>
         <member name="F:AequusRemake.AequusTextures.MonoDust">
             <summary>Full Path: Content/Dusts/MonoDust</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.AirMask">
-            <summary>Full Path: Content/Elements/Air/AirMask</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.AirMask_Head">
-            <summary>Full Path: Content/Elements/Air/AirMask_Head</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.EarthMask">
-            <summary>Full Path: Content/Elements/Earth/EarthMask</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.EarthMask_Head">
-            <summary>Full Path: Content/Elements/Earth/EarthMask_Head</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.ElementIcons">
-            <summary>Full Path: Content/Elements/ElementIcons</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.FlameMask">
-            <summary>Full Path: Content/Elements/Flame/FlameMask</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.FlameMask_Head">
-            <summary>Full Path: Content/Elements/Flame/FlameMask_Head</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.FrostMask">
-            <summary>Full Path: Content/Elements/Frost/FrostMask</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.FrostMask_Head">
-            <summary>Full Path: Content/Elements/Frost/FrostMask_Head</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.LightMask">
-            <summary>Full Path: Content/Elements/Light/LightMask</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.LightMask_Head">
-            <summary>Full Path: Content/Elements/Light/LightMask_Head</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.ShadowMask">
-            <summary>Full Path: Content/Elements/Shadow/ShadowMask</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.ShadowMask_Head">
-            <summary>Full Path: Content/Elements/Shadow/ShadowMask_Head</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.WaterMask">
-            <summary>Full Path: Content/Elements/Water/WaterMask</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.WaterMask_Head">
-            <summary>Full Path: Content/Elements/Water/WaterMask_Head</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BlackJellyfish">
             <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
@@ -3856,9 +3802,6 @@
         <member name="F:AequusRemake.AequusTextures.NameTagBlip">
             <summary>Full Path: Content/UI/Map/NameTagBlip</summary>
         </member>
-        <member name="F:AequusRemake.AequusTextures.ToolbeltBuilderToggle">
-            <summary>Full Path: Content/VanillaChanges/ToolbeltBuilderToggle</summary>
-        </member>
         <member name="F:AequusRemake.AequusTextures.icon">
             <summary>Full Path: icon</summary>
         </member>
@@ -3867,6 +3810,51 @@
         </member>
         <member name="F:AequusRemake.AequusTextures.icon_workshop">
             <summary>Full Path: icon_workshop</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.AirMask">
+            <summary>Full Path: Systems/Elements/Air/AirMask</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.AirMask_Head">
+            <summary>Full Path: Systems/Elements/Air/AirMask_Head</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.EarthMask">
+            <summary>Full Path: Systems/Elements/Earth/EarthMask</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.EarthMask_Head">
+            <summary>Full Path: Systems/Elements/Earth/EarthMask_Head</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.ElementIcons">
+            <summary>Full Path: Systems/Elements/ElementIcons</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.FlameMask">
+            <summary>Full Path: Systems/Elements/Flame/FlameMask</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.FlameMask_Head">
+            <summary>Full Path: Systems/Elements/Flame/FlameMask_Head</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.FrostMask">
+            <summary>Full Path: Systems/Elements/Frost/FrostMask</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.FrostMask_Head">
+            <summary>Full Path: Systems/Elements/Frost/FrostMask_Head</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.LightMask">
+            <summary>Full Path: Systems/Elements/Light/LightMask</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.LightMask_Head">
+            <summary>Full Path: Systems/Elements/Light/LightMask_Head</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.ShadowMask">
+            <summary>Full Path: Systems/Elements/Shadow/ShadowMask</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.ShadowMask_Head">
+            <summary>Full Path: Systems/Elements/Shadow/ShadowMask_Head</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.WaterMask">
+            <summary>Full Path: Systems/Elements/Water/WaterMask</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.WaterMask_Head">
+            <summary>Full Path: Systems/Elements/Water/WaterMask_Head</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BlackJellyfishBait">
             <summary>Full Path: Systems/Fishing/Baits/BlackJellyfish/BlackJellyfishBait</summary>
@@ -3925,6 +3913,9 @@
         <member name="F:AequusRemake.AequusTextures.UnderwaterBubbles">
             <summary>Full Path: Systems/Particles/Common/UnderwaterBubbles</summary>
         </member>
+        <member name="F:AequusRemake.AequusTextures.ToolbeltBuilderToggle">
+            <summary>Full Path: Systems/VanillaChanges/ToolbeltBuilderToggle</summary>
+        </member>
         <member name="P:AequusRemake.AequusSystem.RemixWorldSafeUnderworldRange">
             <summary>Returns a point with the beginning (left) (X) and end (right) (Y) of the 'safe' underworld in remix worlds. This does not represent a point in 2D space, but rather two X coordinates.</summary>
         </member>
@@ -3945,6 +3936,18 @@
         </member>
         <member name="M:AequusRemake.Systems.Backpacks.BackpackPlayerSyncPacket.Send(Terraria.Player,AequusRemake.Systems.Backpacks.BackpackData,System.Int32,System.Int32)">
             <summary>Invokes a full sync of a backpack.</summary>
+        </member>
+        <member name="M:AequusRemake.Systems.Elements.Element.AddNPC(System.String)">
+            <summary>Attempts to add a ModNPC's type using its full name.</summary>
+            <param name="fullName">The full name of the mod npc. Example: ThoriumMod/Viscount</param>
+        </member>
+        <member name="M:AequusRemake.Systems.Elements.Element.AddItem(System.String)">
+            <summary>Attempts to add a ModItem's type using its full name.</summary>
+            <param name="fullName">The full name of the mod item. Example: ThoriumMod/IllumiteBar</param>
+        </member>
+        <member name="M:AequusRemake.Systems.Elements.Element.RemoveItem(System.String)">
+            <summary>Attempts to remove a ModItem's type using its full name.</summary>
+            <param name="fullName">The full name of the mod item. Example: ThoriumMod/IllumiteBar</param>
         </member>
         <member name="P:AequusRemake.Systems.Fishing.CrabPots.TECrabPot.LavaEffectiveness">
             <summary>

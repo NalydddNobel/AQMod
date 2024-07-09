@@ -1,4 +1,4 @@
-﻿using AequusRemake.Content.Elements;
+﻿using AequusRemake.Systems.Elements;
 using AequusRemake.Content.Items.Materials;
 using AequusRemake.DataSets;
 using AequusRemake.Systems.Synergy;
