@@ -8,10 +8,12 @@ using tModLoaderExtended.Terraria;
 namespace AequusRemake.DataSets.Structures.DropRulesChest;
 
 /// <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
-public record class IndexedChestRule(IChestLootRule[] Options, params Condition[] OptionalConditions)
+public record class IndexedChestRule(int ChanceDemoninator, int ChanceNumerator, IChestLootRule[] Options, params Condition[] OptionalConditions)
     : IChestLootRule, IConvertDropRules {
     public int Index { get; private set; }
     public int RuleIndex => Index % Options.Length;
+
+    public IndexedChestRule(int ChanceDenominator, IChestLootRule[] Options, params Condition[] OptionalConditions) : this(ChanceDenominator, 1, Options, OptionalConditions) { }
 
     public List<IChestLootChain> ChainedRules { get; set; } = IChestLootChain.GetFromSelfRules(Options);
     public ConditionCollection Conditions { get; set; } = new(OptionalConditions);

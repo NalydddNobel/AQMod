@@ -7,7 +7,7 @@ internal sealed partial class PhotographyLoader : ModSystem {
     public static InstancedEnvelope EnvelopePollutedOcean { get; private set; }
     public static InstancedEnvelope EnvelopeGlimmer { get; private set; }
 
-    private readonly List<Album> _albumsToRegister = new();
+    private readonly List<Album> _albumsToRegister = [];
 
     /// <param name="order">Sorting value for this album.</param>
     /// <param name="specialReward">Special reward for this album</param>
@@ -21,7 +21,7 @@ internal sealed partial class PhotographyLoader : ModSystem {
         EnvelopeGlimmer = new InstancedEnvelope("Glimmer", preHardmode: true);
 
         Mod.AddContent(EnvelopePollutedOcean);
-        Mod.AddContent(EnvelopeGlimmer);
+        //Mod.AddContent(EnvelopeGlimmer);
         ModTypeLookup<ModItem>.RegisterLegacyNames(EnvelopePollutedOcean, "UndergroundOceanEnvelope");
     }
 

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace AequusRemake;
 
-/// <summary>(Total Textures: 524)</summary>
+/// <summary>(Total Textures: 527)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1047,6 +1047,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ObsidianCrabPot_Back = new("Systems/Fishing/CrabPots/ObsidianCrabPot_Back");
     /// <summary>Full Path: Systems/Fishing/CrabPots/ObsidianCrabPot_Highlight</summary>
     public static readonly RequestCache<Texture2D> ObsidianCrabPot_Highlight = new("Systems/Fishing/CrabPots/ObsidianCrabPot_Highlight");
+    /// <summary>Full Path: Systems/Fishing/Crates/PollutedOceanCrate</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanCrate = new("Systems/Fishing/Crates/PollutedOceanCrate");
+    /// <summary>Full Path: Systems/Fishing/Crates/PollutedOceanCrateHardItem</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanCrateHardItem = new("Systems/Fishing/Crates/PollutedOceanCrateHardItem");
+    /// <summary>Full Path: Systems/Fishing/Crates/PollutedOceanCrateItem</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanCrateItem = new("Systems/Fishing/Crates/PollutedOceanCrateItem");
     /// <summary>Full Path: Systems/Fishing/FishingPoles/BambooFishingPole</summary>
     public static readonly RequestCache<Texture2D> BambooFishingPole = new("Systems/Fishing/FishingPoles/BambooFishingPole");
     /// <summary>Full Path: Systems/Fishing/FishingPoles/BambooFishingPoleBobber</summary>

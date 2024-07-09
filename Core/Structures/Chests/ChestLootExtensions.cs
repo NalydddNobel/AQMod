@@ -8,8 +8,8 @@ public static class ChestLootExtensions {
         database.Register(type, new CommonChestRule(item, minStack, maxStack, chanceDemoninator, chanceNumerator, conditions));
     }
 
-    public static void RegisterIndexed(this ChestLootDatabase database, ChestPool type, params IChestLootRule[] rules) {
-        database.Register(type, new IndexedChestRule(rules));
+    public static void RegisterIndexed(this ChestLootDatabase database, int chanceDenominator, ChestPool type, params IChestLootRule[] rules) {
+        database.Register(type, new IndexedChestRule(chanceDenominator, rules));
     }
 
     public static void RegisterOneFromOptions(this ChestLootDatabase database, ChestPool type, params IChestLootRule[] rules) {

@@ -14,7 +14,7 @@ internal class InstancedEnvelope : CrossModItem {
 
     private readonly bool _preHardmode;
 
-    public readonly List<int> MainItemDrops = new();
+    public readonly List<IItemDropRule> Primary = [];
 
     protected override bool CloneNewInstances => true;
 
@@ -52,10 +52,10 @@ internal class InstancedEnvelope : CrossModItem {
         }
         else {
             itemLoot.Add(ItemDropRule.ByCondition(new ConditionLifeFruit(), ItemID.LifeFruit, 2)
-                .OnFailedRoll(ItemDropRule.Common(ItemID.LifeCrystal, 2)));
+                .OnFailedRoll(ItemDropRule.NotScalingWithLuck(ItemID.LifeCrystal, 2)));
         }
 
-        itemLoot.Add(ItemDropRule.OneFromOptions(1, MainItemDrops.ToArray()));
+        itemLoot.Add(new OneFromRulesRule(1, [.. Primary]));
     }
 
     //public override void RightClick(Player player) {

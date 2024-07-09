@@ -42,6 +42,16 @@ Meathook: {
 }
 
 //# Misc
+PollutedOceanCrate: {
+	DisplayName: Shipping Container
+	Tooltip: ""
+}
+
+PollutedOceanCrateHard: {
+	DisplayName: "{$Items.PollutedOceanCrate.DisplayName}"
+	Tooltip: ""
+}
+
 BeyondPlatinumCoin: {
 	DisplayName: Beyond Coin
 	Tooltip: Doesn't count as a coin, but stores 100 Platinum

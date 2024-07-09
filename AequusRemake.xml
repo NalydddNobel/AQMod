@@ -179,7 +179,7 @@
         <member name="T:AequusRemake.DataSets.Structures.DropRulesChest.IndexedChestRule">
             <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
         </member>
-        <member name="M:AequusRemake.DataSets.Structures.DropRulesChest.IndexedChestRule.#ctor(AequusRemake.DataSets.Structures.DropRulesChest.IChestLootRule[],Terraria.Condition[])">
+        <member name="M:AequusRemake.DataSets.Structures.DropRulesChest.IndexedChestRule.#ctor(System.Int32,System.Int32,AequusRemake.DataSets.Structures.DropRulesChest.IChestLootRule[],Terraria.Condition[])">
             <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
         </member>
         <member name="T:AequusRemake.DataSets.Structures.DropRulesChest.RemoveItemChestRule">
@@ -2345,7 +2345,7 @@
             <summary>Full Path: Assets/Sounds/Tile/TrashBag</summary>
         </member>
         <member name="T:AequusRemake.AequusTextures">
-            <summary>(Total Textures: 524)</summary>
+            <summary>(Total Textures: 527)</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -3906,6 +3906,15 @@
         </member>
         <member name="F:AequusRemake.AequusTextures.ObsidianCrabPot_Highlight">
             <summary>Full Path: Systems/Fishing/CrabPots/ObsidianCrabPot_Highlight</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.PollutedOceanCrate">
+            <summary>Full Path: Systems/Fishing/Crates/PollutedOceanCrate</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.PollutedOceanCrateHardItem">
+            <summary>Full Path: Systems/Fishing/Crates/PollutedOceanCrateHardItem</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.PollutedOceanCrateItem">
+            <summary>Full Path: Systems/Fishing/Crates/PollutedOceanCrateItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BambooFishingPole">
             <summary>Full Path: Systems/Fishing/FishingPoles/BambooFishingPole</summary>
