@@ -1,5 +1,6 @@
 ﻿using AequusRemake.Core.ContentGeneration;
 using AequusRemake.Core.Util.Helpers;
+using AequusRemake.Systems.Synergy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,99 +10,20 @@ using Terraria.Utilities;
 
 namespace AequusRemake.Content.Mounts.HotAirBalloon;
 
-public class HotAirBalloonMount : UnifiedModMount {
+public partial class HotAirBalloonMount : UnifiedMount {
     public const int BalloonFrames = 2;
 
-    #region Balloon Data and Easter Eggs
-    public static readonly Dictionary<string, IBalloonProvider> EasterEggs = new();
+    public static readonly Dictionary<string, IBalloonData> NameSpecific = new() {
+        ["modzilla"] = new BalloonData(1, Color.White),
+        ["nalyddd"] = new DynamicColorBalloonData(0, () => Color.Lerp(Color.Violet, Color.BlueViolet, sin(Main.GlobalTimeWrappedHourly, 1f)), () => Color.BlueViolet)
+    };
 
-    public interface IBalloonProvider {
-        IBalloonData GetBalloonData(Player player);
+    protected override void OnLoad() {
+        ReplaceItems.TryAdd("BalloonKit", MountItem.Type);
+        //ModTypeLookup<ModItem>.RegisterLegacyNames(MountItem, "BalloonKit");
     }
-
-    public interface IBalloonData {
-        int Frame { get; }
-        Color DrawColor();
-        Color? FlameColor();
-    }
-
-    public struct BalloonData : IBalloonData, IBalloonProvider {
-        public int frame;
-        public Color color;
-        public Color? flameColor;
-
-        public BalloonData(int frame, Color color, Color? flameColor = null) {
-            this.frame = frame;
-            this.color = color;
-            this.flameColor = flameColor;
-        }
-
-        public int Frame => frame;
-
-        public Color DrawColor() {
-            return color;
-        }
-
-        public Color? FlameColor() {
-            return flameColor;
-        }
-
-        public IBalloonData GetBalloonData(Player player) {
-            return this;
-        }
-    }
-
-    public struct DynamicColorBalloonData : IBalloonData, IBalloonProvider {
-        public int frame;
-        public Func<Color> color;
-        public Func<Color> flameColor;
-
-        public DynamicColorBalloonData(int frame, Func<Color> color, Func<Color> flameColor = null) {
-            this.frame = frame;
-            this.color = color;
-            this.flameColor = flameColor;
-        }
-
-        public int Frame => frame;
-
-        public Color DrawColor() {
-            return color();
-        }
-
-        public Color? FlameColor() {
-            return flameColor?.Invoke();
-        }
-
-        public IBalloonData GetBalloonData(Player player) {
-            return this;
-        }
-    }
-
-    public struct EasterEggBalloonProvider : IBalloonProvider {
-        public int frame;
-        public Color? color;
-        public Color? flameColor;
-
-        public EasterEggBalloonProvider(int frame, Color? color, Color? flameColor = null) {
-            this.frame = frame;
-            this.color = color;
-            this.flameColor = flameColor;
-        }
-
-        public IBalloonData GetBalloonData(Player player) {
-            return new BalloonData(frame, color ?? GetRandomBalloon(player).color, flameColor);
-        }
-    }
-
-    private void LoadEasterEggs() {
-        EasterEggs.Clear();
-        EasterEggs["modzilla"] = new BalloonData(1, Color.White);
-        EasterEggs["nalyddd"] = new DynamicColorBalloonData(0, () => Color.Lerp(Color.Violet, Color.BlueViolet, sin(Main.GlobalTimeWrappedHourly, 1f)), () => Color.BlueViolet);
-    }
-    #endregion
 
     protected override void OnSetStaticDefaults() {
-        LoadEasterEggs();
         MountData.jumpHeight = 1;
         MountData.jumpSpeed = 1f;
         MountData.acceleration = 0.02f;
@@ -156,7 +78,7 @@ public class HotAirBalloonMount : UnifiedModMount {
     }
 
     public override void Unload() {
-        EasterEggs.Clear();
+        NameSpecific.Clear();
     }
 
     public override void UpdateEffects(Player player) {
@@ -176,14 +98,14 @@ public class HotAirBalloonMount : UnifiedModMount {
     }
 
     private static IBalloonData GetBalloonData(Player player) {
-        foreach (var easterEgg in EasterEggs) {
-            if (player.name.ToLower().Equals(easterEgg.Key)) {
-                return easterEgg.Value.GetBalloonData(player);
-            }
+        if (NameSpecific.TryGetValue(player.name.ToLower(), out IBalloonData easterEggProvider)) {
+            return easterEggProvider;
         }
-        if (Main.rand.NextBool(25)) {
-            return EasterEggs["modzilla"].GetBalloonData(player);
+
+        if (Main.GameUpdateCount % 25 == 0) {
+            return NameSpecific["modzilla"];
         }
+
         return GetRandomBalloon(player);
     }
 
@@ -228,58 +150,56 @@ public class HotAirBalloonMount : UnifiedModMount {
     }
 
     public override bool Draw(List<DrawData> playerDrawData, int drawType, Player drawPlayer, ref Texture2D texture, ref Texture2D glowTexture, ref Vector2 drawPosition, ref Rectangle frame, ref Color drawColor, ref Color glowColor, ref float rotation, ref SpriteEffects spriteEffects, ref Vector2 drawOrigin, ref float drawScale, float shadow) {
-        if (drawType == 0) {
-            var balloonTexture = AequusTextures.HotAirBalloonMount;
-            int balloonFrameY = 0;
-            var color = Color.White;
-
-            var flameColor = Color.Orange;
-            if (drawPlayer.team != (int)Team.None) {
-                flameColor = Main.teamColor[drawPlayer.team];
-            }
-            if (drawPlayer.mount._mountSpecificData is IBalloonData val) {
-                balloonFrameY = val.Frame;
-                color = val.DrawColor();
-                var flameColorOverride = val.FlameColor();
-                if (flameColorOverride != null) {
-                    flameColor = flameColorOverride.Value;
-                }
-            }
-
-            var balloonFrame = balloonTexture.Frame(verticalFrames: BalloonFrames, frameY: balloonFrameY);
-            var balloonDrawPos = drawPosition + new Vector2(drawPlayer.width / 2f - 10f, -balloonFrame.Height / 2f - frame.Height + 33f);
-            balloonDrawPos.X -= MountData.xOffset * drawPlayer.direction;
-            var lightColor = LightingHelper.GetBrightestLight((balloonDrawPos + Main.screenPosition).ToTileCoordinates(), 8);
-            float lightIntensity = (lightColor.R + lightColor.G + lightColor.B) / 3f / 255f * 0.9f;
-            var balloonColor = lightColor.MultiplyRGB(color);
-            if (HighQualityEffects) {
-                playerDrawData.Add(new(balloonTexture, balloonDrawPos, balloonFrame, balloonColor, rotation, balloonFrame.Size() / 2f, 1f, spriteEffects, 0) { shader = drawPlayer.cMount });
-                if (lightIntensity < 0.99f) {
-                    var balloonFlameColor = flameColor with { A = 0 } * sin(Main.GlobalTimeWrappedHourly * 2f, 0.75f, 1f);
-                    playerDrawData.Add(new(AequusTextures.Bloom, balloonDrawPos, null, balloonFlameColor, 0f, AequusTextures.Bloom.Size() / 2f, new Vector2(0.8f, 1f), spriteEffects, 0) { shader = drawPlayer.cMount });
-                    playerDrawData.Add(new(AequusTextures.HotAirBalloonMount_Glow, balloonDrawPos, null, balloonFlameColor, rotation, balloonFrame.Size() / 2f, 1f, spriteEffects, 0) { shader = drawPlayer.cMount });
-                    var random = new FastRandom(drawPlayer.name.GetHashCode());
-                    var dustTexture = AequusTextures.BaseParticleTexture.Value;
-                    for (int i = 0; i < 10; i++) {
-                        var dustFrame = dustTexture.Frame(verticalFrames: 3, frameY: random.Next(3));
-                        float time = Main.GlobalTimeWrappedHourly * random.NextFloat(0.9f, 1.1f);
-                        float wrappedTime = time % 1f;
-                        float wrappedTimeReverse = 1f - wrappedTime;
-                        var dustPosition = balloonDrawPos + new Vector2(random.NextFloat(-6f, 6f), balloonFrame.Height / 2f - 20f * wrappedTime - random.NextFloat(10f, 18f)).RotatedBy(random.NextFloat(-0.25f, 0.25f));
-                        playerDrawData.Add(new(dustTexture, dustPosition, dustFrame, balloonFlameColor * wrappedTimeReverse * 0.5f, time, dustFrame.Size() / 2f, MathF.Sin(wrappedTime * MathHelper.PiOver2) * random.NextFloat(2f, 3f), spriteEffects, 0) { shader = drawPlayer.cMount });
-                    }
-                }
-            }
-            playerDrawData.Add(new(balloonTexture, balloonDrawPos, balloonFrame, balloonColor * Math.Max(MathF.Pow(lightIntensity, 6f), 0.4f), rotation, balloonFrame.Size() / 2f, 1f, spriteEffects, 0) { shader = drawPlayer.cMount });
+        if (drawType != 0) {
+            return true;
         }
+
+        var balloonTexture = AequusTextures.HotAirBalloonMount;
+        int balloonFrameY = 0;
+        var color = Color.White;
+
+        var flameColor = Color.Orange;
+        if (drawPlayer.team != (int)Team.None) {
+            flameColor = Main.teamColor[drawPlayer.team];
+        }
+        if (drawPlayer.mount._mountSpecificData is IBalloonData val) {
+            balloonFrameY = val.Frame;
+            color = val.DrawColor();
+            var flameColorOverride = val.FlameColor();
+            if (flameColorOverride != null) {
+                flameColor = flameColorOverride.Value;
+            }
+        }
+
+        var balloonFrame = balloonTexture.Frame(verticalFrames: BalloonFrames, frameY: balloonFrameY);
+        var balloonDrawPos = drawPosition + new Vector2(drawPlayer.width / 2f - 10f, -balloonFrame.Height / 2f - frame.Height + 33f);
+        balloonDrawPos.X -= MountData.xOffset * drawPlayer.direction;
+        var lightColor = LightingHelper.GetBrightestLight((balloonDrawPos + Main.screenPosition).ToTileCoordinates(), 8);
+        float lightIntensity = (lightColor.R + lightColor.G + lightColor.B) / 3f / 255f * 0.9f;
+        var balloonColor = lightColor.MultiplyRGB(color);
+        if (HighQualityEffects) {
+            playerDrawData.Add(new(balloonTexture, balloonDrawPos, balloonFrame, balloonColor, rotation, balloonFrame.Size() / 2f, 1f, spriteEffects, 0) { shader = drawPlayer.cMount });
+            if (lightIntensity < 0.99f) {
+                var balloonFlameColor = flameColor with { A = 0 } * sin(Main.GlobalTimeWrappedHourly * 2f, 0.75f, 1f);
+                playerDrawData.Add(new(AequusTextures.Bloom, balloonDrawPos, null, balloonFlameColor, 0f, AequusTextures.Bloom.Size() / 2f, new Vector2(0.8f, 1f), spriteEffects, 0) { shader = drawPlayer.cMount });
+                playerDrawData.Add(new(AequusTextures.HotAirBalloonMount_Glow, balloonDrawPos, null, balloonFlameColor, rotation, balloonFrame.Size() / 2f, 1f, spriteEffects, 0) { shader = drawPlayer.cMount });
+                var random = new FastRandom(drawPlayer.name.GetHashCode());
+                var dustTexture = AequusTextures.BaseParticleTexture.Value;
+                for (int i = 0; i < 10; i++) {
+                    var dustFrame = dustTexture.Frame(verticalFrames: 3, frameY: random.Next(3));
+                    float time = Main.GlobalTimeWrappedHourly * random.NextFloat(0.9f, 1.1f);
+                    float wrappedTime = time % 1f;
+                    float wrappedTimeReverse = 1f - wrappedTime;
+                    var dustPosition = balloonDrawPos + new Vector2(random.NextFloat(-6f, 6f), balloonFrame.Height / 2f - 20f * wrappedTime - random.NextFloat(10f, 18f)).RotatedBy(random.NextFloat(-0.25f, 0.25f));
+                    playerDrawData.Add(new(dustTexture, dustPosition, dustFrame, balloonFlameColor * wrappedTimeReverse * 0.5f, time, dustFrame.Size() / 2f, MathF.Sin(wrappedTime * MathHelper.PiOver2) * random.NextFloat(2f, 3f), spriteEffects, 0) { shader = drawPlayer.cMount });
+                }
+            }
+        }
+        playerDrawData.Add(new(balloonTexture, balloonDrawPos, balloonFrame, balloonColor * Math.Max(MathF.Pow(lightIntensity, 6f), 0.4f), rotation, balloonFrame.Size() / 2f, 1f, spriteEffects, 0) { shader = drawPlayer.cMount });
         return true;
     }
 
     internal override ModItem CreateMountItem() {
         return new InstancedMountItem(this, value: Item.buyPrice(gold: 10), SoundOverride: SoundID.Item34);
-    }
-
-    protected override void OnLoad() {
-        //ModTypeLookup<ModItem>.RegisterLegacyNames(MountItem, "BalloonKit");
     }
 }
