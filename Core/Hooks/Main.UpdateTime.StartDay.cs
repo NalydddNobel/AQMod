@@ -1,5 +1,5 @@
-﻿using AequusRemake.Content.TownNPCs;
-using AequusRemake.Systems;
+﻿using AequusRemake.Systems;
+using AequusRemake.Systems.NPCs;
 
 namespace AequusRemake.Core.Hooks;
 
@@ -8,7 +8,7 @@ public partial class TerrariaHooks {
     private static void On_Main_UpdateTime_StartDay(On_Main.orig_UpdateTime_StartDay orig, ref bool stopEvents) {
         TimeSystem.OnStartDay();
         if (Main.netMode != NetmodeID.MultiplayerClient) {
-            NPCWantsToMoveIn.OnStartDay();
+            TownNPCAvailableAnnouncementSystem.OnStartDay();
         }
         orig(ref stopEvents);
     }

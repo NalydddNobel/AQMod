@@ -1,6 +1,6 @@
-﻿using AequusRemake.Content.Configuration;
+﻿using AequusRemake.Content.Biomes.PollutedOcean.Generation;
+using AequusRemake.Content.Configuration;
 using AequusRemake.Content.Critters.SeaFirefly;
-using AequusRemake.Content.CrossMod.SplitSupport.Photography;
 using AequusRemake.Content.Enemies.PollutedOcean.BlackJellyfish;
 using AequusRemake.Content.Enemies.PollutedOcean.Conductor;
 using AequusRemake.Content.Enemies.PollutedOcean.Conehead;
@@ -8,13 +8,14 @@ using AequusRemake.Content.Enemies.PollutedOcean.Eel;
 using AequusRemake.Content.Enemies.PollutedOcean.OilSlime;
 using AequusRemake.Content.Enemies.PollutedOcean.Scavenger;
 using AequusRemake.Content.Fishing;
+using AequusRemake.Content.Items.Materials;
 using AequusRemake.Content.Tiles.Furniture.Trash;
 using AequusRemake.Content.Tiles.Statues;
-using AequusRemake.Core.Structures.Chests;
 using AequusRemake.Core.Structures.Conditions;
-using AequusRemake.Core.Structures.Enums;
 using AequusRemake.DataSets;
-using AequusRemake.DataSets.Structures.DropRulesChest;
+using AequusRemake.Systems.Chests;
+using AequusRemake.Systems.Chests.DropRules;
+using AequusRemake.Systems.CrossMod.SplitSupport.Photography;
 using AequusRemake.Systems.Fishing;
 using AequusRemake.Systems.Fishing.Crates;
 using System;
@@ -24,12 +25,12 @@ using Terraria.GameContent.ItemDropRules;
 namespace AequusRemake.Content.Biomes.PollutedOcean;
 
 public class PollutedOceanSystem : ModSystem {
-    public static int PollutedTileThreshold { get; set; } = 800;
-    public static int PollutedTileMax { get; set; } = 300;
-    public static int PollutedTileCount { get; set; }
+    public int PollutedTileThreshold { get; set; } = 800;
+    public int PollutedTileMax { get; set; } = 300;
+    public int PollutedTileCount { get; set; }
 
-    private static int? _music;
-    public static int Music => _music ??= MusicLoader.GetMusicSlot("AequusRemakeMusic/Assets/Music/PollutedOcean");
+    private int? _music;
+    public int Music => _music ??= MusicLoader.GetMusicSlot("AequusRemakeMusic/Assets/Music/PollutedOcean");
 
     public ModItem Killifish { get; private set; }
     public ModItem Piraiba { get; private set; }
@@ -43,7 +44,6 @@ public class PollutedOceanSystem : ModSystem {
     }
 
     public override void SetStaticDefaults() {
-        PopulateCrateDrops();
         PopulateDrops();
     }
 
@@ -56,9 +56,6 @@ public class PollutedOceanSystem : ModSystem {
 
         FishLootDatabase.Instance.Add(new FishItemDropRule(Killifish.Type, ChanceDenominator: 3, Condition: InPollutedOcean), CatchTier.Common);
         FishLootDatabase.Instance.Add(new FishItemDropRule(Piraiba.Type, ChanceDenominator: 3, Condition: InPollutedOcean), CatchTier.Common);
-    }
-
-    private static void PopulateCrateDrops() {
     }
 
     private static void PopulateDrops() {
@@ -87,67 +84,67 @@ public class PollutedOceanSystem : ModSystem {
         );
 
         ChestLootDatabase.Instance.RegisterCommon(ChestPool.PollutedOcean, ItemID.BombFish,
-            minStack: 10, maxStack: 19,
-            chanceDemoninator: 6
+            minStack: 3, maxStack: 7,
+            chanceDemoninator: 4
         );
         ChestLootDatabase.Instance.RegisterCommon(ChestPool.PollutedOcean, ModContent.GetInstance<AncientAngelStatue>().ItemDrop.Type,
             chanceDemoninator: 10
         );
         ChestLootDatabase.Instance.RegisterCommon(ChestPool.PollutedOcean, ItemID.Chain,
-            minStack: 10, maxStack: 25,
-            chanceDemoninator: 6
+            minStack: 2, maxStack: 5,
+            chanceDemoninator: 3
         );
 
         ChestLootDatabase.Instance.Register(ChestPool.PollutedOcean, new OneFromOptionsChestRule([
-                new MetalBarHackChestRule(() => WorldGen.SavedOreTiers.Copper, MinStack: 5, MaxStack: 14),
-                new MetalBarHackChestRule(() => WorldGen.SavedOreTiers.Iron, MinStack: 5, MaxStack: 14)
+                new MetalBarHackChestRule(() => WorldGen.SavedOreTiers.Copper, MinStack: 2, MaxStack: 6),
+                new MetalBarHackChestRule(() => WorldGen.SavedOreTiers.Iron, MinStack: 2, MaxStack: 6)
             ],
-            ChanceDenominator: 4
+            ChanceDenominator: 3
         ));
         ChestLootDatabase.Instance.Register(ChestPool.PollutedOcean, new OneFromOptionsChestRule([
-                new MetalBarHackChestRule(() => WorldGen.SavedOreTiers.Silver, MinStack: 5, MaxStack: 14),
-                new MetalBarHackChestRule(() => WorldGen.SavedOreTiers.Gold, MinStack: 5, MaxStack: 14)
+                new MetalBarHackChestRule(() => WorldGen.SavedOreTiers.Silver, MinStack: 2, MaxStack: 6),
+                new MetalBarHackChestRule(() => WorldGen.SavedOreTiers.Gold, MinStack: 2, MaxStack: 6)
             ],
-            ChanceDenominator: 6
+            ChanceDenominator: 3
         ));
         ChestLootDatabase.Instance.Register(ChestPool.PollutedOcean, new OneFromOptionsChestRule([
-                new CommonChestRule(ItemID.BoneArrow, MinStack: 25, MaxStack: 49),
-                new CommonChestRule(ItemID.SpikyBall, MinStack: 25, MaxStack: 49)
+                new CommonChestRule(ItemID.BoneArrow, MinStack: 9, MaxStack: 24),
+                new CommonChestRule(ItemID.SpikyBall, MinStack: 9, MaxStack: 24)
             ],
-            ChanceDenominator: 4
+            ChanceDenominator: 3
         ));
         ChestLootDatabase.Instance.RegisterCommon(ChestPool.PollutedOcean, ModContent.ItemType<Items.Potions.Healing.Restoration.LesserRestorationPotion>(),
-            minStack: 3, maxStack: 5,
-            chanceDemoninator: 10
+            minStack: 1, maxStack: 3,
+            chanceDemoninator: 3
         );
 
         ChestLootDatabase.Instance.Register(ChestPool.PollutedOcean, new OneFromOptionsChestRule([
                 new CommonChestRule(ItemID.GillsPotion, MinStack: 1, MaxStack: 2),
                 new CommonChestRule(ItemID.FlipperPotion, MinStack: 1, MaxStack: 2),
             ],
-            ChanceDenominator: 6, ChanceNumerator: 1
+            ChanceDenominator: 3, ChanceNumerator: 1
         ));
         ChestLootDatabase.Instance.Register(ChestPool.PollutedOcean, new OneFromOptionsChestRule([
-                new CommonChestRule(ItemID.RegenerationPotion, MinStack: 1, MaxStack: 2),
-                new CommonChestRule(ItemID.ShinePotion, MinStack: 1, MaxStack: 2),
-                new CommonChestRule(ItemID.NightOwlPotion, MinStack: 1, MaxStack: 2),
-                new CommonChestRule(ItemID.SwiftnessPotion, MinStack: 1, MaxStack: 2),
-                new CommonChestRule(ItemID.ArcheryPotion, MinStack: 1, MaxStack: 2),
-                new CommonChestRule(ItemID.HunterPotion, MinStack: 1, MaxStack: 2),
-                new CommonChestRule(ItemID.MiningPotion, MinStack: 1, MaxStack: 2),
-                new CommonChestRule(ItemID.TrapsightPotion, MinStack: 1, MaxStack: 2),
+                new CommonChestRule(ItemID.RegenerationPotion),
+                new CommonChestRule(ItemID.ShinePotion),
+                new CommonChestRule(ItemID.NightOwlPotion),
+                new CommonChestRule(ItemID.SwiftnessPotion),
+                new CommonChestRule(ItemID.ArcheryPotion),
+                new CommonChestRule(ItemID.HunterPotion),
+                new CommonChestRule(ItemID.MiningPotion),
+                new CommonChestRule(ItemID.TrapsightPotion),
             ],
-            ChanceDenominator: 4, ChanceNumerator: 4
+            ChanceDenominator: 3, ChanceNumerator: 1
         ));
 
         ChestLootDatabase.Instance.RegisterCommon(ChestPool.PollutedOcean, ModContent.GetInstance<SeaPickleTorch>().Item.Type,
-            minStack: 10, maxStack: 20,
-            chanceDemoninator: 4
+            minStack: 5, maxStack: 10,
+            chanceDemoninator: 2
         );
 
         ChestLootDatabase.Instance.RegisterCommon(ChestPool.PollutedOcean, ItemID.RecallPotion,
             minStack: 1, maxStack: 2,
-            chanceDemoninator: 6, chanceNumerator: 2
+            chanceDemoninator: 8, chanceNumerator: 1
         );
 
         ChestLootDatabase.Instance.RegisterCommon(ChestPool.PollutedOcean, ItemID.GoldCoin,
@@ -156,6 +153,10 @@ public class PollutedOceanSystem : ModSystem {
         ChestLootDatabase.Instance.RegisterCommon(ChestPool.PollutedOcean, ItemID.SilverCoin,
             minStack: 1, maxStack: 99
         );
+
+        // Random Trash
+        int[] trashItems = [ModContent.ItemType<CompressedTrash>(), ItemID.FishingSeaweed, ItemID.TinCan, ItemID.OldShoe];
+        ChestLootDatabase.Instance.Register(ChestPool.PollutedOcean, new RandomTrashChestRule(trashItems, 1, 4, 0, 9));
 
         ChestLootDatabase.Instance.Register(ChestPool.UndergroundDesert, new ReplaceItemChestRule(
             ItemIdToReplace: ItemID.MagicConch,
@@ -166,10 +167,7 @@ public class PollutedOceanSystem : ModSystem {
             ),
             ConfigConditions.IsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveMagicConch))
         ));
-    }
 
-    public override void Unload() {
-        _music = null;
     }
 
     public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts) {
@@ -179,7 +177,7 @@ public class PollutedOceanSystem : ModSystem {
         }
     }
 
-    public static bool CheckBiome(Player player) {
+    public bool CheckBiome(Player player) {
         return PollutedTileCount >= PollutedTileMax;
     }
 

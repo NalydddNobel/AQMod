@@ -1,11 +1,11 @@
 ﻿using AequusRemake.Content.Biomes.PollutedOcean;
-using AequusRemake.Content.CrossMod;
 using AequusRemake.Content.Dedicated.Baguette;
 using AequusRemake.Content.Enemies.PollutedOcean.BreadOfCthulhu.Items;
 using AequusRemake.Content.Items.Tools.Keys;
 using AequusRemake.Core.ContentGeneration;
 using AequusRemake.Core.Entities.Bestiary;
 using AequusRemake.DataSets;
+using AequusRemake.Systems.CrossMod;
 using AequusRemake.Systems.Fishing;
 using System;
 using Terraria.GameContent.Bestiary;

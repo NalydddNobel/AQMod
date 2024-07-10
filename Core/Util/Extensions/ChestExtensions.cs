@@ -45,6 +45,21 @@ public static class ChestExtensions {
     }
 
     public static void InsertItem(this Chest chest, Item item, int slot) {
+        if (!chest.item.IndexInRange(slot)) {
+            return;
+        }
+        Item compareItem = chest.item[slot];
+
+        // Try stacking the items first.
+        if (ItemLoader.TryStackItems(compareItem, item, out int transfered) && item.stack <= 0) {
+            return;
+        }
+
+        // Insert the item into the slot otherwise, pushing other items forward.
+        ForceInsertItem(chest, item, slot);
+    }
+
+    public static void ForceInsertItem(this Chest chest, Item item, int slot) {
         int endSlot = slot;
         int length = chest.item.Length - 1;
         for (; endSlot < length && chest.item[endSlot].IsAir; ++endSlot) ;

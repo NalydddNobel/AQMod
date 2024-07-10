@@ -1,5 +1,6 @@
 ﻿using AequusRemake.Content.Configuration;
 using AequusRemake.Systems.Backpacks;
+using AequusRemake.Systems.Chests;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
@@ -12,7 +13,7 @@ public class ToolbeltChanges : GlobalItem {
         return VanillaChangesConfig.Instance.MoveToolbelt;
     }
 
-    private static LocalizedText _tooltip;
+    private readonly LocalizedText Tooltip = Language.GetOrRegister("Mods.AequusRemake.Items.Toolbelt.Tooltip").WithFormatArgs(Capacity);
 
     public static int Capacity { get; set; } = 5;
     public static float SlotHue { get; set; } = 0.4f;
@@ -24,8 +25,8 @@ public class ToolbeltChanges : GlobalItem {
         return entity.type == ItemID.Toolbelt;
     }
 
-    public override void Load() {
-        _tooltip = Language.GetOrRegister("Mods.AequusRemake.Items.Toolbelt.Tooltip").WithFormatArgs(Capacity);
+    public override void SetStaticDefaults() {
+        ChestLootDatabase.Instance.RegisterCommon(ChestPool.Underground, ItemID.Toolbelt, chanceDemoninator: 7, conditions: ConfigConditions.IsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveToolbelt)));
     }
 
     public override void SetDefaults(Item entity) {
@@ -40,7 +41,7 @@ public class ToolbeltChanges : GlobalItem {
     }
 
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
-        tooltips.AddTooltip(new TooltipLine(Mod, "AequusRemakeTooltip", _tooltip.Value));
+        tooltips.AddTooltip(new TooltipLine(Mod, "AequusRemakeTooltip", Tooltip.Value));
     }
 
     public override void ModifyItemLoot(Item item, ItemLoot itemLoot) {

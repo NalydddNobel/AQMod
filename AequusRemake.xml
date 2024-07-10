@@ -20,30 +20,6 @@
         <member name="T:AequusRemake.Content.Chests.UnopenedChestItem">
             <summary>Item used to determine if a chest has been opened or not.</summary>
         </member>
-        <member name="M:AequusRemake.Content.Configuration.ConfigConditions.IsTrue(Terraria.ModLoader.Config.ModConfig,System.String)">
-            <returns><inheritdoc cref="M:AequusRemake.Content.Configuration.ConfigConditions.GetCondition(Terraria.ModLoader.Config.ModConfig,System.String,Terraria.Localization.LocalizedText,System.Func{System.Object,System.Boolean})"/> Defaults to checking if the value equals true.</returns>
-        </member>
-        <member name="M:AequusRemake.Content.Configuration.ConfigConditions.GetCondition(Terraria.ModLoader.Config.ModConfig,System.String,Terraria.Localization.LocalizedText,System.Func{System.Object,System.Boolean})">
-            <returns>A condition which depends on a certain config setting.</returns>
-        </member>
-        <member name="T:AequusRemake.Content.CrossMod.BossChecklist">
-            <summary><see href="link">https://github.com/JavidPack/BossChecklist/wiki/%5B1.4.4%5D-Boss-Log-Entry-Mod-Call#arguments</see></summary>
-        </member>
-        <member name="M:AequusRemake.Content.CrossMod.BossChecklist.BossEntry.#ctor(System.String,System.Single,System.Func{System.Boolean})">
-            <param name="internalName">The Internal Name for this boss. Try to not change it as it may break other mods.</param>
-            <param name="progression">View <see href="link">https://github.com/JavidPack/BossChecklist/wiki/Boss-Progression-Values</see> for a catalogue of vanilla entry sorting.</param>
-            <param name="downedFlag">The Downed Flag for this boss.</param>
-        </member>
-        <member name="T:AequusRemake.Content.CrossMod.BossChecklist.PortraitRenderDelegate">
-            <param name="spriteBatch">The SpriteBatch.</param>
-            <param name="sourceRectangle">The bounds of the portrait.</param>
-            <param name="displayColor">The Color of the entry. It is usually Black when hidden, and White when not hidden.</param>
-        </member>
-        <member name="M:AequusRemake.Content.CrossMod.SplitSupport.Photography.PhotographyLoader.AddPhotographyPage(System.Single,System.Int32,AequusRemake.Content.CrossMod.SplitSupport.Photography.AlbumQuestInfo[])">
-            <param name="order">Sorting value for this album.</param>
-            <param name="specialReward">Special reward for this album</param>
-            <param name="values">Must have a length of 6.</param>
-        </member>
         <member name="M:AequusRemake.Content.Enemies.PollutedOcean.BlackJellyfish.BlackJellyfish.GetLightMagnitude">
             <summary>Gets the lighting magnitude for this Jellyfish. Returns 1f if <see cref="F:Terraria.NPC.IsABestiaryIconDummy"/> is <see langword="true"></see>.</summary>
             <returns><inheritdoc cref="M:AequusRemake.Content.Enemies.PollutedOcean.BlackJellyfish.BlackJellyfish.GetLightMagnitude(Microsoft.Xna.Framework.Color)"/></returns>
@@ -140,6 +116,12 @@
         <member name="P:AequusRemake.Content.Tiles.RainTotem.RainTotem.BonusRainChanceMax">
             <summary>The extra rain chance per tick granted by having maximum totems on screen.</summary>
         </member>
+        <member name="M:AequusRemake.Content.Configuration.ConfigConditions.IsTrue(Terraria.ModLoader.Config.ModConfig,System.String)">
+            <returns><inheritdoc cref="M:AequusRemake.Content.Configuration.ConfigConditions.GetCondition(Terraria.ModLoader.Config.ModConfig,System.String,Terraria.Localization.LocalizedText,System.Func{System.Object,System.Boolean})"/> Defaults to checking if the value equals true.</returns>
+        </member>
+        <member name="M:AequusRemake.Content.Configuration.ConfigConditions.GetCondition(Terraria.ModLoader.Config.ModConfig,System.String,Terraria.Localization.LocalizedText,System.Func{System.Object,System.Boolean})">
+            <returns>A condition which depends on a certain config setting.</returns>
+        </member>
         <member name="P:AequusRemake.DataSets.TileDataSet.Polluted">
             <summary>Allows the tile to have Polluted Ocean ambient tiles spawn on it.</summary>
         </member>
@@ -151,108 +133,6 @@
         </member>
         <member name="P:AequusRemake.DataSets.TileDataSet.PreventsSlopesBelow">
             <summary>Prevents tiles below this tile from being sloped.</summary>
-        </member>
-        <member name="M:AequusRemake.DataSets.Structures.DropRulesChest.IChestLootRule.AddItem(AequusRemake.DataSets.Structures.DropRulesChest.ChestLootInfo@)">
-            <summary>Add the item into the chest here. <see cref="P:AequusRemake.DataSets.Structures.DropRulesChest.ChestLootInfo.ChestId"/> should safely index into <see cref="F:Terraria.Main.chest"/>.</summary>
-        </member>
-        <member name="M:AequusRemake.DataSets.Structures.DropRulesChest.IChestLootRule.CanDrop(AequusRemake.DataSets.Structures.DropRulesChest.ChestLootInfo@)">
-            <summary>Condition for whether this rule should be ran.</summary>
-        </member>
-        <member name="M:AequusRemake.DataSets.Structures.DropRulesChest.IChestLootRule.Reset">
-            <summary>Called upon <see cref="M:Terraria.ModLoader.ModSystem.ClearWorld"/> and Hardmode Chests. Use to reset values before world generation and etc.</summary>
-        </member>
-        <member name="T:AequusRemake.DataSets.Structures.DropRulesChest.IndexedChestRule">
-            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
-        </member>
-        <member name="M:AequusRemake.DataSets.Structures.DropRulesChest.IndexedChestRule.#ctor(System.Int32,System.Int32,AequusRemake.DataSets.Structures.DropRulesChest.IChestLootRule[],Terraria.Condition[])">
-            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
-        </member>
-        <member name="T:AequusRemake.DataSets.Structures.DropRulesChest.RemoveItemChestRule">
-            <summary>Usually used in conjunction with <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.ReplaceItemChestRule"/> to pull all of the item slots backwards after deleting the item.</summary>
-        </member>
-        <member name="T:AequusRemake.DataSets.Structures.DropRulesChest.ReplaceFirstSlotChestRule">
-            <summary>
-            Deletes the first slot, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="M:AequusRemake.DataSets.Structures.DropRulesChest.ReplaceFirstSlotChestRule.#ctor(AequusRemake.DataSets.Structures.DropRulesChest.IChestLootRule,Terraria.Condition[])">
-            <summary>
-            Deletes the first slot, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="T:AequusRemake.DataSets.Structures.DropRulesChest.ReplaceItemChestRule">
-            <summary>
-            Finds <paramref name="ItemIdToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="M:AequusRemake.DataSets.Structures.DropRulesChest.ReplaceItemChestRule.#ctor(System.Int32,AequusRemake.DataSets.Structures.DropRulesChest.IChestLootRule,Terraria.Condition[])">
-            <summary>
-            Finds <paramref name="ItemIdToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="T:AequusRemake.DataSets.Structures.DropRulesChest.ReplaceMultipleItemsChestRule">
-            <summary>
-            Finds any item which is in <paramref name="ItemIdsToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="M:AequusRemake.DataSets.Structures.DropRulesChest.ReplaceMultipleItemsChestRule.#ctor(System.Int32[],AequusRemake.DataSets.Structures.DropRulesChest.IChestLootRule,Terraria.Condition[])">
-            <summary>
-            Finds any item which is in <paramref name="ItemIdsToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.InsertToChest"/> context.
-            <para>
-            To remove an item properly, use <see cref="T:AequusRemake.DataSets.Structures.DropRulesChest.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
-            </para>
-            </summary>
-        </member>
-        <member name="T:AequusRemake.DataSets.Structures.IDEntry`1">
-            <summary>
-            Represents an entry for a piece of content which uses an Id system.
-            <para>
-            <typeparamref name="T"/> should be one of the "X-ID" classes, like <see cref="T:Terraria.ID.ItemID"/>, <see cref="T:Terraria.ID.BuffID"/>, ect.
-            The ID class must also have an <see cref="T:ReLogic.Reflection.IdDictionary"/> named "Search", and a value for the total amount of vanilla entries labled "Count" (which can also be converted into an <see cref="T:System.Int32"/>)
-            </para>
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="P:AequusRemake.DataSets.Structures.IDEntry`1.Name">
-            <summary><inheritdoc cref="P:AequusRemake.DataSets.Structures.IIDEntry.Name"/> Automatically grabbed from <typeparamref name="T"/>.Search.GetName(<see cref="P:AequusRemake.DataSets.Structures.IDEntry`1.Id"/>). Returns "Unknown" or a name of an invalid entry if no name exists.</summary>
-        </member>
-        <member name="P:AequusRemake.DataSets.Structures.IDEntry`1.VanillaEntry">
-            <summary><inheritdoc cref="P:AequusRemake.DataSets.Structures.IIDEntry.VanillaEntry"/> Automatically determined by checking if <see cref="P:AequusRemake.DataSets.Structures.IDEntry`1.Id"/> is less than <typeparamref name="T"/>.Count.</summary>
-        </member>
-        <member name="P:AequusRemake.DataSets.Structures.IIDEntry.Name">
-            <summary>Name for the content entry.</summary>
-        </member>
-        <member name="P:AequusRemake.DataSets.Structures.IIDEntry.Id">
-            <summary>ID for the content.</summary>
-        </member>
-        <member name="P:AequusRemake.DataSets.Structures.IIDEntry.ValidEntry">
-            <summary>Whether this is a valid entry. Entries for content from other mods will be marked as Invalid if the mod is not enabled.</summary>
-        </member>
-        <member name="P:AequusRemake.DataSets.Structures.IIDEntry.VanillaEntry">
-            <summary>Whether this is a vanilla entry.</summary>
-        </member>
-        <member name="M:AequusRemake.DataSets.Structures.IIDEntry.SetName(System.String)">
-            <summary>Set <see cref="P:AequusRemake.DataSets.Structures.IIDEntry.Id"/> using <paramref name="name"/>. Called when loading the .json metadata files.</summary>
-            <param name="name">Name of the content.</param>
-        </member>
-        <member name="M:AequusRemake.DataSets.Structures.IIDEntry.SetId(System.Int32)">
-            <summary>Set <see cref="P:AequusRemake.DataSets.Structures.IIDEntry.Id"/> directly. Use this to update the name or other values if needed.</summary>
-            <param name="id">The Content's Id.</param>
         </member>
         <member name="P:AequusRemake.DataSets.BuffDataSet.CannotChangeDuration">
             <summary>Buffs in this set should not have their duration altered, like the Luck Potion effect.</summary>
@@ -368,6 +248,42 @@
         </member>
         <member name="P:AequusRemake.DataSets.ProjectileDataSet.DealsHeatDamage">
             <summary>Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.</summary>
+        </member>
+        <member name="T:AequusRemake.DataSets.Structures.IDEntry`1">
+            <summary>
+            Represents an entry for a piece of content which uses an Id system.
+            <para>
+            <typeparamref name="T"/> should be one of the "X-ID" classes, like <see cref="T:Terraria.ID.ItemID"/>, <see cref="T:Terraria.ID.BuffID"/>, ect.
+            The ID class must also have an <see cref="T:ReLogic.Reflection.IdDictionary"/> named "Search", and a value for the total amount of vanilla entries labled "Count" (which can also be converted into an <see cref="T:System.Int32"/>)
+            </para>
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:AequusRemake.DataSets.Structures.IDEntry`1.Name">
+            <summary><inheritdoc cref="P:AequusRemake.DataSets.Structures.IIDEntry.Name"/> Automatically grabbed from <typeparamref name="T"/>.Search.GetName(<see cref="P:AequusRemake.DataSets.Structures.IDEntry`1.Id"/>). Returns "Unknown" or a name of an invalid entry if no name exists.</summary>
+        </member>
+        <member name="P:AequusRemake.DataSets.Structures.IDEntry`1.VanillaEntry">
+            <summary><inheritdoc cref="P:AequusRemake.DataSets.Structures.IIDEntry.VanillaEntry"/> Automatically determined by checking if <see cref="P:AequusRemake.DataSets.Structures.IDEntry`1.Id"/> is less than <typeparamref name="T"/>.Count.</summary>
+        </member>
+        <member name="P:AequusRemake.DataSets.Structures.IIDEntry.Name">
+            <summary>Name for the content entry.</summary>
+        </member>
+        <member name="P:AequusRemake.DataSets.Structures.IIDEntry.Id">
+            <summary>ID for the content.</summary>
+        </member>
+        <member name="P:AequusRemake.DataSets.Structures.IIDEntry.ValidEntry">
+            <summary>Whether this is a valid entry. Entries for content from other mods will be marked as Invalid if the mod is not enabled.</summary>
+        </member>
+        <member name="P:AequusRemake.DataSets.Structures.IIDEntry.VanillaEntry">
+            <summary>Whether this is a vanilla entry.</summary>
+        </member>
+        <member name="M:AequusRemake.DataSets.Structures.IIDEntry.SetName(System.String)">
+            <summary>Set <see cref="P:AequusRemake.DataSets.Structures.IIDEntry.Id"/> using <paramref name="name"/>. Called when loading the .json metadata files.</summary>
+            <param name="name">Name of the content.</param>
+        </member>
+        <member name="M:AequusRemake.DataSets.Structures.IIDEntry.SetId(System.Int32)">
+            <summary>Set <see cref="P:AequusRemake.DataSets.Structures.IIDEntry.Id"/> directly. Use this to update the name or other values if needed.</summary>
+            <param name="id">The Content's Id.</param>
         </member>
         <member name="T:AequusRemake.AequusPlayer.KillInfo">
             <param name="Center">The enemy's center.</param>
@@ -542,86 +458,16 @@
         <member name="F:AequusRemake.Core.Entities.NPCs.NPCSpawns.OverrideAequusRemakeBiomes">
             <summary>A list of <see cref="T:Terraria.ModLoader.ModBiome"/>s which will override AequusRemake biome spawns.</summary>
         </member>
-        <member name="T:AequusRemake.Core.Entities.Items.Components.IManageProjectile">
-            <summary>
-            Allows the item to grant various effects to fired projectiles. All of these methods are not instanced, do NOT use <see cref="P:Terraria.ModLoader.ModItem.Item"/> data.
-            The methods granted by this interface are:
-            <list type="bullet">
-            <item><see cref="M:AequusRemake.Core.Entities.Items.Components.IManageProjectile.PreAIProjectile(Terraria.Projectile)"/></item>
-            <item><see cref="M:AequusRemake.Core.Entities.Items.Components.IManageProjectile.AIProjectile(Terraria.Projectile)"/></item>
-            <item><see cref="M:AequusRemake.Core.Entities.Items.Components.IManageProjectile.PostAIProjectile(Terraria.Projectile)"/></item>
-            <item><see cref="M:AequusRemake.Core.Entities.Items.Components.IManageProjectile.PreDrawProjectile(Terraria.Projectile,Microsoft.Xna.Framework.Color@)"/></item>
-            <item><see cref="M:AequusRemake.Core.Entities.Items.Components.IManageProjectile.PostDrawProjectile(Terraria.Projectile,Microsoft.Xna.Framework.Color@)"/></item>
-            <item><see cref="M:AequusRemake.Core.Entities.Items.Components.IManageProjectile.OnHitNPCProjectile(Terraria.Projectile,Terraria.NPC,Terraria.NPC.HitInfo,System.Int32)"/></item>
-            <item><see cref="M:AequusRemake.Core.Entities.Items.Components.IManageProjectile.OnTileCollideProjectile(Terraria.Projectile,Microsoft.Xna.Framework.Vector2)"/></item>
-            <item><see cref="M:AequusRemake.Core.Entities.Items.Components.IManageProjectile.PreKillProjectile(Terraria.Projectile,System.Int32)"/></item>
-            <item><see cref="M:AequusRemake.Core.Entities.Items.Components.IManageProjectile.OnKillProjectile(Terraria.Projectile,System.Int32)"/></item>
-            </list>
-            </summary>
-        </member>
-        <member name="T:AequusRemake.Core.Entities.Items.Components.IModifyFishAttempt">
-            <summary>Only works on Fishing Pole or Bait items.</summary>
-        </member>
-        <member name="M:AequusRemake.Core.Entities.Items.Components.IModifyFishAttempt.PreCatchFish(Terraria.Projectile,Terraria.DataStructures.FishingAttempt@)">
-            <returns>Return false to prevent vanilla rolling fish</returns>
-        </member>
-        <member name="T:AequusRemake.Core.Entities.Items.Components.IModifyFishItem">
-            <summary>Only works on Fishing Pole or Bait items.</summary>
-        </member>
-        <member name="T:AequusRemake.Core.Entities.Items.Components.IOmniclassItem">
-            <summary>Signifies that this item is an omniclass weapon, and can receive multiple class modifiers.</summary>
-        </member>
-        <member name="T:AequusRemake.Core.Entities.Items.Components.IOnPullBobber">
-            <summary>Only works on Fishing Pole or Bait items.</summary>
-        </member>
-        <member name="M:AequusRemake.Core.Entities.Items.Components.IOnPullBobber.PrePullBobber(Terraria.Player,Terraria.Projectile,System.Int32@)">
-            <returns><see langword="true" /> to override default pulling operations.</returns>
-        </member>
-        <member name="F:AequusRemake.Core.Entities.Items.Components.IPickItemMovementAction.RESULT_SIMPLE_SWAP">
-            <summary>Returning this result will attempt to place the item into the slot.</summary>
-        </member>
-        <member name="F:AequusRemake.Core.Entities.Items.Components.IPickItemMovementAction.RESULT_EQUIPMENT_SWAP">
-            <summary>Returning this result will attempt to place the item into the slot, if it is an equipable and follows conditions depending on the context.</summary>
-        </member>
-        <member name="F:AequusRemake.Core.Entities.Items.Components.IPickItemMovementAction.RESULT_DYE_SWAP">
-            <summary>Returning this result will attempt to place the item into the slot, if it is a Dye.</summary>
-        </member>
-        <member name="F:AequusRemake.Core.Entities.Items.Components.IPickItemMovementAction.RESULT_BUY_ITEM">
-            <summary>Returning this result will attempt to purchase the item.</summary>
-        </member>
-        <member name="F:AequusRemake.Core.Entities.Items.Components.IPickItemMovementAction.RESULT_SELL_ITEM">
-            <summary>Returning this result will attempt to sell the item.</summary>
-        </member>
-        <member name="F:AequusRemake.Core.Entities.Items.Components.IPickItemMovementAction.RESULT_JOURNEY_DUPE">
-            <summary>Returning this result will attempt dupe the item from the item slot, stacking it onto the mouse item.</summary>
-        </member>
-        <member name="M:AequusRemake.Core.Entities.Items.Components.IRightClickOverrideWhenHeld.RightClickOverrideWhileHeld(Terraria.Item@,Terraria.Item[],System.Int32,System.Int32,Terraria.Player,AequusRemake.AequusPlayer)">
-            <returns>true to prevent vanilla right click actions.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Entities.Items.Components.IRightClickOverrideWhenHovered.RightClickOverrideWhenHovered(Terraria.Item@,Terraria.Item[],System.Int32,System.Int32,Terraria.Player,AequusRemake.AequusPlayer)">
-            <returns>true to prevent vanilla right click actions.</returns>
-        </member>
-        <member name="M:AequusRemake.Core.Entities.Items.Components.IUpdateItemDye.Player_UpdateItemDye(Terraria.On_Player.orig_UpdateItemDye,Terraria.Player,System.Boolean,System.Boolean,Terraria.Item,Terraria.Item)">
-            <summary>
-            
-            </summary>
-            <param name="orig"></param>
-            <param name="self"></param>
-            <param name="isNotInVanitySlot"></param>
-            <param name="isSetToHidden"></param>
-            <param name="armorItem">If you are an equipped item, this is you.</param>
-            <param name="dyeItem">If you are a dye, this is you.</param>
-        </member>
-        <member name="F:AequusRemake.Core.Entities.Items.GravityGlobalItem.itemGravityCheck">
-            <summary>
-            How long the item should float for. Set to 255 for permanent duration.
-            </summary>
-        </member>
         <member name="T:AequusRemake.Core.Entities.Bestiary.BestiaryBuilder">
             <summary>Helper class for initializing bestiary entries.</summary>
         </member>
         <member name="F:AequusRemake.Core.Entities.Buffs.BuffUI.DisableRightClick">
             <summary>Prevents the player from right clicking a certain buff type. This list is cleared right before the local player is updated.</summary>
+        </member>
+        <member name="F:AequusRemake.Core.Entities.Items.GravityGlobalItem.itemGravityCheck">
+            <summary>
+            How long the item should float for. Set to 255 for permanent duration.
+            </summary>
         </member>
         <member name="M:AequusRemake.Core.Entities.Golfing.GolfingSystem.SetGolfBallStatus(System.Boolean)">
             <summary>
@@ -666,7 +512,7 @@
         </member>
         <member name="P:AequusRemake.Core.Entities.Projectiles.ProjectileItemData.ItemData">
             <summary>
-            Custom data to be used by items which utilize the <see cref="T:AequusRemake.Core.Entities.Items.Components.IManageProjectile"/> interface or by channeled items. This data is synced in multiplayer.
+            Custom data to be used by items which utilize the <see cref="T:AequusRemake.Systems.Items.IManageProjectile"/> interface or by channeled items. This data is synced in multiplayer.
             </summary>
         </member>
         <member name="P:AequusRemake.Core.Entities.Projectiles.ProjectileItemData.NoSpecialEffects">
@@ -1681,9 +1527,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="P:AequusRemake.Core.CrossMod.SupportedMod`1.Instance">
-            <summary>The Supported Mod's instance. This property is <see langword="null" /> when the mod is not enabled.</summary>
-        </member>
         <member name="M:AequusRemake.Core.Entites.Bestiary.BestiaryTags.Add(Terraria.ModLoader.ModBiome)">
             <summary>Call in PostSetupContent.</summary>
         </member>
@@ -1805,17 +1648,17 @@
         <member name="M:AequusRemake.Core.Hooks.TerrariaHooks.On_GolfHelper_StepGolfBall(Terraria.GameContent.Golf.On_GolfHelper.orig_StepGolfBall,Terraria.Entity,System.Single@)">
             <summary>Allows custom golf ball prediction lines for projectiles which implement <see cref="T:AequusRemake.Core.Entities.Golfing.IGolfBallProjectile"/>.</summary>
         </member>
-        <member name="M:AequusRemake.Core.Hooks.TerrariaHooks.ItemDropResolver_ResolveRule(Terraria.GameContent.ItemDropRules.On_ItemDropResolver.orig_ResolveRule,Terraria.GameContent.ItemDropRules.ItemDropResolver,Terraria.GameContent.ItemDropRules.IItemDropRule,Terraria.GameContent.ItemDropRules.DropAttemptInfo)">
+        <member name="M:AequusRemake.Core.Hooks.TerrariaHooks.On_ItemDropResolver_ResolveRule(Terraria.GameContent.ItemDropRules.On_ItemDropResolver.orig_ResolveRule,Terraria.GameContent.ItemDropRules.ItemDropResolver,Terraria.GameContent.ItemDropRules.IItemDropRule,Terraria.GameContent.ItemDropRules.DropAttemptInfo)">
             <summary>Allows for re-rolling item drops (if they fail an RNG roll) for the Grand Reward.</summary>
         </member>
         <member name="M:AequusRemake.Core.Hooks.TerrariaHooks.On_ItemSlot_PickItemMovementAction(Terraria.UI.On_ItemSlot.orig_PickItemMovementAction,Terraria.Item[],System.Int32,System.Int32,Terraria.Item)">
-            <summary>Allows custom item movement action overrides for hovered modded items which implement <see cref="T:AequusRemake.Core.Entities.Items.Components.IPickItemMovementAction"/>.</summary>
+            <summary>Allows custom item movement action overrides for hovered modded items which implement <see cref="T:AequusRemake.Systems.Items.IPickItemMovementAction"/>.</summary>
         </member>
         <member name="M:AequusRemake.Core.Hooks.TerrariaHooks.ItemSlot_RightClick(Terraria.UI.On_ItemSlot.orig_RightClick_ItemArray_int_int,Terraria.Item[],System.Int32,System.Int32)">
             <summary>Allows for:
             <list type="number">
             <item>
-            Right click overrides for held modded items which implement <see cref="T:AequusRemake.Core.Entities.Items.Components.IRightClickOverrideWhenHeld"/>.
+            Right click overrides for held modded items which implement <see cref="T:AequusRemake.Systems.Items.IRightClickOverrideWhenHeld"/>.
             </item>
             <item>
             Handling custom golden key and shadow key logic.
@@ -1896,50 +1739,11 @@
         <member name="T:AequusRemake.Core.IO.IDLoader`1">
             <summary>Helper for loading content which uses a legacy Id system.</summary>
         </member>
-        <member name="T:AequusRemake.Core.Structures.Chests.ChestLootDatabase">
-            <summary>Replica of <see cref="T:Terraria.GameContent.ItemDropRules.ItemDropDatabase"/>/<see cref="T:Terraria.GameContent.ItemDropRules.ItemDropResolver"/>, except for AequusRemake' chest loot.</summary>
-        </member>
         <member name="T:AequusRemake.Core.Structures.Collections.DictionaryRemoveQueue`2">
             <summary>
             A Dictionary with a removal queue. Allows for removals to occur in an iteration.
             Call <see cref="M:AequusRemake.Core.Structures.Collections.DictionaryRemoveQueue`2.RemoveAllQueued"/> to remove all queued entries from the Dictionary.
             </summary>
-        </member>
-        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.Surface">
-            <summary>Extra loot pool for Vanilla's Surface Wooden Chests.</summary>
-        </member>
-        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.Underground">
-            <summary>Extra loot pool for Vanilla's Underground Chests, this includes Gold, Frozen, Rich Mahogany, etc.</summary>
-        </member>
-        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.Sky">
-            <summary>Extra loot pool for Vanilla's Sky Chests. This includes Skyware and Locked Gold Chests located above the surface line.</summary>
-        </member>
-        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.UndergroundDesert">
-            <summary>Extra loot pool for Chests located in the Underground Desert.</summary>
-        </member>
-        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.Pyramid">
-            <summary>Extra loot pool for Chests located in the Pyramid.</summary>
-        </member>
-        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.Dungeon">
-            <summary>Extra loot pool for Locked Gold Chests located in the Dungeon.</summary>
-        </member>
-        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.Temple">
-            <summary>Extra loot pool for Chests located in the Temple.</summary>
-        </member>
-        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.Gold">
-            <summary>Extra loot pool for Vanilla's Gold Chests.</summary>
-        </member>
-        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.Shadow">
-            <summary>Extra loot pool for Vanilla's Shadow Chests.</summary>
-        </member>
-        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.Frozen">
-            <summary>Extra loot pool for Vanilla's Frozen Chests. Note this is NOT the Biome Chest.</summary>
-        </member>
-        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.Ivy">
-            <summary>Extra loot pool for Vanilla's Ivy Chests.</summary>
-        </member>
-        <member name="F:AequusRemake.Core.Structures.Enums.ChestPool.PollutedOcean">
-            <summary>Loot pool for Polluted Ocean Trash Cans.</summary>
         </member>
         <member name="T:AequusRemake.Core.Structures.PhysicsBehaviors.VICollisonNode">
             <summary>A Verlet Integrated node with Tile Collision.</summary>
@@ -2561,16 +2365,16 @@
             <summary>Full Path: Content/Bosses/Salamancer/Salamancer</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CopperChest">
-            <summary>Full Path: Content/Chests/BuriedChests/CopperChest</summary>
+            <summary>Full Path: Content/Chests/CopperChest</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CopperChestItem">
-            <summary>Full Path: Content/Chests/BuriedChests/CopperChestItem</summary>
+            <summary>Full Path: Content/Chests/CopperChestItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CopperChestLockedItem">
-            <summary>Full Path: Content/Chests/BuriedChests/CopperChestLockedItem</summary>
+            <summary>Full Path: Content/Chests/CopperChestLockedItem</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.CopperChest_Highlight">
-            <summary>Full Path: Content/Chests/BuriedChests/CopperChest_Highlight</summary>
+            <summary>Full Path: Content/Chests/CopperChest_Highlight</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.SeaFirefly">
             <summary>Full Path: Content/Critters/SeaFirefly/SeaFirefly</summary>
@@ -2586,48 +2390,6 @@
         </member>
         <member name="F:AequusRemake.AequusTextures.SeaFireflyJarItem">
             <summary>Full Path: Content/Critters/SeaFirefly/SeaFireflyJarItem</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.OmegaHoney">
-            <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/OmegaHoney</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.OmegaRestoration">
-            <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/OmegaRestoration</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.SupremeHoney">
-            <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/SupremeHoney</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.SupremeRestoration">
-            <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/SupremeRestoration</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.GlimmerEnvelope">
-            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/Envelopes/GlimmerEnvelope</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.PollutedOceanEnvelope">
-            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/Envelopes/PollutedOceanEnvelope</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.Poster">
-            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/Poster</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.PosterBloodMimicItem">
-            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterBloodMimicItem</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.PosterBreadOfCthulhuItem">
-            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterBreadOfCthulhuItem</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.PosterCinderBatItem">
-            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterCinderBatItem</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.PosterOblivisionItem">
-            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterOblivisionItem</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.PosterSkyMerchantItem">
-            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterSkyMerchantItem</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.PosterUltraStariteItem">
-            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterUltraStariteItem</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.SplitAlbum">
-            <summary>Full Path: Content/CrossMod/SplitSupport/Photography/SplitAlbum</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Baguette">
             <summary>Full Path: Content/Dedicated/Baguette/Baguette</summary>
@@ -2715,9 +2477,6 @@
         </member>
         <member name="F:AequusRemake.AequusTextures.SwagEyePetItem">
             <summary>Full Path: Content/Dedicated/SwagEye/SwagEyePetItem</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.MonoDust">
-            <summary>Full Path: Content/Dusts/MonoDust</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.BlackJellyfish">
             <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
@@ -3775,6 +3534,48 @@
         <member name="F:AequusRemake.AequusTextures.icon_workshop">
             <summary>Full Path: icon_workshop</summary>
         </member>
+        <member name="F:AequusRemake.AequusTextures.OmegaHoney">
+            <summary>Full Path: Systems/CrossMod/CalamityModSupport/Items/OmegaHoney</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.OmegaRestoration">
+            <summary>Full Path: Systems/CrossMod/CalamityModSupport/Items/OmegaRestoration</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.SupremeHoney">
+            <summary>Full Path: Systems/CrossMod/CalamityModSupport/Items/SupremeHoney</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.SupremeRestoration">
+            <summary>Full Path: Systems/CrossMod/CalamityModSupport/Items/SupremeRestoration</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.GlimmerEnvelope">
+            <summary>Full Path: Systems/CrossMod/SplitSupport/Photography/Envelopes/GlimmerEnvelope</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.PollutedOceanEnvelope">
+            <summary>Full Path: Systems/CrossMod/SplitSupport/Photography/Envelopes/PollutedOceanEnvelope</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.Poster">
+            <summary>Full Path: Systems/CrossMod/SplitSupport/Photography/Poster</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.PosterBloodMimicItem">
+            <summary>Full Path: Systems/CrossMod/SplitSupport/Photography/PosterBloodMimicItem</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.PosterBreadOfCthulhuItem">
+            <summary>Full Path: Systems/CrossMod/SplitSupport/Photography/PosterBreadOfCthulhuItem</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.PosterCinderBatItem">
+            <summary>Full Path: Systems/CrossMod/SplitSupport/Photography/PosterCinderBatItem</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.PosterOblivisionItem">
+            <summary>Full Path: Systems/CrossMod/SplitSupport/Photography/PosterOblivisionItem</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.PosterSkyMerchantItem">
+            <summary>Full Path: Systems/CrossMod/SplitSupport/Photography/PosterSkyMerchantItem</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.PosterUltraStariteItem">
+            <summary>Full Path: Systems/CrossMod/SplitSupport/Photography/PosterUltraStariteItem</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.SplitAlbum">
+            <summary>Full Path: Systems/CrossMod/SplitSupport/Photography/SplitAlbum</summary>
+        </member>
         <member name="F:AequusRemake.AequusTextures.AirMask">
             <summary>Full Path: Systems/Elements/Air/AirMask</summary>
         </member>
@@ -3874,6 +3675,9 @@
         <member name="F:AequusRemake.AequusTextures.DashParticles">
             <summary>Full Path: Systems/Particles/Common/DashParticles</summary>
         </member>
+        <member name="F:AequusRemake.AequusTextures.MonoDust">
+            <summary>Full Path: Systems/Particles/Common/MonoDust</summary>
+        </member>
         <member name="F:AequusRemake.AequusTextures.UnderwaterBubbles">
             <summary>Full Path: Systems/Particles/Common/UnderwaterBubbles</summary>
         </member>
@@ -3907,6 +3711,135 @@
         <member name="M:AequusRemake.Systems.Backpacks.BackpackPlayerSyncPacket.Send(Terraria.Player,AequusRemake.Systems.Backpacks.BackpackData,System.Int32,System.Int32)">
             <summary>Invokes a full sync of a backpack.</summary>
         </member>
+        <member name="T:AequusRemake.Systems.Chests.ChestLootDatabase">
+            <summary>Replica of <see cref="T:Terraria.GameContent.ItemDropRules.ItemDropDatabase"/>/<see cref="T:Terraria.GameContent.ItemDropRules.ItemDropResolver"/>, except for AequusRemake' chest loot.</summary>
+        </member>
+        <member name="F:AequusRemake.Systems.Chests.ChestPool.Surface">
+            <summary>Extra loot pool for Vanilla's Surface Wooden Chests.</summary>
+        </member>
+        <member name="F:AequusRemake.Systems.Chests.ChestPool.Underground">
+            <summary>Extra loot pool for Vanilla's Underground Chests, this includes Gold, Frozen, Rich Mahogany, etc.</summary>
+        </member>
+        <member name="F:AequusRemake.Systems.Chests.ChestPool.Sky">
+            <summary>Extra loot pool for Vanilla's Sky Chests. This includes Skyware and Locked Gold Chests located above the surface line.</summary>
+        </member>
+        <member name="F:AequusRemake.Systems.Chests.ChestPool.UndergroundDesert">
+            <summary>Extra loot pool for Chests located in the Underground Desert.</summary>
+        </member>
+        <member name="F:AequusRemake.Systems.Chests.ChestPool.Pyramid">
+            <summary>Extra loot pool for Chests located in the Pyramid.</summary>
+        </member>
+        <member name="F:AequusRemake.Systems.Chests.ChestPool.Dungeon">
+            <summary>Extra loot pool for Locked Gold Chests located in the Dungeon.</summary>
+        </member>
+        <member name="F:AequusRemake.Systems.Chests.ChestPool.Temple">
+            <summary>Extra loot pool for Chests located in the Temple.</summary>
+        </member>
+        <member name="F:AequusRemake.Systems.Chests.ChestPool.Gold">
+            <summary>Extra loot pool for Vanilla's Gold Chests.</summary>
+        </member>
+        <member name="F:AequusRemake.Systems.Chests.ChestPool.Shadow">
+            <summary>Extra loot pool for Vanilla's Shadow Chests.</summary>
+        </member>
+        <member name="F:AequusRemake.Systems.Chests.ChestPool.Frozen">
+            <summary>Extra loot pool for Vanilla's Frozen Chests. Note this is NOT the Biome Chest.</summary>
+        </member>
+        <member name="F:AequusRemake.Systems.Chests.ChestPool.Ivy">
+            <summary>Extra loot pool for Vanilla's Ivy Chests.</summary>
+        </member>
+        <member name="F:AequusRemake.Systems.Chests.ChestPool.PollutedOcean">
+            <summary>Loot pool for Polluted Ocean Trash Cans.</summary>
+        </member>
+        <member name="F:AequusRemake.Systems.Chests.ChestPool.BuriedCopperChest">
+            <summary>Loot pool for Copper Chests.</summary>
+        </member>
+        <member name="M:AequusRemake.Systems.Chests.DropRules.IChestLootRule.AddItem(AequusRemake.Systems.Chests.DropRules.ChestLootInfo@)">
+            <summary>Add the item into the chest here. <see cref="P:AequusRemake.Systems.Chests.DropRules.ChestLootInfo.ChestId"/> should safely index into <see cref="F:Terraria.Main.chest"/>.</summary>
+        </member>
+        <member name="M:AequusRemake.Systems.Chests.DropRules.IChestLootRule.CanDrop(AequusRemake.Systems.Chests.DropRules.ChestLootInfo@)">
+            <summary>Condition for whether this rule should be ran.</summary>
+        </member>
+        <member name="M:AequusRemake.Systems.Chests.DropRules.IChestLootRule.Reset">
+            <summary>Called upon <see cref="M:Terraria.ModLoader.ModSystem.ClearWorld"/> and Hardmode Chests. Use to reset values before world generation and etc.</summary>
+        </member>
+        <member name="T:AequusRemake.Systems.Chests.DropRules.IndexedChestRule">
+            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
+        </member>
+        <member name="M:AequusRemake.Systems.Chests.DropRules.IndexedChestRule.#ctor(System.Int32,System.Int32,AequusRemake.Systems.Chests.DropRules.IChestLootRule[],Terraria.Condition[])">
+            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
+        </member>
+        <member name="T:AequusRemake.Systems.Chests.DropRules.RemoveItemChestRule">
+            <summary>Usually used in conjunction with <see cref="T:AequusRemake.Systems.Chests.DropRules.ReplaceItemChestRule"/> to pull all of the item slots backwards after deleting the item.</summary>
+        </member>
+        <member name="T:AequusRemake.Systems.Chests.DropRules.ReplaceFirstSlotChestRule">
+            <summary>
+            Deletes the first slot, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.Systems.Chests.DropRules.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:AequusRemake.Systems.Chests.DropRules.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="M:AequusRemake.Systems.Chests.DropRules.ReplaceFirstSlotChestRule.#ctor(AequusRemake.Systems.Chests.DropRules.IChestLootRule,Terraria.Condition[])">
+            <summary>
+            Deletes the first slot, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.Systems.Chests.DropRules.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:AequusRemake.Systems.Chests.DropRules.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="T:AequusRemake.Systems.Chests.DropRules.ReplaceItemChestRule">
+            <summary>
+            Finds <paramref name="ItemIdToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.Systems.Chests.DropRules.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:AequusRemake.Systems.Chests.DropRules.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="M:AequusRemake.Systems.Chests.DropRules.ReplaceItemChestRule.#ctor(System.Int32,AequusRemake.Systems.Chests.DropRules.IChestLootRule,Terraria.Condition[])">
+            <summary>
+            Finds <paramref name="ItemIdToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.Systems.Chests.DropRules.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:AequusRemake.Systems.Chests.DropRules.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="T:AequusRemake.Systems.Chests.DropRules.ReplaceMultipleItemsChestRule">
+            <summary>
+            Finds any item which is in <paramref name="ItemIdsToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.Systems.Chests.DropRules.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:AequusRemake.Systems.Chests.DropRules.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="M:AequusRemake.Systems.Chests.DropRules.ReplaceMultipleItemsChestRule.#ctor(System.Int32[],AequusRemake.Systems.Chests.DropRules.IChestLootRule,Terraria.Condition[])">
+            <summary>
+            Finds any item which is in <paramref name="ItemIdsToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:AequusRemake.Systems.Chests.DropRules.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:AequusRemake.Systems.Chests.DropRules.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="T:AequusRemake.Systems.CrossMod.BossChecklist">
+            <summary><see href="link">https://github.com/JavidPack/BossChecklist/wiki/%5B1.4.4%5D-Boss-Log-Entry-Mod-Call#arguments</see></summary>
+        </member>
+        <member name="M:AequusRemake.Systems.CrossMod.BossChecklist.BossEntry.#ctor(System.String,System.Single,System.Func{System.Boolean})">
+            <param name="internalName">The Internal Name for this boss. Try to not change it as it may break other mods.</param>
+            <param name="progression">View <see href="link">https://github.com/JavidPack/BossChecklist/wiki/Boss-Progression-Values</see> for a catalogue of vanilla entry sorting.</param>
+            <param name="downedFlag">The Downed Flag for this boss.</param>
+        </member>
+        <member name="T:AequusRemake.Systems.CrossMod.BossChecklist.PortraitRenderDelegate">
+            <param name="spriteBatch">The SpriteBatch.</param>
+            <param name="sourceRectangle">The bounds of the portrait.</param>
+            <param name="displayColor">The Color of the entry. It is usually Black when hidden, and White when not hidden.</param>
+        </member>
+        <member name="M:AequusRemake.Systems.CrossMod.SplitSupport.Photography.PhotographyLoader.AddPhotographyPage(System.Single,System.Int32,AequusRemake.Systems.CrossMod.SplitSupport.Photography.AlbumQuestInfo[])">
+            <param name="order">Sorting value for this album.</param>
+            <param name="specialReward">Special reward for this album</param>
+            <param name="values">Must have a length of 6.</param>
+        </member>
+        <member name="P:AequusRemake.Systems.CrossMod.SupportedMod`1.Instance">
+            <summary>The Supported Mod's instance. This property is <see langword="null" /> when the mod is not enabled.</summary>
+        </member>
         <member name="M:AequusRemake.Systems.Elements.Element.AddNPC(System.String)">
             <summary>Attempts to add a ModNPC's type using its full name.</summary>
             <param name="fullName">The full name of the mod npc. Example: ThoriumMod/Viscount</param>
@@ -3935,6 +3868,72 @@
             Determines whether or not the item was from a catch.
             This prevents some catches, like Jellyfishes being used as bait or being indicated as bait.
             </summary>
+        </member>
+        <member name="T:AequusRemake.Systems.Fishing.IModifyFishAttempt">
+            <summary>Only works on Fishing Pole or Bait items.</summary>
+        </member>
+        <member name="M:AequusRemake.Systems.Fishing.IModifyFishAttempt.PreCatchFish(Terraria.Projectile,Terraria.DataStructures.FishingAttempt@)">
+            <returns>Return false to prevent vanilla rolling fish</returns>
+        </member>
+        <member name="T:AequusRemake.Systems.Fishing.IModifyFishItem">
+            <summary>Only works on Fishing Pole or Bait items.</summary>
+        </member>
+        <member name="T:AequusRemake.Systems.Fishing.IOnPullBobber">
+            <summary>Only works on Fishing Pole or Bait items.</summary>
+        </member>
+        <member name="M:AequusRemake.Systems.Fishing.IOnPullBobber.PrePullBobber(Terraria.Player,Terraria.Projectile,System.Int32@)">
+            <returns><see langword="true" /> to override default pulling operations.</returns>
+        </member>
+        <member name="T:AequusRemake.Systems.Items.IManageProjectile">
+            <summary>
+            Allows the item to grant various effects to fired projectiles. All of these methods are not instanced, do NOT use <see cref="P:Terraria.ModLoader.ModItem.Item"/> data.
+            The methods granted by this interface are:
+            <list type="bullet">
+            <item><see cref="M:AequusRemake.Systems.Items.IManageProjectile.PreAIProjectile(Terraria.Projectile)"/></item>
+            <item><see cref="M:AequusRemake.Systems.Items.IManageProjectile.AIProjectile(Terraria.Projectile)"/></item>
+            <item><see cref="M:AequusRemake.Systems.Items.IManageProjectile.PostAIProjectile(Terraria.Projectile)"/></item>
+            <item><see cref="M:AequusRemake.Systems.Items.IManageProjectile.PreDrawProjectile(Terraria.Projectile,Microsoft.Xna.Framework.Color@)"/></item>
+            <item><see cref="M:AequusRemake.Systems.Items.IManageProjectile.PostDrawProjectile(Terraria.Projectile,Microsoft.Xna.Framework.Color@)"/></item>
+            <item><see cref="M:AequusRemake.Systems.Items.IManageProjectile.OnHitNPCProjectile(Terraria.Projectile,Terraria.NPC,Terraria.NPC.HitInfo,System.Int32)"/></item>
+            <item><see cref="M:AequusRemake.Systems.Items.IManageProjectile.OnTileCollideProjectile(Terraria.Projectile,Microsoft.Xna.Framework.Vector2)"/></item>
+            <item><see cref="M:AequusRemake.Systems.Items.IManageProjectile.PreKillProjectile(Terraria.Projectile,System.Int32)"/></item>
+            <item><see cref="M:AequusRemake.Systems.Items.IManageProjectile.OnKillProjectile(Terraria.Projectile,System.Int32)"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="T:AequusRemake.Systems.Items.IOmniclassItem">
+            <summary>Signifies that this item is an omniclass weapon, and can receive multiple class modifiers.</summary>
+        </member>
+        <member name="F:AequusRemake.Systems.Items.IPickItemMovementAction.RESULT_SIMPLE_SWAP">
+            <summary>Returning this result will attempt to place the item into the slot.</summary>
+        </member>
+        <member name="F:AequusRemake.Systems.Items.IPickItemMovementAction.RESULT_EQUIPMENT_SWAP">
+            <summary>Returning this result will attempt to place the item into the slot, if it is an equipable and follows conditions depending on the context.</summary>
+        </member>
+        <member name="F:AequusRemake.Systems.Items.IPickItemMovementAction.RESULT_DYE_SWAP">
+            <summary>Returning this result will attempt to place the item into the slot, if it is a Dye.</summary>
+        </member>
+        <member name="F:AequusRemake.Systems.Items.IPickItemMovementAction.RESULT_BUY_ITEM">
+            <summary>Returning this result will attempt to purchase the item.</summary>
+        </member>
+        <member name="F:AequusRemake.Systems.Items.IPickItemMovementAction.RESULT_SELL_ITEM">
+            <summary>Returning this result will attempt to sell the item.</summary>
+        </member>
+        <member name="F:AequusRemake.Systems.Items.IPickItemMovementAction.RESULT_JOURNEY_DUPE">
+            <summary>Returning this result will attempt dupe the item from the item slot, stacking it onto the mouse item.</summary>
+        </member>
+        <member name="M:AequusRemake.Systems.Items.IRightClickOverrideWhenHeld.RightClickOverrideWhileHeld(Terraria.Item@,Terraria.Item[],System.Int32,System.Int32,Terraria.Player,AequusRemake.AequusPlayer)">
+            <returns>true to prevent vanilla right click actions.</returns>
+        </member>
+        <member name="M:AequusRemake.Systems.Items.IRightClickOverrideWhenHovered.RightClickOverrideWhenHovered(Terraria.Item@,Terraria.Item[],System.Int32,System.Int32,Terraria.Player,AequusRemake.AequusPlayer)">
+            <returns>true to prevent vanilla right click actions.</returns>
+        </member>
+        <member name="M:AequusRemake.Systems.Items.IUpdateItemDye.UpdateItemDye(Terraria.Player,System.Boolean,System.Boolean,Terraria.Item,Terraria.Item)">
+            <param name="player"></param>
+            <param name="isNotInVanitySlot"></param>
+            <param name="isSetToHidden"></param>
+            <param name="armorItem">The armor item.</param>
+            <param name="dyeItem">The dye item.</param>
         </member>
         <member name="T:AequusRemake.Systems.PaintSystem">
             <summary>Allows painting of arbitrary textures.</summary>

@@ -1,4 +1,5 @@
-﻿using AequusRemake.Systems.Renaming;
+﻿using AequusRemake.Systems.Chests;
+using AequusRemake.Systems.Renaming;
 using AequusRemake.Systems.Synergy;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -11,6 +12,7 @@ namespace AequusRemake.Content.Items.Tools.NameTag;
 public class NameTag : ModItem, ICustomNameTagPrice {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 5;
+        ChestLootDatabase.Instance.RegisterCommon(ChestPool.Underground, ModContent.ItemType<NameTag>(), chanceDemoninator: 4);
     }
 
     public override void SetDefaults() {

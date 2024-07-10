@@ -1,6 +1,6 @@
-﻿using AequusRemake.Content.CrossMod;
-using AequusRemake.Core.ContentGeneration;
+﻿using AequusRemake.Core.ContentGeneration;
 using AequusRemake.Core.Entities.Items.Dedications;
+using AequusRemake.Systems.CrossMod;
 
 namespace AequusRemake.Content.Dedicated.Familiar;
 

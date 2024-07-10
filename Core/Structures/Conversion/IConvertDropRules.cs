@@ -1,4 +1,4 @@
-﻿using AequusRemake.DataSets.Structures.DropRulesChest;
+﻿using AequusRemake.Systems.Chests.DropRules;
 using AequusRemake.Systems.Fishing;
 using Terraria.GameContent.ItemDropRules;
 

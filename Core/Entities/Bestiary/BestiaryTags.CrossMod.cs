@@ -1,4 +1,4 @@
-﻿using AequusRemake.Core.CrossMod;
+﻿using AequusRemake.Systems.CrossMod;
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;
 
@@ -9,7 +9,7 @@ public partial class BestiaryTags {
 
     private static IEnumerable<IFilterInfoProvider> GetFiltersFromModBiomeNames(string[] names) {
         foreach (string name in names) {
-            if (!ExtendCrossMod.GetContentFromName(name, out ModBiome modBiome)) {
+            if (!CrossModTools.GetContentFromName(name, out ModBiome modBiome)) {
                 break;
             }
 

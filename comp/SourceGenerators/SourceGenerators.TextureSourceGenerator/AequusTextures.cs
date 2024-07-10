@@ -181,14 +181,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SalamancerTrophyItem = new("Content/Bosses/Salamancer/Items/SalamancerTrophyItem");
     /// <summary>Full Path: Content/Bosses/Salamancer/Salamancer</summary>
     public static readonly RequestCache<Texture2D> Salamancer = new("Content/Bosses/Salamancer/Salamancer");
-    /// <summary>Full Path: Content/Chests/BuriedChests/CopperChest</summary>
-    public static readonly RequestCache<Texture2D> CopperChest = new("Content/Chests/BuriedChests/CopperChest");
-    /// <summary>Full Path: Content/Chests/BuriedChests/CopperChestItem</summary>
-    public static readonly RequestCache<Texture2D> CopperChestItem = new("Content/Chests/BuriedChests/CopperChestItem");
-    /// <summary>Full Path: Content/Chests/BuriedChests/CopperChestLockedItem</summary>
-    public static readonly RequestCache<Texture2D> CopperChestLockedItem = new("Content/Chests/BuriedChests/CopperChestLockedItem");
-    /// <summary>Full Path: Content/Chests/BuriedChests/CopperChest_Highlight</summary>
-    public static readonly RequestCache<Texture2D> CopperChest_Highlight = new("Content/Chests/BuriedChests/CopperChest_Highlight");
+    /// <summary>Full Path: Content/Chests/CopperChest</summary>
+    public static readonly RequestCache<Texture2D> CopperChest = new("Content/Chests/CopperChest");
+    /// <summary>Full Path: Content/Chests/CopperChestItem</summary>
+    public static readonly RequestCache<Texture2D> CopperChestItem = new("Content/Chests/CopperChestItem");
+    /// <summary>Full Path: Content/Chests/CopperChestLockedItem</summary>
+    public static readonly RequestCache<Texture2D> CopperChestLockedItem = new("Content/Chests/CopperChestLockedItem");
+    /// <summary>Full Path: Content/Chests/CopperChest_Highlight</summary>
+    public static readonly RequestCache<Texture2D> CopperChest_Highlight = new("Content/Chests/CopperChest_Highlight");
     /// <summary>Full Path: Content/Critters/SeaFirefly/SeaFirefly</summary>
     public static readonly RequestCache<Texture2D> SeaFirefly = new("Content/Critters/SeaFirefly/SeaFirefly");
     /// <summary>Full Path: Content/Critters/SeaFirefly/SeaFireflyItem</summary>
@@ -199,34 +199,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SeaFireflyJar = new("Content/Critters/SeaFirefly/SeaFireflyJar");
     /// <summary>Full Path: Content/Critters/SeaFirefly/SeaFireflyJarItem</summary>
     public static readonly RequestCache<Texture2D> SeaFireflyJarItem = new("Content/Critters/SeaFirefly/SeaFireflyJarItem");
-    /// <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/OmegaHoney</summary>
-    public static readonly RequestCache<Texture2D> OmegaHoney = new("Content/CrossMod/CalamityModSupport/Items/OmegaHoney");
-    /// <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/OmegaRestoration</summary>
-    public static readonly RequestCache<Texture2D> OmegaRestoration = new("Content/CrossMod/CalamityModSupport/Items/OmegaRestoration");
-    /// <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/SupremeHoney</summary>
-    public static readonly RequestCache<Texture2D> SupremeHoney = new("Content/CrossMod/CalamityModSupport/Items/SupremeHoney");
-    /// <summary>Full Path: Content/CrossMod/CalamityModSupport/Items/SupremeRestoration</summary>
-    public static readonly RequestCache<Texture2D> SupremeRestoration = new("Content/CrossMod/CalamityModSupport/Items/SupremeRestoration");
-    /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/Envelopes/GlimmerEnvelope</summary>
-    public static readonly RequestCache<Texture2D> GlimmerEnvelope = new("Content/CrossMod/SplitSupport/Photography/Envelopes/GlimmerEnvelope");
-    /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/Envelopes/PollutedOceanEnvelope</summary>
-    public static readonly RequestCache<Texture2D> PollutedOceanEnvelope = new("Content/CrossMod/SplitSupport/Photography/Envelopes/PollutedOceanEnvelope");
-    /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/Poster</summary>
-    public static readonly RequestCache<Texture2D> Poster = new("Content/CrossMod/SplitSupport/Photography/Poster");
-    /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterBloodMimicItem</summary>
-    public static readonly RequestCache<Texture2D> PosterBloodMimicItem = new("Content/CrossMod/SplitSupport/Photography/PosterBloodMimicItem");
-    /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterBreadOfCthulhuItem</summary>
-    public static readonly RequestCache<Texture2D> PosterBreadOfCthulhuItem = new("Content/CrossMod/SplitSupport/Photography/PosterBreadOfCthulhuItem");
-    /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterCinderBatItem</summary>
-    public static readonly RequestCache<Texture2D> PosterCinderBatItem = new("Content/CrossMod/SplitSupport/Photography/PosterCinderBatItem");
-    /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterOblivisionItem</summary>
-    public static readonly RequestCache<Texture2D> PosterOblivisionItem = new("Content/CrossMod/SplitSupport/Photography/PosterOblivisionItem");
-    /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterSkyMerchantItem</summary>
-    public static readonly RequestCache<Texture2D> PosterSkyMerchantItem = new("Content/CrossMod/SplitSupport/Photography/PosterSkyMerchantItem");
-    /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/PosterUltraStariteItem</summary>
-    public static readonly RequestCache<Texture2D> PosterUltraStariteItem = new("Content/CrossMod/SplitSupport/Photography/PosterUltraStariteItem");
-    /// <summary>Full Path: Content/CrossMod/SplitSupport/Photography/SplitAlbum</summary>
-    public static readonly RequestCache<Texture2D> SplitAlbum = new("Content/CrossMod/SplitSupport/Photography/SplitAlbum");
     /// <summary>Full Path: Content/Dedicated/Baguette/Baguette</summary>
     public static readonly RequestCache<Texture2D> Baguette = new("Content/Dedicated/Baguette/Baguette");
     /// <summary>Full Path: Content/Dedicated/Baguette/BaguetteBuff</summary>
@@ -285,8 +257,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SwagEyePetBuff = new("Content/Dedicated/SwagEye/SwagEyePetBuff");
     /// <summary>Full Path: Content/Dedicated/SwagEye/SwagEyePetItem</summary>
     public static readonly RequestCache<Texture2D> SwagEyePetItem = new("Content/Dedicated/SwagEye/SwagEyePetItem");
-    /// <summary>Full Path: Content/Dusts/MonoDust</summary>
-    public static readonly RequestCache<Texture2D> MonoDust = new("Content/Dusts/MonoDust");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
     public static readonly RequestCache<Texture2D> BlackJellyfish = new("Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishVertexStrip</summary>
@@ -991,6 +961,34 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> icon_small = new("icon_small");
     /// <summary>Full Path: icon_workshop</summary>
     public static readonly RequestCache<Texture2D> icon_workshop = new("icon_workshop");
+    /// <summary>Full Path: Systems/CrossMod/CalamityModSupport/Items/OmegaHoney</summary>
+    public static readonly RequestCache<Texture2D> OmegaHoney = new("Systems/CrossMod/CalamityModSupport/Items/OmegaHoney");
+    /// <summary>Full Path: Systems/CrossMod/CalamityModSupport/Items/OmegaRestoration</summary>
+    public static readonly RequestCache<Texture2D> OmegaRestoration = new("Systems/CrossMod/CalamityModSupport/Items/OmegaRestoration");
+    /// <summary>Full Path: Systems/CrossMod/CalamityModSupport/Items/SupremeHoney</summary>
+    public static readonly RequestCache<Texture2D> SupremeHoney = new("Systems/CrossMod/CalamityModSupport/Items/SupremeHoney");
+    /// <summary>Full Path: Systems/CrossMod/CalamityModSupport/Items/SupremeRestoration</summary>
+    public static readonly RequestCache<Texture2D> SupremeRestoration = new("Systems/CrossMod/CalamityModSupport/Items/SupremeRestoration");
+    /// <summary>Full Path: Systems/CrossMod/SplitSupport/Photography/Envelopes/GlimmerEnvelope</summary>
+    public static readonly RequestCache<Texture2D> GlimmerEnvelope = new("Systems/CrossMod/SplitSupport/Photography/Envelopes/GlimmerEnvelope");
+    /// <summary>Full Path: Systems/CrossMod/SplitSupport/Photography/Envelopes/PollutedOceanEnvelope</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanEnvelope = new("Systems/CrossMod/SplitSupport/Photography/Envelopes/PollutedOceanEnvelope");
+    /// <summary>Full Path: Systems/CrossMod/SplitSupport/Photography/Poster</summary>
+    public static readonly RequestCache<Texture2D> Poster = new("Systems/CrossMod/SplitSupport/Photography/Poster");
+    /// <summary>Full Path: Systems/CrossMod/SplitSupport/Photography/PosterBloodMimicItem</summary>
+    public static readonly RequestCache<Texture2D> PosterBloodMimicItem = new("Systems/CrossMod/SplitSupport/Photography/PosterBloodMimicItem");
+    /// <summary>Full Path: Systems/CrossMod/SplitSupport/Photography/PosterBreadOfCthulhuItem</summary>
+    public static readonly RequestCache<Texture2D> PosterBreadOfCthulhuItem = new("Systems/CrossMod/SplitSupport/Photography/PosterBreadOfCthulhuItem");
+    /// <summary>Full Path: Systems/CrossMod/SplitSupport/Photography/PosterCinderBatItem</summary>
+    public static readonly RequestCache<Texture2D> PosterCinderBatItem = new("Systems/CrossMod/SplitSupport/Photography/PosterCinderBatItem");
+    /// <summary>Full Path: Systems/CrossMod/SplitSupport/Photography/PosterOblivisionItem</summary>
+    public static readonly RequestCache<Texture2D> PosterOblivisionItem = new("Systems/CrossMod/SplitSupport/Photography/PosterOblivisionItem");
+    /// <summary>Full Path: Systems/CrossMod/SplitSupport/Photography/PosterSkyMerchantItem</summary>
+    public static readonly RequestCache<Texture2D> PosterSkyMerchantItem = new("Systems/CrossMod/SplitSupport/Photography/PosterSkyMerchantItem");
+    /// <summary>Full Path: Systems/CrossMod/SplitSupport/Photography/PosterUltraStariteItem</summary>
+    public static readonly RequestCache<Texture2D> PosterUltraStariteItem = new("Systems/CrossMod/SplitSupport/Photography/PosterUltraStariteItem");
+    /// <summary>Full Path: Systems/CrossMod/SplitSupport/Photography/SplitAlbum</summary>
+    public static readonly RequestCache<Texture2D> SplitAlbum = new("Systems/CrossMod/SplitSupport/Photography/SplitAlbum");
     /// <summary>Full Path: Systems/Elements/Air/AirMask</summary>
     public static readonly RequestCache<Texture2D> AirMask = new("Systems/Elements/Air/AirMask");
     /// <summary>Full Path: Systems/Elements/Air/AirMask_Head</summary>
@@ -1057,6 +1055,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SteampunkerFishingPoleBobber = new("Systems/Fishing/FishingPoles/SteampunkerFishingPoleBobber");
     /// <summary>Full Path: Systems/Particles/Common/DashParticles</summary>
     public static readonly RequestCache<Texture2D> DashParticles = new("Systems/Particles/Common/DashParticles");
+    /// <summary>Full Path: Systems/Particles/Common/MonoDust</summary>
+    public static readonly RequestCache<Texture2D> MonoDust = new("Systems/Particles/Common/MonoDust");
     /// <summary>Full Path: Systems/Particles/Common/UnderwaterBubbles</summary>
     public static readonly RequestCache<Texture2D> UnderwaterBubbles = new("Systems/Particles/Common/UnderwaterBubbles");
     /// <summary>Full Path: Systems/VanillaChanges/ToolbeltBuilderToggle</summary>

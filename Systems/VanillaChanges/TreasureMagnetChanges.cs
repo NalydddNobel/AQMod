@@ -1,4 +1,6 @@
 ﻿using AequusRemake.Content.Configuration;
+using AequusRemake.Systems.Chests;
+using AequusRemake.Systems.Chests.DropRules;
 using Terraria.WorldBuilding;
 
 namespace AequusRemake.Systems.VanillaChanges;
@@ -10,6 +12,14 @@ public class TreasureMagnetChanges : GlobalItem {
 
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
         return entity.type == ItemID.TreasureMagnet;
+    }
+
+    public override void SetStaticDefaults() {
+        ChestLootDatabase.Instance.Register(ChestPool.Shadow, new ReplaceItemChestRule(
+            ItemIdToReplace: ItemID.TreasureMagnet,
+            new RemoveItemChestRule(),
+            ConfigConditions.IsTrue(VanillaChangesConfig.Instance, nameof(VanillaChangesConfig.MoveTreasureMagnet))
+        ));
     }
 
     public override void SetDefaults(Item entity) {

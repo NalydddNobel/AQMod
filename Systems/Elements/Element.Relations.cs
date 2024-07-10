@@ -1,8 +1,8 @@
 ﻿using AequusRemake.Core.CodeGeneration;
-using AequusRemake.Core.CrossMod;
 using AequusRemake.Core.Entites.Bestiary;
 using AequusRemake.DataSets;
 using AequusRemake.DataSets.Structures;
+using AequusRemake.Systems.CrossMod;
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -44,7 +44,7 @@ public partial class Element {
     /// <summary>Attempts to add a ModNPC's type using its full name.</summary>
     /// <param name="fullName">The full name of the mod npc. Example: ThoriumMod/Viscount</param>
     public bool AddNPC(string fullName) {
-        if (!ExtendCrossMod.GetContentFromName(fullName, out ModNPC modNPC)) {
+        if (!CrossModTools.GetContentFromName(fullName, out ModNPC modNPC)) {
             return false;
         }
 
@@ -54,7 +54,7 @@ public partial class Element {
     /// <summary>Attempts to add a ModItem's type using its full name.</summary>
     /// <param name="fullName">The full name of the mod item. Example: ThoriumMod/IllumiteBar</param>
     public bool AddItem(string fullName) {
-        if (!ExtendCrossMod.GetContentFromName(fullName, out ModItem modItem)) {
+        if (!CrossModTools.GetContentFromName(fullName, out ModItem modItem)) {
             return false;
         }
 
@@ -64,7 +64,7 @@ public partial class Element {
     /// <summary>Attempts to remove a ModItem's type using its full name.</summary>
     /// <param name="fullName">The full name of the mod item. Example: ThoriumMod/IllumiteBar</param>
     public bool RemoveItem(string fullName) {
-        if (!ExtendCrossMod.GetContentFromName(fullName, out ModItem modItem)) {
+        if (!CrossModTools.GetContentFromName(fullName, out ModItem modItem)) {
             return false;
         }
 

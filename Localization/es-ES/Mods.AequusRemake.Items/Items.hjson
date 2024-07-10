@@ -48,7 +48,7 @@ PollutedOceanCrate: {
 }
 
 PollutedOceanCrateHard: {
-	// DisplayName: "{$Items.PollutedOceanCrate.DisplayName}"
+	// DisplayName: Freight Container
 	// Tooltip: ""
 }
 

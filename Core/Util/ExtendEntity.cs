@@ -1,6 +1,6 @@
 ﻿using AequusRemake.Core.Assets;
-using AequusRemake.Core.CrossMod;
 using AequusRemake.Core.Util.Helpers;
+using AequusRemake.Systems.CrossMod;
 using NALib.Helpers;
 using System;
 using System.Collections.Generic;

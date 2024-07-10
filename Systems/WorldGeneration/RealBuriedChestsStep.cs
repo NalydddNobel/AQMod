@@ -1,4 +1,4 @@
-﻿using AequusRemake.Content.Chests.BuriedChests;
+﻿using AequusRemake.Content.Chests;
 using System;
 using Terraria.IO;
 using Terraria.WorldBuilding;

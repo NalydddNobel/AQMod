@@ -1,5 +1,5 @@
 ﻿using AequusRemake.Core.Structures.Conversion;
-using AequusRemake.DataSets.Structures.DropRulesChest;
+using AequusRemake.Systems.Chests.DropRules;
 using Terraria.GameContent.ItemDropRules;
 
 namespace AequusRemake.Systems.Fishing;

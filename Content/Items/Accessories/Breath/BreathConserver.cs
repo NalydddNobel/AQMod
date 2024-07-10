@@ -1,5 +1,4 @@
-﻿using AequusRemake.Content.Dusts;
-using AequusRemake.Core.CodeGeneration;
+﻿using AequusRemake.Core.CodeGeneration;
 using AequusRemake.Core.Entities.Projectiles;
 using AequusRemake.Systems.Particles.Common;
 using AequusRemake.Systems.Synergy;

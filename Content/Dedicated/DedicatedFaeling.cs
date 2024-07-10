@@ -1,7 +1,7 @@
 ﻿using AequusRemake.Core.ContentGeneration;
-using AequusRemake.Core.CrossMod;
 using AequusRemake.Core.Entities.Items.Dedications;
 using AequusRemake.Core.GUI;
+using AequusRemake.Systems.CrossMod;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -132,7 +132,7 @@ public class DedicatedFaeling : ModNPC {
     }
 
     public override void LoadData(TagCompound tag) {
-        if (tag.TryGet("DedicatedName", out string name) && ExtendCrossMod.GetContentFromName(name, out ModItem faeling)) {
+        if (tag.TryGet("DedicatedName", out string name) && CrossModTools.GetContentFromName(name, out ModItem faeling)) {
             _catchItemId = faeling.Type;
         }
     }
