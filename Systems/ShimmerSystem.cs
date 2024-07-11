@@ -1,5 +1,4 @@
-﻿using AequusRemake.Content.Configuration;
-using AequusRemake.Content.Dedicated;
+﻿using AequusRemake.Content.Dedicated;
 using AequusRemake.Content.Dedicated.SwagEye;
 using AequusRemake.Content.Items.Accessories.Balloons;
 using AequusRemake.Content.Items.Accessories.Informational.Monocle;
@@ -7,6 +6,7 @@ using AequusRemake.Content.Items.Accessories.WeightedHorseshoe;
 using AequusRemake.Content.Items.PermaPowerups.Shimmer;
 using AequusRemake.Content.Items.Weapons.Magic.Furystar;
 using AequusRemake.Core.Entities.Items.Dedications;
+using AequusRemake.Systems.Configuration;
 using AequusRemake.Systems.Items;
 using tModLoaderExtended.Terraria.GameContent;
 

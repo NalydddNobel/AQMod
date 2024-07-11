@@ -1,6 +1,7 @@
 ﻿using AequusRemake.Content.Configuration;
 using AequusRemake.Systems.Backpacks;
 using AequusRemake.Systems.Chests;
+using AequusRemake.Systems.Configuration;
 using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;

@@ -15,6 +15,7 @@ using AequusRemake.Core.Structures.Conditions;
 using AequusRemake.DataSets;
 using AequusRemake.Systems.Chests;
 using AequusRemake.Systems.Chests.DropRules;
+using AequusRemake.Systems.Configuration;
 using AequusRemake.Systems.CrossMod.SplitSupport.Photography;
 using AequusRemake.Systems.Fishing;
 using AequusRemake.Systems.Fishing.Crates;
@@ -113,7 +114,7 @@ public class PollutedOceanSystem : ModSystem {
             ],
             ChanceDenominator: 3
         ));
-        ChestLootDatabase.Instance.RegisterCommon(ChestPool.PollutedOcean, ModContent.ItemType<Items.Potions.Healing.Restoration.LesserRestorationPotion>(),
+        ChestLootDatabase.Instance.RegisterCommon(ChestPool.PollutedOcean, ModContent.GetInstance<Items.Potions.RestorationPotions>().Lesser.Type,
             minStack: 1, maxStack: 3,
             chanceDemoninator: 3
         );

@@ -1,4 +1,4 @@
-﻿using AequusRemake.Content.Configuration;
+﻿using AequusRemake.Systems.Configuration;
 
 namespace AequusRemake.Systems.VanillaChanges;
 

@@ -17,20 +17,15 @@ public abstract class UnifiedMount : ModMount, ILocalizedModType {
         return new InstancedMountItem(this);
     }
 
-    protected virtual void OnLoad() { }
-    protected virtual void OnSetStaticDefaults() { }
-
-    public sealed override void Load() {
+    public override void Load() {
         MountItem = CreateMountItem();
         MountBuff = CreateMountBuff();
-        OnLoad();
         Mod.AddContent(MountItem);
         Mod.AddContent(MountBuff);
     }
 
-    public sealed override void SetStaticDefaults() {
+    public override void SetStaticDefaults() {
         MountData.buff = MountBuff.Type;
-        OnSetStaticDefaults();
     }
 }
 

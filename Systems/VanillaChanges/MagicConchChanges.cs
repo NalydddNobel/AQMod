@@ -1,4 +1,4 @@
-﻿using AequusRemake.Content.Configuration;
+﻿using AequusRemake.Systems.Configuration;
 using Terraria.GameContent.ItemDropRules;
 
 namespace AequusRemake.Systems.VanillaChanges;

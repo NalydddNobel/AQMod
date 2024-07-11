@@ -1,10 +1,9 @@
-﻿using AequusRemake.Content.Configuration;
-using AequusRemake.Content.Items.Accessories.Balloons;
+﻿using AequusRemake.Content.Items.Accessories.Balloons;
 using AequusRemake.Content.Items.Accessories.FlashwayShield;
 using AequusRemake.Content.Items.Accessories.GoldenFeather;
 using AequusRemake.Content.Items.Accessories.Informational.Calendar;
 using AequusRemake.Content.Items.Accessories.WeightedHorseshoe;
-using AequusRemake.Content.Items.Potions.Healing.Restoration;
+using AequusRemake.Content.Items.Potions;
 using AequusRemake.Content.Items.Tools.Bellows;
 using AequusRemake.Content.Items.Tools.NameTag;
 using AequusRemake.Content.Items.Weapons.Classless.StunGun;
@@ -12,6 +11,7 @@ using AequusRemake.Content.Items.Weapons.Magic.Furystar;
 using AequusRemake.Content.Items.Weapons.Ranged.SkyHunterCrossbow;
 using AequusRemake.Content.Mounts.HotAirBalloon;
 using AequusRemake.Systems;
+using AequusRemake.Systems.Configuration;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
@@ -28,7 +28,7 @@ public partial class SkyMerchant {
             .AddCustomValue(ModContent.GetInstance<HotAirBalloonMount>().MountItem.Type, Commons.Cost.NPCSkyMerchantCustomPrice * 7)
             .Add<NameTag>()
             .Add<Calendar>()
-            .Add<LesserRestorationPotion>()
+            .Add(ModContent.GetInstance<RestorationPotions>().Lesser.Type)
             .AddCustomValue<SlimyBlueBalloon>(Commons.Cost.NPCSkyMerchantCustomPrice, TimeSystem.ConditionBetweenDaysOfWeek(DayOfWeek.Sunday, DayOfWeek.Monday))
             .AddCustomValue<GoldenFeather>(Commons.Cost.NPCSkyMerchantCustomPrice, TimeSystem.ConditionBetweenDaysOfWeek(DayOfWeek.Monday, DayOfWeek.Tuesday))
             .AddCustomValue(celestialMagnetAltId, Commons.Cost.NPCSkyMerchantCustomPrice, TimeSystem.ConditionBetweenDaysOfWeek(DayOfWeek.Tuesday, DayOfWeek.Wednesday))

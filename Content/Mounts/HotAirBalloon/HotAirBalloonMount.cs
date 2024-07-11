@@ -18,12 +18,13 @@ public partial class HotAirBalloonMount : UnifiedMount {
         ["nalyddd"] = new DynamicColorBalloonData(0, () => Color.Lerp(Color.Violet, Color.BlueViolet, sin(Main.GlobalTimeWrappedHourly, 1f)), () => Color.BlueViolet)
     };
 
-    protected override void OnLoad() {
+    public override void Load() {
+        base.Load();
         ReplaceItems.TryAdd("BalloonKit", MountItem.Type);
-        //ModTypeLookup<ModItem>.RegisterLegacyNames(MountItem, "BalloonKit");
     }
 
-    protected override void OnSetStaticDefaults() {
+    public override void SetStaticDefaults() {
+        base.SetStaticDefaults();
         MountData.jumpHeight = 1;
         MountData.jumpSpeed = 1f;
         MountData.acceleration = 0.02f;

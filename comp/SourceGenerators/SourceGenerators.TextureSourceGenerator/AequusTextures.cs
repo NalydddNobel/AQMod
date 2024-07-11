@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace AequusRemake;
 
-/// <summary>(Total Textures: 527)</summary>
+/// <summary>(Total Textures: 523)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -495,14 +495,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> FoodPoisoningDebuff = new("Content/Items/Potions/Food/TaintedSeafood/FoodPoisoningDebuff");
     /// <summary>Full Path: Content/Items/Potions/Food/TaintedSeafood/TaintedSeafood</summary>
     public static readonly RequestCache<Texture2D> TaintedSeafood = new("Content/Items/Potions/Food/TaintedSeafood/TaintedSeafood");
-    /// <summary>Full Path: Content/Items/Potions/Healing/Honey/GreaterHoney</summary>
-    public static readonly RequestCache<Texture2D> GreaterHoney = new("Content/Items/Potions/Healing/Honey/GreaterHoney");
-    /// <summary>Full Path: Content/Items/Potions/Healing/Honey/SuperHoney</summary>
-    public static readonly RequestCache<Texture2D> SuperHoney = new("Content/Items/Potions/Healing/Honey/SuperHoney");
-    /// <summary>Full Path: Content/Items/Potions/Healing/Restoration/GreaterRestorationPotion</summary>
-    public static readonly RequestCache<Texture2D> GreaterRestorationPotion = new("Content/Items/Potions/Healing/Restoration/GreaterRestorationPotion");
-    /// <summary>Full Path: Content/Items/Potions/Healing/Restoration/SuperRestorationPotion</summary>
-    public static readonly RequestCache<Texture2D> SuperRestorationPotion = new("Content/Items/Potions/Healing/Restoration/SuperRestorationPotion");
+    /// <summary>Full Path: Content/Items/Potions/GreaterHoneyPotion</summary>
+    public static readonly RequestCache<Texture2D> GreaterHoneyPotion = new("Content/Items/Potions/GreaterHoneyPotion");
+    /// <summary>Full Path: Content/Items/Potions/GreaterRestorationPotion</summary>
+    public static readonly RequestCache<Texture2D> GreaterRestorationPotion = new("Content/Items/Potions/GreaterRestorationPotion");
     /// <summary>Full Path: Content/Items/Potions/Mana/MeadowMushroom</summary>
     public static readonly RequestCache<Texture2D> MeadowMushroom = new("Content/Items/Potions/Mana/MeadowMushroom");
     /// <summary>Full Path: Content/Items/Potions/PotionCanteen/HallowCanteen</summary>
@@ -513,6 +509,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> PotionCanteen = new("Content/Items/Potions/PotionCanteen/PotionCanteen");
     /// <summary>Full Path: Content/Items/Potions/PotionCanteen/PotionCanteenEmpty</summary>
     public static readonly RequestCache<Texture2D> PotionCanteenEmpty = new("Content/Items/Potions/PotionCanteen/PotionCanteenEmpty");
+    /// <summary>Full Path: Content/Items/Potions/SuperHoneyPotion</summary>
+    public static readonly RequestCache<Texture2D> SuperHoneyPotion = new("Content/Items/Potions/SuperHoneyPotion");
+    /// <summary>Full Path: Content/Items/Potions/SuperRestorationPotion</summary>
+    public static readonly RequestCache<Texture2D> SuperRestorationPotion = new("Content/Items/Potions/SuperRestorationPotion");
     /// <summary>Full Path: Content/Items/Tools/AnglerLamp/AnglerLamp</summary>
     public static readonly RequestCache<Texture2D> AnglerLamp = new("Content/Items/Tools/AnglerLamp/AnglerLamp");
     /// <summary>Full Path: Content/Items/Tools/AnglerLamp/AnglerLampOff</summary>
@@ -961,14 +961,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> icon_small = new("icon_small");
     /// <summary>Full Path: icon_workshop</summary>
     public static readonly RequestCache<Texture2D> icon_workshop = new("icon_workshop");
-    /// <summary>Full Path: Systems/CrossMod/CalamityModSupport/Items/OmegaHoney</summary>
-    public static readonly RequestCache<Texture2D> OmegaHoney = new("Systems/CrossMod/CalamityModSupport/Items/OmegaHoney");
-    /// <summary>Full Path: Systems/CrossMod/CalamityModSupport/Items/OmegaRestoration</summary>
-    public static readonly RequestCache<Texture2D> OmegaRestoration = new("Systems/CrossMod/CalamityModSupport/Items/OmegaRestoration");
-    /// <summary>Full Path: Systems/CrossMod/CalamityModSupport/Items/SupremeHoney</summary>
-    public static readonly RequestCache<Texture2D> SupremeHoney = new("Systems/CrossMod/CalamityModSupport/Items/SupremeHoney");
-    /// <summary>Full Path: Systems/CrossMod/CalamityModSupport/Items/SupremeRestoration</summary>
-    public static readonly RequestCache<Texture2D> SupremeRestoration = new("Systems/CrossMod/CalamityModSupport/Items/SupremeRestoration");
     /// <summary>Full Path: Systems/CrossMod/SplitSupport/Photography/Envelopes/GlimmerEnvelope</summary>
     public static readonly RequestCache<Texture2D> GlimmerEnvelope = new("Systems/CrossMod/SplitSupport/Photography/Envelopes/GlimmerEnvelope");
     /// <summary>Full Path: Systems/CrossMod/SplitSupport/Photography/Envelopes/PollutedOceanEnvelope</summary>

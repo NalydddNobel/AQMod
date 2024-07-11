@@ -1,6 +1,7 @@
 ﻿using AequusRemake.Content.Configuration;
 using AequusRemake.Systems.Chests;
 using AequusRemake.Systems.Chests.DropRules;
+using AequusRemake.Systems.Configuration;
 using Terraria.WorldBuilding;
 
 namespace AequusRemake.Systems.VanillaChanges;

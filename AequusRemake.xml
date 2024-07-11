@@ -1508,11 +1508,11 @@
         <member name="M:AequusRemake.Core.ContentGeneration.InstancedFurniturePiano.#ctor(AequusRemake.Core.ContentGeneration.UnifiedFurniture)">
             <summary>Subtype of <see cref="T:AequusRemake.Core.ContentGeneration.InstancedFurnitureTable"/>.</summary>
         </member>
-        <member name="T:AequusRemake.Core.ContentGeneration.UnifiedModMount">
-            <summary>A <see cref="T:Terraria.ModLoader.ModMount"/> which automagically registers a related <see cref="T:Terraria.ModLoader.ModItem"/> and <see cref="T:Terraria.ModLoader.ModBuff"/>, suffixed with +"Item" and +"Buff" respectively.</summary>
-        </member>
         <member name="T:AequusRemake.Core.ContentGeneration.UnifiedModPet">
             <summary>A <see cref="T:Terraria.ModLoader.ModProjectile"/> which automagically registers a related <see cref="T:Terraria.ModLoader.ModItem"/> and <see cref="T:Terraria.ModLoader.ModBuff"/>, suffixed with +"Item" and +"Buff" respectively.</summary>
+        </member>
+        <member name="T:AequusRemake.Core.ContentGeneration.UnifiedMount">
+            <summary>A <see cref="T:Terraria.ModLoader.ModMount"/> which automagically registers a related <see cref="T:Terraria.ModLoader.ModItem"/> and <see cref="T:Terraria.ModLoader.ModBuff"/>, suffixed with +"Item" and +"Buff" respectively.</summary>
         </member>
         <member name="M:AequusRemake.Core.ContentGeneration.IWhipController.OnWhipHitNPC(System.Single@,Terraria.Projectile,Terraria.NPC,Terraria.NPC.HitInfo@,System.Int32)">
             <param name="damagePenalty">Defaults to 0.5.</param>
@@ -2101,7 +2101,7 @@
             <summary>Full Path: Assets/Sounds/Tile/TrashBag</summary>
         </member>
         <member name="T:AequusRemake.AequusTextures">
-            <summary>(Total Textures: 527)</summary>
+            <summary>(Total Textures: 523)</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -2835,17 +2835,11 @@
         <member name="F:AequusRemake.AequusTextures.TaintedSeafood">
             <summary>Full Path: Content/Items/Potions/Food/TaintedSeafood/TaintedSeafood</summary>
         </member>
-        <member name="F:AequusRemake.AequusTextures.GreaterHoney">
-            <summary>Full Path: Content/Items/Potions/Healing/Honey/GreaterHoney</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.SuperHoney">
-            <summary>Full Path: Content/Items/Potions/Healing/Honey/SuperHoney</summary>
+        <member name="F:AequusRemake.AequusTextures.GreaterHoneyPotion">
+            <summary>Full Path: Content/Items/Potions/GreaterHoneyPotion</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.GreaterRestorationPotion">
-            <summary>Full Path: Content/Items/Potions/Healing/Restoration/GreaterRestorationPotion</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.SuperRestorationPotion">
-            <summary>Full Path: Content/Items/Potions/Healing/Restoration/SuperRestorationPotion</summary>
+            <summary>Full Path: Content/Items/Potions/GreaterRestorationPotion</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.MeadowMushroom">
             <summary>Full Path: Content/Items/Potions/Mana/MeadowMushroom</summary>
@@ -2861,6 +2855,12 @@
         </member>
         <member name="F:AequusRemake.AequusTextures.PotionCanteenEmpty">
             <summary>Full Path: Content/Items/Potions/PotionCanteen/PotionCanteenEmpty</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.SuperHoneyPotion">
+            <summary>Full Path: Content/Items/Potions/SuperHoneyPotion</summary>
+        </member>
+        <member name="F:AequusRemake.AequusTextures.SuperRestorationPotion">
+            <summary>Full Path: Content/Items/Potions/SuperRestorationPotion</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.AnglerLamp">
             <summary>Full Path: Content/Items/Tools/AnglerLamp/AnglerLamp</summary>
@@ -3533,18 +3533,6 @@
         </member>
         <member name="F:AequusRemake.AequusTextures.icon_workshop">
             <summary>Full Path: icon_workshop</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.OmegaHoney">
-            <summary>Full Path: Systems/CrossMod/CalamityModSupport/Items/OmegaHoney</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.OmegaRestoration">
-            <summary>Full Path: Systems/CrossMod/CalamityModSupport/Items/OmegaRestoration</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.SupremeHoney">
-            <summary>Full Path: Systems/CrossMod/CalamityModSupport/Items/SupremeHoney</summary>
-        </member>
-        <member name="F:AequusRemake.AequusTextures.SupremeRestoration">
-            <summary>Full Path: Systems/CrossMod/CalamityModSupport/Items/SupremeRestoration</summary>
         </member>
         <member name="F:AequusRemake.AequusTextures.GlimmerEnvelope">
             <summary>Full Path: Systems/CrossMod/SplitSupport/Photography/Envelopes/GlimmerEnvelope</summary>

@@ -1,4 +1,4 @@
-﻿using AequusRemake.Content.Items.Potions.Healing.Restoration;
+﻿using AequusRemake.Content.Items.Potions;
 using AequusRemake.Content.Items.Tools.Keys;
 using AequusRemake.Core.Structures.ID;
 using AequusRemake.Systems.Chests;
@@ -35,8 +35,8 @@ public class CopperChest : UnifiedBuriedChest {
         ChestLootDatabase.Instance.RegisterCommon(type, ItemID.AngelStatue, chanceDemoninator: 10);
         ChestLootDatabase.Instance.RegisterCommon(type, ItemID.Rope, minStack: 25, maxStack: 50, chanceDemoninator: 6);
         ChestLootDatabase.Instance.RegisterCommon(type, ItemID.ThrowingKnife, minStack: 15, maxStack: 30, chanceDemoninator: 4);
-        ChestLootDatabase.Instance.RegisterCommon(type, ModContent.ItemType<LesserRestorationPotion>(), minStack: 1, maxStack: 3, chanceDemoninator: 4);
-        ChestLootDatabase.Instance.RegisterOneFromOptions(type, new IChestLootRule[] {
+        ChestLootDatabase.Instance.RegisterCommon(type, ModContent.GetInstance<RestorationPotions>().Lesser.Type, minStack: 1, maxStack: 3, chanceDemoninator: 4);
+        ChestLootDatabase.Instance.RegisterOneFromOptions(type, [
             new CommonChestRule(ItemID.RegenerationPotion, ChanceDenominator: 3),
             new CommonChestRule(ItemID.ShinePotion, ChanceDenominator: 3),
             new CommonChestRule(ItemID.NightOwlPotion, ChanceDenominator: 3),
@@ -46,7 +46,7 @@ public class CopperChest : UnifiedBuriedChest {
             new CommonChestRule(ItemID.HunterPotion, ChanceDenominator: 3),
             new CommonChestRule(ItemID.MiningPotion, ChanceDenominator: 3),
             new CommonChestRule(ItemID.TrapsightPotion, ChanceDenominator: 3),
-        });
+        ]);
         ChestLootDatabase.Instance.RegisterCommon(type, ItemID.Torch, minStack: 5, maxStack: 10, chanceDemoninator: 4);
         ChestLootDatabase.Instance.RegisterCommon(type, ItemID.RecallPotion, chanceDemoninator: 6);
     }
