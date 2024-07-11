@@ -32,9 +32,13 @@ Pets: {
 	}
 
 	OmegaStaritePet: {
-		BuffDisplayName: Mods.AequusRemake.Pets.OmegaStaritePet.BuffDisplayName
-		BuffDescription: Mods.AequusRemake.Pets.OmegaStaritePet.BuffDescription
-		ItemDisplayName: Mods.AequusRemake.Pets.OmegaStaritePet.ItemDisplayName
-		ItemTooltip: Mods.AequusRemake.Pets.OmegaStaritePet.ItemTooltip
+		BuffDisplayName: Omega Starite Mini
+		BuffDescription: The smallest solar system imaginable, the omega being
+		ItemDisplayName: Omega Core
+		ItemTooltip:
+			'''
+			Summons an Omega Starite Mini to provide light
+			'Ball Incarnate'
+			'''
 	}
 }

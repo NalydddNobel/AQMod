@@ -4,6 +4,9 @@ MeadowMushroom: {
 }
 
 SentryPotion: {
+	DisplayName: Sentinel Potion
+	Tooltip: Increases your maximum amount of sentries by {0}
+	BuffName: Sentinel
 }
 
 TaintedSeafood: {
@@ -35,5 +38,54 @@ Baguette: {
 		'''
 		Supreme improvements to all stats
 		Greatly improves life regeneration
+		'''
+}
+
+// Healing
+
+GreaterHoneyPotion: {
+	DisplayName: Greater Honey Potion
+	Tooltip: Improves natural healing
+}
+
+SuperHoneyPotion: {
+	DisplayName: Super Honey Potion
+	Tooltip: Improves natural healing for a long time
+}
+
+LesserRestorationPotion: {
+	DisplayName: Lesser Restoration Potion
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+GreaterRestorationPotion: {
+	DisplayName: Greater Restoration Potion
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+SuperRestorationPotion: {
+	DisplayName: Super Restoration Potion
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+// Canteens
+
+HallowCanteen: {
+	DisplayName: Magic Canteen
+	DisplayNameAlt: Magic Canteen ({0})
+	Tooltip:
+		'''
+		Allows infinite usage of two potions
+		Hover over with a stack of 15 potions and press <right>
+		'''
+}
+
+PotionCanteen: {
+	DisplayName: Potion Canteen
+	DisplayNameAlt: Potion Canteen ({0})
+	Tooltip:
+		'''
+		Allows infinite usage of a potion
+		Hover over with a stack of 15 potions and press <right>
 		'''
 }

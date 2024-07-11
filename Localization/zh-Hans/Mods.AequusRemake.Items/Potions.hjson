@@ -4,6 +4,9 @@ MeadowMushroom: {
 }
 
 SentryPotion: {
+	DisplayName: 哨兵药水
+	Tooltip: 增加{0}格最大哨兵栏位
+	BuffName: 哨兵
 }
 
 TaintedSeafood: {
@@ -35,5 +38,54 @@ Baguette: {
 		'''
 		大幅度提升所有属性
 		大幅度增加生命再生速度
+		'''
+}
+
+// Healing
+
+GreaterHoneyPotion: {
+	DisplayName: 强效蜂蜜药水
+	Tooltip: 提高自然恢复
+}
+
+SuperHoneyPotion: {
+	DisplayName: 超级蜂蜜药水
+	Tooltip: 在长时间内提高自然恢复
+}
+
+LesserRestorationPotion: {
+	DisplayName: 弱效恢复药水
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+GreaterRestorationPotion: {
+	DisplayName: 强效恢复药水
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+SuperRestorationPotion: {
+	DisplayName: 超级恢复药水
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+// Canteens
+
+HallowCanteen: {
+	DisplayName: 魔力壶
+	DisplayNameAlt: 魔力壶 ({0})
+	Tooltip:
+		'''
+		能够无限使用两种药水
+		光标悬停在堆叠数量为15的药水上并点击右键
+		'''
+}
+
+PotionCanteen: {
+	DisplayName: 药水壶
+	DisplayNameAlt: "{0}壶"
+	Tooltip:
+		'''
+		能够无限使用一种药水
+		光标悬停在堆叠数量为15的药水上并点击右键
 		'''
 }

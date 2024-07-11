@@ -853,12 +853,12 @@ OmniGem: {
 	Tooltip: "'Encantada con la presencia del Éter'"
 }
 
-GreaterHoney: {
+GreaterHoneyPotion: {
 	DisplayName: Poción de Miel Mayor
 	Tooltip: Incrementa la regeneración natural
 }
 
-SuperHoney: {
+SuperHoneyPotion: {
 	DisplayName: Super Poción de Miel
 	Tooltip: Incrementa la regeneración natural por un largo tiempo
 }

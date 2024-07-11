@@ -3,6 +3,15 @@ AncientCutlass: {
 	Tooltip: Enemies have a chance to drop bonus loot on hit
 }
 
+Dynaknife: {
+	DisplayName: The Christmas Spirit
+	Tooltip:
+		'''
+		Hits apply a bomb which will explode on enemies
+		<right> to dash foward and attack
+		'''
+}
+
 MirrorsCall: {
 	DisplayName: Mirror's Call
 	Tooltip: Strike the enemy from the comfort of your couch!

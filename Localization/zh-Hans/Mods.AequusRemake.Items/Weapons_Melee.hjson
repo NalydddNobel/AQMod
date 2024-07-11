@@ -3,6 +3,15 @@ AncientCutlass: {
 	Tooltip: 被击中的敌人有几率掉落更多战利品
 }
 
+Dynaknife: {
+	DisplayName: 圣诞精神
+	Tooltip:
+		'''
+		击中敌人时会施加炸弹并引爆
+		右键向前冲刺并攻击
+		'''
+}
+
 MirrorsCall: {
 	DisplayName: 镜之召
 	Tooltip: 从你舒适的沙发上打击敌人!

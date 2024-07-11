@@ -163,31 +163,6 @@ OmniGem: {
 	Tooltip: "'被以太的存在所附魔'"
 }
 
-GreaterHoney: {
-	DisplayName: 强效蜂蜜药水
-	Tooltip: 提高自然恢复
-}
-
-SuperHoney: {
-	DisplayName: 超级蜂蜜药水
-	Tooltip: 在长时间内提高自然恢复
-}
-
-LesserRestorationPotion: {
-	DisplayName: 弱效恢复药水
-	Tooltip: "{$ItemTooltip.RestorationPotion}"
-}
-
-GreaterRestorationPotion: {
-	DisplayName: 强效恢复药水
-	Tooltip: "{$ItemTooltip.RestorationPotion}"
-}
-
-SuperRestorationPotion: {
-	DisplayName: 超级恢复药水
-	Tooltip: "{$ItemTooltip.RestorationPotion}"
-}
-
 NoHitReward: {
 	DisplayName: 胜者的奖励
 	Tooltip:

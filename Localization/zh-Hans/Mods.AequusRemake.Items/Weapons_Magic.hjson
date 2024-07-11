@@ -11,3 +11,12 @@ Furystar: {
 		攻击会回复魔力值
 		'''
 }
+
+StudiesOfTheInkblot: {
+	DisplayName: 墨迹研究学
+	Tooltip:
+		'''
+		左键释放'弹幕的墨迹测验'
+		右键释放'地底蔷薇'
+		'''
+}

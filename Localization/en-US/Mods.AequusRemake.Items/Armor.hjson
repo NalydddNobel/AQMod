@@ -45,31 +45,3 @@ Armor: {
 		Tooltip_2: "{$Armor.ConeHelmet.Tooltip}"
 	}
 }
-
-HallowCanteen: {
-	DisplayNameAlt: Mods.AequusRemake.Items.HallowCanteen.DisplayNameAlt
-	DisplayName: Hallow Canteen
-	Tooltip: ""
-}
-
-PotionCanteen: {
-	DisplayNameAlt: Mods.AequusRemake.Items.PotionCanteen.DisplayNameAlt
-	DisplayName: Potion Canteen
-	Tooltip: ""
-}
-
-SentryPotion: {
-	BuffName: Mods.AequusRemake.Items.SentryPotion.BuffName
-	Tooltip: ""
-	DisplayName: Sentry Potion
-}
-
-StudiesOfTheInkblot: {
-	DisplayName: Studies Of The Inkblot
-	Tooltip: ""
-}
-
-Dynaknife: {
-	DisplayName: Dynaknife
-	Tooltip: ""
-}
