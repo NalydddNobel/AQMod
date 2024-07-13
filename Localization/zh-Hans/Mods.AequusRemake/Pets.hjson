@@ -33,7 +33,7 @@ Pets: {
 
 	OmegaStaritePet: {
 		BuffDisplayName: 迷你终末之星
-		BuffDescription: 你所能想象的最小的类太阳系
+		BuffDescription: 你所能想象的最小的类太阳系, 终末的存在
 		ItemDisplayName: 终末核心
 		ItemTooltip:
 			'''
