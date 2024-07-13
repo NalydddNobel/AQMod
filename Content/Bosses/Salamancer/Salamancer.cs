@@ -2,15 +2,13 @@
 
 namespace AequusRemake.Content.Bosses.Salamancer;
 
-public class Salamancer() : UnifiedBoss(new(ItemRarity: Commons.Rare.BossSalamancer)) {
+public partial class Salamancer() : UnifiedBoss(new(ItemRarity: Commons.Rare.BossSalamancer)) {
     public Point Origin;
 
     public override void SetDefaults() {
-
-    }
-
-    public override void AI() {
-        base.AI();
+        NPC.width = 60;
+        NPC.height = 60;
+        NPC.boss = true;
     }
 
     public override void FindFrame(int frameHeight) {
