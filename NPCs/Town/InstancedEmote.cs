@@ -3,25 +3,18 @@
 namespace Aequus.NPCs.Town;
 
 [Autoload(false)]
-internal class InstancedEmote : ModEmoteBubble {
-    private readonly int _emoteCategory;
+internal class InstancedEmote(string name, string texture, int emoteCategory, Func<bool> IsUnlocked = null) : ModEmoteBubble {
+    private readonly int _emoteCategory = emoteCategory;
 
-    private readonly Func<bool> _isUnlocked;
+    private readonly Func<bool> _isUnlocked = IsUnlocked;
 
-    private readonly string _name;
-    private readonly string _texture;
+    private readonly string _name = name;
+    private readonly string _texture = texture;
 
     public override string Name => _name;
     public override string Texture => _texture;
 
     protected override bool CloneNewInstances => true;
-
-    public InstancedEmote(string name, string texture, int emoteCategory, Func<bool> IsUnlocked = null) {
-        _name = name;
-        _texture = texture;
-        _emoteCategory = emoteCategory;
-        _isUnlocked = IsUnlocked;
-    }
 
     public override void SetStaticDefaults() {
         AddToCategory(_emoteCategory);
@@ -32,12 +25,8 @@ internal class InstancedEmote : ModEmoteBubble {
     }
 }
 
-internal class InstancedNPCEmote : InstancedEmote {
-    private readonly ModNPC _parentNPC;
-
-    public InstancedNPCEmote(ModNPC modNPC, int emoteCategory, Func<bool> IsUnlocked = null) : base($"{modNPC.Name}", $"{modNPC.NamespaceFilePath()}/Emotes/{modNPC.Name}Emote", emoteCategory, IsUnlocked) {
-        _parentNPC = modNPC;
-    }
+internal class InstancedNPCEmote(ModNPC modNPC, int emoteCategory, Func<bool> IsUnlocked = null) : InstancedEmote($"{modNPC.Name}", $"{modNPC.NamespacePath()}/Emotes/{modNPC.Name}Emote", emoteCategory, IsUnlocked) {
+    private readonly ModNPC _parentNPC = modNPC;
 
     public override void SetStaticDefaults() {
         base.SetStaticDefaults();

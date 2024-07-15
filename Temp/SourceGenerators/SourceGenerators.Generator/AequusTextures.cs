@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1309)</summary>
+    /// <summary>(Amt Textures: 1316)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         /// <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -130,6 +130,10 @@ namespace Aequus {
         public static readonly TextureAsset Baguette = new("Aequus/Items/Misc/Foods/Baguette/Baguette");
         /// <summary>Full Path: Aequus/Items/Misc/Foods/Baguette/BaguetteBuff</summary>
         public static readonly TextureAsset BaguetteBuff = new("Aequus/Items/Misc/Foods/Baguette/BaguetteBuff");
+        /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Balloon</summary>
+        public static readonly TextureAsset Balloon = new("Aequus/NPCs/Town/SkyMerchant/Balloon");
+        /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Shimmer/Balloon_Shimmer</summary>
+        public static readonly TextureAsset Balloon_Shimmer = new("Aequus/NPCs/Town/SkyMerchant/Shimmer/Balloon_Shimmer");
         /// <summary>Full Path: Aequus/Items/Equipment/Mounts/HotAirBalloon/BalloonKit</summary>
         public static readonly TextureAsset BalloonKit = new("Aequus/Items/Equipment/Mounts/HotAirBalloon/BalloonKit");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Misc/GaleStreams/Baozhu/Baozhu</summary>
@@ -142,6 +146,10 @@ namespace Aequus {
         public static readonly TextureAsset BarbedHarpoon = new("Aequus/Items/Weapons/Ranged/Misc/BarbedHarpoon");
         /// <summary>Full Path: Aequus/Assets/Textures/BaseParticleTexture</summary>
         public static readonly TextureAsset BaseParticleTexture = new("Aequus/Assets/Textures/BaseParticleTexture");
+        /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Basket</summary>
+        public static readonly TextureAsset Basket = new("Aequus/NPCs/Town/SkyMerchant/Basket");
+        /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Shimmer/Basket_Shimmer</summary>
+        public static readonly TextureAsset Basket_Shimmer = new("Aequus/NPCs/Town/SkyMerchant/Shimmer/Basket_Shimmer");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/BattleAxe/BattleAxe</summary>
         public static readonly TextureAsset BattleAxe = new("Aequus/Items/Weapons/Melee/Swords/BattleAxe/BattleAxe");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/BattleAxe/BattleAxeProj</summary>
@@ -1976,8 +1984,6 @@ namespace Aequus {
         public static readonly TextureAsset RegrowingBait = new("Aequus/Items/Equipment/Accessories/Misc/Fishing/RegrowingBait");
         /// <summary>Full Path: Aequus/Particles/Dusts/ReliefshroomDustSpore</summary>
         public static readonly TextureAsset ReliefshroomDustSpore = new("Aequus/Particles/Dusts/ReliefshroomDustSpore");
-        /// <summary>Full Path: Aequus/Content/UI/Renaming/RenameBackIcon</summary>
-        public static readonly TextureAsset RenameBackIcon = new("Aequus/Content/UI/Renaming/RenameBackIcon");
         /// <summary>Full Path: Aequus/Content/UI/GrabBagReroll/RerollButton</summary>
         public static readonly TextureAsset RerollButton = new("Aequus/Content/UI/GrabBagReroll/RerollButton");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Resonance</summary>
@@ -2106,18 +2112,26 @@ namespace Aequus {
         public static readonly TextureAsset SkeletonMerchantHead = new("Aequus/Assets/UI/SkeletonMerchantHead");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
         public static readonly TextureAsset SkyHunterCrossbow = new("Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow");
-        /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchantNPC/SkyMerchant</summary>
-        public static readonly TextureAsset SkyMerchant = new("Aequus/NPCs/Town/SkyMerchantNPC/SkyMerchant");
-        /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchantNPC/SkyMerchant_Head</summary>
-        public static readonly TextureAsset SkyMerchant_Head = new("Aequus/NPCs/Town/SkyMerchantNPC/SkyMerchant_Head");
-        /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchantNPC/SkyMerchant_Resprite</summary>
-        public static readonly TextureAsset SkyMerchant_Resprite = new("Aequus/NPCs/Town/SkyMerchantNPC/SkyMerchant_Resprite");
-        /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchantNPC/SkyMerchantBalloon</summary>
-        public static readonly TextureAsset SkyMerchantBalloon = new("Aequus/NPCs/Town/SkyMerchantNPC/SkyMerchantBalloon");
-        /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchantNPC/SkyMerchantBasket</summary>
-        public static readonly TextureAsset SkyMerchantBasket = new("Aequus/NPCs/Town/SkyMerchantNPC/SkyMerchantBasket");
-        /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchantNPC/SkyMerchantFlee</summary>
-        public static readonly TextureAsset SkyMerchantFlee = new("Aequus/NPCs/Town/SkyMerchantNPC/SkyMerchantFlee");
+        /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/SkyMerchant</summary>
+        public static readonly TextureAsset SkyMerchant = new("Aequus/NPCs/Town/SkyMerchant/SkyMerchant");
+        /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/SkyMerchant_Aiming</summary>
+        public static readonly TextureAsset SkyMerchant_Aiming = new("Aequus/NPCs/Town/SkyMerchant/SkyMerchant_Aiming");
+        /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/SkyMerchant_CrossbowArm</summary>
+        public static readonly TextureAsset SkyMerchant_CrossbowArm = new("Aequus/NPCs/Town/SkyMerchant/SkyMerchant_CrossbowArm");
+        /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/SkyMerchant_CustomHead</summary>
+        public static readonly TextureAsset SkyMerchant_CustomHead = new("Aequus/NPCs/Town/SkyMerchant/SkyMerchant_CustomHead");
+        /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/SkyMerchant_Head</summary>
+        public static readonly TextureAsset SkyMerchant_Head = new("Aequus/NPCs/Town/SkyMerchant/SkyMerchant_Head");
+        /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer</summary>
+        public static readonly TextureAsset SkyMerchant_Shimmer = new("Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer");
+        /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Aiming</summary>
+        public static readonly TextureAsset SkyMerchant_Shimmer_Aiming = new("Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Aiming");
+        /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CrossbowArm</summary>
+        public static readonly TextureAsset SkyMerchant_Shimmer_CrossbowArm = new("Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CrossbowArm");
+        /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Head</summary>
+        public static readonly TextureAsset SkyMerchant_Shimmer_Head = new("Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Head");
+        /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Emotes/SkyMerchantEmote</summary>
+        public static readonly TextureAsset SkyMerchantEmote = new("Aequus/NPCs/Town/SkyMerchant/Emotes/SkyMerchantEmote");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/SkyrimRock1</summary>
         public static readonly TextureAsset SkyrimRock1 = new("Aequus/Tiles/Paintings/Canvas3x2/SkyrimRock1");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/SkyrimRock2</summary>

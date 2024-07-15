@@ -1,17 +1,6 @@
-﻿using Aequus.Common.Renaming;
-using Aequus.Core.UI;
-using Aequus.Core.UI.Elements;
-using ReLogic.Content;
-using Terraria.Audio;
-using Terraria.DataStructures;
-using Terraria.GameContent;
-using Terraria.GameContent.UI.Elements;
-using Terraria.Localization;
-using Terraria.UI;
-using Terraria.UI.Chat;
+﻿namespace Aequus.Content.TownNPCs.SkyMerchant.UI;
 
-namespace Aequus.Content.TownNPCs.SkyMerchant.UI;
-
+/*
 public class SkyMerchantRenameUIState : UIState, ILoad {
     public ImprovedItemSlot SendItem { get; private set; }
     public ImprovedItemSlot ReceiveItem { get; private set; }
@@ -197,3 +186,4 @@ public class SkyMerchantRenameUIState : UIState, ILoad {
 
     public void Unload() { }
 }
+*/

@@ -2689,6 +2689,21 @@ Mods: {
 				DisplayName: Narry
 				Tooltip: "{$PaintingSignature.NalydT}"
 			}
+
+			GreaterHoney: {
+				DisplayName: Greater Honey
+				Tooltip: ""
+			}
+
+			SuperHoney: {
+				DisplayName: Super Honey
+				Tooltip: ""
+			}
+
+			SkyHunterCrossbow: {
+				DisplayName: Sky Hunter Crossbow
+				Tooltip: ""
+			}
 		}
 
 		ItemTooltip: {

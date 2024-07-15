@@ -1,4 +1,5 @@
-﻿using System;
+﻿/*
+using System;
 using Terraria.DataStructures;
 
 namespace Aequus.NPCs.Town.SkyMerchant;
@@ -41,3 +42,4 @@ public class SkyMerchantSystem : ModSystem {
         }
     }
 }
+*/

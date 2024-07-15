@@ -2690,18 +2690,18 @@ Mods: {
 				Tooltip: "{$PaintingSignature.NalydT}"
 			}
 
-			BeyondPlatinumCoin: {
-				// DisplayName: Beyond Platinum Coin
+			GreaterHoney: {
+				// DisplayName: Greater Honey
 				// Tooltip: ""
 			}
 
-			ShimmerCoin: {
-				// DisplayName: Shimmer Coin
+			SuperHoney: {
+				// DisplayName: Super Honey
 				// Tooltip: ""
 			}
 
-			SteampunkerFishingPole: {
-				// DisplayName: Steampunker Fishing Pole
+			SkyHunterCrossbow: {
+				// DisplayName: Sky Hunter Crossbow
 				// Tooltip: ""
 			}
 		}

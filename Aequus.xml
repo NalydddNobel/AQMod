@@ -1562,7 +1562,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1309)</summary>
+            <summary>(Amt Textures: 1316)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -1750,6 +1750,12 @@
         <member name="F:Aequus.AequusTextures.BaguetteBuff">
             <summary>Full Path: Aequus/Items/Misc/Foods/Baguette/BaguetteBuff</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Balloon">
+            <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Balloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Balloon_Shimmer">
+            <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Shimmer/Balloon_Shimmer</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.BalloonKit">
             <summary>Full Path: Aequus/Items/Equipment/Mounts/HotAirBalloon/BalloonKit</summary>
         </member>
@@ -1767,6 +1773,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.BaseParticleTexture">
             <summary>Full Path: Aequus/Assets/Textures/BaseParticleTexture</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Basket">
+            <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Basket</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Basket_Shimmer">
+            <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Shimmer/Basket_Shimmer</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BattleAxe">
             <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/BattleAxe/BattleAxe</summary>
@@ -4519,9 +4531,6 @@
         <member name="F:Aequus.AequusTextures.ReliefshroomDustSpore">
             <summary>Full Path: Aequus/Particles/Dusts/ReliefshroomDustSpore</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.RenameBackIcon">
-            <summary>Full Path: Aequus/Content/UI/Renaming/RenameBackIcon</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.RerollButton">
             <summary>Full Path: Aequus/Content/UI/GrabBagReroll/RerollButton</summary>
         </member>
@@ -4715,22 +4724,34 @@
             <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SkyMerchant">
-            <summary>Full Path: Aequus/NPCs/Town/SkyMerchantNPC/SkyMerchant</summary>
+            <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/SkyMerchant</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Aiming">
+            <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/SkyMerchant_Aiming</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_CrossbowArm">
+            <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/SkyMerchant_CrossbowArm</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_CustomHead">
+            <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/SkyMerchant_CustomHead</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SkyMerchant_Head">
-            <summary>Full Path: Aequus/NPCs/Town/SkyMerchantNPC/SkyMerchant_Head</summary>
+            <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/SkyMerchant_Head</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchant_Resprite">
-            <summary>Full Path: Aequus/NPCs/Town/SkyMerchantNPC/SkyMerchant_Resprite</summary>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer">
+            <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchantBalloon">
-            <summary>Full Path: Aequus/NPCs/Town/SkyMerchantNPC/SkyMerchantBalloon</summary>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer_Aiming">
+            <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Aiming</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchantBasket">
-            <summary>Full Path: Aequus/NPCs/Town/SkyMerchantNPC/SkyMerchantBasket</summary>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer_CrossbowArm">
+            <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CrossbowArm</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchantFlee">
-            <summary>Full Path: Aequus/NPCs/Town/SkyMerchantNPC/SkyMerchantFlee</summary>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer_Head">
+            <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchantEmote">
+            <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Emotes/SkyMerchantEmote</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SkyrimRock1">
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/SkyrimRock1</summary>

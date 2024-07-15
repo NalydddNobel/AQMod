@@ -1,4 +1,5 @@
-﻿using Aequus.Common.NPCs;
+﻿/*
+using Aequus.Common.NPCs;
 using Aequus.Content.TownNPCs.SkyMerchant.UI;
 using Aequus.Core.ContentGeneration;
 using System;
@@ -353,3 +354,4 @@ public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
     }
     #endregion
 }
+*/

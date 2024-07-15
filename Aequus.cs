@@ -2,21 +2,16 @@ using Aequus.Common.CrossMod.ModCalls;
 using Aequus.Common.Net;
 using Aequus.Common.Preferences;
 using Aequus.Content.DamageClasses;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using MonoMod.RuntimeDetour;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using Terraria;
 using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Aequus; 
+namespace Aequus;
 public class Aequus : Mod {
     public const char MOD_NAME_SEPERATOR = '/';
 
@@ -81,8 +76,7 @@ public class Aequus : Mod {
     /// </summary>
     /// <param name="type">The ID of the Packet</param>
     /// <returns></returns>
-    public static ModPacket GetPacket(PacketType type)
-    {
+    public static ModPacket GetPacket(PacketType type) {
         var p = Instance.GetPacket();
         p.Write((byte)type);
         return p;
@@ -92,23 +86,20 @@ public class Aequus : Mod {
         return ModContent.GetInstance<T>();
     }
 
-    public override void Load()
-    {
+    public override void Load() {
         Instance = this;
-        if (Main.netMode != NetmodeID.Server)
-        {
+        if (Main.netMode != NetmodeID.Server) {
             UserInterface = new UserInterface();
         }
 
-        foreach (var t in GetContent<IOnModLoad>())
-        {
+        foreach (var t in GetContent<IOnModLoad>()) {
             t.OnModLoad(this);
         }
         //On.Terraria.WorldGen.TileFrame += WorldGen_TileFrame;
     }
 
     //private static void WorldGen_TileFrame(On.Terraria.WorldGen.orig_TileFrame orig, int i, int j, bool resetFrame, bool noBreak) {
-        
+
     //    if (Helper.iterations < 100 && Main.fpsTimer.ElapsedMilliseconds > 1000) {
     //        Instance.Logger.Info(Environment.StackTrace);
     //        Helper.iterations++;
@@ -116,58 +107,46 @@ public class Aequus : Mod {
     //    orig(i, j, resetFrame, noBreak);
     //}
 
-    public override void Unload()
-    {
+    public override void Unload() {
         Instance = null;
         UserInterface = null;
     }
 
-    public override object Call(params object[] args)
-    {
+    public override object Call(params object[] args) {
         return ModCallManager.HandleModCall(args);
     }
 
-    public override void HandlePacket(BinaryReader reader, int whoAmI)
-    {
+    public override void HandlePacket(BinaryReader reader, int whoAmI) {
         PacketSystem.HandlePacket(reader, whoAmI);
     }
 
     [Obsolete("Use Common.ContentArrayFile instead.")]
-    public static Dictionary<string, List<string>> GetContentArrayFile(string name)
-    {
-        using (var stream = Instance.GetFileStream($"Content/{name}.json", newFileStream: true))
-        {
-            using (var streamReader = new StreamReader(stream))
-            {
+    public static Dictionary<string, List<string>> GetContentArrayFile(string name) {
+        using (var stream = Instance.GetFileStream($"Content/{name}.json", newFileStream: true)) {
+            using (var streamReader = new StreamReader(stream)) {
                 return JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(streamReader.ReadToEnd());
             }
         }
     }
 
-    public static Dictionary<string, Dictionary<string, string>> GetContentFile(string name)
-    {
-        using (var stream = Instance.GetFileStream($"Content/{name}.json", newFileStream: true))
-        {
-            using (var streamReader = new StreamReader(stream))
-            {
+    public static Dictionary<string, Dictionary<string, string>> GetContentFile(string name) {
+        using (var stream = Instance.GetFileStream($"Content/{name}.json", newFileStream: true)) {
+            using (var streamReader = new StreamReader(stream)) {
                 return JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(streamReader.ReadToEnd());
             }
         }
     }
 
-    public static bool CloseToEffect(Vector2 where)
-    {
+    public static bool CloseToEffect(Vector2 where) {
         return Main.netMode == NetmodeID.Server ? false : Main.player[Main.myPlayer].Distance(where) < 1500f;
     }
 
     [Obsolete("Replaced with AequusSounds")]
-    internal static SoundStyle GetSounds(string name, int num, float volume = 1f, float pitch = 0f, float variance = 0f)
-    {
+    internal static SoundStyle GetSounds(string name, int num, float volume = 1f, float pitch = 0f, float variance = 0f) {
         return new SoundStyle(SoundsPath + name, 0, num) { Volume = volume, Pitch = pitch, PitchVariance = variance, };
     }
     [Obsolete("Replaced with AequusSounds")]
-    internal static SoundStyle GetSound(string name, float volume = 1f, float pitch = 0f, float variance = 0f)
-    {
+    internal static SoundStyle GetSound(string name, float volume = 1f, float pitch = 0f, float variance = 0f) {
         return new SoundStyle(SoundsPath + name) { Volume = volume, Pitch = pitch, PitchVariance = variance, };
     }
 

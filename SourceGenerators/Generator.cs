@@ -34,6 +34,7 @@ public class Generator : ISourceGenerator {
             var textureFiles = new List<TextureFile>();
             foreach (var file in context.AdditionalFiles.Where(f => f.Path.EndsWith(".png"))) {
                 var safePath = file.Path.Replace('\\', '/');
+                Errors.Add(safePath);
                 safePath = safePath.Substring(safePath.IndexOf("Aequus/")).Replace(".png", "");
 
                 var name = safePath.Substring(safePath.LastIndexOf('/') + 1);

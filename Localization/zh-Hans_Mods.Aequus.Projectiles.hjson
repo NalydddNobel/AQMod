@@ -255,4 +255,4 @@ UpriserNecromancyAttack.DisplayName: 暴乱者死灵攻击
 // RevenantProj.DisplayName: Revenant Proj
 // CorruptionSceptreProj.DisplayName: Corruption Sceptre Proj
 // OsirisProj.DisplayName: Osiris Proj
-// SteampunkerBobber.DisplayName: Steampunker Bobber
+// SteampunkerBobber.DisplayName: "{$Items.SteampunkerFishingPole.DisplayName}"

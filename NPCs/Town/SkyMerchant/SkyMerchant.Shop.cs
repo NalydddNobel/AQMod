@@ -1,8 +1,7 @@
-﻿using System;
-
-namespace Aequus.NPCs.Town.SkyMerchant;
+﻿namespace Aequus.NPCs.Town.SkyMerchant;
 
 public partial class SkyMerchant {
+    /*
     public override void AddShops() {
         int celestialMagnetAltId = VanillaChangesConfig.Instance.MoveTreasureMagnet ? ItemID.TreasureMagnet : ItemID.CelestialMagnet;
 
@@ -22,4 +21,5 @@ public partial class SkyMerchant {
             .AddCustomValue<FlashwayShield>(Commons.Cost.NPCSkyMerchantCustomPrice, Commons.Conditions.DayOfTheWeek(DayOfWeek.Saturday))
             .Register();
     }
+    */
 }
