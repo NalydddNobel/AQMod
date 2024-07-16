@@ -4,6 +4,7 @@ using Terraria.DataStructures;
 namespace Aequus.Common.Items;
 public static class ItemDefaults {
     public const int RarityCrabCrevice = ItemRarityID.Blue;
+    public const int RaritySalamancer = ItemRarityID.Blue;
     public const int RarityGlimmer = ItemRarityID.Green;
     public const int RarityDemonSiege = ItemRarityID.Orange;
     public const int RarityUltraStarite = ItemRarityID.Orange;
