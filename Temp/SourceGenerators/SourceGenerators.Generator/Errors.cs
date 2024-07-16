@@ -1840,6 +1840,8 @@ public class AequusGeneratorErrors
 #---------------------------------------#
     C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CrossbowArm.png
 #---------------------------------------#
+    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CustomHead.png
+#---------------------------------------#
     C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Head.png
 #---------------------------------------#
     C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/NPCs/Town/SkyMerchant/SkyMerchant.png

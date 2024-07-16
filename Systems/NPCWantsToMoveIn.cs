@@ -2,7 +2,7 @@
 using Terraria.DataStructures;
 using Terraria.Localization;
 
-namespace Aequus.NPCs;
+namespace Aequus.Systems;
 
 public class NPCWantsToMoveIn : GlobalNPC {
     private static int _lastNPCAnnounced;

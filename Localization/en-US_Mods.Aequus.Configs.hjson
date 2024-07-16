@@ -179,5 +179,11 @@ GameplayConfig: {
 		General: -- General --
 		World: -- World --
 		Recipes: -- Recipes --
+		VanillaChanges: -- Vanilla Changes --
+	}
+
+	MoveTreasureMagnet: {
+		Label: Move Treasure Magnet
+		Tooltip: ""
 	}
 }

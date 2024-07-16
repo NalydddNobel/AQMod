@@ -1,5 +1,4 @@
-﻿/*
-using Aequus.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
+﻿using Aequus.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
 using Aequus.Projectiles;
 using System;
 using System.Collections.Generic;
@@ -128,4 +127,3 @@ public class SkyMerchantProjectile : ModProjectile {
         behindNPCs.Add(index);
     }
 }
-*/

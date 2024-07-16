@@ -1,7 +1,8 @@
-﻿/*
-using Aequus.Common.NPCs;
-using Aequus.Content.TownNPCs.SkyMerchant.UI;
+﻿using Aequus.Common.NPCs;
+using Aequus.Content.Events.GlimmerEvent;
+using Aequus.Content.Events.GlimmerEvent.Peaceful;
 using Aequus.Core.ContentGeneration;
+using Aequus.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;
@@ -44,14 +45,8 @@ public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
 
     #region Initialization
     public override void Load() {
-        if (!Main.dedServ) {
-            LoadDrawSets();
-        }
+        LoadDrawSets();
         Mod.AddContent(new InstancedNPCEmote(this, EmoteID.Category.Town));
-    }
-
-    public override void Unload() {
-        UnloadDrawSets();
     }
 
     public override void SetStaticDefaults() {
@@ -84,7 +79,7 @@ public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
     }
 
     private void BalloonMovement() {
-        Vector2 gotoPosition = new Vector2(SkyMerchantSystem.SkyMerchantX * 16f, Helper.Oscillate((float)Main.time / 1000f, (float)Helper.ZoneSkyHeightY / 2f, (float)Helper.ZoneSkyHeightY * 16f - 200f));
+        Vector2 gotoPosition = new Vector2(SkyMerchantSystem.SkyMerchantX * 16f, Helper.Wave((float)Main.time / 1000f, (float)Helper.ZoneSkyHeightY / 2f, (float)Helper.ZoneSkyHeightY * 16f - 200f));
         //Dust.NewDustPerfect(gotoPosition, DustID.Torch);
         var wantedVelocity = NPC.DirectionTo(gotoPosition);
         NPC.direction = 1;
@@ -99,7 +94,7 @@ public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
 
     private void BalloonAttack() {
         NPC.ai[1]++;
-        if (Main.netMode != NetmodeID.MultiplayerClient && NPC.ai[1] > 0f && Main.rand.NextBool(NPCSets.AttackAverageChance[Type])) {
+        if (Main.netMode != NetmodeID.MultiplayerClient && NPC.ai[1] > 0f && Main.rand.NextBool(NPCID.Sets.AttackAverageChance[Type])) {
             var velocity = NPC.DirectionTo(Main.npc[target].Center + Main.npc[target].velocity * 10f);
             NPC.velocity -= velocity * 1f;
             float speed = 18f;
@@ -185,7 +180,7 @@ public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
                 NPC.velocity.Y += (1f - balloonOpacity) * 0.3f;
             }
 
-            int attackRange = NPCSets.DangerDetectRange[Type] == -1 ? 200 : NPCSets.DangerDetectRange[Type];
+            int attackRange = NPCID.Sets.DangerDetectRange[Type] == -1 ? 200 : NPCID.Sets.DangerDetectRange[Type];
             float closestDistance = attackRange;
             for (int i = 0; i < Main.maxNPCs; i++) {
                 if (Main.npc[i].active && !Main.npc[i].friendly && Main.npc[i].damage > 0 && (Main.npc[i].noTileCollide || Collision.CanHit(NPC.Center, 0, 0, Main.npc[i].Center, 0, 0)) && NPCLoader.CanHitNPC(Main.npc[i], NPC)) {
@@ -281,7 +276,9 @@ public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
             shopName = "Shop";
         }
         else {
-            ModContent.GetInstance<NPCChat>().Interface.SetState<SkyMerchantRenameUIState>();
+#if !DEBUG
+            Aequus.UserInterface.SetState<SkyMerchantRenameUIState>();
+#endif
         }
     }
 
@@ -303,7 +300,7 @@ public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
         if (Main.bloodMoon && Main.rand.NextBool(3)) {
             key = "BloodMoon";
         }
-        if (Main.LocalPlayer.ZoneGlimmer() && Main.rand.NextBool(3)) {
+        if ((Main.LocalPlayer.InModBiome<GlimmerZone>() || Main.LocalPlayer.InModBiome<PeacefulGlimmerZone>()) && Main.rand.NextBool(3)) {
             key = "Glimmer";
         }
         if (Main.eclipse && Main.rand.NextBool(3)) {
@@ -354,4 +351,3 @@ public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
     }
     #endregion
 }
-*/

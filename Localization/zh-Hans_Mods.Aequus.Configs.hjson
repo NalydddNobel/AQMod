@@ -179,5 +179,11 @@ GameplayConfig: {
 		General: -- 常规 --
 		World: -- 世界 --
 		Recipes: -- 合成表 --
+		// VanillaChanges: Vanilla Changes Header
+	}
+
+	MoveTreasureMagnet: {
+		// Label: Move Treasure Magnet
+		// Tooltip: ""
 	}
 }

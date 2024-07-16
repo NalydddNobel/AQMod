@@ -3651,6 +3651,8 @@ Mods: {
 			JeweledCandelabra: Mods.Aequus.ItemName.JeweledCandelabra
 			JeweledChalice: Mods.Aequus.ItemName.JeweledChalice
 		}
+
+		// Emotes.SkyMerchant.Command: skymerchant
 	}
 }
 

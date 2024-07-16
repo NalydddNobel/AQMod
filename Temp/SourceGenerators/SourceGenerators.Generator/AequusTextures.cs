@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1316)</summary>
+    /// <summary>(Amt Textures: 1317)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         /// <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -2128,6 +2128,8 @@ namespace Aequus {
         public static readonly TextureAsset SkyMerchant_Shimmer_Aiming = new("Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Aiming");
         /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CrossbowArm</summary>
         public static readonly TextureAsset SkyMerchant_Shimmer_CrossbowArm = new("Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CrossbowArm");
+        /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CustomHead</summary>
+        public static readonly TextureAsset SkyMerchant_Shimmer_CustomHead = new("Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CustomHead");
         /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Head</summary>
         public static readonly TextureAsset SkyMerchant_Shimmer_Head = new("Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Head");
         /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Emotes/SkyMerchantEmote</summary>

@@ -1537,6 +1537,28 @@
         <member name="M:Aequus.Common.Utilities.LootBuilder.AddBossLoot(Terraria.ModLoader.ILoot,System.Int32,Terraria.GameContent.ItemDropRules.IItemDropRule)">
             <summary>Adds rule to <paramref name="loot"/>, and to the Item specified by <paramref name="bossBagId"/>. <paramref name="loot"/>'s rule will be conditioned to only drop in Classic (Normal) Mode.</summary>
         </member>
+        <member name="M:Aequus.Common.Utilities.TextBroadcast.NewText(System.String,Microsoft.Xna.Framework.Color,System.Object[])">
+            <summary>
+            Broadcasts a message. Only does something when <see cref="F:Terraria.Main.netMode"/> is not equal to <see cref="F:Terraria.ID.NetmodeID.MultiplayerClient"/>.
+            </summary>
+            <param name="key"></param>
+            <param name="color"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Aequus.Common.Utilities.TextBroadcast.NewText(System.String,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Broadcasts a language key.
+            </summary>
+            <param name="text"></param>
+            <param name="color"></param>
+        </member>
+        <member name="M:Aequus.Common.Utilities.TextBroadcast.NewTextLiteral(System.String,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Broadcasts a literal key.
+            </summary>
+            <param name="text"></param>
+            <param name="color"></param>
+        </member>
         <member name="T:Aequus.Common.World.StructureLookups">
             <summary>
             A <see cref="T:System.Collections.Generic.Dictionary`2"/> of {<see cref="T:System.String"/>, <see cref="T:Microsoft.Xna.Framework.Point"/>} for looking up special structures in the world.
@@ -1562,7 +1584,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1316)</summary>
+            <summary>(Amt Textures: 1317)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -4746,6 +4768,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer_CrossbowArm">
             <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CrossbowArm</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer_CustomHead">
+            <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CustomHead</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer_Head">
             <summary>Full Path: Aequus/NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Head</summary>

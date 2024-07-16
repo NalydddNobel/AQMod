@@ -40,7 +40,7 @@ public abstract class UnifiedTownNPC<T> : UnifiedTownNPC where T : UnifiedTownNP
     public static int ShimmerHeadIndex { get; protected set; }
     public static StackedNPCProfile Profile { get; protected set; }
 
-    protected static string ShimmerTexture => $"{typeof(T).NamespacePath()}/Shimmer/{typeof(T).Name}_Shimmer";
+    protected static string ShimmerTexture => $"{Helper.NamespacePath<T>()}/Shimmer/{typeof(T).Name}_Shimmer";
 
     public override void Load() {
         ShimmerHeadIndex = Mod.AddNPCHeadTexture(Type, ShimmerTexture + "_Head");

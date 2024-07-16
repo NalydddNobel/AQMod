@@ -1,4 +1,4 @@
-﻿/*
+﻿using Aequus.Common.Utilities;
 using System;
 using Terraria.DataStructures;
 
@@ -42,4 +42,3 @@ public class SkyMerchantSystem : ModSystem {
         }
     }
 }
-*/

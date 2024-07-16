@@ -75,6 +75,8 @@ public static partial class Helper {
 
     private const char FULL_NAME_SEPERATOR = '/';
 
+    public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
+
     public static bool IsChildOrNoSpecialEffects(this Projectile projectile) {
         return projectile.GetGlobalProjectile<ProjectileItemData>().NoSpecialEffects || projectile.GetGlobalProjectile<AequusProjectile>().HasProjectileOwner;
     }
@@ -411,7 +413,7 @@ public static partial class Helper {
         return ZoneSkyHeight((int)worldY / 16);
     }
     public static bool ZoneSkyHeight(int tileY) {
-        return tileY < Main.worldSurface * 0.35f;
+        return tileY < ZoneSkyHeightY;
     }
 
     public static Vector2 DirectionFrom(this Entity entity, Vector2 position2) {
@@ -2537,14 +2539,14 @@ public static partial class Helper {
         return value < 0f ? -value : value;
     }
 
+    public static string NamespacePath(Type t) {
+        return t.Namespace.Replace('.', '/');
+    }
     public static string NamespacePath(this object obj) {
         return NamespacePath(obj.GetType());
     }
     public static string NamespacePath<T>() {
         return NamespacePath(typeof(T));
-    }
-    public static string NamespacePath(Type t) {
-        return t.Namespace.Replace('.', '/');
     }
     public static string GetPath(this object obj) {
         return GetPath(obj.GetType());

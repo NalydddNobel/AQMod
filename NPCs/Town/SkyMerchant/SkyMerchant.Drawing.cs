@@ -1,5 +1,4 @@
-﻿/*
-using ReLogic.Content;
+﻿using ReLogic.Content;
 using System;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -9,23 +8,16 @@ using Terraria.UI;
 namespace Aequus.NPCs.Town.SkyMerchant;
 
 public partial class SkyMerchant {
-    public readonly struct TextureDrawSet {
-        public readonly Asset<Texture2D> Balloon;
-        public readonly Asset<Texture2D> Basket;
-        public readonly Asset<Texture2D> Aiming;
-        public readonly Asset<Texture2D> CrossbowArm;
+    public readonly struct TextureDrawSet(Asset<Texture2D> balloon, Asset<Texture2D> basket, Asset<Texture2D> aiming, Asset<Texture2D> crossbowArm, Asset<Texture2D> head) {
+        public readonly Asset<Texture2D> Balloon = balloon;
+        public readonly Asset<Texture2D> Basket = basket;
+        public readonly Asset<Texture2D> Aiming = aiming;
+        public readonly Asset<Texture2D> CrossbowArm = crossbowArm;
+        public readonly Asset<Texture2D> Head = head;
 
-        private readonly bool _valid = false;
+        private readonly bool _valid = true;
 
         public bool Valid => _valid;
-
-        public TextureDrawSet(Asset<Texture2D> balloon, Asset<Texture2D> basket, Asset<Texture2D> aiming, Asset<Texture2D> crossbowArm) {
-            Balloon = balloon;
-            Basket = basket;
-            Aiming = aiming;
-            CrossbowArm = crossbowArm;
-            _valid = true;
-        }
     }
 
     public static TextureDrawSet DefaultDrawSet;
@@ -34,13 +26,8 @@ public partial class SkyMerchant {
     public TextureDrawSet drawSet;
 
     private void LoadDrawSets() {
-        DefaultDrawSet = new(AequusTextures.Balloon, AequusTextures.Basket, AequusTextures.SkyMerchant_Aiming, AequusTextures.SkyMerchant_CrossbowArm);
-        ShimmerDrawSet = new(AequusTextures.Balloon_Shimmer, AequusTextures.Basket_Shimmer, AequusTextures.SkyMerchant_Shimmer_Aiming, AequusTextures.SkyMerchant_Shimmer_CrossbowArm);
-    }
-
-    private void UnloadDrawSets() {
-        DefaultDrawSet = default;
-        ShimmerDrawSet = default;
+        DefaultDrawSet = new(AequusTextures.Balloon, AequusTextures.Basket, AequusTextures.SkyMerchant_Aiming, AequusTextures.SkyMerchant_CrossbowArm, AequusTextures.SkyMerchant_CustomHead);
+        ShimmerDrawSet = new(AequusTextures.Balloon_Shimmer, AequusTextures.Basket_Shimmer, AequusTextures.SkyMerchant_Shimmer_Aiming, AequusTextures.SkyMerchant_Shimmer_CrossbowArm, AequusTextures.SkyMerchant_Shimmer_CustomHead);
     }
 
     private void DrawAnchored(SpriteBatch spriteBatch, Texture2D texture, Vector2 position, Vector2 offset, Rectangle? frame, Color color, float rotation, Vector2 origin, float scale, SpriteEffects spriteEffects, float layerDepth) {
@@ -90,9 +77,8 @@ public partial class SkyMerchant {
             return;
         }
 
-        if (context.Draw(AequusTextures.SkyMerchant_CustomHead, (NPC.Center.Floor() / 16f), Color.White * opacity, new SpriteFrame(1, 2, 0, (byte)(NPC.spriteDirection == -1 ? 0 : 1)), 1f, 1f, Alignment.Center).IsMouseOver && opacity > 0.33f) {
+        if (context.Draw(drawSet.Head.Value, (NPC.Center.Floor() / 16f), Color.White * opacity, new SpriteFrame(1, 2, 0, (byte)(NPC.spriteDirection == -1 ? 0 : 1)), 1f, 1f, Alignment.Center).IsMouseOver && opacity > 0.33f) {
             text = NPC.FullName;
         }
     }
 }
-*/
