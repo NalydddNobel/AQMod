@@ -1584,7 +1584,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1317)</summary>
+            <summary>(Amt Textures: 1325)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -4588,6 +4588,30 @@
         </member>
         <member name="F:Aequus.AequusTextures.SaivoryKnife">
             <summary>Full Path: Aequus/Content/Necromancy/Equipment/Accessories/SpiritKeg/SaivoryKnife</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Salamancer">
+            <summary>Full Path: Aequus/NPCs/BossMonsters/Salamancer/Salamancer</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SalamancerBag">
+            <summary>Full Path: Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerBag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SalamancerMask">
+            <summary>Full Path: Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SalamancerMask_Head">
+            <summary>Full Path: Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerMask_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SalamancerRelic">
+            <summary>Full Path: Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerRelic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SalamancerRelicItem">
+            <summary>Full Path: Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerRelicItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SalamancerTrophy">
+            <summary>Full Path: Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SalamancerTrophyItem">
+            <summary>Full Path: Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerTrophyItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SandstormStaff">
             <summary>Full Path: Aequus/Items/Weapons/Magic/SandstormStaff/SandstormStaff</summary>

@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1317)</summary>
+    /// <summary>(Amt Textures: 1325)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         /// <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -2008,6 +2008,22 @@ namespace Aequus {
         public static readonly TextureAsset RubyGore = new("Aequus/Assets/Gores/Gems/RubyGore");
         /// <summary>Full Path: Aequus/Content/Necromancy/Equipment/Accessories/SpiritKeg/SaivoryKnife</summary>
         public static readonly TextureAsset SaivoryKnife = new("Aequus/Content/Necromancy/Equipment/Accessories/SpiritKeg/SaivoryKnife");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Salamancer/Salamancer</summary>
+        public static readonly TextureAsset Salamancer = new("Aequus/NPCs/BossMonsters/Salamancer/Salamancer");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerBag</summary>
+        public static readonly TextureAsset SalamancerBag = new("Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerBag");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerMask</summary>
+        public static readonly TextureAsset SalamancerMask = new("Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerMask");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerMask_Head</summary>
+        public static readonly TextureAsset SalamancerMask_Head = new("Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerMask_Head");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerRelic</summary>
+        public static readonly TextureAsset SalamancerRelic = new("Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerRelic");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerRelicItem</summary>
+        public static readonly TextureAsset SalamancerRelicItem = new("Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerRelicItem");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerTrophy</summary>
+        public static readonly TextureAsset SalamancerTrophy = new("Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerTrophy");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerTrophyItem</summary>
+        public static readonly TextureAsset SalamancerTrophyItem = new("Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerTrophyItem");
         /// <summary>Full Path: Aequus/Items/Weapons/Magic/SandstormStaff/SandstormStaff</summary>
         public static readonly TextureAsset SandstormStaff = new("Aequus/Items/Weapons/Magic/SandstormStaff/SandstormStaff");
         /// <summary>Full Path: Aequus/Tiles/Misc/BigGems/Items/SapphireDeposit</summary>

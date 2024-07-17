@@ -1,8 +1,9 @@
 ﻿using Aequus.Common.ContentGeneration;
+using Aequus.Common.Items;
 
 namespace Aequus.NPCs.BossMonsters.Salamancer;
 
-public partial class Salamancer : UnifiedBoss(new(ItemRarity: ItemDefaults.RaritySalamancer)) {
+public partial class Salamancer() : UnifiedBoss(new(ItemRarity: ItemDefaults.RaritySalamancer)) {
     public Point Origin;
 
     public override void SetDefaults() {
@@ -20,7 +21,7 @@ public partial class Salamancer : UnifiedBoss(new(ItemRarity: ItemDefaults.Rarit
     }
 
     public override void BossLoot(ref string name, ref int potionType) {
-        potionType = ModContent.GetInstance<Items.Potions.RestorationPotions>().Lesser.Type;
+        potionType = ModContent.ItemType<Items.Potions.Healing.Restoration.LesserRestorationPotion>();
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {

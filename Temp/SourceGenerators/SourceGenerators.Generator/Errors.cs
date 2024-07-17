@@ -1630,6 +1630,22 @@ public class AequusGeneratorErrors
 #---------------------------------------#
     C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/NPCs/BossMonsters/OmegaStarite/Projectiles/OmegaStariteProj.png
 #---------------------------------------#
+    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerBag.png
+#---------------------------------------#
+    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerMask.png
+#---------------------------------------#
+    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerMask_Head.png
+#---------------------------------------#
+    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerRelic.png
+#---------------------------------------#
+    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerRelicItem.png
+#---------------------------------------#
+    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerTrophy.png
+#---------------------------------------#
+    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/NPCs/BossMonsters/Salamancer/Items/SalamancerTrophyItem.png
+#---------------------------------------#
+    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/NPCs/BossMonsters/Salamancer/Salamancer.png
+#---------------------------------------#
     C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/NPCs/BossMonsters/Upriser/Upriser.png
 #---------------------------------------#
     C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/NPCs/BossMonsters/Upriser/UpriserChains.png
