@@ -112,7 +112,6 @@ public partial class AequusItem {
             var player = Main.LocalPlayer;
             var aequus = player.Aequus();
 
-            Tooltip_NameTag(item, tooltips);
             Tooltip_WeirdHints(item, tooltips);
             Tooltip_BuffConflicts(item, tooltips);
             Tooltip_PickBreak(item, tooltips);

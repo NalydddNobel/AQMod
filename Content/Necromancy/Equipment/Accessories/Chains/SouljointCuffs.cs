@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.Necromancy.Rendering;
-using Aequus.Core.Graphics;
+using Aequus.Common.Graphics;
 using Aequus.Items.Materials.SoulGem;
 using Aequus.Content.Necromancy;
 

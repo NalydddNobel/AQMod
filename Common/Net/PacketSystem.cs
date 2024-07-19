@@ -1,11 +1,8 @@
-﻿using Aequus.Common;
-using Aequus.Common.Carpentry;
+﻿using Aequus.Common.Carpentry;
 using Aequus.Common.Net.Sounds;
 using Aequus.Content.DronePylons;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Events.GlimmerEvent;
-using Aequus.Items.Misc;
-using Aequus.Items.Tools.Cameras.MapCamera;
 using Aequus.Items.Tools.Cameras.MapCamera.Clip;
 using Aequus.Items.Tools.Cameras.MapCamera.Common;
 using Aequus.Items.Tools.Cameras.MapCamera.Tile;
@@ -16,15 +13,11 @@ using Aequus.NPCs.Town.PhysicistNPC.Analysis;
 using Aequus.Projectiles.Misc;
 using Aequus.Tiles.Furniture.Gravity;
 using Aequus.Unused.Items;
-using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Events;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Common.Net;
@@ -307,19 +300,6 @@ public partial class PacketSystem : ModSystem {
                         for (int i = 0; i < Chest.maxItems; i++) {
                             Main.chest[chestID].item[i] = ItemIO.Receive(reader, readStack: true);
                         }
-                    }
-                }
-                break;
-
-            case PacketType.ApplyNameTagToNPC: {
-                    int i = reader.ReadInt32();
-                    var nameTag = reader.ReadString();
-                    NameTag.ApplyNametagToNPC(i, nameTag);
-                    if (Main.netMode == NetmodeID.Server) {
-                        var p = Aequus.GetPacket(PacketType.ApplyNameTagToNPC);
-                        p.Write(i);
-                        p.Write(nameTag);
-                        p.Send();
                     }
                 }
                 break;

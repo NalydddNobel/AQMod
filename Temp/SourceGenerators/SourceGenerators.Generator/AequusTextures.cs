@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1325)</summary>
+    /// <summary>(Amt Textures: 1326)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         /// <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -1484,8 +1484,10 @@ namespace Aequus {
         public static readonly TextureAsset MothmanMask_Mask = new("Aequus/Items/Equipment/Accessories/Combat/MothmanMask_Mask");
         /// <summary>Full Path: Aequus/Items/Misc/FishingBait/MysticPopper</summary>
         public static readonly TextureAsset MysticPopper = new("Aequus/Items/Misc/FishingBait/MysticPopper");
-        /// <summary>Full Path: Aequus/Items/Misc/NameTag</summary>
-        public static readonly TextureAsset NameTag = new("Aequus/Items/Misc/NameTag");
+        /// <summary>Full Path: Aequus/Systems/Renaming/NameTag</summary>
+        public static readonly TextureAsset NameTag = new("Aequus/Systems/Renaming/NameTag");
+        /// <summary>Full Path: Aequus/Systems/Renaming/NameTagBlank</summary>
+        public static readonly TextureAsset NameTagBlank = new("Aequus/Systems/Renaming/NameTagBlank");
         /// <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/NaniteSpore</summary>
         public static readonly TextureAsset NaniteSpore = new("Aequus/Projectiles/Misc/CrownOfBlood/NaniteSpore");
         /// <summary>Full Path: Aequus/Items/Weapons/Magic/Misc/Narrizuul/Narrizuul</summary>

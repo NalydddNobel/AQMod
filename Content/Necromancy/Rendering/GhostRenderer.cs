@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Utilities;
-using Aequus.Core.Graphics;
+using Aequus.Common.Graphics;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;

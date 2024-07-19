@@ -2,22 +2,17 @@
 using Aequus.Common.DataSets;
 using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Bestiary;
-using Aequus.Common.NPCs.Global;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Aequus.Systems.Renaming;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.NPCs.Town.PhysicistNPC; 
+namespace Aequus.NPCs.Town.PhysicistNPC;
 
 public class PhysicistPet : ModNPC, IAddRecipes, IUnlockBestiaryEntryUponExisting {
     public int Owner { get => (int)NPC.ai[0]; set => NPC.ai[0] = value; }
@@ -122,8 +117,8 @@ public class PhysicistPet : ModNPC, IAddRecipes, IUnlockBestiaryEntryUponExistin
         }
     }
     public void PlayPetSound() {
-        if (NPC.TryGetGlobalNPC<NPCNameTag>(out var nameTagNPC) && nameTagNPC.HasNameTag) {
-            switch (nameTagNPC.NameTag.ToLower()) {
+        if (NPC.TryGetGlobalNPC(out RenameNPC nameTagNPC) && nameTagNPC.HasCustomName) {
+            switch (nameTagNPC.CustomName.ToLower()) {
                 case "little zumbo":
                 case "littlezumbo":
                 case "pooper":

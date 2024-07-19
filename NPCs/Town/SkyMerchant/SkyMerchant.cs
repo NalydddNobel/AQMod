@@ -1,8 +1,9 @@
-﻿using Aequus.Common.NPCs;
+﻿using Aequus.Common.ContentGeneration;
+using Aequus.Common.NPCs;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Peaceful;
-using Aequus.Core.ContentGeneration;
 using Aequus.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
+using Aequus.NPCs.Town.SkyMerchant.UI;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;
@@ -276,9 +277,7 @@ public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
             shopName = "Shop";
         }
         else {
-#if !DEBUG
-            Aequus.UserInterface.SetState<SkyMerchantRenameUIState>();
-#endif
+            Aequus.UserInterface.SetState(new SkyMerchantRenameUIState());
         }
     }
 

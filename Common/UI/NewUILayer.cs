@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Terraria.UI;
 
-namespace Aequus.Core.UI;
+namespace Aequus.Common.UI;
 
 /// <summary>
 /// Used to simplify UI implementation. Only loads in singleplayer or on multiplayer clients.

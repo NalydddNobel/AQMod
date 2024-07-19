@@ -21,7 +21,7 @@ public partial class SkyMerchant {
             .AddWithCustomValue<Items.Tools.Bellows>(ItemDefaults.NPCSkyMerchantCustomPrice)
             .Add<Items.Potions.Healing.Restoration.LesserRestorationPotion>()
             //.Add<Calendar>()
-            .Add<Items.Misc.NameTag>()
+            .Add<Systems.Renaming.NameTag>()
             .Register();
     }
 }

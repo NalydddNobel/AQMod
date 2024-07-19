@@ -1,13 +1,8 @@
 ﻿using Aequus.Common.Graphics.Primitives;
-using Aequus.Common.NPCs.Global;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Aequus.Systems.Renaming;
 using System;
-using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Items.Materials.PossessedShard;
 
@@ -214,8 +209,8 @@ public class PossessedShardNPC : ModNPC {
 
         float grabRange = Player.defaultItemGrabRange * (NPC.ai[0] == 1 ? 3f : 1f);
         Item giveItem = new Item(ModContent.ItemType<PossessedShard>());
-        if (giveItem.TryGetAequus(out var aequusItem) && NPC.TryGetGlobalNPC<NPCNameTag>(out var nameTagNPC)) {
-            aequusItem.NameTag = nameTagNPC.NameTag;
+        if (giveItem.TryGetGlobalItem(out RenameItem renameItem) && NPC.TryGetGlobalNPC(out RenameNPC nameTagNPC)) {
+            renameItem.CustomName = nameTagNPC.CustomName;
         }
         for (int i = 0; i < Main.maxPlayers; i++) {
             if (!Main.player[i].active || Main.player[i].dead || !Main.player[i].ItemSpace(giveItem).CanTakeItem) {

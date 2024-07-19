@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Core.Graphics;
+namespace Aequus.Common.Graphics;
 
 [Autoload(Side = ModSide.Client)]
 public class DrawLayers : ILoadable {

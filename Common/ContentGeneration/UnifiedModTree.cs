@@ -1,4 +1,4 @@
-﻿using Aequus.Core.ContentGeneration;
+﻿using Aequus.Common.ContentGeneration;
 using ReLogic.Content;
 using System.Collections.Generic;
 using System.Linq;

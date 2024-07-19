@@ -1,5 +1,5 @@
 ﻿using Aequus;
-using Aequus.Core.Graphics;
+using Aequus.Common.Graphics;
 
 namespace Aequus.Common.Particles.New;
 

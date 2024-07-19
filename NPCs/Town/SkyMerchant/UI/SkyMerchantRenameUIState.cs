@@ -1,10 +1,29 @@
-﻿namespace Aequus.Content.TownNPCs.SkyMerchant.UI;
+﻿using Aequus;
+using Aequus.Common.GUI;
+using Aequus.Common.GUI.Elements;
+using Aequus.Common.UI;
+using Aequus.Common.Utilities;
+using Aequus.Systems.Renaming;
+using ReLogic.Content;
+using System.Collections.Generic;
+using Terraria.Audio;
+using Terraria.DataStructures;
+using Terraria.GameContent;
+using Terraria.GameContent.UI.Elements;
+using Terraria.Localization;
+using Terraria.UI;
+using Terraria.UI.Chat;
 
-/*
-public class SkyMerchantRenameUIState : UIState, ILoad {
+namespace Aequus.NPCs.Town.SkyMerchant.UI;
+
+public class SkyMerchantRenameUIState : UIState {
     public ImprovedItemSlot SendItem { get; private set; }
     public ImprovedItemSlot ReceiveItem { get; private set; }
     public RenameTextBox TextBox { get; private set; }
+
+    public static readonly Dictionary<int, float> PriceMultiplier = [];
+    public static readonly HashSet<int> NPCBlacklist = [];
+    public static readonly HashSet<int> ItemBlacklist = [];
 
     public override void OnInitialize() {
         Left.Set(InventoryUI.LeftInventoryPosition, 0f);
@@ -86,7 +105,7 @@ public class SkyMerchantRenameUIState : UIState, ILoad {
         };
         SendItem.WhileHoveringItem += (item) => {
             if (item != null && !item.IsAir) {
-                ExtendUI.HoverItem(item, SendItem.Context);
+                AequusUI.HoverItem(item, SendItem.Context);
             }
             else {
                 Main.hoverItemName = "";
@@ -107,12 +126,14 @@ public class SkyMerchantRenameUIState : UIState, ILoad {
         ReceiveItem = new ImprovedItemSlot(ItemSlot.Context.GuideItem, itemSlotScale);
         ReceiveItem.CanTakeItemFromSlot += (i) => {
             ReceiveItem.GetDimensions();
-            int price = RenameItem.GetRenamePrice(i);
+
+            int price = GetRenamePrice(i);
 
             return price > 0 ? Main.LocalPlayer.CanAfford(price) : true;
         };
         ReceiveItem.OnItemSwap += (from, to) => {
-            Main.LocalPlayer.BuyItem(RenameItem.GetRenamePrice(ReceiveItem.Item));
+            int price = GetRenamePrice(ReceiveItem.Item);
+            Main.LocalPlayer.BuyItem(price);
             SendItem.Item.TurnToAir();
             SendItem.UpdateIcon();
             SoundEngine.PlaySound(SoundID.Coins);
@@ -155,7 +176,7 @@ public class SkyMerchantRenameUIState : UIState, ILoad {
 
     public override void Update(GameTime gameTime) {
         if (Main.LocalPlayer.TalkNPC?.ModNPC is not SkyMerchant) {
-            ModContent.GetInstance<NPCChat>().Interface.SetState(null);
+            Aequus.UserInterface.SetState(null);
         }
         base.Update(gameTime);
     }
@@ -172,18 +193,22 @@ public class SkyMerchantRenameUIState : UIState, ILoad {
         if (!ReceiveItem.HasItem) {
             return;
         }
-        int price = RenameItem.GetRenamePrice(SendItem.Item);
+        int price = GetRenamePrice(SendItem.Item);
 
         string cost = Language.GetTextValue("LegacyInterface.46") + ": ";
-        string priceText = ExtendLanguage.PriceTextColored(price, NoValueText: Language.GetTextValue("Mods.Aequus.Misc.PriceFree"), pulse: true);
+        string priceText = ALanguage.PriceTextColored(price, NoValueText: Language.GetTextValue("Mods.Aequus.Misc.PriceFree"), pulse: true);
 
         var font = FontAssets.MouseText.Value;
         ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, cost, new Vector2(savingsX, savingsY + 24f), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One, -1f, 2f);
         ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, priceText, new Vector2(savingsX + font.MeasureString(cost).X, savingsY + 24f), Color.White, 0f, Vector2.Zero, Vector2.One, -1f, 2f);
     }
 
-    public void Load(Mod mod) { }
+    static int GetRenamePrice(Item item) {
+        int price = Item.gold;
+        if (PriceMultiplier.TryGetValue(item.type, out float multiplier)) {
+            price = (int)(price * multiplier);
+        }
 
-    public void Unload() { }
+        return price;
+    }
 }
-*/

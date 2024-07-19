@@ -516,6 +516,26 @@
             </summary>
             <param name="mod"></param>
         </member>
+        <member name="T:Aequus.Common.ContentGeneration.InstancedModDust">
+            <param name="name"></param>
+            <param name="texture"></param>
+            <param name="safe">Whether this dust is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeDust"/>)</param>
+        </member>
+        <member name="M:Aequus.Common.ContentGeneration.InstancedModDust.#ctor(System.String,System.String,System.Boolean)">
+            <param name="name"></param>
+            <param name="texture"></param>
+            <param name="safe">Whether this dust is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeDust"/>)</param>
+        </member>
+        <member name="T:Aequus.Common.ContentGeneration.InstancedModGore">
+            <param name="name"></param>
+            <param name="texture"></param>
+            <param name="safe">Whether this gore is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeGore"/>)</param>
+        </member>
+        <member name="M:Aequus.Common.ContentGeneration.InstancedModGore.#ctor(System.String,System.String,System.Boolean)">
+            <param name="name"></param>
+            <param name="texture"></param>
+            <param name="safe">Whether this gore is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeGore"/>)</param>
+        </member>
         <member name="T:Aequus.Common.ContentGeneration.InstancedTileItem">
             <param name="modTile"></param>
             <param name="style"></param>
@@ -659,6 +679,24 @@
             <param name="speed">The speed of the camera, the exact time it will get there is: <code>speed / 50</code>So 6 speed means it will get into position in 8 frames. Clamped between 6 and 25</param>
             <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Common.Effects.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Common.Effects.CameraPriority,System.Single,System.Int32)"/></param>
             <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
+        </member>
+        <member name="E:Aequus.Common.Graphics.DrawLayers.WorldBehindTiles">
+            <summary>Invoked before NPCs behind tiles are drawn.</summary>
+        </member>
+        <member name="E:Aequus.Common.Graphics.DrawLayers.PostDrawDust">
+            <summary>Invoked after Dusts have been drawn.</summary>
+        </member>
+        <member name="E:Aequus.Common.Graphics.DrawLayers.PostDrawLiquids">
+            <summary>Invoked after Liquids and Inferno Rings have been drawn, but before Wire Overlays are drawn.</summary>
+        </member>
+        <member name="M:Aequus.Common.GUI.Elements.ImprovedItemSlot.SetIcon(Terraria.UI.UIElement)">
+            <summary>Adds the UI Element as an icon to display when no item is in the slot.</summary>
+        </member>
+        <member name="T:Aequus.Common.GUI.Elements.ImprovedTextBox">
+            <summary>Improved text box based off of <see cref="T:Terraria.GameContent.UI.Elements.UITextBox"/>.</summary>
+        </member>
+        <member name="F:Aequus.Common.GUI.InventoryUI.ContextsInv">
+            <summary>Contains Item Slot Contexts which are usually related to normal inventory slots. Check the current slot context to determine drawing item status UI like cooldowns and etc.</summary>
         </member>
         <member name="F:Aequus.Common.Items.ItemDefaults.NPCSkyMerchant">
             <summary>1 Gold</summary>
@@ -1511,6 +1549,22 @@
             Adds the tile at position to draw buffer.
             </summary>
         </member>
+        <member name="T:Aequus.Common.Structures.Collections.DictionaryRemoveQueue`2">
+            <summary>
+            A Dictionary with a removal queue. Allows for removals to occur in an iteration.
+            Call <see cref="M:Aequus.Common.Structures.Collections.DictionaryRemoveQueue`2.RemoveAllQueued"/> to remove all queued entries from the Dictionary.
+            </summary>
+        </member>
+        <member name="T:Aequus.Common.Structures.PhysicsBehaviors.VICollisonNode">
+            <summary>A Verlet Integrated node with Tile Collision.</summary>
+        </member>
+        <member name="M:Aequus.Common.Structures.RefCache`1.OverrideWith(`0)">
+            <summary>Replaces the referenced value with <paramref name="value"/>. The original value will be cached, and can be restored using <see cref="!:VoidOverriddenValue(ref T)"/>.</summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Aequus.Common.Structures.RefCache`1.RestoreOriginalValue">
+            <summary>Restores overriden values back to their original value.</summary>
+        </member>
         <member name="T:Aequus.Common.Tiles.TileHooks.IUniqueTileInteractions">
             <summary>
             Provides a method to be called when recieving the <see cref="T:Aequus.Common.Net.PacketUniqueTileInteraction"/> packet. Allowing for effects to be synced on the network easier.
@@ -1530,6 +1584,121 @@
             <summary>
             A drawdata list to add into, if you know how Player Layers work, this should be familiar. Currently doesn't support shaders.
             </summary>
+        </member>
+        <member name="T:Aequus.Common.UI.NewUILayer">
+            <summary>
+            Used to simplify UI implementation. Only loads in singleplayer or on multiplayer clients.
+            </summary>
+        </member>
+        <member name="M:Aequus.Common.UI.NewUILayer.#ctor(System.String,System.String,Terraria.UI.InterfaceScaleType,System.Int32)">
+            <param name="Name">Name of this layer.</param>
+            <param name="InsertLayer">Name of the layer to search the index of.</param>
+            <param name="ScaleType">Scale Type of this layer.</param>
+            <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
+        </member>
+        <member name="M:Aequus.Common.UI.NewUILayer.Activate">
+            <summary>
+            Activates the UI Layer.
+            </summary>
+        </member>
+        <member name="M:Aequus.Common.UI.NewUILayer.Deactivate">
+            <summary>
+            Deactivates the UI Layer. This does not instantly remove the layer, instead it will be removed on the next ui update.
+            </summary>
+        </member>
+        <member name="T:Aequus.Common.UI.NewUILayersSystem">
+            <summary>
+            Only loads in singleplayer or on multiplayer clients.
+            </summary>
+        </member>
+        <member name="M:Aequus.Common.Utilities.ALanguage.GetText(System.String)">
+            <param name="key"></param>
+            <returns>A <see cref="T:Terraria.Localization.LocalizedText"/> value for <paramref name="key"/> appended to the end of "Mods.AequusRemake"</returns>
+        </member>
+        <member name="M:Aequus.Common.Utilities.ALanguage.GetRandomLocalizationFromCategory(Terraria.ModLoader.ILocalizedModType,System.String,Terraria.Utilities.UnifiedRandom)">
+            <summary>Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.</summary>
+        </member>
+        <member name="M:Aequus.Common.Utilities.ALanguage.GetDisplayName(Terraria.ModLoader.ILocalizedModType)">
+            <summary>Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.</summary>
+        </member>
+        <member name="M:Aequus.Common.Utilities.ALanguage.GetDisplayName``1">
+            <summary><inheritdoc cref="M:Aequus.Common.Utilities.ALanguage.GetDisplayName(Terraria.ModLoader.ILocalizedModType)"/></summary>
+        </member>
+        <member name="M:Aequus.Common.Utilities.ALanguage.ContainsKey(System.String)">
+            <returns>Whether this key has a value. (<see cref="M:Terraria.Localization.Language.GetTextValue(System.String)"/> doesnt return the key.)</returns>
+        </member>
+        <member name="M:Aequus.Common.Utilities.ALanguage.TryGet(System.String,Terraria.Localization.LocalizedText@)">
+            <returns>Whether the text exists. (<see cref="M:Terraria.Localization.Language.GetTextValue(System.String)"/> doesnt return the key.)</returns>
+        </member>
+        <member name="M:Aequus.Common.Utilities.ALanguage.TryGetValue(System.String,System.String@)">
+            <returns><inheritdoc cref="M:Aequus.Common.Utilities.ALanguage.TryGet(System.String,Terraria.Localization.LocalizedText@)"/></returns>
+        </member>
+        <member name="M:Aequus.Common.Utilities.ALanguage.GetCategoryKey(Terraria.ModLoader.ILocalizedModType,System.String,System.Func{System.String})">
+            <returns>The Category Key. (Mods.ModName.Category.Suffix)</returns>
+        </member>
+        <member name="M:Aequus.Common.Utilities.ALanguage.GetCategoryText(Terraria.ModLoader.ILocalizedModType,System.String,System.Func{System.String})">
+            <returns>A localized text using a category key. (Mods.ModName.Category.Suffix)</returns>
+        </member>
+        <member name="M:Aequus.Common.Utilities.ALanguage.GetCategoryTextValue(Terraria.ModLoader.ILocalizedModType,System.String)">
+            <returns>A text value using a category key. (Mods.ModName.Category.Suffix)</returns>
+        </member>
+        <member name="M:Aequus.Common.Utilities.ALanguage.PriceText(System.Int64,System.String)">
+            <returns>Price Text for the specified value, or <paramref name="NoValueText"/> if value is less than or equal to 0.</returns>
+        </member>
+        <member name="M:Aequus.Common.Utilities.ALanguage.PriceTextColored(System.Int64,System.String,System.Boolean)">
+            <returns><inheritdoc cref="M:Aequus.Common.Utilities.ALanguage.PriceText(System.Int64,System.String)"/> Colored using chat commands.</returns>
+        </member>
+        <member name="M:Aequus.Common.Utilities.ALanguage.GetUseAnimationText(System.Single)">
+            <param name="useAnimation">Item use animation.</param>
+            <returns>Localized use animation (speed) text based off vanilla thresholds.</returns>
+        </member>
+        <member name="M:Aequus.Common.Utilities.ALanguage.GetKnockbackText(System.Single)">
+            <param name="knockback">Weapon Knockback.</param>
+            <returns>Localized knockback text based off vanilla thresholds.</returns>
+        </member>
+        <member name="M:Aequus.Common.Utilities.ALanguage.GetKeybindKeys(Terraria.ModLoader.ModKeybind)">
+            <param name="keybind"></param>
+            <returns>An enumerable of each key for this keybind. Returns "Unbound Key" if no keys are assigned.</returns>
+        </member>
+        <member name="M:Aequus.Common.Utilities.ALanguage.WatchTime(System.Double,System.Boolean)">
+            <summary>Copied from example mod and doesnt put any effort to localize. Uses Terraria day/night cycle styled time data.</summary>
+            <param name="time">The Day/Night cycle time.</param>
+            <param name="dayTime">Whether it's day or night.</param>
+        </member>
+        <member name="M:Aequus.Common.Utilities.ALanguage.Minutes(System.Double)">
+            <summary>Converts ticks to seconds, up to 1 decimal place.</summary>
+        </member>
+        <member name="M:Aequus.Common.Utilities.ALanguage.Seconds(System.Double)">
+            <summary>Converts ticks to seconds, up to 1 decimal place.</summary>
+        </member>
+        <member name="M:Aequus.Common.Utilities.ALanguage.Percent(System.Double)">
+            <summary>Converts a decimal value into percentage text, up to 1 decimal place.</summary>
+        </member>
+        <member name="M:Aequus.Common.Utilities.ALanguage.Decimals(System.Double)">
+            <summary>Converts value into decimal text, up to 1 decimal place.</summary>
+        </member>
+        <member name="M:Aequus.Common.Utilities.ALanguage.RegisterKey(System.String)">
+            <summary>Registers a localization key if it doesn't exist. Only ran if compiled with a DEBUG symbol.</summary>
+        </member>
+        <member name="M:Aequus.Common.Utilities.Extensions.ChestExtensions.HasImportantItem(Terraria.Chest)">
+            <returns>Whether the chest contains any items within the <see cref="!:ItemDataSet.ImportantItem"/> set.</returns>
+        </member>
+        <member name="M:Aequus.Common.Utilities.Extensions.ChestExtensions.IsUnopened(Terraria.Chest)">
+            <returns>Whether the chest contains <see cref="T:Aequus.Content.Chests.UnopenedChestItem"/>.</returns>
+        </member>
+        <member name="M:Aequus.Common.Utilities.Extensions.EnumerableExtensions.AllocLookup``1(``0[],System.Boolean)">
+            <summary>Allocates a lookup table for values->index for the <paramref name="array"/>. This is useful for creating reverse lookups for datasets.</summary>
+            <param name="array">The Array.</param>
+            <param name="throwOnDuplicates">Whether or not to throw an error if any duplicate values are found. If this is false, the lookup will point to the last duplicate value found in the array.</param>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:Aequus.Common.Utilities.Extensions.EnumerableExtensions.Match``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>Forces an Enumeration.</summary>
+            <returns>Whether an instance of <paramref name="en2"/> is in <paramref name="en"/>.</returns>
+        </member>
+        <member name="T:Aequus.Common.Utilities.Helpers.ColorTagProvider">
+            <summary>Contains helper methods for generating chat tag strings. For item and glyphs, <see cref="T:Terraria.GameContent.UI.Chat.ItemTagHandler"/> and <see cref="T:Terraria.GameContent.UI.Chat.GlyphTagHandler"/> have static helper methods.</summary>
         </member>
         <member name="M:Aequus.Common.Utilities.LootBuilder.AddBossLoot(Terraria.ModLoader.ILoot,System.Int32,Terraria.GameContent.ItemDropRules.IItemDropRule,Terraria.GameContent.ItemDropRules.IItemDropRule)">
             <summary>Adds rule to <paramref name="loot"/>, and to the Item specified by <paramref name="bossBagId"/>. <paramref name="loot"/>'s rule will be conditioned to only drop in Classic (Normal) Mode.</summary>
@@ -1584,7 +1753,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1325)</summary>
+            <summary>(Amt Textures: 1326)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -3804,7 +3973,10 @@
             <summary>Full Path: Aequus/Items/Misc/FishingBait/MysticPopper</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NameTag">
-            <summary>Full Path: Aequus/Items/Misc/NameTag</summary>
+            <summary>Full Path: Aequus/Systems/Renaming/NameTag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NameTagBlank">
+            <summary>Full Path: Aequus/Systems/Renaming/NameTagBlank</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NaniteSpore">
             <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/NaniteSpore</summary>
@@ -5561,61 +5733,6 @@
         <member name="F:Aequus.AequusTextures.ZoologistAltHead">
             <summary>Full Path: Aequus/Assets/UI/ZoologistAltHead</summary>
         </member>
-        <member name="T:Aequus.Core.ContentGeneration.InstancedModDust">
-            <param name="name"></param>
-            <param name="texture"></param>
-            <param name="safe">Whether this dust is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeDust"/>)</param>
-        </member>
-        <member name="M:Aequus.Core.ContentGeneration.InstancedModDust.#ctor(System.String,System.String,System.Boolean)">
-            <param name="name"></param>
-            <param name="texture"></param>
-            <param name="safe">Whether this dust is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeDust"/>)</param>
-        </member>
-        <member name="T:Aequus.Core.ContentGeneration.InstancedModGore">
-            <param name="name"></param>
-            <param name="texture"></param>
-            <param name="safe">Whether this gore is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeGore"/>)</param>
-        </member>
-        <member name="M:Aequus.Core.ContentGeneration.InstancedModGore.#ctor(System.String,System.String,System.Boolean)">
-            <param name="name"></param>
-            <param name="texture"></param>
-            <param name="safe">Whether this gore is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeGore"/>)</param>
-        </member>
-        <member name="E:Aequus.Core.Graphics.DrawLayers.WorldBehindTiles">
-            <summary>Invoked before NPCs behind tiles are drawn.</summary>
-        </member>
-        <member name="E:Aequus.Core.Graphics.DrawLayers.PostDrawDust">
-            <summary>Invoked after Dusts have been drawn.</summary>
-        </member>
-        <member name="E:Aequus.Core.Graphics.DrawLayers.PostDrawLiquids">
-            <summary>Invoked after Liquids and Inferno Rings have been drawn, but before Wire Overlays are drawn.</summary>
-        </member>
-        <member name="T:Aequus.Core.UI.NewUILayer">
-            <summary>
-            Used to simplify UI implementation. Only loads in singleplayer or on multiplayer clients.
-            </summary>
-        </member>
-        <member name="M:Aequus.Core.UI.NewUILayer.#ctor(System.String,System.String,Terraria.UI.InterfaceScaleType,System.Int32)">
-            <param name="Name">Name of this layer.</param>
-            <param name="InsertLayer">Name of the layer to search the index of.</param>
-            <param name="ScaleType">Scale Type of this layer.</param>
-            <param name="InsertOffset">Index offset for inserting the layer. Defaults to 1 (Inserts after layer)</param>
-        </member>
-        <member name="M:Aequus.Core.UI.NewUILayer.Activate">
-            <summary>
-            Activates the UI Layer.
-            </summary>
-        </member>
-        <member name="M:Aequus.Core.UI.NewUILayer.Deactivate">
-            <summary>
-            Deactivates the UI Layer. This does not instantly remove the layer, instead it will be removed on the next ui update.
-            </summary>
-        </member>
-        <member name="T:Aequus.Core.UI.NewUILayersSystem">
-            <summary>
-            Only loads in singleplayer or on multiplayer clients.
-            </summary>
-        </member>
         <member name="T:Aequus.SkyDarkness">
             <summary>
             Used for darken-ing the sky for flashy visual effects
@@ -6078,6 +6195,9 @@
             <param name="location"></param>
             <param name="genLocation"></param>
         </member>
+        <member name="T:Aequus.Content.Chests.UnopenedChestItem">
+            <summary>Item used to determine if a chest has been opened or not.</summary>
+        </member>
         <member name="T:Aequus.Content.DamageClasses.NecromancyMagicClass">
             <summary>
             Used on necromancy scepter projectiles, only procs the abilities of Magic equipment.
@@ -6128,6 +6248,114 @@
             <summary>
             Parameter 1: {ABasicParticle} - Will always be FrozenNPC, but for soft reference purposes, this is left as a generic vanilla class.
             <para>Parameter 2: {NPC} - The NPC</para>
+            </summary>
+        </member>
+        <member name="T:Aequus.Systems.Chests.ChestLootDatabase">
+            <summary>Replica of <see cref="T:Terraria.GameContent.ItemDropRules.ItemDropDatabase"/>/<see cref="T:Terraria.GameContent.ItemDropRules.ItemDropResolver"/>, except for AequusRemake' chest loot.</summary>
+        </member>
+        <member name="F:Aequus.Systems.Chests.ChestPool.Surface">
+            <summary>Extra loot pool for Vanilla's Surface Wooden Chests.</summary>
+        </member>
+        <member name="F:Aequus.Systems.Chests.ChestPool.Underground">
+            <summary>Extra loot pool for Vanilla's Underground Chests, this includes Gold, Frozen, Rich Mahogany, etc.</summary>
+        </member>
+        <member name="F:Aequus.Systems.Chests.ChestPool.Sky">
+            <summary>Extra loot pool for Vanilla's Sky Chests. This includes Skyware and Locked Gold Chests located above the surface line.</summary>
+        </member>
+        <member name="F:Aequus.Systems.Chests.ChestPool.UndergroundDesert">
+            <summary>Extra loot pool for Chests located in the Underground Desert.</summary>
+        </member>
+        <member name="F:Aequus.Systems.Chests.ChestPool.Pyramid">
+            <summary>Extra loot pool for Chests located in the Pyramid.</summary>
+        </member>
+        <member name="F:Aequus.Systems.Chests.ChestPool.Dungeon">
+            <summary>Extra loot pool for Locked Gold Chests located in the Dungeon.</summary>
+        </member>
+        <member name="F:Aequus.Systems.Chests.ChestPool.Temple">
+            <summary>Extra loot pool for Chests located in the Temple.</summary>
+        </member>
+        <member name="F:Aequus.Systems.Chests.ChestPool.Gold">
+            <summary>Extra loot pool for Vanilla's Gold Chests.</summary>
+        </member>
+        <member name="F:Aequus.Systems.Chests.ChestPool.Shadow">
+            <summary>Extra loot pool for Vanilla's Shadow Chests.</summary>
+        </member>
+        <member name="F:Aequus.Systems.Chests.ChestPool.Frozen">
+            <summary>Extra loot pool for Vanilla's Frozen Chests. Note this is NOT the Biome Chest.</summary>
+        </member>
+        <member name="F:Aequus.Systems.Chests.ChestPool.Ivy">
+            <summary>Extra loot pool for Vanilla's Ivy Chests.</summary>
+        </member>
+        <member name="F:Aequus.Systems.Chests.ChestPool.PollutedOcean">
+            <summary>Loot pool for Polluted Ocean Trash Cans.</summary>
+        </member>
+        <member name="F:Aequus.Systems.Chests.ChestPool.BuriedCopperChest">
+            <summary>Loot pool for Copper Chests.</summary>
+        </member>
+        <member name="M:Aequus.Systems.Chests.DropRules.IChestLootRule.AddItem(Aequus.Systems.Chests.DropRules.ChestLootInfo@)">
+            <summary>Add the item into the chest here. <see cref="P:Aequus.Systems.Chests.DropRules.ChestLootInfo.ChestId"/> should safely index into <see cref="F:Terraria.Main.chest"/>.</summary>
+        </member>
+        <member name="M:Aequus.Systems.Chests.DropRules.IChestLootRule.CanDrop(Aequus.Systems.Chests.DropRules.ChestLootInfo@)">
+            <summary>Condition for whether this rule should be ran.</summary>
+        </member>
+        <member name="M:Aequus.Systems.Chests.DropRules.IChestLootRule.Reset">
+            <summary>Called upon <see cref="M:Terraria.ModLoader.ModSystem.ClearWorld"/> and Hardmode Chests. Use to reset values before world generation and etc.</summary>
+        </member>
+        <member name="T:Aequus.Systems.Chests.DropRules.IndexedChestRule">
+            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
+        </member>
+        <member name="M:Aequus.Systems.Chests.DropRules.IndexedChestRule.#ctor(System.Int32,System.Int32,Aequus.Systems.Chests.DropRules.IChestLootRule[],Terraria.Condition[])">
+            <summary>This rule goes through each rule sequentually. This is similar to how items in the Dungeon are handled.</summary>    
+        </member>
+        <member name="T:Aequus.Systems.Chests.DropRules.RemoveItemChestRule">
+            <summary>Usually used in conjunction with <see cref="T:Aequus.Systems.Chests.DropRules.ReplaceItemChestRule"/> to pull all of the item slots backwards after deleting the item.</summary>
+        </member>
+        <member name="T:Aequus.Systems.Chests.DropRules.ReplaceFirstSlotChestRule">
+            <summary>
+            Deletes the first slot, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.Systems.Chests.DropRules.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.Systems.Chests.DropRules.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Aequus.Systems.Chests.DropRules.ReplaceFirstSlotChestRule.#ctor(Aequus.Systems.Chests.DropRules.IChestLootRule,Terraria.Condition[])">
+            <summary>
+            Deletes the first slot, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.Systems.Chests.DropRules.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.Systems.Chests.DropRules.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="T:Aequus.Systems.Chests.DropRules.ReplaceItemChestRule">
+            <summary>
+            Finds <paramref name="ItemIdToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.Systems.Chests.DropRules.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.Systems.Chests.DropRules.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Aequus.Systems.Chests.DropRules.ReplaceItemChestRule.#ctor(System.Int32,Aequus.Systems.Chests.DropRules.IChestLootRule,Terraria.Condition[])">
+            <summary>
+            Finds <paramref name="ItemIdToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.Systems.Chests.DropRules.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.Systems.Chests.DropRules.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="T:Aequus.Systems.Chests.DropRules.ReplaceMultipleItemsChestRule">
+            <summary>
+            Finds any item which is in <paramref name="ItemIdsToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.Systems.Chests.DropRules.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.Systems.Chests.DropRules.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Aequus.Systems.Chests.DropRules.ReplaceMultipleItemsChestRule.#ctor(System.Int32[],Aequus.Systems.Chests.DropRules.IChestLootRule,Terraria.Condition[])">
+            <summary>
+            Finds any item which is in <paramref name="ItemIdsToReplace"/>, deletes the item, and runs <paramref name="Rule"/> on its slot with an <see cref="T:Aequus.Systems.Chests.DropRules.InsertToChest"/> context.
+            <para>
+            To remove an item properly, use <see cref="T:Aequus.Systems.Chests.DropRules.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
+            </para>
             </summary>
         </member>
         <member name="T:Aequus.Tiles.CraftingStations.GoreNestDummy">

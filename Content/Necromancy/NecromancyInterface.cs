@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.UI;
-using Aequus.Core.UI;
+using Aequus.Common.UI;
 using Terraria.UI;
 
 namespace Aequus.Content.Necromancy;

@@ -2372,10 +2372,13 @@ public static partial class Helper {
         return item;
     }
 
+    public static bool Insert(this Chest chest, Item item, int index) {
+        return InsertIntoUnresizableArray(chest.item, item, index);
+    }
     public static bool Insert(this Chest chest, int itemType, int itemStack, int index) {
         var item = DefaultItem(itemType);
         item.stack = itemStack;
-        return InsertIntoUnresizableArray(chest.item, item, index);
+        return Insert(chest, item, index);
     }
     public static bool Insert(this Chest chest, int itemType, int index) {
         return chest.Insert(itemType, 1, index);

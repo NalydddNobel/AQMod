@@ -12,6 +12,7 @@ using Aequus.Items.Weapons.Melee.Swords.BattleAxe;
 using Aequus.NPCs.Monsters.GaleStreams;
 using Aequus.Particles;
 using Aequus.Projectiles;
+using Aequus.Systems.Renaming;
 using System;
 using System.IO;
 using Terraria.Audio;
@@ -571,14 +572,14 @@ public partial class AequusNPC : GlobalNPC, IPreExtractBestiaryItemDrops {
 
     private static void NPC_Transform(On_NPC.orig_Transform orig, NPC npc, int newType) {
         string nameTag = null;
-        if (npc.TryGetGlobalNPC<NPCNameTag>(out var nameTagNPC)) {
-            nameTag = nameTagNPC.NameTag;
+        if (npc.TryGetGlobalNPC(out RenameNPC nameTagNPC)) {
+            nameTag = nameTagNPC.CustomName;
             switch (npc.type) {
                 case NPCID.Bunny:
                 case NPCID.BunnySlimed:
                 case NPCID.BunnyXmas:
                 case NPCID.ExplosiveBunny:
-                    if (nameTagNPC.HasNameTag && nameTagNPC.NameTag.ToLower() == "toast") {
+                    if (nameTagNPC.HasCustomName && nameTagNPC.CustomName.ToLower() == "toast") {
                         return;
                     }
                     break;
@@ -596,7 +597,7 @@ public partial class AequusNPC : GlobalNPC, IPreExtractBestiaryItemDrops {
         //    aequusNPC2.zombieInfo.Inherit(transferInfo);
         //}
         if (npc.TryGetGlobalNPC(out nameTagNPC)) {
-            nameTagNPC.NameTag = nameTag;
+            nameTagNPC.CustomName = nameTag;
         }
     }
 

@@ -1154,8 +1154,6 @@ public class AequusGeneratorErrors
 #---------------------------------------#
     C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Items/Misc/GrabBags/TreasureBags/OmegaStariteBag.png
 #---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Items/Misc/NameTag.png
-#---------------------------------------#
     C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Items/Misc/PalePufferfish.png
 #---------------------------------------#
     C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Items/Misc/PermanentUpgrades/CosmicChest.png
@@ -2059,6 +2057,10 @@ public class AequusGeneratorErrors
     C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Projectiles/Summon/SnowflakeMinion.png
 #---------------------------------------#
     C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Projectiles/Summon/Whip/TornadoWhipProj.png
+#---------------------------------------#
+    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Systems/Renaming/NameTag.png
+#---------------------------------------#
+    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Systems/Renaming/NameTagBlank.png
 #---------------------------------------#
     C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Tiles/Banners/Items/BloodMimicBanner.png
 #---------------------------------------#
