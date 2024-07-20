@@ -24,20 +24,39 @@ Official Wiki: https://terrariamods.wiki.gg/wiki/Aequus
 
 [b]Blossom[/b] - Sprites
 [b]bubbyboytoo[/b] - Wiki, Ideas
+[b]caligulasAquarium[/b] - Sprites and Ideas
+[b]cc[/b] - Sprites and Ideas
 [b]Chillizard[/b] - Sprites
-[b]enamoured[/b] - Sprites, Ideas
+[b]enamoured[/b] - Sprites and Ideas
 [b]extra[/b] - Music, Sound Designer (Get the music mod!)
 [b]Funk.It[/b] - Narrizuul's Sprite
-[b]Hugekraken[/b] - Omega Starite's Sprite
+[b]Hugekraken[/b] - Omega Starite Sprite
+[b]JOI3[/b] - Sprites and Ideas
 [b]Lin[/b] - Chinese Translations
-[b]moonburn[/b] - RGB Keyboard shenanigans
-[b]Mr. Gerd26[/b] - Sprites, Ideas
+[b]moonburn[/b] - RGB Keyboard and Audio support
+[b]Mr. Gerd26[/b] - Sprites and Ideas
 [b]niker[/b] - Sprites, Ideas & Concept Art
 [b]Nurby[/b] - Prim Shader and a weapon
 [b]someperson[/b] - Ideas
 [b]Spectra[/b] - Music (Get the music mod!!!!!!!!!!)
-[b]Squartron[/b] - Sprites, Ideas
+[b]Squartron[/b] - Sprites and Ideas
 [b]starlight.mp4[/b] - Wiki
 [b]torra th[/b] - Sprites
 
-[b]Polarities[/b], [b]Split[/b], [b]SoTS[/b], [b]Calamity[/b], [b]and other awesome projects![/b] - Huge inspiration!
+Special thanks to these projects for existing and being HUGE inspirations for Aequus!
+[b]Aerovelence[/b]
+[b]Calamity Mod[/b]
+[b]Fargo's Souls & Mutant[/b]
+[b]Forces of Nature & etc[/b]
+[b]Gameterraria[/b]
+[b]Polarities[/b]
+[b]Secrets of the Shadows[/b]
+[b]Spirit Mod[/b]
+[b]Split[/b]
+[b]Starlight River[/b]
+[b]Terrorborn[/b]
+[b]Thorium Mod[/b]
+[b]Spooky Mod[/b]
+[b]Wisplantern[/b]
+[b]Zylon aka Azercadmium[/b]
+These mods may have some interactions when enabled alongside Aequus...

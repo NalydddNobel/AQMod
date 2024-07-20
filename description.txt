@@ -24,21 +24,40 @@ Click on the Homepage button to be sent to the Official Wiki.
 
 [c/7EC8E3:Blossom] - Sprites
 [c/7EC8E3:bubbyboytoo] - Wiki, Ideas
+[c/7EC8E3:caligulasAquarium] - Sprites and Ideas
+[c/7EC8E3:cc] - Sprites and Ideas
 [c/7EC8E3:Chillizard] - Sprites
-[c/7EC8E3:enamoured] - Sprites, Ideas
+[c/7EC8E3:enamoured] - Sprites and Ideas
 [c/7EC8E3:extra] - Music, Sound Designer (Get the music mod!)
 [c/7EC8E3:Funk.It] - Narrizuul's Sprite
 [c/7EC8E3:Hugekraken] - Omega Starite's Sprite
 [c/7EC8E3:Lin] - Chinese Translations
-[c/7EC8E3:moonburn] - RGB Keyboard shenanigans
-[c/7EC8E3:Mr. Gerd26] - Sprites, Ideas
+[c/7EC8E3:moonburn] - RGB Keyboard and Audio support
+[c/7EC8E3:Mr. Gerd26] - Sprites and Ideas
 [c/7EC8E3:niker] - Sprites, Ideas & Concept Art
+[c/7EC8E3:JOI3] - Sprites and Ideas
 [c/7EC8E3:Nurby] - Prim Shader and a weapon
 [c/7EC8E3:someperson] - Ideas
 [c/7EC8E3:Spectra] - Music (Get the music mod!!!!!!!!!!)
-[c/7EC8E3:Squartron] - Sprites, Ideas
+[c/7EC8E3:Squartron] - Sprites and Ideas
 [c/7EC8E3:starlight.mp4] - Wiki
 [c/7EC8E3:torra th] - Sprites
 [c/7EC8E3:Triangle] - Sprites
 
-[c/03B1FC:Polarities], [c/A76CCC:Split], [c/9760A3:SoTS], [c/C92222:Calamity], [c/7EC8E3:and other awesome projects!] - Huge inspiration!
+Special thanks to these projects for existing and being HUGE inspirations for Aequus!
+[c/7EC8E3:Aerovelence]
+[c/7EC8E3:Calamity Mod]
+[c/7EC8E3:Fargo's Souls & Mutant]
+[c/7EC8E3:Forces of Nature & etc]
+[c/7EC8E3:Gameterraria]
+[c/7EC8E3:Polarities]
+[c/7EC8E3:Secrets of the Shadows]
+[c/7EC8E3:Spirit Mod]
+[c/7EC8E3:Split]
+[c/7EC8E3:Starlight River]
+[c/7EC8E3:Terrorborn]
+[c/7EC8E3:Thorium Mod]
+[c/7EC8E3:Spooky Mod]
+[c/7EC8E3:Wisplantern]
+[c/7EC8E3:Zylon aka Azercadmium]
+These mods may have some interactions when enabled alongside Aequus...
