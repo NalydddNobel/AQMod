@@ -1,1 +1,5 @@
 DamageClasses.GenericDamageClassNoCrit.DisplayName: 伤害
+NecromancyClass.DisplayName: 死灵伤害
+NecromancyMagicClass.DisplayName: "{DamageClasses.NecromancyClass.DisplayName}"
+NecromancySummonerClass.DisplayName: "{DamageClasses.NecromancyClass.DisplayName}"
+ArtistClass.DisplayName: 艺术伤害
