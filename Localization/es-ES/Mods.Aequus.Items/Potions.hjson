@@ -3,11 +3,7 @@ MeadowMushroom: {
 	// Tooltip: ""
 }
 
-SentryPotion: {
-	DisplayName: Poción de centinela
-	Tooltip: Incrementa tu numero maximo de centinelas por {0}
-	BuffName: centinela
-}
+SentryPotion.BuffName: centinela
 
 TaintedSeafood: {
 	DisplayName: Comida marina Contaminada
@@ -19,26 +15,11 @@ TaintedSeafood: {
 }
 
 DeathsEmbrace: {
-	DisplayName: Abrazo de la Muerte
-	Tooltip:
-		'''
-		No se consume cuando se usa
-		Aumenta un 20% el daño y la probabilidad de ataque crítico
-		Los ataques son un poco menos precisos
-		Los ataques hacen que vuelvas a tomar la poción automáticamente
-		{{Una vez que el efecto acabe, morirás instantáneamente...}}
-		'''
 }
 
 // Foods
 
 Baguette: {
-	DisplayName: Baguette
-	Tooltip:
-		'''
-		Mejoras supremas a todas las características
-		regeneración de vida muy incrementada
-		'''
 }
 
 // Healing
@@ -48,24 +29,28 @@ GreaterHoneyPotion: {
 	Tooltip: Incrementa la regeneración natural
 }
 
+GreaterHoney: {
+	// DisplayName: Greater Honey
+	// Tooltip: ""
+}
+
 SuperHoneyPotion: {
 	DisplayName: Super Poción de Miel
 	Tooltip: Incrementa la regeneración natural por un largo tiempo
 }
 
+SuperHoney: {
+	// DisplayName: Super Honey
+	// Tooltip: ""
+}
+
 LesserRestorationPotion: {
-	DisplayName: Poción de recuperación menor
-	Tooltip: "{$ItemTooltip.RestorationPotion}"
 }
 
 GreaterRestorationPotion: {
-	DisplayName: Poción de recuperación mayor
-	Tooltip: "{$ItemTooltip.RestorationPotion}"
 }
 
 SuperRestorationPotion: {
-	DisplayName: Super Poción de recuperación
-	Tooltip: "{$ItemTooltip.RestorationPotion}"
 }
 
 // Canteens
@@ -81,11 +66,4 @@ HallowCanteen: {
 }
 
 PotionCanteen: {
-	DisplayName: Cantina de pociónes
-	DisplayNameAlt: Cantina de pociónes ({0})
-	Tooltip:
-		'''
-		Permite el uso infinito de una poción
-		Presiona <right> con 15 de una poción en la cantina para aplicar
-		'''
 }

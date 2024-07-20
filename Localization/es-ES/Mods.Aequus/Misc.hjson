@@ -7,13 +7,10 @@ InfoDisplays: {
 	}
 
 	AnglerBroadcasterIcon: {
-		// DisplayName: Fish Quest
 		// Unavailable: Unavailable
 		// Finished: Finished
 	}
 }
-
-KeyUnbound: Unbound
 
 Controls: {
 	// Unbound: "{$Mods.AequusRemake.KeyUnbound}"

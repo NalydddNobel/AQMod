@@ -1,15 +1,9 @@
 Configs: {
 	ClientConfig: {
-		DisplayName: 客户端配置
-
 		ShowDeathTips: {
-			Label: "[i:Tombstone] 死亡提示"
-			Tooltip: 在重生时会显示[c/ffffbb:死亡提示].
 		}
 
 		FlashIntensity: {
-			Label: "[i:CosmicMonolith] 闪光强度"
-			Tooltip: ""
 		}
 
 		FlashLoops: {

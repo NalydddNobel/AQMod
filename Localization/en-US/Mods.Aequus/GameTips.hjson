@@ -4,10 +4,8 @@ GameTips: {
 	BreathConserver: "{$Misc.GameTipPretense} Struggling to navigate the deep waters? Professional divers use the Breath Conserver."
 	Meadows: "{$Misc.GameTipPretense} On the outer edges of the world lies the floating Meadows, magical islands with special flora. . ."
 	EventToggleGlasses: "{$Misc.GameTipPretense} Some magical lenses will block out the presence of cosmic events. . ."
-	SkyMerchant: "{$Misc.GameTipPretense} Keep an eye out for the Sky Merchant! He visits towns above the clouds, selling exotic goodies and equipment."
 	SkyMerchantShopTip: "{$Misc.GameTipPretense} The Sky Merchant's shop changes depending on the day of the week. Be sure to check the Calender!"
 	SkyMerchantLocationTip: "{$Misc.GameTipPretense} The Sky Merchant follows the Sun's position in the sky. He'll be to the West during the morning, and East in the afternoon."
-	Pumpinator: "{$Misc.GameTipPretense} Wishing for a nice breeze? Try the Pumpinator, sold by the Sky Merchant."
 	NameTag: "{$Misc.GameTipPretense} Ever wanted to keep a real Dungeon Guardian as a pet? Try using a Name Tag on it!"
 	ScavengerBag: "{$Misc.GameTipPretense} Need more inventory space? Slay scavenging skeletons for a chance at dropping the Scavenger Bag!"
 	TipAboutTipsOnDeath: "{$Misc.GameTipPretense} We show you these Game Tips when you die! I wonder if you're reading this while dead . . ."
@@ -19,9 +17,7 @@ GameTips: {
 	Dumpster: "{$Misc.GameTipPretense} Dumpsters can hold two chests' worth of items while only being three tiles wide."
 	Junk: "{$Misc.GameTipPretense} One man's trash is another man's treasure! A crafty Terrarian knows how to make the most of fishing junk."
 	TrashPSA: Don't throw your trash into the water.
-}
 
-UnusedTips: {
 	FirstScepter: "{$Misc.GameTipPretense} Crafting your first Necromancy Sceptre is a touch decision, but it's worth it!"
 	GravetenderArmor: "{$Misc.GameTipPretense} Aspiring necromancers should seek to craft the Gravetender Armor, requiring rotten materials and Ecto Mist."
 	StackingDebuffs: "{$Misc.GameTipPretense} Certain debuffs can be inflicted multiple times on the same enemy, stacking their damage over time."

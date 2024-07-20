@@ -4,24 +4,10 @@ AncientCutlass: {
 }
 
 Dynaknife: {
-	DisplayName: The Christmas Spirit
-	Tooltip:
-		'''
-		Hits apply a bomb which will explode on enemies
-		<right> to dash foward and attack
-		'''
 }
 
 MirrorsCall: {
-	DisplayName: Mirror's Call
-	Tooltip: Strike the enemy from the comfort of your couch!
 }
 
 IronLotus: {
-	DisplayName: Iron Lotus
-	Tooltip:
-		'''
-		Brandish a spear which inflicts spreading flames
-		'Burn those who dare to care for me'
-		'''
 }

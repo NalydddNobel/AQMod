@@ -1,5 +1,3 @@
-DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
-
 ConeheadZombie: {
 	DisplayName: Zombi Blindado
 	Bestiary: Deambulando por la superficie contaminada, este zombi adquirio una capa de defensa usando chatarra.
@@ -31,11 +29,7 @@ OilSlime: {
 	BannerName: Estandarte de Slime Opaco
 }
 
-BreadOfCthulhu: {
-	DisplayName: Pan de Cthulhu
-	BannerName: Estandarte de Pan de Cthulhu
-	Bestiary: Un bocadillo perdido que obtuvo vida despues de caer por un portal maligno, ¡Esta rebanada no tiene planeado ser tu almuerzo! Ten cuidado cuando pezcas, porque podria tomar el anzuelo de un pezcador que parece presa fácil.
-}
+BreadOfCthulhu.BannerName: Estandarte de Pan de Cthulhu
 
 // --localization note-- "conductor" as in an orchestra conductor
 Conductor: {
@@ -48,10 +42,8 @@ Conductor: {
 Mirage.Bestiary: Durante la lluvia, nubes toxicas se forman y acumulan formando este monstruo acídico, desea ser un nimbo real, pero tiene problemas haciéndose amigo hasta de un muñeco de pruebas.
 Pillbug.Bestiary: Bendecido con Energía Acuática, estos insectos corretean y se alimentan de la contaminación como si no fuera nada.
 Chromite.Bestiary: Un insecto con un caparazon metalico que cambia de color usando un mecanismo magnetico, Son una plaga dómestica común, y el colmo para los microondas. Podrían ser útil como carnada.
-Crabson.DisplayName: Crabson
 
 OmegaStarite: {
-	DisplayName: Omega Starite
 	TreasureBagDisplayName: Bolsa del Tesoro (Omega Starite)
 	TrophyDisplayName: Trofeo de Omega Starite
 	RelicDisplayName: Reliquia de Omega Starite
@@ -59,18 +51,13 @@ OmegaStarite: {
 }
 
 DustDevil: {
-	DisplayName: Demonio de Polvo
 	TreasureBagDisplayName: Bolsa del Tesoro (Demonio de Polvo)
 	TrophyDisplayName: Trofeo del Demonio de Polvo
 	RelicDisplayName: Reliquia del Demonio de Polvo
 	MaskDisplayName: Mascara del Diablillo de Polvo
 }
 
-BloodMimic: {
-	DisplayName: Cofre falso sangriento
-	BannerName: Estandarte de Cofre falso sangriento
-	Bestiary: Cuando la luz de la luna roja aparece, los cuerpos putrefactos de saqueadores pueden llegar a unirse con los cofres que trataron de robar, corrompiendo y mutando el tesoro que contenia.
-}
+BloodMimic.BannerName: Estandarte de Cofre falso sangriento
 
 CinderBat: {
 	Bestiary: Un demonio menor parecido a un murciélago, famoso por su cara fea y si actitud aun mas fea. Definitivamente no tiene un complejo.
@@ -91,42 +78,18 @@ KeeperImp: {
 }
 
 ChainedSoul.DisplayName: Alma encadenada
-
-DwarfStarite: {
-	DisplayName: Starite Enana
-	Bestiary: Si un Starite no consigue suficiente energia para evoluciónar, este se desolvera hasta quedar como una particula de luz. Apesar de tener sus poderes atrofiados, disfruta de su jubilación flotando sin rumbo.
-	// ItemTooltip: ""
-}
+// DwarfStarite.ItemTooltip: ""
 
 UltraStarite: {
-	DisplayName: Ultra Starite
-	Bestiary: En su ultima etapa de crecimiento, starites elite pueden concentrar la energia de su núcleo expuesto para formar rayos mortales. ¡es casi como si el cielo estuviera cayendo!
 	TrophyDisplayName: Trofeo de Ultra Starite
 	RelicDisplayName: Reliquia de Ultra Starite
 }
 
-HyperStarite: {
-	DisplayName: Hiper Starite
-	Bestiary: Cuando un Starite envejece, este se vuelve mas volátil y comienza a expandirse, lo que permite utilizar sus segmentos en orbita como armas.
-	BannerName: Estandarte de Hiper Starite
-}
-
-SuperStarite: {
-	DisplayName: Super Starite
-	Bestiary: Starites que consiguen suficiente energía pueden mudar de caparazón y evolucionar a esta forma blindada.
-	BannerName: Estandarte de Super Starite
-}
-
-Starite: {
-	DisplayName: Starite
-	Bestiary: A piece of animate stardust bearing a striking resemblance to fallen stars, their exterior seems gassy but will grow to have a sturdy shell.
-	BannerName: Estandarte de Starite
-}
+HyperStarite.BannerName: Estandarte de Hiper Starite
+SuperStarite.BannerName: Estandarte de Super Starite
+Starite.BannerName: Estandarte de Starite
 
 PhysicistPet: {
-	DisplayName: Dron
-	Bestiary: Este pequeño aparato sigue a la Física a donde sea que vaya, constantemente registra cada detalle en su entorno para asegurar de que no se escape nada. Está basado en un modelo de inspección y miniaturizado para uso personal.
-
 	Dialogue: {
 		0: Bip bup.
 		1: Bip bop.
@@ -134,23 +97,13 @@ PhysicistPet: {
 }
 
 CleanserDrone: {
-	DisplayName: Dron Depurador
-	Bestiary: Creado por la Física en colaboración con la Steampunker para mantener tu ciudad habitable. Extrae energia de la torre de la ciudad para funcionar.
 }
 
 GunnerDrone: {
-	DisplayName: Dron Tirador
-	Bestiary: Creado por la Física para protejer tu ciudad, Extrae energia de la torre de la ciudad para funcionar.
 }
 
 HealerDrone: {
-	DisplayName: Dron Medico
-	Bestiary: Creado por la Física para mantener tu ciudad saludable, Extrae energia de la torre de la ciudad para funcionar.
 }
-
-AdamantiteMimic.DisplayName: Cofre falso de Adamantita
-FrostMimic.DisplayName: Cofre falso Congelado
-ShadowMimic.DisplayName: Cofre falso Oscuro
 
 Eel: {
 	DisplayName: Anguila
@@ -183,36 +136,21 @@ SeaFirefly: {
 }
 
 RedSprite: {
-	// DisplayName: Red Sprite
-	// Bestiary: When a strange bolt of thunder merged with an angry nimbus, this seething stormcloud was born. Lashing scarlet surges in every direction make its presence impossible to miss.
 	// TrophyDisplayName: Red Sprite Trophy
 	// RelicDisplayName: Red Sprite Relic
 	// MaskDisplayName: Red Sprite Mask
 }
 
 SpaceSquid: {
-	// DisplayName: Space Squid
-	// Bestiary: An alien scout from an advanced interstellar civilization, they transplant their consciousness into bodies made of high-tech compacted water molecules for easier teleportation.
 	// TrophyDisplayName: Space Squid Trophy
 	// RelicDisplayName: Space Squid Relic
 	// MaskDisplayName: Space Squid Mask
 }
 
-Vraine: {
-	// DisplayName: Vraine
-	// BannerName: Vraine Banner
-	// Bestiary: Migratory birds that travel in flocks, going where the wind takes them. Its beak is highly sensitive to minute changes in temperatures, and it will change its behavior accordingly.
-}
-
-WhiteSlime: {
-	// DisplayName: White Slime
-	// Bestiary: A slime exposed to high-altitude sunrays will eventually begin to take on a glow of its own. Rumored to taste like cinnamon.
-	// BannerName: White Slime Banner
-}
+// Vraine.BannerName: Vraine Banner
+// WhiteSlime.BannerName: White Slime Banner
 
 StreamingBalloon: {
-	// DisplayName: Streaming Balloon
-	// Bestiary: Some enterprising slimes will attach to hot air balloons to take them even higher. They float above their quarry before dropping down and engulfing them.
 }
 
 Salamancer: {

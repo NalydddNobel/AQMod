@@ -8,7 +8,7 @@ Keywords: {
 //# Equipment: Armor
 GravetenderHood: {
 	DisplayName: 守墓人兜帽
-	Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
+	Tooltip: 增加10%召唤伤害
 	Setbonus: 召唤一缕能够强化与你最近的幽魂仆从的游魂
 }
 
@@ -16,8 +16,8 @@ GravetenderRobes: {
 	DisplayName: 守墓人长袍
 	Tooltip:
 		'''
-		{$CommonTooltips.StatGhostDuration}
-		{$CommonTooltips.StatGhostSlots@1}
+		延长30秒幽魂仆从的存在时间
+		增加最大幽魂仆从栏位
 		'''
 }
 
@@ -29,6 +29,7 @@ LeechHook: {
 		无视敌人{0}点的防御力
 		吸住敌人并治疗你
 		伤害被吸住的敌人以获得额外治疗
+		{$Items.Prefixable}
 		'''
 }
 
@@ -38,6 +39,7 @@ Meathook: {
 		'''
 		你的钩爪会抓住敌人
 		你会对被你的钩爪抓住的敌怪额外造成{0}%伤害
+		{$Items.Prefixable}
 		'''
 }
 
@@ -99,7 +101,7 @@ MagicKeychain: {
 
 FrozenTechnology: {
 	DisplayName: 霜冻科技
-	Tooltip: 用于制作信息工具
+	Tooltip: 用于制作信息小装置
 }
 
 GlowLichen: {
@@ -124,43 +126,43 @@ PossessedShard: {
 
 AquaticEnergy: {
 	DisplayName: 海蓝能量
-	Tooltip: ""
+	Tooltip: 巨蟹蛤所吸收, 曾居住于垃圾中的甲壳纲动物, 后臣服于一个强大的力量
 }
 
 AtmosphericEnergy: {
 	DisplayName: 天权能量
-	Tooltip: ""
+	Tooltip: 沙尘恶魔所汲取, 疯狂的元素生物, 妄图拥有君临一切元素之上的力量
 }
 
 CosmicEnergy: {
 	DisplayName: 星宇能量
-	Tooltip: ""
+	Tooltip: 终末之星所磨炼, 拥有生命的太阳系, 追求的乃是永恒的存续
 }
 
 DemonicEnergy: {
-	DisplayName: 幻象能量
-	Tooltip: ""
+	DisplayName: 恶魔能量
+	Tooltip: 暴乱者所操弄, 权倾一方的死灵法师, 向大地上的每一个角落散播生命的诅咒
 }
 
 // --localization note-- 'hearth' is a very specific word so it can just be translated into anything relating to earth or ground
 OrganicEnergy: {
-	DisplayName: 地象能量
-	Tooltip: ""
+	DisplayName: 自然能量
+	Tooltip: 世纪之花所孕育, 沉睡的守护者, 与被释放而出的力量之魂、视域之魂和恐惧之魂紧密相连
 }
 
 UltimateEnergy: {
 	DisplayName: 终极能量
-	Tooltip: ""
+	Tooltip: 寰宇能量的和谐, 带来以太的力量!
 }
 
 MonoGem: {
 	DisplayName: 单项宝石
-	Tooltip: "'被晦涩的精华所诅咒'"
+	Tooltip: 具有超然属性
 }
 
 OmniGem: {
 	DisplayName: 全能宝石
-	Tooltip: "'被以太的存在所附魔'"
+	Tooltip: 具有附魔属性
 }
 
 NoHitReward: {
@@ -173,8 +175,8 @@ NoHitReward: {
 }
 
 TinkerersGuidebook: {
-	DisplayName: 工匠指南
-	Tooltip: 永久性增加在重铸时出现正面前缀的几率
+	DisplayName: 修补匠指南
+	Tooltip: 永久性改进哥布林工匠的重铸服务
 	DisplayMessage: 哥布林工匠的利润开始减少了!
 }
 
@@ -205,11 +207,11 @@ CompressedTrash: {
 
 BloodyTearstone: {
 	DisplayName: 血泪石
-	Tooltip: ""
+	Tooltip: 源自流动的猩红之海
 }
 
 SoulGem: {
-	DisplayName: 空白灵魂宝石
+	DisplayName: 空灵魂宝石
 	Tooltip: 无法使用, 直到其捕获敌人的灵魂
 }
 
@@ -217,8 +219,8 @@ SoulGemFilled: {
 	DisplayName: 灵魂宝石
 	Tooltip:
 		'''
-		用于制作死灵装备
-		掉落自最黑暗的恶魔...
+		用于制造死灵装备
+		由一位黑暗艺术大师出售
 		'''
 }
 
@@ -231,16 +233,16 @@ UnholyCore: {
 	DisplayName: 不洁核心
 	Tooltip:
 		'''
-		可在遗境祭坛处使用
+		可在血巢处使用
 		降低恶魔围攻事件的进攻时间
 		'''
 }
 
 UnholyCoreSmall: {
-	DisplayName: 暗黑泪石
+	DisplayName: 不洁裂石
 	Tooltip:
 		'''
-		可在遗境祭坛处使用
+		可在血巢处使用
 		掉落自地狱的神秘实体
 		'''
 }
@@ -277,10 +279,8 @@ PhasePhone: {
 	DisplayName: 相位手机
 	Tooltip:
 		'''
-		显示一切
-		{0}
-		通过在大地图上点击队友的头像来传送至对方位置
-		右键切换目的地
+		{$Items.PhasePhone.TooltipTop}
+		{$Items.PhasePhone.TooltipBottom}
 		'''
 
 	Home: {
@@ -318,8 +318,8 @@ Bellows: {
 	DisplayName: 风箱
 	Tooltip:
 		'''
-		推动你
-		'还挺容易'
+		将你向你瞄准的反方向推开
+		'真是太容易了'
 		'''
 }
 
@@ -327,17 +327,18 @@ Pumpinator: {
 	DisplayName: 泵风器
 	Tooltip:
 		'''
-		逐次更改风速
-		强大的阵风几乎可以推动任何东西
+		渐进更改风速
+		强大的风可以几乎推动一切
+		由一位来自天空的神秘商人出售
 		'''
 }
 
 NameTag: {
-	DisplayName: 重命名标签
+	DisplayName: 命名标签
 	Tooltip:
 		'''
-		可在天空商人处重命名
-		对着镇民、小动物或敌人使用以重命名名字
+		可在天空商人处免费重命名
+		重命名后对着镇民、小动物或敌人使用以重命名名字
 		'''
 }
 
@@ -372,17 +373,17 @@ HealerDrone: {
 
 MoonflowerSeeds: {
 	DisplayName: 月光花种
-	Tooltip: ""
+	Tooltip: 会在午夜附近开花并产生花粉
 }
 
 MistralSeeds: {
 	DisplayName: 寒风花种
-	Tooltip: ""
+	Tooltip: 会在大风天开花并产生花粉
 }
 
 ManacleSeeds: {
 	DisplayName: 镣铐花种
-	Tooltip: ""
+	Tooltip: 会在早晨开花并产生花粉
 }
 
 //# Backpacks
@@ -449,12 +450,16 @@ CelestialEightBall: {
 
 CosmicMonolith: {
 	DisplayName: 宇宙石
-	Tooltip: "'维系宇宙力量的一小部分'"
+	Tooltip: "'维系终极力量的一小部分'"
 }
 
 StariteMaterial: {
 	DisplayName: 核心碎片
-	Tooltip: ""
+	Tooltip:
+		'''
+		能够利用星宇能量
+		自掉落柔光敌人
+		'''
 }
 
 UnopenedChestItem: {

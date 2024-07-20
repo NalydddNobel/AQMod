@@ -1,16 +1,8 @@
 //# Weapons: Ranged
 StarPhish: {
-	DisplayName: 螺旋海星吹筒
-	Tooltip: "{$CommonTooltips.UsesDarts}"
 }
 
 JunkJet: {
-	DisplayName: 垃圾喷射器
-	Tooltip:
-		'''
-		可以使用任意弹药
-		{0}%几率不消耗弹药
-		'''
 }
 
 SkyHunterCrossbow: {

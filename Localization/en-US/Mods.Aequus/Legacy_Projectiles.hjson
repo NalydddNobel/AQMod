@@ -1,61 +1,30 @@
 Projectiles: {
 	SoldierCrabProj.DisplayName: Soldier Crab
 	MagmabubbleBullet.DisplayName: Magmabubble
-	DustDevilFireball.DisplayName: Dust Devil Fireblast
-	DustDevilFrostball.DisplayName: Dust Devil Icicle
-	DustDevilTileProj.DisplayName: Devious Block
-	OmegaStariteProj.DisplayName: Omega Starite
-	OmegaStariteBullet.DisplayName: Cosmic Bullet
-	OmegaStariteDeathray.DisplayName: Ultimate Ray
 	CrabsonBubble.DisplayName: Bubble
 	CrabsonPearlShard.DisplayName: Pearl Shard
 	CrabsonPearl.DisplayName: Pearl
-	SpaceSquidSnowflake.DisplayName: Hailing Snowflake
-	SpaceSquidLaser.DisplayName: Space Squid
-	SpaceSquidDeathray.DisplayName: Space Squid
-	RedSpriteWindFire.DisplayName: Red Sprite Ember
-	RedSpriteThunderClap.DisplayName: Red Sprite
-	RedSpriteCloudLightning.DisplayName: Red Sprite
-	RedSpriteCloud.DisplayName: Red Sprite
-	UltraStariteOuterArms.DisplayName: Ultra Starite
 	UltraStariteInnerArms.DisplayName: Ultra Starite
-	HyperStariteProj.DisplayName: Hyper Starite
-	SuperStariteBullet.DisplayName: Super Starite Bullet
 	TrapperExplosion.DisplayName: Trapper Blast
 	TrapperProj.DisplayName: Trapper Blast
 	RockManProj.DisplayName: Rock Man
 	MalletProj.DisplayName: Mallet
-	UltimateSwordProj.DisplayName: Ultimate Sword
-	SuperStarSwordProj.DisplayName: Super Star Sword
 	BattleAxeProj.DisplayName: Battle Axe
-	VrangProj.DisplayName: Vrang
-	ValariProj.DisplayName: Valari
 	ThunderClapExplosion.DisplayName: Thunderclap
 	ThunderClapProj.DisplayName: Thunderclap
 	Sliceflake.DisplayName: Sliceflake
-	SliceProj.DisplayName: Slice
 	MirrorsCallExplosion.DisplayName: Mirror's Call
 	MirrorsCallBullet.DisplayName: Mirror's Call
-	MirrorsCallProj.DisplayName: Mirror's Call
 	CrystalDaggerProj.DisplayName: Crystal Dagger
-	CauterizerSlash.DisplayName: Demonic Energy Wave
 	SlingsaberProj.DisplayName: Mechanically Enhanced Upset Avian
 	SlingshotProj.DisplayName: Upset Avian
-	RaygunExplosionProj.DisplayName: Raygun
 	FlameblasterProj.DisplayName: Flameblaster
 	CrusadersCrossbowBolt.DisplayName: Crusader's Crossbow Bolt
 	SnowflakeCannonProj.DisplayName: Snowflake Cannon
-	HamaYumiArrow.DisplayName: Hama Yumi
-	HamaYumiExplosion.DisplayName: Hama Yumi
-	DeltoidArrow.DisplayName: Deltoid
-	DeltoidExplosion.DisplayName: Deltoid
 	BaozhuProj.DisplayName: Baozhu
 	GhastlyBlasterProj.DisplayName: Ghastly Blaster
-	GamestarProj.DisplayName: Compression
 	TouhouBullet.DisplayName: Touhou
 	PentalScytheProj.DisplayName: Pental Scythe
-	TriacanthornBolt.DisplayName: Triacanthorn Shot
-	TriacanthornProj.DisplayName: Triacanthorn
 	UmystickBullet.DisplayName: Menacing Moon
 	SurgeRodHitbox.DisplayName: Surge
 	SnowgraveProj.DisplayName: Snowgrave
@@ -69,9 +38,6 @@ Projectiles: {
 	ZombieBolt.DisplayName: Zombie Bolt
 	RevenantBolt.DisplayName: Revenant
 	OsirisBolt.DisplayName: Osiris
-	LocustLarge.DisplayName: Locust
-	LocustSmall.DisplayName: Locust
-	InsurgentBolt.DisplayName: Insurgency Bolt
 	InsurgentSkull.DisplayName: Insurgency
 	WormScarfLaser.DisplayName: Worm Scarf
 	ThermiteGel.DisplayName: Thermite Gel
@@ -79,7 +45,6 @@ Projectiles: {
 	NaniteSpore.DisplayName: Blood Spore
 	CelesteTorusProj.DisplayName: Celeste Torus
 	Bonesaw.DisplayName: Bonesaw
-	HyperCrystalProj.DisplayName: Hyper Crystal
 	DreadsoulAttack.DisplayName: Hellish Spirit
 	BreadsoulHealing.DisplayName: Dream Spirit
 	FriendMinion.DisplayName: Friend
@@ -110,8 +75,6 @@ Projectiles: {
 	Trapper.DisplayName: Trapper
 	CrabsonSlamProj.DisplayName: Crabson's horrible slam
 	CrabsonTreasureChest.DisplayName: Treasure Chest
-	SuctionedEnemy.DisplayName: Enemy
-	UltraStariteDeathray.DisplayName: Ultra Ray
 	NeonAttack.DisplayName: Neon Blast
 	XenonSpore.DisplayName: Xenon Spore
 	CarpenterProj.DisplayName: Carpenter Block
@@ -119,9 +82,6 @@ Projectiles: {
 	NecromancerHoodSpawnerProj.DisplayName: Necromancer
 	SeraphimHoodSpawnerProj.DisplayName: Seraphim
 	ModIconAnimation.DisplayName: Mod Icon Animation
-	BombarderRodProj.DisplayName: Bombarder Rod
-	NightfallGlint.DisplayName: Nightfall Glint
-	NightfallProj.DisplayName: Nightfall
 	PentalScytheExplosion.DisplayName: Pental Scythe
 	SavingGraceProj.DisplayName: Saving Grace
 	SnowgraveProjSpawner.DisplayName: Snowgrave
@@ -131,16 +91,8 @@ Projectiles: {
 	WabbajackEffect.DisplayName: Wabbajack
 	WabbajackProj.DisplayName: Wabbajack
 	WindFanProj.DisplayName: Wind Fan
-	HellsBoonProj.DisplayName: Hells Boon
-	HellsBoonSpawner.DisplayName: Hells Boon Spawner
-	IronLotusFlare.DisplayName: Iron Lotus
-	IronLotusProj.DisplayName: Iron Lotus
 	PhaseDiscProj.DisplayName: Phase Disc
-	SickBeatProj.DisplayName: Sick Beat
-	SuperStarSwordSlash.DisplayName: Super Slash
-	CauterizerProj.DisplayName: Cauterizer
 	NettlebaneProj.DisplayName: Nettlebane
-	BellowsProj.DisplayName: Bellows
 	BeeBobber.DisplayName: Bee Bobber
 	CrabBobber.DisplayName: Crab Bobber
 	NeonFishLaser.DisplayName: Neon Genesis Laser
@@ -156,24 +108,16 @@ Projectiles: {
 	NaniteExplosion.DisplayName: Nanite
 	StormcloakExplosionProj.DisplayName: Stormcloak Explosion
 	ThermiteGelExplosion.DisplayName: Thermite Gel
-	LeechHookProj.DisplayName: Leech Hook
-	MeathookProj.DisplayName: Meathook
-	GunnerDroneProj.DisplayName: Gunner Drone
 	MendshroomProj.DisplayName: Mendshroom Proj
-	OccultistProj.DisplayName: Occultist
-	OccultistProjSpawner.DisplayName: Occultist
 	DronePet.DisplayName: Drone Pet
 	FamiliarPet.DisplayName: Familiar Pet
 	MiningPet.DisplayName: Mining Pet
 	RedSpritePet.DisplayName: Red Sprite Pet
 	SpaceSquidPet.DisplayName: Space Squid Pet
 	TorraPet.DisplayName: Torra Pet
-	PhysicsGunProj.DisplayName: Physics Gun
 	PixelCameraProj.DisplayName: Pixel Camera
 	ProtectiveProbe.DisplayName: Protective Probe
-	PumpinatorProj.DisplayName: Pumpinator
 	ShutterstockerProj.DisplayName: Shutterstocker
-	SplashPotionProj.DisplayName: Splash Potion Proj
 	SuperPhysicsGunProj.DisplayName: Super Physics Gun
 	AshCrossGraveMarkerProj.DisplayName: Ash Cross Grave Marker
 	AshGraveMarkerProj.DisplayName: Ash Grave Marker
@@ -183,7 +127,6 @@ Projectiles: {
 	AshTombstoneProj.DisplayName: Ash Tombstone
 	HardwoodProj.DisplayName: Hardwood
 	MeteorRubble.DisplayName: Meteor Rubble
-	SuperStariteProj.DisplayName: Super Bullet
 	TrapperBullet.DisplayName: Trapper Bullet
 	BasicBirdPredictionLine.DisplayName: Prediction Line
 	BoundBowProj.DisplayName: Bound Bow
@@ -201,9 +144,7 @@ Projectiles: {
 	CorruptPlantCounter.DisplayName: Corrupt Plant
 	CorruptPlantMinion.DisplayName: Corrupt Plant
 	MindfungusMinion.DisplayName: Mindfungus
-	GravetenderWisp.DisplayName: Gravetender Wisp
 	EnthrallingBolt.DisplayName: Enthralling Bolt
-	GhostHitbox.DisplayName: Ghost
 	SkeletronHandProj.DisplayName: Skeletron Hand
 	SoulAbsorbProj.DisplayName: Soul Absorb
 	PiranhaPlantFireball.DisplayName: Piranha Plant
@@ -213,17 +154,7 @@ Projectiles: {
 	ScribbleNotebookMinion.DisplayName: Scribble Notebook
 	SnowflakeMinion.DisplayName: Snowflake
 	TornadoWhipProj.DisplayName: Tornado Whip Proj
-	SliceBulletProj.DisplayName: Slice
-	SliceOnHitEffect.DisplayName: Slice
-	AshTombstoneExplosion.DisplayName: Tombstone Kaboomy
-	RadonFishingBobberProj.DisplayName: Radon Fishing Bobber
-	DynaknifeProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
-	DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 	StormcloakProj.DisplayName: "{$Items.Stormcloak.DisplayName}"
-	PhysicistSentryProj.DisplayName: Physicist Sentry Proj
-	PhysicistTownSentryLightning.DisplayName: Physicist Town Sentry Lightning
-	PhysicistTownSentryProj.DisplayName: Physicist Town Sentry Proj
-	PhysicistSentryLightning.DisplayName: Physicist Sentry Lightning
 	RecordBreakerProj.DisplayName: Record Breaker Proj
 	LanternCatPet.DisplayName: Lantern Cat Pet
 	LihzahrdKusariyariProj.DisplayName: Lihzahrd Chain Spear Proj
@@ -247,15 +178,9 @@ Projectiles: {
 	RevenantSceptreProj.DisplayName: "{$Items.Revenant.DisplayName}"
 	RevenantSceptreProjOnHit.DisplayName: "{$Items.Revenant.DisplayName}"
 	ScepterProcProj.DisplayName: ScepterProcProj.DisplayName
-	CrimsonSceptreProj.DisplayName: "{$Items.CrimsonSceptre.DisplayName}"
 	CrimsonSceptreProjOnHit.DisplayName: "{$Items.CrimsonSceptre.DisplayName}"
 	SceptreProcProj.DisplayName: Sceptre Proc Proj
 	PixelCameraHeldProj.DisplayName: Pixel Camera Held Proj
 	UpriserNecromancyAttack.DisplayName: Upriser Necromancy Attack
-	InsurgencyProj.DisplayName: Insurgency Proj
-	RevenantProj.DisplayName: Revenant Proj
-	CorruptionSceptreProj.DisplayName: Corruption Sceptre Proj
-	OsirisProj.DisplayName: Osiris Proj
 	SteampunkerBobber.DisplayName: "{$Items.SteampunkerFishingPole.DisplayName}"
-	SkyMerchantProjectile.DisplayName: "{$NPCs.SkyMerchant.DisplayName}"
 }

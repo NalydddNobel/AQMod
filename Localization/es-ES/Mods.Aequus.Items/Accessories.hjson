@@ -1,7 +1,5 @@
 //# Equipment: Accessories
 BreathConserver: {
-	DisplayName: Conservador de aire
-	Tooltip: Restaura respiración al romper bloques y derrotar enemigos
 }
 
 ValentineRing: {
@@ -78,8 +76,6 @@ StellarGlasses: {
 }
 
 EclipseGlasses: {
-	DisplayName: Gafas de Eclipse
-	Tooltip: Ignora la aparición de enemigos del eclipse
 }
 
 //# Equipment: Informational
@@ -95,11 +91,14 @@ ShimmerMonocle: {
 }
 
 RichMansMonocle: {
-	DisplayName: Monóculo del Adinerado
-	Tooltip: Muestra los precios de objetos fuera de tiendas
 }
 
 Calendar: {
 	DisplayName: Calendario
 	Tooltip: Muestra la fecha
+}
+
+SteampunkerFishingPole: {
+	// DisplayName: Steampunker Fishing Pole
+	// Tooltip: ""
 }

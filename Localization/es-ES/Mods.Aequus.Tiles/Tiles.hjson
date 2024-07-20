@@ -226,8 +226,16 @@ CopperChestLocked: {
 }
 
 // HiddenChest.MapEntry: Hidden Chest
-// MeadowGrass.ItemDisplayName: Meadow Grass Seeds
-// MeadowWood.ItemDisplayName: Meadow Wood
+
+MeadowGrass: {
+	// ItemDisplayName: Meadow Grass Seeds
+	// ItemTooltip: ""
+}
+
+MeadowWood: {
+	// ItemDisplayName: Meadow Wood
+	// ItemTooltip: ""
+}
 
 SeaFireflyBlock: {
 	// DisplayName: Sea Firefly Block

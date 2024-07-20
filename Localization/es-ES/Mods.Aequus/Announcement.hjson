@@ -9,25 +9,9 @@ Announcement: {
 	// --localization note-- the "giveitem" and "eventstart" lines go together, one random "giveitem" line is picked first and then follows up with a random "eventstart" line
 	DemonSiege: {
 		GiveItem: {
-			0: "{Player} hizo un pacto con el diablo..."
-			1: "{Player} comienza a aceptar su destino..."
-			2: "{Player} no logra imaginar lo que le pasara a su {Item}..."
-			3: "{Player} no esperaba que se tragara su {Item}..."
-			4: "{item} atrae a {player} hacia la oscuridad..."
-			5: Tu {Item} está siendo corrompido aún mas...
-			6: horrores más allá de tu comprensión rodean tu {Item}...
-			7: La ocultista le sonríe a {Player}...
 		}
 
 		EventStart: {
-			0: ...Los demonios no están impresionados con {Player}!
-			1: ...La historia de {player} termina aquí!
-			2: ...Tu {Item} atrae atención no deseada!
-			3: ...{Player} no espera lo que se aproxima!
-			4: ...{Player} morira.
-			5: ...{Player} enfrentara las consecuencias.
-			6: ...Los horrores están aquí!
-			7: ...Perdición y oscuridad se acercan!
 		}
 
 		FailEat: El Altar de Oblivio consume tu {0}...
@@ -35,5 +19,4 @@ Announcement: {
 	}
 
 	// NPCWantsToMoveIn: A {0} would like to settle down.
-	// HardmodeChests: The chests of the caverns are blessed with new treasures...
 }

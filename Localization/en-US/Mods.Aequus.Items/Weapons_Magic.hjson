@@ -13,10 +13,4 @@ Furystar: {
 }
 
 StudiesOfTheInkblot: {
-	DisplayName: Studies Of The Inkblot
-	Tooltip:
-		'''
-		Left Click for 'Rorschach in Danmaku'
-		Right Click for 'Subterranean Rose'
-		'''
 }

@@ -14,7 +14,7 @@ Biomes: {
 		DisplayName: Polluted Underground
 		TownNPCDialogueName: the Polluted Underground
 	}
-	
+
 	GoreNestBiome: {
 		DisplayName: Nearby Gore Nest
 		TownNPCDialogueName: the Gore Nest

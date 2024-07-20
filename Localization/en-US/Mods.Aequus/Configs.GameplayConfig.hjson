@@ -1,7 +1,5 @@
 Configs: {
 	GameplayConfig: {
-		DisplayName: Gameplay Config
-
 		PollutedOceanSide: {
 			Label: "[i:AequusRemake/TrashCompactor] Polluted Ocean Side"
 			Tooltip:
@@ -14,13 +12,6 @@ Configs: {
 		}
 
 		CaveVariety: {
-			Label: "[i:BonePickaxe] AequusRemake Caves"
-			Tooltip:
-				'''
-				Adds more cave variants, and overall expands caves to have much less dead-ends.
-				This value determines the quanity of AequusRemake caves to spawn.
-				Setting this to 0 disables them from spawning entirely.
-				'''
 		}
 
 		TownNPCSettleDownMessage: {
@@ -35,13 +26,6 @@ Configs: {
 		}
 
 		HardmodeChests: {
-			Label: "[i:AequusRemake/AdamantiteChest] Hardmode Chests"
-			Tooltip:
-				'''
-				Determines whether the Hardmode Chests system would be active. This has multiple gameplay changes.
-				1. In Hardmode, unopened chests will be upgraded and contain new loot.
-				2. Mimics in Hardmode will appear as the Hardmode Chests.
-				'''
 		}
 
 		PreHardmodeMimics: {

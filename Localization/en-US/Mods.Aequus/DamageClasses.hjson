@@ -1,5 +1,7 @@
-DamageClasses.GenericDamageClassNoCrit.DisplayName: damage
-NecromancyClass.DisplayName: necromancy damage
-NecromancyMagicClass.DisplayName: "{DamageClasses.NecromancyClass.DisplayName}"
-NecromancySummonerClass.DisplayName: "{DamageClasses.NecromancyClass.DisplayName}"
-ArtistClass.DisplayName: artistic damage
+DamageClasses: {
+	GenericDamageClassNoCrit.DisplayName: damage
+	NecromancyClass.DisplayName: necromancy damage
+	NecromancyMagicClass.DisplayName: "{DamageClasses.NecromancyClass.DisplayName}"
+	NecromancySummonerClass.DisplayName: "{DamageClasses.NecromancyClass.DisplayName}"
+	ArtistClass.DisplayName: artistic damage
+}

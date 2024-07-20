@@ -3,11 +3,7 @@ MeadowMushroom: {
 	Tooltip: ""
 }
 
-SentryPotion: {
-	DisplayName: Sentinel Potion
-	Tooltip: Increases your maximum amount of sentries by {0}
-	BuffName: Sentinel
-}
+SentryPotion.BuffName: Sentinel
 
 TaintedSeafood: {
 	DisplayName: Tainted Seafood
@@ -19,26 +15,11 @@ TaintedSeafood: {
 }
 
 DeathsEmbrace: {
-	DisplayName: Death's Embrace
-	Tooltip:
-		'''
-		Not consumed when used
-		15% increased damage and critical strike chance
-		Makes attacks slightly inaccurate
-		Attacks make you redrink the potion automatically
-		{{Once the buff wears off, you instantly die...}}
-		'''
 }
 
 // Foods
 
 Baguette: {
-	DisplayName: Baguette
-	Tooltip:
-		'''
-		Supreme improvements to all stats
-		Greatly improves life regeneration
-		'''
 }
 
 // Healing
@@ -48,24 +29,28 @@ GreaterHoneyPotion: {
 	Tooltip: Improves natural healing
 }
 
+GreaterHoney: {
+	DisplayName: Greater Honey
+	Tooltip: ""
+}
+
 SuperHoneyPotion: {
 	DisplayName: Super Honey Potion
 	Tooltip: Improves natural healing for a long time
 }
 
+SuperHoney: {
+	DisplayName: Super Honey
+	Tooltip: ""
+}
+
 LesserRestorationPotion: {
-	DisplayName: Lesser Restoration Potion
-	Tooltip: "{$ItemTooltip.RestorationPotion}"
 }
 
 GreaterRestorationPotion: {
-	DisplayName: Greater Restoration Potion
-	Tooltip: "{$ItemTooltip.RestorationPotion}"
 }
 
 SuperRestorationPotion: {
-	DisplayName: Super Restoration Potion
-	Tooltip: "{$ItemTooltip.RestorationPotion}"
 }
 
 // Canteens
@@ -81,11 +66,4 @@ HallowCanteen: {
 }
 
 PotionCanteen: {
-	DisplayName: Potion Canteen
-	DisplayNameAlt: Potion Canteen ({0})
-	Tooltip:
-		'''
-		Allows infinite usage of a potion
-		Hover over with a stack of 15 potions and press <right>
-		'''
 }

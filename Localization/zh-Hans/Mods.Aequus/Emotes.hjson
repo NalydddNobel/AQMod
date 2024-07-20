@@ -1,7 +1,6 @@
 Emotes: {
-	SkyMerchant.Command: skymerchant
 	Occultist.Command: occultist
-	OccultistHostile.Command: OccultistHostile
+	OccultistHostile.Command: occultist2
 	Physicist.Command: physicist
 	PhysicistPet.Command: physicistpet
 }

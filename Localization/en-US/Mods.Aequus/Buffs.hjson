@@ -10,7 +10,7 @@ Buffs: {
 	}
 
 	RadonFishingBobberBuff: {
-		DisplayName: "{$Items.RadonMossFishingBobber.DisplayName}"
+		DisplayName: Radon Moss Fishing Bobber
 		Description: Reduced aggro and spawnrates while fishing
 	}
 
@@ -30,13 +30,13 @@ Buffs: {
 	}
 
 	BaguetteBuff: {
-		DisplayName: "{$Items.Baguette.DisplayName}"
+		DisplayName: Baguette
 		Description: Supreme improvements to all stats and greatly improved life regeneration
 	}
 
 	WarHornCooldown: {
-		DisplayName: War Horn (Cooldown)
-		Description: The War Horn is on cooldown!
+		DisplayName: War Horn Cooldown
+		Description: Mods.Aequus.Buffs.WarHornCooldown.Description
 	}
 
 	FoodPoisoningDebuff: {
@@ -45,13 +45,13 @@ Buffs: {
 	}
 
 	CorruptionHellfire: {
-		DisplayName: Corruption Hellfire
-		Description: Your flesh burns from the sinister flames
+		DisplayName: Hellfire (Corruption)
+		Description: "{$BuffDescription.OnFire}"
 	}
 
 	CrimsonHellfire: {
-		DisplayName: Crimson Hellfire
-		Description: Your flesh burns from the sinister flames
+		DisplayName: Hellfire (Crimson)
+		Description: "{$BuffDescription.OnFire}"
 	}
 
 	IronLotusDebuff: {
@@ -60,33 +60,33 @@ Buffs: {
 	}
 
 	LocustDebuff: {
-		DisplayName: Mods.AequusRemake.Buffs.LocustDebuff.DisplayName
-		Description: Mods.AequusRemake.Buffs.LocustDebuff.Description
+		DisplayName: Locusts
+		Description: Locusts eat apart your flesh
 	}
 
 	InsurgentDebuff: {
-		DisplayName: "{$Items.Insurgency.DisplayName}"
-		Description: Mods.AequusRemake.Buffs.InsurgentDebuff.Description
+		DisplayName: Insurgent Debuff
+		Description: Your mind is being taken over!
 	}
 
 	RevenantDebuff: {
-		DisplayName: "{$Items.Revenant.DisplayName}"
-		Description: Mods.AequusRemake.Buffs.RevenantDebuff.Description
+		DisplayName: Revenant Debuff
+		Description: Your mind is being taken over!
 	}
 
 	NecromancyDebuff: {
-		DisplayName: "{$Items.CorruptionSceptre.DisplayName}"
-		Description: Mods.AequusRemake.Buffs.NecromancyDebuff.Description
+		DisplayName: Necromancy Debuff
+		Description: Your mind is being taken over!
 	}
 
 	OsirisDebuff: {
-		DisplayName: "{$Items.Osiris.DisplayName}"
-		Description: Mods.AequusRemake.Buffs.OsirisDebuff.Description
+		DisplayName: Osiris Debuff
+		Description: Your mind is being taken over!
 	}
 
 	CrimsonSceptreDebuff: {
-		DisplayName: "{$Items.CrimsonSceptre.DisplayName}"
-		Description: Mods.AequusRemake.Buffs.CrimsonSceptreDebuff.Description
+		DisplayName: Crimson Sceptre Debuff
+		Description: Mods.Aequus.Buffs.CrimsonSceptreDebuff.Description
 	}
 
 	GravetenderMinionBuff: {
@@ -96,27 +96,22 @@ Buffs: {
 
 	BlueFire: {
 		DisplayName: Mana Blaze
-		Description: The celestial heat rips at your health and mana!
+		Description: The immense heat burns off your skin!
 	}
 
 	UltimateSwordBuff: {
-		DisplayName: Mods.AequusRemake.Buffs.UltimateSwordBuff.DisplayName
-		Description: Mods.AequusRemake.Buffs.UltimateSwordBuff.Description
+		DisplayName: Sword Stance
+		Description: Holding the Ultimate Sword grants increased defense and knockback immunity
 	}
 
 	BoneRingDebuff: {
-		DisplayName: "{$Items.BoneRing.DisplayName}"
-		Description: Mods.AequusRemake.Buffs.BoneRingDebuff.Description
+		DisplayName: Bone Ring Debuff
+		Description: Mods.Aequus.Buffs.BoneRingDebuff.Description
 	}
 
 	GamestarDebuff: {
 		DisplayName: "{$Items.Gamestar.DisplayName}"
 		Description: Mods.AequusRemake.Buffs.GamestarDebuff.Description
-	}
-
-	RadonFishingBobberBuff: {
-		DisplayName: Radon Moss Fishing Bobber
-		Description: Reduced aggro and spawnrates while fishing
 	}
 
 	ManathirstBuff: {
@@ -162,11 +157,6 @@ Buffs: {
 	FrostBuff: {
 		DisplayName: Frost
 		Description: Reduces damage from heat sources
-	}
-
-	BaguetteBuff: {
-		DisplayName: Baguette
-		Description: Supreme improvements to all stats and greatly improved life regeneration
 	}
 
 	SpicyEelBuff: {
@@ -293,11 +283,6 @@ Buffs: {
 		Description: Holding the Crystal Dagger grants increased movement speed
 	}
 
-	UltimateSwordBuff: {
-		DisplayName: Sword Stance
-		Description: Holding the Ultimate Sword grants increased defense and knockback immunity
-	}
-
 	RitualBuff: {
 		DisplayName: Ritual
 		Description: You are performing a ritual... don't get distracted!
@@ -306,11 +291,6 @@ Buffs: {
 	NecromancyOwnerBuff: {
 		DisplayName: Ghost Minions
 		Description: You are controlling the dead
-	}
-
-	GravetenderMinionBuff: {
-		DisplayName: Gravetender
-		Description: The wisp will increase the power of your ghosts!
 	}
 
 	PiranhaPlantBuff: {
@@ -428,24 +408,9 @@ Buffs: {
 		Description: "{$BuffDescription.Weak}"
 	}
 
-	CrimsonHellfire: {
-		DisplayName: Hellfire (Crimson)
-		Description: "{$BuffDescription.OnFire}"
-	}
-
-	CorruptionHellfire: {
-		DisplayName: Hellfire (Corruption)
-		Description: "{$BuffDescription.OnFire}"
-	}
-
 	BattleAxeBleeding: {
 		DisplayName: Bleeding
 		Description: "{$BuffDescription.Bleeding}"
-	}
-
-	BlueFire: {
-		DisplayName: Mana Blaze
-		Description: The immense heat burns off your skin!
 	}
 
 	PickBreak: {
@@ -466,11 +431,6 @@ Buffs: {
 	IronLotusFireDebuff: {
 		DisplayName: Ruina Flare
 		Description: Perishing with the heat
-	}
-
-	LocustDebuff: {
-		DisplayName: Locusts
-		Description: Locusts eat apart your flesh
 	}
 
 	MindfungusDebuff: {
@@ -557,26 +517,6 @@ Buffs: {
 		Description: Your mind is being taken over!
 	}
 
-	InsurgentDebuff: {
-		DisplayName: Insurgent Debuff
-		Description: Your mind is being taken over!
-	}
-
-	NecromancyDebuff: {
-		DisplayName: Necromancy Debuff
-		Description: Your mind is being taken over!
-	}
-
-	OsirisDebuff: {
-		DisplayName: Osiris Debuff
-		Description: Your mind is being taken over!
-	}
-
-	RevenantDebuff: {
-		DisplayName: Revenant Debuff
-		Description: Your mind is being taken over!
-	}
-
 	CrownOfBloodBuff: {
 		DisplayName: Blood Bonus
 		Description: "{0}"
@@ -606,11 +546,6 @@ Buffs: {
 	BoneHelmMinionDebuff: {
 		DisplayName: Insanity
 		Description: 50% reduced speed, take heavy damage
-	}
-
-	WarHornCooldown: {
-		DisplayName: War Horn Cooldown
-		Description: Mods.Aequus.Buffs.WarHornCooldown.Description
 	}
 
 	MechPetComboBuff: {
@@ -643,18 +578,18 @@ Buffs: {
 		Description: 10% increased damage against dark creatures
 	}
 
-	BoneRingDebuff: {
-		DisplayName: Bone Ring Debuff
-		Description: Mods.Aequus.Buffs.BoneRingDebuff.Description
-	}
-
 	SentryBuffEmpowered: {
 		DisplayName: Sentry Buff Empowered
 		Description: Mods.Aequus.Buffs.SentryBuffEmpowered.Description
 	}
 
-	CrimsonSceptreDebuff: {
-		DisplayName: Crimson Sceptre Debuff
-		Description: Mods.Aequus.Buffs.CrimsonSceptreDebuff.Description
+	SentryBuff: {
+		DisplayName: Sentry Buff
+		Description: Mods.Aequus.Buffs.SentryBuff.Description
+	}
+
+	FlashwayNecklaceCooldown: {
+		DisplayName: Flashway Necklace Cooldown
+		Description: Mods.Aequus.Buffs.FlashwayNecklaceCooldown.Description
 	}
 }

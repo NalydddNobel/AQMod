@@ -1,7 +1,7 @@
 Buffs: {
 	NeutronYogurtBuff: {
-		DisplayName: "{$Items.NeutronYogurt.DisplayName}"
-		Description: 下落加速度翻倍
+		DisplayName: 中子酸奶
+		Description: 重力大幅度增加
 	}
 
 	StunGunDebuff: {
@@ -10,7 +10,7 @@ Buffs: {
 	}
 
 	RadonFishingBobberBuff: {
-		DisplayName: "{$Items.RadonMossFishingBobber.DisplayName}"
+		DisplayName: 氡苔藓钓鱼浮标
 		Description: 钓鱼时降低仇恨值和生成率
 	}
 
@@ -30,13 +30,13 @@ Buffs: {
 	}
 
 	BaguetteBuff: {
-		DisplayName: "{$Items.Baguette.DisplayName}"
+		DisplayName: 法棍
 		Description: 各项属性和生命再生速度大幅度提升
 	}
 
 	WarHornCooldown: {
-		DisplayName: 战争号角 (冷却)
-		Description: 战争号角正处于冷却中!
+		DisplayName: 战争号角冷却
+		Description: Mods.Aequus.Buffs.WarHornCooldown.Description
 	}
 
 	FoodPoisoningDebuff: {
@@ -46,12 +46,12 @@ Buffs: {
 
 	CorruptionHellfire: {
 		DisplayName: 腐化狱火
-		Description: 你的血肉被邪恶的火焰燃烧了
+		Description: "{$Buffs.BlueFire}"
 	}
 
 	CrimsonHellfire: {
 		DisplayName: 猩红狱火
-		Description: 你的血肉被邪恶的火焰燃烧了
+		Description: "{$Buffs.BlueFire}"
 	}
 
 	IronLotusDebuff: {
@@ -60,33 +60,33 @@ Buffs: {
 	}
 
 	LocustDebuff: {
-		DisplayName: Mods.AequusRemake.Buffs.LocustDebuff.DisplayName
-		Description: Mods.AequusRemake.Buffs.LocustDebuff.Description
+		DisplayName: 蝗虫
+		Description: 蝗虫正撕扯并吃掉你的血肉
 	}
 
 	InsurgentDebuff: {
-		DisplayName: "{$Items.Insurgency.DisplayName}"
-		Description: Mods.AequusRemake.Buffs.InsurgentDebuff.Description
+		DisplayName: 叛乱减益
+		Description: 你的思想被接管了!
 	}
 
 	RevenantDebuff: {
-		DisplayName: "{$Items.Revenant.DisplayName}"
-		Description: Mods.AequusRemake.Buffs.RevenantDebuff.Description
+		DisplayName: 亡魂减益
+		Description: 你的思想被接管了!
 	}
 
 	NecromancyDebuff: {
-		DisplayName: "{$Items.CorruptionSceptre.DisplayName}"
-		Description: Mods.AequusRemake.Buffs.NecromancyDebuff.Description
+		DisplayName: 死灵减益
+		Description: 你的思想被接管了!
 	}
 
 	OsirisDebuff: {
-		DisplayName: "{$Items.Osiris.DisplayName}"
-		Description: Mods.AequusRemake.Buffs.OsirisDebuff.Description
+		DisplayName: 欧西里斯减益
+		Description: 你的思想被接管了!
 	}
 
 	CrimsonSceptreDebuff: {
-		DisplayName: "{$Items.CrimsonSceptre.DisplayName}"
-		Description: Mods.AequusRemake.Buffs.CrimsonSceptreDebuff.Description
+		// DisplayName: Crimson Sceptre Debuff
+		// Description: Mods.Aequus.Buffs.CrimsonSceptreDebuff.Description
 	}
 
 	GravetenderMinionBuff: {
@@ -96,27 +96,22 @@ Buffs: {
 
 	BlueFire: {
 		DisplayName: 魔力烈焰
-		Description: 你的生命和魔力被星界高热撕裂了!
+		Description: 极热高温焚尽了你的皮肤!
 	}
 
 	UltimateSwordBuff: {
-		DisplayName: Mods.AequusRemake.Buffs.UltimateSwordBuff.DisplayName
-		Description: Mods.AequusRemake.Buffs.UltimateSwordBuff.Description
+		DisplayName: 剑锋姿态
+		Description: 手持最终之剑时会使你获得防御加成并使你免疫击退
 	}
 
 	BoneRingDebuff: {
-		DisplayName: "{$Items.BoneRing.DisplayName}"
-		Description: Mods.AequusRemake.Buffs.BoneRingDebuff.Description
+		DisplayName: 骨鹰之戒
+		Description: Mods.Aequus.Buffs.BoneRingDebuff.Description
 	}
 
 	GamestarDebuff: {
 		DisplayName: "{$Items.Gamestar.DisplayName}"
 		Description: Mods.AequusRemake.Buffs.GamestarDebuff.Description
-	}
-
-	RadonFishingBobberBuff: {
-		DisplayName: 氡苔藓钓鱼浮标
-		Description: 钓鱼时降低仇恨值和生成率
 	}
 
 	ManathirstBuff: {
@@ -149,11 +144,6 @@ Buffs: {
 		Description: 魔法属性大幅度提升, 其他属性小幅度提升
 	}
 
-	NeutronYogurtBuff: {
-		DisplayName: 中子酸奶
-		Description: 重力大幅度增加
-	}
-
 	BloodthirstBuff: {
 		DisplayName: 鲜血渴望
 		Description: 敌人必定掉落红心
@@ -164,19 +154,9 @@ Buffs: {
 		Description: 增加1格最大幽魂仆从栏位
 	}
 
-	SentryBuff: {
-		DisplayName: 哨兵
-		Description: 增加最大哨兵栏位
-	}
-
 	FrostBuff: {
 		DisplayName: 冰霜
 		Description: 降低来自热源的伤害
-	}
-
-	BaguetteBuff: {
-		DisplayName: 法棍
-		Description: 各项属性和生命再生速度大幅度提升
 	}
 
 	SpicyEelBuff: {
@@ -298,19 +278,9 @@ Buffs: {
 		Description: 无法使用风暴斗篷
 	}
 
-	FlashwayNecklaceCooldown: {
-		DisplayName: 晖耀项链冷却
-		Description: 无法使用晖耀项链
-	}
-
 	CrystalDaggerBuff: {
 		DisplayName: 匕首姿态
 		Description: 手持水晶匕首时会使你获得移动速度加成
-	}
-
-	UltimateSwordBuff: {
-		DisplayName: 剑锋姿态
-		Description: 手持最终之剑时会使你获得防御加成并使你免疫击退
 	}
 
 	RitualBuff: {
@@ -321,11 +291,6 @@ Buffs: {
 	NecromancyOwnerBuff: {
 		DisplayName: 幽魂仆从
 		Description: 你正掌控死亡
-	}
-
-	GravetenderMinionBuff: {
-		DisplayName: 守墓人
-		Description: 魂灵会强化你幽魂仆从的力量!
 	}
 
 	PiranhaPlantBuff: {
@@ -443,29 +408,9 @@ Buffs: {
 		Description: "{$BuffDescription.Weak}"
 	}
 
-	CrimsonHellfire: {
-		DisplayName: 猩红狱火
-		Description: "{$Buffs.BlueFire}"
-	}
-
-	CorruptionHellfire: {
-		DisplayName: 腐化狱火
-		Description: "{$Buffs.BlueFire}"
-	}
-
 	BattleAxeBleeding: {
 		DisplayName: 流血
 		Description: "{$BuffDescription.Bleeding}"
-	}
-
-	BitCrushed: {
-		DisplayName: 比特破碎
-		Description: 你被压缩了!
-	}
-
-	BlueFire: {
-		DisplayName: 魔力烈焰
-		Description: 极热高温焚尽了你的皮肤!
 	}
 
 	PickBreak: {
@@ -486,11 +431,6 @@ Buffs: {
 	IronLotusFireDebuff: {
 		DisplayName: 毁灭之焰
 		Description: 致命的热
-	}
-
-	LocustDebuff: {
-		DisplayName: 蝗虫
-		Description: 蝗虫正撕扯并吃掉你的血肉
 	}
 
 	MindfungusDebuff: {
@@ -577,26 +517,6 @@ Buffs: {
 		Description: 你的思想被接管了!
 	}
 
-	InsurgentDebuff: {
-		DisplayName: 叛乱减益
-		Description: 你的思想被接管了!
-	}
-
-	NecromancyDebuff: {
-		DisplayName: 死灵减益
-		Description: 你的思想被接管了!
-	}
-
-	OsirisDebuff: {
-		DisplayName: 欧西里斯减益
-		Description: 你的思想被接管了!
-	}
-
-	RevenantDebuff: {
-		DisplayName: 亡魂减益
-		Description: 你的思想被接管了!
-	}
-
 	CrownOfBloodBuff: {
 		DisplayName: 鲜血加成
 		Description: "{0}"
@@ -626,11 +546,6 @@ Buffs: {
 	BoneHelmMinionDebuff: {
 		DisplayName: 癫狂
 		Description: 降低50%移动速度, 遭受重创
-	}
-
-	WarHornCooldown: {
-		DisplayName: 战争号角冷却
-		Description: Mods.Aequus.Buffs.WarHornCooldown.Description
 	}
 
 	MechPetComboBuff: {
@@ -663,18 +578,18 @@ Buffs: {
 		Description: 对黑暗生物造成的伤害增加10%
 	}
 
-	BoneRingDebuff: {
-		DisplayName: 骨鹰之戒
-		Description: Mods.Aequus.Buffs.BoneRingDebuff.Description
-	}
-
 	SentryBuffEmpowered: {
 		DisplayName: 哨兵增幅
 		Description: Mods.Aequus.Buffs.SentryBuffEmpowered.Description
 	}
 
-	CrimsonSceptreDebuff: {
-		// DisplayName: Crimson Sceptre Debuff
-		// Description: Mods.Aequus.Buffs.CrimsonSceptreDebuff.Description
+	SentryBuff: {
+		DisplayName: 哨兵
+		Description: 增加最大哨兵栏位
+	}
+
+	FlashwayNecklaceCooldown: {
+		DisplayName: 晖耀项链冷却
+		Description: 无法使用晖耀项链
 	}
 }

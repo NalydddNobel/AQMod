@@ -13,10 +13,4 @@ Furystar: {
 }
 
 StudiesOfTheInkblot: {
-	DisplayName: Estudios de la mancha de tinta
-	Tooltip:
-		'''
-		Click izquierdo para 'Rorschach en Danmaku'
-		Click derecho 'Rosa Subterránea'
-		'''
 }

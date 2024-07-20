@@ -4,10 +4,8 @@ GameTips: {
 	BreathConserver: "{$Misc.GameTipPretense} 在深水中挣扎? 专业的潜水员会使用呼吸救生器."
 	Meadows: "{$Misc.GameTipPretense} 世界的边缘是浮空的草地, 这些神奇的岛屿上有着特殊的植物群系. . ."
 	EventToggleGlasses: "{$Misc.GameTipPretense} 一些神奇的透镜可以隔绝宇宙事件. . ."
-	SkyMerchant: "{$Misc.GameTipPretense} 留意天空商人! 他访问了云层之上的城镇, 并出售奇异的商品和装备."
 	SkyMerchantShopTip: "{$Misc.GameTipPretense} 天空商人的商店货物会根据一周中的日期而更换, 记得检查日历."
 	SkyMerchantLocationTip: "{$Misc.GameTipPretense} 天空商人会跟随太阳在天空中的位置. 他上午在西边, 下午在东边."
-	Pumpinator: "{$Misc.GameTipPretense} 希望凉快凉快? 试试天空商人出售的泵风器."
 	NameTag: "{$Misc.GameTipPretense} 有没有想过把地牢守卫当宠物养? 试试对它使用命名标签!"
 	ScavengerBag: "{$Misc.GameTipPretense} 需要更多背包空间? 击杀拾荒骷髅时有几率获得拾荒者袋子!"
 	TipAboutTipsOnDeath: "{$Misc.GameTipPretense} 在你死亡后, 我们会向你展示这些游戏提示! 我在想你在死亡后是否还在读这个..."
@@ -19,9 +17,7 @@ GameTips: {
 	Dumpster: "{$Misc.GameTipPretense} 废料箱可以容纳2个箱子大小数量的物品, 并且只占用三格物块的宽度."
 	Junk: "{$Misc.GameTipPretense} 一个泰拉人的垃圾是另一个泰拉人的财富, 一个狡猾的泰拉人知道如何充分利用渔获垃圾."
 	TrashPSA: 不要把垃圾扔水里.
-}
 
-UnusedTips: {
 	FirstScepter: "{$Misc.GameTipPretense} 制作第一把死灵权杖是一个需要仔细斟酌的决定, 但它值得!"
 	GravetenderArmor: "{$Misc.GameTipPretense} 有抱负的死灵法师应当尝试制作守墓人盔甲, 这需要腐烂材料和灵雾."
 	StackingDebuffs: "{$Misc.GameTipPretense} 某些减益可以在同一敌人身上多次叠加, 并使其造成的持续伤害提高."

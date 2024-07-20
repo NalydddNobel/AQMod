@@ -1,31 +1,3 @@
-﻿CommonTooltips: {
-	DedicatedItem: 谢谢你, {0}!
-	DedicatedItemAnonymous: 专属物品
-	UsedXOfXTimes: 已使用{0}/{1}次
-}
-
-BeyondPlatinumCoin: {
-	DisplayName: 彼界钱币
-	Tooltip: 不视作钱币, 但可拆分成100铂金币
-}
-
-ShimmerCoin: {
-	DisplayName: 微光钱币
-	Tooltip:
-		'''
-		永久性获得每个永久性微光加成道具1/5的效果
-		增加生命再生速度、魔力再生速度、防御力、
-		挖掘速度、建筑速度、渔力、运气、
-		物品掉率、重铸时出现正面前缀的几率、
-		镇民的防御力和力量和旅行商人的物品数量
-		'''
-}
-
-SteampunkerFishingPole: {
-	DisplayName: 蒸汽朋克人之杖
-	Tooltip: 能够自动收杆并重新投出钓鱼浮标
-}
-
 // Equipment
 SpiritBottle: {
 	DisplayName: 魂灵之瓶
@@ -138,7 +110,11 @@ PotionCanteenEmpty: {
 PotionCanteen: {
 	DisplayName: 药水壶
 	DisplayNameAlt: "{0}壶"
-	Tooltip: "{$Items.PotionCanteenEmpty.Tooltip}"
+	Tooltip:
+		'''
+		能够无限使用一种药水
+		光标悬停在堆叠数量为15的药水上并点击右键
+		'''
 }
 
 NeonGenesis: {
@@ -498,7 +474,7 @@ DeathsEmbrace: {
 	DisplayName: 死亡之拥
 	Tooltip:
 		'''
-		{$Items.NotConsumable}
+		使用后不会消耗
 		增加15%伤害和暴击率
 		小幅度降低攻击的准确度
 		攻击时会使你自动饮用该药水
@@ -525,21 +501,9 @@ OmegaStaritePainting2: {
 
 // Magic Mirrors
 PhaseMirror: {
-	DisplayName: 相位镜
-	Tooltip:
-		'''
-		允许你随意回家
-		通过在大地图上点击队友的头像来传送至对方位置
-		'''
 }
 
 PhasePhone: {
-	DisplayName: 相位手机
-	Tooltip:
-		'''
-		{$Items.PhasePhone.TooltipTop}
-		{$Items.PhasePhone.TooltipBottom}
-		'''
 	TooltipTop: 显示一切
 	TooltipBottom:
 		'''
@@ -677,8 +641,6 @@ CrateBait: {
 
 // Misc
 GlowLichen: {
-	DisplayName: 发光苔藓
-	Tooltip: 掉落自长满苔藓的敌人
 }
 
 VictorsReward: {
@@ -691,8 +653,6 @@ VictorsReward: {
 }
 
 CosmicChest: {
-	DisplayName: 好运礼物
-	Tooltip: 永久性增加敌人的物品掉率
 }
 
 MoneyTrashcan: {
@@ -701,12 +661,6 @@ MoneyTrashcan: {
 }
 
 NameTag: {
-	DisplayName: 命名标签
-	Tooltip:
-		'''
-		可在天空商人处免费重命名
-		重命名后对着镇民、小动物或敌人使用以重命名名字
-		'''
 }
 
 RadonMossBrickItem: {
@@ -735,8 +689,6 @@ HeatFish: {
 }
 
 FrozenTechnology: {
-	DisplayName: 霜冻科技
-	Tooltip: 用于制作信息小装置
 }
 
 BalloonKit: {
@@ -750,13 +702,9 @@ CelesitalEightBall: {
 }
 
 ArtFragment: {
-	DisplayName: 吸积碎片
-	Tooltip: "'燃烧的宇宙的热烈从此碎片内散发出来'"
 }
 
 NecroFragment: {
-	DisplayName: 脉冲风星云碎片
-	Tooltip: "'死亡粒子从此碎片内释放而出'"
 }
 
 ArgonArmorPolish: {
@@ -889,8 +837,6 @@ RGBKeyboardItem: {
 }
 
 DedicatedFaelingItem: {
-	DisplayName: "{$ItemName.Shimmerfly}"
-	Tooltip: ""
 }
 
 GoozmaFish: {
@@ -924,11 +870,6 @@ SaivoryKnife: {
 
 CorruptionSceptre: {
 	// DisplayName: Corruption Sceptre
-	// Tooltip: ""
-}
-
-MeadowMushroom: {
-	// DisplayName: Meadow Mushroom
 	// Tooltip: ""
 }
 
@@ -1278,11 +1219,7 @@ Deltoid: {
 
 StarPhish: {
 	DisplayName: 螺旋海星吹筒
-	Tooltip:
-		'''
-		对处于水中的敌人造成的伤害增加
-		{$Items.UsesDarts}
-		'''
+	Tooltip: "{$CommonTooltips.UsesDarts}"
 }
 
 SnowflakeCannon: {
@@ -1521,17 +1458,9 @@ NecromancerRobe: {
 }
 
 GravetenderHood: {
-	DisplayName: 守墓人兜帽
-	Tooltip: 增加10%召唤伤害
 }
 
 GravetenderRobes: {
-	DisplayName: 守墓人长袍
-	Tooltip:
-		'''
-		延长30秒幽魂仆从的存在时间
-		增加最大幽魂仆从栏位
-		'''
 }
 
 SeraphimHood: {
@@ -1719,7 +1648,7 @@ BloodthirstPotion: {
 
 SentryPotion: {
 	DisplayName: 哨兵药水
-	Tooltip: "{$Buffs.SentryBuff.Description}"
+	Tooltip: 增加{0}格最大哨兵栏位
 	EmpoweredPotion: "{$Buffs.EmpoweredSentry.Description}"
 }
 
@@ -1945,19 +1874,12 @@ Roulette: {
 }
 
 RedSpriteMask: {
-	# Vanity
-	DisplayName: 红色精灵面具
-	Tooltip: ""
 }
 
 SpaceSquidMask: {
-	DisplayName: 太空乌贼面具
-	Tooltip: ""
 }
 
 BreadOfCthulhuMask: {
-	DisplayName: 克苏鲁之面包面具
-	Tooltip: ""
 }
 
 EmancipationGrill: {
@@ -2270,21 +2192,9 @@ CrabClock: {
 }
 
 UnholyCoreSmall: {
-	DisplayName: 不洁裂石
-	Tooltip:
-		'''
-		可在血巢处使用
-		掉落自地狱的神秘实体
-		'''
 }
 
 UnholyCore: {
-	DisplayName: 不洁核心
-	Tooltip:
-		'''
-		可在血巢处使用
-		降低恶魔围攻事件的进攻时间
-		'''
 }
 
 HypnoticPearl: {
@@ -2316,8 +2226,6 @@ TornadoInABottle: {
 }
 
 GalacticStarfruit: {
-	DisplayName: 星河杨桃
-	Tooltip: 创造一道奇异柔光
 }
 
 PearlShardPink: {
@@ -2406,8 +2314,6 @@ WhitePhial: {
 }
 
 TinkerersGuidebook: {
-	DisplayName: 修补匠指南
-	Tooltip: 永久性改进哥布林工匠的重铸服务
 }
 
 Moro: {
@@ -2526,17 +2432,9 @@ PixelCameraClipAmmo: {
 }
 
 PhysicsGun: {
-	DisplayName: 物理枪
-	Tooltip: 可以抓取并扔出方块
 }
 
 Bellows: {
-	DisplayName: 风箱
-	Tooltip:
-		'''
-		将你向你瞄准的反方向推开
-		'真是太容易了'
-		'''
 }
 
 RadonMoss: {
@@ -2545,8 +2443,6 @@ RadonMoss: {
 }
 
 MistralSeeds: {
-	DisplayName: 寒风花种
-	Tooltip: 会在大风天开花并产生花粉
 }
 
 MoraySeeds: {
@@ -2555,13 +2451,9 @@ MoraySeeds: {
 }
 
 ManacleSeeds: {
-	DisplayName: 镣铐花种
-	Tooltip: 会在早晨开花并产生花粉
 }
 
 MoonflowerSeeds: {
-	DisplayName: 月光花种
-	Tooltip: 会在午夜附近开花并产生花粉
 }
 
 FamiliarPickaxe: {
@@ -2850,8 +2742,6 @@ ManathirstPotion: {
 }
 
 CosmicMonolith: {
-	Tooltip: "'维系终极力量的一小部分'"
-	DisplayName: 宇宙石
 }
 
 IronLotus: {
@@ -2864,13 +2754,6 @@ IronLotus: {
 }
 
 Pumpinator: {
-	DisplayName: 泵风器
-	Tooltip:
-		'''
-		渐进更改风速
-		强大的风可以几乎推动一切
-		由一位来自天空的神秘商人出售
-		'''
 }
 
 HueshiftDye: {
@@ -2974,62 +2857,36 @@ HorrificEnergy: {
 }
 
 OrganicEnergy: {
-	DisplayName: 自然能量
-	Tooltip: 世纪之花所孕育, 沉睡的守护者, 与被释放而出的力量之魂、视域之魂和恐惧之魂紧密相连
 }
 
 DemonicEnergy: {
-	DisplayName: 恶魔能量
-	Tooltip: 暴乱者所操弄, 权倾一方的死灵法师, 向大地上的每一个角落散播生命的诅咒
 }
 
 CosmicEnergy: {
-	DisplayName: 星宇能量
-	Tooltip: 终末之星所磨炼, 拥有生命的太阳系, 追求的乃是永恒的存续
 }
 
 AtmosphericEnergy: {
-	DisplayName: 天权能量
-	Tooltip: 沙尘恶魔所汲取, 疯狂的元素生物, 妄图拥有君临一切元素之上的力量
 }
 
 AquaticEnergy: {
-	DisplayName: 海蓝能量
-	Tooltip: 巨蟹蛤所吸收, 曾居住于垃圾中的甲壳纲动物, 后臣服于一个强大的力量
 }
 
 UltimateEnergy: {
-	DisplayName: 终极能量
-	Tooltip: 寰宇能量的和谐, 带来以太的力量!
 }
 
 MonoGem: {
-	DisplayName: 单项宝石
-	Tooltip: 具有超然属性
 }
 
 OmniGem: {
-	DisplayName: 全能宝石
-	Tooltip: 具有附魔属性
 }
 
 SoulGem: {
-	DisplayName: 空灵魂宝石
-	Tooltip: 无法使用, 直到其捕获敌人的灵魂
 }
 
 SoulGemFilled: {
-	DisplayName: 灵魂宝石
-	Tooltip:
-		'''
-		用于制造死灵装备
-		由一位黑暗艺术大师出售
-		'''
 }
 
 BloodyTearstone: {
-	DisplayName: 血泪石
-	Tooltip: 源自流动的猩红之海
 }
 
 Fluorescence: {
@@ -3104,8 +2961,6 @@ PosterUltraStarite: {
 	Tooltip: ""
 }
 
-PylonDrone.Tooltip: 在晶塔附近使用以激活, 每个晶塔只能存在两架无人机
-
 PylonCleanserItem: {
 	DisplayName: 晶塔清扫机
 	Tooltip:
@@ -3179,17 +3034,9 @@ TatteredDemonHorn: {
 }
 
 PossessedShard: {
-	DisplayName: 附魔碎块
-	Tooltip: 掉落自附魔的盔甲和工具
 }
 
 StariteMaterial: {
-	DisplayName: 核心碎片
-	Tooltip:
-		'''
-		能够利用星宇能量
-		自掉落柔光敌人
-		'''
 }
 
 BloodMimicBanner: {
@@ -3248,24 +3095,9 @@ FriendshipMagick: {
 }
 
 LeechHook: {
-	DisplayName: 水蛭钩
-	Tooltip:
-		'''
-		无视敌人{0}点的防御力
-		吸住敌人并治疗你
-		伤害被吸住的敌人以获得额外治疗
-		{$Items.Prefixable}
-		'''
 }
 
 Meathook: {
-	DisplayName: 血肉钩
-	Tooltip:
-		'''
-		你的钩爪会抓住敌人
-		你会对被你的钩爪抓住的敌怪额外造成{0}%伤害
-		{$Items.Prefixable}
-		'''
 }
 
 CinematicCam: {
@@ -3440,7 +3272,7 @@ Dynaknife: {
 	Tooltip:
 		'''
 		击中敌人时会施加炸弹并引爆
-		<right>向前冲刺并攻击
+		右键向前冲刺并攻击
 		'''
 }
 
@@ -3511,19 +3343,4 @@ CrabsonMusicBox: {
 NarryPainting: {
 	DisplayName: Narry
 	Tooltip: "{$PaintingSignature.NalydT}"
-}
-
-GreaterHoney: {
-	// DisplayName: Greater Honey
-	// Tooltip: ""
-}
-
-SuperHoney: {
-	// DisplayName: Super Honey
-	// Tooltip: ""
-}
-
-SkyHunterCrossbow: {
-	// DisplayName: Sky Hunter Crossbow
-	// Tooltip: ""
 }

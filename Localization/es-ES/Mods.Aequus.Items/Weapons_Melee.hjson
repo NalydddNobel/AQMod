@@ -4,24 +4,10 @@ AncientCutlass: {
 }
 
 Dynaknife: {
-	DisplayName: El espíritu navideño
-	Tooltip:
-		'''
-		Ataques aplican una bomba que explota en el enemigo
-		<right> para embestir y atacar
-		'''
 }
 
 MirrorsCall: {
-	DisplayName: Llamada del Espejo
-	Tooltip: Ataca al enemigo desde la comodidad de tu sillon!
 }
 
 IronLotus: {
-	DisplayName: Loto de Hierro
-	Tooltip:
-		'''
-		Sosten una lanza que esparce el fuego
-		'Quema a aquellos que le importe'
-		'''
 }

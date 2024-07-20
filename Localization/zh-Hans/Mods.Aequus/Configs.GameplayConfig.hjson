@@ -1,7 +1,5 @@
 Configs: {
 	GameplayConfig: {
-		DisplayName: 游戏配置
-
 		PollutedOceanSide: {
 			Label: "[i:AequusRemake/TrashCompactor] 被污染的海洋位置"
 			Tooltip:
@@ -14,13 +12,6 @@ Configs: {
 		}
 
 		CaveVariety: {
-			Label: "[i:BonePickaxe] AequusRemake洞穴"
-			Tooltip:
-				'''
-				增加了更多的洞穴种类, 总体上扩大了洞穴, 并减少了死胡同.
-				此值会影响AequusRemake洞穴的生成数量.
-				设为0以完全禁止生成.
-				'''
 		}
 
 		TownNPCSettleDownMessage: {
@@ -35,13 +26,6 @@ Configs: {
 		}
 
 		HardmodeChests: {
-			Label: "[i:AequusRemake/AdamantiteChest] 困难模式宝箱"
-			Tooltip:
-				'''
-				决定是否激活困难模式宝箱系统. 会有导致游戏出现多种变化.
-				1. 在困难模式下, 未打开的宝箱会升级并且有新的战利品.
-				2. 困难模式下的宝箱怪会以困难模式宝箱的样式出现.
-				'''
 		}
 
 		PreHardmodeMimics: {

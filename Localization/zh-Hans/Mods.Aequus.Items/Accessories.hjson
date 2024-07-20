@@ -1,7 +1,5 @@
 //# Equipment: Accessories
 BreathConserver: {
-	DisplayName: 呼吸救生器
-	Tooltip: 摧毁物块以及击杀敌人时会回复呼吸条
 }
 
 ValentineRing: {
@@ -78,8 +76,6 @@ StellarGlasses: {
 }
 
 EclipseGlasses: {
-	DisplayName: 日食眼镜
-	Tooltip: 无视日食的敌人生成
 }
 
 //# Equipment: Informational
@@ -95,11 +91,14 @@ ShimmerMonocle: {
 }
 
 RichMansMonocle: {
-	DisplayName: 富翁的单片眼镜
-	Tooltip: 在NPC商店外查看商品价格
 }
 
 Calendar: {
 	DisplayName: 日历
 	Tooltip: 显示关于日期的信息
+}
+
+SteampunkerFishingPole: {
+	DisplayName: 蒸汽朋克人之杖
+	Tooltip: 能够自动收杆并重新投出钓鱼浮标
 }

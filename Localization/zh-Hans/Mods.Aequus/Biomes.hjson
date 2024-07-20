@@ -5,16 +5,6 @@ Biomes: {
 		// TownNPCDialogueName: an Oblivion Altar
 	}
 
-	GlimmerZone: {
-		DisplayName: 柔光
-		TownNPCDialogueName: 柔光
-	}
-
-	PeacefulGlimmerZone: {
-		DisplayName: 宁静柔光
-		TownNPCDialogueName: 柔光
-	}
-
 	PollutedOceanBiomeSurface: {
 		DisplayName: 被污染的海洋
 		TownNPCDialogueName: 被污染的海洋
@@ -25,14 +15,29 @@ Biomes: {
 		TownNPCDialogueName: 被污染的地底
 	}
 
-	GaleStreamsZone: {
-		DisplayName: 紊流风暴
-		TownNPCDialogueName: 紊流风暴
+	GoreNestBiome: {
+		// DisplayName: Nearby Gore Nest
+		// TownNPCDialogueName: the Gore Nest
+	}
+
+	PeacefulGlimmerZone: {
+		DisplayName: 宁静柔光
+		TownNPCDialogueName: 柔光
+	}
+
+	GlimmerZone: {
+		DisplayName: 柔光
+		TownNPCDialogueName: 柔光
 	}
 
 	CrabCreviceBiome: {
 		DisplayName: "{$Biomes.PollutedOceanBiomeSurface.DisplayName}"
 		TownNPCDialogueName: "{$Biomes.PollutedOceanBiomeSurface.TownNPCDialogueName}"
+	}
+
+	GaleStreamsZone: {
+		DisplayName: 紊流风暴
+		TownNPCDialogueName: 紊流风暴
 	}
 
 	Forest.DisplayName: 森林

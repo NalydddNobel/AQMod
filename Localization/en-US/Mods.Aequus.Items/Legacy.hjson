@@ -497,21 +497,9 @@ OmegaStaritePainting2: {
 
 // Magic Mirrors
 PhaseMirror: {
-	DisplayName: Phase Mirror
-	Tooltip:
-		'''
-		Allows you to return home at will
-		Teleport to party members by clicking their head on the fullscreen map
-		'''
 }
 
 PhasePhone: {
-	DisplayName: Phase Phone
-	Tooltip:
-		'''
-		{$Items.PhasePhone.TooltipTop}
-		{$Items.PhasePhone.TooltipBottom}
-		'''
 	TooltipTop: Displays everything
 	TooltipBottom:
 		'''
@@ -649,8 +637,6 @@ CrateBait: {
 
 // Misc
 GlowLichen: {
-	DisplayName: Glow Lichen
-	Tooltip: Dropped from moss enriched enemies
 }
 
 VictorsReward: {
@@ -663,8 +649,6 @@ VictorsReward: {
 }
 
 CosmicChest: {
-	DisplayName: Fortunate Souvenir
-	Tooltip: Permanently increases item droprates from enemies
 }
 
 MoneyTrashcan: {
@@ -673,12 +657,6 @@ MoneyTrashcan: {
 }
 
 NameTag: {
-	DisplayName: Name Tag
-	Tooltip:
-		'''
-		Can be renamed for free at the Sky Merchant
-		Use on villagers, critters, or enemies to rename them
-		'''
 }
 
 RadonMossBrickItem: {
@@ -707,8 +685,6 @@ HeatFish: {
 }
 
 FrozenTechnology: {
-	DisplayName: Frozen Technology
-	Tooltip: Used to craft informational gadgets
 }
 
 BalloonKit: {
@@ -722,13 +698,9 @@ CelesitalEightBall: {
 }
 
 ArtFragment: {
-	DisplayName: Accretion Fragment
-	Tooltip: "'The burning of the universe's passion emanate from this fragment'"
 }
 
 NecroFragment: {
-	DisplayName: Plerion Fragment
-	Tooltip: "'Deathly particles are released from this fragment'"
 }
 
 ArgonArmorPolish: {
@@ -861,8 +833,6 @@ RGBKeyboardItem: {
 }
 
 DedicatedFaelingItem: {
-	DisplayName: "{$ItemName.Shimmerfly}"
-	Tooltip: ""
 }
 
 GoozmaFish: {
@@ -1488,17 +1458,9 @@ NecromancerRobe: {
 }
 
 GravetenderHood: {
-	DisplayName: Gravetender Hood
-	Tooltip: 10% increased summon damage
 }
 
 GravetenderRobes: {
-	DisplayName: Gravetender Robes
-	Tooltip:
-		'''
-		Increases the duration of your ghost minions by 30 seconds
-		Increases your max number of ghosts by 1
-		'''
 }
 
 SeraphimHood: {
@@ -1912,19 +1874,12 @@ Roulette: {
 }
 
 RedSpriteMask: {
-	# Vanity
-	DisplayName: Red Sprite Mask
-	Tooltip: ""
 }
 
 SpaceSquidMask: {
-	DisplayName: Space Squid Mask
-	Tooltip: ""
 }
 
 BreadOfCthulhuMask: {
-	DisplayName: Bread of Cthulhu Mask
-	Tooltip: ""
 }
 
 EmancipationGrill: {
@@ -2237,21 +2192,9 @@ CrabClock: {
 }
 
 UnholyCoreSmall: {
-	DisplayName: Unholy Tearstone
-	Tooltip:
-		'''
-		Can be used at the Gore Nest
-		Dropped from mysterious entites around the Underworld
-		'''
 }
 
 UnholyCore: {
-	DisplayName: Unholy Core
-	Tooltip:
-		'''
-		Can be used at the Gore Nest
-		Decreases the length of the Demon Siege event
-		'''
 }
 
 HypnoticPearl: {
@@ -2283,8 +2226,6 @@ TornadoInABottle: {
 }
 
 GalacticStarfruit: {
-	DisplayName: Galactic Starfruit
-	Tooltip: Creates a strange glimmer
 }
 
 PearlShardPink: {
@@ -2373,8 +2314,6 @@ WhitePhial: {
 }
 
 TinkerersGuidebook: {
-	DisplayName: Tinkerer's Guidebook
-	Tooltip: Permanently have better odds at rolling positive prefixes from reforge services
 }
 
 Moro: {
@@ -2493,17 +2432,9 @@ PixelCameraClipAmmo: {
 }
 
 PhysicsGun: {
-	DisplayName: Physics Gun
-	Tooltip: Can grab and throw blocks
 }
 
 Bellows: {
-	DisplayName: Bellows
-	Tooltip:
-		'''
-		Moves you in the opposite direction you are aiming
-		'Quite the pushover'
-		'''
 }
 
 RadonMoss: {
@@ -2512,8 +2443,6 @@ RadonMoss: {
 }
 
 MistralSeeds: {
-	DisplayName: Mistral Seeds
-	Tooltip: Blooms and produces pollen while the wind is strong
 }
 
 MoraySeeds: {
@@ -2522,13 +2451,9 @@ MoraySeeds: {
 }
 
 ManacleSeeds: {
-	DisplayName: Manacle Seeds
-	Tooltip: Blooms and produces pollen in the morning
 }
 
 MoonflowerSeeds: {
-	DisplayName: Moonflower Seeds
-	Tooltip: Blooms and produces pollen near midnight
 }
 
 FamiliarPickaxe: {
@@ -2817,8 +2742,6 @@ ManathirstPotion: {
 }
 
 CosmicMonolith: {
-	Tooltip: "'Sustain a fraction of ultimate power'"
-	DisplayName: Cosmic Monolith
 }
 
 IronLotus: {
@@ -2831,13 +2754,6 @@ IronLotus: {
 }
 
 Pumpinator: {
-	DisplayName: Pumpinator
-	Tooltip:
-		'''
-		Gradually changes the speed of the wind
-		Can push almost anything with its powerful gusts
-		Sold by a mysterious trader from the skies
-		'''
 }
 
 HueshiftDye: {
@@ -2941,62 +2857,36 @@ HorrificEnergy: {
 }
 
 OrganicEnergy: {
-	DisplayName: Organic Energy
-	Tooltip: Ripened by Plantera, a dormant guardian which tapped into the released souls of Might, Sight, and Fright
 }
 
 DemonicEnergy: {
-	DisplayName: Demonic Energy
-	Tooltip: Exploited by the Upriser, a dominant necromancer which inflicted a life curse upon the land
 }
 
 CosmicEnergy: {
-	DisplayName: Cosmic Energy
-	Tooltip: Polished by Omega Starite, a living solar system which seeks permanent sustainability
 }
 
 AtmosphericEnergy: {
-	DisplayName: Atmospheric Energy
-	Tooltip: Siphoned by the Dust Devil, a maniac elemental who dreams of having power over all elements
 }
 
 AquaticEnergy: {
-	DisplayName: Aquatic Energy
-	Tooltip: Absorbed by Crabson, a trash-dwelling crustacean before it was subject to immense power
 }
 
 UltimateEnergy: {
-	DisplayName: Ultimate Energy
-	Tooltip: A harmony of the universal energies, bringing forth the power of the Aether!
 }
 
 MonoGem: {
-	DisplayName: Mono Gem
-	Tooltip: Has unnatural properties
 }
 
 OmniGem: {
-	DisplayName: Omni Gem
-	Tooltip: Has enchanted properties
 }
 
 SoulGem: {
-	DisplayName: Empty Soul Gem
-	Tooltip: Unusable until it captures the soul of an enemy
 }
 
 SoulGemFilled: {
-	DisplayName: Soul Gem
-	Tooltip:
-		'''
-		Used to craft necromantic equipment
-		Sold by masters of the dark arts
-		'''
 }
 
 BloodyTearstone: {
-	DisplayName: Bloody Tearstone
-	Tooltip: From the flowing scarlet sea
 }
 
 Fluorescence: {
@@ -3071,8 +2961,6 @@ PosterUltraStarite: {
 	Tooltip: ""
 }
 
-PylonDrone.Tooltip: Use near a pylon to activate the drone, pylons can only have two drones each
-
 PylonCleanserItem: {
 	DisplayName: Pylon Cleanser
 	Tooltip:
@@ -3146,17 +3034,9 @@ TatteredDemonHorn: {
 }
 
 PossessedShard: {
-	DisplayName: Possessed Shard
-	Tooltip: Dropped from possessed armors and tools
 }
 
 StariteMaterial: {
-	DisplayName: Core Fragment
-	Tooltip:
-		'''
-		Capable of harnessing cosmic energy
-		Dropped from glimmering enemies
-		'''
 }
 
 BloodMimicBanner: {
@@ -3215,24 +3095,9 @@ FriendshipMagick: {
 }
 
 LeechHook: {
-	DisplayName: Leech Hook
-	Tooltip:
-		'''
-		Ignores {0} points of enemy Defense
-		Latches onto enemies, healing you
-		Damage the victim to restore extra life
-		{$Items.Prefixable}
-		'''
 }
 
 Meathook: {
-	DisplayName: Meathook
-	Tooltip:
-		'''
-		Allows you to grapple to enemies
-		Deal {0}% increased damage to the enemy you grapple onto
-		{$Items.Prefixable}
-		'''
 }
 
 CinematicCam: {

@@ -1,1 +1,12 @@
-DamageClasses.GenericDamageClassNoCrit.DisplayName: daño
+DamageClasses: {
+	GenericDamageClassNoCrit.DisplayName: daño
+	// ArtistClass.DisplayName: Artist Class
+	// NecromancyClass.DisplayName: Necromancy Class
+	// NecromancyMagicClass.DisplayName: Necromancy Magic Class
+	// NecromancySummonerClass.DisplayName: Necromancy Summoner Class
+}
+
+// NecromancyClass.DisplayName: necromancy damage
+// NecromancyMagicClass.DisplayName: "{DamageClasses.NecromancyClass.DisplayName}"
+// NecromancySummonerClass.DisplayName: "{DamageClasses.NecromancyClass.DisplayName}"
+// ArtistClass.DisplayName: artistic damage

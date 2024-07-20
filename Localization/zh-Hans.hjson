@@ -31,7 +31,7 @@ Mods: {
 			EyeOfCthulhuDrunk: 恐惧溃烂并在洞穴中生长...
 			EyeOfCthulhuDemonite: 魔矿的存在在洞穴中生长...
 			EyeOfCthulhuCrimtane: 猩红矿溃烂在洞穴的深处...
-			HardmodeChests: 洞穴中的宝箱获赐了新的宝藏...
+			HardmodeChests: 洞穴的宝箱中出现了新的宝藏...
 			DemonSiegeFailEat: 血巢吞噬了你的{0}...
 			DemonSiegeFail: 血巢反刍出了你的{0}...
 			YinYang: 光与暗的远古魂灵变的不耐烦了...
@@ -297,7 +297,7 @@ Mods: {
 
 			UltraStarite: {
 				DisplayName: 终耀源星
-				Bestiary: 处于成长最后阶段的精英星源可以将能量集中到致命的激光束上. 你认为天要塌下来了是可以理解的!
+				Bestiary: 处于成长最后阶段的精英星源可以将暴露的核心集中到致命的激光束上. 你认为天要塌下来了是可以理解的!
 
 				BossChecklistIntegration: {
 					EntryName: "{$Mods.Aequus.NPCs.UltraStarite.DisplayName}"
@@ -307,17 +307,17 @@ Mods: {
 
 			HyperStarite: {
 				DisplayName: 巨耀源星
-				Bestiary: 随着能量的进一步过剩, 星源获得了能够分离部分自身并将其作为危险武器在轨道上挥舞的能力.
+				Bestiary: 随着老化, 星源开始膨胀并变得更不稳定, 导致其部件被推入自身轨道内, 能够当做武器使用.
 			}
 
 			SuperStarite: {
 				DisplayName: 极耀源星
-				Bestiary: 聚集了足够能量的星源最终会进化为这种装甲形态. 它们更加坚硬并且能将过剩的能量作为弹幕发射.
+				Bestiary: 聚集了足够能量的星源最终会蜕去外壳进化为这种装甲形态.
 			}
 
 			Starite: {
 				DisplayName: 源星
-				Bestiary: 生命星尘的一个碎片, 被不可知的力量赋予了生命. 如果没有充满天空的奇异光线所赋予的能量, 它们就无法长久的生存.
+				Bestiary: 一块与坠落之星有着惊人相似度的活体星尘, 它们的外表看起来是气态的, 但实际上会长出坚硬的外壳.
 			}
 
 			DwarfStarite: {
@@ -545,17 +545,17 @@ Mods: {
 
 			CleanserDrone: {
 				DisplayName: 清扫无人机
-				Bestiary: 它是由物理学家和蒸汽朋克人为了保持你小镇的纯净和宜居而联合创造的. 它从小镇的晶塔中汲取能量作为动力.
+				Bestiary: 它是由物理学家和蒸汽朋克人为了保持你小镇的纯净和宜居而联合创造的. 它从小镇的晶塔中汲取能量用以运行.
 			}
 
 			GunnerDrone: {
 				DisplayName: 火炮无人机
-				Bestiary: 它是由物理学家为了保护你的小镇而创造的, 它从小镇的晶塔中汲取能量作为动力.
+				Bestiary: 它是由物理学家为了保护你的小镇而创造的, 它从小镇的晶塔中汲取能量用以运行.
 			}
 
 			HealerDrone: {
 				DisplayName: 治疗无人机
-				Bestiary: 它是由物理学家为了保持你小镇的健康而创造的, 它从小镇的晶塔中汲取能量作为动力.
+				Bestiary: 它是由物理学家为了保持你小镇的健康而创造的, 它从小镇的晶塔中汲取能量用以运行.
 			}
 
 			KryptonShield.DisplayName: 氪盾
@@ -593,12 +593,12 @@ Mods: {
 			LegendaryFishBlobfish: Aequus: 试试在柔光持续期间钓鱼!
 			LegendaryFishGoreFish: Aequus: 试试在血巢附近的熔岩中钓鱼!
 			CarpenterRequirements: Aequus: 试试在你的房子里做些额外的装饰...它可能会吸引房屋大师!
-			SkyMerchant: Aequus: 天空商人乘坐热气球飞越天空! 试试和他谈些空中交易.
+			SkyMerchant: "{$Misc.GameTipPretense} 留意天空商人! 他访问了云层之上的城镇, 并出售奇异的商品和装备."
 			Vampirism: Aequus: 食用吸血鱿鱼时要小心...他们说唯一的治愈方法是在血月期间!
 			Drones: Aequus: 物理学家让你用无人机保护你的城镇! 但要明智地选择无人机, 每种无人机都提供完全不同的服务!
 			BreadofCthulhu: Aequus: 钓鱼时要小心...一个邪恶的垃圾怪物可能会摧毁你!
 			Moonflower: Aequus: 陨石上可能会长出具有神奇特性的外来植物...
-			Pumpinator: Aequus: 试一试太空中某种漂浮的陨石, 你可能会发现一种稀有的、强大的工具...
+			Pumpinator: "{$Misc.GameTipPretense} 希望凉快凉快? 试试天空商人出售的泵风器."
 			GhostlyGrave: Aequus: 讨厌墓碑? 但仍然喜欢折磨你的朋友? 试试幽魂冢!
 		}
 
@@ -894,7 +894,7 @@ Mods: {
 			Sword: "'的黑暗剑"
 		}
 
-		InfoDisplays.AnglerBroadcasterIcon.DisplayName: 任务鱼
+		InfoDisplays.AnglerBroadcasterIcon.DisplayName: 钓鱼任务
 		DeathMessage.DeathsEmbrace: "{0}饮下了最后一口药水..."
 		Water: 水
 		Lava: 熔岩
@@ -927,13 +927,13 @@ Mods: {
 
 		Condition: {
 			DownedCrabson: 在击败巨蟹蛤后
-			DownedOmegaStarite: 在击败终末之星后
-			DownedDustDevil: 在击败沙尘恶魔后
+			DownedOmegaStarite: Mods.AequusRemake.Condition.DownedOmegaStarite
+			DownedDustDevil: Mods.AequusRemake.Condition.DownedDustDevil
 			DownedUpriser: 在击败暴乱者后
 			DownedHyperStarite: 在击败巨耀源星后
-			DownedUltraStarite: 在击败终耀源星后
-			DownedRedSprite: 在击败红色精灵后
-			DownedSpaceSquid: 在击败太空乌贼后
+			DownedUltraStarite: Mods.AequusRemake.Condition.DownedUltraStarite
+			DownedRedSprite: Mods.AequusRemake.Condition.DownedRedSprite
+			DownedSpaceSquid: Mods.AequusRemake.Condition.DownedSpaceSquid
 			DownedGlimmer: 在到达柔光的中心后
 			DownedGaleStreams: 在击败太空乌贼或红色精灵后
 			InCrabCrevice: 当处于蟹伏岩隙时
@@ -943,7 +943,7 @@ Mods: {
 			InPeacefulGlimmer: 当宁静柔光事件发生时
 			EarlyPortalGun: 当'{$Configuration.Gameplay.EarlyPortalGun}'选项已启用.
 			EarlyGravityGlobe: 当'{$Configuration.Gameplay.EarlyGravityGlobe}'选项已启用.
-			DownedDemonSiege: 在血巢处升级一把武器后
+			DownedDemonSiege: Mods.AequusRemake.Condition.DownedDemonSiege
 			HasCompletedBuildChallenge: 在完成{0}挑战后
 			AllCarpenterBountiesComplete: 在完成木匠所有的建筑挑战后
 		}
@@ -1054,7 +1054,7 @@ Mods: {
 			JeweledChalice: Mods.Aequus.ItemName.JeweledChalice
 		}
 
-		// Emotes.SkyMerchant.Command: skymerchant
+		Emotes.SkyMerchant.Command: skymerchant
 	}
 }
 

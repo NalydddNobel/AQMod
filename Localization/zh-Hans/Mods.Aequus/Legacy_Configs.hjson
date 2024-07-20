@@ -1,4 +1,4 @@
-﻿Configs: {
+Configs: {
 	ReloadRequired: 编辑此配置选项需要重新加载模组.
 	BrokenSlider: 滑块中的值有时会出现错误, 这个问题目前无法解决.
 
@@ -180,7 +180,7 @@
 			General: -- 常规 --
 			World: -- 世界 --
 			Recipes: -- 合成表 --
-			// VanillaChanges: Vanilla Changes Header
+			// VanillaChanges: -- Vanilla Changes --
 		}
 
 		MoveTreasureMagnet: {

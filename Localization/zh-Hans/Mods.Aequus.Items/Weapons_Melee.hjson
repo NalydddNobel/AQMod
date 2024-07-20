@@ -4,24 +4,10 @@ AncientCutlass: {
 }
 
 Dynaknife: {
-	DisplayName: 圣诞精神
-	Tooltip:
-		'''
-		击中敌人时会施加炸弹并引爆
-		右键向前冲刺并攻击
-		'''
 }
 
 MirrorsCall: {
-	DisplayName: 镜之召
-	Tooltip: 从你舒适的沙发上打击敌人!
 }
 
 IronLotus: {
-	DisplayName: 铁莲花
-	Tooltip:
-		'''
-		挥舞会扩散火焰的长矛
-		'点燃那些胆敢在乎我的人'
-		'''
 }

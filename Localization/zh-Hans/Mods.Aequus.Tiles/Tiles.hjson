@@ -222,8 +222,16 @@ CopperChestLocked: {
 }
 
 HiddenChest.MapEntry: 隐藏宝箱
-MeadowGrass.ItemDisplayName: 草地种
-MeadowWood.ItemDisplayName: 草地木
+
+MeadowGrass: {
+	ItemDisplayName: 草地种
+	// ItemTooltip: ""
+}
+
+MeadowWood: {
+	ItemDisplayName: 草地木
+	// ItemTooltip: ""
+}
 
 SeaFireflyBlock: {
 	DisplayName: 海萤火虫块

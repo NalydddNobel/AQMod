@@ -29,13 +29,7 @@ Condition: {
 	ConfigIsTrue: If the {1}/{0} config option is set to true
 	SilverOre: Mods.AequusRemake.Condition.SilverOre
 	DownedSalamancer: Mods.AequusRemake.Condition.DownedSalamancer
-	DownedDustDevil: Mods.AequusRemake.Condition.DownedDustDevil
-	DownedRedSprite: Mods.AequusRemake.Condition.DownedRedSprite
-	DownedSpaceSquid: Mods.AequusRemake.Condition.DownedSpaceSquid
 	UsedReforgeBook: Mods.AequusRemake.Condition.UsedReforgeBook
-	DownedOmegaStarite: Mods.AequusRemake.Condition.DownedOmegaStarite
-	DownedUltraStarite: Mods.AequusRemake.Condition.DownedUltraStarite
-	DownedDemonSiege: Mods.AequusRemake.Condition.DownedDemonSiege
 	MetOccultist: Mods.AequusRemake.Condition.MetOccultist
 	InSurfacePollutedOcean: Mods.AequusRemake.Condition.InSurfacePollutedOcean
 	InUndergroundPollutedOcean: Mods.AequusRemake.Condition.InUndergroundPollutedOcean
