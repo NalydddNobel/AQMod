@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.NPCs.Town.PhysicistNPC {
     public class PhysicistTownSentryProj : PhysicistSentryProj {
-        public override string Texture => AequusTextures.PhysicistSentryProj.Path;
+        public override string Texture => AequusTextures.PhysicistSentryProj.FullPath;
 
         public override void SetDefaults() {
             base.SetDefaults();

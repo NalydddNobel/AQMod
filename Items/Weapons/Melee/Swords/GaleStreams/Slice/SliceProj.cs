@@ -1,17 +1,13 @@
 ﻿using Aequus;
 using Aequus.Common.Projectiles.Base;
-using Microsoft.Xna.Framework;
 using System;
 using System.IO;
-using Terraria;
 using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee.Swords.GaleStreams.Slice;
 
 public class SliceProj : HeldSlashingSwordProjectile {
-    public override string Texture => AequusTextures.Slice.Path;
+    public override string Texture => AequusTextures.Slice.FullPath;
 
     public override void SetStaticDefaults() {
         base.SetStaticDefaults();
@@ -65,7 +61,7 @@ public class SliceProj : HeldSlashingSwordProjectile {
 
         if (!playedSound && AnimProgress > 0.4f) {
             playedSound = true;
-            SoundEngine.PlaySound(AequusSounds.swordSwoosh with { Volume = 0.8f, }, Projectile.Center);
+            SoundEngine.PlaySound(AequusSounds.SwordSwipe.Value with { Volume = 0.8f, }, Projectile.Center);
         }
     }
 

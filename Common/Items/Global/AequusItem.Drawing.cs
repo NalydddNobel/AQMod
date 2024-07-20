@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Common.Items.SlotDecals;
 using Aequus.Common.UI;
+using Aequus.Common.Utilities.Extensions;
 using Aequus.Content.ItemPrefixes.Potions;
 using System;
 using Terraria.DataStructures;
@@ -8,7 +9,7 @@ using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
 using Terraria.UI;
 
-namespace Aequus.Items;
+namespace Aequus;
 public partial class AequusItem {
     public byte armorPrefixAnimation;
 

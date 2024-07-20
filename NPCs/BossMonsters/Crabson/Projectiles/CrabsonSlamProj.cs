@@ -1,17 +1,12 @@
 ﻿using Aequus;
 using Aequus.NPCs.BossMonsters.Crabson.Effects;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.NPCs.BossMonsters.Crabson.Projectiles;
 
 public class CrabsonSlamProj : ModProjectile {
 
-    public override string Texture => AequusTextures.None.Path;
+    public override string Texture => AequusTextures.None.FullPath;
 
     public float[,] effectLookup;
 
@@ -161,7 +156,7 @@ public class CrabsonSlamProj : ModProjectile {
     private void GetAuraParameters(out Texture2D texture, out Color bloomColor, out Color secondaryBloomColor, out Rectangle frame) {
         bloomColor = Color.Lerp(Color.Cyan, Color.Blue, Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.4f, 0.6f)) with { A = 0 } * Projectile.Opacity;
         secondaryBloomColor = Color.Blue with { A = 0 } * 0.5f * Projectile.Opacity;
-        frame = new(AequusTextures.Bloom0.Width / 2, 0, 1, AequusTextures.Bloom0.Height / 2);
+        frame = new(AequusTextures.Bloom0.Width() / 2, 0, 1, AequusTextures.Bloom0.Height() / 2);
         texture = AequusTextures.Bloom0.Value;
     }
 

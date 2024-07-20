@@ -5,7 +5,7 @@ using Terraria.GameContent;
 namespace Aequus.Content.Necromancy.Sceptres.Evil;
 
 public class CrimsonSceptreProj : CorruptionSceptreProj {
-    public override string Texture => AequusTextures.CorruptionSceptreProj.Path;
+    public override string Texture => AequusTextures.CorruptionSceptreProj.FullPath;
 
     public override Color? GetAlpha(Color lightColor) {
         return new Color(255, 140, 100, 255 - Projectile.alpha);

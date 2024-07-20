@@ -5,7 +5,7 @@ using Aequus.Content.ItemPrefixes;
 using Terraria.GameContent;
 using Terraria.GameContent.Achievements;
 
-namespace Aequus.Items;
+namespace Aequus;
 public partial class AequusItem {
     public void Load_Shimmer() {
         On_Item.GetShimmered += On_Item_GetShimmered;

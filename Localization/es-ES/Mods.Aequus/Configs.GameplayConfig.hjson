@@ -1,7 +1,7 @@
 Configs: {
 	GameplayConfig: {
 		PollutedOceanSide: {
-			Label: "[i:AequusRemake/TrashCompactor] Lado del Oceano Contaminado"
+			Label: "[i:Aequus/TrashCompactor] Lado del Oceano Contaminado"
 			Tooltip:
 				'''
 				Determina el lado del mundo en el cual el Oceano Contaminado deberia generarse.
@@ -39,16 +39,16 @@ Configs: {
 		}
 
 		HardmodeMimics: {
-			// Label: "[i:AequusRemake/HardFrozenChest] Hardmode Mimics"
-			// Tooltip: Whether AequusRemake' special Hardmode Mimics should appear, replacing regular Mimics. This config does nothing if "{$GameplayConfig.HardmodeChests.Label}" is false.
+			// Label: "[i:Aequus/HardFrozenChest] Hardmode Mimics"
+			// Tooltip: Whether Aequus' special Hardmode Mimics should appear, replacing regular Mimics. This config does nothing if "{$GameplayConfig.HardmodeChests.Label}" is false.
 		}
 
-		PDAGetsAequusRemakeItems: {
-			// Label: "[i:PDA] AequusRemake PDA"
+		PDAGetsAequusItems: {
+			// Label: "[i:PDA] Aequus PDA"
 			/* Tooltip:
 				'''
-				Whether AequusRemake' new Info Accessories should be added to the PDA and upgrades.
-				Any items which use the PDA or upgrades in their recipes will automatically inherit AequusRemake' info accessories.
+				Whether Aequus' new Info Accessories should be added to the PDA and upgrades.
+				Any items which use the PDA or upgrades in their recipes will automatically inherit Aequus' info accessories.
 				''' */
 		}
 	}

@@ -1,7 +1,8 @@
 ﻿using Aequus;
 using Aequus.Common.Particles;
 using Aequus.Common.Recipes;
-using Aequus.NPCs;
+using Aequus.Common.Utilities.Extensions;
+using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Sceptres.Evil;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
@@ -10,7 +11,6 @@ using System.Collections.Generic;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Graphics.Renderers;
-using Aequus.Content.Necromancy;
 
 namespace Aequus.Items.Weapons.Magic.Misc.Healer {
     [AutoloadGlowMask]

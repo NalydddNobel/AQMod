@@ -13,7 +13,7 @@ InfoDisplays: {
 }
 
 Controls: {
-	// Unbound: "{$Mods.AequusRemake.KeyUnbound}"
+	// Unbound: "{$Mods.Aequus.KeyUnbound}"
 	// LeftControl: Left Control
 	// RightControl: Right Shift
 	// Control: Shift
@@ -22,7 +22,7 @@ Controls: {
 
 Misc: {
 	NeedsMod: Requiere activar [{0}]
-	GameTipPretense: AequusRemake:
+	GameTipPretense: Aequus:
 	PriceFree: Gratis!
 
 	DayOfTheWeek: {

@@ -1,13 +1,8 @@
 ﻿using Aequus;
 using Aequus.Common.Projectiles.Base;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
-using Terraria;
 using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee.Swords.Nettlebane;
 
@@ -73,7 +68,7 @@ public class NettlebaneProj : HeldSlashingSwordProjectile {
         }
         if (!playedSound && AnimProgress > 0.4f) {
             playedSound = true;
-            SoundEngine.PlaySound(AequusSounds.swordSwoosh with { Pitch = 0.4f - tier * 0.1f, PitchVariance = 0.1f, }, Projectile.Center);
+            SoundEngine.PlaySound(AequusSounds.SwordSwipe.Value with { Pitch = 0.4f - tier * 0.1f, PitchVariance = 0.1f, }, Projectile.Center);
         }
     }
 
@@ -153,16 +148,16 @@ public class NettlebaneProj : HeldSlashingSwordProjectile {
         hitAnything = true;
         var player = Main.player[Projectile.owner];
         if (player.HasBuff<NettlebaneBuffTier3>()) {
-            SoundEngine.PlaySound(AequusSounds.largeSlash with { Volume = 0.44f, PitchVariance = 0.1f, }, target.Center);
+            SoundEngine.PlaySound(AequusSounds.LargeSwordSlash.Value with { Volume = 0.44f, PitchVariance = 0.1f, }, target.Center);
             player.AddBuff(ModContent.BuffType<NettlebaneBuffTier3>(), 300);
         }
         else if (player.HasBuff<NettlebaneBuffTier2>()) {
-            SoundEngine.PlaySound(AequusSounds.swordPowerReady.Sound with { Volume = 0.8f, Pitch = 0.1f, MaxInstances = 2 }, target.Center);
+            SoundEngine.PlaySound(AequusSounds.swordPowerReady with { Volume = 0.8f, Pitch = 0.1f, MaxInstances = 2 }, target.Center);
             player.AddBuff(ModContent.BuffType<NettlebaneBuffTier3>(), 300);
             upgradingEffect = true;
         }
         else {
-            SoundEngine.PlaySound(AequusSounds.swordPowerReady.Sound with { Volume = 0.8f, MaxInstances = 2 }, target.Center);
+            SoundEngine.PlaySound(AequusSounds.swordPowerReady with { Volume = 0.8f, MaxInstances = 2 }, target.Center);
             player.AddBuff(ModContent.BuffType<NettlebaneBuffTier2>(), 300);
             upgradingEffect = true;
         }

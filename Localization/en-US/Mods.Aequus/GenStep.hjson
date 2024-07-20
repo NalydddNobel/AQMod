@@ -58,5 +58,5 @@ GenStep: {
 
 	BigGemsGeneration.DisplayMessage: Making Ice Overpowered...
 	RealBuriedChests.DisplayMessage: Punching in more Chests...
-	SkyMeadows.DisplayMessage: Mods.AequusRemake.GenStep.SkyMeadows.DisplayMessage
+	SkyMeadows.DisplayMessage: Mods.Aequus.GenStep.SkyMeadows.DisplayMessage
 }

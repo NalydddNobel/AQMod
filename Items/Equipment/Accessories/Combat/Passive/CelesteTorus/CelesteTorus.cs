@@ -3,17 +3,12 @@ using Aequus.Common.Items;
 using Aequus.Common.Items.SentryChip;
 using Aequus.Common.Utilities;
 using Aequus.Content.Items.SentryChip;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Items.Equipment.Accessories.Combat.Passive.CelesteTorus;
 
@@ -119,7 +114,7 @@ public class CelesteTorus : ModItem, ItemHooks.IUpdateItemDye {
             AlwaysTrueCullingRule,
             GlowColorRule,
             texture,
-            texture.Bounds,
+            texture.Bounds(),
             texture.Size() / 2f,
             DefaultDye: GameShaders.Armor.GetShaderIdFromItemId(ItemID.StardustDye),
             GlobalScale: 0.7f,

@@ -1,12 +1,8 @@
-﻿using Aequus.Common;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Aequus.Common.Assets;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Aequus.CrossMod.BossChecklistSupport;
 
@@ -29,8 +25,8 @@ internal record BossChecklistEntry(string InternalName, LogEntryType EntryType, 
         return this;
     }
 
-    public BossChecklistEntry AddHeadIcon(TextureAsset texture) {
-        CustomHeads.Add(texture.Path);
+    public BossChecklistEntry AddHeadIcon(RequestCache<Texture2D> texture) {
+        CustomHeads.Add(texture.FullPath);
         return this;
     }
 

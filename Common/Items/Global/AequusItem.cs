@@ -10,7 +10,8 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Items;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Items;
+namespace Aequus;
+
 [LegacyName("CooldownsItem", "ItemNameTag", "TooltipsGlobal")]
 public partial class AequusItem : GlobalItem {
     public static int SuctionChestCheck;

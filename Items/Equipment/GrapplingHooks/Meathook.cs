@@ -3,16 +3,11 @@ using Aequus.Common.Items;
 using Aequus.Common.Net.Sounds;
 using Aequus.Items.Equipment.GrapplingHooks;
 using Aequus.Projectiles.Misc.GrapplingHooks;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Aequus.Items.Equipment.GrapplingHooks {
     public class Meathook : ModItem {
@@ -205,7 +200,7 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks {
 
     public class MeathookIncreasedDamageSound : NetSound {
         protected override SoundStyle InitDefaultSoundStyle() {
-            return AequusSounds.meathook.Sound with { Volume = 0.6f, PitchVariance = 0.1f, MaxInstances = 8, };
+            return AequusSounds.MeathookDamageBonusProc.Value with { Volume = 0.6f, PitchVariance = 0.1f, MaxInstances = 8, };
         }
     }
 }

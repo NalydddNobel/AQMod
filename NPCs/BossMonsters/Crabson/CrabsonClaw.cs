@@ -3,14 +3,9 @@ using Aequus.Common;
 using Aequus.NPCs.BossMonsters.Crabson.Common;
 using Aequus.NPCs.BossMonsters.Crabson.Projectiles;
 using Aequus.NPCs.BossMonsters.Crabson.Projectiles.Old;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
-using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.NPCs.BossMonsters.Crabson;
 
@@ -122,7 +117,7 @@ public class CrabsonClaw : CrabsonBossNPC {
                         if (ActionTimer > 100f && (int)ActionTimer % 80 == 0) {
                             NPC.velocity = -NPC.DirectionTo(target.Center) * 10f;
                             NPC.netUpdate = true;
-                            SoundEngine.PlaySound(AequusSounds.shoot_Umystick, NPC.Center);
+                            SoundEngine.PlaySound(AequusSounds.UmystickShoot, NPC.Center);
                             if (Main.netMode != NetmodeID.MultiplayerClient) {
                                 Projectile.NewProjectile(NPC.GetSource_FromThis(), NPC.Center, -NPC.velocity * 1.5f, ModContent.ProjectileType<CrabsonPearl>(), 20, 0f, Main.myPlayer, ai1: 1f);
                             }
@@ -145,7 +140,7 @@ public class CrabsonClaw : CrabsonBossNPC {
                         ActionTimer = wantedTime;
                         NPC.velocity = NPC.rotation.ToRotationVector2() * 20f;
                         NPC.netUpdate = true;
-                        SoundEngine.PlaySound(AequusSounds.shoot_Umystick, NPC.Center);
+                        SoundEngine.PlaySound(AequusSounds.UmystickShoot, NPC.Center);
 
                         int projAmount = 13;
                         if (Main.netMode != NetmodeID.MultiplayerClient) {

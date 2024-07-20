@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Materials.SoulGem; 
 
 public class SoulGemFilledTile : SoulGemTile {
-    public override string Texture => AequusTextures.SoulGemTile.Path;
+    public override string Texture => AequusTextures.SoulGemTile.FullPath;
     protected override int Item => ModContent.ItemType<SoulGemFilled>();
     protected override Color MapColor => new Color(40, 140, 180);
 

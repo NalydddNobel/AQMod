@@ -4,7 +4,7 @@ using System;
 namespace Aequus.Content.Necromancy;
 
 public class GhostHitbox : ModProjectile {
-    public override string Texture => AequusTextures.Debuff.Path;
+    public override string Texture => AequusTextures.Debuff.FullPath;
 
     public int NPC => (int)Projectile.ai[0];
 

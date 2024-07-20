@@ -153,9 +153,9 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
     public static void DrawChain(Vector2 startPosition, Vector2 endPosition, float opacity, int animationTimer, int randomSeed, int projectileTimeLeft = int.MaxValue) {
         var chainTexture = AequusTextures.Chain;
         var difference = startPosition - endPosition;
-        var chainVelocity = Vector2.Normalize(difference) * chainTexture.Height;
+        var chainVelocity = Vector2.Normalize(difference) * chainTexture.Height();
         var chainOrigin = chainTexture.Size() / 2f;
-        float minDistance = MathF.Pow(chainTexture.Height, 2);
+        float minDistance = MathF.Pow(chainTexture.Height(), 2);
         var shakeVector = Vector2.Normalize(chainVelocity).RotatedBy(MathHelper.PiOver2);
         var random = new FastRandom(randomSeed);
         float intensity = 0f;

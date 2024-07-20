@@ -6,7 +6,7 @@ namespace Aequus.Items.Tools.Cameras.MapCamera.Clip;
 public class PixelCameraClipAmmo : ModItem {
     public static int AmmoID => ModContent.ItemType<PixelCameraClipAmmo>();
 
-    public override string Texture => AequusTextures.PixelCameraClip.Path;
+    public override string Texture => AequusTextures.PixelCameraClip.FullPath;
 
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 5;

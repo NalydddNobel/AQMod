@@ -14,7 +14,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Items;
+namespace Aequus;
 public partial class AequusItem {
     #region Gravity Blocks
     public static int ReversedGravityCheck;

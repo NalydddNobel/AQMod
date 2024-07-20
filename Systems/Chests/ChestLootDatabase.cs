@@ -5,7 +5,7 @@ using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Systems.Chests;
 
-/// <summary>Replica of <see cref="ItemDropDatabase"/>/<see cref="ItemDropResolver"/>, except for AequusRemake' chest loot.</summary>
+/// <summary>Replica of <see cref="ItemDropDatabase"/>/<see cref="ItemDropResolver"/>, except for Aequus' chest loot.</summary>
 public sealed class ChestLootDatabase : ModType {
     public static ChestLootDatabase Instance => ModContent.GetInstance<ChestLootDatabase>();
 

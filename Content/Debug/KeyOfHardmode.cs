@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Debug {
     public class KeyOfHardmode : ModItem, ItemHooks.ICheckBigMimicSummon {
-        public override string Texture => AequusTextures.SkeletonKey.Path;
+        public override string Texture => AequusTextures.SkeletonKey.FullPath;
 
         public override bool IsLoadingEnabled(Mod mod) {
             return Aequus.DevelopmentFeatures;

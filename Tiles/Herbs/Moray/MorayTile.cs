@@ -62,7 +62,7 @@ namespace Aequus.Tiles.Herbs.Moray {
             var offset = (Helper.TileDrawOffset - Main.screenPosition).Floor();
             var groundPosition = new Vector2(i * 16f + 8f, j * 16f + 16f).Floor();
             spriteBatch.Draw(texture, groundPosition + offset, frame, Lighting.GetColor(i, j), 0f, new Vector2(FrameWidth / 2f, FrameHeight - 2f), 1f, effects, 0f);
-            spriteBatch.Draw(PaintsRenderer.TryGetPaintedTexture(i, j, AequusTextures.MorayTile_Glow.Path), groundPosition + offset, frame, Color.White, 0f, new Vector2(FrameWidth / 2f, FrameHeight - 2f), 1f, effects, 0f);
+            spriteBatch.Draw(PaintsRenderer.TryGetPaintedTexture(i, j, AequusTextures.MorayTile_Glow.FullPath), groundPosition + offset, frame, Color.White, 0f, new Vector2(FrameWidth / 2f, FrameHeight - 2f), 1f, effects, 0f);
             return false;
         }
 

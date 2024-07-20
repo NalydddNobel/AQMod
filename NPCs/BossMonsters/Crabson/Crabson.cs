@@ -6,6 +6,7 @@ using Aequus.Common.Utilities;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Items.Equipment.Vanity.Masks;
 using Aequus.Items.Materials.Energies;
+using Aequus.Items.Misc.GrabBags.TreasureBags;
 using Aequus.Items.Misc.PermanentUpgrades;
 using Aequus.Items.Potions.Healing.Restoration;
 using Aequus.Items.Weapons.Ranged.Misc.JunkJet;
@@ -16,18 +17,12 @@ using Aequus.NPCs.Town.ExporterNPC;
 using Aequus.Particles;
 using Aequus.Tiles.Furniture.Boss.Relics;
 using Aequus.Tiles.Furniture.Boss.Trophies;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
-using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Aequus.Items.Misc.GrabBags.TreasureBags;
 
 namespace Aequus.NPCs.BossMonsters.Crabson;
 

@@ -7,7 +7,7 @@ namespace Aequus.Items.Equipment.Accessories.CrownOfBlood.Buffs {
         public static int Damage = 60;
         public static int DamageNumber = 12;
 
-        public override string Texture => AequusTextures.Debuff.Path;
+        public override string Texture => AequusTextures.Debuff.FullPath;
 
         public override void SetStaticDefaults() {
             Main.debuff[Type] = true;

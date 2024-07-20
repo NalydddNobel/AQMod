@@ -12,7 +12,7 @@ namespace Aequus.Tiles.Misc {
     public class BattleAxeTile : ModTile {
         public static int spawnChance;
 
-        public override string Texture => AequusTextures.BattleAxe.Path;
+        public override string Texture => AequusTextures.BattleAxe.FullPath;
 
         public override void SetStaticDefaults() {
             Main.tileFrameImportant[Type] = true;

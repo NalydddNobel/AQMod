@@ -927,13 +927,13 @@ Mods: {
 
 		Condition: {
 			DownedCrabson: 在击败巨蟹蛤后
-			DownedOmegaStarite: Mods.AequusRemake.Condition.DownedOmegaStarite
-			DownedDustDevil: Mods.AequusRemake.Condition.DownedDustDevil
+			DownedOmegaStarite: Mods.Aequus.Condition.DownedOmegaStarite
+			DownedDustDevil: Mods.Aequus.Condition.DownedDustDevil
 			DownedUpriser: 在击败暴乱者后
 			DownedHyperStarite: 在击败巨耀源星后
-			DownedUltraStarite: Mods.AequusRemake.Condition.DownedUltraStarite
-			DownedRedSprite: Mods.AequusRemake.Condition.DownedRedSprite
-			DownedSpaceSquid: Mods.AequusRemake.Condition.DownedSpaceSquid
+			DownedUltraStarite: Mods.Aequus.Condition.DownedUltraStarite
+			DownedRedSprite: Mods.Aequus.Condition.DownedRedSprite
+			DownedSpaceSquid: Mods.Aequus.Condition.DownedSpaceSquid
 			DownedGlimmer: 在到达柔光的中心后
 			DownedGaleStreams: 在击败太空乌贼或红色精灵后
 			InCrabCrevice: 当处于蟹伏岩隙时
@@ -943,7 +943,7 @@ Mods: {
 			InPeacefulGlimmer: 当宁静柔光事件发生时
 			EarlyPortalGun: 当'{$Configuration.Gameplay.EarlyPortalGun}'选项已启用.
 			EarlyGravityGlobe: 当'{$Configuration.Gameplay.EarlyGravityGlobe}'选项已启用.
-			DownedDemonSiege: Mods.AequusRemake.Condition.DownedDemonSiege
+			DownedDemonSiege: Mods.Aequus.Condition.DownedDemonSiege
 			HasCompletedBuildChallenge: 在完成{0}挑战后
 			AllCarpenterBountiesComplete: 在完成木匠所有的建筑挑战后
 		}

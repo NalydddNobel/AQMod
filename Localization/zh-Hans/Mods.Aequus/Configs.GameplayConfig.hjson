@@ -1,7 +1,7 @@
 Configs: {
 	GameplayConfig: {
 		PollutedOceanSide: {
-			Label: "[i:AequusRemake/TrashCompactor] 被污染的海洋位置"
+			Label: "[i:Aequus/TrashCompactor] 被污染的海洋位置"
 			Tooltip:
 				'''
 				决定被污染的海洋生成在世界的哪个位置.
@@ -39,16 +39,16 @@ Configs: {
 		}
 
 		HardmodeMimics: {
-			Label: "[i:AequusRemake/HardFrozenChest] 困难模式宝箱怪"
-			Tooltip: 决定AequusRemake的特殊困难模式宝箱怪是否会生成, 替代普通宝箱怪. 在"{$GameplayConfig.HardmodeChests.Label}"为False时, 此配置不生效.
+			Label: "[i:Aequus/HardFrozenChest] 困难模式宝箱怪"
+			Tooltip: 决定Aequus的特殊困难模式宝箱怪是否会生成, 替代普通宝箱怪. 在"{$GameplayConfig.HardmodeChests.Label}"为False时, 此配置不生效.
 		}
 
-		PDAGetsAequusRemakeItems: {
-			Label: "[i:PDA] AequusRemake个人数字助手"
+		PDAGetsAequusItems: {
+			Label: "[i:PDA] Aequus个人数字助手"
 			Tooltip:
 				'''
-				决定AequusRemake的新信息饰品是否会添加到个人数字助手及其上位升级中.
-				任何使用个人数字助手及其上位升级的物品的配方中都会自动继承AequusRemake的信息饰品.
+				决定Aequus的新信息饰品是否会添加到个人数字助手及其上位升级中.
+				任何使用个人数字助手及其上位升级的物品的配方中都会自动继承Aequus的信息饰品.
 				'''
 		}
 	}

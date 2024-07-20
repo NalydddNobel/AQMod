@@ -4,7 +4,7 @@ using Terraria.ID;
 
 namespace Aequus.Items.Equipment.Armor.Misc {
     public class NeonArmorPolish : ArmorPolishItem<NeonPrefix> {
-        public override string Texture => AequusTextures.ElitePlantNeon.Path;
+        public override string Texture => AequusTextures.ElitePlantNeon.FullPath;
 
         public override void SetDefaults() {
             base.SetDefaults();

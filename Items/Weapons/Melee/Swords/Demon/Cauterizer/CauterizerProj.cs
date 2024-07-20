@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee.Swords.Demon.Cauterizer {
     public class CauterizerProj : HeldSlashingSwordProjectile {
-        public override string Texture => AequusTextures.Cauterizer.Path;
+        public override string Texture => AequusTextures.Cauterizer.FullPath;
 
         public override void SetDefaults() {
             base.SetDefaults();

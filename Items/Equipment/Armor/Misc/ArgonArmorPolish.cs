@@ -4,7 +4,7 @@ using Terraria.ID;
 
 namespace Aequus.Items.Equipment.Armor.Misc {
     public class ArgonArmorPolish : ArmorPolishItem<ArgonPrefix> {
-        public override string Texture => AequusTextures.ElitePlantArgon.Path;
+        public override string Texture => AequusTextures.ElitePlantArgon.FullPath;
 
         public override void SetDefaults() {
             base.SetDefaults();

@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Aequus.Items;
+namespace Aequus;
 public partial class AequusItem {
     public override void NetSend(Item item, BinaryWriter writer) {
         var bb = new BitsByte(naturallyDropped, reversedGravity, itemGravityCheck > 0, luckyDrop > 0);

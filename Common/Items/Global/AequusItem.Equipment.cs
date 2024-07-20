@@ -1,6 +1,6 @@
 ﻿using Aequus.NPCs.Monsters.GaleStreams;
 
-namespace Aequus.Items;
+namespace Aequus;
 public partial class AequusItem {
     public override void UpdateEquip(Item item, Player player) {
         UpdateEquip_Prefixes(item, player);

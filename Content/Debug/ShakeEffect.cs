@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Debug {
     internal class ShakeEffect : ModItem {
-        public override string Texture => AequusTextures.FrozenTear.Path;
+        public override string Texture => AequusTextures.FrozenTear.FullPath;
 
         public override bool IsLoadingEnabled(Mod mod) {
             return Aequus.DevelopmentFeatures;

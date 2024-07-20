@@ -206,7 +206,7 @@ public class DedicatedFaeling : ModNPC {
         public readonly IDedicationInfo _dedication = info;
 
         public override string Name => _name;
-        public override string Texture => AequusTextures.DedicatedFaelingItem.Path;
+        public override string Texture => AequusTextures.DedicatedFaelingItem.FullPath;
 
         public override LocalizedText DisplayName => Language.GetText("ItemName.Shimmerfly");
         public override LocalizedText Tooltip => LocalizedText.Empty;

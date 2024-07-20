@@ -3,6 +3,7 @@ using Aequus.Common.UI;
 using Aequus.Common.Utilities;
 using Aequus.Content.UI;
 using Aequus.Items;
+using Aequus.Items.Accessories.Informational.HoloLens;
 using Aequus.Items.Equipment.Accessories.Combat.Passive.CelesteTorus;
 using Aequus.Items.Tools.Building;
 using Aequus.NPCs;
@@ -104,7 +105,7 @@ namespace Aequus {
             {
                 AdvancedRulerInterface.Instance.Enabled = false;
                 AdvancedRulerInterface.Instance.Holding = false;
-                ChestLensInterface.Enabled = false;
+                ChestLensInterface.IsEnabled = false;
             }
             AequusBuff.preventRightClick.Clear();
             Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = false;

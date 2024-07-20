@@ -13,9 +13,9 @@ public static class ALanguage {
     private record struct ColoredText(string Text, Color Color);
 
     /// <param name="key"></param>
-    /// <returns>A <see cref="LocalizedText"/> value for <paramref name="key"/> appended to the end of "Mods.AequusRemake"</returns>
+    /// <returns>A <see cref="LocalizedText"/> value for <paramref name="key"/> appended to the end of "Mods.Aequus"</returns>
     public static LocalizedText GetText(string key) {
-        return Language.GetText($"Mods.AequusRemake.{key}");
+        return Language.GetText($"Mods.Aequus.{key}");
     }
 
     public static LocalizedText GetOrEmpty(string key) {
@@ -200,7 +200,7 @@ public static class ALanguage {
         List<string> keys = keybind.GetAssignedKeys();
 
         if (keys.Count == 0) {
-            yield return Language.GetTextValue("Mods.AequusRemake.KeyUnbound");
+            yield return Language.GetTextValue("Mods.Aequus.KeyUnbound");
         }
         else {
             foreach (var s in keys) {

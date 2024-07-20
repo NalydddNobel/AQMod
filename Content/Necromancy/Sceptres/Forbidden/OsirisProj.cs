@@ -5,7 +5,7 @@ using Terraria.GameContent;
 
 namespace Aequus.Content.Necromancy.Sceptres.Forbidden;
 public class OsirisProj : CorruptionSceptreProj {
-    public override string Texture => AequusTextures.CorruptionSceptreProj.Path;
+    public override string Texture => AequusTextures.CorruptionSceptreProj.FullPath;
 
     public override void SetStaticDefaults() {
         ProjectileID.Sets.TrailCacheLength[Type] = 15;

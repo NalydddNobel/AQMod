@@ -193,7 +193,7 @@ public sealed class RenamingSystem : ModSystem {
                     if (SpawnRectangles[j].Intersects(marker.SpawnBox)) {
                         _gameTime = UpdateRate;
 
-                        int newNPC = NPC.NewNPC(new EntitySource_Misc("AequusRemake: Name Tag Respawn"), marker.tileX * 16 + 8, marker.tileY * 16 + 8, marker.type);
+                        int newNPC = NPC.NewNPC(new EntitySource_Misc("Aequus: Name Tag Respawn"), marker.tileX * 16 + 8, marker.tileY * 16 + 8, marker.type);
                         if (newNPC == Main.maxNPCs) {
                             break;
                         }

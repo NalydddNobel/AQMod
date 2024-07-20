@@ -3,7 +3,7 @@ using Aequus.Common.Items;
 
 namespace Aequus.Content.Debug;
 internal class CinematicCam : ModItem {
-    public override string Texture => AequusTextures.Gamestar.Path;
+    public override string Texture => AequusTextures.Gamestar.FullPath;
 
     public override bool IsLoadingEnabled(Mod mod) {
         return Aequus.DevelopmentFeatures;

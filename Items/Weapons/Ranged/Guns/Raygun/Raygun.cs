@@ -5,14 +5,10 @@ using Aequus.Items.Materials.Energies;
 using Aequus.Items.Materials.Glimmer;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles;
-using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Ranged.Guns.Raygun;
 

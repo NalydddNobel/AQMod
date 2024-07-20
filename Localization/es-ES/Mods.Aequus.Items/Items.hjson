@@ -347,7 +347,7 @@ CleanserDrone: {
 	// DisplayName: "{$NPCs.CleanserDrone.DisplayName}"
 	Tooltip:
 		'''
-		{$Mods.AequusRemake.Items.PylonDrone.Tooltip}
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
 		Rocía solución para esparcir el bioma de la torre
 		'''
 }
@@ -356,7 +356,7 @@ GunnerDrone: {
 	// DisplayName: "{$NPCs.GunnerDrone.DisplayName}"
 	Tooltip:
 		'''
-		{$Mods.AequusRemake.Items.PylonDrone.Tooltip}
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
 		Defende el area de enemigos
 		'''
 }
@@ -365,7 +365,7 @@ HealerDrone: {
 	DisplayName: "{$NPCs.HealerDrone.DisplayName}"
 	Tooltip:
 		'''
-		{$Mods.AequusRemake.Items.PylonDrone.Tooltip}
+		{$Mods.Aequus.Items.PylonDrone.Tooltip}
 		Cura a aldeanos y criaturas
 		'''
 }

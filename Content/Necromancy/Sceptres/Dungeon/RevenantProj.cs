@@ -6,7 +6,7 @@ using Terraria.GameContent;
 namespace Aequus.Content.Necromancy.Sceptres.Dungeon;
 
 public class RevenantProj : CorruptionSceptreProj {
-    public override string Texture => AequusTextures.CorruptionSceptreProj.Path;
+    public override string Texture => AequusTextures.CorruptionSceptreProj.FullPath;
 
     public override void SetStaticDefaults() {
         ProjectileID.Sets.TrailCacheLength[Type] = 10;

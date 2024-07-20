@@ -19,7 +19,7 @@ namespace Aequus.Content.Biomes.CrabCrevice {
     public class CrabCreviceBiome : ModBiome {
         public static ConfiguredMusicData music { get; private set; }
 
-        public override string BestiaryIcon => AequusTextures.CrabCreviceBestiaryIcon.Path;
+        public override string BestiaryIcon => AequusTextures.CrabCreviceBestiaryIcon.FullPath;
 
         public override string BackgroundPath => Aequus.VanillaTexture + "MapBG11";
         public override string MapBackground => BackgroundPath;

@@ -58,7 +58,7 @@ namespace Aequus.Tiles.Misc.AshTombstones {
     }
 
     public class AshTombstoneProj : TombstoneProjBase {
-        public override string Texture => AequusTextures.AshTombstone.Path;
+        public override string Texture => AequusTextures.AshTombstone.FullPath;
 
         public override void SetStaticDefaults() {
             ProjectileID.Sets.TrailingMode[Type] = 2;
@@ -168,7 +168,7 @@ namespace Aequus.Tiles.Misc.AshTombstones {
         }
     }
     public class AshTombstoneExplosion : ModProjectile {
-        public override string Texture => AequusTextures.Explosion1.Path;
+        public override string Texture => AequusTextures.Explosion1.FullPath;
 
         public override void SetStaticDefaults() {
             Main.projFrames[Type] = 7;

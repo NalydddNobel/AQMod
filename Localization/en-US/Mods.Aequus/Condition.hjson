@@ -2,35 +2,35 @@ Condition: {
 	DayOfTheWeek: When it's {0}
 	BetweenDays: Between {0}-{1}
 	InPollutedOcean: In the Polluted Ocean biome
-	DownedAquaticBoss: Mods.AequusRemake.Condition.DownedAquaticBoss
+	DownedAquaticBoss: Mods.Aequus.Condition.DownedAquaticBoss
 	DownedCosmicBoss: After defeating Ultra Starite
 	DownedTrueCosmicBoss: After defeating Omega Starite
 	DownedDemonBoss: After completing your first Demon Siege
-	DownedTrueDemonBoss: Mods.AequusRemake.Condition.DownedTrueDemonBoss
+	DownedTrueDemonBoss: Mods.Aequus.Condition.DownedTrueDemonBoss
 	DownedAtmosphereBossFlame: After matching against the Red Sprite
 	DownedAtmosphereBossFrost: After matching against the Space Squid
 	DownedTrueAtmosphereBoss: After defeating the Dust Devil
-	DownedOrganicBossMight: Mods.AequusRemake.Condition.DownedOrganicBossMight
-	DownedOrganicBossSight: Mods.AequusRemake.Condition.DownedOrganicBossSight
-	DownedOrganicBossFright: Mods.AequusRemake.Condition.DownedOrganicBossFright
-	DownedTrueFinalBoss: Mods.AequusRemake.Condition.DownedTrueFinalBoss
-	NotDownedAquaticBoss: Mods.AequusRemake.Condition.NotDownedAquaticBoss
+	DownedOrganicBossMight: Mods.Aequus.Condition.DownedOrganicBossMight
+	DownedOrganicBossSight: Mods.Aequus.Condition.DownedOrganicBossSight
+	DownedOrganicBossFright: Mods.Aequus.Condition.DownedOrganicBossFright
+	DownedTrueFinalBoss: Mods.Aequus.Condition.DownedTrueFinalBoss
+	NotDownedAquaticBoss: Mods.Aequus.Condition.NotDownedAquaticBoss
 	NotDownedCosmicBoss: Before defeating Ultra Starite
 	NotDownedTrueCosmicBoss: Before defeating Omega Starite
 	NotDownedDemonBoss: Before completing your first Demon Siege
-	NotDownedTrueDemonBoss: Mods.AequusRemake.Condition.NotDownedTrueDemonBoss
+	NotDownedTrueDemonBoss: Mods.Aequus.Condition.NotDownedTrueDemonBoss
 	NotDownedAtmosphereBossFlame: Before matching against the Red Sprite
 	NotDownedAtmosphereBossFrost: Before matching against the Space Squid
 	NotDownedTrueAtmosphereBoss: Before defeating the Dust Devil
-	NotDownedOrganicBossMight: Mods.AequusRemake.Condition.NotDownedOrganicBossMight
-	NotDownedOrganicBossSight: Mods.AequusRemake.Condition.NotDownedOrganicBossSight
-	NotDownedOrganicBossFright: Mods.AequusRemake.Condition.NotDownedOrganicBossFright
-	NotDownedTrueFinalBoss: Mods.AequusRemake.Condition.NotDownedTrueFinalBoss
+	NotDownedOrganicBossMight: Mods.Aequus.Condition.NotDownedOrganicBossMight
+	NotDownedOrganicBossSight: Mods.Aequus.Condition.NotDownedOrganicBossSight
+	NotDownedOrganicBossFright: Mods.Aequus.Condition.NotDownedOrganicBossFright
+	NotDownedTrueFinalBoss: Mods.Aequus.Condition.NotDownedTrueFinalBoss
 	ConfigIsTrue: If the {1}/{0} config option is set to true
-	SilverOre: Mods.AequusRemake.Condition.SilverOre
-	DownedSalamancer: Mods.AequusRemake.Condition.DownedSalamancer
-	UsedReforgeBook: Mods.AequusRemake.Condition.UsedReforgeBook
-	MetOccultist: Mods.AequusRemake.Condition.MetOccultist
-	InSurfacePollutedOcean: Mods.AequusRemake.Condition.InSurfacePollutedOcean
-	InUndergroundPollutedOcean: Mods.AequusRemake.Condition.InUndergroundPollutedOcean
+	SilverOre: Mods.Aequus.Condition.SilverOre
+	DownedSalamancer: Mods.Aequus.Condition.DownedSalamancer
+	UsedReforgeBook: Mods.Aequus.Condition.UsedReforgeBook
+	MetOccultist: Mods.Aequus.Condition.MetOccultist
+	InSurfacePollutedOcean: Mods.Aequus.Condition.InSurfacePollutedOcean
+	InUndergroundPollutedOcean: Mods.Aequus.Condition.InUndergroundPollutedOcean
 }

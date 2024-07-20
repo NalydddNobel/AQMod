@@ -147,7 +147,7 @@ namespace Aequus.Items.Equipment.Accessories.Combat.Passive.Stormcloak {
     }
 
     public class StormcloakProj : ModProjectile {
-        public override string Texture => AequusTextures.None.Path;
+        public override string Texture => AequusTextures.None.FullPath;
 
         public Vector3 transformedPosition;
         public float radius;

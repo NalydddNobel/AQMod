@@ -87,7 +87,7 @@ public class EquipBoostDatabase : ModSystem {
             return;
         }
         if (player.timeSinceLastDashStarted == 1 && (player.controlLeft | player.controlRight)) {
-            //SoundEngine.PlaySound(SoundID.ForceRoar with { Pitch = 0.5f, }, player.Center);
+            //SoundEngine.PlaySound(SoundID.ForceRoar.Value with { Pitch = 0.5f, }, player.Center);
             player.velocity.X = Math.Max(Math.Abs(player.velocity.X), 19f) * player.direction;
         }
         if (player.dashDelay < 0) {

@@ -1,7 +1,6 @@
-﻿using Aequus.Content.Necromancy.Rendering;
-using Aequus.Common.Graphics;
+﻿using Aequus.Common.Graphics;
+using Aequus.Content.Necromancy.Rendering;
 using Aequus.Items.Materials.SoulGem;
-using Aequus.Content.Necromancy;
 
 namespace Aequus.Content.Necromancy.Equipment.Accessories.Chains;
 
@@ -35,7 +34,7 @@ public class SouljointCuffs : ModItem {
 
     public static void DrawChainedNPCs(SpriteBatch spriteBatch) {
         if (GhostRenderer.ChainedUpNPCs.Count > 0) {
-            var t = AequusTextures.SoulChains_Chains;
+            var t = AequusTextures.SoulChains;
             foreach (var v in GhostRenderer.ChainedUpNPCs) {
                 int i = 0;
                 Helper.DrawChain(t, v.Item2.Center, v.Item1.Center, Main.screenPosition, (loc) => {

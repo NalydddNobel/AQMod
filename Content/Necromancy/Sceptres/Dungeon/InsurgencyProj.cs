@@ -1,8 +1,6 @@
 ﻿using Aequus.Common.Utilities;
 using Aequus.Content.Necromancy.Sceptres.Evil;
-using Aequus.Old.Content.Particles;
 using Aequus.Particles.Dusts;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
 using Terraria.Audio;

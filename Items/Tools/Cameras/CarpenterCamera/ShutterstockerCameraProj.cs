@@ -1,16 +1,12 @@
 ﻿using Aequus.Common.Carpentry;
 using Aequus.Common.Carpentry.Results;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
-using Terraria.ID;
 using Terraria.UI.Chat;
 
-namespace Aequus.Items.Tools.Cameras.CarpenterCamera; 
+namespace Aequus.Items.Tools.Cameras.CarpenterCamera;
 public class ShutterstockerCameraProj : CameraShootProj {
     public class PhotoStatusData {
         public string name;
@@ -168,7 +164,7 @@ public class ShutterstockerCameraProj : CameraShootProj {
 
             var linePosition = camEnd + (size with { Y = -size.Y } + new Vector2(10f, j * 20f));
             string name = passes[i]?.GetDisplayName()?.Value;
-            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.MouseText.Value, (string.IsNullOrEmpty(name) ? "NoName" : name) + ": " + status.GetResultText(), linePosition + new Vector2(icons.Width + 4f, 0f), Color.White, 0f, Vector2.Zero, Vector2.One);
+            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.MouseText.Value, (string.IsNullOrEmpty(name) ? "NoName" : name) + ": " + status.GetResultText(), linePosition + new Vector2(icons.Width() + 4f, 0f), Color.White, 0f, Vector2.Zero, Vector2.One);
 
             int frameY = (int)status.ResultType;
             var frame = icons.Frame(verticalFrames: 3, frameY: frameY);

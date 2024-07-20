@@ -3,7 +3,7 @@ using Terraria.DataStructures;
 
 namespace Aequus.Content.Debug;
 internal class FlashEffect : ModItem {
-    public override string Texture => AequusTextures.Fluorescence.Path;
+    public override string Texture => AequusTextures.Fluorescence.FullPath;
 
     public override bool IsLoadingEnabled(Mod mod) {
         return Aequus.DevelopmentFeatures;

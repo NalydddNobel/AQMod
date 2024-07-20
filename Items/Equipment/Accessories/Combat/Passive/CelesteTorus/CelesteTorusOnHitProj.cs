@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Equipment.Accessories.Combat.Passive.CelesteTorus;
 
 public class CelesteTorusOnHitProj : ModProjectile {
-    public override string Texture => AequusTextures.None.Path;
+    public override string Texture => AequusTextures.None.FullPath;
 
     public override void SetDefaults() {
         Projectile.width = 16;

@@ -11,7 +11,7 @@ namespace Aequus.NPCs.BossMonsters.Upriser.Projectiles;
 public class UpriserNecromancyAttack : ModProjectile {
     public int ConnectedNPC { get => (int)Projectile.ai[0] - 1; set => Projectile.ai[0] = value + 1; }
 
-    public override string Texture => AequusTextures.UpriserChainsUV.Path;
+    public override string Texture => AequusTextures.UpriserChainsUV.FullPath;
 
     private Vector2[] _chainSegments;
 

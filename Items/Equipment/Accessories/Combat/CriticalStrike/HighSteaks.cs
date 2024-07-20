@@ -3,18 +3,14 @@ using Aequus.Common.Items;
 using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Net.Sounds;
 using Aequus.Common.Recipes;
-using Aequus.Items.Equipment.Accessories.Combat.CriticalStrike;
 using Aequus.Content.Necromancy.Equipment.Accessories.SpiritKeg;
-using Microsoft.Xna.Framework;
+using Aequus.Items.Equipment.Accessories.Combat.CriticalStrike;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Aequus.Items.Equipment.Accessories.Combat.CriticalStrike {
     [AutoloadEquip(EquipType.Waist)]
@@ -127,7 +123,7 @@ namespace Aequus.Items.Equipment.Accessories.Combat.CriticalStrike {
 
     public class HighSteaksCoinSound : NetSound {
         protected override SoundStyle InitDefaultSoundStyle() {
-            return AequusSounds.coinHit with { Volume = 0.2f, PitchVariance = 0.2f };
+            return AequusSounds.CoinHit.Value with { Volume = 0.2f, PitchVariance = 0.2f };
         }
     }
 }

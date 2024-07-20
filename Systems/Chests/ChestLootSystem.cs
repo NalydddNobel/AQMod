@@ -12,7 +12,7 @@ public sealed class ChestLootSystem : ModSystem {
                 continue;
             }
 
-            // Prevent AequusRemake from adjusting chest loot at all if it contains an important item
+            // Prevent Aequus from adjusting chest loot at all if it contains an important item
             if (ItemSets.ImportantItem.Contains(chest.item[m].type)) {
                 return false;
             }

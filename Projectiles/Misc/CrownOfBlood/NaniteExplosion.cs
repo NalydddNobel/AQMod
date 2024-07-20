@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Misc.CrownOfBlood {
     public class NaniteExplosion : ModProjectile {
-        public override string Texture => AequusTextures.Explosion1.Path;
+        public override string Texture => AequusTextures.Explosion1.FullPath;
 
         public override void SetStaticDefaults() {
             Main.projFrames[Type] = 7;

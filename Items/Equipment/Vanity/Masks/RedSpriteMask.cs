@@ -22,7 +22,7 @@ public class RedSpriteMask : ModItem {
     }
 
     public override void DrawArmorColor(Player drawPlayer, float shadow, ref Color color, ref int glowMask, ref Color glowMaskColor) {
-        glowMask = GlowMasksHandler.GetID(AequusTextures.RedSpriteMask_Head_Glow.Path);
+        glowMask = GlowMasksHandler.GetID(AequusTextures.RedSpriteMask_Head_Glow.FullPath);
         glowMaskColor = (Color.White with { A = 0 }) * (1f - shadow);
     }
 }

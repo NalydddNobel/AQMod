@@ -10,7 +10,7 @@ public class PossessedShardNPC : ModNPC {
     public TrailRenderer trail;
     public ForceCoordTrailRenderer flameTrail;
 
-    public override string Texture => AequusTextures.PossessedShard.Path;
+    public override string Texture => AequusTextures.PossessedShard.FullPath;
 
     public override void SetStaticDefaults() {
         NPCID.Sets.TrailingMode[Type] = 7;
@@ -29,7 +29,7 @@ public class PossessedShardNPC : ModNPC {
         NPC.defense = 20;
         NPC.noGravity = true;
         NPC.aiStyle = -1;
-        NPC.HitSound = AequusSounds.shardHit with { Volume = 0.5f, Pitch = -0.2f, PitchVariance = 0.15f, };
+        NPC.HitSound = AequusSounds.PossessedShardHit.Value with { Volume = 0.5f, Pitch = -0.2f, PitchVariance = 0.15f, };
     }
 
     public override void HitEffect(NPC.HitInfo hit) {
@@ -88,7 +88,7 @@ public class PossessedShardNPC : ModNPC {
         }
 
         if (NPC.soundDelay <= 0) {
-            SoundEngine.PlaySound(AequusSounds.shardHit with { Volume = 0.5f, Pitch = -0.3f, PitchVariance = 0.1f, }, NPC.Center);
+            SoundEngine.PlaySound(AequusSounds.PossessedShardHit.Value with { Volume = 0.5f, Pitch = -0.3f, PitchVariance = 0.1f, }, NPC.Center);
         }
 
         NPC.localAI[2] = 8f;

@@ -90,7 +90,7 @@ namespace Aequus.Tiles.Herbs.Mistral {
                 return;
             }
             var groundPosition = new Vector2(i * 16f + 8f, j * 16f + 16f).Floor();
-            var pinwheel = PaintsRenderer.TryGetPaintedTexture(i, j, AequusTextures.MistralTile_Pinwheel.Path);
+            var pinwheel = PaintsRenderer.TryGetPaintedTexture(i, j, AequusTextures.MistralTile_Pinwheel.FullPath);
             Main.spriteBatch.Draw(pinwheel, groundPosition - Main.screenPosition - new Vector2(0f, 20f), null, Lighting.GetColor(i, j),
                 Main.tileFrame[Type] / (float)TurnFrames, pinwheel.Size() / 2f, 1f, SpriteEffects.None, 0f);
         }

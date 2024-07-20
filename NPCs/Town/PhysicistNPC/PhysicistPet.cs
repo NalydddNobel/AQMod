@@ -253,12 +253,12 @@ public class PhysicistPet : ModNPC, IAddRecipes, IUnlockBestiaryEntryUponExistin
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
         var texture = TextureAssets.Npc[Type].Value;
-        var glowTexture = AequusTextures.PhysicistPet_Glow_PhysicistNPC.Value;
+        var glowTexture = AequusTextures.NPCs_Town_PhysicistNPC_PhysicistPet_Glow.Value;
         var frame = NPC.frame;
         float opacity = Main.npc[Owner].Opacity * (1f - Main.npc[Owner].shimmerTransparency);
         if (Main.npc[Owner].IsShimmerVariant) {
-            texture = AequusTextures.PhysicistPet_Shimmer.Value;
-            glowTexture = AequusTextures.PhysicistPet_Glow_Shimmer.Value;
+            texture = AequusTextures.NPCs_Town_PhysicistNPC_Shimmer_PhysicistPet.Value;
+            glowTexture = AequusTextures.NPCs_Town_PhysicistNPC_Shimmer_PhysicistPet_Glow.Value;
             int frameY = frame.Y / frame.Height;
             frame = texture.Frame(verticalFrames: Main.npcFrameCount[Type],
                 frameY: Math.Clamp(frameY, 0, Main.npcFrameCount[Type] - 1));

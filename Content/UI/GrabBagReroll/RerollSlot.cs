@@ -1,9 +1,7 @@
 ﻿using Aequus.Common.UI;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Aequus.Common.Utilities.Extensions;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent;
 using Terraria.UI;
 
@@ -79,7 +77,7 @@ public class RerollSlot : UIElement {
         float heightAdd = dimensions.Height / workingItems.Length;
         float rollAnimationWrapped = rollAnimation % 1f;
         float animationOffset = 1f / workingItems.Length;
-        Helper.DrawUIPanel(spriteBatch, AequusTextures.Panel_BountyBoard, dimensions.ToRectangle());
+        Helper.DrawUIPanel(spriteBatch, AequusTextures.Content_UI_BountyBoard_Panel, dimensions.ToRectangle());
         float waveAmount = Math.Min(0.1f - rollSpeed, 0f);
         for (int i = 0; i < workingItems.Length; i++) {
             //float opacity = MathF.Sin((i + rollAnimation) / workingItems.Length * MathHelper.TwoPi);

@@ -39,7 +39,7 @@ namespace Aequus.Tiles.CrabCrevice {
 
     [LegacyName("SedimentaryRockWallPlacedFriendly")]
     public class SedimentaryRockWallFriendlyPlaced : SedimentaryRockWallPlaced {
-        public override string Texture => AequusTextures.SedimentaryRockWallPlaced.Path;
+        public override string Texture => AequusTextures.SedimentaryRockWallPlaced.FullPath;
         public override void SetStaticDefaults() {
             base.SetStaticDefaults();
             RegisterItemDrop(ModContent.ItemType<SedimentaryRockWallItem>());
@@ -70,7 +70,7 @@ namespace Aequus.Tiles.CrabCrevice {
 
     [LegacyName("SedimentaryRockWallHostile")]
     public class SedimentaryRockWallItemHostile : SedimentaryRockWallItem {
-        public override string Texture => AequusTextures.SedimentaryRockWallItem.Path;
+        public override string Texture => AequusTextures.SedimentaryRockWallItem.FullPath;
 
         public override void SetStaticDefaults() {
             base.SetStaticDefaults();

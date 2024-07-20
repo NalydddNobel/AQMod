@@ -9,7 +9,7 @@ namespace Aequus.Tiles.CraftingStations;
 /// Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.
 /// </summary>
 public class GoreNestDummy : ModTile {
-    public override string Texture => AequusTextures.GoreNestTile.Path;
+    public override string Texture => AequusTextures.GoreNestTile.FullPath;
 
     public override void SetStaticDefaults() {
         Main.tileFrameImportant[Type] = true;

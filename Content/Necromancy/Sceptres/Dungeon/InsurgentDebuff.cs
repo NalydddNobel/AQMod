@@ -5,7 +5,7 @@ using System;
 namespace Aequus.Content.Necromancy.Sceptres.Dungeon;
 
 public class InsurgentDebuff : NecromancyDebuff {
-    public override string Texture => AequusTextures.Debuff.Path;
+    public override string Texture => AequusTextures.Debuff.FullPath;
 
     public override float Tier => 4f;
     public override int DamageSet => 125;

@@ -128,7 +128,7 @@ Configs: {
 		}
 
 		CaveVariety: {
-			Label: "[i:BonePickaxe] Cuevas de AequusRemake"
+			Label: "[i:BonePickaxe] Cuevas de Aequus"
 			Tooltip:
 				'''
 				Añade variación y expande a las cuevas para que haya menos túneles sin salida.

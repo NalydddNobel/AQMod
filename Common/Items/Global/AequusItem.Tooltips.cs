@@ -12,7 +12,7 @@ using Terraria.Localization;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace Aequus.Items;
+namespace Aequus;
 public partial class AequusItem {
     public static Color HintColor => new Color(225, 100, 255, 255);
 

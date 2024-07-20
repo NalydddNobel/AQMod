@@ -4,7 +4,7 @@ using Aequus.Content.Necromancy.Sceptres.Evil;
 namespace Aequus.Content.Necromancy.Sceptres.Forbidden;
 
 public class OsirisDebuff : NecromancyDebuff {
-    public override string Texture => AequusTextures.Debuff.Path;
+    public override string Texture => AequusTextures.Debuff.FullPath;
 
     public override float Tier => 3f;
     public override int DamageSet => 75;

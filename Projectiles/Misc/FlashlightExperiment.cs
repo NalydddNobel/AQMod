@@ -6,7 +6,7 @@ namespace Aequus.Projectiles.Misc {
     public class FlashlightExperiment : ModProjectile {
         public float coneAngles;
 
-        public override string Texture => AequusTextures.None.Path;
+        public override string Texture => AequusTextures.None.FullPath;
 
         public override void SetDefaults() {
             Projectile.DisableWorldInteractions();

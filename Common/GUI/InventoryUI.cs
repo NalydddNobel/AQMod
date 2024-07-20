@@ -35,10 +35,10 @@ public class InventoryUI : ModSystem {
     }
 
     public override void UpdateUI(GameTime gameTime) {
-        //if (!Main.LocalPlayer.TryGetModPlayer(out BackpackPlayer AequusRemakePlayer)) {
+        //if (!Main.LocalPlayer.TryGetModPlayer(out BackpackPlayer AequusPlayer)) {
         //    return;
         //}
-        //BackpackLoader.AnimateBackpacks(AequusRemakePlayer.backpacks, out int totalInventorySlots, out int activeBackpacks);
+        //BackpackLoader.AnimateBackpacks(AequusPlayer.backpacks, out int totalInventorySlots, out int activeBackpacks);
 
         // Offset for the coin and ammo slots
         int rightSlotOffset = 0;

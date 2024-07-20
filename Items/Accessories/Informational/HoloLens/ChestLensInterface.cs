@@ -1,17 +1,13 @@
 ﻿using Aequus.Common.UI;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Terraria.UI;
 
-namespace Aequus.Content.UI;
+namespace Aequus.Items.Accessories.Informational.HoloLens;
+
 public class ChestLensInterface : UILayer {
     public class ChestLensInfo {
         public Point point;
@@ -140,25 +136,19 @@ public class ChestLensInterface : UILayer {
         }
     }
 
-    public static bool Enabled;
+    public static bool IsEnabled { get; set; }
 
-    public static Dictionary<Point, ChestLensInfo> ChestLens { get; private set; }
+    public static readonly Dictionary<Point, ChestLensInfo> WorldInstances = [];
     public override string Layer => AequusUI.InterfaceLayers.EntityHealthBars_16;
     public override InterfaceScaleType ScaleType => InterfaceScaleType.Game;
 
-    public override void Load() {
-        if (!Main.dedServ) {
-            ChestLens = new Dictionary<Point, ChestLensInfo>();
-        }
-    }
-    public override void Unload() {
-        ChestLens?.Clear();
-        ChestLens = null;
+    public override void OnClearWorld() {
+        WorldInstances.Clear();
     }
 
     public override void OnUIUpdate(GameTime gameTime) {
-        if (!Enabled) {
-            ChestLens.Clear();
+        if (!IsEnabled) {
+            WorldInstances.Clear();
             return;
         }
 
@@ -167,30 +157,30 @@ public class ChestLensInterface : UILayer {
             if (Main.LocalPlayer.IsInTileInteractionRange(Player.tileTargetX, Player.tileTargetY, TileReachCheckSettings.QuickStackToNearbyChests)) {
                 var tile = Framing.GetTileSafely(Player.tileTargetX, Player.tileTargetY);
                 mousePoint = new Point(Player.tileTargetX - tile.TileFrameX % 36 / 18, Player.tileTargetY - tile.TileFrameY % 36 / 18);
-                if (!ChestLens.ContainsKey(mousePoint)) {
-                    ChestLens.Add(mousePoint, new ChestLensInfo(mousePoint));
+                if (!WorldInstances.ContainsKey(mousePoint)) {
+                    WorldInstances.Add(mousePoint, new ChestLensInfo(mousePoint));
                 }
             }
         }
 
-        if (ChestLens.Count <= 0)
+        if (WorldInstances.Count <= 0)
             return;
         var removeCache = new List<Point>();
-        foreach (var lens in ChestLens.Values) {
+        foreach (var lens in WorldInstances.Values) {
             if (!lens.EnsureChestState() || !lens.Update(gameTime, mousePoint)) {
                 removeCache.Add(lens.point);
                 break;
             }
         }
         foreach (var p in removeCache) {
-            ChestLens.Remove(p);
+            WorldInstances.Remove(p);
         }
     }
 
     public override bool Draw(SpriteBatch spriteBatch) {
-        if (!Enabled || ChestLens.Count <= 0)
+        if (!IsEnabled || WorldInstances.Count <= 0)
             return true;
-        foreach (var lens in ChestLens.Values) {
+        foreach (var lens in WorldInstances.Values) {
             if (!lens.EnsureChestState()) {
                 break;
             }

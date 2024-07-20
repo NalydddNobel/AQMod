@@ -4,7 +4,7 @@ using Terraria.ID;
 
 namespace Aequus.Items.Equipment.Armor.Misc {
     public class XenonArmorPolish : ArmorPolishItem<XenonPrefix> {
-        public override string Texture => AequusTextures.ElitePlantXenon.Path;
+        public override string Texture => AequusTextures.ElitePlantXenon.FullPath;
 
         public override void SetDefaults() {
             base.SetDefaults();

@@ -6,18 +6,14 @@ using Aequus.Common.Particles;
 using Aequus.Common.Projectiles.Base;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
-using Microsoft.Xna.Framework;
 using System;
 using System.IO;
-using Terraria;
 using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee.Swords.UltimateSword;
 
 public class UltimateSwordProj : HeldSlashingSwordProjectile {
-    public override string Texture => AequusTextures.UltimateSword.Path;
+    public override string Texture => AequusTextures.UltimateSword.FullPath;
 
     public override void SetDefaults() {
         base.SetDefaults();
@@ -42,7 +38,7 @@ public class UltimateSwordProj : HeldSlashingSwordProjectile {
         }
         if (!playedSound && AnimProgress > 0.4f) {
             playedSound = true;
-            SoundEngine.PlaySound(AequusSounds.swordSwoosh with { Pitch = 0.4f, }, Projectile.Center);
+            SoundEngine.PlaySound(AequusSounds.SwordSwipe.Value with { Pitch = 0.4f, }, Projectile.Center);
         }
     }
 

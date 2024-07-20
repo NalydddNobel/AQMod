@@ -2,7 +2,7 @@
 
 /// <summary>Item used to determine if a chest has been opened or not.</summary>
 public class UnopenedChestItem : ModItem {
-    public override string Texture => AequusTextures.None.Path;
+    public override string Texture => AequusTextures.None.FullPath;
 
     public override void Load() {
         On_Player.OpenChest += RemoveUnopenedChestItemUponOpeningChest;

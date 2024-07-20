@@ -1,14 +1,10 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using Terraria;
+﻿using System;
 using Terraria.Audio;
-using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee.Swords.GaleStreams.Slice;
 
 public class SliceOnHitEffect : ModProjectile {
-    public override string Texture => AequusTextures.Flare.Path;
+    public override string Texture => AequusTextures.Flare.FullPath;
 
     private bool _playedSound;
 
@@ -33,7 +29,7 @@ public class SliceOnHitEffect : ModProjectile {
     public override void AI() {
         if (!_playedSound) {
             _playedSound = true;
-            SoundEngine.PlaySound(AequusSounds.hit_Sword.Sound with { Volume = 0.7f, PitchVariance = 0.1f, MaxInstances = 3, }, Projectile.Center);
+            SoundEngine.PlaySound(AequusSounds.SwordHit.Value with { Volume = 0.7f, PitchVariance = 0.1f, MaxInstances = 3, }, Projectile.Center);
         }
     }
 

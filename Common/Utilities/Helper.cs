@@ -11,7 +11,6 @@ using Aequus.Common.Recipes;
 using Aequus.Common.Tiles;
 using Aequus.Common.Utilities;
 using Aequus.Common.Utilities.TypeUnboxing;
-using Aequus.Items;
 using Aequus.Projectiles;
 using log4net;
 using ReLogic.Content;

@@ -28,9 +28,9 @@ namespace Aequus.Content.Events.GlimmerEvent {
 
         public override SceneEffectPriority Priority => SceneEffectPriority.Event;
 
-        public override string BestiaryIcon => AequusTextures.GlimmerBestiaryIcon.Path;
+        public override string BestiaryIcon => AequusTextures.GlimmerBestiaryIcon.FullPath;
 
-        public override string BackgroundPath => AequusTextures.GlimmerMapBackground.Path;
+        public override string BackgroundPath => AequusTextures.GlimmerMapBackground.FullPath;
         public override string MapBackground => BackgroundPath;
 
         public override int Music => music.GetID();

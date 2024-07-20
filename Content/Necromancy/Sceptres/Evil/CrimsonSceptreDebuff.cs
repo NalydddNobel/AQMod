@@ -4,7 +4,7 @@ using System;
 namespace Aequus.Content.Necromancy.Sceptres.Evil;
 
 public class CrimsonSceptreDebuff : NecromancyDebuff {
-    public override string Texture => AequusTextures.Debuff.Path;
+    public override string Texture => AequusTextures.Debuff.FullPath;
 
     public override float Tier => 1f;
     public override int DamageSet => 20;

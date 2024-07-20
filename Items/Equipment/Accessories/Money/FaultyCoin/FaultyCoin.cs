@@ -1,16 +1,11 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Recipes;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Aequus.Items.Equipment.Accessories.Money.FaultyCoin;
 
@@ -83,7 +78,7 @@ public class FaultyCoin : ModItem {
     }
 
     public void OnUnsuccessfulRemove(Player player) {
-        SoundEngine.PlaySound(AequusSounds.coinHit);
+        SoundEngine.PlaySound(AequusSounds.CoinHit);
         removeFailAnimation = 30f;
     }
 

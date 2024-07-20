@@ -1,14 +1,8 @@
 ﻿using Aequus;
-using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
-using Aequus.Common.Net.Sounds;
 using Aequus.Common.Projectiles.Base;
-using Microsoft.Xna.Framework;
 using System;
-using Terraria;
 using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee.Swords.SuperStarSword;
 
@@ -19,7 +13,7 @@ public class SuperStarSwordProj : HeldSlashingSwordProjectile {
     private static readonly Color[] DustColorsAnniversary = new Color[] { Color.Pink with { A = 0 }, Color.LightPink with { A = 0 }, Color.HotPink with { A = 0 }, };
     public static Color[] DustColors => Main.tenthAnniversaryWorld ? DustColorsAnniversary : DustColorsNormal;
 
-    public override string Texture => AequusTextures.SuperStarSword.Path;
+    public override string Texture => AequusTextures.SuperStarSword.FullPath;
 
     public override bool ShouldUpdatePlayerDirection() {
         return AnimProgress > 0.1f && AnimProgress < 0.3f;
@@ -48,7 +42,7 @@ public class SuperStarSwordProj : HeldSlashingSwordProjectile {
         }
         if (!playedSound && AnimProgress > 0.4f) {
             playedSound = true;
-            SoundEngine.PlaySound(AequusSounds.swordSwoosh with { Pitch = 0.2f }, Projectile.Center);
+            SoundEngine.PlaySound(AequusSounds.SwordSwipe.Value with { Pitch = 0.2f }, Projectile.Center);
         }
 
         if (AnimProgress < 0.3f) {

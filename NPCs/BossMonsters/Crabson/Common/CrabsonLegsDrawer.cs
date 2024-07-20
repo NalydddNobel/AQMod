@@ -1,10 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Utilities;
+﻿using ReLogic.Utilities;
 using System;
-using Terraria;
 using Terraria.Audio;
-using Terraria.ID;
 
 namespace Aequus.NPCs.BossMonsters.Crabson.Segments;
 

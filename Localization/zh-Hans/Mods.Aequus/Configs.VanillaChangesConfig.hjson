@@ -19,7 +19,7 @@ Configs: {
 			Tooltip:
 				'''
 				[{$ColorImportant}:启用后], 原版的[{$ColorImportant}:恢复药水]的配方会被[{$ColorImportant}:移除].
-				AequusRemake添加了使用两个[{$ColorImportant2}:弱效恢复药水]和一个[{$ColorImportant2}:发光魔符]的[{$ColorImportant}:替代配方].
+				Aequus添加了使用两个[{$ColorImportant2}:弱效恢复药水]和一个[{$ColorImportant2}:发光魔符]的[{$ColorImportant}:替代配方].
 
 				[{$ColorNote}:如若出于个人偏好或为防止配方被移除后出现的任何问题, 请禁用该配置.]
 				'''

@@ -4,7 +4,7 @@ using Aequus.Content.Necromancy.Rendering;
 namespace Aequus.Content.Necromancy.Sceptres.Evil;
 
 public class NecromancyDebuff : ModBuff {
-    public override string Texture => AequusTextures.Debuff.Path;
+    public override string Texture => AequusTextures.Debuff.FullPath;
 
     public virtual float Tier => 1f;
     public virtual int DamageSet => 20;

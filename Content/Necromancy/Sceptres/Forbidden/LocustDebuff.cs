@@ -10,7 +10,7 @@ public class LocustDebuff : ModBuff {
     public static int BaseDamageNumber { get; set; } = 1;
     public static int StackDamageNumber { get; set; } = 1;
 
-    public override string Texture => AequusTextures.Debuff.Path;
+    public override string Texture => AequusTextures.Debuff.FullPath;
 
     public override void SetStaticDefaults() {
         Main.debuff[Type] = true;

@@ -86,7 +86,7 @@ public class RGBKeyboardItem : ModItem {
 
     private Drawer _drawer;
 
-    public override string Texture => AequusTextures.Gamestar.Path;
+    public override string Texture => AequusTextures.Gamestar.FullPath;
     public override bool IsLoadingEnabled(Mod mod) {
         return Aequus.DevelopmentFeatures;
     }

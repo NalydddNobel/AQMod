@@ -503,6 +503,7 @@ public partial class AequusPlayer : ModPlayer {
     }
 
     public override void SetControls() {
+        //SetControlsInner();
         if (forceUseItem) {
             Player.controlUseItem = true;
             Player.releaseUseItem = true;

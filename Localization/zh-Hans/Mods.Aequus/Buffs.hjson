@@ -56,7 +56,7 @@ Buffs: {
 
 	IronLotusDebuff: {
 		DisplayName: "{$Items.IronLotus.DisplayName}"
-		Description: Mods.AequusRemake.Buffs.IronLotusDebuff.Description
+		Description: Mods.Aequus.Buffs.IronLotusDebuff.Description
 	}
 
 	LocustDebuff: {
@@ -111,7 +111,7 @@ Buffs: {
 
 	GamestarDebuff: {
 		DisplayName: "{$Items.Gamestar.DisplayName}"
-		Description: Mods.AequusRemake.Buffs.GamestarDebuff.Description
+		Description: Mods.Aequus.Buffs.GamestarDebuff.Description
 	}
 
 	ManathirstBuff: {
