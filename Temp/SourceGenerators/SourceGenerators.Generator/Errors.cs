@@ -414,6 +414,10 @@ public class AequusGeneratorErrors
 #---------------------------------------#
     C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_Smart.png
 #---------------------------------------#
+    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Content/Debug/PhysicsGun2.png
+#---------------------------------------#
+    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Content/Debug/PhysicsGun2_Glow.png
+#---------------------------------------#
     C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Content/DronePylons/Items/PylonCleanserItem.png
 #---------------------------------------#
     C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Content/DronePylons/Items/PylonGunnerItem.png
@@ -625,12 +629,6 @@ public class AequusGeneratorErrors
     C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Items/Equipment/Accessories/Combat/CrownOfTheGrounded.png
 #---------------------------------------#
     C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Items/Equipment/Accessories/Combat/CrownOfTheGrounded_Crown.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Items/Equipment/Accessories/Combat/Dodge/FlashwayNecklace/FlashwayNecklace.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Items/Equipment/Accessories/Combat/Dodge/FlashwayNecklace/FlashwayNecklaceCooldown.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Items/Equipment/Accessories/Combat/Dodge/FlashwayNecklace/HeartshatterNecklace.png
 #---------------------------------------#
     C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Items/Equipment/Accessories/Combat/HyperCrystal.png
 #---------------------------------------#
@@ -2583,77 +2581,5 @@ public class AequusGeneratorErrors
     C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Tiles/Pyramid/PyramidStatueBuffLight.png
 #---------------------------------------#
     C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Tiles/Pyramid/PyramidStatueTile.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/Crabax.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/DebugItems/PhysicsGun2.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/DebugItems/PhysicsGun2_Glow.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/GalaxyCommission.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/HalloweenEnergy.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/Heliosis.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/ImpenetrableCoating.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/ItemScrap.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/LiquidGun.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/LiquidGunHoney.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/LiquidGunLava.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/LiquidGunLava_Glow.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/LiquidGunShimmer.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/LiquidGunShimmer_Glow.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/LiquidGunWater.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/LittleInferno.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/Mendshroom.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/Moro.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/NecromancyPotion.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/Photobook/PeonyPhotobook.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/Photobook/PhotobookItem.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/ShutterstockerClip.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/SilkHammer.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/SilkPickaxe.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/SlotMachines/DesertRoulette.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/SlotMachines/GoldenRoulette.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/SlotMachines/JungleSlotMachine.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/SlotMachines/OceanSlotMachine.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/SlotMachines/Roulette.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/SlotMachines/ShadowRoulette.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/SlotMachines/SkyRoulette.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/SlotMachines/SnowRoulette.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/TubOfCookieDough.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/UltraStariteBanner.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/WhitePhial.png
-#---------------------------------------#
-    C:/Users/nalyddd/Documents/My Games/Terraria/tModLoader/ModSources/Aequus/Unused/Items/XmasEnergy.png
     */
 }

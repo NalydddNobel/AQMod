@@ -1753,7 +1753,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1326)</summary>
+            <summary>(Amt Textures: 1289)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -2370,9 +2370,6 @@
         <member name="F:Aequus.AequusTextures.CosmicMonolithTile">
             <summary>Full Path: Aequus/Tiles/Monoliths/CosmicMonolith/CosmicMonolithTile</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Crabax">
-            <summary>Full Path: Aequus/Unused/Items/Crabax</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.CrabBobber">
             <summary>Full Path: Aequus/Projectiles/Misc/Bobbers/CrabBobber</summary>
         </member>
@@ -2739,9 +2736,6 @@
         <member name="F:Aequus.AequusTextures.Depthscale">
             <summary>Full Path: Aequus/Items/Materials/Fish/Depthscale</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.DesertRoulette">
-            <summary>Full Path: Aequus/Unused/Items/SlotMachines/DesertRoulette</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.DevilsTongue">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/Fishing/DevilsTongue</summary>
         </member>
@@ -3024,12 +3018,6 @@
         <member name="F:Aequus.AequusTextures.FlareSprite8">
             <summary>Full Path: Aequus/Assets/Textures/LensFlare/FlareSprite8</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.FlashwayNecklace">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/Dodge/FlashwayNecklace/FlashwayNecklace</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.FlashwayNecklaceCooldown">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/Dodge/FlashwayNecklace/FlashwayNecklaceCooldown</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.FlaskBuff">
             <summary>Full Path: Aequus/Buffs/Misc/FlaskBuff</summary>
         </member>
@@ -3102,9 +3090,6 @@
         <member name="F:Aequus.AequusTextures.GalacticStarfruit">
             <summary>Full Path: Aequus/Items/Misc/Spawners/GalacticStarfruit</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.GalaxyCommission">
-            <summary>Full Path: Aequus/Unused/Items/GalaxyCommission</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.GaleStreamsBestiaryIcon">
             <summary>Full Path: Aequus/Content/Events/GaleStreams/Textures/GaleStreamsBestiaryIcon</summary>
         </member>
@@ -3176,9 +3161,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.GoblinFlower">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/GoblinFlower</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GoldenRoulette">
-            <summary>Full Path: Aequus/Unused/Items/SlotMachines/GoldenRoulette</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GoozmaFish">
             <summary>Full Path: Aequus/Items/Misc/FishCatches/GoozmaFish</summary>
@@ -3300,9 +3282,6 @@
         <member name="F:Aequus.AequusTextures.HailstormStaff">
             <summary>Full Path: Aequus/Items/Weapons/Summon/GaleStreams/HailstormStaff</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.HalloweenEnergy">
-            <summary>Full Path: Aequus/Unused/Items/HalloweenEnergy</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.HalloweenEnergyGradient">
             <summary>Full Path: Aequus/Assets/Effects/Textures/HalloweenEnergyGradient</summary>
         </member>
@@ -3408,17 +3387,11 @@
         <member name="F:Aequus.AequusTextures.Heart2">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/CrownOfBlood/Hearts/Heart2</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.HeartshatterNecklace">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/Dodge/FlashwayNecklace/HeartshatterNecklace</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.HeatFish">
             <summary>Full Path: Aequus/Items/Materials/Fish/HeatFish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Heckto">
             <summary>Full Path: Aequus/NPCs/Monsters/Heckto</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Heliosis">
-            <summary>Full Path: Aequus/Unused/Items/Heliosis</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HeliumPlant">
             <summary>Full Path: Aequus/Tiles/MossCaves/HeliumPlant</summary>
@@ -3522,9 +3495,6 @@
         <member name="F:Aequus.AequusTextures.Icons">
             <summary>Full Path: Aequus/CrossMod/SplitSupport/Photography/Icons</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.ImpenetrableCoating">
-            <summary>Full Path: Aequus/Unused/Items/ImpenetrableCoating</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.InspirationCursor">
             <summary>Full Path: Aequus/CrossMod/ThoriumModSupport/ItemContent/InspirationCursor</summary>
         </member>
@@ -3567,9 +3537,6 @@
         <member name="F:Aequus.AequusTextures.IronLotusProj_EdgesAura">
             <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/IronLotus/IronLotusProj_EdgesAura</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.ItemScrap">
-            <summary>Full Path: Aequus/Unused/Items/ItemScrap</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.JeweledCandelabra">
             <summary>Full Path: Aequus/Tiles/Furniture/Jeweled/JeweledCandelabra</summary>
         </member>
@@ -3593,9 +3560,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.JungleSlimeStaff">
             <summary>Full Path: Aequus/Items/Weapons/Summon/JungleSlime/JungleSlimeStaff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.JungleSlotMachine">
-            <summary>Full Path: Aequus/Unused/Items/SlotMachines/JungleSlotMachine</summary>
         </member>
         <member name="F:Aequus.AequusTextures.JunkJet">
             <summary>Full Path: Aequus/Items/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
@@ -3680,30 +3644,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.LihzahrdKusariyariProj_Glow">
             <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/LihzahrdKusariyari/LihzahrdKusariyariProj_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.LiquidGun">
-            <summary>Full Path: Aequus/Unused/Items/LiquidGun</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.LiquidGunHoney">
-            <summary>Full Path: Aequus/Unused/Items/LiquidGunHoney</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.LiquidGunLava">
-            <summary>Full Path: Aequus/Unused/Items/LiquidGunLava</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.LiquidGunLava_Glow">
-            <summary>Full Path: Aequus/Unused/Items/LiquidGunLava_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.LiquidGunShimmer">
-            <summary>Full Path: Aequus/Unused/Items/LiquidGunShimmer</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.LiquidGunShimmer_Glow">
-            <summary>Full Path: Aequus/Unused/Items/LiquidGunShimmer_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.LiquidGunWater">
-            <summary>Full Path: Aequus/Unused/Items/LiquidGunWater</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.LittleInferno">
-            <summary>Full Path: Aequus/Unused/Items/LittleInferno</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LocustLarge">
             <summary>Full Path: Aequus/Content/Necromancy/Sceptres/Forbidden/LocustLarge</summary>
@@ -3821,9 +3761,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.MechPetComboBuff">
             <summary>Full Path: Aequus/Items/Equipment/PetsVanity/MechPetCombo/MechPetComboBuff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Mendshroom">
-            <summary>Full Path: Aequus/Unused/Items/Mendshroom</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MendshroomDustSpore">
             <summary>Full Path: Aequus/Particles/Dusts/MendshroomDustSpore</summary>
@@ -3960,9 +3897,6 @@
         <member name="F:Aequus.AequusTextures.MorayTile_Glow">
             <summary>Full Path: Aequus/Tiles/Herbs/Moray/MorayTile_Glow</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Moro">
-            <summary>Full Path: Aequus/Unused/Items/Moro</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.MothmanMask">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/MothmanMask</summary>
         </member>
@@ -4001,9 +3935,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.NecromancyOwnerBuff">
             <summary>Full Path: Aequus/Buffs/Misc/NecromancyOwnerBuff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NecromancyPotion">
-            <summary>Full Path: Aequus/Unused/Items/NecromancyPotion</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NecromancySelectionCursor">
             <summary>Full Path: Aequus/Assets/UI/NecromancySelectionCursor</summary>
@@ -4179,9 +4110,6 @@
         <member name="F:Aequus.AequusTextures.OccultistSleep_Glow">
             <summary>Full Path: Aequus/NPCs/Town/OccultistNPC/OccultistSleep_Glow</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.OceanSlotMachine">
-            <summary>Full Path: Aequus/Unused/Items/SlotMachines/OceanSlotMachine</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.OliverPainting">
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/OliverPainting</summary>
         </member>
@@ -4332,9 +4260,6 @@
         <member name="F:Aequus.AequusTextures.PentalScytheProj">
             <summary>Full Path: Aequus/Projectiles/Magic/PentalScytheProj</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PeonyPhotobook">
-            <summary>Full Path: Aequus/Unused/Items/Photobook/PeonyPhotobook</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.PersonalDronePack">
             <summary>Full Path: Aequus/Items/Equipment/PetsUtility/Drone/PersonalDronePack</summary>
         </member>
@@ -4370,9 +4295,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.PhoenixRing_HandsOn">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/OnHitAbility/BoneRing/PhoenixRing_HandsOn</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhotobookItem">
-            <summary>Full Path: Aequus/Unused/Items/Photobook/PhotobookItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Physicist_Glow">
             <summary>Full Path: Aequus/NPCs/Town/PhysicistNPC/Shimmer/Physicist_Glow</summary>
@@ -4423,10 +4345,10 @@
             <summary>Full Path: Aequus/Items/Tools/PhysicsGun_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PhysicsGun2">
-            <summary>Full Path: Aequus/Unused/Items/DebugItems/PhysicsGun2</summary>
+            <summary>Full Path: Aequus/Content/Debug/PhysicsGun2</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PhysicsGun2_Glow">
-            <summary>Full Path: Aequus/Unused/Items/DebugItems/PhysicsGun2_Glow</summary>
+            <summary>Full Path: Aequus/Content/Debug/PhysicsGun2_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PhysicsGunProj">
             <summary>Full Path: Aequus/Projectiles/Misc/PhysicsGunProj</summary>
@@ -4749,9 +4671,6 @@
         <member name="F:Aequus.AequusTextures.RockMan">
             <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/RockMan/RockMan</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Roulette">
-            <summary>Full Path: Aequus/Unused/Items/SlotMachines/Roulette</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.RubyDeposit">
             <summary>Full Path: Aequus/Tiles/Misc/BigGems/Items/RubyDeposit</summary>
         </member>
@@ -4875,9 +4794,6 @@
         <member name="F:Aequus.AequusTextures.SentrySquid_Hat">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Sentry/SentrySquid/SentrySquid_Hat</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.ShadowRoulette">
-            <summary>Full Path: Aequus/Unused/Items/SlotMachines/ShadowRoulette</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.ShadowVeer">
             <summary>Full Path: Aequus/Content/Necromancy/Equipment/Accessories/ShadowVeer</summary>
         </member>
@@ -4908,9 +4824,6 @@
         <member name="F:Aequus.AequusTextures.ShutterstockerCameraProj">
             <summary>Full Path: Aequus/Items/Tools/Cameras/CarpenterCamera/ShutterstockerCameraProj</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.ShutterstockerClip">
-            <summary>Full Path: Aequus/Unused/Items/ShutterstockerClip</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.ShutterstockerHeldProj">
             <summary>Full Path: Aequus/Items/Tools/Cameras/CarpenterCamera/ShutterstockerHeldProj</summary>
         </member>
@@ -4922,12 +4835,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.SickBeat">
             <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/SickBeat/SickBeat</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SilkHammer">
-            <summary>Full Path: Aequus/Unused/Items/SilkHammer</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SilkPickaxe">
-            <summary>Full Path: Aequus/Unused/Items/SilkPickaxe</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SimplifiedDye">
             <summary>Full Path: Aequus/Items/Misc/Dyes/SimplifiedDye</summary>
@@ -4982,9 +4889,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.SkyrimRock3">
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/SkyrimRock3</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyRoulette">
-            <summary>Full Path: Aequus/Unused/Items/SlotMachines/SkyRoulette</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SlamEffect0">
             <summary>Full Path: Aequus/Assets/Textures/SlamEffect0</summary>
@@ -5042,9 +4946,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.SnowgraveProj">
             <summary>Full Path: Aequus/Projectiles/Magic/SnowgraveProj</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SnowRoulette">
-            <summary>Full Path: Aequus/Unused/Items/SlotMachines/SnowRoulette</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SoldierCrab">
             <summary>Full Path: Aequus/NPCs/Monsters/CrabCrevice/SoldierCrab</summary>
@@ -5502,9 +5403,6 @@
         <member name="F:Aequus.AequusTextures.Trophy">
             <summary>Full Path: Aequus/Tiles/Furniture/Boss/Trophy</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.TubOfCookieDough">
-            <summary>Full Path: Aequus/Unused/Items/TubOfCookieDough</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.UltimateEnergy">
             <summary>Full Path: Aequus/Items/Materials/Energies/UltimateEnergy</summary>
         </member>
@@ -5525,9 +5423,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.UltraStarite_Head_Boss">
             <summary>Full Path: Aequus/NPCs/Monsters/Glimmer/UltraStarite/UltraStarite_Head_Boss</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.UltraStariteBanner">
-            <summary>Full Path: Aequus/Unused/Items/UltraStariteBanner</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltraStariteBossChecklist">
             <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/UltraStariteBossChecklist</summary>
@@ -5673,9 +5568,6 @@
         <member name="F:Aequus.AequusTextures.WhiteFlag">
             <summary>Full Path: Aequus/Items/Tools/WhiteFlag</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.WhitePhial">
-            <summary>Full Path: Aequus/Unused/Items/WhitePhial</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.WhiteSlime">
             <summary>Full Path: Aequus/NPCs/Monsters/GaleStreams/WhiteSlime</summary>
         </member>
@@ -5708,9 +5600,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.XmasCursor">
             <summary>Full Path: Aequus/Content/CursorDyes/Items/XmasCursor</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.XmasEnergy">
-            <summary>Full Path: Aequus/Unused/Items/XmasEnergy</summary>
         </member>
         <member name="F:Aequus.AequusTextures.XmasEnergyGradient">
             <summary>Full Path: Aequus/Assets/Effects/Textures/XmasEnergyGradient</summary>
@@ -5776,26 +5665,6 @@
             </summary>
         </member>
         <member name="F:Aequus.Items.Equipment.Accessories.Combat.CrownOfTheGrounded.AddedCrit">
-            <summary>
-            Default Value: 10
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Equipment.Accessories.Combat.Dodge.FlashwayNecklace.FlashwayNecklace.InstaShieldCooldown">
-            <summary>
-            Default Value: 300 (5 seconds)
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Equipment.Accessories.Combat.Dodge.FlashwayNecklace.FlashwayNecklace.InstaShieldFrames">
-            <summary>
-            Default Value: 5
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Equipment.Accessories.Combat.Dodge.FlashwayNecklace.HeartshatterNecklace.InstaShieldCooldown">
-            <summary>
-            Default Value: 180 (3 seconds)
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Equipment.Accessories.Combat.Dodge.FlashwayNecklace.HeartshatterNecklace.InstaShieldFrames">
             <summary>
             Default Value: 10
             </summary>
@@ -6367,30 +6236,6 @@
             <summary>
             A base furntiure tile, Furniture in Aequus is handled on an individual ModTile basis instead of through a big multi-styled tile.
             </summary>
-        </member>
-        <member name="M:Aequus.Unused.Items.SlotMachines.SlotMachineDropRule.#ctor(Aequus.Unused.Items.SlotMachines.SlotMachineBase,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="roulette">An instance of the Roulette, for a better lookup.</param>
-            <param name="itemID">The dropped item ID</param>
-            <param name="rouletteChoice">The item which needs to be rolled for a 100% drop</param>
-            <param name="dropChance">A drop chance of 100% means it will only drop when chosen by the scrolling item list (Since if it already drops 100% of the time, it might as well not be on the list.)</param>
-            <param name="amountDroppedMinimum"></param>
-            <param name="amountDroppedMaximum"></param>
-            <param name="chanceNumerator"></param>
-        </member>
-        <member name="M:Aequus.Unused.Items.SlotMachines.SlotMachineDropRule.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="rouletteItemID">The Item ID of the roulette</param>
-            <param name="itemID">The dropped item ID</param>
-            <param name="rouletteChoice">The item which needs to be rolled for a 100% drop</param>
-            <param name="dropChance">A drop chance of 100% means it will only drop when chosen by the scrolling item list (Since if it already drops 100% of the time, it might as well not be on the list.)</param>
-            <param name="amountDroppedMinimum"></param>
-            <param name="amountDroppedMaximum"></param>
-            <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusSounds">
             <summary>(Amt Sounds: 133)</summary>

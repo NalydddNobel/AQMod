@@ -102,3 +102,8 @@ SteampunkerFishingPole: {
 	DisplayName: Steampunker Fishing Pole
 	Tooltip: ""
 }
+
+UnusedItem: {
+	DisplayName: Unused Item
+	Tooltip: ""
+}

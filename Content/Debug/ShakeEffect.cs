@@ -1,20 +1,17 @@
 ﻿using Aequus.Common.Items;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Unused.Items.DebugItems {
-    internal class FlashEffect : ModItem {
-        public override string Texture => AequusTextures.Fluorescence.Path;
+namespace Aequus.Content.Debug {
+    internal class ShakeEffect : ModItem {
+        public override string Texture => AequusTextures.FrozenTear.Path;
 
         public override bool IsLoadingEnabled(Mod mod) {
             return Aequus.DevelopmentFeatures;
         }
 
         public override void SetStaticDefaults() {
-            Main.RegisterItemAnimation(Type, new DrawAnimationVertical(4, 6));
-            ItemID.Sets.AnimatesAsSoul[Type] = true;
             Item.ResearchUnlockCount = 0;
         }
 
@@ -32,7 +29,7 @@ namespace Aequus.Unused.Items.DebugItems {
             int x = Helper.MouseTileX;
             int y = Helper.MouseTileY;
 
-            ScreenFlash.Flash.Set(Main.MouseWorld, 0.8f, 0.9f);
+            ScreenShake.SetShake(30f, 0.9f, Main.MouseWorld);
             return true;
         }
     }

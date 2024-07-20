@@ -12,7 +12,6 @@ using Aequus.NPCs.Town.PhysicistNPC;
 using Aequus.NPCs.Town.PhysicistNPC.Analysis;
 using Aequus.Projectiles.Misc;
 using Aequus.Tiles.Furniture.Gravity;
-using Aequus.Unused.Items;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -48,7 +47,6 @@ public partial class PacketSystem : ModSystem {
             PacketType.SpawnOmegaStarite,
             PacketType.StartDemonSiege,
             PacketType.RequestAnalysisQuest,
-            PacketType.SpawnShutterstockerClip,
             PacketType.SpawnPixelCameraClip,
             PacketType.PlacePixelPainting,
             PacketType.RegisterPhotoClip,
@@ -239,18 +237,6 @@ public partial class PacketSystem : ModSystem {
                     }
                     Main.item[i].ModItem<PixelCameraClip>().photoState = reader.ReadInt32();
                     Main.item[i].ModItem<PixelCameraClip>().NetReceive(reader);
-                    if (Main.netMode == NetmodeID.Server)
-                        NetMessage.SendData(MessageID.SyncItem, -1, -1, null, i, 1f);
-                }
-                break;
-            case PacketType.SpawnShutterstockerClip: {
-                    int player = reader.ReadInt32();
-                    int i = Item.NewItem(Main.player[player].GetSource_ItemUse_WithPotentialAmmo(Main.player[player].HeldItem, Main.player[player].HeldItem.useAmmo), Main.player[player].getRect(),
-                        ModContent.ItemType<ShutterstockerClip>());
-                    if (i == -1) {
-                        return;
-                    }
-                    Main.item[i].ModItem<ShutterstockerClip>().NetReceive(reader);
                     if (Main.netMode == NetmodeID.Server)
                         NetMessage.SendData(MessageID.SyncItem, -1, -1, null, i, 1f);
                 }

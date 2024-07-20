@@ -8,7 +8,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Aequus.Unused.Items.DebugItems;
+namespace Aequus.Content.Debug;
 public class RGBKeyboardItem : ModItem {
     private class Drawer : IDebugDrawer {
         private SpriteBatch _spriteBatch;

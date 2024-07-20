@@ -17,7 +17,6 @@ GameTips: {
 	Dumpster: "{$Misc.GameTipPretense} Dumpsters can hold two chests' worth of items while only being three tiles wide."
 	Junk: "{$Misc.GameTipPretense} One man's trash is another man's treasure! A crafty Terrarian knows how to make the most of fishing junk."
 	TrashPSA: Don't throw your trash into the water.
-
 	FirstScepter: "{$Misc.GameTipPretense} Crafting your first Necromancy Sceptre is a touch decision, but it's worth it!"
 	GravetenderArmor: "{$Misc.GameTipPretense} Aspiring necromancers should seek to craft the Gravetender Armor, requiring rotten materials and Ecto Mist."
 	StackingDebuffs: "{$Misc.GameTipPretense} Certain debuffs can be inflicted multiple times on the same enemy, stacking their damage over time."
@@ -28,7 +27,6 @@ GameTips: {
 	PotionCanteen: "{$Misc.GameTipPretense} Within the Polluted Ocean lies a special accessory which grants you infinite potion duration . . ."
 	Manacle: "{$Misc.GameTipPretense} Manacles are an exotic plant that grow in the Underworld. Mix their pollen with your potions to preserve your buffs between deaths."
 	Mistral: "{$Misc.GameTipPretense} Mistral is an exotic plant that grows on Clouds. Mix its pollen with your potions to double their buff strength."
-	Moonflower: "{$Misc.GameTipPretense} Moonflowers are an exotic plant that grows on Meteorite. Mix its pollen with your potions to double their buff duration."
 	MonsterChest: "{$Misc.GameTipPretense} Beware of the Monster Chests which lie about . . . their locks are sealed by the vengeful undead!"
 	NeutronYogurt: "{$Misc.GameTipPretense} Neutron Yogurt makes you reach maximum speed faster when falling, useful for descending stacked platforms or long mineshafts."
 	PylonDrones: "{$Misc.GameTipPretense} The Physicist offers special protection forces for your towns. Purchase a Pylon Drone to defend your villagers from Enemies and Evils!"

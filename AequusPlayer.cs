@@ -20,7 +20,6 @@ using Aequus.Common.UI;
 using Aequus.Common.Utilities;
 using Aequus.Content.Biomes;
 using Aequus.Content.Events.DemonSiege;
-using Aequus.Items.Equipment.Accessories.Combat.Dodge.FlashwayNecklace;
 using Aequus.Items.Equipment.Accessories.Combat.OnHitAbility.BlackPhial;
 using Aequus.Items.Equipment.Accessories.Combat.Ranged;
 using Aequus.Items.Equipment.Accessories.Misc;
@@ -195,11 +194,6 @@ public partial class AequusPlayer : ModPlayer {
     public float debuffDuration;
 
     public bool accSentrySlot;
-
-    public int instaShieldTime;
-    public int instaShieldFrames;
-    public int instaShieldCooldown;
-    public float instaShieldAlpha;
 
     /// <summary>
     /// 0 = no force, 1 = force day, 2 = force night
@@ -397,7 +391,7 @@ public partial class AequusPlayer : ModPlayer {
             gravetenderGhost != client.gravetenderGhost,
             false,
             (client.itemCombo - itemCombo).Abs() > 20,
-            client.instaShieldTime != instaShieldTime,
+            false,
             !BoundedPotionIDs.IsTheSameAs(client.BoundedPotionIDs),
             ShouldSyncBoundBow(client));
 
@@ -426,9 +420,6 @@ public partial class AequusPlayer : ModPlayer {
             }
             if (bb[4]) {
                 p.Write(itemCombo);
-            }
-            if (bb[5]) {
-                p.Write(instaShieldTime);
             }
             if (bb[6]) {
                 p.Write(BoundedPotionIDs.Count);
@@ -478,9 +469,6 @@ public partial class AequusPlayer : ModPlayer {
         }
         if (bb[4]) {
             itemCombo = reader.ReadUInt16();
-        }
-        if (bb[5]) {
-            instaShieldTime = reader.ReadInt32();
         }
         if (bb[6]) {
             BoundedPotionIDs.Clear();
@@ -552,7 +540,6 @@ public partial class AequusPlayer : ModPlayer {
         //shatteringVenus = new ShatteringVenus.ItemInfo();
         accGlowCore = 0;
         cGlowCore = -1;
-        instaShieldAlpha = 0f;
         gravityTile = 0;
         CursorDye = -1;
         ghostTombstones = false;
@@ -592,8 +579,6 @@ public partial class AequusPlayer : ModPlayer {
         debuffLifeSteal = 0;
         accResetEnemyDebuffs = false;
         accLavaPlace = false;
-        instaShieldFrames = 0;
-        instaShieldCooldown = 0;
         eyeGlint = false;
         stackingHat = 0;
 
@@ -681,46 +666,6 @@ public partial class AequusPlayer : ModPlayer {
         ghostLifespan = 3600;
     }
 
-    public void UpdateInstantShield() {
-        if ((hurtAttempted || instaShieldTime < instaShieldFrames) && instaShieldTime > 0) {
-            if (instaShieldTime == instaShieldFrames) {
-                SoundEngine.PlaySound(SoundID.Item75.WithPitch(1f).WithVolume(0.75f), Player.Center);
-            }
-            instaShieldTime--;
-            if (instaShieldTime == 0) {
-                instaShieldTime = -1;
-            }
-            if (instaShieldAlpha < 1f) {
-                instaShieldAlpha += 0.035f;
-                if (instaShieldAlpha > 1f) {
-                    instaShieldAlpha = 1f;
-                }
-            }
-        }
-        else {
-            if (instaShieldTime == 0) {
-                instaShieldTime = instaShieldFrames;
-            }
-            if (instaShieldTime < instaShieldFrames) {
-                instaShieldTime = -1;
-                int instaShieldCooldownBuffIndex = Player.FindBuffIndex(ModContent.BuffType<FlashwayNecklaceCooldown>());
-                if (instaShieldCooldownBuffIndex == -1) {
-                    Player.AddBuff(ModContent.BuffType<FlashwayNecklaceCooldown>(), instaShieldCooldown);
-                }
-                else if (Player.buffTime[instaShieldCooldownBuffIndex] <= 2) {
-                    instaShieldTime = instaShieldFrames;
-                }
-            }
-            if (instaShieldAlpha > 0f) {
-                instaShieldAlpha -= 0.035f;
-                if (instaShieldAlpha < 0f) {
-                    instaShieldAlpha = 0f;
-                }
-            }
-        }
-        instaShieldFrames = 0;
-    }
-
     public void CheckGravityBlocks() {
         bool doEffects = gravityTile == 0;
         gravityTile = GravityBlockHandler.CheckGravityBlocks(Player.position, Player.width, Player.height);
@@ -784,7 +729,6 @@ public partial class AequusPlayer : ModPlayer {
             PlayerContext = Player.whoAmI;
 
             ResetEffects_Monoliths();
-            UpdateInstantShield();
             ResetDyables();
             ResetArmor();
             ResetStats();
@@ -1174,9 +1118,6 @@ public partial class AequusPlayer : ModPlayer {
             return false;
         }
 
-        if (instaShieldTime > 0) {
-            return true;
-        }
         return false;
     }
 
@@ -1473,26 +1414,6 @@ public partial class AequusPlayer : ModPlayer {
                 info.DrawDataCache[i] = data;
             }
         }
-        if (instaShieldFrames != 0 && instaShieldTime == instaShieldFrames) {
-            int heldItemStart = ModContent.GetInstance<DrawDataTrackers.DrawHeldItem_27_Tracker>().DDIndex;
-            int heldItemEnd = ModContent.GetInstance<DrawDataTrackers.ArmOverItem_28_Tracker>().DDIndex;
-            var info2 = info;
-            info2.DrawDataCache = new List<DrawData>(info.DrawDataCache);
-            for (int i = heldItemEnd; i >= heldItemStart; i--) {
-                info2.DrawDataCache.RemoveAt(i);
-            }
-            var ddCache = new List<DrawData>(info2.DrawDataCache);
-            foreach (var c in Helper.CircularVector(4)) {
-                for (int i = 0; i < info2.DrawDataCache.Count; i++) {
-                    var dd = ddCache[i];
-                    dd.position += c * 2f;
-                    dd.color = Color.SkyBlue.UseA(0) * 0.1f;
-                    dd.shader = Helper.ShaderColorOnlyIndex;
-                    info2.DrawDataCache[i] = dd;
-                }
-                PlayerDrawLayers.DrawPlayer_RenderAllLayers(ref info2);
-            }
-        }
     }
 
     /// <summary>
@@ -1502,23 +1423,6 @@ public partial class AequusPlayer : ModPlayer {
     public void PostDraw(ref PlayerDrawSet info) {
         if (info.headOnlyRender) {
             return;
-        }
-        if (instaShieldAlpha > 0f) {
-            int heldItemStart = ModContent.GetInstance<DrawDataTrackers.DrawHeldItem_27_Tracker>().DDIndex;
-            int heldItemEnd = ModContent.GetInstance<DrawDataTrackers.ArmOverItem_28_Tracker>().DDIndex;
-            var info2 = info;
-            info2.DrawDataCache = new List<DrawData>(info.DrawDataCache);
-            for (int i = heldItemEnd; i >= heldItemStart; i--) {
-                info2.DrawDataCache.RemoveAt(i);
-            }
-            var ddCache = new List<DrawData>(info2.DrawDataCache);
-            for (int i = 0; i < info2.DrawDataCache.Count; i++) {
-                var dd = ddCache[i];
-                dd.color = Color.SkyBlue * 2f * instaShieldAlpha;
-                dd.shader = Helper.ShaderColorOnlyIndex;
-                info2.DrawDataCache[i] = dd;
-            }
-            PlayerDrawLayers.DrawPlayer_RenderAllLayers(ref info2);
         }
         PostDraw_Stormcloak();
         FoolsGoldRing.DrawCounter(ref info);

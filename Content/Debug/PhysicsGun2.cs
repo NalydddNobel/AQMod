@@ -10,7 +10,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Unused.Items.DebugItems {
+namespace Aequus.Content.Debug {
     public class PhysicsGun2 : ModItem {
         public Asset<Texture2D> GlowTexture => ModContent.Request<Texture2D>(Texture + "_Glow", AssetRequestMode.ImmediateLoad);
 

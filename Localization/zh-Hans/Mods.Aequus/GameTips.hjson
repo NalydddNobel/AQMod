@@ -17,7 +17,6 @@ GameTips: {
 	Dumpster: "{$Misc.GameTipPretense} 废料箱可以容纳2个箱子大小数量的物品, 并且只占用三格物块的宽度."
 	Junk: "{$Misc.GameTipPretense} 一个泰拉人的垃圾是另一个泰拉人的财富, 一个狡猾的泰拉人知道如何充分利用渔获垃圾."
 	TrashPSA: 不要把垃圾扔水里.
-
 	FirstScepter: "{$Misc.GameTipPretense} 制作第一把死灵权杖是一个需要仔细斟酌的决定, 但它值得!"
 	GravetenderArmor: "{$Misc.GameTipPretense} 有抱负的死灵法师应当尝试制作守墓人盔甲, 这需要腐烂材料和灵雾."
 	StackingDebuffs: "{$Misc.GameTipPretense} 某些减益可以在同一敌人身上多次叠加, 并使其造成的持续伤害提高."
@@ -28,7 +27,6 @@ GameTips: {
 	PotionCanteen: "{$Misc.GameTipPretense} 在被污染的海洋中有着一个能够使药水的持续时间变成无限的特殊饰品..."
 	Manacle: "{$Misc.GameTipPretense} 镣铐花是一种生长在地狱的奇异植物. 将它的花粉与你的药水混合在一起并使用后能够让你身上的增益在死亡后也能保留."
 	Mistral: "{$Misc.GameTipPretense} 寒风花是一种生在在云上的奇异植物. 将它的花粉与你的药水混合在一起并使用后能够翻倍药水的效力."
-	Moonflower: "{$Misc.GameTipPretense} 月光花是一种生长在陨石上的奇异植物. 将它的花粉与你的药水混合在一起并使用后能够翻倍药水的增益持续时间."
 	MonsterChest: "{$Misc.GameTipPretense} 小心周围的怪物箱...它们的锁被复仇亡灵封印了!"
 	NeutronYogurt: "{$Misc.GameTipPretense} 中子酸奶会使你更快的到达最大下落速度, 对于那些需要更快跳下平台的人来说很有用."
 	PylonDrones: "{$Misc.GameTipPretense} 物理学家会为你的城镇提供特殊的保护部队. 购买一架晶体无人机来保护你的镇民免受敌人和恶魔的攻击!"

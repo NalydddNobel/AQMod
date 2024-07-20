@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Unused.Items.DebugItems {
+namespace Aequus.Content.Debug {
     public class KeyOfHardmode : ModItem, ItemHooks.ICheckBigMimicSummon {
         public override string Texture => AequusTextures.SkeletonKey.Path;
 
