@@ -2,7 +2,7 @@ Biomes: {
 	DemonSiegeZone: {
 		DisplayName: 遗境祭坛
 		EventName: 恶魔围攻
-		TownNPCDialogueName: ""
+		// TownNPCDialogueName: an Oblivion Altar
 	}
 
 	GlimmerZone: {
@@ -28,5 +28,29 @@ Biomes: {
 	GaleStreamsZone: {
 		DisplayName: 紊流风暴
 		TownNPCDialogueName: 紊流风暴
+	}
+
+	CrabCreviceBiome: {
+		DisplayName: "{$Biomes.PollutedOceanBiomeSurface.DisplayName}"
+		TownNPCDialogueName: "{$Biomes.PollutedOceanBiomeSurface.TownNPCDialogueName}"
+	}
+
+	Forest.DisplayName: 森林
+	Snow_Tundra.DisplayName: 苔原
+	GemCave.DisplayName: 宝石洞穴
+
+	FakeUnderworldBiome: {
+		DisplayName: 地狱
+		TownNPCDialogueName: 地狱
+	}
+
+	RadonMossBiome: {
+		DisplayName: 氡苔藓
+		TownNPCDialogueName: 氡苔藓
+	}
+
+	OrganicEnergyBiomeManager: {
+		DisplayName: 自然能量
+		TownNPCDialogueName: 自然能量
 	}
 }

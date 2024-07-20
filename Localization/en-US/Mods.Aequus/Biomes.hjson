@@ -2,17 +2,7 @@ Biomes: {
 	DemonSiegeZone: {
 		DisplayName: Oblivion Altar
 		EventName: Demon Siege
-		TownNPCDialogueName: ""
-	}
-
-	GlimmerZone: {
-		DisplayName: Glimmer
-		TownNPCDialogueName: the Glimmer
-	}
-
-	PeacefulGlimmerZone: {
-		DisplayName: Peaceful Glimmer
-		TownNPCDialogueName: the Glimmer
+		TownNPCDialogueName: an Oblivion Altar
 	}
 
 	PollutedOceanBiomeSurface: {
@@ -24,9 +14,48 @@ Biomes: {
 		DisplayName: Polluted Underground
 		TownNPCDialogueName: the Polluted Underground
 	}
+	
+	GoreNestBiome: {
+		DisplayName: Nearby Gore Nest
+		TownNPCDialogueName: the Gore Nest
+	}
+
+	PeacefulGlimmerZone: {
+		DisplayName: Peaceful Glimmer
+		TownNPCDialogueName: the Peaceful Glimmer
+	}
+
+	GlimmerZone: {
+		DisplayName: Glimmer
+		TownNPCDialogueName: the Glimmer
+	}
+
+	CrabCreviceBiome: {
+		DisplayName: "{$Biomes.PollutedOceanBiomeSurface.DisplayName}"
+		TownNPCDialogueName: "{$Biomes.PollutedOceanBiomeSurface.TownNPCDialogueName}"
+	}
 
 	GaleStreamsZone: {
 		DisplayName: Gale Streams
 		TownNPCDialogueName: the Gale Streams
+	}
+
+	Forest.DisplayName: Forest
+	Snow_Tundra.DisplayName: Tundra
+	GemCave.DisplayName: Gem Cave
+
+	FakeUnderworldBiome: {
+		DisplayName: Underworld
+		TownNPCDialogueName: the Underworld
+	}
+
+	RadonMossBiome: {
+		DisplayName: Radon Moss Biome
+		TownNPCDialogueName: the Radon Moss Biome
+	}
+
+	OrganicEnergyBiomeManager: {
+		DisplayName: Organic Energy Biome Manager
+		TownNPCDialogueName: the Organic Energy Biome Manager
 	}
 }
