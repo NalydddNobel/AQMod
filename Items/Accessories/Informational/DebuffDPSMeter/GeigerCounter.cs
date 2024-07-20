@@ -1,4 +1,7 @@
-﻿using Aequus.Common.Items.EquipmentBooster;
+﻿using Aequus.Common.Items;
+using Aequus.Common.Items.EquipmentBooster;
+using Aequus.Items.Materials;
+using Aequus.Tiles.MossCaves.Radon;
 using Terraria.Localization;
 
 namespace Aequus.Items.Accessories.Informational.DebuffDPSMeter;
@@ -16,6 +19,20 @@ public class GeigerCounter : ModItem {
 
     public override void UpdateInfoAccessory(Player player) {
         player.GetModPlayer<AequusPlayer>().accInfoDebuffDPS = true;
+    }
+
+    public override void AddRecipes() {
+        CreateRecipe()
+            .AddIngredient(ModContent.ItemType<RadonMoss>(), 25)
+            .AddIngredient(ItemID.SilverBar, 10)
+            .AddIngredient(ModContent.ItemType<FrozenTechnology>())
+            .AddTile(TileID.Tables)
+            .AddTile(TileID.Chairs)
+            .Register()
+
+            .Clone()
+            .ReplaceItem(ItemID.SilverBar, ItemID.TungstenBar)
+            .Register();
     }
 }
 

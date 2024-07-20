@@ -2181,7 +2181,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1301)</summary>
+            <summary>(Total Textures: 1300)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3107,10 +3107,7 @@
         <member name="F:Aequus.AequusTextures.SlimyBlueBalloon_Balloon">
             <summary>Full Path: Items/Accessories/Balloons/SlimyBlueBalloon_Balloon</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Items_Accessories_Informational_AnglerBroadcaster">
-            <summary>Full Path: Items/Accessories/Informational/AnglerBroadcaster</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Items_Accessories_Informational_AnglerBroadcaster_AnglerBroadcaster">
+        <member name="F:Aequus.AequusTextures.AnglerBroadcaster">
             <summary>Full Path: Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcaster</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AnglerBroadcasterIcon">

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1301)</summary>
+/// <summary>(Total Textures: 1300)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -623,10 +623,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SlimyBlueBalloon = new("Items/Accessories/Balloons/SlimyBlueBalloon");
     /// <summary>Full Path: Items/Accessories/Balloons/SlimyBlueBalloon_Balloon</summary>
     public static readonly RequestCache<Texture2D> SlimyBlueBalloon_Balloon = new("Items/Accessories/Balloons/SlimyBlueBalloon_Balloon");
-    /// <summary>Full Path: Items/Accessories/Informational/AnglerBroadcaster</summary>
-    public static readonly RequestCache<Texture2D> Items_Accessories_Informational_AnglerBroadcaster = new("Items/Accessories/Informational/AnglerBroadcaster");
     /// <summary>Full Path: Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcaster</summary>
-    public static readonly RequestCache<Texture2D> Items_Accessories_Informational_AnglerBroadcaster_AnglerBroadcaster = new("Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcaster");
+    public static readonly RequestCache<Texture2D> AnglerBroadcaster = new("Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcaster");
     /// <summary>Full Path: Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcasterIcon</summary>
     public static readonly RequestCache<Texture2D> AnglerBroadcasterIcon = new("Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcasterIcon");
     /// <summary>Full Path: Items/Accessories/Informational/Calendar/Calendar</summary>
