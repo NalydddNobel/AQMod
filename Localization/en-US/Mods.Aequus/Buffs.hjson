@@ -113,4 +113,548 @@ Buffs: {
 		DisplayName: "{$Items.Gamestar.DisplayName}"
 		Description: Mods.AequusRemake.Buffs.GamestarDebuff.Description
 	}
+
+	RadonFishingBobberBuff: {
+		DisplayName: Radon Moss Fishing Bobber
+		Description: Reduced aggro and spawnrates while fishing
+	}
+
+	ManathirstBuff: {
+		DisplayName: Manathirst
+		Description: Enemies always drop mana stars
+	}
+
+	TonicSpawnratesDebuff: {
+		DisplayName: Tonic Cooldown
+		Description: You can not use the Mercer Tonic
+	}
+
+	TonicSpawnratesBuff: {
+		DisplayName: Tonic
+		Description: Enemies are attracted to your smell
+	}
+
+	NoonBuff: {
+		DisplayName: Noon
+		Description:
+			'''
+			Emits a large aura of light and increases night vision
+			You always have daytime-only effects active
+			Prevents nighttime-only effects from working
+			'''
+	}
+
+	AstralCookieBuff: {
+		DisplayName: Astral Cookie
+		Description: Major improvements to magic stats, medium improvements for all other stats
+	}
+
+	BloodthirstBuff: {
+		DisplayName: Bloodthirst
+		Description: Enemies always drop hearts
+	}
+
+	NecromancyPotionBuff: {
+		DisplayName: Necromancy
+		Description: Increases your max number of ghosts by 1
+	}
+
+	FrostBuff: {
+		DisplayName: Frost
+		Description: Reduces damage from heat sources
+	}
+
+	BaguetteBuff: {
+		DisplayName: Baguette
+		Description: Supreme improvements to all stats and greatly improved life regeneration
+	}
+
+	SpicyEelBuff: {
+		DisplayName: Spicy Eel
+		Description: Greatly increases speed
+	}
+
+	SecretEntranceBuff: {
+		DisplayName: Building: Secret Entrance
+		Description:
+			'''
+			Reduced spawnrate, {$Buffs.Common.VillagerHappiness}
+			'Not so secret now, isn't it?'
+			'''
+	}
+
+	BridgeBountyBuff: {
+		DisplayName: Building: Bridge
+		Description: Increase fishing power by 5, {$Buffs.Common.VillagerHappiness}
+	}
+
+	FountainBountyBuff: {
+		DisplayName: Building: Fountain
+		Description: "{$Buffs.Common.VillagerHappiness}"
+	}
+
+	PaletteBountyBuff: {
+		DisplayName: Building: Palette
+		Description: Reduced spawnrate, {$Buffs.Common.VillagerHappiness}
+	}
+
+	PirateBountyBuff: {
+		DisplayName: Building: Ship
+		Description: Increase fishing power by 15, {$Buffs.Common.VillagerHappiness}
+	}
+
+	EmpoweredNecromancy: {
+		DisplayName: Empowered {$Buffs.NecromancyPotionBuff.DisplayName}
+		Description: Increases your max number of ghosts by 2
+	}
+
+	EmpoweredSentry: {
+		DisplayName: Empowered {$Buffs.SentryBuff.DisplayName}
+		Description: Increases your max number of sentries by 2
+	}
+
+	EmpoweredArchery: {
+		DisplayName: Empowered {$BuffName.Archery}
+		Description: 20% increased arrow damage and 20% increased arrow speed
+	}
+
+	EmpoweredEndurance: {
+		DisplayName: Empowered {$BuffName.Endurance}
+		Description: Reduces damage taken by 20%
+	}
+
+	EmpoweredFishing: {
+		DisplayName: Empowered {$BuffName.Fishing}
+		Description: Increases fishing power by 30
+	}
+
+	EmpoweredIronskin: {
+		DisplayName: Empowered {$BuffName.Ironskin}
+		Description: Increase defense by 16
+	}
+
+	EmpoweredMagicPower: {
+		DisplayName: Empowered {$BuffName.MagicPower}
+		Description: 30% increased magic damage
+	}
+
+	EmpoweredManaRegeneration: {
+		DisplayName: Empowered {$BuffName.ManaRegeneration}
+		Description: Greatly increased mana regeneration
+	}
+
+	EmpoweredMining: {
+		DisplayName: Empowered {$BuffName.Mining}
+		Description: Increases mining speed by 50%
+	}
+
+	EmpoweredRage: {
+		DisplayName: Empowered {$BuffName.Rage}
+		Description: Increases critical chance by 20%
+	}
+
+	EmpoweredRegeneration: {
+		DisplayName: Empowered {$BuffName.Regeneration}
+		Description: Provides greatly increased life regeneration
+	}
+
+	EmpoweredShine: {
+		DisplayName: Empowered {$BuffName.Shine}
+		Description: Emits a strong aura of light
+	}
+
+	EmpoweredSummoning: {
+		DisplayName: Empowered {$BuffName.Summoning}
+		Description: Increases your max number of minions by 2
+	}
+
+	EmpoweredSwiftness: {
+		DisplayName: Empowered {$BuffName.Swiftness}
+		Description: 50% increased movement speed
+	}
+
+	EmpoweredThorns: {
+		DisplayName: Empowered {$BuffName.Thorns}
+		Description: Attackers also take great damage
+	}
+
+	EmpoweredWrath: {
+		DisplayName: Empowered {$BuffName.Wrath}
+		Description: Increases damage by 20%
+	}
+
+	StormcloakCooldown: {
+		DisplayName: Storm Cloak (Cooldown)
+		Description: Cannot use the Storm Cloak
+	}
+
+	CrystalDaggerBuff: {
+		DisplayName: Dagger Stance
+		Description: Holding the Crystal Dagger grants increased movement speed
+	}
+
+	UltimateSwordBuff: {
+		DisplayName: Sword Stance
+		Description: Holding the Ultimate Sword grants increased defense and knockback immunity
+	}
+
+	RitualBuff: {
+		DisplayName: Ritual
+		Description: You are performing a ritual... don't get distracted!
+	}
+
+	NecromancyOwnerBuff: {
+		DisplayName: Ghost Minions
+		Description: You are controlling the dead
+	}
+
+	GravetenderMinionBuff: {
+		DisplayName: Gravetender
+		Description: The wisp will increase the power of your ghosts!
+	}
+
+	PiranhaPlantBuff: {
+		DisplayName: Vile Plant
+		Description: The vile plant will fight for you
+	}
+
+	BrainCauliflowerBuff: {
+		DisplayName: Brain Cauliflower
+		Description: The brain cauliflower will fight for you
+	}
+
+	MindfungusBuff: {
+		DisplayName: Crimson Hypnoshroom
+		Description: The crimson hypnoshroom will fight for you
+	}
+
+	StariteBuff: {
+		DisplayName: Starite
+		Description: The starite will fight for you
+	}
+
+	ScribbleNotebookBuff: {
+		DisplayName: Scribble
+		Description: The object will fight for you
+	}
+
+	CorruptPlantBuff: {
+		DisplayName: Corrupted Plant
+		Description: The corrupted plant will fight for you
+	}
+
+	RedSpriteMinionBuff: {
+		DisplayName: Mysterious Sprite
+		Description: The red sprite will fight for you
+	}
+
+	SnowflakeBuff: {
+		DisplayName: Snowflake
+		Description: The snowflake will fight for you
+	}
+
+	MiningPetBuff: {
+		DisplayName: Undead Miner
+		Description: The Undead Miner will mine with you
+	}
+
+	DroneBuff: {
+		DisplayName: Scanner Drone
+		Description: The Drone will scan for rare objects
+	}
+
+	FamiliarBuff: {
+		DisplayName: Familiar
+		Description: Despite everything, it's still you
+	}
+
+	OmegaStariteBuff: {
+		DisplayName: Omega Starite Mini
+		Description: The smallest solar system imaginable
+	}
+
+	TorraBuff: {
+		DisplayName: Swag Eye
+		Description: Don't say hi...
+	}
+
+	RedSpriteBuff: {
+		DisplayName: Red Sprite
+		Description: May get into hissy fits!
+	}
+
+	SpaceSquidBuff: {
+		DisplayName: Space Squid
+		Description: It's just so cute!
+	}
+
+	HotAirBalloonBuff: {
+		DisplayName: Hot Air Balloon
+		Description: Up, up, and away!!!
+	}
+
+	VampirismBuff: {
+		DisplayName: Vampirism
+		Description: You may become a vampire after this...
+	}
+
+	VampirismNight: {
+		DisplayName: Cold Skin
+		Description: Greatly increased stats, attacks may lifesteal
+	}
+
+	VampirismNightEclipse: {
+		DisplayName: Dark Skin
+		Description: "{$Buffs.VampirismNight.Description}"
+	}
+
+	VampirismDay: {
+		DisplayName: Sunlight
+		Description: Greatly decreased stats, you no longer get buffs from food
+	}
+
+	VampirismDayRain: {
+		DisplayName: Overcast
+		Description: Decreased stats, the clouds block most of the sunlight
+	}
+
+	StariteBottleBuff: {
+		DisplayName: Starite in a Bottle
+		Description: Grants 20 mana when cleared
+	}
+
+	BoneRingWeakness: {
+		DisplayName: Weakness
+		Description: "{$BuffDescription.Weak}"
+	}
+
+	CrimsonHellfire: {
+		DisplayName: Hellfire (Crimson)
+		Description: "{$BuffDescription.OnFire}"
+	}
+
+	CorruptionHellfire: {
+		DisplayName: Hellfire (Corruption)
+		Description: "{$BuffDescription.OnFire}"
+	}
+
+	BattleAxeBleeding: {
+		DisplayName: Bleeding
+		Description: "{$BuffDescription.Bleeding}"
+	}
+
+	BlueFire: {
+		DisplayName: Mana Blaze
+		Description: The immense heat burns off your skin!
+	}
+
+	PickBreak: {
+		DisplayName: Pick Break
+		Description: Your mining power is halved
+	}
+
+	AethersWrath: {
+		DisplayName: Aether's Wrath
+		Description: Heavenly flames rapture your body!
+	}
+
+	BitCrushedDebuff: {
+		DisplayName: Bit Crushed
+		Description: You are lagging!
+	}
+
+	IronLotusFireDebuff: {
+		DisplayName: Ruina Flare
+		Description: Perishing with the heat
+	}
+
+	LocustDebuff: {
+		DisplayName: Locusts
+		Description: Locusts eat apart your flesh
+	}
+
+	MindfungusDebuff: {
+		DisplayName: Mindfungus
+		Description: Your mind is being taken over!
+	}
+
+	SnowgraveDebuff: {
+		DisplayName: Snowgrave Debuff
+		Description: Reduced movement speed
+	}
+
+	WabbajackEffectParticles: {
+		DisplayName: Wabbajack Effect Particles
+		Description: Mods.Aequus.Buffs.WabbajackEffectParticles.Description
+	}
+
+	WabbajackTeleport: {
+		DisplayName: Wabbajack Teleport
+		Description: Mods.Aequus.Buffs.WabbajackTeleport.Description
+	}
+
+	WabbajackTransformBunny: {
+		DisplayName: Wabbajack Transform Bunny
+		Description: Mods.Aequus.Buffs.WabbajackTransformBunny.Description
+	}
+
+	WabbajackTransformFood: {
+		DisplayName: Wabbajack Transform Food
+		Description: Mods.Aequus.Buffs.WabbajackTransformFood.Description
+	}
+
+	WindFanDebuff: {
+		DisplayName: Wind Fan Debuff
+		Description: Mods.Aequus.Buffs.WindFanDebuff.Description
+	}
+
+	FaultyCoinBuff: {
+		DisplayName: Debt
+		Description: Recieve double money from enemies
+	}
+
+	FoolsGoldRingBuff: {
+		DisplayName: Fool's Gold Ring
+		Description: The next enemy killed will drop highly increased loot
+	}
+
+	NettlebaneBuffTier3: {
+		DisplayName: "{$Buffs.NettlebaneBuffTier1.DisplayName}"
+		Description: +24 defense, Nettlebane is empowered!
+	}
+
+	NettlebaneBuffTier2: {
+		DisplayName: "{$Buffs.NettlebaneBuffTier1.DisplayName}"
+		Description: +18 defense
+	}
+
+	NettlebaneBuffTier1: {
+		DisplayName: Nettlebane Stance
+		Description: +12 defense
+	}
+
+	VeinminerBuff: {
+		DisplayName: Veinfracture
+		Description: Ores will be magically mined for you
+	}
+
+	VeinminerBuffEmpowered: {
+		DisplayName: Empowered {$Buffs.VeinminerBuff.DisplayName}
+		Description:
+			'''
+			Ores will be magically mined for you extremely quickly
+			Gain extra ores when mining
+			'''
+	}
+
+	ConversionRedSprite: {
+		DisplayName: Conversion Red Sprite
+		Description: Your mind is being taken over!
+	}
+
+	EnthrallingDebuff: {
+		DisplayName: Enthralling Debuff
+		Description: Your mind is being taken over!
+	}
+
+	InsurgentDebuff: {
+		DisplayName: Insurgent Debuff
+		Description: Your mind is being taken over!
+	}
+
+	NecromancyDebuff: {
+		DisplayName: Necromancy Debuff
+		Description: Your mind is being taken over!
+	}
+
+	OsirisDebuff: {
+		DisplayName: Osiris Debuff
+		Description: Your mind is being taken over!
+	}
+
+	RevenantDebuff: {
+		DisplayName: Revenant Debuff
+		Description: Your mind is being taken over!
+	}
+
+	CrownOfBloodBuff: {
+		DisplayName: Blood Bonus
+		Description: "{0}"
+	}
+
+	CrownOfBloodDebuff: {
+		DisplayName: Blood Curse
+		Description:
+			'''
+			Your health is possessed!
+			{0}
+			'''
+	}
+
+	Common.VillagerHappiness: Villagers have increased happiness
+
+	PyramidStatueBuff: {
+		DisplayName: Coin Offering
+		Description: Increased luck
+	}
+
+	CrownOfBloodCooldown: {
+		DisplayName: Crown Of Blood (Cooldown)
+		Description: An ability from the Crown of Blood is on cooldown!
+	}
+
+	BoneHelmMinionDebuff: {
+		DisplayName: Insanity
+		Description: 50% reduced speed, take heavy damage
+	}
+
+	WarHornCooldown: {
+		DisplayName: War Horn Cooldown
+		Description: Mods.Aequus.Buffs.WarHornCooldown.Description
+	}
+
+	MechPetComboBuff: {
+		DisplayName: Mecha Mayhem
+		Description: A combined effort!
+	}
+
+	FlowerCrownWhipTagDebuff: {
+		DisplayName: Flower Crown Whip Tag Debuff
+		Description: Mods.Aequus.Buffs.FlowerCrownWhipTagDebuff.Description
+	}
+
+	RecordBreakerBuff: {
+		DisplayName: Record Broken
+		Description: Your history records are being erased!
+	}
+
+	LanternCatBuff: {
+		DisplayName: Cat & Lantern
+		Description: The cat and lantern will provide light and luck for you
+	}
+
+	PyramidStatueBuffDark: {
+		DisplayName: Dark Offering
+		Description: 10% increased damage against light creatures
+	}
+
+	PyramidStatueBuffLight: {
+		DisplayName: Light Offering
+		Description: 10% increased damage against dark creatures
+	}
+
+	BoneRingDebuff: {
+		DisplayName: Bone Ring Debuff
+		Description: Mods.Aequus.Buffs.BoneRingDebuff.Description
+	}
+
+	SentryBuffEmpowered: {
+		DisplayName: Sentry Buff Empowered
+		Description: Mods.Aequus.Buffs.SentryBuffEmpowered.Description
+	}
+
+	CrimsonSceptreDebuff: {
+		DisplayName: Crimson Sceptre Debuff
+		Description: Mods.Aequus.Buffs.CrimsonSceptreDebuff.Description
+	}
 }
