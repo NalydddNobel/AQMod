@@ -36,6 +36,10 @@ namespace Aequus.Content;
 public class UnusedItem : ModItem {
     public override string Texture => ModContent.GetInstance<UnloadedItem>().Texture;
 
+    public override void SetStaticDefaults() {
+        Item.ResearchUnlockCount = 0;
+    }
+
     public override void SetDefaults() {
         Item.width = 8;
         Item.height = 8;
