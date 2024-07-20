@@ -1,0 +1,224 @@
+DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
+
+ConeheadZombie: {
+	DisplayName: Armored Zombie
+	Bestiary: Mindlessly wandering around the Polluted Beach, this zombie scrapped together a defensive attire from the debris.
+	Slimed_Bestiary: "{$Bestiary_FlavorText.npc_SlimedZombie}"
+}
+
+Scavenger: {
+	DisplayName: Scavenger
+	Bestiary: Once vicious pirates who sailed the seven seas, their desire to steal and plunder lives on even in their rotting bones.
+	BannerName: Scavenger Banner
+}
+
+ScavengerLootBag.DisplayName: Scavenger Bag
+
+MonsterChestSummon: {
+	DisplayName: Monster Chest
+	Bestiary: ""
+}
+
+BlackJellyfish: {
+	DisplayName: Black Jellyfish
+	Bestiary: Evolution goes in strange directions in such a polluted environment. These jellyfish overcharge themselves to defend their kin with a kamikaze explosion; their lifespan ranges from minutes to years.
+	BannerName: Black Jellyfish Banner
+}
+
+OilSlime: {
+	DisplayName: Opaque Slime
+	Bestiary: These viscous slimes are formed of modern oils and waste, allowing them to be more durable than regular slimes. Vulnerable to fire.
+	BannerName: Opaque Slime Banner
+}
+
+BreadOfCthulhu: {
+	DisplayName: Bread of Cthulhu
+	BannerName: Bread of Cthulhu Banner
+	Bestiary: A lost snack that gained life when it slipped through an eldritch portal, this loathsome loaf does not intend to be your lunch! Watch out when fishing, for it might just latch on to the lure of an inexperienced fisherman that looks like easy prey.
+}
+
+// --localization note-- "conductor" as in an orchestra conductor
+Conductor: {
+	DisplayName: Conductor
+	Bestiary: An unpleasant amalgam of outdated, discarded technology. Desperate to prove it still has worth, it puts on a show for anyone it sees with blasts of condensed radio waves.
+	BannerName: Conductor Banner
+	ProjectileName: Magic Ensemble
+}
+
+Mirage.Bestiary: During the rain, toxic fog clouds form and bunch together forming this acidic monster. It wishes it could be like a real nimbus, but it has trouble even befriending a Target Dummy.
+Pillbug.Bestiary: Blessed with Aquatic Energy, these bugs scurry around and feed on the pollution like it means nothing to them.
+Chromite.Bestiary: A beetle-like bug with a metallic shell that can change color using a magnetic mechanism to help blend in. They're common household pests, the banes of microwaves everywhere, but might make useful fishing bait.
+Crabson.DisplayName: Crabson
+
+OmegaStarite: {
+	DisplayName: Omega Starite
+	TreasureBagDisplayName: Treasure Bag (Omega Starite)
+	TrophyDisplayName: Omega Starite Trophy
+	RelicDisplayName: Omega Starite Relic
+	MaskDisplayName: Omega Starite Mask
+}
+
+DustDevil: {
+	DisplayName: Dust Devil
+	TreasureBagDisplayName: Treasure Bag (Dust Devil)
+	TrophyDisplayName: Dust Devil Trophy
+	RelicDisplayName: Dust Devil Relic
+	MaskDisplayName: Dust Devil Mask
+}
+
+BloodMimic: {
+	DisplayName: Blood Mimic
+	BannerName: Blood Mimic Banner
+	Bestiary: When the gruesome red moon shines, the festering corpses of slain looters may merge with the chests they tried to claim, corrupting and mutating the treasure within.
+}
+
+CinderBat: {
+	Bestiary: A lesser bat-like demon, known for its ugly face and uglier attitude. Definitely doesn't have a complex.
+	DisplayName: Cinder Bat
+	BannerName: Cinder Bat Banner
+}
+
+LeggedLava: {
+	DisplayName: Legged Lava
+	Bestiary: Lava slimes touched by the Gore Nest's fleshy 'blessing' will grow spider-like legs. They hop about freely and spew shadowy energies, but are thankfully too heavy to climb on walls.
+	BannerName: Legged Lava Banner
+}
+
+KeeperImp: {
+	DisplayName: Keeper
+	Bestiary: By capturing souls for itself, withering their bodies, and breaking their will, this imp has gained deadly pets that follow its command perfectly.
+	BannerName: Keeper Banner
+}
+
+ChainedSoul.DisplayName: Chained Soul
+
+DwarfStarite: {
+	DisplayName: Dwarf Starite
+	Bestiary: If a starite cannot gather enough energy to evolve, it will eventually wither into just a speck of light. Its powers atrophied into uselessness, it nonetheless enjoys its retirement by floating aimlessly.
+	ItemTooltip: ""
+}
+
+UltraStarite: {
+	DisplayName: Ultra Starite
+	Bestiary: Elite starites in their final stage of growth can focus their now exposed core into deadly laser beams. You'd be forgiven for thinking the sky was falling!
+	TrophyDisplayName: Ultra Starite Trophy
+	RelicDisplayName: Ultra Starite Relic
+}
+
+HyperStarite: {
+	DisplayName: Hyper Starite
+	Bestiary: As it ages, the starite begins to expand and become more volatile, causing its segments to be pushed outwards into orbit to be used as dangerous weapons.
+	BannerName: Hyper Starite Banner
+}
+
+SuperStarite: {
+	DisplayName: Super Starite
+	Bestiary: Starites that gather enough energy eventually molt from their shell and evolve into this armored form.
+	BannerName: Super Starite Banner
+}
+
+Starite: {
+	DisplayName: Starite
+	Bestiary: A piece of animate stardust bearing a striking resemblance to fallen stars, their exterior seems gassy but will grow to have a sturdy shell.
+	BannerName: Starite Banner
+}
+
+PhysicistPet: {
+	DisplayName: Drone
+	Bestiary: This tiny contraption follows the Physicist wherever she goes, constantly logging data from the environment to ensure nothing is missed. Miniaturized for personal use from a larger surveillance model.
+
+	Dialogue: {
+		0: Beep boop.
+		1: Beep bop.
+	}
+}
+
+CleanserDrone: {
+	DisplayName: Cleanser Drone
+	Bestiary: Created by the Physicist in collaboration with the Steampunker to keep your town pure and habitable. Draws energy from the town's pylon to function.
+}
+
+GunnerDrone: {
+	DisplayName: Gunner Drone
+	Bestiary: Created by the Physicist to protect your town, it draws energy from the town's pylon to function.
+}
+
+HealerDrone: {
+	DisplayName: Healer Drone
+	Bestiary: Created by the Physicist to keep your town healthy, it draws energy from the town's pylon to function.
+}
+
+AdamantiteMimic.DisplayName: Adamantite Mimic
+FrostMimic.DisplayName: Frost Mimic
+ShadowMimic.DisplayName: Shadow Mimic
+
+Eel: {
+	DisplayName: Eel
+	BannerName: Eel Banner
+	Bestiary: Constant consumption of live wires and machinery lead up to this eel's death, and later reanimation. The cables which lined through its body control its motion and behavior, bringing it new life.
+}
+
+SeaFirefly: {
+	DisplayName: {
+		$parentVal: Sea Firefly
+		Red: Red Sea Firefly
+		Orange: Orange Sea Firefly
+		Yellow: Yellow Sea Firefly
+		Lime: Lime Sea Firefly
+		Green: Green Sea Firefly
+		Teal: Teal Sea Firefly
+		Cyan: Cyan Sea Firefly
+		SkyBlue: Sky Blue Sea Firefly
+		Blue: Blue Sea Firefly
+		Purple: Purple Sea Firefly
+		Violet: Violet Sea Firefly
+		Pink: Pink Sea Firefly
+		Black: Black Sea Firefly
+		White: Silver Sea Firefly
+		Rainbow: Rainbow Sea Firefly
+	}
+
+	Bestiary: These shrimp-like creatures cast an eerie luminance which deters most fish from eating them.
+	ItemTooltip: ""
+}
+
+RedSprite: {
+	DisplayName: Red Sprite
+	Bestiary: When a strange bolt of thunder merged with an angry nimbus, this seething stormcloud was born. Lashing scarlet surges in every direction make its presence impossible to miss.
+	TrophyDisplayName: Red Sprite Trophy
+	RelicDisplayName: Red Sprite Relic
+	MaskDisplayName: Red Sprite Mask
+}
+
+SpaceSquid: {
+	DisplayName: Space Squid
+	Bestiary: An alien scout from an advanced interstellar civilization, they transplant their consciousness into bodies made of high-tech compacted water molecules for easier teleportation.
+	TrophyDisplayName: Space Squid Trophy
+	RelicDisplayName: Space Squid Relic
+	MaskDisplayName: Space Squid Mask
+}
+
+Vraine: {
+	DisplayName: Vraine
+	BannerName: Vraine Banner
+	Bestiary: Migratory birds that travel in flocks, going where the wind takes them. Its beak is highly sensitive to minute changes in temperatures, and it will change its behavior accordingly.
+}
+
+WhiteSlime: {
+	DisplayName: White Slime
+	Bestiary: A slime exposed to high-altitude sunrays will eventually begin to take on a glow of its own. Rumored to taste like cinnamon.
+	BannerName: White Slime Banner
+}
+
+StreamingBalloon: {
+	DisplayName: Streaming Balloon
+	Bestiary: Some enterprising slimes will attach to hot air balloons to take them even higher. They float above their quarry before dropping down and engulfing them.
+}
+
+Salamancer: {
+	DisplayName: Salamancer
+	TreasureBagDisplayName: Treasure Bag (Salamancer)
+	TrophyDisplayName: Salamancer Trophy
+	RelicDisplayName: Salamancer Relic
+	MaskDisplayName: Salamancer Mask
+}

@@ -1,0 +1,12 @@
+Mounts: {
+	HotAirBalloonMount: {
+		ItemDisplayName: Botiquin Aerostático
+		ItemTooltip:
+			'''
+			Te permite montar un Globo Aerostático
+			'Expertamente fabricado por Empresas Modzilla'
+			'''
+		BuffDisplayName: Globo Aeroestatico
+		BuffDescription: Hasta el infinito y más allá!!!
+	}
+}

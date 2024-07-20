@@ -1,0 +1,44 @@
+Furniture: {
+	TrashBathtub.ItemDisplayName: 废料浴缸
+	TrashBed.ItemDisplayName: 废料床
+	TrashBookcase.ItemDisplayName: 废料书架
+	TrashChair.ItemDisplayName: 废料椅
+	TrashCandelabra.ItemDisplayName: 废料烛台
+	TrashCandle.ItemDisplayName: 废料蜡烛
+	TrashChandelier.ItemDisplayName: 废料吊灯
+	TrashTable.ItemDisplayName: 废料桌
+	TrashClock.ItemDisplayName: 数字时钟
+	TrashDoor.ItemDisplayName: 废料门
+	TrashLamp.ItemDisplayName: 废料灯
+	TrashLantern.ItemDisplayName: 废料灯笼
+	TrashPiano.ItemDisplayName: 废料钢琴
+	TrashSink.ItemDisplayName: 废料水槽
+	TrashSofa.ItemDisplayName: 废料沙发
+	TrashWorkBench.ItemDisplayName: 废料工作台
+
+	TrashCampfire: {
+		ItemDisplayName: 废料篝火
+		ItemTooltip: "{$ItemTooltip.Campfire}"
+	}
+
+	TrashChest: {
+		MapEntry: 垃圾箱
+		ItemDisplayName: "{$Tiles.TrashChest.MapEntry}"
+		ItemTooltip: 垃圾箱的两侧是不同的箱子
+	}
+
+	TrashChestSmall: {
+		MapEntry: 废料宝箱
+		ItemDisplayName: "{$Tiles.Furniture.TrashChestSmall.MapEntry}"
+	}
+
+	TrashChestSmallTrapped: {
+		MapEntry: 上锁废料宝箱
+		ItemDisplayName: "{$Tiles.Furniture.TrashChestSmallTrapped.MapEntry}"
+	}
+
+	TrashDresser: {
+		MapEntry: 废料梳妆台
+		ItemDisplayName: "{$Tiles.Furniture.TrashDresser.MapEntry}"
+	}
+}

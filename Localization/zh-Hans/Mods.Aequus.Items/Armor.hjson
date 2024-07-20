@@ -1,0 +1,47 @@
+Armor: {
+	Castaway: {
+		DefenseDamageTip: 这套盔甲的防御易碎
+		DefenseDamageKeyword: 易碎
+		DefenseDamageKeywordTip: 在受到伤害后会降低防御力
+
+		Helmet: {
+			DisplayName: 漂流者头盔
+			Tooltip:
+				'''
+				{$DefenseDamageTip}
+				'挺立.'
+				'''
+		}
+
+		Chestplate: {
+			DisplayName: 漂流者胸甲
+			Tooltip:
+				'''
+				{$Items.CommonTooltips.KnockbackResist@0}
+				{$DefenseDamageTip}
+				'屹立.'
+				'''
+		}
+
+		Leggings: {
+			DisplayName: 漂流者护胫
+			Tooltip:
+				'''
+				{$Items.CommonTooltips.KnockbackResist@0}
+				{$DefenseDamageTip}
+				'站立.'
+				'''
+		}
+
+		Setbonus: 受到攻击时释放一捆尖钉球
+	}
+
+	ConeHelmet: {
+		DisplayName: 路障帽
+		Tooltip: "{$CommonItemTooltip.ReducesDamageTakenByPercent@0}"
+		DisplayName_1: 弯曲路障帽
+		Tooltip_1: "{$Armor.ConeHelmet.Tooltip}"
+		DisplayName_2: 破损路障帽
+		Tooltip_2: "{$Armor.ConeHelmet.Tooltip}"
+	}
+}

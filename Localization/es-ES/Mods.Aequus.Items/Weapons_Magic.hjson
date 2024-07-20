@@ -1,0 +1,22 @@
+TrashStaff: {
+	DisplayName: Correo Spam
+	Tooltip: Ataques críticos envían un virus a enemigos cercanos
+}
+
+Furystar: {
+	DisplayName: Estrella de furia
+	Tooltip:
+		'''
+		Hace que lluevan estrellas del cielo
+		Ataques restauran maná
+		'''
+}
+
+StudiesOfTheInkblot: {
+	DisplayName: Estudios de la mancha de tinta
+	Tooltip:
+		'''
+		Click izquierdo para 'Rorschach en Danmaku'
+		Click derecho 'Rosa Subterránea'
+		'''
+}

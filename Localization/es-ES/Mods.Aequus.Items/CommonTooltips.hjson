@@ -1,0 +1,30 @@
+CommonTooltips: {
+	// KnockbackResist: "{0}% reduced knockback"
+	// GuideHint: The Guide may be interested in this...
+	BuffTimeRange: "{0}-{1} minuto(s) de duración"
+	IncreasesInventorySlots: Otorga {0} ranuras de mochila
+	Cooldown: Tiene {0} segundos de recarga
+	Shimmerable: Ingrediente de Fulgor
+	ShimmerableToNPC: Ingrediente de Fulgor
+	OmnidirectionMelee: Puede usarse en cualquier dirección
+	WorkInProgress: Este objeto es un trabajo en proceso, su funcionalidad puede estar incompleta
+	DedicatedItem: Gracias, {0}!
+	DedicatedItemAnonymous: Objeto Dedicado
+	UsesDarts: Utiliza semillas y dardos como munición
+	Banner: "{$CommonItemTooltip.BannerBonus}{0}"
+	NecromancyStaff: Los enemigos derrotados se convertiran en súbditos fantasma
+	StatGhostDuration: Incrementa la duración de tus fantasmas por {0} segundos
+	StatGhostSlots: Incrementa tu maximo número de fantsmas por {0}
+	StatWingTime: Incrementa la duración de vuelo
+	DecreaseAggro: Los enemigos son menos probables de que te persigan
+	IncreaseAggro: Los enemigos son mas probables de que te persigan
+	DisableItem: <right> para desactivar
+	EnableItem: Actualmente desactivado, <right> para reactivar
+	// GoblinTinkererRepair: Can be repaired at the Goblin Tinkerer
+	/* LockedWithKey:
+		'''
+		<right> to open
+		Requires a {0}
+		''' */
+	// UsedXOfXTimes: Used {0}/{1} times
+}

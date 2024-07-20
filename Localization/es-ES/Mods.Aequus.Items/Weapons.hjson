@@ -1,0 +1,4 @@
+StunGun: {
+	DisplayName: Taser
+	Tooltip: Ralentiza o aturde enemigos por {0} segundos
+}

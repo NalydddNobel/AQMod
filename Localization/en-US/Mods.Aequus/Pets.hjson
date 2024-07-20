@@ -1,0 +1,44 @@
+Pets: {
+	FamiliarPet: {
+		ItemDisplayName: Familiar Pickaxe
+		ItemTooltip: Summons a mini version of yourself
+		BuffDisplayName: Familiar
+		BuffDescription: Despite everything, it's still you
+	}
+
+	SwagEyePet: {
+		ItemDisplayName: Swag Looking Eye
+		ItemTooltip:
+			'''
+			Summons a Swag Eye to follow you
+			'glaze...'
+			'''
+		BuffDisplayName: Swag Looking Eye
+		BuffDescription: Don't say hi...
+	}
+
+	LanternCatPet: {
+		BuffDisplayName: Cat & Lantern
+		BuffDescription: The cat and lantern will provide light and luck for you
+		ItemDisplayName: Blacklight Fan
+		ItemTooltip: Summons a cat and lantern to provide light and luck
+	}
+
+	UndeadMinerPet: {
+		BuffDisplayName: Undead Miner
+		BuffDescription: The Undead Miner will mine with you
+		ItemDisplayName: Broken Mining Helmet
+		ItemTooltip: Summons an Undead Miner to provide light and mine with you
+	}
+
+	OmegaStaritePet: {
+		BuffDisplayName: Omega Starite Mini
+		BuffDescription: The smallest solar system imaginable, the omega being
+		ItemDisplayName: Omega Core
+		ItemTooltip:
+			'''
+			Summons an Omega Starite Mini to provide light
+			'Ball Incarnate'
+			'''
+	}
+}

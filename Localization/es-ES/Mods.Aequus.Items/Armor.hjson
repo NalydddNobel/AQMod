@@ -1,0 +1,47 @@
+Armor: {
+	Castaway: {
+		// DefenseDamageTip: Defense from this armor is Delicate
+		// DefenseDamageKeyword: Delicate
+		// DefenseDamageKeywordTip: Defense is reduced after receiving damage
+
+		Helmet: {
+			// DisplayName: Castaway Helmet
+			/* Tooltip:
+				'''
+				{$DefenseDamageTip}
+				'Stand tall.'
+				''' */
+		}
+
+		Chestplate: {
+			// DisplayName: Castaway Chestplate
+			/* Tooltip:
+				'''
+				{$Items.CommonTooltips.KnockbackResist@0}
+				{$DefenseDamageTip}
+				'Stand sturdy.'
+				''' */
+		}
+
+		Leggings: {
+			// DisplayName: Castaway Leggings
+			/* Tooltip:
+				'''
+				{$Items.CommonTooltips.KnockbackResist@0}
+				{$DefenseDamageTip}
+				'Stand up.'
+				''' */
+		}
+
+		// Setbonus: Release a bundle of spiked balls when attacked
+	}
+
+	ConeHelmet: {
+		DisplayName: Cono de trafico
+		// Tooltip: "{$CommonItemTooltip.ReducesDamageTakenByPercent@0}"
+		DisplayName_1: Cono de trafico dañado
+		// Tooltip_1: "{$Armor.ConeHelmet.Tooltip}"
+		DisplayName_2: Cono de trafico roto
+		// Tooltip_2: "{$Armor.ConeHelmet.Tooltip}"
+	}
+}

@@ -1,0 +1,12 @@
+Prefixes: {
+	CooldownTip: "{0}%冷却时间"
+	Overscheduled.DisplayName: 忙碌
+	Constant.DisplayName: 恒常
+	Delayed.DisplayName: 延时
+	Dependant.DisplayName: 可靠
+	Late.DisplayName: 过迟
+	Organized.DisplayName: 轮契
+	Punctual.DisplayName: 准时
+	Steady.DisplayName: 稳定
+	Tardy.DisplayName: 迟缓
+}

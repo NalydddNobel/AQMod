@@ -1,0 +1,62 @@
+GenStep: {
+	// GenVarEdits.DisplayMessage: ""
+	Statues.DisplayMessage: Colocando mas estatuas...
+
+	GoreNestsGeneration: {
+		DisplayMessage: Haciendo el inframundo mas malvado...
+
+		// --localization note-- "tombstone" and "tombstonehints" work the same as the previous "giveitem" and "eventstart" lines, the two go together and it picks a random combination
+		Tombstones: {
+			0: Los organos de {Name} fueron desgarrados
+			1: no quedo nada de {Name}
+			2: "{Name} perdio control de su cuerpo"
+			3: Fuerzas malignas destruyeron a {Name}
+			4: "{Name} se convirtio en un sacrificio"
+			5: "{Name} no esperaba su final"
+		}
+
+		TombstoneHints: {
+			0: ... Los demonios... Estaban por todos lados... no tenia oportunidad...
+			1: . dejando sus armas a marchitar.
+			2: . Un alma más consumida por el altar de oblivio, su espada legendaria de la oscuridad fue atraida a la energía oscura del altar.
+			3: . La profecía de la sagrada espada de la noche no fue cumplida para esta alma...
+			4: ... Su cuerpo arrojado al portal, nunca sera visto otra vez.
+			5: ... Su destino permanece incierto.
+		}
+	}
+
+	LavaCleanup.DisplayMessage: Limpiando lava
+
+	PollutedBiome: {
+		DisplayMessage: {
+			0: Creando un vertedero
+			1: Saboteando a las tortugas
+			2: Contaminando uno de los oceanos
+			3: destruyendo arrecifes
+			4: Tirando basura
+			5: Zarpando petroleros
+			6: Creando una gran mancha de basura
+			7: Usando bolsas no biodegradables
+			8: Dejando redes fantasma
+		}
+
+		Sand: ..depositando arena
+		Caves: ..Perforando agujeros
+		Detailing: ..Descomponiendo plasticos
+		Ores: ..Añadiendo joyas
+	}
+
+	PollutedDecoration.DisplayMessage: Sacando la basura...
+	// PollutedCleanup.DisplayMessage: Cleaning out the trash
+	Reset.DisplayMessage: ""
+
+	NewCavesGeneration: {
+		DisplayMessage: Creando cuevas bizarras...
+		Weird: Raras
+		Tall: Altas
+	}
+
+	BigGemsGeneration.DisplayMessage: Haciendo el hielo demasiado poderoso...
+	// RealBuriedChests.DisplayMessage: Punching in more Chests...
+	// SkyMeadows.DisplayMessage: Mods.AequusRemake.GenStep.SkyMeadows.DisplayMessage
+}

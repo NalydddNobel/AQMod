@@ -1,0 +1,91 @@
+MeadowMushroom: {
+	DisplayName: 草地菇
+	Tooltip: ""
+}
+
+SentryPotion: {
+	DisplayName: 哨兵药水
+	Tooltip: 增加{0}格最大哨兵栏位
+	BuffName: 哨兵
+}
+
+TaintedSeafood: {
+	DisplayName: 受到污染的海鲜
+	Tooltip:
+		'''
+		有可能小幅度、中幅度或大幅度提升所有属性
+		有小概率导致食物中毒
+		'''
+}
+
+DeathsEmbrace: {
+	DisplayName: 死亡之拥
+	Tooltip:
+		'''
+		使用后不会消耗
+		增加15%伤害和暴击率
+		小幅度降低攻击的准确度
+		攻击时会使你自动饮用该药水
+		{{一旦增益消失, 你会立刻死亡...}}
+		'''
+}
+
+// Foods
+
+Baguette: {
+	DisplayName: 法棍
+	Tooltip:
+		'''
+		大幅度提升所有属性
+		大幅度增加生命再生速度
+		'''
+}
+
+// Healing
+
+GreaterHoneyPotion: {
+	DisplayName: 强效蜂蜜药水
+	Tooltip: 提高自然恢复
+}
+
+SuperHoneyPotion: {
+	DisplayName: 超级蜂蜜药水
+	Tooltip: 在长时间内提高自然恢复
+}
+
+LesserRestorationPotion: {
+	DisplayName: 弱效恢复药水
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+GreaterRestorationPotion: {
+	DisplayName: 强效恢复药水
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+SuperRestorationPotion: {
+	DisplayName: 超级恢复药水
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+// Canteens
+
+HallowCanteen: {
+	DisplayName: 魔力壶
+	DisplayNameAlt: 魔力壶 ({0})
+	Tooltip:
+		'''
+		能够无限使用两种药水
+		光标悬停在堆叠数量为15的药水上并点击右键
+		'''
+}
+
+PotionCanteen: {
+	DisplayName: 药水壶
+	DisplayNameAlt: "{0}壶"
+	Tooltip:
+		'''
+		能够无限使用一种药水
+		光标悬停在堆叠数量为15的药水上并点击右键
+		'''
+}

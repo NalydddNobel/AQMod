@@ -1,0 +1,473 @@
+Keywords: {
+	Brittle: {
+		DisplayName: 易碎
+		Description: 在受击{0}次后, 此物品破碎
+	}
+}
+
+//# Equipment: Armor
+GravetenderHood: {
+	DisplayName: 守墓人兜帽
+	Tooltip: "{$CommonItemTooltip.PercentIncreasedSummonDamage}"
+	Setbonus: 召唤一缕能够强化与你最近的幽魂仆从的游魂
+}
+
+GravetenderRobes: {
+	DisplayName: 守墓人长袍
+	Tooltip:
+		'''
+		{$CommonTooltips.StatGhostDuration}
+		{$CommonTooltips.StatGhostSlots@1}
+		'''
+}
+
+//# Equipment: Grappling Hooks
+LeechHook: {
+	DisplayName: 水蛭钩
+	Tooltip:
+		'''
+		无视敌人{0}点的防御力
+		吸住敌人并治疗你
+		伤害被吸住的敌人以获得额外治疗
+		'''
+}
+
+Meathook: {
+	DisplayName: 血肉钩
+	Tooltip:
+		'''
+		你的钩爪会抓住敌人
+		你会对被你的钩爪抓住的敌怪额外造成{0}%伤害
+		'''
+}
+
+//# Misc
+PollutedOceanCrate: {
+	DisplayName: 船运集装箱
+	Tooltip: ""
+}
+
+PollutedOceanCrateHard: {
+	DisplayName: 货运集装箱
+	Tooltip: ""
+}
+
+BeyondPlatinumCoin: {
+	DisplayName: 彼界钱币
+	Tooltip: 不视作钱币, 但可拆分成100铂金币
+}
+
+ShimmerCoin: {
+	DisplayName: 微光钱币
+	Tooltip:
+		'''
+		永久性获得每个永久性微光加成道具1/5的效果
+		增加生命再生速度、魔力再生速度、防御力、
+		挖掘速度、建筑速度、渔力、运气、
+		物品掉率、重铸时出现正面前缀的几率、
+		镇民的防御力和力量和旅行商人的物品数量
+		'''
+}
+
+TinKey: {
+	DisplayName: 锡钥匙
+	Tooltip: 打开发电机房门
+}
+
+CopperKey: {
+	DisplayName: 铜钥匙
+	Tooltip: 打开上锁的铜宝箱
+}
+
+Keychain: {
+	DisplayName: 钥匙链
+	Tooltip:
+		'''
+		手持钥匙右键此物品以添加钥匙
+		Shift+右键移除所有钥匙
+		'''
+}
+
+MagicKeychain: {
+	DisplayName: 幽灵钥匙链
+	Tooltip:
+		'''
+		{$Keychain.Tooltip}
+		可以无限使用钥匙
+		'''
+}
+
+FrozenTechnology: {
+	DisplayName: 霜冻科技
+	Tooltip: 用于制作信息工具
+}
+
+GlowLichen: {
+	DisplayName: 发光苔藓
+	Tooltip: 掉落自长满苔藓的敌人
+}
+
+ArtFragment: {
+	DisplayName: 吸积碎片
+	Tooltip: "'燃烧的宇宙的热烈从此碎片内散发出来'"
+}
+
+NecroFragment: {
+	DisplayName: 脉冲风星云碎片
+	Tooltip: "'死亡粒子从此碎片内释放而出'"
+}
+
+PossessedShard: {
+	DisplayName: 附魔碎块
+	Tooltip: 掉落自附魔的盔甲和工具
+}
+
+AquaticEnergy: {
+	DisplayName: 海蓝能量
+	Tooltip: ""
+}
+
+AtmosphericEnergy: {
+	DisplayName: 天权能量
+	Tooltip: ""
+}
+
+CosmicEnergy: {
+	DisplayName: 星宇能量
+	Tooltip: ""
+}
+
+DemonicEnergy: {
+	DisplayName: 幻象能量
+	Tooltip: ""
+}
+
+// --localization note-- 'hearth' is a very specific word so it can just be translated into anything relating to earth or ground
+OrganicEnergy: {
+	DisplayName: 地象能量
+	Tooltip: ""
+}
+
+UltimateEnergy: {
+	DisplayName: 终极能量
+	Tooltip: ""
+}
+
+MonoGem: {
+	DisplayName: 单项宝石
+	Tooltip: "'被晦涩的精华所诅咒'"
+}
+
+OmniGem: {
+	DisplayName: 全能宝石
+	Tooltip: "'被以太的存在所附魔'"
+}
+
+NoHitReward: {
+	DisplayName: 胜者的奖励
+	Tooltip:
+		'''
+		永久性使你在重生时以满生命值复活
+		'给那些加倍努力的人!'
+		'''
+}
+
+TinkerersGuidebook: {
+	DisplayName: 工匠指南
+	Tooltip: 永久性增加在重铸时出现正面前缀的几率
+	DisplayMessage: 哥布林工匠的利润开始减少了!
+}
+
+CosmicChest: {
+	DisplayName: 好运礼物
+	Tooltip: 永久性增加敌人的物品掉率
+}
+
+BeyondLifeCrystal: {
+	DisplayName: 彼界生命水晶
+	Tooltip: 永久性增加{0}点最大生命值
+}
+
+BeyondManaCrystal: {
+	DisplayName: 彼界魔力水晶
+	Tooltip: 永久性增加{0}点最大魔力值
+}
+
+NetherStar: {
+	DisplayName: 聚敛之心
+	Tooltip: "{$ItemTooltip.DemonHeart}"
+}
+
+CompressedTrash: {
+	DisplayName: 压缩垃圾
+	Tooltip: ""
+}
+
+BloodyTearstone: {
+	DisplayName: 血泪石
+	Tooltip: ""
+}
+
+SoulGem: {
+	DisplayName: 空白灵魂宝石
+	Tooltip: 无法使用, 直到其捕获敌人的灵魂
+}
+
+SoulGemFilled: {
+	DisplayName: 灵魂宝石
+	Tooltip:
+		'''
+		用于制作死灵装备
+		掉落自最黑暗的恶魔...
+		'''
+}
+
+GalacticStarfruit: {
+	DisplayName: 星河杨桃
+	Tooltip: 创造一道奇异柔光
+}
+
+UnholyCore: {
+	DisplayName: 不洁核心
+	Tooltip:
+		'''
+		可在遗境祭坛处使用
+		降低恶魔围攻事件的进攻时间
+		'''
+}
+
+UnholyCoreSmall: {
+	DisplayName: 暗黑泪石
+	Tooltip:
+		'''
+		可在遗境祭坛处使用
+		掉落自地狱的神秘实体
+		'''
+}
+
+WispLantern: {
+	DisplayName: 精灵灯笼
+	Tooltip:
+		'''
+		手持此物或放在物品栏中时会散发光芒
+		手持此物时会揭露罐子中的战利品
+		用于大幅度干扰附近的敌人
+		'''
+}
+
+AnglerLamp: {
+	DisplayName: 琵琶鱼灯
+	Tooltip:
+		'''
+		散发光芒并揭露附近罐子中的战利品
+		使用凝胶干扰附近的敌人
+		'''
+}
+
+PhaseMirror: {
+	DisplayName: 相位镜
+	Tooltip:
+		'''
+		允许你随意回家
+		通过在大地图上点击队友的头像来传送至对方位置
+		'''
+}
+
+PhasePhone: {
+	DisplayName: 相位手机
+	Tooltip:
+		'''
+		显示一切
+		{0}
+		通过在大地图上点击队友的头像来传送至对方位置
+		右键切换目的地
+		'''
+
+	Home: {
+		DisplayName: 相位手机 (家)
+		Tooltip: 允许你随意回家
+	}
+
+	Spawn: {
+		DisplayName: 相位手机 (出生点)
+		Tooltip: 允许你随意回到出生点
+	}
+
+	Ocean: {
+		DisplayName: 相位手机 (海洋)
+		Tooltip: 允许你随意前往海洋
+	}
+
+	Underworld: {
+		DisplayName: 相位手机 (地狱)
+		Tooltip: 允许你随意前往地狱
+	}
+}
+
+DedicatedFaelingItem: {
+	DisplayName: "{$ItemName.Shimmerfly}"
+	Tooltip: ""
+}
+
+PhysicsGun: {
+	DisplayName: 物理枪
+	Tooltip: 可以抓取并扔出方块
+}
+
+Bellows: {
+	DisplayName: 风箱
+	Tooltip:
+		'''
+		推动你
+		'还挺容易'
+		'''
+}
+
+Pumpinator: {
+	DisplayName: 泵风器
+	Tooltip:
+		'''
+		逐次更改风速
+		强大的阵风几乎可以推动任何东西
+		'''
+}
+
+NameTag: {
+	DisplayName: 重命名标签
+	Tooltip:
+		'''
+		可在天空商人处重命名
+		对着镇民、小动物或敌人使用以重命名名字
+		'''
+}
+
+PylonDrone.Tooltip: 在晶塔附近使用以激活, 每个晶塔只能存在两架无人机
+
+CleanserDrone: {
+	DisplayName: "{$NPCs.CleanserDrone.DisplayName}"
+	Tooltip:
+		'''
+		{$Mods.AequusRemake.Items.PylonDrone.Tooltip}
+		喷洒溶液以扩散晶塔的生物群落
+		'''
+}
+
+GunnerDrone: {
+	DisplayName: "{$NPCs.GunnerDrone.DisplayName}"
+	Tooltip:
+		'''
+		{$Mods.AequusRemake.Items.PylonDrone.Tooltip}
+		保护该区域免受敌人攻击
+		'''
+}
+
+HealerDrone: {
+	DisplayName: "{$NPCs.HealerDrone.DisplayName}"
+	Tooltip:
+		'''
+		{$Mods.AequusRemake.Items.PylonDrone.Tooltip}
+		治疗受伤的镇民和小动物
+		'''
+}
+
+MoonflowerSeeds: {
+	DisplayName: 月光花种
+	Tooltip: ""
+}
+
+MistralSeeds: {
+	DisplayName: 寒风花种
+	Tooltip: ""
+}
+
+ManacleSeeds: {
+	DisplayName: 镣铐花种
+	Tooltip: ""
+}
+
+//# Backpacks
+ScavengerBag: {
+	DisplayName: 拾荒者袋子
+	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+	BackpackEnabled: 背包开启
+	BackpackDisabled: 背包关闭
+}
+
+Toolbelt: {
+	Tooltip:
+		'''
+		{$CommonTooltips.IncreasesInventorySlots}
+		只能存储物块和墙壁
+		'''
+	BackpackEnabled: 工具腰带开启
+	BackpackDisabled: 工具腰带关闭
+}
+
+//# Vanity
+BreadOfCthulhuMask: {
+	DisplayName: 克苏鲁之面包面具
+	Tooltip: ""
+}
+
+RedSpriteMask: {
+	DisplayName: 红色精灵面具
+	Tooltip: ""
+}
+
+SpaceSquidMask: {
+	DisplayName: 太空乌贼面具
+	Tooltip: ""
+}
+
+CelestialEightBall: {
+	DisplayName: 魔法八号球
+	Tooltip: ""
+
+	Answer: {
+		0: 是的
+		1: 我的消息来源说不
+		2: 有迹象表明是的
+		3: 确实如此
+		4: 毫无疑问
+		5: 当然可以
+		6: 你可以相信它
+		7: 如我所见, 是的
+		8: 有希望
+		9: 前景很好
+		10: 有迹象表明是的
+		11: 别想了
+		12: 我的回答是否
+		13: 前景不妙
+		14: 令人疑惑
+		15: 再试一次吧
+		16: 待会再问
+		17: 时候未到
+		18: 现在没法预测
+		19: 请集中你的精神再问一次
+	}
+}
+
+CosmicMonolith: {
+	DisplayName: 宇宙石
+	Tooltip: "'维系宇宙力量的一小部分'"
+}
+
+StariteMaterial: {
+	DisplayName: 核心碎片
+	Tooltip: ""
+}
+
+UnopenedChestItem: {
+	DisplayName: 未开启的宝箱物品
+	Tooltip: 这是Debug物品, 将其放置在世界生成的宝箱内以检测其是否被开启过
+}
+
+DustDevilMask: {
+	DisplayName: 沙尘恶魔面具
+	Tooltip: ""
+}
+
+GasCan: {
+	DisplayName: 杰瑞的手杖
+	Tooltip: ""
+}

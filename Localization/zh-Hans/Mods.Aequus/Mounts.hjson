@@ -1,0 +1,12 @@
+Mounts: {
+	HotAirBalloonMount: {
+		ItemDisplayName: 气球装备
+		ItemTooltip:
+			'''
+			允许你骑乘一颗热气球
+			'在Modzilla的公司工厂精心制作而成'
+			'''
+		BuffDisplayName: 热气球
+		BuffDescription: 飞高一点, 飞远一点!!!
+	}
+}

@@ -1,0 +1,25 @@
+Configs: {
+	ClientConfig: {
+		DisplayName: Client Config
+
+		ShowDeathTips: {
+			Label: "[i:Tombstone] Tips de Muerte"
+			Tooltip: Los [c/ffffbb:Tips de Juego] se mostraran mientras Reapareces.
+		}
+
+		FlashIntensity: {
+			Label: "[i:CosmicMonolith] Intensidad de flash"
+			Tooltip: ""
+		}
+
+		FlashLoops: {
+			Label: "[i:CosmicMonolith] Repeticiónes de flash"
+			Tooltip: ""
+		}
+
+		ShowNecromancyOutlines: {
+			Label: "[i:Insurgency] Mostrar bordes de necromancia"
+			Tooltip: Los [c/ffffbb:súbditos fantasma] tendran bordes para sobresalir.
+		}
+	}
+}

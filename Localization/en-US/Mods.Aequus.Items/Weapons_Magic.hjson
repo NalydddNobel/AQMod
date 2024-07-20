@@ -1,0 +1,22 @@
+TrashStaff: {
+	DisplayName: Spam Mail
+	Tooltip: Critical strikes send virus mail to nearby enemies
+}
+
+Furystar: {
+	DisplayName: Furystar
+	Tooltip:
+		'''
+		Causes stars to rain from the sky
+		Attacks restores mana
+		'''
+}
+
+StudiesOfTheInkblot: {
+	DisplayName: Studies Of The Inkblot
+	Tooltip:
+		'''
+		Left Click for 'Rorschach in Danmaku'
+		Right Click for 'Subterranean Rose'
+		'''
+}

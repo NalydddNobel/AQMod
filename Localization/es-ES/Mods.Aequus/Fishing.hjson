@@ -1,0 +1,66 @@
+Fishing: {
+	FishingPoles: {
+		SteampunkerFishingPole: {
+			DisplayName: Caña de la steampunker
+			Tooltip: Automáticamente jala y lanza el anzuelo
+		}
+
+		BambooFishingPole: {
+			DisplayName: Caña de bambú
+			Tooltip: Taza de pesca incrementada
+		}
+	}
+
+	Bait: {
+		BlackJellyfishBait: {
+			// DisplayName: "{$NPCs.BlackJellyfish.DisplayName}"
+			Tooltip: Explodeta y daña enemigos pescados
+		}
+
+		CrateBait: {
+			// DisplayName: Crate Bait
+			// Tooltip: Highly increased catch rate for crates
+		}
+
+		LegendberryBait: {
+			// DisplayName: Legendberry
+			// Tooltip: Increased catch rate for rare items
+		}
+
+		Omnibait: {
+			// DisplayName: Omnibait
+			/* Tooltip:
+				'''
+				Fish as if you are in every biome
+				Can also be crafted into many different varieties of bait
+				''' */
+		}
+
+		CorruptPopper: {
+			// DisplayName: Cursed Popper
+			// Tooltip: Increases fishing power by {0}% while in the Corruption
+		}
+
+		CrimsonPopper: {
+			// DisplayName: Ichor Popper
+			// Tooltip: Increases fishing power by {0}% while in the Crimson
+		}
+
+		HallowPopper: {
+			// DisplayName: Spectral Popper
+			// Tooltip: Increases fishing power by {0}% while in the Hallow
+		}
+	}
+
+	Catches: {
+		Killifish: {
+			DisplayName: Killi
+			// Tooltip: ""
+		}
+
+		Piraiba: {
+			DisplayName: Piraiba
+			// Tooltip: ""
+		}
+	}
+}

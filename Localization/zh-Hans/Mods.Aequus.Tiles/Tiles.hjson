@@ -1,0 +1,260 @@
+ConductiveBlock: {
+	MapEntry: 铜导线
+	ItemDisplayName: "{$Tiles.ConductiveBlock.MapEntry}"
+	ItemTooltip: 作为线路, 必须使用电或电线激活.
+}
+
+ConductiveBlockTin: {
+	MapEntry: 锡导线
+	ItemDisplayName: "{$Tiles.ConductiveBlockTin.MapEntry}"
+	ItemTooltip: "{$Tiles.ConductiveBlock.ItemTooltip}"
+}
+
+CrabPot: {
+	MapEntryCopper: 铜捕捞陷阱
+	MapEntryTin: 锡捕捞陷阱
+
+	Copper: {
+		ItemDisplayName: "{$Tiles.CrabPot.MapEntryCopper}"
+		ItemTooltip: 可以用来捕鱼以打发时间
+	}
+
+	Tin: {
+		ItemDisplayName: "{$Tiles.CrabPot.MapEntryTin}"
+		ItemTooltip: "{$Tiles.CrabPot.Copper.ItemTooltip}"
+	}
+}
+
+TrashCompactor: {
+	MapEntry: 垃圾压缩机
+	ItemDisplayName: "{$Tiles.TrashCompactor.MapEntry}"
+	ItemTooltip: 可以拆解家具和垃圾
+}
+
+RadonMoss: {
+	ItemDisplayName: 氡苔藓
+	ItemTooltip: "'可能具有一点放射性'"
+}
+
+RadonMossBrick.ItemDisplayName: 氡苔藓砖
+
+ObsidianCrabPot: {
+	MapEntry: 黑曜石捕捞陷阱
+	ItemDisplayName: "{$Tiles.ObsidianCrabPot.MapEntry}"
+	ItemTooltip:
+		'''
+		使用熔岩鱼饵以在熔岩中捕鱼
+		{$Tiles.CrabPot.Copper.ItemTooltip}
+		'''
+}
+
+Trophies: {
+	CrabsonTrophy.DisplayName: 巨蟹蛤纪念物
+	CrabsonRelic.DisplayName: 巨蟹蛤纪念章
+	RedSpriteTrophy.DisplayName: 红色精灵纪念章
+	RedSpriteRelic.DisplayName: 红色精灵纪念物
+	SpaceSquidTrophy.DisplayName: 太空乌贼纪念章
+	SpaceSquidRelic.DisplayName: 太空乌贼纪念物
+}
+
+OblivionAltar: {
+	MapEntry: 遗境祭坛
+	ItemDisplayName: "{$OblivionAltar.MapEntry}"
+	ItemTooltip:
+		'''
+		右键升级邪恶武器
+		视作恶魔/猩红祭坛
+		'''
+}
+
+ScavengerStatue.ItemDisplayName: 拾荒者雕像
+
+MossStatues: {
+	Argon.ItemDisplayName: 氩植物雕像
+	Krypton.ItemDisplayName: 氪植物雕像
+	Neon.ItemDisplayName: 氖植物雕像
+	Xenon.ItemDisplayName: 氙植物雕像
+}
+
+OblivionChest: {
+	MapEntry: 遗境箱
+	ItemDisplayName: "{$Tiles.OblivionChest.MapEntry}"
+}
+
+OblivionChestTrapped.ItemDisplayName: 遗境陷阱箱
+
+OblivionCraftingStation: {
+	ItemDisplayName: 遗境再塑机
+	ItemTooltip: "{$CommonItemTooltip.SpecialCrafting}"
+}
+
+PlanterBox: {
+	Moray.ItemDisplayName: 海鳝花种植箱
+	Moonflower.ItemDisplayName: 月光花种植箱
+	Manacle.ItemDisplayName: 镣铐花种植箱
+	Mistral.ItemDisplayName: 寒风花种植箱
+}
+
+HangingPot: {
+	Moray.ItemDisplayName: 海鳝花吊盆
+	Mistral.ItemDisplayName: 寒风花吊盆
+	Manacle.ItemDisplayName: 镣铐花吊盆
+	Moonflower.ItemDisplayName: 月光花吊盆
+}
+
+Moonflower.MapEntry: 月光花
+Mistral.MapEntry: 寒风花
+Manacle.MapEntry: 镣铐花
+
+GravityBlock: {
+	MapEntry: 普通重力块
+	ItemDisplayName: "{$Tiles.GravityBlock.MapEntry}"
+}
+
+AntiGravityBlock: {
+	MapEntry: 复原重力块
+	ItemDisplayName: "{$Tiles.AntiGravityBlock.MapEntry}"
+}
+
+ScrapBlock: {
+	MapEntry: 垃圾块
+	ItemDisplayName: "{$Tiles.ScrapBlock.MapEntry}"
+}
+
+ScrapBrick.ItemDisplayName: 废料砖
+PolymerSandstone.ItemDisplayName: 聚合沙岩
+PolymerSand.ItemDisplayName: 聚合沙
+
+BlackJellyfishJar: {
+	MapEntry: 黑水母罐
+	ItemDisplayName: "{$Tiles.BlackJellyfishJar.MapEntry}"
+}
+
+Tombstones: {
+	MapEntry: {
+		0: 地狱墓石
+		1: 地狱墓标
+		2: 眠狱蕨
+		3: 眠狱灌木
+		4: 眠狱树篱
+		5: 地狱尖碑
+		6: 收割者坟墓
+		7: 阴寒坟墓
+		8: 看守者坟墓
+		9: 火石英坟墓
+		10: 公爵坟墓
+	}
+}
+
+RainTotem: {
+	MapEntry: 雨图腾
+	ItemDisplayName: "{$Tiles.RainTotem.MapEntry}"
+	ItemTooltip: 在附近时增加下雨几率
+}
+
+RainTotemInactive.MapEntry: "{$Tiles.RainTotem.MapEntry}"
+
+BigGem: {
+	Amethyst.ItemDisplayName: 紫水晶矿床
+	Topaz.ItemDisplayName: 黄玉矿床
+	Sapphire.ItemDisplayName: 蓝宝石矿床
+	Emerald.ItemDisplayName: 翡翠矿床
+	Ruby.ItemDisplayName: 红玉矿床
+	Diamond.ItemDisplayName: 钻石矿床
+}
+
+AncientAngelStatue.ItemDisplayName: 远古天使雕像
+
+AdamantiteChest: {
+	MapEntry: 精金宝箱
+	ItemDisplayName: "{$AdamantiteChest.MapEntry}"
+}
+
+HardGraniteChest: {
+	MapEntry: 活花岗岩宝箱
+	ItemDisplayName: "{$HardGraniteChest.MapEntry}"
+}
+
+HardMarbleChest: {
+	MapEntry: 大理石宝藏
+	ItemDisplayName: "{$HardMarbleChest.MapEntry}"
+}
+
+HardMushroomChest: {
+	MapEntry: 蘑菇矿宝箱
+	ItemDisplayName: "{$HardMushroomChest.MapEntry}"
+}
+
+HardFrozenChest: {
+	MapEntry: 寒霜宝箱
+	ItemDisplayName: "{$HardFrozenChest.MapEntry}"
+}
+
+HardSandstoneChest: {
+	MapEntry: 禁戒宝箱
+	ItemDisplayName: "{$HardSandstoneChest.MapEntry}"
+}
+
+HardJungleChest: {
+	MapEntry: 陆龟保险箱
+	ItemDisplayName: "{$HardJungleChest.MapEntry}"
+}
+
+AdamantiteChestTrapped.ItemDisplayName: 机关精金宝箱
+HardGraniteChestTrapped.ItemDisplayName: 机关活花岗岩宝箱
+HardMarbleChestTrapped.ItemDisplayName: 机关大理石宝藏
+HardMushroomChestTrapped.ItemDisplayName: 机关蘑菇矿宝箱
+HardFrozenChestTrapped.ItemDisplayName: 机关寒霜宝箱
+HardSandstoneChestTrapped.ItemDisplayName: 机关禁戒宝箱
+HardJungleChestTrapped.ItemDisplayName: 机关陆龟保险箱
+
+CopperChest: {
+	MapEntry: 铜宝箱
+	ItemDisplayName: "{$CopperChest.MapEntry}"
+}
+
+CopperChestTrapped.ItemDisplayName: 机关铜宝箱
+
+CopperChestLocked: {
+	MapEntry: 上锁铜宝箱
+	ItemDisplayName: "{$CopperChestLocked.MapEntry}"
+	ItemTooltip: "{$Items.CommonTooltips.LockedWithKey}"
+}
+
+HiddenChest.MapEntry: 隐藏宝箱
+MeadowGrass.ItemDisplayName: 草地种
+MeadowWood.ItemDisplayName: 草地木
+
+SeaFireflyBlock: {
+	DisplayName: 海萤火虫块
+	DisplayNameRed: 红色海萤火虫块
+	DisplayNameOrange: 橙色海萤火虫块
+	DisplayNameYellow: 黄色海萤火虫块
+	DisplayNameLime: 青柠色海萤火虫块
+	DisplayNameGreen: 绿色海萤火虫块
+	DisplayNameTeal: 深青色海萤火虫块
+	DisplayNameCyan: 青色海萤火虫块
+	DisplayNameSkyBlue: 天蓝色海萤火虫块
+	DisplayNameBlue: 蓝色海萤火虫块
+	DisplayNamePurple: 紫色海萤火虫块
+	DisplayNameViolet: 浅紫色海萤火虫块
+	DisplayNamePink: 粉色海萤火虫块
+	DisplayNameBlack: 黑色海萤火虫块
+	DisplayNameWhite: 银色海萤火虫块
+	DisplayNameRainbow: 彩色海萤火虫块
+}
+
+SeaPickleTorch.ItemDisplayName: 水和花药火把
+ScrapPalmTree.ItemDisplayName: 人造棕榈塔梁
+ScrapTree.ItemDisplayName: 人造树塔梁
+ScrapTreeDevice.ItemDisplayName: 树塔装置
+
+ScrapPalmTreeTop: {
+	ItemDisplayName: 人造棕榈塔顶盖
+	ItemTooltip: 必须放置在人造棕榈塔顶部
+}
+
+ScrapTreeTop: {
+	ItemDisplayName: 人造树塔顶盖
+	ItemTooltip: 必须放置在人造树塔顶部
+}

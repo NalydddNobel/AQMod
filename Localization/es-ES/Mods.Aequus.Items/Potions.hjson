@@ -1,0 +1,91 @@
+MeadowMushroom: {
+	// DisplayName: Meadow Mushroom
+	// Tooltip: ""
+}
+
+SentryPotion: {
+	DisplayName: Poción de centinela
+	Tooltip: Incrementa tu numero maximo de centinelas por {0}
+	BuffName: centinela
+}
+
+TaintedSeafood: {
+	DisplayName: Comida marina Contaminada
+	Tooltip:
+		'''
+		Puede dar mejoras menores, medianas, or o mayores a todas las estadisticas
+		Tambien tiene una probabilidad de dar intoxicación alimenticia
+		'''
+}
+
+DeathsEmbrace: {
+	DisplayName: Abrazo de la Muerte
+	Tooltip:
+		'''
+		No se consume cuando se usa
+		Aumenta un 20% el daño y la probabilidad de ataque crítico
+		Los ataques son un poco menos precisos
+		Los ataques hacen que vuelvas a tomar la poción automáticamente
+		{{Una vez que el efecto acabe, morirás instantáneamente...}}
+		'''
+}
+
+// Foods
+
+Baguette: {
+	DisplayName: Baguette
+	Tooltip:
+		'''
+		Mejoras supremas a todas las características
+		regeneración de vida muy incrementada
+		'''
+}
+
+// Healing
+
+GreaterHoneyPotion: {
+	DisplayName: Poción de Miel Mayor
+	Tooltip: Incrementa la regeneración natural
+}
+
+SuperHoneyPotion: {
+	DisplayName: Super Poción de Miel
+	Tooltip: Incrementa la regeneración natural por un largo tiempo
+}
+
+LesserRestorationPotion: {
+	DisplayName: Poción de recuperación menor
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+GreaterRestorationPotion: {
+	DisplayName: Poción de recuperación mayor
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+SuperRestorationPotion: {
+	DisplayName: Super Poción de recuperación
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+// Canteens
+
+HallowCanteen: {
+	DisplayName: Cantina Mágica
+	DisplayNameAlt: Cantina Mágica ({0})
+	Tooltip:
+		'''
+		Permite el uso infinito de dos pociones
+		Presiona <right> con 15 de una poción en la cantina para aplicar
+		'''
+}
+
+PotionCanteen: {
+	DisplayName: Cantina de pociónes
+	DisplayNameAlt: Cantina de pociónes ({0})
+	Tooltip:
+		'''
+		Permite el uso infinito de una poción
+		Presiona <right> con 15 de una poción en la cantina para aplicar
+		'''
+}
