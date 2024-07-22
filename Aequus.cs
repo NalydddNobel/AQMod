@@ -66,7 +66,7 @@ public class Aequus : Mod {
         return hook;
     }
 
-    public static Aequus Instance { get; private set; }
+    public static Aequus Instance => ModContent.GetInstance<Aequus>();
     public static UserInterface UserInterface { get; private set; }
 
     /// <summary>
@@ -87,7 +87,6 @@ public class Aequus : Mod {
     }
 
     public override void Load() {
-        Instance = this;
         if (Main.netMode != NetmodeID.Server) {
             UserInterface = new UserInterface();
         }
@@ -108,7 +107,6 @@ public class Aequus : Mod {
     //}
 
     public override void Unload() {
-        Instance = null;
         UserInterface = null;
     }
 
