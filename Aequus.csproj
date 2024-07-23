@@ -4,51 +4,44 @@
 	
   <PropertyGroup>
     <AssemblyName>Aequus</AssemblyName>
+	<Version>2.8</Version>
+	<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+	<Nullable>enable</Nullable>
 	<TargetFramework>net8.0</TargetFramework>
 	<PlatformTarget>AnyCPU</PlatformTarget>
 	<LangVersion>latest</LangVersion>
-    <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DocumentationFile>Aequus.xml</DocumentationFile>
-  </PropertyGroup>
+	  
+	<!-- Documentation file for summarries. -->
+	<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	<DocumentationFile>Aequus.xml</DocumentationFile>
 
+	<!-- Emit compiler generated files so they can be used in-game for building. -->
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+	<CompilerGeneratedFilesOutputPath>.sandbox</CompilerGeneratedFilesOutputPath>
+  </PropertyGroup>
+			
   <ItemGroup>
-    <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
-  </ItemGroup>
-		
-	<ItemGroup>
-		<None Remove="Old\**" Condition="'$(Configuration)' == 'Debug'" />
-		<EmbeddedResource Remove="Old\**" Condition="'$(Configuration)' == 'Debug'" />
-		<None Remove="Temp\SourceGenerators.Generator\**" />
-		<EmbeddedResource Remove="Temp\SourceGenerators.Generator\**" />
-		<Compile Remove="Content\Currency\**" />
-		<Compile Remove="Temp\SourceGenerators.Generator\**" />
-		<None Remove="project\**" />
-		<EmbeddedResource Remove="project\**" />
-		<Compile Remove="project\**" />
-		<None Remove="SourceGenerators\**" />
-		<EmbeddedResource Remove="SourceGenerators\**" />
-		<Compile Remove="SourceGenerators\**" />
-	</ItemGroup>
-	
-  <ItemGroup>
+	<!-- Libs & Packages. -->
+	<PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
 	<ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	
+	<!-- Additional Files for Source Generators. -->
 	<AdditionalFiles Include="**\*.png" />
 	<AdditionalFiles Include="**\*.ogg" />
-	<AdditionalFiles Include="**\Localization\*.hjson" />
+	<AdditionalFiles Include="Localization\*.hjson" />
+	  
+	<!-- Remove misc files from compilation. -->
   	<AdditionalFiles Remove="**\bin\**" />
 	<AdditionalFiles Remove="**\obj\**" />
-	<AdditionalFiles Remove="**\SourceGenerators\**" />
-	<AdditionalFiles Remove="**\Properties\**" />
+	<AdditionalFiles Remove="Properties\**" />
 	<AdditionalFiles Remove=".sandbox\**" />
-  </ItemGroup>
-
-  <PropertyGroup>
-    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-    <CompilerGeneratedFilesOutputPath>.sandbox</CompilerGeneratedFilesOutputPath>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
+	 
+	<!-- Hide Source Generator folder and generated files. -->
+	<AdditionalFiles Remove="SourceGenerators\**" />
+	<None Remove="SourceGenerators\**" />
+	<EmbeddedResource Remove="SourceGenerators\**" />
+	<Compile Remove="SourceGenerators\**" />
+	<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 
 </Project>
