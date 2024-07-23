@@ -6,7 +6,7 @@ using Terraria.GameContent;
 using Terraria.ObjectData;
 using Terraria.UI;
 
-namespace Aequus.Items.Accessories.Informational.HoloLens;
+namespace Aequus.Content.Items.Accessories.Informational.HoloLens;
 
 public class ChestLensInterface : UILayer {
     public class ChestLensInfo {

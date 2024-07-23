@@ -759,6 +759,9 @@
             <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Common.Effects.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Common.Effects.CameraPriority,System.Single,System.Int32)"/></param>
             <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
         </member>
+        <member name="F:Aequus.Common.Entities.DashPlayer.DashHaltSpeedMultiplier">
+            <summary>Multiplier used to reduce velocity when above the dash's halting speed.</summary>
+        </member>
         <member name="F:Aequus.Common.Graphics.DrawLayers.PostUpdateScreenPosition">
             <summary>Invoked before anything has begun rendering, but after the screen position has been determined.</summary>
         </member>
@@ -2187,7 +2190,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1300)</summary>
+            <summary>(Total Textures: 1302)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -2891,6 +2894,60 @@
         <member name="F:Aequus.AequusTextures.StuffedGlint">
             <summary>Full Path: Content/ItemPrefixes/Potions/StuffedGlint</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.PurpleBalloon">
+            <summary>Full Path: Content/Items/Accessories/Balloons/PurpleBalloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PurpleBalloon_Balloon">
+            <summary>Full Path: Content/Items/Accessories/Balloons/PurpleBalloon_Balloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SlimyBlueBalloon">
+            <summary>Full Path: Content/Items/Accessories/Balloons/SlimyBlueBalloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SlimyBlueBalloon_Balloon">
+            <summary>Full Path: Content/Items/Accessories/Balloons/SlimyBlueBalloon_Balloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlashwayShield">
+            <summary>Full Path: Content/Items/Accessories/FlashwayShield/FlashwayShield</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlashwayShield_Shield">
+            <summary>Full Path: Content/Items/Accessories/FlashwayShield/FlashwayShield_Shield</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AnglerBroadcaster">
+            <summary>Full Path: Content/Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcaster</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AnglerBroadcasterIcon">
+            <summary>Full Path: Content/Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcasterIcon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Calendar">
+            <summary>Full Path: Content/Items/Accessories/Informational/Calendar/Calendar</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CalendarInfoDisplay">
+            <summary>Full Path: Content/Items/Accessories/Informational/Calendar/CalendarInfoDisplay</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CalendarTile">
+            <summary>Full Path: Content/Items/Accessories/Informational/Calendar/CalendarTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GeigerCounter">
+            <summary>Full Path: Content/Items/Accessories/Informational/DebuffDPSMeter/GeigerCounter</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GeigerCounterInfoDisplay">
+            <summary>Full Path: Content/Items/Accessories/Informational/DebuffDPSMeter/GeigerCounterInfoDisplay</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HoloLens">
+            <summary>Full Path: Content/Items/Accessories/Informational/HoloLens/HoloLens</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MonocleBuilderToggle">
+            <summary>Full Path: Content/Items/Accessories/Informational/Monocle/MonocleBuilderToggle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RichMansMonocle">
+            <summary>Full Path: Content/Items/Accessories/Informational/Monocle/RichMansMonocle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShimmerMonocle">
+            <summary>Full Path: Content/Items/Accessories/Informational/Monocle/ShimmerMonocle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShimmerMonocleBuilderToggle">
+            <summary>Full Path: Content/Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.GlimmerMenu">
             <summary>Full Path: Content/MainMenu/GlimmerMenu</summary>
         </member>
@@ -3023,6 +3080,51 @@
         <member name="F:Aequus.AequusTextures.VampireSquid">
             <summary>Full Path: Content/Vampirism/Items/VampireSquid</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Balloon">
+            <summary>Full Path: Content/Villagers/SkyMerchant/Balloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Basket">
+            <summary>Full Path: Content/Villagers/SkyMerchant/Basket</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchantEmote">
+            <summary>Full Path: Content/Villagers/SkyMerchant/Emotes/SkyMerchantEmote</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Balloon_Shimmer">
+            <summary>Full Path: Content/Villagers/SkyMerchant/Shimmer/Balloon_Shimmer</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Basket_Shimmer">
+            <summary>Full Path: Content/Villagers/SkyMerchant/Shimmer/Basket_Shimmer</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer">
+            <summary>Full Path: Content/Villagers/SkyMerchant/Shimmer/SkyMerchant_Shimmer</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer_Aiming">
+            <summary>Full Path: Content/Villagers/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Aiming</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer_CrossbowArm">
+            <summary>Full Path: Content/Villagers/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CrossbowArm</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer_CustomHead">
+            <summary>Full Path: Content/Villagers/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CustomHead</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer_Head">
+            <summary>Full Path: Content/Villagers/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant">
+            <summary>Full Path: Content/Villagers/SkyMerchant/SkyMerchant</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Aiming">
+            <summary>Full Path: Content/Villagers/SkyMerchant/SkyMerchant_Aiming</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_CrossbowArm">
+            <summary>Full Path: Content/Villagers/SkyMerchant/SkyMerchant_CrossbowArm</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_CustomHead">
+            <summary>Full Path: Content/Villagers/SkyMerchant/SkyMerchant_CustomHead</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Head">
+            <summary>Full Path: Content/Villagers/SkyMerchant/SkyMerchant_Head</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.CrabsonBossChecklist">
             <summary>Full Path: CrossMod/BossChecklistSupport/Textures/CrabsonBossChecklist</summary>
         </member>
@@ -3100,54 +3202,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.icon_workshop">
             <summary>Full Path: icon_workshop</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PurpleBalloon">
-            <summary>Full Path: Items/Accessories/Balloons/PurpleBalloon</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PurpleBalloon_Balloon">
-            <summary>Full Path: Items/Accessories/Balloons/PurpleBalloon_Balloon</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SlimyBlueBalloon">
-            <summary>Full Path: Items/Accessories/Balloons/SlimyBlueBalloon</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SlimyBlueBalloon_Balloon">
-            <summary>Full Path: Items/Accessories/Balloons/SlimyBlueBalloon_Balloon</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AnglerBroadcaster">
-            <summary>Full Path: Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcaster</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AnglerBroadcasterIcon">
-            <summary>Full Path: Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcasterIcon</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Calendar">
-            <summary>Full Path: Items/Accessories/Informational/Calendar/Calendar</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CalendarInfoDisplay">
-            <summary>Full Path: Items/Accessories/Informational/Calendar/CalendarInfoDisplay</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CalendarTile">
-            <summary>Full Path: Items/Accessories/Informational/Calendar/CalendarTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GeigerCounter">
-            <summary>Full Path: Items/Accessories/Informational/DebuffDPSMeter/GeigerCounter</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GeigerCounterInfoDisplay">
-            <summary>Full Path: Items/Accessories/Informational/DebuffDPSMeter/GeigerCounterInfoDisplay</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HoloLens">
-            <summary>Full Path: Items/Accessories/Informational/HoloLens/HoloLens</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MonocleBuilderToggle">
-            <summary>Full Path: Items/Accessories/Informational/Monocle/MonocleBuilderToggle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RichMansMonocle">
-            <summary>Full Path: Items/Accessories/Informational/Monocle/RichMansMonocle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ShimmerMonocle">
-            <summary>Full Path: Items/Accessories/Informational/Monocle/ShimmerMonocle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ShimmerMonocleBuilderToggle">
-            <summary>Full Path: Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HighSteaks">
             <summary>Full Path: Items/Equipment/Accessories/Combat/CriticalStrike/HighSteaks</summary>
@@ -4970,51 +5024,6 @@
         <member name="F:Aequus.AequusTextures.NPCs_Town_PhysicistNPC_Shimmer_Physicist_Head">
             <summary>Full Path: NPCs/Town/PhysicistNPC/Shimmer/Physicist_Head</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Balloon">
-            <summary>Full Path: NPCs/Town/SkyMerchant/Balloon</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Basket">
-            <summary>Full Path: NPCs/Town/SkyMerchant/Basket</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchantEmote">
-            <summary>Full Path: NPCs/Town/SkyMerchant/Emotes/SkyMerchantEmote</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Balloon_Shimmer">
-            <summary>Full Path: NPCs/Town/SkyMerchant/Shimmer/Balloon_Shimmer</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Basket_Shimmer">
-            <summary>Full Path: NPCs/Town/SkyMerchant/Shimmer/Basket_Shimmer</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer">
-            <summary>Full Path: NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer_Aiming">
-            <summary>Full Path: NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Aiming</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer_CrossbowArm">
-            <summary>Full Path: NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CrossbowArm</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer_CustomHead">
-            <summary>Full Path: NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CustomHead</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer_Head">
-            <summary>Full Path: NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchant">
-            <summary>Full Path: NPCs/Town/SkyMerchant/SkyMerchant</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchant_Aiming">
-            <summary>Full Path: NPCs/Town/SkyMerchant/SkyMerchant_Aiming</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchant_CrossbowArm">
-            <summary>Full Path: NPCs/Town/SkyMerchant/SkyMerchant_CrossbowArm</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchant_CustomHead">
-            <summary>Full Path: NPCs/Town/SkyMerchant/SkyMerchant_CustomHead</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchant_Head">
-            <summary>Full Path: NPCs/Town/SkyMerchant/SkyMerchant_Head</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.BlueFireParticle">
             <summary>Full Path: Particles/BlueFireParticle</summary>
         </member>
@@ -6693,6 +6702,34 @@
             To remove an item properly, use <see cref="T:Aequus.Systems.Chests.DropRules.RemoveItemChestRule"/> as the only <paramref name="Rule"/> to pull all of the slots backwards upon deleting the item.
             </para>
             </summary>
+        </member>
+        <member name="M:Aequus.Systems.Shimmer.IShimmerOverride.GetShimmered(Terraria.Item,System.Int32)">
+            <returns>Return <see langword="false"/> to allow vanilla shimmer actions to occur.</returns>
+        </member>
+        <member name="M:Aequus.Systems.Shimmer.IShimmerOverride.IsTransformLocked(System.Int32)">
+            <summary>This method is not instanced.</summary>
+            <returns>Return <see langword="null"/> to allow vanilla shimmer conditions to be checked.</returns>
+        </member>
+        <member name="M:Aequus.Systems.Shimmer.IShimmerOverride.CanShimmer(Terraria.Item,System.Int32)">
+            <returns>Return <see langword="null"/> to allow vanilla shimmer conditions to be checked.</returns>
+        </member>
+        <member name="M:Aequus.Systems.Shimmer.Shimmer.GetShimmered(Terraria.Item)">
+            <summary>Emulates all vanilla shimmer on-transmutation effects. Including getting the achievement, the sound, particles, networking, ect.</summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Aequus.Systems.Shimmer.Shimmer.SetTransformation(System.Int32,System.Int32)">
+            <summary>Attempts to safely set the shimmer result of this item, by inserting it to the end of existing chains or loops.</summary>
+            <param name="from"></param>
+            <param name="into"></param>
+        </member>
+        <member name="F:Aequus.Systems.Shimmer.ShimmerTransmutationTreeType.Line">
+            <summary>Items convert into each other, eventually ending with an item with no conversion.</summary>
+        </member>
+        <member name="F:Aequus.Systems.Shimmer.ShimmerTransmutationTreeType.Loop">
+            <summary>Items convert into each other, and will cycle infinitely.</summary>
+        </member>
+        <member name="F:Aequus.Systems.Shimmer.ShimmerTransmutationTreeType.Broken">
+            <summary>Items will cycle, but will never reach the starting point.</summary>
         </member>
         <member name="M:Aequus.Systems.TimeSystem.ConditionBetweenDaysOfWeek(System.DayOfWeek,System.DayOfWeek)">
             <param name="firstDay">A <see cref="T:System.DayOfWeek"/> to compare against <see cref="P:Aequus.Systems.TimeSystem.DayOfTheWeek"/>.</param>

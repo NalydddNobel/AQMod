@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs.Town.SkyMerchant.UI;
+﻿using Aequus.Content.Villagers.SkyMerchant.UI;
 using Aequus.Systems.Chests;
 using Terraria.Audio;
 using Terraria.DataStructures;

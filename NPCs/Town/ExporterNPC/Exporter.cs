@@ -6,7 +6,7 @@ using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.UI.GrabBagReroll;
 using Aequus.CrossMod;
-using Aequus.Items.Accessories.Informational.Monocle;
+using Aequus.Content.Items.Accessories.Informational.Monocle;
 using Aequus.Items.Equipment.Accessories.Combat.OnHitAbility.Anchor;
 using Aequus.Items.Equipment.Accessories.Misc.Luck;
 using Aequus.Items.Equipment.Accessories.Money.FoolsGoldRing;

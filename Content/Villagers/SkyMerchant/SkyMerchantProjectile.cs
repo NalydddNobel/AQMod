@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using Terraria.Audio;
 
-namespace Aequus.NPCs.Town.SkyMerchant;
+namespace Aequus.Content.Villagers.SkyMerchant;
 
 public class SkyMerchantProjectile : ModProjectile {
     public override string Texture => AequusTextures.Projectile(ProjectileID.WoodenArrowFriendly);

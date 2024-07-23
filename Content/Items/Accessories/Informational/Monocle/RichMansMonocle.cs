@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items.EquipmentBooster;
 
-namespace Aequus.Items.Accessories.Informational.Monocle;
+namespace Aequus.Content.Items.Accessories.Informational.Monocle;
 
 [Gen.AequusPlayer_InfoField("accInfoMoneyMonocle")]
 public class RichMansMonocle : ModItem {

@@ -1,5 +1,5 @@
 ﻿using Aequus.Items;
-using Aequus.Items.Accessories.Informational.HoloLens;
+using Aequus.Content.Items.Accessories.Informational.HoloLens;
 using Aequus.Items.Equipment.Accessories.Misc;
 using Aequus.Items.Equipment.PetsUtility.Drone;
 using Aequus.Items.Tools.MagicMirrors.PhaseMirror;

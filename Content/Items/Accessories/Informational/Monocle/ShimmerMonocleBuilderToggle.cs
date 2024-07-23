@@ -1,7 +1,7 @@
 ﻿using Terraria.DataStructures;
 using Terraria.Localization;
 
-namespace Aequus.Items.Accessories.Informational.Monocle;
+namespace Aequus.Content.Items.Accessories.Informational.Monocle;
 
 public class ShimmerMonocleBuilderToggle : BuilderToggle {
     public override bool Active() {

@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs.Town.SkyMerchant.UI;
+﻿using Aequus.Content.Villagers.SkyMerchant.UI;
 using System.Diagnostics;
 using System.IO;
 using Terraria.ModLoader.IO;

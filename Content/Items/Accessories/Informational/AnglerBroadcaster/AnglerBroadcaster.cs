@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items.EquipmentBooster;
 
-namespace Aequus.Items.Accessories.Informational.AnglerBroadcaster;
+namespace Aequus.Content.Items.Accessories.Informational.AnglerBroadcaster;
 
 public class AnglerBroadcaster : ModItem {
     public override void SetStaticDefaults() {

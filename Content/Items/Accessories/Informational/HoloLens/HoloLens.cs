@@ -3,7 +3,7 @@ using Aequus.Common.Recipes;
 using Aequus.Items.Tools.MagicMirrors.PhaseMirror;
 using Aequus.NPCs.Town.PhysicistNPC.Analysis;
 
-namespace Aequus.Items.Accessories.Informational.HoloLens;
+namespace Aequus.Content.Items.Accessories.Informational.HoloLens;
 
 public class HoloLens : ModItem {
     public override void SetStaticDefaults() {

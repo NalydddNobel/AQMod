@@ -6,7 +6,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Aequus.Items.Accessories.Informational.HoloLens;
+using Aequus.Content.Items.Accessories.Informational.HoloLens;
 
 namespace Aequus.Items.Equipment.Accessories.Misc {
     public class HyperJet : ModItem {

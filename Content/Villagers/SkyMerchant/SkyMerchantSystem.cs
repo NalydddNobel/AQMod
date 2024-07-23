@@ -2,7 +2,7 @@
 using System;
 using Terraria.DataStructures;
 
-namespace Aequus.NPCs.Town.SkyMerchant;
+namespace Aequus.Content.Villagers.SkyMerchant;
 
 public class SkyMerchantSystem : ModSystem {
     public static int SkyMerchantX;

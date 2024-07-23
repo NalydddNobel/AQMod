@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Items;
-using Aequus.NPCs.Town.SkyMerchant.UI;
+using Aequus.Content.Villagers.SkyMerchant.UI;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.IO;

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1300)</summary>
+/// <summary>(Total Textures: 1302)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -475,6 +475,42 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SplashGlint = new("Content/ItemPrefixes/Potions/SplashGlint");
     /// <summary>Full Path: Content/ItemPrefixes/Potions/StuffedGlint</summary>
     public static readonly RequestCache<Texture2D> StuffedGlint = new("Content/ItemPrefixes/Potions/StuffedGlint");
+    /// <summary>Full Path: Content/Items/Accessories/Balloons/PurpleBalloon</summary>
+    public static readonly RequestCache<Texture2D> PurpleBalloon = new("Content/Items/Accessories/Balloons/PurpleBalloon");
+    /// <summary>Full Path: Content/Items/Accessories/Balloons/PurpleBalloon_Balloon</summary>
+    public static readonly RequestCache<Texture2D> PurpleBalloon_Balloon = new("Content/Items/Accessories/Balloons/PurpleBalloon_Balloon");
+    /// <summary>Full Path: Content/Items/Accessories/Balloons/SlimyBlueBalloon</summary>
+    public static readonly RequestCache<Texture2D> SlimyBlueBalloon = new("Content/Items/Accessories/Balloons/SlimyBlueBalloon");
+    /// <summary>Full Path: Content/Items/Accessories/Balloons/SlimyBlueBalloon_Balloon</summary>
+    public static readonly RequestCache<Texture2D> SlimyBlueBalloon_Balloon = new("Content/Items/Accessories/Balloons/SlimyBlueBalloon_Balloon");
+    /// <summary>Full Path: Content/Items/Accessories/FlashwayShield/FlashwayShield</summary>
+    public static readonly RequestCache<Texture2D> FlashwayShield = new("Content/Items/Accessories/FlashwayShield/FlashwayShield");
+    /// <summary>Full Path: Content/Items/Accessories/FlashwayShield/FlashwayShield_Shield</summary>
+    public static readonly RequestCache<Texture2D> FlashwayShield_Shield = new("Content/Items/Accessories/FlashwayShield/FlashwayShield_Shield");
+    /// <summary>Full Path: Content/Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcaster</summary>
+    public static readonly RequestCache<Texture2D> AnglerBroadcaster = new("Content/Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcaster");
+    /// <summary>Full Path: Content/Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcasterIcon</summary>
+    public static readonly RequestCache<Texture2D> AnglerBroadcasterIcon = new("Content/Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcasterIcon");
+    /// <summary>Full Path: Content/Items/Accessories/Informational/Calendar/Calendar</summary>
+    public static readonly RequestCache<Texture2D> Calendar = new("Content/Items/Accessories/Informational/Calendar/Calendar");
+    /// <summary>Full Path: Content/Items/Accessories/Informational/Calendar/CalendarInfoDisplay</summary>
+    public static readonly RequestCache<Texture2D> CalendarInfoDisplay = new("Content/Items/Accessories/Informational/Calendar/CalendarInfoDisplay");
+    /// <summary>Full Path: Content/Items/Accessories/Informational/Calendar/CalendarTile</summary>
+    public static readonly RequestCache<Texture2D> CalendarTile = new("Content/Items/Accessories/Informational/Calendar/CalendarTile");
+    /// <summary>Full Path: Content/Items/Accessories/Informational/DebuffDPSMeter/GeigerCounter</summary>
+    public static readonly RequestCache<Texture2D> GeigerCounter = new("Content/Items/Accessories/Informational/DebuffDPSMeter/GeigerCounter");
+    /// <summary>Full Path: Content/Items/Accessories/Informational/DebuffDPSMeter/GeigerCounterInfoDisplay</summary>
+    public static readonly RequestCache<Texture2D> GeigerCounterInfoDisplay = new("Content/Items/Accessories/Informational/DebuffDPSMeter/GeigerCounterInfoDisplay");
+    /// <summary>Full Path: Content/Items/Accessories/Informational/HoloLens/HoloLens</summary>
+    public static readonly RequestCache<Texture2D> HoloLens = new("Content/Items/Accessories/Informational/HoloLens/HoloLens");
+    /// <summary>Full Path: Content/Items/Accessories/Informational/Monocle/MonocleBuilderToggle</summary>
+    public static readonly RequestCache<Texture2D> MonocleBuilderToggle = new("Content/Items/Accessories/Informational/Monocle/MonocleBuilderToggle");
+    /// <summary>Full Path: Content/Items/Accessories/Informational/Monocle/RichMansMonocle</summary>
+    public static readonly RequestCache<Texture2D> RichMansMonocle = new("Content/Items/Accessories/Informational/Monocle/RichMansMonocle");
+    /// <summary>Full Path: Content/Items/Accessories/Informational/Monocle/ShimmerMonocle</summary>
+    public static readonly RequestCache<Texture2D> ShimmerMonocle = new("Content/Items/Accessories/Informational/Monocle/ShimmerMonocle");
+    /// <summary>Full Path: Content/Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
+    public static readonly RequestCache<Texture2D> ShimmerMonocleBuilderToggle = new("Content/Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle");
     /// <summary>Full Path: Content/MainMenu/GlimmerMenu</summary>
     public static readonly RequestCache<Texture2D> GlimmerMenu = new("Content/MainMenu/GlimmerMenu");
     /// <summary>Full Path: Content/MainMenu/GlimmerMenu_Glow</summary>
@@ -563,6 +599,36 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> VampirismNightEclipse = new("Content/Vampirism/Buffs/VampirismNightEclipse");
     /// <summary>Full Path: Content/Vampirism/Items/VampireSquid</summary>
     public static readonly RequestCache<Texture2D> VampireSquid = new("Content/Vampirism/Items/VampireSquid");
+    /// <summary>Full Path: Content/Villagers/SkyMerchant/Balloon</summary>
+    public static readonly RequestCache<Texture2D> Balloon = new("Content/Villagers/SkyMerchant/Balloon");
+    /// <summary>Full Path: Content/Villagers/SkyMerchant/Basket</summary>
+    public static readonly RequestCache<Texture2D> Basket = new("Content/Villagers/SkyMerchant/Basket");
+    /// <summary>Full Path: Content/Villagers/SkyMerchant/Emotes/SkyMerchantEmote</summary>
+    public static readonly RequestCache<Texture2D> SkyMerchantEmote = new("Content/Villagers/SkyMerchant/Emotes/SkyMerchantEmote");
+    /// <summary>Full Path: Content/Villagers/SkyMerchant/Shimmer/Balloon_Shimmer</summary>
+    public static readonly RequestCache<Texture2D> Balloon_Shimmer = new("Content/Villagers/SkyMerchant/Shimmer/Balloon_Shimmer");
+    /// <summary>Full Path: Content/Villagers/SkyMerchant/Shimmer/Basket_Shimmer</summary>
+    public static readonly RequestCache<Texture2D> Basket_Shimmer = new("Content/Villagers/SkyMerchant/Shimmer/Basket_Shimmer");
+    /// <summary>Full Path: Content/Villagers/SkyMerchant/Shimmer/SkyMerchant_Shimmer</summary>
+    public static readonly RequestCache<Texture2D> SkyMerchant_Shimmer = new("Content/Villagers/SkyMerchant/Shimmer/SkyMerchant_Shimmer");
+    /// <summary>Full Path: Content/Villagers/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Aiming</summary>
+    public static readonly RequestCache<Texture2D> SkyMerchant_Shimmer_Aiming = new("Content/Villagers/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Aiming");
+    /// <summary>Full Path: Content/Villagers/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CrossbowArm</summary>
+    public static readonly RequestCache<Texture2D> SkyMerchant_Shimmer_CrossbowArm = new("Content/Villagers/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CrossbowArm");
+    /// <summary>Full Path: Content/Villagers/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CustomHead</summary>
+    public static readonly RequestCache<Texture2D> SkyMerchant_Shimmer_CustomHead = new("Content/Villagers/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CustomHead");
+    /// <summary>Full Path: Content/Villagers/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Head</summary>
+    public static readonly RequestCache<Texture2D> SkyMerchant_Shimmer_Head = new("Content/Villagers/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Head");
+    /// <summary>Full Path: Content/Villagers/SkyMerchant/SkyMerchant</summary>
+    public static readonly RequestCache<Texture2D> SkyMerchant = new("Content/Villagers/SkyMerchant/SkyMerchant");
+    /// <summary>Full Path: Content/Villagers/SkyMerchant/SkyMerchant_Aiming</summary>
+    public static readonly RequestCache<Texture2D> SkyMerchant_Aiming = new("Content/Villagers/SkyMerchant/SkyMerchant_Aiming");
+    /// <summary>Full Path: Content/Villagers/SkyMerchant/SkyMerchant_CrossbowArm</summary>
+    public static readonly RequestCache<Texture2D> SkyMerchant_CrossbowArm = new("Content/Villagers/SkyMerchant/SkyMerchant_CrossbowArm");
+    /// <summary>Full Path: Content/Villagers/SkyMerchant/SkyMerchant_CustomHead</summary>
+    public static readonly RequestCache<Texture2D> SkyMerchant_CustomHead = new("Content/Villagers/SkyMerchant/SkyMerchant_CustomHead");
+    /// <summary>Full Path: Content/Villagers/SkyMerchant/SkyMerchant_Head</summary>
+    public static readonly RequestCache<Texture2D> SkyMerchant_Head = new("Content/Villagers/SkyMerchant/SkyMerchant_Head");
     /// <summary>Full Path: CrossMod/BossChecklistSupport/Textures/CrabsonBossChecklist</summary>
     public static readonly RequestCache<Texture2D> CrabsonBossChecklist = new("CrossMod/BossChecklistSupport/Textures/CrabsonBossChecklist");
     /// <summary>Full Path: CrossMod/BossChecklistSupport/Textures/DemonSiegeBossChecklist</summary>
@@ -615,38 +681,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> icon_small = new("icon_small");
     /// <summary>Full Path: icon_workshop</summary>
     public static readonly RequestCache<Texture2D> icon_workshop = new("icon_workshop");
-    /// <summary>Full Path: Items/Accessories/Balloons/PurpleBalloon</summary>
-    public static readonly RequestCache<Texture2D> PurpleBalloon = new("Items/Accessories/Balloons/PurpleBalloon");
-    /// <summary>Full Path: Items/Accessories/Balloons/PurpleBalloon_Balloon</summary>
-    public static readonly RequestCache<Texture2D> PurpleBalloon_Balloon = new("Items/Accessories/Balloons/PurpleBalloon_Balloon");
-    /// <summary>Full Path: Items/Accessories/Balloons/SlimyBlueBalloon</summary>
-    public static readonly RequestCache<Texture2D> SlimyBlueBalloon = new("Items/Accessories/Balloons/SlimyBlueBalloon");
-    /// <summary>Full Path: Items/Accessories/Balloons/SlimyBlueBalloon_Balloon</summary>
-    public static readonly RequestCache<Texture2D> SlimyBlueBalloon_Balloon = new("Items/Accessories/Balloons/SlimyBlueBalloon_Balloon");
-    /// <summary>Full Path: Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcaster</summary>
-    public static readonly RequestCache<Texture2D> AnglerBroadcaster = new("Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcaster");
-    /// <summary>Full Path: Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcasterIcon</summary>
-    public static readonly RequestCache<Texture2D> AnglerBroadcasterIcon = new("Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcasterIcon");
-    /// <summary>Full Path: Items/Accessories/Informational/Calendar/Calendar</summary>
-    public static readonly RequestCache<Texture2D> Calendar = new("Items/Accessories/Informational/Calendar/Calendar");
-    /// <summary>Full Path: Items/Accessories/Informational/Calendar/CalendarInfoDisplay</summary>
-    public static readonly RequestCache<Texture2D> CalendarInfoDisplay = new("Items/Accessories/Informational/Calendar/CalendarInfoDisplay");
-    /// <summary>Full Path: Items/Accessories/Informational/Calendar/CalendarTile</summary>
-    public static readonly RequestCache<Texture2D> CalendarTile = new("Items/Accessories/Informational/Calendar/CalendarTile");
-    /// <summary>Full Path: Items/Accessories/Informational/DebuffDPSMeter/GeigerCounter</summary>
-    public static readonly RequestCache<Texture2D> GeigerCounter = new("Items/Accessories/Informational/DebuffDPSMeter/GeigerCounter");
-    /// <summary>Full Path: Items/Accessories/Informational/DebuffDPSMeter/GeigerCounterInfoDisplay</summary>
-    public static readonly RequestCache<Texture2D> GeigerCounterInfoDisplay = new("Items/Accessories/Informational/DebuffDPSMeter/GeigerCounterInfoDisplay");
-    /// <summary>Full Path: Items/Accessories/Informational/HoloLens/HoloLens</summary>
-    public static readonly RequestCache<Texture2D> HoloLens = new("Items/Accessories/Informational/HoloLens/HoloLens");
-    /// <summary>Full Path: Items/Accessories/Informational/Monocle/MonocleBuilderToggle</summary>
-    public static readonly RequestCache<Texture2D> MonocleBuilderToggle = new("Items/Accessories/Informational/Monocle/MonocleBuilderToggle");
-    /// <summary>Full Path: Items/Accessories/Informational/Monocle/RichMansMonocle</summary>
-    public static readonly RequestCache<Texture2D> RichMansMonocle = new("Items/Accessories/Informational/Monocle/RichMansMonocle");
-    /// <summary>Full Path: Items/Accessories/Informational/Monocle/ShimmerMonocle</summary>
-    public static readonly RequestCache<Texture2D> ShimmerMonocle = new("Items/Accessories/Informational/Monocle/ShimmerMonocle");
-    /// <summary>Full Path: Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
-    public static readonly RequestCache<Texture2D> ShimmerMonocleBuilderToggle = new("Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle");
     /// <summary>Full Path: Items/Equipment/Accessories/Combat/CriticalStrike/HighSteaks</summary>
     public static readonly RequestCache<Texture2D> HighSteaks = new("Items/Equipment/Accessories/Combat/CriticalStrike/HighSteaks");
     /// <summary>Full Path: Items/Equipment/Accessories/Combat/CriticalStrike/HighSteaks_Waist</summary>
@@ -1861,36 +1895,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Physicist_Glow = new("NPCs/Town/PhysicistNPC/Shimmer/Physicist_Glow");
     /// <summary>Full Path: NPCs/Town/PhysicistNPC/Shimmer/Physicist_Head</summary>
     public static readonly RequestCache<Texture2D> NPCs_Town_PhysicistNPC_Shimmer_Physicist_Head = new("NPCs/Town/PhysicistNPC/Shimmer/Physicist_Head");
-    /// <summary>Full Path: NPCs/Town/SkyMerchant/Balloon</summary>
-    public static readonly RequestCache<Texture2D> Balloon = new("NPCs/Town/SkyMerchant/Balloon");
-    /// <summary>Full Path: NPCs/Town/SkyMerchant/Basket</summary>
-    public static readonly RequestCache<Texture2D> Basket = new("NPCs/Town/SkyMerchant/Basket");
-    /// <summary>Full Path: NPCs/Town/SkyMerchant/Emotes/SkyMerchantEmote</summary>
-    public static readonly RequestCache<Texture2D> SkyMerchantEmote = new("NPCs/Town/SkyMerchant/Emotes/SkyMerchantEmote");
-    /// <summary>Full Path: NPCs/Town/SkyMerchant/Shimmer/Balloon_Shimmer</summary>
-    public static readonly RequestCache<Texture2D> Balloon_Shimmer = new("NPCs/Town/SkyMerchant/Shimmer/Balloon_Shimmer");
-    /// <summary>Full Path: NPCs/Town/SkyMerchant/Shimmer/Basket_Shimmer</summary>
-    public static readonly RequestCache<Texture2D> Basket_Shimmer = new("NPCs/Town/SkyMerchant/Shimmer/Basket_Shimmer");
-    /// <summary>Full Path: NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer</summary>
-    public static readonly RequestCache<Texture2D> SkyMerchant_Shimmer = new("NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer");
-    /// <summary>Full Path: NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Aiming</summary>
-    public static readonly RequestCache<Texture2D> SkyMerchant_Shimmer_Aiming = new("NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Aiming");
-    /// <summary>Full Path: NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CrossbowArm</summary>
-    public static readonly RequestCache<Texture2D> SkyMerchant_Shimmer_CrossbowArm = new("NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CrossbowArm");
-    /// <summary>Full Path: NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CustomHead</summary>
-    public static readonly RequestCache<Texture2D> SkyMerchant_Shimmer_CustomHead = new("NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_CustomHead");
-    /// <summary>Full Path: NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Head</summary>
-    public static readonly RequestCache<Texture2D> SkyMerchant_Shimmer_Head = new("NPCs/Town/SkyMerchant/Shimmer/SkyMerchant_Shimmer_Head");
-    /// <summary>Full Path: NPCs/Town/SkyMerchant/SkyMerchant</summary>
-    public static readonly RequestCache<Texture2D> SkyMerchant = new("NPCs/Town/SkyMerchant/SkyMerchant");
-    /// <summary>Full Path: NPCs/Town/SkyMerchant/SkyMerchant_Aiming</summary>
-    public static readonly RequestCache<Texture2D> SkyMerchant_Aiming = new("NPCs/Town/SkyMerchant/SkyMerchant_Aiming");
-    /// <summary>Full Path: NPCs/Town/SkyMerchant/SkyMerchant_CrossbowArm</summary>
-    public static readonly RequestCache<Texture2D> SkyMerchant_CrossbowArm = new("NPCs/Town/SkyMerchant/SkyMerchant_CrossbowArm");
-    /// <summary>Full Path: NPCs/Town/SkyMerchant/SkyMerchant_CustomHead</summary>
-    public static readonly RequestCache<Texture2D> SkyMerchant_CustomHead = new("NPCs/Town/SkyMerchant/SkyMerchant_CustomHead");
-    /// <summary>Full Path: NPCs/Town/SkyMerchant/SkyMerchant_Head</summary>
-    public static readonly RequestCache<Texture2D> SkyMerchant_Head = new("NPCs/Town/SkyMerchant/SkyMerchant_Head");
     /// <summary>Full Path: Particles/BlueFireParticle</summary>
     public static readonly RequestCache<Texture2D> BlueFireParticle = new("Particles/BlueFireParticle");
     /// <summary>Full Path: Particles/BlueFireSparkle</summary>

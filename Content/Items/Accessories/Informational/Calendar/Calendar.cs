@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items.EquipmentBooster;
 
-namespace Aequus.Items.Accessories.Informational.Calendar;
+namespace Aequus.Content.Items.Accessories.Informational.Calendar;
 
 [Gen.AequusPlayer_InfoField("accInfoDayCalendar")]
 public class Calendar : ModItem {

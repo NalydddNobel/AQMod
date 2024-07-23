@@ -2,15 +2,17 @@
 using Aequus.Common.NPCs;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Peaceful;
+using Aequus.Content.Villagers.SkyMerchant.UI;
 using Aequus.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
-using Aequus.NPCs.Town.SkyMerchant.UI;
+using Aequus.NPCs;
+using Aequus.NPCs.Town;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.UI;
 using Terraria.Localization;
 
-namespace Aequus.NPCs.Town.SkyMerchant;
+namespace Aequus.Content.Villagers.SkyMerchant;
 
 public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
     public enum MovementState {

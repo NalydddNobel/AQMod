@@ -3,7 +3,7 @@ using Aequus.Common.UI;
 using Aequus.Common.Utilities;
 using Aequus.Content.UI;
 using Aequus.Items;
-using Aequus.Items.Accessories.Informational.HoloLens;
+using Aequus.Content.Items.Accessories.Informational.HoloLens;
 using Aequus.Items.Equipment.Accessories.Combat.Passive.CelesteTorus;
 using Aequus.Items.Tools.Building;
 using Aequus.NPCs;

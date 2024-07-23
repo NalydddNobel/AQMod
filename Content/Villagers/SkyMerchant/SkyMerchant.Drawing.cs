@@ -5,7 +5,7 @@ using Terraria.GameContent;
 using Terraria.Map;
 using Terraria.UI;
 
-namespace Aequus.NPCs.Town.SkyMerchant;
+namespace Aequus.Content.Villagers.SkyMerchant;
 
 public partial class SkyMerchant {
     public readonly struct TextureDrawSet(Asset<Texture2D> balloon, Asset<Texture2D> basket, Asset<Texture2D> aiming, Asset<Texture2D> crossbowArm, Asset<Texture2D> head) {

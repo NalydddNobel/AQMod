@@ -4,7 +4,7 @@ using Aequus.Items.Materials;
 using Aequus.Tiles.MossCaves.Radon;
 using Terraria.Localization;
 
-namespace Aequus.Items.Accessories.Informational.DebuffDPSMeter;
+namespace Aequus.Content.Items.Accessories.Informational.DebuffDPSMeter;
 
 [Gen.AequusPlayer_InfoField("accInfoDebuffDPS")]
 public class GeigerCounter : ModItem {

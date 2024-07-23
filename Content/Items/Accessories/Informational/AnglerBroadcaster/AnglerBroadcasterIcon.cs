@@ -1,4 +1,4 @@
-﻿namespace Aequus.Items.Accessories.Informational.AnglerBroadcaster;
+﻿namespace Aequus.Content.Items.Accessories.Informational.AnglerBroadcaster;
 
 public class AnglerBroadcasterIcon : InfoDisplay {
     public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor)/* tModPorter Suggestion: Set displayColor to InactiveInfoTextColor if your display value is "zero"/shows no valuable information */ {

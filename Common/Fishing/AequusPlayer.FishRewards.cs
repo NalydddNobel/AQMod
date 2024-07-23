@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Accessories.Informational.AnglerBroadcaster;
+﻿using Aequus.Content.Items.Accessories.Informational.AnglerBroadcaster;
 using Aequus.Items.Misc.FishingBait;
 using System.Collections.Generic;
 

@@ -14,7 +14,7 @@ using Terraria.Localization;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace Aequus.NPCs.Town.SkyMerchant.UI;
+namespace Aequus.Content.Villagers.SkyMerchant.UI;
 
 public class SkyMerchantRenameUIState : UIState {
     public ImprovedItemSlot SendItem { get; private set; }
