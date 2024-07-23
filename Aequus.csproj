@@ -39,11 +39,12 @@
 	<AdditionalFiles Remove="**\obj\**" />
 	<AdditionalFiles Remove="**\SourceGenerators\**" />
 	<AdditionalFiles Remove="**\Properties\**" />
+	<AdditionalFiles Remove=".sandbox\**" />
   </ItemGroup>
 
   <PropertyGroup>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-    <CompilerGeneratedFilesOutputPath>Temp</CompilerGeneratedFilesOutputPath>
+    <CompilerGeneratedFilesOutputPath>.sandbox</CompilerGeneratedFilesOutputPath>
   </PropertyGroup>
 
   <ItemGroup>

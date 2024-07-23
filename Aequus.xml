@@ -759,8 +759,14 @@
             <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Common.Effects.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Common.Effects.CameraPriority,System.Single,System.Int32)"/></param>
             <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
         </member>
+        <member name="F:Aequus.Common.Graphics.DrawLayers.PostUpdateScreenPosition">
+            <summary>Invoked before anything has begun rendering, but after the screen position has been determined.</summary>
+        </member>
         <member name="E:Aequus.Common.Graphics.DrawLayers.WorldBehindTiles">
             <summary>Invoked before NPCs behind tiles are drawn.</summary>
+        </member>
+        <member name="F:Aequus.Common.Graphics.DrawLayers.PostDrawNPCs">
+            <summary>Invoked after NPCs are drawn.</summary>
         </member>
         <member name="E:Aequus.Common.Graphics.DrawLayers.PostDrawDust">
             <summary>Invoked after Dusts have been drawn.</summary>
