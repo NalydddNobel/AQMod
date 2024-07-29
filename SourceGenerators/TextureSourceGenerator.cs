@@ -11,7 +11,7 @@ public class TextureSourceGenerator : ISourceGenerator {
     }
 
     public void Execute(GeneratorExecutionContext context) {
-        var files = Utilities.GetFiles<AssetFile>(context, "png", static s => new(s));
+        var files = Utilities.GetFiles(context, "png", GetAssetFile);
         Utilities.FixFileNames(files, static f => f.Name = f.Name = f.Path.Replace("/", "_"));
         context.AddSource("AequusTextures.cs", SourceText.From(
             $$"""
@@ -32,5 +32,13 @@ public class TextureSourceGenerator : ISourceGenerator {
                 }
                 """, Encoding.UTF8)
         );
+    }
+
+    private static AssetFile GetAssetFile(string name, string path) {
+        if (name.Contains('.')) {
+            return null;
+        }
+
+        return new AssetFile(name, path);
     }
 }

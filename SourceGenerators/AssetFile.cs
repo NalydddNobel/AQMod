@@ -1,11 +1,6 @@
 ﻿namespace SourceGenerators;
 
-public class AssetFile {
-    public string Name;
-    public string Path;
-
-    public AssetFile(string path) { 
-        Path = path;
-        Name = path.Substring(path.LastIndexOf('/') + 1);
-    }
+public class AssetFile(string Name, string Path) {
+    public string Name = Name;
+    public string Path = Path;
 }

@@ -757,6 +757,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CrownOfBloodCooldown = new("Items/Equipment/Accessories/CrownOfBlood/Buffs/CrownOfBloodCooldown");
     /// <summary>Full Path: Items/Equipment/Accessories/CrownOfBlood/Buffs/CrownOfBloodDebuff</summary>
     public static readonly RequestCache<Texture2D> CrownOfBloodDebuff = new("Items/Equipment/Accessories/CrownOfBlood/Buffs/CrownOfBloodDebuff");
+    /// <summary>Full Path: Items/Equipment/Accessories/CrownOfBlood/CrownOfBloodInventoryBack</summary>
+    public static readonly RequestCache<Texture2D> CrownOfBloodInventoryBack = new("Items/Equipment/Accessories/CrownOfBlood/CrownOfBloodInventoryBack");
     /// <summary>Full Path: Items/Equipment/Accessories/CrownOfBlood/CrownOfBloodItem</summary>
     public static readonly RequestCache<Texture2D> CrownOfBloodItem = new("Items/Equipment/Accessories/CrownOfBlood/CrownOfBloodItem");
     /// <summary>Full Path: Items/Equipment/Accessories/CrownOfBlood/CrownOfBloodItem_Crown</summary>
@@ -767,8 +769,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Heart2 = new("Items/Equipment/Accessories/CrownOfBlood/Hearts/Heart2");
     /// <summary>Full Path: Items/Equipment/Accessories/CrownOfBlood/Hearts/Heart_Template</summary>
     public static readonly RequestCache<Texture2D> Heart_Template = new("Items/Equipment/Accessories/CrownOfBlood/Hearts/Heart_Template");
-    /// <summary>Full Path: Items/Equipment/Accessories/CrownOfBlood/InventoryBack</summary>
-    public static readonly RequestCache<Texture2D> Items_Equipment_Accessories_CrownOfBlood_InventoryBack = new("Items/Equipment/Accessories/CrownOfBlood/InventoryBack");
     /// <summary>Full Path: Items/Equipment/Accessories/CrownOfBlood/Symbol_Blood</summary>
     public static readonly RequestCache<Texture2D> Symbol_Blood = new("Items/Equipment/Accessories/CrownOfBlood/Symbol_Blood");
     /// <summary>Full Path: Items/Equipment/Accessories/CrownOfBlood/Symbol_Remains</summary>

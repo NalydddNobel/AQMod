@@ -2,7 +2,7 @@
 
 namespace Aequus;
 
-public sealed partial class AequusTextures : ILoadable {
+public partial class AequusTextures : ILoadable {
     public const string TemporaryBuffIcon = "Terraria/Images/Buff_188";
     public const string TemporaryDebuffIcon = "Terraria/Images/Buff_164";
 

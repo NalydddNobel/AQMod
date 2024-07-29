@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Items.SlotDecals;
 using Aequus.Common.UI;
-using Aequus.Common.Utilities.Extensions;
 using System;
 using Terraria.GameContent;
 
@@ -48,7 +47,7 @@ public partial class CrownOfBloodItem {
         spriteBatch.Draw(bloom, position, null, Color.Red with { A = 100 } * opacity,
             0f, bloomOrigin, 0.75f * Main.inventoryScale, SpriteEffects.None, 0f);
 
-        SlotDecals.DrawSlotDecal(spriteBatch, AequusTextures.Items_Equipment_Accessories_CrownOfBlood_InventoryBack, position, null, Color.White * opacity);
+        SlotDecals.DrawSlotDecal(spriteBatch, AequusTextures.CrownOfBloodInventoryBack, position, null, Color.White * opacity);
 
         spriteBatch.Draw(bloom, position, null, Color.Black * opacity,
             0f, bloomOrigin, 0.5f * Main.inventoryScale, SpriteEffects.None, 0f);

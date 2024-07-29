@@ -1366,6 +1366,25 @@
             17
             </summary>
         </member>
+        <member name="T:Aequus.Common.LazyAsset`1.IAssetProvider">
+            <summary>Provides an asset. Comes in a loaded and unloaded variety to reduce on null checks.</summary>
+        </member>
+        <member name="T:Aequus.Common.LazyAsset`1.UnloadedAssetProvider">
+            <summary>Represents an Unloaded Asset.</summary>
+            <param name="asset"></param>
+        </member>
+        <member name="M:Aequus.Common.LazyAsset`1.UnloadedAssetProvider.#ctor(Aequus.Common.LazyAsset{`0})">
+            <summary>Represents an Unloaded Asset.</summary>
+            <param name="asset"></param>
+        </member>
+        <member name="T:Aequus.Common.LazyAsset`1.AssetProvider">
+            <summary>Represents a loaded asset.</summary>
+            <param name="asset"></param>
+        </member>
+        <member name="M:Aequus.Common.LazyAsset`1.AssetProvider.#ctor(ReLogic.Content.Asset{`0})">
+            <summary>Represents a loaded asset.</summary>
+            <param name="asset"></param>
+        </member>
         <member name="T:Aequus.Common.ModPlayers.PlayerWingModifiers">
             <summary>
             Modifies the stats of wings
@@ -3317,6 +3336,9 @@
         <member name="F:Aequus.AequusTextures.CrownOfBloodDebuff">
             <summary>Full Path: Items/Equipment/Accessories/CrownOfBlood/Buffs/CrownOfBloodDebuff</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CrownOfBloodInventoryBack">
+            <summary>Full Path: Items/Equipment/Accessories/CrownOfBlood/CrownOfBloodInventoryBack</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.CrownOfBloodItem">
             <summary>Full Path: Items/Equipment/Accessories/CrownOfBlood/CrownOfBloodItem</summary>
         </member>
@@ -3331,9 +3353,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.Heart_Template">
             <summary>Full Path: Items/Equipment/Accessories/CrownOfBlood/Hearts/Heart_Template</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Items_Equipment_Accessories_CrownOfBlood_InventoryBack">
-            <summary>Full Path: Items/Equipment/Accessories/CrownOfBlood/InventoryBack</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Symbol_Blood">
             <summary>Full Path: Items/Equipment/Accessories/CrownOfBlood/Symbol_Blood</summary>

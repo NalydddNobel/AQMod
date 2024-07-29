@@ -3,6 +3,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace SourceGenerators;
@@ -83,15 +84,19 @@ public static class Utilities {
             => $"{ConvertNameSyntax(qualifiedNameSyntax.Left)}.{ConvertNameSyntax(qualifiedNameSyntax.Right)}";
     }
 
-    public static List<T> GetFiles<T>(GeneratorExecutionContext context, string fileType, Func<string, T> initializer) where T : AssetFile {
+    public static List<T> GetFiles<T>(GeneratorExecutionContext context, string fileType, Func<string, string, T> initializer) where T : AssetFile {
         fileType = "." + fileType;
         var fileList = new List<T>();
         foreach (var file in context.AdditionalFiles.Where(f => f.Path.EndsWith(fileType))) {
+            string name = Path.GetFileNameWithoutExtension(file.Path);
             var safePath = file.Path.Replace('\\', '/');
             int index = safePath.LastIndexOf(ParentS) + ParentS.Length;
             safePath = safePath.Substring(index, safePath.Length - fileType.Length - index);
 
-            fileList.Add(initializer(safePath));
+            T resultFile = initializer(name, safePath);
+            if (resultFile != null) {
+                fileList.Add(resultFile);
+            }
         }
         return fileList;
     }
