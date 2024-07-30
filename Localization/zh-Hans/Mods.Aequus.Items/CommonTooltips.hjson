@@ -27,4 +27,5 @@ CommonTooltips: {
 		需要一个{0}
 		'''
 	UsedXOfXTimes: 已使用{0}/{1}次
+	BuffedBy: 你受到了{0}的强化!
 }

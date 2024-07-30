@@ -15,6 +15,11 @@ ValentineRing: {
 GoldenWind: {
 	DisplayName: 黄金之风
 	Tooltip: "{$Items.GoldenFeather.Tooltip}"
+	/* BuffDescription:
+		'''
+		{$GoldenFeather.BuffDescription}
+		Regenerate {1} health per second
+		''' */
 }
 
 GoldenFeather: {
@@ -24,6 +29,7 @@ GoldenFeather: {
 		每秒为你所处队伍中的所有玩家和你恢复{1}点生命值
 		你和你队友的重生速度缩短{0}秒
 		'''
+	// BuffDescription: You respawn {0} seconds faster
 }
 
 FlashwayShield: {

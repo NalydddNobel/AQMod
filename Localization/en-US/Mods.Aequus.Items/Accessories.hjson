@@ -14,16 +14,26 @@ ValentineRing: {
 
 GoldenWind: {
 	DisplayName: Golden Wind
-	Tooltip: "{$Items.GoldenFeather.Tooltip}"
+	Tooltip:
+		'''
+		{$Items.GoldenFeather.Tooltip}
+		Regenerate {1} life per second
+		'''
+	BuffDescription:
+		'''
+		{$GoldenFeather.BuffDescription}
+		Regenerate {1} health per second
+		'''
 }
 
 GoldenFeather: {
-	DisplayName: Miraculous Feather
+	DisplayName: Gilded Phoenix
 	Tooltip:
 		'''
-		Regenerate {1} life per second for yourself and all players on your team
-		Respawn time for you and teammates is reduced by {0} seconds
+		Reduce respawn time by {0} seconds
+		This accessory effects are granted to all nearby teammates
 		'''
+	BuffDescription: You respawn {0} seconds faster
 }
 
 FlashwayShield: {

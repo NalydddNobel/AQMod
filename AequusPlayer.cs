@@ -841,6 +841,7 @@ public partial class AequusPlayer : ModPlayer {
     }
 
     public override void PostUpdateEquips() {
+        PostUpdateEquipsInner();
         PostUpdateEquips_EmpoweredEquipAbilities();
         PostUpdateEquips_CrownOfBlood();
         PostUpdateEquips_Vampire();

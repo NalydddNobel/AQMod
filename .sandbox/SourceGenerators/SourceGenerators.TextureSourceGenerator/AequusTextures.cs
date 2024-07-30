@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1302)</summary>
+/// <summary>(Total Textures: 1306)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -487,6 +487,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> FlashwayShield = new("Content/Items/Accessories/FlashwayShield/FlashwayShield");
     /// <summary>Full Path: Content/Items/Accessories/FlashwayShield/FlashwayShield_Shield</summary>
     public static readonly RequestCache<Texture2D> FlashwayShield_Shield = new("Content/Items/Accessories/FlashwayShield/FlashwayShield_Shield");
+    /// <summary>Full Path: Content/Items/Accessories/GoldenFeather/GoldenFeather</summary>
+    public static readonly RequestCache<Texture2D> GoldenFeather = new("Content/Items/Accessories/GoldenFeather/GoldenFeather");
+    /// <summary>Full Path: Content/Items/Accessories/GoldenFeather/GoldenFeatherBuff</summary>
+    public static readonly RequestCache<Texture2D> GoldenFeatherBuff = new("Content/Items/Accessories/GoldenFeather/GoldenFeatherBuff");
+    /// <summary>Full Path: Content/Items/Accessories/GoldenFeather/GoldenWind</summary>
+    public static readonly RequestCache<Texture2D> GoldenWind = new("Content/Items/Accessories/GoldenFeather/GoldenWind");
+    /// <summary>Full Path: Content/Items/Accessories/GoldenFeather/GoldenWindBuff</summary>
+    public static readonly RequestCache<Texture2D> GoldenWindBuff = new("Content/Items/Accessories/GoldenFeather/GoldenWindBuff");
     /// <summary>Full Path: Content/Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcaster</summary>
     public static readonly RequestCache<Texture2D> AnglerBroadcaster = new("Content/Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcaster");
     /// <summary>Full Path: Content/Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcasterIcon</summary>

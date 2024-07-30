@@ -27,4 +27,5 @@ CommonTooltips: {
 		Requires a {0}
 		''' */
 	// UsedXOfXTimes: Used {0}/{1} times
+	BuffedBy: "{0} te esta favoreciendo!"
 }

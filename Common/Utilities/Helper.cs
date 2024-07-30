@@ -2332,11 +2332,15 @@ public static partial class Helper {
         return v;
     }
 
-    public static T ModItem<T>(this Item item) where T : ModItem {
-        return (T)item.ModItem;
+    /// <returns>The item casted as the specificed <see cref="Terraria.ModLoader.ModItem"/> <typeparamref name="T"/>, or the template instance of T if the item is not T or inherits from T.</returns>
+    public static T ModItemOrDefault<T>(this Item item) where T : ModItem {
+        return (item.ModItem as T) ?? ModContent.GetInstance<T>();
     }
-    public static T ModProjectile<T>(this Projectile projectile) where T : ModProjectile {
-        return (T)projectile.ModProjectile;
+    public static T? ModItem<T>(this Item item) where T : ModItem {
+        return item.ModItem as T;
+    }
+    public static T? ModProjectile<T>(this Projectile projectile) where T : ModProjectile {
+        return projectile.ModProjectile as T;
     }
 
     public static void ScreenFlip(Vector2[] value) {

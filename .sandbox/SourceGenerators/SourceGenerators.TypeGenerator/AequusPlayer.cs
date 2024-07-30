@@ -9,6 +9,12 @@ namespace Aequus;
 
 public partial class AequusPlayer {
     [CompilerGenerated]
+    public Item accGoldenFeather;
+    [CompilerGenerated]
+    public int accGoldenFeatherRespawnTimeModifier;
+    [CompilerGenerated]
+    public byte accGoldenFeatherTeammate;
+    [CompilerGenerated]
     public bool accInfoDayCalendar;
     [CompilerGenerated]
     public bool accInfoDebuffDPS;
@@ -16,6 +22,18 @@ public partial class AequusPlayer {
     public bool accInfoMoneyMonocle;
     [CompilerGenerated]
     public bool accInfoShimmerMonocle;
+    
+    [CompilerGenerated]
+    private void ResetEffectsInner() {
+        SourceGeneratorTools.ResetObj(ref accGoldenFeather);
+        SourceGeneratorTools.ResetObj(ref accGoldenFeatherRespawnTimeModifier);
+        SourceGeneratorTools.ResetObj(ref accGoldenFeatherTeammate);
+    }
+    
+    [CompilerGenerated]
+    private void PostUpdateEquipsInner() {
+        Content.Items.Accessories.GoldenFeather.GoldenFeather.UpdateGoldenFeather(Player, this);
+    }
     
     [CompilerGenerated]
     private void ResetInfoAccessoriesInner() {

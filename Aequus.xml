@@ -2209,7 +2209,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1302)</summary>
+            <summary>(Total Textures: 1306)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -2930,6 +2930,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.FlashwayShield_Shield">
             <summary>Full Path: Content/Items/Accessories/FlashwayShield/FlashwayShield_Shield</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldenFeather">
+            <summary>Full Path: Content/Items/Accessories/GoldenFeather/GoldenFeather</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldenFeatherBuff">
+            <summary>Full Path: Content/Items/Accessories/GoldenFeather/GoldenFeatherBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldenWind">
+            <summary>Full Path: Content/Items/Accessories/GoldenFeather/GoldenWind</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldenWindBuff">
+            <summary>Full Path: Content/Items/Accessories/GoldenFeather/GoldenWindBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AnglerBroadcaster">
             <summary>Full Path: Content/Items/Accessories/Informational/AnglerBroadcaster/AnglerBroadcaster</summary>
@@ -6476,6 +6488,9 @@
             </summary>
             <param name="rectangle"></param>
             <returns>The index of the player. -1 if none are found.</returns>
+        </member>
+        <member name="M:Aequus.Helper.ModItemOrDefault``1(Terraria.Item)">
+            <returns>The item casted as the specificed <see cref="T:Terraria.ModLoader.ModItem"/> <typeparamref name="T"/>, or the template instance of T if the item is not T or inherits from T.</returns>
         </member>
         <member name="M:Aequus.Helper.DrawTile(System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
