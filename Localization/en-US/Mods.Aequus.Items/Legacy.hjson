@@ -1213,15 +1213,6 @@ Deltoid: {
 	Tooltip: Shoots a burst of 3 exploding arrows
 }
 
-StarPhish: {
-	DisplayName: Star Phish
-	Tooltip:
-		'''
-		Deals increased damage to enemies in water
-		{$Items.UsesDarts}
-		'''
-}
-
 SnowflakeCannon: {
 	DisplayName: Snowflake Cannon
 	Tooltip:
@@ -3220,15 +3211,6 @@ Nettlebane: {
 		'''
 		Increased defense while holding this weapon
 		Attacks increases the power of this sword's abilities
-		'''
-}
-
-JunkJet: {
-	DisplayName: Junk Jet
-	Tooltip:
-		'''
-		Can use any ammo
-		{0}% chance to not consume ammo
 		'''
 }
 

@@ -28,4 +28,6 @@ CommonTooltips: {
 		'''
 	UsedXOfXTimes: Used {0}/{1} times
 	BuffedBy: You are being buffed by {0}!
+	UsesDarts: Uses seeds and darts as ammo
+	UsesGel: Uses gel for ammo
 }

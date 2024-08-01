@@ -5,6 +5,16 @@ Keywords: {
 	}
 }
 
+MeadowHammer: {
+	DisplayName: Meadow Hammer
+	Tooltip: ""
+}
+
+MeadowBow: {
+	DisplayName: Meadow Bow
+	Tooltip: ""
+}
+
 //# Equipment: Armor
 GravetenderHood: {
 	DisplayName: Gravetender Hood

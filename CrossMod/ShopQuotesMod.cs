@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.CrossMod;
 using Aequus.Content.CursorDyes.Items;
+using Aequus.Content.Villagers.SkyMerchant;
 using Aequus.Items.Equipment.Accessories.Sentry.SentryChip;
 using Aequus.Items.Equipment.PetsVanity.Familiar;
 using Aequus.NPCs.Town.CarpenterNPC;
@@ -19,9 +20,7 @@ internal class ShopQuotesMod : ModSupport<ShopQuotesMod> {
         ModContent.GetInstance<Carpenter>().SetupShopQuotes(Instance);
         ModContent.GetInstance<Occultist>().SetupShopQuotes(Instance);
         ModContent.GetInstance<Physicist>().SetupShopQuotes(Instance);
-#if RELEASE
         ModContent.GetInstance<SkyMerchant>().SetupShopQuotes(Instance);
-#endif
         Instance.Call("SetQuote", NPCID.Mechanic, ModContent.ItemType<Sentry6502>(), GetKey("Mechanic.Sentry6502"));
         Instance.Call("SetQuote", NPCID.DyeTrader, ModContent.ItemType<DyableCursor>(), GetKey("DyeTrader.DyableCursor"));
         Instance.Call("SetQuote", NPCID.Clothier, ModContent.ItemType<FamiliarPickaxe>(), GetKey("Clothier.FamiliarPickaxe"));

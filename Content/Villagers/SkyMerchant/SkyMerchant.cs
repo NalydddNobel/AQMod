@@ -26,6 +26,11 @@ public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
     public float balloonBobbing;
     public int target;
 
+    internal void SetupShopQuotes(Mod shopQuotes) {
+        shopQuotes.Call("AddNPC", Mod, Type);
+        shopQuotes.Call("SetColor", Type, Color.SkyBlue * 1.2f);
+    }
+
     public override void SetDefaults() {
         NPC.friendly = true;
         NPC.width = 18;

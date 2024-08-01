@@ -1,8 +1,17 @@
-//# Weapons: Ranged
-StarPhish: {
-}
+DisplayName: Star Phish
+Tooltip:
+	'''
+	Deals increased damage to enemies in water
+	{$CommonTooltips.UsesDarts}
+	'''
 
 JunkJet: {
+	DisplayName: Junk Jet
+	Tooltip:
+		'''
+		Can use any ammo
+		{0}% chance to not consume ammo
+		'''
 }
 
 SkyHunterCrossbow: {

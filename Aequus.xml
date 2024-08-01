@@ -1811,6 +1811,9 @@
         <member name="T:Aequus.Common.Utilities.Helpers.ColorTagProvider">
             <summary>Contains helper methods for generating chat tag strings. For item and glyphs, <see cref="T:Terraria.GameContent.UI.Chat.ItemTagHandler"/> and <see cref="T:Terraria.GameContent.UI.Chat.GlyphTagHandler"/> have static helper methods.</summary>
         </member>
+        <member name="F:Aequus.Common.Utilities.Helpers.CommonColor.TextInteractable">
+            <summary>Yellow text used by Beds, Clocks, etc.</summary>
+        </member>
         <member name="M:Aequus.Common.Utilities.LootBuilder.AddBossLoot(Terraria.ModLoader.ILoot,System.Int32,Terraria.GameContent.ItemDropRules.IItemDropRule,Terraria.GameContent.ItemDropRules.IItemDropRule)">
             <summary>Adds rule to <paramref name="loot"/>, and to the Item specified by <paramref name="bossBagId"/>. <paramref name="loot"/>'s rule will be conditioned to only drop in Classic (Normal) Mode.</summary>
         </member>
@@ -2212,7 +2215,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1322)</summary>
+            <summary>(Total Textures: 1325)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3042,11 +3045,20 @@
         <member name="F:Aequus.AequusTextures.ShimmerMonocleBuilderToggle">
             <summary>Full Path: Content/Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.MeadowHammer">
+            <summary>Full Path: Content/Items/Tools/Hammers/MeadowHammer</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.StunEffect">
             <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunEffect</summary>
         </member>
         <member name="F:Aequus.AequusTextures.StunGun">
             <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunGun</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowStaff">
+            <summary>Full Path: Content/Items/Weapons/Magic/MeadowStaff/MeadowStaff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowBow">
+            <summary>Full Path: Content/Items/Weapons/Ranged/MeadowBow/MeadowBow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GlimmerMenu">
             <summary>Full Path: Content/MainMenu/GlimmerMenu</summary>
@@ -3939,6 +3951,9 @@
         <member name="F:Aequus.AequusTextures.CelesitalEightBall">
             <summary>Full Path: Items/Misc/CelesitalEightBall</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.AncientHellBeamDye">
+            <summary>Full Path: Items/Misc/Dyes/AncientHellBeamDye</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.AncientHueshiftDye">
             <summary>Full Path: Items/Misc/Dyes/AncientHueshiftDye</summary>
         </member>
@@ -3947,9 +3962,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.AncientFrostbiteDye">
             <summary>Full Path: Items/Misc/Dyes/Ancient/AncientFrostbiteDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AncientHellBeamDye">
-            <summary>Full Path: Items/Misc/Dyes/Ancient/AncientHellBeamDye</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AncientScorchingDye">
             <summary>Full Path: Items/Misc/Dyes/Ancient/AncientScorchingDye</summary>

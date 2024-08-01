@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1322)</summary>
+/// <summary>(Total Textures: 1325)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -559,10 +559,16 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ShimmerMonocle = new("Content/Items/Accessories/Informational/Monocle/ShimmerMonocle");
     /// <summary>Full Path: Content/Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
     public static readonly RequestCache<Texture2D> ShimmerMonocleBuilderToggle = new("Content/Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle");
+    /// <summary>Full Path: Content/Items/Tools/Hammers/MeadowHammer</summary>
+    public static readonly RequestCache<Texture2D> MeadowHammer = new("Content/Items/Tools/Hammers/MeadowHammer");
     /// <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunEffect</summary>
     public static readonly RequestCache<Texture2D> StunEffect = new("Content/Items/Weapons/Classless/StunGun/StunEffect");
     /// <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunGun</summary>
     public static readonly RequestCache<Texture2D> StunGun = new("Content/Items/Weapons/Classless/StunGun/StunGun");
+    /// <summary>Full Path: Content/Items/Weapons/Magic/MeadowStaff/MeadowStaff</summary>
+    public static readonly RequestCache<Texture2D> MeadowStaff = new("Content/Items/Weapons/Magic/MeadowStaff/MeadowStaff");
+    /// <summary>Full Path: Content/Items/Weapons/Ranged/MeadowBow/MeadowBow</summary>
+    public static readonly RequestCache<Texture2D> MeadowBow = new("Content/Items/Weapons/Ranged/MeadowBow/MeadowBow");
     /// <summary>Full Path: Content/MainMenu/GlimmerMenu</summary>
     public static readonly RequestCache<Texture2D> GlimmerMenu = new("Content/MainMenu/GlimmerMenu");
     /// <summary>Full Path: Content/MainMenu/GlimmerMenu_Glow</summary>
@@ -1157,14 +1163,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CarpenterResetSheet = new("Items/Misc/CarpenterResetSheet");
     /// <summary>Full Path: Items/Misc/CelesitalEightBall</summary>
     public static readonly RequestCache<Texture2D> CelesitalEightBall = new("Items/Misc/CelesitalEightBall");
+    /// <summary>Full Path: Items/Misc/Dyes/AncientHellBeamDye</summary>
+    public static readonly RequestCache<Texture2D> AncientHellBeamDye = new("Items/Misc/Dyes/AncientHellBeamDye");
     /// <summary>Full Path: Items/Misc/Dyes/AncientHueshiftDye</summary>
     public static readonly RequestCache<Texture2D> AncientHueshiftDye = new("Items/Misc/Dyes/AncientHueshiftDye");
     /// <summary>Full Path: Items/Misc/Dyes/Ancient/AncientBreakdownDye</summary>
     public static readonly RequestCache<Texture2D> AncientBreakdownDye = new("Items/Misc/Dyes/Ancient/AncientBreakdownDye");
     /// <summary>Full Path: Items/Misc/Dyes/Ancient/AncientFrostbiteDye</summary>
     public static readonly RequestCache<Texture2D> AncientFrostbiteDye = new("Items/Misc/Dyes/Ancient/AncientFrostbiteDye");
-    /// <summary>Full Path: Items/Misc/Dyes/Ancient/AncientHellBeamDye</summary>
-    public static readonly RequestCache<Texture2D> AncientHellBeamDye = new("Items/Misc/Dyes/Ancient/AncientHellBeamDye");
     /// <summary>Full Path: Items/Misc/Dyes/Ancient/AncientScorchingDye</summary>
     public static readonly RequestCache<Texture2D> AncientScorchingDye = new("Items/Misc/Dyes/Ancient/AncientScorchingDye");
     /// <summary>Full Path: Items/Misc/Dyes/Ancient/AncientTidalDye</summary>

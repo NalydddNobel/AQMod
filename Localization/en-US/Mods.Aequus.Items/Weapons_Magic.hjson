@@ -1,3 +1,8 @@
+MeadowStaff: {
+	DisplayName: Wyvernwood Staff
+	Tooltip: ""
+}
+
 TrashStaff: {
 	DisplayName: Spam Mail
 	Tooltip: Critical strikes send virus mail to nearby enemies
