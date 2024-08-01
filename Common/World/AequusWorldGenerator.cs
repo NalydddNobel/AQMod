@@ -11,7 +11,6 @@ using Aequus.Items.Equipment.Accessories.Misc;
 using Aequus.Items.Equipment.PetsUtility.Miner;
 using Aequus.Items.Materials;
 using Aequus.Items.Tools;
-using Aequus.Items.Weapons.Ranged.Misc.Slingshot;
 using Aequus.Tiles.Misc.BigGems;
 using System;
 using System.Collections.Generic;
@@ -228,10 +227,6 @@ public class AequusWorldGenerator : ModSystem {
                         }
                     }
                     else if (style == ChestType.Skyware || style == ChestType.LockedGold && !Main.wallDungeon[Main.tile[c.x, c.y].WallType] && c.y < (int)Main.worldSurface) {
-                        if (!placedItems.Contains(ModContent.ItemType<Slingshot>()) || r.NextBool()) {
-                            c.Insert(ModContent.ItemType<Slingshot>(), 1);
-                            placedItems.Add(ModContent.ItemType<Slingshot>());
-                        }
                     }
                 }
                 else if (Main.tile[c.x, c.y].TileType == TileID.Containers2) {

@@ -4,11 +4,7 @@ using Aequus.Content.CursorDyes.Items;
 using Aequus.Items.Equipment.Accessories.Misc;
 using Aequus.Items.Equipment.PetsUtility.Miner;
 using Aequus.Items.Tools;
-using Aequus.Items.Weapons.Ranged.Misc.Slingshot;
 using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.CrossMod;
 internal class CerebralMod : ModSupport<CerebralMod> {
@@ -39,8 +35,8 @@ internal class CerebralMod : ModSupport<CerebralMod> {
             ModContent.ItemType<SwordCursor>(),
             ModContent.ItemType<MiningPetSpawner>());
 
-        AddCrafterRecipe("SkywareChestCrafter", TileID.Anvils,
-            ModContent.ItemType<Slingshot>());
+        //AddCrafterRecipe("SkywareChestCrafter", TileID.Anvils,
+        //    ModContent.ItemType<Slingshot>());
 
         AddCrafterRecipe("DungeonChestCrafter", TileID.Anvils,
             ChestLootDataset.AequusDungeonChestLoot.ToArray());

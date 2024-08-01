@@ -2212,7 +2212,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1328)</summary>
+            <summary>(Total Textures: 1322)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -4647,15 +4647,6 @@
         <member name="F:Aequus.AequusTextures.JunkJet">
             <summary>Full Path: Items/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Slingsaber">
-            <summary>Full Path: Items/Weapons/Ranged/Misc/Slingshot/Slingsaber</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Slingsaber_Glow">
-            <summary>Full Path: Items/Weapons/Ranged/Misc/Slingshot/Slingsaber_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Slingshot">
-            <summary>Full Path: Items/Weapons/Ranged/Misc/Slingshot/Slingshot</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.StarPhish">
             <summary>Full Path: Items/Weapons/Ranged/Misc/StarPhish/StarPhish</summary>
         </member>
@@ -5357,15 +5348,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.HamaYumiArrow">
             <summary>Full Path: Projectiles/Ranged/HamaYumiArrow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SlingsaberProj">
-            <summary>Full Path: Projectiles/Ranged/SlingsaberProj</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SlingsaberProj_Glow">
-            <summary>Full Path: Projectiles/Ranged/SlingsaberProj_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SlingshotProj">
-            <summary>Full Path: Projectiles/Ranged/SlingshotProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BrainCauliflowerBlast">
             <summary>Full Path: Projectiles/Summon/BrainCauliflowerBlast</summary>

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1328)</summary>
+/// <summary>(Total Textures: 1322)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -1629,12 +1629,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SnowflakeCannon = new("Items/Weapons/Ranged/Misc/GaleStreams/SnowflakeCannon/SnowflakeCannon");
     /// <summary>Full Path: Items/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
     public static readonly RequestCache<Texture2D> JunkJet = new("Items/Weapons/Ranged/Misc/JunkJet/JunkJet");
-    /// <summary>Full Path: Items/Weapons/Ranged/Misc/Slingshot/Slingsaber</summary>
-    public static readonly RequestCache<Texture2D> Slingsaber = new("Items/Weapons/Ranged/Misc/Slingshot/Slingsaber");
-    /// <summary>Full Path: Items/Weapons/Ranged/Misc/Slingshot/Slingsaber_Glow</summary>
-    public static readonly RequestCache<Texture2D> Slingsaber_Glow = new("Items/Weapons/Ranged/Misc/Slingshot/Slingsaber_Glow");
-    /// <summary>Full Path: Items/Weapons/Ranged/Misc/Slingshot/Slingshot</summary>
-    public static readonly RequestCache<Texture2D> Slingshot = new("Items/Weapons/Ranged/Misc/Slingshot/Slingshot");
     /// <summary>Full Path: Items/Weapons/Ranged/Misc/StarPhish/StarPhish</summary>
     public static readonly RequestCache<Texture2D> StarPhish = new("Items/Weapons/Ranged/Misc/StarPhish/StarPhish");
     /// <summary>Full Path: Items/Weapons/Sentry/PhysicistSentry/PhysicistSentry</summary>
@@ -2103,12 +2097,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> FlameblasterWind = new("Projectiles/Ranged/FlameblasterWind");
     /// <summary>Full Path: Projectiles/Ranged/HamaYumiArrow</summary>
     public static readonly RequestCache<Texture2D> HamaYumiArrow = new("Projectiles/Ranged/HamaYumiArrow");
-    /// <summary>Full Path: Projectiles/Ranged/SlingsaberProj</summary>
-    public static readonly RequestCache<Texture2D> SlingsaberProj = new("Projectiles/Ranged/SlingsaberProj");
-    /// <summary>Full Path: Projectiles/Ranged/SlingsaberProj_Glow</summary>
-    public static readonly RequestCache<Texture2D> SlingsaberProj_Glow = new("Projectiles/Ranged/SlingsaberProj_Glow");
-    /// <summary>Full Path: Projectiles/Ranged/SlingshotProj</summary>
-    public static readonly RequestCache<Texture2D> SlingshotProj = new("Projectiles/Ranged/SlingshotProj");
     /// <summary>Full Path: Projectiles/Summon/BrainCauliflowerBlast</summary>
     public static readonly RequestCache<Texture2D> BrainCauliflowerBlast = new("Projectiles/Summon/BrainCauliflowerBlast");
     /// <summary>Full Path: Projectiles/Summon/BrainCauliflowerBlast_Aura</summary>

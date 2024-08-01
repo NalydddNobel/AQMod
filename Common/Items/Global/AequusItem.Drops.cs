@@ -10,7 +10,6 @@ using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc.FishingBait;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee.Swords.IronLotus;
-using Aequus.Items.Weapons.Ranged.Misc.Slingshot;
 using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus;
@@ -105,7 +104,6 @@ public partial class AequusItem {
 
             case ItemID.FloatingIslandFishingCrate:
             case ItemID.FloatingIslandFishingCrateHard:
-                itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<Slingshot>(), 3));
                 goto BiomeCrate;
 
             case ItemID.LockBox:
