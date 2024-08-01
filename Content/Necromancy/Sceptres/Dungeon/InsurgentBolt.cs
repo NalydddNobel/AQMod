@@ -92,7 +92,7 @@ public class InsurgentBolt : InsurgencyProj {
         var drawColor = Projectile.GetAlpha(lightColor) * Projectile.Opacity;
 
         if ((int)Projectile.ai[0] != 2) {
-            DrawHelper.DrawBasicVertexLine(AequusTextures.Trail0, Projectile.oldPos, Projectile.oldRot,
+            DrawHelper.DrawBasicVertexLineWithProceduralPadding(AequusTextures.Trail0, Projectile.oldPos, Projectile.oldRot,
                 (p) => drawColor * 0.8f * Projectile.Opacity * (1f - p),
                 (p) => 4f * Projectile.scale * (1f - p),
                 Projectile.Size / 2f - Main.screenPosition);

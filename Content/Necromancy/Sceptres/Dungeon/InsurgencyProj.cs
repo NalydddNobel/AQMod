@@ -220,7 +220,7 @@ public class InsurgencyProj : CorruptionSceptreProj {
             //Main.spriteBatch.End();
             //Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
 
-            DrawHelper.DrawBasicVertexLine(AequusTextures.Trail3, Projectile.oldPos, Projectile.oldRot,
+            DrawHelper.DrawBasicVertexLineWithProceduralPadding(AequusTextures.Trail3, Projectile.oldPos, Projectile.oldRot,
                 (p) => new Color(100, 200, 150, 0) * 0.5f * Projectile.Opacity * (1f - p),
                 (p) => 60f * Projectile.scale * (1f - p),
                 Projectile.Size / 2f - Main.screenPosition);

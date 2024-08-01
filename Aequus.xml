@@ -1864,7 +1864,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 114)</summary>
+            <summary>(Total Sounds: 115)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.boowomp">
             <summary>Full Path: Assets/Sounds/boowomp</summary>
@@ -2154,6 +2154,9 @@
         <member name="F:Aequus.AequusSounds.starbullets">
             <summary>Full Path: Assets/Sounds/OmegaStarite/starbullets</summary>
         </member>
+        <member name="F:Aequus.AequusSounds.InflictStunned">
+            <summary>Full Path: Assets/Sounds/OnHit/InflictStunned</summary>
+        </member>
         <member name="F:Aequus.AequusSounds.photobookopen">
             <summary>Full Path: Assets/Sounds/photobookopen</summary>
         </member>
@@ -2209,7 +2212,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1306)</summary>
+            <summary>(Total Textures: 1328)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -2439,6 +2442,54 @@
         <member name="F:Aequus.AequusTextures.FriendshipParticle">
             <summary>Full Path: Assets/Textures/FriendshipParticle</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.ItemCooldown">
+            <summary>Full Path: Assets/Textures/ItemCooldown</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CopperKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/CopperKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CorruptionKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/CorruptionKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrimsonKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/CrimsonKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DungeonDesertKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/DungeonDesertKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FrozenKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/FrozenKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldenKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/GoldenKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HallowedKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/HallowedKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.JungleKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/JungleKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.KeychainKeys">
+            <summary>Full Path: Assets/Textures/Keychain/KeychainKeys</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.KeychainKeysTemplate">
+            <summary>Full Path: Assets/Textures/Keychain/KeychainKeysTemplate</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PaletteKey">
+            <summary>Full Path: Assets/Textures/Keychain/PaletteKey</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShadowKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/ShadowKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SilverKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/SilverKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TempleKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/TempleKeyPalette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TinKeyPalette">
+            <summary>Full Path: Assets/Textures/Keychain/TinKeyPalette</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.FlareSprite0">
             <summary>Full Path: Assets/Textures/LensFlare/FlareSprite0</summary>
         </member>
@@ -2489,6 +2540,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.SwishNoEdit">
             <summary>Full Path: Assets/Textures/SwishNoEdit</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HardenedSand">
+            <summary>Full Path: Assets/Textures/TileMerges/HardenedSand</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PolymerSandstone">
+            <summary>Full Path: Assets/Textures/TileMerges/PolymerSandstone</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Sand">
+            <summary>Full Path: Assets/Textures/TileMerges/Sand</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Durability">
+            <summary>Full Path: Assets/Textures/UI/Durability</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TownNPCExclamation">
             <summary>Full Path: Assets/TownNPCExclamation</summary>
@@ -2978,6 +3041,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.ShimmerMonocleBuilderToggle">
             <summary>Full Path: Content/Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StunEffect">
+            <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunEffect</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StunGun">
+            <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunGun</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GlimmerMenu">
             <summary>Full Path: Content/MainMenu/GlimmerMenu</summary>

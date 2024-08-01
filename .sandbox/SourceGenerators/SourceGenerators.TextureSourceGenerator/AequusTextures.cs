@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1306)</summary>
+/// <summary>(Total Textures: 1328)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -159,6 +159,38 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> FogParticleHQ = new("Assets/Textures/FogParticleHQ");
     /// <summary>Full Path: Assets/Textures/FriendshipParticle</summary>
     public static readonly RequestCache<Texture2D> FriendshipParticle = new("Assets/Textures/FriendshipParticle");
+    /// <summary>Full Path: Assets/Textures/ItemCooldown</summary>
+    public static readonly RequestCache<Texture2D> ItemCooldown = new("Assets/Textures/ItemCooldown");
+    /// <summary>Full Path: Assets/Textures/Keychain/CopperKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> CopperKeyPalette = new("Assets/Textures/Keychain/CopperKeyPalette");
+    /// <summary>Full Path: Assets/Textures/Keychain/CorruptionKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> CorruptionKeyPalette = new("Assets/Textures/Keychain/CorruptionKeyPalette");
+    /// <summary>Full Path: Assets/Textures/Keychain/CrimsonKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> CrimsonKeyPalette = new("Assets/Textures/Keychain/CrimsonKeyPalette");
+    /// <summary>Full Path: Assets/Textures/Keychain/DungeonDesertKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> DungeonDesertKeyPalette = new("Assets/Textures/Keychain/DungeonDesertKeyPalette");
+    /// <summary>Full Path: Assets/Textures/Keychain/FrozenKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> FrozenKeyPalette = new("Assets/Textures/Keychain/FrozenKeyPalette");
+    /// <summary>Full Path: Assets/Textures/Keychain/GoldenKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> GoldenKeyPalette = new("Assets/Textures/Keychain/GoldenKeyPalette");
+    /// <summary>Full Path: Assets/Textures/Keychain/HallowedKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> HallowedKeyPalette = new("Assets/Textures/Keychain/HallowedKeyPalette");
+    /// <summary>Full Path: Assets/Textures/Keychain/JungleKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> JungleKeyPalette = new("Assets/Textures/Keychain/JungleKeyPalette");
+    /// <summary>Full Path: Assets/Textures/Keychain/KeychainKeys</summary>
+    public static readonly RequestCache<Texture2D> KeychainKeys = new("Assets/Textures/Keychain/KeychainKeys");
+    /// <summary>Full Path: Assets/Textures/Keychain/KeychainKeysTemplate</summary>
+    public static readonly RequestCache<Texture2D> KeychainKeysTemplate = new("Assets/Textures/Keychain/KeychainKeysTemplate");
+    /// <summary>Full Path: Assets/Textures/Keychain/PaletteKey</summary>
+    public static readonly RequestCache<Texture2D> PaletteKey = new("Assets/Textures/Keychain/PaletteKey");
+    /// <summary>Full Path: Assets/Textures/Keychain/ShadowKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> ShadowKeyPalette = new("Assets/Textures/Keychain/ShadowKeyPalette");
+    /// <summary>Full Path: Assets/Textures/Keychain/SilverKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> SilverKeyPalette = new("Assets/Textures/Keychain/SilverKeyPalette");
+    /// <summary>Full Path: Assets/Textures/Keychain/TempleKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> TempleKeyPalette = new("Assets/Textures/Keychain/TempleKeyPalette");
+    /// <summary>Full Path: Assets/Textures/Keychain/TinKeyPalette</summary>
+    public static readonly RequestCache<Texture2D> TinKeyPalette = new("Assets/Textures/Keychain/TinKeyPalette");
     /// <summary>Full Path: Assets/Textures/LensFlare/FlareSprite0</summary>
     public static readonly RequestCache<Texture2D> FlareSprite0 = new("Assets/Textures/LensFlare/FlareSprite0");
     /// <summary>Full Path: Assets/Textures/LensFlare/FlareSprite1</summary>
@@ -193,6 +225,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Swish3 = new("Assets/Textures/Swish3");
     /// <summary>Full Path: Assets/Textures/SwishNoEdit</summary>
     public static readonly RequestCache<Texture2D> SwishNoEdit = new("Assets/Textures/SwishNoEdit");
+    /// <summary>Full Path: Assets/Textures/TileMerges/HardenedSand</summary>
+    public static readonly RequestCache<Texture2D> HardenedSand = new("Assets/Textures/TileMerges/HardenedSand");
+    /// <summary>Full Path: Assets/Textures/TileMerges/PolymerSandstone</summary>
+    public static readonly RequestCache<Texture2D> PolymerSandstone = new("Assets/Textures/TileMerges/PolymerSandstone");
+    /// <summary>Full Path: Assets/Textures/TileMerges/Sand</summary>
+    public static readonly RequestCache<Texture2D> Sand = new("Assets/Textures/TileMerges/Sand");
+    /// <summary>Full Path: Assets/Textures/UI/Durability</summary>
+    public static readonly RequestCache<Texture2D> Durability = new("Assets/Textures/UI/Durability");
     /// <summary>Full Path: Assets/TownNPCExclamation</summary>
     public static readonly RequestCache<Texture2D> TownNPCExclamation = new("Assets/TownNPCExclamation");
     /// <summary>Full Path: Assets/UI/BestiaryNotebook</summary>
@@ -519,6 +559,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ShimmerMonocle = new("Content/Items/Accessories/Informational/Monocle/ShimmerMonocle");
     /// <summary>Full Path: Content/Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
     public static readonly RequestCache<Texture2D> ShimmerMonocleBuilderToggle = new("Content/Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle");
+    /// <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunEffect</summary>
+    public static readonly RequestCache<Texture2D> StunEffect = new("Content/Items/Weapons/Classless/StunGun/StunEffect");
+    /// <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunGun</summary>
+    public static readonly RequestCache<Texture2D> StunGun = new("Content/Items/Weapons/Classless/StunGun/StunGun");
     /// <summary>Full Path: Content/MainMenu/GlimmerMenu</summary>
     public static readonly RequestCache<Texture2D> GlimmerMenu = new("Content/MainMenu/GlimmerMenu");
     /// <summary>Full Path: Content/MainMenu/GlimmerMenu_Glow</summary>
