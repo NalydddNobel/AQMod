@@ -22,7 +22,7 @@ public partial class SkyMerchant {
             .AddWithCustomValue<global::Aequus.Items.Tools.Pumpinator>(ItemDefaults.NPCSkyMerchantCustomPrice)
             .AddWithCustomValue<global::Aequus.Items.Tools.Bellows>(ItemDefaults.NPCSkyMerchantCustomPrice)
             .Add<global::Aequus.Items.Potions.Healing.Restoration.LesserRestorationPotion>()
-            //.Add<Calendar>()
+            .Add<Items.Accessories.Informational.Calendar.Calendar>()
             .Add<Systems.Renaming.NameTag>()
             .Register();
     }
