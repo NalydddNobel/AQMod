@@ -77,7 +77,7 @@ public static partial class Helper {
     public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
 
     public static bool IsChildOrNoSpecialEffects(this Projectile projectile) {
-        return projectile.GetGlobalProjectile<ProjectileItemData>().NoSpecialEffects || projectile.GetGlobalProjectile<AequusProjectile>().HasProjectileOwner;
+        return projectile.GetGlobalProjectile<ItemControl>().NoSpecialEffects || projectile.GetGlobalProjectile<AequusProjectile>().HasProjectileOwner;
     }
 
     /// <summary>

@@ -1571,6 +1571,12 @@
             </list>
             </summary>
         </member>
+        <member name="P:Aequus.Common.Projectiles.ItemControl.ItemAI">
+            <summary>Custom data to be used by items which utilize the <see cref="T:Aequus.Common.Projectiles.IManageProjectile"/> interface or by channeled items. This data is synced in multiplayer.</summary>
+        </member>
+        <member name="P:Aequus.Common.Projectiles.ItemControl.NoSpecialEffects">
+            <summary>If this is true, special effects should be disabled on the projectile. This is only set to true by Javelin-like projectiles.</summary>
+        </member>
         <member name="M:Aequus.Common.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Common.Projectiles.SentryChip.SentryAccessoriesGlobalProj@)">
             <summary>
             Gets an owner. Returns a santank dummy player if the projOwner is greater than -1.
@@ -1579,16 +1585,6 @@
             <param name="aequus">The "AequusPlayer" instance on the player.</param>
             <param name="projOwner">The "Projectile owner". This defaults to -1 unless this projectile is spawned with a projectile owner, then it returns their index in <see cref="F:Terraria.Main.projectile"/></param>
             <param name="santank">The Projectile owner's <see cref="T:Aequus.Common.Projectiles.SentryChip.SentryAccessoriesGlobalProj"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
-        </member>
-        <member name="P:Aequus.Common.Projectiles.ProjectileItemData.ItemData">
-            <summary>
-            Custom data to be used by items which utilize the <see cref="T:Aequus.Common.Projectiles.IManageProjectile"/> interface or by channeled items. This data is synced in multiplayer.
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Projectiles.ProjectileItemData.NoSpecialEffects">
-            <summary>
-            If this is true, special effects should be disabled on the projectile. This is only set to true by Javelin-like projectiles.
-            </summary>
         </member>
         <member name="P:Aequus.Common.Recipes.AequusRecipes.AnyEctoplasm">
             <summary>
@@ -3059,6 +3055,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.MeadowBow">
             <summary>Full Path: Content/Items/Weapons/Ranged/MeadowBow/MeadowBow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyHunterCrossbow">
+            <summary>Full Path: Content/Items/Weapons/Ranged/SkyHunterCrossbow/SkyHunterCrossbow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyHunterCrossbowChain">
+            <summary>Full Path: Content/Items/Weapons/Ranged/SkyHunterCrossbow/SkyHunterCrossbowChain</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GlimmerMenu">
             <summary>Full Path: Content/MainMenu/GlimmerMenu</summary>
@@ -4622,12 +4624,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.HamaYumi_Glow">
             <summary>Full Path: Items/Weapons/Ranged/Bows/Demon/HamaYumi_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Chain">
-            <summary>Full Path: Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyHunterCrossbow">
-            <summary>Full Path: Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Hitscanner">
             <summary>Full Path: Items/Weapons/Ranged/Guns/Hitscanner/Hitscanner</summary>

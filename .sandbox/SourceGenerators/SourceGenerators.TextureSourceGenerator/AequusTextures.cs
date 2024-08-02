@@ -569,6 +569,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> MeadowStaff = new("Content/Items/Weapons/Magic/MeadowStaff/MeadowStaff");
     /// <summary>Full Path: Content/Items/Weapons/Ranged/MeadowBow/MeadowBow</summary>
     public static readonly RequestCache<Texture2D> MeadowBow = new("Content/Items/Weapons/Ranged/MeadowBow/MeadowBow");
+    /// <summary>Full Path: Content/Items/Weapons/Ranged/SkyHunterCrossbow/SkyHunterCrossbow</summary>
+    public static readonly RequestCache<Texture2D> SkyHunterCrossbow = new("Content/Items/Weapons/Ranged/SkyHunterCrossbow/SkyHunterCrossbow");
+    /// <summary>Full Path: Content/Items/Weapons/Ranged/SkyHunterCrossbow/SkyHunterCrossbowChain</summary>
+    public static readonly RequestCache<Texture2D> SkyHunterCrossbowChain = new("Content/Items/Weapons/Ranged/SkyHunterCrossbow/SkyHunterCrossbowChain");
     /// <summary>Full Path: Content/MainMenu/GlimmerMenu</summary>
     public static readonly RequestCache<Texture2D> GlimmerMenu = new("Content/MainMenu/GlimmerMenu");
     /// <summary>Full Path: Content/MainMenu/GlimmerMenu_Glow</summary>
@@ -1611,10 +1615,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> HamaYumi = new("Items/Weapons/Ranged/Bows/Demon/HamaYumi");
     /// <summary>Full Path: Items/Weapons/Ranged/Bows/Demon/HamaYumi_Glow</summary>
     public static readonly RequestCache<Texture2D> HamaYumi_Glow = new("Items/Weapons/Ranged/Bows/Demon/HamaYumi_Glow");
-    /// <summary>Full Path: Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
-    public static readonly RequestCache<Texture2D> Chain = new("Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain");
-    /// <summary>Full Path: Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
-    public static readonly RequestCache<Texture2D> SkyHunterCrossbow = new("Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow");
     /// <summary>Full Path: Items/Weapons/Ranged/Guns/Hitscanner/Hitscanner</summary>
     public static readonly RequestCache<Texture2D> Hitscanner = new("Items/Weapons/Ranged/Guns/Hitscanner/Hitscanner");
     /// <summary>Full Path: Items/Weapons/Ranged/Guns/Raygun/Raygun</summary>

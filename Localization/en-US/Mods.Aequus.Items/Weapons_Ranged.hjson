@@ -1,9 +1,11 @@
-DisplayName: Star Phish
-Tooltip:
-	'''
-	Deals increased damage to enemies in water
-	{$CommonTooltips.UsesDarts}
-	'''
+StarPhish: {
+	DisplayName: Star Phish
+	Tooltip:
+		'''
+		Deals increased damage to enemies in water
+		{$CommonTooltips.UsesDarts}
+		'''
+}
 
 JunkJet: {
 	DisplayName: Junk Jet
@@ -23,7 +25,7 @@ SkyHunterCrossbow: {
 		'''
 }
 
-//# Ranged Ammo
+// Ammo
 PlasticDart: {
 	DisplayName: Plastic Dart
 	Tooltip:
