@@ -42,7 +42,7 @@ public class WeightedHorseshoe : ModItem, IUpdateItemDye {
         }
     }
 
-    private void UpdateFloorEffects(Player player, AequusPlayer aequus) {
+    static void UpdateFloorEffects(Player player, AequusPlayer aequus) {
         int gravDir = Math.Sign(player.gravDir);
         float playerHeight = gravDir == -1 ? -2f : player.height + 2f;
         var floorCoordinates = new Vector2(player.position.X + player.width / 2f, player.position.Y + playerHeight);

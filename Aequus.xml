@@ -2249,7 +2249,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1327)</summary>
+            <summary>(Total Textures: 1328)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3078,6 +3078,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.ShimmerMonocleBuilderToggle">
             <summary>Full Path: Content/Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HorseshoeCombination">
+            <summary>Full Path: Content/Items/Accessories/WeightedHorseshoe/HorseshoeCombination</summary>
         </member>
         <member name="F:Aequus.AequusTextures.WeightedHorseshoe">
             <summary>Full Path: Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoe</summary>

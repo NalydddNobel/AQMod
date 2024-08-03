@@ -1,4 +1,13 @@
-//# Equipment: Accessories
+// Equipment: Accessories
+HorseshoeCombination: {
+	DisplayName: Braced Hoof
+	Tooltip:
+		'''
+		{$ItemTooltip.ObsidianHorseshoe}
+		{$WeightedHorseshoe.Function}
+		'''
+}
+
 BreathConserver: {
 }
 
@@ -68,9 +77,13 @@ WeightedHorseshoe: {
 	DisplayName: Weighted Horseshoe
 	Tooltip:
 		'''
+		{$WeightedHorseshoe.Function}
+		'You should put a verlet chain on this, it won't be buggy!'
+		'''
+	Function:
+		'''
 		Doubled maximum fall speed
 		Damage and fall through enemies while at high speeds
-		'You should put a verlet chain on this, it won't be buggy!'
 		'''
 }
 
