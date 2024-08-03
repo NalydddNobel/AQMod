@@ -5,6 +5,7 @@ using Terraria.Graphics.Shaders;
 namespace Aequus.Content.Items.Accessories.FlashwayShield;
 
 [AutoloadEquip(EquipType.Shield)]
+[LegacyName("FlashwayNecklace", "HeartshatterNecklace")]
 public class FlashwayShield : ModItem, ICustomDashProvider {
     public static readonly float DashSpeed = 14.5f;
     float ICustomDashProvider.DashSpeed => DashSpeed;

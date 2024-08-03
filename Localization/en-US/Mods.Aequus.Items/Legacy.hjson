@@ -2363,24 +2363,9 @@ PlasticBottle: {
 	Tooltip: ""
 }
 
-HoloLens: {
-	DisplayName: Holo Lens
-	Tooltip: Allows you to view the contents of locked and unlocked chests without opening them
-}
-
 HyperJet: {
 	DisplayName: Pacemaker
 	Tooltip: Decreased respawn time when it becomes safe
-}
-
-AnglerBroadcaster: {
-	DisplayName: Seaside Broadcaster
-	Tooltip: Shows you the current quest fish
-}
-
-RichMansMonocle: {
-	DisplayName: Rich Man's Monocle
-	Tooltip: View item prices outside of shops
 }
 
 ImpenetrableCoating: {

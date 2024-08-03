@@ -89,6 +89,21 @@ EclipseGlasses: {
 }
 
 //# Equipment: Informational
+HoloLens: {
+	DisplayName: Holo Lens
+	Tooltip: Allows you to view the contents of locked and unlocked chests without opening them
+}
+
+AnglerBroadcaster: {
+	DisplayName: Seaside Broadcaster
+	Tooltip: Shows you the current quest fish
+}
+
+RichMansMonocle: {
+	DisplayName: Rich Man's Monocle
+	Tooltip: View item prices outside of shops
+}
+
 GeigerCounter: {
 	DisplayName: Geiger Counter
 	Tooltip: Displays the damage per second from debuffs
@@ -100,17 +115,9 @@ ShimmerMonocle: {
 	Tooltip: Displays if an item is a Shimmer Ingredient
 }
 
-RichMansMonocle: {
-}
-
 Calendar: {
 	DisplayName: Calendar
 	Tooltip: Displays information about the date
-}
-
-SteampunkerFishingPole: {
-	DisplayName: Steampunker Fishing Pole
-	Tooltip: ""
 }
 
 UnusedItem: {
