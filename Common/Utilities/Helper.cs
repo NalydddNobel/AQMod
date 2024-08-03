@@ -76,6 +76,10 @@ public static partial class Helper {
 
     public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
 
+    public static bool IsFalling(Vector2 velocity, float gravDir) {
+        return Math.Sign(velocity.Y) == Math.Sign(gravDir);
+    }
+
     public static bool IsChildOrNoSpecialEffects(this Projectile projectile) {
         return projectile.GetGlobalProjectile<ItemControl>().NoSpecialEffects || projectile.GetGlobalProjectile<AequusProjectile>().HasProjectileOwner;
     }

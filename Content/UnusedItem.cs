@@ -3,10 +3,8 @@
 namespace Aequus.Content;
 
 [LegacyName("Crabax")]
-[LegacyName("FlashwayNecklace")]
 [LegacyName("GalaxyCommission")]
 [LegacyName("HalloweenEnergy")]
-[LegacyName("HeartshatterNecklace")]
 [LegacyName("Heliosis")]
 [LegacyName("ImpenetrableCoating")]
 [LegacyName("ItemScrap")]

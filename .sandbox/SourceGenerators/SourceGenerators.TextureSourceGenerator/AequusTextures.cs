@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1325)</summary>
+/// <summary>(Total Textures: 1327)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -559,6 +559,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ShimmerMonocle = new("Content/Items/Accessories/Informational/Monocle/ShimmerMonocle");
     /// <summary>Full Path: Content/Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
     public static readonly RequestCache<Texture2D> ShimmerMonocleBuilderToggle = new("Content/Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle");
+    /// <summary>Full Path: Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoe</summary>
+    public static readonly RequestCache<Texture2D> WeightedHorseshoe = new("Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoe");
+    /// <summary>Full Path: Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
+    public static readonly RequestCache<Texture2D> WeightedHorseshoeVisual = new("Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual");
     /// <summary>Full Path: Content/Items/Tools/Hammers/MeadowHammer</summary>
     public static readonly RequestCache<Texture2D> MeadowHammer = new("Content/Items/Tools/Hammers/MeadowHammer");
     /// <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunEffect</summary>

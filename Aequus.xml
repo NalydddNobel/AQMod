@@ -533,7 +533,7 @@
             <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusPlayer.ResetEffects"/>.</summary>
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusPlayer_PostUpdateEquips">
-            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusPlayer.PostUpdateEquips"/>.</summary>
+            <summary>Adds a reference to the target method in <see cref="M:Aequus.AequusPlayer.PostUpdateEquips"/>-<see cref="M:Aequus.AequusPlayer.PostUpdateEquipsInner"/>.</summary>
         </member>
         <member name="T:Aequus.Common.CodeGeneration.Gen.AequusSystem_FieldAttribute`1">
             <summary>Generates a field with <paramref name="Name"/> in <see cref="T:Aequus.AequusSystem"/>.</summary>
@@ -1810,6 +1810,44 @@
         <member name="F:Aequus.Common.Utilities.Helpers.CommonColor.TextInteractable">
             <summary>Yellow text used by Beds, Clocks, etc.</summary>
         </member>
+        <member name="M:Aequus.Common.Utilities.Helpers.LightingHelper.GetLightBrightness(Microsoft.Xna.Framework.Vector3)">
+            <param name="rgb">The RGB.</param>
+            <returns>Gets the Brightness of a Light Vector. (The largest X,Y,Z value.)</returns>
+        </member>
+        <member name="M:Aequus.Common.Utilities.Helpers.LightingHelper.ApplyLightBrightness(Microsoft.Xna.Framework.Vector3,System.Single)">
+            <param name="rgb">The RGB.</param>
+            <param name="lightPower">The Light Magnitude</param>
+            <returns>Gets a Light Vector with a specified Light Magnitude. (Light Power)</returns>
+        </member>
+        <member name="M:Aequus.Common.Utilities.Helpers.LightingHelper.GetBrightestLight(Microsoft.Xna.Framework.Point,System.Int32)">
+            <param name="tilePosition">The Center tile coordinates.</param>
+            <param name="tilesSize">The size, in tiles, this is divided by 2 for some dumb reason.</param>
+            <returns>The brightest light found within the specified area.</returns>
+        </member>
+        <member name="M:Aequus.Common.Utilities.Helpers.LightingHelper.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>Gets the mean of light surrounding a point.</summary>
+            <param name="x">The top left tile X</param>
+            <param name="y">The top left tile Y</param>
+            <param name="width">The width in tiles</param>
+            <param name="height">The width in tiles</param>
+        </member>
+        <member name="M:Aequus.Common.Utilities.Helpers.LightingHelper.GetLightingSection(Microsoft.Xna.Framework.Point,System.Int32)">
+            <summary><inheritdoc cref="M:Aequus.Common.Utilities.Helpers.LightingHelper.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)"/></summary>
+            <param name="tilePosition">The tile top left position.</param>
+            <param name="tilesSize">The size in tile coordinates</param>
+        </member>
+        <member name="M:Aequus.Common.Utilities.Helpers.LightingHelper.GetLightingSection(System.Int32,System.Int32,System.Int32)">
+            <summary><inheritdoc cref="M:Aequus.Common.Utilities.Helpers.LightingHelper.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)"/></summary>
+            <param name="x">The top left tile X</param>
+            <param name="y">The top left tile Y</param>
+            <param name="tilesSize">The size in tile coordinates</param>
+        </member>
+        <member name="M:Aequus.Common.Utilities.Helpers.LightingHelper.Get(Microsoft.Xna.Framework.Vector2)">
+            <returns>The Light Color at a specified world coordinate.</returns>
+        </member>
+        <member name="M:Aequus.Common.Utilities.Helpers.LightingHelper.Get(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)">
+            <returns>The Light Color at a specified world coordinate.</returns>
+        </member>
         <member name="M:Aequus.Common.Utilities.LootBuilder.AddBossLoot(Terraria.ModLoader.ILoot,System.Int32,Terraria.GameContent.ItemDropRules.IItemDropRule,Terraria.GameContent.ItemDropRules.IItemDropRule)">
             <summary>Adds rule to <paramref name="loot"/>, and to the Item specified by <paramref name="bossBagId"/>. <paramref name="loot"/>'s rule will be conditioned to only drop in Classic (Normal) Mode.</summary>
         </member>
@@ -2211,7 +2249,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1325)</summary>
+            <summary>(Total Textures: 1327)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3040,6 +3078,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.ShimmerMonocleBuilderToggle">
             <summary>Full Path: Content/Items/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WeightedHorseshoe">
+            <summary>Full Path: Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoe</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WeightedHorseshoeVisual">
+            <summary>Full Path: Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MeadowHammer">
             <summary>Full Path: Content/Items/Tools/Hammers/MeadowHammer</summary>

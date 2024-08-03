@@ -22,17 +22,27 @@ public partial class AequusPlayer {
     public bool accInfoMoneyMonocle;
     [CompilerGenerated]
     public bool accInfoShimmerMonocle;
+    [CompilerGenerated]
+    public Item accWeightedHorseshoe;
+    [CompilerGenerated]
+    public bool showHorseshoeAnvilRope;
+    [CompilerGenerated]
+    public int cHorseshoeAnvil;
     
     [CompilerGenerated]
     private void ResetEffectsInner() {
         SourceGeneratorTools.ResetObj(ref accGoldenFeather);
         SourceGeneratorTools.ResetObj(ref accGoldenFeatherRespawnTimeModifier);
         SourceGeneratorTools.ResetObj(ref accGoldenFeatherTeammate);
+        SourceGeneratorTools.ResetObj(ref accWeightedHorseshoe);
+        SourceGeneratorTools.ResetObj(ref showHorseshoeAnvilRope);
+        SourceGeneratorTools.ResetObj(ref cHorseshoeAnvil);
     }
     
     [CompilerGenerated]
     private void PostUpdateEquipsInner() {
         Content.Items.Accessories.GoldenFeather.GoldenFeather.UpdateGoldenFeather(Player, this);
+        Content.Items.Accessories.WeightedHorseshoe.WeightedHorseshoe.OnPostUpdateEquips(Player, this);
     }
     
     [CompilerGenerated]

@@ -31,7 +31,7 @@ internal partial class Gen {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
     internal class AequusPlayer_ResetEffects : Attribute { }
 
-    /// <summary>Adds a reference to the target method in <see cref="AequusPlayer.PostUpdateEquips"/>.</summary>
+    /// <summary>Adds a reference to the target method in <see cref="AequusPlayer.PostUpdateEquips"/>-<see cref="AequusPlayer.PostUpdateEquipsInner"/>.</summary>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
     internal class AequusPlayer_PostUpdateEquips : Attribute { }
 }
