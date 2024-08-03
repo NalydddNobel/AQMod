@@ -1,7 +1,9 @@
-﻿using Aequus.Tiles.Meadow;
+﻿using Aequus.Common;
+using Aequus.Tiles.Meadow;
 
 namespace Aequus.Content.Items.Weapons.Ranged.MeadowBow;
 
+[WorkInProgress]
 public class MeadowBow : ModItem {
     public override void SetDefaults() {
         Item.useStyle = ItemUseStyleID.Shoot;

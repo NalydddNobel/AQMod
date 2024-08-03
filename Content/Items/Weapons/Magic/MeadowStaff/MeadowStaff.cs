@@ -1,7 +1,9 @@
-﻿using Aequus.Tiles.Meadow;
+﻿using Aequus.Common;
+using Aequus.Tiles.Meadow;
 
 namespace Aequus.Content.Items.Weapons.Magic.MeadowStaff;
 
+[WorkInProgress]
 public class MeadowStaff : ModItem {
     public override void SetStaticDefaults() {
         Item.staff[Type] = true;
