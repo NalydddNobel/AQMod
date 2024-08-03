@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1328)</summary>
+/// <summary>(Total Textures: 1330)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -209,6 +209,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> FlareSprite7 = new("Assets/Textures/LensFlare/FlareSprite7");
     /// <summary>Full Path: Assets/Textures/LensFlare/FlareSprite8</summary>
     public static readonly RequestCache<Texture2D> FlareSprite8 = new("Assets/Textures/LensFlare/FlareSprite8");
+    /// <summary>Full Path: Assets/Textures/LensFlare/LensFlare</summary>
+    public static readonly RequestCache<Texture2D> LensFlare = new("Assets/Textures/LensFlare/LensFlare");
     /// <summary>Full Path: Assets/Textures/Shatter</summary>
     public static readonly RequestCache<Texture2D> Assets_Textures_Shatter = new("Assets/Textures/Shatter");
     /// <summary>Full Path: Assets/Textures/SlamEffect0</summary>
@@ -571,6 +573,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> StunEffect = new("Content/Items/Weapons/Classless/StunGun/StunEffect");
     /// <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunGun</summary>
     public static readonly RequestCache<Texture2D> StunGun = new("Content/Items/Weapons/Classless/StunGun/StunGun");
+    /// <summary>Full Path: Content/Items/Weapons/Magic/Furystar/Furystar</summary>
+    public static readonly RequestCache<Texture2D> Furystar = new("Content/Items/Weapons/Magic/Furystar/Furystar");
     /// <summary>Full Path: Content/Items/Weapons/Magic/MeadowStaff/MeadowStaff</summary>
     public static readonly RequestCache<Texture2D> MeadowStaff = new("Content/Items/Weapons/Magic/MeadowStaff/MeadowStaff");
     /// <summary>Full Path: Content/Items/Weapons/Ranged/MeadowBow/MeadowBow</summary>

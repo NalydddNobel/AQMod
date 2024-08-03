@@ -2249,7 +2249,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1328)</summary>
+            <summary>(Total Textures: 1330)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -2553,6 +2553,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.FlareSprite8">
             <summary>Full Path: Assets/Textures/LensFlare/FlareSprite8</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LensFlare">
+            <summary>Full Path: Assets/Textures/LensFlare/LensFlare</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Assets_Textures_Shatter">
             <summary>Full Path: Assets/Textures/Shatter</summary>
@@ -3096,6 +3099,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.StunGun">
             <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunGun</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Furystar">
+            <summary>Full Path: Content/Items/Weapons/Magic/Furystar/Furystar</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MeadowStaff">
             <summary>Full Path: Content/Items/Weapons/Magic/MeadowStaff/MeadowStaff</summary>
