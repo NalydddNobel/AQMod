@@ -101,7 +101,7 @@ public class MoonflowerTile : HerbTileBase {
     }
 
     public static void GlobalRandomUpdate(int i, int j) {
-        if (!AequusWorld.downedOmegaStarite || j >= Main.rockLayer || WorldGen.genRand.NextBool(800)) {
+        if (!AequusWorld.downedOmegaStarite || WorldGen.genRand.NextBool(800)) {
             return;
         }
 
