@@ -1,5 +1,16 @@
 Configs: {
 	GameplayConfig: {
+		MoveTreasureMagnet: {
+			Label: "[i:TreasureMagnet] [i:CelestialMagnet] Move Treasure Magnet"
+			Tooltip:
+				'''
+				When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Treasure Magnet] will be sold by the [{$ColorImportant}:Sky Merchant],
+				[{$ColorImportant}:no longer spawning] in [{$ColorImportant2}:Shadow Chests] or [{$ColorImportant2}:Obsidian Lock Boxes].
+
+				{$NoteExploit}
+				'''
+		}
+
 		PollutedOceanSide: {
 			Label: "[i:Aequus/TrashCompactor] Polluted Ocean Side"
 			Tooltip:
