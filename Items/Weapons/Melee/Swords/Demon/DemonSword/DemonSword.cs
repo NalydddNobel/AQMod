@@ -9,8 +9,8 @@ namespace Aequus.Items.Weapons.Melee.Swords.Demon.DemonSword;
 public class DemonSword : ModItem {
     public override void SetStaticDefaults() {
 #if DEBUG
-        DemonSiegeSystem.RegisterSacrifice(new(ModContent.ItemType<Items.Weapons.Melee.Swords.Demon.HellsBoon.HellsBoon>(), Type, EventTier.Hardmode) { DisableDecraft = true, });
-        DemonSiegeSystem.RegisterSacrifice(new(ModContent.ItemType<Items.Weapons.Melee.Swords.Demon.Cauterizer.Cauterizer>(), Type, EventTier.Hardmode) { DisableDecraft = true, });
+        Content.Events.DemonSiege.DemonSiegeSystem.RegisterSacrifice(new(ModContent.ItemType<Items.Weapons.Melee.Swords.Demon.HellsBoon.HellsBoon>(), Type, Content.Events.DemonSiege.EventTier.Hardmode) { DisableDecraft = true, });
+        Content.Events.DemonSiege.DemonSiegeSystem.RegisterSacrifice(new(ModContent.ItemType<Items.Weapons.Melee.Swords.Demon.Cauterizer.Cauterizer>(), Type, Content.Events.DemonSiege.EventTier.Hardmode) { DisableDecraft = true, });
 #endif
     }
 

@@ -1,5 +1,4 @@
-﻿using Terraria;
-using Terraria.ModLoader;
+﻿using Aequus.Items.Equipment.Accessories.CrownOfBlood;
 
 namespace Aequus.Common.Items.EquipmentBooster;
 
@@ -27,5 +26,6 @@ public class EquipBoostGlobalItem : GlobalItem {
     }
 
     public override void UpdateEquip(Item item, Player player) {
+        player.GetModPlayer<CrownOfBloodPlayer>().UpdateEquipBoost(item);
     }
 }

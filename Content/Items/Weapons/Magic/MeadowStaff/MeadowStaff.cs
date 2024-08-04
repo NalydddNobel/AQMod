@@ -30,7 +30,7 @@ public class MeadowStaff : ModItem {
     public override void AddRecipes() {
 #if DEBUG
         CreateRecipe()
-            .AddIngredient(ModContent.GetInstance<MeadowWood>().Item.Type, 14)
+            .AddIngredient(ModContent.GetInstance<global::Aequus.Tiles.Meadow.MeadowWood>().Item.Type, 14)
             .AddTile(TileID.WorkBenches)
             .Register();
 #endif

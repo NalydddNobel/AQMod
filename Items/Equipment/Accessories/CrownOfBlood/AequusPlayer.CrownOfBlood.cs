@@ -2,8 +2,6 @@
 using Aequus.Items.Equipment.Accessories.CrownOfBlood.Buffs;
 using Aequus.Items.Equipment.Accessories.CrownOfBlood.Hearts;
 using System;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace Aequus;
 
