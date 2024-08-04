@@ -645,6 +645,9 @@
             <param name="modWall"></param>
             <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
         </member>
+        <member name="T:Aequus.Common.ContentGeneration.UnifiedMount">
+            <summary>A <see cref="T:Terraria.ModLoader.ModMount"/> which automagically registers a related <see cref="T:Terraria.ModLoader.ModItem"/> and <see cref="T:Terraria.ModLoader.ModBuff"/>, suffixed with +"Item" and +"Buff" respectively.</summary>
+        </member>
         <member name="T:Aequus.Common.CrossMod.ModCalls.ModCallManager">
             <summary>
             Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
@@ -2249,7 +2252,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1330)</summary>
+            <summary>(Total Textures: 1331)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3121,6 +3124,24 @@
         <member name="F:Aequus.AequusTextures.GlimmerMenu_Glow">
             <summary>Full Path: Content/MainMenu/GlimmerMenu_Glow</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.HotAirBalloonBuff">
+            <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HotAirBalloonItem">
+            <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HotAirBalloonMount">
+            <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonMount</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HotAirBalloonMount_Back">
+            <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonMount_Back</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HotAirBalloonMount_Front">
+            <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonMount_Front</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HotAirBalloonMount_Glow">
+            <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonMount_Glow</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.SoulChains">
             <summary>Full Path: Content/Necromancy/Equipment/Accessories/Chains/SoulChains</summary>
         </member>
@@ -3684,21 +3705,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.Meathook">
             <summary>Full Path: Items/Equipment/GrapplingHooks/Meathook</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BalloonKit">
-            <summary>Full Path: Items/Equipment/Mounts/HotAirBalloon/BalloonKit</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HotAirBalloonBuff">
-            <summary>Full Path: Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HotAirBalloonMount">
-            <summary>Full Path: Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HotAirBalloonMount_Back">
-            <summary>Full Path: Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Back</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HotAirBalloonMount_Front">
-            <summary>Full Path: Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Front</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DroneBuff">
             <summary>Full Path: Items/Equipment/PetsUtility/Drone/DroneBuff</summary>

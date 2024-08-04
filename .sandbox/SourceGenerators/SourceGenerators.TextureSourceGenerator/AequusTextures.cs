@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1330)</summary>
+/// <summary>(Total Textures: 1331)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -587,6 +587,18 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> GlimmerMenu = new("Content/MainMenu/GlimmerMenu");
     /// <summary>Full Path: Content/MainMenu/GlimmerMenu_Glow</summary>
     public static readonly RequestCache<Texture2D> GlimmerMenu_Glow = new("Content/MainMenu/GlimmerMenu_Glow");
+    /// <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
+    public static readonly RequestCache<Texture2D> HotAirBalloonBuff = new("Content/Mounts/HotAirBalloon/HotAirBalloonBuff");
+    /// <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonItem</summary>
+    public static readonly RequestCache<Texture2D> HotAirBalloonItem = new("Content/Mounts/HotAirBalloon/HotAirBalloonItem");
+    /// <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonMount</summary>
+    public static readonly RequestCache<Texture2D> HotAirBalloonMount = new("Content/Mounts/HotAirBalloon/HotAirBalloonMount");
+    /// <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonMount_Back</summary>
+    public static readonly RequestCache<Texture2D> HotAirBalloonMount_Back = new("Content/Mounts/HotAirBalloon/HotAirBalloonMount_Back");
+    /// <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonMount_Front</summary>
+    public static readonly RequestCache<Texture2D> HotAirBalloonMount_Front = new("Content/Mounts/HotAirBalloon/HotAirBalloonMount_Front");
+    /// <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonMount_Glow</summary>
+    public static readonly RequestCache<Texture2D> HotAirBalloonMount_Glow = new("Content/Mounts/HotAirBalloon/HotAirBalloonMount_Glow");
     /// <summary>Full Path: Content/Necromancy/Equipment/Accessories/Chains/SoulChains</summary>
     public static readonly RequestCache<Texture2D> SoulChains = new("Content/Necromancy/Equipment/Accessories/Chains/SoulChains");
     /// <summary>Full Path: Content/Necromancy/Equipment/Accessories/Chains/SouljointCuffs</summary>
@@ -963,16 +975,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> LeechHook = new("Items/Equipment/GrapplingHooks/LeechHook");
     /// <summary>Full Path: Items/Equipment/GrapplingHooks/Meathook</summary>
     public static readonly RequestCache<Texture2D> Meathook = new("Items/Equipment/GrapplingHooks/Meathook");
-    /// <summary>Full Path: Items/Equipment/Mounts/HotAirBalloon/BalloonKit</summary>
-    public static readonly RequestCache<Texture2D> BalloonKit = new("Items/Equipment/Mounts/HotAirBalloon/BalloonKit");
-    /// <summary>Full Path: Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
-    public static readonly RequestCache<Texture2D> HotAirBalloonBuff = new("Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonBuff");
-    /// <summary>Full Path: Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount</summary>
-    public static readonly RequestCache<Texture2D> HotAirBalloonMount = new("Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount");
-    /// <summary>Full Path: Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Back</summary>
-    public static readonly RequestCache<Texture2D> HotAirBalloonMount_Back = new("Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Back");
-    /// <summary>Full Path: Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Front</summary>
-    public static readonly RequestCache<Texture2D> HotAirBalloonMount_Front = new("Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Front");
     /// <summary>Full Path: Items/Equipment/PetsUtility/Drone/DroneBuff</summary>
     public static readonly RequestCache<Texture2D> DroneBuff = new("Items/Equipment/PetsUtility/Drone/DroneBuff");
     /// <summary>Full Path: Items/Equipment/PetsUtility/Drone/PersonalDronePack</summary>
