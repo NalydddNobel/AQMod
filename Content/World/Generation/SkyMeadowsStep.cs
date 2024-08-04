@@ -5,7 +5,7 @@ using Terraria.WorldBuilding;
 
 namespace Aequus.Content.World.Generation;
 
-public class SkyMeadowsStep {
+public class SkyMeadowsStep : ILoadable {
     public string InsertAfter => "Floating Islands";
 
     public void Apply(GenerationProgress progress, GameConfiguration config) {
@@ -69,5 +69,11 @@ public class SkyMeadowsStep {
                 break;
             }
         }
+    }
+
+    void ILoadable.Load(Mod mod) {
+    }
+
+    void ILoadable.Unload() {
     }
 }
