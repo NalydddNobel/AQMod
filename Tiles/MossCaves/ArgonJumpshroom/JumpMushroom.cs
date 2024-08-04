@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common;
 using Aequus.Common.Net;
 using Aequus.Common.Rendering.Tiles;
 using Aequus.Common.Tiles;
@@ -11,6 +12,8 @@ using Terraria.GameContent;
 using Terraria.ObjectData;
 
 namespace Aequus.Tiles.MossCaves.ArgonJumpshroom;
+
+[WorkInProgress]
 public class JumpMushroom : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 5;
