@@ -1,9 +1,5 @@
-﻿using Aequus.Common.Buffs;
-using Aequus.Common.DataSets;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+﻿using Aequus.Common.DataSets;
+using Aequus.Common.NPCs.Global;
 
 namespace Aequus.Buffs.Debuffs {
     public class SnowgraveDebuff : ModBuff {
@@ -16,7 +12,9 @@ namespace Aequus.Buffs.Debuffs {
         }
 
         public override void Update(NPC npc, ref int buffIndex) {
-            npc.StatSpeed() *= 0.75f;
+            if (npc.TryGetGlobalNPC(out StatSpeedGlobalNPC speedNPC)) {
+                speedNPC.statSpeed *= 0.75f;
+            }
             npc.Aequus().debuffSnowgrave = true;
         }
     }

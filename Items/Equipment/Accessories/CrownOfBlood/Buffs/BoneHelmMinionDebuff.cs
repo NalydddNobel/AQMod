@@ -1,6 +1,5 @@
-﻿using Aequus.Items.Equipment.Accessories.CrownOfBlood.Buffs;
-using Terraria;
-using Terraria.ModLoader;
+﻿using Aequus.Common.NPCs.Global;
+using Aequus.Items.Equipment.Accessories.CrownOfBlood.Buffs;
 
 namespace Aequus.Items.Equipment.Accessories.CrownOfBlood.Buffs {
     public class BoneHelmMinionDebuff : ModBuff {
@@ -15,7 +14,9 @@ namespace Aequus.Items.Equipment.Accessories.CrownOfBlood.Buffs {
 
         public override void Update(NPC npc, ref int buffIndex) {
             npc.Aequus().debuffBoneHelmEmpowered = true;
-            npc.StatSpeed() *= 0.5f;
+            if (npc.TryGetGlobalNPC(out StatSpeedGlobalNPC speedNPC)) {
+                speedNPC.statSpeed *= 0.5f;
+            }
         }
     }
 }
