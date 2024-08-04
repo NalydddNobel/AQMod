@@ -128,8 +128,8 @@ public class WeightedHorseshoeVisual : ModProjectile {
         }
 
         var player = Main.player[Projectile.owner];
-        var AequusRemakePlayer = player.GetModPlayer<AequusPlayer>();
-        Main.instance.PrepareDrawnEntityDrawing(Projectile, AequusRemakePlayer.cHorseshoeAnvil, null);
+        var AequusPlayer = player.GetModPlayer<AequusPlayer>();
+        Main.instance.PrepareDrawnEntityDrawing(Projectile, AequusPlayer.cHorseshoeAnvil, null);
         var stringColor = DrawHelper.GetYoyoStringColor(player.stringColor);
         for (int i = 1; i < horseshoeAnvilRope.segments.Length; i++) {
             var start = horseshoeAnvilRope.segments[i].Position;

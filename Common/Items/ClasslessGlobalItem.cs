@@ -3,7 +3,7 @@ using Aequus.Common.Items;
 using System.Collections.Generic;
 using Terraria.Utilities;
 
-namespace AequusRemake.Core.Entities.Items;
+namespace Aequus.Core.Entities.Items;
 
 public class ClasslessGlobalItem : GlobalItem {
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {

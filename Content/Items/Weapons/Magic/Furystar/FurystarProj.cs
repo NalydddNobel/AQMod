@@ -21,7 +21,7 @@ public class FurystarProj : HeldProjBase {
 
     public override void AI() {
         var player = Main.player[Projectile.owner];
-        var AequusRemake = player.GetModPlayer<AequusPlayer>();
+        var Aequus = player.GetModPlayer<AequusPlayer>();
         player.heldProj = Projectile.whoAmI;
         if (Main.myPlayer != Projectile.owner || player.channel) {
             Projectile.timeLeft = 2;
@@ -68,7 +68,7 @@ public class FurystarProj : HeldProjBase {
                         int damage = player.GetWeaponDamage(heldItem);
                         float knockback = player.GetWeaponKnockback(heldItem);
                         CombinedHooks.ModifyShootStats(player, heldItem, ref position, ref velocity, ref projectileType, ref damage, ref knockback);
-                        var source = player.GetSource_ItemUse_WithPotentialAmmo(heldItem, 0, "AequusRemake: Furystar");
+                        var source = player.GetSource_ItemUse_WithPotentialAmmo(heldItem, 0, "Aequus: Furystar");
                         if (CombinedHooks.Shoot(player, heldItem, (EntitySource_ItemUse_WithAmmo)source, position, velocity, projectileType, damage, knockback)) {
                             Projectile.NewProjectile(player.GetSource_ItemUse(heldItem), position, velocity, projectileType, damage, knockback, player.whoAmI, ai0: heldItem.mana * 0.5f, ai1: starFuryVector.Y);
                         }

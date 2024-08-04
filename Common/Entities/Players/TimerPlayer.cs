@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AequusRemake;
+namespace Aequus;
 
 public sealed class TimerData(string Name, TimerPlayer Player) {
     public string Name { get; init; } = Name;
