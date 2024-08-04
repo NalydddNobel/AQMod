@@ -1,6 +1,6 @@
 ﻿using Terraria.Localization;
 
-namespace Aequus.Content.Necromancy.Equipment.Accessories.SpiritKeg;
+namespace Aequus.Content.Necromancy.Accessories.SpiritKeg;
 
 public class KegOSpirits : ModItem {
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SaivoryKnife.GhostLifespan / 3600, BottleOSpirits.GhostSlotIncrease);

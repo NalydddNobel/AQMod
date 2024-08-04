@@ -2,7 +2,7 @@
 using System.Linq;
 using Terraria.Localization;
 
-namespace Aequus.Content.Necromancy.Equipment.Armor.SetGravetender;
+namespace Aequus.Content.Necromancy.Armor.SetGravetender;
 
 [LegacyName("NecromancerRobe", "SeraphimRobes")]
 [AutoloadEquip(EquipType.Body)]

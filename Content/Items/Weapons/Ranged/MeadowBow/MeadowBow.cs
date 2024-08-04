@@ -1,5 +1,4 @@
 ﻿using Aequus.Common;
-using Aequus.Tiles.Meadow;
 
 namespace Aequus.Content.Items.Weapons.Ranged.MeadowBow;
 
@@ -26,9 +25,11 @@ public class MeadowBow : ModItem {
     }
 
     public override void AddRecipes() {
+#if DEBUG
         CreateRecipe()
             .AddIngredient(ModContent.GetInstance<MeadowWood>().Item.Type, 10)
             .AddTile(TileID.WorkBenches)
             .Register();
+#endif
     }
 }

@@ -2131,17 +2131,17 @@
         <member name="F:Aequus.AequusSounds.SwordSwipe5">
             <summary>Full Path: Assets/Sounds/Item/Sword/SwordSwipe5</summary>
         </member>
-        <member name="F:Aequus.AequusSounds.destroy0">
-            <summary>Full Path: Assets/Sounds/Item/Umystick/destroy0</summary>
+        <member name="F:Aequus.AequusSounds.UmystickBreak0">
+            <summary>Full Path: Assets/Sounds/Item/Umystick/UmystickBreak0</summary>
         </member>
-        <member name="F:Aequus.AequusSounds.destroy1">
-            <summary>Full Path: Assets/Sounds/Item/Umystick/destroy1</summary>
+        <member name="F:Aequus.AequusSounds.UmystickBreak1">
+            <summary>Full Path: Assets/Sounds/Item/Umystick/UmystickBreak1</summary>
         </member>
-        <member name="F:Aequus.AequusSounds.destroy2">
-            <summary>Full Path: Assets/Sounds/Item/Umystick/destroy2</summary>
+        <member name="F:Aequus.AequusSounds.UmystickBreak2">
+            <summary>Full Path: Assets/Sounds/Item/Umystick/UmystickBreak2</summary>
         </member>
-        <member name="F:Aequus.AequusSounds.destroy3">
-            <summary>Full Path: Assets/Sounds/Item/Umystick/destroy3</summary>
+        <member name="F:Aequus.AequusSounds.UmystickBreak3">
+            <summary>Full Path: Assets/Sounds/Item/Umystick/UmystickBreak3</summary>
         </member>
         <member name="F:Aequus.AequusSounds.UmystickJump0">
             <summary>Full Path: Assets/Sounds/Item/Umystick/UmystickJump0</summary>
@@ -3143,49 +3143,49 @@
             <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonMount_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SoulChains">
-            <summary>Full Path: Content/Necromancy/Equipment/Accessories/Chains/SoulChains</summary>
+            <summary>Full Path: Content/Necromancy/Accessories/Chains/SoulChains</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SouljointCuffs">
-            <summary>Full Path: Content/Necromancy/Equipment/Accessories/Chains/SouljointCuffs</summary>
+            <summary>Full Path: Content/Necromancy/Accessories/Chains/SouljointCuffs</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PandorasBox">
-            <summary>Full Path: Content/Necromancy/Equipment/Accessories/PandorasBox</summary>
+            <summary>Full Path: Content/Necromancy/Accessories/PandorasBox</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PharaohsCurse">
-            <summary>Full Path: Content/Necromancy/Equipment/Accessories/PharaohsCurse</summary>
+            <summary>Full Path: Content/Necromancy/Accessories/PharaohsCurse</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RitualisticSkull">
-            <summary>Full Path: Content/Necromancy/Equipment/Accessories/RitualisticSkull</summary>
+            <summary>Full Path: Content/Necromancy/Accessories/RitualisticSkull</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ShadowVeer">
-            <summary>Full Path: Content/Necromancy/Equipment/Accessories/ShadowVeer</summary>
+            <summary>Full Path: Content/Necromancy/Accessories/ShadowVeer</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BottleOSpirits">
-            <summary>Full Path: Content/Necromancy/Equipment/Accessories/SpiritKeg/BottleOSpirits</summary>
+            <summary>Full Path: Content/Necromancy/Accessories/SpiritKeg/BottleOSpirits</summary>
         </member>
         <member name="F:Aequus.AequusTextures.KegOSpirits">
-            <summary>Full Path: Content/Necromancy/Equipment/Accessories/SpiritKeg/KegOSpirits</summary>
+            <summary>Full Path: Content/Necromancy/Accessories/SpiritKeg/KegOSpirits</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SaivoryKnife">
-            <summary>Full Path: Content/Necromancy/Equipment/Accessories/SpiritKeg/SaivoryKnife</summary>
+            <summary>Full Path: Content/Necromancy/Accessories/SpiritKeg/SaivoryKnife</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GravetenderHood">
-            <summary>Full Path: Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderHood</summary>
+            <summary>Full Path: Content/Necromancy/Armor/SetGravetender/GravetenderHood</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GravetenderHood_Head">
-            <summary>Full Path: Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderHood_Head</summary>
+            <summary>Full Path: Content/Necromancy/Armor/SetGravetender/GravetenderHood_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GravetenderMinionBuff">
-            <summary>Full Path: Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderMinionBuff</summary>
+            <summary>Full Path: Content/Necromancy/Armor/SetGravetender/GravetenderMinionBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GravetenderRobes">
-            <summary>Full Path: Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderRobes</summary>
+            <summary>Full Path: Content/Necromancy/Armor/SetGravetender/GravetenderRobes</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GravetenderRobes_Body">
-            <summary>Full Path: Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderRobes_Body</summary>
+            <summary>Full Path: Content/Necromancy/Armor/SetGravetender/GravetenderRobes_Body</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GravetenderWisp">
-            <summary>Full Path: Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderWisp</summary>
+            <summary>Full Path: Content/Necromancy/Armor/SetGravetender/GravetenderWisp</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Insurgency">
             <summary>Full Path: Content/Necromancy/Sceptres/Dungeon/Insurgency</summary>
@@ -6711,7 +6711,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="P:Aequus.Content.Necromancy.Equipment.Accessories.SpiritKeg.SaivoryKnife.GhostLifespan">
+        <member name="P:Aequus.Content.Necromancy.Accessories.SpiritKeg.SaivoryKnife.GhostLifespan">
             <summary>
             Default Value: 3600 (1 minute)
             </summary>

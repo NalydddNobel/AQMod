@@ -599,36 +599,36 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> HotAirBalloonMount_Front = new("Content/Mounts/HotAirBalloon/HotAirBalloonMount_Front");
     /// <summary>Full Path: Content/Mounts/HotAirBalloon/HotAirBalloonMount_Glow</summary>
     public static readonly RequestCache<Texture2D> HotAirBalloonMount_Glow = new("Content/Mounts/HotAirBalloon/HotAirBalloonMount_Glow");
-    /// <summary>Full Path: Content/Necromancy/Equipment/Accessories/Chains/SoulChains</summary>
-    public static readonly RequestCache<Texture2D> SoulChains = new("Content/Necromancy/Equipment/Accessories/Chains/SoulChains");
-    /// <summary>Full Path: Content/Necromancy/Equipment/Accessories/Chains/SouljointCuffs</summary>
-    public static readonly RequestCache<Texture2D> SouljointCuffs = new("Content/Necromancy/Equipment/Accessories/Chains/SouljointCuffs");
-    /// <summary>Full Path: Content/Necromancy/Equipment/Accessories/PandorasBox</summary>
-    public static readonly RequestCache<Texture2D> PandorasBox = new("Content/Necromancy/Equipment/Accessories/PandorasBox");
-    /// <summary>Full Path: Content/Necromancy/Equipment/Accessories/PharaohsCurse</summary>
-    public static readonly RequestCache<Texture2D> PharaohsCurse = new("Content/Necromancy/Equipment/Accessories/PharaohsCurse");
-    /// <summary>Full Path: Content/Necromancy/Equipment/Accessories/RitualisticSkull</summary>
-    public static readonly RequestCache<Texture2D> RitualisticSkull = new("Content/Necromancy/Equipment/Accessories/RitualisticSkull");
-    /// <summary>Full Path: Content/Necromancy/Equipment/Accessories/ShadowVeer</summary>
-    public static readonly RequestCache<Texture2D> ShadowVeer = new("Content/Necromancy/Equipment/Accessories/ShadowVeer");
-    /// <summary>Full Path: Content/Necromancy/Equipment/Accessories/SpiritKeg/BottleOSpirits</summary>
-    public static readonly RequestCache<Texture2D> BottleOSpirits = new("Content/Necromancy/Equipment/Accessories/SpiritKeg/BottleOSpirits");
-    /// <summary>Full Path: Content/Necromancy/Equipment/Accessories/SpiritKeg/KegOSpirits</summary>
-    public static readonly RequestCache<Texture2D> KegOSpirits = new("Content/Necromancy/Equipment/Accessories/SpiritKeg/KegOSpirits");
-    /// <summary>Full Path: Content/Necromancy/Equipment/Accessories/SpiritKeg/SaivoryKnife</summary>
-    public static readonly RequestCache<Texture2D> SaivoryKnife = new("Content/Necromancy/Equipment/Accessories/SpiritKeg/SaivoryKnife");
-    /// <summary>Full Path: Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderHood</summary>
-    public static readonly RequestCache<Texture2D> GravetenderHood = new("Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderHood");
-    /// <summary>Full Path: Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderHood_Head</summary>
-    public static readonly RequestCache<Texture2D> GravetenderHood_Head = new("Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderHood_Head");
-    /// <summary>Full Path: Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderMinionBuff</summary>
-    public static readonly RequestCache<Texture2D> GravetenderMinionBuff = new("Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderMinionBuff");
-    /// <summary>Full Path: Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderRobes</summary>
-    public static readonly RequestCache<Texture2D> GravetenderRobes = new("Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderRobes");
-    /// <summary>Full Path: Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderRobes_Body</summary>
-    public static readonly RequestCache<Texture2D> GravetenderRobes_Body = new("Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderRobes_Body");
-    /// <summary>Full Path: Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderWisp</summary>
-    public static readonly RequestCache<Texture2D> GravetenderWisp = new("Content/Necromancy/Equipment/Armor/SetGravetender/GravetenderWisp");
+    /// <summary>Full Path: Content/Necromancy/Accessories/Chains/SoulChains</summary>
+    public static readonly RequestCache<Texture2D> SoulChains = new("Content/Necromancy/Accessories/Chains/SoulChains");
+    /// <summary>Full Path: Content/Necromancy/Accessories/Chains/SouljointCuffs</summary>
+    public static readonly RequestCache<Texture2D> SouljointCuffs = new("Content/Necromancy/Accessories/Chains/SouljointCuffs");
+    /// <summary>Full Path: Content/Necromancy/Accessories/PandorasBox</summary>
+    public static readonly RequestCache<Texture2D> PandorasBox = new("Content/Necromancy/Accessories/PandorasBox");
+    /// <summary>Full Path: Content/Necromancy/Accessories/PharaohsCurse</summary>
+    public static readonly RequestCache<Texture2D> PharaohsCurse = new("Content/Necromancy/Accessories/PharaohsCurse");
+    /// <summary>Full Path: Content/Necromancy/Accessories/RitualisticSkull</summary>
+    public static readonly RequestCache<Texture2D> RitualisticSkull = new("Content/Necromancy/Accessories/RitualisticSkull");
+    /// <summary>Full Path: Content/Necromancy/Accessories/ShadowVeer</summary>
+    public static readonly RequestCache<Texture2D> ShadowVeer = new("Content/Necromancy/Accessories/ShadowVeer");
+    /// <summary>Full Path: Content/Necromancy/Accessories/SpiritKeg/BottleOSpirits</summary>
+    public static readonly RequestCache<Texture2D> BottleOSpirits = new("Content/Necromancy/Accessories/SpiritKeg/BottleOSpirits");
+    /// <summary>Full Path: Content/Necromancy/Accessories/SpiritKeg/KegOSpirits</summary>
+    public static readonly RequestCache<Texture2D> KegOSpirits = new("Content/Necromancy/Accessories/SpiritKeg/KegOSpirits");
+    /// <summary>Full Path: Content/Necromancy/Accessories/SpiritKeg/SaivoryKnife</summary>
+    public static readonly RequestCache<Texture2D> SaivoryKnife = new("Content/Necromancy/Accessories/SpiritKeg/SaivoryKnife");
+    /// <summary>Full Path: Content/Necromancy/Armor/SetGravetender/GravetenderHood</summary>
+    public static readonly RequestCache<Texture2D> GravetenderHood = new("Content/Necromancy/Armor/SetGravetender/GravetenderHood");
+    /// <summary>Full Path: Content/Necromancy/Armor/SetGravetender/GravetenderHood_Head</summary>
+    public static readonly RequestCache<Texture2D> GravetenderHood_Head = new("Content/Necromancy/Armor/SetGravetender/GravetenderHood_Head");
+    /// <summary>Full Path: Content/Necromancy/Armor/SetGravetender/GravetenderMinionBuff</summary>
+    public static readonly RequestCache<Texture2D> GravetenderMinionBuff = new("Content/Necromancy/Armor/SetGravetender/GravetenderMinionBuff");
+    /// <summary>Full Path: Content/Necromancy/Armor/SetGravetender/GravetenderRobes</summary>
+    public static readonly RequestCache<Texture2D> GravetenderRobes = new("Content/Necromancy/Armor/SetGravetender/GravetenderRobes");
+    /// <summary>Full Path: Content/Necromancy/Armor/SetGravetender/GravetenderRobes_Body</summary>
+    public static readonly RequestCache<Texture2D> GravetenderRobes_Body = new("Content/Necromancy/Armor/SetGravetender/GravetenderRobes_Body");
+    /// <summary>Full Path: Content/Necromancy/Armor/SetGravetender/GravetenderWisp</summary>
+    public static readonly RequestCache<Texture2D> GravetenderWisp = new("Content/Necromancy/Armor/SetGravetender/GravetenderWisp");
     /// <summary>Full Path: Content/Necromancy/Sceptres/Dungeon/Insurgency</summary>
     public static readonly RequestCache<Texture2D> Insurgency = new("Content/Necromancy/Sceptres/Dungeon/Insurgency");
     /// <summary>Full Path: Content/Necromancy/Sceptres/Dungeon/InsurgencyProj</summary>

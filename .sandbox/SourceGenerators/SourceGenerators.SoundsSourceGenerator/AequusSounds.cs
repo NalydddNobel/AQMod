@@ -156,14 +156,14 @@ public partial class AequusSounds {
     public static readonly SoundStyle SwordSwipe4 = new("Aequus/Assets/Sounds/Item/Sword/SwordSwipe4");
     /// <summary>Full Path: Assets/Sounds/Item/Sword/SwordSwipe5</summary>
     public static readonly SoundStyle SwordSwipe5 = new("Aequus/Assets/Sounds/Item/Sword/SwordSwipe5");
-    /// <summary>Full Path: Assets/Sounds/Item/Umystick/destroy0</summary>
-    public static readonly SoundStyle destroy0 = new("Aequus/Assets/Sounds/Item/Umystick/destroy0");
-    /// <summary>Full Path: Assets/Sounds/Item/Umystick/destroy1</summary>
-    public static readonly SoundStyle destroy1 = new("Aequus/Assets/Sounds/Item/Umystick/destroy1");
-    /// <summary>Full Path: Assets/Sounds/Item/Umystick/destroy2</summary>
-    public static readonly SoundStyle destroy2 = new("Aequus/Assets/Sounds/Item/Umystick/destroy2");
-    /// <summary>Full Path: Assets/Sounds/Item/Umystick/destroy3</summary>
-    public static readonly SoundStyle destroy3 = new("Aequus/Assets/Sounds/Item/Umystick/destroy3");
+    /// <summary>Full Path: Assets/Sounds/Item/Umystick/UmystickBreak0</summary>
+    public static readonly SoundStyle UmystickBreak0 = new("Aequus/Assets/Sounds/Item/Umystick/UmystickBreak0");
+    /// <summary>Full Path: Assets/Sounds/Item/Umystick/UmystickBreak1</summary>
+    public static readonly SoundStyle UmystickBreak1 = new("Aequus/Assets/Sounds/Item/Umystick/UmystickBreak1");
+    /// <summary>Full Path: Assets/Sounds/Item/Umystick/UmystickBreak2</summary>
+    public static readonly SoundStyle UmystickBreak2 = new("Aequus/Assets/Sounds/Item/Umystick/UmystickBreak2");
+    /// <summary>Full Path: Assets/Sounds/Item/Umystick/UmystickBreak3</summary>
+    public static readonly SoundStyle UmystickBreak3 = new("Aequus/Assets/Sounds/Item/Umystick/UmystickBreak3");
     /// <summary>Full Path: Assets/Sounds/Item/Umystick/UmystickJump0</summary>
     public static readonly SoundStyle UmystickJump0 = new("Aequus/Assets/Sounds/Item/Umystick/UmystickJump0");
     /// <summary>Full Path: Assets/Sounds/Item/Umystick/UmystickJump1</summary>

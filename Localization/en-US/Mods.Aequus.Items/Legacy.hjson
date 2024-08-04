@@ -851,21 +851,25 @@ ScarabDynamite: {
 
 BottleOSpirits: {
 	DisplayName: Bottle O Spirits
-	Tooltip: ""
+	Tooltip: Increases your maximum number of ghost minions by 1
 }
 
 KegOSpirits: {
 	DisplayName: Keg O Spirits
-	Tooltip: ""
+	Tooltip:
+		'''
+		{$SaivoryKnife.Tooltip}
+		{$BottleOSpirits.Tooltip}
+		'''
 }
 
 SaivoryKnife: {
 	DisplayName: Saivory Knife
-	Tooltip: ""
+	Tooltip: Increases the lifespan of your ghosts by 1 minute
 }
 
 CorruptionSceptre: {
-	DisplayName: Corruption Sceptre
+	DisplayName: Zombie Sceptre
 	Tooltip: ""
 }
 

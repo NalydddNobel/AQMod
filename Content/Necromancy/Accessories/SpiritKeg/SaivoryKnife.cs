@@ -1,7 +1,7 @@
 ﻿using Aequus.Items.Weapons.Ranged.Bows.CrusadersCrossbow;
 using Terraria.Localization;
 
-namespace Aequus.Content.Necromancy.Equipment.Accessories.SpiritKeg;
+namespace Aequus.Content.Necromancy.Accessories.SpiritKeg;
 
 [LegacyName("BloodiedBucket")]
 public class SaivoryKnife : ModItem {
@@ -25,6 +25,6 @@ public class SaivoryKnife : ModItem {
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
-        //player.Aequus().ghostLifespan += GhostLifespan;
+        player.Aequus().ghostLifespan += GhostLifespan;
     }
 }

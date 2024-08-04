@@ -1,6 +1,6 @@
 ﻿using Terraria.Localization;
 
-namespace Aequus.Content.Necromancy.Equipment.Armor.SetGravetender;
+namespace Aequus.Content.Necromancy.Armor.SetGravetender;
 
 [LegacyName("NecromancerHood", "SeraphimHood")]
 [AutoloadEquip(EquipType.Head)]

@@ -60,7 +60,7 @@ namespace Aequus.Items.Weapons.Ranged.Bows.BoundBow {
         }
 
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
-            if (Main.playerInventory || Main.gameMenu || !Main.PlayerLoaded || AequusUI.CurrentItemSlot.Context == ItemSlot.Context.HotbarItem)
+            if (Main.playerInventory || Main.gameMenu || !Main.PlayerLoaded || AequusUI.CurrentItemSlot.Context != ItemSlot.Context.HotbarItem)
                 return;
 
             if (!Main.LocalPlayer.TryGetModPlayer<AequusPlayer>(out var aequus))

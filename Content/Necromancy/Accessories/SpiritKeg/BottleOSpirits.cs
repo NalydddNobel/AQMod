@@ -1,7 +1,7 @@
 ﻿using Aequus.Content.Events.DemonSiege;
 using Terraria.Localization;
 
-namespace Aequus.Content.Necromancy.Equipment.Accessories.SpiritKeg;
+namespace Aequus.Content.Necromancy.Accessories.SpiritKeg;
 
 [LegacyName("Malediction", "CartilageRing", "NaturesCruelty")]
 public class BottleOSpirits : ModItem {

@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Necromancy.Equipment.Armor.SetGravetender;
+﻿namespace Aequus.Content.Necromancy.Armor.SetGravetender;
 
 public class GravetenderMinionBuff : ModBuff {
     public override void SetStaticDefaults() {

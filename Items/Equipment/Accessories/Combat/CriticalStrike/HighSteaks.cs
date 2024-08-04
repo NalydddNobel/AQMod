@@ -3,7 +3,7 @@ using Aequus.Common.Items;
 using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Net.Sounds;
 using Aequus.Common.Recipes;
-using Aequus.Content.Necromancy.Equipment.Accessories.SpiritKeg;
+using Aequus.Content.Necromancy.Accessories.SpiritKeg;
 using Aequus.Items.Equipment.Accessories.Combat.CriticalStrike;
 using System;
 using System.Collections.Generic;

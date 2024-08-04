@@ -17,8 +17,7 @@ using Aequus.Items.Weapons.Magic.Misc.Wabbajack;
 using Aequus.Items.Weapons.Melee.Misc.Valari;
 using Aequus.Items.Weapons.Summon.CorruptPot;
 using Aequus.Items.Weapons.Summon.CrimsonMushroom;
-using Aequus.Content.Necromancy.Equipment.Accessories;
-using Aequus.Content.Necromancy.Equipment.Accessories.SpiritKeg;
+using Aequus.Content.Necromancy.Accessories.SpiritKeg;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Misc;
 using Aequus.Tiles.CraftingStations;
@@ -34,6 +33,7 @@ using Terraria.GameContent.Events;
 using Terraria.GameContent.Personalities;
 using Terraria.Graphics.Renderers;
 using Terraria.Localization;
+using Aequus.Content.Necromancy.Accessories;
 
 namespace Aequus.NPCs.Town.OccultistNPC;
 [AutoloadHead()]

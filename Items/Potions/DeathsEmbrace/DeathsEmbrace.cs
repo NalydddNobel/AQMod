@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items.Dedications;
 using Aequus.Content.Events.DemonSiege;
-using Aequus.Content.Necromancy.Equipment.Accessories.SpiritKeg;
+using Aequus.Content.Necromancy.Accessories.SpiritKeg;
 using System.Collections.Generic;
 
 namespace Aequus.Items.Potions.DeathsEmbrace;

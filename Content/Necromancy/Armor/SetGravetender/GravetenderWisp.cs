@@ -2,7 +2,7 @@
 using Aequus.Projectiles.Summon;
 using System;
 
-namespace Aequus.Content.Necromancy.Equipment.Armor.SetGravetender;
+namespace Aequus.Content.Necromancy.Armor.SetGravetender;
 
 public class GravetenderWisp : MinionBase {
     public override void SetStaticDefaults() {

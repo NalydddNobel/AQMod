@@ -2,7 +2,7 @@
 using Aequus.Content.Necromancy.Rendering;
 using Aequus.Items.Materials.SoulGem;
 
-namespace Aequus.Content.Necromancy.Equipment.Accessories.Chains;
+namespace Aequus.Content.Necromancy.Accessories.Chains;
 
 public class SouljointCuffs : ModItem {
     public override void SetStaticDefaults() {

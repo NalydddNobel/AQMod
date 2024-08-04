@@ -20,7 +20,7 @@ public class Aequus : Mod {
 #if DEBUG
     public static bool DevelopmentFeatures = true;
 #else
-    public static bool DevelopmentFeatures = false; 
+    public static bool DevelopmentFeatures = false;
 #endif
 
     public const string VanillaTexture = "Terraria/Images/";
@@ -142,10 +142,6 @@ public class Aequus : Mod {
     [Obsolete("Replaced with AequusSounds")]
     internal static SoundStyle GetSounds(string name, int num, float volume = 1f, float pitch = 0f, float variance = 0f) {
         return new SoundStyle(SoundsPath + name, 0, num) { Volume = volume, Pitch = pitch, PitchVariance = variance, };
-    }
-    [Obsolete("Replaced with AequusSounds")]
-    internal static SoundStyle GetSound(string name, float volume = 1f, float pitch = 0f, float variance = 0f) {
-        return new SoundStyle(SoundsPath + name) { Volume = volume, Pitch = pitch, PitchVariance = variance, };
     }
 
     public static string TileTexture(int id) {

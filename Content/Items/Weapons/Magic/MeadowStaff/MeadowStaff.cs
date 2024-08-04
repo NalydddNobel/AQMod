@@ -1,5 +1,4 @@
 ﻿using Aequus.Common;
-using Aequus.Tiles.Meadow;
 
 namespace Aequus.Content.Items.Weapons.Magic.MeadowStaff;
 
@@ -29,9 +28,11 @@ public class MeadowStaff : ModItem {
     }
 
     public override void AddRecipes() {
+#if DEBUG
         CreateRecipe()
             .AddIngredient(ModContent.GetInstance<MeadowWood>().Item.Type, 14)
             .AddTile(TileID.WorkBenches)
             .Register();
+#endif
     }
 }

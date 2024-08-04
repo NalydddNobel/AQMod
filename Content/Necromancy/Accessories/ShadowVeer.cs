@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Necromancy.Equipment.Accessories;
+﻿namespace Aequus.Content.Necromancy.Accessories;
 
 public class ShadowVeer : ModItem {
     public override void SetStaticDefaults() {

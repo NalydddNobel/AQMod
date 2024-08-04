@@ -7,7 +7,7 @@ using Aequus.Items.Equipment.GrapplingHooks;
 using Aequus.Items.Misc.Foods;
 using Aequus.Items.Potions.Unique;
 using Aequus.Items.Weapons.Ranged.Bows.CrusadersCrossbow;
-using Aequus.Content.Necromancy.Equipment.Accessories.SpiritKeg;
+using Aequus.Content.Necromancy.Accessories.SpiritKeg;
 using Aequus.Tiles.Banners.Items;
 using System;
 using Terraria.GameContent.Bestiary;

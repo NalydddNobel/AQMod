@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items;
 
-namespace Aequus.Content.Necromancy.Equipment.Accessories;
+namespace Aequus.Content.Necromancy.Accessories;
 
 public class PandorasBox : ModItem {
     public override void SetDefaults() {
