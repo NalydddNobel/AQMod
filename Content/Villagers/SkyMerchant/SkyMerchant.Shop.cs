@@ -21,6 +21,7 @@ public partial class SkyMerchant {
             .AddWithCustomValue<Items.Weapons.Ranged.SkyHunterCrossbow.SkyHunterCrossbow>((int)(ItemDefaults.NPCSkyMerchantCustomPrice * 1.5))
             .AddWithCustomValue<global::Aequus.Items.Tools.Pumpinator>(ItemDefaults.NPCSkyMerchantCustomPrice)
             .AddWithCustomValue<global::Aequus.Items.Tools.Bellows>(ItemDefaults.NPCSkyMerchantCustomPrice)
+            .AddWithCustomValue<global::Aequus.Items.Tools.FishingPoles.Nimrod>(ItemDefaults.NPCSkyMerchantCustomPrice)
             .Add<global::Aequus.Items.Potions.Healing.Restoration.LesserRestorationPotion>()
             .Add<Items.Accessories.Informational.Calendar.Calendar>()
             .Add<Systems.Renaming.NameTag>()
