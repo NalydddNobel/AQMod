@@ -327,6 +327,7 @@ public partial class AequusWorld : ModSystem {
     public override void NetReceive(BinaryReader reader) {
         NetTypeAttribute.ReadData(reader, this);
         shadowOrbsBrokenTotal = reader.ReadInt32();
+        UsedTinkererBook = reader.ReadBoolean();
     }
 
     public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts) {
