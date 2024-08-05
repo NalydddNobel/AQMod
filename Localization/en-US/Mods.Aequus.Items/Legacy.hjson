@@ -656,9 +656,6 @@ MoneyTrashcan: {
 	Tooltip: Recieve 25% of the sell price of trashed items
 }
 
-NameTag: {
-}
-
 RadonMossBrickItem: {
 	DisplayName: Radon Moss Brick
 	Tooltip: ""
