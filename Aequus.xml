@@ -2252,7 +2252,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1331)</summary>
+            <summary>(Total Textures: 1332)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -5463,6 +5463,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.NameTagBlank">
             <summary>Full Path: Systems/Renaming/NameTagBlank</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NameTagBlip">
+            <summary>Full Path: Systems/Renaming/NameTagBlip</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BloodMimicBanner">
             <summary>Full Path: Tiles/Banners/Items/BloodMimicBanner</summary>
