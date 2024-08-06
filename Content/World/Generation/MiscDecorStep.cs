@@ -168,10 +168,10 @@ public class MiscDecorStep : AGenStep {
         // Paintings which spawn in the Dungeon.
         DungeonPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType<WallPaintings2x3>(), style = WallPaintings2x3.NarryPainting });
         DungeonPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType<WallPaintings3x3>(), style = WallPaintings3x3.RockFromAnAlternateUniversePainting });
-        DungeonPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType<WallPaintings3x3>(), style = WallPaintings3x3.InsurgentPainting });
 
         // Paintings which spawn in the Underworld.
         HellPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType<WallPaintings3x3>(), style = WallPaintings3x3.GoreNestPainting });
         HellPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType<WallPaintings3x3>(), style = WallPaintings3x3.GoreNest2Painting });
+        HellPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType<WallPaintings3x3>(), style = WallPaintings3x3.InsurgentPainting });
     }
 }
