@@ -24,7 +24,7 @@
 	<!-- Libs & Packages. -->
 	<!--<PackageReference Include="nalyddd.tmod.imgrefgenerator" Version="1.0.4" />-->
 	<PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
-	<ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	<ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" Condition="'$(Configuration)' == 'Debug'" />
 	
 	<!-- Additional Files for Source Generators. -->
 	<AdditionalFiles Include="**\*.png" />
