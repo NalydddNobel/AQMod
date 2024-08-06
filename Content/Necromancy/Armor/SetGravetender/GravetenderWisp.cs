@@ -71,10 +71,9 @@ public class GravetenderWisp : MinionBase {
         else {
             Projectile.velocity *= 0.95f;
         }
-        if (aequus.gravetenderGhost > -1) {
-            StatSpeedGlobalNPC aequusNPC = Main.npc[aequus.gravetenderGhost].GetGlobalNPC<StatSpeedGlobalNPC>();
+        if (aequus.gravetenderGhost > -1 && Main.npc[aequus.gravetenderGhost].TryGetGlobalNPC(out StatSpeedGlobalNPC speedNPC)) {
             if (Projectile.numUpdates == -1) {
-                Projectile.position += (aequus.gravetenderGhost > -1 ? Main.npc[aequus.gravetenderGhost].velocity * new Vector2(aequusNPC.statSpeed, aequusNPC.statSpeed * aequusNPC.statSpeedJumpSpeedMultiplier) : Main.player[Projectile.owner].velocity) * 0.97f;
+                Projectile.position += (aequus.gravetenderGhost > -1 ? Main.npc[aequus.gravetenderGhost].velocity * new Vector2(speedNPC.statSpeed, speedNPC.statSpeed * speedNPC.statSpeedJumpSpeedMultiplier) : Main.player[Projectile.owner].velocity) * 0.97f;
             }
         }
 

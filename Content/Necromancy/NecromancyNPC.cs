@@ -2,7 +2,6 @@
 using Aequus.Common.NPCs.Global;
 using Aequus.Content.Necromancy.Networking;
 using Aequus.Content.Necromancy.Rendering;
-using Aequus.Content.Necromancy;
 using Aequus.Particles.Dusts;
 using System;
 using System.Collections.Generic;
@@ -242,11 +241,14 @@ public class NecromancyNPC : GlobalNPC, IAddRecipes {
                 zombieTimerMax = time;
                 zombieTimer = time;
             }
-            StatSpeedGlobalNPC aequusNPC = npc.GetGlobalNPC<StatSpeedGlobalNPC>();
-            aequusNPC.statSpeed += ghostSpeed;
+            if (npc.TryGetGlobalNPC(out StatSpeedGlobalNPC speedNPC)) {
+                speedNPC.statSpeed += ghostSpeed;
+            }
             aequus.ghostSlots += slotsConsumed;
             if (aequus.gravetenderGhost == npc.whoAmI) {
-                aequusNPC.statSpeed *= 1.33f;
+                if (speedNPC != null) {
+                    speedNPC.statSpeed *= 1.33f;
+                }
                 statFreezeLifespan = true;
             }
             if (!statFreezeLifespan) {
