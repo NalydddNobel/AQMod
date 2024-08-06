@@ -365,6 +365,28 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CrabCreviceWater_Block = new("Content/Biomes/CrabCrevice/Water/CrabCreviceWater_Block");
     /// <summary>Full Path: Content/Biomes/CrabCrevice/Water/CrabCreviceWater_Slope</summary>
     public static readonly RequestCache<Texture2D> CrabCreviceWater_Slope = new("Content/Biomes/CrabCrevice/Water/CrabCreviceWater_Slope");
+    /// <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowGrass</summary>
+    public static readonly RequestCache<Texture2D> MeadowGrass = new("Content/Biomes/Meadows/Tiles/MeadowGrass");
+    /// <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowGrassItem</summary>
+    public static readonly RequestCache<Texture2D> MeadowGrassItem = new("Content/Biomes/Meadows/Tiles/MeadowGrassItem");
+    /// <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowPlants</summary>
+    public static readonly RequestCache<Texture2D> MeadowPlants = new("Content/Biomes/Meadows/Tiles/MeadowPlants");
+    /// <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTree</summary>
+    public static readonly RequestCache<Texture2D> MeadowTree = new("Content/Biomes/Meadows/Tiles/MeadowTree");
+    /// <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTreeDust</summary>
+    public static readonly RequestCache<Texture2D> MeadowTreeDust = new("Content/Biomes/Meadows/Tiles/MeadowTreeDust");
+    /// <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTreeLeaves</summary>
+    public static readonly RequestCache<Texture2D> MeadowTreeLeaves = new("Content/Biomes/Meadows/Tiles/MeadowTreeLeaves");
+    /// <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTreeSapling</summary>
+    public static readonly RequestCache<Texture2D> MeadowTreeSapling = new("Content/Biomes/Meadows/Tiles/MeadowTreeSapling");
+    /// <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTree_Branches</summary>
+    public static readonly RequestCache<Texture2D> MeadowTree_Branches = new("Content/Biomes/Meadows/Tiles/MeadowTree_Branches");
+    /// <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTree_Tops</summary>
+    public static readonly RequestCache<Texture2D> MeadowTree_Tops = new("Content/Biomes/Meadows/Tiles/MeadowTree_Tops");
+    /// <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowWood</summary>
+    public static readonly RequestCache<Texture2D> MeadowWood = new("Content/Biomes/Meadows/Tiles/MeadowWood");
+    /// <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowWoodItem</summary>
+    public static readonly RequestCache<Texture2D> MeadowWoodItem = new("Content/Biomes/Meadows/Tiles/MeadowWoodItem");
     /// <summary>Full Path: Content/Carpentry/Bonuses/BridgeBountyBuff</summary>
     public static readonly RequestCache<Texture2D> BridgeBountyBuff = new("Content/Carpentry/Bonuses/BridgeBountyBuff");
     /// <summary>Full Path: Content/Carpentry/Bonuses/Buff</summary>
@@ -2471,28 +2493,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> MorayTile_Glow = new("Tiles/Herbs/Moray/MorayTile_Glow");
     /// <summary>Full Path: Tiles/Herbs/PlanterBoxes</summary>
     public static readonly RequestCache<Texture2D> PlanterBoxes = new("Tiles/Herbs/PlanterBoxes");
-    /// <summary>Full Path: Tiles/Meadow/MeadowGrass</summary>
-    public static readonly RequestCache<Texture2D> MeadowGrass = new("Tiles/Meadow/MeadowGrass");
-    /// <summary>Full Path: Tiles/Meadow/MeadowGrassItem</summary>
-    public static readonly RequestCache<Texture2D> MeadowGrassItem = new("Tiles/Meadow/MeadowGrassItem");
-    /// <summary>Full Path: Tiles/Meadow/MeadowPlants</summary>
-    public static readonly RequestCache<Texture2D> MeadowPlants = new("Tiles/Meadow/MeadowPlants");
-    /// <summary>Full Path: Tiles/Meadow/MeadowTree</summary>
-    public static readonly RequestCache<Texture2D> MeadowTree = new("Tiles/Meadow/MeadowTree");
-    /// <summary>Full Path: Tiles/Meadow/MeadowTreeDust</summary>
-    public static readonly RequestCache<Texture2D> MeadowTreeDust = new("Tiles/Meadow/MeadowTreeDust");
-    /// <summary>Full Path: Tiles/Meadow/MeadowTreeLeaves</summary>
-    public static readonly RequestCache<Texture2D> MeadowTreeLeaves = new("Tiles/Meadow/MeadowTreeLeaves");
-    /// <summary>Full Path: Tiles/Meadow/MeadowTreeSapling</summary>
-    public static readonly RequestCache<Texture2D> MeadowTreeSapling = new("Tiles/Meadow/MeadowTreeSapling");
-    /// <summary>Full Path: Tiles/Meadow/MeadowTree_Branches</summary>
-    public static readonly RequestCache<Texture2D> MeadowTree_Branches = new("Tiles/Meadow/MeadowTree_Branches");
-    /// <summary>Full Path: Tiles/Meadow/MeadowTree_Tops</summary>
-    public static readonly RequestCache<Texture2D> MeadowTree_Tops = new("Tiles/Meadow/MeadowTree_Tops");
-    /// <summary>Full Path: Tiles/Meadow/MeadowWood</summary>
-    public static readonly RequestCache<Texture2D> MeadowWood = new("Tiles/Meadow/MeadowWood");
-    /// <summary>Full Path: Tiles/Meadow/MeadowWoodItem</summary>
-    public static readonly RequestCache<Texture2D> MeadowWoodItem = new("Tiles/Meadow/MeadowWoodItem");
     /// <summary>Full Path: Tiles/Misc/AloeVeraTile</summary>
     public static readonly RequestCache<Texture2D> AloeVeraTile = new("Tiles/Misc/AloeVeraTile");
     /// <summary>Full Path: Tiles/Misc/AshTombstones/AshCrossGraveMarker</summary>

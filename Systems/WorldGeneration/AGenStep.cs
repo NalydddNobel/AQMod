@@ -50,6 +50,10 @@ public abstract class AGenStep : ModType, ILocalizedModType, IPostSetupContent {
         WorldGenSystem.GenerationSteps.Add(this);
     }
 
+    public override void SetupContent() {
+        SetStaticDefaults();
+    }
+
     void IPostSetupContent.PostSetupContent(Aequus mod) {
         this.GetLocalization("DisplayMessage");
         PostSetupContent();

@@ -2789,6 +2789,39 @@
         <member name="F:Aequus.AequusTextures.CrabCreviceWater_Slope">
             <summary>Full Path: Content/Biomes/CrabCrevice/Water/CrabCreviceWater_Slope</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.MeadowGrass">
+            <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowGrass</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowGrassItem">
+            <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowGrassItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowPlants">
+            <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowPlants</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowTree">
+            <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTree</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowTreeDust">
+            <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTreeDust</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowTreeLeaves">
+            <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTreeLeaves</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowTreeSapling">
+            <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTreeSapling</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowTree_Branches">
+            <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTree_Branches</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowTree_Tops">
+            <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowTree_Tops</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowWood">
+            <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowWood</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MeadowWoodItem">
+            <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowWoodItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.BridgeBountyBuff">
             <summary>Full Path: Content/Carpentry/Bonuses/BridgeBountyBuff</summary>
         </member>
@@ -5947,39 +5980,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.PlanterBoxes">
             <summary>Full Path: Tiles/Herbs/PlanterBoxes</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeadowGrass">
-            <summary>Full Path: Tiles/Meadow/MeadowGrass</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeadowGrassItem">
-            <summary>Full Path: Tiles/Meadow/MeadowGrassItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeadowPlants">
-            <summary>Full Path: Tiles/Meadow/MeadowPlants</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeadowTree">
-            <summary>Full Path: Tiles/Meadow/MeadowTree</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeadowTreeDust">
-            <summary>Full Path: Tiles/Meadow/MeadowTreeDust</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeadowTreeLeaves">
-            <summary>Full Path: Tiles/Meadow/MeadowTreeLeaves</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeadowTreeSapling">
-            <summary>Full Path: Tiles/Meadow/MeadowTreeSapling</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeadowTree_Branches">
-            <summary>Full Path: Tiles/Meadow/MeadowTree_Branches</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeadowTree_Tops">
-            <summary>Full Path: Tiles/Meadow/MeadowTree_Tops</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeadowWood">
-            <summary>Full Path: Tiles/Meadow/MeadowWood</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MeadowWoodItem">
-            <summary>Full Path: Tiles/Meadow/MeadowWoodItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AloeVeraTile">
             <summary>Full Path: Tiles/Misc/AloeVeraTile</summary>

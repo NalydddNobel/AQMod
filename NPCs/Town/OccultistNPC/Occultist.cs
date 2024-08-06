@@ -5,6 +5,8 @@ using Aequus.Common.Personalities;
 using Aequus.Common.Utilities;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.GlimmerEvent;
+using Aequus.Content.Necromancy.Accessories;
+using Aequus.Content.Necromancy.Accessories.SpiritKeg;
 using Aequus.Content.Necromancy.Sceptres.Dungeon;
 using Aequus.CrossMod.ThoriumModSupport;
 using Aequus.Items.Equipment.Accessories.Combat;
@@ -17,7 +19,6 @@ using Aequus.Items.Weapons.Magic.Misc.Wabbajack;
 using Aequus.Items.Weapons.Melee.Misc.Valari;
 using Aequus.Items.Weapons.Summon.CorruptPot;
 using Aequus.Items.Weapons.Summon.CrimsonMushroom;
-using Aequus.Content.Necromancy.Accessories.SpiritKeg;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Misc;
 using Aequus.Tiles.CraftingStations;
@@ -33,7 +34,6 @@ using Terraria.GameContent.Events;
 using Terraria.GameContent.Personalities;
 using Terraria.Graphics.Renderers;
 using Terraria.Localization;
-using Aequus.Content.Necromancy.Accessories;
 
 namespace Aequus.NPCs.Town.OccultistNPC;
 [AutoloadHead()]
@@ -162,9 +162,6 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
 
             .Add<DemonCursor>(Condition.NpcIsPresent(NPCID.DyeTrader))
 
-            .Add<Tiles.Paintings.Canvas3x3.GoreNestPainting>(Condition.NpcIsPresent(NPCID.Painter))
-            .Add<Tiles.Paintings.Canvas3x3.GoreNestPainting2>(Condition.NpcIsPresent(NPCID.Painter))
-            .Add<Tiles.Paintings.Canvas3x3.InsurgentPainting>(Condition.NpcIsPresent(NPCID.Painter))
             .Register();
     }
 

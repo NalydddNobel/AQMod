@@ -9,7 +9,6 @@ using Aequus.Items.Misc;
 using Aequus.Items.Tools.Cameras.CarpenterCamera;
 using Aequus.Items.Weapons.Ranged.Misc.BlockGlove;
 using Aequus.Particles.Dusts;
-using Aequus.Tiles.Paintings.Canvas3x2;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
@@ -105,7 +104,6 @@ public class Carpenter : AequusTownNPC<Carpenter> {
     public override void AddShops() {
         NPCShop shop = new(Type);
         shop.Add<Shutterstocker>()
-            .Add<OliverPainting>(Condition.NightOrEclipse, Condition.NpcIsPresent(NPCID.Painter))
             .AddWithCustomValue(ItemID.IvyChest, Item.buyPrice(gold: 1), Condition.TimeDay)
             .AddWithCustomValue(ItemID.WebCoveredChest, Item.buyPrice(gold: 1), Condition.TimeNight)
             .Add<LavaproofMitten>(AequusConditions.DownedDemonSiege)

@@ -161,10 +161,6 @@ public class Physicist : AequusTownNPC<Physicist> {
             .Add<PhysicsBlock>()
             .Add<EmancipationGrill>()
             .Add<SupernovaFruit>(AequusConditions.DownedOmegaStarite)
-            .Add<Tiles.Paintings.Canvas3x3.ExLydSpacePainting>(Condition.NpcIsPresent(NPCID.Painter))
-            .Add<Tiles.Paintings.Canvas6x4.HomeworldPainting>(Condition.NpcIsPresent(NPCID.Painter))
-            .Add<Tiles.Paintings.Canvas6x4.OmegaStaritePainting>(Condition.NpcIsPresent(NPCID.Painter))
-            .Add<Tiles.Paintings.Canvas3x3.OmegaStaritePainting2>(Condition.NpcIsPresent(NPCID.Painter))
             .Register();
 
         //shop.item[nextSlot].SetDefaults(ModContent.ItemType<Cosmicanon>());
