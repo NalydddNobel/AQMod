@@ -1,22 +1,12 @@
 GameTips: {
-	Keychain: "{$Misc.GameTipPretense} 钥匙链能让你将所有钥匙放在同一个地方. 升级到幽灵钥匙链后钥匙能够无限使用!"
-	CopperChests: "{$Misc.GameTipPretense} 上锁的铜宝箱可被拾起并且之后可在你的基地打开."
-	BreathConserver: "{$Misc.GameTipPretense} 在深水中挣扎? 专业的潜水员会使用呼吸救生器."
 	Meadows: "{$Misc.GameTipPretense} 世界的边缘是浮空的草地, 这些神奇的岛屿上有着特殊的植物群系. . ."
 	EventToggleGlasses: "{$Misc.GameTipPretense} 一些神奇的透镜可以隔绝宇宙事件. . ."
 	SkyMerchantShopTip: "{$Misc.GameTipPretense} 天空商人的商店货物会根据一周中的日期而更换, 记得检查日历."
 	SkyMerchantLocationTip: "{$Misc.GameTipPretense} 天空商人会跟随太阳在天空中的位置. 他上午在西边, 下午在东边."
 	NameTag: "{$Misc.GameTipPretense} 有没有想过把地牢守卫当宠物养? 试试对它使用命名标签!"
-	ScavengerBag: "{$Misc.GameTipPretense} 需要更多背包空间? 击杀拾荒骷髅时有几率获得拾荒者袋子!"
 	TipAboutTipsOnDeath: "{$Misc.GameTipPretense} 在你死亡后, 我们会向你展示这些游戏提示! 我在想你在死亡后是否还在读这个..."
 	CheckConfigs: "{$Misc.GameTipPretense} 请务必检查设置菜单中的配置选项! 你可以在那里调整并更改许多东西."
-	AnglerLantern: "{$Misc.GameTipPretense} 在被污染的海洋中发现的琵琶鱼灯会提供光照并且能够让你一窥罐子中的战利品...多么神奇!"
-	CrabPots: "{$Misc.GameTipPretense} 捕捞陷阱对于想要捕鱼而又不想被鱼捕的人是很好的工具."
 	SteampunkersRod: "{$Misc.GameTipPretense} 据传, 有一位工程师可以制造自动卷线器..."
-	TrashCompactor: "{$Misc.GameTipPretense} 在深海的某个地方, 有一种可以将家具分解成其组件的便利装置...并且能够将垃圾压碎成有用的废料."
-	Dumpster: "{$Misc.GameTipPretense} 废料箱可以容纳2个箱子大小数量的物品, 并且只占用三格物块的宽度."
-	Junk: "{$Misc.GameTipPretense} 一个泰拉人的垃圾是另一个泰拉人的财富, 一个狡猾的泰拉人知道如何充分利用渔获垃圾."
-	TrashPSA: 不要把垃圾扔水里.
 	FirstScepter: "{$Misc.GameTipPretense} 制作第一把死灵权杖是一个需要仔细斟酌的决定, 但它值得!"
 	GravetenderArmor: "{$Misc.GameTipPretense} 有抱负的死灵法师应当尝试制作守墓人盔甲, 这需要腐烂材料和灵雾."
 	StackingDebuffs: "{$Misc.GameTipPretense} 某些减益可以在同一敌人身上多次叠加, 并使其造成的持续伤害提高."
@@ -24,10 +14,23 @@ GameTips: {
 	PhaseMirror: "{$Misc.GameTipPretense} 当与朋友一起玩时, 请一定要抢走物理学家的相位镜. 它能够让你无限使用虫洞药水的效果."
 	Meathook: "{$Misc.GameTipPretense} 血肉钩能够让你钩住敌人, 削弱敌人并对其造成额外伤害!"
 	OblivionAltars: "{$Misc.GameTipPretense} 在地狱的遗境祭坛隐藏着险恶的秘密..."
-	PotionCanteen: "{$Misc.GameTipPretense} 在被污染的海洋中有着一个能够使药水的持续时间变成无限的特殊饰品..."
 	Manacle: "{$Misc.GameTipPretense} 镣铐花是一种生长在地狱的奇异植物. 将它的花粉与你的药水混合在一起并使用后能够让你身上的增益在死亡后也能保留."
 	Mistral: "{$Misc.GameTipPretense} 寒风花是一种生在在云上的奇异植物. 将它的花粉与你的药水混合在一起并使用后能够翻倍药水的效力."
-	MonsterChest: "{$Misc.GameTipPretense} 小心周围的怪物箱...它们的锁被复仇亡灵封印了!"
 	NeutronYogurt: "{$Misc.GameTipPretense} 中子酸奶会使你更快的到达最大下落速度, 对于那些需要更快跳下平台的人来说很有用."
 	PylonDrones: "{$Misc.GameTipPretense} 物理学家会为你的城镇提供特殊的保护部队. 购买一架晶体无人机来保护你的镇民免受敌人和恶魔的攻击!"
+}
+
+UnusedGameTips: {
+	ScavengerBag: "{$Misc.GameTipPretense} 需要更多背包空间? 击杀拾荒骷髅时有几率获得拾荒者袋子!"
+	PotionCanteen: "{$Misc.GameTipPretense} 在被污染的海洋中有着一个能够使药水的持续时间变成无限的特殊饰品..."
+	MonsterChest: "{$Misc.GameTipPretense} 小心周围的怪物箱...它们的锁被复仇亡灵封印了!"
+	Keychain: "{$Misc.GameTipPretense} 钥匙链能让你将所有钥匙放在同一个地方. 升级到幽灵钥匙链后钥匙能够无限使用!"
+	CopperChests: "{$Misc.GameTipPretense} 上锁的铜宝箱可被拾起并且之后可在你的基地打开."
+	BreathConserver: "{$Misc.GameTipPretense} 在深水中挣扎? 专业的潜水员会使用呼吸救生器."
+	AnglerLantern: "{$Misc.GameTipPretense} 在被污染的海洋中发现的琵琶鱼灯会提供光照并且能够让你一窥罐子中的战利品...多么神奇!"
+	CrabPots: "{$Misc.GameTipPretense} 捕捞陷阱对于想要捕鱼而又不想被鱼捕的人是很好的工具."
+	TrashCompactor: "{$Misc.GameTipPretense} 在深海的某个地方, 有一种可以将家具分解成其组件的便利装置...并且能够将垃圾压碎成有用的废料."
+	Dumpster: "{$Misc.GameTipPretense} 废料箱可以容纳2个箱子大小数量的物品, 并且只占用三格物块的宽度."
+	Junk: "{$Misc.GameTipPretense} 一个泰拉人的垃圾是另一个泰拉人的财富, 一个狡猾的泰拉人知道如何充分利用渔获垃圾."
+	TrashPSA: 不要把垃圾扔水里.
 }

@@ -1,22 +1,11 @@
 GameTips: {
-	// Keychain: "{$Misc.GameTipPretense} The Keychain lets you keep all your keys in one place. Upgrade it to the Spectre Keychain to use your keys infinitely!"
-	// CopperChests: "{$Misc.GameTipPretense} Locked Copper Chests can be picked up and opened later at your base."
-	// BreathConserver: "{$Misc.GameTipPretense} Struggling to navigate the deep waters? Professional divers use the Breath Conserver."
 	// Meadows: "{$Misc.GameTipPretense} On the outer edges of the world lies the floating Meadows, magical islands with special flora. . ."
-	// EventToggleGlasses: "{$Misc.GameTipPretense} Some magical lenses will block out the presence of cosmic events. . ."
 	SkyMerchantShopTip: "{$Misc.GameTipPretense} La tienda del Mercader del Cielo cambia dependiendo del día de la semana."
 	SkyMerchantLocationTip: "{$Misc.GameTipPretense} El Mercader del Cielo sigue la posición del sol en el cielo, partiendo en el Oeste en la mañana, hasta al Este en la tarde."
 	NameTag: "{$Misc.GameTipPretense} ¿Alguna vez has querido tener a un Guardián de la mazmorra como mascota? Trata usando una etiqueta!"
-	ScavengerBag: "{$Misc.GameTipPretense} ¿Hace falta espacio en el inventario?  Los Esqueletos Carroñeros tienen una probabilidad de soltar su bolsa!"
 	TipAboutTipsOnDeath: "{$Misc.GameTipPretense} ¡Te mostramos estos Tips durante la pantalla de muerte! Quizás estés leyendo esto mientras reapareces..."
 	CheckConfigs: "{$Misc.GameTipPretense} Recuerda revisar tus configuraciones en el menu de opciones! Hay bastante cosas que puedes cambiar y deshabilitar."
-	AnglerLantern: "{$Misc.GameTipPretense} La linterna de pezca en el oceano contaminado emite luz y te deja dar un vistazo dentro de jarrones . . . que mistico!"
-	CrabPots: "{$Misc.GameTipPretense} Las trampas marinas son una herramienta util para atrapar peces sin la molestia de tener que pezcarlos."
 	SteampunkersRod: "{$Misc.GameTipPretense} Hay rumores de una ingeniera que puede fabrica una caña de pezca automatica . . ."
-	TrashCompactor: "{$Misc.GameTipPretense} En algun lugar bajo el agua se encuentra un dispositivo conveniente capaz de descomponer muebles en sus materiales originales . . . y aplastar basura en chatarra útil."
-	Dumpster: "{$Misc.GameTipPretense} Los contenedores de basura pueden almacenar el doble de objetos que un cofre, solo ocupando 3 bloques de espacio."
-	Junk: "{$Misc.GameTipPretense} La basura de alguien es el tesoro de otro! Y un terrariano astuto sabe como darle uso a la basura de pezca."
-	TrashPSA: No tires tu basura al mar.
 	// FirstScepter: "{$Misc.GameTipPretense} Crafting your first Necromancy Sceptre is a touch decision, but it's worth it!"
 	// GravetenderArmor: "{$Misc.GameTipPretense} Aspiring necromancers should seek to craft the Gravetender Armor, requiring rotten materials and Ecto Mist."
 	// StackingDebuffs: "{$Misc.GameTipPretense} Certain debuffs can be inflicted multiple times on the same enemy, stacking their damage over time."
@@ -30,4 +19,14 @@ GameTips: {
 	// MonsterChest: "{$Misc.GameTipPretense} Beware of the Monster Chests which lie about . . . their locks are sealed by the vengeful undead!"
 	// NeutronYogurt: "{$Misc.GameTipPretense} Neutron Yogurt makes you reach maximum speed faster when falling, useful for descending stacked platforms or long mineshafts."
 	// PylonDrones: "{$Misc.GameTipPretense} The Physicist offers special protection forces for your towns. Purchase a Pylon Drone to defend your villagers from Enemies and Evils!"
+}
+
+UnusedGameTips: {
+	ScavengerBag: "{$Misc.GameTipPretense} ¿Hace falta espacio en el inventario?  Los Esqueletos Carroñeros tienen una probabilidad de soltar su bolsa!"
+	AnglerLantern: "{$Misc.GameTipPretense} La linterna de pezca en el oceano contaminado emite luz y te deja dar un vistazo dentro de jarrones . . . que mistico!"
+	CrabPots: "{$Misc.GameTipPretense} Las trampas marinas son una herramienta util para atrapar peces sin la molestia de tener que pezcarlos."
+	TrashCompactor: "{$Misc.GameTipPretense} En algun lugar bajo el agua se encuentra un dispositivo conveniente capaz de descomponer muebles en sus materiales originales . . . y aplastar basura en chatarra útil."
+	Dumpster: "{$Misc.GameTipPretense} Los contenedores de basura pueden almacenar el doble de objetos que un cofre, solo ocupando 3 bloques de espacio."
+	Junk: "{$Misc.GameTipPretense} La basura de alguien es el tesoro de otro! Y un terrariano astuto sabe como darle uso a la basura de pezca."
+	TrashPSA: No tires tu basura al mar.
 }
