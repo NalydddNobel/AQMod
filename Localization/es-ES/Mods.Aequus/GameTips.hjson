@@ -16,7 +16,6 @@ GameTips: {
 	// PotionCanteen: "{$Misc.GameTipPretense} Within the Polluted Ocean lies a special accessory which grants you infinite potion duration . . ."
 	// Manacle: "{$Misc.GameTipPretense} Manacles are an exotic plant that grow in the Underworld. Mix their pollen with your potions to preserve your buffs between deaths."
 	// Mistral: "{$Misc.GameTipPretense} Mistral is an exotic plant that grows on Clouds. Mix its pollen with your potions to double their buff strength."
-	// MonsterChest: "{$Misc.GameTipPretense} Beware of the Monster Chests which lie about . . . their locks are sealed by the vengeful undead!"
 	// NeutronYogurt: "{$Misc.GameTipPretense} Neutron Yogurt makes you reach maximum speed faster when falling, useful for descending stacked platforms or long mineshafts."
 	// PylonDrones: "{$Misc.GameTipPretense} The Physicist offers special protection forces for your towns. Purchase a Pylon Drone to defend your villagers from Enemies and Evils!"
 }
