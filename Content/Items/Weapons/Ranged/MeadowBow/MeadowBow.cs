@@ -27,7 +27,7 @@ public class MeadowBow : ModItem {
     public override void AddRecipes() {
 #if DEBUG
         CreateRecipe()
-            .AddIngredient(ModContent.GetInstance<global::Aequus.Tiles.Meadow.MeadowWood>().Item.Type, 10)
+            .AddIngredient(ModContent.GetInstance<Biomes.Meadows.Tiles.MeadowWood>().Item.Type, 10)
             .AddTile(TileID.WorkBenches)
             .Register();
 #endif
