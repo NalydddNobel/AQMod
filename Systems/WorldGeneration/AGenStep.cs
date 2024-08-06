@@ -47,7 +47,7 @@ public abstract class AGenStep : ModType, ILocalizedModType, IPostSetupContent {
 
     protected sealed override void Register() {
         TotalWeight = Weight;
-        WorldGenSystem.Instance.GenerationSteps.Add(this);
+        WorldGenSystem.GenerationSteps.Add(this);
     }
 
     void IPostSetupContent.PostSetupContent(Aequus mod) {

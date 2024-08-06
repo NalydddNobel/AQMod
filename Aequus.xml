@@ -623,7 +623,6 @@
             <param name="rarity">Item rarity.</param>
             <param name="value">Item value.</param>
             <param name="researchSacrificeCount">Research count override.</param>
-            <param name="journeyOverride">Journey Mode item group override, used to organize tiles all together in the menu. Utilize <see cref="!:JourneySortByTileId"/> to sort with tiles with a matching tile id, since many tiles do not have item groups, and are instead sorted by tile id.</param>
             <param name="TileIdOverride">Overrides the place tile id.</param>
         </member>
         <member name="M:Aequus.Common.ContentGeneration.InstancedTileItem.#ctor(Terraria.ModLoader.ModTile,System.Int32,System.String,System.Boolean,System.Int32,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32})">
@@ -634,7 +633,6 @@
             <param name="rarity">Item rarity.</param>
             <param name="value">Item value.</param>
             <param name="researchSacrificeCount">Research count override.</param>
-            <param name="journeyOverride">Journey Mode item group override, used to organize tiles all together in the menu. Utilize <see cref="!:JourneySortByTileId"/> to sort with tiles with a matching tile id, since many tiles do not have item groups, and are instead sorted by tile id.</param>
             <param name="TileIdOverride">Overrides the place tile id.</param>
         </member>
         <member name="T:Aequus.Common.ContentGeneration.InstancedWallItem">
@@ -6897,6 +6895,31 @@
         </member>
         <member name="M:Aequus.Systems.TimeSystem.GetWeekText(System.DayOfWeek)">
             <returns>Localized name of a <see cref="T:System.DayOfWeek"/> value.</returns>
+        </member>
+        <member name="M:Aequus.Systems.WorldGeneration.AGenStep.SetMessage(Terraria.WorldBuilding.GenerationProgress,System.Object)">
+            <summary>Safely sets the progress message.</summary>
+        </member>
+        <member name="M:Aequus.Systems.WorldGeneration.AGenStep.RectangleProgress(System.Int32,System.Int32)">
+            <summary>Determines the progress of an ij loop in a rectangle. Using 0-<see cref="F:Terraria.Main.maxTilesX"/> and 0-<see cref="F:Terraria.Main.maxTilesY"/> as the edges.</summary>
+        </member>
+        <member name="M:Aequus.Systems.WorldGeneration.AGenStep.RectangleProgress(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>Determines the progress of an ij loop in a rectangle. Using 0-<see cref="F:Terraria.Main.maxTilesY"/> as the vertical edges.</summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <param name="leftSide">X coordinate of the Left edge of the rectangle.</param>
+            <param name="rightSide">X coordinate of the Right edge of the rectnagle.</param>
+        </member>
+        <member name="M:Aequus.Systems.WorldGeneration.AGenStep.RectangleProgress(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>Determines the progress of an ij loop in a rectangle.</summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <param name="leftSide">X coordinate of the Left edge of the rectangle.</param>
+            <param name="rightSide">X coordinate of the Right edge of the rectnagle.</param>
+            <param name="topSide">Y coordinate of the Top Edge of the rectangle.</param>
+            <param name="bottomSide">Y coordinate of the Bottom Edge of the rectangle.</param>
+        </member>
+        <member name="M:Aequus.Systems.WorldGeneration.AGenStep.SetProgress(Terraria.WorldBuilding.GenerationProgress,System.Double,System.Double,System.Double)">
+            <summary>Safely sets the progress bar.</summary>
         </member>
         <member name="T:Aequus.Tiles.CraftingStations.GoreNestDummy">
             <summary>

@@ -8,7 +8,7 @@ namespace Aequus.Systems.WorldGeneration;
 public class WorldGenSystem : ModSystem {
     public static WorldGenSystem Instance => ModContent.GetInstance<WorldGenSystem>();
 
-    public readonly List<AGenStep> GenerationSteps = [];
+    public static readonly List<AGenStep> GenerationSteps = [];
 
     public readonly HashSet<int> PlacedItems = [];
 
@@ -41,7 +41,7 @@ public sealed class ResetStep : AGenStep {
 
     public override void Apply(GenerationProgress progress, GameConfiguration config) {
         WorldGenSystem.Instance.OnReset?.Invoke();
-        foreach (var genStep in WorldGenSystem.Instance.GenerationSteps) {
+        foreach (var genStep in WorldGenSystem.GenerationSteps) {
             genStep.OnGenerationReset();
         }
     }
