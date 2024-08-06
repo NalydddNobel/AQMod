@@ -14,16 +14,7 @@ public class UnopenedChestItem : ModItem {
     }
 
     private static void RemoveUnopenedChestItemUponOpeningChest(On_Player.orig_OpenChest orig, Player self, int x, int y, int newChest) {
-        if (Main.chest.IndexInRange(newChest)) {
-            int unopenedChestItemId = ModContent.ItemType<UnopenedChestItem>();
-            Chest chest = Main.chest[newChest];
-            for (int i = 0; i < chest.item.Length; i++) {
-                Item item = chest.item[i];
-                if (item.type == unopenedChestItemId) {
-                    chest.item[i].TurnToAir();
-                }
-            }
-        }
+        Remove(newChest);
         orig(self, x, y, newChest);
     }
 
@@ -34,6 +25,19 @@ public class UnopenedChestItem : ModItem {
         return false;
     }
 
+    public static void Remove(int chestId) {
+        if (Main.chest.IndexInRange(chestId)) {
+            int unopenedChestItemId = ModContent.ItemType<UnopenedChestItem>();
+            Chest chest = Main.chest[chestId];
+            for (int i = 0; i < chest.item.Length; i++) {
+                Item item = chest.item[i];
+                if (item.type == unopenedChestItemId) {
+                    chest.item[i].TurnToAir();
+                }
+            }
+        }
+    }
+
     public static void Place(Chest chest) {
         // Find an empty slot starting from the last slot.
         Item[] items = chest.item;
@@ -41,9 +45,17 @@ public class UnopenedChestItem : ModItem {
             Item item = items[k];
             if (item == null || item.IsAir) {
                 // Fill the last empty slot with the unopened chest item.
-                item.SetDefaults(ModContent.ItemType<UnopenedChestItem>());
+                (items[k] ??= new()).SetDefaults(ModContent.ItemType<UnopenedChestItem>());
                 break;
             }
+        }
+    }
+}
+
+public class UnopenedChestItemPlayer : ModPlayer {
+    public override void PostUpdate() {
+        if (Player.chest >= 0) {
+            UnopenedChestItem.Remove(Player.chest);
         }
     }
 }
