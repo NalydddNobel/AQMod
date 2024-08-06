@@ -1,4 +1,4 @@
-﻿using Aequus.Tiles.Meadow;
+﻿using Aequus.Content.Biomes.Meadows.Tiles;
 
 namespace Aequus.Content.Items.Tools.Hammers;
 

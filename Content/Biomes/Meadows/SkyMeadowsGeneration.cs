@@ -1,12 +1,15 @@
-﻿using Aequus.Common.World;
-using Aequus.Tiles.Meadow;
+﻿using Aequus.Content.Biomes.Meadows.Tiles;
+using Aequus.Systems.WorldGeneration;
 using System;
+using Terraria.IO;
 using Terraria.WorldBuilding;
 
-namespace Aequus.Content.WorldGeneration;
+namespace Aequus.Content.World.Generation;
 
-public class SkyMeadowsStep : Generator {
-    protected override void Generate() {
+public class SkyMeadowsGeneration : AGenStep {
+    public override string InsertAfter => "Floating Islands";
+
+    public override void Apply(GenerationProgress progress, GameConfiguration config) {
         int length = Math.Min(GenVars.floatingIslandHouseX.Length, GenVars.floatingIslandHouseY.Length);
 
         ushort skyGrass = (ushort)ModContent.TileType<MeadowGrass>();
@@ -17,7 +20,7 @@ public class SkyMeadowsStep : Generator {
                 int x = GenVars.floatingIslandHouseX[i];
                 int y = GenVars.floatingIslandHouseY[i];
 
-                if ((x == 0 && y == 0) || !Helper.InOuterPercentOfWorld(x, inWorldPercent)) {
+                if (x == 0 && y == 0 || !Helper.InOuterPercentOfWorld(x, inWorldPercent)) {
                     continue;
                 }
 

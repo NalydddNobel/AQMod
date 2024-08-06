@@ -111,7 +111,6 @@ public class AequusWorldGenerator : ModSystem {
         //    GenVars.waterLine += SurfacePush;
         //    GenVars.lavaLine += SurfacePush;
         //}, tasks);
-        AddPass(ModContent.GetInstance<SkyMeadowsStep>().InsertAfter, "Sky Meadows", ModContent.GetInstance<SkyMeadowsStep>().Apply, tasks);
         AddPass("Dungeon", "Radon Biome", (progress, configuration) => {
             progress.Message = Language.GetTextValue("Mods.Aequus.WorldGeneration.RadonBiome");
             RadonCaves.GenerateWorld();
@@ -150,11 +149,6 @@ public class AequusWorldGenerator : ModSystem {
         AddPass("Tile Cleanup", "Gore Nest Cleanup", (progress, configuration) => {
             progress.Message = TextHelper.GetTextValue("WorldGeneration.GoreNestCleanup");
             GenGoreNest.Cleanup();
-        }, tasks);
-
-        AddPass("Floating Islands", "Sky Meadows", (progress, configuration) => {
-            progress.Message = TextHelper.GetTextValue("WorldGeneration.SkyMeadows");
-            ModContent.GetInstance<SkyMeadowsStep>().Apply(progress, configuration);
         }, tasks);
     }
     public static void AddPass(string task, string myName, WorldGenLegacyMethod generation, List<GenPass> tasks) {

@@ -3,13 +3,15 @@ using Aequus.Common.Tiles;
 using Terraria.Audio;
 using Terraria.GameContent.Metadata;
 
-namespace Aequus.Tiles.Meadow;
+namespace Aequus.Content.Biomes.Meadows.Tiles;
 
 public class MeadowGrass : ModTile, IOverridePlacement, IOnPlaceTile {
-    public ModItem MeadowGrassSeeds { get; private set; }
+    public readonly ModItem MeadowGrassSeeds;
+    public MeadowGrass() {
+        MeadowGrassSeeds = new InstancedTileItem(this, value: Item.buyPrice(copper: 20), researchSacrificeCount: 25, TileIdOverride: TileID.Grass);
+    }
 
     public override void Load() {
-        MeadowGrassSeeds = new InstancedTileItem(this, value: Item.buyPrice(copper: 20), researchSacrificeCount: 25, TileIdOverride: TileID.Grass);
         Mod.AddContent(MeadowGrassSeeds);
     }
 

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Terraria.DataStructures;
 using Terraria.Localization;
 
 namespace Aequus.Common.ContentGeneration;
@@ -54,7 +53,6 @@ internal abstract class InstancedModItem : ModItem {
 /// <param name="rarity">Item rarity.</param>
 /// <param name="value">Item value.</param>
 /// <param name="researchSacrificeCount">Research count override.</param>
-/// <param name="journeyOverride">Journey Mode item group override, used to organize tiles all together in the menu. Utilize <see cref="JourneySortByTileId"/> to sort with tiles with a matching tile id, since many tiles do not have item groups, and are instead sorted by tile id.</param>
 /// <param name="TileIdOverride">Overrides the place tile id.</param>
 internal class InstancedTileItem(ModTile modTile, int style = 0, string nameSuffix = "", bool dropItem = true, int rarity = ItemRarityID.White, int value = 0, int? researchSacrificeCount = null, int? TileIdOverride = null) : InstancedModItem(modTile.Name + nameSuffix, (modTile is InstancedModTile instancedModTile ? instancedModTile._texture : modTile.Texture) + nameSuffix + "Item"), IPostSetupContent {
     [CloneByReference]

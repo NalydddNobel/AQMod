@@ -1,12 +1,14 @@
 ﻿using Aequus.Common.ContentGeneration;
 
-namespace Aequus.Tiles.Meadow;
+namespace Aequus.Content.Biomes.Meadows.Tiles;
 
 internal class MeadowWood : ModTile, IAddRecipeGroups {
-    public ModItem Item { get; private set; }
+    public readonly ModItem Item;
+    public MeadowWood() {
+        Item = new InstancedTileItem(this);
+    }
 
     public override void Load() {
-        Item = new InstancedTileItem(this);
         Mod.AddContent(Item);
     }
 

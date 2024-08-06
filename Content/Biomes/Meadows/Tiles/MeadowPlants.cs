@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using Terraria.GameContent.Metadata;
 
-namespace Aequus.Tiles.Meadow;
+namespace Aequus.Content.Biomes.Meadows.Tiles;
+
 public class MeadowPlants : ModTile {
     public override void SetStaticDefaults() {
         Main.tileCut[Type] = true;
