@@ -2250,7 +2250,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1332)</summary>
+            <summary>(Total Textures: 1334)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3259,6 +3259,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.Osiris_Glow">
             <summary>Full Path: Content/Necromancy/Sceptres/Forbidden/Osiris_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RockmanPainting">
+            <summary>Full Path: Content/Tiles/Paintings/RockmanPainting</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RockmanPaintingItem">
+            <summary>Full Path: Content/Tiles/Paintings/RockmanPaintingItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BountySelection">
             <summary>Full Path: Content/UI/BountyBoard/BountySelection</summary>

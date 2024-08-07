@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1332)</summary>
+/// <summary>(Total Textures: 1334)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -679,6 +679,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Osiris = new("Content/Necromancy/Sceptres/Forbidden/Osiris");
     /// <summary>Full Path: Content/Necromancy/Sceptres/Forbidden/Osiris_Glow</summary>
     public static readonly RequestCache<Texture2D> Osiris_Glow = new("Content/Necromancy/Sceptres/Forbidden/Osiris_Glow");
+    /// <summary>Full Path: Content/Tiles/Paintings/RockmanPainting</summary>
+    public static readonly RequestCache<Texture2D> RockmanPainting = new("Content/Tiles/Paintings/RockmanPainting");
+    /// <summary>Full Path: Content/Tiles/Paintings/RockmanPaintingItem</summary>
+    public static readonly RequestCache<Texture2D> RockmanPaintingItem = new("Content/Tiles/Paintings/RockmanPaintingItem");
     /// <summary>Full Path: Content/UI/BountyBoard/BountySelection</summary>
     public static readonly RequestCache<Texture2D> BountySelection = new("Content/UI/BountyBoard/BountySelection");
     /// <summary>Full Path: Content/UI/BountyBoard/BountyUIArrow</summary>
