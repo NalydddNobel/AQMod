@@ -1,18 +1,16 @@
 ﻿using Aequus.Common.Utilities.Helpers;
+using System.Collections.Generic;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Tiles.Paintings.Legacy;
 public abstract class LegacyPaintingTile(int Width, int Height) : ModTile {
-    public abstract ushort[] ConvertIds();
-
     private int _frameWidth;
     private int _frameHeight;
-    private ushort[]? _convert;
+    public readonly Dictionary<int, ushort> Convert = [];
 
     public override string Texture => AequusTextures.None.FullPath;
 
     public sealed override void SetStaticDefaults() {
-        _convert = ConvertIds();
         Main.tileFrameImportant[Type] = true;
         Main.tileLavaDeath[Type] = true;
         Main.tileSpelunker[Type] = true;
@@ -39,8 +37,8 @@ public abstract class LegacyPaintingTile(int Width, int Height) : ModTile {
 
         int style = tile.TileFrameX / _frameWidth;
 
-        if (_convert.IndexInRange(style)) {
-            tile.TileType = _convert![style];
+        if (Convert.TryGetValue(style, out ushort convertType)) {
+            tile.TileType = convertType;
             tile.TileFrameX %= (short)_frameWidth;
             NetMessage.SendTileSquare(-1, i, j);
         }

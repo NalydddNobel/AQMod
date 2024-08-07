@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Utilities;
+using Aequus.Content.Tiles.Paintings.Legacy;
 using Aequus.Systems.Chests;
 using System;
 using System.Collections.Generic;
@@ -15,14 +16,8 @@ public sealed class Paintings : ModType {
 
     public PaintingSets Sets = new();
 
-    public IPainting? Rockman { get; private set; }
-    public IPainting? RockmanLemons { get; private set; }
-    public IPainting? Yin { get; private set; }
-    public IPainting? Yang { get; private set; }
-    public IPainting? Narry { get; private set; }
-
     protected override void Register() {
-        Rockman = New("Rockman", AequusTextures.RockmanPainting.FullPath, null,
+        New("Rockman", AequusTextures.RockmanPainting.FullPath, null,
             W: 2, H: 3,
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
@@ -30,75 +25,85 @@ public sealed class Paintings : ModType {
             CustomName: ALanguage.L_GetItemName<global::Aequus.Items.Weapons.Melee.Swords.RockMan.RockMan>()
         ).AddEntry(Sets.DesertPictures);
 
-        RockmanLemons = New("RockmanLemons", AequusTextures.RockmanLemonsPainting.FullPath, null,
+        New("RockmanLemons", AequusTextures.RockmanLemonsPainting.FullPath, null,
             W: 6, H: 4,
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
             MapColor: Color.Gray
         ).AddEntry(Sets.DesertPictures);
 
-        Yin = New("Yin", AequusTextures.YinPainting.FullPath, null,
+        New("Yin", AequusTextures.YinPainting.FullPath, null,
             W: 2, H: 2,
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
             MapColor: Color.Gray
-        ).AddEntry(Sets.DesertPictures);
+        ).AddEntry(Sets.DesertPictures)
+        .RegisterLegacy<WallPaintings2x2>(0);
 
-        Yang = New("Yang", AequusTextures.YangPainting.FullPath, null,
+        New("Yang", AequusTextures.YangPainting.FullPath, null,
             W: 2, H: 2,
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
             MapColor: Color.Gray
-        ).AddEntry(Sets.DesertPictures);
+        ).AddEntry(Sets.DesertPictures)
+        .RegisterLegacy<WallPaintings2x2>(1);
 
-        Narry = New("Narry", AequusTextures.NarryPainting.FullPath, null,
+        New("Narry", AequusTextures.NarryPainting.FullPath, null,
             W: 2, H: 3,
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
             MapColor: Color.Gray
-        ).AddEntry(Sets.DungeonPictures);
+        ).AddEntry(Sets.DungeonPictures)
+        .RegisterLegacy<WallPaintings2x3>(0);
 
         New("BongBong", AequusTextures.BongBongPainting.FullPath, null,
             W: 3, H: 2,
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
             MapColor: Color.Gray
-        ).AddEntry(Sets.GenericPictures);
+        ).AddEntry(Sets.GenericPictures)
+        .RegisterLegacy<WallPaintings3x2>(0)
+        .RegisterLegacy<WallPaintings3x2>(1);
 
         New("YinYang", AequusTextures.YinYangPainting.FullPath, null,
             W: 3, H: 2,
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
             MapColor: Color.Gray
-        ).AddEntry(Sets.DesertPictures);
+        ).AddEntry(Sets.DesertPictures)
+        .RegisterLegacy<WallPaintings3x2>(2);
 
         New("RockForce", AequusTextures.RockForce.FullPath, null,
             W: 3, H: 2,
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
             MapColor: Color.Gray
-        ).AddEntry(Sets.RockPictures);
+        ).AddEntry(Sets.RockPictures)
+        .RegisterLegacy<WallPaintings3x2>(3);
 
         New("RockBalance", AequusTextures.RockBalance.FullPath, null,
             W: 3, H: 2,
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
             MapColor: Color.Gray
-        ).AddEntry(Sets.RockPictures);
+        ).AddEntry(Sets.RockPictures)
+        .RegisterLegacy<WallPaintings3x2>(4);
 
         New("RockPush", AequusTextures.RockPush.FullPath, null,
             W: 3, H: 2,
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
             MapColor: Color.Gray
-        ).AddEntry(Sets.RockPictures);
+        ).AddEntry(Sets.RockPictures)
+        .RegisterLegacy<WallPaintings3x2>(5);
 
         New("Oliver", AequusTextures.OliverPainting.FullPath, null,
             W: 3, H: 2,
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
             MapColor: Color.Gray
-        ).AddEntry(Sets.GenericPictures);
+        ).AddEntry(Sets.GenericPictures)
+        .RegisterLegacy<WallPaintings3x2>(6);
     }
 
     InstancedPainting New(string name, string texture, string? ItemTexture, int W, int H, int Rare, int Value, Color? MapColor = null, Lazy<LocalizedText>? CustomName = null) {
