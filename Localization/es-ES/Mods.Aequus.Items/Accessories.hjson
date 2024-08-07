@@ -1,4 +1,13 @@
-//# Equipment: Accessories
+// Equipment: Accessories
+HorseshoeCombination: {
+	// DisplayName: Braced Hoof
+	/* Tooltip:
+		'''
+		{$ItemTooltip.ObsidianHorseshoe}
+		{$WeightedHorseshoe.Function}
+		''' */
+}
+
 BreathConserver: {
 }
 
@@ -68,6 +77,11 @@ WeightedHorseshoe: {
 		Daña enemigos al caer a través de ellos a altas velocidades
 		'¡Deberías usar una cadena de verlet, seguro no pasa nada!'
 		'''
+	/* Function:
+		'''
+		Doubled maximum fall speed
+		Damage and fall through enemies while at high speeds
+		''' */
 }
 
 //# Equipment: Misc
@@ -85,6 +99,21 @@ EclipseGlasses: {
 }
 
 //# Equipment: Informational
+HoloLens: {
+	// DisplayName: Holo Lens
+	// Tooltip: Allows you to view the contents of locked and unlocked chests without opening them
+}
+
+AnglerBroadcaster: {
+	// DisplayName: Seaside Broadcaster
+	// Tooltip: Shows you the current quest fish
+}
+
+RichMansMonocle: {
+	DisplayName: Monóculo del Adinerado
+	Tooltip: Muestra los precios de objetos fuera de tiendas
+}
+
 GeigerCounter: {
 	// DisplayName: Geiger Counter
 	// Tooltip: Displays the damage per second from debuffs
@@ -96,20 +125,17 @@ ShimmerMonocle: {
 	Tooltip: Muestra si un objeto es un ingrediente de Fulgor
 }
 
-RichMansMonocle: {
-}
-
 Calendar: {
 	DisplayName: Calendario
 	Tooltip: Muestra la fecha
 }
 
-SteampunkerFishingPole: {
-	// DisplayName: Steampunker Fishing Pole
+UnusedItem: {
+	// DisplayName: Unused Item
 	// Tooltip: ""
 }
 
-UnusedItem: {
-	// DisplayName: Unused Item
+SteampunkerFishingPole: {
+	// DisplayName: Steampunker Fishing Pole
 	// Tooltip: ""
 }

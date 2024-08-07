@@ -660,9 +660,6 @@ MoneyTrashcan: {
 	Tooltip: 你会获得被丢弃物品25%售价的钱币
 }
 
-NameTag: {
-}
-
 RadonMossBrickItem: {
 	DisplayName: 氡苔藓砖
 	Tooltip: ""
@@ -855,21 +852,25 @@ ScarabDynamite: {
 
 BottleOSpirits: {
 	// DisplayName: Bottle O Spirits
-	// Tooltip: ""
+	// Tooltip: Increases your maximum number of ghost minions by 1
 }
 
 KegOSpirits: {
 	// DisplayName: Keg O Spirits
-	// Tooltip: ""
+	/* Tooltip:
+		'''
+		{$SaivoryKnife.Tooltip}
+		{$BottleOSpirits.Tooltip}
+		''' */
 }
 
 SaivoryKnife: {
 	// DisplayName: Saivory Knife
-	// Tooltip: ""
+	// Tooltip: Increases the lifespan of your ghosts by 1 minute
 }
 
 CorruptionSceptre: {
-	// DisplayName: Corruption Sceptre
+	// DisplayName: Zombie Sceptre
 	// Tooltip: ""
 }
 
@@ -1215,11 +1216,6 @@ BlockGlove: {
 Deltoid: {
 	DisplayName: 增量
 	Tooltip: 发射三支爆炸箭矢
-}
-
-StarPhish: {
-	DisplayName: 螺旋海星吹筒
-	Tooltip: "{$CommonTooltips.UsesDarts}"
 }
 
 SnowflakeCannon: {
@@ -1970,16 +1966,6 @@ HomeworldPainting: {
 	Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
 }
 
-YangPainting: {
-	DisplayName: 你能感觉到阳光吗?
-	Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
-}
-
-YinPainting: {
-	DisplayName: 黑暗, 更加黑暗...
-	Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
-}
-
 YinYangPainting: {
 	DisplayName: 均衡
 	Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
@@ -2372,24 +2358,9 @@ PlasticBottle: {
 	Tooltip: ""
 }
 
-HoloLens: {
-	DisplayName: 全息透镜
-	Tooltip: 允许你在不打开箱子的情况下查看上锁和解锁的箱子的内容
-}
-
 HyperJet: {
 	DisplayName: 心脏起搏器
 	Tooltip: 当它变得安全时会缩减重生时间
-}
-
-AnglerBroadcaster: {
-	DisplayName: 海滨广播器
-	Tooltip: 显示你当前的任务鱼
-}
-
-RichMansMonocle: {
-	DisplayName: 富翁的单片眼镜
-	Tooltip: 在NPC商店外查看商品价格
 }
 
 ImpenetrableCoating: {
@@ -3220,15 +3191,6 @@ Nettlebane: {
 		'''
 		手持此物品时会增加防御
 		攻击时会强化该剑的能力
-		'''
-}
-
-JunkJet: {
-	DisplayName: 垃圾喷射器
-	Tooltip:
-		'''
-		可以使用任意弹药
-		{0}%几率不消耗弹药
 		'''
 }
 

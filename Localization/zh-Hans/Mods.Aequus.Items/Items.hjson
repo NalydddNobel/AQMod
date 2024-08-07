@@ -5,6 +5,16 @@ Keywords: {
 	}
 }
 
+MeadowHammer: {
+	// DisplayName: Wyvernwood Hammer
+	// Tooltip: ""
+}
+
+MeadowBow: {
+	// DisplayName: Wyvernwood Bow
+	// Tooltip: ""
+}
+
 //# Equipment: Armor
 GravetenderHood: {
 	DisplayName: 守墓人兜帽

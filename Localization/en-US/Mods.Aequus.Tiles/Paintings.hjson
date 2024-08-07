@@ -1,0 +1,58 @@
+Paintings: {
+	Signature.Nalyddd: T. Nalyd
+	RockmanPainting.ItemTooltip: "{$Signature.Nalyddd}"
+
+	RockmanLemonsPainting: {
+		ItemDisplayName: Life & Lemons
+		ItemTooltip: "{$Signature.Nalyddd}"
+	}
+
+	YinPainting: {
+		ItemDisplayName: Yet Darker
+		ItemTooltip: "{$Signature.Nalyddd}"
+	}
+
+	YangPainting: {
+		ItemDisplayName: Feel the Sunshine
+		ItemTooltip: "{$Signature.Nalyddd}"
+	}
+
+	NarryPainting: {
+		ItemDisplayName: A Spirit's Rambling
+		ItemTooltip: "{$Signature.Nalyddd}"
+	}
+
+	BongBongPainting: {
+		ItemDisplayName: BongBong
+		ItemTooltip: "{$Signature.Nalyddd}"
+	}
+
+	YinYangPainting: {
+		ItemDisplayName: The Polarity
+		ItemTooltip: "{$Signature.Nalyddd}"
+	}
+
+	RockForcePainting: {
+		ItemDisplayName: Stone Tablet - Force
+		ItemTooltip: 
+			'''
+			Rumors say if you learn all three words, you will gain immense power
+			...Sadly it's only a myth
+			'''
+	}
+
+	RockBalancePainting: {
+		ItemDisplayName: Stone Tablet - Balance
+		ItemTooltip: "{$RockForcePainting.ItemTooltip}"
+	}
+
+	RockPushPainting: {
+		ItemDisplayName: Stone Tablet - Push
+		ItemTooltip: "{$RockForcePainting.ItemTooltip}"
+	}
+
+	OliverPainting: {
+		ItemDisplayName: THIRTY
+		ItemTooltip: "{$Signature.Nalyddd}"
+	}
+}

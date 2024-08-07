@@ -182,10 +182,5 @@ Configs: {
 			Recipes: -- 合成表 --
 			// VanillaChanges: -- Vanilla Changes --
 		}
-
-		MoveTreasureMagnet: {
-			// Label: Move Treasure Magnet
-			// Tooltip: ""
-		}
 	}
 }

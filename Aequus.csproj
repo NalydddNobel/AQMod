@@ -45,4 +45,29 @@
 	<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 			
+  <ItemGroup>
+    <None Remove="Content\Tiles\Paintings\BongBongPainting.png" />
+    <None Remove="Content\Tiles\Paintings\BongBongPaintingItem.png" />
+    <None Remove="Content\Tiles\Paintings\NarryPainting.png" />
+    <None Remove="Content\Tiles\Paintings\NarryPaintingItem.png" />
+    <None Remove="Content\Tiles\Paintings\OliverPainting.png" />
+    <None Remove="Content\Tiles\Paintings\OliverPaintingItem.png" />
+    <None Remove="Content\Tiles\Paintings\RockBalance.png" />
+    <None Remove="Content\Tiles\Paintings\RockBalanceItem.png" />
+    <None Remove="Content\Tiles\Paintings\RockForce.png" />
+    <None Remove="Content\Tiles\Paintings\RockForceItem.png" />
+    <None Remove="Content\Tiles\Paintings\RockmanLemonsPainting.png" />
+    <None Remove="Content\Tiles\Paintings\RockmanLemonsPaintingItem.png" />
+    <None Remove="Content\Tiles\Paintings\RockPush.png" />
+    <None Remove="Content\Tiles\Paintings\RockPushItem.png" />
+    <None Remove="Content\Tiles\Paintings\WallPaintings3x2.png" />
+    <None Remove="Content\Tiles\Paintings\YangPainting.png" />
+    <None Remove="Content\Tiles\Paintings\YangPaintingItem.png" />
+    <None Remove="Content\Tiles\Paintings\YinPainting.png" />
+    <None Remove="Content\Tiles\Paintings\YinPaintingItem.png" />
+    <None Remove="Content\Tiles\Paintings\YinYangPainting.png" />
+    <None Remove="Content\Tiles\Paintings\YinYangPaintingItem.png" />
+    <None Remove="Localization\en-US\Mods.Aequus.Tiles\Paintings.hjson" />
+  </ItemGroup>
+			
 </Project>

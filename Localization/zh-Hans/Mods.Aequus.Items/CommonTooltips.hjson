@@ -28,4 +28,5 @@ CommonTooltips: {
 		'''
 	UsedXOfXTimes: 已使用{0}/{1}次
 	BuffedBy: 你受到了{0}的强化!
+	// UsesGel: Uses gel for ammo
 }

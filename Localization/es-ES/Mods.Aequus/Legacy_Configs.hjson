@@ -26,7 +26,7 @@ Configs: {
 		}
 
 		NecromancyOutlines: {
-			// Label: "[i:Aequus/ZombieSceptre] Ghost Minion outlines"
+			// Label: "[i:Aequus/CorruptionSceptre] Ghost Minion outlines"
 			/* Tooltip:
 				'''
 				Disabling this setting will remove the outlines from Ghost minions.
@@ -50,7 +50,7 @@ Configs: {
 		}
 
 		AdamantiteChestMimic: {
-			// Label: Adamantite Chest Mimic
+			// Label: "[i:Aequus/AdamantiteChest] Adamantite Chest Mimic"
 			// Tooltip: ""
 		}
 	}
@@ -180,11 +180,6 @@ Configs: {
 			// World: -- World --
 			// Recipes: -- Recipes --
 			// VanillaChanges: -- Vanilla Changes --
-		}
-
-		MoveTreasureMagnet: {
-			// Label: Move Treasure Magnet
-			// Tooltip: ""
 		}
 	}
 }

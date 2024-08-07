@@ -660,9 +660,6 @@ MoneyTrashcan: {
 	// Tooltip: Recieve 25% of the sell price of trashed items
 }
 
-NameTag: {
-}
-
 RadonMossBrickItem: {
 	// DisplayName: Radon Moss Brick
 	// Tooltip: ""
@@ -855,21 +852,25 @@ ScarabDynamite: {
 
 BottleOSpirits: {
 	// DisplayName: Bottle O Spirits
-	// Tooltip: ""
+	// Tooltip: Increases your maximum number of ghost minions by 1
 }
 
 KegOSpirits: {
 	// DisplayName: Keg O Spirits
-	// Tooltip: ""
+	/* Tooltip:
+		'''
+		{$SaivoryKnife.Tooltip}
+		{$BottleOSpirits.Tooltip}
+		''' */
 }
 
 SaivoryKnife: {
 	// DisplayName: Saivory Knife
-	// Tooltip: ""
+	// Tooltip: Increases the lifespan of your ghosts by 1 minute
 }
 
 CorruptionSceptre: {
-	// DisplayName: Corruption Sceptre
+	// DisplayName: Zombie Sceptre
 	// Tooltip: ""
 }
 
@@ -1215,11 +1216,6 @@ BlockGlove: {
 Deltoid: {
 	// DisplayName: Deltoid
 	// Tooltip: Shoots a burst of 3 exploding arrows
-}
-
-StarPhish: {
-	DisplayName: Star Phish
-	Tooltip: "{$CommonTooltips.UsesDarts}"
 }
 
 SnowflakeCannon: {
@@ -1970,16 +1966,6 @@ HomeworldPainting: {
 	// Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
 }
 
-YangPainting: {
-	// DisplayName: Can you feel the Sunshine?
-	// Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
-}
-
-YinPainting: {
-	// DisplayName: Dark, Darker yet Darker...
-	// Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
-}
-
 YinYangPainting: {
 	// DisplayName: Equalities
 	// Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
@@ -2372,24 +2358,9 @@ PlasticBottle: {
 	// Tooltip: ""
 }
 
-HoloLens: {
-	// DisplayName: Holo Lens
-	// Tooltip: Allows you to view the contents of locked and unlocked chests without opening them
-}
-
 HyperJet: {
 	// DisplayName: Pacemaker
 	// Tooltip: Decreased respawn time when it becomes safe
-}
-
-AnglerBroadcaster: {
-	// DisplayName: Seaside Broadcaster
-	// Tooltip: Shows you the current quest fish
-}
-
-RichMansMonocle: {
-	DisplayName: Monóculo del Adinerado
-	Tooltip: Muestra los precios de objetos fuera de tiendas
 }
 
 ImpenetrableCoating: {
@@ -3221,15 +3192,6 @@ Nettlebane: {
 		Increased defense while holding this weapon
 		Attacks increases the power of this sword's abilities
 		''' */
-}
-
-JunkJet: {
-	DisplayName: Junk Jet
-	Tooltip:
-		'''
-		Puede usar casi cualquier munición
-		{0}% probabilidad de no consumir munición
-		'''
 }
 
 TesterItem: {

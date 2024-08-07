@@ -1,8 +1,15 @@
-//# Weapons: Ranged
 StarPhish: {
+	DisplayName: Star Phish
+	Tooltip: "{$CommonTooltips.UsesDarts}"
 }
 
 JunkJet: {
+	DisplayName: Junk Jet
+	Tooltip:
+		'''
+		Puede usar casi cualquier munición
+		{0}% probabilidad de no consumir munición
+		'''
 }
 
 SkyHunterCrossbow: {
@@ -14,7 +21,7 @@ SkyHunterCrossbow: {
 		'''
 }
 
-//# Ranged Ammo
+// Ammo
 PlasticDart: {
 	DisplayName: Dardo Plastico
 	Tooltip:

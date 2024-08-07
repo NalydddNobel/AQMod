@@ -1,3 +1,8 @@
+MeadowStaff: {
+	// DisplayName: Wyvernwood Staff
+	// Tooltip: ""
+}
+
 TrashStaff: {
 	DisplayName: Correo Spam
 	Tooltip: Ataques críticos envían un virus a enemigos cercanos

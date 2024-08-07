@@ -28,4 +28,5 @@ CommonTooltips: {
 		''' */
 	// UsedXOfXTimes: Used {0}/{1} times
 	BuffedBy: "{0} te esta favoreciendo!"
+	// UsesGel: Uses gel for ammo
 }

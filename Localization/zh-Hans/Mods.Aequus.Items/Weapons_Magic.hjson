@@ -1,3 +1,8 @@
+MeadowStaff: {
+	// DisplayName: Wyvernwood Staff
+	// Tooltip: ""
+}
+
 TrashStaff: {
 	DisplayName: 垃圾邮件
 	Tooltip: 造成暴击时会向附近的敌人发送病毒邮件

@@ -1962,16 +1962,6 @@ HomeworldPainting: {
 	Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
 }
 
-YangPainting: {
-	DisplayName: Can you feel the Sunshine?
-	Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
-}
-
-YinPainting: {
-	DisplayName: Dark, Darker yet Darker...
-	Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
-}
-
 YinYangPainting: {
 	DisplayName: Equalities
 	Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"

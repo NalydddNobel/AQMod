@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1334)</summary>
+/// <summary>(Total Textures: 1343)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -679,10 +679,52 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Osiris = new("Content/Necromancy/Sceptres/Forbidden/Osiris");
     /// <summary>Full Path: Content/Necromancy/Sceptres/Forbidden/Osiris_Glow</summary>
     public static readonly RequestCache<Texture2D> Osiris_Glow = new("Content/Necromancy/Sceptres/Forbidden/Osiris_Glow");
+    /// <summary>Full Path: Content/Tiles/Paintings/BongBongPainting</summary>
+    public static readonly RequestCache<Texture2D> BongBongPainting = new("Content/Tiles/Paintings/BongBongPainting");
+    /// <summary>Full Path: Content/Tiles/Paintings/BongBongPaintingItem</summary>
+    public static readonly RequestCache<Texture2D> BongBongPaintingItem = new("Content/Tiles/Paintings/BongBongPaintingItem");
+    /// <summary>Full Path: Content/Tiles/Paintings/NarryPainting</summary>
+    public static readonly RequestCache<Texture2D> NarryPainting = new("Content/Tiles/Paintings/NarryPainting");
+    /// <summary>Full Path: Content/Tiles/Paintings/NarryPaintingItem</summary>
+    public static readonly RequestCache<Texture2D> NarryPaintingItem = new("Content/Tiles/Paintings/NarryPaintingItem");
+    /// <summary>Full Path: Content/Tiles/Paintings/OliverPainting</summary>
+    public static readonly RequestCache<Texture2D> OliverPainting = new("Content/Tiles/Paintings/OliverPainting");
+    /// <summary>Full Path: Content/Tiles/Paintings/OliverPaintingItem</summary>
+    public static readonly RequestCache<Texture2D> OliverPaintingItem = new("Content/Tiles/Paintings/OliverPaintingItem");
+    /// <summary>Full Path: Content/Tiles/Paintings/RockBalance</summary>
+    public static readonly RequestCache<Texture2D> RockBalance = new("Content/Tiles/Paintings/RockBalance");
+    /// <summary>Full Path: Content/Tiles/Paintings/RockBalanceItem</summary>
+    public static readonly RequestCache<Texture2D> RockBalanceItem = new("Content/Tiles/Paintings/RockBalanceItem");
+    /// <summary>Full Path: Content/Tiles/Paintings/RockForce</summary>
+    public static readonly RequestCache<Texture2D> RockForce = new("Content/Tiles/Paintings/RockForce");
+    /// <summary>Full Path: Content/Tiles/Paintings/RockForceItem</summary>
+    public static readonly RequestCache<Texture2D> RockForceItem = new("Content/Tiles/Paintings/RockForceItem");
+    /// <summary>Full Path: Content/Tiles/Paintings/RockmanLemonsPainting</summary>
+    public static readonly RequestCache<Texture2D> RockmanLemonsPainting = new("Content/Tiles/Paintings/RockmanLemonsPainting");
+    /// <summary>Full Path: Content/Tiles/Paintings/RockmanLemonsPaintingItem</summary>
+    public static readonly RequestCache<Texture2D> RockmanLemonsPaintingItem = new("Content/Tiles/Paintings/RockmanLemonsPaintingItem");
     /// <summary>Full Path: Content/Tiles/Paintings/RockmanPainting</summary>
     public static readonly RequestCache<Texture2D> RockmanPainting = new("Content/Tiles/Paintings/RockmanPainting");
     /// <summary>Full Path: Content/Tiles/Paintings/RockmanPaintingItem</summary>
     public static readonly RequestCache<Texture2D> RockmanPaintingItem = new("Content/Tiles/Paintings/RockmanPaintingItem");
+    /// <summary>Full Path: Content/Tiles/Paintings/RockPush</summary>
+    public static readonly RequestCache<Texture2D> RockPush = new("Content/Tiles/Paintings/RockPush");
+    /// <summary>Full Path: Content/Tiles/Paintings/RockPushItem</summary>
+    public static readonly RequestCache<Texture2D> RockPushItem = new("Content/Tiles/Paintings/RockPushItem");
+    /// <summary>Full Path: Content/Tiles/Paintings/WallPaintings3x2</summary>
+    public static readonly RequestCache<Texture2D> WallPaintings3x2 = new("Content/Tiles/Paintings/WallPaintings3x2");
+    /// <summary>Full Path: Content/Tiles/Paintings/YangPainting</summary>
+    public static readonly RequestCache<Texture2D> YangPainting = new("Content/Tiles/Paintings/YangPainting");
+    /// <summary>Full Path: Content/Tiles/Paintings/YangPaintingItem</summary>
+    public static readonly RequestCache<Texture2D> YangPaintingItem = new("Content/Tiles/Paintings/YangPaintingItem");
+    /// <summary>Full Path: Content/Tiles/Paintings/YinPainting</summary>
+    public static readonly RequestCache<Texture2D> YinPainting = new("Content/Tiles/Paintings/YinPainting");
+    /// <summary>Full Path: Content/Tiles/Paintings/YinPaintingItem</summary>
+    public static readonly RequestCache<Texture2D> YinPaintingItem = new("Content/Tiles/Paintings/YinPaintingItem");
+    /// <summary>Full Path: Content/Tiles/Paintings/YinYangPainting</summary>
+    public static readonly RequestCache<Texture2D> YinYangPainting = new("Content/Tiles/Paintings/YinYangPainting");
+    /// <summary>Full Path: Content/Tiles/Paintings/YinYangPaintingItem</summary>
+    public static readonly RequestCache<Texture2D> YinYangPaintingItem = new("Content/Tiles/Paintings/YinYangPaintingItem");
     /// <summary>Full Path: Content/UI/BountyBoard/BountySelection</summary>
     public static readonly RequestCache<Texture2D> BountySelection = new("Content/UI/BountyBoard/BountySelection");
     /// <summary>Full Path: Content/UI/BountyBoard/BountyUIArrow</summary>
@@ -2613,30 +2655,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> RadonPlantTile = new("Tiles/MossCaves/Radon/RadonPlantTile");
     /// <summary>Full Path: Tiles/MossCaves/XenonSummonPlant</summary>
     public static readonly RequestCache<Texture2D> XenonSummonPlant = new("Tiles/MossCaves/XenonSummonPlant");
-    /// <summary>Full Path: Tiles/Paintings/Canvas2x2/WallPaintings2x2</summary>
-    public static readonly RequestCache<Texture2D> WallPaintings2x2 = new("Tiles/Paintings/Canvas2x2/WallPaintings2x2");
-    /// <summary>Full Path: Tiles/Paintings/Canvas2x2/YangPainting</summary>
-    public static readonly RequestCache<Texture2D> YangPainting = new("Tiles/Paintings/Canvas2x2/YangPainting");
-    /// <summary>Full Path: Tiles/Paintings/Canvas2x2/YinPainting</summary>
-    public static readonly RequestCache<Texture2D> YinPainting = new("Tiles/Paintings/Canvas2x2/YinPainting");
-    /// <summary>Full Path: Tiles/Paintings/Canvas2x3/NarryPainting</summary>
-    public static readonly RequestCache<Texture2D> NarryPainting = new("Tiles/Paintings/Canvas2x3/NarryPainting");
-    /// <summary>Full Path: Tiles/Paintings/Canvas2x3/WallPaintings2x3</summary>
-    public static readonly RequestCache<Texture2D> WallPaintings2x3 = new("Tiles/Paintings/Canvas2x3/WallPaintings2x3");
-    /// <summary>Full Path: Tiles/Paintings/Canvas3x2/BongBongPainting</summary>
-    public static readonly RequestCache<Texture2D> BongBongPainting = new("Tiles/Paintings/Canvas3x2/BongBongPainting");
-    /// <summary>Full Path: Tiles/Paintings/Canvas3x2/OliverPainting</summary>
-    public static readonly RequestCache<Texture2D> OliverPainting = new("Tiles/Paintings/Canvas3x2/OliverPainting");
-    /// <summary>Full Path: Tiles/Paintings/Canvas3x2/SkyrimRock1</summary>
-    public static readonly RequestCache<Texture2D> SkyrimRock1 = new("Tiles/Paintings/Canvas3x2/SkyrimRock1");
-    /// <summary>Full Path: Tiles/Paintings/Canvas3x2/SkyrimRock2</summary>
-    public static readonly RequestCache<Texture2D> SkyrimRock2 = new("Tiles/Paintings/Canvas3x2/SkyrimRock2");
-    /// <summary>Full Path: Tiles/Paintings/Canvas3x2/SkyrimRock3</summary>
-    public static readonly RequestCache<Texture2D> SkyrimRock3 = new("Tiles/Paintings/Canvas3x2/SkyrimRock3");
-    /// <summary>Full Path: Tiles/Paintings/Canvas3x2/WallPaintings3x2</summary>
-    public static readonly RequestCache<Texture2D> WallPaintings3x2 = new("Tiles/Paintings/Canvas3x2/WallPaintings3x2");
-    /// <summary>Full Path: Tiles/Paintings/Canvas3x2/YinYangPainting</summary>
-    public static readonly RequestCache<Texture2D> YinYangPainting = new("Tiles/Paintings/Canvas3x2/YinYangPainting");
     /// <summary>Full Path: Tiles/Paintings/Canvas3x3/CatalystPainting</summary>
     public static readonly RequestCache<Texture2D> CatalystPainting = new("Tiles/Paintings/Canvas3x3/CatalystPainting");
     /// <summary>Full Path: Tiles/Paintings/Canvas3x3/ExLydSpacePainting</summary>

@@ -12,6 +12,20 @@ namespace Aequus.Common.Utilities;
 public static class ALanguage {
     private record struct ColoredText(string Text, Color Color);
 
+    #region Lazy Initalized Text
+    public static Lazy<LocalizedText> L_GetItemName<T>() where T : ModItem {
+        return new Lazy<LocalizedText>(() => ModContent.GetInstance<T>().DisplayName);
+    }
+
+    public static Lazy<LocalizedText> L_Get<T>(string suffix = "") where T : class, ILocalizedModType {
+        return new Lazy<LocalizedText>(() => ModContent.GetInstance<T>().GetLocalization(suffix));
+    }
+
+    public static Lazy<LocalizedText> L_Get(string key = "") {
+        return new Lazy<LocalizedText>(() => Language.GetText(key));
+    }
+    #endregion
+
     /// <param name="key"></param>
     /// <returns>A <see cref="LocalizedText"/> value for <paramref name="key"/> appended to the end of "Mods.Aequus"</returns>
     public static LocalizedText GetText(string key) {

@@ -1,0 +1,31 @@
+Paintings: {
+	// Signature.Nalyddd: T. Nalyd
+	// RockmanPainting.ItemTooltip: "{$Signature.Nalyddd}"
+
+	RockmanLemonsPainting: {
+		// ItemDisplayName: Life & Lemons
+		// ItemTooltip: "{$Signature.Nalyddd}"
+	}
+
+	YinPainting: {
+		// ItemDisplayName: Yet Darker
+		// ItemTooltip: "{$Signature.Nalyddd}"
+	}
+
+	YangPainting: {
+		// ItemDisplayName: Feel the Sunshine
+		// ItemTooltip: "{$Signature.Nalyddd}"
+	}
+
+	NarryPainting: {
+		// ItemDisplayName: A Spirit's Rambling
+		// ItemTooltip: "{$Signature.Nalyddd}"
+	}
+
+	// BongBongPainting.ItemDisplayName: Mods.Aequus.Tiles.Paintings.BongBongPainting.ItemDisplayName
+	// YinYangPainting.ItemDisplayName: Mods.Aequus.Tiles.Paintings.YinYangPainting.ItemDisplayName
+	// RockForcePainting.ItemDisplayName: Mods.Aequus.Tiles.Paintings.RockForcePainting.ItemDisplayName
+	// RockBalancePainting.ItemDisplayName: Mods.Aequus.Tiles.Paintings.RockBalancePainting.ItemDisplayName
+	// RockPushPainting.ItemDisplayName: Mods.Aequus.Tiles.Paintings.RockPushPainting.ItemDisplayName
+	// OliverPainting.ItemDisplayName: Mods.Aequus.Tiles.Paintings.OliverPainting.ItemDisplayName
+}

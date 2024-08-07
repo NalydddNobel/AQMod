@@ -2250,7 +2250,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1334)</summary>
+            <summary>(Total Textures: 1343)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3260,11 +3260,74 @@
         <member name="F:Aequus.AequusTextures.Osiris_Glow">
             <summary>Full Path: Content/Necromancy/Sceptres/Forbidden/Osiris_Glow</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.BongBongPainting">
+            <summary>Full Path: Content/Tiles/Paintings/BongBongPainting</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BongBongPaintingItem">
+            <summary>Full Path: Content/Tiles/Paintings/BongBongPaintingItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NarryPainting">
+            <summary>Full Path: Content/Tiles/Paintings/NarryPainting</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NarryPaintingItem">
+            <summary>Full Path: Content/Tiles/Paintings/NarryPaintingItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OliverPainting">
+            <summary>Full Path: Content/Tiles/Paintings/OliverPainting</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OliverPaintingItem">
+            <summary>Full Path: Content/Tiles/Paintings/OliverPaintingItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RockBalance">
+            <summary>Full Path: Content/Tiles/Paintings/RockBalance</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RockBalanceItem">
+            <summary>Full Path: Content/Tiles/Paintings/RockBalanceItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RockForce">
+            <summary>Full Path: Content/Tiles/Paintings/RockForce</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RockForceItem">
+            <summary>Full Path: Content/Tiles/Paintings/RockForceItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RockmanLemonsPainting">
+            <summary>Full Path: Content/Tiles/Paintings/RockmanLemonsPainting</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RockmanLemonsPaintingItem">
+            <summary>Full Path: Content/Tiles/Paintings/RockmanLemonsPaintingItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.RockmanPainting">
             <summary>Full Path: Content/Tiles/Paintings/RockmanPainting</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RockmanPaintingItem">
             <summary>Full Path: Content/Tiles/Paintings/RockmanPaintingItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RockPush">
+            <summary>Full Path: Content/Tiles/Paintings/RockPush</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RockPushItem">
+            <summary>Full Path: Content/Tiles/Paintings/RockPushItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WallPaintings3x2">
+            <summary>Full Path: Content/Tiles/Paintings/WallPaintings3x2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.YangPainting">
+            <summary>Full Path: Content/Tiles/Paintings/YangPainting</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.YangPaintingItem">
+            <summary>Full Path: Content/Tiles/Paintings/YangPaintingItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.YinPainting">
+            <summary>Full Path: Content/Tiles/Paintings/YinPainting</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.YinPaintingItem">
+            <summary>Full Path: Content/Tiles/Paintings/YinPaintingItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.YinYangPainting">
+            <summary>Full Path: Content/Tiles/Paintings/YinYangPainting</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.YinYangPaintingItem">
+            <summary>Full Path: Content/Tiles/Paintings/YinYangPaintingItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BountySelection">
             <summary>Full Path: Content/UI/BountyBoard/BountySelection</summary>
@@ -6160,42 +6223,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.XenonSummonPlant">
             <summary>Full Path: Tiles/MossCaves/XenonSummonPlant</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.WallPaintings2x2">
-            <summary>Full Path: Tiles/Paintings/Canvas2x2/WallPaintings2x2</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.YangPainting">
-            <summary>Full Path: Tiles/Paintings/Canvas2x2/YangPainting</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.YinPainting">
-            <summary>Full Path: Tiles/Paintings/Canvas2x2/YinPainting</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NarryPainting">
-            <summary>Full Path: Tiles/Paintings/Canvas2x3/NarryPainting</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.WallPaintings2x3">
-            <summary>Full Path: Tiles/Paintings/Canvas2x3/WallPaintings2x3</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BongBongPainting">
-            <summary>Full Path: Tiles/Paintings/Canvas3x2/BongBongPainting</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OliverPainting">
-            <summary>Full Path: Tiles/Paintings/Canvas3x2/OliverPainting</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyrimRock1">
-            <summary>Full Path: Tiles/Paintings/Canvas3x2/SkyrimRock1</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyrimRock2">
-            <summary>Full Path: Tiles/Paintings/Canvas3x2/SkyrimRock2</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyrimRock3">
-            <summary>Full Path: Tiles/Paintings/Canvas3x2/SkyrimRock3</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.WallPaintings3x2">
-            <summary>Full Path: Tiles/Paintings/Canvas3x2/WallPaintings3x2</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.YinYangPainting">
-            <summary>Full Path: Tiles/Paintings/Canvas3x2/YinYangPainting</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CatalystPainting">
             <summary>Full Path: Tiles/Paintings/Canvas3x3/CatalystPainting</summary>

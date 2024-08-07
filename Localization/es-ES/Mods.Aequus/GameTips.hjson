@@ -1,5 +1,6 @@
 GameTips: {
 	// Meadows: "{$Misc.GameTipPretense} On the outer edges of the world lies the floating Meadows, magical islands with special flora. . ."
+	// EventToggleGlasses: "{$Misc.GameTipPretense} Some magical lenses will block out the presence of cosmic events. . ."
 	SkyMerchantShopTip: "{$Misc.GameTipPretense} La tienda del Mercader del Cielo cambia dependiendo del día de la semana."
 	SkyMerchantLocationTip: "{$Misc.GameTipPretense} El Mercader del Cielo sigue la posición del sol en el cielo, partiendo en el Oeste en la mañana, hasta al Este en la tarde."
 	NameTag: "{$Misc.GameTipPretense} ¿Alguna vez has querido tener a un Guardián de la mazmorra como mascota? Trata usando una etiqueta!"
@@ -13,7 +14,6 @@ GameTips: {
 	// PhaseMirror: "{$Misc.GameTipPretense} When playing with friends, be sure to snatch the Phase Mirror from the Physicist. It allows you to use Wormholes infinitely."
 	// Meathook: "{$Misc.GameTipPretense} The Meathook allows you to grapple onto enemies, weakening them for bonus damage!"
 	// OblivionAltars: "{$Misc.GameTipPretense} The Underworld's Oblivion Altars hide a sinister secret . . ."
-	// PotionCanteen: "{$Misc.GameTipPretense} Within the Polluted Ocean lies a special accessory which grants you infinite potion duration . . ."
 	// Manacle: "{$Misc.GameTipPretense} Manacles are an exotic plant that grow in the Underworld. Mix their pollen with your potions to preserve your buffs between deaths."
 	// Mistral: "{$Misc.GameTipPretense} Mistral is an exotic plant that grows on Clouds. Mix its pollen with your potions to double their buff strength."
 	// NeutronYogurt: "{$Misc.GameTipPretense} Neutron Yogurt makes you reach maximum speed faster when falling, useful for descending stacked platforms or long mineshafts."
@@ -22,6 +22,11 @@ GameTips: {
 
 UnusedGameTips: {
 	ScavengerBag: "{$Misc.GameTipPretense} ¿Hace falta espacio en el inventario?  Los Esqueletos Carroñeros tienen una probabilidad de soltar su bolsa!"
+	// PotionCanteen: "{$Misc.GameTipPretense} Within the Polluted Ocean lies a special accessory which grants you infinite potion duration . . ."
+	// MonsterChest: "{$Misc.GameTipPretense} Beware of the Monster Chests which lie about . . . their locks are sealed by the vengeful undead!"
+	// Keychain: "{$Misc.GameTipPretense} The Keychain lets you keep all your keys in one place. Upgrade it to the Spectre Keychain to use your keys infinitely!"
+	// CopperChests: "{$Misc.GameTipPretense} Locked Copper Chests can be picked up and opened later at your base."
+	// BreathConserver: "{$Misc.GameTipPretense} Struggling to navigate the deep waters? Professional divers use the Breath Conserver."
 	AnglerLantern: "{$Misc.GameTipPretense} La linterna de pezca en el oceano contaminado emite luz y te deja dar un vistazo dentro de jarrones . . . que mistico!"
 	CrabPots: "{$Misc.GameTipPretense} Las trampas marinas son una herramienta util para atrapar peces sin la molestia de tener que pezcarlos."
 	TrashCompactor: "{$Misc.GameTipPretense} En algun lugar bajo el agua se encuentra un dispositivo conveniente capaz de descomponer muebles en sus materiales originales . . . y aplastar basura en chatarra útil."

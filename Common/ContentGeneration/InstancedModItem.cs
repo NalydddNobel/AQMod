@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.Common.Utilities;
+using System.Collections.Generic;
 using Terraria.Localization;
 
 namespace Aequus.Common.ContentGeneration;
@@ -62,7 +63,7 @@ internal class InstancedTileItem(ModTile modTile, int style = 0, string nameSuff
 
     private string KeyPrefix => Name != _modTile.Name ? $"{Name.Replace(_modTile.Name, "")}." : "";
     public override LocalizedText DisplayName => Language.GetOrRegister(_modTile.GetLocalizationKey(KeyPrefix + "ItemDisplayName"));
-    public override LocalizedText Tooltip => Language.GetOrRegister(_modTile.GetLocalizationKey(KeyPrefix + "ItemTooltip"), () => "");
+    public override LocalizedText Tooltip => ALanguage.GetOrEmpty(_modTile.GetLocalizationKey(KeyPrefix + "ItemTooltip"));
 
     public override void SetStaticDefaults() {
         ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = !dropItem;
