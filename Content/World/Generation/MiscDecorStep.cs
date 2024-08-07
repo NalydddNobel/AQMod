@@ -1,4 +1,5 @@
-﻿using Aequus.Systems.WorldGeneration;
+﻿using Aequus.Content.Tiles.Paintings;
+using Aequus.Systems.WorldGeneration;
 using Terraria.GameContent.Generation;
 using Terraria.IO;
 using Terraria.ObjectData;
@@ -75,7 +76,7 @@ public class MiscDecorStep : AGenStep {
             case WallID.RocksUnsafe3:
             case WallID.RocksUnsafe4: {
                     if (rng.NextBool(8)) {
-                        return rng.Next(Tiles.Paintings.Paintings.Instance.Sets.RockPictures);
+                        return rng.Next(Paintings.Instance.Sets.RockPictures).ToEntry();
                     }
                 }
                 break;

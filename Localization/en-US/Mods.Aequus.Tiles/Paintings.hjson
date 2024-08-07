@@ -1,40 +1,16 @@
 Paintings: {
 	Signature.Nalyddd: T. Nalyd
 	RockmanPainting.ItemTooltip: "{$Signature.Nalyddd}"
-
-	RockmanLemonsPainting: {
-		ItemDisplayName: Life & Lemons
-		ItemTooltip: "{$Signature.Nalyddd}"
-	}
-
-	YinPainting: {
-		ItemDisplayName: Yet Darker
-		ItemTooltip: "{$Signature.Nalyddd}"
-	}
-
-	YangPainting: {
-		ItemDisplayName: Feel the Sunshine
-		ItemTooltip: "{$Signature.Nalyddd}"
-	}
-
-	NarryPainting: {
-		ItemDisplayName: A Spirit's Rambling
-		ItemTooltip: "{$Signature.Nalyddd}"
-	}
-
-	BongBongPainting: {
-		ItemDisplayName: BongBong
-		ItemTooltip: "{$Signature.Nalyddd}"
-	}
-
-	YinYangPainting: {
-		ItemDisplayName: The Polarity
-		ItemTooltip: "{$Signature.Nalyddd}"
-	}
+	RockmanLemonsPainting.ItemDisplayName: Life & Lemons
+	YinPainting.ItemDisplayName: Yet Darker
+	YangPainting.ItemDisplayName: Feel the Sunshine
+	NarryPainting.ItemDisplayName: A Spirit's Rambling
+	BongBongPainting.ItemDisplayName: BongBong
+	YinYangPainting.ItemDisplayName: The Polarity
 
 	RockForcePainting: {
 		ItemDisplayName: Stone Tablet - Force
-		ItemTooltip: 
+		ItemTooltip:
 			'''
 			Rumors say if you learn all three words, you will gain immense power
 			...Sadly it's only a myth
@@ -51,8 +27,12 @@ Paintings: {
 		ItemTooltip: "{$RockForcePainting.ItemTooltip}"
 	}
 
-	OliverPainting: {
-		ItemDisplayName: THIRTY
-		ItemTooltip: "{$Signature.Nalyddd}"
-	}
+	OliverPainting.ItemDisplayName: THIRTY
+	OriginPainting.ItemDisplayName: Origin of Aequus
+	CatalystPainting.ItemDisplayName: Catalyst's Beginnings
+	OmegaStarite2Painting.ItemDisplayName: Star System
+	GoreNestPainting.ItemDisplayName: Hill of Their Remains
+	SpacePainting.ItemDisplayName: Space - ExLyd
+	GoreNest2Painting.ItemDisplayName: Sequenced into Oblivion
+	InsurgentPainting.ItemDisplayName: Those of Wrong
 }

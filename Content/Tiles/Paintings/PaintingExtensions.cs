@@ -5,12 +5,12 @@ using Terraria.GameContent.Generation;
 namespace Aequus.Content.Tiles.Paintings;
 
 public static class PaintingExtensions {
-    public static PaintingEntry GetEntry(this IPainting painting) {
+    public static PaintingEntry ToEntry(this IPainting painting) {
         return new PaintingEntry() { tileType = painting.TileType, style = 0 };
     }
 
-    public static IPainting AddEntry(this IPainting painting, List<PaintingEntry> list) {
-        list.Add(painting.GetEntry());
+    public static IPainting AddEntry(this IPainting painting, List<IPainting> list) {
+        list.Add(painting);
         return painting;
     }
 

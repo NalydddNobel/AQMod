@@ -2250,7 +2250,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1343)</summary>
+            <summary>(Total Textures: 1349)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3266,6 +3266,30 @@
         <member name="F:Aequus.AequusTextures.BongBongPaintingItem">
             <summary>Full Path: Content/Tiles/Paintings/BongBongPaintingItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CatalystPainting">
+            <summary>Full Path: Content/Tiles/Paintings/CatalystPainting</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CatalystPaintingItem">
+            <summary>Full Path: Content/Tiles/Paintings/CatalystPaintingItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoreNest2Painting">
+            <summary>Full Path: Content/Tiles/Paintings/GoreNest2Painting</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoreNest2PaintingItem">
+            <summary>Full Path: Content/Tiles/Paintings/GoreNest2PaintingItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoreNestPainting">
+            <summary>Full Path: Content/Tiles/Paintings/GoreNestPainting</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoreNestPaintingItem">
+            <summary>Full Path: Content/Tiles/Paintings/GoreNestPaintingItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.InsurgentPainting">
+            <summary>Full Path: Content/Tiles/Paintings/InsurgentPainting</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.InsurgentPaintingItem">
+            <summary>Full Path: Content/Tiles/Paintings/InsurgentPaintingItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.NarryPainting">
             <summary>Full Path: Content/Tiles/Paintings/NarryPainting</summary>
         </member>
@@ -3277,6 +3301,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.OliverPaintingItem">
             <summary>Full Path: Content/Tiles/Paintings/OliverPaintingItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStarite2Painting">
+            <summary>Full Path: Content/Tiles/Paintings/OmegaStarite2Painting</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStarite2PaintingItem">
+            <summary>Full Path: Content/Tiles/Paintings/OmegaStarite2PaintingItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OriginPainting">
+            <summary>Full Path: Content/Tiles/Paintings/OriginPainting</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OriginPaintingItem">
+            <summary>Full Path: Content/Tiles/Paintings/OriginPaintingItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RockBalance">
             <summary>Full Path: Content/Tiles/Paintings/RockBalance</summary>
@@ -3308,8 +3344,14 @@
         <member name="F:Aequus.AequusTextures.RockPushItem">
             <summary>Full Path: Content/Tiles/Paintings/RockPushItem</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.WallPaintings3x2">
-            <summary>Full Path: Content/Tiles/Paintings/WallPaintings3x2</summary>
+        <member name="F:Aequus.AequusTextures.SpacePainting">
+            <summary>Full Path: Content/Tiles/Paintings/SpacePainting</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpacePaintingItem">
+            <summary>Full Path: Content/Tiles/Paintings/SpacePaintingItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WallPaintings3x3">
+            <summary>Full Path: Content/Tiles/Paintings/WallPaintings3x3</summary>
         </member>
         <member name="F:Aequus.AequusTextures.YangPainting">
             <summary>Full Path: Content/Tiles/Paintings/YangPainting</summary>
@@ -6223,30 +6265,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.XenonSummonPlant">
             <summary>Full Path: Tiles/MossCaves/XenonSummonPlant</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CatalystPainting">
-            <summary>Full Path: Tiles/Paintings/Canvas3x3/CatalystPainting</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ExLydSpacePainting">
-            <summary>Full Path: Tiles/Paintings/Canvas3x3/ExLydSpacePainting</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GoreNestPainting">
-            <summary>Full Path: Tiles/Paintings/Canvas3x3/GoreNestPainting</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GoreNestPainting2">
-            <summary>Full Path: Tiles/Paintings/Canvas3x3/GoreNestPainting2</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.InsurgentPainting">
-            <summary>Full Path: Tiles/Paintings/Canvas3x3/InsurgentPainting</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStaritePainting2">
-            <summary>Full Path: Tiles/Paintings/Canvas3x3/OmegaStaritePainting2</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OriginPainting">
-            <summary>Full Path: Tiles/Paintings/Canvas3x3/OriginPainting</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.WallPaintings3x3">
-            <summary>Full Path: Tiles/Paintings/Canvas3x3/WallPaintings3x3</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BreadRoachPainting">
             <summary>Full Path: Tiles/Paintings/Canvas6x4/BreadRoachPainting</summary>

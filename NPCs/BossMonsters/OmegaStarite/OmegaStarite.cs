@@ -26,7 +26,6 @@ using Aequus.Particles.Dusts;
 using Aequus.Projectiles;
 using Aequus.Tiles.Furniture.Boss.Relics;
 using Aequus.Tiles.Furniture.Boss.Trophies;
-using Aequus.Tiles.Paintings.Canvas3x3;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -57,6 +56,7 @@ public class OmegaStarite : AequusBoss {
     private const float DEATHTIME = MathHelper.PiOver4 * 134;
 
     public static ConfiguredMusicData music { get; private set; }
+    public static int NoHitItem { get; internal set; }
 
     private TrailRenderer prim;
 
@@ -1354,7 +1354,7 @@ public class OmegaStarite : AequusBoss {
         npcLoot.Add(ItemDropRule.BossBag(bossBag));
         npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<OmegaStariteRelic>()));
         npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<DragonBall>(), AequusDropRules.DroprateMasterPet));
-        npcLoot.Add<FlawlessCondition>(ItemDropRule.Common(ModContent.ItemType<OriginPainting>()));
+        npcLoot.Add<FlawlessCondition>(ItemDropRule.Common(NoHitItem));
         npcLoot.AddExpertDrop<CelesteTorus>(bossBag);
         npcLoot.Add(LootBuilder.GetDropRule_PerPlayerInstanced<CosmicEnergy>(min: 3, max: 3));
         npcLoot.AddBossLoot(bossBag, ItemDropRule.Common(ModContent.ItemType<OmegaStariteMask>(), AequusDropRules.DroprateMask));

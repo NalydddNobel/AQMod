@@ -1,14 +1,16 @@
 ﻿using Aequus.Common.Utilities;
 using Aequus.Content.Tiles.Paintings.Legacy;
 using Aequus.Systems.Chests;
+using Aequus.Systems.Chests.DropRules;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria.GameContent.Generation;
 using Terraria.Localization;
 
 namespace Aequus.Content.Tiles.Paintings;
 
-public sealed class Paintings : ModType {
+public sealed class Paintings : ModType, ILocalizedModType {
     public readonly Color DefaultPaintingColor = new Color(120, 85, 60);
     public readonly LocalizedText DefaultPaintingName = Language.GetText("MapObject.Painting");
 
@@ -16,64 +18,75 @@ public sealed class Paintings : ModType {
 
     public PaintingSets Sets = new();
 
+    string ILocalizedModType.LocalizationCategory => "Tiles";
+
+    public LocalizedText SignatureNalyddd => this.GetLocalization("Signature.Nalyddd");
+
     protected override void Register() {
-        New("Rockman", AequusTextures.RockmanPainting.FullPath, null,
+        New("Rockman", AequusTextures.RockmanPainting.FullPath,
             W: 2, H: 3,
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
             MapColor: Color.Gray,
-            CustomName: ALanguage.L_GetItemName<global::Aequus.Items.Weapons.Melee.Swords.RockMan.RockMan>()
+            CustomName: ALanguage.L_GetItemName<global::Aequus.Items.Weapons.Melee.Swords.RockMan.RockMan>(),
+            Tooltip: SignatureNalyddd
         ).AddEntry(Sets.DesertPictures);
 
-        New("RockmanLemons", AequusTextures.RockmanLemonsPainting.FullPath, null,
+        New("RockmanLemons", AequusTextures.RockmanLemonsPainting.FullPath,
             W: 6, H: 4,
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
-            MapColor: Color.Gray
+            MapColor: Color.Gray,
+            Tooltip: SignatureNalyddd
         ).AddEntry(Sets.DesertPictures);
 
-        New("Yin", AequusTextures.YinPainting.FullPath, null,
+        New("Yin", AequusTextures.YinPainting.FullPath,
             W: 2, H: 2,
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
-            MapColor: Color.Gray
+            MapColor: Color.Gray,
+            Tooltip: SignatureNalyddd
         ).AddEntry(Sets.DesertPictures)
         .RegisterLegacy<WallPaintings2x2>(0);
 
-        New("Yang", AequusTextures.YangPainting.FullPath, null,
+        New("Yang", AequusTextures.YangPainting.FullPath,
             W: 2, H: 2,
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
-            MapColor: Color.Gray
+            MapColor: Color.Gray,
+            Tooltip: SignatureNalyddd
         ).AddEntry(Sets.DesertPictures)
         .RegisterLegacy<WallPaintings2x2>(1);
 
-        New("Narry", AequusTextures.NarryPainting.FullPath, null,
+        New("Narry", AequusTextures.NarryPainting.FullPath,
             W: 2, H: 3,
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
-            MapColor: Color.Gray
+            MapColor: Color.Gray,
+            Tooltip: SignatureNalyddd
         ).AddEntry(Sets.DungeonPictures)
         .RegisterLegacy<WallPaintings2x3>(0);
 
-        New("BongBong", AequusTextures.BongBongPainting.FullPath, null,
+        New("BongBong", AequusTextures.BongBongPainting.FullPath,
             W: 3, H: 2,
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
-            MapColor: Color.Gray
+            MapColor: Color.Gray,
+            Tooltip: SignatureNalyddd
         ).AddEntry(Sets.GenericPictures)
         .RegisterLegacy<WallPaintings3x2>(0)
         .RegisterLegacy<WallPaintings3x2>(1);
 
-        New("YinYang", AequusTextures.YinYangPainting.FullPath, null,
+        New("YinYang", AequusTextures.YinYangPainting.FullPath,
             W: 3, H: 2,
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
-            MapColor: Color.Gray
+            MapColor: Color.Gray,
+            Tooltip: SignatureNalyddd
         ).AddEntry(Sets.DesertPictures)
         .RegisterLegacy<WallPaintings3x2>(2);
 
-        New("RockForce", AequusTextures.RockForce.FullPath, null,
+        New("RockForce", AequusTextures.RockForce.FullPath,
             W: 3, H: 2,
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
@@ -81,7 +94,7 @@ public sealed class Paintings : ModType {
         ).AddEntry(Sets.RockPictures)
         .RegisterLegacy<WallPaintings3x2>(3);
 
-        New("RockBalance", AequusTextures.RockBalance.FullPath, null,
+        New("RockBalance", AequusTextures.RockBalance.FullPath,
             W: 3, H: 2,
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
@@ -89,7 +102,7 @@ public sealed class Paintings : ModType {
         ).AddEntry(Sets.RockPictures)
         .RegisterLegacy<WallPaintings3x2>(4);
 
-        New("RockPush", AequusTextures.RockPush.FullPath, null,
+        New("RockPush", AequusTextures.RockPush.FullPath,
             W: 3, H: 2,
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
@@ -97,18 +110,82 @@ public sealed class Paintings : ModType {
         ).AddEntry(Sets.RockPictures)
         .RegisterLegacy<WallPaintings3x2>(5);
 
-        New("Oliver", AequusTextures.OliverPainting.FullPath, null,
+        New("Oliver", AequusTextures.OliverPainting.FullPath,
             W: 3, H: 2,
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
-            MapColor: Color.Gray
+            MapColor: Color.Gray,
+            Tooltip: SignatureNalyddd
         ).AddEntry(Sets.GenericPictures)
         .RegisterLegacy<WallPaintings3x2>(6);
+
+        global::Aequus.NPCs.BossMonsters.OmegaStarite.OmegaStarite.NoHitItem =
+        New("Origin", AequusTextures.OriginPainting.FullPath,
+            W: 3, H: 3,
+            Rare: ItemRarityID.LightRed,
+            Value: Item.sellPrice(silver: 10),
+            MapColor: Color.Gray,
+            Tooltip: SignatureNalyddd
+        ).RegisterLegacy<WallPaintings3x3>(0).ItemType;
+
+        New("Catalyst", AequusTextures.CatalystPainting.FullPath,
+            W: 3, H: 3,
+            Rare: ItemRarityID.White,
+            Value: Item.sellPrice(silver: 10),
+            MapColor: Color.Gray,
+            Tooltip: SignatureNalyddd
+        ).AddEntry(Sets.GenericPictures)
+        .RegisterLegacy<WallPaintings3x3>(1);
+
+        New("OmegaStarite2", AequusTextures.OmegaStarite2Painting.FullPath,
+            W: 3, H: 3,
+            Rare: ItemRarityID.White,
+            Value: Item.sellPrice(silver: 10),
+            MapColor: Color.Gray,
+            Tooltip: SignatureNalyddd
+        ).AddEntry(Sets.SkyPictures)
+        .RegisterLegacy<WallPaintings3x3>(2);
+
+        New("GoreNest", AequusTextures.GoreNestPainting.FullPath,
+            W: 3, H: 3,
+            Rare: ItemRarityID.White,
+            Value: Item.sellPrice(silver: 10),
+            MapColor: Color.Gray,
+            Tooltip: SignatureNalyddd
+        ).AddEntry(Sets.HellPictures)
+        .RegisterLegacy<WallPaintings3x3>(3);
+
+        New("Space", AequusTextures.SpacePainting.FullPath,
+            W: 3, H: 3,
+            Rare: ItemRarityID.White,
+            Value: Item.sellPrice(silver: 10),
+            MapColor: Color.Gray,
+            Tooltip: SignatureNalyddd
+        ).AddEntry(Sets.SkyPictures)
+        .RegisterLegacy<WallPaintings3x3>(4);
+
+        New("GoreNest2", AequusTextures.GoreNest2Painting.FullPath,
+            W: 3, H: 3,
+            Rare: ItemRarityID.White,
+            Value: Item.sellPrice(silver: 10),
+            MapColor: Color.Gray,
+            Tooltip: SignatureNalyddd
+        ).AddEntry(Sets.HellPictures)
+        .RegisterLegacy<WallPaintings3x3>(5);
+
+        New("Insurgent", AequusTextures.InsurgentPainting.FullPath,
+            W: 3, H: 3,
+            Rare: ItemRarityID.White,
+            Value: Item.sellPrice(silver: 10),
+            MapColor: Color.Gray,
+            Tooltip: SignatureNalyddd
+        ).AddEntry(Sets.HellPictures)
+        .RegisterLegacy<WallPaintings3x3>(6);
     }
 
-    InstancedPainting New(string name, string texture, string? ItemTexture, int W, int H, int Rare, int Value, Color? MapColor = null, Lazy<LocalizedText>? CustomName = null) {
+    InstancedPainting New(string name, string texture, int W, int H, int Rare, int Value, LocalizedText? Tooltip = null, string? ItemTexture = null, Color? MapColor = null, Lazy<LocalizedText>? CustomName = null) {
         ItemTexture ??= $"{texture}Item";
-        InstancedPainting nextPainting = new InstancedPainting(name, texture, ItemTexture, W, H, Rare, Value, MapColor, CustomName);
+        InstancedPainting nextPainting = new InstancedPainting(name, texture, ItemTexture, W, H, Rare, Value, Tooltip, MapColor, CustomName);
         Mod.AddContent(nextPainting);
         return nextPainting;
     }
@@ -122,12 +199,7 @@ public sealed class Paintings : ModType {
 
     public sealed override void SetupContent() {
         // Add sky paintings to skyware chest loot pool.
-        ChestLootDatabase.Instance.RegisterIndexed(2, ChestPool.Sky, [
-            //new CommonChestRule(ModContent.ItemType<ExLydSpacePainting>()),
-            //new CommonChestRule(ModContent.ItemType<OmegaStaritePainting>()),
-            //new CommonChestRule(ModContent.ItemType<OmegaStaritePainting2>()),
-            //new CommonChestRule(ModContent.ItemType<HomeworldPainting>())
-        ]);
+        ChestLootDatabase.Instance.RegisterIndexed(1, ChestPool.Sky, Sets.SkyPictures.Select((p) => new CommonChestRule(p.ItemType)).ToArray());
 
         // Generic paintings which spawn in underground houses.
         //GenericPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType<WallPaintings3x2>(), style = WallPaintings3x2.BongBongPainting });
@@ -158,7 +230,7 @@ public sealed class Paintings : ModType {
 
     private PaintingEntry On_WorldGen_RandHellPicture(On_WorldGen.orig_RandHellPicture orig) {
         if (WorldGen.genRand.NextBool(5)) {
-            return WorldGen.genRand.Next(Instance.Sets.HellPictures);
+            return WorldGen.genRand.Next(Instance.Sets.HellPictures).ToEntry();
         }
 
         return orig();
@@ -166,7 +238,7 @@ public sealed class Paintings : ModType {
 
     private static PaintingEntry On_WorldGen_RandBonePicture(On_WorldGen.orig_RandBonePicture orig) {
         if (WorldGen.genRand.NextBool(3)) {
-            return WorldGen.genRand.Next(Instance.Sets.DungeonPictures);
+            return WorldGen.genRand.Next(Instance.Sets.DungeonPictures).ToEntry();
         }
 
         return orig();
@@ -174,7 +246,7 @@ public sealed class Paintings : ModType {
 
     private static PaintingEntry On_WorldGen_RandHousePictureDesert(On_WorldGen.orig_RandHousePictureDesert orig) {
         if (WorldGen.genRand.NextBool(3)) {
-            return WorldGen.genRand.Next(Instance.Sets.DesertPictures);
+            return WorldGen.genRand.Next(Instance.Sets.DesertPictures).ToEntry();
         }
 
         return orig();
@@ -182,7 +254,7 @@ public sealed class Paintings : ModType {
 
     private static PaintingEntry On_WorldGen_RandHousePicture(On_WorldGen.orig_RandHousePicture orig) {
         if (WorldGen.genRand.NextBool(4)) {
-            return WorldGen.genRand.Next(Instance.Sets.GenericPictures);
+            return WorldGen.genRand.Next(Instance.Sets.GenericPictures).ToEntry();
         }
 
         return orig();
@@ -190,13 +262,15 @@ public sealed class Paintings : ModType {
 }
 
 public class PaintingSets {
-    public readonly List<PaintingEntry> RockPictures = [];
+    public readonly List<IPainting> RockPictures = [];
 
-    public readonly List<PaintingEntry> GenericPictures = [];
+    public readonly List<IPainting> GenericPictures = [];
 
-    public readonly List<PaintingEntry> DesertPictures = [];
+    public readonly List<IPainting> DesertPictures = [];
 
-    public readonly List<PaintingEntry> DungeonPictures = [];
+    public readonly List<IPainting> DungeonPictures = [];
 
-    public readonly List<PaintingEntry> HellPictures = [];
+    public readonly List<IPainting> SkyPictures = [];
+
+    public readonly List<IPainting> HellPictures = [];
 }
