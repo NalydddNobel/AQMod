@@ -6,6 +6,10 @@ namespace Aequus.Items.Misc.PermanentUpgrades;
 public class ShimmerCoinSystem : ModSystem {
     public const string TAG_NAME = "CoinStacks";
 
+    public override void ClearWorld() {
+        ShimmerCoin.TimesUsed = 0;
+    }
+
     public override void SaveWorldData(TagCompound tag) {
         if (ShimmerCoin.TimesUsed > 0) {
             tag[TAG_NAME] = ShimmerCoin.TimesUsed;

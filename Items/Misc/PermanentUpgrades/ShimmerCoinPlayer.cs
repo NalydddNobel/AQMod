@@ -7,7 +7,7 @@ public class ShimmerCoinPlayer : ModPlayer {
         float effectiveness = ShimmerCoin.Effectiveness;
 
         // Aegis Fruit
-        Player.statDefense += Math.Max((int)(4 * effectiveness), 1);
+        Player.statDefense += Math.Max((int)(4 * effectiveness), 0);
 
         // Gummy Worm
         Player.fishingSkill += (int)(3 * effectiveness);
