@@ -1,10 +1,12 @@
 ﻿using Aequus.Content.Items.Accessories.Informational.AnglerBroadcaster;
+using Aequus.Items.Misc.FishCatches.QuestFish;
 using Aequus.Items.Misc.FishingBait;
 using System.Collections.Generic;
 
 namespace Aequus;
 public partial class AequusPlayer : ModPlayer {
     public override void AnglerQuestReward(float rareMultiplier, List<Item> rewardItems) {
+        int questFish = Main.anglerQuestItemNetIDs[Main.anglerQuest];
         if (Main.rand.Next(8) <= (Player.anglerQuestsFinished / 4) || Player.anglerQuestsFinished <= 1) {
             if (Main.rand.NextBool()) {
                 return;
@@ -40,6 +42,10 @@ public partial class AequusPlayer : ModPlayer {
             }
 
             rewardItems.Add(item);
+        }
+
+        if (questFish == ModContent.ItemType<BrickFish>()) {
+            rewardItems.Add(new Item(BrickFish.CustomReward));
         }
     }
 

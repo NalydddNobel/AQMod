@@ -33,6 +33,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
             Tooltip: SignatureNalyddd
         ).AddEntry(Sets.DesertPictures);
 
+        global::Aequus.Items.Misc.FishCatches.QuestFish.BrickFish.CustomReward =
         New("BrickFish", AequusTextures.BrickFishPainting.FullPath,
             W: 3, H: 3,
             Rare: ItemRarityID.White,
@@ -40,7 +41,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
             MapColor: Color.Orange,
             CustomName: ALanguage.L_GetItemName<global::Aequus.Items.Misc.FishCatches.QuestFish.BrickFish>(),
             Tooltip: SignatureNalyddd
-        ).AddEntry(Sets.DesertPictures);
+        ).AddEntry(Sets.DesertPictures).ItemType;
 
         New("Rockman", AequusTextures.RockmanPainting.FullPath,
             W: 2, H: 3,
