@@ -488,17 +488,6 @@ LanternCatSpawner: {
 	Tooltip: 召唤一只提供幸运的猫和一盏提供光照灯笼
 }
 
-// Paintings
-GoreNestPainting2: {
-	DisplayName: 血祭
-	Tooltip: "{$PaintingSignature.NalydT}"
-}
-
-OmegaStaritePainting2: {
-	DisplayName: 标志性事物
-	Tooltip: "{$PaintingSignature.niker}"
-}
-
 // Magic Mirrors
 PhaseMirror: {
 }
@@ -787,15 +776,6 @@ UsesDarts: 使用种子和飞镖作为弹药
 UsesGel: 使用凝胶作为弹药
 DedicatedItem: 谢谢你, {0}!
 DedicatedItemAnonymous: 专属物品
-
-PaintingSignature: {
-	Water: "'W. Ter'"
-	ByNalydTForSomeone: "'By: Nal. T, For: X'"
-	NalydT: "'Nal. T.'"
-	niker: "'N.'"
-	torra: "'T. Th.'"
-}
-
 // Cross Mod: Racquet Weapons
 CommonTooltip.RacquetSlash: 右键可在不创造球的情况下进行挥砍
 
@@ -1919,84 +1899,6 @@ AntiGravityBlock: {
 AncientAntiGravityBlock: {
 	DisplayName: 远古反重力块
 	Tooltip: "{$Items.AntiGravityBlock.Tooltip}"
-}
-
-OmegaStaritePainting: {
-	DisplayName: "'{$Mods.Aequus.NPCs.OmegaStarite.DisplayName}'"
-	Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
-}
-
-BreadRoachPainting: {
-	DisplayName: 面包和虫子
-	Tooltip: "{$Mods.Aequus.PaintingSignature.torra}"
-}
-
-SkyrimRock3: {
-	DisplayName: 推力
-	Tooltip: ""
-}
-
-SkyrimRock2: {
-	DisplayName: 平衡
-	Tooltip: ""
-}
-
-SkyrimRock1: {
-	DisplayName: 力量
-	Tooltip: ""
-}
-
-OliverPainting: {
-	DisplayName: 奥利弗
-	Tooltip: "{$Mods.Aequus.PaintingSignature.NalydT}"
-}
-
-GoreNestPainting: {
-	DisplayName: 血雨腥风
-	Tooltip: "{$Mods.Aequus.PaintingSignature.NalydT}"
-}
-
-ExLydSpacePainting: {
-	DisplayName: 空间
-	Tooltip: "{$Mods.Aequus.PaintingSignature.NalydT}"
-}
-
-HomeworldPainting: {
-	DisplayName: 家园
-	Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
-}
-
-YinYangPainting: {
-	DisplayName: 均衡
-	Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
-}
-
-InsurgentPainting: {
-	DisplayName: 变革
-	Tooltip: "{$Mods.Aequus.PaintingSignature.ForHummer}"
-}
-
-BongBongPainting: {
-	DisplayName: 邦邦
-	Tooltip: "{$Mods.Aequus.PaintingSignature.Water}"
-}
-
-CatalystPainting: {
-	DisplayName: 来自另一个宇宙的岩石
-	Tooltip:
-		'''
-		星际星云的宏伟之力!
-		'N.T... 来自另一个宇宙'
-		'''
-}
-
-OriginPainting: {
-	DisplayName: 起源
-	Tooltip:
-		'''
-		Aequus之起源
-		{$Mods.Aequus.PaintingSignature.NalydT}
-		'''
 }
 
 UltraStariteTrophy: {
@@ -3300,9 +3202,4 @@ Glimmer2MusicBox: {
 CrabsonMusicBox: {
 	DisplayName: 音乐盒 (巨蟹蛤)
 	Tooltip: ""
-}
-
-NarryPainting: {
-	DisplayName: Narry
-	Tooltip: "{$PaintingSignature.NalydT}"
 }

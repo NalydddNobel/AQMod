@@ -488,17 +488,6 @@ LanternCatSpawner: {
 	// Tooltip: Summons a cat and lantern to provide light and luck
 }
 
-// Paintings
-GoreNestPainting2: {
-	// DisplayName: Blood Ritual
-	// Tooltip: "{$PaintingSignature.NalydT}"
-}
-
-OmegaStaritePainting2: {
-	// DisplayName: Iconic
-	// Tooltip: "{$PaintingSignature.niker}"
-}
-
 // Magic Mirrors
 PhaseMirror: {
 }
@@ -787,15 +776,6 @@ ShimmerSundialCharge: {
 // UsesGel: Uses gel for ammo
 // DedicatedItem: Thank you, {0}!
 // DedicatedItemAnonymous: Dedicated Item
-
-PaintingSignature: {
-	// Water: "'W. Ter'"
-	// ByNalydTForSomeone: "'By: Nal. T, For: X'"
-	// NalydT: "'Nal. T.'"
-	// niker: "'N.'"
-	// torra: "'T. Th.'"
-}
-
 // Cross Mod: Racquet Weapons
 // CommonTooltip.RacquetSlash: <right> to slash without creating a ball
 
@@ -1919,84 +1899,6 @@ AntiGravityBlock: {
 AncientAntiGravityBlock: {
 	// DisplayName: Ancient Anti Gravity Block
 	// Tooltip: "{$Items.AntiGravityBlock.Tooltip}"
-}
-
-OmegaStaritePainting: {
-	// DisplayName: "'{$Mods.Aequus.NPCs.OmegaStarite.DisplayName}'"
-	// Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
-}
-
-BreadRoachPainting: {
-	// DisplayName: Bread and Bugger
-	// Tooltip: "{$Mods.Aequus.PaintingSignature.torra}"
-}
-
-SkyrimRock3: {
-	// DisplayName: Push
-	// Tooltip: ""
-}
-
-SkyrimRock2: {
-	// DisplayName: Balance
-	// Tooltip: ""
-}
-
-SkyrimRock1: {
-	// DisplayName: Force
-	// Tooltip: ""
-}
-
-OliverPainting: {
-	// DisplayName: OLIVER
-	// Tooltip: "{$Mods.Aequus.PaintingSignature.NalydT}"
-}
-
-GoreNestPainting: {
-	// DisplayName: GORE
-	// Tooltip: "{$Mods.Aequus.PaintingSignature.NalydT}"
-}
-
-ExLydSpacePainting: {
-	// DisplayName: SPACE
-	// Tooltip: "{$Mods.Aequus.PaintingSignature.NalydT}"
-}
-
-HomeworldPainting: {
-	// DisplayName: HOMEWORLD
-	// Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
-}
-
-YinYangPainting: {
-	// DisplayName: Equalities
-	// Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
-}
-
-InsurgentPainting: {
-	// DisplayName: Revolution
-	// Tooltip: "{$Mods.Aequus.PaintingSignature.ForHummer}"
-}
-
-BongBongPainting: {
-	// DisplayName: BongBong
-	// Tooltip: "{$Mods.Aequus.PaintingSignature.Water}"
-}
-
-CatalystPainting: {
-	// DisplayName: Rock from an Alternate Universe
-	/* Tooltip:
-		'''
-		The great might of an interstellar nebula!
-		'N.T... from another universe'
-		''' */
-}
-
-OriginPainting: {
-	// DisplayName: Origin
-	/* Tooltip:
-		'''
-		The birthplace of Aequus
-		{$Mods.Aequus.PaintingSignature.NalydT}
-		''' */
 }
 
 UltraStariteTrophy: {
@@ -3300,9 +3202,4 @@ Glimmer2MusicBox: {
 CrabsonMusicBox: {
 	// DisplayName: Music Box (Crabson)
 	// Tooltip: ""
-}
-
-NarryPainting: {
-	// DisplayName: Narry
-	// Tooltip: "{$PaintingSignature.NalydT}"
 }
