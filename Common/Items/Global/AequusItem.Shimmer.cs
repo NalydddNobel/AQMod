@@ -51,27 +51,12 @@ public partial class AequusItem {
     }
 
     private static void On_Item_GetShimmered(On_Item.orig_GetShimmered orig, Item item) {
-        if (DedicationRegistry.TryGet(item.type, out var dedicatedContentInfo)) {
-            int maximumSpawnable = 50;
-            int highestNPCSlotIndexWeWillPick = 200;
-            int slotsAvailable = NPC.GetAvailableAmountOfNPCsToSpawnUpToSlot(item.stack, highestNPCSlotIndexWeWillPick);
-            while (maximumSpawnable > 0 && slotsAvailable > 0 && item.stack > 0) {
-                maximumSpawnable--;
-                slotsAvailable--;
-                item.stack--;
-                int npc = NPC.NewNPC(item.GetSource_FromThis(), (int)item.Bottom.X, (int)item.Bottom.Y, ModContent.NPCType<DedicatedFaeling>());
-                if (npc >= 0) {
-                    Main.npc[npc].shimmerTransparency = 1f;
-                    NetMessage.SendData(MessageID.ShimmerActions, -1, -1, null, 2, npc);
-                }
-            }
-            item.shimmered = true;
-            if (item.stack <= 0) {
-                item.TurnToAir();
-            }
-            ShimmerThisMan(item);
+        DedicatedFaeling.SpawnFaelingsFromShimmer(item, item.ModItem);
+
+        if (item.stack <= 0) {
             return;
         }
+
         if (item.prefix >= PrefixID.Count && PrefixLoader.GetPrefix(item.prefix) is AequusPrefix prefix && prefix.Shimmerable) {
             int oldStack = item.stack;
             item.SetDefaults(item.netID);
@@ -82,6 +67,7 @@ public partial class AequusItem {
             ShimmerThisMan(item);
             return;
         }
+
         orig(item);
     }
 }

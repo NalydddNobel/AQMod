@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.Dedications;
-using Aequus.Items;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -147,7 +146,7 @@ public class DedicatedFaeling : ModNPC {
     }
 
     internal static void SpawnFaelingsFromShimmer(Item item, ModItem modItem) {
-        if (!DedicationRegistry.TryGet(modItem.Type, out _)) {
+        if (!DedicationRegistry.TryGet(modItem.Type, out _) || ItemID.Sets.ShimmerTransformToItem[item.type] != -1) {
             return;
         }
 
