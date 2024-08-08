@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1352)</summary>
+/// <summary>(Total Textures: 1356)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -687,6 +687,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> BreadRoachPainting = new("Content/Tiles/Paintings/BreadRoachPainting");
     /// <summary>Full Path: Content/Tiles/Paintings/BreadRoachPaintingItem</summary>
     public static readonly RequestCache<Texture2D> BreadRoachPaintingItem = new("Content/Tiles/Paintings/BreadRoachPaintingItem");
+    /// <summary>Full Path: Content/Tiles/Paintings/BrickFishPainting</summary>
+    public static readonly RequestCache<Texture2D> BrickFishPainting = new("Content/Tiles/Paintings/BrickFishPainting");
+    /// <summary>Full Path: Content/Tiles/Paintings/BrickFishPaintingItem</summary>
+    public static readonly RequestCache<Texture2D> BrickFishPaintingItem = new("Content/Tiles/Paintings/BrickFishPaintingItem");
+    /// <summary>Full Path: Content/Tiles/Paintings/CarpenterPainting</summary>
+    public static readonly RequestCache<Texture2D> CarpenterPainting = new("Content/Tiles/Paintings/CarpenterPainting");
+    /// <summary>Full Path: Content/Tiles/Paintings/CarpenterPaintingItem</summary>
+    public static readonly RequestCache<Texture2D> CarpenterPaintingItem = new("Content/Tiles/Paintings/CarpenterPaintingItem");
     /// <summary>Full Path: Content/Tiles/Paintings/CatalystPainting</summary>
     public static readonly RequestCache<Texture2D> CatalystPainting = new("Content/Tiles/Paintings/CatalystPainting");
     /// <summary>Full Path: Content/Tiles/Paintings/CatalystPaintingItem</summary>

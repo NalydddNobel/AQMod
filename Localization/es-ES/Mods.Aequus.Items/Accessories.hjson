@@ -33,10 +33,7 @@ GoldenWind: {
 
 GoldenFeather: {
 	DisplayName: Pluma Milagrosa
-	Tooltip:
-		'''
-		El tiempo de reaparición para ti y tu equipo es reducido por {0} segundos
-		'''
+	Tooltip: El tiempo de reaparición para ti y tu equipo es reducido por {0} segundos
 	// BuffDescription: You respawn {0} seconds faster
 }
 

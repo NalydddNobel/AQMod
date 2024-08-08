@@ -1,6 +1,10 @@
 Paintings: {
-	// Signature.Nalyddd: T. Nalyd
-	// RockmanPainting.ItemTooltip: "{$Signature.Nalyddd}"
+	Signature: {
+		// Nalyddd: T. Nalyd
+		// Niker: N. ker
+		// Torra: T. Torra
+	}
+
 	// RockmanLemonsPainting.ItemDisplayName: Life & Lemons
 	// YinPainting.ItemDisplayName: Yet Darker
 	// YangPainting.ItemDisplayName: Feel the Sunshine
@@ -34,5 +38,8 @@ Paintings: {
 	// GoreNestPainting.ItemDisplayName: Hill of Their Remains
 	// SpacePainting.ItemDisplayName: Space - ExLyd
 	// GoreNest2Painting.ItemDisplayName: Sequenced into Oblivion
-	// InsurgentPainting.ItemDisplayName: Those of Wrong
+	// InsurgentPainting.ItemDisplayName: Those Who Wrong
+	// HomeworldPainting.ItemDisplayName: Star's Conscious
+	// BreadRoachPainting.ItemDisplayName: Bread & Bugger
+	// OmegaStaritePainting.ItemDisplayName: The Star's Construction
 }

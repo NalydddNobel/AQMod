@@ -13,6 +13,10 @@ public static class ALanguage {
     private record struct ColoredText(string Text, Color Color);
 
     #region Lazy Initalized Text
+    public static Lazy<LocalizedText> L_GetNPCName<T>() where T : ModNPC {
+        return new Lazy<LocalizedText>(() => ModContent.GetInstance<T>().DisplayName);
+    }
+
     public static Lazy<LocalizedText> L_GetItemName<T>() where T : ModItem {
         return new Lazy<LocalizedText>(() => ModContent.GetInstance<T>().DisplayName);
     }

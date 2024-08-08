@@ -2250,7 +2250,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1348)</summary>
+            <summary>(Total Textures: 1356)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3266,6 +3266,24 @@
         <member name="F:Aequus.AequusTextures.BongBongPaintingItem">
             <summary>Full Path: Content/Tiles/Paintings/BongBongPaintingItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.BreadRoachPainting">
+            <summary>Full Path: Content/Tiles/Paintings/BreadRoachPainting</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BreadRoachPaintingItem">
+            <summary>Full Path: Content/Tiles/Paintings/BreadRoachPaintingItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BrickFishPainting">
+            <summary>Full Path: Content/Tiles/Paintings/BrickFishPainting</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BrickFishPaintingItem">
+            <summary>Full Path: Content/Tiles/Paintings/BrickFishPaintingItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CarpenterPainting">
+            <summary>Full Path: Content/Tiles/Paintings/CarpenterPainting</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CarpenterPaintingItem">
+            <summary>Full Path: Content/Tiles/Paintings/CarpenterPaintingItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.CatalystPainting">
             <summary>Full Path: Content/Tiles/Paintings/CatalystPainting</summary>
         </member>
@@ -3283,6 +3301,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.GoreNestPaintingItem">
             <summary>Full Path: Content/Tiles/Paintings/GoreNestPaintingItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HomeworldPainting">
+            <summary>Full Path: Content/Tiles/Paintings/HomeworldPainting</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HomeworldPaintingItem">
+            <summary>Full Path: Content/Tiles/Paintings/HomeworldPaintingItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.InsurgentPainting">
             <summary>Full Path: Content/Tiles/Paintings/InsurgentPainting</summary>
@@ -3307,6 +3331,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStarite2PaintingItem">
             <summary>Full Path: Content/Tiles/Paintings/OmegaStarite2PaintingItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStaritePainting">
+            <summary>Full Path: Content/Tiles/Paintings/OmegaStaritePainting</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStaritePaintingItem">
+            <summary>Full Path: Content/Tiles/Paintings/OmegaStaritePaintingItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OriginPainting">
             <summary>Full Path: Content/Tiles/Paintings/OriginPainting</summary>
@@ -3350,6 +3380,9 @@
         <member name="F:Aequus.AequusTextures.SpacePaintingItem">
             <summary>Full Path: Content/Tiles/Paintings/SpacePaintingItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.WallPaintings6x4">
+            <summary>Full Path: Content/Tiles/Paintings/WallPaintings6x4</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.YangPainting">
             <summary>Full Path: Content/Tiles/Paintings/YangPainting</summary>
         </member>
@@ -3367,6 +3400,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.YinYangPaintingItem">
             <summary>Full Path: Content/Tiles/Paintings/YinYangPaintingItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.YinYangXmasPainting">
+            <summary>Full Path: Content/Tiles/Paintings/YinYangXmasPainting</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.YinYangXmasPaintingItem">
+            <summary>Full Path: Content/Tiles/Paintings/YinYangXmasPaintingItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BountySelection">
             <summary>Full Path: Content/UI/BountyBoard/BountySelection</summary>
@@ -6262,21 +6301,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.XenonSummonPlant">
             <summary>Full Path: Tiles/MossCaves/XenonSummonPlant</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BreadRoachPainting">
-            <summary>Full Path: Tiles/Paintings/Canvas6x4/BreadRoachPainting</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HomeworldPainting">
-            <summary>Full Path: Tiles/Paintings/Canvas6x4/HomeworldPainting</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStaritePainting">
-            <summary>Full Path: Tiles/Paintings/Canvas6x4/OmegaStaritePainting</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.WallPaintings6x4">
-            <summary>Full Path: Tiles/Paintings/Canvas6x4/WallPaintings6x4</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.YinYangXmasPainting">
-            <summary>Full Path: Tiles/Paintings/Canvas6x4/YinYangXmasPainting</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PyramidStatueBrokenTile">
             <summary>Full Path: Tiles/Pyramid/Broken/PyramidStatueBrokenTile</summary>

@@ -75,7 +75,7 @@ public class MiscDecorStep : AGenStep {
             case WallID.RocksUnsafe2:
             case WallID.RocksUnsafe3:
             case WallID.RocksUnsafe4: {
-                    if (rng.NextBool(8)) {
+                    if (rng.NextBool(2)) {
                         return rng.Next(Paintings.Instance.Sets.RockPictures).ToEntry();
                     }
                 }

@@ -20,8 +20,28 @@ public sealed class Paintings : ModType, ILocalizedModType {
     string ILocalizedModType.LocalizationCategory => "Tiles";
 
     public LocalizedText SignatureNalyddd => this.GetLocalization("Signature.Nalyddd");
+    public LocalizedText SignatureNiker => this.GetLocalization("Signature.Niker");
+    public LocalizedText SignatureTorra => this.GetLocalization("Signature.Torra");
 
     protected override void Register() {
+        New("Carpenter", AequusTextures.CarpenterPainting.FullPath,
+            W: 6, H: 4,
+            Rare: ItemRarityID.White,
+            Value: Item.sellPrice(silver: 10),
+            MapColor: Color.Purple,
+            CustomName: ALanguage.L_GetNPCName<global::Aequus.NPCs.Town.CarpenterNPC.Carpenter>(),
+            Tooltip: SignatureNalyddd
+        ).AddEntry(Sets.DesertPictures);
+
+        New("BrickFish", AequusTextures.BrickFishPainting.FullPath,
+            W: 3, H: 3,
+            Rare: ItemRarityID.White,
+            Value: Item.sellPrice(silver: 10),
+            MapColor: Color.Orange,
+            CustomName: ALanguage.L_GetItemName<global::Aequus.Items.Misc.FishCatches.QuestFish.BrickFish>(),
+            Tooltip: SignatureNalyddd
+        ).AddEntry(Sets.DesertPictures);
+
         New("Rockman", AequusTextures.RockmanPainting.FullPath,
             W: 2, H: 3,
             Rare: ItemRarityID.White,
@@ -29,7 +49,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
             MapColor: Color.Gray,
             CustomName: ALanguage.L_GetItemName<global::Aequus.Items.Weapons.Melee.Swords.RockMan.RockMan>(),
             Tooltip: SignatureNalyddd
-        ).AddEntry(Sets.DesertPictures);
+        ).AddEntry(Sets.GenericPictures);
 
         New("RockmanLemons", AequusTextures.RockmanLemonsPainting.FullPath,
             W: 6, H: 4,
@@ -133,7 +153,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
             Value: Item.sellPrice(silver: 10),
             MapColor: Color.Gray,
             Tooltip: SignatureNalyddd
-        ).AddEntry(Sets.GenericPictures)
+        ).AddEntry(Sets.DungeonPictures)
         .RegisterLegacy(1);
 
         New("OmegaStarite2", AequusTextures.OmegaStarite2Painting.FullPath,
@@ -141,7 +161,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
             MapColor: Color.Blue,
-            Tooltip: SignatureNalyddd
+            Tooltip: SignatureNiker
         ).AddEntry(Sets.SkyPictures)
         .RegisterLegacy(2);
 
@@ -186,7 +206,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
             MapColor: Color.Blue,
-            Tooltip: SignatureNalyddd
+            Tooltip: SignatureNiker
         ).AddEntry(Sets.SkyPictures)
         .RegisterLegacy(0);
 
@@ -195,8 +215,8 @@ public sealed class Paintings : ModType, ILocalizedModType {
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
             MapColor: Color.SandyBrown,
-            Tooltip: SignatureNalyddd
-        ).AddEntry(Sets.DungeonPictures)
+            Tooltip: SignatureTorra
+        ).AddEntry(Sets.DesertPictures)
         .RegisterLegacy(1);
 
         /*
@@ -214,7 +234,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
             MapColor: Color.Blue,
-            Tooltip: SignatureNalyddd
+            Tooltip: SignatureNiker
         ).AddEntry(Sets.SkyPictures)
         .RegisterLegacy(3);
     }
@@ -265,7 +285,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
     }
 
     private PaintingEntry On_WorldGen_RandHellPicture(On_WorldGen.orig_RandHellPicture orig) {
-        if (WorldGen.genRand.NextBool(5)) {
+        if (WorldGen.genRand.NextBool(3)) {
             return WorldGen.genRand.Next(Instance.Sets.HellPictures).ToEntry();
         }
 
@@ -289,7 +309,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
     }
 
     private static PaintingEntry On_WorldGen_RandHousePicture(On_WorldGen.orig_RandHousePicture orig) {
-        if (WorldGen.genRand.NextBool(4)) {
+        if (WorldGen.genRand.NextBool(3)) {
             return WorldGen.genRand.Next(Instance.Sets.GenericPictures).ToEntry();
         }
 
