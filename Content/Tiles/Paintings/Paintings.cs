@@ -140,7 +140,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
             W: 3, H: 3,
             Rare: ItemRarityID.White,
             Value: Item.sellPrice(silver: 10),
-            MapColor: Color.Gray,
+            MapColor: Color.Blue,
             Tooltip: SignatureNalyddd
         ).AddEntry(Sets.SkyPictures)
         .RegisterLegacy(2);
@@ -180,6 +180,43 @@ public sealed class Paintings : ModType, ILocalizedModType {
             Tooltip: SignatureNalyddd
         ).AddEntry(Sets.HellPictures)
         .RegisterLegacy(6);
+
+        New("Homeworld", AequusTextures.HomeworldPainting.FullPath,
+            W: 6, H: 4,
+            Rare: ItemRarityID.White,
+            Value: Item.sellPrice(silver: 10),
+            MapColor: Color.Blue,
+            Tooltip: SignatureNalyddd
+        ).AddEntry(Sets.SkyPictures)
+        .RegisterLegacy(0);
+
+        New("BreadRoach", AequusTextures.BreadRoachPainting.FullPath,
+            W: 6, H: 4,
+            Rare: ItemRarityID.White,
+            Value: Item.sellPrice(silver: 10),
+            MapColor: Color.SandyBrown,
+            Tooltip: SignatureNalyddd
+        ).AddEntry(Sets.DungeonPictures)
+        .RegisterLegacy(1);
+
+        /*
+        New("YinYangXmas", AequusTextures.YinYangXmasPainting.FullPath,
+            W: 6, H: 4,
+            Rare: ItemRarityID.White,
+            Value: Item.sellPrice(silver: 10),
+            MapColor: Color.SandyBrown,
+            Tooltip: SignatureNalyddd
+        ).RegisterLegacy(2);
+        */
+
+        New("OmegaStarite", AequusTextures.OmegaStaritePainting.FullPath,
+            W: 6, H: 4,
+            Rare: ItemRarityID.White,
+            Value: Item.sellPrice(silver: 10),
+            MapColor: Color.Blue,
+            Tooltip: SignatureNalyddd
+        ).AddEntry(Sets.SkyPictures)
+        .RegisterLegacy(3);
     }
 
     InstancedPainting New(string name, string texture, int W, int H, int Rare, int Value, LocalizedText? Tooltip = null, string? ItemTexture = null, Color? MapColor = null, Lazy<LocalizedText>? CustomName = null) {

@@ -13,7 +13,6 @@ using Aequus.Items.Misc.GrabBags.Crates;
 using Aequus.Items.Misc.Trash;
 using Aequus.Items.Tools.FishingPoles;
 using Aequus.NPCs.Monsters;
-using Aequus.Tiles.Paintings.Canvas6x4;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria.DataStructures;
@@ -89,9 +88,9 @@ public partial class AequusPlayer : ModPlayer {
                     itemDrop = 0;
                     npcSpawn = ModContent.NPCType<BreadOfCthulhu>();
                 }
-                else if (Main.rand.NextBool(7)) {
-                    itemDrop = ModContent.ItemType<BreadRoachPainting>();
-                }
+                //else if (Main.rand.NextBool(7)) {
+                //    itemDrop = ModContent.ItemType<BreadRoachPainting>();
+                //}
                 else if (Main.rand.NextBool()) {
                     switch (Main.rand.Next(2)) {
                         case 0: {
