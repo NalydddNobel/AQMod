@@ -28,12 +28,11 @@ Paintings: {
 	}
 
 	// OliverPainting.ItemDisplayName: THIRTY
-	// Paintings.Signature.Nalyddd: Mods.Aequus.Tiles.Paintings.Paintings.Signature.Nalyddd
-	// OriginPainting.ItemDisplayName: Mods.Aequus.Tiles.Paintings.OriginPainting.ItemDisplayName
-	// CatalystPainting.ItemDisplayName: Mods.Aequus.Tiles.Paintings.CatalystPainting.ItemDisplayName
-	// OmegaStarite2Painting.ItemDisplayName: Mods.Aequus.Tiles.Paintings.OmegaStarite2Painting.ItemDisplayName
-	// GoreNestPainting.ItemDisplayName: Mods.Aequus.Tiles.Paintings.GoreNestPainting.ItemDisplayName
-	// SpacePainting.ItemDisplayName: Mods.Aequus.Tiles.Paintings.SpacePainting.ItemDisplayName
-	// GoreNest2Painting.ItemDisplayName: Mods.Aequus.Tiles.Paintings.GoreNest2Painting.ItemDisplayName
-	// InsurgentPainting.ItemDisplayName: Mods.Aequus.Tiles.Paintings.InsurgentPainting.ItemDisplayName
+	// OriginPainting.ItemDisplayName: Origin of Aequus
+	// CatalystPainting.ItemDisplayName: Catalyst's Beginnings
+	// OmegaStarite2Painting.ItemDisplayName: Star System
+	// GoreNestPainting.ItemDisplayName: Hill of Their Remains
+	// SpacePainting.ItemDisplayName: Space - ExLyd
+	// GoreNest2Painting.ItemDisplayName: Sequenced into Oblivion
+	// InsurgentPainting.ItemDisplayName: Those of Wrong
 }
