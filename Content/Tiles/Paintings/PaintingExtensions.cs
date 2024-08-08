@@ -14,8 +14,8 @@ public static class PaintingExtensions {
         return painting;
     }
 
-    public static IPainting RegisterLegacy<T>(this IPainting painting, int style) where T : LegacyPaintingTile {
-        ModContent.GetInstance<T>().Convert.Add(style, painting.TileType);
+    public static IPainting RegisterLegacy(this IPainting painting, int legacyStyle) {
+        LegacyPaintings.RegisterLegacy(painting.Mod, painting.Width, painting.Height, legacyStyle, painting.TileType);
         return painting;
     }
 }

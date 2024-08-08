@@ -1,14 +1,31 @@
-﻿using Aequus.Common.Utilities.Helpers;
+﻿using Aequus.Common.ContentGeneration;
+using Aequus.Common.Utilities.Helpers;
 using System.Collections.Generic;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Tiles.Paintings.Legacy;
-public abstract class LegacyPaintingTile(int Width, int Height) : ModTile {
+
+/// <summary>Handles loading and converting legacy paintings.</summary>
+internal class LegacyPaintings(int Width, int Height) : InstancedTile($"WallPaintings{Width}x{Height}", string.Empty) {
     private int _frameWidth;
-    private int _frameHeight;
-    public readonly Dictionary<int, ushort> Convert = [];
 
     public override string Texture => AequusTextures.None.FullPath;
+
+    private static readonly Dictionary<Point, LegacyPaintings> _dimsToLegacy = [];
+    private readonly Dictionary<int, ushort> Convert = [];
+
+    public static void RegisterLegacy(Mod mod, int Width, int Height, int Style, ushort ToType) {
+        Point key = new Point(Width, Height);
+        LegacyPaintings? legacy;
+
+        if (!_dimsToLegacy.TryGetValue(key, out legacy)) {
+            legacy = new LegacyPaintings(Width, Height);
+            mod.AddContent(legacy);
+            _dimsToLegacy.Add(key, legacy);
+        }
+
+        legacy.Convert.Add(Style, ToType);
+    }
 
     public sealed override void SetStaticDefaults() {
         Main.tileFrameImportant[Type] = true;
@@ -24,7 +41,6 @@ public abstract class LegacyPaintingTile(int Width, int Height) : ModTile {
         TileObjectData.newTile.StyleWrapLimit = 36;
 
         _frameWidth = TileObjectData.newTile.CoordinateFullWidth;
-        _frameHeight = TileObjectData.newTile.CoordinateFullHeight;
 
         TileObjectData.addTile(Type);
         DustType = DustID.WoodFurniture;

@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Utilities;
-using Aequus.Content.Tiles.Paintings.Legacy;
 using Aequus.Systems.Chests;
 using Aequus.Systems.Chests.DropRules;
 using System;
@@ -47,7 +46,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
             MapColor: Color.Gray,
             Tooltip: SignatureNalyddd
         ).AddEntry(Sets.DesertPictures)
-        .RegisterLegacy<WallPaintings2x2>(0);
+        .RegisterLegacy(0);
 
         New("Yang", AequusTextures.YangPainting.FullPath,
             W: 2, H: 2,
@@ -56,7 +55,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
             MapColor: Color.Gray,
             Tooltip: SignatureNalyddd
         ).AddEntry(Sets.DesertPictures)
-        .RegisterLegacy<WallPaintings2x2>(1);
+        .RegisterLegacy(1);
 
         New("Narry", AequusTextures.NarryPainting.FullPath,
             W: 2, H: 3,
@@ -65,7 +64,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
             MapColor: Color.Gray,
             Tooltip: SignatureNalyddd
         ).AddEntry(Sets.DungeonPictures)
-        .RegisterLegacy<WallPaintings2x3>(0);
+        .RegisterLegacy(0);
 
         New("BongBong", AequusTextures.BongBongPainting.FullPath,
             W: 3, H: 2,
@@ -74,8 +73,8 @@ public sealed class Paintings : ModType, ILocalizedModType {
             MapColor: Color.Gray,
             Tooltip: SignatureNalyddd
         ).AddEntry(Sets.GenericPictures)
-        .RegisterLegacy<WallPaintings3x2>(0)
-        .RegisterLegacy<WallPaintings3x2>(1);
+        .RegisterLegacy(0)
+        .RegisterLegacy(1);
 
         New("YinYang", AequusTextures.YinYangPainting.FullPath,
             W: 3, H: 2,
@@ -84,7 +83,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
             MapColor: Color.Gray,
             Tooltip: SignatureNalyddd
         ).AddEntry(Sets.DesertPictures)
-        .RegisterLegacy<WallPaintings3x2>(2);
+        .RegisterLegacy(2);
 
         New("RockForce", AequusTextures.RockForce.FullPath,
             W: 3, H: 2,
@@ -92,7 +91,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
             Value: Item.sellPrice(silver: 10),
             MapColor: Color.Gray
         ).AddEntry(Sets.RockPictures)
-        .RegisterLegacy<WallPaintings3x2>(3);
+        .RegisterLegacy(3);
 
         New("RockBalance", AequusTextures.RockBalance.FullPath,
             W: 3, H: 2,
@@ -100,7 +99,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
             Value: Item.sellPrice(silver: 10),
             MapColor: Color.Gray
         ).AddEntry(Sets.RockPictures)
-        .RegisterLegacy<WallPaintings3x2>(4);
+        .RegisterLegacy(4);
 
         New("RockPush", AequusTextures.RockPush.FullPath,
             W: 3, H: 2,
@@ -108,7 +107,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
             Value: Item.sellPrice(silver: 10),
             MapColor: Color.Gray
         ).AddEntry(Sets.RockPictures)
-        .RegisterLegacy<WallPaintings3x2>(5);
+        .RegisterLegacy(5);
 
         New("Oliver", AequusTextures.OliverPainting.FullPath,
             W: 3, H: 2,
@@ -117,7 +116,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
             MapColor: Color.Gray,
             Tooltip: SignatureNalyddd
         ).AddEntry(Sets.GenericPictures)
-        .RegisterLegacy<WallPaintings3x2>(6);
+        .RegisterLegacy(6);
 
         global::Aequus.NPCs.BossMonsters.OmegaStarite.OmegaStarite.NoHitItem =
         New("Origin", AequusTextures.OriginPainting.FullPath,
@@ -126,7 +125,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
             Value: Item.sellPrice(silver: 10),
             MapColor: Color.Gray,
             Tooltip: SignatureNalyddd
-        ).RegisterLegacy<WallPaintings3x3>(0).ItemType;
+        ).RegisterLegacy(0).ItemType;
 
         New("Catalyst", AequusTextures.CatalystPainting.FullPath,
             W: 3, H: 3,
@@ -135,7 +134,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
             MapColor: Color.Gray,
             Tooltip: SignatureNalyddd
         ).AddEntry(Sets.GenericPictures)
-        .RegisterLegacy<WallPaintings3x3>(1);
+        .RegisterLegacy(1);
 
         New("OmegaStarite2", AequusTextures.OmegaStarite2Painting.FullPath,
             W: 3, H: 3,
@@ -144,7 +143,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
             MapColor: Color.Gray,
             Tooltip: SignatureNalyddd
         ).AddEntry(Sets.SkyPictures)
-        .RegisterLegacy<WallPaintings3x3>(2);
+        .RegisterLegacy(2);
 
         New("GoreNest", AequusTextures.GoreNestPainting.FullPath,
             W: 3, H: 3,
@@ -153,7 +152,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
             MapColor: Color.Gray,
             Tooltip: SignatureNalyddd
         ).AddEntry(Sets.HellPictures)
-        .RegisterLegacy<WallPaintings3x3>(3);
+        .RegisterLegacy(3);
 
         New("Space", AequusTextures.SpacePainting.FullPath,
             W: 3, H: 3,
@@ -162,7 +161,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
             MapColor: Color.Gray,
             Tooltip: SignatureNalyddd
         ).AddEntry(Sets.SkyPictures)
-        .RegisterLegacy<WallPaintings3x3>(4);
+        .RegisterLegacy(4);
 
         New("GoreNest2", AequusTextures.GoreNest2Painting.FullPath,
             W: 3, H: 3,
@@ -171,7 +170,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
             MapColor: Color.Gray,
             Tooltip: SignatureNalyddd
         ).AddEntry(Sets.HellPictures)
-        .RegisterLegacy<WallPaintings3x3>(5);
+        .RegisterLegacy(5);
 
         New("Insurgent", AequusTextures.InsurgentPainting.FullPath,
             W: 3, H: 3,
@@ -180,7 +179,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
             MapColor: Color.Gray,
             Tooltip: SignatureNalyddd
         ).AddEntry(Sets.HellPictures)
-        .RegisterLegacy<WallPaintings3x3>(6);
+        .RegisterLegacy(6);
     }
 
     InstancedPainting New(string name, string texture, int W, int H, int Rare, int Value, LocalizedText? Tooltip = null, string? ItemTexture = null, Color? MapColor = null, Lazy<LocalizedText>? CustomName = null) {
@@ -202,28 +201,28 @@ public sealed class Paintings : ModType, ILocalizedModType {
         ChestLootDatabase.Instance.RegisterIndexed(1, ChestPool.Sky, Sets.SkyPictures.Select((p) => new CommonChestRule(p.ItemType)).ToArray());
 
         // Generic paintings which spawn in underground houses.
-        //GenericPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType<WallPaintings3x2>(), style = WallPaintings3x2.BongBongPainting });
-        //GenericPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType<WallPaintings3x2>(), style = WallPaintings3x2.OliverPainting });
+        //GenericPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings3x2.BongBongPainting });
+        //GenericPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings3x2.OliverPainting });
         //GenericPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType<WallPaintings6x4>(), style = WallPaintings6x4.BreadRoachPainting });
 
         // Paintings which spawn on rock walls.
-        //RockPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType<WallPaintings3x2>(), style = WallPaintings3x2.Fus });
-        //RockPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType<WallPaintings3x2>(), style = WallPaintings3x2.Ro });
-        //RockPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType<WallPaintings3x2>(), style = WallPaintings3x2.DAH });
+        //RockPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings3x2.Fus });
+        //RockPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings3x2.Ro });
+        //RockPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings3x2.DAH });
 
         // Paintings which spawn in the Desert.
-        //DesertPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType<WallPaintings3x2>(), style = WallPaintings3x2.YinYangPainting });
-        //DesertPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType<WallPaintings2x2>(), style = WallPaintings2x2.YinPainting });
-        //DesertPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType<WallPaintings2x2>(), style = WallPaintings2x2.YangPainting });
+        //DesertPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings3x2.YinYangPainting });
+        //DesertPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings2x2.YinPainting });
+        //DesertPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings2x2.YangPainting });
 
         // Paintings which spawn in the Dungeon.
-        //DungeonPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType<WallPaintings2x3>(), style = WallPaintings2x3.NarryPainting });
-        //DungeonPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType<WallPaintings3x3>(), style = WallPaintings3x3.RockFromAnAlternateUniversePainting });
+        //DungeonPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings2x3.NarryPainting });
+        //DungeonPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings3x3.RockFromAnAlternateUniversePainting });
 
         // Paintings which spawn in the Underworld.
-        //HellPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType<WallPaintings3x3>(), style = WallPaintings3x3.GoreNestPainting });
-        //HellPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType<WallPaintings3x3>(), style = WallPaintings3x3.GoreNest2Painting });
-        //HellPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType<WallPaintings3x3>(), style = WallPaintings3x3.InsurgentPainting });
+        //HellPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings3x3.GoreNestPainting });
+        //HellPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings3x3.GoreNest2Painting });
+        //HellPictures.Add(new PaintingEntry() with { tileType = ModContent.TileType(), style = WallPaintings3x3.InsurgentPainting });
 
         SetStaticDefaults();
     }

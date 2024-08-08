@@ -10,11 +10,18 @@ internal class InstancedPainting : InstancedModTile, IPainting {
     public readonly string ItemTexture;
     public readonly int Rare;
     public readonly int Value;
-    public readonly int Width;
-    public readonly int Height;
     public readonly Color? MapColor;
     public readonly Lazy<LocalizedText>? TileName;
     public readonly ModItem Item;
+
+    public int Width { get; init; }
+    public int Height { get; init; }
+
+    ushort IPainting.TileType => Type;
+
+    int IPainting.ItemType => Item.Type;
+
+    Mod IPainting.Mod => Mod;
 
     public InstancedPainting(string name, string texture, string ItemTexture, int W, int H, int Rare, int Value, LocalizedText? Tooltip, Color? MapColor = null, Lazy<LocalizedText>? TileName = null) : base($"{name}Painting", texture) {
         Width = W;
@@ -26,10 +33,6 @@ internal class InstancedPainting : InstancedModTile, IPainting {
         this.TileName = TileName;
         Item = new InstancedPaintingItem(TileName, Tooltip, this);
     }
-
-    ushort IPainting.TileType => Type;
-
-    int IPainting.ItemType => Item.Type;
 
     public override string LocalizationCategory => "Tiles.Paintings";
 

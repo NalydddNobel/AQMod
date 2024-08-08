@@ -2250,7 +2250,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1349)</summary>
+            <summary>(Total Textures: 1348)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3349,9 +3349,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.SpacePaintingItem">
             <summary>Full Path: Content/Tiles/Paintings/SpacePaintingItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.WallPaintings3x3">
-            <summary>Full Path: Content/Tiles/Paintings/WallPaintings3x3</summary>
         </member>
         <member name="F:Aequus.AequusTextures.YangPainting">
             <summary>Full Path: Content/Tiles/Paintings/YangPainting</summary>
@@ -6767,6 +6764,12 @@
             <summary>
             Default Value: 3600 (1 minute)
             </summary>
+        </member>
+        <member name="T:Aequus.Content.Tiles.Paintings.Legacy.LegacyPaintings">
+            <summary>Handles loading and converting legacy paintings.</summary>
+        </member>
+        <member name="M:Aequus.Content.Tiles.Paintings.Legacy.LegacyPaintings.#ctor(System.Int32,System.Int32)">
+            <summary>Handles loading and converting legacy paintings.</summary>
         </member>
         <member name="M:Aequus.Content.CrossMod.SplitSupport.Split.RegisterPhotographyPage(System.Single,System.Int32,Aequus.Content.CrossMod.SplitSupport.Split.AlbumQuestInfo[])">
             <summary>
