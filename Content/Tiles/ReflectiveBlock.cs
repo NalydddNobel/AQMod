@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Graphics;
+﻿using Aequus.Common.Drawing;
 using Aequus.Common.Structures;
 using System;
 using System.Collections.Generic;

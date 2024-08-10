@@ -1,17 +1,10 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Recipes;
-using Aequus.Content.World;
 using Aequus.Items.Weapons.Ranged.Guns.Hitscanner;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee.Swords.Nettlebane;
 
 public class Nettlebane : ModItem {
-    public override void SetStaticDefaults() {
-        HardmodeChestBoost.HardmodeJungleChestLoot.Add(Type);
-    }
-
     public override void SetDefaults() {
         Item.DefaultToAequusSword<NettlebaneProj>(40);
         Item.SetWeaponValues(110, 9.5f, 6);

@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Materials.Gems;
+﻿using Aequus.Content.Items.Materials.MonoGem;
 using Aequus.Tiles.MossCaves.Radon;
 using Microsoft.Xna.Framework;
 using System;

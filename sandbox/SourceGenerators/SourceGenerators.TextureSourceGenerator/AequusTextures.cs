@@ -589,6 +589,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> WeightedHorseshoe = new("Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoe");
     /// <summary>Full Path: Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
     public static readonly RequestCache<Texture2D> WeightedHorseshoeVisual = new("Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual");
+    /// <summary>Full Path: Content/Items/Materials/MonoGem/MonoGem</summary>
+    public static readonly RequestCache<Texture2D> MonoGem = new("Content/Items/Materials/MonoGem/MonoGem");
+    /// <summary>Full Path: Content/Items/Materials/MonoGem/MonoGemTile</summary>
+    public static readonly RequestCache<Texture2D> MonoGemTile = new("Content/Items/Materials/MonoGem/MonoGemTile");
     /// <summary>Full Path: Content/Items/Tools/Hammers/MeadowHammer</summary>
     public static readonly RequestCache<Texture2D> MeadowHammer = new("Content/Items/Tools/Hammers/MeadowHammer");
     /// <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunEffect</summary>
@@ -1239,10 +1243,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Fluorescence = new("Items/Materials/GaleStreams/Fluorescence");
     /// <summary>Full Path: Items/Materials/GaleStreams/FrozenTear</summary>
     public static readonly RequestCache<Texture2D> FrozenTear = new("Items/Materials/GaleStreams/FrozenTear");
-    /// <summary>Full Path: Items/Materials/Gems/MonoGem</summary>
-    public static readonly RequestCache<Texture2D> MonoGem = new("Items/Materials/Gems/MonoGem");
-    /// <summary>Full Path: Items/Materials/Gems/MonoGemTile</summary>
-    public static readonly RequestCache<Texture2D> MonoGemTile = new("Items/Materials/Gems/MonoGemTile");
     /// <summary>Full Path: Items/Materials/Gems/OmniGem</summary>
     public static readonly RequestCache<Texture2D> OmniGem = new("Items/Materials/Gems/OmniGem");
     /// <summary>Full Path: Items/Materials/Gems/OmniGemTile</summary>

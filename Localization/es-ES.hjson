@@ -441,6 +441,8 @@ Mods: {
 					// HateNPC: "{NPCName} brews bombs and blasts... around him, my buildings surely won't last."
 					// Princess_LovesNPC: "{NPCName} is really adorable! I would love for them to build me a house!"
 				}
+
+				// Census.SpawnCondition: Build a house with 4 unique furniture objects (Excluding tables, chairs, and torches)
 			}
 
 			SkyMerchant: {
@@ -502,6 +504,8 @@ Mods: {
 					// HateNPC: "{NPCName} is far too whimsical for my tastes. Don't they know 'magic' is just sufficiently advanced technology?"
 					// Princess_LovesNPC: "{NPCName} is so mysterious... I would love for her to stick around!"
 				}
+
+				// Census.SpawnCondition: Defeat an Ultra Starite
 			}
 
 			PhysicistPet: {
@@ -541,6 +545,8 @@ Mods: {
 					// HateNPC: I don't want ta be anywhere NEAR {NPCName}! That bilge rat reported all me acts o' tax evasion!
 					// Princess_LovesNPC: "{NPCName} is always willing to give me fancy jewelry!"
 				}
+
+				// Census.SpawnCondition: Defeat Crabson
 			}
 
 			CleanserDrone: {

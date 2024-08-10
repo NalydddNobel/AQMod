@@ -1,16 +1,4 @@
-﻿using Aequus.Common.DataSets;
-using Aequus.Common.Preferences;
-using Aequus.Common.Utilities;
-using Aequus.Content.CursorDyes.Items;
-using Aequus.Content.World;
-using Aequus.Items.Equipment.Accessories.Misc;
-using Aequus.Items.Equipment.PetsUtility.Miner;
-using Aequus.Items.Materials;
-using Aequus.Items.Materials.Energies;
-using Aequus.Items.Misc.FishingBait;
-using Aequus.Items.Tools;
-using Aequus.Items.Weapons.Melee.Swords.IronLotus;
-using Terraria.GameContent.ItemDropRules;
+﻿using Aequus.Common.Utilities;
 
 namespace Aequus;
 public partial class AequusItem {
@@ -21,6 +9,7 @@ public partial class AequusItem {
             }
         }
 
+        /*
         switch (item.type) {
             case ItemID.EyeOfCthulhuBossBag: {
                     if (!GameplayConfig.Instance.EyeOfCthulhuOres) {
@@ -114,5 +103,6 @@ public partial class AequusItem {
                 itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<CrateBait>()));
                 break;
         }
+        */
     }
 }

@@ -11,8 +11,8 @@ public static class ChestLootExtensions {
         database.Register(type, new IndexedChestRule(chanceDenominator, rules));
     }
 
-    public static void RegisterOneFromOptions(this ChestLootDatabase database, ChestPool type, params IChestLootRule[] rules) {
-        database.Register(type, new OneFromOptionsChestRule(rules));
+    public static void RegisterOneFromOptions(this ChestLootDatabase database, int chanceDemoninator, ChestPool type, params IChestLootRule[] rules) {
+        database.Register(type, new OneFromOptionsChestRule(rules, chanceDemoninator));
     }
 
     public static IChestLootRule OnSucceed(this IChestLootRule parentRule, IChestLootRule rule) {

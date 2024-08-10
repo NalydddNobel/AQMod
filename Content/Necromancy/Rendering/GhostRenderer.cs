@@ -1,10 +1,10 @@
 ﻿using Aequus.Common.Utilities;
-using Aequus.Common.Graphics;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.DataStructures;
+using Aequus.Common.Drawing;
 
 namespace Aequus.Content.Necromancy.Rendering;
 

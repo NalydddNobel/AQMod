@@ -30,8 +30,9 @@ public enum ChestPool {
     BuriedGoldChest,
     BuriedShadowChest,
     BuriedAdamantiteChest,
-    HardmodeChestRegular,
-    HardmodeChestSnow,
-    HardmodeChestJungle,
+    UndergroundHard,
+    DesertHard,
+    SnowHard,
+    JungleHard,
     Count
 }

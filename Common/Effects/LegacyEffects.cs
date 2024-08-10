@@ -1,8 +1,8 @@
 ﻿using Aequus.Common.Particles;
 using Aequus.Common.Rendering;
 using Aequus.Common.Utilities;
+using Aequus.Content.Items.Materials.MonoGem;
 using Aequus.Items.Equipment.Accessories.Combat.Passive.CelesteTorus;
-using Aequus.Items.Materials.Gems;
 using Aequus.Particles;
 using Aequus.Tiles.Monoliths;
 using Microsoft.Xna.Framework;

@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Particles.New;
-using Aequus.Common.Graphics;
 using System;
+using Aequus.Common.Drawing;
 
 namespace Aequus.Old.Content.Particles;
 

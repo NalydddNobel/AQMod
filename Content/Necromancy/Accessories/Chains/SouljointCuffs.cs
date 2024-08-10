@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Graphics;
+﻿using Aequus.Common.Drawing;
 using Aequus.Content.Necromancy.Rendering;
 using Aequus.Items.Materials.SoulGem;
 

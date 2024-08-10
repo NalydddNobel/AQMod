@@ -441,6 +441,8 @@ Mods: {
 					HateNPC: "{NPCName}酿造炸弹和爆炸物...在他周围, 我的建筑肯定不会长久存在."
 					Princess_LovesNPC: "{NPCName}真的很可爱! 我很想让他给我盖一栋房子!"
 				}
+
+				// Census.SpawnCondition: Build a house with 4 unique furniture objects (Excluding tables, chairs, and torches)
 			}
 
 			SkyMerchant: {
@@ -502,6 +504,8 @@ Mods: {
 					HateNPC: 在我看来, {NPCName}太异想天开了. 难道他不知道'魔法'只是足够先进的科技吗?
 					Princess_LovesNPC: "{NPCName}如此神秘...我希望她能留下来!"
 				}
+
+				// Census.SpawnCondition: Defeat an Ultra Starite
 			}
 
 			PhysicistPet: {
@@ -541,6 +545,8 @@ Mods: {
 					HateNPC: 我不想去任何靠近{NPCName}的地方! 那个卑鄙小人举报了我所有的逃税行为!
 					Princess_LovesNPC: "{NPCName}总是愿意给我高档珠宝!"
 				}
+
+				// Census.SpawnCondition: Defeat Crabson
 			}
 
 			CleanserDrone: {

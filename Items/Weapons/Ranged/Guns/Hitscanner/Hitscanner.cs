@@ -2,25 +2,15 @@
 using Aequus.Common.Items;
 using Aequus.Common.Particles;
 using Aequus.Common.Recipes;
-using Aequus.Content.World;
 using Aequus.Items.Weapons.Magic.Misc.Healer;
 using Aequus.Items.Weapons.Ranged.Guns.Hitscanner;
 using Aequus.Particles;
 using Aequus.Projectiles;
-using Microsoft.Xna.Framework;
 using System;
-using Terraria;
 using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Ranged.Guns.Hitscanner {
     public class Hitscanner : ModItem, ItemHooks.IOnSpawnProjectile {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-            HardmodeChestBoost.HardmodeJungleChestLoot.Add(Type);
-        }
-
         public override void SetDefaults() {
             Item.damage = 14;
             Item.DamageType = DamageClass.Ranged;

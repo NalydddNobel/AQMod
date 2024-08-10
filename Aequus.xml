@@ -704,6 +704,21 @@
             Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.
             </summary>
         </member>
+        <member name="F:Aequus.Common.Drawing.DrawLayers.PostUpdateScreenPosition">
+            <summary>Invoked before anything has begun rendering, but after the screen position has been determined.</summary>
+        </member>
+        <member name="E:Aequus.Common.Drawing.DrawLayers.WorldBehindTiles">
+            <summary>Invoked before NPCs behind tiles are drawn.</summary>
+        </member>
+        <member name="F:Aequus.Common.Drawing.DrawLayers.PostDrawNPCs">
+            <summary>Invoked after NPCs are drawn.</summary>
+        </member>
+        <member name="E:Aequus.Common.Drawing.DrawLayers.PostDrawDust">
+            <summary>Invoked after Dusts have been drawn.</summary>
+        </member>
+        <member name="E:Aequus.Common.Drawing.DrawLayers.PostDrawLiquids">
+            <summary>Invoked after Liquids and Inferno Rings have been drawn, but before Wire Overlays are drawn.</summary>
+        </member>
         <member name="T:Aequus.Common.Effects.CameraFocus">
             <summary>
             Manages screen panning
@@ -762,21 +777,6 @@
         </member>
         <member name="F:Aequus.Common.Entities.DashPlayer.DashHaltSpeedMultiplier">
             <summary>Multiplier used to reduce velocity when above the dash's halting speed.</summary>
-        </member>
-        <member name="F:Aequus.Common.Graphics.DrawLayers.PostUpdateScreenPosition">
-            <summary>Invoked before anything has begun rendering, but after the screen position has been determined.</summary>
-        </member>
-        <member name="E:Aequus.Common.Graphics.DrawLayers.WorldBehindTiles">
-            <summary>Invoked before NPCs behind tiles are drawn.</summary>
-        </member>
-        <member name="F:Aequus.Common.Graphics.DrawLayers.PostDrawNPCs">
-            <summary>Invoked after NPCs are drawn.</summary>
-        </member>
-        <member name="E:Aequus.Common.Graphics.DrawLayers.PostDrawDust">
-            <summary>Invoked after Dusts have been drawn.</summary>
-        </member>
-        <member name="E:Aequus.Common.Graphics.DrawLayers.PostDrawLiquids">
-            <summary>Invoked after Liquids and Inferno Rings have been drawn, but before Wire Overlays are drawn.</summary>
         </member>
         <member name="M:Aequus.Common.GUI.Elements.ImprovedItemSlot.SetIcon(Terraria.UI.UIElement)">
             <summary>Adds the UI Element as an icon to display when no item is in the slot.</summary>
@@ -3125,6 +3125,12 @@
         <member name="F:Aequus.AequusTextures.WeightedHorseshoeVisual">
             <summary>Full Path: Content/Items/Accessories/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.MonoGem">
+            <summary>Full Path: Content/Items/Materials/MonoGem/MonoGem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MonoGemTile">
+            <summary>Full Path: Content/Items/Materials/MonoGem/MonoGemTile</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.MeadowHammer">
             <summary>Full Path: Content/Items/Tools/Hammers/MeadowHammer</summary>
         </member>
@@ -4099,12 +4105,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.FrozenTear">
             <summary>Full Path: Items/Materials/GaleStreams/FrozenTear</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MonoGem">
-            <summary>Full Path: Items/Materials/Gems/MonoGem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MonoGemTile">
-            <summary>Full Path: Items/Materials/Gems/MonoGemTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmniGem">
             <summary>Full Path: Items/Materials/Gems/OmniGem</summary>

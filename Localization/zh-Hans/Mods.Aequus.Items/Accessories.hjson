@@ -30,8 +30,8 @@ GoldenWind: {
 		'''
 	/* BuffDescription:
 		'''
-		{$GoldenFeather.BuffDescription}
 		Regenerate {1} health per second
+		{$GoldenFeather.BuffDescription}
 		''' */
 }
 
