@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Items.Materials.Gems;
+using Aequus.Content.Items.Materials.OmniGem;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

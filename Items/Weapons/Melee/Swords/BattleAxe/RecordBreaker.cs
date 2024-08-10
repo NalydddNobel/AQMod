@@ -4,7 +4,7 @@ using Aequus.Common.Buffs;
 using Aequus.Common.DataSets;
 using Aequus.Common.Items;
 using Aequus.Common.Projectiles.Base;
-using Aequus.Items.Materials.Gems;
+using Aequus.Content.Items.Materials.OmniGem;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

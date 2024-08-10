@@ -593,6 +593,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> MonoGem = new("Content/Items/Materials/MonoGem/MonoGem");
     /// <summary>Full Path: Content/Items/Materials/MonoGem/MonoGemTile</summary>
     public static readonly RequestCache<Texture2D> MonoGemTile = new("Content/Items/Materials/MonoGem/MonoGemTile");
+    /// <summary>Full Path: Content/Items/Materials/OmniGem/OmniGem</summary>
+    public static readonly RequestCache<Texture2D> OmniGem = new("Content/Items/Materials/OmniGem/OmniGem");
+    /// <summary>Full Path: Content/Items/Materials/OmniGem/OmniGemTile</summary>
+    public static readonly RequestCache<Texture2D> OmniGemTile = new("Content/Items/Materials/OmniGem/OmniGemTile");
+    /// <summary>Full Path: Content/Items/Materials/OmniGem/OmniGemTile_Mask</summary>
+    public static readonly RequestCache<Texture2D> OmniGemTile_Mask = new("Content/Items/Materials/OmniGem/OmniGemTile_Mask");
+    /// <summary>Full Path: Content/Items/Materials/OmniGem/OmniGem_Mask</summary>
+    public static readonly RequestCache<Texture2D> OmniGem_Mask = new("Content/Items/Materials/OmniGem/OmniGem_Mask");
     /// <summary>Full Path: Content/Items/Tools/Hammers/MeadowHammer</summary>
     public static readonly RequestCache<Texture2D> MeadowHammer = new("Content/Items/Tools/Hammers/MeadowHammer");
     /// <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunEffect</summary>
@@ -1243,14 +1251,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Fluorescence = new("Items/Materials/GaleStreams/Fluorescence");
     /// <summary>Full Path: Items/Materials/GaleStreams/FrozenTear</summary>
     public static readonly RequestCache<Texture2D> FrozenTear = new("Items/Materials/GaleStreams/FrozenTear");
-    /// <summary>Full Path: Items/Materials/Gems/OmniGem</summary>
-    public static readonly RequestCache<Texture2D> OmniGem = new("Items/Materials/Gems/OmniGem");
-    /// <summary>Full Path: Items/Materials/Gems/OmniGemTile</summary>
-    public static readonly RequestCache<Texture2D> OmniGemTile = new("Items/Materials/Gems/OmniGemTile");
-    /// <summary>Full Path: Items/Materials/Gems/OmniGemTile_Mask</summary>
-    public static readonly RequestCache<Texture2D> OmniGemTile_Mask = new("Items/Materials/Gems/OmniGemTile_Mask");
-    /// <summary>Full Path: Items/Materials/Gems/OmniGem_Mask</summary>
-    public static readonly RequestCache<Texture2D> OmniGem_Mask = new("Items/Materials/Gems/OmniGem_Mask");
     /// <summary>Full Path: Items/Materials/Glimmer/StariteMaterial</summary>
     public static readonly RequestCache<Texture2D> StariteMaterial = new("Items/Materials/Glimmer/StariteMaterial");
     /// <summary>Full Path: Items/Materials/Glimmer/StariteStrongMaterial</summary>

@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Materials.Gems;
+﻿using Aequus.Content.Items.Materials.OmniGem;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Shaders;

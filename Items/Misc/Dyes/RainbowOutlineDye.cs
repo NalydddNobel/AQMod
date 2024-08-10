@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Effects.ShaderData;
-using Aequus.Items.Materials.Gems;
+using Aequus.Content.Items.Materials.OmniGem;
 using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;

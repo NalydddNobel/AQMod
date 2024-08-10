@@ -1,6 +1,5 @@
 ﻿using Aequus;
 using Aequus.Common.Drawing;
-using Aequus.Common.Rendering.Tiles;
 using Aequus.Tiles.Base;
 using System;
 using Terraria.DataStructures;
@@ -49,7 +48,6 @@ public class MonoGemTile : BaseGemTile, ITileDrawSystem {
                 Color.White);
         }
 
-        SpecialTileRenderer.Add(i, j, TileRenderLayer.PostDrawMasterRelics);
         return false;
     }
 
@@ -86,6 +84,8 @@ public class MonoGemTile : BaseGemTile, ITileDrawSystem {
             }
         }
     }
+
+    int ITileDrawSystem.Type => Type;
 
     void IDrawSystem.Activate() {
         DrawLayers.Instance.PostUpdateScreenPosition += DrawFog;

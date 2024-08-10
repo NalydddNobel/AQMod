@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Tiles.Global;
-using Aequus.Items.Materials.Gems;
+using Aequus.Content.Items.Materials.OmniGem;
 using Aequus.Tiles.Herbs.Manacle;
 using Aequus.Tiles.Herbs.Mistral;
 using Aequus.Tiles.Herbs.Moonflower;

@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.DataSets;
 using Aequus.Common.Recipes;
-using Aequus.Items.Materials.Gems;
+using Aequus.Content.Items.Materials.OmniGem;
 using System;
 using Terraria;
 using Terraria.ID;

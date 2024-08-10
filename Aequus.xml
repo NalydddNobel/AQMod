@@ -3131,6 +3131,18 @@
         <member name="F:Aequus.AequusTextures.MonoGemTile">
             <summary>Full Path: Content/Items/Materials/MonoGem/MonoGemTile</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.OmniGem">
+            <summary>Full Path: Content/Items/Materials/OmniGem/OmniGem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmniGemTile">
+            <summary>Full Path: Content/Items/Materials/OmniGem/OmniGemTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmniGemTile_Mask">
+            <summary>Full Path: Content/Items/Materials/OmniGem/OmniGemTile_Mask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmniGem_Mask">
+            <summary>Full Path: Content/Items/Materials/OmniGem/OmniGem_Mask</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.MeadowHammer">
             <summary>Full Path: Content/Items/Tools/Hammers/MeadowHammer</summary>
         </member>
@@ -4105,18 +4117,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.FrozenTear">
             <summary>Full Path: Items/Materials/GaleStreams/FrozenTear</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmniGem">
-            <summary>Full Path: Items/Materials/Gems/OmniGem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmniGemTile">
-            <summary>Full Path: Items/Materials/Gems/OmniGemTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmniGemTile_Mask">
-            <summary>Full Path: Items/Materials/Gems/OmniGemTile_Mask</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmniGem_Mask">
-            <summary>Full Path: Items/Materials/Gems/OmniGem_Mask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.StariteMaterial">
             <summary>Full Path: Items/Materials/Glimmer/StariteMaterial</summary>

@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Net;
-using Aequus.Items.Materials.Gems;
+using Aequus.Content.Items.Materials.OmniGem;
 using Microsoft.Xna.Framework;
 using System.IO;
 using Terraria;
