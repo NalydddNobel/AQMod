@@ -2,8 +2,8 @@
 using Aequus.Common.Recipes;
 using Aequus.Content.Dedicated;
 using Aequus.Content.ItemPrefixes;
+using Aequus.Systems.Shimmer;
 using Terraria.GameContent;
-using Terraria.GameContent.Achievements;
 
 namespace Aequus;
 public partial class AequusItem {
@@ -29,29 +29,8 @@ public partial class AequusItem {
         return orig(type);
     }
 
-    internal static void ShimmerThisMan(Item item) {
-        if (item.stack > 0) {
-            item.shimmerTime = 1f;
-        }
-        else {
-            item.shimmerTime = 0f;
-        }
-
-        item.shimmerWet = true;
-        item.wet = true;
-        item.velocity *= 0.1f;
-        if (Main.netMode == NetmodeID.SinglePlayer) {
-            Item.ShimmerEffect(item.Center);
-        }
-        else {
-            NetMessage.SendData(146, -1, -1, null, 0, (int)item.Center.X, (int)item.Center.Y);
-            NetMessage.SendData(145, -1, -1, null, item.whoAmI, 1f);
-        }
-        AchievementsHelper.NotifyProgressionEvent(27);
-    }
-
     private static void On_Item_GetShimmered(On_Item.orig_GetShimmered orig, Item item) {
-        DedicatedFaeling.SpawnFaelingsFromShimmer(item, item.ModItem);
+        DedicatedFaeling.SpawnFaelingsFromShimmer(item);
 
         if (item.stack <= 0) {
             return;
@@ -64,7 +43,7 @@ public partial class AequusItem {
             item.prefix = 0;
             item.shimmered = true;
 
-            ShimmerThisMan(item);
+            Shimmer.GetShimmered(item);
             return;
         }
 

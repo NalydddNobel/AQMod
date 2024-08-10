@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.Dedications;
+using Aequus.Systems.Shimmer;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -145,8 +146,8 @@ public class DedicatedFaeling : ModNPC {
         boundingBox.Inflate(-4, -4);
     }
 
-    internal static void SpawnFaelingsFromShimmer(Item item, ModItem modItem) {
-        if (!DedicationRegistry.TryGet(modItem.Type, out _) || ItemID.Sets.ShimmerTransformToItem[item.type] != -1) {
+    internal static void SpawnFaelingsFromShimmer(Item item) {
+        if (!DedicationRegistry.TryGet(item.type, out _) || ItemID.Sets.ShimmerTransformToItem[item.type] != -1) {
             return;
         }
 
@@ -170,7 +171,7 @@ public class DedicatedFaeling : ModNPC {
             item.TurnToAir();
         }
 
-        AequusItem.ShimmerThisMan(item);
+        Shimmer.GetShimmered(item);
     }
 
     private static void SpawnSparkles(Vector2 spawnCoordinates, IDedicationInfo dedication) {
