@@ -1,4 +1,6 @@
-﻿namespace Aequus.Common.Drawing;
+﻿using Terraria.GameContent.Drawing;
+
+namespace Aequus.Common.Drawing;
 
 [Autoload(Side = ModSide.Client)]
 public class DrawLayers : ILoadable {
@@ -6,6 +8,8 @@ public class DrawLayers : ILoadable {
     public DrawLayer PostUpdateScreenPosition = new();
     /// <summary>Invoked before NPCs behind tiles are drawn.</summary>
     public DrawLayer WorldBehindTiles = new();
+    /// <summary>Invoked after Master Relics are drawn.</summary>
+    public DrawLayer PostDrawMasterRelics = new();
     /// <summary>Invoked after NPCs are drawn.</summary>
     public DrawLayer PostDrawNPCs = new();
     /// <summary>Invoked after Dusts have been drawn.</summary>
@@ -14,6 +18,11 @@ public class DrawLayers : ILoadable {
     public DrawLayer PostDrawLiquids = new();
 
     public static DrawLayers Instance => ModContent.GetInstance<DrawLayers>();
+
+    private void On_TileDrawing_DrawMasterTrophies(On_TileDrawing.orig_DrawMasterTrophies orig, TileDrawing self) {
+        orig(self);
+        PostDrawMasterRelics.Draw(Main.spriteBatch);
+    }
 
     private static void On_Main_CheckMonoliths(On_Main.orig_CheckMonoliths orig) {
         if (!Main.gameMenu) {
@@ -42,6 +51,7 @@ public class DrawLayers : ILoadable {
     }
 
     void ILoadable.Load(Mod mod) {
+        On_TileDrawing.DrawMasterTrophies += On_TileDrawing_DrawMasterTrophies;
         On_Main.CheckMonoliths += On_Main_CheckMonoliths;
         On_Main.DrawNPCs += On_Main_DrawNPCs;
         On_Main.DrawDust += On_Main_DrawDust;

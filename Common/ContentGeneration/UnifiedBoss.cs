@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Rendering.Tiles;
+﻿using Aequus.Common.Drawing;
+using Aequus.Common.Rendering.Tiles;
 using Aequus.Common.Utilities;
 using ReLogic.Content;
 using System;
@@ -259,11 +260,13 @@ internal class InstancedTrophyItem(ModNPC modNPC, ModTile modTile) : InstancedTi
     public override LocalizedText Tooltip => LocalizedText.Empty;
 }
 
-internal class InstancedRelicTile(ModNPC modNPC, RelicRenderer renderer) : InstancedModTile(modNPC.Name, AequusTextures.Tile(TileID.MasterTrophyBase)), ISpecialTileRenderer {
+internal class InstancedRelicTile(ModNPC modNPC, RelicRenderer renderer) : InstancedModTile(modNPC.Name, AequusTextures.Tile(TileID.MasterTrophyBase)), ITileDrawSystem {
     private readonly RelicRenderer _renderer = renderer;
 
     private const int FrameWidth = 18 * 3;
     private const int FrameHeight = 18 * 4;
+
+    int ITileDrawSystem.Type => Type;
 
     public override void SetStaticDefaults() {
         Main.tileShine[Type] = 400;
@@ -305,23 +308,36 @@ internal class InstancedRelicTile(ModNPC modNPC, RelicRenderer renderer) : Insta
         }
     }
 
-    void ISpecialTileRenderer.Render(int i, int j, byte layer) {
-        Point p = new Point(i, j);
-        Tile tile = Main.tile[p];
-        if (!tile.HasTile) {
-            return;
+    void DrawRelics(SpriteBatch sb) {
+        foreach (Point p in this.GetDrawPoints()) {
+            DrawSingleRelic(p, sb);
         }
 
-        Rectangle relicFrame = new Rectangle(tile.TileFrameX, FrameHeight * 4, FrameWidth, FrameHeight);
-        Vector2 origin = relicFrame.Size() / 2f;
-        Vector2 worldCoordinates = p.ToWorldCoordinates(24f, 64f);
-        Color relicColor = Lighting.GetColor(i, j);
-        SpriteEffects relicEffects = tile.TileFrameY / FrameHeight != 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+        void DrawSingleRelic(Point p, SpriteBatch sb) {
+            Tile tile = Main.tile[p];
+            if (!tile.HasTile) {
+                return;
+            }
 
-        float offset = (float)Math.Sin(Main.GlobalTimeWrappedHourly * MathHelper.TwoPi / 5f);
-        Vector2 drawCoordinates = worldCoordinates - Main.screenPosition + new Vector2(0f, -44f) + new Vector2(0f, offset * 4f);
+            Rectangle relicFrame = new Rectangle(tile.TileFrameX, FrameHeight * 4, FrameWidth, FrameHeight);
+            Vector2 origin = relicFrame.Size() / 2f;
+            Vector2 worldCoordinates = p.ToWorldCoordinates(24f, 64f);
+            Color relicColor = Lighting.GetColor(p);
+            SpriteEffects relicEffects = tile.TileFrameY / FrameHeight != 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
-        _renderer.Draw(new(i, j, drawCoordinates, relicColor, relicEffects, offset));
+            float offset = (float)Math.Sin(Main.GlobalTimeWrappedHourly * MathHelper.TwoPi / 5f);
+            Vector2 drawCoordinates = worldCoordinates - Main.screenPosition + new Vector2(0f, -44f) + new Vector2(0f, offset * 4f);
+
+            _renderer.Draw(new(sb, p.X, p.Y, drawCoordinates, relicColor, relicEffects, offset));
+        }
+    }
+
+    void IDrawSystem.Activate() {
+        DrawLayers.Instance.PostDrawMasterRelics += DrawRelics;
+    }
+
+    void IDrawSystem.Deactivate() {
+        DrawLayers.Instance.PostDrawMasterRelics -= DrawRelics;
     }
 }
 
@@ -329,7 +345,7 @@ internal class InstancedRelicItem(ModNPC modNPC, ModTile modTile, RelicRenderer 
     private readonly ModNPC _parentNPC = modNPC;
     private readonly RelicRenderer _renderer = renderer;
 
-    public override string Texture => _renderer.TexturePath + "Item";
+    public override string Texture => _renderer.Name + "Item";
 
     public override LocalizedText DisplayName => _parentNPC.GetLocalization("RelicDisplayName", () => $"{_parentNPC.Name} Relic");
     public override LocalizedText Tooltip => LocalizedText.Empty;
@@ -360,35 +376,43 @@ internal class InstancedBossMask(ModNPC modNPC, string texturePath) : InstancedM
 
 public record struct BossParams(int ItemRarity);
 
-public record struct TrophyParams(int? LegacyId = null, RelicRenderer Renderer = null);
+public record struct TrophyParams(int? LegacyId = null, RelicRenderer? Renderer = null);
 
-public class RelicRenderer(string texture) {
-    public readonly string TexturePath = texture;
-    protected Asset<Texture2D> Texture { get; private set; }
+public class RelicRenderer {
+    public string Name => Texture.Name;
+    readonly Asset<Texture2D> Texture;
+
+    internal RelicRenderer(string Path) {
+        Texture = ModContent.Request<Texture2D>(Path, AssetRequestMode.DoNotLoad);
+    }
 
     public void Draw(DrawParams drawInfo) {
-        Texture ??= ModContent.Request<Texture2D>(TexturePath);
+        Texture.Request();
         DrawInner(in drawInfo);
     }
 
     protected virtual void DrawInner(in DrawParams drawInfo) {
         var frame = Texture.Value.Bounds;
-        DrawWithGlow(Main.spriteBatch, Texture.Value, drawInfo.Position, frame, drawInfo.DrawColor, frame.Size() / 2f, drawInfo.SpriteEffects, drawInfo.Glow);
+        DrawWithGlow(in drawInfo, Texture.Value, drawInfo.Position, frame, drawInfo.DrawColor, frame.Size() / 2f);
     }
 
-    protected static void DrawWithGlow(SpriteBatch spriteBatch, Texture2D texture, Vector2 drawPos, Rectangle frame, Color color, Vector2 origin, SpriteEffects effects, float glow) {
+    protected static void DrawWithGlow(in DrawParams info, Texture2D texture, Vector2 drawPos, Rectangle frame, Color color, Vector2 origin) {
         //drawPos /= 4f;
         //drawPos.Floor();
         //drawPos *= 4f;
 
-        spriteBatch.Draw(texture, drawPos, frame, color, 0f, origin, 1f, effects, 0f);
+        SpriteBatch sb = info.SpriteBatch;
+        SpriteEffects effects = info.SpriteEffects;
+        float glow = info.Glow;
+
+        sb.Draw(texture, drawPos, frame, color, 0f, origin, 1f, effects, 0f);
 
         float scale = (float)Math.Sin(Main.GlobalTimeWrappedHourly * MathHelper.TwoPi / 2f) * 0.3f + 0.7f;
         var effectColor = color with { A = 0 } * 0.1f * scale;
         for (float radian = 0f; radian < 1f; radian += MathHelper.PiOver2) {
-            spriteBatch.Draw(texture, drawPos + radian.ToRotationVector2() * (6f + glow * 2f), frame, effectColor, 0f, origin, 1f, effects, 0f);
+            sb.Draw(texture, drawPos + radian.ToRotationVector2() * (6f + glow * 2f), frame, effectColor, 0f, origin, 1f, effects, 0f);
         }
     }
 
-    public record struct DrawParams(int X, int Y, Vector2 Position, Color DrawColor, SpriteEffects SpriteEffects, float Glow);
+    public record struct DrawParams(SpriteBatch SpriteBatch, int X, int Y, Vector2 Position, Color DrawColor, SpriteEffects SpriteEffects, float Glow);
 }
