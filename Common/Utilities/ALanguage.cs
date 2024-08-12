@@ -290,4 +290,12 @@ public static class ALanguage {
     internal static void RegisterKey(string key) {
         Language.GetOrRegister(key);
     }
+
+    #region Get Common Keys
+    public static LocalizedText GetCondition(string name) {
+        string key = $"Condition.{name}";
+        RegisterKey(key);
+        return GetText(key);
+    }
+    #endregion
 }

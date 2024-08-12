@@ -387,6 +387,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> MeadowWood = new("Content/Biomes/Meadows/Tiles/MeadowWood");
     /// <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowWoodItem</summary>
     public static readonly RequestCache<Texture2D> MeadowWoodItem = new("Content/Biomes/Meadows/Tiles/MeadowWoodItem");
+    /// <summary>Full Path: Content/Biomes/Oblivion/Tiles/OblivionAltar</summary>
+    public static readonly RequestCache<Texture2D> OblivionAltar = new("Content/Biomes/Oblivion/Tiles/OblivionAltar");
+    /// <summary>Full Path: Content/Biomes/Oblivion/Tiles/OblivionAltarItem</summary>
+    public static readonly RequestCache<Texture2D> OblivionAltarItem = new("Content/Biomes/Oblivion/Tiles/OblivionAltarItem");
+    /// <summary>Full Path: Content/Biomes/Oblivion/Tiles/OblivionAltar_Highlight</summary>
+    public static readonly RequestCache<Texture2D> OblivionAltar_Highlight = new("Content/Biomes/Oblivion/Tiles/OblivionAltar_Highlight");
     /// <summary>Full Path: Content/Carpentry/Bonuses/BridgeBountyBuff</summary>
     public static readonly RequestCache<Texture2D> BridgeBountyBuff = new("Content/Carpentry/Bonuses/BridgeBountyBuff");
     /// <summary>Full Path: Content/Carpentry/Bonuses/Buff</summary>
@@ -2357,12 +2363,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SedimentaryRockWallItem = new("Tiles/CrabCrevice/SedimentaryRockWallItem");
     /// <summary>Full Path: Tiles/CrabCrevice/SedimentaryRockWallPlaced</summary>
     public static readonly RequestCache<Texture2D> SedimentaryRockWallPlaced = new("Tiles/CrabCrevice/SedimentaryRockWallPlaced");
-    /// <summary>Full Path: Tiles/CraftingStations/GoreNest</summary>
-    public static readonly RequestCache<Texture2D> GoreNest = new("Tiles/CraftingStations/GoreNest");
-    /// <summary>Full Path: Tiles/CraftingStations/GoreNestTile</summary>
-    public static readonly RequestCache<Texture2D> GoreNestTile = new("Tiles/CraftingStations/GoreNestTile");
-    /// <summary>Full Path: Tiles/CraftingStations/GoreNestTile_Highlight</summary>
-    public static readonly RequestCache<Texture2D> GoreNestTile_Highlight = new("Tiles/CraftingStations/GoreNestTile_Highlight");
     /// <summary>Full Path: Tiles/CraftingStations/OblivionCraftingStationItem</summary>
     public static readonly RequestCache<Texture2D> OblivionCraftingStationItem = new("Tiles/CraftingStations/OblivionCraftingStationItem");
     /// <summary>Full Path: Tiles/CraftingStations/OblivionCraftingStationTile</summary>

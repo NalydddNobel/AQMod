@@ -1,16 +1,17 @@
-﻿using Aequus.Tiles.CraftingStations;
+﻿using Aequus.Content.Biomes.Oblivion.Tiles;
 using Aequus.Tiles.Furniture.Oblivion;
 using Aequus.Tiles.Misc;
 using Aequus.Tiles.Misc.AshTombstones;
 using System.Collections.Generic;
 using Terraria.WorldBuilding;
 
-namespace Aequus.Content.Biomes.GoreNest;
-public class GoreNestGenerator {
+namespace Aequus.Content.Biomes.Oblivion;
+
+public class OblivionAltarGenerator {
     public HashSet<int> AvoidTiles { get; private set; }
     public HashSet<int> AvoidWalls { get; private set; }
 
-    public GoreNestGenerator() {
+    public OblivionAltarGenerator() {
         AvoidTiles = new HashSet<int>() {
             TileID.ObsidianBrick,
             TileID.HellstoneBrick,
@@ -97,8 +98,8 @@ public class GoreNestGenerator {
         }
         y--;
         x++;
-        WorldGen.PlaceTile(x, y, ModContent.TileType<GoreNestTile>(), mute: true, forced: true);
-        if (Main.tile[x, y].TileType != ModContent.TileType<GoreNestTile>()) {
+        WorldGen.PlaceTile(x, y, ModContent.TileType<OblivionAltar>(), mute: true, forced: true);
+        if (Main.tile[x, y].TileType != ModContent.TileType<OblivionAltar>()) {
             return false;
         }
         GenerateSurroundingGoreNestHill(x, y);
@@ -179,13 +180,13 @@ public class GoreNestGenerator {
             if (y + l > Main.maxTilesY) {
                 break;
             }
-            if (l > 75 || (l > 40 && WorldGen.genRand.NextBool(15))) {
+            if (l > 75 || l > 40 && WorldGen.genRand.NextBool(15)) {
                 break;
             }
 
             var tile = Main.tile[x, y + l];
             if (kill && !AvoidTiles.Contains(Main.tile[x, y - l].TileType) && !AvoidWalls.Contains(Main.tile[x, y - l].WallType)
-                && Main.tile[x, y - l].TileType != ModContent.TileType<GoreNestTile>())
+                && Main.tile[x, y - l].TileType != ModContent.TileType<OblivionAltar>())
                 WorldGen.KillTile(x, y - l, noItem: true);
 
             tile.LiquidAmount = 0;
@@ -287,7 +288,7 @@ public class GoreNestGenerator {
         GetGenerationValues(out int minY, out int maxY, out _);
         for (int i = 0; i < Main.maxTilesX; i++) {
             for (int j = minY; j < maxY; j++) {
-                if (Main.tile[i, j].HasTile && Main.tile[i, j].TileType == ModContent.TileType<GoreNestTile>()) {
+                if (Main.tile[i, j].HasTile && Main.tile[i, j].TileType == ModContent.TileType<OblivionAltar>()) {
                     CleanLava(i, j);
                 }
             }

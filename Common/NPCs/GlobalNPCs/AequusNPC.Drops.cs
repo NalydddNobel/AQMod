@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Items.DropRules;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
+using Aequus.Content.Biomes.Oblivion.Tiles;
 using Aequus.Content.Elites;
 using Aequus.Items.Equipment.Accessories.Combat;
 using Aequus.Items.Equipment.Accessories.Combat.OnHitAbility.BoneRing;
@@ -12,7 +13,6 @@ using Aequus.Items.Weapons.Melee.Misc.Mallet;
 using Aequus.Items.Weapons.Melee.Misc.SickBeat;
 using Aequus.Items.Weapons.Melee.Swords.CrystalDagger;
 using Aequus.Items.Weapons.Melee.Swords.IronLotus;
-using Aequus.Tiles.CraftingStations;
 using System;
 using Terraria.GameContent.ItemDropRules;
 
@@ -128,7 +128,7 @@ public partial class AequusNPC {
                 break;
 
             case NPCID.WallofFlesh:
-                npcLoot.Add(ItemDropRule.ByCondition(new FuncConditional(() => !AequusWorld.downedEventDemon, "DemonSiege", "Mods.Aequus.DropCondition.NotBeatenDemonSiege"), ModContent.ItemType<GoreNest>()));
+                npcLoot.Add(ItemDropRule.ByCondition(new FuncConditional(() => !AequusWorld.downedEventDemon, "DemonSiege", "Mods.Aequus.DropCondition.NotBeatenDemonSiege"), ModContent.GetInstance<OblivionAltar>().Item.Type));
                 break;
         }
     }

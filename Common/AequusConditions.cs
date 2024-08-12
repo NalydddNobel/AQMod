@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Carpentry;
 using Aequus.Content.Biomes.CrabCrevice;
-using Aequus.Content.Biomes.GoreNest;
+using Aequus.Content.Biomes.Oblivion;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Peaceful;
@@ -29,7 +29,7 @@ namespace Aequus.Common {
         public static Condition InCrabCrevice => new(TextHelper.GetOrRegister("Condition.InCrabCrevice"), Main.LocalPlayer.InModBiome<CrabCreviceBiome>);
         public static Condition InGlimmer => new(TextHelper.GetOrRegister("Condition.InGlimmer"), Main.LocalPlayer.InModBiome<GlimmerZone>);
         public static Condition InDemonSiege => new(TextHelper.GetOrRegister("Condition.InDemonSiege"), Main.LocalPlayer.InModBiome<DemonSiegeZone>);
-        public static Condition NearGoreNest => new(TextHelper.GetOrRegister("Condition.InGoreNest"), Main.LocalPlayer.InModBiome<GoreNestBiome>);
+        public static Condition NearGoreNest => new(TextHelper.GetOrRegister("Condition.InGoreNest"), Main.LocalPlayer.InModBiome<OblivionAltarBiome>);
         public static Condition InPeacefulGlimmer => new(TextHelper.GetOrRegister("Condition.InPeacefulGlimmer"), Main.LocalPlayer.InModBiome<PeacefulGlimmerZone>);
 
         public static Condition HasCompletedBuildChallenge(BuildChallenge challenge) {

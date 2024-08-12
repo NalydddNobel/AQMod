@@ -1,4 +1,5 @@
 Condition: {
+	// DemonSiegeRecipe: Insert ingredients into the Altar
 	DayOfTheWeek: 当处于{0}
 	BetweenDays: 在{0}-{1}之间
 	InPollutedOcean: 位于被污染的海洋生物群落时

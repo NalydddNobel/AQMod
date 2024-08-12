@@ -1,4 +1,9 @@
 Biomes: {
+	OblivionAltarBiome: {
+		// DisplayName: Oblivion Altar
+		// TownNPCDialogueName: an Oblivion Altar
+	}
+
 	DemonSiegeZone: {
 		DisplayName: 遗境祭坛
 		EventName: 恶魔围攻
@@ -13,11 +18,6 @@ Biomes: {
 	PollutedOceanBiomeUnderground: {
 		DisplayName: 被污染的地底
 		TownNPCDialogueName: 被污染的地底
-	}
-
-	GoreNestBiome: {
-		// DisplayName: Nearby Gore Nest
-		// TownNPCDialogueName: the Gore Nest
 	}
 
 	PeacefulGlimmerZone: {

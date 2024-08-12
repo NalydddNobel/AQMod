@@ -3,6 +3,7 @@ using Aequus.Common.NPCs;
 using Aequus.Common.Particles;
 using Aequus.Common.Personalities;
 using Aequus.Common.Utilities;
+using Aequus.Content.Biomes.Oblivion.Tiles;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Necromancy.Accessories;
@@ -158,7 +159,7 @@ public class Occultist : ModNPC, IModifyShoppingSettings {
             .AddCrossMod<ThoriumMod>("NaiadShiv", Condition.DownedSkeletron, Condition.MoonPhaseWaxingGibbous)
 
             .Add<OblivionCraftingStationItem>()
-            .Add<GoreNest>(Condition.Hardmode)
+            .Add(ModContent.GetInstance<OblivionAltar>().Item.Type, Condition.Hardmode)
 
             .Add<DemonCursor>(Condition.NpcIsPresent(NPCID.DyeTrader))
 

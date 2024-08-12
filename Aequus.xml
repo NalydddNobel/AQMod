@@ -707,16 +707,16 @@
         <member name="F:Aequus.Common.Drawing.DrawLayers.PostUpdateScreenPosition">
             <summary>Invoked before anything has begun rendering, but after the screen position has been determined.</summary>
         </member>
-        <member name="E:Aequus.Common.Drawing.DrawLayers.WorldBehindTiles">
+        <member name="F:Aequus.Common.Drawing.DrawLayers.WorldBehindTiles">
             <summary>Invoked before NPCs behind tiles are drawn.</summary>
         </member>
         <member name="F:Aequus.Common.Drawing.DrawLayers.PostDrawNPCs">
             <summary>Invoked after NPCs are drawn.</summary>
         </member>
-        <member name="E:Aequus.Common.Drawing.DrawLayers.PostDrawDust">
+        <member name="F:Aequus.Common.Drawing.DrawLayers.PostDrawDust">
             <summary>Invoked after Dusts have been drawn.</summary>
         </member>
-        <member name="E:Aequus.Common.Drawing.DrawLayers.PostDrawLiquids">
+        <member name="F:Aequus.Common.Drawing.DrawLayers.PostDrawLiquids">
             <summary>Invoked after Liquids and Inferno Rings have been drawn, but before Wire Overlays are drawn.</summary>
         </member>
         <member name="T:Aequus.Common.Effects.CameraFocus">
@@ -2821,6 +2821,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.MeadowWoodItem">
             <summary>Full Path: Content/Biomes/Meadows/Tiles/MeadowWoodItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OblivionAltar">
+            <summary>Full Path: Content/Biomes/Oblivion/Tiles/OblivionAltar</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OblivionAltarItem">
+            <summary>Full Path: Content/Biomes/Oblivion/Tiles/OblivionAltarItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OblivionAltar_Highlight">
+            <summary>Full Path: Content/Biomes/Oblivion/Tiles/OblivionAltar_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BridgeBountyBuff">
             <summary>Full Path: Content/Carpentry/Bonuses/BridgeBountyBuff</summary>
@@ -5777,15 +5786,6 @@
         <member name="F:Aequus.AequusTextures.SedimentaryRockWallPlaced">
             <summary>Full Path: Tiles/CrabCrevice/SedimentaryRockWallPlaced</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.GoreNest">
-            <summary>Full Path: Tiles/CraftingStations/GoreNest</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GoreNestTile">
-            <summary>Full Path: Tiles/CraftingStations/GoreNestTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GoreNestTile_Highlight">
-            <summary>Full Path: Tiles/CraftingStations/GoreNestTile_Highlight</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.OblivionCraftingStationItem">
             <summary>Full Path: Tiles/CraftingStations/OblivionCraftingStationItem</summary>
         </member>
@@ -6998,11 +6998,6 @@
         </member>
         <member name="M:Aequus.Systems.WorldGeneration.AGenStep.SetProgress(Terraria.WorldBuilding.GenerationProgress,System.Double,System.Double,System.Double)">
             <summary>Safely sets the progress bar.</summary>
-        </member>
-        <member name="T:Aequus.Tiles.CraftingStations.GoreNestDummy">
-            <summary>
-            Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.
-            </summary>
         </member>
         <member name="T:Aequus.Tiles.Furniture.BaseFurniture.Furniture">
             <summary>

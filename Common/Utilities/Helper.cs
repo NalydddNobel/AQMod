@@ -76,6 +76,10 @@ public static partial class Helper {
 
     public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
 
+    public static float GetIconScale(float iconMaxSize, Texture2D texture) {
+        return Math.Min(iconMaxSize / Math.Max(texture.Width, texture.Height), 1f);
+    }
+
     public static bool IsFalling(Vector2 velocity, float gravDir) {
         return Math.Sign(velocity.Y) == Math.Sign(gravDir);
     }

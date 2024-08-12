@@ -15,7 +15,6 @@ using Aequus.NPCs.SpaceSquid;
 using Aequus.NPCs.Town.CarpenterNPC;
 using Aequus.Systems;
 using Aequus.Tiles.CrabCrevice;
-using Aequus.Tiles.CraftingStations;
 using Aequus.Tiles.Misc;
 using Aequus.Tiles.Misc.AshTombstones;
 using Aequus.Tiles.MossCaves.ElitePlants;
@@ -331,7 +330,6 @@ public partial class AequusWorld : ModSystem {
     }
 
     public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts) {
-        GoreNestTile.BiomeCount = tileCounts[ModContent.TileType<GoreNestTile>()];
         SedimentaryRockTile.BiomeCount = tileCounts[ModContent.TileType<SedimentaryRockTile>()];
         AshTombstonesTile.numAshTombstones = tileCounts[ModContent.TileType<AshTombstonesTile>()] / 4;
         foreach (var mossBiome in AequusBiomes.MossBiomes) {

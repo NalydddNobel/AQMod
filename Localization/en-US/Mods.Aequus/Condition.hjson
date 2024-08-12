@@ -1,4 +1,5 @@
 Condition: {
+	DemonSiegeRecipe: Insert ingredients into the Altar
 	DayOfTheWeek: When it's {0}
 	BetweenDays: Between {0}-{1}
 	InPollutedOcean: In the Polluted Ocean biome

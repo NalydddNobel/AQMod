@@ -2,7 +2,7 @@
 using Aequus.Common.Preferences;
 using Aequus.Common.Tiles;
 using Aequus.Content.Biomes.CrabCrevice;
-using Aequus.Content.Biomes.GoreNest;
+using Aequus.Content.Biomes.Oblivion;
 using Aequus.Content.Biomes.RadonBiome;
 using Aequus.Content.Biomes.UGForest;
 using Aequus.Content.CursorDyes.Items;
@@ -24,7 +24,7 @@ using Terraria.WorldBuilding;
 
 namespace Aequus.Common.World;
 public class AequusWorldGenerator : ModSystem {
-    public static GoreNestGenerator GenGoreNest { get; private set; }
+    public static OblivionAltarGenerator GenGoreNest { get; private set; }
     public static RockmanChestGenerator RockmanGenerator { get; private set; }
     public static RadonCaveGenerator RadonCaves { get; private set; }
     public static CaveVarietyGenerator CaveVariety { get; private set; }
@@ -39,7 +39,7 @@ public class AequusWorldGenerator : ModSystem {
         CaveVariety = new CaveVarietyGenerator();
         RadonCaves = new RadonCaveGenerator();
         RockmanGenerator = new RockmanChestGenerator();
-        GenGoreNest = new GoreNestGenerator();
+        GenGoreNest = new OblivionAltarGenerator();
 
         On_WorldGen.ShimmerMakeBiome += On_WorldGen_ShimmerMakeBiome;
         Terraria.IO.On_WorldFile.SaveWorld_bool_bool += WorldFile_SaveWorld_bool_bool;

@@ -2,7 +2,7 @@
 using Aequus.Common.Fishing;
 using Aequus.Common.Items;
 using Aequus.Content.Biomes.CrabCrevice;
-using Aequus.Content.Biomes.GoreNest;
+using Aequus.Content.Biomes.Oblivion;
 using Aequus.Content.Vampirism.Items;
 using Aequus.Items.Materials.Fish;
 using Aequus.Items.Misc;
@@ -122,7 +122,7 @@ public partial class AequusPlayer : ModPlayer {
         if (attempt.fishingLevel <= 0.75f && Main.rand.NextBool(4)) {
             itemDrop = ModContent.ItemType<TatteredDemonHorn>();
         }
-        else if (Player.InModBiome<GoreNestBiome>() && (attempt.rare || attempt.veryrare) && (Main.rand.NextBool(3) || Aequus.ZenithSeed)) {
+        else if (Player.InModBiome<OblivionAltarBiome>() && (attempt.rare || attempt.veryrare) && (Main.rand.NextBool(3) || Aequus.ZenithSeed)) {
             itemDrop = ModContent.ItemType<GoreFish>();
         }
     }

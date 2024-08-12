@@ -1,8 +1,8 @@
 ﻿using Aequus.Common.Net;
+using Aequus.Content.Biomes.Oblivion.Tiles;
 using Aequus.Items;
 using Aequus.Items.Misc.Spawners;
 using Aequus.Particles.Dusts;
-using Aequus.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -76,7 +76,7 @@ namespace Aequus.Content.Events.DemonSiege {
             return new Rectangle(TileX, TileY, 3, 4);
         }
         public bool OnValidTile() {
-            return GoreNestTile.IsGoreNest(TileX, TileY);
+            return OblivionAltar.IsGoreNest(TileX, TileY);
         }
 
         public void Update() {

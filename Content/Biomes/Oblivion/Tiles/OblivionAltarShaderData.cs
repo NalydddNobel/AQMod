@@ -1,13 +1,10 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using Terraria;
+﻿using System;
 using Terraria.Graphics.Shaders;
 
-namespace Aequus.Tiles.CraftingStations;
+namespace Aequus.Content.Biomes.Oblivion.Tiles;
 
-public class GoreNestShaderData : MiscShaderData {
-    public GoreNestShaderData(Ref<Effect> shader, string passName) : base(shader, passName) {
+public class OblivionAltarShaderData : MiscShaderData {
+    public OblivionAltarShaderData(Ref<Effect> shader, string passName) : base(shader, passName) {
         UseColor(new Vector3(5f, 0f, 0f)).UseSecondaryColor(new Vector3(4f, 0, 2f))
             .UseSaturation(1f).UseOpacity(1f);
     }
