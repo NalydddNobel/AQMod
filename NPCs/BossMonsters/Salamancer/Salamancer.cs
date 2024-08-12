@@ -6,6 +6,12 @@ namespace Aequus.NPCs.BossMonsters.Salamancer;
 public partial class Salamancer() : UnifiedBoss(new(ItemRarity: ItemDefaults.RaritySalamancer)) {
     public Point Origin;
 
+    public override void Load() {
+#if DEBUG
+        base.Load();
+#endif
+    }
+
     public override void SetDefaults() {
         NPC.width = 60;
         NPC.height = 60;
