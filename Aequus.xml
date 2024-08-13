@@ -1615,47 +1615,6 @@
             Ran on world Load/Unload
             </summary>
         </member>
-        <member name="T:Aequus.Common.Rendering.Tiles.IBatchedTile">
-            <summary>
-            Grants a ModTile the ability to render post-draw elements in a batch to reduce on Begin/End calls.
-            <para>Place SpecialTileDrawing.Add(i, j, Type); into ModTile.PostDraw(...) to add it to the rendering list.</para>
-            </summary>
-        </member>
-        <member name="T:Aequus.Common.Rendering.Tiles.BatchedTileDrawInfo">
-            <summary>
-            Tile draw info used internally with <see cref="T:Aequus.Common.Rendering.Tiles.BatchedTileRenderer"/>.
-            </summary>
-            <param name="Tile"></param>
-            <param name="Position"></param>
-        </member>
-        <member name="M:Aequus.Common.Rendering.Tiles.BatchedTileDrawInfo.#ctor(Terraria.Tile,Microsoft.Xna.Framework.Point)">
-            <summary>
-            Tile draw info used internally with <see cref="T:Aequus.Common.Rendering.Tiles.BatchedTileRenderer"/>.
-            </summary>
-            <param name="Tile"></param>
-            <param name="Position"></param>
-        </member>
-        <member name="P:Aequus.Common.Rendering.Tiles.BatchedTileDrawInfo.Tile">
-            <summary></summary>
-        </member>
-        <member name="P:Aequus.Common.Rendering.Tiles.BatchedTileDrawInfo.Position">
-            <summary></summary>
-        </member>
-        <member name="T:Aequus.Common.Rendering.Tiles.BatchedTileRenderer">
-            <summary>
-            Special system for adding tiles with cool render effects.
-            </summary>
-        </member>
-        <member name="M:Aequus.Common.Rendering.Tiles.BatchedTileRenderer.Register(System.Int32,Aequus.Common.Rendering.Tiles.IBatchedTile)">
-            <summary>
-            Registers a delegate for use with special tile drawing for selected type.
-            </summary>
-        </member>
-        <member name="M:Aequus.Common.Rendering.Tiles.BatchedTileRenderer.Add(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Adds the tile at position to draw buffer.
-            </summary>
-        </member>
         <member name="T:Aequus.Common.Structures.Collections.DictionaryRemoveQueue`2">
             <summary>
             A Dictionary with a removal queue. Allows for removals to occur in an iteration.
@@ -2253,7 +2212,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1356)</summary>
+            <summary>(Total Textures: 1354)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -6241,12 +6200,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.CosmicMonolithTile">
             <summary>Full Path: Tiles/Monoliths/CosmicMonolith/CosmicMonolithTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.JumpMushroom">
-            <summary>Full Path: Tiles/MossCaves/ArgonJumpshroom/JumpMushroom</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.JumpMushroomTile">
-            <summary>Full Path: Tiles/MossCaves/ArgonJumpshroom/JumpMushroomTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ElitePlantArgon">
             <summary>Full Path: Tiles/MossCaves/ElitePlants/ElitePlantArgon</summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Aequus.Common.Drawing;
 
@@ -22,7 +23,7 @@ public class TileDrawSystem : ModSystem {
     }
 
     static void UpdateTileCaches(Rectangle bounds) {
-        foreach (var pairs in _systems) {
+        foreach (var pairs in _systems.Where(p => p.Value.Count > 0)) {
             pairs.Value.RemoveAll((p) => !Main.tile[p].HasTile || Main.tile[p].TileType != pairs.Key.Type || !pairs.Key.InBounds(p, bounds));
 
             if (pairs.Value.Count == 0) {

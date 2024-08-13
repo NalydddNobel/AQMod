@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1356)</summary>
+/// <summary>(Total Textures: 1354)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -2665,10 +2665,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> CosmicMonolith = new("Tiles/Monoliths/CosmicMonolith/CosmicMonolith");
     /// <summary>Full Path: Tiles/Monoliths/CosmicMonolith/CosmicMonolithTile</summary>
     public static readonly RequestCache<Texture2D> CosmicMonolithTile = new("Tiles/Monoliths/CosmicMonolith/CosmicMonolithTile");
-    /// <summary>Full Path: Tiles/MossCaves/ArgonJumpshroom/JumpMushroom</summary>
-    public static readonly RequestCache<Texture2D> JumpMushroom = new("Tiles/MossCaves/ArgonJumpshroom/JumpMushroom");
-    /// <summary>Full Path: Tiles/MossCaves/ArgonJumpshroom/JumpMushroomTile</summary>
-    public static readonly RequestCache<Texture2D> JumpMushroomTile = new("Tiles/MossCaves/ArgonJumpshroom/JumpMushroomTile");
     /// <summary>Full Path: Tiles/MossCaves/ElitePlants/ElitePlantArgon</summary>
     public static readonly RequestCache<Texture2D> ElitePlantArgon = new("Tiles/MossCaves/ElitePlants/ElitePlantArgon");
     /// <summary>Full Path: Tiles/MossCaves/ElitePlants/ElitePlantKrypton</summary>

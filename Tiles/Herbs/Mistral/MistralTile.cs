@@ -21,7 +21,7 @@ public class MistralTile : HerbTileBase, ITileDrawSystem {
     public override Vector3 GlowColor => new Vector3(0.1f, 0.66f, 0.15f);
     protected override int DrawOffsetY => -8;
 
-    int ITileDrawSystem.Type => throw new NotImplementedException();
+    int ITileDrawSystem.Type => Type;
 
     public override bool IsBlooming(int i, int j) {
         return Main.WindyEnoughForKiteDrops;
