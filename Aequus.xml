@@ -710,6 +710,9 @@
         <member name="F:Aequus.Common.Drawing.DrawLayers.WorldBehindTiles">
             <summary>Invoked before NPCs behind tiles are drawn.</summary>
         </member>
+        <member name="F:Aequus.Common.Drawing.DrawLayers.PostDrawMasterRelics">
+            <summary>Invoked after Master Relics are drawn.</summary>
+        </member>
         <member name="F:Aequus.Common.Drawing.DrawLayers.PostDrawNPCs">
             <summary>Invoked after NPCs are drawn.</summary>
         </member>

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using Terraria.GameContent.Drawing;
 
 namespace Aequus.Common.Rendering.Tiles;
@@ -11,20 +10,12 @@ internal class SpecialTileRenderer : ModSystem {
 
     public static List<Point>[] DrawPoints { get; private set; }
     public static List<Point>[] SolidDrawPoints { get; private set; }
-    public static Dictionary<int, int> ModHangingVines { get; private set; }
 
-    private static FieldInfo _addSpecialPointSpecialPositions;
-    private static FieldInfo _addSpecialPointSpecialsCount;
     private static TileDrawing _rendererCache;
-    private static Point[][] _specialPositions;
-    private static int[] _specialsCount;
 
     public override void Load() {
         if (Main.dedServ)
             return;
-
-        _addSpecialPointSpecialPositions = typeof(TileDrawing).GetField("_specialPositions", BindingFlags.NonPublic | BindingFlags.Instance);
-        _addSpecialPointSpecialsCount = typeof(TileDrawing).GetField("_specialsCount", BindingFlags.NonPublic | BindingFlags.Instance);
 
         SolidDrawPoints = new List<Point>[TileRenderLayer.Count];
         for (int i = 0; i < TileRenderLayer.Count; i++) {
@@ -34,7 +25,6 @@ internal class SpecialTileRenderer : ModSystem {
         for (int i = 0; i < TileRenderLayer.Count; i++) {
             DrawPoints[i] = new List<Point>();
         }
-        ModHangingVines = new Dictionary<int, int>();
         On_TileDrawing.DrawMasterTrophies += TileDrawing_DrawMasterTrophies;
         On_TileDrawing.DrawReverseVines += TileDrawing_DrawReverseVines;
         On_TileDrawing.PreDrawTiles += TileDrawing_PreDrawTiles;
@@ -78,22 +68,6 @@ internal class SpecialTileRenderer : ModSystem {
         Render(TileRenderLayer.PostDrawWalls);
     }
 
-    private static void CheckRenderer(TileDrawing otherRenderer) {
-        if (_rendererCache != null && otherRenderer == _rendererCache) {
-            return;
-        }
-
-        _specialPositions = (Point[][])_addSpecialPointSpecialPositions.GetValue(otherRenderer);
-        _specialsCount = (int[])_addSpecialPointSpecialsCount.GetValue(otherRenderer);
-    }
-    public static void AddSpecialPoint(int x, int y, int type) {
-        if (_specialPositions == null) {
-            return;
-        }
-
-        _specialPositions[type][_specialsCount[type]++] = new Point(x, y);
-    }
-
     public static void Add(Point p, byte renderLayer) {
         DrawPoints[renderLayer].Add(p);
     }
@@ -121,7 +95,6 @@ internal class SpecialTileRenderer : ModSystem {
     }
 
     private static void TileDrawing_PreDrawTiles(On_TileDrawing.orig_PreDrawTiles orig, TileDrawing tileRenderer, bool solidLayer, bool forRenderTargets, bool intoRenderTargets) {
-        CheckRenderer(tileRenderer);
         orig(tileRenderer, solidLayer, forRenderTargets, intoRenderTargets);
         if (intoRenderTargets || Lighting.UpdateEveryFrame) {
             if (!solidLayer) {
@@ -196,8 +169,6 @@ internal class SpecialTileRenderer : ModSystem {
             }
             DrawPoints = null;
         }
-        _addSpecialPointSpecialsCount = null;
-        _addSpecialPointSpecialPositions = null;
         PreDrawNonSolidTiles = null;
         UpdateTileEffects = null;
         ClearTileEffects = null;

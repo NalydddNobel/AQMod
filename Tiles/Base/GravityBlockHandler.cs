@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Assets;
+using Aequus.Common.Drawing;
 using Aequus.Common.Rendering;
-using Aequus.Common.Rendering.Tiles;
 using Aequus.Common.Tiles;
 using System;
 using Terraria.Utilities;
@@ -23,10 +23,12 @@ internal interface IGravityBlock {
     }
 }
 
-public abstract class GravityBlockBase : ModTile, ISpecialTileRenderer, IGravityBlock {
+public abstract class GravityBlockBase : ModTile, ITileDrawSystem, IGravityBlock {
     public sbyte GravityType { get; set; }
     public RequestCache<Texture2D>[] Auras { get; set; }
     public RequestCache<Texture2D> DustTexture { get; set; }
+
+    int ITileDrawSystem.Type => Type;
 
     public override void SetStaticDefaults() {
         Main.tileSolid[Type] = true;
@@ -55,7 +57,6 @@ public abstract class GravityBlockBase : ModTile, ISpecialTileRenderer, IGravity
         if (tileHeight == 0)
             return true;
 
-        SpecialTileRenderer.AddSolid(i, j, TileRenderLayer.PostDrawWalls);
         int gravity = Math.Sign(GravityType);
         float rotation = gravity == 1 ? 0f : MathHelper.Pi;
         for (int k = 0; k < Auras.Length; k++) {
@@ -75,7 +76,7 @@ public abstract class GravityBlockBase : ModTile, ISpecialTileRenderer, IGravity
         return true;
     }
 
-    protected void DrawParticles(int i, int j, int tileHeight, SpriteBatch spriteBatch) {
+    void DrawParticles(int i, int j, int tileHeight, SpriteBatch spriteBatch) {
         ulong seed = Helper.TileSeed(i, j);
         FastRandom rand = new(Helper.TileSeed(i, j));
         var texture = PaintsRenderer.TryGetPaintedTexture(i, j, DustTexture.FullPath);
@@ -105,11 +106,18 @@ public abstract class GravityBlockBase : ModTile, ISpecialTileRenderer, IGravity
             }
         }
     }
-    protected virtual void OnSpecialRender(int i, int j, byte layer) {
-        DrawParticles(i, j, GetReach(i, j), Main.spriteBatch);
+
+    void DrawAllParticles(SpriteBatch sb) {
+        foreach (Point p in this.GetDrawPoints()) {
+            DrawParticles(p.X, p.Y, GetReach(p.X, p.Y), Main.spriteBatch);
+        }
     }
 
-    void ISpecialTileRenderer.Render(int i, int j, byte layer) {
-        OnSpecialRender(i, j, layer);
+    void IDrawSystem.Activate() {
+        DrawLayers.Instance.WorldBehindTiles += DrawAllParticles;
+    }
+
+    void IDrawSystem.Deactivate() {
+        DrawLayers.Instance.WorldBehindTiles -= DrawAllParticles;
     }
 }

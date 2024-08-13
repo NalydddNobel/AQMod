@@ -1,9 +1,7 @@
 ﻿using Aequus.Common.Drawing;
-using Aequus.Common.Rendering.Tiles;
 using Aequus.Common.Utilities;
 using ReLogic.Content;
 using System;
-using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
@@ -302,12 +300,6 @@ internal class InstancedRelicTile(ModNPC modNPC, RelicRenderer renderer) : Insta
         tileFrameY %= FrameHeight * 2;
     }
 
-    public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
-        if (drawData.tileFrameX % FrameWidth == 0 && drawData.tileFrameY % FrameHeight == 0) {
-            SpecialTileRenderer.Add(i, j, TileRenderLayer.PostDrawMasterRelics);
-        }
-    }
-
     void DrawRelics(SpriteBatch sb) {
         foreach (Point p in this.GetDrawPoints()) {
             DrawSingleRelic(p, sb);
@@ -332,6 +324,10 @@ internal class InstancedRelicTile(ModNPC modNPC, RelicRenderer renderer) : Insta
         }
     }
 
+    bool ITileDrawSystem.Accept(Point p) {
+        return Main.tile[p].TileFrameX % 48 == 0 && Main.tile[p].TileFrameY % 48 == 0;
+    }
+
     void IDrawSystem.Activate() {
         DrawLayers.Instance.PostDrawMasterRelics += DrawRelics;
     }
@@ -345,7 +341,7 @@ internal class InstancedRelicItem(ModNPC modNPC, ModTile modTile, RelicRenderer 
     private readonly ModNPC _parentNPC = modNPC;
     private readonly RelicRenderer _renderer = renderer;
 
-    public override string Texture => _renderer.Name + "Item";
+    public override string Texture => $"{_modTile.Mod.Name}/{_renderer.Name}Item";
 
     public override LocalizedText DisplayName => _parentNPC.GetLocalization("RelicDisplayName", () => $"{_parentNPC.Name} Relic");
     public override LocalizedText Tooltip => LocalizedText.Empty;
