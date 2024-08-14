@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 1354)</summary>
+/// <summary>(Total Textures: 1353)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Bloom0</summary>
@@ -607,6 +607,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OmniGemTile_Mask = new("Content/Items/Materials/OmniGem/OmniGemTile_Mask");
     /// <summary>Full Path: Content/Items/Materials/OmniGem/OmniGem_Mask</summary>
     public static readonly RequestCache<Texture2D> OmniGem_Mask = new("Content/Items/Materials/OmniGem/OmniGem_Mask");
+    /// <summary>Full Path: Content/Items/Potions/Buff/Sentry/SentryPotion</summary>
+    public static readonly RequestCache<Texture2D> SentryPotion = new("Content/Items/Potions/Buff/Sentry/SentryPotion");
+    /// <summary>Full Path: Content/Items/Potions/Buff/Sentry/SentryPotionBuff</summary>
+    public static readonly RequestCache<Texture2D> SentryPotionBuff = new("Content/Items/Potions/Buff/Sentry/SentryPotionBuff");
     /// <summary>Full Path: Content/Items/Tools/Hammers/MeadowHammer</summary>
     public static readonly RequestCache<Texture2D> MeadowHammer = new("Content/Items/Tools/Hammers/MeadowHammer");
     /// <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunEffect</summary>
@@ -1489,12 +1493,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> MoonflowerPollen = new("Items/Potions/Pollen/MoonflowerPollen");
     /// <summary>Full Path: Items/Potions/Pollen/MorayPollen</summary>
     public static readonly RequestCache<Texture2D> MorayPollen = new("Items/Potions/Pollen/MorayPollen");
-    /// <summary>Full Path: Items/Potions/Sentry/SentryBuff</summary>
-    public static readonly RequestCache<Texture2D> SentryBuff = new("Items/Potions/Sentry/SentryBuff");
-    /// <summary>Full Path: Items/Potions/Sentry/SentryBuffEmpowered</summary>
-    public static readonly RequestCache<Texture2D> SentryBuffEmpowered = new("Items/Potions/Sentry/SentryBuffEmpowered");
-    /// <summary>Full Path: Items/Potions/Sentry/SentryPotion</summary>
-    public static readonly RequestCache<Texture2D> SentryPotion = new("Items/Potions/Sentry/SentryPotion");
     /// <summary>Full Path: Items/Potions/Unique/MercerTonic</summary>
     public static readonly RequestCache<Texture2D> MercerTonic = new("Items/Potions/Unique/MercerTonic");
     /// <summary>Full Path: Items/Potions/Unique/PotionOfResurrection</summary>

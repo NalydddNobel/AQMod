@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ContentGeneration;
+﻿using Aequus.Common.ContentTemplates.Generic;
 using ReLogic.Content;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using Terraria.GameContent.Metadata;
 using Terraria.Localization;
 using Terraria.ObjectData;
 
-namespace Aequus.Common.ContentGeneration;
+namespace Aequus.Common.ContentTemplates;
 
 internal interface IUnifiedTree : IModType {
     ModTile Sapling { get; }

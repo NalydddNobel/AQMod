@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ContentGeneration;
+﻿using Aequus.Common.ContentTemplates.Generic;
 using Aequus.Common.Tiles;
 using Terraria.Audio;
 using Terraria.GameContent.Metadata;

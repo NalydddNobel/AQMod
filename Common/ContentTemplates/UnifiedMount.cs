@@ -1,7 +1,8 @@
-﻿using Terraria.Audio;
+﻿using Aequus.Common.ContentTemplates.Generic;
+using Terraria.Audio;
 using Terraria.Localization;
 
-namespace Aequus.Common.ContentGeneration;
+namespace Aequus.Common.ContentTemplates;
 
 /// <summary>A <see cref="ModMount"/> which automagically registers a related <see cref="ModItem"/> and <see cref="ModBuff"/>, suffixed with +"Item" and +"Buff" respectively.</summary>
 public abstract class UnifiedMount : ModMount, ILocalizedModType {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Terraria.Localization;
 
-namespace Aequus.Common.ContentGeneration;
+namespace Aequus.Common.ContentTemplates.Generic;
 
 [Autoload(false)]
 internal abstract class InstancedModItem : ModItem {

@@ -1,4 +1,4 @@
-﻿namespace Aequus.Common.ContentGeneration;
+﻿namespace Aequus.Common.ContentTemplates.Generic;
 
 [Autoload(false)]
 internal class InstancedModTile : ModTile {

@@ -1622,12 +1622,6 @@ BloodthirstPotion: {
 		''' */
 }
 
-SentryPotion: {
-	DisplayName: Poción de centinela
-	Tooltip: Incrementa tu numero maximo de centinelas por {0}
-	// EmpoweredPotion: "{$Buffs.EmpoweredSentry.Description}"
-}
-
 FrostPotion: {
 	// DisplayName: Frost Potion
 	// Tooltip: "{$Buffs.FrostBuff.Description}"

@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ContentGeneration;
+﻿using Aequus.Common.ContentTemplates;
 using Aequus.Common.Utilities.Helpers;
 using System;
 using System.Collections.Generic;

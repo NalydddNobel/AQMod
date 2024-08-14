@@ -2,7 +2,7 @@
 using Terraria.GameContent;
 using static Terraria.GameContent.Profiles;
 
-namespace Aequus.Common.ContentGeneration;
+namespace Aequus.Common.ContentTemplates;
 
 public abstract class UnifiedTownNPC : AequusTownNPC {
     public override void SetStaticDefaults() {

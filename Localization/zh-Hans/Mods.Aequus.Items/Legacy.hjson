@@ -1622,12 +1622,6 @@ BloodthirstPotion: {
 		'''
 }
 
-SentryPotion: {
-	DisplayName: 哨兵药水
-	Tooltip: 增加{0}格最大哨兵栏位
-	EmpoweredPotion: "{$Buffs.EmpoweredSentry.Description}"
-}
-
 FrostPotion: {
 	DisplayName: 冰霜药水
 	Tooltip: "{$Buffs.FrostBuff.Description}"

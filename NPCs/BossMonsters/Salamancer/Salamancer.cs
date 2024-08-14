@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ContentGeneration;
+﻿using Aequus.Common.ContentTemplates;
 using Aequus.Common.Items;
 
 namespace Aequus.NPCs.BossMonsters.Salamancer;

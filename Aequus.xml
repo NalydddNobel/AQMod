@@ -595,27 +595,27 @@
             </summary>
             <param name="mod"></param>
         </member>
-        <member name="T:Aequus.Common.ContentGeneration.InstancedModDust">
+        <member name="T:Aequus.Common.ContentTemplates.Generic.InstancedModDust">
             <param name="name"></param>
             <param name="texture"></param>
             <param name="safe">Whether this dust is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeDust"/>)</param>
         </member>
-        <member name="M:Aequus.Common.ContentGeneration.InstancedModDust.#ctor(System.String,System.String,System.Boolean)">
+        <member name="M:Aequus.Common.ContentTemplates.Generic.InstancedModDust.#ctor(System.String,System.String,System.Boolean)">
             <param name="name"></param>
             <param name="texture"></param>
             <param name="safe">Whether this dust is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeDust"/>)</param>
         </member>
-        <member name="T:Aequus.Common.ContentGeneration.InstancedModGore">
+        <member name="T:Aequus.Common.ContentTemplates.Generic.InstancedModGore">
             <param name="name"></param>
             <param name="texture"></param>
             <param name="safe">Whether this gore is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeGore"/>)</param>
         </member>
-        <member name="M:Aequus.Common.ContentGeneration.InstancedModGore.#ctor(System.String,System.String,System.Boolean)">
+        <member name="M:Aequus.Common.ContentTemplates.Generic.InstancedModGore.#ctor(System.String,System.String,System.Boolean)">
             <param name="name"></param>
             <param name="texture"></param>
             <param name="safe">Whether this gore is safe. (<see cref="F:Terraria.GameContent.ChildSafety.SafeGore"/>)</param>
         </member>
-        <member name="T:Aequus.Common.ContentGeneration.InstancedTileItem">
+        <member name="T:Aequus.Common.ContentTemplates.Generic.InstancedTileItem">
             <param name="modTile"></param>
             <param name="style"></param>
             <param name="nameSuffix">Extra text added to the end of the name.</param>
@@ -625,7 +625,7 @@
             <param name="researchSacrificeCount">Research count override.</param>
             <param name="TileIdOverride">Overrides the place tile id.</param>
         </member>
-        <member name="M:Aequus.Common.ContentGeneration.InstancedTileItem.#ctor(Terraria.ModLoader.ModTile,System.Int32,System.String,System.Boolean,System.Int32,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32})">
+        <member name="M:Aequus.Common.ContentTemplates.Generic.InstancedTileItem.#ctor(Terraria.ModLoader.ModTile,System.Int32,System.String,System.Boolean,System.Int32,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <param name="modTile"></param>
             <param name="style"></param>
             <param name="nameSuffix">Extra text added to the end of the name.</param>
@@ -635,15 +635,21 @@
             <param name="researchSacrificeCount">Research count override.</param>
             <param name="TileIdOverride">Overrides the place tile id.</param>
         </member>
-        <member name="T:Aequus.Common.ContentGeneration.InstancedWallItem">
+        <member name="T:Aequus.Common.ContentTemplates.Generic.InstancedWallItem">
             <param name="modWall"></param>
             <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
         </member>
-        <member name="M:Aequus.Common.ContentGeneration.InstancedWallItem.#ctor(Terraria.ModLoader.ModWall,System.Boolean)">
+        <member name="M:Aequus.Common.ContentTemplates.Generic.InstancedWallItem.#ctor(Terraria.ModLoader.ModWall,System.Boolean)">
             <param name="modWall"></param>
             <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
         </member>
-        <member name="T:Aequus.Common.ContentGeneration.UnifiedMount">
+        <member name="P:Aequus.Common.ContentTemplates.UnifiedBuffPotion.DrinkColors">
+            <summary>Shorthand for <see cref="F:Terraria.ID.ItemID.Sets.DrinkParticleColors"/>[Type].</summary>
+        </member>
+        <member name="M:Aequus.Common.ContentTemplates.UnifiedBuffPotion.UpdateBuff(Terraria.Player,System.Int32@)">
+            <summary>This method is not instanced.</summary>
+        </member>
+        <member name="T:Aequus.Common.ContentTemplates.UnifiedMount">
             <summary>A <see cref="T:Terraria.ModLoader.ModMount"/> which automagically registers a related <see cref="T:Terraria.ModLoader.ModItem"/> and <see cref="T:Terraria.ModLoader.ModBuff"/>, suffixed with +"Item" and +"Buff" respectively.</summary>
         </member>
         <member name="T:Aequus.Common.CrossMod.ModCalls.ModCallManager">
@@ -2212,7 +2218,7 @@
             <summary>Full Path: NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 1354)</summary>
+            <summary>(Total Textures: 1353)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
             <summary>Full Path: Assets/Bloom0</summary>
@@ -3113,6 +3119,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.OmniGem_Mask">
             <summary>Full Path: Content/Items/Materials/OmniGem/OmniGem_Mask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SentryPotion">
+            <summary>Full Path: Content/Items/Potions/Buff/Sentry/SentryPotion</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SentryPotionBuff">
+            <summary>Full Path: Content/Items/Potions/Buff/Sentry/SentryPotionBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MeadowHammer">
             <summary>Full Path: Content/Items/Tools/Hammers/MeadowHammer</summary>
@@ -4436,15 +4448,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.MorayPollen">
             <summary>Full Path: Items/Potions/Pollen/MorayPollen</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SentryBuff">
-            <summary>Full Path: Items/Potions/Sentry/SentryBuff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SentryBuffEmpowered">
-            <summary>Full Path: Items/Potions/Sentry/SentryBuffEmpowered</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SentryPotion">
-            <summary>Full Path: Items/Potions/Sentry/SentryPotion</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MercerTonic">
             <summary>Full Path: Items/Potions/Unique/MercerTonic</summary>

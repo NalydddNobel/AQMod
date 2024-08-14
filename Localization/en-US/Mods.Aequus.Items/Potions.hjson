@@ -3,7 +3,11 @@ MeadowMushroom: {
 	Tooltip: ""
 }
 
-SentryPotion.BuffName: Sentinel
+SentryPotion: {
+	DisplayName: Sentry Potion
+	Tooltip: "{$CommonItemTooltip.IncreasesMaxSentriesBy}"
+	BuffDisplayName: Sentry
+}
 
 TaintedSeafood: {
 	DisplayName: Tainted Seafood

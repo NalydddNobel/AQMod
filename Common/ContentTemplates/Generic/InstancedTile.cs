@@ -1,6 +1,6 @@
 ﻿using Terraria.ModLoader;
 
-namespace Aequus.Common.ContentGeneration;
+namespace Aequus.Common.ContentTemplates.Generic;
 
 internal class InstancedTile : ModTile {
     private readonly string _name;

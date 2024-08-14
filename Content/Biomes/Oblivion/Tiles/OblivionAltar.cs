@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ContentGeneration;
+﻿using Aequus.Common.ContentTemplates.Generic;
 using Aequus.Common.DataSets;
 using Aequus.Common.Drawing;
 using Aequus.Common.Effects;

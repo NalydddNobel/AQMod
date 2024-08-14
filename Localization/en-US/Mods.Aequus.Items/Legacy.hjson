@@ -1618,12 +1618,6 @@ BloodthirstPotion: {
 		'''
 }
 
-SentryPotion: {
-	DisplayName: Sentry Potion
-	Tooltip: "{$Buffs.SentryBuff.Description}"
-	EmpoweredPotion: "{$Buffs.EmpoweredSentry.Description}"
-}
-
 FrostPotion: {
 	DisplayName: Frost Potion
 	Tooltip: "{$Buffs.FrostBuff.Description}"

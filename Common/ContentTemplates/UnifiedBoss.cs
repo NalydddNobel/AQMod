@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Drawing;
+﻿using Aequus.Common.ContentTemplates.Generic;
+using Aequus.Common.Drawing;
 using Aequus.Common.Utilities;
 using ReLogic.Content;
 using System;
@@ -7,7 +8,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
 using Terraria.ObjectData;
 
-namespace Aequus.Common.ContentGeneration;
+namespace Aequus.Common.ContentTemplates;
 
 public abstract class UnifiedBoss(BossParams BossParams, TrophyParams Trophy = default) : ModNPC {
     public BossParams BossParams { get; private set; } = BossParams;

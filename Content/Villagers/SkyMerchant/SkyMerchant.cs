@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ContentGeneration;
+﻿using Aequus.Common.ContentTemplates;
 using Aequus.Common.NPCs;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Peaceful;

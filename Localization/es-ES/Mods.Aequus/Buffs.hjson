@@ -1,4 +1,6 @@
 Buffs: {
+	// ModifierFormats.Empowered: "{0} (Empowered)"
+
 	NeutronYogurtBuff: {
 		DisplayName: "{$Items.NeutronYogurt.DisplayName}"
 		Description: Aceleración de caída duplicada
@@ -196,11 +198,6 @@ Buffs: {
 	EmpoweredNecromancy: {
 		// DisplayName: Empowered {$Buffs.NecromancyPotionBuff.DisplayName}
 		// Description: Increases your max number of ghosts by 2
-	}
-
-	EmpoweredSentry: {
-		// DisplayName: Empowered {$Buffs.SentryBuff.DisplayName}
-		// Description: Increases your max number of sentries by 2
 	}
 
 	EmpoweredArchery: {

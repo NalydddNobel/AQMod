@@ -3,7 +3,11 @@ MeadowMushroom: {
 	Tooltip: ""
 }
 
-SentryPotion.BuffName: 哨兵
+SentryPotion: {
+	DisplayName: 哨兵药水
+	Tooltip: 增加{0}格最大哨兵栏位
+	// BuffDisplayName: Mods.Aequus.Items.SentryPotion.BuffDisplayName
+}
 
 TaintedSeafood: {
 	DisplayName: 受到污染的海鲜

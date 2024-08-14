@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ContentGeneration;
+﻿using Aequus.Common.ContentTemplates.Generic;
 using Aequus.Common.Utilities.Helpers;
 using System.Collections.Generic;
 using Terraria.ObjectData;
