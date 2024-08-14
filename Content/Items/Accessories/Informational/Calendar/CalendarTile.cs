@@ -24,6 +24,6 @@ public class CalendarTile : ModTile {
     }
 
     public override void NearbyEffects(int i, int j, bool closer) {
-        IsNearby = true;
+        CalendarSystem.IsCalendarNearby = true;
     }
 }

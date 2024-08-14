@@ -4,14 +4,14 @@ using Terraria.Localization;
 namespace Aequus.Content.Items.Accessories.Informational.Calendar;
 
 public class CalendarInfoDisplay : InfoDisplay {
-    private LocalizedText Tooltip;
+    private LocalizedText Tooltip = LocalizedText.Empty;
 
     public override void SetStaticDefaults() {
         Tooltip = this.GetLocalization("Tooltip");
     }
 
     public override bool Active() {
-        return CalendarTile.IsNearby || Main.LocalPlayer.GetModPlayer<AequusPlayer>().accInfoDayCalendar;
+        return CalendarSystem.IsCalendarNearby || Main.LocalPlayer.GetModPlayer<AequusPlayer>().accInfoDayCalendar;
     }
 
     public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor) {
