@@ -63,7 +63,7 @@ DeathMessage: {
 		// 17: "{0} should get better gear against {1}."
 		// 18: "{1} whispered 'Give up' in {0}'s ear."
 		// 19: "{0} contemplates brewing better potions."
-		// Nighttime: "{0} will just have to wait for tommorow night."
+		// Nighttime: "{0} will just have to wait for tomorrow night."
 	}
 
 	WallOfFlesh: {
