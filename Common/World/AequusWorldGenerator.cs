@@ -10,7 +10,6 @@ using Aequus.Content.World.Generation;
 using Aequus.Items.Equipment.Accessories.Misc;
 using Aequus.Items.Equipment.PetsUtility.Miner;
 using Aequus.Items.Materials;
-using Aequus.Items.Tools;
 using Aequus.Tiles.Misc.BigGems;
 using System;
 using System.Collections.Generic;
@@ -248,12 +247,6 @@ public class AequusWorldGenerator : ModSystem {
         }
         if (r.NextBool(5)) {
             AddGlowCore(c, placedItems);
-        }
-
-        switch (r.Next(5)) {
-            case 2:
-                c.Insert(ModContent.ItemType<Bellows>(), 1);
-                break;
         }
     }
     public static bool AddGlowCore(Chest c, HashSet<int> placedItems = null) {

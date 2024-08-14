@@ -1,4 +1,16 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Common.DataSets;
+using Aequus.Common.Preferences;
+using Aequus.Common.Utilities;
+using Aequus.Content.CursorDyes.Items;
+using Aequus.Items.Equipment.Accessories.Misc;
+using Aequus.Items.Equipment.PetsUtility.Miner;
+using Aequus.Items.Materials;
+using Aequus.Items.Materials.Energies;
+using Aequus.Items.Misc.FishingBait;
+using Aequus.Items.Weapons.Melee.Swords.IronLotus;
+using Aequus.Systems.Chests;
+using Aequus.Systems.Chests.DropRules;
+using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus;
 public partial class AequusItem {
@@ -9,7 +21,6 @@ public partial class AequusItem {
             }
         }
 
-        /*
         switch (item.type) {
             case ItemID.EyeOfCthulhuBossBag: {
                     if (!GameplayConfig.Instance.EyeOfCthulhuOres) {
@@ -38,9 +49,12 @@ public partial class AequusItem {
 
             // Golden and Titanium Crate loot
             case ItemID.GoldenCrateHard:
-                itemLoot.Add(ItemDropRule.OneFromOptions(1, HardmodeChestBoost.HardmodeChestLoot.ToArray()));
+                foreach (IChestLootRule rule in ChestLootDatabase.Instance.GetRulesForType(ChestPool.UndergroundHard)) {
+                    if (rule is IndexedChestRule indexedRule) {
+                        itemLoot.Add(indexedRule.ToItemDropRule());
+                    }
+                }
                 goto case ItemID.GoldenCrate;
-                break;
 
             case ItemID.GoldenCrate:
                 itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<SwordCursor>(), 4));
@@ -51,20 +65,26 @@ public partial class AequusItem {
             case ItemID.IronCrateHard:
                 itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<GlowCore>(), 6));
                 itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<MiningPetSpawner>(), 6));
-                itemLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(4, ModContent.ItemType<Bellows>()));
                 break;
 
             // Jungle and Bramble Crate loot
             case ItemID.JungleFishingCrateHard:
-                itemLoot.Add(ItemDropRule.OneFromOptions(1, HardmodeChestBoost.HardmodeJungleChestLoot.ToArray()));
+                foreach (IChestLootRule rule in ChestLootDatabase.Instance.GetRulesForType(ChestPool.JungleHard)) {
+                    if (rule is IndexedChestRule indexedRule) {
+                        itemLoot.Add(indexedRule.ToItemDropRule());
+                    }
+                }
                 goto case ItemID.JungleFishingCrate;
-                break;
 
             // Frozen and Boreal Crate loot
             case ItemID.FrozenCrateHard:
-                itemLoot.Add(ItemDropRule.OneFromOptions(1, HardmodeChestBoost.HardmodeSnowChestLoot.ToArray()));
+                foreach (IChestLootRule rule in ChestLootDatabase.Instance.GetRulesForType(ChestPool.SnowHard)) {
+                    if (rule is IndexedChestRule indexedRule) {
+                        itemLoot.Add(indexedRule.ToItemDropRule());
+                    }
+                }
                 goto case ItemID.FrozenCrate;
-                break;
+
             case ItemID.FrozenCrate:
                 itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrozenTechnology>(), 2));
                 goto BiomeCrate;
@@ -103,6 +123,5 @@ public partial class AequusItem {
                 itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<CrateBait>()));
                 break;
         }
-        */
     }
 }

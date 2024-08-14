@@ -33,7 +33,6 @@ public sealed class HardmodeChestBoost : ModSystem {
     }
 
     public sealed override void SetupContent() {
-
         #region Loot params
         // Bombs
         int minBombs = 1;

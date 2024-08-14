@@ -3,7 +3,6 @@ using Aequus.Common.DataSets;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Items.Equipment.Accessories.Misc;
 using Aequus.Items.Equipment.PetsUtility.Miner;
-using Aequus.Items.Tools;
 using System;
 
 namespace Aequus.CrossMod;
@@ -30,7 +29,6 @@ internal class CerebralMod : ModSupport<CerebralMod> {
         }
 
         AddCrafterRecipe("GoldenChestCrafter", TileID.Anvils,
-            ModContent.ItemType<Bellows>(),
             ModContent.ItemType<GlowCore>(),
             ModContent.ItemType<SwordCursor>(),
             ModContent.ItemType<MiningPetSpawner>());
