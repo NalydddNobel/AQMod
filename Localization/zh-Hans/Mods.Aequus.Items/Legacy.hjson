@@ -370,14 +370,13 @@ CrimsonSceptre: {
 		'''
 }
 
-ZombieSceptre: {
-	DisplayName: 僵尸权杖
-	Tooltip:
+CorruptionSceptre: {
+	// DisplayName: Zombie Sceptre
+	/* Tooltip:
 		'''
-		攻击会在敌人身上积蓄灵魂伤害
-		当你停止攻击时, 释放并转化所有的灵魂伤害为一个强大的弹幕
-		如果你积蓄了足够的灵魂伤害, 敌人会变为你的队友
-		'''
+		Drains the soul of enemies
+		{$CommonItemTooltip.NecromancyStaff}
+		''' */
 }
 
 // Armor
@@ -847,11 +846,6 @@ KegOSpirits: {
 SaivoryKnife: {
 	// DisplayName: Saivory Knife
 	// Tooltip: Increases the lifespan of your ghosts by 1 minute
-}
-
-CorruptionSceptre: {
-	// DisplayName: Zombie Sceptre
-	// Tooltip: ""
 }
 
 LavaproofMitten: {

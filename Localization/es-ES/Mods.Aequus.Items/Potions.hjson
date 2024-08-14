@@ -6,7 +6,7 @@ MeadowMushroom: {
 SentryPotion: {
 	DisplayName: Poción de centinela
 	Tooltip: Incrementa tu numero maximo de centinelas por {0}
-	// BuffDisplayName: Mods.Aequus.Items.SentryPotion.BuffDisplayName
+	// BuffDisplayName: Sentry
 }
 
 TaintedSeafood: {
