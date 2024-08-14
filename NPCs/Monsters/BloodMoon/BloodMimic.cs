@@ -2,12 +2,12 @@
 using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Base;
 using Aequus.Common.Utilities;
+using Aequus.Content.Necromancy.Accessories.SpiritKeg;
 using Aequus.Items.Equipment.Accessories.Combat.CriticalStrike;
 using Aequus.Items.Equipment.GrapplingHooks;
 using Aequus.Items.Misc.Foods;
 using Aequus.Items.Potions.Unique;
 using Aequus.Items.Weapons.Ranged.Bows.CrusadersCrossbow;
-using Aequus.Content.Necromancy.Accessories.SpiritKeg;
 using Aequus.Tiles.Banners.Items;
 using System;
 using Terraria.GameContent.Bestiary;
@@ -30,7 +30,8 @@ public class BloodMimic : LegacyAIMimic {
         NPC.aiStyle = -1;
         NPC.damage = 25;
         NPC.defense = 10;
-        NPC.lifeMax = 100;
+        // 65 - 130 - 195
+        NPC.lifeMax = 65;
         NPC.HitSound = SoundID.NPCHit16;
         NPC.DeathSound = SoundID.NPCDeath1;
         NPC.value = Item.buyPrice(silver: 50);
