@@ -350,9 +350,8 @@ Revenant: {
 	DisplayName: Revenant Sceptre
 	Tooltip:
 		'''
-		Attacks accumulate soul damage on an enemy
-		When you stop attacking, release all of the soul damage as a spreading curse
-		If you accumulate enough soul damage, the enemy will become your ally
+		Drains the soul of enemies
+		{$CommonItemTooltip.NecromancyStaff}
 		'''
 }
 
@@ -360,19 +359,17 @@ CrimsonSceptre: {
 	DisplayName: Crimson Sceptre
 	Tooltip:
 		'''
-		Attacks accumulate soul damage on an enemy
-		When you stop attacking, release all of the soul damage as a powerful bolt
-		If you accumulate enough soul damage, the enemy will become your ally
+		Drains the soul of enemies
+		{$CommonItemTooltip.NecromancyStaff}
 		'''
 }
 
-ZombieSceptre: {
+CorruptionSceptre: {
 	DisplayName: Zombie Sceptre
 	Tooltip:
 		'''
-		Attacks accumulate soul damage on an enemy
-		When you stop attacking, release all of the soul damage as a powerful bolt
-		If you accumulate enough soul damage, the enemy will become your ally
+		Drains the soul of enemies
+		{$CommonItemTooltip.NecromancyStaff}
 		'''
 }
 
@@ -843,11 +840,6 @@ KegOSpirits: {
 SaivoryKnife: {
 	DisplayName: Saivory Knife
 	Tooltip: Increases the lifespan of your ghosts by 1 minute
-}
-
-CorruptionSceptre: {
-	DisplayName: Zombie Sceptre
-	Tooltip: ""
 }
 
 LavaproofMitten: {
