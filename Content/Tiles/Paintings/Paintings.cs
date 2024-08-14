@@ -2,7 +2,6 @@
 using Aequus.Systems.Chests;
 using Aequus.Systems.Chests.DropRules;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Terraria.GameContent.Generation;
 using Terraria.Localization;
@@ -17,11 +16,20 @@ public sealed class Paintings : ModType, ILocalizedModType {
 
     public PaintingSets Sets = new();
 
+    #region Localization
     string ILocalizedModType.LocalizationCategory => "Tiles";
 
     public LocalizedText SignatureNalyddd => this.GetLocalization("Signature.Nalyddd");
     public LocalizedText SignatureNiker => this.GetLocalization("Signature.Niker");
     public LocalizedText SignatureTorra => this.GetLocalization("Signature.Torra");
+    #endregion
+
+    #region Chances
+    public static readonly int HellPictureChance = 3;
+    public static readonly int DungeonPictureChance = 3;
+    public static readonly int DesertPictureChance = 3;
+    public static readonly int GenericPictureChance = 4;
+    #endregion
 
     protected override void Register() {
         New("Carpenter", AequusTextures.CarpenterPainting.FullPath,
@@ -286,7 +294,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
     }
 
     private PaintingEntry On_WorldGen_RandHellPicture(On_WorldGen.orig_RandHellPicture orig) {
-        if (WorldGen.genRand.NextBool(3)) {
+        if (WorldGen.genRand.NextBool(HellPictureChance)) {
             return WorldGen.genRand.Next(Instance.Sets.HellPictures).ToEntry();
         }
 
@@ -294,7 +302,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
     }
 
     private static PaintingEntry On_WorldGen_RandBonePicture(On_WorldGen.orig_RandBonePicture orig) {
-        if (WorldGen.genRand.NextBool(3)) {
+        if (WorldGen.genRand.NextBool(DungeonPictureChance)) {
             return WorldGen.genRand.Next(Instance.Sets.DungeonPictures).ToEntry();
         }
 
@@ -302,7 +310,7 @@ public sealed class Paintings : ModType, ILocalizedModType {
     }
 
     private static PaintingEntry On_WorldGen_RandHousePictureDesert(On_WorldGen.orig_RandHousePictureDesert orig) {
-        if (WorldGen.genRand.NextBool(3)) {
+        if (WorldGen.genRand.NextBool(DesertPictureChance)) {
             return WorldGen.genRand.Next(Instance.Sets.DesertPictures).ToEntry();
         }
 
@@ -310,24 +318,10 @@ public sealed class Paintings : ModType, ILocalizedModType {
     }
 
     private static PaintingEntry On_WorldGen_RandHousePicture(On_WorldGen.orig_RandHousePicture orig) {
-        if (WorldGen.genRand.NextBool(3)) {
+        if (WorldGen.genRand.NextBool(GenericPictureChance)) {
             return WorldGen.genRand.Next(Instance.Sets.GenericPictures).ToEntry();
         }
 
         return orig();
     }
-}
-
-public class PaintingSets {
-    public readonly List<IPainting> RockPictures = [];
-
-    public readonly List<IPainting> GenericPictures = [];
-
-    public readonly List<IPainting> DesertPictures = [];
-
-    public readonly List<IPainting> DungeonPictures = [];
-
-    public readonly List<IPainting> SkyPictures = [];
-
-    public readonly List<IPainting> HellPictures = [];
 }
