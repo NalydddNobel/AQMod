@@ -30,5 +30,6 @@ public class TatteredDemonHorn : ModItem {
         }
 
         resultType = pool.Get();
+        resultStack = 1;
     }
 }
