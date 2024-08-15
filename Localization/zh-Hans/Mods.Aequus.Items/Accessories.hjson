@@ -25,13 +25,13 @@ GoldenWind: {
 	DisplayName: 黄金之风
 	Tooltip:
 		'''
-		每秒恢复{1}点生命值
-		{$Items.GoldenFeather.Tooltip}
+		每秒恢复{0}点生命值
+		{$Items.GoldenFeather.Tooltip@1}
 		'''
 	BuffDescription:
 		'''
-		每秒恢复{1}点生命值
-		{$GoldenFeather.BuffDescription}
+		每秒恢复{0}点生命值
+		{$GoldenFeather.BuffDescription@1}
 		'''
 }
 

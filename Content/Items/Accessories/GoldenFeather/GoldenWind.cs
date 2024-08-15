@@ -34,7 +34,7 @@ public class GoldenWind : GoldenFeather {
 public class GoldenWindBuff : GoldenFeatherBuff {
     public override LocalizedText DisplayName => ModContent.GetInstance<GoldenWind>().DisplayName;
     public override LocalizedText Description => ModContent.GetInstance<GoldenWind>().GetLocalization("BuffDescription")
-        .WithFormatArgs(ALanguage.Seconds(-GoldenFeather.RespawnTimeAmount), ALanguage.Decimals(GoldenWind.LifeRegenerationAmount / 2f));
+        .WithFormatArgs(ALanguage.Decimals(GoldenWind.LifeRegenerationAmount / 2f), ALanguage.Seconds(-GoldenFeather.RespawnTimeAmount));
 
     public override void Update(Player player, ref int buffIndex) {
         if (!player.TryGetModPlayer(out AequusPlayer aequus)) {
