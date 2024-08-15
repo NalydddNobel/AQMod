@@ -23,6 +23,8 @@ public partial class SkyMerchant {
     public static TextureDrawSet DefaultDrawSet;
     public static TextureDrawSet ShimmerDrawSet;
 
+    public static readonly Vector2 BalloonOffset = new Vector2(0f, -96f);
+
     public TextureDrawSet drawSet;
 
     private void LoadDrawSets() {
@@ -49,7 +51,7 @@ public partial class SkyMerchant {
         var texture = TextureAssets.Npc[Type].Value;
         float opacity = NPC.Opacity;
         if (state == MovementState.Ballooning) {
-            DrawAnchored(spriteBatch, drawSet.Balloon.Value, drawCoordinates, new Vector2(0f, -96f), null, drawColor * opacity * balloonOpacity, NPC.rotation, drawSet.Balloon.Size() / 2f, NPC.scale, SpriteEffects.None, 0f);
+            DrawAnchored(spriteBatch, drawSet.Balloon.Value, drawCoordinates, BalloonOffset, null, drawColor * opacity * balloonOpacity, NPC.rotation, drawSet.Balloon.Size() / 2f, NPC.scale, SpriteEffects.None, 0f);
             var npcColor = NPC.GetNPCColorTintedByBuffs(drawColor) * opacity * (1f - NPC.shimmerTransparency);
             var drawOffset = new Vector2(0f, -18f);
             int direction = NPC.spriteDirection;

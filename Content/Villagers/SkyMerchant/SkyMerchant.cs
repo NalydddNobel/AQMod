@@ -77,6 +77,75 @@ public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
     #endregion
 
     #region AI
+    private bool StopForPlayers() {
+        Player closestPlayer = null;
+        float distance = 400f;
+
+        for (int i = 0; i < Main.maxPlayers; i++) {
+            Player player = Main.player[i];
+            if (!player.active || player.DeadOrGhost) {
+                continue;
+            }
+
+            float playerDistance = NPC.Distance(player.Center);
+            if (playerDistance < distance) {
+                closestPlayer = Main.player[i];
+                distance = playerDistance;
+            }
+        }
+
+        if (closestPlayer == null) {
+            return false;
+        }
+
+        if (!NPC.collideY && distance > 120f && NPC.velocity.Length() < 3f) {
+            NPC.velocity += NPC.DirectionTo(closestPlayer.Center) * 0.03f;
+        }
+        else {
+            NPC.velocity *= 0.95f;
+        }
+        return true;
+    }
+
+    private void TryToLand() {
+        if (NPC.collideY && NPC.velocity.Y >= 0f && Math.Abs(NPC.velocity.X) < 0.1f) {
+
+            if (Main.netMode != NetmodeID.MultiplayerClient) {
+                state = MovementState.Walking;
+                NPC.netUpdate = true;
+
+                int npc = NPC.NewNPC(NPC.GetSource_FromThis(), (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<SkyMerchantBalloon>(), NPC.whoAmI, ai0: NPC.whoAmI);
+                Main.npc[npc].Bottom = NPC.Bottom;
+                if (Main.npc[npc].ModNPC is SkyMerchantBalloon balloon) {
+                    balloon.drawSet = drawSet;
+                }
+
+                Helper.SyncNPC(Main.npc[npc]);
+            }
+        }
+
+        if (ValidLandingSpot(NPC.Bottom.ToTileCoordinates())) {
+            NPC.velocity.Y += 0.1f;
+        }
+
+        bool ValidLandingSpot(Point start) {
+            int scanLength = 8;
+            for (int j = 0; j < scanLength; j++) {
+                Tile tile = Framing.GetTileSafely(start.X, start.Y + j);
+                // Dont want to drop on liquid.
+                if (tile.LiquidAmount > 0) {
+                    return false;
+                }
+
+                if (tile.IsSolid()) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+    }
+
     private bool NearStoppingPoint() {
         for (int i = 0; i < Main.maxPlayers; i++) {
             if (Main.player[i].active && !Main.player[i].DeadOrGhost && NPC.Distance(Main.player[i].Center) < 200f) {
@@ -90,8 +159,6 @@ public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
         Vector2 gotoPosition = new Vector2(SkyMerchantSystem.SkyMerchantX * 16f, Helper.Wave((float)Main.time / 1000f, (float)Helper.ZoneSkyHeightY / 2f, (float)Helper.ZoneSkyHeightY * 16f - 200f));
         //Dust.NewDustPerfect(gotoPosition, DustID.Torch);
         var wantedVelocity = NPC.DirectionTo(gotoPosition);
-        NPC.direction = 1;
-        NPC.spriteDirection = 1;
         if (wantedVelocity.X < 0f) {
             NPC.velocity *= 0.95f;
         }
@@ -131,6 +198,25 @@ public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
             Projectile.NewProjectile(NPC.GetSource_FromThis(), NPC.Center, velocity * speed + new Vector2(0f, -gravCorrection) + Main.rand.NextVector2Square(-randomOffset, randomOffset), ModContent.ProjectileType<SkyMerchantProjectile>(), damage, knockback, Main.myPlayer);
             NPC.ai[1] = -cooldown - attackDelay;
             NPC.netUpdate = true;
+        }
+    }
+
+    private void WalkingMovement() {
+        DrawOffsetY = 0f;
+        NPC.noGravity = false;
+
+        Player player = Main.player[Player.FindClosest(NPC.position, NPC.width, NPC.height)];
+        if (!player.active || player.DeadOrGhost) {
+            return;
+        }
+
+        float distance = NPC.Distance(player.Center);
+
+        // Stop at player if nearby.
+        if (distance < 100f) {
+            NPC.ai[0] = 0f;
+            NPC.ai[1] = 300f;
+            NPC.localAI[3] = 100f;
         }
     }
 
@@ -212,28 +298,50 @@ public partial class SkyMerchant : UnifiedTownNPC<SkyMerchant>, ICustomMapHead {
                 return false;
             }
 
+            NPC.spriteDirection = NPC.direction = Math.Sign(NPC.velocity.X);
+
+            if (StopForPlayers()) {
+                TryToLand();
+                return false;
+            }
+
+            /*
             if (NearStoppingPoint()) {
                 NPC.velocity *= 0.95f;
                 return false;
             }
+            */
 
             BalloonMovement();
             return false;
         }
 
-        DrawOffsetY = 0f;
-        NPC.noGravity = false;
+        WalkingMovement();
         return true;
     }
 
     public override void AI() {
+        if (NPC.ai[0] == 0f || NPC.ai[0] == 1f) {
+            Player player = Main.player[Player.FindClosest(NPC.position, NPC.width, NPC.height)];
+            if (!player.active || player.DeadOrGhost) {
+                return;
+            }
+
+            float distance = NPC.Distance(player.Center);
+
+            // Face towards nearest player.
+            if (distance < 600f) {
+                NPC.spriteDirection = NPC.direction = Math.Sign(player.Center.X - NPC.Center.X);
+            }
+        }
     }
     #endregion
 
     public override void FindFrame(int frameHeight) {
         balloonBobbing += 1 / 60f;
         if (state == MovementState.Ballooning) {
-            NPC.gfxOffY = MathF.Sin(balloonBobbing) * 4f + 4f;
+            NPC.frame.Y = 0;
+            DrawOffsetY = MathF.Sin(balloonBobbing) * 4f + 4f;
         }
     }
 
