@@ -3027,6 +3027,15 @@
         <member name="F:Aequus.AequusTextures.GlimmerMapBackground">
             <summary>Full Path: Content/Events/GlimmerEvent/Textures/GlimmerMapBackground</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Driftwood">
+            <summary>Full Path: Content/Fishing/Junk/Driftwood</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PlasticBottle">
+            <summary>Full Path: Content/Fishing/Junk/PlasticBottle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TatteredDemonHorn">
+            <summary>Full Path: Content/Fishing/Junk/TatteredDemonHorn</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.BoundedGlint">
             <summary>Full Path: Content/ItemPrefixes/Potions/BoundedGlint</summary>
         </member>
@@ -4397,15 +4406,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.UnholyCoreSmall">
             <summary>Full Path: Items/Misc/Spawners/UnholyCoreSmall</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Driftwood">
-            <summary>Full Path: Items/Misc/Trash/Driftwood</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PlasticBottle">
-            <summary>Full Path: Items/Misc/Trash/PlasticBottle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.TatteredDemonHorn">
-            <summary>Full Path: Items/Misc/Trash/TatteredDemonHorn</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BloodthirstPotion">
             <summary>Full Path: Items/Potions/BloodthirstPotion</summary>

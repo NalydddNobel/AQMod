@@ -537,6 +537,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> GlimmerEventIcon = new("Content/Events/GlimmerEvent/Textures/GlimmerEventIcon");
     /// <summary>Full Path: Content/Events/GlimmerEvent/Textures/GlimmerMapBackground</summary>
     public static readonly RequestCache<Texture2D> GlimmerMapBackground = new("Content/Events/GlimmerEvent/Textures/GlimmerMapBackground");
+    /// <summary>Full Path: Content/Fishing/Junk/Driftwood</summary>
+    public static readonly RequestCache<Texture2D> Driftwood = new("Content/Fishing/Junk/Driftwood");
+    /// <summary>Full Path: Content/Fishing/Junk/PlasticBottle</summary>
+    public static readonly RequestCache<Texture2D> PlasticBottle = new("Content/Fishing/Junk/PlasticBottle");
+    /// <summary>Full Path: Content/Fishing/Junk/TatteredDemonHorn</summary>
+    public static readonly RequestCache<Texture2D> TatteredDemonHorn = new("Content/Fishing/Junk/TatteredDemonHorn");
     /// <summary>Full Path: Content/ItemPrefixes/Potions/BoundedGlint</summary>
     public static readonly RequestCache<Texture2D> BoundedGlint = new("Content/ItemPrefixes/Potions/BoundedGlint");
     /// <summary>Full Path: Content/ItemPrefixes/Potions/EmpoweredGlint</summary>
@@ -1451,12 +1457,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> UnholyCore = new("Items/Misc/Spawners/UnholyCore");
     /// <summary>Full Path: Items/Misc/Spawners/UnholyCoreSmall</summary>
     public static readonly RequestCache<Texture2D> UnholyCoreSmall = new("Items/Misc/Spawners/UnholyCoreSmall");
-    /// <summary>Full Path: Items/Misc/Trash/Driftwood</summary>
-    public static readonly RequestCache<Texture2D> Driftwood = new("Items/Misc/Trash/Driftwood");
-    /// <summary>Full Path: Items/Misc/Trash/PlasticBottle</summary>
-    public static readonly RequestCache<Texture2D> PlasticBottle = new("Items/Misc/Trash/PlasticBottle");
-    /// <summary>Full Path: Items/Misc/Trash/TatteredDemonHorn</summary>
-    public static readonly RequestCache<Texture2D> TatteredDemonHorn = new("Items/Misc/Trash/TatteredDemonHorn");
     /// <summary>Full Path: Items/Potions/BloodthirstPotion</summary>
     public static readonly RequestCache<Texture2D> BloodthirstPotion = new("Items/Potions/BloodthirstPotion");
     /// <summary>Full Path: Items/Potions/DeathsEmbrace/DeathsEmbrace</summary>
