@@ -26,8 +26,8 @@ GoldenWind: {
 	Tooltip: "{$Items.GoldenFeather.Tooltip}"
 	/* BuffDescription:
 		'''
-		Regenerate {1} health per second
-		{$GoldenFeather.BuffDescription}
+		Regenerate {0} health per second
+		{$GoldenFeather.BuffDescription@1}
 		''' */
 }
 
