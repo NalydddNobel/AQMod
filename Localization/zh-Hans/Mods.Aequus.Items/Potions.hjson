@@ -6,7 +6,7 @@ MeadowMushroom: {
 SentryPotion: {
 	DisplayName: 哨兵药水
 	Tooltip: 增加{0}格最大哨兵栏位
-	// BuffDisplayName: Sentry
+	BuffDisplayName: 哨兵
 }
 
 TaintedSeafood: {
@@ -34,8 +34,8 @@ GreaterHoneyPotion: {
 }
 
 GreaterHoney: {
-	// DisplayName: Greater Honey
-	// Tooltip: ""
+	DisplayName: 强效蜂蜜
+	Tooltip: ""
 }
 
 SuperHoneyPotion: {
@@ -44,8 +44,8 @@ SuperHoneyPotion: {
 }
 
 SuperHoney: {
-	// DisplayName: Super Honey
-	// Tooltip: ""
+	DisplayName: 超级蜂蜜
+	Tooltip: ""
 }
 
 LesserRestorationPotion: {

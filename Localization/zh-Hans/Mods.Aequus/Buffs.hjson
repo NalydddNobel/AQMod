@@ -1,5 +1,5 @@
 Buffs: {
-	// ModifierFormats.Empowered: "{0} (Empowered)"
+	ModifierFormats.Empowered: "{0} (增强)"
 
 	NeutronYogurtBuff: {
 		DisplayName: 中子酸奶
@@ -87,8 +87,8 @@ Buffs: {
 	}
 
 	CrimsonSceptreDebuff: {
-		// DisplayName: Crimson Sceptre Debuff
-		// Description: Mods.Aequus.Buffs.CrimsonSceptreDebuff.Description
+		DisplayName: 猩红权杖减益
+		Description: Mods.Aequus.Buffs.CrimsonSceptreDebuff.Description
 	}
 
 	GravetenderMinionBuff: {
@@ -347,7 +347,7 @@ Buffs: {
 
 	OmegaStariteBuff: {
 		DisplayName: 迷你终末之星
-		Description: 你所能想象的最小的类太阳系
+		Description: 你所能想象的最小的类太阳系, 终末的存在
 	}
 
 	TorraBuff: {
@@ -561,7 +561,7 @@ Buffs: {
 	}
 
 	LanternCatBuff: {
-		DisplayName: 猫 & 灯笼
+		DisplayName: 猫与灯笼
 		Description: 猫和灯笼会为你提供光照和幸运
 	}
 

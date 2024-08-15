@@ -1,13 +1,13 @@
 Biomes: {
 	OblivionAltarBiome: {
-		// DisplayName: Oblivion Altar
-		// TownNPCDialogueName: an Oblivion Altar
+		DisplayName: 遗境祭坛
+		TownNPCDialogueName: 遗境祭坛
 	}
 
 	DemonSiegeZone: {
 		DisplayName: 遗境祭坛
 		EventName: 恶魔围攻
-		// TownNPCDialogueName: an Oblivion Altar
+		TownNPCDialogueName: 遗境祭坛
 	}
 
 	PollutedOceanBiomeSurface: {

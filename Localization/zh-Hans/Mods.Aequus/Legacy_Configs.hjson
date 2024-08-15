@@ -26,7 +26,7 @@ Configs: {
 		}
 
 		NecromancyOutlines: {
-			Label: "[i:Aequus/ZombieSceptre] 幽魂仆从轮廓"
+			Label: "[i:Aequus/CorruptionSceptre] 幽魂仆从轮廓"
 			Tooltip:
 				'''
 				禁用此设置将移除幽魂仆从的轮廓.
@@ -50,7 +50,7 @@ Configs: {
 		}
 
 		AdamantiteChestMimic: {
-			Label: 精金箱宝箱怪
+			Label: "[i:Aequus/AdamantiteChest] 精金箱宝箱怪"
 			Tooltip: ""
 		}
 	}
@@ -180,7 +180,7 @@ Configs: {
 			General: -- 常规 --
 			World: -- 世界 --
 			Recipes: -- 合成表 --
-			// VanillaChanges: -- Vanilla Changes --
+			VanillaChanges: -- 原版更改 --
 		}
 	}
 }

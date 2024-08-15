@@ -110,11 +110,7 @@ PotionCanteenEmpty: {
 PotionCanteen: {
 	DisplayName: 药水壶
 	DisplayNameAlt: "{0}壶"
-	Tooltip:
-		'''
-		能够无限使用一种药水
-		光标悬停在堆叠数量为15的药水上并点击右键
-		'''
+	Tooltip: "{$Items.PotionCanteenEmpty.Tooltip}"
 }
 
 NeonGenesis: {
@@ -354,9 +350,8 @@ Revenant: {
 	DisplayName: 亡魂权杖
 	Tooltip:
 		'''
-		攻击会在敌人身上积蓄灵魂伤害
-		当你停止攻击时, 释放并转化所有的灵魂伤害为蔓延诅咒
-		如果你积蓄了足够的灵魂伤害, 敌人会变为你的队友
+		消耗敌人的灵魂
+		{$CommonItemTooltip.NecromancyStaff}
 		'''
 }
 
@@ -364,19 +359,18 @@ CrimsonSceptre: {
 	DisplayName: 猩红权杖
 	Tooltip:
 		'''
-		攻击会在敌人身上积蓄灵魂伤害
-		当你停止攻击时, 释放并转化所有的灵魂伤害为一个强大的弹幕
-		如果你积蓄了足够的灵魂伤害, 敌人会变为你的队友
+		消耗敌人的灵魂
+		{$CommonItemTooltip.NecromancyStaff}
 		'''
 }
 
 CorruptionSceptre: {
-	// DisplayName: Zombie Sceptre
-	/* Tooltip:
+	DisplayName: Zombie Sceptre
+	Tooltip:
 		'''
-		Drains the soul of enemies
+		消耗敌人的灵魂
 		{$CommonItemTooltip.NecromancyStaff}
-		''' */
+		'''
 }
 
 // Armor
@@ -825,22 +819,22 @@ ScarabDynamite: {
 }
 
 BottleOSpirits: {
-	// DisplayName: Bottle O Spirits
-	// Tooltip: Increases your maximum number of ghost minions by 1
+	DisplayName: 瓶装魂灵
+	Tooltip: 增加1格最大幽魂仆从栏位
 }
 
 KegOSpirits: {
-	// DisplayName: Keg O Spirits
-	/* Tooltip:
+	DisplayName: 桶装魂灵
+	Tooltip:
 		'''
 		{$SaivoryKnife.Tooltip}
 		{$BottleOSpirits.Tooltip}
-		''' */
+		'''
 }
 
 SaivoryKnife: {
-	// DisplayName: Saivory Knife
-	// Tooltip: Increases the lifespan of your ghosts by 1 minute
+	DisplayName: 凤味象牙刀
+	Tooltip: 延长1分钟幽魂仆从的存在时间
 }
 
 LavaproofMitten: {
@@ -1997,27 +1991,27 @@ UltraStariteBanner: {
 
 CinderaBanner: {
 	DisplayName: 幻形蝠旗
-	Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Cindera.DisplayName}"
+	Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.Cindera.DisplayName}"
 }
 
 MagmabubbleBanner: {
 	DisplayName: 附腿熔岩旗
-	Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Magmabubble.DisplayName}"
+	Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.Magmabubble.DisplayName}"
 }
 
 TrapperImpBanner: {
 	DisplayName: 捕魂小鬼旗
-	Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.TrapperImp.DisplayName}"
+	Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.TrapperImp.DisplayName}"
 }
 
 VraineBanner: {
 	DisplayName: 镰鸟旗
-	Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Vraine.DisplayName}"
+	Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.Vraine.DisplayName}"
 }
 
 WhiteSlimeBanner: {
 	DisplayName: 白色史莱姆旗
-	Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.WhiteSlime.DisplayName}"
+	Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.WhiteSlime.DisplayName}"
 }
 
 FishSign: {

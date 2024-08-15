@@ -1,45 +1,45 @@
 Paintings: {
 	Signature: {
-		// Nalyddd: T. Nalyd
-		// Niker: N. Ker
-		// Torra: T. Torra
+		Nalyddd: T. Nalyd
+		Niker: N. Ker
+		Torra: T. Torra
 	}
 
-	// RockmanLemonsPainting.ItemDisplayName: Life & Lemons
-	// YinPainting.ItemDisplayName: Yet Darker
-	// YangPainting.ItemDisplayName: Feel the Sunshine
-	// NarryPainting.ItemDisplayName: A Spirit's Rambling
-	// BongBongPainting.ItemDisplayName: BongBong
-	// YinYangPainting.ItemDisplayName: The Polarity
+	RockmanLemonsPainting.ItemDisplayName: 生命 & 柠檬
+	YinPainting.ItemDisplayName: 然更黑暗
+	YangPainting.ItemDisplayName: 感受阳光
+	NarryPainting.ItemDisplayName: 魂灵漫步
+	BongBongPainting.ItemDisplayName: 邦邦
+	YinYangPainting.ItemDisplayName: 两极
 
 	RockForcePainting: {
-		// ItemDisplayName: Stone Tablet - Force
-		/* ItemTooltip:
+		ItemDisplayName: 石碑 - 力量
+		ItemTooltip:
 			'''
-			Rumors say if you learn all three words, you will gain immense power
-			...Sadly it's only a myth
-			''' */
+			据说, 学会这三个词, 你就能获得强大的力量
+			...令人悲伤的, 这只是一个神话
+			'''
 	}
 
 	RockBalancePainting: {
-		// ItemDisplayName: Stone Tablet - Balance
-		// ItemTooltip: "{$RockForcePainting.ItemTooltip}"
+		ItemDisplayName: 石碑 - 平衡
+		ItemTooltip: "{$RockForcePainting.ItemTooltip}"
 	}
 
 	RockPushPainting: {
-		// ItemDisplayName: Stone Tablet - Push
-		// ItemTooltip: "{$RockForcePainting.ItemTooltip}"
+		ItemDisplayName: 石碑 - 前进
+		ItemTooltip: "{$RockForcePainting.ItemTooltip}"
 	}
 
-	// OliverPainting.ItemDisplayName: THIRTY
-	// OriginPainting.ItemDisplayName: Origin of Aequus
-	// CatalystPainting.ItemDisplayName: Catalyst's Beginnings
-	// OmegaStarite2Painting.ItemDisplayName: Star System
-	// GoreNestPainting.ItemDisplayName: Hill of Their Remains
-	// SpacePainting.ItemDisplayName: Space - ExLyd
-	// GoreNest2Painting.ItemDisplayName: Sequenced into Oblivion
-	// InsurgentPainting.ItemDisplayName: Those Who Wrong
-	// HomeworldPainting.ItemDisplayName: Star's Conscious
-	// BreadRoachPainting.ItemDisplayName: Bread & Bugger
-	// OmegaStaritePainting.ItemDisplayName: The Star's Construction
+	OliverPainting.ItemDisplayName: 三十
+	OriginPainting.ItemDisplayName: Aequus之源
+	CatalystPainting.ItemDisplayName: Catalyst的开端
+	OmegaStarite2Painting.ItemDisplayName: 星系
+	GoreNestPainting.ItemDisplayName: 他们的遗骸之山
+	SpacePainting.ItemDisplayName: 太空 - ExLyd
+	GoreNest2Painting.ItemDisplayName: 序入遗境
+	InsurgentPainting.ItemDisplayName: 错误者
+	HomeworldPainting.ItemDisplayName: 星的意识
+	BreadRoachPainting.ItemDisplayName: 面包 & 小伙
+	OmegaStaritePainting.ItemDisplayName: 星的构造
 }
