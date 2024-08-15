@@ -91,7 +91,8 @@ public readonly struct BuildChallengeSaveData {
         int amt = reader.ReadInt32();
         var bounties = new List<int>();
         for (int i = 0; i < amt; i++) {
-            var b = BuildChallengeLoader.registeredBuildChallenges[reader.ReadInt32()];
+            int nextIndex = reader.ReadInt32();
+            var b = BuildChallengeLoader.registeredBuildChallenges[nextIndex];
             Challenges.Add(b.FullName);
         }
     }
