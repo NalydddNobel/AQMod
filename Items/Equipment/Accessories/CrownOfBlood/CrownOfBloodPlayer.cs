@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Items.EquipmentBooster;
+using System;
 using System.Collections.Generic;
 
 namespace Aequus.Items.Equipment.Accessories.CrownOfBlood;
@@ -11,10 +12,19 @@ public class CrownOfBloodPlayer : ModPlayer {
     }
 
     public override void PostUpdateEquips() {
-        foreach (DeferredEquipBoost boost in _equipBoostsToUpdate) {
-            if (boost.Item.TryGetGlobalItem(out EquipBoostGlobalItem equipBoostItem)) {
-                equipBoostItem.equipEmpowerment?.ApplyModifier(boost.Item, Player, Player.GetModPlayer<AequusPlayer>());
+        AequusPlayer.EquipmentModifierUpdate = true;
+        try {
+            foreach (DeferredEquipBoost boost in _equipBoostsToUpdate) {
+                if (boost.Item.TryGetGlobalItem(out EquipBoostGlobalItem equipBoostItem)) {
+                    equipBoostItem.equipEmpowerment?.ApplyModifier(boost.Item, Player, Player.GetModPlayer<AequusPlayer>());
+                }
             }
+        }
+        catch (Exception ex) {
+            Mod.Logger.Error(ex);
+        }
+        finally {
+            AequusPlayer.EquipmentModifierUpdate = false;
         }
 
         _equipBoostsToUpdate.Clear();

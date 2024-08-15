@@ -26,6 +26,9 @@ public class EquipBoostGlobalItem : GlobalItem {
     }
 
     public override void UpdateEquip(Item item, Player player) {
-        player.GetModPlayer<CrownOfBloodPlayer>().UpdateEquipBoost(item);
+        if (!AequusPlayer.EquipmentModifierUpdate) {
+            player.GetModPlayer<CrownOfBloodPlayer>().UpdateEquipBoost(item);
+            equipEmpowerment = null;
+        }
     }
 }
