@@ -26,7 +26,7 @@ public class PrintsTile : ModTile {
             new(ModContent.NPCType<UltraStarite>(), ModContent.ItemType<PosterUltraStarite>()),
             new(ModContent.NPCType<Heckto>(), ModContent.ItemType<PosterHeckto>()),
             new(ModContent.NPCType<Oblivision>(), ModContent.ItemType<PosterOblivision>()),
-            //new(ModContent.NPCType<SkyMerchant>(), ModContent.ItemType<PosterSkyMerchant>()),
+            new(ModContent.NPCType<Content.Villagers.SkyMerchant.SkyMerchant>(), ModContent.ItemType<PosterSkyMerchant>()),
         };
 
         Main.tileFrameImportant[Type] = true;
@@ -49,11 +49,5 @@ public class PrintsTile : ModTile {
 
     public override void NumDust(int i, int j, bool fail, ref int num) {
         num = 0;
-    }
-
-    public override void KillMultiTile(int i, int j, int frameX, int frameY) {
-        int id = frameX / 108;
-        var print = printInfo[id];
-        Terraria.Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 96, 96, print.posterItemID);
     }
 }

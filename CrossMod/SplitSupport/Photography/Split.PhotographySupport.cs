@@ -60,7 +60,7 @@ internal partial class Split {
                 new(2, ModContent.NPCType<UltraStarite>(), ModContent.ItemType<EnvelopeGlimmer>(), ModContent.ItemType<PosterUltraStarite>()),
                 new(3, ModContent.NPCType<Heckto>(), dungeonEnvelope, ModContent.ItemType<PosterHeckto>()),
                 new(4, ModContent.NPCType<Oblivision>(), hellEnvelope, ModContent.ItemType<PosterOblivision>()),
-                //new(5, ModContent.NPCType<SkyMerchant>(), spaceEnvelope, ModContent.ItemType<PosterSkyMerchant>()),
+                new(5, ModContent.NPCType<Content.Villagers.SkyMerchant.SkyMerchant>(), spaceEnvelope, ModContent.ItemType<PosterSkyMerchant>()),
             ]);
     }
 }
